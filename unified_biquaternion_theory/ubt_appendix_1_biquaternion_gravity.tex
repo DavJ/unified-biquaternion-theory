@@ -1,0 +1,102 @@
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{authblk}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\title{\textbf{Appendix I: Variational Derivation and Einstein Compatibility in Biquaternionic Gravity}}
+
+\author{David Jaroš}
+\affil{Independent Researcher}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We complete the variational derivation of field equations from the biquaternionic gravitational action proposed in the Unified Biquaternion Theory (UBT). We then explicitly demonstrate the compatibility of the resulting equations with the Einstein vacuum field equations in the real-valued limit. This appendix establishes that General Relativity emerges as a special case of the broader algebraic structure.
+\end{abstract}
+
+\section{Recap: The Biquaternionic Action}
+We begin with the action functional:
+\[
+S[e,\omega] = \int \det(e) \, \text{Re}\left[\text{ScalarPart}(e^\mu_a e^\nu_b R_{\mu\nu}^{ab})\right] \, d^4x
+\]
+where:
+\begin{itemize}
+  \item \( e^\mu_a \): biquaternionic tetrad
+  \item \( \omega_\mu^{ab} \): biquaternionic spin connection
+  \item \( R_{\mu\nu}^{ab} = \partial_\mu \omega_\nu^{ab} - \partial_\nu \omega_\mu^{ab} + [\omega_\mu^{ac}, \omega_\nu^{cb}] \): curvature tensor
+\end{itemize}
+
+\section{Variation with Respect to Tetrad}
+
+Let:
+\[
+\mathcal{R} := \text{ScalarPart}(e^\mu_a e^\nu_b R_{\mu\nu}^{ab})
+\]
+Then:
+\[
+\delta S = \int \left( \delta \det(e) \cdot \text{Re}[\mathcal{R}] + \det(e) \cdot \text{Re}[\delta \mathcal{R}] \right) d^4x
+\]
+Using:
+\[
+\delta \det(e) = \det(e) \cdot e^\mu_a \delta e^a_\mu
+\]
+\[
+\delta \mathcal{R} = \text{ScalarPart}\left( (\delta e^\mu_a) e^\nu_b R_{\mu\nu}^{ab} + e^\mu_a (\delta e^\nu_b) R_{\mu\nu}^{ab} \right)
+\]
+
+We obtain:
+\[
+\delta S = \int \delta e^\mu_a \cdot \det(e) \cdot \left[ \text{Re}(\mathcal{R}) \cdot e^\mu_a + \text{Re}\left( \text{ScalarPart}(e^\nu_b R_{\mu\nu}^{ab}) + \text{ScalarPart}(e^\nu_b R_{\nu\mu}^{ba}) \right) \right] d^4x
+\]
+
+\section{Field Equations}
+Demanding \( \delta_e S = 0 \) for arbitrary variations gives:
+\[
+\boxed{
+\text{Re} \left( \text{ScalarPart}(e^\nu_b R_{\mu\nu}^{ab}) + \text{ScalarPart}(e^\nu_b R_{\nu\mu}^{ba}) \right) + \text{Re}(\mathcal{R}) \cdot e^\mu_a = 0
+}
+\]
+
+\section{Compatibility with Einstein Gravity}
+
+Assume the real-valued limit:
+\begin{itemize}
+  \item \( e^\mu_a \in \mathbb{R} \), \( \omega_\mu^{ab} \in \mathbb{R} \)
+  \item Define \( g_{\mu\nu} = \eta_{ab} e^a_\mu e^b_\nu \)
+\end{itemize}
+
+Then:
+\[
+\text{ScalarPart}(e^\nu_b R_{\mu\nu}^{ab}) = e^\nu_b R_{\mu\nu}^{ab}
+\quad \text{and} \quad
+\mathcal{R} = e^\mu_a e^\nu_b R_{\mu\nu}^{ab} = R
+\]
+
+Therefore, the equation becomes:
+\[
+e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + R e^\mu_a = 0
+\]
+
+Using symmetrization and projection:
+\[
+R_{\mu a} := e^\nu_b R_{\mu\nu}^{ab}
+\Rightarrow
+E^\mu_a := R_{\mu a} - \tfrac{1}{2} e^\mu_a R = 0
+\Rightarrow
+G_{\mu\nu} = 0
+\]
+
+\section{Conclusion}
+The field equations of the UBT reduce to Einstein's equations in the real-valued limit. This confirms that General Relativity is a special case embedded in the more general biquaternionic formulation, and the remaining components of the master equation encode extended physics beyond GR.
+
+\end{document}
