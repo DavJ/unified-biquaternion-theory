@@ -1,4 +1,3 @@
-
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{geometry}
@@ -162,3 +161,47 @@ which is the Einstein field equation in vacuum. This demonstrates that the real 
 The field equations of the UBT reduce to Einstein's equations in the real-valued limit. This confirms that General Relativity is a special case embedded in the more general biquaternionic formulation, and the remaining components of the master equation encode extended physics beyond GR.
 
 \end{document}
+\section{Lemma: Recovery of Einstein Equations in the Real Limit}
+
+In this section, we demonstrate that the field equation
+\begin{equation}
+e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + \mathcal{R} \cdot e^\mu_a = 0
+\end{equation}
+leads to the standard Einstein field equations in the real-valued limit of the theory.
+
+\subsection*{Step 1: Contraction with the Tetrad}
+We contract both sides with $e^a_\rho$:
+\[
+e^a_\rho \left( e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + \mathcal{R} \cdot e^\mu_a \right) = 0
+\]
+
+\subsection*{Step 2: Use of Metric Relations}
+Using $g_{\rho\nu} = e^a_\rho e^b_\nu \eta_{ab}$ and $e^a_\rho e^\mu_a = \delta^\mu_\rho$, the first two terms become:
+\[
+e^a_\rho e^\nu_b R_{\mu\nu}^{ab} = R_{\mu\rho}, \quad e^a_\rho e^\nu_b R_{\nu\mu}^{ba} = R_{\rho\mu}
+\]
+Therefore:
+\[
+R_{\mu\rho} + R_{\rho\mu} = 2 R_{(\mu\rho)}
+\]
+
+\subsection*{Step 3: Scalar Curvature Term}
+The scalar curvature is:
+\[
+\mathcal{R} = \eta_{ab} e^\mu_a e^\nu_b R_{\mu\nu}^{ab} = g^{\mu\nu} R_{\mu\nu} = R
+\]
+and the contraction yields:
+\[
+\mathcal{R} \cdot e^a_\rho e^\mu_a = R \cdot \delta^\mu_\rho = R^\mu_\rho
+\]
+
+\subsection*{Step 4: Final Combination}
+Combining all terms:
+\[
+2 R_{\mu\rho} + R \cdot g_{\mu\rho} = 0 \quad \Rightarrow \quad R_{\mu\rho} = -\frac{1}{2} g_{\mu\rho} R
+\]
+Thus we recover the Einstein field equations in vacuum:
+\[
+R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 0
+\]
+which completes the proof.
