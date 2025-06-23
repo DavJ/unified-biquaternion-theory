@@ -117,33 +117,45 @@ This motivates a compact expression:
 \]
 where \( (e^{-1})^a_\mu \) denotes the inverse tetrad defined via antisymmetric projection, compatible with the real scalar volume measure. This identity is fundamental for the variational principle in the presence of non-commutative and non-associative field variables like biquaternions.
 
+
+
 \section{Compatibility with Einstein Gravity in the Real Limit}
 
-To demonstrate that our biquaternionic field equation reduces to General Relativity in the real-valued limit, we examine the equation:
+To demonstrate that our biquaternionic field equation reduces to General Relativity in the real-valued limit, we examine the field equation obtained from variation:
 
 \[
 e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + \mathcal{R} \cdot e^\mu_a = 0
 \]
 
-First, note that due to the antisymmetry of the Riemann curvature:
+Due to the antisymmetry properties of the Riemann curvature tensor:
 \[
 R_{\mu\nu}^{ab} = - R_{\nu\mu}^{ab}, \quad R_{\mu\nu}^{ab} = - R_{\mu\nu}^{ba}
 \]
-the first two terms become symmetric upon contraction:
+the first two terms combine symmetrically upon contraction. Defining the Ricci tensor in frame-index form:
+\[
+R^a_\mu := e^\nu_b R_{\mu\nu}^{ab}
+\]
+we obtain:
 \[
 e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} = 2 R^a_\mu
 \]
-where \( R^a_\mu := e^\nu_b R_{\mu\nu}^{ab} \) is the Ricci tensor in mixed frame-index form.
-
-Multiplying both sides by \( e^a_\nu \) yields:
+Substituting into the field equation gives:
+\[
+2 R^a_\mu + \mathcal{R} \cdot e^\mu_a = 0
+\]
+Multiplying both sides by the inverse tetrad \( e^a_\nu \), we project into coordinate indices:
 \[
 2 R_{\mu\nu} + \mathcal{R} \cdot g_{\mu\nu} = 0
 \]
-Using \( \mathcal{R} = -R \), we obtain:
+Here we used the identities:
 \[
-R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 0 \quad \Rightarrow \quad G_{\mu\nu} = 0
+R_{\mu\nu} := R^a_\mu e^a_\nu, \qquad g_{\mu\nu} := e^a_\mu e^a_\nu
 \]
-Thus, the Einstein field equations emerge as the real projection of the biquaternionic variational principle.
+and note that \( \mathcal{R} := e^\mu_a e^\nu_b R_{\mu\nu}^{ab} \) corresponds to the scalar curvature \( R \) up to sign conventions. Thus:
+\[
+R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 0
+\]
+which is the Einstein field equation in vacuum. This demonstrates that the real part of the biquaternionic variational principle is fully compatible with classical General Relativity.
 
 
 \section{Conclusion}
