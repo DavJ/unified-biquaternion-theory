@@ -117,6 +117,34 @@ This motivates a compact expression:
 \]
 where \( (e^{-1})^a_\mu \) denotes the inverse tetrad defined via antisymmetric projection, compatible with the real scalar volume measure. This identity is fundamental for the variational principle in the presence of non-commutative and non-associative field variables like biquaternions.
 
+\section{Compatibility with Einstein Gravity in the Real Limit}
+
+To demonstrate that our biquaternionic field equation reduces to General Relativity in the real-valued limit, we examine the equation:
+
+\[
+e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + \mathcal{R} \cdot e^\mu_a = 0
+\]
+
+First, note that due to the antisymmetry of the Riemann curvature:
+\[
+R_{\mu\nu}^{ab} = - R_{\nu\mu}^{ab}, \quad R_{\mu\nu}^{ab} = - R_{\mu\nu}^{ba}
+\]
+the first two terms become symmetric upon contraction:
+\[
+e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} = 2 R^a_\mu
+\]
+where \( R^a_\mu := e^\nu_b R_{\mu\nu}^{ab} \) is the Ricci tensor in mixed frame-index form.
+
+Multiplying both sides by \( e^a_\nu \) yields:
+\[
+2 R_{\mu\nu} + \mathcal{R} \cdot g_{\mu\nu} = 0
+\]
+Using \( \mathcal{R} = -R \), we obtain:
+\[
+R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 0 \quad \Rightarrow \quad G_{\mu\nu} = 0
+\]
+Thus, the Einstein field equations emerge as the real projection of the biquaternionic variational principle.
+
 
 \section{Conclusion}
 The field equations of the UBT reduce to Einstein's equations in the real-valued limit. This confirms that General Relativity is a special case embedded in the more general biquaternionic formulation, and the remaining components of the master equation encode extended physics beyond GR.
