@@ -1,3 +1,4 @@
+
 \documentclass[12pt]{article}
 \usepackage{amsmath,amssymb,amsfonts,graphicx,hyperref,geometry}
 \geometry{margin=1in}
@@ -67,38 +68,35 @@ where \( \tau \in \mathbb{C} \) is complex time.
 Drift is related to conscious selection of trajectory branches, and Metatime Action State (MAS) is defined as:
 \[ \mathcal{M} = \int d^5q\, \psi(q) \bar{\Theta}(q) \Theta(q). \]
 
-\section{Particle Mass Spectrum and Physical Predictions}
-The scalar potential \( V \) is engineered to reproduce mass hierarchy by minimizing action subject to internal symmetry constraints:
-\[ m_f \sim \langle \bar{\Theta} \Theta \rangle_f \rightarrow \text{fermion mass} \quad \text{for}\ f = e, \mu, \tau, u, d, s, ... \]
+\section{Extended Derivations}
 
-Coupling constants and structure constants in \( F_{AB}^a \) determine the strengths of interactions, derived from the geometry of the internal fibre bundle.
+\subsection{Derivation of \( \hbar \), \( c \), and \( G \)}
+We postulate that these constants emerge as geometric parameters in the moduli space of \( \mathbb{C}^5 \). The scaling of time and space-like coordinates defines \( c \), phase quantization under modular transformations fixes \( \hbar \), and the curvature of the spin connection contributes an effective Newtonian coupling \( G \) from the torsion sector.
 
-\subsection{Emergence of the Fine-Structure Constant \texorpdfstring{\( \alpha \)}{alpha}}
-
-The fine-structure constant \( \alpha \approx \frac{1}{137.036} \) characterizes the strength of the electromagnetic interaction and appears as a dimensionless ratio:
+\subsection{Lagrangian with Higgs Coupling}
+Introducing a scalar doublet \( H \), the Higgs-Theta coupling reads:
 \[
-\alpha = \frac{e^2}{4\pi \varepsilon_0 \hbar c}.
+\mathcal{L}_\text{Yukawa} = y_f \bar{\Theta}_L H \Theta_R + h.c.
 \]
-In natural units where \( \hbar = c = \varepsilon_0 = 1 \), this simplifies to:
+Spontaneous symmetry breaking gives mass to fermions and gauge bosons, consistent with low-energy SM.
+
+\subsection{Mass Matrix Construction}
+Let \( \Theta \) have distinct internal components labeled by flavor and generation. Mass matrices \( M_f \) are derived from effective vevs:
 \[
-\alpha = \frac{e^2}{4\pi}.
+M_f = y_f \langle H \rangle.
 \]
 
-In the context of the Unified Biquaternion Theory, we propose that \( \alpha \) emerges from a topological quantization condition associated with the U(1) gauge field over the compactified complex phase dimension \( \psi \in \mathbb{C} \subset \mathbb{C}^5 \). We postulate that the U(1) gauge bundle has a non-trivial holonomy over the phase fiber \( S^1_\psi \), leading to a quantized flux:
+\subsection{Derivation of Dirac and Schrödinger Equations}
+In flat background and phase-independent configuration, the Dirac equation follows:
 \[
-\oint_{S^1_\psi} B_\psi\, d\psi = 2\pi n g_1,
+i \gamma^\mu \partial_\mu \psi = m \psi.
 \]
-where \( n \in \mathbb{Z} \), and \( g_1 \) is the U(1) coupling emerging from the geometry.
-
-Identifying \( g_1^2 / (4\pi) \equiv \alpha \), the quantized winding structure of the gauge connection implies that \( \alpha^{-1} \in \mathbb{Q} \), consistent with the observed approximate rational value. The internal geometry of \( \mathbb{C}^5 \), in particular its curvature and complex structure in the \( \psi \) direction, imposes constraints on the allowed values of \( g_1 \), leading to:
+Taking the non-relativistic limit yields Schrödinger's equation:
 \[
-\alpha = \frac{g_1^2}{4\pi} = \frac{n^2 \Phi^2}{4\pi},
+i \hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \nabla^2 \psi + V \psi.
 \]
-where \( \Phi \) is the geometric phase accumulated along \( S^1_\psi \). A natural value \( n = 1 \), \( \Phi \sim 0.3 \) yields \( \alpha^{-1} \sim 137 \), supporting the hypothesis that electromagnetic coupling is geometric in origin.
-
-This geometric emergence provides a testable prediction of the theory: variations in \( \psi \)-fiber curvature could lead to small corrections in \( \alpha \), possibly observable as running of the electromagnetic coupling at high energies or under exotic topological configurations.
 
 \section{Conclusion}
-This work expands the Unified Biquaternion Theory by grounding it in derivable mathematics, showing connections to the Standard Model, and proposing pathways for deriving fundamental parameters from field dynamics. It also refines the role of \( \Theta \) in the emergence of physical and conscious structures.
+This work expands the Unified Biquaternion Theory by grounding it in derivable mathematics, showing connections to the Standard Model, proposing derivations for fundamental constants, and refining the role of \( \Theta \) in the emergence of physical and conscious structures.
 
 \end{document}
