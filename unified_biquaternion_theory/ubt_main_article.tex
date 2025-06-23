@@ -145,6 +145,42 @@ Internal modes \( \chi(q) \sim \sin(\omega \cdot y^\mu) \) describe periodic sub
 \]
 as discrete conscious quanta (psychons), with transitions corresponding to awareness or memory shifts.
 
+
+\section{Gauge Symmetries: QED, QCD and the Standard Model Embedding}
+
+We extend the field \(\Theta(q)\) to carry internal gauge indices under the symmetry group \( \mathcal{G} = U(1) \times SU(2) \times SU(3) \), corresponding to the Standard Model gauge groups for electromagnetism, weak, and strong interactions.
+
+Let \(A_\mu = A_\mu^a T^a\) denote the full gauge connection, with generators \(T^a\) acting on \(\Theta(q)\) in the appropriate internal representation.
+
+The full covariant derivative becomes:
+\[
+\mathcal{D}_\mu \Theta = \partial_\mu \Theta + \Omega_\mu \cdot \Theta + i g_1 B_\mu Y \Theta + i g_2 W_\mu^i \tau^i \Theta + i g_3 G_\mu^a \lambda^a \Theta,
+\]
+where:
+\begin{itemize}
+  \item \(B_\mu\) is the \(U(1)_Y\) hypercharge field,
+  \item \(W_\mu^i\) are the weak \(SU(2)_L\) fields,
+  \item \(G_\mu^a\) are the gluon fields of \(SU(3)_C\),
+  \item \(Y\), \(\tau^i\), and \(\lambda^a\) are the corresponding generators.
+\end{itemize}
+
+The gauge-invariant kinetic Lagrangian reads:
+\[
+\mathcal{L}_{\text{gauge}} = -\frac{1}{4} \sum_a F^{a}_{\mu\nu} F^{a\,\mu\nu},
+\]
+with:
+\[
+F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + f^{abc} A^b_\mu A^c_\nu,
+\]
+where \(f^{abc}\) are the structure constants of the respective Lie algebras.
+
+The interaction term in the unified Lagrangian:
+\[
+\mathcal{L}_{\Theta, \text{int}} = \Re \left[ \bar{\Theta} i \Gamma^\mu \mathcal{D}_\mu \Theta \right],
+\]
+ensures that the dynamics of \(\Theta\) is fully coupled to the standard model gauge fields.
+
+
 \section{Free Energy Principle and Fokker–Planck Flow}
 
 We apply the FEP:
