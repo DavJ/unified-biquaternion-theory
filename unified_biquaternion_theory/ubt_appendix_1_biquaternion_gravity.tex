@@ -96,6 +96,28 @@ E^\mu_a := R_{\mu a} - \tfrac{1}{2} e^\mu_a R = 0
 G_{\mu\nu} = 0
 \]
 
+
+\section{Variation of the Determinant \texorpdfstring{$\det(e)$}{det(e)}}
+
+In the biquaternionic formalism, we define the determinant of the tetrad field via an antisymmetric volume form:
+\[
+\det(e) := \frac{1}{4!} \epsilon^{\mu\nu\rho\sigma} \epsilon_{abcd} \, \text{Re} \left[ e^a_\mu e^b_\nu e^c_\rho e^d_\sigma \right]
+\]
+To compute its variation, we use the linearity of the real part and antisymmetric contraction to write:
+\begin{align*}
+\delta \det(e) &= \frac{1}{4!} \epsilon^{\mu\nu\rho\sigma} \epsilon_{abcd} \, \text{Re} \left[
+(\delta e^a_\mu) e^b_\nu e^c_\rho e^d_\sigma + e^a_\mu (\delta e^b_\nu) e^c_\rho e^d_\sigma + \ldots \right] \\
+&= \text{Re} \left[ \text{Tr}_{\text{antisym}} \left( \delta e \cdot (\text{triple product of } e) \right) \right]
+\end{align*}
+This motivates a compact expression:
+\[
+\boxed{
+\delta \det(e) = \det(e) \cdot \text{Re} \left[ (e^{-1})^a_\mu \delta e^a_\mu \right]
+}
+\]
+where \( (e^{-1})^a_\mu \) denotes the inverse tetrad defined via antisymmetric projection, compatible with the real scalar volume measure. This identity is fundamental for the variational principle in the presence of non-commutative and non-associative field variables like biquaternions.
+
+
 \section{Conclusion}
 The field equations of the UBT reduce to Einstein's equations in the real-valued limit. This confirms that General Relativity is a special case embedded in the more general biquaternionic formulation, and the remaining components of the master equation encode extended physics beyond GR.
 
