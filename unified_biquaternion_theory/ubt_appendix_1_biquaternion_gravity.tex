@@ -205,3 +205,78 @@ Thus we recover the Einstein field equations in vacuum:
 R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 0
 \]
 which completes the proof.
+\section*{Appendix: Reduction to Einstein Gravity in the Real Limit}
+
+We now demonstrate explicitly that the field equation derived from our action reduces to the standard Einstein field equations in the vacuum case when all quantities are real (i.e., in the real-valued limit of the biquaternion theory).
+
+\subsection*{1. Starting Point}
+
+We take the derived field equation in the real limit:
+\begin{equation}
+e^\nu_b R_{\mu\nu}^{ab} + e^\nu_b R_{\nu\mu}^{ba} + R\,e^\mu_a = 0
+\tag{A1}
+\end{equation}
+
+Our goal is to show that this equation is equivalent to:
+\begin{equation}
+G_{\mu a} := R_{\mu a} - \frac{1}{2} e_{\mu a} R = 0
+\tag{A2}
+\end{equation}
+the vacuum Einstein equations in tetrad formalism.
+
+\subsection*{2. Step-by-Step Derivation}
+
+\paragraph{Step 1: Use of Riemann Tensor Symmetries}
+
+The Riemann curvature tensor satisfies:
+\[
+R_{\mu\nu}^{ab} = -R_{\mu\nu}^{ba}, \quad R_{\nu\mu}^{ba} = -R_{\mu\nu}^{ba} = R_{\mu\nu}^{ab}
+\]
+
+Thus, the second term in equation (A1) is equal to the first:
+\[
+e^\nu_b R_{\nu\mu}^{ba} = e^\nu_b R_{\mu\nu}^{ab}
+\]
+
+Therefore, equation (A1) becomes:
+\begin{equation}
+2 e^\nu_b R_{\mu\nu}^{ab} + R\,e^\mu_a = 0
+\tag{A3}
+\end{equation}
+
+\paragraph{Step 2: Identification of the Ricci Tensor}
+
+Contracting the Riemann tensor:
+\[
+R_{\mu a} := e^\nu_b R_{\mu\nu}^{ab}
+\]
+
+Equation (A3) becomes:
+\begin{equation}
+2 R_{\mu a} + R\,e^\mu_a = 0
+\tag{A4}
+\end{equation}
+
+\paragraph{Step 3: Contracting Again to Isolate the Ricci Scalar}
+
+Contract both sides with \( e^a_\mu \):
+\[
+e^a_\mu (2 R_{\mu a} + R\,e^\mu_a) = 0
+\Rightarrow 2 R + R \cdot 4 = 0 \Rightarrow 6R = 0 \Rightarrow R = 0
+\]
+
+\paragraph{Step 4: Final Result}
+
+Plug \( R = 0 \) back into (A4):
+\[
+2 R_{\mu a} = 0 \Rightarrow R_{\mu a} = 0
+\]
+
+Hence:
+\[
+G_{\mu a} = R_{\mu a} - \frac{1}{2} e_{\mu a} R = 0
+\]
+
+\subsection*{3. Conclusion}
+
+We have rigorously shown that the real-valued limit of our derived field equation reproduces the vacuum Einstein equations. This validates the classical correspondence of our biquaternionic gravitational theory with General Relativity.
