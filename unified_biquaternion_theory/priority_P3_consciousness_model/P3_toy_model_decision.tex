@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\title{P3 – Toy Model of Conscious Decision-Making}
+\author{Ing. David Jaroš}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section*{Hypothesis}
+The $\chi(q)$ component of the field encodes mental state oscillations. Decision-making can be modeled as bifurcation in a low-dimensional system governed by free energy minimization.
+
+\section*{Model Idea}
+\begin{itemize}
+\item Use 1D reduced dynamics: $\chi(q) \sim \psi(t)$
+\item Introduce potential landscape $F(\psi)$ with bistable points.
+\item Evolve using Fokker–Planck-like dynamics:
+\[
+\frac{\partial \rho(\psi,t)}{\partial t} = -\frac{\partial}{\partial \psi} \left( \mu(\psi) \rho \right) + D \frac{\partial^2 \rho}{\partial \psi^2}
+\]
+\end{itemize}
+
+\section*{Goal}
+Show this reproduces "choice" dynamics as spontaneous symmetry breaking or collapse.
+
+\end{document}
