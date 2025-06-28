@@ -1,0 +1,40 @@
+name: Compile all .tex to local PDF folders
+
+on:
+  push:
+    paths:
+      - '**/*.tex'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Git
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+
+    - name: Install LaTeX
+      run: sudo apt-get update && sudo apt-get install -y texlive-full
+
+    - name: Compile all .tex files and move PDFs to subfolders
+      run: |
+        find . -name "*.tex" | while read texfile; do
+          dir=$(dirname "$texfile")
+          base=$(basename "$texfile" .tex)
+          mkdir -p "$dir/pdf"
+          pdflatex -interaction=nonstopmode -output-directory "$dir/pdf" "$texfile"
+        done
+
+    - name: Commit generated PDFs
+      run: |
+        git add */pdf/*.pdf */*/pdf/*.pdf || true
+        git commit -m "Auto-generated PDFs [ci skip]" || echo "No changes to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
