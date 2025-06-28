@@ -1,13 +1,7 @@
+# Estimate of the fine-structure constant using physical constants
+from scipy.constants import elementary_charge as e
+from scipy.constants import hbar, c, epsilon_0
+import numpy as np
 
-import sympy as sp
-
-# Define constants
-e, hbar, c = sp.symbols('e hbar c', positive=True)
-alpha_expr = e**2 / (hbar * c)
-
-# Substitute approximate values
-alpha_num = alpha_expr.subs({e: 1.602176634e-19, hbar: 1.054571817e-34, c: 299792458})
-alpha_float = alpha_num.evalf()
-
-print("Alpha (calculated):", alpha_float)
-print("Alpha (expected): ~1/137.035999084")
+alpha = e**2 / (4 * np.pi * epsilon_0 * hbar * c)
+print(f"Calculated fine-structure constant: {alpha:.12f}")
