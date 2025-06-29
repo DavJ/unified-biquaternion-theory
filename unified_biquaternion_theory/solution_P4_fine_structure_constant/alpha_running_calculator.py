@@ -31,14 +31,14 @@ def calculate_running_alpha_inv(bare_alpha_inv, high_scale, target_scale):
     total_correction = 0.0
     
     # We sum the contributions from all particles whose mass lies between the scales
-    print(f"Calculating corrections when running from {high_scale:.2e} MeV down to {target_scale:.2e} MeV:")
+    print("Calculating corrections when running from {hs:.2e} MeV down to {ts:.2e} MeV:".format(hs=high_scale, ts=target_scale))
     for name, mass, charge_sq in leptons:
         if target_scale < mass < high_scale:
             # Standard formula for the one-loop QED correction
             # The sign is positive because we are running from high energy to low energy (1/alpha increases)
             term = (charge_sq / (3 * np.pi)) * np.log(high_scale**2 / mass**2)
             total_correction += term
-            print(f"  - Contribution from '{name}': {term:.6f}")
+            print("  - Contribution from '{n}': {t:.6f}".format(n=name, t=term))
             
     # The value of 1/alpha increases towards lower energies
     alpha_inv_at_target_scale = bare_alpha_inv + total_correction
@@ -53,8 +53,8 @@ low_energy_scale = m_e
 final_alpha_inv = calculate_running_alpha_inv(alpha_inv_bare, M_UBT_scale, low_energy_scale)
 
 print("\n-------------------------------------------------------------")
-print(f"Theoretical 'bare' value 1/alpha_0 from UBT: {alpha_inv_bare}")
-print(f"Calculated value 1/alpha at low energy (leptons only): ~{final_alpha_inv:.6f}")
+print("Theoretical 'bare' value 1/alpha_0 from UBT: {b}".format(b=alpha_inv_bare))
+print("Calculated value 1/alpha at low energy (leptons only): ~{f:.6f}".format(f=final_alpha_inv))
 print("-------------------------------------------------------------")
 print("Note: To achieve the precise experimental value of ~137.036,")
 print("contributions from hadrons and electroweak bosons must also be included.")
