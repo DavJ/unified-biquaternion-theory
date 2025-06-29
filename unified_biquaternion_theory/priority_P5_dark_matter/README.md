@@ -1,6 +1,19 @@
-# Priority P5: Dark Matter – Research Motivation
+# Priority P5 – Dark Matter from Topological Field Structures
 
-This directory contains the theoretical motivation and initial proposal for exploring dark matter within the Unified Biquaternion Theory (UBT). We aim to explain the gravitational effects attributed to dark matter through topological and geometric configurations of the fundamental field Θ(q, τ).
+This priority track proposes a novel explanation of dark matter within the **Unified Biquaternion Theory (UBT)**. Instead of introducing new fundamental particles, we explore the possibility that **topologically nontrivial configurations** of the unified field \( \Theta(q, \tau) \) could account for the gravitational effects attributed to dark matter.
 
-## Content
-- `dark_matter_research_proposal.tex`: Outlines the rationale, objectives, and theoretical background for dark matter research under UBT.
+## Motivation
+
+The lack of direct detection of traditional dark matter candidates such as WIMPs motivates alternative approaches. UBT naturally supports **topological solutions with zero electromagnetic charge** but nonzero stress-energy. These "dark modes" could represent invisible mass-energy distributions observable only via gravity.
+
+## Research Proposal
+
+See [`dark_matter_research_proposal.tex`](dark_matter_research_proposal.tex) for details, including:
+
+- Construction of stable neutral solutions \( \Theta_D \),
+- Classification by topological invariants,
+- Simulations and comparison with observed galactic and cosmological data.
+
+## Goal
+
+Demonstrate that UBT inherently explains dark matter as a **topological and geometric phenomenon** within its unified field framework.
