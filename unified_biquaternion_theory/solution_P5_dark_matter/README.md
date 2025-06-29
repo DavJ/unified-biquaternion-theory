@@ -1,6 +1,3 @@
-# Solution P5: Geometric and Topological Origin of Dark Matter
+# Unified Biquaternion Theory – Dark Matter Model
 
-This directory presents the proposed solution to the dark matter problem based on the Unified Biquaternion Theory (UBT). We model dark matter as topologically stable, electromagnetically neutral configurations of the field Θ(q, τ).
-
-## Content
-- `appendix_11_dark_matter.tex`: Provides a detailed derivation of dark matter as dark modes within the UBT framework, including comparison with astrophysical observations.
+This package contains the core documents related to the Theta_D Hopfion model for dark matter.
