@@ -27,20 +27,26 @@ We present the Unified Biquaternion Theory (UBT), a theoretical framework based 
 \newpage
 
 \section{Foundations of the Unified Biquaternion Theory}
-UBT is defined on a complexified 5D manifold with coordinates \( q = (x^\mu, \psi) \), where \( x^\mu \in \mathbb{R}^{1,3} \) are the usual spacetime coordinates, and \( \psi \in \mathbb{R} \) encodes a phase-like internal dimension, associated with consciousness and entropy. Time is complexified as \( \tau = t + i\psi \). The central object of the theory is a biquaternion-valued field \( \Theta(q, \tau) \in \mathbb{B} \otimes \mathbb{C} \), which acts as a universal precursor to all quantum fields and gravitational interactions. The field's dynamics are governed by a generalized covariant equation of motion resembling a complexified Dirac–Klein–Gordon system. Quantized excitations of \( \Theta \) give rise to standard particles, while stable, solitonic topological configurations correspond to massive fermions, bosons, or dark matter candidates. The full development and mathematical formalism are available in the author's open-source repository: \url{https://github.com/DavJ/complex-consciousness-theory.git}.
-
-\section{Metric Structure and Emergent Spacetime}
-UBT recovers General Relativity in the classical limit. The effective metric tensor \( g_{\mu\nu} \) of spacetime is not fundamental but emerges from the correlations of the underlying \( \Theta \) field. The Einstein field equations are shown to be the low-energy limit of the UBT field equations when projected onto the real subspace of the manifold.
+UBT is defined on a complexified 5D manifold with coordinates \( q = (x^\mu, \psi) \), where \( x^\mu \in \mathbb{R}^{1,3} \) are the usual spacetime coordinates, and \( \psi \in \mathbb{R} \) encodes a phase-like internal dimension, associated with consciousness and entropy \cite{Jaros2025a}. Time is complexified as \( \tau = t + i\psi \). The central object of the theory is a biquaternion-valued field \( \Theta(q, \tau) \in \mathbb{B} \otimes \mathbb{C} \), which acts as a universal precursor to all quantum fields and gravitational interactions. The field's dynamics are governed by a generalized covariant wave–diffusion equation:
+\[
+\left( \Box - i \frac{\partial}{\partial \psi} - m^2 \right)\Theta(q, \tau) = 0
+\]
+This captures both wave-like propagation in real time `t` and diffusive-like spread in the internal dimension \( \psi \).
 
 \section{Topological Quantization and the Fine-Structure Constant}
-The Standard Model treats the fine-structure constant, \( \alpha \approx 1/137 \), as an empirical parameter. UBT derives its value from two fundamental principles. First, a topological quantization condition on the phase component of the \( \Theta \) field restricts the value of alpha to the inverse of an integer: \( \alpha = 1/n \). Second, a two-stage selection mechanism determines the value of `n`. A principle of minimal spectral entropy selects prime numbers as the only candidates for stable vacuum states. Subsequently, the Principle of Least Action, applied to an effective energy function for these states, \( S(n) \approx A n^2 - B n \ln(n) \), selects \( n=137 \) as a prominent local energy minimum. This yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections (running of the coupling constant), for which UBT provides the fundamental boundary condition.
+UBT derives the value of the fine-structure constant, \( \alpha \approx 1/137 \), from two fundamental principles.
+\begin{enumerate}
+    \item \textbf{Topological Quantization:} A quantization condition on the phase component of the \( \Theta \) field, analogous to Dirac's quantization of magnetic charge \cite{PDG2022}, restricts the value of alpha to the inverse of an integer: \( \alpha = 1/n \).
+    \item \textbf{Two-Stage Selection:} A selection mechanism determines the value of `n`. First, a principle of minimal spectral entropy selects prime numbers as the only candidates for topologically stable vacuum states. Second, the Principle of Least Action, applied to an effective energy function \( S(n) \approx A n^2 - B n \ln(n) \), selects \( n=137 \) as a prominent local energy minimum among the primes.
+\end{enumerate}
+This yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections (running of the coupling constant), for which UBT provides the fundamental high-energy boundary condition \cite{Peskin1995}.
 
 \section{Derivation of Particle Properties: The Lepton Mass Hierarchy}
 UBT provides a model for the origin of mass and the hierarchy between particle generations. We postulate that the three lepton generations correspond to topological states (Hopfions) with increasing complexity, characterized by a topological number \(n=1, 2, 3\). The mass of these states is determined by a dual-mechanism:
 \begin{equation}
     m_n^{\text{phys}} = m_{\text{topo}}(n) + \delta m_{\text{EM}}(n)
 \end{equation}
-The topological mass, \( m_{\text{topo}}(n) \), dominates for the heavier generations (muon and tau) and is described by a universal scaling function \( S(n) = A n^p - B n \ln(n) \). The electron's mass, however, is a composite of a small topological contribution and a dominant electromagnetic self-energy correction, \( \delta m_{\text{EM}} \). With a single set of parameters (\( A \approx 0.62 \), \( B \approx -8.95 \), \( p \approx 7.23 \)), the theory makes precise predictions:
+The topological mass, \( m_{\text{topo}}(n) \), is described by a universal scaling function \( S(n) = A n^p - B n \ln(n) \) and dominates for the heavier generations (muon and tau). The electron's mass is a composite of a small topological contribution and a dominant electromagnetic self-energy correction, \( \delta m_{\text{EM}} \). By requiring the model to be self-consistent for all three lepton masses simultaneously, we derive a unique set of parameters for the function \(S(n)\). With this single set of parameters (\( A \approx 0.62 \), \( B \approx -8.95 \), \( p \approx 7.23 \)), the theory makes precise predictions, as summarized in Table \ref{tab:masses}.
 
 \begin{table}[h!]
 \centering
@@ -56,49 +62,23 @@ Tauon (\(n=3\)) & 1776.86 & 1776.86 \(\pm\) 0.12 & \(< 0.001\%\) \\
 \hline
 \end{tabular}
 \end{table}
+This self-consistent solution predicts the topological part of the electron's mass to be \(m_{\text{topo}}(1) \approx 0.6223\) MeV, and thus predicts the required EM self-energy correction to be \( \delta m_{\text{EM}} \approx -0.1113 \) MeV.
 
 \section{Predictions of New Topological Fields: Dark Matter}
-UBT offers a solution to the dark matter puzzle without new particles. We propose that dark matter halos are composed of topologically stable, electromagnetically neutral configurations of the \( \Theta \) field. Our analytical models show that the gravitational potential generated by such a distributed topological defect naturally produces the flat galactic rotation curves observed in galaxies.
-
-\section{Compatibility with Established Theories}
-The Unified Biquaternion Theory (UBT) is constructed to be consistent with — and to generalize — the major pillars of modern physics:
-
-\subsection{General Relativity (GR)}
-In the classical limit \( \hbar \to 0 \), the bilinear forms of the \( \Theta(q, \tau) \) field induce an effective metric:
-\[
-g_{\mu\nu}(x) = \langle \bar{\Theta} \gamma_\mu \gamma_\nu \Theta \rangle
-\]
-Variational principles yield:
-\[
-G_{\mu\nu} = 8\pi G\, T_{\mu\nu}^{(\Theta)}
-\]
-
-\subsection{Quantum Electrodynamics (QED)}
-Gauge invariance in the complex phase \( \psi \) implies:
-\[
-\Theta \mapsto e^{i e \lambda(q)} \Theta,\quad \partial_\mu \to D_\mu = \partial_\mu + i e A_\mu
-\]
-
-\subsection{Quantum Chromodynamics (QCD)}
-The internal algebra supports \( SU(3) \) gauge symmetry via:
-\[
-D_\mu = \partial_\mu + i g_s T^a G_\mu^a
-\]
-Color confinement arises from boundary topology of \( \Theta \).
-
-\subsection{Standard Model (SM)}
-Fermionic modes decompose under \( SU(3)_C \times SU(2)_L \times U(1)_Y \). Generational structure arises from topological charge \( n \), and the mass formula reproduces empirical lepton masses:
-\[
-m_n^{\text{phys}} = A n^p - B n \ln n + \delta m_{\text{EM}}
-\]
+UBT offers a solution to the dark matter puzzle without new particles. We propose that dark matter halos are composed of topologically stable, electromagnetically neutral configurations of the \( \Theta \) field. Our analytical models show that the gravitational potential generated by such a distributed topological defect (a Hopfion-like solution) naturally produces the flat galactic rotation curves observed in galaxies.
 
 \section{Outlook and Experimental Implications}
-Future work includes applying the theory to the quark sector, mixing matrices, and gravitational anomalies. Experimental falsifiability includes precision tests of the fine-structure constant evolution, gravitational lensing by topological structures, and mapping phase-space structure of vacuum entropy in condensed-matter analogs.
+Future work will focus on deriving the phenomenological models for the action \(S(n)\) and the negative self-energy from the fundamental UBT Lagrangian. The framework will also be extended to the quark sector. The theory is falsifiable and offers concrete predictions for the properties of dark matter and potential new topological states.
+
+\appendix
+\section{Appendix: The Origin of Negative Self-Energy}
+A key prediction of our mass model is that the electron's self-energy correction is negative, in contrast to the standard QFT result. We hypothesize this is a direct consequence of the complex spacetime in UBT. The Feynman path integral, the basis of QFT, contains a weighting factor \(e^{iS}\). In UBT, the action \(S = \int \mathcal{L} d^3x d\tau\) is integrated over complex time \( \tau = t + i\psi \). This modifies the weighting factor to:
+\[ e^{iS_{\text{total}}} = e^{iS_{\text{real}}} \cdot e^{-S_{\text{imaginary}}} \]
+We postulate that the new term \(e^{-S_{\text{imaginary}}}\), which arises from integration over the internal dimension \(\psi\), is not merely a damping factor but a complex phase. We hypothesize that for a closed fermionic loop, this term acquires a topological phase of \(e^{i\pi} = -1\), thereby inverting the sign of the self-energy calculation. Rigorously proving this is a primary objective of future research.
 
 \begin{thebibliography}{9}
-
 \bibitem{Jaros2025a}
-David Jaroš (2025). "A Complex-Time Theory of Consciousness: Drift, Diffusion, and Phase Collapse in Toroidal Cognitive Space". \textit{OSF Preprint}.
+David Jaroš (2025). "A Complex-Time Theory of Consciousness: Drift, Diffusion, and Phase Collapse in Toroidal Cognitive Space". \textit{OSF Preprint}. \href{https://osf.io/preprints/9kf7q/}{osf.io/preprints/9kf7q}
 
 \bibitem{Peskin1995}
 Michael E. Peskin and Daniel V. Schroeder (1995). \textit{An Introduction to Quantum Field Theory}. Addison-Wesley.
