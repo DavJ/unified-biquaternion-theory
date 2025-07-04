@@ -39,7 +39,20 @@ This paper is structured as follows. Section 2 introduces the mathematical found
 \section{Foundations of the Unified Biquaternion Theory}
 
 \subsection{The Biquaternionic Manifold}
-The foundational postulate of UBT is that physical reality unfolds not on a real-valued manifold, but on a **biquaternionic manifold**. In this framework, each of the four fundamental coordinates \(q^\mu\) (\(\mu=0,1,2,3\)) is itself a biquaternion. The classical 4D spacetime that we observe is interpreted not as a simple "real part" of this structure, but as a **real submanifold**, or **'brane'**, embedded within the higher-dimensional biquaternionic manifold. The coordinates \(x^\mu\) are the coordinates on this brane, identified with the real-scalar part of the full coordinates.
+The foundational postulate of UBT is that physical reality unfolds not on a real-valued manifold, but on a **biquaternionic manifold**, which we can denote as \( \mathcal{M}_{\mathbb{B}} \). In this framework, each of the four fundamental coordinates \(q^\mu\) (\(\mu=0,1,2,3\)) is itself a biquaternion (a complexified quaternion), an element of \( \mathbb{B} \cong \mathbb{C} \otimes \mathbb{H} \).
+
+This means each coordinate can be expanded on the quaternion basis \( \{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\} \) with complex coefficients:
+\begin{equation}
+    q^\mu = z_0^\mu \cdot 1 + z_1^\mu \cdot \mathbf{i} + z_2^\mu \cdot \mathbf{j} + z_3^\mu \cdot \mathbf{k}
+\end{equation}
+where each coefficient \( z_\nu^\mu = x_\nu^\mu + i y_\nu^\mu \) is a complex number.
+
+The classical 4D spacetime that we observe is interpreted not as a simple "real part" of this structure, but as a **real submanifold**, or **'brane'**, embedded within the higher-dimensional biquaternionic manifold. The coordinates \(x^\mu\) are the coordinates on this brane, which are identified with the real-scalar part of the full coordinates:
+\begin{equation}
+    x^\mu \equiv x_0^\mu \quad (\text{for } \mu=0,1,2,3)
+\end{equation}
+All other components (\(y_0^\mu\), and all \(x_{1,2,3}^\mu\), \(y_{1,2,3}^\mu\)) represent internal degrees of freedom of spacetime itself, encoding phase, spin, and gauge information directly into the geometry of the manifold.
+
 
 \subsection{The Fundamental Field \( \Theta(q) \)}
 The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. It can be locally decomposed into its amplitude and phase: \( \Theta(q) = \rho(q) e^{i\phi(q)} \).
