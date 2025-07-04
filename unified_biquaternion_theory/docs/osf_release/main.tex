@@ -73,12 +73,19 @@ g_{\mu\nu}(x) \approx \text{Re}(\langle \bar{\Theta} \Gamma_\mu \Gamma_\nu \Thet
 where \( \Gamma_\mu \) are biquaternionic gamma matrices.
 
 \subsection{Reduction to General Relativity}
-The geometric part of the UBT action is analogous to the Palatini action. In the classical, real-valued limit, its variation has been shown to reduce to the vacuum Einstein Field Equations: \( G_{\mu\nu} = 0 \), confirming that UBT contains GR as a natural limit.
+The geometric part of the UBT action is analogous to the Palatini action. In the classical, real-valued limit, its variation has been shown to reduce to the **vacuum Einstein Field Equations**:
+\begin{equation}
+    G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 0
+\end{equation}
+It is important to note that this is not an algebraic identity, but a set of **differential equations for the metric tensor \( g_{\mu\nu} \)**. Its solutions, such as the flat Minkowski metric or the curved Schwarzschild metric, describe the possible geometries of a vacuum spacetime. This result confirms that UBT contains General Relativity as a natural classical limit.
 
 \section{Emergent Physics II: Fundamental Constants and Particles}
 \subsection{The Fine-Structure Constant}
 \subsubsection{Topological Quantization and the Origin of \( \alpha = 1/n \)}
-UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase, restricting \( \alpha \) to be the inverse of an integer `n`.
+UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase. This quantization arises naturally because the solutions for the field \( \Theta \) on a manifold with toroidal internal dimensions are described by functions such as the **Jacobi theta functions**, which are inherently discrete and indexed by an integer `n`. This restricts \( \alpha \) to be the inverse of an integer:
+\begin{equation}
+    \alpha = \frac{1}{n}
+\end{equation}
 
 \subsubsection{The Two-Stage Selection Mechanism for n=137}
 The specific value `n=137` is selected by a two-stage mechanism: first, a principle of minimal spectral entropy filters the available states, allowing only prime numbers. Second, the Principle of Least Action, applied to an effective energy function \( S(n) \approx A n^2 - B n \ln(n) \), selects `n=137` as a prominent local energy minimum among the primes.
