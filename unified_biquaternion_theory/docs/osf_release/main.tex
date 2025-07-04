@@ -11,9 +11,14 @@
 \linespread{1.15}
 
 \title{\textbf{The Unified Biquaternion Theory: A Framework for Fundamental Constants, Dark Matter, and Mass Hierarchy}}
-\author{Ing. David Jaroš\thanks{Primary author and theorist. Contact: jdavid.cz@gmail.com}} \\
-\textit{with AI assistance from ChatGPT-4o and Gemini 2.5 Pro (as technical aides)}}
+
+\author{
+  Ing. David Jaroš\thanks{Primary author and theorist. Contact: \texttt{jdavid.cz@gmail.com}} \\
+  \textit{with AI assistance from ChatGPT-4o and Gemini 2.5 Pro (as technical aides)}
+}
+
 \date{July 4, 2025}
+
 
 \begin{document}
 \maketitle
@@ -40,7 +45,19 @@ This paper is structured as follows. Section 2 introduces the mathematical found
 \section{Foundations of the Unified Biquaternion Theory}
 
 \subsection{The Biquaternionic Manifold}
-UBT is defined on a manifold where each coordinate \(q^\mu\) (\(\mu=0,1,2,3\)) is a biquaternion, implying that each standard spacetime coordinate has a real and an imaginary part: \( q^\mu = x^\mu + i y^\mu \), where \(x^\mu\) are the classical spacetime coordinates and \(y^\mu\) represents an internal phase space. The complexification of time, often written as \( \tau = t + i\psi \), is a specific case of this general structure.
+The foundational postulate of UBT is that physical reality unfolds not on a real-valued manifold, but on a **biquaternionic manifold**, which we can denote as \( \mathcal{M}_{\mathbb{B}} \). In this framework, each of the four fundamental coordinates \(q^\mu\) (\(\mu=0,1,2,3\)) is itself a biquaternion (a complexified quaternion), an element of \( \mathbb{B} \cong \mathbb{C} \otimes \mathbb{H} \).
+
+This means each coordinate can be expanded on the quaternion basis \( \{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\} \) with complex coefficients:
+\begin{equation}
+    q^\mu = z_0^\mu \cdot 1 + z_1^\mu \cdot \mathbf{i} + z_2^\mu \cdot \mathbf{j} + z_3^\mu \cdot \mathbf{k}
+\end{equation}
+where each coefficient \( z_\nu^\mu = x_\nu^\mu + i y_\nu^\mu \) is a complex number.
+
+The classical spacetime coordinates \(x^\mu\) that we observe are identified with the **real-scalar part** of this rich structure:
+\begin{equation}
+    x^\mu \equiv x_0^\mu \quad (\text{for } \mu=0,1,2,3)
+\end{equation}
+All other components (\(y_0^\mu\), and all \(x_{1,2,3}^\mu\), \(y_{1,2,3}^\mu\)) represent internal degrees of freedom of spacetime itself, encoding phase, spin, and gauge information directly into the geometry of the manifold. The simplified notation \( \tau = t + i\psi \), which we use elsewhere, refers specifically to the complexification of the scalar part of the time coordinate \(q^0\).
 
 \subsection{The Fundamental Field \( \Theta(q) \)}
 The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. Its various components and excitational modes correspond to the particles of the Standard Model. It can be locally decomposed into its amplitude and phase: \( \Theta(q) = \rho(q) e^{i\phi(q)} \).
@@ -57,103 +74,4 @@ where \( \mathcal{D}_\mu = \partial_\mu + \Omega_\mu \) is the biquaternionic co
 \subsection{The Emergent Metric}
 The effective metric tensor \( g_{\mu\nu} \) of spacetime is not fundamental but emerges from the correlations of the \( \Theta \) field:
 \begin{equation}
-g_{\mu\nu}(x) \approx \text{Re}(\langle \bar{\Theta} \Gamma_\mu \Gamma_\nu \Theta \rangle)
-\end{equation}
-where \( \Gamma_\mu \) are biquaternionic gamma matrices.
 
-\subsection{Reduction to General Relativity}
-The geometric part of the UBT action is analogous to the Palatini action. In the classical, real-valued limit, the variation of this action with respect to the theory's fundamental fields has been shown to reduce to the vacuum Einstein Field Equations:
-\begin{equation}
-G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 0
-\end{equation}
-This confirms that UBT contains General Relativity as a natural limit.
-
-\section{Emergent Physics II: Fundamental Constants and Particles}
-\subsection{The Fine-Structure Constant}
-\subsubsection{Topological Quantization and the Origin of \( \alpha = 1/n \)}
-UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase, analogous to Dirac's quantization of magnetic charge. This restricts \( \alpha \) to be the inverse of an integer `n`.
-
-\subsubsection{The Two-Stage Selection Mechanism for n=137}
-The specific value `n=137` is selected by a two-stage mechanism: first, a principle of minimal spectral entropy filters the available states, allowing only prime numbers. Second, the Principle of Least Action, applied to an effective energy function \( S(n) \approx A n^2 - B n \ln(n) \), selects `n=137` as a prominent local energy minimum among the primes.
-
-\subsubsection{The Bare Value vs. Experimental Value}
-This mechanism yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections (running of the coupling constant), for which UBT provides the fundamental high-energy boundary condition.
-
-\subsection{The Lepton Mass Hierarchy}
-\subsubsection{The Dual-Mechanism Hypothesis for Mass}
-Lepton generations are modeled as topological states (Hopfions) with \( n=1,2,3 \). Their mass is determined by a dual-mechanism: \( m_n^{\text{phys}} = m_{\text{topo}}(n) + \delta m_{\text{EM}}(n) \). The topological mass \( m_{\text{topo}}(n) \) dominates for the heavier generations, while the electromagnetic self-energy \( \delta m_{\text{EM}}(n) \) is most significant for the electron.
-
-\subsubsection{The Self-Consistent Solution and Model Parameters}
-We require the model's parameters (`A`, `B`, `p`) in the topological mass function \( S(n) = A n^p - B n \ln(n) \) to simultaneously satisfy the experimental masses of all three leptons. This yields a unique set of parameters: \( A \approx 0.6223, B \approx -8.9458, p \approx 7.2275 \).
-
-\subsubsection{Quantitative Prediction and Comparison with Experiment}
-With this single set of parameters, the theory makes precise predictions, as summarized in Table \ref{tab:masses}. This self-consistent solution predicts the topological part of the electron's mass to be \(m_{\text{topo}}(1) \approx 0.6223\) MeV, and thus predicts the required EM self-energy correction to be \( \delta m_{\text{EM}} \approx -0.1113 \) MeV.
-
-\begin{table}[h!]
-\centering
-\caption{Comparison of UBT Predicted vs. Experimental Lepton Masses.}
-\label{tab:masses}
-\begin{tabular}{l|c|c}
-\hline
-\textbf{Lepton} & \textbf{UBT Prediction [MeV]} & \textbf{Experiment [MeV]} \\
-\hline
-Electron (\(n=1\)) & 0.5110 & 0.51099895 \\
-Muon (\(n=2\)) & 105.66 & 105.65837 \\
-Tauon (\(n=3\)) & 1776.86 & 1776.86 \(\pm\) 0.12 \\
-\hline
-\end{tabular}
-\end{table}
-
-\subsection{The Origin of Dark Matter}
-\subsubsection{Dark Matter as a Topological Defect (The Hopfion Model)}
-UBT offers a solution to the dark matter puzzle without new particles, proposing that dark matter halos are composed of stable, neutral topological configurations (Hopfions) of the \( \Theta \) field.
-
-\subsubsection{Derivation of Flat Rotation Curves from the Model}
-Our analytical models show that the gravitational potential generated by such a distributed topological defect naturally produces the flat galactic rotation curves observed in galaxies.
-
-\section{Compatibility with the Standard Model}
-\subsection{Embedding Gauge Symmetries}
-The internal algebra of \( \Theta \) is rich enough to accommodate the \( SU(3)_C \times SU(2)_L \times U(1)_Y \) gauge group. The corresponding covariant derivatives, such as for QED and QCD,
-\begin{align}
-    D_\mu &= \partial_\mu + i e A_\mu \\
-    D_\mu &= \partial_\mu + i g_s T^a G_\mu^a
-\end{align}
-arise naturally from the geometric structure of the theory.
-
-\subsection{Emergence of the Dirac Equation}
-In the appropriate low-energy limit, the main UBT field equation reduces to the standard Dirac equation for fermions:
-\begin{equation}
-    (i \gamma^\mu \partial_\mu - m)\psi = 0
-\end{equation}
-This confirms the consistency of UBT's description of spinor fields with standard QFT.
-
-\section{Summary, Predictions, and Outlook}
-\subsection{Summary of Main Achievements}
-UBT provides a unified framework that derives the value of \( \alpha \), explains the lepton mass hierarchy, and offers a particle-free model for dark matter. It demonstrates deep compatibility with GR and the SM.
-
-\subsection{Falsifiable Predictions}
-The theory offers concrete, falsifiable predictions, including:
-\begin{enumerate}
-    \item The required negative value of the electron's self-energy (\( \delta m_{EM} \approx -0.11 \) MeV), which should be verifiable by a full UBT QFT calculation.
-    \item The existence of a zoo of other stable topological particles ("psychons," higher-generation matter).
-    \item Specific density profiles for dark matter halos that can be tested by astronomical observation.
-\end{enumerate}
-
-\subsection{Future Work}
-Future research will focus on the rigorous QFT proof of the negative self-energy, extending the mass model to quarks and mixing matrices, and detailed cosmological simulations.
-
-\appendix
-\section{Appendix: The Origin of Negative Self-Energy}
-A key prediction is that the electron's self-energy is negative. We hypothesize this arises from the path integral over the complexified spacetime of UBT, which introduces a topological phase factor of \( e^{i\pi} = -1 \) for fermionic loops, thereby inverting the sign of the standard QFT result.
-
-\begin{thebibliography}{9}
-    \bibitem{Jaros2025a} David Jaroš (2025). "A Complex-Time Theory of Consciousness". \textit{OSF Preprint}.
-    \bibitem{Peskin1995} Michael E. Peskin and Daniel V. Schroeder (1995). \textit{An Introduction to Quantum Field Theory}.
-    \bibitem{Penrose2004} Roger Penrose (2004). \textit{The Road to Reality}.
-    \bibitem{PDG2022} R. L. Workman et al. (Particle Data Group) (2022). "Review of Particle Physics".
-\end{thebibliography}
-
-\section*{License}
-This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
-
-\end{document}
