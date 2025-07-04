@@ -39,17 +39,17 @@ This paper is structured as follows. Section 2 introduces the mathematical found
 \section{Foundations of the Unified Biquaternion Theory}
 
 \subsection{The Biquaternionic Manifold}
-UBT is defined on a manifold where each coordinate \(q^\mu\) (\(\mu=0,1,2,3\)) is a biquaternion, implying that each standard spacetime coordinate has a real and an imaginary part: \( q^\mu = x^\mu + i y^\mu \), where \(x^\mu\) are the classical spacetime coordinates and \(y^\mu\) represents an internal phase space.
+UBT is defined on a manifold where each coordinate \(q^\mu\) (\(\mu=0,1,2,3\)) is a biquaternion, implying that each standard spacetime coordinate has a real and an imaginary part: \( q^\mu = x^\mu + i y^\mu \), where \(x^\mu\) are the classical spacetime coordinates and \(y^\mu\) represents an internal phase space. The complexification of time, often written as \( \tau = t + i\psi \), is a specific case of this general structure.
 
 \subsection{The Fundamental Field \( \Theta(q) \)}
-The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. Its various components and excitational modes correspond to the particles of the Standard Model.
+The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. Its various components and excitational modes correspond to the particles of the Standard Model. It can be locally decomposed into its amplitude and phase: \( \Theta(q) = \rho(q) e^{i\phi(q)} \).
 
 \subsection{The Equation of Motion}
-The dynamics of \( \Theta \) are governed by a generalized covariant wave–diffusion equation. A simplified form can be expressed as:
+The dynamics of \( \Theta \) are governed by a generalized covariant wave equation. A simplified form can be expressed as:
 \begin{equation}
     \left( \mathcal{D}_\mu \mathcal{D}^\mu + m^2 \right) \Theta(q) = 0
 \end{equation}
-where \( \mathcal{D}_\mu = \partial_\mu + \Omega_\mu \) is the biquaternionic covariant derivative. This equation unifies wave-like propagation in the real part of the coordinates with diffusion-like dynamics in the imaginary part.
+where \( \mathcal{D}_\mu = \partial_\mu + \Omega_\mu \) is the biquaternionic covariant derivative. This equation unifies wave-like propagation in the real part of the coordinates with diffusion-like dynamics in the imaginary part. One of the constraints emerging from this equation is a condition of orthogonality between the gradients of the amplitude and phase: \( \eta^{\mu\nu} \partial_\mu \rho \, \partial_\nu \phi = 0 \).
 
 \section{Emergent Physics I: Spacetime and Gravity}
 
@@ -69,10 +69,24 @@ This confirms that UBT contains General Relativity as a natural limit.
 
 \section{Emergent Physics II: Fundamental Constants and Particles}
 \subsection{The Fine-Structure Constant}
-UBT derives the value of \( \alpha \approx 1/137 \) via a two-stage mechanism. First, topological quantization of the field's phase implies \( \alpha = 1/n \). Second, a stability analysis combining spectral entropy and an energy function \( S(n) \approx A n^2 - B n \ln(n) \) selects \( n=137 \) as the preferred state. This provides a theoretical origin for the bare value \( \alpha_0 = 1/137 \), with quantum corrections explaining the precise experimental value.
+\subsubsection{Topological Quantization and the Origin of \( \alpha = 1/n \)}
+UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase, analogous to Dirac's quantization of magnetic charge. This restricts \( \alpha \) to be the inverse of an integer `n`.
+
+\subsubsection{The Two-Stage Selection Mechanism for n=137}
+The specific value `n=137` is selected by a two-stage mechanism: first, a principle of minimal spectral entropy filters the available states, allowing only prime numbers. Second, the Principle of Least Action, applied to an effective energy function \( S(n) \approx A n^2 - B n \ln(n) \), selects `n=137` as a prominent local energy minimum among the primes.
+
+\subsubsection{The Bare Value vs. Experimental Value}
+This mechanism yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections (running of the coupling constant), for which UBT provides the fundamental high-energy boundary condition.
 
 \subsection{The Lepton Mass Hierarchy}
-Lepton generations are modeled as topological states with \( n=1,2,3 \). Their mass is determined by a dual-mechanism: \( m_n^{\text{phys}} = m_{\text{topo}}(n) + \delta m_{\text{EM}}(n) \). A self-consistent fit of this model to experimental data yields the parameters for the topological mass function \( S(n) \) and reproduces the known masses with high precision, as shown in Table \ref{tab:masses}.
+\subsubsection{The Dual-Mechanism Hypothesis for Mass}
+Lepton generations are modeled as topological states (Hopfions) with \( n=1,2,3 \). Their mass is determined by a dual-mechanism: \( m_n^{\text{phys}} = m_{\text{topo}}(n) + \delta m_{\text{EM}}(n) \). The topological mass \( m_{\text{topo}}(n) \) dominates for the heavier generations, while the electromagnetic self-energy \( \delta m_{\text{EM}}(n) \) is most significant for the electron.
+
+\subsubsection{The Self-Consistent Solution and Model Parameters}
+We require the model's parameters (`A`, `B`, `p`) in the topological mass function \( S(n) = A n^p - B n \ln(n) \) to simultaneously satisfy the experimental masses of all three leptons. This yields a unique set of parameters: \( A \approx 0.6223, B \approx -8.9458, p \approx 7.2275 \).
+
+\subsubsection{Quantitative Prediction and Comparison with Experiment}
+With this single set of parameters, the theory makes precise predictions, as summarized in Table \ref{tab:masses}. This self-consistent solution predicts the topological part of the electron's mass to be \(m_{\text{topo}}(1) \approx 0.6223\) MeV, and thus predicts the required EM self-energy correction to be \( \delta m_{\text{EM}} \approx -0.1113 \) MeV.
 
 \begin{table}[h!]
 \centering
@@ -90,12 +104,15 @@ Tauon (\(n=3\)) & 1776.86 & 1776.86 \(\pm\) 0.12 \\
 \end{table}
 
 \subsection{The Origin of Dark Matter}
-UBT offers a solution to the dark matter puzzle without new particles, proposing that dark matter halos are composed of stable, neutral topological configurations (Hopfions) of the \( \Theta \) field. This model naturally produces the flat galactic rotation curves.
+\subsubsection{Dark Matter as a Topological Defect (The Hopfion Model)}
+UBT offers a solution to the dark matter puzzle without new particles, proposing that dark matter halos are composed of stable, neutral topological configurations (Hopfions) of the \( \Theta \) field.
+
+\subsubsection{Derivation of Flat Rotation Curves from the Model}
+Our analytical models show that the gravitational potential generated by such a distributed topological defect naturally produces the flat galactic rotation curves observed in galaxies.
 
 \section{Compatibility with the Standard Model}
-
 \subsection{Embedding Gauge Symmetries}
-The internal algebra of \( \Theta \) is rich enough to accommodate the \( SU(3)_C \times SU(2)_L \times U(1)_Y \) gauge group. The corresponding covariant derivatives, like for QED and QCD,
+The internal algebra of \( \Theta \) is rich enough to accommodate the \( SU(3)_C \times SU(2)_L \times U(1)_Y \) gauge group. The corresponding covariant derivatives, such as for QED and QCD,
 \begin{align}
     D_\mu &= \partial_\mu + i e A_\mu \\
     D_\mu &= \partial_\mu + i g_s T^a G_\mu^a
@@ -110,15 +127,14 @@ In the appropriate low-energy limit, the main UBT field equation reduces to the 
 This confirms the consistency of UBT's description of spinor fields with standard QFT.
 
 \section{Summary, Predictions, and Outlook}
-
 \subsection{Summary of Main Achievements}
-UBT provides a unified framework that derives the value of \( \alpha \), explains the lepton mass hierarchy, and offers a particle-free model for dark matter. It demonstrates deep compatibility with GR and the SM while being built on a more fundamental geometric foundation.
+UBT provides a unified framework that derives the value of \( \alpha \), explains the lepton mass hierarchy, and offers a particle-free model for dark matter. It demonstrates deep compatibility with GR and the SM.
 
 \subsection{Falsifiable Predictions}
-The theory is scientific as it offers concrete, falsifiable predictions, including:
+The theory offers concrete, falsifiable predictions, including:
 \begin{enumerate}
-    \item The required negative value of the electron's self-energy (\( \delta m_{EM} \approx -0.11 \) MeV), which should be verifiable by a full UBT QFT calculation.
-    \item The existence of a zoo of other stable topological particles.
+    \item The required negative value of the electron's self-energy (\( \delta m_{EM} \approx -0.11 \) MeV).
+    \item The existence of a zoo of other stable topological particles ("psychons," higher-generation matter).
     \item Specific density profiles for dark matter halos that can be tested by astronomical observation.
 \end{enumerate}
 
