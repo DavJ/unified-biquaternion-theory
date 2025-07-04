@@ -1,4 +1,4 @@
-name: Compile LaTeX Documents
+name: Compile all .tex to local PDF folders
 
 on:
   push:
@@ -14,33 +14,24 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Git
+    - name: Install full LaTeX environment
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+        sudo apt-get update
+        sudo apt-get install -y texlive-full
 
-    - name: Install minimal LaTeX (faster)
-      run: sudo apt-get update && sudo apt-get install -y \
-        texlive-latex-base texlive-latex-recommended \
-        texlive-fonts-recommended texlive-latex-extra \
-        latexmk
-
-    - name: Compile all .tex files and output PDFs
+    - name: Compile all .tex files and move PDFs to subfolders
       run: |
         find . -name "*.tex" | while read texfile; do
           dir=$(dirname "$texfile")
           base=$(basename "$texfile" .tex)
-          outdir="$dir/pdf"
-          mkdir -p "$outdir"
-          echo "🔧 Compiling $texfile ..."
-          pdflatex -interaction=nonstopmode -output-directory "$outdir" "$texfile" \
-            || { echo "❌ Failed to compile $texfile. Log follows:"; cat "$outdir/$base.log"; }
+          mkdir -p "$dir/pdf"
+          pdflatex -interaction=nonstopmode -output-directory "$dir/pdf" "$texfile" || true
         done
 
     - name: Commit generated PDFs
       run: |
         git add */pdf/*.pdf */*/pdf/*.pdf || true
-        git commit -m "📝 Auto-generated PDFs [ci skip]" || echo "No changes to commit"
+        git commit -m "Auto-generated PDFs [ci skip]" || echo "No changes to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
