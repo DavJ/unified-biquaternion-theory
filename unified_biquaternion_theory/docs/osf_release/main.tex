@@ -11,21 +11,15 @@
 \linespread{1.15}
 
 \title{\textbf{The Unified Biquaternion Theory: A Framework for Fundamental Constants, Dark Matter, and Mass Hierarchy}}
-
-\author{
-  Ing. David Jaroš\thanks{Primary author and theorist. Contact: \texttt{jdavid.cz@gmail.com}} \\
-  \textit{with AI assistance from ChatGPT-4o and Gemini 2.5 Pro (as technical aides)}
-}
-
+\author{Ing. David Jaroš\thanks{Primary author and theorist. Contact: jdavid.cz@gmail.com} \\
+\textit{with AI assistance from ChatGPT-4o and Gemini 2.5 Pro (as technical aides)}}
 \date{July 4, 2025}
-
 
 \begin{document}
 \maketitle
 
-
 \begin{abstract}
-We present the Unified Biquaternion Theory (UBT), a theoretical framework based on a complexified spacetime and a fundamental biquaternion-valued field, \( \Theta(q) \). UBT aims to reconcile quantum field theory and general relativity by providing natural derivations for fundamental constants and particle properties from the geometry and topology of the underlying manifold. The theory predicts the emergence of known particles as topological excitations and introduces new fields associated with consciousness and dark matter. We demonstrate that UBT reduces to known physical theories in their respective limits and offers falsifiable predictions. This paper outlines the theory's core tenets and its successful application to three major unsolved problems: the origin of the fine-structure constant, the nature of dark matter, and the lepton mass hierarchy.
+We present the Unified Biquaternion Theory (UBT), a theoretical framework based on a complexified spacetime where each of the four coordinates is a biquaternion. This structure naturally unifies spacetime with internal, phase-like dimensions. The theory's dynamics are governed by a single, fundamental biquaternion-valued spinor field, \( \Theta(q) \). UBT aims to reconcile quantum field theory and general relativity by providing derivations for fundamental constants and particle properties from the geometry and topology of the underlying manifold. We demonstrate that UBT reduces to known physical theories in their respective limits. This paper outlines the theory's core tenets and its successful application to three major unsolved problems: the origin of the fine-structure constant, the nature of dark matter, and the lepton mass hierarchy.
 \end{abstract}
 
 \tableofcontents
@@ -34,40 +28,28 @@ We present the Unified Biquaternion Theory (UBT), a theoretical framework based 
 \section{Introduction}
 
 \subsection{The Limits of the Standard Model and General Relativity}
-Modern physics is built upon two incredibly successful pillars: General Relativity (GR), which describes gravity, and the Standard Model (SM) of particle physics, which describes the other three fundamental forces via Quantum Field Theory (QFT). Despite their triumphs, a complete picture of reality remains elusive. Key open problems include the incompatibility of GR and QFT, the nature of dark matter, and the fact that the SM contains ~20 free parameters (e.g., the fine-structure constant \(\alpha\), particle masses) whose values are determined by experiment but not explained by theory.
+Modern physics is built upon two incredibly successful pillars: General Relativity (GR) and the Standard Model (SM) of particle physics. Despite their triumphs, a complete picture of reality remains elusive. Key open problems include the incompatibility of GR and Quantum Field Theory (QFT), the nature of dark matter, and the fact that the SM contains ~20 free parameters (e.g., the fine-structure constant \(\alpha\), particle masses) whose values are determined by experiment but not explained by theory.
 
 \subsection{The UBT Proposal: A New Foundation}
 The Unified Biquaternion Theory (UBT) proposes a new foundation to address these challenges. It postulates that physical reality unfolds on a complexified manifold where all four spacetime coordinates are complex-valued. The fundamental entity is a single biquaternion-valued field, \( \Theta(q) \), whose algebraic and topological properties are hypothesized to give rise to all known particles, forces, and even spacetime itself.
 
 \subsection{Structure of the Paper}
-This paper is structured as follows. Section 2 introduces the mathematical foundations of UBT. Section 3 demonstrates how the geometry of GR emerges from the theory. Section 4 details the derivation of fundamental constants and particle masses. Section 5 shows the compatibility of UBT with the Standard Model. Section 6 presents the theory's predictions, including a model for dark matter and new particles. Finally, Section 7 summarizes the results and outlines future work.
+This paper is structured as follows. Section 2 introduces the mathematical foundations of UBT. Section 3 demonstrates how the geometry of GR emerges from the theory. Section 4 details the derivation of fundamental constants and particle masses. Section 5 shows the compatibility of UBT with the Standard Model. Finally, Section 6 summarizes the results and outlines future work.
 
 \section{Foundations of the Unified Biquaternion Theory}
 
 \subsection{The Biquaternionic Manifold}
-The foundational postulate of UBT is that physical reality unfolds not on a real-valued manifold, but on a **biquaternionic manifold**, which we can denote as \( \mathcal{M}_{\mathbb{B}} \). In this framework, each of the four fundamental coordinates \(q^\mu\) (\(\mu=0,1,2,3\)) is itself a biquaternion (a complexified quaternion), an element of \( \mathbb{B} \cong \mathbb{C} \otimes \mathbb{H} \).
-
-This means each coordinate can be expanded on the quaternion basis \( \{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\} \) with complex coefficients:
-\begin{equation}
-    q^\mu = z_0^\mu \cdot 1 + z_1^\mu \cdot \mathbf{i} + z_2^\mu \cdot \mathbf{j} + z_3^\mu \cdot \mathbf{k}
-\end{equation}
-where each coefficient \( z_\nu^\mu = x_\nu^\mu + i y_\nu^\mu \) is a complex number.
-
-The classical 4D spacetime that we observe is interpreted not as a simple "real part" of this structure, but as a **real submanifold**, or **'brane'**, embedded within the higher-dimensional biquaternionic manifold. The coordinates \(x^\mu\) are the coordinates on this brane, which are identified with the real-scalar part of the full coordinates:
-\begin{equation}
-    x^\mu \equiv x_0^\mu \quad (\text{for } \mu=0,1,2,3)
-\end{equation}
-All other components (\(y_0^\mu\), and all \(x_{1,2,3}^\mu\), \(y_{1,2,3}^\mu\)) represent internal degrees of freedom of spacetime itself, encoding phase, spin, and gauge information directly into the geometry of the manifold.
+The foundational postulate of UBT is that physical reality unfolds not on a real-valued manifold, but on a **biquaternionic manifold**. In this framework, each of the four fundamental coordinates \(q^\mu\) (\(\mu=0,1,2,3\)) is itself a biquaternion. The classical 4D spacetime that we observe is interpreted not as a simple "real part" of this structure, but as a **real submanifold**, or **'brane'**, embedded within the higher-dimensional biquaternionic manifold. The coordinates \(x^\mu\) are the coordinates on this brane, identified with the real-scalar part of the full coordinates.
 
 \subsection{The Fundamental Field \( \Theta(q) \)}
-The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. Its various components and excitational modes correspond to the particles of the Standard Model. It can be locally decomposed into its amplitude and phase: \( \Theta(q) = \rho(q) e^{i\phi(q)} \).
+The central object is a biquaternion-valued spinor field \( \Theta(q) \in \mathbb{B} \otimes \mathbb{C}^4 \). This single field acts as a universal precursor to all other fields. It can be locally decomposed into its amplitude and phase: \( \Theta(q) = \rho(q) e^{i\phi(q)} \).
 
 \subsection{The Equation of Motion}
 The dynamics of \( \Theta \) are governed by a generalized covariant wave equation. A simplified form can be expressed as:
 \begin{equation}
     \left( \mathcal{D}_\mu \mathcal{D}^\mu + m^2 \right) \Theta(q) = 0
 \end{equation}
-where \( \mathcal{D}_\mu = \partial_\mu + \Omega_\mu \) is the biquaternionic covariant derivative. This equation unifies wave-like propagation in the real part of the coordinates with diffusion-like dynamics in the imaginary part. One of the constraints emerging from this equation is a condition of orthogonality between the gradients of the amplitude and phase: \( \eta^{\mu\nu} \partial_\mu \rho \, \partial_\nu \phi = 0 \).
+where \( \mathcal{D}_\mu = \partial_\mu + \Omega_\mu \) is the biquaternionic covariant derivative. This equation unifies wave-like propagation in the real coordinates with diffusion-like dynamics in the imaginary coordinates. One of the constraints emerging from this equation is a condition of orthogonality between the gradients of the amplitude and phase: \( \eta^{\mu\nu} \partial_\mu \rho \, \partial_\nu \phi = 0 \).
 
 \section{Emergent Physics I: Spacetime and Gravity}
 
@@ -79,22 +61,18 @@ g_{\mu\nu}(x) \approx \text{Re}(\langle \bar{\Theta} \Gamma_\mu \Gamma_\nu \Thet
 where \( \Gamma_\mu \) are biquaternionic gamma matrices.
 
 \subsection{Reduction to General Relativity}
-The geometric part of the UBT action is analogous to the Palatini action. In the classical, real-valued limit, the variation of this action with respect to the theory's fundamental fields has been shown to reduce to the vacuum Einstein Field Equations:
-\begin{equation}
-G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 0
-\end{equation}
-This confirms that UBT contains General Relativity as a natural limit.
+The geometric part of the UBT action is analogous to the Palatini action. In the classical, real-valued limit, its variation has been shown to reduce to the vacuum Einstein Field Equations: \( G_{\mu\nu} = 0 \), confirming that UBT contains GR as a natural limit.
 
 \section{Emergent Physics II: Fundamental Constants and Particles}
 \subsection{The Fine-Structure Constant}
 \subsubsection{Topological Quantization and the Origin of \( \alpha = 1/n \)}
-UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase, analogous to Dirac's quantization of magnetic charge. This restricts \( \alpha \) to be the inverse of an integer `n`.
+UBT derives the value of \( \alpha \) from a topological quantization condition on the field's phase, restricting \( \alpha \) to be the inverse of an integer `n`.
 
 \subsubsection{The Two-Stage Selection Mechanism for n=137}
 The specific value `n=137` is selected by a two-stage mechanism: first, a principle of minimal spectral entropy filters the available states, allowing only prime numbers. Second, the Principle of Least Action, applied to an effective energy function \( S(n) \approx A n^2 - B n \ln(n) \), selects `n=137` as a prominent local energy minimum among the primes.
 
 \subsubsection{The Bare Value vs. Experimental Value}
-This mechanism yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections (running of the coupling constant), for which UBT provides the fundamental high-energy boundary condition.
+This mechanism yields a prediction for the "bare" value, \( \alpha_0 = 1/137 \). The small deviation from the precise experimental value is accounted for by standard QFT corrections.
 
 \subsection{The Lepton Mass Hierarchy}
 \subsubsection{The Dual-Mechanism Hypothesis for Mass}
@@ -104,7 +82,7 @@ Lepton generations are modeled as topological states (Hopfions) with \( n=1,2,3 
 We require the model's parameters (`A`, `B`, `p`) in the topological mass function \( S(n) = A n^p - B n \ln(n) \) to simultaneously satisfy the experimental masses of all three leptons. This yields a unique set of parameters: \( A \approx 0.6223, B \approx -8.9458, p \approx 7.2275 \).
 
 \subsubsection{Quantitative Prediction and Comparison with Experiment}
-With this single set of parameters, the theory makes precise predictions, as summarized in Table \ref{tab:masses}. This self-consistent solution predicts the topological part of the electron's mass to be \(m_{\text{topo}}(1) \approx 0.6223\) MeV, and thus predicts the required EM self-energy correction to be \( \delta m_{\text{EM}} \approx -0.1113 \) MeV.
+With this single set of parameters, the theory makes precise predictions, as summarized in Table \ref{tab:masses}. The model predicts the required EM self-energy correction for the electron to be \( \delta m_{\text{EM}} \approx -0.1113 \) MeV.
 
 \begin{table}[h!]
 \centering
@@ -146,12 +124,12 @@ This confirms the consistency of UBT's description of spinor fields with standar
 
 \section{Summary, Predictions, and Outlook}
 \subsection{Summary of Main Achievements}
-UBT provides a unified framework that derives the value of \( \alpha \), explains the lepton mass hierarchy, and offers a particle-free model for dark matter. It demonstrates deep compatibility with GR and the SM.
+UBT provides a unified framework that derives \( \alpha \), explains the lepton mass hierarchy, and offers a particle-free model for dark matter, while demonstrating deep compatibility with GR and the SM.
 
 \subsection{Falsifiable Predictions}
 The theory offers concrete, falsifiable predictions, including:
 \begin{enumerate}
-    \item The required negative value of the electron's self-energy (\( \delta m_{EM} \approx -0.11 \) MeV), which should be verifiable by a full UBT QFT calculation.
+    \item The required negative value of the electron's self-energy (\( \delta m_{EM} \approx -0.11 \) MeV).
     \item The existence of a zoo of other stable topological particles ("psychons," higher-generation matter).
     \item Specific density profiles for dark matter halos that can be tested by astronomical observation.
 \end{enumerate}
@@ -163,6 +141,7 @@ Future research will focus on the rigorous QFT proof of the negative self-energy
 \section{Appendix: The Origin of Negative Self-Energy}
 A key prediction is that the electron's self-energy is negative. We hypothesize this arises from the path integral over the complexified spacetime of UBT, which introduces a topological phase factor of \( e^{i\pi} = -1 \) for fermionic loops, thereby inverting the sign of the standard QFT result.
 
+
 \begin{thebibliography}{9}
     \bibitem{Jaros2025a} David Jaroš (2025). "A Complex-Time Theory of Consciousness". \textit{OSF Preprint}.
     \bibitem{Peskin1995} Michael E. Peskin and Daniel V. Schroeder (1995). \textit{An Introduction to Quantum Field Theory}.
@@ -172,5 +151,4 @@ A key prediction is that the electron's self-energy is negative. We hypothesize 
 
 \section*{License}
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
-
 \end{document}
