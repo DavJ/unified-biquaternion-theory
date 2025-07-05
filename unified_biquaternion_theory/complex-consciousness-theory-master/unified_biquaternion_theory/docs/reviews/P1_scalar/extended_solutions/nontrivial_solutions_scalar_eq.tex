@@ -1,0 +1,107 @@
+
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Nontrivial Solutions of the Scalar Constraint in the Unified Biquaternion Theory}
+\author{
+Ing.~David Jaroš \\
+\textit{UBT Research Team} \\
+\textbf{AI Assistants:} ChatGPT-4o (OpenAI), Gemini 2.5 Pro (Google) \\
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+We consider the scalar constraint from Priority 1:
+\[
+\eta^{\mu\nu} (\partial_\mu \rho)(\partial_\nu \phi) = 0
+\]
+where \(\rho = |\Theta|\) is the amplitude and \(\phi\) the phase of the field. This condition geometrically enforces the orthogonality of gradients of amplitude and phase in spacetime.
+
+\section{Nontrivial Minkowski Solutions}
+
+In Minkowski spacetime, one trivial solution is when either \(\rho\) or \(\phi\) is constant. However, we can construct richer solutions.
+
+Let:
+\[
+\rho = f(t - x), \quad \phi = g(t + x)
+\]
+Then:
+\[
+\partial_\mu \rho = f'(t - x)(\delta^0_\mu - \delta^1_\mu), \quad
+\partial_\nu \phi = g'(t + x)(\delta^0_\nu + \delta^1_\nu)
+\]
+so:
+\[
+\eta^{\mu\nu} \partial_\mu \rho \, \partial_\nu \phi =
+f'(t - x)g'(t + x) (\eta^{00} - \eta^{01} + \eta^{10} - \eta^{11}) = 0
+\]
+since the mixed terms cancel.
+
+Thus, such left/right-moving wave combinations satisfy the scalar constraint.
+
+\section{Axially Symmetric Configurations}
+
+We explore solutions of the form:
+\[
+\rho = \rho(r), \quad \phi = \phi(t - r)
+\]
+with \(r = \sqrt{x^2 + y^2 + z^2}\). Then:
+\[
+\partial_t \rho = 0, \quad \nabla \rho = \rho'(r) \frac{\vec{r}}{r}
+\]
+\[
+\partial_t \phi = \phi'(t - r), \quad \nabla \phi = -\phi'(t - r)\frac{\vec{r}}{r}
+\]
+The scalar constraint becomes:
+\[
+\eta^{\mu\nu} \partial_\mu \rho \, \partial_\nu \phi = -\nabla \rho \cdot \nabla \phi = -\rho'(r)\phi'(t - r)
+\]
+This vanishes iff \(\rho'(r)\phi'(t - r) = 0\), leading to conditional satisfaction.
+
+\section{Implications in FRW Spacetimes}
+
+In cosmology, consider an FRW metric:
+\[
+ds^2 = -dt^2 + a(t)^2 d\vec{x}^2
+\]
+We look at configurations:
+\[
+\rho = \rho(r), \quad \phi = \phi(t)
+\]
+Then:
+\[
+\partial_\mu \rho = \delta^i_\mu \partial_i \rho, \quad
+\partial_\nu \phi = \delta^0_\nu \dot{\phi}
+\]
+so:
+\[
+g^{\mu\nu} \partial_\mu \rho \partial_\nu \phi = g^{0i} \dot{\phi} \partial_i \rho = 0
+\]
+since \(g^{0i} = 0\), this is satisfied. But with \(\phi = \phi(t, r)\), nontrivial structures emerge.
+
+\section{Conclusions and Future Work}
+
+We have demonstrated a family of exact solutions beyond trivial cases. These exhibit spatial-temporal interference patterns and allow for localized dynamics in scalar field evolution. This paves the way for:
+
+\begin{itemize}
+\item Numerical simulations of scalar-phase interaction.
+\item Exploring implications near strong gravitational fields.
+\item Deriving effective potentials from interactions.
+\end{itemize}
+
+
+\section*{Author's Note}
+
+This work was developed solely by Ing. David Jaroš.  
+Large language models (ChatGPT-4o by OpenAI and Gemini 2.5 Pro by Google) were used strictly as assistive tools for calculations, LaTeX formatting, and critical review.  
+All core ideas, equations, theoretical constructs and conclusions are the intellectual work of the author.
+
+\end{document}
+

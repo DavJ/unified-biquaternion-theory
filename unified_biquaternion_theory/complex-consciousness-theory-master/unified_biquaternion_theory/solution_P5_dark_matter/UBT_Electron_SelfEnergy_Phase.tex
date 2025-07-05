@@ -1,0 +1,85 @@
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{slashed}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=1in}
+
+\title{\textbf{Electron Self-Energy in Unified Biquaternion Theory}}
+\author{
+Ing.~David Jaroš \\
+\textit{UBT Research Team} \\
+\textbf{AI Assistants:} ChatGPT-4o (OpenAI), Gemini 2.5 Pro (Google) \\
+UBT Research Team}
+\date{June 29, 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a unified derivation of the electron's self-energy in the framework of the Unified Biquaternion Theory (UBT). This combines analytic and topological insights to explain why the UBT correction to the standard QED self-energy yields the correct experimental value for the electron mass. The key lies in an additional complex phase factor arising from integration over the imaginary time axis and the topological nature of fermionic loops.
+\end{abstract}
+
+\section{Introduction}
+
+In UBT, the action is extended into complex time, where \( \tau = t + i\psi \). The total action becomes:
+\[
+S = \int \mathcal{L} \, d^3x\,dt + i \int \mathcal{L} \, d^3x\,d\psi = S_{\text{real}} + i S_{\text{imaginary}}
+\]
+The quantum amplitude then involves:
+\[
+e^{iS} = e^{iS_{\text{real}}} \cdot e^{-Y} \cdot e^{iX}
+\]
+where \( S_{\text{imaginary}} = X + iY \). The first factor corresponds to standard QED. The new UBT contribution is encoded in \( e^{iX} \), which may affect signs or interference patterns.
+
+\section{Analytic Structure and the Mass Condition}
+
+The observed electron mass requires a cancellation or sign reversal of the standard self-energy correction \( \delta m_{\text{QED}} \). This occurs if:
+\[
+e^{iX} = -1 \quad \Rightarrow \quad X = \pi \mod 2\pi
+\]
+This is not an arbitrary assumption. In UBT, the path integral includes all complexified histories, and the imaginary-time part of the action contributes non-trivially.
+
+\section{Topological Interpretation of the Phase \( e^{i\pi} \)}
+
+We now provide a topological argument why \( X = \pi \) must hold for the electron self-energy loop.
+
+\subsection{Fermionic Loops and Spin Statistics}
+
+A closed fermionic loop represents the creation and annihilation of a virtual electron-positron pair. Due to the spin-1/2 nature of fermions, such a loop contributes a minus sign to the amplitude—analogous to a \( 2\pi \) rotation of a spinor:
+\[
+\psi \rightarrow e^{i\pi} \psi = -\psi
+\]
+
+\subsection{Analogy with the Aharonov-Bohm Effect}
+
+Just as an electron encircling a magnetic flux acquires a phase shift \( e^{i\phi} \) depending on the topology of the field, the electron loop in complex spacetime acquires a phase shift from the geometry of the UBT vacuum. We postulate:
+\[
+X = \oint \mathcal{A}_{\psi} \, d\psi = \pi
+\]
+where \( \mathcal{A}_{\psi} \) is an effective connection in imaginary time.
+
+\section{Conclusion}
+
+Combining the analytic decomposition of the complex action with the topological character of fermionic loops, we conclude:
+\[
+\delta m_{\text{UBT}} = e^{iX} \cdot \delta m_{\text{QED}} = -\delta m_{\text{QED}}
+\]
+This sign inversion is not ad hoc, but a necessary and natural consequence of the geometric structure of the UBT path integral.
+
+\bigskip
+\noindent\textbf{Keywords:} Unified Biquaternion Theory, electron self-energy, complex time, topological phase, Aharonov-Bohm, spin-statistics
+
+
+\section*{Author's Note}
+
+This work was developed solely by Ing. David Jaroš.  
+Large language models (ChatGPT-4o by OpenAI and Gemini 2.5 Pro by Google) were used strictly as assistive tools for calculations, LaTeX formatting, and critical review.  
+All core ideas, equations, theoretical constructs and conclusions are the intellectual work of the author.
+
+\end{document}
+

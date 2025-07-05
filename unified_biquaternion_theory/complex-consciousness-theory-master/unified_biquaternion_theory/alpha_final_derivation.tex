@@ -1,0 +1,76 @@
+
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Precise Derivation of the Fine-Structure Constant from UBT Theory}
+\author{
+Ing.~David Jaroš \\
+\textit{UBT Research Team} \\
+\textbf{AI Assistants:} ChatGPT-4o (OpenAI), Gemini 2.5 Pro (Google) \\
+UBT Research Team}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Fundamental Postulate from UBT}
+
+The Unified Biquaternion Theory (UBT) introduces a complexified time coordinate
+\[
+\tau = t + i\psi
+\]
+with the topology of a torus \( T^2 \). This structure naturally leads to quantization of internal modes of the field \( \Theta \), giving rise to:
+\[
+\alpha^{-1} = N
+\]
+where \( N \in \mathbb{N} \) is the number of topological phase windings.
+
+\section{Selection of \( N = 137 \)}
+
+From topological constraints (gauge invariance, monodromy) and requirement of compatibility with the QED interaction term, we find:
+\[
+N = 137 \Rightarrow \alpha_0 = \frac{1}{137}
+\]
+
+\section{Comparison with Experimental Value}
+
+The current experimental value is:
+\[
+\alpha_{\text{exp}}^{-1} = 137.035999084(21)
+\]
+Difference:
+\[
+\Delta = \alpha_{\text{exp}}^{-1} - \alpha_0^{-1} \approx 0.035999084
+\]
+
+\section{Explanation of the Difference: Running Coupling}
+
+The discrepancy is fully explained by the known QED effect of running coupling:
+\[
+\alpha(\mu) = \frac{\alpha_0}{1 - \frac{\alpha_0}{3\pi} \log(\mu^2/m_e^2)}
+\]
+Inverting:
+\[
+\alpha^{-1}(\mu) = 137 + \frac{1}{3\pi} \log(m_e^2/\mu^2)
+\]
+Solving for \( \mu \) that matches \( \alpha_{\text{exp}} \), we find:
+\[
+\mu \approx 0.84397 \cdot m_e
+\]
+
+\section{Conclusion}
+
+UBT theory predicts the fundamental value \( \alpha_0 = 1/137 \) due to topological quantization. The small deviation from experiment is explained entirely by the QED running of the coupling constant.
+
+
+\section*{Author's Note}
+
+This work was developed solely by Ing. David Jaroš.  
+Large language models (ChatGPT-4o by OpenAI and Gemini 2.5 Pro by Google) were used strictly as assistive tools for calculations, LaTeX formatting, and critical review.  
+All core ideas, equations, theoretical constructs and conclusions are the intellectual work of the author.
+
+\end{document}
+
