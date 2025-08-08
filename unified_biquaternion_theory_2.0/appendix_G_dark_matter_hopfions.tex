@@ -119,3 +119,73 @@ Psychon-induced $\psi$-fluctuations (Appendix F) may modulate Hopfion stability 
 \subsection*{G.10 Summary and Open Questions}
 Hopfions provide a topologically protected, electromagnetically neutral sector consistent with UBT and compatible with precision QED. 
 Key open directions include: quantitative halo modeling with $\psi$-dependent parameters, production mechanisms in cosmology, and refined bounds on weak couplings to standard fields.
+
+
+\subsection*{G.11 Explicit $Q_H=1$ Parametrization (Stereographic Construction)}
+Let $r^2=x^2+y^2+z^2$. A standard explicit $S^3\!\to\!S^2$ Hopf-map representative (unit charge $Q_H=1$) can be written via a normalized doublet $z=(z_1,z_2)^T$,
+\begin{equation}
+z(\mathbf{x}) \;=\; \frac{1}{r^2+1}\begin{pmatrix}
+(r^2-1) + 2 i z \\[4pt]
+2(x+i y)
+\end{pmatrix},\qquad z^\dagger z = 1.
+\end{equation}
+Then
+\begin{equation}
+n^a(\mathbf{x}) = z^\dagger(\mathbf{x})\,\sigma^a\, z(\mathbf{x}),\qquad
+A_i(\mathbf{x})=-i\, z^\dagger \partial_i z,\qquad F_{ij}=\partial_i A_j-\partial_j A_i,
+\end{equation}
+and the Hopf invariant
+\begin{equation}
+Q_H \;=\; \frac{1}{4\pi^2}\int\!\mathrm{d}^3x\;\epsilon^{ijk} A_i F_{jk} \;=\; 1.
+\end{equation}
+A size (core-radius) parameter $R_0$ is introduced by the replacement $\mathbf{x}\mapsto \mathbf{x}/R_0$ in $z(\mathbf{x})$, which scales the configuration without changing $Q_H$.
+
+\paragraph{Biquaternion Embedding.} In UBT one may take $z=\Pi[\Theta]$ for a projection $\Pi:\mathbb{B}\!\to\!\mathbb{C}^2$; the above $z(\mathbf{x})$ fixes the $\Theta$ phase-texture up to internal rotations, preserving $Q_H=1$ in the projected $U(1)$ sector.
+
+\subsection*{G.12 Order-of-Magnitude Estimates (Size, Energy, Density)}
+For the Faddeev--Skyrme energy functional
+\begin{equation}
+E[n] \;=\; \int\!\mathrm{d}^3x\;\Big\{\alpha\, (\partial_i n)^2 + \beta\, (F_{ij})^2\Big\},
+\end{equation}
+Derrick scaling with $n(\mathbf{x})\to n(\lambda \mathbf{x})$ yields
+\begin{equation}
+E(\lambda)= \alpha\, \lambda\, I_2 + \beta\, \lambda^{-1} I_4,\qquad
+I_2=\!\int\! (\partial_i n)^2,\ \ I_4=\!\int\! (F_{ij})^2,
+\end{equation}
+minimized at $\lambda_\star=\sqrt{\dfrac{\beta I_4}{\alpha I_2}}$ with
+\begin{equation}
+E_{\min}=2\sqrt{\alpha\beta\, I_2 I_4},\qquad
+R_H \;\propto\; \lambda_\star^{-1} \;\sim\; \sqrt{\frac{\beta}{\alpha}}\, \Big(\frac{I_2}{I_4}\Big)^{1/4}.
+\end{equation}
+For $Q_H=1$ one typically has $I_2,I_4=\mathcal{O}(1)$ (dimensionless after extracting a core scale), hence the \emph{size--energy} scalings
+\begin{equation}
+R_H \sim \sqrt{\frac{\beta}{\alpha}},\qquad E_{Q=1} \sim \kappa\, \sqrt{\alpha\beta},
+\end{equation}
+with $\kappa=\mathcal{O}(1)$ depending on the specific profile. For general charge $Q_H$, numerical studies give $E \gtrsim c\,|Q_H|^{3/4}$; a practical interpolation is
+\begin{equation}
+E(Q_H)\ \approx\ \kappa\, \sqrt{\alpha\beta}\, |Q_H|^{3/4}.
+\end{equation}
+\paragraph{Illustrative Density.} For an ensemble of $N_H$ Hopfions of typical size $R_H$ (non-overlapping) in a halo volume $V_{\rm halo}$,
+\begin{equation}
+\rho_{\rm DM} \;\approx\; \frac{N_H\, E(Q_H)}{V_{\rm halo}} \ \sim\  \frac{N_H}{V_{\rm halo}}\ \kappa\, \sqrt{\alpha\beta}\, |Q_H|^{3/4},
+\end{equation}
+while kinematics and stability are controlled by $R_H\!\sim\!\sqrt{\beta/\alpha}$. The $\psi$-sector induces mild running $\alpha(\psi),\beta(\psi)$, enabling environmental dependence without spoiling topological protection.
+
+
+\subsection*{G.13 Numerical Illustration (Order-of-Magnitude)}
+To make the scaling relations concrete, consider illustrative (dimensionally normalized) parameters
+\begin{equation}
+\alpha = 2.0,\qquad \beta = 0.5,\qquad Q_H=1,\qquad \kappa \approx 1.
+\end{equation}
+Then
+\begin{equation}
+R_H \sim \sqrt{\frac{\beta}{\alpha}} \;=\; \sqrt{\frac{0.5}{2.0}} \;\approx\; 0.5,\qquad
+E_{Q=1} \sim \kappa\,\sqrt{\alpha\beta} \;=\; \sqrt{2.0\times 0.5} \;\approx\; 1.0.
+\end{equation}
+For a sparse ensemble in a fiducial volume $V_{\rm halo}$ with number $N_H$,
+\begin{equation}
+\rho_{\rm DM} \;\approx\; \frac{N_H\,E_{Q=1}}{V_{\rm halo}} \;\approx\; \frac{N_H}{V_{\rm halo}}.
+\end{equation}
+These values serve only as a \emph{scaling} guide; in physical units, $\alpha,\beta$ inherit dimensions from the microscopic UBT action and may acquire weak $\psi$-dependence, $\alpha(\psi),\beta(\psi)$, which shifts $R_H$ and $E$.
+
+
