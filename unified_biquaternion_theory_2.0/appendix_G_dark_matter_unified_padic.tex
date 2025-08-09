@@ -581,9 +581,57 @@ We conclude that topologically neutral solutions in UBT provide a compelling, ge
   \item Extend to early-universe cosmology and dark matter genesis.
 \end{itemize}
 
+
+\subsection{P-adická extenze temné hmoty (rigorózní verze)}
+V rámci adelického rozšíření UBT (viz Appendix~\ref{app:padic-rigorous}) každé prvočíslo $p$ definuje lokální $p$-adický sektor
+s vlastní metrikou a aditivním charakterem $\chi_p$. Temné sektory jsou popsány faktorizovanou thetou
+\begin{equation}
+\Theta_{\mathbb{A}_{\mathcal{P}^\ast}}(z) \;=\; \Theta_\infty(z_\infty;\Phi_\infty,\Lambda)\,\prod_{p\in\mathcal{P}^\ast}\Theta_p(z_p;\Phi_p,\Lambda),
+\end{equation}
+kde lokální $p$-adický faktor (Schwartz--Bruhat test funkce $\Phi_p\in\mathcal{S}(\mathbb{Q}_p)$) je
+\begin{equation}
+\Theta_p(z_p;\Phi_p,\Lambda) \;=\; \sum_{\lambda\in\Lambda} \Phi_p(\lambda)\,\chi_p(\lambda z_p),\qquad
+\chi_p(x)=\exp(2\pi i\,\{x\}_p).
+\end{equation}
+Pro všechny kromě konečně mnoha $p$ bereme $\Phi_p=\mathbf{1}_{\mathbb{Z}_p}$. Faktorizační struktura plyne z \emph{adelické Poissonovy sumace} (Lemma 1)
+a \emph{ortogonality různých prvočíselných charakterů} (Lemma 2); oba výsledky uvádíme v Appendixu~\ref{app:padic-rigorous}.
+
+\paragraph{Nezávislost $p$-sektorů.}
+Pro $p\neq q$ platí ortogonalita $\langle \Theta_p,\Theta_q\rangle=0$, čímž jsou přímé nadiabatic\-ké interakce potlačeny.
+Gravitace zůstává univerzální, takže celková DM hustota je suma po sektorech $p\in\mathcal{P}^\ast$.
+
+\paragraph{Napojení na hopfionové módy.}
+Klasické hopfionové konfigurace v $\Theta$ lze v $p$-adickém rámci chápat jako lokální excitace $\Theta_p$.
+Spektra fluktuací a efektivní hmotnosti $M_H^{(p)}$ se mohou mírně lišit sektor od sektoru, což umožňuje multi-komponentní DM s přirozeně potlačenou vzájemnou výměnou.
+
+\paragraph{Explicitní lokální faktory a příklad.}
+Pro $z_p\!\in\!\mathbb{Q}_p$ a mříž $\Lambda\!\subset\!\mathbb{Q}$ diagonálně vnořenou,
+\begin{equation}
+\Theta_p(z_p) \;=\; \sum_{\lambda\in\Lambda} \mathbf{1}_{\mathbb{Z}_p}(\lambda)\,\chi_p(\lambda z_p)
+\quad\Rightarrow\quad
+\widehat{\Theta}_p(\xi_p) \;=\; \sum_{\lambda\in\Lambda} \mathbf{1}_{\mathbb{Z}_p}(\lambda)\,\mathbf{1}_{\mathbb{Z}_p}(\xi_p-\lambda),
+\end{equation}
+kde $\widehat{\cdot}$ značí $p$-adický Fourierův obraz. Pro čistě imaginární archimedeovský parametr $z_\infty=i\beta$ a $q=0$ lze definovat
+poměr prvních nenulových koeficientů (orientační indikátor relativní hustoty excitací) mezi dvěma větvemi $p,q$:
+\begin{equation}
+R_{p,q}(\beta) \;\equiv\; \frac{\Theta_p(0,i\beta)-1}{\Theta_q(0,i\beta)-1}\,.
+\end{equation}
+Numericky (na úrovni konečných aproximací mod $p^k$) vychází pro blízká prvočísla $p=137$, $q=139$ při $\beta\!\sim\!1$ obvykle $R_{137,139}(\beta)<1$,
+což značí o něco „řidší“ excitační obálku v $q$-větvi. Přesná hodnota závisí na volbě $\Phi_p$ a na počátečních podmínkách kosmologické historie.
+
+\paragraph{Experimentální ladění.}
+Toroidální rezonátor (Appendix~E) lze fázově modulovat tak, aby byl citlivý na konkrétní $p$-lokální charakter: prakticky to znamená implementovat
+diskrétní fázovou strukturu kompatibilní s projekcí na $\mathbb{Z}/p^k\mathbb{Z}$ pro několik úrovní $k$ a testovat odezvu na úzkopásmové excitace.
+Selektivní odezva by byla signaturou více-sektorové DM.
+
+\paragraph{Poznámka k výpočtům.}
+Pro numeriku doporučujeme konečné aproximace $\mathbb{Z}/p^k\mathbb{Z}$ a charakter $\chi_{p^k}(x)=\exp(2\pi i x/p^k)$; příklad kódu viz doprovodný skript
+\texttt{padic\_theta\_demo.py}. Pro vyšší přesnost je vhodné Sage/Pari prostředí.
+
+
 \end{document}
 
-\subsection{P-adická extenze temné hmoty}
+
 
 V rámci rozšíření UBT teorie je přirozené uvažovat \emph{p-adickou extenzi} topologických módů
 temné hmoty, které jsou popsány polem $\Theta(q,\tau)$. Každé prvočíslo $p$ definuje oddělený
