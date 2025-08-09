@@ -28,8 +28,7 @@ jobs:
             # Find only root documents (those containing \begin{document})
             mapfile -t TEXFILES < <(grep -rl --include='*.tex' '\\begin{document}' . | sort)
             echo "Found ${#TEXFILES[@]} root documents:"
-            printf ' - %s
-' "${TEXFILES[@]}"
+            printf ' - %s\n' "${TEXFILES[@]}"
             for f in "${TEXFILES[@]}"; do
               echo "::group::Building $f"
               latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
