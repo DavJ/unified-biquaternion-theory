@@ -1,6 +1,6 @@
 
 \appendix
-\section{Appendix K: Maxwell Fields in Curved Spacetime (Bessel and Hankel Solutions)}
+\section*{Appendix K: Maxwell Fields in Curved Spacetime (Bessel and Hankel Solutions)}
 
 \subsection*{K.1 UBT Motivation and Setting}
 In the Unified Biquaternion Theory (UBT), the master field $\Theta(q,\tau)$ lives on a complexified spacetime with $\tau=t+i\psi$.
@@ -67,7 +67,7 @@ Figures~\ref{fig:J0J1} and \ref{fig:H0mag} include inline data generated from Be
 \begin{axis}[width=0.8\textwidth,height=0.5\textwidth,
     xlabel={$x$}, ylabel={$J_m(x)$}, grid=both, legend style={at={(0.02,0.98)},anchor=north west,fill=white,draw=none},
     ticklabel style={font=\small}, label style={font=\small}]
-\addplot+[thick] table[row sep=\\,col sep=space] {
+\addplot+[thick] table {
 x y
 0.000000 1.000000
 0.066890 0.998882
@@ -371,7 +371,7 @@ x y
 20.000000 0.167025
 };
 \addlegendentry{$J_0$}
-\addplot+[thick] table[row sep=\\,col sep=space] {
+\addplot+[thick] table {
 x y
 0.000000 0.000000
 0.066890 0.033426
@@ -687,7 +687,7 @@ x y
 \begin{axis}[width=0.8\textwidth,height=0.5\textwidth,
     xlabel={$x$}, ylabel={$|H_0^{(1)}(x)|$}, grid=both, legend style={at={(0.02,0.98)},anchor=north west,fill=white,draw=none},
     ticklabel style={font=\small}, label style={font=\small}]
-\addplot+[thick] table[row sep=\\,col sep=space] {
+\addplot+[thick] table {
 x y
 0.100000 1.829999
 0.149875 1.614026
