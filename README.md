@@ -82,9 +82,9 @@ This repository contains both the full UBT documents and the CCT application, al
 
 ---
 
-## 📌 Project Priorities
+## 📌 Research Priorities
 
-See [PRIORITY.md](consolidation_project/PRIORITY.md) for current research and development priorities.
+See [RESEARCH_PRIORITIES.md](consolidation_project/RESEARCH_PRIORITIES.md) for current research and development priorities.
 
 
 ---
