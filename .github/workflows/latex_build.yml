@@ -17,7 +17,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # najdi .tex soubory, které obsahují \documentclass (tedy skutečné rooty)
           mapfile -t roots < <(git ls-files '*.tex' \
             | grep -Ev '^(vendor|node_modules|build|out|dist)/' \
             | xargs -r grep -l -E '\\documentclass')
@@ -28,7 +27,6 @@ jobs:
               | jq -R -s -c 'split("\n")[:-1]' \
               | sed 's/^/roots=/' >> "$GITHUB_OUTPUT"
           fi
-          echo "Discovered roots: ${{ steps.discover.outputs.roots || '[]' }}"
 
   compile:
     needs: discover
@@ -49,17 +47,28 @@ jobs:
           dir="$(dirname "$root")"
           pdf="${root%.tex}.pdf"
 
-          # výchozí kompilátor
+          # Výchozí kompilátor
           compiler="pdflatex"
-          # „magic comment“ %!TEX a balíčky indikující xelatex/lualatex
+          # Magic komentáře a balíčky
           if grep -Eq '^[[:space:]]*%!?TEX.*xelatex' "$root"; then compiler="xelatex"; fi
           if grep -Eq '^[[:space:]]*%!?TEX.*lualatex' "$root"; then compiler="lualatex"; fi
           if grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root"; then compiler="xelatex"; fi
           if grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root"; then compiler="lualatex"; fi
 
-          echo "dir=$dir"       >> "$GITHUB_OUTPUT"
-          echo "pdf=$pdf"       >> "$GITHUB_OUTPUT"
-          echo "compiler=$compiler" >> "$GITHUB_OUTPUT"
+          # Bezpečné jméno pro artefakty (bez / a mezer)
+          safe="${root//\//__}"
+          safe="${safe// /_}"
+
+          # zkrať hash pro přehlednost
+          sha_short="${GITHUB_SHA::7}"
+
+          {
+            echo "dir=$dir"
+            echo "pdf=$pdf"
+            echo "compiler=$compiler"
+            echo "safe=$safe"
+            echo "sha=$sha_short"
+          } >> "$GITHUB_OUTPUT"
 
       - name: LaTeX build ${{ matrix.root }}
         uses: xu-cheng/latex-action@v4
@@ -68,12 +77,11 @@ jobs:
           work_in_root_file_dir: true
           continue_on_error: true
           compiler: ${{ steps.detect.outputs.compiler }}
-          # doplň balíčky před kompilací (ať to nikdy nespadne na tlmgr)
           pre_compile: |
             set -e
             tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet || true
             tlmgr update --self || true
-            # široké kolekce + konkrétní balíčky (pozor: 'graphicx' je součástí 'graphics', 'slashed' je v bundle 'carlisle')
+            # Široké kolekce + potřebné balíčky
             tlmgr install \
               collection-latexrecommended \
               collection-fontsrecommended \
@@ -98,15 +106,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pdf-${{ matrix.root }}
+          name: pdf-${{ steps.detect.outputs.safe }}-${{ steps.detect.outputs.sha }}
           path: ${{ steps.detect.outputs.pdf }}
           if-no-files-found: ignore
 
-      - name: Upload logs on failure (or always)
-        if: failure() || always()
+      - name: Upload logs (always)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ matrix.root }}
+          name: logs-${{ steps.detect.outputs.safe }}-${{ steps.detect.outputs.sha }}
           path: |
             ${{ steps.detect.outputs.dir }}/*.log
             ${{ steps.detect.outputs.dir }}/*.blg
