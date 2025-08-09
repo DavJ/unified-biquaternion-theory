@@ -35,6 +35,42 @@ The local (time-averaged over $2\pi/\omega$) EM energy density is, schematically
 which defines an effective stress--energy $T^{\mu\nu}_{\rm EM,eff}$ entering curvature in GR and, in UBT, couples also to $\psi$ through $\delta g(\psi)$.
 
 \section*{L.3 Effective Curvature Lever in UBT}
+
+\subsection*{L.3.1 Effective Electromagnetic Stress--Energy $T^{\mu\nu}_{\rm EM,eff}$ (UBT)}
+In UBT the EM sector couples to the phase field $\psi$ so that the effective stress--energy sourcing curvature is
+\begin{equation}
+T^{\mu\nu}_{\rm EM,eff} \;=\;
+\frac{1}{\mu_0}\!\left(F^{\mu\alpha}F^{\nu}{}_{\alpha} - \frac{1}{4}g^{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)
+\;+\; \lambda_\psi\,\Psi^{\mu\nu}(\psi,F)\,,
+\label{eq:Tem_eff}
+\end{equation}
+with a UBT correction tensor $\Psi^{\mu\nu}$ that vanishes when $\psi\!\to\!0$. A minimal gauge-invariant choice is
+\begin{equation}
+\Psi^{\mu\nu}(\psi,F) \;=\; \psi\,\Big(F^{\mu\alpha}F^{\nu}{}_{\alpha} - \frac{1}{4}g^{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\Big)
+\;+\; \eta^{\mu\nu}\,\psi\,\frac{\tilde{F}_{\alpha\beta}F^{\alpha\beta}}{4}\,,
+\end{equation}
+where $\tilde{F}^{\alpha\beta}$ is the dual field tensor; the second term parametrizes parity-odd couplings if present.
+The coupling $\lambda_\psi$ aggregates UBT constants and, in standing/modulated modes, is probed at the slow rate $\Omega \ll \omega$.
+
+\subsection*{L.3.2 Linearized Metric Response $\Delta g_{\mu\nu}$}
+In the weak-field limit, with $\bar{h}_{\mu\nu}=h_{\mu\nu}-\tfrac{1}{2}\eta_{\mu\nu}h$ in Lorenz gauge,
+\begin{equation}
+\square\,\bar{h}_{\mu\nu} \;=\; -\,\frac{16\pi G}{c^4}\,T^{\rm eff}_{\mu\nu}\,,
+\qquad
+h_{\mu\nu}\equiv \Delta g_{\mu\nu}\,.
+\end{equation}
+The retarded solution is
+\begin{equation}
+h_{\mu\nu}(t,\mathbf{x}) \;=\; -\,\frac{4G}{c^4}\int d^3x'\,
+\frac{T^{\rm eff}_{\mu\nu}(t-\tfrac{|\mathbf{x}-\mathbf{x}'|}{c},\mathbf{x}')}{|\mathbf{x}-\mathbf{x}'|}\,.
+\label{eq:retarded_h}
+\end{equation}
+For a cavity mode normalized over volume $V$, the mode-averaged fractional frequency shift satisfies the perturbative estimate
+\begin{equation}
+\frac{\Delta f}{f}\;\simeq\; -\frac{1}{2}\,\Big\langle h_{00} + n^i n^j h_{ij}\Big\rangle_{\text{mode}}\,,
+\end{equation}
+with $n^i$ the local propagation direction of the carrier. In GR the EM contribution alone is tiny; in UBT the same field pattern is reweighted by $\lambda_\psi\,\psi$ via \eqref{eq:Tem_eff}, enabling detection with high-$Q$ metrology (cross-ref. Appendix E, I).
+
 At leading order, write the metric deformation sourced by the EM pattern as
 \begin{equation}
 \delta g_{\mu\nu}(\psi) \;\simeq\; \alpha_{\mu\nu}\, T^{\alpha\beta}_{\rm EM,eff}\, \Pi_{\alpha\beta}(\psi)\,,
