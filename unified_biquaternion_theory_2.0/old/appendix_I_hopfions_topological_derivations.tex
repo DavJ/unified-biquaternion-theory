@@ -103,3 +103,88 @@ Weak-lensing convergence $\kappa(\theta)\propto\Sigma(\theta)$ is likewise sensi
 \subsection*{I.10 Notes and Cross-References}
 Detailed constructions, $Q_H{=}1$ examples, and order-of-magnitude numerics are provided in Appendix G. 
 Couplings to QED and constraints from precision experiments are discussed in Appendix D; laboratory protocols in Appendix E; $\psi$-sector dynamics in Appendix F; relations to constants in Appendix H.
+
+
+\subsection*{I.11 3D Schematic of a $Q_H=1$ Hopfion (TikZ)}
+\begin{figure}[h!]
+\centering
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.0, line cap=round,line join=round]
+  % Parameters
+  \def\R{2.2}
+  \def\r{0.9}
+
+  % Linked circles (Hopf link)
+  % Circle 1 in x-y plane
+  \draw[very thick, blue!70!black]
+    plot[domain=0:360, samples=220, variable=\t]
+    ({\R*cos(\t)}, {\R*sin(\t)}, {0});
+  % Circle 2 in x-z plane
+  \draw[very thick, red!70!black]
+    plot[domain=0:360, samples=220, variable=\u]
+    ({0}, {\r*cos(\u)}, {\r*sin(\u)});
+
+  % Suggestive field-line arcs
+  \foreach \k in {0,30,...,330}{
+    \draw[blue!40!black, opacity=0.35]
+      plot[domain=0:360, samples=90, variable=\t]
+      ({(\R+0.25*cos(\k))*cos(\t)}, {(\R+0.25*cos(\k))*sin(\t)}, {0.18*sin(\k)});
+  }
+
+  \node[anchor=south] at (0,-2.8,0) {\small Linked preimages depicting a $Q_H=1$ configuration (schematic)};
+\end{tikzpicture}
+\caption{Conceptual 3D Hopf link representing the topology of a $Q_H=1$ hopfion.}
+\label{fig:hopfion_3d_tikz}
+\end{figure}
+
+\subsection*{I.12 Quick Reference: Parameters $\to$ Observables}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Parameter & Meaning & Typical Scale & Derived Size $R_H$ & Energy $E$ & EM Cross-Section $\sigma_{\gamma H}$ \\
+\hline
+$\alpha$ & gradient stiffness & model-dependent & \multirow{2}{*}{$\displaystyle R_H \sim \sqrt{\beta/\alpha}$} & \multirow{2}{*}{$\displaystyle E \gtrsim c\,|Q_H|^{3/4}$} & \multirow{2}{*}{$\displaystyle \propto (kR_H)^4$} \\
+$\beta$ & Skyrme term coeff. & model-dependent & & & \\
+\hline
+$Q_H$ & Hopf charge & $1,2,\dots$ & $-$ & $\propto |Q_H|^{3/4}$ & $-$ \\
+\hline
+$\kappa_\psi$ & phase-sector kinetic & small & slight shift of $R_H$ & slight shift of $E$ & negligible at leading order \\
+\hline
+$g_{nA}$ & $(\partial n)^2 F$ coupling & tiny & $-$ & $-$ & $\sigma_{\gamma H} \sim g_{nA}^2 (k R_H)^4$ \\
+\hline
+$g_{nF}$ & $(F)^2 (\partial n)^2$ coupling & tiny & $-$ & cavity shift via $E,B$ & modifies effective medium \\
+\hline
+\end{tabular}
+\caption{Parameter-to-observable map for hopfions in UBT. Relations assume the low-energy, long-wavelength regime and small phase-sector corrections.}
+\label{tab:params_observables_hopfion}
+\end{table}
+
+\subsection*{I.13 Numerical Example (Physically Plausible, SI Units)}
+We choose parameters consistent with a superconducting toroidal cavity experiment (Appendix E) at $f\!=\!5~\mathrm{GHz}$ ($\lambda\!\approx\!6~\mathrm{cm}$, $k\!=\!2\pi/\lambda\!\approx\!105~\mathrm{m^{-1}}$). 
+Model the effective Faddeev--Skyrme coefficients as
+\begin{equation}
+\alpha = 0.20~\mathrm{J/m},\qquad \beta = 5.0\times 10^{-8}~\mathrm{J\,m},\qquad Q_H=1,\qquad \kappa\simeq 1.
+\end{equation}
+Then
+\begin{equation}
+R_H \;\sim\; \sqrt{\frac{\beta}{\alpha}} \;=\; \sqrt{\frac{5.0\times 10^{-8}}{0.20}}~\mathrm{m} \;\approx\; 5.0\times 10^{-4}~\mathrm{m}\quad (0.5~\mathrm{mm}),
+\end{equation}
+\begin{equation}
+E_{Q=1} \;\sim\; \kappa\,\sqrt{\alpha\beta} \;=\; \sqrt{0.20\times 5.0\times 10^{-8}}~\mathrm{J} \;\approx\; 1.0\times 10^{-4}~\mathrm{J}\quad (0.1~\mathrm{mJ}).
+\end{equation}
+For EM scattering at $5~\mathrm{GHz}$, $kR_H \approx 105 \times 5\times 10^{-4} \approx 5.3\times 10^{-2}$, hence $(kR_H)^4 \approx 7.8\times 10^{-6}$. 
+With a tiny coupling $g_{nA}=10^{-6}$ and a geometric area factor $\pi R_H^2 \approx 7.9\times 10^{-7}~\mathrm{m^2}$, a crude cross-section estimate
+\begin{equation}
+\sigma_{\gamma H} \;\sim\; \pi R_H^2 \, g_{nA}^2 \, (kR_H)^4 \;\approx\; 5.9\times 10^{-24}~\mathrm{m^2},
+\end{equation}
+demonstrates strong long-wavelength suppression ($\propto k^4$).
+
+\paragraph{Cavity Frequency Shift.}
+Let $V_H \sim \tfrac{4}{3}\pi R_H^3 \approx 5.2\times 10^{-10}~\mathrm{m^3}$ and a mode volume $V_{\mathrm{mode}}\sim 10^{-3}~\mathrm{m^3}$.
+With $\langle (\partial n)^2\rangle \sim R_H^{-2} \approx 4.0\times 10^6~\mathrm{m^{-2}}$ and $g_{nA}=10^{-6}$,
+\begin{equation}
+\left|\frac{\Delta f}{f}\right| \;\sim\; g_{nA}\,\langle (\partial n)^2\rangle\,\frac{V_H}{V_{\mathrm{mode}}} \;\sim\; 2\times 10^{-6}.
+\end{equation}
+For $f=5~\mathrm{GHz}$ this corresponds to $\Delta f \sim 10~\mathrm{kHz}$ in the optimistic placement at a field antinode; realistic alignment and smaller $g_{nA}$ push $\Delta f/f$ into the $10^{-8}$--$10^{-7}$ range, within reach of high-$Q$ metrology.
+
