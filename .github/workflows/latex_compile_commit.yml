@@ -1,44 +1,46 @@
-name: Compile all .tex to local PDF folders
+name: LaTeX build (all)
 
 on:
   push:
     paths:
       - '**/*.tex'
+      - '.github/workflows/latex-build-all.yml'
+  pull_request:
+    paths:
+      - '**/*.tex'
+      - '.github/workflows/latex-build-all.yml'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # nutné pro push přes GITHUB_TOKEN
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        persist-credentials: true
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install full LaTeX environment
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y texlive-full
+      # Use a full TeX Live environment and run custom commands (robust for multi-doc repos)
+      - name: Set up TeX Live and compile all .tex with \begin{document}
+        uses: xu-cheng/texlive-action@v3
+        with:
+          run: |
+            set -euo pipefail
+            shopt -s globstar nullglob
+            # Find only root documents (those containing \begin{document})
+            mapfile -t TEXFILES < <(grep -rl --include='*.tex' '\begin{document}' . | sort)
+            echo "Found ${#TEXFILES[@]} root documents:"
+            printf ' - %s
+' "${TEXFILES[@]}"
+            for f in "${TEXFILES[@]}"; do
+              echo "::group::Building $f"
+              latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
+              echo "::endgroup::"
+            done
 
-    - name: Compile all .tex files and move PDFs to subfolders
-      run: |
-        find . -name "*.tex" | while read texfile; do
-          dir=$(dirname "$texfile")
-          base=$(basename "$texfile" .tex)
-          mkdir -p "$dir/pdf"
-          pdflatex -interaction=nonstopmode -output-directory "$dir/pdf" "$texfile" || true
-        done
-
-    - name: Commit generated PDFs
-      run: |
-        git config user.name  "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        shopt -s globstar
-        git add **/pdf/*.pdf || true
-        git commit -m "Auto-generated PDFs [ci skip]" || echo "No changes to commit"
-        git push
-
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: |
+            **/*.pdf
+            !**/node_modules/**
+            !**/.git/**
