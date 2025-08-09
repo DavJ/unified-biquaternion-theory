@@ -30,8 +30,7 @@ jobs:
           cd "$GITHUB_WORKSPACE"
           mapfile -t TEXFILES < <(grep -v '^[[:space:]]*#' .github/latex_roots.txt | sed '/^[[:space:]]*$/d')
           echo "Roots:"
-          printf ' - %s
-' "${TEXFILES[@]}"
+          printf ' - %s' "${TEXFILES[@]}"
           for f in "${TEXFILES[@]}"; do
             echo "::group::Building $f"
             latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
