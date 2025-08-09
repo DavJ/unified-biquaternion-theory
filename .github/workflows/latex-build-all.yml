@@ -1,4 +1,3 @@
-\
 name: Build all LaTeX PDFs
 
 on:
@@ -45,7 +44,8 @@ jobs:
           else
             printf 'matrix={"file":[' >> "$GITHUB_OUTPUT"
             paste -sd, tex_roots.txt | sed 's~[^,][^,]*~"&"~g' >> "$GITHUB_OUTPUT"
-            printf ']}\n' >> "$GITHUB_OUTPUT"
+            printf ']}
+' >> "$GITHUB_OUTPUT"
           fi
 
   build:
