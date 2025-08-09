@@ -1,16 +1,14 @@
-name: LaTeX build (explicit roots)
+name: LaTeX build (latex-action)
 
 on:
   push:
     paths:
-      - '**/*.tex'
+      - 'consolidation_project/**.tex'
       - '.github/workflows/latex_build.yml'
-      - '.github/latex_roots.txt'
   pull_request:
     paths:
-      - '**/*.tex'
+      - 'consolidation_project/**.tex'
       - '.github/workflows/latex_build.yml'
-      - '.github/latex_roots.txt'
   workflow_dispatch:
 
 jobs:
@@ -19,51 +17,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install TeX packages
-        run: |
-          tlmgr update --self
-          tlmgr install pgf pgfplots xcolor slashed
 
-
-      # IMPORTANT: Run latexmk *inside* TeX Live action (so latexmk exists)
-      - name: Build roots (TeX Live)
-        uses: xu-cheng/texlive-action@v3
+      - name: Compile with LaTeX
+        uses: xu-cheng/latex-action@v4
         with:
-          run: |
-            set -euo pipefail
-            cd "$GITHUB_WORKSPACE"
-            # Read explicit root list
-            mapfile -t TEXFILES < <(grep -v '^[[:space:]]*#' .github/latex_roots.txt | sed '/^[[:space:]]*$/d')
-            echo "Roots:"
-            for f in "${TEXFILES[@]}"; do
-              echo " - $f"
-            done
-            # Build each root
-            for f in "${TEXFILES[@]}"; do
-              echo "::group::Building $f"
-              latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
-              echo "::endgroup::"
-            done
-
-      - name: Verify outputs exist
-        run: |
-          set -euo pipefail
-          ok=1
-          while read -r f; do
-            [[ -z "$f" || "$f" =~ ^[[:space:]]*# ]] && continue
-            pdf="${f%.tex}.pdf"
-            if [[ ! -f "$pdf" ]]; then
-              echo "::error file=$f::Missing output $pdf"
-              ok=0
-            else
-              echo "OK: $pdf"
-            fi
-          done < .github/latex_roots.txt
-          exit $((1-ok))
+          root_file: |
+            consolidation_project/ubt_core_main.tex
+          pre_compile: |
+            tlmgr update --self
+            tlmgr install pgf pgfplots xcolor slashed
+          latexmk_shell_escape: true
+          extra_fonts: |
+            cm-super
 
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
         with:
           name: pdfs
           path: |
-            consolidation_project/*.pdf
+            **/*.pdf
+            !**/node_modules/**
+            !**/.git/**
+
