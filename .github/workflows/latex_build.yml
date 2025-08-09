@@ -1,0 +1,63 @@
+name: LaTeX build (explicit roots)
+
+on:
+  push:
+    paths:
+      - '**/*.tex'
+      - '.github/workflows/latex_build.yml'
+      - '.github/latex_roots.txt'
+  pull_request:
+    paths:
+      - '**/*.tex'
+      - '.github/workflows/latex_build.yml'
+      - '.github/latex_roots.txt'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up TeX Live
+        uses: xu-cheng/texlive-action@v3
+
+      - name: Compile roots from manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          mapfile -t TEXFILES < <(grep -v '^[[:space:]]*#' .github/latex_roots.txt | sed '/^[[:space:]]*$/d')
+          echo "Roots:"
+          printf ' - %s
+' "${TEXFILES[@]}"
+          for f in "${TEXFILES[@]}"; do
+            echo "::group::Building $f"
+            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
+            echo "::endgroup::"
+          done
+
+      - name: Verify outputs exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=1
+          while read -r f; do
+            [[ -z "$f" || "$f" =~ ^[[:space:]]*# ]] && continue
+            pdf="${f%.tex}.pdf"
+            if [[ ! -f "$pdf" ]]; then
+              echo "::error file=$f::Missing output $pdf"
+              ok=0
+            else
+              echo "OK: $pdf"
+            fi
+          done < .github/latex_roots.txt
+          exit $((1-ok))
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: |
+            consolidation_project/*.pdf
