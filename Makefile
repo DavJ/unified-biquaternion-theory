@@ -1,20 +1,17 @@
-\
-.PHONY: all clean roots build
+PDFLATEX?=pdflatex
+TEXSRCS=$(wildcard *.tex)
+CORE_MAIN=ubt_core_main.tex
+ALL_MAIN=ubt_2_main.tex
 
-EXCLUDES ?= consolidation_project/old
+.PHONY: all core clean
 
-roots:
-	@EXCLUDES="$(EXCLUDES)" scripts/find-tex-roots.sh > .tex_roots
+core:
+	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
+	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
 
-build: roots
-	@while read -r f; do \
-		echo "==> Building $$f"; \
-		( cd "$$(dirname "$$f")" && latexmk -pdf -interaction=nonstopmode "$$(basename "$$f")" ); \
-	done < .tex_roots
-
-all: build
+all:
+	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
+	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
 
 clean:
-	@while read -r f; do \
-		( cd "$$(dirname "$$f")" && latexmk -C "$$(basename "$$f")" || true ); \
-	done < .tex_roots 2>/dev/null || true
+	rm -f *.aux *.log *.out *.toc *.pdf *.bbl *.blg *.lof *.lot
