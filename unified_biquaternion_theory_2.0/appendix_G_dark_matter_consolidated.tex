@@ -1,0 +1,114 @@
+
+\section{Appendix G: Dark Matter in UBT --- Topological Solitons, Quantum Corrections, and Prime/$p$-Adic Sectors}
+\label{app:dm-consolidated}
+
+\subsection{Scope and Motivation}
+This appendix consolidates all dark-matter (DM) content relevant to UBT~2.0 into a single, rigorous narrative.
+It unifies: (i) topological solitons (Hopfions and knotted configurations) of the $\Theta(q,\tau)$ field,
+(ii) quantum corrections around those backgrounds, (iii) hidden prime/$p$-adic sectors producing gravitationally coupled but electromagnetically silent components,
+and (iv) phenomenology and constraints.
+
+\subsection{Topological Sector of the $\Theta$ Field}
+Let $\Theta:\mathbb{R}^3\!\to\!S^2$ be the (unit) phase map obtained after $U(1)$ gauge-fixing from the UBT order parameter.
+Compactifying $\mathbb{R}^3\cup\{\infty\}\cong S^3$, homotopy classes $[S^3,S^2]$ are labeled by the Hopf invariant $Q_H\in\mathbb{Z}$.
+A standard energy functional supporting static Hopf solitons is
+\begin{equation}
+\label{eq:ubt-hopf-energy}
+E[\Theta] \;=\; \int d^3x \Big\{ \frac{\kappa_2}{2}\,\partial_i\Theta\!\cdot\!\partial_i\Theta \;+\; \frac{\kappa_4}{4}\,\big(\partial_i\Theta\times\partial_j\Theta\big)^2 \Big\}\,,
+\end{equation}
+with $\kappa_{2,4}>0$ effective couplings inherited from the UBT Lagrangian. The Hopf charge admits
+\begin{equation}
+Q_H \;=\; \frac{1}{32\pi^2}\int d^3x\,\epsilon^{ijk}\,\mathcal{A}_i\,\mathcal{F}_{jk}\,,\qquad
+\mathcal{F}_{ij}=\partial_i\mathcal{A}_j-\partial_j\mathcal{A}_i,\quad
+\partial_i\Theta=\mathcal{F}_{ij}\times \Theta,
+\end{equation}
+and is conserved under smooth time evolution. Minimizers at fixed $Q_H$ are knotted/linked tubes of field lines (Hopfions).
+The classical scaling bound $E \ge c\,|Q_H|^{3/4}$ (Vakulenko--Kapitanski) applies for \eqref{eq:ubt-hopf-energy} under mild hypotheses.
+
+\paragraph{Size and mass scales.}
+Balancing the quadratic and quartic terms gives a characteristic radius $R_H\sim(\kappa_4/\kappa_2)^{1/2}$ and a mass scale
+\begin{equation}
+M_H \;\sim\; \frac{1}{c^2}\,\frac{\kappa_2^{3/2}}{\kappa_4^{1/2}}\ \mathcal{C}\,|Q_H|^{3/4}\,,\qquad \mathcal{C}=\mathcal{O}(1).
+\end{equation}
+Within UBT, $\kappa_{2,4}$ trace back to the same normalization that fixes the electromagnetic coupling (Appendix~\ref{app:alpha-consolidated})
+and are therefore not arbitrary.
+
+\subsection{Complex Time and Phase-Linked Hopfions}
+The UBT substrate uses $\tau=t+i\psi$. Allow the soliton profile to depend on $\psi$ through a phase-linked ansatz
+\begin{equation}
+\Theta(x,t,\psi) \;=\; \Theta_{\rm cl}(x;\lambda(\psi))\,,
+\end{equation}
+with slow $\psi$-modulation of moduli $\lambda$ obeying an effective geodesic law in moduli space.
+This generates a small internal mode that remains gapped provided the Skyrme term stabilizes the core.
+The imaginary-time modulation is responsible for the exponential suppression of non-topological decays.
+
+\subsection{Quantum Fluctuations (One-Loop Correction)}
+Expand $\Theta=\Theta_{\rm cl}+\delta\Theta$ with $\delta\Theta\perp \Theta_{\rm cl}$. Quadratic fluctuations yield
+\begin{equation}
+S^{(2)}[\delta\Theta] \;=\; \frac{1}{2}\int d^4x\, \delta\Theta\,\hat{\mathcal{O}}[\Theta_{\rm cl}]\,\delta\Theta\,,
+\end{equation}
+where $\hat{\mathcal{O}}$ is positive and gapped on $S^3$ after compactification.
+The one-loop mass shift is
+\begin{equation}
+\Delta M_{H}^{\rm 1\text{-}loop} \;=\; \frac{\hbar}{2c^2}\,\mathrm{Tr}\Big(\sqrt{\hat{\mathcal{O}}}-\sqrt{\hat{\mathcal{O}}_0}\Big)\,,
+\end{equation}
+and the physical mass $M_H^{\rm phys}=M_H+\Delta M_H^{\rm 1\text{-}loop}+\cdots$.
+In UBT, the cutoff and counterterms are linked to the internal-mode scale which also controls the low-energy renormalization of $\alpha$,
+ensuring consistent scale setting across sectors.
+
+\subsection{Production and Relic Abundance}
+Hopfions are naturally produced non-thermally during symmetry-breaking or topological phase transitions.
+Treat them as nonrelativistic quasiparticles with dispersion $E_k\simeq M_H^{\rm phys}c^2 + k^2/(2M_H^{\rm phys})$.
+The comoving density $n_H$ satisfies
+\begin{equation}
+\frac{dn_H}{dt}+3H n_H \;=\; \mathcal{S}_{\rm topo}(T)\;-\;\langle\sigma v\rangle_{\rm unlink}\, n_H^2 \;+\; \cdots,
+\end{equation}
+where $\mathcal{S}_{\rm topo}$ encodes nonthermal production by defect formation and $\langle\sigma v\rangle_{\rm unlink}$ is exponentially suppressed by the core size and fluctuation gap.
+The present-day energy density is
+\begin{equation}
+\rho_{\rm DM}^{\rm (Hopf)} \;=\; \int \frac{d^3k}{(2\pi)^3}\, f_H(k)\, E_k
+\;\simeq\; n_H\, M_H^{\rm phys}c^2\,,
+\end{equation}
+with $f_H$ set by the formation history. Quantum corrections only renormalize $M_H$ and thus $\rho_{\rm DM}$ multiplicatively.
+
+\subsection{Electromagnetic Silence and Interaction Portals}
+Direct electromagnetic couplings are suppressed by phase orthogonality: the Hopfion core lives in the $\Theta$ sector orthogonal to the visible $U(1)$ phase.
+Allowed portals are: (i) gravitational, (ii) higher-derivative curvature couplings, and (iii) extremely weak mixing through multi-$\Theta$ operators consistent with UBT symmetries.
+These are naturally below existing direct-detection limits if $\hat{\mathcal{O}}$ remains gapped and $R_H$ is not microscopic.
+
+\subsection{Prime/$p$-Adic Hidden Sectors}
+The adelic extension (Appendix~\ref{app:padic-rigorous}) yields prime-indexed sectors $\Theta_p$ satisfying
+\begin{equation}
+\langle \Theta_p,\Theta_q\rangle \;=\; 0 \quad (p\neq q)\,,
+\end{equation}
+by orthogonality of characters and CRT factorization.
+Each prime branch $p$ can host its own Hopfion population with mass $M_H^{(p)}$ and cross section $(\sigma/m)_p$.
+The total DM is a sum over branches
+\begin{equation}
+\rho_{\rm DM}^{\rm total} \;=\; \sum_{p\in\mathcal{P}^\star}\rho_{\rm DM}^{(p)} \,,
+\end{equation}
+with $\mathcal{P}^\star$ a finite set in the truncated adele. As branches couple only gravitationally at low energies, they evade thermalization with the visible sector, preserving standard cosmology.
+
+\subsection{Astrophysical and Cosmological Signatures}
+\textbf{Halo structure.} Finite $R_H$ induces cored profiles at small radii; superposition of branches can emulate multi-component halos.
+\textbf{Lensing.} DM acts as pressureless dust at large scales; substructure from knotted domains can induce small lensing anomalies.
+\textbf{Indirect detection.} Radiative decays are topologically forbidden; unlinking annihilations are exponentially suppressed $\sim e^{-R_H\,\Delta}$.
+\textbf{Direct detection.} Nuclear scattering via higher-derivative portals is naturally below current bounds for $R_H\!\gtrsim\!{\rm fm}$ and small mixing.
+
+\subsection{Consistency with the Electromagnetic Sector}
+The same UBT normalization that fixes the $U(1)$ sector and the fine-structure constant (Appendix~\ref{app:alpha-consolidated}) also sets $\kappa_{2,4}$ and the fluctuation gap in \eqref{eq:ubt-hopf-energy}.
+Hence $M_H$ and the derived $\rho_{\rm DM}$ co-vary with the internal-mode scale, tying DM and EM predictions to a common geometric origin.
+
+\subsection{Minimal Parameter Inference (Practical Template)}
+Given an observational target $(\rho_{\rm DM}, \sigma/m)$ and a chosen prime set $\mathcal{P}^\star$, the following steps infer UBT parameters:
+\begin{enumerate}
+\item Fix the internal-mode scale from the $\alpha$ analysis (Appendix~\ref{app:alpha-consolidated}).
+\item Choose $Q_H$ and solve the classical soliton for $(\kappa_2,\kappa_4)$ with $R_H\!\sim\!(\kappa_4/\kappa_2)^{1/2}$.
+\item Compute $\hat{\mathcal{O}}$ on $S^3$ and evaluate $\Delta M_H^{\rm 1\text{-}loop}$ (heat-kernel or phase-shift methods).
+\item Evolve $n_H$ with a nonthermal source $\mathcal{S}_{\rm topo}(T)$; check CMB/BBN and structure-formation constraints.
+\item If including prime sectors, repeat for each $p\in\mathcal{P}^\star$ and sum $\rho_{\rm DM}^{(p)}$.
+\end{enumerate}
+
+\subsection{Summary}
+UBT provides two robust DM mechanisms grounded in its geometry: (i) topologically protected Hopfions of the $\Theta$ field, dressed by controlled quantum corrections, and (ii) orthogonal prime/$p$-adic sectors with their own cold components.
+Both are gravitationally coupled and naturally compatible with cosmological bounds. Their mass and interaction scales are linked to the same internal-mode physics that fixes $\alpha$, yielding correlated predictions across sectors.
