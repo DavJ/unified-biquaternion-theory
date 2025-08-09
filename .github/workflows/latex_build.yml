@@ -1,64 +1,71 @@
-name: LaTeX – build all roots
+compile:
+  needs: discover
+  runs-on: ubuntu-latest
+  strategy:
+    fail-fast: false
+    matrix:
+      root: ${{ fromJson(needs.discover.outputs.roots) }}
+  steps:
+    - uses: actions/checkout@v4
 
-on:
-  push:
-  pull_request:
+    - name: Detect compiler + paths
+    id: detect
+    shell: bash
+    run: |
+      set -euo pipefail
+      root="${{ matrix.root }}"
+      dir="$(dirname "$root")"
+      pdf="${root%.tex}.pdf"
 
-jobs:
-  discover:
-    runs-on: ubuntu-latest
-    outputs:
-      roots: ${{ steps.discover.outputs.roots }}
-    steps:
-      - uses: actions/checkout@v4
+      # Detekce kompilátoru podle balíčků/magic commentů
+      compiler="pdflatex"
+      grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" && compiler="xelatex"
+      grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && compiler="xelatex"
+      grep -Eq '\\usepackage\{luacode|luaotfload\}' "$root" && compiler="lualatex"
 
-      - id: discover
-        name: Discover LaTeX roots
-        shell: bash
-        run: |
-          set -euo pipefail
-          mapfile -t roots < <(git ls-files '*.tex' \
-            | grep -Ev '^(vendor|node_modules|build|out|dist)/' \
-            | xargs -r grep -l -E '\\documentclass')
-          if [ ${#roots[@]} -eq 0 ]; then
-            echo 'roots=[]' >> "$GITHUB_OUTPUT"
-          else
-            printf '%s\n' "${roots[@]}" \
-              | jq -R -s -c 'split("\n")[:-1]' \
-              | sed 's/^/roots=/' >> "$GITHUB_OUTPUT"
-          fi
+      echo "dir=$dir"   >> "$GITHUB_OUTPUT"
+      echo "pdf=$pdf"   >> "$GITHUB_OUTPUT"
+      echo "compiler=$compiler" >> "$GITHUB_OUTPUT"
 
-  compile:
-    needs: discover
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        root: ${{ fromJson(needs.discover.outputs.roots) }}
-    steps:
-      - uses: actions/checkout@v4
+    - name: LaTeX build ${{ matrix.root }}
+      uses: xu-cheng/latex-action@v4
+      with:
+        root_file: ${{ matrix.root }}
+        work_in_root_file_dir: true
+        continue_on_error: true
+        compiler: ${{ steps.detect.outputs.compiler }}
+        # pro latexmk přepínače nechává action default
+        pre_compile: |
+          tlmgr update --self
+          # často chybějící balíčky:
+          tlmgr install \
+            cm-super xcolor pgf pgfplots tikz-cd slashed \
+            siunitx physics mathtools amsfonts amsmath \
+            babel csquotes biblatex biber etoolbox \
+            graphicx hyperref geometry soul \
+            fontspec unicode-math polyglossia \
+            standalone float caption subcaption \
+            todonotes wrapfig mhchem ifmtarg kvoptions url \
+            listings fancyvrb pdftexcmds kvsetkeys
+        post_compile: |
+          echo "Done."
 
-      - name: Compute PDF path
-        id: pdf
-        shell: bash
-        run: |
-          pdf="${{ matrix.root }}"
-          pdf="${pdf%.tex}.pdf"
-          echo "path=$pdf" >> "$GITHUB_OUTPUT"
+    - name: Upload PDF (if exists)
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: pdf-${{ matrix.root }}
+        path: ${{ steps.detect.outputs.pdf }}
+        if-no-files-found: ignore
 
-      - name: LaTeX build ${{ matrix.root }}
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: ${{ matrix.root }}
-          continue_on_error: true
-          pre_compile: |
-            tlmgr update --self
-            tlmgr install cm-super xcolor pgf pgfplots slashed
-
-      - name: Upload PDF ${{ matrix.root }}
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf-${{ matrix.root }}
-          path: ${{ steps.pdf.outputs.path }}
+    - name: Upload logs on failure
+      if: failure() || always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs-${{ matrix.root }}
+        path: |
+          ${{ steps.detect.outputs.dir }}/*.log
+          ${{ steps.detect.outputs.dir }}/*.blg
+          ${{ steps.detect.outputs.dir }}/*.fls
+        if-no-files-found: ignore
 
