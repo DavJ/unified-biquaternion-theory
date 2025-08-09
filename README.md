@@ -79,6 +79,24 @@ This repository contains both the full UBT documents and the CCT application, al
 
 ---
 
+
+---
+
+## 📌 Project Priorities
+
+See [PRIORITY.md](consolidation_project/PRIORITY.md) for current research and development priorities.
+
+
+---
+
+## 📌 Author Statement
+
+This repository contains my **original theoretical research**.  
+I, **David Jaroš**, am the **first and primary author** of the Unified Biquaternion Theory (UBT) and all its derived formulations, including the Complex Consciousness Theory (CCT).  
+All documents, derivations, and mathematical proofs herein were developed by me unless explicitly stated otherwise.  
+See [PRIORITY.md](consolidation_project/PRIORITY.md) for the current research and development priorities.
+
+
 ## 📜 License
 
 Licensed under the terms specified in [LICENSE](LICENSE.md)
