@@ -24,8 +24,9 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 ## 📂 Repository Structure
 
 ```
+unified_biquaternion_theory    # Original Unified biquaternion theory documents and derivations
 complex_consciousness/         # Complex Consciousness Theory (LaTeX sources & PDFs)
-consolidation_project/         # Unified Biquaternion Theory consolidated documents
+consolidation_project/         # Unified Biquaternion Theory consolidated documents (ongoing project, important stuff might be missing)
   ├── appendix_A_...           # Appendices on gravity, gauge fields, QED/QCD, etc.
   ├── img/                     # Figures and diagrams
   ├── metadata/                # Project notes, TODOs, consolidation maps
@@ -36,9 +37,10 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 ## 📄 Main Documents
 
-- **UBT Main Document**: `consolidation_project/ubt_2_main.tex`
+- **UBT Main Document**: `unified_biquaternion_theory/ubt_main_article.tex`
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
-- **Appendices A–V**: detailed expansions of the main theory.
+- **Appendices 1-21**: detailed expansions of the main theory.
+- **Solutions **: important proves and derivations of the main theory.
 
 ---
 
