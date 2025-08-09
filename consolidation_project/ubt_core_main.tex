@@ -9,15 +9,7 @@
 \author{UBT Team}
 \date{\today}
 
-\usepackage{slashed}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc,decorations.markings,positioning}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\makeatletter
-\renewcommand{\theHsection}{\thesection.\arabic{section}}
-\makeatother
+\IfFileExists{slashed.sty}{\usepackage{slashed}}{\newcommand{\slashed}[1]{\not\!#1}}
 \begin{document}
 \maketitle
 

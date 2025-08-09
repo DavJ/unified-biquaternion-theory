@@ -25,7 +25,7 @@ jobs:
             consolidation_project/ubt_core_main.tex
           pre_compile: |
             tlmgr update --self
-            tlmgr install pgf pgfplots xcolor slashed cm-super
+            tlmgr install pgf pgfplots xcolor cm-super
           latexmk_shell_escape: true
 
       - name: Upload PDFs
