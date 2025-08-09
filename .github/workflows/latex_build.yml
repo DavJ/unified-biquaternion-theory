@@ -20,25 +20,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up TeX Live
+      # IMPORTANT: Run latexmk *inside* TeX Live action (so latexmk exists)
+      - name: Build roots (TeX Live)
         uses: xu-cheng/texlive-action@v3
-
-      - name: Compile roots from manifest
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "$GITHUB_WORKSPACE"
-          mapfile -t TEXFILES < <(grep -v '^[[:space:]]*#' .github/latex_roots.txt | sed '/^[[:space:]]*$/d')
-          echo "Roots:"
-          printf ' - %s' "${TEXFILES[@]}"
-          for f in "${TEXFILES[@]}"; do
-            echo "::group::Building $f"
-            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
-            echo "::endgroup::"
-          done
+        with:
+          run: |
+            set -euo pipefail
+            cd "$GITHUB_WORKSPACE"
+            # Read explicit root list
+            mapfile -t TEXFILES < <(grep -v '^[[:space:]]*#' .github/latex_roots.txt | sed '/^[[:space:]]*$/d')
+            echo "Roots:"
+            for f in "${TEXFILES[@]}"; do
+              echo " - $f"
+            done
+            # Build each root
+            for f in "${TEXFILES[@]}"; do
+              echo "::group::Building $f"
+              latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -cd "$f"
+              echo "::endgroup::"
+            done
 
       - name: Verify outputs exist
-        shell: bash
         run: |
           set -euo pipefail
           ok=1
