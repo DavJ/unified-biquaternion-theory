@@ -1,6 +1,20 @@
-%% ================================================
-%% SPECULATIVE / WIP — Not part of CORE claims.
-%% ================================================
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{siunitx}
+\sisetup{detect-all=true}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{physics}
+\usepackage{hyperref}
+
+\title{Appendix M -- Dark Energy in the Unified Biquaternion Theory (UBT)}
+\date{}
+
+\begin{document}
 \maketitle
 
 \section*{M.1 Motivation and Scope}
@@ -85,3 +99,5 @@ The same $\psi$ that sources $\Lambda_{\rm eff}$ couples to local experiments (A
 
 \section*{M.9 Summary}
 UBT dark energy arises from a slow phase sector $\psi$ that perturbs the vacuum energy density and hence the effective cosmological constant. The framework recovers $\Lambda$CDM when the phase sector is inactive and predicts small, testable deviations otherwise. This ties cosmic acceleration to the same $\psi$ dynamics appearing in local UBT protocols.
+
+\end{document}

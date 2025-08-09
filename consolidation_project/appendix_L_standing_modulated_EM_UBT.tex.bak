@@ -1,6 +1,18 @@
-%% ================================================
-%% SPECULATIVE / WIP — Not part of CORE claims.
-%% ================================================
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{siunitx}
+\sisetup{detect-all=true}
+
+\title{Appendix L -- Standing and Modulated Electromagnetic Waves for Curvature Amplification (UBT)}
+\date{}
+
+\begin{document}
 \maketitle
 
 \section*{L.1 Motivation (UBT vs. GR/Maxwell)}
@@ -136,3 +148,5 @@ Null results imply upper limits on $\|\Pi(\psi)\|$ and $\|\alpha_{\mu\nu}\|$; po
 \section*{L.8 Summary}
 Standing and slowly modulated EM modes offer a curvature lever unique to UBT: by shaping $T^{\mu\nu}_{\rm EM,eff}$ and aligning it with the $\psi$-projector, one may obtain measurable metric perturbations without astronomical power.
 This differs from GR while remaining compatible with all tests where $\psi$ vanishes or averages out.
+
+\end{document}

@@ -1,6 +1,17 @@
-%% ================================================
-%% SPECULATIVE / WIP — Not part of CORE claims.
-%% ================================================
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{Appendix J – Extended Metric for Rotating Spacetime and CTC (UBT)}
+\date{}
+
+\begin{document}
 \maketitle
 
 \section*{J.1 Overview}
@@ -77,3 +88,5 @@ A small UBT phase $\psi$ \emph{perturbs} this shape: $\psi>0$ inflates, $\psi<0$
 \textbf{Why it matters.} The ergoregion controls frame dragging and the availability of Penrose-like processes. 
 In the CTC analysis, the location of the $g_{\phi\phi}=0$ boundary is the practical diagnostic; 
 UBT predicts controlled shifts of this boundary via the $\psi$-sector, while keeping exterior causality intact when energy conditions are satisfied.
+
+\end{document}

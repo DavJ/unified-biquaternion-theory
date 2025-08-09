@@ -1,6 +1,17 @@
-%% ================================================
-%% SPECULATIVE / WIP — Not part of CORE claims.
-%% ================================================
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{siunitx}
+\sisetup{detect-all=true}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,shapes.geometric}
+
+\title{Appendix M -- Energy and Safety Limits for UBT Experiments}
+\date{}
+
+\begin{document}
 \maketitle
 
 \section*{M.1 Purpose}
@@ -92,3 +103,5 @@ UBT links hopfion topology and psychon excitations through the phase sector $\ps
 
 \section*{M.7 Summary}
 UBT-compatible operation keeps EM powers in safe ranges while seeking a measurable metrological signature ($\Delta f/f$) mediated by the $\psi$-sector. The TikZ control diagram specifies a practical loop for hopfion/psychon modulation without external figures.
+
+\end{document}
