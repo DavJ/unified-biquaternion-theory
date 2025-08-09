@@ -1,5 +1,4 @@
 name: LaTeX build (latex-action)
-
 on:
   push:
     paths:
@@ -10,14 +9,12 @@ on:
       - 'consolidation_project/**.tex'
       - '.github/workflows/latex_build.yml'
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Compile with LaTeX
         uses: xu-cheng/latex-action@v4
         with:
@@ -28,7 +25,6 @@ jobs:
             tlmgr update --self
             tlmgr install pgf pgfplots xcolor cm-super
           latexmk_shell_escape: true
-
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
         with:
