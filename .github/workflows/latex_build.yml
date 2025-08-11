@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Detect compiler + paths
+      - name: Detect engine + paths
         id: detect
         shell: bash
         run: |
@@ -46,28 +46,18 @@ jobs:
           root="${{ matrix.root }}"
           dir="$(dirname "$root")"
           pdf="${root%.tex}.pdf"
-
-          # Výchozí kompilátor
-          compiler="pdflatex"
-          # Magic komentáře a balíčky
-          if grep -Eq '^[[:space:]]*%!?TEX.*xelatex' "$root"; then compiler="xelatex"; fi
-          if grep -Eq '^[[:space:]]*%!?TEX.*lualatex' "$root"; then compiler="lualatex"; fi
-          if grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root"; then compiler="xelatex"; fi
-          if grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root"; then compiler="lualatex"; fi
-
-          # Bezpečné jméno pro artefakty (bez / a mezer)
-          safe="${root//\//__}"
-          safe="${safe// /_}"
-
-          # zkrať hash pro přehlednost
-          sha_short="${GITHUB_SHA::7}"
-
+          engine="pdflatex"
+          grep -Eq '^[[:space:]]*%!?TEX.*xelatex' "$root" && engine="xelatex"
+          grep -Eq '^[[:space:]]*%!?TEX.*lualatex' "$root" && engine="lualatex"
+          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
+          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
+          safe="${root//\//__}"; safe="${safe// /_}"
           {
             echo "dir=$dir"
             echo "pdf=$pdf"
-            echo "compiler=$compiler"
+            echo "engine=$engine"
             echo "safe=$safe"
-            echo "sha=$sha_short"
+            echo "sha=${GITHUB_SHA::7}"
           } >> "$GITHUB_OUTPUT"
 
       - name: LaTeX build ${{ matrix.root }}
@@ -76,31 +66,22 @@ jobs:
           root_file: ${{ matrix.root }}
           work_in_root_file_dir: true
           continue_on_error: true
-          compiler: ${{ steps.detect.outputs.compiler }}
+          # nepoužíváme `compiler`!
+          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
+          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
           pre_compile: |
             set -e
             tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet || true
             tlmgr update --self || true
-            # Široké kolekce + potřebné balíčky
             tlmgr install \
-              collection-latexrecommended \
-              collection-fontsrecommended \
-              collection-bibtexextra \
-              collection-science \
-              latexmk \
-              carlisle \
-              graphics pgf pgfplots tikz-cd cm-super xcolor \
-              siunitx physics mathtools amsfonts amsmath \
-              babel csquotes biblatex biber etoolbox \
-              hyperref geometry soul url \
-              standalone float caption subcaption \
-              todonotes wrapfig mhchem ifmtarg kvoptions \
-              listings fancyvrb pdftexcmds kvsetkeys \
-              unicode-math fontspec polyglossia \
-              || true
+              collection-latexrecommended collection-fontsrecommended collection-bibtexextra \
+              graphics hyperref geometry xcolor cm-super \
+              amsmath amsfonts mathtools siunitx physics \
+              etoolbox babel csquotes biblatex biber url soul \
+              pgf pgfplots tikz-cd standalone float caption \
+              todonotes wrapfig mhchem ifmtarg kvoptions listings fancyvrb pdftexcmds kvsetkeys \
+              fontspec unicode-math polyglossia || true
             tlmgr update --all || true
-          post_compile: |
-            echo "Kompilace dokončena pro ${{ matrix.root }}"
 
       - name: Upload PDF (if exists)
         if: always()
