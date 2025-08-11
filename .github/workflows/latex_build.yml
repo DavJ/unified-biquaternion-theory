@@ -17,8 +17,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Najdi všechny .tex soubory, které obsahují \documentclass
-          # (vynecháme běžné build/vendor adresáře)
+          # Najdi všechny .tex soubory s \documentclass (vynecháme build/vendor)
           mapfile -t roots < <(git ls-files '*.tex' \
             | grep -Ev '^(vendor|node_modules|build|out|dist)/' \
             | xargs -r grep -l -E '\\documentclass')
@@ -52,20 +51,23 @@ jobs:
           root="${{ matrix.root }}"
           dir="$(dirname "$root")"
           pdf="${root%.tex}.pdf"
+          # bezpečný název pro artefakty (nahraď / za __)
+          safe_root="${root//\//__}"
 
           # Heuristika pro volbu engine:
-          # 1) magic comment %!TEX program = xelatex|lualatex
-          # 2) balíčky fontspec/polyglossia/unicode-math => xelatex
-          # 3) luacode/luaotfload => lualatex
           engine="pdflatex"
-          grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" && \
+          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
             engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
+          fi
           grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
           grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
 
-          echo "dir=$dir"     >> "$GITHUB_OUTPUT"
-          echo "pdf=$pdf"     >> "$GITHUB_OUTPUT"
-          echo "engine=$engine" >> "$GITHUB_OUTPUT"
+          {
+            echo "dir=$dir"
+            echo "pdf=$pdf"
+            echo "engine=$engine"
+            echo "safe_root=$safe_root"
+          } >> "$GITHUB_OUTPUT"
 
       - name: LaTeX build ${{ matrix.root }}
         uses: xu-cheng/latex-action@v4
@@ -73,17 +75,16 @@ jobs:
           root_file: ${{ matrix.root }}
           work_in_root_file_dir: true
           continue_on_error: true
-          # Nepředáváme 'compiler', aby akce použila latexmk správně.
+          # Přepínáme latexmk podle detekovaného engine
           latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
           latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
           # latexmk_shell_escape: true   # odkomentuj, pokud některé dokumenty vyžadují \write18
           pre_compile: |
             set -euo pipefail
-            # Spolehlivé zrcadlo (redirect na blízké) a nepadat kvůli jedné instalaci
             tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
             tlmgr update --self || true
 
-            # Běžně chybějící (a námi odladěné) balíčky; 'graphics' (ne 'graphicx'!)
+            # Běžně chybějící/užitečné balíčky (pozor: graphics, ne graphicx)
             pkgs="
               amsfonts amsmath mathtools siunitx physics
               babel csquotes etoolbox geometry hyperref graphics
@@ -102,8 +103,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          # Bezpečný název artifactu (nahrazení / za __)
-          name: pdf-${{ replace(matrix.root, '/', '__') }}
+          name: pdf-${{ steps.detect.outputs.safe_root }}
           path: ${{ steps.detect.outputs.pdf }}
           if-no-files-found: ignore
 
@@ -111,7 +111,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ replace(matrix.root, '/', '__') }}
+          name: logs-${{ steps.detect.outputs.safe_root }}
           path: |
             ${{ steps.detect.outputs.dir }}/*.log
             ${{ steps.detect.outputs.dir }}/*.blg
