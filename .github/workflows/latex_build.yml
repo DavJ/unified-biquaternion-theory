@@ -78,22 +78,45 @@ jobs:
           continue_on_error: true
           post_compile: echo "ok" # (volitelné) ať se projde větev post_compile
 
-      - name: Upload PDF
+      - name: Check produced files
+        id: produced
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf-${{ steps.detect.outputs.safe_root }}
-          path: ${{ steps.detect.outputs.pdf }}
-          if-no-files-found: ignore
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdf="${{ steps.detect.outputs.pdf }}"
+          dir="${{ steps.detect.outputs.dir }}"
+          if [[ -f "$pdf" ]]; then
+            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          # zkusíme najít logy
+          shopt -s nullglob
+          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
+          if (( ${#logs[@]} )); then
+            printf '%s\n' "${logs[@]}" > logs_list.txt
+            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Upload logs on failure
-        if: failure()
+      - name: Upload PDF (only if created)
+        if: always() && steps.produced.outputs.pdf_exists == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ steps.detect.outputs.safe_root }}
+          name: ${{ steps.names.outputs.pdf_name }}
+          path: ${{ steps.detect.outputs.pdf }}
+
+      - name: Upload logs (only if any)
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.names.outputs.log_name }}
           path: |
             ${{ steps.detect.outputs.dir }}/*.log
             ${{ steps.detect.outputs.dir }}/*.blg
             ${{ steps.detect.outputs.dir }}/*.fls
-          if-no-files-found: ignore
+            ${{ steps.detect.outputs.dir }}/*.aux
+            ${{ steps.detect.outputs.dir }}/*.out
 
