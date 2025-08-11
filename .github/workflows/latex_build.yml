@@ -78,6 +78,24 @@ jobs:
           continue_on_error: true
           post_compile: echo "ok" # (volitelné) ať se projde větev post_compile
 
+      - name: Make safe artifact names
+        id: names
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          # vstup: např. unified_biquaternion_theory/solution_theta_particle_model_P2/internal_mode_analysis.tex
+          root="${{ matrix.root }}"
+          # bezpečné jméno pro artefakt (bez / a bez mezer/uvozovek apod.)
+          safe="$(printf '%s' "$root" \
+            | sed 's|/|__|g; s|[^A-Za-z0-9._-]|_|g')"
+          # typicky:
+          #  pdf-unified_biquaternion_theory__solution_theta_particle_model_P2__internal_mode_analysis.tex
+          pdf_name="pdf-${safe}"
+          log_name="logs-${safe}"
+          echo "pdf_name=$pdf_name"   >> "$GITHUB_OUTPUT"
+          echo "log_name=$log_name"   >> "$GITHUB_OUTPUT"
+
       - name: Check produced files
         id: produced
         if: always()
@@ -91,11 +109,9 @@ jobs:
           else
             echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
           fi
-          # zkusíme najít logy
           shopt -s nullglob
           logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
           if (( ${#logs[@]} )); then
-            printf '%s\n' "${logs[@]}" > logs_list.txt
             echo "logs_exist=true" >> "$GITHUB_OUTPUT"
           else
             echo "logs_exist=false" >> "$GITHUB_OUTPUT"
