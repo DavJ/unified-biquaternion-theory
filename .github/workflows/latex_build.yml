@@ -1,4 +1,4 @@
-name: LaTeX build (all roots)
+name: Build all LaTeX PDFs
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 jobs:
   discover:
+    name: Discover LaTeX roots
     runs-on: ubuntu-latest
     outputs:
       roots: ${{ steps.discover.outputs.roots }}
@@ -13,21 +14,27 @@ jobs:
       - uses: actions/checkout@v4
 
       - id: discover
-        name: Discover LaTeX roots
-        shell: bash
         run: |
           set -euo pipefail
+
+          # Najdi všechny .tex soubory, které obsahují \documentclass
+          # (vynecháme běžné build/vendor adresáře)
           mapfile -t roots < <(git ls-files '*.tex' \
             | grep -Ev '^(vendor|node_modules|build|out|dist)/' \
             | xargs -r grep -l -E '\\documentclass')
+
           if [ ${#roots[@]} -eq 0 ]; then
-            echo '[]' > roots.json
+            echo "Nebyly nalezeny žádné LaTeX root soubory."
+            echo 'roots=[]' >> "$GITHUB_OUTPUT"
           else
-            printf '%s\n' "${roots[@]}" | jq -R -s -c 'split("\n")[:-1]' > roots.json
+            printf '%s\n' "${roots[@]}" \
+              | jq -R -s -c 'split("\n")[:-1]' \
+              | sed 's/^/roots=/' >> "$GITHUB_OUTPUT"
+            echo "Nalezeno ${#roots[@]} root soubor(ů)."
           fi
-          echo "roots=$(cat roots.json)" >> "$GITHUB_OUTPUT"
 
   compile:
+    name: compile (${{ matrix.root }})
     needs: discover
     runs-on: ubuntu-latest
     strategy:
@@ -37,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Detect compiler + paths
+      - name: Detect engine + paths
         id: detect
         shell: bash
         run: |
@@ -46,21 +53,19 @@ jobs:
           dir="$(dirname "$root")"
           pdf="${root%.tex}.pdf"
 
-          # pick compiler
-          compiler="pdflatex"
-          grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" && compiler="xelatex"
-          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && compiler="xelatex"
-          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && compiler="lualatex"
+          # Heuristika pro volbu engine:
+          # 1) magic comment %!TEX program = xelatex|lualatex
+          # 2) balíčky fontspec/polyglossia/unicode-math => xelatex
+          # 3) luacode/luaotfload => lualatex
+          engine="pdflatex"
+          grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" && \
+            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
+          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
+          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
 
-          # safe artifact name (no slashes etc.)
-          safe_name="$(echo "$root" | tr '/\\:' '__')"
-
-          {
-            echo "dir=$dir"
-            echo "pdf=$pdf"
-            echo "compiler=$compiler"
-            echo "safe_name=$safe_name"
-          } >> "$GITHUB_OUTPUT"
+          echo "dir=$dir"     >> "$GITHUB_OUTPUT"
+          echo "pdf=$pdf"     >> "$GITHUB_OUTPUT"
+          echo "engine=$engine" >> "$GITHUB_OUTPUT"
 
       - name: LaTeX build ${{ matrix.root }}
         uses: xu-cheng/latex-action@v4
@@ -68,25 +73,37 @@ jobs:
           root_file: ${{ matrix.root }}
           work_in_root_file_dir: true
           continue_on_error: true
-          compiler: ${{ steps.detect.outputs.compiler }}
+          # Nepředáváme 'compiler', aby akce použila latexmk správně.
+          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
+          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
+          # latexmk_shell_escape: true   # odkomentuj, pokud některé dokumenty vyžadují \write18
           pre_compile: |
-            tlmgr update --self
-            # Commonly needed packages
-            tlmgr install \
-              amsfonts amsmath mathtools siunitx physics \
-              babel csquotes etoolbox geometry hyperref graphics graphicx url \
-              pgf pgfplots tikz-cd standalone float caption subcaption \
-              listings fancyvrb soul wrapfig mhchem ifmtarg kvoptions kvsetkeys pdftexcmds \
-              biblatex biber \
-              fontspec unicode-math polyglossia
-          post_compile: |
-            echo "Done."
+            set -euo pipefail
+            # Spolehlivé zrcadlo (redirect na blízké) a nepadat kvůli jedné instalaci
+            tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+            tlmgr update --self || true
 
-      - name: Upload PDF (if exists)
+            # Běžně chybějící (a námi odladěné) balíčky; 'graphics' (ne 'graphicx'!)
+            pkgs="
+              amsfonts amsmath mathtools siunitx physics
+              babel csquotes etoolbox geometry hyperref graphics
+              pgf pgfplots tikz-cd standalone float caption subcaption
+              listings fancyvrb soul wrapfig mhchem ifmtarg kvoptions kvsetkeys pdftexcmds
+              biblatex biber
+              fontspec unicode-math polyglossia
+            "
+            for p in $pkgs; do
+              tlmgr info --only-installed "$p" >/dev/null 2>&1 || tlmgr install "$p" || true
+            done
+          post_compile: |
+            echo "Kompilace dokončena pro ${{ matrix.root }}"
+
+      - name: Upload PDF
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pdf-${{ steps.detect.outputs.safe_name }}
+          # Bezpečný název artifactu (nahrazení / za __)
+          name: pdf-${{ replace(matrix.root, '/', '__') }}
           path: ${{ steps.detect.outputs.pdf }}
           if-no-files-found: ignore
 
@@ -94,7 +111,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ steps.detect.outputs.safe_name }}
+          name: logs-${{ replace(matrix.root, '/', '__') }}
           path: |
             ${{ steps.detect.outputs.dir }}/*.log
             ${{ steps.detect.outputs.dir }}/*.blg
