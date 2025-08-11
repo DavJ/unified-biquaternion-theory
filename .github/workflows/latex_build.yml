@@ -1,4 +1,6 @@
 name: Build all LaTeX PDFs
+permissions:
+  contents: write
 
 on:
   push:
@@ -135,4 +137,44 @@ jobs:
             ${{ steps.detect.outputs.dir }}/*.fls
             ${{ steps.detect.outputs.dir }}/*.aux
             ${{ steps.detect.outputs.dir }}/*.out
+
+  publish_pdfs:
+    needs: compile
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download PDF artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-*
+          path: build_pdfs
+          merge-multiple: true
+
+      - name: Collect PDFs into docs/pdfs
+        id: collect
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs/pdfs
+          shopt -s globstar nullglob
+          count=0
+          for f in build_pdfs/**/*.pdf; do
+            base="$(basename "$f")"
+            cp -f "$f" "docs/pdfs/$base"
+            count=$((count+1))
+          done
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & push PDFs
+        if: steps.collect.outputs.count != '0'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/pdfs/*.pdf
+          git commit -m "chore: update PDFs [skip ci]" || echo "No changes to commit"
+          git push
 
