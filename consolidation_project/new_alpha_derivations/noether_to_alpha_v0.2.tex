@@ -1,0 +1,80 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+
+\title{Noether to $\alpha$ v0.2}
+\author{Draft for UBT Project}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Lagrangian in 5D}
+We start with the unified field $\Theta(x,\psi)$ and the gauge field $A_M(x,\psi)$ on $M^4 \times S^1_\psi$. 
+The action in natural units ($c=\hbar=1$) is
+\begin{equation}
+S = \int d^4x \int_0^{L_\psi} d\psi \;
+\Big[ (D_M \Theta)^\dagger (D^M \Theta)
+ - m^2 \Theta^\dagger \Theta
+ - \tfrac{1}{4} F_{MN}F^{MN} \Big],
+\end{equation}
+with $D_M = \partial_M + i g_5 A_M$.
+
+\section{Noether Current}
+Under global $U(1): \Theta \to e^{i\lambda}\Theta$, the Noether current is
+\begin{equation}
+J^M = i\big( \Theta^\dagger \partial^M \Theta - (\partial^M \Theta^\dagger)\Theta \big).
+\end{equation}
+The charge is
+\begin{equation}
+Q = \int d^3x \, d\psi \, J^0,
+\end{equation}
+and we normalize such that the fundamental excitation has $Q=\pm 1$.
+
+\section{Dimensional Reduction}
+Assuming $A_\mu(x)$ is independent of $\psi$, the gauge term reduces to
+\begin{equation}
+S_{\text{gauge}} = -\frac{L_\psi}{4} \int d^4x \, F_{\mu\nu}F^{\mu\nu}.
+\end{equation}
+Canonical normalization requires rescaling $A_\mu \to A_\mu/\sqrt{L_\psi}$, yielding an effective coupling
+\begin{equation}
+g_4 = \frac{g_5}{\sqrt{L_\psi}}.
+\end{equation}
+
+\section{Wilson Loop Quantization}
+On the compact $\psi$-cycle, gauge invariance implies quantization of the Wilson loop:
+\begin{equation}
+\exp\!\Big( i g_5 \oint A_\psi \, d\psi \Big) = e^{2\pi i n}, \qquad n \in \mathbb{Z}.
+\end{equation}
+This condition links $g_5$, $L_\psi$, and the background $\langle A_\psi\rangle$. 
+Thus, the geometry of the $\psi$-sector fixes the effective gauge coupling.
+
+\section{Generalized Factor $Z$}
+In full UBT, the integration over $\psi$ gives not only $L_\psi$ but also a correction factor $f(\tau,\text{BC})$, 
+depending on the modular parameter $\tau$ of complex time and boundary conditions:
+\begin{equation}
+Z = L_\psi \cdot f(\tau,\text{BC}).
+\end{equation}
+The effective 4D action is then
+\begin{equation}
+S_{\text{eff}} = \int d^4x \left( -\frac{Z}{4}F_{\mu\nu}F^{\mu\nu} + g_4 J^\mu A_\mu \right).
+\end{equation}
+
+\section{Fine Structure Constant}
+After canonical normalization, the fine structure constant is
+\begin{equation}
+\alpha = \frac{g_4^2}{4\pi} = \frac{g_5^2}{4\pi Z}.
+\end{equation}
+
+\section{Interpretation}
+\begin{itemize}
+\item The relation $\alpha = g_5^2 / (4\pi Z)$ follows rigorously from Noether symmetry and dimensional reduction.
+\item To obtain the numerical value, UBT must determine $g_5$ and $Z$ from first principles:
+  \begin{itemize}
+  \item $g_5$ fixed by Noether charge quantization ($Q=\pm1$).
+  \item $Z$ fixed by $\psi$-geometry: $Z=L_\psi f(\tau,\text{BC})$.
+  \end{itemize}
+\item Once these are determined ab-initio, $\alpha$ is no longer a free parameter but a derived constant.
+\end{itemize}
+
+\end{document}
