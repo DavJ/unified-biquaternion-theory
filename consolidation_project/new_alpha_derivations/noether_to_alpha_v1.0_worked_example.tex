@@ -1,0 +1,67 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{physics}
+
+\title{Noether $\to$ $\alpha$ v1.0: Worked example (UBT-only, trace formulation)}
+\author{Draft for UBT Project}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Aim}
+Show, on a minimal vacuum ansatz, how $\alpha$ follows from UBT \emph{without} specifying any external field list:
+\begin{itemize}
+\item Route (A): Noether + holonomy $\Rightarrow~ \alpha=\dfrac{\theta_H^{\star 2}}{4\pi(\mathcal I_\psi^\star)^2 Z^\star}$.
+\item Route (B): Emergent photon as a spectral trace $\Rightarrow~ \dfrac{1}{\alpha}=\Lambda Z^\star \sum_B C_5^{(B)} \Tr_{\mathcal F_B}(Q^2) + \text{KK logs}$.
+\end{itemize}
+
+\section{Minimal vacuum ansatz (for illustration)}
+Assume a flat background $A(\psi)=B(\psi)=0$ with length $L_\psi^\star=L_0$ and a constant vacuum profile for $A_\psi$,
+\begin{equation}
+A_\psi(\psi)=A_0 \quad \Rightarrow \quad \mathcal I_\psi^\star=\int_0^{L_0}\!A_\psi\,d\psi = A_0 L_0,
+\qquad
+Z^\star=\int_0^{L_0}\! d\psi = L_0.
+\end{equation}
+Suppose the Hosotani dynamics selects a nontrivial holonomy $\theta_H^\star=\pi$ (a common stationary value).
+
+\subsection*{Route (A): Noether + holonomy}
+Then
+\begin{equation}
+\boxed{~ \alpha_A \;=\; \frac{\theta_H^{\star 2}}{4\pi\,(\mathcal I_\psi^\star)^2\,Z^\star}
+\;=\; \frac{\pi^2}{4\pi\,(A_0^2 L_0^2)\,L_0}
+\;=\; \frac{\pi}{4}\,\frac{1}{A_0^2\,L_0^3} ~}.
+\end{equation}
+In a full UBT computation $A_0$ and $L_0$ are not free: they come from the vacuum EOM that minimize $V_{\rm eff}$. The point
+of this example is to show the scaling and where the number comes from in Route (A).
+
+\subsection*{Route (B): Spectral trace}
+Let the fluctuation fiber of $\Theta$ split into a Dirac block $\mathcal F_D$ and a scalar block $\mathcal F_S$ with invariant traces
+\begin{equation}
+T_D\equiv \Tr_{\mathcal F_D}(Q^2),\qquad T_S\equiv \Tr_{\mathcal F_S}(Q^2).
+\end{equation}
+Using $C_5^{\rm Dirac}=\dfrac{1}{3(4\pi)^{5/2}}$, $C_5^{\rm scalar}=\dfrac{1}{6(4\pi)^{5/2}}$,
+\begin{equation}
+\boxed{~ \frac{1}{\alpha_B} \;=\; \Lambda Z^\star \left( \frac{T_D}{3(4\pi)^{5/2}} + \frac{T_S}{6(4\pi)^{5/2}} \right) + \underbrace{\text{KK logs}}_{\text{finite, smaller in 5D}} ~}.
+\end{equation}
+Here $T_{D,S}$, $\Lambda$ and $Z^\star$ are \emph{fixed} by the same UBT vacuum: $T_{D,S}$ by the $\Theta$-bundle algebra,
+$\Lambda$ by the UV threshold of the spectrum, and $Z^\star$ by the photon zero-mode norm.
+
+\section*{Numerical toy (for scale intuition only)}
+Pick, purely for illustration, $L_0=1.2$ and $A_0=0.25$ (constant background), then
+\begin{equation}
+\alpha_A \approx \frac{\pi}{4}\,\frac{1}{0.25^2 \cdot 1.2^3} \;\approx\; \texttt{ALPHA\_A\_NUM}.
+\end{equation}
+For Route (B), take fiber traces $T_D=8$, $T_S=8$ (toy invariant traces), and $\Lambda Z^\star = \Lambda L_0 = 10$,
+\begin{equation}
+\frac{1}{\alpha_B} \approx 10 \times \frac{8/3 + 8/6}{(4\pi)^{5/2}} \;=\; 10 \times \frac{4}{(4\pi)^{5/2}} \;\approx\; \texttt{INV\_ALPHA\_B\_NUM},
+\qquad \alpha_B \approx \texttt{ALPHA\_B\_NUM}.
+\end{equation}
+These toy numbers \emph{are not predictions}; the true values follow from the UBT vacuum EOM and the $\Theta$-fiber invariants.
+
+\paragraph{Takeaway.} Route (A) gives a closed formula once $(\theta_H^\star,\mathcal I_\psi^\star,Z^\star)$ are known. Route (B) gives a closed
+trace formula once $(T_B)$, $\Lambda$ and $Z^\star$ are known. Both are UBT-internal; no external field list is needed.
+
+\end{document}
