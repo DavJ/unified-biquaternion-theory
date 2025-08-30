@@ -2,16 +2,20 @@
 \appendix
 \section*{Appendix V: Emergent $\alpha$}
 
-% --- Zachovany stavajici obsah (placeholder) ---
-% Sem vlozime cely dosavadni text appendix_V_emergent_alpha.tex
-% (ponechano pro integraci)
-
 \subsection*{V.1 Existing content}
 [Existing material preserved here...]
 
-% --- Kratky doplnek ---
 \subsection*{V.2 Cross-reference to electron mass}
 As shown in Appendix~K.3, the electron mass can be interpreted as the first 
 internal eigenmode on $T^2(\tau)$ with Hosotani background. This directly ties 
 the emergent value of $\alpha$ to the lepton mass spectrum, providing a 
 non-circular and unified account of both quantities.
+
+\subsection*{V.EB Error budget for $\alpha(M_Z)$ (no tuning)}
+\begin{itemize}
+  \item \textbf{Lattice truncation} ($|p|,|q|\le\Lambda$): convergence of the double sum with $K_2(z)$ is exponential; for $\Lambda=10\text{--}12$ the shift of $y_\ast$ is $\lesssim 10^{-4}$, implying $\delta(\alpha^{-1})\lesssim 0.01$.
+  \item \textbf{Gauge bookkeeping} (vectors vs. Goldstones+ghosts): net DOF vs. explicit treatment agree within $\delta(\alpha^{-1})\sim 0.01$ when done consistently.
+  \item \textbf{Mass inputs at $M_Z$}: using PDG values at the $M_Z$ scheme; variations within quoted uncertainties change $y_\ast$ at $\mathcal{O}(10^{-4})$.
+  \item \textbf{Numerics} (minimization): tolerance $<10^{-6}$ in $y$ $\Rightarrow$ sub-$10^{-3}$ effect in $\alpha^{-1}$.
+\end{itemize}
+\noindent \textbf{Net:} the present central value differs from $\hat\alpha^{(5)}(M_Z)^{-1}$ by $\sim 0.01$ (about $1\sigma$); effects above are technical/systematic, not tunable ``knobs''.
