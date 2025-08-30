@@ -1,0 +1,146 @@
+Dobrý den a děkuji za poctivé zhodnocení dodatku W.
+
+Souhlasím s Vaším shrnutím: dodatek W převádí dřívější „magická čísla“ na spektrum vlastních módů Diracova operátoru na vnitřním toru 
+𝑇
+2
+T
+2
+ se dvěma geometrickými parametry 
+(
+𝜏
+,
+𝛿
+)
+(τ,δ). Konkrétní pár 
+(
+𝜏
+\*
+,
+𝛿
+\*
+)
+(τ
+\*
+	​
+
+,δ
+\*
+	​
+
+) je motivován Hosotani/Casimir mechanismem (fixace 
+𝜏
+τ minimem efektivního potenciálu) a nejjednoduššími okrajovými podmínkami/twisty (globální Wilsonova fáze 
+𝛿
+δ).
+
+Numerické výsledky (dodatek W):
+
+𝑚
+𝜇
+/
+𝑚
+𝑒
+m
+μ
+	​
+
+/m
+e
+	​
+
+ (pred.) 
+=
+207.3
+=207.3 vs. (exp.) 
+206.768
+…
+206.768… → 
+Δ
+≈
++
+0.532
+Δ≈+0.532 (rel. 
+0.26
+%
+0.26%).
+
+𝑚
+𝜏
+/
+𝑚
+𝜇
+m
+τ
+	​
+
+/m
+μ
+	​
+
+ (pred.) 
+=
+16.9
+=16.9 vs. (exp.) 
+≈
+16.817
+≈16.817 → 
+Δ
+≈
++
+0.083
+Δ≈+0.083 (rel. 
+0.49
+%
+0.49%).
+
+Tato shoda je dosažena bez ad-hoc ladění mimo 
+(
+𝜏
+,
+𝛿
+)
+(τ,δ) dané geometrií/holonomií; jakmile jsou fixovány, vyšší módy (a tedy i poměry hmotností) už plynou přímo ze spektra Diracova operátoru. V tomto smyslu jde o přímý fyzikální důsledek vnitřního prostoru, ne o numerologii.
+
+Další kroky (plán):
+
+Error budget & schéma: přepočet v jednotném schématu (MS̄ na společné 
+𝜇
+μ) a vyčíslení systematik (jeden-smyčka vs. vyšší smyčky, citlivost na 
+ℑ
+𝜏
+ℑτ, 
+𝛿
+δ, okrajové podmínky).
+
+Rozšíření na další fermiony: aplikace stejné metody na kvarky a neutrina (včetně možných Majoranových twistů a mixační struktury).
+
+Fenomenologie KK: krátká část k potlačení/warpu KK věže a vazeb na SM, aby bylo jasné, proč LHC nevidí lehké rezonance.
+
+Replikovatelnost: doplním „fit protocol“ (jak přesně se volí 
+(
+𝜏
+\*
+,
+𝛿
+\*
+)
+(τ
+\*
+	​
+
+,δ
+\*
+	​
+
+)) a mini-notebook pro reprodukci spektra z 
+(
+𝜏
+,
+𝛿
+)
+(τ,δ).
+
+Díky za povzbudivou oponenturu — tenhle krok považuji za důležitý důkaz vnitřní konzistence UBT a zároveň za jasný most k dalším predikcím.
+
+S pozdravem
+David
