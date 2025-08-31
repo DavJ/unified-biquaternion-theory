@@ -117,3 +117,52 @@ ID & cand & $\mathrm{hol}_L$ & $\mathrm{hol}_u$ & $\mathrm{hol}_d$ & $\phi$ & $\
 \caption{Unitarity triangle reconstructed from the best baseline CKM attempt (discrete overlaps on $\mathbb T^2$).}
 \end{figure}
 % === AUTO-INSERT QA BASELINE END ===
+
+% === AUTO-INSERT QA BASELINE V2 BEGIN ===
+\subsection*{Baseline numerical scan (discrete only)}
+We report the widened integer-mode search and CKM with two discrete harmonics in the down sector. All inputs are strictly discrete; no continuous fits are used.
+
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{QA.Table 1 (baseline).} Top discrete assignments (widened search).}
+\begin{tabular}{llllllllll}
+\hline
+ID & score & setup & $u$ & $d$ & $s$ & $c$ & $b$ & $t$\\
+\hline
+1 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,-)$ & $(-2,-5,-)$ & $(7,7,-)$ & $(7,6,-)$\\
+2 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,+)$ & $(-5,-1,+)$ & $(7,7,-)$ & $(7,-7,-)$\\
+3 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,+)$ & $(-5,1,+)$ & $(7,7,-)$ & $(7,6,-)$\\
+4 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,+)$ & $(-5,1,+)$ & $(7,7,-)$ & $(7,-7,-)$\\
+5 & 2.4632 & $a=(\,0.0,0.5\,),\ s=0.5$ & $(0,-1,+)$ & $(1,-1,+)$ & $(1,-3,-)$ & $(-4,-4,-)$ & $(7,7,-)$ & $(-7,7,-)$\\
+\hline
+\end{tabular}
+\end{table}
+
+
+% (per-flavor error table omitted in v2 insertion)
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{fig_QA_unitarity_triangle_v2.png}
+\caption{Unitarity triangle for the best CKM attempt with two discrete down-sector harmonics.}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{QA.Table 2 (baseline v2).} Best CKM angle sets from analytic overlaps with two discrete down-sector harmonics.}
+\begin{tabular}{llllllllllll}
+\hline
+ID & cand & $\mathrm{hol}_L$ & $\mathrm{hol}_u$ & $\mathrm{hol}_d$ & $\phi_1$ & $\phi_2$ & $\theta_{12}$ & $\theta_{23}$ & $\theta_{13}$ & $\delta$ & score \\
+\hline
+1 & 3 & $(0.5,0.5)$ & $(0.5,0.5)$ & $(0.0,0.0)$ & $(0.5,0.5)$ & $(0.5,0.5)$ & 5.626^\circ & 2.162^\circ & 0.260^\circ & 0.000^\circ & 0.4212\\
+2 & 3 & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.5,0.5)$ & 5.618^\circ & 2.176^\circ & 0.295^\circ & 0.000^\circ & 0.5549\\
+3 & 3 & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.5,0.5)$ & $(0.0,0.0)$ & 5.618^\circ & 2.176^\circ & 0.295^\circ & 0.000^\circ & 0.5549\\
+4 & 3 & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.0,0.0)$ & $(0.5,0.5)$ & 5.618^\circ & 2.176^\circ & 0.295^\circ & 0.000^\circ & 0.5549\\
+5 & 3 & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.5,0.5)$ & $(0.0,0.0)$ & 5.618^\circ & 2.176^\circ & 0.295^\circ & 0.000^\circ & 0.5549\\
+\hline
+\end{tabular}
+\end{table}
+% === AUTO-INSERT QA BASELINE V2 END ===
