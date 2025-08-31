@@ -1,57 +1,26 @@
 
 \appendix
-\section*{Appendix K: Fundamental constants consolidated}
+\section*{Appendix K: Consolidation of fundamental constants}
 
-% --- Zachovany stavajici obsah (placeholder) ---
-% Sem vlozime cely dosavadni text appendix_K_fundamental_constants_consolidated.tex
-% (ponechano pro integraci)
+\subsection*{K.1 Input vs. output constants}
+Within UBT we distinguish between input parameters, which define the scale and structure, 
+and output constants, which the theory predicts. The goal is to minimize the number of inputs.
 
-\subsection*{K.1 Existing content}
-[Existing material preserved here...]
+Inputs: $c$, $\hbar$ (definitions of units), integer parameters (e.g. $n_\mu, n_\tau$ in the original model).
 
-\subsection*{K.2 Existing content}
-[Existing material preserved here...]
+Outputs: $\alpha$, $m_e$, $m_\mu$, $m_\tau$, $\Lambda_{\rm QCD}$, etc.
 
-% --- Nova cast ---
-\subsection*{K.3 Electron mass as an internal mode}
-
-Building on earlier self–energy models (Refs.~[...]), we show that the electron 
-mass arises as the lowest non-trivial eigenvalue of the Dirac operator on 
-$T^2(\tau)$ with Hosotani phase $\theta_H=\pi$. 
-
-\paragraph{Eigenvalue problem.}
-The internal Dirac operator on the torus reads
-\begin{equation}
-D = i\gamma^\psi \left(\partial_\psi + i Q \theta_H/L_\psi\right) 
-  + i\gamma^\phi \partial_\phi ,
-\end{equation}
-whose eigenmodes are labelled by $(n,m)\in\mathbb{Z}^2$ and acquire shifts 
-$(n+\delta, m+\delta')/R$ due to the Hosotani background. 
-The corresponding eigenenergies are
-\begin{equation}
-E_{n,m} = \frac{1}{R}\sqrt{(n+\delta)^2 + (m+\delta')^2}.
-\end{equation}
-
-\paragraph{Electron as the first excitation.}
-For $Q=-1$ and $\theta_H=\pi$, the lowest non-zero mode $(n,m)=(0,1)$ yields 
-\begin{equation}
-m_e \;=\; \frac{1}{R}\sqrt{\delta^2+1}\;\simeq\;\frac{1}{R},
-\end{equation}
-where $R$ is tied to the compactification scale fixed in Appendix~V. 
-
-\paragraph{Implication.}
-Thus $m_e$ is not an input parameter but an output of the same geometry that 
-fixes $\alpha$. Higher modes $(n,m)=(0,2)$ and $(1,0)$ naturally provide 
-candidates for $m_\mu$ and $m_\tau$, suggesting that lepton mass ratios arise 
-from the same internal structure.
-
-\subsection*{K.4 Consolidation}
-Together with Appendix~V, this establishes that both $\alpha$ and $m_e$ (and 
-potentially higher lepton masses) emerge from the same toroidal geometry.
-
+\subsection*{K.2 Mystery of lepton mass ratios}
+The experimentally observed ratios of charged lepton masses are:
+\begin{align*}
+\frac{m_\mu}{m_e} &\simeq 206.77, \\
+\frac{m_\tau}{m_e} &\simeq 3477.2 .
+\end{align*}
+These numbers, close to the integers 207 and 3477, were long considered a numerological puzzle. 
+The original version of UBT postulated that these ratios correspond to internal quantum numbers, 
+but lacked a mechanism for their derivation.
 
 \subsection*{K.3 Electron mass as an internal mode}
-
 Building on earlier self–energy models, we show that the electron 
 mass arises as the lowest non-trivial eigenvalue of the Dirac operator on 
 $T^2(\tau)$ with Hosotani phase $\theta_H=\pi$. 
@@ -80,3 +49,8 @@ Thus $m_e$ is not an input parameter but an output of the same geometry that
 fixes $\alpha$. Higher modes $(n,m)=(0,2)$ and $(1,0)$ provide natural 
 candidates for $m_\mu$ and $m_\tau$, suggesting that lepton mass ratios arise 
 from the same internal structure.
+
+\subsection*{K.4 Consolidation}
+Together with Appendix~V this shows that both $\alpha$ and $m_e$ 
+(and potentially also the heavier lepton masses) emerge from the same 
+toroidal geometry.
