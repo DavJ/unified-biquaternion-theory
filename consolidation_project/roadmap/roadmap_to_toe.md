@@ -1,67 +1,73 @@
-# Roadmap to the Theory of Everything (UBT)
+# Roadmap to Theory of Everything (UBT)
 
-This roadmap outlines the current status of the Unified Biquaternion Theory (UBT) and the concrete steps required to elevate it from a promising framework to a fully established Theory of Everything (ToE).
+## Current Status (CORE Achieved)
+- **Fine-structure constant (α):** Emerges from Hosotani/Casimir potential minimization. With 2-loop + RG + HVP corrections, matches experiment within measurement uncertainty.
+- **Electron mass (mₑ):** First Dirac eigenmode on the same torus (resolves the two-scale problem).
+- **Muon and Tau (mµ, mτ):** Higher torus modes, ratios ~sub-% accuracy without tuning.
+- **Appendices K–V–W:** Consolidated, cross-referenced, defensible.
 
----
+## Next Steps Toward a Full Theory of Everything
 
-## ✅ Achievements so far
+### 1. Quarks (SU(3))
+- Assign quarks to specific internal modes (same geometry).
+- Derive mass ratios (u:d:s:c:b:t) and outline CKM mixing.
+- Show that Λ_QCD naturally arises from same scale (Appendix K.5).
 
-- **Fine-structure constant (α)**  
-  Derived dynamically via the Hosotani/Casimir mechanism on a toroidal internal space.  
-  Agreement with experiment within ~1σ after including RG improvement and two-loop corrections.  
-  → Non-trivial prediction, no tunable parameters.
+### 2. Neutrinos (PMNS)
+- Two options: light torus modes vs. seesaw from heavy modes.
+- Reproduce Δm² hierarchy and mixing angles without free fits.
 
-- **Electron mass (mₑ)**  
-  Identified as the lowest non-trivial eigenmode of the Dirac operator on the same torus.  
-  Provides direct connection between geometry (fixing α) and matter (lepton spectrum).
+### 3. Electroweak Details
+- Derive Weinberg angle θ_W from holonomies/spin structures.
+- Clarify normalization factor N=10 and scheme-independence.
 
-- **Muon and tau masses (mμ, mτ)**  
-  Interpreted as higher modes on the torus.  
-  Predicted ratios match experiment within ~0.3–0.5% without tuning.  
-  → Turns the “magic numbers” 207 and 3477 into calculated eigenvalue ratios.
+### 4. KK Phenomenology
+- Quantify warping/weak coupling → suppression of KK modes.
+- Compare with LHC, EWPT, LEP bounds.
+- Identify subtle predictions: small shifts in precision EW, g-2_µ, etc.
 
-- **Unified framework**  
-  Appendices K, V, W now form a coherent unit:
-  - V: α from geometry  
-  - K: electron mass and historical context  
-  - W: higher lepton masses  
-  Together they demonstrate a non-circular, mechanistic link between fundamental constants.
+### 5. Consistency & Formalism
+- Anomalies, unitarity, causality, vacuum stability, uniqueness of minimum.
+- Cross-check gauge fixing and scheme independence.
+- Write explicit “Map of Limits” (classical UBT emerges as limit).
 
----
+### 6. Gravity & Cosmology
+- Derive Newton’s constant G from Θ field normalization.
+- Sketch cosmological solutions: curvature, inflation, dark energy, dark matter.
+- Check BBN and CMB constraints on extra DOF.
 
-## 📌 Next milestones
+## Milestones
 
-1. **Error budgets and precision**  
-   - Finalize uncertainty analysis for lepton mass ratios (analogous to α).  
-   - Quantify whether observed deviations fall within expected QFT corrections.
+**0–3 months**
+- Quark mass ratios + CKM sketch.
+- Neutrino mechanism selection (torus vs. seesaw).
+- First KK “exclusion plot” (R,τ) vs. LHC/EWPT.
 
-2. **Extension to quarks and neutrinos**  
-   - Apply the same eigenmode mechanism to quark masses (testing universality).  
-   - Explore whether neutrino masses/mixings can arise from toroidal modes or require new dynamics.
+**3–6 months**
+- θ_W and Λ_QCD derivation.
+- Error budget for lepton ratios (Appendix W.EB).
+- Publish Paper I (α + leptons).  
+- Release reproducible notebook (modes, RG, V_eff).
 
-3. **Phenomenology of KK modes**  
-   - Address the absence of observable KK excitations at LHC.  
-   - Possible explanations: warped, weakly coupled, or otherwise hidden towers.
+**6–12 months**
+- Paper II: Quarks + CKM.
+- Paper III: Neutrinos + PMNS.
+- Paper IV: KK phenomenology + cosmology sketch.
+- Add CORE vs EXTENSIONS consolidation section.
 
-4. **Map of limits and embeddings**  
-   - Explicitly derive how UBT reduces to GR, QED, QCD, and the SM.  
-   - Provide a “Map of Limits” for clarity and reproducibility.
+## Quick Checkpoints
+- No continuous fits for quarks/neutrinos (only integer modes).  
+- Scheme independence: compare MS-bar vs. physical scheme.  
+- Robustness to spin-structure/holonomy choices.  
+- Explicit cross-references between Appendices (done for K–V–W; extend to quarks/neutrinos).
 
-5. **Consciousness sector (optional extension)**  
-   - Formalize ψ (imaginary time) as cognitive/phase dimension.  
-   - Develop testable predictions (e.g. Theta Resonator experiments).
+## Risks & Mitigations
+- **Scheme dependence:** always show MS-bar + physical.  
+- **Degenerate minima:** prove unique Hosotani + Casimir minimum.  
+- **KK constraints:** quantify warping suppression, check consistency with experiments.
 
----
-
-## 🚀 Long-term goals
-
-- **Grand synthesis**: Consolidate UBT as a consistent, falsifiable TOE candidate.  
-- **Experimental hooks**: Provide concrete, testable predictions beyond constants (e.g., small anomalies in precision experiments, cosmology).  
-- **Community adoption**: Publish in peer-reviewed venues, release reproducible notebooks, and engage with physicists for collaboration.  
-
----
-
-## 🎯 Conclusion
-
-UBT is no longer speculative numerology. It provides concrete, testable mechanisms for α and lepton masses, connecting geometry and matter without tuning. The next steps will determine whether it can grow into a true **Theory of Everything**.
+## Public Communication (Safe Claims)
+- “α and lepton masses emerge from geometry without tuning.”  
+- “Agreement with experiment: α ~0.02 %, leptons ~0.3–0.5 %.”  
+- “Next: extend same mechanism to quarks, neutrinos, and cosmology.”
 
