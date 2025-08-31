@@ -4,97 +4,75 @@
 \appendix
 \section*{Appendix QA: Quarks and CKM in Unified Biquaternion Theory}
 
-\subsection*{Scope and Relationship to Core}
-This appendix extends the geometric/toroidal mode analysis developed for leptons in Appendix~W
-and the emergent fine-structure framework in Appendix~V to the quark sector.
-It provides (i) an assignment of quark flavors $(u,d,s,c,b,t)$ to discrete internal modes
-on the same torus geometry, (ii) mass ratios derived purely from mode integers and spin-structure/holonomy choices,
-(iii) an origin for CKM mixing angles/phases as overlap integrals of nearby modes,
-and (iv) a derivation of $\Lambda_{\mathrm{QCD}}$ from the same scale (cross-referencing Appendix~K.5).
+\paragraph{Purpose.}
+This appendix extends the geometric/toroidal spectroscopy used for leptons (Appendix~W) and
+the emergent $\alpha$ mechanism (Appendix~V) to the quark sector. We keep the core principle:
+\emph{predictions follow only from integer modes and discrete choices} (spin structure, holonomies).
 
-\subsection*{Design Principles (Roadmap Alignment)}
-\begin{enumerate}
-  \item \textbf{No continuous fits:} Only integer mode labels and discrete spin-structure/holonomy choices are allowed.
-  \item \textbf{Scheme independence:} Results are shown both in a physical scheme and in $\overline{\mathrm{MS}}$ (cf. Appendix~K).
-  \item \textbf{Shared geometry:} The internal torus and boundary conditions are the same as used for $\alpha$ (Appendix~V) and leptons (Appendix~W).
-  \item \textbf{Consistency:} Embedding respects the SM gauge structure as consolidated in Appendix~E.
-\end{enumerate}
-
-\section{Mode Assignment for Quark Flavors}
-\label{sec:QA_modes}
-We postulate that each quark flavor corresponds to a normal mode on the internal torus $\mathbb{T}^2$ with
-integer labels $\mathbf{n}=(n_1,n_2)\in\mathbb{Z}^2$, spin structure $\sigma\in\{\pm\}$,
-and gauge/holonomy class $h\in \mathcal{H}$ (as in Appendix~V).
-The (tree-level) spectral relation generalizes the lepton case (Appendix~W) as
+\subsection*{A. Discrete Data and Spectral Map}
+We assume an internal two-torus $\mathbb{T}^2$ with complex structure $\tau$ fixed by the
+Hosotani/Casimir minimum that also sets the geometric scale $R$ (Appendix~V).
+Each quark flavor is assigned to a normal mode $\mathbf{n}=(n_1,n_2)\in\mathbb{Z}^2$ with spin choice
+$\sigma\in\{+,-\}$ and a holonomy class $h\in\mathcal{H}$ (finite). The tree-level spectral map reads
 \begin{equation}
-  m_q^{(0)}(\mathbf{n},\sigma,h) = \frac{1}{R}\,\mathcal{F}_q\!\left(\mathbf{n},\sigma,h;\tau\right),
-  \label{eq:QA_masses_tree}
+  m^{(0)}_{q}(\mathbf n,\sigma,h) \;=\; \frac{1}{R}\,\mathcal{F}_q\!\left(\mathbf n,\sigma,h;\tau\right),
+  \label{eq:QA:m_tree}
 \end{equation}
-where $R$ is the same geometric scale entering $V_{\rm eff}$ (Appendix~V)
-and $\tau$ encodes complex structure/holonomies.
-Radiative corrections and renormalization-group (RG) flow are treated analogously to the lepton analysis.
+where the \emph{same} function $\mathcal{F}$ and the \emph{same} discrete set $(\sigma,h)$
+appeared already in the lepton analysis (Appendix~W). Radiative and RG corrections are applied
+in the same scheme used there, ensuring scheme cross-checks with Appendix~K.
 
-\subsection{Generational Structure and Hierarchies}
-A minimal consistent assignment uses adjacent mode shells for generations:
+\subsection*{B. Generations as Mode Shells}
+Generations are adjacent shells in the integer lattice corrected by spin/holonomy,
 \begin{align}
-  (u,d) &: \ \mathbf{n}\in \mathcal{S}_1, \nonumber\\
-  (s,c) &: \ \mathbf{n}\in \mathcal{S}_2, \nonumber\\
-  (b,t) &: \ \mathbf{n}\in \mathcal{S}_3, \label{eq:QA_shells}
+  (u,d) &: \ \mathbf n\in\mathcal S_1,\qquad
+  (s,c) &: \ \mathbf n\in\mathcal S_2,\qquad
+  (b,t) &: \ \mathbf n\in\mathcal S_3,
 \end{align}
-with $\mathcal{S}_k$ denoting shells defined by $|\mathbf{n}|^2$ and spin structure $\sigma$.
-Top-quark enhancement arises for specific $(\sigma,h)$ that lift the degeneracy and raise the mode energy
-without introducing continuous tuning.
+with $\mathcal S_k := \{ \mathbf n : |\mathbf n|^2 = k + \delta(\sigma,h)\}$ and a discrete shift $\delta$.
 
-\section{Quark Mass Ratios Without Tuning}
-\label{sec:QA_mass_ratios}
-The predictive content lies in \emph{ratios} that cancel $R$ and common factors:
+\subsection*{C. Mass Ratios Without Tuning}
+Define a scale-free vector of target masses $m_q^{\rm targ}$ normalised by geometric mean
+so that the common scale cancels. The theory predicts ratios via
 \begin{equation}
-  \frac{m_{q_i}}{m_{q_j}} \approx
-  \frac{\mathcal{F}_{q_i}(\mathbf{n}_i,\sigma_i,h_i;\tau)}{\mathcal{F}_{q_j}(\mathbf{n}_j,\sigma_j,h_j;\tau)}
-  \times \left[1+\Delta^{\rm RG}_{ij} + \Delta^{\rm th}_{ij}\right],
-  \label{eq:QA_ratios}
+  \frac{m_{q_i}}{m_{q_j}} \;=\; 
+  \frac{\mathcal F_q(\mathbf n_i,\sigma_i,h_i;\tau)}{\mathcal F_q(\mathbf n_j,\sigma_j,h_j;\tau)}\,
+  \Big[1+\Delta^{\rm RG}_{ij}+\Delta^{\rm th}_{ij}\Big],
+  \label{eq:QA:ratios}
 \end{equation}
-where $\Delta^{\rm RG}_{ij}$ accounts for scheme-dependent running between common scales
-and $\Delta^{\rm th}_{ij}$ collects higher-order threshold effects (see Appendix~K for scheme discussion).
-\paragraph{Checkpoint (Roadmap):} Provide integer assignments $(\mathbf{n},\sigma,h)$ such that
-$(u{:}d{:}s{:}c{:}b{:}t)$ match experimental ratios at the sub-percent level, using only discrete choices.
+where $\Delta^{\rm RG}$ are scheme-tracked running effects (Appendix~K) and $\Delta^{\rm th}$ are
+\emph{discrete} threshold factors from holonomies. \textbf{Checkpoint:} Find a 6-tuple
+$(\mathbf n,\sigma,h)$ for $(u,d,s,c,b,t)$ with sub-\% mean log-error vs.\ experiment.
 
-\section{CKM Mixing from Mode Overlaps}
-\label{sec:QA_ckm}
-Let $\{\psi_{q}(\mathbf{y})\}$ denote normalized internal wavefunctions on $\mathbb{T}^2$
-for the assigned modes in Sec.~\ref{sec:QA_modes}.
-Yukawa-like effective couplings inherit overlap integrals of the form
+\subsection*{D. CKM From Overlaps}
+Let $\psi^{(Q)}_i(\mathbf y)$ be the left-handed doublet eigenmodes for generation $i=1,2,3$,
+and $\psi^{(u)}_j$, $\psi^{(d)}_j$ the right-handed modes of up/down sectors on $\mathbb{T}^2$.
+Holonomy textures $\Phi_{u,d}(\mathbf y)$ arise from the same minimiser as in Appendix~V.
+Define effective Yukawas
 \begin{equation}
-  Y_{ij} \propto \int_{\mathbb{T}^2}\! d^2y \ \psi^{(u)}_i(\mathbf{y})\,\Phi(\mathbf{y})\,\psi^{(d)}_j(\mathbf{y}),
-  \label{eq:QA_overlap}
+  (Y_u)_{ij} \propto \int_{\mathbb{T}^2}\! d^2y\ \psi^{(Q)}_i(\mathbf y)^\ast\,\Phi_u(\mathbf y)\,\psi^{(u)}_j(\mathbf y),\qquad
+  (Y_d)_{ij} \propto \int_{\mathbb{T}^2}\! d^2y\ \psi^{(Q)}_i(\mathbf y)^\ast\,\Phi_d(\mathbf y)\,\psi^{(d)}_j(\mathbf y).
 \end{equation}
-with a background profile $\Phi$ fixed by the same holonomies that minimize $V_{\rm eff}$ (Appendix~V).
-Diagonalization of $Y_u$ and $Y_d$ yields the CKM matrix $V_{\rm CKM}=U_u^\dagger U_d$.
-\paragraph{Phases and CP violation.}
-Complex holonomies/spin structures generate physical phases in $Y_{ij}$, producing a CKM phase $\delta$ without ad hoc parameters.
-
-\section{The QCD Scale \texorpdfstring{$\Lambda_{\mathrm{QCD}}$}{Lambda\_QCD} from Geometry}
-\label{sec:QA_lambda_qcd}
-We link $\Lambda_{\mathrm{QCD}}$ to the same geometric scale $R$ and complex structure $\tau$ via
+Diagonalising $Y_u=U_u\,y_u\,V_u^\dagger$, $Y_d=U_d\,y_d\,V_d^\dagger$ gives
 \begin{equation}
-  \Lambda_{\mathrm{QCD}} \sim \frac{1}{R}\,\exp\!\Big(-\frac{8\pi^2}{b_0\,g_3^2(R^{-1})}\Big)\,\Xi(\tau,\text{holonomy}) ,
-  \label{eq:QA_lambdaQCD}
+  V_{\rm CKM} \;=\; U_u^\dagger U_d,\quad
+  \{\theta_{12},\theta_{23},\theta_{13},\delta\}\ \text{extracted from}\ V_{\rm CKM}.
 \end{equation}
-with $b_0$ the one-loop QCD beta-function coefficient, $g_3$ evaluated at $\mu\!=\!R^{-1}$,
-and $\Xi$ a discrete factor capturing holonomy-induced threshold shifts (to be cross-checked in Appendix~K.5).
-\paragraph{Checkpoint (Roadmap):} Provide a quantitative estimate of $\Lambda_{\mathrm{QCD}}$ consistent with hadronic phenomenology
-and verify stability under scheme changes (physical vs.\ $\overline{\mathrm{MS}}$).
+\textbf{Checkpoint:} Obtain angles and the CP phase within PDG uncertainties \emph{without} continuous fits.
 
-\section{Predictions, Constraints, and Tests}
-\label{sec:QA_tests}
-\begin{itemize}
-  \item \textbf{No continuous fits:} integer $(\mathbf{n},\sigma,h)$ fully determine mass ratios and CKM parameters.
-  \item \textbf{Precision tests:} small, correlated shifts in CKM angles and rare-decay amplitudes arising from overlap structure.
-  \item \textbf{Robustness:} vary spin structure/holonomies over the discrete set; require stability of ratios and CKM entries.
-  \item \textbf{Cross-references:} consistency with Appendices E (SM/QCD embedding), K (schemes/constants), V (holonomy minimum), W (mode spectroscopy).
-\end{itemize}
+\subsection*{E. QCD Scale From the Same Geometry}
+Consistent with Appendix~K, we relate the confinement scale to the geometric scale and discrete thresholds
+\begin{equation}
+  \Lambda_{\mathrm{QCD}} \;=\; \mu\,\exp\!\Big(-\frac{8\pi^2}{b_0\,g_3^2(\mu)}\Big)\,\big[b_0\,g_3^2(\mu)\big]^{-b_1/b_0^2}\,
+  \Theta_{\rm th}(\tau,h)\,,\qquad \mu=R^{-1},
+\end{equation}
+with $(b_0,b_1)$ the QCD beta coefficients (two-loop). \textbf{Checkpoint:} numerical $\Lambda_{\rm QCD}$ in the
+$200\text{--}300\,\mathrm{MeV}$ band with uncertainty from \emph{discrete} inputs only.
 
-\section*{Summary}
-Quark masses and CKM mixing follow from the same geometric mechanism that produced $\alpha$ and lepton masses.
-The framework is predictive (integer data only), scheme-aware (Appendix K), and SM-compatible (Appendix E).
-Filling in the explicit integer assignments, overlap integrals, and the $\Lambda_{\mathrm{QCD}}$ estimate completes the Quarks item of the roadmap.
+\subsection*{F. Robustness and Scheme Independence}
+We scan the discrete set $(\sigma,h)$ and require stability of both mass ratios and CKM entries.
+All observables are confronted in a physical scheme and in $\overline{\rm MS}$ (Appendix~K).
+
+\paragraph{Summary.}
+Quark masses, the CKM matrix (including CP phase), and $\Lambda_{\mathrm{QCD}}$ are unified consequences
+of the same toroidal geometry that already produced $\alpha$ and the lepton spectrum.

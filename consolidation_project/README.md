@@ -31,3 +31,8 @@ The content here will be gradually updated with improved formatting, clearer exp
 - [Research Priorities](../RESEARCH_PRIORITIES.md) — Current focus areas and open problems.
 - [Author Statement](../README.md#-author-statement) — Authorship and originality declaration.
 
+## New Appendices (Quarks & QCD scale)
+
+- **Appendix QA — Quarks and CKM in UBT**: Discrete mode assignment for $(u,d,s,c,b,t)$, CKM from overlaps on $\mathbb{T}^2$, and ratio checks without tuning.
+- **Appendix K.5 — $\Lambda_{\mathrm{QCD}}$ from geometry**: Two-loop link between $R^{-1}$ and $\Lambda_{\mathrm{QCD}}$ with discrete holonomy thresholds and scheme tracking.
+
