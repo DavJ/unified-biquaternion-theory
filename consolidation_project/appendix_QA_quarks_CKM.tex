@@ -76,3 +76,44 @@ All observables are confronted in a physical scheme and in $\overline{\rm MS}$ (
 \paragraph{Summary.}
 Quark masses, the CKM matrix (including CP phase), and $\Lambda_{\mathrm{QCD}}$ are unified consequences
 of the same toroidal geometry that already produced $\alpha$ and the lepton spectrum.
+
+% === AUTO-INSERT QA BASELINE BEGIN ===
+\subsection*{Preliminary discrete results (baseline)}
+The following tables illustrate the pipeline operating with a minimal, UBT-compatible baseline (integer modes, discrete holonomies/spin; no continuous fits). Values are placeholders until the UBT-specific $\mathcal{F}$, eigenmodes $\psi$, and holonomy profiles $\Phi$ are inserted.
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{QA.Table 1 (baseline).} Top discrete integer assignments for $(u,d,s,c,b,t)$ from a scale-free search (no tuning). $a$ denotes the holonomy shift, $s$ the spin shift; entries are $(n_1,n_2,\sigma)$ with $\sigma\in\{+,-\}.}
+\begin{tabular}{llllllllll}
+\hline
+ID & score & setup & $u$ & $d$ & $s$ & $c$ & $b$ & $t$\\
+\hline
+1 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,-)$ & $(-2,-5,-)$ & $(7,7,-)$ & $(7,6,-)$\\
+2 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,+)$ & $(-5,-1,+)$ & $(7,7,-)$ & $(7,-7,-)$\\
+3 & 2.4632 & $a=(\,0.5,0.0\,),\ s=0.5$ & $(-1,0,-)$ & $(0,1,+)$ & $(1,-2,+)$ & $(-5,1,+)$ & $(7,7,-)$ & $(7,6,-)$\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{QA.Table 2 (baseline).} Best CKM angle sets from discrete overlaps on $\mathbb T^2$ with analytic plane-wave integrals. Angles are preliminary and will be replaced once UBT-specific eigenmodes/profiles are inserted.}
+\begin{tabular}{lllllllllll}
+\hline
+ID & cand & $\mathrm{hol}_L$ & $\mathrm{hol}_u$ & $\mathrm{hol}_d$ & $\phi$ & $\theta_{12}$ & $\theta_{23}$ & $\theta_{13}$ & $\delta$ & score \\
+\hline
+1 & 9 & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.0,0.0)$ & $(0.0,0.0)$ & 4.371^\circ & 4.371^\circ & 0.167^\circ & 0.000^\circ & 1.1425\\
+2 & 9 & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.5,0.0)$ & $(0.0,0.0)$ & 4.371^\circ & 4.371^\circ & 0.167^\circ & 0.000^\circ & 1.1425\\
+3 & 9 & $(0.0,0.5)$ & $(0.0,0.5)$ & $(0.0,0.5)$ & $(0.0,0.0)$ & 4.371^\circ & 4.371^\circ & 0.167^\circ & 0.000^\circ & 1.1425\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{fig_QA_unitarity_triangle.png}
+\caption{Unitarity triangle reconstructed from the best baseline CKM attempt (discrete overlaps on $\mathbb T^2$).}
+\end{figure}
+% === AUTO-INSERT QA BASELINE END ===
