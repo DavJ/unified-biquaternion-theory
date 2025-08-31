@@ -2,43 +2,33 @@
 \appendix
 \section*{Appendix V: Emergent $\alpha$}
 
-\subsection*{V.1 Dynamical fixation of geometry}
-In UBT the value of the fine-structure constant $\alpha$ is not postulated 
-but arises from the dynamics of the internal space. We assume that the 
-extra dimensions are compactified on a torus $T^2$, whose shape (modulus 
-$\tau=i y$) and size ($R$) are determined by minimizing the one-loop 
-effective potential $V_{\rm eff}$ (Hosotani/Casimir mechanism).
+\subsection*{V.1 Dynamical Fixing of the Internal Geometry}
+In UBT the value of the fine-structure constant $\alpha$ is not postulated but arises from the dynamics of the internal space. 
+We assume that the extra dimensions are compactified on a torus $T^2$, whose shape (modulus $\tau=i y$) and size ($R$) are determined by minimizing the one-loop effective potential $V_{\rm eff}$ (Hosotani/Casimir mechanism).
 
-The potential is given by a sum over all Standard Model (SM) particles 
-with mass $m_i$ that couple to the internal space:
+The potential is given by a sum over all Standard Model (SM) particles with mass $m_i$ that couple to the internal space:
 \begin{equation}
-V_{\rm eff}(y) = \sum_{i \in \text{SM}} (-1)^{F_i} d_i 
+V_{\rm eff}(y) \;=\; \sum_{i \in \text{SM}} (-1)^{F_i} d_i 
   \sum_{p,q \in \mathbb{Z}} \frac{m_i^2}{8\pi^2 L^2 y} 
   K_2\!\left(2\pi m_i L \sqrt{p^2 y^2 + (q+\delta_i)^2}\right),
 \end{equation}
-where $F_i$ is the fermion number, $d_i$ the number of degrees of freedom, 
-and $\delta_i$ the shift induced by the charge.
+where $F_i$ is the fermion number, $d_i$ the number of degrees of freedom, and $\delta_i$ the shift induced by the charge/holonomy.
 
-Minimizing this potential at scale $\mu_0\sim m_Z$ dynamically fixes 
-a stable value of the torus modulus $y=y_\ast$. The value of $\alpha$ 
-is then given by
+Minimizing this potential at scale $\mu_0\sim M_Z$ dynamically fixes a stable value of the torus modulus $y=y_\ast$. The value of $\alpha$ is then
 \begin{equation}
-\alpha(M_Z)^{-1} = \frac{4\pi N}{y_\ast},
+\alpha(M_Z)^{-1} \;=\; \frac{4\pi N}{y_\ast}, \qquad N=10,
 \end{equation}
-where $N=10$ is the normalization factor determined by the sum of squared 
-charges of SM particles.
+where $N$ is a discrete normalization (charge-squared sum) and is \emph{not} a tunable parameter.
 
-\subsection*{V.2 Cross-reference to electron mass (new)}
-As shown in Appendix~K.3, the electron mass can be interpreted as the first 
-internal eigenmode on $T^2(\tau)$ with Hosotani background. This directly ties 
-the emergent value of $\alpha$ to the lepton mass spectrum, providing a 
-non-circular and unified account of both quantities.
+\subsection*{V.2 Link to the Electron Mass (New)}
+As shown in Appendix~K.3, the electron mass can be interpreted as the first internal eigenmode on $T^2(\tau)$ with Hosotani background. 
+This directly ties the emergent value of $\alpha$ to the lepton mass spectrum, providing a non-circular and unified account of both quantities.
 
-\subsection*{V.EB Error budget for $\alpha(M_Z)$ (no tuning)}
+\subsection*{V.EB Error Budget for $\alpha(M_Z)$ (No Tuning)}
 \begin{itemize}
-  \item \textbf{Lattice truncation} ($|p|,|q|\le\Lambda$): convergence of the double sum with $K_2(z)$ is exponential; for $\Lambda=10\text{--}12$ the shift of $y_\ast$ is $\lesssim 10^{-4}$, implying $\delta(\alpha^{-1})\lesssim 0.01$.
-  \item \textbf{Gauge bookkeeping} (vectors vs. Goldstones+ghosts): net DOF vs. explicit treatment agree within $\delta(\alpha^{-1})\sim 0.01$ when done consistently.
-  \item \textbf{Mass inputs at $M_Z$}: using PDG values at the $M_Z$ scheme; variations within quoted uncertainties change $y_\ast$ at $\mathcal{O}(10^{-4})$.
-  \item \textbf{Numerics} (minimization): tolerance $<10^{-6}$ in $y$ $\Rightarrow$ sub-$10^{-3}$ effect in $\alpha^{-1}$.
+  \item \textbf{Lattice truncation} ($|p|,|q|\le\Lambda$): Exponential convergence of the double sum with $K_2(z)$; for $\Lambda=10$–$12$ the shift of $y_\ast$ is $\lesssim 10^{-4}$ $\Rightarrow$ $\delta(\alpha^{-1})\lesssim 0.01$.
+  \item \textbf{Gauge bookkeeping} (vectors vs. Goldstones+ghosts): Net DOF vs. explicit treatment agree within $\delta(\alpha^{-1})\sim 0.01$ when handled consistently.
+  \item \textbf{Mass inputs at $M_Z$}: Using PDG values at the $M_Z$ scheme; quoted uncertainties shift $y_\ast$ at $\mathcal{O}(10^{-4})$.
+  \item \textbf{Numerics} (minimization): Tolerance $<10^{-6}$ in $y$ implies sub-$10^{-3}$ effects in $\alpha^{-1}$.
 \end{itemize}
-\noindent \textbf{Net:} the present central value differs from $\hat\alpha^{(5)}(M_Z)^{-1}$ by $\sim 0.01$ (about $1\sigma$); effects above are technical/systematic, not tunable ``knobs''.
+\noindent \textbf{Net:} the present central value differs from $\hat\alpha^{(5)}(M_Z)^{-1}$ by $\sim 0.01$ (about $1\sigma$); the above are technical/systematic effects, not tunable ``knobs''.
