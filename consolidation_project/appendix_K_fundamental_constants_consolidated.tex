@@ -6,88 +6,69 @@
 Within the Unified Biquaternion Theory (UBT), we distinguish between input parameters that define the scale and structure, and output constants that the theory predicts. 
 The goal is to minimize the number of true inputs.
 
-\textbf{Inputs:} $c, \hbar$ (definitions of units), integer parameters (e.g. $n_\mu, n_\tau$ in early models).  
+\textbf{Inputs:} $c, \hbar$ (definitions of units), integer parameters (e.g. $n_\mu, n_\tau$ in early exploratory models).  
 \textbf{Outputs:} $\alpha$, $m_e$, $m_\mu$, $m_\tau$, $\Lambda_{\text{QCD}}$, $G$, etc.
 
 \paragraph{Reference values.}  
-The following table (restored from the earlier draft) summarizes the current CODATA and PDG values of fundamental constants relevant to UBT:
+The following table summarizes empirical reference values relevant to UBT (as used for benchmarking the results in this work):
 
 \begin{center}
 \begin{tabular}{lll}
 \hline
-Constant & Value & Source \\
+Constant & Value & Provenance \\
 \hline
-$\alpha^{-1}(M_Z)$ & 127.955 $\pm$ 0.010 & PDG 2022 \\
-$m_e$ & 0.51099895000(15) MeV & CODATA 2018 \\
-$m_\mu$ & 105.6583755(23) MeV & PDG 2022 \\
-$m_\tau$ & 1776.86(12) MeV & PDG 2022 \\
-$\Lambda_{\text{QCD}}^{(5)}$ & 211 $\pm$ 14 MeV & PDG 2022 \\
-$G$ & $6.67430(15)\times 10^{-11}$ m$^3$ kg$^{-1}$ s$^{-2}$ & CODATA 2018 \\
+$\alpha^{-1}(M_Z)$ & $127.955 \pm 0.010$ & (EW fit, 5-flavor) \\
+$m_e$ & $0.51099895000(15)$ MeV & CODATA \\
+$m_\mu$ & $105.6583755(23)$ MeV & PDG \\
+$m_\tau$ & $1776.86(12)$ MeV & PDG \\
+$\Lambda_{\text{QCD}}^{(5)}$ & $\sim 0.21 \pm 0.01$ GeV & PDG \\
+$G$ & $6.67430(15)\times 10^{-11}$ m$^3$ kg$^{-1}$ s$^{-2}$ & CODATA \\
 \hline
 \end{tabular}
 \end{center}
 
-This table provides the empirical benchmarks against which the UBT predictions are tested.
+These numbers serve only as \emph{external} benchmarks; in UBT, $\alpha$ and lepton masses are \emph{outputs} of the same internal geometry.
 
-\subsection*{K.2 The Puzzle of Lepton Mass Ratios}
-Experimentally observed ratios of charged lepton masses are:
+\subsection*{K.2 The Puzzle of Lepton Mass Ratios (Historical Context)}
+Experimentally observed ratios of charged lepton masses are
 \begin{align*}
-\frac{m_\mu}{m_e} &\simeq 206.77 \\
-\frac{m_\tau}{m_e} &\simeq 3477.2
+\frac{m_\mu}{m_e} &\simeq 206.77, \qquad
+\frac{m_\tau}{m_e} &\simeq 3477.2.
 \end{align*}
-These near-integers ($207$ and $3477$) were long considered a numerological curiosity.  
-Earlier versions of UBT postulated that these ratios directly corresponded to internal quantum numbers, but lacked a mechanism.
+The near-integer values ($207$ and $3477$) were long viewed as a numerological curiosity. 
+Early drafts used these integers as a clue; the present work replaces this with a \emph{spectral} mechanism (Appendix~W).
 
-\paragraph{Historical note.}  
-The integer fits ($207$, $3477$) were used as guiding motivation in early drafts. These are now replaced by the precise spectral mechanism described in Appendix W, but they are kept here for historical context.
+\subsection*{K.3 Electron Mass as an Internal Eigenmode (New)}
+Using the internal toroidal structure, the electron mass arises as the lowest non-trivial eigenvalue of the Dirac operator on $T^2(\tau)$ with Hosotani background $\theta_H=\pi$.
 
-\subsection*{K.3 Electron Mass as an Internal Mode}
-Using self-energy models and the internal toroidal structure, we show that the electron mass arises as the lowest non-trivial eigenvalue of the Dirac operator on $T^2(\tau)$ with Hosotani background $\theta_H=\pi$.
-
-\paragraph{Eigenvalue problem.}  
+\paragraph{Eigenvalue problem.}
 The internal Dirac operator on the torus is
 \begin{equation}
-D = i\gamma^\psi \left(\partial_\psi + i Q \theta_H/L_\psi\right) + i\gamma^\phi \partial_\phi ,
+D \;=\; i\gamma^\psi \!\left(\partial_\psi + i Q\, \theta_H/L_\psi\right) \;+\; i\gamma^\phi \partial_\phi,
 \end{equation}
 with eigenmodes $(n,m)\in\mathbb{Z}^2$ shifted by the Hosotani background. The eigen-energies are
 \begin{equation}
-E_{n,m} = \frac{1}{R}\sqrt{(n+\delta)^2 + (m+\delta')^2}.
+E_{n,m} \;=\; \frac{1}{R}\sqrt{(n+\delta)^2 + (m+\delta')^2}.
 \end{equation}
 
-\paragraph{Electron as the first excitation.}  
+\paragraph{Electron as the first excitation.}
 For $Q=-1$ and $\theta_H=\pi$, the lowest nonzero mode $(n,m)=(0,1)$ gives
 \begin{equation}
-m_e = \frac{1}{R}\sqrt{\delta^2+1} \;\simeq\; \frac{1}{R},
+m_e \;=\; E_{0,1} \;=\; \frac{1}{R}\sqrt{\delta^2+1} \;\simeq\; \frac{1}{R},
 \end{equation}
-where $R$ is tied to the compactification scale fixed in Appendix V.
+where $R$ is tied to the compactification scale fixed in Appendix~V. 
+Higher modes such as $(0,2)$ and $(1,0)$ naturally provide candidates for $m_\mu$ and $m_\tau$ (see Appendix~W).
 
-\paragraph{Consequence.}  
-Thus $m_e$ is not an input parameter but an output of the same geometry that fixes $\alpha$. Higher modes such as $(0,2)$ and $(1,0)$ provide natural candidates for $m_\mu$ and $m_\tau$, anticipating the spectrum analysis in Appendix W.
-
-\subsection*{K.4 Consolidation with $\alpha$}
-Together with Appendix V, this shows that both $\alpha$ and $m_e$ (and potentially the higher lepton masses) emerge from the same toroidal geometry.  
+\subsection*{K.4 Consolidation with $\alpha$ (New)}
+Together with Appendix~V, this shows that both $\alpha$ and $m_e$ (and potentially the heavier lepton masses) emerge from the same toroidal geometry.  
 This consolidation eliminates the apparent ``two-scale problem'' by linking the determination of $\alpha$ at $M_Z$ with the prediction of $m_e$ as the first eigenmode.
 
-\subsection*{K.5 Other Fundamental Constants}
-From the earlier draft, we retain the considerations on other constants beyond $\alpha$ and lepton masses.
+\subsection*{K.5 Other Fundamental Constants (Restored Notes)}
+\paragraph{QCD scale $\Lambda_{\text{QCD}}$.}
+The running of the strong coupling introduces a scale $\Lambda_{\text{QCD}}$. Its empirical magnitude is consistent with the compactification radius $R$ inferred from $\alpha$ and $m_e$, suggesting a deeper link to be developed.
 
-\paragraph{QCD scale $\Lambda_{\text{QCD}}$.}  
-The running of the strong coupling in UBT naturally introduces a scale $\Lambda_{\text{QCD}}$. Its empirical value $\sim 200$ MeV is consistent with the compactification radius $R$ inferred from $\alpha$ and $m_e$, suggesting a deeper link to be developed.
+\paragraph{Weinberg angle $\theta_W$.}
+Preliminary considerations indicate that the electroweak mixing angle may be geometrically related to phases/holonomies in the internal torus. A full derivation is left for future work.
 
-\paragraph{Weinberg angle $\theta_W$.}  
-Preliminary considerations indicate that the electroweak mixing angle can also be geometrically related to phases in the internal torus. A detailed derivation is left for future work.
-
-\paragraph{Gravitational constant $G$.}  
-A sketch derivation was present in the old appendix: $G$ may be emergent from large-scale averaging of the biquaternionic field $\Theta$ with appropriate normalization. Though incomplete, this idea remains an open research direction.
-
----
-
-\noindent \textbf{Summary.}  
-Appendix K now consolidates all relevant information:  
-- structured treatment of inputs vs outputs,  
-- empirical reference table,  
-- historical integer fits,  
-- modern spectral derivation of $m_e$,  
-- consolidation with $\alpha$,  
-- and extensions to $\Lambda_{\text{QCD}}$, $\theta_W$, and $G$.
-
+\paragraph{Gravitational constant $G$.}
+Earlier sketches suggest $G$ may be emergent from large-scale averaging of the biquaternionic field $\Theta$ with appropriate normalization. Although incomplete, this motivates a program toward gravity as an effective coupling of the same underlying geometry.
