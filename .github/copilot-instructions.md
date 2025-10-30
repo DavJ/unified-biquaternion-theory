@@ -32,11 +32,11 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretica
   - `consolidation_project/ubt_2_main.tex`
 
 ### Python
-- **Primary Use**: Numerical computations, fine structure constant calculations, p-adic extensions
+- **Primary Use**: Numerical computations, fine structure constant calculations, padic extensions
 - **Key Scripts**:
-  - `alpha_running_calculator.py` - Fine structure constant calculations
-  - `alpha_p_computation.py` - P-adic computations
-  - Various LaTeX manipulation scripts
+  - `unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_running_calculator.py` - Fine structure constant calculations
+  - `consolidation_project/scripts/padic/alpha_p_computation.py` - Padic computations
+  - Various LaTeX manipulation scripts in `consolidation_project/scripts/`
 
 ## LaTeX Conventions
 
@@ -98,7 +98,7 @@ make clean   # Remove auxiliary files
 - **General Relativity**: Metric tensor derivations, curved spacetime
 - **Quantum Field Theory**: Field quantization, gauge invariance
 - **Standard Model**: SU(3) × SU(2) × U(1) gauge symmetries
-- **Dark Sector**: Dark matter and dark energy via p-adic extensions
+- **Dark Sector**: Dark matter and dark energy via padic extensions
 
 ### Novel Concepts
 - **Biquaternions**: Mathematical framework combining quaternions with complex coefficients
@@ -204,7 +204,7 @@ make clean   # Remove auxiliary files
 ### Research Priority Areas
 Refer to `RESEARCH_PRIORITIES.md` for current focus areas:
 1. Formal consolidation of UBT core equations
-2. P-adic extensions and dark sector physics
+2. Padic extensions and dark sector physics
 3. Psychon dynamics in complex time
 4. Closed Timelike Curve (CTC) solutions
 5. Electromagnetism in curved space
