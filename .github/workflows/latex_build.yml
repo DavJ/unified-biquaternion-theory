@@ -73,14 +73,12 @@ jobs:
 
       - name: LaTeX build ${{ matrix.root }}
         uses: xu-cheng/latex-action@v4
-        continue-on-error: true
         with:
           root_file: ${{ matrix.root }}
           work_in_root_file_dir: true
-          continue_on_error: true
           latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
           latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
-          # args: -interaction=nonstopmode -halt-on-error
+          args: -interaction=nonstopmode -halt-on-error
 
       - name: Make safe artifact names
         id: names
