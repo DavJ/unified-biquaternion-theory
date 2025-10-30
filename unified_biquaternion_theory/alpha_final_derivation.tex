@@ -42,23 +42,29 @@ Difference:
 \Delta = \alpha_{\text{exp}}^{-1} - \alpha_0^{-1} \approx 0.035999084
 \]
 
-\section{Explanation of the Difference: Running Coupling}
+\section{Note on Running Coupling and Energy Scales}
 
-The discrepancy is fully explained by the known QED effect of running coupling:
+The QED coupling constant runs with energy scale according to:
 \[
-\alpha(\mu) = \frac{\alpha_0}{1 - \frac{\alpha_0}{3\pi} \log(\mu^2/m_e^2)}
+\alpha(Q^2) = \frac{\alpha(\mu^2)}{1 - \frac{\alpha(\mu^2)}{3\pi} \log(Q^2/\mu^2)}
 \]
-Inverting:
-\[
-\alpha^{-1}(\mu) = 137 + \frac{1}{3\pi} \log(m_e^2/\mu^2)
-\]
-Solving for \( \mu \) that matches \( \alpha_{\text{exp}} \), we find:
-\[
-\mu \approx 0.84397 \cdot m_e
-\]
+In QED, the coupling \emph{increases} with energy (i.e., $\alpha^{-1}$ decreases as $Q^2$ increases).
+
+The experimental value $\alpha_{\text{exp}}^{-1} = 137.035999084(21)$ is measured at low energy (Thomson scattering limit, effectively $Q^2 \to 0$). At higher energies, such as the $Z$ boson mass scale, one finds $\alpha^{-1}(M_Z^2) \approx 128$.
+
+\section{Interpretation of the UBT Prediction}
+
+The UBT prediction of $\alpha_0^{-1} = 137$ from topological quantization is remarkably close to the low-energy experimental value. The small discrepancy of $\sim 0.036$ could arise from:
+\begin{itemize}
+\item Quantum corrections beyond the leading topological approximation
+\item Contributions from the extended biquaternionic structure
+\item Mixing with higher-dimensional modes
+\end{itemize}
+
+The agreement to better than $0.03\%$ provides support for the topological origin of the fine-structure constant in the UBT framework, while the residual difference indicates that quantum and geometric corrections beyond the classical winding number are needed for precision predictions.
 
 \section{Conclusion}
 
-UBT theory predicts the fundamental value \( \alpha_0 = 1/137 \) due to topological quantization. The small deviation from experiment is explained entirely by the QED running of the coupling constant.
+UBT theory predicts $\alpha_0^{-1} = 137$ from topological quantization of phase windings on the complex time torus. This prediction agrees with the experimental low-energy value $\alpha_{\text{exp}}^{-1} = 137.036$ to within $0.03\%$, suggesting a geometric origin for this fundamental constant. The small discrepancy likely reflects quantum corrections to the semiclassical topological formula.
 
 \end{document}
