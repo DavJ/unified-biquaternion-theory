@@ -4,7 +4,7 @@
 
 This repository contains the **Unified Biquaternion Theory (UBT)**, a unified physical theory combining General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over complex time τ = t + iψ. The repository is primarily a LaTeX-based theoretical physics research project with some supporting Python scripts.
 
-**Author**: Ing. David Jaroš  
+**Author**: Ing. David Jaroš (some consolidated documents use "UBT Team")  
 **License**: See LICENSE.md  
 **Primary Language**: LaTeX (with Python support scripts)
 
@@ -52,8 +52,6 @@ The repository uses **pdflatex** for compiling LaTeX documents. Multiple compila
 **Local compilation:**
 ```bash
 cd consolidation_project
-pdflatex -interaction=nonstopmode ubt_2_main.tex
-bibtex ubt_2_main
 pdflatex -interaction=nonstopmode ubt_2_main.tex
 pdflatex -interaction=nonstopmode ubt_2_main.tex
 ```
