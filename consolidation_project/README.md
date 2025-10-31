@@ -36,3 +36,9 @@ The content here will be gradually updated with improved formatting, clearer exp
 - **Appendix QA — Quarks and CKM in UBT**: Discrete mode assignment for $(u,d,s,c,b,t)$, CKM from overlaps on $\mathbb{T}^2$, and ratio checks without tuning.
 - **Appendix K.5 — $\Lambda_{\mathrm{QCD}}$ from geometry**: Two-loop link between $R^{-1}$ and $\Lambda_{\mathrm{QCD}}$ with discrete holonomy thresholds and scheme tracking.
 
+---
+
+## 📜 License
+
+This work is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).  
+For full license terms, see [LICENSE.md](../LICENSE.md)

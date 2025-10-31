@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2025 David Jaroš
+# This file is part of the Unified Biquaternion Theory project.
+# Licensed under Creative Commons Attribution 4.0 International License.
+
 """
 Fix LaTeX consolidation_project so it compiles without a build/ mirror.
 
