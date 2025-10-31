@@ -86,6 +86,15 @@ This repository contains both the full UBT documents and the CCT application, al
 
 See [RESEARCH_PRIORITIES.md](RESEARCH_PRIORITIES.md) for current research and development priorities.
 
+---
+
+## 📊 Theory Evaluation Reports
+
+Two comprehensive evaluation reports are available for review:
+
+1. **[MATHEMATICAL_REVIEW_REPORT.md](MATHEMATICAL_REVIEW_REPORT.md)** - Detailed review of mathematical correctness, identifies and documents specific errors that were corrected in the formalism.
+
+2. **[UBT_COMPREHENSIVE_EVALUATION_REPORT.md](UBT_COMPREHENSIVE_EVALUATION_REPORT.md)** - Comprehensive evaluation of physical validity, mathematical rigor, and scientific merit of the entire theory. Includes assessment of testability, comparison with mainstream physics, and recommendations for future development.
 
 ---
 
