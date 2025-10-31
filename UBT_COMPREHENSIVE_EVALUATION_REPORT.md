@@ -168,7 +168,6 @@ This is perhaps the most problematic claim in the entire theory. Let's examine i
 **d) QED Running Misunderstanding:**
 - The document originally claimed QED running "explains" the difference between 137 and 137.036
 - This was backwards - QED coupling increases with energy (α⁻¹ decreases)
-- This conceptual error was corrected in the existing MATHEMATICAL_REVIEW_REPORT.md
 
 **e) Not a Prediction:**
 - If UBT genuinely predicted α⁻¹, the value should emerge from the theory's parameters
