@@ -1,5 +1,10 @@
 \
 #!/usr/bin/env bash
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2025 David Jaroš
+# This file is part of the Unified Biquaternion Theory project.
+# Licensed under Creative Commons Attribution 4.0 International License.
+
 set -euo pipefail
 
 # Directories to exclude (space-separated, glob allowed)
