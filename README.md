@@ -12,6 +12,13 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 
 UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
 
+**⚠️ IMPORTANT: Theory Status**
+- UBT is a **research framework in development**, not a validated scientific theory
+- Mathematical foundations are incomplete (see documentation below)
+- Fine-structure constant work is postulation, not derivation
+- Consciousness claims are highly speculative without neuroscientific grounding
+- **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
+
 Key features:
 - **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
 - **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
@@ -50,6 +57,7 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 - **Solutions**: Important proofs and derivations
 
 ### Assessment & Status Documents
+- **[UBT Reading Guide](UBT_READING_GUIDE.md)** - ⭐ **START HERE**: How to navigate UBT responsibly
 - **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
 - **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
 - **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
