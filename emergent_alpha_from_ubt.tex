@@ -346,7 +346,7 @@ T_B \approx t + i\psi \equiv \tau
 \begin{definition}[Full Biquaternion Regime]
 The full biquaternionic formalism must be retained when either:
 \begin{equation}
-\|\mathbf{v}\|^2 \sim |\psi|^2 \quad \text{or} \quad \mathbf{v} \not\parallel \nabla\psi
+\|\mathbf{v}\|^2 \sim |\psi|^2 \quad \text{or} \quad \mathbf{v} \nparallel \nabla\psi
 \end{equation}
 \end{definition}
 
@@ -399,16 +399,16 @@ In the holographic principle, the entropy on a boundary is proportional to its a
 \begin{conjecture}[Phase-Entropy Correspondence]
 The entropy $S$ on a holographic boundary is related to the phase component of complex time:
 \begin{equation}
-S \propto \int_{\partial \Omega} |\psi_{\text{eff}}|^2 \, dA
+S = \kappa \int_{\partial \Omega} |\psi_{\text{eff}}|^2 \, dA
 \end{equation}
-where $\partial \Omega$ is the boundary surface and $dA$ is the area element.
+where $\partial \Omega$ is the boundary surface, $dA$ is the area element, and $\kappa$ is a dimensional constant (with dimensions of $\hbar$ or $k_B$ depending on whether entropy is measured in nats or in physical units).
 \end{conjecture}
 
 This suggests that the imaginary time component $\psi$ encodes entropic information about the degrees of freedom in the bulk that are projected onto the boundary. When $\|\mathbf{v}\| \ll |\psi|$, the entropy is dominated by the scalar phase, corresponding to a reduction from the full 4D biquaternionic structure to a 2D complex plane.
 
 \subsection{Theta Functions and Degree of Freedom Reduction}
 
-As discussed in Section \ref{sec:emergence_alpha}, the solutions to the field equations in complex time are naturally expressed in terms of Jacobi theta functions $\vartheta(z; \tau)$. The holographic projection manifests as a reduction in the argument structure:
+As discussed in Section \ref{sec:emergence_alpha} (particularly in the context of imaginary time compactification), the solutions to the field equations in complex time are naturally expressed in terms of Jacobi theta functions $\vartheta(z; \tau)$. The holographic projection manifests as a reduction in the argument structure:
 
 \paragraph{Full Biquaternion Theory:}
 Field solutions depend on the complete biquaternionic structure:
@@ -454,6 +454,7 @@ The reduction condition is:
 \begin{equation}
 \|g^{(2)}_{\mu\nu}\| \ll \|g^{(1)}_{\mu\nu}\|
 \end{equation}
+where the norm is the Frobenius norm, $\|g^{(i)}\|^2 = \sum_{\mu,\nu} |g^{(i)}_{\mu\nu}|^2$ for $i=1,2$.
 
 This represents the geometric counterpart of the field criterion: the vector components of the metric curvature are negligible compared to the scalar phase curvature.
 
