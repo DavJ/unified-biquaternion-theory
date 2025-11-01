@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2025 David Jaroš
+# This file is part of the Unified Biquaternion Theory project.
+# Licensed under Creative Commons Attribution 4.0 International License.
+
 """
 Insert a SPECULATIVE header into LaTeX files listed in MANIFEST_SPECULATIVE.txt.
 Safe: creates .bak backups.

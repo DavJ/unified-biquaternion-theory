@@ -9,10 +9,17 @@ clarity and coherence.
 \subsection{Introduction}
 
 The gravitational field in UBT emerges naturally from the covariant formulation of the
-biquaternionic tensor-spinor field equations. The metric tensor is propose from the real
-part of the scalar product in the biquaternion space, ensuring compatibility with the
-principles of General Relativity while extending them to the complexified algebraic
-structure.
+biquaternionic tensor-spinor field equations. UBT generalizes Einstein's General Relativity (GR) 
+by embedding the metric tensor in a biquaternionic field $\Theta(q,\tau)$ defined over 
+complex time $\tau = t + i\psi$. The real part of this field corresponds to the classical 
+metric tensor, ensuring that \textbf{GR is fully contained within UBT as a special case}.
+
+In the real-valued limit (or equivalently, when the imaginary time component $\psi \to 0$), 
+the biquaternionic field equations reduce exactly to Einstein's field equations, including 
+all cases where the scalar curvature $R \neq 0$. The extended biquaternionic structure 
+introduces additional degrees of freedom that represent phase-like and nonlocal components 
+of spacetime, which have no signature in classical observations but may be relevant for 
+dark sector physics and quantum gravitational effects.
 
 In this formulation, spacetime is represented by a projection from a higher-dimensional
 complex manifold, and curvature is encoded in the covariant derivatives of the
@@ -68,6 +75,25 @@ The curvature tensor $R^\rho_{\ \sigma\mu\nu}$ is then obtained from:
 
 Contracting appropriately yields $R_{\mu\nu}$ and the scalar curvature $R$.
 
+\paragraph{Phase Curvature and Invisibility.}
+The biquaternionic field $\Theta(q,\tau)$ has both real and imaginary components. While the 
+real part $g_{\mu\nu} = \Re[\Theta_{\mu\nu}]$ corresponds to the classical metric tensor that 
+couples to ordinary matter and radiation, the imaginary components $\Im[\Theta_{\mu\nu}]$ represent 
+what we call \textbf{phase curvature}.
+
+These phase curvature components satisfy their own field equations within the biquaternionic 
+algebra and can carry energy-momentum in configurations where:
+\begin{equation}
+\Re[G_{\mu\nu}] = 0, \quad \text{but} \quad \Im[G_{\mu\nu}] \neq 0.
+\end{equation}
+
+Such configurations are mathematically consistent solutions but remain \textbf{invisible} to 
+classical observations because ordinary matter and electromagnetic radiation couple only to the 
+real-valued metric $g_{\mu\nu}$. They have no real-valued curvature signature ($\Re[R_{\mu\nu}] = 0$) 
+yet possess nonlocal energy structure in the imaginary components. This invisibility is a 
+mathematical property arising from the complex structure of the biquaternionic algebra, not a 
+contradiction with General Relativity.
+
 In the quantum gravity extension, fluctuations of the field $\Theta$ are quantised,
 leading to corrections to the classical curvature in the form of effective stress-energy
 terms arising from vacuum polarisation effects. The semiclassical approximation shows that
@@ -76,9 +102,22 @@ horizon structure and potentially allowing for stable micro-horizon configuratio
 
 \subsection{Summary}
 
-Biquaternion Gravity provides a natural embedding of General Relativity into a
-complexified algebraic framework, unifying gravity with other interactions at the
-geometric level. The connection to Quantum Gravity arises from treating $\Theta$ as a
-quantum field, where gravitational effects emerge from its covariant structure. This
-approach suggest possible deviations from classical GR at very small scales, while
-reducing to Einstein's equations in the macroscopic limit.
+Biquaternion Gravity generalizes Einstein's General Relativity by embedding it within a
+richer biquaternionic algebraic framework. In the real-valued limit, UBT reproduces 
+Einstein's field equations exactly, ensuring full compatibility with all experimental 
+confirmations of GR—from the perihelion precession of Mercury to gravitational wave 
+detection. The extended structure unifies gravity with other interactions at the
+geometric level and introduces additional degrees of freedom corresponding to phase 
+curvature and nonlocal energy configurations.
+
+These imaginary components of the biquaternionic metric may represent dark sector 
+phenomena or quantum gravitational corrections, but they remain invisible to classical 
+matter and electromagnetic radiation that couple only to the real metric $g_{\mu\nu}$. 
+The connection to Quantum Gravity arises from treating $\Theta$ as a quantum field, 
+where gravitational effects emerge from its covariant structure. 
+
+This approach may suggest possible deviations from classical GR at very small scales 
+(near the Planck scale), while reducing exactly to Einstein's equations in all 
+macroscopic regimes where GR has been tested. UBT does not contradict or replace 
+General Relativity; it extends and embeds it within a broader mathematical framework. 
+For detailed derivations of the GR recovery, see Appendix~R.

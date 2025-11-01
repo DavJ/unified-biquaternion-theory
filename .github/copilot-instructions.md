@@ -100,6 +100,26 @@ make clean   # Remove auxiliary files
 - **Standard Model**: SU(3) × SU(2) × U(1) gauge symmetries
 - **Dark Sector**: Dark matter and dark energy via padic extensions
 
+### UBT and General Relativity Compatibility
+
+**Critical Theoretical Position**: The Unified Biquaternion Theory (UBT) **generalizes and embeds** Einstein's General Relativity—it does not contradict or replace it. This is a fundamental aspect of the theory that must be preserved in all documentation and code comments.
+
+Key principles:
+- **GR is fully contained within UBT**: In the real-valued limit (when imaginary time component ψ → 0), UBT exactly reproduces Einstein's field equations
+- **All curvature regimes**: This compatibility holds for flat spacetime (Minkowski), weak fields, strong fields (black holes, neutron stars), and cosmological solutions with R ≠ 0
+- **Extended structure**: UBT introduces additional biquaternionic degrees of freedom representing phase curvature and nonlocal energy configurations
+- **Invisibility**: These imaginary components remain invisible to classical observations because ordinary matter couples only to the real metric g_μν
+- **Experimental validation**: All confirmations of GR (perihelion precession, gravitational waves, etc.) automatically validate UBT's real sector
+
+Language guidelines:
+- ✅ Use: "UBT generalizes GR", "UBT embeds GR", "UBT extends GR", "recovers Einstein's equations"
+- ❌ Avoid: "alternative to GR", "replacement of GR", "contradiction with GR"
+- When discussing invisibility or phase curvature, clarify these arise from imaginary components of the biquaternionic metric
+
+Mathematical statement: The core field equation ∇†∇Θ(q,τ) = κ𝒯(q,τ) reduces to R_μν - ½g_μν R = 8πG T_μν in the real limit.
+
+See appendix_R_GR_equivalence.tex for detailed derivation.
+
 ### Novel Concepts
 - **Biquaternions**: Mathematical framework combining quaternions with complex coefficients
 - **Complex Time**: Extension of real time to complex plane

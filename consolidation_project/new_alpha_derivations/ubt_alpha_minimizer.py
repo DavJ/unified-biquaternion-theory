@@ -1,3 +1,8 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2025 David Jaroš
+# This file is part of the Unified Biquaternion Theory project.
+# Licensed under Creative Commons Attribution 4.0 International License.
+
 # UBT Noether->alpha: quick massless-model V_eff minimizer for θ_H
 import math
 from math import pi

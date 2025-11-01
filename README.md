@@ -1,14 +1,20 @@
 # Unified Biquaternion Theory (UBT)
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory combining **General Relativity**, **Quantum Field Theory**, and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\).  
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
 From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
 
 ---
 
 ## 📜 Overview
 
+UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
+
+Key features:
 - **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
+- **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
 - **Gravitation**: derivation of the metric tensor from biquaternion fields.
 - **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
 - **Electromagnetism** in curved space, including standing modulated EM field configurations.
@@ -37,10 +43,23 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 ## 📄 Main Documents
 
+### Core Theory
 - **UBT Main Document**: `unified_biquaternion_theory/ubt_main_article.tex`
+- **Consolidated UBT**: `consolidation_project/ubt_2_main.tex`
+- **Appendices 1-21**: Detailed expansions of the main theory
+- **Solutions**: Important proofs and derivations
+
+### Assessment & Status Documents
+- **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
+- **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
+- **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
+- **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
+- **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
+
+### Consciousness Applications (Highly Speculative)
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
-- **Appendices 1-21**: detailed expansions of the main theory.
-- **Solutions **: important proves and derivations of the main theory.
+
+**⚠️ Important**: Consciousness-related content should be read with the understanding that these are philosophical hypotheses requiring extensive validation, not established science. See [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md).
 
 ---
 
@@ -108,4 +127,13 @@ See [PRIORITY.md](consolidation_project/PRIORITY.md) for the current research an
 
 ## 📜 License
 
-Licensed under the terms specified in [LICENSE](LICENSE.md)
+This work is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+
+**You are free to:**
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material for any purpose, even commercially
+
+**Under the following terms:**
+- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+
+For full license terms, see [LICENSE.md](LICENSE.md)
