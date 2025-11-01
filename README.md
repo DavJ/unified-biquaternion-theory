@@ -3,14 +3,18 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory combining **General Relativity**, **Quantum Field Theory**, and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\).  
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
 From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
 
 ---
 
 ## 📜 Overview
 
+UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
+
+Key features:
 - **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
+- **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
 - **Gravitation**: derivation of the metric tensor from biquaternion fields.
 - **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
 - **Electromagnetism** in curved space, including standing modulated EM field configurations.
