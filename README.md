@@ -2,24 +2,32 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory combining **General Relativity**, **Quantum Field Theory**, and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\).  
-From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
+⚠️ **RESEARCH FRAMEWORK IN DEVELOPMENT** ⚠️
+
+**Unified Biquaternion Theory (UBT)** is a speculative theoretical framework exploring novel mathematical approaches to unifying physics. It combines concepts from **General Relativity**, **Quantum Field Theory**, and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). The **Complex Consciousness Theory (CCT)** applies UBT principles to model consciousness as a physical phenomenon.
+
+**Important:** UBT is currently in early-stage development and should NOT be considered a validated scientific theory. See [Scientific Status Document](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md) for detailed assessment of current limitations and future development requirements.
 
 ---
 
 ## 📜 Overview
 
-- **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
-- **Gravitation**: derivation of the metric tensor from biquaternion fields.
-- **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
-- **Electromagnetism** in curved space, including standing modulated EM field configurations.
-- **Quantum electrodynamics (QED)** and **quantum chromodynamics (QCD)** reformulated in UBT variables.
-- **Dark sector physics**: unified treatment of dark matter and dark energy via padic extensions.
-- **Psychons**: quantum excitations of consciousness within the complex-time phase space.
-- **Closed Timelike Curves (CTCs)**: geometric and physical conditions for time-travel solutions.
-- **Experimental concepts**: Theta Resonator for detecting persistent consciousness fields.
-- **Complex Consciousness Theory (CCT)**: simplified, application-oriented formulation for modeling consciousness and cognitive phase transitions.
+### Core Physics (Partially Developed)
+- **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives
+- **Gravitation**: recovery of Einstein vacuum equations in real limit (matter coupling incomplete)
+- **Gauge fields**: Standard Model gauge group SU(3) × SU(2) × U(1) embedded (not derived)
+- **Electromagnetism** in curved space, including standing modulated EM field configurations
+- **QED/QCD**: reformulation in UBT variables (quantization procedure incomplete)
+
+### Speculative Extensions (Require Significant Development)
+- **Fine-structure constant**: Multiple approaches suggest α⁻¹ ≈ 137, but ab initio derivation remains an open challenge
+- **Dark sector physics**: p-adic extension proposals for dark matter/energy (detailed calculations incomplete)
+- **Multiverse interpretation**: 32D structure as multiple universe branches, 4D projection mechanism needs formalization
+
+### Highly Speculative (Philosophical Hypotheses)
+- **Psychons**: hypothetical quanta of consciousness (no neuroscientific grounding, unfalsifiable in current form)
+- **Closed Timelike Curves**: time-travel solutions (likely unphysical)
+- **Consciousness experiments**: Theta Resonator concept (requires testable parameters)
 
 ---
 
@@ -39,10 +47,23 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 ## 📄 Main Documents
 
+### Core Theory
 - **UBT Main Document**: `unified_biquaternion_theory/ubt_main_article.tex`
+- **Consolidated UBT**: `consolidation_project/ubt_2_main.tex`
+- **Appendices 1-21**: Detailed expansions of the main theory
+- **Solutions**: Important proofs and derivations
+
+### Assessment & Status Documents
+- **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
+- **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
+- **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
+- **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
+- **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
+
+### Consciousness Applications (Highly Speculative)
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
-- **Appendices 1-21**: detailed expansions of the main theory.
-- **Solutions **: important proves and derivations of the main theory.
+
+**⚠️ Important**: Consciousness-related content should be read with the understanding that these are philosophical hypotheses requiring extensive validation, not established science. See [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md).
 
 ---
 
