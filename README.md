@@ -43,10 +43,23 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 ## 📄 Main Documents
 
+### Core Theory
 - **UBT Main Document**: `unified_biquaternion_theory/ubt_main_article.tex`
+- **Consolidated UBT**: `consolidation_project/ubt_2_main.tex`
+- **Appendices 1-21**: Detailed expansions of the main theory
+- **Solutions**: Important proofs and derivations
+
+### Assessment & Status Documents
+- **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
+- **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
+- **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
+- **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
+- **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
+
+### Consciousness Applications (Highly Speculative)
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
-- **Appendices 1-21**: detailed expansions of the main theory.
-- **Solutions **: important proves and derivations of the main theory.
+
+**⚠️ Important**: Consciousness-related content should be read with the understanding that these are philosophical hypotheses requiring extensive validation, not established science. See [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md).
 
 ---
 
