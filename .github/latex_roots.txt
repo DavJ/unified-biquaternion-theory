@@ -1,3 +1,4 @@
 # List root TeX files to compile (one per line)
 consolidation_project/ubt_core_main.tex
 consolidation_project/ubt_2_main.tex
+consolidation_project/holographic_verlinde_desitter_standalone.tex
