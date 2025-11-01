@@ -53,8 +53,20 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 - **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
 - **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
 - **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
+- **[Testability and Falsification](TESTABILITY_AND_FALSIFICATION.md)** - Criteria for making UBT falsifiable
 - **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
 - **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
+- **[UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md)** - ⭐ **NEW**: November 2025 improvements addressing major problems
+
+### Recent Improvements (November 2025)
+**Major improvements made to scientific integrity and presentation:**
+- ✅ Added comprehensive disclaimers to all LaTeX documents
+- ✅ Clearly marked speculative content (consciousness, fine-structure constant)
+- ✅ Removed problematic claims (death/rebirth speculation)
+- ✅ Enhanced transparency about theory status and limitations
+- ✅ Mathematical core completely preserved
+
+See [UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md) for complete details.
 
 ### Consciousness Applications (Highly Speculative)
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
