@@ -58,23 +58,33 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 ### Assessment & Status Documents
 - **[UBT Reading Guide](UBT_READING_GUIDE.md)** - ⭐ **START HERE**: How to navigate UBT responsibly
+- **[Consistency Check Summary](CONSISTENCY_CHECK_SUMMARY.md)** - ⭐ **NEW**: Executive summary of November 2025 comprehensive consistency analysis
+- **[Theory Consistency Report](THEORY_CONSISTENCY_REPORT.md)** - ⭐ **NEW**: Complete technical consistency analysis (40+ pages)
+- **[Alpha Derivation Status](ALPHA_DERIVATION_STATUS.md)** - ⭐ **NEW**: Clarifies relationship between different α approaches
 - **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
 - **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
 - **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
 - **[Testability and Falsification](TESTABILITY_AND_FALSIFICATION.md)** - Criteria for making UBT falsifiable
 - **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
 - **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
-- **[UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md)** - ⭐ **NEW**: November 2025 improvements addressing major problems
+- **[UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md)** - November 2025 improvements addressing major problems
 
 ### Recent Improvements (November 2025)
-**Major improvements made to scientific integrity and presentation:**
+
+**Comprehensive Consistency Analysis Completed:**
+- ✅ **Consistency Report**: Systematic verification of internal consistency ([Summary](CONSISTENCY_CHECK_SUMMARY.md) | [Full Report](THEORY_CONSISTENCY_REPORT.md))
+- ✅ **Alpha Derivation Clarified**: Reconciled N=137 vs N=10 approaches ([Details](ALPHA_DERIVATION_STATUS.md))
+- ✅ **Executive Summary Updated**: Added prominent disclaimer, moderated language
+- ✅ **Overall Assessment**: Theory internally consistent within documented scope (Grade: B+)
+
+**Previous Improvements:**
 - ✅ Added comprehensive disclaimers to all LaTeX documents
 - ✅ Clearly marked speculative content (consciousness, fine-structure constant)
 - ✅ Removed problematic claims (death/rebirth speculation)
 - ✅ Enhanced transparency about theory status and limitations
 - ✅ Mathematical core completely preserved
 
-See [UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md) for complete details.
+See [UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md) and [Consistency Check Summary](CONSISTENCY_CHECK_SUMMARY.md) for complete details.
 
 ### Consciousness Applications (Highly Speculative)
 - **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
