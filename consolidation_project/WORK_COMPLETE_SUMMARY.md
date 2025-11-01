@@ -22,7 +22,7 @@ Complete mathematical derivations covering:
 **Integration**: Added to main document `ubt_2_main.tex` after GR equivalence appendix
 
 #### 2. Computational Verification Script (12KB)
-**File**: `scripts/holographic_verlinde_desetter_derivations.py`
+**File**: `scripts/holographic_verlinde_desitter_derivations.py`
 
 SymPy-based symbolic verification of:
 - All holographic entropy calculations

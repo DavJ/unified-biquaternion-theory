@@ -11,8 +11,7 @@ Author: UBT Team
 Date: 2025-11-01
 """
 
-import sympy as sp
-from sympy import symbols, exp, sqrt, pi, I, log, diff, simplify, expand, Matrix, cos, sin, sinh, cosh
+from sympy import symbols, sqrt, pi, I, simplify, expand
 import numpy as np
 
 # Define symbolic variables
@@ -67,7 +66,6 @@ print(f"Θ_11 = {Theta_11}")
 
 # For a spherical holographic screen, the area element is
 print("\n1.3 Holographic Screen Area in Spherical Coordinates:")
-theta_coord, phi = symbols('theta phi', real=True)
 # dA = R^2 * sin(theta) * dtheta * dphi
 # Total area A = 4πR^2 for sphere
 
