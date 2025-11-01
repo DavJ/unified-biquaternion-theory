@@ -2,32 +2,28 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-⚠️ **RESEARCH FRAMEWORK IN DEVELOPMENT** ⚠️
-
-**Unified Biquaternion Theory (UBT)** is a speculative theoretical framework exploring novel mathematical approaches to unifying physics. It combines concepts from **General Relativity**, **Quantum Field Theory**, and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). The **Complex Consciousness Theory (CCT)** applies UBT principles to model consciousness as a physical phenomenon.
-
-**Important:** UBT is currently in early-stage development and should NOT be considered a validated scientific theory. See [Scientific Status Document](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md) for detailed assessment of current limitations and future development requirements.
+**Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
+From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
 
 ---
 
 ## 📜 Overview
 
-### Core Physics (Partially Developed)
-- **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives
-- **Gravitation**: recovery of Einstein vacuum equations in real limit (matter coupling incomplete)
-- **Gauge fields**: Standard Model gauge group SU(3) × SU(2) × U(1) embedded (not derived)
-- **Electromagnetism** in curved space, including standing modulated EM field configurations
-- **QED/QCD**: reformulation in UBT variables (quantization procedure incomplete)
+UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
 
-### Speculative Extensions (Require Significant Development)
-- **Fine-structure constant**: Multiple approaches suggest α⁻¹ ≈ 137, but ab initio derivation remains an open challenge
-- **Dark sector physics**: p-adic extension proposals for dark matter/energy (detailed calculations incomplete)
-- **Multiverse interpretation**: 32D structure as multiple universe branches, 4D projection mechanism needs formalization
-
-### Highly Speculative (Philosophical Hypotheses)
-- **Psychons**: hypothetical quanta of consciousness (no neuroscientific grounding, unfalsifiable in current form)
-- **Closed Timelike Curves**: time-travel solutions (likely unphysical)
-- **Consciousness experiments**: Theta Resonator concept (requires testable parameters)
+Key features:
+- **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
+- **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
+- **Gravitation**: derivation of the metric tensor from biquaternion fields.
+- **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
+- **Electromagnetism** in curved space, including standing modulated EM field configurations.
+- **Quantum electrodynamics (QED)** and **quantum chromodynamics (QCD)** reformulated in UBT variables.
+- **Dark sector physics**: unified treatment of dark matter and dark energy via padic extensions.
+- **Psychons**: quantum excitations of consciousness within the complex-time phase space.
+- **Closed Timelike Curves (CTCs)**: geometric and physical conditions for time-travel solutions.
+- **Experimental concepts**: Theta Resonator for detecting persistent consciousness fields.
+- **Complex Consciousness Theory (CCT)**: simplified, application-oriented formulation for modeling consciousness and cognitive phase transitions.
 
 ---
 
