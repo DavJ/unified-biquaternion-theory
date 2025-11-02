@@ -23,6 +23,11 @@
 - Standard Model (SU(3)×SU(2)×U(1) emerge from geometry)
 - All forces and matter in a single field equation
 
+**Note on Complex vs Biquaternionic Time:**
+> Complex time **τ = t + iψ** is a *didactic and limiting projection* of the native biquaternionic time **q_t = t + i**u**ψ**, valid only when Θ-field components commute: **[Θ_i, Θ_j] → 0**. 
+>
+> When field components do not commute (non-Abelian gauge fields, strongly coupled regimes), the full biquaternionic structure is required. See `consolidation_project/appendix_N_extension_biquaternion_time.tex` for the complete transition criterion.
+
 ---
 
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
@@ -39,7 +44,7 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 - UBT is a **research framework in early development**, not a validated scientific theory
 - **Scientific Rating: 5.5/10** (Significant improvements November 2025)
 - Mathematical foundations: **Substantially complete** - Field formally defined, SM gauge group derived (Nov 2025)
-- Fine-structure constant: **Emergent geometric normalization with one adjustable parameter (B/A ratio)** - not ab initio prediction, but framework where α might emerge
+- Fine-structure constant: **Geometrically constrained (v9 UPDATE)** - α = 1/137.036 obtained from Λ = 1/R_Θ with R_Θ = 1.324×10⁻¹⁸ m (geometric curvature radius). See [ALPHA_SYMBOLIC_B_DERIVATION.md](ALPHA_SYMBOLIC_B_DERIVATION.md) Section 5.
 - Standard Model: **DERIVED from geometry** - SU(3)×SU(2)×U(1) proven to emerge from Aut(B⁴)
 - Consciousness claims: **Highly speculative** - properly isolated in philosophical appendices
 - Testable predictions: **CMB analysis feasible** - statistical tests can be performed within 1-2 years
