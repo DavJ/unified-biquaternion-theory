@@ -25,6 +25,13 @@ The content here will be gradually updated with improved formatting, clearer exp
 - Appendices and experimental concepts are being merged gradually.
 - Full validation against the original UBT sources is ongoing.
 
+### Main Documents
+- **[ubt_osf_publication.tex](MAIN_DOCUMENTS_GUIDE.md#ubt_osf_publicationtex--osf-ready-publication)** ⭐ — Clean, publication-ready document for OSF/journal submission
+- **[ubt_core_main.tex](MAIN_DOCUMENTS_GUIDE.md#ubt_core_maintex---core-theory-only)** — Core theory without speculative content
+- **[ubt_2_main.tex](MAIN_DOCUMENTS_GUIDE.md#ubt_2_maintex---full-consolidated-document)** — Complete framework including speculative research
+
+See **[MAIN_DOCUMENTS_GUIDE.md](MAIN_DOCUMENTS_GUIDE.md)** for detailed information about each document.
+
 ---
 
 ## 🔍 Related Resources
@@ -35,6 +42,15 @@ The content here will be gradually updated with improved formatting, clearer exp
 
 - **Appendix QA — Quarks and CKM in UBT**: Discrete mode assignment for $(u,d,s,c,b,t)$, CKM from overlaps on $\mathbb{T}^2$, and ratio checks without tuning.
 - **Appendix K.5 — $\Lambda_{\mathrm{QCD}}$ from geometry**: Two-loop link between $R^{-1}$ and $\Lambda_{\mathrm{QCD}}$ with discrete holonomy thresholds and scheme tracking.
+
+## Recent Updates (Nov 2025)
+
+- **Appendix G Enhanced**: Added detailed SU(3) color symmetry content:
+  - One-loop running of $g_s(\mu)$ in emergent formulation
+  - Detailed anomaly analysis (left-right factorization)
+  - Explicit mapping of $(\Omega,z)$-deformations to Gell-Mann generators
+- **Appendix Naming Fixed**: Resolved appendix_G conflict by renaming dark matter appendix to appendix_U
+- **OSF Publication Document**: Created clean, publication-ready `ubt_osf_publication.tex`
 
 ---
 
