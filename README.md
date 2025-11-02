@@ -331,6 +331,46 @@ Python scripts for analyzing experimental data relevant to UBT predictions are a
 
 ---
 
+## 📦 Release v10.0 (November 2025)
+
+**Major Updates:**
+- Added Appendix H – Theta Phase Emergence with drift-diffusion dynamics
+- Improved Hermitian correspondence in Appendix F with Chamseddine (2025) reference
+- Added explicit quaternion-to-SU(3) color mapping in Appendix G
+- Created OSF abstract for public release
+- Ready for Zenodo/OSF publication
+
+**New Files:**
+- `UBT_Main.tex` - Main consolidated document with updated metadata
+- `UBT_Abstract_OSF.tex` - Abstract for OSF/Zenodo submission
+- `Appendix_H_Theta_Phase_Emergence.tex` - Phase field dynamics
+- Updated `Appendix_F_Hermitian_Limit.tex` with disclaimers
+- Updated `Appendix_G_Emergent_SU3.tex` with color mapping table
+- `references.bib` - Bibliography with Chamseddine 2025 citation
+
+**DOI:** *(to be assigned after Zenodo upload)*  
+**Citation:** Jaroš, D. (2025). Unified Biquaternion Theory v10. Zenodo. https://doi.org/xxxxx
+
+**Release Package Contents:**
+- `UBT_Main.pdf` - Full consolidated document
+- `UBT_Abstract_OSF.pdf` - OSF submission abstract
+- All appendices (F, G, H, and supporting materials)
+- `README.md` - This file
+- `references.bib` - Complete bibliography
+
+**How to Build:**
+```bash
+pdflatex UBT_Main.tex
+bibtex UBT_Main
+pdflatex UBT_Main.tex
+pdflatex UBT_Main.tex
+```
+
+**Zenodo Upload:** [https://zenodo.org/deposit](https://zenodo.org/deposit)  
+**OSF Preprint:** [https://osf.io/preprints/](https://osf.io/preprints/)
+
+---
+
 ## 📌 Author Statement
 
 This repository contains my **original theoretical research**.  
