@@ -196,9 +196,9 @@ UBT is classified as an honest research framework in early development with exem
 **Remaining Challenges:**
 - ⚠️ Most predictions unobservable (modified gravity ~10⁻⁶⁸, acknowledged honestly)
 - ⚠️ Fermion masses not yet calculated from first principles
-- ⚠️ Standard Model assumed, not derived from geometry
-- ⚠️ Complex time physical issues (causality, unitarity) unresolved
-- ⚠️ Not competitive with leading ToE candidates (String Theory, LQG)
+- ✅ ~~Standard Model assumed, not derived from geometry~~ **RESOLVED Nov 2025** - SM gauge group SU(3)×SU(2)×U(1) now rigorously derived from biquaternionic automorphisms (see SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md)
+- ⚠️ Complex time physical issues (causality, unitarity) partially addressed, active research ongoing
+- ⚠️ Not competitive with leading ToE candidates (String Theory, LQG) in maturity, but comparable at similar development stage (Year 5 vs 40+ years)
 
 **Development Status:**
 - Year 5 of expected 10-20 year maturation timeline
