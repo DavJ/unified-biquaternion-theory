@@ -39,11 +39,11 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 - UBT is a **research framework in early development**, not a validated scientific theory
 - **Scientific Rating: 5.5/10** (Significant improvements November 2025)
 - Mathematical foundations: **Substantially complete** - Field formally defined, SM gauge group derived (Nov 2025)
-- Fine-structure constant: **Emergent geometric normalization** - treated as arising from field self-interaction
+- Fine-structure constant: **Emergent geometric normalization with one adjustable parameter (B/A ratio)** - not ab initio prediction, but framework where α might emerge
 - Standard Model: **DERIVED from geometry** - SU(3)×SU(2)×U(1) proven to emerge from Aut(B⁴)
 - Consciousness claims: **Highly speculative** - properly isolated in philosophical appendices
 - Testable predictions: **CMB analysis feasible** - statistical tests can be performed within 1-2 years
-- **NEW**: [Comprehensive Reevaluation 2025](UBT_REEVALUATION_2025.md) + [Updated Rating](UBT_UPDATED_SCIENTIFIC_RATING_2025.md)
+- **NEW**: [Challenges Status Update Nov 2025](CHALLENGES_STATUS_UPDATE_NOV_2025.md) + [Comprehensive Reevaluation 2025](UBT_REEVALUATION_2025.md) + [Updated Rating](UBT_UPDATED_SCIENTIFIC_RATING_2025.md)
 - **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
 
 Key features:
