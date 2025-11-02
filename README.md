@@ -87,6 +87,7 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 #### Latest Evaluations (November 2025)
 - **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - ⭐ **START HERE**: Quick overview of current status and integration decision
+- **[Remaining Challenges: Detailed Status](REMAINING_CHALLENGES_DETAILED_STATUS.md)** - ⭐⭐⭐ **NEWEST**: Comprehensive roadmap addressing all 5 remaining challenges with concrete action plans and timelines
 - **[Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md)** - ⭐ **NEW**: Comprehensive scientific rating (4.5/10) with detailed criterion breakdown
 - **[Hyperspace Waves Integration Assessment](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md)** - ⭐ **NEW**: Analysis of integration feasibility and recommendation to maintain separation
 
