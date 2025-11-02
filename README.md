@@ -61,6 +61,88 @@ Key features:
 
 ---
 
+## 📊 Summary of Key Theorems and Results (v8 UPDATE)
+
+The following table provides a quick reference to major theorems, proofs, and results in UBT:
+
+| Tag | Theorem/Result | Location | Status |
+|-----|----------------|----------|--------|
+| **[A1]** | Θ-Field Action Principle | `appendix_A_theta_action.tex` | ✓ Complete |
+| **[H1]** | GHY Boundary Term Cancellation | `appendix_H_holography_variational.tex`, Thm 1 | ✓ v8 NEW |
+| **[H2]** | Holographic Dictionary | `appendix_H_holography_variational.tex`, Sec 5 | ✓ v8 NEW |
+| **[E1]** | SM Gauge Group Emergence | `appendix_E_SM_geometry.tex`, Thm 6.1 | ✓ Complete |
+| **[E2]** | Explicit Connection 1-Forms | `appendix_E_SM_geometry.tex`, Sec 6 | ✓ v8 NEW |
+| **[E3]** | Curvature 2-Forms (F = dA + A∧A) | `appendix_E_SM_geometry.tex`, Thm 6.2 | ✓ v8 NEW |
+| **[E4]** | Gauge Invariance Proof | `appendix_E_SM_geometry.tex`, Thm 6.3 | ✓ v8 NEW |
+| **[Y1]** | Yukawa from Geometric Overlaps | `appendix_Y_yukawa_couplings.tex`, Thm 2.1 | ✓ Complete |
+| **[Y2]** | Covariant Yukawa Formulation | `appendix_Y_yukawa_couplings.tex`, Sec 3 | ✓ v8 NEW |
+| **[Y3]** | RG Evolution of Yukawa Matrix | `appendix_Y_yukawa_couplings.tex`, Thm 3.1 | ✓ v8 NEW |
+| **[R1]** | GR Equivalence in Real Limit | `appendix_R_GR_equivalence.tex` | ✓ Complete |
+| **[B1]** | Symbolic B Derivation | `ALPHA_SYMBOLIC_B_DERIVATION.md`, Sec 5 | ✓ v8 ENHANCED |
+| **[D1]** | Dimensional Consistency | `ALPHA_SYMBOLIC_B_DERIVATION.md`, Sec 7 | ✓ v8 NEW |
+| **[T1]** | Transition Criterion | `TRANSITION_CRITERION_COMPLEX_BIQUATERNIONIC.md` | ⚠️ Needs formalization |
+| **[M1]** | Modified Gravity Predictions | `MODIFIED_GRAVITY_PREDICTION.md` | ⚠️ In progress |
+
+**Notation:**
+- ✓ Complete: Rigorous proof provided
+- ✓ v8 NEW: Added in v8 consolidation (November 2025)
+- ✓ v8 ENHANCED: Significantly improved in v8
+- ⚠️ In progress: Framework established, calculation ongoing
+- ❌ TODO: Planned but not yet started
+
+**Usage:** Reference theorems by tag, e.g., "By [E1], the SM gauge group emerges from Aut(B⁴)..."
+
+---
+
+## 🗺️ Theory Flowchart: From Θ-Field to Observables
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                 Biquaternionic Θ-Field                          │
+│                Θ(q,τ) ∈ ℂ⊗ℍ, τ = t + iψ                        │
+│                  [Appendix A, Theorem A1]                       │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │
+                       ├─► Action Principle + GHY Boundary
+                       │   S = S_bulk + S_GHY [Theorem H1]
+                       │
+                       v
+┌─────────────────────────────────────────────────────────────────┐
+│              Variational Field Equations                         │
+│              ∇²Θ - ∂V/∂Θ† = 0 [Corollary H1.1]                │
+└──────────────────────┬──────────────────────────────────────────┘
+                       │
+        ┌──────────────┼──────────────┬───────────────────┐
+        │              │              │                   │
+        v              v              v                   v
+┌───────────┐  ┌───────────┐  ┌───────────┐  ┌──────────────────┐
+│  Gravity  │  │   Gauge   │  │  Yukawa   │  │  Experimental    │
+│  Metric   │  │  Fields   │  │ Couplings │  │  Predictions     │
+│  g_μν     │  │ A_μ,F_μν  │  │  Y_ij     │  │  δg, δα, ...     │
+│ [Thm R1]  │  │[Thm E2-4] │  │ [Thm Y1-3]│  │  [Doc M1, T1]    │
+└─────┬─────┘  └─────┬─────┘  └─────┬─────┘  └────────┬─────────┘
+      │              │              │                   │
+      │              │              │                   │
+      └──────────────┴──────────────┴───────────────────┘
+                            │
+                            v
+             ┌────────────────────────────┐
+             │   Standard Model Physics   │
+             │   + Quantum Corrections    │
+             │   + Dark Sector            │
+             └────────────────────────────┘
+```
+
+**Key Transformations:**
+1. **Θ → Action**: Variational principle with proper boundary terms [H1]
+2. **Action → Field Eq**: Euler-Lagrange equations [H1 Corollary]
+3. **Θ → Gauge**: Automorphism group Aut(ℂ⊗ℍ) → SU(3)×SU(2)×U(1) [E1-E4]
+4. **Θ → Yukawa**: Geometric overlap integrals on T² [Y1-Y3]
+5. **Θ → Gravity**: Real part Re[G_μν] = g_μν [R1]
+6. **All → Observables**: Quantum corrections, running couplings, predictions [M1]
+
+---
+
 ## 📂 Repository Structure
 
 ```
