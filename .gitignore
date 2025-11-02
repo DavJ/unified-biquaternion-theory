@@ -19,6 +19,13 @@
 *.pdf
 !docs/pdfs/*.pdf
 
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
 # Temporary files
 *~
 *.swp
