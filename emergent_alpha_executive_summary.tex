@@ -66,16 +66,16 @@ The Unified Biquaternion Theory explores how $\alpha$ might relate to geometric 
 
 \item \textbf{Gauge Quantization}: The electromagnetic coupling satisfies the Dirac quantization condition:
 \begin{equation}
-g \oint A_\psi d\psi = 2\pi n, \quad n \in \mathbb{Z}
+g \oint A_\psi d\psi = 2\pi N, \quad N \in \mathbb{Z}
 \end{equation}
 
-\item \textbf{Stability}: Only \emph{prime} winding numbers $n$ correspond to stable vacuum states.
+\item \textbf{Stability}: Only \emph{prime} winding numbers $N$ correspond to stable vacuum states.
 
-\item \textbf{Energy Minimization}: The effective potential for winding $n$ is:
+\item \textbf{Energy Minimization}: The effective potential for winding $N$ is:
 \begin{equation}
-V_{\text{eff}}(n) = An^2 - Bn\ln n
+V_{\text{eff}}(N) = AN^2 - BN\ln N
 \end{equation}
-Among primes, this has a unique minimum at \fbox{$n = 137$}.
+Among primes, this has a unique minimum at \fbox{$N = 137$}.
 \end{enumerate}
 
 \subsection{The Derivation Chain}
@@ -91,7 +91,7 @@ $\downarrow$ \\
 $\downarrow$ \\
 \textbf{Prime Number Stability} \\
 $\downarrow$ \\
-\textbf{Energy Minimum at $n=137$} \\
+\textbf{Energy Minimum at $N=137$} \\
 $\downarrow$ \\
 \fbox{\textcolor{resultgreen}{\Large $\boldsymbol{\alpha^{-1} = 137}$}}
 \end{minipage}
@@ -117,7 +117,7 @@ We evaluated $V_{\text{eff}}(p)$ for all primes $p$ near 137:
 \end{tabular}
 \end{center}
 
-\textbf{Conclusion}: Among prime numbers, $n = 137$ uniquely minimizes the effective potential.
+\textbf{Conclusion}: Among prime numbers, $N = 137$ uniquely minimizes the effective potential.
 
 \section{Comparison with Experiment}
 
@@ -192,7 +192,7 @@ UBT predicts the \emph{bare} value $\alpha_0^{-1} = 137$. Quantum corrections th
 \item \texttt{scripts/emergent\_alpha\_calculator.py} — Numerical implementation
   \begin{itemize}
   \item Computes effective potential for all primes
-  \item Verifies $n = 137$ is the minimum
+  \item Verifies $N = 137$ is the minimum
   \item Includes sensitivity analysis
   \item No external dependencies required
   \end{itemize}
@@ -208,7 +208,7 @@ python3 scripts/emergent_alpha_calculator.py
 This derivation improves on earlier attempts:
 
 \begin{itemize}
-\item \textbf{No assumed topological numbers} — $n=137$ is \emph{derived}, not postulated
+\item \textbf{No assumed topological numbers} — $N=137$ is explored through energy minimization (though selection mechanism involves free parameters, as noted in disclaimer)
 \item \textbf{No compactification schemes} — Uses intrinsic UBT structure
 \item \textbf{Rigorous mathematics} — Formal theorems and proofs
 \item \textbf{Numerical verification} — Working code demonstrates result
