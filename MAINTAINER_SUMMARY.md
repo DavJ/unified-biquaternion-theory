@@ -160,8 +160,19 @@ All documents are now in the repository:
 **Problem:** α⁻¹ = 137 claimed as "prediction" but is postulation  
 **Impact:** Credibility damage, numerology accusations  
 **Status:** Author acknowledges in some docs, not all  
-**Action needed:** Consistent treatment across ALL documents
+**Action needed:** Ensure consistent treatment of the fine-structure constant claim in all relevant documents.
 
+**Checklist of files to review:**
+- `unified_biquaternion_theory/ubt_main_article.tex`
+- `consolidation_project/ubt_2_main.tex`
+- `consolidation_project/ubt_core_main.tex`
+- `README.md`
+- Any appendix or solution file discussing α or fine-structure constant
+
+**Recommended disclaimer wording (to be included in each file):**
+> "The value α⁻¹ = 137 is used as a postulate in this theory, not as a prediction. This choice is not derived from first principles and should not be interpreted as numerological or as a confirmed result. The author acknowledges the speculative nature of this assignment."
+
+**Instruction:** Add the above disclaimer to each listed file wherever the fine-structure constant is discussed or claimed as a prediction.
 ### 2. Mathematical Foundations ⚠️⚠️⚠️
 **Problem:** Core definitions missing (inner product, Hilbert space)  
 **Impact:** Cannot make rigorous predictions  
