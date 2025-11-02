@@ -9,12 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Symbolic derivation of the B constant** in `emergent_alpha_from_ubt.tex` (Section 5.3)
-  - Added mathematical derivation showing B arises from one-loop vacuum fluctuations of the biquaternionic time field
-  - Integral formulation: B = (1/2π) ∫₀²ᵖ dψ (1 - cos ψ) exp(-ψ²/2σ²)
-  - Closed form provided for the integral with dispersion parameter σ ≈ 7.35
-  - Result: B ≈ 46.27, consistent with empirical constant used in α derivation
-  - This represents the one-loop renormalization of the time-phase manifold and geometric origin of fine-structure constant
+- **Merged master branch updates** (commits ec1376e and d73012e)
+  - P-adic α derivation: `consolidation_project/appendix_ALPHA_padic_derivation.tex`
+  - Executive summaries: `alpha_padic_executive_summary.tex`, `ALPHA_PADIC_README.md`
+  - Scientific rating document: `UBT_SCIENTIFIC_RATING_2025.md`
+  - Integration assessments: `HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md`, `AHARONOV_TSVF_ANALYSIS.md`
+  - Comprehensive evaluation summaries and verification checklists
+  - Enhanced B constant derivation based on gauge structure (N_eff = 12)
+  - P-adic calculator scripts: `scripts/padic_alpha_calculator.py`, `scripts/test_padic_alpha.py`
+
+- **Symbolic derivation of the B constant** in `emergent_alpha_from_ubt.tex`
+  - Mathematical derivation showing B arises from one-loop vacuum fluctuations
+  - Based on gauge structure: B = N_eff × (2π/σ) ≈ 46.3 for SU(3)×SU(2)×U(1)
+  - Result consistent with empirical constant used in α derivation
 
 - **Python verification script** `scripts/verify_B_integral.py`
   - Symbolic and numerical verification of the B constant integral using SymPy and SciPy
