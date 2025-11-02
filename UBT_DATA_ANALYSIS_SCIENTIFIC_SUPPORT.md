@@ -366,13 +366,13 @@ Fractional shift: 9 × 10⁻⁷ / 1057.8 ≈ 8 × 10⁻¹⁰
 | Observable | Current Precision | UBT Correction (claimed) | Testability |
 |------------|-------------------|--------------------------|-------------|
 | 1S-2S transition | 4 × 10⁻¹⁵ | Not specified | N/A |
-| Lamb shift (2S-2P) | 3 × 10⁻⁶ (MHz level) | ~10 kHz (10⁻⁵ MHz) | **Potentially testable** |
+| Lamb shift (2S-2P) | 3 × 10⁻⁶ (MHz level) | ~1 kHz (10⁻⁶ MHz) | **Potentially testable** |
 | Hyperfine splitting | 10⁻¹² | Not specified | N/A |
 
 **Assessment:**
-- If UBT correction is truly 10 kHz (0.01 MHz), it is BELOW current Lamb shift precision (MHz)
-- Would require ~100× improvement in spectroscopy
-- OR apply to higher-n states where correction is larger
+- If UBT correction is truly 1 kHz (0.001 MHz), it is BELOW current Lamb shift precision (MHz)
+- Would require ~1000× improvement in spectroscopy precision
+- Timeline: 5-10 years with next-generation optical frequency combs
 
 ### 4.4 Relevant Observational Features
 

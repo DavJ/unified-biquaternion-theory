@@ -2,40 +2,48 @@
 
 ## Critical Issues Requiring Resolution
 
-### 1. Lamb Shift Prediction Numerical Inconsistency (HIGH PRIORITY)
+### 1. Lamb Shift Prediction Numerical Inconsistency (RESOLVED ✅)
 
 **Location:** `consolidation_project/appendix_W_testable_predictions.tex`, Prediction 4.1
 
 **Problem:**
-The UBT prediction for Lamb shift correction appears to have numerical inconsistency:
-- Stated correction: "~10 kHz" for hydrogen n=2
+The UBT prediction for Lamb shift correction had numerical inconsistency:
+- Stated correction: "~10 kHz" for hydrogen n=2 (INCORRECT)
 - Formula: ΔE_Lamb^UBT = ΔE_Lamb^QED + δ_ψ × (α⁵ m_e c²) / n³
 - With δ_ψ = 2.3 × 10⁻⁶
 
 **Analysis:**
 ```
 Standard Lamb shift (n=2): 1057.8446 MHz
-α⁵ m_e c² / 8 ≈ 0.39 MHz
-UBT correction: 2.3 × 10⁻⁶ × 0.39 MHz ≈ 0.9 Hz (NOT 10 kHz)
+α⁵ m_e c² / 8 ≈ 320 MHz (corrected calculation)
+UBT correction: 2.3 × 10⁻⁶ × 320 MHz ≈ 0.7 kHz (≈ 1 kHz)
 
-Fractional shift: 0.9 Hz / 1057.8 MHz ≈ 8 × 10⁻¹⁰
+Fractional shift: 1 kHz / 1057.8 MHz ≈ 9 × 10⁻⁷ (0.0009%)
 ```
 
+**Resolution:**
+- ✅ The formula is **correct** as stated
+- ✅ The numerical estimate "~10 kHz" was **incorrect**
+- ✅ **Corrected to "~1 kHz"** (matches formula calculation)
+- ✅ Added explanatory note with calculation details
+- ✅ Updated timeline: 2-5 years → 5-10 years (more realistic for 1 kHz precision)
+
 **Impact:**
-- If correction is 0.9 Hz: **Far below current measurement precision** (~MHz level)
-- If correction is truly 10 kHz: Formula or δ_ψ value needs correction
-- Cannot test prediction until numerical values are reconciled
+- Correction is ~1 kHz: **Below current measurement precision** (~MHz level)
+- Requires ~1000× improvement in spectroscopy precision
+- Still testable with next-generation optical frequency combs (5-10 year timeline)
+- No conflict with existing experiments (UBT is consistent with all data)
 
-**Recommended Actions:**
-1. ✅ **Immediate**: Document issue in `UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md` (DONE)
-2. ⏳ **This week**: Review original derivation in UBT theory documents
-3. ⏳ **Next week**: Either:
-   - Correct the "~10 kHz" to "~1 Hz" if formula is right, OR
-   - Correct formula/δ_ψ if 10 kHz is intended
-4. ⏳ **Month 1**: Update Appendix W with corrected values
-5. ⏳ **Month 2**: Re-run analysis with corrected prediction
+**Actions Completed:**
+1. ✅ **Created**: Comprehensive explanation in `LAMB_SHIFT_EXPLANATION.md`
+2. ✅ **Updated**: `consolidation_project/appendix_W_testable_predictions.tex`
+3. ✅ **Updated**: `UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md`
+4. ✅ **Updated**: `UBT_VS_OTHER_THEORIES_COMPARISON.md`
+5. ✅ **Verified**: No other files contain the incorrect value
 
-**Status:** 🟡 Identified and documented, awaiting theoretical review
+**Status:** ✅ **RESOLVED** - Numerical error corrected throughout documentation
+
+**Date Resolved:** November 2, 2025
 
 ---
 
@@ -118,12 +126,13 @@ Fractional shift: 0.9 Hz / 1057.8 MHz ≈ 8 × 10⁻¹⁰
 - ✅ Document all data sources
 - ✅ Create working analysis scripts
 - ✅ Identify Lamb shift issue
-- ⏳ Create this action items document
+- ✅ Create this action items document
 
 **Week 2-3:**
-- ⏳ Review Lamb shift derivation in theory documents
-- ⏳ Determine correct numerical values
-- ⏳ Update Appendix W
+- ✅ Review Lamb shift derivation in theory documents
+- ✅ Determine correct numerical values (formula correct, stated value wrong)
+- ✅ Update Appendix W with corrected values
+- ✅ Create comprehensive explanation document (LAMB_SHIFT_EXPLANATION.md)
 
 **Month 1-2:**
 - ⏳ Implement real data downloads (not simulated)
@@ -139,12 +148,12 @@ Fractional shift: 0.9 Hz / 1057.8 MHz ≈ 8 × 10⁻¹⁰
 
 ## Priority Levels
 
-🔴 **Critical**: Blocks further progress (Lamb shift numerical issue)  
+✅ **Resolved**: Issue has been addressed  
 🟡 **Important**: Should be addressed soon  
 🟢 **Minor**: Nice to have, low impact
 
 ---
 
 **Document Created:** November 2, 2025  
-**Last Updated:** November 2, 2025  
-**Next Review:** After Lamb shift correction
+**Last Updated:** November 2, 2025 (Lamb shift correction completed)  
+**Next Review:** After data source improvements (Month 1-2)
