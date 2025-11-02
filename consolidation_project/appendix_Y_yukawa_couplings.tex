@@ -256,6 +256,87 @@ where $\theta_i$ are holonomy phases and $g_{\text{eff}}$ is an effective coupli
 \textbf{Timeline}: 6-12 months of focused calculation.
 \end{remark}
 
+\section{Covariant Derivative Expansion (v8 UPDATE)}
+
+\subsection{Gauge-Covariant Formulation}
+
+\begin{definition}[Covariant Yukawa Coupling]
+The Yukawa interaction must be formulated covariantly under gauge transformations:
+\begin{equation}
+\mathcal{L}_{\text{Yuk}} = -Y^f_{ij}(x) \, \bar{Q}_L^i D_\mu \Theta_H \psi_R^{j,f} + \text{h.c.}
+\end{equation}
+where $D_\mu$ is the gauge-covariant derivative (see Appendix E, Section 6):
+\begin{equation}
+D_\mu \Theta_H = \partial_\mu \Theta_H + ig_3 A^a_{3\mu} T_a^3 \Theta_H + ig_2 A^i_{2\mu} T_i^2 \Theta_H + ig_Y A^Y_\mu Y \Theta_H
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Gauge Invariance of Yukawa Terms]
+The covariant Yukawa Lagrangian is invariant under simultaneous gauge transformations:
+\begin{align}
+\Theta_H &\to g(x) \Theta_H \\
+Q_L^i &\to g(x) Q_L^i \\
+\psi_R^{j,f} &\to g(x) \psi_R^{j,f} \\
+A_\mu &\to g(x) A_\mu g^{-1}(x) - \frac{i}{g_i}(\partial_\mu g(x)) g^{-1}(x)
+\end{align}
+where $g(x) \in SU(3) \times SU(2) \times U(1)$.
+\end{theorem}
+
+\begin{proof}
+The covariant derivative transforms as:
+\begin{equation}
+D_\mu \Theta_H \to g(x) D_\mu \Theta_H
+\end{equation}
+Therefore:
+\begin{align}
+\bar{Q}_L^i D_\mu \Theta_H \psi_R^{j,f} &\to \overline{(g Q_L^i)} (g D_\mu \Theta_H) (g \psi_R^{j,f}) \\
+&= \bar{Q}_L^i g^\dagger g D_\mu \Theta_H g \psi_R^{j,f} \\
+&= \bar{Q}_L^i D_\mu \Theta_H \psi_R^{j,f}
+\end{align}
+using $g^\dagger g = 1$ for unitary gauge transformations.
+\end{proof}
+
+\subsection{Expansion of Covariant Derivative}
+
+\begin{proposition}[Yukawa Coupling from D-Term Expansion]
+Expanding the covariant derivative yields contributions:
+\begin{align}
+\mathcal{L}_{\text{Yuk}} &= -Y^f_{ij} \bar{Q}_L^i \Theta_H \psi_R^{j,f} \quad \text{(standard term)} \\
+&\quad - Y^f_{ij} \, ig_3 \bar{Q}_L^i (A^a_{3\mu} T_a^3 \Theta_H) \psi_R^{j,f} \quad \text{(QCD correction)} \\
+&\quad - Y^f_{ij} \, ig_2 \bar{Q}_L^i (A^i_{2\mu} T_i^2 \Theta_H) \psi_R^{j,f} \quad \text{(electroweak)} \\
+&\quad - Y^f_{ij} \, ig_Y \bar{Q}_L^i (A^Y_\mu Y \Theta_H) \psi_R^{j,f} \quad \text{(hypercharge)} \\
+&\quad + \text{h.c.}
+\end{align}
+\end{proposition}
+
+\begin{remark}[Physical Interpretation]
+Each term represents coupling to gauge fields:
+\begin{itemize}
+\item \textbf{QCD correction}: Gluon exchange modifies effective Yukawa
+\item \textbf{Electroweak}: W/Z boson contributions
+\item \textbf{Hypercharge}: B boson coupling
+\end{itemize}
+These generate running Yukawa couplings via RG equations.
+\end{remark}
+
+\subsection{Renormalization Group Equations}
+
+\begin{theorem}[RG Evolution of Yukawa Matrix]
+The Yukawa coupling runs with energy scale $\mu$:
+\begin{equation}
+\mu \frac{dY^f_{ij}}{d\mu} = \frac{1}{16\pi^2} \left[ \frac{3}{2} \sum_k (Y^f_{ik} Y^{f\dagger}_{kj}) - \left(C_3 g_3^2 + C_2 g_2^2 + C_Y g_Y^2\right) Y^f_{ij} \right]
+\end{equation}
+where $C_3, C_2, C_Y$ are quadratic Casimir operators.
+\end{theorem}
+
+\begin{corollary}[Mass Hierarchy from RG Running]
+RG evolution can enhance mass hierarchies exponentially:
+\begin{equation}
+\frac{m_t(\mu)}{m_b(\mu)} \propto \exp\left(\int_\mu^\Lambda \frac{d\mu'}{\mu'} \beta_{\text{Yukawa}}(\mu')\right)
+\end{equation}
+providing natural explanation for large fermion mass ratios.
+\end{corollary}
+
 \section{CKM Matrix Prediction}
 
 \subsection{Mixing from Overlap Integrals}
