@@ -131,11 +131,27 @@ See [RESEARCH_PRIORITIES.md](RESEARCH_PRIORITIES.md) for current research and de
 
 ## 📊 Theory Evaluation Reports
 
-Two comprehensive evaluation reports are available for review:
+Multiple comprehensive evaluation reports are available for review:
 
 1. **[MATHEMATICAL_REVIEW_REPORT.md](MATHEMATICAL_REVIEW_REPORT.md)** - Detailed review of mathematical correctness, identifies and documents specific errors that were corrected in the formalism.
 
 2. **[UBT_COMPREHENSIVE_EVALUATION_REPORT.md](UBT_COMPREHENSIVE_EVALUATION_REPORT.md)** - Comprehensive evaluation of physical validity, mathematical rigor, and scientific merit of the entire theory. Includes assessment of testability, comparison with mainstream physics, and recommendations for future development.
+
+3. **[UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md](UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md)** - ⭐ **NEW**: Analysis of available scientific data from major experiments (LIGO/Virgo, Planck, XENON, Fermi-LAT) relevant to testing UBT predictions. Includes comparison with five concrete testable predictions from Appendix W.
+
+4. **[SCIENTIFIC_DATA_SOURCES_BIBLIOGRAPHY.md](SCIENTIFIC_DATA_SOURCES_BIBLIOGRAPHY.md)** - Complete bibliography of experimental data sources, publications, and analysis tools for testing UBT predictions.
+
+5. **[ANALYZA_VEDECKYCH_DAT_CZ.md](ANALYZA_VEDECKYCH_DAT_CZ.md)** - Czech summary of scientific data analysis supporting UBT predictions.
+
+---
+
+## 🔬 Data Analysis Tools
+
+Python scripts for analyzing experimental data relevant to UBT predictions are available in the `scripts/` directory:
+
+- **[analyze_dark_matter_limits.py](scripts/analyze_dark_matter_limits.py)** - Compare UBT p-adic dark matter predictions with XENON/LZ/PandaX limits
+- **[analyze_cmb_power_spectrum.py](scripts/analyze_cmb_power_spectrum.py)** - Analyze Planck CMB data for multiverse projection signatures
+- See [scripts/DATA_ANALYSIS_README.md](scripts/DATA_ANALYSIS_README.md) for documentation
 
 ---
 
