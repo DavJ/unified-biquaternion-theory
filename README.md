@@ -87,6 +87,7 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 
 #### Latest Evaluations (November 2025)
 - **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - ⭐ **START HERE**: Quick overview of current status and integration decision
+- **[Remaining Challenges: Detailed Status](REMAINING_CHALLENGES_DETAILED_STATUS.md)** - ⭐⭐⭐ **NEWEST**: Comprehensive roadmap addressing all 5 remaining challenges with concrete action plans and timelines
 - **[Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md)** - ⭐ **NEW**: Comprehensive scientific rating (4.5/10) with detailed criterion breakdown
 - **[Hyperspace Waves Integration Assessment](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md)** - ⭐ **NEW**: Analysis of integration feasibility and recommendation to maintain separation
 
@@ -196,9 +197,9 @@ UBT is classified as an honest research framework in early development with exem
 **Remaining Challenges:**
 - ⚠️ Most predictions unobservable (modified gravity ~10⁻⁶⁸, acknowledged honestly)
 - ⚠️ Fermion masses not yet calculated from first principles
-- ⚠️ Standard Model assumed, not derived from geometry
-- ⚠️ Complex time physical issues (causality, unitarity) unresolved
-- ⚠️ Not competitive with leading ToE candidates (String Theory, LQG)
+- ✅ ~~Standard Model assumed, not derived from geometry~~ **RESOLVED Nov 2025** - SM gauge group SU(3)×SU(2)×U(1) now rigorously derived from biquaternionic automorphisms (see SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md)
+- ⚠️ Complex time physical issues (causality, unitarity) partially addressed, active research ongoing
+- ⚠️ Not competitive with leading ToE candidates (String Theory, LQG) in maturity, but comparable at similar development stage (Year 5 vs 40+ years)
 
 **Development Status:**
 - Year 5 of expected 10-20 year maturation timeline

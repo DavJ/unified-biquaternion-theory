@@ -504,9 +504,11 @@ The original reevaluation (October) was accurate **at that time**. November form
 **References:**
 - UBT_REEVALUATION_2025.md (October baseline)
 - UBT_UPDATED_SCIENTIFIC_RATING_2025.md (November assessment)
+- REMAINING_CHALLENGES_DETAILED_STATUS.md (Comprehensive roadmap for remaining challenges)
 - THETA_FIELD_DEFINITION.md (Math formalization)
 - SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md (Rigorous proofs)
 - EXPERIMENTAL_TESTS_TRANSITION_CRITERION.md (CMB protocol)
 - MODIFIED_GRAVITY_PREDICTION.md (Honest about limits)
 
 **Status:** Complete status update reflecting November 2025 progress
+**See Also:** REMAINING_CHALLENGES_DETAILED_STATUS.md for detailed action plans and future roadmap

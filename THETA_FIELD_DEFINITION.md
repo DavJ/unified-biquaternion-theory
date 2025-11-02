@@ -233,9 +233,29 @@ The field norm is:
 
 ## 5. Field Equations
 
-### 5.1 Euler-Lagrange Equations
+### 5.1 Action Principle
 
-From the UBT action:
+**Full formulation:** See `consolidation_project/appendix_A_theta_action.tex` for complete rigorous treatment including:
+- Integration measure $d\mu = \sqrt{|\det G|} d^4q \, dt \, d\psi$
+- Hermitian structure on $\mathbb{C} \otimes \mathbb{H}$
+- Boundary terms (biquaternionic Gibbons--Hawking--York)
+- Formal derivation of Euler--Lagrange equations
+- Dimensional consistency analysis
+
+**Action functional:**
+
+```
+S[Θ] = ∫ d⁴q d²τ √|det G| [⟨∇_μ Θ, ∇^μ Θ⟩/2 - V(Θ) - ⟨F_μν, F^μν⟩/4]
+```
+
+where:
+- Kinetic term: ⟨∇_μ Θ, ∇^μ Θ⟩/2
+- Potential: V(Θ) = (λ/4)(⟨Θ,Θ⟩ - v²)² + V_int(Θ)
+- Gauge field strength: F_μν = ∂_μ A_ν - ∂_ν A_μ + ig[A_μ, A_ν]
+
+### 5.2 Euler-Lagrange Equations
+
+From variational principle δS[Θ] = 0:
 
 ```
 S[Θ] = ∫ d⁴q d²τ √|det G| [⟨∇_μ Θ, ∇^μ Θ⟩ - V(Θ)]
@@ -258,7 +278,7 @@ where:
 - **λ**: Self-interaction coupling
 - **v**: Vacuum expectation value
 
-### 5.2 Boundary Conditions
+### 5.3 Boundary Conditions
 
 **Asymptotic condition:**
 ```
