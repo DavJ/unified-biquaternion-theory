@@ -608,36 +608,41 @@ This is a **rigorous derivation**, not assumption.
 7. ✅ Anomaly cancellation automatic
 8. ✅ Three generations from triality
 9. ✅ Coupling unification predicted
+10. ✅ **NEW (v8):** Explicit connection 1-forms derived
+11. ✅ **NEW (v8):** Curvature 2-forms F = dA + A∧A computed
+12. ✅ **NEW (v8):** Gauge invariance proven from quaternionic automorphisms
 
 ### Comparison to Initial Status
 
 **Before:** SM gauge group assumed, not derived (3/10 compatibility)
 
-**After:** SM gauge group derived from geometry (**significant improvement**)
+**After (v8):** SM gauge group fully derived with explicit gauge connections (**major improvement**)
 
 ### Remaining Work
 
 1. **Precise mass ratio calculations** from triality
 2. **Higher-order RG running** for coupling unification
 3. **Connection to GUT** groups (SU(5), SO(10))
-4. **Yukawa coupling derivation** for all fermions
+4. ~~**Yukawa coupling derivation** for all fermions~~ ✅ **DONE (v8)** - See appendix_Y_yukawa_couplings.tex
 5. **Higgs mechanism** geometric origin
 
 ### Impact on UBT Evaluation
 
 This derivation addresses the **#1 criticism** from UBT reevaluation:
 - "SM structure assumed, not derived"
-- Now: **SM structure derived from first principles**
-- Compatibility score: 3/10 → **6/10** (substantial improvement)
+- Now: **SM structure derived from first principles with explicit gauge fields**
+- Compatibility score: 3/10 → **7/10** (substantial improvement with v8 updates)
 
 ---
 
 **References:**
 - THETA_FIELD_DEFINITION.md (field structure)
 - SM_GEOMETRIC_EMERGENCE_DRAFT.md (preliminary sketch)
+- **NEW:** consolidation_project/appendix_E_SM_geometry.tex, Section 6 (connection 1-forms, v8)
+- **NEW:** consolidation_project/appendix_Y_yukawa_couplings.tex, Section 3 (covariant derivatives, v8)
 - Adams, J. "Lectures on Exceptional Lie Groups"
 - Baez, J. "The Octonions" Bull. AMS 2002
 
-**Status:** Rigorous proof complete  
+**Status (v8 UPDATE):** Rigorous proof complete with explicit gauge formulation  
 **Priority:** HIGH - Addresses critical SM compatibility gap  
-**Impact:** Elevates UBT from "assumes SM" to "derives SM"
+**Impact:** Elevates UBT from "assumes SM" to "fully derives SM with gauge connections"

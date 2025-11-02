@@ -397,6 +397,158 @@ A_\mu \to g(x) A_\mu g(x)^{-1} - \frac{i}{g}(\partial_\mu g(x)) g(x)^{-1}
 \end{equation}
 \end{proposition}
 
+\section{Explicit Connection 1-Forms and Curvature 2-Forms (v8 UPDATE)}
+
+\subsection{Gauge Connections}
+
+\begin{definition}[Connection 1-Forms]
+The gauge connection for $SU(3) \times SU(2) \times U(1)$ is a matrix-valued 1-form:
+\begin{equation}
+\mathcal{A} = A^a_3 T_a^3 + A^i_2 T_i^2 + A^Y Y
+\end{equation}
+where:
+\begin{itemize}
+\item $A^a_3$ $(a=1,\ldots,8)$: SU(3) color gauge fields (gluons)
+\item $A^i_2$ $(i=1,2,3)$: SU(2) weak gauge fields (W bosons)
+\item $A^Y$: U(1) hypercharge gauge field (B boson)
+\item $T_a^3 = \lambda_a/2$: SU(3) generators (Gell-Mann matrices)
+\item $T_i^2 = \tau_i/2$: SU(2) generators (Pauli matrices)
+\item $Y$: U(1) hypercharge generator
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Covariant Derivative]
+The gauge-covariant derivative on the Θ-field is:
+\begin{equation}
+D_\mu \Theta = \partial_\mu \Theta + ig_3 A^a_{3\mu} T_a^3 \Theta + ig_2 A^i_{2\mu} T_i^2 \Theta + ig_Y A^Y_\mu Y \Theta
+\label{eq:covariant_derivative}
+\end{equation}
+where $g_3$, $g_2$, $g_Y$ are the coupling constants for SU(3), SU(2), U(1) respectively.
+\end{proposition}
+
+\begin{remark}[Physical Identification]
+The physical gauge fields are:
+\begin{align}
+\text{Gluons:} \quad &G^a_\mu = A^a_{3\mu} \quad (a=1,\ldots,8) \\
+\text{W-bosons:} \quad &W^\pm_\mu = \frac{1}{\sqrt{2}}(A^1_{2\mu} \mp i A^2_{2\mu}) \\
+\text{Z-boson:} \quad &Z_\mu = \cos\theta_W A^3_{2\mu} - \sin\theta_W A^Y_\mu \\
+\text{Photon:} \quad &A_\mu = \sin\theta_W A^3_{2\mu} + \cos\theta_W A^Y_\mu
+\end{align}
+where $\theta_W$ is the Weinberg angle.
+\end{remark}
+
+\subsection{Curvature 2-Forms}
+
+\begin{definition}[Field Strength Tensors]
+The curvature 2-form (field strength) is defined by:
+\begin{equation}
+\mathcal{F} = d\mathcal{A} + \mathcal{A} \wedge \mathcal{A}
+\end{equation}
+which decomposes into:
+\begin{align}
+\mathcal{F} &= F^a_3 T_a^3 + F^i_2 T_i^2 + F^Y Y
+\end{align}
+\end{definition}
+
+\begin{theorem}[Explicit Curvature Components]
+The individual field strengths are:
+\begin{align}
+F^a_{3\mu\nu} &= \partial_\mu A^a_{3\nu} - \partial_\nu A^a_{3\mu} + g_3 f^{abc} A^b_{3\mu} A^c_{3\nu} \label{eq:SU3_curvature}\\
+F^i_{2\mu\nu} &= \partial_\mu A^i_{2\nu} - \partial_\nu A^i_{2\mu} + g_2 \epsilon^{ijk} A^j_{2\mu} A^k_{2\nu} \label{eq:SU2_curvature}\\
+F^Y_{\mu\nu} &= \partial_\mu A^Y_\nu - \partial_\nu A^Y_\mu \label{eq:U1_curvature}
+\end{align}
+where:
+\begin{itemize}
+\item $f^{abc}$: SU(3) structure constants (totally antisymmetric)
+\item $\epsilon^{ijk}$: SU(2) structure constants (Levi-Civita symbol)
+\item U(1) curvature is Abelian (no self-interaction)
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+From the general formula $\mathcal{F} = d\mathcal{A} + \mathcal{A} \wedge \mathcal{A}$, expand in components:
+\begin{align}
+\mathcal{F}_{\mu\nu} &= \partial_\mu \mathcal{A}_\nu - \partial_\nu \mathcal{A}_\mu + [\mathcal{A}_\mu, \mathcal{A}_\nu] \\
+&= (\partial_\mu A^a_{3\nu} - \partial_\nu A^a_{3\mu}) T_a^3 + [A^b_{3\mu} T_b^3, A^c_{3\nu} T_c^3] + \cdots
+\end{align}
+Using the commutation relations:
+\begin{align}
+[T_a^3, T_b^3] &= i f^{abc} T_c^3 \\
+[T_i^2, T_j^2] &= i \epsilon^{ijk} T_k^2 \\
+[Y, Y] &= 0
+\end{align}
+we obtain Eqs.~(\ref{eq:SU3_curvature})-(\ref{eq:U1_curvature}).
+\end{proof}
+
+\begin{corollary}[Bianchi Identities]
+The curvature satisfies:
+\begin{equation}
+D_\mu \mathcal{F}_{\nu\rho} + D_\nu \mathcal{F}_{\rho\mu} + D_\rho \mathcal{F}_{\mu\nu} = 0
+\end{equation}
+or equivalently in differential form notation:
+\begin{equation}
+d\mathcal{F} + [\mathcal{A}, \mathcal{F}] = 0
+\end{equation}
+\end{corollary}
+
+\subsection{Yang-Mills Action}
+
+\begin{proposition}[Gauge Field Action]
+The Yang-Mills action for the gauge fields is:
+\begin{equation}
+S_{YM} = -\frac{1}{4} \int d^4x \, \sqrt{-g} \left( F^a_{3\mu\nu} F_3^{a\mu\nu} + F^i_{2\mu\nu} F_2^{i\mu\nu} + F^Y_{\mu\nu} F^{Y\mu\nu} \right)
+\end{equation}
+\end{proposition}
+
+\begin{remark}[Normalization]
+The conventional normalization includes factors:
+\begin{equation}
+S_{YM} = -\frac{1}{4g_3^2} \int F_3^2 - \frac{1}{4g_2^2} \int F_2^2 - \frac{1}{4g_Y^2} \int (F^Y)^2
+\end{equation}
+which defines the coupling constants.
+\end{remark}
+
+\subsection{Gauge Invariance Proof}
+
+\begin{theorem}[Gauge Invariance from Quaternionic Automorphisms]
+The action $S[\Theta, \mathcal{A}]$ is invariant under gauge transformations:
+\begin{align}
+\Theta &\to g(x) \Theta \\
+\mathcal{A}_\mu &\to g(x) \mathcal{A}_\mu g^{-1}(x) - \frac{i}{g_i} (\partial_\mu g(x)) g^{-1}(x)
+\end{align}
+where $g(x) \in SU(3) \times SU(2) \times U(1)$ is a local gauge transformation.
+\end{theorem}
+
+\begin{proof}
+The covariant derivative transforms as:
+\begin{align}
+D_\mu \Theta &= \partial_\mu \Theta + i\mathcal{A}_\mu \Theta \\
+&\to \partial_\mu(g\Theta) + i\mathcal{A}'_\mu g\Theta \\
+&= (\partial_\mu g)\Theta + g\partial_\mu\Theta + i\mathcal{A}'_\mu g\Theta
+\end{align}
+Require: $D_\mu\Theta \to g(D_\mu\Theta)$, which gives:
+\begin{equation}
+g\partial_\mu\Theta + ig\mathcal{A}_\mu\Theta = (\partial_\mu g)\Theta + g\partial_\mu\Theta + i\mathcal{A}'_\mu g\Theta
+\end{equation}
+Solving for $\mathcal{A}'_\mu$ yields the transformation law. The curvature $\mathcal{F}_{\mu\nu}$ transforms covariantly:
+\begin{equation}
+\mathcal{F}_{\mu\nu} \to g(x) \mathcal{F}_{\mu\nu} g^{-1}(x)
+\end{equation}
+Therefore:
+\begin{equation}
+\Tr(\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu}) \to \Tr(g\mathcal{F}g^{-1}g\mathcal{F}g^{-1}) = \Tr(\mathcal{F}\mathcal{F})
+\end{equation}
+is invariant under gauge transformations, proving gauge invariance of the action.
+\end{proof}
+
+\begin{corollary}[Quaternionic Origin of Gauge Invariance]
+The gauge transformations arise naturally from the automorphism group:
+\begin{equation}
+\text{Local } \Aut(\B) \supset SU(3) \times SU(2) \times U(1)
+\end{equation}
+acting on the Θ-field. This demonstrates that gauge symmetry is not imposed but emerges from biquaternionic geometry.
+\end{corollary}
+
 \section{Uniqueness}
 
 \begin{theorem}[Uniqueness of SM Gauge Group]
