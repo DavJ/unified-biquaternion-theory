@@ -476,7 +476,7 @@ UBT's main advantages are: (1) **Specific numerical predictions** where most alt
 **Honest Answer:**
 1. **CMB:** UBT predicts 8% suppression, observed is 30%. Either (a) increase A_MV with justification, (b) add secondary mechanism, or (c) accept that cosmic variance explains the gap.
 2. **Dark matter:** Must predict mass, not just cross-section. If 100 GeV is ruled out, explain why m_DM is different.
-3. **Lamb shift:** Fix numerical error (10 kHz vs 1 Hz).
+3. **Lamb shift:** Fix numerical error (10 kHz vs 1 kHz - formula predicts ~1 kHz, not 10 kHz).
 4. **All:** Complete mathematical foundations to make predictions rigorous.
 
 **"Are the data imprecise?"**
