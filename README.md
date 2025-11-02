@@ -15,8 +15,10 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 **⚠️ IMPORTANT: Theory Status**
 - UBT is a **research framework in development**, not a validated scientific theory
 - Mathematical foundations are incomplete (see documentation below)
-- Fine-structure constant work is postulation, not derivation
+- Fine-structure constant: Explored as potential geometric emergence, NOT derived from first principles (treated as empirical input in CORE theory)
 - Consciousness claims are highly speculative without neuroscientific grounding
+- **NEW (Nov 2025)**: Five concrete testable predictions with numerical values now specified (see Appendix W)
+- **NEW (Nov 2025)**: Two-State Vector Formalism (TSVF) integration provides validated physics connection (see Appendix X)
 - **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
 
 Key features:
