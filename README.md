@@ -57,14 +57,24 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 - **Solutions**: Important proofs and derivations
 
 ### Assessment & Status Documents
-- **[UBT Reading Guide](UBT_READING_GUIDE.md)** - ⭐ **START HERE**: How to navigate UBT responsibly
+
+#### Latest Evaluations (November 2025)
+- **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - ⭐ **START HERE**: Quick overview of current status and integration decision
+- **[Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md)** - ⭐ **NEW**: Comprehensive scientific rating (4.5/10) with detailed criterion breakdown
+- **[Hyperspace Waves Integration Assessment](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md)** - ⭐ **NEW**: Analysis of integration feasibility and recommendation to maintain separation
+
+#### Status and Guidelines
+- **[UBT Reading Guide](UBT_READING_GUIDE.md)** - How to navigate UBT responsibly
 - **[Scientific Status and Development Roadmap](UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md)** - Current status, limitations, and future work required
 - **[Mathematical Foundations - Required Development](MATHEMATICAL_FOUNDATIONS_TODO.md)** - Specific mathematical gaps that need addressing
 - **[Consciousness Claims - Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)** - Proper presentation of speculative consciousness hypotheses
 - **[Testability and Falsification](TESTABILITY_AND_FALSIFICATION.md)** - Criteria for making UBT falsifiable
+
+#### Previous Reviews
+- **[UBT Comprehensive Evaluation Report](UBT_COMPREHENSIVE_EVALUATION_REPORT.md)** - October 2025 comprehensive evaluation
 - **[Mathematical Review Report](MATHEMATICAL_REVIEW_REPORT.md)** - Technical errors found and fixed
 - **[Issues Addressed](ISSUES_ADDRESSED.md)** - Summary of recent improvements
-- **[UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md)** - ⭐ **NEW**: November 2025 improvements addressing major problems
+- **[UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md)** - November 2025 improvements addressing major problems
 
 ### Recent Improvements (November 2025)
 **Major improvements made to scientific integrity and presentation:**
@@ -129,11 +139,39 @@ See [RESEARCH_PRIORITIES.md](RESEARCH_PRIORITIES.md) for current research and de
 
 ## 📊 Theory Evaluation Reports
 
-Two comprehensive evaluation reports are available for review:
+### Current Scientific Rating: **4.5/10** (Research Framework in Development)
 
-1. **[MATHEMATICAL_REVIEW_REPORT.md](MATHEMATICAL_REVIEW_REPORT.md)** - Detailed review of mathematical correctness, identifies and documents specific errors that were corrected in the formalism.
+UBT is classified as an honest research framework in early development with exemplary scientific transparency. The rating reflects both the incomplete mathematical foundations (core science: 3.25/10) and exceptional transparency about limitations (integrity bonus: +1.25).
 
-2. **[UBT_COMPREHENSIVE_EVALUATION_REPORT.md](UBT_COMPREHENSIVE_EVALUATION_REPORT.md)** - Comprehensive evaluation of physical validity, mathematical rigor, and scientific merit of the entire theory. Includes assessment of testability, comparison with mainstream physics, and recommendations for future development.
+**Key Documents:**
+1. **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - ⭐ Quick overview of scientific status and recommendations
+2. **[Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md)** - Comprehensive rating with detailed criterion analysis
+3. **[UBT Comprehensive Evaluation Report](UBT_COMPREHENSIVE_EVALUATION_REPORT.md)** - October 2025 full evaluation
+
+**Strengths:**
+- ✅ Exemplary scientific integrity and transparency (9/10)
+- ✅ Interesting mathematical structures (biquaternions)
+- ✅ GR compatibility demonstrated in real limit
+
+**Weaknesses:**
+- ⚠️ Incomplete mathematical foundations
+- ⚠️ No quantitative testable predictions
+- ⚠️ Fine-structure constant claim is postulation, not derivation
+- ⚠️ Complex time issues unresolved
+
+---
+
+## 🔗 Related Projects
+
+### Hyperspace Waves
+
+⚠️ **Important Integration Decision**: The hyperspace_waves repository (github.com/DavJ/hyperspace_waves) explores mathematical extensions of biquaternion formalism. However, it makes extraordinary claims (FTL communication, barrier penetration, retrocausality) that contradict established physics and lack experimental validation.
+
+**Status:** Repositories maintained as **SEPARATE** projects to preserve UBT's scientific credibility.
+
+**Assessment:** [HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md) provides detailed analysis explaining why integration would damage UBT's scientific rating (4.5/10 → 2.0/10).
+
+**Mathematical Content:** Some computational tools (biquaternion arithmetic, theta functions) may be selectively imported with appropriate disclaimers in the future, but physical interpretations (FTL, retrocausality) are not endorsed as part of core UBT framework.
 
 ---
 
