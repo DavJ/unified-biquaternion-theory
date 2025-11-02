@@ -65,6 +65,97 @@ This occurs in regions of:
 \item Topological defects and non-simply-connected geometries
 \end{itemize}
 
+\subsubsection{Θ-Field Commutation Criterion (v9 UPDATE)}
+
+The geometric criterion above relates to the time structure. A complementary \textbf{field-theoretic criterion} determines when complex time is valid based on the properties of the Θ-field itself.
+
+\paragraph{Commutator-Based Transition Rule.}
+
+Define the commutator of Θ-field components:
+\begin{equation}
+[\Theta_i, \Theta_j] := \Theta_i \Theta_j - \Theta_j \Theta_i
+\label{eq:theta_commutator}
+\end{equation}
+where $i,j$ label the biquaternionic components.
+
+\textbf{Complex Time Valid When:}
+\begin{equation}
+[\Theta_i, \Theta_j] \to 0 \quad \text{for all } i,j
+\label{eq:complex_valid}
+\end{equation}
+
+In this limit, the Θ-field components commute and the system can be described using complex time $\tau = t + i\psi$.
+
+\textbf{Biquaternionic Time Required When:}
+\begin{equation}
+[\Theta_i, \Theta_j] \neq 0 \quad \text{for some } i,j
+\label{eq:biquat_required}
+\end{equation}
+
+Non-vanishing commutators indicate that the full biquaternionic time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ is essential.
+
+\paragraph{Physical Interpretation.}
+
+\begin{itemize}
+\item \textbf{Commuting fields} $[\Theta_i, \Theta_j] = 0$: 
+  \begin{itemize}
+  \item Classical or semi-classical regime
+  \item Weakly coupled systems
+  \item Mean-field approximations valid
+  \item Complex time projection valid
+  \end{itemize}
+
+\item \textbf{Non-commuting fields} $[\Theta_i, \Theta_j] \neq 0$:
+  \begin{itemize}
+  \item Fully quantum regime with operator ordering effects
+  \item Strongly coupled gauge theories (QCD at low energies)
+  \item Non-Abelian gauge field configurations
+  \item Biquaternionic time structure mandatory
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Connection to Gauge Structure.}
+
+For gauge fields embedded in the Θ-field (see appendix\_E\_SM\_geometry.tex), the commutator is related to the field strength:
+\begin{equation}
+[\Theta_i, \Theta_j] \sim ig F_{ij}
+\end{equation}
+where $F_{ij}$ is the gauge field strength tensor.
+
+Thus:
+\begin{itemize}
+\item \textbf{Abelian gauge theories} (QED, U(1)): $F_{ij}$ commutes with itself $\Rightarrow$ complex time valid
+\item \textbf{Non-Abelian gauge theories} (QCD, SU(3)): $[F_{ij}, F_{kl}] \neq 0$ $\Rightarrow$ biquaternionic time required
+\end{itemize}
+
+\paragraph{Mathematical Formulation.}
+
+Introduce the commutator norm:
+\begin{equation}
+\|\mathcal{C}\| := \sqrt{\sum_{i,j} \langle [\Theta_i, \Theta_j]^\dagger [\Theta_i, \Theta_j] \rangle}
+\label{eq:commutator_norm}
+\end{equation}
+
+The transition criterion becomes:
+\begin{align}
+\|\mathcal{C}\| \ll \|\Theta\|^2 &\quad \Rightarrow \quad \text{Complex time valid} \label{eq:complex_criterion_comm} \\
+\|\mathcal{C}\| \sim \|\Theta\|^2 &\quad \Rightarrow \quad \text{Biquaternionic time required} \label{eq:biquat_criterion_comm}
+\end{align}
+
+This provides a quantitative measure that can be computed in specific field configurations.
+
+\paragraph{Copilot Implementation Note.}
+
+\textbf{IMPORTANT:} When working with UBT field equations, always verify:
+\begin{enumerate}
+\item Check if $[\Theta_i, \Theta_j] \neq 0$ in the current context
+\item If non-zero, use full biquaternionic time $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$
+\item If zero or negligible, complex time $\tau = t + i\psi$ may be used as a simplification
+\item \textbf{Never} reduce to complex time without verifying this condition
+\end{enumerate}
+
+Complex time $\tau = t + i\psi$ is a \textit{didactic and limiting projection} of the native biquaternionic time, valid only when $[\Theta_i, \Theta_j] \to 0$.
+
 \subsubsection{Physical Interpretation}
 
 \paragraph{Complex Time Domain.}
