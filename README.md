@@ -167,7 +167,7 @@ UBT is classified as an honest research framework in early development with exem
 
 ### Hyperspace Waves
 
-⚠️ **Important Integration Decision**: The hyperspace_waves repository (github.com/DavJ/hyperspace_waves) explores mathematical extensions of biquaternion formalism. However, it makes extraordinary claims (FTL communication, barrier penetration, retrocausality) that contradict established physics and lack experimental validation.
+⚠️ **Important Integration Decision**: The [hyperspace_waves](https://github.com/DavJ/hyperspace_waves) repository explores mathematical extensions of biquaternion formalism. However, it makes extraordinary claims (FTL communication, barrier penetration, retrocausality) that contradict established physics and lack experimental validation.
 
 **Status:** Repositories maintained as **SEPARATE** projects to preserve UBT's scientific credibility.
 
