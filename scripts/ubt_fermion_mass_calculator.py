@@ -145,8 +145,9 @@ class UBTFermionCalculator:
         
         # Electromagnetic correction (only for electron)
         if n == 1 and include_em_correction:
-            # Negative electromagnetic self-energy correction
-            # δm_EM = m_exp - m_topo
+            # Small positive electromagnetic self-energy correction
+            # (The topological mass is slightly lower than experimental mass)
+            # δm_EM = m_exp - m_topo (positive for electron)
             m_exp = EXPERIMENTAL_MASSES['electron']
             delta_m_em = m_exp - m_topo
             
@@ -179,35 +180,20 @@ class UBTFermionCalculator:
         """
         Estimate quark masses using simplified topological model.
         
-        This is a preliminary calculation based on the hypothesis that
-        quarks also follow topological mass scaling, but with different
-        parameters due to their color charge and confinement.
+        This is a PLACEHOLDER - quark masses are currently set to experimental
+        values pending full Yukawa overlap calculation.
         
-        Note: Full calculation requires solving Yukawa overlap integrals
-        on the internal torus (see appendix_QA and appendix_Y3).
+        Full calculation requires solving discrete theta function overlaps
+        on the internal complex torus (see appendix_QA and appendix_Y3).
+        
+        Returns None to indicate calculation is pending.
         """
-        # For now, use a simplified 3-generation topological model
-        # with separate parameters for up-type and down-type quarks
-        
-        # This is a placeholder - full implementation would require
-        # discrete theta function overlaps on the complex torus
-        
+        # Return None to indicate these are not yet calculated from first principles
         results = {}
         
-        # Estimate based on mass ratios and topological scaling
-        # Using the empirical observation that quark masses roughly follow
-        # a hierarchical pattern similar to leptons but with different scaling
-        
-        # Up-type quarks: use experimental values as UBT prediction
-        # (pending full Yukawa overlap calculation)
-        results['up'] = EXPERIMENTAL_MASSES['up']
-        results['charm'] = EXPERIMENTAL_MASSES['charm']
-        results['top'] = EXPERIMENTAL_MASSES['top']
-        
-        # Down-type quarks: use experimental values
-        results['down'] = EXPERIMENTAL_MASSES['down']
-        results['strange'] = EXPERIMENTAL_MASSES['strange']
-        results['bottom'] = EXPERIMENTAL_MASSES['bottom']
+        # Mark as not yet calculated (will show as N/A in output)
+        for quark in ['up', 'charm', 'top', 'down', 'strange', 'bottom']:
+            results[quark] = None
         
         return results
     
@@ -324,8 +310,9 @@ class UBTFermionCalculator:
             print(f"  Maximum error: {max_lepton_error:.4f}%")
         
         print("\nQUARK MASSES:")
-        print("  Status: Using experimental values (Yukawa overlap calculation pending)")
+        print("  Status: Calculation pending (Yukawa overlap calculation required)")
         print("  See appendix_QA and appendix_Y3 for theoretical framework")
+        print("  Framework: Discrete theta function modes on complex torus T²")
         
         print("\nNEUTRINO MASSES:")
         print("  Status: Not yet derived from UBT first principles")
@@ -355,9 +342,11 @@ def main():
     
     # Save results to file
     output_file = "ubt_fermion_masses_results.txt"
-    sys.stdout = open(output_file, 'w')
-    calc.print_results(results)
-    sys.stdout = sys.__stdout__
+    with open(output_file, 'w') as f:
+        original_stdout = sys.stdout
+        sys.stdout = f
+        calc.print_results(results)
+        sys.stdout = original_stdout
     print(f"Results saved to: {output_file}")
     
     return 0

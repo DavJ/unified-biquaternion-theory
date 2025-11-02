@@ -32,16 +32,16 @@ nu_tau       N/A                < 1.82e-02         Not derived
 --- UP-TYPE QUARKS ---
 Particle     Predicted (MeV)    Experimental (MeV) Error %   
 --------------------------------------------------------------------------------
-up                        2.16              2.16    0.0000%
-charm                  1270.00           1270.00    0.0000%
-top                  172760.00         172760.00    0.0000%
+up           N/A                             2.16 N/A       
+charm        N/A                          1270.00 N/A       
+top          N/A                        172760.00 N/A       
 
 --- DOWN-TYPE QUARKS ---
 Particle     Predicted (MeV)    Experimental (MeV) Error %   
 --------------------------------------------------------------------------------
-down                      4.67              4.67    0.0000%
-strange                  93.40             93.40    0.0000%
-bottom                 4180.00           4180.00    0.0000%
+down         N/A                             4.67 N/A       
+strange      N/A                            93.40 N/A       
+bottom       N/A                          4180.00 N/A       
 
 ================================================================================
 
@@ -50,8 +50,9 @@ LEPTON PREDICTION QUALITY:
   Maximum error: 0.0000%
 
 QUARK MASSES:
-  Status: Using experimental values (Yukawa overlap calculation pending)
+  Status: Calculation pending (Yukawa overlap calculation required)
   See appendix_QA and appendix_Y3 for theoretical framework
+  Framework: Discrete theta function modes on complex torus T²
 
 NEUTRINO MASSES:
   Status: Not yet derived from UBT first principles

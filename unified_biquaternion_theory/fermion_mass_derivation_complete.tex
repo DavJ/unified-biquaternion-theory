@@ -127,7 +127,7 @@ This is a system of 2 equations with 3 unknowns $(A, B, p)$. We scan over $p \in
 \textbf{Optimal parameters}:
 \begin{align}
     p &= 7.40 \\
-    A &= 0.5099 \text{ MeV} \\
+    A &= 0.509856 \text{ MeV} \\
     B &= -14.099 \text{ MeV}
 \end{align}
 
@@ -140,7 +140,7 @@ With these parameters, the topological mass predictions are:
 \hline
 Lepton & $n$ & Predicted (MeV) & Experimental (MeV) & Error \\
 \hline
-Electron & 1 & 0.5099 & 0.5110 & 0.21\% \\
+Electron & 1 & 0.509856 & 0.51099895 & 0.22\% \\
 Muon & 2 & 105.658 & 105.658 & 0.0001\% \\
 Tau & 3 & 1776.860 & 1776.860 & 0.0001\% \\
 \hline
@@ -153,17 +153,17 @@ The muon and tau are fitted by construction. The electron prediction includes a 
 
 For the electron ($n=1$), the predicted bare topological mass is:
 \begin{equation}
-    m_0^{(e)} = A = 0.5099 \text{ MeV}
+    m_0^{(e)} = A = 0.509856 \text{ MeV}
 \end{equation}
 
 The electromagnetic self-energy correction is:
 \begin{equation}
-    \delta m_{\text{EM}}^{(e)} = m_e^{\text{exp}} - m_0^{(e)} = 0.5110 - 0.5099 = 0.0011 \text{ MeV}
+    \delta m_{\text{EM}}^{(e)} = m_e^{\text{exp}} - m_0^{(e)} = 0.51099895 - 0.509856 = 0.001143 \text{ MeV}
 \end{equation}
 
 This small positive correction is consistent with standard QED calculations of electron self-energy in curved space. The effective radius of the electron is:
 \begin{equation}
-    R_e = \frac{\hbar c}{m_0^{(e)}} = \frac{197.327}{0.5099} \approx 387 \text{ fm} = 3.87 \times 10^{-13} \text{ m}
+    R_e = \frac{\hbar c}{m_0^{(e)}} = \frac{197.327}{0.509856} \approx 387 \text{ fm} = 3.87 \times 10^{-13} \text{ m}
 \end{equation}
 
 \begin{remark}
@@ -320,7 +320,7 @@ The smallness of neutrino masses ($m_\nu < 1$ eV compared to $m_e = 511$ keV) su
 This work demonstrates that UBT successfully:
 \begin{enumerate}
     \item \textbf{Derives charged lepton masses} from topological first principles with 2 parameters
-    \item \textbf{Predicts electron mass} to 0.2\% accuracy without fitting
+    \item \textbf{Predicts electron mass} to 0.22\% accuracy without fitting
     \item \textbf{Provides framework for quark masses} via discrete geometry
     \item \textbf{Reduces free parameters} from 13 (SM) to 2-3 (UBT)
     \item \textbf{Explains mass hierarchy} via Hopf charge quantization
@@ -329,7 +329,7 @@ This work demonstrates that UBT successfully:
 \subsection{Open Questions}
 
 \begin{enumerate}
-    \item Precise calculation of quark masses from discrete mode search
+    \item Precise calculation of quark masses from discrete mode search (see \texttt{consolidation\_project/appendix\_QA\_theta\_ansatz\_block.tex})
     \item Derivation of neutrino masses (see-saw or radiative)
     \item Connection between lepton and quark sectors via unified geometry
     \item Prediction of CKM matrix elements from overlap phases
@@ -363,9 +363,9 @@ This work represents a significant advance in UBT's predictive power and demonst
     \boxed{
     \begin{aligned}
         \text{Lepton masses:} \quad & m_\ell(n) = A n^p - B n \ln(n) \\
-        & \text{with } A = 0.5099 \text{ MeV}, B = -14.099 \text{ MeV}, p = 7.4 \\
+        & \text{with } A = 0.509856 \text{ MeV}, B = -14.099 \text{ MeV}, p = 7.4 \\
         \\
-        \text{Electron:} \quad & m_e = 0.5110 \text{ MeV} \quad (\text{predicted: } 0.5099 \text{ MeV}) \\
+        \text{Electron:} \quad & m_e = 0.51099895 \text{ MeV} \quad (\text{predicted: } 0.509856 \text{ MeV}) \\
         \text{Muon:} \quad & m_\mu = 105.66 \text{ MeV} \quad (\text{fitted}) \\
         \text{Tau:} \quad & m_\tau = 1776.86 \text{ MeV} \quad (\text{fitted}) \\
         \\
