@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2025 David Jaroš
+# This file is part of the Unified Biquaternion Theory project.
+# Licensed under Creative Commons Attribution 4.0 International License.
 
 # UBT: Induced alpha from 5D power-law + 4D KK logs with heat-kernel C5 coefficients
 import math, json
