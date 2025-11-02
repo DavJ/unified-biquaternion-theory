@@ -19,8 +19,29 @@
 \begin{document}
 \maketitle
 
+\begin{center}
+\fcolorbox{red}{yellow!30}{
+\begin{minipage}{0.95\textwidth}
+\textbf{CRITICAL DISCLAIMER - READ FIRST}
+
+This document explores potential connections between UBT and the fine-structure constant $\alpha$. However, readers must understand:
+
+\begin{itemize}
+\item This does \textbf{NOT} constitute a derivation from first principles
+\item The value $n=137$ involves discrete choices not uniquely determined by theory
+\item The relationship $\alpha = 1/n$ is postulated, not rigorously derived from the UBT Lagrangian
+\item This represents \textbf{postulation} (explaining known data), not \textbf{prediction}
+\end{itemize}
+
+\textbf{Official UBT Position:} $\alpha$ is treated as an empirical input in CORE theory. See \texttt{consolidation\_project/appendix\_P4\_alpha\_status.tex} for complete, honest assessment.
+\end{minipage}
+}
+\end{center}
+
+\vspace{1em}
+
 \begin{abstract}
-\noindent\textcolor{ubtblue}{\textbf{Central Result:}} The fine structure constant $\alpha \approx 1/137$ is not a fundamental parameter but emerges from the geometric structure of spacetime in the Unified Biquaternion Theory (UBT). We derive $\alpha^{-1} = 137$ exactly from first principles, with quantum corrections explaining the experimental value $\alpha_{\text{exp}}^{-1} = 137.036$ to 260 ppm precision.
+\noindent\textcolor{ubtblue}{\textbf{Exploratory Investigation:}} The fine structure constant $\alpha \approx 1/137$ might emerge from geometric structures in the Unified Biquaternion Theory (UBT). We explore how complex time topology and gauge quantization could relate to $\alpha^{-1} \approx 137$, though this remains an open problem requiring further theoretical development. See disclaimer above for critical limitations.
 \end{abstract}
 
 \section{The Problem}
@@ -32,9 +53,9 @@ The fine structure constant $\alpha$ governs electromagnetic interaction strengt
 
 \textbf{Why 137?} This question has puzzled physicists for a century. In conventional quantum field theory, $\alpha$ enters as a free parameter—measured, not predicted. The number 137 appears arbitrary and unexplained.
 
-\section{The UBT Solution}
+\section{The UBT Exploratory Approach}
 
-The Unified Biquaternion Theory reveals that $\alpha$ is not arbitrary but \textbf{geometrically necessary}.
+The Unified Biquaternion Theory explores how $\alpha$ might relate to geometric structures, though a complete derivation remains an open problem.
 
 \subsection{Key Insights}
 
@@ -45,16 +66,16 @@ The Unified Biquaternion Theory reveals that $\alpha$ is not arbitrary but \text
 
 \item \textbf{Gauge Quantization}: The electromagnetic coupling satisfies the Dirac quantization condition:
 \begin{equation}
-g \oint A_\psi d\psi = 2\pi n, \quad n \in \mathbb{Z}
+g \oint A_\psi d\psi = 2\pi N, \quad N \in \mathbb{Z}
 \end{equation}
 
-\item \textbf{Stability}: Only \emph{prime} winding numbers $n$ correspond to stable vacuum states.
+\item \textbf{Stability}: Only \emph{prime} winding numbers $N$ correspond to stable vacuum states.
 
-\item \textbf{Energy Minimization}: The effective potential for winding $n$ is:
+\item \textbf{Energy Minimization}: The effective potential for winding $N$ is:
 \begin{equation}
-V_{\text{eff}}(n) = An^2 - Bn\ln n
+V_{\text{eff}}(N) = AN^2 - BN\ln N
 \end{equation}
-Among primes, this has a unique minimum at \fbox{$n = 137$}.
+Among primes, this has a unique minimum at \fbox{$N = 137$}.
 \end{enumerate}
 
 \subsection{The Derivation Chain}
@@ -70,7 +91,7 @@ $\downarrow$ \\
 $\downarrow$ \\
 \textbf{Prime Number Stability} \\
 $\downarrow$ \\
-\textbf{Energy Minimum at $n=137$} \\
+\textbf{Energy Minimum at $N=137$} \\
 $\downarrow$ \\
 \fbox{\textcolor{resultgreen}{\Large $\boldsymbol{\alpha^{-1} = 137}$}}
 \end{minipage}
@@ -96,7 +117,7 @@ We evaluated $V_{\text{eff}}(p)$ for all primes $p$ near 137:
 \end{tabular}
 \end{center}
 
-\textbf{Conclusion}: Among prime numbers, $n = 137$ uniquely minimizes the effective potential.
+\textbf{Conclusion}: Among prime numbers, $N = 137$ uniquely minimizes the effective potential.
 
 \section{Comparison with Experiment}
 
@@ -171,7 +192,7 @@ UBT predicts the \emph{bare} value $\alpha_0^{-1} = 137$. Quantum corrections th
 \item \texttt{scripts/emergent\_alpha\_calculator.py} — Numerical implementation
   \begin{itemize}
   \item Computes effective potential for all primes
-  \item Verifies $n = 137$ is the minimum
+  \item Verifies $N = 137$ is the minimum
   \item Includes sensitivity analysis
   \item No external dependencies required
   \end{itemize}
@@ -187,7 +208,7 @@ python3 scripts/emergent_alpha_calculator.py
 This derivation improves on earlier attempts:
 
 \begin{itemize}
-\item \textbf{No assumed topological numbers} — $n=137$ is \emph{derived}, not postulated
+\item \textbf{No assumed topological numbers} — $N=137$ is explored through energy minimization (though selection mechanism involves free parameters, as noted in disclaimer)
 \item \textbf{No compactification schemes} — Uses intrinsic UBT structure
 \item \textbf{Rigorous mathematics} — Formal theorems and proofs
 \item \textbf{Numerical verification} — Working code demonstrates result

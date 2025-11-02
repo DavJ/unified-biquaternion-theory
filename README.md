@@ -15,8 +15,10 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 **⚠️ IMPORTANT: Theory Status**
 - UBT is a **research framework in development**, not a validated scientific theory
 - Mathematical foundations are incomplete (see documentation below)
-- Fine-structure constant work is postulation, not derivation
+- Fine-structure constant: Explored as potential geometric emergence, NOT derived from first principles (treated as empirical input in CORE theory)
 - Consciousness claims are highly speculative without neuroscientific grounding
+- **NEW (Nov 2025)**: Five concrete testable predictions with numerical values now specified (see Appendix W)
+- **NEW (Nov 2025)**: Two-State Vector Formalism (TSVF) integration provides validated physics connection (see Appendix X)
 - **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
 
 Key features:
@@ -172,6 +174,22 @@ UBT is classified as an honest research framework in early development with exem
 **Assessment:** [HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md) provides detailed analysis explaining why integration would damage UBT's scientific rating (4.5/10 → 2.0/10).
 
 **Mathematical Content:** Some computational tools (biquaternion arithmetic, theta functions) may be selectively imported with appropriate disclaimers in the future, but physical interpretations (FTL, retrocausality) are not endorsed as part of core UBT framework.
+
+3. **[UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md](UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md)** - ⭐ **NEW**: Analysis of available scientific data from major experiments (LIGO/Virgo, Planck, XENON, Fermi-LAT) relevant to testing UBT predictions. Includes comparison with five concrete testable predictions from Appendix W.
+
+4. **[SCIENTIFIC_DATA_SOURCES_BIBLIOGRAPHY.md](SCIENTIFIC_DATA_SOURCES_BIBLIOGRAPHY.md)** - Complete bibliography of experimental data sources, publications, and analysis tools for testing UBT predictions.
+
+5. **[ANALYZA_VEDECKYCH_DAT_CZ.md](ANALYZA_VEDECKYCH_DAT_CZ.md)** - Czech summary of scientific data analysis supporting UBT predictions.
+
+---
+
+## 🔬 Data Analysis Tools
+
+Python scripts for analyzing experimental data relevant to UBT predictions are available in the `scripts/` directory:
+
+- **[analyze_dark_matter_limits.py](scripts/analyze_dark_matter_limits.py)** - Compare UBT p-adic dark matter predictions with XENON/LZ/PandaX limits
+- **[analyze_cmb_power_spectrum.py](scripts/analyze_cmb_power_spectrum.py)** - Analyze Planck CMB data for multiverse projection signatures
+- See [scripts/DATA_ANALYSIS_README.md](scripts/DATA_ANALYSIS_README.md) for documentation
 
 ---
 
