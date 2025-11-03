@@ -7,6 +7,26 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    name: Lint complex time usage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Run complex time linter
+        run: |
+          python3 scripts/lint_complex_time_usage.py
+        continue-on-error: true  # Don't fail build, just warn
+      
+      - name: Run symbolic alpha tests
+        run: |
+          python3 scripts/test_symbolic_alpha.py
+
   discover:
     name: Discover LaTeX roots
     runs-on: ubuntu-latest

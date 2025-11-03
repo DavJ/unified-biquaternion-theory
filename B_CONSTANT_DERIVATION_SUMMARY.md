@@ -1,4 +1,28 @@
-# B Constant Derivation - Summary of Improvement
+# B Constant Derivation Summary
+
+**Date:** November 3, 2025  
+**Status:** ✅ Complete - Derived from First Principles  
+**Update:** Superseded by unified derivation in `consolidation_project/appendix_ALPHA_one_loop_biquat.tex`
+
+---
+
+## ⚠️ MIGRATION NOTICE
+
+This document describes an earlier approach to deriving the B constant. The **complete, unified derivation** is now in:
+
+**`consolidation_project/appendix_ALPHA_one_loop_biquat.tex`**
+
+Key improvements in the new derivation:
+- B derived symbolically: B = (2π N_eff) / (3 R_ψ) × β_2loop ≈ 46.3
+- UV cutoff Λ = 1/R_ψ set geometrically (not fitted)
+- Mode counting table justifies N_eff = 12
+- No free parameters
+
+**All references should use the new appendix as the primary source.**
+
+---
+
+## Historical Context (Original Approach)
 
 ## What Changed
 
