@@ -27,6 +27,27 @@ T_B = t + i\psi + i v_x \sigma_x + i v_y \sigma_y + i v_z \sigma_z.
 
 In the biquaternion algebra $\mathbb{H} \otimes \mathbb{C}$, this represents the temporal component of the full biquaternionic field $\Theta(q, T_B)$.
 
+\paragraph{Equivalence Between Operator and Algebraic Forms.}
+
+UBT employs two equivalent representations of biquaternionic time, each suited to different contexts:
+
+\begin{itemize}
+\item \textbf{Operator form (local dynamics):} $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$  
+  Used in Hamiltonian evolution, drift dynamics, and local spinor coupling (Pauli representation).
+
+\item \textbf{Algebraic form (global structure):} $T = t_0 + i t_1 + j t_2 + k t_3$  
+  Used in metric derivations, topological formulations, and theta-function structure.
+\end{itemize}
+
+These forms are equivalent under the mapping:
+\begin{equation}
+t_0 = t, \quad t_1 = \psi, \quad (t_2, t_3) \leftrightarrow \mathbf{v}_\perp = (v_x, v_y, v_z),
+\label{eq:time_equivalence}
+\end{equation}
+with the correspondence $(i, j, k) \leftrightarrow (\sigma_x, \sigma_y, \sigma_z)$ between quaternion basis elements and Pauli matrices.
+
+The operator version $T_B$ acts on local spinor spaces and is natural for describing physical evolution, while the algebraic version $T$ defines the global temporal manifold and is suited for geometric and topological analysis. Both representations describe the same underlying biquaternionic time structure.
+
 \subsubsection{Invariant Norm and Projection Criterion}
 
 Define the invariant norm of the vector component:

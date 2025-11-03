@@ -6,14 +6,24 @@ This glossary provides a comprehensive reference for the mathematical symbols, o
 \subsection{Fundamental Spacetime and Complex Time}
 
 \begin{description}
-\item[$\tau$] Complex time: $\tau = t + i\psi$, where $t$ is real time and $\psi$ is the imaginary phase coordinate
+\item[$\tau$] Complex time: $\tau = t + i\psi$ (simplified 2D projection of biquaternionic time)
 \item[$t$] Real time coordinate (standard temporal dimension)
 \item[$\psi$] Imaginary time or phase coordinate, representing internal/cognitive dynamics
+\item[$T$ or $T_B$] Biquaternionic time (full 4D time structure, see below)
+\item[$T$] Biquaternionic time (algebraic form): $T = t_0 + i t_1 + j t_2 + k t_3$, used in metric and topological formulations
+\item[$T_B$] Biquaternionic time (operator form): $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$, used in Hamiltonian and spinor dynamics
 \item[$x^\mu$] Standard spacetime coordinates, $\mu = 0,1,2,3$ (Lorentzian spacetime)
 \item[$q^\mu$] Biquaternion coordinates on manifold $\mathbb{B}^4$
 \item[$\mathbb{B}^4$] Four-dimensional biquaternionic manifold: $(\mathbb{C} \otimes \mathbb{H})^4$
 \item[$\mathbb{C}^5$] Five-dimensional complex manifold (alternative formulation): $(x^\mu, \psi)$
 \end{description}
+
+\paragraph{Note on Biquaternionic Time Representations.} UBT employs two equivalent representations:
+\begin{itemize}
+\item \textbf{Algebraic form} $T = t_0 + i t_1 + j t_2 + k t_3$: Used in global geometric and topological contexts
+\item \textbf{Operator form} $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$: Used in local Hamiltonian and spinor evolution
+\end{itemize}
+These are equivalent under the mapping $(i,j,k) \leftrightarrow (\sigma_x, \sigma_y, \sigma_z)$ with $t_0=t$, $t_1=\psi$, $(t_2,t_3) \leftrightarrow \mathbf{v}_\perp$. Complex time $\tau = t + i\psi$ emerges as a 2D projection when vector components are negligible.
 
 \subsection{Fields and Operators}
 
