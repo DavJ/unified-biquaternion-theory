@@ -12,6 +12,11 @@
 - **Biquaternion Time Priority**: Transition criterion formalized in Appendix B
 - **Symbol Clarity**: Distinct B coefficients in α vs electron mass contexts clarified
 
+**NEW (November 2025):**
+- **Appendix G (2025)**: Introduces Hamiltonian-in-exponent θ-function formulation: Θ(Q,T) = Σ exp[π·𝔹(n)·ℍ(T)]
+- **Dual Time Representations**: Both operator form T_B and algebraic form T preserved and clarified as equivalent
+- **Enhanced Documentation**: Comprehensive glossaries, historical lineage (180+ years), and rigor classification
+
 **Migration:** References to "B = 46.3 fitted" are deprecated. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ---
@@ -38,9 +43,13 @@
 - All forces and matter in a single field equation
 
 **Note on Complex vs Biquaternionic Time:**
-> Complex time **τ = t + iψ** is a *didactic and limiting projection* of the native biquaternionic time **q_t = t + i**u**ψ**, valid only when Θ-field components commute: **[Θ_i, Θ_j] → 0**. 
+> UBT employs **biquaternionic time** with two equivalent representations:
+> - **Operator form**: T_B = t + i(ψ + **v**·**σ**) — used in local Hamiltonian evolution and spinor dynamics
+> - **Algebraic form**: T = t₀ + it₁ + jt₂ + kt₃ — used in global metric and topological formulations
+> 
+> These are equivalent under the mapping (i,j,k) ↔ (σ_x, σ_y, σ_z). Complex time **τ = t + iψ** emerges as a 2D projection when vector components are negligible: **‖v‖² ≪ |ψ|²**.
 >
-> When field components do not commute (non-Abelian gauge fields, strongly coupled regimes), the full biquaternionic structure is required. See `consolidation_project/appendix_N_extension_biquaternion_time.tex` for the complete transition criterion.
+> **Full biquaternionic time is required** when Θ-field components do not commute: **[Θ_i, Θ_j] ≠ 0** (non-Abelian gauge fields, strongly coupled regimes). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
 
 ---
 
