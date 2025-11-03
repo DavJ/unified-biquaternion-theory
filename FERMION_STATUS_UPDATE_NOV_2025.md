@@ -128,13 +128,23 @@ Where:
 
 ### Current Status
 
-UBT has **not yet derived** neutrino masses from first principles. This requires extending the current framework to include:
+UBT has **not yet derived** neutrino masses from first principles. While a computational framework exists, it produces **unphysical results** that violate experimental constraints by many orders of magnitude.
+
+**Critical finding:** The file `ubt_neutrino_mass_results.txt` contains predictions that are:
+- Mass scale wrong by factor 10²⁸: Σm_ν = 10¹⁹ eV vs experimental limit < 0.12 eV
+- Mixing angles all zero: θ₁₂ = θ₂₃ = θ₁₃ = 0° (experiment: 33°, 49°, 8.6°)
+- Mass splittings wrong by factors 10¹⁶ - 10⁴¹
+
+**Assessment:** ❌ **Framework exists but implementation is INCORRECT**
+
+See **NEUTRINO_MASS_CRITICAL_ASSESSMENT.md** for detailed analysis.
+
+### What Is Required
 
 1. **Mass generation mechanism:**
-   - Type I see-saw mechanism (heavy right-handed neutrinos)
-   - Type II see-saw mechanism (scalar triplet)
-   - Radiative generation (loop corrections)
-   - Or novel UBT-specific mechanism
+   - Type I see-saw mechanism (heavy right-handed neutrinos) ← **attempted but FAILED**
+   - Need to fix Majorana mass matrix M_R (currently 10²⁸ too small)
+   - Need to fix Yukawa coupling structure (currently diagonal with no mixing)
 
 2. **Mass ordering:**
    - Normal ordering: m₁ < m₂ < m₃
