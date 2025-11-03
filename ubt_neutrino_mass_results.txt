@@ -1,0 +1,78 @@
+
+================================================================================
+UBT NEUTRINO MASS PREDICTIONS: SEE-SAW MECHANISM
+================================================================================
+
+--- Theoretical Framework ---
+Type-I see-saw mechanism in complex time:
+  m_ν = m_D · M_R^(-1) · m_D^T
+  - Dirac masses m_D from Yukawa couplings (~eV)
+  - Majorana masses M_R from complex-time geometry (~10^14 GeV)
+  - Result: small neutrino masses (~0.01-0.1 eV)
+
+--- Input Parameters ---
+Electroweak VEV: v = 246.0 GeV
+Complex time modulus: τ = (0.5+1.5j)
+Dirac Yukawa suppression: ε = 1.00e-06
+
+--- Dirac Mass Matrix (MeV) ---
+  m_D[0,0] = 7.0286e-05 MeV = 7.0286e+01 eV
+  m_D[1,1] = 1.4057e-02 MeV = 1.4057e+04 eV
+  m_D[2,2] = 2.4600e-01 MeV = 2.4600e+05 eV
+
+--- Majorana Mass Matrix (GeV) ---
+  M_R[0,0] = 8.6258e-02 GeV
+  M_R[1,1] = 4.7439e-13 GeV
+  M_R[2,2] = 2.6090e-24 GeV
+
+--- Light Neutrino Masses ---
+Neutrino     Mass (eV)       Mass (MeV)     
+--------------------------------------------------------------------------------
+ν_1             5.727081e-11   5.727081e-17
+ν_2             4.165432e+05   4.165432e-01
+ν_3             2.319545e+19   2.319545e+13
+
+Sum of masses: Σm_ν = 23195452938820923392.000000 eV
+Experimental limit: Σm_ν < 0.12 eV
+✗ Prediction exceeds cosmological bound
+
+--- Mass Splittings ---
+Observable      Predicted (eV²)    Experimental (eV²) Ordering
+--------------------------------------------------------------------------------
+Δm²_21                 1.7351e+11        7.5300e-05 Solar
+|Δm²_31|                5.3803e+38        2.5000e-03 Normal
+
+Mass ordering: Normal (m_1 < m_2 < m_3)
+
+--- PMNS Mixing Angles ---
+Angle        Predicted (°)   Experimental (°)   Error (°)
+--------------------------------------------------------------------------------
+θ_12                   0.00             33.44          33.44
+θ_23                   0.00             49.00          49.00
+θ_13                   0.00              8.57           8.57
+
+CP phase: δ_CP = 0.00°
+(Experimental: not yet precisely measured, hint ~230°)
+
+--- Key Predictions ---
+1. Mass ordering: Normal
+2. Lightest mass: m_1 = 5.7271e-11 eV
+3. Sum of masses: Σm_ν = 23195452938820923392.000000 eV
+4. Solar angle: θ_12 = 0.00°
+5. Atmospheric angle: θ_23 = 0.00°
+6. Reactor angle: θ_13 = 0.00°
+7. CP phase: δ_CP = 0.00°
+
+================================================================================
+
+Note: These predictions depend on:
+- Complex-time geometry (τ = 0.5 + 1.5i)
+- Majorana mass scale from B-L breaking
+- Dirac Yukawa suppression factor
+
+Further refinement requires:
+- Full calculation of Yukawa couplings from geometry
+- Inclusion of radiative corrections
+- RG evolution from GUT scale to low energy
+================================================================================
+
