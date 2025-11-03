@@ -1,30 +1,36 @@
-
-\documentclass[12pt]{article}
-\usepackage[a4paper, margin=2.5cm]{geometry}
-\usepackage{amsmath, amssymb}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{titlesec}
-\usepackage{authblk}
-
-\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
-
-\title{\textbf{Quantum Gravity in UBT: Unification of General Relativity and Quantum Field Theory}}
-\author{David Jaroš}
-\affil{\texttt{jdavid.cz@gmail.com}}
-\date{November 2025}
-
-\begin{document}
-
-\maketitle
-
-\input{../../THEORY_STATUS_DISCLAIMER}
-\SpeculativeContentWarning
-
-\begin{abstract}
-We demonstrate how the Unified Biquaternion Theory (UBT) naturally unifies General Relativity (GR) and Quantum Field Theory (QFT) within a single framework. Unlike conventional approaches that treat gravity and quantum mechanics as separate theories requiring reconciliation, UBT derives both gravitational and quantum phenomena from the fundamental biquaternionic field $\Theta(q, \tau)$ defined over complex spacetime $\tau = t + i\psi$. This derivation establishes UBT as a true unified theory where GR emerges as the classical limit of quantum spacetime geometry, and QFT arises from quantization of the same underlying field. The unification is achieved without introducing new fundamental constants beyond those already present in GR and QFT separately.
-\end{abstract}
+% This file can be compiled standalone or included in another document
+% When included, the preamble and document environment are skipped
+\ifdefined\UBTSTANDALONECOMPILE
+  % Do nothing - preamble already loaded
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb}
+  \usepackage{hyperref}
+  \usepackage{graphicx}
+  \usepackage{titlesec}
+  \usepackage{authblk}
+  
+  \titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
+  \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+  
+  \title{\textbf{Quantum Gravity in UBT: Unification of General Relativity and Quantum Field Theory}}
+  \author{David Jaroš}
+  \affil{\texttt{jdavid.cz@gmail.com}}
+  \date{November 2025}
+  
+  \begin{document}
+  
+  \maketitle
+  
+  \input{../THEORY_STATUS_DISCLAIMER}
+  \SpeculativeContentWarning
+  
+  \begin{abstract}
+  We demonstrate how the Unified Biquaternion Theory (UBT) naturally unifies General Relativity (GR) and Quantum Field Theory (QFT) within a single framework. Unlike conventional approaches that treat gravity and quantum mechanics as separate theories requiring reconciliation, UBT derives both gravitational and quantum phenomena from the fundamental biquaternionic field $\Theta(q, \tau)$ defined over complex spacetime $\tau = t + i\psi$. This derivation establishes UBT as a true unified theory where GR emerges as the classical limit of quantum spacetime geometry, and QFT arises from quantization of the same underlying field. The unification is achieved without introducing new fundamental constants beyond those already present in GR and QFT separately.
+  \end{abstract}
+\fi
 
 \section{Introduction: The Problem of Quantum Gravity}
 
@@ -579,4 +585,9 @@ This extended quantization demonstrates that UBT is not merely a reformulation o
 \section*{License}
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
 
-\end{document}
+\ifdefined\UBTSTANDALONECOMPILE
+  % Included mode - no \end{document}
+\else
+  % Standalone mode - close document
+  \end{document}
+\fi
