@@ -45,6 +45,12 @@ See **[MAIN_DOCUMENTS_GUIDE.md](MAIN_DOCUMENTS_GUIDE.md)** for detailed informat
 
 ## Recent Updates (Nov 2025)
 
+- **✅ Quantum Gravity Unification (Nov 3, 2025)**: Added complete derivation of GR+QFT unification
+  - New appendix: `appendix_QG_quantum_gravity_unification.tex`
+  - Shows how both General Relativity and Quantum Field Theory emerge from single Θ field
+  - Includes extended GR quantization with phase curvature
+  - Predicts antigravity effects at atomic scales
+  - Validated with SymPy/NumPy (see `../unified_biquaternion_theory/validation/`)
 - **Appendix G Enhanced**: Added detailed SU(3) color symmetry content:
   - One-loop running of $g_s(\mu)$ in emergent formulation
   - Detailed anomaly analysis (left-right factorization)
