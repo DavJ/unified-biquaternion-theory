@@ -41,6 +41,19 @@ These are equivalent under the mapping $(i,j,k) \leftrightarrow (\sigma_x, \sigm
 \item[$\mathcal{D}_\mu$] Covariant derivative (includes affine, spin, and gauge connections)
 \item[$\nabla_\mu$] Standard covariant derivative
 \item[$\nabla^\dagger$] Adjoint covariant derivative operator
+\item[$\nabla_Q$] Gradient operator on biquaternionic manifold $\mathbb{B}^4$
+\item[$\nabla_Q^2$] Laplacian operator on biquaternionic manifold: $\nabla_Q \cdot \nabla_Q$
+\end{description}
+
+\subsection{Fokker--Planck and Stochastic Dynamics}
+
+\begin{description}
+\item[$\mathbb{A}(Q,T)$] Biquaternionic drift operator (vector field on $\mathbb{B}^4$) in the Fokker--Planck equation
+\item[$\mathbb{D}$] Biquaternionic diffusion operator (potentially non-commutative)
+\item[$\mathbb{H}(T)$] Biquaternionic Hamiltonian operator: $\mathbb{H}(T) = -\nabla_Q \cdot \mathbb{A}(Q,T) + \mathbb{D}\nabla_Q^2$
+\item[$\mathbb{B}(n)$] Biquaternionic index or spinor basis vector parameterized by integer $n \in \mathbb{Z}$
+\item[$P(Q,T)$] Probability distribution or field amplitude on biquaternionic phase space
+\item[BFPE] Biquaternionic Fokker--Planck Equation: $\partial_T P = -\nabla_Q \cdot (\mathbb{A} P) + \mathbb{D} \nabla_Q^2 P$
 \end{description}
 
 \subsection{Curvature and Geometry}
