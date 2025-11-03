@@ -30,11 +30,19 @@ All charged lepton masses follow a universal scaling law:
 m(n) = A·n^p - B·n·ln(n)
 ```
 
+**Classification:** This is a **2-parameter phenomenological ansatz** fitted to muon and tau masses to predict the electron mass.
+
 Where:
 - **n** = Hopf charge (topological quantum number): 1 for electron, 2 for muon, 3 for tau
 - **A** = 0.509856 MeV (fitted from muon and tau)
-- **B** = -14.099 MeV (fitted from muon and tau)
+- **B** = -14.099 MeV (fitted from muon and tau) — **Note:** This B is physically distinct from the B in α derivation (different context)
 - **p** = 7.4 (optimized exponent)
+
+**Roadmap to First Principles:**
+1. **Link A to hopfion effective action minimum:** The coefficient A should emerge from minimizing the energy functional of a Hopfion soliton configuration in the biquaternionic field Θ(q,τ).
+2. **Logarithmic term B from quantum corrections:** The B coefficient arises from one-loop quantum corrections and self-interaction effects at finite n. Future work will derive this from the same vacuum polarization framework used in the α derivation (see appendix_ALPHA_one_loop_biquat.tex).
+3. **Exponent p from topological constraints:** The power p ≈ 7.4 should be justified from the scaling of Hopfion energy with charge, potentially related to the quaternionic structure of the internal space.
+4. **Symbol consistency:** The B in this mass formula is distinct from the B in the α running coupling. Both arise from quantum corrections but in different contexts (fermion self-energy vs photon vacuum polarization). Future work will clarify the relationship or rename symbols to avoid confusion.
 
 ### Predictions vs Experiment
 

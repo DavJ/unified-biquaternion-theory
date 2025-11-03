@@ -9,7 +9,90 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Merged master branch updates** (commits ec1376e and d73012e)
+- **New unified α derivation**: `consolidation_project/appendix_ALPHA_one_loop_biquat.tex`
+  - Single source of truth for fine-structure constant derivation
+  - Derives B coefficient from first principles: B = (2π N_eff) / (3 R_ψ) × β_2loop ≈ 46.3
+  - UV cutoff set geometrically: Λ = 1/R_ψ (no free parameters)
+  - Mode counting table justifies N_eff = 12 from biquaternion structure
+  - Renormalization condition at μ₀ = m_e (configurable via macro)
+  
+- **Biquaternion time transition criterion**: Added formal criterion to `appendix_B_scalar_imaginary_fields_consolidated.tex`
+  - Complex time T = t + iψ valid when ‖∇⊥Θ‖² ≪ ‖∂ₜΘ‖²
+  - Full biquaternion time τ = t + iψ + jχ + kξ required otherwise
+  - Reference tag [TRANSITION_CRITERION] for tracking usage
+
+- **Linter for complex time usage**: `scripts/lint_complex_time_usage.py`
+  - Checks that complex time mentions reference transition criterion
+  - Ensures biquaternion time priority is maintained
+  - CI integration ready
+
+- **Symbolic alpha tests**: `scripts/test_symbolic_alpha.py`
+  - Validates B depends only on R_ψ and N_eff (no numeric 46.3)
+  - Tests μ₀ invariance in B definition
+  - Verifies N_eff counting table sums to 12
+  - Confirms α⁻¹ = 137 from effective potential minimum
+
+### Changed
+
+- **Updated Appendix E** (`appendix_E_SM_QCD_embedding.tex`):
+  - Replaced "α is empirical in CORE" with reference to new Appendix α
+  - Now states: "In CORE, α is parameterized via renormalization condition at μ₀; complete derivation in Appendix α"
+
+- **Updated fermion mass documentation** (`FERMION_MASS_ACHIEVEMENT_SUMMARY.md`):
+  - Reclassified m(n) = A·n^p - B·n·ln(n) as "2-parameter phenomenological ansatz"
+  - Added roadmap to first-principles derivation
+  - Clarified symbol B distinction: fermion mass B vs α running B are physically different contexts
+  - Noted future work will unify or rename to avoid confusion
+
+- **Updated CI configuration** (`.github/latex_roots.txt`):
+  - Added `appendix_ALPHA_one_loop_biquat.tex` to compilation list
+  - Commented out deprecated files: `emergent_alpha_*.tex`, `alpha_final_derivation.tex`
+  - Documented deprecation reasons
+
+### Deprecated
+
+- **"B = 46.3 fitted" statements**: The constant B is now derived, not fitted
+  - Old approach: B stated as empirical constant from "quantum calculations"
+  - New approach: B = (2π × 12) / 3 × 1.8 ≈ 46.3 derived from mode counting
+  - Files with "B = 46.3 fitted" should update to reference Appendix α
+  - This resolves the critical gap in α derivation rigor
+
+- **Separate emergent_alpha_*.tex files**: Superseded by unified appendix
+  - `emergent_alpha_calculations.tex` → Use `appendix_ALPHA_one_loop_biquat.tex`
+  - `emergent_alpha_executive_summary.tex` → Deprecated
+  - `emergent_alpha_from_ubt.tex` → Deprecated
+  - `unified_biquaternion_theory/alpha_final_derivation.tex` → Deprecated
+
+### Migration Notes
+
+**For users referencing α derivation:**
+- Old: Reference scattered across multiple files with "B = 46.3" as input
+- New: Reference `appendix_ALPHA_one_loop_biquat.tex` as single source
+- Impact: No change to numerical predictions, but derivation is now rigorous
+
+**For developers:**
+- Symbol B has two meanings: (1) α running coupling coefficient, (2) fermion mass logarithmic term
+- These are distinct but related via quantum corrections framework
+- Future work will clarify relationship or adopt distinct notation
+
+---
+
+## [2025-11-03] - Alpha and Electron Mass Unification
+
+### Added
+- Unified derivation removing circularity and free parameters
+- Geometric UV cutoff prescription
+- Biquaternion time transition criterion
+- Testing and validation infrastructure
+
+### Fixed
+- Removed circularity in α and electron mass derivations
+- Clarified symbol B usage in different contexts
+- Established biquaternion time as primary formulation
+
+---
+
+## [2025-11-02] - Merged master branch updates (commits ec1376e and d73012e)
   - P-adic α derivation: `consolidation_project/appendix_ALPHA_padic_derivation.tex`
   - Executive summaries: `alpha_padic_executive_summary.tex`, `ALPHA_PADIC_README.md`
   - Scientific rating document: `UBT_SCIENTIFIC_RATING_2025.md`

@@ -10,6 +10,7 @@ consolidation_project/appendix_AA_theta_action.tex
 consolidation_project/appendix_E2_SM_geometry.tex
 consolidation_project/appendix_H2_holography_variational.tex
 consolidation_project/appendix_Y3_yukawa_couplings.tex
+consolidation_project/appendix_ALPHA_one_loop_biquat.tex
 
 # Latest alpha derivation (clean version)
 consolidation_project/new_alpha_derivations/noether_to_alpha_clean_v1.2.tex
@@ -20,10 +21,10 @@ UBT_Main.tex
 UBT_Abstract_OSF.tex
 UBT_Final_Consolidation_Report.tex
 
-# Emergent alpha documents
-emergent_alpha_calculations.tex
-emergent_alpha_executive_summary.tex
-emergent_alpha_from_ubt.tex
+# NOTE: Deprecated emergent_alpha_*.tex files (replaced by appendix_ALPHA_one_loop_biquat.tex)
+# emergent_alpha_calculations.tex
+# emergent_alpha_executive_summary.tex
+# emergent_alpha_from_ubt.tex
 
 # Complex theta transform paper
 complex-theta-transform-paper/main.tex
@@ -35,7 +36,8 @@ complex_consciousness/ctc_2.0_main.tex
 unified_biquaternion_theory/ubt_main_article.tex
 unified_biquaternion_theory/ubt_osf_overview_article.tex
 unified_biquaternion_theory/fermion_mass_derivation_complete.tex
-unified_biquaternion_theory/alpha_final_derivation.tex
+# NOTE: Deprecated alpha_final_derivation.tex (replaced by appendix_ALPHA_one_loop_biquat.tex)
+# unified_biquaternion_theory/alpha_final_derivation.tex
 
 # OSF release document
 unified_biquaternion_theory/docs/osf_release/main.tex

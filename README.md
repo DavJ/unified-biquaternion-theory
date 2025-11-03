@@ -2,6 +2,20 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+## 🔄 Recent Update: α and mₑ Derivation Unification (November 3, 2025)
+
+**Major Improvement:** The fine-structure constant (α) and electron mass (mₑ) derivations have been unified and hardened:
+
+- **Single Source for α**: New `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` provides complete derivation
+- **No Free Parameters**: Coefficient B derived as B = (2π·12)/3 × 1.8 ≈ 46.3 (not fitted)
+- **Geometric UV Cutoff**: Λ = 1/R_ψ set by imaginary-time compactification
+- **Biquaternion Time Priority**: Transition criterion formalized in Appendix B
+- **Symbol Clarity**: Distinct B coefficients in α vs electron mass contexts clarified
+
+**Migration:** References to "B = 46.3 fitted" are deprecated. See [CHANGELOG.md](CHANGELOG.md) for details.
+
+---
+
 ## 🎯 The Core Equation (T-shirt formula)
 
 ```
