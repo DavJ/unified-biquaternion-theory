@@ -2,7 +2,7 @@
 
 **Author:** Ing. David Jaroš  
 **Date:** November 2025  
-**Version:** UBT v10.0 (pre-release)
+**Version:** UBT v10.0 (Release Candidate)
 
 ---
 
