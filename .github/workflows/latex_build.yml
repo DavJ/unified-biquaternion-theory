@@ -100,7 +100,7 @@ jobs:
           latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
           args: -interaction=nonstopmode -halt-on-error
           extra_system_packages: "py-pygments"
-          texlive_extra_packages: "physics braket revtex4-1"
+          pre_compile: "tlmgr update --self && tlmgr install physics braket revtex4-1"
 
       - name: Make safe artifact names
         id: names
