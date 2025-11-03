@@ -19,6 +19,44 @@ derivatives associated with the complexified spacetime metric. This allows the
 model to incorporate both massless and massive scalar excitations, as well as
 topological defects.
 
+\subsection{Biquaternion vs Complex Time: Transition Criterion}
+\label{sec:transition-criterion}
+
+\textbf{Native Structure:} UBT is fundamentally formulated in \textbf{biquaternion time}:
+\begin{equation}
+\tau = t \cdot 1 + \psi \cdot i + \chi \cdot j + \xi \cdot k,
+\end{equation}
+where $(1, i, j, k)$ are quaternion basis elements and $(t, \psi, \chi, \xi) \in \mathbb{R}$.
+
+\textbf{Complex Time as Effective Limit:} The simpler \textbf{complex time} $T = t + i\psi$ 
+may be used as an effective description when the following criterion is satisfied:
+
+\begin{equation}
+\boxed{
+\|\nabla_\perp \Theta\|^2 \ll \|\partial_t \Theta\|^2,
+}
+\label{eq:transition-criterion}
+\end{equation}
+
+where $\nabla_\perp$ denotes gradients in the $(j\chi, k\xi)$ directions orthogonal to the 
+$i\psi$ direction.
+
+\textbf{Physical Interpretation:}
+\begin{itemize}
+\item When $\|\nabla_\perp \Theta\|^2 \ll \|\partial_t \Theta\|^2$: field dynamics are dominated by time evolution and the primary imaginary phase $\psi$; complex time $T = t + i\psi$ is sufficient.
+\item When $\|\nabla_\perp \Theta\|^2 \sim \|\partial_t \Theta\|^2$: field dynamics involve significant contributions from $(j\chi, k\xi)$ phases; full biquaternion time $\tau$ must be retained.
+\end{itemize}
+
+\textbf{Typical Regimes:}
+\begin{itemize}
+\item \textbf{Abelian gauge theories (QED):} Complex time valid ($\nabla_\perp$ suppressed by gauge structure).
+\item \textbf{Non-Abelian gauge theories (QCD, weak):} Full biquaternion time required for strong coupling and color dynamics.
+\item \textbf{Weakly coupled scalar sectors:} Complex time adequate for perturbative calculations.
+\end{itemize}
+
+\textit{Reference Tag:} \texttt{[TRANSITION\_CRITERION]} — All uses of complex time in subsequent sections must satisfy this criterion or explicitly acknowledge the approximation.
+
+
 \subsection{Core Equations}
 
 The general form of the scalar field equation is:
