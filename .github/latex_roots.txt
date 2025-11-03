@@ -11,6 +11,9 @@ consolidation_project/appendix_E2_SM_geometry.tex
 consolidation_project/appendix_H2_holography_variational.tex
 consolidation_project/appendix_Y3_yukawa_couplings.tex
 
+# Latest alpha derivation (clean version)
+consolidation_project/new_alpha_derivations/noether_to_alpha_clean_v1.2.tex
+
 # Executive summaries and reports at root level
 alpha_padic_executive_summary.tex
 UBT_Main.tex
@@ -33,3 +36,6 @@ unified_biquaternion_theory/ubt_main_article.tex
 unified_biquaternion_theory/ubt_osf_overview_article.tex
 unified_biquaternion_theory/fermion_mass_derivation_complete.tex
 unified_biquaternion_theory/alpha_final_derivation.tex
+
+# OSF release document
+unified_biquaternion_theory/docs/osf_release/main.tex
