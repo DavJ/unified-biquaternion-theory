@@ -1,0 +1,150 @@
+
+\section{Appendix G6: Neutrino Mass from Biquaternionic Time in UBT}
+\label{app:neutrino_mass_biquaternionic_time}
+
+\emph{Status: Draft for review; Rigorous core → §§1–6, clearly flagged speculation → §9}
+
+\subsection{G6.1 Motivation and Scope}
+
+Tento appendix \textbf{odvozuje efektivní hmotnost neutrin přímo z biquaternionového času} (priorita UBT), nikoli z komplexního času. Komplexní čas je chápán pouze jako \textbf{projekční limit} pro didaktické účely nebo speciální režimy.
+
+\subsection{G6.2 Biquaternionic Time: Definition and Consequences}
+
+Definujme biquaternionový čas
+\begin{equation}
+\mathbb{T} \;=\; t\,\mathbf{1} \;+\; i\,\psi_1 \;+\; j\,\psi_2 \;+\; k\,\psi_3,
+\label{eq:biquaternion_time_neutrino}
+\end{equation}
+kde $i^2=j^2=k^2=ijk=-1$ a $\psi_\alpha$ (bezrozměrné) jsou \textbf{fázově-časové souřadnice} (kompaktní úhly) s periodicitou $\psi_\alpha \sim \psi_\alpha + 2\pi$.
+
+\begin{itemize}
+\item \textbf{Kompaktifikační poloměry} $R_\alpha$ reprezentují mikroskopickou periodu v každé imaginární časové ose.
+\item \textbf{Efektivní poloměr}:
+\begin{equation}
+R_{\rm eff}^{-2} \;=\; R_1^{-2} + R_2^{-2} + R_3^{-2}.
+\label{eq:R_eff}
+\end{equation}
+\item \textbf{Majoranova škála} (winding mód pravotočivých neutrin):
+\begin{equation}
+M_R \;\equiv\; \frac{\hbar c}{R_{\rm eff}}.
+\label{eq:Majorana_scale}
+\end{equation}
+\end{itemize}
+
+\paragraph{Poznámka (komplexní limit).} Komplexní čas odpovídá projekci $\psi_2=\psi_3=0$ a $\psi\equiv\psi_1$. Všechny výsledky níže se v tomto limitu redukují na dřívější vzorce.
+
+\subsection{G6.3 Field Equation and Covariant Derivatives in Biquaternionic Time}
+
+Nechť $\Theta(q,\mathbb{T})$ je \textbf{biquaternionové spinorové pole}. Operátor
+\begin{equation}
+\mathcal{D} \equiv \gamma^\mu \nabla_\mu \;+\; \Gamma_{\mathbb{T}},\qquad
+\Gamma_{\mathbb{T}} \equiv \gamma^0 \big(\partial_t \;-\; i\,\partial_{\psi_1} \;-\; j\,\partial_{\psi_2} \;-\; k\,\partial_{\psi_3}\big)
+\label{eq:covariant_derivative_biquaternion}
+\end{equation}
+generuje dynamiku v reálném i fázově-časovém směru:
+\begin{equation}
+i\hbar\,\mathcal{D}\Theta \;=\; 0.
+\label{eq:field_equation_neutrino}
+\end{equation}
+Chirální projekce $\Theta_{L,R}=\tfrac{1}{2}(1\mp\gamma^5)\Theta$ jako obvykle.
+
+\subsection{G6.4 Emergent Neutrino Mass from Phase–Time Drift}
+
+Zaveďme
+\begin{equation}
+\partial_{\mathbb{T}} \equiv \partial_t - i\,\partial_{\psi_1} - j\,\partial_{\psi_2} - k\,\partial_{\psi_3}.
+\label{eq:partial_biquaternion_time}
+\end{equation}
+Pro pomalé prostorové změny a soustředění na časovou dynamiku levých neutrin platí (schematicky)
+\begin{equation}
+i\hbar\,\partial_{\mathbb{T}} \Theta_L \;\approx\; c\,\boldsymbol{\sigma}\!\cdot\!\mathbf{p}\;\Theta_L.
+\label{eq:weyl_like_equation}
+\end{equation}
+Porovnáním s masivní Weylovou rovnicí identifikujeme \textbf{efektivní hmotnost}:
+\begin{equation}
+\boxed{~ m_\nu c^2 \;=\; \hbar\,\big\|\dot{\boldsymbol{\psi}}\big\| \;=\; \hbar\,\sqrt{(\dot{\psi}_1)^2+(\dot{\psi}_2)^2+(\dot{\psi}_3)^2} ~}
+\label{eq:neutrino_mass_drift}
+\end{equation}
+kde $\dot{\psi}_\alpha \equiv \partial\psi_\alpha/\partial t$.
+
+\paragraph{Difuzní (stochastický) obraz.} Jestliže jsou $\psi_\alpha$ stacionární, ale s difuzí $D_{\psi,\alpha}$ (viz G5 Fokker–Planck):
+\begin{equation}
+\boxed{~ m_\nu \;\simeq\; \frac{\hbar^2}{c^2}\,\Big(\sum_{\alpha=1}^3 D_{\psi,\alpha}\Big)^{-1/2} ~}
+\label{eq:neutrino_mass_diffusion}
+\end{equation}
+
+\subsection{G6.5 See–Saw from Biquaternionic Compactification}
+
+Pravotočivá neutrina $N_R$ vznikají jako \textbf{winding módy} na toru $S^1_{\psi_1}\!\times\! S^1_{\psi_2}\!\times\! S^1_{\psi_3}$ se základní škálou
+\begin{equation}
+M_R \sim \frac{\hbar c}{R_{\rm eff}}.
+\label{eq:M_R_winding}
+\end{equation}
+S Diracovým vazebním členem $m_D=y_\nu v$ (Higgs VEV $v=246\,{\rm GeV}$) dává \textbf{typ-I see–saw}
+\begin{equation}
+\boxed{~ m_\nu \;\approx\; \frac{m_D^2}{M_R} \;=\; \frac{(y_\nu v)^2\,R_{\rm eff}}{\hbar c} ~}
+\label{eq:seesaw_formula}
+\end{equation}
+a konzistenční relaci mezi driftovým obrazem a kompaktním rozměrem:
+\begin{equation}
+\hbar\,\big\|\dot{\boldsymbol{\psi}}\big\| \;\approx\; \frac{(y_\nu v)^2\,R_{\rm eff}}{c}.
+\label{eq:consistency_relation}
+\end{equation}
+
+\subsection{G6.6 Numerical Estimate \& Ordering}
+
+\begin{itemize}
+\item Typické volby: $y_\nu \sim 10^{-6}\!-\!10^{-5}$, $M_R\sim 10^{14}\,{\rm GeV}$ $\Rightarrow$
+\begin{equation}
+m_\nu \sim \frac{(10^{-5}\!\cdot\!246\,{\rm GeV})^2}{10^{14}\,{\rm GeV}} \;\sim\; 0.06\,{\rm eV},
+\label{eq:numerical_estimate}
+\end{equation}
+v souladu s oscilacemi i kosmologickými limity $\sum m_\nu \lesssim 0.12\,{\rm eV}$.
+\item \textbf{Pořadí hmotností} a \textbf{PMNS} lze generovat \textbf{anizotropií} $R_\alpha^{(i)}$ a/nebo \textbf{flavorově závislým} $y_{\nu,ij}$.
+\end{itemize}
+
+\subsection{G6.7 Flavor Structure and PMNS}
+
+\begin{equation}
+(M_R)_{ij} \sim \frac{\hbar c}{R_{\rm eff}^{(ij)}},\quad (m_D)_{ij}=y_{\nu,ij} v,\quad
+(M_\nu)_{ij} \approx (m_D)_{ik}(M_R^{-1})_{kl}(m_D^\top)_{lj}.
+\label{eq:flavor_matrices}
+\end{equation}
+Diagonalisace dává PMNS; předpověditelné korelace: jemná energie-závislost $m_\nu(E)$ (running $y_\nu$, renorm. fázového času), mikromodulace oscilací (striktně omezené daty).
+
+\subsection{G6.8 Complex-Time Limit Check}
+
+$\psi_2=\psi_3=0,\ R_{2,3}\!\to\!\infty$ $\Rightarrow$
+\begin{equation}
+m_\nu c^2 = \hbar\,|\dot{\psi}_1|,\qquad M_R \sim \frac{\hbar c}{R_1},
+\label{eq:complex_time_limit}
+\end{equation}
+což přesně reprodukuje dřívější komplexně-časové vzorce jako \textbf{projekci} biquaternionového rámce.
+
+\subsection{G6.9 Clearly Speculative Extensions (Flagged)}
+
+\begin{itemize}
+\item \textbf{p-adický see–saw:} adelická struktura $R_\alpha$, stopové signatury v kosmickém neutr. pozadí (extrémně těžké).
+\item \textbf{Biquaternion resonance:} drobné holonomie na toru $\mathbb{T}$; pozorovatelnost nepravděpodobná při současných limitech.
+\end{itemize}
+
+\subsection{G6.10 Summary}
+
+The key results of this appendix are the boxed formulas:
+
+\paragraph{Drift picture:}
+\begin{equation}
+\boxed{~ m_\nu c^2 = \hbar\,\big\|\dot{\boldsymbol{\psi}}\big\| \quad\text{(drift)} ~}
+\end{equation}
+
+\paragraph{Diffusive picture:}
+\begin{equation}
+\boxed{~ m_\nu \simeq \frac{\hbar^2}{c^2}\left(\sum_{\alpha=1}^3 D_{\psi,\alpha}\right)^{-1/2} \quad\text{(diffuse)} ~}
+\end{equation}
+
+\paragraph{See-saw from biquaternionic compactification:}
+\begin{equation}
+\boxed{~ m_\nu \approx \dfrac{(y_\nu v)^2}{M_R},\quad M_R \sim \dfrac{\hbar c}{R_{\rm eff}},\quad R_{\rm eff}^{-2}=\sum_{\alpha=1}^3 R_\alpha^{-2} \quad\text{(see–saw z biquaternion. kompakce)} ~}
+\end{equation}
+
+\paragraph{Provenience.} Tento appendix nahrazuje „complex-time-first" verze. \textbf{Komplexní čas je limit biquaternionového času}, nikoli naopak.
