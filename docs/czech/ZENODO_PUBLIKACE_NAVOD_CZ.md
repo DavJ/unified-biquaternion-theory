@@ -120,7 +120,7 @@ Pokud nechcete propojit GitHub:
 #### Popis
 Vložte abstrakt z `UBT_Abstract_OSF.tex`:
 ```
-The Unified Biquaternion Theory (UBT) presents a comprehensive framework for unifying General Relativity, Quantum Field Theory, and Standard Model symmetries within a single mathematical structure based on biquaternionic fields over complex time τ = t + iψ...
+The Unified Biquaternion Theory (UBT) presents a comprehensive framework for unifying General Relativity, Quantum Field Theory, and Standard Model symmetries within a single mathematical structure based on biquaternionic fields over biquaternionic time τ = t + iψ...
 ```
 (celý abstrakt z dokumentu)
 
