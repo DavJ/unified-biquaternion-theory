@@ -9,12 +9,14 @@
 - **Single Source for α**: New `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` provides complete derivation
 - **No Free Parameters**: Coefficient B derived as B = (2π·12)/3 × 1.8 ≈ 46.3 (not fitted)
 - **Geometric UV Cutoff**: Λ = 1/R_ψ set by imaginary-time compactification
-- **Biquaternion Time Priority**: Transition criterion formalized in Appendix B
+- **Biquaternion Time Priority**: Transition criterion formalized in Appendix N2
 - **Symbol Clarity**: Distinct B coefficients in α vs electron mass contexts clarified
 
-**NEW (November 2025):**
-- **Appendix G (2025)**: Introduces Hamiltonian-in-exponent θ-function formulation: Θ(Q,T) = Σ exp[π·𝔹(n)·ℍ(T)]
-- **Dual Time Representations**: Both operator form T_B and algebraic form T preserved and clarified as equivalent
+**Recent Theoretical Additions (November 2025):**
+- **Appendix G (2025)**: Hamiltonian-in-exponent θ-function formulation: Θ(Q,T) = Σ exp[π·𝔹(n)·ℍ(T)]
+- **Appendix G.5 (2025)**: Biquaternionic Fokker-Planck equation connecting Hamiltonian evolution to drift-diffusion dynamics
+- **Appendix N2 Extended (2025)**: Full 8D biquaternionic time manifold T = A + iB (outer chronometric + inner phase time)
+- **Dual Time Representations**: Operator form T_B and algebraic form T clarified as equivalent
 - **Enhanced Documentation**: Comprehensive glossaries, historical lineage (180+ years), and rigor classification
 
 **Migration:** References to "B = 46.3 fitted" are deprecated. See [CHANGELOG.md](CHANGELOG.md) for details.
@@ -43,18 +45,20 @@
 - All forces and matter in a single field equation
 
 **Note on Complex vs Biquaternionic Time:**
-> UBT employs **biquaternionic time** with two equivalent representations:
+> UBT employs **quaternion-valued time with complex components** (sometimes called "biquaternionic time" in this repository, though this is not a true biquaternion in the mathematical sense) with two equivalent representations:
 > - **Operator form**: T_B = t + i(ψ + **v**·**σ**) — used in local Hamiltonian evolution and spinor dynamics
 > - **Algebraic form**: T = t₀ + it₁ + jt₂ + kt₃ — used in global metric and topological formulations
 > 
 > These are equivalent under the mapping (i,j,k) ↔ (σ_x, σ_y, σ_z). Complex time **τ = t + iψ** emerges as a 2D projection when vector components are negligible: **‖v‖² ≪ |ψ|²**.
 >
-> **Full biquaternionic time is required** when Θ-field components do not commute: **[Θ_i, Θ_j] ≠ 0** (non-Abelian gauge fields, strongly coupled regimes). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
+> **Full quaternionic time is required** when Θ-field components do not commute: **[Θ_i, Θ_j] ≠ 0** (non-Abelian gauge fields, strongly coupled regimes). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
+>
+> **Note**: A true biquaternion in ℍ⊗ℂ has 8 real dimensions. The UBT time structure is 4-dimensional (quaternionic). This terminology should be clarified in future work.
 
 ---
 
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over complex time \(\tau = t + i \psi\). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over biquaternionic spacetime (with complex time \(\tau = t + i \psi\) used as a valid approximation in many regimes). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
 From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
 
 ---
