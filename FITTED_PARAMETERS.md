@@ -89,7 +89,7 @@ These parameters have a derived base value but include perturbative corrections:
 - **Status:** ✅ Derived from compactification
 - **Formula:** Λ = 1/R_ψ
 - **Value:** Λ ≈ 4.1 × 10¹¹ m⁻¹ ≈ 81 GeV
-- **Derivation:** Natural scale set by complex time radius
+- **Derivation:** Natural scale set by biquaternionic time radius
 - **No free parameters**
 
 **Dimensional Regularization Factor**
@@ -278,7 +278,7 @@ These parameters appear in speculative parts but are not quantified:
 **Goal:** Derive renormalization factor R = 1.114 from UBT biquaternionic loops
 
 **Tasks:**
-1. Set up one-loop integrals in complex time
+1. Set up one-loop integrals in biquaternionic time
 2. Calculate gauge boson self-energy corrections
 3. Match to standard QED at appropriate limit
 4. Verify 12% correction arises naturally

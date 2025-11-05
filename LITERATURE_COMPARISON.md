@@ -1,6 +1,6 @@
 # UBT Comparison to Existing Biquaternion and Complex-Time Frameworks
 
-**Document Purpose:** Systematic comparison of UBT to prior work in biquaternionic physics and complex time  
+**Document Purpose:** Systematic comparison of UBT to prior work in biquaternionic physics and biquaternionic time  
 **Status:** Comprehensive Literature Review  
 **Last Updated:** November 5, 2025
 
@@ -13,7 +13,7 @@
 **Short Answer:** 
 - **Biquaternions in physics:** Existing work focuses on Lorentz transformations and electromagnetism; UBT extends to full unified field theory including GR, QFT, and SM
 - **Complex time:** Previous proposals are mostly speculative or limited to Wick rotation; UBT provides geometric compactification and physical interpretation
-- **Novelty:** UBT combines biquaternions with complex time and derives SM structure - this specific combination is original
+- **Novelty:** UBT combines biquaternions with biquaternionic time and derives SM structure - this specific combination is original
 
 **Citation Status:** 
 - ⚠️ UBT currently lacks comprehensive literature review in main documents
@@ -156,7 +156,7 @@
 - **Similar:** Both use biquaternions for gravity
 - **Major Difference:** Demir uses teleparallel gravity (torsion-based); UBT uses curvature-based (closer to Einstein)
 - **UBT advantage:** UBT recovers Einstein GR exactly in real limit (proven in Appendix R)
-- **Different:** UBT adds complex time and gauge structure
+- **Different:** UBT adds biquaternionic time and gauge structure
 
 #### 8. MDPI Review Article (2023) - "Biquaternions for Lorentz Transformations"
 **Reference:** Mentioned in problem statement as existing work  
@@ -202,7 +202,7 @@
 **UBT Comparison:**
 - **Similar goal:** Unification using quaternions
 - **Different:** Weng doesn't achieve full gauge theory emergence
-- **Different:** UBT includes complex time and derives SM symmetries
+- **Different:** UBT includes biquaternionic time and derives SM symmetries
 - **UBT advantage:** More complete unification (GR + QFT + SM)
 
 ---
@@ -241,7 +241,7 @@
 
 **UBT Comparison:**
 - **Similar:** Additional time parameter
-- **Different:** Stueckelberg's τ is real; UBT uses complex time
+- **Different:** Stueckelberg's τ is real; UBT uses biquaternionic time
 - **Different:** Stueckelberg for single particles; UBT for field theory
 - **Inspiration:** Stueckelberg shows time parameter can be physical
 
@@ -263,7 +263,7 @@
 **Citation:** [Need to identify specific article]
 
 **Expected Content:**
-- Speculative proposals for complex time
+- Speculative proposals for biquaternionic time
 - Possibly in quantum gravity context
 - Connection to multiverse or many-worlds
 
@@ -284,7 +284,7 @@
 
 **UBT Comparison:**
 - **Similar:** Both extend to complex domain
-- **Different:** Znojil: complex energy; UBT: complex time
+- **Different:** Znojil: complex energy; UBT: biquaternionic time
 - **Different:** PT-symmetry vs. biquaternionic symmetry
 - **Possibly related:** Could UBT incorporate PT-symmetric structures?
 
@@ -299,7 +299,7 @@
 
 **UBT Comparison:**
 - **Similar:** Time coordinate can have imaginary component
-- **Different:** Sakharov: cosmological signature change; UBT: complex time manifold
+- **Different:** Sakharov: cosmological signature change; UBT: biquaternionic time manifold
 - **Different:** Sakharov: classical GR; UBT: quantum field theory
 
 ---
@@ -319,7 +319,7 @@
 
 **UBT Comparison:**
 - **Similar approach:** Extra dimensions + compactification
-- **Different:** Kaluza-Klein: real extra dimension; UBT: complex time
+- **Different:** Kaluza-Klein: real extra dimension; UBT: biquaternionic time
 - **Different:** K-K gives only U(1); UBT derives full SU(3)×SU(2)×U(1)
 - **Similar success:** Both derive gauge theory from geometry
 
@@ -429,7 +429,7 @@
 #### 4. Complex Time Compactification
 **Prior Work:**
 - Wick rotation: t → -iτ (Euclidean continuation, calculational)
-- Various speculations about complex time (not systematic)
+- Various speculations about biquaternionic time (not systematic)
 
 **UBT Innovation:**
 - τ = t + iψ with ψ ∈ S¹ (compact circle)
@@ -437,7 +437,7 @@
 - Physical interpretation: ψ as phase degree of freedom
 - Connects to α derivation
 
-**Novelty Level:** HIGH - systematic physical framework for complex time
+**Novelty Level:** HIGH - systematic physical framework for biquaternionic time
 
 #### 5. Fine-Structure Constant from Topology
 **Prior Work:**
@@ -526,7 +526,7 @@
 **Complex Time:**
 8. Wick, G.C. (1954) - Wick rotation (contrast as calculational tool)
 9. Stueckelberg, E.C.G. (1941) - Time parameter (inspiration)
-10. [MDPI article on complex time - to be identified]
+10. [MDPI article on biquaternionic time - to be identified]
 
 **Unified Theories:**
 11. Kaluza, T. (1921), Klein, O. (1926) - Extra dimensions for unification
@@ -555,7 +555,7 @@
 
 **Example Good Citation:**
 
-"The use of biquaternions for representing Lorentz transformations has a long history [Lanczos 1949, Gsponer & Hurni 2001]. Recent work has applied biquaternionic structures to gravity [Demir 2013] and field theory [MDPI 2023]. Our approach differs in combining biquaternions with physical complex time and deriving the full Standard Model gauge structure from geometric automorphisms."
+"The use of biquaternions for representing Lorentz transformations has a long history [Lanczos 1949, Gsponer & Hurni 2001]. Recent work has applied biquaternionic structures to gravity [Demir 2013] and field theory [MDPI 2023]. Our approach differs in combining biquaternions with physical biquaternionic time and deriving the full Standard Model gauge structure from geometric automorphisms."
 
 **Example Bad Citation:**
 
@@ -573,8 +573,8 @@
 
 **Answer Template:**
 
-"While biquaternions have been used for Lorentz transformations [Lanczos 1949] and complex time has been proposed in speculative contexts [Ref], the specific combination of:
-1. Biquaternionic manifold with complex time τ = t + iψ
+"While biquaternions have been used for Lorentz transformations [Lanczos 1949] and biquaternionic time has been proposed in speculative contexts [Ref], the specific combination of:
+1. Biquaternionic manifold with biquaternionic time τ = t + iψ
 2. Geometric compactification setting scale R_ψ
 3. Derivation of SU(3)×SU(2)×U(1) from Aut(B⁴)
 4. Exact recovery of Einstein GR in real limit
@@ -614,7 +614,7 @@ The approaches are complementary; incorporating Furey's particle structure into 
 
 1. **Identify MDPI articles** mentioned in problem statement
    - Search MDPI for "biquaternion Lorentz"
-   - Search MDPI for "complex time"
+   - Search MDPI for "biquaternionic time"
    - Add specific citations
 
 2. **Add literature review section** to all main documents
@@ -632,7 +632,7 @@ The approaches are complementary; incorporating Furey's particle structure into 
 
 4. **Comprehensive literature survey**
    - Search "biquaternion" + "physics" (Google Scholar)
-   - Search "complex time" + "field theory"
+   - Search "biquaternionic time" + "field theory"
    - Search "quaternion" + "Standard Model"
    - Compile complete bibliography
 
@@ -690,7 +690,7 @@ The approaches are complementary; incorporating Furey's particle structure into 
 - Unification ideas: Kaluza-Klein, Furey
 
 **Novel Contributions:**
-- Specific combination: biquaternions + physical complex time
+- Specific combination: biquaternions + physical biquaternionic time
 - SU(3)×SU(2)×U(1) derivation from Aut(B⁴)
 - Exact GR recovery in real limit
 - Unified single-field framework
@@ -705,7 +705,7 @@ The approaches are complementary; incorporating Furey's particle structure into 
 
 **Strengths:**
 - Genuine novel approach combining existing ideas
-- Some unique aspects (complex time framework)
+- Some unique aspects (biquaternionic time framework)
 - Appropriate citations will strengthen, not weaken, UBT
 
 **Weaknesses:**

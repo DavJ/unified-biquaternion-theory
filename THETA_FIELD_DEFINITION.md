@@ -477,7 +477,7 @@ The biquaternionic field Θ(q,τ) is the fundamental dynamical variable in UBT, 
 - Dark sector (imaginary components)
 
 Its mathematical structure is:
-- **Domain**: B⁴ × C (biquaternionic spacetime × complex time)
+- **Domain**: B⁴ × C (biquaternionic spacetime × biquaternionic time)
 - **Codomain**: B ⊗ S ⊗ G (biquaternion ⊗ spinor ⊗ gauge)
 - **Dynamics**: Covariant field equations with gauge invariance
 - **Inner product**: Sesquilinear, Hermitian, positive-definite

@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretical physics framework that unifies General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over complex time τ = t + iψ. The repository also includes the **Complex Consciousness Theory (CCT)**, which applies UBT principles to model consciousness as a physical phenomenon.
+This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretical physics framework that unifies General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over biquaternionic time T_B = t + i(ψ + v·σ). The repository also includes the **Complex Consciousness Theory (CCT)**, which applies UBT principles to model consciousness as a physical phenomenon.
 
 **Author**: David Jaroš  
 **Primary Content**: LaTeX research documents, mathematical derivations, and computational scripts
@@ -48,7 +48,8 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretica
 
 ### Mathematical Notation
 - **Biquaternions**: Complex-valued quaternions, use appropriate notation
-- **Complex Time**: τ = t + iψ (t = real time, ψ = imaginary/phase component)
+- **Biquaternionic Time**: T_B = t + i(ψ + v·σ) (fundamental time structure; t = real time, ψ = imaginary scalar, v = imaginary vector)
+- **Complex Time**: τ = t + iψ (simplified 2D projection, used when ‖v‖² ≪ |ψ|² and [Θ_i, Θ_j] ≈ 0)
 - **Field Equations**: Follow standard tensor notation with clear index conventions
 - **Gauge Groups**: SU(3) × SU(2) × U(1) for Standard Model symmetries
 
@@ -225,7 +226,7 @@ See appendix_R_GR_equivalence.tex for detailed derivation.
 Refer to `RESEARCH_PRIORITIES.md` for current focus areas:
 1. Formal consolidation of UBT core equations
 2. Padic extensions and dark sector physics
-3. Psychon dynamics in complex time
+3. Psychon dynamics in biquaternionic time
 4. Closed Timelike Curve (CTC) solutions
 5. Electromagnetism in curved space
 6. Experimental design: Theta Resonator
@@ -253,7 +254,7 @@ Refer to `RESEARCH_PRIORITIES.md` for current focus areas:
 
 ## Repository Overview
 
-This repository contains the **Unified Biquaternion Theory (UBT)**, a unified physical theory combining General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over complex time τ = t + iψ. The repository is primarily a LaTeX-based theoretical physics research project with some supporting Python scripts.
+This repository contains the **Unified Biquaternion Theory (UBT)**, a unified physical theory combining General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over biquaternionic time T_B = t + i(ψ + v·σ). The repository is primarily a LaTeX-based theoretical physics research project with some supporting Python scripts.
 
 **Author**: Ing. David Jaroš (some consolidated documents use "UBT Team")  
 **License**: See LICENSE.md  
@@ -336,8 +337,10 @@ No specific Python environment is required. Scripts are standalone utilities.
 - Use `\documentclass{article}` or similar for root documents
 - Place appendices in separate files with descriptive names like `appendix_A_*.tex`
 - Use consistent mathematical notation:
-  - `\tau` for complex time
-  - `\psi` for imaginary time component
+  - `T_B` for biquaternionic time (primary)
+  - `\tau` for complex time approximation (when applicable)
+  - `\psi` for imaginary scalar time component
+  - `\mathbf{v}` for imaginary vector time component
   - Biquaternion fields denoted with bold symbols
 - Include proper comments for complex derivations
 - Use `\label` and `\ref` for cross-references

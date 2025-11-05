@@ -21,8 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Full biquaternion time τ = t + iψ + jχ + kξ required otherwise
   - Reference tag [TRANSITION_CRITERION] for tracking usage
 
-- **Linter for complex time usage**: `scripts/lint_complex_time_usage.py`
-  - Checks that complex time mentions reference transition criterion
+- **Linter for biquaternionic time usage**: `scripts/lint_complex_time_usage.py`
+  - Checks that biquaternionic time mentions reference transition criterion
   - Ensures biquaternion time priority is maintained
   - CI integration ready
 
