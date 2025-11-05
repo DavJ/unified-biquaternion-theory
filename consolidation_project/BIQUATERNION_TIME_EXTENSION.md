@@ -2,7 +2,7 @@
 
 ## Overview
 
-This extension addresses @DavJ's request to analyze the full biquaternion time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ versus the biquaternionic time simplification $\tau = t + i\psi$ used in the main analysis.
+This extension addresses @DavJ's request to analyze the full biquaternion time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ versus the complex time simplification $\tau = t + i\psi$ used in the main analysis.
 
 ## Key Results
 
@@ -22,7 +22,7 @@ i.e., vector component is comparable or directionally independent.
 
 ### 2. Holographic Projection
 
-The reduction from biquaternion to biquaternionic time corresponds to a holographic projection:
+The reduction from biquaternion to complex time corresponds to a holographic projection:
 
 ```
 π_H: T_B → τ
@@ -36,7 +36,7 @@ where $\mathbf{n}$ is the normal vector to the holographic boundary (entropy hor
 ```
 T_B (full biquaternion time)
   ↓ [||v|| → 0]
-τ = t + iψ (biquaternionic time)
+τ = t + iψ (complex time)
   ↓ [ψ → 0]
 t (classical real time / GR)
 ```
@@ -148,7 +148,7 @@ The vector component $\mathbf{v}$ predicts:
 
 1. **Complex time is not ad hoc**: It emerges as the holographic projection of full biquaternion time onto an observer's boundary.
 
-2. **Previous work remains valid**: All analysis using biquaternionic time $\tau$ is correct as the leading-order approximation in most observable regimes.
+2. **Previous work remains valid**: All analysis using complex time $\tau$ is correct as the leading-order approximation in most observable regimes.
 
 3. **Biquaternion adds directionality**: The vector component $\mathbf{v}$ provides directional structure beyond the scalar $\psi$, relevant for rotating systems and anisotropic phenomena.
 
@@ -178,7 +178,7 @@ The biquaternion time extension:
 
 ## Conclusion
 
-The full biquaternion time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ provides a complete formalism with the biquaternionic time $\tau = t + i\psi$ emerging as its holographic projection. The criterion $\|\mathbf{v}\|^2 \ll |\psi|^2$ determines when the simpler complex time approximation suffices, which is valid for most observable systems. The full biquaternion structure becomes essential only in extreme environments with strong rotation, torsion, or directional phase structure.
+The full biquaternion time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ provides a complete formalism with the complex time $\tau = t + i\psi$ emerging as its holographic projection. The criterion $\|\mathbf{v}\|^2 \ll |\psi|^2$ determines when the simpler complex time approximation suffices, which is valid for most observable systems. The full biquaternion structure becomes essential only in extreme environments with strong rotation, torsion, or directional phase structure.
 
 This addresses @DavJ's request by:
 1. ✅ Analyzing full biquaternion time first

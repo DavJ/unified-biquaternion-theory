@@ -108,7 +108,7 @@ Contribute meaningfully to humanity's understanding of fundamental physics, whet
 - [ ] Construct Hilbert space ℋ for quantum Θ-field
 - [ ] Define creation/annihilation operators
 - [ ] Prove unitarity of time evolution
-- [ ] Address causality concerns with biquaternionic time
+- [ ] Address causality concerns with complex time
 
 **Success Criteria:**
 - Quantum mechanics well-defined
@@ -696,7 +696,7 @@ Contribute meaningfully to humanity's understanding of fundamental physics, whet
 
 **Even if UBT ultimately fails:**
 - Mathematical physics contributions (biquaternionic field theory)
-- Exploration of biquaternionic time physically
+- Exploration of complex time physically
 - Case study in theory development
 - Negative results constrain future unification attempts
 - Open science example

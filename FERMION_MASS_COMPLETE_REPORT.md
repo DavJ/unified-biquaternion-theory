@@ -115,7 +115,7 @@ m_ν = m_D · M_R^(-1) · m_D^T
 
 where:
 - m_D ~ ε·v·y_ν (Dirac masses from Yukawa, ε ~ 10⁻⁶)
-- M_R ~ v²·Im(τ)^n / ℓ_complex (Majorana masses from biquaternionic time)
+- M_R ~ v²·Im(τ)^n / ℓ_complex (Majorana masses from complex time)
 
 ### Framework Status
 

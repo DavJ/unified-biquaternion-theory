@@ -34,7 +34,7 @@ This document addresses the consciousness-related claims in the Unified Biquater
 
 ### What is Claimed
 
-UBT proposes that consciousness has quantum excitations called "psychons" - quanta of conscious experience associated with the imaginary time dimension ψ in biquaternionic time τ = t + iψ.
+UBT proposes that consciousness has quantum excitations called "psychons" - quanta of conscious experience associated with the imaginary time dimension ψ in complex time τ = t + iψ.
 
 ### What is NOT Established
 
@@ -224,7 +224,7 @@ State explicitly what observations would disprove the hypothesis:
 **Goal**: Connect UBT mathematics to neural dynamics
 
 **Tasks:**
-- Model neurons as coupled oscillators in biquaternionic time
+- Model neurons as coupled oscillators in complex time
 - Connect psychon field to neural field theories
 - Derive predictions for EEG/MEG signals from psychon dynamics
 - Calculate psychon-neuron coupling from first principles (if possible)

@@ -329,7 +329,7 @@ This achievement raises UBT from "pre-theoretical framework" (4.5/10) to "theory
 **Unique to UBT:**
 - Quadratic dependence from **32-dimensional structure** (not strings, not loops)
 - Specific coefficient from **biquaternion geometry**
-- Connection to **biquaternionic time** τ = t + iψ
+- Connection to **complex time** τ = t + iψ
 
 **Not Unique:**
 - Quadratic dependence (shared with some string models)
@@ -362,7 +362,7 @@ This achievement raises UBT from "pre-theoretical framework" (4.5/10) to "theory
 
 **UBT is UNIQUE:**
 - ✅ **Periodic modulation** (not just amplitude change)
-- ✅ **Specific frequency range** from biquaternionic time structure
+- ✅ **Specific frequency range** from complex time structure
 - ✅ **Testable signature** distinct from GR and alternatives
 
 **Challenge:**

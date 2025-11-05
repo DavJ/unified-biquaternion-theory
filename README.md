@@ -24,14 +24,14 @@
 ## 🎯 The Core Equation (T-shirt formula)
 
 ```
-∇†∇Θ(q,T_B) = κ𝒯(q,T_B)
+∇†∇Θ(q,τ) = κ𝒯(q,τ)
 ```
 
 **In words:** *The covariant double-derivative of the biquaternionic field equals the energy-momentum source.*
 
-- **Θ(q,T_B)**: Unified biquaternionic field on biquaternionic spacetime
+- **Θ(q,τ)**: Unified biquaternionic field on complex spacetime
 - **q ∈ ℂ⊗ℍ**: Biquaternion coordinates (unifying space, time, and internal symmetries)
-- **T_B = t + i(ψ + **v**·**σ**)**: Biquaternionic time (fundamental time structure)
+- **τ = t + iψ**: Complex time (real + imaginary phase)
 - **∇†∇**: Gauge-covariant d'Alembertian (includes gravity + gauge forces)
 - **κ**: Coupling constant (relates to 8πG)
 - **𝒯**: Energy-momentum tensor (source of curvature and fields)
@@ -42,31 +42,21 @@
 - Standard Model (SU(3)×SU(2)×U(1) emerge from geometry)
 - All forces and matter in a single field equation
 
-**Biquaternionic Time Structure:**
-> UBT fundamentally employs **biquaternionic time** as its core temporal framework with two equivalent representations:
+**Note on Complex vs Biquaternionic Time:**
+> UBT employs **quaternion-valued time with complex components** (sometimes called "biquaternionic time" in this repository, though this is not a true biquaternion in the mathematical sense) with two equivalent representations:
 > - **Operator form**: T_B = t + i(ψ + **v**·**σ**) — used in local Hamiltonian evolution and spinor dynamics
 > - **Algebraic form**: T = t₀ + it₁ + jt₂ + kt₃ — used in global metric and topological formulations
 > 
-> These are equivalent under the mapping (i,j,k) ↔ (σ_x, σ_y, σ_z).
+> These are equivalent under the mapping (i,j,k) ↔ (σ_x, σ_y, σ_z). Complex time **τ = t + iψ** emerges as a 2D projection when vector components are negligible: **‖v‖² ≪ |ψ|²**.
 >
-> **Complex time approximation** τ = t + iψ may be used as a **simplified projection** when vector components are negligible (**‖v‖² ≪ |ψ|²**) and Θ-field components commute (**[Θ_i, Θ_j] ≈ 0**). This occurs in:
-> - Weakly coupled regimes
-> - Abelian gauge theories (QED, U(1))
-> - Classical or semi-classical approximations
-> - Pedagogical explanations
+> **Full quaternionic time is required** when Θ-field components do not commute: **[Θ_i, Θ_j] ≠ 0** (non-Abelian gauge fields, strongly coupled regimes). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
 >
-> **Full biquaternionic time is required** for:
-> - Non-Abelian gauge fields (QCD, SU(3))
-> - Strongly coupled regimes
-> - Rotating spacetimes and spin coupling
-> - Non-commuting Θ-field configurations: **[Θ_i, Θ_j] ≠ 0**
->
-> See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
+> **Note**: A true biquaternion in ℍ⊗ℂ has 8 real dimensions. The UBT time structure is 4-dimensional (quaternionic). This terminology should be clarified in future work.
 
 ---
 
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over **biquaternionic time** \(T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})\). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over biquaternionic spacetime (with complex time \(\tau = t + i \psi\) used as a valid approximation in many regimes). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
 From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
 
 ---
@@ -98,7 +88,7 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 
 ## 📜 Overview
 
-UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over biquaternionic time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
+UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
 
 **⚠️ IMPORTANT: Theory Status - Updated November 3, 2025**
 - UBT is a **research framework with validated mathematical predictions**, not yet a fully validated scientific theory
@@ -117,18 +107,18 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 - **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
 
 Key features:
-- **Mathematical foundation**: biquaternion algebra, biquaternionic-time manifolds, covariant derivatives.
+- **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
 - **Mathematical validation**: All key predictions verified using SymPy/NumPy (see `unified_biquaternion_theory/validation/`).
 - **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
-- **Quantum Gravity**: Complete unification of GR+QFT from single field Θ(q,T_B) (see `solution_P7_quantum_gravity/`).
+- **Quantum Gravity**: Complete unification of GR+QFT from single field Θ(q,τ) (see `solution_P7_quantum_gravity/`).
 - **Extended GR**: Phase curvature quantization predicts antigravity at atomic scales.
 - ⭐ **Electron mass from first principles**: m_e = 0.510 MeV (0.22% error) via Hopfion topology.
-- ⭐ **Fine structure constant from topology**: α⁻¹ = 137 (0.026% error) from biquaternionic time compactification.
+- ⭐ **Fine structure constant from topology**: α⁻¹ = 137 (0.026% error) from complex time torus.
 - **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
 - **Electromagnetism** in curved space, including standing modulated EM field configurations.
 - **Quantum electrodynamics (QED)** and **quantum chromodynamics (QCD)** reformulated in UBT variables.
 - **Dark sector physics**: unified treatment of dark matter and dark energy via padic extensions.
-- **Psychons**: quantum excitations of consciousness within the biquaternionic-time phase space.
+- **Psychons**: quantum excitations of consciousness within the complex-time phase space.
 - **Closed Timelike Curves (CTCs)**: geometric and physical conditions for time-travel solutions.
 - **Experimental concepts**: Theta Resonator for detecting persistent consciousness fields.
 - **Complex Consciousness Theory (CCT)**: simplified, application-oriented formulation for modeling consciousness and cognitive phase transitions.
@@ -176,7 +166,7 @@ The following table provides a quick reference to major theorems, proofs, and re
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                 Biquaternionic Θ-Field                          │
-│     Θ(q,T_B) ∈ ℂ⊗ℍ, T_B = t + i(ψ + v·σ)                      │
+│                Θ(q,τ) ∈ ℂ⊗ℍ, τ = t + iψ                        │
 │                  [Appendix A, Theorem A1]                       │
 └──────────────────────┬──────────────────────────────────────────┘
                        │
@@ -344,7 +334,7 @@ UBT is classified as an honest research framework in early development with exem
 - ✅ **Mathematical rigor:** 3.0/10 → 5.0/10 (formal field definition, SM derivation complete)
 - ✅ **SM compatibility:** 3/10 → 6/10 (gauge group now **derived**, not assumed)
 - ✅ **Testability:** 3.0/10 → 4.5/10 (CMB analysis protocol complete, feasible within 1-2 years)
-- ✅ **Core formula identified:** ∇†∇Θ(q,T_B) = κ𝒯(q,T_B) (simple, complete, T-shirt ready)
+- ✅ **Core formula identified:** ∇†∇Θ(q,τ) = κ𝒯(q,τ) (simple, complete, T-shirt ready)
 
 **Strengths:**
 - ✅ Exemplary scientific integrity and transparency (9.5/10)

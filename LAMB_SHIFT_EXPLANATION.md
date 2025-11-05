@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-The Unified Biquaternion Theory (UBT) makes a testable prediction about corrections to the hydrogen Lamb shift due to biquaternionic time effects. A numerical discrepancy was identified between the theoretical formula and the stated numerical estimate. This document explains:
+The Unified Biquaternion Theory (UBT) makes a testable prediction about corrections to the hydrogen Lamb shift due to complex time effects. A numerical discrepancy was identified between the theoretical formula and the stated numerical estimate. This document explains:
 
 1. **What the Lamb shift is** and why it's important
 2. **What UBT predicts** and the theoretical basis
@@ -43,7 +43,7 @@ Any new theory claiming to extend QED must:
 2. **Predict small corrections** that could be tested with higher precision
 3. **Not contradict** existing measurements
 
-UBT claims to do exactly this: it reduces to QED in the limit where the imaginary time component ψ is constant, but predicts tiny corrections when biquaternionic time effects are considered.
+UBT claims to do exactly this: it reduces to QED in the limit where the imaginary time component ψ is constant, but predicts tiny corrections when complex time effects are considered.
 
 ---
 
@@ -51,11 +51,11 @@ UBT claims to do exactly this: it reduces to QED in the limit where the imaginar
 
 ### 2.1 Theoretical Basis
 
-UBT extends standard spacetime to include **biquaternionic time**: τ = t + iψ, where:
+UBT extends standard spacetime to include **complex time**: τ = t + iψ, where:
 - **t** is the ordinary physical time
 - **ψ** is an imaginary "phase time" component related to the biquaternionic structure
 
-This biquaternionic time structure modifies quantum field theory calculations, including vacuum polarization contributions to atomic energy levels.
+This complex time structure modifies quantum field theory calculations, including vacuum polarization contributions to atomic energy levels.
 
 ### 2.2 The Formula
 
@@ -67,7 +67,7 @@ According to **Appendix W** (Testable Predictions), UBT predicts:
 
 where:
 - **ΔE_Lamb^QED** = standard QED Lamb shift (1057.8446 MHz for n=2)
-- **δ_ψ** = (2.3 ± 0.8) × 10⁻⁶ (biquaternionic time correction factor)
+- **δ_ψ** = (2.3 ± 0.8) × 10⁻⁶ (complex time correction factor)
 - **α** = fine-structure constant ≈ 1/137.036
 - **m_e c²** = electron rest energy = 0.511 MeV
 - **n** = principal quantum number (n=2 for the measured state)

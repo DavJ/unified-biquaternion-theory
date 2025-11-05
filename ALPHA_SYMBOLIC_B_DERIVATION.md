@@ -88,7 +88,7 @@ a₂ = (1/180)[R_{μνλσ}R^{μνλσ} - R_{μν}R^{μν} + □R]
 
 ### 3.1 Complex Time Compactification
 
-In biquaternionic time τ = t + iψ with periodic ψ ~ ψ + 2πℓ_ψ:
+In complex time τ = t + iψ with periodic ψ ~ ψ + 2πℓ_ψ:
 
 ```
 Θ(x,τ) = ∑_{n=-∞}^{∞} Θ_n(x,t) exp(inψ/ℓ_ψ)
@@ -586,7 +586,7 @@ B = N_eff^(3/2) × C_geo × R_loop(μ/Λ)
 - Timeline: 6-12 months
 
 ⚠️ **TODO:** Non-perturbative effects
-- Instantons, solitons in biquaternionic time
+- Instantons, solitons in complex time
 - Could modify B at % level
 - Requires advanced techniques
 

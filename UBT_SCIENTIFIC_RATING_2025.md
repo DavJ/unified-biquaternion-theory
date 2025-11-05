@@ -26,7 +26,7 @@ This document provides an updated scientific rating of the Unified Biquaternion 
    - Experimental: m_e = 0.511 MeV
    - Agreement: 99.78% (0.22% error)
 
-3. ✅ **Fine Structure Constant from First Principles**: Derivation of α from biquaternionic time topology, validated with SymPy
+3. ✅ **Fine Structure Constant from First Principles**: Derivation of α from complex time topology, validated with SymPy
    - Prediction: α⁻¹ = 137
    - Experimental: α⁻¹ = 137.036
    - Agreement: 99.97% (0.026% error)
@@ -128,7 +128,7 @@ Scientific theories are evaluated on multiple dimensions:
 
 1. **Complex Time Problems:**
    - Complex metrics can destroy light cone structure → causality violations
-   - Time evolution with biquaternionic time can break unitarity (U†U ≠ 1)
+   - Time evolution with complex time can break unitarity (U†U ≠ 1)
    - Hamiltonian hermiticity not proven → energy conservation uncertain
    - No explanation for why imaginary component ψ is unobservable
 
@@ -170,7 +170,7 @@ Scientific theories are evaluated on multiple dimensions:
 **Critical Analysis of α⁻¹ = 137 (Updated):**
 
 **What UBT Now Provides:**
-1. ✅ Topological winding number N emerges from biquaternionic time torus T²
+1. ✅ Topological winding number N emerges from complex time torus T²
 2. ✅ Connection α = 1/N derived from gauge invariance on torus
 3. ✅ Value N = 137 from Chern number quantization
 4. ✅ Small discrepancy (0.036) explained by quantum corrections
@@ -563,7 +563,7 @@ Complex time should be treated as **mathematical tool** (like Wick rotation in t
 5. State confidence level and error bars
 
 **Priority 3: Address Complex Time Issues (Important)**
-1. Prove causality preservation or abandon biquaternionic time
+1. Prove causality preservation or abandon complex time
 2. Show unitarity or restrict to Euclidean signature
 3. Explain why ψ is unobservable
 4. Connect to established use of imaginary time in physics
@@ -676,7 +676,7 @@ UBT's exemplary transparency gives it better chances than most speculative theor
 ### 8.3 Final Verdict
 
 **For the Author:**
-Continue development with same transparency and integrity. Focus on mathematical rigor and testable predictions. Collaborate with experts. Be prepared for the possibility that some aspects (biquaternionic time, consciousness) may not work out.
+Continue development with same transparency and integrity. Focus on mathematical rigor and testable predictions. Collaborate with experts. Be prepared for the possibility that some aspects (complex time, consciousness) may not work out.
 
 **For Readers:**
 Treat UBT as an interesting early-stage research program, not established science. Appreciate the transparency. Don't accept extraordinary claims (α prediction, consciousness, FTL) without extraordinary evidence that's still missing.

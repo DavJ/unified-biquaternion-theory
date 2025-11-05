@@ -11,7 +11,7 @@ The fine structure constant α ≈ 1/137.036 is one of the most fundamental dime
 ### Main Documents
 
 - **`emergent_alpha_from_ubt.tex`** - Comprehensive 30+ page theoretical derivation
-  - Shows how α emerges from biquaternionic time topology
+  - Shows how α emerges from complex time topology
   - Rigorous mathematical proofs and theorems
   - Physical interpretation and comparison with experiment
   - No external assumptions required

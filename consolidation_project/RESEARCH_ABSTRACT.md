@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We establish rigorous mathematical connections between the Unified Biquaternion Theory (UBT) and three fundamental perspectives on gravitational physics: the holographic principle, Verlinde's emergent gravity, and de Sitter spacetime. We demonstrate that these apparently distinct viewpoints arise naturally as different projections of a single underlying biquaternionic field structure defined over biquaternionic time τ = t + iψ.
+We establish rigorous mathematical connections between the Unified Biquaternion Theory (UBT) and three fundamental perspectives on gravitational physics: the holographic principle, Verlinde's emergent gravity, and de Sitter spacetime. We demonstrate that these apparently distinct viewpoints arise naturally as different projections of a single underlying biquaternionic field structure defined over complex time τ = t + iψ.
 
 ### Main Results
 
@@ -43,7 +43,7 @@ The theory makes several falsifiable predictions:
 We demonstrate that gravity in UBT is simultaneously:
 - The geometric manifestation of holographic information encoding on boundaries
 - A thermodynamic force arising from entropy gradients in spacetime
-- The real projection of biquaternionic field dynamics in biquaternionic time
+- The real projection of biquaternionic field dynamics in complex time
 
 The phase components (imaginary parts of Θ_μν) remain invisible to ordinary matter and electromagnetic radiation, explaining why dark matter gravitates without radiating. This invisibility is a mathematical consequence of the biquaternionic algebra structure, not a fine-tuned parameter.
 
@@ -58,7 +58,7 @@ This work provides:
 
 ### Conclusions
 
-The biquaternionic field formulation provides a mathematically rigorous framework where the holographic principle, Verlinde's emergent gravity, and de Sitter cosmology emerge as complementary facets of a unified description. This synthesis suggests that gravity is fundamentally an informational and thermodynamic phenomenon whose geometric character emerges from the real projection of biquaternionic time dynamics.
+The biquaternionic field formulation provides a mathematically rigorous framework where the holographic principle, Verlinde's emergent gravity, and de Sitter cosmology emerge as complementary facets of a unified description. This synthesis suggests that gravity is fundamentally an informational and thermodynamic phenomenon whose geometric character emerges from the real projection of complex time dynamics.
 
 The framework maintains full compatibility with General Relativity in all tested regimes while naturally accommodating dark sector physics through phase curvature components. Future work will explore experimental signatures of phase contributions and connections to quantum information theory.
 

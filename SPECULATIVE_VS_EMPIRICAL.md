@@ -79,7 +79,7 @@
 - Philosophical preference
 
 **Examples:**
-- Multiverse interpretation of biquaternionic time
+- Multiverse interpretation of complex time
 - Meaning of imaginary time component
 - Ontological status of biquaternions
 
@@ -347,7 +347,7 @@ New Content → Is it proven/validated?
 - "No free parameters" is not fully true (R~12% correction)
 
 **✅ GOOD (Honest):**
-> "🟡 SEMI-EMPIRICAL: UBT predicts α⁻¹ = 137 from biquaternionic time topology. The prediction matches experiment to 0.026%. However, ~12% of the B constant derives from perturbative QED corrections not yet calculated from UBT first principles. See FITTED_PARAMETERS.md for details."
+> "🟡 SEMI-EMPIRICAL: UBT predicts α⁻¹ = 137 from complex time topology. The prediction matches experiment to 0.026%. However, ~12% of the B constant derives from perturbative QED corrections not yet calculated from UBT first principles. See FITTED_PARAMETERS.md for details."
 
 ### Example 2: Electron Mass
 

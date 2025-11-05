@@ -11,7 +11,7 @@ The v10.0 release includes:
 ### Main Documents
 1. **UBT_Main.tex** - Primary consolidated document with:
    - Updated metadata (title, author, date: November 2025)
-   - Keywords: biquaternion, biquaternionic time, consciousness, unified field theory, Hermitian gravity, SU(3) symmetry, theta function
+   - Keywords: biquaternion, complex time, consciousness, unified field theory, Hermitian gravity, SU(3) symmetry, theta function
    - Acknowledgments to Chamseddine (2025) and Verlinde (2025)
    - Comprehensive introduction and mathematical foundations
    - License: CC BY 4.0
@@ -128,7 +128,7 @@ Or include all necessary files from the consolidation_project directory if using
    - **Title:** Unified Biquaternion Theory v10.0: Complex Time, Consciousness, and Field Unification
    - **Authors:** Ing. David Jaroš
    - **Description:** Use text from UBT_Abstract_OSF.tex
-   - **Keywords:** biquaternion, biquaternionic time, consciousness, unified field theory, Hermitian gravity, SU(3) symmetry, theta function, General Relativity, quantum field theory, Standard Model
+   - **Keywords:** biquaternion, complex time, consciousness, unified field theory, Hermitian gravity, SU(3) symmetry, theta function, General Relativity, quantum field theory, Standard Model
    - **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
    - **Upload type:** Publication → Working paper
    - **Publication date:** November 2025
@@ -144,7 +144,7 @@ Or include all necessary files from the consolidation_project directory if using
    - **Title:** Unified Biquaternion Theory (UBT): Complex Time, Consciousness, and Field Unification
    - **Authors:** Ing. David Jaroš
    - **Abstract:** Use text from UBT_Abstract_OSF.tex
-   - **Tags:** unified field theory, biquaternion, biquaternionic time, General Relativity, quantum field theory, gauge theory
+   - **Tags:** unified field theory, biquaternion, complex time, General Relativity, quantum field theory, gauge theory
    - **License:** CC BY 4.0
    - **Subjects:** Physical Sciences and Mathematics → Physics → Theoretical Physics
    - **DOI:** (Enter Zenodo DOI once received)

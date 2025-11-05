@@ -222,8 +222,8 @@ Complex time τ = t + iψ creates fundamental physical problems that remain unre
 
 **Solution 3A: Prove Physical Consistency (Ideal)**
 1. **Causality:** Prove null cones remain well-defined with complex metric
-2. **Unitarity:** Demonstrate U†U = 1 for biquaternionic time evolution
-3. **Energy:** Show H† = H even with biquaternionic time
+2. **Unitarity:** Demonstrate U†U = 1 for complex time evolution
+3. **Energy:** Show H† = H even with complex time
 4. **Observability:** Provide mechanism for ψ decoupling at low energies
 
 **Timeline:** 1-2 years  
@@ -231,7 +231,7 @@ Complex time τ = t + iψ creates fundamental physical problems that remain unre
 **Likelihood:** Medium
 
 **Solution 3B: Restrict to Euclidean Signature (Conservative)**
-1. Use biquaternionic time only for **computational techniques** (like Wick rotation)
+1. Use complex time only for **computational techniques** (like Wick rotation)
 2. Physical time remains real: t ∈ ℝ
 3. ψ represents internal degrees of freedom, not time dimension
 4. Complex continuation used for path integrals, not physical evolution
@@ -245,7 +245,7 @@ Complex time τ = t + iψ creates fundamental physical problems that remain unre
 1. Complex time effects suppressed by scale separation
 2. Calculate energy scale where complex effects appear: E_complex
 3. Below E_complex, effective theory uses real time
-4. Above E_complex, full biquaternionic time structure emerges
+4. Above E_complex, full complex time structure emerges
 5. Make testable prediction for E_complex
 
 **Timeline:** 1 year  
@@ -1109,7 +1109,7 @@ Let's check if UBT can match precision SM predictions:
 **Solutions Proposed:**
 1. Honest reclassification of α (implement immediately)
 2. Complete mathematical foundations (Priority 1 work, mostly done)
-3. Resolve or restrict biquaternionic time (1-year deadline)
+3. Resolve or restrict complex time (1-year deadline)
 4. Calculate specific predictions (modified gravity recommended)
 5. Reclassify or connect consciousness content
 6. Attempt SM derivation from geometry

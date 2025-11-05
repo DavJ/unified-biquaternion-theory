@@ -57,7 +57,7 @@ This document outlines the strategy for moving UBT from a self-assessed research
 **Expected Challenges:**
 - Referees will ask "what's new beyond GR?"
 - Need clear statement of regime where UBT differs
-- Must address causality concerns with biquaternionic time
+- Must address causality concerns with complex time
 
 ### Phase 2: Specific Predictions (Year 1-2)
 

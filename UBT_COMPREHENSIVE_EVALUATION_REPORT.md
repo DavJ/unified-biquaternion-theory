@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-The **Unified Biquaternion Theory (UBT)** is an ambitious theoretical framework that attempts to unify General Relativity, Quantum Field Theory, the Standard Model, and consciousness phenomena within a biquaternionic manifold structure defined over biquaternionic time τ = t + iψ. **The author explicitly positions UBT as a multiverse theory**, where the 32-dimensional mathematical structure represents multiple universe branches, with individual observers experiencing 4-dimensional projections. This report provides a comprehensive evaluation of the theory's physical validity, mathematical rigor, and scientific merit.
+The **Unified Biquaternion Theory (UBT)** is an ambitious theoretical framework that attempts to unify General Relativity, Quantum Field Theory, the Standard Model, and consciousness phenomena within a biquaternionic manifold structure defined over complex time τ = t + iψ. **The author explicitly positions UBT as a multiverse theory**, where the 32-dimensional mathematical structure represents multiple universe branches, with individual observers experiencing 4-dimensional projections. This report provides a comprehensive evaluation of the theory's physical validity, mathematical rigor, and scientific merit.
 
 ### Overall Assessment: **SPECULATIVE - REQUIRES SIGNIFICANT DEVELOPMENT**
 
@@ -23,7 +23,7 @@ The **Unified Biquaternion Theory (UBT)** is an ambitious theoretical framework 
 1. Novel mathematical framework using biquaternions with explicit multiverse interpretation
 2. Attempts to address fundamental open problems in physics
 3. Some correct standard physics embedded (GR vacuum equations, gauge field structures)
-4. Interesting mathematical explorations of biquaternionic time
+4. Interesting mathematical explorations of complex time
 5. Philosophical framework for free will and conscious choice via maximization of possibilities
 
 **Critical Weaknesses:**
@@ -248,7 +248,7 @@ This is perhaps the most problematic claim in the entire theory. Let's examine i
 **a) No Derivation:**
 - The equation α⁻¹ = N is **stated as a postulate**, not derived
 - No mathematical derivation shows why phase windings would equal α⁻¹
-- No connection shown between biquaternionic time topology and QED coupling
+- No connection shown between complex time topology and QED coupling
 
 **b) Numerology, Not Physics:**
 - The value 137 is **selected by hand** to match the experimental value
@@ -391,7 +391,7 @@ The theory claims to embed the Standard Model:
 
 **e) Thermodynamics:**
 - Second law requires real, forward-flowing time
-- How does entropy increase in biquaternionic time?
+- How does entropy increase in complex time?
 - Wick rotation to imaginary time is for finite-temperature calculations, not new physics
 
 **Verdict:** Complex time is **physically problematic** and **not justified**. The theory doesn't address fundamental issues this raises.
@@ -1019,7 +1019,7 @@ If the author wishes to develop UBT into a scientific theory, here are concrete 
 2. **Prove claimed results:**
    - Derive (don't postulate) α⁻¹ from first principles
    - Show full derivation of Einstein equations with matter
-   - Prove unitarity in biquaternionic time
+   - Prove unitarity in complex time
    - Demonstrate gauge theory emergence
 
 3. **Address dimensional reduction:**
@@ -1189,7 +1189,7 @@ The **Unified Biquaternion Theory** is an ambitious attempt to unify fundamental
 ### Key Findings
 
 **What UBT Achieves:**
-1. Proposes an interesting mathematical structure (biquaternions on biquaternionic time with multiverse interpretation)
+1. Proposes an interesting mathematical structure (biquaternions on complex time with multiverse interpretation)
 2. Shows consistency with GR vacuum equations in a limiting case (now formally documented)
 3. Incorporates some standard gauge field structures
 4. Raises interesting questions about consciousness and physics

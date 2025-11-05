@@ -8,7 +8,7 @@
    - Develop unified models for dark matter and dark energy within the UBT framework.  
    - Test predictive capacity against astrophysical data.
 
-3. **Psychon dynamics in biquaternionic time**  
+3. **Psychon dynamics in complex time**  
    - Refine the definition and properties of psychons as quantum excitations of consciousness.  
    - Model their interaction with physical fields and potential detection methods.
 

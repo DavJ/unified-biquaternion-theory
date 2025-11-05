@@ -24,7 +24,7 @@
   - Before/after comparison tables
   
 - **LITERATURE_COMPARISON.md** (28KB): Academic context and citations
-  - 20+ references to prior work (biquaternions, biquaternionic time)
+  - 20+ references to prior work (biquaternions, complex time)
   - Comparison tables: UBT vs. Kaluza-Klein, String Theory, Furey, etc.
   - Citation requirements for all publications
   - Novelty assessment for each contribution

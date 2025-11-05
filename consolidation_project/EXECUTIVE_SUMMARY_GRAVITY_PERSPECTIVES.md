@@ -149,11 +149,11 @@ The Unified Biquaternion Theory provides a mathematical framework where:
 
 1. **Holographic principle** naturally accommodates phase information
 2. **Verlinde's emergent gravity** arises from extended entropy
-3. **de Sitter space** incorporates biquaternionic time structure
+3. **de Sitter space** incorporates complex time structure
 4. **Dark sector** explained through phase components
 5. **General Relativity** recovered in classical limit
 
-These are not three separate theories but three views of the same underlying biquaternionic field dynamics. Gravity emerges as the geometric manifestation of holographic information, driven by thermodynamic forces, in a spacetime with biquaternionic time structure.
+These are not three separate theories but three views of the same underlying biquaternionic field dynamics. Gravity emerges as the geometric manifestation of holographic information, driven by thermodynamic forces, in a spacetime with complex time structure.
 
 ---
 

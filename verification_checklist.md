@@ -3,7 +3,7 @@
 ## Core Deliverables ✓
 
 ### Mathematical Derivation
-- [x] Start from core UBT principles (biquaternionic time, gauge theory)
+- [x] Start from core UBT principles (complex time, gauge theory)
 - [x] Derive quantization condition (Dirac condition)
 - [x] Show stability requires prime numbers
 - [x] Demonstrate energy minimization selects n=137
