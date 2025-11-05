@@ -76,6 +76,11 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 - **[FITTED_PARAMETERS.md](FITTED_PARAMETERS.md)** - Transparent audit of derived vs. fitted constants
 - **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Clear separation of validated vs. speculative content
 
+**For experimental data analysis:**
+- **[consolidation_project/appendix_CERN_BSM_predictions.tex](consolidation_project/appendix_CERN_BSM_predictions.tex)** - UBT predictions for CERN BSM searches (LaTeX appendix) (NEW: Nov 2025)
+- **[cern_findings_and_ubt/](cern_findings_and_ubt/)** - Detailed CERN data analysis, derivations, and Python tools
+- **[UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md](UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md)** - Scientific data supporting UBT predictions
+
 **For contributors:**
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** - Community standards
