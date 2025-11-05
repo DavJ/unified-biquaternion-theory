@@ -1,6 +1,6 @@
 # Latest CERN Findings and UBT First-Principles Explanations
 
-**Author:** UBT Research Team  
+**Author:** David Jaroš  
 **Date:** November 5, 2025  
 **Purpose:** Comprehensive analysis of recent CERN experimental findings (2023-2025) and their theoretical explanations from Unified Biquaternion Theory first principles
 

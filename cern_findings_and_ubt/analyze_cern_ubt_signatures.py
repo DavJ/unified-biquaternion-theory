@@ -9,20 +9,22 @@ Unified Biquaternion Theory (UBT), including:
 3. SUEP multiplicity patterns
 4. Dark photon resonance searches
 
-Author: UBT Research Team
+Author: David Jaroš
 Date: November 5, 2025
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
-from typing import List, Tuple, Dict
-import warnings
+from typing import Dict
 
 # Physical constants
 M_ELECTRON = 0.511  # MeV/c²
 HBAR_C = 197.327  # MeV·fm
 ALPHA = 1.0 / 137.036  # Fine structure constant
+
+# UBT-specific parameters
+CHARACTERISTIC_SCALE_FM2 = 1.0  # Natural scale for imaginary-time suppression (fm²)
 
 
 class UBTSignatureAnalyzer:
@@ -167,7 +169,7 @@ class UBTSignatureAnalyzer:
         N_base = E_collision / Lambda_dark
         
         # UBT correction from imaginary-time suppression
-        correction = np.exp(-self.r_psi_fm**2 / 1.0)  # fm² scale
+        correction = np.exp(-self.r_psi_fm**2 / CHARACTERISTIC_SCALE_FM2)
         
         N_tracks = N_base * correction
         return N_tracks
@@ -217,10 +219,9 @@ class UBTSignatureAnalyzer:
         """
         # Generate UBT predictions
         ubt_masses = self.ubt_mass_spectrum(n_max)
-        n_values = np.arange(1, n_max + 1)
         
         # Create figure
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
+        _, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
         
         # Top panel: Full spectrum
         ax1.scatter(measured_masses, 
@@ -296,6 +297,18 @@ class UBTSignatureAnalyzer:
         """
         # Filter tracks above threshold
         valid_tracks = tracks[tracks > pt_threshold]
+        
+        # Handle empty track array
+        if len(valid_tracks) == 0:
+            return {
+                'n_tracks': 0,
+                'mean_pt': 0.0,
+                'median_pt': 0.0,
+                'total_pt': 0.0,
+                'pt_std': 0.0,
+                'sphericity': 0.0,
+                'is_suep_candidate': False
+            }
         
         analysis = {
             'n_tracks': len(valid_tracks),

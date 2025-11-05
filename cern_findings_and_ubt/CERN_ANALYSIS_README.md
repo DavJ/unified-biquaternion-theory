@@ -71,7 +71,7 @@ else:
 
 ## Related Documentation
 
-- **CERN_DATA_UBT_ANALYSIS.md** - Comprehensive analysis of recent CERN findings and UBT explanations
+- **CERN_DATA_UBT_ANALYSIS.md** - Comprehensive analysis of latest CERN findings and UBT explanations
 - **SCIENTIFIC_DATA_SOURCES_BIBLIOGRAPHY.md** - References and data sources
 - **TESTABILITY_AND_FALSIFICATION.md** - Falsification criteria for UBT
 

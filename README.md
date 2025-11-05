@@ -73,10 +73,9 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 - **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Clear separation of validated vs. speculative content
 
 **For experimental data analysis:**
-- **[CERN_ANALYSIS_QUICKSTART.md](CERN_ANALYSIS_QUICKSTART.md)** - Latest CERN findings and UBT explanations (NEW: Nov 2025)
-- **[CERN_DATA_UBT_ANALYSIS.md](CERN_DATA_UBT_ANALYSIS.md)** - Comprehensive BSM search analysis with first-principles derivations
+- **[consolidation_project/appendix_CERN_BSM_predictions.tex](consolidation_project/appendix_CERN_BSM_predictions.tex)** - UBT predictions for CERN BSM searches (LaTeX appendix) (NEW: Nov 2025)
+- **[cern_findings_and_ubt/](cern_findings_and_ubt/)** - Detailed CERN data analysis, derivations, and Python tools
 - **[UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md](UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md)** - Scientific data supporting UBT predictions
-- **[scripts/analyze_cern_ubt_signatures.py](scripts/analyze_cern_ubt_signatures.py)** - Python tools for LHC data analysis
 
 **For contributors:**
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute

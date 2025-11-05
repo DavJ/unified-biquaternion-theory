@@ -251,7 +251,7 @@ This document compiles all scientific data sources, publications, and experiment
 
 - ATLAS Collaboration. (2023). "Search for semi-visible jets in pp collisions at √s = 13 TeV with the ATLAS detector." ATLAS-CONF-2023-047. https://cds.cern.ch/record/2023047
 
-- ATLAS Collaboration. (2024). "Search for new resonances in high-mass dilepton final states in pp collisions at √s = 13 TeV." arXiv:2401.XXXXX (expected 2024)
+- ATLAS Collaboration. (2024). "Search for new resonances in high-mass dilepton final states in pp collisions at √s = 13 TeV." arXiv:2401.XXXXX (not yet published as of Nov 2025)
 
 - ATLAS Collaboration. (2023). "Search for long-lived particles decaying into hadrons in pp collisions at √s = 13 TeV." arXiv:2309.XXXXX. https://arxiv.org/abs/2309.XXXXX
 

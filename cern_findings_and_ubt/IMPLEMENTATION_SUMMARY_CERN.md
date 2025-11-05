@@ -10,7 +10,7 @@
 
 The user asked to:
 1. Check latest CERN findings from quantum simulations data (quantum shadow, mediator particle, SUEP signature, hidden valley, extra dimensions, etc.)
-2. Derive and explain from first principles of UBT how UBT explains these recent data found in CERN
+2. Derive and explain from first principles of UBT how UBT explains these recent data found at CERN
 
 ---
 
