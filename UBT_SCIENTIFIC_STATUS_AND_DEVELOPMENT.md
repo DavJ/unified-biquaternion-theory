@@ -123,7 +123,7 @@ UBT posits a 32-dimensional mathematical structure (4 biquaternionic coordinates
 - **Observability**: Why isn't imaginary time ψ directly measured?
 
 **Required Demonstrations:**
-1. Prove causality preserved in complex time framework
+1. Prove causality preserved in biquaternionic time framework
 2. Show unitarity maintained for quantum evolution
 3. Demonstrate energy conservation rigorously
 4. Explain why ψ decouples from ordinary experiments

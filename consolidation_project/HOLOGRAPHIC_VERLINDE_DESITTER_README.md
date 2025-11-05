@@ -141,7 +141,7 @@ Potential extensions:
 1. AdS/CFT correspondence in biquaternionic framework
 2. Hawking radiation corrections from phase curvature
 3. Holographic entanglement entropy in UBT
-4. Modified Friedmann equations with complex time
+4. Modified Friedmann equations with biquaternionic time
 5. Experimental signatures of phase components
 
 ## Technical Notes

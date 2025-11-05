@@ -123,13 +123,13 @@ Three specific predictions:
 
 2. **Weak Measurement Phase Shifts** (X.2)
    - $\beta_\psi = (3 \pm 1) \times 10^{-16}$
-   - Pointer phase shift from complex time
+   - Pointer phase shift from biquaternionic time
    - Testable with $10^{-13}$ precision (challenging but possible)
 
 3. **Time-Asymmetric Weak Values** (X.3)
    - $\delta_{\text{asym}} = (5 \pm 2) \times 10^{-14}$
    - Forward vs. backward measurement asymmetry
-   - Tests time symmetry of complex time structure
+   - Tests time symmetry of biquaternionic time structure
 
 **Part 4: Experimental Proposals**
 - Precision photon polarization weak measurements

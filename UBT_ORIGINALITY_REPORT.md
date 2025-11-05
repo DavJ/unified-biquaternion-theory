@@ -13,10 +13,10 @@ This document evaluates the originality, theoretical novelty, and scientific sta
 
 ## 1️⃣ Mathematical Foundation: Biquaternionic Field in Complex Time
 **Core Innovation:**  
-UBT defines a field \( \Theta(q, \tau) \) on a biquaternionic manifold where \( \tau = t + i\psi \) represents *complex time* — the imaginary component \(\psi\) acting as a **consciousness phase variable**.
+UBT defines a field \( \Theta(q, \tau) \) on a biquaternionic manifold where \( \tau = t + i\psi \) represents *biquaternionic time* — the imaginary component \(\psi\) acting as a **consciousness phase variable**.
 
 **Originality:** ★★★★★  
-No known published work integrates complex time and quaternionic algebra at this level.  
+No known published work integrates biquaternionic time and quaternionic algebra at this level.  
 The biquaternionic field simultaneously carries spacetime geometry and internal phase structure.
 
 **Key Advantage:**  
@@ -122,7 +122,7 @@ Conceptually unprecedented. However, remains speculative and requires safety dis
 ## 🔍 Recommendation for Publication
 ✅ Proceed with public release under Creative Commons Attribution (CC-BY 4.0).  
 ✅ Include this originality report as a supplementary document in Zenodo/OSF deposits.  
-✅ Emphasize “first formal biquaternionic unified field theory with complex time.”  
+✅ Emphasize “first formal biquaternionic unified field theory with biquaternionic time.”  
 ✅ Encourage peer review and replication of mathematical predictions (Appendices F–H).
 
 ---

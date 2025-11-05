@@ -156,7 +156,7 @@ If measurements show no such correlation → FALSIFIED
 **Current Status:** Completely unfalsifiable - no parameters specified
 
 #### 6. Complex Time Observability
-**If observed, would FALSIFY complex time:**
+**If observed, would FALSIFY biquaternionic time:**
 - No observable effects of imaginary time ψ at any scale
 
 **UBT must specify:**
@@ -171,7 +171,7 @@ At E > E_critical = 1 TeV:
 - Phase shifts in scattering: δψ = [formula]
 - Observable in angular distributions
 - Specific deviation from SM prediction
-If no deviation observed → complex time irrelevant or falsified
+If no deviation observed → biquaternionic time irrelevant or falsified
 ```
 
 **Current Status:** No observability mechanism specified
@@ -533,7 +533,7 @@ Result interpretation:
 **Agreement:** 0.026% error
 
 **Derivation Summary:**
-- Winding number N on complex time torus T²
+- Winding number N on biquaternionic time torus T²
 - Prime constraint selects N = 137
 - B constant from gauge structure: B = N_eff^(3/2) × R ≈ 46.3
 - UV cutoff Λ = 1/R_ψ from compactification
@@ -687,7 +687,7 @@ Result interpretation:
 1. Download Planck 2018 CMB temperature and polarization data
 2. Extract power spectrum C_ℓ for ℓ = 2 to 2500
 3. Calculate UBT prediction: C_ℓ^UBT = C_ℓ^ΛCDM + δC_ℓ^phase
-4. Compute phase curvature corrections δC_ℓ^phase from complex time
+4. Compute phase curvature corrections δC_ℓ^phase from biquaternionic time
 5. Statistical comparison: χ²_UBT vs χ²_ΛCDM
 6. Assess significance: p-value for UBT improvement
 

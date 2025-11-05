@@ -7,7 +7,7 @@ This repository contains the source files and final PDF of the preprint:
 
 📄 **A Complex-Time Theory of Consciousness: Drift, Diffusion, and Phase Collapse in Toroidal Cognitive Space**
 
-This paper introduces a novel mathematical framework for modeling consciousness using complex time and toroidal topology. We explore links to the Fokker–Planck equation, theta functions, time-frequency duality, and relativistic collapse of perceptual states.
+This paper introduces a novel mathematical framework for modeling consciousness using biquaternionic time and toroidal topology. We explore links to the Fokker–Planck equation, theta functions, time-frequency duality, and relativistic collapse of perceptual states.
 
 Key concepts:
 - Complexified time and space \((T = t + i\psi, Z = x + i\chi)\)

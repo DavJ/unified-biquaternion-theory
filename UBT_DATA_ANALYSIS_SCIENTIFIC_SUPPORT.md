@@ -2,7 +2,7 @@
 
 **Author:** Research Analysis Team  
 **Date:** November 2, 2025  
-**Purpose:** Comprehensive analysis of available scientific data that may support UBT predictions and biquaternion/complex time concepts
+**Purpose:** Comprehensive analysis of available scientific data that may support UBT predictions and biquaternion/biquaternionic time concepts
 
 ---
 

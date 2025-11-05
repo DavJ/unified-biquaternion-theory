@@ -10,7 +10,7 @@
 
 **A:** **No.** UBT generalizes and embeds General Relativity. In the real-valued limit (when the imaginary time component ψ → 0), the UBT field equations reduce **exactly** to Einstein's field equations. This works for all curvature regimes, including R ≠ 0. All tests of GR automatically validate UBT's real sector.
 
-### Q3: What is "complex time" τ = t + iψ?
+### Q3: What is "biquaternionic time" τ = t + iψ?
 
 **A:** Complex time extends the ordinary time coordinate t by adding an imaginary component ψ. The real part t represents observable time evolution, while ψ represents phase-space structure and nonlocal correlations. Only the real part t couples to ordinary matter and energy.
 
@@ -137,7 +137,7 @@ Each perspective is complete and self-consistent. Together, they provide complem
 
 ### Q23: Is spacetime fundamental or emergent?
 
-**A:** In UBT, real spacetime (the metric g_μν) emerges from the real projection of the biquaternionic field Θ(q,τ). The fundamental object is Θ, defined over complex time. Classical spacetime is what we observe when we take Re[Θ].
+**A:** In UBT, real spacetime (the metric g_μν) emerges from the real projection of the biquaternionic field Θ(q,τ). The fundamental object is Θ, defined over biquaternionic time. Classical spacetime is what we observe when we take Re[Θ].
 
 ### Q24: What about quantum mechanics?
 
@@ -147,7 +147,7 @@ Each perspective is complete and self-consistent. Together, they provide complem
 
 ### Q25: How does this relate to string theory?
 
-**A:** String theory also uses extra dimensions and holography (AdS/CFT). UBT uses complex time (extending from 1+3 to effectively higher dimensional structure) and natural holographic encoding. Both frameworks suggest gravity emerges from information theory, though the mathematical structures differ.
+**A:** String theory also uses extra dimensions and holography (AdS/CFT). UBT uses biquaternionic time (extending from 1+3 to effectively higher dimensional structure) and natural holographic encoding. Both frameworks suggest gravity emerges from information theory, though the mathematical structures differ.
 
 ### Q26: How does this compare to loop quantum gravity?
 

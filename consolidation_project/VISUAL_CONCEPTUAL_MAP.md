@@ -8,7 +8,7 @@
                     │  Fundamental Equation:              │
                     │  ∇†∇Θ(q,τ) = κ𝒯(q,τ)               │
                     │                                     │
-                    │  τ = t + iψ (complex time)          │
+                    │  τ = t + iψ (biquaternionic time)          │
                     │  Θ = g + iψ + jξ + kχ               │
                     └──────────┬──────────────────────────┘
                                │
@@ -243,7 +243,7 @@ Information (I) ←→ Entropy (S) ←→ Area (A) ←→ Curvature (R)
 
 ```
 Θ(q,τ)  = Biquaternionic field
-τ       = t + iψ (complex time)
+τ       = t + iψ (biquaternionic time)
 ψ       = Imaginary time component (phase)
 S       = Entropy
 A       = Area

@@ -112,13 +112,13 @@ New: (5.0 + 5.0 + 3.5 + 4.5 + 6.0 + 9.5×1.5) / 6.5 = 5.5/10
 - Anomaly cancellation automatic
 
 **Impact:**
-- Addresses "complex time issues" partially
+- Addresses "biquaternionic time issues" partially
 - Resolves "SM assumed not derived" criticism
 - Improves consistency with known physics
 
 **Remaining Issues:**
 - Causality preservation not fully proven
-- Unitarity in complex time needs demonstration
+- Unitarity in biquaternionic time needs demonstration
 - Energy conservation formal proof pending
 
 **Score Justification:**

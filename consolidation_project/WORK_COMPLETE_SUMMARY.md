@@ -265,7 +265,7 @@ These are not competing theories but complementary views of the same biquaternio
 
 ### Nature of Spacetime
 
-- **Fundamental**: Biquaternionic field Θ(q,τ) over complex time
+- **Fundamental**: Biquaternionic field Θ(q,τ) over biquaternionic time
 - **Emergent**: Real metric g_μν = Re[Θ_μν]
 - **Observable**: Only real part couples to matter/energy
 - **Hidden**: Phase components (ψ, ξ, χ) carry dark sector information
@@ -274,7 +274,7 @@ These are not competing theories but complementary views of the same biquaternio
 
 Information in UBT has dual character:
 - **Classical**: Bits encoded on boundaries (holography)
-- **Quantum**: Phase information in complex time
+- **Quantum**: Phase information in biquaternionic time
 - **Visible**: Real component (observable)
 - **Hidden**: Phase component (dark sector)
 

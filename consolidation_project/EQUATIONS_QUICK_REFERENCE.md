@@ -113,7 +113,7 @@ R_obs = Re[R_UBT] = 4Λ
 ```
 where:
 - Θ(q,τ) = biquaternionic field
-- τ = t + iψ = complex time
+- τ = t + iψ = biquaternionic time
 - κ = 8πG = gravitational coupling
 - 𝒯(q,τ) = biquaternionic stress-energy
 
