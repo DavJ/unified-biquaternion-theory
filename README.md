@@ -344,7 +344,7 @@ UBT is classified as an honest research framework in early development with exem
 - ✅ **Mathematical rigor:** 3.0/10 → 5.0/10 (formal field definition, SM derivation complete)
 - ✅ **SM compatibility:** 3/10 → 6/10 (gauge group now **derived**, not assumed)
 - ✅ **Testability:** 3.0/10 → 4.5/10 (CMB analysis protocol complete, feasible within 1-2 years)
-- ✅ **Core formula identified:** ∇†∇Θ(q,τ) = κ𝒯(q,τ) (simple, complete, T-shirt ready)
+- ✅ **Core formula identified:** ∇†∇Θ(q,T_B) = κ𝒯(q,T_B) (simple, complete, T-shirt ready)
 
 **Strengths:**
 - ✅ Exemplary scientific integrity and transparency (9.5/10)
