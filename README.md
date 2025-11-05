@@ -9,12 +9,14 @@
 - **Single Source for α**: New `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` provides complete derivation
 - **No Free Parameters**: Coefficient B derived as B = (2π·12)/3 × 1.8 ≈ 46.3 (not fitted)
 - **Geometric UV Cutoff**: Λ = 1/R_ψ set by imaginary-time compactification
-- **Biquaternion Time Priority**: Transition criterion formalized in Appendix B
+- **Biquaternion Time Priority**: Transition criterion formalized in Appendix N2
 - **Symbol Clarity**: Distinct B coefficients in α vs electron mass contexts clarified
 
-**NEW (November 2025):**
-- **Appendix G (2025)**: Introduces Hamiltonian-in-exponent θ-function formulation: Θ(Q,T) = Σ exp[π·𝔹(n)·ℍ(T)]
-- **Dual Time Representations**: Both operator form T_B and algebraic form T preserved and clarified as equivalent
+**Recent Theoretical Additions (November 2025):**
+- **Appendix G (2025)**: Hamiltonian-in-exponent θ-function formulation: Θ(Q,T) = Σ exp[π·𝔹(n)·ℍ(T)]
+- **Appendix G.5 (2025)**: Biquaternionic Fokker-Planck equation connecting Hamiltonian evolution to drift-diffusion dynamics
+- **Appendix N2 Extended (2025)**: Full 8D biquaternionic time manifold T = A + iB (outer chronometric + inner phase time)
+- **Dual Time Representations**: Operator form T_B and algebraic form T clarified as equivalent
 - **Enhanced Documentation**: Comprehensive glossaries, historical lineage (180+ years), and rigor classification
 
 **Migration:** References to "B = 46.3 fitted" are deprecated. See [CHANGELOG.md](CHANGELOG.md) for details.
