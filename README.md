@@ -59,6 +59,31 @@ From its mathematical structure, the **Complex Consciousness Theory (CCT)** emer
 
 ---
 
+## 🚀 Getting Started
+
+**New to UBT? Start here:**
+
+1. **[OVERVIEW.md](OVERVIEW.md)** - Concise introduction to core concepts, equations, and predictions
+2. **[UBT_READING_GUIDE.md](UBT_READING_GUIDE.md)** - Navigate the repository based on your interests
+3. **[ROADMAP.md](ROADMAP.md)** - Development timeline and milestones
+
+**For critical evaluation:**
+- **[TESTABILITY_AND_FALSIFICATION.md](TESTABILITY_AND_FALSIFICATION.md)** - Falsification criteria and testable predictions
+- **[FITTED_PARAMETERS.md](FITTED_PARAMETERS.md)** - Transparent audit of derived vs. fitted constants
+- **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Clear separation of validated vs. speculative content
+
+**For contributors:**
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
+- **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** - Community standards
+
+**For comparison to existing work:**
+- **[LITERATURE_COMPARISON.md](LITERATURE_COMPARISON.md)** - Relation to prior biquaternion and complex-time frameworks
+
+**For academic pursuit:**
+- **[PEER_REVIEW_ROADMAP.md](PEER_REVIEW_ROADMAP.md)** - Strategy for journal submission
+
+---
+
 ## 📜 Overview
 
 UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.
