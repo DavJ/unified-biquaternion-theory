@@ -13,7 +13,7 @@
 - Quantum Field Theory (quantum mechanics and gauge forces)
 - Standard Model (strong, weak, electromagnetic forces and particles)
 
-**Key Innovation:** All physics emerges from a single biquaternionic field Θ(q,τ) on complex spacetime.
+**Key Innovation:** All physics emerges from a single biquaternionic field Θ(q,T_B) on biquaternionic spacetime.
 
 **Current Status:** Research framework with validated mathematical predictions (Scientific Rating: 5.5/10)
 
@@ -22,15 +22,15 @@
 ## The Core Equation (T-Shirt Formula)
 
 ```
-∇†∇Θ(q,τ) = κ𝒯(q,τ)
+∇†∇Θ(q,T_B) = κ𝒯(q,T_B)
 ```
 
 **In English:** *The covariant double-derivative of the unified field equals the energy-momentum source.*
 
 **Components:**
-- **Θ(q,τ)**: Unified biquaternionic field (contains all physics)
+- **Θ(q,T_B)**: Unified biquaternionic field (contains all physics)
 - **q ∈ ℂ⊗ℍ**: Biquaternion coordinates (8 real dimensions = 4 complex dimensions)
-- **τ = t + iψ**: Complex time (real time + imaginary phase)
+- **T_B = t + i(ψ + v·σ)**: Biquaternionic time (fundamental time structure)
 - **∇†∇**: Gauge-covariant Laplacian (includes gravity + gauge forces)
 - **κ**: Coupling constant (related to Newton's G)
 - **𝒯**: Energy-momentum tensor (source of fields)
@@ -51,16 +51,18 @@
 **Justification:** Biquaternions naturally represent Lorentz symmetry  
 **Status:** ✅ Mathematical foundation established
 
-### 2. Complex Time
-**Assumption:** Time coordinate is complex τ = t + iψ  
+### 2. Biquaternionic Time
+**Assumption:** Time coordinate is fundamentally biquaternionic T_B = t + i(ψ + v·σ)  
 **Real part t:** Ordinary time  
-**Imaginary part ψ:** Phase angle on compact circle S¹  
+**Imaginary scalar ψ:** Phase angle on compact circle S¹  
+**Imaginary vector v:** Spin and rotation coupling via Pauli matrices σ  
 **Radius:** R_ψ = ℏ/(m_e c) ≈ 2.43 × 10⁻¹² m (Compton wavelength)  
-**Justification:** Allows gauge quantization and topological winding  
+**Complex time approximation:** τ = t + iψ valid when ‖v‖² ≪ |ψ|² and [Θ_i, Θ_j] ≈ 0  
+**Justification:** Full biquaternionic structure allows gauge quantization, topological winding, and non-Abelian dynamics  
 **Status:** ⚠️ Physical interpretation requires further development
 
 ### 3. Single Unified Field
-**Assumption:** All physics emerges from one field Θ(q,τ) ∈ ℂ⊗ℍ  
+**Assumption:** All physics emerges from one field Θ(q,T_B) ∈ ℂ⊗ℍ  
 **Content:** Contains gravity, gauge forces, and matter  
 **Decomposition:**
 - Real part Re[Θ] → metric tensor g_μν (gravity)
@@ -98,7 +100,7 @@
 **Caveat:** ⚠️ Formula coefficients fitted pending derivation
 
 #### 2. Fine-Structure Constant
-**Prediction:** α⁻¹ = 137 (from complex time topology)  
+**Prediction:** α⁻¹ = 137 (from biquaternionic time compactification)  
 **Experimental:** α⁻¹ = 137.036  
 **Error:** 0.026%  
 **Derivation:** Winding number on T² torus, prime constraint  
@@ -122,7 +124,7 @@
 
 #### 5. CMB Multiverse Signatures
 **Prediction:** Specific patterns in cosmic microwave background  
-**Mechanism:** Phase-curvature effects from complex time  
+**Mechanism:** Phase-curvature effects from biquaternionic time structure  
 **Observable:** Deviations from ΛCDM power spectrum  
 **Timeline:** Feasible with Planck data analysis (1-2 years)  
 **Status:** Analysis protocol complete (see UBT_DATA_ANALYSIS_SCIENTIFIC_SUPPORT.md)
@@ -154,9 +156,9 @@
 ## Mathematical Structure (Quick Reference)
 
 ### Field Content
-- **Θ(q,τ)**: Master biquaternionic field
+- **Θ(q,T_B)**: Master biquaternionic field
 - **q = (q₀, q₁, q₂, q₃)**: Biquaternion coordinates, qᵢ ∈ ℂ
-- **τ = t + iψ**: Complex time
+- **T_B = t + i(ψ + v·σ)**: Biquaternionic time
 
 ### Symmetries
 - **Lorentz symmetry**: SL(2,ℂ) naturally represented by biquaternions
@@ -165,7 +167,7 @@
 
 ### Action Principle
 ```
-S = ∫ d⁴q d²τ √-|G| [ R(G) - ½(∇Θ)†·(∇Θ) - V(Θ) ]
+S = ∫ d⁴q d²T_B √-|G| [ R(G) - ½(∇Θ)†·(∇Θ) - V(Θ) ]
 ```
 
 Where:
@@ -190,7 +192,7 @@ Which reduces to the core equation in coordinate form.
 1. **General Relativity**: Recovered exactly in real-time limit
 2. **Gauge Symmetries**: SU(3)×SU(2)×U(1) derived from geometry
 3. **Electron Mass**: 0.510 MeV from topological soliton (0.2% accuracy)
-4. **Fine-Structure Constant**: α⁻¹ = 137 from complex time topology (0.03% accuracy)
+4. **Fine-Structure Constant**: α⁻¹ = 137 from biquaternionic time compactification (0.03% accuracy)
 5. **Quantum Gravity Unification**: GR + QFT in single framework
 
 ### ⚠️ Partially Explained
@@ -332,10 +334,11 @@ Which reduces to the core equation in coordinate form.
 - Do NOT claim consciousness "explained"
 - See CONSCIOUSNESS_CLAIMS_ETHICS.md for details
 
-### Q: How does complex time work physically?
+### Q: How does biquaternionic time work physically?
 **A:** Honest answer: We don't fully know yet.
-- τ = t + iψ where ψ is phase angle
-- Similar to Kaluza-Klein extra dimension but imaginary
+- T_B = t + i(ψ + v·σ) where ψ is phase angle, v is vector component
+- Complex time τ = t + iψ is a simplified 2D projection valid in certain regimes
+- Similar to Kaluza-Klein extra dimensions but with quaternionic structure
 - Physical interpretation under development
 - Observability questions remain
 - Not just Wick rotation (physical, not calculational)
@@ -405,7 +408,7 @@ Which reduces to the core equation in coordinate form.
 
 ### What UBT Is
 - ✅ Unified field theory combining GR, QFT, SM
-- ✅ Based on biquaternions and complex time
+- ✅ Based on biquaternions and biquaternionic time
 - ✅ Single field equation: ∇†∇Θ = κ𝒯
 - ✅ Derives SM gauge group from geometry
 - ✅ Recovers Einstein's GR in real limit
@@ -423,7 +426,7 @@ Which reduces to the core equation in coordinate form.
 - **If incorrect:** Valuable exploration of mathematical physics
 - **Either way:** 
   - Demonstrates biquaternion power for field theory
-  - Explores complex time physically
+  - Explores biquaternionic time structure physically
   - Contributes to understanding unification attempts
   - Exemplifies transparent scientific process
 
