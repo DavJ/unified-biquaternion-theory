@@ -83,7 +83,7 @@ File:
 
 Content verified:
 - [x] Introduction to TSVF (validated physics)
-- [x] Natural emergence from complex time structure
+- [x] Natural emergence from biquaternionic time structure
 - [x] Time symmetry demonstration
 - [x] Weak value formula derivation
 - [x] Three weak measurement predictions with numerical values:

@@ -222,12 +222,12 @@ UBT claims to unify Standard Model with gravity, but does not calculate:
 **Deep Questions:**
 1. Why does Higgs field have non-zero VEV?
 2. What determines VEV value v ≈ 246 GeV?
-3. How does complex time affect mass generation?
+3. How does biquaternionic time affect mass generation?
 4. Connection to electroweak symmetry breaking
 
 **Approach:**
 - Study biquaternionic potential V(Θ)
-- Investigate vacuum structure in complex time
+- Investigate vacuum structure in biquaternionic time
 - Analyze stability and phase transitions
 - Connect to early universe cosmology
 
@@ -421,7 +421,7 @@ Complex time τ = t + iψ introduces fundamental issues:
 
 **Approach:**
 1. **Derive conservation laws**
-   - Apply Noether's theorem in complex time
+   - Apply Noether's theorem in biquaternionic time
    - Identify conserved quantities
    - Check for anomalies
 
@@ -551,7 +551,7 @@ UBT is compared to mature theories with decades of development:
 
 **UBT:**
 - ✅ Strengths: Unifies gravity + SM, derives SM gauge group, testable CMB prediction, exemplary integrity
-- ❌ Weaknesses: Early stage, limited peer review, fermion masses not calculated, complex time issues open
+- ❌ Weaknesses: Early stage, limited peer review, fermion masses not calculated, biquaternionic time issues open
 
 ---
 
@@ -607,7 +607,7 @@ UBT is compared to mature theories with decades of development:
 
 **Decision Points:**
 - **2026:** If CMB null result + no peer review success → Re-evaluate viability
-- **2029:** If no fermion masses + complex time unresolved → Acknowledge limitations
+- **2029:** If no fermion masses + biquaternionic time unresolved → Acknowledge limitations
 - **2030:** Major assessment - continue, pivot, or conclude
 
 ---

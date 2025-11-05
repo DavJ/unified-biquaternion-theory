@@ -177,7 +177,7 @@ Predictions are **quantitatively accurate**:
 
 Framework is **physically coherent**:
 - Drift and see-saw mechanisms are equivalent (not independent)
-- Biquaternionic time is fundamental (complex time is projection)
+- Biquaternionic time is fundamental (biquaternionic time is projection)
 - Standard Model see-saw properly incorporated
 - Compactification topology generates right-handed neutrinos
 

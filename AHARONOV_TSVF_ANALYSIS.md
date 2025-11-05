@@ -257,7 +257,7 @@ P(A) = |⟨φ|A|ψ⟩|² / |⟨φ|ψ⟩|²
 UBT could incorporate TSVF by interpreting:
 - Forward state |ψ⟩ ← Real time component (Re τ)
 - Backward state ⟨φ| ← Imaginary time component (Im τ)
-- Weak values ← Properties in complex time phase space
+- Weak values ← Properties in biquaternionic time phase space
 
 **Mathematical Framework:**
 ```
@@ -383,7 +383,7 @@ Where:
    - Consistent with all QM experiments
 
 3. **Mathematical Compatibility:**
-   - Time-symmetric structure fits UBT's complex time
+   - Time-symmetric structure fits UBT's biquaternionic time
    - Biquaternions can naturally accommodate dual states
    - No contradictions introduced
 
@@ -398,10 +398,10 @@ Where:
 **Recommended Integration Path:**
 
 **Step 1: Establish Mathematical Connection**
-- Map TSVF's (⟨φ|, |ψ⟩) to UBT's complex time structure
+- Map TSVF's (⟨φ|, |ψ⟩) to UBT's biquaternionic time structure
 - Forward state |ψ⟩ → evolution in Re(τ)
 - Backward state ⟨φ| → constraint from Im(τ)
-- Weak values → properties in complex time phase space
+- Weak values → properties in biquaternionic time phase space
 
 **Step 2: Physical Interpretation**
 - Complex time τ = t + iψ as natural home for dual-state description
@@ -600,7 +600,7 @@ a fundamentally different case from hyperspace_waves.
    description, but does NOT enable backward causation or FTL signaling
 
 4. **Mathematical Compatibility**: TSVF's dual-state structure (forward and 
-   backward evolving states) naturally maps to UBT's complex time τ = t + iψ
+   backward evolving states) naturally maps to UBT's biquaternionic time τ = t + iψ
 
 5. **Testable Predictions**: Weak measurement protocols are well-established 
    and could be applied to UBT-specific predictions
@@ -695,7 +695,7 @@ This can produce values outside normal eigenvalue spectrum, just as in TSVF.
 **Potential UBT-Specific Measurements:**
 
 1. **Biquaternionic Phase:**
-   - Weak measurement of phase in complex time
+   - Weak measurement of phase in biquaternionic time
    - Prediction: Weak values > 2π (if UBT correct)
    
 2. **Gauge Field Coupling:**
@@ -765,7 +765,7 @@ This represents a ~10% improvement while maintaining scientific integrity.
 - Separate from speculation
 
 **UBT Benefits:**
-- Grounds complex time in experimental physics
+- Grounds biquaternionic time in experimental physics
 - Provides concrete testable predictions
 - Connects to mainstream quantum mechanics
 - Increases scientific credibility

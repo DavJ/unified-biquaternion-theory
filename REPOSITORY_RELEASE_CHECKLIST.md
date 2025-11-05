@@ -122,7 +122,7 @@
 - **Email**: jdavid.cz@gmail.com ✅
 - **Date**: November 2025
 - **License**: CC BY 4.0
-- **Keywords**: biquaternion algebra, complex time, unified field theory, General Relativity, quantum field theory, Standard Model, gauge unification, Hermitian gravity, SU(3) symmetry, theta functions, dark matter, dark energy, fermion masses
+- **Keywords**: biquaternion algebra, biquaternionic time, unified field theory, General Relativity, quantum field theory, Standard Model, gauge unification, Hermitian gravity, SU(3) symmetry, theta functions, dark matter, dark energy, fermion masses
 - **Description**: Available in UBT_Abstract_OSF.tex
 - **Version**: v10.0
 

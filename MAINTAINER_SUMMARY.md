@@ -233,7 +233,7 @@ All documents are now in the repository:
 ### Medium Term (6 months - 2 years):
 - Complete mathematical foundations
 - Make ONE testable prediction
-- Address complex time issues
+- Address biquaternionic time issues
 - Connect consciousness to neuroscience OR remove
 
 ### Long Term (2+ years):
@@ -320,7 +320,7 @@ Even if UBT never becomes validated physics, it can succeed by:
 **Priority order:**
 1. Complete mathematical foundations
 2. Make testable predictions
-3. Address complex time issues
+3. Address biquaternionic time issues
 4. Everything else
 
 **Time frame:** Years to decades, not months

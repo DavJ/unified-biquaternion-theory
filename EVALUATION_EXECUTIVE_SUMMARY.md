@@ -400,7 +400,7 @@ Mathematical exploration only. Not physics predictions.
 1. Define biquaternionic inner product rigorously
 2. Construct Hilbert space for quantum theory
 3. Formalize dimensional reduction mechanism
-4. Address complex time issues (causality, unitarity)
+4. Address biquaternionic time issues (causality, unitarity)
 
 **Predictions:**
 1. Choose ONE specific testable prediction

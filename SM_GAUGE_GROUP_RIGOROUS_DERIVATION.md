@@ -328,7 +328,7 @@ Aut(ℂ ⊗ ℍ) × Aut_octonion
 
 4. **Step 4:** Break to chiral:
    ```
-   SU(2)_L × [trivial] (via complex time ψ)
+   SU(2)_L × [trivial] (via biquaternionic time ψ)
    ```
 
 5. **Step 5:** Add U(1) from complex phase:
@@ -603,7 +603,7 @@ This is a **rigorous derivation**, not assumption.
 2. ✅ Octonionic extension gives SU(3)
 3. ✅ Quaternionic structure gives SU(2)_L
 4. ✅ Complex phase gives U(1)_Y
-5. ✅ Chirality from complex time
+5. ✅ Chirality from biquaternionic time
 6. ✅ Fermion reps from geometry
 7. ✅ Anomaly cancellation automatic
 8. ✅ Three generations from triality

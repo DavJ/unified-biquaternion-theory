@@ -64,7 +64,7 @@ The formula B = N_eff^(3/2) has deep geometric meaning:
 1. **N_eff** counts degrees of freedom in gauge sector
 2. **Exponent 3/2** comes from:
    - Factor of N from summing over gauge bosons
-   - Factor of √N from field normalization in complex time
+   - Factor of √N from field normalization in biquaternionic time
    - Combined: N × √N = N^(3/2)
 3. **Result**: B directly connects to Standard Model structure
 

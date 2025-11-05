@@ -215,7 +215,7 @@ Following substantial mathematical formalization in November 2025, **significant
 ✅ **Holographic Interpretation**
 - Imaginary components = bulk degrees of freedom
 - Real components = boundary (observable) physics
-- Provides physical meaning for complex time
+- Provides physical meaning for biquaternionic time
 
 **Remaining Issues:**
 
@@ -225,7 +225,7 @@ Following substantial mathematical formalization in November 2025, **significant
 - Causal structure in full 32D space unclear
 
 ❌ **Unitarity Not Established**
-- Probability conservation in complex time not proven
+- Probability conservation in biquaternionic time not proven
 - Quantum mechanics consistency not demonstrated
 - Hermiticity of Hamiltonian questionable
 
@@ -494,7 +494,7 @@ The original reevaluation (October) was accurate **at that time**. November form
 1. ✅ Update UBT_REEVALUATION_2025.md to reflect November progress
 2. ✅ Change "numerological postdiction" to "emergent normalization with adjustable parameter"
 3. ✅ Acknowledge substantial improvement in math foundations and testability
-4. ⚠️ Continue working on complex time causality/unitarity (1-year deadline)
+4. ⚠️ Continue working on biquaternionic time causality/unitarity (1-year deadline)
 5. ➖ De-prioritize consciousness (separate from core theory)
 
 **Overall:** Theory is developing appropriately with honest self-assessment. November improvements are real and substantial.
