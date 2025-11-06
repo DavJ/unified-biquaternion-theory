@@ -7,6 +7,26 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    name: Lint complex time usage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Run complex time linter
+        run: |
+          python3 scripts/lint_complex_time_usage.py
+        continue-on-error: true  # Don't fail build, just warn
+      
+      - name: Run symbolic alpha tests
+        run: |
+          python3 scripts/test_symbolic_alpha.py
+
   discover:
     name: Discover LaTeX roots
     runs-on: ubuntu-latest
@@ -79,6 +99,8 @@ jobs:
           latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
           latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
           args: -interaction=nonstopmode -halt-on-error
+          extra_system_packages: "py-pygments"
+          pre_compile: "tlmgr install physics braket || true"
 
       - name: Make safe artifact names
         id: names

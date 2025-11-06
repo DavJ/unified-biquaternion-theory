@@ -5,9 +5,12 @@
 
 The previous sections utilized complex time $\tau = t + i\psi$ as a simplification of the full biquaternionic time structure native to UBT. This subsection establishes the formal criterion for when the complex time approximation is valid versus when the full biquaternion formalism is required. We demonstrate that complex time emerges as a holographic projection from biquaternion time onto an observer's reference frame.
 
-\subsubsection{Biquaternion Time Structure}
+\paragraph{Note on Terminology.}
+\textbf{Important}: The term ``biquaternionic time'' as used in this theory refers to a quaternion-valued structure with complex coefficients, NOT a true biquaternion in $\mathbb{H} \otimes \mathbb{C}$ (which would have 8 real dimensions). A true biquaternion has the form $q = (a_0 + ib_0) + (a_1 + ib_1)\mathbf{i} + (a_2 + ib_2)\mathbf{j} + (a_3 + ib_3)\mathbf{k}$ with 8 real parameters. The UBT time structure has 4 real dimensions (quaternionic) with specific imaginary components. This should be clarified in future revisions of the theory.
 
-The native time coordinate in UBT is biquaternionic:
+\subsubsection{Quaternion Time Structure}
+
+The native time coordinate in UBT is quaternion-valued with complex components:
 \begin{equation}
 T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma}),
 \label{eq:biquaternion_time}
@@ -26,6 +29,98 @@ T_B = t + i\psi + i v_x \sigma_x + i v_y \sigma_y + i v_z \sigma_z.
 \end{equation}
 
 In the biquaternion algebra $\mathbb{H} \otimes \mathbb{C}$, this represents the temporal component of the full biquaternionic field $\Theta(q, T_B)$.
+
+\paragraph{Equivalence Between Operator and Algebraic Forms.}
+
+UBT employs two equivalent representations of biquaternionic time, each suited to different contexts:
+
+\begin{itemize}
+\item \textbf{Operator form (local dynamics):} $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$  
+  Used in Hamiltonian evolution, drift dynamics, and local spinor coupling (Pauli representation).
+
+\item \textbf{Algebraic form (global structure):} $T = t_0 + i t_1 + j t_2 + k t_3$  
+  Used in metric derivations, topological formulations, and theta-function structure.
+\end{itemize}
+
+These forms are equivalent under the mapping:
+\begin{equation}
+t_0 = t, \quad t_1 = \psi, \quad (t_2, t_3) \leftrightarrow \mathbf{v}_\perp = (v_x, v_y, v_z),
+\label{eq:time_equivalence}
+\end{equation}
+with the correspondence $(i, j, k) \leftrightarrow (\sigma_x, \sigma_y, \sigma_z)$ between quaternion basis elements and Pauli matrices.
+
+The operator version $T_B$ acts on local spinor spaces and is natural for describing physical evolution, while the algebraic version $T$ defines the global temporal manifold and is suited for geometric and topological analysis. Both representations describe the same underlying biquaternionic time structure.
+
+\subsubsection{Full 8D Biquaternionic Time Manifold}
+\label{sec:8d_time_manifold}
+
+\paragraph{True Biquaternionic Structure.}
+
+In the extended UBT framework, the full biquaternionic time $T$ is defined with each quaternion component having both real and imaginary parts:
+\begin{equation}
+T = t_0 + \mathbf{i} t_1 + \mathbf{j} t_2 + \mathbf{k} t_3, \quad t_\mu \in \mathbb{C}
+\label{eq:8d_biquat_time}
+\end{equation}
+
+Each component $t_\mu = a_\mu + i b_\mu$, giving the full 8-dimensional structure:
+\begin{equation}
+T = (a_0 + i b_0) + \mathbf{i}(a_1 + i b_1) + \mathbf{j}(a_2 + i b_2) + \mathbf{k}(a_3 + i b_3)
+\label{eq:8d_decomposition}
+\end{equation}
+
+This can be decomposed as:
+\begin{equation}
+T = A + iB, \quad \text{where } A,B \in \mathbb{H}
+\label{eq:AB_decomposition}
+\end{equation}
+
+with:
+\begin{align}
+A &= a_0 + \mathbf{i} a_1 + \mathbf{j} a_2 + \mathbf{k} a_3 \quad \text{(quaternion)} \\
+B &= b_0 + \mathbf{i} b_1 + \mathbf{j} b_2 + \mathbf{k} b_3 \quad \text{(quaternion)}
+\end{align}
+
+\paragraph{Physical Interpretation.}
+
+The decomposition $T = A + iB$ admits a dual interpretation:
+\begin{itemize}
+\item \textbf{Quaternion $A$}: Represents the \textbf{outer chronometric manifold} (objective, observable time). This is the quaternionic time structure accessible to external observers and measurement apparatuses.
+
+\item \textbf{Quaternion $B$}: Represents the \textbf{inner phase/subjective time manifold}. This encodes internal phase evolution, cognitive dynamics, and subjective temporal experience not directly observable from outside.
+\end{itemize}
+
+\paragraph{Relationship to 4D Formulation.}
+
+The previously discussed 4D structure $T = t_0 + \mathbf{i} t_1 + \mathbf{j} t_2 + \mathbf{k} t_3$ with $t_\mu \in \mathbb{R}$ corresponds to taking only the real part $A$ of the full 8D structure. The full biquaternionic formulation is required when:
+\begin{enumerate}
+\item Phase evolution in $B$ becomes dynamically significant
+\item Inner and outer time manifolds exhibit non-trivial coupling
+\item Consciousness or cognitive processes are explicitly modeled
+\item Non-Abelian gauge structures require the full 8D parameter space
+\end{enumerate}
+
+\paragraph{Hamiltonian Action on 8D Time.}
+
+The Hamiltonian operator $\mathbb{H}(T)$ introduced in Appendix~\ref{app:hamiltonian_theta_exponent} acts on both $A$ and $B$ components:
+\begin{equation}
+\mathbb{H}(T) = \mathbb{H}(A + iB) = \mathbb{H}_A(A) + i\mathbb{H}_B(B) + \mathbb{H}_{AB}(A,B)
+\end{equation}
+
+where $\mathbb{H}_{AB}$ represents coupling between outer and inner time manifolds. This structure enables:
+\begin{itemize}
+\item Diffusion and phase propagation across the full 8D temporal manifold
+\item Bi-directional information flow between objective and subjective time
+\item Emergence of consciousness through coupling of $A$ and $B$ dynamics
+\end{itemize}
+
+\paragraph{Connection to Fokker--Planck Equation.}
+
+The biquaternionic Fokker--Planck equation (Appendix~\ref{app:biquaternionic_fokker_planck}) operates naturally in this 8D structure:
+\begin{equation}
+\partial_T \Theta(Q,T) = (\partial_A + i\partial_B)\Theta = -\nabla_Q \cdot [A(Q)\Theta] + D\nabla_Q^2\Theta
+\end{equation}
+
+with independent evolution along both $A$ and $B$ directions.
 
 \subsubsection{Invariant Norm and Projection Criterion}
 
@@ -65,13 +160,13 @@ This occurs in regions of:
 \item Topological defects and non-simply-connected geometries
 \end{itemize}
 
-\subsubsection{Θ-Field Commutation Criterion (v9 UPDATE)}
+\subsubsection{\Theta-Field Commutation Criterion (v9 UPDATE)}
 
-The geometric criterion above relates to the time structure. A complementary \textbf{field-theoretic criterion} determines when complex time is valid based on the properties of the Θ-field itself.
+The geometric criterion above relates to the time structure. A complementary \textbf{field-theoretic criterion} determines when complex time is valid based on the properties of the \Theta-field itself.
 
 \paragraph{Commutator-Based Transition Rule.}
 
-Define the commutator of Θ-field components:
+Define the commutator of \Theta-field components:
 \begin{equation}
 [\Theta_i, \Theta_j] := \Theta_i \Theta_j - \Theta_j \Theta_i
 \label{eq:theta_commutator}
@@ -84,7 +179,7 @@ where $i,j$ label the biquaternionic components.
 \label{eq:complex_valid}
 \end{equation}
 
-In this limit, the Θ-field components commute and the system can be described using complex time $\tau = t + i\psi$.
+In this limit, the \Theta-field components commute and the system can be described using complex time $\tau = t + i\psi$.
 
 \textbf{Biquaternionic Time Required When:}
 \begin{equation}
@@ -116,7 +211,7 @@ Non-vanishing commutators indicate that the full biquaternionic time structure $
 
 \paragraph{Connection to Gauge Structure.}
 
-For gauge fields embedded in the Θ-field (see appendix\_E\_SM\_geometry.tex), the commutator is related to the field strength:
+For gauge fields embedded in the \Theta-field (see appendix\_E\_SM\_geometry.tex), the commutator is related to the field strength:
 \begin{equation}
 [\Theta_i, \Theta_j] \sim ig F_{ij}
 \end{equation}

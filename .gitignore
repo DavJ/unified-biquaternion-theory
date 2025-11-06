@@ -31,3 +31,10 @@ __pycache__/
 *.swp
 *.swo
 .DS_Store
+
+# Generated plots and analysis outputs
+ubt_mass_spectrum_analysis.png
+*.png
+!docs/**/*.png
+!consolidation_project/img/*.png
+!consolidation_project/fig_*.png

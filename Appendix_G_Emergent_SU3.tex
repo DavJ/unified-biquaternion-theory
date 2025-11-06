@@ -1,0 +1,73 @@
+% =====================================================================
+% Appendix G: Emergent SU(3) Color Symmetry
+% =====================================================================
+
+\appendix
+\section*{Appendix G — Emergent SU(3) Color Symmetry}
+\addcontentsline{toc}{section}{Appendix G — Emergent SU(3) Color Symmetry}
+
+\subsection*{G.1 Overview}
+
+The Unified Biquaternion Theory (UBT) provides a natural geometric origin for the $\mathrm{SU}(3)$ color symmetry of quantum chromodynamics (QCD). Rather than postulating this gauge group as an external structure, UBT derives it from the internal phase structure of the biquaternionic field $\Theta(q,\tau)$ over complex time.
+
+\subsection*{G.2 Quaternionic Phase Structure and Color Degrees of Freedom}
+
+The biquaternionic field $\Theta \in \mathbb{C}\otimes\mathbb{H}$ possesses three independent imaginary quaternionic axes: $i$, $j$, and $k$. Each of these axes can carry an independent complex phase $\psi_n$ within the complex time structure $\tau = t + i\psi$.
+
+When the field is promoted to include multi-dimensional phase degrees of freedom, these three independent phase directions naturally correspond to the three color charges of QCD. The mapping is given in the following table:
+
+\begin{table}[h]
+\centering
+\caption{Mapping between quaternionic and SU(3) color degrees of freedom.}
+\begin{tabular}{lll}
+\hline
+Quaternion Axis & Complex Phase & SU(3) Color Equivalent \\
+\hline
+$i$ & $\psi_1$ & Red \\
+$j$ & $\psi_2$ & Green \\
+$k$ & $\psi_3$ & Blue \\
+\hline
+\end{tabular}
+\label{tab:quaternion_color_map}
+\end{table}
+
+\subsection*{G.3 Modular Realization via Theta Functions}
+
+A concrete realization of this correspondence uses multi-variable theta functions:
+\begin{equation}
+\Theta(x,\tau) = \sum_{n\in \mathbb{Z}^3}\exp\Big(i\pi\, n^{\!\top}\,\Omega(x,\tau)\,n + 2\pi i\, n^{\!\top} z(x,\tau)\Big)\, \Xi(x,\tau),
+\end{equation}
+where $\Omega\in \mathrm{Mat}_{3\times 3}(\mathbb{C})$ is a symmetric period matrix with $\mathrm{Im}\,\Omega>0$, and $z\in \mathbb{C}^3$ is the internal phase coordinate corresponding to the three quaternionic axes.
+
+The $\mathrm{SU}(3)$ color symmetry emerges as the traceless unitary automorphism group of this three-dimensional internal phase space:
+\begin{equation}
+\mathrm{SU}(3)_{\text{color}} = \{U\in \mathrm{U}(3)\,|\,\det U=1\}.
+\end{equation}
+
+\subsection*{G.4 Color Connection and Field Strength}
+
+The color gauge connection arises naturally from the phase geometry:
+\begin{equation}
+A_\mu = \mathcal{U}^\dagger \partial_\mu \mathcal{U} - \tfrac{1}{3}\mathrm{tr}(\mathcal{U}^\dagger \partial_\mu \mathcal{U})\,\mathbf{1}_3 \in \mathfrak{su}(3),
+\end{equation}
+where $\mathcal{U}(x,\tau) \in \mathrm{U}(3)$ is the unitary phase frame on the internal fiber.
+
+The field strength is the standard Yang-Mills curvature:
+\begin{equation}
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu] \in \mathfrak{su}(3).
+\end{equation}
+
+\subsection*{G.5 Compatibility with General Relativity}
+
+Because the color transformations act on the internal phase fiber and $\mathcal{U}$ is unitary, the metric tensor remains invariant:
+\begin{equation}
+g_{\mu\nu} = \mathrm{Re}(\Theta^\dagger \Theta)
+\end{equation}
+is unchanged under color rotations. Therefore, the Einstein field equations and all tests of General Relativity remain unaffected by the color sector.
+
+\subsection*{G.6 Summary}
+
+The emergent SU(3) symmetry arises as a phase-locking pattern of the imaginary quaternionic subspace, corresponding to color confinement in QCD. The three quaternionic axes $i$, $j$, $k$ provide the three color degrees of freedom (red, green, blue), while the traceless condition (removal of the overall U(1) trace) reduces the nine U(3) generators to the eight gluons of $\mathrm{SU}(3)$.
+
+This derivation demonstrates that color symmetry is not an arbitrary external gauge structure but rather an intrinsic consequence of the biquaternionic geometry of spacetime in UBT.
+

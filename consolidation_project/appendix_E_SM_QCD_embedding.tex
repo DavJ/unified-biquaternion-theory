@@ -1,7 +1,10 @@
-% NOTE: α is treated as empirical in CORE; see appendix_alpha_statement.
+% NOTE: α derivation is given in Appendix α (appendix_ALPHA_one_loop_biquat.tex)
 
 \section{Appendix E: Standard Model Coupling and QCD Embedding in UBT}
 \label{app:sm-qcd-ubt}
+
+\paragraph{Note on Time Structure in QCD.}
+\textbf{Caution regarding complex time approximation}: Unlike QED, QCD is a non-Abelian gauge theory where gluon self-interactions lead to $[\Theta_i, \Theta_j] \neq 0$ for chromodynamic field components. Therefore, the full biquaternionic or quaternionic time structure may be required for accurate QCD calculations, particularly in the strongly-coupled regime or for confinement physics. The complex time approximation $\tau = t + i\psi$ used in some derivations should be understood as a first-order treatment valid only in the weakly-coupled perturbative regime. Future work should verify this approximation or reformulate QCD derivations using the full time structure. See Appendix~\ref{sec:biquaternion_vs_complex_time} for criteria.
 
 \subsection{Overview}
 This appendix restores and consolidates the linkage between the Unified Biquaternion Theory (UBT) and the
@@ -57,8 +60,7 @@ For QCD with $n_f$ quark flavors the matter part includes
 \end{equation}
 
 \subsection{Running couplings and matching}
-\paragraph{QED.} The low-energy fine-structure constant $\alpha(\mu)$ is fixed by the UBT topological integer $N$ and
-vacuum polarization as in Appendix~\ref{app:alpha-consolidated}.
+\paragraph{QED.} In CORE, $\alpha$ is parameterized via a renormalization condition at scale $\mu_0$; the complete one-loop geometric derivation is given in Appendix $\alpha$ (see \texttt{appendix\_ALPHA\_one\_loop\_biquat.tex}). The low-energy fine-structure constant $\alpha(\mu)$ emerges from the compactification of imaginary time and vacuum polarization contributions.
 
 \paragraph{QCD.} The strong coupling runs according to
 \begin{equation}
