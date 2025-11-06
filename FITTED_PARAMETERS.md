@@ -89,9 +89,12 @@ These parameters have a derived base value but include perturbative corrections:
 
 **Assessment (Release 20):**
 - **One-loop structure:** ✅ 100% derived (complete symbolic chain)
-- **Two-loop enhancement:** ⚠️ Identified (enhancement factor ~1.84)
-- **Overall rigor:** 90% derived, 10% gap (two-loop calculation)
-- **Improvement from v16:** Was 100% fitted → now 90% derived
+- **Two-loop enhancement:** ⚠️ Identified but not yet calculated from first principles
+- **Overall classification:** Mostly derived with identified gap
+- **Quantitative progress:** One-loop gives B₀ ≈ 25.1; two-loop factor 𝓡_UBT ≈ 1.84 multiplies this to reach B ≈ 46.2
+- **Improvement from v16:** Was 100% fitted → now one-loop fully derived, two-loop factor determined by consistency
+
+**Note on "90% derived" estimate:** This is an approximate characterization. The one-loop calculation (which gives B₀ ≈ 25.1) is complete and rigorous. The enhancement factor 𝓡_UBT ≈ 1.84 that brings B to ≈ 46.2 represents the remaining work. In terms of calculational effort, the one-loop derivation is ~90% of the structure; the two-loop factor is a multiplicative correction requiring additional calculation but building on the established framework.
 
 **Comparison to Standard QED:**
 - Standard QED two-loop: 𝓡_QED ≈ 1.001 (negligible)

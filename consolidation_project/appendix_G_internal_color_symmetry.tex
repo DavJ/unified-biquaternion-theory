@@ -211,13 +211,20 @@ F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu].
 \label{eq:F-example}
 \end{equation}
 
-For the configuration \eqref{eq:example-phase}, $A_\mu$ is constant in directions other than $x_1$, so:
+For the configuration \eqref{eq:example-phase}, $A_\mu$ is constant (independent of spacetime coordinates except the linear dependence on $x_1$ in the phase), so all derivatives vanish:
 \begin{equation}
-F_{\mu\nu} = [A_\mu, A_\nu] \quad (\partial_\mu A_\nu = 0 \text{ for constant phases}).
-\label{eq:F-commutator}
+\partial_\mu A_\nu = 0 \quad \text{(constant gauge configuration)}.
+\label{eq:derivatives-zero}
 \end{equation}
 
-Since $A_\mu = A_1 \delta_{\mu 1}$, we have $F_{\mu\nu} = 0$ (single non-zero $A_1$ commutes with itself).
+Therefore:
+\begin{equation}
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu] = 0 + 0 + [A_\mu, A_\nu] = 0,
+\label{eq:F-vanishes}
+\end{equation}
+since $A_\mu = A_1 \delta_{\mu 1}$ has only one non-zero component, and $[A_1, A_1] = 0$.
+
+\textbf{Note:} The vanishing is due to the constancy of the configuration (no field gradients), not merely self-commutation.
 
 \paragraph{Why non-Abelian terms don't enter U(1)-only $\alpha$ derivation.} In the fine-structure constant derivation (Appendix $\alpha$), we consider only electromagnetic $\mathrm{U}(1)$ interactions, which are Abelian. Key observations:
 \begin{enumerate}

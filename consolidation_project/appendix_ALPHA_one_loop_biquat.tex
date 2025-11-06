@@ -167,6 +167,8 @@ where $m_n^2 = m_0^2 + n^2/R_\psi^2$ and $N_{\text{eff}} = 12$ counts the intern
 \end{equation}
 where the factor $2\pi R_\psi = 2\pi \times 1 = 2\pi$ is the volume element of the compact $\psi$ circle.
 
+For $m_e \approx 0.5$ MeV $\ll 1/R_\psi = \Lambda$: In natural units with $R_\psi = 1$, the cutoff $\Lambda = 1$ corresponds to the inverse compactification radius. In physical units, if $R_\psi \sim 1$ fm, then $\Lambda = \hbar c/R_\psi \approx 197$ MeV $\gg m_e$, justifying the approximation.
+
 Evaluating the integrals (with gauge-fixing and renormalization):
 \begin{equation}
 \Pi(q^2) \approx \frac{g^2 N_{\text{eff}}}{12\pi} \ln\left(\frac{\Lambda}{\mu}\right) + \text{(finite terms)},
@@ -331,7 +333,7 @@ The physical origin of this enhancement is:
 \item Gauge-fixing terms in the compact $\psi$ direction
 \end{itemize}
 
-\textbf{Calculation of $\mathcal{R}_{\text{UBT}}$ is in progress} (requires full two-loop computation in biquaternionic field theory).
+\textbf{Future Work:} The explicit calculation of $\mathcal{R}_{\text{UBT}}$ from biquaternionic two-loop diagrams remains as future work. This requires evaluating two-loop Feynman integrals in complex time, which involves technical challenges in dimensional regularization and analytic continuation. Estimated timeline: 12-18 months for complete calculation.
 
 \textbf{Step (iv.5): Final Formula for $B$.} Combining one-loop result with two-loop enhancement:
 \begin{equation}
@@ -457,7 +459,13 @@ The two-loop renormalization factor $\mathcal{R}_{\text{UBT}} \approx 1.84$ curr
 \item \textbf{Biquaternionic time corrections:} Additional diagrams in complex time give $\mathcal{R}_{\text{UBT}} \approx 1.84$
 \end{itemize}
 
-\textbf{Current status:} The value $\mathcal{R}_{\text{UBT}} \approx 1.84$ is determined by requiring $B \approx 46.3$ to match the observed $\alpha^{-1} = 137$. Full calculation of $\mathcal{R}_{\text{UBT}}$ from biquaternionic two-loop diagrams is in progress.
+\textbf{Current status:} The value $\mathcal{R}_{\text{UBT}} \approx 1.84$ is currently determined by requiring consistency with the observed $\alpha^{-1} = 137$. While the one-loop structure is fully derived (100%), the two-loop enhancement factor represents work in progress. Future calculation of $\mathcal{R}_{\text{UBT}}$ from biquaternionic two-loop diagrams will either:
+\begin{itemize}
+\item Confirm the value $\mathcal{R}_{\text{UBT}} \approx 1.84$ from first principles (validating the theory)
+\item Yield a different value, requiring adjustment of other parameters or theory refinement
+\end{itemize}
+
+This is analogous to the historical development of QED, where higher-order corrections were calculated after the one-loop structure was established. The one-loop derivation (which gives $B_0 \approx 25.1$) represents genuine theoretical progress; the two-loop enhancement factor remains to be calculated.
 
 \textbf{Physical interpretation:} The factor of 1.84 represents the enhancement of quantum corrections due to the additional degrees of freedom in complex time. This is comparable to the running of $\alpha$ from low energies to electroweak scales, suggesting a connection to the full gauge structure of the Standard Model.
 
