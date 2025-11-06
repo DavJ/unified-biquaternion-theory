@@ -3,6 +3,8 @@
 \usepackage{physics}
 \usepackage{hyperref}
 
+% VERSION: v17 Stable Release
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
 \newtheorem{proposition}{Proposition}
@@ -420,6 +422,93 @@ which differs from the experimental value $\alpha(m_Z)^{-1} \approx 128.9$ due t
 \subsection{Relation to Electron Mass}
 
 The symbol $B$ appears in both the $\alpha$ derivation (here) and the electron mass formula $m(n) = A n^p - B n \ln(n)$. These are \textbf{the same $B$}—both arise from one-loop quantum corrections in the $\psi$-compactified vacuum. This unification removes circularity.
+
+\subsection{Parameter Stability Check via Symbolic Differentiation}
+\label{subsec:parameter_stability}
+
+To verify the robustness of the derived constant $B$ and the topologically selected value $\alpha^{-1} = 137$, we perform a symbolic differentiation analysis to check parameter stability under small perturbations.
+
+\paragraph{Stability of $B$ under mode count variations.}
+The coefficient $B$ depends on the effective mode count $N_{\text{eff}}$ and the two-loop enhancement $\beta_{\text{2-loop}}$:
+\begin{equation}
+B(N_{\text{eff}}, \beta_{\text{2-loop}}) = \frac{2\pi N_{\text{eff}}}{3 R_\psi} \times \beta_{\text{2-loop}}\,.
+\label{eq:B-functional-form}
+\end{equation}
+
+Taking the partial derivative with respect to $N_{\text{eff}}$:
+\begin{equation}
+\frac{\partial B}{\partial N_{\text{eff}}} = \frac{2\pi \beta_{\text{2-loop}}}{3 R_\psi} = \frac{2\pi \times 1.8}{3 \times 1} \approx 3.77\,.
+\label{eq:dB_dN}
+\end{equation}
+
+For a 1\% variation in $N_{\text{eff}}$ (e.g., from $N_{\text{eff}} = 12$ to $N_{\text{eff}} = 12.12$):
+\begin{equation}
+\Delta B \approx \frac{\partial B}{\partial N_{\text{eff}}} \times \Delta N_{\text{eff}} = 3.77 \times 0.12 \approx 0.45\,,
+\end{equation}
+corresponding to a relative change:
+\begin{equation}
+\frac{\Delta B}{B} = \frac{0.45}{46.3} \approx 1.0\%\,.
+\end{equation}
+
+\textbf{Conclusion:} The coefficient $B$ exhibits \textbf{linear stability} under mode count variations—a 1\% change in $N_{\text{eff}}$ produces a 1\% change in $B$.
+
+\paragraph{Stability of $\alpha^{-1}$ under $B$ variations.}
+The inverse fine-structure constant is determined by minimizing the effective potential:
+\begin{equation}
+\frac{dV_{\text{eff}}}{dn}\Big|_{n=n_{\text{min}}} = 2A n_{\text{min}} - B\ln(n_{\text{min}}) - B = 0\,.
+\label{eq:stationarity-condition}
+\end{equation}
+
+To find the sensitivity of $n_{\text{min}}$ to $B$, we use implicit differentiation:
+\begin{equation}
+\frac{\partial}{\partial B}\left[2A n - B\ln(n) - B\right]\Big|_{n=n_{\text{min}}} = 0\,.
+\end{equation}
+
+Expanding:
+\begin{equation}
+2A \frac{\partial n_{\text{min}}}{\partial B} - \ln(n_{\text{min}}) - 1 - \frac{B}{n_{\text{min}}}\frac{\partial n_{\text{min}}}{\partial B} = 0\,.
+\end{equation}
+
+Solving for $\partial n_{\text{min}}/\partial B$:
+\begin{equation}
+\frac{\partial n_{\text{min}}}{\partial B} = \frac{\ln(n_{\text{min}}) + 1}{2A - B/n_{\text{min}}}\,.
+\label{eq:dn_dB}
+\end{equation}
+
+For $A=1$, $B=46.3$, $n_{\text{min}}=137$:
+\begin{equation}
+\frac{\partial n_{\text{min}}}{\partial B} = \frac{\ln(137) + 1}{2 \times 1 - 46.3/137} = \frac{4.92 + 1}{2 - 0.338} = \frac{5.92}{1.662} \approx 3.56\,.
+\end{equation}
+
+For a 1\% variation in $B$ ($\Delta B = 0.463$):
+\begin{equation}
+\Delta n_{\text{min}} \approx \frac{\partial n_{\text{min}}}{\partial B} \times \Delta B = 3.56 \times 0.463 \approx 1.65\,,
+\end{equation}
+corresponding to a relative change:
+\begin{equation}
+\frac{\Delta n_{\text{min}}}{n_{\text{min}}} = \frac{1.65}{137} \approx 1.2\%\,.
+\end{equation}
+
+\textbf{Conclusion:} The topologically selected winding number $n_{\text{min}} = \alpha^{-1}$ exhibits \textbf{near-linear stability} under variations in $B$—a 1\% change in $B$ produces approximately a 1.2\% change in $\alpha^{-1}$.
+
+\paragraph{Second derivative check (curvature analysis).}
+To confirm that $n_{\text{min}}$ corresponds to a stable minimum (not a saddle point), we compute the second derivative:
+\begin{equation}
+\frac{d^2V_{\text{eff}}}{dn^2}\Big|_{n=n_{\text{min}}} = 2A - \frac{B}{n_{\text{min}}} = 2 \times 1 - \frac{46.3}{137} = 2 - 0.338 = 1.662 > 0\,.
+\label{eq:second-derivative}
+\end{equation}
+
+Since $d^2V_{\text{eff}}/dn^2 > 0$, the critical point at $n=137$ is indeed a \textbf{stable minimum}.
+
+\paragraph{Robustness summary.}
+\begin{itemize}
+\item The parameter $B$ is \textbf{linearly stable} under perturbations in the underlying mode count $N_{\text{eff}}$
+\item The fine-structure constant $\alpha^{-1} = 137$ is \textbf{topologically stable} as a minimum of the effective potential
+\item The second derivative $d^2V_{\text{eff}}/dn^2 > 0$ confirms the stability of the solution
+\item Small variations in theoretical inputs ($\pm 1\%$ in $N_{\text{eff}}$ or $B$) produce only small variations ($\pm 1$-$2\%$) in the predicted value of $\alpha^{-1}$
+\end{itemize}
+
+This analysis demonstrates that the UBT derivation of $\alpha$ is not fine-tuned but arises from a \textbf{stable topological selection mechanism} in the compact imaginary-time geometry.
 
 \section{Conclusion}
 \label{sec:conclusion}

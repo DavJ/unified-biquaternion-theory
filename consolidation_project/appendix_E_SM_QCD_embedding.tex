@@ -1,4 +1,5 @@
 % NOTE: α derivation is given in Appendix α (appendix_ALPHA_one_loop_biquat.tex)
+% VERSION: v17 Stable Release
 
 \section{Appendix E: Standard Model Coupling and QCD Embedding in UBT}
 \label{app:sm-qcd-ubt}
@@ -29,6 +30,62 @@ B_{\mu\nu} &= \partial_\mu B_\nu - \partial_\nu B_\mu.
 The covariant derivative acting on a matter field $\Psi$ in a representation $(\mathbf{3},\mathbf{2},Y)$ reads
 \begin{equation}
 D_\mu \Psi \;=\; \Big(\partial_\mu + i g_s G_\mu^a T^a + i g W_\mu^i \tau^i + i g^\prime Y B_\mu\Big)\Psi.
+\end{equation}
+
+\subsection{Explicit SU(3) color generators}
+\label{subsec:su3_generators}
+
+The $SU(3)$ color generators $T^a$ ($a=1,\ldots,8$) are given by the Gell-Mann matrices, normalized as
+\begin{equation}
+T^a = \frac{\lambda^a}{2}\,,
+\qquad \mathrm{Tr}(T^a T^b) = \frac{1}{2}\delta^{ab}\,,
+\label{eq:su3_normalization}
+\end{equation}
+where $\lambda^a$ are the standard Gell-Mann matrices:
+\begin{align}
+\lambda^1 &= \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \quad
+\lambda^2 = \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \quad
+\lambda^3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \nonumber\\
+\lambda^4 &= \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix}, \quad
+\lambda^5 = \begin{pmatrix} 0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0 \end{pmatrix}, \quad
+\lambda^6 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}, \nonumber\\
+\lambda^7 &= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}, \quad
+\lambda^8 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2 \end{pmatrix}.
+\label{eq:gell_mann_matrices}
+\end{align}
+
+These generators satisfy the $\mathfrak{su}(3)$ Lie algebra:
+\begin{equation}
+[T^a, T^b] = i f^{abc} T^c\,,
+\label{eq:su3_commutator}
+\end{equation}
+where $f^{abc}$ are the structure constants of $SU(3)$. The only non-vanishing structure constants (up to permutations) are:
+\begin{align}
+f^{123} &= 1\,, \quad
+f^{147} = f^{165} = f^{246} = f^{257} = f^{345} = f^{376} = \frac{1}{2}\,, \nonumber\\
+f^{458} &= f^{678} = \frac{\sqrt{3}}{2}\,.
+\label{eq:su3_structure_constants}
+\end{align}
+
+\paragraph{Compatibility with $\Theta$-field tensor product rules.}
+The $SU(3)$ color structure in UBT arises from the internal phase fiber of the biquaternionic field $\Theta(q,\tau)$, as detailed in Appendix~\ref{app:color_internal_symmetry} (Appendix G). The factorization
+\begin{equation}
+\Theta(x,\tau) \;=\; \Xi(x,\tau)\,\mathcal{U}(x,\tau), 
+\qquad \mathcal{U} \in U(3), \quad \mathcal{U}^\dagger\mathcal{U} = \mathbf{1}_3\,,
+\label{eq:theta_su3_factorization}
+\end{equation}
+ensures that the color connection
+\begin{equation}
+A_\mu = \mathcal{U}^\dagger \partial_\mu \mathcal{U} - \frac{1}{3}\mathrm{Tr}(\mathcal{U}^\dagger \partial_\mu \mathcal{U})\,\mathbf{1}_3
+\;=\; A_\mu^a T^a \;\in\; \mathfrak{su}(3)
+\label{eq:color_connection}
+\end{equation}
+is traceless and compatible with the normalization \eqref{eq:su3_normalization}. The tensor product structure of the biquaternionic field $\Theta \in \mathbb{B} \otimes \mathbb{C}^3$ (where $\mathbb{B}$ is the biquaternion algebra) naturally accommodates the $3\times 3$ color matrix structure acting on the right (internal fiber) while the biquaternion acts on the left (spacetime). This ensures:
+\begin{equation}
+D_\mu \Theta = (\partial_\mu + A_\mu)\Theta, 
+\qquad 
+\Theta \mapsto \Theta\,\mathcal{U} \;\Rightarrow\; D_\mu \Theta \mapsto (D_\mu\Theta)\,\mathcal{U}\,.
+\label{eq:theta_covariant_derivative}
 \end{equation}
 
 \subsection{UBT $\to$ SM dictionary}
