@@ -291,7 +291,7 @@ Which reduces to the core equation in coordinate form.
 - **Electron mass:** scripts/ubt_fermion_mass_calculator.py
 - **Gauge fields:** appendix_E_SM_geometry.tex
 - **Dark matter:** solution_P5_dark_matter/
-- **Consciousness (speculative):** complex_consciousness/ctc_2.0_main.tex
+- **Consciousness (SPECULATIVE - moved):** speculative_extensions/complex_consciousness/ctc_2.0_main.tex
 
 ### For Contributing
 1. **CONTRIBUTING.md** - How to contribute (to be created)
