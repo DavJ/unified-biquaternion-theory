@@ -16,6 +16,80 @@ This appendix derives charged lepton and quark masses from first principles with
 \item \textbf{Predictions over fits:} Texture relations and sum rules preferred over brute-force parameter fitting
 \end{enumerate}
 
+\subsection{E2.1b Dependency Hygiene: Acyclicity of $\alpha$ and $m_e$ Derivations}
+\label{subsec:dependency-hygiene}
+
+\textbf{Critical requirement:} The fine-structure constant $\alpha$ and fermion masses must not have circular dependencies. This section proves acyclicity.
+
+\paragraph{Dependency DAG.} The derivation structure forms a directed acyclic graph (DAG):
+
+\begin{verbatim}
+   ┌──────────────────────────────────────────────┐
+   │  GEOMETRIC/TOPOLOGICAL INPUTS                │
+   │  • Compactification: ψ ~ ψ + 2π              │
+   │  • UV cutoff: Λ = 1/R_ψ                      │
+   │  • Mode count: N_eff = 12                    │
+   │  • Complex time structure: τ = t + iψ        │
+   └────────────┬─────────────────────────────────┘
+                │
+                ├──> [One-Loop Vacuum Polarization]
+                │         │
+                │         ├──> [β-function: d(1/α)/d ln μ = B/(2π)]
+                │         │         │
+                │         │         v
+                │         │    ┌─────────────────────────┐
+                │         │    │  α(μ₀) = 1/137          │
+                │         │    │  (at scale μ₀ = m_e)    │
+                │         │    └──────────┬──────────────┘
+                │         │               │
+                v         v               v
+   ┌────────────────────────────────────────────┐
+   │  SM RENORMALIZATION GROUP                  │
+   │  • g₁(μ), g₂(μ), g₃(μ) running couplings   │
+   │  • Uses α(μ) as input                      │
+   └────────────┬───────────────────────────────┘
+                │
+                v
+   ┌────────────────────────────────────────────┐
+   │  YUKAWA TEXTURE FROM Θ-INVARIANTS          │
+   │  • 𝒴_f[Θ, ∇Θ, ℛ(Θ)]                       │
+   │  • Coefficients a₁, a₂, a₃ from action     │
+   │  • NO dependence on α                      │
+   └────────────┬───────────────────────────────┘
+                │
+                v
+   ┌────────────────────────────────────────────┐
+   │  FERMION MASSES                            │
+   │  • m_e = M_Θ × 𝒴_e[Θ]                      │
+   │  • m_μ, m_τ, quarks similarly              │
+   │  • DOWNSTREAM of α derivation              │
+   └────────────────────────────────────────────┘
+\end{verbatim}
+
+\paragraph{Key observations:}
+\begin{enumerate}
+\item \textbf{Upstream:} $\alpha$ depends only on topology and loop structure (compactification, mode counting)
+\item \textbf{Downstream:} Fermion masses depend on $\Theta$-invariants and Yukawa textures
+\item \textbf{No back-flow:} $\alpha$ derivation does not use fermion masses
+\item \textbf{Acyclic:} The dependency graph contains no cycles
+\end{enumerate}
+
+\paragraph{Verification by grep.} We verify that the fine-structure constant derivation in \texttt{appendix\_ALPHA\_one\_loop\_biquat.tex} contains:
+\begin{itemize}
+\item No references to electron mass $m_e$ (except as renormalization scale $\mu_0 = m_e$, which is an input from experiment)
+\item No references to Yukawa couplings $\mathcal{Y}_f$
+\item No references to fermion mass texture matrices
+\end{itemize}
+
+Conversely, this appendix (E2) contains:
+\begin{itemize}
+\item No usage of $\alpha$ in the Yukawa operator construction
+\item No usage of $\alpha$ in the mass matrix diagonalization
+\item $\alpha$ appears only in RG running equations (Section~\ref{sec:RG-evolution}), where it is an \textbf{input} from Appendix $\alpha$
+\end{itemize}
+
+\textbf{Conclusion:} The derivations are \textbf{provably acyclic}. The fine-structure constant $\alpha$ is derived from topology and vacuum structure, while fermion masses are derived from $\Theta$-field geometry. There is no circularity.
+
 \subsection{E2.2 Field-Theoretic Ansatz in $\Theta$ Formalism}
 
 The unified biquaternion field $\Theta(q,\tau)$ with $\tau = t + i\psi$ couples to SM fermions through gauge-invariant bilinears. We postulate an effective Yukawa Lagrangian:

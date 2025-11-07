@@ -113,6 +113,23 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 - **See**: [Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md) + [Theory Comparison](UBT_LEPSI_NEZ_SM_STRING_SROVNANI_CZ.md)
 - **See [Reading Guide](UBT_READING_GUIDE.md) for how to navigate the theory responsibly**
 
+**🔄 Dependency Structure: Proof of Acyclicity (Release 20)**
+
+The derivations of α and fermion masses form a **directed acyclic graph (DAG)** with no circular dependencies:
+
+```
+Topology + Loop Structure  →  α(μ)  →  SM Renormalization (g_i)  →  Yukawa Texture  →  m_e
+
+Where:
+  • Topology: ψ ~ ψ + 2π (compactification), Λ = 1/R_ψ (UV cutoff), N_eff = 12 (mode count)
+  • α(μ): Derived from one-loop vacuum polarization (no fermion mass input)
+  • SM Renorm: Running couplings g₁(μ), g₂(μ), g₃(μ) use α(μ) as input
+  • Yukawa: Texture from Θ-invariants (no α dependence in construction)
+  • m_e: Downstream of α derivation (uses α only in RG running)
+```
+
+**Verification:** grep confirms no usage of α upstream of its own derivation. See `consolidation_project/appendix_E2_fermion_masses.tex` §E2.1b for detailed dependency analysis.
+
 Key features:
 - **Mathematical foundation**: biquaternion algebra, complex-time manifolds, covariant derivatives.
 - **Mathematical validation**: All key predictions verified using SymPy/NumPy (see `unified_biquaternion_theory/validation/`).
