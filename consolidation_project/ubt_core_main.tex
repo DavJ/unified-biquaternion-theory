@@ -1,6 +1,6 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{slashed}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -11,9 +11,22 @@
 \pgfplotsset{compat=1.18}
 \geometry{margin=1in}
 
+% Define theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
 \title{Unified Biquaternion Theory (Consolidation) --- CORE Manuscript}
 \author{UBT Team}
 \date{\today}
+
+% Define flag for included files to skip their preambles
+\def\INCLUDEMODE{}
 
 \begin{document}
 \maketitle

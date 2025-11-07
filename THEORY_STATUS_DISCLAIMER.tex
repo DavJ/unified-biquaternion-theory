@@ -5,7 +5,7 @@
 % Usage: \input{THEORY_STATUS_DISCLAIMER} or \input{../THEORY_STATUS_DISCLAIMER}
 
 % Main theory status disclaimer (for general use)
-\newcommand{\UBTStatusDisclaimer}{%
+\providecommand{\UBTStatusDisclaimer}{%
 \begin{center}
 \fbox{\begin{minipage}{0.95\textwidth}
 \textbf{WARNING: RESEARCH FRAMEWORK IN DEVELOPMENT}
@@ -32,7 +32,7 @@
 }
 
 % Consciousness-specific disclaimer
-\newcommand{\ConsciousnessDisclaimer}{%
+\providecommand{\ConsciousnessDisclaimer}{%
 \begin{center}
 \fbox{\begin{minipage}{0.95\textwidth}
 \textbf{WARNING: SPECULATIVE HYPOTHESIS - CONSCIOUSNESS CLAIMS}
@@ -65,7 +65,7 @@
 }
 
 % Fine-structure constant disclaimer (Updated November 2025)
-\newcommand{\AlphaDerivationDisclaimer}{%
+\providecommand{\AlphaDerivationDisclaimer}{%
 \begin{center}
 \fbox{\begin{minipage}{0.95\textwidth}
 \textbf{IMPORTANT: FINE-STRUCTURE CONSTANT STATUS (Nov 2025)}
@@ -98,12 +98,12 @@
 }
 
 % Short-form disclaimer for appendices
-\newcommand{\SpeculativeContentWarning}{%
+\providecommand{\SpeculativeContentWarning}{%
 \noindent\textit{\textbf{Note:} This section contains speculative content that extends beyond experimentally validated physics. See repository documentation for theory status and limitations.}
 \medskip
 }
 
 % GR Compatibility statement (positive statement about what IS established)
-\newcommand{\GRCompatibilityNote}{%
+\providecommand{\GRCompatibilityNote}{%
 \noindent\textbf{Note on General Relativity Compatibility:} The Unified Biquaternion Theory (UBT) \textbf{generalizes Einstein's General Relativity} by embedding it within a biquaternionic field defined over complex time $\tau = t + i\psi$. In the real-valued limit (where imaginary components vanish), UBT \textbf{exactly reproduces Einstein's field equations} for all curvature regimes. All experimental confirmations of General Relativity are therefore automatically compatible with UBT, as they probe the real sector where the theories are identical. UBT extends (not replaces) GR through additional degrees of freedom that may be relevant for dark sector physics and quantum corrections.
 }

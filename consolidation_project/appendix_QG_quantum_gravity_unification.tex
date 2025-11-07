@@ -1,17 +1,27 @@
 % This file can be compiled standalone or included in another document
 % VERSION: v17 Stable Release
 % When included, the preamble and document environment are skipped
-\ifdefined\UBTSTANDALONECOMPILE
-  % Do nothing - preamble already loaded
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
 \else
   % Standalone compilation - include preamble
   \documentclass[12pt]{article}
   \usepackage[a4paper, margin=2.5cm]{geometry}
-  \usepackage{amsmath, amssymb}
+  \usepackage{amsmath, amssymb, amsthm}
   \usepackage{hyperref}
   \usepackage{graphicx}
   \usepackage{titlesec}
   \usepackage{authblk}
+  
+  % Define theorem environments for standalone compilation
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
   
   \titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
   \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
@@ -586,7 +596,7 @@ This extended quantization demonstrates that UBT is not merely a reformulation o
 \section*{License}
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
 
-\ifdefined\UBTSTANDALONECOMPILE
+\ifdefined\INCLUDEMODE
   % Included mode - no \end{document}
 \else
   % Standalone mode - close document
