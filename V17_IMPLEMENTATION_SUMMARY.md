@@ -87,7 +87,7 @@ d²V/dn² = 1.662 > 0 (confirmed stable minimum)
 
 ### 4. Speculative Content Flagging
 
-**File:** `consolidation_project/appendix_F2_psychons_theta.tex`
+**File:** `speculative_extensions/appendices/appendix_F2_psychons_theta.tex` (moved to speculative_extensions Nov 2025)
 
 **Changes Made:**
 - Updated section title to: "Appendix F2: Psychons and the Theta Field (SPECULATIVE)"
@@ -96,8 +96,9 @@ d²V/dn² = 1.662 > 0 (confirmed stable minimum)
 - Verified existing warning box remains prominent
 - Confirmed no empirical/experimental claims present
 - Ensured clear separation from core UBT claims
+- **MOVED:** Entire appendix moved to `speculative_extensions/` folder (Nov 2025)
 
-**Status:** ✅ Properly flagged as speculative, separated from core physics
+**Status:** ✅ Properly flagged as speculative, separated from core physics, isolated in dedicated folder
 
 ### 5. Version Headers
 

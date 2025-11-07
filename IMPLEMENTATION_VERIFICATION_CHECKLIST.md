@@ -16,9 +16,11 @@
 
 Files:
 - [x] `consolidation_project/appendix_P1_biquaternion_inner_product.tex`
-- [x] `consolidation_project/appendix_P2_multiverse_projection.tex`
+- [x] `speculative_extensions/appendices/appendix_P2_multiverse_projection.tex` (moved to speculative_extensions Nov 2025)
 - [x] `consolidation_project/appendix_P3_hilbert_space.tex`
 - [x] `consolidation_project/appendix_P4_alpha_status.tex`
+
+**Note:** Appendix P2 has been moved to `speculative_extensions/` as it represents a speculative multiverse interpretation.
 
 Verification:
 ```bash
