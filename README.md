@@ -2,6 +2,18 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+## ⚠️ Repository Organization Update (November 7, 2025)
+
+**Speculative content has been separated from core UBT theory:**
+- All consciousness-related content moved to `speculative_extensions/` folder
+- Psychons, CTCs, multiverse interpretations clearly isolated
+- See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
+- Core theory remains in `unified_biquaternion_theory/` and `consolidation_project/`
+
+This separation ensures scientific integrity and prevents confusion between empirically-grounded physics and philosophical speculation.
+
+---
+
 ## 🔄 Recent Update: α and mₑ Derivation Unification (November 3, 2025)
 
 **Major Improvement:** The fine-structure constant (α) and electron mass (mₑ) derivations have been unified and hardened:
