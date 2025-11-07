@@ -2,6 +2,18 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+## ⚠️ Repository Organization Update (November 7, 2025)
+
+**Speculative content has been separated from core UBT theory:**
+- All consciousness-related content moved to `speculative_extensions/` folder
+- Psychons, CTCs, multiverse interpretations clearly isolated
+- See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
+- Core theory remains in `unified_biquaternion_theory/` and `consolidation_project/`
+
+This separation ensures scientific integrity and prevents confusion between empirically-grounded physics and philosophical speculation.
+
+---
+
 ## 🔄 Recent Update: α and mₑ Derivation Unification (November 3, 2025)
 
 **Major Improvement:** The fine-structure constant (α) and electron mass (mₑ) derivations have been unified and hardened:
@@ -58,8 +70,9 @@
 ---
 
 **Unified Biquaternion Theory (UBT)** is the original and central framework of this project.  
-It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over biquaternionic spacetime (with complex time \(\tau = t + i \psi\) used as a valid approximation in many regimes). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.  
-From its mathematical structure, the **Complex Consciousness Theory (CCT)** emerged as a specialized application focusing on cognitive processes and consciousness modeling.
+It is a unified physical theory that **generalizes Einstein's General Relativity** by combining it with **Quantum Field Theory** and the **Standard Model symmetries** within a **biquaternionic field** defined over biquaternionic spacetime (with complex time \(\tau = t + i \psi\) used as a valid approximation in many regimes). In the real-valued limit, UBT exactly recovers Einstein's field equations, ensuring full compatibility with GR while extending it through additional degrees of freedom that may correspond to dark sector physics and quantum gravitational corrections.
+
+**Note on Speculative Extensions**: Some explorations of potential implications of UBT (such as consciousness modeling, closed timelike curves, and multiverse interpretations) have been separated into the `speculative_extensions/` folder to clearly distinguish them from the empirically-grounded core theory. See [speculative_extensions/README.md](speculative_extensions/README.md) for details.
 
 ---
 
@@ -142,10 +155,12 @@ Key features:
 - **Electromagnetism** in curved space, including standing modulated EM field configurations.
 - **Quantum electrodynamics (QED)** and **quantum chromodynamics (QCD)** reformulated in UBT variables.
 - **Dark sector physics**: unified treatment of dark matter and dark energy via padic extensions.
-- **Psychons**: quantum excitations of consciousness within the complex-time phase space.
-- **Closed Timelike Curves (CTCs)**: geometric and physical conditions for time-travel solutions.
-- **Experimental concepts**: Theta Resonator for detecting persistent consciousness fields.
-- **Complex Consciousness Theory (CCT)**: simplified, application-oriented formulation for modeling consciousness and cognitive phase transitions.
+
+**⚠️ Speculative Extensions** (moved to `speculative_extensions/` folder):
+- **Consciousness modeling**: Psychons and Complex Consciousness Theory (CCT) - highly speculative
+- **Closed Timelike Curves (CTCs)**: geometric conditions for time-travel solutions - speculative
+- **Multiverse interpretations**: projection mechanisms and philosophical implications - philosophical
+- See [speculative_extensions/README.md](speculative_extensions/README.md) for full details and disclaimers
 
 ---
 
@@ -237,13 +252,16 @@ The following table provides a quick reference to major theorems, proofs, and re
 ## 📂 Repository Structure
 
 ```
-unified_biquaternion_theory    # Original Unified biquaternion theory documents and derivations
-complex_consciousness/         # Complex Consciousness Theory (LaTeX sources & PDFs)
-consolidation_project/         # Unified Biquaternion Theory consolidated documents (ongoing project, important stuff might be missing)
-  ├── appendix_A_...           # Appendices on gravity, gauge fields, QED/QCD, etc.
-  ├── img/                     # Figures and diagrams
-  ├── metadata/                # Project notes, TODOs, consolidation maps
-.github/workflows/             # GitHub Actions for LaTeX compilation
+unified_biquaternion_theory/    # Original UBT documents and derivations
+consolidation_project/          # Consolidated UBT documents (ongoing project)
+  ├── appendix_A_...            # Appendices on gravity, gauge fields, QED/QCD, etc.
+  ├── img/                      # Figures and diagrams
+  ├── metadata/                 # Project notes, TODOs, consolidation maps
+speculative_extensions/         # Speculative content separated from core theory
+  ├── complex_consciousness/    # Complex Consciousness Theory (SPECULATIVE)
+  ├── appendices/               # Speculative appendices (psychons, CTCs, multiverse)
+  └── README.md                 # Important disclaimers and guidelines
+.github/workflows/              # GitHub Actions for LaTeX compilation
 ```
 
 ---
@@ -288,9 +306,15 @@ consolidation_project/         # Unified Biquaternion Theory consolidated docume
 See [UBT Improvements Summary](UBT_IMPROVEMENTS_SUMMARY.md) for complete details.
 
 ### Consciousness Applications (Highly Speculative)
-- **CCT Main Document**: `complex_consciousness/ctc_2.0_main.tex`
 
-**⚠️ Important**: Consciousness-related content should be read with the understanding that these are philosophical hypotheses requiring extensive validation, not established science. See [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md).
+**⚠️ MOVED TO SPECULATIVE EXTENSIONS FOLDER**
+
+Consciousness-related content has been moved to `speculative_extensions/` to clearly separate it from empirically-grounded core UBT:
+- **CCT Main Document**: `speculative_extensions/complex_consciousness/ctc_2.0_main.tex`
+- **Psychon Appendices**: `speculative_extensions/appendices/appendix_F2_psychons_theta.tex`
+- **CTC Analysis**: `speculative_extensions/appendices/appendix_J_rotating_spacetime_ctc.tex`
+
+**⚠️ Important**: Consciousness-related content represents philosophical hypotheses requiring extensive validation, not established science. See [speculative_extensions/README.md](speculative_extensions/README.md) and [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md).
 
 ---
 

@@ -49,13 +49,14 @@ This document summarizes improvements made to the Unified Biquaternion Theory (U
 
 ### 3. Updated Psychons Appendix
 
-**File:** `unified_biquaternion_theory/ubt_appendix_12_psychons.tex`
+**File:** `speculative_extensions/appendices/ubt_appendix_12_psychons.tex` (moved to speculative_extensions Nov 2025)
 
 **Changes:**
 - Added `\ConsciousnessDisclaimer` at beginning of appendix
 - No changes to mathematical formalism or derivations
+- **MOVED:** Entire appendix moved to `speculative_extensions/` folder (Nov 2025)
 
-**Impact:** Consciousness-related content now clearly marked as speculative hypothesis without experimental validation.
+**Impact:** Consciousness-related content now clearly marked as speculative hypothesis without experimental validation and isolated in dedicated speculative folder.
 
 ### 4. Updated Fine-Structure Constant Documents
 
@@ -74,7 +75,9 @@ This document summarizes improvements made to the Unified Biquaternion Theory (U
 
 ### 5. Updated Complex Consciousness Theory
 
-**File:** `complex_consciousness/ctc_2.0_main.tex`
+**⚠️ UPDATE (November 2025): Moved to `speculative_extensions/` folder**
+
+**File:** `speculative_extensions/complex_consciousness/ctc_2.0_main.tex`
 
 **Changes:**
 - Added `\ConsciousnessDisclaimer` after `\maketitle`
@@ -82,6 +85,7 @@ This document summarizes improvements made to the Unified Biquaternion Theory (U
 - **Removed problematic content:** Death and rebirth claims removed and replaced with disclaimer
 - Qualified psychedelic states discussion as "highly speculative"
 - Added paragraph explicitly stating previous death/afterlife claims are removed as untestable and inappropriate
+- **NEW**: Moved entire folder to `speculative_extensions/` to clearly separate from core UBT
 
 **Impact:** Major ethical improvement - removed claims about death, reincarnation that could mislead grieving individuals or mix science with spiritual beliefs.
 
@@ -190,10 +194,10 @@ These changes align with ethical guidelines established in repository documentat
 
 2. **Modified:**
    - `unified_biquaternion_theory/ubt_main_article.tex`
-   - `unified_biquaternion_theory/ubt_appendix_12_psychons.tex`
+   - `unified_biquaternion_theory/ubt_main_article.tex`
    - `emergent_alpha_from_ubt.tex`
-   - `complex_consciousness/ctc_2.0_main.tex`
-   - `unified_biquaternion_theory/solution_consciousness_model_P3/consciousness_model_solution.tex`
+   - `speculative_extensions/complex_consciousness/ctc_2.0_main.tex` (moved to speculative_extensions/)
+   - `speculative_extensions/solution_consciousness_model_P3/consciousness_model_solution.tex` (moved to speculative_extensions/)
 
 3. **Verified (already had disclaimers):**
    - `unified_biquaternion_theory/alpha_final_derivation.tex`

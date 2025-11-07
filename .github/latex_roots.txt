@@ -29,8 +29,8 @@ UBT_Final_Consolidation_Report.tex
 # Complex theta transform paper
 complex-theta-transform-paper/main.tex
 
-# Complex consciousness theory
-complex_consciousness/ctc_2.0_main.tex
+# Complex consciousness theory (SPECULATIVE - moved to speculative_extensions/)
+speculative_extensions/complex_consciousness/ctc_2.0_main.tex
 
 # Original UBT theory documents
 unified_biquaternion_theory/ubt_main_article.tex
