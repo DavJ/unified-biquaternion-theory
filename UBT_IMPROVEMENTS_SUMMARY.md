@@ -49,13 +49,14 @@ This document summarizes improvements made to the Unified Biquaternion Theory (U
 
 ### 3. Updated Psychons Appendix
 
-**File:** `unified_biquaternion_theory/ubt_appendix_12_psychons.tex`
+**File:** `speculative_extensions/appendices/ubt_appendix_12_psychons.tex` (moved to speculative_extensions Nov 2025)
 
 **Changes:**
 - Added `\ConsciousnessDisclaimer` at beginning of appendix
 - No changes to mathematical formalism or derivations
+- **MOVED:** Entire appendix moved to `speculative_extensions/` folder (Nov 2025)
 
-**Impact:** Consciousness-related content now clearly marked as speculative hypothesis without experimental validation.
+**Impact:** Consciousness-related content now clearly marked as speculative hypothesis without experimental validation and isolated in dedicated speculative folder.
 
 ### 4. Updated Fine-Structure Constant Documents
 
