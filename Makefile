@@ -26,7 +26,7 @@ verify:
 tests:
 	python -m pytest -q
 
-ci: pdf verify
+ci: pdf verify tests
 	@echo "CI OK"
 
 clean:
