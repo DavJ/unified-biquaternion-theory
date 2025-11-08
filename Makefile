@@ -1,4 +1,4 @@
-.PHONY: all core clean pdf verify tests ci
+.PHONY: all core clean pdf verify tests ci alpha-notebooks alpha-tests
 PDFLATEX?=pdflatex
 TEXSRCS=$(wildcard *.tex)
 CORE_MAIN=ubt_core_main.tex
@@ -32,3 +32,11 @@ ci: pdf verify tests
 clean:
 	latexmk -C || true
 	@rm -f *.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc *.fls *.fdb_latexmk
+
+.PHONY: alpha-notebooks alpha-tests
+
+alpha-notebooks:
+	@echo "Open and run the notebooks under consolidation_project/alpha_two_loop/notebooks/"
+
+alpha-tests:
+	pytest -q consolidation_project/alpha_two_loop/tests
