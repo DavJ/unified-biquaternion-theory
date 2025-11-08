@@ -10,4 +10,6 @@ def MBQ_dagger_MBQ (f : BQTime → BQ) (τ : BQTime) : BQ :=
 -- zeta-related operators through complex projection. This is a structural
 -- analogy for research purposes. UBT does not claim to prove the Riemann
 -- Hypothesis; the theory is defined independently of number-theoretic 
--- conjectures.
+-- conjectures. The spectral framework is just a mathematical tool, and it
+-- is not clear whether it can help prove RH. We should not attempt to 
+-- prove RH within UBT.
