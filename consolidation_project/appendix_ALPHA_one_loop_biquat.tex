@@ -1,21 +1,26 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{physics}
-\usepackage{hyperref}
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{physics}
+  \usepackage{hyperref}
 
-% VERSION: v17 Stable Release
+  % VERSION: v17 Stable Release
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{proposition}{Proposition}
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{definition}{Definition}
+  \newtheorem{proposition}{Proposition}
 
-\title{Appendix $\alpha$: Fine-Structure Constant from One-Loop Biquaternion Vacuum Polarization}
-\author{UBT Team}
-\date{\today}
+  \title{Appendix $\alpha$: Fine-Structure Constant from One-Loop Biquaternion Vacuum Polarization}
+  \author{UBT Team}
+  \date{\today}
 
-\begin{document}
+  \begin{document}
 
-\maketitle
+  \maketitle
+\fi
 
 \section{Introduction and Scope}
 \label{sec:alpha-intro}
@@ -689,4 +694,9 @@ We have derived the fine-structure constant $\alpha$ from first principles withi
 
 \textbf{All references to $\alpha$ in the UBT framework should cite this appendix as the primary source.}
 
-\end{document}
+\ifdefined\INCLUDEMODE
+  % Included mode - no \end{document}
+\else
+  % Standalone mode - close document
+  \end{document}
+\fi
