@@ -123,10 +123,10 @@ unified-biquaternion-theory/
 ## 6️⃣ Status implementace
 
 ✅ Dokument vytvořen  
-✅ Implementace dokončena  
-✅ Workflow aplikován
+✅ Implementace dokončena (2024)
+✅ **Dodatečné posílení disclaimerů (2025)** ✅
 
-### Co bylo provedeno:
+### Co bylo původně provedeno (2024):
 
 1. ✅ **Vytvořena nová struktura**:
    - `research/rh_biquaternion_extension/` directory
@@ -152,9 +152,24 @@ unified-biquaternion-theory/
    - Odděleny ověřené (zeta regularizace) od spekulativních (RH spektrum) souvislostí
    - Reference na research/ directory
 
+### Co bylo dodatečně posíleno (2025):
+
+5. ✅ **Důraznější disclaimery**:
+   - Explicitně uvedeno: "spektrální framework je jen nástroj"
+   - Explicitně uvedeno: "není jasné, zda může pomoci dokázat RH"
+   - Explicitně uvedeno: "neměli bychom se pokoušet dokazovat RH v rámci UBT"
+   - Aktualizovány všechny hlavní soubory s těmito silnějšími varováními
+
+6. ✅ **Aktualizace HAMILTONIAN_SPECTRUM_DEVELOPMENT.md**:
+   - "Theorem 1 (UBT-Riemann Hypothesis Equivalence)" → "Conjecture 1 (Speculative)"
+   - "4-Stage Proof Strategy" → "4-Stage Speculative Research Direction (NOT A PROOF STRATEGY)"
+   - Přidány explicitní disclaimery
+
 ### Výsledek:
 
 - UBT zůstává samostatný matematicko-fyzikální rámec
 - RH souvislost uznána jako přirozený geometricko-spektrální efekt
 - Žádná přímá tvrzení o důkazu RH v hlavním repozitáři
 - Spekulativní materiál oddělený v research/rh_biquaternion_extension/
+- **Důrazně zdůrazněno**: spektrální framework je jen nástroj, není jasné zda pomůže dokázat RH
+- **Jasně uvedeno**: neměli bychom se pokoušet dokazovat RH v rámci UBT

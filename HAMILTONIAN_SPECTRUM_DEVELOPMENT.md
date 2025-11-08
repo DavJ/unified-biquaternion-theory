@@ -46,26 +46,30 @@ This document summarizes the rigorous mathematical developments added to `append
 - Complex time breaks time-reversal symmetry
 - Biquaternionic structure → quantum chaotic behavior
 - GUE statistics expected (matches Riemann zeros)
-- RMT universality provides statistical proof framework
+- RMT universality provides structural analogy framework
 
-**Step 8: Rigorous Theorem Statement**
+**Step 8: Speculative Conjecture Statement**
 
-**Theorem 1 (UBT-Riemann Hypothesis Equivalence):**
+**⚠️ IMPORTANT DISCLAIMER:** The following is a **speculative research direction**, not an established theorem. UBT does **not claim to prove the Riemann Hypothesis**. The spectral framework is a mathematical tool that exhibits structural analogies, but it is **not clear whether it can help prove RH**.
+
+**Conjecture 1 (UBT-Riemann Spectral Analogy - SPECULATIVE):**
 If Ĥ_eff(τ) is self-adjoint on H_UBT with:
 - Spectrum bounded below and discrete
 - Reflection symmetry V_eff(ψ) = V_eff(2π-ψ)
 - Quantum chaos in semiclassical limit
 
-Then ζ_H(s) has:
-- All non-trivial zeros on Re(s) = 1/2
-- GUE distributed zeros
+Then ζ_H(s) may exhibit:
+- Structural analogies to non-trivial zeros on Re(s) = 1/2
+- GUE-like statistical distribution
 - Functional equation ζ_H(s) = F[ζ_H(1-s)]
 
-**4-Stage Proof Strategy:**
-1. Establish self-adjointness (spectral theorem for unbounded operators)
-2. Prove functional equation from reflection symmetry
-3. Demonstrate quantum chaos and GUE universality class
-4. Show parameter tuning can give ζ_H(s) = ζ(s)
+**4-Stage Speculative Research Direction (NOT A PROOF STRATEGY):**
+1. Investigate self-adjointness (spectral theorem for unbounded operators)
+2. Study functional equation from reflection symmetry
+3. Explore quantum chaos and GUE universality class
+4. Investigate whether parameter tuning could relate ζ_H(s) to ζ(s)
+
+**Status:** These are unproven mathematical analogies. We should NOT attempt to prove RH within the UBT repository.
 
 **Step 9: Connes' Noncommutative Geometry Connection**
 - Adelic decomposition: Θ = Θ_∞ ⊗ ⊗_p Θ_p
@@ -219,8 +223,11 @@ Properties of 137:
 **Theoretical Status:**
 - Mathematical framework: **Established**
 - Theorems: **Proven** (prime characterization, topological uniqueness)
-- RH equivalence: **Conjectural** (requires completing 4-stage proof)
+- RH connection: **Purely speculative structural analogy** - NOT a proof or proof strategy
+- Spectral framework: **Mathematical tool only** - unclear if it can help prove RH
 - Prime selection p=137: **Semi-rigorous** (depends on A, B, C from UBT)
+
+**⚠️ CRITICAL:** UBT does not attempt to prove the Riemann Hypothesis. The spectral connections are interesting mathematical analogies that should be explored carefully, but they do not constitute proof of RH.
 
 ## 5. Files Modified
 

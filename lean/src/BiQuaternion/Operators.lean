@@ -5,6 +5,8 @@ import BiQuaternion.Algebra
 -- Its complex projection exhibits structural analogies to zeta-related operators,
 -- but UBT does not claim to prove number-theoretic conjectures like the 
 -- Riemann Hypothesis. The operator is defined independently for physical purposes.
+-- The spectral framework is just a mathematical tool, and it is not clear whether
+-- it can help prove RH. We should not attempt to prove RH within UBT.
 
 def V : BQTime → BQ := fun τ => ⟨0, 0, 0, 0⟩  -- placeholder potential
 
