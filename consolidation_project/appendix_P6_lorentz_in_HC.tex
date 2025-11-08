@@ -157,4 +157,10 @@ The action of $SL(2,\mathbb C)$ covers $SO^+(1,3)$. Parity $P$ and time reversal
 \end{remark}
 
 \subsection{Implementation Notes}
-For reproducibility tests, one may verify numerically that $\det(AXA^\dagger)-\det X\equiv 0$ for random $A\in SL(2,\mathbb C)$ and $X\in\mathcal H$ (e.g.\ using \texttt{NumPy}/\texttt{SymPy}). In the manuscript, place Definitions~\ref{def:iso}--\ref{def:involutions} in the core algebra section; Lemma~\ref{lem:det-minkowski} and Theorem~\ref{thm:det-invariant} under metric geometry; and Corollary~\ref{cor:double-cover} with group actions.
+For reproducibility tests, one may verify numerically that $\det(AXA^\dagger)-\det X\equiv 0$ for random $A\in SL(2,\mathbb C)$ and $X\in\mathcal H$ (e.g.\ using \texttt{NumPy}/\texttt{SymPy}). A Python verification script is provided in:
+\begin{verbatim}
+consolidation_project/scripts/verify_lorentz_in_HC.py
+\end{verbatim}
+This script validates all key claims: Hermitian slice preservation, determinant-Minkowski identity, Lorentz invariance, and null vector structure.
+
+In the manuscript, place Definitions~\ref{def:iso}--\ref{def:involutions} in the core algebra section; Lemma~\ref{lem:det-minkowski} and Theorem~\ref{thm:det-invariant} under metric geometry; and Corollary~\ref{cor:double-cover} with group actions.
