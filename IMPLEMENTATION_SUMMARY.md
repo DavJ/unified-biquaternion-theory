@@ -255,7 +255,7 @@ No additional parameters or ad-hoc factors.
 ### Supersedes Previous Claims
 
 This work provides the **authoritative reference** for two-loop α derivation in UBT, superseding earlier approaches that:
-- Used ad-hoc factor "1.84"
+- Used ad-hoc fitted values for R_UBT
 - Lacked rigorous justification
 - Didn't specify verifiable assumptions
 
@@ -265,7 +265,7 @@ This work provides the **authoritative reference** for two-loop α derivation in
 
 **YES - conditionally.** If you accept the standard assumptions A1-A3 (already aligned with UBT's direction and easily testable), then R_UBT = 1 and the derivation is complete and fit-free; α depends only on geometric inputs (N_eff, R_ψ) and the fixed map F.
 
-> If you require a numerical enhancement (like R_UBT ≈ 1.84), is it derived?
+> If you require a numerical enhancement (like R_UBT ≠ 1), is it derived?
 
 **NO - not yet derived.** It needs a concrete CT calculation that departs (consistently) from the QED real-time limit. Clear guidance provided on what would be required (Section "Extensions Beyond R_UBT=1").
 
