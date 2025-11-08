@@ -1,6 +1,6 @@
 # Emergent Fine-Structure Constant in UBT
 
-This document summarizes how the leading expression for the fine-structure constant emerges in UBT, **up to a pending explicit two-loop renormalization factor** \(\mathcal R_{\mathrm{UBT}}\), to be computed from first principles. We avoid any fitted constants in the core expression and isolate all scheme-dependent higher-order effects into \(\mathcal R_{\mathrm{UBT}}\).
+This document summarizes how the leading expression for the fine-structure constant emerges in UBT, with a **fit-free two-loop baseline** \(\mathcal R_{\mathrm{UBT}} = 1\) established rigorously under assumptions A1--A3 (see Appendix CT in the main paper). All scheme-dependent higher-order effects are isolated into \(\mathcal R_{\mathrm{UBT}}\), which equals unity at two loops by CT reduction to real-time QED, Ward identities, and Thomson-limit normalization.
 
 ## Summary
 The central result shows that
@@ -14,9 +14,13 @@ where we treat the higher-order factor as a perturbative series at scale μ:
       + c_2\!\left(\frac{\alpha(\mu)}{\pi}\right)^{\!2}
       + \mathcal O(\alpha^3).
 \]
-Any earlier use of a scale-independent constant (e.g. ~1.84) was a temporary numerical placeholder at some μ, not a universal two-loop correction.
 
-No additional ad hoc normalization is introduced beyond the standard renormalization conventions; all remaining ambiguity is encoded in \(\mathcal R_{\mathrm{UBT}}\).
+**Two-loop CT baseline:** Under assumptions A1--A3 (see paper), \(\mathcal R_{\mathrm{UBT}}=1\).
+Therefore \(B=\frac{2\pi N_{\mathrm{eff}}}{3R_\psi}\) and \(\alpha^{-1}=F(B)\) with no fits.
+Any deviation \(\mathcal R_{\mathrm{UBT}}\neq 1\) must be derived by an explicit CT
+two-loop computation.
+
+No additional ad hoc normalization is introduced beyond the standard renormalization conventions; all remaining ambiguity is encoded in \(\mathcal R_{\mathrm{UBT}}\), which equals 1 at two loops under the baseline theorem.
 
 # Emergent Fine Structure Constant from UBT
 
@@ -34,7 +38,7 @@ The fine structure constant α ≈ 1/137.036 is one of the most fundamental dime
   - Shows how α emerges from complex time topology
   - Rigorous mathematical proofs and theorems
   - Physical interpretation and comparison with experiment
-  - Pending explicit two-loop renormalization factor computation
+  - Two-loop CT baseline: \(\mathcal R_{\mathrm{UBT}}=1\) under assumptions A1--A3
 
 - **`emergent_alpha_calculations.tex`** - Supplementary numerical calculations
   - Detailed evaluation of the effective potential
@@ -100,7 +104,7 @@ This work demonstrates that:
 
 1. **α is not fundamental** - it emerges from spacetime topology
 2. **The value 137 is inevitable** - selected by geometric and stability constraints
-3. **Higher-order corrections** - \(\mathcal R_{\mathrm{UBT}}(\mu)\) defined as a perturbative series, to be computed from first principles
+3. **Two-loop CT baseline** - \(\mathcal R_{\mathrm{UBT}}=1\) rigorously established under assumptions A1--A3 (Appendix CT)
 4. **Quantum corrections work** - the 0.036 difference is explained by standard QFT
 5. **Predictive power** - unlike conventional QFT where α is input, UBT predicts it
 

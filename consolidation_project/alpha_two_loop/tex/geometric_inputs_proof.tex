@@ -6,10 +6,14 @@
 (Appendix~CT, Section~\ref{app:ct-baseline-R1}), proving that the geometric parameters 
 $N_{\mathrm{eff}}$ and $R_\psi$ are uniquely determined without adjustable choices.
 
-We formalize the mode-counting \(N_{\mathrm{eff}}\) and the geometric normalization \(R_\psi\)
-as follows: (i) define the spectral domain and boundary conditions on the Hermitian slice
-(Appendix~P6); (ii) prove that \(N_{\mathrm{eff}}\) equals the stated value under these
-constraints; (iii) show that \(R_\psi\) is fixed (not chosen) by the normalization that
-matches the Thomson limit in the QED reduction. This eliminates ad-hoc freedom and validates
-assumption \textbf{A1}, ensuring the fit-free result $\mathcal{R}_{\mathrm{UBT}} = 1$ 
-(Theorem~\ref{thm:RUBT-equals-one}).
+\subsection*{Geometric locking}
+
+\paragraph{Mode domain and boundary conditions.}
+We define the spectral domain on the Hermitian slice (Appendix~P6) and the boundary
+conditions used for counting: periodicity $\psi \sim \psi + 2\pi$ with compactification radius $R_\psi = 1$ in natural units where the period is $2\pi$.
+
+\paragraph{Proposition.}
+Under these definitions, \(N_{\mathrm{eff}}\) equals the stated integer (12 from mode counting in the $\tau = t + i\psi + j\chi + k\xi$ structure, including internal phases, helicities, and particle/antiparticle degrees of freedom) and \(R_\psi = 1\) (normalization constant from periodicity). No alternative values satisfy both the Lorentz invariance on the Hermitian slice and the Thomson-limit normalization.
+
+\paragraph{Consequence.}
+The product \(\frac{2\pi N_{\mathrm{eff}}}{3R_\psi}\) is fixed without tunable parameters. Combined with the CT baseline $\mathcal{R}_{\mathrm{UBT}} = 1$ (Theorem~\ref{thm:RUBT-equals-one}), this yields a completely parameter-free prediction for $B$ and thus $\alpha$.

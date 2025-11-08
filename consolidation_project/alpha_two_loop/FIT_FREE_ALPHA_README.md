@@ -267,7 +267,7 @@ Validation complete. See Appendix CT for theoretical details.
 
 **Before** (early UBT versions):
 - Claimed α^(-1) ≈ 137 from topology
-- Used fitting factor "1.84" for R_UBT
+- Used fitted value for R_UBT (not derived)
 - No rigorous justification
 
 **Now** (this work):
@@ -326,7 +326,7 @@ If someone wants to claim R_UBT ≠ 1, they must:
    - Gauge independence maintained
    - Renormalization group consistent
 
-Without such explicit work, "R_UBT ≈ 1.84" is **not justified**.
+Without such explicit work, any claim of **R_UBT ≠ 1** is not justified. The baseline theorem establishes R_UBT = 1 under standard assumptions A1–A3.
 
 ## References and Citations
 

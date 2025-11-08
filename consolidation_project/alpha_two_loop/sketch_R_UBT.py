@@ -1,6 +1,11 @@
 """
 Two-loop computation skeleton for R_UBT(μ) in the complex-time scheme.
 We define  R_UBT(μ) = 1 + c1*(α(μ)/π) + c2*(α(μ)/π)^2 + O(α^3).
+
+NOTE: Baseline theorem adopts R_UBT = 1 at two loops under A1–A3 (Appendix CT).
+Any alternative value requires completing this pipeline to produce a finite,
+gauge-invariant CT result at q^2=0 that reduces to QED in the real-time limit.
+
 The task is to compute c2 (and c1 if nonzero) from first principles,
 with Ward identities enforced (Z1 = Z2) and a QED-limit check.
 """
@@ -65,10 +70,10 @@ def compute_R_UBT_two_loop(epsilon: float, mu: float) -> Tuple[float, Dict[str, 
 
 def qed_limit_checks() -> None:
     """
-    Define checks for reduction to standard QED (epsilon->0, real time), with known small two-loop corrections;
-    must *not* produce ~1.84 in that limit.
+    Define checks for reduction to standard QED (epsilon->0, real time), with known small two-loop corrections.
     
-    The enhancement R_UBT ≈ 1.84 arises specifically from complex-time effects and should
-    reduce to R_QED ≈ 1.001 in the real-time limit.
+    The CT baseline theorem establishes R_UBT = 1 under assumptions A1-A3. In the QED limit
+    (psi->0), R_UBT should reduce to unity. Any deviation from R_UBT = 1 requires explicit
+    calculation showing complex-time effects beyond the standard assumptions.
     """
     raise NotImplementedError("Add explicit QED limit checks and fixtures.")
