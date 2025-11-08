@@ -1,3 +1,23 @@
+# Emergent Fine-Structure Constant in UBT
+
+This document summarizes how the leading expression for the fine-structure constant emerges in UBT, **up to a pending explicit two-loop renormalization factor** \(\mathcal R_{\mathrm{UBT}}\), to be computed from first principles. We avoid any fitted constants in the core expression and isolate all scheme-dependent higher-order effects into \(\mathcal R_{\mathrm{UBT}}\).
+
+## Summary
+The central result shows that
+\[
+ B \;=\; \frac{2\pi N_{\mathrm{eff}}}{3 R_\psi} \times \mathcal R_{\mathrm{UBT}},
+\]
+where we treat the higher-order factor as a perturbative series at scale μ:
+\[
+\mathcal R_{\mathrm{UBT}}(\mu)
+= 1 + c_1\!\left(\frac{\alpha(\mu)}{\pi}\right)
+      + c_2\!\left(\frac{\alpha(\mu)}{\pi}\right)^{\!2}
+      + \mathcal O(\alpha^3).
+\]
+Any earlier use of a scale-independent constant (e.g. ~1.84) was a temporary numerical placeholder at some μ, not a universal two-loop correction.
+
+No additional ad hoc normalization is introduced beyond the standard renormalization conventions; all remaining ambiguity is encoded in \(\mathcal R_{\mathrm{UBT}}\).
+
 # Emergent Fine Structure Constant from UBT
 
 This directory contains a comprehensive derivation of the fine structure constant α from first principles within the Unified Biquaternion Theory (UBT).
@@ -14,7 +34,7 @@ The fine structure constant α ≈ 1/137.036 is one of the most fundamental dime
   - Shows how α emerges from complex time topology
   - Rigorous mathematical proofs and theorems
   - Physical interpretation and comparison with experiment
-  - No external assumptions required
+  - Pending explicit two-loop renormalization factor computation
 
 - **`emergent_alpha_calculations.tex`** - Supplementary numerical calculations
   - Detailed evaluation of the effective potential
@@ -80,7 +100,7 @@ This work demonstrates that:
 
 1. **α is not fundamental** - it emerges from spacetime topology
 2. **The value 137 is inevitable** - selected by geometric and stability constraints
-3. **No free parameters** - the derivation uses only UBT first principles
+3. **Higher-order corrections** - \(\mathcal R_{\mathrm{UBT}}(\mu)\) defined as a perturbative series, to be computed from first principles
 4. **Quantum corrections work** - the 0.036 difference is explained by standard QFT
 5. **Predictive power** - unlike conventional QFT where α is input, UBT predicts it
 
@@ -100,7 +120,7 @@ Previous UBT attempts at deriving α:
 - `consolidation_project/appendix_V_emergent_alpha.tex` - Hosotani mechanism approach
 
 This work improves on these by:
-- Eliminating external assumptions (no assumed compactification schemes)
+- Isolating scheme dependence into explicit two-loop renormalization factor \(\mathcal R_{\mathrm{UBT}}\)
 - Rigorous mathematical framework (formal theorems and proofs)
 - Clear connection to first principles of UBT
 - Numerical verification of all claims

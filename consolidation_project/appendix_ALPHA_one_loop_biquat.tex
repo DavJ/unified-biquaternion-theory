@@ -333,7 +333,13 @@ The physical origin of this enhancement is:
 \item Gauge-fixing terms in the compact $\psi$ direction
 \end{itemize}
 
-\textbf{Future Work:} The explicit calculation of $\mathcal{R}_{\text{UBT}}$ from biquaternionic two-loop diagrams remains as future work. This requires evaluating two-loop Feynman integrals in complex time, which involves technical challenges in dimensional regularization and analytic continuation. Estimated timeline: 12-18 months for complete calculation.
+\subsection*{Future Work}
+An explicit two-loop evaluation of \(\mathcal R_{\mathrm{UBT}}\) is pending.
+This will include full diagrammatics, the complex-time prescription, and cross-checks against standard QED limits.
+
+Intermediate results and validation notebooks will be released alongside the calculation as they become available.
+
+We emphasize that \(\mathcal R_{\mathrm{UBT}}\) is not an external fit but a higher-order renormalization factor, to be computed from first principles within the present scheme.
 
 \textbf{Step (iv.5): Final Formula for $B$.} Combining one-loop result with two-loop enhancement:
 \begin{equation}
@@ -342,7 +348,14 @@ B = B(R_\psi, N_{\text{eff}}, \mathcal{R}) = \frac{2\pi N_{\text{eff}}}{3 R_\psi
 }
 \label{eq:B-final-boxed}
 \end{equation}
-where:
+
+\paragraph{CT two-loop program.}
+The pending factor \(\mathcal R_{\mathrm{UBT}}\) is defined and computed in the CT scheme
+(Sec.~\ref{sec:ct-scheme}), with diagrammatics and two-loop renormalization detailed in
+Sec.~\ref{sec:beta-ct-two-loop} and the extraction in Sec.~\ref{sec:rubt-extraction}.
+In the QED/real-time limit, \(\mathcal R_{\mathrm{UBT}}\to 1\).
+
+\noindent where:
 \begin{itemize}
 \item $R_\psi = 1$ (compact radius, geometric input)
 \item $N_{\text{eff}} = 12$ (mode count from biquaternion structure, see Section~\ref{sec:mode-counting})
