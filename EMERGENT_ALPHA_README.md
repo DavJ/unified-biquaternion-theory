@@ -7,7 +7,14 @@ The central result shows that
 \[
  B \;=\; \frac{2\pi N_{\mathrm{eff}}}{3 R_\psi} \times \mathcal R_{\mathrm{UBT}},
 \]
-with a **to-be-derived** two-loop factor \(\mathcal R_{\mathrm{UBT}}\approx 1.84\) currently serving as a working placeholder until the explicit computation is completed.
+where we treat the higher-order factor as a perturbative series at scale μ:
+\[
+\mathcal R_{\mathrm{UBT}}(\mu)
+= 1 + c_1\!\left(\frac{\alpha(\mu)}{\pi}\right)
+      + c_2\!\left(\frac{\alpha(\mu)}{\pi}\right)^{\!2}
+      + \mathcal O(\alpha^3).
+\]
+Any earlier use of a scale-independent constant (e.g. ~1.84) was a temporary numerical placeholder at some μ, not a universal two-loop correction.
 
 No additional ad hoc normalization is introduced beyond the standard renormalization conventions; all remaining ambiguity is encoded in \(\mathcal R_{\mathrm{UBT}}\).
 
@@ -93,7 +100,7 @@ This work demonstrates that:
 
 1. **α is not fundamental** - it emerges from spacetime topology
 2. **The value 137 is inevitable** - selected by geometric and stability constraints
-3. **Pending two-loop factor** - \(\mathcal R_{\mathrm{UBT}}\) to be computed from first principles
+3. **Higher-order corrections** - \(\mathcal R_{\mathrm{UBT}}(\mu)\) defined as a perturbative series, to be computed from first principles
 4. **Quantum corrections work** - the 0.036 difference is explained by standard QFT
 5. **Predictive power** - unlike conventional QFT where α is input, UBT predicts it
 
