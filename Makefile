@@ -1,9 +1,8 @@
+.PHONY: all core clean pdf verify tests ci
 PDFLATEX?=pdflatex
 TEXSRCS=$(wildcard *.tex)
 CORE_MAIN=ubt_core_main.tex
 ALL_MAIN=ubt_2_main.tex
-
-.PHONY: all core clean pdf verify ci
 MAIN_TEX := consolidation_project/ubt_2_main.tex
 VERIFY_SCRIPT := consolidation_project/scripts/verify_lorentz_in_HC.py
 
@@ -23,6 +22,9 @@ verify:
 	@python3 -c "import sys, pathlib; p=pathlib.Path('$(VERIFY_SCRIPT)'); \
 	             (print(f'ERROR: script not found: {p}') or sys.exit(1)) if not p.exists() else None"
 	@python3 $(VERIFY_SCRIPT)
+
+tests:
+	python -m pytest -q
 
 ci: pdf verify
 	@echo "CI OK"

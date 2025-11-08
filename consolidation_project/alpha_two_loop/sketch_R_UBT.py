@@ -1,17 +1,18 @@
 """
-Skeleton module for two-loop computation of R_UBT renormalization factor.
-
-This module provides the structure for computing the two-loop renormalization
-factor R_UBT that appears in the fine-structure constant derivation:
-
-    B = (2π N_eff) / (3 R_ψ) × R_UBT
-
-where R_UBT ≈ 1.84 is currently a working placeholder to be computed from
-first principles using biquaternionic field theory.
+Two-loop computation skeleton for R_UBT(μ) in the complex-time scheme.
+We define  R_UBT(μ) = 1 + c1*(α(μ)/π) + c2*(α(μ)/π)^2 + O(α^3).
+The task is to compute c2 (and c1 if nonzero) from first principles,
+with Ward identities enforced (Z1 = Z2) and a QED-limit check.
 """
 
 from dataclasses import dataclass
 from typing import Dict, Any, Tuple
+import math
+
+
+def R_UBT_series(alpha_mu: float, c1: float = 0.0, c2: float = 0.0) -> float:
+    """Evaluate R_UBT(μ) up to two loops for given α(μ)."""
+    return 1.0 + c1*(alpha_mu/math.pi) + c2*((alpha_mu/math.pi)**2)
 
 
 @dataclass
