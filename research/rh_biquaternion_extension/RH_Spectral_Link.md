@@ -1,8 +1,19 @@
 # Connection Between UBT and the Riemann Hypothesis
 
+## ⚠️ Research Status: Speculative and Exploratory
+
+**Important Disclaimer:**  
+This document explores potential **structural connections** between the Unified Biquaternion Theory (UBT) spectral framework and the Riemann zeta function. These connections are:
+
+- **Structural analogies**, not rigorous proofs
+- **Exploratory research**, separated from core UBT theory
+- **Not claims of proving the Riemann Hypothesis**
+
+The core UBT framework defines mathematically consistent biquaternionic operators whose spectral properties may share structural features with number-theoretic objects. This document is maintained for research purposes and potential future investigation.
+
 ## Overview
 
-This document summarizes the connections between the Unified Biquaternion Theory (UBT) and the Riemann zeta function / Riemann hypothesis, as detailed in the new appendix `appendix_RH_riemann_zeta_connection.tex`.
+This document summarizes the connections between the Unified Biquaternion Theory (UBT) and the Riemann zeta function / Riemann hypothesis. The core appendix `consolidation_project/appendix_RH_riemann_zeta_connection.tex` focuses on established uses of zeta function regularization in QFT; this document explores more speculative connections.
 
 ## Key Connections Identified
 

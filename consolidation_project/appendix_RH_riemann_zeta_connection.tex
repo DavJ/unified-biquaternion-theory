@@ -8,7 +8,11 @@
 
 \subsection{Introduction}
 
-The Riemann zeta function $\zeta(s)$ and its intimate connection to prime numbers occupy a central position in mathematics. Within the Unified Biquaternion Theory (UBT), the zeta function emerges naturally in several fundamental contexts: quantum field theory regularization, prime number selection mechanisms, and the analytic structure of complex time. This appendix explores these deep connections and their physical implications.
+The Riemann zeta function $\zeta(s)$ and its intimate connection to prime numbers occupy a central position in mathematics. Within the Unified Biquaternion Theory (UBT), the zeta function emerges naturally in several fundamental contexts: quantum field theory regularization, prime number selection mechanisms, and the analytic structure of complex time. This appendix explores these connections and their physical implications.
+
+\begin{remark}[Scope and Limitations]
+This appendix discusses both \emph{established} mathematical connections (zeta function regularization in QFT) and \emph{speculative} structural analogies (spectral connections to the Riemann Hypothesis). The latter are presented as potential research directions, not as proofs. UBT does not claim to prove the Riemann Hypothesis; rather, it provides a framework where number-theoretic structures emerge naturally from physical principles.
+\end{remark}
 
 \subsection{Riemann Zeta Function: Mathematical Background}
 
@@ -549,14 +553,14 @@ The Riemann zeta zeros are known to follow GUE statistics. In UBT:
 \item The Hamiltonian $\hat{H}_{\text{eff}}(\tau)$ should exhibit quantum chaotic behavior
 \end{itemize}
 
-If the UBT Hamiltonian is quantum chaotic and belongs to the GUE class, then by RMT universality, its eigenvalue statistics will match those of the Riemann zeros, providing a statistical proof of the RH in this framework.
+If the UBT Hamiltonian is quantum chaotic and belongs to the GUE class, then by RMT universality, its eigenvalue statistics would match those of the Riemann zeros. This represents a \emph{structural analogy}, not a proof of RH, as the connection between specific eigenvalues and zeta zeros remains conjectural.
 
-\textbf{Step 9: Rigorous Statement}
+\textbf{Step 9: Speculative Connection}
 
-We can now state the connection rigorously:
+We can state the potential connection as an exploratory conjecture:
 
-\begin{theorem}[UBT-Riemann Hypothesis Equivalence (Conjectural)]
-\label{thm:ubt-rh}
+\begin{conjecture}[UBT-Riemann Spectral Analogy]
+\label{conj:ubt-rh}
 Let $\hat{H}_{\text{eff}}(\tau)$ be the effective Hamiltonian governing the biquaternionic field $\Theta$ in complex time $\tau = t + i\psi$ with compactification $\psi \sim \psi + 2\pi$. Assume:
 \begin{enumerate}
 \item $\hat{H}_{\text{eff}}$ is self-adjoint on the Hilbert space $\mathcal{H}_{\text{UBT}}$ with biquaternionic inner product $\langle \cdot, \cdot \rangle$
@@ -572,35 +576,39 @@ Then the spectral zeta function $\zeta_H(s) = \text{Tr}[\hat{H}_{\text{eff}}^{-s
 \item The functional equation $\zeta_H(s) = \mathcal{F}[\zeta_H(1-s)]$ holds, where $\mathcal{F}$ is determined by the symmetry transformation $\tau \to \tau^*$
 \end{itemize}
 
-If the UBT spectral zeta function $\zeta_H(s)$ can be analytically continued to coincide with the Riemann zeta function $\zeta(s)$ (or a related L-function), then the Riemann hypothesis follows as a corollary.
-\end{theorem}
+If the UBT spectral zeta function $\zeta_H(s)$ can be analytically continued to coincide with the Riemann zeta function $\zeta(s)$ (or a related L-function), then the Riemann hypothesis would follow as a corollary. However, this connection remains speculative and unproven.
+\end{conjecture}
 
-\textbf{Proof Strategy:}
+\textbf{Speculative Research Directions:}
 
-The proof would proceed in four stages:
+A complete investigation of this analogy would proceed in four stages:
 
 \textbf{Stage 1:} Establish self-adjointness of $\hat{H}_{\text{eff}}$ using functional analysis techniques (spectral theorem for unbounded operators, domain conditions, boundary terms).
 
-\textbf{Stage 2:} Prove that the reflection symmetry~\eqref{eq:potential-symmetry} combined with self-adjointness forces the functional equation with symmetry about $\Re(s) = 1/2$.
+\textbf{Stage 2:} Investigate whether the reflection symmetry combined with self-adjointness forces the functional equation with symmetry about $\Re(s) = 1/2$.
 
-\textbf{Stage 3:} Demonstrate that the semiclassical limit exhibits chaotic dynamics (e.g., via periodic orbit theory, Gutzwiller trace formula) and belongs to the GUE universality class.
+\textbf{Stage 3:} Study whether the semiclassical limit exhibits chaotic dynamics (e.g., via periodic orbit theory, Gutzwiller trace formula) and belongs to the GUE universality class.
 
-\textbf{Stage 4:} Show that the UBT parameters (compactification radius $R_\psi = 1$, mode count $N_{\text{eff}} = 12$, coupling constants) can be tuned such that $\zeta_H(s) = \zeta(s)$ after appropriate normalization.
+\textbf{Stage 4:} Investigate whether the UBT parameters (compactification radius $R_\psi = 1$, mode count $N_{\text{eff}} = 12$, coupling constants) can be tuned such that $\zeta_H(s) = \zeta(s)$ after appropriate normalization.
 
-\textbf{Current Status:}
+\textbf{Current Status (Research Level):}
 
 \begin{itemize}
-\item Stage 1: Partial progress. Self-adjointness requires specifying domain of $\hat{H}_{\text{eff}}$ carefully (Sobolev spaces on $S^1 \times \mathbb{R}^3$).
-\item Stage 2: The functional equation structure is plausible but not rigorously proven. Requires detailed analysis of boundary conditions and symmetry transformations.
-\item Stage 3: Quantum chaos in complex time is an open problem. Numerical studies would be valuable.
-\item Stage 4: The identification $\zeta_H \equiv \zeta$ is highly non-trivial and may not hold exactly. More likely, $\zeta_H$ is an L-function associated with the gauge group symmetries.
+\item Stage 1: Partial conceptual framework. Self-adjointness requires specifying domain of $\hat{H}_{\text{eff}}$ carefully (Sobolev spaces on $S^1 \times \mathbb{R}^3$). Not rigorously proven.
+\item Stage 2: The functional equation structure is plausible but speculative. Requires detailed analysis of boundary conditions and symmetry transformations.
+\item Stage 3: Quantum chaos in complex time is an open research question. Numerical studies would be valuable.
+\item Stage 4: The identification $\zeta_H \equiv \zeta$ is highly speculative and may not hold. More likely, $\zeta_H$ is related to an L-function associated with the gauge group symmetries.
 \end{itemize}
 
-\textbf{Alternative Approach: Connes' Spectral Interpretation}
+\begin{remark}[Research vs. Core Theory]
+The connections in this section represent speculative research directions, not established results of UBT. The core UBT framework is defined independently of these number-theoretic conjectures. For further exploratory material, see \texttt{research/rh\_biquaternion\_extension/} in the repository.
+\end{remark}
+
+\textbf{Alternative Perspective: Connes' Spectral Interpretation}
 
 Alain Connes proposed a spectral interpretation of the RH using noncommutative geometry. In his framework, the zeros of $\zeta(s)$ correspond to eigenvalues of a quantum mechanical system related to the adeles $\mathbb{A}_{\mathbb{Q}}$.
 
-UBT naturally incorporates adeles through the p-adic extensions (Appendix~\ref{app:padic-overview}). The connection is:
+UBT naturally incorporates adeles through the p-adic extensions (Appendix~\ref{app:padic-overview}). A potential structural connection is:
 \begin{equation}
 \Theta = \Theta_\infty \otimes \bigotimes_p \Theta_p
 \end{equation}
