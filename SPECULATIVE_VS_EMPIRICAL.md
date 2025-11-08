@@ -150,24 +150,32 @@
 
 ### Speculative Content
 
-#### complex_consciousness/ctc_2.0_main.tex
-**Status:** Appropriately Labeled
-- Has disclaimer in document
-- Separate repository section
-- Not mixed with core physics
+**⚠️ UPDATE (November 2025): All speculative content moved to `speculative_extensions/` folder**
 
-**Improvement:**
-- [ ] Strengthen disclaimer language
-- [ ] Add "NOT ESTABLISHED SCIENCE" banner
-- [ ] Reference CONSCIOUSNESS_CLAIMS_ETHICS.md
+See [speculative_extensions/README.md](speculative_extensions/README.md) for complete organization and disclaimers.
+
+#### speculative_extensions/complex_consciousness/ctc_2.0_main.tex
+**Status:** Appropriately Labeled and Isolated
+- Has disclaimer in document
+- Separated into dedicated folder
+- Not mixed with core physics
+- Clear documentation of speculative nature
+
+**Completed Actions:**
+- ✅ Moved to separate `speculative_extensions/` folder
+- ✅ Created comprehensive README with disclaimers
+- ✅ Updated all documentation references
+- ✅ References CONSCIOUSNESS_CLAIMS_ETHICS.md
 
 #### CTC / Time Travel Content
-**Status:** Mixed
-- Some sections treat as mathematical exercise
-- Others imply physical possibility
+**Status:** Separated and Labeled
+- `speculative_extensions/appendices/appendix_J_rotating_spacetime_ctc.tex`
+- Clearly marked as speculative in file header
+- Treated as mathematical exercise, not physical reality claim
 
-**Action Needed:**
-- [ ] Clarify: mathematical solutions vs. physical reality
+**Completed Actions:**
+- ✅ Moved to `speculative_extensions/` folder
+- ✅ Clarified mathematical vs. physical interpretation
 - [ ] Stability analysis (if stable, less speculative)
 - [ ] Causality resolution (essential for any claim)
 

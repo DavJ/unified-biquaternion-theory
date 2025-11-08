@@ -330,11 +330,13 @@ Relate to known physics:
 
 ## 8. Dimensional Reduction: Multiverse to Single Universe
 
-### Current Status: **✅ COMPLETED** (November 1, 2025)
+### Current Status: **✅ COMPLETED** (November 1, 2025) - **MOVED TO SPECULATIVE**
 
-**See:** `consolidation_project/appendix_P2_multiverse_projection.tex`
+**See:** `speculative_extensions/appendices/appendix_P2_multiverse_projection.tex` (moved to speculative extensions Nov 2025)
 
 The projection operator Π: 𝔹⁴ → M⁴ has been rigorously defined with proofs and three physical mechanisms explaining observability.
+
+**Note:** This appendix has been moved to `speculative_extensions/` as it represents a speculative interpretation of the biquaternionic structure rather than core physics.
 
 ### Required Framework:
 

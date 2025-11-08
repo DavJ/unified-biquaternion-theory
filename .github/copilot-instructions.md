@@ -10,12 +10,14 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretica
 ## Repository Structure
 
 - `unified_biquaternion_theory/` - Original UBT documents and derivations
-- `complex_consciousness/` - Complex Consciousness Theory (LaTeX sources & PDFs)
 - `consolidation_project/` - Consolidated UBT documents (ongoing project)
   - `appendix_A_*/` - Appendices on gravity, gauge fields, QED/QCD, etc.
   - `img/` - Figures and diagrams
   - `metadata/` - Project notes, TODOs, consolidation maps
   - `scripts/` - Python scripts for computations
+- `speculative_extensions/` - Speculative content separated from core theory
+  - `complex_consciousness/` - Complex Consciousness Theory (SPECULATIVE)
+  - `appendices/` - Speculative appendices (psychons, CTCs, multiverse)
 - `.github/workflows/` - GitHub Actions for automated LaTeX compilation
 - `scripts/` - Shell scripts for repository maintenance
 - `docs/` - Generated documentation and compiled PDFs
@@ -28,8 +30,8 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretica
 - **Build System**: Makefile in root, GitHub Actions workflow for CI/CD
 - **Main Documents**:
   - `unified_biquaternion_theory/ubt_main_article.tex`
-  - `complex_consciousness/ctc_2.0_main.tex`
   - `consolidation_project/ubt_2_main.tex`
+  - `speculative_extensions/complex_consciousness/ctc_2.0_main.tex` (SPECULATIVE)
 
 ### Python
 - **Primary Use**: Numerical computations, fine structure constant calculations, padic extensions
@@ -276,8 +278,11 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a unified ph
 │   ├── appendix_*.tex           # Consolidated appendices
 │   ├── scripts/                 # Python utility scripts
 │   └── metadata/                # Project notes and TODOs
-├── complex_consciousness/        # Complex Consciousness Theory (CCT)
-│   └── ctc_2.0_main.tex         # CCT main document
+├── speculative_extensions/       # Speculative content (separated from core)
+│   ├── complex_consciousness/   # Complex Consciousness Theory (SPECULATIVE)
+│   │   └── ctc_2.0_main.tex    # CCT main document
+│   ├── appendices/              # Speculative appendices
+│   └── README.md                # Disclaimers and guidelines
 ├── docs/                        # Documentation and generated PDFs
 ├── scripts/                     # Utility scripts
 ├── Makefile                     # Build targets for LaTeX compilation
@@ -356,7 +361,7 @@ No specific Python environment is required. Scripts are standalone utilities.
 - `unified_biquaternion_theory/ubt_main_article.tex` - Original UBT formulation
 - `consolidation_project/ubt_2_main.tex` - Full consolidated UBT document
 - `consolidation_project/ubt_core_main.tex` - Core theory without speculative sections
-- `complex_consciousness/ctc_2.0_main.tex` - CCT application
+- `speculative_extensions/complex_consciousness/ctc_2.0_main.tex` - CCT application (SPECULATIVE)
 
 ### Configuration
 - `.github/latex_roots.txt` - Lists root TeX files for CI compilation
