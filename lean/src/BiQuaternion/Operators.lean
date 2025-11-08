@@ -1,5 +1,11 @@
 import BiQuaternion.Algebra
 
+-- Biquaternion spectral operator M_BQ
+-- This operator is central to UBT's spectral framework.
+-- Its complex projection exhibits structural analogies to zeta-related operators,
+-- but UBT does not claim to prove number-theoretic conjectures like the 
+-- Riemann Hypothesis. The operator is defined independently for physical purposes.
+
 def V : BQTime → BQ := fun τ => ⟨0, 0, 0, 0⟩  -- placeholder potential
 
 def M_BQ (f : BQTime → BQ) (τ : BQTime) : BQ :=

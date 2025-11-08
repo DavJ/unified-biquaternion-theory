@@ -156,6 +156,20 @@ Key features:
 - **Quantum electrodynamics (QED)** and **quantum chromodynamics (QCD)** reformulated in UBT variables.
 - **Dark sector physics**: unified treatment of dark matter and dark energy via padic extensions.
 
+**🔢 Relation to Number Theory**
+
+UBT exhibits natural structural connections to number theory and the Riemann zeta function:
+
+- **Zeta Function Regularization (Established)**: Standard QFT techniques using ζ(s) appear in the derivation of the fine structure constant through mode sum regularization and dimensional regularization. Values like ζ(-1) = -1/12 and ζ'(-1) ≈ -0.165 enter the calculation of quantum corrections.
+
+- **Prime Selection Mechanism (Semi-rigorous)**: The prediction α⁻¹ = 137 (a prime number) emerges through a combination of spectral entropy minimization and energy optimization. The Euler product formula connecting ζ(s) to primes underlies this selection.
+
+- **p-adic Extensions (Exploratory)**: The adelic framework 𝔸_ℚ = ℝ × ∏_p ℚ_p provides a mathematical structure for multiverse interpretations and dark sector physics.
+
+- **Spectral Connections (Speculative)**: The complex projection of the biquaternionic spectral operator M_BQ exhibits structural analogies to the Riemann zeta spectrum. This is a mathematical curiosity, **not a claim of proving the Riemann Hypothesis**. See `research/rh_biquaternion_extension/` for exploratory material.
+
+**Important**: The core UBT framework is defined independently of number-theoretic conjectures. Established QFT uses of zeta regularization are standard; deeper connections to the Riemann Hypothesis are speculative research directions only.
+
 **⚠️ Speculative Extensions** (moved to `speculative_extensions/` folder):
 - **Consciousness modeling**: Psychons and Complex Consciousness Theory (CCT) - highly speculative
 - **Closed Timelike Curves (CTCs)**: geometric conditions for time-travel solutions - speculative
