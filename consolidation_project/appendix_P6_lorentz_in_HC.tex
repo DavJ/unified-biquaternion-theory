@@ -1,0 +1,160 @@
+% VERSION: v17 Stable Release
+% --- Minimal preamble needs (if not already present in your master file) ---
+% \usepackage{amsmath,amssymb,amsthm}
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem{lemma}[definition]{Lemma}
+% \newtheorem{theorem}[definition]{Theorem}
+% \newtheorem{corollary}[definition]{Corollary}
+% \theoremstyle{remark}
+% \newtheorem{remark}[definition]{Remark}
+
+\section{Lorentz Structure Inside \texorpdfstring{$\mathbb H_{\mathbb C}$}{H\_C} Without Split Quaternions}
+\label{app:lorentz-in-HC}
+
+\subsection{Goal and Outline}
+We formalize the Minkowski metric of signature $(-,+,+,+)$ and the proper, orthochronous Lorentz action \emph{within} the complexified quaternions $\mathbb H_{\mathbb C}$—without resorting to split quaternions. The construction proceeds via the algebra isomorphism $\mathbb H_{\mathbb C}\cong M_2(\mathbb C)$, a Hermitian slice, and the determinant.
+
+\subsection{Basic Objects and Involutions}
+
+\begin{definition}[Complexified quaternions]
+\label{def:HC}
+The complexified quaternions are
+\[
+\mathbb H_{\mathbb C}
+ := \mathbb H \otimes_{\mathbb R} \mathbb C
+ = \{\, a_0 + a_1 \mathbf i + a_2 \mathbf j + a_3 \mathbf k \mid a_\mu \in \mathbb C \,\},
+\]
+with quaternionic multiplication given by $\mathbf i^2=\mathbf j^2=\mathbf k^2=\mathbf i\mathbf j\mathbf k=-1$.
+\end{definition}
+
+\begin{definition}[Matrix isomorphism]
+\label{def:iso}
+Fix the $\mathbb C$-algebra isomorphism $\varphi:\mathbb H_{\mathbb C}\to M_2(\mathbb C)$ by
+\[
+\varphi(1)=I_2,\qquad
+\varphi(\mathbf i)=\mathrm i\,\sigma_1,\qquad
+\varphi(\mathbf j)=\mathrm i\,\sigma_2,\qquad
+\varphi(\mathbf k)=\mathrm i\,\sigma_3,
+\]
+where $\sigma_\ell$ are the Pauli matrices and $\mathrm i=\sqrt{-1}$ commutes with $\mathbf i,\mathbf j,\mathbf k$.
+\end{definition}
+
+\begin{definition}[Two involutions]
+\label{def:involutions}
+\begin{itemize}
+  \item \emph{Quaternionic conjugation} $(\cdot)^\ast:\mathbb H_{\mathbb C}\to\mathbb H_{\mathbb C}$:
+  \[
+  (a_0 + a_1\mathbf i + a_2\mathbf j + a_3\mathbf k)^\ast := a_0 - a_1\mathbf i - a_2\mathbf j - a_3\mathbf k.
+  \]
+  \item \emph{Hermitian adjunction} $(\cdot)^\dagger:\mathbb H_{\mathbb C}\to\mathbb H_{\mathbb C}$ transported from $M_2(\mathbb C)$:
+  \[
+  q^\dagger := \varphi^{-1}\!\big(\varphi(q)^\dagger\big),
+  \]
+  where the right-hand $\dagger$ denotes the usual conjugate transpose on matrices.
+\end{itemize}
+These involutions are generally distinct; $(\cdot)^\dagger$ is $\mathbb C$-antilinear and compatible with~$\varphi$.
+\end{definition}
+
+\subsection{Hermitian Slice and Minkowski Form}
+
+\begin{definition}[Hermitian slice]
+\label{def:Herm-slice}
+Define the real vector space
+\[
+\mathcal H := \{\, q\in \mathbb H_{\mathbb C}\mid q^\dagger = q \,\}.
+\]
+Via $\varphi$, the space $\mathcal H$ identifies with the Hermitian $2\times 2$ complex matrices.
+\end{definition}
+
+\begin{definition}[Embedding of spacetime]
+\label{def:embedding}
+Let $\sigma_0:=I_2$ and $\sigma_i$ the Pauli matrices. Embed $x=(x^0,\vec x)\in\mathbb R^{1,3}$ as
+\[
+\iota:\ \mathbb R^{1,3}\to\mathcal H,\qquad
+x \longmapsto X := x^\mu \sigma_\mu
+= \begin{pmatrix} x^0+x^3 & x^1-\mathrm i x^2 \\ x^1+\mathrm i x^2 & x^0-x^3 \end{pmatrix}.
+\]
+\end{definition}
+
+\begin{lemma}[Determinant and Minkowski form]
+\label{lem:det-minkowski}
+For $x\in\mathbb R^{1,3}$ with $X=\iota(x)$ we have
+\[
+\det X \;=\; (x^0)^2 - \|\vec x\|^2 \;=\; -\,\eta_{\mu\nu}x^\mu x^\nu,
+\quad \eta=\mathrm{diag}(-,+,+,+).
+\]
+Thus the quadratic form $\langle X,X\rangle_M := \det X$ realizes the Minkowski metric on $\mathcal H$.
+\end{lemma}
+
+\begin{proof}
+A direct computation of $\det X$ in the Pauli basis yields the stated identity.
+\end{proof}
+
+\begin{remark}
+Null vectors correspond to rank-$1$ (non-invertible) $X$ with $\det X=0$; timelike (spacelike) vectors have $\det X>0$ ($\det X<0$).
+\end{remark}
+
+\subsection{Spinorial Action and Invariance}
+
+\begin{definition}[Spinorial action of $SL(2,\mathbb C)$]
+\label{def:spin-action}
+For $A\in SL(2,\mathbb C)$, define on $\mathcal H$ the action
+\[
+X \longmapsto X' := A\,X\,A^\dagger.
+\]
+Transporting via $\varphi^{-1}$, this is $q\mapsto a\,q\,a^\dagger$ with $a:=\varphi^{-1}(A)$.
+\end{definition}
+
+\begin{lemma}[Hermiticity preserved]
+\label{lem:herm-preserved}
+If $X^\dagger=X$, then $(AXA^\dagger)^\dagger=AXA^\dagger$. Hence the action preserves $\mathcal H$.
+\end{lemma}
+
+\begin{proof}
+$(AXA^\dagger)^\dagger=A X^\dagger A^\dagger=AXA^\dagger$.
+\end{proof}
+
+\begin{theorem}[Invariance of the Minkowski determinant]
+\label{thm:det-invariant}
+For every $A\in SL(2,\mathbb C)$ and $X\in\mathcal H$,
+\[
+\det(AXA^\dagger)=\det X.
+\]
+\end{theorem}
+
+\begin{proof}
+In $M_2(\mathbb C)$ one has $\det(AXA^\dagger)=\det(A)\det(X)\det(A^\dagger)
+=1\cdot \det(X)\cdot \overline{\det(A)}=\det(X)$ since $\det(A)=1$.
+\end{proof}
+
+\begin{corollary}[Double cover of the proper, orthochronous Lorentz group]
+\label{cor:double-cover}
+The map
+\[
+\Lambda:\ SL(2,\mathbb C)\to SO^+(1,3),\qquad
+AXA^\dagger=\iota\big(\Lambda(A)\,x\big),
+\]
+is a surjective group homomorphism with kernel $\{\pm I\}$. Thus $SL(2,\mathbb C)$ is the double cover of $SO^+(1,3)$, acting by isometries of $(\mathcal H,\det)$.
+\end{corollary}
+
+\begin{proof}[Proof sketch]
+Standard: expand $X=x^\mu\sigma_\mu$, use Theorem~\ref{thm:det-invariant} and identify the induced linear map on $x^\mu$; $\ker\Lambda=\{\pm I\}$.
+\end{proof}
+
+\subsection{Consequences for UBT}
+
+\begin{theorem}[Lorentz structure inside $\mathbb H_{\mathbb C}$]
+\label{thm:main-ubt}
+The Minkowski metric and proper, orthochronous Lorentz transformations are realized \emph{within} $\mathbb H_{\mathbb C}$ by restricting to the Hermitian slice $\mathcal H$ and acting via $X\mapsto AXA^\dagger$ with $A\in SL(2,\mathbb C)$. No split quaternions are required.
+\end{theorem}
+
+\begin{remark}[Null directions and pure spinors]
+If $\det X=0$, there exists a nonzero spinor $\psi\in\mathbb C^2$ such that $X=\psi\psi^\dagger$ (rank $1$). This yields the usual correspondence between the light cone and pure spinors.
+\end{remark}
+
+\begin{remark}[Discrete symmetries]
+The action of $SL(2,\mathbb C)$ covers $SO^+(1,3)$. Parity $P$ and time reversal $T$ can be incorporated either as transformations outside $SL(2,\mathbb C)$ (e.g.\ complex conjugation on matrices and suitable reordering of the Pauli basis) or as separate involutions on $\mathcal H$.
+\end{remark}
+
+\subsection{Implementation Notes}
+For reproducibility tests, one may verify numerically that $\det(AXA^\dagger)-\det X\equiv 0$ for random $A\in SL(2,\mathbb C)$ and $X\in\mathcal H$ (e.g.\ using \texttt{NumPy}/\texttt{SymPy}). In the manuscript, place Definitions~\ref{def:iso}--\ref{def:involutions} in the core algebra section; Lemma~\ref{lem:det-minkowski} and Theorem~\ref{thm:det-invariant} under metric geometry; and Corollary~\ref{cor:double-cover} with group actions.
