@@ -8,8 +8,11 @@ This document explores potential **structural connections** between the Unified 
 - **Structural analogies**, not rigorous proofs
 - **Exploratory research**, separated from core UBT theory
 - **Not claims of proving the Riemann Hypothesis**
+- The **spectral framework is just a mathematical tool** - it is **unclear whether it can help prove RH**
+- **We should not attempt to prove RH** within the UBT framework
+- While it is useful to show connections between UBT, RH, zeta numbers, and theta, we must be very careful that we or somebody else does not claim to have proven anything about RH
 
-The core UBT framework defines mathematically consistent biquaternionic operators whose spectral properties may share structural features with number-theoretic objects. This document is maintained for research purposes and potential future investigation.
+The core UBT framework defines mathematically consistent biquaternionic operators whose spectral properties may share structural features with number-theoretic objects. This document is maintained for research purposes and potential future investigation, but makes no claims about proving RH.
 
 ## Overview
 

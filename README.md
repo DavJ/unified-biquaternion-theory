@@ -166,7 +166,13 @@ UBT exhibits natural structural connections to number theory and the Riemann zet
 
 - **p-adic Extensions (Exploratory)**: The adelic framework 𝔸_ℚ = ℝ × ∏_p ℚ_p provides a mathematical structure for multiverse interpretations and dark sector physics.
 
-- **Spectral Connections (Speculative)**: The complex projection of the biquaternionic spectral operator M_BQ exhibits structural analogies to the Riemann zeta spectrum. This is a mathematical curiosity, **not a claim of proving the Riemann Hypothesis**. See `research/rh_biquaternion_extension/` for exploratory material.
+- **Spectral Connections (Speculative)**: The complex projection of the biquaternionic spectral operator M_BQ exhibits structural analogies to the Riemann zeta spectrum. **Important disclaimers:**
+  - This is a mathematical curiosity, **not a claim of proving the Riemann Hypothesis**
+  - The spectral framework is **just a mathematical tool** 
+  - It is **not clear whether it can help prove RH**
+  - **We should not attempt to prove RH** within the UBT framework
+  - These connections are useful for understanding mathematical structure, but remain speculative regarding RH
+  - See `research/rh_biquaternion_extension/` for exploratory material with appropriate disclaimers
 
 **Important**: The core UBT framework is defined independently of number-theoretic conjectures. Established QFT uses of zeta regularization are standard; deeper connections to the Riemann Hypothesis are speculative research directions only.
 

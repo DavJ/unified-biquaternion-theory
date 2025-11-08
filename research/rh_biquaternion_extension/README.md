@@ -8,7 +8,10 @@ This directory contains **exploratory research** on potential connections betwee
 - The content in this directory is **speculative and exploratory**
 - UBT does **not claim to prove the Riemann Hypothesis**
 - The connections described are **structural analogies**, not rigorous proofs
+- The **spectral framework is just a mathematical tool** - it is **not clear whether it can help prove RH**
+- **We should not attempt to prove RH** within the UBT repository
 - This material is separated from the core UBT theory to maintain scientific integrity
+- While showing connections between UBT, RH, zeta numbers, and theta is useful, we must be very careful that we or somebody else does not claim to have proven anything about RH
 
 ## Purpose
 
