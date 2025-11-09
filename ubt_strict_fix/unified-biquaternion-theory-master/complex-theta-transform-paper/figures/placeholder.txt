@@ -1,0 +1,1 @@
+Add figures here (Gaussian window, complex time plane, etc.)

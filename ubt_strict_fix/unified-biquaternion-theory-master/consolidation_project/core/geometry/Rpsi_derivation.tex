@@ -1,0 +1,239 @@
+% R_psi Derivation: Complex Time Fibre Quantization
+% Geometric determination of compactification radius
+% Author: UBT Team
+% Purpose: Prove R_psi is fixed by geometry, independent of matter parameters
+
+\subsection{\texorpdfstring{\(R_\psi\)}{R\_psi} Derivation: CT Fibre Periodicity}
+\label{sec:Rpsi-derivation}
+
+The compactification radius \(R_\psi\) of the imaginary time coordinate \(\psi\)
+is determined by canonical normalization of the zero-mode photon field. It is
+\textbf{not a physical scale}, but rather a normalization convention that cancels
+in observable quantities.
+
+\subsubsection{Definition: CT Fibre Structure}
+
+\begin{definition}[Complex Time Fibre]
+\label{def:CT-fibre}
+In the biquaternionic formulation, the time coordinate extends to:
+\begin{equation}
+\label{eq:tau-structure}
+\tau = t + i\psi + j\chi + k\xi \in \mathbb{H}_{\mathbb{C}}
+\end{equation}
+where:
+\begin{itemize}
+    \item \(t \in \mathbb{R}\): physical real time
+    \item \(\psi, \chi, \xi \in S^1\): compact imaginary directions
+\end{itemize}
+
+The \textbf{CT fibre} is the \(S^1\) component corresponding to \(\psi\),
+with periodicity:
+\begin{equation}
+\label{eq:psi-periodicity}
+\psi \sim \psi + 2\pi R_\psi
+\end{equation}
+\end{definition}
+
+\textbf{Note:} The factor \(2\pi\) is conventional. We can always rescale \(\psi\)
+to absorb \(R_\psi\), which is why it's a \emph{normalization choice}, not a
+physical parameter.
+
+\subsubsection{Quantization from Boundary Conditions}
+
+\begin{lemma}[Quantization of \texorpdfstring{\(\psi\)}{psi}-Cycles]
+\label{lem:psi-quantization}
+Regularity of the biquaternionic field \(\Theta(q, \tau)\) under \(\psi \to \psi + 2\pi\)
+requires:
+\begin{equation}
+\label{eq:psi-quantization}
+e^{2\pi i \hat{L}_\psi} \Theta = \Theta
+\end{equation}
+where \(\hat{L}_\psi\) is the generator of \(\psi\)-translations.
+
+This quantizes the allowed field configurations and fixes the normalization
+of the \(\psi\)-direction.
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1:} The field \(\Theta\) must be single-valued on the compactified
+\(\psi\) circle:
+\[\Theta(q, t, \psi + 2\pi, \chi, \xi) = \Theta(q, t, \psi, \chi, \xi)\]
+
+\textbf{Step 2:} Expand in Fourier modes along \(\psi\):
+\[\Theta(q, t, \psi, \ldots) = \sum_{n \in \mathbb{Z}} \Theta_n(q, t, \chi, \xi) e^{in\psi}\]
+
+\textbf{Step 3:} Each mode \(n\) transforms under \(\psi\)-translation by:
+\[\Theta_n \to \Theta_n e^{2\pi i n}\]
+
+Single-valuedness requires \(e^{2\pi i n} = 1\), which holds for all \(n \in \mathbb{Z}\).
+
+\textbf{Step 4:} The allowed winding numbers \(n\) are quantized (integers),
+independent of any physical scale.
+
+\textbf{Conclusion:} The \(\psi\)-periodicity is \emph{intrinsic} to the
+geometry, not set by matter content.
+\end{proof}
+
+\subsubsection{Determination of \texorpdfstring{\(R_\psi\)}{R\_psi} via Zero-Mode Normalization}
+
+\begin{theorem}[Determination of \texorpdfstring{\(R_\psi\)}{R\_psi}]
+\label{thm:Rpsi-determination}
+The compactification radius \(R_\psi\) is fixed by requiring canonical
+normalization of the photon zero-mode:
+\begin{equation}
+\label{eq:Rpsi-normalization}
+\int_0^{2\pi} d\psi \, |\xi_0(\psi)|^2 = 1
+\end{equation}
+where \(\xi_0(\psi)\) is the photon zero-mode profile.
+
+This gives:
+\begin{equation}
+\label{eq:Rpsi-value}
+R_\psi = 1 \quad \text{(dimensionless, canonical choice)}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Setup:} Perform Kaluza-Klein reduction from 5D (4D spacetime + \(\psi\))
+to 4D. The 5D photon field \(A_M(x, \psi)\) (\(M = 0,1,2,3,5\)) decomposes as:
+\[A_\mu(x, \psi) = \sum_{n \in \mathbb{Z}} A_\mu^{(n)}(x) \, \xi_n(\psi)\]
+where \(\xi_n(\psi) = e^{in\psi}/\sqrt{2\pi}\) are normalized modes.
+
+\textbf{Zero-mode sector (\(n=0\)):}
+\[\xi_0(\psi) = \frac{1}{\sqrt{2\pi}} = \text{constant}\]
+
+\textbf{Normalization integral:}
+\[\int_0^{2\pi} d\psi \, |\xi_0(\psi)|^2 = \int_0^{2\pi} d\psi \, \frac{1}{2\pi} = 1\]
+
+This is satisfied \emph{by construction} when we set the period to \(2\pi\).
+
+\textbf{Effective 4D gauge coupling:}
+From the 5D action:
+\[S_5 = \int d^4x \, d\psi \, \left[ -\frac{1}{4g_5^2} F_{MN}^2 \right]\]
+
+Integrating out \(\psi\):
+\[S_4 = \int d^4x \left[ -\frac{1}{4g_4^2} F_{\mu\nu}^2 \right]\]
+where:
+\[\frac{1}{g_4^2} = \frac{2\pi R_\psi}{g_5^2}\]
+
+\textbf{Physical interpretation:} The 4D coupling \(g_4\) is what we measure.
+Changing \(R_\psi\) is equivalent to changing \(g_5\), but the ratio
+\(g_4\) (the observable) is \emph{unaffected}.
+
+\textbf{Convention:} Set \(R_\psi = 1\) as the canonical choice. This is like
+choosing units where \(\hbar = c = 1\)—a normalization, not physics.
+
+\textbf{Conclusion:} \(R_\psi\) is determined by normalization convention.
+The standard choice is \(R_\psi = 1\).
+\end{proof}
+
+\subsubsection{Independence from Physical Parameters}
+
+\begin{corollary}[Independence of \texorpdfstring{\(R_\psi\)}{R\_psi}]
+\label{cor:Rpsi-independence}
+The compactification radius \(R_\psi\) is independent of:
+\begin{enumerate}
+    \item Renormalization scale \(\mu\)
+    \item Gauge parameter \(\xi\)
+    \item Fermion mass \(m_e\)
+    \item Any other dynamical matter parameter
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+\textbf{Part 1 (\(\mu\) independence):}
+\(R_\psi\) is a geometric property of the compactification, set at the
+\emph{classical} level (before quantization). The renormalization scale \(\mu\)
+is introduced during loop calculations (quantum corrections).
+
+Geometrical structures are \(\mu\)-independent: \(\frac{\partial R_\psi}{\partial \mu} = 0\).
+
+\textbf{Part 2 (\(\xi\) independence):}
+Gauge parameter \(\xi\) affects the photon propagator structure, not the
+underlying geometry. The periodicity \(\psi \sim \psi + 2\pi\) is gauge-independent.
+
+Formally: BRST cohomology (which determines physical content) is gauge-independent,
+and \(R_\psi\) is part of the cohomology structure.
+
+\textbf{Part 3 (\(m_e\) independence):}
+Fermion mass is a Yukawa coupling between fermion and Higgs (or a bare mass term).
+Neither affects the geometry of the \(\psi\) circle.
+
+Changing \(m_e\) changes loop integrals (via fermion propagator), but not
+the compactification radius: \(\frac{\partial R_\psi}{\partial m_e} = 0\).
+
+\textbf{Conclusion:} \(R_\psi\) is purely geometric, decoupled from dynamics.
+\end{proof}
+
+\subsubsection{Observability and Gauge Invariance}
+
+\begin{remark}[Non-Observability of \texorpdfstring{\(R_\psi\)}{R\_psi}]
+\label{rem:Rpsi-non-observable}
+The compactification radius \(R_\psi\) is \textbf{not observable}. Only
+dimensionless ratios like:
+\begin{equation}
+\label{eq:observable-ratio}
+\frac{R_\psi}{R_\chi}, \quad \frac{R_\psi}{R_\xi}
+\end{equation}
+or derived quantities like \(B = 2\pi N_{\mathrm{eff}}/(3R_\psi)\) appear
+in physical predictions.
+
+Changing \(R_\psi \to \lambda R_\psi\) is equivalent to rescaling the zero-mode
+field, which cancels in observables:
+\begin{equation}
+\label{eq:rescaling-cancellation}
+A_\mu^{(0)} \to \lambda^{-1/2} A_\mu^{(0)}, \quad R_\psi \to \lambda R_\psi
+\end{equation}
+but \(g_4^2 = (2\pi R_\psi/g_5^2)\) remains unchanged.
+\end{remark}
+
+This is analogous to choosing natural units (\(\hbar = c = 1\)). We can set
+\(R_\psi = 1\) without loss of generality.
+
+\subsubsection{Tests and Verification}
+
+The independence claims can be tested:
+
+\begin{enumerate}
+    \item \textbf{Test \(\partial R_\psi / \partial \mu = 0\):}
+    
+    Vary \(\mu\) in symbolic computation and verify \(R_\psi\) unchanged.
+    
+    Test: \texttt{test\_Rpsi\_independence.py}
+    
+    \item \textbf{Test \(\partial R_\psi / \partial \xi = 0\):}
+    
+    Vary gauge parameter and verify no effect on \(R_\psi\).
+    
+    \item \textbf{Test gauge coupling scaling:}
+    
+    Verify \(g_4^2 \propto R_\psi\) but observables (like \(\alpha\)) are
+    \(R_\psi\)-independent.
+\end{enumerate}
+
+\subsubsection{Summary}
+
+\begin{table}[h]
+\centering
+\caption{Derivation of \(R_\psi\): Normalization Convention}
+\label{tab:Rpsi-summary}
+\begin{tabular}{lll}
+\hline
+Property & Value & Reference \\
+\hline
+Definition & \(\psi\)-fibre compactification radius & Def.~\ref{def:CT-fibre} \\
+Periodicity & \(\psi \sim \psi + 2\pi R_\psi\) & Eq.~\eqref{eq:psi-periodicity} \\
+Quantization & Integer winding \(n \in \mathbb{Z}\) & Lemma~\ref{lem:psi-quantization} \\
+Normalization & Zero-mode: \(\int |\xi_0|^2 = 1\) & Theorem~\ref{thm:Rpsi-determination} \\
+Canonical value & \(R_\psi = 1\) (dimensionless) & Eq.~\eqref{eq:Rpsi-value} \\
+\(\mu\) independence & \(\partial R_\psi/\partial \mu = 0\) & Cor.~\ref{cor:Rpsi-independence} \\
+\(\xi\) independence & \(\partial R_\psi/\partial \xi = 0\) & Cor.~\ref{cor:Rpsi-independence} \\
+\(m_e\) independence & \(\partial R_\psi/\partial m_e = 0\) & Cor.~\ref{cor:Rpsi-independence} \\
+Observability & Not directly observable & Rem.~\ref{rem:Rpsi-non-observable} \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Conclusion:} \(R_\psi\) is a normalization convention (like \(\hbar = 1\)),
+not a tunable parameter. Setting \(R_\psi = 1\) is the canonical choice and
+introduces no physics beyond the geometry.

@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\input{style/preamble}
+
+\title{Complex-Time Theta Transform: A Unified Framework for Conscious Dynamics, Wave Phase, and Predictive Energy Flow}
+\author{Anonymous}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We introduce a complex-time theta transform that augments a Gaussian-windowed Fourier analysis with a quadratic phase and an imaginary-time shift. Writing $\TTau=t+\ii \psi$ with real time $t$ and a conjugate ``consciousness'' coordinate $\psi$, our transform
+\begin{equation}
+\Theta(\omega,\TTau)
+= \int_{-\infty}^{\infty} f(u)\;
+\exp\!\Big[-\frac{(u-\ReT\TTau)^2}{2\sigma^2}\Big]\;
+\exp\!\Big(\,\ii\,\big[\omega u + \alpha u^2 - \omega\,\ImT\TTau\big]\Big)\,\dd u
+\label{eq:theta}
+\end{equation}
+captures simultaneously: (i) local spectral content (Gaussian window), (ii) coherent phase curvature (quadratic phase $\alpha u^2$ as an action surrogate), and (iii) entropy/attention reweighting (imaginary-time shift $-\omega\,\ImT\TTau$). We discuss physical and philosophical interpretations (energy--frequency duality, wavefunction analogy), and show how the framework separates deterministic drift and stochastic diffusion in predictive systems such as financial markets.
+\end{abstract}
+
+\section{Introduction}
+Fourier methods underpin signal analysis, yet practical prediction often requires localization and phase structure. The short-time Fourier transform (STFT) addresses localization via a window, while chirp and Fresnel transforms incorporate quadratic phase. We synthesize these ideas with an explicit complex-time parameter $\TTau=t+\ii\psi$ that models two orthogonal axes: objective chronology $\ReT\TTau$ and a latent entropic/attention axis $\ImT\TTau$. This construction is compatible with Gaussian self-duality under $\Fourier$, enabling closed-form reasoning and efficient implementations.
+
+\paragraph{Contributions.}
+(1) A self-contained complex-time theta transform \eqref{eq:theta} with interpretable parameters; (2) links to wave mechanics and Fokker--Planck style diffusion; (3) a blueprint for applying complex-time features to forecasting tasks (e.g., price series) without committing to a specific trading architecture.
+
+\section{Mathematical Framework}
+\subsection{Complex time and Gaussian self-duality}
+Let $\TTau=t+\ii\psi\in\C$. For a real window scale $\sigma>0$, define $g_{\TTau}(u)=\exp(-(u-\ReT\TTau)^2/(2\sigma^2))$. Since Gaussians are fixed points (up to scaling) under $\Fourier$, the transform in \eqref{eq:theta} remains analytically tractable and numerically stable.
+
+\subsection{Quadratic phase as action}
+Introduce a phase curvature via $\alpha u^2$, with $\alpha\in\R$ (generalization to complex $\alpha$ is straightforward). In semiclassical optics/quantum analogies, a quadratic phase encodes a locally linear frequency sweep (chirp) and accumulates ``action'' $S(u)\propto u^2$. This term is essential whenever the generating dynamics exhibit smooth acceleration or mean-reverting curvature.
+
+\subsection{Imaginary-time shift and entropy}
+The factor $\exp(-\ii\omega\,\ImT\TTau)$ in \eqref{eq:theta} is a frequency-dependent phase shift equivalent to translating the time-window along an orthogonal axis $\psi$. Operationally it reweights frequencies by an entropic/attention bias: positive $\psi$ suppresses high $\omega$ (stronger smoothing), negative $\psi$ emphasizes higher frequencies (greater sensitivity).
+
+\subsection{Recovering standard transforms}
+Setting $\alpha=0$ and $\psi=0$ reduces \eqref{eq:theta} to STFT with Gaussian window. Holding $\psi=0$ and $\alpha\neq 0$ yields a Gaussian-windowed chirp/Fresnel transform. Taking $\sigma\to\infty$ recovers a global chirp Fourier transform.
+
+\section{Wave Interpretation and Energy--Frequency Duality}
+Consider a scalar wavefunction $\Psi(u)=A(u)\,e^{\ii\phi(u)}$. The quadratic phase induces local group delay $d\phi/du=\omega+2\alpha u$. Through the de Broglie relation $E\!\propto\!\omega$, the parameter $\psi$ modulates effective energy bandwidth. Thus $\psi$ can be read as an entropic (or attention) budget shaping what spectrum the system ``perceives''. In ensembles (markets, swarms), $\psi$ aggregates collective focus; $\alpha$ encodes cohort-level acceleration/drift.
+
+\section{Stochastic Decomposition via Complex Time}
+Let $f(u)$ be governed by an It\^o process $df=\mu(u)\,du+\sigma_f(u)\,dW_u$. Under \eqref{eq:theta}, deterministic components align with coherent phase (captured by $\alpha$ and low-$\omega$ structure), while diffusion maps to broadband residual. A Fokker--Planck description of the density $p$,
+\begin{equation}
+\partial_u p = -\partial_x(\mu p) + \tfrac12 \partial_{xx}(\sigma_f^2 p),
+\end{equation}
+suggests two orthogonal controls: window scale $\sigma$ (variance selection) and imaginary shift $\psi$ (spectral reweighting).
+
+\section{Application to Predictive Features}
+For a real sequence $f(u)$ (e.g., returns), define features by sampling \eqref{eq:theta} on grids $\omega_k$ and $\TTau_m$:
+\begin{equation}
+\bm{\theta}_{k,m}=\Theta(\omega_k,\TTau_m).
+\end{equation}
+Practical instantiations: (i) \emph{1D} ($\psi=0,\alpha=0$), classical STFT; (ii) \emph{2D} ($\psi\neq0$), complex-time weighting; (iii) \emph{3D} ($\psi\neq0, \alpha\neq0$), quadratic-phase features for accelerating regimes.
+
+\section{Philosophical Notes}
+The complex-time axis formalizes a dual-aspect view: reality unfolds in chronological time while awareness selects bandwidth. The quadratic phase measures coherent ``intention'' or action curvature. Markets as many-body cognitive fields naturally couple these aspects; during collective focus, $\psi$ shrinks the entropy cone, boosting predictability at certain $\omega$.
+
+\section{Conclusion}
+We presented a compact transform unifying localization, phase curvature, and entropic weighting. Its parameters $(\sigma,\psi,\alpha)$ admit physical and algorithmic interpretations and yield feature maps suited to disentangling drift from diffusion in real-world forecasting tasks.
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\section*{License}
+This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+\end{document}

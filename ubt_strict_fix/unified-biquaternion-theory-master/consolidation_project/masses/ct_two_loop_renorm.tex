@@ -1,0 +1,163 @@
+% ================== CT Two-Loop Renormalization for Fermion Masses ==================
+% VERSION: v1.0 - Program Sketch
+% AUTHOR: UBT Team
+% PURPOSE: CT renormalization conditions that tie Yukawa couplings to geometric invariants
+%
+% DEPENDENCIES:
+% Requires: \usepackage{amsmath,amssymb,amsthm}
+% References: Appendix CT (CT baseline), yukawa_in_HC.tex
+
+\section{CT Two-Loop Renormalization Conditions for Yukawa Sector}
+\label{app:ct-two-loop-yukawa}
+
+\subsection{Overview}
+
+The derivation of fermion masses from first principles in UBT requires extending the CT renormalization framework (established for $\alpha$ in Appendix CT) to the Yukawa sector. The key insight is that CT renormalization conditions, combined with Ward identities and Thomson-limit matching, can constrain Yukawa coupling parameters without introducing fitted values.
+
+This appendix outlines the program. Full calculations are in progress.
+
+\subsection{CT Renormalization at Two Loops}
+
+In the Standard Model, fermion masses arise from Yukawa couplings to the Higgs field:
+\[
+\mathcal L_{\text{Yukawa}} = -Y_{\ell}^{ij} \bar{L}_i \phi e_R^j + \text{h.c.}
+\]
+where $Y_{\ell}^{ij}$ is the charged-lepton Yukawa matrix.
+
+At the bare level, these couplings are divergent and require renormalization:
+\[
+Y_{\ell,\text{bare}} = Z_Y \cdot Y_{\ell,\text{ren}}(\mu),
+\]
+where $Z_Y$ is the Yukawa renormalization constant and $\mu$ is the renormalization scale.
+
+\paragraph{Ward identities and mixed terms.}
+In QED, the renormalization of the photon-fermion vertex is constrained by the Ward identity $Z_1 = Z_2$. This same identity applies in the CT scheme (Theorem~\ref{thm:ward-ct} in Appendix CT).
+
+For the Yukawa sector, there exist analogous constraints from:
+\begin{itemize}
+  \item Gauge invariance under $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$
+  \item Flavor symmetry (if not broken by Yukawa textures)
+  \item Discrete symmetries (P, T, C) enforced by biquaternionic involutions
+\end{itemize}
+
+\subsection{Counterterms as Functions of Geometric Invariants}
+
+The central goal of this program is to show that certain Yukawa counterterms become functions of $\mathbb H_{\mathbb C}$ invariants rather than independent parameters.
+
+\paragraph{Locking mechanism (analogous to $\alpha$).}
+For the fine-structure constant, we established (Appendix CT):
+\begin{itemize}
+  \item Geometric locking fixes $N_{\mathrm{eff}}$ and $R_\psi$ without tunable parameters (A1)
+  \item Ward identities enforce $\mathcal R_{\mathrm{UBT}} = 1$ at two loops (A2)
+  \item Thomson-limit extraction yields gauge-invariant $B$ (A3)
+\end{itemize}
+
+For fermion masses, we seek an analogous structure:
+\begin{itemize}
+  \item \textbf{Geometric constraints} from Hermitian slice structure determine allowed Yukawa textures
+  \item \textbf{CT renormalization conditions} at two loops relate counterterms to geometric invariants
+  \item \textbf{Sum rules} emerge as falsifiable predictions (mass ratios independent of overall scale)
+  \item \textbf{Absolute scale} fixed by geometric normalization (e.g., measure normalization used for $N_{\mathrm{eff}}$)
+\end{itemize}
+
+\subsection{Sketch of Two-Loop Calculation}
+
+At one loop, the Yukawa renormalization receives contributions from:
+\begin{enumerate}
+  \item Higgs self-energy corrections
+  \item Fermion self-energy corrections
+  \item Gauge boson loops (photon, $W^\pm$, $Z^0$)
+\end{enumerate}
+
+At two loops, additional diagrams involve:
+\begin{enumerate}
+  \item Mixed gauge-Yukawa vertex corrections
+  \item Two-loop fermion self-energies
+  \item Higgs-gauge mixing terms
+\end{enumerate}
+
+In the CT scheme, each diagram is evaluated with complex-time propagators:
+\[
+D(p) = D(p_0 + i\psi, \mathbf{p}),
+\]
+where the imaginary component $\psi$ acts as a regulator.
+
+\paragraph{Ward identity constraints.}
+The key observation is that Ward identities (enforced by gauge invariance) reduce the number of independent counterterms. In particular:
+\begin{itemize}
+  \item The photon contribution to Yukawa renormalization is fixed by $Z_1 = Z_2$
+  \item The $W^\pm$ and $Z^0$ contributions are constrained by $\mathrm{SU}(2)_L$ gauge invariance
+  \item The Higgs contribution is related to the Higgs quartic coupling via the scalar Ward identity
+\end{itemize}
+
+After imposing these constraints, the remaining freedom is parametrized by:
+\[
+Y_{\ell,\text{ren}}(\mu) = Y_{\ell,\text{geom}} \times f(\mu, N_{\mathrm{eff}}, R_\psi, \ldots),
+\]
+where $Y_{\ell,\text{geom}}$ encodes the geometric structure from $\mathbb H_{\mathbb C}$ and $f$ is a known renormalization group function.
+
+\subsection{Sketch of Constraints}
+
+If the biquaternionic structure imposes sufficient constraints (via involutions and Hermitian slice restrictions), the Yukawa matrix takes a restricted form:
+\[
+Y_{\ell} = a \cdot \mathbb{1}_{3\times 3} + b \cdot \Sigma + c \cdot T + \ldots,
+\]
+where:
+\begin{itemize}
+  \item $a, b, c$ are determined by geometric invariants (not free parameters)
+  \item $\Sigma, T$ are fixed matrices determined by discrete symmetries
+  \item The ellipsis indicates possible higher-order terms constrained similarly
+\end{itemize}
+
+The two-loop CT renormalization then fixes ratios among $a, b, c$ by relating them to:
+\begin{itemize}
+  \item The same $N_{\mathrm{eff}}$ and $R_\psi$ used in $\alpha$ derivation
+  \item Overlap integrals of mode functions on the Hermitian slice
+  \item Topological winding numbers or other invariants
+\end{itemize}
+
+\paragraph{No free parameters.}
+Crucially, if this program succeeds, there are \textbf{no adjustable knobs}. All coupling ratios are fixed by geometry and renormalization consistency, analogous to the $\mathcal R_{\mathrm{UBT}} = 1$ baseline for $\alpha$.
+
+\subsection{Testability and Falsifiability}
+
+The predictions from this framework are:
+\begin{enumerate}
+  \item \textbf{Mass ratios} (e.g., $m_\mu/m_e$, $m_\tau/m_\mu$) computed from Yukawa eigenvalues
+  \item \textbf{Sum rules} relating different sectors (leptons vs. quarks, if applicable)
+  \item \textbf{Absolute scale} for fermion masses tied to geometric normalization
+\end{enumerate}
+
+Each prediction is falsifiable:
+\begin{itemize}
+  \item If computed ratios disagree with PDG values $\to$ theory falsified
+  \item If sum rules fail experimental tests $\to$ theory falsified
+  \item If absolute scale prediction is off by more than error budget $\to$ theory falsified
+\end{itemize}
+
+\subsection{Current Status and Roadmap}
+
+\textbf{Status:} Program outlined; detailed two-loop calculations not yet complete.
+
+\textbf{Next steps:}
+\begin{enumerate}
+  \item Formalize the Yukawa coupling structure on the Hermitian slice (Appendix~\ref{app:yukawa-in-HC})
+  \item Compute two-loop Yukawa counterterms in CT scheme using dimensional regularization
+  \item Verify Ward identities hold and constrain independent parameters
+  \item Extract mass ratios and compare to experimental data
+  \item Derive absolute mass scale from geometric normalization
+\end{enumerate}
+
+\textbf{Timeline estimate:} 18--24 months for first falsifiable predictions.
+
+\subsection{Relation to Existing UBT Literature}
+
+This appendix extends the CT baseline framework (Appendix CT) from the gauge sector to the Yukawa sector. The key principles are:
+\begin{itemize}
+  \item No fitted parameters
+  \item Geometric locking via $\mathbb H_{\mathbb C}$ structure
+  \item Ward identities enforce consistency
+  \item Falsifiable predictions prioritized over parameter fitting
+\end{itemize}
+
+% ================== END ==================

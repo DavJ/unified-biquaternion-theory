@@ -1,0 +1,30 @@
+
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Analýza Fokker-Planckovy Rovnice}
+
+Fokker-Planckova rovnice pro pole $\chi$ v potenciálu $V(\chi)$ má tvar:
+\[
+\frac{\partial P}{\partial t} = \frac{\partial}{\partial \chi} \left( \frac{\partial V}{\partial \chi} P \right) + D \frac{\partial^2 P}{\partial \chi^2}.
+\]
+
+\subsection*{Stacionární řešení}
+Pro $\partial P/\partial t = 0$:
+\[
+\frac{\partial}{\partial \chi} \left( \frac{\partial V}{\partial \chi} P \right) + D \frac{\partial^2 P}{\partial \chi^2} = 0.
+\]
+Řešení má tvar:
+\[
+P_{\text{stat}}(\chi) = \mathcal{N} \exp\left(-\frac{V(\chi)}{D}\right).
+\]
+
+\subsection*{Interpretace}
+Maxima $P_{\text{stat}}(\chi)$ odpovídají stabilním mentálním stavům – systém s nejvyšší pravděpodobností osciluje mezi dvěma stavy podle hloubky potenciálových jamek a šumu $D$.
+
+
+\section*{License}
+This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+\end{document}

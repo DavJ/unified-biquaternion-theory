@@ -1,0 +1,32 @@
+% === AUTO-INSERT QA THETA ANSATZ BEGIN ===
+\subsection*{QA.x UBT theta–eigenmode ansatz (discrete)}
+
+We replace plane–wave placeholders by Jacobi–theta eigenmodes with \emph{discrete} characteristics. For a complex torus $\mathbb{T}^2(\tau)$,
+\begin{align}
+  \vartheta\!\left[\!\begin{array}{c}\alpha\\[-2pt]\beta\end{array}\!\right](z|\tau)
+  \;=\;\sum_{n\in\mathbb{Z}}\exp\!\big[\pi i\, (n+\alpha)^2 \tau + 2\pi i (n+\alpha)(z+\beta)\big].
+\end{align}
+A chiral mode for flavour $f$ (left or right) is expanded in a \emph{finite} discrete family of characteristics,
+\begin{align}
+  \psi^{(f)}_{(n_1,n_2),\sigma}(y)
+  \;=\;
+  \mathcal{N}_f\sum_{(\alpha,\beta)\in \mathcal{C}_f}
+  c_{f,\alpha\beta}\;
+  \vartheta\!\left[\!\begin{array}{c}\alpha\\[-2pt]\beta\end{array}\!\right](n_1 y_1 + n_2 y_2 \,|\, \tau)\,,
+\end{align}
+with \emph{fixed} discrete set $\mathcal{C}_f\subset\{0,\tfrac12\}^2$ shared across a given flavour sector (up or down) and coefficients $c_{f,\alpha\beta}\in\{0,\pm1,\pm i\}$ set by parity/symmetry rules. Spin/Wilson shifts $(\delta,\delta')\in\{0,\tfrac12\}$ are absorbed into $(\alpha,\beta)$.
+
+\paragraph{Holonomy profile and overlaps.}
+Yukawa matrices are overlap integrals with a discrete holonomy profile,
+\begin{align}
+  Y^{(u/d)}_{ij}
+  \;=\;\int_{\mathbb{T}^2} \psi^{(L)}_i(y)^\ast\;
+  \Phi_{u/d}(y)\;\psi^{(R)}_j(y)\,d^2y,\qquad
+  \Phi_{u/d}(y)=\!\!\sum_{k\in \mathcal{H}}\! b_k\,e^{2\pi i\,k\cdot y},
+\end{align}
+where $\mathcal{H}\subset\{(0,0),(1,0),(0,1),(1,1)\}$ and $b_k\in\{1,-1,i,-i\}$. The integrals reduce to Kronecker selection rules on characteristics/momenta; all coefficients are discrete. CKM then follows from the singular–value problem for $Y_u,Y_d$ as in the main text.
+
+\paragraph{No tuning principle.} Only integers (modes) and discrete choices (spin, holonomy, characteristics, $\pm1,\pm i$ phases) enter. There are \emph{no} continuous parameters to fit CKM.
+
+\paragraph{Deliverables.} With the geometry fixed in App.~V, QA carries out: (i) a discrete search for the six–tuple of modes matching quark mass ratios (sub‑\%), and (ii) CKM angles \& CP phase from the above overlaps, reported against PDG in QA.Tables~2–4.
+% === AUTO-INSERT QA THETA ANSATZ END ===

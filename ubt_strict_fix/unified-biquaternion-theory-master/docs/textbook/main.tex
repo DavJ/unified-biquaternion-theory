@@ -1,0 +1,28 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage{geometry}\geometry{margin=1in}
+\usepackage{amsmath,amssymb,amsthm,mathtools,physics,siunitx}
+\usepackage{microtype,hyperref,graphicx}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\theoremstyle{definition}\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{plain}\newtheorem{theorem}[definition]{Theorem}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\title{Unified Biquaternion Theory (UBT)\\\large An Engineer's Guide}
+\author{UBT Team}\date{\today}
+\begin{document}\maketitle\tableofcontents
+% Preface
+\input{frontmatter/preface}
+% Core chapters (engineer track) – light wrappers that re-use main repo .tex
+\input{chapters/01_overview}
+\input{chapters/02_math_primer_biquaternions}
+\input{chapters/03_lorentz_in_HC}
+\input{chapters/04_ct_scheme}
+\input{chapters/05_alpha_derivation}
+\input{chapters/06_tests_and_repro}
+\input{chapters/07_applications_predictions}
+% Appendices (formal / speculative clearly separated)
+\appendix
+\input{appendices/A_proofs}
+\input{appendices/B_faq}
+\input{appendices/C_speculative_extensions}
+\end{document}

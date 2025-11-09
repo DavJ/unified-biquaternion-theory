@@ -1,0 +1,117 @@
+% ===============================================================
+% Appendix K.5 — QCD Scale from Geometric/Holonomy Data (UBT)
+% ===============================================================
+\appendix
+\section*{Appendix K.5: Deriving \texorpdfstring{$\Lambda_{\mathrm{QCD}}$}{Lambda\_QCD} from the UBT Geometry}
+
+\subsection*{Setup and Scheme Tracking}
+Let $R$ be the geometric scale fixed by the Hosotani/Casimir minimum (Appendix~V), and set the matching scale $\mu=R^{-1}$.
+We evaluate $g_3(\mu)$ at this scale in both a physical scheme and in $\overline{\mathrm{MS}}$, then run to the confinement scale.
+Discrete holonomy data enter through threshold factors $\Theta_{\rm th}(\tau,h)$.
+
+\subsection*{Two-Loop Running and Thresholds}
+For $n_f$ active flavours the QCD beta function yields
+\begin{align}
+  \beta(g_3) &= -b_0\,g_3^3 - b_1\,g_3^5 + \cdots,\qquad
+  b_0=\frac{11-\tfrac{2}{3}n_f}{16\pi^2},\quad
+  b_1=\frac{102-\tfrac{38}{3}n_f}{(16\pi^2)^2}.
+\end{align}
+The implied two-loop expression for the confinement scale is
+\begin{equation}
+  \Lambda_{\mathrm{QCD}} \;=\; \mu\ \exp\!\Big(-\frac{1}{2b_0\,g_3^2(\mu)}\Big)\ \big(b_0 g_3^2(\mu)\big)^{-b_1/(2b_0^2)}\ \Theta_{\rm th}(\tau,h)\,,
+\end{equation}
+with $\Theta_{\rm th}$ capturing discrete KK/holonomy thresholds on $\mathbb{T}^2$ (exponentially suppressed in the warped/weakly-coupled directions per the KK phenomenology section).
+
+\subsection*{Deliverables}
+\begin{enumerate}
+  \item Numerical $\Lambda_{\mathrm{QCD}}$ for $\mu=R^{-1}$ with an uncertainty band from discrete holonomies/spin-structures.
+  \item Cross-comparison between physical and $\overline{\mathrm{MS}}$ schemes; show scheme robustness within expected spread.
+  \item Consistency against hadronic phenomenology and lattice-informed ranges.
+\end{enumerate}
+
+\paragraph{Summary.}
+This closes the loop from the geometric scale $R$ (set by the same potential that fixes $\alpha$) to the observed $\Lambda_{\mathrm{QCD}}$,
+using only discrete input from the UBT geometry.
+
+% === AUTO-INSERT K5 BASELINE BEGIN ===
+\subsection*{Numerical output format (to be populated)}
+The following table defines the exact reporting format for $\Lambda_{\mathrm{QCD}}$. Once $R$ and $g_3(1/R)$ are fixed by Appendix~V/K, the values will be computed at two-loop with the discrete holonomy threshold factor $\Theta_{\rm th}(\tau,h)$.
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{K.5.Table 1 (format).} Output layout for $\Lambda_{\mathrm{QCD}}$ once $R$ and $g_3(1/R)$ are specified. The threshold factor $\Theta_{\rm th}$ is discrete and comes from the holonomy class.}
+\begin{tabular}{llllll}
+\hline
+scheme & $1/R$ [GeV] & $g_3(1/R)$ & $n_f$ & $\Theta_{\rm th}$ & $\Lambda_{\mathrm{QCD}}$ [MeV] \\
+\hline
+physical & --- & --- & 5 & $\in\{1,\dots\}$ & --- \\
+$\overline{\mathrm{MS}}$ & --- & --- & 5 & $\in\{1,\dots\}$ & --- \\
+\hline
+\end{tabular}
+\end{table}
+% === AUTO-INSERT K5 BASELINE END ===
+
+% === AUTO-INSERT K5 BASELINE V2 BEGIN ===
+\subsection*{Baseline two-loop numbers (illustrative)}
+Numerical evaluation of $\Lambda_{\mathrm{QCD}}$ across a small discrete grid in $(1/R, g_3(1/R), \Theta_{\rm th})$. Final results will use the UBT-determined $R$ and $g_3(1/R)$ from Appendix~V/K.
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{K.5.Table 2 (baseline).} Two-loop $\Lambda_{\mathrm{QCD}}$ for discrete $(1/R, g_3(1/R), \Theta_{\rm th})$. Values are illustrative.}
+\begin{tabular}{llllll}
+\hline
+scheme & $1/R$ [GeV] & $g_3(1/R)$ & $n_f$ & $\Theta_{\rm th}$ & $\Lambda_{\mathrm{QCD}}$ [MeV] \\
+\hline
+physical & 1.0 & 1.0 & 5 & 1.0 & 0.1\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.0 & 5 & 1.0 & 0.1\\
+physical & 1.0 & 1.0 & 5 & 2.0 & 0.2\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.0 & 5 & 2.0 & 0.2\\
+physical & 1.0 & 1.2 & 5 & 1.0 & 1.9\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.2 & 5 & 1.0 & 1.9\\
+physical & 1.0 & 1.2 & 5 & 2.0 & 3.8\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.2 & 5 & 2.0 & 3.8\\
+physical & 1.0 & 1.4 & 5 & 1.0 & 11.3\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.4 & 5 & 1.0 & 11.3\\
+physical & 1.0 & 1.4 & 5 & 2.0 & 22.6\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.4 & 5 & 2.0 & 22.6\\
+physical & 1.0 & 1.6 & 5 & 1.0 & 35.5\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.6 & 5 & 1.0 & 35.5\\
+physical & 1.0 & 1.6 & 5 & 2.0 & 71.1\\
+$\overline{\mathrm{MS}}$ & 1.0 & 1.6 & 5 & 2.0 & 71.1\\
+physical & 2.0 & 1.0 & 5 & 1.0 & 0.2\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.0 & 5 & 1.0 & 0.2\\
+physical & 2.0 & 1.0 & 5 & 2.0 & 0.4\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.0 & 5 & 2.0 & 0.4\\
+physical & 2.0 & 1.2 & 5 & 1.0 & 3.8\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.2 & 5 & 1.0 & 3.8\\
+physical & 2.0 & 1.2 & 5 & 2.0 & 7.5\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.2 & 5 & 2.0 & 7.5\\
+physical & 2.0 & 1.4 & 5 & 1.0 & 22.6\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.4 & 5 & 1.0 & 22.6\\
+physical & 2.0 & 1.4 & 5 & 2.0 & 45.3\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.4 & 5 & 2.0 & 45.3\\
+physical & 2.0 & 1.6 & 5 & 1.0 & 71.1\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.6 & 5 & 1.0 & 71.1\\
+physical & 2.0 & 1.6 & 5 & 2.0 & 142.2\\
+$\overline{\mathrm{MS}}$ & 2.0 & 1.6 & 5 & 2.0 & 142.2\\
+physical & 5.0 & 1.0 & 5 & 1.0 & 0.5\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.0 & 5 & 1.0 & 0.5\\
+physical & 5.0 & 1.0 & 5 & 2.0 & 0.9\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.0 & 5 & 2.0 & 0.9\\
+physical & 5.0 & 1.2 & 5 & 1.0 & 9.4\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.2 & 5 & 1.0 & 9.4\\
+physical & 5.0 & 1.2 & 5 & 2.0 & 18.8\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.2 & 5 & 2.0 & 18.8\\
+physical & 5.0 & 1.4 & 5 & 1.0 & 56.6\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.4 & 5 & 1.0 & 56.6\\
+physical & 5.0 & 1.4 & 5 & 2.0 & 113.2\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.4 & 5 & 2.0 & 113.2\\
+physical & 5.0 & 1.6 & 5 & 1.0 & 177.7\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.6 & 5 & 1.0 & 177.7\\
+physical & 5.0 & 1.6 & 5 & 2.0 & 355.4\\
+$\overline{\mathrm{MS}}$ & 5.0 & 1.6 & 5 & 2.0 & 355.4\\
+\hline
+\end{tabular}
+\end{table}
+% === AUTO-INSERT K5 BASELINE V2 END ===
