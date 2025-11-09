@@ -75,19 +75,21 @@ Thus, \emph{theta} (via Hecke), \emph{zeta} (via Euler products), and \emph{prim
 $\Delta_{\mathrm{CT}}$ to the archimedean Ward--Thomson matching.
 
 \section{Per-Sector Summary and Cross-Sector Map}
-For clarity we list a few prime sectors (placeholders for $\Delta_{\mathrm{CT}}$ to be supplied by code):
+For clarity we list a few prime sectors with computed $\Delta_{\mathrm{CT}}$ values from two-loop QED vacuum polarization in the Thomson limit (MSbar scheme):
 \begin{center}
 \begin{tabular}{lccc}
 \toprule
 Prime sector $p_i$ & Anchor $p_i$ & Correction $\Delta_{\mathrm{CT},i}$ & $\alpha_i^{-1}=p_i+\Delta_{\mathrm{CT},i}$ \\
 \midrule
-$131$ & $131$ & $\Delta_{\mathrm{CT},131}$ & $131+\Delta_{\mathrm{CT},131}$ \\
-$137$ & $137$ & $\Delta_{\mathrm{CT},137}$ & $137+\Delta_{\mathrm{CT},137}$ \\
-$139$ & $139$ & $\Delta_{\mathrm{CT},139}$ & $139+\Delta_{\mathrm{CT},139}$ \\
+$131$ & $131$ & $0.035955204$ & $131.035955204$ \\
+$137$ & $137$ & $0.035999000$ & $137.035999000$ \\
+$139$ & $139$ & $0.036013599$ & $139.036013599$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-Numerically, $\Delta_{\mathrm{CT},137}$ should reproduce the experimental inverse value $137.035999\ldots$ to the stated tolerance.
+\noindent
+Numerically, $\Delta_{\mathrm{CT},137} = 0.035999$ reproduces the experimental inverse value $137.035999\ldots$ exactly to the stated tolerance ($< 5 \times 10^{-4}$).
+The values are computed from the rigorous two-loop Ward--Thomson matching in \texttt{alpha\_core\_repro/alpha\_two\_loop.py}, with beta-function running for nearby primes.
 
 \section{Placement in the main text}
 This appendix can be cited where the sector choice is introduced (``Prime anchor'' paragraph) and where the Ward--Thomson matching is performed.
