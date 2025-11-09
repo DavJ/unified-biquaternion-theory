@@ -1,6 +1,0 @@
-appendix_A_biquaternion_gravity_consolidated.tex
-appendix_C_electromagnetism_gauge_consolidated.tex
-appendix_D_qed_consolidated.tex
-appendix_E_SM_QCD_embedding.tex
-appendix_G_internal_color_symmetry.tex
-appendix_K_maxwell_curved_space.tex
