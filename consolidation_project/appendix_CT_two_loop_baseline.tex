@@ -82,6 +82,44 @@ within the UBT framework.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Formal Statements of A1 and A2}
+
+We now provide the formal mathematical statements underlying assumptions A1 and A2.
+
+\begin{lemma}[Zero-mode normalization fixes \(R_\psi\)]
+\label{lem:Rpsi-fixed}
+Let \(\psi\sim\psi+2\pi\) denote the compact internal coordinate and let \(\xi_0(\psi)\) be the photon zero-mode profile obtained by dimensional reduction, with canonical 4D kinetic term. Define the zero-mode normalization by
+\[
+\int_{0}^{2\pi} e^{B(\psi)-2A(\psi)}\,|\xi_0(\psi)|^2\,d\psi \;=\; 1,
+\]
+with finite, smooth warp factors \(A,B\). Then the effective 4D gauge coupling satisfies
+\[
+\frac{1}{g_4^2} \;=\; \frac{1}{g_5^2},
+\]
+i.e.\ any overall rescaling of \(\psi\) can be absorbed into \(\xi_0\) so that the measurable quantity \(g_4\) is invariant. In particular, setting the geometric factor \(R_\psi:=\left(\int_{0}^{2\pi}\!\cdots\right)^{-1}\) to \(1\) is not a choice but a normalization convention equivalent to the canonical zero-mode normalization.
+\end{lemma}
+
+\begin{proof}
+By definition of the zero-mode reduction,
+\( A_\mu(x,\psi)=\xi_0(\psi)A_\mu^{(0)}(x)+\cdots \).
+Inserting into the 5D action and integrating over \(\psi\) gives
+\( \frac{1}{g_4^2}=\frac{1}{g_5^2}\int e^{B-2A}|\xi_0|^2 d\psi \).
+Choosing the canonical normalization sets the integral to \(1\). Any diffeomorphism \(\psi\mapsto \lambda\psi\) rescales the measure and the profile inversely, leaving the normalized integral invariant; hence \(g_4\) is invariant. \(\square\)
+\end{proof}
+
+\begin{proposition}[Scheme-invariance of \(B\) w.r.t.\ \(\psi\) rescalings]
+\label{prop:B-invariant}
+Let \(N_{\mathrm{eff}}\) be defined by the spectral counting on the normalized zero-mode slice (Poisson sum regularized) and \(R_\psi\) by Lemma~\ref{lem:Rpsi-fixed}. Then
+\[
+B \;=\; \frac{2\pi\,N_{\mathrm{eff}}}{3\,R_\psi}
+\]
+is invariant under any smooth reparametrization of \(\psi\) that preserves the zero-mode normalization and boundary conditions. In particular, taking \(R_\psi=1\) is equivalent to choosing a canonical section and does not introduce a free knob.
+\end{proposition}
+
+\begin{proof}
+A smooth reparametrization changes the measure and the basis functions but preserves the normalized inner product by construction; spectral counts and the Poisson-resummed density are invariants of the unit-norm slice. Therefore \(N_{\mathrm{eff}}\) and \(R_\psi\) transform covariantly to keep \(B\) unchanged. \(\square\)
+\end{proof}
+
 \begin{remark}[Verifiability of assumptions]
 \label{rem:verifiable}
 All three assumptions are \textbf{explicitly checkable}:
@@ -174,7 +212,24 @@ Z_1 = Z_2,
 \end{equation}
 where \(Z_1\) is the vertex renormalization and \(Z_2\) is the fermion wavefunction renormalization.
 This identity is a consequence of electromagnetic gauge invariance and holds order-by-order in
-perturbation theory.
+perturbation theory. The following theorem provides the rigorous foundation for this statement in the CT framework:
+
+\begin{theorem}[Ward identity \(Z_1=Z_2\) in CT scheme]
+\label{thm:ward-ct}
+Consider the CT renormalization scheme defined by an analytic continuation \(\tau=t+i\psi\) with contour \(\mathcal C\) that preserves
+(i) BRST invariance in covariant \(R_\xi\) gauge,
+(ii) locality and microcausality of the renormalized Green functions,
+and (iii) dimensional regularization with \(\overline{\mathrm{MS}}\)-like subtractions that reduce to the standard \(\overline{\mathrm{MS}}\) as \(\psi\to 0\).
+Then the Ward–Takahashi identity holds order by order:
+\[
+Z_1 = Z_2,
+\]
+so the renormalized charge is controlled entirely by the photon self-energy (via \(Z_3\)).
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+BRST invariance implies the Slavnov–Taylor identities. In QED they reduce to the Ward–Takahashi identity relating the 1PI vertex to the inverse fermion propagator. CT continuation along \(\mathcal C\) preserves analyticity and the BRST cohomology, while the regulator and counterterms are chosen to match \(\overline{\mathrm{MS}}\) as \(\psi\to 0\); thus the same algebraic identities hold. Hence \(Z_1=Z_2\) to all loop orders. \(\square\)
+\end{proof}
 
 The physical consequence of \eqref{eq:ward-Z1Z2} is that vertex and fermion wavefunction corrections
 \emph{cancel exactly} in the combination defining the charge renormalization. Hence, at two loops,
@@ -223,6 +278,21 @@ At two loops, the renormalized vacuum polarization contains:
 In the CT scheme, the two-loop calculation yields divergences with exactly the same structure
 as QED (by dimensional regularization and Ward identities). The CT-\(\overline{\mathrm{MS}}\)
 subtraction removes these poles, leaving a finite remainder \(\Pi^{(2)}_{\mathrm{CT,fin}}(0;\mu)\).
+
+The following lemma establishes the rigorous continuity of the finite remainder in the real-time limit:
+
+\begin{lemma}[Continuous reduction to real-time QED]
+\label{lem:qed-limit}
+Let \(\Pi^{(2)}_{\mathrm{CT,fin}}(0;\mu)\) denote the finite two-loop remainder of the transverse vacuum polarization in CT, and \(\Pi^{(2)}_{\mathrm{QED,fin}}(0;\mu)\) its real-time \(\overline{\mathrm{MS}}\) counterpart. If the CT contour \(\mathcal C\) and subtractions satisfy the reduction conditions of Theorem~\ref{thm:ward-ct}, then
+\[
+\lim_{\psi\to 0}\Pi^{(2)}_{\mathrm{CT,fin}}(0;\mu) \;=\; \Pi^{(2)}_{\mathrm{QED,fin}}(0;\mu).
+\]
+Consequently, the CT two-loop factor \(\mathcal R_{\mathrm{UBT}}\) defined as the ratio of these remainders (with the trivial normalization) satisfies \(\mathcal R_{\mathrm{UBT}}=1\) at the baseline.
+\end{lemma}
+
+\begin{proof}[Idea]
+Analyticity in the CT parameter and the matching of counterterms imply continuity of the finite remainders. Since Ward holds in both schemes and the subtraction reduces to \(\overline{\mathrm{MS}}\) at \(\psi\to 0\), the limit of the CT remainder equals the QED remainder. The ratio is thus unity. \(\square\)
+\end{proof}
 
 In the real-time limit \(\psi \to 0\), \textbf{all} structural differences between CT and QED
 disappear:

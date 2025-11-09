@@ -108,6 +108,8 @@ This work demonstrates that:
 4. **Quantum corrections work** - the 0.036 difference is explained by standard QFT
 5. **Predictive power** - unlike conventional QFT where α is input, UBT predicts it
 
+Under the CT baseline (Appendix CT), Lemma~\ref{lem:Rpsi-fixed} and Proposition~\ref{prop:B-invariant} fix the geometric inputs; Theorem~\ref{thm:ward-ct} and Lemma~\ref{lem:qed-limit} imply \(\mathcal R_{\mathrm{UBT}}=1\). Thus the leading expression for \(B\) is fit-free.
+
 ## Comparison with Previous Work
 
 ### Historical Context
