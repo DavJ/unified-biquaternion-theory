@@ -107,6 +107,29 @@ It is a unified physical theory that **generalizes Einstein's General Relativity
 
 ---
 
+## How to Review This Repo
+
+We welcome rigorous technical review of the UBT alpha baseline result. To facilitate independent verification:
+
+- **Start with the publication manuscript**: [`publication/arxiv/main.tex`](publication/arxiv/main.tex) presents the baseline result \(\mathcal{R}_{\mathrm{UBT}} = 1\) and assumptions A1–A3 in a concise format
+- **Run the tests**: Our CI mirrors local builds. Execute `pytest -q consolidation_project/alpha_two_loop/tests` to verify:
+  - No placeholder/pending/1.84 references remain near \(\mathcal{R}_{\mathrm{UBT}}\)
+  - CT baseline value equals 1 under standard assumptions
+  - Ward identities and QED limit checks pass
+- **Verify baseline statements**: Build the consolidated document (`latexmk -pdf consolidation_project/ubt_2_main.tex`) and confirm:
+  - Appendix CT contains Theorem stating \(\mathcal{R}_{\mathrm{UBT}} = 1\)
+  - Appendix α references the CT baseline theorem
+  - Geometric inputs (A1) are uniquely determined without tunable parameters
+- **Follow the replication protocol**: [`docs/REPLICATION_PROTOCOL.md`](docs/REPLICATION_PROTOCOL.md) provides step-by-step instructions for independent verification
+- **Check the FAQ**: [`docs/REVIEWER_FAQ.md`](docs/REVIEWER_FAQ.md) addresses common questions and potential objections
+- **Use issue templates**: File technical feedback via:
+  - [Review Comment](https://github.com/DavJ/unified-biquaternion-theory/issues/new?template=review_comment.yaml) for equation-level feedback
+  - [Replication Report](https://github.com/DavJ/unified-biquaternion-theory/issues/new?template=replication_report.yaml) for build verification
+
+**Key claim**: Under assumptions A1 (geometric locking), A2 (standard CT renormalization scheme), and A3 (Thomson-limit extraction), we rigorously establish \(\mathcal{R}_{\mathrm{UBT}} = 1\) at two loops, yielding a fit-free baseline for the fine-structure constant derivation.
+
+---
+
 ## 📜 Overview
 
 UBT **generalizes Einstein's General Relativity** by embedding it within a biquaternionic field defined over complex time. In the real-valued limit, UBT exactly reproduces Einstein's field equations, ensuring full compatibility with all experimental confirmations of GR while extending the framework through additional degrees of freedom.

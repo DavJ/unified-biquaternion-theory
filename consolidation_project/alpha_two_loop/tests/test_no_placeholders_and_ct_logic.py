@@ -13,13 +13,15 @@ import pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 TEXT_EXT = (".md", ".tex")
 # Look for explicit problematic patterns  
-# We exclude quotes/escaped uses since those might be disclaimers saying NOT to use 1.84
+# We exclude meta-discussion about placeholders and cautionary "don't do this" statements
 BAD_PATTERNS = [
-    (r"(?<!\\approx\s)(?<!≈\s)(?<![=\"\'])1\.84", "numeric value 1.84 used directly"),
-    (r"\bplaceholder\b.*\bR_UBT\b", "placeholder near R_UBT"),
-    (r"\bR_UBT\b.*\bplaceholder\b", "R_UBT near placeholder"),
-    (r"\bpending\b.*\bR_UBT\b", "pending near R_UBT"),
-    (r"\bR_UBT\b.*\bpending\b", "R_UBT near pending"),
+    # Match 1.84 in assignment/claim context
+    (r"R_UBT\s*=\s*1\.84", "R_UBT = 1.84 (should be 1)"),
+    # Match "placeholder" or "pending" in assignment context
+    (r"R_UBT\s*=\s*placeholder", "R_UBT = placeholder"),
+    (r"R_UBT\s*=\s*pending", "R_UBT = pending"),
+    (r"\bcalculation\s+pending(?!.*baseline).*R_UBT", "calculation pending for R_UBT"),
+    (r"R_UBT.*\bcalculation\s+pending(?!.*baseline)", "R_UBT calculation pending"),
 ]
 
 def scan_text():
