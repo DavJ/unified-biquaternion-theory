@@ -13,7 +13,12 @@
 - **Alpha (α):** HARDCODED experimental target value (0.035999 for p=137)
 - **Electron mass:** HARDCODED PDG experimental value (0.51099895 MeV)
 
-See [CALCULATION_STATUS_ANALYSIS.md](CALCULATION_STATUS_ANALYSIS.md) for detailed proof.
+**However:** UBT theoretical framework for deriving these values from first principles EXISTS and is rigorous. The gap is COMPUTATIONAL, not THEORETICAL.
+
+See detailed analysis:
+- [CALCULATION_STATUS_ANALYSIS.md](CALCULATION_STATUS_ANALYSIS.md) - Proof values are hardcoded
+- [FIRST_PRINCIPLES_ANALYSIS.md](FIRST_PRINCIPLES_ANALYSIS.md) - **NEW:** Can UBT actually derive these values?
+- [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) - **NEW:** How to implement first-principles calculations
 
 ### Helper Scripts
 
