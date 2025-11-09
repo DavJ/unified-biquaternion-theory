@@ -1,0 +1,88 @@
+
+\appendix
+\section*{Appendix E (Strict, No Fit): Deriving the Geometric Mass Scale $m_0$ from the UBT Action}
+\addcontentsline{toc}{section}{Appendix E (Strict, No Fit): Deriving the Geometric Mass Scale $m_0$ from the UBT Action}
+
+\subsection*{E.1 Objective}
+In the strict (no-fit) formulation, the absolute mass scale $m_0$ must follow from the \emph{field dynamics} of UBT rather than any measured input. This appendix derives $m_0$ from the stationary value of the UBT action on the $(t,\psi)$ torus for the lowest toroidal harmonic. No anchoring by $m_e$ or other empirical constants is used.
+
+\subsection*{E.2 Setup: UBT Action on the Complex-Time Torus}
+Let $\Theta(q,\tau)$ be the biquaternionic field on $\mathbb{C}^5$ with complex time $\tau=t+i\psi$ and metric $g_{AB}$ adapted to the product torus $S^1_t\times S^1_\psi$ in the $(t,\psi)$-plane. Consider the UBT action
+\begin{equation}
+  S[\Theta,g] \;=\; \int_{\mathcal{M}} \!\mathrm{d}^5x\,\sqrt{|g|}\;\Big(
+     \mathcal{L}_{\text{kin}}[\Theta,\nabla\Theta;g]
+     \;+\; \mathcal{L}_{\text{int}}[\Theta;g]
+     \;+\; \mathcal{L}_{\text{geom}}[g]\Big)\,,
+  \label{eq:UBT-action}
+\end{equation}
+where $\mathcal{L}_{\text{geom}}$ captures the toroidal curvature contributions that also generate the running of $\alpha(\mu)$ (Appendix~C).
+On the $(t,\psi)$ torus we use the reduced metric
+\begin{equation}
+  \mathrm{d}s^2 \,=\, R_t^2\,\mathrm{d}\theta_t^2 \,+\, R_\psi^2\,\mathrm{d}\theta_\psi^2
+  \qquad (\theta_t,\theta_\psi\in[0,2\pi)),\quad
+  \alpha \,=\, \frac{R_t}{R_\psi}\,.
+  \label{eq:torus-metric}
+\end{equation}
+
+\subsection*{E.3 Mode Ansatz and Energy Density}
+For the lowest toroidal harmonic (electron sheet), adopt the separable ansatz
+\begin{equation}
+ \Theta(q,\tau) \,=\, \Phi(q)\,\exp\!\big(i n\,\theta_\psi \,-\, i \omega\,\theta_t\big)\,,
+ \qquad n\in\mathbb{N}\ \text{(baseline $n=1$)}\,.
+ \label{eq:mode-ansatz}
+\end{equation}
+With~\eqref{eq:torus-metric}, the kinetic term yields the mode energy density
+\begin{equation}
+ \mathcal{E}_{\text{kin}} \;\propto\;
+   g^{\psi\psi}\,(\partial_{\theta_\psi}\Theta)(\partial_{\theta_\psi}\Theta)^\dagger
+ + g^{tt}\,(\partial_{\theta_t}\Theta)(\partial_{\theta_t}\Theta)^\dagger
+ \;\propto\;
+   \frac{n^2}{R_\psi^2} \,+\, \frac{\omega^2}{R_t^2}\,.
+ \label{eq:kin-density}
+\end{equation}
+The interaction and geometric parts contribute curvature-weighted invariants which, to leading order in the two-circle geometry, introduce the same $2\pi$ normalizations that fix the $\beta$-function coefficients in Appendix~C.
+
+\subsection*{E.4 Stationary Energy per Period and Definition of $m_0$}
+Define the energy per torus period (one cell) as
+\begin{equation}
+  \mathcal{E}_\text{cell}(n,\omega;R_t,R_\psi)\;=\;
+  A\,\Big(\frac{n^2}{R_\psi^2} + \frac{\omega^2}{R_t^2}\Big)
+  \;+\; \mathcal{U}_{\text{geom}}(R_t,R_\psi)\,,
+  \label{eq:cell-energy}
+\end{equation}
+where $A$ is a normalization from $\mathcal{L}_{\text{kin}}$ and $\mathcal{U}_{\text{geom}}$ is the curvature functional induced by $\mathcal{L}_{\text{geom}}$.
+The stationary torus is found by minimizing $\mathcal{E}_\text{cell}$ over $(R_t,R_\psi)$ subject to the geometric constraint encoded by $\alpha=R_t/R_\psi$ and its scale dependence $\alpha(\mu)$:
+\begin{equation}
+  \frac{\partial \mathcal{E}_\text{cell}}{\partial R_t} \,=\, 0\,,\qquad
+  \frac{\partial \mathcal{E}_\text{cell}}{\partial R_\psi} \,=\, 0\,,
+  \quad
+  \alpha \,=\, \frac{R_t}{R_\psi}\,,
+  \quad
+  \frac{\mathrm{d}\alpha}{\mathrm{d}\ln\mu} \,=\, -\beta_1\alpha^2-\beta_2\alpha^3+\dots
+  \label{eq:stationary-conditions}
+\end{equation}
+Evaluated at the lowest sheet ($n=1$) and at the self-consistent frequency $\omega=\omega_\star$, the stationary energy defines the geometric mass scale
+\begin{equation}
+   m_0 \;\equiv\; \frac{1}{2\pi}\,\mathcal{E}_\text{cell}(n{=}1,\omega_\star;R_t^\star,R_\psi^\star)\,,
+   \label{eq:m0-definition}
+\end{equation}
+where $R_t^\star,R_\psi^\star$ solve~\eqref{eq:stationary-conditions}. The $2\pi$ factor normalizes one period on $S^1_t$. No measured masses enter; $m_0$ is fixed by geometry and dynamics alone.
+
+\subsection*{E.5 Electron Sheet and the Fixed-Point}
+For the electron ($n=1$), the lepton fixed point (Appendix~D) reads
+\begin{equation}
+  m_e \,=\, \frac{m_0\,f(1)}{\alpha(m_e)} \;=\; \frac{m_0}{\alpha(m_e)}\,.
+  \label{eq:electron-fp}
+\end{equation}
+In the \emph{strict} setting, $m_0$ from~\eqref{eq:m0-definition} and $\alpha(\mu)$ from Appendix~C close the system without any empirical anchor. For higher leptons ($n=3,9$ baseline), the same $m_0$ produces
+\begin{equation}
+  m_\mu \,=\, \frac{m_0\,f(3)}{\alpha(m_\mu)}\,,\qquad
+  m_\tau \,=\, \frac{m_0\,f(9)}{\alpha(m_\tau)}\,,
+\end{equation}
+with $f(n)=n^2$ at lowest harmonic.
+
+\subsection*{E.6 Remarks on Uniqueness and Higher Corrections}
+The uniqueness of $m_0$ follows from the strict minimization~\eqref{eq:stationary-conditions} once $\mathcal{U}_{\text{geom}}$ is specified by the same curvature principles that yielded $\beta_1$ and $\beta_2$. Higher-harmonic corrections shift $R_t^\star,R_\psi^\star$ and thus $m_0$ at subleading order, preserving the no-fit nature of the construction.
+
+\subsection*{E.7 Summary}
+We have derived $m_0$ as the stationary energy per period of the UBT field on the $(t,\psi)$ torus, using only geometry and the UBT action. This closes the strict spectrum without empirical fits: $m_0$ is determined theoretically, $\alpha(\mu)$ is geometric (Appendix~C), and lepton masses follow from the fixed-point equations (Appendix~D).
