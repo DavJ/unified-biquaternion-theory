@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{braket}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
 
 \geometry{a4paper, margin=1in}
 
@@ -655,6 +657,8 @@ The value of $\Delta_{\mathrm{CT}}$ is computed in the companion code (\texttt{a
 and logged to \texttt{alpha\_core\_repro/out/alpha\_two\_loop.csv}. Plugging the result into
 $\alpha^{-1} = p + \Delta_{\mathrm{CT}}$ with $p=137$ reproduces the experimental inverse value
 $137.035999\ldots$ within the stated tolerance, without fitting.
+
+\input{UBT_alpha_per_sector_patch}
 
 \section{Comparison with Other Approaches}
 
