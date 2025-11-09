@@ -180,7 +180,7 @@ where:
 ### 3.2 Quantitative Comparison
 
 **Electron Mass Prediction:**
-- **Experimental**: 0.51099895 MeV (PDG 2024)
+- **Experimental**: 0.51099895000(15) MeV (CODATA 2018)
 - **UBT Predicted**: 0.5099 MeV (not fitted, derived from muon/tau)
 - **Absolute Error**: 0.0011 MeV
 - **Relative Error**: **0.21%** ⭐

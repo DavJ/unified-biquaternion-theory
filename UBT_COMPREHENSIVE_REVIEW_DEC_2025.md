@@ -213,7 +213,7 @@ Within these assumptions, the derivation is **mathematically rigorous** and **pa
 
 | Particle | Hopf n | Predicted | Experimental | Error |
 |----------|--------|-----------|--------------|-------|
-| Electron | 1 | 0.509856 MeV | 0.51099895 MeV | **0.22%** |
+| Electron | 1 | 0.509856 MeV | 0.51099895000 MeV | **0.22%** |
 | Muon | 2 | 105.658 MeV | 105.6583755 MeV | 0.0001% |
 | Tau | 3 | 1776.86 MeV | 1776.86 MeV | 0.0001% |
 

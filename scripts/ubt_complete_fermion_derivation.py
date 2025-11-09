@@ -25,7 +25,7 @@ from typing import Dict, Tuple, List
 
 # Physical constants
 V_EW = 246000  # MeV
-ALPHA_EM = 1 / 137.036
+ALPHA_EM = 1 / 137.035999084  # Fine structure constant (CODATA 2018)
 HBAR_C = 197.327  # MeV·fm
 
 # Experimental fermion masses from PDG 2024 (MeV)

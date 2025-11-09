@@ -30,7 +30,7 @@ def test_alpha_calculation():
     alpha_inv, alpha = calculate_alpha(137)
     
     # Should be very close to experimental value
-    expected_alpha_inv = 137.036
+    expected_alpha_inv = 137.035999084  # CODATA 2018
     error = abs(alpha_inv - expected_alpha_inv)
     
     assert error < 0.001, f"Alpha calculation error too large: {error}"

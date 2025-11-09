@@ -27,7 +27,7 @@ from sympy import Sum, oo, sin, cos
 
 # Physical constants
 HBAR_C = 197.327  # MeV·fm (natural units)
-ALPHA_EM = 1.0 / 137.036
+ALPHA_EM = 1.0 / 137.035999084  # Fine structure constant (CODATA 2018)
 V_EW = 246000  # Electroweak VEV in MeV
 
 # Experimental quark masses from PDG 2024 (MeV)

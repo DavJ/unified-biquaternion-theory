@@ -299,7 +299,7 @@ def plot_alpha_vs_prime(max_prime: int = 200) -> None:
     # Plot 1: Alpha inverse vs prime
     ax1.plot(primes, alpha_inv_values, 'o-', linewidth=2, markersize=5, color='blue', alpha=0.7)
     ax1.axvline(137, color='red', linestyle='--', linewidth=2, label='p=137 (Our Universe)')
-    ax1.axhline(137.036, color='green', linestyle=':', linewidth=1.5, alpha=0.7, label='Experimental α^(-1)')
+    ax1.axhline(137.035999084, color='green', linestyle=':', linewidth=1.5, alpha=0.7, label='Experimental α^(-1) (CODATA 2018)')
     
     # Highlight viable region
     ax1.axvspan(127, 149, alpha=0.1, color='green', label='Viable for Life')
