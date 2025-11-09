@@ -551,8 +551,8 @@ Result interpretation:
 
 ### Prediction 2: Electron Mass (VALIDATED)
 
-**UBT Prediction:** m_e = 0.510 MeV (from hopfion topology)  
-**Experimental Value:** m_e = 0.51099895 MeV  
+**UBT Prediction:** m_e = 0.509856 MeV (from hopfion topology)  
+**Experimental Value:** m_e = 0.51099895000(15) MeV  
 **Agreement:** 0.22% error
 
 **Derivation Summary:**

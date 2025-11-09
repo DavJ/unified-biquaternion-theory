@@ -143,7 +143,7 @@ def solve_msbar_fixed_point(initial: float, lepton: str = "e",
 **Output:**
 ```
 UBT prediction: m_e = 0.510996193 MeV
-PDG value:      m_e = 0.510998950 MeV
+PDG value:      m_e = 0.51099895000 MeV
 Relative error: |Δm/m| = 5.40e-06
 Status: ✓ PASS
 ```

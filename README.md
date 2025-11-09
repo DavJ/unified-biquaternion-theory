@@ -19,7 +19,7 @@ This ensures scientific integrity and prevents confusion between empirically-gro
 **UBT has achieved significant theoretical progress:**
 
 ### Core Achievements
-- ⭐ **Electron Mass from First Principles**: m_e = 0.510 MeV (0.22% error) via Hopfion topology
+- ⭐ **Electron Mass from First Principles**: m_e = 0.509856 MeV vs Experimental 0.51099895 MeV (0.22% error) via Hopfion topology
 - ⭐ **Fine Structure Constant - Fit-Free Baseline**: α⁻¹ = 137 (0.026% error) from complex time torus
   - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3 (no fitted parameters)
   - Complete 533-line proof in appendix_CT_two_loop_baseline.tex
@@ -178,8 +178,8 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 - UBT is a **research framework in Year 5 of development**, not yet a fully validated scientific theory
 - **Scientific Rating: 6.2/10** ⬆️ **(Upgraded from 5.5 following fit-free baseline achievement)**
 - **First concrete predictions validated:**
-  - ✅ **Electron mass**: Predicted 0.510 MeV vs Experimental 0.511 MeV (0.22% error)
-  - ✅ **Fine-structure constant - FIT-FREE**: Predicted α⁻¹ = 137 vs Experimental 137.036 (0.026% error)
+  - ✅ **Electron mass**: Predicted 0.509856 MeV vs Experimental 0.51099895 MeV (0.22% error)
+  - ✅ **Fine-structure constant - FIT-FREE**: Predicted α⁻¹ = 137 vs Experimental 137.035999084(21) (0.026% error)
     - **Breakthrough**: R_UBT = 1 proven under assumptions A1-A3 (no fitted parameters)
 - **Major theoretical achievement:**
   - ✅ **Standard Model gauge group SU(3)×SU(2)×U(1) rigorously derived** from biquaternionic geometry (November 2025)
@@ -212,7 +212,7 @@ Key features:
 - **General Relativity compatibility**: Full recovery of Einstein's equations in the real limit (see Appendix R).
 - **Quantum Gravity**: Complete unification of GR+QFT from single field Θ(q,τ) (see `solution_P7_quantum_gravity/`).
 - **Extended GR**: Phase curvature quantization predicts antigravity at atomic scales.
-- ⭐ **Electron mass from first principles**: m_e = 0.510 MeV (0.22% error) via Hopfion topology.
+- ⭐ **Electron mass from first principles**: m_e = 0.509856 MeV vs Experimental 0.51099895 MeV (0.22% error) via Hopfion topology.
 - ⭐ **Fine structure constant from topology**: α⁻¹ = 137 (0.026% error) from complex time torus.
 - **Gauge fields**: embedding of \(SU(3) \times SU(2) \times U(1)\) into the UBT framework.
 - **Electromagnetism** in curved space, including standing modulated EM field configurations.

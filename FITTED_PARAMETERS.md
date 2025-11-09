@@ -146,7 +146,7 @@ These are fundamental constants measured experimentally, used as input:
 
 **Electron Mass m_e**
 - **Status:** Measured quantity used as input
-- **Value:** m_e = 0.51099895 MeV/c² (experimental)
+- **Value:** m_e = 0.51099895000(15) MeV/c² (CODATA 2018)
 - **Usage:** Sets scale R_ψ, used in α calculation
 - **Note:** UBT also derives m_e from Hopfion topology (Paper F1), giving independent check
 
