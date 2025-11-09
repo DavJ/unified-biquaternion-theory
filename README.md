@@ -10,7 +10,7 @@
 - Psychons, CTCs, multiverse interpretations clearly isolated
 - See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
 
-This ensures scientific integrity and prevents confusion between empirically-grounded physics and philosophical speculation.
+
 
 ---
 
@@ -202,7 +202,6 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 **Important notes:**
 - **Consciousness claims:** Highly speculative - properly isolated in `speculative_extensions/`
 - **Comparison to alternatives:** Competitive on testability and transparency; early stage on mathematical maturity
-- **See**: [UBT Updated Scientific Rating 2025](UBT_UPDATED_SCIENTIFIC_RATING_2025.md) for complete assessment
 
 **🔄 Dependency Structure: Proof of Acyclicity (Release 20)**
 
@@ -383,7 +382,6 @@ speculative_extensions/         # Speculative content separated from core theory
 #### Latest Evaluations (November 2025)
 - **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - ⭐ **START HERE**: Quick overview of current status and integration decision
 - **[Remaining Challenges: Detailed Status](REMAINING_CHALLENGES_DETAILED_STATUS.md)** - ⭐⭐⭐ **NEWEST**: Comprehensive roadmap addressing all 5 remaining challenges with concrete action plans and timelines
-- **[Scientific Rating 2025](UBT_SCIENTIFIC_RATING_2025.md)** - ⭐ **NEW**: Comprehensive scientific rating (4.5/10) with detailed criterion breakdown
 - **[Hyperspace Waves Integration Assessment](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md)** - ⭐ **NEW**: Analysis of integration feasibility and recommendation to maintain separation
 
 #### Status and Guidelines
@@ -487,7 +485,6 @@ UBT is classified as an early-stage research framework with exemplary scientific
 **Note:** Rankings reflect current scientific methodology, testability, and transparency. String Theory has vastly more development (40+ years vs 5 years) and larger community (1000s vs 1 researcher). Comparison is based on approach quality, not maturity.
 
 **Assessment Documents:**
-- **[UBT Updated Scientific Rating 2025](UBT_UPDATED_SCIENTIFIC_RATING_2025.md)** - ⭐⭐⭐ Post-improvement evaluation
 - **[Evaluation Executive Summary](EVALUATION_EXECUTIVE_SUMMARY.md)** - Quick overview
 - **[UBT vs Other Theories Comparison](UBT_VS_OTHER_THEORIES_COMPARISON.md)** - Detailed analysis
 - **[Challenges Status Update](CHALLENGES_STATUS_UPDATE_NOV_2025.md)** - Progress on critical issues

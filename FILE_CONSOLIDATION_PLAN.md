@@ -16,10 +16,9 @@
 
 ### Evaluation/Rating Files (Keep latest comprehensive ones)
 - [ ] ALPHA_IMPACT_ON_UBT_EVALUATION.md → Covered in comprehensive evaluations
-- [ ] UBT_RATING_NOV4_2025.md → Superseded by UBT_UPDATED_SCIENTIFIC_RATING_2025.md
 - [ ] REEVALUATION_SUMMARY.md → Info in UBT_REEVALUATION_2025.md
 - [ ] EVALUATION_EXECUTIVE_SUMMARY.md → Can merge into README or keep as quick ref
-**Keep:** UBT_COMPREHENSIVE_EVALUATION_REPORT.md, UBT_REEVALUATION_2025.md, UBT_UPDATED_SCIENTIFIC_RATING_2025.md, UBT_SCIENTIFIC_RATING_2025.md (baseline)
+**Keep:** UBT_COMPREHENSIVE_EVALUATION_REPORT.md, UBT_REEVALUATION_2025.md, UBT_SCIENTIFIC_RATING_2025.md (baseline)
 
 ### Summary/Completion Reports (Merge into CHANGELOG)
 - [ ] TASK_COMPLETION_SUMMARY.md → Add to CHANGELOG

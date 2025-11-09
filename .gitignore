@@ -39,3 +39,11 @@ ubt_mass_spectrum_analysis.png
 !consolidation_project/img/*.png
 !consolidation_project/fig_*.png
 consolidation_project/masses/.pytest_cache/
+
+data/alpha_two_loop_grid.csv
+tex/snippets_generated.tex
+reports/*.json
+
+data/alpha_two_loop_grid.csv
+tex/snippets_generated.tex
+reports/*.json
