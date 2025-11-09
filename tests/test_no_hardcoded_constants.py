@@ -68,6 +68,7 @@ WHITELIST = {
     "DATA_PROVENANCE.md",  # Contains example CSV outputs
     "PYTHON_SCRIPTS_REPORT.md",  # Documentation of scripts and CSV files
     "PYTHON_SCRIPTS_APPENDIX.md",  # Complete inventory of all scripts
+    "CSV_AND_DOCUMENTATION_POLICY.md",  # Policy document explaining CSV usage
 }
 
 # Directory segments to skip
