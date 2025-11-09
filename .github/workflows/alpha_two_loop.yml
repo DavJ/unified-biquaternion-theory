@@ -18,6 +18,12 @@ jobs:
       - name: Run CT tests
         run: |
           pytest -q consolidation_project/alpha_two_loop/tests
-      - name: Run masses tests
+      - name: Run alpha core repro tests
+        run: |
+          pytest -q alpha_core_repro/tests
+      - name: Run electron mass tests (fit-free)
+        run: |
+          pytest -v tests/test_electron_mass.py
+      - name: Run masses symbolic tests
         run: |
           cd consolidation_project/masses && pytest -q tests

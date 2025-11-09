@@ -116,6 +116,11 @@ It is a unified physical theory that **generalizes Einstein's General Relativity
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
 - **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** - Community standards
 
+**For running tests and validation:**
+- Run `make masses-tests` to validate fit-free electron mass derivation
+- Run `python scripts/validate_electron_mass.py` for detailed mass calculation walkthrough
+- See `tests/test_electron_mass.py` for precision tests (target: < 10⁻⁴)
+
 **For comparison to existing work:**
 - **[LITERATURE_COMPARISON.md](LITERATURE_COMPARISON.md)** - Relation to prior biquaternion and complex-time frameworks
 

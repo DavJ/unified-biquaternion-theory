@@ -76,8 +76,10 @@ alpha-proof:
 
 # Masses program targets
 masses-tests:
+	@echo "Running masses tests (fit-free electron mass derivation)..."
+	pytest -v tests/test_electron_mass.py
 	@echo "Running masses symbolic tests..."
-	pytest -v consolidation_project/masses/tests || echo "Masses tests not yet implemented"
+	pytest -v consolidation_project/masses/tests || echo "Masses symbolic tests not yet implemented"
 
 # Combined alpha + masses CI
 alpha-ci: alpha-tests alpha-audit
