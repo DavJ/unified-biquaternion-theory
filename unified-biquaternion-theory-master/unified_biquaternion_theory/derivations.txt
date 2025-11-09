@@ -1,2 +1,0 @@
-alpha_final_derivation.tex
-ubt_article_2_derivations.tex
