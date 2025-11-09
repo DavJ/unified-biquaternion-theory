@@ -64,6 +64,23 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 **Causality:** The CT scheme preserves macroscopic causality in the limit \(\psi\to 0\); any speculative effects with \(\psi\neq 0\) are contained strictly in `speculative_extensions/` and are not used in the α baseline.
 
+### Why biquaternionic time (ℍ_ℂ) and not just complex time?
+
+**Short answer.** The complex time \(T=t+i\psi\) is an analytic/renormalization **parameter** inside a **biquaternionic** framework on the Hermitian slice; ℍ_ℂ supplies Lorentz/spinor structure and invariant measures. Using \(T\) does **not** abandon biquaternions; it is a coordinate choice **within** ℍ_ℂ. In the real-time limit \(\psi\to 0\) we recover standard QED and preserve macroscopic causality.
+
+**What ℍ_ℂ adds beyond \(T=t+i\psi\):**
+- **Lorentz + spinors from the algebra.** ℍ_ℂ ≅ \(M_2(\mathbb C)\); Lorentz acts as \(A X A^\dagger\) (SL\((2,\mathbb C)\)) and spinors are natural 2-columns.
+- **Minkowski metric from the Hermitian slice.** The determinant on self-adjoint elements yields \( (ct)^2 - \mathbf{x}^2\) and an invariant measure for counting (used in geometric locking).
+- **Unified rotations/boosts and \(E/B\).** EM lives as one bivector; \( \mathbf E,\mathbf B\) are coordinates of the same biquaternionic object.
+- **Three involutions ⇒ clean P/T/C.** Complex conj., quaternionic conj., and Hermitian adjoint disambiguate discrete symmetries better than a bare \(\mathbb C\) setup.
+- **Composition as multiplication.** Left/right actions compose amplitudes naturally; Ward identities and the CT→QED limit live inside the same algebra.
+- **Geometric locking without knobs.** The invariant measure and domain \(\Omega\subset\mathcal H\) fix \(N_{\mathrm{eff}}\) and \(R_\psi\) without tunable parameters.
+
+**Role of \(T=t+i\psi\).** \(T\) is a bookkeeping knob for analytic continuation and renormalization inside ℍ_ℂ. It clarifies the order of limits (solve analyticity, then \(q^2\!\to 0\)) and makes Ward + Thomson transparent. Taking \(\psi\!\to 0\) restores standard real-time QED; causality is preserved. Any \(\psi\neq 0\) ideas remain strictly in `speculative/` as null-testable hypotheses.
+
+**Why this is necessary for α (fit-free).**  
+The complex time \(T=t+i\psi\) is a **necessary technical device** *within* the biquaternionic (\(\mathbb H_\mathbb C\)) framework to make the two-loop CT→QED reduction mathematically transparent: it fixes analytic continuation and the order of limits (solve analyticity, then \(q^2\!\to 0\)), and exposes Ward identities and the Thomson normalization. This is precisely what yields the fit‑free baseline \(\boxed{\mathcal R_{\mathrm{UBT}}=1}\) and, hence, an \(\alpha\) derivation with **no tunable parameters**.
+
 > **Technical details**: The biquaternionic field Θ(q,τ) is defined over ℍ_ℂ, the algebra of biquaternions (quaternions with complex coefficients). The Hermitian slice construction (Appendix P6) realizes Minkowski signature within this framework. The complex time τ = t + iψ used in calculations is a renormalization-time parameter consistent with the CT scheme and reduces to standard real time when ψ→0, recovering QED.
 >
 > **Relationship to quaternionic time**: In regimes where vector components are significant, the full quaternionic structure T = t₀ + it₁ + jt₂ + kt₃ is used. Complex time τ = t + iψ emerges as a 2D projection when vector components are negligible (‖v‖² ≪ |ψ|²). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
@@ -137,6 +154,14 @@ We welcome rigorous technical review of the UBT alpha baseline result. To facili
   - [Replication Report](https://github.com/DavJ/unified-biquaternion-theory/issues/new?template=replication_report.yaml) for build verification
 
 **Key claim**: Under assumptions A1 (geometric locking), A2 (standard CT renormalization scheme), and A3 (Thomson-limit extraction), we rigorously establish \(\mathcal{R}_{\mathrm{UBT}} = 1\) at two loops, yielding a fit-free baseline for the fine-structure constant derivation.
+
+---
+
+## ❓ Frequently Asked Questions
+
+**Q:** If α is fit-free, doesn't that fix the electron mass?
+
+**A:** No. In the SM, fermion masses come from Yukawa couplings and the Higgs vev. Knowing α fixes the electromagnetic coupling, not the Yukawas. A UBT derivation of \(m_e\) requires additional structure (Yukawa-in-ℍ_ℂ + CT renormalization). We are working on this and will first target mass ratios (sum rules) as falsifiable predictions.
 
 ---
 

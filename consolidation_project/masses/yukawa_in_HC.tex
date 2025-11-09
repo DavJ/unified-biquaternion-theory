@@ -1,0 +1,64 @@
+% ================== Yukawa Couplings in H_C ==================
+% VERSION: v1.0 - Program Sketch
+% AUTHOR: UBT Team
+% PURPOSE: Outline the algebraic form of Yukawa couplings on the Hermitian slice
+%
+% DEPENDENCIES:
+% Requires: \usepackage{amsmath,amssymb,amsthm}
+% References: Appendix P6 (Lorentz in H_C), Appendix E (SM geometry)
+
+\section{Yukawa Couplings in \texorpdfstring{$\mathbb H_{\mathbb C}$}{H\_C}}
+\label{app:yukawa-in-HC}
+
+\subsection{Overview}
+
+In the Standard Model, fermion masses arise from Yukawa couplings to the Higgs field. For UBT to predict fermion masses from first principles, we must:
+\begin{enumerate}
+  \item Derive the algebraic form of Yukawa couplings on the Hermitian slice of \(\mathbb H_{\mathbb C}\).
+  \item Show how left/right actions and involutions constrain the coupling structure.
+  \item Connect to the discrete symmetries (P, T, C) via the three involutions.
+\end{enumerate}
+
+This appendix provides a program sketch. Full derivations are in progress.
+
+\subsection{Algebraic Structure}
+
+The Yukawa interaction in the Standard Model has the form:
+\[
+\mathcal L_{\text{Yukawa}} = -Y_{ij} \bar{\psi}_L^i \phi \psi_R^j + \text{h.c.}
+\]
+where \(Y_{ij}\) are the Yukawa coupling matrices (one for each fermion sector).
+
+In the biquaternionic framework:
+\begin{itemize}
+  \item Fermions are represented as left ideals in \(\mathbb H_{\mathbb C}\).
+  \item The Higgs field \(\phi\) emerges from the Hermitian slice structure.
+  \item Left/right actions distinguish chiral components.
+\end{itemize}
+
+\paragraph{Constraint from involutions.}
+The three involutions (complex conjugation, quaternionic conjugation, Hermitian adjoint) impose restrictions on the allowed Yukawa structures. A key question is whether these constraints are sufficient to determine the coupling ratios \(Y_{ij}/Y_{kl}\) without empirical input.
+
+\subsection{Connection to Geometric Invariants}
+
+The goal is to express Yukawa couplings in terms of geometric invariants on the Hermitian slice:
+\begin{itemize}
+  \item Overlap integrals of mode functions.
+  \item Volume measures from the determinant.
+  \item Topological winding numbers.
+\end{itemize}
+
+If successful, this would provide a ``locking'' mechanism analogous to the geometric locking for \(\alpha\).
+
+\subsection{Roadmap}
+
+\begin{enumerate}
+  \item \textbf{Formalize fermion representations}: Define left/right ideals explicitly.
+  \item \textbf{Derive coupling structure}: Show how involutions constrain \(Y_{ij}\).
+  \item \textbf{Connect to topology}: Express couplings via winding numbers or other invariants.
+  \item \textbf{Falsifiable predictions}: Derive mass ratios \(m_e/m_\mu\), \(m_\mu/m_\tau\), etc.
+\end{enumerate}
+
+\textbf{Status}: Framework outlined; detailed calculations in progress.
+
+% ================== END ==================
