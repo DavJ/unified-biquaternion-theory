@@ -15,6 +15,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
@@ -37,7 +38,7 @@ This CORE manuscript presents a biquaternion formulation that \textbf{generalize
 UBT extends GR by introducing biquaternionic degrees of freedom that represent phase-like and nonlocal components of spacetime. These additional components remain invisible to classical observations but may be relevant for dark sector physics and quantum gravitational corrections. \textbf{We do not claim an ab-initio derivation of the fine-structure constant}~$\alpha$; in the CORE track $\alpha(\mu)$ is treated as an empirical input consistent with QED running. Any links between the auxiliary phase coordinate~$\psi$ and consciousness are considered \emph{interpretive and speculative} and are not part of the CORE results. Quantitative, testable predictions are stated with their assumptions and orders of magnitude.
 
 \paragraph{Lorentz structure internal to \texorpdfstring{$\mathbb H_{\mathbb C}$}{H\_C}.}
-Throughout this work we realize the Minkowski metric and the proper orthochronous Lorentz group internally within the complexified quaternion algebra, by restricting to the Hermitian slice and using the spinorial action of \(SL(2,\mathbb C)\). The determinant on the Hermitian slice equals the Minkowski quadratic form, and the action preserves it, yielding the standard double cover of \(SO^+(1,3)\). For details and formal proofs see Appendix~P6 (\emph{Lorentz Structure inside \(\mathbb H_{\mathbb C}\) (No Split Quaternions Needed)}).
+Throughout this work we realize the Minkowski metric and the proper orthochronous Lorentz group internally within the complexified quaternion algebra, by restricting to the Hermitian slice and using the spinorial action of \(SL(2,\mathbb C)\). The determinant on the Hermitian slice equals the Minkowski quadratic form, and the action preserves it, yielding the standard double cover of \(SO^+(1,3)\). We employ \(T=t+i\psi\) as an analytic/renormalization parameter \emph{within} the biquaternionic framework on the Hermitian slice; see Appendix~\ref{app:bq-vs-ct} and the README section ``Why biquaternionic time'' for details and the necessity for the fit‑free \(\alpha\) derivation. For formal proofs of the Lorentz structure see Appendix~P6 (\emph{Lorentz Structure inside \(\mathbb H_{\mathbb C}\) (No Split Quaternions Needed)}).
 
 \subsection*{Contextual Assessment of Originality}
 
@@ -109,6 +110,17 @@ UBT's originality lies not in the use of quaternions per se, but in the specific
 
 % ---- ALPHA DERIVATION (One-loop and Two-loop CT) ----
 \input{appendix_ALPHA_one_loop_biquat}
+% CT Two-Loop Baseline: R_UBT = 1 (rigorous fit-free derivation)
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Appendix CT: Two-Loop Baseline ($\mathcal{R}_{\mathrm{UBT}}=1$)}
+\input{appendix_CT_two_loop_baseline}
+% Extended proof with full mathematical details
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Appendix CT-Ext: Extended Proof Details}
+\input{appendix_CT_extended_proof}
+% Supporting technical sections for CT two-loop
 \input{alpha_two_loop/tex/geometric_inputs_proof}
 \input{alpha_two_loop/tex/ct_scheme_definition}
 \input{alpha_two_loop/tex/beta_function_ct_two_loop}

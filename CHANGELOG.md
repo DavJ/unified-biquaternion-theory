@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-11-08 - Publication & Review Readiness
+
+### Added
+
+- **Publication infrastructure**: Created `publication/arxiv/`, `publication/osf/`, `publication/artifacts/` directories
+  - arXiv preprint manuscript: `publication/arxiv/main.tex` including baseline theorem, CT scheme, R_UBT extraction, geometric inputs, and reproducibility checklist
+  - Reproducibility checklist: `publication/reproducibility_checklist.tex` (one-page summary of assumptions, tests, build process, artifacts, limitations)
+  - GitHub workflow: `.github/workflows/publication.yml` for automated PDF builds and artifact uploads
+  
+- **Community review infrastructure**:
+  - Issue template: `.github/ISSUE_TEMPLATE/review_comment.yaml` for technical review comments (section, equation label, claim type, reproduction steps, expected vs. actual)
+  - Issue template: `.github/ISSUE_TEMPLATE/replication_report.yaml` for independent replication reports (environment, steps, outputs, diffs, logs, PDF hash)
+  - Replication protocol: `docs/REPLICATION_PROTOCOL.md` with step-by-step verification instructions
+  - Reviewer FAQ: `docs/REVIEWER_FAQ.md` addressing common questions and potential objections
+  - External discussion tracker: `docs/EXTERNAL_DISCUSSION_TRACKER.md` for public record of seminars, reviews, preprints
+  
+- **Citation metadata**: `CITATION.cff` (v0.3.0) with DOI placeholder, author information, repository URL
+
+### Changed
+
+- **Baseline assertion enforcement**: All references to R_UBT now point to CT baseline theorem (R_UBT = 1 under A1–A3)
+  - Verified no placeholder/pending/1.84 values remain in context of R_UBT (test suite confirms)
+  - `EMERGENT_ALPHA_README.md` updated with explicit baseline statement
+  - `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` already contains two-loop CT baseline paragraph
+  - `consolidation_project/alpha_two_loop/tex/R_UBT_extraction.tex` includes baseline subsection with boxed result
+  - `consolidation_project/alpha_two_loop/tex/geometric_inputs_proof.tex` formalizes geometric locking (A1)
+  
+- **README.md**: Added "How to Review This Repo" section with clear entry points for reviewers
+
+### Removed
+
+- None (all changes are additive to maintain backward compatibility)
+
+### Notes
+
+- Tests pass: `pytest -q consolidation_project/alpha_two_loop/tests` ✓
+- Baseline established: \(\mathcal{R}_{\mathrm{UBT}} = 1\) at two loops with no fitted parameters
+- Publication ready: arXiv manuscript builds successfully (pending manual submission)
+- Community ready: Issue templates, replication protocol, and FAQ provide clear paths for engagement
+
+## [Previous Releases]
+
 ### Added
 
 - **New unified α derivation**: `consolidation_project/appendix_ALPHA_one_loop_biquat.tex`

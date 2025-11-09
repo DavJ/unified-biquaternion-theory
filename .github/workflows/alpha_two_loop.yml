@@ -18,3 +18,6 @@ jobs:
       - name: Run CT tests
         run: |
           pytest -q consolidation_project/alpha_two_loop/tests
+      - name: Run masses tests
+        run: |
+          cd consolidation_project/masses && pytest -q tests

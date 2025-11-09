@@ -38,3 +38,4 @@ ubt_mass_spectrum_analysis.png
 !docs/**/*.png
 !consolidation_project/img/*.png
 !consolidation_project/fig_*.png
+consolidation_project/masses/.pytest_cache/
