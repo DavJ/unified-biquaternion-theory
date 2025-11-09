@@ -7,9 +7,9 @@ BAD = re.compile(r"\b(TODO|placeholder|pending)\b", re.I)
 
 def test_no_placeholders_in_masses_docs():
     """Ensure masses documentation contains no TODO/placeholder/pending markers."""
-    for name in ["yukawa_structure.tex", "rg_flows.tex", "mass_sum_rules.tex"]:
+    for name in ["yukawa_in_HC.tex", "ct_two_loop_renorm.tex", "sum_rules_and_ratios.tex", "absolute_scale_anchor.tex"]:
         filepath = MASSES_DIR / name
-        assert filepath.exists(), f"Missing required masses file: {name}"
+        assert filepath.exists(), f"Missing masses doc: {name}"
         
         txt = filepath.read_text(encoding="utf-8", errors="ignore")
         match = BAD.search(txt)
