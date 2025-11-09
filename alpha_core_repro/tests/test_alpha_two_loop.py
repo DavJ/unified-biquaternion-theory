@@ -12,16 +12,21 @@ def _cfg(strict: bool):
 def test_two_loop_pipeline_sanity(p):
     strict = os.environ.get("UBT_ALPHA_STRICT", "1") == "1"
     cfg = _cfg(strict=strict)
-    if strict:
-        with pytest.raises(NotImplementedError):
-            compute_two_loop_delta(p, cfg)
-        pytest.skip("Strict mode: implement two-loop core to enable full test.")
-    else:
+    
+    # Now works in both strict and non-strict modes
+    if not strict:
         os.environ["UBT_ALPHA_ALLOW_MOCK"] = "1"
-        dct = compute_two_loop_delta(p, cfg)
-        assert np.isfinite(dct) and dct > 0
-        inva = 1.0 / alpha_corrected(p, dct)
-        assert abs(inva - p) < 1.0
+    
+    dct = compute_two_loop_delta(p, cfg)
+    assert np.isfinite(dct) and dct > 0
+    inva = 1.0 / alpha_corrected(p, dct)
+    
+    # Verify result is close to p (within 1.0 for general sanity)
+    assert abs(inva - p) < 1.0
+    
+    # For p=137, verify precision in strict mode
+    if strict and p == 137:
+        assert abs(inva - 137.035999) < 5e-4
 
 def test_alpha_137_precision_when_mock_enabled():
     os.environ["UBT_ALPHA_STRICT"] = "0"
