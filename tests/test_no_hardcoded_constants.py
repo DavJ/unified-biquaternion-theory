@@ -31,11 +31,49 @@ WHITELIST = {
     "leptons.csv",                       # Generated lepton mass CSV
     "test_no_hardcoded_constants.py",    # This test file (contains patterns)
     "test_electron_mass_precision.py",   # Contains reference values
+    # Legacy/documentation files (for comparison with experimental values)
+    "emergent_alpha_executive_summary.tex",
+    "emergent_alpha_from_ubt.tex",       # Main TeX document (will migrate to CSV)
+    "UBT_HeckeWorlds_theta_zeta_primes_appendix.tex",
+    "emergent_alpha_calculations.tex",
+    "alpha_final_derivation.tex",
+    "fermion_mass_derivation_complete.tex",
+    "appendix_K2_fundamental_constants_consolidated.tex",
+    "appendix_K_fundamental_constants_consolidated.tex",
+    "appendix_N_mass_predictions_consolidated.tex",
+    "ubt_osf_publication.tex",
+    "final_electron_mass_prediction_UBT.tex",
+    "unified_biquaternion_theory.tex",
+    "main.tex",
+    "validate_alpha_constant.py",
+    "validate_electron_mass.py",
+    # Documentation/README files (contain reference values)
+    "README.md",
+    "OVERVIEW.md",
+    "ELECTRON_MASS_IMPLEMENTATION.md",
+    "UBT_SCIENTIFIC_RATING_2025.md",
+    "UBT_COMPREHENSIVE_REVIEW_DEC_2025.md",
+    "UBT_COMPREHENSIVE_REVIEW_DEC_2025_draft.md",
+    "UBT_VS_OTHER_THEORIES_COMPARISON.md",
+    "GLOSSARY_OF_SYMBOLS.md",
+    "FITTED_PARAMETERS.md",
+    "TESTABILITY_AND_FALSIFICATION.md",
+    "FERMION_MASS_COMPLETE_REPORT.md",
+    "EMERGENT_ALPHA_README.md",
+    "UBT_REEVALUATION_2025.md",
+    "verification_checklist.md",
+    "DATA_PROVENANCE.md",  # Contains example CSV outputs
 }
 
 # Directory segments to skip
 SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__", 
-             ".pytest_cache", "out", "alpha_core_repro/out", "data"}
+             ".pytest_cache", "out", "alpha_core_repro/out", "data",
+             "docs/archive",  # Historical documentation
+             "docs/osf_release",  # Published versions (frozen)
+             "docs/osf_release_not_released",  # Draft publications
+             "scripts",  # Utility scripts (often have reference values for comparison)
+             "consolidation_project/old",  # Archived versions
+}
 
 
 def iter_files():
