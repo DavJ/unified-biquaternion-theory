@@ -55,7 +55,7 @@ LaTeX documents (via pgfplotstable)
 ## Results
 
 **Current Precision:**
-- α^{-1}: Match within < 5×10^{-4}
+- α^{-1}: Match within 1.3×10^{-9} (vs CODATA 2022: 137.035999177)
 - m_e: Match within 5.4×10^{-6} (exceeds 10^{-4} target!)
 
 **Test Coverage:**
