@@ -190,17 +190,31 @@ This precision is exceptional and places UBT predictions among the most accurate
 - **Improvement**: ~200,000× more precise than previously stated
 - This represents **~9 significant figures of agreement** with experiment
 
-**Important Distinction - What IS and ISN'T Predicted:**
+**Two Complementary Approaches to α Derivation:**
 
-✓ **Predicted from Hecke-Worlds axiom**: The existence of multiple prime sectors is a MATHEMATICAL NECESSITY if Θ is a Jacobi theta function. Hecke operators T_p (indexed by primes) necessarily decompose modular forms into prime-indexed eigenspaces. This predicts:
-- Multiple "worlds" corresponding to different primes p
-- Each sector has its own α_p^{-1} = p + Δ_CT,p
-- The multi-sector STRUCTURE is not speculative—it's required by the mathematics
+UBT has explored TWO approaches to understanding why α^{-1} ≈ 137:
 
-✗ **Not uniquely predicted**: Which specific sector (p=137) corresponds to our observable universe requires empirical matching
+**Approach 1: Stability Analysis** (see `alpha_padic_executive_summary.tex`, `emergent_alpha_executive_summary.tex`)
+- Energy minimization selects N=137 from topological winding numbers
+- Spectral entropy and principle of least action
+- **Status**: Exploratory, discrete choices not uniquely determined (see disclaimers in documents)
+
+**Approach 2: Hecke-Worlds Framework** (see `UBT_HeckeWorlds_theta_zeta_primes_appendix.tex`)
+- Mathematical necessity: if Θ is Jacobi theta, Hecke decomposition into prime sectors MUST exist
+- Predicts multiple "worlds" indexed by primes p
+- Each sector has α_p^{-1} = p + Δ_CT,p
+- **Status**: Multi-sector structure is rigorous; sector selection empirical
+
+**Potential Unification**: These approaches may be **complementary, not contradictory**. The Hecke-Worlds framework predicts the existence of all prime sectors, while stability analysis may explain why p=137 is the **most stable** sector—thus both selecting it physically and deriving it from variational principles. This would transform observational matching into a stability prediction.
+
+**Current Status**:
+- ✓ Multi-sector structure predicted (Hecke decomposition)
+- ✓ Stability analysis developed (requires further rigor)
+- ⚠️ Connection between approaches needs formal proof
+- ✗ Complete derivation of "why p=137" remains open research
 
 **Remaining Challenges:**
-- Mechanism for sector selection (why we observe p=137 specifically)
+- Rigorous proof that p=137 minimizes effective potential among all prime sectors
 - Form factors for other prime sectors
 - Inter-sector transition dynamics (if they exist)
 

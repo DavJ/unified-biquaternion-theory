@@ -478,9 +478,11 @@ The 5.5/10 rating reflects significant theoretical progress while maintaining sc
    - CMB asymmetry: A_asym = 0.070 ± 0.015 (testable within 1-2 years)
    - This is the key test that could increase rating to 6.0+
 
-4. **Fundamental selection not derived**
-   - Why p=137 rather than nearby primes? Not proven.
-   - Form factors for other sectors not calculated
+4. **Two complementary approaches to sector selection**
+   - **Hecke-Worlds**: Multi-sector structure predicted (mathematical necessity)
+   - **Stability analysis**: p=137 emerges from energy minimization (exploratory)
+   - **Potential unification**: p=137 may be BOTH mathematically available (Hecke) AND most stable (variational)
+   - **Current status**: Connection between approaches needs rigorous proof
 
 **What HAS been achieved (justifies 5.5/10):**
 
@@ -489,15 +491,37 @@ The 5.5/10 rating reflects significant theoretical progress while maintaining sc
 ✅ Exceptional computational precision verified
 ✅ Complete data provenance established
 ✅ **Multi-sector structure predicted** (Hecke segmentation from Jacobi theta)
+✅ **Stability analysis developed** (energy minimization framework)
 ✅ Honest about limitations
 ✅ Clear experimental test specified
 
 **What would increase rating to 6.0+:**
 
 1. CMB prediction experimentally verified (→ 6.5/10)
-2. Mechanism for sector selection derived (why p=137) (→ 6.0/10)
+2. **Rigorous proof** that p=137 minimizes potential among all Hecke sectors (→ 6.0/10)
 3. New prediction verified (→ 6.5/10)
 4. Peer review publication (→ +0.5)
+
+**Dual Approach to α - Honest Assessment:**
+
+UBT has pursued two approaches to understanding α^{-1} ≈ 137:
+
+**1. Stability/Energy Minimization** (`alpha_padic_executive_summary.tex`, `emergent_alpha_executive_summary.tex`)
+- Claims N=137 emerges from topological stability and energy minimization
+- **Honest status**: Exploratory; discrete choices not uniquely determined (see disclaimers)
+- Documents themselves acknowledge this is **not** complete first-principles derivation
+
+**2. Hecke-Worlds Framework** (`UBT_HeckeWorlds_theta_zeta_primes_appendix.tex`)
+- Mathematical necessity: Jacobi theta → Hecke decomposition → prime sectors exist
+- Rigorously predicts multi-sector structure
+- **Honest status**: Structure predicted; specific sector (p=137) requires observation
+
+**Potential Synthesis**: These may be **complementary**, not contradictory:
+- Hecke framework provides the **mathematical landscape** (all prime sectors exist)
+- Stability analysis may explain **which sector is physical** (p=137 most stable)
+- If proven, this would transform "observational matching" into "stability prediction"
+
+**What's needed**: Rigorous proof that among all Hecke sectors {p=127, 131, 137, 139, ...}, the sector p=137 uniquely minimizes the effective potential. This would elevate the claim from postdiction to genuine prediction.
 
 **Hecke-Worlds Framework - A Genuine Structural Prediction:**
 
@@ -506,10 +530,9 @@ The existence of multiple prime sectors is NOT speculative—it's a mathematical
 - ✓ Each has its own α_p^{-1} = p + Δ_CT,p  
 - ✓ The multi-sector STRUCTURE is predicted
 
-What requires observational input:
-- ✗ Which specific sector (p=137) we inhabit
-
-This is analogous to quantum mechanics predicting energy level structure but requiring measurement to determine which state a system occupies.
+What requires additional work:
+- ⚠️ Rigorous proof that p=137 is the most stable sector
+- ✗ Mechanism for dynamical sector selection (if applicable)
 
 **Scientific Integrity Note:**
 
