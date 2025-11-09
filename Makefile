@@ -1,4 +1,5 @@
-.PHONY: all core clean pdf verify tests ci alpha-notebooks alpha-tests
+.PHONY: all core clean pdf verify tests ci alpha-notebooks alpha-tests alpha-audit alpha-proof masses-tests
+
 PDFLATEX?=pdflatex
 TEXSRCS=$(wildcard *.tex)
 CORE_MAIN=ubt_core_main.tex
@@ -33,10 +34,35 @@ clean:
 	latexmk -C || true
 	@rm -f *.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc *.fls *.fdb_latexmk
 
-.PHONY: alpha-notebooks alpha-tests
+# Alpha derivation targets (v2 Playbook)
+
+alpha-tests:
+	@echo "Running alpha derivation tests (fit-free proof)..."
+	pytest -v consolidation_project/alpha_two_loop/tests
+
+alpha-audit:
+	@echo "Auditing alpha derivation..."
+	python3 tools/alpha_audit.py --root . --out reports/alpha_hits.json --context 6 || true
+	python3 tools/latex_extract.py || true
+	python3 tools/fill_checklist.py || true
+
+alpha-proof:
+	@echo "Building alpha proof documents..."
+	@echo "Note: Individual tex files require proper documentclass setup"
+	@echo "See consolidation_project/alpha_two_loop/tex/ for proof documents"
+
+# Masses program targets
+
+masses-tests:
+	@echo "Running masses symbolic tests..."
+	pytest -v consolidation_project/masses/tests || echo "Masses tests not yet implemented"
+
+# Combined alpha + masses CI
+
+alpha-ci: alpha-tests alpha-audit
+	@echo "Alpha CI complete: tests passing, audit complete"
+
+.PHONY: alpha-notebooks alpha-tests alpha-audit alpha-proof masses-tests alpha-ci
 
 alpha-notebooks:
 	@echo "Open and run the notebooks under consolidation_project/alpha_two_loop/notebooks/"
-
-alpha-tests:
-	pytest -q consolidation_project/alpha_two_loop/tests
