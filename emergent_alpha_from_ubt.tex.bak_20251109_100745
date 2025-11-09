@@ -828,12 +828,4 @@ The effective potential $V_{\text{eff}}(n)$ is computed numerically using:
 
 The code implementing this calculation is available in the repository under \texttt{scripts/alpha\_calculation/}.
 
-% === Per-sector numeric table from CSV ===
-% requires: amsmath, amsthm, booktabs, pgfplotstable, hyperref
-\input{UBT_alpha_per_sector_patch}
-
-% === Hecke route via L-functions (Variant C) ===
-% provides theta -> Mellin -> L(ϑ,s) and prime-indexed local factors
-\input{tex/UBT_hecke_L_route}
-
 \end{document}
