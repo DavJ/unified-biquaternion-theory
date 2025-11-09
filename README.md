@@ -107,6 +107,16 @@ It is a unified physical theory that **generalizes Einstein's General Relativity
 
 ---
 
+## 📚 Documentation — UBT Textbook (Engineer-Friendly)
+
+- **Build status:** See CI artifact **ubt_textbook.pdf** (built from `docs/textbook/main.tex`)
+- **Scope:** Core empirical track; appendices for proofs; speculative content clearly separated
+- **Contributing:** See [docs/textbook/CONTRIBUTING.md](docs/textbook/CONTRIBUTING.md)
+
+The textbook provides an engineer-friendly overview of UBT, reusing canonical content from the main repository via `\input{}` to ensure consistency. It follows the fit-free two-loop baseline (\(\mathcal R_{\mathrm{UBT}}=1\) under assumptions A1--A3), making it ideal for reviewers and practitioners seeking a structured entry point.
+
+---
+
 ## How to Review This Repo
 
 We welcome rigorous technical review of the UBT alpha baseline result. To facilitate independent verification:
