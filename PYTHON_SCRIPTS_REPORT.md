@@ -7,6 +7,10 @@
 
 ## Quick Reference
 
+### Helper Scripts
+
+- 🔄 **`scripts/regenerate_all_csvs.sh`** - Regenerates all CSV files and verifies precision
+
 ### Scripts with Proper Alpha Calculation
 - ✅ **`alpha_core_repro/two_loop_core.py`** - Primary two-loop alpha implementation
 - ✅ **`alpha_core_repro/alpha_two_loop.py`** - Main API for alpha calculation
@@ -260,15 +264,44 @@ For `data/leptons.csv`:
 
 To regenerate all CSV files with latest calculations:
 
+### Option 1: Using the Helper Script (Recommended)
+
 ```bash
-# Generate alpha grid
+# Run the comprehensive regeneration script
+bash scripts/regenerate_all_csvs.sh
+```
+
+This script will:
+1. Generate alpha grid for prime sectors
+2. Generate alpha grid for various mu scales
+3. Generate lepton masses
+4. Verify precision of all CSV files
+
+### Option 2: Using Make
+
+```bash
+# Generate all CSV files (part of CI)
+make alpha-grid masses-csv
+
+# Or run full CI which includes CSV generation
+make ci
+```
+
+### Option 3: Manual Generation
+
+```bash
+# Generate alpha grid (prime sectors)
 python -m alpha_core_repro.run_grid
+
+# Generate alpha grid (mu scales)
+python -m alpha_core_repro.export_alpha_csv
 
 # Generate lepton masses
 python -m ubt_masses.export_leptons_csv
 
 # Verify generated files
 ls -lh alpha_core_repro/out/alpha_two_loop_grid.csv
+ls -lh data/alpha_two_loop_grid.csv
 ls -lh data/leptons.csv
 ```
 

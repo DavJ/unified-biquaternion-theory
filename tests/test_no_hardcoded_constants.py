@@ -47,6 +47,9 @@ WHITELIST = {
     "main.tex",
     "validate_alpha_constant.py",
     "validate_electron_mass.py",
+    # Tool scripts (contain reference values for replacement/auditing)
+    "replace_core_literals_with_macros.py",
+    "audit_computed_not_reference.py",
     # Documentation/README files (contain reference values)
     "README.md",
     "OVERVIEW.md",
@@ -63,6 +66,8 @@ WHITELIST = {
     "UBT_REEVALUATION_2025.md",
     "verification_checklist.md",
     "DATA_PROVENANCE.md",  # Contains example CSV outputs
+    "PYTHON_SCRIPTS_REPORT.md",  # Documentation of scripts and CSV files
+    "PYTHON_SCRIPTS_APPENDIX.md",  # Complete inventory of all scripts
 }
 
 # Directory segments to skip
