@@ -13,13 +13,24 @@ except Exception as e:
 OUT = pathlib.Path("data/alpha_two_loop_grid.csv")
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
-# You can tailor the mu grid; keep at least a few canonical points
-MU_GRID = [0.511, 1.0, 10.0, 91.1876]  # MeV/GeV per your convention
+# Physically meaningful mu scales with proper precision
+# Using precise values from PDG and other standards
+MU_GRID = [
+    0.510998946,     # Electron pole mass (PDG 2024) in MeV
+    1.776_86,        # Tau mass in GeV (if interpreting as GeV scale)
+    10.0,            # Typical hadronic scale (GeV)
+    91.1876,         # Z boson mass in GeV
+]
 
 rows = []
 for mu in MU_GRID:
     a = alpha_from_ubt_two_loop_strict(mu=mu)
-    rows.append({"mu": mu, "alpha": a, "alpha_inv": 1.0 / a})
+    # Use high precision formatting to preserve all significant digits
+    rows.append({
+        "mu": f"{mu:.15g}",           # 15 significant figures
+        "alpha": f"{a:.18e}",          # 18 decimals in scientific notation
+        "alpha_inv": f"{1.0 / a:.15f}" # 15 decimal places
+    })
 
 with OUT.open("w", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=["mu", "alpha", "alpha_inv"])
@@ -27,3 +38,4 @@ with OUT.open("w", newline="") as fh:
     w.writerows(rows)
 
 print(f"[export_alpha_csv] Wrote {OUT.resolve()} with {len(rows)} rows.")
+print(f"  Precision: mu (15 sig figs), alpha (18 decimals), alpha_inv (15 decimals)")
