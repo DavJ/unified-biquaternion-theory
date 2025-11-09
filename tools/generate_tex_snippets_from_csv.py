@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 generate_tex_snippets_from_csv.py
 Reads:
   - data/alpha_two_loop_grid.csv (expects columns: mu,alpha,alpha_inv)
