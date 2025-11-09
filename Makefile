@@ -26,19 +26,19 @@ SHELL := /bin/bash
 
 PDFLATEX ?= pdflatex
 TEXSRCS   = $(wildcard *.tex)
-CORE_MAIN = ubt_core_main.tex
-ALL_MAIN  = ubt_2_main.tex
+CORE_MAIN = consolidation_project/ubt_core_main.tex
+ALL_MAIN  = consolidation_project/ubt_2_main.tex
 TEX_MAIN ?= consolidation_project/ubt_2_main.tex
 VERIFY_SCRIPT ?= consolidation_project/scripts/verify_lorentz_in_HC.py
 
 # ----------------------------- TeX build targets --------------------------------
 core:
-	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
-	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
+	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_core_main.tex
+	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_core_main.tex
 
 all:
-	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
-	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
+	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_2_main.tex
+	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_2_main.tex
 
 pdf:
 	@which latexmk >/dev/null 2>&1 || (echo "ERROR: latexmk not found. Install TeX Live/MacTeX."; exit 1)
