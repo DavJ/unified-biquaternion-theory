@@ -13,14 +13,20 @@ except Exception as e:
 OUT = pathlib.Path("data/alpha_two_loop_grid.csv")
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
-# Physically meaningful mu scales with proper precision
-# Using precise values from PDG and other standards
+# Physically meaningful mu scales
+# NOTE: These scales are chosen based on physical significance, not fitted values
+# The electron pole mass below is from PDG (experimental reference), but the
+# alpha calculation at these scales is purely from UBT theory
 MU_GRID = [
-    0.510998946,     # Electron pole mass (PDG 2024) in MeV
-    1.776_86,        # Tau mass in GeV (if interpreting as GeV scale)
-    10.0,            # Typical hadronic scale (GeV)
-    91.1876,         # Z boson mass in GeV
+    1.0,             # Reference scale (1 MeV) - UBT baseline defined here
+    100.0,           # Typical hadronic scale
+    1000.0,          # GeV scale
+    91187.6,         # Z boson mass in MeV (if interpreting as scale)
 ]
+
+# Note: If you want to include the electron mass scale for comparison:
+# from alpha_core_repro.two_loop_core import MU0
+# The UBT baseline is defined at MU0 = 1.0 MeV by convention
 
 rows = []
 for mu in MU_GRID:
