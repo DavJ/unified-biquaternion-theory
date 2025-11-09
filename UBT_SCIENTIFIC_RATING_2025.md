@@ -190,9 +190,19 @@ This precision is exceptional and places UBT predictions among the most accurate
 - **Improvement**: ~200,000× more precise than previously stated
 - This represents **~9 significant figures of agreement** with experiment
 
+**Important Distinction - What IS and ISN'T Predicted:**
+
+✓ **Predicted from Hecke-Worlds axiom**: The existence of multiple prime sectors is a MATHEMATICAL NECESSITY if Θ is a Jacobi theta function. Hecke operators T_p (indexed by primes) necessarily decompose modular forms into prime-indexed eigenspaces. This predicts:
+- Multiple "worlds" corresponding to different primes p
+- Each sector has its own α_p^{-1} = p + Δ_CT,p
+- The multi-sector STRUCTURE is not speculative—it's required by the mathematics
+
+✗ **Not uniquely predicted**: Which specific sector (p=137) corresponds to our observable universe requires empirical matching
+
 **Remaining Challenges:**
-- Selection of prime sector p = 137 (not uniquely derived from first principles)
+- Mechanism for sector selection (why we observe p=137 specifically)
 - Form factors for other prime sectors
+- Inter-sector transition dynamics (if they exist)
 
 **Author's Acknowledgment:**
 UBT_SCIENTIFIC_STATUS_AND_DEVELOPMENT.md acknowledges this is a topological derivation with quantum corrections needed for precision. However, the 0.026% agreement is remarkable and suggests the approach is fundamentally correct.
