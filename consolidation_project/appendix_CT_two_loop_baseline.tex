@@ -529,4 +529,42 @@ While Theorem~\ref{thm:RUBT-equals-one} provides a rigorous baseline, several qu
   in UBT.
 \end{itemize}
 
+\subsection{Causality in the CT Scheme}
+\label{sec:ct-causality}
+
+A critical question for any formalism involving complex time is whether it preserves macroscopic
+causality. We address this here.
+
+\begin{theorem}[Causality in the real-time limit]
+\label{thm:ct-causality}
+In the limit \(\psi\to 0\), the CT scheme reproduces standard real-time QED propagators and
+retarded/advanced support, hence macroscopic causality is preserved.
+\end{theorem}
+
+\begin{proof}[Sketch]
+The CT analytic continuation is constructed to ensure that pole prescriptions reduce to the
+standard Feynman \(+i0\) in the real-time limit \(\psi \to 0\). Specifically:
+\begin{enumerate}
+  \item The propagator in CT has the form \(D(\tau) = D(t+i\psi)\) where the imaginary part
+  \(\psi\) acts as a regulator.
+  \item As \(\psi \to 0\), the pole structure approaches \(\frac{1}{p^2 - m^2 + i\epsilon}\),
+  recovering the standard Feynman prescription.
+  \item Microcausality \([\phi(x),\phi(y)] = 0\) for spacelike separations follows from
+  the analytic properties of the Wightman functions in the \(\psi \to 0\) limit.
+  \item Retarded Green's functions have support in the forward light cone, ensuring that
+  signals propagate causally.
+\end{enumerate}
+Therefore, the CT scheme does not introduce causal pathologies in the physically relevant
+\(\psi \to 0\) limit. Any speculative effects at \(\psi \neq 0\) are not part of the baseline
+and are addressed separately in appropriate contexts.
+\(\square\)
+\end{proof}
+
+\begin{remark}[Speculative extensions]
+Nonzero \(\psi\) has been explored in speculative contexts (see \texttt{speculative\_extensions/})
+with hypothesized phase-like degrees of freedom. These ideas are \textbf{not part of the
+\(\alpha\) baseline} nor any empirical claims in the core UBT framework. They remain isolated
+pending testable predictions.
+\end{remark}
+
 % ================== END APPENDIX: CT Two-Loop Baseline ==================

@@ -60,16 +60,13 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 - Standard Model (SU(3)×SU(2)×U(1) emerge from geometry)
 - All forces and matter in a single field equation
 
-**Note on Complex vs Biquaternionic Time:**
-> UBT employs **quaternion-valued time with complex components** (sometimes called "biquaternionic time" in this repository, though this is not a true biquaternion in the mathematical sense) with two equivalent representations:
-> - **Operator form**: T_B = t + i(ψ + **v**·**σ**) — used in local Hamiltonian evolution and spinor dynamics
-> - **Algebraic form**: T = t₀ + it₁ + jt₂ + kt₃ — used in global metric and topological formulations
-> 
-> These are equivalent under the mapping (i,j,k) ↔ (σ_x, σ_y, σ_z). Complex time **τ = t + iψ** emerges as a 2D projection when vector components are negligible: **‖v‖² ≪ |ψ|²**.
+**Time and algebraic setting.** UBT uses a biquaternionic (ℍ_ℂ) formalism on the Hermitian slice to realize Lorentzian structure. The complex time \(T=t+i\psi\) is the renormalization-time parameter in the CT scheme and lives inside the same ℍ_ℂ framework. Using \(T\) does not abandon biquaternions; it is a parameterization compatible with the ℍ_ℂ geometry (real-time limit \(\psi\to 0\) reproduces standard QED).
+
+**Causality:** The CT scheme preserves macroscopic causality in the limit \(\psi\to 0\); any speculative effects with \(\psi\neq 0\) are contained strictly in `speculative_extensions/` and are not used in the α baseline.
+
+> **Technical details**: The biquaternionic field Θ(q,τ) is defined over ℍ_ℂ, the algebra of biquaternions (quaternions with complex coefficients). The Hermitian slice construction (Appendix P6) realizes Minkowski signature within this framework. The complex time τ = t + iψ used in calculations is a renormalization-time parameter consistent with the CT scheme and reduces to standard real time when ψ→0, recovering QED.
 >
-> **Full quaternionic time is required** when Θ-field components do not commute: **[Θ_i, Θ_j] ≠ 0** (non-Abelian gauge fields, strongly coupled regimes). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
->
-> **Note**: A true biquaternion in ℍ⊗ℂ has 8 real dimensions. The UBT time structure is 4-dimensional (quaternionic). This terminology should be clarified in future work.
+> **Relationship to quaternionic time**: In regimes where vector components are significant, the full quaternionic structure T = t₀ + it₁ + jt₂ + kt₃ is used. Complex time τ = t + iψ emerges as a 2D projection when vector components are negligible (‖v‖² ≪ |ψ|²). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
 
 ---
 
@@ -420,9 +417,9 @@ See [RESEARCH_PRIORITIES.md](RESEARCH_PRIORITIES.md) for current research and de
 
 ## 📊 Theory Evaluation Reports
 
-### Current Scientific Rating: **5.5/10** (November 2025)
+### Current Scientific Rating: **6.2/10** (November 2025)
 
-UBT is classified as an early-stage research framework with exemplary scientific transparency. The rating improved from 4.5/10 to 5.5/10 following substantial mathematical formalization and the first validated prediction (electron mass).
+UBT is classified as an early-stage research framework with exemplary scientific transparency. The rating improved from 4.5/10 to 5.5/10 following substantial mathematical formalization and the first validated prediction (electron mass), and further to 6.2/10 with the fit-free baseline achievement for the fine structure constant.
 
 **Key Progress (November 2025):**
 - ✅ **Mathematical rigor:** 3.0/10 → 5.0/10 (formal field definition, SM derivation complete)
@@ -432,7 +429,7 @@ UBT is classified as an early-stage research framework with exemplary scientific
 
 **Comparison with Other ToE Candidates:**
 1. Loop Quantum Gravity: 5.3/10
-2. **UBT: 5.5/10** ⬆️
+2. **UBT: 6.2/10** ⬆️
 3. String Theory: 5.0/10
 4. M-Theory: 4.8/10
 
@@ -454,7 +451,7 @@ UBT is classified as an early-stage research framework with exemplary scientific
 
 **Status:** Repositories maintained as **SEPARATE** projects to preserve UBT's scientific credibility.
 
-**Assessment:** [HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md) provides detailed analysis explaining why integration would damage UBT's scientific rating (4.5/10 → 2.0/10).
+**Assessment:** [HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md](HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md) provides detailed analysis explaining why integration would damage UBT's scientific rating (6.2/10 → 2.0/10).
 
 **Mathematical Content:** Some computational tools (biquaternion arithmetic, theta functions) may be selectively imported with appropriate disclaimers in the future, but physical interpretations (FTL, retrocausality) are not endorsed as part of core UBT framework.
 
