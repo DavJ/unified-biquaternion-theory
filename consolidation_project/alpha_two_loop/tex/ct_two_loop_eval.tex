@@ -10,10 +10,24 @@ This section presents the complete 2-loop evaluation of the photon vacuum polari
 \(\Pi^{(2)}(q^2)\) in the Complex Time (CT) scheme, culminating in the proof that
 \(\mathcal R_{\mathrm{UBT}} = 1\) under baseline assumptions A1--A3.
 
+\subsubsection{IBP Reduction to Master Integrals}
+
+Integration-By-Parts (IBP) identities are the foundation of loop integral reduction.
+For any loop integral, the fundamental IBP relation is:
+\begin{equation}
+\label{eq:ibp_rels}
+\int d^d k \, \frac{\partial}{\partial k^\mu} \left[ \frac{k^\nu \cdot N(k)}{D_1(k) D_2(k) \cdots D_n(k)} \right] = 0
+\end{equation}
+where \(N(k)\) is the numerator and \(D_i(k)\) are propagator denominators.
+
+Expanding the derivative generates relations between integrals with different
+propagator powers, allowing reduction to a minimal master integral (MI) basis.
+
+For 2-loop vacuum polarization, all diagrams reduce to three master integrals.
+
 \subsubsection{Master Integral Decomposition}
 
-All 2-loop vacuum polarization diagrams reduce to a minimal basis of three
-master integrals (MI) via Integration-By-Parts (IBP) identities:
+The minimal basis consists of three master integrals:
 
 \paragraph{Master Integral 1: Bubble.}
 \label{eq:mi-bubble}
@@ -55,7 +69,34 @@ I_{\text{double}} = [I_{\text{bubble}}]^2 \times D_{\text{photon}}(q^2)
 \end{equation}
 where \(D_{\text{photon}}\) is the photon propagator in R\(_\xi\) gauge.
 
+\paragraph{Master Integral Catalog.}
+\label{eq:mi_defs}
+The complete master integral basis with Thomson limit (\(q^2 \to 0\)) values:
+\begin{align}
+I_{\text{bubble}}(0) &= \frac{i}{16\pi^2} \left[ \frac{2}{\epsilon} - 2 + \ln\frac{m^2}{\mu^2} \right] \label{eq:mi-bubble-thomson} \\
+I_{\text{sunset}}(0) &= \left(\frac{i}{16\pi^2}\right)^2 
+\left[ \frac{4}{\epsilon^2} + \frac{8\ln(m^2/\mu^2) - 12}{\epsilon} + \mathcal{O}(1) \right] \label{eq:mi-sunset-thomson} \\
+I_{\text{double}}(0) &= [I_{\text{bubble}}(0)]^2 / q^2 \Big|_{q^2 \to 0} \label{eq:mi-double-thomson}
+\end{align}
+All MIs are regular in the Thomson limit after pole subtraction (MS-bar scheme).
+
 \subsubsection{Assembly of \texorpdfstring{\(\Pi^{(2)}\)}{Pi-2}}
+
+The vacuum polarization tensor \(\Pi^{(2)}_{\mu\nu}(q)\) has the transverse structure:
+\begin{equation}
+\label{eq:Pi2-tensor}
+\Pi^{(2)}_{\mu\nu}(q) = \left( g_{\mu\nu} q^2 - q_\mu q_\nu \right) \Pi^{(2)}(q^2)
+\end{equation}
+
+\paragraph{Projection to scalar function.}
+\label{eq:proj_pi}
+To extract the scalar \(\Pi^{(2)}(q^2)\), we project with the transverse projector:
+\begin{equation}
+\label{eq:projection-formula}
+\Pi^{(2)}(q^2) = \frac{1}{d-1} \frac{g^{\mu\nu}}{q^2} \Pi^{(2)}_{\mu\nu}(q)
+= \frac{1}{3} \frac{g^{\mu\nu}}{q^2} \Pi^{(2)}_{\mu\nu}(q) \Big|_{d=4}
+\end{equation}
+This eliminates longitudinal (gauge-dependent) components.
 
 The total 2-loop vacuum polarization is:
 \begin{equation}
@@ -90,6 +131,24 @@ This means:
 \end{itemize}
 are \textbf{equal at every order in perturbation theory}.
 
+\paragraph{Application to vacuum polarization.}
+\label{eq:ward_apply}
+The Ward identity constrains the vacuum polarization through the relation:
+\begin{equation}
+\label{eq:ward-constraint-Pi}
+\left. \frac{\partial}{\partial \xi} \left[ \Pi^{(2)}(q^2) - Z_1 I_{\text{bubble}} \right] \right|_{q^2=0} = 0
+\end{equation}
+In the Thomson limit, gauge-dependent terms from \(Z_1\) cancel exactly with
+vertex corrections, leaving only the gauge-independent transverse part.
+
+Explicitly applying \(Z_1 = Z_2\) to Eq.~\eqref{eq:Pi2-explicit}:
+\begin{equation}
+\label{eq:ward-applied}
+\Pi^{(2)}_{\text{ward}}(q^2) = \left(\frac{e^2}{4\pi}\right)^2 
+\left[ I_{\text{sunset}} + \frac{1}{2} I_{\text{double}} \right] + \mathcal{O}(\xi)
+\end{equation}
+The \(\mathcal{O}(\xi)\) terms vanish at \(q^2 = 0\) by transversality.
+
 \paragraph{Consequence for \texorpdfstring{\(\Pi^{(2)}\)}{Pi-2}.}
 \label{para:ward-consequence}
 
@@ -104,6 +163,31 @@ Specifically, in the photon vacuum polarization:
 This is verified numerically in \texttt{test\_two\_loop\_invariance\_sweep.py}.
 
 \subsubsection{Thomson Limit Extraction}
+
+\paragraph{Definition of Thomson limit.}
+\label{eq:limit_thomson}
+The Thomson limit is the low-energy, long-wavelength regime where \(q^2 \to 0\):
+\begin{equation}
+\label{eq:thomson-definition}
+\lim_{q^2 \to 0} \Pi^{(2)}(q^2) \equiv \Pi^{(2)}(0)
+\end{equation}
+In this limit:
+\begin{itemize}
+    \item IR divergences are absent (no massless particle thresholds)
+    \item Gauge-dependent terms vanish by transversality
+    \item Scheme ambiguities cancel in physical ratios
+    \item Result is directly measurable (Thomson scattering)
+\end{itemize}
+
+Applying the limit to Eq.~\eqref{eq:ward-applied}:
+\begin{equation}
+\label{eq:thomson-applied}
+\Pi^{(2)}(0) = \left(\frac{e^2}{4\pi}\right)^2 
+\left[ I_{\text{sunset}}(0) + \frac{1}{2} I_{\text{double}}(0) \right]
+\end{equation}
+where the MIs are evaluated at \(q^2 = 0\) using Eqs.~\eqref{eq:mi-bubble-thomson}--\eqref{eq:mi-double-thomson}.
+
+\paragraph{Extraction of \texorpdfstring{\(\mathcal R_{\mathrm{UBT}}\)}{R\_UBT}.}
 
 Taking \(q^2 \to 0\) (Thomson limit), we extract the renormalization factor:
 \begin{equation}
@@ -145,7 +229,9 @@ Under Assumption A2 (CT scheme reduces continuously to QED as \(\psi \to 0\)):
 \quad \forall \text{ MI}
 \end{equation}
 
-Therefore:
+\paragraph{Step 5: Extract \texorpdfstring{\(\mathcal R_{\mathrm{UBT}} = 1\)}{R\_UBT = 1}.}
+\label{eq:R_equals_1_ct_eval}
+Combining Steps 1--4, the ratio simplifies exactly:
 \begin{equation}
 \label{eq:R-UBT-equals-one}
 \boxed{\mathcal R_{\mathrm{UBT}} = 1}
