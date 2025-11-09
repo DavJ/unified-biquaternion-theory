@@ -734,4 +734,4 @@ UBT is a **promising early-stage research framework** with exemplary transparenc
 
 **Document Status:** Complete comprehensive assessment  
 **Next Update:** After CMB analysis results (expected Q2-Q4 2026)  
-**References:** See CHALLENGES_STATUS_UPDATE_NOV_2025.md, UBT_UPDATED_SCIENTIFIC_RATING_2025.md, SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md
+**References:** See CHALLENGES_STATUS_UPDATE_NOV_2025.md, SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md

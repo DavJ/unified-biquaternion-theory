@@ -503,7 +503,6 @@ The original reevaluation (October) was accurate **at that time**. November form
 
 **References:**
 - UBT_REEVALUATION_2025.md (October baseline)
-- UBT_UPDATED_SCIENTIFIC_RATING_2025.md (November assessment)
 - REMAINING_CHALLENGES_DETAILED_STATUS.md (Comprehensive roadmap for remaining challenges)
 - THETA_FIELD_DEFINITION.md (Math formalization)
 - SM_GAUGE_GROUP_RIGOROUS_DERIVATION.md (Rigorous proofs)
