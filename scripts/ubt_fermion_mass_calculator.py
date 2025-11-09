@@ -24,7 +24,7 @@ import sys
 
 # Physical constants
 HBAR_C = 197.327  # MeV·fm
-ALPHA = 1.0 / 137.036  # Fine structure constant
+ALPHA = 1.0 / 137.035999084  # Fine structure constant (CODATA 2018)
 PI = np.pi
 
 # Experimental fermion masses from PDG 2024 (MeV)

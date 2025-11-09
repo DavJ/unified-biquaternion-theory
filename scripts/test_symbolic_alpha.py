@@ -79,11 +79,11 @@ def test_mu0_invariance():
     B = 46.3
     
     # Two different choices of μ0
-    mu0_choice1 = 0.511  # electron mass in MeV
+    mu0_choice1 = 0.51099895  # electron mass in MeV (CODATA 2018)
     mu0_choice2 = 105.66  # muon mass in MeV
     
     # Reference value at low energy (same physics)
-    alpha_inv_low = 137.036
+    alpha_inv_low = 137.035999084  # CODATA 2018
     
     # Calculate α at some fixed scale μ = 1000 MeV using both μ0 choices
     mu = 1000.0  # MeV
@@ -238,10 +238,10 @@ def test_alpha_calculation_consistency():
     print()
     
     # Compare with experimental value
-    alpha_exp = 1.0 / 137.036
+    alpha_exp = 1.0 / 137.035999084  # CODATA 2018
     error_percent = abs(alpha - alpha_exp) / alpha_exp * 100
     
-    print(f"  Experimental: α⁻¹ = 137.036")
+    print(f"  Experimental: α⁻¹ = 137.035999084")
     print(f"  UBT prediction: α⁻¹ = {alpha_inv}")
     print(f"  Error: {error_percent:.3f}%")
     print(f"  ✓ Agreement within 0.03%")

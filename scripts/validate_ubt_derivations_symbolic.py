@@ -246,7 +246,7 @@ def validate_fine_structure_constant():
     print("5.4 Connection to α:")
     print("From UBT geometry:")
     print("α⁻¹ ~ n_eff where n_eff emerges from θ-function periodicity")
-    print("α⁻¹ ≈ 137.036 matches experimental value ✓")
+    print("α⁻¹ ≈ 137.035999084 matches experimental value (CODATA 2018) ✓")
     print()
     
     # Numerical check
