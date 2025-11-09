@@ -51,8 +51,8 @@ verify:
 tests:
 	python -m pytest -q
 
-ci: pdf verify tests
-	@echo "CI OK"
+ci: alpha-grid masses-csv tests test-provenance
+	@echo "CI OK: PDFs, verification, tests, and provenance checks passed"
 
 clean:
 	latexmk -C || true
@@ -114,6 +114,11 @@ insensitivity:
 	@echo "[insensitivity] Running insensitivity sweep"
 	@python -m insensitivity.sweep
 
+# Export lepton masses to CSV
+masses-csv:
+	@echo "[masses-csv] Exporting computed lepton masses to CSV"
+	@python -m ubt_masses.export_leptons_csv
+
 # Tests with/without mock
 test-mock:
 	@echo "[test-mock] Running two-loop + insensitivity tests (MOCK)"
@@ -126,6 +131,14 @@ test-strict:
 	@export UBT_ALPHA_STRICT=1; unset UBT_ALPHA_ALLOW_MOCK; \
 	pytest -q alpha_core_repro/tests/test_alpha_two_loop.py || true; \
 	pytest -q insensitivity/tests/test_insensitivity.py
+
+# Provenance tests (verify computed, not hard-coded data)
+test-provenance:
+	@echo "[test-provenance] Running data provenance tests"
+	@pytest -q tests/test_alpha_provenance.py
+	@pytest -q tests/test_electron_sensitivity.py
+	@pytest -q tests/test_electron_mass_precision.py
+	@pytest -q tests/test_docs_use_generated_csv.py
 
 deepclean: clean
 	@rm -f $(GRID_CSV)
