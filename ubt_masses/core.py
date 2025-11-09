@@ -25,6 +25,31 @@ from alpha_core_repro.alpha_two_loop import (
 )
 
 
+# Alpha override for sensitivity testing
+# WARNING: Only for testing! Never use in production calculations.
+_ALPHA_SCALE_OVERRIDE = None  # type: float | None
+
+
+def set_alpha_override(scale: float | None):
+    """
+    Set alpha scale override for sensitivity testing.
+    
+    WARNING: This is ONLY for testing sensitivity to alpha changes.
+    Never use in production calculations.
+    
+    Args:
+        scale: Multiplicative scale factor for alpha (e.g., 1.000001 for +1 ppm)
+               Set to None to disable override.
+    """
+    global _ALPHA_SCALE_OVERRIDE
+    _ALPHA_SCALE_OVERRIDE = scale
+
+
+def clear_alpha_override():
+    """Clear alpha override, returning to normal operation."""
+    set_alpha_override(None)
+
+
 def ubt_alpha_msbar(mu: float) -> float:
     """
     Compute α in MSbar scheme at scale μ using fit-free UBT two-loop calculation.
@@ -63,6 +88,10 @@ def ubt_alpha_msbar(mu: float) -> float:
     
     # Get α from UBT formula: α^{-1} = p + Δ_CT
     alpha = alpha_corrected(p, delta_ct)
+    
+    # Apply override if set (for sensitivity testing only)
+    if _ALPHA_SCALE_OVERRIDE is not None:
+        alpha = alpha * _ALPHA_SCALE_OVERRIDE
     
     # Note: RG running of α is already included in the two-loop calculation
     # via the μ-dependent corrections in _two_loop_archimedean_core
