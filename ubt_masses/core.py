@@ -119,27 +119,52 @@ def ubt_mass_operator_electron_msbar(alpha_mu: float | None = None) -> float:
         - Sector quantum numbers
         - α(μ) from two-loop calculation
     """
-    # For now, use experimental value as placeholder
-    # This will be replaced with UBT-derived formula
-    
-    # Experimental pole mass (PDG 2024): m_e = 0.51099895 MeV
-    # MSbar mass at μ = m_e is approximately:
-    # m̄_e(m_e) ≈ m_e * (1 - δ_QED) where δ_QED ≈ (α/π) * (1 + ...)
-    
-    if alpha_mu is None:
-        # Use a reasonable initial guess for α(m_e)
-        alpha_mu = 1.0 / 137.035999
-    
-    # QED 1-loop correction estimate
-    delta_qed = (alpha_mu / math.pi) * 1.0  # Simplified
-    
-    # Approximate MSbar mass (placeholder formula)
-    # TODO: Replace with UBT-derived formula from:
-    #   - Θ field VEV
-    #   - Complex time compactification
+    # UBT Mass Operator - Electron MSbar Mass
+    # 
+    # TODO: This is a PLACEHOLDER implementation using experimental data.
+    # The full UBT derivation should calculate m_e from:
+    #   - Θ field VEV (vacuum expectation value)
+    #   - Complex time compactification radius R_ψ
     #   - Yukawa coupling from geometric structure
-    m_pole_experimental = 0.51099895  # MeV
-    mbar_approx = m_pole_experimental * (1.0 - delta_qed)
+    #   - Hopfion topological configuration
+    #
+    # For now, we use a simplified approach:
+    # 1. The UBT topological mass formula suggests m_e ≈ 0.510 MeV (bare)
+    # 2. This is ~0.2% lower than experimental PDG value of 0.51099895 MeV
+    # 3. The difference represents higher-order corrections not yet implemented
+    #
+    # IMPORTANT: This is NOT a fit-free UBT prediction yet.
+    # The value below is derived from experimental data fitting.
+    
+    # Get alpha from UBT two-loop (fit-free)
+    if alpha_mu is None:
+        # Use UBT baseline: α = 1/137 at reference scale
+        from alpha_core_repro.two_loop_core import alpha_from_ubt_two_loop_strict
+        alpha_mu = alpha_from_ubt_two_loop_strict(mu=1.0)  # At 1 MeV reference
+    
+    # QED 1-loop mass correction (MSbar → pole conversion)
+    # m_pole ≈ m_MSbar * (1 + (α/π) * C + ...)
+    # Inverted: m_MSbar ≈ m_pole * (1 - (α/π) * C)
+    delta_qed = (alpha_mu / math.pi) * 1.0  # Simplified C = 1
+    
+    # PLACEHOLDER: Using experimental pole mass as input
+    # TODO: Replace this with UBT-derived bare mass from geometric structure
+    # The UBT derivation should give m_e ≈ 0.510 MeV from Hopfion topology
+    # without using experimental data
+    #
+    # For reference:
+    # - PDG 2024 pole mass: 0.51099895 MeV (experimental)
+    # - UBT topological prediction: ~0.510 MeV (needs proper derivation)
+    # - Current approach: Use PDG value and convert to MSbar
+    #
+    # This is a TEMPORARY placeholder until the full UBT mass formula
+    # is implemented from first principles.
+    
+    # WARNING: This is experimental data, not UBT first-principles!
+    m_pole_pdg = 0.51099895  # MeV - PDG 2024 experimental value
+    
+    # Convert pole mass to MSbar using QED correction
+    mbar_approx = m_pole_pdg * (1.0 - delta_qed)
     
     return mbar_approx
 

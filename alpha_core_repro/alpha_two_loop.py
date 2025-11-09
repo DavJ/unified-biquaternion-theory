@@ -173,48 +173,40 @@ def _two_loop_archimedean_core(p: int, scheme: str, mu: Optional[float], strict:
     # For parameter-free computation, use the QED beta function:
     # dα/d(log μ) = β(α) = -(α²/π) × (N_eff/3) + O(α³)
     
-    # At p=137 reference point:
-    alpha_137 = 1.0 / 137.035999
+    # UBT BASELINE: α_0 = 1/p (from prime selection, FIT-FREE)
+    # This is the core UBT prediction: α^-1 = p exactly at the baseline
+    # No experimental input is used - this comes purely from geometric quantization
+    alpha_0 = 1.0 / float(p)
     
-    # Beta function at one loop (for reference)
-    beta_1loop = -(alpha_137**2 / math.pi) * (N_eff / 3.0)
+    # Beta function at one loop (from QED with N_eff fermion flavors)
+    beta_1loop = -(alpha_0**2 / math.pi) * (N_eff / 3.0)
     
-    # Two-loop correction scales as:
-    # Δ_CT(p) ≈ Δ_CT(137) × [1 + β_1loop × log(p/137)]
+    # UBT BASELINE PREDICTION:
+    # In the CT baseline with R_UBT = 1 (proven under assumptions A1-A3),
+    # the correction Δ_CT = 0 at leading order.
+    # The full QED value includes higher-order quantum corrections, but
+    # those are NOT part of the UBT baseline prediction.
     #
-    # This is a logarithmic correction, small for nearby primes
+    # Therefore, for FIT-FREE UBT prediction:
+    # α^{-1}_p = p + Δ_CT where Δ_CT = 0 at baseline
+    #
+    # NOTE: The experimental value α^{-1}_exp ≈ 137.036 for p=137 includes
+    # quantum loop corrections beyond the UBT baseline. The UBT baseline
+    # prediction is α^{-1} = 137 exactly, with ~0.03% discrepancy from
+    # higher-order quantum effects not included in the baseline theory.
     
-    if p == 137:
-        # Reference value (experimental matching)
-        delta_ct = 0.035999000
-    else:
-        # Extrapolate using beta function
-        # log(p/137) gives the scale evolution
+    delta_ct = 0.0  # UBT baseline: no correction (R_UBT = 1)
+    
+    # For primes different from 137, include running from beta function:
+    if p != 137:
         log_ratio = math.log(float(p) / 137.0)
-        
-        # Base correction at p=137
-        delta_137 = 0.035999000
-        
-        # Running correction (small for nearby primes)
-        # This uses the one-loop beta function
+        # Running correction from beta function
         running_correction = beta_1loop * log_ratio
-        
-        # Total correction
-        # The correction is approximately constant for nearby primes
-        # because log_ratio is small and beta_1loop ~ -10^-6
-        delta_ct = delta_137 + running_correction
-        
-        # For primes significantly different from 137,
-        # include the geometric sector dependence
-        # This would come from the form_factor in the full theory
-        # For now, keep nearly constant as form_factor = 1.0
-        
-        # Approximate constancy for nearby primes
-        # (full sector-dependent calculation would modify this)
-        delta_ct = delta_137 + 0.001 * (float(p) - 137.0) / 137.0
+        delta_ct = running_correction
     
     # Ensure physical value
-    if not math.isfinite(delta_ct) or delta_ct <= 0:
-        raise ValueError(f"Computed non-physical Δ_CT({p}) = {delta_ct}")
+    # Note: delta_ct can be zero (UBT baseline) or small positive/negative (running)
+    if not math.isfinite(delta_ct):
+        raise ValueError(f"Computed non-finite Δ_CT({p}) = {delta_ct}")
     
     return delta_ct
