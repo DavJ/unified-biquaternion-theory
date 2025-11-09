@@ -1,0 +1,94 @@
+\section*{Reproducibility Checklist}
+
+This checklist summarizes the key elements required for independent replication and verification of the UBT alpha baseline result.
+
+\subsection*{Theoretical Foundations}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Assumptions stated explicitly}: A1 (geometric locking), A2 (CT scheme), A3 (observable extraction)
+\item[\checkmark] \textbf{Theorem statement}: $\mathcal{R}_{\mathrm{UBT}} = 1$ at two loops (Theorem~\ref{thm:ct-baseline})
+\item[\checkmark] \textbf{Proof provided}: Three-step derivation via CT$\to$QED reduction, Ward identities, Thomson normalization
+\item[\checkmark] \textbf{Limitations stated}: Two-loop truncation, dependence on A1--A3, QED limit verification
+\end{itemize}
+
+\subsection*{Computational Verification}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Tests implemented}: \texttt{consolidation\_project/alpha\_two\_loop/tests/}
+  \begin{itemize}
+  \item \texttt{test\_no\_placeholders\_and\_ct\_logic.py}: Verifies no placeholder values remain
+  \item \texttt{test\_ct\_ward\_and\_limits.py}: Checks Ward identities and QED limit
+  \end{itemize}
+\item[\checkmark] \textbf{Test coverage}: Placeholder detection, CT baseline value, Ward identity verification
+\item[\checkmark] \textbf{CI/CD}: Automated testing on GitHub Actions (see \texttt{.github/workflows/})
+\end{itemize}
+
+\subsection*{Build Reproducibility}
+
+\begin{itemize}
+\item[\checkmark] \textbf{LaTeX compilation}: Standard \texttt{latexmk -pdf} workflow
+\item[\checkmark] \textbf{Dependencies documented}: TeX Live packages listed in build workflow
+\item[\checkmark] \textbf{No proprietary tools}: All tools are open-source and freely available
+\item[\checkmark] \textbf{Version control}: Full repository history on GitHub
+\end{itemize}
+
+\subsection*{Artifact Availability}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Source files}: All \texttt{.tex}, \texttt{.py}, \texttt{.md} files in repository
+\item[\checkmark] \textbf{Generated PDFs}: Committed to \texttt{publication/artifacts/}
+\item[\checkmark] \textbf{Checksums}: SHA256 hashes provided for verification
+\item[\checkmark] \textbf{Build logs}: Available in CI/CD artifacts
+\end{itemize}
+
+\subsection*{Documentation}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Replication protocol}: \texttt{docs/REPLICATION\_PROTOCOL.md}
+\item[\checkmark] \textbf{Reviewer FAQ}: \texttt{docs/REVIEWER\_FAQ.md}
+\item[\checkmark] \textbf{Issue templates}: Review comments and replication reports
+\item[\checkmark] \textbf{External discussion tracker}: Public record of feedback
+\end{itemize}
+
+\subsection*{Review Process}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Public repository}: Open for community review
+\item[\checkmark] \textbf{Issue tracking}: GitHub issues for technical questions
+\item[\checkmark] \textbf{Discussion forum}: GitHub Discussions for broader questions
+\item[\checkmark] \textbf{Response commitment}: Maintainers respond to substantive feedback
+\end{itemize}
+
+\subsection*{Known Limitations}
+
+\begin{itemize}
+\item[\checkmark] \textbf{Two-loop truncation}: Higher orders not yet computed
+\item[\checkmark] \textbf{Geometric assumptions}: A1 requires further validation
+\item[\checkmark] \textbf{Numeric prediction}: Function $F(B)$ not yet finalized
+\item[\checkmark] \textbf{Experimental tests}: Awaiting specific proposals
+\end{itemize}
+
+\subsection*{How to Verify This Work}
+
+\begin{enumerate}
+\item Clone repository: \texttt{git clone https://github.com/DavJ/unified-biquaternion-theory}
+\item Build documents: \texttt{cd consolidation\_project \&\& latexmk -pdf ubt\_2\_main.tex}
+\item Run tests: \texttt{pytest -q alpha\_two\_loop/tests}
+\item Verify baseline: Search PDF for $\mathcal{R}_{\mathrm{UBT}} = 1$ in Appendix CT
+\item Check placeholders: Confirm no "pending" or "1.84" near $\mathcal{R}_{\mathrm{UBT}}$
+\item Compute checksums: \texttt{sha256sum ubt\_2\_main.pdf}
+\item File replication report using GitHub issue template
+\end{enumerate}
+
+\subsection*{Contact Information}
+
+\begin{itemize}
+\item \textbf{Repository}: \url{https://github.com/DavJ/unified-biquaternion-theory}
+\item \textbf{Issues}: Use GitHub issue templates for technical questions
+\item \textbf{Discussions}: GitHub Discussions for general questions
+\item \textbf{Principal Investigator}: Ing. David Jaroš (see repository for contact)
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{Version}: v0.3.0 (Publication readiness release)\\
+\textbf{Last updated}: \today
