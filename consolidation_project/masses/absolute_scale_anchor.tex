@@ -1,0 +1,164 @@
+% ================== Absolute Scale Anchor for Fermion Masses ==================
+% VERSION: v1.0 - Program Sketch
+% AUTHOR: UBT Team
+% PURPOSE: Candidate anchor for fixing overall fermion mass scale from geometry
+%
+% DEPENDENCIES:
+% Requires: \usepackage{amsmath,amssymb,amsthm}
+% References: Appendix CT (geometric locking), yukawa_in_HC.tex, ct_two_loop_renorm.tex
+
+\section{Absolute Scale Anchor from Geometric Normalization}
+\label{app:absolute-scale-anchor}
+
+\subsection{Overview}
+
+Even if the biquaternionic structure fixes all \textbf{mass ratios} (e.g., $m_\mu/m_e$, $m_\tau/m_\mu$) from first principles, there remains the question of the \textbf{absolute mass scale}. In the Standard Model, this scale is set by the Higgs vacuum expectation value (vev) $v \approx 246$ GeV, which is an empirical input.
+
+For UBT to be fully predictive, we must derive the absolute fermion mass scale from geometric considerations without introducing fitted parameters. This appendix outlines two candidate anchors.
+
+\subsection{Candidate Anchor 1: Invariant Measure Normalization}
+
+The same geometric normalization that fixes $N_{\mathrm{eff}}$ and $R_\psi$ for the $\alpha$ derivation may also constrain the absolute fermion mass scale.
+
+\paragraph{Recall: $\alpha$ derivation.}
+In Appendix CT, we showed that the effective mode count $N_{\mathrm{eff}}$ is determined by:
+\begin{itemize}
+  \item Lorentz-invariant measure on the Hermitian slice
+  \item Spectral domain $\Omega$ with boundary conditions $\mathcal B$
+  \item Thomson-limit normalization at $q^2 = 0$
+\end{itemize}
+
+The normalization $R_\psi$ was fixed by requiring:
+\[
+\int_0^{2\pi} e^{B(\psi)-2A(\psi)} |\xi_0(\psi)|^2 \, d\psi = 1,
+\]
+where $A, B$ are warp factors and $\xi_0$ is the zero-mode profile (Lemma~\ref{lem:Rpsi-fixed} in Appendix CT).
+
+\paragraph{Extension to Yukawa sector.}
+Consider the overlap integral for Yukawa couplings on the Hermitian slice:
+\[
+Y_{ij} \sim \int_{\mathcal H} \psi_L^i(q) \, \phi(q) \, \psi_R^j(q) \, d\mu(q),
+\]
+where:
+\begin{itemize}
+  \item $\psi_L^i, \psi_R^j$ are left/right fermion mode functions
+  \item $\phi$ is the Higgs field profile
+  \item $d\mu(q)$ is the invariant measure on the Hermitian slice $\mathcal H$
+\end{itemize}
+
+If the normalization of $d\mu$ is the \textbf{same} as the one used for $N_{\mathrm{eff}}$ and $R_\psi$, then the overall scale of $Y_{ij}$ (and hence fermion masses) is tied to the geometric normalization.
+
+\paragraph{Concrete proposal.}
+Define the overall Yukawa scale by:
+\[
+Y_0 := \frac{\Lambda_{\mathbb{H}_{\mathbb{C}}}}{\sqrt{R_\psi}},
+\]
+where $\Lambda_{\mathbb{H}_{\mathbb{C}}}$ is a characteristic energy scale from the biquaternionic geometry (e.g., the inverse of a geometric length scale).
+
+Then fermion masses are:
+\[
+m_f = Y_0 \times r_f \times v_{\text{eff}},
+\]
+where:
+\begin{itemize}
+  \item $r_f$ is a dimensionless ratio fixed by Yukawa texture (from involutions and CT renormalization)
+  \item $v_{\text{eff}}$ is the effective Higgs vev, possibly related to $R_\psi$ or another geometric scale
+\end{itemize}
+
+\paragraph{Acceptance criterion.}
+This anchor is acceptable if:
+\begin{enumerate}
+  \item $\Lambda_{\mathbb{H}_{\mathbb{C}}}$ is determined uniquely by the Hermitian slice construction (no free parameter)
+  \item The relation $Y_0 \sim \Lambda/\sqrt{R_\psi}$ follows from dimensional analysis and normalization consistency
+  \item Predicted fermion masses match experimental values within error budget (after fixing ratios separately)
+\end{enumerate}
+
+\subsection{Candidate Anchor 2: Topological Constraint}
+
+An alternative approach uses topological invariants to fix the absolute scale.
+
+\paragraph{Hopfion mass formula (electron example).}
+In earlier UBT literature, the electron mass was related to a topological soliton (Hopfion) in the $\Theta$-field:
+\[
+m_e \sim \frac{\hbar}{c R_\psi} \times n_H,
+\]
+where $n_H$ is a winding number.
+
+While this gave approximately correct numerical results ($m_e \approx 0.510$ MeV), it was not a fully first-principles derivation because:
+\begin{enumerate}
+  \item The Hopfion ansatz was phenomenological (not derived from field equations)
+  \item The relation to Yukawa couplings was not established
+  \item The vev structure was not included consistently
+\end{enumerate}
+
+\paragraph{Improved topological anchor.}
+A rigorous version would:
+\begin{enumerate}
+  \item Derive fermion zero-modes as topological solitons from the UBT field equations
+  \item Relate the soliton energy to the Yukawa coupling eigenvalues
+  \item Fix the overall mass scale by requiring consistency between:
+  \begin{itemize}
+    \item Soliton energy $E_{\text{soliton}}$
+    \item Yukawa mass $m_Y = Y \times v_{\text{eff}}$
+    \item Topological charge normalization
+  \end{itemize}
+\end{enumerate}
+
+If successful, this would yield an absolute mass scale without empirical input, analogous to the fit-free $\alpha$ derivation.
+
+\subsection{Acceptance Criteria for Any Anchor}
+
+Any proposed absolute scale anchor must satisfy:
+\begin{enumerate}
+  \item \textbf{No fitted parameters:} All quantities are derived from $\mathbb H_{\mathbb C}$ geometry, renormalization consistency, or topological invariants.
+  \item \textbf{Scheme independence:} The result must not depend on arbitrary choices in the renormalization scheme (modulo irrelevant finite reparametrizations).
+  \item \textbf{Consistency with ratios:} The absolute scale must be compatible with mass ratios derived separately from Yukawa texture constraints.
+  \item \textbf{Falsifiability:} Predicted masses must be compared to experimental values; disagreement falsifies the theory.
+\end{enumerate}
+
+\subsection{Relation to $\alpha$ Derivation}
+
+The absolute scale problem for fermion masses is analogous to the pipeline function $F(B)$ in the $\alpha$ derivation. We established:
+\[
+\alpha^{-1} = F\!\left(\frac{2\pi N_{\mathrm{eff}}}{3R_\psi}\right),
+\]
+where $B = \frac{2\pi N_{\mathrm{eff}}}{3R_\psi}$ is fixed by geometric locking, but $F$ itself is not yet derived from first principles.
+
+Similarly, for fermion masses:
+\[
+m_f = Y_0 \times r_f \times v_{\text{eff}},
+\]
+where $r_f$ may be fixed by Yukawa constraints, but $Y_0$ and $v_{\text{eff}}$ require geometric anchoring.
+
+\paragraph{Priority.}
+Deriving $F(B)$ and $Y_0$ from first principles are both open problems in UBT. Progress on either front would strengthen the theory's predictive power.
+
+\subsection{Current Status and Next Steps}
+
+\textbf{Status:} Two candidate anchors proposed; neither fully developed.
+
+\textbf{Next steps:}
+\begin{enumerate}
+  \item Formalize the invariant measure normalization on the Hermitian slice
+  \item Compute overlap integrals for Yukawa couplings with canonical normalization
+  \item Derive topological soliton solutions from UBT field equations (not just ansätze)
+  \item Compare predictions to experimental fermion masses
+  \item Publish predictions \textbf{before} comparing to data (to avoid hindsight bias)
+\end{enumerate}
+
+\textbf{Timeline estimate:} 24--36 months for first absolute mass predictions.
+
+\subsection{Ethical Note: No Post-Hoc Fitting}
+
+We emphasize again: any absolute scale anchor must be derived \textbf{before} comparing to experimental values. Adjusting the anchor after seeing data would constitute parameter fitting and undermine the scientific integrity of UBT.
+
+If the derived scale disagrees with experiment, we must:
+\begin{itemize}
+  \item Acknowledge the disagreement openly
+  \item Re-examine the geometric construction
+  \item Revise or abandon the mass derivation program if no resolution is found
+\end{itemize}
+
+This commitment to falsifiability is central to the UBT research program.
+
+% ================== END ==================

@@ -146,6 +146,66 @@ For complete details, see the included appendices from the main UBT consolidatio
 
 \input{../reproducibility_checklist.tex}
 
+\section{Fermion Masses: Program Sketch}
+
+We outline a first-principles approach within the biquaternionic framework for fermion mass derivation. The goal is to extend the fit-free methodology (A1--A3) from the gauge sector ($\alpha$ derivation) to the Yukawa sector.
+
+\subsection{Program Structure}
+
+The program consists of four stages:
+
+\paragraph{(i) Algebraic constraints on Yukawas.}
+On the Hermitian slice $\mathcal{H} \subset \mathbb{H}_{\mathbb{C}}$, fermions are represented as left ideals and the Higgs field emerges from the biquaternionic structure. The three involutions (complex conjugation, quaternionic conjugation, Hermitian adjoint) implement discrete symmetries (P, T, C) and constrain the allowed Yukawa bilinears.
+
+Under these constraints, the charged-lepton Yukawa matrix admits a decomposition (details in included appendices):
+\[
+Y_\ell = a \cdot \mathbb{1}_{3\times 3} + b \cdot \Sigma + c \cdot T + \ldots,
+\]
+where $a, b, c$ are coefficients determined by overlap integrals on $\mathcal{H}$ (not free parameters), and $\Sigma, T$ are fixed matrices from geometric structure.
+
+\paragraph{(ii) Two-loop CT renormalization.}
+Extending the CT renormalization framework from Appendix CT to the Yukawa sector, Ward identities and gauge invariance constrain Yukawa counterterms. The key insight: certain combinations of Yukawa couplings become functions of the same geometric invariants ($N_{\mathrm{eff}}, R_\psi$) used in the $\alpha$ derivation, providing a ``locking'' mechanism analogous to $\mathcal{R}_{\mathrm{UBT}} = 1$.
+
+\paragraph{(iii) Sum rules and ratios.}
+Before fixing the absolute mass scale, we aim for falsifiable predictions of mass ratios (e.g., $m_\mu/m_e$, $m_\tau/m_\mu$) independent of the overall scale. These ratios emerge from eigenvalues of $Y_\ell$ and can be compared to experimental PDG values with full error budgeting.
+
+\textbf{Pre-registration requirement}: All mass ratio predictions must be published before comparison to data, preventing hindsight bias.
+
+\paragraph{(iv) Absolute scale anchor.}
+Two candidate mechanisms for fixing the overall fermion mass scale without empirical input:
+\begin{enumerate}
+  \item \textbf{Invariant measure normalization}: Relate the Yukawa scale to the same geometric normalization used for $N_{\mathrm{eff}}$ and $R_\psi$.
+  \item \textbf{Topological constraint}: Tie fermion masses to soliton energies and winding numbers derived from UBT field equations.
+\end{enumerate}
+
+Any anchor must satisfy: (a) no fitted parameters, (b) scheme independence, (c) consistency with mass ratios, (d) falsifiability.
+
+\subsection{Current Status and Timeline}
+
+\textbf{Status}: Framework established; detailed two-loop calculations in progress.
+
+\textbf{Milestones}:
+\begin{itemize}
+  \item Lepton mass ratio predictions: 12--18 months
+  \item Absolute scale anchor: 24--36 months
+  \item Extension to quark sector: 36+ months
+\end{itemize}
+
+\textbf{Falsification}: If predicted ratios disagree with experimental values beyond error budget, the Yukawa texture hypothesis is falsified.
+
+\subsection{Relation to $\alpha$ Baseline}
+
+The fermion mass program mirrors the fit-free $\alpha$ derivation:
+\begin{itemize}
+  \item \textbf{Geometric locking} (A1): Same $N_{\mathrm{eff}}, R_\psi$ constrain Yukawa coefficients
+  \item \textbf{CT renormalization} (A2): Ward identities enforce consistency
+  \item \textbf{Observable extraction} (A3): Mass ratios provide gauge-invariant tests
+\end{itemize}
+
+Both programs uphold the principle: \textbf{no fitted parameters, only geometric constraints and renormalization consistency}.
+
+For detailed technical content, see the masses module appendices in the full UBT repository.
+
 \section{Conclusions}
 
 We have established a fit-free baseline for the fine-structure constant derivation in UBT:

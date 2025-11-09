@@ -124,14 +124,14 @@
 **Validation:** Matches known SM symmetries exactly
 
 ### Status of fermion masses (current)
-- **α (fine-structure constant):** derived **fit-free** from UBT core (CT→QED, Ward + Thomson, geometric locking) with \(\mathcal R_{\mathrm{UBT}}=1\).
-- **Fermion/quark masses:** **not yet derived from first UBT principles.** In the Standard Model, masses arise from Yukawa couplings and the Higgs vev; UBT must supply additional structure (algebraic constraints and renormalization logic) to predict these parameters.
-- **Electron mass:** **not computed from a fitted parameter in UBT core.** We do **not** claim a first-principles prediction for \(m_e\) yet. Extracting \(m_e\) from experimental constants (e.g., \(R_\infty\), \(\alpha\), \(h\), \(c\)) is **not** a first-principles derivation—it's a re-expression of measured data. Our target is a genuine UBT derivation via Yukawa/vev structure or equivalent constraints.
+- **α (fine-structure constant):** derived **fit-free** from UBT core (CT→QED, Ward + Thomson, geometric locking) with $\mathcal R_{\mathrm{UBT}}=1$.
+- **Fermion/quark masses:** **not yet derived from first UBT principles.** We are initiating a program (Yukawa-in-ℍ_ℂ, CT two-loop renormalization, sum rules, absolute scale anchor) to make predictive statements without fitted parameters.
+- **Electron mass:** not claimed as first-principles UBT prediction at present. Expressing $m_e$ via metrological constants ($R_\infty$, $\alpha$, $h$, $c$) is a re-expression of measured inputs, not a derivation. The goal is a genuine derivation via the above program without fitted parameters.
 
 ### Roadmap (fermion masses)
 1) **Yukawa in ℍ_ℂ:** derive the algebraic form of Yukawa couplings on the Hermitian slice (left/right actions, discrete symmetries via involutions).
 2) **Renormalization (CT two-loop):** set CT renormalization conditions that fix scheme-ambiguous pieces and relate Yukawa couplings to geometric invariants (locking-like constraints).
-3) **Sum rules & ratios:** aim first at ratios \(m_e/m_\mu\), \(m_\mu/m_\tau\), and quark mass relations to reduce absolute-scale ambiguities; derive falsifiable relations.
+3) **Sum rules & ratios:** aim first at ratios $m_e/m_\mu$, $m_\mu/m_\tau$, and quark mass relations to reduce absolute-scale ambiguities; derive falsifiable relations.
 4) **Absolute scale:** tie the overall fermion mass scale to a UBT geometric quantity (e.g., invariant volume/measure normalization) without empirical fits.
 
 ### 🔬 Testable Predictions (Awaiting Experiment)
