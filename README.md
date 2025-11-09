@@ -62,6 +62,8 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 **Time and algebraic setting.** UBT uses a biquaternionic (ℍ_ℂ) formalism on the Hermitian slice to realize Lorentzian structure. The complex time \(T=t+i\psi\) is the renormalization-time parameter in the CT scheme and lives inside the same ℍ_ℂ framework. Using \(T\) does not abandon biquaternions; it is a parameterization compatible with the ℍ_ℂ geometry (real-time limit \(\psi\to 0\) reproduces standard QED).
 
+**Causality:** The CT scheme preserves macroscopic causality in the limit \(\psi\to 0\); any speculative effects with \(\psi\neq 0\) are contained strictly in `speculative_extensions/` and are not used in the α baseline.
+
 > **Technical details**: The biquaternionic field Θ(q,τ) is defined over ℍ_ℂ, the algebra of biquaternions (quaternions with complex coefficients). The Hermitian slice construction (Appendix P6) realizes Minkowski signature within this framework. The complex time τ = t + iψ used in calculations is a renormalization-time parameter consistent with the CT scheme and reduces to standard real time when ψ→0, recovering QED.
 >
 > **Relationship to quaternionic time**: In regimes where vector components are significant, the full quaternionic structure T = t₀ + it₁ + jt₂ + kt₃ is used. Complex time τ = t + iψ emerges as a 2D projection when vector components are negligible (‖v‖² ≪ |ψ|²). See `consolidation_project/appendix_N2_extension_biquaternion_time.tex` for the complete transition criterion.
