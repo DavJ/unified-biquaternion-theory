@@ -28,6 +28,12 @@ The fine-structure constant $\alpha \approx 1/137.036$ is one of the fundamental
 
 This manuscript establishes the \textbf{fit-free baseline}: at two-loop order in perturbation theory, under well-defined assumptions A1--A3, the renormalization factor $\mathcal{R}_{\mathrm{UBT}}$ equals unity. This result eliminates free parameters from the alpha derivation within this framework.
 
+\paragraph{Note on references.} This manuscript is excerpted from the full UBT consolidation document. Some internal references point to sections in the main document (labeled \texttt{app:ct-baseline-R1} and \texttt{thm:RUBT-equals-one}), which correspond to the CT baseline theorem presented here as Theorem~\ref{thm:ct-baseline}. For the complete derivation, see the full repository at \url{https://github.com/DavJ/unified-biquaternion-theory}.
+
+% Define labels for compatibility with included sections
+\label{app:ct-baseline-R1}
+\label{thm:RUBT-equals-one}
+
 \subsection{Main Result}
 
 \begin{theorem}[CT Baseline, Informal]
@@ -126,19 +132,19 @@ For complete details, see the included appendices from the main UBT consolidatio
 
 \section{Geometric Inputs}
 
-\input{../consolidation_project/alpha_two_loop/tex/geometric_inputs_proof.tex}
+\input{../../consolidation_project/alpha_two_loop/tex/geometric_inputs_proof.tex}
 
 \section{CT Scheme Definition}
 
-\input{../consolidation_project/alpha_two_loop/tex/ct_scheme_definition.tex}
+\input{../../consolidation_project/alpha_two_loop/tex/ct_scheme_definition.tex}
 
 \section{$\mathcal{R}_{\mathrm{UBT}}$ Extraction}
 
-\input{../consolidation_project/alpha_two_loop/tex/R_UBT_extraction.tex}
+\input{../../consolidation_project/alpha_two_loop/tex/R_UBT_extraction.tex}
 
 \section{Reproducibility Checklist}
 
-\input{reproducibility_checklist.tex}
+\input{../reproducibility_checklist.tex}
 
 \section{Conclusions}
 
@@ -173,6 +179,6 @@ All source code, LaTeX documents, test suites, and build artifacts are publicly 
 Replication protocol: \texttt{docs/REPLICATION\_PROTOCOL.md}
 
 \bibliographystyle{plain}
-\bibliography{../consolidation_project/references}
+\bibliography{../../consolidation_project/references}
 
 \end{document}
