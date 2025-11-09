@@ -133,7 +133,7 @@ New: (5.0 + 5.0 + 3.5 + 4.5 + 6.0 + 9.5×1.5) / 6.5 = 5.5/10
 **What Changed:**
 
 ✅ **Data Provenance Verification** (Nov 2025)
-- **Alpha precision verified**: α⁻¹ = 137.035999000 vs CODATA 2022: 137.035999177(21)
+- **Alpha precision verified**: α⁻¹ = 137.035999 vs CODATA 2022: 137.035999177(21)
 - **Relative error**: 1.3×10⁻⁹ (parts per billion)
 - **Electron mass precision**: m_e = 0.510996 MeV vs experiment 0.510999 MeV  
 - **Relative error**: 5.4×10⁻⁶ (parts per million)
