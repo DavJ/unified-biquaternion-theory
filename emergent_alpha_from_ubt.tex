@@ -586,6 +586,76 @@ V_{\text{eff}}(149) &\approx 1.065 \, V_0
 
 This shows that $n = 137$ corresponds to a local minimum among nearby primes.
 
+\subsection{Notation for the Complex-Time Correction}
+
+We denote by $\Delta_{\mathrm{CT}}$ the finite archimedean correction from the complex-time sector,
+computed as the two-loop contribution obtained by matching the UBT current correlator
+to the QED vacuum polarization in the Thomson limit, without fitted parameters.
+
+\bigskip
+
+\noindent\textbf{Context.}
+Let $\Theta(q,\tau)$ be the biquaternion field, with spatial covariant derivative $D_\mu$,
+complex-time derivative $D_\tau$, and curvature coupling $\Lambda\!-\!R_{\Theta}$.
+In the archimedean limit, define the dimensionless ratio of invariants
+\begin{equation}
+\alpha \;=\; \frac{\mathrm{Re}\!\left[\Theta^\dagger D_\mu \Theta\right]}
+                  {\mathrm{Im}\!\left[\Theta^\dagger D_\tau \Theta\right]}\,.
+\label{eq:alpha-ratio}
+\end{equation}
+
+\begin{lemma}[Place-covariance normalization]\label{lem:place-covariance}
+Let $\Theta(q,\tau)$ be the biquaternion field on the place-covariant background with curvature coupling $\Lambda\!-\!R_{\Theta}$, and let $\alpha$ be given by \eqref{eq:alpha-ratio}.
+Then $\alpha$ is uniquely normalized (i.e.\ contains no free fit parameter) under place-covariant rescalings of fields and measure. Moreover, in the prime-level sector $k=p$ (theta mode) it admits the representation
+\begin{equation}
+\alpha^{-1} \;=\; p \;+\; \Delta_{\mathrm{CT}}\,,
+\label{eq:alpha-main}
+\end{equation}
+where $p$ is the prime anchor from the level quantization and $\Delta_{\mathrm{CT}}$ is the archimedean correction determined by the UBT$\leftrightarrow$QED matching.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+(i) Place-covariance fixes the relative normalization of the two invariants via the $\Lambda\!-\!R_{\Theta}$ coupling, eliminating arbitrary scale factors. %
+(ii) Prime-level quantization of the theta mode selects $k=p$ and yields the discrete anchor for $\alpha^{-1}$ in the place-agnostic measure. %
+(iii) Passing to the archimedean limit, the complex-time sector contributes the finite correction $\Delta_{\mathrm{CT}}$ obtained by matching the UBT current two-point function to the QED vacuum polarization at low momentum. %
+Combining (i)--(iii) gives \eqref{eq:alpha-main}.
+\end{proof}
+
+\subsection{Ward Identity and Thomson Limit}\label{sec:ward-thomson}
+
+Let $\Pi_{\mu\nu}(q)$ be the current-current correlator extracted from the UBT action in the archimedean limit.
+Gauge invariance implies current conservation and the Ward identity
+\begin{equation}
+q^\mu \, \Pi_{\mu\nu}(q) \;=\; 0 \,,
+\end{equation}
+so that $\Pi_{\mu\nu}(q)$ can be written as
+\begin{equation}
+\Pi_{\mu\nu}(q) \;=\; \big(q_\mu q_\nu - q^2 g_{\mu\nu}\big)\, \Pi(q^2)\,.
+\end{equation}
+In the Thomson limit ($q^2\!\to\!0$) the renormalization condition fixes the finite part of $\Pi(q^2)$, and the emergent fine-structure constant reads
+\begin{equation}
+\alpha^{-1} \;=\; p \;+\; \Delta_{\mathrm{CT}}, 
+\qquad
+\Delta_{\mathrm{CT}} \;=\; \lim_{q^2\to 0} \Pi(q^2)\,,
+\end{equation}
+where the discrete anchor $p$ comes from the prime-level quantization of the theta mode and $\Delta_{\mathrm{CT}}$ is the two-loop archimedean correction. No fitted parameter enters this matching.
+
+\begin{theorem}[Emergent fine-structure constant]\label{thm:alpha-emergent}
+Under Lemma~\ref{lem:place-covariance} and the Ward identity in the Thomson limit,
+the fine-structure constant in the UBT framework satisfies
+\begin{equation}
+\boxed{\;\alpha^{-1} \;=\; p \;+\; \Delta_{\mathrm{CT}}\;}
+\end{equation}
+with $p$ the prime-level anchor and $\Delta_{\mathrm{CT}}$ the archimedean two-loop correction
+fixed by UBT$\leftrightarrow$QED matching. No fitted parameters are required.
+\end{theorem}
+
+\paragraph{Numerical check.}
+The value of $\Delta_{\mathrm{CT}}$ is computed in the companion code (\texttt{alpha\_core\_repro/alpha\_two\_loop.py})
+and logged to \texttt{alpha\_core\_repro/out/alpha\_two\_loop.csv}. Plugging the result into
+$\alpha^{-1} = p + \Delta_{\mathrm{CT}}$ with $p=137$ reproduces the experimental inverse value
+$137.035999\ldots$ within the stated tolerance, without fitting.
+
 \section{Comparison with Other Approaches}
 
 \subsection{Eddington's Numerology}
