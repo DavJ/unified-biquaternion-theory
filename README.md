@@ -263,8 +263,8 @@ The following table provides a quick reference to major theorems, proofs, and re
 | **[R1]** | GR Equivalence in Real Limit | `appendix_R_GR_equivalence.tex` | ✓ Complete |
 | **[B1]** | Symbolic B Derivation | `ALPHA_SYMBOLIC_B_DERIVATION.md`, Sec 5 | ✓ v8 ENHANCED |
 | **[D1]** | Dimensional Consistency | `ALPHA_SYMBOLIC_B_DERIVATION.md`, Sec 7 | ✓ v8 NEW |
-| **[T1]** | Transition Criterion | `TRANSITION_CRITERION_COMPLEX_BIQUATERNIONIC.md` | ⚠️ Needs formalization |
-| **[M1]** | Modified Gravity Predictions | `MODIFIED_GRAVITY_PREDICTION.md` | ⚠️ In progress |
+| **[T1]** | Transition Criterion | `TRANSITION_CRITERION_COMPLEX_BIQUATERNIONIC.md` | ✓ Complete |
+| **[M1]** | Modified Gravity Predictions | `MODIFIED_GRAVITY_PREDICTION.md` | ✓ Complete |
 
 **Notation:**
 - ✓ Complete: Rigorous proof provided
