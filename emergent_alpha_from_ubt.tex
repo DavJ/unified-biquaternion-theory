@@ -831,6 +831,40 @@ The code implementing this calculation is available in the repository under \tex
 % requires: amsmath, amsthm, booktabs, pgfplotstable, hyperref
 \input{UBT_alpha_per_sector_patch}
 
+\section{Hecke presentation options: A/B/C}
+We summarize three equivalent ways to realize the Hecke structure relevant for UBT. 
+All three yield the same prime–indexed factorization and thus the same sector anchor $p$ in the result 
+$\alpha_p^{-1}=p+\Delta_{\mathrm{CT}}(p)$; we adopt Variant~C in the main derivation for conceptual clarity.
+
+\paragraph{Variant A (theta constants, half–integral weight, Kohnen plus).}
+Construct $\vartheta(\tau)$ from Jacobi theta constants $\theta_2,\theta_3,\theta_4$ at $z=0$ so that 
+$\vartheta$ transforms with weight $k=\tfrac12$ on $\Gamma_0(4N)$ (nebentypus $\chi$) in Kohnen’s plus space. 
+Hecke acts by $T(p^2)$ on Fourier coefficients.
+
+\paragraph{Variant B (theta series of binary quadratic forms).}
+Let $\vartheta_Q(\tau)=\sum_{x\in\mathbb Z^2} e^{\pi i\, Q[x]\tau}$ for a positive definite binary quadratic form $Q$. 
+Again $k=\tfrac12$, level $4N$, nebentypus $\chi$, and Hecke uses $T(p^2)$.
+
+\paragraph{Variant C (automorphic/L–function route; used here).}
+Take $\vartheta(\tau)$ as above, pass to $L(\vartheta,s)$ by Mellin transform (with the standard gamma factor), 
+and use the Euler product $L(\vartheta,s)=\prod_p L_p(\vartheta,s)$ to identify the local place $p$ (Hecke sector). 
+This makes the prime anchor explicit and keeps the physics matching (Ward $\to$ Thomson) purely archimedean.
+
+\begin{proposition}[Presentation invariance of the prime anchor]
+Let $\vartheta$ be realized by A (theta constants) or B (theta series). 
+Then $L(\vartheta,s)$ obtained by Mellin transform admits the same Euler product $\prod_p L_p(\vartheta,s)$ 
+as in Variant~C. Consequently, the identification of the Hecke sector as the local place $p$ and the formula
+$\alpha_p^{-1}=p+\Delta_{\mathrm{CT}}(p)$ are independent of the chosen presentation.
+\end{proposition}
+
+\paragraph{Remark on bad primes.}
+At $p=2$ and primes dividing the level, local formulas for Hecke factors differ by standard sign/ramification details. 
+These do not affect the archimedean correction $\Delta_{\mathrm{CT}}(p)$ nor the sector anchoring by $p$.
+
+\paragraph{Choice in this work.}
+We adopt Variant~C for transparency (theta $\to$ Mellin $\to$ $L(\vartheta,s)$ with Euler product), 
+and include A/B constructions in the Appendix for completeness.
+
 % === Hecke route via L-functions (Variant C) ===
 % provides theta -> Mellin -> L(ϑ,s) and prime-indexed local factors
 \input{tex/UBT_hecke_L_route}
