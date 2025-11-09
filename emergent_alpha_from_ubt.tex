@@ -796,6 +796,43 @@ Particle Data Group,
 
 \appendix
 
+\section{Renormalization–group running of $\alpha(\mu)$}
+\label{app:RG-alpha}
+For completeness we record the low–energy QED running that relates the static UBT value
+$\alpha_p$ (defined via the Ward$\to$Thomson matching at $\mu\!\to\!0$) to its value at a finite
+scale $\mu$. At one loop in QED,
+\begin{equation}
+\frac{d\,\alpha}{d\ln\mu} \;=\; \beta(\alpha) \;=\; \frac{2}{3\pi}\Big(\sum_f Q_f^2\Big)\,\alpha^2 \,,
+\qquad\Rightarrow\qquad
+\alpha^{-1}(\mu) \;=\; \alpha^{-1}(\mu_0) \;-\; \frac{2}{3\pi}\Big(\sum_f Q_f^2\Big)\ln\!\frac{\mu}{\mu_0}\,,
+\label{eq:RG-alpha}
+\end{equation}
+where the sum runs over active charged fermions $f$ with $Q_f$ in units of $e$.
+Including fermion thresholds yields the familiar piecewise–logarithmic running via decoupling.
+
+\paragraph{Connection to the UBT sector prediction.}
+In a given Hecke sector $p$ we predict the static anchor
+\begin{equation}
+\alpha_p^{-1} \;=\; p \;+\; \Delta_{\mathrm{CT}}(p)\,,
+\end{equation}
+with $\Delta_{\mathrm{CT}}(p)$ the finite two–loop archimedean correction obtained by matching the UBT current
+two–point function to QED in the Thomson limit. Equation~\eqref{eq:RG-alpha} then transports $\alpha_p$ from
+$\mu\!\to\!0$ to experimental scales $\mu$ without any additional free parameters.
+
+\paragraph{Ward identity and vacuum polarization.}
+The UBT matching uses the QED vacuum polarization $\Pi(q^2)$ and the Ward identity to fix the finite part
+\(
+\Delta_{\mathrm{CT}}(p) \,=\, \lim_{q^2\to 0}\Pi(q^2)
+\)
+in strict analogy to the low–energy normalization of the QED coupling. Higher–loop QED/RG effects can
+be included systematically; the sector anchor $p$ remains discrete and RG–invariant.
+
+\paragraph{Practical note.}
+In our numerics we adopt $\mu_0$ in the deep infrared (Thomson limit); to compare against data reported at
+$\mu\!=\!m_Z$ or $\mu\!=\!m_e$, use \eqref{eq:RG-alpha} with the appropriate set of active fermions between
+the thresholds and the chosen scale.
+
+
 \section{Technical Details of the Stability Analysis}
 
 The stability analysis for the winding number requires computing the second variation of the action. For a field configuration with winding $n$, we write:
@@ -868,5 +905,49 @@ and include A/B constructions in the Appendix for completeness.
 % === Hecke route via L-functions (Variant C) ===
 % provides theta -> Mellin -> L(ϑ,s) and prime-indexed local factors
 \input{tex/UBT_hecke_L_route}
+
+\paragraph{Remark on bad primes ($p=2$ and primes dividing the level).}
+At $p=2$ and primes $p\mid 2N$ the local Hecke theory for half–integral weight requires modified
+operators and signs (ramification, Atkin–Lehner). The resulting local Euler factors differ by standard
+conventions (\cite{Kohnen1980,Iwaniec1997}), but this does \emph{not} affect the archimedean correction
+$\Delta_{\mathrm{CT}}(p)$ nor the sector anchoring by the prime index itself: the UBT matching in the Thomson
+limit remains identical, hence $\alpha_p^{-1}=p+\Delta_{\mathrm{CT}}(p)$ holds sector–wise without fitted parameters.
+
+
+\subsection{Hecke eigenform and presentation invariance}
+\label{subsec:eigenform-invariance}
+Let $\vartheta(\tau)=\sum_{n\ge0} a_n q^n$ be our half–integral weight object in Kohnen’s plus space
+$S_{1/2}(\Gamma_0(4N),\chi)$ built from theta constants (Variant~A) or from binary quadratic forms (Variant~B).
+For primes $p\nmid 2N$ the Hecke operator $T(p^2)$ acts on Fourier coefficients by
+\[
+(T(p^2)\,\vartheta)(\tau)=\sum_{n\ge0}\!\Big(a_{p^2 n}+\chi(p)\,p^{-1/2}\,a_n+p^{0}\,a_{n/p^2}\Big)q^n, 
+\quad a_{n/p^2}=0\text{ if }p^2\nmid n,
+\]
+i.e. the half–integral weight $k=\tfrac12$ exponents are standard (\cite{Shimura1973,Kohnen1980,Iwaniec1997}).
+
+\begin{proposition}[Eigenform and sector anchoring]
+Assume $\vartheta$ is a Hecke eigenform for $T(p^2)$ at all primes $p\nmid 2N$, i.e.
+$T(p^2)\,\vartheta=\lambda_p\,\vartheta$. Then the Mellin transform $L(\vartheta,s)=\sum_{n\ge1}a_n n^{-s}$
+admits an Euler product $L(\vartheta,s)=\prod_p L_p(\vartheta,s)$ whose local factor at $p\nmid 2N$ is
+\[
+L_p(\vartheta,s)=\left(1-\lambda_p\,p^{-s}+\varepsilon_p\,p^{-2s}\right)^{-1}, 
+\]
+with $\varepsilon_p\in\{\pm1\}$ determined by the space and normalization. Consequently, selecting the local place $p$
+defines a Hecke sector and the UBT prediction
+\[
+\boxed{\alpha_p^{-1}=p+\Delta_{\mathrm{CT}}(p)}
+\]
+is presentation–invariant: it is the same whether $\vartheta$ is realized via Variant~A, Variant~B, or accessed
+through the automorphic $L$–route (Variant~C).
+\end{proposition}
+
+\begin{proof}[Sketch]
+Kohnen’s plus space is stable under $T(p^2)$ for $p\nmid 2N$; eigenforms exist and correspond under the Shimura lift
+to integral–weight eigenforms on $\Gamma_0(N)$, matching Hecke eigenvalues (\cite{Shimura1973,Kohnen1980,Serre1987}).
+Mellin($\vartheta$) produces $L(\vartheta,s)$ with Euler factors determined by the $T(p^2)$ action. 
+Since UBT’s archimedean matching (Ward$\to$Thomson) defining $\Delta_{\mathrm{CT}}(p)$ is place–agnostic, the sector
+anchor is the prime $p$ itself, independent of how $\vartheta$ is presented.
+\end{proof}
+
 
 \end{document}
