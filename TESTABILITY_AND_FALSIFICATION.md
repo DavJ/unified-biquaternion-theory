@@ -54,7 +54,7 @@ A theory is falsifiable if we can specify observations that would prove it wrong
 
 **Required:** Calculate α⁻¹(μ) at multiple energy scales with error bars:
 ```
-α⁻¹(m_e) = 137.036 ± [UBT uncertainty]
+α⁻¹(m_e) = 137.035999084 ± 0.000000021 (CODATA 2018)
 α⁻¹(M_Z) = 127.95 ± [UBT uncertainty]
 α⁻¹(M_Planck) = [UBT prediction] ± [uncertainty]
 ```

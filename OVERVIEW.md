@@ -105,7 +105,7 @@
 
 #### 2. Fine-Structure Constant (Fit-Free Baseline)
 **Prediction:** α⁻¹ = 137 (from complex time topology)  
-**Experimental:** α⁻¹ = 137.036  
+**Experimental:** α⁻¹ = 137.035999084(21) (CODATA 2018)  
 **Error:** 0.026%  
 **Derivation:** Winding number on T² torus, prime constraint  
 **Status:** ✅ Integer prediction matches - **FIT-FREE** under assumptions A1-A3  
