@@ -83,14 +83,18 @@ Ideally, some markdown reports could be generated from CSV data using tools, but
 - CSV files contain UBT-computed values
 - Comparison is shown in tables (e.g., "UBT predicts X, experiment shows Y")
 
-## CSV Files - The Source of Truth
+## CSV Files - The Source of Truth (Updated November 10, 2025)
 
 For UBT-computed constants, the CSV files are the ONLY source of truth:
 
-| Constant | CSV File | Column | Value |
-|----------|----------|--------|-------|
-| α^-1 (p=137) | `alpha_core_repro/out/alpha_two_loop_grid.csv` | `alpha_inv` | 137.035999000000 |
-| m_e (pole) | `data/leptons.csv` | `pole_mass_mev` | 0.510996192910 |
+| Constant | CSV File | Column | Value | Status |
+|----------|----------|--------|-------|--------|
+| α⁻¹ baseline (p=137) | `alpha_core_repro/out/alpha_two_loop.csv` | `alpha_inv` | 137.000000 | ✅ Predicted from topology |
+| α(μ) running | `validation/alpha_running_table.csv` | `alpha_mu` | varies | ✅ Two-loop running |
+| m_e (pole) | `data/leptons.csv` | `pole_mass_mev` | 0.510998950000 | ❌ Experimental (PDG placeholder) |
+| m_e (MSbar) | `data/leptons.csv` | `msbar_mass_mev` | 0.509812604741 | ❌ From PDG via QED conversion |
+
+**⚠️ IMPORTANT:** Only α baseline is genuinely predicted. Electron mass uses experimental PDG value as input.
 
 ## Generating Markdown from CSV (Future Enhancement)
 
