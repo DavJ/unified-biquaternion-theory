@@ -1,0 +1,36 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\title{UBT Strict Validation Report}
+\author{Unified Biquaternion Theory Collaboration}
+\date{\today}
+\input{../tex/ubt_csv_macros.tex}
+\begin{document}
+\maketitle
+
+\section{Scope}
+This report validates the strict, no-fit predictions of UBT for the fine-structure constant $\alpha(\mu)$ and the lepton masses $(e,\mu,\tau)$ derived purely from geometric principles and the toroidal curvature $\beta$-function.
+
+\section{Principles (No Fits)}
+We rely on Appendix C (geometric origin of $\alpha(\mu)$), Appendix D (strict lepton fixed-point), Appendix E (derivation of $m_0$ from the UBT action). No measured constants calibrate outputs.
+
+\section{Geometric Running $\alpha(\mu)$}
+Table~\ref{tab:alpha} lists values in MeV units.
+\input{../validation/alpha_running_table.tex}
+\label{tab:alpha}
+
+\section{Lepton Spectrum (Strict)}
+Fixed-point equations $m_\ell = m_0 f(n_\ell)/\alpha(m_\ell)$ with $f(n)=n^2$ and $(n_e,n_\mu,n_\tau)=(1,3,9)$. Canonical predictions for $m_0=1$ MeV are below.
+\input{../validation/lepton_masses_STRICT_m0_1MeV.tex}
+
+\section{Audit}
+A hard-code audit ensures no empirical constants are embedded. See \texttt{HARD\_CODE\_AUDIT.txt}.
+
+\section{Conclusion}
+The strict UBT pipeline consistently predicts $\alpha(\mu)$ and a one-parameter family of lepton spectra indexed by $m_0$, without empirical fits.
+
+\end{document}
