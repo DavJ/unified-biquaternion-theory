@@ -187,4 +187,5 @@ k8s-clean:
 
 -include Makefile.strict.nonpert
 
+-include Makefile.strict.nonpert_theory.append
 

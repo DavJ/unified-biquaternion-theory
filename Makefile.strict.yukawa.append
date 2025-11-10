@@ -1,0 +1,10 @@
+# Append-safe targets for theta-based Yukawa ratios
+.PHONY: yukawa-csv report-yukawa
+
+yukawa-csv:
+	@echo "Computing theta-based no-fit Yukawa ratios R3, R9..."
+	python3 tools/yukawa/export_yukawa_ratios.py --kappa 0.72 --p 137
+
+report-yukawa:
+	@echo "Building 'UBT_Yukawa_From_Theta.tex' (imports CSV only)..."
+	cd report && pdflatex UBT_Yukawa_From_Theta.tex

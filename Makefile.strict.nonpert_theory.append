@@ -1,0 +1,5 @@
+# Append-safe target for building the non-perturbative theory report
+.PHONY: report-nonpert
+report-nonpert:
+	@echo "Building non-perturbative theory report..."
+	$(PY) -c "print('pdflatex required: cd report && pdflatex UBT_NonPerturbative_MassTheory.tex')"

@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+\title{Non-Perturbative Lepton Masses from Toroidal Geometry and Hecke Phases (No-Fit)}
+\date{\today}
+\begin{document}\maketitle
+
+\section*{Principle}
+We posit that lepton masses emerge from a non-perturbative stationary solution on a toroidal geometry with
+Hecke-sector quantization. The effective relation for the \(n\)-th lepton (\(n=1,3,9\) for \(e,\mu,\tau\)) reads
+\begin{equation}\label{eq:mass-gap}
+  m_n \;=\; \mu_\star\, Z_p(\kappa)\,
+  \exp\!\Bigg[-\,\frac{S_0(p,\kappa)+n\,S_1(p,\kappa)+n^2\,S_2(p,\kappa)}{\alpha(\mu=m_n)}\Bigg],
+\end{equation}
+with no fitted parameters. Here \(\kappa=R_t/R_p\) is a geometric ratio between time-like and spatial principal radii,
+\(p\) is the Hecke prime sector, and \(\alpha(\mu)\) is the running fine-structure constant obtained from the
+two/three-loop UBT computation.
+
+\section*{Geometric Actions (No-Fit)}
+We define dimensionless action pieces purely from geometry and Hecke structure:
+\begin{align}
+  S_0(p,\kappa) &= \frac{W_{\text{torus}}(\kappa,p)}{8\pi^2}, \quad
+  W_{\text{torus}} = 2\pi^2\!\left(1 + \frac{\kappa^2}{p}\right), \\[4pt]
+  S_1(p,\kappa) &= -\,\frac{|h_p|}{8\pi}\,\frac{\kappa}{p}, \qquad
+  S_2(p,\kappa) = -\,\frac{h_p^2}{16\pi^2}\,\frac{1}{p^2}, \\[4pt]
+  Z_p(\kappa) &= \frac{\sqrt{1+\kappa^2}}{\sqrt{p}}.
+\end{align}
+The normalized Hecke phase \(h_p\in[-1,1]\) is a deterministic proxy for the modular eigenvalue;
+in code we use \(h_p=\cos(\sqrt{p})\) as a reproducible stand-in (to be replaced by true \(\lambda_p/(2\sqrt p)\)).
+All coefficients are fixed combinations of \(\pi,p,\kappa\); there are \emph{no empirical knobs}.
+
+\section*{Absolute Scale}
+The reference scale \(\mu_\star\) is fixed by fundamental constants as the (reduced) Planck scale in MeV:
+\(\mu_\star \equiv m_{\rm Pl} \simeq 1.2209\times 10^{22}\,{\rm MeV}\).
+No PDG lepton masses enter this definition.
+
+\section*{Self-Consistent Solution}
+Equation~\eqref{eq:mass-gap} is solved by a fixed-point iteration at each \(n\) with \(\alpha(\mu)\) evaluated
+at the running scale \(\mu=m_n\). The solver produces a CSV output
+\texttt{validation/lepton\_masses\_nonpert\_p137.csv}. The table below is rendered directly from the CSV:
+\bigskip
+
+\pgfplotstableread[col sep=comma]{../validation/lepton_masses_nonpert_p137.csv}\Masses
+\pgfplotstabletypeset[
+  columns/p/.style={column name={$p$}},
+  columns/kappa/.style={column name={$\kappa$}},
+  columns/mu_star_MeV/.style={column name={$\mu_\star$ [MeV]}},
+  columns/loops/.style={column name={loops}},
+  columns/S0/.style={column name={$S_0$}},
+  columns/S1/.style={column name={$S_1$}},
+  columns/S2/.style={column name={$S_2$}},
+  columns/Zpref/.style={column name={$Z$}},
+  columns/me_MeV/.style={column name={$m_e$ [MeV]}},
+  columns/mmu_MeV/.style={column name={$m_\mu$ [MeV]}},
+  columns/mtau_MeV/.style={column name={$m_\tau$ [MeV]}},
+  columns/alpha_me/.style={column name={$\alpha(m_e)$}},
+  columns/alpha_mmu/.style={column name={$\alpha(m_\mu)$}},
+  columns/alpha_mtau/.style={column name={$\alpha(m_\tau)$}},
+  fixed, precision=9,
+  every head row/.style={before row=\hline, after row=\hline},
+  every last row/.style={after row=\hline}
+]{\Masses}
+
+\section*{Scientific Integrity}
+This construction preserves no-fit integrity: \(\mu_\star\) from \(G,\hbar,c\);
+\(S_0,S_1,S_2,Z\) from torus geometry and Hecke structure; \(\alpha(\mu)\) from UBT running.
+Future improvement will replace the stand-in \(h_p\) by exact modular eigenvalues and
+refine the geometric coupling to curvature.
+
+\end{document}
