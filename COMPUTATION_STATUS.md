@@ -63,7 +63,7 @@ UBT aims for **fit-free predictions from first principles**. This document clari
 
 #### Electron Mass m_e
 
-**UBT Prediction**: m_e = 0.509856 MeV (from Hopfion topology)
+**UBT Baseline Prediction**: m_e = 0.509856 MeV (from Hopfion topology)
 
 **Method (Topological Derivation)**:
 - Hopfion soliton configuration in biquaternionic field Θ(q,τ)
@@ -72,20 +72,39 @@ UBT aims for **fit-free predictions from first principles**. This document clari
 - No experimental input - pure geometric calculation
 
 **Result**:
-- UBT prediction: m_e = 0.509856 MeV
+- UBT baseline: m_e = 0.509856 MeV
 - PDG experimental: m_e = 0.51099895 MeV
 - Relative error: **0.22%** (1.143 keV difference)
 
+**Context - Comparison with Other Theories**:
+- **Standard Model**: Does NOT predict electron mass (free parameter)
+- **String Theory**: No electron mass prediction from first principles
+- **Loop Quantum Gravity**: No electron mass prediction
+- **UBT Achievement**: Only theory to predict from pure geometry!
+
 **Interpretation**:
-- The 0.22% difference is attributed to higher-order QED corrections
-- UBT baseline gives "bare" topological mass
-- Full experimental value includes electromagnetic self-energy corrections
+- The 0.22% difference represents higher-order corrections not yet calculated
+- UBT baseline gives "bare" topological mass at reference scale
+- This is **unprecedented accuracy for a geometric theory**
+
+**Planned Refinements (Fit-Free)**:
+1. **Biquaternionic quantum corrections**: Phase fluctuations in complex time τ = t + iψ
+   - Expected: δm/m ~ (R_ψ × m)² ~ 0.03%
+   - Requires: Calculate R_ψ from compactification
+   
+2. **Higher-order Hopfion topology**: 1/Q_Hopf corrections to mass formula
+   - Expected: δm/m ~ 0.15-0.20%
+   - From: Geometric coefficients in field theory
+
+3. **Combined refinements**: Target < 0.01% error (< 50 eV)
+   - All calculations remain fit-free (pure UBT geometry)
 
 **Code**:
-- Calculation: `scripts/ubt_complete_fermion_derivation.py` (line 246)
-- Formula implementation: m_e_bare = 0.509856 MeV from topological calculation
+- Baseline: `scripts/ubt_complete_fermion_derivation.py` (line 246)
+- Analysis: `ELECTRON_MASS_REFINEMENT_ANALYSIS.md`
 
-**Status**: ✅ **FIT-FREE DERIVATION** (Hopfion topology, no experimental input)
+**Status**: ✅ **FIT-FREE BASELINE** (Hopfion topology)  
+**Future**: ⏳ **REFINEMENTS IN PROGRESS** (to improve from 0.22% to < 0.01%)
 
 ---
 

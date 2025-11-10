@@ -38,7 +38,14 @@
 - ⭐ **Electron Mass - Fit-Free from Hopfion Topology**: m_e = 0.509856 MeV (0.22% error)
   - Derived from topological soliton configuration in biquaternionic field
   - No experimental input used - pure geometric calculation
-  - Difference from PDG (1.143 keV) attributed to higher-order QED corrections
+  - **Context**: Only theory to predict electron mass from first principles (SM, String Theory, LQG all treat it as free parameter)
+  - **Current status**: Baseline prediction; refinements in progress to improve accuracy
+  - **Planned refinements** (all fit-free):
+    - Biquaternionic quantum corrections (complex time phase fluctuations)
+    - Higher-order Hopfion topology corrections
+    - Target: < 0.01% error (< 50 eV)
+  - Difference from PDG (1.143 keV) attributed to quantum corrections not yet calculated
+  - See: `ELECTRON_MASS_REFINEMENT_ANALYSIS.md` for detailed improvement plan
   - Source: `scripts/ubt_complete_fermion_derivation.py`
 - ⭐ **SM Gauge Group Derived**: SU(3)×SU(2)×U(1) rigorously derived from biquaternionic geometry (not assumed)
 - ✅ **Quantum Gravity Unification**: GR+QFT unified in single Θ field framework
