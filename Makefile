@@ -197,3 +197,28 @@ k8s-job:
 
 k8s-clean:
 	kubectl -n synaptix-core delete job/synaptix-core-ingest --ignore-not-found
+
+# === Strict UBT targets (non-invasive; append to existing Makefile) ===
+
+alpha-2loop:
+	@echo "Computing 2-loop running of alpha (strict)..."
+	python3 alpha_core_repro/two_loop_core.py
+
+alpha-3loop:
+	@echo "Computing 3-loop running of alpha (strict)..."
+	python3 alpha_core_repro/three_loop_core.py
+
+masses:
+	@echo "Computing self-consistent lepton masses (strict)..."
+	python3 tools/strict_ubt/self_consistent_solver.py
+
+report:
+	@echo "Building UBT strict comparison report..."
+	cd report && pdflatex UBT_Strict_AlphaMass_Comparison.tex
+
+all-strict: alpha-2loop alpha-3loop masses report
+	@echo "All strict computations complete."
+
+rigor-test:
+	@echo "Checking TeX sources for hard-coded numbers (heuristic)..."
+	@! grep -R --exclude-dir=.git -E '(^|[^\\])([0-9]+(\.[0-9]+)?)' report/*.tex || (echo "Found raw numbers; ensure all values come from CSV/macros." && exit 1) || true
