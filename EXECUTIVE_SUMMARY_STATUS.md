@@ -49,12 +49,15 @@ Can UBT predict masses and alpha constant precisely enough from first principles
 
 ## Corrected Claims vs. Reality
 
-**Previous CLAIMS in documents:**
-- ❌ α⁻¹ = 137.035999000 with precision 1.3×10⁻⁹
-- ❌ m_e = 0.510996 MeV with precision 5.4×10⁻⁶
-- ❌ "Fit-free first-principles predictions"
+**Previous CLAIMS in documents (for historical reference, now corrected):**
+<!-- NOTE: These are HISTORICAL values showing what was previously claimed.
+     They are kept here for transparency about the correction.
+     See "Actual REALITY" below for current accurate values. -->
+- ❌ α⁻¹ = 137.035999000 with precision 1.3×10⁻⁹ (OUTDATED CLAIM)
+- ❌ m_e = 0.510996 MeV with precision 5.4×10⁻⁶ (OUTDATED CLAIM)
+- ❌ "Fit-free first-principles predictions" (OVERSTATED)
 
-**Actual REALITY (Corrected):**
+**Actual REALITY (Corrected November 10, 2025):**
 - ✅ α⁻¹ = 137 (baseline from topology - genuine prediction)
 - ✅ α⁻¹(0.511 MeV) ≈ 137.107 (with two-loop running)
 - ✅ Precision: ~0.05% (not 10⁻⁹)
