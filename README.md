@@ -24,14 +24,22 @@
 
 | Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error |
 |------------|----------------|-------------------|-------------|----------------|
-| Fine-structure constant | α⁻¹ = 137 (exact) | 137.035999084 | ±0.000000021 | 0.026% |
-| Electron mass | 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
+| Fine-structure constant | α⁻¹ = 137 (baseline) | 137.035999084 | ±0.000000021 | 0.026% |
+| Electron mass | 0.51099895 MeV* | 0.51099895000 MeV | ±0.00000015 MeV | — |
 
-- ⭐ **Fine Structure Constant - Fit-Free Baseline**: α⁻¹ = 137 (0.026% error) from complex time torus
-  - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3 (no fitted parameters)
+*Currently uses PDG experimental value as input with QED corrections. UBT derivation from Hopfion topology in progress.
+
+- ⭐ **Fine Structure Constant - Fit-Free Derivation**: α⁻¹ = p + Δ_CT(p) where p=137
+  - **Step 1**: Prime selection via energy minimization V_eff(n) → minimum at n*=137, OR via Hecke worlds (most stable p-sector)
+  - **Step 2**: Two-loop Feynman diagram calculation → Δ_CT via dimensional regularization
+  - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3
+  - **Baseline result**: α⁻¹ = 137.000 exactly (Δ_CT=0 at leading order)
+  - **Experimental match**: Requires 3-loop+ calculations → α⁻¹ ≈ 137.036
   - Complete 533-line proof in appendix_CT_two_loop_baseline.tex
   - Guard tests + CI prevent regression to empirical fits
-- ⭐ **Electron Mass from First Principles**: Via Hopfion topology (see table above)
+- ⚠️ **Electron Mass**: Currently uses PDG experimental value (0.51099895 MeV) with QED corrections
+  - **TODO**: Derive from Hopfion topology (target: ~0.510 MeV from first principles)
+  - See COMPUTATION_STATUS.md for full transparency
 - ⭐ **SM Gauge Group Derived**: SU(3)×SU(2)×U(1) rigorously derived from biquaternionic geometry (not assumed)
 - ✅ **Quantum Gravity Unification**: GR+QFT unified in single Θ field framework
 - ✅ **Mathematical Validation**: All core predictions verified using SymPy/NumPy
