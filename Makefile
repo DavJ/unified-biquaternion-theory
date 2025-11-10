@@ -26,19 +26,19 @@ SHELL := /bin/bash
 
 PDFLATEX ?= pdflatex
 TEXSRCS   = $(wildcard *.tex)
-CORE_MAIN = consolidation_project/ubt_core_main.tex
-ALL_MAIN  = consolidation_project/ubt_2_main.tex
+CORE_MAIN = ubt_core_main.tex
+ALL_MAIN  = ubt_2_main.tex
 TEX_MAIN ?= consolidation_project/ubt_2_main.tex
 VERIFY_SCRIPT ?= consolidation_project/scripts/verify_lorentz_in_HC.py
 
 # ----------------------------- TeX build targets --------------------------------
 core:
-	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_core_main.tex
-	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_core_main.tex
+	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
+	$(PDFLATEX) -interaction=nonstopmode $(CORE_MAIN)
 
 all:
-	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_2_main.tex
-	cd consolidation_project && $(PDFLATEX) -interaction=nonstopmode ubt_2_main.tex
+	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
+	$(PDFLATEX) -interaction=nonstopmode $(ALL_MAIN)
 
 pdf:
 	@which latexmk >/dev/null 2>&1 || (echo "ERROR: latexmk not found. Install TeX Live/MacTeX."; exit 1)
@@ -51,8 +51,8 @@ verify:
 tests:
 	python -m pytest -q
 
-ci: alpha-grid masses-csv tests test-provenance
-	@echo "CI OK: PDFs, verification, tests, and provenance checks passed"
+ci: pdf verify tests
+	@echo "CI OK"
 
 clean:
 	latexmk -C || true
@@ -76,10 +76,8 @@ alpha-proof:
 
 # Masses program targets
 masses-tests:
-	@echo "Running masses tests (fit-free electron mass derivation)..."
-	pytest -v tests/test_electron_mass.py
 	@echo "Running masses symbolic tests..."
-	pytest -v consolidation_project/masses/tests || echo "Masses symbolic tests not yet implemented"
+	pytest -v consolidation_project/masses/tests || echo "Masses tests not yet implemented"
 
 # Combined alpha + masses CI
 alpha-ci: alpha-tests alpha-audit
@@ -114,11 +112,6 @@ insensitivity:
 	@echo "[insensitivity] Running insensitivity sweep"
 	@python -m insensitivity.sweep
 
-# Export lepton masses to CSV
-masses-csv:
-	@echo "[masses-csv] Exporting computed lepton masses to CSV"
-	@python -m ubt_masses.export_leptons_csv
-
 # Tests with/without mock
 test-mock:
 	@echo "[test-mock] Running two-loop + insensitivity tests (MOCK)"
@@ -131,14 +124,6 @@ test-strict:
 	@export UBT_ALPHA_STRICT=1; unset UBT_ALPHA_ALLOW_MOCK; \
 	pytest -q alpha_core_repro/tests/test_alpha_two_loop.py || true; \
 	pytest -q insensitivity/tests/test_insensitivity.py
-
-# Provenance tests (verify computed, not hard-coded data)
-test-provenance:
-	@echo "[test-provenance] Running data provenance tests"
-	@pytest -q tests/test_alpha_provenance.py
-	@pytest -q tests/test_electron_sensitivity.py
-	@pytest -q tests/test_electron_mass_precision.py
-	@pytest -q tests/test_docs_use_generated_csv.py
 
 deepclean: clean
 	@rm -f $(GRID_CSV)
@@ -197,3 +182,7 @@ k8s-job:
 
 k8s-clean:
 	kubectl -n synaptix-core delete job/synaptix-core-ingest --ignore-not-found
+
+-include Makefile.strict
+
+
