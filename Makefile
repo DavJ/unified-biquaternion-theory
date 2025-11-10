@@ -185,4 +185,6 @@ k8s-clean:
 
 -include Makefile.strict
 
+-include Makefile.strict.nonpert
+
 
