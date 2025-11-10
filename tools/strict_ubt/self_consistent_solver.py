@@ -66,13 +66,11 @@ def solve_lepton_masses(m0, alpha_table):
 
 def write_csvs(tab2, tab3, masses):
     with open("validation/alpha_running_table_strict_2loop.csv","w",encoding="utf-8") as f:
-        f.write("mu_MeV,alpha_2loop
-")
+        f.write("mu_MeV,alpha_2loop\n")
         for mu,a in tab2:
             f.write(f"{mu},{a:.12f}\n")
     with open("validation/alpha_running_table_strict_3loop.csv","w",encoding="utf-8") as f:
-        f.write("mu_MeV,alpha_2loop,alpha_3loop_symbolic,alpha_3loop_numeric
-")
+        f.write("mu_MeV,alpha_2loop\n")
         for row in tab3:
             f.write("{:.1f},{:.12f},{:.12f},{:.12f}\n".format(*row))
     me,mmu,mtau = masses

@@ -22,7 +22,7 @@ def beta_coeffs_3loop_numeric(kappa: float, R_t: float, R_p: float, n_grid:int=2
     theta = np.linspace(0, 2*np.pi, n_grid, endpoint=False)
     Kt = (1.0 / max(R_t, 1e-9)) * (1.0 + 0.1*np.cos(theta))
     Kp = (1.0 / max(R_p, 1e-9)) * (1.0 + 0.1*np.sin(theta))
-    inv = np.trapz(Kt**2 + Kp**2, theta) / (2*np.pi)
+    inv = np.trapezoid(Kt**2 + Kp**2, theta) / (2*np.pi)
     b3 = inv * (1.0 / (64.0 * math.pi**3))
     return b1, b2, float(b3)
 
@@ -63,11 +63,9 @@ def main_write_csv(path_csv: str, kappa: float, Rt: float, Rp: float, grid: Iter
     b1n, b2n, b3n = beta_coeffs_3loop_numeric(kappa, Rt, Rp)
     alpha3n = integrate(ALPHA0, MU_STAR_MEV, mu_vals, b1n, b2n, b3n)
     with open(path_csv, "w", encoding="utf-8") as f:
-        f.write("mu_MeV,alpha_2loop,alpha_3loop_symbolic,alpha_3loop_numeric
-")
+        f.write("mu_MeV,alpha_2loop,alpha_3loop_symbolic,alpha_3loop_numeric\n")
         for i,mu in enumerate(mu_vals):
-            f.write(f"{mu},{alpha2[i]:.12f},{alpha3s[i]:.12f},{alpha3n[i]:.12f}
-")
+            f.write(f"{mu},{alpha2[i]:.12f},{alpha3s[i]:.12f},{alpha3n[i]:.12f}\n")
 
 if __name__ == "__main__":
     main_write_csv("validation/alpha_running_table_strict_3loop.csv", kappa=1.0, Rt=1.0, Rp=1.0)
