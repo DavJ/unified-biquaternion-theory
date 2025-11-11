@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+
+\title{Phase IV: Hecke Eigenform Normalization for Yukawa Ratios (No-Fit, CSV-Driven)}
+\author{UBT Project}
+\date{\today}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+
+\section*{Concept}
+We construct a weight-balanced eigenform
+\begin{equation}
+\Phi(\tau) \;=\; \frac{E_4(\tau)}{E_6(\tau)}\,\Theta(\tau)^2,\qquad
+\Theta(\tau)=\theta_2(\tau)\,\theta_3(\tau)\,\theta_4(\tau),\quad \tau=i\kappa,
+\end{equation}
+with $E_4,E_6$ the Eisenstein series of weight $4$ and $6$. This ansatz is \emph{no-fit}: it fixes the modular weight
+and enforces the correct transformation behaviour under the Hecke action on the $\Theta$-sector. The physically
+relevant Yukawa ratios are then
+\begin{equation}
+\frac{y_n}{y_1} \;=\; \left|\frac{\Phi(n\tau)}{\Phi(\tau)}\right|,\qquad n\in\{3,9\}.
+\end{equation}
+
+\paragraph{Why $E_4/E_6$?}
+$E_4$ and $E_6$ generate the holomorphic modular forms; the ratio $E_4/E_6$ (meromorphic of weight $-2$) balances the
+weight of $\Theta^2$ (effective weight $+2$ in the spinorial sector), yielding a weight--$0$ observable. No external
+inputs are used and no parameters are tuned.
+
+\section*{From CSV (no numbers hard-coded)}
+\pgfplotstableread[col sep=comma]{../validation/yukawa_ratios_theta_eigen.csv}\Data
+\pgfplotstabletypeset[
+  columns/kappa/.style={column name={$\kappa$}},
+  columns/R3/.style={column name={$R_3$}},
+  columns/R9/.style={column name={$R_9$}},
+  columns/Phi_tau/.style={column name={$\Phi(\tau)$}},
+  columns/Phi_3tau/.style={column name={$\Phi(3\tau)$}},
+  columns/Phi_9tau/.style={column name={$\Phi(9\tau)$}},
+  columns/Y3/.style={column name={$Y_3=|\Phi(3\tau)/\Phi(\tau)|$}},
+  columns/Y9/.style={column name={$Y_9=|\Phi(9\tau)/\Phi(\tau)|$}},
+  fixed,precision=10,
+  every head row/.style={before row=\hline, after row=\hline},
+  every last row/.style={after row=\hline}
+]{\Data}
+
+\section*{Sketch of the Derivation}
+\begin{enumerate}
+\item \textbf{Spinorial vacuum:} $\Theta=\theta_2\theta_3\theta_4$ captures the toroidal spin structure at $z=0$.
+\item \textbf{Hecke covariance:} Under $n:\tau\mapsto n\tau$, the spinorial sector rescales; to compare $n\tau$ to $\tau$
+      at fixed weight, we multiply by a compensator of weight $-2$.
+\item \textbf{Eigenform compensator:} The canonical choice is $E_4/E_6$ (weight $-2$), free of fit and regular on the imaginary axis.
+\item \textbf{Observable:} The ratio $|\Phi(n\tau)/\Phi(\tau)|$ is weight-neutral, positive and dimensionless --- a bona fide candidate for Yukawa ratios.
+\end{enumerate}
+
+\paragraph{Numerics.} For $\tau=i\kappa$, $E_4$ and $E_6$ admit rapidly convergent $q$-series ($q=\mathrm{e}^{-2\pi\kappa}$). We evaluate
+them with a tolerance cut; $\Theta$ is computed in log-domain to avoid underflow. All values in this document are imported from the CSV.
+
+\end{document}

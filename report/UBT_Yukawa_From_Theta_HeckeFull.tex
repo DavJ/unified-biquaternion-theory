@@ -1,0 +1,57 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+
+\title{Phase III: Hecke Sweep Candidates for Yukawa Hierarchies (No-Fit)}
+\author{UBT Project}
+\date{\today}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+
+\section*{Idea}
+We aggregate small-prime Hecke actions in a weight-neutral way, defining two \emph{no-fit} candidates:
+\begin{align}
+M_n^{\mathrm{push}}(\tau; \mathcal{P}) &= \prod_{\ell\in\mathcal{P}}
+\frac{\Theta(\ell n \tau)/\Theta(n\tau)}{\Theta(\ell \tau)/\Theta(\tau)},\\
+M_n^{\mathrm{pull}}(\tau; \mathcal{P}) &= \prod_{\ell\in\mathcal{P}}
+\frac{\Theta(\ell \tau)/\Theta(\tau)}{\Theta(\ell n \tau)/\Theta(n\tau)},
+\end{align}
+with $\Theta=\theta_2\theta_3\theta_4$ and $\tau=i\kappa$. Both satisfy $M_1^{\bullet}=1$ identically.
+The resulting candidates for Yukawa ratios are $y_n/y_1 = R_n(\tau) M_n^{\bullet}(\tau;\mathcal{P})$ for $n\in\{3,9\}$.
+
+\section*{CSV Results}
+\pgfplotstableread[col sep=comma]{../validation/yukawa_ratios_theta_hecke_full.csv}\Data
+\pgfplotstabletypeset[
+  columns/kappa/.style={column name={$\kappa$}},
+  columns/primes/.style={column name={$\mathcal{P}$}},
+  columns/R3/.style={column name={$R_3$}},
+  columns/R9/.style={column name={$R_9$}},
+  columns/M3_push/.style={column name={$M_3^{\mathrm{push}}$}},
+  columns/M9_push/.style={column name={$M_9^{\mathrm{push}}$}},
+  columns/M3_pull/.style={column name={$M_3^{\mathrm{pull}}$}},
+  columns/M9_pull/.style={column name={$M_9^{\mathrm{pull}}$}},
+  columns/Y3_push/.style={column name={$Y_3^{\mathrm{push}}$}},
+  columns/Y9_push/.style={column name={$Y_9^{\mathrm{push}}$}},
+  columns/Y3_pull/.style={column name={$Y_3^{\mathrm{pull}}$}},
+  columns/Y9_pull/.style={column name={$Y_9^{\mathrm{pull}}$}},
+  fixed,precision=10,
+  every head row/.style={before row=\hline, after row=\hline},
+  every last row/.style={after row=\hline}
+]{\Data}
+
+\section*{Remarks}
+These PUSH/PULL constructions are canonical, parameter-free and weight-neutral. They capture two complementary ways
+Hecke actions can redistribute modular weight between the base trajectory ($\tau$) and its $n$-wound lift ($n\tau$).
+Phase IV will replace these toy aggregations with normalized Hecke eigenforms and selection rules from the $\Theta$-sector,
+so that only one of PUSH/PULL (or their well-defined combination) survives as the first-principles prediction.
+
+\end{document}

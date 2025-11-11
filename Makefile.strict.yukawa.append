@@ -1,10 +1,10 @@
-# Append-safe targets for theta-based Yukawa ratios
-.PHONY: yukawa-csv report-yukawa
+# Append-safe targets for Phase IV (Hecke eigenform normalization, no-fit)
+.PHONY: yukawa-csv-hecke-eigen report-yukawa-hecke-eigen
 
-yukawa-csv:
-	@echo "Computing theta-based no-fit Yukawa ratios R3, R9..."
-	python3 tools/yukawa/export_yukawa_ratios.py --kappa 0.72 --p 137
+yukawa-csv-hecke-eigen:
+	@echo "Computing Hecke-eigen Yukawa ratios (no-fit)..."
+	python3 tools/yukawa/export_yukawa_hecke_eigen.py --kappa 0.72
 
-report-yukawa:
-	@echo "Building 'UBT_Yukawa_From_Theta.tex' (imports CSV only)..."
-	cd report && pdflatex UBT_Yukawa_From_Theta.tex
+report-yukawa-hecke-eigen:
+	@echo "Building 'UBT_Yukawa_From_Theta_Eigenform.tex' (imports CSV only)..."
+	cd report && ( command -v tectonic >/dev/null 2>&1 && tectonic -X compile UBT_Yukawa_From_Theta_Eigenform.tex || pdflatex UBT_Yukawa_From_Theta_Eigenform.tex )

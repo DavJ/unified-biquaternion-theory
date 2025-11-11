@@ -189,3 +189,6 @@ k8s-clean:
 
 -include Makefile.strict.nonpert_theory.append
 
+-include Makefile.strict.yukawa.append
+
+

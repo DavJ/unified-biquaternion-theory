@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.18}
+\geometry{margin=1in}
+
+\title{Phase II: Hecke-Modulated Yukawa Ratios (No-Fit, CSV-Driven)}
+\author{UBT Project}
+\date{\today}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+
+\section*{Summary}
+We extend the Phase I modular construction by introducing a \emph{minimal, no-fit} Hecke modulation factor
+\begin{equation}
+M_n(\tau;p) \;=\; \frac{\Theta(p\,n\tau)/\Theta(n\tau)}{\Theta(p\,\tau)/\Theta(\tau)},\qquad \Theta=\theta_2\theta_3\theta_4,\ \ \tau=i\kappa,
+\end{equation}
+which is normalized so that $M_1=1$ and has net weight~0. The Phase II candidate Yukawa ratios are
+\begin{equation}
+\frac{y_n}{y_1} \;=\; R_n(\tau)\,M_n(\tau;p),\qquad n\in\{3,9\},
+\end{equation}
+where $R_n$ are the Phase I modular ratios. No experimental inputs and no fitted parameters are used.
+All values in this document are imported from CSV.
+
+\section*{CSV Results}
+\pgfplotstableread[col sep=comma]{../validation/yukawa_ratios_theta_hecke.csv}\Data
+\pgfplotstabletypeset[
+  columns/kappa/.style={column name={$\kappa$}},
+  columns/p/.style={column name={$p$}},
+  columns/R3/.style={column name={$R_3$}},
+  columns/R9/.style={column name={$R_9$}},
+  columns/M3/.style={column name={$M_3$}},
+  columns/M9/.style={column name={$M_9$}},
+  columns/Y3/.style={column name={$Y_3=R_3M_3$}},
+  columns/Y9/.style={column name={$Y_9=R_9M_9$}},
+  fixed,precision=10,
+  every head row/.style={before row=\hline, after row=\hline},
+  every last row/.style={after row=\hline}
+]{\Data}
+
+\section*{Remarks}
+This ``minimal'' Hecke modulation is a mathematically motivated, weight-neutral ratio that introduces $p$-dependence while preserving $M_1=1$.
+It is not the full Hecke operator action; Phase III will incorporate normalized Hecke eigenforms and selection rules from the $\Theta$-sector so that
+the exponents arise from first principles. Until then, this CSV reports a clean, reproducible \emph{candidate} for the Yukawa hierarchy in the UBT framework.
+
+\end{document}
