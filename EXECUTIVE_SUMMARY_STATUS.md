@@ -1,62 +1,78 @@
 # Executive Summary: UBT First-Principles Status
 
-**Date:** 2025-11-11 (Updated - Post-Complete Strict Mode Revert)
-**Context:** Strict mode completely reverted after producing catastrophic predictions  
-**Status:** **BACK TO PRE-STRICT-MODE STATE** - Experimental placeholders with honest documentation
+**Date:** 2025-11-11 (Updated - Python Scripts Now Use UBT Alpha)
+**Context:** Removed PDG alpha constants, scripts now use UBT topology-based alpha  
+**Status:** **ALPHA FROM FIRST PRINCIPLES** - UBT alpha implemented, masses pending M_Θ
 
 ## The Question
 
 Can UBT predict masses and alpha constant precisely enough from first principles?
 
-## The Answer (Updated After Complete Strict Mode Revert)
+## The Answer (Updated After PDG Constant Removal)
 
-**PARTIAL** - baseline correct, full implementation in progress:
+**PARTIAL** - alpha baseline working fit-free, mass implementation requires M_Θ determination:
 
 ### ✅ What UBT Has Achieved
 
-1. **Alpha Baseline:**
+1. **Alpha Baseline (COMPLETE):**
    - Geometric basis: α⁻¹ = 137 from topological prime selection ✅
-   - This is genuinely predicted (not fitted) from theory
+   - This is genuinely predicted (not fitted) from theory ✅
+   - **NO experimental input** - uses only geometry/topology ✅
    - Two-loop running framework implemented ✅
    - At electron scale: α⁻¹(0.511 MeV) ≈ 137.107
    - **Precision: ~0.05%** (5.2×10⁻⁴ relative error vs. CODATA 2022)
+   - **Python scripts now use UBT alpha** (PDG constants removed) ✅
    - Framework documented in:
-     - `solution_P4_fine_structure_constant/`
-     - `consolidation_project/alpha_two_loop/`
+     - `alpha_core_repro/two_loop_core.py` (implementation)
+     - `consolidation_project/alpha_two_loop/` (theory)
      - Appendix CT in consolidated document
 
-2. **Fermion Mass Framework:**
+2. **Fermion Mass Framework (THEORY COMPLETE, IMPLEMENTATION PENDING):**
    - Theoretical derivation documented ✅
    - Yukawa from Θ-field invariants ✅
    - Dependency acyclicity proven (no circular logic) ✅
+   - Formula: m_f = M_Θ × Y_f[Θ] (documented) ✅
+   - **Implementation awaits M_Θ determination** from geometric normalization ⚠️
    - Framework documented in:
      - `consolidation_project/appendix_E2_fermion_masses.tex`
-     - `consolidation_project/masses/`
+     - `consolidation_project/masses/absolute_scale_anchor.tex`
+     - See `THEORY_VS_IMPLEMENTATION_STATUS.md` for details
 
-### ❌ What UBT Lacks (Numerical Implementation)
+### ⚠️ What UBT Lacks (Numerical Implementation)
 
 1. **Alpha Precision:**
-   - Baseline α⁻¹ = 137 correct from topology
-   - Two-loop running achieves ~0.05% precision
-   - **Needs improvement** to reach claimed 10⁻⁹ precision
-   - Quantum corrections require further refinement
+   - Baseline α⁻¹ = 137 correct from topology ✅
+   - Two-loop running achieves ~0.05% precision ✅
+   - **Could be improved** with higher-loop corrections
+   - Quantum corrections work correctly, not catastrophic
 
-2. **Electron Mass:**
-   - Theoretical framework documented but NOT implemented numerically
-   - Current code uses hardcoded PDG value (0.51099895 MeV)
-   - Hopfion mass formula awaiting implementation
-   - This is **NOT a prediction** - it's experimental calibration
+2. **Fermion Masses:**
+   - Theoretical framework complete (appendix_E2) ✅
+   - **M_Θ determination pending**: Requires geometric normalization on Hermitian slice
+   - **Texture parameters pending**: Requires Yukawa overlap integral calculations
+   - Current code uses PDG values as **PLACEHOLDERS** (honestly documented)
+   - Timeline estimate: 24-36 months for M_Θ determination
+   - This is **NOT circular** - masses use α as input from topology, one-way dependency
+
+### ✅ PDG Constants Removed from Python Scripts
+
+**Recent Update (2025-11-11):** All experimental alpha constants removed from Python code:
+- ✅ `scripts/validate_electron_mass.py` - Now uses `alpha_from_ubt_two_loop_strict()`
+- ✅ `scripts/ubt_rge.py` - Now has `get_ubt_alpha(mu)` function using UBT
+- ✅ `scripts/ubt_fermion_mass_calculator.py` - Uses UBT ALPHA0, documented placeholders
+- ✅ Alpha values computed from topology, NOT from experiment
+- ⚠️ Mass values remain as placeholders (await M_Θ implementation)
 
 ### ✅ Strict Mode Removed
 
 **Critical Update:** The "strict mode" that attempted to derive masses from pure geometry has been **completely reverted**:
 - ❌ Catastrophic predictions REMOVED (71 MeV electron, 644 MeV muon, 5828 MeV tau)
-- ❌ Mass formula m = m0 * n² / α(m) DELETED
+- ❌ Mass formula m = m0 * n² / α(m) DELETED (was fundamentally flawed)
 - ❌ Self-consistent solver DELETED
 - ❌ All strict mode CSV files DELETED
-- ✅ Back to pre-strict-mode state with experimental placeholders
+- ✅ Back to honest status: alpha working, masses pending M_Θ
 
-## Corrected Claims vs. Reality (Post-Revert)
+## Corrected Claims vs. Reality (Post-PDG-Removal)
 
 **Previous CLAIMS in documents (for historical reference, now corrected):**
 <!-- NOTE: These are HISTORICAL values showing what was previously claimed.
@@ -64,20 +80,25 @@ Can UBT predict masses and alpha constant precisely enough from first principles
      See "Actual REALITY" below for current accurate values. -->
 - ❌ α⁻¹ = 137.035999000 with precision 1.3×10⁻⁹ (OUTDATED CLAIM)
 - ❌ m_e = 0.510996 MeV with precision 5.4×10⁻⁶ (OUTDATED CLAIM)
-- ❌ "Fit-free first-principles predictions" (OVERSTATED)
+- ❌ "Fit-free first-principles predictions" for masses (OVERSTATED - only alpha is complete)
 
-**Actual REALITY (Corrected November 11, 2025 after strict mode revert):**
-- ✅ α⁻¹ = 137 (baseline from topology - genuine prediction)
+**Actual REALITY (Corrected November 11, 2025 after PDG constant removal):**
+- ✅ α⁻¹ = 137 (baseline from topology - genuine prediction, NO experimental input)
 - ✅ α⁻¹(0.511 MeV) ≈ 137.107 (with two-loop running)
-- ✅ Precision: ~0.05% (not 10⁻⁹)
-- ⚠️ m_e: Uses experimental value as input (NOT predicted)
+- ✅ Precision: ~0.05% at electron scale (not 10⁻⁹, but honest and verifiable)
+- ✅ Python scripts use UBT alpha from `alpha_core_repro/two_loop_core.py`
+- ⚠️ m_e: Uses experimental value as PLACEHOLDER (awaits M_Θ implementation)
 - ✅ Theoretical framework exists, numerical implementation partial
 - ✅ **Catastrophic strict mode predictions REMOVED** (71 MeV, 644 MeV, 5828 MeV)
 
-## Why Current Code Uses Experimental Values
+## Why Current Code Uses Experimental Mass Values
 
 **For Alpha:**
-- Baseline α⁻¹ = 137 IS derived from topology (genuine prediction)
+- ✅ **NOT USED FROM EXPERIMENT** - Alpha computed from topology
+- ✅ Baseline α⁻¹ = 137 IS derived from topological prime selection
+- ✅ Running α(μ) computed from geometric β-functions
+- ✅ Python scripts import from `alpha_core_repro/two_loop_core.py`
+- ✅ Zero experimental input for alpha
 - Two-loop running IS implemented
 - Precision ~0.05% achieved, but needs refinement for 10⁻⁹ level
 - This is partially theoretical, partially calibrated

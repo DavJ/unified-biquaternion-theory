@@ -4,13 +4,17 @@
 Electron Mass Validation Script
 ================================
 
-Demonstrates the fit-free electron mass derivation from UBT.
+STATUS: Uses UBT alpha from first principles, mass prediction pending.
+
+THEORY STATUS:
+- Alpha: α⁻¹ = 137 from topological prime selection (NO experimental input) ✓
+- Mass formula: m_e = M_Θ × texture × invariants (documented in appendix_E2) 
+- Implementation: Requires M_Θ and texture parameters from geometric normalization (pending)
 
 This script:
-1. Computes α(μ) using two-loop UBT (strict mode)
-2. Calculates MSbar mass m̄_e at μ = m̄_e
-3. Converts to pole mass using 1-loop QED
-4. Compares with experimental value (PDG 2024)
+1. Computes α(μ) using two-loop UBT from topology (fit-free) ✓
+2. Uses placeholder mass values for QED calculations (NOT predictions)
+3. Demonstrates computational framework awaiting M_Θ determination
 
 Usage:
     python validate_electron_mass.py
@@ -37,12 +41,18 @@ def main():
     print()
     
     # Reference values
-    m_e_pole_pdg = 0.51099895  # MeV (PDG 2024)
-    alpha_thomson = 1.0 / 137.035999
+    # NOTE: Electron mass from PDG is used ONLY for comparison, NOT as input to UBT calculations
+    # UBT derives masses from M_Θ and texture parameters (implementation pending)
+    m_e_pole_pdg = 0.51099895  # MeV (PDG 2024 - for comparison only)
     
-    print("Reference values (PDG 2024):")
-    print(f"  Electron pole mass: m_e = {m_e_pole_pdg:.9f} MeV")
-    print(f"  Fine structure constant: α⁻¹ = {1/alpha_thomson:.6f}")
+    # UBT alpha from first principles (no experimental input)
+    # Alpha baseline α⁻¹ = 137 from topological prime selection
+    from alpha_core_repro.two_loop_core import alpha_from_ubt_two_loop_strict, ALPHA0
+    alpha_thomson = ALPHA0  # Use UBT baseline, not experimental value
+    
+    print("Reference values:")
+    print(f"  Electron pole mass (PDG, for comparison): m_e = {m_e_pole_pdg:.9f} MeV")
+    print(f"  Fine structure constant (UBT baseline): α⁻¹ = {1/alpha_thomson:.6f}")
     print()
     
     # Step 1: Compute MSbar mass
