@@ -1,17 +1,28 @@
 #!/usr/bin/env python3
 """
-UBT Fermion Mass Calculator from First Principles
+UBT Fermion Mass Calculator - Framework for First Principles Predictions
+=========================================================================
 
-This script calculates all fermion masses (leptons and quarks) based on the
-Unified Biquaternion Theory (UBT) from first principles, and compares them
-with experimental PDG values.
+THEORY STATUS:
+- Alpha: Fully implemented from topological prime selection (fit-free) ✓
+- Mass formula: Documented in appendix_E2_fermion_masses.tex
+  m_f = M_Θ × Y_f[Θ] where Y_f depends on Θ-field invariants
+  
+IMPLEMENTATION STATUS:
+- M_Θ (mass scale from Θ sector): NOT YET DETERMINED from geometric normalization
+- Texture parameters (ε_f, δ_f, η_f): NOT YET DETERMINED from first principles
+- Current masses: PDG experimental values used as PLACEHOLDERS (not predictions)
+
+This script provides the computational framework for when M_Θ and texture parameters
+are determined from geometric normalization (estimated timeline: 24-36 months per
+consolidation_project/masses/absolute_scale_anchor.tex).
 
 Theory Basis:
-1. Leptons: Topological mass from Hopf charge n
-   m(n) = A·n^p - B·n·ln(n) + δm_EM (for electron)
+1. Leptons: Mass hierarchy from Yukawa texture with M_Θ scale
+   m_f = M_Θ × (a₁X + a₂Q + a₃K) × texture_f
    
-2. Quarks: Geometric mass from torus holonomy and Yukawa overlaps
-   (Based on appendix_QA and appendix_Y3)
+2. Quarks: Same geometric framework with sector-specific textures
+   (Based on appendix_E2 and consolidation_project/masses/)
 
 Author: UBT Research Team
 Date: November 2025
@@ -23,13 +34,22 @@ from typing import Dict, Tuple
 import sys
 
 # Physical constants
-HBAR_C = 197.327  # MeV·fm
-ALPHA = 1.0 / 137.035999084  # Fine structure constant (CODATA 2018)
+HBAR_C = 197.327  # MeV·fm (fundamental constant)
+
+# Import UBT alpha from first principles
+from pathlib import Path
+repo_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(repo_root))
+from alpha_core_repro.two_loop_core import alpha_from_ubt_two_loop_strict, ALPHA0
+
+ALPHA = ALPHA0  # UBT alpha baseline from topology (not experimental)
 PI = np.pi
 
 # Experimental fermion masses from PDG 2024 (MeV)
+# NOTE: These are PLACEHOLDERS, NOT UBT predictions
+# UBT mass predictions require M_Θ and texture parameters (implementation pending)
 EXPERIMENTAL_MASSES = {
-    # Charged Leptons
+    # Charged Leptons (placeholders for comparison)
     'electron': 0.51099895000,
     'muon': 105.6583755,
     'tau': 1776.86,

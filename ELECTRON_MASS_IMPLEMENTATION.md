@@ -1,8 +1,28 @@
 # Electron Mass Derivation Implementation Summary
 
+## ⚠️ IMPORTANT DISCLAIMER (Updated November 10, 2025)
+
+**This document describes implementation plans and framework, but the electron mass is NOT currently predicted from first principles.**
+
+**Current Status:**
+- ❌ The electron mass calculation uses **experimental PDG value as input** (m_e = 0.51099895 MeV)
+- ❌ The "precision" values (5.4×10⁻⁶) reflect QED conversion accuracy, NOT first-principles prediction
+- ✅ The theoretical framework for Hopfion mass formula is documented
+- ⚠️ Numerical implementation of UBT mass operator is **pending**
+
+**What IS implemented:**
+- ✅ Alpha baseline: α⁻¹ = 137 from topological prime selection (~0.05% precision at m_e scale)
+- ✅ Two-loop running of α(μ)
+- ✅ QED MSbar ↔ pole mass conversion (technical accuracy, not prediction)
+
+**For honest scientific assessment, see:**
+- `UBT_SCIENTIFIC_RATING_2025.md` (updated ratings)
+- `EXECUTIVE_SUMMARY_STATUS.md` (actual implementation status)
+- `CALCULATION_STATUS_ANALYSIS.md` (code audit)
+
 ## Overview
 
-This document summarizes the implementation of the fit-free electron mass derivation pipeline for the Unified Biquaternion Theory (UBT).
+This document describes the QED conversion framework and planned implementation of the electron mass derivation pipeline for the Unified Biquaternion Theory (UBT). **Note: Full first-principles derivation not yet complete.**
 
 ## Implementation Details
 
@@ -140,13 +160,16 @@ def solve_msbar_fixed_point(initial: float, lepton: str = "e",
 
 **Purpose:** Demonstrate the full mass derivation pipeline
 
-**Output:**
+**Output (TECHNICAL ACCURACY, NOT PREDICTION):**
 ```
-UBT prediction: m_e = 0.510996193 MeV
-PDG value:      m_e = 0.51099895000 MeV
-Relative error: |Δm/m| = 5.40e-06
-Status: ✓ PASS
+UBT QED conversion: m_e = 0.510996193 MeV (from PDG input 0.51099895 MeV)
+PDG value:         m_e = 0.51099895000 MeV
+QED conversion accuracy: |Δm/m| = 5.40e-06
+Status: ✓ PASS (QED conversion works correctly)
 ```
+
+**⚠️ CRITICAL NOTE:** This validates the QED conversion formula, NOT a first-principles prediction.
+The input mass is from experimental PDG data. See disclaimer at top of document.
 
 ## Documentation Updates
 
@@ -186,15 +209,15 @@ Added section under "For running tests and validation":
 - `python scripts/validate_electron_mass.py` walkthrough
 - Reference to test file
 
-## Precision Analysis
+## Precision Analysis (QED Conversion Accuracy, Not Prediction)
 
 ### Current Performance
 
-| Metric | Value |
-|--------|-------|
-| Target precision | < 10⁻⁴ |
-| Achieved precision | 5.4×10⁻⁶ |
-| **Status** | **PASS (exceeds target)** |
+| Metric | Value | Note |
+|--------|-------|------|
+| QED conversion target | < 10⁻⁴ | Technical accuracy |
+| QED conversion achieved | 5.4×10⁻⁶ | **PASS** (formula works) |
+| **First-principles prediction** | **NOT IMPLEMENTED** | **Uses experimental input** |
 
 ### Error Budget
 
@@ -206,9 +229,10 @@ Added section under "For running tests and validation":
    - Using 1-loop instead of 2-loop
    - Can be removed by implementing 2-loop formula
 
-3. **UBT mass operator:** TBD
-   - Currently using experimental value (placeholder)
-   - Will be replaced with actual UBT derivation
+3. **UBT mass operator:** **NOT YET IMPLEMENTED**
+   - Currently using experimental PDG value (placeholder)
+   - **This is NOT a first-principles prediction**
+   - Awaiting implementation of Hopfion mass formula from Θ field
 
 ### Future Improvements
 
@@ -239,8 +263,20 @@ Added section under "For running tests and validation":
 - Clear TODO markers for future work ✓
 - SPDX license headers ✓
 
-## Summary
+## Summary (Updated November 10, 2025)
 
-The fit-free electron mass derivation pipeline is **complete and functional**, achieving **better than target precision** (5.4×10⁻⁶ vs. 10⁻⁴ target). All tests pass, documentation is comprehensive, and the code is ready for review and extension to other leptons and quarks.
+The QED MSbar ↔ pole mass conversion framework is **complete and functional**, achieving technical accuracy of 5.4×10⁻⁶ for the conversion formula.
 
-The implementation strictly follows the UBT principle of deriving physical constants from geometric structure rather than fitting to data, using only the two-loop α calculation as input.
+**However:** This is **NOT a first-principles prediction** of electron mass. The calculation uses experimental PDG value (0.51099895 MeV) as input. The precision value (5.4×10⁻⁶) represents QED formula accuracy, not predictive power.
+
+**What works:**
+- ✅ QED conversion formulas (MSbar ↔ pole)
+- ✅ Alpha from UBT two-loop (baseline α⁻¹ = 137, ~0.05% at m_e scale)
+- ✅ Test framework and documentation
+
+**What's missing:**
+- ❌ UBT mass operator from Hopfion topology (uses experimental value instead)
+- ❌ First-principles electron mass prediction
+- ❌ Muon and tau mass implementations
+
+**For honest assessment of UBT's actual predictive capabilities, see UBT_SCIENTIFIC_RATING_2025.md**

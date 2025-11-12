@@ -6,9 +6,14 @@ UBT RGE Runner - Renormalization Group Evolution for Fermion Masses
 Implements 1-loop (and optionally 2-loop) SM RGEs for Yukawa couplings
 to evolve tree-level masses from high scale μ₀ to low scale μ.
 
+THEORY STATUS:
+- Uses UBT alpha from topological prime selection (fit-free) ✓
+- Mass predictions await M_Θ and texture parameter determination
+- Currently uses experimental masses as placeholders (NOT predictions)
+
 Author: UBT Team
 Version: v17 Stable Release
-Status: Core computational tool - no circular parameters
+Status: Core computational tool - uses UBT alpha, mass predictions pending
 """
 
 import numpy as np
@@ -16,33 +21,64 @@ from scipy.integrate import odeint
 from scipy.optimize import fsolve
 import warnings
 
-# Physical constants
-ALPHA_EM_MZ = 1/127.9  # Fine structure constant at M_Z
-ALPHA_S_MZ = 0.1179    # Strong coupling at M_Z
-M_Z = 91.1876          # Z boson mass (GeV)
-M_W = 80.379           # W boson mass (GeV)
-M_H = 125.1            # Higgs mass (GeV)
-V_EW = 246.22          # Electroweak VEV (GeV)
+# Import UBT alpha from first principles
+import sys
+from pathlib import Path
+repo_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(repo_root))
+from alpha_core_repro.two_loop_core import alpha_from_ubt_two_loop_strict, MU0
 
-# SM fermion masses at M_Z (MSbar, PDG 2022)
+# Physical constants (some from experiment, used as placeholders)
+# NOTE: Alpha values here are REPLACED by UBT calculations
+M_Z = 91.1876          # Z boson mass (GeV) - experimental
+M_W = 80.379           # W boson mass (GeV) - experimental
+M_H = 125.1            # Higgs mass (GeV) - experimental
+V_EW = 246.22          # Electroweak VEV (GeV) - experimental
+
+# SM fermion masses - PLACEHOLDERS pending M_Θ implementation
+# These are NOT UBT predictions, they are inputs for RGE evolution testing
 QUARK_MASSES_MZ = {
-    'u': 0.00216,   # GeV
-    'c': 1.27,      # GeV
-    't': 172.76,    # GeV
-    'd': 0.00467,   # GeV
-    's': 0.093,     # GeV
-    'b': 4.18,      # GeV
+    'u': 0.00216,   # GeV (PDG, placeholder)
+    'c': 1.27,      # GeV (PDG, placeholder)
+    't': 172.76,    # GeV (PDG, placeholder)
+    'd': 0.00467,   # GeV (PDG, placeholder)
+    's': 0.093,     # GeV (PDG, placeholder)
+    'b': 4.18,      # GeV (PDG, placeholder)
 }
 
+# Lepton masses - PLACEHOLDERS pending M_Θ implementation
+# These are NOT UBT predictions, they are PDG values used for RGE testing
 LEPTON_MASSES_POLE = {
-    'e': 0.000510998950,  # GeV
-    'mu': 0.1056583755,   # GeV
-    'tau': 1.77686,       # GeV
+    'e': 0.000510998950,  # GeV (PDG, placeholder)
+    'mu': 0.1056583755,   # GeV (PDG, placeholder)
+    'tau': 1.77686,       # GeV (PDG, placeholder)
 }
+
+# Function to get UBT alpha at any scale
+def get_ubt_alpha(mu_GeV):
+    """
+    Get fine structure constant from UBT at scale μ.
+    
+    Parameters
+    ----------
+    mu_GeV : float
+        Energy scale in GeV
+        
+    Returns
+    -------
+    float
+        α(μ) from UBT two-loop running (fit-free)
+    """
+    mu_MeV = mu_GeV * 1000.0  # Convert to MeV
+    return alpha_from_ubt_two_loop_strict(mu_MeV)
+
+# Pre-compute UBT alpha at common scales (for efficiency)
+ALPHA_EM_MZ = get_ubt_alpha(M_Z)  # UBT alpha at M_Z
+ALPHA_S_MZ = 0.1179    # Strong coupling at M_Z (QCD, separate from EM)
 
 
 class SMRGE:
-    """Standard Model Renormalization Group Equations"""
+    """Standard Model Renormalization Group Equations using UBT alpha"""
     
     def __init__(self, loop_order=1):
         """
