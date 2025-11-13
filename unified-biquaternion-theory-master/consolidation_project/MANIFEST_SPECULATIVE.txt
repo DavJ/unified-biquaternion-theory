@@ -1,6 +1,0 @@
-appendix_F_psychons_theta.tex
-appendix_U_dark_matter_unified_padic.tex
-appendix_H_alpha_padic_combined.tex
-appendix_I_new_fields_and_particles.tex
-appendix_J_rotating_spacetime_ctc.tex
-appendix_K_fundamental_constants_consolidated.tex
