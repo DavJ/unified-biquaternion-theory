@@ -106,16 +106,20 @@
 **Status:** ✅ Baseline achieved, refinements in progress  
 **Note:** Remaining small difference attributed to higher-order quantum corrections
 
-#### 2. Fine-Structure Constant (Complete Prediction with QED)
-**Full Prediction:** α⁻¹ = 137.036 (geometric baseline + QED quantum corrections)  
-**Geometric Baseline:** α⁻¹ = 137.000 from complex time topology  
-**QED Corrections:** +0.036 (standard QED, valid because QED is ψ=const limit of UBT)  
+#### 2. Fine-Structure Constant (Baseline + Quantum Corrections Goal)
+**Geometric Baseline (ACHIEVED):** α⁻¹ = 137.000 from complex time topology  
+**Quantum Corrections (IN PROGRESS):** +0.036 calculation from UBT vacuum polarization  
+**Goal:** Full first-principles prediction α⁻¹ ≈ 137.036  
 **Experimental:** α⁻¹ = 137.035999084(21) (CODATA 2018)  
-**Error:** 0.0003% (full prediction) or 0.026% (baseline only)  
-**Derivation:** Winding number on T² torus, prime constraint + QED loop corrections  
-**Status:** ✅ Complete prediction matches experiment - **FIT-FREE**  
+**Current error:** 0.026% (baseline only)  
+**Target error:** < 0.001% (with quantum corrections)  
+**Derivation:** Winding number on T² torus, prime constraint + vacuum polarization loops  
+**Status:** ✅ Baseline fit-free, ⚠️ corrections calculation needed  
 **Breakthrough (Nov 2025):** R_UBT = 1 rigorously proven (533-line proof in appendix_CT_two_loop_baseline.tex)  
-**Key Insight:** QED corrections are UBT predictions because QED is proven to be the ψ=const limit of UBT (Appendix D)  
+**Critical Challenge:** Need to calculate +0.036 correction from UBT Feynman diagrams (not just cite QED)
+  - QED literature gives 0.036 but QED itself uses experimental α as input (circular)
+  - UBT can calculate from geometric baseline without experimental input
+  - Two-loop framework exists, explicit calculation pending (6-12 month project)
 **Assumptions:**
   - A1: Geometric locking (N_eff, R_ψ fixed without tunable parameters)
   - A2: CT renormalization scheme (Ward identities, QED limit)
@@ -218,12 +222,12 @@ Which reduces to the core equation in coordinate form.
 
 1. **General Relativity**: Recovered exactly in real-time limit
 2. **Gauge Symmetries**: SU(3)×SU(2)×U(1) derived from geometry
-3. **Electron Mass**: ~0.510 MeV from topological soliton (baseline + corrections, ~0.2% accuracy)
-4. **Fine-Structure Constant - Complete Prediction**: α⁻¹ = 137.036 (geometric baseline + QED corrections)
-   - Geometric baseline: α⁻¹ = 137.000 from topology (fit-free)
-   - QED corrections: +0.036 (standard QED, valid as QED is ψ=const limit of UBT)
-   - Full prediction matches experiment to 0.0003% accuracy
-   - R_UBT = 1 proven under assumptions A1-A3 (no fitted parameters)
+3. **Electron Mass**: ~0.510 MeV from topological soliton (baseline + refinements, ~0.2% accuracy)
+4. **Fine-Structure Constant - Baseline Achieved**: α⁻¹ = 137.000 from topology (fit-free)
+   - Geometric baseline: α⁻¹ = 137.000 from complex time topology (fit-free, R_UBT = 1 proven)
+   - **Quantum corrections in progress**: Need to calculate +0.036 from UBT vacuum polarization
+   - Goal: Full first-principles prediction α⁻¹ ≈ 137.036
+   - Current status: Framework exists, explicit calculation needed (6-12 months)
 5. **Quantum Gravity Unification**: GR + QFT in single framework
 
 ### ⚠️ Partially Explained
@@ -247,7 +251,7 @@ Which reduces to the core equation in coordinate form.
 
 **Before (October 2025):**
 - Fine-structure constant α⁻¹ = 137.000 (baseline only) derived with fitted parameter R_UBT ≈ 1.84
-- QED corrections (+0.036) noted separately
+- Quantum corrections (+0.036) hardcoded from QED literature
 - Treated as semi-empirical result
 - "B constant mostly derived, 12% perturbative gap remains"
 
@@ -255,9 +259,9 @@ Which reduces to the core equation in coordinate form.
 - **R_UBT = 1 rigorously proven** under three explicit assumptions (A1-A3)
 - Complete 533-line proof in `appendix_CT_two_loop_baseline.tex`
 - Automated guard tests prevent regression to fitted values
-- **Full prediction**: α⁻¹ = 137.000 (baseline) + 0.036 (QED) = 137.036 ✓
-- QED corrections are UBT predictions (QED is proven ψ=const limit of UBT)
-- α derivation is now **fully predictive** (no free parameters)
+- **Baseline prediction**: α⁻¹ = 137.000 from topology (fit-free) ✓
+- **Quantum corrections**: +0.036 calculation from UBT vacuum polarization (in progress)
+- α baseline derivation is now **fully predictive** (no free parameters)
 
 ### The Three Assumptions
 
