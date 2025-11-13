@@ -27,42 +27,42 @@
 | Stage | UBT Prediction | Comment | Relative Error |
 |-------|----------------|---------|----------------|
 | **Baseline (geometric)** | α⁻¹ = **137.000** | From topology, no free parameters | 0.026% |
-| **+ One-loop QED** | α⁻¹ = **137.001549** | Exact calculation with dimensional regularization (Δ = +0.001549) | 0.025% |
-| **+ Higher-order QED** | α⁻¹ ≈ **137.035** | Using QED running from geometric baseline (Δ ≈ +0.035) | 0.0008% |
+| **+ One-loop QED** | α⁻¹ = **137.001549** | Standard QED result with dimensional regularization (Δ = +0.001549) | 0.025% |
+| **+ Higher-order QED** | α⁻¹ ≈ **137.035** | Using standard QED running from geometric baseline (Δ ≈ +0.035) | 0.0008% |
 | **Experimental (PDG)** | α⁻¹ = **137.035999084** ± 0.000000021 | CODATA 2018 | — |
 
-**Key Achievement**: Starting from geometric baseline (137.000) and applying standard QED corrections predicts experimental value to 0.0008% accuracy. Full two-loop calculation from UBT field equations in progress (4-8 months).
+**Key Achievement**: Starting from geometric baseline (137.000) and applying standard QED corrections matches experimental value to 0.0008% accuracy. Full two-loop calculation from UBT field equations in progress (4-8 months).
 
 ### Electron Mass m_e (Progressive Refinements)
 
 | Stage | UBT Prediction (MeV) | Comment | Relative Error |
 |-------|---------------------|---------|----------------|
 | **Baseline (Hopfion topology)** | m_e = **0.509856** | From topological soliton, no free parameters | 0.22% |
-| **+ QED corrections** | m_e = **0.510996191** | One-loop QED self-energy (Δ = +1.140 keV) | 0.00054% |
+| **+ QED corrections** | m_e = **0.510996191** | Standard one-loop QED self-energy (Δ = +1.140 keV) | 0.00054% |
 | **Experimental (PDG)** | m_e = **0.51099895000** ± 0.00000015 | CODATA 2018 | — |
 
-**Key Achievement**: Only theory to predict electron mass from first principles (SM, String Theory, LQG treat it as free parameter). Current accuracy: 5.4×10⁻⁶ (0.00054%). Further refinements planned: biquaternionic corrections, higher-order topology.
+**Key Achievement**: One of the few frameworks attempting to predict electron mass from first principles (SM, String Theory, LQG treat it as free parameter). Current accuracy: 5.4×10⁻⁶ (0.00054%). Further refinements planned: biquaternionic corrections, higher-order topology.
 
 - ⭐ **Fine Structure Constant - Fit-Free Derivation**: α⁻¹ = 137.000 from topology (geometric baseline)
   - **Step 1**: Prime selection via energy minimization V_eff(n) → minimum at n*=137, OR via Hecke worlds (most stable p-sector)
   - **Geometric baseline**: α⁻¹ = 137.000 exactly from topology (no fitted parameters)
-  - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3
+  - **Major Breakthrough (Nov 2025)**: R_UBT = 1 derived under assumptions A1-A3
   - **Step 2 (IN PROGRESS)**: Quantum corrections calculation from UBT field equations
     - **Goal**: Compute +0.036 correction from first principles using UBT vacuum polarization
     - **Current Progress**:
-      - ✅ **Phase 2 Complete**: One-loop exact calculation (Δα⁻¹ = 0.001549) with proper dimensional regularization
+      - ✅ **Phase 2 Complete**: One-loop standard QED calculation (Δα⁻¹ = 0.001549) with proper dimensional regularization
       - ✅ **Phase 3 Framework**: Two-loop calculation structure complete in `consolidation_project/alpha_two_loop/`
-      - ✅ **Validation**: Framework correctly reproduces experimental value (137.035 vs 137.036, 0.0008% error) using QED running from geometric baseline
+      - ✅ **Consistency Check**: Framework correctly reproduces experimental value (137.035 vs 137.036, 0.0008% error) using standard QED running from geometric baseline
       - ⏳ **Remaining**: Full two-loop calculation from UBT field equations (4-8 months, requires IBP reduction + master integral evaluation)
     - **Note**: Standard QED takes experimental α as input (circular reasoning). UBT uniquely calculates corrections from geometric baseline without experimental input.
-    - **UBT advantage**: Only theory that can predict α from pure topology + quantum corrections without any experimental input
+    - **UBT advantage**: Framework that can predict α from pure topology + quantum corrections without experimental input as baseline
   - Complete 533-line proof of baseline in appendix_CT_two_loop_baseline.tex
   - Guard tests + CI prevent regression to empirical fits
 - ⭐ **Electron Mass - Fit-Free from Hopfion Topology**: m_e ≈ 0.510 MeV (~0.2% error)
   - **Baseline**: m_e = 0.509856 MeV from topological soliton configuration in biquaternionic field
   - **With QED self-energy**: Small corrections improve agreement with experiment
   - No experimental input used - pure geometric calculation
-  - **Context**: Only theory to predict electron mass from first principles (SM, String Theory, LQG all treat it as free parameter)
+  - **Context**: Framework that attempts to predict electron mass from first principles (SM, String Theory, LQG all treat it as free parameter)
   - **Current status**: Baseline prediction achieved; refinements in progress to improve accuracy
   - **Planned refinements** (all fit-free):
     - Biquaternionic quantum corrections (complex time phase fluctuations)
@@ -233,8 +233,8 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 | Stage | UBT Prediction | Relative Error | Status |
 |-------|----------------|----------------|--------|
 | **Baseline (geometric)** | α⁻¹ = **137.000** | 0.026% | ✅ FIT-FREE |
-| **+ One-loop QED** | α⁻¹ = **137.001549** (Δ = +0.001549) | 0.025% | ✅ EXACT |
-| **+ Higher-order QED** | α⁻¹ ≈ **137.035** (Δ ≈ +0.035) | 0.0008% | ✅ VALIDATED |
+| **+ One-loop QED** | α⁻¹ = **137.001549** (Δ = +0.001549) | 0.025% | ✅ STANDARD QED |
+| **+ Higher-order QED** | α⁻¹ ≈ **137.035** (Δ ≈ +0.035) | 0.0008% | ✅ STANDARD QED |
 | **Experimental (PDG)** | α⁻¹ = **137.035999084** ± 0.000000021 | — | — |
 
 ### Electron Mass m_e (Progressive Refinements)
@@ -242,20 +242,20 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 | Stage | UBT Prediction (MeV) | Relative Error | Status |
 |-------|---------------------|----------------|--------|
 | **Baseline (Hopfion topology)** | m_e = **0.509856** | 0.22% | ✅ FIT-FREE |
-| **+ QED corrections** | m_e = **0.510996191** (Δ = +1.140 keV) | 0.00054% | ✅ VALIDATED |
+| **+ QED corrections** | m_e = **0.510996191** (Δ = +1.140 keV) | 0.00054% | ✅ STANDARD QED |
 | **Experimental (PDG)** | m_e = **0.51099895000** ± 0.00000015 | — | — |
 
 **Key achievements:**
 - ✅ **Fine-structure constant baseline - FIT-FREE**: α⁻¹ = 137.000 from topology
-  - Geometric baseline proven under assumptions A1-A3 (R_UBT = 1, no fitted parameters)
+  - Geometric baseline derived under assumptions A1-A3 (R_UBT = 1, no fitted parameters)
   - **Quantum corrections calculation progress**:
-    - ✅ **Phase 2 Complete**: One-loop exact (Δα⁻¹ = 0.001549) with dimensional regularization
+    - ✅ **Phase 2 Complete**: One-loop standard QED (Δα⁻¹ = 0.001549) with dimensional regularization
     - ✅ **Phase 3 Framework**: Complete two-loop structure in `consolidation_project/alpha_two_loop/`
-    - ✅ **Validation**: Framework reproduces experimental value (137.035 vs 137.036, 0.0008% error)
+    - ✅ **Consistency Check**: Framework reproduces experimental value (137.035 vs 137.036, 0.0008% error)
     - ⏳ **Remaining**: Full two-loop calculation from UBT field equations (4-8 months)
   - Goal: Calculate full α⁻¹ ≈ 137.036 from first principles without experimental input
-- ✅ **Standard Model gauge group SU(3)×SU(2)×U(1) rigorously derived** from biquaternionic geometry (November 2025)
-- ✅ **Mathematical foundations:** Key derivations validated using SymPy/NumPy
+- ✅ **Standard Model gauge group SU(3)×SU(2)×U(1) derived** from biquaternionic geometry (November 2025)
+- ✅ **Mathematical foundations:** Key derivations verified using SymPy/NumPy
 - ✅ **Testable predictions:** CMB analysis feasible within 1-2 years
 
 **Important notes:**

@@ -210,7 +210,7 @@ Derive Z₃ from:
 **Two Regimes**:
 
 **Regime 1 (UBT Baseline)**:
-- Δ_CT = 0 exactly (R_UBT = 1 proven)
+- Δ_CT = 0 exactly (R_UBT = 1 derived under A1-A3)
 - α^{-1} = 137.000 (geometric prediction)
 - ~0.026% error from experiment
 
@@ -355,7 +355,7 @@ Derive Z₃ from:
 **Task 3.3**: Publication Preparation
 - Write clean derivation suitable for peer review
 - Emphasize fit-free baseline α^{-1} = 137
-- Clearly state what's proven vs. what's in progress
+- Clearly state what's derived vs. what's in progress
 
 ---
 
@@ -367,7 +367,7 @@ Derive Z₃ from:
 - Baseline: α₀^{-1} = 137.000 (from topology and prime selection)
 - Geometric structure: N_eff = 12, R_ψ = 1 (from quaternions)
 - Beta functions: β₁, β₂ (from torus curvature)
-- Two-loop baseline: R_UBT = 1 (rigorously proven)
+- Two-loop baseline: R_UBT = 1 (derived under assumptions A1-A3)
 
 **⏳ In Progress**:
 - Quantum corrections: Δ_CT ≈ 0.036 (framework exists, calculation ongoing)
