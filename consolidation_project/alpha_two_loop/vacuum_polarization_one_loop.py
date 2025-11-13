@@ -18,20 +18,9 @@ License: CC BY 4.0
 """
 
 import numpy as np
-import sympy as sp
-from sympy import symbols, I, pi, sqrt, ln, log, exp, oo
-from sympy import simplify, limit, series, integrate
-from typing import Tuple, Dict, Optional
+from sympy import symbols
+from typing import Dict
 import mpmath as mp
-
-# Import existing master integrals framework
-try:
-    from .symbolics.master_integrals import MI_Bubble
-except ImportError:
-    # Fallback for standalone execution
-    import sys
-    sys.path.append('symbolics')
-    from master_integrals import MI_Bubble
 
 
 class VacuumPolarizationOneLoop:
@@ -272,6 +261,15 @@ class VacuumPolarizationOneLoop:
         
         This is a preliminary estimate based on QED literature.
         Full calculation requires Phase 3 implementation.
+        
+        Note
+        ----
+        While the numerical values and formulas for higher-order QED corrections
+        are taken from standard QED literature, the unique aspect of this calculation
+        in the UBT framework is that these corrections are applied starting from the
+        geometric baseline α₀⁻¹ = 137 (as determined by UBT topology), rather than
+        the experimental value of α. This approach is specific to UBT and distinguishes
+        it from conventional QED running, which starts from the measured value.
         
         The key insight: QED running from Planck scale down to m_e gives large corrections.
         Standard QED formula for running coupling:

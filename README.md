@@ -27,11 +27,11 @@
 | Fine-structure constant (baseline) | α⁻¹ = 137.000 (geometric) | 137.035999084 | ±0.000000021 | 0.026% |
 | Electron mass (baseline) | 0.510 MeV (baseline + refinements) | 0.51099895000 MeV | ±0.00000015 MeV | ~0.2% |
 
-- ⭐ **Fine Structure Constant - Fit-Free Derivation**: α⁻¹ = 137.000 from topology (baseline)
+- ⭐ **Fine Structure Constant - Fit-Free Derivation**: α⁻¹ = 137.000 from topology (geometric baseline)
   - **Step 1**: Prime selection via energy minimization V_eff(n) → minimum at n*=137, OR via Hecke worlds (most stable p-sector)
   - **Geometric baseline**: α⁻¹ = 137.000 exactly from topology (no fitted parameters)
   - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3
-  - **Step 2 (IN PROGRESS)**: Calculate quantum corrections from UBT field equations
+  - **Step 2 (IN PROGRESS)**: Quantum corrections calculation from UBT field equations
     - **Goal**: Compute +0.036 correction from first principles using UBT vacuum polarization
     - **Challenge**: Need to evaluate Feynman diagrams in complex time formalism
     - **Framework**: Two-loop calculation structure exists in `consolidation_project/alpha_two_loop/`

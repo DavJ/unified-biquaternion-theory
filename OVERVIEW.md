@@ -107,14 +107,14 @@
 **Note:** Remaining small difference attributed to higher-order quantum corrections
 
 #### 2. Fine-Structure Constant (Baseline + Quantum Corrections Goal)
-**Geometric Baseline (ACHIEVED):** α⁻¹ = 137.000 from complex time topology  
-**Quantum Corrections (IN PROGRESS):** +0.036 calculation from UBT vacuum polarization  
-**Goal:** Full first-principles prediction α⁻¹ ≈ 137.036  
-**Experimental:** α⁻¹ = 137.035999084(21) (CODATA 2018)  
-**Current error:** 0.026% (baseline only)  
-**Target error:** < 0.001% (with quantum corrections)  
-**Derivation:** Winding number on T² torus, prime constraint + vacuum polarization loops  
-**Status:** ✅ Baseline fit-free, ⚠️ corrections calculation needed  
+**Geometric Baseline (ACHIEVED):** α⁻¹ = 137.000 from complex time topology.  
+**Quantum Corrections (IN PROGRESS):** +0.036 calculation from UBT vacuum polarization.  
+**Goal:** Full first-principles prediction α⁻¹ ≈ 137.036.  
+**Experimental:** α⁻¹ = 137.035999084(21) (CODATA 2018).  
+**Current error:** 0.026% (baseline only).  
+**Target error:** < 0.001% (with quantum corrections).  
+**Derivation:** Winding number on T² torus, prime constraint + vacuum polarization loops.  
+**Status:** ✅ Baseline fit-free, ⚠️ corrections calculation needed.  
 **Breakthrough (Nov 2025):** R_UBT = 1 rigorously proven (533-line proof in appendix_CT_two_loop_baseline.tex)  
 **Critical Challenge:** Need to calculate +0.036 correction from UBT Feynman diagrams (not just cite QED)
   - QED literature gives 0.036 but QED itself uses experimental α as input (circular)

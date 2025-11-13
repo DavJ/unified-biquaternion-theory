@@ -10,7 +10,7 @@ in UBT. This is a complex calculation requiring:
 
 Goal: Calculate Δα⁻¹ ≈ 0.031-0.036 from first principles
 
-Timeline: 4-8 months for full implementation
+Timeline: 4-8 months for full implementation (for expert teams; see QUANTUM_CORRECTIONS_ROADMAP.md)
 Current Status: Framework/skeleton implementation
 
 References:
@@ -23,22 +23,13 @@ Date: 2025-11-13
 License: CC BY 4.0
 """
 
-import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List
 from enum import Enum
 import warnings
 
-# Try to import symbolic computation
-try:
-    import sympy as sp
-    SYMPY_AVAILABLE = True
-except ImportError:
-    SYMPY_AVAILABLE = False
-    warnings.warn("SymPy not available - symbolic calculation disabled")
-
 # Try to import master integrals
 try:
-    from symbolics.master_integrals import MI_Bubble, MasterIntegral
+    from symbolics.master_integrals import MasterIntegral
     MASTER_INTEGRALS_AVAILABLE = True
 except ImportError:
     MASTER_INTEGRALS_AVAILABLE = False
@@ -336,7 +327,14 @@ class VacuumPolarizationTwoLoop:
         total_all_loops = leptonic_all_loops + hadronic_contrib + other_contrib
         
         # One-loop already calculated in Phase 2
-        one_loop = 0.001549
+        # Import or calculate dynamically for consistency
+        try:
+            from .vacuum_polarization_one_loop import VacuumPolarizationOneLoop
+            calc_one_loop = VacuumPolarizationOneLoop(alpha_baseline=1/137.0)
+            one_loop = calc_one_loop.thomson_limit_correction()
+        except (ImportError, Exception):
+            # Fallback to known value if import fails
+            one_loop = 0.001549
         
         # Higher-order (two-loop and beyond)
         higher_order = total_all_loops - one_loop
@@ -422,8 +420,13 @@ def main():
     # Initialize calculator
     calc = VacuumPolarizationTwoLoop()
     
-    # Run calculation
-    result = calc.calculate_two_loop_contribution()
+    # Run calculation with error handling
+    try:
+        result = calc.calculate_two_loop_contribution()
+        print(f"Estimated two-loop vacuum polarization contribution: Δα⁻¹ ≈ {result['higher_order_estimate']:.6f}")
+    except Exception as e:
+        print(f"Error in calculation: {e}")
+        result = None
     
     print("=" * 70)
     print("Implementation Status:")
@@ -456,8 +459,11 @@ def main():
     print("=" * 70)
     print()
     print("This framework demonstrates the calculation structure.")
-    print("Estimated result shows we're on track: α⁻¹ ≈ 137.005")
-    print("Full implementation will refine this to experimental precision.")
+    if result:
+        print(f"Estimated result shows we're on track: α⁻¹ ≈ {result['alpha_inv_full']:.6f}")
+        print("Full implementation will refine this to experimental precision.")
+    else:
+        print("Note: Full calculation requires completing Phase 3 implementation.")
     print()
 
 

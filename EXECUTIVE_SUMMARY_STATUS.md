@@ -55,7 +55,6 @@ Can UBT predict masses and alpha constant precisely enough from first principles
      - NO experimental input - start from geometric baseline α⁻¹ = 137
    - **Timeline**: 6-12 months for expert team
    - **Impact**: Would be first theory to predict α completely from first principles
-   - Formula: m_e = m₀(1 - 3α/2π·κ) gives 0.511 MeV
 2. **Fermion Masses - Refinements in Progress:**
    - **Baseline achieved**: m_e = 0.509856 MeV (0.22% error) ✅
    - **Planned refinements**:

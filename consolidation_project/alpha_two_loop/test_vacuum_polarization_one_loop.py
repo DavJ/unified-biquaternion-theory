@@ -19,7 +19,6 @@ except ImportError:
     print("Warning: pytest not available, using basic assertions")
 
 from vacuum_polarization_one_loop import VacuumPolarizationOneLoop
-import numpy as np
 
 
 def test_initialization():
