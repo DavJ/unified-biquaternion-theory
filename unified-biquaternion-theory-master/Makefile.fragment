@@ -1,0 +1,11 @@
+# Makefile fragment (append to your Makefile if you want)
+.PHONY: gen-snippets fix-core audit
+
+gen-snippets:
+\tpython tools/generate_tex_snippets_from_csv.py
+
+fix-core:
+\tpython tools/replace_core_literals_with_macros.py --root . --apply
+
+audit:
+\tpython tools/audit_computed_not_reference.py --root .

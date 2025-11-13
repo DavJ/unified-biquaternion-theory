@@ -1,0 +1,144 @@
+% NOTE: α derivation is given in Appendix α (appendix_ALPHA_one_loop_biquat.tex)
+% VERSION: v17 Stable Release
+
+\section{Appendix E: Standard Model Coupling and QCD Embedding in UBT}
+\label{app:sm-qcd-ubt}
+
+\paragraph{Note on Time Structure in QCD.}
+\textbf{Caution regarding complex time approximation}: Unlike QED, QCD is a non-Abelian gauge theory where gluon self-interactions lead to $[\Theta_i, \Theta_j] \neq 0$ for chromodynamic field components. Therefore, the full biquaternionic or quaternionic time structure may be required for accurate QCD calculations, particularly in the strongly-coupled regime or for confinement physics. The complex time approximation $\tau = t + i\psi$ used in some derivations should be understood as a first-order treatment valid only in the weakly-coupled perturbative regime. Future work should verify this approximation or reformulate QCD derivations using the full time structure. See Appendix~\ref{sec:biquaternion_vs_complex_time} for criteria.
+
+\subsection{Overview}
+This appendix restores and consolidates the linkage between the Unified Biquaternion Theory (UBT) and the
+Standard Model (SM) gauge structure, with special emphasis on the QCD sector. We present a consistent dictionary
+from the UBT geometric variables to the SM gauge potentials and field strengths, and we state matching conditions
+and running-coupling relations compatible with Appendices~\ref{app:alpha-consolidated} and \ref{app:padic-rigorous}.
+
+\subsection{Gauge bundle and connections}
+Let the SM gauge group be
+\[
+\mathbb{G} \;\cong\; SU(3)_c \times SU(2)_L \times U(1)_Y\,.
+\]
+We introduce gauge connections (one-forms) and field strengths:
+\begin{align}
+G_\mu &\;=\; G_\mu^a T^a \in \mathfrak{su}(3), &
+G_{\mu\nu} &= \partial_\mu G_\nu - \partial_\nu G_\mu + i g_s\,[G_\mu, G_\nu], \\
+W_\mu &\;=\; W_\mu^i \tau^i \in \mathfrak{su}(2), &
+W_{\mu\nu} &= \partial_\mu W_\nu - \partial_\nu W_\mu + i g\,[W_\mu, W_\nu], \\
+B_\mu &\in \mathfrak{u}(1), &
+B_{\mu\nu} &= \partial_\mu B_\nu - \partial_\nu B_\mu.
+\end{align}
+The covariant derivative acting on a matter field $\Psi$ in a representation $(\mathbf{3},\mathbf{2},Y)$ reads
+\begin{equation}
+D_\mu \Psi \;=\; \Big(\partial_\mu + i g_s G_\mu^a T^a + i g W_\mu^i \tau^i + i g^\prime Y B_\mu\Big)\Psi.
+\end{equation}
+
+\subsection{Explicit SU(3) color generators}
+\label{subsec:su3_generators}
+
+The $SU(3)$ color generators $T^a$ ($a=1,\ldots,8$) are given by the Gell-Mann matrices, normalized as
+\begin{equation}
+T^a = \frac{\lambda^a}{2}\,,
+\qquad \mathrm{Tr}(T^a T^b) = \frac{1}{2}\delta^{ab}\,,
+\label{eq:su3_normalization}
+\end{equation}
+where $\lambda^a$ are the standard Gell-Mann matrices:
+\begin{align}
+\lambda^1 &= \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \quad
+\lambda^2 = \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \quad
+\lambda^3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \nonumber\\
+\lambda^4 &= \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix}, \quad
+\lambda^5 = \begin{pmatrix} 0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0 \end{pmatrix}, \quad
+\lambda^6 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}, \nonumber\\
+\lambda^7 &= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}, \quad
+\lambda^8 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2 \end{pmatrix}.
+\label{eq:gell_mann_matrices}
+\end{align}
+
+These generators satisfy the $\mathfrak{su}(3)$ Lie algebra:
+\begin{equation}
+[T^a, T^b] = i f^{abc} T^c\,,
+\label{eq:su3_commutator}
+\end{equation}
+where $f^{abc}$ are the structure constants of $SU(3)$. The only non-vanishing structure constants (up to permutations) are:
+\begin{align}
+f^{123} &= 1\,, \quad
+f^{147} = f^{165} = f^{246} = f^{257} = f^{345} = f^{376} = \frac{1}{2}\,, \nonumber\\
+f^{458} &= f^{678} = \frac{\sqrt{3}}{2}\,.
+\label{eq:su3_structure_constants}
+\end{align}
+
+\paragraph{Compatibility with $\Theta$-field tensor product rules.}
+The $SU(3)$ color structure in UBT arises from the internal phase fiber of the biquaternionic field $\Theta(q,\tau)$, as detailed in Appendix~\ref{app:color_internal_symmetry} (Appendix G). The factorization
+\begin{equation}
+\Theta(x,\tau) \;=\; \Xi(x,\tau)\,\mathcal{U}(x,\tau), 
+\qquad \mathcal{U} \in U(3), \quad \mathcal{U}^\dagger\mathcal{U} = \mathbf{1}_3\,,
+\label{eq:theta_su3_factorization}
+\end{equation}
+ensures that the color connection
+\begin{equation}
+A_\mu = \mathcal{U}^\dagger \partial_\mu \mathcal{U} - \frac{1}{3}\mathrm{Tr}(\mathcal{U}^\dagger \partial_\mu \mathcal{U})\,\mathbf{1}_3
+\;=\; A_\mu^a T^a \;\in\; \mathfrak{su}(3)
+\label{eq:color_connection}
+\end{equation}
+is traceless and compatible with the normalization \eqref{eq:su3_normalization}. The tensor product structure of the biquaternionic field $\Theta \in \mathbb{B} \otimes \mathbb{C}^3$ (where $\mathbb{B}$ is the biquaternion algebra) naturally accommodates the $3\times 3$ color matrix structure acting on the right (internal fiber) while the biquaternion acts on the left (spacetime). This ensures:
+\begin{equation}
+D_\mu \Theta = (\partial_\mu + A_\mu)\Theta, 
+\qquad 
+\Theta \mapsto \Theta\,\mathcal{U} \;\Rightarrow\; D_\mu \Theta \mapsto (D_\mu\Theta)\,\mathcal{U}\,.
+\label{eq:theta_covariant_derivative}
+\end{equation}
+
+\subsection{UBT $\to$ SM dictionary}
+UBT provides a unified connection $\mathcal{A}_\mu$ on the $\psi$-fibered spacetime. We assume a block-diagonal projection
+\begin{equation}
+\mathcal{A}_\mu \;\longmapsto\; (G_\mu,\, W_\mu,\, B_\mu)
+\end{equation}
+such that the $U(1)$ normalization is fixed by the Chern quantization as in Appendix~\ref{app:alpha-consolidated}.
+The electric charge operator obeys $Q = T^3 + Y/2$, and the electroweak mixing is
+\begin{equation}
+\begin{pmatrix} A_\mu \\ Z_\mu \end{pmatrix} \;=\;
+\begin{pmatrix} \cos\theta_W & \sin\theta_W \\ -\sin\theta_W & \cos\theta_W \end{pmatrix}
+\begin{pmatrix} B_\mu \\ W^3_\mu \end{pmatrix},
+\qquad
+e \;=\; g \sin\theta_W \;=\; g^\prime \cos\theta_W.
+\end{equation}
+At low energies $e$ matches $\alpha$ propose in Appendix~\ref{app:alpha-consolidated}. The determination of $\theta_W$ and $(g,g^\prime)$
+requires additional matching conditions (left for future work) or a unification hypothesis.
+
+\subsection{Gauge-invariant Lagrangian}
+The gauge kinetic terms are
+\begin{equation}
+\mathcal{L}_{\rm gauge} \;=\; -\frac{1}{4}\,G_{\mu\nu}^a G^{a\,\mu\nu} \;-\; \frac{1}{4}\,W_{\mu\nu}^i W^{i\,\mu\nu} \;-\; \frac{1}{4}\,B_{\mu\nu} B^{\mu\nu}.
+\end{equation}
+For QCD with $n_f$ quark flavors the matter part includes
+\begin{equation}
+\mathcal{L}_{\rm QCD}^{\rm matter} \;=\; \sum_{f=1}^{n_f} \bar{q}_f\,(i\gamma^\mu D_\mu - m_f)\,q_f\,,
+\qquad D_\mu q \;=\; (\partial_\mu + i g_s G_\mu^a T^a)q.
+\end{equation}
+
+\subsection{Running couplings and matching}
+\paragraph{QED.} In CORE, $\alpha$ is parameterized via a renormalization condition at scale $\mu_0$; the complete one-loop geometric derivation is given in Appendix $\alpha$ (see \texttt{appendix\_ALPHA\_one\_loop\_biquat.tex}). The low-energy fine-structure constant $\alpha(\mu)$ emerges from the compactification of imaginary time and vacuum polarization contributions.
+
+\paragraph{QCD.} The strong coupling runs according to
+\begin{equation}
+\alpha_s(\mu) \;=\; \frac{g_s^2(\mu)}{4\pi} \;=\; \frac{1}{\beta_0 \ln(\mu^2/\Lambda_{\rm QCD}^2)}\Big(1 - \frac{\beta_1}{\beta_0^2}\frac{\ln\ln(\mu^2/\Lambda^2_{\rm QCD})}{\ln(\mu^2/\Lambda^2_{\rm QCD})} + \cdots\Big),
+\end{equation}
+with $\beta_0=\tfrac{11}{4\pi}\!-\!\tfrac{n_f}{6\pi}$ and $\beta_1=\tfrac{102}{(4\pi)^2}\!-\!\tfrac{38\,n_f}{(4\pi)^2}$ in the $\overline{\rm MS}$ scheme. Asymptotic freedom ($\beta_0>0$) and confinement at low $\mu$ are consistent with a knotted-flux interpretation in the $\Theta$ sector.
+
+\subsection{Topological interpretation of QCD in UBT}
+Color flux tubes correspond to knotted configurations of $\Theta$ with nontrivial linking.
+Wilson loops $\langle \mathrm{Tr}\, \mathcal{P}\exp i\oint G\rangle$ map to holonomies of $\mathcal{A}_\mu$ in the UBT fiber;
+an area law for large loops is compatible with an energy cost proportional to knotted tube length and curvature.
+Instanton sectors ($\pi_3(SU(2))\cong \mathbb{Z}$) mirror Hopf-like textures, providing a common topological language for both EM and QCD sectors.
+
+\subsection{Matching conditions and open tasks}
+\begin{itemize}
+\item \textbf{Normalization:} $U(1)$ is fixed by Chern quantization (Appendix~\ref{app:alpha-consolidated}). The QCD normalization is anchored by $\Lambda_{\rm QCD}$; in UBT one expects $\Lambda_{\rm QCD}\sim \xi\,\mu_{\rm int}$, with the internal-mode scale $\mu_{\rm int}$ from the electron sector and $\xi=\mathcal{O}(1)$ to be fitted.
+\item \textbf{Electroweak mixing:} determining $\theta_W$ from UBT requires an additional symmetry or a unification hypothesis; otherwise it is an independent parameter.
+\item \textbf{Anomalies:} the SM matter assignment must satisfy anomaly cancellation; UBT embeddings should preserve this (check fermion content mapping).
+\item \textbf{Hadron phenomenology:} flux-tube/knotted-state spectra vs.\ lattice-QCD input is an avenue for quantitative tests.
+\end{itemize}
+
+\subsection{Consistency with dark matter appendix}
+The interaction portals between the $\Theta$ topological sector and colored matter are suppressed by orthogonality (complex-time fiber)
+and higher-dimensional operators. Therefore QCD does not spoil the DM stability discussed in Appendix~\ref{app:dm-consolidated}, while gravitational coupling remains universal.
