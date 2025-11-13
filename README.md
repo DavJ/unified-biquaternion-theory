@@ -24,24 +24,34 @@
 
 ### Fine-Structure Constant α⁻¹ (Progressive Refinements)
 
+**UBT Baseline Prediction (Fit-Free):**
 | Stage | UBT Prediction | Comment | Relative Error |
 |-------|----------------|---------|----------------|
 | **Baseline (geometric)** | α⁻¹ = **137.000** | From topology, no free parameters | 0.026% |
-| **+ One-loop QED** | α⁻¹ = **137.001549** | Standard QED result with dimensional regularization (Δ = +0.001549) | 0.025% |
-| **+ Higher-order QED** | α⁻¹ ≈ **137.035** | Using standard QED running from geometric baseline (Δ ≈ +0.035) | 0.0008% |
+
+**Standard QED Comparison (External Physics for Validation):**
+| Stage | Value | Comment | Relative Error |
+|-------|-------|---------|----------------|
+| **+ One-loop QED** | α⁻¹ = **137.001549** | Standard QED result (not yet re-derived in UBT) (Δ = +0.001549) | 0.025% |
+| **+ Higher-order QED** | α⁻¹ ≈ **137.035** | Standard QED running (not yet re-derived in UBT) (Δ ≈ +0.035) | 0.0008% |
 | **Experimental (PDG)** | α⁻¹ = **137.035999084** ± 0.000000021 | CODATA 2018 | — |
 
-**Key Achievement**: Starting from geometric baseline (137.000) and applying standard QED corrections matches experimental value to 0.0008% accuracy. Full two-loop calculation from UBT field equations in progress (4-8 months).
+**Key Achievement**: UBT predicts α⁻¹ = 137.000 from topology without any experimental input (fit-free). The quantum corrections (Δ ≈ 0.036) that would bring this to experimental value are currently imported from standard QED for comparison. Full two-loop calculation from UBT field equations in progress (4-8 months) to provide independent UBT prediction of these corrections.
 
 ### Electron Mass m_e (Progressive Refinements)
 
+**UBT Baseline Prediction (Fit-Free):**
 | Stage | UBT Prediction (MeV) | Comment | Relative Error |
 |-------|---------------------|---------|----------------|
 | **Baseline (Hopfion topology)** | m_e = **0.509856** | From topological soliton, no free parameters | 0.22% |
-| **+ QED corrections** | m_e = **0.510996191** | Standard one-loop QED self-energy (Δ = +1.140 keV) | 0.00054% |
+
+**Standard QED Comparison (External Physics for Validation):**
+| Stage | Value (MeV) | Comment | Relative Error |
+|-------|-------------|---------|----------------|
+| **+ QED corrections** | m_e = **0.510996191** | Standard one-loop QED self-energy (not yet re-derived in UBT) (Δ = +1.140 keV) | 0.00054% |
 | **Experimental (PDG)** | m_e = **0.51099895000** ± 0.00000015 | CODATA 2018 | — |
 
-**Key Achievement**: One of the few frameworks attempting to predict electron mass from first principles (SM, String Theory, LQG treat it as free parameter). Current accuracy: 5.4×10⁻⁶ (0.00054%). Further refinements planned: biquaternionic corrections, higher-order topology.
+**Key Achievement**: UBT predicts m_e = 0.509856 MeV from topological soliton configuration without any experimental input (fit-free). One of the few frameworks attempting to predict electron mass from first principles (SM, String Theory, LQG treat it as free parameter). The QED corrections that would bring this to experimental value are currently imported from standard QED for comparison. Further UBT-specific refinements planned: biquaternionic corrections, higher-order topology.
 
 - ⭐ **Fine Structure Constant - Fit-Free Derivation**: α⁻¹ = 137.000 from topology (geometric baseline)
   - **Step 1**: Prime selection via energy minimization V_eff(n) → minimum at n*=137, OR via Hecke worlds (most stable p-sector)
@@ -230,19 +240,29 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 
 ### Fine-Structure Constant α⁻¹ (Progressive Refinements)
 
+**UBT Prediction (Fit-Free):**
 | Stage | UBT Prediction | Relative Error | Status |
 |-------|----------------|----------------|--------|
 | **Baseline (geometric)** | α⁻¹ = **137.000** | 0.026% | ✅ FIT-FREE |
-| **+ One-loop QED** | α⁻¹ = **137.001549** (Δ = +0.001549) | 0.025% | ✅ STANDARD QED |
-| **+ Higher-order QED** | α⁻¹ ≈ **137.035** (Δ ≈ +0.035) | 0.0008% | ✅ STANDARD QED |
+
+**Standard QED Comparison (External):**
+| Stage | Value | Relative Error | Status |
+|-------|-------|----------------|--------|
+| **+ One-loop QED** | α⁻¹ = **137.001549** (Δ = +0.001549) | 0.025% | 📚 STANDARD QED |
+| **+ Higher-order QED** | α⁻¹ ≈ **137.035** (Δ ≈ +0.035) | 0.0008% | 📚 STANDARD QED |
 | **Experimental (PDG)** | α⁻¹ = **137.035999084** ± 0.000000021 | — | — |
 
 ### Electron Mass m_e (Progressive Refinements)
 
+**UBT Prediction (Fit-Free):**
 | Stage | UBT Prediction (MeV) | Relative Error | Status |
 |-------|---------------------|----------------|--------|
 | **Baseline (Hopfion topology)** | m_e = **0.509856** | 0.22% | ✅ FIT-FREE |
-| **+ QED corrections** | m_e = **0.510996191** (Δ = +1.140 keV) | 0.00054% | ✅ STANDARD QED |
+
+**Standard QED Comparison (External):**
+| Stage | Value (MeV) | Relative Error | Status |
+|-------|-------------|----------------|--------|
+| **+ QED corrections** | m_e = **0.510996191** (Δ = +1.140 keV) | 0.00054% | 📚 STANDARD QED |
 | **Experimental (PDG)** | m_e = **0.51099895000** ± 0.00000015 | — | — |
 
 **Key achievements:**

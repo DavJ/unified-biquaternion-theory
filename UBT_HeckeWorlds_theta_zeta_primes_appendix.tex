@@ -88,21 +88,36 @@ $139$ & $139$ & $0.036013599$ & $139.036013599$ \\
 \end{tabular}
 \end{center}
 \noindent
-% NOTE: Two regimes for Delta_CT:
-% - UBT BASELINE (geometric): Delta_CT(137) = 0 exactly (R_UBT = 1, proven under A1-A3)
-% - WITH FULL QED CORRECTIONS: Delta_CT(137) = 0.035999 (includes all loop orders)
+% IMPORTANT: Δ_CT Values and UBT Program
+% ==========================================
+% 
+% In the full UBT program, Δ_CT(137) is to be COMPUTED from UBT loop integrals,
+% not fitted to experimental data.
 %
-% The value 0.035999 shown in the table represents the full quantum correction needed
-% to match experimental alpha^{-1} = 137.035999. This comes from standard QED running
-% (higher-order loops beyond the UBT baseline).
+% TWO DISTINCT REGIMES:
 %
-% The UBT baseline prediction is alpha^{-1} = 137.000 (fit-free, from topology).
-% The remaining ~0.036 correction is from QED vacuum polarization loops,
-% which are calculable but not yet fully computed from UBT field equations.
+% 1. UBT BASELINE (fit-free prediction):
+%    - Geometric quantization gives: α₀^{-1} = 137.000 exactly
+%    - No quantum corrections included: Δ_CT(137) = 0
+%    - This is the genuine UBT prediction: α_UBT^{-1} = 137.000
 %
-Numerically, $\Delta_{\mathrm{CT},137} = 0.035999$ (when including full QED quantum corrections) reproduces the experimental inverse value $137.035999\ldots$ exactly to the stated tolerance ($< 5 \times 10^{-4}$).
-The baseline UBT prediction without these corrections is $\alpha^{-1} = 137.000$ exactly.
-The values in the table are computed using QED running formulas in \texttt{alpha\_core\_repro/alpha\_two\_loop.py}, with beta-function running for nearby primes.
+% 2. STANDARD QED COMPARISON (external physics for validation):
+%    - Standard QED vacuum polarization gives: Δ_QED ≈ 0.035999
+%    - Using this gives: α^{-1} ≈ 137.036 (matches experiment)
+%    - This is NOT a UBT prediction but a comparison with known QED
+%
+% The values 0.035999 shown in the table below should be regarded as
+% IMPORTED FROM STANDARD QED/EXPERIMENTAL DATA for comparison purposes.
+% They are NOT part of the UBT first-principles derivation.
+%
+% When UBT loop integrals are fully computed (work in progress), they will
+% provide an independent prediction for Δ_CT(137) which can then be compared
+% with the standard QED value.
+%
+Numerically, $\Delta_{\mathrm{CT},137} = 0.035999$ is the standard QED quantum correction value imported for comparison.
+The baseline UBT prediction is $\alpha_{\mathrm{UBT}}^{-1} = 137.000$ exactly (fit-free, from topology).
+The table values use standard QED running formulas from the literature, not UBT loop calculations.
+Future work: Compute Δ_CT from UBT field equations and compare with standard QED.
 
 \section{Placement in the main text}
 This appendix can be cited where the sector choice is introduced (``Prime anchor'' paragraph) and where the Ward--Thomson matching is performed.

@@ -1,11 +1,37 @@
 # Clean Consolidated Alpha Derivation in UBT
-**Version**: 1.0  
+**Version**: 2.0  
 **Date**: 2025-11-13  
-**Status**: Post-Audit Cleanup
+**Status**: Post-Audit Cleanup + Hard Rules Enforcement
 
 ## Purpose
 
 This document provides a **clean, non-circular summary** of the fine-structure constant α derivation in the Unified Biquaternion Theory (UBT), clearly distinguishing **first-principles predictions** from **fitted/empirical dependencies**.
+
+## ⚠️ CRITICAL: No Hidden QED Injection
+
+**Hard Rule**: In any UBT calculation, it is **FORBIDDEN** to use:
+- α_exp (experimental value)
+- Δ_CT fitted to match experimental α
+- B, Z₃, or any parameter tuned "so it works out"
+
+**What IS allowed**:
+- Standard quantum field theory methods (renormalization, Feynman diagrams, MS/on-shell schemes)
+- But with input constants ONLY from UBT: α₀^{-1} = 137 (from topology)
+
+**The UBT Pipeline (Three Layers)**:
+
+1. **UBT Geometry/Topology** → Baseline coupling:
+   - n = 137 (from prime selection)
+   - α₀ = 1/137 (fit-free geometric prediction)
+
+2. **UBT → QED Limit** → Effective field theory:
+   - Derive effective QED-like action from UBT Lagrangian
+   - e₀ or g₀ fixed by UBT (n=137), NOT tuned from experiment
+
+3. **Quantum Loops/Renormalization** → Running coupling:
+   - Calculate loops using UBT-limit Lagrangian
+   - Result: α_UBT(μ) = f_UBT(α₀, spectrum, topology)
+   - Compare with experiment ONLY at the end (no fitting)
 
 ---
 
@@ -205,24 +231,36 @@ Derive Z₃ from:
 
 **Location**: `UBT_HeckeWorlds_theta_zeta_primes_appendix.tex`, line 91
 
-**Current Status**: **FITTED** to match experimental α^{-1} = 137.035999
+**Current Status**: **IMPORTED FROM STANDARD QED** to match experimental α^{-1} = 137.035999
+
+**CRITICAL CLARIFICATION**:
+Δ_CT is NOT a UBT prediction but a comparison value from external physics.
+
+**Proper Definition**:
+```
+Δ_CT(137) ≡ [α_UBT^{-1}(μ) - 137]
+```
+where α_UBT(μ) is computed from UBT loop calculations, NOT from experiment.
 
 **Two Regimes**:
 
-**Regime 1 (UBT Baseline)**:
+**Regime 1 (UBT Baseline - THE ACTUAL PREDICTION)**:
 - Δ_CT = 0 exactly (R_UBT = 1 derived under A1-A3)
 - α^{-1} = 137.000 (geometric prediction)
 - ~0.026% error from experiment
+- **This is the genuine UBT prediction**
 
-**Regime 2 (With QED Corrections)**:
-- Δ_CT ≈ 0.036 (from QED vacuum polarization loops)
+**Regime 2 (Standard QED Comparison - EXTERNAL VALIDATION)**:
+- Δ_QED ≈ 0.036 (from standard QED vacuum polarization loops)
 - α^{-1} = 137.036 (matches experiment)
-- **Status**: QED formula known, but not calculated from UBT field equations
+- **Status**: Standard QED formula known, imported for comparison
+- **NOT a UBT calculation**: Uses literature/experimental QED values
 
 **Assessment**:
 - UBT baseline (Δ = 0) is fit-free ✅
-- Full quantum Δ requires explicit calculation from UBT ⏳
-- Currently using QED literature value (not circular, but incomplete)
+- Full quantum Δ requires explicit UBT loop calculation ⏳
+- Current Δ ≈ 0.036 is from external QED, not UBT derivation
+- **Do NOT claim** UBT predicts α^{-1} = 137.036; it predicts 137.000
 
 ---
 
@@ -370,18 +408,27 @@ Derive Z₃ from:
 - Two-loop baseline: R_UBT = 1 (derived under assumptions A1-A3)
 
 **⏳ In Progress**:
-- Quantum corrections: Δ_CT ≈ 0.036 (framework exists, calculation ongoing)
+- Quantum corrections from UBT loops: Δ_UBT (framework exists, calculation needed)
 - B coefficient: Claims derivation, needs numerical verification
 
 **❌ Missing Derivations**:
-- Z₃ = 2π (currently assumed, needs first-principles derivation)
+- Z₃ renormalization factor (currently assumed 2π, needs first-principles derivation)
+
+**📚 External Comparisons (NOT UBT Predictions)**:
+- Standard QED corrections: Δ_QED ≈ 0.036 (imported from literature for comparison)
+- These values should NOT be claimed as UBT predictions
 
 **🎯 Bottom Line**:
-The UBT baseline prediction α^{-1} = 137 is **genuinely fit-free** and comes from geometric quantization + prime stability. The connection to experimental α^{-1} = 137.036 requires either:
-1. Calculating the quantum correction Δ ≈ 0.036 from UBT (in progress), OR
-2. Deriving the renormalization Z₃ from first principles (open problem)
+The UBT baseline prediction is **α^{-1} = 137.000** (genuinely fit-free from geometric quantization + prime stability).
 
-Until these calculations are complete, UBT predicts α^{-1} = 137.000 ± 0.036, where the uncertainty represents quantum corrections being calculated.
+**What UBT currently predicts**: α^{-1} = 137.000 (0.026% error from experiment)
+**What UBT does NOT yet predict**: The quantum corrections Δ ≈ 0.036
+
+The standard QED value α^{-1} ≈ 137.036 is used for comparison only, not as a UBT prediction. Future work:
+1. Calculate quantum corrections from UBT loop integrals (not from standard QED), OR
+2. Derive Z₃ renormalization from first principles (not assumed)
+
+Until these calculations are complete, UBT's prediction is α^{-1} = 137.000 with ~0.026% difference from experiment that may be explained by quantum corrections (to be calculated) or may represent a genuine deviation from standard physics.
 
 ---
 
