@@ -1,0 +1,308 @@
+% =======================================================================
+% Appendix: UBT Electromagnetic Sector and Quantum Correction Program for α
+% =======================================================================
+
+\section{UBT Electromagnetic Sector and Quantum Correction Program for $\alpha$}
+\label{sec:UBT_alpha_loop_program}
+
+In this appendix we define the electromagnetic sector of the Unified Biquaternion Theory (UBT), its effective QED-like limit, and a concrete, non-circular program for computing quantum corrections to the fine-structure constant $\alpha$. The key requirements are:
+
+\begin{itemize}
+  \item The \emph{baseline} value $\alpha_0^{-1} = 137$ is fixed by UBT geometry/topology (prime selection and toroidal structure), not by experiment.
+  \item All quantum corrections are obtained from loop integrals of the UBT effective field theory, with input couplings and masses determined by UBT, not tuned to match experiment.
+  \item Standard QED results (e.g.\ $\Delta \approx 0.036$) may be used only \emph{for comparison}, never as input to the UBT derivation.
+\end{itemize}
+
+The final goal is a first-principles prediction
+\begin{equation}
+  \alpha_{\mathrm{UBT}}^{-1}(\mu_0) = 137 + \Delta_{\mathrm{UBT}}(137;\mu_0),
+\end{equation}
+where $\Delta_{\mathrm{UBT}}(137;\mu_0)$ is computed from UBT loop integrals.
+
+% -----------------------------------------------------------------------
+\subsection{Extended space, complex time, and biquaternionic field}
+% -----------------------------------------------------------------------
+
+UBT is formulated on an extended space with coordinates
+\begin{equation}
+  x^M = (x^\mu, \psi), \qquad \mu = 0,1,2,3, \qquad \psi \sim \psi + 2\pi R_\psi,
+\end{equation}
+where $\psi$ is the compact internal coordinate associated with the imaginary part of complex time
+\begin{equation}
+  \tau = t + i \psi.
+\end{equation}
+The fundamental field is a biquaternionic object
+\begin{equation}
+  \Theta(x^M) \in \mathbb{B},
+\end{equation}
+whose internal structure encodes both gauge and spinor degrees of freedom. A $U(1)$ electromagnetic gauge symmetry arises as a phase rotation of an appropriate component of $\Theta$, while spinorial components give an effective Dirac field.
+
+% -----------------------------------------------------------------------
+\subsection{UBT electromagnetic action in 5D}
+\label{subsec:UBT_EM_action}
+% -----------------------------------------------------------------------
+
+We introduce a $U(1)$ gauge field on the extended space,
+\begin{equation}
+  A_M(x^N) = \bigl(A_\mu(x^N), A_\psi(x^N)\bigr), \qquad M,N = 0,1,2,3,\psi,
+\end{equation}
+with field strength
+\begin{equation}
+  F_{MN} = \partial_M A_N - \partial_N A_M.
+\end{equation}
+The minimal UBT electromagnetic action coupled to a fermionic mode extracted from $\Theta$ is
+\begin{equation}
+  S_{\mathrm{UBT,EM}}
+  =
+  \int d^4x \int_0^{2\pi R_\psi} d\psi \,\sqrt{|g|}
+  \,\mathcal{L}_{\mathrm{UBT,EM}},
+\end{equation}
+with Lagrangian
+\begin{equation}
+  \mathcal{L}_{\mathrm{UBT,EM}}
+  =
+  -\frac{1}{4 g_0^2} F_{MN} F^{MN}
+  + \bar{\Psi}(x^M)\bigl(i \Gamma^M D_M - m_0\bigr)\Psi(x^M)
+  + \mathcal{L}_{\mathrm{top}}[\Theta, A_M].
+  \label{eq:UBT_L_EM}
+\end{equation}
+Here:
+\begin{itemize}
+  \item $\Psi(x^M)$ is an effective 5D spinor extracted from the biquaternionic field $\Theta$.
+  \item $\Gamma^M$ are 5D gamma matrices, e.g.\ $\Gamma^\mu = \gamma^\mu$, $\Gamma^\psi = i\gamma^5$.
+  \item $D_M = \partial_M + i q A_M$ is the covariant derivative with a $U(1)$ charge $q$ fixed by UBT charge quantization (Dirac/holonomy conditions).
+  \item $g_0$ is the bare UBT gauge coupling for the electromagnetic sector.
+  \item $m_0$ is the bare fermion mass arising from the biquaternionic/Hopfion sector.
+  \item $\mathcal{L}_{\mathrm{top}}[\Theta, A_M]$ encodes the toroidal and biquaternionic topology (effective mode count $N_{\mathrm{eff}}$, compactification radius $R_\psi$, etc.).
+\end{itemize}
+All these parameters are determined by UBT geometry/topology, not fitted to experiment.
+
+% -----------------------------------------------------------------------
+\subsection{Geometric definition of the bare coupling and baseline $\alpha_0$}
+\label{subsec:bare_coupling}
+% -----------------------------------------------------------------------
+
+The geometric framework of Appendix~C implies that the electromagnetic coupling is related to toroidal radii and effective mode count. We summarize this as
+\begin{equation}
+  \frac{1}{g_0^2}
+  = \frac{N_{\mathrm{eff}}}{4\pi}\,\frac{R_t}{R_\psi},
+\end{equation}
+where $R_t$ and $R_\psi$ are the principal radii of the complex-time torus and $N_{\mathrm{eff}}$ is the effective number of modes (e.g.\ $N_{\mathrm{eff}} = 12$ from quaternionic mode counting). The electric charge is
+\begin{equation}
+  e_0 = q\, g_0,
+\end{equation}
+with $q$ fixed by UBT charge quantization.
+
+We define the \emph{bare} UBT fine-structure constant as
+\begin{equation}
+  \alpha_0 \equiv \frac{e_0^2}{4\pi}.
+\end{equation}
+The geometric/topological analysis (prime selection via $V_{\mathrm{eff}}(n)$, Hecke sector stability, etc.) selects
+\begin{equation}
+  n_\star = 137, \qquad \alpha_0^{-1} = 137.
+  \label{eq:alpha0_137_appendix}
+\end{equation}
+Equation~\eqref{eq:alpha0_137_appendix} is the \emph{baseline UBT prediction} for $\alpha$, obtained without any experimental input.
+
+% -----------------------------------------------------------------------
+\subsection{Reduction to 4D QED-like effective theory}
+\label{subsec:QED_limit}
+% -----------------------------------------------------------------------
+
+We perform a Kaluza--Klein decomposition along the compact $\psi$ direction:
+\begin{align}
+  A_M(x,\psi) &= \sum_{k\in\mathbb{Z}} A_M^{(k)}(x)\, e^{ik\psi/R_\psi}, \\
+  \Psi(x,\psi) &= \sum_{k\in\mathbb{Z}} \Psi^{(k)}(x)\, e^{ik\psi/R_\psi}.
+\end{align}
+In the low-energy regime $E \ll 1/R_\psi$, the dominant contribution comes from the zero modes $k=0$:
+\begin{equation}
+  A_\mu^{(0)}(x), \qquad \Psi^{(0)}(x).
+\end{equation}
+Integrating over $\psi$ and retaining only zero modes yields the 4D effective action
+\begin{equation}
+  S_{\mathrm{eff}}^{(4\mathrm{D})}
+  =
+  \int d^4x \left[
+    -\frac{1}{4 e_0^2} F_{\mu\nu}^{(0)} F^{\mu\nu}_{(0)}
+    + \bar{\Psi}^{(0)}(i\slashed{\partial}-m_0)\Psi^{(0)}
+    - e_0\, \bar{\Psi}^{(0)}\slashed{A}^{(0)}\Psi^{(0)}
+  \right]
+  + S_{\mathrm{KK\text{-}corr}},
+  \label{eq:Seff_4D_appendix}
+\end{equation}
+where $S_{\mathrm{KK\text{-}corr}}$ contains contributions from heavy Kaluza--Klein modes ($k\neq 0$) and UBT-specific corrections. Equation~\eqref{eq:Seff_4D_appendix} has the structure of standard QED, but with:
+\begin{itemize}
+  \item bare coupling $e_0$ fixed by UBT ($\alpha_0^{-1}=137$),
+  \item bare mass $m_0$ fixed by the topological Hopfion sector,
+  \item additional higher-dimensional corrections encoded in $S_{\mathrm{KK\text{-}corr}}$.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+\subsection{Feynman rules in the UBT QED-like limit}
+\label{subsec:Feynman_rules_UBT}
+% -----------------------------------------------------------------------
+
+For the purposes of loop calculations we extract the effective Feynman rules from~\eqref{eq:Seff_4D_appendix} plus a KK/UBT correction sector.
+
+\paragraph{Gauge choice.}
+We work in Feynman gauge for the photon zero mode:
+\begin{equation}
+  \mathcal{L}_{\mathrm{gauge\,fix}}
+  = - \frac{1}{2 e_0^2} (\partial_\mu A^\mu_{(0)})^2.
+\end{equation}
+
+\paragraph{Propagators.}
+\begin{itemize}
+  \item Photon zero-mode propagator:
+  \begin{equation}
+    D^{\mu\nu}_0(q) = \frac{-i g^{\mu\nu}}{q^2 + i\epsilon}.
+  \end{equation}
+  \item Fermion zero-mode propagator:
+  \begin{equation}
+    S_0(p) = \frac{i}{\slashed{p} - m_0 + i\epsilon}.
+  \end{equation}
+  \item UBT/KK-extended fermion propagator (schematic):
+  \begin{equation}
+    S_{\mathrm{UBT}}(p)
+    = \sum_{k\in\mathbb{Z}} w_k \,\frac{i}{\slashed{p} + \gamma^5 k/R_\psi - m_k + i\epsilon},
+    \label{eq:S_UBT_modes_appendix}
+  \end{equation}
+  where the weights $w_k$ and masses $m_k$ are determined by the biquaternionic and topological sector.
+\end{itemize}
+
+\paragraph{Vertices.}
+The basic interaction vertex between the photon zero mode and a fermion mode is
+\begin{equation}
+  -i e_0 \gamma^\mu,
+\end{equation}
+with additional higher-dimensional vertices (e.g.\ involving $A_\psi$, KK modes, or effective four-fermion terms) contained in $S_{\mathrm{KK\text{-}corr}}$. These give genuine UBT corrections beyond the QED-like sector.
+
+% -----------------------------------------------------------------------
+\subsection{Renormalization and definition of the renormalized charge}
+\label{subsec:renormalized_charge_appendix}
+% -----------------------------------------------------------------------
+
+We introduce renormalization constants
+\begin{equation}
+  A_\mu^{(0)} = Z_3^{1/2} A_{\mu,R}, \qquad
+  \Psi^{(0)} = Z_2^{1/2} \Psi_R, \qquad
+  e_0 = Z_e\, e_R,
+\end{equation}
+and define the renormalized coupling $e_R(\mu)$ at scale $\mu$ in a given scheme.
+
+In the Thomson (on-shell) scheme the photon two-point function has the form
+\begin{equation}
+  i\Pi^{\mu\nu}(q) = i (q^\mu q^\nu - q^2 g^{\mu\nu})\, \Pi(q^2),
+\end{equation}
+and the photon field renormalization is
+\begin{equation}
+  Z_3^{-1} = 1 - \left.\frac{\partial \Pi(q^2)}{\partial q^2}\right|_{q^2=0}.
+  \label{eq:Z3_def_appendix}
+\end{equation}
+The renormalized coupling $e_R(\mu)$ is then fixed by the requirement that the renormalized three-point vertex reproduces the Coulomb interaction with coefficient $e_R$ in the chosen scheme, entirely from UBT loop integrals.
+
+We define the renormalized UBT fine-structure constant at scale $\mu_0$ as
+\begin{equation}
+  \alpha_{\mathrm{UBT}}(\mu_0) \equiv \frac{e_R^2(\mu_0)}{4\pi}.
+\end{equation}
+
+% -----------------------------------------------------------------------
+\subsection{One-loop UBT algorithm for the photon self-energy}
+\label{subsec:one_loop_algorithm_appendix}
+% -----------------------------------------------------------------------
+
+At one loop, the photon self-energy in UBT is given symbolically by
+\begin{equation}
+  \Pi^{\mu\nu}_{\mathrm{UBT}}(q)
+  =
+  -(-1)(-ie_0)^2 \int \frac{d^D p}{(2\pi)^D}
+  \mathrm{Tr}
+  \left[
+    \gamma^\mu S_{\mathrm{UBT}}(p)\,
+    \gamma^\nu S_{\mathrm{UBT}}(p+q)
+  \right],
+  \label{eq:Pi_munu_UBT_appendix}
+\end{equation}
+with $D=4-2\epsilon$ and $S_{\mathrm{UBT}}$ given by~\eqref{eq:S_UBT_modes_appendix}. Splitting off the zero-mode and KK/UBT corrections:
+\begin{equation}
+  \Pi^{\mu\nu}_{\mathrm{UBT}}(q)
+  =
+  \Pi^{\mu\nu}_{\mathrm{QED\text{-}like}}(q; e_0, m_0)
+  +
+  \Delta \Pi^{\mu\nu}_{\mathrm{KK/UBT}}(q; R_\psi, w_k, m_k).
+\end{equation}
+
+A concrete one-loop algorithm:
+
+\begin{enumerate}
+  \item \textbf{Fix UBT input parameters} from geometry/topology:
+    \[
+      n_\star = 137, \quad \alpha_0^{-1} = 137, \quad R_\psi, \quad N_{\mathrm{eff}}, \quad m_0, \quad w_k, \quad m_k.
+    \]
+  \item \textbf{Compute} $\Pi_{\mathrm{UBT}}(q^2)$ at one loop using~\eqref{eq:Pi_munu_UBT_appendix} in a chosen regulator (e.g.\ dimensional regularization).
+  \item \textbf{Determine} $Z_3$ from~\eqref{eq:Z3_def_appendix} and similarly $Z_2$, $Z_e$ from fermion self-energy and vertex corrections, all computed from the UBT effective theory.
+  \item \textbf{Extract} the renormalized coupling $e_R(\mu_0)$ from the renormalized vertex in the chosen scheme.
+  \item \textbf{Define} the one-loop UBT prediction for $\alpha$ at scale $\mu_0$:
+    \begin{equation}
+      \alpha_{\mathrm{UBT}}(\mu_0)
+      = \frac{e_R^2(\mu_0)}{4\pi}
+      = \alpha_0 + \delta\alpha_{\mathrm{UBT}}^{(1)}(\mu_0),
+    \end{equation}
+    and
+    \begin{equation}
+      \alpha_{\mathrm{UBT}}^{-1}(\mu_0)
+      = 137 + \Delta_{\mathrm{UBT}}^{(1)}(137;\mu_0).
+    \end{equation}
+\end{enumerate}
+
+% -----------------------------------------------------------------------
+\subsection{Definition of the UBT quantum correction $\Delta_{\mathrm{UBT}}$}
+\label{subsec:Delta_UBT_def_appendix}
+% -----------------------------------------------------------------------
+
+\begin{definition}[UBT quantum correction to the fine-structure constant]
+Let $\alpha_{\mathrm{UBT}}(\mu_0)$ be the renormalized fine-structure constant obtained from the UBT effective theory at scale $\mu_0$, with bare input $\alpha_0^{-1}=137$ determined solely by UBT geometry/topology. Then we define
+\begin{equation}
+  \boxed{
+    \Delta_{\mathrm{UBT}}(137;\mu_0)
+    \equiv
+    \alpha_{\mathrm{UBT}}^{-1}(\mu_0) - 137.
+  }
+\end{equation}
+\end{definition}
+
+By construction:
+\begin{itemize}
+  \item $\Delta_{\mathrm{UBT}}$ is a prediction of the UBT loop structure, not an input.
+  \item No experimental value $\alpha_{\mathrm{exp}}$ and no phenomenological $\Delta$ appears anywhere in the derivation.
+  \item If future calculations yield $\Delta_{\mathrm{UBT}}(137;\mu_0) \approx 0.036$, then UBT reproduces the experimental $\alpha^{-1} \approx 137.036$ as a derived quantity.
+  \item If $\Delta_{\mathrm{UBT}}$ deviates significantly from $0.036$, UBT makes a distinct prediction testable by experiment.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+\subsection{Extension to two loops and beyond}
+\label{subsec:two_loop_program_appendix}
+% -----------------------------------------------------------------------
+
+The one-loop program extends systematically to two loops and higher orders:
+
+\begin{enumerate}
+  \item Enumerate all two-loop diagrams contributing to the photon self-energy and vertex corrections in the UBT effective theory defined by~\eqref{eq:Seff_4D_appendix} and $S_{\mathrm{KK\text{-}corr}}$.
+  \item Express the resulting integrals in terms of scalar integrals and reduce them to master integrals using IBP identities.
+  \item Evaluate the master integrals in dimensional regularization and perform renormalization in the chosen scheme, without using experimental $\alpha$.
+  \item Extract $\delta\alpha_{\mathrm{UBT}}^{(2)}(\mu_0)$ and thus
+    \begin{equation}
+      \alpha_{\mathrm{UBT}}^{-1}(\mu_0)
+      = 137 + \Delta_{\mathrm{UBT}}^{(1)}(137;\mu_0)
+             + \Delta_{\mathrm{UBT}}^{(2)}(137;\mu_0)
+             + \cdots.
+    \end{equation}
+\end{enumerate}
+
+Any comparison with experimental $\alpha$ is an external step, performed only after $\alpha_{\mathrm{UBT}}(\mu_0)$ has been computed from UBT.
+
+% =======================================================================
+% End of appendix: UBT Electromagnetic Sector and Quantum Correction Program
+% =======================================================================
+
+
