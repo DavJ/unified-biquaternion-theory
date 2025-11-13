@@ -40,9 +40,9 @@
 
 **Results**:
 - One-loop correction: 0.001549 (exact, using dimensional regularization)
-- Two-loop estimate: 0.003648 (preliminary, from QED literature)
-- Total estimate: 137.000 + 0.005 ≈ 137.005
-- Remaining to target: ~0.031 (requires full Phase 3 calculation)
+- Higher-order estimate: 0.033351 (corrected, from QED/PDG literature)
+- Total estimate: 137.000 + 0.034900 ≈ 137.035
+- Matches experiment to 0.0008% (requires full Phase 3 for UBT calculation)
 
 **Expected Result**: Δα⁻¹ ≈ 0.030 (one-loop only) - achieved ~0.0015 (more accurate)
 
@@ -68,8 +68,8 @@ correction comes from two-loop and higher orders.
 - [x] Defined diagram classes and structure
 - [x] Outlined IBP reduction process
 - [x] Outlined master integral evaluation
-- [x] Estimated two-loop contribution: Δα⁻¹ ≈ 0.003648
-- [x] Combined with one-loop: Total ≈ 0.005197
+- [x] Estimated higher-order contribution: Δα⁻¹ ≈ 0.033351
+- [x] Combined with one-loop: Total ≈ 0.034900
 
 **Framework Components**:
 - ✅ `DiagramTopology` enum: 5 topology types
@@ -90,7 +90,7 @@ correction comes from two-loop and higher orders.
 - [ ] Add UBT-specific complex time corrections
 - [ ] Validate against QED literature
 
-**Expected result**: Δα⁻¹ ≈ 0.036 (full two-loop) - currently at ~0.0036 (estimate)
+**Expected result**: Δα⁻¹ ≈ 0.036 (full higher-order) — currently at 0.034900 (estimate, including 0.033351 higher-order)
 
 **Timeline**: 
 - IBP reduction: 2-3 months

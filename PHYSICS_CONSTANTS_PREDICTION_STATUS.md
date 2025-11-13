@@ -18,7 +18,7 @@ The Unified Biquaternion Theory (UBT) provides a framework for understanding fun
 
 **Full Prediction Goal**: α⁻¹ ≈ 137.036 (geometric baseline + quantum corrections) - IN PROGRESS ⚠️
 
-**Geometric Baseline**: α⁻¹ = 137.000 (exact)
+**Geometric Baseline Details**:
 - **Derivation**: Topological quantization from complex time compactification
 - **Basis**: N_eff = 12 gauge modes, geometric cutoff
 - **Status**: ✅ Fully derived from first principles

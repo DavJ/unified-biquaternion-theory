@@ -148,9 +148,6 @@ class VacuumPolarizationOneLoop:
         float
             Correction to α⁻¹ at one-loop order
         """
-        # One-loop QED β-function coefficient: β₀ = -4/3 for N_f = 1
-        beta_0 = -4.0 / 3.0
-        
         # Finite piece from dimensional regularization at one-loop
         # This is the constant term: 5/3
         finite_piece = 5.0 / 3.0
@@ -321,8 +318,8 @@ class VacuumPolarizationOneLoop:
         # So we need total minus one-loop:
         total_correction_all = leptonic_all_loops + hadronic_contribution + top_contribution
         
-        # Subtract one-loop (already calculated as 0.0015)
-        one_loop = 0.0015
+        # Subtract one-loop (already calculated)
+        one_loop = self.thomson_limit_correction()
         higher_order = total_correction_all - one_loop
         
         return float(higher_order)
