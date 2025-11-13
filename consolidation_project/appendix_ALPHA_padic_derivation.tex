@@ -133,8 +133,14 @@ n \approx \frac{B}{2A}[\ln(n) + 1]
 For the UBT-derived values:
 \begin{align}
 A &= 1 \quad \text{(normalized kinetic term)} \\
-B &= 46.3 \quad \text{(from quantum calculations)}
+B &= 46.3 \quad \text{(derived from geometric structure, see below)}
 \end{align}
+% NOTE ON B COEFFICIENT:
+% Historically, B = 46.3 was determined by fitting V_eff(n) to select n = 137.
+% As of November 2025 (line 525-527), B now has a first-principles derivation:
+%   B = (2π N_eff) / (3 R_ψ) × β_2-loop ≈ 46.3
+% where N_eff = 12 (mode count) and R_ψ = 1 (compactification radius).
+% The numerical agreement validates the original fitting but is now theoretically justified.
 
 Solving numerically while restricting to primes yields:
 \begin{equation}
@@ -172,6 +178,20 @@ For the appropriate renormalization scheme matching to low-energy QED:
 \begin{equation}
 Z_3 \approx 2\pi \quad \text{(determined by UBT normalization conventions)}
 \end{equation}
+% TODO: MISSING DERIVATION
+% The factor Z_3 = 2π is currently ASSUMED to match UBT normalization to QED.
+% This assumption makes the 2π factor in α_UBT = 1/(2πn) cancel out,
+% giving α_phys = 1/n. However, Z_3 should be derived from first principles
+% starting from the theta-action integral (appendix_AA_theta_action.tex).
+%
+% Required: Rigorous derivation of Z_3 from:
+%   1. UBT gauge field normalization
+%   2. Complex time compactification measure
+%   3. Matching to QED Ward identities
+%
+% Until this derivation is complete, the value Z_3 = 2π represents a
+% phenomenological fitting parameter that makes the theory match observations.
+% This is a CIRCULAR DEPENDENCY in the current derivation.
 
 This yields:
 \begin{equation}

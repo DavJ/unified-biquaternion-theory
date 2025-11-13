@@ -162,8 +162,20 @@ def _two_loop_archimedean_core(p: int, scheme: str, mu: Optional[float], strict:
     # The logarithmic terms combine with geometric factors
     
     # Finite part extraction (scheme-independent in physical limit)
-    # From the requirement α_{137}^{-1} = 137.035999:
-    # Δ_CT(137) = 0.035999
+    # NOTE: Two distinct regimes:
+    #
+    # 1. UBT BASELINE (this implementation):
+    #    - From geometric quantization: α^{-1} = p exactly (e.g., 137 for p=137)
+    #    - R_UBT = 1 proven under assumptions A1-A3 (see appendix_CT_two_loop_baseline.tex)
+    #    - Therefore: Δ_CT = 0 at baseline
+    #
+    # 2. WITH FULL QED QUANTUM CORRECTIONS (requires additional calculation):
+    #    - Includes higher-order vacuum polarization loops
+    #    - For p=137: Δ_CT(137) ≈ 0.035999 (from QED literature/experiment)
+    #    - Gives: α^{-1} = 137.035999 matching experiment
+    #
+    # The current implementation computes the BASELINE (regime 1).
+    # For regime 2, one would need to add the full QED loop calculation.
     
     # The p-dependence comes from:
     # 1. Logarithmic running: log(μ²) = 2 log(p)
