@@ -161,6 +161,37 @@ It is a unified physical theory that **generalizes Einstein's General Relativity
 
 ---
 
+## 📋 Documentation Organization (Updated November 2025)
+
+**Recent Consolidation:** The repository has been reorganized to reduce duplication and improve navigation.
+
+### Current Status
+See **[CURRENT_STATUS.md](CURRENT_STATUS.md)** for comprehensive, up-to-date information on:
+- First principles status (alpha and electron mass predictions)
+- Current challenges and progress
+- Theory vs implementation status
+- Computation pipeline details
+- Next steps and priorities
+
+*This document consolidates information from 12 previously separate status reports.*
+
+### Repository Audit
+See **[REPOSITORY_AUDIT_REPORT.md](REPOSITORY_AUDIT_REPORT.md)** for complete analysis of:
+- MD file organization and consolidation (197 → ~140 files)
+- LaTeX file structure and obsolete files
+- Theory consistency review
+- Missing components and recommendations
+
+### Archived Documentation
+Historical documentation has been moved to `docs/archive/`:
+- `docs/archive/summaries/` - Previous status reports and summaries (27 files)
+- `docs/archive/alpha_work/` - Alpha calculation development history (13 files)
+- `docs/development/` - Development and workflow documentation (5 files)
+
+All archived content is preserved for reference but may contain outdated information.
+
+---
+
 ## 📚 Documentation — UBT Textbook (Engineer-Friendly)
 
 - **Build status:** See CI artifact **ubt_textbook.pdf** (built from `docs/textbook/main.tex`)
