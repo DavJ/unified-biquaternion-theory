@@ -13,12 +13,13 @@ canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
 ├── fields/                      # Canonical field definitions
-│   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
-│   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition
+│   ├── theta_field.tex         # Θ(q,τ) biquaternion field
+│   ├── complex_time.tex        # τ = t + iψ definition
+│   ├── biquaternion_algebra.tex # Mathematical foundations
 │   └── electron_mass.tex       # Unified electron mass derivation
 ├── geometry/                    # Canonical geometric structures
 │   ├── metric.tex              # g_μν canonical metric
-│   ├── curvature.tex           # Riemann tensor, etc.
+│   ├── curvature.tex           # Riemann tensor, GR equivalence
 │   └── stress_energy.tex       # T_μν canonical form
 ├── interactions/                # Canonical interaction Lagrangians
 │   ├── qed.tex                 # QED complete

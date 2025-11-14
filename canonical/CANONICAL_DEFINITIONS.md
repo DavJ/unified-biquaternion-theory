@@ -6,51 +6,54 @@
 
 ---
 
-## 1. Biquaternion Time (Canonical)
+## 1. Complex Time τ (Canonical)
 
 ### Canonical Definition
-The fundamental time coordinate in UBT is **biquaternion time**:
+The fundamental time coordinate in UBT is **complex time**:
 
 ```
-T_B = t + i(ψ + v·σ) = t + iψ + jχ + kξ
+τ = t + iψ
 ```
 
 where:
 - `t` ∈ ℝ = real time coordinate (standard physical time)
-- `ψ, χ, ξ` ∈ ℝ = imaginary time components
-- `i, j, k` = quaternion units (i² = j² = k² = ijk = −1)
-- `v = (χ, ξ, ψ)` = vector imaginary component
-- `σ = (σ₁, σ₂, σ₃)` = Pauli matrices
-
-### Hierarchical Structure
-
-Biquaternion time has a hierarchical reduction:
-
-```
-T_B (full biquaternion time)
-  ↓ [||v|| → 0, directional isotropy]
-τ = t + iψ (complex time limit)
-  ↓ [ψ → 0]
-t (classical real time / GR)
-```
-
-### Complex Time as Limiting Case
-
-**Complex time** τ = t + iψ is obtained when the vector imaginary components vanish or become isotropic:
-
-**Projection criterion**:
-- Complex time τ valid when: `||v||² << |ψ|²`
-- Full biquaternion T_B required when: `||v||² ~ |ψ|²` or directional anisotropy
+- `ψ` ∈ ℝ = imaginary time component (phase/consciousness parameter)
+- `i` = imaginary unit (i² = −1)
 
 ### Physical Interpretation
 
-**Full biquaternion time** encodes:
-- **Scalar imaginary part** (ψ): Isotropic phase, consciousness substrate, dark energy
-- **Vector imaginary part** (v): Directional phases, spacetime torsion, spin-dependent effects, anisotropic dark matter
+**Real component (t)**:
+- Ordinary physical time
+- Observable temporal evolution
+- Causality structure
 
-**Complex time limit** (simplified):
-- Valid for weakly coupled systems, low-energy QED, isotropic cosmology
-- Sufficient for most Standard Model calculations
+**Imaginary component (ψ)**:
+- Dynamical phase structure of Θ field
+- Consciousness substrate (psychon excitations)
+- Nonlocal quantum correlations
+- Dark sector coupling
+
+**Critical**: ψ is a **dynamical variable**, not a passive parameter.
+
+### Relation to Standard Physics
+
+In the limit ψ → 0:
+```
+τ → t  ⇒  UBT reduces to standard GR/QFT
+```
+
+This ensures:
+- ✅ Einstein equations recovered exactly
+- ✅ Standard Model preserved
+- ✅ All experimental tests of GR/QFT satisfied
+
+### Extension: Biquaternion Time (Research Topic)
+
+In certain research contexts, time can be extended to:
+```
+T_B = t + iψ + jχ + kξ
+```
+with quaternion units i, j, k. This is explored in advanced appendices but **complex time τ is canonical** for core UBT.
 
 ### Resolution of Conflicts
 The theory previously had 3 conflicting versions:
@@ -58,17 +61,17 @@ The theory previously had 3 conflicting versions:
 2. ❌ Toroidal variant with θ-functions
 3. ❌ Hermitized variant (Appendix F)
 
-**Canonical Version**: **Biquaternion time T_B** is fundamental. Complex time τ = t + iψ is a valid approximation when directional components are negligible.
+**Canonical Version**: `τ = t + iψ` where `ψ` is a **dynamical field** with physical dynamics.
 
 ---
 
-## 2. Theta Field Θ(q,T_B)
+## 2. Theta Field Θ(q,τ)
 
 ### Canonical Definition
 The fundamental field is a **biquaternion**:
 
 ```
-Θ(q, T_B) ∈ B = H ⊗ ℂ
+Θ(q, τ) ∈ B = H ⊗ ℂ
 Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k,    where Θₐ ∈ ℂ
 ```
 
@@ -76,7 +79,9 @@ where:
 - `B` = biquaternion algebra = H ⊗ ℂ (quaternions tensored with complex numbers)
 - `H` = quaternion algebra with units {1, i, j, k}
 - `i, j, k` = quaternion units satisfying i² = j² = k² = ijk = −1
-- `Θₐ` (a = 0,1,2,3) = complex-valued components
+- `Θₐ` (a = 0,1,2,3) = **complex-valued** components
+- `q` ∈ B = biquaternion coordinate (4 DOF)
+- `τ = t + iψ` = complex time
 
 ### Matrix Representation
 
@@ -87,17 +92,11 @@ For computational purposes, Θ can be represented as a matrix:
 
 **Important**: Matrix forms are **representations only**, not the canonical definition. The canonical object is the biquaternion itself.
 
-### Field Structure
-- **Coordinates**: q ∈ B (biquaternion space, 4 base dimensions)
-- **Time**: T_B = t + iψ + jχ + kξ (biquaternion time)
-- **DOF**: 4 complex components = 8 real DOF (before gauge/symmetry constraints)
-
 ### Biquaternion Operations
 
-**Conjugation**:
+**Conjugation** (quaternion conjugate):
 ```
-Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k    (quaternion conjugate)
-Θ̄ = Θ̄₀ + Θ̄₁i + Θ̄₂j + Θ̄₃k    (complex conjugate)
+Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k    (with complex conjugation of components)
 ```
 
 **Norm**:
@@ -112,9 +111,9 @@ Previous conflicting versions:
 3. ❌ 4D biquaternion (old preprint) - lacked clear definition
 
 **Canonical Version**: 
-- **Θ is a biquaternion** Θ(q,T_B) ∈ B = H ⊗ ℂ
+- **Θ is a biquaternion** Θ(q,τ) ∈ B = H ⊗ ℂ
 - **Matrix forms** are computational representations only
-- Works with full biquaternion time T_B (can reduce to complex time τ when appropriate)
+- Works with complex time τ = t + iψ
 
 ---
 
