@@ -10,19 +10,48 @@
    canonical/consciousness/
    canonical/appendices/
 
-## Phase 2 — Canonical definitions
+# COPILOT MASTER INSTRUCTIONS FOR UBT CONSOLIDATION (REVISED BIQUATERNION VERSION)
+
+## Phase 2 — Canonical definitions (updated)
 Use ONLY these definitions:
-- Theta field: Theta(q, tau) ∈ C^(4x4) (extendable to 8x8)
-- Complex time: tau = t + i psi
-- Metric:
-    g_{μν} = Re Tr(∂μΘ ∂νΘ†)
-- Stress-energy tensor:
-    T_{μν} = ∂μΘ ∂νΘ† 
-             - 1/2 g_{μν} g^{αβ} ∂αΘ ∂βΘ†
-- QED/QCD Lagrangian:
-    L = Tr[(DμΘ)† (DμΘ)] 
-        - 1/4 Fμν Fμν 
-        - 1/4 Gμν^a Gμν^a
+
+### Theta field:
+# Theta is a BIQUATERNION (not a matrix)
+Θ(q, τ) ∈ B = H ⊗ C
+Θ(q, τ) = Θ0 + Θ1*i + Θ2*j + Θ3*k,    Θa ∈ C
+
+### Complex time:
+τ = t + i ψ
+
+### Derivatives:
+Use biquaternionic partial derivatives:
+∂μΘ = ∂Θ0/∂xμ + (∂Θ1/∂xμ)i + ...
+
+### Metric:
+g_{μν} = Re[ (∂μΘ)(∂νΘ)† ]
+
+### Stress-energy tensor:
+T_{μν} = (∂μΘ)(∂νΘ)† 
+         - 1/2 g_{μν} g^{αβ} (∂αΘ)(∂βΘ)†
+
+### Lagrangian:
+L = (∂μΘ)(∂μΘ)† 
+    - V(Θ)
+    - 1/4 Fμν Fμν
+    - 1/4 Gμν^a Gμν^a
+
+### Gauge interactions:
+U(1): DμΘ = ∂μΘ + i e Aμ Θ
+SU(3): DμΘ = ∂μΘ + g_s Gμ^a T^a Θ
+
+### Additional rules:
+- Theta is ALWAYS a biquaternion.
+- Matrix forms (4×4 or 8×8) are allowed only as representations, NOT canonical forms.
+- ψ represents ONLY the imaginary component of complex time.
+- α is ONLY a coupling constant.
+- q is ALWAYS a biquaternion coordinate.
+
+
 
 ## Phase 3 — Consolidation
 - Remove duplicate versions of complex time, metric, stress-energy.
