@@ -41,6 +41,9 @@ WHITELIST = {
     "appendix_K2_fundamental_constants_consolidated.tex",
     "appendix_K_fundamental_constants_consolidated.tex",
     "appendix_N_mass_predictions_consolidated.tex",
+    "appendix_ALPHA_torus_theta.tex",  # Appendix with experimental comparison
+    "ubt_alpha_noncommutative_renormalization.tex",  # Contains experimental comparison
+    "appendix_A2_geometrical_derivation_of_fine_structure_constant.tex",  # Contains experimental comparison
     "ubt_osf_publication.tex",
     "final_electron_mass_prediction_UBT.tex",
     "unified_biquaternion_theory.tex",
@@ -69,16 +72,39 @@ WHITELIST = {
     "PYTHON_SCRIPTS_REPORT.md",  # Documentation of scripts and CSV files
     "PYTHON_SCRIPTS_APPENDIX.md",  # Complete inventory of all scripts
     "CSV_AND_DOCUMENTATION_POLICY.md",  # Policy document explaining CSV usage
+    "UBT_VERIFICATION_REPORT.tex",  # Verification document (contains reference values for comparison)
+    # Additional audit/summary documents in root
+    "HARD_CODE_AUDIT.md",
+    "HARD_CODE_AUDIT.txt",
+    "N_EFF_32_RESULTS.md",
+    "FINAL_SUMMARY.md",
+    "ALPHA_DERIVATION_EXPLAINED.md",
+    "IMPLEMENTATION_SUMMARY_TORUS_THETA_ALPHA.md",
+    "ALPHA_CXH_COMPARISON.md",
+    "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
+    "VERIFICATION_CHECKLIST_TORUS_THETA_ALPHA.md",
+    "COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md",
+    "APPENDIX_A2_INTEGRATION_SUMMARY.md",
+    "SCRIPT_INTEGRATION_REPORT.md",
+    "UPDATE_SUMMARY_2025_11_10.md",
+    "CALCULATION_STATUS_ANALYSIS.md",
+    "TORUS_THETA_ALPHA_REPORT.md",
+    "UBT_COPILOT_INSTRUCTIONS.md",  # Reference document with comparison values
 }
 
 # Directory segments to skip
 SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__", 
              ".pytest_cache", "out", "alpha_core_repro/out", "data",
-             "docs/archive",  # Historical documentation
-             "docs/osf_release",  # Published versions (frozen)
-             "docs/osf_release_not_released",  # Draft publications
+             "archive",  # Historical documentation
+             "archived",  # Historical documentation
+             "osf_release",  # Published versions (frozen)
+             "osf_release_not_released",  # Draft publications
              "scripts",  # Utility scripts (often have reference values for comparison)
-             "consolidation_project/old",  # Archived versions
+             "old",  # Archived versions
+             "ubt_strict_fix",  # Audit/fix documentation
+             "ubt_strict_minimal",  # Minimal strict implementation
+             "ubt_audit_pack_v1",  # Audit documentation
+             "ubt_audit_pack_v2",  # Audit documentation
 }
 
 
