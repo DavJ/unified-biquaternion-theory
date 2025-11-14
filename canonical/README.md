@@ -13,8 +13,8 @@ canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
 ├── fields/                      # Canonical field definitions
-│   ├── theta_field.tex         # Θ(q,τ) field definition
-│   ├── complex_time.tex        # τ = t + iψ definition
+│   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
+│   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition
 │   └── electron_mass.tex       # Unified electron mass derivation
 ├── geometry/                    # Canonical geometric structures
 │   ├── metric.tex              # g_μν canonical metric

@@ -1,26 +1,29 @@
 % Canonical Theta Field Definition
-% Version: 1.0
+% Version: 2.0 (Updated for biquaternion time)
 % Date: 2025-11-14
 % Status: Canonical - DO NOT DUPLICATE
 
-\section{The Fundamental Biquaternion Field $\Theta(q,\tau)$}
+\section{The Fundamental Biquaternion Field $\Theta(q,T_B)$}
 \label{sec:canonical:theta_field}
 
 \subsection{Definition}
 
-The fundamental field of Unified Biquaternion Theory is a complex-valued matrix field:
+The fundamental field of Unified Biquaternion Theory is a biquaternion:
 
 \begin{equation}
 \label{eq:canonical:theta_field}
-\Theta(q,\tau) \in \mathbb{C}^{4 \times 4}
+\Theta(q,T_B) \in \mathcal{B} = \mathbb{H} \otimes \mathbb{C}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
     \item $q \in \mathcal{B}$ is a biquaternion coordinate with 4 degrees of freedom
-    \item $\tau = t + i\psi$ is the complex time (see Section~\ref{sec:canonical:complex_time})
-    \item $\mathbb{C}^{4 \times 4}$ denotes the space of $4 \times 4$ complex matrices
+    \item $T_B = t + i\psi + j\chi + k\xi$ is the biquaternion time (see Section~\ref{sec:canonical:biquaternion_time})
+    \item $\mathcal{B} = \mathbb{H} \otimes \mathbb{C}$ denotes the biquaternion algebra
+    \item $\mathbb{H}$ = quaternions with units $\{1, i, j, k\}$
 \end{itemize}
+
+\textbf{Note}: For practical calculations, $\Theta$ can be represented as a $4 \times 4$ (or $8 \times 8$) complex matrix, but the canonical object is the biquaternion itself.
 
 \subsection{Matrix Structure}
 

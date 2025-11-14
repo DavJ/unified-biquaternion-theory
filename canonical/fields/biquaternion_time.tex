@@ -1,26 +1,66 @@
-% Canonical Complex Time Definition
-% Version: 1.0
+% Canonical Biquaternion Time Definition
+% Version: 2.0
 % Date: 2025-11-14
 % Status: Canonical - DO NOT DUPLICATE
 
-\section{Complex Time $\tau = t + i\psi$}
-\label{sec:canonical:complex_time}
+\section{Biquaternion Time $T_B = t + i\psi + j\chi + k\xi$}
+\label{sec:canonical:biquaternion_time}
 
 \subsection{Definition}
 
-The fundamental time coordinate in Unified Biquaternion Theory is complex-valued:
+The fundamental time coordinate in Unified Biquaternion Theory is \textbf{biquaternion-valued}:
 
 \begin{equation}
-\label{eq:canonical:complex_time}
-\tau = t + i\psi
+\label{eq:canonical:biquaternion_time}
+T_B = t + i\psi + j\chi + k\xi = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})
 \end{equation}
 
 \noindent where:
 \begin{itemize}
     \item $t \in \mathbb{R}$ is the \textbf{real time coordinate} (standard physical time)
-    \item $\psi \in \mathbb{R}$ is the \textbf{imaginary time component} (phase/consciousness parameter)
-    \item $i$ is the imaginary unit ($i^2 = -1$)
+    \item $\psi, \chi, \xi \in \mathbb{R}$ are \textbf{imaginary time components}
+    \item $i, j, k$ are quaternion units satisfying $i^2 = j^2 = k^2 = ijk = -1$
+    \item $\mathbf{v} = (\chi, \xi, \psi)$ is the vector imaginary component
+    \item $\boldsymbol{\sigma} = (\sigma_1, \sigma_2, \sigma_3)$ are Pauli matrices
 \end{itemize}
+
+\subsection{Hierarchical Structure}
+
+Biquaternion time admits a hierarchical reduction:
+
+\begin{equation}
+\label{eq:canonical:time_hierarchy}
+\boxed{
+\begin{array}{c}
+T_B = t + i\psi + j\chi + k\xi \quad \text{(full biquaternion time)} \\
+\downarrow \quad [\|\mathbf{v}\| \to 0] \\
+\tau = t + i\psi \quad \text{(complex time limit)} \\
+\downarrow \quad [\psi \to 0] \\
+t \quad \text{(classical real time / GR)}
+\end{array}
+}
+\end{equation}
+
+\subsection{Complex Time as Limiting Case}
+
+\textbf{Complex time} $\tau = t + i\psi$ is obtained as a limiting case when:
+
+\begin{equation}
+\label{eq:canonical:complex_limit}
+\|\mathbf{v}\|^2 = \chi^2 + \xi^2 \ll \psi^2
+\end{equation}
+
+\textbf{Projection criterion}:
+\begin{itemize}
+    \item \textbf{Complex time valid}: $\|\mathbf{v}\|^2 \ll \psi^2$ (directional isotropy)
+    \item \textbf{Full biquaternion required}: $\|\mathbf{v}\|^2 \sim \psi^2$ or directional anisotropy
+\end{itemize}
+
+The reduction corresponds to a holographic projection:
+\begin{equation}
+\pi_H: T_B \to \tau, \quad \pi_H(t + i\mathbf{v}) = t + i\langle \mathbf{v}, \mathbf{n} \rangle
+\end{equation}
+where $\mathbf{n}$ is the normal to a holographic boundary.
 
 \subsection{Physical Interpretation}
 
@@ -34,49 +74,66 @@ The real part $t$ represents:
     \item Time measured by physical clocks
 \end{itemize}
 
-\subsubsection{Imaginary Component: Phase Dynamics}
+\subsubsection{Scalar Imaginary Component: $\psi$}
 
-The imaginary part $\psi$ represents:
+The scalar imaginary part $\psi$ represents:
 \begin{itemize}
-    \item \textbf{Dynamical phase structure} of the $\Theta$ field
-    \item \textbf{Consciousness substrate} for psychon excitations
-    \item \textbf{Nonlocal correlations} in quantum systems
-    \item \textbf{Hidden sector} coupling to dark matter/energy
+    \item \textbf{Isotropic phase structure} of the $\Theta$ field
+    \item \textbf{Consciousness substrate} for psychon excitations (scalar mode)
+    \item \textbf{Scalar dark energy} contribution
+    \item \textbf{Universal quantum phase}
 \end{itemize}
 
-\textbf{Critical}: $\psi$ is \textbf{NOT} merely a phase parameter or mathematical artifact. It is a \textbf{dynamical variable} with physical consequences.
+\subsubsection{Vector Imaginary Components: $(\chi, \xi)$ or $\mathbf{v}$}
 
-\subsection{Dynamics of $\psi$}
+The vector imaginary parts represent:
+\begin{itemize}
+    \item \textbf{Directional phase structure} and anisotropies
+    \item \textbf{Spacetime torsion} and twisting
+    \item \textbf{Spin-dependent effects} in gravity
+    \item \textbf{Anisotropic dark matter} distributions
+    \item \textbf{Frame-dragging} beyond Lense-Thirring
+\end{itemize}
 
-The imaginary time component $\psi$ has its own dynamics governed by:
+\textbf{Critical}: All imaginary components ($\psi, \chi, \xi$) are \textbf{dynamical variables} with physical consequences, NOT mere mathematical artifacts.
+
+\subsection{Dynamics of Biquaternion Time}
+
+The imaginary time components have coupled dynamics:
 
 \begin{equation}
-\label{eq:canonical:psi_dynamics}
-\frac{\partial^2 \psi}{\partial t^2} - \nabla^2 \psi + m_\psi^2 \psi = J_\psi
+\label{eq:canonical:biquat_time_dynamics}
+\Box T_B + M^2 T_B = \mathcal{J}
 \end{equation}
 
-\noindent where:
-\begin{itemize}
-    \item $m_\psi$ is an effective mass scale for $\psi$ excitations
-    \item $J_\psi$ is a source term coupling to consciousness or matter density
-\end{itemize}
+where $\Box = \partial_\mu\partial^\mu$ is the d'Alembertian, $M^2$ is a mass matrix, and $\mathcal{J}$ contains source terms from matter and consciousness.
 
-This equation emerges from variation of the full action with respect to $\psi$.
+In component form:
+\begin{align}
+\Box \psi + m_\psi^2 \psi &= J_\psi \\
+\Box \chi + m_\chi^2 \chi &= J_\chi \\
+\Box \xi + m_\xi^2 \xi &= J_\xi
+\end{align}
 
 \subsection{Relation to Standard Physics}
 
-In the limit $\psi \to 0$ (or $\psi = \text{const.}$):
+The reduction to standard physics occurs hierarchically:
 
+\textbf{Step 1}: Complex time limit ($\chi, \xi \to 0$):
 \begin{equation}
-\label{eq:canonical:real_limit}
-\tau \to t \quad \Rightarrow \quad \text{UBT reduces to standard physics}
+T_B \to \tau = t + i\psi \quad \text{(sufficient for weakly-coupled systems, QED)}
 \end{equation}
 
-This ensures compatibility with General Relativity and Quantum Field Theory:
+\textbf{Step 2}: Classical limit ($\psi \to 0$):
+\begin{equation}
+\tau \to t \quad \text{(General Relativity, classical physics)}
+\end{equation}
+
+This ensures compatibility:
 \begin{itemize}
-    \item Einstein field equations recovered
-    \item Standard Model interactions preserved
-    \item All experimental confirmations of GR/QFT automatically satisfied
+    \item Einstein field equations recovered (at $T_B \to t$)
+    \item Standard Model valid (at $T_B \to \tau$ or $T_B \to t$)
+    \item All experimental confirmations of GR/QFT/SM automatically satisfied
 \end{itemize}
 
 \subsection{Measurement and Observability}

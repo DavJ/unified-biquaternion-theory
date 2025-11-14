@@ -6,17 +6,51 @@
 
 ---
 
-## 1. Complex Time τ
+## 1. Biquaternion Time (Canonical)
 
 ### Canonical Definition
+The fundamental time coordinate in UBT is **biquaternion time**:
+
 ```
-τ = t + iψ
+T_B = t + i(ψ + v·σ) = t + iψ + jχ + kξ
 ```
 
 where:
-- `t` = real time coordinate (standard physical time)
-- `ψ` = imaginary time component (phase/consciousness parameter)
-- `i` = imaginary unit
+- `t` ∈ ℝ = real time coordinate (standard physical time)
+- `ψ, χ, ξ` ∈ ℝ = imaginary time components
+- `i, j, k` = quaternion units (i² = j² = k² = ijk = −1)
+- `v = (χ, ξ, ψ)` = vector imaginary component
+- `σ = (σ₁, σ₂, σ₃)` = Pauli matrices
+
+### Hierarchical Structure
+
+Biquaternion time has a hierarchical reduction:
+
+```
+T_B (full biquaternion time)
+  ↓ [||v|| → 0, directional isotropy]
+τ = t + iψ (complex time limit)
+  ↓ [ψ → 0]
+t (classical real time / GR)
+```
+
+### Complex Time as Limiting Case
+
+**Complex time** τ = t + iψ is obtained when the vector imaginary components vanish or become isotropic:
+
+**Projection criterion**:
+- Complex time τ valid when: `||v||² << |ψ|²`
+- Full biquaternion T_B required when: `||v||² ~ |ψ|²` or directional anisotropy
+
+### Physical Interpretation
+
+**Full biquaternion time** encodes:
+- **Scalar imaginary part** (ψ): Isotropic phase, consciousness substrate, dark energy
+- **Vector imaginary part** (v): Directional phases, spacetime torsion, spin-dependent effects, anisotropic dark matter
+
+**Complex time limit** (simplified):
+- Valid for weakly coupled systems, low-energy QED, isotropic cosmology
+- Sufficient for most Standard Model calculations
 
 ### Resolution of Conflicts
 The theory previously had 3 conflicting versions:
@@ -24,39 +58,63 @@ The theory previously had 3 conflicting versions:
 2. ❌ Toroidal variant with θ-functions
 3. ❌ Hermitized variant (Appendix F)
 
-**Canonical Version**: `τ = t + iψ` where `ψ` is a **dynamical variable** that:
-- Generates psychon excitations
-- Couples to consciousness field
-- Has physical dynamics governed by the field equations
-
-**Not**: A mere phase parameter or mathematical artifact.
+**Canonical Version**: **Biquaternion time T_B** is fundamental. Complex time τ = t + iψ is a valid approximation when directional components are negligible.
 
 ---
 
-## 2. Theta Field Θ(q,τ)
+## 2. Theta Field Θ(q,T_B)
 
 ### Canonical Definition
+The fundamental field is a **biquaternion**:
+
 ```
-Θ(q,τ) ∈ C^(4×4)    (extendable to C^(8×8) for full SM)
+Θ(q, T_B) ∈ B = H ⊗ ℂ
+Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k,    where Θₐ ∈ ℂ
 ```
 
-The fundamental biquaternionic field is a **4×4 complex-valued matrix** (spinor representation).
+where:
+- `B` = biquaternion algebra = H ⊗ ℂ (quaternions tensored with complex numbers)
+- `H` = quaternion algebra with units {1, i, j, k}
+- `i, j, k` = quaternion units satisfying i² = j² = k² = ijk = −1
+- `Θₐ` (a = 0,1,2,3) = complex-valued components
+
+### Matrix Representation
+
+For computational purposes, Θ can be represented as a matrix:
+
+**Spinor representation**: Θ ↔ 4×4 complex matrix (16 complex DOF = 32 real DOF)
+**Extended representation**: Θ ↔ 8×8 complex matrix (for full SM with 3 generations)
+
+**Important**: Matrix forms are **representations only**, not the canonical definition. The canonical object is the biquaternion itself.
 
 ### Field Structure
-- **Minimum**: 4×4 complex matrix (16 complex DOF = 32 real DOF)
-- **Extended**: 8×8 complex matrix for full Standard Model embedding
 - **Coordinates**: q ∈ B (biquaternion space, 4 base dimensions)
+- **Time**: T_B = t + iψ + jχ + kξ (biquaternion time)
+- **DOF**: 4 complex components = 8 real DOF (before gauge/symmetry constraints)
+
+### Biquaternion Operations
+
+**Conjugation**:
+```
+Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k    (quaternion conjugate)
+Θ̄ = Θ̄₀ + Θ̄₁i + Θ̄₂j + Θ̄₃k    (complex conjugate)
+```
+
+**Norm**:
+```
+|Θ|² = Θ†Θ = |Θ₀|² + |Θ₁|² + |Θ₂|² + |Θ₃|²
+```
 
 ### Resolution of Conflicts
 Previous conflicting versions:
-1. ❌ 4×4 spinor matrix (older version)
-2. ❌ 8×8 matrix structure (consolidation)
-3. ❌ 4D biquaternion (old preprint)
+1. ❌ 4×4 spinor matrix (older version) - matrix as primary object
+2. ❌ 8×8 matrix structure (consolidation) - matrix as primary object
+3. ❌ 4D biquaternion (old preprint) - lacked clear definition
 
 **Canonical Version**: 
-- **Core theory**: Θ(q,τ) ∈ C^(4×4)
-- **SM extension**: Θ(q,τ) ∈ C^(8×8) when needed
-- Default to 4×4 unless explicitly working with full SM
+- **Θ is a biquaternion** Θ(q,T_B) ∈ B = H ⊗ ℂ
+- **Matrix forms** are computational representations only
+- Works with full biquaternion time T_B (can reduce to complex time τ when appropriate)
 
 ---
 
@@ -64,26 +122,34 @@ Previous conflicting versions:
 
 ### Canonical Definition
 ```
-g_μν(Θ) = Re Tr(∂_μΘ ∂_νΘ†)
+g_μν(Θ) = Re[(∂_μΘ)(∂_νΘ†)]
 ```
 
 where:
-- `∂_μ` = partial derivative with respect to spacetime coordinate x^μ
-- `Θ†` = Hermitian conjugate of Θ
-- `Tr` = matrix trace
-- `Re` = real part
+- `∂_μ` = biquaternionic partial derivative with respect to spacetime coordinate x^μ
+- `Θ†` = biquaternion conjugate: Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k (with complex conjugation)
+- `Re` = real part of the biquaternion product
+- Product is biquaternion multiplication
+
+**Note on notation**: When using matrix representation, this becomes Re Tr(∂_μΘ ∂_νΘ†) where Tr is the matrix trace. But the canonical definition is in terms of biquaternion operations.
+
+### Biquaternion Form
+For Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k:
+```
+g_μν = Re[∂_μΘ₀ ∂_νΘ̄₀ + ∂_μΘ₁ ∂_νΘ̄₁ + ∂_μΘ₂ ∂_νΘ̄₂ + ∂_μΘ₃ ∂_νΘ̄₃]
+```
 
 ### Properties
-- **Signature**: (−,+,+,+) or (+,−,−,−) depending on convention
-- **Hermitian**: g_μν = g_νμ
-- **Real-valued**: Emerges from taking Re of trace
+- **Signature**: (+,−,−,−) [mostly minus, timelike positive] - standard convention
+- **Symmetric**: g_μν = g_νμ
+- **Real-valued**: Emerges from taking Re
 - **Dynamic**: Depends on Θ field configuration
 
 ### Resolution of Conflicts
 Previous versions:
-1. ❌ Old derivation (Appendix B)
-2. ❌ New derivation (consolidation K2/K5)
-3. ❌ Experimental holographic version
+1. ❌ Old derivation (Appendix B) - matrix-centric
+2. ❌ New derivation (consolidation K2/K5) - inconsistent normalization
+3. ❌ Experimental holographic version - non-standard signature
 
 **Canonical Version**: Use formula above with:
 - Standard index convention: μ,ν = 0,1,2,3
@@ -96,21 +162,31 @@ Previous versions:
 
 ### Canonical Definition
 ```
-T_μν = ∂_μΘ ∂_νΘ† - (1/2) g_μν g^αβ ∂_αΘ ∂_βΘ†
+T_μν = (∂_μΘ)(∂_νΘ†) - (1/2) g_μν g^αβ (∂_αΘ)(∂_βΘ†)
 ```
 
-This is the **energy-momentum tensor** derived from the field Lagrangian.
+where all products are biquaternion multiplication.
 
-### Alternative Form (equivalent)
+This is the **energy-momentum tensor** derived from the biquaternionic field Lagrangian via Noether's theorem.
+
+### Biquaternion Lagrangian
 ```
-T_μν = ∂_μΘ ∂_νΘ† - (1/2) g_μν Tr(∂^αΘ ∂_αΘ†)
+L = (∂_μΘ)(∂^μΘ†) - V(Θ)
+```
+
+where ∂^μ = g^{μν}∂_ν and V(Θ) is a potential term.
+
+### Matrix Representation
+In matrix representation, the equivalent form is:
+```
+T_μν = Tr[∂_μΘ ∂_νΘ†] - (1/2) g_μν Tr[∂^αΘ ∂_αΘ†]
 ```
 
 ### Resolution of Conflicts
 Previous conflicting definitions:
-1. ❌ T_μν = ΘΘ†
-2. ❌ T_μν = dΘ/dτ × dΘ†/dτ
-3. ❌ T_μν from Lagrangian variation (different form)
+1. ❌ T_μν = ΘΘ† - incorrect (no derivatives)
+2. ❌ T_μν = dΘ/dT_B × dΘ†/dT_B - incorrect (wrong derivative)
+3. ❌ T_μν from Lagrangian variation (different form) - inconsistent normalization
 
 **Canonical Version**: Use the standard field-theoretic form shown above, derived from:
 ```
