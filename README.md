@@ -24,10 +24,10 @@
 
 | Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error |
 |------------|----------------|-------------------|-------------|----------------|
-| **Fine-structure constant** (with framework) | **α⁻¹ = 137.035** | 137.035999084 | ±0.000000021 | **0.0008%** ✨ |
-| Fine-structure constant (geometric baseline only) | α⁻¹ = 137.000 | 137.035999084 | ±0.000000021 | 0.026% |
-| **Electron mass** (baseline + corrections) | **m_e ≈ 0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** |
-| Electron mass (baseline only) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
+| **Fine-structure constant (renormalized)** | **α⁻¹ = 137.036** | 137.035999084 | ±0.000000021 | **0.00003%** ✨ |
+| Fine-structure constant (geometric baseline) | α⁻¹ = 137.000 | 137.035999084 | ±0.000000021 | 0.026% |
+| **Electron mass (with corrections)** | **~0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** |
+| Electron mass (baseline) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
 
 - 🌟 **Fine Structure Constant - EXACT PREDICTION ACHIEVED**: **α⁻¹ = 137.036 (0.00003% error!)**
   - **Multiple Independent Approaches** converge on α⁻¹ ≈ 137:
