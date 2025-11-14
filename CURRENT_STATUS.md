@@ -147,6 +147,13 @@ Topology + Loop Structure → α(μ) → SM Renormalization (g_i) → Yukawa Tex
 - Alpha derivation uses NO fermion mass input
 - Mass calculation can use α as input (one-way dependency)
 
+**⚠️ Pending Derivations (must be completed for full first-principles status):**
+1. **QED UV cutoff Λ**: Currently estimated from UBT scales; must be rigorously derived from biquaternionic geometry
+2. **Complex time radius R_ψ**: Must be calculated from compactification conditions (needed for biquaternionic corrections)
+3. **Hopfion parameters κ, m₀**: Currently fitted for validation; must be derived from first principles (path integral over biquaternionic solitons)
+
+**Note:** These parameters are currently estimated/fitted for validation purposes. Full fit-free prediction requires completing these derivations (12-24 months timeline). See `ELECTRON_MASS_RENORMALIZATION_VALIDATION.md` for detailed roadmap.
+
 #### 1.3 Standard Model Gauge Group Derived
 
 **Achievement:** SU(3)×SU(2)×U(1) rigorously derived from biquaternionic geometry ✅
