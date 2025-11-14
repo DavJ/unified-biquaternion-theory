@@ -41,7 +41,7 @@ m_ℓ(n) = A·n^p - B·n·ln(n) + δm_EM
 
 | Lepton | Hopf Charge n | Predicted (MeV) | Experimental (MeV) | Error |
 |--------|---------------|-----------------|-------------------|--------|
-| **Electron** | 1 | 0.509856 | 0.51099895000 | **0.22%** |
+| **Electron** | 1 | 0.509856 | 0.51099895 | **0.22%** |
 | **Muon** | 2 | 105.658376 | 105.6583755 | 0.0001% |
 | **Tau** | 3 | 1776.860 | 1776.86 | 0.0001% |
 
@@ -194,7 +194,7 @@ where α = 1/137 is fine structure constant, Λ is UV cutoff.
 
 | Quantity | Value | Source |
 |----------|-------|--------|
-| Experimental mass | 0.51099895000 MeV | CODATA 2018 |
+| Experimental mass | 0.51099895 MeV | PDG 2024 |
 | Topological (bare) | 0.509856 MeV | UBT prediction |
 | **EM correction** | **0.001143 MeV** | **Difference** |
 | Relative correction | 0.224% | δm/m |
