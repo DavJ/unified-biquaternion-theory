@@ -50,13 +50,13 @@
 
 **Electron Mass - Comprehensive Approaches:**
 
-| Approach | Method | m_e Prediction (MeV) | Error | Derivation | Parameters |
+| Approach | Method | m_e Prediction (MeV) | Error | Fit/No-fit | Parameters |
 |----------|--------|----------------------|-------|------------|------------|
-| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | Q_Hopf=1 charge | Pure geometry |
-| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | δm ~ 3α/4π × m₀ | Cutoff from UBT |
-| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | Phase fluctuations | R_ψ from geometry |
-| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | Quantum soliton | ✓ NO FIT (pending) |
-| **Experimental** | PDG 2024 | 0.51099895 | ±0.00000015 | Measurement | — |
+| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | ✓ NO FIT | Pure geometry |
+| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | ✓ NO FIT | Cutoff from UBT |
+| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | ✓ NO FIT | R_ψ from geometry (in progress) |
+| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | ✓ NO FIT | Quantum soliton (pending) |
+| **Experimental** | PDG 2024 | 0.51099895 | ±0.00000015 | — | Measurement |
 
 **Best Current UBT Prediction: m_e ≈ 0.510 MeV** (baseline + QED, ~0.2% error)
 

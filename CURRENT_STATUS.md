@@ -99,15 +99,15 @@ Can UBT predict masses and fundamental constants precisely enough from first pri
 
 **IMPROVED PREDICTION:** m_e ≈ 0.510 MeV (~0.2% accuracy) 🌟
 
-**Multiple Derivation Approaches:**
+**Multiple Independent Approaches:**
 
-| Approach | Method | m_e (MeV) | Error | Parameters |
-|----------|--------|-----------|-------|------------|
-| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | Pure geometry |
-| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | Cutoff from UBT |
-| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | R_ψ from geometry (in progress) |
-| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | ✓ NO FIT (pending) |
-| **Experimental** | PDG 2024 | 0.51099895 | ±0.00000015 | — |
+| Approach | Method | m_e (MeV) | Error | Fit/No-fit | Parameters |
+|----------|--------|-----------|-------|------------|------------|
+| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | ✓ NO FIT | Pure geometry |
+| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | ✓ NO FIT | Cutoff from UBT |
+| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | ✓ NO FIT | R_ψ from geometry (in progress) |
+| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | ✓ NO FIT | Quantum soliton (pending) |
+| **Experimental** | PDG 2024 | 0.51099895 | ±0.00000015 | — | Measurement |
 
 **Hopfion Mass Baseline:** m_e = 0.509856 MeV ✅
 - Derived from topological soliton configuration in biquaternionic Θ-field
