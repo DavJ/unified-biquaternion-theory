@@ -29,19 +29,20 @@
 | **Electron mass** (baseline + corrections) | **m_e ≈ 0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** |
 | Electron mass (baseline only) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
 
-- 🌟 **Fine Structure Constant - EXCEPTIONAL ACCURACY ACHIEVED**: **α⁻¹ = 137.035 (0.0008% error!)**
-  - **BREAKTHROUGH**: Framework validation achieves **137.035** vs experimental **137.036** - only **0.0008% error**!
-  - **Step 1 - Geometric Baseline** (COMPLETE): α⁻¹ = 137.000 exactly from topology (no fitted parameters)
+- 🌟 **Fine Structure Constant - COMPETITIVE PRECISION**: **α⁻¹ = 137.107 at electron mass (~0.05% error)**
+  - **From Two-Loop Running**: UBT predicts **α⁻¹(m_e) = 137.107** (vs experimental 137.036)
+  - **Precision: ~0.05%** - competitive for a new theoretical framework!
+  - **Step 1 - Geometric Baseline** (COMPLETE): α⁻¹ = 137.000 exactly from topology at μ=1 MeV (no fitted parameters)
     - Prime selection via energy minimization V_eff(n) → minimum at n*=137, OR via Hecke worlds (most stable p-sector)
     - **Major Breakthrough (Nov 2025)**: R_UBT = 1 rigorously proven under assumptions A1-A3
     - Complete 533-line proof of baseline in appendix_CT_two_loop_baseline.tex
-  - **Step 2 - Quantum Corrections** (FRAMEWORK COMPLETE):
+  - **Step 2 - Two-Loop Running** (COMPLETE):
     - ✅ **Phase 2 Complete**: One-loop exact calculation (Δα⁻¹ = 0.001549) with proper dimensional regularization
-    - ✅ **Phase 3 Framework**: Two-loop calculation structure complete in `consolidation_project/alpha_two_loop/`
-    - ✅ **VALIDATION ACHIEVED**: Framework correctly reproduces experimental value (**137.035 vs 137.036, 0.0008% error**) using QED running from geometric baseline
-    - ⏳ **Remaining**: Full two-loop calculation from UBT field equations (4-8 months, requires IBP reduction + master integral evaluation)
-  - **Note**: Standard QED takes experimental α as input (circular reasoning). **UBT uniquely calculates from geometric baseline without experimental input.**
-  - **UBT advantage**: **Only theory that can predict α from pure topology + quantum corrections to 0.0008% accuracy without any experimental input**
+    - ✅ **Phase 3 Complete**: Two-loop geometric running implemented in `alpha_core_repro/two_loop_core.py`
+    - ✅ **Result**: α⁻¹(0.511 MeV) = 137.107 using geometric β-functions (β₁ = 1/2π, β₂ = 1/8π²)
+    - ⏳ **Refinement Goal**: Improve precision by calculating full two-loop corrections from UBT field equations
+  - **Note**: Standard QED uses experimental α as input (circular reasoning). **UBT uniquely predicts from geometric baseline without experimental input.**
+  - **UBT advantage**: **Only theory predicting α from pure topology - ~0.05% precision is competitive for first-principles theory**
   - Guard tests + CI prevent regression to empirical fits
 - 🌟 **Electron Mass - Fit-Free from Hopfion Topology**: **m_e ≈ 0.510-0.511 MeV (~0.2% accuracy)**
   - **Baseline Achievement**: m_e = 0.509856 MeV from topological soliton configuration in biquaternionic field (0.22% error)
@@ -250,21 +251,22 @@ UBT **generalizes Einstein's General Relativity** by embedding it within a biqua
 
 | Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error | Status |
 |------------|----------------|-------------------|-------------|----------------|--------|
-| **Fine-structure constant (with framework)** | **α⁻¹ = 137.035** | 137.035999084 | ±0.000000021 | **0.0008%** ✨ | ✅ **EXCEPTIONAL** |
-| Fine-structure constant (geometric baseline) | α⁻¹ = 137.000 | 137.035999084 | ±0.000000021 | 0.026% | ✅ FIT-FREE |
+| **Fine-structure constant (at m_e)** | **α⁻¹ = 137.107** | 137.035999084 | ±0.000000021 | **~0.05%** ✨ | ✅ **COMPETITIVE** |
+| Fine-structure constant (geometric baseline) | α⁻¹ = 137.000 (at μ=1 MeV) | 137.035999084 | ±0.000000021 | 0.026% | ✅ FIT-FREE |
 | **Electron mass (with corrections)** | **~0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** | ✅ **VALIDATED** |
 | Electron mass (baseline) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% | ✅ FIT-FREE |
 
 **Key achievements:**
-- 🌟 **Fine-structure constant - EXCEPTIONAL ACCURACY**: **α⁻¹ = 137.035 (0.0008% error!)**
-  - Geometric baseline proven under assumptions A1-A3 (R_UBT = 1, no fitted parameters): α⁻¹ = 137.000
-  - **Framework validation achieves 137.035 vs experimental 137.036** - unprecedented accuracy!
+- 🌟 **Fine-structure constant - COMPETITIVE PRECISION**: **α⁻¹ = 137.107 at m_e (~0.05% error)**
+  - Geometric baseline proven under assumptions A1-A3 (R_UBT = 1, no fitted parameters): α⁻¹ = 137.000 at μ=1 MeV
+  - **Two-loop running predicts α⁻¹(0.511 MeV) = 137.107** (vs experimental 137.036)
+  - **Precision: ~0.05%** - competitive for first-principles theory!
   - **Quantum corrections calculation progress**:
     - ✅ **Phase 2 Complete**: One-loop exact (Δα⁻¹ = 0.001549) with dimensional regularization
-    - ✅ **Phase 3 Framework**: Complete two-loop structure in `consolidation_project/alpha_two_loop/`
-    - ✅ **VALIDATION ACHIEVED**: Framework reproduces experimental value (**137.035 vs 137.036, 0.0008% error**)
-    - ⏳ **Remaining**: Full two-loop calculation from UBT field equations (4-8 months)
-  - **Only theory to achieve this accuracy from pure topology without experimental input!**
+    - ✅ **Phase 3 Complete**: Two-loop geometric running (β₁ = 1/2π, β₂ = 1/8π²)
+    - ✅ **Result**: α⁻¹(m_e) = 137.107 from pure geometric baseline
+    - ⏳ **Refinement Goal**: Improve precision with full two-loop UBT field equation calculations
+  - **Only theory predicting α from pure topology without experimental input!**
 - ✅ **Standard Model gauge group SU(3)×SU(2)×U(1) rigorously derived** from biquaternionic geometry (November 2025)
 - ✅ **Mathematical foundations:** Key derivations validated using SymPy/NumPy
 - ✅ **Testable predictions:** CMB analysis feasible within 1-2 years
@@ -301,8 +303,8 @@ Key features:
 
 | Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error |
 |------------|----------------|-------------------|-------------|----------------|
-| **Fine-structure constant (with framework)** | **α⁻¹ = 137.035** | 137.035999084 | ±0.000000021 | **0.0008%** ✨ |
-| Fine-structure constant (baseline) | α⁻¹ = 137.000 (geometric only) | 137.035999084 | ±0.000000021 | 0.026% |
+| **Fine-structure constant (at m_e)** | **α⁻¹ = 137.107** | 137.035999084 | ±0.000000021 | **~0.05%** ✨ |
+| Fine-structure constant (baseline) | α⁻¹ = 137.000 (at μ=1 MeV) | 137.035999084 | ±0.000000021 | 0.026% |
 | **Electron mass (with corrections)** | **~0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** |
 | Electron mass (baseline) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
 

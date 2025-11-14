@@ -18,8 +18,8 @@
 **Current Scientific Rating:** 6.2/10 ⬆️ (Upgraded from 5.5 following fit-free baseline achievement)
 
 **Major Achievements:**
-- 🌟 **Fine-structure constant - EXCEPTIONAL**: **α⁻¹ = 137.035 (0.0008% error!)** - Framework validation achieved
-- ✅ **Fine-structure constant baseline**: α⁻¹ = 137.000 from topology (fit-free, geometric)
+- 🌟 **Fine-structure constant - COMPETITIVE**: **α⁻¹ = 137.107 at electron mass (~0.05% error)** - Two-loop running achieved
+- ✅ **Fine-structure constant baseline**: α⁻¹ = 137.000 from topology (fit-free, geometric) at μ=1 MeV
 - 🌟 **Electron mass - IMPROVED**: **~0.510-0.511 MeV (~0.2% accuracy)** with corrections
 - ✅ **Electron mass baseline**: m_e = 0.509856 MeV (0.22% error from topology)
 - ✅ **SM gauge group SU(3)×SU(2)×U(1)** rigorously derived from biquaternionic geometry
@@ -27,7 +27,7 @@
 - ✅ **Quantum gravity unification** framework established
 
 **Current Challenges:**
-1. **Alpha quantum corrections** - Framework achieves 137.035 (0.0008% error), full calculation from UBT field equations in progress
+1. **Alpha precision improvement** - Current prediction α⁻¹=137.107 (~0.05% error), refining to match experiment at 137.036
 2. **Mathematical foundations** - Core structures defined, some gaps remain
 3. **Complex time causality** - Transition criterion derived, full causality analysis pending
 4. **Testable predictions** - CMB protocol complete, gravity modifications ~10⁻⁶⁸ (acknowledged)
@@ -45,21 +45,21 @@ Can UBT predict masses and fundamental constants precisely enough from first pri
 
 ### What UBT Has Achieved ✅
 
-#### 1.1 Fine-Structure Constant - Framework Validation Achieved!
+#### 1.1 Fine-Structure Constant - Two-Loop Running Complete
 
-**EXCEPTIONAL ACHIEVEMENT:** α⁻¹ = 137.035 (0.0008% error!) 🌟
+**COMPETITIVE ACHIEVEMENT:** α⁻¹ = 137.107 at electron mass (~0.05% error) 🌟
 
-**Geometric Baseline:** α⁻¹ = 137.000 ✅
+**Geometric Baseline:** α⁻¹ = 137.000 at μ=1 MeV ✅
 - Derived from topological prime selection (energy minimization)
 - **NO experimental input** - pure geometry and topology
 - R_UBT = 1 rigorously proven under assumptions A1-A3
 - **Precision: ~0.026%** (baseline vs experimental α⁻¹ = 137.036)
 
-**Framework Validation:** α⁻¹ = 137.035 ✨
-- **BREAKTHROUGH**: Framework achieves **137.035** vs experimental **137.036**
-- **Precision: 0.0008%** - exceptional accuracy!
-- Two-loop running framework implemented
-- Python scripts use UBT alpha (PDG constants removed)
+**Two-Loop Running:** α⁻¹ = 137.107 at m_e = 0.511 MeV ✨
+- **Result**: UBT predicts **α⁻¹(0.511 MeV) = 137.107** (vs experimental 137.036)
+- **Precision: ~0.05%** - competitive for first-principles theory!
+- Two-loop geometric running with β-functions: β₁ = 1/(2π), β₂ = 1/(8π²)
+- Python implementation in `alpha_core_repro/two_loop_core.py`
 
 **Framework Documentation:**
 - Implementation: `alpha_core_repro/two_loop_core.py`
@@ -68,18 +68,18 @@ Can UBT predict masses and fundamental constants precisely enough from first pri
 - Proof: 533-line derivation in `appendix_CT_two_loop_baseline.tex`
 
 **Key Features:**
-- **Only theory to achieve 0.0008% accuracy from pure topology without experimental input**
+- **Only theory to predict α from pure topology without experimental input**
 - Standard QED uses experimental α as input (circular reasoning)
 - UBT uniquely calculates from geometric baseline
 - Guard tests + CI prevent regression to empirical fits
 
-**Quantum Corrections Status:** ⚠️ FRAMEWORK COMPLETE, FULL CALCULATION IN PROGRESS
+**Quantum Corrections Status:** ⏳ REFINEMENT IN PROGRESS
 - **Phase 2 Complete:** One-loop exact calculation (Δα⁻¹ = 0.001549) with dimensional regularization
-- **Phase 3 Framework:** Two-loop structure complete in `consolidation_project/alpha_two_loop/`
-- **VALIDATION ACHIEVED:** Framework correctly reproduces experimental value (**137.035 vs 137.036, 0.0008% error**)
-- **Remaining:** Full two-loop calculation from UBT field equations
-- **Timeline:** 4-8 months for expert team
-- **Goal:** Derive +0.036 correction explicitly from UBT (not just validate framework)
+- **Phase 3 Complete:** Two-loop geometric running framework
+- **Current Result:** α⁻¹(m_e) = 137.107 (~0.05% error)
+- **Refinement Goal:** Improve precision by calculating full two-loop corrections from UBT field equations
+- **Timeline:** 6-12 months for higher precision
+- **Target:** Approach experimental precision (137.036)
 
 #### 1.2 Electron Mass - Baseline + Corrections Achieved
 
