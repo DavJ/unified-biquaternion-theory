@@ -1,6 +1,6 @@
 # Unified Biquaternion Theory (UBT)
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## ⚠️ Repository Organization
 
@@ -664,13 +664,25 @@ See [PRIORITY.md](consolidation_project/PRIORITY.md) for the current research an
 
 ## 📜 License
 
-This work is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 **You are free to:**
 - Share — copy and redistribute the material in any medium or format
-- Adapt — remix, transform, and build upon the material for any purpose, even commercially
 
 **Under the following terms:**
 - Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+- NonCommercial — You may not use the material for commercial purposes
+- NoDerivatives — If you remix, transform, or build upon the material, you may not distribute the modified material
+
+### License History
+
+**Earlier drafts may have been temporarily released under CC BY 4.0.**
+
+- UBT versions **up to v0.3** were released under CC BY 4.0 (Creative Commons Attribution 4.0 International).
+- Starting from **v0.4 onward**, all material is released under CC BY-NC-ND 4.0 (Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International) to protect the integrity of the theoretical work during ongoing academic development.
+
+This change does not affect earlier releases (v0.3 and prior), which remain under CC BY 4.0.
 
 For full license terms, see [LICENSE.md](LICENSE.md)
