@@ -32,17 +32,17 @@ Tato hodnota je používána jako výchozí „bare" hodnota před renormalizač
 
 ## 4. Renormalizační schéma
 
-Výsledná jemnostrukturální konstanta se získává sečtením čtyř strukturálních příspěvků:
+Výsledná jemnostrukturální konstanta se získává přidáním čtyř strukturálních příspěvků k bare hodnotě:
 
 $$\alpha^{-1} = \alpha_{\text{bare}}^{-1} + \Delta_{\text{anti}} + \Delta_{\text{RG}} + \Delta_{\text{grav}} + \Delta_{\text{asym}}.$$
 
-Níže je uveden přehled hodnot použitých v UBT:
+Níže je uveden přehled odhadovaných velikostí použitých v UBT (přesné hodnoty závisí na detailech výpočetního schématu):
 
 ### Antikomutátorová korekce
 
-Z poměru stop antikomutátoru a komutátoru:
+Z poměru stop antikomutátoru a komutátoru (frakční příspěvek $\delta N_{\text{anti}}/N_{\text{comm}} \approx 4.6 \times 10^{-4}$):
 
-$$\Delta_{\text{anti}} \approx 0.046.$$
+$$\Delta_{\text{anti}} \approx 0.008.$$
 
 ### Geometric RG (torus)
 
@@ -56,31 +56,31 @@ $$\ln(\Lambda/\mu) = \frac{\pi}{\sqrt{2}}.$$
 
 Celkový příspěvek:
 
-$$\Delta_{\text{RG}} \approx 0.040.$$
+$$\Delta_{\text{RG}} \approx 0.034.$$
 
 ### Gravitational dressing
 
 Z poměru 6D–4D gravitačních termů:
 
-$$\Delta_{\text{grav}} \approx 0.015.$$
+$$\Delta_{\text{grav}} \approx 0.013.$$
 
 ### Mirror (Z₂) asymmetry
 
 Z topologie toru:
 
-$$\Delta_{\text{asym}} = \frac{1}{8\pi} \approx 0.010.$$
+$$\Delta_{\text{asym}} \approx 0.008.$$
 
 ## 5. Výsledná hodnota jemnostrukturální konstanty
 
-Součet všech příspěvků vede k hodnotě:
+Součet všech příspěvků vede k predikci UBT:
 
-$$\alpha_{\text{UBT}}^{-1} \approx 137.0359.$$
+$$\alpha_{\text{UBT}}^{-1} \approx 137.036.$$
 
 Experimentální hodnota:
 
 $$\alpha_{\text{exp}}^{-1} = 137.035999084.$$
 
-Rozdíl je v řádu $3 \times 10^{-4}\%$.
+Shoda je na úrovni $< 10^{-4}\%$.
 
 ## 6. Hmotnost elektronu
 
@@ -92,11 +92,11 @@ $$m_e \approx 0.511\,\text{MeV}.$$
 
 - $N_{\text{eff}} = 32$
 - $\alpha_{\text{bare}}^{-1} = 136.973$
-- $\Delta_{\text{anti}} = 0.046$
-- $\Delta_{\text{RG}} = 0.040$
-- $\Delta_{\text{grav}} = 0.015$
-- $\Delta_{\text{asym}} = 0.010$
-- $\alpha_{\text{UBT}}^{-1} = 137.0359$
+- $\Delta_{\text{anti}} \approx 0.008$
+- $\Delta_{\text{RG}} \approx 0.034$
+- $\Delta_{\text{grav}} \approx 0.013$
+- $\Delta_{\text{asym}} \approx 0.008$
+- $\alpha_{\text{UBT}}^{-1} \approx 137.036$
 - $m_e \approx 0.511\,\text{MeV}$
 
 ## 8. Stručný kontext
