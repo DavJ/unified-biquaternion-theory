@@ -67,7 +67,11 @@
 - **Appendix N2 Extended (2025)**: Full 8D biquaternionic time manifold formalism
 - **Enhanced Documentation**: Comprehensive glossaries, rigor classification, honest assessments
 
-See [CHANGELOG.md](CHANGELOG.md) for complete details.
+**For complete details on achievements and approaches:**
+- **[OVERVIEW.md](OVERVIEW.md)** - Comprehensive overview with detailed derivation approaches, assumptions, and predictions
+- **[ALPHA_SYMBOLIC_B_DERIVATION.md](ALPHA_SYMBOLIC_B_DERIVATION.md)** - Complete symbolic chain from Θ-action to B coefficient
+- **[docs/archive/alpha_work/](docs/archive/alpha_work/)** - Evolution of alpha derivation approaches (historical development)
+- **[CHANGELOG.md](CHANGELOG.md)** - Complete chronological details of all improvements
 
 ---
 
@@ -130,7 +134,7 @@ It is a unified physical theory that **generalizes Einstein's General Relativity
 
 **New to UBT? Start here:**
 
-1. **[OVERVIEW.md](OVERVIEW.md)** - Concise introduction to core concepts, equations, and predictions
+1. **[OVERVIEW.md](OVERVIEW.md)** - **Comprehensive overview** with core equations, assumptions, derivation approaches, and detailed predictions (including complete alpha derivation roadmap)
 2. **[UBT_READING_GUIDE.md](UBT_READING_GUIDE.md)** - Navigate the repository based on your interests
 3. **[ROADMAP.md](ROADMAP.md)** - Development timeline and milestones
 
