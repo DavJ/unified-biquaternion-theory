@@ -34,7 +34,7 @@
 
 ### Key Supporting Documents
 - [x] `README.md` - Comprehensive repository documentation (23.7K)
-- [x] `LICENSE.md` - CC BY 4.0 license
+- [x] `LICENSE.md` - CC BY-NC-ND 4.0 license (v0.4+, was CC BY 4.0 in v0.3)
 - [x] `PRIORITY.md` - Priority claim
 - [x] `RESEARCH_PRIORITIES.md` - Current research priorities
 - [x] `references.bib` - Bibliography with all citations
@@ -65,8 +65,9 @@
 
 ## ✅ License and Legal
 
-- [x] LICENSE.md clearly states CC BY 4.0
-- [x] All documents reference CC BY 4.0 license
+- [x] LICENSE.md clearly states CC BY-NC-ND 4.0 (v0.4+)
+- [x] All documents reference CC BY-NC-ND 4.0 license
+- [x] License History documented (v0.3: CC BY 4.0, v0.4+: CC BY-NC-ND 4.0)
 - [x] PRIORITY.md establishes authorship claim
 - [x] Author attribution consistent throughout
 - [x] No copyright violations identified
@@ -121,7 +122,7 @@
 - **Author**: Ing. David Jaroš
 - **Email**: jdavid.cz@gmail.com ✅
 - **Date**: November 2025
-- **License**: CC BY 4.0
+- **License**: CC BY-NC-ND 4.0 (v0.4+)
 - **Keywords**: biquaternion algebra, complex time, unified field theory, General Relativity, quantum field theory, Standard Model, gauge unification, Hermitian gravity, SU(3) symmetry, theta functions, dark matter, dark energy, fermion masses
 - **Description**: Available in UBT_Abstract_OSF.tex
 - **Version**: v10.0
@@ -131,7 +132,7 @@
 - **Author**: Ing. David Jaroš
 - **Email**: jdavid.cz@gmail.com ✅
 - **Discipline**: Physical Sciences and Mathematics → Physics → Theoretical Physics
-- **License**: CC BY 4.0
+- **License**: CC BY-NC-ND 4.0 (v0.4+)
 - **Abstract**: Same as Zenodo (from UBT_Abstract_OSF.tex)
 
 ## ✅ Pre-Release Actions Completed
@@ -198,7 +199,7 @@
 - [ ] Ensure GitHub Actions build passes
 - [ ] Test that all links in README work
 - [ ] Verify email is correct in all locations
-- [ ] Double-check license is CC BY 4.0 everywhere
+- [ ] Double-check license is CC BY-NC-ND 4.0 everywhere (v0.4+)
 
 ### During Publishing
 - [ ] Save all DOIs immediately after assignment
@@ -220,7 +221,7 @@
 | **Contact Information** | Complete | ✅ 10/10 |
 | **Documentation** | Comprehensive | ✅ 10/10 |
 | **Bibliography** | Complete | ✅ 10/10 |
-| **License** | Clear (CC BY 4.0) | ✅ 10/10 |
+| **License** | Clear (CC BY-NC-ND 4.0) | ✅ 10/10 |
 | **Build System** | Functional | ✅ 10/10 |
 | **Scientific Integrity** | High transparency | ✅ 10/10 |
 | **Metadata** | Ready | ✅ 10/10 |
@@ -283,7 +284,7 @@
 2. **Scientific transparency**: Honest about limitations and speculative content
 3. **Version control**: Excellent Git history and organization
 4. **Build automation**: GitHub Actions working correctly
-5. **Clear licensing**: CC BY 4.0 consistently stated
+5. **Clear licensing**: CC BY-NC-ND 4.0 consistently stated (v0.4+, was CC BY 4.0 in v0.3)
 6. **Mathematical rigor**: Substantial proofs and derivations available
 7. **Community resources**: Multiple evaluation reports and guides
 
