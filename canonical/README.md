@@ -13,8 +13,8 @@ canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
 ├── fields/                      # Canonical field definitions
-│   ├── theta_field.tex         # Θ(q,τ) biquaternion field
-│   ├── complex_time.tex        # τ = t + iψ definition
+│   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
+│   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition (canonical)
 │   ├── biquaternion_algebra.tex # Mathematical foundations
 │   └── electron_mass.tex       # Unified electron mass derivation
 ├── geometry/                    # Canonical geometric structures
@@ -29,7 +29,7 @@ canonical/
 │   ├── psychons.tex            # Psychon definition
 │   └── theta_resonator.tex     # Experimental design
 └── appendices/                  # Canonical appendices
-    └── (organized consolidated appendices)
+    └── symbol_dictionary.tex    # Symbol standardization
 ```
 
 ## Principles
@@ -46,7 +46,10 @@ When multiple versions of a definition exist in the repository:
 ### 3. Symbol Standardization
 All symbols follow the dictionary in `CANONICAL_DEFINITIONS.md`:
 - `α` = fine structure constant ONLY
-- `ψ` = imaginary time component ONLY  
+- `ψ` = scalar imaginary time component ONLY  
+- `χ, ξ` = vector imaginary time components ONLY
+- `T_B` = biquaternion time (canonical)
+- `τ` = complex time (isotropic limit/simplification)
 - `q` = biquaternion coordinate ONLY
 - etc.
 
@@ -63,6 +66,7 @@ When writing new UBT content:
 2. Use `\input{canonical/fields/theta_field.tex}` in LaTeX
 3. Do NOT redefine canonical symbols
 4. Report conflicts as issues
+5. **Note**: Biquaternion time T_B is canonical; complex time τ is the isotropic limit
 
 ### For Consolidation
 When consolidating existing content:
@@ -85,13 +89,19 @@ When reviewing UBT documents:
 - Master definitions documented
 
 ### Phase 2: 🚧 In Progress
-- Creating canonical .tex files for:
-  - [ ] Theta field Θ(q,τ)
-  - [ ] Complex time τ = t + iψ
-  - [ ] Metric g_μν
-  - [ ] Stress-energy T_μν
-  - [ ] QED Lagrangian
-  - [ ] QCD Lagrangian
+- Creating canonical .tex files:
+  - [x] Theta field Θ(q,T_B)
+  - [x] Biquaternion time T_B = t + iψ + jχ + kξ (canonical)
+  - [x] Metric g_μν
+  - [x] Stress-energy T_μν
+  - [x] QED Lagrangian
+  - [x] QCD Lagrangian
+  - [x] SM gauge structure
+  - [x] Biquaternion algebra foundations
+  - [x] Curvature tensors
+  - [x] Psychon formalization
+  - [ ] Electron mass unification
+  - [ ] Theta-resonator design
 
 ### Phase 3: ⏳ Planned
 - Consolidate appendices using canonical definitions

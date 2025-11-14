@@ -6,19 +6,21 @@
 
 ---
 
-## 1. Complex Time τ (Canonical)
+## 1. Biquaternion Time T_B (Canonical)
 
 ### Canonical Definition
-The fundamental time coordinate in UBT is **complex time**:
+The fundamental time coordinate in UBT is **biquaternion time**:
 
 ```
-τ = t + iψ
+T_B = t + iψ + jχ + kξ
 ```
 
 where:
 - `t` ∈ ℝ = real time coordinate (standard physical time)
-- `ψ` ∈ ℝ = imaginary time component (phase/consciousness parameter)
-- `i` = imaginary unit (i² = −1)
+- `ψ, χ, ξ` ∈ ℝ = imaginary time components
+- `i, j, k` = quaternion units (i² = j² = k² = ijk = −1)
+
+Equivalently: `T_B = t + i(ψ + v·σ)` where `v = (χ, ξ, 0)` is a vector.
 
 ### Physical Interpretation
 
@@ -27,51 +29,74 @@ where:
 - Observable temporal evolution
 - Causality structure
 
-**Imaginary component (ψ)**:
-- Dynamical phase structure of Θ field
+**Scalar imaginary (ψ)**:
+- Isotropic phase structure of Θ field
 - Consciousness substrate (psychon excitations)
-- Nonlocal quantum correlations
-- Dark sector coupling
+- Scalar dark energy
+- Universal quantum coherence (direction-independent)
 
-**Critical**: ψ is a **dynamical variable**, not a passive parameter.
+**Vector imaginary (χ, ξ)**:
+- Directional phase structures
+- Spacetime torsion and spin effects
+- Anisotropic dark matter distributions
+- Directional consciousness modes
+
+**Critical**: All imaginary components are **dynamical variables**, not passive parameters.
+
+### Hierarchical Reduction
+
+When vector components are negligible (directional isotropy):
+```
+χ, ξ → 0  ⇒  T_B → τ = t + iψ   (complex time limit)
+```
+
+When all imaginary components vanish:
+```
+ψ, χ, ξ → 0  ⇒  T_B → t  ⇒  UBT reduces to standard GR/QFT
+```
+
+Structure: **T_B (biquaternion) → τ (complex) → t (classical)**
 
 ### Relation to Standard Physics
 
-In the limit ψ → 0:
-```
-τ → t  ⇒  UBT reduces to standard GR/QFT
-```
-
-This ensures:
+In the limit T_B → t:
 - ✅ Einstein equations recovered exactly
 - ✅ Standard Model preserved
 - ✅ All experimental tests of GR/QFT satisfied
 
-### Extension: Biquaternion Time (Research Topic)
+### Simplification: Complex Time
 
-In certain research contexts, time can be extended to:
-```
-T_B = t + iψ + jχ + kξ
-```
-with quaternion units i, j, k. This is explored in advanced appendices but **complex time τ is canonical** for core UBT.
+For spherically symmetric or weakly coupled systems, the **complex time limit** τ = t + iψ is sufficient. This is a **simplification**, not the canonical formulation.
+
+Use τ when:
+- Directional isotropy applies
+- Individual consciousness states
+- Weak-field approximations
+
+Use full T_B when:
+- Torsion effects important
+- Anisotropic dark matter
+- Collective consciousness
+- Strong coupling regimes
 
 ### Resolution of Conflicts
-The theory previously had 3 conflicting versions:
+The theory previously had 3+ conflicting versions:
 1. ❌ Drift-diffusion Fokker-Planck variant
-2. ❌ Toroidal variant with θ-functions
+2. ❌ Toroidal variant with θ-functions  
 3. ❌ Hermitized variant (Appendix F)
+4. ❌ Complex time only (missing directional structure)
 
-**Canonical Version**: `τ = t + iψ` where `ψ` is a **dynamical field** with physical dynamics.
+**Canonical Version**: `T_B = t + iψ + jχ + kξ` where all imaginary components are **dynamical fields** with physical dynamics. Complex time τ is the **limiting/simplified case**.
 
 ---
 
-## 2. Theta Field Θ(q,τ)
+## 2. Theta Field Θ(q,T_B)
 
 ### Canonical Definition
 The fundamental field is a **biquaternion**:
 
 ```
-Θ(q, τ) ∈ B = H ⊗ ℂ
+Θ(q, T_B) ∈ B = H ⊗ ℂ
 Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k,    where Θₐ ∈ ℂ
 ```
 
@@ -81,7 +106,8 @@ where:
 - `i, j, k` = quaternion units satisfying i² = j² = k² = ijk = −1
 - `Θₐ` (a = 0,1,2,3) = **complex-valued** components
 - `q` ∈ B = biquaternion coordinate (4 DOF)
-- `τ = t + iψ` = complex time
+- `T_B = t + iψ + jχ + kξ` = biquaternion time (canonical)
+  - In isotropic limit: τ = t + iψ (complex time simplification)
 
 ### Matrix Representation
 
