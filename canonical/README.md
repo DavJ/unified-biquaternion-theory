@@ -11,6 +11,7 @@ The `canonical/` directory serves as the **single source of truth** for UBT to r
 ```
 canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
+├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
 ├── fields/                      # Canonical field definitions
 │   ├── theta_field.tex         # Θ(q,τ) field definition
 │   ├── complex_time.tex        # τ = t + iψ definition

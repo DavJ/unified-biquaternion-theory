@@ -179,6 +179,39 @@ where:
 
 **Important**: In the real-valued limit (ψ → 0), this **exactly recovers** Einstein's equations.
 
+### The T-shirt Formula and Covariant Derivative Structure
+
+The equation ∇†∇Θ(q,τ) = κ𝒯(q,τ) is called the **T-shirt formula** because it compactly unifies all fundamental interactions.
+
+**Critical Understanding**: ∇ is **NOT** an ordinary partial derivative. It is the **full covariant derivative** in curved spacetime with gauge fields:
+
+```
+∇_μ = ∂_μ + Γ_μ^grav + A_μ^SM
+```
+
+where:
+- **Γ_μ^grav** = gravitational connection (Levi-Civita or spin connection) encoding spacetime curvature
+- **A_μ^SM** = Standard Model gauge connection = ig₁B_μY + ig₂W_μᵃTᵃ + ig₃G_μᴬΛᴬ
+
+Thus:
+```
+∇_μ = ∂_μ + (gravitational connection) + (U(1)_Y) + (SU(2)_L) + (SU(3)_c)
+```
+
+The operator ∇†∇ in curved spacetime is the **Laplace-Beltrami/d'Alembertian operator** that depends on:
+- The metric g_μν (thus on curvature)
+- All gauge field strengths (F_μν, W_μν, G_μν)
+- Mixed gauge-gravity couplings
+
+**This means**: The T-shirt formula is already a combined equation where:
+- **Curvature + Gauge fields** = **Source (energy-momentum)**
+- Gravity is encoded in how ∇ looks (via Γ_μ and the metric)
+- SM forces are encoded in the gauge part of ∇
+
+All fundamental interactions (gravity + electroweak + strong) live inside the single differential operator ∇.
+
+For detailed derivation, see `canonical/explanation_of_nabla.tex`.
+
 ---
 
 ## 7. Standard Model Gauge Group

@@ -94,7 +94,7 @@ The field $\Theta(q,\tau)$ encodes:
 
 \subsection{Field Equations}
 
-The field $\Theta$ satisfies the fundamental field equation:
+The field $\Theta$ satisfies the fundamental field equation (the \textbf{T-shirt formula}):
 
 \begin{equation}
 \label{eq:canonical:theta_equation}
@@ -103,12 +103,45 @@ The field $\Theta$ satisfies the fundamental field equation:
 
 \noindent where:
 \begin{itemize}
-    \item $\nabla^\dagger \nabla$ is the biquaternionic d'Alembertian operator
-    \item $\kappa$ is a coupling constant related to Newton's constant $G$
+    \item $\nabla$ is the \textbf{full covariant derivative} including both gravitational connection (Levi-Civita/spin) and Standard Model gauge connections (see detailed structure below)
+    \item $\nabla^\dagger \nabla$ is the gauge-gravity unified d'Alembertian operator in curved spacetime
+    \item $\kappa$ is a coupling constant proportional to $8\pi G$ (Newton's constant)
     \item $\mathcal{T}(q,\tau)$ is the biquaternionic stress-energy source
 \end{itemize}
 
-See Section~\ref{sec:canonical:field_equations} for detailed derivation.
+\subsubsection{Structure of the Covariant Derivative}
+
+The covariant derivative $\nabla_\mu$ acting on $\Theta$ is \textbf{not} an ordinary partial derivative. It is defined as:
+
+\begin{equation}
+\label{eq:canonical:nabla_structure}
+\nabla_\mu \Theta = \partial_\mu \Theta + \Gamma_\mu^{\mathrm{grav}} \Theta + A_\mu^{\mathrm{SM}} \Theta
+\end{equation}
+
+where:
+
+\begin{enumerate}
+    \item \textbf{Gravitational connection} $\Gamma_\mu^{\mathrm{grav}}$ encodes spacetime curvature (Levi-Civita or spin connection)
+    
+    \item \textbf{Standard Model gauge connection}:
+    \begin{equation}
+    A_\mu^{\mathrm{SM}} = i g_1 B_\mu Y + i g_2 W_\mu^a T^a + i g_3 G_\mu^A \Lambda^A
+    \end{equation}
+    
+    containing $U(1)_Y$ hypercharge, $SU(2)_L$ weak, and $SU(3)_c$ strong interactions.
+\end{enumerate}
+
+Thus, the T-shirt equation \eqref{eq:canonical:theta_equation} is a \textbf{unified gauge-gravity field equation} where all fundamental interactions (gravity + electroweak + strong) are encoded within the single operator $\nabla$.
+
+The operator $\nabla^\dagger\nabla$ in curved spacetime is precisely the Laplace-Beltrami/d'Alembertian operator that depends on both the metric (curvature) and the gauge field strengths. It includes:
+\begin{itemize}
+    \item Pure gravitational terms (Riemann curvature)
+    \item Pure gauge terms (Yang-Mills field strengths for $U(1)$, $SU(2)$, $SU(3)$)
+    \item Mixed gauge-gravity couplings
+    \item Covariant derivatives of $\Theta$
+\end{itemize}
+
+For the complete explicit derivation of $\nabla$ structure, see Appendix on the structure of the covariant derivative.
 
 \subsection{Normalization}
 
