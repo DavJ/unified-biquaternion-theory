@@ -1,0 +1,383 @@
+% Canonical Symbol Dictionary for UBT
+% Version: 1.0
+% Date: 2025-11-14
+% Status: Canonical - DO NOT DUPLICATE
+
+\section{Symbol Dictionary and Notation Conventions}
+\label{sec:canonical:symbols}
+
+\subsection{Purpose}
+
+This section establishes the \textbf{unique, canonical meaning} of all symbols used in the Unified Biquaternion Theory. Each symbol has \textbf{exactly one meaning} to avoid confusion and ensure consistency across all documents.
+
+\subsection{Reserved Symbols — Single Meaning Only}
+
+\begin{longtable}{|l|p{6cm}|p{5cm}|}
+\hline
+\textbf{Symbol} & \textbf{Canonical Meaning} & \textbf{Notes} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Canonical Meaning} & \textbf{Notes} \\
+\hline
+\endhead
+
+$\alpha$ & Fine structure constant $\approx 1/137.036$ & NO other uses (angle, decay rate, etc.) \\
+\hline
+$\psi$ & Imaginary component of complex time & NOT wavefunction, NOT spinor \\
+\hline
+$\tau$ & Complex time $= t + i\psi$ & NOT proper time \\
+\hline
+$\Theta$ & Fundamental biquaternion field & Capital theta only for field \\
+\hline
+$q$ & Biquaternion coordinate (4 DOF) & NOT charge \\
+\hline
+$g_{\mu\nu}$ & Metric tensor & NO other metric symbols \\
+\hline
+$T_{\mu\nu}$ & Stress-energy tensor & Canonical form only \\
+\hline
+$F_{\mu\nu}$ & Electromagnetic field strength & QED only \\
+\hline
+$G^a_{\mu\nu}$ & Gluon field strength & QCD only \\
+\hline
+$W^i_{\mu\nu}$ & Weak field strength & Weak interactions \\
+\hline
+$B_{\mu\nu}$ & Hypercharge field strength & Electroweak \\
+\hline
+
+\caption{Reserved symbols with unique canonical meanings}
+\label{tab:canonical:reserved_symbols}
+\end{longtable}
+
+\subsection{Index Conventions}
+
+\subsubsection{Spacetime Indices}
+
+\begin{itemize}
+    \item \textbf{Greek indices} $\mu, \nu, \rho, \sigma, \lambda = 0, 1, 2, 3$ for spacetime coordinates
+    \item \textbf{Coordinates}: $x^\mu = (x^0, x^1, x^2, x^3) = (t, x, y, z)$ or $(ct, x, y, z)$
+    \item \textbf{Summation convention}: Repeated indices are summed (Einstein convention)
+\end{itemize}
+
+\subsubsection{Spatial Indices}
+
+\begin{itemize}
+    \item \textbf{Latin indices} $i, j, k = 1, 2, 3$ for spatial coordinates only
+    \item \textbf{Coordinates}: $x^i = (x^1, x^2, x^3) = (x, y, z)$
+\end{itemize}
+
+\subsubsection{Gauge Indices}
+
+\begin{itemize}
+    \item \textbf{Color indices} $a, b, c = 1, 2, \ldots, 8$ for $SU(3)$ adjoint representation
+    \item \textbf{Weak isospin indices} $i, j, k = 1, 2, 3$ for $SU(2)$ generators
+    \item \textbf{Flavor indices} $f, g = u, d, s, c, b, t$ for quark flavors
+    \item \textbf{Generation indices} $\alpha, \beta = 1, 2, 3$ for fermion generations
+\end{itemize}
+
+\subsubsection{Matrix Indices}
+
+\begin{itemize}
+    \item \textbf{Matrix elements} $A, B, C = 0, 1, 2, 3$ for $\Theta$ components: $\Theta_{AB}$
+    \item \textbf{Internal indices} $m, n = 1, 2, \ldots, N$ for general matrix dimensions
+\end{itemize}
+
+\subsection{Field and Operator Notation}
+
+\begin{longtable}{|l|p{6cm}|p{5cm}|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Context} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Context} \\
+\hline
+\endhead
+
+$\Theta(q,\tau)$ & Fundamental biquaternion field & Core UBT field \\
+\hline
+$\Theta^\dagger$ & Hermitian conjugate of $\Theta$ & $(\bar{\Theta})^T$ \\
+\hline
+$\Psi$ & Wavefunction (if needed) & Use capital psi \\
+\hline
+$A_\mu$ & Electromagnetic potential & QED photon field \\
+\hline
+$G^a_\mu$ & Gluon field & QCD, $a=1,\ldots,8$ \\
+\hline
+$W^i_\mu$ & Weak boson field & Electroweak, $i=1,2,3$ \\
+\hline
+$B_\mu$ & Hypercharge field & Electroweak \\
+\hline
+$\Phi$ & Higgs field & Electroweak symmetry breaking \\
+\hline
+
+\caption{Field and operator notation}
+\label{tab:canonical:field_notation}
+\end{longtable}
+
+\subsection{Derivative Notation}
+
+\begin{longtable}{|l|p{6cm}|p{5cm}|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Notes} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Notes} \\
+\hline
+\endhead
+
+$\partial_\mu$ & Partial derivative $\frac{\partial}{\partial x^\mu}$ & Coordinate derivative \\
+\hline
+$\partial^\mu$ & Contravariant derivative $g^{\mu\nu}\partial_\nu$ & Raised index \\
+\hline
+$\nabla_\mu$ & Covariant derivative (gravity) & Includes Christoffel symbols \\
+\hline
+$D_\mu$ & Gauge covariant derivative & Includes gauge connection \\
+\hline
+$\nabla^\dagger$ & Biquaternionic conjugate derivative & UBT-specific \\
+\hline
+$\Box$ & d'Alembertian $\partial^\mu\partial_\mu$ & Wave operator \\
+\hline
+
+\caption{Derivative notation}
+\label{tab:canonical:derivative_notation}
+\end{longtable}
+
+\subsection{Coupling Constants}
+
+\begin{longtable}{|l|p{4cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Value} & \textbf{Status} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Value} & \textbf{Status} \\
+\hline
+\endhead
+
+$\alpha$ & Fine structure constant & $\approx 1/137.036$ & Predicted \\
+\hline
+$\alpha_s$ & Strong coupling & $\approx 0.118$ at $M_Z$ & Predicted \\
+\hline
+$g$ & Weak coupling & $SU(2)_L$ & Derived \\
+\hline
+$g'$ & Hypercharge coupling & $U(1)_Y$ & Derived \\
+\hline
+$g_s$ & Strong coupling & $SU(3)_c$ & Derived \\
+\hline
+$e$ & Elementary charge & $\sqrt{4\pi\alpha}$ & Input \\
+\hline
+$G$ & Newton's constant & $6.674 \times 10^{-11}$ m³/kg/s² & Input \\
+\hline
+
+\caption{Coupling constants}
+\label{tab:canonical:coupling_constants}
+\end{longtable}
+
+\subsection{Mass Scales}
+
+\begin{longtable}{|l|p{5cm}|p{4cm}|p{3cm}|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Approximate Value} & \textbf{Status} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Approximate Value} & \textbf{Status} \\
+\hline
+\endhead
+
+$m_e$ & Electron mass & $0.511$ MeV & Predicted \\
+\hline
+$m_\mu$ & Muon mass & $105.7$ MeV & Predicted \\
+\hline
+$m_\tau$ & Tau mass & $1.777$ GeV & Predicted \\
+\hline
+$m_p$ & Proton mass & $938.3$ MeV & Input \\
+\hline
+$\Lambda_{\text{QCD}}$ & QCD scale & $\sim 200$ MeV & Predicted \\
+\hline
+$M_W$ & W boson mass & $80.4$ GeV & Derived \\
+\hline
+$M_Z$ & Z boson mass & $91.2$ GeV & Derived \\
+\hline
+$m_H$ & Higgs mass & $125$ GeV & Input \\
+\hline
+$M_{\text{Pl}}$ & Planck mass & $1.22 \times 10^{19}$ GeV & Fundamental \\
+\hline
+
+\caption{Mass scales}
+\label{tab:canonical:mass_scales}
+\end{longtable}
+
+\subsection{Forbidden Symbol Uses}
+
+To maintain clarity and avoid conflicts, the following uses are \textbf{explicitly forbidden}:
+
+\begin{enumerate}
+    \item ❌ $\alpha$ for any angle, decay rate, or parameter other than fine structure constant
+    \item ❌ $\psi$ for wavefunction (use $\Psi$ instead) or spinor (use $\psi_{\text{spinor}}$)
+    \item ❌ $\tau$ for proper time (use $s$ or $\lambda$)
+    \item ❌ $q$ for electric charge (use $Q$ or $e$)
+    \item ❌ $\Theta$ (lowercase theta) for field (reserved for angles if needed)
+    \item ❌ Multiple definitions of metric (only $g_{\mu\nu}$)
+    \item ❌ Alternative stress-energy symbols (only $T_{\mu\nu}$)
+\end{enumerate}
+
+\subsection{Metric Signature Convention}
+
+\textbf{Default signature}: $(+, -, -, -)$ (mostly minus, timelike positive)
+
+\begin{itemize}
+    \item $g_{00} > 0$ (timelike positive)
+    \item $g_{11}, g_{22}, g_{33} < 0$ (spacelike negative)
+\end{itemize}
+
+Alternative signature $(-, +, +, +)$ may be used in specific contexts with explicit notice.
+
+\subsection{Unit Conventions}
+
+\subsubsection{Natural Units}
+
+Default: $\hbar = c = 1$
+
+\begin{itemize}
+    \item Energy, mass, temperature have dimension $[\text{mass}]$
+    \item Length, time have dimension $[\text{mass}]^{-1}$
+    \item Action is dimensionless
+\end{itemize}
+
+\subsubsection{SI Units}
+
+When presenting results:
+\begin{itemize}
+    \item Masses in eV, keV, MeV, GeV
+    \item Lengths in meters, nm, fm
+    \item Times in seconds
+    \item Energies in eV, joules
+\end{itemize}
+
+\subsection{Special Function Notation}
+
+\begin{longtable}{|l|p{6cm}|p{5cm}|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Notes} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Symbol} & \textbf{Meaning} & \textbf{Notes} \\
+\hline
+\endhead
+
+$\text{Tr}(A)$ & Matrix trace & $\sum_i A_{ii}$ \\
+\hline
+$\det(A)$ & Matrix determinant & Determinant \\
+\hline
+$\text{Re}(z)$ & Real part & Real component \\
+\hline
+$\text{Im}(z)$ & Imaginary part & Imaginary component \\
+\hline
+$\bar{z}$ & Complex conjugate & Conjugation \\
+\hline
+$\theta_i(z,\tau)$ & Jacobi theta functions & $i=1,2,3,4$ \\
+\hline
+$\zeta(s)$ & Riemann zeta function & Number theory \\
+\hline
+
+\caption{Special function notation}
+\label{tab:canonical:special_functions}
+\end{longtable}
+
+\subsection{Tensor and Matrix Operations}
+
+\begin{longtable}{|l|p{6cm}|p{5cm}|}
+\hline
+\textbf{Operation} & \textbf{Notation} & \textbf{Meaning} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Operation} & \textbf{Notation} & \textbf{Meaning} \\
+\hline
+\endhead
+
+Matrix product & $AB$ & $(AB)_{ij} = \sum_k A_{ik}B_{kj}$ \\
+\hline
+Tensor product & $A \otimes B$ & Outer product \\
+\hline
+Commutator & $[A,B]$ & $AB - BA$ \\
+\hline
+Anticommutator & $\{A,B\}$ & $AB + BA$ \\
+\hline
+Covariant derivative & $\nabla_\mu T_{\nu\rho}$ & Includes connection \\
+\hline
+Lie derivative & $\mathcal{L}_X T$ & Along vector field $X$ \\
+\hline
+
+\caption{Tensor and matrix operations}
+\label{tab:canonical:tensor_operations}
+\end{longtable}
+
+\subsection{Abbreviations and Acronyms}
+
+\begin{longtable}{|l|p{8cm}|}
+\hline
+\textbf{Acronym} & \textbf{Meaning} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Acronym} & \textbf{Meaning} \\
+\hline
+\endhead
+
+UBT & Unified Biquaternion Theory \\
+\hline
+GR & General Relativity \\
+\hline
+QFT & Quantum Field Theory \\
+\hline
+QED & Quantum Electrodynamics \\
+\hline
+QCD & Quantum Chromodynamics \\
+\hline
+SM & Standard Model \\
+\hline
+EW & Electroweak \\
+\hline
+GUT & Grand Unified Theory \\
+\hline
+CKM & Cabibbo-Kobayashi-Maskawa (quark mixing matrix) \\
+\hline
+PMNS & Pontecorvo-Maki-Nakagawa-Sakata (neutrino mixing matrix) \\
+\hline
+EWSB & Electroweak Symmetry Breaking \\
+\hline
+VEV & Vacuum Expectation Value \\
+\hline
+DOF & Degrees of Freedom \\
+\hline
+
+\caption{Abbreviations and acronyms}
+\label{tab:canonical:abbreviations}
+\end{longtable}
+
+\subsection{Version Control}
+
+This symbol dictionary is version-controlled and canonical. Any proposed changes must:
+\begin{enumerate}
+    \item Be justified by theoretical necessity
+    \item Not conflict with existing usage
+    \item Be documented in changelog
+    \item Update all affected documents
+\end{enumerate}
+
+\subsection{Enforcement}
+
+All UBT documents must:
+\begin{itemize}
+    \item Comply with this symbol dictionary
+    \item Report conflicts as errors
+    \item Reference this section for definitions
+    \item Avoid introducing new symbol meanings
+\end{itemize}
+
+% End of canonical symbol dictionary
