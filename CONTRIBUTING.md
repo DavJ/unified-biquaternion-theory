@@ -241,10 +241,12 @@ See CODE_OF_CONDUCT.md for community standards.
 ## Legal
 
 ### Licensing
-- All contributions licensed under CC BY 4.0 (see LICENSE.md)
+- All contributions licensed under CC BY-NC-ND 4.0 (see LICENSE.md)
 - By contributing, you agree to this license
 - You retain copyright to your contributions
 - Attribution will be preserved
+
+**Note:** Earlier versions (up to v0.3) were under CC BY 4.0. From v0.4 onward, all new content is under CC BY-NC-ND 4.0.
 
 ### Attribution
 - Always credit original authors

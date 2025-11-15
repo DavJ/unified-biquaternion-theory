@@ -172,7 +172,7 @@ All sources are mathematically consistent.
 
 ## License
 
-All verification scripts are part of the UBT project and follow the repository's license (CC BY 4.0).
+All verification scripts are part of the UBT project and follow the repository's license (CC BY-NC-ND 4.0 from v0.4 onwards).
 
 ## Author
 

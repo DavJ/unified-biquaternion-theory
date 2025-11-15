@@ -156,7 +156,7 @@ For questions about UBT predictions:
 
 ## License
 
-These analysis scripts are part of the UBT repository and follow the same license (CC BY 4.0).
+These analysis scripts are part of the UBT repository and follow the same license (CC BY-NC-ND 4.0 from v0.4 onwards).
 Data sources have their own licenses - consult original publications and data repositories.
 
 ---
