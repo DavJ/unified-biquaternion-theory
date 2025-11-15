@@ -7,6 +7,120 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretica
 **Author**: David Jaroš  
 **Primary Content**: LaTeX research documents, mathematical derivations, and computational scripts
 
+## LICENSE & COPYRIGHT INSTRUCTIONS
+
+**CRITICAL**: License terms in this repository are important and MUST NOT be weakened or silently changed.
+
+### General Rules
+
+- **NEVER** remove, relax, or downgrade existing license statements
+- **NEVER** replace the author name "Ing. David Jaroš" or copyright years
+- **NEVER** suggest changing the license to a more permissive one than the current one
+- When creating new files, always **COPY** the license/header style used in the closest existing file in the same directory
+- When in doubt about licensing changes, **STOP** and wait for explicit user instructions
+
+### Current Licensing State
+
+The repository is in a licensing transition:
+
+- **Older commits and some current files**: May use **CC BY 4.0**
+- **Current and future direction**:
+  - **MIT License** for code and scripts (Python, shell scripts, etc.)
+  - **CC BY-NC-ND 4.0** for theoretical documents (LaTeX, Markdown, PDFs)
+
+### Licensing Rules by File Type
+
+#### For NEW Code Files (.py, .sh, .js, etc.)
+
+- If there is a `LICENSE` file with MIT text in the directory or repository root, use an MIT header
+- Copy the license header style from existing code files in the same directory
+- Always attribute to "Ing. David Jaroš"
+
+#### For NEW Theory Files (.tex, .md documentation, etc.)
+
+- If there is a mention of **CC BY-NC-ND 4.0** in the directory or repository root, use the same wording
+- **Do NOT** switch back to CC BY 4.0 for new files
+- **Do NOT** insert new CC BY 4.0 headers into new theoretical documents
+- Copy the license header style from existing theory files in the same directory
+- Always attribute to "Ing. David Jaroš"
+
+#### For EXISTING Files
+
+- **Respect whatever license is already present** in each file
+- **Do NOT** change existing license headers unless explicitly instructed by the user
+- **Do NOT** modify copyright years or author attribution
+
+### Directory-Specific Rules
+
+#### `original_release_of_ubt/`
+
+- Treat as **archival, read-only scientific record**
+- **Do NOT** modify or move these files unless the user explicitly asks
+- **Do NOT** change any license text inside this directory
+- This directory preserves the historical state of the theory
+
+#### `canonical/`, `canonical_integrated/`
+
+- These contain the current canonical/public version of UBT
+- When adding new theory files here, keep the same license as existing canonical `.tex` / `.md` files
+- Maintain consistency with the licensing approach in these directories
+
+#### `tools/`, `validation/`, `tests/`, `scripts/`
+
+- These are primarily code and scripts
+- Use the same license header used by existing code (eventually MIT)
+- For new files, follow the pattern established by existing scripts in the same directory
+
+### Prohibited Actions
+
+- **Do NOT** insert new CC BY 4.0 headers into new files
+- **Do NOT** change any "NC" (NonCommercial) or "ND" (NoDerivatives) clauses to more permissive variants
+- **Do NOT** propose or auto-generate GPL/BSD/Apache license changes
+- **Do NOT** remove copyright notices
+- **Do NOT** change author attribution from "Ing. David Jaroš" to any other name
+
+### License Header Templates
+
+When creating new files, use these templates as guidance:
+
+#### For Code Files (Python, Shell, etc.)
+
+```python
+# Copyright (c) 2025 Ing. David Jaroš
+# Licensed under the MIT License
+# See LICENSE file in the repository root for full license text
+```
+
+#### For Theory Files (LaTeX, Markdown)
+
+```latex
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+```
+
+### When in Doubt
+
+If a change touches:
+- LICENSE files
+- License headers
+- COPYRIGHT lines
+- Author attribution
+
+**STOP** and wait for explicit user instructions in the current conversation. Do not proceed with modifications that affect licensing or copyright without clear direction.
+
+### Version History Context
+
+- **Versions ≤ v0.3**: Released under CC BY 4.0
+- **Versions ≥ v0.4**: Released under CC BY-NC-ND 4.0 for theoretical content
+- The transition is documented in `LICENSE.md` and `LICENSE_TRANSITION_v0.4.md`
+- User controls all licensing decisions manually
+
 ## Repository Structure
 
 - `unified_biquaternion_theory/` - Original UBT documents and derivations
