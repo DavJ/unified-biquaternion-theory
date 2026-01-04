@@ -547,7 +547,7 @@ Result interpretation:
 
 **Reproducibility:** 
 - Code: `scripts/emergent_alpha_calculator.py`
-- Verification: `scripts/test_symbolic_alpha.py`
+- Verification: `scripts/demo_symbolic_alpha.py`
 
 ### Prediction 2: Electron Mass (VALIDATED)
 

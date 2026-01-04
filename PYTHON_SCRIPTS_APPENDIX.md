@@ -120,9 +120,9 @@ This section lists all 104 Python scripts in the repository.
 
 ---
 
-#### test_qed_limit.py
+#### demo_qed_limit.py
 
-**Path:** `consolidation_project/alpha_two_loop/test_qed_limit.py`
+**Path:** `consolidation_project/alpha_two_loop/demo_qed_limit.py`
 
 **Comment:** Sanity: beta ~ α^2 + α^3 — tiny number at α≈1/137
 
@@ -466,17 +466,17 @@ This section lists all 104 Python scripts in the repository.
 
 ---
 
-#### test_padic_alpha.py
+#### demo_padic_alpha.py
 
-**Path:** `scripts/test_padic_alpha.py`
+**Path:** `scripts/demo_padic_alpha.py`
 
 **Description:** Validation Tests for P-adic Alpha Derivation
 
 ---
 
-#### test_symbolic_alpha.py
+#### demo_symbolic_alpha.py
 
-**Path:** `scripts/test_symbolic_alpha.py`
+**Path:** `scripts/demo_symbolic_alpha.py`
 
 **Description:** Symbolic Alpha Derivation Tests
 

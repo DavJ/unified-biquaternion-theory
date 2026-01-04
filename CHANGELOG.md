@@ -68,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Ensures biquaternion time priority is maintained
   - CI integration ready
 
-- **Symbolic alpha tests**: `scripts/test_symbolic_alpha.py`
+- **Symbolic alpha tests**: `scripts/demo_symbolic_alpha.py`
   - Validates B depends only on R_ψ and N_eff (no numeric 46.3)
   - Tests μ₀ invariance in B definition
   - Verifies N_eff counting table sums to 12
@@ -141,7 +141,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Integration assessments: `HYPERSPACE_WAVES_INTEGRATION_ASSESSMENT.md`, `AHARONOV_TSVF_ANALYSIS.md`
   - Comprehensive evaluation summaries and verification checklists
   - Enhanced B constant derivation based on gauge structure (N_eff = 12)
-  - P-adic calculator scripts: `scripts/padic_alpha_calculator.py`, `scripts/test_padic_alpha.py`
+  - P-adic calculator scripts: `scripts/padic_alpha_calculator.py`, `scripts/demo_padic_alpha.py`
 
 - **Symbolic derivation of the B constant** in `emergent_alpha_from_ubt.tex`
   - Mathematical derivation showing B arises from one-loop vacuum fluctuations

@@ -88,7 +88,7 @@ All 5 explicit checks **PASS**:
 
 6. **Existing Tests** (in `alpha_two_loop/tests/`):
    - `test_ct_ward_and_limits.py` - Ward identity and limit tests
-   - `test_qed_limit.py` - QED limit verification
+   - `demo_qed_limit.py` - QED limit verification
 
 ### Integration with Main Document
 
