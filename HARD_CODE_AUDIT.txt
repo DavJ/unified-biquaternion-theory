@@ -172,8 +172,8 @@ unified-biquaternion-theory-master/consolidation_project/appendix_glossary_symbo
 unified-biquaternion-theory-master/consolidation_project/appendix_originality_context.tex :: \b137(\.0+)?\b
 unified-biquaternion-theory-master/consolidation_project/appendix_originality_context.tex :: \b1/137\b
 unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/FIT_FREE_ALPHA_README.md :: \b137(\.0+)?\b
-unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/test_qed_limit.py :: \b137(\.0+)?\b
-unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/test_qed_limit.py :: \b1/137\b
+unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/demo_qed_limit.py :: \b137(\.0+)?\b
+unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/demo_qed_limit.py :: \b1/137\b
 unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/validate_ct_baseline.py :: \b137(\.0+)?\b
 unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/validate_ct_baseline.py :: \b1/137\b
 unified-biquaternion-theory-master/consolidation_project/alpha_two_loop/tests/test_ibp_reduction.py :: \b137(\.0+)?\b

@@ -239,7 +239,7 @@ The framework now demonstrates that starting from UBT's geometric baseline and a
 
 1. **`vacuum_polarization_one_loop.py`**: One-loop calculator (2025-11-13, enhanced)
 2. **`vacuum_polarization_two_loop.py`**: Two-loop framework (2025-11-13, NEW)
-3. **`test_vacuum_polarization_one_loop.py`**: Test suite for one-loop (2025-11-13)
+3. **`demo_vacuum_polarization_one_loop.py`**: Test suite for one-loop (2025-11-13)
 4. **`ALPHA_QUANTUM_CORRECTIONS_PROGRESS.md`**: This progress tracker (2025-11-13)
 
 ## References

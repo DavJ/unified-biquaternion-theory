@@ -211,11 +211,11 @@ Hits: alpha_inv_approx
 - alpha_inv_approx: `... linewidth=2, label='p=137 (Our Universe)')\n    ax1.axhline(137.035999084, color='green', linestyle=':', linewidth=1.5, alpha=0.7, la...`
 - alpha_inv_approx: `...0)\n    print("\nOur universe (p=137):")\n    alpha_inv_exp = 137.035999084\n    alpha_inv_ubt, alpha_ubt = calculate_alpha(137)\n    pri...`
 
-## unified-biquaternion-theory-master/scripts/test_padic_alpha.py
+## unified-biquaternion-theory-master/scripts/demo_padic_alpha.py
 Hits: alpha_inv_approx
 - alpha_inv_approx: `...e very close to experimental value\n    expected_alpha_inv = 137.035999084  # CODATA 2018\n    error = abs(alpha_inv - expected_alpha_i...`
 
-## unified-biquaternion-theory-master/scripts/test_symbolic_alpha.py
+## unified-biquaternion-theory-master/scripts/demo_symbolic_alpha.py
 Hits: alpha_inv_approx, electron_mass
 - alpha_inv_approx: `...ence value at low energy (same physics)\n    alpha_inv_low = 137.035999084  # CODATA 2018\n    \n    # Calculate α at some fixed scale μ...`
 - alpha_inv_approx: `...    # Compare with experimental value\n    alpha_exp = 1.0 / 137.035999084  # CODATA 2018\n    error_percent = abs(alpha - alpha_exp) /...`
