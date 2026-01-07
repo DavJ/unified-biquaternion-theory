@@ -21,11 +21,10 @@ The fundamental geometric object in UBT is the \textbf{biquaternionic metric}:
 
 \subsection{Biquaternionic Decomposition}
 
-The biquaternionic metric admits the decomposition:
+The biquaternionic metric decomposes as:
 
 \begin{equation}
-\label{eq:canonical:biq_metric_decomposition}
-\boxed{\mathcal{G}_{\mu\nu} = g_{\mu\nu} + \mathbf{I} h_{\mu\nu} + \mathbf{J} \cdot \mathbf{k}_{\mu\nu}}
+\mathcal{G}_{\mu\nu} = g_{\mu\nu} + \mathbf{I} h_{\mu\nu} + \mathbf{J} \cdot \mathbf{k}_{\mu\nu}
 \end{equation}
 
 \noindent where:
@@ -287,14 +286,16 @@ This canonical definition supersedes all previous formulations that treat $g_{\m
 
 \subsection{Computational Formula}
 
-For numerical calculations, expand the biquaternionic metric:
+For numerical calculations, expand the biquaternionic metric. The full expansion includes cross-terms from products of complex and quaternionic units:
 
 \begin{equation}
 \label{eq:canonical:biq_metric_computational}
-\mathcal{G}_{\mu\nu} = g_{\mu\nu} + i h_{\mu\nu} + j_1 k^1_{\mu\nu} + j_2 k^2_{\mu\nu} + j_3 k^3_{\mu\nu} + \text{(mixed terms)}
+\mathcal{G}_{\mu\nu} = g_{\mu\nu} + i h_{\mu\nu} + j_1 k^1_{\mu\nu} + j_2 k^2_{\mu\nu} + j_3 k^3_{\mu\nu} + i j_1 m^1_{\mu\nu} + i j_2 m^2_{\mu\nu} + i j_3 m^3_{\mu\nu}
 \end{equation}
 
-where mixed terms involve products like $i j_k$.
+where $m^a_{\mu\nu}$ (with $a=1,2,3$) are mixed complex-quaternionic components arising from products like $\mathbf{I} \times j_a$.
+
+In practice, these mixed terms often vanish or are subdominant for most physical configurations.
 
 \subsection{Historical Note}
 
