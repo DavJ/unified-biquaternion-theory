@@ -1,18 +1,39 @@
-% Canonical Stress-Energy Tensor Definition
-% Version: 1.0
-% Date: 2025-11-14
-% Status: Canonical - DO NOT DUPLICATE
+% Classical Stress-Energy Tensor (Derived Quantity)
+% Version: 2.0
+% Date: 2026-01-07
+% Status: Canonical - DERIVED FROM BIQUATERNIONIC STRESS-ENERGY
 
-\section{The Stress-Energy Tensor $T_{\mu\nu}$}
+\section{The Classical Stress-Energy Tensor $T_{\mu\nu}$ (Derived Quantity)}
 \label{sec:canonical:stress_energy}
 
-\subsection{Canonical Definition}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Important: This is a Derived Quantity]
+\textbf{The stress-energy tensor $T_{\mu\nu}$ is NOT fundamental in UBT.}
 
-The energy-momentum (stress-energy) tensor for the biquaternion field $\Theta(q,\tau)$ is:
+It is the real projection of the fundamental biquaternionic stress-energy tensor $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ (see Section~\ref{sec:canonical:biquaternion_stress_energy}):
 
 \begin{equation}
-\label{eq:canonical:stress_energy}
-\boxed{T_{\mu\nu} = \partial_\mu\Theta \, \partial_\nu\Theta^\dagger - \frac{1}{2} g_{\mu\nu} g^{\alpha\beta} \partial_\alpha\Theta \, \partial_\beta\Theta^\dagger}
+T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})
+\end{equation}
+
+For the fundamental description, see Section~\ref{sec:canonical:biquaternion_stress_energy}.
+\end{tcolorbox}
+
+\subsection{Canonical Definition (as Projection)}
+
+The classical energy-momentum (stress-energy) tensor for the biquaternion field $\Theta(q,\tau)$ is obtained as the real projection of the biquaternionic stress-energy tensor:
+
+\begin{equation}
+\label{eq:canonical:stress_energy_projection}
+\boxed{T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})}
+\end{equation}
+
+where $\mathcal{T}_{\mu\nu} = \langle D_\mu \Theta, D_\nu \Theta \rangle_\mathbb{B} - \frac{1}{2}\mathcal{G}_{\mu\nu}\langle D\Theta, D\Theta \rangle$ is the fundamental biquaternionic stress-energy.
+
+Alternatively, computed directly from the $\Theta$ field:
+
+\begin{equation}
+\label{eq:canonical:stress_energy_from_theta}
+T_{\mu\nu} = \partial_\mu\Theta \, \partial_\nu\Theta^\dagger - \frac{1}{2} g_{\mu\nu} g^{\alpha\beta} \partial_\alpha\Theta \, \partial_\beta\Theta^\dagger
 \end{equation}
 
 \noindent where:
@@ -119,21 +140,28 @@ T_{ij} &= (\text{stress tensor})_{ij} \label{eq:canonical:Tij}
 
 \subsection{Connection to Einstein Equation}
 
-The stress-energy tensor sources spacetime curvature via:
+The classical stress-energy tensor sources spacetime curvature via Einstein's field equation, which is the real projection of the fundamental biquaternionic equation:
 
 \begin{equation}
-\label{eq:canonical:einstein_field}
+\label{eq:canonical:einstein_field_from_stress}
 R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}
+\end{equation}
+
+This is obtained from:
+
+\begin{equation}
+\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \Rightarrow \quad \text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
 \end{equation}
 
 where:
 \begin{itemize}
-    \item $R_{\mu\nu}$ is the Ricci curvature tensor
-    \item $R = g^{\mu\nu}R_{\mu\nu}$ is the Ricci scalar
+    \item $R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu})$ is the classical Ricci curvature tensor (real projection)
+    \item $R = \text{Re}(\mathcal{R})$ is the classical Ricci scalar (real projection)
     \item $G$ is Newton's gravitational constant
+    \item $\kappa = 8\pi G$ is the Einstein coupling constant
 \end{itemize}
 
-This is Einstein's field equation of General Relativity.
+This is Einstein's field equation of General Relativity, recovered as the real limit of UBT.
 
 \subsection{Energy Conditions}
 
@@ -219,9 +247,28 @@ This canonical definition supersedes:
     \item ❌ $T_{\mu\nu} = \Theta\Theta^\dagger$ (incorrect, wrong tensor structure)
     \item ❌ $T_{\mu\nu} = \frac{d\Theta}{d\tau} \times \frac{d\Theta^\dagger}{d\tau}$ (incorrect derivative)
     \item ❌ $T_{\mu\nu}$ from Lagrangian variation (different form, inconsistent normalization)
+    \item ❌ Direct postulation of $T_{\mu\nu}$ without biquaternionic origin
 \end{enumerate}
 
-\textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:stress_energy} derived from standard field theory Lagrangian via Noether's theorem.
+\textbf{Canonical resolution}: The classical stress-energy $T_{\mu\nu}$ is the real projection of the fundamental biquaternionic stress-energy $\mathcal{T}_{\mu\nu} \in \mathbb{B}$. Use either:
+\begin{itemize}
+    \item $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ (projection method), OR
+    \item Eq.~\ref{eq:canonical:stress_energy_from_theta} (direct computation from $\Theta$)
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Stress-Energy and Dark Sector]
+\textbf{The classical stress-energy $T_{\mu\nu}$ describes only ordinary matter and energy.}
+
+Dark sector components arise from imaginary parts of the biquaternionic stress-energy:
+\begin{itemize}
+    \item \textbf{Dark energy}: $S_{\mu\nu} = \text{Im}_{\text{scalar}}(\mathcal{T}_{\mu\nu})$ (phase energy)
+    \item \textbf{Dark matter}: $\mathbf{P}_{\mu\nu} = \text{Im}_{\text{quaternion}}(\mathcal{T}_{\mu\nu})$ (quaternionic momentum)
+\end{itemize}
+
+These components are invisible to classical GR but affect global geometry and cosmology.
+
+See Section~\ref{sec:canonical:exotic_regimes} for physical effects of imaginary stress-energy components.
+\end{tcolorbox}
 
 \subsection{Consistency Checks}
 
