@@ -1,0 +1,446 @@
+% Biquaternionic Stress-Energy Tensor
+% Version: 1.0
+% Date: 2026-01-07
+% Status: Canonical - FUNDAMENTAL GEOMETRY
+
+\section{The Biquaternionic Stress-Energy Tensor $\mathcal{T}_{\mu\nu}$}
+\label{sec:canonical:biquaternion_stress_energy}
+
+\subsection{Fundamental Postulate}
+
+\textbf{The stress-energy tensor is fundamentally a biquaternionic object, not a real tensor.}
+
+The fundamental energy-momentum tensor in UBT is the \textbf{biquaternionic stress-energy tensor}:
+
+\begin{equation}
+\label{eq:canonical:biq_stress_fundamental}
+\boxed{\mathcal{T}_{\mu\nu}(x) \in \mathbb{B} = \mathbb{H} \otimes \mathbb{C}}
+\end{equation}
+
+\subsection{Definition}
+
+The biquaternionic stress-energy tensor is defined as:
+
+\begin{equation}
+\label{eq:canonical:biq_stress_definition}
+\boxed{\mathcal{T}_{\mu\nu} = \langle D_\mu \Theta, D_\nu \Theta \rangle_\mathbb{B} - \frac{1}{2} \mathcal{G}_{\mu\nu} \langle D\Theta, D\Theta \rangle}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\Theta(q,\tau)$ is the fundamental biquaternionic field
+    \item $D_\mu \Theta$ is the biquaternionic covariant derivative (defined below)
+    \item $\langle \cdot, \cdot \rangle_\mathbb{B}$ is the biquaternionic inner product
+    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric (Section~\ref{sec:canonical:biquaternion_metric})
+\end{itemize}
+
+\subsection{Biquaternionic Covariant Derivative}
+
+The covariant derivative of the $\Theta$ field is:
+
+\begin{equation}
+\label{eq:canonical:biq_covariant_derivative}
+\boxed{D_\mu \Theta = \partial_\mu \Theta + \Omega_\mu \Theta}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\partial_\mu = \frac{\partial}{\partial x^\mu}$ is the partial derivative
+    \item $\Omega_\mu$ is the biquaternionic connection (Section~\ref{sec:canonical:biquaternion_connection})
+    \item The product $\Omega_\mu \Theta$ is the full biquaternionic multiplication (non-commutative)
+\end{itemize}
+
+\textbf{Note:} The ordering matters. In general:
+\begin{equation}
+\Omega_\mu \Theta \neq \Theta \Omega_\mu
+\end{equation}
+
+\subsection{Biquaternionic Inner Product}
+
+The inner product on biquaternion space is defined as:
+
+\begin{equation}
+\label{eq:canonical:biq_inner_product}
+\langle A, B \rangle_\mathbb{B} = \text{Sc}(A^\dagger B)
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $A^\dagger$ is the Hermitian conjugate (complex conjugation + quaternionic conjugation)
+    \item $\text{Sc}(\cdot)$ extracts the scalar part
+\end{itemize}
+
+For the stress-energy tensor:
+
+\begin{equation}
+\langle D_\mu \Theta, D_\nu \Theta \rangle_\mathbb{B} = \text{Sc}[(D_\mu \Theta)^\dagger (D_\nu \Theta)]
+\end{equation}
+
+\subsection{Explicit Form}
+
+Expanding the definition:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu} = \text{Sc}[(D_\mu \Theta)^\dagger (D_\nu \Theta)] - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{G}^{\alpha\beta} \text{Sc}[(D_\alpha \Theta)^\dagger (D_\beta \Theta)]
+\end{equation}
+
+In components:
+
+\begin{align}
+\mathcal{T}_{\mu\nu} = &\text{Sc}[(\partial_\mu \Theta + \Omega_\mu \Theta)^\dagger (\partial_\nu \Theta + \Omega_\nu \Theta)] \\
+&- \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{G}^{\alpha\beta} \text{Sc}[(\partial_\alpha \Theta + \Omega_\alpha \Theta)^\dagger (\partial_\beta \Theta + \Omega_\beta \Theta)]
+\end{align}
+
+\subsection{Classical Stress-Energy as Projection}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Prohibition]
+\textbf{The classical stress-energy tensor $T_{\mu\nu}$ is NOT fundamental.}
+
+It is defined exclusively as the real projection:
+
+\begin{equation}
+\label{eq:canonical:stress_projection}
+\boxed{T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})}
+\end{equation}
+
+\textbf{It is FORBIDDEN to define $T_{\mu\nu}$ without reference to the biquaternionic stress-energy tensor $\mathcal{T}_{\mu\nu}$.}
+\end{tcolorbox}
+
+\subsection{Biquaternionic Decomposition}
+
+The stress-energy tensor decomposes as:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu} = T_{\mu\nu} + \mathbf{I} S_{\mu\nu} + \mathbf{J} \cdot \mathbf{P}_{\mu\nu}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $T_{\mu\nu} \in \mathbb{R}$ is the \textbf{real stress-energy} (classical matter-energy)
+    \item $S_{\mu\nu} \in \mathbb{R}$ is the \textbf{phase energy-momentum} (dark energy, consciousness)
+    \item $\mathbf{P}_{\mu\nu} \in \mathbb{R}^3$ is the \textbf{quaternionic momentum} (dark matter, spin currents)
+\end{itemize}
+
+\subsection{Properties}
+
+\subsubsection{Hermiticity}
+
+\begin{equation}
+\mathcal{T}_{\mu\nu}^\dagger = \mathcal{T}_{\nu\mu}
+\end{equation}
+
+This is the biquaternionic generalization of symmetry.
+
+\subsubsection{Conservation}
+
+The biquaternionic stress-energy tensor satisfies the conservation law:
+
+\begin{equation}
+\label{eq:canonical:biq_conservation}
+\nabla^\mu \mathcal{T}_{\mu\nu} = 0
+\end{equation}
+
+where $\nabla^\mu$ is the biquaternionic covariant derivative.
+
+Taking the real part:
+\begin{equation}
+\nabla^\mu T_{\mu\nu} = 0 \quad \text{(classical energy-momentum conservation)}
+\end{equation}
+
+\subsubsection{Reality of Classical Part}
+
+By construction:
+\begin{equation}
+T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu}) \in \mathbb{R}
+\end{equation}
+
+\subsection{Physical Interpretation}
+
+\subsubsection{Real Component: $T_{\mu\nu}$}
+
+\begin{itemize}
+    \item Classical matter and energy density
+    \item Observable via gravitational coupling
+    \item Satisfies Einstein's equations
+    \item Components:
+    \begin{itemize}
+        \item $T_{00}$: energy density $\rho c^2$
+        \item $T_{0i}$: momentum density / energy flux
+        \item $T_{ij}$: stress tensor (pressure, shear)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Phase Energy: $S_{\mu\nu}$}
+
+\begin{itemize}
+    \item Imaginary time energy-momentum
+    \item Invisible to classical observations
+    \item Couples only to phase curvature $H_{\mu\nu}$
+    \item Responsible for:
+    \begin{itemize}
+        \item Dark energy (cosmological constant-like behavior)
+        \item Psychon field energy (consciousness substrate)
+        \item Quantum coherence energy in biological systems
+        \item Phase-locked state energy
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Quaternionic Momentum: $\mathbf{P}_{\mu\nu}$}
+
+\begin{itemize}
+    \item Directional energy-momentum
+    \item Couples to quaternionic curvature $\mathbf{K}_{\mu\nu\rho\sigma}$
+    \item Responsible for:
+    \begin{itemize}
+        \item Dark matter density (via p-adic extensions)
+        \item Spin currents in strong gravity
+        \item Angular momentum transport
+        \item Torsional energy flow
+    \end{itemize}
+\end{itemize}
+
+\subsection{Field Equation}
+
+The fundamental UBT field equation is:
+
+\begin{equation}
+\label{eq:canonical:biq_field_eqn}
+\boxed{\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+    \item $\kappa = 8\pi G$ (in natural units)
+\end{itemize}
+
+This is the \textbf{fundamental field equation of UBT}.
+
+\subsection{Einstein's Equations as Real Projection}
+
+Taking the real part of Eq.~\ref{eq:canonical:biq_field_eqn}:
+
+\begin{equation}
+\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\end{equation}
+
+This yields Einstein's field equations:
+
+\begin{equation}
+\label{eq:canonical:einstein_from_stress}
+\boxed{G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}}
+\end{equation}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity as Real Projection]
+\textbf{General Relativity arises as the real, commutative projection of fundamental biquaternionic geometry.}
+
+The fundamental field equation is:
+\begin{equation}
+\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}
+\end{equation}
+
+Projecting to the real sector:
+\begin{equation}
+G_{\mu\nu} = 8\pi G T_{\mu\nu}
+\end{equation}
+
+\textbf{Apparent violations} (antigravity, causal drift) correspond to non-real sectors of the metric and stress-energy, not to exotic matter.
+
+\textbf{UBT generalizes GR. It does not contradict it.}
+\end{tcolorbox}
+
+\subsection{Energy Conditions}
+
+\subsubsection{Weak Energy Condition}
+
+For timelike vector $u^\mu$:
+
+\begin{equation}
+\text{Re}(\mathcal{T}_{\mu\nu} u^\mu u^\nu) \geq 0
+\end{equation}
+
+This ensures positive energy density in all frames for the real sector.
+
+\subsubsection{Dominant Energy Condition}
+
+The real part satisfies:
+\begin{equation}
+T_{\mu\nu} u^\mu u^\nu \geq 0 \quad \text{and} \quad T^\mu_\nu u^\mu \text{ is timelike or null}
+\end{equation}
+
+\subsubsection{Violations in Imaginary Sector}
+
+The imaginary components can violate energy conditions:
+
+\begin{equation}
+S_{\mu\nu} u^\mu u^\nu < 0 \quad \text{(possible)}
+\end{equation}
+
+This produces:
+\begin{itemize}
+    \item Pseudo-negative energy density (dark energy)
+    \item Apparent antigravitational effects
+    \item Accelerated cosmic expansion
+\end{itemize}
+
+These violations are \textbf{invisible to classical observations} but affect global geometry.
+
+\subsection{Perfect Fluid Form}
+
+For a perfect fluid in the real sector:
+
+\begin{equation}
+T_{\mu\nu}^{\text{fluid}} = (\rho + p) u_\mu u_\nu - p g_{\mu\nu}
+\end{equation}
+
+The full biquaternionic form is:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu}^{\text{fluid}} = (\varrho + \mathcal{P}) \mathcal{U}_\mu \mathcal{U}_\nu - \mathcal{P} \mathcal{G}_{\mu\nu}
+\end{equation}
+
+where $\varrho, \mathcal{P}, \mathcal{U}_\mu \in \mathbb{B}$.
+
+\subsection{Electromagnetic Contribution}
+
+For electromagnetic fields:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu}^{\text{EM}} = \frac{1}{4\pi}\left(\mathcal{F}_{\mu\alpha}\mathcal{F}_\nu^{\ \alpha} - \frac{1}{4}\mathcal{G}_{\mu\nu}\mathcal{F}_{\alpha\beta}\mathcal{F}^{\alpha\beta}\right)
+\end{equation}
+
+where $\mathcal{F}_{\mu\nu}$ is the biquaternionic field strength.
+
+Real projection:
+\begin{equation}
+T_{\mu\nu}^{\text{EM}} = \text{Re}(\mathcal{T}_{\mu\nu}^{\text{EM}}) = \frac{1}{4\pi}\left(F_{\mu\alpha}F_\nu^{\ \alpha} - \frac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)
+\end{equation}
+
+\subsection{Total Stress-Energy}
+
+The total biquaternionic stress-energy is:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu}^{\text{total}} = \mathcal{T}_{\mu\nu}[\Theta] + \mathcal{T}_{\mu\nu}^{\text{EM}} + \mathcal{T}_{\mu\nu}^{\text{matter}} + \cdots
+\end{equation}
+
+\subsection{Trace}
+
+The trace of the biquaternionic stress-energy tensor is:
+
+\begin{equation}
+\mathcal{T} = \mathcal{G}^{\mu\nu} \mathcal{T}_{\mu\nu}
+\end{equation}
+
+Classical trace:
+\begin{equation}
+T = g^{\mu\nu} T_{\mu\nu} = \text{Re}(\mathcal{T})
+\end{equation}
+
+\subsection{Noether Theorem Derivation}
+
+The stress-energy tensor arises from Noether's theorem for spacetime translation invariance.
+
+Biquaternionic Lagrangian:
+\begin{equation}
+\mathcal{L} = \text{Sc}[(D_\mu \Theta)^\dagger (D^\mu \Theta)]
+\end{equation}
+
+Stress-energy from variation:
+\begin{equation}
+\mathcal{T}_{\mu\nu} = \frac{\partial \mathcal{L}}{\partial (D^\mu \Theta)} D_\nu \Theta - \mathcal{G}_{\mu\nu} \mathcal{L}
+\end{equation}
+
+This ensures consistency with variational principles.
+
+\subsection{Exotic Regimes}
+
+When imaginary components are significant:
+
+\begin{equation}
+\text{Im}(\mathcal{T}_{\mu\nu}) \neq 0
+\end{equation}
+
+we obtain exotic matter/energy behavior:
+
+\begin{enumerate}
+    \item \textbf{Dark energy}: $S_{00} < 0$ produces negative pressure
+    \begin{equation}
+    p_{\text{eff}} = -\rho_{\text{eff}} \quad \text{(cosmological constant-like)}
+    \end{equation}
+    
+    \item \textbf{Dark matter}: $\mathbf{P}_{\mu\nu}$ produces mass without light
+    \begin{equation}
+    \rho_{\text{DM}} \propto |\mathbf{P}_{00}|
+    \end{equation}
+    
+    \item \textbf{Consciousness energy}: Psychon fields contribute to $S_{\mu\nu}$
+    
+    \item \textbf{Quantum coherence}: Phase-locked states have $S_{\mu\nu} \neq 0$
+\end{enumerate}
+
+See Section~\ref{sec:canonical:exotic_regimes} for details.
+
+\subsection{Explicit Computation}
+
+For practical calculations:
+
+\textbf{Step 1:} Compute covariant derivatives:
+\begin{equation}
+D_\mu \Theta = \partial_\mu \Theta + \Omega_\mu \Theta
+\end{equation}
+
+\textbf{Step 2:} Form the stress-energy tensor:
+\begin{equation}
+\mathcal{T}_{\mu\nu} = \text{Sc}[(D_\mu \Theta)^\dagger (D_\nu \Theta)] - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{G}^{\alpha\beta} \text{Sc}[(D_\alpha \Theta)^\dagger (D_\beta \Theta)]
+\end{equation}
+
+\textbf{Step 3:} Extract classical stress-energy:
+\begin{equation}
+T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})
+\end{equation}
+
+\textbf{Step 4:} Solve field equations:
+\begin{equation}
+\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}
+\end{equation}
+
+\subsection{Consistency with General Relativity}
+
+When all imaginary components vanish:
+
+\begin{equation}
+S_{\mu\nu} \to 0, \quad \mathbf{P}_{\mu\nu} \to 0
+\end{equation}
+
+The biquaternionic stress-energy reduces to classical form:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu} \to T_{\mu\nu}
+\end{equation}
+
+Einstein's equations are exactly recovered:
+
+\begin{equation}
+G_{\mu\nu} = 8\pi G T_{\mu\nu}
+\end{equation}
+
+\textbf{UBT is a consistent extension of General Relativity.}
+
+\subsection{Conflict Resolution}
+
+This canonical definition supersedes:
+
+\begin{enumerate}
+    \item ❌ Direct postulation of real $T_{\mu\nu}$ as fundamental
+    \item ❌ Stress-energy without biquaternionic structure
+    \item ❌ Ad-hoc dark energy or dark matter sources
+\end{enumerate}
+
+\textbf{Canonical resolution}: The biquaternionic stress-energy tensor $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ is fundamental. Classical $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ is its real projection.
+
+\subsection{Historical Note}
+
+The biquaternionic stress-energy formalism unifies ordinary matter, dark energy, and dark matter within a single geometric object, with classical matter emerging as the real projection.
+
+% End of biquaternionic stress-energy tensor definition
