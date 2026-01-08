@@ -65,6 +65,20 @@ E[\psi] = \int \left[\frac{D}{2}|\nabla \psi|^2 + V(\psi)\right] d^4x,
 \end{equation}
 subject to the constraints imposed by the toroidal topology of the internal phase manifold.
 
+The same $\Theta$ field constructs the biquaternionic metric
+\[
+\mathcal{G}_{\mu\nu}[\Theta]=\Theta_\mu^\dagger\Theta_\nu,
+\]
+so phase gradients feed directly into geometry. Variations obey the schematic relation
+\[
+\delta\mathcal{G}_{\mu\nu} \;\sim\; \langle D_\mu \Theta, D_\nu \Theta\rangle,
+\]
+and define the biquaternionic stress tensor variationally,
+\[
+\mathcal{T}_{\mu\nu}:=-\,2\,\frac{\delta S}{\delta \mathcal{G}^{\mu\nu}},
+\]
+so it captures the geometric phase response. The observable tensor is only the Hermitian projection $T_{\mu\nu}:=\Re(\mathcal{T}_{\mu\nu})$; there is no external ``matter source'' separate from the biquaternionic geometry.
+
 \subsection*{H.6 Relation to Gauge Fields}
 
 The theta function structure of the phase field has profound implications for gauge field emergence:
@@ -90,4 +104,3 @@ where $L$ is the characteristic spatial scale of phase variations.
 \subsection*{H.8 Summary}
 
 The drift-diffusion equation~\eqref{eq:drift_diffusion} provides a dynamical foundation for the emergence of theta function structure in UBT. The phase field $\psi$ naturally evolves toward Jacobi theta function configurations, which encode the modular symmetry, toroidal topology, and quantization conditions essential to the theory. This establishes UBT not merely as a kinematic framework but as a dynamical theory with self-consistent phase evolution.
-
