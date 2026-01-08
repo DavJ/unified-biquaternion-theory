@@ -60,15 +60,31 @@ The biquaternion algebra $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$ combines com
 
 Complex time $\tau = t + i\psi$ extends the real time coordinate $t$ by adding an imaginary component $\psi$ that represents phase-like degrees of freedom. This extension enables the unified treatment of quantum phases and gravitational curvature within a single geometric framework.
 
+\subsection{Biquaternionic Metric and Projection}
+
+The fundamental geometry is encoded in the biquaternionic metric $\mathcal{G}_{\mu\nu}(\Theta)$ built from the field $\Theta$. All curvature tensors $\mathcal{R}_{\mu\nu}$ and connections are derived from $\mathcal{G}_{\mu\nu}$. The classical metric is a projection
+\[
+g_{\mu\nu} \;:=\; \Re\!\left(\mathcal{G}_{\mu\nu}\right),
+\qquad
+R_{\mu\nu} \;:=\; \Re\!\left(\mathcal{R}_{\mu\nu}\right),
+\qquad
+T_{\mu\nu} \;:=\; \Re\!\left(\mathcal{T}_{\mu\nu}\right),
+\]
+used only to describe the Hermitian (real) sector.
+
 \section{Physical Content}
 
 \subsection{General Relativity Recovery}
 
-In the real-valued limit, UBT exactly reproduces Einstein's field equations:
+In the Hermitian (real) projection $\mathcal{G}_{\mu\nu}\mapsto g_{\mu\nu}$ and $\mathcal{R}_{\mu\nu}\mapsto R_{\mu\nu}$, UBT exactly reproduces Einstein's field equations:
 \begin{equation}
 R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = 8\pi G T_{\mu\nu}
 \end{equation}
 This ensures full compatibility with all experimental confirmations of General Relativity, including perihelion precession, gravitational waves, and cosmological solutions.
+
+\subsection{Why GR Misses Exotic Regimes}
+
+Classical GR observes only $g_{\mu\nu}=\Re(\mathcal{G}_{\mu\nu})$, so any solution with $\Im(\mathcal{G}_{\mu\nu})\neq 0$ projects to the same real geometry and remains invisible. Antigravitational responses, metric cloaking, or temporal drift arise from these imaginary components and are suppressed in the projection. They are not forbidden by physics; they are hidden by the Hermitian reduction. UBT therefore extends GR without contradiction: the real sector matches Einsteinian dynamics, while the full biquaternionic geometry supports exotic but observationally hidden regimes.
 
 \subsection{Standard Model Symmetries}
 

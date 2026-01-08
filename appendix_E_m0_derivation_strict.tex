@@ -7,16 +7,16 @@
 In the strict (no-fit) formulation, the absolute mass scale $m_0$ must follow from the \emph{field dynamics} of UBT rather than any measured input. This appendix derives $m_0$ from the stationary value of the UBT action on the $(t,\psi)$ torus for the lowest toroidal harmonic. No anchoring by $m_e$ or other empirical constants is used.
 
 \subsection*{E.2 Setup: UBT Action on the Complex-Time Torus}
-Let $\Theta(q,\tau)$ be the biquaternionic field on $\mathbb{C}^5$ with complex time $\tau=t+i\psi$ and metric $g_{AB}$ adapted to the product torus $S^1_t\times S^1_\psi$ in the $(t,\psi)$-plane. Consider the UBT action
+Let $\Theta(q,\tau)$ be the biquaternionic field on $\mathbb{C}^5$ with complex time $\tau=t+i\psi$ and biquaternionic metric $\mathcal{G}_{AB}$ adapted to the product torus $S^1_t\times S^1_\psi$ in the $(t,\psi)$-plane (with $g_{AB}:=\Re(\mathcal{G}_{AB})$ the Hermitian projection used for real observables). Consider the UBT action
 \begin{equation}
-  S[\Theta,g] \;=\; \int_{\mathcal{M}} \!\mathrm{d}^5x\,\sqrt{|g|}\;\Big(
-     \mathcal{L}_{\text{kin}}[\Theta,\nabla\Theta;g]
-     \;+\; \mathcal{L}_{\text{int}}[\Theta;g]
-     \;+\; \mathcal{L}_{\text{geom}}[g]\Big)\,,
+  S[\Theta,\mathcal{G}] \;=\; \int_{\mathcal{M}} \!\mathrm{d}^5x\,\sqrt{|\Re\mathcal{G}|}\;\Big(
+     \mathcal{L}_{\text{kin}}[\Theta,\nabla\Theta;\mathcal{G}]
+     \;+\; \mathcal{L}_{\text{int}}[\Theta;\mathcal{G}]
+     \;+\; \mathcal{L}_{\text{geom}}[\mathcal{G}]\Big)\,,
   \label{eq:UBT-action}
 \end{equation}
 where $\mathcal{L}_{\text{geom}}$ captures the toroidal curvature contributions that also generate the running of $\alpha(\mu)$ (Appendix~C).
-On the $(t,\psi)$ torus we use the reduced metric
+On the $(t,\psi)$ torus we use the real projection $g_{AB}=\Re(\mathcal{G}_{AB})$ with reduced metric
 \begin{equation}
   \mathrm{d}s^2 \,=\, R_t^2\,\mathrm{d}\theta_t^2 \,+\, R_\psi^2\,\mathrm{d}\theta_\psi^2
   \qquad (\theta_t,\theta_\psi\in[0,2\pi)),\quad
@@ -31,10 +31,10 @@ For the lowest toroidal harmonic (electron sheet), adopt the separable ansatz
  \qquad n\in\mathbb{N}\ \text{(baseline $n=1$)}\,.
  \label{eq:mode-ansatz}
 \end{equation}
-With~\eqref{eq:torus-metric}, the kinetic term yields the mode energy density
+With~\eqref{eq:torus-metric} and $g^{AB}:=\Re(\mathcal{G}^{AB})$ the inverse Hermitian projection, the kinetic term yields the mode energy density
 \begin{equation}
  \mathcal{E}_{\text{kin}} \;\propto\;
-   g^{\psi\psi}\,(\partial_{\theta_\psi}\Theta)(\partial_{\theta_\psi}\Theta)^\dagger
+  g^{\psi\psi}\,(\partial_{\theta_\psi}\Theta)(\partial_{\theta_\psi}\Theta)^\dagger
  + g^{tt}\,(\partial_{\theta_t}\Theta)(\partial_{\theta_t}\Theta)^\dagger
  \;\propto\;
    \frac{n^2}{R_\psi^2} \,+\, \frac{\omega^2}{R_t^2}\,.
