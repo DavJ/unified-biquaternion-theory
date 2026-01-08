@@ -98,7 +98,7 @@ Explicitly:
 The field $\Theta(q,\tau)$ encodes:
 
 \begin{enumerate}
-    \item \textbf{Geometric structure}: Spacetime metric emerges via $g_{\mu\nu} = \text{Re}\,\text{Tr}(\partial_\mu\Theta \partial_\nu\Theta^\dagger)$
+    \item \textbf{Geometric structure}: Biquaternionic tetrads $E_\mu$ emerge from $\Theta$ configurations, giving biquaternionic metric $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)$; observable metric $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ is the GR projection
     
     \item \textbf{Matter content}: Fermion fields and masses arise from internal structure
     
@@ -118,7 +118,7 @@ The field $\Theta$ satisfies the fundamental field equation (the \textbf{T-shirt
 
 \noindent where:
 \begin{itemize}
-    \item $\nabla$ is the \textbf{full covariant derivative} including both gravitational connection (Levi-Civita/spin) and Standard Model gauge connections (see detailed structure below)
+    \item $\nabla$ is the \textbf{full covariant derivative} including both biquaternionic gravitational connection $\Omega_\mu$ (fundamental) and Standard Model gauge connections (see detailed structure below)
     \item $\nabla^\dagger \nabla$ is the gauge-gravity unified d'Alembertian operator in curved spacetime
     \item $\kappa$ is a coupling constant proportional to $8\pi G$ (Newton's constant)
     \item $\mathcal{T}(q,\tau)$ is the biquaternionic stress-energy source
@@ -130,13 +130,13 @@ The covariant derivative $\nabla_\mu$ acting on $\Theta$ is \textbf{not} an ordi
 
 \begin{equation}
 \label{eq:canonical:nabla_structure}
-\nabla_\mu \Theta = \partial_\mu \Theta + \Gamma_\mu^{\mathrm{grav}} \Theta + A_\mu^{\mathrm{SM}} \Theta
+\nabla_\mu \Theta = \partial_\mu \Theta + \Omega_\mu^{\mathrm{grav}} \Theta + A_\mu^{\mathrm{SM}} \Theta
 \end{equation}
 
 where:
 
 \begin{enumerate}
-    \item \textbf{Gravitational connection} $\Gamma_\mu^{\mathrm{grav}}$ encodes spacetime curvature (Levi-Civita or spin connection)
+    \item \textbf{Biquaternionic gravitational connection} $\Omega_\mu^{\mathrm{grav}} \in \mathbb{B}$ encodes fundamental spacetime curvature (Christoffel symbols/Levi-Civita connection arise as $\Gamma^\lambda_{\mu\nu} := \text{Re}(\Omega^\lambda_{\mu\nu})$ in the GR limit)
     
     \item \textbf{Standard Model gauge connection}:
     \begin{equation}
