@@ -250,7 +250,7 @@ The biquaternionic metric determines the biquaternionic connection $\Omega_\mu$ 
 
 \subsection{Field Equation}
 
-The fundamental field equation of UBT is:
+The fundamental field equation of UBT is defined at the biquaternionic level:
 
 \begin{equation}
 \label{eq:canonical:biq_field_equation}
@@ -259,17 +259,22 @@ The fundamental field equation of UBT is:
 
 where:
 \begin{itemize}
-    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic Einstein tensor (defined from $\mathcal{G}_{\mu\nu}$ via biquaternionic curvature)
+    \item $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor (defined from biquaternionic curvature $\mathcal{R}_{\mu\nu}$)
     \item $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor (Section~\ref{sec:canonical:biquaternion_stress_energy})
     \item $\kappa = 8\pi G/c^4$ (in SI units) or $\kappa = 8\pi G$ (in natural units)
 \end{itemize}
 
-Taking the real part:
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Prohibition: Classical Einstein Equations Not Fundamental]
+\textbf{The equation $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ is NOT the fundamental field equation.}
+
+Einstein's field equations arise ONLY after taking the real part of the fundamental biquaternionic equation:
+
 \begin{equation}
 \text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu}) \quad \Rightarrow \quad G_{\mu\nu} = 8\pi G T_{\mu\nu}
 \end{equation}
 
-This recovers Einstein's field equations.
+\textbf{This is labeled as ``GR limit'' or ``real projection'', never as a fundamental axiom.}
+\end{tcolorbox}
 
 \subsection{Conflict Resolution}
 
@@ -283,6 +288,51 @@ This canonical definition supersedes all previous formulations that treat $g_{\m
 \end{enumerate}
 
 \textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:biq_metric_fundamental} with decomposition Eq.~\ref{eq:canonical:biq_metric_decomposition} and projection rule Eq.~\ref{eq:canonical:metric_projection_rule}.
+
+\subsection{$\Theta$ Field to Geometry Coupling}
+
+\textbf{Critical principle:} The $\Theta$ field configuration directly determines the geometry.
+
+The biquaternionic metric is a functional of the $\Theta$ field:
+
+\begin{equation}
+\label{eq:canonical:metric_theta_functional}
+\mathcal{G}_{\mu\nu} = \mathcal{G}_{\mu\nu}[\Theta]
+\end{equation}
+
+Explicitly, via the tetrad (Section~\ref{sec:canonical:biquaternion_tetrad}):
+
+\begin{equation}
+E_\mu = \partial_\mu \Theta \cdot \mathcal{N} \quad \Rightarrow \quad \mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)
+\end{equation}
+
+where $\mathcal{N}$ is a normalization operator.
+
+\textbf{Variation of metric under $\Theta$ perturbations:}
+
+\begin{equation}
+\delta \mathcal{G}_{\mu\nu} \sim \langle D_\mu \Theta, \delta \Theta \rangle + \langle \delta \Theta, D_\mu \Theta \rangle
+\end{equation}
+
+This shows that:
+\begin{itemize}
+    \item Geometry is NOT background-independent of $\Theta$
+    \item $\Theta$ configurations contribute dynamically to $\mathcal{G}_{\mu\nu}$
+    \item Stress-energy $\mathcal{T}_{\mu\nu}$ arises from $\Theta$ gradients: $\mathcal{T}_{\mu\nu} \sim \langle D_\mu\Theta, D_\nu\Theta \rangle$
+    \item There is NO external matter source—energy-momentum is geometric
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Stress-Energy is Geometric]
+In UBT, stress-energy is NOT an external matter source added to field equations.
+
+Instead, $\mathcal{T}_{\mu\nu}$ is the \textbf{geometric phase response} of the $\Theta$ field:
+
+\begin{equation}
+\mathcal{T}_{\mu\nu} = \langle D_\mu\Theta, D_\nu\Theta \rangle_\mathbb{B} - \frac{1}{2}\mathcal{G}_{\mu\nu}\langle D\Theta, D\Theta \rangle
+\end{equation}
+
+The field equation $\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}$ is a self-consistency condition on geometry, not a source equation.
+\end{tcolorbox}
 
 \subsection{Computational Formula}
 

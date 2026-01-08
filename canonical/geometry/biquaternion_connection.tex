@@ -71,7 +71,21 @@ The connection is uniquely determined by the compatibility condition with the te
     \item $\Gamma^\lambda_{\mu\nu}$ are the derived Christoffel symbols
 \end{itemize}
 
-\textbf{Critical}: Do NOT assume commutativity of $\Omega_\mu$ and $E_\nu$. Do NOT simplify associators (terms like $[A,B,C] = (AB)C - A(BC)$ for biquaternions $A, B, C$). The full non-commutative, non-associative structure must be preserved.
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Critical: Non-Commutativity]
+\textbf{Do NOT assume commutativity of $\Omega_\mu$ and $E_\nu$.}
+
+\textbf{Do NOT simplify associators.} Terms like $[\Omega_\mu, \Omega_\nu, E_\rho] = (\Omega_\mu \Omega_\nu)E_\rho - \Omega_\mu(\Omega_\nu E_\rho)$ for biquaternions are generally non-zero.
+
+\textbf{The full non-commutative, non-associative structure must be preserved.}
+
+Biquaternionic multiplication is:
+\begin{itemize}
+    \item \textbf{Non-commutative}: $AB \neq BA$ in general
+    \item \textbf{Non-associative}: $(AB)C \neq A(BC)$ in general
+\end{itemize}
+
+Simplifications valid only in real/Hermitian limit must be labeled as "GR limit".
+\end{tcolorbox}
 
 \subsection{Derivation from Metric}
 
