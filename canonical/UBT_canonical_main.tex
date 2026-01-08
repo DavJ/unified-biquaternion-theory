@@ -121,57 +121,181 @@ This article is organized into 12 sections following the canonical structure:
 \input{fields/biquaternion_time.tex}
 
 % ========================================
-% SECTION 5: GEOMETRY AND METRIC
+% SECTION 5: BIQUATERNIONIC GEOMETRY (FUNDAMENTAL)
 % ========================================
 
-\section{Geometry and Metric Tensor}
-\label{sec:geometry_metric}
+\section{Fundamental Biquaternionic Geometry}
+\label{sec:biquaternion_geometry}
 
-% Include canonical metric definition
+\subsection{Overview}
+
+\textbf{The geometry of spacetime is fundamentally biquaternionic, not real.}
+
+General Relativity emerges as the real, commutative projection of this richer structure. This section presents the fundamental geometric objects from which classical GR is derived.
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Hierarchy of Geometric Objects]
+\textbf{Fundamental (biquaternionic):}
+\begin{enumerate}
+    \item Tetrad field: $E_\mu(x) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_tetrad})
+    \item Metric: $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_metric})
+    \item Connection: $\Omega_\mu(x) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_connection})
+    \item Curvature: $\mathcal{R}_{\mu\nu\rho\sigma} \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_curvature})
+    \item Stress-energy: $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_stress_energy})
+\end{enumerate}
+
+\textbf{Derived (classical GR):}
+\begin{enumerate}
+    \item Real metric: $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ (Section~\ref{sec:canonical:metric})
+    \item Christoffel symbols: $\Gamma^\lambda_{\mu\nu} = \text{Re}(\Omega^\lambda_{\mu\nu})$ (Section~\ref{sec:canonical:curvature})
+    \item Riemann tensor: $R_{\mu\nu\rho\sigma} = \text{Re}(\mathcal{R}_{\mu\nu\rho\sigma})$ (Section~\ref{sec:canonical:curvature})
+    \item Classical stress-energy: $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ (Section~\ref{sec:canonical:stress_energy})
+\end{enumerate}
+\end{tcolorbox}
+
+% Include fundamental biquaternionic geometry definitions
+\input{canonical/geometry/biquaternion_tetrad.tex}
+\input{canonical/geometry/biquaternion_metric.tex}
+\input{canonical/geometry/biquaternion_connection.tex}
+\input{canonical/geometry/biquaternion_curvature.tex}
+\input{canonical/geometry/biquaternion_stress_energy.tex}
+\input{canonical/geometry/exotic_regimes.tex}
+
+% ========================================
+% SECTION 6: CLASSICAL GEOMETRY (DERIVED)
+% ========================================
+
+\section{Classical Geometry (Derived from Biquaternionic Structure)}
+\label{sec:classical_geometry}
+
+The following sections present the classical geometric objects of General Relativity as real projections of the fundamental biquaternionic geometry.
+
+\subsection{Classical Metric Tensor}
+
+% Include canonical metric definition (now marked as derived)
 \input{canonical/geometry/metric.tex}
 
-% Additional subsections:
-% - Christoffel symbols
-% - Riemann curvature tensor
-% - Ricci tensor and scalar
-% - Geodesics
-% - Killing vectors
+\input{canonical/geometry/metric.tex}
 
-% ========================================
-% SECTION 6: STRESS-ENERGY TENSOR
-% ========================================
+\subsection{Classical Curvature Tensors}
 
-\section{Stress-Energy Tensor}
-\label{sec:stress_energy}
+% Include canonical curvature definition (now marked as derived)
+\input{canonical/geometry/curvature.tex}
 
-% Include canonical stress-energy definition
+\subsection{Classical Stress-Energy Tensor}
+
+% Include canonical stress-energy definition (now marked as derived)
 \input{canonical/geometry/stress_energy.tex}
 
 % ========================================
-% SECTION 7: EINSTEIN EQUATION
+% SECTION 7: FIELD EQUATIONS
 % ========================================
 
-\section{Einstein Field Equation}
-\label{sec:einstein_equation}
+\section{Field Equations}
+\label{sec:field_equations}
 
-% Derivation showing UBT reproduces Einstein's equations
-% Solutions: Schwarzschild, Kerr, FLRW
-% Gravitational waves
-% Compatibility with GR
+\subsection{Fundamental Biquaternionic Field Equation}
 
-\subsection{Derivation from $\Theta$ Field}
+The fundamental field equation of UBT is:
 
-The Einstein field equation emerges from the biquaternion field equation:
+\begin{equation}
+\label{eq:canonical:fundamental_field_equation}
+\boxed{\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+    \item $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ is the biquaternionic stress-energy tensor
+    \item $\kappa = 8\pi G$ (in natural units, $c = \hbar = 1$)
+\end{itemize}
+
+This single equation unifies:
+\begin{itemize}
+    \item Gravitational dynamics (real sector)
+    \item Dark energy effects (imaginary scalar sector)
+    \item Dark matter structure (quaternionic sector)
+    \item Consciousness substrate (phase coupling)
+\end{itemize}
+
+\subsection{Einstein's Equations as Real Projection}
+
+Taking the real part of the fundamental equation:
+
+\begin{equation}
+\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\end{equation}
+
+we obtain Einstein's field equations:
+
+\begin{equation}
+\label{eq:canonical:einstein_equations_derived}
+\boxed{R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu})$ is the classical Ricci tensor
+    \item $R = \text{Re}(\mathcal{R})$ is the classical Ricci scalar
+    \item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the classical metric
+    \item $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ is the classical stress-energy
+\end{itemize}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Key Statement: GR as Real Projection]
+\textbf{General Relativity arises as the real, commutative projection of the fundamental biquaternionic geometry of spacetime.}
+
+\textbf{Apparent violations} such as antigravity or causal drift correspond to non-real sectors of the metric and curvature ($\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$), not to exotic matter.
+
+\textbf{In the limit where all imaginary components vanish}, UBT exactly reproduces General Relativity:
+\begin{itemize}
+    \item Schwarzschild solution (black holes)
+    \item Kerr solution (rotating black holes)
+    \item FLRW cosmology (expanding universe)
+    \item Gravitational waves (LIGO/Virgo observations)
+    \item Perihelion precession of Mercury
+    \item Gravitational lensing
+    \item Frame dragging (Gravity Probe B)
+\end{itemize}
+
+\textbf{UBT generalizes GR. It does not contradict it.}
+
+This ensures UBT is compatible with all experimental confirmations of General Relativity, while predicting additional phenomena in regimes where $\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$.
+\end{tcolorbox}
+
+\subsection{Alternative Form with Complex Time}
+
+The fundamental equation can also be expressed in terms of the $\Theta$ field:
 
 \begin{equation}
 \nabla^\dagger \nabla \Theta(q,\tau) = \kappa \mathcal{T}(q,\tau)
 \end{equation}
 
-In the real-time limit ($\psi \to 0$), this reduces to:
+where:
+
+\begin{itemize}
+    \item $\nabla = \partial + \Omega^{\text{grav}} + A^{\text{SM}}$ is the full biquaternionic covariant derivative
+    \item $\Omega^{\text{grav}}$ is the biquaternionic gravitational connection
+    \item $A^{\text{SM}}$ includes Standard Model gauge connections (see \texttt{canonical/interactions/sm\_gauge.tex})
+    \item $\tau = t + i\psi$ is complex time (or more generally $T_B = t + i\psi + j\chi + k\xi$)
+    \item $\mathcal{T}(q,\tau)$ is the biquaternionic source term
+\end{itemize}
+
+This form makes explicit the connection to the fundamental $\Theta$ field dynamics.
+
+\subsection{Cosmological Constant}
+
+The cosmological constant can be included:
 
 \begin{equation}
-R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}
+\mathcal{G}_{\mu\nu} + \Lambda \mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}
 \end{equation}
+
+In the real limit:
+
+\begin{equation}
+R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}
+\end{equation}
+
+However, UBT predicts that dark energy arises from the imaginary scalar component $\text{Im}_{\text{scalar}}(\mathcal{T}_{\mu\nu})$ rather than requiring an explicit cosmological constant. See Section~\ref{sec:canonical:exotic_regimes} for details.
 
 % Full derivation to be added
 

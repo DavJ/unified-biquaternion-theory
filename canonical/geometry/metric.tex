@@ -1,18 +1,40 @@
-% Canonical Metric Tensor Definition
-% Version: 1.0
-% Date: 2025-11-14
-% Status: Canonical - DO NOT DUPLICATE
+% Classical Metric Tensor as Derived Quantity
+% Version: 2.0
+% Date: 2026-01-07
+% Status: Canonical - DERIVED FROM BIQUATERNIONIC METRIC
 
-\section{The Metric Tensor $g_{\mu\nu}$}
+\section{The Classical Metric Tensor $g_{\mu\nu}$ (Derived Quantity)}
 \label{sec:canonical:metric}
 
-\subsection{Canonical Definition}
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Important: This is a Derived Quantity]
+\textbf{The metric $g_{\mu\nu}$ is NOT fundamental in UBT.}
 
-The spacetime metric tensor emerges from the fundamental biquaternion field $\Theta(q,\tau)$ via:
+It is the real projection of the fundamental biquaternionic metric $\mathcal{G}_{\mu\nu} \in \mathbb{B}$ (see Section~\ref{sec:canonical:biquaternion_metric}).
+
+For the fundamental geometric description, see:
+\begin{itemize}
+    \item Section~\ref{sec:canonical:biquaternion_metric}: Biquaternionic metric $\mathcal{G}_{\mu\nu}$
+    \item Section~\ref{sec:canonical:biquaternion_tetrad}: Biquaternionic tetrad $E_\mu$
+    \item Section~\ref{sec:canonical:biquaternion_connection}: Biquaternionic connection $\Omega_\mu$
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Canonical Definition (as Projection)}
+
+The spacetime metric tensor used in General Relativity is derived from the fundamental biquaternionic metric via projection:
 
 \begin{equation}
-\label{eq:canonical:metric}
-\boxed{g_{\mu\nu}(\Theta) = \text{Re}\,\text{Tr}\left(\partial_\mu\Theta \, \partial_\nu\Theta^\dagger\right)}
+\label{eq:canonical:metric_projection}
+\boxed{g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})}
+\end{equation}
+
+\noindent where $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric (Section~\ref{sec:canonical:biquaternion_metric}).
+
+Alternatively, from the $\Theta$ field directly:
+
+\begin{equation}
+\label{eq:canonical:metric_from_theta}
+g_{\mu\nu}(\Theta) = \text{Re}\,\text{Tr}\left(\partial_\mu\Theta \, \partial_\nu\Theta^\dagger\right)
 \end{equation}
 
 \noindent where:
@@ -97,12 +119,14 @@ V^\mu &= g^{\mu\nu} V_\nu \label{eq:canonical:raise_index}
 
 \subsection{Connection to Curvature}
 
-The metric determines the Christoffel symbols (affine connection):
+The metric determines the Christoffel symbols (affine connection), which are themselves derived from the biquaternionic connection (see Section~\ref{sec:canonical:biquaternion_connection}):
 
 \begin{equation}
-\label{eq:canonical:christoffel}
-\Gamma^\lambda_{\mu\nu} = \frac{1}{2} g^{\lambda\rho} \left(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\right)
+\label{eq:canonical:christoffel_from_metric}
+\Gamma^\lambda_{\mu\nu} = \text{Re}(\Omega^\lambda_{\mu\nu}) = \frac{1}{2} g^{\lambda\rho} \left(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\right)
 \end{equation}
+
+\textbf{Note:} The Christoffel symbols are NOT fundamental. They are the real projection of the biquaternionic connection $\Omega_\mu$.
 
 From which the Riemann curvature tensor follows:
 
@@ -181,16 +205,27 @@ S = \int d^4x \sqrt{-g}\, \mathcal{L}
 
 \subsection{Compatibility with General Relativity}
 
-In the limit $\psi \to 0$ (imaginary time component vanishes), the metric derived from $\Theta$ \textbf{exactly reproduces} the Einstein metric satisfying:
+In the limit where imaginary components of the biquaternionic metric vanish ($\text{Im}(\mathcal{G}_{\mu\nu}) \to 0$), the metric derived from $\Theta$ \textbf{exactly reproduces} the Einstein metric satisfying:
 
 \begin{equation}
-\label{eq:canonical:einstein_equation}
+\label{eq:canonical:einstein_equation_from_real}
 R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}
 \end{equation}
 
-where $T_{\mu\nu}$ is the stress-energy tensor (see Section~\ref{sec:canonical:stress_energy}).
+where $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ is the real projection of the biquaternionic stress-energy tensor (see Section~\ref{sec:canonical:biquaternion_stress_energy}).
 
-\textbf{This ensures UBT generalizes GR rather than contradicting it.}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity as Real Projection]
+\textbf{General Relativity arises as the real, commutative projection of the fundamental biquaternionic geometry of spacetime.}
+
+The classical metric is:
+\begin{equation}
+g_{\mu\nu}^{\text{GR}} = \text{Re}(\mathcal{G}_{\mu\nu})
+\end{equation}
+
+\textbf{Apparent violations} such as antigravity or causal drift correspond to non-real sectors of the metric and curvature ($\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$), not to exotic matter.
+
+\textbf{UBT generalizes GR rather than contradicting it. This ensures UBT is compatible with all experimental confirmations of General Relativity.}
+\end{tcolorbox}
 
 \subsection{Complex Extension}
 
