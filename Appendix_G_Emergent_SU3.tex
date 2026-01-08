@@ -59,11 +59,23 @@ F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu] \in \mathf
 
 \subsection*{G.5 Compatibility with General Relativity}
 
-Because the color transformations act on the internal phase fiber and $\mathcal{U}$ is unitary, the metric tensor remains invariant:
+Because the color transformations act on the internal phase fiber and $\mathcal{U}$ is unitary, the biquaternionic metric remains invariant under color rotations. 
+
+The fundamental biquaternionic metric:
 \begin{equation}
-g_{\mu\nu} = \mathrm{Re}(\Theta^\dagger \Theta)
+\mathcal{G}_{\mu\nu} = \mathrm{Sc}(\Theta^\dagger \Theta)
 \end{equation}
-is unchanged under color rotations. Therefore, the Einstein field equations and all tests of General Relativity remain unaffected by the color sector.
+is unchanged under $\mathrm{SU}(3)$ color transformations. Therefore, the real projection:
+\begin{equation}
+g_{\mu\nu} := \mathrm{Re}(\mathcal{G}_{\mu\nu})
+\end{equation}
+is also invariant.
+
+The Einstein field equations (GR limit via $\mathrm{Re}(\cdot)$ projection):
+\begin{equation}
+G_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}) = 8\pi G\, \mathrm{Re}(\mathcal{T}_{\mu\nu}) = 8\pi G\, T_{\mu\nu}
+\end{equation}
+and all tests of General Relativity remain unaffected by the color sector, which acts only on internal phase degrees of freedom.
 
 \subsection*{G.6 Summary}
 
