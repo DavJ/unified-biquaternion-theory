@@ -32,9 +32,13 @@ $\Theta$ & Fundamental biquaternion field & Capital theta only for field \\
 \hline
 $q$ & Biquaternion coordinate (4 DOF) & NOT charge \\
 \hline
-$g_{\mu\nu}$ & Metric tensor & NO other metric symbols \\
+$\mathcal{G}_{\mu\nu}$ & Biquaternionic metric tensor & Fundamental metric (in $\mathbb{B}$) \\
 \hline
-$T_{\mu\nu}$ & Stress-energy tensor & Canonical form only \\
+$g_{\mu\nu}$ & Real metric tensor & DERIVED: $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ (GR projection) \\
+\hline
+$\mathcal{T}_{\mu\nu}$ & Biquaternionic stress-energy tensor & Fundamental (geometric phase response) \\
+\hline
+$T_{\mu\nu}$ & Classical stress-energy tensor & DERIVED: $T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})$ \\
 \hline
 $F_{\mu\nu}$ & Electromagnetic field strength & QED only \\
 \hline
@@ -220,8 +224,9 @@ To maintain clarity and avoid conflicts, the following uses are \textbf{explicit
     \item ❌ $\tau$ for proper time (use $s$ or $\lambda$)
     \item ❌ $q$ for electric charge (use $Q$ or $e$)
     \item ❌ $\Theta$ (lowercase theta) for field (reserved for angles if needed)
-    \item ❌ Multiple definitions of metric (only $g_{\mu\nu}$)
-    \item ❌ Alternative stress-energy symbols (only $T_{\mu\nu}$)
+    \item ❌ Using $g_{\mu\nu}$ as fundamental (must derive from $\mathcal{G}_{\mu\nu}$)
+    \item ❌ Using $T_{\mu\nu}$ as fundamental (must derive from $\mathcal{T}_{\mu\nu}$)
+    \item ❌ Defining metric without reference to biquaternionic metric $\mathcal{G}_{\mu\nu}$
 \end{enumerate}
 
 \subsection{Metric Signature Convention}
