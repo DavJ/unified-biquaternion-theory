@@ -1,0 +1,46 @@
+name: UBT Theory Invariants CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  ubt-invariants:
+    name: Test UBT Theory Invariants
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+      
+      - name: Run UBT theory invariant tests
+        run: |
+          pytest tests/test_ubt_tex_invariants.py -v
+        
+      - name: Test summary
+        if: always()
+        run: |
+          echo "================================================"
+          echo "UBT Theory Invariant Tests Complete"
+          echo "================================================"
+          echo ""
+          echo "These tests enforce that:"
+          echo "  1. g_{μν} is never treated as fundamental"
+          echo "  2. Biquaternionic objects (𝓖, Ω, 𝓡, 𝓣) remain primary"
+          echo "  3. GR appears only as Re(...) projection"
+          echo "  4. Required lock-in files exist"
+          echo ""
+          echo "Failures indicate theory regression to classical GR."
+          echo "================================================"
