@@ -115,6 +115,17 @@ This implies that $\psi$ has period $2\pi$, making it topologically equivalent t
 
 \section{The UBT Action and Field Equations}
 
+\subsection{Metric Convention and Projection}
+
+\paragraph{Fundamental biquaternionic metric.} Throughout this document, the fundamental geometric object is the \textbf{biquaternionic metric tensor} $\mathcal{G}_{\mu\nu}(q,\tau) \in \mathbb{B}$, where $\mathbb{B} = \mathbb{H} \otimes \mathbb{C}$ is the biquaternion algebra. This metric encodes the full geometric structure of spacetime including phase curvature and internal degrees of freedom.
+
+\paragraph{Physical metric projection.} The \textbf{physical metric} $g_{\mu\nu}$ that couples to ordinary matter and appears in Einstein's field equations is obtained by the real projection:
+\begin{equation}
+\boxed{g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})}
+\label{eq:metric_projection_main}
+\end{equation}
+This projection ensures compatibility with General Relativity: in the limit where all imaginary components of $\mathcal{G}_{\mu\nu}$ vanish, UBT exactly reproduces Einstein's equations. Any appearance of $g_{\mu\nu}$ in this document should be understood as this real projection unless explicitly stated otherwise.
+
 \subsection{Action Principle}
 
 The UBT action is constructed from the biquaternion field and its covariant derivative:
@@ -499,23 +510,37 @@ This represents a reduction from infinitely many vector degrees of freedom to a 
 
 \subsubsection{Biquaternion Metric}
 
-In the full biquaternionic spacetime, the metric takes the form:
+In the full biquaternionic spacetime, the \textbf{fundamental biquaternionic metric} takes the form:
 \begin{equation}
-g_{\mu\nu} = g^{(0)}_{\mu\nu} + i g^{(1)}_{\mu\nu} + (g^{(2)}_{\mu\nu} \cdot \boldsymbol{\sigma})
+\mathcal{G}_{\mu\nu} = g^{(0)}_{\mu\nu} + i g^{(1)}_{\mu\nu} + j g^{(2)}_{\mu\nu} + k g^{(3)}_{\mu\nu}
 \label{eq:biquaternion_metric}
 \end{equation}
-where:
+where $i, j, k$ are the quaternion imaginary units and each component $g^{(a)}_{\mu\nu}$ is a complex-valued tensor (yielding 8 independent real components per index pair):
 \begin{itemize}
-\item $g^{(0)}_{\mu\nu}$ is the real part (classical spacetime metric)
-\item $g^{(1)}_{\mu\nu}$ is the scalar imaginary part (phase curvature)
-\item $g^{(2)}_{\mu\nu} = (g^{(2,x)}_{\mu\nu}, g^{(2,y)}_{\mu\nu}, g^{(2,z)}_{\mu\nu})$ is the vector imaginary part (torsion and spin connection)
+\item $g^{(0)}_{\mu\nu} \in \mathbb{C}$ is the scalar (real) part
+\item $g^{(1)}_{\mu\nu} \in \mathbb{C}$ is the $i$-component (complex phase curvature)
+\item $g^{(2)}_{\mu\nu} \in \mathbb{C}$ is the $j$-component (quaternionic structure)
+\item $g^{(3)}_{\mu\nu} \in \mathbb{C}$ is the $k$-component (quaternionic structure)
 \end{itemize}
+
+Equivalently, using vector notation for quaternionic components:
+\begin{equation}
+\mathcal{G}_{\mu\nu} = g^{(0)}_{\mu\nu} + \vec{g}_{\mu\nu} \cdot \vec{\sigma}
+\end{equation}
+where $\vec{g}_{\mu\nu} = (g^{(1)}_{\mu\nu}, g^{(2)}_{\mu\nu}, g^{(3)}_{\mu\nu})$ and $\vec{\sigma} = (i, j, k)$.
+
+\paragraph{Physical metric projection.} The physical metric $g_{\mu\nu}$ that couples to ordinary matter and appears in Einstein's equations is obtained by the real projection:
+\begin{equation}
+\boxed{g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}) = g^{(0)}_{\mu\nu}}
+\label{eq:metric_projection}
+\end{equation}
+This projection ensures that UBT embeds general relativity: when all imaginary components vanish, $\mathcal{G}_{\mu\nu} \to g_{\mu\nu}$ exactly reproduces Einstein's field equations.
 
 \subsubsection{Reduction to Complex Metric}
 
-When the projection criterion \eqref{eq:projection_criterion} is satisfied, the metric reduces to:
+When the projection criterion \eqref{eq:projection_criterion} is satisfied, the biquaternionic metric reduces to a complex-valued metric:
 \begin{equation}
-g_{ab}(\tau) = g^{(0)}_{ab} + i g^{(1)}_{ab}
+\mathcal{G}_{ab}(\tau) = g^{(0)}_{ab} + i g^{(1)}_{ab}
 \label{eq:complex_metric}
 \end{equation}
 where $a, b$ label coordinates in the reduced $(3+1)$-dimensional spacetime with complex time.
