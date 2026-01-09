@@ -80,13 +80,18 @@ since $x^{\mu}$ is already real. \qed
 g_{\mu\nu}(x) = \text{Re}(\mathcal{G}_{\mu\nu}(q))\Big|_{q=x}
 \end{equation}
 
-where $\mathcal{G}_{\mu\nu}$ is the full biquaternionic metric and $g_{\mu\nu}$ is the physical (GR) metric.
+where $\mathcal{G}_{\mu\nu}$ is the fundamental biquaternionic metric and $g_{\mu\nu}$ is the projected metric observed in the physical (GR) sector.
 
 % ============================================================
 % Projection operator P_* and allowed permutations (UBT core)
 % ============================================================
 
 \subsection{Projection operator $P_\star$ and allowed permutations}
+
+\paragraph{Scope note.}
+This subsection formalizes the projection-selection logic that maps the fundamental biquaternionic metric $\mathcal{G}_{\mu\nu}$ onto the observed 4D metric $g_{\mu\nu}$.
+The projection $P_\star$ is selected by an extremal integrity principle and remains fixed (superselection) under local field variations.
+This formalism does not yet provide a complete dynamical theory of projection evolution $P(t,x)$; such extensions would require additional theoretical development beyond the scope of this appendix.
 
 \paragraph{Biquaternionic degrees of freedom.}
 Let $\mathbb{B} \cong \mathbb{C}\otimes\mathbb{H}$ denote the biquaternion algebra.
@@ -137,6 +142,7 @@ iff the induced 4D metric $g^{(\pi)}_{\mu\nu}$ satisfies all of the following co
 
 \begin{enumerate}
 \item \textbf{Lorentzian signature constraint:}
+Lorentz invariance in the observed sector is not imposed as an independent axiom but emerges as a stability requirement selecting the admissible projection $P_\star$.
 \begin{equation}
 \mathrm{sign}\big(g^{(\pi)}_{\mu\nu}\big) = (+,-,-,-)
 \quad\text{(or the chosen convention)},
@@ -195,14 +201,20 @@ g_{\mu\nu} \;:=\; g^{(P_\star)}_{\mu\nu} \;=\; \Re\!\Big(P_\star[\mathcal{G}_{\m
 \label{eq:observed_metric_Pstar}
 \end{equation}
 
+\paragraph{Superselection of the projection.}
+The projection $P_\star$ is treated as a superselection choice fixed by global stability and is not a dynamical field.
+Local fluctuations of $\mathcal{G}$, $\Theta$, $\mathcal{T}$ or $\mathcal{R}$ do not induce transitions between distinct projections $P_\pi$.
+Any hypothetical ``projection switching'' mechanism (if considered) must be modeled by an explicit additional dynamical sector and is outside the scope of this appendix.
+
 \paragraph{Why this removes projection underdetermination.}
 The projection operator $P_\star$ is not arbitrary: it is uniquely selected by the extremal principle of minimizing the integrity functional $\mathcal{I}[P]$ within the class of admissible projections. The admissibility constraints—Lorentzian signature, tetrad compatibility, and integrity stability—ensure that $P_\star$ corresponds to a physically viable observational channel. This variational selection mechanism eliminates the freedom in choosing projections and anchors the theory to empirical reality.
 
 \paragraph{Remark (multiplex gravitational leakage).}
 If the fundamental dynamics is defined at the biquaternionic level (e.g.\ $\mathcal{G}=\kappa\mathcal{T}$),
 then sectors with different allowed $\pi$ may remain electromagnetically decoupled
-while contributing to the same underlying biquaternionic invariants entering $\mathcal{I}[P]$.
-This provides a controlled mechanism for gravitational ``leakage'' across channels without arbitrary mixing.
+while potentially contributing to the same underlying biquaternionic invariants entering $\mathcal{I}[P]$.
+This suggests a possible mechanism for gravitational ``leakage'' across channels without arbitrary mixing.
+However, quantitative galaxy-scale predictions (e.g., rotation curves, lensing profiles) are not yet derived.
 
 \subsection{Why Are Other Dimensions Not Observable?}
 
@@ -270,7 +282,7 @@ The SM Lagrangian depends only on the real projection:
 
 where:
 \begin{itemize}
-\item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the physical metric
+\item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the projected/observed metric
 \item $A_{\mu}$ are gauge fields (photon, gluons, W/Z bosons)
 \item $\psi$ are fermion fields (quarks, leptons)
 \item $\phi$ is the Higgs field
@@ -287,12 +299,14 @@ However, we hypothesize that \textbf{dark matter and dark energy} may couple to 
 
 where $\text{QIm}$ denotes quaternionic-imaginary parts.
 
-This would explain:
+This could potentially explain:
 \begin{itemize}
 \item Why dark matter doesn't interact electromagnetically (no coupling to $A_{\mu}$)
 \item Why dark energy has negative pressure (imaginary metric components)
 \item The cosmological hierarchy: $\rho_{\text{visible}} \ll \rho_{\text{dark}}$
 \end{itemize}
+
+\textbf{Note:} These are tentative suggestions; quantitative predictions for galaxy-scale phenomena (rotation curves, lensing profiles) have not yet been computed from first principles.
 
 \subsection{Connection to Many-Worlds Interpretation}
 
@@ -456,14 +470,15 @@ where $n$ depends on the structure of $(y, z, w)$ compactification.
 
 \subsubsection{Prediction 2: Dark Matter Signatures}
 
-If dark matter couples to imaginary metric components, it would have:
+If dark matter couples to imaginary metric components, it may exhibit:
 \begin{itemize}
 \item No electromagnetic interactions (doesn't couple to $A_{\mu}$)
 \item Gravitational interactions (couples to $g_{\mu\nu}$)
 \item Novel self-interactions through $\text{Im}(\mathcal{G}_{\mu\nu})$
 \end{itemize}
 
-This could explain small-scale structure anomalies (core-cusp problem, etc.).
+This could potentially contribute to an effective gravitational source term that might address small-scale structure anomalies (core-cusp problem, etc.).
+However, explicit rotation curve and lensing calculations from UBT first principles remain to be performed.
 
 \subsubsection{Prediction 3: Cosmological Observables}
 
