@@ -77,10 +77,132 @@ since $x^{\mu}$ is already real. \qed
 
 \textbf{Theorem 3 (Metric Projection):} The metric on $M^4$ is the projection of the biquaternionic metric:
 \begin{equation}
-g_{\mu\nu}(x) = \text{Re}(G_{\mu\nu}(q))\Big|_{q=x}
+g_{\mu\nu}(x) = \text{Re}(\mathcal{G}_{\mu\nu}(q))\Big|_{q=x}
 \end{equation}
 
-where $G_{\mu\nu}$ is the full biquaternionic metric and $g_{\mu\nu}$ is the physical (GR) metric.
+where $\mathcal{G}_{\mu\nu}$ is the full biquaternionic metric and $g_{\mu\nu}$ is the physical (GR) metric.
+
+% ============================================================
+% Projection operator P_* and allowed permutations (UBT core)
+% ============================================================
+
+\subsection{Projection operator $P_\star$ and allowed permutations}
+
+\paragraph{Biquaternionic degrees of freedom.}
+Let $\mathbb{B} \cong \mathbb{C}\otimes\mathbb{H}$ denote the biquaternion algebra.
+Any field-valued geometric object $\mathcal{X}$ (e.g.\ tetrad $E_\mu$, metric $\mathcal{G}_{\mu\nu}$, curvature $\mathcal{R}_{\mu\nu}$)
+takes values in $\mathbb{B}$ and can be expanded in an 8-real-dimensional basis.
+
+\paragraph{Real-sector (GR) projection.}
+We define a general \emph{projection functional} $P$ acting on $\mathbb{B}$-valued objects by selecting a real 4D observational slice.
+For the metric sector this induces
+\begin{equation}
+g^{(P)}_{\mu\nu} \;:=\; \Re\!\Big(P\big[\mathcal{G}_{\mu\nu}\big]\Big).
+\label{eq:gP_def}
+\end{equation}
+In particular, the default observational metric corresponds to $P=\mathrm{Id}$,
+so that $g_{\mu\nu} := \Re(\mathcal{G}_{\mu\nu})$.
+
+\paragraph{Automorphisms vs.\ physical channel-switching.}
+We distinguish two classes of transformations on $\mathbb{B}$:
+
+\begin{itemize}
+\item \textbf{(A) Allowed automorphisms (gauge/basis changes):}
+$\;\varphi\in\mathrm{Aut}(\mathbb{B})$ such that $\varphi$ preserves the involution and the scalar part:
+\begin{equation}
+\varphi(x^\dagger)=\varphi(x)^\dagger,\qquad \mathrm{Sc}(\varphi(x))=\mathrm{Sc}(x),
+\qquad \forall x\in\mathbb{B}.
+\label{eq:aut_conditions}
+\end{equation}
+These transformations represent internal relabelings (changes of biquaternionic basis)
+and therefore do \emph{not} change the physical GR-sector metric extracted by \eqref{eq:gP_def},
+up to ordinary diffeomorphisms.
+
+\item \textbf{(B) Channel permutations (multiplex sectors):}
+$\;\pi$ denotes a \emph{component permutation} (including possible scalar--vector reshuffling)
+acting on the 8 real components of a chosen representation of $\mathbb{B}$.
+In general, $\pi\notin\mathrm{Aut}(\mathbb{B})$ and therefore corresponds to a \emph{physically distinct projection choice}.
+Such permutations define alternative channels
+\begin{equation}
+P_\pi \;:=\; P\circ \pi,
+\qquad
+g^{(\pi)}_{\mu\nu} \;:=\; \Re\!\Big(P_\pi[\mathcal{G}_{\mu\nu}]\Big).
+\label{eq:pi_channel_def}
+\end{equation}
+\end{itemize}
+
+\paragraph{Allowed permutations.}
+A permutation $\pi$ is declared \emph{allowed} (i.e.\ a dynamically viable multiplex channel)
+iff the induced 4D metric $g^{(\pi)}_{\mu\nu}$ satisfies all of the following constraints:
+
+\begin{enumerate}
+\item \textbf{Lorentzian signature constraint:}
+\begin{equation}
+\mathrm{sign}\big(g^{(\pi)}_{\mu\nu}\big) = (+,-,-,-)
+\quad\text{(or the chosen convention)},
+\qquad
+\det g^{(\pi)} \neq 0.
+\label{eq:lorentz_constraint}
+\end{equation}
+
+\item \textbf{Compatibility constraint (projected metric from tetrads):}
+Let the fundamental tetrads satisfy $\mathcal{G}_{\mu\nu}=\mathrm{Sc}(E_\mu E_\nu^\dagger)$.
+Then the projected metric must be reproducible as a real-sector slice of this construction:
+\begin{equation}
+g^{(\pi)}_{\mu\nu}
+=
+\Re\!\Big(
+P_\pi\big[\mathrm{Sc}(E_\mu E_\nu^\dagger)\big]
+\Big),
+\label{eq:proj_from_tetrad}
+\end{equation}
+ensuring that the channel does not introduce an ad-hoc metric unrelated to the biquaternionic geometry.
+
+\item \textbf{Stability / integrity constraint (self-repair / ECC principle):}
+Define an \emph{integrity functional} $\mathcal{I}[P]$ that penalizes projection choices which generate
+nonphysical instabilities (e.g.\ excessive imaginary-norm leakage, curvature blow-up, or loss of hyperbolicity).
+A minimal generic choice is
+\begin{equation}
+\mathcal{I}[P]
+:= \int d^4x\,\sqrt{|g^{(P)}|}\;
+\Big(
+\alpha\,\|\Im(P[\mathcal{G}])\|^2
++\beta\,\|\Im(P[\mathcal{T}])\|^2
++\gamma\,\|\Im(P[\mathcal{R}])\|^2
+\Big),
+\label{eq:integrity_functional}
+\end{equation}
+with nonnegative weights $\alpha,\beta,\gamma$ and any suitable norm $\|\cdot\|$ on components.
+Then $\pi$ is allowed only if it is \emph{near-minimizing}:
+\begin{equation}
+\mathcal{I}[P_\pi] \le \mathcal{I}[P_{\mathrm{Id}}] + \varepsilon,
+\label{eq:allowed_pi_integrity}
+\end{equation}
+for a small tolerance $\varepsilon$ that sets the admissible multiplex bandwidth.
+\end{enumerate}
+
+\paragraph{The selected projection $P_\star$.}
+We define the \emph{physically realized} projection as the integrity-minimizing choice within the allowed class:
+\begin{equation}
+P_\star \;:=\; \arg\min_{P\in\mathcal{P}_{\mathrm{adm}}}\; \mathcal{I}[P],
+\qquad
+\mathcal{P}_{\mathrm{adm}} := \{\,P_\pi \;|\; \pi \text{ satisfies } \eqref{eq:lorentz_constraint}--\eqref{eq:allowed_pi_integrity}\,\}.
+\label{eq:Pstar_def}
+\end{equation}
+The observed spacetime metric is then
+\begin{equation}
+g_{\mu\nu} \;:=\; g^{(P_\star)}_{\mu\nu} \;=\; \Re\!\Big(P_\star[\mathcal{G}_{\mu\nu}]\Big).
+\label{eq:observed_metric_Pstar}
+\end{equation}
+
+\paragraph{Why this removes projection underdetermination.}
+The projection operator $P_\star$ is not arbitrary: it is uniquely selected by the extremal principle of minimizing the integrity functional $\mathcal{I}[P]$ within the class of admissible projections. The admissibility constraints—Lorentzian signature, tetrad compatibility, and integrity stability—ensure that $P_\star$ corresponds to a physically viable observational channel. This variational selection mechanism eliminates the freedom in choosing projections and anchors the theory to empirical reality.
+
+\paragraph{Remark (multiplex gravitational leakage).}
+If the fundamental dynamics is defined at the biquaternionic level (e.g.\ $\mathcal{G}=\kappa\mathcal{T}$),
+then sectors with different allowed $\pi$ may remain electromagnetically decoupled
+while contributing to the same underlying biquaternionic invariants entering $\mathcal{I}[P]$.
+This provides a controlled mechanism for gravitational ``leakage'' across channels without arbitrary mixing.
 
 \subsection{Why Are Other Dimensions Not Observable?}
 
@@ -137,7 +259,7 @@ These are \textbf{not directly observable} because they represent off-diagonal (
 
 \subsubsection{Mechanism 3: Coupling to Standard Model Fields}
 
-Standard Model (SM) particles couple \textbf{only to the real metric} $g_{\mu\nu}$, not to the full biquaternionic metric $G_{\mu\nu}$.
+Standard Model (SM) particles couple \textbf{only to the real metric} $g_{\mu\nu}$, not to the full biquaternionic metric $\mathcal{G}_{\mu\nu}$.
 
 \textbf{Minimal Coupling Principle:}
 
@@ -148,7 +270,7 @@ The SM Lagrangian depends only on the real projection:
 
 where:
 \begin{itemize}
-\item $g_{\mu\nu} = \text{Re}(G_{\mu\nu})$ is the physical metric
+\item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the physical metric
 \item $A_{\mu}$ are gauge fields (photon, gluons, W/Z bosons)
 \item $\psi$ are fermion fields (quarks, leptons)
 \item $\phi$ is the Higgs field
@@ -160,7 +282,7 @@ None of these couple to $(y^{\mu}, z^{\mu}, w^{\mu})$ at tree level.
 
 However, we hypothesize that \textbf{dark matter and dark energy} may couple to the imaginary components:
 \begin{equation}
-\mathcal{L}_{\text{dark}} = \mathcal{L}_{\text{dark}}[\text{Im}(G_{\mu\nu}), \text{QIm}(G_{\mu\nu}), \dots]
+\mathcal{L}_{\text{dark}} = \mathcal{L}_{\text{dark}}[\text{Im}(\mathcal{G}_{\mu\nu}), \text{QIm}(\mathcal{G}_{\mu\nu}), \dots]
 \end{equation}
 
 where $\text{QIm}$ denotes quaternionic-imaginary parts.
@@ -226,13 +348,13 @@ The set of all branches forms the \textbf{branch index space}:
 \mathcal{B} = \mathbb{R}^{12} / \sim
 \end{equation}
 
-where $(y, z, w) \sim (y', z', w')$ if they represent physically equivalent branches (e.g., related by gauge transformation).
+where $(y, z, w) \sim (y', z', w')$ if they represent physically equivalent branches (e.g., related by automorphisms of $\mathbb{B}$ as defined in the projection operator formalism).
 
 \subsubsection{Branch Dynamics}
 
 Do branches evolve independently or interact?
 
-\textbf{Hypothesis 1 (Independent Evolution):} Each branch evolves according to its own Einstein equations with metric $g_{\mu\nu}^{(\alpha)}(x) = \text{Re}(G_{\mu\nu})|_{y=y_{\alpha}, z=z_{\alpha}, w=w_{\alpha}}$.
+\textbf{Hypothesis 1 (Independent Evolution):} Each branch evolves according to its own Einstein equations with metric $g_{\mu\nu}^{(\alpha)}(x) = \text{Re}(\mathcal{G}_{\mu\nu})|_{y=y_{\alpha}, z=z_{\alpha}, w=w_{\alpha}}$.
 
 \textbf{Hypothesis 2 (Branch Interference):} Branches can interfere through quantum coherence terms:
 \begin{equation}
@@ -338,7 +460,7 @@ If dark matter couples to imaginary metric components, it would have:
 \begin{itemize}
 \item No electromagnetic interactions (doesn't couple to $A_{\mu}$)
 \item Gravitational interactions (couples to $g_{\mu\nu}$)
-\item Novel self-interactions through $\text{Im}(G_{\mu\nu})$
+\item Novel self-interactions through $\text{Im}(\mathcal{G}_{\mu\nu})$
 \end{itemize}
 
 This could explain small-scale structure anomalies (core-cusp problem, etc.).
