@@ -512,15 +512,22 @@ This represents a reduction from infinitely many vector degrees of freedom to a 
 
 In the full biquaternionic spacetime, the \textbf{fundamental biquaternionic metric} takes the form:
 \begin{equation}
-\mathcal{G}_{\mu\nu} = g^{(0)}_{\mu\nu} + i g^{(1)}_{\mu\nu} + (g^{(2)}_{\mu\nu} \cdot \boldsymbol{\sigma})
+\mathcal{G}_{\mu\nu} = g^{(0)}_{\mu\nu} + i g^{(1)}_{\mu\nu} + j g^{(2)}_{\mu\nu} + k g^{(3)}_{\mu\nu}
 \label{eq:biquaternion_metric}
 \end{equation}
-where:
+where $i, j, k$ are the quaternion imaginary units and each component $g^{(a)}_{\mu\nu}$ is a complex-valued tensor (yielding 8 independent real components per index pair):
 \begin{itemize}
-\item $g^{(0)}_{\mu\nu}$ is the real part (classical spacetime metric)
-\item $g^{(1)}_{\mu\nu}$ is the scalar imaginary part (phase curvature)
-\item $g^{(2)}_{\mu\nu} = (g^{(2,x)}_{\mu\nu}, g^{(2,y)}_{\mu\nu}, g^{(2,z)}_{\mu\nu})$ is the vector imaginary part (torsion and spin connection)
+\item $g^{(0)}_{\mu\nu} \in \mathbb{C}$ is the scalar (real) part
+\item $g^{(1)}_{\mu\nu} \in \mathbb{C}$ is the $i$-component (complex phase curvature)
+\item $g^{(2)}_{\mu\nu} \in \mathbb{C}$ is the $j$-component (quaternionic structure)
+\item $g^{(3)}_{\mu\nu} \in \mathbb{C}$ is the $k$-component (quaternionic structure)
 \end{itemize}
+
+Equivalently, using vector notation for quaternionic components:
+\begin{equation}
+\mathcal{G}_{\mu\nu} = g^{(0)}_{\mu\nu} + \vec{g}_{\mu\nu} \cdot \vec{\sigma}
+\end{equation}
+where $\vec{g}_{\mu\nu} = (g^{(1)}_{\mu\nu}, g^{(2)}_{\mu\nu}, g^{(3)}_{\mu\nu})$ and $\vec{\sigma} = (i, j, k)$.
 
 \paragraph{Physical metric projection.} The physical metric $g_{\mu\nu}$ that couples to ordinary matter and appears in Einstein's equations is obtained by the real projection:
 \begin{equation}

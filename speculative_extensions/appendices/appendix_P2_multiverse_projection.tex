@@ -105,7 +105,7 @@ where $\text{QIm}$ denotes quaternionic-imaginary parts and $\text{BQIm}$ denote
 
 These are transformations $\mathcal{U}: \mathbb{B}^4 \to \mathbb{B}^4$ that preserve the biquaternionic algebra structure and do NOT change the physics:
 \begin{itemize}
-\item \textbf{Internal gauge transformations}: $\Theta(q) \to U(x)\Theta(q)U^\dagger(x)$ for $U(x) \in SU(3) \times SU(2) \times U(1)$
+\item \textbf{Internal gauge transformations}: $\Theta(q) \to U(q)\Theta(q)U^\dagger(q)$ for $U(q) \in SU(3) \times SU(2) \times U(1)$ (where $q$ projects to spacetime point $x = \Pi(q)$)
 \item \textbf{Basis changes in quaternionic sector}: Rotations in the $(i,j,k)$ space that leave physical observables invariant
 \item \textbf{Phase rotations}: Global or local $U(1)$ phase transformations
 \item \textbf{Coordinate reparametrizations}: Diffeomorphisms preserving the biquaternionic structure
@@ -553,10 +553,11 @@ However, decoherence rapidly suppresses off-diagonal terms $\langle \mathcal{O} 
 
 \paragraph{3. Topological Winding Contributions}
 
-If the biquaternionic manifold has non-trivial topology, sectors may be connected by topological invariants:
+If the biquaternionic manifold has non-trivial topology, sectors may be connected by topological invariants. Using differential form notation:
 \begin{equation}
-W[\mathcal{G}] = \int_{\mathbb{B}^4} \mathcal{R}^{ab} \wedge \mathcal{R}_{ab}
+W[\mathcal{G}] = \int_{\mathbb{B}^4} \text{Tr}(\mathcal{R} \wedge \mathcal{R})
 \end{equation}
+where $\mathcal{R}$ is the biquaternionic curvature 2-form and the trace is over gauge indices.
 
 This topological term affects all sectors equally and could contribute to cosmological constant.
 
