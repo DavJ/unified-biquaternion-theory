@@ -9,8 +9,6 @@
 
 This appendix provides a \textbf{rigorous mathematical formulation} of how the 32-dimensional biquaternionic manifold $\mathbb{B}^4$ (representing the multiverse) projects onto a 4-dimensional real manifold $M^4$ (representing a single observable universe). This addresses the fundamental question: \emph{Why do observers experience only 4 spacetime dimensions when the theory is defined on 32 real dimensions?}
 
-\paragraph{Metric convention.} Throughout this appendix, $\mathcal{G}_{\mu\nu}$ denotes the fundamental biquaternionic metric tensor. The physical metric experienced by observers in a given sector is its real projection $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$, which satisfies Einstein's field equations and couples to ordinary matter.
-
 \subsection{The Dimensional Structure}
 
 \subsubsection{Full Multiverse: 32 Real Dimensions}
@@ -84,97 +82,127 @@ g_{\mu\nu}(x) = \text{Re}(\mathcal{G}_{\mu\nu}(q))\Big|_{q=x}
 
 where $\mathcal{G}_{\mu\nu}$ is the full biquaternionic metric and $g_{\mu\nu}$ is the physical (GR) metric.
 
-\subsection{Formalization of Sector Projections}
+% ============================================================
+% Projection operator P_* and allowed permutations (UBT core)
+% ============================================================
 
-\subsubsection{Definition: Projection Operator $P_\alpha$}
+\subsection{Projection operator $P_\star$ and allowed permutations}
 
-A \textbf{sector projection} is a map $P_\alpha: \mathbb{B}^4 \to M^4_\alpha$ that extracts a 4-dimensional real submanifold from the full 32-dimensional biquaternionic structure. More generally, we define a family of projection operators parametrized by $\alpha \in \mathcal{A}$ where $\mathcal{A}$ is an index set.
+\paragraph{Biquaternionic degrees of freedom.}
+Let $\mathbb{B} \cong \mathbb{C}\otimes\mathbb{H}$ denote the biquaternion algebra.
+Any field-valued geometric object $\mathcal{X}$ (e.g.\ tetrad $E_\mu$, metric $\mathcal{G}_{\mu\nu}$, curvature $\mathcal{R}_{\mu\nu}$)
+takes values in $\mathbb{B}$ and can be expanded in an 8-real-dimensional basis.
 
-The general form of a projection operator is:
+\paragraph{Real-sector (GR) projection.}
+We define a general \emph{projection functional} $P$ acting on $\mathbb{B}$-valued objects by selecting a real 4D observational slice.
+For the metric sector this induces
 \begin{equation}
-P_\alpha(q^{\mu}) = f_\alpha(\text{Re}(q^{\mu}), \text{Im}(q^{\mu}), \text{QIm}(q^{\mu}), \text{BQIm}(q^{\mu}))
-\label{eq:general_projection}
+g^{(P)}_{\mu\nu} \;:=\; \Re\!\Big(P\big[\mathcal{G}_{\mu\nu}\big]\Big).
+\label{eq:gP_def}
 \end{equation}
-where $\text{QIm}$ denotes quaternionic-imaginary parts and $\text{BQIm}$ denotes biquaternionic-mixed parts.
+In particular, the default observational metric corresponds to $P=\mathrm{Id}$,
+so that $g_{\mu\nu} := \Re(\mathcal{G}_{\mu\nu})$.
 
-\subsubsection{Distinction: Automorphisms vs. Physical Projections}
+\paragraph{Automorphisms vs.\ physical channel-switching.}
+We distinguish two classes of transformations on $\mathbb{B}$:
 
-\textbf{Critical Distinction:} Not all transformations that produce 4-dimensional real submanifolds represent physically distinct universes. We must distinguish:
-
-\paragraph{Type 1: Algebra Automorphisms (Gauge Equivalence)}
-
-These are transformations $\mathcal{U}: \mathbb{B}^4 \to \mathbb{B}^4$ that preserve the biquaternionic algebra structure and do NOT change the physics:
 \begin{itemize}
-\item \textbf{Internal gauge transformations}: $\Theta(q) \to U(q)\Theta(q)U^\dagger(q)$ for $U(q) \in SU(3) \times SU(2) \times U(1)$ (where $q$ projects to spacetime point $x = \Pi(q)$)
-\item \textbf{Basis changes in quaternionic sector}: Rotations in the $(i,j,k)$ space that leave physical observables invariant
-\item \textbf{Phase rotations}: Global or local $U(1)$ phase transformations
-\item \textbf{Coordinate reparametrizations}: Diffeomorphisms preserving the biquaternionic structure
+\item \textbf{(A) Allowed automorphisms (gauge/basis changes):}
+$\;\varphi\in\mathrm{Aut}(\mathbb{B})$ such that $\varphi$ preserves the involution and the scalar part:
+\begin{equation}
+\varphi(x^\dagger)=\varphi(x)^\dagger,\qquad \mathrm{Sc}(\varphi(x))=\mathrm{Sc}(x),
+\qquad \forall x\in\mathbb{B}.
+\label{eq:aut_conditions}
+\end{equation}
+These transformations represent internal relabelings (changes of biquaternionic basis)
+and therefore do \emph{not} change the physical GR-sector metric extracted by \eqref{eq:gP_def},
+up to ordinary diffeomorphisms.
+
+\item \textbf{(B) Channel permutations (multiplex sectors):}
+$\;\pi$ denotes a \emph{component permutation} (including possible scalar--vector reshuffling)
+acting on the 8 real components of a chosen representation of $\mathbb{B}$.
+In general, $\pi\notin\mathrm{Aut}(\mathbb{B})$ and therefore corresponds to a \emph{physically distinct projection choice}.
+Such permutations define alternative channels
+\begin{equation}
+P_\pi \;:=\; P\circ \pi,
+\qquad
+g^{(\pi)}_{\mu\nu} \;:=\; \Re\!\Big(P_\pi[\mathcal{G}_{\mu\nu}]\Big).
+\label{eq:pi_channel_def}
+\end{equation}
 \end{itemize}
 
-\textbf{Characterization:} An automorphism $\mathcal{U}$ satisfies:
-\begin{equation}
-\boxed{\text{Observables: } \langle \mathcal{O} \rangle = \langle \mathcal{U}^\dagger \mathcal{O} \mathcal{U} \rangle}
-\end{equation}
-i.e., it leaves all physical observables unchanged.
+\paragraph{Allowed permutations.}
+A permutation $\pi$ is declared \emph{allowed} (i.e.\ a dynamically viable multiplex channel)
+iff the induced 4D metric $g^{(\pi)}_{\mu\nu}$ satisfies all of the following constraints:
 
-\paragraph{Type 2: Physical Sector Projections (Distinct Universes)}
-
-These are projections $P_\alpha \neq P_\beta$ that produce physically inequivalent 4-dimensional submanifolds representing distinct observable universes. They must satisfy:
-
-\textbf{Required Constraints for Physical Sectors:}
 \begin{enumerate}
-\item \textbf{Lorentzian Signature Preservation:} Each physical sector must have signature $(-,+,+,+)$ or $(+,-,-,-)$:
+\item \textbf{Lorentzian signature constraint:}
 \begin{equation}
-\text{signature}(g_{\mu\nu}^{(\alpha)}) = (-,+,+,+)
+\mathrm{sign}\big(g^{(\pi)}_{\mu\nu}\big) = (+,-,-,-)
+\quad\text{(or the chosen convention)},
+\qquad
+\det g^{(\pi)} \neq 0.
+\label{eq:lorentz_constraint}
 \end{equation}
-where $g_{\mu\nu}^{(\alpha)} = \text{Re}(P_\alpha[\mathcal{G}_{\mu\nu}])$.
 
-\item \textbf{Action Extremal Principle:} Physical sectors correspond to critical points of the UBT action:
+\item \textbf{Compatibility constraint (projected metric from tetrads):}
+Let the fundamental tetrads satisfy $\mathcal{G}_{\mu\nu}=\mathrm{Sc}(E_\mu E_\nu^\dagger)$.
+Then the projected metric must be reproducible as a real-sector slice of this construction:
 \begin{equation}
-\delta S[\Theta, P_\alpha[\mathcal{G}]] = 0
+g^{(\pi)}_{\mu\nu}
+=
+\Re\!\Big(
+P_\pi\big[\mathrm{Sc}(E_\mu E_\nu^\dagger)\big]
+\Big),
+\label{eq:proj_from_tetrad}
 \end{equation}
-This ensures that sector projections are not arbitrary but determined by dynamics.
+ensuring that the channel does not introduce an ad-hoc metric unrelated to the biquaternionic geometry.
 
-\item \textbf{Energy Conditions:} The projected stress-energy tensor must satisfy appropriate energy conditions:
+\item \textbf{Stability / integrity constraint (self-repair / ECC principle):}
+Define an \emph{integrity functional} $\mathcal{I}[P]$ that penalizes projection choices which generate
+nonphysical instabilities (e.g.\ excessive imaginary-norm leakage, curvature blow-up, or loss of hyperbolicity).
+A minimal generic choice is
 \begin{equation}
-T_{\mu\nu}^{(\alpha)} u^\mu u^\nu \geq 0 \quad \text{(weak energy condition)}
+\mathcal{I}[P]
+:= \int d^4x\,\sqrt{|g^{(P)}|}\;
+\Big(
+\alpha\,\|\Im(P[\mathcal{G}])\|^2
++\beta\,\|\Im(P[\mathcal{T}])\|^2
++\gamma\,\|\Im(P[\mathcal{R}])\|^2
+\Big),
+\label{eq:integrity_functional}
 \end{equation}
-for all timelike vectors $u^\mu$ in sector $\alpha$.
-
-\item \textbf{Topological Consistency:} The projection must preserve topological properties:
+with nonnegative weights $\alpha,\beta,\gamma$ and any suitable norm $\|\cdot\|$ on components.
+Then $\pi$ is allowed only if it is \emph{near-minimizing}:
 \begin{equation}
-P_\alpha: \pi_1(\mathbb{B}^4) \to \pi_1(M^4_\alpha) \quad \text{(fundamental group homomorphism)}
+\mathcal{I}[P_\pi] \le \mathcal{I}[P_{\mathrm{Id}}] + \varepsilon,
+\label{eq:allowed_pi_integrity}
 \end{equation}
+for a small tolerance $\varepsilon$ that sets the admissible multiplex bandwidth.
 \end{enumerate}
 
-\paragraph{Mathematical Criterion for Physical Inequivalence}
-
-Two sectors $\alpha$ and $\beta$ are \textbf{physically distinct} if and only if:
+\paragraph{The selected projection $P_\star$.}
+We define the \emph{physically realized} projection as the integrity-minimizing choice within the allowed class:
 \begin{equation}
-\boxed{\exists \mathcal{O}: \langle \mathcal{O} \rangle_\alpha \neq \langle \mathcal{O} \rangle_\beta}
+P_\star \;:=\; \arg\min_{P\in\mathcal{P}_{\mathrm{adm}}}\; \mathcal{I}[P],
+\qquad
+\mathcal{P}_{\mathrm{adm}} := \{\,P_\pi \;|\; \pi \text{ satisfies } \eqref{eq:lorentz_constraint}--\eqref{eq:allowed_pi_integrity}\,\}.
+\label{eq:Pstar_def}
 \end{equation}
-for some gauge-invariant observable $\mathcal{O}$.
-
-Equivalently, sectors are distinct if they cannot be related by any automorphism:
+The observed spacetime metric is then
 \begin{equation}
-\neg \exists \mathcal{U} \in \text{Aut}(\mathbb{B}^4): P_\beta = P_\alpha \circ \mathcal{U}
-\end{equation}
-
-\subsubsection{Standard Projection as Special Case}
-
-The standard real projection $\Pi = P_0$ defined in Eq.~\eqref{eq:projection_operator} is a special case corresponding to our observable universe:
-\begin{equation}
-P_0(q^{\mu}) = \text{Re}(q^{\mu}) = \Pi(q^{\mu})
+g_{\mu\nu} \;:=\; g^{(P_\star)}_{\mu\nu} \;=\; \Re\!\Big(P_\star[\mathcal{G}_{\mu\nu}]\Big).
+\label{eq:observed_metric_Pstar}
 \end{equation}
 
-Other physical sectors might correspond to:
-\begin{itemize}
-\item Different complex phase orientations: $P_\theta(q) = \text{Re}(e^{i\theta}q)$ for constant $\theta \neq 0$ (if dynamically allowed)
-\item Quaternionic rotations: $P_R(q) = \text{Re}(Rq)$ for $R \in SO(3)$ acting on quaternionic components
-\item Mixed projections satisfying the constraints above
-\end{itemize}
+\paragraph{Why this removes projection underdetermination.}
+The projection operator $P_\star$ is not arbitrary: it is uniquely selected by the extremal principle of minimizing the integrity functional $\mathcal{I}[P]$ within the class of admissible projections. The admissibility constraints—Lorentzian signature, tetrad compatibility, and integrity stability—ensure that $P_\star$ corresponds to a physically viable observational channel. This variational selection mechanism eliminates the freedom in choosing projections and anchors the theory to empirical reality.
 
-However, most of these will be equivalent to $P_0$ up to automorphisms, and only a discrete (or possibly continuous but highly constrained) set will represent truly distinct physical sectors.
+\paragraph{Remark (multiplex gravitational leakage).}
+If the fundamental dynamics is defined at the biquaternionic level (e.g.\ $\mathcal{G}=\kappa\mathcal{T}$),
+then sectors with different allowed $\pi$ may remain electromagnetically decoupled
+while contributing to the same underlying biquaternionic invariants entering $\mathcal{I}[P]$.
+This provides a controlled mechanism for gravitational ``leakage'' across channels without arbitrary mixing.
 
 \subsection{Why Are Other Dimensions Not Observable?}
 
@@ -231,7 +259,7 @@ These are \textbf{not directly observable} because they represent off-diagonal (
 
 \subsubsection{Mechanism 3: Coupling to Standard Model Fields}
 
-Standard Model (SM) particles couple \textbf{only to the real metric} $g_{\mu\nu}$, not to the full biquaternionic metric $G_{\mu\nu}$.
+Standard Model (SM) particles couple \textbf{only to the real metric} $g_{\mu\nu}$, not to the full biquaternionic metric $\mathcal{G}_{\mu\nu}$.
 
 \textbf{Minimal Coupling Principle:}
 
@@ -242,7 +270,7 @@ The SM Lagrangian depends only on the real projection:
 
 where:
 \begin{itemize}
-\item $g_{\mu\nu} = \text{Re}(G_{\mu\nu})$ is the physical metric
+\item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the physical metric
 \item $A_{\mu}$ are gauge fields (photon, gluons, W/Z bosons)
 \item $\psi$ are fermion fields (quarks, leptons)
 \item $\phi$ is the Higgs field
@@ -254,7 +282,7 @@ None of these couple to $(y^{\mu}, z^{\mu}, w^{\mu})$ at tree level.
 
 However, we hypothesize that \textbf{dark matter and dark energy} may couple to the imaginary components:
 \begin{equation}
-\mathcal{L}_{\text{dark}} = \mathcal{L}_{\text{dark}}[\text{Im}(G_{\mu\nu}), \text{QIm}(G_{\mu\nu}), \dots]
+\mathcal{L}_{\text{dark}} = \mathcal{L}_{\text{dark}}[\text{Im}(\mathcal{G}_{\mu\nu}), \text{QIm}(\mathcal{G}_{\mu\nu}), \dots]
 \end{equation}
 
 where $\text{QIm}$ denotes quaternionic-imaginary parts.
@@ -320,13 +348,13 @@ The set of all branches forms the \textbf{branch index space}:
 \mathcal{B} = \mathbb{R}^{12} / \sim
 \end{equation}
 
-where $(y, z, w) \sim (y', z', w')$ if they represent physically equivalent branches (e.g., related by gauge transformation).
+where $(y, z, w) \sim (y', z', w')$ if they represent physically equivalent branches (e.g., related by automorphisms of $\mathbb{B}$ as defined in the projection operator formalism).
 
 \subsubsection{Branch Dynamics}
 
 Do branches evolve independently or interact?
 
-\textbf{Hypothesis 1 (Independent Evolution):} Each branch evolves according to its own Einstein equations with metric $g_{\mu\nu}^{(\alpha)}(x) = \text{Re}(G_{\mu\nu})|_{y=y_{\alpha}, z=z_{\alpha}, w=w_{\alpha}}$.
+\textbf{Hypothesis 1 (Independent Evolution):} Each branch evolves according to its own Einstein equations with metric $g_{\mu\nu}^{(\alpha)}(x) = \text{Re}(\mathcal{G}_{\mu\nu})|_{y=y_{\alpha}, z=z_{\alpha}, w=w_{\alpha}}$.
 
 \textbf{Hypothesis 2 (Branch Interference):} Branches can interfere through quantum coherence terms:
 \begin{equation}
@@ -432,7 +460,7 @@ If dark matter couples to imaginary metric components, it would have:
 \begin{itemize}
 \item No electromagnetic interactions (doesn't couple to $A_{\mu}$)
 \item Gravitational interactions (couples to $g_{\mu\nu}$)
-\item Novel self-interactions through $\text{Im}(G_{\mu\nu})$
+\item Novel self-interactions through $\text{Im}(\mathcal{G}_{\mu\nu})$
 \end{itemize}
 
 This could explain small-scale structure anomalies (core-cusp problem, etc.).
@@ -483,7 +511,7 @@ Does the projection $\Pi$ define a preferred frame? This could conflict with rel
 
 \subsubsection{The Problem of Arbitrary Mixing}
 
-A critical constraint on multiverse theories is to prevent \textbf{arbitrary mixing} between physically distinct sectors. If sectors $\alpha$ and $\beta$ could interact gravitationally in an unconstrained manner, this would:
+A critical constraint on multiverse theories is to prevent \textbf{arbitrary mixing} between physically distinct sectors. If sectors (channels) with different allowed $\pi$ could interact gravitationally in an unconstrained manner, this would:
 \begin{itemize}
 \item Violate energy conservation within each sector
 \item Allow superluminal signaling between sectors
@@ -510,7 +538,7 @@ The biquaternionic Ricci scalar $\mathcal{R} \in \mathbb{B}$ is a shared invaria
 
 Its real part projects to each sector:
 \begin{equation}
-R^{(\alpha)} = \text{Re}(P_\alpha[\mathcal{R}])
+R^{(\pi)} = \text{Re}(P_\pi[\mathcal{R}])
 \end{equation}
 
 If sectors interact gravitationally, it must be through such shared invariants:
@@ -523,9 +551,9 @@ where $f$ is a scalar function of biquaternionic invariants.
 
 The following types of cross-sector terms are \textbf{prohibited} in UBT:
 \begin{itemize}
-\item \textbf{Direct metric coupling}: $g_{\mu\nu}^{(\alpha)} h^{\mu\nu}_{(\beta)}$ for $\alpha \neq \beta$ (violates gauge invariance)
-\item \textbf{Matter transfer}: $T_{\mu\nu}^{(\alpha)} \to T_{\mu\nu}^{(\beta)}$ (violates energy conservation)
-\item \textbf{Arbitrary phase mixing}: $\Theta_\alpha \Theta_\beta^\dagger$ without physical justification (violates automorphism structure)
+\item \textbf{Direct metric coupling}: $g_{\mu\nu}^{(\pi_1)} h^{\mu\nu}_{(\pi_2)}$ for $\pi_1 \neq \pi_2$ (violates gauge invariance)
+\item \textbf{Matter transfer}: $T_{\mu\nu}^{(\pi_1)} \to T_{\mu\nu}^{(\pi_2)}$ (violates energy conservation)
+\item \textbf{Arbitrary phase mixing}: $\Theta_{\pi_1} \Theta_{\pi_2}^\dagger$ without physical justification (violates automorphism structure)
 \end{itemize}
 
 \subsubsection{Allowed Cross-Sector Effects}
@@ -536,9 +564,9 @@ The only allowed cross-sector gravitational effects are those arising from:
 
 Each sector contributes to the total vacuum energy through its projection of $\mathcal{T}_{\mu\nu}$:
 \begin{equation}
-\langle \mathcal{T}_{\mu\nu} \rangle_{\text{total}} = \sum_{\alpha \in \mathcal{A}_{\text{phys}}} \omega_\alpha \langle T_{\mu\nu}^{(\alpha)} \rangle
+\langle \mathcal{T}_{\mu\nu} \rangle_{\text{total}} = \sum_{\pi \in \mathcal{P}_{\text{adm}}} \omega_\pi \langle T_{\mu\nu}^{(\pi)} \rangle
 \end{equation}
-where $\omega_\alpha$ are weight factors determined by the action principle and $\mathcal{A}_{\text{phys}}$ is the set of physically distinct sectors.
+where $\omega_\pi$ are weight factors determined by the integrity functional and $\mathcal{P}_{\text{adm}}$ is the set of admissible projections.
 
 This could explain dark energy as a weighted sum over all sector contributions.
 
@@ -546,10 +574,10 @@ This could explain dark energy as a weighted sum over all sector contributions.
 
 For sectors that are not completely decohered, quantum interference contributes:
 \begin{equation}
-\langle \mathcal{O} \rangle = \sum_\alpha |\psi_\alpha|^2 \langle \mathcal{O} \rangle_\alpha + \sum_{\alpha \neq \beta} \psi_\alpha^* \psi_\beta \langle \mathcal{O} \rangle_{\alpha\beta}
+\langle \mathcal{O} \rangle = \sum_\pi |\psi_\pi|^2 \langle \mathcal{O} \rangle_\pi + \sum_{\pi_1 \neq \pi_2} \psi_{\pi_1}^* \psi_{\pi_2} \langle \mathcal{O} \rangle_{\pi_1\pi_2}
 \end{equation}
 
-However, decoherence rapidly suppresses off-diagonal terms $\langle \mathcal{O} \rangle_{\alpha\beta}$ for macroscopically distinct sectors.
+However, decoherence rapidly suppresses off-diagonal terms $\langle \mathcal{O} \rangle_{\pi_1\pi_2}$ for macroscopically distinct sectors.
 
 \paragraph{3. Topological Winding Contributions}
 
@@ -568,18 +596,22 @@ Observational limits on fifth force experiments, equivalence principle tests, an
 \left| \frac{\mathcal{L}_{\text{cross-sector}}}{\mathcal{L}_{\text{standard}}} \right| \lesssim 10^{-5} \quad \text{(from fifth force limits)}
 \end{equation}
 
-This is automatically satisfied in UBT if cross-sector effects arise only through shared biquaternionic invariants, since these are suppressed by the imaginary component scales.
+This is automatically satisfied in UBT if cross-sector effects arise only through shared biquaternionic invariants, since these are suppressed by the imaginary component scales or through the integrity functional minimization.
+
+\paragraph{Connection to $P_\star$ Selection}
+
+The integrity functional $\mathcal{I}[P]$ defined in Eq.~\eqref{eq:integrity_functional} already incorporates constraints on cross-sector leakage through the norm terms on imaginary parts. The minimization principle that selects $P_\star$ thus automatically minimizes unphysical cross-sector mixing while allowing the controlled gravitational leakage described above.
 
 \subsection{Summary}
 
 We have provided a \textbf{rigorous mathematical definition} of the multiverse projection mechanism:
 
 \begin{enumerate}
-\item \textbf{Structure:} $\mathbb{B}^4$ (32D) projects to $M^4$ (4D) via operator $P_\alpha$
-\item \textbf{Properties:} Projection operators are idempotent, linear, preserve metric signature
-\item \textbf{Automorphisms vs. Projections:} Clear distinction between gauge-equivalent transformations (automorphisms) and physically distinct sectors
-\item \textbf{Physical Constraints:} Sectors must satisfy Lorentzian signature, action extremal principle, energy conditions, and topological consistency
-\item \textbf{Cross-Sector Influence:} Gravitational effects between sectors mediated only through shared biquaternionic invariants; arbitrary mixing prohibited
+\item \textbf{Structure:} $\mathbb{B}^4$ (32D) projects to $M^4$ (4D) via operator $P_\star$
+\item \textbf{Formalization:} Projection operator $P_\star$ selected by extremal principle minimizing integrity functional
+\item \textbf{Automorphisms vs. Sectors:} Clear distinction between gauge-equivalent transformations and physically distinct channels
+\item \textbf{Cross-Sector Constraints:} Gravitational effects between sectors mediated only through shared biquaternionic invariants; arbitrary mixing prohibited
+\item \textbf{Properties:} $\Pi$ is idempotent, linear, preserves metric signature
 \item \textbf{Physical Mechanisms:} Decoherence, observer selection, SM coupling explain observability
 \item \textbf{Connection to MWI:} Natural implementation of many-worlds with geometric structure
 \item \textbf{Testability:} Predicts quantum gravity corrections, dark matter properties, cosmological signatures
@@ -591,7 +623,7 @@ This addresses a critical gap in UBT's mathematical foundations. However, severa
 \item Compactification mechanism for imaginary dimensions
 \item Precise definition of "observer" in the formalism
 \item Experimental signatures within reach of current technology
-\item Complete enumeration of all physically distinct sectors
+\item Complete enumeration of all physically distinct allowed permutations $\pi$
 \end{itemize}
 
 Future work should address these questions through detailed calculations and comparison with experimental data.
