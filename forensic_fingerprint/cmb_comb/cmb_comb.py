@@ -19,7 +19,9 @@ License: MIT
 
 import numpy as np
 import sys
+import argparse
 from pathlib import Path
+from datetime import datetime
 
 
 # =============================================================================
@@ -58,9 +60,9 @@ THRESHOLD_CANDIDATE = 0.01  # p < 0.01 for "candidate signal"
 THRESHOLD_STRONG = 2.9e-7   # p < 2.9e-7 for "strong signal" (~5σ)
 
 
-def compute_residuals(ell, C_obs, C_model, sigma):
+def compute_residuals(ell, C_obs, C_model, sigma, cov=None):
     """
-    Compute normalized residuals.
+    Compute normalized residuals with optional whitening.
     
     Parameters
     ----------
@@ -71,14 +73,31 @@ def compute_residuals(ell, C_obs, C_model, sigma):
     C_model : array-like
         ΛCDM model prediction C_ℓ
     sigma : array-like
-        Uncertainty (diagonal covariance assumed)
+        Uncertainty (diagonal covariance assumed if cov is None)
+    cov : array-like, optional
+        Full covariance matrix. If provided, residuals are whitened.
     
     Returns
     -------
     residuals : ndarray
-        Normalized residuals r_ℓ = (C_obs - C_model) / sigma
+        Normalized residuals. If cov provided: r = L^-1 (C_obs - C_model)
+        where L is Cholesky decomposition of cov. Otherwise: r = (C_obs - C_model) / sigma
     """
-    return (C_obs - C_model) / sigma
+    diff = C_obs - C_model
+    
+    if cov is not None:
+        # Whiten using Cholesky decomposition
+        try:
+            L = np.linalg.cholesky(cov)
+            residuals = np.linalg.solve(L, diff)
+        except np.linalg.LinAlgError:
+            print("WARNING: Covariance matrix is not positive definite. Using diagonal.")
+            residuals = diff / sigma
+    else:
+        # Use diagonal uncertainties
+        residuals = diff / sigma
+    
+    return residuals
 
 
 def fit_sinusoid_linear(ell, residuals, period):
@@ -237,7 +256,7 @@ def compute_p_value(observed_max, null_distribution):
     return p_value
 
 
-def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None):
+def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown"):
     """
     Run full CMB comb test protocol.
     
@@ -253,6 +272,10 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None):
         Uncertainties
     output_dir : str or Path, optional
         Directory to save output files
+    cov : array-like, optional
+        Full covariance matrix (if available, enables whitening)
+    dataset_name : str
+        Dataset identifier for provenance
     
     Returns
     -------
@@ -265,9 +288,18 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None):
         - 'p_value': P-value
         - 'significance': 'null', 'candidate', or 'strong'
         - 'null_distribution': MC null distribution (for plotting)
+        - 'whitened': whether covariance whitening was used
+        - 'dataset': dataset name
     """
-    # Step 1: Compute residuals
-    residuals = compute_residuals(ell, C_obs, C_model, sigma)
+    # Step 1: Compute residuals (with whitening if cov provided)
+    if cov is not None:
+        print("Using full covariance matrix (whitening enabled)")
+        whitened = True
+    else:
+        print("Using diagonal uncertainties (no covariance provided)")
+        whitened = False
+    
+    residuals = compute_residuals(ell, C_obs, C_model, sigma, cov)
     
     # Step 2: Test all candidate periods
     results_per_period = {}
@@ -312,13 +344,17 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None):
         'null_distribution': null_distribution,
         'residuals': residuals,
         'ell': ell,
-        'all_periods': results_per_period
+        'all_periods': results_per_period,
+        'whitened': whitened,
+        'dataset': dataset_name
     }
     
     # Print summary
     print("\n" + "="*60)
     print("CMB COMB TEST RESULTS")
     print("="*60)
+    print(f"Dataset: {dataset_name}")
+    print(f"Whitening: {'YES (full covariance)' if whitened else 'NO (diagonal only)'}")
     print(f"Best period: Δℓ = {best_period}")
     print(f"Amplitude: A = {amplitude:.4f}")
     print(f"Phase: φ = {phase:.4f} rad ({np.degrees(phase):.2f}°)")
@@ -360,6 +396,8 @@ def save_results(results, output_dir):
     with open(output_dir / 'cmb_comb_results.txt', 'w') as f:
         f.write("CMB COMB TEST RESULTS\n")
         f.write("="*60 + "\n")
+        f.write(f"Dataset: {results.get('dataset', 'Unknown')}\n")
+        f.write(f"Whitening: {'YES (full covariance)' if results.get('whitened', False) else 'NO (diagonal only)'}\n")
         f.write(f"Best period: Δℓ = {results['best_period']}\n")
         f.write(f"Amplitude: A = {results['amplitude']:.6f}\n")
         f.write(f"Phase: φ = {results['phase']:.6f} rad\n")
@@ -368,6 +406,8 @@ def save_results(results, output_dir):
         f.write(f"Significance: {results['significance']}\n")
         f.write(f"Random seed: {RANDOM_SEED}\n")
         f.write(f"MC trials: {N_MC_TRIALS}\n")
+        f.write(f"Architecture variant: {results.get('architecture_variant', 'C')}\n")
+        f.write(f"Variant valid: {results.get('variant_valid', True)}\n")
     
     # Save null distribution
     np.savetxt(output_dir / 'null_distribution.txt', results['null_distribution'],
@@ -517,8 +557,103 @@ def load_data(obs_file, model_file, cov_file=None):
 
 def main():
     """
-    Main function for command-line usage.
+    Main function for command-line usage with enhanced dataset support.
     """
+    # =============================================================================
+    # COMMAND LINE ARGUMENT PARSING
+    # =============================================================================
+    
+    parser = argparse.ArgumentParser(
+        description="UBT Forensic Fingerprint - CMB Comb Test",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Legacy mode (synthetic data):
+  python cmb_comb.py obs.txt model.txt output/
+  
+  # Real data mode (Planck PR3):
+  python cmb_comb.py --dataset planck_pr3 \\
+      --input_obs data/planck_pr3/raw/spectrum.txt \\
+      --input_model data/planck_pr3/raw/model.txt \\
+      --ell_min 30 --ell_max 1500
+  
+  # Real data mode (WMAP):
+  python cmb_comb.py --dataset wmap \\
+      --input_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \\
+      --ell_min 30 --ell_max 800
+
+See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
+        """
+    )
+    
+    # Dataset selection
+    parser.add_argument(
+        '--dataset',
+        type=str,
+        choices=['planck_pr3', 'wmap', 'custom'],
+        help='Dataset to use (planck_pr3, wmap, or custom for legacy mode)'
+    )
+    
+    # Input files
+    parser.add_argument(
+        '--input_obs',
+        type=str,
+        help='Path to observed power spectrum file'
+    )
+    
+    parser.add_argument(
+        '--input_model',
+        type=str,
+        help='Path to theoretical model file'
+    )
+    
+    parser.add_argument(
+        '--input_cov',
+        type=str,
+        help='Path to covariance matrix file (optional, enables whitening)'
+    )
+    
+    # Multipole range
+    parser.add_argument(
+        '--ell_min',
+        type=int,
+        help='Minimum multipole to include in analysis'
+    )
+    
+    parser.add_argument(
+        '--ell_max',
+        type=int,
+        help='Maximum multipole to include in analysis'
+    )
+    
+    # Output
+    parser.add_argument(
+        '--output_dir',
+        type=str,
+        help='Output directory for results (default: auto-generated)'
+    )
+    
+    # Legacy positional arguments for backward compatibility
+    parser.add_argument(
+        'obs_file',
+        nargs='?',
+        help='[LEGACY] Observed spectrum file'
+    )
+    
+    parser.add_argument(
+        'model_file',
+        nargs='?',
+        help='[LEGACY] Model spectrum file'
+    )
+    
+    parser.add_argument(
+        'legacy_output_dir',
+        nargs='?',
+        help='[LEGACY] Output directory'
+    )
+    
+    args = parser.parse_args()
+    
     # =============================================================================
     # VARIANT VALIDATION
     # =============================================================================
@@ -558,8 +693,6 @@ def main():
         print("Proceeding with test for validation/null-hypothesis purposes only.")
         print("Results will be labeled as 'VARIANT MISMATCH' if signal found.")
         print("")
-        input("Press Enter to continue or Ctrl+C to abort...")
-        print("")
     else:
         print("Variant C: Explicit Frame Synchronization")
         print("Hypothesis: CMB residuals contain periodic comb structure")
@@ -570,30 +703,115 @@ def main():
     print("")
     
     # =============================================================================
-    # STANDARD TEST EXECUTION
+    # DETERMINE MODE: REAL DATA vs LEGACY
     # =============================================================================
     
-    if len(sys.argv) < 3:
-        print("Usage: python cmb_comb.py <obs_file> <model_file> [output_dir]")
-        print("\nFiles should be text format with columns: ell C_ell sigma_ell")
-        print("Example: python cmb_comb.py planck_obs.txt lcdm_model.txt ../out/")
-        sys.exit(1)
+    # Check if using new dataset mode or legacy mode
+    if args.dataset is not None:
+        # New dataset mode
+        mode = 'real_data'
+        
+        if args.input_obs is None:
+            parser.error("--input_obs is required when using --dataset")
+        
+        # Load data using appropriate loader
+        print(f"Loading {args.dataset.upper()} data...")
+        
+        # Import loaders
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'loaders'))
+        
+        if args.dataset == 'planck_pr3':
+            from planck import load_planck_data
+            data = load_planck_data(
+                obs_file=args.input_obs,
+                model_file=args.input_model,
+                cov_file=args.input_cov,
+                ell_min=args.ell_min,
+                ell_max=args.ell_max,
+                dataset_name="Planck PR3"
+            )
+        elif args.dataset == 'wmap':
+            from wmap import load_wmap_data
+            data = load_wmap_data(
+                obs_file=args.input_obs,
+                model_file=args.input_model,
+                cov_file=args.input_cov,
+                ell_min=args.ell_min,
+                ell_max=args.ell_max,
+                dataset_name="WMAP 9yr"
+            )
+        else:  # custom
+            # For custom datasets, try planck loader first
+            from planck import load_planck_data
+            data = load_planck_data(
+                obs_file=args.input_obs,
+                model_file=args.input_model,
+                cov_file=args.input_cov,
+                ell_min=args.ell_min,
+                ell_max=args.ell_max,
+                dataset_name="Custom"
+            )
+        
+        print(f"Loaded {data['n_multipoles']} multipoles from ℓ = {data['ell_range'][0]} to {data['ell_range'][1]}")
+        
+        ell = data['ell']
+        C_obs = data['cl_obs']
+        C_model = data['cl_model'] if data['cl_model'] is not None else C_obs * 0  # Dummy if no model
+        sigma = data['sigma']
+        cov = data['cov']
+        dataset_name = data['dataset']
+        
+        if C_model is None or np.all(C_model == 0):
+            print("WARNING: No model provided. Using zero residuals (test will be NULL).")
+        
+        # Generate output directory with timestamp
+        if args.output_dir:
+            output_dir = Path(args.output_dir)
+        else:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_dir = Path(__file__).parent.parent / 'out' / 'cmb_comb' / f"{args.dataset}_{timestamp}"
+        
+    else:
+        # Legacy mode (backward compatibility)
+        mode = 'legacy'
+        
+        if args.obs_file is None or args.model_file is None:
+            print("ERROR: Must provide either --dataset mode or legacy positional arguments")
+            print("")
+            parser.print_help()
+            sys.exit(1)
+        
+        print("Using LEGACY mode (synthetic/test data)")
+        print("")
+        
+        obs_file = args.obs_file
+        model_file = args.model_file
+        output_dir = args.legacy_output_dir if args.legacy_output_dir else Path(__file__).parent.parent / 'out'
+        
+        # Load data using legacy function
+        print(f"Loading data from {obs_file} and {model_file}...")
+        ell, C_obs, C_model, sigma = load_data(obs_file, model_file)
+        cov = None
+        dataset_name = "Legacy"
+        
+        print(f"Loaded {len(ell)} multipoles (ℓ = {ell[0]} to {ell[-1]})")
     
-    obs_file = sys.argv[1]
-    model_file = sys.argv[2]
-    output_dir = sys.argv[3] if len(sys.argv) > 3 else '../out'
-    
-    # Load data
-    print(f"Loading data from {obs_file} and {model_file}...")
-    ell, C_obs, C_model, sigma = load_data(obs_file, model_file)
-    print(f"Loaded {len(ell)} multipoles (ℓ = {ell[0]} to {ell[-1]})")
+    # =============================================================================
+    # RUN CMB COMB TEST
+    # =============================================================================
     
     # Run test
-    results = run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir)
+    results = run_cmb_comb_test(
+        ell, C_obs, C_model, sigma,
+        output_dir=output_dir,
+        cov=cov,
+        dataset_name=dataset_name
+    )
     
     # Add variant metadata to results
     results['architecture_variant'] = ARCHITECTURE_VARIANT
     results['variant_valid'] = (ARCHITECTURE_VARIANT == "C")
+    results['mode'] = mode
     
     # Interpretation with variant awareness
     print("")
