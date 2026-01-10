@@ -126,6 +126,23 @@ def main():
     hits = scan_forbidden_literals(root)
     if hits["fatal"]:
         failures.append(f"Hard-coded precise constants found in {len(hits['fatal'])} FATAL file(s).")
+        # Print detailed FATAL file list
+        print("\n== FATAL Files with Hard-coded Constants ==")
+        fatal_by_file = {}
+        for h in hits["fatal"]:
+            if h["file"] not in fatal_by_file:
+                fatal_by_file[h["file"]] = []
+            fatal_by_file[h["file"]].append(h)
+        
+        for fpath in sorted(fatal_by_file.keys()):
+            relpath = Path(fpath).relative_to(root) if Path(fpath).is_relative_to(root) else Path(fpath)
+            print(f"\n  {relpath}")
+            for h in fatal_by_file[fpath]:
+                print(f"    - {h['what']}: {h['match']}")
+                # Print context snippet (first 60 chars)
+                ctx = h['context'].strip()[:60]
+                print(f"      Context: {ctx}...")
+        print()
     if hits["warn"]:
         warnings.append(f"Precise constants found in {len(hits['warn'])} non-core (WARN) file(s).")
 
