@@ -1,0 +1,443 @@
+# Court-Grade Runbook: Real CMB Data Analysis
+
+**Purpose**: Step-by-step instructions for running CMB comb fingerprint test on real Planck PR3 and WMAP datasets with full reproducibility and provenance tracking.
+
+**Status**: Pre-registered protocol v1.0  
+**Last Updated**: 2026-01-10  
+**Author**: UBT Research Team
+
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Prerequisites](#prerequisites)
+3. [Data Download and Validation](#data-download-and-validation)
+4. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
+5. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
+6. [Interpreting Results](#interpreting-results)
+7. [PASS/FAIL Criteria](#passfail-criteria)
+8. [Troubleshooting](#troubleshooting)
+9. [Archiving Results](#archiving-results)
+
+---
+
+## Overview
+
+This runbook implements the **pre-registered protocol** for detecting periodic "comb" signatures in CMB power spectrum residuals. The protocol is designed to be:
+
+- **Reproducible**: All steps documented, SHA-256 hashes for data provenance
+- **Court-grade**: Suitable for peer review and independent verification
+- **Conservative**: Multiple datasets, look-elsewhere correction, strict thresholds
+
+**Key Principle**: Any significant signal **must** appear in both Planck and WMAP to be considered real.
+
+---
+
+## Prerequisites
+
+### Software Requirements
+
+```bash
+# Python 3.8+
+python --version
+
+# Required packages
+pip install numpy scipy matplotlib
+
+# Optional (for FITS files)
+pip install astropy
+```
+
+### Repository Setup
+
+```bash
+# Clone repository
+git clone https://github.com/DavJ/unified-biquaternion-theory.git
+cd unified-biquaternion-theory
+
+# Verify tools exist
+ls -l tools/data_download/
+ls -l tools/data_provenance/
+ls -l forensic_fingerprint/loaders/
+```
+
+---
+
+## Data Download and Validation
+
+### Step 1: Download Planck PR3 Data
+
+```bash
+# Run download script
+bash tools/data_download/download_planck_pr3_cosmoparams.sh
+```
+
+**Expected output**:
+- Files downloaded to `data/planck_pr3/raw/`
+- Script prints next steps for hash computation
+
+**If download fails**: Follow manual instructions in `data/planck_pr3/README.md`
+
+### Step 2: Compute Planck Hashes
+
+```bash
+cd data/planck_pr3/raw
+
+# Compute SHA-256 hashes for all data files
+python ../../../tools/data_provenance/hash_dataset.py *.txt *.fits > ../manifests/planck_pr3_tt_manifest.json
+```
+
+**Expected output**:
+- `planck_pr3_tt_manifest.json` created in `data/planck_pr3/manifests/`
+- Contains SHA-256 hash for each file
+
+### Step 3: Validate Planck Data
+
+```bash
+cd ../../..  # Back to repo root
+
+python tools/data_provenance/validate_manifest.py data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+```
+
+**Expected output**:
+```
+================================================================================
+Dataset Validation Report
+================================================================================
+✓ SUCCESS: All X file(s) validated
+Data provenance confirmed. Files match pre-registered hashes.
+================================================================================
+```
+
+**Critical**: If validation fails, DO NOT proceed with analysis. Re-download or investigate discrepancy.
+
+### Step 4: Download WMAP Data
+
+```bash
+bash tools/data_download/download_wmap_tt.sh
+```
+
+**Expected output**:
+- Files downloaded to `data/wmap/raw/`
+
+### Step 5: Compute WMAP Hashes
+
+```bash
+cd data/wmap/raw
+
+python ../../../tools/data_provenance/hash_dataset.py wmap_tt_*.txt > ../manifests/wmap_tt_manifest.json
+```
+
+### Step 6: Validate WMAP Data
+
+```bash
+cd ../../..
+
+python tools/data_provenance/validate_manifest.py data/wmap/manifests/wmap_tt_manifest.json
+```
+
+**Expected**: ✓ SUCCESS (same as Planck)
+
+---
+
+## Running CMB Comb Test: Planck PR3
+
+### Step 7: Run Planck Analysis
+
+```bash
+cd forensic_fingerprint/cmb_comb
+
+python cmb_comb.py \
+    --dataset planck_pr3 \
+    --input_obs ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \
+    --ell_min 30 \
+    --ell_max 1500 \
+    --output_dir ../out/cmb_comb/planck_pr3_run1
+```
+
+**Parameters**:
+- `--dataset planck_pr3`: Use Planck PR3 loader
+- `--input_obs`: Observed TT power spectrum
+- `--input_model`: ΛCDM best-fit model
+- `--ell_min 30`: Avoid low-ℓ cosmic variance
+- `--ell_max 1500`: Avoid high-ℓ systematics
+- `--output_dir`: Where to save results
+
+**Optional**: Include covariance for whitening:
+```bash
+python cmb_comb.py \
+    --dataset planck_pr3 \
+    --input_obs ../../data/planck_pr3/raw/spectrum.txt \
+    --input_model ../../data/planck_pr3/raw/model.txt \
+    --input_cov ../../data/planck_pr3/raw/covariance.dat \
+    --ell_min 30 \
+    --ell_max 1500
+```
+
+**Runtime**: ~30-60 seconds (10,000 Monte Carlo trials)
+
+### Step 8: Review Planck Results
+
+**Terminal output**:
+```
+============================================================
+CMB COMB TEST RESULTS
+============================================================
+Dataset: Planck PR3
+Whitening: NO (diagonal only)  [or YES if covariance provided]
+Best period: Δℓ = 255
+Amplitude: A = 0.1234
+Phase: φ = 1.5708 rad (90.00°)
+Max Δχ²: 15.67
+P-value: 3.45e-03
+Significance: CANDIDATE
+============================================================
+```
+
+**Files created** (in `../out/cmb_comb/planck_pr3_run1/`):
+- `cmb_comb_results.txt`: Summary statistics
+- `null_distribution.txt`: Monte Carlo null distribution
+- `residuals_and_fit.txt`: Residuals with fitted sinusoid
+- `residuals_with_fit.png`: Diagnostic plot (if matplotlib installed)
+- `null_distribution.png`: P-value visualization
+
+---
+
+## Running CMB Comb Test: WMAP (Replication)
+
+### Step 9: Run WMAP Analysis
+
+```bash
+python cmb_comb.py \
+    --dataset wmap \
+    --input_obs ../../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --ell_min 30 \
+    --ell_max 800 \
+    --output_dir ../out/cmb_comb/wmap_run1
+```
+
+**Parameters**:
+- `--dataset wmap`: Use WMAP loader
+- `--ell_max 800`: WMAP has lower resolution than Planck
+
+**Note**: WMAP typically does not include separate model file. The loader will compute residuals relative to best-fit if model column is present, or use Planck model interpolated to WMAP ℓ range.
+
+### Step 10: Review WMAP Results
+
+**Expected**: Similar period if signal is real, but possibly weaker p-value due to WMAP's lower sensitivity.
+
+**Replication Criterion**:
+- **Same period** (Δℓ) should be best fit
+- **Consistent phase** (within ~π/2)
+- **p-value** may be weaker but should still be < 0.05 if real
+
+---
+
+## Interpreting Results
+
+### Significance Levels
+
+| Significance | P-value | Interpretation |
+|--------------|---------|----------------|
+| **null** | p ≥ 0.01 | No signal detected. H0 not rejected. |
+| **candidate** | 0.01 > p ≥ 2.9e-7 | Candidate signal. Requires replication. |
+| **strong** | p < 2.9e-7 | Strong signal (~5σ). Immediate verification needed. |
+
+### Look-Elsewhere Effect
+
+The p-value reported is **after** look-elsewhere correction via the max-statistic method:
+- We test multiple candidate periods: [8, 16, 32, 64, 128, 255]
+- For each Monte Carlo trial, we record max(Δχ²) across all periods
+- P-value = fraction of trials with max(Δχ²) ≥ observed
+
+This controls the family-wise error rate (FWER) at the stated significance level.
+
+### Whitening
+
+If full covariance matrix is provided (`--input_cov`):
+- **Whitening**: Residuals are decorrelated via Cholesky decomposition
+- **Advantage**: Properly accounts for correlations between multipoles
+- **Disadvantage**: Requires large covariance file
+
+If only diagonal uncertainties available:
+- **No whitening**: Assumes uncorrelated errors
+- **Warning**: May underestimate p-value if strong correlations exist
+
+---
+
+## PASS/FAIL Criteria
+
+### PASS: Significant Signal Detected
+
+A signal **passes** if **ALL** of the following hold:
+
+1. **Planck p-value** < 0.01 (candidate or strong)
+2. **WMAP p-value** < 0.05 (weaker threshold for replication)
+3. **Same period** in Planck and WMAP (best-fit Δℓ matches)
+4. **Consistent phase** (within π/2 radians)
+5. **Variant C** is the active hypothesis (not A, B, or D)
+
+**Action if PASS**:
+- Prepare manuscript for peer review
+- Archive full results (see [Archiving Results](#archiving-results))
+- Seek independent verification (third dataset or different analysis)
+
+### FAIL: Null Result
+
+A signal **fails** (null result) if **ANY** of the following hold:
+
+1. **Planck p-value** ≥ 0.01
+2. **WMAP p-value** ≥ 0.05
+3. **Different periods** in Planck and WMAP
+4. **Inconsistent phase** (differs by > π/2)
+
+**Action if FAIL**:
+- Document null result in lab notebook
+- **Do NOT** publish as detection (per pre-registered protocol)
+- Consider alternative hypotheses (Variants A, B, D)
+
+### INCONCLUSIVE: Candidate Without Replication
+
+If Planck shows candidate (p < 0.01) but WMAP shows null (p ≥ 0.05):
+
+**Action**:
+- **Do NOT** claim detection
+- Seek third dataset (e.g., ACT, SPT)
+- Investigate systematic differences between Planck and WMAP
+
+---
+
+## Troubleshooting
+
+### Download Script Fails
+
+**Problem**: `download_planck_pr3_cosmoparams.sh` returns error
+
+**Solutions**:
+1. Check internet connection
+2. Verify URLs in script (may need updating)
+3. Download manually from https://irsa.ipac.caltech.edu/Missions/planck.html
+4. See `data/planck_pr3/README.md` for manual instructions
+
+### Hash Validation Fails
+
+**Problem**: `validate_manifest.py` reports hash mismatch
+
+**Solutions**:
+1. Re-download file (may be corrupted)
+2. Verify you downloaded correct version (PR3 not PR2)
+3. If persists, document discrepancy and contact data archive
+
+### ImportError: astropy
+
+**Problem**: "astropy is required to load FITS files"
+
+**Solutions**:
+1. Install astropy: `pip install astropy`
+2. Or convert FITS to TXT manually using NASA tools
+
+### Matplotlib Not Available
+
+**Problem**: "Matplotlib not available - skipping plots"
+
+**Solutions**:
+1. Install matplotlib: `pip install matplotlib`
+2. Or proceed without plots (numerical results still valid)
+
+### Covariance Not Positive Definite
+
+**Problem**: "WARNING: Covariance matrix is not positive definite"
+
+**Solutions**:
+1. Falls back to diagonal uncertainties automatically
+2. Verify covariance file is correct format
+3. May indicate numerical issues in original data
+
+---
+
+## Archiving Results
+
+If **PASS** criteria met, archive full results:
+
+### Step 11: Create Archive
+
+```bash
+cd forensic_fingerprint/out/cmb_comb
+
+# Create timestamped archive
+timestamp=$(date +%Y%m%d_%H%M%S)
+archive_name="cmb_comb_results_${timestamp}.tar.gz"
+
+tar -czf "${archive_name}" planck_pr3_run1/ wmap_run1/
+```
+
+### Step 12: Document Provenance
+
+Create `PROVENANCE.txt`:
+
+```
+CMB Comb Fingerprint Test - Full Provenance
+============================================
+
+Date: 2026-01-10
+Protocol Version: v1.0
+Git Commit: <git rev-parse HEAD>
+
+Datasets:
+  Planck PR3: SHA-256 manifest in data/planck_pr3/manifests/
+  WMAP 9yr:   SHA-256 manifest in data/wmap/manifests/
+
+Results:
+  Planck:  p = 3.45e-03, period = 255, amplitude = 0.1234
+  WMAP:    p = 4.21e-02, period = 255, amplitude = 0.0987
+
+Conclusion: PASS (signal detected in both datasets)
+
+Analyst: [Your Name]
+Signature: [Digital signature or hash]
+```
+
+### Step 13: Commit Manifests (Not Data)
+
+```bash
+git add data/planck_pr3/manifests/*.json
+git add data/wmap/manifests/*.json
+git commit -m "Add pre-registered data manifests for CMB comb test"
+git push
+```
+
+**DO NOT** commit raw data files. Only manifests.
+
+---
+
+## Summary Workflow
+
+```
+1. Download Planck PR3 data           → data/planck_pr3/raw/
+2. Compute SHA-256 hashes             → data/planck_pr3/manifests/
+3. Validate hashes                    → ✓ SUCCESS
+4. Download WMAP data                 → data/wmap/raw/
+5. Compute SHA-256 hashes             → data/wmap/manifests/
+6. Validate hashes                    → ✓ SUCCESS
+7. Run Planck CMB comb test           → ../out/cmb_comb/planck_pr3_run1/
+8. Review Planck results              → p-value, period, amplitude
+9. Run WMAP CMB comb test             → ../out/cmb_comb/wmap_run1/
+10. Review WMAP results               → Compare with Planck
+11. Apply PASS/FAIL criteria          → Document conclusion
+12. Archive results (if PASS)         → tar.gz + PROVENANCE.txt
+13. Commit manifests to repository    → git add manifests/ && git commit
+```
+
+---
+
+**Questions?** See `forensic_fingerprint/PROTOCOL.md` for pre-registered protocol details.
+
+**Issues?** Open GitHub issue: https://github.com/DavJ/unified-biquaternion-theory/issues
+
+---
+
+**Last Updated**: 2026-01-10  
+**Protocol Version**: v1.0  
+**Maintained by**: UBT Research Team
