@@ -37,11 +37,15 @@ echo "Output directory: ${OUTPUT_DIR}"
 echo ""
 
 # Official WMAP data URLs from NASA Lambda
-BASE_URL="https://lambda.gsfc.nasa.gov/data/map/dr5/ancillary"
+# Primary URL (updated 2026-01-10 - correct path is dcp/spectra/)
+BASE_URL="https://lambda.gsfc.nasa.gov/data/map/dr5/dcp/spectra"
 
 # WMAP TT spectrum file
 WMAP_TT_URL="${BASE_URL}/wmap_tt_spectrum_9yr_v5.txt"
 WMAP_TT_FILE="wmap_tt_spectrum_9yr_v5.txt"
+
+# Fallback manual download page
+MANUAL_DOWNLOAD_PAGE="https://lambda.gsfc.nasa.gov/product/wmap/dr5/pow_tt_spec_get.html"
 
 echo "Downloading WMAP 9-year TT power spectrum for independent replication..."
 echo ""
@@ -70,13 +74,20 @@ download_file() {
             echo "  - Network connectivity issues"
             echo "  - Server is temporarily unavailable"
             echo ""
-            echo "Please visit https://lambda.gsfc.nasa.gov/product/map/current/"
-            echo "and download manually to: ${OUTPUT_DIR}"
+            echo "FALLBACK: Manual download from official DR5 TT page:"
+            echo "  ${MANUAL_DOWNLOAD_PAGE}"
+            echo ""
+            echo "Save file to: ${OUTPUT_DIR}"
             return 1
         }
     elif command -v curl &> /dev/null; then
         curl -L --progress-bar -o "${filepath}" "${url}" || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
+            echo ""
+            echo "FALLBACK: Manual download from official DR5 TT page:"
+            echo "  ${MANUAL_DOWNLOAD_PAGE}"
+            echo ""
+            echo "Save file to: ${OUTPUT_DIR}"
             return 1
         }
     else
@@ -94,10 +105,9 @@ if ! download_file "${WMAP_TT_URL}" "${WMAP_TT_FILE}"; then
     echo -e "${RED}ERROR:${NC} Automatic download failed."
     echo ""
     echo "MANUAL DOWNLOAD REQUIRED:"
-    echo "  1. Visit: https://lambda.gsfc.nasa.gov/product/map/current/"
-    echo "  2. Navigate to: Data Products → Power Spectra → TT Spectrum"
-    echo "  3. Download: ${WMAP_TT_FILE}"
-    echo "  4. Save to: ${OUTPUT_DIR}"
+    echo "  1. Visit: ${MANUAL_DOWNLOAD_PAGE}"
+    echo "  2. Download: ${WMAP_TT_FILE}"
+    echo "  3. Save to: ${OUTPUT_DIR}"
     echo ""
     exit 1
 fi
@@ -107,7 +117,7 @@ if [ ! -f "${OUTPUT_DIR}/${WMAP_TT_FILE}" ]; then
     echo -e "${YELLOW}WARNING:${NC} Expected file not found after download."
     echo ""
     echo "Please download manually from:"
-    echo "  https://lambda.gsfc.nasa.gov/product/map/current/"
+    echo "  ${MANUAL_DOWNLOAD_PAGE}"
     echo ""
     exit 1
 fi
