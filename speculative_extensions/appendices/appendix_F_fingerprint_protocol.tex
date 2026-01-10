@@ -1,0 +1,184 @@
+% Appendix F: Forensic Fingerprint Protocol
+% UBT Speculative Extensions
+% Version: 1.0
+% License: CC BY-NC-ND 4.0
+
+\section{Appendix F: Forensic Fingerprint Protocol}
+\label{app:forensic_fingerprint}
+
+\subsection{Overview}
+
+This appendix documents a pre-registered, court-grade statistical protocol to search for potential signatures of digital or lattice architecture in cosmological data that might be consistent with certain interpretations of the Unified Biquaternion Theory (UBT). This is \textbf{not} a discovery claim—it is a rigorous falsification protocol.
+
+\textbf{Falsifiability Statement}: If these tests fail to show statistically significant signals after replication in independent datasets, the digital-architecture interpretation of UBT is falsified in this form.
+
+Complete protocol documentation available in: \texttt{forensic\_fingerprint/PROTOCOL.md}
+
+\subsection{Three Pre-Registered Tests}
+
+\subsubsection{Test \#1: CMB Comb Signature}
+
+\textbf{Hypothesis}: CMB power spectrum residuals $(C_\ell^{\text{obs}} - C_\ell^{\Lambda\text{CDM}}) / \sigma_\ell$ contain periodic oscillations at one of the candidate periods $\Delta\ell \in \{8, 16, 32, 64, 128, 255\}$, suggesting discrete spacetime structure.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item Fit sinusoidal model: $r_\ell \approx A \sin(2\pi\ell/\Delta\ell + \varphi)$ via linear regression
+    \item Compute $\Delta\chi^2 = \chi^2(H_0) - \chi^2(H_1)$ for each candidate period
+    \item Select $\max(\Delta\chi^2)$ across all periods
+    \item Generate null distribution via Monte Carlo (10,000 Gaussian realizations)
+    \item Compute $p$-value with look-elsewhere correction (max statistic method)
+\end{enumerate}
+
+\textbf{Datasets}: Planck 2018 TT/TE/EE, WMAP 9-year (replication)
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Candidate signal: $p < 0.01$ (2.6$\sigma$ equivalent)
+    \item Strong signal: $p < 2.9 \times 10^{-7}$ ($\sim$5$\sigma$ equivalent)
+    \item Replication required in $\geq 2$ independent datasets
+\end{itemize}
+
+\subsubsection{Test \#2: Grid 255 Quantization}
+
+\textbf{Hypothesis}: MCMC posterior samples for cosmological parameters cluster preferentially near rational grid points $m/255$ (where $m \in \mathbb{Z}$), suggesting quantization on a byte-like structure.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item For each sample $x$, compute distance to nearest grid point: $d(x) = \min_{m \in \mathbb{Z}} |x - m/255|$
+    \item Compute summary statistics: $S_1 = \text{median}(d)$ and $S_2 = \text{mean}(\log_{10} d)$
+    \item Fit smooth distribution (KDE or Gaussian) to samples
+    \item Generate null distribution by resampling from fitted distribution (10,000 trials)
+    \item Compute $p$-values for $S_1$ and $S_2$
+\end{enumerate}
+
+\textbf{Parameters}: $\Omega_b h^2$, $\Omega_c h^2$, $\theta_s$, $\tau$, $n_s$, $\ln(10^{10} A_s)$ from Planck 2018 chains
+
+\textbf{Grid Denominator}: 255 (pre-fixed, not tunable)
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Candidate signal: $p < 0.01$ (either $S_1$ or $S_2$)
+    \item Strong signal: $p < 2.9 \times 10^{-7}$
+    \item No look-elsewhere correction (denominator fixed a priori)
+\end{itemize}
+
+\subsubsection{Test \#3: Cross-Dataset Invariance}
+
+\textbf{Hypothesis}: UBT-predicted invariant quantities (derived from cosmological parameters via fixed UBT formulae) show statistical consistency across independent datasets (Planck, BAO, SNe, lensing), supporting theoretical coherence.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item Define UBT invariant with fixed formula: $\kappa = f(\Omega_b h^2)$ or $\eta = g(n_s)$
+    \item For each dataset, compute $\hat{\kappa}_i \pm \sigma_i$ via UBT mapping
+    \item Compute weighted mean: $\bar{\kappa} = \sum_i w_i \hat{\kappa}_i / \sum_i w_i$ where $w_i = 1/\sigma_i^2$
+    \item Compute consistency chi-square: $\chi^2 = \sum_i (\hat{\kappa}_i - \bar{\kappa})^2 / \sigma_i^2$
+    \item Compute $p$-value from $\chi^2_{N-1}$ distribution
+\end{enumerate}
+
+\textbf{Datasets}: Planck TT/TE/EE, Planck+lensing, Planck+BAO, Planck+BAO+Pantheon
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Consistent (supports UBT): $p > 0.05$ (fail to reject consistency)
+    \item Inconsistent (falsifies UBT): $p < 0.01$ (strong evidence of inconsistency)
+\end{itemize}
+
+\textbf{Note}: This test is ``backwards''—UBT is \textit{supported} if $p$ is large (datasets agree), \textit{falsified} if $p$ is small (datasets disagree).
+
+\subsection{Pre-Registered Parameters Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\hline
+\textbf{Test} & \textbf{Fixed Parameters} & \textbf{Threshold (Candidate)} & \textbf{Threshold (Strong)} \\
+\hline
+CMB Comb & $\Delta\ell \in \{8,16,32,64,128,255\}$ & $p < 0.01$ & $p < 2.9 \times 10^{-7}$ \\
+Grid 255 & Denominator = 255 & $p < 0.01$ & $p < 2.9 \times 10^{-7}$ \\
+Invariance & UBT formula fixed & $p > 0.05$ (consistent) & $p > 0.32$ (strong) \\
+\hline
+\end{tabular}
+\caption{Summary of pre-registered parameters and thresholds for UBT forensic fingerprint tests.}
+\end{table}
+
+\subsection{Reproducibility Requirements}
+
+All analyses must document:
+\begin{itemize}
+    \item Dataset hashes (SHA-256) and source URLs
+    \item Fixed random seeds for Monte Carlo simulations
+    \item Code version (Git commit hash)
+    \item Timestamp and protocol version (v1.0)
+    \item All intermediate outputs archived to public repository (Zenodo/OSF)
+\end{itemize}
+
+\subsection{Neutral Language and Reporting Standards}
+
+Results must be reported using neutral, pre-committed language:
+\begin{itemize}
+    \item If $p < 0.01$: ``Candidate signal detected, replication required''
+    \item If $p > 0.01$: ``No significant signal, $H_0$ not rejected''
+    \item If replication fails: ``Initial signal not replicated, likely statistical fluctuation''
+\end{itemize}
+
+No post-hoc parameter tuning is permitted. Both positive and null results reported with equal prominence.
+
+\subsection{Falsifiability}
+
+If all three tests yield null results after examination of:
+\begin{itemize}
+    \item Planck 2018 full mission data (TT, TE, EE, lensing)
+    \item Independent CMB datasets (WMAP, ACT, SPT)
+    \item Multiple MCMC chains from different cosmological codes
+    \item All recommended cosmological parameter combinations
+\end{itemize}
+
+then the digital-architecture interpretation of UBT is \textbf{falsified} in this form. Alternative formulations would require a new pre-registered protocol (version 2.0) with independent theoretical motivation.
+
+\subsection{Implementation}
+
+Complete open-source implementations available in repository subdirectory:
+
+\texttt{forensic\_fingerprint/}
+\begin{itemize}
+    \item \texttt{PROTOCOL.md} — Complete protocol specification
+    \item \texttt{cmb\_comb/} — Test \#1 implementation
+    \item \texttt{grid\_255/} — Test \#2 implementation
+    \item \texttt{invariance/} — Test \#3 implementation
+\end{itemize}
+
+Tests validated via automated test suite: \texttt{tests/test\_forensic\_fingerprint.py}
+
+\subsection{Ethical Considerations}
+
+\begin{enumerate}
+    \item \textbf{No cherry-picking}: All datasets examined, null results reported
+    \item \textbf{No post-hoc changes}: Any modification to candidate periods, grid denominator, or UBT formulae constitutes a new protocol
+    \item \textbf{Independent replication}: External researchers encouraged to run protocol and propose improvements
+    \item \textbf{Publication bias}: Negative results have equal scientific value and will be archived regardless of outcome
+\end{enumerate}
+
+\subsection{Speculative Status}
+
+\textbf{Important}: This appendix describes a \textit{proposed} falsification protocol. It does not claim any detection or discovery. The digital-architecture interpretation of UBT remains speculative until:
+\begin{enumerate}
+    \item Candidate signals pass all three tests
+    \item Signals replicate in independent datasets
+    \item Instrumental and systematic checks rule out artifacts
+    \item Independent research groups confirm findings
+\end{enumerate}
+
+The protocol serves to make the digital-architecture hypothesis \textit{testable and falsifiable}, which is a necessary (but not sufficient) condition for scientific validity.
+
+\subsection{References}
+
+\begin{itemize}
+    \item Protocol v1.0: \texttt{forensic\_fingerprint/PROTOCOL.md}
+    \item Planck 2018 results: Planck Collaboration (2020), A\&A 641, A6
+    \item Statistical methods: Cowan et al. (2011), EPJC 71, 1554
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{Version}: 1.0 (2026-01-10)\\
+\textbf{License}: CC BY-NC-ND 4.0\\
+\textbf{Contact}: GitHub repository issues
