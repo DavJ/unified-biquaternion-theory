@@ -6,7 +6,7 @@
 #
 # Required files:
 #   - COM_PowerSpect_CMB-TT-full_R3.01.txt  (observation)
-#   - COM_PowerSpect_CMB-TT-model_R3.01.txt (model)
+#   - COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt (model)
 #
 # Usage:
 #   bash tools/data_download/download_planck_pr3_cosmoparams.sh
@@ -41,12 +41,13 @@ echo "Output directory: ${OUTPUT_DIR}"
 echo ""
 
 # Official Planck PR3 data URLs from IRSA
-BASE_URL="https://irsa.ipac.caltech.edu/data/Planck/release_3"
+# Correct directory: ancillary-data/cosmoparams/
+BASE_URL="https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams"
 
 # Required files
 REQUIRED_FILES=(
-    "COM_PowerSpect_CMB-TT-full_R3.01.txt"   # Observation
-    "COM_PowerSpect_CMB-TT-model_R3.01.txt"  # Model
+    "COM_PowerSpect_CMB-TT-full_R3.01.txt"                                      # Observation
+    "COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt" # Model
 )
 
 # Function to download file if it doesn't exist
@@ -85,18 +86,55 @@ download_file() {
         return 1
     fi
     
+    # Verify the downloaded file is not HTML (404 page)
+    if ! check_not_html "${filepath}"; then
+        echo -e "${RED}[ERROR]${NC} Downloaded HTML (likely 404 error page) instead of data file"
+        echo ""
+        echo "File: ${filename}"
+        echo "URL:  ${url}"
+        echo ""
+        echo "This likely means:"
+        echo "  - The URL path is incorrect"
+        echo "  - The file doesn't exist at this location"
+        echo "  - Use the correct PR3 cosmoparams directory:"
+        echo "    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
+        echo ""
+        # Remove the invalid HTML file
+        rm -f "${filepath}"
+        return 1
+    fi
+    
     echo -e "${GREEN}[SUCCESS]${NC} Downloaded ${filename}"
     echo ""
     return 0
+}
+
+# Function to check if file is not HTML (detects 404 pages)
+check_not_html() {
+    local filepath="$1"
+    
+    # Read first 200 bytes
+    local header=$(head -c 200 "${filepath}" 2>/dev/null)
+    
+    # Check for HTML markers
+    if echo "${header}" | grep -qi "<!DOCTYPE"; then
+        return 1  # Is HTML
+    fi
+    
+    if echo "${header}" | grep -qi "<html"; then
+        return 1  # Is HTML
+    fi
+    
+    return 0  # Not HTML
 }
 
 # Function to try scraping index for file URLs
 scrape_planck_urls() {
     echo "Attempting to discover file URLs from Planck archive..."
     
-    # Try to download the spectra directory index
-    local index_url="${BASE_URL}/all-sky-maps/spectra/"
-    local temp_index="/tmp/planck_spectra_index.html"
+    # Try to download the cosmoparams directory index
+    local index_url="${BASE_URL}/"
+    local temp_index="/tmp/planck_cosmoparams_index.html"
     
     if command -v wget &> /dev/null; then
         wget -q -O "${temp_index}" "${index_url}" 2>/dev/null || return 1
@@ -147,7 +185,7 @@ success_count=0
 # Attempt 1: Try hardcoded URLs
 echo "Attempt 1: Using hardcoded URLs..."
 for filename in "${REQUIRED_FILES[@]}"; do
-    url="${BASE_URL}/all-sky-maps/spectra/${filename}"
+    url="${BASE_URL}/${filename}"
     if download_file "${url}" "${filename}"; then
         success_count=$((success_count + 1))
     fi
@@ -211,7 +249,7 @@ else
     echo "MANUAL DOWNLOAD REQUIRED:"
     echo ""
     echo "  1. Visit: https://irsa.ipac.caltech.edu/Missions/planck.html"
-    echo "  2. Navigate to: Release 3 → All-Sky Maps → Spectra"
+    echo "  2. Navigate to: Release 3 → Ancillary Data → Cosmological Parameters"
     echo "  3. Download the following files:"
     for file in "${missing_files[@]}"; do
         echo "     - ${file}"
@@ -220,7 +258,7 @@ else
     echo ""
     echo "Alternative: Direct download links (if available):"
     for file in "${missing_files[@]}"; do
-        echo "  ${BASE_URL}/all-sky-maps/spectra/${file}"
+        echo "  ${BASE_URL}/${file}"
     done
     echo ""
     exit 1
@@ -255,7 +293,7 @@ echo "   cd forensic_fingerprint/cmb_comb"
 echo "   python cmb_comb.py \\"
 echo "       --dataset planck_pr3 \\"
 echo "       --input_obs ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \\"
-echo "       --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \\"
+echo "       --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \\"
 echo "       --ell_min 30 --ell_max 1500"
 echo ""
 echo "4. See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions"
