@@ -25,9 +25,9 @@ Full example (Planck + WMAP, with manifests):
     python run_real_data_cmb_comb.py \
         --planck_obs data/planck_pr3/raw/spectrum.txt \
         --planck_model data/planck_pr3/raw/model.txt \
-        --planck_manifest data/planck_pr3/manifests/sha256.json \
+        --planck_manifest data/planck_pr3/manifests/planck_pr3_tt_manifest.json \
         --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
-        --wmap_manifest data/wmap/manifests/sha256.json \
+        --wmap_manifest data/wmap/manifests/wmap_tt_manifest.json \
         --ell_min_planck 30 --ell_max_planck 1500 \
         --ell_min_wmap 30 --ell_max_wmap 800 \
         --variant C --mc_samples 10000
@@ -71,14 +71,77 @@ DEFAULT_MC_SAMPLES = 5000  # Candidate-grade
 DEFAULT_SEED = 42  # Pre-registered
 
 
-def validate_data_manifest(manifest_path):
+def resolve_manifest_path(manifest_path, dataset_type):
+    """
+    Resolve manifest path with fallback candidates.
+    
+    If the specified manifest path does not exist, tries fallback candidates in order:
+    - For Planck: planck_pr3_tt_manifest.json, sha256.json, manifest.json
+    - For WMAP: wmap_tt_manifest.json, sha256.json, manifest.json
+    
+    Parameters
+    ----------
+    manifest_path : str, Path, or None
+        User-specified manifest path (may not exist)
+    dataset_type : str
+        Dataset type: 'planck' or 'wmap'
+    
+    Returns
+    -------
+    Path or None
+        Resolved manifest path if found, None otherwise
+    str or None
+        Description of which fallback was used, None if no fallback needed
+    """
+    if manifest_path is None:
+        return None, None
+    
+    manifest_path = Path(manifest_path)
+    
+    # If specified path exists, use it (no fallback needed)
+    if manifest_path.exists():
+        return manifest_path, None
+    
+    # Define fallback candidates based on dataset type
+    if dataset_type == 'planck':
+        fallback_candidates = [
+            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json',
+            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json',
+            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json',
+        ]
+    elif dataset_type == 'wmap':
+        fallback_candidates = [
+            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json',
+            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'sha256.json',
+            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'manifest.json',
+        ]
+    else:
+        return None, None
+    
+    # Try each fallback candidate
+    for candidate in fallback_candidates:
+        if candidate.exists():
+            fallback_desc = f"Using fallback manifest: {candidate}"
+            return candidate, fallback_desc
+    
+    # No fallback found
+    return None, None
+
+
+def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_file=None):
     """
     Validate dataset against SHA-256 manifest.
     
     Parameters
     ----------
-    manifest_path : str or Path
+    manifest_path : str or Path or None
         Path to manifest JSON file
+    dataset_type : str
+        Dataset type: 'planck' or 'wmap'
+    obs_file : str or Path or None
+        Observation file path (for error message generation command)
+    model_file : str or Path or None
+        Model file path (for error message generation command)
     
     Returns
     -------
@@ -90,13 +153,59 @@ def validate_data_manifest(manifest_path):
         print("         For court-grade provenance, manifests are required.\n")
         return True
     
-    manifest_path = Path(manifest_path)
-    if not manifest_path.exists():
-        print(f"ERROR: Manifest not found: {manifest_path}")
+    # Resolve manifest path with fallback logic
+    resolved_path, fallback_desc = resolve_manifest_path(manifest_path, dataset_type)
+    
+    if resolved_path is None:
+        # Build list of attempted paths for error message
+        attempted_paths = [str(manifest_path)]
+        
+        if dataset_type == 'planck':
+            attempted_paths.extend([
+                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json'),
+                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json'),
+                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json'),
+            ])
+        elif dataset_type == 'wmap':
+            attempted_paths.extend([
+                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json'),
+                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'sha256.json'),
+                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'manifest.json'),
+            ])
+        
+        print(f"ERROR: Manifest not found for {dataset_type} dataset.")
+        print(f"\nAttempted paths:")
+        for path in attempted_paths:
+            print(f"  - {path}")
+        
+        # Provide helpful generation command
+        if obs_file:
+            print(f"\nTo generate the expected manifest, run:")
+            manifest_dir = Path(__file__).parent.parent / 'data' / (
+                'planck_pr3' if dataset_type == 'planck' else 'wmap'
+            ) / 'manifests'
+            manifest_name = 'planck_pr3_tt_manifest.json' if dataset_type == 'planck' else 'wmap_tt_manifest.json'
+            
+            obs_path = Path(obs_file)
+            data_dir = obs_path.parent
+            
+            print(f"  cd {data_dir}")
+            
+            if model_file:
+                print(f"  python ../../../tools/data_provenance/hash_dataset.py {obs_path.name} {Path(model_file).name} > {manifest_dir}/{manifest_name}")
+            else:
+                print(f"  python ../../../tools/data_provenance/hash_dataset.py {obs_path.name} > {manifest_dir}/{manifest_name}")
+        
+        print()
         return False
     
-    print(f"Validating manifest: {manifest_path}")
-    success = validate_manifest.validate_manifest(manifest_path)
+    # Print warning if using fallback
+    if fallback_desc:
+        print(f"WARNING: Specified manifest not found: {manifest_path}")
+        print(f"         {fallback_desc}\n")
+    
+    print(f"Validating manifest: {resolved_path}")
+    success = validate_manifest.validate_manifest(resolved_path)
     print()
     
     return success
@@ -319,9 +428,9 @@ Examples:
   python run_real_data_cmb_comb.py \\
       --planck_obs data/planck_pr3/raw/spectrum.txt \\
       --planck_model data/planck_pr3/raw/model.txt \\
-      --planck_manifest data/planck_pr3/manifests/sha256.json \\
+      --planck_manifest data/planck_pr3/manifests/planck_pr3_tt_manifest.json \\
       --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \\
-      --wmap_manifest data/wmap/manifests/sha256.json \\
+      --wmap_manifest data/wmap/manifests/wmap_tt_manifest.json \\
       --variant C --mc_samples 10000
 
 See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
@@ -386,13 +495,13 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     # Validate manifests if provided
     if args.planck_manifest:
         print("Validating Planck manifest...")
-        if not validate_data_manifest(args.planck_manifest):
+        if not validate_data_manifest(args.planck_manifest, 'planck', args.planck_obs, args.planck_model):
             print("ERROR: Planck manifest validation failed. Aborting.")
             sys.exit(1)
     
     if args.wmap_manifest:
         print("Validating WMAP manifest...")
-        if not validate_data_manifest(args.wmap_manifest):
+        if not validate_data_manifest(args.wmap_manifest, 'wmap', args.wmap_obs, args.wmap_model):
             print("ERROR: WMAP manifest validation failed. Aborting.")
             sys.exit(1)
     

@@ -103,13 +103,15 @@ cd forensic_fingerprint
 python run_real_data_cmb_comb.py \
     --planck_obs ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
     --planck_model ../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
-    --planck_manifest ../data/planck_pr3/manifests/sha256.json \
+    --planck_manifest ../data/planck_pr3/manifests/planck_pr3_tt_manifest.json \
     --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
-    --wmap_manifest ../data/wmap/manifests/sha256.json \
+    --wmap_manifest ../data/wmap/manifests/wmap_tt_manifest.json \
     --ell_min_planck 30 --ell_max_planck 1500 \
     --ell_min_wmap 30 --ell_max_wmap 800 \
     --variant C --mc_samples 10000
 ```
+
+**Note**: The runner automatically falls back to `sha256.json` or `manifest.json` if the standard manifest names are not found.
 
 **Output**:
 - `planck_results.json` - Planck statistical results
