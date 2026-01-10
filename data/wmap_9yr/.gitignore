@@ -1,0 +1,10 @@
+# Ignore all data files (prevent large file commits)
+*.txt
+*.fits
+*.dat
+*.csv
+
+# Except manifest and documentation
+!README.md
+!manifest.json
+!.gitignore

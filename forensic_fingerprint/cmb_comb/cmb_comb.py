@@ -9,6 +9,9 @@ This script implements a pre-registered protocol to test whether CMB residuals
 (observed - ΛCDM model) contain sinusoidal oscillations at candidate periods,
 which could indicate discrete spacetime architecture.
 
+**IMPORTANT**: This test is ONLY valid under Variant C (Explicit Frame Synchronization).
+See forensic_fingerprint/ARCHITECTURE_VARIANTS.md for variant definitions.
+
 Protocol: See ../PROTOCOL.md
 Author: UBT Research Team
 License: MIT
@@ -18,6 +21,28 @@ import numpy as np
 import sys
 from pathlib import Path
 
+
+# =============================================================================
+# Architecture Variant Selection
+# =============================================================================
+
+# ARCHITECTURE_VARIANT: Which architectural hypothesis to test
+# Valid values: "A", "B", "C", "D"
+# See ../ARCHITECTURE_VARIANTS.md for definitions
+#
+# "A" = No Explicit Synchronization (continuous-time)
+# "B" = Implicit Synchronization (discrete states, no sync symbol)
+# "C" = Explicit Frame Synchronization (RS with sync overhead)
+# "D" = Hierarchical Synchronization (local sync, global async)
+#
+# CMB comb test is ONLY applicable to Variant C.
+# Other variants predict null results (no periodic structure).
+
+ARCHITECTURE_VARIANT = "C"  # DEFAULT: Test Variant C hypothesis
+
+# =============================================================================
+# Pre-Registered Parameters (LOCKED)
+# =============================================================================
 
 # Fixed random seed for reproducibility (pre-registered)
 RANDOM_SEED = 42
@@ -494,6 +519,60 @@ def main():
     """
     Main function for command-line usage.
     """
+    # =============================================================================
+    # VARIANT VALIDATION
+    # =============================================================================
+    
+    print("=" * 80)
+    print("UBT Forensic Fingerprint - CMB Comb Test")
+    print("=" * 80)
+    print(f"Architecture Variant: {ARCHITECTURE_VARIANT}")
+    print("")
+    
+    # Validate variant selection
+    if ARCHITECTURE_VARIANT not in ["A", "B", "C", "D"]:
+        raise ValueError(
+            f"Invalid ARCHITECTURE_VARIANT: {ARCHITECTURE_VARIANT}\n"
+            "Must be one of: 'A', 'B', 'C', 'D'\n"
+            "See ../ARCHITECTURE_VARIANTS.md for definitions"
+        )
+    
+    # Warn if not Variant C
+    if ARCHITECTURE_VARIANT != "C":
+        print("WARNING: CMB comb test is ONLY valid under Variant C assumptions")
+        print("         (Explicit Frame Synchronization with RS code structure)")
+        print("")
+        print(f"Variant {ARCHITECTURE_VARIANT} predicts:")
+        
+        if ARCHITECTURE_VARIANT == "A":
+            print("  - No periodic structure (continuous-time)")
+            print("  - Expected result: NULL (p > 0.05)")
+        elif ARCHITECTURE_VARIANT == "B":
+            print("  - Broad-band cutoff but NO periodicity")
+            print("  - Expected result: NULL for comb test (p > 0.05)")
+        elif ARCHITECTURE_VARIANT == "D":
+            print("  - Scale-dependent decoherence of periodicity")
+            print("  - Expected result: Depends on scale (requires binning)")
+        
+        print("")
+        print("Proceeding with test for validation/null-hypothesis purposes only.")
+        print("Results will be labeled as 'VARIANT MISMATCH' if signal found.")
+        print("")
+        input("Press Enter to continue or Ctrl+C to abort...")
+        print("")
+    else:
+        print("Variant C: Explicit Frame Synchronization")
+        print("Hypothesis: CMB residuals contain periodic comb structure")
+        print("           at periods tied to RS code length (255 or divisors)")
+        print("")
+    
+    print("=" * 80)
+    print("")
+    
+    # =============================================================================
+    # STANDARD TEST EXECUTION
+    # =============================================================================
+    
     if len(sys.argv) < 3:
         print("Usage: python cmb_comb.py <obs_file> <model_file> [output_dir]")
         print("\nFiles should be text format with columns: ell C_ell sigma_ell")
@@ -511,6 +590,25 @@ def main():
     
     # Run test
     results = run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir)
+    
+    # Add variant metadata to results
+    results['architecture_variant'] = ARCHITECTURE_VARIANT
+    results['variant_valid'] = (ARCHITECTURE_VARIANT == "C")
+    
+    # Interpretation with variant awareness
+    print("")
+    print("=" * 80)
+    print("INTERPRETATION")
+    print("=" * 80)
+    if results['variant_valid']:
+        print(f"Variant C test: {results['significance']}")
+    else:
+        print(f"Variant {ARCHITECTURE_VARIANT} test (NULL expected):")
+        print(f"  Result: {results['significance']}")
+        if results['p_value'] < THRESHOLD_CANDIDATE:
+            print("  ⚠ UNEXPECTED: Signal found in variant that predicts NULL")
+            print("               Requires investigation or variant re-evaluation")
+    print("=" * 80)
     
     # Generate plots if matplotlib available
     plot_results(results, output_dir)

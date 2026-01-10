@@ -66,3 +66,45 @@ This appendix follows a \textbf{pre-registered-test philosophy} in spirit: the m
 If future work derives $\theta_*$ and $\sigma_8$ from the same RS(255,200) + OFDM mapping without adjustable parameters, the digital-architecture hypothesis would become fully testable against the complete set of Planck 2018 observables. Such a derivation would elevate the framework from ``interesting numerical coincidence'' to ``quantitatively falsifiable physical hypothesis.''
 
 Until that time, the current status should be classified as \textbf{partial empirical compatibility} with recognized need for completion. The documented agreement with three parameters provides motivation for continued investigation but does not constitute scientific validation of UBT's cosmological interpretation.
+
+\subsection{Implementation Pointer}
+
+A complete, executable implementation of these mappings is provided in the repository:
+
+\begin{itemize}
+\item \texttt{tools/planck\_validation/constants.py} --- Pre-registered architecture parameters (LOCKED: RS\_N=255, RS\_K=200, OFDM\_CHANNELS=16)
+\item \texttt{tools/planck\_validation/mapping.py} --- Exact implementations of:
+\begin{itemize}
+    \item \texttt{M\_payload(R,D)} $\to \Omega_b h^2$ (Eq. PX.4)
+    \item \texttt{M\_parity(R,D)} $\to \Omega_c h^2$ (Eq. PX.5)
+    \item \texttt{M\_ns(R)} $\to n_s$ (Eq. PX.6, exact formula: $1 - 9/255$)
+    \item \texttt{M\_phase(R,D)} $\to \theta_*$ (NotImplementedError until derived)
+    \item \texttt{M\_SNR(R,D)} $\to \sigma_8$ (NotImplementedError until derived)
+\end{itemize}
+\item \texttt{tools/planck\_validation/metrics.py} --- Statistical evaluation (z-scores, $\chi^2$, p-values)
+\item \texttt{tools/planck\_validation/report.py} --- Automated report generation (markdown, CSV, JSON)
+\item \texttt{tests/test\_planck\_validation\_mapping.py} --- Regression tests enforcing exact numerical predictions
+\end{itemize}
+
+The implementation enforces the \textbf{no-fit / no post-hoc} policy (see \texttt{REPO\_GOVERNANCE.md}):
+\begin{itemize}
+\item All constants are LOCKED and validated on import
+\item Mappings produce exact pre-registered predictions (enforced by pytest)
+\item TBD mappings raise NotImplementedError (preventing silent parameter tuning)
+\item Changing any prediction requires protocol version increment
+\end{itemize}
+
+To generate a validation report:
+\begin{verbatim}
+cd tools/planck_validation
+python report.py
+\end{verbatim}
+
+Output files written to \texttt{out/planck\_validation/}:
+\begin{itemize}
+\item \texttt{validation\_report.md} --- Human-readable summary with z-scores and $\chi^2$
+\item \texttt{validation\_results.csv} --- Machine-readable results table
+\item \texttt{validation\_results.json} --- Complete metadata and metrics
+\end{itemize}
+
+All numerical values in this appendix are reproduced exactly by the code implementation, ensuring full reproducibility.

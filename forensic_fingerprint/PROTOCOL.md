@@ -44,9 +44,9 @@ This protocol defines three pre-registered, court-grade statistical tests to sea
 ### Pre-Fixed Parameters
 
 #### Candidate Periods
-Δℓ ∈ {8, 16, 32, 64, 128, 255}
+Δℓ ∈ {8, 16, 32, 64, 128, 255} (LOCKED - no additions or modifications)
 
-**Rationale**: These span plausible discretization scales from fine (8) to coarse (255), with 255 chosen as the maximum based on potential byte/grid structure.
+**Rationale**: These span plausible discretization scales from fine (8) to coarse (255), with 255 chosen as the maximum based on potential byte/grid structure. This set is **pre-registered and fixed** - no additional candidate periods can be added based on data analysis.
 
 #### Datasets
 - **Primary**: Planck 2018 TT power spectrum (ℓ = 2 to 2500)
@@ -107,9 +107,9 @@ For each candidate period Δℓ:
 ### Pre-Fixed Parameters
 
 #### Grid Denominator
-**D = 255** (locked; alternatively 256 if explicitly justified, but choose ONE)
+**D = 255** (LOCKED - no alternatives)
 
-**Rationale**: 255 = 2⁸ - 1 is the maximum value in 8-bit unsigned representation, potentially relevant if spacetime has digital substrate.
+**Rationale**: 255 = 2⁸ - 1 is the maximum value in 8-bit unsigned representation (Galois field GF(2⁸)), potentially relevant if spacetime has digital substrate. This value is **pre-registered and fixed** - it cannot be changed based on data analysis results. Any future protocol with different denominator would require version 2.0.
 
 #### Parameters to Test
 Select from MCMC chains (Planck 2018 baseline):
@@ -237,11 +237,13 @@ Release: Planck 2018 Legacy
 ```
 
 ### Random Seeds
-All Monte Carlo simulations use **fixed random seeds** documented in code:
+All Monte Carlo simulations use **fixed random seeds** documented in code (LOCKED):
 ```python
-np.random.seed(42)  # CMB comb test
-np.random.seed(137) # Grid test
+np.random.seed(42)  # CMB comb test - FIXED, DO NOT CHANGE
+np.random.seed(137) # Grid test - FIXED, DO NOT CHANGE
 ```
+
+These seeds are **pre-registered and must not be changed**. Different seeds would constitute a new protocol version.
 
 ### Output Versioning
 All output files tagged with:
