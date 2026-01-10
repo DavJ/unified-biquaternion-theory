@@ -10,6 +10,16 @@
 - Psychons, CTCs, multiverse interpretations clearly isolated
 - See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
 
+### 📋 Where to Put New Work
+
+**For contributors:** Before adding new content, consult **[REPO_GOVERNANCE.md](REPO_GOVERNANCE.md)** which defines:
+- What belongs in `canonical/` (strict definitions, proven derivations)
+- What belongs in `speculative_extensions/` (hypotheses, interpretations)
+- Rules for cross-referencing and symbol consistency
+- "No-fit / no post-hoc" policy for empirical predictions
+
+**Quick decision tree:** Is it proven? → `canonical/` | Is it testable? → main repo or `tools/` | Is it speculative? → `speculative_extensions/`
+
 
 
 ---

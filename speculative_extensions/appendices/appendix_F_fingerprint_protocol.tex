@@ -18,7 +18,7 @@ Complete protocol documentation available in: \texttt{forensic\_fingerprint/PROT
 
 \subsubsection{Test \#1: CMB Comb Signature}
 
-\textbf{Hypothesis}: CMB power spectrum residuals $(C_\ell^{\text{obs}} - C_\ell^{\Lambda\text{CDM}}) / \sigma_\ell$ contain periodic oscillations at one of the candidate periods $\Delta\ell \in \{8, 16, 32, 64, 128, 255\}$, suggesting discrete spacetime structure.
+\textbf{Hypothesis}: CMB power spectrum residuals $(C_\ell^{\text{obs}} - C_\ell^{\Lambda\text{CDM}}) / \sigma_\ell$ contain periodic oscillations at one of the candidate periods $\Delta\ell \in \{8, 16, 32, 64, 128, 255\}$ (LOCKED set), suggesting discrete spacetime structure.
 
 \textbf{Method}:
 \begin{enumerate}
@@ -53,7 +53,9 @@ Complete protocol documentation available in: \texttt{forensic\_fingerprint/PROT
 
 \textbf{Parameters}: $\Omega_b h^2$, $\Omega_c h^2$, $\theta_s$, $\tau$, $n_s$, $\ln(10^{10} A_s)$ from Planck 2018 chains
 
-\textbf{Grid Denominator}: 255 (pre-fixed, not tunable)
+\textbf{Grid Denominator}: 255 (LOCKED - pre-registered, no alternatives allowed)
+
+\textbf{Rationale}: 255 = $2^8 - 1$ corresponds to GF($2^8$) structure. This value is fixed in Protocol v1.0 and cannot be changed based on data analysis results. Any alternative denominator would require a new protocol version.
 
 \textbf{Thresholds}:
 \begin{itemize}
