@@ -525,6 +525,132 @@ class TestDataLoaders:
         """Test WMAP loader with non-existent file."""
         with pytest.raises(FileNotFoundError):
             wmap.load_wmap_data("nonexistent_file.txt")
+    
+    def test_planck_loader_html_detection(self, tmp_path):
+        """Test that Planck loader detects and rejects HTML files (404 pages)."""
+        # Create fake HTML file (simulating 404 error page)
+        html_file = tmp_path / "planck_404.txt"
+        with open(html_file, 'w') as f:
+            f.write("<!DOCTYPE html>\n")
+            f.write("<html>\n")
+            f.write("<head><title>404 Not Found</title></head>\n")
+            f.write("<body>File not found</body>\n")
+            f.write("</html>\n")
+        
+        # Should raise ValueError with informative message
+        with pytest.raises(ValueError, match="HTML detected"):
+            planck.load_planck_data(html_file)
+    
+    def test_planck_loader_html_detection_alternative(self, tmp_path):
+        """Test HTML detection with <html> tag (no DOCTYPE)."""
+        html_file = tmp_path / "planck_404_alt.txt"
+        with open(html_file, 'w') as f:
+            f.write("<html>\n")
+            f.write("<body>Error 404</body>\n")
+            f.write("</html>\n")
+        
+        with pytest.raises(ValueError, match="HTML detected"):
+            planck.load_planck_data(html_file)
+    
+    def test_planck_loader_minimum_format_basic(self, tmp_path):
+        """Test Planck loader with PR3 minimum model file format."""
+        # Create synthetic minimum format file
+        min_file = tmp_path / "COM_PowerSpect_CMB-base-plikHM-minimum_R3.01.txt"
+        with open(min_file, 'w') as f:
+            f.write("# Planck PR3 minimum model file\n")
+            f.write("# L  TT  TE  EE\n")
+            # Use realistic Dl values (larger than Cl)
+            for ell in range(30, 50):
+                # Dl ~ 6000 at ell=30, decreasing
+                dl_tt = 6000.0 * np.exp(-(ell - 30) / 100.0)
+                f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
+        
+        # Load data
+        data = planck.load_planck_data(min_file)
+        
+        # Verify structure
+        assert 'ell' in data
+        assert 'cl_obs' in data
+        assert 'sigma' in data
+        assert len(data['ell']) == 20
+        assert data['ell'][0] == 30
+        assert data['ell'][-1] == 49
+        
+        # Verify Dl was converted to Cl
+        # Cl should be much smaller than original Dl values
+        assert np.all(data['cl_obs'] < 1000)  # Cl values should be < 1000
+    
+    def test_planck_loader_minimum_format_with_dl_conversion(self, tmp_path):
+        """Test that Dl to Cl conversion works correctly in minimum format."""
+        min_file = tmp_path / "test-minimum-file.txt"
+        with open(min_file, 'w') as f:
+            f.write("# L  DL_TT  DL_TE  DL_EE\n")
+            # Create test data where Dl is known
+            # For ell=100, if Dl=5000, then Cl = Dl * 2π / [l(l+1)]
+            # Cl = 5000 * 2π / (100 * 101) ≈ 3.11
+            f.write("100 5000.0 100.0 50.0\n")
+            f.write("101 4900.0 99.0 49.0\n")
+        
+        data = planck.load_planck_data(min_file)
+        
+        # Check conversion: Cl = Dl * 2π / [l(l+1)]
+        ell_100_idx = np.where(data['ell'] == 100)[0][0]
+        dl_100 = 5000.0
+        expected_cl_100 = dl_100 * (2.0 * np.pi) / (100 * 101)
+        
+        np.testing.assert_allclose(data['cl_obs'][ell_100_idx], expected_cl_100, rtol=1e-5)
+    
+    def test_planck_loader_minimum_format_cl_input(self, tmp_path):
+        """Test minimum format when input is already in Cl (not Dl) units."""
+        min_file = tmp_path / "test-minimum-cl.txt"
+        with open(min_file, 'w') as f:
+            f.write("# L  CL_TT  CL_TE  CL_EE\n")
+            # Small Cl values (already in Cl units, not Dl)
+            for ell in range(30, 50):
+                cl_tt = 100.0 * np.exp(-ell / 100.0)
+                f.write(f"{ell} {cl_tt:.6e} 0.0 0.0\n")
+        
+        data = planck.load_planck_data(min_file)
+        
+        # Should NOT convert (already Cl)
+        # Values should remain small
+        assert np.all(data['cl_obs'] < 200)
+    
+    def test_planck_loader_minimum_format_no_header(self, tmp_path):
+        """Test minimum format fallback when no header is present."""
+        min_file = tmp_path / "test-minimum-noheader.txt"
+        with open(min_file, 'w') as f:
+            f.write("# Some comment but no column header\n")
+            # Use Dl-like values
+            for ell in range(30, 50):
+                dl_tt = 5000.0 * np.exp(-(ell - 30) / 100.0)
+                f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
+        
+        # Should still work with fallback parsing
+        data = planck.load_planck_data(min_file)
+        
+        assert len(data['ell']) == 20
+        # Should have detected Dl and converted
+        assert np.median(data['cl_obs']) < 500  # Cl should be smaller than Dl
+    
+    def test_planck_loader_backward_compatibility(self, tmp_path):
+        """Test that simple 3-column format still works (backward compatibility)."""
+        # Create traditional 3-column file
+        simple_file = tmp_path / "planck_simple.txt"
+        with open(simple_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(30, 50):
+                cl = 100.0 * np.exp(-ell / 100.0)
+                f.write(f"{ell} {cl:.6f} 10.0\n")
+        
+        # Load with standard loader
+        data = planck.load_planck_data(simple_file)
+        
+        # Should work as before
+        assert len(data['ell']) == 20
+        assert data['ell'][0] == 30
+        assert data['sigma'][0] == 10.0
+
 
 
 class TestCMBCombWhitening:

@@ -175,6 +175,7 @@ def _load_planck_text(filepath):
         Uncertainties (1-sigma)
     """
     # First, check if file is HTML (indicates wrong URL or 404)
+    # Also check for minimum format indicators in header
     with open(filepath, 'r') as f:
         first_line = f.readline().strip()
     
@@ -188,10 +189,22 @@ def _load_planck_text(filepath):
         )
     
     # Detect if this is a PR3 "minimum" model file
+    # Check both filename and file content (header line)
     filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
-    is_minimum_format = '-minimum_' in filename or 'plikHM' in filename
+    is_minimum_by_name = '-minimum_' in filename or 'plikHM' in filename
     
-    if is_minimum_format:
+    # Check if first line (comment) has minimum format indicators
+    is_minimum_by_content = False
+    if first_line.startswith('#'):
+        header_cols = first_line.lstrip('#').strip().split()
+        # Check if header has multiple columns (TT, TE, EE, etc.)
+        if len(header_cols) > 3:
+            is_minimum_by_content = True
+        # Or check for specific column names
+        if any(col.upper() in ['TT', 'TE', 'EE', 'BB', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT'] for col in header_cols):
+            is_minimum_by_content = True
+    
+    if is_minimum_by_name or is_minimum_by_content:
         return _load_planck_minimum_format(filepath)
     
     # Standard simple 3-column format
