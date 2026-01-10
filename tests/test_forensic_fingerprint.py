@@ -13,6 +13,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 import tempfile
+import json
 
 # Add project root to path
 repo_root = Path(__file__).resolve().parents[1]
@@ -578,6 +579,341 @@ class TestCMBCombWhitening:
         assert results['dataset'] == "Test Dataset"
         assert 'best_period' in results
         assert 'p_value' in results
+
+
+class TestRealDataRunner:
+    """Tests for run_real_data_cmb_comb.py runner script."""
+    
+    def test_runner_import(self):
+        """Test that the runner script can be imported."""
+        # Import the runner script
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Check key functions exist
+        assert hasattr(run_real_data_cmb_comb, 'validate_data_manifest')
+        assert hasattr(run_real_data_cmb_comb, 'save_results_json')
+        assert hasattr(run_real_data_cmb_comb, 'generate_combined_verdict')
+    
+    def test_save_results_json(self, tmp_path):
+        """Test JSON results saving with numpy array conversion."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create test results with numpy arrays
+        results = {
+            'best_period': 32,
+            'amplitude': np.float64(1.5),
+            'p_value': np.float64(0.05),
+            'ell': np.array([2, 3, 4, 5]),
+            'residuals': np.array([0.1, 0.2, -0.1, 0.05]),
+            'all_periods': {
+                8: {'delta_chi2': np.float64(2.0), 'amplitude': np.float64(0.5)},
+                16: {'delta_chi2': np.float64(3.0), 'amplitude': np.float64(0.7)}
+            }
+        }
+        
+        output_file = tmp_path / 'test_results.json'
+        run_real_data_cmb_comb.save_results_json(results, output_file)
+        
+        # Verify file was created
+        assert output_file.exists()
+        
+        # Load and verify JSON is valid
+        with open(output_file, 'r') as f:
+            loaded = json.load(f)
+        
+        # Check conversion
+        assert loaded['best_period'] == 32
+        assert isinstance(loaded['amplitude'], float)
+        assert isinstance(loaded['ell'], list)
+        assert len(loaded['ell']) == 4
+        assert isinstance(loaded['all_periods']['8']['delta_chi2'], float)
+    
+    def test_generate_combined_verdict_pass(self, tmp_path):
+        """Test combined verdict generation for PASS case."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create mock results that should PASS all criteria
+        planck_results = {
+            'dataset': 'Planck PR3',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 255,
+            'amplitude': 1.5,
+            'phase': 1.57,
+            'max_delta_chi2': 20.0,
+            'p_value': 0.005,  # < 0.01
+            'significance': 'candidate',
+            'whitened': False,
+            'n_mc_trials': 1000
+        }
+        
+        wmap_results = {
+            'dataset': 'WMAP 9yr',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 255,  # Same period
+            'amplitude': 1.2,
+            'phase': 1.50,  # Close phase (within π/2)
+            'max_delta_chi2': 15.0,
+            'p_value': 0.03,  # < 0.05
+            'significance': 'candidate',
+            'whitened': False,
+            'n_mc_trials': 1000
+        }
+        
+        output_file = tmp_path / 'verdict.md'
+        run_real_data_cmb_comb.generate_combined_verdict(
+            planck_results, wmap_results, output_file, variant='C'
+        )
+        
+        # Verify file was created
+        assert output_file.exists()
+        
+        # Read and check content
+        content = output_file.read_text()
+        assert '# CMB Comb Fingerprint Test - Combined Verdict' in content
+        assert 'Planck PR3 Results' in content
+        assert 'WMAP 9yr Results' in content
+        assert 'PASS/FAIL Decision' in content
+        assert 'Variant C' in content
+        assert '✓ PASS' in content  # Should pass all criteria
+    
+    def test_generate_combined_verdict_fail(self, tmp_path):
+        """Test combined verdict generation for FAIL case."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create mock results that should FAIL (different periods)
+        planck_results = {
+            'dataset': 'Planck PR3',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 255,
+            'amplitude': 1.5,
+            'phase': 1.57,
+            'max_delta_chi2': 20.0,
+            'p_value': 0.005,
+            'significance': 'candidate',
+            'whitened': False,
+            'n_mc_trials': 1000
+        }
+        
+        wmap_results = {
+            'dataset': 'WMAP 9yr',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 128,  # Different period - should FAIL
+            'amplitude': 1.2,
+            'phase': 1.50,
+            'max_delta_chi2': 15.0,
+            'p_value': 0.03,
+            'significance': 'candidate',
+            'whitened': False,
+            'n_mc_trials': 1000
+        }
+        
+        output_file = tmp_path / 'verdict_fail.md'
+        run_real_data_cmb_comb.generate_combined_verdict(
+            planck_results, wmap_results, output_file, variant='C'
+        )
+        
+        # Verify file was created
+        assert output_file.exists()
+        
+        # Read and check content
+        content = output_file.read_text()
+        assert 'FAIL' in content
+        assert '✗ FAIL' in content  # Should fail period matching criterion
+    
+    def test_generate_combined_verdict_planck_only(self, tmp_path):
+        """Test combined verdict with only Planck results."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        planck_results = {
+            'dataset': 'Planck PR3',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 255,
+            'amplitude': 1.5,
+            'phase': 1.57,
+            'max_delta_chi2': 20.0,
+            'p_value': 0.005,
+            'significance': 'candidate',
+            'whitened': True,
+            'n_mc_trials': 1000
+        }
+        
+        output_file = tmp_path / 'verdict_planck_only.md'
+        run_real_data_cmb_comb.generate_combined_verdict(
+            planck_results, None, output_file, variant='C'
+        )
+        
+        # Verify file was created
+        assert output_file.exists()
+        
+        # Read and check content
+        content = output_file.read_text()
+        assert 'INCOMPLETE' in content
+        assert 'WMAP replication required' in content
+    
+    def test_generate_combined_verdict_court_grade_warning(self, tmp_path):
+        """Test that court-grade warnings appear when covariance is missing."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        planck_results = {
+            'dataset': 'Planck PR3',
+            'ell': np.array([30, 31, 32]),
+            'best_period': 255,
+            'amplitude': 1.5,
+            'phase': 1.57,
+            'max_delta_chi2': 20.0,
+            'p_value': 0.005,
+            'significance': 'candidate',
+            'whitened': False,  # No covariance
+            'n_mc_trials': 1000
+        }
+        
+        output_file = tmp_path / 'verdict_warning.md'
+        run_real_data_cmb_comb.generate_combined_verdict(
+            planck_results, None, output_file, variant='C'
+        )
+        
+        # Read and check for warning
+        content = output_file.read_text()
+        assert 'WARNING' in content
+        assert 'candidate-grade only' in content
+        assert 'Court-grade analysis requires full covariance' in content
+    
+    def test_cmb_comb_variant_parameter(self):
+        """Test that variant parameter works in cmb_comb.run_cmb_comb_test."""
+        # Generate simple test data
+        np.random.seed(42)
+        ell = np.arange(2, 50)
+        C_model = 1000.0 * np.exp(-ell / 100.0)
+        sigma = 0.1 * C_model
+        C_obs = C_model + np.random.normal(0, sigma)
+        
+        # Run test with variant parameter
+        cmb_comb.N_MC_TRIALS = 100  # Speed up test
+        results = cmb_comb.run_cmb_comb_test(
+            ell, C_obs, C_model, sigma,
+            variant='A',  # Test variant A
+            n_mc_trials=100,
+            random_seed=42
+        )
+        
+        # Check variant was recorded
+        assert results['architecture_variant'] == 'A'
+        assert results['variant_valid'] is False  # Only C is valid for comb test
+        assert results['n_mc_trials'] == 100
+        assert results['random_seed'] == 42
+    
+    def test_cmb_comb_invalid_variant(self):
+        """Test that invalid variant raises error."""
+        ell = np.arange(2, 10)
+        C_obs = np.ones(8)
+        C_model = np.ones(8)
+        sigma = np.ones(8)
+        
+        # Should raise ValueError for invalid variant
+        with pytest.raises(ValueError, match="Invalid variant"):
+            cmb_comb.run_cmb_comb_test(
+                ell, C_obs, C_model, sigma,
+                variant='X'  # Invalid
+            )
+    
+    def test_runner_end_to_end_synthetic(self, tmp_path):
+        """End-to-end test of runner with synthetic data files."""
+        # Create synthetic data files
+        obs_file = tmp_path / 'planck_obs.txt'
+        model_file = tmp_path / 'planck_model.txt'
+        
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(30, 100):
+                cl = 1000.0 * np.exp(-ell / 100.0)
+                f.write(f"{ell} {cl + np.random.normal(0, 10)} 10.0\n")
+        
+        with open(model_file, 'w') as f:
+            f.write("# ell C_ell\n")
+            for ell in range(30, 100):
+                cl = 1000.0 * np.exp(-ell / 100.0)
+                f.write(f"{ell} {cl}\n")
+        
+        # Create output directory
+        test_output_dir = tmp_path / 'test_output'
+        
+        # Import runner
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Simulate command-line args
+        class Args:
+            pass
+        
+        Args.planck_obs = str(obs_file)
+        Args.planck_model = str(model_file)
+        Args.planck_cov = None
+        Args.planck_manifest = None
+        Args.ell_min_planck = 30
+        Args.ell_max_planck = 99
+        Args.wmap_obs = None
+        Args.wmap_model = None
+        Args.wmap_cov = None
+        Args.wmap_manifest = None
+        Args.ell_min_wmap = 30
+        Args.ell_max_wmap = 800
+        Args.variant = 'C'
+        Args.mc_samples = 100  # Fast test
+        Args.seed = 42
+        Args.output_dir = str(test_output_dir)
+        
+        # Manually run the key parts (can't easily test main() due to argparse)
+        # Load Planck data
+        planck_data = planck.load_planck_data(
+            obs_file=Args.planck_obs,
+            model_file=Args.planck_model,
+            ell_min=Args.ell_min_planck,
+            ell_max=Args.ell_max_planck
+        )
+        
+        # Run test
+        planck_results = cmb_comb.run_cmb_comb_test(
+            ell=planck_data['ell'],
+            C_obs=planck_data['cl_obs'],
+            C_model=planck_data['cl_model'],
+            sigma=planck_data['sigma'],
+            variant=Args.variant,
+            n_mc_trials=Args.mc_samples,
+            random_seed=Args.seed
+        )
+        
+        # Create output directory
+        test_output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Save results
+        run_real_data_cmb_comb.save_results_json(
+            planck_results,
+            test_output_dir / 'planck_results.json'
+        )
+        
+        # Generate verdict
+        run_real_data_cmb_comb.generate_combined_verdict(
+            planck_results,
+            None,
+            test_output_dir / 'combined_verdict.md',
+            Args.variant
+        )
+        
+        # Verify outputs were created
+        assert (test_output_dir / 'planck_results.json').exists()
+        assert (test_output_dir / 'combined_verdict.md').exists()
+        
+        # Verify JSON can be loaded
+        with open(test_output_dir / 'planck_results.json', 'r') as f:
+            loaded_results = json.load(f)
+        assert 'best_period' in loaded_results
+        assert 'p_value' in loaded_results
 
 
 if __name__ == '__main__':

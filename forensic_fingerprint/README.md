@@ -27,13 +27,45 @@ This directory contains three pre-registered statistical tests designed to searc
 
 ## Quick Start
 
+**NEW**: For a one-command analysis with automatic verdict generation, see the [Quick Real Run](#one-command-real-data-analysis) section below.
+
 ### Installation
 
 ```bash
 pip install numpy scipy matplotlib pytest
 ```
 
-### Running Tests
+### One-Command Real Data Analysis
+
+The fastest way to run CMB comb test with real data:
+
+```bash
+cd forensic_fingerprint
+
+# Minimal (Planck only)
+python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/spectrum.txt \
+    --planck_model ../data/planck_pr3/raw/model.txt
+
+# Full (Planck + WMAP with validation)
+python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/spectrum.txt \
+    --planck_model ../data/planck_pr3/raw/model.txt \
+    --planck_manifest ../data/planck_pr3/manifests/sha256.json \
+    --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_manifest ../data/wmap/manifests/sha256.json \
+    --variant C --mc_samples 10000
+```
+
+**Output**: Creates timestamped directory with:
+- `planck_results.json` - Full statistical results
+- `wmap_results.json` - Full statistical results (if WMAP provided)
+- `combined_verdict.md` - **Court-grade PASS/FAIL report**
+- `figures/*.png` - Diagnostic plots
+
+See `RUNBOOK_REAL_DATA.md` for complete documentation.
+
+### Running Individual Tests
 
 Each test has its own directory with standalone implementation:
 
@@ -100,6 +132,24 @@ Key principles:
 - See PROTOCOL.md for references
 
 ## Output Structure
+
+### One-Command Runner Output
+
+When using `run_real_data_cmb_comb.py`:
+
+```
+out/real_runs/cmb_comb_<timestamp>/
+├── planck_results.json          # Full Planck results (machine-readable)
+├── wmap_results.json            # Full WMAP results (if provided)
+├── combined_verdict.md          # ★ Court-grade PASS/FAIL report ★
+└── figures/
+    ├── residuals_with_fit.png   # Planck residuals + fitted comb
+    ├── null_distribution.png    # Planck p-value visualization
+    ├── residuals_with_fit_1.png # WMAP residuals (if run)
+    └── null_distribution_1.png  # WMAP p-value (if run)
+```
+
+### Individual Test Outputs
 
 ```
 out/
