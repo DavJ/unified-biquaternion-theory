@@ -65,7 +65,7 @@ download_file() {
     
     # Try wget first, fall back to curl (with timeouts to avoid hanging)
     if command -v wget &> /dev/null; then
-        wget -q --show-progress --timeout=10 --tries=2 -O "${filepath}" "${url}" || {
+        wget -q --timeout=10 --tries=2 -O "${filepath}" "${url}" 2>&1 || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
             echo ""
             echo "This may be due to:"
@@ -149,7 +149,7 @@ echo "Attempt 1: Using hardcoded URLs..."
 for filename in "${REQUIRED_FILES[@]}"; do
     url="${BASE_URL}/all-sky-maps/spectra/${filename}"
     if download_file "${url}" "${filename}"; then
-        ((success_count++))
+        success_count=$((success_count + 1))
     fi
 done
 
@@ -174,10 +174,10 @@ if [ ${success_count} -lt ${#REQUIRED_FILES[@]} ]; then
             if [ ${idx} -lt ${#url_array[@]} ]; then
                 url="${url_array[${idx}]}"
                 if download_file "${url}" "${filename}"; then
-                    ((success_count++))
+                    success_count=$((success_count + 1))
                 fi
             fi
-            ((idx++))
+            idx=$((idx + 1))
         done
     else
         echo -e "${YELLOW}WARNING:${NC} Could not scrape URLs from archive index."
