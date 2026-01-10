@@ -103,6 +103,80 @@ Invariance & UBT formula fixed & $p > 0.05$ (consistent) & $p > 0.32$ (strong) \
 \caption{Summary of pre-registered parameters and thresholds for UBT forensic fingerprint tests.}
 \end{table}
 
+\subsection{Architectural Variants and Non-Assumptive Testing}
+
+\textbf{Critical Methodological Point}: The UBT forensic fingerprint protocol does \emph{not} assume a specific engineering implementation of spacetime. Instead, we treat synchronization mechanisms as a \emph{testable hypothesis class}.
+
+\subsubsection{Variant Framework}
+
+We define four mutually exclusive architectural variants (see \texttt{forensic\_fingerprint/ARCHITECTURE\_VARIANTS.md}):
+
+\begin{itemize}
+\item \textbf{Variant A (Continuous)}: No explicit synchronization. Continuous-time effective behavior emerges from field dynamics. Quantization arises only from standard $\hbar$ (no additional discrete structure).
+
+\item \textbf{Variant B (Implicit Sync)}: Discrete state transitions exist internally, but NO dedicated synchronization symbol. Timing emerges from field self-interactions. No separate "sync pulse."
+
+\item \textbf{Variant C (Explicit Frame Sync)}: Reed-Solomon RS(255,200) structure with \emph{explicit synchronization overhead} (e.g., GF($2^8$) zero element or frame marker). One additional non-information state per cycle.
+
+\item \textbf{Variant D (Hierarchical Sync)}: Local synchronization at Planck scale, global async behavior at cosmological scale. Decoherence as scale increases.
+\end{itemize}
+
+\subsubsection{Test Applicability}
+
+\textbf{Important}: Each fingerprint test is valid only under specific variant assumptions:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Test} & \textbf{Variant A} & \textbf{Variant B} & \textbf{Variant C} & \textbf{Variant D} \\
+\hline
+CMB Comb & NULL expected & NULL expected & \textbf{SIGNAL predicted} & Partial (scale-dep) \\
+Grid 255 & Falsifies & Partial & \textbf{SIGNAL predicted} & Partial (local) \\
+Invariance & Valid & Valid & Valid & Valid (scale-corrected) \\
+\hline
+\end{tabular}
+\caption{Applicability of forensic fingerprint tests to architectural variants. Tests must be interpreted conditionally based on variant selection.}
+\end{table}
+
+\subsubsection{Conditional Language Requirements}
+
+All results must use conditional statements tied to variant assumptions:
+
+\begin{itemize}
+\item ✓ Correct: ``\emph{If} the universe uses explicit frame synchronization (Variant C), \emph{then} we predict periodic structure at $\Delta\ell = 255$...''
+\item ✓ Correct: ``Under Variant C assumptions, the observed $p$-value supports/falsifies the hypothesis...''
+\item ✗ Incorrect: ``The Planck constant \emph{is} a synchronization pulse.''
+\item ✗ Incorrect: ``The universe \emph{uses} Reed-Solomon error correction.''
+\item ✗ Incorrect: ``Frame guards \emph{are present} in spacetime.''
+\end{itemize}
+
+\subsubsection{Implementation}
+
+The code implementation enforces variant selection:
+\begin{verbatim}
+# In forensic_fingerprint/cmb_comb/cmb_comb.py
+ARCHITECTURE_VARIANT = "C"  # Explicit selection required
+
+if ARCHITECTURE_VARIANT != "C":
+    print("WARNING: CMB comb test ONLY valid for Variant C")
+    print("Other variants predict NULL results")
+\end{verbatim}
+
+Running tests under non-applicable variants generates warnings and labels results as ``VARIANT MISMATCH'' if unexpected signals appear.
+
+\subsubsection{Scientific Safety}
+
+This variant framework ensures:
+\begin{enumerate}
+\item \textbf{No presupposition}: We do NOT assume synchronization exists
+\item \textbf{Falsifiability}: Each variant has clear rejection criteria
+\item \textbf{Transparency}: Variant assumptions stated explicitly
+\item \textbf{Hypothesis testing}: Variants are tested, not advocated
+\end{enumerate}
+
+See \texttt{forensic\_fingerprint/variant\_fingerprints.md} for complete falsifiable fingerprints per variant.
+
 \subsection{Reproducibility Requirements}
 
 All analyses must document:
