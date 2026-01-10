@@ -50,3 +50,5 @@ reports/*.json
 
 # Forensic fingerprint output directory
 forensic_fingerprint/out/
+# But keep VERDICT files for court-grade results
+!forensic_fingerprint/out/**/VERDICT.md
