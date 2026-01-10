@@ -47,3 +47,6 @@ reports/*.json
 data/alpha_two_loop_grid.csv
 tex/snippets_generated.tex
 reports/*.json
+
+# Forensic fingerprint output directory
+forensic_fingerprint/out/
