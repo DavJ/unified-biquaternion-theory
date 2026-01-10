@@ -63,9 +63,9 @@ download_file() {
     echo -e "${GREEN}[DOWNLOAD]${NC} ${filename}"
     echo "  URL: ${url}"
     
-    # Try wget first, fall back to curl
+    # Try wget first, fall back to curl (with timeouts to avoid hanging)
     if command -v wget &> /dev/null; then
-        wget -q --show-progress -O "${filepath}" "${url}" || {
+        wget -q --show-progress --timeout=10 --tries=2 -O "${filepath}" "${url}" || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
             echo ""
             echo "This may be due to:"
@@ -76,7 +76,7 @@ download_file() {
             return 1
         }
     elif command -v curl &> /dev/null; then
-        curl -L --progress-bar -o "${filepath}" "${url}" || {
+        curl -L --max-time 10 --retry 1 --progress-bar -o "${filepath}" "${url}" || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
             return 1
         }
@@ -165,7 +165,7 @@ if [ ${success_count} -lt ${#REQUIRED_FILES[@]} ]; then
         mapfile -t url_array <<< "${scraped_urls}"
         
         # Try downloading with scraped URLs
-        local idx=0
+        idx=0
         for filename in "${REQUIRED_FILES[@]}"; do
             if [ -f "${OUTPUT_DIR}/${filename}" ]; then
                 continue  # Already downloaded
