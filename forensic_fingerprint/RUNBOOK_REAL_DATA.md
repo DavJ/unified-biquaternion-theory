@@ -296,11 +296,16 @@ After running:
 bash tools/data_download/download_planck_pr3_cosmoparams.sh
 ```
 
+**Required files** (automatically downloaded):
+- `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT power spectrum
+- `COM_PowerSpect_CMB-TT-model_R3.01.txt` - Best-fit ΛCDM model
+
 **Expected output**:
 - Files downloaded to `data/planck_pr3/raw/`
 - Script prints next steps for hash computation
 
-**If download fails**: Follow manual instructions in `data/planck_pr3/README.md`
+**If download fails**: Follow manual instructions in `data/planck_pr3/README.md` or download directly from:
+- https://irsa.ipac.caltech.edu/Missions/planck.html (Release 3 → All-Sky Maps → Spectra)
 
 ### Step 2: Compute Planck Hashes
 

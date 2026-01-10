@@ -583,6 +583,81 @@ def load_data(obs_file, model_file, cov_file=None):
     return ell, C_obs, C_model, sigma
 
 
+def check_input_file_exists(filepath, file_description="Input file"):
+    """
+    Check if an input file exists and provide helpful error message if not.
+    
+    Parameters
+    ----------
+    filepath : str or Path
+        Path to file to check
+    file_description : str
+        Description of the file (e.g., "Observation file")
+    
+    Raises
+    ------
+    SystemExit
+        If file doesn't exist (exits with helpful error message)
+    """
+    if filepath is None:
+        return  # Optional file not provided
+    
+    filepath = Path(filepath)
+    
+    if not filepath.exists():
+        print("=" * 80)
+        print(f"ERROR: {file_description} not found!")
+        print("=" * 80)
+        print(f"Looking for: {filepath}")
+        print(f"Absolute path: {filepath.resolve()}")
+        print("")
+        print(f"Current working directory: {Path.cwd()}")
+        print("")
+        
+        # Try to find similar files in the expected directory
+        if filepath.parent.exists():
+            print(f"Files in {filepath.parent}:")
+            try:
+                # List files matching PowerSpect and TT patterns (for Planck data)
+                parent_files = list(filepath.parent.iterdir())
+                matching_files = [f for f in parent_files 
+                                if f.is_file() and 
+                                   ('PowerSpect' in f.name or 'TT' in f.name or 
+                                    'spectrum' in f.name.lower() or 'model' in f.name.lower())]
+                
+                if matching_files:
+                    print("  Found potentially relevant files:")
+                    for f in sorted(matching_files):
+                        print(f"    - {f.name}")
+                else:
+                    print("  No matching PowerSpect/TT/spectrum files found.")
+                    print(f"  Total files in directory: {len([f for f in parent_files if f.is_file()])}")
+            except Exception as e:
+                print(f"  (Unable to list files: {e})")
+        else:
+            print(f"Directory does not exist: {filepath.parent}")
+        
+        print("")
+        print("=" * 80)
+        print("SUGGESTIONS:")
+        print("=" * 80)
+        print("")
+        print("1. Download the required data files:")
+        print("   bash tools/data_download/download_planck_pr3_cosmoparams.sh")
+        print("")
+        print("2. Verify the filename matches the downloaded file:")
+        print("   Expected Planck PR3 files:")
+        print("   - COM_PowerSpect_CMB-TT-full_R3.01.txt  (observation)")
+        print("   - COM_PowerSpect_CMB-TT-model_R3.01.txt (model)")
+        print("")
+        print("3. Check the path is correct relative to your current directory")
+        print("")
+        print("4. See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions")
+        print("")
+        print("=" * 80)
+        sys.exit(1)
+
+
 def main():
     """
     Main function for command-line usage with enhanced dataset support.
@@ -742,6 +817,11 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
         if args.input_obs is None:
             parser.error("--input_obs is required when using --dataset")
         
+        # Check input files exist before attempting to load
+        check_input_file_exists(args.input_obs, "Observation file")
+        check_input_file_exists(args.input_model, "Model file")
+        check_input_file_exists(args.input_cov, "Covariance file")
+        
         # Load data using appropriate loader
         print(f"Loading {args.dataset.upper()} data...")
         
@@ -815,6 +895,10 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
         obs_file = args.obs_file
         model_file = args.model_file
         output_dir = args.legacy_output_dir if args.legacy_output_dir else Path(__file__).parent.parent / 'out'
+        
+        # Check input files exist before attempting to load
+        check_input_file_exists(obs_file, "Observation file")
+        check_input_file_exists(model_file, "Model file")
         
         # Load data using legacy function
         print(f"Loading data from {obs_file} and {model_file}...")
