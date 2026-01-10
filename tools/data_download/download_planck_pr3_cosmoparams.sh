@@ -4,6 +4,10 @@
 # This script downloads Planck PR3 (Release 3) cosmological parameters
 # including TT power spectrum for CMB comb fingerprint analysis.
 #
+# Required files:
+#   - COM_PowerSpect_CMB-TT-full_R3.01.txt  (observation)
+#   - COM_PowerSpect_CMB-TT-model_R3.01.txt (model)
+#
 # Usage:
 #   bash tools/data_download/download_planck_pr3_cosmoparams.sh
 #
@@ -37,22 +41,13 @@ echo "Output directory: ${OUTPUT_DIR}"
 echo ""
 
 # Official Planck PR3 data URLs from IRSA
-# Note: These are example URLs - actual URLs may need updating
 BASE_URL="https://irsa.ipac.caltech.edu/data/Planck/release_3"
 
-# Files to download
-# Primary: COM_CosmoParams package (contains TT spectrum and model)
-COSMOPARAMS_URL="${BASE_URL}/ancillary-data/cosmoparams/COM_CosmoParams_base-plikHM-TTTEEE-lowl-lowE_R3.00.zip"
-COSMOPARAMS_FILE="COM_CosmoParams_base-plikHM-TTTEEE-lowl-lowE_R3.00.zip"
-
-# Alternative: Direct power spectrum download
-POWERSPECT_URL="${BASE_URL}/all-sky-maps/spectra/COM_PowerSpect_CMB-TT-full_R3.01.txt"
-POWERSPECT_FILE="COM_PowerSpect_CMB-TT-full_R3.01.txt"
-
-echo "Available downloads:"
-echo "  1. Cosmoparams package (includes TT spectrum, model, parameters)"
-echo "  2. Direct TT power spectrum only"
-echo ""
+# Required files
+REQUIRED_FILES=(
+    "COM_PowerSpect_CMB-TT-full_R3.01.txt"   # Observation
+    "COM_PowerSpect_CMB-TT-model_R3.01.txt"  # Model
+)
 
 # Function to download file if it doesn't exist
 download_file() {
@@ -68,9 +63,9 @@ download_file() {
     echo -e "${GREEN}[DOWNLOAD]${NC} ${filename}"
     echo "  URL: ${url}"
     
-    # Try wget first, fall back to curl
+    # Try wget first, fall back to curl (with timeouts to avoid hanging)
     if command -v wget &> /dev/null; then
-        wget -q --show-progress -O "${filepath}" "${url}" || {
+        wget -q --timeout=10 --tries=2 -O "${filepath}" "${url}" 2>&1 || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
             echo ""
             echo "This may be due to:"
@@ -78,12 +73,10 @@ download_file() {
             echo "  - Network connectivity issues"
             echo "  - Server is temporarily unavailable"
             echo ""
-            echo "Please visit https://irsa.ipac.caltech.edu/Missions/planck.html"
-            echo "and download manually to: ${OUTPUT_DIR}"
             return 1
         }
     elif command -v curl &> /dev/null; then
-        curl -L --progress-bar -o "${filepath}" "${url}" || {
+        curl -L --max-time 10 --retry 1 --progress-bar -o "${filepath}" "${url}" || {
             echo -e "${RED}[ERROR]${NC} Download failed for ${filename}"
             return 1
         }
@@ -94,57 +87,152 @@ download_file() {
     
     echo -e "${GREEN}[SUCCESS]${NC} Downloaded ${filename}"
     echo ""
+    return 0
 }
 
-# Main downloads
-echo "Downloading Planck PR3 data..."
+# Function to try scraping index for file URLs
+scrape_planck_urls() {
+    echo "Attempting to discover file URLs from Planck archive..."
+    
+    # Try to download the spectra directory index
+    local index_url="${BASE_URL}/all-sky-maps/spectra/"
+    local temp_index="/tmp/planck_spectra_index.html"
+    
+    if command -v wget &> /dev/null; then
+        wget -q -O "${temp_index}" "${index_url}" 2>/dev/null || return 1
+    elif command -v curl &> /dev/null; then
+        curl -sL -o "${temp_index}" "${index_url}" 2>/dev/null || return 1
+    else
+        return 1
+    fi
+    
+    # Extract URLs for our required files
+    local urls=()
+    for filename in "${REQUIRED_FILES[@]}"; do
+        # Look for href containing the filename
+        local found_url=$(grep -o "href=\"[^\"]*${filename}\"" "${temp_index}" 2>/dev/null | sed 's/href="//;s/"$//' | head -1)
+        
+        if [ -n "${found_url}" ]; then
+            # Make absolute URL if relative
+            if [[ "${found_url}" != http* ]]; then
+                found_url="${index_url}${found_url}"
+            fi
+            urls+=("${found_url}")
+        fi
+    done
+    
+    rm -f "${temp_index}"
+    
+    # Return URLs (newline separated)
+    if [ ${#urls[@]} -gt 0 ]; then
+        printf '%s\n' "${urls[@]}"
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Main download logic
+echo "Downloading required Planck PR3 files..."
+echo ""
+echo "Required files:"
+for file in "${REQUIRED_FILES[@]}"; do
+    echo "  - ${file}"
+done
 echo ""
 
-# Option 1: Try downloading cosmoparams package
-echo "Attempting to download cosmoparams package..."
-if ! download_file "${COSMOPARAMS_URL}" "${COSMOPARAMS_FILE}"; then
+# Try direct download with known URLs first
+success_count=0
+
+# Attempt 1: Try hardcoded URLs
+echo "Attempt 1: Using hardcoded URLs..."
+for filename in "${REQUIRED_FILES[@]}"; do
+    url="${BASE_URL}/all-sky-maps/spectra/${filename}"
+    if download_file "${url}" "${filename}"; then
+        success_count=$((success_count + 1))
+    fi
+done
+
+# Attempt 2: If not all files downloaded, try scraping index
+if [ ${success_count} -lt ${#REQUIRED_FILES[@]} ]; then
     echo ""
-    echo -e "${YELLOW}WARNING:${NC} Cosmoparams download failed. This is expected if URL has changed."
-    echo "Trying direct power spectrum download..."
+    echo -e "${YELLOW}WARNING:${NC} Some files failed to download with hardcoded URLs."
+    echo "Attempt 2: Trying to discover URLs from archive index..."
     echo ""
     
-    # Option 2: Fall back to direct spectrum download
-    if ! download_file "${POWERSPECT_URL}" "${POWERSPECT_FILE}"; then
-        echo ""
-        echo -e "${RED}ERROR:${NC} Automatic download failed."
-        echo ""
-        echo "MANUAL DOWNLOAD REQUIRED:"
-        echo "  1. Visit: https://irsa.ipac.caltech.edu/Missions/planck.html"
-        echo "  2. Navigate to: Release 3 → Ancillary Data → Cosmoparams"
-        echo "  3. Download: ${COSMOPARAMS_FILE}"
-        echo "  4. Save to: ${OUTPUT_DIR}"
-        echo ""
-        exit 1
+    if scraped_urls=$(scrape_planck_urls); then
+        # Convert to array
+        mapfile -t url_array <<< "${scraped_urls}"
+        
+        # Try downloading with scraped URLs
+        idx=0
+        for filename in "${REQUIRED_FILES[@]}"; do
+            if [ -f "${OUTPUT_DIR}/${filename}" ]; then
+                continue  # Already downloaded
+            fi
+            
+            if [ ${idx} -lt ${#url_array[@]} ]; then
+                url="${url_array[${idx}]}"
+                if download_file "${url}" "${filename}"; then
+                    success_count=$((success_count + 1))
+                fi
+            fi
+            idx=$((idx + 1))
+        done
+    else
+        echo -e "${YELLOW}WARNING:${NC} Could not scrape URLs from archive index."
     fi
 fi
 
-# Check if download directory is empty
-if [ -z "$(ls -A "${OUTPUT_DIR}")" ]; then
-    echo -e "${YELLOW}WARNING:${NC} No files downloaded successfully."
+# Check final status
+echo ""
+echo "========================================"
+echo "Download Summary"
+echo "========================================"
+echo ""
+
+missing_files=()
+for filename in "${REQUIRED_FILES[@]}"; do
+    if [ -f "${OUTPUT_DIR}/${filename}" ]; then
+        echo -e "${GREEN}✓${NC} ${filename}"
+    else
+        echo -e "${RED}✗${NC} ${filename}"
+        missing_files+=("${filename}")
+    fi
+done
+
+echo ""
+
+if [ ${#missing_files[@]} -eq 0 ]; then
+    echo -e "${GREEN}SUCCESS:${NC} All required files downloaded!"
+else
+    echo -e "${RED}ERROR:${NC} ${#missing_files[@]} file(s) missing!"
     echo ""
-    echo "Please download files manually from:"
-    echo "  https://irsa.ipac.caltech.edu/Missions/planck.html"
+    echo "MANUAL DOWNLOAD REQUIRED:"
+    echo ""
+    echo "  1. Visit: https://irsa.ipac.caltech.edu/Missions/planck.html"
+    echo "  2. Navigate to: Release 3 → All-Sky Maps → Spectra"
+    echo "  3. Download the following files:"
+    for file in "${missing_files[@]}"; do
+        echo "     - ${file}"
+    done
+    echo "  4. Save them to: ${OUTPUT_DIR}"
+    echo ""
+    echo "Alternative: Direct download links (if available):"
+    for file in "${missing_files[@]}"; do
+        echo "  ${BASE_URL}/all-sky-maps/spectra/${file}"
+    done
     echo ""
     exit 1
 fi
 
-# Summary
+# List downloaded files with sizes
 echo ""
 echo "========================================"
-echo "Download Complete"
+echo "Downloaded Files"
 echo "========================================"
 echo ""
-echo "Downloaded files are in: ${OUTPUT_DIR}"
-echo ""
-
-# List downloaded files
-echo "Files:"
-ls -lh "${OUTPUT_DIR}" | grep -v "^total" | grep -v "^d" || true
+ls -lh "${OUTPUT_DIR}" | grep -v "^total" | grep -v "^d" | grep -v ".gitkeep" || true
 echo ""
 
 # Next steps
@@ -155,7 +243,7 @@ echo ""
 echo "1. Compute SHA-256 hashes for provenance:"
 echo ""
 echo "   cd data/planck_pr3/raw"
-echo "   python ../../../tools/data_provenance/hash_dataset.py *.txt *.fits > ../manifests/planck_pr3_tt_manifest.json"
+echo "   python ../../../tools/data_provenance/hash_dataset.py *.txt > ../manifests/planck_pr3_tt_manifest.json"
 echo ""
 echo "2. Validate data integrity:"
 echo ""
@@ -163,6 +251,14 @@ echo "   python tools/data_provenance/validate_manifest.py data/planck_pr3/manif
 echo ""
 echo "3. Run CMB comb test:"
 echo ""
-echo "   See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions"
+echo "   cd forensic_fingerprint/cmb_comb"
+echo "   python cmb_comb.py \\"
+echo "       --dataset planck_pr3 \\"
+echo "       --input_obs ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \\"
+echo "       --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \\"
+echo "       --ell_min 30 --ell_max 1500"
+echo ""
+echo "4. See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions"
 echo ""
 echo "========================================"
+
