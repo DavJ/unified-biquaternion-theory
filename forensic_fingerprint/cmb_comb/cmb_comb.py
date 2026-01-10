@@ -179,7 +179,7 @@ def compute_delta_chi2(ell, residuals, period):
     return delta_chi2, amplitude, phase
 
 
-def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_TRIALS):
+def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_TRIALS, random_seed=None):
     """
     Generate null distribution of max(Δχ²) under H0.
     
@@ -200,13 +200,17 @@ def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_T
         List of periods to test
     n_trials : int
         Number of Monte Carlo trials
+    random_seed : int, optional
+        Random seed for reproducibility. If None, uses RANDOM_SEED global.
     
     Returns
     -------
     max_delta_chi2_null : ndarray
         Distribution of max(Δχ²) under H0 (shape: n_trials)
     """
-    np.random.seed(RANDOM_SEED)
+    if random_seed is None:
+        random_seed = RANDOM_SEED
+    np.random.seed(random_seed)
     
     max_delta_chi2_null = np.zeros(n_trials)
     
@@ -256,7 +260,8 @@ def compute_p_value(observed_max, null_distribution):
     return p_value
 
 
-def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown"):
+def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown",
+                      variant="C", n_mc_trials=None, random_seed=None):
     """
     Run full CMB comb test protocol.
     
@@ -276,6 +281,12 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         Full covariance matrix (if available, enables whitening)
     dataset_name : str
         Dataset identifier for provenance
+    variant : str, optional
+        Architecture variant to test ("A", "B", "C", or "D"). Default: "C"
+    n_mc_trials : int, optional
+        Number of Monte Carlo trials. If None, uses N_MC_TRIALS global.
+    random_seed : int, optional
+        Random seed for reproducibility. If None, uses RANDOM_SEED global.
     
     Returns
     -------
@@ -290,7 +301,19 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         - 'null_distribution': MC null distribution (for plotting)
         - 'whitened': whether covariance whitening was used
         - 'dataset': dataset name
+        - 'architecture_variant': variant tested
+        - 'variant_valid': whether variant is appropriate for this test
     """
+    # Use provided parameters or fall back to globals
+    if n_mc_trials is None:
+        n_mc_trials = N_MC_TRIALS
+    if random_seed is None:
+        random_seed = RANDOM_SEED
+    
+    # Validate variant
+    if variant not in ["A", "B", "C", "D"]:
+        raise ValueError(f"Invalid variant: {variant}. Must be one of: A, B, C, D")
+    
     # Step 1: Compute residuals (with whitening if cov provided)
     if cov is not None:
         print("Using full covariance matrix (whitening enabled)")
@@ -319,8 +342,9 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     phase = results_per_period[best_period]['phase']
     
     # Step 4: Generate null distribution
-    print("Generating null distribution (this may take a moment)...")
-    null_distribution = monte_carlo_null_distribution(ell, sigma, CANDIDATE_PERIODS)
+    print(f"Generating null distribution ({n_mc_trials} trials, this may take a moment)...")
+    null_distribution = monte_carlo_null_distribution(ell, sigma, CANDIDATE_PERIODS, 
+                                                      n_trials=n_mc_trials, random_seed=random_seed)
     
     # Step 5: Compute p-value
     p_value = compute_p_value(max_delta_chi2, null_distribution)
@@ -346,7 +370,11 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         'ell': ell,
         'all_periods': results_per_period,
         'whitened': whitened,
-        'dataset': dataset_name
+        'dataset': dataset_name,
+        'architecture_variant': variant,
+        'variant_valid': (variant == "C"),
+        'n_mc_trials': n_mc_trials,
+        'random_seed': random_seed
     }
     
     # Print summary

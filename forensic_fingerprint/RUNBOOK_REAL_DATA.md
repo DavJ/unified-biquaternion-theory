@@ -12,13 +12,14 @@
 
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
-3. [Data Download and Validation](#data-download-and-validation)
-4. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
-5. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
-6. [Interpreting Results](#interpreting-results)
-7. [PASS/FAIL Criteria](#passfail-criteria)
-8. [Troubleshooting](#troubleshooting)
-9. [Archiving Results](#archiving-results)
+3. [Quick Real Run (One Command)](#quick-real-run-one-command)
+4. [Data Download and Validation](#data-download-and-validation)
+5. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
+6. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
+7. [Interpreting Results](#interpreting-results)
+8. [PASS/FAIL Criteria](#passfail-criteria)
+9. [Troubleshooting](#troubleshooting)
+10. [Archiving Results](#archiving-results)
 
 ---
 
@@ -64,7 +65,229 @@ ls -l forensic_fingerprint/loaders/
 
 ---
 
+## Quick Real Run (One Command)
+
+**NEW**: For users who want to run the complete CMB comb test with a single command.
+
+### What This Does
+
+The `run_real_data_cmb_comb.py` script provides a one-command entrypoint that:
+
+1. Validates dataset manifests (SHA-256 hashes) if provided
+2. Loads Planck PR3 and/or WMAP data using existing loaders
+3. Runs CMB comb test on both datasets
+4. Generates a court-grade combined verdict report (PASS/FAIL)
+5. Saves all results with timestamps in a structured output directory
+
+### Minimal Example (Planck Only)
+
+```bash
+cd forensic_fingerprint
+
+python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/spectrum.txt \
+    --planck_model ../data/planck_pr3/raw/model.txt
+```
+
+**Output**:
+- Creates `out/real_runs/cmb_comb_<timestamp>/` directory
+- `planck_results.json` - Full statistical results
+- `combined_verdict.md` - Human-readable PASS/FAIL report
+- `figures/*.png` - Diagnostic plots
+
+### Full Example (Planck + WMAP with Validation)
+
+```bash
+cd forensic_fingerprint
+
+python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \
+    --planck_manifest ../data/planck_pr3/manifests/sha256.json \
+    --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_manifest ../data/wmap/manifests/sha256.json \
+    --ell_min_planck 30 --ell_max_planck 1500 \
+    --ell_min_wmap 30 --ell_max_wmap 800 \
+    --variant C --mc_samples 10000
+```
+
+**Output**:
+- `planck_results.json` - Planck statistical results
+- `wmap_results.json` - WMAP statistical results
+- `combined_verdict.md` - **READ THIS for PASS/FAIL decision**
+- `figures/*.png` - All diagnostic plots
+
+### High-Confidence Run (100k MC Samples)
+
+For publication-grade analysis, increase MC samples to 100,000:
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/spectrum.txt \
+    --planck_model ../data/planck_pr3/raw/model.txt \
+    --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --mc_samples 100000 \
+    --variant C
+```
+
+**Note**: 100k MC samples provides stronger statistical confidence but takes ~10x longer (~5-10 minutes vs ~30-60 seconds).
+
+### Command-Line Options
+
+#### Required
+- `--planck_obs`: Planck observed spectrum file (required)
+
+#### Optional: Planck Data
+- `--planck_model`: Planck model spectrum file (default: zeros)
+- `--planck_cov`: Planck covariance matrix (enables whitening, court-grade)
+- `--planck_manifest`: SHA-256 manifest for Planck data validation
+- `--ell_min_planck`: Minimum Planck multipole (default: 30)
+- `--ell_max_planck`: Maximum Planck multipole (default: 1500)
+
+#### Optional: WMAP Data
+- `--wmap_obs`: WMAP observed spectrum file
+- `--wmap_model`: WMAP model spectrum file (default: zeros)
+- `--wmap_cov`: WMAP covariance matrix (enables whitening)
+- `--wmap_manifest`: SHA-256 manifest for WMAP data validation
+- `--ell_min_wmap`: Minimum WMAP multipole (default: 30)
+- `--ell_max_wmap`: Maximum WMAP multipole (default: 800)
+
+#### Test Parameters
+- `--variant {A,B,C,D}`: Architecture variant to test (default: C)
+  - **C** = Explicit Frame Synchronization (predicts periodic signal)
+  - **A** = No Synchronization (predicts null)
+  - **B** = Implicit Synchronization (predicts null for comb test)
+  - **D** = Hierarchical Synchronization (scale-dependent)
+- `--mc_samples`: Number of Monte Carlo samples (default: 5000 for candidate-grade, 100000 for strong)
+- `--seed`: Random seed for reproducibility (default: 42, pre-registered)
+
+#### Output
+- `--output_dir`: Custom output directory (default: auto-generated timestamp)
+
+### Understanding the Output
+
+The script creates a structured output directory:
+
+```
+out/real_runs/cmb_comb_<timestamp>/
+├── planck_results.json          # Full Planck results (JSON)
+├── wmap_results.json            # Full WMAP results (JSON)
+├── combined_verdict.md          # ★ COURT-GRADE PASS/FAIL REPORT ★
+└── figures/
+    ├── residuals_with_fit.png   # Planck residuals + fitted sinusoid
+    ├── null_distribution.png    # Planck p-value visualization
+    ├── residuals_with_fit_1.png # WMAP residuals + fitted sinusoid
+    └── null_distribution_1.png  # WMAP p-value visualization
+```
+
+**Key file**: `combined_verdict.md` contains the PASS/FAIL decision based on protocol criteria.
+
+### Court-Grade vs Candidate-Grade
+
+**Candidate-Grade** (default):
+- Uses diagonal uncertainties only
+- 5,000 MC samples
+- Suitable for initial exploration
+- ~30-60 seconds runtime
+
+**Court-Grade** (recommended for publication):
+- Requires full covariance matrix (`--planck_cov`, `--wmap_cov`)
+- 100,000 MC samples (`--mc_samples 100000`)
+- Suitable for peer review
+- ~5-10 minutes runtime
+
+The script will print warnings if covariance is not provided:
+
+```
+WARNING (Planck): Diagonal uncertainties only.
+This is candidate-grade only. Court-grade requires covariance.
+```
+
+### Example Session
+
+```bash
+$ cd forensic_fingerprint
+
+$ python run_real_data_cmb_comb.py \
+    --planck_obs ../data/planck_pr3/raw/spectrum.txt \
+    --planck_model ../data/planck_pr3/raw/model.txt \
+    --wmap_obs ../data/wmap/raw/wmap_spectrum.txt \
+    --variant C --mc_samples 10000
+
+================================================================================
+UBT FORENSIC FINGERPRINT - ONE-COMMAND CMB COMB TEST
+================================================================================
+Output directory: out/real_runs/cmb_comb_20260110_150423
+Variant: C
+MC samples: 10000
+Random seed: 42
+
+================================================================================
+RUNNING PLANCK PR3 ANALYSIS
+================================================================================
+
+Loading Planck data...
+Loaded 1471 multipoles (ℓ = 30 to 1500)
+
+Using diagonal uncertainties (no covariance provided)
+Generating null distribution (10000 trials, this may take a moment)...
+
+============================================================
+CMB COMB TEST RESULTS
+============================================================
+Dataset: Planck PR3
+Whitening: NO (diagonal only)
+Best period: Δℓ = 255
+Amplitude: A = 0.1234
+Phase: φ = 1.5708 rad (90.00°)
+Max Δχ²: 15.67
+P-value: 3.45e-03
+Significance: CANDIDATE
+============================================================
+
+Results saved to: out/real_runs/cmb_comb_20260110_150423/planck_results.json
+
+[... WMAP analysis follows ...]
+
+================================================================================
+GENERATING COMBINED VERDICT
+================================================================================
+
+Combined verdict saved to: out/real_runs/cmb_comb_20260110_150423/combined_verdict.md
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
+
+All results saved to: out/real_runs/cmb_comb_20260110_150423
+
+Key files:
+  - planck_results.json
+  - wmap_results.json
+  - combined_verdict.md (READ THIS FOR PASS/FAIL DECISION)
+  - figures/*.png
+
+Quick Summary:
+  Planck: p = 3.45e-03, period = 255, sig = candidate
+  WMAP:   p = 4.21e-02, period = 255, sig = candidate
+
+See combined_verdict.md for detailed PASS/FAIL evaluation.
+```
+
+### Next Steps
+
+After running:
+
+1. **Read `combined_verdict.md`** - Contains PASS/FAIL decision and detailed statistics
+2. **Check figures** - Visual inspection of residuals and fits
+3. **Archive results** - If PASS, follow archiving procedures (see [Archiving Results](#archiving-results))
+4. **Share** - JSON files are machine-readable for independent replication
+
+---
+
 ## Data Download and Validation
+
+**Note**: If you've already downloaded data and just want to run the test, use the [Quick Real Run](#quick-real-run-one-command) above.
 
 ### Step 1: Download Planck PR3 Data
 
