@@ -192,14 +192,37 @@ pytest tests/test_forensic_fingerprint.py -v
 
 CI/CD via GitHub Actions: `.github/workflows/forensic_fingerprint.yml`
 
-## LaTeX Documentation
+## Related Documentation
 
-Full LaTeX appendix: `speculative_extensions/appendices/appendix_F_fingerprint_protocol.tex`
+### Core Protocol
+- **PROTOCOL.md** - Complete pre-registered protocol specification (LOCKED parameters)
+- **REPO_GOVERNANCE.md** - Repository governance and "No-Fit / No Post-Hoc" policy
 
-Include in UBT documents with:
-```latex
-\input{speculative_extensions/appendices/appendix_F_fingerprint_protocol}
-```
+### Implementation
+
+ - **tools/planck_validation/** - Planck 2018 parameter mapping implementation
+  - `constants.py` - LOCKED architecture parameters (RS_N=255, RS_K=200, OFDM_CHANNELS=16)
+  - `mapping.py` - Pre-registered mappings (M_payload, M_parity, M_ns)
+  - `metrics.py` - Statistical evaluation (z-scores, chi-square, p-values)
+  - `report.py` - Report generation (markdown, CSV, JSON)
+- **tools/data_provenance/** - Dataset verification tools
+  - `hash_dataset.py` - Compute SHA-256 hashes for court-grade provenance
+  - `validate_manifest.py` - Validate files against pre-registered hashes
+
+### Data Scaffolding
+- **data/README.md** - Data directory overview
+- **data/planck_2018/README.md** - Planck 2018 download instructions and hashes
+- **data/wmap_9yr/README.md** - WMAP 9-year download instructions and hashes
+
+### Testing
+- **tests/test_forensic_fingerprint.py** - Tests for CMB comb, grid 255, invariance
+- **tests/test_planck_validation_mapping.py** - Tests for Planck mapping (enforces locked values)
+- **.github/workflows/forensic_fingerprint.yml** - CI/CD for forensic tests
+- **.github/workflows/planck_validation.yml** - CI/CD for Planck validation
+
+### LaTeX Appendices
+- **speculative_extensions/appendices/appendix_F_fingerprint_protocol.tex** - Protocol LaTeX
+- **speculative_extensions/appendices/appendix_PX_planck_validation.tex** - Planck mapping LaTeX
 
 ## Version History
 
