@@ -19,6 +19,18 @@ from pathlib import Path
 import warnings
 
 
+# Constants for data parsing and validation
+# Threshold for distinguishing Dl from Cl format:
+# If median power spectrum value > this threshold, assume Dl format
+# Rationale: CMB Cl values at ell > 10 are typically < 1000 μK²,
+# while Dl values are typically > 1000 μK² (Dl ≈ ell(ell+1)Cl/2π)
+DL_CL_THRESHOLD = 1000.0
+
+# Default uncertainty estimate when not provided in file
+# Used for model files which typically don't include errors
+DEFAULT_SIGMA_FRACTION = 0.01  # 1% of signal
+
+
 def load_planck_data(
     obs_file,
     model_file=None,
@@ -227,8 +239,8 @@ def _load_planck_text(filepath):
         sigma = data[:, 2]
     else:
         # If no sigma provided, estimate from scatter (not ideal)
-        warnings.warn(f"No uncertainties in {filepath}. Estimating from 1% of signal.")
-        sigma = 0.01 * np.abs(cl)
+        warnings.warn(f"No uncertainties in {filepath}. Estimating from {DEFAULT_SIGMA_FRACTION*100}% of signal.")
+        sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
     
     return ell, cl, sigma
 
@@ -291,15 +303,15 @@ def _load_planck_minimum_format(filepath):
             ell = data[:, 0].astype(int)
             cl_or_dl = data[:, 1]
             
-            # Convert Dl to Cl if needed (heuristic: if values > 1000, likely Dl)
-            if np.median(cl_or_dl[ell > 10]) > 1000:
+            # Convert Dl to Cl if needed (heuristic: if values > DL_CL_THRESHOLD, likely Dl)
+            if np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD:
                 # Likely Dl format: Dl = l(l+1)Cl/(2π)
                 cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
                 cl[ell == 0] = 0.0  # Handle ell=0 case
             else:
                 cl = cl_or_dl
             
-            sigma = 0.01 * np.abs(cl)
+            sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
             return ell, cl, sigma
             
         except Exception as e:
@@ -360,8 +372,8 @@ def _load_planck_minimum_format(filepath):
     cl_or_dl = data[:, tt_col]
     
     # Determine if Dl or Cl format
-    # Heuristic: if column name contains 'DL' or values are large (>1000 for ell>10), assume Dl
-    is_dl_format = 'DL' in columns[tt_col].upper() or np.median(cl_or_dl[ell > 10]) > 1000
+    # Heuristic: if column name contains 'DL' or values are large (>DL_CL_THRESHOLD for ell>10), assume Dl
+    is_dl_format = 'DL' in columns[tt_col].upper() or np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD
     
     if is_dl_format:
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
@@ -373,8 +385,8 @@ def _load_planck_minimum_format(filepath):
         cl = cl_or_dl
     
     # Model files typically don't include uncertainties
-    # Estimate as 1% of signal
-    sigma = 0.01 * np.abs(cl)
+    # Estimate as DEFAULT_SIGMA_FRACTION of signal
+    sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
     sigma[sigma == 0] = 1e-10  # Avoid exact zeros
     
     return ell, cl, sigma
