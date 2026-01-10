@@ -1,0 +1,19 @@
+{
+  "generated": "2026-01-10T23:17:31.274851",
+  "tool": "hash_dataset.py",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "filename": "COM_PowerSpect_CMB-TT-full_R3.01.txt",
+      "size_bytes": 56419,
+      "sha256": "0f47ba7feb66497e11f2d6330887c0e648c1ba91a1745982ab1fe49a3324a56c",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt"
+    },
+    {
+      "filename": "COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt",
+      "size_bytes": 34147,
+      "sha256": "6756dc06a91fe18bcad6087d7d6b4148ddb38d33eca18cec0938afbb80b75cfb",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt"
+    }
+  ]
+}
