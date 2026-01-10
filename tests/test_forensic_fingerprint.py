@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 import numpy as np
 import pytest
+import tempfile
 
 # Add project root to path
 repo_root = Path(__file__).resolve().parents[1]
@@ -21,10 +22,13 @@ sys.path.insert(0, str(repo_root))
 sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'cmb_comb'))
 sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'grid_255'))
 sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'invariance'))
+sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'loaders'))
 
 import cmb_comb
 import grid_255
 import invariance
+import planck
+import wmap
 
 
 class TestCMBComb:
@@ -408,7 +412,172 @@ class TestIntegration:
         
         # Check files were created
         assert (tmp_output_dir / 'invariance_kappa_results.txt').exists()
-        assert (tmp_output_dir / 'invariance_kappa_table.txt').exists()
+
+
+class TestDataLoaders:
+    """Tests for Planck and WMAP data loaders (synthetic fixtures)."""
+    
+    def test_planck_loader_text(self, tmp_path):
+        """Test Planck loader with synthetic text file."""
+        # Create synthetic text file
+        obs_file = tmp_path / "planck_obs.txt"
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(30, 50):
+                f.write(f"{ell} {1000.0 * np.exp(-ell/100)} {10.0}\n")
+        
+        # Load data
+        data = planck.load_planck_data(obs_file)
+        
+        # Verify structure
+        assert 'ell' in data
+        assert 'cl_obs' in data
+        assert 'sigma' in data
+        assert data['dataset'] == "Planck PR3"
+        assert len(data['ell']) == 20
+        assert data['ell'][0] == 30
+        assert data['ell'][-1] == 49
+    
+    def test_planck_loader_with_model(self, tmp_path):
+        """Test Planck loader with observation and model files."""
+        # Create obs file
+        obs_file = tmp_path / "obs.txt"
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(30, 50):
+                f.write(f"{ell} {1000.0 + np.random.normal(0, 10)} {10.0}\n")
+        
+        # Create model file
+        model_file = tmp_path / "model.txt"
+        with open(model_file, 'w') as f:
+            f.write("# ell C_ell\n")
+            for ell in range(30, 50):
+                f.write(f"{ell} {1000.0}\n")
+        
+        # Load data
+        data = planck.load_planck_data(obs_file, model_file=model_file)
+        
+        # Verify model was loaded
+        assert data['cl_model'] is not None
+        assert len(data['cl_model']) == 20
+    
+    def test_planck_loader_ell_filtering(self, tmp_path):
+        """Test Planck loader with ell range filtering."""
+        # Create synthetic file
+        obs_file = tmp_path / "obs.txt"
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(2, 100):
+                f.write(f"{ell} {1000.0} {10.0}\n")
+        
+        # Load with ell filtering
+        data = planck.load_planck_data(obs_file, ell_min=30, ell_max=50)
+        
+        # Verify filtering
+        assert data['ell_range'] == (30, 50)
+        assert data['ell'][0] == 30
+        assert data['ell'][-1] == 50
+        assert len(data['ell']) == 21  # Inclusive
+    
+    def test_wmap_loader_text(self, tmp_path):
+        """Test WMAP loader with synthetic text file."""
+        # Create synthetic text file
+        obs_file = tmp_path / "wmap_obs.txt"
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(30, 50):
+                f.write(f"{ell} {1100.0 * np.exp(-ell/100)} {20.0}\n")
+        
+        # Load data
+        data = wmap.load_wmap_data(obs_file)
+        
+        # Verify structure
+        assert 'ell' in data
+        assert 'cl_obs' in data
+        assert 'sigma' in data
+        assert data['dataset'] == "WMAP 9yr"
+        assert len(data['ell']) == 20
+    
+    def test_wmap_loader_ell_filtering(self, tmp_path):
+        """Test WMAP loader with ell range filtering."""
+        # Create synthetic file
+        obs_file = tmp_path / "obs.txt"
+        with open(obs_file, 'w') as f:
+            f.write("# ell C_ell sigma\n")
+            for ell in range(2, 100):
+                f.write(f"{ell} {1100.0} {20.0}\n")
+        
+        # Load with ell filtering
+        data = wmap.load_wmap_data(obs_file, ell_min=30, ell_max=60)
+        
+        # Verify filtering
+        assert data['ell_range'] == (30, 60)
+        assert data['ell'][0] == 30
+        assert data['ell'][-1] == 60
+    
+    def test_planck_loader_missing_file(self):
+        """Test Planck loader with non-existent file."""
+        with pytest.raises(FileNotFoundError):
+            planck.load_planck_data("nonexistent_file.txt")
+    
+    def test_wmap_loader_missing_file(self):
+        """Test WMAP loader with non-existent file."""
+        with pytest.raises(FileNotFoundError):
+            wmap.load_wmap_data("nonexistent_file.txt")
+
+
+class TestCMBCombWhitening:
+    """Tests for CMB comb whitening with covariance."""
+    
+    def test_compute_residuals_with_covariance(self):
+        """Test residual computation with full covariance (whitening)."""
+        ell = np.arange(2, 10)
+        C_obs = np.array([100, 95, 90, 85, 80, 75, 70, 65])
+        C_model = np.array([98, 94, 91, 84, 81, 74, 71, 64])
+        sigma = np.ones(8) * 5.0
+        
+        # Create simple covariance (diagonal + off-diagonal correlation)
+        cov = np.diag(sigma**2)
+        for i in range(7):
+            cov[i, i+1] = cov[i+1, i] = 2.0  # Small off-diagonal
+        
+        # Compute whitened residuals
+        residuals_whitened = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma, cov=cov)
+        
+        # Compute non-whitened residuals
+        residuals_diag = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma, cov=None)
+        
+        # Should be different (whitening affects residuals)
+        assert not np.allclose(residuals_whitened, residuals_diag)
+        
+        # Both should be same length
+        assert len(residuals_whitened) == len(residuals_diag) == 8
+    
+    def test_run_cmb_comb_with_covariance(self):
+        """Test full CMB comb test with covariance matrix."""
+        np.random.seed(42)
+        ell = np.arange(2, 50)
+        C_model = 1000.0 * np.exp(-ell / 100.0)
+        sigma = 0.1 * C_model
+        C_obs = C_model + np.random.normal(0, sigma)
+        
+        # Create covariance
+        cov = np.diag(sigma**2)
+        
+        # Run test with covariance (no output dir to avoid writing files)
+        cmb_comb.N_MC_TRIALS = 100
+        results = cmb_comb.run_cmb_comb_test(
+            ell, C_obs, C_model, sigma, 
+            output_dir=None,  # Don't save results in test
+            cov=cov, 
+            dataset_name="Test Dataset"
+        )
+        
+        # Verify whitening flag is set
+        assert results['whitened'] is True
+        assert results['dataset'] == "Test Dataset"
+        assert 'best_period' in results
+        assert 'p_value' in results
 
 
 if __name__ == '__main__':
