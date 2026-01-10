@@ -650,6 +650,126 @@ class TestDataLoaders:
         assert len(data['ell']) == 20
         assert data['ell'][0] == 30
         assert data['sigma'][0] == 10.0
+    
+    def test_planck_loader_tt_full_format(self, tmp_path):
+        """Test Planck loader with TT-full format (l Dl -dDl +dDl)."""
+        # Create TT-full format file as described in the problem statement
+        tt_full_file = tmp_path / "COM_PowerSpect_CMB-TT-full_R3.01.txt"
+        with open(tt_full_file, 'w') as f:
+            f.write("# some comment\n")
+            f.write("# l Dl -dDl +dDl\n")
+            # Use realistic Dl values (larger than Cl)
+            # At ell=30, Dl ~ 1000, Cl ~ 1000 * 2π / (30*31) ~ 6.7
+            f.write("30 1000 -10 10\n")
+            f.write("31 990 -11 9\n")
+            f.write("32 980 -12 8\n")
+        
+        # Load data
+        data = planck.load_planck_data(tt_full_file)
+        
+        # Verify structure
+        assert 'ell' in data
+        assert 'cl_obs' in data
+        assert 'sigma' in data
+        assert len(data['ell']) == 3
+        assert data['ell'][0] == 30
+        assert data['ell'][1] == 31
+        assert data['ell'][2] == 32
+        
+        # Verify Dl was converted to Cl
+        # Cl = Dl * 2π / [l(l+1)]
+        # For ell=30, Dl=1000: Cl = 1000 * 2π / (30*31) ≈ 6.754
+        expected_cl_30 = 1000.0 * (2.0 * np.pi) / (30 * 31)
+        np.testing.assert_allclose(data['cl_obs'][0], expected_cl_30, rtol=1e-5)
+        
+        # Verify sigma is derived from error bars
+        # sigma should be max(abs(-10), abs(10)) = 10 in Dl units
+        # converted to Cl units: 10 * 2π / (30*31)
+        expected_sigma_30 = 10.0 * (2.0 * np.pi) / (30 * 31)
+        np.testing.assert_allclose(data['sigma'][0], expected_sigma_30, rtol=1e-5)
+        
+        # For ell=31, sigma should be max(abs(-11), abs(9)) = 11
+        expected_sigma_31 = 11.0 * (2.0 * np.pi) / (31 * 32)
+        np.testing.assert_allclose(data['sigma'][1], expected_sigma_31, rtol=1e-5)
+    
+    def test_planck_loader_tt_full_format_ell_variant(self, tmp_path):
+        """Test TT-full format with 'ell' instead of 'l' in header."""
+        tt_full_file = tmp_path / "planck_tt_full_ell.txt"
+        with open(tt_full_file, 'w') as f:
+            f.write("# ell Dl -dDl +dDl\n")
+            f.write("30 1000 -10 10\n")
+            f.write("31 990 -11 9\n")
+        
+        # Should work with 'ell' as well
+        data = planck.load_planck_data(tt_full_file)
+        
+        assert len(data['ell']) == 2
+        assert data['ell'][0] == 30
+        assert data['ell'][1] == 31
+    
+    def test_planck_loader_minimum_format_still_works(self, tmp_path):
+        """Test that minimum format files are still correctly routed and parsed."""
+        # Create a file that should go to minimum format loader
+        min_file = tmp_path / "COM_PowerSpect_CMB-base-plikHM-minimum_R3.01.txt"
+        with open(min_file, 'w') as f:
+            f.write("# Planck PR3 minimum model file\n")
+            f.write("# L  TT  TE  EE\n")
+            # Use realistic Dl values
+            for ell in range(30, 35):
+                dl_tt = 6000.0 * np.exp(-(ell - 30) / 100.0)
+                f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
+        
+        # Load data
+        data = planck.load_planck_data(min_file)
+        
+        # Verify it was loaded correctly
+        assert len(data['ell']) == 5
+        assert data['ell'][0] == 30
+        # Should have converted from Dl to Cl
+        assert np.all(data['cl_obs'] < 1000)
+    
+    def test_planck_loader_tt_full_not_routed_to_minimum(self, tmp_path):
+        """Test that TT-full files are NOT routed to minimum format loader."""
+        # Create TT-full file
+        tt_full_file = tmp_path / "test_tt_full.txt"
+        with open(tt_full_file, 'w') as f:
+            f.write("# l Dl -dDl +dDl\n")
+            f.write("30 1000 -10 10\n")
+        
+        # This should NOT raise the "Could not find TT column" error
+        # that would happen if it was routed to minimum format loader
+        try:
+            data = planck.load_planck_data(tt_full_file)
+            # Should succeed
+            assert len(data['ell']) == 1
+        except ValueError as e:
+            if "Could not find TT column" in str(e):
+                pytest.fail("TT-full file was incorrectly routed to minimum format loader")
+            else:
+                raise
+    
+    def test_planck_loader_minimum_format_error_message(self, tmp_path):
+        """Test improved error message when TT column is not found in minimum format."""
+        # Create a malformed file that will be routed to minimum format
+        # but doesn't have the expected columns
+        bad_file = tmp_path / "bad-minimum-file.txt"
+        with open(bad_file, 'w') as f:
+            # Header with TT keyword but wrong structure
+            f.write("# L  NotTT  OtherCol\n")
+            f.write("30 1000 500\n")
+        
+        # This should raise an error with helpful message
+        # (This file will be routed to minimum format because of filename pattern
+        # or we need to trigger the minimum format path somehow)
+        # Let's use a more explicit trigger
+        bad_file2 = tmp_path / "test-minimum-wrong.txt"
+        with open(bad_file2, 'w') as f:
+            # Use header that triggers minimum format detection but has wrong columns
+            f.write("# L  TE  EE\n")  # Has TE/EE but no TT
+            f.write("30 1000 500\n")
+        
+        with pytest.raises(ValueError, match="Could not find TT column"):
+            planck.load_planck_data(bad_file2)
 
 
 

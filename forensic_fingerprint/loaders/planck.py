@@ -187,11 +187,11 @@ def _load_planck_text(filepath):
         Uncertainties (1-sigma)
     """
     # First, check if file is HTML (indicates wrong URL or 404)
-    # Also check for minimum format indicators in header
+    # Also scan through comment lines to find the header with column names
     with open(filepath, 'r') as f:
-        first_line = f.readline().strip()
+        lines = f.readlines()
     
-    if first_line.startswith('<!DOCTYPE') or first_line.startswith('<html'):
+    if lines and (lines[0].strip().startswith('<!DOCTYPE') or lines[0].strip().startswith('<html')):
         raise ValueError(
             f"HTML detected in {filepath}. This likely means:\n"
             f"  - Downloaded from wrong URL (got 404 page)\n"
@@ -200,24 +200,65 @@ def _load_planck_text(filepath):
             f"    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
         )
     
-    # Detect if this is a PR3 "minimum" model file
-    # Check both filename and file content (header line)
+    # Detect if this is a PR3 "minimum" model file or TT-full spectrum file
+    # Check both filename and file content (scan comment lines for header)
     filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
-    is_minimum_by_name = '-minimum_' in filename or 'plikHM' in filename
+    is_minimum_by_name = '-minimum_' in filename or '-minimum-theory' in filename or 'plikHM' in filename
     
-    # Check if first line (comment) has minimum format indicators
+    # Scan through comment lines to find the header with column names
     is_minimum_by_content = False
-    if first_line.startswith('#'):
-        header_cols = first_line.lstrip('#').strip().split()
-        # Check if header has multiple columns (TT, TE, EE, etc.)
-        if len(header_cols) > 3:
-            is_minimum_by_content = True
-        # Or check for specific column names
-        if any(col.upper() in ['TT', 'TE', 'EE', 'BB', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT'] for col in header_cols):
-            is_minimum_by_content = True
+    is_tt_full_format = False
     
+    # First pass: Look for TT-full format header (this is very specific)
+    for line in lines[:10]:  # Check first 10 lines for header
+        stripped = line.strip()
+        if not stripped.startswith('#'):
+            continue
+            
+        header_cols = stripped.lstrip('#').strip().split()
+        
+        # Skip lines with too few words
+        if len(header_cols) < 2:
+            continue
+        
+        # Check for TT-full format: exactly ['l','Dl','-dDl','+dDl'] or ['ell','Dl','-dDl','+dDl']
+        if len(header_cols) == 4:
+            col0 = header_cols[0].lower()
+            col1 = header_cols[1]
+            col2 = header_cols[2]
+            col3 = header_cols[3]
+            
+            if ((col0 in ['l', 'ell']) and 
+                (col1 in ['Dl', 'DL', 'dl']) and
+                (col2 in ['-dDl', '-dDL', '-ddl', '-Dl', '-DL', '-dl']) and
+                (col3 in ['+dDl', '+dDL', '+ddl', '+Dl', '+DL', '+dl'])):
+                is_tt_full_format = True
+                break
+    
+    # Second pass: If not TT-full, look for minimum format indicators
+    if not is_tt_full_format:
+        for line in lines[:10]:
+            stripped = line.strip()
+            if not stripped.startswith('#'):
+                continue
+                
+            header_cols = stripped.lstrip('#').strip().split()
+            
+            if len(header_cols) < 2:
+                continue
+            
+            # Check for specific column names indicating multiple spectra
+            if any(col.upper() in ['TT', 'TE', 'EE', 'BB', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT'] for col in header_cols):
+                is_minimum_by_content = True
+                break
+    
+    # Route to minimum format loader only if explicitly identified
     if is_minimum_by_name or is_minimum_by_content:
         return _load_planck_minimum_format(filepath)
+    
+    # Handle TT-full format (4 columns: ell, Dl, -dDl, +dDl)
+    if is_tt_full_format:
+        return _load_planck_tt_full_format(filepath)
     
     # Standard simple 3-column format
     try:
@@ -234,13 +275,114 @@ def _load_planck_text(filepath):
     ell = data[:, 0].astype(int)
     cl = data[:, 1]
     
+    # Check if values are in Dl format (large values) and convert to Cl if needed
+    # Heuristic: if median value > DL_CL_THRESHOLD for ell > 10, likely Dl format
+    if len(ell) > 0 and np.any(ell > 10):
+        median_val = np.median(cl[ell > 10]) if np.any(ell > 10) else np.median(cl)
+        if median_val > DL_CL_THRESHOLD:
+            # Convert from Dl to Cl: Cl = Dl * 2π / [l(l+1)]
+            with np.errstate(divide='ignore', invalid='ignore'):
+                cl = cl * (2.0 * np.pi) / (ell * (ell + 1.0))
+                cl[ell == 0] = 0.0
+                cl[ell == 1] = 0.0
+    
     # Sigma may or may not be present
     if data.shape[1] >= 3:
         sigma = data[:, 2]
+        
+        # If sigma looks like it's also in Dl units (for consistency with converted cl)
+        # Check if it's large and needs conversion
+        if len(ell) > 0 and np.any(ell > 10):
+            median_sigma = np.median(sigma[ell > 10]) if np.any(ell > 10) else np.median(sigma)
+            if median_sigma > DL_CL_THRESHOLD * 0.1:  # If sigma is also large
+                # Convert sigma from Dl units to Cl units
+                with np.errstate(divide='ignore', invalid='ignore'):
+                    sigma = sigma * (2.0 * np.pi) / (ell * (ell + 1.0))
+                    sigma[ell == 0] = 0.0
+                    sigma[ell == 1] = 0.0
     else:
         # If no sigma provided, estimate from scatter (not ideal)
         warnings.warn(f"No uncertainties in {filepath}. Estimating from {DEFAULT_SIGMA_FRACTION*100}% of signal.")
         sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
+    
+    return ell, cl, sigma
+
+
+def _load_planck_tt_full_format(filepath):
+    """
+    Load Planck PR3 TT-full spectrum format.
+    
+    Expected format (4 columns with asymmetric error bars):
+    # l  Dl  -dDl  +dDl
+    30  1000  -10  10
+    31  990   -11  9
+    ...
+    
+    The file contains:
+    - Column 0: multipole moment (ell)
+    - Column 1: Dl values (power spectrum in Dl units)
+    - Column 2: negative error bar (-dDl, typically negative value)
+    - Column 3: positive error bar (+dDl, typically positive value)
+    
+    We convert Dl to Cl and take sigma as the maximum of the absolute 
+    values of the two error bars (conservative approach).
+    
+    Parameters
+    ----------
+    filepath : Path
+        Path to TT-full format file
+    
+    Returns
+    -------
+    ell : ndarray
+        Multipole moments (integers)
+    cl : ndarray
+        Power spectrum values in Cl units (converted from Dl)
+    sigma : ndarray
+        Uncertainties (1-sigma, derived from asymmetric error bars)
+    """
+    try:
+        data = np.loadtxt(filepath, comments='#')
+    except Exception as e:
+        raise ValueError(f"Failed to load TT-full format file {filepath}: {e}")
+    
+    # Handle single-row case (numpy returns 1D array for single row)
+    if data.ndim == 1:
+        data = data.reshape(1, -1)
+    
+    if data.ndim != 2:
+        raise ValueError(f"Expected 2D array from {filepath}, got shape {data.shape}")
+    
+    if data.shape[1] != 4:
+        raise ValueError(
+            f"TT-full format expects exactly 4 columns (l, Dl, -dDl, +dDl), "
+            f"got {data.shape[1]} columns in {filepath}"
+        )
+    
+    ell = data[:, 0].astype(int)
+    dl = data[:, 1]
+    minus_ddl = data[:, 2]  # Negative error bar
+    plus_ddl = data[:, 3]   # Positive error bar
+    
+    # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
+    # Handle ell=0 and ell=1 cases to avoid division by zero
+    with np.errstate(divide='ignore', invalid='ignore'):
+        cl = dl * (2.0 * np.pi) / (ell * (ell + 1.0))
+        cl[ell == 0] = 0.0
+        cl[ell == 1] = 0.0
+    
+    # For sigma, take the maximum of absolute values of the two error bars
+    # This is a conservative approach. Alternative: (abs(minus_ddl) + abs(plus_ddl)) / 2
+    sigma_dl = np.maximum(np.abs(minus_ddl), np.abs(plus_ddl))
+    
+    # Convert sigma from Dl units to Cl units using the same conversion factor
+    with np.errstate(divide='ignore', invalid='ignore'):
+        sigma = sigma_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
+        sigma[ell == 0] = 0.0
+        sigma[ell == 1] = 0.0
+    
+    # Ensure no zeros in sigma (for numerical stability)
+    sigma[sigma == 0] = 1e-10
     
     return ell, cl, sigma
 
@@ -283,8 +425,9 @@ def _load_planck_minimum_format(filepath):
     for i, line in enumerate(lines):
         stripped = line.strip()
         if stripped.startswith('#'):
-            # Check if it contains expected column names
-            if 'TT' in stripped or 'Dl' in stripped or 'Cl' in stripped:
+            # Check if it contains expected column names for minimum format
+            # Look for spectrum indicators: TT, TE, EE, BB, or Dl/Cl
+            if any(keyword in stripped for keyword in ['TT', 'TE', 'EE', 'BB', 'Dl', 'Cl', 'DL', 'CL']):
                 header_idx = i
                 header_line = stripped.lstrip('#').strip()
                 break
@@ -297,6 +440,11 @@ def _load_planck_minimum_format(filepath):
         )
         try:
             data = np.loadtxt(filepath, comments='#')
+            
+            # Handle single-row case
+            if data.ndim == 1:
+                data = data.reshape(1, -1)
+            
             if data.shape[1] < 2:
                 raise ValueError(f"Expected at least 2 columns, got {data.shape[1]}")
             
@@ -341,6 +489,19 @@ def _load_planck_minimum_format(filepath):
             break
     
     if tt_col is None:
+        # Check if this looks like a TT-full spectrum file
+        filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
+        if len(columns) == 4:
+            col0 = columns[0].lower()
+            col1 = columns[1]
+            if col0 in ['l', 'ell'] and col1 in ['Dl', 'DL', 'dl']:
+                raise ValueError(
+                    f"Could not find TT column in header: {columns}\n"
+                    f"This file ({filename}) looks like a TT-full spectrum with header "
+                    f"'l Dl -dDl +dDl' or similar.\n"
+                    f"This format should be handled by the simple loader, not the minimum format loader.\n"
+                    f"Please report this as a bug - the file detection logic may need adjustment."
+                )
         raise ValueError(f"Could not find TT column in header: {columns}")
     
     # Load data (skip header and comment lines)
