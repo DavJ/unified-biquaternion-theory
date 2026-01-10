@@ -6,4 +6,9 @@ def test_audit_script_v2_passes():
     cmd = [sys.executable, str(root / "tools" / "audit_computed_not_reference.py"), "--root", str(root)]
     proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     print(proc.stdout)
+    
+    # Print JSON report location
+    json_report = root / "reports" / "audit_computed_not_reference.json"
+    print(f"\nJSON report available at: {json_report}")
+    
     assert proc.returncode == 0, "Audit failed; see output above"
