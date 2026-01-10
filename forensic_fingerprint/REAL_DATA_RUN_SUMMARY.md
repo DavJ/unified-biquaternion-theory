@@ -37,7 +37,9 @@ All datasets validated against SHA-256 manifests:
 
 Manifest files:
 - `data/planck_pr3/manifests/planck_pr3_tt_manifest.json`
-- `data/wmap/manifests/sha256.json`
+- `data/wmap/manifests/wmap_tt_manifest.json`
+
+**Note**: Legacy manifests named `sha256.json` are automatically detected as fallbacks.
 
 ## Test Parameters
 
