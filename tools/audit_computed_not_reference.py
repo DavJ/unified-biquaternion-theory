@@ -37,8 +37,11 @@ def classify_file(p: Path) -> str:
     parts = set(p.parts)
     if any(seg in parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__")):
         return "ignore"
+    # Generated reference constants file is exempt (contains external refs by design)
+    if p.name == "reference_constants.tex" and "tex" in parts:
+        return "ignore"
     # soft areas → WARN
-    if any(seg in parts for seg in ("reports","tools","tests","scripts","validation","docs","archive")):
+    if any(seg in parts for seg in ("reports","tools","tests","scripts","validation","docs","archive","speculative_extensions")):
         return "warn"
     if p.suffix.lower() == ".md":
         return "warn"
