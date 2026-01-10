@@ -209,6 +209,7 @@ def _load_planck_text(filepath):
     is_minimum_by_content = False
     is_tt_full_format = False
     
+    # First pass: Look for TT-full format header (this is very specific)
     for line in lines[:10]:  # Check first 10 lines for header
         stripped = line.strip()
         if not stripped.startswith('#'):
@@ -216,7 +217,7 @@ def _load_planck_text(filepath):
             
         header_cols = stripped.lstrip('#').strip().split()
         
-        # Skip lines with too few words or generic comments
+        # Skip lines with too few words
         if len(header_cols) < 2:
             continue
         
@@ -233,9 +234,19 @@ def _load_planck_text(filepath):
                 (col3 in ['+dDl', '+dDL', '+ddl', '+Dl', '+DL', '+dl'])):
                 is_tt_full_format = True
                 break
-        
-        # Check for minimum format indicators (multiple spectra columns)
-        if not is_tt_full_format:
+    
+    # Second pass: If not TT-full, look for minimum format indicators
+    if not is_tt_full_format:
+        for line in lines[:10]:
+            stripped = line.strip()
+            if not stripped.startswith('#'):
+                continue
+                
+            header_cols = stripped.lstrip('#').strip().split()
+            
+            if len(header_cols) < 2:
+                continue
+            
             # Check for specific column names indicating multiple spectra
             if any(col.upper() in ['TT', 'TE', 'EE', 'BB', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT'] for col in header_cols):
                 is_minimum_by_content = True
