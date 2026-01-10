@@ -151,11 +151,14 @@ def _load_planck_text(filepath):
     """
     Load Planck data from text file.
     
-    Expected format:
+    Expected format (simple 3-column):
     # ell  C_ell  sigma_C_ell
     2      1305.6  30.2
     3      2015.3  28.5
     ...
+    
+    Also supports PR3 "minimum" model format with multiple columns
+    and header line indicating column names.
     
     Parameters
     ----------
@@ -171,6 +174,27 @@ def _load_planck_text(filepath):
     sigma : ndarray
         Uncertainties (1-sigma)
     """
+    # First, check if file is HTML (indicates wrong URL or 404)
+    with open(filepath, 'r') as f:
+        first_line = f.readline().strip()
+    
+    if first_line.startswith('<!DOCTYPE') or first_line.startswith('<html'):
+        raise ValueError(
+            f"HTML detected in {filepath}. This likely means:\n"
+            f"  - Downloaded from wrong URL (got 404 page)\n"
+            f"  - File doesn't exist at the specified location\n"
+            f"  - Check URL and use correct PR3 cosmoparams directory:\n"
+            f"    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
+        )
+    
+    # Detect if this is a PR3 "minimum" model file
+    filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
+    is_minimum_format = '-minimum_' in filename or 'plikHM' in filename
+    
+    if is_minimum_format:
+        return _load_planck_minimum_format(filepath)
+    
+    # Standard simple 3-column format
     try:
         data = np.loadtxt(filepath, comments='#')
     except Exception as e:
@@ -192,6 +216,153 @@ def _load_planck_text(filepath):
         # If no sigma provided, estimate from scatter (not ideal)
         warnings.warn(f"No uncertainties in {filepath}. Estimating from 1% of signal.")
         sigma = 0.01 * np.abs(cl)
+    
+    return ell, cl, sigma
+
+
+def _load_planck_minimum_format(filepath):
+    """
+    Load Planck PR3 "minimum" model file format.
+    
+    The PR3 minimum model file has a header line with column names followed by data.
+    Format example:
+    # L  TT  TE  EE  BB  PP  TP
+    2  5.51e+01  -1.18e+01  1.34e-02  ...
+    3  2.29e+02  -2.99e+01  6.89e-03  ...
+    
+    We extract the 'L' (multipole) and 'TT' (TT power spectrum) columns.
+    The TT values are typically in Dl units (l(l+1)Cl/2π) and need to be
+    converted to Cl for consistency with cmb_comb residuals.
+    
+    Parameters
+    ----------
+    filepath : Path
+        Path to minimum format file
+    
+    Returns
+    -------
+    ell : ndarray
+        Multipole moments (integers)
+    cl : ndarray
+        TT power spectrum in Cl units (μK²)
+    sigma : ndarray
+        Uncertainties (estimated as 1% since not provided in model file)
+    """
+    # Read file and find header line
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
+    
+    # Find header line (starts with # and contains column names)
+    header_idx = None
+    header_line = None
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith('#'):
+            # Check if it contains expected column names
+            if 'TT' in stripped or 'Dl' in stripped or 'Cl' in stripped:
+                header_idx = i
+                header_line = stripped.lstrip('#').strip()
+                break
+    
+    if header_line is None:
+        # No header found, try simple parsing
+        warnings.warn(
+            f"No header found in {filepath}. "
+            f"Attempting to parse as standard format with L in col 0, TT in col 1."
+        )
+        try:
+            data = np.loadtxt(filepath, comments='#')
+            if data.shape[1] < 2:
+                raise ValueError(f"Expected at least 2 columns, got {data.shape[1]}")
+            
+            ell = data[:, 0].astype(int)
+            cl_or_dl = data[:, 1]
+            
+            # Convert Dl to Cl if needed (heuristic: if values > 1000, likely Dl)
+            if np.median(cl_or_dl[ell > 10]) > 1000:
+                # Likely Dl format: Dl = l(l+1)Cl/(2π)
+                cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
+                cl[ell == 0] = 0.0  # Handle ell=0 case
+            else:
+                cl = cl_or_dl
+            
+            sigma = 0.01 * np.abs(cl)
+            return ell, cl, sigma
+            
+        except Exception as e:
+            raise ValueError(f"Failed to parse minimum format file {filepath}: {e}")
+    
+    # Parse header to find column indices
+    columns = header_line.split()
+    
+    # Find L/ell column
+    ell_col = None
+    for i, col in enumerate(columns):
+        if col.upper() in ['L', 'ELL', 'MULTIPOLE']:
+            ell_col = i
+            break
+    
+    if ell_col is None:
+        # Assume first column is ell
+        ell_col = 0
+        warnings.warn(f"Could not find ell column in header, assuming column 0")
+    
+    # Find TT column (may be Dl_TT, Cl_TT, or just TT)
+    tt_col = None
+    for i, col in enumerate(columns):
+        col_upper = col.upper()
+        if col_upper in ['TT', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT']:
+            tt_col = i
+            break
+    
+    if tt_col is None:
+        raise ValueError(f"Could not find TT column in header: {columns}")
+    
+    # Load data (skip header and comment lines)
+    data_lines = []
+    for line in lines[header_idx + 1:]:
+        stripped = line.strip()
+        if stripped and not stripped.startswith('#'):
+            data_lines.append(stripped)
+    
+    if not data_lines:
+        raise ValueError(f"No data found in {filepath}")
+    
+    # Parse data
+    data = []
+    for line in data_lines:
+        try:
+            values = line.split()
+            data.append([float(v) for v in values])
+        except ValueError:
+            continue  # Skip malformed lines
+    
+    if not data:
+        raise ValueError(f"No valid data rows in {filepath}")
+    
+    data = np.array(data)
+    
+    # Extract columns
+    ell = data[:, ell_col].astype(int)
+    cl_or_dl = data[:, tt_col]
+    
+    # Determine if Dl or Cl format
+    # Heuristic: if column name contains 'DL' or values are large (>1000 for ell>10), assume Dl
+    is_dl_format = 'DL' in columns[tt_col].upper() or np.median(cl_or_dl[ell > 10]) > 1000
+    
+    if is_dl_format:
+        # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
+        with np.errstate(divide='ignore', invalid='ignore'):
+            cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
+            cl[ell == 0] = 0.0  # Handle ell=0
+            cl[ell == 1] = 0.0  # Handle ell=1
+    else:
+        cl = cl_or_dl
+    
+    # Model files typically don't include uncertainties
+    # Estimate as 1% of signal
+    sigma = 0.01 * np.abs(cl)
+    sigma[sigma == 0] = 1e-10  # Avoid exact zeros
     
     return ell, cl, sigma
 

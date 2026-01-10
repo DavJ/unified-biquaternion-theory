@@ -102,7 +102,7 @@ cd forensic_fingerprint
 
 python run_real_data_cmb_comb.py \
     --planck_obs ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-    --planck_model ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \
+    --planck_model ../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
     --planck_manifest ../data/planck_pr3/manifests/sha256.json \
     --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
     --wmap_manifest ../data/wmap/manifests/sha256.json \
@@ -297,15 +297,25 @@ bash tools/data_download/download_planck_pr3_cosmoparams.sh
 ```
 
 **Required files** (automatically downloaded):
-- `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT power spectrum
-- `COM_PowerSpect_CMB-TT-model_R3.01.txt` - Best-fit ΛCDM model
+- `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT power spectrum (~167 KB)
+- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Best-fit ΛCDM model
+
+**Sanity check** (after download):
+```bash
+# Check file sizes (approximate)
+ls -lh data/planck_pr3/raw/*.txt
+
+# Verify not HTML (should show numeric data, not <!DOCTYPE)
+head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt
+```
 
 **Expected output**:
 - Files downloaded to `data/planck_pr3/raw/`
 - Script prints next steps for hash computation
 
 **If download fails**: Follow manual instructions in `data/planck_pr3/README.md` or download directly from:
-- https://irsa.ipac.caltech.edu/Missions/planck.html (Release 3 → All-Sky Maps → Spectra)
+- https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/
 
 ### Step 2: Compute Planck Hashes
 
@@ -379,7 +389,7 @@ cd forensic_fingerprint/cmb_comb
 python cmb_comb.py \
     --dataset planck_pr3 \
     --input_obs ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-    --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \
+    --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
     --ell_min 30 \
     --ell_max 1500 \
     --output_dir ../out/cmb_comb/planck_pr3_run1
