@@ -405,22 +405,21 @@ def save_results_json(results, output_file):
     output_file : Path
         Output JSON file path
     """
-    # Create serializable copy (convert numpy arrays to lists)
-    results_copy = {}
-    for key, value in results.items():
-        if isinstance(value, np.ndarray):
-            results_copy[key] = value.tolist()
-        elif isinstance(value, (np.integer, np.floating)):
-            results_copy[key] = float(value)
-        elif isinstance(value, dict):
-            # Handle nested dicts (like all_periods)
-            results_copy[key] = {
-                str(k): {sk: float(sv) if isinstance(sv, (np.integer, np.floating)) else sv 
-                        for sk, sv in v.items()}
-                for k, v in value.items()
-            }
+    def convert_to_serializable(obj):
+        """Recursively convert numpy types to Python types."""
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, (np.integer, np.floating)):
+            return float(obj)
+        elif isinstance(obj, dict):
+            return {str(k): convert_to_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, (list, tuple)):
+            return [convert_to_serializable(item) for item in obj]
         else:
-            results_copy[key] = value
+            return obj
+    
+    # Create serializable copy
+    results_copy = convert_to_serializable(results)
     
     with open(output_file, 'w') as f:
         json.dump(results_copy, f, indent=2)
