@@ -99,6 +99,119 @@ def create_block_diagonal_covariance(sigma, block_size=10):
     return cov
 
 
+def validate_covariance(cov, ell):
+    """
+    Validate covariance matrix and compute diagnostics.
+    
+    Checks:
+    - Symmetry
+    - Positive definiteness (via eigenvalues)
+    - Computes condition number
+    - Returns metadata for provenance
+    
+    Parameters
+    ----------
+    cov : ndarray
+        Covariance matrix (n x n)
+    ell : array-like
+        Multipole moments (for range reporting)
+    
+    Returns
+    -------
+    dict
+        Validation metadata with keys:
+        - is_symmetric: bool
+        - is_positive_definite: bool
+        - min_eigenvalue: float
+        - max_eigenvalue: float
+        - condition_number: float
+        - ell_range: tuple (ell_min, ell_max)
+        - needs_regularization: bool
+    """
+    n = cov.shape[0]
+    
+    # Check symmetry
+    is_symmetric = np.allclose(cov, cov.T, rtol=1e-10, atol=1e-12)
+    
+    # Compute eigenvalues (for positive definiteness and condition number)
+    eigenvalues = np.linalg.eigvalsh(cov)
+    min_eig = np.min(eigenvalues)
+    max_eig = np.max(eigenvalues)
+    
+    # Check positive definiteness
+    is_positive_definite = min_eig > 0
+    
+    # Condition number (ratio of largest to smallest eigenvalue)
+    if min_eig > 0:
+        condition_number = max_eig / min_eig
+    else:
+        condition_number = np.inf
+    
+    # Determine if regularization is needed
+    # Use threshold: condition number > 1e10 or min eigenvalue < 1e-10
+    needs_regularization = (not is_positive_definite) or (condition_number > 1e10)
+    
+    metadata = {
+        'is_symmetric': is_symmetric,
+        'is_positive_definite': is_positive_definite,
+        'min_eigenvalue': float(min_eig),
+        'max_eigenvalue': float(max_eig),
+        'condition_number': float(condition_number),
+        'ell_range': (int(ell[0]), int(ell[-1])),
+        'needs_regularization': needs_regularization,
+        'matrix_size': n
+    }
+    
+    return metadata
+
+
+def apply_ridge_regularization(cov, lambda_ridge=None, target_condition=1e8):
+    """
+    Apply ridge regularization to ill-conditioned covariance matrix.
+    
+    Adds λI to covariance: Σ_reg = Σ + λI
+    
+    Parameters
+    ----------
+    cov : ndarray
+        Original covariance matrix
+    lambda_ridge : float, optional
+        Regularization parameter. If None, automatically determined.
+    target_condition : float
+        Target condition number after regularization (default: 1e8)
+    
+    Returns
+    -------
+    cov_reg : ndarray
+        Regularized covariance matrix
+    lambda_used : float
+        Regularization parameter used
+    """
+    if lambda_ridge is None:
+        # Auto-determine lambda from eigenvalues
+        eigenvalues = np.linalg.eigvalsh(cov)
+        min_eig = np.min(eigenvalues)
+        max_eig = np.max(eigenvalues)
+        
+        # Set lambda to bring condition number to target_condition
+        # After regularization: cond = (max_eig + λ) / (min_eig + λ)
+        # Solve for λ: target_condition * (min_eig + λ) = max_eig + λ
+        #               λ * (target_condition - 1) = max_eig - target_condition * min_eig
+        
+        if min_eig <= 0:
+            # If not positive definite, add small offset
+            lambda_ridge = abs(min_eig) + max_eig * 1e-6
+        else:
+            lambda_ridge = max(0, (max_eig - target_condition * min_eig) / (target_condition - 1))
+            # Ensure at least a small regularization
+            lambda_ridge = max(lambda_ridge, max_eig * 1e-10)
+    
+    # Apply regularization
+    cov_reg = cov + lambda_ridge * np.eye(cov.shape[0])
+    
+    return cov_reg, lambda_ridge
+
+
 def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal'):
     """
     Compute normalized residuals with optional whitening.
@@ -114,9 +227,10 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
     sigma : array-like
         Uncertainty (diagonal covariance assumed if cov is None)
     cov : array-like, optional
-        Full covariance matrix. If provided and whiten_mode='covariance', residuals are whitened.
+        Full covariance matrix. If provided and whiten_mode='covariance' or 'cov_diag', 
+        residuals are whitened.
     whiten_mode : str
-        Whitening mode: 'none', 'diagonal', 'covariance', or 'block-diagonal'
+        Whitening mode: 'none', 'diagonal', 'covariance', 'cov_diag', or 'block-diagonal'
     
     Returns
     -------
@@ -125,9 +239,18 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         - 'none': r = C_obs - C_model (no normalization)
         - 'diagonal': r = (C_obs - C_model) / sigma
         - 'covariance': r = L^-1 (C_obs - C_model) where L is Cholesky of cov
+        - 'cov_diag': r = (C_obs - C_model) / sqrt(diag(cov))
         - 'block-diagonal': r = L^-1 (C_obs - C_model) where L is Cholesky of block-diagonal cov
+    metadata : dict
+        Whitening metadata (condition number, regularization, etc.)
     """
     diff = C_obs - C_model
+    metadata = {
+        'whiten_mode': whiten_mode,
+        'regularization_used': False,
+        'lambda_ridge': None,
+        'cov_metadata': None
+    }
     
     if whiten_mode == 'none':
         # No whitening
@@ -135,15 +258,63 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
     elif whiten_mode == 'diagonal':
         # Use diagonal uncertainties
         residuals = diff / sigma
+    elif whiten_mode == 'cov_diag':
+        # Use diagonal extracted from covariance matrix
+        if cov is not None:
+            # Extract diagonal from covariance
+            sigma_from_cov = np.sqrt(np.diag(cov))
+            residuals = diff / sigma_from_cov
+            metadata['cov_metadata'] = {
+                'source': 'diagonal from covariance',
+                'matrix_size': cov.shape[0]
+            }
+        else:
+            print("WARNING: Covariance matrix not provided for 'cov_diag' mode. Falling back to 'diagonal'.")
+            residuals = diff / sigma
     elif whiten_mode == 'covariance':
         if cov is not None:
+            # Validate covariance
+            cov_validation = validate_covariance(cov, ell)
+            metadata['cov_metadata'] = cov_validation
+            
+            # Log validation results
+            print(f"Covariance validation:")
+            print(f"  Symmetric: {cov_validation['is_symmetric']}")
+            print(f"  Positive definite: {cov_validation['is_positive_definite']}")
+            print(f"  Min eigenvalue: {cov_validation['min_eigenvalue']:.6e}")
+            print(f"  Max eigenvalue: {cov_validation['max_eigenvalue']:.6e}")
+            print(f"  Condition number: {cov_validation['condition_number']:.6e}")
+            print(f"  ℓ-range: {cov_validation['ell_range']}")
+            
+            # Symmetrize if needed
+            if not cov_validation['is_symmetric']:
+                print("WARNING: Covariance not symmetric. Symmetrizing: cov = (cov + cov.T) / 2")
+                cov = 0.5 * (cov + cov.T)
+            
+            # Apply regularization if needed
+            if cov_validation['needs_regularization']:
+                print(f"WARNING: Covariance is ill-conditioned (cond={cov_validation['condition_number']:.2e})")
+                print("         Applying ridge regularization...")
+                cov, lambda_ridge = apply_ridge_regularization(cov)
+                metadata['regularization_used'] = True
+                metadata['lambda_ridge'] = float(lambda_ridge)
+                print(f"         Ridge parameter λ = {lambda_ridge:.6e}")
+                
+                # Re-validate
+                cov_validation_after = validate_covariance(cov, ell)
+                print(f"         After regularization:")
+                print(f"           Condition number: {cov_validation_after['condition_number']:.6e}")
+                print(f"           Min eigenvalue: {cov_validation_after['min_eigenvalue']:.6e}")
+            
             # Whiten using Cholesky decomposition of full covariance
             try:
                 L = np.linalg.cholesky(cov)
                 residuals = np.linalg.solve(L, diff)
-            except np.linalg.LinAlgError:
-                print("WARNING: Covariance matrix is not positive definite. Falling back to diagonal.")
+            except np.linalg.LinAlgError as e:
+                print(f"ERROR: Cholesky decomposition failed even after regularization: {e}")
+                print("       Falling back to diagonal.")
                 residuals = diff / sigma
+                metadata['fallback_to_diagonal'] = True
         else:
             print("WARNING: Covariance matrix not provided. Falling back to diagonal.")
             residuals = diff / sigma
@@ -159,7 +330,7 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
     else:
         raise ValueError(f"Unknown whitening mode: {whiten_mode}")
     
-    return residuals
+    return residuals, metadata
 
 
 def fit_sinusoid_linear(ell, residuals, period):
@@ -383,10 +554,10 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     print(f"Whitening mode: {whiten_mode}")
     
     # Determine if this is effectively whitened
-    whitened = (whiten_mode in ['covariance', 'block-diagonal'] and 
+    whitened = (whiten_mode in ['covariance', 'cov_diag', 'block-diagonal'] and 
                 (cov is not None or whiten_mode == 'block-diagonal'))
     
-    residuals = compute_residuals(ell, C_obs, C_model, sigma, cov, whiten_mode=whiten_mode)
+    residuals, whiten_metadata = compute_residuals(ell, C_obs, C_model, sigma, cov, whiten_mode=whiten_mode)
     
     # Step 2: Test all candidate periods
     results_per_period = {}
@@ -435,6 +606,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         'all_periods': results_per_period,
         'whitened': whitened,
         'whiten_mode': whiten_mode,
+        'whitening_metadata': whiten_metadata,
         'dataset': dataset_name,
         'architecture_variant': variant,
         'variant_valid': (variant == "C"),
@@ -491,7 +663,27 @@ def save_results(results, output_dir):
         f.write("="*60 + "\n")
         f.write(f"Dataset: {results.get('dataset', 'Unknown')}\n")
         f.write(f"Whitening mode: {results.get('whiten_mode', 'diagonal')}\n")
-        f.write(f"Best period: Δℓ = {results['best_period']}\n")
+        
+        # Add whitening metadata if available
+        if 'whitening_metadata' in results and results['whitening_metadata']:
+            meta = results['whitening_metadata']
+            f.write("\nWhitening Metadata:\n")
+            if 'regularization_used' in meta:
+                f.write(f"  Regularization used: {meta['regularization_used']}\n")
+            if meta.get('regularization_used') and 'lambda_ridge' in meta:
+                f.write(f"  Ridge parameter λ: {meta['lambda_ridge']:.6e}\n")
+            if 'cov_metadata' in meta and meta['cov_metadata']:
+                cov_meta = meta['cov_metadata']
+                if isinstance(cov_meta, dict) and 'condition_number' in cov_meta:
+                    f.write(f"  Covariance condition number: {cov_meta['condition_number']:.6e}\n")
+                    f.write(f"  Min eigenvalue: {cov_meta['min_eigenvalue']:.6e}\n")
+                    f.write(f"  Max eigenvalue: {cov_meta['max_eigenvalue']:.6e}\n")
+                    f.write(f"  Symmetric: {cov_meta['is_symmetric']}\n")
+                    f.write(f"  Positive definite: {cov_meta['is_positive_definite']}\n")
+                    if 'ell_range' in cov_meta:
+                        f.write(f"  ℓ-range compatibility: {cov_meta['ell_range']}\n")
+        
+        f.write(f"\nBest period: Δℓ = {results['best_period']}\n")
         f.write(f"Amplitude: A = {results['amplitude']:.6f}\n")
         f.write(f"Phase: φ = {results['phase']:.6f} rad\n")
         f.write(f"Max Δχ²: {results['max_delta_chi2']:.6f}\n")
@@ -805,10 +997,11 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
     parser.add_argument(
         '--whiten',
         type=str,
-        choices=['none', 'diagonal', 'covariance', 'block-diagonal'],
+        choices=['none', 'diagonal', 'covariance', 'cov_diag', 'block-diagonal'],
         default='diagonal',
         help='Whitening mode: none (no whitening), diagonal (default, use diagonal uncertainties), '
-             'covariance (full covariance matrix), block-diagonal (approximate covariance)'
+             'covariance (full covariance matrix), cov_diag (diagonal from covariance matrix), '
+             'block-diagonal (approximate covariance)'
     )
     
     # Legacy positional arguments for backward compatibility
