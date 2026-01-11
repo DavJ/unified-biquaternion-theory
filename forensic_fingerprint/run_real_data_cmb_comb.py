@@ -940,9 +940,9 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             print()
             sys.exit(1)
     
-    # Validate inputs
-    if args.planck_obs is None:
-        parser.error("--planck_obs is required")
+    # Validate inputs (skip for null-data mode)
+    if args.null_data is None and args.planck_obs is None:
+        parser.error("--planck_obs is required (unless using --null-data)")
     
     # PART A.2: Content-based rejection of likelihood/parameter files
     # Check file content for likelihood markers (not filename, as some valid model files may contain "minimum")
