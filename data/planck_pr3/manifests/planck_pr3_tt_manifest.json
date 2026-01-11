@@ -7,13 +7,13 @@
       "filename": "COM_PowerSpect_CMB-TT-full_R3.01.txt",
       "size_bytes": 56459,
       "sha256": "5f7aa09fe14511ebf7499d5259cf145b5c789edc8e1f809255f5901a48365468",
-      "path": "/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt"
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt"
     },
     {
       "filename": "COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt",
       "size_bytes": 34185,
       "sha256": "b608ab0a6f16991639e87e135a42ff29c9ca0dcf302bc27f59dc1247aba0bfa1",
-      "path": "/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt"
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt"
     }
   ]
 }
