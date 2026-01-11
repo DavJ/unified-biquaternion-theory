@@ -58,9 +58,9 @@ def find_repo_root(start_path=None):
         if (temp / '.git').exists():
             return temp
         temp = temp.parent
-    # Check root directory too
-    if (current.parent / '.git').exists():
-        return current.parent
+    # Check filesystem root too
+    if (temp / '.git').exists():
+        return temp
     
     # Second pass: If no .git found, look for combination of markers
     # that indicate the repository root (not just a subdirectory with README)
@@ -82,10 +82,10 @@ def find_repo_root(start_path=None):
             return temp
         temp = temp.parent
     
-    # Check root directory too
-    marker_count = sum(1 for marker in markers if (current.parent / marker).exists())
+    # Check filesystem root too
+    marker_count = sum(1 for marker in markers if (temp / marker).exists())
     if marker_count >= 3:
-        return current.parent
+        return temp
     
     raise FileNotFoundError(
         f"Could not find repository root. Searched from {start_path} upward. "
