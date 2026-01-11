@@ -15,6 +15,12 @@ PASS/FAIL Criteria:
 - PASS: Δℓ ≈ 255 appears in ≤1% of ΛCDM realizations
 - FAIL: Δℓ ≈ 255 appears frequently in pure ΛCDM
 
+Skeptic One-Liner:
+"If the Δℓ = 255 signal arose naturally from ΛCDM with standard cosmic variance 
+and instrumental noise, it would appear frequently in synthetic ΛCDM realizations. 
+Rarity in ΛCDM null simulations would suggest the signal is non-standard. It does 
+or does not."
+
 Note: This validates that the candidate signal is not a generic feature of ΛCDM.
 
 License: MIT

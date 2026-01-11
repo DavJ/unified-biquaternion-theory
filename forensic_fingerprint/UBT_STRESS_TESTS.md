@@ -24,6 +24,7 @@ This document consolidates results from **four independent, falsification-orient
 | **#2** | Polarization Channels (EE, TE) | ☐ PENDING | Results: TBD |
 | **#3** | ℓ-Range Ablation | ☐ PENDING | Results: TBD |
 | **#4** | Synthetic ΛCDM Null Controls | ☐ PENDING | Results: TBD |
+| **#5** | Phase Coherence | ☐ PENDING | Results: TBD |
 
 **Overall Verdict**: ☐ PENDING
 
@@ -175,6 +176,57 @@ python forensic_fingerprint/stress_tests/test_4_lcdm_null.py \
 
 ---
 
+## Test #5: Phase Coherence
+
+### Rationale
+If the Δℓ = 255 signal is a genuine structural feature, its phase should be stable across:
+- Different datasets (Planck vs WMAP)
+- Different preprocessing (raw diagonal vs covariance-whitened)
+
+Random noise or uncorrelated instrumental artifacts would produce random phases.
+
+### Methodology
+- Extract phase φ for Δℓ = 255 from multiple conditions:
+  - Planck TT (diagonal whitening)
+  - Planck TT (covariance whitening, if available)
+  - WMAP TT (diagonal whitening)
+  - WMAP TT (covariance whitening, if available)
+- Compute circular statistics:
+  - Circular mean and standard deviation
+  - Phase coherence score (mean resultant length)
+  - Pairwise phase differences
+- Test for coherent alignment vs random distribution
+
+### PASS / FAIL Criteria
+- **PASS**: Phase stable within ~15° (circular std dev ≤ 15°), coherence score ≥ 0.9
+- **FAIL**: Phase is random or varies > 30° between datasets/modes
+
+### Skeptic One-Liner
+"If the Δℓ = 255 signal were caused by random noise or uncorrelated instrumental 
+artifacts, phase would be random across datasets. Coherent phase across Planck 
+and WMAP, both raw and whitened, would suggest a physical or systematic origin. 
+It does or does not."
+
+### Results
+
+*To be filled after running:*
+```bash
+python forensic_fingerprint/stress_tests/test_5_phase_coherence.py \
+    --planck_obs data/planck_pr3/raw/TT_spectrum.txt \
+    --planck_model data/planck_pr3/raw/TT_model.txt \
+    --planck_cov data/planck_pr3/raw/TT_covariance.txt \
+    --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_model data/wmap/raw/wmap_tt_model_9yr_v5.txt \
+    --ell_min 30 --ell_max 800
+```
+
+**Status**: ☐ PENDING  
+**Verdict**: TBD
+
+**Interpretation**: _Results will be added here after test completion._
+
+---
+
 ## Overall Assessment
 
 ### Falsification Status
@@ -182,7 +234,7 @@ python forensic_fingerprint/stress_tests/test_4_lcdm_null.py \
 *This section will be updated after all tests complete.*
 
 **Criteria for "Survives Falsification"**:
-- ALL four tests must PASS
+- ALL five tests must PASS
 - Any FAIL result invalidates the candidate
 
 **Current Status**: ☐ PENDING
@@ -194,11 +246,12 @@ python forensic_fingerprint/stress_tests/test_4_lcdm_null.py \
 **This result [survives / does not survive] falsification attempts.**
 
 ### If All Tests PASS:
-The candidate structural anomaly at Δℓ ≈ 255 survives four independent falsification tests:
+The candidate structural anomaly at Δℓ ≈ 255 survives five independent falsification tests:
 1. It persists under covariance-aware whitening
-2. It propagates to polarization channels
+2. It propagates to polarization channels (if tested)
 3. It appears in multiple disjoint ℓ ranges
 4. It is rare in pure ΛCDM simulations
+5. It exhibits coherent phase across datasets and preprocessing
 
 **This does NOT constitute proof.** It upgrades the status from "initial observation" to "replicated anomaly requiring independent verification."
 
@@ -215,6 +268,7 @@ The candidate structural anomaly at Δℓ ≈ 255 does NOT survive stress testin
 - Test #2 FAIL: Signal is instrumental or scalar TT-only artifact
 - Test #3 FAIL: Signal is ℓ-window dependent, likely statistical fluctuation
 - Test #4 FAIL: Signal is a generic feature of ΛCDM, not anomalous
+- Test #5 FAIL: Signal has random/unstable phase, indicating noise origin
 
 **Conclusion**: The hypothesis of a discrete spacetime structure imprinting on CMB is falsified in this form.
 
@@ -240,7 +294,8 @@ forensic_fingerprint/stress_tests/
 ├── test_1_whitening.py
 ├── test_2_polarization.py
 ├── test_3_ablation.py
-└── test_4_lcdm_null.py
+├── test_4_lcdm_null.py
+└── test_5_phase_coherence.py
 ```
 
 **License**: MIT  

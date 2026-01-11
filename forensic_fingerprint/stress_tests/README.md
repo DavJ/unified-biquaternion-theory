@@ -128,6 +128,45 @@ python test_4_lcdm_null.py \
 - `lcdm_null_comparison.md` - Detailed analysis
 - `lcdm_null_histogram.png` - Histogram of best-fit Δℓ
 
+**Skeptic One-Liner**: "If Δℓ = 255 arose naturally from ΛCDM, it would appear 
+frequently in synthetic realizations. It does or does not."
+
+---
+
+### Test #5: Phase Coherence
+**File**: `test_5_phase_coherence.py`  
+**Purpose**: Test whether phase is stable across datasets and preprocessing  
+**PASS Criteria**: Phase stable within ~15° across Planck/WMAP, raw/whitened
+
+```bash
+python test_5_phase_coherence.py \
+    --planck_obs path/to/planck_spectrum.txt \
+    --planck_model path/to/planck_model.txt \
+    --planck_cov path/to/planck_covariance.txt \
+    --wmap_obs path/to/wmap_spectrum.txt \
+    --wmap_model path/to/wmap_model.txt \
+    --ell_min 30 --ell_max 800
+```
+
+**Options**:
+- `--planck_obs`, `--planck_model`: Planck files (required)
+- `--planck_cov`: Planck covariance file (optional)
+- `--wmap_obs`, `--wmap_model`: WMAP files (optional for cross-dataset test)
+- `--wmap_cov`: WMAP covariance file (optional)
+- `--ell_min`, `--ell_max`: Multipole range (default: 30-800 for WMAP compatibility)
+- `--target_period`: Period to extract phase (default: 255)
+- `--mc_trials`: MC trials per dataset (default: 1000)
+- `--output_dir`: Output directory
+
+**Output**:
+- `phase_coherence_results.json` - Phase measurements and statistics
+- `phase_stability_report.md` - Detailed coherence analysis
+- Circular statistics: mean, std dev, coherence score
+
+**Skeptic One-Liner**: "If Δℓ = 255 were random noise or uncorrelated artifacts, 
+phase would be random across datasets. Coherent phase would suggest structural 
+origin. It does or does not."
+
 ---
 
 ## Workflow
@@ -172,6 +211,16 @@ python forensic_fingerprint/stress_tests/test_4_lcdm_null.py \
     --obs data/planck_pr3/raw/TT_spectrum.txt \
     --n_realizations 200 \
     --mc_trials 1000
+
+# Test 5: Phase Coherence
+python forensic_fingerprint/stress_tests/test_5_phase_coherence.py \
+    --planck_obs data/planck_pr3/raw/TT_spectrum.txt \
+    --planck_model data/planck_pr3/raw/TT_model.txt \
+    --planck_cov data/planck_pr3/raw/TT_covariance.txt \
+    --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_model data/wmap/raw/wmap_tt_model_9yr_v5.txt \
+    --ell_min 30 --ell_max 800 \
+    --mc_trials 1000
 ```
 
 ### 3. Review Results
@@ -185,6 +234,7 @@ Check the comparison reports:
 - `forensic_fingerprint/out/stress_tests/polarization_*/polarization_comparison.md`
 - `forensic_fingerprint/out/stress_tests/ablation_*/ablation_comparison.md`
 - `forensic_fingerprint/out/stress_tests/lcdm_null_*/lcdm_null_comparison.md`
+- `forensic_fingerprint/out/stress_tests/phase_coherence_*/phase_stability_report.md`
 
 ### 4. Update Master Report
 Fill in results in `../UBT_STRESS_TESTS.md`:
@@ -206,8 +256,9 @@ Fill in results in `../UBT_STRESS_TESTS.md`:
 - **Test #2**: ~20-60 minutes (2-3 channels × 10k MC trials)
 - **Test #3**: ~30-90 minutes (5 ℓ ranges × 5k MC trials)
 - **Test #4**: ~30-120 minutes (200 realizations × 1k MC trials)
+- **Test #5**: ~10-30 minutes (2-4 datasets/modes × 1k MC trials)
 
-**Total runtime**: ~1.5-5 hours depending on system
+**Total runtime**: ~2-6 hours depending on system
 
 ### Reproducibility
 - Fixed random seeds (42, 42+i for realizations)

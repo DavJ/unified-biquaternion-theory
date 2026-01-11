@@ -19,6 +19,11 @@ PASS/FAIL Criteria:
 - PASS: Peak remains at Δℓ ≈ 255 (±1-2 bins) with p < 10⁻³ across all modes
 - FAIL: Peak disappears or shifts arbitrarily after whitening
 
+Skeptic One-Liner:
+"If the Δℓ = 255 signal were caused by correlated noise or mode coupling in the 
+covariance matrix, whitening with the full covariance would eliminate it. It does 
+or does not."
+
 License: MIT
 Author: UBT Research Team
 """
