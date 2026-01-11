@@ -321,7 +321,10 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
         return _load_planck_minimum_format(filepath, spectrum_type=spectrum_type)
     
     # Handle TT-full format (4 columns: ell, Dl, -dDl, +dDl)
+    # Note: This format typically only applies to TT spectra
     if is_tt_full_format:
+        if spectrum_type != "TT":
+            warnings.warn(f"TT-full format detected but {spectrum_type} requested. This may not work as expected.")
         return _load_planck_tt_full_format(filepath)
     
     # Standard simple 3-column format
@@ -655,8 +658,13 @@ def _load_planck_fits(filepath, spectrum_type="TT"):
             
             # Try common column names
             ell_names = ['ell', 'ELL', 'l', 'L', 'MULTIPOLE']
-            cl_names = ['TT', 'C_ell', 'C_ELL', 'CL', 'POWER']
-            sigma_names = ['TT_error', 'sigma', 'SIGMA', 'ERROR', 'ERR']
+            
+            # Column names depend on spectrum type
+            cl_names = [spectrum_type, spectrum_type.upper(), spectrum_type.lower(), 
+                       f'C_{spectrum_type}', f'C_{spectrum_type.upper()}',
+                       'C_ell', 'C_ELL', 'CL', 'POWER']
+            sigma_names = [f'{spectrum_type}_error', f'{spectrum_type.upper()}_error',
+                          'sigma', 'SIGMA', 'ERROR', 'ERR']
             
             ell = None
             for name in ell_names:
@@ -674,7 +682,8 @@ def _load_planck_fits(filepath, spectrum_type="TT"):
                     break
             
             if cl is None:
-                raise ValueError(f"No power spectrum column found in {filepath}")
+                raise ValueError(f"No {spectrum_type} power spectrum column found in {filepath}. "
+                               f"Available columns: {list(data.names)}")
             
             sigma = None
             for name in sigma_names:
