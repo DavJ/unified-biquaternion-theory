@@ -16,6 +16,11 @@ PASS/FAIL Criteria:
 - WEAK PASS: Δℓ ≈ 255 appears with reduced amplitude but aligned phase
 - FAIL: No structure near 255 in polarization channels
 
+Skeptic One-Liner:
+"If the Δℓ = 255 signal were caused by a TT-only instrumental artifact or scalar 
+mode contamination, it would NOT appear in polarization channels (EE, TE). Presence 
+in polarization would suggest a field-level structural feature. It does or does not."
+
 Note: A real structural/digital fingerprint should propagate to polarization.
 Instrumental or scalar TT artifacts generally will NOT.
 

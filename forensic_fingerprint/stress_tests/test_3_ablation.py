@@ -15,6 +15,12 @@ PASS/FAIL Criteria:
 - PASS: Δℓ ≈ 255 appears in multiple disjoint ℓ ranges
 - FAIL: Signal exists only in one narrow window
 
+Skeptic One-Liner:
+"If the Δℓ = 255 signal were caused by a narrow-range artifact (foreground, beam 
+window, or systematic error localized in ℓ), it would disappear when that range 
+is excluded. Persistence across multiple disjoint ranges suggests a global 
+structural feature. It does or does not."
+
 Note: A genuine structural signal should not depend on a single ℓ window.
 
 License: MIT
