@@ -99,7 +99,7 @@ def run_whitening_stress_test(obs_file, model_file, cov_file=None,
     # Whitening modes to test
     modes = ['none', 'diagonal', 'block-diagonal']
     if data['cov'] is not None:
-        modes.append('covariance')
+        modes.extend(['cov_diag', 'covariance'])
     
     results_all = {}
     
