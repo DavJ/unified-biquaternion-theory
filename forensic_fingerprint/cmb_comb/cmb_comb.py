@@ -60,7 +60,46 @@ THRESHOLD_CANDIDATE = 0.01  # p < 0.01 for "candidate signal"
 THRESHOLD_STRONG = 2.9e-7   # p < 2.9e-7 for "strong signal" (~5σ)
 
 
-def compute_residuals(ell, C_obs, C_model, sigma, cov=None):
+def create_block_diagonal_covariance(sigma, block_size=10):
+    """
+    Create block-diagonal approximation to covariance matrix.
+    
+    This approximates the full covariance by creating blocks where nearby
+    multipoles have correlated uncertainties. This is a middle ground between
+    diagonal (no correlations) and full covariance.
+    
+    Parameters
+    ----------
+    sigma : array-like
+        Diagonal uncertainties
+    block_size : int
+        Size of correlation blocks (default: 10)
+    
+    Returns
+    -------
+    cov : ndarray
+        Block-diagonal covariance matrix
+    """
+    n = len(sigma)
+    cov = np.zeros((n, n))
+    
+    # Fill blocks
+    for i in range(0, n, block_size):
+        # Determine block end
+        j_end = min(i + block_size, n)
+        block_n = j_end - i
+        
+        # Create block with exponential decay correlation
+        for j in range(block_n):
+            for k in range(block_n):
+                # Correlation decreases exponentially with distance
+                correlation = np.exp(-abs(j - k) / 3.0)
+                cov[i + j, i + k] = sigma[i + j] * sigma[i + k] * correlation
+    
+    return cov
+
+
+def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal'):
     """
     Compute normalized residuals with optional whitening.
     
@@ -75,27 +114,50 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None):
     sigma : array-like
         Uncertainty (diagonal covariance assumed if cov is None)
     cov : array-like, optional
-        Full covariance matrix. If provided, residuals are whitened.
+        Full covariance matrix. If provided and whiten_mode='covariance', residuals are whitened.
+    whiten_mode : str
+        Whitening mode: 'none', 'diagonal', 'covariance', or 'block-diagonal'
     
     Returns
     -------
     residuals : ndarray
-        Normalized residuals. If cov provided: r = L^-1 (C_obs - C_model)
-        where L is Cholesky decomposition of cov. Otherwise: r = (C_obs - C_model) / sigma
+        Normalized residuals. Normalization depends on whiten_mode:
+        - 'none': r = C_obs - C_model (no normalization)
+        - 'diagonal': r = (C_obs - C_model) / sigma
+        - 'covariance': r = L^-1 (C_obs - C_model) where L is Cholesky of cov
+        - 'block-diagonal': r = L^-1 (C_obs - C_model) where L is Cholesky of block-diagonal cov
     """
     diff = C_obs - C_model
     
-    if cov is not None:
-        # Whiten using Cholesky decomposition
-        try:
-            L = np.linalg.cholesky(cov)
-            residuals = np.linalg.solve(L, diff)
-        except np.linalg.LinAlgError:
-            print("WARNING: Covariance matrix is not positive definite. Using diagonal.")
-            residuals = diff / sigma
-    else:
+    if whiten_mode == 'none':
+        # No whitening
+        residuals = diff
+    elif whiten_mode == 'diagonal':
         # Use diagonal uncertainties
         residuals = diff / sigma
+    elif whiten_mode == 'covariance':
+        if cov is not None:
+            # Whiten using Cholesky decomposition of full covariance
+            try:
+                L = np.linalg.cholesky(cov)
+                residuals = np.linalg.solve(L, diff)
+            except np.linalg.LinAlgError:
+                print("WARNING: Covariance matrix is not positive definite. Falling back to diagonal.")
+                residuals = diff / sigma
+        else:
+            print("WARNING: Covariance matrix not provided. Falling back to diagonal.")
+            residuals = diff / sigma
+    elif whiten_mode == 'block-diagonal':
+        # Create block-diagonal approximation
+        block_cov = create_block_diagonal_covariance(sigma)
+        try:
+            L = np.linalg.cholesky(block_cov)
+            residuals = np.linalg.solve(L, diff)
+        except np.linalg.LinAlgError:
+            print("WARNING: Block-diagonal covariance is not positive definite. Falling back to diagonal.")
+            residuals = diff / sigma
+    else:
+        raise ValueError(f"Unknown whitening mode: {whiten_mode}")
     
     return residuals
 
@@ -261,7 +323,7 @@ def compute_p_value(observed_max, null_distribution):
 
 
 def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown",
-                      variant="C", n_mc_trials=None, random_seed=None):
+                      variant="C", n_mc_trials=None, random_seed=None, whiten_mode='diagonal'):
     """
     Run full CMB comb test protocol.
     
@@ -287,6 +349,8 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         Number of Monte Carlo trials. If None, uses N_MC_TRIALS global.
     random_seed : int, optional
         Random seed for reproducibility. If None, uses RANDOM_SEED global.
+    whiten_mode : str, optional
+        Whitening mode: 'none', 'diagonal', 'covariance', or 'block-diagonal'. Default: 'diagonal'
     
     Returns
     -------
@@ -300,6 +364,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         - 'significance': 'null', 'candidate', or 'strong'
         - 'null_distribution': MC null distribution (for plotting)
         - 'whitened': whether covariance whitening was used
+        - 'whiten_mode': whitening mode used
         - 'dataset': dataset name
         - 'architecture_variant': variant tested
         - 'variant_valid': whether variant is appropriate for this test
@@ -314,15 +379,14 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     if variant not in ["A", "B", "C", "D"]:
         raise ValueError(f"Invalid variant: {variant}. Must be one of: A, B, C, D")
     
-    # Step 1: Compute residuals (with whitening if cov provided)
-    if cov is not None:
-        print("Using full covariance matrix (whitening enabled)")
-        whitened = True
-    else:
-        print("Using diagonal uncertainties (no covariance provided)")
-        whitened = False
+    # Step 1: Compute residuals (with whitening based on mode)
+    print(f"Whitening mode: {whiten_mode}")
     
-    residuals = compute_residuals(ell, C_obs, C_model, sigma, cov)
+    # Determine if this is effectively whitened
+    whitened = (whiten_mode in ['covariance', 'block-diagonal'] and 
+                (cov is not None or whiten_mode == 'block-diagonal'))
+    
+    residuals = compute_residuals(ell, C_obs, C_model, sigma, cov, whiten_mode=whiten_mode)
     
     # Step 2: Test all candidate periods
     results_per_period = {}
@@ -370,6 +434,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         'ell': ell,
         'all_periods': results_per_period,
         'whitened': whitened,
+        'whiten_mode': whiten_mode,
         'dataset': dataset_name,
         'architecture_variant': variant,
         'variant_valid': (variant == "C"),
@@ -382,7 +447,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     print("CMB COMB TEST RESULTS")
     print("="*60)
     print(f"Dataset: {dataset_name}")
-    print(f"Whitening: {'YES (full covariance)' if whitened else 'NO (diagonal only)'}")
+    print(f"Whitening mode: {whiten_mode}")
     print(f"Best period: Δℓ = {best_period}")
     print(f"Amplitude: A = {amplitude:.4f}")
     print(f"Phase: φ = {phase:.4f} rad ({np.degrees(phase):.2f}°)")
@@ -425,15 +490,15 @@ def save_results(results, output_dir):
         f.write("CMB COMB TEST RESULTS\n")
         f.write("="*60 + "\n")
         f.write(f"Dataset: {results.get('dataset', 'Unknown')}\n")
-        f.write(f"Whitening: {'YES (full covariance)' if results.get('whitened', False) else 'NO (diagonal only)'}\n")
+        f.write(f"Whitening mode: {results.get('whiten_mode', 'diagonal')}\n")
         f.write(f"Best period: Δℓ = {results['best_period']}\n")
         f.write(f"Amplitude: A = {results['amplitude']:.6f}\n")
         f.write(f"Phase: φ = {results['phase']:.6f} rad\n")
         f.write(f"Max Δχ²: {results['max_delta_chi2']:.6f}\n")
         f.write(f"P-value: {results['p_value']:.6e}\n")
         f.write(f"Significance: {results['significance']}\n")
-        f.write(f"Random seed: {RANDOM_SEED}\n")
-        f.write(f"MC trials: {N_MC_TRIALS}\n")
+        f.write(f"Random seed: {results.get('random_seed', RANDOM_SEED)}\n")
+        f.write(f"MC trials: {results.get('n_mc_trials', N_MC_TRIALS)}\n")
         f.write(f"Architecture variant: {results.get('architecture_variant', 'C')}\n")
         f.write(f"Variant valid: {results.get('variant_valid', True)}\n")
     
@@ -736,6 +801,16 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
         help='Output directory for results (default: auto-generated)'
     )
     
+    # Whitening mode
+    parser.add_argument(
+        '--whiten',
+        type=str,
+        choices=['none', 'diagonal', 'covariance', 'block-diagonal'],
+        default='diagonal',
+        help='Whitening mode: none (no whitening), diagonal (default, use diagonal uncertainties), '
+             'covariance (full covariance matrix), block-diagonal (approximate covariance)'
+    )
+    
     # Legacy positional arguments for backward compatibility
     parser.add_argument(
         'obs_file',
@@ -912,12 +987,16 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete instructions.
     # RUN CMB COMB TEST
     # =============================================================================
     
+    # Determine whitening mode based on flags
+    whiten_mode = args.whiten if hasattr(args, 'whiten') else 'diagonal'
+    
     # Run test
     results = run_cmb_comb_test(
         ell, C_obs, C_model, sigma,
         output_dir=output_dir,
         cov=cov,
-        dataset_name=dataset_name
+        dataset_name=dataset_name,
+        whiten_mode=whiten_mode
     )
     
     # Add variant metadata to results
