@@ -411,6 +411,8 @@ def save_results_json(results, output_file):
             return obj.tolist()
         elif isinstance(obj, (np.integer, np.floating)):
             return float(obj)
+        elif isinstance(obj, (np.bool_, bool)):
+            return bool(obj)
         elif isinstance(obj, dict):
             return {str(k): convert_to_serializable(v) for k, v in obj.items()}
         elif isinstance(obj, (list, tuple)):
