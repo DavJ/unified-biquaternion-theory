@@ -200,6 +200,54 @@ def _load_planck_text(filepath):
             f"    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
         )
     
+    # PART B.1: Preflight sanity check - detect likelihood/parameter files
+    # Read first non-comment line and count data rows
+    first_data_line = None
+    data_row_count = 0
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith('#'):
+            continue
+        # Found a data line
+        if first_data_line is None:
+            first_data_line = stripped
+        data_row_count += 1
+    
+    # Check if first data line contains likelihood markers
+    if first_data_line:
+        if '-log(like)' in first_data_line.lower() or 'loglike' in first_data_line.lower():
+            raise ValueError(
+                f"Invalid spectrum file: {filepath}\n\n"
+                f"This file appears to be a Planck likelihood/parameter table, not a power spectrum.\n"
+                f"The data contains '-log(Like)' or 'logLike' values.\n\n"
+                f"For CMB analysis, you need a TT power spectrum file, not cosmological parameters.\n\n"
+                f"Recommended actions:\n"
+                f"  1. Use COM_PowerSpect_CMB-TT-full_R3.01.txt (observed spectrum)\n"
+                f"  2. For model, use a theoretical ΛCDM spectrum from CAMB/CLASS\n"
+                f"  3. Do NOT use files with 'minimum' or 'plikHM' in the name as model input\n\n"
+                f"See RUNBOOK_REAL_DATA.md for correct file selection."
+            )
+    
+    # Check if file is suspiciously small (likely not a spectrum)
+    # Typical TT spectra have hundreds to thousands of multipoles
+    # A file with < 50 data rows is likely a parameter table or corrupted
+    if data_row_count < 50:
+        filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
+        raise ValueError(
+            f"Invalid spectrum file: {filepath}\n\n"
+            f"File has only {data_row_count} data rows (expected ~50-2500 for TT spectrum).\n"
+            f"This is likely NOT a power spectrum file.\n\n"
+            f"Possible causes:\n"
+            f"  1. Wrong file (cosmological parameter table instead of spectrum)\n"
+            f"  2. Corrupted or truncated download\n"
+            f"  3. Downloaded HTML error page instead of actual data\n\n"
+            f"Recommended actions:\n"
+            f"  - Re-download COM_PowerSpect_CMB-TT-full_R3.01.txt (~167 KB, ~2479 rows)\n"
+            f"  - Verify file size matches expected: ~167 KB for TT-full\n"
+            f"  - If using model file, ensure it's a power spectrum (not 'minimum' file)\n\n"
+            f"See RUNBOOK_REAL_DATA.md for correct file selection."
+        )
+    
     # Detect if this is a PR3 "minimum" model file or TT-full spectrum file
     # Check both filename and file content (scan comment lines for header)
     filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
