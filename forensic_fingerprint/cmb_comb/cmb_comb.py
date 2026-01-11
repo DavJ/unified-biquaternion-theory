@@ -212,7 +212,8 @@ def apply_ridge_regularization(cov, lambda_ridge=None, target_condition=1e8):
     return cov_reg, lambda_ridge
 
 
-def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal'):
+def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal', 
+                     cov_jitter=1e-12, cov_method='cholesky'):
     """
     Compute normalized residuals with optional whitening.
     
@@ -231,6 +232,10 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         residuals are whitened.
     whiten_mode : str
         Whitening mode: 'none', 'diagonal', 'covariance', 'cov_diag', or 'block-diagonal'
+    cov_jitter : float
+        Regularization jitter for covariance matrix (default: 1e-12)
+    cov_method : str
+        Covariance factorization method: 'cholesky' or 'eigh' (default: 'cholesky')
     
     Returns
     -------
@@ -300,27 +305,38 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
                 print("WARNING: Covariance not symmetric. Symmetrizing: cov = (cov + cov.T) / 2")
                 cov = 0.5 * (cov + cov.T)
             
-            # Apply regularization if needed
-            if cov_validation['needs_regularization']:
-                print(f"WARNING: Covariance is ill-conditioned (cond={cov_validation['condition_number']:.2e})")
-                print("         Applying ridge regularization...")
-                cov, lambda_ridge = apply_ridge_regularization(cov)
+            # Apply regularization if needed OR if jitter is specified
+            if cov_validation['needs_regularization'] or cov_jitter > 0:
+                if cov_validation['needs_regularization']:
+                    print(f"WARNING: Covariance is ill-conditioned (cond={cov_validation['condition_number']:.2e})")
+                    print("         Applying ridge regularization...")
+                # Apply jitter
+                cov_reg = cov + cov_jitter * np.eye(cov.shape[0])
                 metadata['regularization_used'] = True
-                metadata['lambda_ridge'] = float(lambda_ridge)
-                print(f"         Ridge parameter λ = {lambda_ridge:.6e}")
+                metadata['lambda_ridge'] = float(cov_jitter)
+                print(f"         Ridge parameter λ = {cov_jitter:.6e}")
                 
                 # Re-validate
-                cov_validation_after = validate_covariance(cov, ell)
+                cov_validation_after = validate_covariance(cov_reg, ell)
                 print(f"         After regularization:")
                 print(f"           Condition number: {cov_validation_after['condition_number']:.6e}")
                 print(f"           Min eigenvalue: {cov_validation_after['min_eigenvalue']:.6e}")
+                cov = cov_reg
             
-            # Whiten using Cholesky decomposition of full covariance
+            # Whiten using specified method
             try:
-                L = np.linalg.cholesky(cov)
-                residuals = np.linalg.solve(L, diff)
+                if cov_method == 'cholesky':
+                    L = np.linalg.cholesky(cov)
+                    residuals = np.linalg.solve(L, diff)
+                elif cov_method == 'eigh':
+                    eigenvalues, eigenvectors = np.linalg.eigh(cov)
+                    sqrt_inv_eigs = 1.0 / np.sqrt(eigenvalues)
+                    residuals = (eigenvectors.T @ diff) * sqrt_inv_eigs
+                else:
+                    raise ValueError(f"Unknown cov_method: {cov_method}")
+                metadata['cov_method'] = cov_method
             except np.linalg.LinAlgError as e:
-                print(f"ERROR: Cholesky decomposition failed even after regularization: {e}")
+                print(f"ERROR: {cov_method} decomposition failed even after regularization: {e}")
                 print("       Falling back to diagonal.")
                 residuals = diff / sigma
                 metadata['fallback_to_diagonal'] = True
@@ -696,7 +712,8 @@ def compute_p_value(observed_max, null_distribution):
 
 
 def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown",
-                      variant="C", n_mc_trials=None, random_seed=None, whiten_mode='diagonal'):
+                      variant="C", n_mc_trials=None, random_seed=None, whiten_mode='diagonal',
+                      cov_jitter=1e-12, cov_method='cholesky'):
     """
     Run full CMB comb test protocol.
     
@@ -723,7 +740,12 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     random_seed : int, optional
         Random seed for reproducibility. If None, uses RANDOM_SEED global.
     whiten_mode : str, optional
-        Whitening mode: 'none', 'diagonal', 'covariance', or 'block-diagonal'. Default: 'diagonal'
+        Whitening mode: 'none', 'diag', 'diagonal', 'covariance', 'full', or 'block-diagonal'. Default: 'diagonal'
+        Note: 'diag' and 'diagonal' are equivalent, as are 'covariance' and 'full'
+    cov_jitter : float, optional
+        Regularization jitter for covariance matrix (default: 1e-12)
+    cov_method : str, optional
+        Covariance factorization method: 'cholesky' or 'eigh' (default: 'cholesky')
     
     Returns
     -------
@@ -755,11 +777,30 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     # Step 1: Compute residuals (with whitening based on mode)
     print(f"Whitening mode: {whiten_mode}")
     
-    # Determine if this is effectively whitened
-    whitened = (whiten_mode in ['covariance', 'cov_diag', 'block-diagonal'] and 
-                (cov is not None or whiten_mode == 'block-diagonal'))
+    # Normalize whitening mode names (handle both old and new conventions)
+    whiten_mode_normalized = whiten_mode
+    if whiten_mode in ['diag', 'diagonal']:
+        whiten_mode_normalized = 'diagonal'
+    elif whiten_mode in ['full', 'covariance']:
+        whiten_mode_normalized = 'covariance'
     
-    residuals, whiten_metadata = compute_residuals(ell, C_obs, C_model, sigma, cov, whiten_mode=whiten_mode)
+    # Determine if this is effectively whitened
+    whitened = (whiten_mode_normalized in ['covariance', 'cov_diag', 'block-diagonal'] and 
+                (cov is not None or whiten_mode_normalized == 'block-diagonal'))
+    
+    # For the new 'full' mode, we need to handle it specially
+    if whiten_mode in ['full', 'covariance'] and cov is None:
+        raise ValueError(
+            f"Whitening mode '{whiten_mode}' requires covariance matrix, but cov=None. "
+            f"Provide a covariance matrix or use --whiten diag."
+        )
+    
+    residuals, whiten_metadata = compute_residuals(
+        ell, C_obs, C_model, sigma, cov, 
+        whiten_mode=whiten_mode_normalized,
+        cov_jitter=cov_jitter,
+        cov_method=cov_method
+    )
     
     # Calibration test for covariance whitening
     calibration_diagnostics = None

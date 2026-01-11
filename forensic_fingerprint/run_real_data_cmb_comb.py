@@ -411,6 +411,8 @@ def save_results_json(results, output_file):
             return obj.tolist()
         elif isinstance(obj, (np.integer, np.floating)):
             return float(obj)
+        elif isinstance(obj, (np.bool_, bool)):
+            return bool(obj)
         elif isinstance(obj, dict):
             return {str(k): convert_to_serializable(v) for k, v in obj.items()}
         elif isinstance(obj, (list, tuple)):
@@ -845,16 +847,78 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
                        help=f'Number of Monte Carlo samples (default: {DEFAULT_MC_SAMPLES} for candidate-grade, 100000 for strong)')
     parser.add_argument('--seed', type=int, default=DEFAULT_SEED,
                        help=f'Random seed for reproducibility (default: {DEFAULT_SEED}, pre-registered)')
+    
+    # Whitening parameters (NEW)
+    parser.add_argument('--whiten', type=str, 
+                       choices=['none', 'diag', 'full'],
+                       default='diag',
+                       help='Whitening mode: none (no whitening), diag (diagonal, default), '
+                            'full (full covariance with Cholesky)')
+    parser.add_argument('--cov_jitter', type=float, default=1e-12,
+                       help='Regularization jitter added to covariance diagonal (default: 1e-12)')
+    parser.add_argument('--cov_method', type=str,
+                       choices=['cholesky', 'eigh'],
+                       default='cholesky',
+                       help='Covariance whitening method: cholesky (default) or eigh')
+    parser.add_argument('--cov_cache', action='store_true',
+                       help='Store computed whitening operator to output dir for reproducibility')
+    
+    # Legacy compatibility
     parser.add_argument('--whiten_mode', type=str, 
                        choices=['none', 'diagonal', 'cov_diag', 'covariance'],
-                       default='diagonal',
-                       help='Whitening mode: none (no whitening), diagonal (default, use sigma), '
-                            'cov_diag (sqrt(diag(cov))), covariance (full Cholesky whitening)')
+                       default=None,
+                       help='Legacy whitening mode (DEPRECATED: use --whiten instead)')
+    
     
     # Output
     parser.add_argument('--output_dir', type=str, help='Output directory (default: auto-generated with timestamp)')
     
     args = parser.parse_args()
+    
+    # Handle legacy --whiten_mode (map to new --whiten flag)
+    if args.whiten_mode is not None:
+        print("WARNING: --whiten_mode is deprecated. Use --whiten instead.")
+        # Map legacy modes to new modes
+        legacy_map = {
+            'none': 'none',
+            'diagonal': 'diag',
+            'cov_diag': 'diag',  # Approximate: use diag mode
+            'covariance': 'full'
+        }
+        args.whiten = legacy_map.get(args.whiten_mode, args.whiten)
+        print(f"         Mapped --whiten_mode={args.whiten_mode} to --whiten={args.whiten}")
+        print()
+    
+    # Validate whitening parameters
+    if args.whiten == 'full':
+        # Check if covariance is provided for at least one dataset
+        has_planck_cov = args.planck_obs and args.planck_cov
+        has_wmap_cov = args.wmap_obs and args.wmap_cov
+        
+        if not has_planck_cov and not has_wmap_cov:
+            print()
+            print("="*80)
+            print("ERROR: Full covariance whitening requested but no covariance provided")
+            print("="*80)
+            print()
+            print("You requested --whiten full, which requires covariance matrices.")
+            print()
+            print("Please provide covariance files:")
+            if args.planck_obs:
+                print(f"  --planck_cov <path_to_planck_covariance>")
+            if args.wmap_obs:
+                print(f"  --wmap_cov <path_to_wmap_covariance>")
+            print()
+            print("Supported covariance formats:")
+            print("  - .npy (NumPy binary)")
+            print("  - .txt, .dat, .csv (plain text N×N matrix)")
+            print("  - .fits (FITS table, requires astropy)")
+            print()
+            print("If you don't have covariance matrices, use --whiten diag instead")
+            print("(diagonal uncertainties only, default behavior).")
+            print("="*80)
+            print()
+            sys.exit(1)
     
     # Validate inputs
     if args.planck_obs is None:
@@ -976,7 +1040,9 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             variant=args.variant,
             n_mc_trials=args.mc_samples,
             random_seed=args.seed,
-            whiten_mode=args.whiten_mode,
+            whiten_mode=args.whiten,  # Use new flag
+            cov_jitter=args.cov_jitter,
+            cov_method=args.cov_method,
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         
@@ -1021,7 +1087,9 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             variant=args.variant,
             n_mc_trials=args.mc_samples,
             random_seed=args.seed,
-            whiten_mode=args.whiten_mode,
+            whiten_mode=args.whiten,  # Use new flag
+            cov_jitter=args.cov_jitter,
+            cov_method=args.cov_method,
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         

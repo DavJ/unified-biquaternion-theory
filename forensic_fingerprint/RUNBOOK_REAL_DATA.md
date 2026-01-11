@@ -327,6 +327,327 @@ After running:
 
 ---
 
+
+---
+
+## Court-Grade Whitening with Full Covariance
+
+**Purpose**: Use full covariance matrices to properly account for error correlations between multipoles, providing the most rigorous statistical analysis.
+
+**Status**: Available as of v1.1  
+**Requirement**: Full covariance matrix files for Planck and/or WMAP
+
+---
+
+### Why Full Covariance Matters
+
+**Standard approach (diagonal-only)**:
+- Treats each multipole as independent
+- Uses only σ_ℓ (diagonal uncertainties)
+- Simple but ignores correlations
+- **Grade**: Candidate-grade
+
+**Court-grade approach (full covariance)**:
+- Accounts for correlations between nearby multipoles
+- Uses full N×N covariance matrix
+- More conservative and rigorous
+- **Grade**: Court-grade / publication-ready
+
+**Key differences**:
+1. Full covariance properly whitens correlated errors
+2. p-values are more reliable (no underestimation of errors)
+3. Required for publishable claims
+
+---
+
+### Required Covariance Files
+
+You need N×N covariance matrices matching your ℓ-range.
+
+**Supported formats**:
+- `.npy`: NumPy binary (recommended for large matrices)
+- `.txt`, `.dat`, `.csv`: Plain text whitespace/comma-separated
+- `.fits`: FITS table (requires astropy)
+
+**File structure**:
+```
+data/planck_pr3/covariance/
+  planck_pr3_tt_covariance_ell30_1500.npy   # 1471×1471 matrix
+  
+data/wmap/covariance/
+  wmap_tt_covariance_ell30_800.npy          # 771×771 matrix
+```
+
+**Creating covariance files**:
+
+From Python:
+```python
+import numpy as np
+
+# Your covariance matrix (N×N, must be symmetric positive semi-definite)
+cov = ...  # Computed from your data
+
+# Save as .npy (recommended)
+np.save('planck_pr3_tt_covariance_ell30_1500.npy', cov)
+
+# Or save as text (for human inspection)
+np.savetxt('covariance.txt', cov, fmt='%.6e')
+```
+
+**Important**:
+- Matrix must be **symmetric**: C[i,j] = C[j,i]
+- Matrix must be **positive semi-definite**: all eigenvalues ≥ 0
+- Size must match your ℓ-range selection
+
+---
+
+### Example Commands
+
+#### Candidate-Grade (Diagonal Only)
+
+**Default behavior** - no covariance files needed:
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --whiten diag
+```
+
+**Whitening**: Diagonal uncertainties only  
+**Grade**: Candidate (suitable for initial exploration)
+
+---
+
+#### Court-Grade (Full Covariance)
+
+**With full covariance matrices**:
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --planck_cov data/planck_pr3/covariance/planck_cov.npy \
+    --wmap_obs data/wmap/raw/spectrum.txt \
+    --wmap_cov data/wmap/covariance/wmap_cov.npy \
+    --whiten full \
+    --cov_method cholesky \
+    --cov_jitter 1e-12 \
+    --mc_samples 100000
+```
+
+**Whitening**: Full Cholesky decomposition  
+**Grade**: Court-grade (publication-ready)
+
+**Flags explained**:
+- `--whiten full`: Use full covariance whitening
+- `--cov_method cholesky`: Factorization method (cholesky or eigh)
+- `--cov_jitter 1e-12`: Regularization parameter for numerical stability
+- `--mc_samples 100000`: High MC count for strong confidence
+
+---
+
+### Covariance Validation
+
+The pipeline automatically validates covariance matrices:
+
+**Checks performed**:
+1. **Symmetry**: C = C^T (within tolerance)
+2. **Finite values**: No NaN or Inf
+3. **Positive semi-definite**: All eigenvalues ≥ 0
+4. **Size match**: Matrix dimension = number of multipoles
+
+**Example output**:
+```
+Covariance validation:
+  Symmetric: True
+  Positive definite: True
+  Min eigenvalue: 1.234567e-05
+  Max eigenvalue: 9.876543e+03
+  Condition number: 8.012345e+08
+  ℓ-range: (30, 1500)
+```
+
+**If regularization is needed**:
+```
+WARNING: Covariance is ill-conditioned (cond=1.23e+10)
+         Applying ridge regularization...
+         Ridge parameter λ = 1.000000e-12
+         After regularization:
+           Condition number: 8.012345e+08
+           Min eigenvalue: 1.234567e-05
+```
+
+---
+
+### Troubleshooting
+
+#### Error: "Covariance matrix is not symmetric"
+
+**Cause**: Matrix is not C = C^T
+
+**Fix**:
+```python
+# Symmetrize manually
+cov_sym = 0.5 * (cov + cov.T)
+np.save('cov_fixed.npy', cov_sym)
+```
+
+---
+
+#### Error: "Covariance matrix is not positive semi-definite"
+
+**Cause**: Negative eigenvalues (numerical errors or invalid covariance)
+
+**Fix 1** - Let pipeline auto-jitter:
+```bash
+# Pipeline applies automatic jitter if needed
+python run_real_data_cmb_comb.py ... --whiten full
+```
+
+**Fix 2** - Increase jitter manually:
+```bash
+python run_real_data_cmb_comb.py ... --whiten full --cov_jitter 1e-10
+```
+
+**Fix 3** - Use eigenvalue method:
+```bash
+python run_real_data_cmb_comb.py ... --whiten full --cov_method eigh
+```
+
+The eigh method is more robust for ill-conditioned matrices.
+
+---
+
+#### Error: "Covariance size doesn't match data size"
+
+**Cause**: Matrix dimension ≠ number of multipoles in selected ℓ-range
+
+**Example**:
+```
+ERROR: Covariance matrix size (1000) doesn't match data size (1471)
+```
+
+**Fix**: Provide covariance matching your ℓ-range, or adjust ℓ-range:
+```bash
+# If cov is for ℓ=30-1029 (1000 multipoles)
+python run_real_data_cmb_comb.py \
+    --planck_obs ... \
+    --planck_cov data/planck_pr3/covariance/cov_ell30_1029.npy \
+    --ell_min_planck 30 \
+    --ell_max_planck 1029
+```
+
+---
+
+#### Warning: "χ²/dof >> 1 suggests possible units mismatch"
+
+**Cause**: Observation and model may have different units (C_ℓ vs D_ℓ)
+
+**Check**:
+1. Both files use same units (μK² for C_ℓ, or ℓ(ℓ+1)C_ℓ/2π for D_ℓ)
+2. Model corresponds to correct observation
+3. Uncertainties are correctly loaded
+
+**Fix**: Verify data files are in consistent units.
+
+---
+
+### Output: whitening_info.json
+
+When using `--whiten full`, the pipeline saves whitening metadata:
+
+```json
+{
+  "mode": "full",
+  "cov_path": "data/planck_pr3/covariance/planck_cov.npy",
+  "cov_hash": "a1b2c3d4...",
+  "cov_source": "Planck PR3 TT covariance",
+  "jitter": 1e-12,
+  "method": "cholesky",
+  "min_eig_before": 1.234e-05,
+  "min_eig_after": 1.235e-05,
+  "condition_number_before": 8.012e+08,
+  "condition_number_after": 7.998e+08,
+  "N": 1471,
+  "ell_range": [30, 1500]
+}
+```
+
+This ensures full reproducibility of the whitening transformation.
+
+---
+
+### Validation: Whitening Calibration Test
+
+The pipeline runs automatic calibration to verify whitening works correctly:
+
+```
+Running whitening calibration test...
+  Mean variance: 1.0023 (expected: 1.0)
+  Mean |correlation|: 0.0145 (expected: ~0)
+  ✓ Calibration PASSED
+```
+
+**Interpretation**:
+- Mean variance ≈ 1.0: Whitened residuals have unit variance
+- Mean correlation ≈ 0: Correlations removed
+- PASSED: Whitening is working correctly
+
+**If calibration fails**: Check covariance matrix validity or increase jitter.
+
+---
+
+### When to Use Each Mode
+
+| Mode | Use Case | Requirements | Grade |
+|------|----------|--------------|-------|
+| `none` | Debugging only | None | Not valid |
+| `diag` | Initial exploration | Diagonal σ_ℓ | Candidate |
+| `full` | Publication claims | Full cov matrix | Court-grade |
+
+**Recommendation**: Always use `--whiten full` with full covariance for final publishable results.
+
+---
+
+### Example Workflow
+
+```bash
+# 1. Download data
+wget <planck_url> -O data/planck_pr3/raw/spectrum.txt
+wget <planck_cov_url> -O data/planck_pr3/covariance/cov.npy
+
+# 2. Validate covariance (optional sanity check)
+python -c "
+import numpy as np
+cov = np.load('data/planck_pr3/covariance/cov.npy')
+print(f'Shape: {cov.shape}')
+print(f'Symmetric: {np.allclose(cov, cov.T)}')
+eigs = np.linalg.eigvalsh(cov)
+print(f'Min eig: {np.min(eigs):.6e}')
+print(f'Max eig: {np.max(eigs):.6e}')
+"
+
+# 3. Run court-grade analysis
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --planck_cov data/planck_pr3/covariance/cov.npy \
+    --whiten full \
+    --mc_samples 100000 \
+    --output_dir out/court_grade_run1
+
+# 4. Check whitening_info.json
+cat out/court_grade_run1/whitening_info.json
+
+# 5. Review combined_verdict.md
+cat out/court_grade_run1/combined_verdict.md
+```
+
+---
+
+**Next**: See [Data Download and Validation](#data-download-and-validation) for obtaining covariance matrices.
+
 ## Data Download and Validation
 
 **Note**: If you've already downloaded data and just want to run the test, use the [Quick Real Run](#quick-real-run-one-command) above.
