@@ -63,6 +63,30 @@ ls -l tools/data_provenance/
 ls -l forensic_fingerprint/loaders/
 ```
 
+### Important: manifest generation must be repo-root relative
+
+`tools/data_provenance/hash_dataset.py` stores file paths relative to the **repo root**.
+If you generate manifests from a deep subdirectory in a ZIP checkout (no `.git/`),
+older versions could accidentally store paths relative to the wrong base.
+
+**Recommended** (run from repo root):
+
+```bash
+# Planck PR3 (TT + best-fit model)
+mkdir -p data/planck_pr3/manifests
+python tools/data_provenance/hash_dataset.py \
+  data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+  data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
+  > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+
+# WMAP9 TT
+mkdir -p data/wmap/manifests
+python tools/data_provenance/hash_dataset.py \
+  data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+  > data/wmap/manifests/wmap_tt_manifest.json
+```
+
+
 ---
 
 ## Quick Real Run (One Command)

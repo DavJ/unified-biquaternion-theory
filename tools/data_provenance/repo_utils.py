@@ -48,8 +48,17 @@ def find_repo_root(start_path=None):
         start_path = Path(start_path).resolve()
     
     current = start_path
-    # Prioritize .git as the most reliable marker
-    markers = ['.git', 'pyproject.toml', 'pytest.ini']
+    # Prioritize .git as the most reliable marker.
+    # NOTE: This repo is frequently distributed as a ZIP without a .git directory,
+    # so we include stable top-level files as additional markers.
+    markers = [
+        '.git',
+        'pyproject.toml',
+        'pytest.ini',
+        'README.md',
+        'LICENSE.md',
+        'Makefile',
+    ]
     
     # Walk up directory tree
     while current != current.parent:
