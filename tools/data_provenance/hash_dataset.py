@@ -14,12 +14,12 @@ Output: JSON manifest with filename, size, and SHA-256 hash.
 License: MIT
 """
 
-import sys
+import argparse
 import hashlib
 import json
-import argparse
-from pathlib import Path
+import sys
 from datetime import datetime
+from pathlib import Path
 
 
 def compute_sha256(filepath):

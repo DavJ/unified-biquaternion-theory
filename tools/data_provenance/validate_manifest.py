@@ -15,10 +15,10 @@ Exit codes:
 License: MIT
 """
 
-import sys
+import argparse
 import hashlib
 import json
-import argparse
+import sys
 from pathlib import Path
 
 
