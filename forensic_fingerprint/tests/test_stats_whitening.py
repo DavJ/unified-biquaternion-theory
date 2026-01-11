@@ -20,13 +20,17 @@ import sys
 repo_root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'stats'))
 
-from whitening import (
-    load_covariance,
-    align_cov_to_ell,
-    cholesky_whitener,
-    whiten_residuals,
-    validate_and_regularize_covariance
-)
+# Import from stats.whitening module
+import importlib.util
+spec = importlib.util.spec_from_file_location("whitening_module", repo_root / 'forensic_fingerprint' / 'stats' / 'whitening.py')
+whitening_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(whitening_module)
+
+load_covariance = whitening_module.load_covariance
+align_cov_to_ell = whitening_module.align_cov_to_ell
+cholesky_whitener = whitening_module.cholesky_whitener
+whiten_residuals = whitening_module.whiten_residuals
+validate_and_regularize_covariance = whitening_module.validate_and_regularize_covariance
 
 
 class TestCovarianceLoading:
