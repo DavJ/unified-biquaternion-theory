@@ -18,6 +18,14 @@ Author: UBT Research Team
 import numpy as np
 from pathlib import Path
 import warnings
+import sys
+
+# Import covariance loader
+try:
+    from . import covariance as cov_loader
+except ImportError:
+    # For direct execution
+    import covariance as cov_loader
 
 
 # Constants for data parsing and validation
@@ -74,9 +82,13 @@ def load_planck_data(
         - cl_model: ndarray or None, theoretical model
         - sigma: ndarray, diagonal uncertainties
         - cov: ndarray or None, full covariance matrix
+        - cov_source: str or None, covariance file path/description
+        - cov_metadata: dict or None, validation metadata from covariance loader
+        - whitening_mode_supported: list of str, supported whitening modes
         - dataset: str, dataset name
         - spectrum_type: str, spectrum type (TT/EE/TE/BB)
         - ell_range: tuple, (ell_min, ell_max) applied
+        - n_multipoles: int, number of multipoles
     
     Raises
     ------
@@ -115,22 +127,36 @@ def load_planck_data(
                 warnings.warn("Multipole ranges in obs and model don't match. Interpolating model.")
                 cl_model = np.interp(ell_obs, ell_model, cl_model)
     
-    # Load covariance if provided
+    # Load covariance if provided (using new covariance loader)
     cov = None
+    cov_source = None
+    cov_metadata = None
+    
     if cov_file is not None:
         cov_file = Path(cov_file)
         if not cov_file.exists():
             warnings.warn(f"Covariance file not found: {cov_file}. Using diagonal uncertainties.")
         else:
-            cov = _load_planck_covariance(cov_file)
-            
-            # Ensure covariance shape matches data
-            if cov.shape[0] != len(ell_obs):
-                warnings.warn(
-                    f"Covariance matrix size ({cov.shape[0]}) doesn't match "
-                    f"data size ({len(ell_obs)}). Using diagonal."
-                )
+            try:
+                # Use new covariance loader with strict validation
+                cov, cov_metadata = cov_loader.load_covariance_matrix(cov_file)
+                cov_source = str(cov_file)
+                
+                # Ensure covariance shape matches data BEFORE filtering
+                if cov.shape[0] != len(ell_obs):
+                    warnings.warn(
+                        f"Covariance matrix size ({cov.shape[0]}) doesn't match "
+                        f"data size ({len(ell_obs)}). Using diagonal."
+                    )
+                    cov = None
+                    cov_source = None
+                    cov_metadata = None
+            except Exception as e:
+                warnings.warn(f"Failed to load covariance from {cov_file}: {e}\n"
+                            f"Using diagonal uncertainties.")
                 cov = None
+                cov_source = None
+                cov_metadata = None
     
     # Apply multipole range filter
     ell = ell_obs
@@ -153,6 +179,12 @@ def load_planck_data(
         ell_min = ell[0]
         ell_max = ell[-1]
     
+    # Determine supported whitening modes
+    if cov is not None:
+        whitening_mode_supported = ['none', 'diag', 'full']
+    else:
+        whitening_mode_supported = ['none', 'diag']
+    
     # Assemble data dictionary
     data = {
         'ell': ell,
@@ -160,6 +192,9 @@ def load_planck_data(
         'cl_model': cl_model,
         'sigma': sigma_obs,
         'cov': cov,
+        'cov_source': cov_source,
+        'cov_metadata': cov_metadata,
+        'whitening_mode_supported': whitening_mode_supported,
         'dataset': dataset_name,
         'spectrum_type': spectrum_type,
         'ell_range': (int(ell_min), int(ell_max)),
