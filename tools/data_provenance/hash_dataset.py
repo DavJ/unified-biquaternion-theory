@@ -21,6 +21,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from repo_utils import find_repo_root
+
 
 def compute_sha256(filepath):
     """
@@ -59,8 +61,8 @@ def hash_dataset(filepaths, relative_to=None):
         Paths to files
     relative_to : str or Path or None
         Base directory to compute relative paths from.
+        If None, auto-discovers repo root and uses it.
         If provided, stores paths relative to this directory (if files are inside it).
-        Otherwise stores absolute paths.
     
     Returns
     -------
@@ -73,6 +75,16 @@ def hash_dataset(filepaths, relative_to=None):
         'hash_algorithm': 'SHA-256',
         'files': []
     }
+    
+    # Auto-discover repo root if not provided
+    if relative_to is None:
+        try:
+            relative_to = find_repo_root()
+            print(f"Auto-discovered repo root: {relative_to}", file=sys.stderr)
+        except FileNotFoundError:
+            # Fall back to not using relative paths
+            print("WARNING: Could not find repo root. Using absolute paths.", file=sys.stderr)
+            relative_to = None
     
     # Convert relative_to to absolute path if provided
     if relative_to is not None:
@@ -98,6 +110,7 @@ def hash_dataset(filepaths, relative_to=None):
                 stored_path = str(path.relative_to(relative_to))
             except ValueError:
                 # Path is not relative to relative_to, use absolute
+                print(f"WARNING: {path} is outside repo root, storing absolute path", file=sys.stderr)
                 stored_path = str(path)
         else:
             # Use absolute path
@@ -120,11 +133,13 @@ def main():
         description="Compute SHA-256 hashes of dataset files for provenance tracking",
         epilog="Examples:\n"
                "  python hash_dataset.py data.txt > manifest.json\n"
-               "  python hash_dataset.py *.fits --relative-to /path/to/repo > manifest.json",
+               "  python hash_dataset.py *.fits --relative-to /path/to/repo > manifest.json\n"
+               "  python hash_dataset.py data/*.txt > manifest.json  # auto-discovers repo root",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument('files', nargs='+', help='Files to hash')
-    parser.add_argument('--relative-to', help='Store paths relative to this directory (default: absolute paths)')
+    parser.add_argument('--relative-to', 
+                       help='Store paths relative to this directory (default: auto-discover repo root)')
     
     args = parser.parse_args()
     

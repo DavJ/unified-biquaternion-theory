@@ -21,6 +21,8 @@ import json
 import sys
 from pathlib import Path
 
+from repo_utils import find_repo_root
+
 
 def compute_sha256(filepath):
     """Compute SHA-256 hash of a file."""
@@ -46,7 +48,7 @@ def validate_manifest(manifest_path, base_dir=None):
         Path to manifest JSON file
     base_dir : str or Path or None
         Base directory for resolving relative paths in manifest.
-        If None, uses manifest's parent directory.
+        If None, auto-discovers repo root.
     
     Returns
     -------
@@ -59,15 +61,34 @@ def validate_manifest(manifest_path, base_dir=None):
         print(f"ERROR: Manifest not found: {manifest_path}", file=sys.stderr)
         return False
     
-    # Set base directory for resolving relative paths
-    if base_dir is None:
-        base_dir = manifest_path.parent
-    else:
-        base_dir = Path(base_dir)
-    
-    # Load manifest
+    # Load manifest first to check for empty manifest
     with open(manifest_path, 'r') as f:
         manifest = json.load(f)
+    
+    # Check for empty manifest (Part C)
+    if not manifest.get('files'):
+        print("=" * 80, file=sys.stderr)
+        print("ERROR: Empty manifest", file=sys.stderr)
+        print("=" * 80, file=sys.stderr)
+        print(f"Manifest: {manifest_path}", file=sys.stderr)
+        print(f"Number of files: 0", file=sys.stderr)
+        print("", file=sys.stderr)
+        print("Manifest contains no files to validate.", file=sys.stderr)
+        print("This may indicate an error in manifest generation.", file=sys.stderr)
+        print("=" * 80, file=sys.stderr)
+        return False
+    
+    # Set base directory for resolving relative paths
+    if base_dir is None:
+        try:
+            base_dir = find_repo_root()
+            print(f"Auto-discovered repo root: {base_dir}", file=sys.stderr)
+        except FileNotFoundError:
+            # Fall back to manifest parent directory
+            base_dir = manifest_path.parent
+            print(f"WARNING: Could not find repo root, using manifest directory: {base_dir}", file=sys.stderr)
+    else:
+        base_dir = Path(base_dir)
     
     print("=" * 80)
     print("Dataset Validation Report")
@@ -162,10 +183,12 @@ def validate_manifest(manifest_path, base_dir=None):
 def main():
     parser = argparse.ArgumentParser(
         description="Validate dataset files against SHA-256 manifest",
-        epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base_dir /path/to/repo"
+        epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base_dir /path/to/repo\n"
+               "         python validate_manifest.py manifest.json  # auto-discovers repo root"
     )
     parser.add_argument('manifest', help='Path to manifest JSON file')
-    parser.add_argument('--base_dir', help='Base directory for resolving relative paths (default: manifest parent dir)')
+    parser.add_argument('--base_dir', 
+                       help='Base directory for resolving relative paths (default: auto-discover repo root)')
     
     args = parser.parse_args()
     
