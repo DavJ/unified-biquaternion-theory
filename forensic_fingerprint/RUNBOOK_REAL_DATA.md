@@ -334,7 +334,62 @@ bash tools/data_download/download_planck_pr3_cosmoparams.sh
 
 **Required files** (automatically downloaded):
 - `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT power spectrum (~167 KB)
-- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Best-fit ΛCDM model
+- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Best-fit ΛCDM parameters (NOT for use as model spectrum)
+
+**IMPORTANT: Planck Model File Selection**
+
+The Planck PR3 archive contains different types of files. For CMB comb analysis, you need:
+
+**✓ CORRECT files for power spectrum (--planck_obs and potentially --planck_model):**
+- `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT spectrum with uncertainties (~2479 rows, ~167 KB)
+- `COM_PowerSpect_CMB-TT-binned_R3.01.txt` - Binned version (if using binned analysis)
+
+**✗ INCORRECT files (DO NOT use as --planck_model):**
+- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Cosmological parameter table (contains `-log(Like)` values, NOT a power spectrum)
+- Any file with `minimum` or `plikHM` in the filename - These are likelihood/parameter files
+
+**Why this matters:**
+The "minimum" files contain best-fit cosmological parameters and likelihood values, not power spectra. Using them as model input will cause the analysis to fail with clear error messages.
+
+**Recommended approach for model spectrum:**
+
+1. **Preferred: Explicit theoretical model (best for scientific analysis)**
+   ```bash
+   # Generate ΛCDM spectrum using CAMB or CLASS with Planck best-fit parameters
+   # Then use:
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+       --planck_model path/to/theoretical_model.txt
+   ```
+   This analyzes residuals between observation and theory.
+
+2. **Fallback: TT-full as both observation and model (noise analysis)**
+   ```bash
+   # Use the same file for both obs and model
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+       --planck_model data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+   ```
+   This results in zero residuals (obs - obs = 0), testing pure noise for periodic structure.
+   Useful for validating the statistical framework.
+
+3. **Fallback: No model specified (absolute spectrum analysis)**
+   ```bash
+   # Omit --planck_model
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+   ```
+   The loader sets `cl_model = 0`, analyzing the absolute observed spectrum.
+   Less scientifically meaningful but can detect gross issues.
+
+**Model fallback hierarchy:**
+- If `--planck_model` is provided and valid → use it
+- If `--planck_model` is invalid (parameter file) → abort with error
+- If `--planck_model` is not provided → use zeros (option 3 above)
+
+**To use TT-full as model (option 2):** Explicitly pass the same file to both arguments.
+
+The validation code will automatically reject parameter files if you try to use them as model input.
 
 **Sanity check** (after download):
 ```bash
@@ -358,20 +413,52 @@ head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lens
 **Recommended approach (with relative paths):**
 ```bash
 # Run from repository root
+# IMPORTANT: Include ONLY the files you will actually use in the analysis
 python tools/data_provenance/hash_dataset.py \
-    data/planck_pr3/raw/*.txt \
-    data/planck_pr3/raw/*.fits \
-    --relative-to . \
+    data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+
+# If using a model file, include it too:
+python tools/data_provenance/hash_dataset.py \
+    data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    data/planck_pr3/raw/your_model_file.txt \
     > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
 ```
 
-**Alternative (from data directory):**
+**CRITICAL: Manifest must match files used in analysis**
+
+The validation system enforces that the manifest contains hashes for the **exact files** you pass to `run_real_data_cmb_comb.py`. If you run:
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --planck_manifest data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+```
+
+Then `planck_pr3_tt_manifest.json` **must** contain hashes for both `spectrum.txt` and `model.txt` (by filename). If the manifest is valid but missing one of these files, the run will abort with:
+
+```
+ERROR: Manifest validation succeeded but does not include files used by this run
+Missing files:
+  - model.txt
+
+To regenerate the manifest with the correct files, run:
+  cd /path/to/repo
+  python tools/data_provenance/hash_dataset.py data/planck_pr3/raw/spectrum.txt data/planck_pr3/raw/model.txt > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+```
+
+This ensures the manifest is a true record of the data used in the analysis.
+
+**Alternative (hash all files in directory - not recommended for court-grade):**
 ```bash
 cd data/planck_pr3/raw
 
 # Compute SHA-256 hashes for all data files
 python ../../../tools/data_provenance/hash_dataset.py *.txt *.fits > ../manifests/planck_pr3_tt_manifest.json
 ```
+
+**Warning**: Hashing all files means the manifest may include files you don't use in analysis. For court-grade provenance, generate manifests with only the exact files used.
 
 **Note**: Using `--relative-to` stores paths relative to the repository root, making manifests portable across different working directories.
 
