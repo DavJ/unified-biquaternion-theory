@@ -214,6 +214,73 @@ def test_hash_dataset_outside_relative_to():
             print("✓ hash_dataset handles files outside relative_to correctly")
 
 
+def test_runner_integration_from_subdir():
+    """
+    Integration test: Simulate running runner from a temp subdirectory.
+    
+    This tests the complete workflow:
+    1. Create test data files in a structure like data/test/
+    2. Generate manifest with --relative-to
+    3. Create a temp working directory
+    4. Change to that directory
+    5. Validate manifest using base_dir
+    """
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = Path(tmpdir)
+        
+        # Create fake repo structure
+        fake_repo = tmpdir / 'fake_repo'
+        fake_repo.mkdir()
+        
+        # Add a .git marker
+        (fake_repo / '.git').mkdir()
+        
+        # Create data directory
+        data_dir = fake_repo / 'data' / 'test'
+        data_dir.mkdir(parents=True)
+        
+        # Create test data files
+        obs_file = data_dir / 'spectrum.txt'
+        obs_file.write_text("# ell Cl_TT sigma\n2 1000 50\n3 1100 55\n")
+        
+        model_file = data_dir / 'model.txt'
+        model_file.write_text("# ell Cl_TT\n2 1000\n3 1100\n")
+        
+        # Create manifest directory
+        manifest_dir = fake_repo / 'manifests'
+        manifest_dir.mkdir()
+        
+        # Generate manifest with relative paths
+        manifest = hash_dataset.hash_dataset(
+            [str(obs_file), str(model_file)],
+            relative_to=fake_repo
+        )
+        
+        manifest_file = manifest_dir / 'test_manifest.json'
+        manifest_file.write_text(json.dumps(manifest, indent=2))
+        
+        # Now test validation from a different working directory
+        work_dir = fake_repo / 'subdir' / 'work'
+        work_dir.mkdir(parents=True)
+        
+        original_cwd = os.getcwd()
+        try:
+            # Change to the subdirectory
+            os.chdir(work_dir)
+            
+            # Validation should work by providing base_dir
+            result = validate_manifest.validate_manifest(
+                fake_repo / 'manifests' / 'test_manifest.json',
+                base_dir=fake_repo
+            )
+            
+            assert result, "Integration test: validation should succeed from subdirectory"
+            print("✓ Runner integration test: validation works from nested subdirectory")
+            
+        finally:
+            os.chdir(original_cwd)
+
+
 if __name__ == '__main__':
     print("Testing manifest path resolution fixes...\n")
     
@@ -222,5 +289,6 @@ if __name__ == '__main__':
     test_manifest_validation_from_different_cwd()
     test_hash_dataset_relative_to()
     test_hash_dataset_outside_relative_to()
+    test_runner_integration_from_subdir()
     
     print("\n✓ All manifest path resolution tests passed!")
