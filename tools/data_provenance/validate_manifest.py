@@ -18,6 +18,7 @@ License: MIT
 import sys
 import hashlib
 import json
+import argparse
 from pathlib import Path
 
 
@@ -159,8 +160,6 @@ def validate_manifest(manifest_path, base_dir=None):
 
 
 def main():
-    import argparse
-    
     parser = argparse.ArgumentParser(
         description="Validate dataset files against SHA-256 manifest",
         epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base_dir /path/to/repo"

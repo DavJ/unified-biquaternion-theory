@@ -174,7 +174,9 @@ def test_hash_dataset_relative_to():
         
         # Should be relative path, not absolute
         assert not Path(stored_path).is_absolute()
-        assert 'data/subdir/file.txt' in stored_path or 'data\\subdir\\file.txt' in stored_path
+        # Use Path normalization for cross-platform compatibility
+        expected_path = Path('data') / 'subdir' / 'file.txt'
+        assert Path(stored_path) == expected_path
         
         print("✓ hash_dataset stores relative paths correctly with --relative-to")
 

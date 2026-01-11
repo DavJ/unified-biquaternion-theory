@@ -17,6 +17,7 @@ License: MIT
 import sys
 import hashlib
 import json
+import argparse
 from pathlib import Path
 from datetime import datetime
 
@@ -115,8 +116,6 @@ def hash_dataset(filepaths, relative_to=None):
 
 
 def main():
-    import argparse
-    
     parser = argparse.ArgumentParser(
         description="Compute SHA-256 hashes of dataset files for provenance tracking",
         epilog="Examples:\n"
