@@ -21,54 +21,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-
-def find_repo_root(start_path=None):
-    """
-    Find repository root by walking upward from start_path.
-    
-    Looks for markers like .git or pyproject.toml.
-    
-    Parameters
-    ----------
-    start_path : Path or None
-        Starting directory (default: directory containing this file)
-    
-    Returns
-    -------
-    Path
-        Repository root directory
-    
-    Raises
-    ------
-    FileNotFoundError
-        If no repository markers found
-    """
-    if start_path is None:
-        start_path = Path(__file__).resolve().parent
-    else:
-        start_path = Path(start_path).resolve()
-    
-    current = start_path
-    # Prioritize .git as the most reliable marker
-    markers = ['.git', 'pyproject.toml', 'pytest.ini']
-    
-    # Walk up directory tree
-    while current != current.parent:
-        # Check if any marker exists in current directory
-        for marker in markers:
-            if (current / marker).exists():
-                return current
-        current = current.parent
-    
-    # Check root directory too
-    for marker in markers:
-        if (current / marker).exists():
-            return current
-    
-    raise FileNotFoundError(
-        f"Could not find repository root. Searched from {start_path} upward. "
-        f"Looking for markers: {', '.join(markers)}"
-    )
+from repo_utils import find_repo_root
 
 
 def compute_sha256(filepath):

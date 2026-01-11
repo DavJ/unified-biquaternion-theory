@@ -28,6 +28,7 @@ if str(tools_path) not in sys.path:
 
 import hash_dataset
 import validate_manifest
+from repo_utils import find_repo_root
 
 
 def test_hash_dataset_stores_repo_relative_paths():
@@ -96,7 +97,7 @@ def test_hash_dataset_outside_repo():
     """
     Test that files outside repo root get absolute paths.
     """
-    with tempfile.TemporaryDirectory(dir='/tmp') as tmpdir:
+    with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = Path(tmpdir)
         test_file = tmpdir / "outside_repo.txt"
         test_file.write_text("outside repo\n")
@@ -192,13 +193,13 @@ def test_find_repo_root():
     """
     # Test from tools directory
     tools_dir = repo_root / 'tools' / 'data_provenance'
-    found_root = hash_dataset.find_repo_root(tools_dir)
+    found_root = find_repo_root(tools_dir)
     assert found_root == repo_root, (
         f"Expected {repo_root}, got {found_root}"
     )
     
     # Test from repo root
-    found_root = hash_dataset.find_repo_root(repo_root)
+    found_root = find_repo_root(repo_root)
     assert found_root == repo_root
     
     print(f"✓ find_repo_root works correctly: {found_root}")
