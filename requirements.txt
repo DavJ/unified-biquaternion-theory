@@ -5,10 +5,12 @@
 numpy>=1.20.0
 mpmath>=1.2.0
 
+# Additional packages for CMB stress tests
+scipy>=1.7.0  # Used by stress tests for statistics
+matplotlib>=3.3.0  # Used for plotting in stress tests
+
 # Testing framework
 pytest>=7.0.0
 
 # Optional: Additional packages used by some scripts
-# scipy>=1.7.0  # Used by some physics simulations
 # sympy>=1.9    # Used by symbolic calculations
-# matplotlib>=3.3.0  # Used for plotting (if needed)
