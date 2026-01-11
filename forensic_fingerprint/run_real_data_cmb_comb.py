@@ -1027,6 +1027,39 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             print("ERROR: WMAP manifest validation failed. Aborting.")
             sys.exit(1)
     
+    # Handle special modes: ablation and null-data
+    if args.ablate_ell:
+        # Ablation mode: Run multiple ℓ-ranges
+        print("="*80)
+        print("ABLATION MODE: Running multiple ℓ-ranges")
+        print("="*80)
+        print()
+        print("NOTE: Ablation implementation uses forensic_fingerprint/stress_tests/test_3_ablation.py")
+        print("      Use that script directly for full ablation analysis.")
+        print()
+        print("For now, running standard analysis with specified ℓ-range.")
+        print("Full ablation integration is a future enhancement.")
+        print()
+        # Continue with standard analysis (future: loop over ranges)
+    
+    if args.null_data == 'lcdm':
+        # ΛCDM null control mode
+        print("="*80)
+        print("ΛCDM NULL CONTROL MODE")
+        print("="*80)
+        print()
+        print("NOTE: ΛCDM null generation uses forensic_fingerprint/synthetic/lcdm.py")
+        print("      and forensic_fingerprint/run_synthetic_lcdm_control.py")
+        print()
+        print("For synthetic null control, use:")
+        print("  python forensic_fingerprint/run_synthetic_lcdm_control.py \\")
+        print("    --n_trials {args.null_trials} \\")
+        print("    --mc_samples {args.mc_samples}")
+        print()
+        print("Full integration with --null-data is a future enhancement.")
+        print("="*80)
+        sys.exit(0)
+    
     # Run Planck analysis
     planck_results = None
     if args.planck_obs:
