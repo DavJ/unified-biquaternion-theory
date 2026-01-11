@@ -242,7 +242,7 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         - 'cov_diag': r = (C_obs - C_model) / sqrt(diag(cov))
         - 'block-diagonal': r = L^-1 (C_obs - C_model) where L is Cholesky of block-diagonal cov
     metadata : dict
-        Whitening metadata (condition number, regularization, etc.)
+        Whitening metadata (condition number, regularization, debug stats, etc.)
     """
     diff = C_obs - C_model
     metadata = {
@@ -250,6 +250,14 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         'regularization_used': False,
         'lambda_ridge': None,
         'cov_metadata': None
+    }
+    
+    # Compute debug statistics for diff and sigma
+    debug_stats = {
+        'std_diff': float(np.std(diff)),
+        'std_sigma': float(np.std(sigma)),
+        'mean_diff': float(np.mean(diff)),
+        'mean_sigma': float(np.mean(sigma)),
     }
     
     if whiten_mode == 'none':
@@ -268,6 +276,7 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
                 'source': 'diagonal from covariance',
                 'matrix_size': cov.shape[0]
             }
+            debug_stats['std_sigma_from_cov'] = float(np.std(sigma_from_cov))
         else:
             print("WARNING: Covariance matrix not provided for 'cov_diag' mode. Falling back to 'diagonal'.")
             residuals = diff / sigma
@@ -329,6 +338,46 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
             residuals = diff / sigma
     else:
         raise ValueError(f"Unknown whitening mode: {whiten_mode}")
+    
+    # Add residual statistics after whitening
+    debug_stats['median_abs_residual_over_sigma'] = float(np.median(np.abs(residuals)))
+    debug_stats['max_abs_residual_over_sigma'] = float(np.max(np.abs(residuals)))
+    debug_stats['std_residuals'] = float(np.std(residuals))
+    debug_stats['mean_residuals'] = float(np.mean(residuals))
+    
+    metadata['debug_stats'] = debug_stats
+    
+    # Check for units mismatch (exploding chi2)
+    chi2_per_dof = np.sum(residuals**2) / len(residuals)
+    if chi2_per_dof > 100.0:  # Threshold for "exploding"
+        print()
+        print("=" * 80)
+        print("WARNING: POSSIBLE UNITS MISMATCH OR WRONG MODEL")
+        print("=" * 80)
+        print(f"χ²/dof = {chi2_per_dof:.2f} >> 1")
+        print()
+        print("This suggests one of the following:")
+        print("  1. Observation and model have different units (Cl vs Dl)")
+        print("  2. Model file is incorrect (not matching the observation)")
+        print("  3. Uncertainties are severely underestimated")
+        print()
+        print("Debug statistics:")
+        print(f"  std(diff) = {debug_stats['std_diff']:.2e}")
+        print(f"  std(sigma) = {debug_stats['std_sigma']:.2e}")
+        print(f"  median(|diff/sigma|) = {debug_stats['median_abs_residual_over_sigma']:.2f}")
+        print(f"  max(|diff/sigma|) = {debug_stats['max_abs_residual_over_sigma']:.2f}")
+        print()
+        print("Please verify:")
+        print("  - Both files use same units (μK² or dimensionless)")
+        print("  - Model corresponds to the correct observation")
+        print("  - Uncertainties are correctly loaded")
+        print("=" * 80)
+        print()
+        metadata['units_mismatch_warning'] = True
+    else:
+        metadata['units_mismatch_warning'] = False
+    
+    metadata['chi2_per_dof'] = float(chi2_per_dof)
     
     return residuals, metadata
 

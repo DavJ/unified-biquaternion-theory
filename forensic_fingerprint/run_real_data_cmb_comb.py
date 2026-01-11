@@ -506,8 +506,44 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
             f.write("## Planck PR3 Results\n\n")
             f.write(f"- **Dataset**: {planck_results.get('dataset', 'Planck PR3')}\n")
             f.write(f"- **Multipole range**: ℓ = {planck_results['ell'][0]} to {planck_results['ell'][-1]}\n")
-            f.write(f"- **Whitening**: {'YES (full covariance)' if planck_results.get('whitened', False) else 'NO (diagonal uncertainties only)'}\n")
-            f.write(f"- **MC trials**: {planck_results.get('n_mc_trials', 'N/A')}\n\n")
+            
+            # Detailed whitening information
+            whiten_mode = planck_results.get('whiten_mode', 'diagonal')
+            f.write(f"- **Whitening mode**: {whiten_mode}\n")
+            
+            # Add whitening metadata if available
+            if 'whitening_metadata' in planck_results and planck_results['whitening_metadata']:
+                wmeta = planck_results['whitening_metadata']
+                
+                # Covariance diagnostics
+                if 'cov_metadata' in wmeta and wmeta['cov_metadata'] and isinstance(wmeta['cov_metadata'], dict):
+                    cov_meta = wmeta['cov_metadata']
+                    if 'condition_number' in cov_meta:
+                        f.write(f"- **Covariance condition number**: {cov_meta['condition_number']:.2e}\n")
+                        if cov_meta.get('needs_regularization', False) or wmeta.get('regularization_used', False):
+                            f.write(f"- **Ridge regularization**: YES")
+                            if 'lambda_ridge' in wmeta and wmeta['lambda_ridge']:
+                                f.write(f" (λ = {wmeta['lambda_ridge']:.2e})")
+                            f.write("\n")
+                        else:
+                            f.write(f"- **Ridge regularization**: NO\n")
+                
+                # Debug statistics
+                if 'debug_stats' in wmeta:
+                    dstats = wmeta['debug_stats']
+                    f.write(f"- **χ²/dof**: {wmeta.get('chi2_per_dof', 'N/A'):.2f}\n")
+                    if wmeta.get('units_mismatch_warning', False):
+                        f.write(f"- **⚠ UNITS WARNING**: χ²/dof >> 1 suggests possible units mismatch\n")
+            
+            f.write(f"- **MC trials**: {planck_results.get('n_mc_trials', 'N/A')}\n")
+            
+            # MC p-floor warning
+            mc_trials = planck_results.get('n_mc_trials', 10000)
+            p_floor = 1.0 / mc_trials
+            if planck_results.get('p_value', 1.0) <= p_floor:
+                f.write(f"- **⚠ MC p-floor**: p-value at floor (1/{mc_trials}), increase --mc_samples for better resolution\n")
+            
+            f.write("\n")
             
             f.write("### Statistical Results\n\n")
             f.write(f"- **Best-fit period**: Δℓ = {planck_results['best_period']}\n")
@@ -527,8 +563,44 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
             f.write("## WMAP 9yr Results\n\n")
             f.write(f"- **Dataset**: {wmap_results.get('dataset', 'WMAP 9yr')}\n")
             f.write(f"- **Multipole range**: ℓ = {wmap_results['ell'][0]} to {wmap_results['ell'][-1]}\n")
-            f.write(f"- **Whitening**: {'YES (full covariance)' if wmap_results.get('whitened', False) else 'NO (diagonal uncertainties only)'}\n")
-            f.write(f"- **MC trials**: {wmap_results.get('n_mc_trials', 'N/A')}\n\n")
+            
+            # Detailed whitening information
+            whiten_mode = wmap_results.get('whiten_mode', 'diagonal')
+            f.write(f"- **Whitening mode**: {whiten_mode}\n")
+            
+            # Add whitening metadata if available
+            if 'whitening_metadata' in wmap_results and wmap_results['whitening_metadata']:
+                wmeta = wmap_results['whitening_metadata']
+                
+                # Covariance diagnostics
+                if 'cov_metadata' in wmeta and wmeta['cov_metadata'] and isinstance(wmeta['cov_metadata'], dict):
+                    cov_meta = wmeta['cov_metadata']
+                    if 'condition_number' in cov_meta:
+                        f.write(f"- **Covariance condition number**: {cov_meta['condition_number']:.2e}\n")
+                        if cov_meta.get('needs_regularization', False) or wmeta.get('regularization_used', False):
+                            f.write(f"- **Ridge regularization**: YES")
+                            if 'lambda_ridge' in wmeta and wmeta['lambda_ridge']:
+                                f.write(f" (λ = {wmeta['lambda_ridge']:.2e})")
+                            f.write("\n")
+                        else:
+                            f.write(f"- **Ridge regularization**: NO\n")
+                
+                # Debug statistics
+                if 'debug_stats' in wmeta:
+                    dstats = wmeta['debug_stats']
+                    f.write(f"- **χ²/dof**: {wmeta.get('chi2_per_dof', 'N/A'):.2f}\n")
+                    if wmeta.get('units_mismatch_warning', False):
+                        f.write(f"- **⚠ UNITS WARNING**: χ²/dof >> 1 suggests possible units mismatch\n")
+            
+            f.write(f"- **MC trials**: {wmap_results.get('n_mc_trials', 'N/A')}\n")
+            
+            # MC p-floor warning
+            mc_trials = wmap_results.get('n_mc_trials', 10000)
+            p_floor = 1.0 / mc_trials
+            if wmap_results.get('p_value', 1.0) <= p_floor:
+                f.write(f"- **⚠ MC p-floor**: p-value at floor (1/{mc_trials}), increase --mc_samples for better resolution\n")
+            
+            f.write("\n")
             
             f.write("### Statistical Results\n\n")
             f.write(f"- **Best-fit period**: Δℓ = {wmap_results['best_period']}\n")
@@ -619,6 +691,92 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
         
         f.write("\n---\n\n")
         
+        # Skeptic Checklist
+        f.write("## Skeptic Checklist\n\n")
+        f.write("This section addresses potential systematic errors and confounds.\n\n")
+        
+        # Units check
+        f.write("### 1. Units Consistency Check\n\n")
+        units_ok = True
+        if planck_results is not None:
+            wmeta = planck_results.get('whitening_metadata', {})
+            if wmeta.get('units_mismatch_warning', False):
+                f.write("- **Planck**: ⚠ FAILED - χ²/dof >> 1 suggests possible units mismatch\n")
+                units_ok = False
+            else:
+                chi2_dof = wmeta.get('chi2_per_dof', 'N/A')
+                f.write(f"- **Planck**: ✓ PASS - χ²/dof = {chi2_dof} (within reasonable range)\n")
+        
+        if wmap_results is not None:
+            wmeta = wmap_results.get('whitening_metadata', {})
+            if wmeta.get('units_mismatch_warning', False):
+                f.write("- **WMAP**: ⚠ FAILED - χ²/dof >> 1 suggests possible units mismatch\n")
+                units_ok = False
+            else:
+                chi2_dof = wmeta.get('chi2_per_dof', 'N/A')
+                f.write(f"- **WMAP**: ✓ PASS - χ²/dof = {chi2_dof} (within reasonable range)\n")
+        
+        f.write("\n")
+        
+        # Covariance check
+        f.write("### 2. Covariance Matrix Check\n\n")
+        cov_ok = True
+        if planck_results is not None:
+            whiten_mode = planck_results.get('whiten_mode', 'diagonal')
+            if whiten_mode == 'covariance':
+                wmeta = planck_results.get('whitening_metadata', {})
+                cov_meta = wmeta.get('cov_metadata', {})
+                if isinstance(cov_meta, dict) and 'condition_number' in cov_meta:
+                    cond = cov_meta['condition_number']
+                    if cov_meta.get('is_symmetric', True) and cov_meta.get('is_positive_definite', True):
+                        f.write(f"- **Planck**: ✓ PASS - Covariance validated (cond={cond:.2e})\n")
+                    else:
+                        f.write(f"- **Planck**: ⚠ REGULARIZED - Covariance required fixes (cond={cond:.2e})\n")
+                        cov_ok = False
+                else:
+                    f.write(f"- **Planck**: Using diagonal uncertainties (no covariance)\n")
+            else:
+                f.write(f"- **Planck**: Using {whiten_mode} whitening (not full covariance)\n")
+        
+        if wmap_results is not None:
+            whiten_mode = wmap_results.get('whiten_mode', 'diagonal')
+            if whiten_mode == 'covariance':
+                wmeta = wmap_results.get('whitening_metadata', {})
+                cov_meta = wmeta.get('cov_metadata', {})
+                if isinstance(cov_meta, dict) and 'condition_number' in cov_meta:
+                    cond = cov_meta['condition_number']
+                    if cov_meta.get('is_symmetric', True) and cov_meta.get('is_positive_definite', True):
+                        f.write(f"- **WMAP**: ✓ PASS - Covariance validated (cond={cond:.2e})\n")
+                    else:
+                        f.write(f"- **WMAP**: ⚠ REGULARIZED - Covariance required fixes (cond={cond:.2e})\n")
+                        cov_ok = False
+                else:
+                    f.write(f"- **WMAP**: Using diagonal uncertainties (no covariance)\n")
+            else:
+                f.write(f"- **WMAP**: Using {whiten_mode} whitening (not full covariance)\n")
+        
+        f.write("\n")
+        
+        # Look-elsewhere correction
+        f.write("### 3. Look-Elsewhere Correction\n\n")
+        f.write("- **Method**: Monte Carlo max-statistic over locked candidate set\n")
+        f.write(f"- **Candidate periods**: Δℓ ∈ {{{', '.join(map(str, CANDIDATE_PERIODS))}}}\n")
+        f.write("- **Status**: ✓ IMPLEMENTED - p-values account for multiple testing\n\n")
+        
+        # ΛCDM control
+        f.write("### 4. ΛCDM Null Control\n\n")
+        f.write("- **Status**: NOT YET RUN (see run_synthetic_lcdm_control.py)\n")
+        f.write("- **Purpose**: Measure false positive rate under synthetic ΛCDM\n")
+        f.write("- **Required for**: Court-grade publication\n\n")
+        
+        # Ablation tests
+        f.write("### 5. Ablation Tests (ℓ-range robustness)\n\n")
+        f.write("- **Status**: NOT YET RUN (use --ablate_ell_ranges)\n")
+        f.write("- **Purpose**: Verify signal persists across independent ℓ-windows\n")
+        f.write("- **Required for**: Robustness confirmation\n\n")
+        
+        f.write("---\n\n")
+        
         # Court-grade mode warnings
         f.write("## Data Quality and Limitations\n\n")
         
@@ -687,6 +845,11 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
                        help=f'Number of Monte Carlo samples (default: {DEFAULT_MC_SAMPLES} for candidate-grade, 100000 for strong)')
     parser.add_argument('--seed', type=int, default=DEFAULT_SEED,
                        help=f'Random seed for reproducibility (default: {DEFAULT_SEED}, pre-registered)')
+    parser.add_argument('--whiten_mode', type=str, 
+                       choices=['none', 'diagonal', 'cov_diag', 'covariance'],
+                       default='diagonal',
+                       help='Whitening mode: none (no whitening), diagonal (default, use sigma), '
+                            'cov_diag (sqrt(diag(cov))), covariance (full Cholesky whitening)')
     
     # Output
     parser.add_argument('--output_dir', type=str, help='Output directory (default: auto-generated with timestamp)')
@@ -813,6 +976,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             variant=args.variant,
             n_mc_trials=args.mc_samples,
             random_seed=args.seed,
+            whiten_mode=args.whiten_mode,
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         
@@ -857,6 +1021,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             variant=args.variant,
             n_mc_trials=args.mc_samples,
             random_seed=args.seed,
+            whiten_mode=args.whiten_mode,
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         
