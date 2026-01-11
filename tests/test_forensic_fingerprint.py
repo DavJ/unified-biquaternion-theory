@@ -42,10 +42,14 @@ class TestCMBComb:
         C_model = np.array([98, 94, 91, 84, 81, 74, 71, 64])
         sigma = np.ones(8) * 5.0
         
-        residuals = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma)
+        residuals, metadata = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma)
         
         expected = (C_obs - C_model) / sigma
         np.testing.assert_allclose(residuals, expected)
+        
+        # Check metadata
+        assert metadata['whiten_mode'] == 'diagonal'
+        assert metadata['regularization_used'] is False
     
     def test_fit_sinusoid_linear(self):
         """Test sinusoidal fit."""
@@ -788,17 +792,25 @@ class TestCMBCombWhitening:
         for i in range(7):
             cov[i, i+1] = cov[i+1, i] = 2.0  # Small off-diagonal
         
-        # Compute whitened residuals
-        residuals_whitened = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma, cov=cov)
+        # Compute whitened residuals using covariance mode
+        residuals_whitened, metadata_whitened = cmb_comb.compute_residuals(
+            ell, C_obs, C_model, sigma, cov=cov, whiten_mode='covariance'
+        )
         
-        # Compute non-whitened residuals
-        residuals_diag = cmb_comb.compute_residuals(ell, C_obs, C_model, sigma, cov=None)
+        # Compute non-whitened residuals (diagonal mode)
+        residuals_diag, metadata_diag = cmb_comb.compute_residuals(
+            ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal'
+        )
         
-        # Should be different (whitening affects residuals)
+        # Should be different (covariance whitening affects residuals differently than diagonal)
         assert not np.allclose(residuals_whitened, residuals_diag)
         
         # Both should be same length
         assert len(residuals_whitened) == len(residuals_diag) == 8
+        
+        # Check metadata
+        assert metadata_diag['whiten_mode'] == 'diagonal'
+        assert metadata_whitened['whiten_mode'] == 'covariance'
     
     def test_run_cmb_comb_with_covariance(self):
         """Test full CMB comb test with covariance matrix."""
@@ -811,17 +823,19 @@ class TestCMBCombWhitening:
         # Create covariance
         cov = np.diag(sigma**2)
         
-        # Run test with covariance (no output dir to avoid writing files)
+        # Run test with covariance using covariance whitening mode
         cmb_comb.N_MC_TRIALS = 100
         results = cmb_comb.run_cmb_comb_test(
             ell, C_obs, C_model, sigma, 
             output_dir=None,  # Don't save results in test
             cov=cov, 
+            whiten_mode='covariance',  # Enable covariance whitening
             dataset_name="Test Dataset"
         )
         
         # Verify whitening flag is set
         assert results['whitened'] is True
+        assert results['whiten_mode'] == 'covariance'
         assert results['dataset'] == "Test Dataset"
         assert 'best_period' in results
         assert 'p_value' in results
@@ -1195,29 +1209,20 @@ class TestManifestPathResolution:
         fallback_manifest = data_dir / 'planck_pr3_tt_manifest.json'
         fallback_manifest.write_text('{}')
         
-        # Patch __file__ to point to our temp structure
-        original_file = run_real_data_cmb_comb.__file__
-        try:
-            # Set up paths relative to tmp_path
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
-            
-            # Try to resolve non-existent path
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
-            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
-                nonexistent, 'planck'
-            )
-            
-            assert resolved == fallback_manifest
-            assert fallback_desc is not None
-            assert 'fallback' in fallback_desc.lower()
-        finally:
-            run_real_data_cmb_comb.__file__ = original_file
+        # Try to resolve non-existent path
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+            nonexistent, 'planck', base_dir=tmp_path
+        )
+        
+        assert resolved == fallback_manifest
+        assert fallback_desc is not None
+        assert 'fallback' in fallback_desc.lower()
     
     def test_resolve_manifest_path_planck_fallback_sha256(self, tmp_path):
         """Test Planck manifest fallback to sha256.json when standard is missing."""
         sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
-        
         # Create directory structure
         data_dir = tmp_path / 'data' / 'planck_pr3' / 'manifests'
         data_dir.mkdir(parents=True)
@@ -1226,22 +1231,15 @@ class TestManifestPathResolution:
         fallback_manifest = data_dir / 'sha256.json'
         fallback_manifest.write_text('{}')
         
-        # Patch __file__
-        original_file = run_real_data_cmb_comb.__file__
-        try:
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
-            
-            # Try to resolve non-existent path
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
-            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
-                nonexistent, 'planck'
-            )
-            
-            assert resolved == fallback_manifest
-            assert fallback_desc is not None
-            assert 'sha256.json' in str(resolved)
-        finally:
-            run_real_data_cmb_comb.__file__ = original_file
+        # Try to resolve non-existent path
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+            nonexistent, 'planck', base_dir=tmp_path
+        )
+        
+        assert resolved == fallback_manifest
+        assert fallback_desc is not None
+        assert 'sha256.json' in str(resolved)
     
     def test_resolve_manifest_path_wmap_fallback(self, tmp_path):
         """Test WMAP manifest fallback to wmap_tt_manifest.json."""
@@ -1256,21 +1254,14 @@ class TestManifestPathResolution:
         fallback_manifest = data_dir / 'wmap_tt_manifest.json'
         fallback_manifest.write_text('{}')
         
-        # Patch __file__
-        original_file = run_real_data_cmb_comb.__file__
-        try:
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
-            
-            # Try to resolve non-existent path
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
-            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
-                nonexistent, 'wmap'
-            )
-            
-            assert resolved == fallback_manifest
-            assert fallback_desc is not None
-        finally:
-            run_real_data_cmb_comb.__file__ = original_file
+        # Try to resolve non-existent path
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+            nonexistent, 'wmap', base_dir=tmp_path
+        )
+        
+        assert resolved == fallback_manifest
+        assert fallback_desc is not None
     
     def test_resolve_manifest_path_no_fallback_found(self, tmp_path):
         """Test that None is returned when no fallback exists."""
@@ -1278,21 +1269,15 @@ class TestManifestPathResolution:
         import run_real_data_cmb_comb
         
         # Don't create any fallback files
-        # Patch __file__
-        original_file = run_real_data_cmb_comb.__file__
-        try:
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
-            
-            # Try to resolve non-existent path with no fallbacks
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
-            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
-                nonexistent, 'planck'
-            )
-            
-            assert resolved is None
-            assert fallback_desc is None
-        finally:
-            run_real_data_cmb_comb.__file__ = original_file
+        
+        # Try to resolve non-existent path with no fallbacks
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+            nonexistent, 'planck', base_dir=tmp_path
+        )
+        
+        assert resolved is None
+        assert fallback_desc is None
     
     def test_validate_data_manifest_with_fallback_warning(self, tmp_path, capsys):
         """Test that validate_data_manifest prints warning when using fallback."""
@@ -1333,36 +1318,29 @@ class TestManifestPathResolution:
         }
         fallback_manifest.write_text(json.dumps(manifest_data))
         
-        # Patch __file__
-        original_file = run_real_data_cmb_comb.__file__
+        # Try to validate with non-existent path (should use fallback)
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        
+        # Change to the directory where the data file is
+        import os
+        original_cwd = os.getcwd()
         try:
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            os.chdir(raw_dir)
             
-            # Try to validate with non-existent path (should use fallback)
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            result = run_real_data_cmb_comb.validate_data_manifest(
+                nonexistent, 'planck', obs_file=data_file, base_dir=tmp_path
+            )
             
-            # Change to the directory where the data file is
-            import os
-            original_cwd = os.getcwd()
-            try:
-                os.chdir(raw_dir)
-                
-                result = run_real_data_cmb_comb.validate_data_manifest(
-                    nonexistent, 'planck', obs_file=data_file
-                )
-                
-                # Capture output
-                captured = capsys.readouterr()
-                
-                # Should succeed with fallback
-                assert result is True
-                assert 'WARNING' in captured.out
-                assert 'fallback' in captured.out.lower()
-                assert 'sha256.json' in captured.out
-            finally:
-                os.chdir(original_cwd)
+            # Capture output
+            captured = capsys.readouterr()
+            
+            # Should succeed with fallback
+            assert result is True
+            assert 'WARNING' in captured.out
+            assert 'fallback' in captured.out.lower()
+            assert 'sha256.json' in captured.out
         finally:
-            run_real_data_cmb_comb.__file__ = original_file
+            os.chdir(original_cwd)
     
     def test_validate_data_manifest_error_with_suggestion(self, tmp_path, capsys):
         """Test that error message includes attempted paths and generation suggestion."""
@@ -1370,34 +1348,28 @@ class TestManifestPathResolution:
         import run_real_data_cmb_comb
         
         # Don't create any fallback files
-        # Patch __file__
-        original_file = run_real_data_cmb_comb.__file__
-        try:
-            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
-            
-            # Try to validate with no fallbacks available
-            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
-            obs_file = tmp_path / 'data' / 'planck_pr3' / 'raw' / 'obs.txt'
-            
-            result = run_real_data_cmb_comb.validate_data_manifest(
-                nonexistent, 'planck', obs_file=obs_file
-            )
-            
-            # Capture output
-            captured = capsys.readouterr()
-            
-            # Should fail
-            assert result is False
-            
-            # Check error message includes all required elements
-            assert 'ERROR' in captured.out
-            assert 'Attempted paths:' in captured.out
-            assert 'planck_pr3_tt_manifest.json' in captured.out
-            assert 'sha256.json' in captured.out
-            assert 'To generate the expected manifest, run:' in captured.out
-            assert 'hash_dataset.py' in captured.out
-        finally:
-            run_real_data_cmb_comb.__file__ = original_file
+        
+        # Try to validate with no fallbacks available
+        nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+        obs_file = tmp_path / 'data' / 'planck_pr3' / 'raw' / 'obs.txt'
+        
+        result = run_real_data_cmb_comb.validate_data_manifest(
+            nonexistent, 'planck', obs_file=obs_file, base_dir=tmp_path
+        )
+        
+        # Capture output
+        captured = capsys.readouterr()
+        
+        # Should fail
+        assert result is False
+        
+        # Check error message includes all required elements
+        assert 'ERROR' in captured.out
+        assert 'Attempted paths:' in captured.out
+        assert 'planck_pr3_tt_manifest.json' in captured.out
+        assert 'sha256.json' in captured.out
+        assert 'To generate the expected manifest, run:' in captured.out
+        assert 'hash_dataset.py' in captured.out
 
 
 if __name__ == '__main__':

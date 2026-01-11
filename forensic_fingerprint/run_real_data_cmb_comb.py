@@ -123,11 +123,11 @@ DEFAULT_MC_SAMPLES = 5000  # Candidate-grade
 DEFAULT_SEED = 42  # Pre-registered
 
 
-def resolve_manifest_path(manifest_path, dataset_type):
+def resolve_manifest_path(manifest_path, dataset_type, base_dir=None):
     """
     Resolve manifest path with fallback candidates.
     
-    Uses repo_root for resolving relative paths, so this works regardless of CWD.
+    Uses repo_root (or base_dir if provided) for resolving relative paths, so this works regardless of CWD.
     
     If the specified manifest path does not exist, tries fallback candidates in order:
     - For Planck: planck_pr3_tt_manifest.json, sha256.json, manifest.json
@@ -139,6 +139,8 @@ def resolve_manifest_path(manifest_path, dataset_type):
         User-specified manifest path (may not exist)
     dataset_type : str
         Dataset type: 'planck' or 'wmap'
+    base_dir : str, Path, or None
+        Base directory for resolving paths (defaults to repo_root if None)
     
     Returns
     -------
@@ -150,11 +152,17 @@ def resolve_manifest_path(manifest_path, dataset_type):
     if manifest_path is None:
         return None, None
     
+    # Use provided base_dir or fall back to module-level repo_root
+    if base_dir is None:
+        base_dir = repo_root
+    else:
+        base_dir = Path(base_dir)
+    
     manifest_path = Path(manifest_path)
     
-    # If path is relative, try resolving relative to repo_root first
+    # If path is relative, try resolving relative to base_dir first
     if not manifest_path.is_absolute():
-        resolved_from_root = repo_root / manifest_path
+        resolved_from_root = base_dir / manifest_path
         if resolved_from_root.exists():
             return resolved_from_root, None
     
@@ -162,18 +170,18 @@ def resolve_manifest_path(manifest_path, dataset_type):
     if manifest_path.exists():
         return manifest_path, None
     
-    # Define fallback candidates based on dataset type (using repo_root)
+    # Define fallback candidates based on dataset type (using base_dir)
     if dataset_type == 'planck':
         fallback_candidates = [
-            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json',
-            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json',
-            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json',
+            base_dir / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json',
+            base_dir / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json',
+            base_dir / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json',
         ]
     elif dataset_type == 'wmap':
         fallback_candidates = [
-            repo_root / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json',
-            repo_root / 'data' / 'wmap' / 'manifests' / 'sha256.json',
-            repo_root / 'data' / 'wmap' / 'manifests' / 'manifest.json',
+            base_dir / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json',
+            base_dir / 'data' / 'wmap' / 'manifests' / 'sha256.json',
+            base_dir / 'data' / 'wmap' / 'manifests' / 'manifest.json',
         ]
     else:
         return None, None
@@ -188,7 +196,7 @@ def resolve_manifest_path(manifest_path, dataset_type):
     return None, None
 
 
-def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_file=None):
+def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_file=None, base_dir=None):
     """
     Validate dataset against SHA-256 manifest.
     
@@ -205,6 +213,8 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         Observation file path (for error message generation command)
     model_file : str or Path or None
         Model file path (for error message generation command)
+    base_dir : str, Path, or None
+        Base directory for resolving paths (defaults to repo_root if None)
     
     Returns
     -------
@@ -216,8 +226,14 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         print("         For court-grade provenance, manifests are required.\n")
         return True
     
+    # Use provided base_dir or fall back to module-level repo_root
+    if base_dir is None:
+        base_dir = repo_root
+    else:
+        base_dir = Path(base_dir)
+    
     # Resolve manifest path with fallback logic
-    resolved_path, fallback_desc = resolve_manifest_path(manifest_path, dataset_type)
+    resolved_path, fallback_desc = resolve_manifest_path(manifest_path, dataset_type, base_dir=base_dir)
     
     if resolved_path is None:
         # Build list of attempted paths for error message
@@ -225,15 +241,15 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         
         if dataset_type == 'planck':
             attempted_paths.extend([
-                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json'),
-                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json'),
-                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json'),
+                str(base_dir / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json'),
+                str(base_dir / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json'),
+                str(base_dir / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json'),
             ])
         elif dataset_type == 'wmap':
             attempted_paths.extend([
-                str(repo_root / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json'),
-                str(repo_root / 'data' / 'wmap' / 'manifests' / 'sha256.json'),
-                str(repo_root / 'data' / 'wmap' / 'manifests' / 'manifest.json'),
+                str(base_dir / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json'),
+                str(base_dir / 'data' / 'wmap' / 'manifests' / 'sha256.json'),
+                str(base_dir / 'data' / 'wmap' / 'manifests' / 'manifest.json'),
             ])
         
         print(f"ERROR: Manifest not found for {dataset_type} dataset.")
@@ -244,7 +260,7 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         # Provide helpful generation command
         if obs_file:
             print(f"\nTo generate the expected manifest, run:")
-            manifest_dir = repo_root / 'data' / (
+            manifest_dir = base_dir / 'data' / (
                 'planck_pr3' if dataset_type == 'planck' else 'wmap'
             ) / 'manifests'
             manifest_name = 'planck_pr3_tt_manifest.json' if dataset_type == 'planck' else 'wmap_tt_manifest.json'
@@ -255,9 +271,9 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
             print(f"  cd {data_dir}")
             
             if model_file:
-                print(f"  python {repo_root}/tools/data_provenance/hash_dataset.py {obs_path.name} {Path(model_file).name} --relative-to {repo_root} > {manifest_dir}/{manifest_name}")
+                print(f"  python {base_dir}/tools/data_provenance/hash_dataset.py {obs_path.name} {Path(model_file).name} --relative-to {base_dir} > {manifest_dir}/{manifest_name}")
             else:
-                print(f"  python {repo_root}/tools/data_provenance/hash_dataset.py {obs_path.name} --relative-to {repo_root} > {manifest_dir}/{manifest_name}")
+                print(f"  python {base_dir}/tools/data_provenance/hash_dataset.py {obs_path.name} --relative-to {base_dir} > {manifest_dir}/{manifest_name}")
         
         print()
         return False
@@ -268,7 +284,7 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         print(f"         {fallback_desc}\n")
     
     print(f"Validating manifest: {resolved_path}")
-    success = validate_manifest.validate_manifest(resolved_path, base_dir=repo_root)
+    success = validate_manifest.validate_manifest(resolved_path, base_dir=base_dir)
     
     if not success:
         print()
@@ -293,18 +309,18 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
     required_files = {}
     if obs_file:
         obs_path = Path(obs_file)
-        # Try to get relative path from repo root if file is absolute
-        if obs_path.is_absolute() and obs_path.is_relative_to(repo_root):
-            rel_path = str(obs_path.relative_to(repo_root))
+        # Try to get relative path from base_dir if file is absolute
+        if obs_path.is_absolute() and obs_path.is_relative_to(base_dir):
+            rel_path = str(obs_path.relative_to(base_dir))
         else:
             rel_path = str(obs_file)
         required_files[obs_path.name] = rel_path
     
     if model_file:
         model_path = Path(model_file)
-        # Try to get relative path from repo root if file is absolute
-        if model_path.is_absolute() and model_path.is_relative_to(repo_root):
-            rel_path = str(model_path.relative_to(repo_root))
+        # Try to get relative path from base_dir if file is absolute
+        if model_path.is_absolute() and model_path.is_relative_to(base_dir):
+            rel_path = str(model_path.relative_to(base_dir))
         else:
             rel_path = str(model_file)
         required_files[model_path.name] = rel_path
@@ -346,24 +362,24 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         print()
         print("To regenerate the manifest with the correct files, run:")
         
-        manifest_dir = repo_root / 'data' / (
+        manifest_dir = base_dir / 'data' / (
             'planck_pr3' if dataset_type == 'planck' else 'wmap'
         ) / 'manifests'
         manifest_name = 'planck_pr3_tt_manifest.json' if dataset_type == 'planck' else 'wmap_tt_manifest.json'
         
         if obs_file:
             obs_path = Path(obs_file)
-            data_dir = obs_path.parent if obs_path.is_absolute() else repo_root / obs_path.parent
+            data_dir = obs_path.parent if obs_path.is_absolute() else base_dir / obs_path.parent
             
-            print(f"  cd {repo_root}")
+            print(f"  cd {base_dir}")
             
             file_args = []
             if obs_file:
-                # Use relative path from repo root
-                rel_obs = Path(obs_file).relative_to(repo_root) if Path(obs_file).is_absolute() and Path(obs_file).is_relative_to(repo_root) else obs_file
+                # Use relative path from base_dir
+                rel_obs = Path(obs_file).relative_to(base_dir) if Path(obs_file).is_absolute() and Path(obs_file).is_relative_to(base_dir) else obs_file
                 file_args.append(str(rel_obs))
             if model_file:
-                rel_model = Path(model_file).relative_to(repo_root) if Path(model_file).is_absolute() and Path(model_file).is_relative_to(repo_root) else model_file
+                rel_model = Path(model_file).relative_to(base_dir) if Path(model_file).is_absolute() and Path(model_file).is_relative_to(base_dir) else model_file
                 file_args.append(str(rel_model))
             
             print(f"  python tools/data_provenance/hash_dataset.py {' '.join(file_args)} > {manifest_dir}/{manifest_name}")
@@ -389,22 +405,21 @@ def save_results_json(results, output_file):
     output_file : Path
         Output JSON file path
     """
-    # Create serializable copy (convert numpy arrays to lists)
-    results_copy = {}
-    for key, value in results.items():
-        if isinstance(value, np.ndarray):
-            results_copy[key] = value.tolist()
-        elif isinstance(value, (np.integer, np.floating)):
-            results_copy[key] = float(value)
-        elif isinstance(value, dict):
-            # Handle nested dicts (like all_periods)
-            results_copy[key] = {
-                str(k): {sk: float(sv) if isinstance(sv, (np.integer, np.floating)) else sv 
-                        for sk, sv in v.items()}
-                for k, v in value.items()
-            }
+    def convert_to_serializable(obj):
+        """Recursively convert numpy types to Python types."""
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, (np.integer, np.floating)):
+            return float(obj)
+        elif isinstance(obj, dict):
+            return {str(k): convert_to_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, (list, tuple)):
+            return [convert_to_serializable(item) for item in obj]
         else:
-            results_copy[key] = value
+            return obj
+    
+    # Create serializable copy
+    results_copy = convert_to_serializable(results)
     
     with open(output_file, 'w') as f:
         json.dump(results_copy, f, indent=2)
