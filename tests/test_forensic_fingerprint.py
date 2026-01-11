@@ -1162,5 +1162,243 @@ class TestRealDataRunner:
         assert 'p_value' in loaded_results
 
 
+class TestManifestPathResolution:
+    """Tests for manifest path resolution with fallback logic."""
+    
+    def test_resolve_manifest_path_exists(self, tmp_path):
+        """Test that existing manifest path is used directly."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create a manifest file
+        manifest_file = tmp_path / 'test_manifest.json'
+        manifest_file.write_text('{}')
+        
+        # Should return the path as-is (no fallback needed)
+        resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+            manifest_file, 'planck'
+        )
+        
+        assert resolved == manifest_file
+        assert fallback_desc is None
+    
+    def test_resolve_manifest_path_planck_fallback_standard(self, tmp_path):
+        """Test Planck manifest fallback to planck_pr3_tt_manifest.json."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create directory structure
+        data_dir = tmp_path / 'data' / 'planck_pr3' / 'manifests'
+        data_dir.mkdir(parents=True)
+        
+        # Create fallback manifest
+        fallback_manifest = data_dir / 'planck_pr3_tt_manifest.json'
+        fallback_manifest.write_text('{}')
+        
+        # Patch __file__ to point to our temp structure
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            # Set up paths relative to tmp_path
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to resolve non-existent path
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+                nonexistent, 'planck'
+            )
+            
+            assert resolved == fallback_manifest
+            assert fallback_desc is not None
+            assert 'fallback' in fallback_desc.lower()
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+    
+    def test_resolve_manifest_path_planck_fallback_sha256(self, tmp_path):
+        """Test Planck manifest fallback to sha256.json when standard is missing."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create directory structure
+        data_dir = tmp_path / 'data' / 'planck_pr3' / 'manifests'
+        data_dir.mkdir(parents=True)
+        
+        # Create sha256.json fallback (skip planck_pr3_tt_manifest.json)
+        fallback_manifest = data_dir / 'sha256.json'
+        fallback_manifest.write_text('{}')
+        
+        # Patch __file__
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to resolve non-existent path
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+                nonexistent, 'planck'
+            )
+            
+            assert resolved == fallback_manifest
+            assert fallback_desc is not None
+            assert 'sha256.json' in str(resolved)
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+    
+    def test_resolve_manifest_path_wmap_fallback(self, tmp_path):
+        """Test WMAP manifest fallback to wmap_tt_manifest.json."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Create directory structure
+        data_dir = tmp_path / 'data' / 'wmap' / 'manifests'
+        data_dir.mkdir(parents=True)
+        
+        # Create fallback manifest
+        fallback_manifest = data_dir / 'wmap_tt_manifest.json'
+        fallback_manifest.write_text('{}')
+        
+        # Patch __file__
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to resolve non-existent path
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+                nonexistent, 'wmap'
+            )
+            
+            assert resolved == fallback_manifest
+            assert fallback_desc is not None
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+    
+    def test_resolve_manifest_path_no_fallback_found(self, tmp_path):
+        """Test that None is returned when no fallback exists."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Don't create any fallback files
+        # Patch __file__
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to resolve non-existent path with no fallbacks
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            resolved, fallback_desc = run_real_data_cmb_comb.resolve_manifest_path(
+                nonexistent, 'planck'
+            )
+            
+            assert resolved is None
+            assert fallback_desc is None
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+    
+    def test_validate_data_manifest_with_fallback_warning(self, tmp_path, capsys):
+        """Test that validate_data_manifest prints warning when using fallback."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'data_provenance'))
+        import run_real_data_cmb_comb
+        
+        # Create directory structure
+        data_dir = tmp_path / 'data' / 'planck_pr3' / 'manifests'
+        data_dir.mkdir(parents=True)
+        
+        # Create raw data directory
+        raw_dir = tmp_path / 'data' / 'planck_pr3' / 'raw'
+        raw_dir.mkdir(parents=True)
+        
+        # Create a dummy data file
+        data_file = raw_dir / 'test_data.txt'
+        data_file.write_text('test data\n')
+        
+        # Create sha256.json fallback with correct hash
+        import hashlib
+        hash_obj = hashlib.sha256()
+        hash_obj.update(b'test data\n')
+        file_hash = hash_obj.hexdigest()
+        
+        fallback_manifest = data_dir / 'sha256.json'
+        import json
+        manifest_data = {
+            'manifest_version': '1.0',
+            'hash_algorithm': 'SHA-256',
+            'files': [
+                {
+                    'filename': 'test_data.txt',
+                    'sha256': file_hash,
+                    'path': 'test_data.txt'
+                }
+            ]
+        }
+        fallback_manifest.write_text(json.dumps(manifest_data))
+        
+        # Patch __file__
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to validate with non-existent path (should use fallback)
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            
+            # Change to the directory where the data file is
+            import os
+            original_cwd = os.getcwd()
+            try:
+                os.chdir(raw_dir)
+                
+                result = run_real_data_cmb_comb.validate_data_manifest(
+                    nonexistent, 'planck', obs_file=data_file
+                )
+                
+                # Capture output
+                captured = capsys.readouterr()
+                
+                # Should succeed with fallback
+                assert result is True
+                assert 'WARNING' in captured.out
+                assert 'fallback' in captured.out.lower()
+                assert 'sha256.json' in captured.out
+            finally:
+                os.chdir(original_cwd)
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+    
+    def test_validate_data_manifest_error_with_suggestion(self, tmp_path, capsys):
+        """Test that error message includes attempted paths and generation suggestion."""
+        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        import run_real_data_cmb_comb
+        
+        # Don't create any fallback files
+        # Patch __file__
+        original_file = run_real_data_cmb_comb.__file__
+        try:
+            run_real_data_cmb_comb.__file__ = str(tmp_path / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py')
+            
+            # Try to validate with no fallbacks available
+            nonexistent = tmp_path / 'nonexistent' / 'manifest.json'
+            obs_file = tmp_path / 'data' / 'planck_pr3' / 'raw' / 'obs.txt'
+            
+            result = run_real_data_cmb_comb.validate_data_manifest(
+                nonexistent, 'planck', obs_file=obs_file
+            )
+            
+            # Capture output
+            captured = capsys.readouterr()
+            
+            # Should fail
+            assert result is False
+            
+            # Check error message includes all required elements
+            assert 'ERROR' in captured.out
+            assert 'Attempted paths:' in captured.out
+            assert 'planck_pr3_tt_manifest.json' in captured.out
+            assert 'sha256.json' in captured.out
+            assert 'To generate the expected manifest, run:' in captured.out
+            assert 'hash_dataset.py' in captured.out
+        finally:
+            run_real_data_cmb_comb.__file__ = original_file
+
+
 if __name__ == '__main__':
     pytest.main([__file__, '-v'])
