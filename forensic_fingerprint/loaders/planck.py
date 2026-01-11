@@ -37,7 +37,8 @@ def load_planck_data(
     cov_file=None,
     ell_min=None,
     ell_max=None,
-    dataset_name="Planck PR3"
+    dataset_name="Planck PR3",
+    _skip_size_validation=False
 ):
     """
     Load Planck TT power spectrum data.
@@ -56,6 +57,9 @@ def load_planck_data(
         Maximum multipole to include (default: use all)
     dataset_name : str
         Dataset identifier for provenance (default: "Planck PR3")
+    _skip_size_validation : bool, optional
+        Internal parameter for testing. If True, skips file size validation.
+        Default False. Do not use in production code.
     
     Returns
     -------
@@ -85,7 +89,7 @@ def load_planck_data(
     if obs_file.suffix.lower() == '.fits':
         ell_obs, cl_obs, sigma_obs = _load_planck_fits(obs_file)
     elif obs_file.suffix.lower() in ['.txt', '.dat']:
-        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file)
+        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file, _skip_size_validation=_skip_size_validation)
     else:
         raise ValueError(f"Unsupported file format: {obs_file.suffix}")
     
@@ -99,7 +103,7 @@ def load_planck_data(
             if model_file.suffix.lower() == '.fits':
                 ell_model, cl_model, _ = _load_planck_fits(model_file)
             else:
-                ell_model, cl_model, _ = _load_planck_text(model_file)
+                ell_model, cl_model, _ = _load_planck_text(model_file, _skip_size_validation=_skip_size_validation)
             
             # Ensure ell arrays match
             if not np.array_equal(ell_obs, ell_model):
@@ -159,7 +163,7 @@ def load_planck_data(
     return data
 
 
-def _load_planck_text(filepath):
+def _load_planck_text(filepath, _skip_size_validation=False):
     """
     Load Planck data from text file.
     
@@ -176,6 +180,9 @@ def _load_planck_text(filepath):
     ----------
     filepath : Path
         Path to text file
+    _skip_size_validation : bool, optional
+        Internal parameter for testing. If True, skips file size validation.
+        Default False.
     
     Returns
     -------
@@ -231,7 +238,8 @@ def _load_planck_text(filepath):
     # Check if file is suspiciously small (likely not a spectrum)
     # Typical TT spectra have hundreds to thousands of multipoles
     # A file with < 50 data rows is likely a parameter table or corrupted
-    if data_row_count < 50:
+    # Skip this check for unit tests with synthetic data
+    if not _skip_size_validation and data_row_count < 50:
         filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
         raise ValueError(
             f"Invalid spectrum file: {filepath}\n\n"
