@@ -183,11 +183,11 @@ def validate_manifest(manifest_path, base_dir=None):
 def main():
     parser = argparse.ArgumentParser(
         description="Validate dataset files against SHA-256 manifest",
-        epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base_dir /path/to/repo\n"
+        epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base-dir /path/to/repo\n"
                "         python validate_manifest.py manifest.json  # auto-discovers repo root"
     )
     parser.add_argument('manifest', help='Path to manifest JSON file')
-    parser.add_argument('--base_dir', 
+    parser.add_argument('--base-dir', dest='base_dir',
                        help='Base directory for resolving relative paths (default: auto-discover repo root)')
     
     args = parser.parse_args()
