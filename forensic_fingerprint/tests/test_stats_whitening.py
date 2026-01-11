@@ -134,10 +134,10 @@ class TestCovarianceValidation:
         
         C_val, metadata = validate_and_regularize_covariance(C, ell)
         
-        assert metadata['is_symmetric'] is True
-        assert metadata['is_positive_definite'] is True
-        assert metadata['needs_regularization'] is False
-        assert metadata['regularization_applied'] is False
+        assert metadata['is_symmetric'] == True
+        assert metadata['is_positive_definite'] == True
+        assert metadata['needs_regularization'] == False
+        assert metadata['regularization_applied'] == False
         assert np.allclose(C_val, C)
     
     def test_validate_auto_symmetrize(self):
@@ -148,7 +148,7 @@ class TestCovarianceValidation:
         
         C_val, metadata = validate_and_regularize_covariance(C, auto_symmetrize=True)
         
-        assert metadata['was_symmetrized'] is True
+        assert metadata['was_symmetrized'] == True
         assert np.allclose(C_val, C_val.T)
     
     def test_validate_ill_conditioned(self):
@@ -160,8 +160,8 @@ class TestCovarianceValidation:
         
         C_val, metadata = validate_and_regularize_covariance(C, target_condition=1e8)
         
-        assert metadata['needs_regularization'] is True
-        assert metadata['regularization_applied'] is True
+        assert metadata['needs_regularization'] == True
+        assert metadata['regularization_applied'] == True
         assert metadata['lambda_ridge'] is not None
         assert metadata['final_condition_number'] < metadata['condition_number']
     
@@ -172,8 +172,8 @@ class TestCovarianceValidation:
         
         C_val, metadata = validate_and_regularize_covariance(C)
         
-        assert metadata['is_positive_definite'] is False
-        assert metadata['regularization_applied'] is True
+        assert metadata['is_positive_definite'] == False
+        assert metadata['regularization_applied'] == True
         
         # After regularization, should be positive definite
         eigs = np.linalg.eigvalsh(C_val)
