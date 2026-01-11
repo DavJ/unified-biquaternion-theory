@@ -848,6 +848,26 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     parser.add_argument('--seed', type=int, default=DEFAULT_SEED,
                        help=f'Random seed for reproducibility (default: {DEFAULT_SEED}, pre-registered)')
     
+    # Spectrum type (polarization support)
+    parser.add_argument('--spectrum', type=str, 
+                       choices=['TT', 'TE', 'EE', 'BB'],
+                       default='TT',
+                       help='Spectrum type: TT (temperature), TE (temp-E), EE (E-mode), BB (B-mode). Default: TT')
+    
+    # Ablation tests
+    parser.add_argument('--ablate-ell', action='store_true',
+                       help='Run ablation tests over multiple ℓ-ranges (sliding windows)')
+    parser.add_argument('--ablate-ranges', type=str,
+                       help='Custom ℓ-ranges for ablation (comma-separated, e.g., "30-800,200-1000,800-1500")')
+    
+    # Synthetic controls
+    parser.add_argument('--null-data', type=str,
+                       choices=['lcdm'],
+                       default=None,
+                       help='Use synthetic null data: lcdm (ΛCDM with noise, no signal)')
+    parser.add_argument('--null-trials', type=int, default=100,
+                       help='Number of synthetic null trials for false positive rate estimation (default: 100)')
+    
     # Whitening parameters (NEW)
     parser.add_argument('--whiten', type=str, 
                        choices=['none', 'diag', 'full'],
@@ -1016,14 +1036,15 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
         print()
         
         # Load Planck data
-        print("Loading Planck data...")
+        print(f"Loading Planck {args.spectrum} data...")
         planck_data = planck.load_planck_data(
             obs_file=args.planck_obs,
             model_file=args.planck_model,
             cov_file=args.planck_cov,
             ell_min=args.ell_min_planck,
             ell_max=args.ell_max_planck,
-            dataset_name="Planck PR3"
+            dataset_name=f"Planck PR3 {args.spectrum}",
+            spectrum_type=args.spectrum
         )
         
         print(f"Loaded {planck_data['n_multipoles']} multipoles (ℓ = {planck_data['ell_range'][0]} to {planck_data['ell_range'][1]})")
@@ -1063,14 +1084,15 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
         print()
         
         # Load WMAP data
-        print("Loading WMAP data...")
+        print(f"Loading WMAP {args.spectrum} data...")
         wmap_data = wmap.load_wmap_data(
             obs_file=args.wmap_obs,
             model_file=args.wmap_model,
             cov_file=args.wmap_cov,
             ell_min=args.ell_min_wmap,
             ell_max=args.ell_max_wmap,
-            dataset_name="WMAP 9yr"
+            dataset_name=f"WMAP 9yr {args.spectrum}",
+            spectrum_type=args.spectrum
         )
         
         print(f"Loaded {wmap_data['n_multipoles']} multipoles (ℓ = {wmap_data['ell_range'][0]} to {wmap_data['ell_range'][1]})")

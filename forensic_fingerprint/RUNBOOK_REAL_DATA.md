@@ -1160,12 +1160,227 @@ git push
 
 ---
 
+## Advanced Features
+
+### Polarization Spectra (TE/EE/BB)
+
+**Purpose**: Cross-check TT results with polarization spectra to rule out temperature-specific systematics.
+
+**Usage**:
+```bash
+# Test TE (temperature-E-mode) spectrum
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/planck_te_spectrum.txt \
+    --planck_model data/planck_pr3/raw/planck_te_model.txt \
+    --spectrum TE \
+    --variant C
+
+# Test EE (E-mode-E-mode) spectrum
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/planck_ee_spectrum.txt \
+    --planck_model data/planck_pr3/raw/planck_ee_model.txt \
+    --spectrum EE \
+    --variant C
+```
+
+**Interpretation**:
+- If signal appears in TT but NOT TE/EE → likely foreground or systematic
+- If signal appears in TT, TE, AND EE → strong evidence for real geometric effect
+
+**Note**: Polarization spectra have lower S/N than TT. Real but weak signals may not reach significance in TE/EE.
+
+---
+
+### ℓ-Range Ablation Tests
+
+**Purpose**: Verify signal persists across multiple independent multipole windows, ruling out range-specific artifacts.
+
+**Automatic Ablation**:
+```bash
+# Run predefined ablation ranges (low, mid, high, overlapping windows)
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --ablate-ell \
+    --variant C
+```
+
+This runs the test on:
+- Low-ℓ: 30-250 (acoustic peaks)
+- Mid-ℓ: 251-800 (damping tail)
+- High-ℓ: 801-1500 (deep damping)
+- Full-low: 30-800 (exclude high-ℓ)
+- Full-high: 200-1500 (exclude very low-ℓ)
+
+**Custom Ranges**:
+```bash
+# Specify custom ℓ-ranges
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --ablate-ranges "30-500,500-1000,1000-1500" \
+    --variant C
+```
+
+**Output**: Results aggregated in markdown report showing consistency across ranges.
+
+---
+
+### Synthetic ΛCDM Null Control
+
+**Purpose**: Measure false positive rate on synthetic data with NO real signal, calibrating the pipeline.
+
+**Usage**:
+```bash
+# Run on synthetic ΛCDM (no periodic structure)
+python run_real_data_cmb_comb.py \
+    --null-data lcdm \
+    --null-trials 100 \
+    --planck_cov data/planck_pr3/covariance/planck_cov.npy \
+    --mc_samples 10000 \
+    --variant C
+```
+
+**What it does**:
+1. Generates 100 synthetic ΛCDM realizations using Planck best-fit cosmology
+2. Adds realistic noise from covariance matrix
+3. Runs full CMB comb pipeline on each
+4. Reports p-value distribution
+
+**Expected behavior**: P-values should be uniformly distributed U(0,1) under null.
+
+**Interpretation**:
+- If p-values are uniform → pipeline is well-calibrated, no false positive bias
+- If excess at low p-values → pipeline bug, DO NOT proceed with claims
+
+**Note**: This is a CRITICAL validation step for court-grade analysis.
+
+---
+
+### Run Summary Tool
+
+**Purpose**: Quick overview of all analysis runs for comparison and status tracking.
+
+**Usage**:
+```bash
+# View summary of all runs
+python tools/forensic/print_run_summary.py
+
+# View last 10 runs only
+python tools/forensic/print_run_summary.py --last 10
+
+# Export as CSV
+python tools/forensic/print_run_summary.py --format csv --output runs.csv
+
+# Export as JSON
+python tools/forensic/print_run_summary.py --format json --output runs.json
+
+# Search specific pattern
+python tools/forensic/print_run_summary.py "forensic_fingerprint/out/real_runs/cmb_comb_2026*"
+```
+
+**Output** (table format):
+```
+Timestamp            Run Name                       Planck p     Period   Phase(°)  ℓ-range         Whiten     WMAP p       Period   Verdict      Status    
+2026-01-10 15:04:23  cmb_comb_20260110_150423      3.45e-03     255      90.0      30-1500         full       4.21e-02     255      CANDIDATE    ✓ Complete
+```
+
+**Fields**:
+- Timestamp: Run date/time
+- Planck p / WMAP p: P-values
+- Period: Best-fit Δℓ
+- Phase(°): Best-fit φ in degrees
+- ℓ-range: Multipole range used
+- Whiten: Whitening mode
+- Verdict: PASS/FAIL/CANDIDATE/INCOMPLETE
+- Status: ✓ Complete / ⚠ Incomplete (missing files)
+
+---
+
+## Complete Workflow Example (Court-Grade)
+
+**Scenario**: Full court-grade analysis with all validation steps.
+
+```bash
+# 1. Download and validate data (see earlier sections)
+bash tools/data_download/download_planck_pr3_cosmoparams.sh
+python tools/data_provenance/hash_dataset.py data/planck_pr3/raw/*.txt > data/planck_pr3/manifests/manifest.json
+python tools/data_provenance/validate_manifest.py data/planck_pr3/manifests/manifest.json
+
+# 2. Run TT analysis with full covariance
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model data/planck_pr3/raw/theoretical_model_tt.txt \
+    --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --planck_manifest data/planck_pr3/manifests/manifest.json \
+    --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_cov data/wmap/covariance/wmap_tt_cov.npy \
+    --wmap_manifest data/wmap/manifests/wmap_manifest.json \
+    --whiten full \
+    --mc_samples 100000 \
+    --variant C \
+    --output_dir out/court_grade_tt
+
+# 3. Run TE/EE cross-checks
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/planck_te_spectrum.txt \
+    --planck_model data/planck_pr3/raw/theoretical_model_te.txt \
+    --spectrum TE \
+    --whiten full \
+    --mc_samples 100000 \
+    --variant C \
+    --output_dir out/court_grade_te
+
+# 4. Run ablation tests
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model data/planck_pr3/raw/theoretical_model_tt.txt \
+    --ablate-ell \
+    --whiten full \
+    --mc_samples 100000 \
+    --variant C \
+    --output_dir out/ablation_tests
+
+# 5. Run ΛCDM null control
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+    --null-data lcdm \
+    --null-trials 100 \
+    --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --mc_samples 10000 \
+    --variant C \
+    --output_dir out/lcdm_null_control
+
+# 6. Review all results
+python tools/forensic/print_run_summary.py
+
+# 7. Check combined verdicts
+cat out/court_grade_tt/combined_verdict.md
+cat out/court_grade_te/combined_verdict.md
+
+# 8. Review skeptic checklist
+cat forensic_fingerprint/SKEPTIC_CHECKLIST.md
+```
+
+**Court-Grade Checklist**:
+- ✅ Full covariance whitening (not diagonal)
+- ✅ High MC samples (100k not 5k)
+- ✅ SHA-256 manifest validation
+- ✅ Planck + WMAP replication
+- ✅ TE/EE cross-checks
+- ✅ ℓ-range ablation tests
+- ✅ ΛCDM null control (false positive rate calibration)
+- ✅ All results documented in `combined_verdict.md`
+
+---
+
 **Questions?** See `forensic_fingerprint/PROTOCOL.md` for pre-registered protocol details.
 
 **Issues?** Open GitHub issue: https://github.com/DavJ/unified-biquaternion-theory/issues
 
+**Skeptic Arguments?** See `forensic_fingerprint/SKEPTIC_CHECKLIST.md` for how we address counter-arguments.
+
 ---
 
-**Last Updated**: 2026-01-10  
+**Last Updated**: 2026-01-11  
 **Protocol Version**: v1.0  
 **Maintained by**: UBT Research Team
