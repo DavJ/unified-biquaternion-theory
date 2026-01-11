@@ -72,12 +72,18 @@ older versions could accidentally store paths relative to the wrong base.
 **Recommended** (run from repo root):
 
 ```bash
-# Planck PR3 (TT + best-fit model)
+# Planck PR3 TT observation spectrum
+# Note: Only include files you will actually use in analysis
 mkdir -p data/planck_pr3/manifests
 python tools/data_provenance/hash_dataset.py \
   data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-  data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
   > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+
+# If using a theoretical model spectrum, add it to the manifest:
+# python tools/data_provenance/hash_dataset.py \
+#   data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+#   data/planck_pr3/raw/your_theoretical_model.txt \
+#   > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
 
 # WMAP9 TT
 mkdir -p data/wmap/manifests
@@ -136,7 +142,7 @@ cd forensic_fingerprint
 
 python run_real_data_cmb_comb.py \
     --planck_obs ../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-    --planck_model ../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
+    --planck_model ../data/planck_pr3/raw/theoretical_model_spectrum.txt \
     --planck_manifest ../data/planck_pr3/manifests/planck_pr3_tt_manifest.json \
     --wmap_obs ../data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
     --wmap_manifest ../data/wmap/manifests/wmap_tt_manifest.json \
@@ -145,7 +151,7 @@ python run_real_data_cmb_comb.py \
     --variant C --mc_samples 10000
 ```
 
-**Note**: The runner automatically falls back to `sha256.json` or `manifest.json` if the standard manifest names are not found.
+**Note**: Replace `theoretical_model_spectrum.txt` with your actual theoretical model file (e.g., from CAMB/CLASS or a Planck "minimum-theory" file). Alternatively, use the TT-full file for both obs and model to test noise characteristics.
 
 **Output**:
 - `planck_results.json` - Planck statistical results
@@ -334,7 +340,7 @@ bash tools/data_download/download_planck_pr3_cosmoparams.sh
 
 **Required files** (automatically downloaded):
 - `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT power spectrum (~167 KB)
-- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Best-fit ΛCDM parameters (NOT for use as model spectrum)
+- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Cosmological parameters table (likelihood minimum, NOT a power spectrum)
 
 **IMPORTANT: Planck Model File Selection**
 
@@ -343,23 +349,28 @@ The Planck PR3 archive contains different types of files. For CMB comb analysis,
 **✓ CORRECT files for power spectrum (--planck_obs and potentially --planck_model):**
 - `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT spectrum with uncertainties (~2479 rows, ~167 KB)
 - `COM_PowerSpect_CMB-TT-binned_R3.01.txt` - Binned version (if using binned analysis)
+- `*-minimum-theory*.txt` files - Theoretical model power spectra (derived from best-fit cosmological parameters)
+- CAMB or CLASS output - Theoretical ΛCDM spectra generated with Planck best-fit parameters
 
 **✗ INCORRECT files (DO NOT use as --planck_model):**
-- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Cosmological parameter table (contains `-log(Like)` values, NOT a power spectrum)
-- Any file with `minimum` or `plikHM` in the filename - These are likelihood/parameter files
+- `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Cosmological parameter table (contains `-log(Like)` likelihood values and best-fit parameters, NOT a power spectrum)
+- Other files containing `-log(Like)` or likelihood values in the data (these are parameter/likelihood tables, not spectra)
 
 **Why this matters:**
-The "minimum" files contain best-fit cosmological parameters and likelihood values, not power spectra. Using them as model input will cause the analysis to fail with clear error messages.
+The "minimum" cosmological parameter files (like `*-plikHM-*-minimum_R3.01.txt`) contain best-fit cosmological parameters and likelihood values, not power spectra. These will be rejected by content validation.
+
+However, "minimum-theory" files contain the theoretical power spectrum derived from those best-fit parameters and are valid model files.
 
 **Recommended approach for model spectrum:**
 
 1. **Preferred: Explicit theoretical model (best for scientific analysis)**
    ```bash
-   # Generate ΛCDM spectrum using CAMB or CLASS with Planck best-fit parameters
-   # Then use:
+   # Use a theoretical model spectrum file:
+   # - "minimum-theory" files from Planck archive (theoretical spectra from best-fit params)
+   # - ΛCDM spectrum generated using CAMB or CLASS with Planck best-fit parameters
    python run_real_data_cmb_comb.py \
        --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-       --planck_model path/to/theoretical_model.txt
+       --planck_model path/to/theoretical_model_spectrum.txt
    ```
    This analyzes residuals between observation and theory.
 
@@ -547,7 +558,7 @@ cd forensic_fingerprint/cmb_comb
 python cmb_comb.py \
     --dataset planck_pr3 \
     --input_obs ../../data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
-    --input_model ../../data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt \
+    --input_model ../../data/planck_pr3/raw/theoretical_model_spectrum.txt \
     --ell_min 30 \
     --ell_max 1500 \
     --output_dir ../out/cmb_comb/planck_pr3_run1

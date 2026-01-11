@@ -81,6 +81,8 @@ def test_runner_rejects_mismatched_manifest():
 def test_runner_rejects_likelihood_file():
     """
     Test that runner rejects parameter/likelihood files as model input.
+    
+    This test verifies content-based rejection (not filename-based).
     """
     with tempfile.TemporaryDirectory(dir=repo_root) as tmpdir:
         tmpdir = Path(tmpdir)
@@ -93,9 +95,12 @@ def test_runner_rejects_likelihood_file():
                 f.write(f"{i} {1000 + i*10} {50} {50}\n")
         
         # Create invalid "model" file (likelihood/parameter file)
-        invalid_model = tmpdir / "base-plikHM-minimum_R3.01.txt"
+        # The file contains -log(Like) in the actual data, not just header
+        invalid_model = tmpdir / "likelihood_params.txt"
         with open(invalid_model, 'w') as f:
             f.write("# L  -log(Like)  Chi2\n")
+            # Put -log(Like) in the actual data content
+            f.write("2  -log(Like)=1234.56  100.0\n")
             for i in range(30, 130):
                 f.write(f"{i} {1234.56 + i*0.1} {100.0}\n")
         
@@ -110,11 +115,11 @@ def test_runner_rejects_likelihood_file():
         
         result = subprocess.run(cmd, capture_output=True, text=True)
         
-        # Should fail with error about invalid model file
+        # Should fail with error about invalid model file (content-based check)
         assert result.returncode != 0, "Runner should reject likelihood/parameter file as model"
-        assert 'minimum' in result.stdout.lower() or 'plikhm' in result.stdout.lower() or \
-               'minimum' in result.stderr.lower() or 'plikhm' in result.stderr.lower(), \
-            f"Error should mention minimum/plikHM. stdout: {result.stdout}, stderr: {result.stderr}"
+        assert '-log(like)' in result.stdout.lower() or 'loglike' in result.stdout.lower() or \
+               '-log(like)' in result.stderr.lower() or 'loglike' in result.stderr.lower(), \
+            f"Error should mention likelihood content. stdout: {result.stdout}, stderr: {result.stderr}"
         
         print("✓ Runner correctly rejects likelihood/parameter file as model")
 

@@ -83,21 +83,24 @@ def demo_1_manifest_file_mismatch():
 def demo_2_likelihood_file_rejection():
     """Demonstrate rejection of likelihood/parameter files."""
     print("=" * 80)
-    print("DEMO 2: Rejection of Likelihood/Parameter File")
+    print("DEMO 2: Rejection of Likelihood/Parameter File (Content-Based)")
     print("=" * 80)
     
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = Path(tmpdir)
         
-        # Create a fake likelihood file
-        likelihood_file = tmpdir / "base-plikHM-minimum.txt"
+        # Create a fake likelihood file with -log(Like) in the data
+        likelihood_file = tmpdir / "likelihood_params.txt"
         with open(likelihood_file, 'w') as f:
             f.write("# L  -log(Like)  Chi2\n")
+            # Put -log(Like) in the actual data content
+            f.write("2  -log(Like)=1234.56  100.0\n")
             for i in range(30, 130):
                 f.write(f"{i} {1234.56 + i*0.1} {100.0}\n")
         
-        print(f"\nCreated file: base-plikHM-minimum.txt")
-        print("Contains: '-log(Like)' column (likelihood values)")
+        print(f"\nCreated file: likelihood_params.txt")
+        print("Contains: '-log(Like)' in the data (not just header)")
+        print("Note: Rejection is content-based, not filename-based")
         
         print(f"\nAttempting to load as Planck model spectrum...")
         print("Expected: Should FAIL with clear error message\n")
@@ -184,9 +187,13 @@ if __name__ == "__main__":
     print()
     print("This demo shows the enhanced validation features:")
     print("  1. Manifest must contain exact files used")
-    print("  2. Likelihood/parameter files are rejected")
+    print("  2. Likelihood/parameter files rejected by CONTENT (not filename)")
     print("  3. Tiny files (< 50 rows) are rejected")
     print("  4. Valid files are accepted")
+    print()
+    print("NOTE: Validation is content-based. Files with 'minimum' in their")
+    print("name are NOT automatically rejected - only files containing")
+    print("'-log(Like)' or 'logLike' in the data are rejected.")
     print()
     
     demo_1_manifest_file_mismatch()
