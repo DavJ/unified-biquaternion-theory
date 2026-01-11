@@ -2,7 +2,8 @@
 """
 Planck Data Loader for CMB Comb Fingerprint Test
 
-Loads Planck PR3 (Release 3) TT power spectrum data with support for:
+Loads Planck PR3 (Release 3) power spectrum data with support for:
+- TT, EE, TE, BB spectra (polarization and temperature)
 - Text files (.txt)
 - FITS files (.fits)
 - Diagonal uncertainties or full covariance
@@ -37,10 +38,11 @@ def load_planck_data(
     cov_file=None,
     ell_min=None,
     ell_max=None,
-    dataset_name="Planck PR3"
+    dataset_name="Planck PR3",
+    spectrum_type="TT"
 ):
     """
-    Load Planck TT power spectrum data.
+    Load Planck power spectrum data.
     
     Parameters
     ----------
@@ -56,6 +58,8 @@ def load_planck_data(
         Maximum multipole to include (default: use all)
     dataset_name : str
         Dataset identifier for provenance (default: "Planck PR3")
+    spectrum_type : str
+        Type of spectrum: "TT", "EE", "TE", or "BB" (default: "TT")
     
     Returns
     -------
@@ -67,6 +71,7 @@ def load_planck_data(
         - sigma: ndarray, diagonal uncertainties
         - cov: ndarray or None, full covariance matrix
         - dataset: str, dataset name
+        - spectrum_type: str, spectrum type (TT/EE/TE/BB)
         - ell_range: tuple, (ell_min, ell_max) applied
     
     Raises
@@ -83,9 +88,9 @@ def load_planck_data(
     
     # Detect format from extension
     if obs_file.suffix.lower() == '.fits':
-        ell_obs, cl_obs, sigma_obs = _load_planck_fits(obs_file)
+        ell_obs, cl_obs, sigma_obs = _load_planck_fits(obs_file, spectrum_type=spectrum_type)
     elif obs_file.suffix.lower() in ['.txt', '.dat']:
-        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file)
+        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file, spectrum_type=spectrum_type)
     else:
         raise ValueError(f"Unsupported file format: {obs_file.suffix}")
     
@@ -97,9 +102,9 @@ def load_planck_data(
             warnings.warn(f"Model file not found: {model_file}. Proceeding without model.")
         else:
             if model_file.suffix.lower() == '.fits':
-                ell_model, cl_model, _ = _load_planck_fits(model_file)
+                ell_model, cl_model, _ = _load_planck_fits(model_file, spectrum_type=spectrum_type)
             else:
-                ell_model, cl_model, _ = _load_planck_text(model_file)
+                ell_model, cl_model, _ = _load_planck_text(model_file, spectrum_type=spectrum_type)
             
             # Ensure ell arrays match
             if not np.array_equal(ell_obs, ell_model):
@@ -152,6 +157,7 @@ def load_planck_data(
         'sigma': sigma_obs,
         'cov': cov,
         'dataset': dataset_name,
+        'spectrum_type': spectrum_type,
         'ell_range': (int(ell_min), int(ell_max)),
         'n_multipoles': len(ell)
     }
@@ -159,7 +165,7 @@ def load_planck_data(
     return data
 
 
-def _load_planck_text(filepath):
+def _load_planck_text(filepath, spectrum_type="TT"):
     """
     Load Planck data from text file.
     
@@ -176,6 +182,8 @@ def _load_planck_text(filepath):
     ----------
     filepath : Path
         Path to text file
+    spectrum_type : str
+        Type of spectrum to extract: "TT", "EE", "TE", or "BB"
     
     Returns
     -------
@@ -254,10 +262,13 @@ def _load_planck_text(filepath):
     
     # Route to minimum format loader only if explicitly identified
     if is_minimum_by_name or is_minimum_by_content:
-        return _load_planck_minimum_format(filepath)
+        return _load_planck_minimum_format(filepath, spectrum_type=spectrum_type)
     
     # Handle TT-full format (4 columns: ell, Dl, -dDl, +dDl)
+    # Note: This format typically only applies to TT spectra
     if is_tt_full_format:
+        if spectrum_type != "TT":
+            warnings.warn(f"TT-full format detected but {spectrum_type} requested. This may not work as expected.")
         return _load_planck_tt_full_format(filepath)
     
     # Standard simple 3-column format
@@ -387,7 +398,7 @@ def _load_planck_tt_full_format(filepath):
     return ell, cl, sigma
 
 
-def _load_planck_minimum_format(filepath):
+def _load_planck_minimum_format(filepath, spectrum_type="TT"):
     """
     Load Planck PR3 "minimum" model file format.
     
@@ -397,21 +408,23 @@ def _load_planck_minimum_format(filepath):
     2  5.51e+01  -1.18e+01  1.34e-02  ...
     3  2.29e+02  -2.99e+01  6.89e-03  ...
     
-    We extract the 'L' (multipole) and 'TT' (TT power spectrum) columns.
-    The TT values are typically in Dl units (l(l+1)Cl/2π) and need to be
+    We extract the 'L' (multipole) and the requested spectrum column (TT/EE/TE/BB).
+    The values are typically in Dl units (l(l+1)Cl/2π) and need to be
     converted to Cl for consistency with cmb_comb residuals.
     
     Parameters
     ----------
     filepath : Path
         Path to minimum format file
+    spectrum_type : str
+        Type of spectrum to extract: "TT", "EE", "TE", or "BB"
     
     Returns
     -------
     ell : ndarray
         Multipole moments (integers)
     cl : ndarray
-        TT power spectrum in Cl units (μK²)
+        Power spectrum in Cl units (μK²)
     sigma : ndarray
         Uncertainties (estimated as 1% since not provided in model file)
     """
@@ -480,15 +493,26 @@ def _load_planck_minimum_format(filepath):
         ell_col = 0
         warnings.warn(f"Could not find ell column in header, assuming column 0")
     
-    # Find TT column (may be Dl_TT, Cl_TT, or just TT)
-    tt_col = None
+    # Find spectrum column (may be Dl_XX, Cl_XX, or just XX where XX is spectrum_type)
+    spec_col = None
+    spec_type_upper = spectrum_type.upper()
+    
+    # Try different naming conventions for the requested spectrum type
+    search_names = [
+        spec_type_upper,
+        f'DL_{spec_type_upper}',
+        f'CL_{spec_type_upper}',
+        f'DL{spec_type_upper}',
+        f'CL{spec_type_upper}'
+    ]
+    
     for i, col in enumerate(columns):
         col_upper = col.upper()
-        if col_upper in ['TT', 'DL_TT', 'CL_TT', 'DLTT', 'CLTT']:
-            tt_col = i
+        if col_upper in search_names:
+            spec_col = i
             break
     
-    if tt_col is None:
+    if spec_col is None:
         # Check if this looks like a TT-full spectrum file
         filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
         if len(columns) == 4:
@@ -496,13 +520,13 @@ def _load_planck_minimum_format(filepath):
             col1 = columns[1]
             if col0 in ['l', 'ell'] and col1 in ['Dl', 'DL', 'dl']:
                 raise ValueError(
-                    f"Could not find TT column in header: {columns}\n"
+                    f"Could not find {spectrum_type} column in header: {columns}\n"
                     f"This file ({filename}) looks like a TT-full spectrum with header "
                     f"'l Dl -dDl +dDl' or similar.\n"
                     f"This format should be handled by the simple loader, not the minimum format loader.\n"
                     f"Please report this as a bug - the file detection logic may need adjustment."
                 )
-        raise ValueError(f"Could not find TT column in header: {columns}")
+        raise ValueError(f"Could not find {spectrum_type} column in header: {columns}")
     
     # Load data (skip header and comment lines)
     data_lines = []
@@ -530,11 +554,13 @@ def _load_planck_minimum_format(filepath):
     
     # Extract columns
     ell = data[:, ell_col].astype(int)
-    cl_or_dl = data[:, tt_col]
+    cl_or_dl = data[:, spec_col]
     
     # Determine if Dl or Cl format
     # Heuristic: if column name contains 'DL' or values are large (>DL_CL_THRESHOLD for ell>10), assume Dl
-    is_dl_format = 'DL' in columns[tt_col].upper() or np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD
+    is_dl_format = 'DL' in columns[spec_col].upper() or (
+        len(ell[ell > 10]) > 0 and np.median(np.abs(cl_or_dl[ell > 10])) > DL_CL_THRESHOLD
+    )
     
     if is_dl_format:
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
@@ -553,7 +579,7 @@ def _load_planck_minimum_format(filepath):
     return ell, cl, sigma
 
 
-def _load_planck_fits(filepath):
+def _load_planck_fits(filepath, spectrum_type="TT"):
     """
     Load Planck data from FITS file.
     
@@ -561,6 +587,8 @@ def _load_planck_fits(filepath):
     ----------
     filepath : Path
         Path to FITS file
+    spectrum_type : str
+        Type of spectrum to extract: "TT", "EE", "TE", or "BB"
     
     Returns
     -------
@@ -585,8 +613,13 @@ def _load_planck_fits(filepath):
             
             # Try common column names
             ell_names = ['ell', 'ELL', 'l', 'L', 'MULTIPOLE']
-            cl_names = ['TT', 'C_ell', 'C_ELL', 'CL', 'POWER']
-            sigma_names = ['TT_error', 'sigma', 'SIGMA', 'ERROR', 'ERR']
+            
+            # Column names depend on spectrum type
+            cl_names = [spectrum_type, spectrum_type.upper(), spectrum_type.lower(), 
+                       f'C_{spectrum_type}', f'C_{spectrum_type.upper()}',
+                       'C_ell', 'C_ELL', 'CL', 'POWER']
+            sigma_names = [f'{spectrum_type}_error', f'{spectrum_type.upper()}_error',
+                          'sigma', 'SIGMA', 'ERROR', 'ERR']
             
             ell = None
             for name in ell_names:
@@ -604,7 +637,8 @@ def _load_planck_fits(filepath):
                     break
             
             if cl is None:
-                raise ValueError(f"No power spectrum column found in {filepath}")
+                raise ValueError(f"No {spectrum_type} power spectrum column found in {filepath}. "
+                               f"Available columns: {list(data.names)}")
             
             sigma = None
             for name in sigma_names:
