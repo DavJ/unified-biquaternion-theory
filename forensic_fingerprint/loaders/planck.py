@@ -39,7 +39,8 @@ def load_planck_data(
     ell_min=None,
     ell_max=None,
     dataset_name="Planck PR3",
-    spectrum_type="TT"
+    spectrum_type="TT",
+    _skip_size_validation=False
 ):
     """
     Load Planck power spectrum data.
@@ -60,6 +61,9 @@ def load_planck_data(
         Dataset identifier for provenance (default: "Planck PR3")
     spectrum_type : str
         Type of spectrum: "TT", "EE", "TE", or "BB" (default: "TT")
+    _skip_size_validation : bool, optional
+        Internal parameter for testing. If True, skips file size validation.
+        Default False. Do not use in production code.
     
     Returns
     -------
@@ -90,7 +94,7 @@ def load_planck_data(
     if obs_file.suffix.lower() == '.fits':
         ell_obs, cl_obs, sigma_obs = _load_planck_fits(obs_file, spectrum_type=spectrum_type)
     elif obs_file.suffix.lower() in ['.txt', '.dat']:
-        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file, spectrum_type=spectrum_type)
+        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
     else:
         raise ValueError(f"Unsupported file format: {obs_file.suffix}")
     
@@ -104,7 +108,7 @@ def load_planck_data(
             if model_file.suffix.lower() == '.fits':
                 ell_model, cl_model, _ = _load_planck_fits(model_file, spectrum_type=spectrum_type)
             else:
-                ell_model, cl_model, _ = _load_planck_text(model_file, spectrum_type=spectrum_type)
+                ell_model, cl_model, _ = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
             
             # Ensure ell arrays match
             if not np.array_equal(ell_obs, ell_model):
@@ -165,7 +169,7 @@ def load_planck_data(
     return data
 
 
-def _load_planck_text(filepath, spectrum_type="TT"):
+def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False):
     """
     Load Planck data from text file.
     
@@ -184,6 +188,9 @@ def _load_planck_text(filepath, spectrum_type="TT"):
         Path to text file
     spectrum_type : str
         Type of spectrum to extract: "TT", "EE", "TE", or "BB"
+    _skip_size_validation : bool, optional
+        Internal parameter for testing. If True, skips file size validation.
+        Default False.
     
     Returns
     -------
@@ -206,6 +213,55 @@ def _load_planck_text(filepath, spectrum_type="TT"):
             f"  - File doesn't exist at the specified location\n"
             f"  - Check URL and use correct PR3 cosmoparams directory:\n"
             f"    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
+        )
+    
+    # PART B.1: Preflight sanity check - detect likelihood/parameter files
+    # Read first non-comment line and count data rows
+    first_data_line = None
+    data_row_count = 0
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith('#'):
+            continue
+        # Found a data line
+        if first_data_line is None:
+            first_data_line = stripped
+        data_row_count += 1
+    
+    # Check if first data line contains likelihood markers
+    if first_data_line:
+        if '-log(like)' in first_data_line.lower() or 'loglike' in first_data_line.lower():
+            raise ValueError(
+                f"Invalid spectrum file: {filepath}\n\n"
+                f"This file appears to be a Planck likelihood/parameter table, not a power spectrum.\n"
+                f"The data contains '-log(Like)' or 'logLike' values.\n\n"
+                f"For CMB analysis, you need a TT power spectrum file, not cosmological parameters.\n\n"
+                f"Recommended actions:\n"
+                f"  1. Use COM_PowerSpect_CMB-TT-full_R3.01.txt (observed spectrum)\n"
+                f"  2. For model, use a theoretical ΛCDM spectrum from CAMB/CLASS\n"
+                f"  3. Do NOT use files with 'minimum' or 'plikHM' in the name as model input\n\n"
+                f"See RUNBOOK_REAL_DATA.md for correct file selection."
+            )
+    
+    # Check if file is suspiciously small (likely not a spectrum)
+    # Typical TT spectra have hundreds to thousands of multipoles
+    # A file with < 50 data rows is likely a parameter table or corrupted
+    # Skip this check for unit tests with synthetic data
+    if not _skip_size_validation and data_row_count < 50:
+        filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
+        raise ValueError(
+            f"Invalid spectrum file: {filepath}\n\n"
+            f"File has only {data_row_count} data rows (expected ~50-2500 for TT spectrum).\n"
+            f"This is likely NOT a power spectrum file.\n\n"
+            f"Possible causes:\n"
+            f"  1. Wrong file (cosmological parameter table instead of spectrum)\n"
+            f"  2. Corrupted or truncated download\n"
+            f"  3. Downloaded HTML error page instead of actual data\n\n"
+            f"Recommended actions:\n"
+            f"  - Re-download COM_PowerSpect_CMB-TT-full_R3.01.txt (~167 KB, ~2479 rows)\n"
+            f"  - Verify file size matches expected: ~167 KB for TT-full\n"
+            f"  - If using model file, ensure it's a power spectrum (not 'minimum' file)\n\n"
+            f"See RUNBOOK_REAL_DATA.md for correct file selection."
         )
     
     # Detect if this is a PR3 "minimum" model file or TT-full spectrum file
@@ -493,26 +549,17 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
         ell_col = 0
         warnings.warn(f"Could not find ell column in header, assuming column 0")
     
-    # Find spectrum column (may be Dl_XX, Cl_XX, or just XX where XX is spectrum_type)
-    spec_col = None
-    spec_type_upper = spectrum_type.upper()
-    
-    # Try different naming conventions for the requested spectrum type
-    search_names = [
-        spec_type_upper,
-        f'DL_{spec_type_upper}',
-        f'CL_{spec_type_upper}',
-        f'DL{spec_type_upper}',
-        f'CL{spec_type_upper}'
-    ]
-    
+    # Find spectrum column (may be Dl_XX, Cl_XX, or just XX where XX is TT/EE/TE/BB)
+    spectrum_col = None
+    spectrum_upper = spectrum_type.upper()
     for i, col in enumerate(columns):
         col_upper = col.upper()
-        if col_upper in search_names:
-            spec_col = i
+        if col_upper in [spectrum_upper, f'DL_{spectrum_upper}', f'CL_{spectrum_upper}', 
+                         f'DL{spectrum_upper}', f'CL{spectrum_upper}']:
+            spectrum_col = i
             break
     
-    if spec_col is None:
+    if spectrum_col is None:
         # Check if this looks like a TT-full spectrum file
         filename = filepath.name if hasattr(filepath, 'name') else str(filepath)
         if len(columns) == 4:
@@ -554,13 +601,11 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
     
     # Extract columns
     ell = data[:, ell_col].astype(int)
-    cl_or_dl = data[:, spec_col]
+    cl_or_dl = data[:, spectrum_col]
     
     # Determine if Dl or Cl format
     # Heuristic: if column name contains 'DL' or values are large (>DL_CL_THRESHOLD for ell>10), assume Dl
-    is_dl_format = 'DL' in columns[spec_col].upper() or (
-        len(ell[ell > 10]) > 0 and np.median(np.abs(cl_or_dl[ell > 10])) > DL_CL_THRESHOLD
-    )
+    is_dl_format = 'DL' in columns[spectrum_col].upper() or np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD
     
     if is_dl_format:
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]

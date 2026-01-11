@@ -424,20 +424,20 @@ class TestDataLoaders:
         obs_file = tmp_path / "planck_obs.txt"
         with open(obs_file, 'w') as f:
             f.write("# ell C_ell sigma\n")
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 f.write(f"{ell} {1000.0 * np.exp(-ell/100)} {10.0}\n")
         
         # Load data
-        data = planck.load_planck_data(obs_file)
+        data = planck.load_planck_data(obs_file, _skip_size_validation=True)
         
         # Verify structure
         assert 'ell' in data
         assert 'cl_obs' in data
         assert 'sigma' in data
         assert data['dataset'] == "Planck PR3"
-        assert len(data['ell']) == 20
+        assert len(data["ell"]) == 70
         assert data['ell'][0] == 30
-        assert data['ell'][-1] == 49
+        assert data['ell'][-1] == 99
     
     def test_planck_loader_with_model(self, tmp_path):
         """Test Planck loader with observation and model files."""
@@ -445,22 +445,22 @@ class TestDataLoaders:
         obs_file = tmp_path / "obs.txt"
         with open(obs_file, 'w') as f:
             f.write("# ell C_ell sigma\n")
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 f.write(f"{ell} {1000.0 + np.random.normal(0, 10)} {10.0}\n")
         
         # Create model file
         model_file = tmp_path / "model.txt"
         with open(model_file, 'w') as f:
             f.write("# ell C_ell\n")
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 f.write(f"{ell} {1000.0}\n")
         
         # Load data
-        data = planck.load_planck_data(obs_file, model_file=model_file)
+        data = planck.load_planck_data(obs_file, model_file=model_file, _skip_size_validation=True)
         
         # Verify model was loaded
         assert data['cl_model'] is not None
-        assert len(data['cl_model']) == 20
+        assert len(data['cl_model']) == 70
     
     def test_planck_loader_ell_filtering(self, tmp_path):
         """Test Planck loader with ell range filtering."""
@@ -472,7 +472,7 @@ class TestDataLoaders:
                 f.write(f"{ell} {1000.0} {10.0}\n")
         
         # Load with ell filtering
-        data = planck.load_planck_data(obs_file, ell_min=30, ell_max=50)
+        data = planck.load_planck_data(obs_file, ell_min=30, ell_max=50, _skip_size_validation=True)
         
         # Verify filtering
         assert data['ell_range'] == (30, 50)
@@ -486,7 +486,7 @@ class TestDataLoaders:
         obs_file = tmp_path / "wmap_obs.txt"
         with open(obs_file, 'w') as f:
             f.write("# ell C_ell sigma\n")
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 f.write(f"{ell} {1100.0 * np.exp(-ell/100)} {20.0}\n")
         
         # Load data
@@ -497,7 +497,7 @@ class TestDataLoaders:
         assert 'cl_obs' in data
         assert 'sigma' in data
         assert data['dataset'] == "WMAP 9yr"
-        assert len(data['ell']) == 20
+        assert len(data["ell"]) == 70
     
     def test_wmap_loader_ell_filtering(self, tmp_path):
         """Test WMAP loader with ell range filtering."""
@@ -519,7 +519,7 @@ class TestDataLoaders:
     def test_planck_loader_missing_file(self):
         """Test Planck loader with non-existent file."""
         with pytest.raises(FileNotFoundError):
-            planck.load_planck_data("nonexistent_file.txt")
+            planck.load_planck_data("nonexistent_file.txt", _skip_size_validation=True)
     
     def test_wmap_loader_missing_file(self):
         """Test WMAP loader with non-existent file."""
@@ -539,7 +539,7 @@ class TestDataLoaders:
         
         # Should raise ValueError with informative message
         with pytest.raises(ValueError, match="HTML detected"):
-            planck.load_planck_data(html_file)
+            planck.load_planck_data(html_file, _skip_size_validation=True)
     
     def test_planck_loader_html_detection_alternative(self, tmp_path):
         """Test HTML detection with <html> tag (no DOCTYPE)."""
@@ -550,7 +550,7 @@ class TestDataLoaders:
             f.write("</html>\n")
         
         with pytest.raises(ValueError, match="HTML detected"):
-            planck.load_planck_data(html_file)
+            planck.load_planck_data(html_file, _skip_size_validation=True)
     
     def test_planck_loader_minimum_format_basic(self, tmp_path):
         """Test Planck loader with PR3 minimum model file format."""
@@ -560,21 +560,21 @@ class TestDataLoaders:
             f.write("# Planck PR3 minimum model file\n")
             f.write("# L  TT  TE  EE\n")
             # Use realistic Dl values (larger than Cl)
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 # Dl ~ 6000 at ell=30, decreasing
                 dl_tt = 6000.0 * np.exp(-(ell - 30) / 100.0)
                 f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
         
         # Load data
-        data = planck.load_planck_data(min_file)
+        data = planck.load_planck_data(min_file, _skip_size_validation=True)
         
         # Verify structure
         assert 'ell' in data
         assert 'cl_obs' in data
         assert 'sigma' in data
-        assert len(data['ell']) == 20
+        assert len(data["ell"]) == 70
         assert data['ell'][0] == 30
-        assert data['ell'][-1] == 49
+        assert data['ell'][-1] == 99
         
         # Verify Dl was converted to Cl
         # Cl should be much smaller than original Dl values
@@ -591,7 +591,7 @@ class TestDataLoaders:
             f.write("100 5000.0 100.0 50.0\n")
             f.write("101 4900.0 99.0 49.0\n")
         
-        data = planck.load_planck_data(min_file)
+        data = planck.load_planck_data(min_file, _skip_size_validation=True)
         
         # Check conversion: Cl = Dl * 2π / [l(l+1)]
         ell_100_idx = np.where(data['ell'] == 100)[0][0]
@@ -606,11 +606,11 @@ class TestDataLoaders:
         with open(min_file, 'w') as f:
             f.write("# L  CL_TT  CL_TE  CL_EE\n")
             # Small Cl values (already in Cl units, not Dl)
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 cl_tt = 100.0 * np.exp(-ell / 100.0)
                 f.write(f"{ell} {cl_tt:.6e} 0.0 0.0\n")
         
-        data = planck.load_planck_data(min_file)
+        data = planck.load_planck_data(min_file, _skip_size_validation=True)
         
         # Should NOT convert (already Cl)
         # Values should remain small
@@ -622,14 +622,14 @@ class TestDataLoaders:
         with open(min_file, 'w') as f:
             f.write("# Some comment but no column header\n")
             # Use Dl-like values
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 dl_tt = 5000.0 * np.exp(-(ell - 30) / 100.0)
                 f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
         
         # Should still work with fallback parsing
-        data = planck.load_planck_data(min_file)
+        data = planck.load_planck_data(min_file, _skip_size_validation=True)
         
-        assert len(data['ell']) == 20
+        assert len(data["ell"]) == 70
         # Should have detected Dl and converted
         assert np.median(data['cl_obs']) < 500  # Cl should be smaller than Dl
     
@@ -639,15 +639,15 @@ class TestDataLoaders:
         simple_file = tmp_path / "planck_simple.txt"
         with open(simple_file, 'w') as f:
             f.write("# ell C_ell sigma\n")
-            for ell in range(30, 50):
+            for ell in range(30, 100):
                 cl = 100.0 * np.exp(-ell / 100.0)
                 f.write(f"{ell} {cl:.6f} 10.0\n")
         
         # Load with standard loader
-        data = planck.load_planck_data(simple_file)
+        data = planck.load_planck_data(simple_file, _skip_size_validation=True)
         
         # Should work as before
-        assert len(data['ell']) == 20
+        assert len(data["ell"]) == 70
         assert data['ell'][0] == 30
         assert data['sigma'][0] == 10.0
     
@@ -665,7 +665,7 @@ class TestDataLoaders:
             f.write("32 980 -12 8\n")
         
         # Load data
-        data = planck.load_planck_data(tt_full_file)
+        data = planck.load_planck_data(tt_full_file, _skip_size_validation=True)
         
         # Verify structure
         assert 'ell' in data
@@ -701,7 +701,7 @@ class TestDataLoaders:
             f.write("31 990 -11 9\n")
         
         # Should work with 'ell' as well
-        data = planck.load_planck_data(tt_full_file)
+        data = planck.load_planck_data(tt_full_file, _skip_size_validation=True)
         
         assert len(data['ell']) == 2
         assert data['ell'][0] == 30
@@ -720,7 +720,7 @@ class TestDataLoaders:
                 f.write(f"{ell} {dl_tt:.6e} 0.0 0.0\n")
         
         # Load data
-        data = planck.load_planck_data(min_file)
+        data = planck.load_planck_data(min_file, _skip_size_validation=True)
         
         # Verify it was loaded correctly
         assert len(data['ell']) == 5
@@ -739,7 +739,7 @@ class TestDataLoaders:
         # This should NOT raise the "Could not find TT column" error
         # that would happen if it was routed to minimum format loader
         try:
-            data = planck.load_planck_data(tt_full_file)
+            data = planck.load_planck_data(tt_full_file, _skip_size_validation=True)
             # Should succeed
             assert len(data['ell']) == 1
         except ValueError as e:
@@ -769,7 +769,7 @@ class TestDataLoaders:
             f.write("30 1000 500\n")
         
         with pytest.raises(ValueError, match="Could not find TT column"):
-            planck.load_planck_data(bad_file2)
+            planck.load_planck_data(bad_file2, _skip_size_validation=True)
 
 
 

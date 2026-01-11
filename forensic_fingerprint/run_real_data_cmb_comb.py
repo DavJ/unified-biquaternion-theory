@@ -192,6 +192,9 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
     """
     Validate dataset against SHA-256 manifest.
     
+    After basic hash validation, also verify that the manifest contains hashes
+    for the exact files being used in this run.
+    
     Parameters
     ----------
     manifest_path : str or Path or None
@@ -266,6 +269,110 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
     
     print(f"Validating manifest: {resolved_path}")
     success = validate_manifest.validate_manifest(resolved_path, base_dir=repo_root)
+    
+    if not success:
+        print()
+        return False
+    
+    # PART A.1: After validation succeeds, verify manifest contains exact files used
+    print("Checking manifest contains exact files used in this run...")
+    
+    # Load manifest JSON
+    with open(resolved_path, 'r') as f:
+        manifest = json.load(f)
+    
+    # Extract filenames and paths from manifest
+    # We'll check both filename and path (if available) for more robust matching
+    manifest_entries = {}
+    for file_info in manifest.get('files', []):
+        filename = file_info['filename']
+        path = file_info.get('path', filename)  # Use path if available, else just filename
+        manifest_entries[filename] = path
+    
+    # Collect files that should be in manifest
+    required_files = {}
+    if obs_file:
+        obs_path = Path(obs_file)
+        # Try to get relative path from repo root if file is absolute
+        if obs_path.is_absolute() and obs_path.is_relative_to(repo_root):
+            rel_path = str(obs_path.relative_to(repo_root))
+        else:
+            rel_path = str(obs_file)
+        required_files[obs_path.name] = rel_path
+    
+    if model_file:
+        model_path = Path(model_file)
+        # Try to get relative path from repo root if file is absolute
+        if model_path.is_absolute() and model_path.is_relative_to(repo_root):
+            rel_path = str(model_path.relative_to(repo_root))
+        else:
+            rel_path = str(model_file)
+        required_files[model_path.name] = rel_path
+    
+    # Check each required file is in manifest
+    # First check by path (if available), then fall back to filename only
+    missing_files = []
+    for req_filename, req_path in required_files.items():
+        # Check if this file is in the manifest
+        if req_filename not in manifest_entries:
+            # Filename not in manifest at all
+            missing_files.append(req_filename)
+        else:
+            # Filename exists, but check if path also matches (when manifest has path info)
+            manifest_path = manifest_entries[req_filename]
+            # If manifest has a path (not just filename), verify it matches
+            if '/' in manifest_path or '\\' in manifest_path:
+                # Normalize paths for comparison
+                manifest_path_normalized = str(Path(manifest_path))
+                req_path_normalized = str(Path(req_path))
+                if manifest_path_normalized != req_path_normalized:
+                    # Path mismatch - this could be a different file with same name
+                    missing_files.append(f"{req_filename} (path mismatch: expected {req_path}, found {manifest_path})")
+    
+    if missing_files:
+        print()
+        print("=" * 80)
+        print("ERROR: Manifest validation succeeded but does not include files used by this run")
+        print("=" * 80)
+        print(f"Manifest: {resolved_path}")
+        print(f"Missing files:")
+        for mf in missing_files:
+            print(f"  - {mf}")
+        print()
+        print("The manifest is valid but does not contain hashes for the exact files")
+        print("you are trying to use. This could indicate:")
+        print("  1. Wrong manifest file for this dataset")
+        print("  2. Manifest needs to be regenerated with the current files")
+        print()
+        print("To regenerate the manifest with the correct files, run:")
+        
+        manifest_dir = repo_root / 'data' / (
+            'planck_pr3' if dataset_type == 'planck' else 'wmap'
+        ) / 'manifests'
+        manifest_name = 'planck_pr3_tt_manifest.json' if dataset_type == 'planck' else 'wmap_tt_manifest.json'
+        
+        if obs_file:
+            obs_path = Path(obs_file)
+            data_dir = obs_path.parent if obs_path.is_absolute() else repo_root / obs_path.parent
+            
+            print(f"  cd {repo_root}")
+            
+            file_args = []
+            if obs_file:
+                # Use relative path from repo root
+                rel_obs = Path(obs_file).relative_to(repo_root) if Path(obs_file).is_absolute() and Path(obs_file).is_relative_to(repo_root) else obs_file
+                file_args.append(str(rel_obs))
+            if model_file:
+                rel_model = Path(model_file).relative_to(repo_root) if Path(model_file).is_absolute() and Path(model_file).is_relative_to(repo_root) else model_file
+                file_args.append(str(rel_model))
+            
+            print(f"  python tools/data_provenance/hash_dataset.py {' '.join(file_args)} > {manifest_dir}/{manifest_name}")
+        
+        print()
+        print("=" * 80)
+        return False
+    
+    print(f"✓ Manifest contains all {len(required_files)} required file(s)")
     print()
     
     return success
@@ -574,6 +681,46 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     # Validate inputs
     if args.planck_obs is None:
         parser.error("--planck_obs is required")
+    
+    # PART A.2: Content-based rejection of likelihood/parameter files
+    # Check file content for likelihood markers (not filename, as some valid model files may contain "minimum")
+    if args.planck_model:
+        model_file = Path(args.planck_model)
+        if model_file.exists():
+            # Content check: look for likelihood markers in data
+            try:
+                with open(model_file, 'r') as f:
+                    for line in f:
+                        stripped = line.strip()
+                        # Skip empty lines and comments
+                        if not stripped or stripped.startswith('#'):
+                            continue
+                        # Check first non-comment line for likelihood markers
+                        if '-log(like)' in stripped.lower() or 'loglike' in stripped.lower():
+                            print()
+                            print("=" * 80)
+                            print("ERROR: Invalid Planck model file")
+                            print("=" * 80)
+                            print(f"File: {args.planck_model}")
+                            print()
+                            print("This file contains '-log(Like)' or 'logLike' in the data,")
+                            print("indicating it is a likelihood/parameter file, not a power spectrum.")
+                            print()
+                            print("For the CMB comb test, you need a TT power spectrum model file.")
+                            print()
+                            print("Recommended files:")
+                            print("  1. Theoretical ΛCDM spectrum from CAMB/CLASS")
+                            print("  2. Planck 'minimum-theory' spectrum files")
+                            print("  3. TT-full observation file as both obs and model (for residual=0)")
+                            print()
+                            print("See forensic_fingerprint/RUNBOOK_REAL_DATA.md for guidance.")
+                            print("=" * 80)
+                            sys.exit(1)
+                        # Only check first data line
+                        break
+            except Exception:
+                # If we can't read the file, let the loader handle it
+                pass
     
     # Generate output directory with timestamp
     if args.output_dir:
