@@ -32,13 +32,18 @@ def find_repo_root(start_path=None):
     if start_path is None:
         # Use the caller's location, not this file's location
         import inspect
-        frame = inspect.currentframe()
-        caller_frame = frame.f_back
-        caller_file = caller_frame.f_globals.get('__file__')
-        if caller_file:
-            start_path = Path(caller_file).resolve().parent
-        else:
-            start_path = Path.cwd()
+        frame = None
+        try:
+            frame = inspect.currentframe()
+            caller_frame = frame.f_back
+            caller_file = caller_frame.f_globals.get('__file__')
+            if caller_file:
+                start_path = Path(caller_file).resolve().parent
+            else:
+                start_path = Path.cwd()
+        finally:
+            # Clean up frame references to prevent memory leaks
+            del frame
     else:
         start_path = Path(start_path).resolve()
     
