@@ -305,7 +305,10 @@ def save_results_json(results, output_file):
     print(f"Results saved to: {output_file}")
 
 
-def generate_combined_verdict(planck_results, wmap_results, output_file, variant):
+def generate_combined_verdict(planck_results, wmap_results, output_file, variant, 
+                             planck_manifest_validated=None, wmap_manifest_validated=None,
+                             planck_obs_file=None, planck_model_file=None,
+                             wmap_obs_file=None):
     """
     Generate court-grade combined verdict markdown report.
     
@@ -319,12 +322,54 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
         Output markdown file path
     variant : str
         Architecture variant tested
+    planck_manifest_validated : bool or None
+        Whether Planck manifest was validated (None if no manifest)
+    wmap_manifest_validated : bool or None
+        Whether WMAP manifest was validated (None if no manifest)
+    planck_obs_file : str or None
+        Path to Planck observation file
+    planck_model_file : str or None
+        Path to Planck model file
+    wmap_obs_file : str or None
+        Path to WMAP observation file
     """
     with open(output_file, 'w') as f:
         f.write("# CMB Comb Fingerprint Test - Combined Verdict\n\n")
         f.write(f"**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n")
         f.write(f"**Protocol Version**: v1.0\n")
         f.write(f"**Architecture Variant**: {variant}\n\n")
+        
+        f.write("**See**: `FORENSIC_VERDICT_CRITERIA.md` for pre-registered pass/fail criteria.\n\n")
+        
+        # Data Provenance Section
+        f.write("## Data Provenance\n\n")
+        
+        if planck_obs_file or wmap_obs_file:
+            f.write("### Dataset Files\n\n")
+            
+            if planck_obs_file:
+                f.write(f"**Planck PR3**:\n")
+                f.write(f"- Observation: `{planck_obs_file}`\n")
+                if planck_model_file:
+                    f.write(f"- Model: `{planck_model_file}`\n")
+                if planck_manifest_validated is not None:
+                    status = "✓ VALIDATED" if planck_manifest_validated else "✗ VALIDATION FAILED"
+                    f.write(f"- SHA-256 Manifest: **{status}**\n")
+                else:
+                    f.write(f"- SHA-256 Manifest: **NOT PROVIDED** (candidate-grade only)\n")
+                f.write("\n")
+            
+            if wmap_obs_file:
+                f.write(f"**WMAP 9yr**:\n")
+                f.write(f"- Observation: `{wmap_obs_file}`\n")
+                if wmap_manifest_validated is not None:
+                    status = "✓ VALIDATED" if wmap_manifest_validated else "✗ VALIDATION FAILED"
+                    f.write(f"- SHA-256 Manifest: **{status}**\n")
+                else:
+                    f.write(f"- SHA-256 Manifest: **NOT PROVIDED** (candidate-grade only)\n")
+                f.write("\n")
+        
+        f.write("---\n\n")
         
         f.write("## Pre-Registered Candidate Periods\n\n")
         f.write("Δℓ ∈ {" + ", ".join(map(str, CANDIDATE_PERIODS)) + "} (LOCKED)\n\n")
@@ -555,16 +600,21 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     print(f"Random seed: {args.seed}")
     print()
     
-    # Validate manifests if provided
+    # Validate manifests if provided and track validation status
+    planck_manifest_validated = None
+    wmap_manifest_validated = None
+    
     if args.planck_manifest:
         print("Validating Planck manifest...")
-        if not validate_data_manifest(args.planck_manifest, 'planck', args.planck_obs, args.planck_model):
+        planck_manifest_validated = validate_data_manifest(args.planck_manifest, 'planck', args.planck_obs, args.planck_model)
+        if not planck_manifest_validated:
             print("ERROR: Planck manifest validation failed. Aborting.")
             sys.exit(1)
     
     if args.wmap_manifest:
         print("Validating WMAP manifest...")
-        if not validate_data_manifest(args.wmap_manifest, 'wmap', args.wmap_obs, args.wmap_model):
+        wmap_manifest_validated = validate_data_manifest(args.wmap_manifest, 'wmap', args.wmap_obs, args.wmap_model)
+        if not wmap_manifest_validated:
             print("ERROR: WMAP manifest validation failed. Aborting.")
             sys.exit(1)
     
@@ -666,7 +716,12 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
         planck_results,
         wmap_results,
         output_dir / 'combined_verdict.md',
-        args.variant
+        args.variant,
+        planck_manifest_validated=planck_manifest_validated,
+        wmap_manifest_validated=wmap_manifest_validated,
+        planck_obs_file=args.planck_obs,
+        planck_model_file=args.planck_model,
+        wmap_obs_file=args.wmap_obs
     )
     
     print()

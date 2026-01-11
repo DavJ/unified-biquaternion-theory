@@ -51,8 +51,21 @@ def find_repo_root(start_path=None):
     # Prioritize .git as the most reliable marker.
     # NOTE: This repo is frequently distributed as a ZIP without a .git directory,
     # so we include stable top-level files as additional markers.
+    
+    # First pass: Look for .git directory (most reliable)
+    temp = current
+    while temp != temp.parent:
+        if (temp / '.git').exists():
+            return temp
+        temp = temp.parent
+    # Check filesystem root too
+    if (temp / '.git').exists():
+        return temp
+    
+    # Second pass: If no .git found, look for combination of markers
+    # that indicate the repository root (not just a subdirectory with README)
+    # A true repo root should have multiple of these markers
     markers = [
-        '.git',
         'pyproject.toml',
         'pytest.ini',
         'README.md',
@@ -60,18 +73,19 @@ def find_repo_root(start_path=None):
         'Makefile',
     ]
     
-    # Walk up directory tree
-    while current != current.parent:
-        # Check if any marker exists in current directory
-        for marker in markers:
-            if (current / marker).exists():
-                return current
-        current = current.parent
+    # Walk up directory tree looking for directories with multiple markers
+    temp = current
+    while temp != temp.parent:
+        marker_count = sum(1 for marker in markers if (temp / marker).exists())
+        # Repo root should have at least 3 of these markers
+        if marker_count >= 3:
+            return temp
+        temp = temp.parent
     
-    # Check root directory too
-    for marker in markers:
-        if (current / marker).exists():
-            return current
+    # Check filesystem root too
+    marker_count = sum(1 for marker in markers if (temp / marker).exists())
+    if marker_count >= 3:
+        return temp
     
     raise FileNotFoundError(
         f"Could not find repository root. Searched from {start_path} upward. "
