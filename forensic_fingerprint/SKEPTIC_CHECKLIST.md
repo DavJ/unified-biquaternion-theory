@@ -256,7 +256,7 @@ This is a **living document**. New counter-arguments are added as they are ident
 
 ### Status
 
-⚠ **PARTIAL** — Loaders extended for TE/EE (CLI `--spectrum` flag added). Full validation pending.
+✓ **ADDRESSED** — Loaders fully support TE/EE spectra. CLI `--spectrum TT|TE|EE|BB` flag implemented. End-to-end pipeline validated.
 
 ---
 
@@ -391,10 +391,10 @@ This is a **living document**. New counter-arguments are added as they are ident
 | 3 | Covariance errors | ✓ ADDRESSED | Validation + calibration |
 | 4 | Needs replication | ✓ ADDRESSED | Planck + WMAP protocol |
 | 5 | False positive rate | ✓ ADDRESSED | ΛCDM null control |
-| 6 | ℓ-range cherry-picking | ✓ ADDRESSED | Ablation tests |
-| 7 | TT-only (no TE/EE) | ⚠ PARTIAL | Loaders ready, validation pending |
+| 6 | ℓ-range cherry-picking | ✓ ADDRESSED | Ablation tests (`--ablate-ell`) |
+| 7 | TT-only (no TE/EE) | ✓ ADDRESSED | Loaders + pipeline support TE/EE |
 | 8 | Phase incoherence | ✓ ADDRESSED | Phase consistency check |
-| 9 | Whitening mode dependence | ✓ ADDRESSED | Diagonal vs full comparison |
+| 9 | Whitening mode dependence | ✓ ADDRESSED | Full covariance implementation |
 | 10 | Prior specification bias | ✓ ADDRESSED | Pre-registration + git audit |
 | 11 | Confirmation bias | ✓ ADDRESSED | Automated decisions + open science |
 

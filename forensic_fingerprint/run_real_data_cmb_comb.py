@@ -113,6 +113,13 @@ import wmap
 import cmb_comb
 import validate_manifest
 
+# Add ablation and synthetic modules to path
+sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'synthetic'))
+
+import ablation
+from synthetic import lcdm
+
 
 # PROTOCOL-LOCKED CANDIDATE PERIODS (do not modify)
 CANDIDATE_PERIODS = [8, 16, 32, 64, 128, 255]
@@ -1029,35 +1036,361 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     
     # Handle special modes: ablation and null-data
     if args.ablate_ell:
-        # Ablation mode: Run multiple ℓ-ranges
+        # Ablation mode: Run multiple ℓ-ranges and aggregate results
         print("="*80)
         print("ABLATION MODE: Running multiple ℓ-ranges")
         print("="*80)
         print()
-        print("NOTE: Ablation implementation uses forensic_fingerprint/stress_tests/test_3_ablation.py")
-        print("      Use that script directly for full ablation analysis.")
+        
+        # Determine ablation ranges
+        if args.ablate_ranges:
+            # Parse custom ranges: "30-800,200-1000,800-1500"
+            custom_ranges = []
+            for i, range_spec in enumerate(args.ablate_ranges.split(',')):
+                parts = range_spec.strip().split('-')
+                if len(parts) != 2:
+                    print(f"ERROR: Invalid range specification '{range_spec}'. Expected format: 'min-max'")
+                    sys.exit(1)
+                try:
+                    ell_min_r = int(parts[0])
+                    ell_max_r = int(parts[1])
+                    custom_ranges.append((f"custom_{i}_{ell_min_r}_{ell_max_r}", ell_min_r, ell_max_r))
+                except ValueError:
+                    print(f"ERROR: Invalid range specification '{range_spec}'. Min and max must be integers.")
+                    sys.exit(1)
+            ablation_ranges = custom_ranges
+        else:
+            # Use pre-defined ranges based on dataset
+            dataset_name = 'planck' if args.planck_obs else 'wmap'
+            ablation_ranges = ablation.get_ablation_ranges(dataset=dataset_name)
+        
+        print(f"Running {len(ablation_ranges)} ablation test(s):")
+        for name, ell_min_r, ell_max_r in ablation_ranges:
+            print(f"  - {name}: ℓ = {ell_min_r} to {ell_max_r}")
         print()
-        print("For now, running standard analysis with specified ℓ-range.")
-        print("Full ablation integration is a future enhancement.")
+        
+        # Run ablation tests (only on Planck for simplicity, can extend to WMAP)
+        if not args.planck_obs:
+            print("ERROR: Ablation mode requires --planck_obs")
+            sys.exit(1)
+        
+        ablation_results = {}
+        for range_name, ell_min_r, ell_max_r in ablation_ranges:
+            print(f"\n{'='*80}")
+            print(f"ABLATION: {range_name} (ℓ = {ell_min_r} to {ell_max_r})")
+            print('='*80)
+            print()
+            
+            # Load data with this ℓ-range
+            planck_data = planck.load_planck_data(
+                obs_file=args.planck_obs,
+                model_file=args.planck_model,
+                cov_file=args.planck_cov,
+                ell_min=ell_min_r,
+                ell_max=ell_max_r,
+                dataset_name=f"Planck PR3 {args.spectrum} ({range_name})",
+                spectrum_type=args.spectrum
+            )
+            
+            # Validate sufficient points
+            is_valid, n_points, skip_reason = ablation.validate_ablation_range(
+                ell_min_r, ell_max_r, planck_data['ell'], min_points=50
+            )
+            
+            if not is_valid:
+                print(f"SKIPPING: {skip_reason}")
+                ablation_results[range_name] = {'skipped': True, 'reason': skip_reason}
+                continue
+            
+            print(f"Loaded {n_points} multipoles")
+            
+            # Run comb test
+            result = cmb_comb.run_cmb_comb_test(
+                ell=planck_data['ell'],
+                C_obs=planck_data['cl_obs'],
+                C_model=planck_data['cl_model'] if planck_data['cl_model'] is not None else planck_data['cl_obs'] * 0,
+                sigma=planck_data['sigma'],
+                cov=planck_data['cov'],
+                dataset_name=planck_data['dataset'],
+                variant=args.variant,
+                n_mc_trials=args.mc_samples,
+                random_seed=args.seed,
+                whiten_mode=args.whiten,
+                cov_jitter=args.cov_jitter,
+                cov_method=args.cov_method,
+                output_dir=None
+            )
+            
+            ablation_results[range_name] = result
+            print(f"\nResult: p = {result['p_value']:.6e}, period = {result['best_period']}, sig = {result['significance']}")
+        
+        # Aggregate results
+        print(f"\n{'='*80}")
+        print("ABLATION SUMMARY")
+        print('='*80)
         print()
-        # Continue with standard analysis (future: loop over ranges)
+        
+        summary = ablation.summarize_ablation_results(ablation_results)
+        
+        # Create summary report directory
+        summary_dir = output_dir / 'ablation_summary'
+        summary_dir.mkdir(exist_ok=True)
+        
+        # Save detailed results to JSON
+        import json
+        with open(summary_dir / 'ablation_results.json', 'w') as f:
+            # Convert numpy types for JSON serialization
+            json_results = {}
+            for k, v in ablation_results.items():
+                if v.get('skipped', False):
+                    json_results[k] = v
+                else:
+                    json_results[k] = {
+                        'best_period': int(v['best_period']),
+                        'p_value': float(v['p_value']),
+                        'amplitude': float(v['amplitude']),
+                        'phase': float(v['phase']),
+                        'significance': v['significance']
+                    }
+            json.dump(json_results, f, indent=2)
+        
+        # Save CSV summary
+        with open(summary_dir / 'ablation_summary.csv', 'w') as f:
+            f.write("range_name,ell_min,ell_max,best_period,p_value,amplitude,phase,significance,skipped\n")
+            for (range_name, ell_min_r, ell_max_r), result in zip(ablation_ranges, [ablation_results.get(name) for name, _, _ in ablation_ranges]):
+                if result is None:
+                    continue
+                if result.get('skipped', False):
+                    f.write(f"{range_name},{ell_min_r},{ell_max_r},,,,,{result['significance']},TRUE\n")
+                else:
+                    f.write(f"{range_name},{ell_min_r},{ell_max_r},{result['best_period']},{result['p_value']},{result['amplitude']},{result['phase']},{result['significance']},FALSE\n")
+        
+        # Generate markdown report
+        with open(summary_dir / 'ablation_report.md', 'w') as f:
+            f.write("# Ablation Test Report\n\n")
+            f.write(f"**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"**Dataset**: Planck PR3 {args.spectrum}\n")
+            f.write(f"**Variant**: {args.variant}\n")
+            f.write(f"**MC samples**: {args.mc_samples}\n\n")
+            
+            f.write("## Ablation Ranges Tested\n\n")
+            f.write("| Range Name | ℓ-min | ℓ-max | N points | Best Period | P-value | Significance |\n")
+            f.write("|------------|-------|-------|----------|-------------|---------|-------------|\n")
+            
+            for range_name, ell_min_r, ell_max_r in ablation_ranges:
+                result = ablation_results.get(range_name)
+                if result is None:
+                    continue
+                if result.get('skipped', False):
+                    f.write(f"| {range_name} | {ell_min_r} | {ell_max_r} | SKIPPED | - | - | - |\n")
+                else:
+                    f.write(f"| {range_name} | {ell_min_r} | {ell_max_r} | {len(result['ell'])} | {result['best_period']} | {result['p_value']:.6e} | {result['significance']} |\n")
+            
+            f.write("\n## Summary Statistics\n\n")
+            f.write(f"- Total ranges: {summary['n_ranges']}\n")
+            f.write(f"- Ranges skipped: {summary['n_skipped']}\n")
+            f.write(f"- Mean p-value: {summary.get('mean_p_value', 'N/A')}\n")
+            f.write(f"- Median p-value: {summary.get('median_p_value', 'N/A')}\n")
+            
+            if summary['periods']:
+                f.write("\n### Period Distribution\n\n")
+                for period, count in sorted(summary['periods'].items()):
+                    f.write(f"- Period {period}: {count} range(s)\n")
+        
+        print(f"\nAblation results saved to: {summary_dir}")
+        print("  - ablation_results.json (detailed results)")
+        print("  - ablation_summary.csv (summary table)")
+        print("  - ablation_report.md (human-readable report)")
+        print()
+        sys.exit(0)
     
     if args.null_data == 'lcdm':
-        # ΛCDM null control mode
+        # ΛCDM null control mode: Generate synthetic data and test for false positives
         print("="*80)
         print("ΛCDM NULL CONTROL MODE")
         print("="*80)
         print()
-        print("NOTE: ΛCDM null generation uses forensic_fingerprint/synthetic/lcdm.py")
-        print("      and forensic_fingerprint/run_synthetic_lcdm_control.py")
+        print(f"Generating {args.null_trials} synthetic ΛCDM realizations...")
+        print(f"MC samples per trial: {args.mc_samples}")
         print()
-        print("For synthetic null control, use:")
-        print("  python forensic_fingerprint/run_synthetic_lcdm_control.py \\")
-        print("    --n_trials {args.null_trials} \\")
-        print("    --mc_samples {args.mc_samples}")
+        
+        # Need at least model data to define ℓ-range and uncertainties
+        if not args.planck_obs and not args.planck_model:
+            print("ERROR: --null-data requires at least --planck_obs or --planck_model to define ℓ-range and uncertainties")
+            sys.exit(1)
+        
+        # Load template data to get ℓ-range and sigma
+        template_file = args.planck_obs if args.planck_obs else args.planck_model
+        template_data = planck.load_planck_data(
+            obs_file=template_file,
+            model_file=None,
+            cov_file=args.planck_cov,
+            ell_min=args.ell_min_planck,
+            ell_max=args.ell_max_planck,
+            dataset_name="Template for ΛCDM null",
+            spectrum_type=args.spectrum
+        )
+        
+        ell_template = template_data['ell']
+        sigma_template = template_data['sigma']
+        cov_template = template_data['cov']
+        
+        print(f"Template: ℓ = {ell_template[0]} to {ell_template[-1]} ({len(ell_template)} points)")
         print()
-        print("Full integration with --null-data is a future enhancement.")
+        
+        # Generate ΛCDM theory spectrum
+        Cl_theory = lcdm.generate_lcdm_spectrum(ell_template, channel=args.spectrum)
+        
+        # Run null trials
+        null_results = []
+        p_values = []
+        periods = []
+        
+        for trial in range(args.null_trials):
+            if trial % 10 == 0:
+                print(f"Trial {trial+1}/{args.null_trials}...", end='\r')
+            
+            # Generate synthetic observation
+            Cl_obs_synthetic = lcdm.generate_mock_observation(
+                ell=ell_template,
+                Cl_theory=Cl_theory,
+                noise_model={'sigma': sigma_template},
+                cov=cov_template,
+                seed=args.seed + trial  # Different seed per trial
+            )
+            
+            # Run comb test on synthetic data
+            result = cmb_comb.run_cmb_comb_test(
+                ell=ell_template,
+                C_obs=Cl_obs_synthetic,
+                C_model=Cl_theory,
+                sigma=sigma_template,
+                cov=cov_template,
+                dataset_name=f"ΛCDM null trial {trial+1}",
+                variant=args.variant,
+                n_mc_trials=args.mc_samples,
+                random_seed=args.seed,
+                whiten_mode=args.whiten,
+                cov_jitter=args.cov_jitter,
+                cov_method=args.cov_method,
+                output_dir=None
+            )
+            
+            null_results.append(result)
+            p_values.append(result['p_value'])
+            periods.append(result['best_period'])
+        
+        print(f"\nCompleted {args.null_trials} null trials")
+        print()
+        
+        # Analyze false positive rate
+        p_values = np.array(p_values)
+        periods = np.array(periods)
+        
+        fpr_001 = np.sum(p_values < 0.01) / len(p_values)
+        fpr_005 = np.sum(p_values < 0.05) / len(p_values)
+        
+        period_255_count = np.sum(periods == 255)
+        period_255_fraction = period_255_count / len(periods)
+        
         print("="*80)
+        print("NULL CONTROL RESULTS")
+        print("="*80)
+        print()
+        print(f"False Positive Rate:")
+        print(f"  - At p < 0.01: {fpr_001:.4f} (expected: ~0.01)")
+        print(f"  - At p < 0.05: {fpr_005:.4f} (expected: ~0.05)")
+        print()
+        print(f"Period 255 detections: {period_255_count}/{args.null_trials} ({period_255_fraction:.2%})")
+        print(f"Expected under null (1/6): ~{args.null_trials/6:.1f} ({1/6:.2%})")
+        print()
+        
+        # Kolmogorov-Smirnov test for p-value uniformity
+        from scipy import stats
+        ks_stat, ks_pvalue = stats.kstest(p_values, 'uniform')
+        print(f"P-value uniformity (KS test):")
+        print(f"  - KS statistic: {ks_stat:.4f}")
+        print(f"  - KS p-value: {ks_pvalue:.4f}")
+        if ks_pvalue > 0.05:
+            print(f"  - ✓ PASS: P-values are consistent with uniform distribution")
+        else:
+            print(f"  - ⚠ WARNING: P-values may not be uniformly distributed")
+        print()
+        
+        # Save results
+        null_dir = output_dir / 'null_control'
+        null_dir.mkdir(exist_ok=True)
+        
+        # Save detailed results
+        with open(null_dir / 'null_results.json', 'w') as f:
+            json_results = []
+            for i, result in enumerate(null_results):
+                json_results.append({
+                    'trial': i + 1,
+                    'p_value': float(result['p_value']),
+                    'best_period': int(result['best_period']),
+                    'amplitude': float(result['amplitude']),
+                    'phase': float(result['phase']),
+                    'significance': result['significance']
+                })
+            json.dump(json_results, f, indent=2)
+        
+        # Save CSV
+        with open(null_dir / 'null_summary.csv', 'w') as f:
+            f.write("trial,p_value,best_period,amplitude,phase,significance\n")
+            for i, result in enumerate(null_results):
+                f.write(f"{i+1},{result['p_value']},{result['best_period']},{result['amplitude']},{result['phase']},{result['significance']}\n")
+        
+        # Save report
+        with open(null_dir / 'null_report.md', 'w') as f:
+            f.write("# ΛCDM Null Control Report\n\n")
+            f.write(f"**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"**Trials**: {args.null_trials}\n")
+            f.write(f"**Spectrum**: {args.spectrum}\n")
+            f.write(f"**Variant**: {args.variant}\n")
+            f.write(f"**MC samples**: {args.mc_samples}\n")
+            f.write(f"**ℓ-range**: {ell_template[0]} to {ell_template[-1]}\n\n")
+            
+            f.write("## False Positive Rate\n\n")
+            f.write(f"- At p < 0.01: **{fpr_001:.4f}** (expected: ~0.01)\n")
+            f.write(f"- At p < 0.05: **{fpr_005:.4f}** (expected: ~0.05)\n\n")
+            
+            f.write("## Period 255 False Alarms\n\n")
+            f.write(f"- Detections: {period_255_count}/{args.null_trials} ({period_255_fraction:.2%})\n")
+            f.write(f"- Expected: ~{args.null_trials/6:.1f} ({1/6:.2%})\n\n")
+            
+            if period_255_fraction > 0.20:
+                f.write("⚠ **WARNING**: Period 255 over-represented. Possible systematic bias.\n\n")
+            
+            f.write("## P-value Uniformity Test\n\n")
+            f.write(f"- KS statistic: {ks_stat:.4f}\n")
+            f.write(f"- KS p-value: {ks_pvalue:.4f}\n\n")
+            
+            if ks_pvalue > 0.05:
+                f.write("✓ **PASS**: P-values are consistent with uniform distribution.\n\n")
+            else:
+                f.write("⚠ **FAIL**: P-values not uniformly distributed. Check for systematic errors.\n\n")
+            
+            f.write("## Interpretation\n\n")
+            f.write("This null control tests the false positive rate under pure ΛCDM (no periodic signal).\n")
+            f.write("If the test is properly calibrated:\n")
+            f.write("- False positive rate should match significance threshold\n")
+            f.write("- P-values should be uniformly distributed\n")
+            f.write("- No systematic preference for any particular period\n")
+        
+        print(f"Null control results saved to: {null_dir}")
+        print("  - null_results.json (detailed results)")
+        print("  - null_summary.csv (summary table)")
+        print("  - null_report.md (interpretation)")
+        print()
+        
+        # Check for systematic bias
+        if period_255_fraction > 0.20:
+            print("⚠ WARNING: Period 255 over-represented in null trials!")
+            print("           This suggests possible systematic bias in the test.")
+            print("           Review whitening, units, and candidate period selection.")
+            print()
+        
         sys.exit(0)
     
     # Run Planck analysis

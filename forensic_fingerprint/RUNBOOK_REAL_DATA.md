@@ -95,7 +95,9 @@ python tools/data_provenance/hash_dataset.py \
 
 ---
 
-## Quick Real Run (One Command)
+## Quick Start Guides
+
+### Quick Real Run (One Command) - TT Spectrum
 
 **NEW**: For users who want to run the complete CMB comb test with a single command.
 
@@ -960,6 +962,264 @@ python cmb_comb.py \
 - **Same period** (Δℓ) should be best fit
 - **Consistent phase** (within ~π/2)
 - **p-value** may be weaker but should still be < 0.05 if real
+
+---
+
+## Advanced Features
+
+### Whitening Modes
+
+The runner supports three whitening modes for handling error correlations:
+
+#### 1. Diagonal Mode (Default, Candidate-Grade)
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --whiten diag  # or omit (default)
+```
+
+- Uses diagonal uncertainties σ_ℓ only
+- Assumes errors are uncorrelated between multipoles
+- **Fastest** (~30 seconds)
+- **Candidate-grade only** - suitable for exploratory analysis
+
+#### 2. Full Covariance Mode (Court-Grade)
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --whiten full \
+    --cov_method cholesky  # or 'eigh'
+```
+
+- Uses full covariance matrix C_ℓℓ'
+- Accounts for error correlations between multipoles
+- Whiten via Cholesky: `L^-1 (C_obs - C_model)` where `C = L L^T`
+- Alternative: eigenvalue decomposition (`--cov_method eigh`)
+- **Court-grade** - required for publication
+- **Slower** (~5 minutes for 100k MC)
+
+**Covariance File Formats Supported**:
+- `.npy` (NumPy binary, recommended)
+- `.txt`, `.dat`, `.csv` (plain text N×N matrix)
+- `.fits` (FITS table, requires astropy)
+
+**Numerical Stability**:
+- Automatic symmetrization if C ≠ C^T
+- Ridge regularization if condition number > 10^10
+- Jitter parameter: `--cov_jitter 1e-12` (default)
+
+#### 3. No Whitening Mode
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --whiten none
+```
+
+- Raw residuals (C_obs - C_model) without normalization
+- **Not recommended** - use only for debugging
+
+### Polarization Spectra (TE/EE)
+
+The runner supports all CMB power spectra types: TT, TE, EE, BB.
+
+#### Temperature-E Mode (TE) Cross-Spectrum
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum_te.txt \
+    --planck_model data/planck_pr3/raw/model_te.txt \
+    --spectrum TE \
+    --variant C \
+    --mc_samples 10000
+```
+
+**Note**: TE cross-spectrum can have negative values. The loader handles this automatically.
+
+#### E-Mode (EE) Polarization
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum_ee.txt \
+    --planck_model data/planck_pr3/raw/model_ee.txt \
+    --spectrum EE \
+    --variant C \
+    --mc_samples 10000
+```
+
+**Why Test Polarization?**
+- Independent cross-check of TT results
+- Different systematic errors than temperature
+- If signal is real, should appear in all spectra with **same period and consistent phase**
+
+**Expected Results**:
+- TT: Strongest signal (highest S/N)
+- EE: Weaker signal (lower amplitude)
+- TE: Intermediate, may have phase shift
+
+#### Combined TT+TE+EE Analysis
+
+**Recommended workflow** for court-grade:
+
+```bash
+# 1. Run TT
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum_tt.txt \
+    --planck_model data/planck_pr3/raw/model_tt.txt \
+    --spectrum TT \
+    --whiten full --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --mc_samples 100000 \
+    --output_dir out/court_grade_tt
+
+# 2. Run TE
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum_te.txt \
+    --planck_model data/planck_pr3/raw/model_te.txt \
+    --spectrum TE \
+    --whiten full --planck_cov data/planck_pr3/covariance/planck_te_cov.npy \
+    --mc_samples 100000 \
+    --output_dir out/court_grade_te
+
+# 3. Run EE
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum_ee.txt \
+    --planck_model data/planck_pr3/raw/model_ee.txt \
+    --spectrum EE \
+    --whiten full --planck_cov data/planck_pr3/covariance/planck_ee_cov.npy \
+    --mc_samples 100000 \
+    --output_dir out/court_grade_ee
+
+# 4. Compare results
+cat out/court_grade_tt/combined_verdict.md
+cat out/court_grade_te/combined_verdict.md
+cat out/court_grade_ee/combined_verdict.md
+```
+
+**Verdict Criteria** (all must pass for PASS):
+- TT: p < 0.01, period = 255
+- TE: p < 0.05, period = 255, phase consistent with TT (within π/2)
+- EE: p < 0.05, period = 255, phase consistent with TT (within π/2)
+
+### ℓ-Range Ablation Tests
+
+Ablation tests verify that the signal persists across **independent multipole windows**, ruling out narrow-range artifacts.
+
+#### Pre-Defined Ablation Ranges
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --ablate-ell \
+    --whiten full \
+    --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --mc_samples 10000 \
+    --variant C
+```
+
+**Pre-defined ranges (Planck)**:
+- **low**: ℓ = 30-250 (acoustic peaks)
+- **mid**: ℓ = 251-800 (damping tail)
+- **high**: ℓ = 801-1500 (deep damping tail)
+- **full_low**: ℓ = 30-800 (exclude high-ℓ)
+- **full_high**: ℓ = 200-1500 (exclude very low-ℓ)
+
+**Output**:
+```
+out/ablation_tests/ablation_summary/
+├── ablation_results.json      # Detailed results per range
+├── ablation_summary.csv       # Summary table
+└── ablation_report.md         # Human-readable interpretation
+```
+
+#### Custom Ablation Ranges
+
+```bash
+python run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt \
+    --ablate-ell \
+    --ablate-ranges "30-500,500-1000,1000-1500" \
+    --mc_samples 10000
+```
+
+**Expected Result**:
+- If signal is real, **same period (Δℓ = 255)** should appear in most ranges
+- P-values may vary by range (expected due to different S/N)
+- Phase should be **consistent** across ranges (within ~π/2)
+
+**Warning Signs** (possible artifact):
+- Period varies between ranges
+- Signal only in one narrow range
+- Phase shifts >π/2 between adjacent ranges
+
+### Synthetic ΛCDM Null Control
+
+The null control test measures the **false positive rate** by running the comb test on pure ΛCDM synthetic data (no periodic signal).
+
+#### Basic Null Control
+
+```bash
+python run_real_data_cmb_comb.py \
+    --null-data lcdm \
+    --null-trials 100 \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --mc_samples 10000 \
+    --variant C
+```
+
+**What This Does**:
+1. Loads Planck data to get ℓ-range and uncertainties
+2. Generates 100 synthetic ΛCDM spectra with realistic noise
+3. Runs comb test on each synthetic dataset
+4. Computes false positive rate at p < 0.01 and p < 0.05
+
+**Expected Results** (if test is calibrated correctly):
+- FPR at p < 0.01: ~1% (0.8% - 1.2%)
+- FPR at p < 0.05: ~5% (4% - 6%)
+- Period 255 detections: ~17% (1/6, since 6 candidate periods)
+- P-values uniformly distributed (KS test p > 0.05)
+
+**Output**:
+```
+out/null_control/
+├── null_results.json     # All trial results
+├── null_summary.csv      # Summary table
+└── null_report.md        # Interpretation + KS test
+```
+
+#### Court-Grade Null Control (with Covariance)
+
+```bash
+python run_real_data_cmb_comb.py \
+    --null-data lcdm \
+    --null-trials 1000 \
+    --planck_cov data/planck_pr3/covariance/planck_tt_cov.npy \
+    --whiten full \
+    --mc_samples 100000 \
+    --variant C
+```
+
+**Why 1000 trials?**
+- 100 trials: ±1% uncertainty on FPR estimate
+- 1000 trials: ±0.3% uncertainty (better for court-grade)
+
+**Warning Signs** (systematic bias):
+- FPR significantly > expected (e.g., 3% at p < 0.01)
+- Period 255 over-represented (>25% of trials)
+- P-values not uniformly distributed (KS p < 0.05)
+
+**If systematic bias detected**:
+1. Check units (C_ℓ vs D_ℓ mismatch?)
+2. Check covariance matrix (positive definite? correct binning?)
+3. Check whitening implementation
+4. Review candidate period selection (was 255 pre-registered?)
 
 ---
 
