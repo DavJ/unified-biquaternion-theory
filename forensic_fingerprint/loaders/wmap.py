@@ -22,10 +22,11 @@ def load_wmap_data(
     cov_file=None,
     ell_min=None,
     ell_max=None,
-    dataset_name="WMAP 9yr"
+    dataset_name="WMAP 9yr",
+    spectrum_type="TT"
 ):
     """
-    Load WMAP TT power spectrum data.
+    Load WMAP power spectrum data.
     
     Parameters
     ----------
@@ -41,6 +42,9 @@ def load_wmap_data(
         Maximum multipole to include (default: use all)
     dataset_name : str
         Dataset identifier for provenance (default: "WMAP 9yr")
+    spectrum_type : str
+        Type of spectrum: "TT", "EE", "TE", or "BB" (default: "TT")
+        Note: WMAP primarily released TT. EE/TE support depends on data availability.
     
     Returns
     -------
@@ -52,6 +56,7 @@ def load_wmap_data(
         - sigma: ndarray, diagonal uncertainties
         - cov: ndarray or None, full covariance matrix
         - dataset: str, dataset name
+        - spectrum_type: str, spectrum type (TT/EE/TE/BB)
         - ell_range: tuple, (ell_min, ell_max) applied
     
     Raises
@@ -137,6 +142,7 @@ def load_wmap_data(
         'sigma': sigma_obs,
         'cov': cov,
         'dataset': dataset_name,
+        'spectrum_type': spectrum_type,
         'ell_range': (int(ell_min), int(ell_max)),
         'n_multipoles': len(ell)
     }
