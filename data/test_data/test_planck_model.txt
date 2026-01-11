@@ -1,5 +1,0 @@
-# Test Planck model spectrum (mock data)
-# ell D_ell
-2 0.1200
-3 0.2300
-4 0.3400
