@@ -79,14 +79,24 @@ The `run_real_data_cmb_comb.py` script provides a one-command entrypoint that:
 4. Generates a court-grade combined verdict report (PASS/FAIL)
 5. Saves all results with timestamps in a structured output directory
 
+**Note**: As of the recent update, the runner now works correctly **regardless of your current working directory**. You can run it from the repository root, from `forensic_fingerprint/`, or from any other directory. All paths are automatically resolved relative to the repository root.
+
 ### Minimal Example (Planck Only)
 
+**From forensic_fingerprint directory:**
 ```bash
 cd forensic_fingerprint
 
 python run_real_data_cmb_comb.py \
     --planck_obs ../data/planck_pr3/raw/spectrum.txt \
     --planck_model ../data/planck_pr3/raw/model.txt
+```
+
+**From repository root (also works):**
+```bash
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+    --planck_obs data/planck_pr3/raw/spectrum.txt \
+    --planck_model data/planck_pr3/raw/model.txt
 ```
 
 **Output**:
@@ -321,6 +331,17 @@ head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lens
 
 ### Step 2: Compute Planck Hashes
 
+**Recommended approach (with relative paths):**
+```bash
+# Run from repository root
+python tools/data_provenance/hash_dataset.py \
+    data/planck_pr3/raw/*.txt \
+    data/planck_pr3/raw/*.fits \
+    --relative-to . \
+    > data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+```
+
+**Alternative (from data directory):**
 ```bash
 cd data/planck_pr3/raw
 
@@ -328,15 +349,24 @@ cd data/planck_pr3/raw
 python ../../../tools/data_provenance/hash_dataset.py *.txt *.fits > ../manifests/planck_pr3_tt_manifest.json
 ```
 
+**Note**: Using `--relative-to` stores paths relative to the repository root, making manifests portable across different working directories.
+
 **Expected output**:
 - `planck_pr3_tt_manifest.json` created in `data/planck_pr3/manifests/`
 - Contains SHA-256 hash for each file
 
 ### Step 3: Validate Planck Data
 
+**Recommended (works from any directory):**
 ```bash
-cd ../../..  # Back to repo root
+# From repository root
+python tools/data_provenance/validate_manifest.py \
+    data/planck_pr3/manifests/planck_pr3_tt_manifest.json \
+    --base_dir .
+```
 
+**Alternative (let it auto-detect):**
+```bash
 python tools/data_provenance/validate_manifest.py data/planck_pr3/manifests/planck_pr3_tt_manifest.json
 ```
 
@@ -345,10 +375,14 @@ python tools/data_provenance/validate_manifest.py data/planck_pr3/manifests/plan
 ================================================================================
 Dataset Validation Report
 ================================================================================
+Manifest: data/planck_pr3/manifests/planck_pr3_tt_manifest.json
+Base directory: /path/to/unified-biquaternion-theory
 ✓ SUCCESS: All X file(s) validated
 Data provenance confirmed. Files match pre-registered hashes.
 ================================================================================
 ```
+
+**Note**: The `--base_dir` parameter tells the validator where to resolve relative paths from. If omitted, it defaults to the manifest's parent directory, which now works correctly from any working directory.
 
 **Critical**: If validation fails, DO NOT proceed with analysis. Re-download or investigate discrepancy.
 
@@ -363,6 +397,16 @@ bash tools/data_download/download_wmap_tt.sh
 
 ### Step 5: Compute WMAP Hashes
 
+**Recommended approach (with relative paths):**
+```bash
+# Run from repository root
+python tools/data_provenance/hash_dataset.py \
+    data/wmap/raw/wmap_tt_*.txt \
+    --relative-to . \
+    > data/wmap/manifests/wmap_tt_manifest.json
+```
+
+**Alternative (from data directory):**
 ```bash
 cd data/wmap/raw
 
@@ -372,9 +416,10 @@ python ../../../tools/data_provenance/hash_dataset.py wmap_tt_*.txt > ../manifes
 ### Step 6: Validate WMAP Data
 
 ```bash
-cd ../../..
-
-python tools/data_provenance/validate_manifest.py data/wmap/manifests/wmap_tt_manifest.json
+# Works from any directory
+python tools/data_provenance/validate_manifest.py \
+    data/wmap/manifests/wmap_tt_manifest.json \
+    --base_dir .
 ```
 
 **Expected**: ✓ SUCCESS (same as Planck)
