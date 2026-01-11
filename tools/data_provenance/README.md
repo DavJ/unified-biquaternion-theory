@@ -19,7 +19,11 @@ Compute SHA-256 hashes for one or more files.
 **Usage**:
 ```bash
 python tools/data_provenance/hash_dataset.py <file1> <file2> ... > manifest.json
+python tools/data_provenance/hash_dataset.py <file1> --relative-to <dir> > manifest.json
 ```
+
+**Options**:
+- `--relative-to <dir>`: Store file paths relative to the specified directory (default: auto-discovers repository root)
 
 **Example** (Planck PR3):
 ```bash
@@ -33,7 +37,14 @@ cd data/wmap/raw
 python ../../../tools/data_provenance/hash_dataset.py wmap_tt_*.txt > ../manifests/wmap_tt_manifest.json
 ```
 
+**Example** (with explicit base directory):
+```bash
+python tools/data_provenance/hash_dataset.py data/test/*.txt --relative-to . > manifest.json
+```
+
 **Output**: JSON manifest with SHA-256 hash for each file
+
+**Note**: By default, the tool auto-discovers the repository root (by searching for `.git`, `pyproject.toml`, or `pytest.ini`) and stores paths relative to it. This ensures manifests work correctly regardless of the current working directory.
 
 ### `validate_manifest.py`
 
@@ -42,7 +53,11 @@ Validate files against a previously-generated manifest.
 **Usage**:
 ```bash
 python tools/data_provenance/validate_manifest.py <manifest.json>
+python tools/data_provenance/validate_manifest.py <manifest.json> --base-dir <dir>
 ```
+
+**Options**:
+- `--base-dir <dir>`: Base directory for resolving relative paths in the manifest (default: auto-discovers repository root)
 
 **Example** (Planck PR3):
 ```bash
@@ -54,7 +69,19 @@ python tools/data_provenance/validate_manifest.py data/planck_pr3/manifests/plan
 python tools/data_provenance/validate_manifest.py data/wmap/manifests/wmap_tt_manifest.json
 ```
 
+**Example** (from a subdirectory with explicit base directory):
+```bash
+cd tools
+python data_provenance/validate_manifest.py ../data/planck_pr3/manifests/planck_pr3_tt_manifest.json --base-dir ..
+```
+
 **Output**: Success/failure report with details on any hash mismatches
+
+**Exit Codes**:
+- `0`: All files validated successfully
+- `1`: Validation failed (missing files, hash mismatches, or empty manifest)
+
+**Note**: By default, the tool auto-discovers the repository root and resolves all relative paths in the manifest relative to it. This ensures validation works correctly regardless of the current working directory.
 
 ## Standardized Manifest Naming
 
