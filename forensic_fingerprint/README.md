@@ -27,7 +27,7 @@ This directory contains three pre-registered statistical tests designed to searc
 
 ## Quick Start
 
-**NEW**: For a one-command analysis with automatic verdict generation, see the [Quick Real Run](#one-command-real-data-analysis) section below.
+**NEW (2026-01)**: For comprehensive robustness testing with falsification campaign, see [Robustness & Falsification Campaign](#robustness--falsification-campaign) below.
 
 ### Installation
 
@@ -35,9 +35,37 @@ This directory contains three pre-registered statistical tests designed to searc
 pip install numpy scipy matplotlib pytest
 ```
 
+### Robustness & Falsification Campaign
+
+**Recommended approach for publication-grade analysis**. Runs all stress tests systematically to attempt to invalidate the signal:
+
+```bash
+# Minimum required (3 core tests: whitening, ΛCDM null, ablation)
+python forensic_fingerprint/run_robustness_campaign.py \
+    --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt
+
+# Full campaign (includes polarization and phase coherence if data available)
+python forensic_fingerprint/run_robustness_campaign.py \
+    --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt \
+    --planck_cov data/planck_pr3/raw/COM_PowerSpect_CMB-TT-covariance_R3.01.txt \
+    --wmap_obs data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt \
+    --wmap_model data/wmap/raw/wmap_tt_model_9yr_v5.txt \
+    --include_phase_coherence
+```
+
+**Output**: Generates `ROBUSTNESS_AND_FALSIFICATION.md` with:
+- Overall campaign verdict (PASS/FAIL/INCOMPLETE)
+- Individual test results with explicit pass/fail
+- Machine-readable JSON results
+- Diagnostic plots
+
+See `ROBUSTNESS_CAMPAIGN_README.md` for complete documentation.
+
 ### One-Command Real Data Analysis
 
-The fastest way to run CMB comb test with real data:
+Alternative: Run single CMB comb test with real data:
 
 ```bash
 cd forensic_fingerprint
@@ -204,6 +232,52 @@ The digital-architecture interpretation of UBT is **falsified** if:
 
 Alternative formulations require new pre-registered protocol (v2.0).
 
+## Stress Tests (Robustness & Falsification)
+
+Beyond the initial protocol, the **stress tests** actively attempt to falsify candidate signals using standard CMB analysis counter-arguments. See `stress_tests/README.md` for complete details.
+
+### Five Independent Stress Tests
+
+1. **Whitening / Full Covariance** (`test_1_whitening.py`)
+   - Tests if signal survives proper covariance-aware whitening
+   - CRITICAL: Signal must persist across all whitening modes
+   
+2. **Synthetic ΛCDM Null Controls** (`test_4_lcdm_null.py`)
+   - Verifies Δℓ = 255 is rare in pure ΛCDM simulations
+   - Anti-overfitting: Must appear in ≤1% of realizations
+   
+3. **ℓ-Range Ablation** (`test_3_ablation.py`)
+   - Tests if signal is global or localized artifact
+   - Must appear in ≥2 disjoint multipole ranges
+   
+4. **Polarization Channels** (`test_2_polarization.py`) - OPTIONAL
+   - Tests cross-channel coherence (TT vs EE vs TE)
+   - High-impact if data available
+   
+5. **Phase Coherence** (`test_5_phase_coherence.py`) - OPTIONAL
+   - Tests phase stability across datasets
+   - Requires WMAP data for cross-validation
+
+### Running the Full Campaign
+
+Use the master runner for systematic execution:
+
+```bash
+python forensic_fingerprint/run_robustness_campaign.py \
+    --planck_obs data/planck_pr3/raw/TT_spectrum.txt \
+    --planck_model data/planck_pr3/raw/TT_model.txt \
+    --planck_cov data/planck_pr3/raw/TT_covariance.txt  # Optional but recommended
+```
+
+**Output**: `ROBUSTNESS_AND_FALSIFICATION.md` with overall PASS/FAIL verdict.
+
+**Philosophy**: 
+- This task is **successful even if the signal FAILS**
+- Scientific integrity > confirmation
+- A failed signal is better than a false positive
+
+See `ROBUSTNESS_CAMPAIGN_README.md` and `stress_tests/COMPLETE_GUIDE.md` for full documentation.
+
 ## Ethical Standards
 
 - **No cherry-picking**: All datasets examined, all results reported
@@ -215,18 +289,38 @@ Alternative formulations require new pre-registered protocol (v2.0).
 
 ```
 forensic_fingerprint/
-├── PROTOCOL.md              # Complete protocol specification
-├── README.md                # This file
+├── PROTOCOL.md                      # Complete protocol specification
+├── README.md                        # This file
+├── ROBUSTNESS_CAMPAIGN_README.md    # Campaign execution guide
+├── UBT_STRESS_TESTS.md             # Stress test results template
+├── run_real_data_cmb_comb.py       # One-command CMB comb runner
+├── run_robustness_campaign.py      # Master stress test runner ★
 ├── cmb_comb/
-│   ├── cmb_comb.py         # Test #1 implementation
+│   ├── cmb_comb.py                 # Test #1 implementation
 │   └── README.md
 ├── grid_255/
-│   ├── grid_255.py         # Test #2 implementation
+│   ├── grid_255.py                 # Test #2 implementation
 │   └── README.md
 ├── invariance/
-│   ├── invariance.py       # Test #3 implementation
+│   ├── invariance.py               # Test #3 implementation
 │   └── README.md
-└── out/                     # Output directory (created automatically)
+├── stress_tests/                    # Robustness & falsification tests
+│   ├── README.md                    # Stress test overview
+│   ├── COMPLETE_GUIDE.md            # Detailed methodology
+│   ├── test_1_whitening.py          # Covariance whitening test
+│   ├── test_2_polarization.py       # Cross-channel test
+│   ├── test_3_ablation.py           # ℓ-range ablation test
+│   ├── test_4_lcdm_null.py          # ΛCDM null controls
+│   └── test_5_phase_coherence.py    # Phase stability test
+├── loaders/                         # Dataset loaders
+│   ├── planck.py                    # Planck PR3 loader
+│   └── wmap.py                      # WMAP 9yr loader
+├── tests/                           # Test suite
+│   └── test_*.py
+└── out/                             # Output directory (auto-created)
+    ├── real_runs/                   # Real data analysis results
+    ├── stress_tests/                # Stress test results
+    └── robustness_campaign/         # Campaign results ★
 ```
 
 ## Testing

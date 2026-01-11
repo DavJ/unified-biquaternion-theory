@@ -1,5 +1,5 @@
 # UBT Forensic Fingerprint - Stress Test Results
-**Version**: 1.0  
+**Version**: 1.1  
 **Date**: 2026-01-11  
 **Author**: UBT Research Team  
 **License**: MIT (code) / CC BY-NC-ND 4.0 (documentation)
@@ -8,11 +8,21 @@
 
 ## Executive Summary
 
-This document consolidates results from **four independent, falsification-oriented stress tests** applied to the candidate structural anomaly at Δℓ ≈ 255 in CMB power spectrum residuals.
+This document consolidates results from **five independent, falsification-oriented stress tests** applied to the candidate structural anomaly at Δℓ ≈ 255 in CMB power spectrum residuals.
 
 **Objective**: Actively attempt to destroy the signal through rigorous testing. Only survival across ALL tests upgrades the candidate status from "initial observation" to "replicated anomaly."
 
 **Critical Disclaimer**: This analysis uses the language of "candidate structural anomaly" throughout. **No claims of discovery are made**. All results are presented as falsification tests, not confirmations.
+
+**NEW (2026-01)**: Use the **master robustness campaign runner** for automated execution:
+
+```bash
+python forensic_fingerprint/run_robustness_campaign.py \
+    --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+    --planck_model data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt
+```
+
+See `ROBUSTNESS_CAMPAIGN_README.md` for complete documentation.
 
 ---
 
