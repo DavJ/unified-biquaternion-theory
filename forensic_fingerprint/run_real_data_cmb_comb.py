@@ -50,10 +50,62 @@ from pathlib import Path
 from datetime import datetime
 import numpy as np
 
+
+def find_repo_root(start_path=None):
+    """
+    Find repository root by walking upward from start_path.
+    
+    Looks for markers like .git, README.md, or pyproject.toml.
+    
+    Parameters
+    ----------
+    start_path : Path or None
+        Starting directory (default: directory containing this file)
+    
+    Returns
+    -------
+    Path
+        Repository root directory
+    
+    Raises
+    ------
+    FileNotFoundError
+        If no repository markers found
+    """
+    if start_path is None:
+        start_path = Path(__file__).resolve().parent
+    else:
+        start_path = Path(start_path).resolve()
+    
+    current = start_path
+    # Prioritize .git as the most reliable marker
+    markers = ['.git', 'pyproject.toml', 'pytest.ini']
+    
+    # Walk up directory tree
+    while current != current.parent:
+        # Check if any marker exists in current directory
+        for marker in markers:
+            if (current / marker).exists():
+                return current
+        current = current.parent
+    
+    # Check root directory too
+    for marker in markers:
+        if (current / marker).exists():
+            return current
+    
+    raise FileNotFoundError(
+        f"Could not find repository root. Searched from {start_path} upward. "
+        f"Looking for markers: {', '.join(markers)}"
+    )
+
+
+# Find repository root (works regardless of CWD)
+repo_root = find_repo_root()
+
 # Add loaders and cmb_comb to path
-repo_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(Path(__file__).parent / 'loaders'))
-sys.path.insert(0, str(Path(__file__).parent / 'cmb_comb'))
+sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'loaders'))
+sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'cmb_comb'))
 sys.path.insert(0, str(repo_root / 'tools' / 'data_provenance'))
 
 import planck
@@ -74,6 +126,8 @@ DEFAULT_SEED = 42  # Pre-registered
 def resolve_manifest_path(manifest_path, dataset_type):
     """
     Resolve manifest path with fallback candidates.
+    
+    Uses repo_root for resolving relative paths, so this works regardless of CWD.
     
     If the specified manifest path does not exist, tries fallback candidates in order:
     - For Planck: planck_pr3_tt_manifest.json, sha256.json, manifest.json
@@ -98,22 +152,28 @@ def resolve_manifest_path(manifest_path, dataset_type):
     
     manifest_path = Path(manifest_path)
     
-    # If specified path exists, use it (no fallback needed)
+    # If path is relative, try resolving relative to repo_root first
+    if not manifest_path.is_absolute():
+        resolved_from_root = repo_root / manifest_path
+        if resolved_from_root.exists():
+            return resolved_from_root, None
+    
+    # If specified path exists (absolute or relative to CWD), use it
     if manifest_path.exists():
         return manifest_path, None
     
-    # Define fallback candidates based on dataset type
+    # Define fallback candidates based on dataset type (using repo_root)
     if dataset_type == 'planck':
         fallback_candidates = [
-            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json',
-            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json',
-            Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json',
+            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json',
+            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json',
+            repo_root / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json',
         ]
     elif dataset_type == 'wmap':
         fallback_candidates = [
-            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json',
-            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'sha256.json',
-            Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'manifest.json',
+            repo_root / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json',
+            repo_root / 'data' / 'wmap' / 'manifests' / 'sha256.json',
+            repo_root / 'data' / 'wmap' / 'manifests' / 'manifest.json',
         ]
     else:
         return None, None
@@ -162,15 +222,15 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         
         if dataset_type == 'planck':
             attempted_paths.extend([
-                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json'),
-                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json'),
-                str(Path(__file__).parent.parent / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json'),
+                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'planck_pr3_tt_manifest.json'),
+                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'sha256.json'),
+                str(repo_root / 'data' / 'planck_pr3' / 'manifests' / 'manifest.json'),
             ])
         elif dataset_type == 'wmap':
             attempted_paths.extend([
-                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json'),
-                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'sha256.json'),
-                str(Path(__file__).parent.parent / 'data' / 'wmap' / 'manifests' / 'manifest.json'),
+                str(repo_root / 'data' / 'wmap' / 'manifests' / 'wmap_tt_manifest.json'),
+                str(repo_root / 'data' / 'wmap' / 'manifests' / 'sha256.json'),
+                str(repo_root / 'data' / 'wmap' / 'manifests' / 'manifest.json'),
             ])
         
         print(f"ERROR: Manifest not found for {dataset_type} dataset.")
@@ -181,7 +241,7 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         # Provide helpful generation command
         if obs_file:
             print(f"\nTo generate the expected manifest, run:")
-            manifest_dir = Path(__file__).parent.parent / 'data' / (
+            manifest_dir = repo_root / 'data' / (
                 'planck_pr3' if dataset_type == 'planck' else 'wmap'
             ) / 'manifests'
             manifest_name = 'planck_pr3_tt_manifest.json' if dataset_type == 'planck' else 'wmap_tt_manifest.json'
@@ -192,9 +252,9 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
             print(f"  cd {data_dir}")
             
             if model_file:
-                print(f"  python ../../../tools/data_provenance/hash_dataset.py {obs_path.name} {Path(model_file).name} > {manifest_dir}/{manifest_name}")
+                print(f"  python {repo_root}/tools/data_provenance/hash_dataset.py {obs_path.name} {Path(model_file).name} --relative-to {repo_root} > {manifest_dir}/{manifest_name}")
             else:
-                print(f"  python ../../../tools/data_provenance/hash_dataset.py {obs_path.name} > {manifest_dir}/{manifest_name}")
+                print(f"  python {repo_root}/tools/data_provenance/hash_dataset.py {obs_path.name} --relative-to {repo_root} > {manifest_dir}/{manifest_name}")
         
         print()
         return False
@@ -205,7 +265,7 @@ def validate_data_manifest(manifest_path, dataset_type, obs_file=None, model_fil
         print(f"         {fallback_desc}\n")
     
     print(f"Validating manifest: {resolved_path}")
-    success = validate_manifest.validate_manifest(resolved_path)
+    success = validate_manifest.validate_manifest(resolved_path, base_dir=repo_root)
     print()
     
     return success
@@ -473,9 +533,12 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     # Generate output directory with timestamp
     if args.output_dir:
         output_dir = Path(args.output_dir)
+        if not output_dir.is_absolute():
+            # Make relative paths relative to repo_root
+            output_dir = repo_root / output_dir
     else:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_dir = Path(__file__).parent / 'out' / 'real_runs' / f"cmb_comb_{timestamp}"
+        output_dir = repo_root / 'forensic_fingerprint' / 'out' / 'real_runs' / f"cmb_comb_{timestamp}"
     
     output_dir.mkdir(parents=True, exist_ok=True)
     

@@ -35,7 +35,7 @@ def compute_sha256(filepath):
     return sha256.hexdigest()
 
 
-def validate_manifest(manifest_path):
+def validate_manifest(manifest_path, base_dir=None):
     """
     Validate files against manifest.
     
@@ -43,6 +43,9 @@ def validate_manifest(manifest_path):
     ----------
     manifest_path : str or Path
         Path to manifest JSON file
+    base_dir : str or Path or None
+        Base directory for resolving relative paths in manifest.
+        If None, uses manifest's parent directory.
     
     Returns
     -------
@@ -55,6 +58,12 @@ def validate_manifest(manifest_path):
         print(f"ERROR: Manifest not found: {manifest_path}", file=sys.stderr)
         return False
     
+    # Set base directory for resolving relative paths
+    if base_dir is None:
+        base_dir = manifest_path.parent
+    else:
+        base_dir = Path(base_dir)
+    
     # Load manifest
     with open(manifest_path, 'r') as f:
         manifest = json.load(f)
@@ -63,6 +72,7 @@ def validate_manifest(manifest_path):
     print("Dataset Validation Report")
     print("=" * 80)
     print(f"Manifest: {manifest_path}")
+    print(f"Base directory: {base_dir}")
     print(f"Generated: {manifest.get('generated', 'unknown')}")
     print(f"Hash algorithm: {manifest.get('hash_algorithm', 'unknown')}")
     print(f"Number of files: {len(manifest.get('files', []))}")
@@ -79,33 +89,53 @@ def validate_manifest(manifest_path):
         
         print(f"Validating: {filename}")
         
-        # Check if file exists
+        # Resolve path with multiple strategies
         path = Path(file_path)
-        if not path.exists():
-            # Try relative to manifest directory
-            path = manifest_path.parent / filename
         
-        if not path.exists():
+        # Strategy 1: If absolute path exists, use it
+        if path.is_absolute() and path.exists():
+            resolved_path = path
+        # Strategy 2: Try relative to base_dir
+        elif (base_dir / file_path).exists():
+            resolved_path = base_dir / file_path
+        # Strategy 3: Try filename only relative to base_dir
+        elif (base_dir / filename).exists():
+            resolved_path = base_dir / filename
+        # Strategy 4: Try relative to manifest directory
+        elif (manifest_path.parent / filename).exists():
+            resolved_path = manifest_path.parent / filename
+        # Strategy 5: Try path as-is relative to CWD
+        elif path.exists():
+            resolved_path = path
+        else:
+            # File not found with any strategy
             print(f"  ✗ MISSING: File not found")
+            print(f"    Tried paths:")
+            print(f"      - {path.absolute()} (absolute/CWD)")
+            print(f"      - {base_dir / file_path} (base_dir + path)")
+            print(f"      - {base_dir / filename} (base_dir + filename)")
+            print(f"      - {manifest_path.parent / filename} (manifest_dir + filename)")
             all_valid = False
             continue
         
         # Check size if provided
-        actual_size = path.stat().st_size
+        actual_size = resolved_path.stat().st_size
         if expected_size is not None and actual_size != expected_size:
             print(f"  ✗ SIZE MISMATCH: expected {expected_size} bytes, got {actual_size} bytes")
+            print(f"    Resolved path: {resolved_path}")
             all_valid = False
             continue
         
         # Compute and check hash
-        print(f"  Computing hash...", end='')
-        actual_hash = compute_sha256(path)
+        print(f"  Computing hash (resolved: {resolved_path})...", end='')
+        actual_hash = compute_sha256(resolved_path)
         
         if actual_hash == expected_hash:
             print(f" ✓ VALID")
             validated_count += 1
         else:
             print(f" ✗ HASH MISMATCH")
+            print(f"    Resolved path: {resolved_path}")
             print(f"    Expected: {expected_hash}")
             print(f"    Got:      {actual_hash}")
             all_valid = False
@@ -129,16 +159,18 @@ def validate_manifest(manifest_path):
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python validate_manifest.py <manifest.json>", file=sys.stderr)
-        print("", file=sys.stderr)
-        print("Example:", file=sys.stderr)
-        print("  python validate_manifest.py data/planck_2018/manifest.json", file=sys.stderr)
-        sys.exit(1)
+    import argparse
     
-    manifest_path = sys.argv[1]
+    parser = argparse.ArgumentParser(
+        description="Validate dataset files against SHA-256 manifest",
+        epilog="Example: python validate_manifest.py data/planck_2018/manifest.json --base_dir /path/to/repo"
+    )
+    parser.add_argument('manifest', help='Path to manifest JSON file')
+    parser.add_argument('--base_dir', help='Base directory for resolving relative paths (default: manifest parent dir)')
     
-    success = validate_manifest(manifest_path)
+    args = parser.parse_args()
+    
+    success = validate_manifest(args.manifest, base_dir=args.base_dir)
     
     sys.exit(0 if success else 1)
 
