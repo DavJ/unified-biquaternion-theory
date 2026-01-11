@@ -352,9 +352,42 @@ The Planck PR3 archive contains different types of files. For CMB comb analysis,
 The "minimum" files contain best-fit cosmological parameters and likelihood values, not power spectra. Using them as model input will cause the analysis to fail with clear error messages.
 
 **Recommended approach for model spectrum:**
-1. **Option 1 (TT-full as model)**: Use the TT-full observation file for both `--planck_obs` and `--planck_model` (residual will be zero, testing noise only)
-2. **Option 2 (theoretical model)**: Generate ΛCDM spectrum using CAMB or CLASS with Planck best-fit parameters
-3. **Option 3 (no model)**: Omit `--planck_model` (loader will use zeros, analyzing absolute spectrum)
+
+1. **Preferred: Explicit theoretical model (best for scientific analysis)**
+   ```bash
+   # Generate ΛCDM spectrum using CAMB or CLASS with Planck best-fit parameters
+   # Then use:
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+       --planck_model path/to/theoretical_model.txt
+   ```
+   This analyzes residuals between observation and theory.
+
+2. **Fallback: TT-full as both observation and model (noise analysis)**
+   ```bash
+   # Use the same file for both obs and model
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+       --planck_model data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+   ```
+   This results in zero residuals (obs - obs = 0), testing pure noise for periodic structure.
+   Useful for validating the statistical framework.
+
+3. **Fallback: No model specified (absolute spectrum analysis)**
+   ```bash
+   # Omit --planck_model
+   python run_real_data_cmb_comb.py \
+       --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+   ```
+   The loader sets `cl_model = 0`, analyzing the absolute observed spectrum.
+   Less scientifically meaningful but can detect gross issues.
+
+**Model fallback hierarchy:**
+- If `--planck_model` is provided and valid → use it
+- If `--planck_model` is invalid (parameter file) → abort with error
+- If `--planck_model` is not provided → use zeros (option 3 above)
+
+**To use TT-full as model (option 2):** Explicitly pass the same file to both arguments.
 
 The validation code will automatically reject parameter files if you try to use them as model input.
 
