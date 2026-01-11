@@ -242,7 +242,7 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         - 'cov_diag': r = (C_obs - C_model) / sqrt(diag(cov))
         - 'block-diagonal': r = L^-1 (C_obs - C_model) where L is Cholesky of block-diagonal cov
     metadata : dict
-        Whitening metadata (condition number, regularization, etc.)
+        Whitening metadata (condition number, regularization, debug stats, etc.)
     """
     diff = C_obs - C_model
     metadata = {
@@ -250,6 +250,14 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         'regularization_used': False,
         'lambda_ridge': None,
         'cov_metadata': None
+    }
+    
+    # Compute debug statistics for diff and sigma
+    debug_stats = {
+        'std_diff': float(np.std(diff)),
+        'std_sigma': float(np.std(sigma)),
+        'mean_diff': float(np.mean(diff)),
+        'mean_sigma': float(np.mean(sigma)),
     }
     
     if whiten_mode == 'none':
@@ -268,6 +276,7 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
                 'source': 'diagonal from covariance',
                 'matrix_size': cov.shape[0]
             }
+            debug_stats['std_sigma_from_cov'] = float(np.std(sigma_from_cov))
         else:
             print("WARNING: Covariance matrix not provided for 'cov_diag' mode. Falling back to 'diagonal'.")
             residuals = diff / sigma
@@ -329,6 +338,46 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
             residuals = diff / sigma
     else:
         raise ValueError(f"Unknown whitening mode: {whiten_mode}")
+    
+    # Add residual statistics after whitening
+    debug_stats['median_abs_residual_over_sigma'] = float(np.median(np.abs(residuals)))
+    debug_stats['max_abs_residual_over_sigma'] = float(np.max(np.abs(residuals)))
+    debug_stats['std_residuals'] = float(np.std(residuals))
+    debug_stats['mean_residuals'] = float(np.mean(residuals))
+    
+    metadata['debug_stats'] = debug_stats
+    
+    # Check for units mismatch (exploding chi2)
+    chi2_per_dof = np.sum(residuals**2) / len(residuals)
+    if chi2_per_dof > 100.0:  # Threshold for "exploding"
+        print()
+        print("=" * 80)
+        print("WARNING: POSSIBLE UNITS MISMATCH OR WRONG MODEL")
+        print("=" * 80)
+        print(f"χ²/dof = {chi2_per_dof:.2f} >> 1")
+        print()
+        print("This suggests one of the following:")
+        print("  1. Observation and model have different units (Cl vs Dl)")
+        print("  2. Model file is incorrect (not matching the observation)")
+        print("  3. Uncertainties are severely underestimated")
+        print()
+        print("Debug statistics:")
+        print(f"  std(diff) = {debug_stats['std_diff']:.2e}")
+        print(f"  std(sigma) = {debug_stats['std_sigma']:.2e}")
+        print(f"  median(|diff/sigma|) = {debug_stats['median_abs_residual_over_sigma']:.2f}")
+        print(f"  max(|diff/sigma|) = {debug_stats['max_abs_residual_over_sigma']:.2f}")
+        print()
+        print("Please verify:")
+        print("  - Both files use same units (μK² or dimensionless)")
+        print("  - Model corresponds to the correct observation")
+        print("  - Uncertainties are correctly loaded")
+        print("=" * 80)
+        print()
+        metadata['units_mismatch_warning'] = True
+    else:
+        metadata['units_mismatch_warning'] = False
+    
+    metadata['chi2_per_dof'] = float(chi2_per_dof)
     
     return residuals, metadata
 
@@ -412,12 +461,69 @@ def compute_delta_chi2(ell, residuals, period):
     return delta_chi2, amplitude, phase
 
 
-def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_TRIALS, random_seed=None):
+def generate_null_residuals(ell, sigma, cov=None, null_type='diagonal_gaussian'):
+    """
+    Generate null residuals for Monte Carlo simulations.
+    
+    Parameters
+    ----------
+    ell : array-like
+        Multipole moments
+    sigma : array-like
+        Diagonal uncertainties
+    cov : array-like, optional
+        Full covariance matrix
+    null_type : str
+        Type of null to generate:
+        - 'diagonal_gaussian': Independent N(0,1) (for diagonal whitening)
+        - 'cov_gaussian': Multivariate N(0, Cov) then whiten (for covariance whitening)
+    
+    Returns
+    -------
+    null_residuals : ndarray
+        Generated null residuals (already normalized/whitened)
+    """
+    n = len(ell)
+    
+    if null_type == 'diagonal_gaussian':
+        # Independent Gaussian N(0, 1)
+        # This is appropriate for diagonal whitening
+        return np.random.normal(0, 1, size=n)
+    
+    elif null_type == 'cov_gaussian':
+        # Multivariate Gaussian N(0, Cov), then whiten
+        # This calibrates the covariance whitening
+        if cov is None:
+            # Fall back to diagonal if no covariance
+            return np.random.normal(0, 1, size=n)
+        
+        # Generate multivariate Gaussian x ~ N(0, Cov)
+        # using Cholesky: x = L * z where z ~ N(0, I)
+        try:
+            L = np.linalg.cholesky(cov)
+            z = np.random.normal(0, 1, size=n)
+            x = L @ z
+            
+            # Now whiten: r = L^-1 x = L^-1 (L z) = z
+            # So the whitened residuals should be ~ N(0, I)
+            residuals_whitened = np.linalg.solve(L, x)
+            return residuals_whitened
+        
+        except np.linalg.LinAlgError:
+            # If covariance is not positive definite, fall back
+            return np.random.normal(0, 1, size=n)
+    
+    else:
+        raise ValueError(f"Unknown null_type: {null_type}")
+
+
+def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_TRIALS, 
+                                  random_seed=None, cov=None, null_type='diagonal_gaussian'):
     """
     Generate null distribution of max(Δχ²) under H0.
     
     For each trial:
-    1. Generate Gaussian residuals with given sigma
+    1. Generate null residuals (Gaussian, optionally from covariance)
     2. Compute Δχ² for all candidate periods
     3. Record maximum
     
@@ -435,6 +541,10 @@ def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_T
         Number of Monte Carlo trials
     random_seed : int, optional
         Random seed for reproducibility. If None, uses RANDOM_SEED global.
+    cov : array-like, optional
+        Full covariance matrix (for cov_gaussian null type)
+    null_type : str
+        Type of null to generate: 'diagonal_gaussian' or 'cov_gaussian'
     
     Returns
     -------
@@ -448,9 +558,8 @@ def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_T
     max_delta_chi2_null = np.zeros(n_trials)
     
     for i in range(n_trials):
-        # Generate null residuals: Gaussian with mean 0, std = sigma/sigma
-        # (Normalized, so sigma=1 per multipole)
-        null_residuals = np.random.normal(0, 1, size=len(ell))
+        # Generate null residuals based on null_type
+        null_residuals = generate_null_residuals(ell, sigma, cov=cov, null_type=null_type)
         
         # Compute Δχ² for all candidate periods
         delta_chi2_values = []
@@ -462,6 +571,99 @@ def monte_carlo_null_distribution(ell, sigma, candidate_periods, n_trials=N_MC_T
         max_delta_chi2_null[i] = np.max(delta_chi2_values)
     
     return max_delta_chi2_null
+
+
+def calibrate_whitening(ell, sigma, cov, n_trials=1000, random_seed=None):
+    """
+    Calibration test for covariance whitening.
+    
+    Generates samples from N(0, Cov), whitens them, and checks if the
+    whitened residuals have unit variance and near-zero correlation.
+    
+    Parameters
+    ----------
+    ell : array-like
+        Multipole moments
+    sigma : array-like
+        Diagonal uncertainties
+    cov : array-like
+        Full covariance matrix
+    n_trials : int
+        Number of calibration trials (default: 1000)
+    random_seed : int, optional
+        Random seed for reproducibility
+    
+    Returns
+    -------
+    dict
+        Calibration diagnostics with keys:
+        - 'mean_variance': Mean variance of whitened residuals (should be ~1)
+        - 'std_variance': Std of variance across trials
+        - 'mean_correlation': Mean off-diagonal correlation (should be ~0)
+        - 'max_correlation': Max off-diagonal correlation
+        - 'calibration_passed': bool, whether calibration criteria are met
+    """
+    if random_seed is not None:
+        np.random.seed(random_seed)
+    
+    n = len(ell)
+    whitened_samples = np.zeros((n_trials, n))
+    
+    # Generate samples and whiten
+    try:
+        L = np.linalg.cholesky(cov)
+    except np.linalg.LinAlgError:
+        return {
+            'mean_variance': np.nan,
+            'std_variance': np.nan,
+            'mean_correlation': np.nan,
+            'max_correlation': np.nan,
+            'calibration_passed': False,
+            'error': 'Covariance not positive definite'
+        }
+    
+    for i in range(n_trials):
+        # Generate x ~ N(0, Cov)
+        z = np.random.normal(0, 1, size=n)
+        x = L @ z
+        
+        # Whiten
+        x_whitened = np.linalg.solve(L, x)
+        whitened_samples[i, :] = x_whitened
+    
+    # Compute statistics
+    # Variance per multipole
+    variances = np.var(whitened_samples, axis=0)
+    mean_variance = np.mean(variances)
+    std_variance = np.std(variances)
+    
+    # Correlation matrix
+    corr_matrix = np.corrcoef(whitened_samples.T)
+    # Extract off-diagonal elements
+    n_ell = corr_matrix.shape[0]
+    off_diag_mask = ~np.eye(n_ell, dtype=bool)
+    off_diag_corr = corr_matrix[off_diag_mask]
+    mean_correlation = np.mean(np.abs(off_diag_corr))
+    max_correlation = np.max(np.abs(off_diag_corr))
+    
+    # Calibration criteria
+    # Variance should be close to 1 (within 10%)
+    # Correlations should be small (< 0.1)
+    variance_ok = abs(mean_variance - 1.0) < 0.1
+    correlation_ok = mean_correlation < 0.1
+    
+    calibration_passed = variance_ok and correlation_ok
+    
+    diagnostics = {
+        'mean_variance': float(mean_variance),
+        'std_variance': float(std_variance),
+        'mean_correlation': float(mean_correlation),
+        'max_correlation': float(max_correlation),
+        'calibration_passed': calibration_passed,
+        'n_trials': n_trials
+    }
+    
+    return diagnostics
 
 
 def compute_p_value(observed_max, null_distribution):
@@ -559,6 +761,19 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     
     residuals, whiten_metadata = compute_residuals(ell, C_obs, C_model, sigma, cov, whiten_mode=whiten_mode)
     
+    # Calibration test for covariance whitening
+    calibration_diagnostics = None
+    if whiten_mode == 'covariance' and cov is not None:
+        print("Running whitening calibration test...")
+        calibration_diagnostics = calibrate_whitening(ell, sigma, cov, n_trials=1000, random_seed=random_seed)
+        print(f"  Mean variance: {calibration_diagnostics['mean_variance']:.4f} (expected: 1.0)")
+        print(f"  Mean |correlation|: {calibration_diagnostics['mean_correlation']:.4f} (expected: ~0)")
+        if calibration_diagnostics['calibration_passed']:
+            print("  ✓ Calibration PASSED")
+        else:
+            print("  ⚠ Calibration FAILED - whitening may not be working correctly")
+        print()
+    
     # Step 2: Test all candidate periods
     results_per_period = {}
     for period in CANDIDATE_PERIODS:
@@ -577,9 +792,21 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
     phase = results_per_period[best_period]['phase']
     
     # Step 4: Generate null distribution
-    print(f"Generating null distribution ({n_mc_trials} trials, this may take a moment)...")
-    null_distribution = monte_carlo_null_distribution(ell, sigma, CANDIDATE_PERIODS, 
-                                                      n_trials=n_mc_trials, random_seed=random_seed)
+    # Determine appropriate null type based on whitening mode
+    if whiten_mode == 'covariance' and cov is not None:
+        null_type = 'cov_gaussian'
+        print(f"Generating null distribution ({n_mc_trials} trials using covariance-aware null)...")
+    else:
+        null_type = 'diagonal_gaussian'
+        print(f"Generating null distribution ({n_mc_trials} trials using diagonal Gaussian null)...")
+    
+    null_distribution = monte_carlo_null_distribution(
+        ell, sigma, CANDIDATE_PERIODS, 
+        n_trials=n_mc_trials, 
+        random_seed=random_seed,
+        cov=cov,
+        null_type=null_type
+    )
     
     # Step 5: Compute p-value
     p_value = compute_p_value(max_delta_chi2, null_distribution)
@@ -607,6 +834,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         'whitened': whitened,
         'whiten_mode': whiten_mode,
         'whitening_metadata': whiten_metadata,
+        'calibration_diagnostics': calibration_diagnostics,
         'dataset': dataset_name,
         'architecture_variant': variant,
         'variant_valid': (variant == "C"),
