@@ -62,8 +62,9 @@ These appendices were separated from the main consolidation project because they
 **Contents**:
 - `appendix_F_fingerprint_protocol.tex` - Forensic fingerprint search protocol for UBT signatures
 - `appendix_F2_psychons_theta.tex` - Psychon field equations
-- `appendix_HT_hubble_tension_metric_latency.tex` - **NEW**: Hubble tension as effective metric latency (speculative fingerprint proposal)
+- `appendix_HT_hubble_tension_metric_latency.tex` - Hubble tension as effective metric latency (speculative fingerprint proposal)
 - `appendix_I_philosophical_coherence.tex` - Philosophical foundations (includes consciousness speculation)
+- `appendix_IT_information_theoretic_cosmology.tex` - **HIGHLY SPECULATIVE**: Reed-Solomon interpretation (digital simulation analogy)
 - `appendix_J_rotating_spacetime_ctc.tex` - Closed timelike curves in rotating spacetimes
 - `appendix_P2_multiverse_projection.tex` - Multiverse interpretation of biquaternionic dimensions
 - `appendix_PX_planck_validation.tex` - Planck 2018 parameter mapping and falsifiability tests
@@ -72,6 +73,8 @@ These appendices were separated from the main consolidation project because they
 - `ubt_appendix_13_psi_resonator.tex` - Theta/Psi resonator experimental proposals
 
 **Note on Hubble Tension Appendix**: This appendix (`appendix_HT_hubble_tension_metric_latency.tex`) demonstrates the **speculative fingerprint methodology** in action. It rigorously tests whether the Hubble tension could arise from an effective metric latency, derives quantitative predictions, and shows the hypothesis is **falsified by existing data**. This is a positive example of scientific reasoning: propose → test → falsify → accept negative result.
+
+**Note on Information-Theoretic Appendix**: The IT appendix (`appendix_IT_information_theoretic_cosmology.tex`) presents a **highly speculative** interpretation using digital communication analogies (Reed-Solomon codes, multiplexing, etc.). While mathematically interesting, this is explicitly **not** part of core UBT physics. It explores an extreme interpretation of information-theoretic limits and should be clearly distinguished from the more rigorous information-processing overhead hypothesis presented in the main repository's Hubble tension analysis.
 
 ### 3. Consciousness Model Solutions and Priorities
 

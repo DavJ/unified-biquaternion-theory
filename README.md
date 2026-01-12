@@ -4,21 +4,35 @@
 
 ## ⚠️ Repository Organization
 
-**Speculative content has been separated from core UBT theory:**
+**UBT is organized into three distinct layers to maintain scientific clarity:**
+
+### 🟢 Layer A: Core Ontology
+Biquaternionic field structure, GR recovery, SM gauge group derivation (validated)
+
+### 🟡 Layer B: Direct Observables  
+α ≈ 137, Ω_b ≈ 4.9%, m_e ≈ 0.51 MeV (predictions from core structure)
+
+### 🔵 Layer C: Research Front
+Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
+
+**See [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) for detailed explanation**
+
+---
+
+**Speculative content separated from core:**
 - Core theory in `unified_biquaternion_theory/` and `consolidation_project/`
 - All consciousness-related content in `speculative_extensions/` folder
-- Psychons, CTCs, multiverse interpretations clearly isolated
+- Digital simulation analogies clearly isolated in speculative extensions
 - See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
 
 ### 📋 Where to Put New Work
 
-**For contributors:** Before adding new content, consult **[REPO_GOVERNANCE.md](REPO_GOVERNANCE.md)** which defines:
-- What belongs in `canonical/` (strict definitions, proven derivations)
-- What belongs in `speculative_extensions/` (hypotheses, interpretations)
-- Rules for cross-referencing and symbol consistency
-- "No-fit / no post-hoc" policy for empirical predictions
+**For contributors:** Before adding new content, consult:
+- **[UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md)** - 3-layer hierarchy and decision tree
+- **[REPO_GOVERNANCE.md](REPO_GOVERNANCE.md)** - Content classification rules
+- **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Rigor level system
 
-**Quick decision tree:** Is it proven? → `canonical/` | Is it testable? → main repo or `tools/` | Is it speculative? → `speculative_extensions/`
+**Quick decision tree:** Is it proven? → Layer A | Predicted & validated? → Layer B | Testable hypothesis? → Layer C | Speculative? → `speculative_extensions/`
 
 
 
