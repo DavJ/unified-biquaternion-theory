@@ -32,10 +32,12 @@ When units mismatch occurred (e.g., observation in Dl format, model mistakenly i
 - In non-strict mode: sets `sanity_checks_passed = False`
 
 ### 3. Strict Mode Enabled by Default (run_real_data_cmb_comb.py)
-✅ **Implemented** - Line 894 in `forensic_fingerprint/run_real_data_cmb_comb.py`
+✅ **Implemented** - Lines 894-897 in `forensic_fingerprint/run_real_data_cmb_comb.py`
 ```python
 parser.add_argument('--strict', action='store_true', default=True,
                    help='Enable strict mode: fail fast on units mismatch')
+parser.add_argument('--no-strict', action='store_false', dest='strict',
+                   help='Disable strict mode: allow analysis to continue despite warnings')
 ```
 - Enabled by default for all court-grade runs
 - Can be disabled with `--no-strict` for debugging only

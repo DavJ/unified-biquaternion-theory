@@ -6,10 +6,10 @@ Demonstration: Strict Mode Prevents Units Mismatch CANDIDATE Verdict
 This script demonstrates that the CMB comb test now fails fast on units mismatch
 and cannot produce a spurious CANDIDATE verdict due to catastrophic chi2/dof.
 
-Before the fix:
+**Before the fix** (hypothetical problematic behavior):
 - Units mismatch → chi2/dof ~ 1e13 → hits MC p-value floor → CANDIDATE verdict
 
-After the fix:
+**After the fix** (current behavior):
 - Units mismatch → strict mode detects catastrophic chi2 → RuntimeError → NO CANDIDATE
 """
 
@@ -153,8 +153,10 @@ def demo_strict_mode_protection():
             print("✅ Even with strict=False, sanity_checks_passed = False")
             print("   This metadata can be used to filter results in post-processing")
         
-        if chi2_dof > 1e6:
-            print("✅ Chi2/dof is catastrophic (> 1e6), confirming units mismatch")
+        # Use constant for threshold comparison
+        CATASTROPHIC_CHI2_THRESHOLD = 1e6  # From cmb_comb.py
+        if chi2_dof > CATASTROPHIC_CHI2_THRESHOLD:
+            print(f"✅ Chi2/dof is catastrophic (> {CATASTROPHIC_CHI2_THRESHOLD:.0e}), confirming units mismatch")
         
         print()
         print("=" * 80)

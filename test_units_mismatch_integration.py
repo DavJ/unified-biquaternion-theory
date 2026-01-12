@@ -36,7 +36,7 @@ def test_units_mismatch_fails_fast():
             f.write("# l Dl -dDl +dDl\n")
             for i in range(30, 130):  # 100 rows
                 Dl = 2000.0 + i * 5.0  # Dl values (large magnitude)
-                # Use small errors to make mismatch more severe
+                # Use small errors to amplify chi2 values when units are mismatched
                 f.write(f"{i} {Dl} -1.0 1.0\n")  # Very small errors (1 μK² in Dl)
         
         # Create model file in wrong units (Dl values but claiming to be Cl)
@@ -46,7 +46,8 @@ def test_units_mismatch_fails_fast():
             f.write("# ell C_ell\n")  # Claims Cl but values are Dl-magnitude
             for i in range(30, 130):
                 # Use Dl-magnitude values while claiming Cl
-                # After obs is converted from Dl to Cl, these will be ~1000x too large
+                # After obs is converted from Dl to Cl (via factor l(l+1)/(2π) ≈ 1600 for l~100),
+                # these Dl-magnitude values will be catastrophically large compared to true Cl
                 Dl_value = 2000.0 + i * 5.0
                 f.write(f"{i} {Dl_value}\n")  # Dl values labeled as Cl!
         
@@ -79,7 +80,7 @@ def test_units_mismatch_fails_fast():
                     output_dir=None
                 )
                 
-                # Should NOT reach here if units mismatch is severe
+                # Should NOT reach here - strict mode should raise RuntimeError for catastrophic mismatch
                 print("  ✗ TEST FAILED: Strict mode should have raised RuntimeError!")
                 print(f"     chi2/dof = {results['whitening_metadata']['chi2_per_dof']}")
                 return False
