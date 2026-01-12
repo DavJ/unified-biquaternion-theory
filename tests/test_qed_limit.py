@@ -130,8 +130,6 @@ def test_qed_limit_at_zero():
     
     print("✓ CT scheme equals QED at ψ = 0")
     print()
-    
-    return True
 
 
 def test_qed_limit_continuity():
@@ -175,8 +173,6 @@ def test_qed_limit_continuity():
     
     print("✓ Continuous reduction to QED verified")
     print()
-    
-    return True
 
 
 def test_R_UBT_equals_one():
@@ -237,8 +233,6 @@ def test_R_UBT_equals_one():
     print("no additional corrections beyond standard QED. Therefore,")
     print("B = (2π N_eff) / (3 R_ψ) with no fitting factors.")
     print()
-    
-    return True
 
 
 def test_scheme_independence():
@@ -289,8 +283,6 @@ def test_scheme_independence():
     print("✓ R_UBT is approximately μ-independent")
     print("  (Exact cancellation in full calculation)")
     print()
-    
-    return True
 
 
 if __name__ == '__main__':
