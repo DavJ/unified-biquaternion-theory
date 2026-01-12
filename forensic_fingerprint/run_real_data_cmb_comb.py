@@ -1433,6 +1433,18 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         
+        # Add units metadata to results (from planck_data loader)
+        planck_results['obs_units'] = planck_data.get('obs_units', 'unknown')
+        planck_results['model_units_original'] = planck_data.get('model_units_original', 'unknown')
+        planck_results['model_units_used'] = planck_data.get('model_units_used', 'Cl')
+        planck_results['sigma_method'] = planck_data.get('sigma_method', 'from_file')
+        
+        # Add sanity checks metadata (from whitening_metadata)
+        if 'whitening_metadata' in planck_results:
+            planck_results['sanity_checks_passed'] = planck_results['whitening_metadata'].get('sanity_checks_passed', True)
+        else:
+            planck_results['sanity_checks_passed'] = True
+        
         # Save results
         save_results_json(planck_results, output_dir / 'planck_results.json')
         
@@ -1480,6 +1492,20 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             cov_method=args.cov_method,
             output_dir=None  # Don't auto-save, we'll do it manually
         )
+        
+        # Add units metadata to results (from wmap_data loader)
+        if hasattr(wmap, 'load_wmap_data'):
+            # WMAP loader may return units metadata (if updated like Planck)
+            wmap_results['obs_units'] = wmap_data.get('obs_units', 'unknown')
+            wmap_results['model_units_original'] = wmap_data.get('model_units_original', 'unknown')
+            wmap_results['model_units_used'] = wmap_data.get('model_units_used', 'Cl')
+            wmap_results['sigma_method'] = wmap_data.get('sigma_method', 'from_file')
+        
+        # Add sanity checks metadata
+        if 'whitening_metadata' in wmap_results:
+            wmap_results['sanity_checks_passed'] = wmap_results['whitening_metadata'].get('sanity_checks_passed', True)
+        else:
+            wmap_results['sanity_checks_passed'] = True
         
         # Save results
         save_results_json(wmap_results, output_dir / 'wmap_results.json')

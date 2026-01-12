@@ -365,12 +365,22 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
     
     # Check for units mismatch (exploding chi2)
     chi2_per_dof = np.sum(residuals**2) / len(residuals)
-    if chi2_per_dof > 100.0:  # Threshold for "exploding"
+    median_abs_res = debug_stats['median_abs_residual_over_sigma']
+    
+    # Court-grade mode: strict sanity checks
+    # These thresholds indicate catastrophic units mismatch
+    CATASTROPHIC_CHI2_THRESHOLD = 1e6  # chi2/dof >> 1e6
+    CATASTROPHIC_MEDIAN_THRESHOLD = 1e4  # median(|diff/sigma|) >> 1e4
+    
+    is_catastrophic = (chi2_per_dof > CATASTROPHIC_CHI2_THRESHOLD or 
+                      median_abs_res > CATASTROPHIC_MEDIAN_THRESHOLD)
+    
+    if chi2_per_dof > 100.0:  # Warning threshold (less severe)
         print()
         print("=" * 80)
         print("WARNING: POSSIBLE UNITS MISMATCH OR WRONG MODEL")
         print("=" * 80)
-        print(f"χ²/dof = {chi2_per_dof:.2f} >> 1")
+        print(f"χ²/dof = {chi2_per_dof:.2e} >> 1")
         print()
         print("This suggests one of the following:")
         print("  1. Observation and model have different units (Cl vs Dl)")
@@ -380,20 +390,56 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         print("Debug statistics:")
         print(f"  std(diff) = {debug_stats['std_diff']:.2e}")
         print(f"  std(sigma) = {debug_stats['std_sigma']:.2e}")
-        print(f"  median(|diff/sigma|) = {debug_stats['median_abs_residual_over_sigma']:.2f}")
-        print(f"  max(|diff/sigma|) = {debug_stats['max_abs_residual_over_sigma']:.2f}")
+        print(f"  median(|diff/sigma|) = {median_abs_res:.2e}")
+        print(f"  max(|diff/sigma|) = {debug_stats['max_abs_residual_over_sigma']:.2e}")
         print()
         print("Please verify:")
-        print("  - Both files use same units (μK² or dimensionless)")
+        print("  - Both files use same units (μK² for Cl, or both converted)")
         print("  - Model corresponds to the correct observation")
         print("  - Uncertainties are correctly loaded")
+        print("  - Model file is TT power spectrum, not likelihood/parameter file")
         print("=" * 80)
         print()
         metadata['units_mismatch_warning'] = True
+        
+        # COURT-GRADE MODE: Fail fast on catastrophic mismatch
+        if is_catastrophic:
+            print()
+            print("=" * 80)
+            print("ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (COURT-GRADE FAILURE)")
+            print("=" * 80)
+            print()
+            print(f"χ²/dof = {chi2_per_dof:.2e} (threshold: {CATASTROPHIC_CHI2_THRESHOLD:.0e})")
+            print(f"median(|diff/sigma|) = {median_abs_res:.2e} (threshold: {CATASTROPHIC_MEDIAN_THRESHOLD:.0e})")
+            print()
+            print("This indicates a CRITICAL ERROR in data loading:")
+            print()
+            print("MOST LIKELY CAUSES:")
+            print("  1. **Model file in wrong units**: Obs is Dl, model is Cl (or vice versa)")
+            print("  2. **Wrong model file**: Using likelihood/parameter file instead of spectrum")
+            print("  3. **Corrupted data**: File damaged or wrong format")
+            print()
+            print("REQUIRED ACTIONS:")
+            print("  1. Verify observation file format (check header for 'l Dl -dDl +dDl')")
+            print("  2. Verify model file is TT power spectrum (NOT 'minimum' or 'plikHM')")
+            print("  3. Ensure both files are in compatible units")
+            print("  4. Check that ℓ-ranges match")
+            print()
+            print("Court-grade analysis CANNOT proceed with this data configuration.")
+            print("=" * 80)
+            print()
+            
+            raise RuntimeError(
+                f"Units mismatch sanity check failed: chi2/dof={chi2_per_dof:.2e}, "
+                f"median(|diff/sigma|)={median_abs_res:.2e}. "
+                f"Observation and model files are incompatible. "
+                f"See output above for diagnostic guidance."
+            )
     else:
         metadata['units_mismatch_warning'] = False
     
     metadata['chi2_per_dof'] = float(chi2_per_dof)
+    metadata['sanity_checks_passed'] = not is_catastrophic
     
     return residuals, metadata
 
