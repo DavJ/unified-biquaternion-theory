@@ -3,7 +3,7 @@
 **Purpose**: Step-by-step instructions for running CMB comb fingerprint test on real Planck PR3 and WMAP datasets with full reproducibility and provenance tracking.
 
 **Status**: Pre-registered protocol v1.0  
-**Last Updated**: 2026-01-10  
+**Last Updated**: 2026-01-12  
 **Author**: UBT Research Team
 
 ---
@@ -13,13 +13,14 @@
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Quick Real Run (One Command)](#quick-real-run-one-command)
-4. [Data Download and Validation](#data-download-and-validation)
-5. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
-6. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
-7. [Interpreting Results](#interpreting-results)
-8. [PASS/FAIL Criteria](#passfail-criteria)
-9. [Troubleshooting](#troubleshooting)
-10. [Archiving Results](#archiving-results)
+4. [One-Command Full Reproducibility](#one-command-full-reproducibility)
+5. [Data Download and Validation](#data-download-and-validation)
+6. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
+7. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
+8. [Interpreting Results](#interpreting-results)
+9. [PASS/FAIL Criteria](#passfail-criteria)
+10. [Troubleshooting](#troubleshooting)
+11. [Archiving Results](#archiving-results)
 
 ---
 
@@ -329,6 +330,238 @@ After running:
 
 ---
 
+## One-Command Full Reproducibility
+
+**NEW**: For complete end-to-end reproducibility, use the automated reproducibility script that handles all steps from data download to verdict generation.
+
+### What This Script Does
+
+The `scripts/repro_cmb_verdict.py` script provides a fully automated workflow that:
+
+1. **Downloads CMB datasets** (if needed, via existing download scripts)
+2. **Validates data integrity** (checks for HTML error pages, line counts, file sizes)
+3. **Generates SHA-256 manifests** for exact files used (with repo-root-relative paths)
+4. **Validates manifests** to confirm data provenance
+5. **Runs the CMB comb pipeline** with specified parameters
+6. **Locates the latest run directory** automatically
+7. **Displays the combined verdict** (first N lines)
+8. **Saves run path** to `LATEST_RUN.txt` for easy access
+
+**Key Features**:
+- **Deterministic**: Same inputs → same outputs (with fixed seed)
+- **Safe**: No silent fallbacks; clear errors if something is wrong
+- **Noisy on failures**: Actionable error messages with suggested fixes
+- **Two modes**: `theory` (default, uses model file) and `obs-as-model` (baseline residual=0)
+
+### Basic Usage
+
+**Theory mode** (Planck obs + model + WMAP):
+```bash
+python scripts/repro_cmb_verdict.py --mode theory
+```
+
+**Obs-as-model mode** (Planck obs used as model, baseline residual=0):
+```bash
+python scripts/repro_cmb_verdict.py --mode obs-as-model
+```
+
+**Dry run** (see what would happen without executing):
+```bash
+python scripts/repro_cmb_verdict.py --dry-run
+```
+
+### Default Paths
+
+The script uses these default paths (all relative to repository root):
+
+- **Planck obs**: `data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt`
+- **Planck model**: `data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt`
+- **WMAP obs**: `data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt`
+- **Planck manifest**: `data/planck_pr3/manifests/planck_pr3_tt_manifest.json`
+- **WMAP manifest**: `data/wmap/manifests/wmap_tt_manifest.json`
+
+### Custom Paths
+
+Override any path:
+```bash
+python scripts/repro_cmb_verdict.py \
+    --planck-obs custom/planck_obs.txt \
+    --planck-model custom/planck_model.txt \
+    --wmap-obs custom/wmap_obs.txt
+```
+
+### Pipeline Parameters
+
+Customize the CMB comb analysis:
+```bash
+python scripts/repro_cmb_verdict.py \
+    --ell-min-planck 50 \
+    --ell-max-planck 1000 \
+    --ell-min-wmap 50 \
+    --ell-max-wmap 600 \
+    --variant C \
+    --mc-samples 100000 \
+    --seed 42
+```
+
+### Download Control
+
+**Skip downloads** (use existing files):
+```bash
+python scripts/repro_cmb_verdict.py --no-download
+```
+
+**Force download attempt**:
+```bash
+python scripts/repro_cmb_verdict.py --download
+```
+
+**Default behavior**: Attempts to run download scripts if they exist in `tools/data_download/`
+
+### Output
+
+The script prints progress for each step:
+1. Download CMB datasets
+2. Sanity check data files
+3. Generate SHA-256 manifests
+4. Validate manifests
+5. Run CMB comb pipeline
+6. Locate latest run and display verdict
+
+**Final output**:
+- Latest run directory saved to `forensic_fingerprint/out/real_runs/LATEST_RUN.txt`
+- First 140 lines of `combined_verdict.md` printed to terminal
+- Full verdict available in run directory
+
+### Example Session
+
+```bash
+$ python scripts/repro_cmb_verdict.py --mode theory
+
+Repository root: /path/to/unified-biquaternion-theory
+
+Mode: theory (Planck obs + separate model)
+
+================================================================================
+STEP 1: Download CMB datasets
+================================================================================
+
+→ Running download_planck_pr3_cosmoparams.sh
+  Command: bash tools/data_download/download_planck_pr3_cosmoparams.sh
+  ✓ Success
+→ Running download_wmap_tt.sh
+  Command: bash tools/data_download/download_wmap_tt.sh
+  ✓ Success
+
+================================================================================
+STEP 2: Sanity check data files
+================================================================================
+
+Checking: Planck observation
+  Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+  Lines: 2020
+  First data: 2  5.99506e+01  2.80313e+01
+  Size: 151876 bytes
+  ✓ Valid
+
+Checking: WMAP observation
+  Path: data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt
+  Lines: 1167
+  First data: 2  1202.8  13.7
+  Size: 54321 bytes
+  ✓ Valid
+
+[... continues through all steps ...]
+
+================================================================================
+COMBINED VERDICT
+================================================================================
+
+# CMB Comb Fingerprint Test - Combined Verdict
+
+**Date**: 2026-01-12 01:43:00 UTC
+**Protocol Version**: v1.0
+**Architecture Variant**: C
+
+[... verdict content ...]
+
+================================================================================
+REPRODUCIBILITY RUN COMPLETE
+================================================================================
+Run directory: forensic_fingerprint/out/real_runs/cmb_comb_20260112_014300
+Verdict file: forensic_fingerprint/out/real_runs/cmb_comb_20260112_014300/combined_verdict.md
+
+✓ All steps completed successfully
+```
+
+### Exit Codes
+
+- **0**: All steps succeeded, verdict file exists
+- **Non-zero**: Validation or execution failure (check error messages)
+
+### Error Handling
+
+The script provides clear, actionable error messages:
+
+**Missing file**:
+```
+ERROR: Required file missing: Planck observation
+Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+
+Suggestions:
+  1. Run download scripts: python scripts/repro_cmb_verdict.py --download
+  2. Check path spelling
+  3. Provide custom path: --planck-obs <path>
+```
+
+**HTML error page**:
+```
+ERROR: Planck observation is an HTML error page
+Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+
+This usually means the download failed or returned an error page.
+Delete the file and re-run with --download to fetch correct data.
+```
+
+**Too few lines**:
+```
+ERROR: Planck observation has too few lines
+Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+Lines: 45 (expected >= 500)
+
+This file may be incomplete or corrupted.
+Delete and re-download: python scripts/repro_cmb_verdict.py --download
+```
+
+### Validation Thresholds
+
+The script enforces minimum line counts to detect corrupted downloads:
+- **Planck TT-full**: ≥ 500 lines (typical: ~2000)
+- **WMAP TT**: ≥ 200 lines (typical: ~1100)
+- **Planck model**: ≥ 50 lines
+
+### Full Command Reference
+
+```bash
+python scripts/repro_cmb_verdict.py \
+    [--mode {theory,obs-as-model}] \
+    [--planck-obs PATH] \
+    [--planck-model PATH] \
+    [--wmap-obs PATH] \
+    [--planck-manifest-out PATH] \
+    [--wmap-manifest-out PATH] \
+    [--ell-min-planck N] [--ell-max-planck N] \
+    [--ell-min-wmap N] [--ell-max-wmap N] \
+    [--variant {A,B,C,D}] \
+    [--mc-samples N] \
+    [--seed N] \
+    [--no-download] [--download] \
+    [--dry-run] \
+    [--latest-file PATH] \
+    [--print-verdict-lines N]
+```
+
+**See**: `python scripts/repro_cmb_verdict.py --help` for full documentation.
 
 ---
 

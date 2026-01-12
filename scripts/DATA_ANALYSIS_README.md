@@ -154,6 +154,25 @@ For questions about UBT predictions:
 - Read: `UBT_READING_GUIDE.md`
 - Review: `TESTABILITY_AND_FALSIFICATION.md`
 
+## Reproducibility Tools
+
+### `repro_cmb_verdict.py`
+**NEW**: One-command reproducibility script for CMB comb fingerprint analysis.
+
+This script automates the complete workflow:
+1. Downloads CMB datasets (Planck PR3 + WMAP)
+2. Validates data integrity (SHA-256 manifests)
+3. Runs CMB comb pipeline
+4. Generates court-grade PASS/FAIL verdict
+
+**Usage:**
+```bash
+python repro_cmb_verdict.py --mode theory
+python repro_cmb_verdict.py --mode obs-as-model --dry-run
+```
+
+**See:** `forensic_fingerprint/RUNBOOK_REAL_DATA.md` for complete documentation.
+
 ## License
 
 These analysis scripts are part of the UBT repository and follow the same license (CC BY-NC-ND 4.0 from v0.4 onwards).
@@ -161,6 +180,6 @@ Data sources have their own licenses - consult original publications and data re
 
 ---
 
-**Last Updated:** November 2, 2025  
+**Last Updated:** January 12, 2026  
 **Status:** Demonstration scripts with simulated data  
 **Next Step:** Implement analysis with real experimental data
