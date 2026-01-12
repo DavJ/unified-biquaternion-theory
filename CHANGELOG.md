@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Speculative Fingerprint Appendix**: `speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex`
+  - Rigorous test of hypothesis: Hubble tension as effective metric/time latency
+  - Derives quantitative predictions (ε Δf ~ 0.09 required)
+  - Tests against 6 independent observational constraints (GR, ΛCDM, BAO, CMB, chronometers, structure growth)
+  - **Result**: Hypothesis falsified by existing data (BAO, CMB, structure growth rule out 9% H(z) modifications)
+  - Demonstrates speculative fingerprint methodology: propose → derive → test → falsify → accept negative result
+  - Example of scientific reasoning applied to cosmological anomaly
+
+### Changed
+
+- **Speculative Extensions README**: Updated `speculative_extensions/README.md` to document new Hubble tension appendix with explanation of falsification as positive scientific outcome
+
 ## [0.3.0] - 2025-11-08 - Publication & Review Readiness
 
 ### Added
