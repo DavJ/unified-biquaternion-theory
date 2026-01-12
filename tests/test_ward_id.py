@@ -106,8 +106,6 @@ def test_ward_identity_pole_structure():
     
     print("✓ Ward identity Z1 = Z2 satisfied at one-loop")
     print()
-    
-    return True
 
 
 def test_ward_identity_ct_scheme():
@@ -151,8 +149,6 @@ def test_ward_identity_ct_scheme():
     print("  - Dimensional regularization scheme-independent")
     print("  - Algebraic Ward-Takahashi relation unchanged")
     print()
-    
-    return True
 
 
 def test_charge_renormalization_structure():
@@ -188,8 +184,6 @@ def test_charge_renormalization_structure():
     print("✓ Charge renormalization determined by photon self-energy alone")
     print("  (This justifies focusing on vacuum polarization for α running)")
     print()
-    
-    return True
 
 
 if __name__ == '__main__':
