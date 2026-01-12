@@ -20,12 +20,14 @@ from pathlib import Path
 import warnings
 import sys
 
-# Import covariance loader
+# Import covariance loader and utilities
 try:
     from . import covariance as cov_loader
+    from . import utils
 except ImportError:
     # For direct execution
     import covariance as cov_loader
+    import utils
 
 
 # Constants for data parsing and validation
@@ -335,11 +337,8 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
         Units detected/used: "Dl" or "Cl" (before conversion to Cl)
     """
     # First, check if file is HTML (indicates wrong URL or 404)
-    # Also scan through comment lines to find the header with column names
-    with open(filepath, 'r') as f:
-        lines = f.readlines()
-    
-    if lines and (lines[0].strip().startswith('<!DOCTYPE') or lines[0].strip().startswith('<html')):
+    # Use the common utility function for consistent detection
+    if utils.detect_html(filepath):
         raise ValueError(
             f"HTML detected in {filepath}. This likely means:\n"
             f"  - Downloaded from wrong URL (got 404 page)\n"
@@ -347,6 +346,10 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
             f"  - Check URL and use correct PR3 cosmoparams directory:\n"
             f"    https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/"
         )
+    
+    # Read file and scan through comment lines to find the header with column names
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
     
     # PART B.1: Preflight sanity check - detect likelihood/parameter files
     # Read first non-comment line and count data rows
