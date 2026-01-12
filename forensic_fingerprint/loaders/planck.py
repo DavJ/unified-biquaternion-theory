@@ -116,6 +116,8 @@ def load_planck_data(
     
     # Log units detected
     print(f"Observation file units detected: {obs_units}")
+    if obs_units == "Dl":
+        print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
     
     # Load model if provided
     cl_model = None
@@ -131,6 +133,8 @@ def load_planck_data(
                 ell_model, cl_model, _, model_units_original = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
             
             print(f"Model file units detected: {model_units_original}")
+            if model_units_original == "Dl":
+                print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
             
             # Ensure ell arrays match
             if not np.array_equal(ell_obs, ell_model):
@@ -167,6 +171,35 @@ def load_planck_data(
                 cov = None
                 cov_source = None
                 cov_metadata = None
+    
+    # Validate sigma is reasonable
+    if np.any(sigma_obs <= 0):
+        n_invalid = np.sum(sigma_obs <= 0)
+        raise ValueError(
+            f"Invalid uncertainties detected: {n_invalid} sigma values are <= 0.\n"
+            f"All uncertainties must be positive. Check observation file format."
+        )
+    
+    if np.any(sigma_obs < 1e-10):
+        n_tiny = np.sum(sigma_obs < 1e-10)
+        warnings.warn(
+            f"{n_tiny} uncertainty values are suspiciously small (< 1e-10). "
+            f"This may indicate units mismatch or incorrect file format."
+        )
+    
+    # Check for reasonable sigma-to-signal ratio
+    if len(cl_obs) > 0:
+        sigma_to_signal = np.median(sigma_obs / np.abs(cl_obs))
+        if sigma_to_signal < 1e-6:
+            warnings.warn(
+                f"Uncertainty-to-signal ratio is very small ({sigma_to_signal:.2e}). "
+                f"This may indicate units mismatch: sigma in Cl units but cl_obs in Dl units or vice versa."
+            )
+        elif sigma_to_signal > 10.0:
+            warnings.warn(
+                f"Uncertainty-to-signal ratio is very large ({sigma_to_signal:.2e}). "
+                f"This may indicate units mismatch or very poor signal quality."
+            )
     
     # Apply multipole range filter
     ell = ell_obs
@@ -220,6 +253,51 @@ def load_planck_data(
     }
     
     return data
+
+
+def detect_units_from_header_or_magnitude(header_lines, ell, values):
+    """
+    Detect whether data is in Dl or Cl units.
+    
+    Uses a two-stage approach:
+    1. Header-based detection: Look for "Dl" or "Cl" keywords in header
+    2. Magnitude-based detection: If median value > DL_CL_THRESHOLD for ell > 10, likely Dl
+    
+    Parameters
+    ----------
+    header_lines : list of str
+        Comment lines from the file (lines starting with #)
+    ell : ndarray
+        Multipole moments
+    values : ndarray
+        Power spectrum values
+    
+    Returns
+    -------
+    str
+        "Dl" or "Cl"
+    """
+    # Stage 1: Header-based detection
+    for line in header_lines:
+        line_upper = line.upper()
+        # Look for explicit Dl or Cl markers
+        # Common patterns: "Dl", "D_l", "D(l)", "C_l", "Cl", "C(l)"
+        if any(pattern in line_upper for pattern in ['DL', 'D_L', 'D(L)', 'D L']):
+            # Check it's not part of "dDl" (error column)
+            if not any(pattern in line_upper for pattern in ['DDL', '-DL', '+DL']):
+                return "Dl"
+        if any(pattern in line_upper for pattern in ['CL', 'C_L', 'C(L)', 'C L']) and 'DL' not in line_upper:
+            return "Cl"
+    
+    # Stage 2: Magnitude-based detection
+    # Heuristic: if median value > DL_CL_THRESHOLD for ell > 10, likely Dl format
+    if len(ell) > 0 and np.any(ell > 10):
+        median_val = np.median(values[ell > 10]) if np.any(ell > 10) else np.median(values)
+        if median_val > DL_CL_THRESHOLD:
+            return "Dl"
+    
+    # Default: assume Cl
+    return "Cl"
 
 
 def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False):
@@ -397,18 +475,19 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     ell = data[:, 0].astype(int)
     cl = data[:, 1]
     
-    # Detect units from magnitude (before conversion)
-    # Heuristic: if median value > DL_CL_THRESHOLD for ell > 10, likely Dl format
-    units_detected = "Cl"  # Default assumption
-    if len(ell) > 0 and np.any(ell > 10):
-        median_val = np.median(cl[ell > 10]) if np.any(ell > 10) else np.median(cl)
-        if median_val > DL_CL_THRESHOLD:
-            units_detected = "Dl"
-            # Convert from Dl to Cl: Cl = Dl * 2π / [l(l+1)]
-            with np.errstate(divide='ignore', invalid='ignore'):
-                cl = cl * (2.0 * np.pi) / (ell * (ell + 1.0))
-                cl[ell == 0] = 0.0
-                cl[ell == 1] = 0.0
+    # Collect header lines for units detection
+    header_lines = [line for line in lines if line.strip().startswith('#')]
+    
+    # Detect units using improved two-stage detection
+    units_detected = detect_units_from_header_or_magnitude(header_lines, ell, cl)
+    
+    # Convert from Dl to Cl if needed
+    if units_detected == "Dl":
+        # Convert from Dl to Cl: Cl = Dl * 2π / [l(l+1)]
+        with np.errstate(divide='ignore', invalid='ignore'):
+            cl = cl * (2.0 * np.pi) / (ell * (ell + 1.0))
+            cl[ell == 0] = 0.0
+            cl[ell == 1] = 0.0
     
     # Sigma may or may not be present
     if data.shape[1] >= 3:
@@ -579,11 +658,14 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
             ell = data[:, 0].astype(int)
             cl_or_dl = data[:, 1]
             
-            # Detect units from magnitude
-            units_detected = "Cl"
-            if np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD:
-                # Likely Dl format: Dl = l(l+1)Cl/(2π)
-                units_detected = "Dl"
+            # Collect header lines for units detection
+            header_lines = [line for line in lines if line.strip().startswith('#')]
+            
+            # Detect units using improved detection
+            units_detected = detect_units_from_header_or_magnitude(header_lines, ell, cl_or_dl)
+            
+            if units_detected == "Dl":
+                # Convert Dl to Cl: Dl = l(l+1)Cl/(2π)
                 cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
                 cl[ell == 0] = 0.0  # Handle ell=0 case
             else:
@@ -665,11 +747,18 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
     cl_or_dl = data[:, spectrum_col]
     
     # Determine if Dl or Cl format
-    # Heuristic: if column name contains 'DL' or values are large (>DL_CL_THRESHOLD for ell>10), assume Dl
-    is_dl_format = 'DL' in columns[spectrum_col].upper() or np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD
-    units_detected = "Dl" if is_dl_format else "Cl"
+    # First check column name for explicit "Dl_" or "Cl_" prefix
+    col_name_upper = columns[spectrum_col].upper()
+    if col_name_upper.startswith('DL_') or col_name_upper.startswith('DL'):
+        units_detected = "Dl"
+    elif col_name_upper.startswith('CL_') or col_name_upper.startswith('CL'):
+        units_detected = "Cl"
+    else:
+        # Fall back to magnitude-based detection
+        header_lines_minimal = [header_line]  # Use the parsed header
+        units_detected = detect_units_from_header_or_magnitude(header_lines_minimal, ell, cl_or_dl)
     
-    if is_dl_format:
+    if units_detected == "Dl":
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
         with np.errstate(divide='ignore', invalid='ignore'):
             cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))

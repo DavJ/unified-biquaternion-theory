@@ -162,13 +162,13 @@ def test_units_metadata_in_load_planck_data():
             f.write(f"{ell[i]} {dl_obs[i]} -15.0 15.0\n")
         obs_file = f.name
     
-    # Create model file (Cl format)
+    # Create model file (Cl format) - include dummy sigma to avoid warning
     cl_model = 500.0 + 50.0 * np.sin(ell / 10.0)
     
     with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
-        f.write("# ell Cl\n")
+        f.write("# ell Cl sigma\n")
         for i in range(len(ell)):
-            f.write(f"{ell[i]} {cl_model[i]}\n")
+            f.write(f"{ell[i]} {cl_model[i]} 5.0\n")  # Add dummy sigma column
         model_file = f.name
     
     try:
@@ -282,6 +282,41 @@ def test_normal_residuals_no_warning():
     print("✓ test_normal_residuals_no_warning passed")
 
 
+def test_detect_units_from_header_or_magnitude():
+    """Test the units detection helper function."""
+    # Test 1: Header-based detection for Dl
+    header_lines_dl = ["# l Dl -dDl +dDl", "# Multipole Power Spectrum"]
+    ell = np.arange(30, 50)
+    values = 1500.0 + 200.0 * np.sin(ell / 10.0)  # Large values
+    
+    units = planck.detect_units_from_header_or_magnitude(header_lines_dl, ell, values)
+    assert units == "Dl", "Should detect Dl from header"
+    
+    # Test 2: Header-based detection for Cl
+    header_lines_cl = ["# ell Cl sigma", "# Multipole Power Spectrum"]
+    values_small = 500.0 + 50.0 * np.sin(ell / 10.0)  # Small values
+    
+    units = planck.detect_units_from_header_or_magnitude(header_lines_cl, ell, values_small)
+    assert units == "Cl", "Should detect Cl from header"
+    
+    # Test 3: Magnitude-based detection for Dl (no explicit header)
+    header_lines_generic = ["# Multipole Power Spectrum"]
+    
+    units = planck.detect_units_from_header_or_magnitude(header_lines_generic, ell, values)
+    assert units == "Dl", "Should detect Dl from large magnitude"
+    
+    # Test 4: Magnitude-based detection for Cl (no explicit header)
+    units = planck.detect_units_from_header_or_magnitude(header_lines_generic, ell, values_small)
+    assert units == "Cl", "Should detect Cl from small magnitude"
+    
+    # Test 5: Edge case - header with "dDl" (error column) should not confuse detector
+    header_lines_error = ["# l Dl -dDl +dDl"]
+    units = planck.detect_units_from_header_or_magnitude(header_lines_error, ell, values)
+    assert units == "Dl", "Should detect Dl even with dDl error columns"
+    
+    print("✓ test_detect_units_from_header_or_magnitude passed")
+
+
 if __name__ == '__main__':
     # Run tests
     test_load_planck_tt_full_format_dl_units()
@@ -291,6 +326,7 @@ if __name__ == '__main__':
     test_catastrophic_units_mismatch_triggers()
     test_non_catastrophic_units_warning_no_error()
     test_normal_residuals_no_warning()
+    test_detect_units_from_header_or_magnitude()
     
     print("\n" + "="*60)
     print("All units handling tests passed!")

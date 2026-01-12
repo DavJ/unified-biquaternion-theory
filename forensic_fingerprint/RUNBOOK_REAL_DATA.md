@@ -1381,6 +1381,14 @@ head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
 
 The Planck TT-full observation file uses **Dl format** (Dl = ℓ(ℓ+1)Cl/(2π), units: μK²).
 
+**The loader automatically detects and converts Dl to Cl!** You should see:
+```
+Observation file units detected: Dl
+  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]
+Model file units detected: Dl
+  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]
+```
+
 **2. Verify model file is a power spectrum (not likelihood table):**
 ```bash
 # Check first few lines of model file
@@ -1394,7 +1402,25 @@ head -10 your_model_file.txt
 # -log(Like)  param1  param2  (this is a parameter file, not spectrum!)
 ```
 
-**3. Use correct model file:**
+**3. Understand Planck PR3 file types:**
+
+- **TT-full observation** (`COM_PowerSpect_CMB-TT-full_R3.01.txt`):
+  - Format: `l Dl -dDl +dDl` (4 columns)
+  - Units: Dl (μK²)
+  - Use as: `--planck_obs`
+  - Auto-converted: YES ✓
+
+- **Minimum-theory model** (`COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt`):
+  - Format: `L TT TE EE BB ...` (multi-column)
+  - Units: Dl for all spectra
+  - Use as: `--planck_model` 
+  - Auto-converted: YES ✓ (TT column extracted and converted)
+
+- **DO NOT USE** files with names like:
+  - `*-minimum_R3.01.txt` (parameter tables with `-log(Like)` column)
+  - `*bestfit*` (unless it's a power spectrum)
+
+**4. Use correct model file:**
 - **For observation vs. theory residuals**: Use a theoretical ΛCDM spectrum from CAMB/CLASS or a Planck "minimum-theory" file
 - **For noise-only analysis**: Use the TT-full observation file as both `--planck_obs` and `--planck_model` (residual will be zero)
 
