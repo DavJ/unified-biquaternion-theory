@@ -565,6 +565,318 @@ python scripts/repro_cmb_verdict.py \
 
 ---
 
+## One-Command Court-Grade Run
+
+**NEW (2026-01-12)**: For complete end-to-end reproducibility with full data provenance, use the automated court-grade pipeline.
+
+### What This Script Does
+
+The `forensic_fingerprint/tools/run_court_grade_cmb_comb.py` script provides a fully automated, deterministic workflow:
+
+1. **Verifies repository structure** (checks for `tools/data_provenance/hash_dataset.py`)
+2. **Ensures required directories exist** (creates if missing)
+3. **Downloads data files** (idempotent, only if missing)
+   - Planck PR3 TT-full observation
+   - Planck PR3 minimum-theory source (for model generation)
+   - WMAP 9yr TT observation
+4. **Validates downloaded files** (HTML error page detection, line count checks)
+5. **Generates derived Planck model** (deterministic extraction and Dl→Cl conversion)
+6. **Creates SHA-256 manifests** (exact files used in analysis)
+7. **Validates manifests** (ensures data integrity)
+8. **Runs CMB comb test** with exact court-grade parameters
+9. **Prints output directory** and verdict location
+
+### Basic Usage
+
+**Single command** (from repository root):
+
+```bash
+python forensic_fingerprint/tools/run_court_grade_cmb_comb.py
+```
+
+Or use the shell wrapper:
+
+```bash
+bash forensic_fingerprint/tools/run_court_grade_cmb_comb.sh
+```
+
+**Default parameters** (court-grade):
+- Variant: C (Explicit Frame Synchronization)
+- MC samples: 10,000 (p-value floor = 1e-4)
+- Random seed: 42 (pre-registered)
+- Whitening: diagonal (full covariance not publicly available for TT-full)
+- Planck ℓ range: 30-1500
+- WMAP ℓ range: 30-800
+
+### Custom Parameters
+
+```bash
+# High-confidence run (100k MC samples)
+python forensic_fingerprint/tools/run_court_grade_cmb_comb.py --mc_samples 100000
+
+# Custom seed
+python forensic_fingerprint/tools/run_court_grade_cmb_comb.py --seed 123
+
+# Dry run (show what would be done)
+python forensic_fingerprint/tools/run_court_grade_cmb_comb.py --dry-run
+```
+
+### Available Options
+
+```
+--variant {A,B,C,D}       Architecture variant (default: C)
+--mc_samples N            Monte Carlo samples (default: 10000)
+--seed N                  Random seed (default: 42, pre-registered)
+--whiten {none,diag,full} Whitening mode (default: diag)
+--ell_min_planck N        Planck min multipole (default: 30)
+--ell_max_planck N        Planck max multipole (default: 1500)
+--ell_min_wmap N          WMAP min multipole (default: 30)
+--ell_max_wmap N          WMAP max multipole (default: 800)
+--skip-download           Skip data download (assume files exist)
+--skip-validation         Skip manifest validation (not recommended)
+--dry-run                 Show what would be done without executing
+```
+
+### Output
+
+The script creates a timestamped output directory:
+
+```
+forensic_fingerprint/out/real_runs/cmb_comb_YYYYMMDD_HHMMSS/
+├── planck_results.json           # Full Planck results
+├── wmap_results.json             # Full WMAP results
+├── combined_verdict.md           # ★ PASS/FAIL DECISION ★
+└── figures/
+    ├── residuals_with_fit.png    # Planck residuals + fit
+    ├── null_distribution.png     # Planck p-value
+    ├── residuals_with_fit_1.png  # WMAP residuals + fit
+    └── null_distribution_1.png   # WMAP p-value
+```
+
+And generates the following artifacts:
+
+**Derived Data**:
+```
+data/planck_pr3/derived/
+└── planck_pr3_tt_model_extracted_minfmt.txt  # Deterministic Planck model
+```
+
+**Manifests**:
+```
+data/planck_pr3/manifests/
+└── planck_pr3_tt_full_plus_extracted_minfmt_manifest.json
+
+data/wmap/manifests/
+└── wmap_tt_manifest.json
+```
+
+### Example Session
+
+```bash
+$ python forensic_fingerprint/tools/run_court_grade_cmb_comb.py
+
+================================================================================
+COURT-GRADE CMB COMB PIPELINE
+================================================================================
+
+Repository root: /path/to/unified-biquaternion-theory
+
+================================================================================
+STEP 0: Ensure required directories exist
+================================================================================
+✓ Directory exists: data/planck_pr3/raw
+✓ Directory exists: data/planck_pr3/derived
+...
+
+================================================================================
+STEP 1: Download CMB datasets
+================================================================================
+
+→ Running Planck PR3 download script
+  Command: bash tools/data_download/download_planck_pr3_cosmoparams.sh
+  ✓ Success
+
+→ Running WMAP download script
+  Command: bash tools/data_download/download_wmap_tt.sh
+  ✓ Success
+
+================================================================================
+STEP 2: Validate downloaded files
+================================================================================
+
+Validating Planck TT-full observation:
+  Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+  Lines: 2479
+  First data: 2  5.99506e+01  2.80313e+01
+  Size: 151876 bytes
+  ✓ Valid
+
+...
+
+================================================================================
+STEP 3: Generate derived Planck model
+================================================================================
+
+Input: data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt
+Output: data/planck_pr3/derived/planck_pr3_tt_model_extracted_minfmt.txt
+
+Loading source file...
+  Loaded 2507 rows
+
+Converting Dl → Cl (Cl = Dl × 2π / [l(l+1)])...
+  ℓ range: 2 to 2508
+  Median Cl: 1.23e+03 μK²
+
+Writing output file: data/planck_pr3/derived/planck_pr3_tt_model_extracted_minfmt.txt
+  Wrote 2507 rows
+
+  ✓ Derived model generation complete
+
+================================================================================
+STEP 4: Generate and validate manifests
+================================================================================
+
+→ Generating manifest: Planck OBS + DERIVED MODEL
+  Output: data/planck_pr3/manifests/planck_pr3_tt_full_plus_extracted_minfmt_manifest.json
+  Files: 2
+    - COM_PowerSpect_CMB-TT-full_R3.01.txt
+    - planck_pr3_tt_model_extracted_minfmt.txt
+  ✓ Manifest generated
+
+→ Validating manifest: Planck
+  ✓ SUCCESS: All 2 file(s) validated
+
+...
+
+================================================================================
+STEP 5: Run CMB comb pipeline
+================================================================================
+
+Running: python forensic_fingerprint/run_real_data_cmb_comb.py ...
+
+[... CMB comb test output ...]
+
+================================================================================
+PIPELINE COMPLETE
+================================================================================
+
+Output directory: forensic_fingerprint/out/real_runs/cmb_comb_20260112_030000
+Verdict file: forensic_fingerprint/out/real_runs/cmb_comb_20260112_030000/combined_verdict.md
+
+→ Reading first 50 lines of verdict...
+
+--------------------------------------------------------------------------------
+# CMB Comb Fingerprint Test - Combined Verdict
+
+**Date**: 2026-01-12 03:00:00 UTC
+**Protocol Version**: v1.0
+**Architecture Variant**: C
+
+## Planck PR3 Results
+- **P-value**: 9.19e-01
+- **Best-fit period**: Δℓ = 16
+- **Significance**: NULL
+
+## WMAP 9yr Results
+- **P-value**: 1.00e-04
+- **Best-fit period**: Δℓ = 255
+- **Significance**: CANDIDATE
+
+## PASS/FAIL Decision
+✗ **FAIL** (Null Result)
+
+[... see full file for details ...]
+--------------------------------------------------------------------------------
+
+✓ All steps completed successfully
+```
+
+### Features
+
+**Deterministic**:
+- Same inputs → same outputs (with fixed seed)
+- Derived model generation is bit-exact reproducible
+- Manifest hashes ensure exact data versions
+
+**Safe**:
+- HTML error page detection (prevents silent failures)
+- File size validation (detects incomplete downloads)
+- Manifest validation (ensures data integrity)
+- Sanity checks on derived model (Cl range, ℓ coverage)
+
+**Idempotent**:
+- Re-running uses existing files if valid
+- Only downloads/generates if missing
+- Safe to run multiple times
+
+**Noisy on Failures**:
+- Clear error messages with suggested fixes
+- No silent fallbacks that could hide problems
+- Fail-fast on invalid data
+
+### Error Handling
+
+**Missing file**:
+```
+ERROR: File not found: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+
+Suggestions:
+  1. Run download scripts (remove --skip-download)
+  2. Download manually from Planck archive
+  3. Check path spelling
+```
+
+**HTML error page**:
+```
+ERROR: Planck TT-full observation is an HTML error page
+  Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+
+This usually means download failed or returned 404/redirect.
+Delete the file and re-run without --skip-download.
+```
+
+**Too few lines**:
+```
+ERROR: Planck TT-full observation has too few lines
+  Path: data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+  Lines: 45 (expected >= 500)
+
+File may be incomplete or corrupted. Delete and re-download.
+```
+
+### Comparison with Manual Workflow
+
+**Manual workflow** (from RUNBOOK):
+1. Download data scripts
+2. Validate files
+3. Generate derived model
+4. Generate manifests
+5. Validate manifests
+6. Run CMB comb test
+7. Locate output
+
+**One-command workflow**:
+1. Run script
+2. Read verdict
+
+**Time savings**: ~5-10 minutes → ~30 seconds of user effort (script runs for 2-5 minutes)
+
+### When to Use
+
+**Use this script when**:
+- You want court-grade reproducibility
+- You're sharing results with reviewers
+- You need exact data provenance
+- You want a single command for new contributors
+
+**Use manual workflow when**:
+- You want to understand each step
+- You're debugging data issues
+- You need custom configurations not supported by script
+- You're developing new analysis features
+
+---
+
 ## Court-Grade Whitening with Full Covariance
 
 **Purpose**: Use full covariance matrices to properly account for error correlations between multipoles, providing the most rigorous statistical analysis.
