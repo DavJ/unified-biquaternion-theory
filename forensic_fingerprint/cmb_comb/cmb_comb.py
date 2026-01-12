@@ -862,6 +862,40 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         strict=strict
     )
     
+    # Hard validity gate: if sanity checks failed, do NOT compute significance as candidate/strong.
+    # Court-grade requirement: invalid scaling cannot produce a "signal".
+    if not whiten_metadata.get('sanity_checks_passed', True):
+        results = {
+            'best_period': None,
+            'amplitude': None,
+            'phase': None,
+            'max_delta_chi2': None,
+            'p_value': None,
+            'significance': 'invalid',
+            'null_distribution': None,
+            'residuals': residuals,
+            'ell': ell,
+            'all_periods': {},
+            'whitened': whitened,
+            'whiten_mode': whiten_mode,
+            'whitening_metadata': whiten_metadata,
+            'calibration_diagnostics': None,  # Not computed for invalid runs
+            'dataset': dataset_name,
+            'architecture_variant': variant,
+            'variant_valid': (variant == "C"),
+            'n_mc_trials': n_mc_trials,
+            'random_seed': random_seed
+        }
+        print("\n" + "="*60)
+        print("CMB COMB TEST RESULTS")
+        print("="*60)
+        print(f"Dataset: {dataset_name}")
+        print(f"Whitening mode: {whiten_mode}")
+        print("Significance: INVALID")
+        print("Result: INVALID RUN (sanity checks failed: units/model mismatch or sigma failure)")
+        print("="*60 + "\n")
+        return results
+    
     # Calibration test for covariance whitening
     calibration_diagnostics = None
     if whiten_mode == 'covariance' and cov is not None:

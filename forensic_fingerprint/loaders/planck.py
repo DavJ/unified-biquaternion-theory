@@ -93,6 +93,20 @@ def auto_resolve_model_units(ell, model_values, obs_cl, obs_sigma, units_detecte
     diff2 = (obs_cl[mask] - model_cl_interp2[mask]) / obs_sigma[mask]
     chi2_per_dof_2 = np.sum(diff2**2) / len(diff2)
     
+    # Fail-safe: both interpretations are catastrophic -> likely wrong file/column
+    if chi2_per_dof_1 > 1e6 and chi2_per_dof_2 > 1e6:
+        resolution_metadata = {
+            'units_detected': units_detected,
+            'units_used': 'UNKNOWN',
+            'resolution_method': 'chi2_precheck',
+            'chi2_dof_interp_cl': float(chi2_per_dof_1),
+            'chi2_dof_interp_dl': float(chi2_per_dof_2),
+            'unit_resolution_failed': True,
+            'reason': 'Both Cl and Dl interpretations yield catastrophic chi2. Likely wrong model file or wrong column.'
+        }
+        # Return interp1 as placeholder, but mark failure
+        return model_cl_interp1, 'UNKNOWN', resolution_metadata
+    
     # Choose interpretation that yields chi2/dof closer to reasonable range (0.1 to 100)
     # Prefer interpretation with chi2/dof closest to 1.0
     target_chi2 = 1.0
@@ -216,7 +230,12 @@ def load_planck_data(
                 ell_model, model_values_raw, _, model_units_detected = _load_planck_fits(model_file, spectrum_type=spectrum_type)
             else:
                 # Load model but keep raw values for auto-resolution
-                ell_model, model_values_raw, _, model_units_detected = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
+                ell_model, model_values_raw, _, model_units_detected = _load_planck_text(
+                    model_file,
+                    spectrum_type=spectrum_type,
+                    _skip_size_validation=_skip_size_validation,
+                    convert_to_cl=False
+                )
             
             # Store originally detected units
             model_units_original = model_units_detected
@@ -233,19 +252,29 @@ def load_planck_data(
                 ell_obs, model_values_raw, cl_obs, sigma_obs, model_units_detected
             )
             
-            # Log results
-            print(f"Model file units detected: {model_units_detected}")
-            if model_resolution_metadata['auto_resolution_applied']:
-                print(f"  ⚠ Auto-resolution applied: {model_units_detected} → {model_units_used}")
+            # Check if unit resolution failed
+            if model_resolution_metadata.get('unit_resolution_failed', False):
+                print(f"⚠ Model unit resolution FAILED:")
+                print(f"  {model_resolution_metadata.get('reason', 'Unknown reason')}")
                 print(f"    chi2/dof (if Cl): {model_resolution_metadata['chi2_dof_interp_cl']:.2e}")
                 print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
-                print(f"    → Chose {model_units_used} (chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e})")
+                print(f"  This indicates likely wrong model file or wrong column selected.")
+                print(f"  Results will be marked as INVALID.")
+                # Don't proceed with normal logging for failed resolution
             else:
-                print(f"  ✓ Units confirmed via chi2 precheck: {model_units_used}")
-                print(f"    chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e}")
-            
-            if model_units_used == "Dl":
-                print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
+                # Log results for successful resolution
+                print(f"Model file units detected: {model_units_detected}")
+                if model_resolution_metadata.get('auto_resolution_applied', False):
+                    print(f"  ⚠ Auto-resolution applied: {model_units_detected} → {model_units_used}")
+                    print(f"    chi2/dof (if Cl): {model_resolution_metadata['chi2_dof_interp_cl']:.2e}")
+                    print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
+                    print(f"    → Chose {model_units_used} (chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e})")
+                else:
+                    print(f"  ✓ Units confirmed via chi2 precheck: {model_units_used}")
+                    print(f"    chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e}")
+                
+                if model_units_used == "Dl":
+                    print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
     
     # Load covariance if provided (using new covariance loader)
     cov = None
@@ -441,7 +470,7 @@ def detect_units_from_header_or_magnitude(header_lines, ell, values):
     return "Cl"
 
 
-def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False):
+def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False, convert_to_cl=True):
     """
     Load Planck data from text file.
     
@@ -463,15 +492,19 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     _skip_size_validation : bool, optional
         Internal parameter for testing. If True, skips file size validation.
         Default False.
+    convert_to_cl : bool, optional
+        If True (default), convert Dl to Cl when Dl units detected.
+        If False, keep values as-is (raw). Used for model loading to enable
+        proper auto-resolution. Default True.
     
     Returns
     -------
     ell : ndarray
         Multipole moments (integers)
     cl : ndarray
-        Power spectrum values (Cl units, μK²)
+        Power spectrum values (Cl units if convert_to_cl=True, otherwise raw)
     sigma : ndarray
-        Uncertainties (1-sigma, Cl units, μK²)
+        Uncertainties (1-sigma, Cl units if convert_to_cl=True, otherwise raw)
     units : str
         Units detected/used: "Dl" or "Cl" (before conversion to Cl)
     """
@@ -593,7 +626,7 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     
     # Route to minimum format loader only if explicitly identified
     if is_minimum_by_name or is_minimum_by_content:
-        return _load_planck_minimum_format(filepath, spectrum_type=spectrum_type)
+        return _load_planck_minimum_format(filepath, spectrum_type=spectrum_type, convert_to_cl=convert_to_cl)
     
     # Handle TT-full format (4 columns: ell, Dl, -dDl, +dDl)
     # Note: This format typically only applies to TT spectra
@@ -623,8 +656,8 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     # Detect units using improved two-stage detection
     units_detected = detect_units_from_header_or_magnitude(header_lines, ell, cl)
     
-    # Convert from Dl to Cl if needed
-    if units_detected == "Dl":
+    # Convert from Dl to Cl if needed AND convert_to_cl is True
+    if units_detected == "Dl" and convert_to_cl:
         # Convert from Dl to Cl: Cl = Dl * 2π / [l(l+1)]
         with np.errstate(divide='ignore', invalid='ignore'):
             cl = cl * (2.0 * np.pi) / (ell * (ell + 1.0))
@@ -637,7 +670,7 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
         
         # If sigma looks like it's also in Dl units (for consistency with converted cl)
         # Check if it's large and needs conversion
-        if units_detected == "Dl":
+        if units_detected == "Dl" and convert_to_cl:
             # Convert sigma from Dl units to Cl units
             with np.errstate(divide='ignore', invalid='ignore'):
                 sigma = sigma * (2.0 * np.pi) / (ell * (ell + 1.0))
@@ -732,7 +765,7 @@ def _load_planck_tt_full_format(filepath):
     return ell, cl, sigma, "Dl"
 
 
-def _load_planck_minimum_format(filepath, spectrum_type="TT"):
+def _load_planck_minimum_format(filepath, spectrum_type="TT", convert_to_cl=True):
     """
     Load Planck PR3 "minimum" model file format.
     
@@ -752,13 +785,17 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
         Path to minimum format file
     spectrum_type : str
         Type of spectrum to extract: "TT", "EE", "TE", or "BB"
+    convert_to_cl : bool, optional
+        If True (default), convert Dl to Cl when Dl units detected.
+        If False, keep values as-is (raw). Used for model loading to enable
+        proper auto-resolution. Default True.
     
     Returns
     -------
     ell : ndarray
         Multipole moments (integers)
     cl : ndarray
-        Power spectrum in Cl units (μK²)
+        Power spectrum in Cl units (μK²) if convert_to_cl=True, otherwise raw
     sigma : ndarray
         Uncertainties (estimated as 1% since not provided in model file)
     units : str
@@ -806,7 +843,7 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
             # Detect units using improved detection
             units_detected = detect_units_from_header_or_magnitude(header_lines, ell, cl_or_dl)
             
-            if units_detected == "Dl":
+            if units_detected == "Dl" and convert_to_cl:
                 # Convert Dl to Cl: Dl = l(l+1)Cl/(2π)
                 cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
                 cl[ell == 0] = 0.0  # Handle ell=0 case
@@ -900,7 +937,7 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
         header_lines_minimal = [header_line]  # Use the parsed header
         units_detected = detect_units_from_header_or_magnitude(header_lines_minimal, ell, cl_or_dl)
     
-    if units_detected == "Dl":
+    if units_detected == "Dl" and convert_to_cl:
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
         with np.errstate(divide='ignore', invalid='ignore'):
             cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))

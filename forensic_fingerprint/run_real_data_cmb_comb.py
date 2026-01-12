@@ -561,6 +561,12 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
             f.write(f"- **Max Δχ²**: {planck_results['max_delta_chi2']:.6f}\n")
             f.write(f"- **P-value**: {planck_results['p_value']:.6e}\n")
             f.write(f"- **Significance**: **{planck_results['significance'].upper()}**\n\n")
+            
+            # Add INVALID warning if applicable
+            if planck_results['significance'] == 'invalid':
+                f.write("⚠ **INVALID RUN**: Sanity checks failed. This result cannot be used for PASS/FAIL decision.\n")
+                f.write("  - Possible causes: units mismatch, wrong model file, corrupted data\n")
+                f.write("  - Required action: Fix data issues and re-run\n\n")
         else:
             f.write("## Planck PR3 Results\n\n")
             f.write("*Not run*\n\n")
@@ -618,6 +624,12 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
             f.write(f"- **Max Δχ²**: {wmap_results['max_delta_chi2']:.6f}\n")
             f.write(f"- **P-value**: {wmap_results['p_value']:.6e}\n")
             f.write(f"- **Significance**: **{wmap_results['significance'].upper()}**\n\n")
+            
+            # Add INVALID warning if applicable
+            if wmap_results['significance'] == 'invalid':
+                f.write("⚠ **INVALID RUN**: Sanity checks failed. This result cannot be used for PASS/FAIL decision.\n")
+                f.write("  - Possible causes: units mismatch, wrong model file, corrupted data\n")
+                f.write("  - Required action: Fix data issues and re-run\n\n")
         else:
             f.write("## WMAP 9yr Results\n\n")
             f.write("*Not run*\n\n")
@@ -636,43 +648,67 @@ def generate_combined_verdict(planck_results, wmap_results, output_file, variant
         
         # Evaluate criteria
         if planck_results is not None and wmap_results is not None:
-            criterion_1 = planck_results['p_value'] < 0.01
-            criterion_2 = wmap_results['p_value'] < 0.05
-            criterion_3 = planck_results['best_period'] == wmap_results['best_period']
-            phase_diff = abs(planck_results['phase'] - wmap_results['phase'])
-            phase_diff = min(phase_diff, 2*np.pi - phase_diff)  # Handle wrapping
-            criterion_4 = phase_diff < np.pi / 2
-            criterion_5 = variant == "C"
+            # Check for INVALID results first
+            planck_invalid = planck_results.get('significance') == 'invalid'
+            wmap_invalid = wmap_results.get('significance') == 'invalid'
             
-            f.write("### Criterion Evaluation\n\n")
-            f.write(f"1. Planck p < 0.01: **{'✓ PASS' if criterion_1 else '✗ FAIL'}** (p = {planck_results['p_value']:.6e})\n")
-            f.write(f"2. WMAP p < 0.05: **{'✓ PASS' if criterion_2 else '✗ FAIL'}** (p = {wmap_results['p_value']:.6e})\n")
-            f.write(f"3. Same period: **{'✓ PASS' if criterion_3 else '✗ FAIL'}** (Planck: {planck_results['best_period']}, WMAP: {wmap_results['best_period']})\n")
-            f.write(f"4. Consistent phase: **{'✓ PASS' if criterion_4 else '✗ FAIL'}** (Δφ = {phase_diff:.3f} rad)\n")
-            f.write(f"5. Variant C: **{'✓ PASS' if criterion_5 else '✗ FAIL'}** (tested: {variant})\n\n")
-            
-            all_pass = criterion_1 and criterion_2 and criterion_3 and criterion_4 and criterion_5
-            
-            f.write("### Final Verdict\n\n")
-            if all_pass:
-                f.write("## ✓ **PASS**\n\n")
-                f.write("All criteria satisfied. Candidate signal detected in both Planck and WMAP.\n\n")
-                f.write("**Next steps**:\n")
-                f.write("- Prepare manuscript for peer review\n")
-                f.write("- Seek independent verification with third dataset\n")
-                f.write("- Archive full results for reproducibility\n\n")
+            if planck_invalid or wmap_invalid:
+                f.write("### Verdict: INVALID\n\n")
+                if planck_invalid:
+                    f.write("❌ **Planck result is INVALID** (sanity checks failed)\n\n")
+                if wmap_invalid:
+                    f.write("❌ **WMAP result is INVALID** (sanity checks failed)\n\n")
+                f.write("**Cannot perform PASS/FAIL evaluation with invalid results.**\n\n")
+                f.write("**Required actions:**\n")
+                f.write("1. Review data files for units consistency (Cl vs Dl)\n")
+                f.write("2. Verify model file is correct TT power spectrum\n")
+                f.write("3. Check for file corruption or wrong format\n")
+                f.write("4. Re-run analysis after fixing data issues\n\n")
             else:
-                f.write("## ✗ **FAIL** (Null Result)\n\n")
-                f.write("One or more criteria not satisfied. No significant periodic signal detected.\n\n")
-                f.write("**Interpretation**: The data do not support the hypothesis of periodic comb structure ")
-                f.write("in CMB residuals at the tested candidate periods.\n\n")
+                criterion_1 = planck_results['p_value'] < 0.01
+                criterion_2 = wmap_results['p_value'] < 0.05
+                criterion_3 = planck_results['best_period'] == wmap_results['best_period']
+                phase_diff = abs(planck_results['phase'] - wmap_results['phase'])
+                phase_diff = min(phase_diff, 2*np.pi - phase_diff)  # Handle wrapping
+                criterion_4 = phase_diff < np.pi / 2
+                criterion_5 = variant == "C"
+                
+                f.write("### Criterion Evaluation\n\n")
+                f.write(f"1. Planck p < 0.01: **{'✓ PASS' if criterion_1 else '✗ FAIL'}** (p = {planck_results['p_value']:.6e})\n")
+                f.write(f"2. WMAP p < 0.05: **{'✓ PASS' if criterion_2 else '✗ FAIL'}** (p = {wmap_results['p_value']:.6e})\n")
+                f.write(f"3. Same period: **{'✓ PASS' if criterion_3 else '✗ FAIL'}** (Planck: {planck_results['best_period']}, WMAP: {wmap_results['best_period']})\n")
+                f.write(f"4. Consistent phase: **{'✓ PASS' if criterion_4 else '✗ FAIL'}** (Δφ = {phase_diff:.3f} rad)\n")
+                f.write(f"5. Variant C: **{'✓ PASS' if criterion_5 else '✗ FAIL'}** (tested: {variant})\n\n")
+                
+                all_pass = criterion_1 and criterion_2 and criterion_3 and criterion_4 and criterion_5
+                
+                f.write("### Final Verdict\n\n")
+                if all_pass:
+                    f.write("## ✓ **PASS**\n\n")
+                    f.write("All criteria satisfied. Candidate signal detected in both Planck and WMAP.\n\n")
+                    f.write("**Next steps**:\n")
+                    f.write("- Prepare manuscript for peer review\n")
+                    f.write("- Seek independent verification with third dataset\n")
+                    f.write("- Archive full results for reproducibility\n\n")
+                else:
+                    f.write("## ✗ **FAIL** (Null Result)\n\n")
+                    f.write("One or more criteria not satisfied. No significant periodic signal detected.\n\n")
+                    f.write("**Interpretation**: The data do not support the hypothesis of periodic comb structure ")
+                    f.write("in CMB residuals at the tested candidate periods.\n\n")
         elif planck_results is not None:
-            f.write("### Verdict: INCOMPLETE\n\n")
-            f.write("Only Planck data analyzed. WMAP replication required for PASS/FAIL decision.\n\n")
-            if planck_results['p_value'] < 0.01:
-                f.write("**Planck result**: CANDIDATE signal detected. Requires WMAP confirmation.\n\n")
+            planck_invalid = planck_results.get('significance') == 'invalid'
+            
+            if planck_invalid:
+                f.write("### Verdict: INVALID\n\n")
+                f.write("❌ **Planck result is INVALID** (sanity checks failed)\n\n")
+                f.write("Cannot proceed with analysis. Fix data issues and re-run.\n\n")
             else:
-                f.write("**Planck result**: NULL. No significant signal in Planck data.\n\n")
+                f.write("### Verdict: INCOMPLETE\n\n")
+                f.write("Only Planck data analyzed. WMAP replication required for PASS/FAIL decision.\n\n")
+                if planck_results['p_value'] < 0.01:
+                    f.write("**Planck result**: CANDIDATE signal detected. Requires WMAP confirmation.\n\n")
+                else:
+                    f.write("**Planck result**: NULL. No significant signal in Planck data.\n\n")
         else:
             f.write("### Verdict: NO DATA\n\n")
             f.write("No analysis performed.\n\n")
@@ -1020,6 +1056,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     print(f"Variant: {args.variant}")
     print(f"MC samples: {args.mc_samples}")
     print(f"Random seed: {args.seed}")
+    print(f"Strict mode: {args.strict} (court-grade fail-fast)")
     print()
     
     # Validate manifests if provided and track validation status
