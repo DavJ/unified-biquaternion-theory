@@ -332,6 +332,93 @@ def test_load_planck_data_with_auto_resolution():
         print(f"  Chi2/dof (Dl): {res_meta['chi2_dof_interp_dl']:.2e}")
 
 
+def test_minimum_format_dl_detection_with_improved_thresholds():
+    """
+    Test that minimum format files with ambiguous headers (e.g., "#    L    TT    TE    EE...")
+    are correctly detected as Dl based on improved magnitude thresholds.
+    
+    This is the regression test for the COM_PowerSpect_CMB-*-minimum-theory_R3.01.txt issue.
+    """
+    print("\n=== Test: Minimum Format Dl Detection (Improved Thresholds) ===")
+    
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = Path(tmpdir)
+        
+        # Create a minimum format file matching the actual Planck file:
+        # Header: "#    L    TT             TE             EE             BB             PP"
+        # Values: TT at ell=2 ~ 1016.73, ell=30 ~ 1054.73 (clearly Dl)
+        minimum_file = tmpdir / "COM_PowerSpect_CMB-minimum-theory_test.txt"
+        with open(minimum_file, 'w') as f:
+            f.write("#    L    TT             TE             EE             BB             PP\n")
+            # Generate realistic Dl values for TT
+            for i in range(2, 200):
+                # TT in Dl: roughly 1000-5000 for low-mid ell
+                TT_dl = 1000.0 + i * 5.0
+                TE_dl = -50.0 - i * 0.5  # TE can be negative
+                EE_dl = 10.0 + i * 0.1
+                BB_dl = 0.001
+                PP_dl = 0.0
+                f.write(f"{i:5d}  {TT_dl:15.5e}  {TE_dl:15.5e}  {EE_dl:15.5e}  {BB_dl:15.5e}  {PP_dl:15.5e}\n")
+        
+        # Load as minimum format
+        ell, cl, sigma, units_detected = planck._load_planck_minimum_format(
+            minimum_file, 
+            spectrum_type="TT", 
+            convert_to_cl=False  # Don't convert yet, just detect
+        )
+        
+        # Verify units detected as Dl
+        assert units_detected == "Dl", \
+            f"Should detect Dl for minimum format with TT~1000, got {units_detected}"
+        
+        # Verify ell range
+        assert ell[0] == 2, f"First ell should be 2, got {ell[0]}"
+        assert len(ell) == 198, f"Should have 198 multipoles, got {len(ell)}"
+        
+        # Verify raw values are Dl-like (large)
+        assert cl[0] > 500.0, f"Raw TT at ell=2 should be ~1010 (Dl), got {cl[0]}"
+        
+        print(f"✓ Minimum format Dl detection successful")
+        print(f"  File format: COM_PowerSpect_CMB-minimum-theory (no Dl/Cl in header)")
+        print(f"  Units detected: {units_detected}")
+        print(f"  TT at ell=2: {cl[0]:.2f} (raw Dl)")
+        print(f"  TT at ell=30: {cl[28]:.2f} (raw Dl)")
+        print(f"  Median TT: {np.median(cl):.2f}")
+        
+        # Now test with conversion enabled
+        ell2, cl2, sigma2, units2 = planck._load_planck_minimum_format(
+            minimum_file, 
+            spectrum_type="TT", 
+            convert_to_cl=True
+        )
+        
+        # After conversion, values should be much smaller (Cl)
+        # Cl = Dl * 2π / [l(l+1)]
+        # At ell=30: Cl ≈ 1000 * 2π / (30*31) ≈ 6.76
+        expected_cl_30 = cl[28] * (2.0 * np.pi) / (30.0 * 31.0)
+        actual_cl_30 = cl2[28]
+        
+        assert abs(actual_cl_30 - expected_cl_30) / expected_cl_30 < 0.01, \
+            f"Cl conversion incorrect: expected {expected_cl_30:.4f}, got {actual_cl_30:.4f}"
+        
+        print(f"✓ Dl->Cl conversion verified")
+        print(f"  TT at ell=30: {cl2[28]:.4f} (converted to Cl)")
+        print(f"  Expected: {expected_cl_30:.4f}")
+        
+        # Test direct detection function
+        header_lines = ["#    L    TT             TE             EE             BB             PP"]
+        ell_test = np.arange(2, 200, dtype=int)
+        tt_values_dl = 1000.0 + ell_test * 5.0  # Dl-like values
+        
+        detected = planck.detect_units_from_header_or_magnitude(header_lines, ell_test, tt_values_dl)
+        assert detected == "Dl", \
+            f"Direct detection should return Dl for TT~1000, got {detected}"
+        
+        print(f"✓ Direct detection function verified")
+        print(f"  median(TT) = {np.median(tt_values_dl):.2f} > 50 => Dl")
+        print(f"  90th percentile(TT) = {np.percentile(tt_values_dl, 90):.2f} > 200 => Dl")
+
+
 if __name__ == "__main__":
     print("=" * 80)
     print("Testing Planck Units Detection, Auto-Resolution, and Strict Mode")
@@ -343,6 +430,7 @@ if __name__ == "__main__":
     test_auto_resolution_with_chi2()
     test_strict_mode_raises_on_mismatch()
     test_load_planck_data_with_auto_resolution()
+    test_minimum_format_dl_detection_with_improved_thresholds()
     
     print()
     print("=" * 80)
