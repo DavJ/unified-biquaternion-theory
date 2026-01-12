@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Speculative Fingerprint Proposal**: Hubble Tension as Effective Metric Latency
+  - New appendix: `speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex`
+  - Comprehensive mathematical analysis of hypothesis that Hubble tension arises from effective time parametrization differences
+  - Minimal covariant extension: dτ = dt(1 + εf(z)) with ε ~ 0.1%
+  - Full validation against 6 observational constraints (GR, ΛCDM, BAO, CMB, chronometers, structure growth)
+  - Status: VIABLE BUT CONSTRAINED - lives in narrow parameter window
+  - Classification: 🔵 THEORETICAL (Framework established, predictions pending)
+  - Documentation: `speculative_extensions/appendices/README_appendix_HT.md`
+  - Testable prediction: smooth H(z) interpolation at intermediate redshifts
+  - Test document: `test_hubble_tension_appendix.tex`
+
 ## [0.3.0] - 2025-11-08 - Publication & Review Readiness
 
 ### Added
