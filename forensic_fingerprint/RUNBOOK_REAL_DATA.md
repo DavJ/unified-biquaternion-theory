@@ -3,7 +3,7 @@
 **Purpose**: Step-by-step instructions for running CMB comb fingerprint test on real Planck PR3 and WMAP datasets with full reproducibility and provenance tracking.
 
 **Status**: Pre-registered protocol v1.0  
-**Last Updated**: 2026-01-10  
+**Last Updated**: 2026-01-12  
 **Author**: UBT Research Team
 
 ---
@@ -13,13 +13,14 @@
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Quick Real Run (One Command)](#quick-real-run-one-command)
-4. [Data Download and Validation](#data-download-and-validation)
-5. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
-6. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
-7. [Interpreting Results](#interpreting-results)
-8. [PASS/FAIL Criteria](#passfail-criteria)
-9. [Troubleshooting](#troubleshooting)
-10. [Archiving Results](#archiving-results)
+4. [One-Command Full Reproducibility](#one-command-full-reproducibility)
+5. [Data Download and Validation](#data-download-and-validation)
+6. [Running CMB Comb Test: Planck PR3](#running-cmb-comb-test-planck-pr3)
+7. [Running CMB Comb Test: WMAP (Replication)](#running-cmb-comb-test-wmap-replication)
+8. [Interpreting Results](#interpreting-results)
+9. [PASS/FAIL Criteria](#passfail-criteria)
+10. [Troubleshooting](#troubleshooting)
+11. [Archiving Results](#archiving-results)
 
 ---
 
