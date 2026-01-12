@@ -879,7 +879,7 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
             'whitened': whitened,
             'whiten_mode': whiten_mode,
             'whitening_metadata': whiten_metadata,
-            'calibration_diagnostics': calibration_diagnostics,
+            'calibration_diagnostics': None,  # Not computed for invalid runs
             'dataset': dataset_name,
             'architecture_variant': variant,
             'variant_valid': (variant == "C"),
