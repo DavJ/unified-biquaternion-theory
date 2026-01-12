@@ -2016,3 +2016,126 @@ cat forensic_fingerprint/SKEPTIC_CHECKLIST.md
 **Last Updated**: 2026-01-11  
 **Protocol Version**: v1.0  
 **Maintained by**: UBT Research Team
+
+
+---
+
+## Phase-Comb Test (255/256 + Primes)
+
+### NEW: Complementary Phase-Based Test
+
+**Added**: 2026-01-12
+
+The **CMB Phase-Comb Test** is a complementary forensic test that examines **phase coherence** in spherical harmonic coefficients a_ℓm, rather than power spectrum C_ℓ amplitudes.
+
+### Why a Separate Phase Test?
+
+The TT power spectrum comb test (described above) analyzes:
+- **C_ℓ** = ⟨|a_ℓm|²⟩_m (power, averaged over m)
+- **Discards**: Phase information φ_ℓm = arg(a_ℓm)
+
+The phase-comb test instead measures:
+- **Phase coherence** between modes separated by period P
+- **Tests**: Periodic structure in arg(a_ℓm)
+- **Independent**: A null in C_ℓ does NOT preclude a phase signal
+
+**Key Point**: These tests examine different aspects of the CMB. They are **complementary**, not redundant.
+
+### Data Requirements
+
+Unlike the TT spectrum test (which uses tabulated C_ℓ), the phase test requires:
+
+| TT Spectrum Test | Phase-Comb Test |
+|------------------|-----------------|
+| Text file with C_ℓ values | HEALPix map (FITS file) |
+| No healpy needed | **Requires healpy** |
+| Fast (~seconds) | Slower (~minutes to hours) |
+| Tests power spectrum | Tests phase structure |
+
+### Quick Start: Phase-Comb Test
+
+```bash
+# 1. Install healpy (REQUIRED)
+pip install healpy
+
+# 2. Download Planck CMB map and mask
+bash tools/data_download/download_planck_pr3_maps.sh
+
+# 3. Run phase-comb test
+python forensic_fingerprint/run_real_data_cmb_phase_comb.py \
+    --planck_map data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits \
+    --planck_mask data/planck_pr3/maps/raw/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits \
+    --mc_samples 10000
+
+# 4. Check results
+cat forensic_fingerprint/out/real_runs/cmb_phase_comb_*/combined_verdict.md
+```
+
+### Pre-Registered Periods (Phase Test)
+
+Same as TT spectrum test:
+- **Primary**: 255, 256 (Reed-Solomon related)
+- **Secondary**: 137, 139 (fine structure constant vicinity)
+
+### Interpreting Results
+
+**Phase Coherence R(P)**:
+- R(P) = 0: Random phases (no structure)
+- R(P) > 0: Phase-locking detected
+- Significance: p < 0.01 (candidate), p < 2.9e-7 (strong)
+
+**What if TT is null but phase is not?**
+
+This is **physically meaningful**:
+- TT null: No periodic oscillations in |a_ℓm|² averaged over m
+- Phase signal: Periodic structure in arg(a_ℓm) coherence
+- **Not contradictory**: Different information channels
+
+### Complete Documentation
+
+For full details on the phase-comb test:
+- **Runbook**: `RUNBOOK_PHASE_COMB.md` (complete usage guide)
+- **Theory**: `reports/PHASE_COMB_TEST_PLAN.md` (why TT was insensitive)
+- **Module**: `cmb_phase_comb/` (implementation)
+
+### Replication Protocol
+
+For court-grade phase-comb analysis:
+
+1. **Planck PR3** (primary):
+   ```bash
+   python run_real_data_cmb_phase_comb.py \
+       --planck_map data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits \
+       --planck_mask data/planck_pr3/maps/raw/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits \
+       --planck_manifest data/planck_pr3/maps/manifests/planck_maps_manifest.json \
+       --mc_samples 100000 --seed 42
+   ```
+
+2. **WMAP 9yr** (replication):
+   ```bash
+   python run_real_data_cmb_phase_comb.py \
+       --wmap_map data/wmap/maps/raw/wmap_ilc_9yr_v5.fits \
+       --wmap_mask data/wmap/maps/masks/wmap_analysis_mask_r9_9yr_v5.fits \
+       --mc_samples 100000 --seed 42
+   ```
+
+3. **Combined verdict**: If both show p < 0.01 for same period → **PASS**
+
+### Performance Notes
+
+Phase-comb test is more computationally intensive:
+- **Input**: Full HEALPix map (NSIDE=2048: ~50M pixels)
+- **Computation**: Spherical harmonic transform (map → a_ℓm)
+- **Surrogates**: Phase randomization for each trial
+
+**Typical runtimes** (NSIDE=2048, lmax=1500):
+- 10k surrogates: ~30 minutes
+- 100k surrogates: ~5 hours
+
+**Optimization**:
+- Reduce lmax: `--alm_lmax 1000` (faster)
+- Fewer surrogates for exploration: `--mc_samples 1000`
+- Use downgraded maps: NSIDE=1024 or 512
+
+---
+
