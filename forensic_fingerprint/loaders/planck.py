@@ -42,6 +42,88 @@ DL_CL_THRESHOLD = 1000.0
 DEFAULT_SIGMA_FRACTION = 0.01  # 1% of signal
 
 
+def auto_resolve_model_units(ell, model_values, obs_cl, obs_sigma, units_detected):
+    """
+    Automatically resolve model file units by trying both Dl and Cl interpretations.
+    
+    Computes chi2 for both interpretations and chooses the one closer to O(1..100).
+    
+    Parameters
+    ----------
+    ell : ndarray
+        Multipole moments
+    model_values : ndarray
+        Raw values from model file
+    obs_cl : ndarray
+        Observation data in Cl units
+    obs_sigma : ndarray
+        Observation uncertainties in Cl units
+    units_detected : str
+        Initial units detection ("Dl" or "Cl")
+    
+    Returns
+    -------
+    model_cl : ndarray
+        Model in Cl units (after applying correct conversion)
+    units_used : str
+        Units interpretation used ("Dl" or "Cl")
+    resolution_metadata : dict
+        Metadata about unit resolution process
+    """
+    # Interpretation 1: Model is already in Cl
+    model_cl_interp1 = model_values.copy()
+    
+    # Interpretation 2: Model is in Dl, convert to Cl
+    with np.errstate(divide='ignore', invalid='ignore'):
+        model_cl_interp2 = model_values * (2.0 * np.pi) / (ell * (ell + 1.0))
+        model_cl_interp2[ell == 0] = 0.0
+        model_cl_interp2[ell == 1] = 0.0
+    
+    # Compute quick chi2 for overlapping ell range
+    # Use only ell > 30 to avoid low-ell anomalies
+    mask = ell > 30
+    if not np.any(mask):
+        mask = np.ones(len(ell), dtype=bool)
+    
+    # Chi2 for interpretation 1 (Cl)
+    diff1 = (obs_cl[mask] - model_cl_interp1[mask]) / obs_sigma[mask]
+    chi2_per_dof_1 = np.sum(diff1**2) / len(diff1)
+    
+    # Chi2 for interpretation 2 (Dl -> Cl)
+    diff2 = (obs_cl[mask] - model_cl_interp2[mask]) / obs_sigma[mask]
+    chi2_per_dof_2 = np.sum(diff2**2) / len(diff2)
+    
+    # Choose interpretation that yields chi2/dof closer to reasonable range (0.1 to 100)
+    # Prefer interpretation with chi2/dof closest to 1.0
+    target_chi2 = 1.0
+    dist1 = abs(np.log10(chi2_per_dof_1) - np.log10(target_chi2))
+    dist2 = abs(np.log10(chi2_per_dof_2) - np.log10(target_chi2))
+    
+    if dist1 < dist2:
+        # Interpretation 1 (Cl) is better
+        model_cl = model_cl_interp1
+        units_used = "Cl"
+        chi2_chosen = chi2_per_dof_1
+    else:
+        # Interpretation 2 (Dl) is better
+        model_cl = model_cl_interp2
+        units_used = "Dl"
+        chi2_chosen = chi2_per_dof_2
+    
+    # Build resolution metadata
+    resolution_metadata = {
+        'units_detected': units_detected,
+        'units_used': units_used,
+        'resolution_method': 'chi2_precheck',
+        'chi2_dof_interp_cl': float(chi2_per_dof_1),
+        'chi2_dof_interp_dl': float(chi2_per_dof_2),
+        'chi2_dof_chosen': float(chi2_chosen),
+        'auto_resolution_applied': (units_used != units_detected)
+    }
+    
+    return model_cl, units_used, resolution_metadata
+
+
 def load_planck_data(
     obs_file,
     model_file=None,
@@ -124,24 +206,46 @@ def load_planck_data(
     # Load model if provided
     cl_model = None
     model_units_original = None
+    model_resolution_metadata = None
     if model_file is not None:
         model_file = Path(model_file)
         if not model_file.exists():
             warnings.warn(f"Model file not found: {model_file}. Proceeding without model.")
         else:
             if model_file.suffix.lower() == '.fits':
-                ell_model, cl_model, _, model_units_original = _load_planck_fits(model_file, spectrum_type=spectrum_type)
+                ell_model, model_values_raw, _, model_units_detected = _load_planck_fits(model_file, spectrum_type=spectrum_type)
             else:
-                ell_model, cl_model, _, model_units_original = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
+                # Load model but keep raw values for auto-resolution
+                ell_model, model_values_raw, _, model_units_detected = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
             
-            print(f"Model file units detected: {model_units_original}")
-            if model_units_original == "Dl":
-                print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
+            # Store originally detected units
+            model_units_original = model_units_detected
             
-            # Ensure ell arrays match
+            # Ensure ell arrays match before auto-resolution
             if not np.array_equal(ell_obs, ell_model):
                 warnings.warn("Multipole ranges in obs and model don't match. Interpolating model.")
-                cl_model = np.interp(ell_obs, ell_model, cl_model)
+                model_values_raw = np.interp(ell_obs, ell_model, model_values_raw)
+                ell_model = ell_obs
+            
+            # Apply auto-resolution to determine correct units interpretation
+            # This tries both Dl and Cl interpretations and chooses based on chi2
+            cl_model, model_units_used, model_resolution_metadata = auto_resolve_model_units(
+                ell_obs, model_values_raw, cl_obs, sigma_obs, model_units_detected
+            )
+            
+            # Log results
+            print(f"Model file units detected: {model_units_detected}")
+            if model_resolution_metadata['auto_resolution_applied']:
+                print(f"  ⚠ Auto-resolution applied: {model_units_detected} → {model_units_used}")
+                print(f"    chi2/dof (if Cl): {model_resolution_metadata['chi2_dof_interp_cl']:.2e}")
+                print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
+                print(f"    → Chose {model_units_used} (chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e})")
+            else:
+                print(f"  ✓ Units confirmed via chi2 precheck: {model_units_used}")
+                print(f"    chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e}")
+            
+            if model_units_used == "Dl":
+                print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
     
     # Load covariance if provided (using new covariance loader)
     cov = None
@@ -233,6 +337,12 @@ def load_planck_data(
     # Determine sigma method
     sigma_method = "from_file"  # Default
     
+    # Determine final model_units_used
+    if model_resolution_metadata is not None:
+        model_units_final = model_resolution_metadata['units_used']
+    else:
+        model_units_final = 'Cl'  # Default if no model
+    
     # Assemble data dictionary with units metadata
     data = {
         'ell': ell,
@@ -247,11 +357,13 @@ def load_planck_data(
         'spectrum_type': spectrum_type,
         'ell_range': (int(ell_min), int(ell_max)),
         'n_multipoles': len(ell),
-        # Units metadata (NEW)
+        # Units metadata (ENHANCED)
         'obs_units': obs_units,
         'model_units_original': model_units_original,
-        'model_units_used': 'Cl',  # Both obs and model converted to Cl
-        'sigma_method': sigma_method
+        'model_units_used': model_units_final,  # Final units after auto-resolution
+        'sigma_method': sigma_method,
+        # Resolution metadata (NEW)
+        'model_resolution_metadata': model_resolution_metadata
     }
     
     return data
@@ -262,8 +374,8 @@ def detect_units_from_header_or_magnitude(header_lines, ell, values):
     Detect whether data is in Dl or Cl units.
     
     Uses a two-stage approach:
-    1. Header-based detection: Look for "Dl" or "Cl" keywords in header
-    2. Magnitude-based detection: If median value > DL_CL_THRESHOLD for ell > 10, likely Dl
+    1. Header-based detection: Look for "Dl" or "Cl" keywords in header (with variant keywords)
+    2. Magnitude-based detection: If median/90th percentile > threshold for ell > 30, likely Dl
     
     Parameters
     ----------
@@ -279,24 +391,51 @@ def detect_units_from_header_or_magnitude(header_lines, ell, values):
     str
         "Dl" or "Cl"
     """
-    # Stage 1: Header-based detection
+    # Stage 1: Header-based detection with variant keywords
     for line in header_lines:
         line_upper = line.upper()
-        # Look for explicit Dl or Cl markers
-        # Common patterns: "Dl", "D_l", "D(l)", "C_l", "Cl", "C(l)"
-        if any(pattern in line_upper for pattern in ['DL', 'D_L', 'D(L)', 'D L']):
+        # Look for explicit Dl markers with variant keywords
+        # Extended patterns: "Dl", "D_l", "D_ell", "Dℓ", "D(l)", "DlTT", "DLTT"
+        dl_patterns = ['DL', 'D_L', 'D_ELL', 'DELL', 'D(L)', 'D L', 'DLTT']
+        if any(pattern in line_upper for pattern in dl_patterns):
             # Check it's not part of "dDl" (error column)
             if not any(pattern in line_upper for pattern in ['DDL', '-DL', '+DL']):
                 return "Dl"
-        if any(pattern in line_upper for pattern in ['CL', 'C_L', 'C(L)', 'C L']) and 'DL' not in line_upper:
+        
+        # Look for explicit Cl markers
+        # Patterns: "Cl", "C_l", "C_ell", "C(l)", "ClTT", "CLTT"
+        cl_patterns = ['C_L', 'C_ELL', 'CELL', 'C(L)', 'C L', 'CLTT']
+        # Only match if no DL in the line (to avoid false matches)
+        if any(pattern in line_upper for pattern in cl_patterns) and 'DL' not in line_upper:
+            return "Cl"
+        
+        # Special case: just "CL" but not preceded by D
+        if 'CL' in line_upper and 'DL' not in line_upper and 'DCL' not in line_upper:
             return "Cl"
     
-    # Stage 2: Magnitude-based detection
-    # Heuristic: if median value > DL_CL_THRESHOLD for ell > 10, likely Dl format
-    if len(ell) > 0 and np.any(ell > 10):
-        median_val = np.median(values[ell > 10]) if np.any(ell > 10) else np.median(values)
-        if median_val > DL_CL_THRESHOLD:
-            return "Dl"
+    # Stage 2: Magnitude-based detection with improved heuristics
+    # Use ell > 30 to avoid low-ell anomalies, check both median and 90th percentile
+    if len(ell) > 0:
+        # Filter to ell > 30 for more reliable magnitude check
+        ell_cutoff = 30
+        mask = ell > ell_cutoff
+        
+        if np.any(mask):
+            values_filtered = values[mask]
+            median_val = np.median(values_filtered)
+            percentile_90 = np.percentile(values_filtered, 90)
+            
+            # For typical TT spectrum:
+            # Dl at ell~200 is O(10^3), so median should be O(10^3)
+            # Cl at ell~200 is O(10^-1 to 1) after Dl->Cl conversion
+            # Use median OR 90th percentile > threshold
+            if median_val > DL_CL_THRESHOLD or percentile_90 > DL_CL_THRESHOLD:
+                return "Dl"
+        else:
+            # Fall back to checking all ell if no ell > 30
+            median_val = np.median(values)
+            if median_val > DL_CL_THRESHOLD:
+                return "Dl"
     
     # Default: assume Cl
     return "Cl"

@@ -890,6 +890,12 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
     parser.add_argument('--cov_cache', action='store_true',
                        help='Store computed whitening operator to output dir for reproducibility')
     
+    # Strict mode for court-grade analysis (NEW)
+    parser.add_argument('--strict', action='store_true', default=True,
+                       help='Enable strict mode: fail fast on units mismatch (default: enabled for court-grade)')
+    parser.add_argument('--no-strict', action='store_false', dest='strict',
+                       help='Disable strict mode: allow analysis to continue despite warnings (debug only)')
+    
     # Legacy compatibility
     parser.add_argument('--whiten_mode', type=str, 
                        choices=['none', 'diagonal', 'cov_diag', 'covariance'],
@@ -1118,6 +1124,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
                 whiten_mode=args.whiten,
                 cov_jitter=args.cov_jitter,
                 cov_method=args.cov_method,
+                strict=args.strict,
                 output_dir=None
             )
             
@@ -1273,6 +1280,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
                 whiten_mode=args.whiten,
                 cov_jitter=args.cov_jitter,
                 cov_method=args.cov_method,
+                strict=False,  # Disable strict mode for synthetic null trials
                 output_dir=None
             )
             
@@ -1430,6 +1438,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             whiten_mode=args.whiten,  # Use new flag
             cov_jitter=args.cov_jitter,
             cov_method=args.cov_method,
+            strict=args.strict,  # Enable strict mode for court-grade
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         
@@ -1438,6 +1447,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
         planck_results['model_units_original'] = planck_data.get('model_units_original', 'unknown')
         planck_results['model_units_used'] = planck_data.get('model_units_used', 'Cl')
         planck_results['sigma_method'] = planck_data.get('sigma_method', 'from_file')
+        planck_results['model_resolution_metadata'] = planck_data.get('model_resolution_metadata', None)
         
         # Add sanity checks metadata (from whitening_metadata)
         if 'whitening_metadata' in planck_results:
@@ -1490,6 +1500,7 @@ See forensic_fingerprint/RUNBOOK_REAL_DATA.md for complete documentation.
             whiten_mode=args.whiten,  # Use new flag
             cov_jitter=args.cov_jitter,
             cov_method=args.cov_method,
+            strict=args.strict,  # Enable strict mode for court-grade
             output_dir=None  # Don't auto-save, we'll do it manually
         )
         

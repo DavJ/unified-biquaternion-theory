@@ -213,7 +213,7 @@ def apply_ridge_regularization(cov, lambda_ridge=None, target_condition=1e8):
 
 
 def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagonal', 
-                     cov_jitter=1e-12, cov_method='cholesky'):
+                     cov_jitter=1e-12, cov_method='cholesky', strict=False):
     """
     Compute normalized residuals with optional whitening.
     
@@ -236,6 +236,9 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         Regularization jitter for covariance matrix (default: 1e-12)
     cov_method : str
         Covariance factorization method: 'cholesky' or 'eigh' (default: 'cholesky')
+    strict : bool
+        If True, raises RuntimeError on catastrophic units mismatch (court-grade mode).
+        Default False for backward compatibility.
     
     Returns
     -------
@@ -402,11 +405,11 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
         print()
         metadata['units_mismatch_warning'] = True
         
-        # COURT-GRADE MODE: Fail fast on catastrophic mismatch
-        if is_catastrophic:
+        # COURT-GRADE MODE: Fail fast on catastrophic mismatch (only if strict=True)
+        if is_catastrophic and strict:
             print()
             print("=" * 80)
-            print("ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (COURT-GRADE FAILURE)")
+            print("ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (STRICT MODE FAILURE)")
             print("=" * 80)
             print()
             print(f"χ²/dof = {chi2_per_dof:.2e} (threshold: {CATASTROPHIC_CHI2_THRESHOLD:.0e})")
@@ -426,20 +429,27 @@ def compute_residuals(ell, C_obs, C_model, sigma, cov=None, whiten_mode='diagona
             print("  4. Check that ℓ-ranges match")
             print()
             print("Court-grade analysis CANNOT proceed with this data configuration.")
+            print("Strict mode is enabled (--strict flag). Set strict=False to continue anyway.")
             print("=" * 80)
             print()
             
             raise RuntimeError(
-                f"Units mismatch sanity check failed: chi2/dof={chi2_per_dof:.2e}, "
-                f"median(|diff/sigma|)={median_abs_res:.2e}. "
+                f"Units mismatch sanity check failed in strict mode: "
+                f"chi2/dof={chi2_per_dof:.2e}, median(|diff/sigma|)={median_abs_res:.2e}. "
                 f"Observation and model files are incompatible. "
                 f"See output above for diagnostic guidance."
             )
+        elif is_catastrophic and not strict:
+            # Warn but don't fail if strict=False
+            print("⚠ STRICT MODE DISABLED: Continuing despite catastrophic chi2.")
+            print("  This run is for DEBUGGING ONLY and results are NOT court-grade.")
+            print()
     else:
         metadata['units_mismatch_warning'] = False
     
     metadata['chi2_per_dof'] = float(chi2_per_dof)
     metadata['sanity_checks_passed'] = not is_catastrophic
+    metadata['strict_mode'] = strict
     
     return residuals, metadata
 
@@ -759,7 +769,7 @@ def compute_p_value(observed_max, null_distribution):
 
 def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dataset_name="Unknown",
                       variant="C", n_mc_trials=None, random_seed=None, whiten_mode='diagonal',
-                      cov_jitter=1e-12, cov_method='cholesky'):
+                      cov_jitter=1e-12, cov_method='cholesky', strict=True):
     """
     Run full CMB comb test protocol.
     
@@ -792,6 +802,9 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         Regularization jitter for covariance matrix (default: 1e-12)
     cov_method : str, optional
         Covariance factorization method: 'cholesky' or 'eigh' (default: 'cholesky')
+    strict : bool, optional
+        Enable strict mode for court-grade runs. If True, raises RuntimeError on
+        catastrophic units mismatch. Default: True for real data.
     
     Returns
     -------
@@ -845,7 +858,8 @@ def run_cmb_comb_test(ell, C_obs, C_model, sigma, output_dir=None, cov=None, dat
         ell, C_obs, C_model, sigma, cov, 
         whiten_mode=whiten_mode_normalized,
         cov_jitter=cov_jitter,
-        cov_method=cov_method
+        cov_method=cov_method,
+        strict=strict
     )
     
     # Calibration test for covariance whitening

@@ -1969,15 +1969,43 @@ head -10 your_model_file.txt
 - **For observation vs. theory residuals**: Use a theoretical ΛCDM spectrum from CAMB/CLASS or a Planck "minimum-theory" file
 - **For noise-only analysis**: Use the TT-full observation file as both `--planck_obs` and `--planck_model` (residual will be zero)
 
-**4. Automatic units detection and conversion:**
+**4. Automatic units detection and conversion (Enhanced):**
 
-The loaders automatically detect units:
-- **Dl format**: Detected from header ("l Dl -dDl +dDl") or large magnitude values (median > 1000)
-- **Cl format**: Detected from smaller magnitude values (median < 1000)
+The loaders now use **robust automatic unit detection** with multiple strategies:
+
+1. **Header-based detection** (variant keywords):
+   - Dl keywords: `Dl`, `D_l`, `D_ell`, `Dℓ`, `DlTT`, `DLTT`
+   - Cl keywords: `Cl`, `C_l`, `C_ell`, `Cℓ`, `ClTT`, `CLTT`
+
+2. **Magnitude-based heuristics**:
+   - Uses ell > 30 to avoid low-ell anomalies
+   - Checks median and 90th percentile of values
+   - If median > 1000 μK² → Dl format (typical for TT spectrum)
+   - If median < 100 μK² → Cl format
+
+3. **Automatic unit resolution** (NEW in v0.5):
+   - If header is ambiguous, tries BOTH Dl and Cl interpretations
+   - Computes quick chi2 for each interpretation
+   - Chooses interpretation that yields chi2/dof closer to O(1..100)
+   - Records metadata:
+     ```json
+     {
+       "model_units_original": "Dl",
+       "model_units_used": "Cl",
+       "model_resolution_metadata": {
+         "units_detected": "Dl",
+         "units_used": "Cl",
+         "chi2_dof_interp_cl": 1.2,
+         "chi2_dof_interp_dl": 1.3e6,
+         "auto_resolution_applied": true
+       }
+     }
+     ```
 
 Both observation and model are **automatically converted to Cl units** before computing residuals. The conversion formula is:
 ```
 Cl = Dl × 2π / [ℓ(ℓ+1)]
+σ_Cl = σ_Dl × 2π / [ℓ(ℓ+1)]  (for symmetric errors)
 ```
 
 **5. Check results JSON for units metadata:**
@@ -1992,12 +2020,56 @@ jq '.obs_units, .model_units_original, .model_units_used, .sigma_method' planck_
 # "from_file" # Sigma loaded from file (or "symmetric_average" for TT-full)
 ```
 
-**6. Court-grade mode failure:**
+**6. Strict mode (Court-grade protection against false positives):**
+
+**NEW in v0.5**: Strict mode is **enabled by default** for real data runs to prevent false CANDIDATE results due to units mismatch.
 
 If χ²/dof > 1e6 or median(|diff/sigma|) > 1e4, the test will **fail immediately** with:
 ```
-ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (COURT-GRADE FAILURE)
-RuntimeError: Units mismatch sanity check failed
+ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (STRICT MODE FAILURE)
+RuntimeError: Units mismatch sanity check failed in strict mode
+```
+
+This is **intentional** and prevents:
+- Reporting CANDIDATE signals that are purely artifacts of units mismatch
+- Court-grade runs proceeding with invalid data
+- False positives from model/observation file errors
+
+**To override strict mode** (debugging only, NOT court-grade):
+```bash
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+  --planck_obs data/planck_pr3/raw/spectrum.txt \
+  --planck_model data/planck_pr3/raw/model.txt \
+  --no-strict  # Allows continuation despite warnings (DEBUG ONLY)
+```
+
+**When strict mode triggers**:
+1. Check that you're using the correct files (TT observation vs TT model)
+2. Verify both files are power spectra (not parameter/likelihood tables)
+3. Confirm auto-resolution chose the correct units
+4. Check chi2/dof in model_resolution_metadata
+
+**7. Strict mode is necessary because:**
+- Units errors can produce χ²/dof ~ 10^13, making p-values hit MC floor
+- This creates false CANDIDATE results (p ~ 1/N_trials) even for pure noise
+- Auto-resolution prevents most errors, but strict mode catches edge cases
+- Court-grade analysis MUST fail fast on invalid input
+
+**Example of strict mode in action:**
+```python
+# This will FAIL (good - prevents false positive):
+python forensic_fingerprint/run_real_data_cmb_comb.py \
+  --planck_obs data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt \
+  --planck_model data/planck_pr3/raw/wrong_units_model.txt  # Mismatched units
+
+# Output:
+# ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (STRICT MODE FAILURE)
+# χ²/dof = 1.2e+13 (threshold: 1e+06)
+# median(|diff/sigma|) = 3.5e+06 (threshold: 1e+04)
+# RuntimeError: Units mismatch sanity check failed in strict mode
+```
+
+**8. Court-grade mode failure:
 ```
 
 This is a safety mechanism to prevent running analysis on incompatible data. Fix the units/model issue before proceeding.
