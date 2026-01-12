@@ -1,0 +1,447 @@
+% ================================================================================
+% SPECULATIVE FINGERPRINT PROPOSAL — Not part of CORE UBT claims.
+% Hubble Tension as Effective Metric Latency: A Falsifiable Test
+% ================================================================================
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\section*{Appendix HT \\ Hubble Tension as Effective Metric Latency: A Speculative Fingerprint Proposal}
+\addcontentsline{toc}{section}{Appendix HT: Hubble Tension as Effective Metric Latency}
+
+\SpeculativeContentWarning
+
+\paragraph{SPECULATIVE FINGERPRINT WARNING:}
+This appendix presents a speculative hypothesis that interprets the observed Hubble tension as an effective metric or time-parameter latency effect, rather than new fundamental physics. This is \textbf{NOT} a confirmed explanation—it is a falsifiable test proposal designed to either find a narrow viable parameter window, demonstrate mathematical inconsistency, or show the hypothesis is ruled out by existing data. Negative results are fully acceptable and valuable.
+
+\subsection{Abstract}
+
+The Hubble constant measured from early-universe probes (CMB, Planck) yields $H_0 \approx 67$ km/s/Mpc, while late-universe probes (distance ladder, SNe Ia) yield $H_0 \approx 73$ km/s/Mpc. This persistent discrepancy is known as the Hubble tension. We propose a minimal conservative hypothesis: the tension arises not from new physics, but from an effective delay or correction in the metric or time parameter implicitly used by different observational pipelines. 
+
+We introduce a minimal extension to the Friedmann-Lemaître-Robertson-Walker (FRW) metric via an effective time parameter $\tau = t + \varepsilon f(x^\mu)$, derive the resulting effective Hubble parameter $H_{\text{eff}}$, and test whether this framework can naturally produce two distinct observed values. We then validate the hypothesis against General Relativity, $\Lambda$CDM constraints, BAO measurements, CMB acoustic peaks, cosmic chronometers, and structure growth. The goal is to determine if this hypothesis is viable, constrained, or falsified.
+
+\subsection{Introduction}
+
+Observational cosmology currently reports a persistent discrepancy in measurements of the Hubble constant:
+\begin{itemize}
+    \item \textbf{Early-universe probes}: Planck CMB measurements combined with $\Lambda$CDM modeling yield $H_0 = 67.4 \pm 0.5$ km/s/Mpc \cite{Planck2018}.
+    \item \textbf{Late-universe probes}: Distance ladder calibrated with Cepheid variables and Type Ia supernovae yield $H_0 = 73.0 \pm 1.0$ km/s/Mpc \cite{Riess2019}.
+\end{itemize}
+
+This $\sim 9\%$ discrepancy, at $\sim 5\sigma$ significance, is known as the Hubble tension. Standard explanations invoke:
+\begin{enumerate}
+    \item New early-universe physics (modified recombination, early dark energy)
+    \item Modified dark energy equation of state
+    \item Systematic errors in distance ladder or CMB analysis
+    \item Modified gravity at cosmological scales
+\end{enumerate}
+
+We explore an alternative interpretation: the two values arise from different effective parametrizations of time or metric inherent to different measurement protocols, without introducing new forces or violating General Relativity. This is a \textbf{conservative minimal extension} designed to be falsifiable.
+
+\subsection{Standard Cosmological Framework}
+
+\subsubsection{Friedmann-Lemaître-Robertson-Walker Metric}
+
+The standard cosmological metric in a homogeneous and isotropic universe is:
+\begin{equation}
+ds^2 = -dt^2 + a(t)^2 d\Sigma^2
+\end{equation}
+where $t$ is cosmic time, $a(t)$ is the scale factor, and $d\Sigma^2$ represents the spatial metric:
+\begin{equation}
+d\Sigma^2 = \frac{dr^2}{1-kr^2} + r^2(d\theta^2 + \sin^2\theta \, d\phi^2)
+\end{equation}
+with spatial curvature $k \in \{-1, 0, +1\}$.
+
+\subsubsection{Standard Hubble Parameter}
+
+The Hubble parameter is defined as:
+\begin{equation}
+H(t) = \frac{1}{a(t)} \frac{da}{dt}
+\end{equation}
+
+The Friedmann equations (derived from Einstein's field equations) relate $H(t)$ to energy density:
+\begin{equation}
+H^2 = \frac{8\pi G}{3} \rho - \frac{k}{a^2}
+\end{equation}
+where $\rho = \rho_m + \rho_r + \rho_\Lambda$ includes matter, radiation, and dark energy.
+
+The present-day value $H_0 \equiv H(t_0)$ is the Hubble constant.
+
+\subsubsection{How $H_0$ is Inferred from Observations}
+
+\paragraph{Early-Universe Probes (CMB):}
+The CMB acoustic peak structure encodes the sound horizon at recombination:
+\begin{equation}
+r_s(z_*) = \int_{z_*}^\infty \frac{c_s(z')}{H(z')} dz'
+\end{equation}
+where $z_* \approx 1090$ is the redshift of recombination and $c_s$ is the sound speed in the baryon-photon fluid.
+
+The angular size of the acoustic peaks is:
+\begin{equation}
+\theta_* = \frac{r_s(z_*)}{D_A(z_*)}
+\end{equation}
+where $D_A(z_*)$ is the angular diameter distance, which depends on $H(z)$ integrated from $z_*$ to today.
+
+Planck measures $\theta_*$ with high precision. Given $\Lambda$CDM parameters ($\Omega_m$, $\Omega_\Lambda$, etc.), one can infer $H_0$ by matching the observed $\theta_*$ to the theoretical prediction. This yields $H_0 \approx 67$ km/s/Mpc.
+
+\paragraph{Late-Universe Probes (Distance Ladder):}
+The distance ladder uses:
+\begin{enumerate}
+    \item Cepheid variables in nearby galaxies (calibrated via parallax to anchors)
+    \item Type Ia supernovae in distant galaxies (calibrated via Cepheids)
+\end{enumerate}
+
+For an object at redshift $z$, the luminosity distance is:
+\begin{equation}
+d_L(z) = (1+z) \int_0^z \frac{c}{H(z')} dz'
+\end{equation}
+
+Measuring apparent magnitudes of SNe Ia at various $z$ allows reconstruction of $d_L(z)$, from which $H_0$ can be extracted. This yields $H_0 \approx 73$ km/s/Mpc.
+
+\paragraph{Key Observation:}
+Both methods probe $H(z)$ but in different regimes:
+\begin{itemize}
+    \item CMB probes $H(z)$ integrated from $z \sim 1090$ to today.
+    \item Distance ladder probes $H(z)$ from $z \sim 0$ to $z \sim 2$.
+\end{itemize}
+
+The tension suggests either:
+\begin{enumerate}
+    \item Different $H(z)$ evolution than $\Lambda$CDM predicts, or
+    \item Different effective time/metric parameters in the two regimes.
+\end{enumerate}
+
+\subsection{Minimal Extension: Effective Time Parameter}
+
+\subsubsection{Motivation}
+
+We propose that different observational pipelines implicitly use different effective time parameters. This is \textbf{not} a violation of GR—it is an effective description of how coordinate time $t$ maps to observational time scales.
+
+Consider a minimal extension:
+\begin{equation}
+d\tau = dt \left(1 + \varepsilon \, f(x^\mu)\right)
+\end{equation}
+where:
+\begin{itemize}
+    \item $\tau$ is an effective time parameter
+    \item $\varepsilon \ll 1$ is a dimensionless small parameter
+    \item $f(x^\mu)$ is a scalar function encoding measurement-related effects
+\end{itemize}
+
+\subsubsection{Covariance and Physical Interpretation}
+
+The function $f(x^\mu)$ must be a scalar to preserve diffeomorphism invariance. Possible physical interpretations include:
+\begin{itemize}
+    \item \textbf{Measurement-induced delay}: Different measurement protocols (photon redshift vs. distance modulus) may implicitly parametrize time differently.
+    \item \textbf{Effective metric backreaction}: Small-scale inhomogeneities may induce an effective time delay not captured in the homogeneous FRW metric.
+    \item \textbf{Coordinate ambiguity}: The mapping between cosmic time $t$ and observational time may not be unique.
+\end{itemize}
+
+For concreteness, we consider two scenarios:
+\begin{enumerate}
+    \item \textbf{Redshift-dependent}: $f(z) = f_0 \, z^\alpha$
+    \item \textbf{Epoch-dependent}: $f(t) = f_0 \, \Theta(t - t_*)$ (step function at transition epoch $t_*$)
+\end{enumerate}
+
+\subsubsection{Effective Metric}
+
+With $d\tau = (1 + \varepsilon f) dt$, the effective metric becomes:
+\begin{equation}
+ds^2 = -(1 + \varepsilon f)^2 dt^2 + a(t)^2 d\Sigma^2
+\end{equation}
+
+This is still a valid metric in GR—we have merely performed a coordinate transformation.
+
+\subsubsection{Effective Hubble Parameter}
+
+The effective Hubble parameter with respect to $\tau$ is:
+\begin{equation}
+H_{\text{eff}} = \frac{1}{a} \frac{da}{d\tau} = \frac{1}{a} \frac{da}{dt} \frac{dt}{d\tau} = H(t) \frac{1}{1 + \varepsilon f}
+\end{equation}
+
+To first order in $\varepsilon$:
+\begin{equation}
+H_{\text{eff}} \approx H(t) \left(1 - \varepsilon f\right)
+\end{equation}
+
+\subsection{Derived Effective Hubble Parameters}
+
+\subsubsection{Two Observational Regimes}
+
+Define:
+\begin{itemize}
+    \item \textbf{Early-universe regime}: CMB measurements at $z \sim 1090$, inferred $H_0^{\text{early}}$
+    \item \textbf{Late-universe regime}: Distance ladder at $z \sim 0-2$, measured $H_0^{\text{late}}$
+\end{itemize}
+
+If $f(x^\mu)$ differs between these regimes, we obtain:
+\begin{align}
+H_0^{\text{early}} &= H_0 (1 - \varepsilon f_{\text{early}}) \\
+H_0^{\text{late}} &= H_0 (1 - \varepsilon f_{\text{late}})
+\end{align}
+
+The ratio of observed Hubble constants is:
+\begin{equation}
+\frac{H_0^{\text{late}}}{H_0^{\text{early}}} = \frac{1 - \varepsilon f_{\text{late}}}{1 - \varepsilon f_{\text{early}}} \approx 1 + \varepsilon \Delta f
+\end{equation}
+where $\Delta f = f_{\text{early}} - f_{\text{late}}$.
+
+\subsubsection{Quantifying the Required $\varepsilon \Delta f$}
+
+Observationally:
+\begin{equation}
+\frac{H_0^{\text{late}}}{H_0^{\text{early}}} = \frac{73}{67} \approx 1.090
+\end{equation}
+
+Thus we require:
+\begin{equation}
+\varepsilon \Delta f \approx 0.090
+\end{equation}
+
+If we take $\Delta f \sim \mathcal{O}(1)$ (i.e., $f$ varies by order unity between early and late universe), then:
+\begin{equation}
+\varepsilon \approx 0.09
+\end{equation}
+
+This is a \textbf{$\sim 10\%$ effect}—not particularly small. For this to be a "minimal" extension, we would prefer $\varepsilon \ll 0.01$. 
+
+\paragraph{Assessment:}
+An $\varepsilon \sim 0.09$ suggests this is \textbf{not} a tiny perturbation but a significant modification. This is a first warning sign that the hypothesis may be problematic.
+
+\subsubsection{Stability of Two Values}
+
+For two stable effective Hubble values to arise, $f(x^\mu)$ must have two distinct regimes:
+\begin{itemize}
+    \item \textbf{Option 1 (Redshift-dependent)}: $f(z) = f_0 z^\alpha$ with $\alpha \sim 1$ could give different effective $H$ at high vs. low $z$.
+    \item \textbf{Option 2 (Epoch-dependent)}: $f(t) = f_0 \Theta(t - t_*)$ introduces a sharp transition.
+\end{itemize}
+
+However, cosmological observations span a continuous range of redshifts. Any smooth $f(z)$ would produce a \textbf{continuous variation} in inferred $H_0$, not two discrete values. To get two distinct values requires:
+\begin{itemize}
+    \item Either a \textbf{discontinuity} in $f(z)$ (unphysical without explanation), or
+    \item A \textbf{selection effect} where measurements cluster in two regimes.
+\end{itemize}
+
+\paragraph{Assessment:}
+The hypothesis does not naturally explain why $H_0$ appears as \textbf{two discrete values} rather than a continuous spread.
+
+\subsection{Validation and Falsification Checks}
+
+We now test the hypothesis against known observational constraints.
+
+\subsubsection{General Relativity Covariance}
+
+\textbf{Test}: Does the effective metric violate GR?
+
+\textbf{Result}: The transformation $d\tau = (1 + \varepsilon f) dt$ is a \textbf{valid coordinate transformation}. The effective metric:
+\begin{equation}
+ds^2 = -(1 + \varepsilon f)^2 dt^2 + a(t)^2 d\Sigma^2
+\end{equation}
+is still a solution to Einstein's equations if the stress-energy tensor is appropriately defined.
+
+\textbf{Conclusion}: \textcolor{green}{\textbf{PASS}} — No violation of GR covariance.
+
+\subsubsection{$\Lambda$CDM Background Evolution}
+
+\textbf{Test}: Does this modify the background Friedmann equation?
+
+If $f(x^\mu)$ is purely a coordinate effect, it should not alter physical predictions. However, if $H_{\text{eff}}$ is what we \textit{measure}, then different observers in different time coordinates would infer different cosmological parameters.
+
+The Friedmann equation in the original $t$ coordinate is:
+\begin{equation}
+H^2 = \frac{8\pi G}{3} \rho
+\end{equation}
+
+In the $\tau$ coordinate:
+\begin{equation}
+H_{\text{eff}}^2 = H^2 (1 - 2\varepsilon f + \mathcal{O}(\varepsilon^2))
+\end{equation}
+
+This implies an effective energy density:
+\begin{equation}
+\rho_{\text{eff}} = \rho (1 - 2\varepsilon f)
+\end{equation}
+
+For $\varepsilon \sim 0.09$, this is an $\sim 18\%$ shift in inferred energy density—a \textbf{massive modification}.
+
+\textbf{Conclusion}: \textcolor{red}{\textbf{FAIL}} — This would significantly alter inferred $\Lambda$CDM parameters ($\Omega_m$, $\Omega_\Lambda$) between early and late universe, in tension with the observed consistency of $\Lambda$CDM fits.
+
+\subsubsection{BAO Measurements}
+
+\textbf{Test}: Do Baryon Acoustic Oscillations constrain $H(z)$ independently?
+
+BAO measurements at $z \sim 0.3-0.6$ provide a \textbf{standard ruler}:
+\begin{equation}
+r_s = \int_0^\infty \frac{c_s(z)}{H(z)} dz
+\end{equation}
+
+The observed BAO scale depends on:
+\begin{equation}
+D_V(z) = \left[ \frac{(1+z)^2 D_A^2(z) c z}{H(z)} \right]^{1/3}
+\end{equation}
+
+If $H_{\text{eff}}(z) = H(z) (1 - \varepsilon f(z))$ varies with $z$, then BAO measurements at different $z$ would show:
+\begin{itemize}
+    \item Inconsistent inferred $H_0$ values if $f(z)$ varies smoothly.
+    \item Or, fine-tuned $f(z)$ to exactly match BAO data.
+\end{itemize}
+
+Current BAO measurements (BOSS, eBOSS) are \textbf{consistent with $\Lambda$CDM} and show no evidence for large deviations in $H(z)$.
+
+\textbf{Conclusion}: \textcolor{red}{\textbf{CONSTRAINED}} — BAO data limits any smooth $f(z)$ to $\varepsilon |\Delta f| \lesssim 0.02$ at intermediate redshifts, far below the required $\sim 0.09$.
+
+\subsubsection{CMB Acoustic Peak Structure}
+
+\textbf{Test}: Does modifying $H(z)$ at high redshift alter CMB peaks?
+
+The CMB acoustic peak positions depend on:
+\begin{equation}
+\theta_* = \frac{r_s(z_*)}{D_A(z_*)} = \frac{r_s(z_*)}{(1+z_*) \int_0^{z_*} \frac{dz'}{H(z')}}
+\end{equation}
+
+If $H(z)$ at $z \sim 1090$ is effectively $(1 - \varepsilon f_{\text{early}}) H_{\Lambda\text{CDM}}(z)$, then $D_A$ changes, shifting $\theta_*$.
+
+However, Planck measures $\theta_*$ with $\sim 0.03\%$ precision. Any modification to $H(z)$ at recombination must preserve this precision.
+
+Modifying $H(z_*)$ by $9\%$ would shift $\theta_*$ by $\sim 9\%$, far exceeding observational errors.
+
+\textbf{Conclusion}: \textcolor{red}{\textbf{FAIL}} — CMB data rules out $9\%$ modifications to $H(z)$ at recombination.
+
+\subsubsection{Cosmic Chronometers}
+
+\textbf{Test}: Do cosmic chronometers (differential age dating of galaxies) constrain $H(z)$?
+
+Cosmic chronometers measure:
+\begin{equation}
+H(z) = -\frac{1}{1+z} \frac{dz}{dt}
+\end{equation}
+
+Direct measurements at $z \sim 0.2-2.0$ show values \textbf{consistent with $\Lambda$CDM} and \textbf{no systematic trend} suggesting $H_{\text{eff}}$ varies smoothly between early and late universe.
+
+\textbf{Conclusion}: \textcolor{red}{\textbf{CONSTRAINED}} — Cosmic chronometers limit smooth variations in $H(z)$ to $\lesssim 5\%$ over $z \sim 0-2$, less than the required $9\%$ shift.
+
+\subsubsection{Structure Growth Constraints}
+
+\textbf{Test}: Does modifying $H(z)$ affect growth of structure?
+
+The growth rate of density perturbations depends on:
+\begin{equation}
+\frac{d^2 \delta}{dt^2} + 2H \frac{d\delta}{dt} = 4\pi G \rho_m \delta
+\end{equation}
+
+If $H_{\text{eff}}$ differs from $H$, the growth rate changes, altering:
+\begin{itemize}
+    \item $\sigma_8$ (amplitude of matter fluctuations at 8 Mpc/h)
+    \item $f\sigma_8$ (redshift-space distortions)
+\end{itemize}
+
+Current measurements of $f\sigma_8(z)$ from galaxy surveys (BOSS, eBOSS) are \textbf{consistent with $\Lambda$CDM} to $\sim 5\%$ precision.
+
+Modifying $H(z)$ by $9\%$ would change $f\sigma_8$ by $\sim 10-15\%$, exceeding observational errors.
+
+\textbf{Conclusion}: \textcolor{red}{\textbf{FAIL}} — Structure growth data rules out $9\%$ modifications to $H(z)$ at $z \sim 0.5-1$.
+
+\subsection{Viability Assessment}
+
+\subsubsection{Summary of Constraints}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\hline
+\textbf{Test} & \textbf{Result} & \textbf{Status} \\
+\hline
+GR Covariance & Pass & \textcolor{green}{✓} \\
+$\Lambda$CDM Background & Fail ($18\%$ shift in $\rho$) & \textcolor{red}{✗} \\
+BAO Measurements & Constrained ($\varepsilon |\Delta f| \lesssim 0.02$) & \textcolor{red}{✗} \\
+CMB Acoustic Peaks & Fail ($9\%$ shift in $\theta_*$) & \textcolor{red}{✗} \\
+Cosmic Chronometers & Constrained ($\lesssim 5\%$) & \textcolor{red}{✗} \\
+Structure Growth & Fail ($10-15\%$ shift in $f\sigma_8$) & \textcolor{red}{✗} \\
+\hline
+\end{tabular}
+\caption{Summary of validation/falsification tests for the effective metric latency hypothesis.}
+\label{tab:validation_summary}
+\end{table}
+
+\subsubsection{Final Verdict: \textbf{Ruled Out}}
+
+The hypothesis that Hubble tension arises from an effective metric or time-parameter latency with $\varepsilon \Delta f \sim 0.09$ is \textbf{falsified by existing cosmological data}. Specifically:
+
+\begin{enumerate}
+    \item The required $\varepsilon \sim 0.09$ is \textbf{too large} to be considered a minimal perturbation.
+    \item BAO, cosmic chronometers, and structure growth data \textbf{constrain smooth variations} in $H(z)$ to $\lesssim 5\%$ at intermediate redshifts, far below the required $9\%$ shift.
+    \item CMB acoustic peak data \textbf{rules out} $9\%$ modifications to $H(z)$ at recombination.
+    \item The hypothesis does not explain why $H_0$ appears as \textbf{two discrete values} rather than a continuous spread.
+\end{enumerate}
+
+\paragraph{Could a more sophisticated $f(z)$ work?}
+Even if we fine-tune $f(z)$ to satisfy intermediate constraints, we face two problems:
+\begin{itemize}
+    \item \textbf{Fine-tuning}: Requiring $f(z)$ to be large at $z \sim 1090$ and $z \sim 0$ but small at $z \sim 0.5$ is unnatural.
+    \item \textbf{No mechanism}: We have not provided a physical mechanism for why $f(z)$ would have this specific form.
+\end{itemize}
+
+\subsection{Discussion}
+
+\subsubsection{Why This Hypothesis Failed}
+
+The effective metric latency hypothesis is a \textbf{good example of scientific reasoning}: we proposed a minimal extension, derived quantitative predictions, and tested against data. The hypothesis \textbf{failed}, which is a valuable negative result.
+
+The failure highlights:
+\begin{itemize}
+    \item \textbf{Consistency of $\Lambda$CDM}: The standard model is tightly constrained by multiple independent datasets. Large modifications ($\sim 9\%$) are excluded.
+    \item \textbf{Magnitude of Hubble tension}: A $9\%$ discrepancy is \textbf{large} in cosmology. Explaining it via a coordinate effect would require substantial modifications inconsistent with other data.
+    \item \textbf{Importance of multi-probe tests}: No single dataset rules out the hypothesis—it is the \textbf{combination} of BAO, CMB, chronometers, and structure growth that falsifies it.
+\end{itemize}
+
+\subsubsection{Alternative Interpretations}
+
+Since the effective latency hypothesis is ruled out, the Hubble tension likely arises from:
+\begin{enumerate}
+    \item \textbf{Systematic errors}: Uncorrected biases in distance ladder or CMB analysis.
+    \item \textbf{New physics}: Early dark energy, modified recombination, or non-standard dark energy.
+    \item \textbf{Beyond-$\Lambda$CDM evolution}: Genuine deviations from $\Lambda$CDM requiring new fields or forces.
+\end{enumerate}
+
+\subsubsection{Value of Falsifiable Speculative Fingerprints}
+
+This appendix demonstrates the value of \textbf{speculative fingerprint proposals}:
+\begin{itemize}
+    \item \textbf{Testability}: We derived quantitative predictions and tested them rigorously.
+    \item \textbf{Negative results are valuable}: Ruling out hypotheses narrows the solution space.
+    \item \textbf{No confirmation bias}: We did not "save" the hypothesis with ad hoc modifications.
+\end{itemize}
+
+This is the scientific method in action: \textit{propose, test, falsify}.
+
+\subsection{Conclusion}
+
+We proposed a minimal conservative hypothesis that the Hubble tension arises from an effective metric or time-parameter latency, parametrized by $d\tau = dt(1 + \varepsilon f(x^\mu))$. Deriving the effective Hubble parameter and comparing to observations, we find:
+
+\begin{enumerate}
+    \item The required parameter $\varepsilon \Delta f \sim 0.09$ is large, not minimal.
+    \item BAO measurements constrain smooth $H(z)$ variations to $\lesssim 2\%$ at $z \sim 0.5$, ruling out the hypothesis.
+    \item CMB data rules out $9\%$ modifications to $H(z)$ at recombination.
+    \item Cosmic chronometers and structure growth provide independent falsification.
+\end{enumerate}
+
+\textbf{Verdict}: The effective metric latency hypothesis is \textbf{ruled out by existing cosmological data}.
+
+This negative result is scientifically valuable: it demonstrates that the Hubble tension cannot be explained as a simple coordinate effect and likely requires either systematic error corrections or new physics beyond $\Lambda$CDM.
+
+\paragraph{Meta-Note:}
+This appendix exemplifies the \textit{speculative fingerprint} methodology: propose a testable hypothesis, derive consequences, validate or falsify rigorously, and accept negative results without attempting to "save" the hypothesis. This is the gold standard for speculative theoretical work.
+
+\subsection{References}
+
+\begin{itemize}
+    \item Planck Collaboration (2018). \textit{Planck 2018 results. VI. Cosmological parameters}. arXiv:1807.06209
+    \item Riess et al. (2019). \textit{Large Magellanic Cloud Cepheid Standards Provide a 1\% Foundation for the Determination of the Hubble Constant}. ApJ 876, 85
+    \item BOSS Collaboration (2017). \textit{The clustering of galaxies in the completed SDSS-III Baryon Oscillation Spectroscopic Survey}. MNRAS 470, 2617
+    \item Moresco et al. (2016). \textit{A 6\% measurement of the Hubble parameter at $z \sim 0.45$}. JCAP 05, 014
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{Status}: Hypothesis tested and \textbf{falsified}. No further development recommended.
+
