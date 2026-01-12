@@ -157,7 +157,18 @@ def test_qed_limit_continuity():
     for psi in psi_values:
         Pi_CT = Pi_CT_finite_two_loop(mu, psi)
         diff = abs(Pi_CT - Pi_QED_target)
-        R_UBT = Pi_CT / Pi_QED_target if Pi_QED_target != 0 else 1.0
+        
+        # Guard against division by zero
+        if abs(Pi_QED_target) > 1e-15:
+            R_UBT = Pi_CT / Pi_QED_target
+        else:
+            R_UBT = 1.0
+        
+        # Assert no NaN or inf in results
+        assert not np.isnan(Pi_CT), f"Pi_CT is NaN at ψ={psi}"
+        assert not np.isinf(Pi_CT), f"Pi_CT is inf at ψ={psi}"
+        assert not np.isnan(R_UBT), f"R_UBT is NaN at ψ={psi}"
+        assert not np.isinf(R_UBT), f"R_UBT is inf at ψ={psi}"
         
         max_diff = max(max_diff, diff)
         
@@ -198,8 +209,17 @@ def test_R_UBT_equals_one():
         Pi_CT = Pi_CT_finite_two_loop(mu, psi)
         Pi_QED = Pi_QED_finite_two_loop(mu)
         
-        R_UBT = Pi_CT / Pi_QED if Pi_QED != 0 else 1.0
+        # Guard against division by zero
+        if abs(Pi_QED) > 1e-15:
+            R_UBT = Pi_CT / Pi_QED
+        else:
+            R_UBT = 1.0
+        
         deviation = abs(R_UBT - 1.0)
+        
+        # Assert no NaN or inf
+        assert not np.isnan(R_UBT), f"R_UBT is NaN at ψ={psi}"
+        assert not np.isinf(R_UBT), f"R_UBT is inf at ψ={psi}"
         
         print(f"{psi:<12.6f} {R_UBT:<15.10f} {deviation:<20.10e}")
     
@@ -256,7 +276,18 @@ def test_scheme_independence():
     for mu in mu_values:
         Pi_CT = Pi_CT_finite_two_loop(mu, psi)
         Pi_QED = Pi_QED_finite_two_loop(mu)
+        
+        # Guard against division by zero and NaN
+        if abs(Pi_QED) < 1e-15:
+            # Skip or use a different scale
+            continue
+        
         R_UBT = Pi_CT / Pi_QED
+        
+        # Assert no NaN or inf
+        assert not np.isnan(R_UBT), f"R_UBT is NaN at μ={mu}"
+        assert not np.isinf(R_UBT), f"R_UBT is inf at μ={mu}"
+        
         R_UBT_values.append(R_UBT)
         
         if len(R_UBT_values) > 1:
@@ -270,6 +301,8 @@ def test_scheme_independence():
     
     # Check that R_UBT is approximately constant across μ scales
     # (small variations are OK due to surrogate model, but trend should be clear)
+    assert len(R_UBT_values) > 0, "No valid R_UBT values computed"
+    
     max_variation = max(R_UBT_values) - min(R_UBT_values)
     print(f"Maximum variation: {max_variation:.10e}")
     print()
