@@ -66,9 +66,12 @@ These appendices were separated from the main consolidation project because they
 - `appendix_I_philosophical_coherence.tex` - Philosophical foundations (includes consciousness speculation)
 - `appendix_J_rotating_spacetime_ctc.tex` - Closed timelike curves in rotating spacetimes
 - `appendix_P2_multiverse_projection.tex` - Multiverse interpretation of biquaternionic dimensions
+- `appendix_PX_planck_validation.tex` - Planck 2018 parameter mapping and falsifiability tests
 - `appendix_S_speculative_notes.tex` - Collection of speculative ideas and work-in-progress
 - `ubt_appendix_12_psychons.tex` - Original psychon appendix from UBT
 - `ubt_appendix_13_psi_resonator.tex` - Theta/Psi resonator experimental proposals
+
+**Note on Hubble Tension Appendix**: This appendix (`appendix_HT_hubble_tension_metric_latency.tex`) demonstrates the **speculative fingerprint methodology** in action. It rigorously tests whether the Hubble tension could arise from an effective metric latency, derives quantitative predictions, and shows the hypothesis is **falsified by existing data**. This is a positive example of scientific reasoning: propose → test → falsify → accept negative result.
 
 ### 3. Consciousness Model Solutions and Priorities
 
