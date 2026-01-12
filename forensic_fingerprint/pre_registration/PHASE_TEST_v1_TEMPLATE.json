@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "test_name": "CMB Phase Coherence Test v1",
+  "description": "Court-grade confirmatory test for periodic phase-locking in CMB spherical harmonics",
+  "pre_registration_date": "2026-01-12T00:00:00Z",
+  
+  "dataset": {
+    "description": "Planck PR3 Temperature Map (full-mission)",
+    "alm_file": "data/planck_pr3/alm/planck_pr3_temperature_alm.fits",
+    "alm_sha256": "INSERT_SHA256_HASH_HERE",
+    "component_separation": "Commander-Ruler",
+    "release": "Planck 2018 PR3"
+  },
+  
+  "lmax": 2048,
+  "ell_min": 30,
+  "ell_max": 1500,
+  
+  "periods": [255, 256],
+  "periods_rationale": "255 = byte-like structure (2^8 - 1), 256 = pure power of 2",
+  
+  "statistic": "phase_coherence_R",
+  "statistic_definition": "R(P) = |mean over (ℓ,m) of exp(i Δφ_ℓm(P))| where Δφ_ℓm(P) = arg(a_{ℓ+P,m}) - arg(a_ℓm)",
+  
+  "null_model": "phase_randomized_surrogates",
+  "null_model_description": "Randomize phases uniformly in [0, 2π) while preserving |a_ℓm| and thus C_ℓ. Enforce reality constraints: a_ℓ,-m = (-1)^m conj(a_ℓm), a_ℓ,0 real.",
+  
+  "n_surrogates": 10000,
+  "seed": 42,
+  
+  "significance_threshold": 0.01,
+  "significance_threshold_description": "p < 0.01 for PASS, p ≥ 0.01 for NULL",
+  
+  "multiple_testing_correction": "none",
+  "multiple_testing_rationale": "Only 2 pre-registered periods, no correction needed",
+  
+  "replication_requirement": "Signal must appear in at least 2 independent datasets (e.g., E-mode polarization, different component separation) with consistent p-values",
+  
+  "notes": [
+    "This pre-registration locks all analysis parameters before examining data.",
+    "No modifications allowed after pre-registration date.",
+    "Dataset SHA-256 must be computed and verified before running test.",
+    "Results reported as PASS/NULL/INCONCLUSIVE only."
+  ]
+}
