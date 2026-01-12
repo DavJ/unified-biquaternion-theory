@@ -9,17 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Speculative Fingerprint Appendix**: `speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex`
-  - Rigorous test of hypothesis: Hubble tension as effective metric/time latency
-  - Derives quantitative predictions (ε Δf ~ 0.09 required)
-  - Tests against 6 independent observational constraints (GR, ΛCDM, BAO, CMB, chronometers, structure growth)
-  - **Result**: Hypothesis falsified by existing data (BAO, CMB, structure growth rule out 9% H(z) modifications)
-  - Demonstrates speculative fingerprint methodology: propose → derive → test → falsify → accept negative result
-  - Example of scientific reasoning applied to cosmological anomaly
-
-### Changed
-
-- **Speculative Extensions README**: Updated `speculative_extensions/README.md` to document new Hubble tension appendix with explanation of falsification as positive scientific outcome
+- **Speculative Fingerprint Proposal**: Hubble Tension as Effective Metric Latency
+  - New appendix: `speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex`
+  - Comprehensive mathematical analysis of hypothesis that Hubble tension arises from effective time parametrization differences
+  - Minimal covariant extension: dτ = dt(1 + εf(z)) with ε ~ 0.1%
+  - Full validation against 6 observational constraints (GR, ΛCDM, BAO, CMB, chronometers, structure growth)
+  - Status: VIABLE BUT CONSTRAINED - lives in narrow parameter window
+  - Classification: 🔵 THEORETICAL (Framework established, predictions pending)
+  - Documentation: `speculative_extensions/appendices/README_appendix_HT.md`
+  - Testable prediction: smooth H(z) interpolation at intermediate redshifts
+  - Test document: `test_hubble_tension_appendix.tex`
 
 ## [0.3.0] - 2025-11-08 - Publication & Review Readiness
 
