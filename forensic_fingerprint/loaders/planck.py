@@ -260,20 +260,21 @@ def load_planck_data(
                 print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
                 print(f"  This indicates likely wrong model file or wrong column selected.")
                 print(f"  Results will be marked as INVALID.")
-            
-            # Log results
-            print(f"Model file units detected: {model_units_detected}")
-            if model_resolution_metadata['auto_resolution_applied']:
-                print(f"  ⚠ Auto-resolution applied: {model_units_detected} → {model_units_used}")
-                print(f"    chi2/dof (if Cl): {model_resolution_metadata['chi2_dof_interp_cl']:.2e}")
-                print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
-                print(f"    → Chose {model_units_used} (chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e})")
+                # Don't proceed with normal logging for failed resolution
             else:
-                print(f"  ✓ Units confirmed via chi2 precheck: {model_units_used}")
-                print(f"    chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e}")
-            
-            if model_units_used == "Dl":
-                print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
+                # Log results for successful resolution
+                print(f"Model file units detected: {model_units_detected}")
+                if model_resolution_metadata.get('auto_resolution_applied', False):
+                    print(f"  ⚠ Auto-resolution applied: {model_units_detected} → {model_units_used}")
+                    print(f"    chi2/dof (if Cl): {model_resolution_metadata['chi2_dof_interp_cl']:.2e}")
+                    print(f"    chi2/dof (if Dl): {model_resolution_metadata['chi2_dof_interp_dl']:.2e}")
+                    print(f"    → Chose {model_units_used} (chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e})")
+                else:
+                    print(f"  ✓ Units confirmed via chi2 precheck: {model_units_used}")
+                    print(f"    chi2/dof = {model_resolution_metadata['chi2_dof_chosen']:.2e}")
+                
+                if model_units_used == "Dl":
+                    print(f"  → Converted from Dl to Cl using: Cl = Dl × 2π / [l(l+1)]")
     
     # Load covariance if provided (using new covariance loader)
     cov = None
