@@ -29,7 +29,9 @@ import argparse
 import subprocess
 from pathlib import Path
 import json
-import numpy as np
+
+# Lazy load numpy only when needed (not for --dry-run or --help)
+np = None
 
 
 def find_repo_root():
@@ -259,6 +261,11 @@ def generate_derived_model(repo_root, source_file, output_file):
     output_file : Path
         Output model file (2-column, Cl format)
     """
+    global np
+    if np is None:
+        import numpy as _np
+        np = _np
+    
     print("="*80)
     print("STEP 3: Generate derived Planck model")
     print("="*80)
