@@ -452,15 +452,18 @@ class TestDataLoaders:
             for ell in range(30, 100):
                 f.write(f"{ell} {1000.0 + np.random.normal(0, 10)} {10.0}\n")
         
-        # Create model file
+        # Create model file (without sigma column - will generate expected warning)
         model_file = tmp_path / "model.txt"
         with open(model_file, 'w') as f:
             f.write("# ell C_ell\n")
             for ell in range(30, 100):
                 f.write(f"{ell} {1000.0}\n")
         
-        # Load data
-        data = planck.load_planck_data(obs_file, model_file=model_file, _skip_size_validation=True)
+        # Load data (expect and suppress warning about missing uncertainties in model)
+        import warnings
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', message='No uncertainties in.*', category=UserWarning)
+            data = planck.load_planck_data(obs_file, model_file=model_file, _skip_size_validation=True)
         
         # Verify model was loaded
         assert data['cl_model'] is not None
@@ -1129,13 +1132,16 @@ class TestRealDataRunner:
         Args.output_dir = str(test_output_dir)
         
         # Manually run the key parts (can't easily test main() due to argparse)
-        # Load Planck data
-        planck_data = planck.load_planck_data(
-            obs_file=Args.planck_obs,
-            model_file=Args.planck_model,
-            ell_min=Args.ell_min_planck,
-            ell_max=Args.ell_max_planck
-        )
+        # Load Planck data (expect and suppress warning about missing uncertainties)
+        import warnings
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', message='No uncertainties in.*', category=UserWarning)
+            planck_data = planck.load_planck_data(
+                obs_file=Args.planck_obs,
+                model_file=Args.planck_model,
+                ell_min=Args.ell_min_planck,
+                ell_max=Args.ell_max_planck
+            )
         
         # Run test
         planck_results = cmb_comb.run_cmb_comb_test(
