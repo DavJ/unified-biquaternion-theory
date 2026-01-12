@@ -42,7 +42,7 @@ def test_reject_likelihood_file_by_content():
         
         # Attempt to load should raise ValueError
         try:
-            ell, cl, sigma = planck._load_planck_text(likelihood_file)
+            ell, cl, sigma, units = planck._load_planck_text(likelihood_file)
             assert False, "Should have raised ValueError for likelihood file"
         except ValueError as e:
             error_msg = str(e)
@@ -67,7 +67,7 @@ def test_reject_tiny_file():
         
         # Attempt to load should raise ValueError
         try:
-            ell, cl, sigma = planck._load_planck_text(tiny_file)
+            ell, cl, sigma, units = planck._load_planck_text(tiny_file)
             assert False, "Should have raised ValueError for tiny file"
         except ValueError as e:
             error_msg = str(e)
@@ -92,7 +92,7 @@ def test_accept_valid_spectrum():
         
         # Load should succeed
         try:
-            ell, cl, sigma = planck._load_planck_text(valid_file)
+            ell, cl, sigma, units = planck._load_planck_text(valid_file)
             assert len(ell) == 100, f"Expected 100 multipoles, got {len(ell)}"
             print(f"✓ Valid spectrum file loaded successfully ({len(ell)} multipoles)")
         except ValueError as e:
@@ -121,7 +121,7 @@ def test_reject_minimum_file_by_name():
         # The runner script should have already rejected it
         # We just verify the loader can identify it
         try:
-            ell, cl, sigma = planck._load_planck_text(minimum_file)
+            ell, cl, sigma, units = planck._load_planck_text(minimum_file)
             # If it loads, it went through minimum format loader
             # This is OK for the loader, but runner should reject it
             print(f"✓ Minimum file detected and routed to minimum format loader")

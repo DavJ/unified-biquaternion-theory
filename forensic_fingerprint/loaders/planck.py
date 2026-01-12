@@ -413,7 +413,7 @@ def detect_units_from_header_or_magnitude(header_lines, ell, values):
     ell : ndarray
         Multipole moments
     values : ndarray
-        Power spectrum values
+        Power spectrum values (TT column, NOT ell values)
     
     Returns
     -------
@@ -444,25 +444,45 @@ def detect_units_from_header_or_magnitude(header_lines, ell, values):
     
     # Stage 2: Magnitude-based detection with improved heuristics
     # Use ell > 30 to avoid low-ell anomalies, check both median and 90th percentile
-    if len(ell) > 0:
+    # CRITICAL: Use absolute values to handle TE (which can be negative)
+    if len(ell) > 0 and len(values) > 0:
         # Filter to ell > 30 for more reliable magnitude check
         ell_cutoff = 30
         mask = ell > ell_cutoff
         
         if np.any(mask):
-            values_filtered = values[mask]
+            values_filtered = np.abs(values[mask])
             median_val = np.median(values_filtered)
             percentile_90 = np.percentile(values_filtered, 90)
             
-            # For typical TT spectrum:
-            # Dl at ell~200 is O(10^3), so median should be O(10^3)
-            # Cl at ell~200 is O(10^-1 to 1) after Dl->Cl conversion
-            # Use median OR 90th percentile > threshold
+            # Improved heuristics for Planck TT spectrum:
+            # - Planck TT in Dl: ell=2 ~ 1000, ell=30 ~ 1000, median ~ 1000-5000
+            # - Planck TT in Cl after conversion: ell=30 ~ 8, median ~ 1-10
+            # New thresholds (per requirements):
+            # - med > 50 OR p90 > 200 => Dl
+            # - med < 5 AND p90 < 20 => Cl
+            # - Otherwise fallback to legacy threshold
+            
+            # Check for clear Dl signature
+            if median_val > 50.0 or percentile_90 > 200.0:
+                return "Dl"
+            
+            # Check for clear Cl signature
+            if median_val < 5.0 and percentile_90 < 20.0:
+                return "Cl"
+            
+            # Borderline case: use legacy threshold as fallback
             if median_val > DL_CL_THRESHOLD or percentile_90 > DL_CL_THRESHOLD:
                 return "Dl"
         else:
             # Fall back to checking all ell if no ell > 30
-            median_val = np.median(values)
+            median_val = np.median(np.abs(values))
+            
+            # Apply same heuristics
+            if median_val > 50.0:
+                return "Dl"
+            if median_val < 5.0:
+                return "Cl"
             if median_val > DL_CL_THRESHOLD:
                 return "Dl"
     
