@@ -12,5 +12,8 @@ matplotlib>=3.3.0  # Used for plotting in stress tests
 # Testing framework
 pytest>=7.0.0
 
+# Optional: Phase-comb test (CMB spherical harmonics analysis)
+# healpy>=1.15.0  # Uncomment to enable phase-comb test
+
 # Optional: Additional packages used by some scripts
 # sympy>=1.9    # Used by symbolic calculations
