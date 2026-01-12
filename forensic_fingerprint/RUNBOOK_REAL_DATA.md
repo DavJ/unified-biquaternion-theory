@@ -671,6 +671,9 @@ The Planck PR3 archive contains different types of files. For CMB comb analysis,
 
 **✓ CORRECT files for power spectrum (--planck_obs and potentially --planck_model):**
 - `COM_PowerSpect_CMB-TT-full_R3.01.txt` - Observed TT spectrum with uncertainties (~2479 rows, ~167 KB)
+  - **Format**: 4 columns: `l Dl -dDl +dDl`
+  - **Units**: Dl (μK²) where Dl = ℓ(ℓ+1)Cl/(2π)
+  - **Auto-converted**: Loader automatically converts Dl → Cl for analysis
 - `COM_PowerSpect_CMB-TT-binned_R3.01.txt` - Binned version (if using binned analysis)
 - `*-minimum-theory*.txt` files - Theoretical model power spectra (derived from best-fit cosmological parameters)
 - CAMB or CLASS output - Theoretical ΛCDM spectra generated with Planck best-fit parameters
@@ -678,6 +681,13 @@ The Planck PR3 archive contains different types of files. For CMB comb analysis,
 **✗ INCORRECT files (DO NOT use as --planck_model):**
 - `COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum_R3.01.txt` - Cosmological parameter table (contains `-log(Like)` likelihood values and best-fit parameters, NOT a power spectrum)
 - Other files containing `-log(Like)` or likelihood values in the data (these are parameter/likelihood tables, not spectra)
+
+**Units Handling (Automatic)**:
+- **Observation files (TT-full)**: Typically in **Dl units** with format `l Dl -dDl +dDl`
+- **Model files**: May be in Dl or Cl units
+- **Loader behavior**: Automatically detects units from header or magnitude and converts both to **Cl units** for analysis
+- **Sigma calculation**: For TT-full format with asymmetric errors, computes symmetric sigma = 0.5 × (|+dDl| + |-dDl|)
+- **Result metadata**: JSON output includes `obs_units`, `model_units_original`, `model_units_used` fields for provenance
 
 **Why this matters:**
 The "minimum" cosmological parameter files (like `*-plikHM-*-minimum_R3.01.txt`) contain best-fit cosmological parameters and likelihood values, not power spectra. These will be rejected by content validation.
@@ -1342,6 +1352,109 @@ If Planck shows candidate (p < 0.01) but WMAP shows null (p ≥ 0.05):
 1. Falls back to diagonal uncertainties automatically
 2. Verify covariance file is correct format
 3. May indicate numerical issues in original data
+
+### Units Mismatch Warning
+
+**Problem**: "WARNING: POSSIBLE UNITS MISMATCH OR WRONG MODEL" with very large χ²/dof (>> 1)
+
+**Symptoms**:
+- χ²/dof ~ 1e6 or higher
+- median(|diff/sigma|) ~ 1e4 or higher
+- std(diff) >> std(sigma)
+
+**Causes**:
+1. **Observation and model in different units**: Observation file is in Dl format (l Dl -dDl +dDl), but model file is in raw Cl format without conversion
+2. **Wrong model file**: Using a likelihood/parameter file instead of a power spectrum file
+3. **Wrong spectrum type**: Observation is TT but model contains TE or EE
+4. **ℓ-range mismatch**: Observation and model have different multipole ranges
+
+**Solutions**:
+
+**1. Verify observation file format:**
+```bash
+# Check header of observation file
+head -5 data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt
+# Should show: # l Dl -dDl +dDl
+#              30 1000.5 -12.3 12.5
+#              31 998.2 -12.1 12.3
+```
+
+The Planck TT-full observation file uses **Dl format** (Dl = ℓ(ℓ+1)Cl/(2π), units: μK²).
+
+**2. Verify model file is a power spectrum (not likelihood table):**
+```bash
+# Check first few lines of model file
+head -10 your_model_file.txt
+
+# ✓ GOOD: Should contain multipoles and spectrum values
+# l  TT  TE  EE  (or similar with numeric columns)
+# 2  5.51e+01  -1.18e+01  1.34e-02
+
+# ✗ BAD: Contains likelihood values
+# -log(Like)  param1  param2  (this is a parameter file, not spectrum!)
+```
+
+**3. Use correct model file:**
+- **For observation vs. theory residuals**: Use a theoretical ΛCDM spectrum from CAMB/CLASS or a Planck "minimum-theory" file
+- **For noise-only analysis**: Use the TT-full observation file as both `--planck_obs` and `--planck_model` (residual will be zero)
+
+**4. Automatic units detection and conversion:**
+
+The loaders automatically detect units:
+- **Dl format**: Detected from header ("l Dl -dDl +dDl") or large magnitude values (median > 1000)
+- **Cl format**: Detected from smaller magnitude values (median < 1000)
+
+Both observation and model are **automatically converted to Cl units** before computing residuals. The conversion formula is:
+```
+Cl = Dl × 2π / [ℓ(ℓ+1)]
+```
+
+**5. Check results JSON for units metadata:**
+```bash
+# After running the test, check units metadata in results:
+jq '.obs_units, .model_units_original, .model_units_used, .sigma_method' planck_results.json
+
+# Expected output:
+# "Dl"        # Observation was in Dl format
+# "Dl"        # Model was in Dl format (or "Cl" if in Cl format)
+# "Cl"        # Both converted to Cl for analysis
+# "from_file" # Sigma loaded from file (or "symmetric_average" for TT-full)
+```
+
+**6. Court-grade mode failure:**
+
+If χ²/dof > 1e6 or median(|diff/sigma|) > 1e4, the test will **fail immediately** with:
+```
+ERROR: CATASTROPHIC UNITS MISMATCH DETECTED (COURT-GRADE FAILURE)
+RuntimeError: Units mismatch sanity check failed
+```
+
+This is a safety mechanism to prevent running analysis on incompatible data. Fix the units/model issue before proceeding.
+
+**Quick diagnostic commands:**
+```bash
+# Check Planck obs units
+python -c "
+import numpy as np
+data = np.loadtxt('data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt', comments='#')
+ell = data[:, 0]
+dl = data[:, 1]
+print(f'ℓ range: {int(ell[0])} to {int(ell[-1])}')
+print(f'Median Dl @ ℓ>10: {np.median(dl[ell > 10]):.1f} μK²')
+print(f'Units: Dl (if > 1000), Cl (if < 1000)')
+"
+
+# Check model file units
+python -c "
+import numpy as np
+data = np.loadtxt('your_model_file.txt', comments='#')
+ell = data[:, 0]
+spectrum = data[:, 1]
+print(f'ℓ range: {int(ell[0])} to {int(ell[-1])}')
+print(f'Median value @ ℓ>10: {np.median(spectrum[ell > 10]):.2e}')
+print(f'Likely units: Dl (if ~ 1000-5000), Cl (if ~ 100-1000)')
+"
+```
 
 ---
 

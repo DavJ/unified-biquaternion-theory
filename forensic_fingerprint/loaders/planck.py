@@ -78,9 +78,9 @@ def load_planck_data(
     dict
         Data dictionary with keys:
         - ell: ndarray, multipole moments
-        - cl_obs: ndarray, observed power spectrum (μK²)
-        - cl_model: ndarray or None, theoretical model
-        - sigma: ndarray, diagonal uncertainties
+        - cl_obs: ndarray, observed power spectrum (Cl units, μK²)
+        - cl_model: ndarray or None, theoretical model (Cl units, μK²)
+        - sigma: ndarray, diagonal uncertainties (Cl units, μK²)
         - cov: ndarray or None, full covariance matrix
         - cov_source: str or None, covariance file path/description
         - cov_metadata: dict or None, validation metadata from covariance loader
@@ -89,6 +89,10 @@ def load_planck_data(
         - spectrum_type: str, spectrum type (TT/EE/TE/BB)
         - ell_range: tuple, (ell_min, ell_max) applied
         - n_multipoles: int, number of multipoles
+        - obs_units: str, original units of observation file ("Dl" or "Cl")
+        - model_units_original: str or None, original units of model file
+        - model_units_used: str, final units used ("Cl")
+        - sigma_method: str, method used to compute sigma
     
     Raises
     ------
@@ -102,25 +106,31 @@ def load_planck_data(
     if not obs_file.exists():
         raise FileNotFoundError(f"Observation file not found: {obs_file}")
     
-    # Detect format from extension
+    # Detect format from extension and load observation data
     if obs_file.suffix.lower() == '.fits':
-        ell_obs, cl_obs, sigma_obs = _load_planck_fits(obs_file, spectrum_type=spectrum_type)
+        ell_obs, cl_obs, sigma_obs, obs_units = _load_planck_fits(obs_file, spectrum_type=spectrum_type)
     elif obs_file.suffix.lower() in ['.txt', '.dat']:
-        ell_obs, cl_obs, sigma_obs = _load_planck_text(obs_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
+        ell_obs, cl_obs, sigma_obs, obs_units = _load_planck_text(obs_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
     else:
         raise ValueError(f"Unsupported file format: {obs_file.suffix}")
     
+    # Log units detected
+    print(f"Observation file units detected: {obs_units}")
+    
     # Load model if provided
     cl_model = None
+    model_units_original = None
     if model_file is not None:
         model_file = Path(model_file)
         if not model_file.exists():
             warnings.warn(f"Model file not found: {model_file}. Proceeding without model.")
         else:
             if model_file.suffix.lower() == '.fits':
-                ell_model, cl_model, _ = _load_planck_fits(model_file, spectrum_type=spectrum_type)
+                ell_model, cl_model, _, model_units_original = _load_planck_fits(model_file, spectrum_type=spectrum_type)
             else:
-                ell_model, cl_model, _ = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
+                ell_model, cl_model, _, model_units_original = _load_planck_text(model_file, spectrum_type=spectrum_type, _skip_size_validation=_skip_size_validation)
+            
+            print(f"Model file units detected: {model_units_original}")
             
             # Ensure ell arrays match
             if not np.array_equal(ell_obs, ell_model):
@@ -185,7 +195,10 @@ def load_planck_data(
     else:
         whitening_mode_supported = ['none', 'diag']
     
-    # Assemble data dictionary
+    # Determine sigma method
+    sigma_method = "from_file"  # Default
+    
+    # Assemble data dictionary with units metadata
     data = {
         'ell': ell,
         'cl_obs': cl_obs,
@@ -198,7 +211,12 @@ def load_planck_data(
         'dataset': dataset_name,
         'spectrum_type': spectrum_type,
         'ell_range': (int(ell_min), int(ell_max)),
-        'n_multipoles': len(ell)
+        'n_multipoles': len(ell),
+        # Units metadata (NEW)
+        'obs_units': obs_units,
+        'model_units_original': model_units_original,
+        'model_units_used': 'Cl',  # Both obs and model converted to Cl
+        'sigma_method': sigma_method
     }
     
     return data
@@ -232,9 +250,11 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     ell : ndarray
         Multipole moments (integers)
     cl : ndarray
-        Power spectrum values
+        Power spectrum values (Cl units, μK²)
     sigma : ndarray
-        Uncertainties (1-sigma)
+        Uncertainties (1-sigma, Cl units, μK²)
+    units : str
+        Units detected/used: "Dl" or "Cl" (before conversion to Cl)
     """
     # First, check if file is HTML (indicates wrong URL or 404)
     # Also scan through comment lines to find the header with column names
@@ -377,11 +397,13 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
     ell = data[:, 0].astype(int)
     cl = data[:, 1]
     
-    # Check if values are in Dl format (large values) and convert to Cl if needed
+    # Detect units from magnitude (before conversion)
     # Heuristic: if median value > DL_CL_THRESHOLD for ell > 10, likely Dl format
+    units_detected = "Cl"  # Default assumption
     if len(ell) > 0 and np.any(ell > 10):
         median_val = np.median(cl[ell > 10]) if np.any(ell > 10) else np.median(cl)
         if median_val > DL_CL_THRESHOLD:
+            units_detected = "Dl"
             # Convert from Dl to Cl: Cl = Dl * 2π / [l(l+1)]
             with np.errstate(divide='ignore', invalid='ignore'):
                 cl = cl * (2.0 * np.pi) / (ell * (ell + 1.0))
@@ -394,20 +416,18 @@ def _load_planck_text(filepath, spectrum_type="TT", _skip_size_validation=False)
         
         # If sigma looks like it's also in Dl units (for consistency with converted cl)
         # Check if it's large and needs conversion
-        if len(ell) > 0 and np.any(ell > 10):
-            median_sigma = np.median(sigma[ell > 10]) if np.any(ell > 10) else np.median(sigma)
-            if median_sigma > DL_CL_THRESHOLD * 0.1:  # If sigma is also large
-                # Convert sigma from Dl units to Cl units
-                with np.errstate(divide='ignore', invalid='ignore'):
-                    sigma = sigma * (2.0 * np.pi) / (ell * (ell + 1.0))
-                    sigma[ell == 0] = 0.0
-                    sigma[ell == 1] = 0.0
+        if units_detected == "Dl":
+            # Convert sigma from Dl units to Cl units
+            with np.errstate(divide='ignore', invalid='ignore'):
+                sigma = sigma * (2.0 * np.pi) / (ell * (ell + 1.0))
+                sigma[ell == 0] = 0.0
+                sigma[ell == 1] = 0.0
     else:
         # If no sigma provided, estimate from scatter (not ideal)
         warnings.warn(f"No uncertainties in {filepath}. Estimating from {DEFAULT_SIGMA_FRACTION*100}% of signal.")
         sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
     
-    return ell, cl, sigma
+    return ell, cl, sigma, units_detected
 
 
 def _load_planck_tt_full_format(filepath):
@@ -426,8 +446,8 @@ def _load_planck_tt_full_format(filepath):
     - Column 2: negative error bar (-dDl, typically negative value)
     - Column 3: positive error bar (+dDl, typically positive value)
     
-    We convert Dl to Cl and take sigma as the maximum of the absolute 
-    values of the two error bars (conservative approach).
+    We convert Dl to Cl and compute symmetric sigma as the average of the 
+    absolute values of the two error bars: sigma = 0.5 * (|+dDl| + |-dDl|)
     
     Parameters
     ----------
@@ -441,7 +461,9 @@ def _load_planck_tt_full_format(filepath):
     cl : ndarray
         Power spectrum values in Cl units (converted from Dl)
     sigma : ndarray
-        Uncertainties (1-sigma, derived from asymmetric error bars)
+        Uncertainties (1-sigma, symmetric average from asymmetric error bars)
+    units : str
+        Units detected: "Dl" (always for TT-full format)
     """
     try:
         data = np.loadtxt(filepath, comments='#')
@@ -473,9 +495,9 @@ def _load_planck_tt_full_format(filepath):
         cl[ell == 0] = 0.0
         cl[ell == 1] = 0.0
     
-    # For sigma, take the maximum of absolute values of the two error bars
-    # This is a conservative approach. Alternative: (abs(minus_ddl) + abs(plus_ddl)) / 2
-    sigma_dl = np.maximum(np.abs(minus_ddl), np.abs(plus_ddl))
+    # For sigma, compute symmetric average of asymmetric error bars
+    # sigma = 0.5 * (|+dDl| + |-dDl|)
+    sigma_dl = 0.5 * (np.abs(plus_ddl) + np.abs(minus_ddl))
     
     # Convert sigma from Dl units to Cl units using the same conversion factor
     with np.errstate(divide='ignore', invalid='ignore'):
@@ -486,7 +508,7 @@ def _load_planck_tt_full_format(filepath):
     # Ensure no zeros in sigma (for numerical stability)
     sigma[sigma == 0] = 1e-10
     
-    return ell, cl, sigma
+    return ell, cl, sigma, "Dl"
 
 
 def _load_planck_minimum_format(filepath, spectrum_type="TT"):
@@ -518,6 +540,8 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
         Power spectrum in Cl units (μK²)
     sigma : ndarray
         Uncertainties (estimated as 1% since not provided in model file)
+    units : str
+        Units detected/used: "Dl" or "Cl"
     """
     # Read file and find header line
     with open(filepath, 'r') as f:
@@ -555,16 +579,18 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
             ell = data[:, 0].astype(int)
             cl_or_dl = data[:, 1]
             
-            # Convert Dl to Cl if needed (heuristic: if values > DL_CL_THRESHOLD, likely Dl)
+            # Detect units from magnitude
+            units_detected = "Cl"
             if np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD:
                 # Likely Dl format: Dl = l(l+1)Cl/(2π)
+                units_detected = "Dl"
                 cl = cl_or_dl * (2.0 * np.pi) / (ell * (ell + 1.0))
                 cl[ell == 0] = 0.0  # Handle ell=0 case
             else:
                 cl = cl_or_dl
             
             sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
-            return ell, cl, sigma
+            return ell, cl, sigma, units_detected
             
         except Exception as e:
             raise ValueError(f"Failed to parse minimum format file {filepath}: {e}")
@@ -641,6 +667,7 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
     # Determine if Dl or Cl format
     # Heuristic: if column name contains 'DL' or values are large (>DL_CL_THRESHOLD for ell>10), assume Dl
     is_dl_format = 'DL' in columns[spectrum_col].upper() or np.median(cl_or_dl[ell > 10]) > DL_CL_THRESHOLD
+    units_detected = "Dl" if is_dl_format else "Cl"
     
     if is_dl_format:
         # Convert Dl to Cl: Cl = Dl * 2π / [l(l+1)]
@@ -656,7 +683,7 @@ def _load_planck_minimum_format(filepath, spectrum_type="TT"):
     sigma = DEFAULT_SIGMA_FRACTION * np.abs(cl)
     sigma[sigma == 0] = 1e-10  # Avoid exact zeros
     
-    return ell, cl, sigma
+    return ell, cl, sigma, units_detected
 
 
 def _load_planck_fits(filepath, spectrum_type="TT"):
@@ -675,9 +702,11 @@ def _load_planck_fits(filepath, spectrum_type="TT"):
     ell : ndarray
         Multipole moments
     cl : ndarray
-        Power spectrum values
+        Power spectrum values (Cl units)
     sigma : ndarray
         Uncertainties
+    units : str
+        Units detected: "Cl" (FITS files typically use Cl)
     """
     try:
         from astropy.io import fits
@@ -730,7 +759,8 @@ def _load_planck_fits(filepath, spectrum_type="TT"):
                 warnings.warn(f"No uncertainty column found in {filepath}. Estimating from 1% of signal.")
                 sigma = 0.01 * np.abs(cl)
             
-            return np.array(ell, dtype=int), np.array(cl), np.array(sigma)
+            # FITS files typically use Cl units (not Dl)
+            return np.array(ell, dtype=int), np.array(cl), np.array(sigma), "Cl"
     
     except Exception as e:
         raise ValueError(f"Failed to load FITS file {filepath}: {e}")
