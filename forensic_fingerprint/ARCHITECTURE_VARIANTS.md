@@ -2,15 +2,19 @@
 
 **Version**: 1.0  
 **Date**: 2026-01-10  
-**Purpose**: Define mutually exclusive architectural variants for synchronization within UBT-like digital frameworks
+**Purpose**: Define mutually exclusive architectural variants for synchronization within UBT-like frameworks
+
+**Classification**: 🔵 Layer C (Research Front) - Testable hypotheses for falsification/validation
 
 ---
 
 ## Overview
 
-This document defines a **hypothesis class** for synchronization mechanisms in UBT digital-architecture interpretations. We do NOT assume that the universe necessarily uses any specific synchronization scheme. Instead, we enumerate multiple architectural variants and design discriminating tests.
+This document defines a **hypothesis class** for information-processing constraints in UBT. We do NOT assume that the universe is a "digital simulation" or "computer program." Instead, we treat information-theoretic limits as fundamental physical constraints (analogous to thermodynamic limits) and enumerate testable variants.
 
-**Key Principle**: Synchronization is a **testable hypothesis**, not a presupposition.
+**Key Principle**: Information-processing constraints are **testable hypotheses**, not established facts.
+
+**Context**: This is part of UBT's Layer C (Research Front) - active research under investigation, not established theory. See [UBT_LAYERED_STRUCTURE.md](../UBT_LAYERED_STRUCTURE.md) for full context.
 
 ---
 

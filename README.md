@@ -6,6 +6,49 @@
 
 ---
 
+## ⚠️ Repository Organization
+
+**UBT is organized into two complementary structures:**
+
+### Conceptual Layers (3-Layer Hierarchy)
+
+**UBT content is conceptually organized into three distinct layers to maintain scientific clarity:**
+
+#### 🟢 Layer A: Core Ontology
+Biquaternionic field structure, GR recovery, SM gauge group derivation (validated)
+
+#### 🟡 Layer B: Direct Observables  
+α ≈ 137, Ω_b ≈ 4.9%, m_e ≈ 0.51 MeV (predictions from core structure)
+
+#### 🔵 Layer C: Research Front
+Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
+
+**See [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) for detailed explanation of the 3-layer conceptual hierarchy**
+
+### Physical Directories (8-Directory Structure)
+
+**The repository files are physically organized into 8 audit-ready directories:**
+
+- **THEORY/** - Core axioms, math, architecture (Layer A content)
+- **FINGERPRINTS/** - Confirmed/candidate/null predictions (Layer B observables + tests)
+- **FORENSICS/** - Court-grade testing protocols
+- **HUBBLE_LATENCY/** - Hubble tension interpretation (Layer C)
+- **DATA/** - Observational data with SHA-256 manifests
+- **TOOLS/** - Data provenance, simulations, plotting
+- **DOCS/** - Overview, abstracts, glossary, publication notes
+- **SPECULATIVE/** - Non-core extensions clearly separated
+
+**See [REORGANIZATION_2026-01.md](REORGANIZATION_2026-01.md) for migration guide and detailed directory structure**
+
+**For contributors:** Before adding new content, consult:
+- **[UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md)** - 3-layer hierarchy and decision tree
+- **[REPO_GOVERNANCE.md](REPO_GOVERNANCE.md)** - Content classification rules
+- **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Rigor level system
+
+**Quick decision tree:** Is it proven? → Layer A/THEORY/ | Predicted & validated? → Layer B/FINGERPRINTS/ | Testable hypothesis? → Layer C | Speculative? → `SPECULATIVE/`
+
+---
+
 ## What is UBT?
 
 Unified Biquaternion Theory (UBT) is a theoretical physics framework that embeds General Relativity and derives the Standard Model gauge group SU(3)×SU(2)×U(1) from a unified geometric structure: a biquaternionic field Θ(q,τ) defined over complex time τ = t + iψ.
