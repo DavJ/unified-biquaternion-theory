@@ -301,3 +301,7 @@ It's better to under-claim and promote later than to over-claim and retract.
 - [SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md) - Full classification system
 - [REPO_GOVERNANCE.md](REPO_GOVERNANCE.md) - Content management rules
 - [RESEARCH_PRIORITIES.md](RESEARCH_PRIORITIES.md) - Current research focus
+- **[STATUS_OF_CODING_ASSUMPTIONS.md](docs/STATUS_OF_CODING_ASSUMPTIONS.md)** - Core vs modeling layers separation
+- **[RS_OPTIMAL_LENS.md](information_probes/RS_OPTIMAL_LENS.md)** - RS(255,201) optimality analysis
+- **[research_front/hubble_latency/](research_front/hubble_latency/)** - Hubble hypothesis (Layer C)
+- **[research_front/cmb_2d_fft/](research_front/cmb_2d_fft/)** - 2D FFT test (Layer C)

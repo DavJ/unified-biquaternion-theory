@@ -1,52 +1,22 @@
-# ⚠️ CONTENT MOVED
+# Hubble Latency Module
 
-**This directory has been relocated as of January 2026.**
+## Purpose
 
-All Hubble Latency content has been moved to the **Research Front** layer:
+This module contains the **Hubble Latency** solution for the Hubble tension within the Unified Biquaternion Theory (UBT) framework.
 
-**New Location:** [research_front/hubble_latency/](../research_front/hubble_latency/)
+## Critical Disclaimers
 
----
+**This is NOT:**
+- **NOT dark energy** - No new cosmological fluid or field
+- **NOT a new particle** - No additional matter content
+- **NOT a dynamical modification** - No changes to expansion dynamics
+- **NOT a replacement for ΛCDM** - Works within standard cosmology
 
-## Why the Move?
-
-The Hubble Latency hypothesis is an **exploratory research hypothesis** (Layer C - Research Front), not part of Core UBT (Layer A) or validated observables (Layer B).
-
-To maintain clarity about which content is validated vs. exploratory, all Hubble-related work is now consolidated under:
-
-```
-research_front/hubble_latency/
-├── README.md          # Overview and status
-├── HYPOTHESIS.md      # Full hypothesis statement
-├── model/             # Mathematical model
-├── calibration/       # Parameter estimation
-└── appendix/          # Detailed derivations
-```
-
----
-
-## What You'll Find There
-
-- **Complete hypothesis statement** with testable predictions
-- **Critical evaluation** (strengths, weaknesses, concerns)
-- **Clear labeling:** "NOT part of Core UBT"
-- **Honest stance:** Reverse-engineering acknowledged, mechanism incomplete
-- **Language guidelines:** What to say / not say
-
----
-
-## Quick Links
-
-- [research_front/hubble_latency/README.md](../research_front/hubble_latency/README.md) - Start here
-- [research_front/hubble_latency/HYPOTHESIS.md](../research_front/hubble_latency/HYPOTHESIS.md) - Full hypothesis
-- [STATUS_OF_CODING_ASSUMPTIONS.md](../docs/STATUS_OF_CODING_ASSUMPTIONS.md) - Core vs modeling layers
-- [UBT_LAYERED_STRUCTURE.md](../UBT_LAYERED_STRUCTURE.md) - 3-layer architecture
-
----
-
-**This directory will be removed in a future cleanup.**  
-**Please update your bookmarks and references to the new location.**
-
+**This IS:**
+- **An architectural synchronization/clock-skew effect**
+- **A systematic measurement bias** arising from discrete-time structure
+- **A computational substrate interpretation** of the Hubble tension
+- **Conservative language**: "interpreted as", "can be modeled as"
 
 ## Relation to Hubble Tension
 

@@ -2,9 +2,12 @@
 
 **Document Purpose:** Help readers distinguish between validated derivations and speculative hypotheses  
 **Importance:** Critical for scientific integrity and proper evaluation  
-**Last Updated:** January 12, 2026
+**Last Updated:** January 13, 2026
 
-**See Also:** [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) for the 3-layer organization (Core/Observables/Research Front)
+**See Also:** 
+- [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) - 3-layer organization (Core/Observables/Research Front)
+- **[STATUS_OF_CODING_ASSUMPTIONS.md](docs/STATUS_OF_CODING_ASSUMPTIONS.md)** - Core vs modeling layers separation
+- **[RS_OPTIMAL_LENS.md](information_probes/RS_OPTIMAL_LENS.md)** - RS(255,201) optimality and probe-dependent predictions
 
 ---
 

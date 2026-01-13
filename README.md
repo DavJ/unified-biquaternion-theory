@@ -19,6 +19,68 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 
 ---
 
+## 📚 Stack Overview: Core vs Modeling Layers
+
+**UBT is organized into conceptual layers to separate geometric foundations from modeling choices:**
+
+### Core UBT (Layer A) - Geometric Foundations
+**Location:** `core_ubt/`, `canonical/`, `THEORY/architecture/geometry/`
+
+Pure biquaternionic geometry:
+- Field equations: ∇†∇Θ(q,τ) = κ𝒯(q,τ)
+- GR recovery (proven)
+- SM gauge structure (derived)
+- Baseline α, m_e (geometric)
+
+**Status:** ✅ Independent of all subsequent layers
+
+### Quantization Grid - Discretization Model
+**Location:** `quantization_grid/`
+
+Finite-resolution framing:
+- GF(2⁸) discrete structure (256 states)
+- Master Clock (256-tick framing)
+- Information capacity limits
+
+**Status:** ⚠️ Modeling choice, not ontological claim
+
+### Information Probes - RS Optimal Lens
+**Location:** `information_probes/`
+
+Coding-theory framework:
+- RS(255,201) error-correcting code
+- MDS-optimal for given parameters
+- Probe-dependent observables (e.g., Ω_b)
+
+**Status:** ⚠️ "Optimal lens" - not claimed as universe's actual codec  
+**See:** [RS_OPTIMAL_LENS.md](information_probes/RS_OPTIMAL_LENS.md) for rigorous analysis
+
+### Forensic Fingerprint - Validation
+**Location:** `forensic_fingerprint/`, `FORENSICS/`
+
+Pre-registered tests:
+- CMB phase comb (NULL result documented)
+- Court-grade pipelines
+- Negative results included
+
+**Status:** ✅ Falsification-focused validation
+
+### Research Front (Layer C) - Hypotheses
+**Location:** `research_front/`
+
+Active research hypotheses:
+- **Hubble latency:** [research_front/hubble_latency/](research_front/hubble_latency/) - H₀ tension as synchronization drift (exploratory)
+- **2D FFT CMB skew:** [research_front/cmb_2d_fft/](research_front/cmb_2d_fft/) - Anisotropic tilt detection (PoC stage)
+
+**Status:** 🔵 Testable but unvalidated - may succeed or fail
+
+**Key documents:**
+- **[STATUS_OF_CODING_ASSUMPTIONS.md](docs/STATUS_OF_CODING_ASSUMPTIONS.md)** - Separates Core from modeling layers
+- **[RS_OPTIMAL_LENS.md](information_probes/RS_OPTIMAL_LENS.md)** - Rigorous RS analysis with alternatives
+- **[UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md)** - Full 3-layer hierarchy
+
+---
+
 **Speculative content separated from core:**
 - Core theory in `unified_biquaternion_theory/` and `consolidation_project/`
 - All consciousness-related content in `speculative_extensions/` folder
