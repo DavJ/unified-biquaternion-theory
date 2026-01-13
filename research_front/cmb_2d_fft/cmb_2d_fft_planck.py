@@ -13,13 +13,33 @@ For a standalone version that works without external data, use cmb_2d_fft_poc.py
 Dependencies: healpy, astropy, scipy, matplotlib, numpy
 """
 
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
 # --- deps ---
-# pip install healpy astropy scipy matplotlib
-import healpy as hp
-from astropy.io import fits
+# Try to import healpy and astropy with helpful error message
+try:
+    import healpy as hp
+    from astropy.io import fits
+except ImportError as e:
+    print("=" * 80)
+    print("ERROR: Required dependencies not found for Planck map analysis.")
+    print("=" * 80)
+    print("\nThis script requires:")
+    print("  - healpy (for HEALPix map handling)")
+    print("  - astropy (for FITS file reading)")
+    print("\nTo install:")
+    print("  pip install healpy astropy")
+    print("\nAlternatively, use the standalone proof-of-concept:")
+    print("  python research_front/cmb_2d_fft/cmb_2d_fft_poc.py")
+    print("\nThe PoC version works with synthetic data and requires only:")
+    print("  - numpy")
+    print("  - scipy")
+    print("  - matplotlib")
+    print("=" * 80)
+    sys.exit(1)
+
 from scipy.ndimage import gaussian_filter
 from scipy.signal import windows
 
