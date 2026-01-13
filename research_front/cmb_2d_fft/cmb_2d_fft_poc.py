@@ -29,7 +29,7 @@ def generate_synthetic_grid(size, tilt_deg, pix_scale=1.0, seed=0):
     Args:
         size: int, dimensions of square patch (size x size)
         tilt_deg: float, tilt angle in degrees
-        pix_scale: float, pixel scale (reserved for future use, currently not applied)
+        pix_scale: float, pixel scale parameter (accepted but not currently used in wavelength calculation)
         seed: int, random seed for noise
     
     Returns:
@@ -267,7 +267,7 @@ def main():
         "--pix_scale",
         type=float,
         default=1.0,
-        help="Pixel scale (optional, default: 1.0)"
+        help="Pixel scale parameter (accepted but not currently applied, default: 1.0)"
     )
     parser.add_argument(
         "--snr",
