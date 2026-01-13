@@ -11,7 +11,6 @@ Dependencies: numpy, scipy, matplotlib only
 import numpy as np
 import matplotlib.pyplot as plt
 import argparse
-import os
 from pathlib import Path
 
 from scipy.ndimage import gaussian_filter
@@ -30,7 +29,7 @@ def generate_synthetic_grid(size, tilt_deg, pix_scale=1.0, seed=0):
     Args:
         size: int, dimensions of square patch (size x size)
         tilt_deg: float, tilt angle in degrees
-        pix_scale: float, pixel scale (optional, affects wavelength)
+        pix_scale: float, pixel scale (reserved for future use, currently not applied)
         seed: int, random seed for noise
     
     Returns:
