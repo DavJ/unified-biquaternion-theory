@@ -21,6 +21,10 @@ from scipy.signal import windows
 # SYNTHETIC DATA GENERATORS
 # =========================
 
+# Seed offset for injected mode to ensure different random sequences
+INJECTED_SIGNAL_SEED_OFFSET = 1000
+
+
 def generate_synthetic_grid(size, tilt_deg, pix_scale=1.0, seed=0):
     """
     Create a 2D pattern with a very small tilt.
@@ -92,7 +96,7 @@ def generate_injected(size, tilt_deg, snr=0.2, pix_scale=1.0, seed=0):
         size: int, dimensions of square patch
         tilt_deg: float, tilt angle for grid pattern
         snr: float, signal-to-noise ratio (controls epsilon)
-        pix_scale: float, pixel scale
+        pix_scale: float, pixel scale parameter (accepted but not currently used in wavelength calculation)
         seed: int, random seed
     
     Returns:
@@ -101,8 +105,9 @@ def generate_injected(size, tilt_deg, snr=0.2, pix_scale=1.0, seed=0):
     # Generate background Gaussian field
     background = generate_gaussian_field(size, seed=seed, smoothing=2.0)
     
-    # Generate grid pattern with same seed offset
-    signal = generate_synthetic_grid(size, tilt_deg, pix_scale=pix_scale, seed=seed+1000)
+    # Generate grid pattern with offset seed to ensure independent random sequences
+    signal = generate_synthetic_grid(size, tilt_deg, pix_scale=pix_scale, 
+                                    seed=seed + INJECTED_SIGNAL_SEED_OFFSET)
     
     # Compute signal strength based on SNR
     # epsilon = snr * std(background) / std(signal)
