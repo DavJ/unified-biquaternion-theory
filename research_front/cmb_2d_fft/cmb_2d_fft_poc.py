@@ -1,247 +1,422 @@
 """
-UBT / CMB 2D FFT proof-of-concept
-- Load Planck CMB map (HEALPix FITS, e.g. SMICA/NILC/SEVEM/Commander)
-- Extract a clean small patch via gnomonic projection
+UBT / CMB 2D FFT proof-of-concept (Standalone Version)
+- Generate synthetic test patterns (no external data required)
 - Apodize (taper) to suppress edge ringing
 - Compute 2D FFT power
 - Detect oriented "comb"/grid-like anisotropy and estimate tilt angle
+
+Dependencies: numpy, scipy, matplotlib only
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
+import argparse
+from pathlib import Path
 
-# --- deps ---
-# pip install healpy astropy scipy matplotlib
-import healpy as hp
-from astropy.io import fits
 from scipy.ndimage import gaussian_filter
 from scipy.signal import windows
 
-# =========================
-# CONFIG
-# =========================
-
-# Path to a Planck component-separated CMB map in HEALPix FITS.
-# Examples (you choose what you have): COM_CMB_IQU-smica_2048_R3.00_full.fits, etc.
-MAP_FITS = "data/planck_pr3/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits"  # <-- adjust
-
-# Optional mask path (recommended). If you have a Planck common mask, use it.
-MASK_FITS = None  # e.g. "data/planck_pr3/raw/COM_Mask_CMB-common-MaskInt_2048_R3.00.fits"
-
-# Choose a patch center (lon, lat) in degrees.
-# Pick something clean: high galactic latitude (|b| > 30 deg). Example: (lon=0, lat=60)
-# You can test several and compare stability.
-LON_DEG, LAT_DEG = 0.0, 60.0
-
-# Patch geometry
-PATCH_DEG = 20.0        # patch width/height in degrees (e.g. 10-30)
-PIX_ARCMIN = 5.0        # flat-sky pixel size (arcmin). 5 arcmin is OK for PoC.
-
-# Target tilt angle (degrees)
-TARGET_TILT_DEG = np.degrees(np.arctan(1/256))  # ~0.224°
-# but we will estimate from data; target only for reporting.
-print("Target tilt (deg):", TARGET_TILT_DEG)
-
-# FFT analysis parameters
-SMOOTH_SIGMA_PIX = 1.5   # smooth FFT power a bit to make ridge detection easier
-RADIAL_BINS = 60         # for angular power vs angle
-ANGLE_RES_DEG = 0.05     # resolution for scanning oriented energy
 
 # =========================
-# HELPERS
+# SYNTHETIC DATA GENERATORS
 # =========================
 
-def read_planck_cmb_map(path_fits):
+# Seed offset for injected mode to ensure different random sequences
+INJECTED_SIGNAL_SEED_OFFSET = 1000
+
+
+def generate_synthetic_grid(size, tilt_deg, pix_scale=1.0, seed=0):
     """
-    Reads a HEALPix map.
-    If IQU, we take I (field=0).
-    Works for typical Planck products.
+    Create a 2D pattern with a very small tilt.
+    Uses a cosine comb in spatial domain, rotated by tilt_deg.
+    
+    Args:
+        size: int, dimensions of square patch (size x size)
+        tilt_deg: float, tilt angle in degrees
+        pix_scale: float, pixel scale parameter (accepted but not currently used in wavelength calculation)
+        seed: int, random seed for noise
+    
+    Returns:
+        patch: 2D array with tilted grid pattern
     """
-    # healpy can read directly
-    # field=0 for temperature
-    m = hp.read_map(path_fits, field=0, verbose=False)
-    return m
+    np.random.seed(seed)
+    
+    # Create coordinate grid
+    y = np.arange(size) - size // 2
+    x = np.arange(size) - size // 2
+    X, Y = np.meshgrid(x, y)
+    
+    # Rotation matrix
+    theta = np.deg2rad(tilt_deg)
+    X_rot = X * np.cos(theta) - Y * np.sin(theta)
+    Y_rot = X * np.sin(theta) + Y * np.cos(theta)
+    
+    # Create comb pattern with wavelength ~ size/16 (creates visible grid)
+    wavelength = size / 16.0
+    pattern = np.cos(2 * np.pi * X_rot / wavelength)
+    pattern += np.cos(2 * np.pi * Y_rot / wavelength)
+    
+    # Add small amount of noise to make it more realistic
+    noise = np.random.randn(size, size) * 0.1
+    patch = pattern + noise
+    
+    return patch.astype(np.float32)
 
-def read_mask(path_fits, nside_target):
-    mask = hp.read_map(path_fits, field=0, verbose=False)
-    # Ensure same nside
-    if hp.get_nside(mask) != nside_target:
-        mask = hp.ud_grade(mask, nside_out=nside_target, order_in='RING', order_out='RING')
-    # binarize softly
-    return (mask > 0.5).astype(np.float32)
 
-def gnomonic_patch(m, lon_deg, lat_deg, patch_deg, pix_arcmin, mask=None):
+def generate_gaussian_field(size, seed=0, smoothing=2.0):
     """
-    Create a flat-sky (gnomonic) projection patch from HEALPix map.
-    Returns patch (2D), and optional patch mask (2D).
+    Generate isotropic Gaussian random field (null control).
+    White noise smoothed with Gaussian kernel.
+    
+    Args:
+        size: int, dimensions of square patch
+        seed: int, random seed
+        smoothing: float, Gaussian smoothing sigma
+    
+    Returns:
+        patch: 2D array with Gaussian random field
     """
-    # number of pixels
-    pix_deg = pix_arcmin / 60.0
-    npix = int(np.round(patch_deg / pix_deg))
-    npix = max(npix, 64)  # floor
-    reso_arcmin = pix_arcmin
+    np.random.seed(seed)
+    
+    # Generate white noise
+    noise = np.random.randn(size, size)
+    
+    # Smooth to create correlations
+    if smoothing > 0:
+        noise = gaussian_filter(noise, sigma=smoothing)
+    
+    return noise.astype(np.float32)
 
-    # rot: (lon, lat, psi). Using lon/lat in degrees.
-    # 'coord' can be used if map is in Galactic vs Equatorial. Assume map is in Galactic.
-    patch = hp.visufunc.gnomview(
-        m, rot=(lon_deg, lat_deg, 0.0),
-        xsize=npix, ysize=npix, reso=reso_arcmin,
-        return_projected_map=True, no_plot=True
-    )
 
-    patch_mask = None
-    if mask is not None:
-        patch_mask = hp.visufunc.gnomview(
-            mask, rot=(lon_deg, lat_deg, 0.0),
-            xsize=npix, ysize=npix, reso=reso_arcmin,
-            return_projected_map=True, no_plot=True
-        )
-        # ensure {0,1}
-        patch_mask = (patch_mask > 0.5).astype(np.float32)
+def generate_injected(size, tilt_deg, snr=0.2, pix_scale=1.0, seed=0):
+    """
+    Generate injected signal: gaussian_field + epsilon * synthetic_grid.
+    
+    Args:
+        size: int, dimensions of square patch
+        tilt_deg: float, tilt angle for grid pattern
+        snr: float, signal-to-noise ratio (controls epsilon)
+        pix_scale: float, pixel scale parameter (accepted but not currently used in wavelength calculation)
+        seed: int, random seed
+    
+    Returns:
+        patch: 2D array with injected signal
+    """
+    # Generate background Gaussian field
+    background = generate_gaussian_field(size, seed=seed, smoothing=2.0)
+    
+    # Generate grid pattern with offset seed to ensure independent random sequences
+    signal = generate_synthetic_grid(size, tilt_deg, pix_scale=pix_scale, 
+                                    seed=seed + INJECTED_SIGNAL_SEED_OFFSET)
+    
+    # Compute signal strength based on SNR
+    # epsilon = snr * std(background) / std(signal)
+    std_bg = np.std(background)
+    std_sig = np.std(signal)
+    epsilon = snr * std_bg / std_sig if std_sig > 0 else snr
+    
+    # Combine
+    patch = background + epsilon * signal
+    
+    return patch.astype(np.float32)
 
-    return patch.astype(np.float32), patch_mask
 
-def apodize_2d(patch, mask=None, alpha=0.2):
+# =========================
+# PROCESSING FUNCTIONS
+# =========================
+
+def apodize_2d(patch, alpha=0.2):
     """
     Apply a 2D taper window (Tukey) to reduce edge ringing.
-    If mask provided: apply mask then window.
+    
+    Args:
+        patch: 2D array
+        alpha: Tukey window parameter (0=rect, 1=Hann)
+    
+    Returns:
+        patch_windowed: windowed patch
+        window: 2D window function
     """
     ny, nx = patch.shape
     wx = windows.tukey(nx, alpha=alpha)
     wy = windows.tukey(ny, alpha=alpha)
     w2 = np.outer(wy, wx).astype(np.float32)
-
-    x = patch.copy()
-    if mask is not None:
-        x = x * mask
-    x = x * w2
+    
+    x = patch * w2
     return x, w2
+
 
 def fft_power(patch):
     """
     Compute centered FFT power spectrum.
+    
+    Args:
+        patch: 2D array
+    
+    Returns:
+        power: 2D FFT power spectrum
     """
     f = np.fft.fft2(patch)
     f = np.fft.fftshift(f)
     p = np.abs(f) ** 2
     return p
 
+
 def angle_map(ny, nx):
     """
     Return angle (radians) of each FFT pixel w.r.t. center.
+    
+    Args:
+        ny, nx: dimensions
+    
+    Returns:
+        ang: angle map in radians [-pi, pi]
+        r: radius map
     """
-    y = np.arange(ny) - ny//2
-    x = np.arange(nx) - nx//2
+    y = np.arange(ny) - ny // 2
+    x = np.arange(nx) - nx // 2
     X, Y = np.meshgrid(x, y)
-    ang = np.arctan2(Y, X)  # [-pi,pi]
-    r = np.sqrt(X*X + Y*Y)
+    ang = np.arctan2(Y, X)  # [-pi, pi]
+    r = np.sqrt(X * X + Y * Y)
     return ang, r
+
 
 def oriented_energy(P, ang, r, rmin=10, rmax=None, theta_deg=0.0, dtheta_deg=0.25):
     """
     Measure energy in an angular wedge around theta and theta+pi (both directions),
     within radial band [rmin, rmax].
+    
+    Args:
+        P: 2D FFT power spectrum
+        ang: angle map
+        r: radius map
+        rmin, rmax: radial band limits
+        theta_deg: central angle in degrees
+        dtheta_deg: wedge half-width in degrees
+    
+    Returns:
+        energy: total energy in wedge
     """
     if rmax is None:
         rmax = r.max()
     theta = np.deg2rad(theta_deg)
     dtheta = np.deg2rad(dtheta_deg)
-
+    
     # wrap angle distance
     def angdist(a, b):
-        d = np.angle(np.exp(1j*(a-b)))
+        d = np.angle(np.exp(1j * (a - b)))
         return np.abs(d)
-
+    
     sel_r = (r >= rmin) & (r <= rmax)
-
+    
     sel1 = sel_r & (angdist(ang, theta) <= dtheta)
     sel2 = sel_r & (angdist(ang, theta + np.pi) <= dtheta)
     return float(P[sel1].sum() + P[sel2].sum())
 
+
 def scan_tilt(P, ang, r, rmin=10, rmax=None, scan_deg=(-5, 5), step_deg=0.05, wedge_deg=0.25):
     """
     Scan for the angle maximizing oriented energy.
-    Returns best angle in degrees and energy curve.
+    
+    Args:
+        P: 2D FFT power spectrum
+        ang: angle map
+        r: radius map
+        rmin, rmax: radial band limits
+        scan_deg: tuple, (min_angle, max_angle) to scan
+        step_deg: angle resolution
+        wedge_deg: wedge half-width
+    
+    Returns:
+        best_angle: angle in degrees with maximum energy
+        angles: array of scanned angles
+        energies: array of energies at each angle
     """
     angles = np.arange(scan_deg[0], scan_deg[1] + 1e-9, step_deg)
-    energies = np.array([oriented_energy(P, ang, r, rmin=rmin, rmax=rmax, theta_deg=a, dtheta_deg=wedge_deg)
-                         for a in angles], dtype=np.float64)
+    energies = np.array([
+        oriented_energy(P, ang, r, rmin=rmin, rmax=rmax, 
+                       theta_deg=a, dtheta_deg=wedge_deg)
+        for a in angles
+    ], dtype=np.float64)
     best_idx = int(np.argmax(energies))
     return angles[best_idx], angles, energies
 
-# =========================
-# MAIN
-# =========================
-
-m = read_planck_cmb_map(MAP_FITS)
-nside = hp.get_nside(m)
-
-mask = None
-if MASK_FITS:
-    mask = read_mask(MASK_FITS, nside)
-
-patch, patch_mask = gnomonic_patch(m, LON_DEG, LAT_DEG, PATCH_DEG, PIX_ARCMIN, mask=mask)
-
-# Remove mean (and optionally a plane) to suppress huge low-k power
-patch0 = patch.copy()
-if patch_mask is not None:
-    valid = patch_mask > 0.5
-    mu = patch0[valid].mean()
-    patch0[valid] -= mu
-    patch0[~valid] = 0.0
-else:
-    patch0 -= patch0.mean()
-
-# Apodize
-patch_w, win = apodize_2d(patch0, mask=patch_mask, alpha=0.2)
-
-# FFT power
-P = fft_power(patch_w)
-P = np.log1p(P)  # stabilize dynamic range
-
-# Smooth FFT power slightly (optional)
-P_s = gaussian_filter(P, sigma=SMOOTH_SIGMA_PIX)
-
-ang, r = angle_map(*P_s.shape)
-
-# Scan small angles around 0 deg to find tiny tilt. In general, a grid manifests as peaks.
-# Here we measure oriented energy; you can also look for comb-like peaks along a line.
-best, angles, energies = scan_tilt(
-    P_s, ang, r,
-    rmin=20, rmax=r.max()*0.9,
-    scan_deg=(-2, 2),
-    step_deg=ANGLE_RES_DEG,
-    wedge_deg=0.25
-)
-
-print("Best tilt angle (deg):", best)
-print("Target tilt angle (deg):", TARGET_TILT_DEG)
 
 # =========================
-# PLOTS
+# MAIN PIPELINE
 # =========================
 
-fig = plt.figure(figsize=(14, 4))
+def main():
+    parser = argparse.ArgumentParser(
+        description="UBT CMB 2D FFT PoC - Standalone version with synthetic data"
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["synthetic_grid", "gaussian_field", "injected"],
+        default="gaussian_field",
+        help="Data generation mode (default: gaussian_field)"
+    )
+    parser.add_argument(
+        "--tilt_deg",
+        type=float,
+        default=np.degrees(np.arctan(1/256)),
+        help="Target tilt angle in degrees (default: arctan(1/256) ≈ 0.224°)"
+    )
+    parser.add_argument(
+        "--size",
+        type=int,
+        default=512,
+        help="Patch size in pixels (default: 512)"
+    )
+    parser.add_argument(
+        "--pix_scale",
+        type=float,
+        default=1.0,
+        help="Pixel scale parameter (accepted but not currently applied, default: 1.0)"
+    )
+    parser.add_argument(
+        "--snr",
+        type=float,
+        default=0.2,
+        help="Signal-to-noise ratio for injected mode (default: 0.2)"
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=0,
+        help="Random seed (default: 0)"
+    )
+    parser.add_argument(
+        "--outdir",
+        type=str,
+        default="research_front/cmb_2d_fft/out",
+        help="Output directory for figures (default: research_front/cmb_2d_fft/out)"
+    )
+    
+    args = parser.parse_args()
+    
+    # Create output directory
+    outdir = Path(args.outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
+    
+    print("=" * 60)
+    print("UBT CMB 2D FFT Proof-of-Concept (Standalone)")
+    print("=" * 60)
+    print(f"Mode: {args.mode}")
+    print(f"Target tilt: {args.tilt_deg:.6f}°")
+    print(f"Patch size: {args.size}x{args.size}")
+    print(f"Random seed: {args.seed}")
+    if args.mode == "injected":
+        print(f"SNR: {args.snr}")
+    print(f"Output directory: {outdir}")
+    print()
+    
+    # Generate patch based on mode
+    if args.mode == "synthetic_grid":
+        patch = generate_synthetic_grid(
+            args.size, args.tilt_deg, pix_scale=args.pix_scale, seed=args.seed
+        )
+        print("Generated: Synthetic grid with tilt")
+    elif args.mode == "gaussian_field":
+        patch = generate_gaussian_field(args.size, seed=args.seed)
+        print("Generated: Gaussian random field (null control)")
+    elif args.mode == "injected":
+        patch = generate_injected(
+            args.size, args.tilt_deg, snr=args.snr, 
+            pix_scale=args.pix_scale, seed=args.seed
+        )
+        print(f"Generated: Injected signal (SNR={args.snr})")
+    
+    # Remove mean
+    patch0 = patch - patch.mean()
+    
+    # Apodize
+    patch_w, win = apodize_2d(patch0, alpha=0.2)
+    
+    # FFT power
+    P = fft_power(patch_w)
+    P_log = np.log1p(P)  # stabilize dynamic range
+    
+    # Smooth FFT power slightly
+    SMOOTH_SIGMA_PIX = 1.5
+    P_s = gaussian_filter(P_log, sigma=SMOOTH_SIGMA_PIX)
+    
+    ang, r = angle_map(*P_s.shape)
+    
+    # Scan small angles around 0 deg to find tiny tilt
+    best, angles, energies = scan_tilt(
+        P_s, ang, r,
+        rmin=20, rmax=r.max() * 0.9,
+        scan_deg=(-2, 2),
+        step_deg=0.05,
+        wedge_deg=0.25
+    )
+    
+    # Compute confidence proxy: peak/median ratio
+    median_energy = np.median(energies)
+    peak_energy = np.max(energies)
+    confidence = peak_energy / median_energy if median_energy > 0 else 0.0
+    
+    print("-" * 60)
+    print("RESULTS:")
+    print(f"  Best detected tilt angle: {best:.6f}°")
+    print(f"  Target tilt angle:        {args.tilt_deg:.6f}°")
+    print(f"  Difference:               {abs(best - args.tilt_deg):.6f}°")
+    print(f"  Confidence (peak/median): {confidence:.3f}")
+    print("-" * 60)
+    print()
+    
+    # =========================
+    # SAVE FIGURES
+    # =========================
+    
+    # Figure 1: Patch
+    fig1, ax1 = plt.subplots(figsize=(8, 7))
+    ax1.set_title(f"Input Patch ({args.mode})")
+    im1 = ax1.imshow(patch0, origin="lower", cmap='RdBu_r')
+    plt.colorbar(im1, ax=ax1, fraction=0.046)
+    ax1.set_xlabel("x (pixels)")
+    ax1.set_ylabel("y (pixels)")
+    patch_path = outdir / "patch.png"
+    plt.savefig(patch_path, dpi=150, bbox_inches='tight')
+    print(f"Saved: {patch_path}")
+    plt.close(fig1)
+    
+    # Figure 2: FFT power
+    fig2, ax2 = plt.subplots(figsize=(8, 7))
+    ax2.set_title("FFT Power (log-scale, smoothed)")
+    im2 = ax2.imshow(P_s, origin="lower", cmap='viridis')
+    plt.colorbar(im2, ax=ax2, fraction=0.046)
+    ax2.set_xlabel("kx (pixels)")
+    ax2.set_ylabel("ky (pixels)")
+    fft_path = outdir / "fft_power.png"
+    plt.savefig(fft_path, dpi=150, bbox_inches='tight')
+    print(f"Saved: {fft_path}")
+    plt.close(fig2)
+    
+    # Figure 3: Energy vs angle
+    fig3, ax3 = plt.subplots(figsize=(10, 6))
+    ax3.set_title("Oriented Energy vs Angle")
+    ax3.plot(angles, energies, linewidth=2, label='Measured energy')
+    ax3.axvline(args.tilt_deg, linestyle="--", color='red', 
+                label=f"Target: {args.tilt_deg:.4f}°")
+    ax3.axvline(best, linestyle="-", color='green', 
+                label=f"Best: {best:.4f}°")
+    ax3.set_xlabel("Angle (degrees)")
+    ax3.set_ylabel("Energy (a.u.)")
+    ax3.legend()
+    ax3.grid(True, alpha=0.3)
+    energy_path = outdir / "energy_vs_angle.png"
+    plt.savefig(energy_path, dpi=150, bbox_inches='tight')
+    print(f"Saved: {energy_path}")
+    plt.close(fig3)
+    
+    print()
+    print("=" * 60)
+    print("Analysis complete!")
+    print("=" * 60)
 
-ax1 = fig.add_subplot(1, 3, 1)
-ax1.set_title("CMB patch (gnomonic)")
-im1 = ax1.imshow(patch0, origin="lower")
-plt.colorbar(im1, ax=ax1, fraction=0.046)
 
-ax2 = fig.add_subplot(1, 3, 2)
-ax2.set_title("FFT power (log, smoothed)")
-im2 = ax2.imshow(P_s, origin="lower")
-plt.colorbar(im2, ax=ax2, fraction=0.046)
-
-ax3 = fig.add_subplot(1, 3, 3)
-ax3.set_title("Oriented energy vs angle")
-ax3.plot(angles, energies)
-ax3.axvline(TARGET_TILT_DEG, linestyle="--", label=f"target {TARGET_TILT_DEG:.3f}°")
-ax3.axvline(best, linestyle="-", label=f"best {best:.3f}°")
-ax3.set_xlabel("angle (deg)")
-ax3.set_ylabel("energy (a.u.)")
-ax3.legend()
-
-plt.tight_layout()
-plt.show()
+if __name__ == "__main__":
+    main()
 
