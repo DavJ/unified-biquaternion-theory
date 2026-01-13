@@ -52,3 +52,6 @@ reports/*.json
 forensic_fingerprint/out/
 # But keep VERDICT files for court-grade results
 !forensic_fingerprint/out/**/VERDICT.md
+
+# CMB 2D FFT output directory
+research_front/cmb_2d_fft/out/
