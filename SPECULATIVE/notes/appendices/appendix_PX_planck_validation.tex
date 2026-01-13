@@ -1,0 +1,110 @@
+% VERSION: v17 Stable Release
+\section{Planck 2018 Parameter Mapping and Falsifiability Test}
+\label{app:planck_validation}
+
+\SpeculativeContentWarning
+
+This section provides a pre-registered, falsifiable comparison between UBT predictions and Planck 2018 cosmological observables. All mappings are fixed a priori; no post-hoc parameter tuning is allowed. Agreement is evaluated simultaneously across multiple independent observables to ensure that partial matches do not constitute validation in the absence of complete theoretical derivation.
+
+\subsection{Pre-Registered Parameter Mapping}
+
+Table~\ref{tab:planck_mapping} presents the correspondence between UBT theoretical architecture parameters and Planck 2018 measured cosmological quantities. The UBT values shown represent outputs of the digital-architecture interpretation based on Reed-Solomon RS(255,200) error correction over GF($2^8$) combined with OFDM signal structure. These parameters are \emph{fixed by the mathematical structure} and are not adjusted to match observations.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\hline
+Parameter & UBT Theoretical Mapping & Predicted Value & Planck 2018 (Observed) \\
+\hline
+$\Omega_b h^2$ & $M_{\mathrm{payload}}(R,D)$ & 0.02231 & $0.02237 \pm 0.00015$ \\
+$\Omega_c h^2$ & $M_{\mathrm{parity}}(R,D)$  & 0.1192  & $0.1200 \pm 0.0012$ \\
+$n_s$         & $1 - \frac{9}{255}$          & 0.9647  & $0.9649 \pm 0.0042$ \\
+$\theta_*$   & $M_{\mathrm{phase}}(R,D)$    & TBD     & $1.0411 \pm 0.0003$ \\
+$\sigma_8$    & $M_{\mathrm{SNR}}(R,D)$      & TBD     & $0.811 \pm 0.006$ \\
+\hline
+\end{tabular}
+\caption{Pre-registered UBT-to-Planck parameter mapping. All UBT values are derived from the fixed RS(255,200) architecture with no adjustable parameters in the first three rows. $M_{\mathrm{payload}}$, $M_{\mathrm{parity}}$, $M_{\mathrm{phase}}$, and $M_{\mathrm{SNR}}$ denote specific functionals of the Reed-Solomon code parameters R and data dimension D within the digital-architecture hypothesis.}
+\label{tab:planck_mapping}
+\end{table}
+
+\subsection{Interpretation of the Mapping}
+
+The parameters $\Omega_b h^2$, $\Omega_c h^2$, and $n_s$ represent \textbf{genuine predictions} in the sense that they emerge from the fixed RS(255,200) + OFDM architecture without adjustable parameters once the mathematical structure is specified. The close numerical agreement with Planck 2018 measurements is noteworthy and compatible with the hypothesis that cosmological observables reflect information-theoretic structure.
+
+However, the parameters $\theta_*$ (sound horizon angle at recombination) and $\sigma_8$ (matter fluctuation amplitude at 8 Mpc/h) remain \textbf{open predictions} marked as TBD (To Be Determined). These quantities must be derived from the same architectural mapping without introducing new free parameters for the digital-architecture hypothesis to be considered complete.
+
+\textbf{Critical point}: Partial agreement with a subset of parameters does \emph{not} constitute validation of the theoretical framework. The UBT digital-architecture interpretation can only claim empirical support if \emph{all five parameters} (or at least three independent observables including the currently TBD quantities) are reproduced within experimental uncertainty using a single, fixed mathematical structure.
+
+\subsection{Falsifiability Criterion}
+
+The UBT digital-architecture hypothesis is considered empirically supported only if at least three independent Planck observables are reproduced within experimental uncertainty using a single fixed architecture. Specifically:
+
+\begin{enumerate}
+\item Agreement with a single parameter (e.g., $\Omega_b h^2$ alone) is \textbf{explicitly declared insufficient} for validation.
+\item Failure to reproduce $\theta_*$ or $\sigma_8$ without introducing new free parameters \textbf{falsifies} the RS/OFDM-based interpretation as a physical theory of cosmological structure.
+\item Any future derivation of the TBD quantities must use the \emph{same} RS(255,200) + OFDM structure with \emph{no additional tunable parameters}. Post-hoc fitting or introduction of new discrete parameters would invalidate the pre-registered nature of this test.
+\end{enumerate}
+
+This criterion follows the philosophy of simultaneous multi-parameter testing used in high-energy physics and cosmology, where theories are required to match multiple independent observables before being considered viable.
+
+\subsection{Statistical Caveats}
+
+No p-values or ``one-in-a-million'' probability claims are made in this appendix. The numerical coincidences documented in Table~\ref{tab:planck_mapping} are presented as \emph{empirical observations} that warrant further investigation, not as statistical proof of the digital-architecture hypothesis.
+
+The following statistical issues are explicitly acknowledged and excluded from interpretation:
+
+\begin{itemize}
+\item \textbf{Post-hoc fitting}: The RS(255,200) architecture was specified \emph{before} the Planck 2018 data comparison. However, complete pre-registration (in the sense of a public timestamped commitment prior to analysis) has not been formally established for this work.
+\item \textbf{Discrete lattice effects}: The discrete parameter space (RS codes with specific (n,k) parameters) allows multiple candidate architectures. The selection of (255,200) may reflect an implicit search over this discrete space.
+\item \textbf{Look-elsewhere effect}: Multiple cosmological parameters exist beyond those listed. The focus on these five parameters may introduce selection bias.
+\end{itemize}
+
+This appendix follows a \textbf{pre-registered-test philosophy} in spirit: the mapping is documented here with explicit success/failure criteria stated in advance of completing the derivations of $\theta_*$ and $\sigma_8$. Any future claims of validation must demonstrate that the TBD quantities were derived \emph{after} this document was finalized, using the architecture specified here.
+
+\subsection{Future Work and Testability}
+
+If future work derives $\theta_*$ and $\sigma_8$ from the same RS(255,200) + OFDM mapping without adjustable parameters, the digital-architecture hypothesis would become fully testable against the complete set of Planck 2018 observables. Such a derivation would elevate the framework from ``interesting numerical coincidence'' to ``quantitatively falsifiable physical hypothesis.''
+
+Until that time, the current status should be classified as \textbf{partial empirical compatibility} with recognized need for completion. The documented agreement with three parameters provides motivation for continued investigation but does not constitute scientific validation of UBT's cosmological interpretation.
+
+\subsection{Implementation Pointer}
+
+A complete, executable implementation of these mappings is provided in the repository:
+
+\begin{itemize}
+\item \texttt{tools/planck\_validation/constants.py} --- Pre-registered architecture parameters (LOCKED: RS\_N=255, RS\_K=200, OFDM\_CHANNELS=16)
+\item \texttt{tools/planck\_validation/mapping.py} --- Exact implementations of:
+\begin{itemize}
+    \item \texttt{M\_payload(R,D)} $\to \Omega_b h^2$ (Eq. PX.4)
+    \item \texttt{M\_parity(R,D)} $\to \Omega_c h^2$ (Eq. PX.5)
+    \item \texttt{M\_ns(R)} $\to n_s$ (Eq. PX.6, exact formula: $1 - 9/255$)
+    \item \texttt{M\_phase(R,D)} $\to \theta_*$ (NotImplementedError until derived)
+    \item \texttt{M\_SNR(R,D)} $\to \sigma_8$ (NotImplementedError until derived)
+\end{itemize}
+\item \texttt{tools/planck\_validation/metrics.py} --- Statistical evaluation (z-scores, $\chi^2$, p-values)
+\item \texttt{tools/planck\_validation/report.py} --- Automated report generation (markdown, CSV, JSON)
+\item \texttt{tests/test\_planck\_validation\_mapping.py} --- Regression tests enforcing exact numerical predictions
+\end{itemize}
+
+The implementation enforces the \textbf{no-fit / no post-hoc} policy (see \texttt{REPO\_GOVERNANCE.md}):
+\begin{itemize}
+\item All constants are LOCKED and validated on import
+\item Mappings produce exact pre-registered predictions (enforced by pytest)
+\item TBD mappings raise NotImplementedError (preventing silent parameter tuning)
+\item Changing any prediction requires protocol version increment
+\end{itemize}
+
+To generate a validation report:
+\begin{verbatim}
+cd tools/planck_validation
+python report.py
+\end{verbatim}
+
+Output files written to \texttt{out/planck\_validation/}:
+\begin{itemize}
+\item \texttt{validation\_report.md} --- Human-readable summary with z-scores and $\chi^2$
+\item \texttt{validation\_results.csv} --- Machine-readable results table
+\item \texttt{validation\_results.json} --- Complete metadata and metrics
+\end{itemize}
+
+All numerical values in this appendix are reproduced exactly by the code implementation, ensuring full reproducibility.
