@@ -49,21 +49,68 @@ Layers 2 and 3. Failure of any specific fingerprint falsifies only the
 corresponding realization of these layers and does not invalidate the
 biquaternionic geometric core.
 
+\section{Geometric Anchoring of Discrete Symbols}
+
+Although the fingerprints studied here probe only Layers~2--3 (coding, stability, and global coherence), it is useful to anchor the discrete symbols to a minimal geometric/variational bridge. The goal of this section is not to \emph{derive} a unique code, but to specify a conservative path by which spherical data may acquire a naturally discretized phase description.
+
+\subsection{Spherical observables and a dimensionless action phase}
+
+Observations on the sky are naturally represented as fields on the celestial sphere $S^2$ at an effectively fixed radius $r=r_\ast$ (e.g., a last-scattering surface). We parametrize a direction by $\hat{n}=(\theta,\phi)$.
+
+In UBT, a natural dimensionless phase variable is the action measured in units of $\hbar$. We therefore introduce an \emph{action-phase map}
+\begin{equation}
+z(\hat{n}) \equiv \frac{S(\hat{n})}{\hbar} = z_0 + \epsilon\,\delta z(\hat{n}),
+\end{equation}
+where $z_0$ is the isotropic component and $\delta z(\hat{n})$ encodes directional modulation (projection/selection effects). In the simplest theta-ansatz one may write an effective complex amplitude on the sphere as
+\begin{equation}
+\Psi(\hat{n}) = \Psi_0\,\vartheta\!\big(z(\hat{n}),\tau\big),
+\end{equation}
+where $\vartheta$ is a Jacobi theta function and $\tau$ is the complex-time modulus (UBT uses $\tau=t+i\psi$).
+
+\subsection{Quantization hypothesis and $N$-ary phase sectors}
+
+To connect geometry to discrete symbol streams, we adopt a conservative quantization hypothesis: if physical evolution is fundamentally discretized at some time step $\Delta t$ (Planck time being a limiting case), then frequencies and phases become effectively discretized in finite observation windows. Independently of the detailed mechanism, this motivates testing finite alphabets
+\begin{equation}
+\varphi(\hat{n}) \equiv \arg\!\big(\Psi(\hat{n})\big) \approx \frac{2\pi}{N}\,k(\hat{n}),\qquad k(\hat{n})\in\{0,\dots,N-1\}.
+\end{equation}
+In this paper we focus on $N\in\{16,256\}$ as practical candidates motivated by multiplex sectorization (16) and high-resolution phase coding (256). The mapping from spherical data to symbols is part of the Layer~2/3 realization and is therefore falsifiable without affecting Layer~1.
+
+\subsection{Symbol extraction from complex coefficients}
+
+Given complex observational coefficients (e.g., spherical harmonic coefficients $a_{\ell m}$), define the discretized symbol
+\begin{equation}
+s_{\ell m} = \left\lfloor \frac{N}{2\pi}\big(\arg(a_{\ell m})+\pi\big) \right\rfloor \in \mathbb{Z}_N.
+\end{equation}
+This converts a spherical (or harmonic) observable into an $N$-ary symbol stream suitable for testing parity/redundancy constraints.
+
+\subsection{A note on spherical ``packing'' of a 256-frame}
+
+If a preferred frame length $N=256$ exists in the underlying dynamics, a natural geometric question is how such a frame could manifest on $S^2$. The simplest heuristic is to associate one period with a great-circle azimuthal partition,
+\begin{equation}
+\Delta\phi = \frac{2\pi}{256},\qquad \Delta\phi \approx 1.40625^{\circ},
+\end{equation}
+which corresponds to a characteristic angular scale. In multipole space this suggests examining anomalies or phase-structure changes near a characteristic band $\ell\sim 2\pi/\Delta\phi\approx 256$ (and nearby harmonics). This is a \emph{candidate} spherical fingerprint, not a necessity: realistic sky maps use nontrivial pixelizations (e.g., HEALPix) and the projection from UBT variables to observables may smear or shift the effective scale.
+
+\subsection{2D Fourier skew fingerprint (candidate)}
+
+If an $N$-frame is realized as a stream of $N-1$ ``data'' symbols plus one synchronization symbol (a common coding pattern, e.g. $255+1$), then an unwrapped 2D indexing of the stream can exhibit a small shear. A minimal model is a linear shear transform in the 2D Fourier domain,
+\begin{equation}
+\mathcal{M}_{\text{skew}} =
+\begin{pmatrix}
+1 & 1/256\\
+0 & 1
+\end{pmatrix},
+\end{equation}
+corresponding to a skew angle
+\begin{equation}
+\theta_{\text{skew}} = \arctan\!\left(\frac{1}{256}\right) \approx 0.2238^{\circ}.
+\end{equation}
+Operationally, this fingerprint would be sought in planar projections of spherical data after a controlled unwrapping (and careful null tests). We treat it as an exploratory signature that may guide where to look, while emphasizing that its non-detection does not impact Layer~1.
+
 \section{Minimal Coding-Layer Fingerprint}
 
-\subsection{Discretized Phase Symbols}
-
-Let $a_{\ell m}$ denote complex observational coefficients (for example,
-spherical harmonic coefficients of a cosmological field). We define
-discretized phase symbols by
-\begin{equation}
-s_{\ell m} =
-\left\lfloor
-\frac{N}{2\pi}\left(\arg(a_{\ell m})+\pi\right)
-\right\rfloor
-\in \mathbb{Z}_N,
-\end{equation}
-where $N=16$ or $N=256$.
+We now state the simplest operational fingerprint using the discretized
+symbols $s_{\ell m}\in\mathbb{Z}_N$ defined in the previous section.
 
 \subsection{Block Formation and Parity Constraints}
 
