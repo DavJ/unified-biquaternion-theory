@@ -13,7 +13,7 @@ The Hubble Latency model provides an architectural explanation for the observed 
 - A replacement for ΛCDM
 
 **This IS:**
-- An architectural synchronization/clock-skew effect
+- An architectural synchronization/clock-shear effect
 - A systematic bias, not a physical field
 - A consequence of discrete-time global synchronization in UBT's computational architecture
 
@@ -49,7 +49,7 @@ For typical UBT parameters:
 
 This yields: O ≈ 16-21 ticks
 
-### Emergent Time Skew
+### Emergent Time Shear
 
 Define the synchronization fraction:
 ```
@@ -84,7 +84,7 @@ This corresponds to approximately 8.5% tension, consistent with observations:
 1. **Redshift independence**: δ should remain constant across all redshifts
 2. **Standard sirens**: Gravitational wave measurements should show the same δ
 3. **No CMB comb signal**: Consistent with Planck PR3 NULL result for CMB comb
-4. **Universal clock skew**: All late-time local measurements should show same bias
+4. **Universal clock shear**: All late-time local measurements should show same bias
 
 ## Relation to Hubble Tension
 

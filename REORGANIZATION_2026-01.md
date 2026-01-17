@@ -42,7 +42,7 @@ The Hubble Latency module is now clearly isolated with conservative disclaimers:
 - NOT dark energy
 - NOT a new particle
 - NOT a dynamical modification
-- Architectural synchronization/clock-skew effect
+- Architectural synchronization/clock-shear effect
 
 See `HUBBLE_LATENCY/README.md`
 

@@ -27,7 +27,7 @@ O ≈ b + (N − 1) k (2 − η)
 
 For N = 16, F = 256, k = 1, b ≈ 2, η ≈ 0.8–0.95 → O ≈ 16–21.
 
-## X.3 Emergent Time Skew
+## X.3 Emergent Time Shear
 Define δ = O / F.
 Then:
 

@@ -36,7 +36,7 @@ UBT makes **precise quantitative predictions**:
 - **α⁻¹ = 137.036** (confirmed to 0.00003%)
 - **m_e ≈ 0.510 MeV** (confirmed to ~0.2%)
 - **No CMB TT comb** at periods Δℓ ∈ {8,16,32,64,128,255} (confirmed null)
-- **Hubble latency**: δ ≈ 7.8% clock skew (testable with standard sirens)
+- **Hubble latency**: δ ≈ 7.8% clock shear (testable with standard sirens)
 
 ### A Work in Progress
 

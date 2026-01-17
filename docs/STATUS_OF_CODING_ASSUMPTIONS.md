@@ -131,7 +131,7 @@ Pre-registered, falsifiable tests of specific UBT predictions. Results inform th
 - **Location:** `research_front/hubble_latency/`
 - **Label:** EXPLORATORY / HYPOTHESIS
 
-### 2D FFT CMB Skew
+### 2D FFT CMB Shear
 - **Claim:** Small anisotropic tilt (~arctan(1/256)) might be detectable in 2D Fourier space of CMB patches
 - **Status:** Proof-of-concept stage - synthetic tests only, no Planck results claimed
 - **Location:** `research_front/cmb_2d_fft/`
@@ -154,7 +154,7 @@ Pre-registered, falsifiable tests of specific UBT predictions. Results inform th
 | m_e (QED corrections) | ✅ Yes | ❌ No | ❌ No | Field theory |
 | Ω_b ≈ 4.9% | ❌ No | ✅ Yes | ✅ Yes | Probe-dependent |
 | H₀ tension "explanation" | ❌ No | ⚠️ Partial | ⚠️ Partial | Hypothesis |
-| 2D FFT skew | ❌ No | ⚠️ Partial | ⚠️ Partial | Exploratory |
+| 2D FFT shear | ❌ No | ⚠️ Partial | ⚠️ Partial | Exploratory |
 
 **Legend:**
 - ✅ Yes: Observable derived from this layer
@@ -169,7 +169,7 @@ Pre-registered, falsifiable tests of specific UBT predictions. Results inform th
 ┌─────────────────────────────────────────────┐
 │  Research Front (Layer C)                    │
 │  - Hubble latency hypothesis                 │
-│  - 2D FFT CMB skew                           │
+│  - 2D FFT CMB shear                           │
 │  - Other exploratory tests                   │
 │  Status: HYPOTHESIS / EXPLORATORY            │
 └─────────────────────────────────────────────┘

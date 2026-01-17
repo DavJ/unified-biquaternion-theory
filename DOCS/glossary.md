@@ -121,7 +121,7 @@ Where:
 
 **Effect**: H₀_local ≈ H₀_global / (1 - δ)
 
-**Interpretation**: Clock skew between local and global measurements, NOT new physics.
+**Interpretation**: Clock shear between local and global measurements, NOT new physics.
 
 ### Standard Siren
 

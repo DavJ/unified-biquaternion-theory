@@ -13,7 +13,7 @@ This module contains the **Hubble Latency** solution for the Hubble tension with
 - **NOT a replacement for ΛCDM** - Works within standard cosmology
 
 **This IS:**
-- **An architectural synchronization/clock-skew effect**
+- **An architectural synchronization/clock-shear effect**
 - **A systematic measurement bias** arising from discrete-time structure
 - **A computational substrate interpretation** of the Hubble tension
 - **Conservative language**: "interpreted as", "can be modeled as"

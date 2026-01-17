@@ -43,7 +43,7 @@ For typical UBT parameters (N=16, F=256, k=1, b≈2, η≈0.8-0.95), this yields
 
 ## Conservative Interpretation
 
-This model **can be interpreted as** a systematic clock skew effect rather than fundamental physics. It provides a potential framework for understanding the Hubble tension within UBT's discrete-time architecture, but:
+This model **can be interpreted as** a systematic clock shear effect rather than fundamental physics. It provides a potential framework for understanding the Hubble tension within UBT's discrete-time architecture, but:
 
 - **Does not constitute proof** of UBT or the computational substrate hypothesis
 - **Does not require acceptance** of the full UBT framework for evaluation

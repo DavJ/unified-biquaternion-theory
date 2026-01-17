@@ -1,4 +1,4 @@
-# CMB 2D FFT Skew Test - Runbook
+# CMB 2D FFT Spectral Shear Test - Runbook
 
 **Status:** 🔵 EXPLORATORY / PROOF-OF-CONCEPT  
 **Layer:** Research Front (Layer C)  
@@ -396,7 +396,7 @@ pip install healpy astropy
 
 ## Summary
 
-**CMB 2D FFT Skew Test Runbook:**
+**CMB 2D FFT Spectral Shear Test Runbook:**
 
 1. **Start with PoC** (synthetic data, no Planck maps needed)
 2. **Run null tests** (Gaussian fields, multiple seeds, sizes)

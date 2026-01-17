@@ -1,8 +1,10 @@
-# 2D FFT CMB Skew Test (Research Front)
+# 2D FFT CMB Spectral Shear Test (Research Front)
 
 Status: exploratory / hypothesis testing
 
 Goal:
+
+Terminology note: this detector searches for a *spectral shear* (a linear phase-front tilt in $k$-space), not a physical rotation of a spatial grid.
 Test whether a small anisotropic tilt (~arctan(1/256)) is detectable
 in 2D Fourier space of local CMB patches.
 

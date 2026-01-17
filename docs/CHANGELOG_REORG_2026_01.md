@@ -168,7 +168,7 @@ research_front/hubble_latency/  # Hubble tension hypothesis (moved from HUBBLE_L
 
 **Current hypotheses:**
 - Hubble latency (synchronization drift)
-- 2D FFT CMB skew (oriented anisotropy)
+- 2D FFT CMB shear (oriented anisotropy)
 
 **Validation path:** If confirmed by independent observations → promote to Layer B. If falsified → document and archive.
 

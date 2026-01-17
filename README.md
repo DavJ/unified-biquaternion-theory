@@ -70,7 +70,7 @@ Pre-registered tests:
 
 Active research hypotheses:
 - **Hubble latency:** [research_front/hubble_latency/](research_front/hubble_latency/) - H₀ tension as synchronization drift (exploratory)
-- **2D FFT CMB skew:** [research_front/cmb_2d_fft/](research_front/cmb_2d_fft/) - Anisotropic tilt detection (PoC stage)
+- **2D FFT CMB shear:** [research_front/cmb_2d_fft/](research_front/cmb_2d_fft/) - Anisotropic tilt detection (PoC stage)
 
 **Status:** 🔵 Testable but unvalidated - may succeed or fail
 
@@ -256,7 +256,7 @@ To prevent misconceptions, we state explicitly what UBT does **NOT** claim:
 | **Electron mass** | m_e ≈ 0.510 MeV | 0.51099895 ± 0.00000015 MeV | ✅ **CONFIRMED** | **~0.2%** |
 | **Planck CMB TT comb** | Δℓ ∈ {8,16,32,64,128,255} | No signal detected (p=0.919) | ❌ **NULL** | N/A |
 | **WMAP CMB TT comb** | — | Δℓ=255 (p=1e-4, not replicated) | ⚠️ **CANDIDATE** | Non-replicating |
-| **Hubble latency** | δ ≈ 7.8% clock skew | H₀ tension ~8-9% | 🔄 **TESTABLE** | Awaiting standard sirens |
+| **Hubble latency** | δ ≈ 7.8% clock shear | H₀ tension ~8-9% | 🔄 **TESTABLE** | Awaiting standard sirens |
 
 **Summary**: 2 confirmed predictions, 1 null result, 1 non-replicating candidate, many untested predictions.
 
@@ -314,7 +314,7 @@ unified-biquaternion-theory/
 │   └── manifests/          # SHA-256 data integrity (→ moved to DATA/)
 │
 ├── HUBBLE_LATENCY/          # Hubble tension synchronization interpretation
-│   ├── model/              # Clock skew formulation (NOT dark energy)
+│   ├── model/              # Clock shear formulation (NOT dark energy)
 │   ├── calibration/        # Parameter estimation from H₀ measurements
 │   └── appendix/           # Mathematical derivation
 │
@@ -407,7 +407,7 @@ The **Hubble tension** (~8-9% discrepancy between early and late H₀ measuremen
 **Key properties**:
 - ❌ NOT dark energy (no new fields)
 - ❌ NOT modified gravity (GR unchanged)
-- ✅ Systematic clock skew (δ ≈ 7.8%)
+- ✅ Systematic clock shear (δ ≈ 7.8%)
 - ✅ Testable via standard sirens
 - ✅ Consistent with CMB NULL (no macroscopic comb)
 

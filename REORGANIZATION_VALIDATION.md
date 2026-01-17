@@ -62,7 +62,7 @@ The Unified Biquaternion Theory repository has been successfully reorganized int
 **README Disclaimers Verified**:
 - ✅ States "NOT dark energy"
 - ✅ States "NOT a new particle"
-- ✅ States "architectural synchronization/clock-skew effect"
+- ✅ States "architectural synchronization/clock-shear effect"
 - ✅ Uses conservative language: "interpreted as", "can be modeled as"
 
 ### Fingerprints ✅
