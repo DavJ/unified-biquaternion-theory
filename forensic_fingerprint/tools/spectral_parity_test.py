@@ -31,11 +31,19 @@ from __future__ import annotations
 import argparse
 import math
 import os
+import pickle
 import random
+import sys
+import time
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
+
+try:
+    from tqdm import tqdm
+except Exception:  # pragma: no cover
+    tqdm = None
 
 try:
     import healpy as hp
@@ -43,6 +51,95 @@ except Exception as e:  # pragma: no cover
     hp = None
 
 from .rs_syndrome import RSParams, syndrome_zero_count
+
+
+class _Progress:
+    """Single-line progress reporting with optional tqdm support.
+
+    Uses tqdm if available; otherwise writes a single updating line to stderr.
+    Designed to avoid spamming many lines in long Monte Carlo runs.
+    """
+
+    def __init__(self, enabled: bool, total: int, desc: str, unit: str = 'it'):
+        self.enabled = bool(enabled)
+        self.total = int(total)
+        self.desc = desc
+        self.unit = unit
+        self._t0 = time.time()
+        self._i = 0
+        self._pbar = None
+        if self.enabled and tqdm is not None:
+            self._pbar = tqdm(total=self.total, desc=self.desc, unit=self.unit, dynamic_ncols=True)
+
+    def update(self, n: int = 1, **postfix):
+        if not self.enabled:
+            return
+        self._i += n
+        if self._pbar is not None:
+            self._pbar.update(n)
+            if postfix:
+                # Keep postfix compact; tqdm renders it on the same line.
+                self._pbar.set_postfix(**{k: v for k, v in postfix.items() if v is not None})
+            return
+
+        # Fallback: single-line status (carriage-return overwrite).
+        elapsed = time.time() - self._t0
+        rate = (self._i / elapsed) if elapsed > 0 else 0.0
+        eta = ((self.total - self._i) / rate) if rate > 0 else float('inf')
+        tail = '  '.join([f"{k}={v}" for k, v in postfix.items() if v is not None])
+        msg = f"{self.desc}: {self._i}/{self.total} {self.unit}  {rate:.2f}/{self.unit}/s  ETA {eta:.0f}s"
+        if tail:
+            msg += '  |  ' + tail
+        sys.stderr.write('\r' + msg[:220].ljust(220))
+        sys.stderr.flush()
+
+    def close(self):
+        if not self.enabled:
+            return
+        if self._pbar is not None:
+            self._pbar.close()
+            return
+        sys.stderr.write('\n')
+        sys.stderr.flush()
+
+
+@dataclass
+class RunningStats:
+    """Online mean/std estimation (Welford), used for ergonomic live stats."""
+
+    n: int = 0
+    mean: float = 0.0
+    m2: float = 0.0
+
+    def update(self, x: float) -> None:
+        if not (x == x):  # NaN
+            return
+        self.n += 1
+        delta = x - self.mean
+        self.mean += delta / self.n
+        delta2 = x - self.mean
+        self.m2 += delta * delta2
+
+    @property
+    def var(self) -> float:
+        return (self.m2 / (self.n - 1)) if self.n > 1 else float('nan')
+
+    @property
+    def std(self) -> float:
+        v = self.var
+        return math.sqrt(v) if v == v and v >= 0 else float('nan')
+
+
+def _save_checkpoint(path: str, payload: dict) -> None:
+    tmp = path + '.tmp'
+    with open(tmp, 'wb') as f:
+        pickle.dump(payload, f)
+    os.replace(tmp, path)
+
+
+def _load_checkpoint(path: str) -> dict:
+    with open(path, 'rb') as f:
+        return pickle.load(f)
 
 
 @dataclass
@@ -63,10 +160,7 @@ def k_index(ell: int, m: int) -> int:
     return ell * ell + ell + m
 
 
-def iter_lm(lmax: int) -> Iterable[Tuple[int, int]]:
-    for ell in range(lmin, lmax + 1):
-        for m in range(-ell, ell + 1):
-            yield ell, m
+DEFAULT_LMIN = 2
 
 
 def quantize_phase_to_u8(z: complex) -> int:
@@ -117,15 +211,16 @@ def hamming_valid_rate(symbols: np.ndarray) -> float:
 
 def load_alm_from_map(map_path: str, lmax: int) -> np.ndarray:
     _require_healpy()
-    m = hp.read_map(map_path, field=0, verbose=False)
+    # healpy>=1.15 deprecates "verbose"; keep compatibility.
+    m = hp.read_map(map_path, field=0)
     alm = hp.map2alm(m, lmax=lmax, pol=False, iter=3)
     return alm
 
 
 def load_almE_B_from_qu_maps(q_path: str, u_path: str, lmax: int) -> Tuple[np.ndarray, np.ndarray]:
     _require_healpy()
-    q = hp.read_map(q_path, field=0, verbose=False)
-    u = hp.read_map(u_path, field=0, verbose=False)
+    q = hp.read_map(q_path, field=0)
+    u = hp.read_map(u_path, field=0)
     # spin-2 transform
     almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax, iter=3)
     return almE, almB
@@ -136,7 +231,7 @@ def load_alm_fits(path: str) -> np.ndarray:
     return hp.read_alm(path)
 
 
-def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str) -> Symbols:
+def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str, lmin: int = DEFAULT_LMIN) -> Symbols:
     """Build uint8 symbol stream using phase quantization, for all m in [-ell,ell].
 
     healpy stores only m>=0. For real fields, negative m are obtained by:
@@ -159,7 +254,12 @@ def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str) -> Symbo
     return Symbols(name=name, symbols=sym)
 
 
-def phase_randomize_per_ell(alm: np.ndarray, lmax: int, rng: np.random.Generator) -> np.ndarray:
+def phase_randomize_per_ell(
+    alm: np.ndarray,
+    lmax: int,
+    rng: np.random.Generator,
+    lmin: int = DEFAULT_LMIN,
+) -> np.ndarray:
     """Null model N1: randomize phases within each ell while preserving amplitudes."""
     _require_healpy()
     out = np.array(alm, copy=True)
@@ -186,11 +286,46 @@ class TestResult:
     rs_tail_rate: float
 
 
-def compute_scores(symbols: np.ndarray, rs_params: RSParams, frame: int = 255, step: int = 1, tail_k: int = 8) -> Tuple[float, float]:
-    """Return (mean_zero_count, tail_rate) for RS syndrome zeros."""
+def compute_scores(
+    symbols: np.ndarray,
+    rs_params: RSParams,
+    frame: int = 255,
+    step: int = 255,
+    tail_k: int = 8,
+    max_frames: Optional[int] = None,
+    rng: Optional[np.random.Generator] = None,
+) -> Tuple[float, float]:
+    """Return (mean_zero_count, tail_rate) for RS syndrome zeros.
+
+    Performance note
+    ----------------
+    Scanning a ~1M symbol stream with step=1 yields ~1M frames; doing that for
+    hundreds of Monte Carlo iterations is prohibitively slow.
+
+    Use either:
+      - a larger --step (default 255 = non-overlapping frames), and/or
+      - --max-frames with --seed to sample a fixed subset of windows.
+    """
     counts: List[int] = []
-    for w in windowed(symbols, frame, step):
-        counts.append(syndrome_zero_count(w.tolist(), rs_params))
+
+    if max_frames is not None and max_frames > 0:
+        if rng is None:
+            rng = np.random.default_rng(12345)
+        max_start = max(0, symbols.size - frame)
+        if max_start <= 0:
+            return float('nan'), float('nan')
+        # Sample window starts; align to "step" grid for determinism.
+        grid = np.arange(0, max_start + 1, step, dtype=np.int64)
+        if grid.size == 0:
+            return float('nan'), float('nan')
+        choose = min(int(max_frames), int(grid.size))
+        starts = rng.choice(grid, size=choose, replace=False)
+        for s in starts.tolist():
+            w = symbols[s : s + frame]
+            counts.append(syndrome_zero_count(w.tolist(), rs_params))
+    else:
+        for w in windowed(symbols, frame, step):
+            counts.append(syndrome_zero_count(w.tolist(), rs_params))
     if not counts:
         return float('nan'), float('nan')
     arr = np.array(counts, dtype=np.float64)
@@ -214,6 +349,7 @@ def monte_carlo_pvalue(obs: float, null_values: List[float]) -> float:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument('--lmin', type=int, default=DEFAULT_LMIN, help='minimum ell to include (default: 2)')
     ap.add_argument('--lmax', type=int, default=1024)
     ap.add_argument('--tt-map', type=str, default=None, help='HEALPix FITS map for temperature')
     ap.add_argument('--tt-alm', type=str, default=None, help='FITS alm for temperature')
@@ -223,9 +359,32 @@ def main() -> int:
     ap.add_argument('--b-alm', type=str, default=None, help='FITS alm for B')
     ap.add_argument('--mc', type=int, default=50, help='Monte Carlo iterations for null N1')
     ap.add_argument('--frame', type=int, default=255)
-    ap.add_argument('--step', type=int, default=1)
+    ap.add_argument('--step', type=int, default=255, help='window step (default 255 = non-overlapping)')
+    ap.add_argument('--max-frames', type=int, default=4096, help='limit number of windows per run (sampled). 0 disables')
     ap.add_argument('--tail-k', type=int, default=8, help='tail threshold on zero-syndrome count')
     ap.add_argument('--seed', type=int, default=12345)
+    ap.add_argument('--progress', dest='progress', action='store_true', help='enable progress display (default: on if TTY)')
+    ap.add_argument('--no-progress', dest='progress', action='store_false', help='disable progress display')
+
+    ap.add_argument(
+        '--checkpoint',
+        type=str,
+        default=None,
+        help='optional pickle checkpoint path (enables resume; stores RNG state, partial MC results)'
+    )
+    ap.add_argument(
+        '--resume',
+        action='store_true',
+        help='resume from --checkpoint if it exists (otherwise starts fresh)'
+    )
+    ap.add_argument(
+        '--checkpoint-every',
+        type=int,
+        default=10,
+        help='write checkpoint every N MC iterations (default: 10)'
+    )
+
+    ap.set_defaults(progress=sys.stderr.isatty())
 
     args = ap.parse_args()
 
@@ -273,15 +432,137 @@ def main() -> int:
 
     # Monte Carlo null
     print('\n=== Monte Carlo (phase randomization per ell) ===')
+
+    ckpt = None
+    if args.checkpoint and args.resume and os.path.exists(args.checkpoint):
+        ckpt = _load_checkpoint(args.checkpoint)
+        # Restore RNG state if present.
+        if isinstance(ckpt, dict) and 'rng_state' in ckpt:
+            try:
+                rng.bit_generator.state = ckpt['rng_state']
+                print(f"[resume] loaded checkpoint: {args.checkpoint}")
+            except Exception:
+                print(f"[resume] warning: could not restore RNG state from checkpoint")
+    elif args.checkpoint and args.resume:
+        print(f"[resume] checkpoint not found, starting fresh: {args.checkpoint}")
+
     for label, alm, sym in symbols_all:
+        # Resume state (per-label)
+        start_i = 0
         null_means: List[float] = []
         null_tails: List[float] = []
-        for _ in range(args.mc):
-            a_null = phase_randomize_per_ell(alm, args.lmax, rng)
-            s_null = build_symbol_stream_from_alm(a_null, args.lmax, name=label).symbols
-            mean, tail = compute_scores(s_null, rs_params, frame=args.frame, step=args.step, tail_k=args.tail_k)
+        obs_mean = observed[label].rs_mean_zero_syndromes
+        obs_tail = observed[label].rs_tail_rate
+
+        ge_mean = 0
+        ge_tail = 0
+
+        rs_mean_stats = RunningStats()
+        rs_tail_stats = RunningStats()
+
+        if ckpt and isinstance(ckpt, dict):
+            per = (ckpt.get('per_label') or {}).get(label)
+            if isinstance(per, dict):
+                start_i = int(per.get('i', 0) or 0)
+                null_means = list(per.get('null_means', []) or [])
+                null_tails = list(per.get('null_tails', []) or [])
+                ge_mean = int(per.get('ge_mean', 0) or 0)
+                ge_tail = int(per.get('ge_tail', 0) or 0)
+                # Rebuild running stats fast.
+                for v in null_means:
+                    rs_mean_stats.update(float(v))
+                for v in null_tails:
+                    rs_tail_stats.update(float(v))
+                if start_i > 0:
+                    print(f"[resume] {label}: continuing at mc={start_i}/{args.mc}")
+
+        mc_prog = _Progress(args.progress, total=args.mc, desc=f'{label} MC', unit='mc')
+        if start_i:
+            # Advance progress bar to already-completed iterations.
+            mc_prog.update(start_i)
+
+        for i_mc in range(start_i, args.mc):
+            a_null = phase_randomize_per_ell(alm, args.lmax, rng, lmin=args.lmin)
+            s_null = build_symbol_stream_from_alm(a_null, args.lmax, name=label, lmin=args.lmin).symbols
+            mf = None if args.max_frames == 0 else args.max_frames
+            mean, tail = compute_scores(
+                s_null,
+                rs_params,
+                frame=args.frame,
+                step=args.step,
+                tail_k=args.tail_k,
+                max_frames=mf,
+                rng=rng,
+            )
             null_means.append(mean)
             null_tails.append(tail)
+            rs_mean_stats.update(mean)
+            rs_tail_stats.update(tail)
+
+            # Running p-value estimate (one-sided, >= observed)
+            if mean >= obs_mean:
+                ge_mean += 1
+            if tail >= obs_tail:
+                ge_tail += 1
+
+            # Update progress occasionally to reduce overhead.
+            postfix = None
+            done = (i_mc + 1)
+            if (done % 5 == 0) or (done == args.mc):
+                p_est_mean = (1.0 + ge_mean) / (1.0 + done)
+                p_est_tail = (1.0 + ge_tail) / (1.0 + done)
+                # Light-weight live diagnostics: running null mean/std and z-score.
+                z_mean = (obs_mean - rs_mean_stats.mean) / rs_mean_stats.std if rs_mean_stats.std == rs_mean_stats.std else float('nan')
+                z_tail = (obs_tail - rs_tail_stats.mean) / rs_tail_stats.std if rs_tail_stats.std == rs_tail_stats.std else float('nan')
+                postfix = {
+                    'p_mean': f'{p_est_mean:.4g}',
+                    'p_tail': f'{p_est_tail:.4g}',
+                    'mu_mean': f'{rs_mean_stats.mean:.3f}',
+                    'mu_tail': f'{rs_tail_stats.mean:.4g}',
+                    'z_mean': f'{z_mean:.2f}' if z_mean == z_mean else '—',
+                    'z_tail': f'{z_tail:.2f}' if z_tail == z_tail else '—',
+                }
+
+            if postfix:
+                mc_prog.update(1, **postfix)
+            else:
+                mc_prog.update(1)
+
+            # Periodic checkpoint (single file; stores RNG state and per-label progress).
+            if args.checkpoint and args.checkpoint_every > 0:
+                if (done % int(args.checkpoint_every) == 0) or (done == args.mc):
+                    payload = {
+                        'version': 'spectral_parity_test.checkpoint.v1',
+                        'timestamp': time.time(),
+                        'args': {
+                            'lmin': args.lmin,
+                            'lmax': args.lmax,
+                            'frame': args.frame,
+                            'step': args.step,
+                            'tail_k': args.tail_k,
+                            'max_frames': args.max_frames,
+                            'seed': args.seed,
+                        },
+                        'rng_state': rng.bit_generator.state,
+                        'per_label': {
+                            label: {
+                                'i': done,
+                                'null_means': null_means,
+                                'null_tails': null_tails,
+                                'ge_mean': ge_mean,
+                                'ge_tail': ge_tail,
+                            }
+                        }
+                    }
+                    # If resuming with multiple labels, merge prior progress for other labels.
+                    if ckpt and isinstance(ckpt, dict):
+                        other = ckpt.get('per_label') or {}
+                        for k, v in other.items():
+                            if k != label and k not in payload['per_label']:
+                                payload['per_label'][k] = v
+                    _save_checkpoint(args.checkpoint, payload)
+
+        mc_prog.close()
 
         p_mean = monte_carlo_pvalue(observed[label].rs_mean_zero_syndromes, null_means)
         p_tail = monte_carlo_pvalue(observed[label].rs_tail_rate, null_tails)
