@@ -331,9 +331,32 @@ def main() -> int:
     args = ap.parse_args()
 
     _require_healpy()
+# RSParams API differs across versions (some accept nsym, others derive it from n-k).
+# Make instantiation robust so the CLI doesn't break when RSParams signature changes.
+def _make_rs_params(n=255, k=201, nsym=None):
+    try:
+        import inspect
+        sig = inspect.signature(RSParams)
+        params = sig.parameters
+        nsym_local = (n - k) if nsym is None else nsym
+        # Prefer explicit nsym if supported.
+        if "nsym" in params:
+            return RSParams(n=n, k=k, nsym=nsym_local)
+        # Some variants use different parameter names.
+        if "parity" in params:
+            return RSParams(n=n, k=k, parity=nsym_local)
+        if "npar" in params:
+            return RSParams(n=n, k=k, npar=nsym_local)
+        # Fallback: only (n, k), parity inferred.
+        return RSParams(n=n, k=k)
+    except Exception:
+        # Very old / positional-only variants.
+        try:
+            return RSParams(n, k, (n - k) if nsym is None else nsym)
+        except Exception:
+            return RSParams(n, k)
 
-    rs_params = RSParams(n=255, k=201, nsym=54)
-
+rs_params = _make_rs_params(n=255, k=201, nsym=54)
     rng = np.random.default_rng(args.seed)
 
     # Load TT
