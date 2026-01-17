@@ -31,7 +31,6 @@ from __future__ import annotations
 import argparse
 import math
 import os
-import pickle
 import random
 import sys
 import time
@@ -101,45 +100,6 @@ class _Progress:
             return
         sys.stderr.write('\n')
         sys.stderr.flush()
-
-
-@dataclass
-class RunningStats:
-    """Online mean/std estimation (Welford), used for ergonomic live stats."""
-
-    n: int = 0
-    mean: float = 0.0
-    m2: float = 0.0
-
-    def update(self, x: float) -> None:
-        if not (x == x):  # NaN
-            return
-        self.n += 1
-        delta = x - self.mean
-        self.mean += delta / self.n
-        delta2 = x - self.mean
-        self.m2 += delta * delta2
-
-    @property
-    def var(self) -> float:
-        return (self.m2 / (self.n - 1)) if self.n > 1 else float('nan')
-
-    @property
-    def std(self) -> float:
-        v = self.var
-        return math.sqrt(v) if v == v and v >= 0 else float('nan')
-
-
-def _save_checkpoint(path: str, payload: dict) -> None:
-    tmp = path + '.tmp'
-    with open(tmp, 'wb') as f:
-        pickle.dump(payload, f)
-    os.replace(tmp, path)
-
-
-def _load_checkpoint(path: str) -> dict:
-    with open(path, 'rb') as f:
-        return pickle.load(f)
 
 
 @dataclass
@@ -366,24 +326,6 @@ def main() -> int:
     ap.add_argument('--progress', dest='progress', action='store_true', help='enable progress display (default: on if TTY)')
     ap.add_argument('--no-progress', dest='progress', action='store_false', help='disable progress display')
 
-    ap.add_argument(
-        '--checkpoint',
-        type=str,
-        default=None,
-        help='optional pickle checkpoint path (enables resume; stores RNG state, partial MC results)'
-    )
-    ap.add_argument(
-        '--resume',
-        action='store_true',
-        help='resume from --checkpoint if it exists (otherwise starts fresh)'
-    )
-    ap.add_argument(
-        '--checkpoint-every',
-        type=int,
-        default=10,
-        help='write checkpoint every N MC iterations (default: 10)'
-    )
-
     ap.set_defaults(progress=sys.stderr.isatty())
 
     args = ap.parse_args()
@@ -432,23 +374,7 @@ def main() -> int:
 
     # Monte Carlo null
     print('\n=== Monte Carlo (phase randomization per ell) ===')
-
-    ckpt = None
-    if args.checkpoint and args.resume and os.path.exists(args.checkpoint):
-        ckpt = _load_checkpoint(args.checkpoint)
-        # Restore RNG state if present.
-        if isinstance(ckpt, dict) and 'rng_state' in ckpt:
-            try:
-                rng.bit_generator.state = ckpt['rng_state']
-                print(f"[resume] loaded checkpoint: {args.checkpoint}")
-            except Exception:
-                print(f"[resume] warning: could not restore RNG state from checkpoint")
-    elif args.checkpoint and args.resume:
-        print(f"[resume] checkpoint not found, starting fresh: {args.checkpoint}")
-
     for label, alm, sym in symbols_all:
-        # Resume state (per-label)
-        start_i = 0
         null_means: List[float] = []
         null_tails: List[float] = []
         obs_mean = observed[label].rs_mean_zero_syndromes
@@ -456,32 +382,8 @@ def main() -> int:
 
         ge_mean = 0
         ge_tail = 0
-
-        rs_mean_stats = RunningStats()
-        rs_tail_stats = RunningStats()
-
-        if ckpt and isinstance(ckpt, dict):
-            per = (ckpt.get('per_label') or {}).get(label)
-            if isinstance(per, dict):
-                start_i = int(per.get('i', 0) or 0)
-                null_means = list(per.get('null_means', []) or [])
-                null_tails = list(per.get('null_tails', []) or [])
-                ge_mean = int(per.get('ge_mean', 0) or 0)
-                ge_tail = int(per.get('ge_tail', 0) or 0)
-                # Rebuild running stats fast.
-                for v in null_means:
-                    rs_mean_stats.update(float(v))
-                for v in null_tails:
-                    rs_tail_stats.update(float(v))
-                if start_i > 0:
-                    print(f"[resume] {label}: continuing at mc={start_i}/{args.mc}")
-
         mc_prog = _Progress(args.progress, total=args.mc, desc=f'{label} MC', unit='mc')
-        if start_i:
-            # Advance progress bar to already-completed iterations.
-            mc_prog.update(start_i)
-
-        for i_mc in range(start_i, args.mc):
+        for i_mc in range(args.mc):
             a_null = phase_randomize_per_ell(alm, args.lmax, rng, lmin=args.lmin)
             s_null = build_symbol_stream_from_alm(a_null, args.lmax, name=label, lmin=args.lmin).symbols
             mf = None if args.max_frames == 0 else args.max_frames
@@ -496,8 +398,6 @@ def main() -> int:
             )
             null_means.append(mean)
             null_tails.append(tail)
-            rs_mean_stats.update(mean)
-            rs_tail_stats.update(tail)
 
             # Running p-value estimate (one-sided, >= observed)
             if mean >= obs_mean:
@@ -507,60 +407,18 @@ def main() -> int:
 
             # Update progress occasionally to reduce overhead.
             postfix = None
-            done = (i_mc + 1)
-            if (done % 5 == 0) or (done == args.mc):
-                p_est_mean = (1.0 + ge_mean) / (1.0 + done)
-                p_est_tail = (1.0 + ge_tail) / (1.0 + done)
-                # Light-weight live diagnostics: running null mean/std and z-score.
-                z_mean = (obs_mean - rs_mean_stats.mean) / rs_mean_stats.std if rs_mean_stats.std == rs_mean_stats.std else float('nan')
-                z_tail = (obs_tail - rs_tail_stats.mean) / rs_tail_stats.std if rs_tail_stats.std == rs_tail_stats.std else float('nan')
+            if (i_mc + 1) % 5 == 0 or (i_mc + 1) == args.mc:
+                p_est_mean = (1.0 + ge_mean) / (1.0 + (i_mc + 1))
+                p_est_tail = (1.0 + ge_tail) / (1.0 + (i_mc + 1))
                 postfix = {
                     'p_mean': f'{p_est_mean:.4g}',
                     'p_tail': f'{p_est_tail:.4g}',
-                    'mu_mean': f'{rs_mean_stats.mean:.3f}',
-                    'mu_tail': f'{rs_tail_stats.mean:.4g}',
-                    'z_mean': f'{z_mean:.2f}' if z_mean == z_mean else '—',
-                    'z_tail': f'{z_tail:.2f}' if z_tail == z_tail else '—',
                 }
 
             if postfix:
                 mc_prog.update(1, **postfix)
             else:
                 mc_prog.update(1)
-
-            # Periodic checkpoint (single file; stores RNG state and per-label progress).
-            if args.checkpoint and args.checkpoint_every > 0:
-                if (done % int(args.checkpoint_every) == 0) or (done == args.mc):
-                    payload = {
-                        'version': 'spectral_parity_test.checkpoint.v1',
-                        'timestamp': time.time(),
-                        'args': {
-                            'lmin': args.lmin,
-                            'lmax': args.lmax,
-                            'frame': args.frame,
-                            'step': args.step,
-                            'tail_k': args.tail_k,
-                            'max_frames': args.max_frames,
-                            'seed': args.seed,
-                        },
-                        'rng_state': rng.bit_generator.state,
-                        'per_label': {
-                            label: {
-                                'i': done,
-                                'null_means': null_means,
-                                'null_tails': null_tails,
-                                'ge_mean': ge_mean,
-                                'ge_tail': ge_tail,
-                            }
-                        }
-                    }
-                    # If resuming with multiple labels, merge prior progress for other labels.
-                    if ckpt and isinstance(ckpt, dict):
-                        other = ckpt.get('per_label') or {}
-                        for k, v in other.items():
-                            if k != label and k not in payload['per_label']:
-                                payload['per_label'][k] = v
-                    _save_checkpoint(args.checkpoint, payload)
 
         mc_prog.close()
 
