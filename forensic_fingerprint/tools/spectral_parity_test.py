@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""Spectral parity / RS-consistency test for CMB alm coefficients.
+"""Spectral parity / RS-consistency test for CMB alm coefficients.
 
 Rotation-invariant "multiplex" test:
   1) Obtain a_{\ell m} coefficients (TT, and optionally EE/BB via Q/U).
@@ -64,7 +64,7 @@ def k_index(ell: int, m: int) -> int:
 
 
 def iter_lm(lmax: int) -> Iterable[Tuple[int, int]]:
-    for ell in range(0, lmax + 1):
+    for ell in range(lmin, lmax + 1):
         for m in range(-ell, ell + 1):
             yield ell, m
 
@@ -145,12 +145,12 @@ def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str) -> Symbo
     _require_healpy()
     sym = np.zeros(((lmax + 1) * (lmax + 1)), dtype=np.uint8)  # total modes up to lmax
 
-    for ell in range(0, lmax + 1):
+    for ell in range(lmin, lmax + 1):
         # m=0
-        a0 = hp.Alm.getidx(lmax, ell, 0)
+        a0 = hp.alm_getidx(lmax, ell, 0)
         sym[k_index(ell, 0)] = quantize_phase_to_u8(complex(alm[a0]))
         for m in range(1, ell + 1):
-            idx = hp.Alm.getidx(lmax, ell, m)
+            idx = hp.alm_getidx(lmax, ell, m)
             a = complex(alm[idx])
             sym[k_index(ell, m)] = quantize_phase_to_u8(a)
             aneg = ((-1) ** m) * np.conj(a)
@@ -163,10 +163,10 @@ def phase_randomize_per_ell(alm: np.ndarray, lmax: int, rng: np.random.Generator
     """Null model N1: randomize phases within each ell while preserving amplitudes."""
     _require_healpy()
     out = np.array(alm, copy=True)
-    for ell in range(0, lmax + 1):
+    for ell in range(lmin, lmax + 1):
         # m=0 real mode: keep as is (or random sign); keep as is for safety.
         for m in range(1, ell + 1):
-            idx = hp.Alm.getidx(lmax, ell, m)
+            idx = hp.alm_getidx(lmax, ell, m)
             r = abs(out[idx])
             phi = rng.uniform(0.0, 2 * math.pi)
             out[idx] = r * (math.cos(phi) + 1j * math.sin(phi))
@@ -231,7 +231,7 @@ def main() -> int:
 
     _require_healpy()
 
-    rs_params = RSParams(n=255, k=201)
+    rs_params = RSParams(n=255, k=201, nsym=54)
 
     rng = np.random.default_rng(args.seed)
 
@@ -246,21 +246,21 @@ def main() -> int:
         raise SystemExit('Provide --tt-map or --tt-alm')
 
     symbols_all: List[Tuple[str, np.ndarray, np.ndarray]] = []  # (label, alm, symbols)
-    tt_sym = build_symbol_stream_from_alm(tt_alm, args.lmax, 'TT')
+    tt_sym = build_symbol_stream_from_alm(tt_alm, args.lmax, 'TT', lmin=args.lmin)
     symbols_all.append(('TT', tt_alm, tt_sym.symbols))
 
     # Load polarization
     if args.e_alm and args.b_alm:
         e_alm = load_alm_fits(args.e_alm)
         b_alm = load_alm_fits(args.b_alm)
-        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE')
-        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB')
+        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE', lmin=args.lmin)
+        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB', lmin=args.lmin)
         symbols_all.append(('EE', e_alm, e_sym.symbols))
         symbols_all.append(('BB', b_alm, b_sym.symbols))
     elif args.q_map and args.u_map:
         e_alm, b_alm = load_almE_B_from_qu_maps(args.q_map, args.u_map, lmax=args.lmax)
-        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE')
-        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB')
+        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE', lmin=args.lmin)
+        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB', lmin=args.lmin)
         symbols_all.append(('EE', e_alm, e_sym.symbols))
         symbols_all.append(('BB', b_alm, b_sym.symbols))
 

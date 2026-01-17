@@ -103,4 +103,26 @@ The reference implementation is provided as:
 \texttt{forensic\_fingerprint/tools/spectral\_parity\_test.py}, with auxiliary modules
 \texttt{gf256.py} and \texttt{rs\_syndrome.py}.
 
+
+
+
+\subsection{Windowed (band-limited) analysis around a carrier shell}
+\label{sec:windowed}
+
+Because the multiplex hypothesis treats $(\ell,m)$ modes as subcarriers, any hypothesized ``carrier'' index (e.g.\ $\ell\approx 137$ in certain UBT narratives) can be tested via a band-limited (windowed) scan. Practically, we restrict the symbol stream to multipole shells in a finite band:
+\begin{equation}
+  \ell \in [\ell_{\min}, \ell_{\max}],
+\end{equation}
+and run the same parity and RS-syndrome statistics on the resulting stream. The null distribution must be recomputed for the same window (Monte Carlo phase randomization within each $\ell$ shell), because sample size and $\ell$-dependent noise change the baseline.
+
+\paragraph{CLI example.}
+\begin{verbatim}
+python -m forensic_fingerprint.tools.spectral_parity_test \
+  --tt-map data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits \
+  --lmin 130 --lmax 145 --mc 100
+\end{verbatim}
+
+A significant deviation in a narrow band is more interpretable than a full-sky, full-band scan because it reduces dilution by unrelated shells and isolates any putative carrier-centered coherence.
+
+
 \end{document}
