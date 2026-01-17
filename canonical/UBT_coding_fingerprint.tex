@@ -51,6 +51,66 @@ biquaternionic geometric core.
 
 \section{Minimal Coding-Layer Fingerprint}
 
+
+\section{Toroidal-to-Spherical Mapping: from latent $T^8$ phases to observed $S^2$ modes}
+\label{sec:torus_to_sphere}
+
+A recurring source of confusion in early heuristic searches was the implicit assumption that a \emph{linear}
+codeword must appear as a \emph{spatial} lattice on the observed sky. In the OFDM/multiplex formulation, this is
+unnecessary: the code layer is defined over a latent toroidal phase space, while observations are made on the
+celestial sphere.
+
+\subsection{Latent phase space}
+We model the ``engine'' of the information layer by an 8-dimensional torus
+\begin{equation}
+  \theta \in T^8 \equiv (\mathbb{R}/2\pi\mathbb{Z})^8,
+\end{equation}
+where the components of $\theta$ are periodic phases (e.g., arising from biquaternionic degrees of freedom, internal
+clock phases, or discrete synchronization cycles). A generic (possibly tensor- or biquaternion-valued) field on $T^8$
+admits a Fourier expansion
+\begin{equation}
+  \Theta(\theta) = \sum_{k\in\mathbb{Z}^8} c_k\, e^{i k\cdot \theta}.
+\end{equation}
+The coefficients $c_k$ are the natural ``subcarriers'' of the latent multiplex.
+
+\subsection{Observation as a projection operator}
+Observables are defined on the sky direction $\hat n\in S^2$, for example the CMB temperature anisotropy
+$T(\hat n)$. We represent the observational process as a (generally nontrivial) projection functional
+\begin{equation}
+  T(\hat n) = \mathcal{P}\big[\Theta\big](\hat n),
+\end{equation}
+which maps latent toroidal structure to a spherical field. A useful geometric template is a Hopf-like construction:
+phases are grouped into spinor-like objects, which then map to a direction on $S^2$ via
+\begin{equation}
+  \hat n(\psi) = \psi^\dagger \,\vec\sigma\, \psi,
+\end{equation}
+where $\psi\in\mathbb{C}^2$ is a normalized spinor built from subsets of the phases and $\vec\sigma$ are the Pauli matrices.
+The key point is that an internal $S^1$ phase can be ``hidden'' (fibered), while the base space is the observed sphere.
+
+\subsection{Mixing from toroidal harmonics to spherical harmonics}
+On the sky we expand in spherical harmonics:
+\begin{equation}
+  T(\hat n) = \sum_{\ell m} a_{\ell m}\, Y_{\ell m}(\hat n).
+\end{equation}
+Composing the projection with the toroidal Fourier series yields a generic linear mixing relation
+\begin{equation}
+  a_{\ell m} = \sum_{k\in\mathbb{Z}^8} M_{\ell m}(k)\, c_k,
+  \label{eq:alm_mixing}
+\end{equation}
+where the kernel $M_{\ell m}(k)$ encodes the geometric details of $\mathcal{P}$ (fibration, projection, and any
+instrumental/foreground transfer). Importantly, the \emph{existence} of a code layer does not require an explicit closed
+form for $M_{\ell m}(k)$.
+
+\subsection{Why the spectral tests remain predictive}
+The spectral fingerprint program in this document targets invariants in the statistics and algebraic relations of
+the observed coefficients $a_{\ell m}$ (or their 8-bit symbolizations) that would arise if the latent coefficients
+$c_k$ are constrained by a finite-field protocol. Because rotations act unitarily within a given $\ell$-shell, and because
+we operate directly in mode space rather than pixel space, the proposed parity/RS-consistency tests are naturally
+rotation-robust and do not require committing to a specific spatial addressing of symbols on the sphere.
+
+
+
+
 \subsection{Discretized Phase Symbols}
 
 Let $a_{\ell m}$ denote complex observational coefficients (for example,

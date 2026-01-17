@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Spectral parity / RS-consistency test for CMB alm coefficients.
+r"""Spectral parity / RS-consistency test for CMB alm coefficients.
 
 Rotation-invariant "multiplex" test:
   1) Obtain a_{\ell m} coefficients (TT, and optionally EE/BB via Q/U).
@@ -147,10 +147,10 @@ def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str) -> Symbo
 
     for ell in range(0, lmax + 1):
         # m=0
-        a0 = hp.alm_getidx(lmax, ell, 0)
+        a0 = hp.Alm.getidx(lmax, ell, 0)
         sym[k_index(ell, 0)] = quantize_phase_to_u8(complex(alm[a0]))
         for m in range(1, ell + 1):
-            idx = hp.alm_getidx(lmax, ell, m)
+            idx = hp.Alm.getidx(lmax, ell, m)
             a = complex(alm[idx])
             sym[k_index(ell, m)] = quantize_phase_to_u8(a)
             aneg = ((-1) ** m) * np.conj(a)
@@ -166,7 +166,7 @@ def phase_randomize_per_ell(alm: np.ndarray, lmax: int, rng: np.random.Generator
     for ell in range(0, lmax + 1):
         # m=0 real mode: keep as is (or random sign); keep as is for safety.
         for m in range(1, ell + 1):
-            idx = hp.alm_getidx(lmax, ell, m)
+            idx = hp.Alm.getidx(lmax, ell, m)
             r = abs(out[idx])
             phi = rng.uniform(0.0, 2 * math.pi)
             out[idx] = r * (math.cos(phi) + 1j * math.sin(phi))
