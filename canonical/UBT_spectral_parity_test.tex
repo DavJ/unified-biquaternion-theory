@@ -1,0 +1,106 @@
+% UBT_spectral_parity_test.tex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,geometry}
+\geometry{margin=1in}
+
+\title{UBT Spectral Parity and RS-Consistency Test in CMB Harmonic Space}
+\author{Unified Biquaternion Theory (UBT) -- Working Note}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+This note specifies a rotation-invariant forensic test for the ``coding layer'' (Layer~2/3) of UBT.
+The test operates in the spherical-harmonic domain, using coefficients $a_{\ell m}$ (temperature) and
+$E/B$-mode coefficients (polarization), and avoids any dependence on an explicit pixel grid or global orientation.
+
+\section{Mode Space and Multiplex Ordering}
+Let $\hat n \in S^2$ denote a direction on the sky. The CMB temperature field $T(\hat n)$ expands as
+\begin{equation}
+T(\hat n) = \sum_{\ell=0}^{\ell_{\max}} \sum_{m=-\ell}^{\ell} a_{\ell m}\,Y_{\ell m}(\hat n).
+\end{equation}
+Polarization may be represented via the standard $E$ and $B$ expansions with coefficients $a^{E}_{\ell m}$ and $a^{B}_{\ell m}$.
+
+UBT's OFDM/multiplex viewpoint treats $\{a_{\ell m}\}$ as a set of orthogonal subcarriers.
+A convenient linearization (``multiplex index'') is
+\begin{equation}
+  k(\ell,m) \;=\; \ell^2 + \ell + m, \qquad m\in[-\ell,\ell].
+\end{equation}
+This choice is natural because each $\ell$-shell contains $2\ell+1$ modes and
+$\sum_{j=0}^{\ell-1}(2j+1)=\ell^2$. Thus $k$ enumerates shells contiguously.
+
+\paragraph{Rotation invariance.}
+Rotations act as unitary mixing within each fixed-$\ell$ subspace:
+$\mathbf{a}_{\ell}\mapsto D^{(\ell)}(R)\mathbf{a}_{\ell}$.
+The ordering above is not itself invariant, but the statistical tests below are defined so that the null models preserve
+$|a_{\ell m}|$ (hence $C_{\ell}$) while destroying phase/coherence constraints.
+
+\section{8-bit Symbolization in $GF(2^8)$}
+To probe a putative $GF(2^8)$ coding layer, we map each complex coefficient to an 8-bit symbol.
+The primary (OFDM-aligned) option is phase quantization:
+\begin{equation}
+  \phi_{\ell m} = \arg(a_{\ell m}) \in [0,2\pi), \qquad
+  s_{\ell m} = \left\lfloor 256\,\frac{\phi_{\ell m}}{2\pi} \right\rfloor \in \{0,\dots,255\}.
+\end{equation}
+We form a linear symbol stream by increasing $\ell$ and then $m$.
+Analogous symbolization is applied to $a^{E}_{\ell m}$ and $a^{B}_{\ell m}$.
+
+\section{Frame Model and Test Statistics}
+We analyze contiguous frames of length $n=255$ symbols. For each frame $\mathbf{c}=(c_0,\dots,c_{254})$:
+
+\subsection{Quick screening: Hamming(8,4) validity rate}
+Treat each 8-bit symbol as a candidate extended Hamming(8,4) codeword. There are 16 valid codewords out of 256,
+so random data pass with probability $1/16$. Let
+\begin{equation}
+  H(\mathbf{c}) = \frac{1}{255}\sum_{i=0}^{254} \mathbf{1}[\text{byte }c_i\text{ satisfies Hamming(8,4) parity}].
+\end{equation}
+We use $H$ as a fast indicator of non-random parity structure.
+
+\subsection{Main test: RS(255,201) syndrome score}
+Over $GF(256)$, the Reed--Solomon syndrome components are
+\begin{equation}
+  S_j(\mathbf{c}) = \sum_{i=0}^{254} c_i\,\alpha^{ij},\qquad j=1,\dots,(n-k)=54,
+\end{equation}
+where $\alpha$ is a primitive element of $GF(256)$ (we use the common polynomial $0x11d$).
+A strict codeword would satisfy $S_j=0$ for all $j$, which is not expected frequently in noisy cosmological data.
+Instead we define a ``syndrome sparsity'' score
+\begin{equation}
+  E(\mathbf{c}) = \sum_{j=1}^{54} \mathbf{1}[S_j(\mathbf{c})=0].
+\end{equation}
+The aggregate statistic may be the mean $\bar E$ across frames, or the tail count
+$\#\{\mathbf{c}:E(\mathbf{c})\ge \tau\}$ for a chosen threshold $\tau$.
+
+\section{Null Models and p-values}
+To avoid overfitting to the real sky, we compute p-values by Monte Carlo under null models that preserve the measured
+power spectrum while removing phase/coherence constraints.
+
+\paragraph{N1: per-$\ell$ phase randomization.}
+For each $\ell$ and each $m>0$, sample $\theta_{\ell m}\sim U(0,2\pi)$ and set
+$a'_{\ell m}=|a_{\ell m}|e^{i\theta_{\ell m}}$ while enforcing the reality constraint
+$a'_{\ell,-m}=(-1)^m\overline{a'_{\ell m}}$. For $m=0$, keep $a'_{\ell 0}=a_{\ell 0}$.
+This preserves $C_{\ell}$ exactly and destroys phase structure.
+
+\paragraph{N2: within-shell symbol permutation.}
+After symbolization, randomly permute symbols within each $\ell$-shell, preserving the marginal symbol distribution but
+destroying ordering and cross-mode relations.
+
+\paragraph{p-value.}
+For a chosen statistic $T$ (e.g., $\bar E$), compute $T_{\mathrm{obs}}$ and $T_b$ over $B$ null realizations.
+We report
+\begin{equation}
+  p = \frac{1+\#\{b:T_b\ge T_{\mathrm{obs}}\}}{1+B}.
+\end{equation}
+Multiple-testing corrections are required when scanning multiple symbolization and framing variants.
+
+\section{Channels: TT, EE, BB}
+The same pipeline applies to temperature $a_{\ell m}$ (TT) and polarization $a^{E}_{\ell m},a^{B}_{\ell m}$.
+Polarization can be cleaner for phase-based tests because systematics differ from TT.
+A practical workflow is: TT screening first, then replicate on EE/BB.
+
+\section{Implementation}
+The reference implementation is provided as:
+\texttt{forensic\_fingerprint/tools/spectral\_parity\_test.py}, with auxiliary modules
+\texttt{gf256.py} and \texttt{rs\_syndrome.py}.
+
+\end{document}
