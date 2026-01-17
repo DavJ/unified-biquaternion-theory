@@ -231,7 +231,7 @@ def main() -> int:
 
     _require_healpy()
 
-    rs_params = RSParams(n=255, k=201, nsym=54)
+    rs_params = RSParams(n=255, k=201)
 
     rng = np.random.default_rng(args.seed)
 
