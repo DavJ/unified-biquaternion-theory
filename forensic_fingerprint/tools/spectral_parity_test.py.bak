@@ -307,7 +307,7 @@ def monte_carlo_pvalue(obs: float, null_values: List[float]) -> float:
     return (1.0 + ge) / (1.0 + len(null_values))
 
 
-def main(argv=None) -> int:
+def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--lmin', type=int, default=DEFAULT_LMIN, help='minimum ell to include (default: 2)')
     ap.add_argument('--lmax', type=int, default=1024)
@@ -328,7 +328,7 @@ def main(argv=None) -> int:
 
     ap.set_defaults(progress=sys.stderr.isatty())
 
-    args = ap.parse_args(argv)
+    args = ap.parse_args()
 
     _require_healpy()
 # RSParams API differs across versions (some accept nsym, others derive it from n-k).
