@@ -39,6 +39,13 @@ from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
 
+# Optional plotting (only used for the Prime-Gated view).
+# Keeping this optional avoids forcing matplotlib for headless/CI runs.
+try:  # pragma: no cover
+    import matplotlib.pyplot as plt
+except Exception:  # pragma: no cover
+    plt = None
+
 try:
     from tqdm import tqdm
 except Exception:  # pragma: no cover
@@ -50,6 +57,146 @@ except Exception as e:  # pragma: no cover
     hp = None
 
 from .rs_syndrome import RSParams, syndrome_zero_count
+
+
+# -----------------------------------------------------------------------------
+# Prime-gated helper utilities
+# -----------------------------------------------------------------------------
+
+def is_prime(n: int) -> bool:
+    """Return True if n is a prime number.
+
+    Notes
+    -----
+    - We only care about small-ish multipoles (ell), so a deterministic
+      sqrt(n) test is more than enough.
+    - ell=0,1 are treated as non-prime.
+    """
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if (n % 2) == 0 or (n % 3) == 0:
+        return False
+    r = int(math.isqrt(n))
+    f = 5
+    while f <= r:
+        if (n % f) == 0 or (n % (f + 2)) == 0:
+            return False
+        f += 6
+    return True
+
+
+def ell_shell_indices(ell: int) -> np.ndarray:
+    """Return the k-indices for the full (ell,m) shell: m in [-ell, ..., +ell]."""
+    # NOTE: With k(ell,m)=ell^2+ell+m, the shell is actually contiguous:
+    #   m=-ell -> k=ell^2
+    #   m=+ell -> k=ell^2+2ell
+    # Keeping the explicit list is handy for clarity, but the prime-gated
+    # computation uses the contiguous slice directly for performance.
+    return np.array([k_index(ell, m) for m in range(-ell, ell + 1)], dtype=np.int64)
+
+
+def ell_shell_slice(ell: int) -> slice:
+    """Return a contiguous slice covering the (ell,m) shell in the k-stream."""
+    start = int(ell * ell)
+    stop = int(ell * ell + 2 * ell + 1)  # python stop is exclusive
+    return slice(start, stop)
+
+
+def shell_hamming_integrity(symbol_stream: np.ndarray, ell: int) -> float:
+    """Digit-level "purity" for one multipole shell.
+
+    We use the Hamming(8,4) validity rate as a fast, purely digital checksum.
+    For a random byte stream, expected validity is 1/16 = 0.0625.
+
+    This matches the user's intended "Hammingova čistota" view per multipole.
+    """
+    # Fast path: the shell is contiguous in k.
+    sl = ell_shell_slice(int(ell))
+    return hamming_valid_rate_fast(symbol_stream[sl])
+
+
+def prime_gated_integrity_curve(
+    symbol_stream: np.ndarray,
+    lmin: int,
+    lmax: int,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Compute per-ell integrity curve for plotting / inspection."""
+    ells = np.arange(int(lmin), int(lmax) + 1, dtype=int)
+    integrity = np.empty_like(ells, dtype=float)
+    for i, ell in enumerate(ells.tolist()):
+        integrity[i] = shell_hamming_integrity(symbol_stream, ell)
+    return ells, integrity
+
+
+def prime_gated_delta_from_symbol_stream(
+    symbol_stream: np.ndarray,
+    lmin: int,
+    lmax: int,
+) -> float:
+    """Compute Δmean(P−C) for one symbol stream without storing the whole curve."""
+    p_sum = 0.0
+    c_sum = 0.0
+    p_n = 0
+    c_n = 0
+    for ell in range(int(lmin), int(lmax) + 1):
+        r = shell_hamming_integrity(symbol_stream, ell)
+        if not np.isfinite(r):
+            continue
+        if is_prime(ell):
+            p_sum += r
+            p_n += 1
+        elif ell >= 2:
+            c_sum += r
+            c_n += 1
+    if p_n == 0 or c_n == 0:
+        return float('nan')
+    return float((p_sum / p_n) - (c_sum / c_n))
+
+
+def prime_gated_delta_mean(ells: np.ndarray, integrity: np.ndarray) -> float:
+    """Compute mean(integrity | ell is prime) - mean(integrity | ell is composite)."""
+    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
+    comp_mask = (ells >= 2) & (~prime_mask)
+    p = integrity[prime_mask]
+    c = integrity[comp_mask]
+    if p.size == 0 or c.size == 0:
+        return float('nan')
+    return float(np.mean(p) - np.mean(c))
+
+
+def permutation_null_deltas(
+    ells: np.ndarray,
+    integrity: np.ndarray,
+    n_perm: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    """Permutation null for Prime-Gated effect.
+
+    Keeps the integrity values fixed, but randomly reassigns "prime" labels
+    to the same number of multipoles. This tests whether P vs C difference
+    can arise purely from the marginal integrity distribution.
+    """
+    ells = np.asarray(ells, dtype=int)
+    integrity = np.asarray(integrity, dtype=float)
+
+    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
+    comp_mask = (ells >= 2) & (~prime_mask)
+    valid_idx = np.where(ells >= 2)[0]
+
+    p_count = int(np.sum(prime_mask))
+    c_count = int(np.sum(comp_mask))
+    if p_count == 0 or c_count == 0:
+        return np.array([], dtype=float)
+
+    out = np.empty(int(n_perm), dtype=float)
+    for i in range(int(n_perm)):
+        perm = rng.permutation(valid_idx)
+        p_idx = perm[:p_count]
+        c_idx = perm[p_count : p_count + c_count]
+        out[i] = float(np.mean(integrity[p_idx]) - np.mean(integrity[c_idx]))
+    return out
 
 
 # RSParams API compatibility: some versions accept nsym, others derive it.
@@ -144,6 +291,68 @@ def k_index(ell: int, m: int) -> int:
 DEFAULT_LMIN = 2
 
 
+# -----------------------------
+# Prime-Gated (UBT fingerprint)
+# -----------------------------
+#
+# Motivation (as used in the repo discussions):
+# - Compute a *per-multipole* digital purity / integrity score.
+# - Compare the distribution for prime ℓ (set P) vs composite ℓ (set C).
+# - Contrast real data vs nulls (Monte Carlo) that preserve C_ℓ.
+#
+# This script already implements an RS-consistency test on a long symbol stream.
+# For the Prime-Gated view we use a *local* per-ℓ score based on the same
+# 8-bit phase-quantized symbols. The most stable per-ℓ score is the
+# Hamming(8,4) validity rate computed on the shell (m=-ℓ..ℓ), i.e. on
+# exactly (2ℓ+1) symbols. This is what the user refers to as
+# “Hammingova čistota / parity integrity”.
+
+
+def is_prime(n: int) -> bool:
+    """Return True if n is prime.
+
+    Deterministic for n up to typical lmax (<= a few thousand).
+    """
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    r = int(math.isqrt(n))
+    f = 5
+    while f <= r:
+        if n % f == 0 or n % (f + 2) == 0:
+            return False
+        f += 6
+    return True
+
+
+def split_ells_prime_composite(ells: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    """Return (prime_mask, composite_mask) for an array of multipoles."""
+    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
+    composite_mask = (ells >= 2) & (~prime_mask)
+    return prime_mask, composite_mask
+
+
+def shell_symbols(symbol_stream: np.ndarray, ell: int) -> np.ndarray:
+    """Extract the (2ℓ+1) symbols for a single multipole shell.
+
+    The stream uses the rotation-invariant ordering k(ℓ,m)=ℓ^2+ℓ+m.
+    This function returns symbols for m=-ℓ..ℓ (inclusive).
+    """
+    # k runs from ℓ^2 to ℓ^2+2ℓ
+    start = ell * ell
+    end = ell * ell + 2 * ell
+    return symbol_stream[start : end + 1]
+
+
+def hamming_shell_integrity(symbol_stream: np.ndarray, ell: int) -> float:
+    """Per-ℓ integrity score: Hamming(8,4) validity rate on the shell."""
+    s = shell_symbols(symbol_stream, ell)
+    return hamming_valid_rate(s)
+
+
 def quantize_phase_to_u8(z: complex) -> int:
     """Map complex phase arg(z) to 0..255."""
     if z == 0:
@@ -180,6 +389,11 @@ def hamming_8_4_is_valid(byte: int) -> bool:
     return bool(c1 and c2 and c4 and overall)
 
 
+# Precompute validity table for fast vectorized rates.
+# This avoids a Python loop over large symbol streams when doing per-ell scans.
+HAMMING_VALID_TABLE = np.array([hamming_8_4_is_valid(i) for i in range(256)], dtype=bool)
+
+
 def hamming_valid_rate(symbols: np.ndarray) -> float:
     if symbols.size == 0:
         return float('nan')
@@ -188,6 +402,14 @@ def hamming_valid_rate(symbols: np.ndarray) -> float:
         if hamming_8_4_is_valid(int(x)):
             ok += 1
     return ok / float(symbols.size)
+
+
+def hamming_valid_rate_fast(symbols: np.ndarray) -> float:
+    """Vectorized validity rate using the precomputed lookup table."""
+    if symbols.size == 0:
+        return float('nan')
+    # symbols are uint8; lookup yields boolean array.
+    return float(np.mean(HAMMING_VALID_TABLE[symbols]))
 
 
 def load_alm_from_map(map_path: str, lmax: int) -> np.ndarray:
@@ -204,7 +426,12 @@ def load_almE_B_from_qu_maps(q_path: str, u_path: str, lmax: int) -> Tuple[np.nd
     q = hp.read_map(q_path, field=0)
     u = hp.read_map(u_path, field=0)
     # spin-2 transform
-    almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax, iter=3)
+    # healpy API compatibility:
+    # some versions support iter=..., some do not
+    try:
+        almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax, iter=3)
+    except TypeError:
+        almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax)
     return almE, almB
 
 
@@ -329,6 +556,68 @@ def monte_carlo_pvalue(obs: float, null_values: List[float]) -> float:
     return (1.0 + ge) / (1.0 + len(null_values))
 
 
+def _plot_prime_gated_integrity(
+    *,
+    ells: np.ndarray,
+    integrity: np.ndarray,
+    title: str,
+    highlight_ells: Sequence[int] = (137, 139),
+    outpath: Optional[str] = None,
+) -> None:
+    """Scatter: integrity vs ell, colored by prime/composite."""
+    if plt is None:  # pragma: no cover
+        return
+
+    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
+    comp_mask = (ells >= 2) & (~prime_mask)
+
+    plt.figure()
+    plt.scatter(ells[prime_mask], integrity[prime_mask], s=12, label='Prime ℓ (P)')
+    plt.scatter(ells[comp_mask], integrity[comp_mask], s=12, label='Composite ℓ (C)')
+
+    # Highlight special nodes (e.g., 137, 139) if they are in range.
+    for h in highlight_ells:
+        w = np.where(ells == int(h))[0]
+        if w.size:
+            plt.scatter([int(h)], [float(integrity[w[0]])], s=90, marker='*', label=f'ℓ={h}')
+
+    plt.xlabel('Multipole ℓ')
+    plt.ylabel('Hamming(8,4) validity rate (per-ℓ shell)')
+    plt.title(title)
+    plt.legend()
+    plt.tight_layout()
+    if outpath:
+        plt.savefig(outpath, dpi=150)
+    else:
+        plt.show()
+
+
+def _plot_prime_gated_null_hist(
+    *,
+    null_deltas: np.ndarray,
+    real_delta: float,
+    title: str,
+    outpath: Optional[str] = None,
+) -> None:
+    """Histogram: Δmean(P−C) under a null, with real delta shown as a line."""
+    if plt is None:  # pragma: no cover
+        return
+    if null_deltas.size == 0 or not np.isfinite(real_delta):
+        return
+    plt.figure()
+    plt.hist(null_deltas, bins=40)
+    plt.axvline(real_delta, linewidth=2, label=f'Real Δmean(P−C) = {real_delta:.6g}')
+    plt.xlabel('Δmean(P) − mean(C)')
+    plt.ylabel('Count')
+    plt.title(title)
+    plt.legend()
+    plt.tight_layout()
+    if outpath:
+        plt.savefig(outpath, dpi=150)
+    else:
+        plt.show()
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--lmin', type=int, default=DEFAULT_LMIN, help='minimum ell to include (default: 2)')
@@ -347,6 +636,12 @@ def main(argv=None) -> int:
     ap.add_argument('--seed', type=int, default=12345)
     ap.add_argument('--progress', dest='progress', action='store_true', help='enable progress display (default: on if TTY)')
     ap.add_argument('--no-progress', dest='progress', action='store_false', help='disable progress display')
+
+    # Prime-gated fingerprint view: compares per-ell Hamming purity for primes vs composites.
+    ap.add_argument('--prime-gated', action='store_true', help='enable Prime-Gated per-ell analysis (plots + Δmean(P−C))')
+    ap.add_argument('--prime-perm', type=int, default=5000, help='permutation null samples for Prime-Gated test (default: 5000)')
+    ap.add_argument('--prime-plot-prefix', type=str, default=None, help='if set, save plots to <prefix>_<label>_*.png')
+    ap.add_argument('--prime-highlight', type=str, default='137,139', help='comma-separated ell values to highlight (default: 137,139)')
 
     ap.set_defaults(progress=sys.stderr.isatty())
 
@@ -394,11 +689,73 @@ def main(argv=None) -> int:
         observed[label] = tr
         print(f'{label}: hamming_rate={tr.hamming_rate:.6f}  rs_mean_zero={tr.rs_mean_zero_syndromes:.3f}  rs_tail_rate(>={args.tail_k})={tr.rs_tail_rate:.6f}')
 
+    # --- Prime-Gated fingerprint (Real) ---
+    # This is the per-multipole "digital purity" view: compute integrity(ell) for each ell
+    # and compare primes (set P) vs composites (set C).
+    prime_real: Dict[str, Dict[str, object]] = {}
+    if args.prime_gated:
+        # Parse highlight ells (default: 137,139)
+        try:
+            highlight_ells = [int(x.strip()) for x in str(args.prime_highlight).split(',') if x.strip()]
+        except Exception:
+            highlight_ells = [137, 139]
+
+        print('\n=== Prime-Gated (Real): per-ell Hamming purity ===', flush=True)
+        for label, alm, sym in symbols_all:
+            ells_pg, integ_pg = prime_gated_integrity_curve(sym, args.lmin, args.lmax)
+            delta_real = prime_gated_delta_mean(ells_pg, integ_pg)
+
+            # Permutation null: keeps the integrity curve fixed, shuffles prime labels.
+            perm_deltas = permutation_null_deltas(ells_pg, integ_pg, n_perm=int(args.prime_perm), rng=rng)
+            finite_perm = perm_deltas[np.isfinite(perm_deltas)]
+            if finite_perm.size and np.isfinite(delta_real):
+                p_perm_two_sided = float((np.sum(np.abs(finite_perm) >= abs(delta_real)) + 1) / (finite_perm.size + 1))
+            else:
+                p_perm_two_sided = float('nan')
+
+            print(
+                f'{label}: Δmean(P−C)={delta_real:.6g}  '
+                f'perm_p(two-sided)={p_perm_two_sided:.4g}  (perm={int(args.prime_perm)})'
+            )
+
+            # Save for MC comparison later.
+            prime_real[label] = {
+                'ells': ells_pg,
+                'integrity': integ_pg,
+                'delta': delta_real,
+                'perm_deltas': perm_deltas,
+                'highlight_ells': highlight_ells,
+                'perm_p_two_sided': p_perm_two_sided,
+            }
+
+            # Optional plot saving.
+            if args.prime_plot_prefix:
+                prefix = str(args.prime_plot_prefix)
+                _plot_prime_gated_integrity(
+                    ells=ells_pg,
+                    integrity=integ_pg,
+                    title=(
+                        f'Prime-Gated integrity vs ℓ ({label}, Real)  '
+                        f'Δmean={delta_real:.3g}, perm_p≈{p_perm_two_sided:.3g}'
+                    ),
+                    highlight_ells=highlight_ells,
+                    outpath=f'{prefix}_{label}_prime_gated_integrity.png',
+                )
+                if finite_perm.size:
+                    _plot_prime_gated_null_hist(
+                        null_deltas=finite_perm,
+                        real_delta=float(delta_real),
+                        title=f'Prime-Gated Δmean(P−C) permutation null ({label})',
+                        outpath=f'{prefix}_{label}_prime_gated_perm_null.png',
+                    )
+
     # Monte Carlo null
     print('\n=== Monte Carlo (phase randomization per ell) ===', flush=True)
     for label, alm, sym in symbols_all:
         null_means: List[float] = []
         null_tails: List[float] = []
+        # Optional: Prime-Gated deltas (Δmean(P−C)) under the MC null.
+        null_prime_deltas: List[float] = []
         obs_mean = observed[label].rs_mean_zero_syndromes
         obs_tail = observed[label].rs_tail_rate
 
@@ -420,6 +777,12 @@ def main(argv=None) -> int:
             )
             null_means.append(mean)
             null_tails.append(tail)
+
+            # Prime-Gated null: compute Δmean(P−C) for this MC realization.
+            # This is the key "MC sees no difference" check when compared to real Δ.
+            if args.prime_gated and label in prime_real:
+                d_mc = prime_gated_delta_from_symbol_stream(s_null, args.lmin, args.lmax)
+                null_prime_deltas.append(float(d_mc))
 
             # Running p-value estimate (one-sided, >= observed)
             if mean >= obs_mean:
@@ -448,6 +811,36 @@ def main(argv=None) -> int:
         p_tail = monte_carlo_pvalue(observed[label].rs_tail_rate, null_tails)
 
         print(f'{label}: p(rs_mean_zero)={p_mean:.4g}  p(rs_tail_rate)={p_tail:.4g}  (mc={args.mc})')
+
+        # Report Prime-Gated behavior under phase-randomization MC.
+        if args.prime_gated and label in prime_real:
+            real_delta = float(prime_real[label]['delta'])
+            mc_arr = np.array(null_prime_deltas, dtype=float)
+            mc_arr = mc_arr[np.isfinite(mc_arr)]
+
+            if mc_arr.size and np.isfinite(real_delta):
+                p_mc_two_sided = float((np.sum(np.abs(mc_arr) >= abs(real_delta)) + 1) / (mc_arr.size + 1))
+                mc_mu = float(np.mean(mc_arr))
+                mc_sd = float(np.std(mc_arr))
+            else:
+                p_mc_two_sided = float('nan')
+                mc_mu = float('nan')
+                mc_sd = float('nan')
+
+            print(
+                f'  [Prime-Gated null] Δmean(P−C): real={real_delta:.6g}  '
+                f'mc_mean={mc_mu:.6g}  mc_std={mc_sd:.6g}  mc_p(two-sided)={p_mc_two_sided:.4g}'
+            )
+
+            # Optional plot saving.
+            if args.prime_plot_prefix and mc_arr.size:
+                prefix = str(args.prime_plot_prefix)
+                _plot_prime_gated_null_hist(
+                    null_deltas=mc_arr,
+                    real_delta=real_delta,
+                    title=f'Prime-Gated Δmean(P−C) phase-randomization MC null ({label})',
+                    outpath=f'{prefix}_{label}_prime_gated_mc_null.png',
+                )
 
     return 0
 
