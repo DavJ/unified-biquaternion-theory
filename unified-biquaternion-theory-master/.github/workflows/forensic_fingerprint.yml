@@ -1,0 +1,57 @@
+name: Forensic Fingerprint Tests
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'forensic_fingerprint/**'
+      - 'tests/test_forensic_fingerprint.py'
+      - '.github/workflows/forensic_fingerprint.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'forensic_fingerprint/**'
+      - 'tests/test_forensic_fingerprint.py'
+      - '.github/workflows/forensic_fingerprint.yml'
+
+jobs:
+  test-forensic-fingerprint:
+    name: Test Forensic Fingerprint Suite
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest numpy scipy matplotlib
+      
+      - name: Run forensic fingerprint tests
+        run: |
+          pytest tests/test_forensic_fingerprint.py -v
+      
+      - name: Test summary
+        if: always()
+        run: |
+          echo "================================================"
+          echo "UBT Forensic Fingerprint Tests Complete"
+          echo "================================================"
+          echo ""
+          echo "These tests verify:"
+          echo "  1. CMB comb signature detection (Test #1)"
+          echo "  2. Grid 255 quantization test (Test #2)"
+          echo "  3. Cross-dataset invariance (Test #3)"
+          echo "  4. Data loaders (Planck PR3, WMAP)"
+          echo "  5. Whitening with covariance matrices"
+          echo ""
+          echo "All tests use synthetic data for validation."
+          echo "Real analysis requires Planck/WMAP data."
+          echo "See forensic_fingerprint/RUNBOOK_REAL_DATA.md"
+          echo "================================================"

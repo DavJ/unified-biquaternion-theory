@@ -1,0 +1,467 @@
+--- /mnt/data/ubt_orig/unified-biquaternion-theory-master/forensic_fingerprint/tools/spectral_parity_test.py	2026-01-17 17:19:51.000000000 +0000
++++ /mnt/data/ubt_repo/unified-biquaternion-theory-master/forensic_fingerprint/tools/spectral_parity_test.py	2026-01-17 17:36:49.378213782 +0000
+@@ -166,6 +166,37 @@
+     return float(np.mean(p) - np.mean(c))
+ 
+ 
++def prime_gated_delta_mean_weighted(
++    ells: np.ndarray,
++    integrity: np.ndarray,
++    weights: np.ndarray,
++) -> float:
++    """Weighted version of prime_gated_delta_mean.
++
++    weights are applied to *both* prime and composite groups, so the
++    comparison stays local (e.g., emphasizing multipoles near a carrier).
++    """
++    ells = np.asarray(ells, dtype=int)
++    integrity = np.asarray(integrity, dtype=float)
++    weights = np.asarray(weights, dtype=float)
++    if ells.shape != integrity.shape or ells.shape != weights.shape:
++        raise ValueError('ells, integrity, weights must have the same shape')
++
++    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
++    comp_mask = (ells >= 2) & (~prime_mask)
++    if not np.any(prime_mask) or not np.any(comp_mask):
++        return float('nan')
++
++    wp = weights[prime_mask]
++    wc = weights[comp_mask]
++    if float(np.sum(wp)) <= 0.0 or float(np.sum(wc)) <= 0.0:
++        return float('nan')
++
++    mp = float(np.sum(wp * integrity[prime_mask]) / np.sum(wp))
++    mc = float(np.sum(wc * integrity[comp_mask]) / np.sum(wc))
++    return float(mp - mc)
++
++
+ def permutation_null_deltas(
+     ells: np.ndarray,
+     integrity: np.ndarray,
+@@ -199,6 +230,47 @@
+     return out
+ 
+ 
++def permutation_null_deltas_weighted(
++    ells: np.ndarray,
++    integrity: np.ndarray,
++    weights: np.ndarray,
++    n_perm: int,
++    rng: np.random.Generator,
++) -> np.ndarray:
++    """Permutation null with weights.
++
++    Same as permutation_null_deltas, but the delta is computed using
++    weighted means. The weights remain attached to each ell position and
++    are *not* permuted; we only permute group labels.
++    """
++    ells = np.asarray(ells, dtype=int)
++    integrity = np.asarray(integrity, dtype=float)
++    weights = np.asarray(weights, dtype=float)
++    if ells.shape != integrity.shape or ells.shape != weights.shape:
++        raise ValueError('ells, integrity, weights must have the same shape')
++
++    prime_mask = np.array([is_prime(int(e)) for e in ells], dtype=bool)
++    comp_mask = (ells >= 2) & (~prime_mask)
++    valid_idx = np.where(ells >= 2)[0]
++
++    p_count = int(np.sum(prime_mask))
++    c_count = int(np.sum(comp_mask))
++    if p_count == 0 or c_count == 0:
++        return np.array([], dtype=float)
++
++    out = np.empty(int(n_perm), dtype=float)
++    for i in range(int(n_perm)):
++        perm = rng.permutation(valid_idx)
++        p_idx = perm[:p_count]
++        c_idx = perm[p_count : p_count + c_count]
++        wp = weights[p_idx]
++        wc = weights[c_idx]
++        mp = float(np.sum(wp * integrity[p_idx]) / np.sum(wp))
++        mc = float(np.sum(wc * integrity[c_idx]) / np.sum(wc))
++        out[i] = float(mp - mc)
++    return out
++
++
+ # RSParams API compatibility: some versions accept nsym, others derive it.
+ # Our local rs_syndrome.RSParams accepts (n,k,nsym), but keep this robust.
+ def _make_rs_params(RSParams, n=255, k=201, nsym=54):
+@@ -363,6 +435,71 @@
+     return int((256.0 * phi) / (2 * math.pi)) & 0xFF
+ 
+ 
++def _wrap_phase(phi: float) -> float:
++    """Wrap a phase angle to [0, 2π)."""
++    two_pi = 2.0 * math.pi
++    phi = phi % two_pi
++    if phi < 0:
++        phi += two_pi
++    return phi
++
++
++def quantize_phase_to_u8_with_offset(z: complex, phase_offset_rad: float) -> int:
++    """Quantize phase after adding a deterministic phase offset.
++
++    This is used for the optional *phase shear compensation* experiment.
++    """
++    if z == 0:
++        return 0
++    phi = math.atan2(z.imag, z.real)
++    phi = _wrap_phase(phi + float(phase_offset_rad))
++    return int((256.0 * phi) / (2 * math.pi)) & 0xFF
++
++
++def phase_shear_offset_rad(
++    *,
++    k: int,
++    ell: int,
++    lmin: int,
++    lmax: int,
++    n_total: int,
++    shear_rad: float,
++    mode: str,
++) -> float:
++    """Return an additive phase offset for a given mode.
++
++    Parameters
++    ----------
++    k:
++        Rotation-invariant linear mode index k(ℓ,m)=ℓ²+ℓ+m.
++    ell:
++        Multipole ℓ.
++    lmin, lmax:
++        Active multipole range.
++    n_total:
++        Total length of the symbol stream.
++    shear_rad:
++        Total shear amplitude (radians).
++    mode:
++        'k'  : shear grows linearly with k / (N-1)
++        'ell': shear grows linearly with (ℓ-lmin) / (lmax-lmin)
++        'none' or empty: no shear.
++    """
++    if not shear_rad:
++        return 0.0
++    mode = (mode or 'k').strip().lower()
++    if mode in ('none', 'off', '0'):
++        return 0.0
++    if mode == 'ell':
++        denom = max(1, int(lmax) - int(lmin))
++        frac = (int(ell) - int(lmin)) / float(denom)
++        return float(shear_rad * frac)
++    # default: 'k'
++    denom = max(1, int(n_total) - 1)
++    frac = int(k) / float(denom)
++    return float(shear_rad * frac)
++
++
+ def hamming_8_4_is_valid(byte: int) -> bool:
+     """Check if an 8-bit value is a valid extended Hamming(8,4) codeword.
+ 
+@@ -440,7 +577,15 @@
+     return hp.read_alm(path)
+ 
+ 
+-def build_symbol_stream_from_alm(alm: np.ndarray, lmax: int, name: str, lmin: int = DEFAULT_LMIN) -> Symbols:
++def build_symbol_stream_from_alm(
++    alm: np.ndarray,
++    lmax: int,
++    name: str,
++    lmin: int = DEFAULT_LMIN,
++    *,
++    phase_shear_deg: float = 0.0,
++    phase_shear_mode: str = 'k',
++) -> Symbols:
+     """Build uint8 symbol stream using phase quantization, for all m in [-ell,ell].
+ 
+     healpy stores only m>=0. For real fields, negative m are obtained by:
+@@ -448,17 +593,49 @@
+     """
+     _require_healpy()
+     sym = np.zeros(((lmax + 1) * (lmax + 1)), dtype=np.uint8)  # total modes up to lmax
++    shear_rad = float(phase_shear_deg) * math.pi / 180.0
++    n_total = int(sym.size)
+ 
+     for ell in range(lmin, lmax + 1):
+         # m=0
+         a0 = hp.Alm.getidx(lmax, ell, 0)
+-        sym[k_index(ell, 0)] = quantize_phase_to_u8(complex(alm[a0]))
++        k0 = k_index(ell, 0)
++        off0 = phase_shear_offset_rad(
++            k=k0,
++            ell=ell,
++            lmin=lmin,
++            lmax=lmax,
++            n_total=n_total,
++            shear_rad=shear_rad,
++            mode=phase_shear_mode,
++        )
++        sym[k0] = quantize_phase_to_u8_with_offset(complex(alm[a0]), off0)
+         for m in range(1, ell + 1):
+             idx = hp.Alm.getidx(lmax, ell, m)
+             a = complex(alm[idx])
+-            sym[k_index(ell, m)] = quantize_phase_to_u8(a)
++            kp = k_index(ell, m)
++            offp = phase_shear_offset_rad(
++                k=kp,
++                ell=ell,
++                lmin=lmin,
++                lmax=lmax,
++                n_total=n_total,
++                shear_rad=shear_rad,
++                mode=phase_shear_mode,
++            )
++            sym[kp] = quantize_phase_to_u8_with_offset(a, offp)
+             aneg = ((-1) ** m) * np.conj(a)
+-            sym[k_index(ell, -m)] = quantize_phase_to_u8(complex(aneg))
++            kn = k_index(ell, -m)
++            offn = phase_shear_offset_rad(
++                k=kn,
++                ell=ell,
++                lmin=lmin,
++                lmax=lmax,
++                n_total=n_total,
++                shear_rad=shear_rad,
++                mode=phase_shear_mode,
++            )
++            sym[kn] = quantize_phase_to_u8_with_offset(complex(aneg), offn)
+ 
+     return Symbols(name=name, symbols=sym)
+ 
+@@ -643,6 +820,22 @@
+     ap.add_argument('--prime-plot-prefix', type=str, default=None, help='if set, save plots to <prefix>_<label>_*.png')
+     ap.add_argument('--prime-highlight', type=str, default='137,139', help='comma-separated ell values to highlight (default: 137,139)')
+ 
++    # Prime-gated refinements
++    ap.add_argument('--prime-weight-center', type=float, default=None,
++                    help='optional center ℓ for gaussian weighting in Prime-Gated Δ (default: None = unweighted)')
++    ap.add_argument('--prime-weight-sigma', type=float, default=0.0,
++                    help='gaussian sigma (in ℓ units) for Prime-Gated weighting; requires --prime-weight-center')
++
++    # Phase-shear compensation (linear phase drift across the symbol stream)
++    ap.add_argument('--phase-shear-deg', type=float, default=0.0,
++                    help='apply a linear phase shear (degrees) across the symbol stream before quantization (default: 0)')
++    ap.add_argument('--phase-shear-mode', type=str, default='k', choices=('k', 'ell'),
++                    help="shear reference axis: 'k' (linear index) or 'ell' (multipole) (default: k)")
++    ap.add_argument('--phase-shear-scan', type=str, default=None,
++                    help='scan a range of phase-shear degrees: "start:stop:step" (requires --prime-gated)')
++    ap.add_argument('--phase-shear-report-prefix', type=str, default=None,
++                    help='if set, save phase-shear scan CSV to <prefix>_<label>_phase_shear_scan.csv')
++
+     ap.set_defaults(progress=sys.stderr.isatty())
+ 
+     args = ap.parse_args(argv)
+@@ -664,21 +857,56 @@
+         raise SystemExit('Provide --tt-map or --tt-alm')
+ 
+     symbols_all: List[Tuple[str, np.ndarray, np.ndarray]] = []  # (label, alm, symbols)
+-    tt_sym = build_symbol_stream_from_alm(tt_alm, args.lmax, 'TT', lmin=args.lmin)
++    tt_sym = build_symbol_stream_from_alm(
++        tt_alm,
++        args.lmax,
++        'TT',
++        lmin=args.lmin,
++        phase_shear_deg=args.phase_shear_deg,
++        phase_shear_mode=args.phase_shear_mode,
++    )
+     symbols_all.append(('TT', tt_alm, tt_sym.symbols))
+ 
+     # Load polarization
+     if args.e_alm and args.b_alm:
+         e_alm = load_alm_fits(args.e_alm)
+         b_alm = load_alm_fits(args.b_alm)
+-        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE', lmin=args.lmin)
+-        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB', lmin=args.lmin)
++        e_sym = build_symbol_stream_from_alm(
++            e_alm,
++            args.lmax,
++            'EE',
++            lmin=args.lmin,
++            phase_shear_deg=args.phase_shear_deg,
++            phase_shear_mode=args.phase_shear_mode,
++        )
++        b_sym = build_symbol_stream_from_alm(
++            b_alm,
++            args.lmax,
++            'BB',
++            lmin=args.lmin,
++            phase_shear_deg=args.phase_shear_deg,
++            phase_shear_mode=args.phase_shear_mode,
++        )
+         symbols_all.append(('EE', e_alm, e_sym.symbols))
+         symbols_all.append(('BB', b_alm, b_sym.symbols))
+     elif args.q_map and args.u_map:
+         e_alm, b_alm = load_almE_B_from_qu_maps(args.q_map, args.u_map, lmax=args.lmax)
+-        e_sym = build_symbol_stream_from_alm(e_alm, args.lmax, 'EE', lmin=args.lmin)
+-        b_sym = build_symbol_stream_from_alm(b_alm, args.lmax, 'BB', lmin=args.lmin)
++        e_sym = build_symbol_stream_from_alm(
++            e_alm,
++            args.lmax,
++            'EE',
++            lmin=args.lmin,
++            phase_shear_deg=args.phase_shear_deg,
++            phase_shear_mode=args.phase_shear_mode,
++        )
++        b_sym = build_symbol_stream_from_alm(
++            b_alm,
++            args.lmax,
++            'BB',
++            lmin=args.lmin,
++            phase_shear_deg=args.phase_shear_deg,
++            phase_shear_mode=args.phase_shear_mode,
++        )
+         symbols_all.append(('EE', e_alm, e_sym.symbols))
+         symbols_all.append(('BB', b_alm, b_sym.symbols))
+ 
+@@ -703,10 +931,22 @@
+         print('\n=== Prime-Gated (Real): per-ell Hamming purity ===', flush=True)
+         for label, alm, sym in symbols_all:
+             ells_pg, integ_pg = prime_gated_integrity_curve(sym, args.lmin, args.lmax)
+-            delta_real = prime_gated_delta_mean(ells_pg, integ_pg)
++            # Optional harmonic weighting: focus both prime & composite means around a center ell.
++            weights_pg: Optional[np.ndarray] = None
++            if args.prime_weight_sigma is not None and float(args.prime_weight_sigma) > 0:
++                center = float(args.prime_weight_center)
++                sigma = float(args.prime_weight_sigma)
++                weights_pg = np.exp(-0.5 * ((ells_pg - center) / sigma) ** 2)
++                delta_real = prime_gated_delta_mean_weighted(ells_pg, integ_pg, weights_pg)
++            else:
++                delta_real = prime_gated_delta_mean(ells_pg, integ_pg)
+ 
+             # Permutation null: keeps the integrity curve fixed, shuffles prime labels.
+-            perm_deltas = permutation_null_deltas(ells_pg, integ_pg, n_perm=int(args.prime_perm), rng=rng)
++            perm_deltas = (
++                permutation_null_deltas_weighted(ells_pg, integ_pg, weights_pg, n_perm=int(args.prime_perm), rng=rng)
++                if weights_pg is not None
++                else permutation_null_deltas(ells_pg, integ_pg, n_perm=int(args.prime_perm), rng=rng)
++            )
+             finite_perm = perm_deltas[np.isfinite(perm_deltas)]
+             if finite_perm.size and np.isfinite(delta_real):
+                 p_perm_two_sided = float((np.sum(np.abs(finite_perm) >= abs(delta_real)) + 1) / (finite_perm.size + 1))
+@@ -722,6 +962,7 @@
+             prime_real[label] = {
+                 'ells': ells_pg,
+                 'integrity': integ_pg,
++                'weights': weights_pg,
+                 'delta': delta_real,
+                 'perm_deltas': perm_deltas,
+                 'highlight_ells': highlight_ells,
+@@ -749,6 +990,88 @@
+                         outpath=f'{prefix}_{label}_prime_gated_perm_null.png',
+                     )
+ 
++    # Optional: sweep phase-shear compensation and report Prime-Gated Δ.
++    # This is useful for checking whether a small linear phase drift (e.g. from
++    # a 255/256 clock mismatch) can further sharpen the Prime-Gated signature.
++    if args.phase_shear_scan and args.prime_gated:
++        def _parse_scan(s: str) -> np.ndarray:
++            # Format: start:stop:step  (degrees)
++            parts = [p.strip() for p in s.split(':') if p.strip() != '']
++            if len(parts) != 3:
++                raise ValueError("--phase-shear-scan expects start:stop:step")
++            a, b, step = (float(parts[0]), float(parts[1]), float(parts[2]))
++            if step == 0:
++                raise ValueError("--phase-shear-scan step must be nonzero")
++            # Include endpoint if it lands exactly on the grid.
++            n = int(math.floor((b - a) / step)) + 1
++            if n <= 0:
++                # Fallback for reversed ranges.
++                n = int(math.floor((a - b) / (-step))) + 1
++                step = -step
++            return a + step * np.arange(n, dtype=float)
++
++        thetas = _parse_scan(args.phase_shear_scan)
++        scan_rows: List[Dict[str, float]] = []
++
++        print('\n=== Phase-shear scan (Prime-Gated) ===', flush=True)
++        print(f'  mode={args.phase_shear_mode}  scan={args.phase_shear_scan}', flush=True)
++
++        for theta_deg in thetas:
++            for label, alm, _sym0 in symbols_all:
++                sym = build_symbol_stream_from_alm(
++                    alm,
++                    args.lmax,
++                    label,
++                    lmin=args.lmin,
++                    phase_shear_deg=float(theta_deg),
++                    phase_shear_mode=args.phase_shear_mode,
++                )
++                ells_pg, integ_pg = prime_gated_integrity_curve(sym, args.lmin, args.lmax)
++                weights_pg: Optional[np.ndarray] = None
++                if args.prime_weight_sigma and args.prime_weight_sigma > 0:
++                    weights_pg = np.exp(-0.5 * ((ells_pg - args.prime_weight_center) / args.prime_weight_sigma) ** 2)
++                if weights_pg is not None:
++                    delta = prime_gated_delta_mean_weighted(ells_pg, integ_pg, weights_pg)
++                    perm_deltas = permutation_null_deltas_weighted(ells_pg, integ_pg, weights_pg, n_perm=args.prime_perm, rng=rng)
++                else:
++                    delta = prime_gated_delta_mean(ells_pg, integ_pg)
++                    perm_deltas = permutation_null_deltas(ells_pg, integ_pg, n_perm=args.prime_perm, rng=rng)
++                p_perm = float(np.mean(np.abs(perm_deltas) >= abs(delta)))
++                scan_rows.append({'theta_deg': float(theta_deg), 'delta': float(delta), 'p_perm': p_perm, 'label': label})
++
++        # Print best (min p) per label
++        for label in sorted({r['label'] for r in scan_rows}):
++            rows = [r for r in scan_rows if r['label'] == label]
++            rows.sort(key=lambda r: r['p_perm'])
++            best = rows[0]
++            print(f"  {label}: best theta={best['theta_deg']:.6g} deg  Δ={best['delta']:.6g}  perm_p={best['p_perm']:.6g}")
++
++        if args.phase_shear_report_prefix:
++            out_csv = f"{args.phase_shear_report_prefix}_phase_shear_scan.csv"
++            with open(out_csv, 'w', encoding='utf-8') as f:
++                f.write('label,theta_deg,delta,perm_p\n')
++                for r in scan_rows:
++                    f.write(f"{r['label']},{r['theta_deg']:.9g},{r['delta']:.9g},{r['p_perm']:.9g}\n")
++            print(f'  wrote: {out_csv}', flush=True)
++
++            if plt is not None:
++                for label in sorted({r['label'] for r in scan_rows}):
++                    rows = [r for r in scan_rows if r['label'] == label]
++                    rows.sort(key=lambda r: r['theta_deg'])
++                    xs = np.array([r['theta_deg'] for r in rows], dtype=float)
++                    ys = np.array([r['p_perm'] for r in rows], dtype=float)
++                    plt.figure(figsize=(7, 4))
++                    plt.plot(xs, ys, marker='o')
++                    plt.yscale('log')
++                    plt.xlabel('phase_shear_deg')
++                    plt.ylabel('perm p (two-sided, log scale)')
++                    plt.title(f'Phase-shear scan (Prime-Gated) — {label}')
++                    out_png = f"{args.phase_shear_report_prefix}_{label}_phase_shear_scan.png"
++                    plt.tight_layout()
++                    plt.savefig(out_png, dpi=150)
++                    plt.close()
++                    print(f'  wrote: {out_png}', flush=True)
++
+     # Monte Carlo null
+     print('\n=== Monte Carlo (phase randomization per ell) ===', flush=True)
+     for label, alm, sym in symbols_all:
+@@ -764,7 +1087,14 @@
+         mc_prog = _Progress(args.progress, total=args.mc, desc=f'{label} MC', unit='mc')
+         for i_mc in range(args.mc):
+             a_null = phase_randomize_per_ell(alm, args.lmax, rng, lmin=args.lmin)
+-            s_null = build_symbol_stream_from_alm(a_null, args.lmax, name=label, lmin=args.lmin).symbols
++            s_null = build_symbol_stream_from_alm(
++                a_null,
++                args.lmax,
++                name=label,
++                lmin=args.lmin,
++                phase_shear_deg=args.phase_shear_deg,
++                phase_shear_mode=args.phase_shear_mode,
++            ).symbols
+             mf = None if args.max_frames == 0 else args.max_frames
+             mean, tail = compute_scores(
+                 s_null,
+@@ -781,7 +1111,12 @@
+             # Prime-Gated null: compute Δmean(P−C) for this MC realization.
+             # This is the key "MC sees no difference" check when compared to real Δ.
+             if args.prime_gated and label in prime_real:
+-                d_mc = prime_gated_delta_from_symbol_stream(s_null, args.lmin, args.lmax)
++                ells_mc, integ_mc = prime_gated_integrity_curve(s_null, args.lmin, args.lmax)
++                w_mc = prime_real[label].get('weights', None)
++                if w_mc is not None:
++                    d_mc = prime_gated_delta_mean_weighted(ells_mc, integ_mc, w_mc)
++                else:
++                    d_mc = prime_gated_delta_mean(ells_mc, integ_mc)
+                 null_prime_deltas.append(float(d_mc))
+ 
+             # Running p-value estimate (one-sided, >= observed)
