@@ -293,7 +293,6 @@ def compute_scores(
     if max_frames is not None and max_frames > 0:
         if rng is None:
             max_start = max(0, symbols.size - frame)
-        max_start = max(0, symbols.size - frame)
         if max_start <= 0:
             return float('nan'), float('nan')
         # Sample window starts; align to "step" grid for determinism.
