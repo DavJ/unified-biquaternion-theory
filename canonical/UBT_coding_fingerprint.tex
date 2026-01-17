@@ -3,169 +3,139 @@
 \usepackage{amsmath,amssymb,physics,geometry}
 \geometry{margin=1in}
 
-\title{Unified Biquaternion Theory as a Spectral Multiplex System\\
-Coding-Layer Fingerprints without Spatial Addressing}
+\title{Unified Biquaternion Theory:\\
+Coding Layers, Ontological Equivalence, and Observable Fingerprints}
 \author{David Jaro\v{s}}
 \date{\today}
 
 \begin{document}
 \maketitle
 
+
+The spectral organization employed here mirrors the symmetry-based state counting familiar from atomic quantum systems; a structural interpretation is discussed in Appendix~D.
+
 \section*{Axiom O1: Ontological Equivalence}
-\textbf{Axiom O1.}
+
+\textbf{Axiom O1 (Ontological Equivalence).}
 \emph{No experiment performed entirely within a physical system can
 distinguish whether that system constitutes a fundamental reality
 or an exact simulation.}
 
-Operationally, this axiom asserts that physical law is exhausted by
-internal relational structure and invariant observables.
+This axiom does not assert that reality is a simulation, nor does it
+postulate an external simulator. It states that the ontological origin
+of a physical system has no operational meaning for internal observers.
+All physical theories must therefore be formulated purely in terms of
+intrinsic structure and observable invariants.
 
-\section{Paradigm Shift: From Spatial Addressing to Spectral Multiplexing}
+This principle plays a role analogous to Einstein's equivalence
+principle in general relativity: it constrains admissible theoretical
+structures without introducing additional dynamical assumptions.
 
-UBT abandons the notion that physical information is stored at spatial
-addresses. Instead, reality is represented as a superposition of
-orthogonal spectral modes. Discrete indices label \emph{channels in a
-multiplex}, not locations in space.
+\section{Layered Structure of UBT}
 
-This removes the need to define a fixed coordinate grid on the sphere,
-resolving the tension between discretization and rotational invariance.
+Unified Biquaternion Theory (UBT) is organized into three conceptually
+distinct layers:
 
-\section{Hilbert Space of Modes}
+\begin{itemize}
+\item \textbf{Layer 1 (Geometric Core):} a biquaternionic formulation of
+spacetime and fields, redefining the geometric foundations of general
+relativity and quantum field theory.
+\item \textbf{Layer 2 (Coding and Stability):} discrete selection rules
+and redundancy structures that stabilize admissible physical
+configurations.
+\item \textbf{Layer 3 (Global Coherence):} long-range algebraic and
+renormalization constraints ensuring macroscopic consistency.
+\end{itemize}
 
-Let $T(\hat n)$ denote an observable scalar field on the celestial sphere,
-$\hat n\in S^2$. Its expansion in spherical harmonics reads
+The fingerprint analysis presented in this work probes exclusively
+Layers 2 and 3. Failure of any specific fingerprint falsifies only the
+corresponding realization of these layers and does not invalidate the
+biquaternionic geometric core.
+
+\section{Minimal Coding-Layer Fingerprint}
+
+\subsection{Discretized Phase Symbols}
+
+Let $a_{\ell m}$ denote complex observational coefficients (for example,
+spherical harmonic coefficients of a cosmological field). We define
+discretized phase symbols by
 \begin{equation}
-T(\hat n)=\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} a_{\ell m}Y_{\ell m}(\hat n).
-\end{equation}
-
-Under rotations $R\in SO(3)$, the coefficients transform unitarily:
-\begin{equation}
-a'_{\ell m}=\sum_{m'=-\ell}^{\ell}D^{(\ell)}_{m m'}(R)\,a_{\ell m'}.
-\end{equation}
-
-The multipole index $\ell$ labels invariant spectral \emph{slabs}, while
-$m$ labels internal degrees of freedom mixed by rotations. This structure
-is directly analogous to OFDM systems with unitary channel mixing.
-
-\section{Gauge-Fixed Spectral Multiplex}
-
-To access phase information while preserving rotational covariance, we
-introduce a data-driven gauge fixing per multipole $\ell$.
-
-Define the power tensor
-\begin{equation}
-Q^{(\ell)}_{ij}=\sum_{m,m'} a_{\ell m}^*\,a_{\ell m'}\,
-\langle \ell m|L_iL_j|\ell m'\rangle,
-\end{equation}
-where $L_i$ are generators of $SO(3)$ in the $\ell$ representation.
-
-Let $\hat u_\ell$ be the principal eigenvector of $Q^{(\ell)}$. A rotation
-$R_\ell$ mapping $\hat u_\ell\mapsto \hat z$ defines gauge-fixed coefficients
-\begin{equation}
-\tilde a_{\ell m}=\sum_{m'=-\ell}^{\ell}D^{(\ell)}_{m m'}(R_\ell)\,a_{\ell m'}.
-\end{equation}
-
-\paragraph{Remark.}
-This procedure introduces no external sky grid. The ``orientation'' is
-selected entirely from the field's own multipole content.
-
-\section{Symbolization and Multiplex Ordering}
-
-Phases of gauge-fixed coefficients are quantized into a finite alphabet:
-\begin{equation}
-s_{\ell m}=\left\lfloor
-\frac{256}{2\pi}\big(\arg(\tilde a_{\ell m})+\pi\big)
+s_{\ell m} =
+\left\lfloor
+\frac{N}{2\pi}\left(\arg(a_{\ell m})+\pi\right)
 \right\rfloor
-\in\mathbb Z_{256}.
+\in \mathbb{Z}_N,
+\end{equation}
+where $N=16$ or $N=256$.
+
+\subsection{Block Formation and Parity Constraints}
+
+The symbols are grouped into blocks of length eight,
+\begin{equation}
+\mathbf{s}_k = (s_{k,1},\dots,s_{k,8}).
 \end{equation}
 
-We define a deterministic multiplex ordering that linearizes spectral modes:
+We test each block against the parity constraints of the extended
+Hamming $(8,4,4)$ code. Let $H$ denote its parity-check matrix. The
+syndrome vector is
 \begin{equation}
-k=\kappa(\ell,m)=\ell^2+(m+\ell),
+\mathbf{r}_k = H \mathbf{s}_k^{T}.
 \end{equation}
-and the corresponding symbol stream
+
+\subsection{Fingerprint Statistic}
+
+The primary fingerprint statistic is the empirical probability
 \begin{equation}
-x_k=s_{\ell m}.
+P_0 = \frac{1}{K}\sum_{k=1}^K \delta(\mathbf{r}_k,0),
 \end{equation}
+where $\delta$ is the Kronecker delta. A statistically significant
+excess of $P_0$ relative to phase-randomized surrogate data constitutes
+a positive detection of the coding-layer fingerprint.
 
 \paragraph{Interpretation.}
-The index $k$ labels a spectral \emph{channel}. For example, $k=137$ denotes
-the 137th multiplexed mode, not a spatial address.
+A positive detection supports the presence of discrete stabilizing
+selection in Layer~2. Non-detection excludes this specific realization
+but leaves the UBT framework intact.
 
-\section{Coding-Layer Fingerprints}
+\section{Additional Fingerprint Classes}
 
-\subsection{Fingerprint 1: Spectral Hamming Parity}
+\subsection{Phase Quantization Fingerprint}
 
-Group the stream into blocks of eight symbols,
+UBT predicts clustering of phases at discrete values
 \begin{equation}
-\mathbf x^{(b)}=(x_{8b},x_{8b+1},\dots,x_{8b+7}).
+\arg(a_{\ell m}) \in \left\{\frac{2\pi k}{N}\right\},
 \end{equation}
+testable via circular entropy and Kuiper statistics.
 
-Extract a bit-level feature per symbol, for example the least significant bit
+\subsection{Multiscale Fractal Fingerprint}
+
+Hierarchical stability implies scale-invariant correlations in the
+fingerprint statistic,
 \begin{equation}
-\mathbf b^{(b)}=(\mathrm{LSB}(x_{8b}),\dots,\mathrm{LSB}(x_{8b+7}))\in\{0,1\}^8.
+P_0(L) \sim L^{-\alpha},
 \end{equation}
-
-Let $H$ denote the parity-check matrix of the extended Hamming $(8,4,4)$ code.
-The syndrome is
-\begin{equation}
-\mathbf r^{(b)}=H(\mathbf b^{(b)})^T\pmod2.
-\end{equation}
-
-Define the fingerprint statistic as the fraction of zero syndromes:
-\begin{equation}
-P_0=\frac{1}{B}\sum_{b=0}^{B-1}\mathbf 1[\mathbf r^{(b)}=0].
-\end{equation}
-
-\paragraph{Detection rule.}
-A statistically significant excess of $P_0$ relative to phase-randomized
-surrogates (preserving $|a_{\ell m}|$ and $C_\ell$ while randomizing phases)
-constitutes a positive detection.
-
-\subsection{Fingerprint 2: Reed--Solomon Consistency across Channels}
-
-Embed $x_k$ into $GF(256)$ (via a fixed byte-to-field isomorphism) and consider
-blocks of length $n=255$:
-\begin{equation}
-\mathbf X^{(b)}=(X_{255b},\dots,X_{255b+254})\in GF(256)^{255}.
-\end{equation}
-
-A Reed--Solomon code RS$(n,k)$ can be expressed by the existence of a polynomial
-$p(t)$ of degree $<k$ such that
-\begin{equation}
-X_i = p(\alpha_i),\quad i=0,\dots,n-1,
-\end{equation}
-for distinct evaluation points $\alpha_i\in GF(256)$.
-
-Operationally, one may compute RS syndromes or attempt bounded-distance decoding.
-A non-random excess of near-codeword blocks provides an independent fingerprint.
-
-\section{Time as Phase Drift (Candidate Signature)}
-
-A mismatch between data frame length (255) and a synchronization period (256)
-induces a cumulative phase drift per frame
-\begin{equation}
-\Delta\phi=\frac{2\pi}{256}.
-\end{equation}
-
-In a spectral-multiplex picture, such drift manifests as a linear phase slope
-in mode space (a shear-like signature in Fourier representations). This is a
-candidate (model-dependent) signature of Layer~2/3 timing structure.
+where $L$ denotes block scale. Detection of nontrivial $\alpha$ supports
+Layer~3 coherence.
 
 \section{Consequences of Non-Detection}
 
-Non-detection of any specific fingerprint falsifies only the corresponding
-coding-layer realization (Layer~2/3) and does \emph{not} invalidate the
-biquaternionic geometric core (Layer~1). Alternative symbolizations,
-alternative algebraic codes, or different invariants may still realize the
-UBT coding layer.
+Failure to detect the minimal fingerprint rules out the specific
+$(8,4,4)$ coding realization. It does not falsify:
+\begin{itemize}
+\item the biquaternionic geometric layer,
+\item alternative coding structures,
+\item or global coherence mechanisms.
+\end{itemize}
+
+Thus non-detection constrains the model space without collapsing the
+theoretical framework.
 
 \section{Conclusion}
 
-UBT admits a formulation as a high-dimensional OFDM-like multiplex in spectral
-space. Discrete indices label channels (modes), not spatial positions. Coding
-constraints act across spectral channels, while rotational invariance is handled
-by per-multipole gauge fixing derived from the field itself. This yields
-concrete, falsifiable fingerprints that do not require spatial addressing.
+UBT predicts observable statistical fingerprints arising from discrete
+stabilization layers beyond its geometric core. The minimal fingerprint
+presented here is intentionally conservative and falsifiable. Future
+work will explore alternative coding realizations and higher-order
+fingerprints.
 
 \end{document}
