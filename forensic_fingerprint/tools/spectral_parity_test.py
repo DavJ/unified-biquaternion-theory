@@ -345,42 +345,36 @@ def symbols_from_alm_phase(
     dither_amp: float = 0.0,
     rng: Optional[np.random.Generator] = None,
 ) -> Symbols:
-    """
-    Build symbol stream from a_{ell m} complex alm array.
-    """
-    # healpy alm ordering: packed; use hp.Alm.getlm
+    """Build symbol stream from alm phases with proper m<0 reconstruction."""
     _ensure_healpy()
     ell, m = hp.Alm.getlm(lmax, np.arange(hp.Alm.getsize(lmax)))
-    phi = np.arctan2(np.imag(alm), np.real(alm))
+    n_stream = (lmax + 1) * (lmax + 1)
+    phi_stream = np.zeros(n_stream, dtype=np.float64)
+    ells_stream = np.zeros(n_stream, dtype=np.int32)
+    phi_plus = np.arctan2(np.imag(alm), np.real(alm)).astype(np.float64, copy=False)
 
-    # Optional: tiny phase dither (in radians) to prevent quantization lock-in.
-    # Typical safe values are ~1e-4 .. 1e-3 rad; default is off.
+    for i in range(phi_plus.size):
+        e = int(ell[i]); mm = int(m[i])
+        ells_stream[ell_shell_slice(e)] = e
+        k_plus = e * e + e + mm
+        phi_stream[k_plus] = float(phi_plus[i])
+        if mm > 0:
+            phm = (-float(phi_plus[i]) + math.pi * float(mm))
+            phm = (phm + math.pi) % (2.0 * math.pi) - math.pi
+            k_minus = e * e + e - mm
+            phi_stream[k_minus] = phm
+
     if dither_amp and float(dither_amp) > 0.0:
         if rng is None:
             rng = np.random.default_rng(0)
-        phi = phi + (rng.random(size=phi.shape) - 0.5) * float(dither_amp)
+        phi_stream = phi_stream + (rng.random(size=phi_stream.shape) - 0.5) * float(dither_amp)
 
-    # Optional: differential phase (DPSK-style), robust to global phase drift.
     if bool(differential):
-        # Use delta between consecutive alm samples in healpy packing.
-        # This is not "adjacent m" guaranteed, but is still a useful robustness check.
-        phi = np.mod(np.diff(phi, prepend=phi[0]), 2.0 * np.pi) - np.pi
+        phi_stream = np.mod(np.diff(phi_stream, prepend=phi_stream[0]), 2.0 * math.pi) - math.pi
 
-    sym = phase_to_symbol(phi)
-    # Build linearized stream by ell shells:
-    # We want stream ordered by ell shells and m increasing.
-    # healpy getlm already gives ell,m by index, but not contiguous by ell^2 scheme.
-    # We'll place symbols into positions using start=ell^2 + (m+ell).
-    n_stream = (lmax + 1) * (lmax + 1)
-    arr = np.zeros(n_stream, dtype=np.uint8)
-    ells = np.zeros(n_stream, dtype=np.int32)
-    for i in range(sym.size):
-        e = int(ell[i])
-        mm = int(m[i])
-        k = e * e + e + mm  # since mm in [-e,+e]
-        arr[k] = sym[i]
-        ells[k] = e
-    return Symbols(arr=arr, ells=ells)
+    arr = phase_to_symbol(phi_stream)
+    return Symbols(arr=arr.astype(np.uint8, copy=False), ells=ells_stream)
+
 
 
 def apply_phase_shear(
@@ -412,10 +406,9 @@ def apply_phase_shear(
     arr = sym.arr.astype(np.int16, copy=True)
 
     if mode == "k":
-        # normalize k to [0,1] across stream
-        k = np.arange(arr.size, dtype=np.float64)
-        f = (k - k.min()) / (k.max() - k.min() + 1e-12)
+        f = np.arange(arr.size, dtype=np.float64)
     elif mode == "ell":
+        f = sym.ells.astype(np.float64)
         e = sym.ells.astype(np.float64)
         f = (e - e.min()) / (e.max() - e.min() + 1e-12)
     else:
@@ -593,11 +586,10 @@ def randomize_phases_per_ell(alm: np.ndarray, lmax: int, rng: np.random.Generato
 
 def read_map_field(map_path: str, field: int):
     _ensure_healpy()
-    # healpy API compatibility: verbose argument may be removed in future
     try:
-        m = hp.read_map(map_path, field=field, verbose=False)
-    except TypeError:
         m = hp.read_map(map_path, field=field)
+    except TypeError:
+        m = hp.read_map(map_path, field=field, verbose=False)
     return m
 
 
@@ -609,13 +601,13 @@ def read_tt_map(map_path: str):
 def read_qu_maps(q_path: str, u_path: str):
     _ensure_healpy()
     try:
-        q = hp.read_map(q_path, field=0, verbose=False)
-    except TypeError:
         q = hp.read_map(q_path, field=0)
-    try:
-        u = hp.read_map(u_path, field=0, verbose=False)
     except TypeError:
+        q = hp.read_map(q_path, field=0, verbose=False)
+    try:
         u = hp.read_map(u_path, field=0)
+    except TypeError:
+        u = hp.read_map(u_path, field=0, verbose=False)
     return q, u
 
 
