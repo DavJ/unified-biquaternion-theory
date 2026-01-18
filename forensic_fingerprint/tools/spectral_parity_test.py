@@ -102,6 +102,74 @@ def combine_pvalues_fisher(pvals: Sequence[float]) -> float:
 # ---------------------------------------------------------------------
 
 
+def _safe_mean(x: np.ndarray) -> float:
+    """NaN-safe mean. Returns NaN if there are no finite values."""
+    x = np.asarray(x, dtype=float)
+    m = np.isfinite(x)
+    if not np.any(m):
+        return float("nan")
+    return float(np.mean(x[m]))
+
+
+def _safe_div(num: float, den: float) -> float:
+    """Safe division with NaN/Inf/zero guards."""
+    num = float(num)
+    den = float(den)
+    if not np.isfinite(num) or not np.isfinite(den) or den == 0.0:
+        return float("nan")
+    return float(num / den)
+
+
+def debug_symbols(symbols: np.ndarray, *, label: str = "", max_show: int = 20) -> Dict[str, object]:
+    """Print and return basic diagnostics for a uint8 symbol stream."""
+    out: Dict[str, object] = {"label": label}
+    if symbols is None:
+        out.update({"ok": False, "reason": "symbols is None"})
+        print(f"[DEBUG] {label} symbols=None", flush=True)
+        return out
+
+    s = np.asarray(symbols)
+    out["dtype"] = str(s.dtype)
+    out["size"] = int(s.size)
+    if s.size == 0:
+        out.update({"ok": False, "reason": "empty symbols"})
+        print(f"[DEBUG] {label} empty symbols", flush=True)
+        return out
+
+    # Basic stats (cast to float for safety)
+    sf = s.astype(np.float64, copy=False)
+    out["min"] = float(np.nanmin(sf))
+    out["max"] = float(np.nanmax(sf))
+    out["mean"] = float(np.nanmean(sf))
+    out["std"] = float(np.nanstd(sf))
+
+    # Unique count on a sample (avoid huge unique() cost)
+    sample = s if s.size <= 200_000 else s[:200_000]
+    uniq = np.unique(sample)
+    out["unique_count_sample"] = int(uniq.size)
+    out["unique_head"] = uniq[: min(10, uniq.size)].tolist()
+
+    preview = s[:max_show]
+    print(
+        f"[DEBUG] {label} symbols: dtype={out['dtype']} n={out['size']} "
+        f"min={out['min']:.3g} max={out['max']:.3g} mean={out['mean']:.3g} std={out['std']:.3g} "
+        f"unique(sample)={out['unique_count_sample']}",
+        flush=True,
+    )
+    try:
+        print(f"[DEBUG] {label} first[{max_show}]: {preview.tolist()}", flush=True)
+    except Exception:
+        print(f"[DEBUG] {label} first[{max_show}]: {preview}", flush=True)
+
+    collapsed = (out["unique_count_sample"] <= 1) or (out["std"] == 0.0)
+    out["collapsed"] = bool(collapsed)
+    out["ok"] = not collapsed
+    if collapsed:
+        out["reason"] = "digital collapse: symbols nearly constant"
+        print(f"[WARN] {label} DIGITAL COLLAPSE: symbols nearly constant", flush=True)
+    return out
+
+
 def is_prime(n: int) -> bool:
     if n < 2:
         return False
@@ -231,6 +299,10 @@ def phase_to_symbol(phi: np.ndarray) -> np.ndarray:
     Map phase in [-pi,pi] to uint8 symbols [0,255] by linear mapping.
     """
     # map to [0,1)
+    # Guard against NaN/Inf propagating into a collapsed or empty symbol stream.
+    phi = np.asarray(phi, dtype=np.float64)
+    if not np.all(np.isfinite(phi)):
+        phi = np.nan_to_num(phi, nan=0.0, posinf=0.0, neginf=0.0)
     u = (phi + np.pi) / (2.0 * np.pi)
     u = np.mod(u, 1.0)
     sym = np.floor(u * 256.0).astype(np.int32)
@@ -265,7 +337,14 @@ class Symbols:
         return self.arr[key]
 
 
-def symbols_from_alm_phase(alm: np.ndarray, lmax: int) -> Symbols:
+def symbols_from_alm_phase(
+    alm: np.ndarray,
+    lmax: int,
+    *,
+    differential: bool = False,
+    dither_amp: float = 0.0,
+    rng: Optional[np.random.Generator] = None,
+) -> Symbols:
     """
     Build symbol stream from a_{ell m} complex alm array.
     """
@@ -273,6 +352,20 @@ def symbols_from_alm_phase(alm: np.ndarray, lmax: int) -> Symbols:
     _ensure_healpy()
     ell, m = hp.Alm.getlm(lmax, np.arange(hp.Alm.getsize(lmax)))
     phi = np.arctan2(np.imag(alm), np.real(alm))
+
+    # Optional: tiny phase dither (in radians) to prevent quantization lock-in.
+    # Typical safe values are ~1e-4 .. 1e-3 rad; default is off.
+    if dither_amp and float(dither_amp) > 0.0:
+        if rng is None:
+            rng = np.random.default_rng(0)
+        phi = phi + (rng.random(size=phi.shape) - 0.5) * float(dither_amp)
+
+    # Optional: differential phase (DPSK-style), robust to global phase drift.
+    if bool(differential):
+        # Use delta between consecutive alm samples in healpy packing.
+        # This is not "adjacent m" guaranteed, but is still a useful robustness check.
+        phi = np.mod(np.diff(phi, prepend=phi[0]), 2.0 * np.pi) - np.pi
+
     sym = phase_to_symbol(phi)
     # Build linearized stream by ell shells:
     # We want stream ordered by ell shells and m increasing.
@@ -359,6 +452,10 @@ def prime_gated_integrity_curve(
 def prime_gated_delta_mean(ells: np.ndarray, integrity: np.ndarray) -> float:
     p = integrity[[is_prime(int(e)) for e in ells]]
     c = integrity[[not is_prime(int(e)) for e in ells]]
+    # Many ells may yield NaN integrity if the slice is shorter than 255.
+    # Use finite-only means to prevent NaN cascades.
+    p = p[np.isfinite(p)]
+    c = c[np.isfinite(c)]
     if p.size == 0 or c.size == 0:
         return float("nan")
     return float(np.mean(p) - np.mean(c))
@@ -379,6 +476,13 @@ def prime_gated_delta_mean_weighted(
     wc = weights[mask_c]
     ip = integrity[mask_p]
     ic = integrity[mask_c]
+    # finite-only (keep weights aligned)
+    fp = np.isfinite(ip)
+    fc = np.isfinite(ic)
+    ip = ip[fp]
+    wp = wp[fp]
+    ic = ic[fc]
+    wc = wc[fc]
     mp = float(np.sum(wp * ip) / (np.sum(wp) + 1e-18))
     mc = float(np.sum(wc * ic) / (np.sum(wc) + 1e-18))
     return mp - mc
@@ -407,6 +511,10 @@ def prime_gated_permutation_pvalue(
     else:
         obs = prime_gated_delta_mean_weighted(ells, integrity, w_h)
 
+    # If obs is NaN (e.g., not enough 255-symbol frames in shells), bail out
+    if not np.isfinite(obs):
+        return float("nan")
+
     # Permute labels by shuffling mask
     cnt = 0
     for _ in range(n_perm):
@@ -414,6 +522,9 @@ def prime_gated_permutation_pvalue(
         if w_h is None:
             p = integrity[perm]
             c = integrity[~perm]
+            # finite-only
+            p = p[np.isfinite(p)]
+            c = c[np.isfinite(c)]
             if p.size == 0 or c.size == 0:
                 continue
             d = float(np.mean(p) - np.mean(c))
@@ -422,6 +533,13 @@ def prime_gated_permutation_pvalue(
             wc = w_h[~perm]
             ip = integrity[perm]
             ic = integrity[~perm]
+            # finite-only (keep weights aligned)
+            fp = np.isfinite(ip)
+            fc = np.isfinite(ic)
+            ip = ip[fp]
+            wp = wp[fp]
+            ic = ic[fc]
+            wc = wc[fc]
             if ip.size == 0 or ic.size == 0:
                 continue
             mp = float(np.sum(wp * ip) / (np.sum(wp) + 1e-18))
@@ -641,6 +759,26 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
     ap.add_argument("--seed", type=int, default=0)
 
+    ap.add_argument(
+        "--debug-symbols",
+        action="store_true",
+        help="Print symbol-stream diagnostics (unique counts, preview) per channel.",
+    )
+    ap.add_argument(
+        "--phase-dither-amp",
+        type=float,
+        default=0.0,
+        help=(
+            "Add tiny phase dither (radians) before quantization to avoid bin lock-in. "
+            "Typical values: 1e-4..1e-3. Default 0 disables."
+        ),
+    )
+    ap.add_argument(
+        "--differential-phase",
+        action="store_true",
+        help="Use differential phase (DPSK-style) before quantization. Default off.",
+    )
+
     ap.add_argument("--progress", dest="progress", action="store_true", help="Show progress bars if tqdm exists.")
     ap.add_argument("--no-progress", dest="progress", action="store_false", help="Disable progress bars.")
     ap.set_defaults(progress=True)
@@ -700,26 +838,67 @@ def _compute_channel_symbols(
                 raise ValueError("Provide --tt-map or --tt-alm")
             tt = read_tt_map(args.tt_map)
             almT = map_to_alm_tt(tt, lmax=lmax)
-        sym = symbols_from_alm_phase(almT, lmax=lmax)
+        sym = symbols_from_alm_phase(
+            almT,
+            lmax=lmax,
+            differential=bool(args.differential_phase),
+            dither_amp=float(args.phase_dither_amp),
+            rng=rng,
+        )
     elif chan in ("EE", "BB"):
         if chan == "EE" and args.e_alm:
             almE = load_alm(args.e_alm)
-            sym = symbols_from_alm_phase(almE, lmax=lmax)
+            sym = symbols_from_alm_phase(
+                almE,
+                lmax=lmax,
+                differential=bool(args.differential_phase),
+                dither_amp=float(args.phase_dither_amp),
+                rng=rng,
+            )
         elif chan == "BB" and args.b_alm:
             almB = load_alm(args.b_alm)
-            sym = symbols_from_alm_phase(almB, lmax=lmax)
+            sym = symbols_from_alm_phase(
+                almB,
+                lmax=lmax,
+                differential=bool(args.differential_phase),
+                dither_amp=float(args.phase_dither_amp),
+                rng=rng,
+            )
         else:
             if not (args.q_map and args.u_map):
                 raise ValueError("Provide --q-map and --u-map (or --e-alm/--b-alm)")
             q, u = read_qu_maps(args.q_map, args.u_map)
             almE, almB = map_to_alm_eb_from_qu(q, u, lmax=lmax)
-            sym = symbols_from_alm_phase(almE if chan == "EE" else almB, lmax=lmax)
+            sym = symbols_from_alm_phase(
+                almE if chan == "EE" else almB,
+                lmax=lmax,
+                differential=bool(args.differential_phase),
+                dither_amp=float(args.phase_dither_amp),
+                rng=rng,
+            )
     else:
         raise ValueError(f"unknown channel {chan}")
     # Optional phase shear compensation
     if abs(float(args.phase_shear_deg)) > 1e-15:
         sym = apply_phase_shear(sym, theta_deg=float(args.phase_shear_deg), mode=str(args.phase_shear_mode))
-    return _slice_stream(sym, args.frame, args.step, args.max_frames)
+
+    sym = _slice_stream(sym, args.frame, args.step, args.max_frames)
+
+    # Diagnostics / hard guard against "digital collapse".
+    if bool(getattr(args, "debug_symbols", False)):
+        diag = debug_symbols(sym.arr, label=f"{chan} post-symbolize")
+    else:
+        diag = {"collapsed": False}
+
+    if bool(diag.get("collapsed", False)):
+        raise RuntimeError(
+            f"Digital collapse detected in symbolization for channel {chan}. "
+            "This usually means phase quantization locked to a constant bin. "
+            "Try: (1) remove --phase-shear-deg, (2) add --phase-dither-amp 1e-4..1e-3, "
+            "or (3) enable --differential-phase."
+        )
+
+    return sym
 
 
 def _mc_null_pvalues(
@@ -777,7 +956,13 @@ def _mc_null_pvalues(
 
     for i in it:
         alm_r = randomize_phases_per_ell(alm, lmax=lmax, rng=rng)
-        sym = symbols_from_alm_phase(alm_r, lmax=lmax)
+        sym = symbols_from_alm_phase(
+            alm_r,
+            lmax=lmax,
+            differential=bool(args.differential_phase),
+            dither_amp=float(args.phase_dither_amp),
+            rng=rng,
+        )
         if abs(float(args.phase_shear_deg)) > 1e-15:
             sym = apply_phase_shear(sym, theta_deg=float(args.phase_shear_deg), mode=str(args.phase_shear_mode))
         sym = _slice_stream(sym, args.frame, args.step, args.max_frames)
@@ -815,10 +1000,12 @@ def _mc_null_pvalues(
         else:
             delta_real = prime_gated_delta_mean(ells_pg, integ_pg)
 
+    finite_delta = np.isfinite(delta_mc)
     mc_mean = float(np.nanmean(delta_mc))
     mc_std = float(np.nanstd(delta_mc))
-    if np.isfinite(delta_real):
-        mc_p = float(np.mean(np.abs(delta_mc - mc_mean) >= abs(delta_real - mc_mean)))
+    if np.isfinite(delta_real) and np.any(finite_delta):
+        d = delta_mc[finite_delta]
+        mc_p = float(np.mean(np.abs(d - mc_mean) >= abs(delta_real - mc_mean)))
     else:
         mc_p = float("nan")
 
