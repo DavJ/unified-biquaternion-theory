@@ -55,3 +55,7 @@ forensic_fingerprint/out/
 
 # CMB 2D FFT output directory
 research_front/cmb_2d_fft/out/
+
+# virtual python
+.venv
+.venv
