@@ -18,3 +18,7 @@ healpy>=1.15.0  # Uncomment to enable phase-comb test
 # Optional: Additional packages used by some scripts
 sympy>=1.9    # Used by symbolic calculations
 
+astropy>=5
+healpy>=1.16
+matplotlib
+
