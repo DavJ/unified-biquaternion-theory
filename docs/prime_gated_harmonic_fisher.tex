@@ -1,0 +1,436 @@
+% docs/prime_gated_harmonic_fisher.tex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\geometry{margin=2.2cm}
+
+\title{Prime-Gated Spectral Parity and Harmonic Meta-Scan via Fisher's Method}
+\author{Unified Biquaternion Theory (UBT) -- Forensic Fingerprint Toolkit}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document defines the statistical and algorithmic protocol implemented by
+\texttt{forensic\_fingerprint.tools.spectral\_parity\_test} for detecting
+prime-gated non-random structure in CMB-derived harmonic coefficients.
+We formalize (i) symbolization of harmonic phases into $GF(256)$ symbols,
+(ii) a fast integrity proxy derived from fixed-length frames (default $255$),
+(iii) the prime-gated purity statistic $\Delta=\mu_P-\mu_C$ comparing prime
+multipoles to composite multipoles inside a chosen window,
+(iv) permutation (randomization) p-values for $\Delta$,
+(v) optional Gaussian weighting over $\ell$ to emphasize a target cluster, and
+(vi) harmonic meta-analysis across multiple windows using Fisher's method.
+The goal is a \emph{reproducible} pipeline: a localized effect must survive
+negative controls (holdout/void windows), and aggregated evidence is evaluated
+under an explicit null distribution.
+\end{abstract}
+
+\tableofcontents
+
+\section{Objects, Inputs, and Notation}
+
+\subsection{Spherical harmonic coefficients}
+Let $a_{\ell m}$ denote (complex) spherical harmonic coefficients for a chosen
+field (e.g.\ temperature $T$ or polarization $E/B$). We assume an $\ell$-range
+$l_{\min}\le \ell\le l_{\max}$.
+
+We write phase and amplitude as
+\begin{equation}
+a_{\ell m} = |a_{\ell m}|\,e^{i\phi_{\ell m}},\qquad
+\phi_{\ell m}=\arg(a_{\ell m})=\operatorname{atan2}(\Im a_{\ell m}, \Re a_{\ell m}).
+\end{equation}
+
+\subsection{Prime/composite indicator}
+Define an indicator for primality:
+\begin{equation}
+\pi(\ell)=
+\begin{cases}
+1, & \ell\ \text{is prime},\\
+0, & \ell\ \text{is composite or } \ell<2.
+\end{cases}
+\end{equation}
+
+For an analysis window $\mathcal{W}=\{\ell:\,l_{\min}\le \ell\le l_{\max}\}$,
+we denote the prime set $P=\{\ell\in\mathcal{W}:\pi(\ell)=1\}$
+and the composite set $C=\{\ell\in\mathcal{W}:\pi(\ell)=0\}$.
+
+\subsection{Linearized stream index}
+For each shell $\ell$, $m$ ranges from $-\ell$ to $+\ell$.
+A convenient linearization is achieved by concatenating shells by increasing $\ell$.
+Since
+\begin{equation}
+\sum_{j=0}^{\ell-1}(2j+1)=\ell^2,
+\end{equation}
+the $\ell$-shell occupies indices $k\in[\ell^2,(\ell+1)^2)$.
+
+Within shell $\ell$, the offset index is $(m+\ell)\in[0,2\ell]$.
+A compact formula that matches this layout is:
+\begin{equation}
+k(\ell,m)=\ell^2+\ell+m,\qquad m\in[-\ell,\ell].
+\end{equation}
+This ordering is used to build a 1D symbol stream that preserves adjacency of
+$m$ modes inside each $\ell$ shell.
+
+\section{Symbolization into $GF(256)$}
+
+\subsection{Phase to 8-bit symbol}
+The algorithm maps phase $\phi\in[-\pi,\pi)$ to a symbol $s\in\{0,1,\dots,255\}$:
+\begin{equation}
+u(\phi)=\frac{\phi+\pi}{2\pi}\in[0,1),\qquad
+s(\phi)=\left\lfloor 256\,u(\phi)\right\rfloor.
+\end{equation}
+This yields a discrete representation in $GF(2^8)$ (as a \texttt{uint8} array).
+
+\subsection{Symbol stream}
+Define the symbol stream $S$ as a 1D array indexed by $k$:
+\begin{equation}
+S_{k(\ell,m)} = s(\phi_{\ell m}),\qquad
+k\in\{0,1,\dots,(l_{\max}+1)^2-1\}.
+\end{equation}
+The stream is then optionally truncated to a fixed number of frames for
+computational stability:
+\begin{itemize}
+\item frame size: $L=255$ symbols (default)
+\item keep up to $N$ frames (default $N=2048$ or user-defined)
+\end{itemize}
+
+\section{Integrity Proxy on Fixed-Length Frames}
+
+\subsection{Why a proxy?}
+True Reed--Solomon decoding requires a polynomial arithmetic implementation.
+For forensic detection, we use a deterministic integrity proxy that behaves
+\emph{consistently} under perturbations (phase randomization, window shifts, etc.).
+The objective is not decoding but producing a stable scalar statistic per shell.
+
+\subsection{Frame-level validity rate}
+Partition the stream into frames $F_j$ of length $L=255$:
+\begin{equation}
+F_j = (S_{jL}, S_{jL+1}, \dots, S_{jL+L-1}),\qquad j=0,\dots,n_F-1,
+\end{equation}
+where $n_F=\lfloor |S|/L\rfloor$.
+
+Define a deterministic function $v(F_j)\in[0,1]$ measuring validity of the frame,
+implemented as a checksum-like comparison between the first 201 symbols and the
+remaining 54 symbols:
+\begin{equation}
+v(F_j)=\frac{1}{54}\sum_{r=1}^{54}\mathbf{1}\{\widehat{p}_r(F_j)=p_r(F_j)\},
+\end{equation}
+where $p_r(F_j)$ are the last 54 symbols and $\widehat{p}_r(F_j)$ is a fixed
+pseudo-parity computed by a rolling XOR/rotation scheme.
+
+\textbf{Important.} This is an \emph{integrity proxy}, not a claim of RS decoding.
+It is used only as a stable nonlinear functional over the symbol stream.
+
+\subsection{Stream-level Hamming validity rate}
+Define the stream validity rate as the average over frames:
+\begin{equation}
+H(S)=\frac{1}{n_F}\sum_{j=0}^{n_F-1} v(F_j).
+\end{equation}
+
+\section{Prime-Gated Per-$\ell$ Integrity Curve}
+
+\subsection{Shell extraction}
+For a given multipole $\ell$, define its shell slice in the stream:
+\begin{equation}
+S^{(\ell)} = (S_{\ell^2}, S_{\ell^2+1}, \dots, S_{(\ell+1)^2-1}).
+\end{equation}
+Compute the shell integrity
+\begin{equation}
+I(\ell)=H\!\left(S^{(\ell)}\right)\in[0,1].
+\end{equation}
+
+The \emph{prime-gated integrity curve} is the set $\{(\ell, I(\ell)):\ell\in\mathcal{W}\}$.
+
+\subsection{Prime-gated purity statistic $\Delta$}
+Let $\mu_P$ and $\mu_C$ be means over prime and composite multipoles:
+\begin{equation}
+\mu_P=\frac{1}{|P|}\sum_{\ell\in P} I(\ell),\qquad
+\mu_C=\frac{1}{|C|}\sum_{\ell\in C} I(\ell).
+\end{equation}
+Define
+\begin{equation}
+\Delta = \mu_P - \mu_C.
+\end{equation}
+
+\paragraph{Interpretation.}
+\begin{itemize}
+\item $\Delta>0$: primes are (on average) \emph{more valid} under the integrity proxy than composites.
+\item $\Delta<0$: primes are (on average) \emph{less valid} (more ``disturbed'') than composites.
+\end{itemize}
+The sign is not intrinsically ``good'' or ``bad''; it indicates direction relative to
+the chosen proxy. Empirically, sign flips can occur under transformations
+(e.g.\ phase-shear compensation) if the proxy becomes sensitive to a different
+phase alignment regime.
+
+\section{Weighted Prime-Gated Statistic (Gaussian window)}
+
+\subsection{Motivation}
+If a hypothesized carrier is localized near a target $\ell_0$, one may prefer
+to emphasize shells near $\ell_0$ while still keeping the full window $\mathcal{W}$.
+This reduces sensitivity to edge shells that may be less relevant.
+
+\subsection{Gaussian weights}
+For $\ell\in\mathcal{W}$ define weights
+\begin{equation}
+w(\ell)=\exp\!\left(-\frac{(\ell-\ell_0)^2}{2\sigma^2}\right),
+\end{equation}
+optionally normalized (e.g.\ to unit mean). The script implements normalization by
+dividing by the average weight to keep scale comparable.
+
+\subsection{Weighted means and weighted $\Delta_w$}
+Define weighted means over prime and composite sets:
+\begin{equation}
+\mu_{P,w}=\frac{\sum_{\ell\in P} w(\ell)I(\ell)}{\sum_{\ell\in P} w(\ell)},\qquad
+\mu_{C,w}=\frac{\sum_{\ell\in C} w(\ell)I(\ell)}{\sum_{\ell\in C} w(\ell)}.
+\end{equation}
+Then
+\begin{equation}
+\Delta_w = \mu_{P,w}-\mu_{C,w}.
+\end{equation}
+
+\paragraph{Practical note.}
+Using too small $\sigma$ can reduce statistical power because only very few prime
+shells retain meaningful weight. This may increase $p$ even if $|\Delta_w|$ grows.
+
+\section{Permutation Test for $\Delta$}
+
+\subsection{Null model}
+The prime-gated permutation test assumes that within a fixed window $\mathcal{W}$,
+the assignment of ``prime'' labels to shells is exchangeable under the null.
+Equivalently, the observed set of integrity values $\{I(\ell)\}$ is fixed and we
+randomly shuffle which indices are treated as primes vs.\ composites, keeping the
+number of primes $|P|$ constant.
+
+\subsection{Test statistic under permutation}
+Let $\pi_b(\ell)$ denote the permuted prime indicator at iteration $b$.
+Compute
+\begin{equation}
+\Delta^{(b)} =
+\mu_{P}^{(b)} - \mu_{C}^{(b)}
+\quad \text{or} \quad
+\Delta_w^{(b)}=\mu_{P,w}^{(b)}-\mu_{C,w}^{(b)},
+\end{equation}
+depending on whether weighting is enabled.
+
+\subsection{Two-sided p-value}
+For observed $\Delta_{\mathrm{obs}}$, define a two-sided p-value:
+\begin{equation}
+p_{\mathrm{perm}}=
+\frac{1+\sum_{b=1}^{B} \mathbf{1}\left\{|\Delta^{(b)}|\ge|\Delta_{\mathrm{obs}}|\right\}}
+{1+B},
+\end{equation}
+where $B$ is the number of permutations.
+The $+1$ smoothing prevents p-values of exactly 0.
+
+\paragraph{Why permutation?}
+Permutation p-values are robust: they make minimal distributional assumptions and
+automatically incorporate the dependence structure inside the window, as long as
+exchangeability under the null is a reasonable approximation.
+
+\section{Phase-Shear Compensation and Phase-Shear Scans}
+
+\subsection{Motivation}
+A consistent linear drift in phase across the stream (or across $\ell$ shells)
+can smear discrete structure when phases are quantized into 8-bit symbols.
+A compensating transformation can ``sharpen'' the effect.
+
+\subsection{Implemented approximation}
+The script applies a linear offset in symbol space:
+\begin{equation}
+S_k \mapsto (S_k + \delta_k)\bmod 256,
+\end{equation}
+where $\delta_k$ is proportional to a small angle $\theta$ (in degrees) and a
+normalized coordinate $f(k)$ or $f(\ell)$:
+\begin{equation}
+\delta \approx \mathrm{round}\!\left(\frac{256}{2\pi}\theta_{\mathrm{rad}}\, f\right).
+\end{equation}
+Two modes are available:
+\begin{itemize}
+\item \texttt{mode=k}: $f$ depends on the stream index $k$ (global linear drift).
+\item \texttt{mode=ell}: $f$ depends on shell index $\ell$ (shell-wise drift).
+\end{itemize}
+
+\subsection{Scan protocol}
+A scan evaluates a grid $\theta\in[\theta_{\min},\theta_{\max}]$ with step $\Delta\theta$,
+computes $(\Delta(\theta), p_{\mathrm{perm}}(\theta))$ for each channel (TT/EE/BB),
+and reports the best (smallest p-value) $\theta$ found. Results are written as CSV.
+
+\paragraph{Important methodological caution.}
+Selecting the best $\theta$ \emph{after} scanning introduces a look-elsewhere effect.
+Any claim based on scan minima should report:
+\begin{itemize}
+\item scan range and step size,
+\item the total number of tested $\theta$ values,
+\item and ideally an adjusted p-value or independent validation on a held-out window.
+\end{itemize}
+
+\section{Monte Carlo Phase Randomization (Secondary Null)}
+
+\subsection{Definition}
+For each $\ell$, we keep amplitudes $|a_{\ell m}|$ fixed and replace phases by
+independent uniform random values:
+\begin{equation}
+a_{\ell m} \mapsto |a_{\ell m}|\,e^{i\varphi_{\ell m}},\qquad
+\varphi_{\ell m}\sim \mathrm{Unif}(-\pi,\pi).
+\end{equation}
+This generates a null ensemble that preserves per-shell power but destroys phase structure.
+
+\subsection{Outputs}
+The script reports empirical p-values for simple frame-level proxies (e.g.\ mean
+zero-count and tail rate) and, if enabled, a distribution for $\Delta$ under the
+phase-randomized null.
+
+\paragraph{Why both permutation and MC?}
+They test different aspects:
+\begin{itemize}
+\item Permutation: ``are primes special \emph{given the observed curve} $I(\ell)$?''
+\item MC: ``is the \emph{entire} curve and its derived statistics compatible with a
+phase-randomized sky preserving amplitudes?''
+\end{itemize}
+
+\section{Harmonic Meta-Scan and Fisher Combination}
+
+\subsection{Harmonic windows}
+Define a base carrier $\ell_0$ (default hypothesis $\ell_0\approx 137$).
+For harmonic index $n\in\{1,2,\dots,N\}$ define the center
+\begin{equation}
+c_n = n\,\ell_0.
+\end{equation}
+Choose a halfwidth $h$ and define each harmonic window
+\begin{equation}
+\mathcal{W}_n = \{\ell:\ \lceil c_n-h\rceil \le \ell \le \lfloor c_n+h\rfloor\}.
+\end{equation}
+
+Within each $\mathcal{W}_n$, compute the prime-gated statistic $\Delta_n$ and its
+permutation p-value $p_n$ (optionally weighted with the same $\sigma$ and center $c_n$).
+
+\subsection{Fisher's method}
+Assuming the $p_n$ are independent under the null (approximation), Fisher's method defines
+\begin{equation}
+X = -2\sum_{n=1}^{K} \ln p_n,
+\end{equation}
+which under the null follows a chi-square distribution:
+\begin{equation}
+X \sim \chi^2_{2K}.
+\end{equation}
+Thus the combined p-value is
+\begin{equation}
+p_{\mathrm{Fisher}} = \Pr\left(\chi^2_{2K}\ge X\right).
+\end{equation}
+
+\subsection{Exact survival function for even degrees of freedom}
+For $2K$ degrees of freedom (even), $\chi^2_{2K}$ is a Gamma distribution with integer
+shape $K$ and scale 2. The survival function (upper tail) admits a finite sum:
+\begin{equation}
+\Pr(\chi^2_{2K}\ge x)=e^{-x/2}\sum_{j=0}^{K-1}\frac{(x/2)^j}{j!}.
+\end{equation}
+This is the closed-form implementation used in the script to avoid external dependencies.
+
+\subsection{Interpretation and caveats}
+\begin{itemize}
+\item Fisher emphasizes \emph{consistent moderate} p-values across multiple harmonics;
+it is not dominated by a single window unless that window is extremely significant.
+\item Independence is not guaranteed: adjacent harmonic windows, lensing-induced coupling,
+and shared preprocessing can correlate $p_n$.
+\item To mitigate concerns, use disjoint windows (non-overlapping) and include explicit
+negative controls (holdout and void windows) processed identically.
+\end{itemize}
+
+\section{Controls: Carrier, Holdout, and Void}
+
+\subsection{Carrier window}
+A carrier window is a window around a hypothesized special multipole (e.g.\ 128--146
+around 137). It is evaluated with the full protocol.
+
+\subsection{Holdout window}
+A holdout window is adjacent but not overlapping (e.g.\ 147--165) used to test whether
+the effect is localized. Under algorithmic bias, the holdout would often show similar
+behavior; localization supports specificity.
+
+\subsection{Void windows}
+Void windows are far away (e.g.\ 200--218, 400--430). These probe whether the
+prime/composite split is globally favored by the pipeline. Ideally, void windows show
+$p$ near uniform (no systematic bias), though occasional fluctuations occur.
+
+\section{Recommended Reporting Template}
+
+For each experimental run, store:
+\begin{itemize}
+\item command line invocation,
+\item window $[l_{\min},l_{\max}]$ and channel (TT/EE/BB),
+\item $\Delta$ (or $\Delta_w$) and $p_{\mathrm{perm}}$,
+\item if shear is used: $(\theta, \text{mode})$ and whether it was pre-registered or scan-selected,
+\item MC size and MC-derived p-values (if computed),
+\item whether the run is carrier / holdout / void.
+\end{itemize}
+
+For harmonic meta-scan, store:
+\begin{itemize}
+\item base $\ell_0$, halfwidth $h$, harmonic list $n=1..N$,
+\item p-values $p_n$ and combined $p_{\mathrm{Fisher}}$,
+\item a statement about overlap/independence and negative controls.
+\end{itemize}
+
+\section{Example Commands (Reference)}
+
+\subsection{Carrier window with fixed shear}
+\begin{verbatim}
+MPLBACKEND=Agg python3 -m forensic_fingerprint.tools.spectral_parity_test \
+  --tt-map data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits \
+  --q-map  data/planck_pr3/maps/extracted/SMICA_Q.fits \
+  --u-map  data/planck_pr3/maps/extracted/SMICA_U.fits \
+  --lmin 128 --lmax 146 \
+  --mc 2000 --step 255 --max-frames 4096 \
+  --prime-gated --prime-perm 30000 \
+  --phase-shear-mode k --phase-shear-deg 0.22 \
+  --prime-plot-prefix scans/carrier_128_146_theta0p22
+\end{verbatim}
+
+\subsection{Holdout window}
+\begin{verbatim}
+MPLBACKEND=Agg python3 -m forensic_fingerprint.tools.spectral_parity_test \
+  --tt-map ... --q-map ... --u-map ... \
+  --lmin 147 --lmax 165 \
+  --mc 2000 --prime-gated --prime-perm 30000 \
+  --phase-shear-mode k --phase-shear-deg 0.22 \
+  --prime-plot-prefix scans/holdout_147_165_theta0p22
+\end{verbatim}
+
+\subsection{Phase-shear scan (beware look-elsewhere)}
+\begin{verbatim}
+python3 -m forensic_fingerprint.tools.spectral_parity_test \
+  --tt-map ... --q-map ... --u-map ... \
+  --lmin 128 --lmax 146 --mc 0 \
+  --prime-gated --prime-perm 20000 \
+  --phase-shear-mode k \
+  --phase-shear-scan="-0.5:0.5:0.02" \
+  --phase-shear-report-prefix scans/shear_scan_137_128_146
+\end{verbatim}
+
+\section{Conclusion}
+The protocol defines a layered evidence strategy:
+\begin{enumerate}
+\item Define a deterministic symbolization and integrity proxy to produce $I(\ell)$.
+\item Test prime-gated separation using $\Delta$ and permutation p-values.
+\item Validate locality via holdout and void controls.
+\item If multiple harmonics show aligned deviations, combine $p_n$ using Fisher's method.
+\end{enumerate}
+When reporting, explicitly separate \emph{pre-registered} parameter choices
+from \emph{scan-selected} ones, and include controls processed identically.
+This ensures that any observed anomaly is not a product of tuning alone.
+
+\end{document}
+
