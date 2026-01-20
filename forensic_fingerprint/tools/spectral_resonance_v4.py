@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 """
-spectral_resonance_v4.py
+spectral_resonance_v4.py (v4.1 patch: adds --target-mode bin)
 
-Targeted spectral resonance test on the (l,m)-linearized phase stream.
+Run example (your failing command becomes valid):
 
-Key idea:
-- We do NOT rely on FFT/Welch bin alignment for f=1/137 and f=1/139.
-- We compute power at exact target frequencies via a matched-filter / targeted DFT:
-    X(f) = sum_k w[k] * x[k] * exp(-i 2π f k)
-    PSD_target(f) = |X(f)|^2 / sum_k w[k]^2
-- x[k] is a unit phasor exp(i*phi_k) (robust to phase wrapping).
+  MPLBACKEND=Agg python -m forensic_fingerprint.tools.spectral_resonance_v4 \
+    --tt-map data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits \
+    --q-map  data/planck_pr3/maps/extracted/SMICA_Q.fits \
+    --u-map  data/planck_pr3/maps/extracted/SMICA_U.fits \
+    --lmin 2 --lmax 512 --lmax-alm 512 \
+    --channels BB \
+    --targets 137,139 --target-mode bin \
+    --scan 136:140:1 \
+    --mc 500 --seed 0 \
+    --report-csv scans/resonance_v4_scan_bins_136_140.csv \
+    --plot-png scans/resonance_v4_scan_bins_136_140.png
 
-Null:
-- Monte Carlo via phase randomization per-ell (preserve |a_lm|).
+Meaning of target-mode:
+  inv  : treat targets as periods p -> frequency f=1/p
+  freq : treat targets as frequencies f (cycles/sample)
+  bin  : treat targets as FFT bin indices k -> f=k/N
 
-Extras:
-- Cross-channel coherence between channels at target frequencies.
-- Optional fine scan around target frequencies (no FFT grid artifacts).
-
-Caveat:
-- Here "frequency" means cycles per index k in your stream.
-  Period 137 samples => f = 1/137.
-
-Author: (you + ChatGPT)
+Monte Carlo null: per-ell phase randomization (preserves |a_lm| and intra-ell structure).
 """
 
 from __future__ import annotations
@@ -32,559 +29,376 @@ from __future__ import annotations
 import argparse
 import csv
 import math
+import os
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
-
 import healpy as hp
 
-try:
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-except Exception:
-    plt = None
+def _map2alm_spin_compat(qu_maps, spin: int, lmax: int):
+    """Compatibility wrapper for healpy.map2alm_spin across healpy versions.
+
+    Some versions accept args like pol=..., iter=..., others don't.
+    We try the common signatures in a safe order.
+    """
+    # Try most explicit forms first, then fall back.
+    attempts = [
+        lambda: hp.map2alm_spin(qu_maps, spin=spin, lmax=lmax, pol=False, iter=0),
+        lambda: hp.map2alm_spin(qu_maps, spin=spin, lmax=lmax, iter=0),
+        lambda: hp.map2alm_spin(qu_maps, spin=spin, lmax=lmax, pol=False),
+        lambda: hp.map2alm_spin(qu_maps, spin=spin, lmax=lmax),
+        lambda: hp.map2alm_spin(qu_maps, spin, lmax),
+    ]
+    last_err = None
+    for fn in attempts:
+        try:
+            return fn()
+        except TypeError as e:
+            last_err = e
+            continue
+    raise last_err
+
+def _parse_list_csv(s: str) -> List[str]:
+    return [x.strip() for x in (s or "").split(",") if x.strip()]
 
 
-# -----------------------------
-# Utilities
-# -----------------------------
+def _parse_floats_csv(s: str) -> List[float]:
+    out: List[float] = []
+    for tok in _parse_list_csv(s):
+        out.append(float(tok))
+    return out
 
-def _parse_channels(s: str) -> List[str]:
-    chans = [c.strip().upper() for c in s.split(",") if c.strip()]
-    for c in chans:
-        if c not in ("TT", "EE", "BB"):
-            raise ValueError(f"Unsupported channel: {c}. Use TT,EE,BB.")
-    return chans
+
+def _parse_range(s: str) -> Tuple[float, float, float]:
+    parts = (s or "").split(":")
+    if len(parts) != 3:
+        raise ValueError(f"Invalid --scan '{s}', expected a:b:step")
+    a, b, step = (float(parts[0]), float(parts[1]), float(parts[2]))
+    if step <= 0:
+        raise ValueError("scan step must be > 0")
+    if b < a:
+        raise ValueError("scan requires b >= a")
+    return a, b, step
+
+
+def _frange(a: float, b: float, step: float) -> List[float]:
+    n = int(math.floor((b - a) / step + 1e-12)) + 1
+    xs = [a + i * step for i in range(n)]
+    if xs and xs[-1] + 1e-10 < b:
+        xs.append(b)
+    return xs
 
 
 def _hann(n: int) -> np.ndarray:
     if n <= 1:
         return np.ones((n,), dtype=float)
-    return 0.5 - 0.5 * np.cos(2.0 * np.pi * np.arange(n) / (n - 1))
+    return np.hanning(n)
 
 
-def _standardize_stream_phasor(phi: np.ndarray) -> np.ndarray:
-    """
-    Convert phase array to unit phasors exp(i*phi).
-    Also remove the mean phasor to suppress trivial DC-like bias.
-    """
-    x = np.exp(1j * phi)
-    # Remove mean phasor (optional but helps in practice):
-    x = x - np.mean(x)
-    return x
+def _fft_psd(x: np.ndarray, window: str = "hann") -> Tuple[np.ndarray, np.ndarray]:
+    n = int(x.shape[0])
+    if n == 0:
+        raise ValueError("Empty stream")
+
+    if window == "hann":
+        w = _hann(n).astype(float)
+        xw = x * w
+        wnorm = float(np.mean(w**2))
+        if wnorm > 0:
+            xw = xw / math.sqrt(wnorm)
+    elif window == "none":
+        xw = x
+    else:
+        raise ValueError(f"Unknown window: {window}")
+
+    X = np.fft.fft(xw)
+    freqs = np.fft.fftfreq(n)  # [-0.5..0.5)
+    pos = freqs >= 0
+    freqs_pos = freqs[pos]
+    X_pos = X[pos]
+    psd = (np.abs(X_pos) ** 2) / n
+    return freqs_pos, psd
 
 
-def _targeted_psd(
-    x: np.ndarray,
-    freqs: np.ndarray,
-    w: Optional[np.ndarray] = None,
-) -> np.ndarray:
-    """
-    Targeted PSD at exact freqs via matched filter / targeted DFT.
-
-    x: complex stream length N
-    freqs: array of frequencies in cycles/sample (0..0.5 typically)
-    w: optional real weights/window length N
-
-    Returns:
-        psd[f] = |sum_k w[k] x[k] exp(-i2π f k)|^2 / sum_k w[k]^2
-    """
-    n = x.shape[0]
-    k = np.arange(n, dtype=float)
-
-    if w is None:
-        w = np.ones((n,), dtype=float)
-    w = w.astype(float, copy=False)
-
-    denom = np.sum(w * w)
-    if denom <= 0:
-        denom = 1.0
-
-    # Compute for each freq (K is small: e.g. 2 or a few hundred in scans).
-    out = np.empty((freqs.shape[0],), dtype=float)
-    for i, f in enumerate(freqs):
-        ph = np.exp(-1j * 2.0 * np.pi * f * k)
-        X = np.sum((w * x) * ph)
-        out[i] = (np.abs(X) ** 2) / denom
-    return out
+def _idx_from_freq(n: int, f: float) -> int:
+    if f < 0:
+        f = -f
+    k = int(round(f * n))
+    kmax = n // 2
+    if k > kmax:
+        k = kmax
+    return k
 
 
-def _targeted_csd_and_coh(
-    x: np.ndarray,
-    y: np.ndarray,
-    freqs: np.ndarray,
-    w: Optional[np.ndarray] = None,
-    eps: float = 1e-12,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """
-    Targeted cross spectrum and coherence at exact freqs.
-
-    Returns:
-        Sxy: complex cross-spectrum estimate at each freq
-        Sxx: auto-spectrum of x at each freq
-        Syy: auto-spectrum of y at each freq
-        coherence = |Sxy|^2 / (Sxx*Syy + eps)
-    """
-    n = x.shape[0]
-    k = np.arange(n, dtype=float)
-
-    if w is None:
-        w = np.ones((n,), dtype=float)
-    w = w.astype(float, copy=False)
-    denom = np.sum(w * w)
-    if denom <= 0:
-        denom = 1.0
-
-    Sxy = np.empty((freqs.shape[0],), dtype=np.complex128)
-    Sxx = np.empty((freqs.shape[0],), dtype=float)
-    Syy = np.empty((freqs.shape[0],), dtype=float)
-
-    for i, f in enumerate(freqs):
-        ph = np.exp(-1j * 2.0 * np.pi * f * k)
-        X = np.sum((w * x) * ph)
-        Y = np.sum((w * y) * ph)
-        Sxy[i] = (X * np.conj(Y)) / denom
-        Sxx[i] = (np.abs(X) ** 2) / denom
-        Syy[i] = (np.abs(Y) ** 2) / denom
-
-    coh = (np.abs(Sxy) ** 2) / (Sxx * Syy + eps)
-    return Sxy, Sxx, Syy, coh
+def _iter_stream_coeffs(alm: np.ndarray, lmax_alm: int, lmin: int, lmax: int, use_full_m: bool) -> Iterable[complex]:
+    for ell in range(lmin, lmax + 1):
+        for m in range(0, ell + 1):
+            idx = hp.Alm.getidx(lmax_alm, ell, m)
+            yield alm[idx]
+        if use_full_m:
+            for m in range(1, ell + 1):
+                idx = hp.Alm.getidx(lmax_alm, ell, m)
+                yield ((-1) ** m) * np.conjugate(alm[idx])
 
 
-def _phase_randomize_per_ell(
-    alm: np.ndarray,
-    l_arr: np.ndarray,
-    rng: np.random.Generator,
-) -> np.ndarray:
-    """
-    Randomize phase of alm per-ell:
-      a_lm -> |a_lm| * exp(i*(arg(a_lm)+u_lm))
-    with u_lm ~ Uniform(0,2π), independent per mode.
+def _phase_stream_from_alm(alm: np.ndarray, lmax_alm: int, lmin: int, lmax: int, use_full_m: bool) -> np.ndarray:
+    coeffs = list(_iter_stream_coeffs(alm, lmax_alm, lmin, lmax, use_full_m))
+    coeffs_arr = np.asarray(coeffs, dtype=np.complex128)
+    phi = np.angle(coeffs_arr)
+    return np.exp(1j * phi)
 
-    This destroys phase structure but preserves magnitude distribution.
-    """
+
+def _phase_randomize_per_ell(alm: np.ndarray, lmax_alm: int, rng: np.random.Generator) -> np.ndarray:
     out = alm.copy()
-    phi = np.angle(out)
-    mag = np.abs(out)
-    u = rng.uniform(0.0, 2.0 * np.pi, size=out.shape[0])
-    out = mag * np.exp(1j * (phi + u))
+    for ell in range(0, lmax_alm + 1):
+        theta = rng.uniform(0.0, 2.0 * math.pi)
+        rot = complex(math.cos(theta), math.sin(theta))
+        for m in range(0, ell + 1):
+            idx = hp.Alm.getidx(lmax_alm, ell, m)
+            out[idx] *= rot
     return out
-
-
-def _alm_stream_in_lrange(
-    alm: np.ndarray,
-    l_arr: np.ndarray,
-    m_arr: np.ndarray,
-    lmin: int,
-    lmax: int,
-    use_full_m: bool,
-) -> np.ndarray:
-    """
-    Extract phase stream for l in [lmin,lmax].
-    If use_full_m: include all m (healpy alm already stores m>=0 only,
-    so "full m" here means we include all stored modes (m>=0) BUT we can
-    optionally augment by mirrored negative-m phase if you had such logic.
-    In this v4 script, we keep it simple and consistent: healpy alm indices
-    are m>=0. If you want explicit "full m", you must reconstruct negative m
-    using reality constraints, but that introduces assumptions.
-
-    For stability + auditability, we define:
-      - use_full_m=False: use only m>=0 (same as healpy storage)
-      - use_full_m=True: also only m>=0 (explicitly), but label remains for
-        compatibility with your earlier CLI; if you need true full-m, tell me
-        and we’ll add a controlled reconstruction with tests.
-    """
-    mask = (l_arr >= lmin) & (l_arr <= lmax)
-    # healpy alm uses only m>=0 by construction
-    # keep mask as is; "use_full_m" left for future extension
-    return alm[mask]
-
-
-def _compute_TEB_alm(
-    tt_map: Optional[str],
-    q_map: Optional[str],
-    u_map: Optional[str],
-    lmax_alm: int,
-) -> Tuple[Optional[np.ndarray], Optional[np.ndarray], Optional[np.ndarray]]:
-    """
-    Return (almT, almE, almB) depending on available inputs.
-    TT from map; E/B from Q/U if provided.
-    """
-    almT = almE = almB = None
-
-    if tt_map:
-        mT = hp.read_map(tt_map, field=0, verbose=False)
-        almT = hp.map2alm(mT, lmax=lmax_alm)
-
-    if q_map and u_map:
-        q = hp.read_map(q_map, verbose=False)
-        u = hp.read_map(u_map, verbose=False)
-        # spin-2 transform to E/B
-        almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax_alm)
-
-    return almT, almE, almB
 
 
 @dataclass
-class ChannelResult:
-    channel: str
-    n: int
-    f_targets: List[float]
-    psd_targets: List[float]
-    p_mc: List[float]
+class Target:
+    raw: float
+    f: float
+    k: int
+    label: str
 
 
-# -----------------------------
-# Main analysis
-# -----------------------------
+def _targets_to_freqs(targets: Sequence[float], mode: str, n: int) -> List[Target]:
+    out: List[Target] = []
+    for t in targets:
+        if mode == "inv":
+            if t == 0:
+                raise ValueError("Target period cannot be 0 in inv mode")
+            f = 1.0 / float(t)
+            k = _idx_from_freq(n, f)
+            out.append(Target(raw=float(t), f=f, k=k, label=f"p={t:g}"))
+        elif mode == "freq":
+            f = float(t)
+            k = _idx_from_freq(n, f)
+            out.append(Target(raw=float(t), f=f, k=k, label=f"f={t:g}"))
+        elif mode == "bin":
+            k = int(round(float(t)))
+            if k < 0:
+                k = -k
+            kmax = n // 2
+            if k > kmax:
+                k = kmax
+            f = k / float(n)
+            out.append(Target(raw=float(t), f=f, k=k, label=f"k={int(round(float(t)))}"))
+        else:
+            raise ValueError(f"Unknown target mode: {mode}")
+    return out
 
-def run(
-    tt_map: Optional[str],
-    q_map: Optional[str],
-    u_map: Optional[str],
-    lmin: int,
-    lmax: int,
-    lmax_alm: int,
-    channels: List[str],
-    use_full_m: bool,
-    window: str,
-    # targets
-    targets: List[float],          # in "period" units: e.g. [137,139] meaning f=1/period
-    target_mode: str,              # "inv" => f=1/p ; "freq" => f=p directly
-    # scan
-    scan: Optional[str],           # e.g. "136.0:140.0:0.01" in period units (if inv), or freq units (if freq)
-    # monte carlo
-    mc: int,
-    seed: int,
-    # cross
-    cross: bool,
-    # reporting
-    report_csv: Optional[str],
-    plot_png: Optional[str],
-) -> int:
+
+def _scan_to_targets(scan: Optional[str], mode: str, n: int) -> List[Target]:
+    if not scan:
+        return []
+    a, b, step = _parse_range(scan)
+    xs = _frange(a, b, step)
+    return _targets_to_freqs(xs, mode=mode, n=n)
+
+
+def _analyze_stream(stream: np.ndarray, targets: List[Target], scan_targets: List[Target], window: str):
+    freqs, psd = _fft_psd(stream, window=window)
+    obs = {t.label: float(psd[t.k]) if t.k < len(psd) else float(psd[-1]) for t in targets}
+
+    scan_peak = None
+    if scan_targets:
+        best_t = None
+        best_v = -1.0
+        for t in scan_targets:
+            v = float(psd[t.k]) if t.k < len(psd) else float(psd[-1])
+            if v > best_v:
+                best_v = v
+                best_t = t
+        scan_peak = (best_t, best_v)
+    return freqs, psd, obs, scan_peak
+
+
+def main(argv: Optional[Sequence[str]] = None) -> int:
+    ap = argparse.ArgumentParser(prog="spectral_resonance_v4")
+    ap.add_argument("--tt-map", dest="tt_map", default=None)
+    ap.add_argument("--q-map", dest="q_map", default=None)
+    ap.add_argument("--u-map", dest="u_map", default=None)
+    ap.add_argument("--lmin", type=int, default=2)
+    ap.add_argument("--lmax", type=int, default=512)
+    ap.add_argument("--lmax-alm", type=int, default=512)
+    ap.add_argument("--channels", type=str, default="TT,EE,BB")
+    ap.add_argument("--use-full-m", action="store_true")
+    ap.add_argument("--window", choices=["hann", "none"], default="hann")
+    ap.add_argument("--targets", type=str, default="137,139")
+    ap.add_argument("--target-mode", choices=["inv", "freq", "bin"], default="inv")
+    ap.add_argument("--scan", type=str, default=None)
+    ap.add_argument("--mc", type=int, default=0)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--cross", action="store_true", help="reserved (not implemented)")
+    ap.add_argument("--report-csv", type=str, default=None)
+    ap.add_argument("--plot-png", type=str, default=None)
+    args = ap.parse_args(argv)
+
+    ch_list = [c.strip().upper() for c in _parse_list_csv(args.channels)]
+    if not ch_list:
+        raise SystemExit("No channels requested. Use --channels TT,EE,BB")
+
+    if "TT" in ch_list and not args.tt_map:
+        raise SystemExit("--tt-map is required for TT")
+    if any(c in ch_list for c in ("EE", "BB")) and (not args.q_map or not args.u_map):
+        raise SystemExit("--q-map and --u-map are required for EE/BB")
+
+    lmin, lmax, lmax_alm = int(args.lmin), int(args.lmax), int(args.lmax_alm)
+    if lmax_alm < lmax:
+        raise SystemExit("--lmax-alm must be >= --lmax")
 
     print(
         f"[spectral_resonance_v4] ell=[{lmin},{lmax}] lmax_alm={lmax_alm} "
-        f"channels={','.join(channels)} mc={mc} use_full_m={use_full_m} "
-        f"target_mode={target_mode} window={window}"
+        f"channels={','.join(ch_list)} mc={args.mc} use_full_m={args.use_full_m} "
+        f"target_mode={args.target_mode} window={args.window}"
     )
 
-    # Build freq targets
-    if target_mode == "inv":
-        f_targets = [1.0 / float(p) for p in targets]
-    elif target_mode == "freq":
-        f_targets = [float(p) for p in targets]
-    else:
-        raise ValueError("target_mode must be 'inv' or 'freq'.")
+    almT = almE = almB = None
+    if args.tt_map:
+        mT = hp.read_map(args.tt_map, field=0, verbose=False)
+        almT = hp.map2alm(mT, lmax=lmax_alm, pol=False, iter=0)
 
-    f_targets = np.array(f_targets, dtype=float)
+    if args.q_map and args.u_map:
+        q = hp.read_map(args.q_map, verbose=False)
+        u = hp.read_map(args.u_map, verbose=False)
+        # healpy map2alm_spin signature differs across versions.
 
-    # Scan grid (optional)
-    scan_freqs = None
-    scan_periods = None
-    if scan:
-        a, b, step = scan.split(":")
-        a = float(a); b = float(b); step = float(step)
-        scan_periods = np.arange(a, b + 0.5 * step, step, dtype=float)
-        if target_mode == "inv":
-            scan_freqs = 1.0 / scan_periods
-        else:
-            scan_freqs = scan_periods
-
-    # Window/weights
-    # (Hann is the default to reduce leakage.)
-    w = None
-    win_name = window.lower().strip()
-    if win_name == "none":
-        w = None
-    else:
-        # We build w after we know stream length; here just mark.
-        pass
-
-    # Load alms
-    almT, almE, almB = _compute_TEB_alm(tt_map, q_map, u_map, lmax_alm=lmax_alm)
-    l_arr, m_arr = hp.Alm.getlm(lmax_alm)
-
-    channel_to_alm = {"TT": almT, "EE": almE, "BB": almB}
-
-    # Compute observed PSD targets (+ optional scan)
-    rng = np.random.default_rng(seed)
-
-    obs_results: Dict[str, Dict[str, np.ndarray]] = {}  # channel -> {"psd_targets":..., "psd_scan":...}
+        # healpy map2alm_spin signature differs across versions.
+        # Use a small compatibility shim.
+        almE, almB = _map2alm_spin_compat([q, u], spin=2, lmax=lmax_alm)
+    
     streams: Dict[str, np.ndarray] = {}
+    if "TT" in ch_list:
+        streams["TT"] = _phase_stream_from_alm(almT, lmax_alm, lmin, lmax, args.use_full_m)
+    if "EE" in ch_list:
+        streams["EE"] = _phase_stream_from_alm(almE, lmax_alm, lmin, lmax, args.use_full_m)
+    if "BB" in ch_list:
+        streams["BB"] = _phase_stream_from_alm(almB, lmax_alm, lmin, lmax, args.use_full_m)
 
-    for ch in channels:
-        alm = channel_to_alm.get(ch)
-        if alm is None:
-            print(f"[warn] channel {ch} missing inputs; skipping.")
-            continue
+    n = int(next(iter(streams.values())).shape[0])
 
-        alm_seg = _alm_stream_in_lrange(alm, l_arr, m_arr, lmin, lmax, use_full_m=use_full_m)
-        phi = np.angle(alm_seg)
-        x = _standardize_stream_phasor(phi)
-        streams[ch] = x
+    targets = _targets_to_freqs(_parse_floats_csv(args.targets), mode=args.target_mode, n=n)
+    scan_targets = _scan_to_targets(args.scan, mode=args.target_mode, n=n) if args.scan else []
 
-        n = x.shape[0]
-        if win_name == "none":
-            ww = None
-        else:
-            ww = _hann(n)
+    obs_psd: Dict[str, Dict[str, float]] = {}
+    scan_peak_obs: Dict[str, float] = {}
+    scan_peak_meta: Dict[str, Tuple[str, float, int]] = {}  # label,f,k
+    plots: Dict[str, Tuple[np.ndarray, np.ndarray]] = {}
 
-        psd_t = _targeted_psd(x, f_targets, w=ww)
-        out = {"psd_targets": psd_t}
-
-        if scan_freqs is not None:
-            psd_scan = _targeted_psd(x, scan_freqs, w=ww)
-            out["psd_scan"] = psd_scan
-        obs_results[ch] = out
+    for ch, stream in streams.items():
+        freqs, psd, obs, scan_peak = _analyze_stream(stream, targets, scan_targets, window=args.window)
+        obs_psd[ch] = obs
+        plots[ch] = (freqs, psd)
 
         print(f"\n[{ch}] stream_n={n}")
-        for i, f in enumerate(f_targets):
-            print(f"  target f={f:.8f}  PSD={psd_t[i]:.6g}")
+        for t in targets:
+            print(f"  target {t.label:>8s}  f={t.f:.8f}  bin={t.k:d}  PSD={obs[t.label]:.6g}")
 
-        if scan_freqs is not None:
-            j = int(np.argmax(obs_results[ch]["psd_scan"]))
-            if target_mode == "inv":
-                print(
-                    f"  scan peak at period≈{scan_periods[j]:.6g}  f≈{scan_freqs[j]:.8f}  PSD={obs_results[ch]['psd_scan'][j]:.6g}"
-                )
-            else:
-                print(
-                    f"  scan peak at f≈{scan_freqs[j]:.8f}  PSD={obs_results[ch]['psd_scan'][j]:.6g}"
-                )
+        if scan_peak and scan_peak[0] is not None:
+            tbest, vbest = scan_peak
+            scan_peak_obs[ch] = float(vbest)
+            scan_peak_meta[ch] = (tbest.label, float(tbest.f), int(tbest.k))
+            # show also period for inv mode, or bin for bin mode
+            extra = ""
+            if args.target_mode == "inv":
+                extra = f" (period≈{1.0/tbest.f:.2f})"
+            elif args.target_mode == "bin":
+                extra = f" (bin={tbest.k})"
+            print(f"  scan peak at {tbest.label}{extra}  f≈{tbest.f:.8f}  PSD={vbest:.6g}")
 
-    if not obs_results:
-        print("[error] No channels produced streams.")
-        return 2
+    mc = int(args.mc or 0)
+    p_counts: Dict[Tuple[str, str], int] = {(ch, t.label): 0 for ch in streams for t in targets}
+    scan_counts: Dict[str, int] = {ch: 0 for ch in streams} if scan_targets else {}
 
-    # Cross-channel coherence at targets (observed)
-    cross_rows = []
-    if cross and len(streams) >= 2:
-        ch_list = list(streams.keys())
-        for i in range(len(ch_list)):
-            for j in range(i + 1, len(ch_list)):
-                a = ch_list[i]
-                b = ch_list[j]
-                xa = streams[a]
-                xb = streams[b]
-                n = min(xa.shape[0], xb.shape[0])
-                xa = xa[:n]
-                xb = xb[:n]
-                ww = None if win_name == "none" else _hann(n)
-                Sxy, Sxx, Syy, coh = _targeted_csd_and_coh(xa, xb, f_targets, w=ww)
-                for kf in range(f_targets.shape[0]):
-                    cross_rows.append(
-                        {
-                            "pair": f"{a}-{b}",
-                            "f": float(f_targets[kf]),
-                            "coherence": float(coh[kf]),
-                            "csd_real": float(np.real(Sxy[kf])),
-                            "csd_imag": float(np.imag(Sxy[kf])),
-                        }
-                    )
-        print("\n=== Observed cross-channel coherence (targets) ===")
-        for r in cross_rows:
-            print(
-                f"{r['pair']} f={r['f']:.8f} coh={r['coherence']:.6g} "
-                f"Sxy=({r['csd_real']:.3g}+{r['csd_imag']:.3g}i)"
-            )
-
-    # Monte Carlo null
-    # We compute p-values as fraction of MC with PSD >= observed PSD at each target.
     if mc > 0:
-        mc_counts: Dict[str, np.ndarray] = {ch: np.zeros_like(obs_results[ch]["psd_targets"], dtype=int) for ch in obs_results.keys()}
-        mc_counts_scan: Dict[str, int] = {ch: 0 for ch in obs_results.keys()}  # for global max over scan (optional)
+        rng = np.random.default_rng(int(args.seed))
+        base_alms: Dict[str, np.ndarray] = {}
+        if almT is not None:
+            base_alms["TT"] = almT
+        if almE is not None:
+            base_alms["EE"] = almE
+        if almB is not None:
+            base_alms["BB"] = almB
 
-        for it in range(mc):
-            if (it + 1) % max(1, mc // 10) == 0:
-                print(f"[mc] {it+1}/{mc}")
+        for i in range(1, mc + 1):
+            if i % 50 == 0:
+                print(f"[mc] {i}/{mc}")
+            for ch in streams.keys():
+                alm_rand = _phase_randomize_per_ell(base_alms[ch], lmax_alm, rng)
+                stream_rand = _phase_stream_from_alm(alm_rand, lmax_alm, lmin, lmax, args.use_full_m)
+                _, psd_rand = _fft_psd(stream_rand, window=args.window)
 
-            for ch in list(obs_results.keys()):
-                alm = channel_to_alm[ch]
-                alm_rand = _phase_randomize_per_ell(alm, l_arr, rng=rng)
-                alm_seg = _alm_stream_in_lrange(alm_rand, l_arr, m_arr, lmin, lmax, use_full_m=use_full_m)
-                phi = np.angle(alm_seg)
-                x = _standardize_stream_phasor(phi)
+                for t in targets:
+                    v = float(psd_rand[t.k]) if t.k < len(psd_rand) else float(psd_rand[-1])
+                    if v >= obs_psd[ch][t.label]:
+                        p_counts[(ch, t.label)] += 1
 
-                n = x.shape[0]
-                ww = None if win_name == "none" else _hann(n)
-
-                psd_t = _targeted_psd(x, f_targets, w=ww)
-                mc_counts[ch] += (psd_t >= obs_results[ch]["psd_targets"]).astype(int)
-
-                if scan_freqs is not None:
-                    psd_scan = _targeted_psd(x, scan_freqs, w=ww)
-                    max_mc = float(np.max(psd_scan))
-                    max_obs = float(np.max(obs_results[ch]["psd_scan"]))
-                    if max_mc >= max_obs:
-                        mc_counts_scan[ch] += 1
-
-        pvals: Dict[str, np.ndarray] = {}
-        for ch in obs_results.keys():
-            # Add +1 smoothing to avoid exactly 0.
-            p = (mc_counts[ch] + 1.0) / (mc + 1.0)
-            pvals[ch] = p
+                if scan_targets:
+                    vmax = -1.0
+                    for t in scan_targets:
+                        v = float(psd_rand[t.k]) if t.k < len(psd_rand) else float(psd_rand[-1])
+                        if v > vmax:
+                            vmax = v
+                    if vmax >= scan_peak_obs.get(ch, float("inf")):
+                        scan_counts[ch] += 1
 
         print("\n=== MC p-values at targets (one-sided: PSD >= observed) ===")
-        for ch in obs_results.keys():
-            for i, f in enumerate(f_targets):
-                print(f"{ch} f={f:.8f}  p_mc={float(pvals[ch][i]):.6g}")
+        for ch in streams.keys():
+            for t in targets:
+                print(f"{ch} {t.label:>8s}  p_mc={p_counts[(ch, t.label)]/mc:.6g}")
 
-        if scan_freqs is not None:
+        if scan_targets:
             print("\n=== Global p-values over scan (look-elsewhere on max PSD) ===")
-            for ch in obs_results.keys():
-                p_glob = (mc_counts_scan[ch] + 1.0) / (mc + 1.0)
-                print(f"{ch} p_global(max_PSD_over_scan)={p_glob:.6g}")
-    else:
-        pvals = {ch: np.full_like(obs_results[ch]["psd_targets"], np.nan, dtype=float) for ch in obs_results.keys()}
+            for ch in streams.keys():
+                print(f"{ch} p_global(max_PSD_over_scan)={scan_counts[ch]/mc:.6g}")
 
-    # Report CSV
-    if report_csv:
-        rows = []
-        for ch in obs_results.keys():
-            for i, f in enumerate(f_targets):
-                row = {
-                    "channel": ch,
-                    "stream_n": int(streams[ch].shape[0]),
-                    "target_f": float(f),
-                    "target_period": float(1.0 / f) if f != 0 else float("inf"),
-                    "psd": float(obs_results[ch]["psd_targets"][i]),
-                    "p_mc": float(pvals[ch][i]) if mc > 0 else "",
-                }
-                rows.append(row)
+    if args.report_csv:
+        os.makedirs(os.path.dirname(args.report_csv) or ".", exist_ok=True)
+        with open(args.report_csv, "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["kind", "channel", "label", "raw", "freq", "bin", "psd_obs", "p_mc", "p_global"])
+            for ch in streams.keys():
+                for t in targets:
+                    p_mc = (p_counts[(ch, t.label)] / mc) if mc > 0 else ""
+                    w.writerow(["target", ch, t.label, f"{t.raw:g}", f"{t.f:.12g}", t.k, f"{obs_psd[ch][t.label]:.12g}", p_mc, ""])
+                if scan_targets and ch in scan_peak_meta:
+                    lbl, fbest, kbest = scan_peak_meta[ch]
+                    p_glob = (scan_counts[ch] / mc) if mc > 0 else ""
+                    w.writerow(["scan_peak", ch, lbl, "", f"{fbest:.12g}", kbest, f"{scan_peak_obs[ch]:.12g}", "", p_glob])
+                if scan_targets:
+                    freqs, psd = plots[ch]
+                    for t in scan_targets:
+                        v = float(psd[t.k]) if t.k < len(psd) else float(psd[-1])
+                        w.writerow(["scan", ch, t.label, f"{t.raw:g}", f"{t.f:.12g}", t.k, f"{v:.12g}", "", ""])
+        print(f"[info] wrote CSV: {args.report_csv}")
 
-        # include scan peaks if present
-        if scan_freqs is not None:
-            for ch in obs_results.keys():
-                j = int(np.argmax(obs_results[ch]["psd_scan"]))
-                rows.append(
-                    {
-                        "channel": ch,
-                        "stream_n": int(streams[ch].shape[0]),
-                        "target_f": float(scan_freqs[j]),
-                        "target_period": float(1.0 / scan_freqs[j]) if scan_freqs[j] != 0 else float("inf"),
-                        "psd": float(obs_results[ch]["psd_scan"][j]),
-                        "p_mc": "",
-                        "note": "scan_peak",
-                    }
-                )
+    if args.plot_png:
+        import matplotlib.pyplot as plt
+        os.makedirs(os.path.dirname(args.plot_png) or ".", exist_ok=True)
+        plt.figure(figsize=(12, 6))
+        for ch, (freqs, psd) in plots.items():
+            plt.semilogy(freqs, psd, label=ch)
+        for t in targets:
+            plt.axvline(t.f, linestyle="--", alpha=0.6)
+        plt.xlim(0, 0.5)
+        plt.xlabel("frequency [cycles/sample]")
+        plt.ylabel("PSD (one-sided)")
+        plt.title(f"Spectral resonance v4.1  ell=[{lmin},{lmax}]  mode={args.target_mode}")
+        plt.grid(True, which="both", alpha=0.25)
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig(args.plot_png, dpi=150)
+        plt.close()
+        print(f"[info] wrote PNG: {args.plot_png}")
 
-        # add cross coherence
-        if cross_rows:
-            for r in cross_rows:
-                rows.append(
-                    {
-                        "channel": r["pair"],
-                        "stream_n": "",
-                        "target_f": r["f"],
-                        "target_period": float(1.0 / r["f"]) if r["f"] != 0 else float("inf"),
-                        "psd": "",
-                        "p_mc": "",
-                        "coherence": r["coherence"],
-                        "csd_real": r["csd_real"],
-                        "csd_imag": r["csd_imag"],
-                        "note": "cross",
-                    }
-                )
-
-        # write
-        fieldnames = sorted({k for r in rows for k in r.keys()})
-        with open(report_csv, "w", newline="") as f:
-            wcsv = csv.DictWriter(f, fieldnames=fieldnames)
-            wcsv.writeheader()
-            wcsv.writerows(rows)
-        print(f"\n[info] wrote CSV: {report_csv}")
-
-    # Plot PNG (optional)
-    if plot_png and plt is not None:
-        fig = plt.figure(figsize=(12, 6))
-        ax = fig.add_subplot(1, 1, 1)
-
-        # If scan, plot scan PSD; else plot targets as points
-        for ch in obs_results.keys():
-            if scan_freqs is not None:
-                ax.plot(scan_freqs, obs_results[ch]["psd_scan"], label=f"{ch} scan")
-            else:
-                ax.scatter(f_targets, obs_results[ch]["psd_targets"], label=f"{ch} targets")
-
-        # draw target lines
-        for f in f_targets:
-            ax.axvline(f, linestyle="--", alpha=0.4)
-
-        ax.set_title(f"Targeted resonance (ell={lmin}-{lmax})")
-        ax.set_xlabel("frequency (cycles per k)")
-        ax.set_ylabel("targeted PSD (matched-filter)")
-        ax.grid(True, alpha=0.3)
-        ax.legend()
-
-        fig.tight_layout()
-        fig.savefig(plot_png, dpi=160)
-        print(f"[info] wrote PNG: {plot_png}")
-
-    return 0
-
-
-def main() -> int:
-    ap = argparse.ArgumentParser("spectral_resonance_v4")
-
-    ap.add_argument("--tt-map", type=str, default=None)
-    ap.add_argument("--q-map", type=str, default=None)
-    ap.add_argument("--u-map", type=str, default=None)
-
-    ap.add_argument("--lmin", type=int, default=128)
-    ap.add_argument("--lmax", type=int, default=146)
-    ap.add_argument("--lmax-alm", type=int, default=512)
-
-    ap.add_argument("--channels", type=str, default="TT,EE,BB")
-    ap.add_argument("--use-full-m", action="store_true", help="kept for compatibility; v4 uses healpy m>=0 stream for auditability")
-
-    ap.add_argument("--window", type=str, default="hann", choices=["hann", "none"])
-
-    # targets: either periods (inv) or direct freqs (freq)
-    ap.add_argument("--targets", type=str, default="137,139", help="comma-separated target values (periods if --target-mode inv, else freqs)")
-    ap.add_argument("--target-mode", type=str, default="inv", choices=["inv", "freq"],
-                    help="inv: interpret targets as periods P and use f=1/P. freq: interpret targets as direct frequencies f.")
-
-    # optional scan around targets (in same units as targets)
-    ap.add_argument("--scan", type=str, default=None,
-                    help="optional scan range a:b:step (in target units; periods if inv, else freqs). Example: 136:140:0.01")
-
-    ap.add_argument("--mc", type=int, default=0)
-    ap.add_argument("--seed", type=int, default=0)
-
-    ap.add_argument("--cross", action="store_true", help="compute cross-channel coherence at targets (observed only)")
-
-    ap.add_argument("--report-csv", type=str, default=None)
-    ap.add_argument("--plot-png", type=str, default=None)
-
-    args = ap.parse_args()
-
-    channels = _parse_channels(args.channels)
-    targets = [float(x.strip()) for x in args.targets.split(",") if x.strip()]
-
-    return run(
-        tt_map=args.tt_map,
-        q_map=args.q_map,
-        u_map=args.u_map,
-        lmin=args.lmin,
-        lmax=args.lmax,
-        lmax_alm=args.lmax_alm,
-        channels=channels,
-        use_full_m=args.use_full_m,
-        window=args.window,
-        targets=targets,
-        target_mode=args.target_mode,
-        scan=args.scan,
-        mc=args.mc,
-        seed=args.seed,
-        cross=args.cross,
-        report_csv=args.report_csv,
-        plot_png=args.plot_png,
-    )
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
