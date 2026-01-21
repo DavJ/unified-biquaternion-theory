@@ -105,20 +105,31 @@ def _window_2d(name: str, ny: int, nx: int, normalize_rms: bool = True) -> np.nd
             w = w / rms
     return w
 
-def _project_to_equirect(m: np.ndarray, nlat: int, nlon: int, lat_cut_deg: float = 0.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _project_to_equirect(m: np.ndarray, nlat: int, nlon: int, lat_cut_deg: float = 0.0, projection: str = "lonlat") -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Returns:
-      img: (nlat, nlon) sampled at grid centers
-      theta: (nlat,) colatitude
-      phi: (nlon,) longitude
+    Sample a HEALPix map onto an (nlat, nlon) grid.
+
+    projection:
+      - "lonlat": uniform in theta (equirectangular in lat)
+      - "cyl-ea": cylindrical equal-area (uniform in mu=cos(theta)=sin(lat))
+      - "torus": same sampling as lonlat/cyl-ea, but caller may post-process to enforce 2D periodicity in both axes.
     """
+    projection = (projection or "lonlat").lower()
+
     # Grid centers: avoid exact poles to reduce interpolation quirks
-    theta = (np.arange(nlat) + 0.5) * (np.pi / nlat)  # 0..pi
+    if projection == "cyl-ea":
+        # uniform in mu=cos(theta) gives equal-area rings in latitude
+        mu = 1.0 - (np.arange(nlat) + 0.5) * (2.0 / nlat)  # ~[+1 .. -1]
+        mu = np.clip(mu, -1.0, 1.0)
+        theta = np.arccos(mu)  # 0..pi
+    else:
+        theta = (np.arange(nlat) + 0.5) * (np.pi / nlat)  # 0..pi
+
     phi = (np.arange(nlon) + 0.5) * (2.0 * np.pi / nlon)  # 0..2pi
 
     # Optional latitude cut: keep only |lat| <= lat_cut
     if lat_cut_deg and lat_cut_deg > 0:
-        lat = 0.5*np.pi - theta  # radians
+        lat = 0.5 * np.pi - theta  # radians
         keep = np.abs(lat) <= np.deg2rad(lat_cut_deg)
         theta_use = theta[keep]
     else:
@@ -127,12 +138,17 @@ def _project_to_equirect(m: np.ndarray, nlat: int, nlon: int, lat_cut_deg: float
 
     # Sample using healpy interpolation
     th2, ph2 = np.meshgrid(theta_use, phi, indexing="ij")
-    img = hp.get_interp_val(m, th2, ph2)
+    img = hp.get_interp_val(m, th2, ph2).astype(np.float64)
 
     if keep is None:
-        return img.astype(np.float64), theta, phi
-    # If we cut, return the reduced image but keep original theta for labeling.
-    return img.astype(np.float64), theta_use, phi
+        return img, theta, phi
+    return img, theta_use, phi
+
+def _torusify_lat(img: np.ndarray) -> np.ndarray:
+    """Make latitude axis periodic by mirroring (sphere -> cylinder -> torus trick)."""
+    return np.vstack([img, img[::-1, :]])
+
+
 
 def _fft2_psd(img: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
@@ -352,7 +368,11 @@ def main() -> None:
             continue
 
         m = maps[ch]
-        img, theta, phi = _project_to_equirect(m, args.nlat, args.nlon, lat_cut_deg=args.lat_cut)
+        img, theta, phi = _project_to_equirect(m, args.nlat, args.nlon, lat_cut_deg=args.lat_cut, projection=args.projection)
+        if (args.projection or 'lonlat').lower() == 'torus':
+            # Enforce 2D periodicity in both axes by mirroring latitude.
+            img = _torusify_lat(img)
+
 
         # Convert to "phase field" if requested.
         if args.field == "phase":
@@ -366,6 +386,7 @@ def main() -> None:
 
         # Remove mean to suppress DC spike.
         img = img - np.mean(img)
+        nlat_eff, nlon_eff = img.shape
         # Window / spectrum
         wxwy = _parse_pair_int(args.window_size)
         if wxwy:
@@ -377,12 +398,12 @@ def main() -> None:
                 sx, sy = max(1, wx // 2), max(1, wy // 2)
             obs = _welch_targets(img, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
             # also compute global PSD for visualization
-            w2 = _window_2d(args.window2d, args.nlat, args.nlon, normalize_rms=True)
-            imgw = (img - float(np.mean(img))) * w2
+            w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
+            imgw = img * w2
             psd, ky, kx = _fft2_psd(imgw)
         else:
-            w2 = _window_2d(args.window2d, args.nlat, args.nlon, normalize_rms=True)
-            imgw = (img - float(np.mean(img))) * w2
+            w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
+            imgw = img * w2
             psd, ky, kx = _fft2_psd(imgw)
             obs = {}
 
