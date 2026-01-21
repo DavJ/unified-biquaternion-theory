@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-spectral_resonance_v4.py (v4.1 patch: adds --target-mode bin)
+spectral_resonance_v4.py (v4.2 patch: adds --target-correlation)
 
 Run example (your failing command becomes valid):
 
@@ -236,6 +236,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--scan", type=str, default=None)
     ap.add_argument("--mc", type=int, default=0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--target-correlation", action="store_true", help="Compute MC correlation/joint-tail diagnostics between targets (Pearson r and p_joint based on product).")
     ap.add_argument("--cross", action="store_true", help="reserved (not implemented)")
     ap.add_argument("--report-csv", type=str, default=None)
     ap.add_argument("--plot-png", type=str, default=None)
@@ -317,6 +318,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_counts: Dict[Tuple[str, str], int] = {(ch, t.label): 0 for ch in streams for t in targets}
     scan_counts: Dict[str, int] = {ch: 0 for ch in streams} if scan_targets else {}
 
+    # Optional: store MC PSD samples at each target bin for correlation/joint tests.
+    corr_samples: Dict[Tuple[str, str], List[float]] = {}
+    if args.target_correlation and mc > 0 and len(targets) >= 2:
+        corr_samples = {(ch, t.label): [] for ch in streams for t in targets}
+
     if mc > 0:
         rng = np.random.default_rng(int(args.seed))
         base_alms: Dict[str, np.ndarray] = {}
@@ -339,6 +345,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     v = float(psd_rand[t.k]) if t.k < len(psd_rand) else float(psd_rand[-1])
                     if v >= obs_psd[ch][t.label]:
                         p_counts[(ch, t.label)] += 1
+                    if corr_samples:
+                        corr_samples[(ch, t.label)].append(v)
 
                 if scan_targets:
                     vmax = -1.0
@@ -353,6 +361,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         for ch in streams.keys():
             for t in targets:
                 print(f"{ch} {t.label:>8s}  p_mc={p_counts[(ch, t.label)]/mc:.6g}")
+
+        if corr_samples:
+            import itertools
+            print("\n=== Target correlation diagnostics (MC) ===")
+            for ch in streams.keys():
+                for t1, t2 in itertools.combinations(targets, 2):
+                    v1 = np.asarray(corr_samples[(ch, t1.label)], dtype=np.float64)
+                    v2 = np.asarray(corr_samples[(ch, t2.label)], dtype=np.float64)
+                    s1 = float(v1.std())
+                    s2 = float(v2.std())
+                    if s1 == 0.0 or s2 == 0.0:
+                        r = float("nan")
+                    else:
+                        r = float(np.corrcoef(v1, v2)[0, 1])
+                    obs_prod = float(obs_psd[ch][t1.label] * obs_psd[ch][t2.label])
+                    p_joint = float(np.mean((v1 * v2) >= obs_prod))
+                    print(f"{ch} pair {t1.label}-{t2.label}: Pearson r={r:.4f}, p_joint={p_joint:.6g}")
 
         if scan_targets:
             print("\n=== Global p-values over scan (look-elsewhere on max PSD) ===")
