@@ -198,6 +198,68 @@ class Target:
     k: int  # target radial k (cycles per full map)
 
 
+def _parse_pair_int(s: str) -> Optional[Tuple[int,int]]:
+    s = (s or "").strip()
+    if not s:
+        return None
+    parts = [p.strip() for p in s.split(",")]
+    if len(parts) != 2:
+        raise ValueError(f"Expected 'A,B' got: {s!r}")
+    return int(parts[0]), int(parts[1])
+
+def _welch_targets(img: np.ndarray,
+                   targets: Sequence[Target],
+                   window2d: str,
+                   radial: bool,
+                   wx: int, wy: int,
+                   sx: int, sy: int) -> Dict[int, float]:
+    """Welch-style averaged spectrum using sliding windows with trojčlenka scaling."""
+    nlat, nlon = img.shape
+    kmax = int(math.floor(math.sqrt((nlon//2)**2 + (nlat//2)**2)))
+    acc = np.zeros(kmax + 1, dtype=float) if radial else np.zeros(nlon//2 + 1, dtype=float)
+    cnt = np.zeros_like(acc)
+
+    w2 = _window_2d(window2d, wy, wx, normalize_rms=True)
+
+    ky = np.fft.fftfreq(wy)
+    kx = np.fft.fftfreq(wx)
+    ky_idx = np.where(ky >= 0)[0]
+    kx_idx = np.where(kx >= 0)[0]
+
+    for y0 in range(0, nlat - wy + 1, sy):
+        for x0 in range(0, nlon - wx + 1, sx):
+            patch = img[y0:y0+wy, x0:x0+wx]
+            patch = patch - float(np.mean(patch))
+            pw = patch * w2
+            P, _, _ = _fft2_psd(pw)
+
+            for iy in ky_idx:
+                jy = int(round(abs(ky[iy]) * wy))
+                kyg = int(round(jy * (nlat / wy)))
+                if kyg > nlat//2:
+                    continue
+                for ix in kx_idx:
+                    jx = int(round(abs(kx[ix]) * wx))
+                    kxg = int(round(jx * (nlon / wx)))
+                    if kxg > nlon//2:
+                        continue
+                    val = float(P[iy, ix])
+                    if radial:
+                        kg = int(round(math.sqrt(kxg*kxg + kyg*kyg)))
+                        if kg <= kmax:
+                            acc[kg] += val
+                            cnt[kg] += 1
+                    else:
+                        if kyg == 0:
+                            acc[kxg] += val
+                            cnt[kxg] += 1
+
+    spec = np.where(cnt > 0, acc / cnt, np.nan)
+    out: Dict[int, float] = {}
+    for t in targets:
+        out[t.k] = float(spec[t.k]) if 0 <= t.k < len(spec) else float("nan")
+    return out
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tt-map", help="HEALPix FITS containing IQU or temperature in field 0")
@@ -209,6 +271,10 @@ def main() -> None:
     ap.add_argument("--nside-out", type=int, default=256, help="Degrade maps to this NSIDE before projection/FFT")
     ap.add_argument("--nlat", type=int, default=512, help="Equirectangular grid height (latitude samples)")
     ap.add_argument("--nlon", type=int, default=1024, help="Equirectangular grid width (longitude samples)")
+    ap.add_argument("--projection", choices=["latlon", "torus"], default="latlon",
+                    help="Projection for full-sky map to 2D grid. 'torus' uses equal-area v=sin(lat) mapping.")
+    ap.add_argument("--window-size", default="", help="Optional sliding window size Wx,Wy (enables Welch averaged spectrum with trojclenka scaling).")
+    ap.add_argument("--stride", default="", help="Stride Sx,Sy for sliding window (default: Wx//2,Wy//2).")
 
     ap.add_argument("--lat-cut", type=float, default=0.0, help="If >0, keep only |lat|<=lat_cut (deg) to reduce polar distortion")
 
@@ -300,12 +366,25 @@ def main() -> None:
 
         # Remove mean to suppress DC spike.
         img = img - np.mean(img)
-
-        # Window
-        w2 = _window_2d(args.window2d, img.shape[0], img.shape[1], normalize_rms=True)
-        imgw = img * w2
-
-        psd, ky, kx = _fft2_psd(imgw)
+        # Window / spectrum
+        wxwy = _parse_pair_int(args.window_size)
+        if wxwy:
+            wx, wy = wxwy
+            sxsy = _parse_pair_int(args.stride)
+            if sxsy:
+                sx, sy = sxsy
+            else:
+                sx, sy = max(1, wx // 2), max(1, wy // 2)
+            obs = _welch_targets(img, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
+            # also compute global PSD for visualization
+            w2 = _window_2d(args.window2d, args.nlat, args.nlon, normalize_rms=True)
+            imgw = (img - float(np.mean(img))) * w2
+            psd, ky, kx = _fft2_psd(imgw)
+        else:
+            w2 = _window_2d(args.window2d, args.nlat, args.nlon, normalize_rms=True)
+            imgw = (img - float(np.mean(img))) * w2
+            psd, ky, kx = _fft2_psd(imgw)
+            obs = {}
 
         if args.radial:
             k_bins, psd_r = _radial_average(psd, ky, kx)
