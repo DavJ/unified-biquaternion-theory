@@ -261,16 +261,32 @@ def _welch_targets(img: np.ndarray,
                         continue
                     val = float(P[iy, ix])
                     if radial:
-                        kg = int(round(math.sqrt(kxg*kxg + kyg*kyg)))
-                        if kg <= kmax:
-                            acc[kg] += val
-                            cnt[kg] += 1
+                        # Robust radial binning:
+                        # The previous implementation used a hard integer bin via round(|k|).
+                        # For some (grid, window) combinations this can leave certain integer
+                        # radii completely empty (cnt==0), producing NaNs for those targets.
+                        # Distribute power linearly between the two nearest integer bins.
+                        kgf = math.sqrt(kxg * kxg + kyg * kyg)
+                        kg0 = int(math.floor(kgf))
+                        kg1 = kg0 + 1
+                        w1 = kgf - kg0
+                        w0 = 1.0 - w1
+
+                        if 0 <= kg0 <= kmax:
+                            acc[kg0] += w0 * val
+                            cnt[kg0] += w0
+                        if 0 <= kg1 <= kmax:
+                            acc[kg1] += w1 * val
+                            cnt[kg1] += w1
                     else:
                         if kyg == 0:
                             acc[kxg] += val
                             cnt[kxg] += 1
 
-    spec = np.where(cnt > 0, acc / cnt, np.nan)
+    # Avoid RuntimeWarning: np.where evaluates both branches eagerly.
+    # Use np.divide with a mask so division is only performed where cnt>0.
+    spec = np.full_like(acc, np.nan, dtype=float)
+    np.divide(acc, cnt, out=spec, where=cnt > 0)
     out: Dict[int, float] = {}
     for t in targets:
         out[t.k] = float(spec[t.k]) if 0 <= t.k < len(spec) else float("nan")
@@ -389,6 +405,8 @@ def main() -> None:
         nlat_eff, nlon_eff = img.shape
         # Window / spectrum
         wxwy = _parse_pair_int(args.window_size)
+        wx = wy = sx = sy = None  # type: ignore
+        obs_welch: Optional[Dict[int, float]] = None
         if wxwy:
             wx, wy = wxwy
             sxsy = _parse_pair_int(args.stride)
@@ -396,7 +414,7 @@ def main() -> None:
                 sx, sy = sxsy
             else:
                 sx, sy = max(1, wx // 2), max(1, wy // 2)
-            obs = _welch_targets(img, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
+            obs_welch = _welch_targets(img, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
             # also compute global PSD for visualization
             w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
             imgw = img * w2
@@ -405,21 +423,25 @@ def main() -> None:
             w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
             imgw = img * w2
             psd, ky, kx = _fft2_psd(imgw)
-            obs = {}
 
+
+        # Build a spectrum for plotting (always global), but only use it for target-values
+        # when Welch windowing is NOT enabled.
         if args.radial:
             k_bins, psd_r = _radial_average(psd, ky, kx)
-            obs = {t.k: float(psd_r[t.k]) if t.k < len(psd_r) else float("nan") for t in targets}
+            obs_global = {t.k: float(psd_r[t.k]) if t.k < len(psd_r) else float("nan") for t in targets}
         else:
             # Use axis-aligned (ky=0, kx=k) bins (positive kx only)
             ky0 = int(np.where(ky == 0)[0][0]) if np.any(ky == 0) else 0
-            obs = {}
+            obs_global = {}
             for t in targets:
                 k = t.k
                 if 0 <= k < len(kx):
-                    obs[k] = float(psd[ky0, k])
+                    obs_global[k] = float(psd[ky0, k])
                 else:
-                    obs[k] = float("nan")
+                    obs_global[k] = float("nan")
+
+        obs = obs_welch if obs_welch is not None else obs_global
 
         print(f"\n[{ch}] obs targets:")
         for t in targets:
@@ -439,20 +461,26 @@ def main() -> None:
                     img_null = _null_pixel_shuffle(img, rng)
 
                 img_null = img_null - np.mean(img_null)
-                imgw_null = img_null * w2
-                psd_n, ky_n, kx_n = _fft2_psd(imgw_null)
-
-                if args.radial:
-                    _, psd_rn = _radial_average(psd_n, ky_n, kx_n, kmax=len(k_bins)-1)
+                if obs_welch is not None:
+                    # Welch mode: evaluate targets via the same sliding-window estimator.
+                    vals_n = _welch_targets(img_null, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
                     for t in targets:
-                        if t.k < len(psd_rn):
-                            mc_vals[t.k].append(float(psd_rn[t.k]))
+                        mc_vals[t.k].append(float(vals_n[t.k]))
                 else:
-                    ky0 = int(np.where(ky_n == 0)[0][0]) if np.any(ky_n == 0) else 0
-                    for t in targets:
-                        k = t.k
-                        if 0 <= k < len(kx_n):
-                            mc_vals[t.k].append(float(psd_n[ky0, k]))
+                    imgw_null = img_null * w2
+                    psd_n, ky_n, kx_n = _fft2_psd(imgw_null)
+
+                    if args.radial:
+                        _, psd_rn = _radial_average(psd_n, ky_n, kx_n, kmax=len(k_bins)-1)
+                        for t in targets:
+                            if t.k < len(psd_rn):
+                                mc_vals[t.k].append(float(psd_rn[t.k]))
+                    else:
+                        ky0 = int(np.where(ky_n == 0)[0][0]) if np.any(ky_n == 0) else 0
+                        for t in targets:
+                            k = t.k
+                            if 0 <= k < len(kx_n):
+                                mc_vals[t.k].append(float(psd_n[ky0, k]))
 
             for t in targets:
                 vals = np.asarray(mc_vals[t.k], dtype=float)
