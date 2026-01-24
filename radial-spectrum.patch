@@ -1,10 +1,8 @@
-rm -f radial-spectrum.patch
-
 cat > radial-spectrum.patch <<'EOF'
 diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint/tools/cmb_fft2d_scan.py
 --- a/forensic_fingerprint/tools/cmb_fft2d_scan.py
 +++ b/forensic_fingerprint/tools/cmb_fft2d_scan.py
-@@ -38,7 +38,7 @@
+@@ -37,7 +37,7 @@ import argparse
  import csv
  import math
  import os
@@ -12,10 +10,9 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 -from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 +from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
  
- import healpy as hp
  import numpy as np
- 
-@@ -55,6 +55,41 @@ def _ensure_dir_for(path: Optional[str]) -> None:
+ import healpy as hp
+@@ -55,6 +55,43 @@ def _ensure_dir_for(path: Optional[str]) -> None:
      d = os.path.dirname(path)
      if d:
          os.makedirs(d, exist_ok=True)
@@ -51,28 +48,19 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +                float(z[k]) if z is not None and k < len(z) else float("nan"),
 +                float(p_tail[k]) if p_tail is not None and k < len(p_tail) else float("nan"),
 +            ])
- 
- def _map2alm_spin_compat(qu_maps, spin: int, lmax: int):
-     # Healpy signature differences across versions; try a few combos.
-@@ -295,6 +330,90 @@ def _welch_targets(img: np.ndarray,
+@@ -219,6 +256,73 @@ def _welch_targets(img: np.ndarray,
+     for t in targets:
          out[t.k] = float(spec[t.k]) if 0 <= t.k < len(spec) else float("nan")
      return out
 +
 +def _welch_spectrum(
 +    img: np.ndarray,
 +    window2d: str,
-+    radial: bool,
 +    wx: int, wy: int,
 +    sx: int, sy: int,
 +    kmax_out: Optional[int] = None,
 +) -> np.ndarray:
-+    """Welch-style averaged *full* spectrum (radial only).
-+
-+    Uses the same trojčlenka scaling + robust radial binning as _welch_targets,
-+    but returns the entire radial spectrum array.
-+    """
-+    if not radial:
-+        raise ValueError("_welch_spectrum currently supports radial=True only.")
++    """Welch-style averaged *full* radial spectrum using same binning as _welch_targets."""
 +    nlat, nlon = img.shape
 +    kmax = int(math.floor(math.sqrt((nlon//2)**2 + (nlat//2)**2)))
 +    if kmax_out is not None:
@@ -81,7 +69,6 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +    cnt = np.zeros_like(acc)
 +
 +    w2 = _window_2d(window2d, wy, wx, normalize_rms=True)
-+
 +    ky = np.fft.fftfreq(wy)
 +    kx = np.fft.fftfreq(wx)
 +    ky_idx = np.where(ky >= 0)[0]
@@ -110,7 +97,6 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +                    kg1 = kg0 + 1
 +                    w1 = kgf - kg0
 +                    w0 = 1.0 - w1
-+
 +                    if 0 <= kg0 <= kmax:
 +                        acc[kg0] += w0 * val
 +                        cnt[kg0] += w0
@@ -121,10 +107,7 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +    spec = np.full_like(acc, np.nan, dtype=float)
 +    np.divide(acc, cnt, out=spec, where=cnt > 0)
 +    return spec
- 
- def main() -> None:
-     ap = argparse.ArgumentParser()
-@@ -324,6 +443,8 @@ def main() -> None:
+@@ -311,6 +415,8 @@ def main() -> None:
  
      ap.add_argument("--report-csv", help="Write per-target results to CSV")
      ap.add_argument("--plot-png", help="Write diagnostic plot PNG (requires matplotlib)")
@@ -132,34 +115,28 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +    ap.add_argument("--kmax", type=int, default=None, help="Optional max k for --dump-radial-csv (speeds up MC)")
  
      args = ap.parse_args()
-@@ -441,6 +562,24 @@ def main() -> None:
-         if args.radial:
-             k_bins, psd_r = _radial_average(psd, ky, kx)
-             obs_global = {t.k: float(psd_r[t.k]) if t.k < len(psd_r) else float("nan") for t in targets}
-         else:
-             # Use axis-aligned (ky=0, kx=k) bins (positive kx only)
-             ky0 = int(np.where(ky == 0)[0][0]) if np.any(ky == 0) else 0
-             obs_global = {t.k: float(psd[ky0, t.k]) if 0 <= t.k < psd.shape[1] else float("nan") for t in targets}
+@@ -455,6 +561,23 @@ def main() -> None:
+ 
+         obs = obs_welch if obs_welch is not None else obs_global
 +
-+        # First-filter: compute full observed radial spectrum if requested
++        # FIRST FILTER: full observed spectrum (optional)
 +        obs_spec: Optional[np.ndarray] = None
 +        if args.dump_radial_csv and args.radial:
 +            kmax_out = args.kmax
-+            if obs_welch is not None and wxwy:
-+                obs_spec = _welch_spectrum(img, args.window2d, True, wx=wx, wy=wy, sx=sx, sy=sy, kmax_out=kmax_out)  # type: ignore[arg-type]
++            if obs_welch is not None:
++                obs_spec = _welch_spectrum(img, args.window2d, wx=wx, wy=wy, sx=sx, sy=sy, kmax_out=kmax_out)  # type: ignore[arg-type]
 +            else:
 +                if kmax_out is not None and kmax_out >= 0 and kmax_out < len(psd_r) - 1:
 +                    obs_spec = psd_r[: kmax_out + 1]
 +                else:
 +                    obs_spec = psd_r
  
-         obs = obs_welch or obs_global
- 
-@@ -449,6 +594,14 @@ def main() -> None:
+         print(f"\n[{ch}] obs targets:")
+         for t in targets:
+             print(f"  k={t.k}: PSD={obs[t.k]:.6g}")
  
          # Monte Carlo p-values
          p_mc: Dict[int, float] = {t.k: float("nan") for t in targets}
-+        # Full-spectrum MC summary (mean/std/Z/p_tail) for first filter
 +        mc_mean = mc_std = z = p_tail = None
 +        mean = m2 = ge = None
 +        n_mc = 0
@@ -170,15 +147,12 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
          if args.mc > 0:
              mc_vals = {t.k: [] for t in targets}
              for i in range(1, args.mc + 1):
-@@ -463,6 +622,21 @@ def main() -> None:
-                 img_null = img_null - np.mean(img_null)
-                 if obs_welch is not None:
-                     # Welch mode: evaluate targets via the same sliding-window estimator.
+@@ -480,6 +603,16 @@ def main() -> None:
                      vals_n = _welch_targets(img_null, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
                      for t in targets:
                          mc_vals[t.k].append(float(vals_n[t.k]))
-+                    if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None and ge is not None and m2 is not None:
-+                        spec_n = _welch_spectrum(img_null, args.window2d, True, wx=wx, wy=wy, sx=sx, sy=sy, kmax_out=len(obs_spec)-1)  # type: ignore[arg-type]
++                    if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None:
++                        spec_n = _welch_spectrum(img_null, args.window2d, wx=wx, wy=wy, sx=sx, sy=sy, kmax_out=len(obs_spec)-1)  # type: ignore[arg-type]
 +                        n_mc += 1
 +                        delta = spec_n - mean
 +                        mean += delta / n_mc
@@ -188,13 +162,12 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
                  else:
                      imgw_null = img_null * w2
                      psd_n, ky_n, kx_n = _fft2_psd(imgw_null)
- 
-                     if args.radial:
+@@ -491,6 +624,16 @@ def main() -> None:
                          _, psd_rn = _radial_average(psd_n, ky_n, kx_n, kmax=len(k_bins)-1)
                          for t in targets:
                              if t.k < len(psd_rn):
                                  mc_vals[t.k].append(float(psd_rn[t.k]))
-+                        if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None and ge is not None and m2 is not None:
++                        if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None:
 +                            psd_rn = psd_rn[: len(obs_spec)]
 +                            n_mc += 1
 +                            delta = psd_rn - mean
@@ -205,26 +178,22 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
                      else:
                          ky0 = int(np.where(ky_n == 0)[0][0]) if np.any(ky_n == 0) else 0
                          for t in targets:
-@@ -488,6 +662,14 @@ def main() -> None:
+@@ -506,6 +649,14 @@ def main() -> None:
                  vals = np.asarray(mc_vals[t.k], dtype=float)
                  if len(vals) > 0 and np.isfinite(obs[t.k]):
                      p_mc[t.k] = float(np.mean(vals >= obs[t.k]))
 +
-+            if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None and m2 is not None and ge is not None and n_mc > 1:
++            if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None and n_mc > 1:
 +                mc_mean = mean
 +                mc_std = np.sqrt(m2 / (n_mc - 1))
 +                z = np.full_like(obs_spec, np.nan, dtype=float)
 +                np.divide(obs_spec - mc_mean, mc_std, out=z, where=mc_std > 0)
 +                p_tail = ge / float(n_mc)
- 
-             print("\n=== MC p-values (one-sided: PSD >= observed) ===")
-             for t in targets:
-                 print(f"{ch} k={t.k} p_mc={p_mc[t.k]:.6g}")
-@@ -596,6 +778,24 @@ def main() -> None:
+@@ -571,6 +722,27 @@ def main() -> None:
              plt.close(fig)
              print(f"[info] wrote PNG: {out_png}")
 +
-+        # Dump full radial spectrum CSV (first filter)
++        # FIRST FILTER: dump full radial spectrum CSV
 +        if args.dump_radial_csv and args.radial and obs_spec is not None:
 +            meta = dict(
 +                nside_out=args.nside_out,
@@ -239,7 +208,7 @@ diff --git a/forensic_fingerprint/tools/cmb_fft2d_scan.py b/forensic_fingerprint
 +                seed=int(args.seed),
 +            )
 +            out_csv = args.dump_radial_csv
-+            if len(ch_list) > 1:
++            if len(ch_list) > 1 and out_csv:
 +                base, ext = os.path.splitext(out_csv)
 +                out_csv = f"{base}_{ch}{ext}"
 +            _write_radial_dump_csv(out_csv, ch, meta, obs_spec, mc_mean, mc_std, z, p_tail)

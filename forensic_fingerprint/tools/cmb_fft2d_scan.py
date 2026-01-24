@@ -36,7 +36,7 @@ import csv
 import math
 import os
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
 import healpy as hp
@@ -58,6 +58,40 @@ def _ensure_dir_for(path: Optional[str]) -> None:
     d = os.path.dirname(path)
     if d:
         os.makedirs(d, exist_ok=True)
+
+
+def _write_radial_dump_csv(
+    path: str,
+    channel: str,
+    meta: Dict[str, Any],
+    obs_spec: np.ndarray,
+    mc_mean: Optional[np.ndarray] = None,
+    mc_std: Optional[np.ndarray] = None,
+    z: Optional[np.ndarray] = None,
+    p_tail: Optional[np.ndarray] = None,
+) -> None:
+    """Write full radial spectrum (and optional MC summary stats) to CSV."""
+    _ensure_dir_for(path)
+    with open(path, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow([
+            "channel","nside_out","nlat","nlon","lat_cut_deg","field","window2d","radial","null","mc","seed",
+            "k","obs_psd","mc_mean","mc_std","z","p_tail"
+        ])
+        kmax_eff = len(obs_spec) - 1
+        for k in range(kmax_eff + 1):
+            w.writerow([
+                channel,
+                meta["nside_out"], meta["nlat"], meta["nlon"], meta["lat_cut_deg"],
+                meta["field"], meta["window2d"], meta["radial"], meta["null"], meta["mc"], meta["seed"],
+                k,
+                float(obs_spec[k]) if k < len(obs_spec) else float("nan"),
+                float(mc_mean[k]) if mc_mean is not None and k < len(mc_mean) else float("nan"),
+                float(mc_std[k]) if mc_std is not None and k < len(mc_std) else float("nan"),
+                float(z[k]) if z is not None and k < len(z) else float("nan"),
+                float(p_tail[k]) if p_tail is not None and k < len(p_tail) else float("nan"),
+            ])
+
 
 def _map2alm_spin_compat(qu_maps, spin: int, lmax: int):
     # Healpy signature differences across versions; try a few combos.
@@ -323,6 +357,8 @@ def main() -> None:
 
     ap.add_argument("--report-csv", help="Write per-target results to CSV")
     ap.add_argument("--plot-png", help="Write diagnostic plot PNG (requires matplotlib)")
+    ap.add_argument("--dump-radial-csv", default="", help="Write full radial spectrum to CSV (adds MC mean/std/Z/p_tail when --mc>0)")
+    ap.add_argument("--kmax", type=int, default=None, help="Optional max k for --dump-radial-csv (speeds up MC)")
 
     args = ap.parse_args()
 
@@ -419,6 +455,54 @@ def main() -> None:
             w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
             imgw = img * w2
             psd, ky, kx = _fft2_psd(imgw)
+
+        # --- ANNULUS 2D DIAGNOSTIC ---
+        # Writes a 2D diagnostic map of power in an annulus |k| in [k1,k2].
+        # This is in Fourier-space, not "center of the universe".
+        if args.annulus_png and args.band_k:
+            try:
+                k1_s, k2_s = [x.strip() for x in args.band_k.split(",")]
+                k1 = float(k1_s); k2 = float(k2_s)
+                if not (k2 > k1 >= 0):
+                    raise ValueError("band-k must satisfy 0 <= k1 < k2")
+            except Exception as e:
+                raise SystemExit(f"--band-k parse error (expected k1,k2): {e}")
+
+            try:
+                import matplotlib.pyplot as plt
+            except Exception as e:
+                raise SystemExit(f"matplotlib required for --annulus-png: {e}")
+
+            # Build k-grid and annulus mask
+            KX, KY = np.meshgrid(kx, ky)
+            KR = np.sqrt(KX*KX + KY*KY)
+
+            # Mask outside annulus; add epsilon for log
+            eps = 1e-300
+            band = (KR >= k1) & (KR <= k2)
+            band_psd = np.where(band, psd, np.nan)
+
+            # Use fftshift for nicer visualization (DC at center)
+            band_psd_s = np.fft.fftshift(band_psd)
+            band_log = np.log10(band_psd_s + eps)
+
+            out_png = args.annulus_png
+            if len(ch_list) > 1 and out_png:
+                base, ext = os.path.splitext(out_png)
+                out_png = f"{base}_{ch}{ext}"
+
+            plt.figure(figsize=(7, 4.5))
+            plt.imshow(band_log, origin="lower", aspect="auto")
+            plt.title(f"Annulus power map ({ch}): |k| in [{k1:g}, {k2:g}]")
+            plt.xlabel("kx (fftshifted index)")
+            plt.ylabel("ky (fftshifted index)")
+            plt.colorbar(label="log10(PSD)")
+            _ensure_dir_for(out_png)
+            plt.tight_layout()
+            plt.savefig(out_png, dpi=150)
+            plt.close()
+            print(f"[info] wrote annulus PNG: {out_png}")
+
         else:
             w2 = _window_2d(args.window2d, nlat_eff, nlon_eff, normalize_rms=True)
             imgw = img * w2
@@ -430,6 +514,23 @@ def main() -> None:
         if args.radial:
             k_bins, psd_r = _radial_average(psd, ky, kx)
             obs_global = {t.k: float(psd_r[t.k]) if t.k < len(psd_r) else float("nan") for t in targets}
+
+        # FIRST FILTER: prepare full observed radial spectrum for dumping
+        obs_spec = None
+        if args.dump_radial_csv and args.radial:
+            if args.kmax is not None and args.kmax >= 0 and args.kmax < len(psd_r) - 1:
+                obs_spec = psd_r[: args.kmax + 1]
+            else:
+                obs_spec = psd_r
+
+        # FIRST FILTER: MC summary arrays (mean/std/Z/p_tail) for full spectrum
+        mc_mean = mc_std = z = p_tail = None
+        mean = m2 = ge = None
+        n_mc = 0
+        if args.dump_radial_csv and args.radial and obs_spec is not None and args.mc and args.mc > 0:
+            mean = np.zeros_like(obs_spec, dtype=float)
+            m2 = np.zeros_like(obs_spec, dtype=float)
+            ge = np.zeros_like(obs_spec, dtype=float)
         else:
             # Use axis-aligned (ky=0, kx=k) bins (positive kx only)
             ky0 = int(np.where(ky == 0)[0][0]) if np.any(ky == 0) else 0
@@ -466,12 +567,37 @@ def main() -> None:
                     vals_n = _welch_targets(img_null, targets, args.window2d, args.radial, wx=wx, wy=wy, sx=sx, sy=sy)
                     for t in targets:
                         mc_vals[t.k].append(float(vals_n[t.k]))
+
+                    # FIRST FILTER accumulation (welch branch via global FFT)
+                    # Even in Welch-target mode, accumulate MC full-spectrum via *global* FFT
+                    # so we can compute mc_mean/mc_std/z/p_tail in the dump CSV.
+                    if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None:
+                        imgw_null = img_null * w2
+                        psd_n, ky_n, kx_n = _fft2_psd(imgw_null)
+                        _, psd_rn = _radial_average(psd_n, ky_n, kx_n, kmax=len(k_bins)-1)
+                        psd_rn2 = psd_rn[: len(obs_spec)]
+                        n_mc += 1
+                        delta = psd_rn2 - mean
+                        mean += delta / n_mc
+                        delta2 = psd_rn2 - mean
+                        m2 += delta * delta2
+                        ge += (psd_rn2 >= obs_spec).astype(float)
                 else:
                     imgw_null = img_null * w2
                     psd_n, ky_n, kx_n = _fft2_psd(imgw_null)
 
                     if args.radial:
                         _, psd_rn = _radial_average(psd_n, ky_n, kx_n, kmax=len(k_bins)-1)
+
+                        # FIRST FILTER accumulation (global radial spectrum)
+                        if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None:
+                            psd_rn2 = psd_rn[: len(obs_spec)]
+                            n_mc += 1
+                            delta = psd_rn2 - mean
+                            mean += delta / n_mc
+                            delta2 = psd_rn2 - mean
+                            m2 += delta * delta2
+                            ge += (psd_rn2 >= obs_spec).astype(float)
                         for t in targets:
                             if t.k < len(psd_rn):
                                 mc_vals[t.k].append(float(psd_rn[t.k]))
@@ -487,6 +613,14 @@ def main() -> None:
                 if len(vals) > 0 and np.isfinite(obs[t.k]):
                     p_mc[t.k] = float(np.mean(vals >= obs[t.k]))
 
+
+            # FIRST FILTER finalize
+            if args.dump_radial_csv and args.radial and obs_spec is not None and mean is not None and n_mc > 1:
+                mc_mean = mean
+                mc_std = np.sqrt(m2 / (n_mc - 1))
+                z = np.full_like(obs_spec, np.nan, dtype=float)
+                np.divide(obs_spec - mc_mean, mc_std, out=z, where=mc_std > 0)
+                p_tail = ge / float(n_mc)
             print("\n=== MC p-values (one-sided: PSD >= observed) ===")
             for t in targets:
                 print(f"{ch} k={t.k} p_mc={p_mc[t.k]:.6g}")
@@ -549,6 +683,27 @@ def main() -> None:
             fig.savefig(out_png, dpi=160)
             plt.close(fig)
             print(f"[info] wrote PNG: {out_png}")
+
+        # FIRST FILTER: dump full radial spectrum CSV
+        if args.dump_radial_csv and args.radial and obs_spec is not None:
+            meta = dict(
+                nside_out=args.nside_out,
+                nlat=args.nlat,
+                nlon=args.nlon,
+                lat_cut_deg=args.lat_cut,
+                field=args.field,
+                window2d=args.window2d,
+                radial=True,
+                null=args.null if args.mc and args.mc > 0 else "",
+                mc=int(args.mc),
+                seed=int(args.seed),
+            )
+            out_csv = args.dump_radial_csv
+            if len(ch_list) > 1 and out_csv:
+                base, ext = os.path.splitext(out_csv)
+                out_csv = f"{base}_{ch}{ext}"
+            _write_radial_dump_csv(out_csv, ch, meta, obs_spec, mc_mean, mc_std, z, p_tail)
+            print(f"[info] wrote radial dump CSV: {out_csv}")
 
     if args.report_csv:
         _ensure_dir_for(args.report_csv)
