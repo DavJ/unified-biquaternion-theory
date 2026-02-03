@@ -1,0 +1,311 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+
+\title{Phase Structure and Projection in Unified Biquaternion Theory}
+\author{Ing.~David~Jaroš}
+\date{February 2025}
+
+\begin{document}
+\maketitle
+
+% License Notice - Visible in PDF
+\noindent
+\textbf{License:} © 2025 Ing. David Jaroš. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). See \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} for details.
+
+\vspace{1em}
+
+\begin{abstract}
+This document provides a rigorous mathematical distinction between real, observable phase in standard 4D physics and the imaginary/quaternionic phase structure associated with extended complex time in the Unified Biquaternion Theory (UBT). We clarify that higher-dimensional phase structure in UBT manifests exclusively through projections into 4D measurements, not via direct access to extra dimensions. The framework maintains full compatibility with existing electromagnetic, quantum-mechanical, and interferometric phase phenomena while providing a unifying geometric interpretation. No new particles, forces, or violations of established physical laws are introduced.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The term ``phase'' appears throughout physics with distinct technical meanings that are easily conflated. In electromagnetism, phase denotes the argument of an oscillating field. In quantum mechanics, it describes the complex argument of a wavefunction. In interferometry, phase measures optical path differences. The Unified Biquaternion Theory (UBT) introduces an additional notion of phase associated with the imaginary component of extended complex time $\tau = t + i\psi$, where $t$ is real time and $\psi$ represents an additional geometric degree of freedom.
+
+Confusion between these concepts can lead to misinterpretation of UBT predictions. This document establishes strict definitions and mathematical boundaries between:
+\begin{enumerate}
+\item \textbf{Dynamical phase}: Real-valued phase in standard 4D spacetime, directly measurable through local field oscillations, frequency, and energy transport.
+\item \textbf{State-level phase}: The imaginary/quaternionic phase structure in UBT, which is a global geometric parameter of the biquaternionic field $\Theta$ and not an oscillation or frequency-dependent quantity.
+\end{enumerate}
+
+The central principle is that UBT operates at a fundamental biquaternionic level, with all 4D observables arising as Hermitian projections. The imaginary phase $\psi$ is not directly measurable; it influences 4D physics only through its projection into observable quantities such as coherence patterns, boundary condition sensitivity, and effective phase offsets.
+
+\section{Real Phase in Standard 4D Physics}
+
+\subsection{Definition and Properties}
+
+In standard 4D spacetime with coordinates $(t, \mathbf{x})$, real phase is a continuous scalar function $\phi(t, \mathbf{x}) \in \mathbb{R}$ satisfying:
+\begin{equation}
+\phi(t, \mathbf{x}) = \omega t - \mathbf{k} \cdot \mathbf{x} + \phi_0,
+\label{eq:real_phase}
+\end{equation}
+where $\omega$ is angular frequency, $\mathbf{k}$ is the wavevector, and $\phi_0$ is a constant offset.
+
+Real phase exhibits the following properties:
+\begin{itemize}
+\item \textbf{Dynamical evolution}: $\partial_t \phi = \omega$ relates phase to energy via $E = \hbar\omega$.
+\item \textbf{Spatial variation}: $\nabla \phi = -\mathbf{k}$ relates phase gradient to momentum via $\mathbf{p} = \hbar\mathbf{k}$.
+\item \textbf{Direct observability}: Phase differences $\Delta\phi$ are measurable through interference, beating, and phase-sensitive detection.
+\item \textbf{Local field equations}: Evolution governed by Maxwell equations, Klein-Gordon equation, or Schrödinger equation in 4D spacetime.
+\end{itemize}
+
+\subsection{Examples in Standard Physics}
+
+\textbf{Electromagnetic waves}: The electric field $\mathbf{E}(t, \mathbf{x}) = \mathbf{E}_0 \cos(\omega t - \mathbf{k} \cdot \mathbf{x})$ has phase $\phi_{\text{EM}} = \omega t - \mathbf{k} \cdot \mathbf{x}$. Phase velocity $v_p = \omega/|\mathbf{k}|$ and group velocity $v_g = d\omega/d|\mathbf{k}|$ are directly measurable.
+
+\textbf{RF transmission lines}: Voltage and current waves on transmission lines exhibit phase shifts $\Delta\phi = \beta \ell$, where $\beta = 2\pi/\lambda$ is the propagation constant and $\ell$ is line length. These phase shifts are measured using network analyzers and are essential for impedance matching and signal integrity.
+
+\textbf{Quantum mechanical phase}: The wavefunction $\psi(t, \mathbf{x}) = |\psi| e^{i\phi_{\text{QM}}}$ includes a phase $\phi_{\text{QM}}(t, \mathbf{x})$ whose gradient determines probability current density. Global phase is unmeasurable, but relative phases between superposed states determine interference patterns.
+
+\textbf{Interferometry}: Optical interferometers measure path length differences $\Delta \ell$ through phase differences $\Delta\phi = (2\pi/\lambda) \Delta \ell$. These measurements are fundamental to gravitational wave detection (LIGO), precision metrology, and quantum optics.
+
+In all cases, real phase is a local 4D field governed by differential equations in $(t, \mathbf{x})$ and directly coupled to energy, momentum, and observable interference phenomena.
+
+\section{Imaginary/Quaternionic Phase in UBT}
+
+\subsection{Extended Complex Time}
+
+UBT extends the real time coordinate $t$ to complex time:
+\begin{equation}
+\tau = t + i\psi,
+\label{eq:complex_time}
+\end{equation}
+where $\psi$ is the imaginary time component. The fundamental biquaternionic field is $\Theta(q, \tau)$, where $q \in \mathbb{C} \otimes \mathbb{H}$ represents biquaternion spatial coordinates and $\tau$ encodes temporal structure.
+
+The biquaternionic metric is constructed from $\Theta$:
+\begin{equation}
+\mathcal{G}_{\mu\nu}(\Theta) = \Theta_\mu^\dagger \Theta_\nu,
+\label{eq:biq_metric}
+\end{equation}
+where $\mathcal{G}_{\mu\nu} \in \mathbb{B} = \mathbb{C} \otimes \mathbb{H}$ is a biquaternion-valued tensor.
+
+All 4D observables are obtained through Hermitian projection:
+\begin{equation}
+g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu}), \quad R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu}), \quad T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu}),
+\label{eq:hermitian_projection}
+\end{equation}
+where $g_{\mu\nu}$ is the observable metric tensor, $R_{\mu\nu}$ is the Ricci tensor, and $T_{\mu\nu}$ is the stress-energy tensor.
+
+\subsection{The $\Theta$-Field and Global Phase}
+
+The biquaternionic field $\Theta$ encodes the fundamental degrees of freedom. Its global phase structure is described by the imaginary time component $\psi$, which satisfies a drift-diffusion equation:
+\begin{equation}
+\frac{\partial \psi}{\partial t} = D \nabla^2 \psi - \alpha \frac{\partial V}{\partial \psi},
+\label{eq:psi_dynamics}
+\end{equation}
+where $D$ is diffusion coefficient, $\alpha$ is drift coefficient, and $V(\psi)$ is an effective potential determined by the toroidal topology of the phase space.
+
+Steady-state solutions of this equation correspond to Jacobi theta functions, providing self-consistent phase configurations.
+
+\subsection{Critical Distinctions from Standard Phase}
+
+The imaginary phase $\psi$ differs fundamentally from real dynamical phase:
+\begin{itemize}
+\item \textbf{Not an oscillation}: $\psi$ does not represent a time-varying oscillatory field. It is a geometric parameter describing the state of the biquaternionic field.
+\item \textbf{Not associated with frequency or energy}: There is no relation $E = \hbar\omega$ involving $\psi$. Energy is determined by the Hermitian projection of the stress-energy tensor.
+\item \textbf{Shared state parameter}: $\psi$ is a global property of the $\Theta$ field configuration, analogous to a modular parameter in complex analysis, not a local field variable.
+\item \textbf{Not a quantum mechanical phase}: Unlike the complex phase of a wavefunction, $\psi$ is a geometric coordinate in the extended time manifold, not a dynamical degree of freedom of matter fields.
+\end{itemize}
+
+While quantum mechanical global phase transformations $\psi_{\text{QM}} \to \psi_{\text{QM}} + \text{const}$ leave observables invariant, the UBT phase $\psi$ influences geometry through its coupling to the biquaternionic metric and thereby affects 4D projections in specific circumstances involving boundary conditions and coherence.
+
+\section{Projection Principle}
+
+\subsection{Fundamental Statement}
+
+All physical experiments are conducted in 4D spacetime $(t, \mathbf{x})$. The extended biquaternionic structure is not directly accessible. Observables are obtained through Hermitian projection of biquaternionic objects to their real parts.
+
+The projection principle states:
+\begin{equation}
+\text{Observable} = \text{Re}(\text{Biquaternionic quantity}).
+\label{eq:projection_principle}
+\end{equation}
+
+This applies to all geometric and physical quantities:
+\begin{align}
+\text{Metric:} \quad & g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu}), \\
+\text{Connection:} \quad & \Gamma^\lambda_{\mu\nu} = \text{Re}(\Omega^\lambda_{\mu\nu}), \\
+\text{Curvature:} \quad & R_{\mu\nu\rho\sigma} = \text{Re}(\mathcal{R}_{\mu\nu\rho\sigma}), \\
+\text{Stress-energy:} \quad & T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu}).
+\end{align}
+
+The imaginary component $\psi$ of complex time does not appear explicitly in these projected quantities. Its influence is indirect, manifesting through the structure of $\Theta$ and its derivatives.
+
+\subsection{Manifestations of Imaginary Phase in 4D}
+
+Although $\psi$ itself is not directly measurable, its presence can influence 4D observables in specific ways:
+
+\textbf{Effective phase offsets}: When the biquaternionic field configuration has non-trivial $\psi$ dependence, the projected 4D fields can exhibit phase shifts that are not explained by standard 4D propagation. These appear as effective phase offsets in interference measurements.
+
+\textbf{Coherence modulation}: The imaginary phase structure can affect coherence properties of projected 4D fields. Systems with different $\psi$ configurations can exhibit different coherence lengths and decoherence rates when projected to 4D.
+
+\textbf{Boundary condition sensitivity}: The toroidal topology of the $(\psi, t)$ manifold imposes periodicity and quantization conditions on allowed $\Theta$ configurations. These manifest as sensitivity to boundary conditions and geometric constraints in 4D experiments.
+
+\textbf{Interferometric correlations}: In multi-path interference experiments, the biquaternionic phase structure can introduce correlations between paths that are not present in standard 4D descriptions. These correlations appear as anomalous interference patterns under specific geometric configurations.
+
+\subsection{What Is NOT Observable}
+
+The projection principle explicitly forbids:
+\begin{itemize}
+\item Direct measurement of $\psi$ as a coordinate.
+\item Energy or momentum associated with $\partial_\psi$ derivatives.
+\item Propagation of signals in the $\psi$ direction.
+\item Direct access to ``higher dimensions'' or extra-dimensional travel.
+\item Observation of imaginary-valued field quantities.
+\end{itemize}
+
+Any experimental signature of UBT must be expressible as a real-valued 4D observable derived from Hermitian projection of biquaternionic quantities.
+
+\section{Compatibility with Existing Phase-Sensitive Measurements}
+
+\subsection{General Principle}
+
+UBT does not replace standard electromagnetic or quantum mechanical phase phenomena. It provides a unifying geometric framework in which these phenomena arise as projections of a more fundamental biquaternionic structure. All existing phase-sensitive measurements remain valid and are reinterpreted within the UBT framework.
+
+\subsection{Aharonov-Bohm Effect}
+
+The Aharonov-Bohm (AB) effect demonstrates that quantum particles acquire observable phase shifts when encircling regions with non-zero vector potential $\mathbf{A}$, even when the magnetic field $\mathbf{B} = \nabla \times \mathbf{A}$ vanishes in the particle's path.
+
+In UBT, the AB phase shift:
+\begin{equation}
+\Delta\phi_{\text{AB}} = \frac{e}{\hbar} \oint \mathbf{A} \cdot d\mathbf{l},
+\end{equation}
+is a real-valued 4D observable arising from the gauge structure of the projected electromagnetic field. The biquaternionic field $\Theta$ encodes gauge degrees of freedom that, when projected, reproduce standard $U(1)$ electromagnetism.
+
+The imaginary phase $\psi$ does not contribute to $\Delta\phi_{\text{AB}}$ directly. However, if the experimental configuration involves boundary conditions or geometric constraints that couple to the $\psi$ structure, additional phase shifts may appear. These would be distinguishable from standard AB effects by their dependence on system geometry rather than gauge field strength.
+
+\subsection{Geometric Phase (Berry Phase)}
+
+Geometric phases arise when a quantum system undergoes adiabatic evolution along a closed path in parameter space. The Berry phase:
+\begin{equation}
+\gamma = i \oint \langle n(\mathbf{R}) | \nabla_{\mathbf{R}} | n(\mathbf{R}) \rangle \cdot d\mathbf{R},
+\end{equation}
+is a real-valued observable determined by the geometry of the parameter space.
+
+UBT reinterprets geometric phases as arising from the holonomy of the biquaternionic connection $\Omega_\mu$ when projected to 4D. The imaginary time structure provides a natural geometric framework for understanding why certain parameter space paths acquire non-trivial phases—they correspond to non-contractible loops in the extended $(\tau, q)$ manifold.
+
+This is a conceptual unification, not a modification. Berry phases are computed using standard quantum mechanics; UBT provides geometric context.
+
+\subsection{Evanescent Waves}
+
+Evanescent electromagnetic waves in total internal reflection exhibit exponential spatial decay with complex wavevector components. The electric field:
+\begin{equation}
+\mathbf{E}(z, t) = \mathbf{E}_0 e^{-\kappa z} e^{i\omega t},
+\end{equation}
+has real frequency $\omega$ and imaginary spatial wavevector component $i\kappa$.
+
+In UBT, evanescent waves are 4D projected solutions of Maxwell's equations derived from the biquaternionic field equations. The complex spatial structure is distinct from the complex time structure $\tau = t + i\psi$. Evanescent waves do not probe the $\psi$ direction; they are purely spatial phenomena in 4D.
+
+\subsection{RF and Microwave Interferometry}
+
+Radio-frequency and microwave interferometers measure phase shifts in transmission lines and waveguides. These phase shifts arise from path length differences and dispersion, following standard electromagnetic wave propagation.
+
+UBT maintains that all such measurements yield real phase differences $\Delta\phi \in \mathbb{R}$ determined by 4D Maxwell equations. The biquaternionic structure provides a deeper geometric framework but does not alter the functional form of electromagnetic wave equations or their solutions in 4D.
+
+If an RF interferometer is designed with specific toroidal or periodic boundary conditions that resonate with the $\psi$ structure, UBT predicts potential anomalous phase shifts beyond standard electromagnetic predictions. These would be testable signatures distinguishing UBT from conventional electromagnetism.
+
+\section{Experimental Implications and Limits}
+
+\subsection{In-Principle Testable Effects}
+
+UBT predicts that certain 4D experiments can exhibit signatures of the underlying biquaternionic structure through projection effects:
+
+\textbf{Collective phase behavior}: Macroscopic systems with coherent $\Theta$ configurations may exhibit collective phase dynamics that differ from incoherent superpositions of individual particle phases. This is analogous to superconductivity or Bose-Einstein condensation but arising from biquaternionic coherence.
+
+\textbf{Boundary condition sensitivity}: Experiments involving toroidal geometries, periodic boundary conditions, or specific topological configurations may show enhanced sensitivity to the $\psi$ structure. Observable effects would appear as anomalous phase shifts or coherence patterns not predicted by standard 4D field theory.
+
+\textbf{State-dependent interferometric shifts}: In quantum interferometers, the biquaternionic state of the particles (encoded in $\Theta$) may influence measured phase shifts beyond standard quantum mechanical predictions. This would manifest as correlations between preparation state and interference visibility.
+
+These effects are speculative and require experimental validation. They represent conceptually allowed signatures within UBT, not guaranteed predictions.
+
+\subsection{What Is NOT Predicted}
+
+To avoid confusion and pseudoscientific misinterpretation, we explicitly state what UBT does \textbf{not} predict:
+
+\textbf{Quantization of classical phase}: Real electromagnetic phase $\phi_{\text{EM}}$ remains continuous. UBT does not predict discrete jumps or quantization of classical field phase.
+
+\textbf{Direct detection of higher dimensions}: The imaginary time $\psi$ is not a spatial dimension that can be ``traveled'' or ``accessed.'' All experiments occur in 4D spacetime.
+
+\textbf{Superluminal signaling}: No information can be transmitted faster than light using UBT phase effects. Causality and Lorentz invariance are preserved in the 4D projection.
+
+\textbf{Anomalous energy transfer}: Energy conservation holds in the 4D projected theory. The imaginary phase $\psi$ does not serve as an energy reservoir or source of ``free energy.''
+
+\textbf{Violation of Maxwell equations}: In the 4D projection, electromagnetic fields satisfy standard Maxwell equations. UBT provides geometric context but does not modify electromagnetic dynamics in 4D.
+
+\textbf{Violation of quantum mechanics}: Standard quantum mechanical predictions (wavefunctions, commutation relations, unitarity) remain valid in 4D. UBT reinterprets their geometric origin but does not alter computational results.
+
+\subsection{Experimental Conservatism}
+
+UBT maintains strict adherence to experimentally verified physics:
+\begin{itemize}
+\item All predictions in the 4D projection must match established experimental results.
+\item Any new effect must arise from geometric reinterpretation, not modification of fundamental laws.
+\item Testable signatures must be clearly distinguishable from standard physics and specified in advance.
+\item Negative results (failure to observe UBT-specific effects) are scientifically acceptable outcomes.
+\end{itemize}
+
+This conservative approach ensures UBT remains a serious theoretical framework rather than unfalsifiable speculation.
+
+\section{Summary}
+
+We have established a rigorous distinction between two fundamentally different notions of phase in physics:
+
+\subsection{Real Phase (4D Dynamical)}
+
+\begin{itemize}
+\item Local scalar field $\phi(t, \mathbf{x})$ in 4D spacetime.
+\item Directly coupled to frequency $\omega$ and energy $E = \hbar\omega$.
+\item Governed by local differential equations (Maxwell, Schrödinger, Klein-Gordon).
+\item Directly measurable through interference, beating, phase-sensitive detection.
+\item Examples: electromagnetic wave phase, quantum mechanical phase, RF transmission line phase.
+\end{itemize}
+
+\subsection{UBT Phase (Global, State-Level, Projected)}
+
+\begin{itemize}
+\item Imaginary component $\psi$ of extended complex time $\tau = t + i\psi$.
+\item Global geometric parameter of the biquaternionic field $\Theta$.
+\item Not an oscillation; not associated with frequency or energy.
+\item Not directly measurable; influences 4D observables only through projection.
+\item Manifestations: effective phase offsets, coherence modulation, boundary condition sensitivity.
+\item Governed by drift-diffusion dynamics with theta function attractors.
+\end{itemize}
+
+\subsection{Consistency and Compatibility}
+
+UBT maintains full internal consistency and experimental conservatism:
+\begin{itemize}
+\item All 4D observables arise from Hermitian projection: $\text{Observable} = \text{Re}(\text{Biquaternionic quantity})$.
+\item Standard electromagnetic and quantum mechanical phase phenomena are preserved and reinterpreted geometrically.
+\item No violations of Maxwell equations, quantum mechanics, causality, or energy conservation in 4D.
+\item Potential new effects are limited to geometric projections and clearly specified as testable hypotheses.
+\end{itemize}
+
+The distinction between real dynamical phase and UBT global phase is absolute. Conflating these concepts leads to misinterpretation. Real phase is measurable 4D dynamics; UBT phase is hidden geometric structure revealed only through specific projection effects.
+
+This framework provides a mathematically rigorous foundation for understanding phase phenomena in UBT while maintaining strict adherence to experimental physics and theoretical consistency.
+
+\section*{License}
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+\textbf{License History:} Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development.
+
+\end{document}
