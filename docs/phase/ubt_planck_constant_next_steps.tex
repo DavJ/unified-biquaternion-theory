@@ -1,0 +1,747 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\geometry{a4paper, margin=1in}
+
+\title{Next Logical Steps Toward Non-Circular Numerical Fixing\\of Planck's Constant in Unified Biquaternion Theory}
+\author{Ing.~David~Jaroš}
+\date{February 2026}
+
+\begin{document}
+\maketitle
+
+% License Notice - Visible in PDF
+\noindent
+\textbf{License:} © 2025 Ing. David Jaroš. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). See \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} for details.
+
+\vspace{1em}
+
+\begin{abstract}
+This document outlines the next logical steps toward fixing the numerical value of Planck's constant $\hbar$ within Unified Biquaternion Theory (UBT) without circular reasoning. Building on the analysis in \texttt{ubt\_planck\_constant\_derivation.tex}, we acknowledge that UBT currently derives the \emph{existence} of quantized action from topological principles but not its numerical scale. We systematically enumerate candidate mechanisms that could, in principle, fix this scale non-circularly, analyze their logical dependencies, identify potential experimental signatures, and explicitly state failure modes. This is a roadmap document, not a claim of success. The goal is to provide a critical, transparent framework for future research that allows independent verification of logical consistency and empirical testability.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Recap of the Current Status}
+
+\subsection{What Has Been Derived Non-Circularly}
+
+The companion document \texttt{ubt\_planck\_constant\_derivation.tex} establishes the following results within UBT framework:
+
+\begin{enumerate}
+\item \textbf{Existence of a minimal action quantum}: The topology of complex time $\tau = t + i\psi$, modeled as a product torus $\mathcal{T} = S^1_t \times S^1_\psi$, imposes topological quantization on phase circulation. For any closed cycle $\gamma$ on the torus, the action integral
+\[
+S_\gamma = \oint_\gamma \nabla_\tau \arg(\Theta) \, d\tau
+\]
+satisfies $S_\gamma \in 2\pi \mathbb{Z}$ due to single-valuedness of the biquaternionic field $\Theta(q,\tau)$.
+
+\item \textbf{Topological quantization via winding numbers}: The fundamental group $\pi_1(\mathcal{T}) = \mathbb{Z} \times \mathbb{Z}$ requires that $\Theta$ acquires phase factors $e^{2\pi i n_t}$ and $e^{2\pi i n_\psi}$ when transported around the real-time and imaginary-time cycles, respectively. These winding numbers $n_t, n_\psi \in \mathbb{Z}$ are \emph{topologically protected} discrete quantum numbers.
+
+\item \textbf{Separation of geometric phase and physical energy}: UBT defines energy density via the stress-energy tensor
+\[
+\mathcal{T}_{\mu\nu} = \langle D_\mu \Theta, D_\nu \Theta \rangle_\mathbb{B} - \frac{1}{2} \mathcal{G}_{\mu\nu} \langle D\Theta, D\Theta \rangle,
+\]
+derived from the biquaternionic action, \emph{without} invoking $E = \hbar\omega$. Energy is a geometric quantity (field gradient squared), not definitionally linked to frequency.
+
+\item \textbf{Dimensionless fine-structure constant}: UBT derives $\alpha \approx 1/137$ as the aspect ratio $R_t/R_\psi$ of the complex-time torus, optimized via minimization of an effective potential over prime winding numbers. This is a purely dimensionless geometric result.
+\end{enumerate}
+
+\subsection{What Is Still Missing: Numerical Scale}
+
+The topological quantization yields $S \in 2\pi \mathbb{Z}$, which is \textbf{dimensionless}. Physical action has dimensions $[\text{energy} \times \text{time}]$. To identify the topological action quantum with $\hbar$, we need:
+
+\[
+S_{\text{topological}} = 2\pi n \quad \longleftrightarrow \quad S_{\text{physical}} = n \hbar.
+\]
+
+This requires fixing the conversion factor between dimensionless topological winding and dimensional physical action:
+
+\[
+\hbar = \frac{S_{\text{physical}}}{S_{\text{topological}}} \times 2\pi.
+\]
+
+\textbf{Current status}: UBT does not provide this conversion factor from first principles. The numerical value of $\hbar$ must be either:
+\begin{itemize}
+\item \textbf{Empirically identified} (acceptable but not a complete derivation), or
+\item \textbf{Derived from additional geometric/physical principles} (the goal of future research).
+\end{itemize}
+
+\subsection{Logical Dependency Summary}
+
+To avoid confusion, we state explicitly:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Derived (non-circular)} & \textbf{Not yet derived (missing)} \\
+\hline
+Existence of action quantum & Numerical value of $\hbar$ \\
+Topological quantization $S \in 2\pi\mathbb{Z}$ & Dimensional scale $[\text{energy} \times \text{time}]$ \\
+Fine-structure constant $\alpha = 1/137$ & Speed of light $c$ (dimensionful) \\
+Winding numbers $n \in \mathbb{Z}$ & Gravitational constant $G$ (dimensionful) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Critical point}: Any claim that UBT derives $\hbar$ numerically must show how to fix the dimensional scale \emph{without} inserting $\hbar$, $c$, $G$, $e$, or other empirical constants at intermediate steps.
+
+\section{Dimensional Analysis Without Constants}
+
+\subsection{The Dimensionless Nature of Pure Topology}
+
+Topological invariants are, by definition, independent of metric and scale:
+\begin{itemize}
+\item Winding numbers: $n \in \mathbb{Z}$ (dimensionless)
+\item Chern numbers: $c_1, c_2, \ldots \in \mathbb{Z}$ (dimensionless)
+\item Euler characteristic: $\chi(\mathcal{T}) = 0$ for a torus (dimensionless)
+\item Homotopy groups: $\pi_1, \pi_2, \ldots$ (algebraic structures, no dimension)
+\end{itemize}
+
+Any combination of topological invariants (sums, products, logarithms) remains dimensionless. Therefore:
+
+\textbf{Theorem (Informal)}: Pure topology cannot produce dimensional constants.
+
+\subsection{What Could Introduce a Dimensional Scale?}
+
+To obtain a quantity with dimensions $[\hbar] = [\text{energy} \times \text{time}]$, we need at least one of:
+
+\begin{enumerate}
+\item \textbf{A fundamental length scale} $\ell_0$: Combined with $c$ (assumed known), gives $[\ell_0] \times [c]^{-1} = [\text{time}]$. Combined with field energy density, yields action.
+
+\item \textbf{A fundamental energy scale} $E_0$: Combined with characteristic time $T$, gives $[E_0] \times [T] = [\text{action}]$.
+
+\item \textbf{A fundamental time scale} $T_0$: Combined with field energy, yields action.
+
+\item \textbf{A coupling to external physics}: If UBT couples to an already-established theory with dimensional constants (e.g., General Relativity with $G$, electromagnetism with $\epsilon_0$), we can inherit scales.
+\end{enumerate}
+
+\subsection{Can the Torus Radii Provide a Scale?}
+
+The complex-time torus has radii $R_t$ and $R_\psi$. Their ratio $\alpha = R_t/R_\psi$ is dimensionless and determines $\alpha \approx 1/137$. But the \emph{absolute values} $R_t$ and $R_\psi$ are dimensional:
+
+\[
+[R_t] = [\text{time}], \quad [R_\psi] = [\text{imaginary-time}] = [\text{dimensionless}] \times [\text{time}]?
+\]
+
+\textbf{Question}: What is the physical dimension of the imaginary-time coordinate $\psi$?
+
+\begin{itemize}
+\item \textbf{Option A}: $\psi$ is dimensionless (phase angle). Then $R_\psi$ has dimension $[\text{time}]$ (or inverse energy if we use natural units).
+
+\item \textbf{Option B}: $\psi$ has dimension $[\text{time}]$, making the complex combination $\tau = t + i\psi$ homogeneous. Then $R_\psi$ has dimension $[\text{time}]$.
+\end{itemize}
+
+In either case, $R_t$ and $R_\psi$ are dimensional. \textbf{Without fixing their absolute scale, we cannot determine $\hbar$}.
+
+\subsection{Dimensional Counting Argument}
+
+Suppose we want to derive $\hbar$ from UBT geometry. We have:
+
+\begin{itemize}
+\item Available dimensionless inputs: $\pi$, $e$ (Euler's number), $\alpha = 1/137$, winding numbers $n$, Lie algebra dimensions, etc.
+\item Available dimensional quantities: $R_t$, $R_\psi$ (undetermined scale), field amplitudes $|\Theta|$ (undetermined scale).
+\end{itemize}
+
+The quantity $\hbar$ has dimension $ML^2T^{-1}$. To construct it, we need:
+\begin{itemize}
+\item At least one fundamental scale with independent dimension (cannot be constructed from combinations of dimensionless numbers).
+\end{itemize}
+
+\textbf{Conclusion}: One additional physical principle is unavoidable to fix $\hbar$ numerically. This principle must either:
+\begin{enumerate}
+\item Determine $R_t$ or $R_\psi$ absolutely (not just their ratio), or
+\item Relate the topological action quantum to an independently measurable physical scale.
+\end{enumerate}
+
+\section{Candidate Scale-Setting Mechanisms}
+
+We now enumerate possible non-circular mechanisms for fixing the dimensional scale. For each, we state:
+\begin{itemize}
+\item The \textbf{assumption} required
+\item Whether it introduces a \textbf{new scale} or uses existing physics
+\item Whether it risks \textbf{circularity}
+\item Its \textbf{logical status} (necessary, sufficient, or speculative)
+\end{itemize}
+
+\subsection{Mechanism 1: Vacuum Boundary Conditions}
+
+\textbf{Assumption}: The biquaternionic field $\Theta(q,\tau)$ in vacuum obeys specific boundary conditions at spatial or temporal infinity that fix $R_t$ and $R_\psi$ absolutely.
+
+\textbf{Example}: If we require that the vacuum state minimizes the total action $S[\Theta, \mathcal{G}]$, and if this minimization uniquely determines $R_t$ and $R_\psi$ (not just their ratio), then we obtain a fundamental time scale.
+
+\textbf{Does it introduce a new scale?}
+\begin{itemize}
+\item No, it \emph{selects} a scale from the existing geometry.
+\end{itemize}
+
+\textbf{Risk of circularity?}
+\begin{itemize}
+\item Low, provided the action functional does not contain $\hbar$ explicitly.
+\item The action $S[\Theta, \mathcal{G}]$ in UBT is constructed from field gradients and curvature, which are geometric quantities. If written in natural units ($c = 1$), it is dimensionless.
+\item However, converting to physical units requires a scale, which is the very thing we seek.
+\end{itemize}
+
+\textbf{Logical status}:
+\begin{itemize}
+\item \textcolor{orange}{\textbf{Speculative}}. Current formulation of UBT action does not uniquely fix $R_t$ and $R_\psi$ separately. Additional constraints (e.g., from cosmology, vacuum stability) would be needed.
+\end{itemize}
+
+\subsection{Mechanism 2: Minimal Curvature / Minimal Vortex Size}
+
+\textbf{Assumption}: There exists a minimal allowable curvature scale in UBT geometry, analogous to a minimal length (e.g., Planck length) or minimal vortex size in a superfluid.
+
+\textbf{Rationale}: In quantum field theory, vacuum fluctuations prevent arbitrarily small structures. If UBT has a similar cutoff, this cutoff length $\ell_{\text{min}}$ could set the scale.
+
+\textbf{Does it introduce a new scale?}
+\begin{itemize}
+\item Yes, $\ell_{\text{min}}$ is a new fundamental constant with dimension $[\text{length}]$.
+\item Combined with $c$, it gives a fundamental time $t_{\text{min}} = \ell_{\text{min}}/c$.
+\end{itemize}
+
+\textbf{Risk of circularity?}
+\begin{itemize}
+\item Medium. If $\ell_{\text{min}}$ is defined as the Planck length $\ell_{\text{Planck}} = \sqrt{\hbar G / c^3}$, this is circular (contains $\hbar$).
+\item To avoid circularity, $\ell_{\text{min}}$ must be derived independently of $\hbar$.
+\end{itemize}
+
+\textbf{Logical status}:
+\begin{itemize}
+\item \textcolor{orange}{\textbf{Hypothetical}}. UBT does not currently derive a minimal length. Such a derivation would likely require quantization of geometry itself (quantum gravity regime).
+\end{itemize}
+
+\subsection{Mechanism 3: Compactification Radius of Internal (ψ) Cycle}
+
+\textbf{Assumption}: The imaginary-time coordinate $\psi$ is compactified on a circle $S^1_\psi$ with a fundamental radius $R_\psi^0$ set by consistency conditions (e.g., modular invariance, absence of anomalies).
+
+\textbf{Analogy}: In Kaluza-Klein theory, extra dimensions are compactified on scales related to fundamental physics (e.g., Planck scale or GUT scale).
+
+\textbf{Does it introduce a new scale?}
+\begin{itemize}
+\item Yes, $R_\psi^0$ is a new dimensional parameter.
+\item If we also know $\alpha = R_t / R_\psi$, then $R_t = \alpha R_\psi^0$ is fixed.
+\end{itemize}
+
+\textbf{Risk of circularity?}
+\begin{itemize}
+\item Low, if $R_\psi^0$ is derived from geometric consistency (e.g., requiring absence of ghosts, unitarity, anomaly cancellation).
+\item High, if $R_\psi^0$ is set by hand to match $\hbar$.
+\end{itemize}
+
+\textbf{Logical status}:
+\begin{itemize}
+\item \textcolor{orange}{\textbf{Open question}}. To make this rigorous, we need:
+\begin{enumerate}
+\item A derivation showing that certain values of $R_\psi$ lead to inconsistencies (e.g., negative norm states, violation of unitarity).
+\item A proof that only one value (or a discrete set) of $R_\psi$ is allowed.
+\end{enumerate}
+\end{itemize}
+
+\textbf{Example calculation (hypothetical)}:
+Suppose quantization of the $\psi$-cycle requires:
+\[
+R_\psi = \frac{n}{m_{\text{eff}}},
+\]
+where $n \in \mathbb{Z}$ is a winding number and $m_{\text{eff}}$ is an effective mass scale derived from the field theory. If $m_{\text{eff}}$ is related to observable masses (e.g., electron mass), we could potentially solve for $R_\psi$ and hence $\hbar$.
+
+\textbf{Obstacle}: The electron mass $m_e$ itself depends on $\hbar$ via the Compton wavelength $\lambda_C = \hbar / (m_e c)$. This risks circularity unless we can derive $m_e$ independently.
+
+\subsection{Mechanism 4: Matching Condition Between Internal and Spacetime Periods}
+
+\textbf{Assumption}: There exists a physical requirement that the period $T_\psi = 2\pi R_\psi$ of the internal imaginary-time cycle is related to an observable spacetime period (e.g., inverse temperature, cosmological time scale, oscillation period of fundamental fields).
+
+\textbf{Example}: If we identify $\psi$ with inverse temperature $\beta = 1/(k_B T)$ (as in thermal field theory), then:
+\[
+R_\psi \sim \frac{1}{k_B T}.
+\]
+For a fundamental temperature $T_0$ (e.g., CMB temperature, Planck temperature), this fixes $R_\psi$.
+
+\textbf{Does it introduce a new scale?}
+\begin{itemize}
+\item Yes, the fundamental temperature $T_0$.
+\item But temperature requires Boltzmann's constant $k_B$, which is related to $\hbar$ in quantum statistical mechanics.
+\end{itemize}
+
+\textbf{Risk of circularity?}
+\begin{itemize}
+\item High, if we use $k_B$ or quantum thermal relations involving $\hbar$.
+\item Could be avoided if $T_0$ is derived from classical cosmology (CMB temperature from redshift measurements, not quantum considerations).
+\end{itemize}
+
+\textbf{Logical status}:
+\begin{itemize}
+\item \textcolor{orange}{\textbf{Requires careful analysis}}. The connection between $\psi$ and thermodynamic temperature is not established in UBT. It would require:
+\begin{enumerate}
+\item A derivation showing that partition functions in UBT naturally involve integration over $\psi$.
+\item Identification of the measure factor that becomes $e^{-\beta E}$.
+\end{enumerate}
+\end{itemize}
+
+\subsection{Comparison of Mechanisms}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Mechanism} & \textbf{New Scale?} & \textbf{Circularity Risk} & \textbf{Status} \\
+\hline
+Vacuum boundary conditions & No & Low & Speculative \\
+Minimal curvature/vortex & Yes ($\ell_{\text{min}}$) & Medium & Hypothetical \\
+Compactification radius & Yes ($R_\psi^0$) & Low & Open \\
+Matching to spacetime period & Yes ($T_0$) & High & Requires analysis \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Recommendation}: Mechanism 3 (compactification radius from consistency conditions) appears most promising if it can be shown that geometric/topological consistency uniquely fixes $R_\psi$.
+
+\section{Relation to the Fine-Structure Constant (Critical Analysis)}
+
+\subsection{Can α Be Derived Independently of ℏ?}
+
+In standard physics, the fine-structure constant is defined as:
+\[
+\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c}.
+\]
+
+This involves four quantities: $e$ (electron charge), $\epsilon_0$ (vacuum permittivity), $\hbar$, and $c$. If we know three, we can solve for the fourth.
+
+In UBT, $\alpha$ is derived geometrically:
+\[
+\alpha = \frac{R_t}{R_\psi} = \frac{1}{n_\star}, \quad n_\star = 137.
+\]
+
+This derivation does \emph{not} involve $e$, $\epsilon_0$, $\hbar$, or $c$. It is purely a ratio of geometric scales on the complex-time torus.
+
+\textbf{Question}: Is this derivation logically independent of $\hbar$?
+
+\textbf{Answer}: Yes, provided:
+\begin{enumerate}
+\item The effective potential $V_{\text{eff}}(n)$ used to select $n_\star = 137$ is derived from biquaternionic geometry without inserting empirical constants.
+\item The minimization procedure is purely mathematical (no input from QED).
+\end{enumerate}
+
+If these conditions hold, then $\alpha$ is derived \emph{before} $\hbar$, breaking the usual circular dependency.
+
+\subsection{Logical Dependency Graph}
+
+We now analyze the logical dependencies:
+
+\textbf{Standard Physics Dependency}:
+\[
+\alpha \leftarrow \{e, \epsilon_0, \hbar, c\}.
+\]
+Knowing any three allows calculation of the fourth, but all four are empirical inputs.
+
+\textbf{UBT Dependency (Claimed)}:
+\[
+\alpha \leftarrow \{\text{UBT geometry}, n_\star\}.
+\]
+If correct, we have:
+\[
+\hbar \leftarrow \{\alpha_{\text{UBT}}, e, \epsilon_0, c\}.
+\]
+
+This reduces empirical input from 4 constants to 3 constants (progress, but not complete).
+
+\subsection{Can e Also Be Derived Geometrically?}
+
+If the electron charge $e$ could be derived from topological quantization (e.g., magnetic flux quantization, Dirac quantization condition), we would have:
+\[
+e \leftarrow \{\text{UBT geometry}\}.
+\]
+
+Then:
+\[
+\hbar \leftarrow \{\alpha_{\text{UBT}}, e_{\text{UBT}}, \epsilon_0, c\}.
+\]
+
+This reduces empirical input to 2 constants ($\epsilon_0$ and $c$).
+
+\textbf{Status of $e$ derivation in UBT}:
+\begin{itemize}
+\item Not currently established.
+\item Potential route: Dirac quantization condition $eg = n \hbar / 2$ relates $e$ to magnetic charge $g$. If both can be topologically quantized, this might fix $e$ up to a dimensionless multiple.
+\item Obstacle: Dirac condition involves $\hbar$, creating a coupled system. Need to solve for $e$ and $\hbar$ simultaneously.
+\end{itemize}
+
+\subsection{Full Dependency Tree (Hypothetical)}
+
+If UBT could derive:
+\begin{itemize}
+\item $\alpha$ from torus geometry (done),
+\item $e$ from flux quantization (hypothetical),
+\item $c$ from causality structure (speculative),
+\item $\epsilon_0$ from vacuum polarization (speculative),
+\end{itemize}
+
+then $\hbar$ could be computed from:
+\[
+\hbar = \frac{e^2}{4\pi \epsilon_0 \alpha c}.
+\]
+
+\textbf{Current reality}:
+\begin{itemize}
+\item Only $\alpha$ is derived.
+\item $e$, $\epsilon_0$, $c$ are empirical.
+\item Therefore, $\hbar$ calculation requires 3 empirical inputs.
+\end{itemize}
+
+\subsection{What Must Be Proven to Avoid Circularity}
+
+To claim a non-circular derivation of $\hbar$ via $\alpha$, we must prove:
+
+\begin{enumerate}
+\item \textbf{Independence}: The derivation of $\alpha$ from UBT geometry does not assume any value of $\hbar$ at any intermediate step.
+
+\item \textbf{Non-tuning}: The choice of effective potential $V_{\text{eff}}(n)$ or other geometric structures is not fine-tuned to reproduce $\alpha = 1/137$.
+
+\item \textbf{Uniqueness}: The minimization or selection procedure that yields $n_\star = 137$ has a unique or at least strongly preferred solution (not a wide continuum of possibilities).
+
+\item \textbf{Empirical independence}: The values of $e$, $\epsilon_0$, $c$ used in the final step are measured independently of quantum mechanics (or at least independently of the action quantization).
+\end{enumerate}
+
+\textbf{Status}: Conditions 1-3 require detailed analysis of the UBT derivation of $\alpha$. Condition 4 is satisfied for $c$ (measured in classical electrodynamics) but more subtle for $e$ and $\epsilon_0$ (both involve quantum measurements in practice).
+
+\section{Experimental or Observational Handles}
+
+Even if a complete ab initio derivation of $\hbar$ is not possible, the framework outlined above suggests potential experimental tests. We identify observables that could distinguish UBT's mechanism from standard QM.
+
+\subsection{Effective ℏ Variation}
+
+\textbf{Hypothesis}: If the complex-time torus radii $R_t$ and $R_\psi$ are dynamical (e.g., vary with spacetime curvature, field strength, or cosmological epoch), then the effective action quantum might vary:
+\[
+\hbar_{\text{eff}}(x, t) = \hbar_0 \times f(R_t(x,t), R_\psi(x,t)),
+\]
+where $f$ is a geometric function.
+
+\textbf{Observable signatures}:
+\begin{itemize}
+\item Variation of atomic transition frequencies in strong gravitational fields (beyond GR redshift).
+\item Deviation from standard Lamb shift in extreme environments (near black holes, neutron stars).
+\item Anomalous correction to $g$-factor of electron in curved spacetime.
+\end{itemize}
+
+\textbf{Testability}:
+\begin{itemize}
+\item Extremely challenging with current technology.
+\item Gravitational redshift experiments (e.g., atomic clocks on GPS satellites) have exquisite precision but currently see no deviations from GR.
+\item Future experiments: atomic clocks near solar surface, in orbit around white dwarfs or neutron stars.
+\end{itemize}
+
+\textbf{Logical status}:
+\begin{itemize}
+\item \textcolor{orange}{\textbf{Speculative but falsifiable}}. Requires UBT to make quantitative predictions for $f(R_t, R_\psi)$ and its dependence on curvature.
+\end{itemize}
+
+\subsection{Anomalous Phase Accumulation}
+
+\textbf{Hypothesis}: Paths through complex time accumulate phase factors beyond the standard $e^{iS/\hbar}$. If the imaginary-time coordinate $\psi$ has physical effects, interference experiments might show anomalous phase shifts.
+
+\textbf{Observable signatures}:
+\begin{itemize}
+\item Deviations in Aharonov-Bohm effect (magnetic flux-dependent phase shifts).
+\item Anomalous phases in neutron interferometry.
+\item Geometric phases in cyclic quantum processes (beyond Berry phase).
+\end{itemize}
+
+\textbf{Testability}:
+\begin{itemize}
+\item Neutron interferometry and atomic interferometry are precision tools.
+\item Current limits: phase resolution $\sim 10^{-5}$ radians in neutron experiments.
+\item UBT would need to predict $\psi$-dependent contributions at this level or higher.
+\end{itemize}
+
+\textbf{Projection into 4D observables}:
+Since $\psi$ is internal (not a spacetime coordinate), its effects must manifest as:
+\begin{enumerate}
+\item Additional phase factors in quantum amplitudes.
+\item Corrections to energy levels (shifts in spectral lines).
+\item Anomalous correlation functions in scattering experiments.
+\end{enumerate}
+
+\subsection{Scale-Dependent Interference Effects}
+
+\textbf{Hypothesis}: If the action quantum has internal structure (related to winding on the complex-time torus), macroscopic quantum interference (e.g., in Bose-Einstein condensates, superconductors) might show scale-dependent decoherence or phase diffusion not present in standard QM.
+
+\textbf{Observable signatures}:
+\begin{itemize}
+\item Anomalous decoherence rate in macroscopic superpositions (e.g., SQUID loops, cat states).
+\item Temperature dependence of quantum coherence beyond Caldeira-Leggett model.
+\item Non-standard noise spectrum in ultra-cold atom interferometers.
+\end{itemize}
+
+\textbf{Testability}:
+\begin{itemize}
+\item BEC and superconducting qubit experiments routinely probe macroscopic coherence.
+\item Current decoherence models are phenomenological; UBT could provide microscopic predictions.
+\end{itemize}
+
+\subsection{Cosmological Imprints}
+
+\textbf{Hypothesis}: If the torus radii $R_t$ and $R_\psi$ evolved during cosmic history (e.g., phase transition in early universe), there could be imprints in:
+\begin{itemize}
+\item Cosmic Microwave Background (CMB) power spectrum (anomalous correlations).
+\item Primordial abundance of light elements (Big Bang Nucleosynthesis).
+\item Matter power spectrum and large-scale structure (via effective $\hbar$ variation affecting density fluctuations).
+\end{itemize}
+
+\textbf{Testability}:
+\begin{itemize}
+\item CMB measurements (Planck, future missions) constrain deviations from $\Lambda$CDM at percent level.
+\item BBN is sensitive to changes in fundamental constants during nucleosynthesis epoch.
+\end{itemize}
+
+\subsection{Summary of Experimental Handles}
+
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Observable} & \textbf{Signature} & \textbf{Current Sensitivity} \\
+\hline
+Effective $\hbar$ variation & Atomic clock shifts & $\Delta \hbar/\hbar < 10^{-16}$ (local) \\
+Anomalous phase & Interferometry deviations & $\sim 10^{-5}$ rad (neutrons) \\
+Decoherence & Macroscopic coherence loss & Model-dependent \\
+CMB/cosmology & Spectral anomalies & $\sim 1\%$ level \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Key requirement}: UBT must make quantitative predictions to enable comparison with data. Qualitative statements about ``possible deviations'' are not testable.
+
+\section{Failure Modes and Logical Exit Conditions}
+
+We explicitly state conditions under which the program of deriving $\hbar$ numerically in UBT would fail, and why such failure would still be scientifically meaningful.
+
+\subsection{Failure Mode 1: Dimensional Obstruction}
+
+\textbf{Condition}: If no geometric consistency condition uniquely fixes the absolute scale of $R_t$ or $R_\psi$ (only their ratio $\alpha = R_t/R_\psi$), then UBT cannot determine $\hbar$ numerically.
+
+\textbf{Diagnosis}:
+\begin{itemize}
+\item This is the current situation.
+\item Dimensional analysis forbids extracting dimensional constants from dimensionless topology.
+\item At least one external dimensional input (e.g., $c$, $G$, or an observed energy/length scale) is required.
+\end{itemize}
+
+\textbf{Scientific meaning}:
+\begin{itemize}
+\item UBT would remain a \textbf{structural unification} explaining \emph{why} action is quantized and \emph{why} $\alpha = 1/137$, but not predicting $\hbar$ ab initio.
+\item This is still significant progress over standard QM, which treats both as empirical postulates.
+\item Comparison: General Relativity does not predict $G$ numerically but explains gravitational dynamics. GR is not considered a failure despite this.
+\end{itemize}
+
+\textbf{Honest statement}: If UBT falls into this failure mode, we should claim:
+\begin{quote}
+``UBT derives the existence of an action quantum and its topological quantization, but the numerical scale must be empirically identified as $\hbar$. This is analogous to GR deriving gravitational field equations but requiring empirical measurement of $G$.''
+\end{quote}
+
+\subsection{Failure Mode 2: Hidden Circularity}
+
+\textbf{Condition}: If scrutiny reveals that the derivation of $\alpha = 1/137$ implicitly uses quantum mechanics or $\hbar$-dependent physics at some intermediate step, the derivation is circular.
+
+\textbf{Examples of hidden circularity}:
+\begin{itemize}
+\item If the effective potential $V_{\text{eff}}(n)$ is derived from quantum field theory calculations involving loop integrals normalized with $\hbar$.
+\item If the torus radii are determined via semiclassical approximations ($\hbar \to 0$ limit).
+\item If prime number selection criterion uses quantum statistical mechanics.
+\end{itemize}
+
+\textbf{Diagnosis}:
+\begin{itemize}
+\item Requires line-by-line audit of the derivation.
+\item Every mathematical step must be traceable to biquaternionic geometry alone, without QM input.
+\end{itemize}
+
+\textbf{Scientific meaning}:
+\begin{itemize}
+\item If circularity is found and cannot be removed, UBT reduces to a reformulation of standard physics, not a derivation.
+\item This would be a null result but scientifically valuable (clarifies what UBT can and cannot do).
+\end{itemize}
+
+\textbf{Exit condition}: If after rigorous analysis, no non-circular derivation of $\alpha$ is possible, we must:
+\begin{enumerate}
+\item Retract claims of deriving $\alpha$ from first principles.
+\item Identify UBT as a geometric language for expressing QM, not a derivation of QM.
+\end{enumerate}
+
+\subsection{Failure Mode 3: Non-Uniqueness}
+
+\textbf{Condition}: If the minimization or selection procedure that yields $n_\star = 137$ is not unique (e.g., many primes give nearly equal minima, or continuous deformations shift the result), then the prediction is unstable.
+
+\textbf{Diagnosis}:
+\begin{itemize}
+\item If $V_{\text{eff}}(n)$ has multiple local minima at different primes, the theory does not uniquely predict $\alpha = 1/137$.
+\item If small perturbations to the geometry shift $n_\star$ to nearby primes (say, 131 or 139), the theory lacks predictive power.
+\end{itemize}
+
+\textbf{Scientific meaning}:
+\begin{itemize}
+\item Non-uniqueness does not invalidate UBT but reduces its predictive scope.
+\item One could still claim that $\alpha$ is \emph{constrained} to a discrete set of values (a discrete ``landscape'' of possible universes).
+\item This would require external input (anthropic reasoning, observational selection) to pick $n_\star = 137$.
+\end{itemize}
+
+\textbf{Acceptable outcomes}:
+\begin{itemize}
+\item Strong uniqueness: $n_\star = 137$ is the unique global minimum (best case).
+\item Weak uniqueness: $n_\star = 137$ is one of a small set (say, 3-5) of local minima, requiring additional selection principle.
+\item Landscape: Many values are allowed, requiring anthropic reasoning (acceptable in some frameworks, controversial in others).
+\end{itemize}
+
+\subsection{Failure Mode 4: Experimental Falsification}
+
+\textbf{Condition}: If UBT makes quantitative predictions for observable deviations (e.g., effective $\hbar$ variation in strong gravity) and these predictions are falsified by experiment, the theory is ruled out or requires modification.
+
+\textbf{Diagnosis}:
+\begin{itemize}
+\item This is the standard scientific failure mode (Popperian falsification).
+\item Example: If UBT predicts $\Delta \hbar / \hbar \sim 10^{-10}$ near a neutron star and atomic clocks measure $\Delta \hbar / \hbar < 10^{-14}$, UBT is falsified.
+\end{itemize}
+
+\textbf{Scientific meaning}:
+\begin{itemize}
+\item This is the most scientifically productive failure mode.
+\item It means UBT made testable predictions and engaged with experiment, which is the goal of physics.
+\item Falsification would guide refinement or replacement of UBT.
+\end{itemize}
+
+\textbf{Responsible practice}:
+\begin{itemize}
+\item Clearly state predicted deviations and their expected magnitude.
+\item Identify the parameter space where UBT is falsified vs. confirmed.
+\item Accept experimental verdict without special pleading.
+\end{itemize}
+
+\subsection{Why Failure Is Scientifically Meaningful}
+
+Even if UBT cannot derive $\hbar$ numerically, the exercise is valuable because:
+
+\begin{enumerate}
+\item \textbf{Clarifies logical structure}: Identifies which aspects of QM are derivable from geometry and which require empirical input.
+
+\item \textbf{Reduces empirical content}: Even deriving $\alpha$ alone reduces the number of independent empirical constants in physics.
+
+\item \textbf{Provides structural understanding}: Explains \emph{why} action is quantized (topology) even if \emph{how much} (numerical scale) remains empirical.
+
+\item \textbf{Guides future theories}: Identifies what additional principles (e.g., quantum gravity, emergent spacetime) would be needed to complete the derivation.
+
+\item \textbf{Avoids overclaiming}: Honest acknowledgment of limitations builds scientific credibility and invites constructive criticism.
+\end{enumerate}
+
+\textbf{Philosophical position}: Science progresses by attempting ambitious programs and clearly documenting their successes and failures. A theory that tries to derive $\hbar$ and fails honestly is more valuable than one that never tries or hides its assumptions.
+
+\section{Summary and Research Outlook}
+
+\subsection{Derived Results (High Confidence)}
+
+\begin{enumerate}
+\item \textbf{Topological quantization of action}: UBT derives from first principles that action along closed cycles in complex time is quantized: $S \in 2\pi \mathbb{Z}$ (dimensionless). This follows rigorously from $\pi_1(S^1_t \times S^1_\psi) = \mathbb{Z} \times \mathbb{Z}$.
+
+\item \textbf{Separation of phase and energy}: Energy is defined via stress-energy tensor from field dynamics, not via $E = \hbar\omega$. This avoids definitional circularity.
+
+\item \textbf{Fine-structure constant} (conditional): If the derivation of $\alpha = 1/137$ from torus geometry is non-circular and unique, this is a major result. Requires independent verification.
+\end{enumerate}
+
+\subsection{Hypothesized Extensions (Require Proof)}
+
+\begin{enumerate}
+\item \textbf{Absolute scale of torus radii}: Geometric consistency conditions (e.g., anomaly cancellation, vacuum stability) might uniquely fix $R_t$ and $R_\psi$ separately, not just their ratio. This would provide the missing dimensional scale.
+
+\item \textbf{Derivation of electron charge}: Topological quantization of electromagnetic flux or Dirac quantization condition might derive $e$ from UBT geometry. Combined with $\alpha$, this would constrain $\hbar$.
+
+\item \textbf{Dynamic torus radii}: If $R_t$ and $R_\psi$ are field-dependent, UBT predicts effective variation of $\hbar$ in extreme environments. This is testable.
+
+\item \textbf{Cosmological evolution}: Torus radii might evolve with cosmic time, leaving imprints in CMB and large-scale structure.
+\end{enumerate}
+
+\subsection{Open Problems (Identified Gaps)}
+
+\begin{enumerate}
+\item \textbf{Dimensional analysis obstruction}: How to extract dimensional constants from dimensionless topology without external input?
+
+\item \textbf{Uniqueness of α derivation}: Is $n_\star = 137$ the unique minimum of $V_{\text{eff}}(n)$, or are there competing minima?
+
+\item \textbf{Independence verification}: Rigorous proof that $\alpha$ derivation contains no hidden QM or $\hbar$-dependent steps.
+
+\item \textbf{Relation between $t$ and $\psi$}: What is the precise physical interpretation of imaginary time $\psi$? Phase angle? Thermal time? Something else?
+
+\item \textbf{Projection to observables}: How do effects of internal coordinate $\psi$ manifest in 4D spacetime measurements?
+\end{enumerate}
+
+\subsection{Logical Cleanliness: Decision Tree}
+
+To guide future research, we provide a decision tree:
+
+\begin{center}
+\begin{minipage}{0.9\textwidth}
+\textbf{Step 1}: Does UBT derive $\alpha = 1/137$ non-circularly?
+\begin{itemize}
+\item Yes $\to$ Proceed to Step 2.
+\item No $\to$ UBT is a reformulation, not a derivation. Document clearly and stop overclaiming.
+\end{itemize}
+
+\textbf{Step 2}: Can geometric consistency fix $R_t$ and $R_\psi$ absolutely (not just their ratio)?
+\begin{itemize}
+\item Yes $\to$ Compute $\hbar$ from geometric scales. Verify experimentally. SUCCESS.
+\item No $\to$ Proceed to Step 3.
+\end{itemize}
+
+\textbf{Step 3}: Can we derive other dimensional constants ($c$, $G$, $e$) from geometry?
+\begin{itemize}
+\item Yes (at least one) $\to$ Combine with $\alpha$ to solve for $\hbar$. PARTIAL SUCCESS.
+\item No $\to$ Proceed to Step 4.
+\end{itemize}
+
+\textbf{Step 4}: Accept empirical identification of $\hbar$ while claiming structural derivation of quantization.
+\begin{itemize}
+\item Outcome: UBT explains \emph{why} action is quantized but not \emph{its numerical scale}.
+\item Status: HONEST PARTIAL SUCCESS (analogous to GR and $G$).
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\subsection{Recommendations for Future Work}
+
+\begin{enumerate}
+\item \textbf{Rigorous audit of $\alpha$ derivation}: Verify that no step involves empirical constants or QM assumptions. Document every mathematical step from biquaternionic geometry to $n_\star = 137$.
+
+\item \textbf{Exploration of consistency conditions}: Investigate whether quantization conditions, anomaly cancellation, or unitarity constraints fix absolute scales.
+
+\item \textbf{Comparison with experiment}: Develop quantitative predictions for observable deviations (even if small) to enable empirical testing.
+
+\item \textbf{Derivation of $e$}: Attempt to derive electron charge from flux quantization or Dirac condition within UBT.
+
+\item \textbf{Minimal-assumption approaches}: Identify the \emph{smallest set} of additional assumptions that would suffice to fix $\hbar$ numerically. Make these assumptions explicit and testable.
+\end{enumerate}
+
+\subsection{Philosophical Conclusion}
+
+This document does not claim to solve the problem of deriving $\hbar$ numerically. Instead, it provides a roadmap:
+
+\begin{itemize}
+\item We have clearly separated what is derived (topological quantization) from what is missing (dimensional scale).
+\item We have enumerated candidate mechanisms and their circularity risks.
+\item We have identified testable predictions and failure modes.
+\item We have acknowledged that honest partial success or well-documented failure are scientifically valuable outcomes.
+\end{itemize}
+
+\textbf{Success criterion}: A critical reader can now point to the exact assumption or mechanism that must be validated or falsified to determine whether $\hbar$ is derivable in UBT. This transparency is the foundation of scientific progress.
+
+\section*{Acknowledgments}
+
+This document is written in the spirit of intellectual honesty and critical self-examination. The goal is to clarify what Unified Biquaternion Theory can and cannot currently accomplish, to guide future research toward testable predictions, and to avoid overclaiming. Any errors in logic or analysis are the sole responsibility of the author.
+
+\end{document}
