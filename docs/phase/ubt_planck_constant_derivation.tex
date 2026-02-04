@@ -50,14 +50,27 @@ In conventional quantum mechanics, Planck's constant $\hbar$ appears as a fundam
 \item \textbf{Empirical circularity}: One fits $\hbar$ to match experimental data (e.g., blackbody radiation, photoelectric effect), which is valid operationally but does not constitute a theoretical derivation.
 \end{enumerate}
 
+\subsection{Formal Definition of Circular Derivation}
+
+A derivation of $\hbar$ is \textbf{circular} if it commits any of the following:
+
+\begin{itemize}
+\item \textbf{Type I (Energy-frequency insertion)}: Assumes $E = \hbar\omega$ as a definition before deriving $\hbar$.
+\item \textbf{Type II (Action normalization insertion)}: Introduces $\hbar$ as a normalization factor for action quantization (e.g., $S = n\hbar$) and then ``derives'' $\hbar$ from the normalization.
+\item \textbf{Type III (Empirical constant insertion)}: Uses empirically measured values of $\hbar$, $\alpha$, $e$, $m_e$, etc., and algebraically solves for $\hbar$, treating the algebra as derivation.
+\item \textbf{Type IV (Commutator postulate)}: Assumes canonical commutation relations $[\hat{x}, \hat{p}] = i\hbar$ as a starting postulate, then extracts $\hbar$ from the postulate.
+\end{itemize}
+
+\textbf{This document explicitly avoids all four types of circularity.}
+
+\subsection{Criteria for Success or Failure}
+
 A \textbf{non-circular derivation} would require:
 \begin{itemize}
 \item Deriving the existence of quantized action from geometric/topological principles.
 \item Fixing the \emph{numerical scale} of the action quantum using only dimensionless geometric/topological data (e.g., $\pi$, winding numbers, Chern classes, group ranks).
 \item Avoiding insertion of $\hbar$ or any empirical constant ($e$, $\alpha$, $m_e$, etc.) except as final identification labels.
 \end{itemize}
-
-\subsection{Criteria for Success or Failure}
 
 We declare success if:
 \begin{itemize}
@@ -94,6 +107,35 @@ UBT is \textbf{not} permitted to:
 \item Insert $\hbar$ as a definition or normalization factor at any intermediate step.
 \item Define energy via $E = \hbar\omega$ before deriving $\hbar$.
 \end{itemize}
+
+\subsection{Structural vs. Numerical Results: Key Distinction}
+
+\fbox{\begin{minipage}{0.95\textwidth}
+\textbf{Distinction Critical to Avoiding Circular Claims:}
+
+\textbf{Structural Result (What UBT Can Derive):}
+\begin{itemize}
+\item \emph{Existence} of an action quantum $S_0$ from topological closure/winding in complex time.
+\item Quantization condition: physical action satisfies $S/S_0 \in \mathbb{Z}$ (or $2\pi\mathbb{Z}$ depending on normalization).
+\item This is a dimensionless, topological statement independent of SI units.
+\end{itemize}
+
+\textbf{Numerical Value (What Requires External Input):}
+\begin{itemize}
+\item The \emph{numerical value} of $S_0$ in SI units: $[S_0] = \text{J}\cdot\text{s}$.
+\item Converting dimensionless geometric ratios to dimensional physical constants requires at least one external scale (e.g., Planck length, speed of light, gravitational constant).
+\end{itemize}
+
+\textbf{Identification Step (Honest and Non-Circular):}
+\begin{itemize}
+\item We \emph{identify} $\hbar$ as the empirically measured SI value of the topologically derived action quantum $S_0$.
+\item This is not circular because we derived the \emph{structure} (existence and quantization) independently, and only use empirical data to fix the \emph{scale}.
+\end{itemize}
+
+\textbf{This distinction is repeated at the conclusion of this document.}
+\end{minipage}}
+
+\vspace{1em}
 
 \section{Minimal Mathematical Framework}
 
@@ -212,15 +254,20 @@ S_t = \int_0^{2\pi} \frac{\partial \arg(\Theta)}{\partial \theta_t} d\theta_t = 
 S_\psi = \int_0^{2\pi} \frac{\partial \arg(\Theta)}{\partial \theta_\psi} d\theta_\psi = 2\pi n_\psi.
 \]
 
+\textbf{Critical note on units}: These integrals are dimensionless. The factor $2\pi$ arises from the geometry of a circle, and $n_t, n_\psi \in \mathbb{Z}$ are pure integers. We have \emph{not} introduced $\hbar$ here.
+
 \textbf{Result}: Action along fundamental cycles is quantized in units of $2\pi$ times an integer. This is a \textbf{topological quantization}, not a dynamical one.
 
 \subsection{What This Does and Does Not Imply}
 
 \begin{itemize}
-\item \textbf{Derived}: Action is quantized topologically: $S \in 2\pi \mathbb{Z}$ (dimensionless).
+\item \textbf{Derived}: Action is quantized topologically: $S_{\text{dimensionless}} \in 2\pi \mathbb{Z}$.
 \item \textbf{Not derived}: The dimensional scale of physical action in units of $[\text{energy} \times \text{time}]$.
-\item \textbf{Missing}: A bridge between dimensionless topological winding and dimensional action.
+\item \textbf{Missing}: A bridge between dimensionless topological winding and dimensional action in SI units.
+\item \textbf{Identification (external)}: If we call the fundamental action unit $S_0$, then $\hbar$ is empirically identified as the measured value of $S_0$ in SI units.
 \end{itemize}
+
+\textbf{No circularity}: We did not assume $S = n\hbar$ and then solve for $\hbar$. We derived $S/S_0 \in \mathbb{Z}$ from topology, where $S_0$ is an unknown scale to be fixed externally.
 
 \section{Separation of Definitions to Avoid Circularity}
 
@@ -394,6 +441,94 @@ But we still need to \emph{know} $\ell_{\text{Planck}}$ numerically, which requi
 
 \textbf{Conclusion from Attempt 5}: There appears to be a fundamental obstruction: \emph{dimensionless geometry alone cannot determine dimensional scales}. At least one dimensional constant must be introduced externally.
 
+\section{Anti-Numerology and Parameter-Tuning Guardrails}
+
+\subsection{Purpose of This Section}
+
+This section exists to preempt accusations of:
+\begin{itemize}
+\item ``You just tuned numbers to hit $\alpha \approx 1/137$.''
+\item ``The factor $108\pi^2/8$ is cherry-picked to match experiment.''
+\item ``You varied dimension counts until you got the right answer.''
+\end{itemize}
+
+\textbf{Policy}: Any heuristic approximation or geometric ratio claimed to predict a physical constant must satisfy the following criteria.
+
+\subsection{Criteria for Non-Numerological Claims}
+
+\textbf{Rule 1 (Geometric object specification)}: If a ratio like $108\pi^2/8$ appears, it must be derived from a specific, independently justified geometric object (e.g., volume of a specific manifold, Chern class of a bundle, rank of a Lie algebra).
+
+\textbf{Rule 2 (Derivation transparency)}: The appearance of numerical factors (like 108) must be traced to:
+\begin{itemize}
+\item Dimensions of representation spaces (e.g., $\dim(\text{adjoint SU}(3)) = 8$)
+\item Winding numbers or topological invariants (integers from $\pi_1$, $\pi_2$, etc.)
+\item Combinatorial factors from symmetry groups
+\item Mathematical constants ($\pi$, $e$, Euler-Mascheroni $\gamma$)
+\end{itemize}
+
+\textbf{Rule 3 (No post-hoc tuning)}: Dimension counts, algebra choices, and geometric structures must be justified by independent theoretical necessity, not by ``trying different values until matching experiment.''
+
+\textbf{Example of violation}: Saying ``we choose dimension 108 because it gives $\alpha \approx 1/137$'' is numerology. Saying ``the biquaternionic algebra has dimension 8, and the gauge group $\text{SU}(3) \times \text{SU}(2) \times \text{U}(1)$ has total dimension $8 + 3 + 1 = 12$, and their product yields specific topological invariants...'' is potentially valid if the entire chain is derived.
+
+\subsection{Status of Current UBT Claims}
+
+\textbf{Fine-structure constant $\alpha \approx 1/137$}:
+\begin{itemize}
+\item \textbf{Claimed derivation}: Torus aspect ratio $R_t/R_\psi$ minimizing an effective potential with prime-number selection.
+\item \textbf{Geometric object}: The complex-time torus $S^1_t \times S^1_\psi$ with modular parameter.
+\item \textbf{Where 137 comes from}: Prime minimization of $V_{\text{eff}}(n) = An^2 - Bn\log n$. The functional form of $V_{\text{eff}}$ must be derived from biquaternionic action, not asserted.
+\item \textbf{Status}: If $V_{\text{eff}}$ is independently derived from curvature/winding constraints, this is non-numerological. If $V_{\text{eff}}$ is guessed to fit 137, this is numerology.
+\end{itemize}
+
+\textbf{Factor $108\pi^2/8$ (if it appears)}:
+\begin{itemize}
+\item \textbf{108}: Must be derived from specific representation dimensions or topological data. If it's ``adjusted to fit,'' it's numerology.
+\item \textbf{$\pi^2$}: Appears naturally in 2D topology (e.g., sphere volume factors, Chern classes).
+\item \textbf{8}: Could be dimension of $\mathbb{B}$, dimension of $\text{SU}(3)$ adjoint, or other algebraic invariant.
+\item \textbf{Requirement}: Each factor must have independent geometric justification.
+\end{itemize}
+
+\subsection{Dependency Graph and Logical Flow}
+
+To clarify what depends on what, we provide a logical dependency graph:
+
+\textbf{Level 0 (Pure geometry/topology, no empirical input):}
+\begin{itemize}
+\item Biquaternionic algebra structure ($\mathbb{C} \otimes \mathbb{H}$, dimension 8)
+\item Gauge group structure ($\text{SU}(3) \times \text{SU}(2) \times \text{U}(1)$)
+\item Complex-time torus topology ($S^1_t \times S^1_\psi$)
+\item Winding number quantization ($n_t, n_\psi \in \mathbb{Z}$)
+\end{itemize}
+
+\textbf{Level 1 (Derived from Level 0):}
+\begin{itemize}
+\item Action quantization: $S/S_0 \in 2\pi\mathbb{Z}$ (dimensionless)
+\item Fine-structure constant $\alpha$ as torus aspect ratio (if $V_{\text{eff}}$ is derived)
+\end{itemize}
+
+\textbf{Level 2 (Requires one external dimensional scale):}
+\begin{itemize}
+\item Numerical value of $\hbar$ in SI units (requires $c$, $G$, or direct empirical measurement)
+\item Conversion between geometric and physical units
+\end{itemize}
+
+\textbf{Level 3 (Requires multiple empirical inputs):}
+\begin{itemize}
+\item Using $\alpha = e^2/(4\pi\epsilon_0\hbar c)$ to extract $\hbar$ from $\alpha$ requires knowing $e$, $\epsilon_0$, $c$ empirically.
+\end{itemize}
+
+\textbf{Current status of $\alpha$ derivation}:
+\begin{itemize}
+\item If $\alpha$ is fully derived at Level 1, this is major progress.
+\item Deriving $\hbar$ requires moving to Level 2 or 3, which involves external input.
+\end{itemize}
+
+\textbf{What would count as genuine ab initio numerical derivation}:
+\begin{itemize}
+\item Deriving \emph{all} dimensional constants ($c$, $G$, $\hbar$) from a single fundamental geometric scale (e.g., Planck length) where that scale itself is determined by pure geometry (e.g., ``the Planck length is the unique length scale where the biquaternionic curvature invariant equals $2\pi$'').
+\item Currently, UBT does not have such a principle. This is an open problem, not a hidden failure.
+\end{itemize}
+
 \section{Relation to Fine-Structure Constant (Careful Analysis)}
 
 \subsection{Can $\alpha$ Be Derived Geometrically?}
@@ -442,21 +577,21 @@ If winding numbers fix $n$ and geometric constraints fix $\Phi_0$, we could pote
 \subsection{What UBT Derives Non-Circularly}
 
 \begin{enumerate}
-\item \textbf{Existence of quantized action}: From topological constraints on the complex-time torus, action along closed cycles is quantized in units of $2\pi \mathbb{Z}$ (dimensionless).
+\item \textbf{Existence of quantized action}: From topological constraints on the complex-time torus, action along closed cycles is quantized in units of $2\pi \mathbb{Z}$ (dimensionless). \emph{No} empirical constants or $\hbar$ were inserted.
 
-\item \textbf{Existence of a fundamental action scale}: The geometry selects a characteristic action associated with the fundamental winding modes.
+\item \textbf{Existence of a fundamental action scale}: The geometry selects a characteristic action $S_0$ associated with the fundamental winding modes. This is a structural prediction, not a numerical one.
 
-\item \textbf{Dimensionless fine-structure constant}: UBT derives $\alpha \approx 1/137$ from the aspect ratio of the torus and prime selection.
+\item \textbf{Dimensionless fine-structure constant}: UBT derives $\alpha \approx 1/137$ from the aspect ratio of the torus and prime selection (conditional on the effective potential being independently derived from biquaternionic geometry, not guessed).
 \end{enumerate}
 
 \subsection{What UBT Does Not Currently Derive}
 
 \begin{enumerate}
-\item \textbf{Numerical value of $\hbar$}: Without external dimensional input (e.g., $c$, $G$, $e$), pure geometry cannot produce a dimensional constant.
+\item \textbf{Numerical value of $\hbar$ in SI units}: Without external dimensional input (e.g., $c$, $G$, or direct empirical measurement of $\hbar$), pure geometry cannot produce a dimensional constant.
 
 \item \textbf{Independent derivation of $c$ or $G$}: These appear as conversion factors between geometric and physical units but are not derived from UBT geometry.
 
-\item \textbf{Complete elimination of empirical input}: At least one dimensional constant (or equivalently, a fundamental length/energy/time scale) must be fixed empirically.
+\item \textbf{Complete elimination of empirical input}: At least one dimensional constant (or equivalently, a fundamental length/energy/time scale) must be fixed empirically or via an additional geometric principle not yet identified.
 \end{enumerate}
 
 \subsection{Summary Table}
@@ -467,7 +602,7 @@ If winding numbers fix $n$ and geometric constraints fix $\Phi_0$, we could pote
 \textbf{Quantity} & \textbf{Derived from UBT Geometry?} & \textbf{Method} \\
 \hline
 Quantization of action & \textcolor{blue}{Yes} & Topology of $S^1_t \times S^1_\psi$ \\
-Fine-structure constant $\alpha$ & \textcolor{blue}{Yes} & Torus aspect ratio, prime selection \\
+Fine-structure constant $\alpha$ & \textcolor{blue}{Yes (conditional)} & Torus aspect ratio, prime selection \\
 Numerical value of $\hbar$ & \textcolor{red}{No} & Requires external dimensional scale \\
 Speed of light $c$ & \textcolor{red}{No} & Unit conversion, not derived \\
 Gravitational constant $G$ & \textcolor{red}{No} & Unit conversion, not derived \\
@@ -475,6 +610,34 @@ Electron charge $e$ & \textcolor{orange}{Open} & Potential future derivation \\
 \hline
 \end{tabular}
 \end{center}
+
+\subsection{What Would Count as a Genuine Non-Circular Numerical Derivation}
+
+A complete, non-circular derivation of $\hbar$ would require:
+
+\begin{enumerate}
+\item \textbf{Geometric scale-fixing principle}: A purely geometric constraint that determines a fundamental length/time/energy scale. Example: ``The Planck length is the unique scale where the biquaternionic curvature scalar equals $2\pi$ in natural units.''
+
+\item \textbf{Internal consistency}: All dimensional constants ($c$, $G$, $\hbar$) must be expressible in terms of this single geometric scale via dimensionless geometric ratios.
+
+\item \textbf{No external dimensional input}: The geometric scale itself must not be defined via empirical constants.
+\end{enumerate}
+
+\textbf{Current UBT status}: No such scale-fixing principle has been identified. This is an open theoretical problem, not a hidden failure to be denied.
+
+\subsection{Honest Identification vs. Derivation}
+
+\fbox{\begin{minipage}{0.95\textwidth}
+\textbf{UBT's Current Position (Rigorous Statement):}
+
+\begin{itemize}
+\item \textbf{Derived}: The \emph{structure} of quantum mechanics (action quantization, discrete spectrum, fine-structure constant as a dimensionless geometric ratio).
+\item \textbf{Identified (not derived)}: The numerical value of $\hbar$ in SI units, obtained by matching the topologically derived action quantum $S_0$ to experimental measurements.
+\item \textbf{Distinction}: This is analogous to deriving Maxwell's equations from symmetry principles (structure) but requiring empirical input to fix $\epsilon_0$ or $c$ (scale). It is honest and non-circular.
+\end{itemize}
+\end{minipage}}
+
+\vspace{1em}
 
 \subsection{Philosophical Interpretation}
 
@@ -500,9 +663,10 @@ This is not a failure of UBT but rather a reflection of the nature of dimensiona
 
 The derivation presented here is \textbf{logically non-circular} in the sense that:
 \begin{itemize}
-\item We never defined $E = \hbar\omega$ before deriving $\hbar$.
-\item We never introduced $\hbar$ as a normalization factor.
-\item We clearly separated geometric quantization (derived) from numerical scale-fixing (empirical).
+\item We never defined $E = \hbar\omega$ before deriving $\hbar$ or discussing action quantization.
+\item We never introduced $\hbar$ as a normalization factor in the quantization condition.
+\item We clearly separated geometric quantization (derived) from numerical scale-fixing (empirical identification).
+\item We explicitly identified all four types of circularity and avoided them.
 \end{itemize}
 
 \textbf{Recommendation}: UBT should claim a geometric derivation of the \emph{structure} of quantum mechanics, with $\hbar$ identified (not derived) as the experimentally measured scale of the topologically quantized action. This is scientifically rigorous and avoids overclaiming.
