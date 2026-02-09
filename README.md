@@ -230,6 +230,30 @@ Unified Biquaternion Theory (UBT) is a theoretical physics framework that embeds
 
 **Key insight**: Spacetime geometry and gauge fields emerge from different aspects of biquaternionic (quaternion-with-complex-coefficients) structure.
 
+### Formal Verification Framework (February 2026)
+
+UBT provides formal mathematical derivations demonstrating complete unification:
+
+1. **Quantum Mechanics & General Relativity Unification** ([`appendix_FORMAL_qm_gr_unification.tex`](consolidation_project/appendix_FORMAL_qm_gr_unification.tex))
+   - Derives both Schrödinger/Dirac equations and Einstein field equations from single field Θ(q,τ)
+   - Uses drift-diffusion dynamics on complexified manifold
+   - No postulated forces, particles, or fundamental metric
+
+2. **Emergent Metric & Einstein Equation** ([`appendix_FORMAL_emergent_metric.tex`](consolidation_project/appendix_FORMAL_emergent_metric.tex))
+   - Metric tensor g_μν emerges as bilinear functional of Θ
+   - Einstein equation derived, not assumed
+   - Curvature arises from phase gradients in complex time
+
+3. **Black Hole Radiation via Complex Time** ([`appendix_FORMAL_black_hole_radiation.tex`](consolidation_project/appendix_FORMAL_black_hole_radiation.tex))
+   - Explains Hawking radiation without vacuum pair creation
+   - Information preserved in global Θ-field
+   - Horizon is projection singularity, not fundamental boundary
+
+4. **Fundamental Constants from Normalization** ([`appendix_FORMAL_constants_normalization.tex`](consolidation_project/appendix_FORMAL_constants_normalization.tex))
+   - Constants emerge as spectral/topological invariants
+   - Fine-structure constant α ≈ 1/137 from compactified manifold geometry
+   - No manual parameter tuning required
+
 ---
 
 ## What UBT is NOT

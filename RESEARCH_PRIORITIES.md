@@ -177,6 +177,11 @@ The following items from previous priority lists have been deprioritized or comp
 - SM gauge group derivation (SU(3)×SU(2)×U(1) from geometry)
 - Electron mass prediction validation
 - **Content reorganization into 3-layer structure** (Layer A/B/C)
+- **Formal verification framework** (February 2026):
+  - QM-GR unification from single field Θ(q,τ)
+  - Emergent metric and Einstein equation derivation
+  - Black hole radiation via complex time dynamics
+  - Fundamental constants from normalization and topology
 
 ⬇️ **Deprioritized:**
 - Psychon dynamics (moved to speculative extensions)
@@ -219,9 +224,10 @@ Clear criteria for advancing content between layers:
 
 ---
 
-**Last Updated:** January 12, 2026  
+**Last Updated:** February 9, 2026  
 **Next Review:** Q1 2026  
 **See also:** 
 - [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) - Detailed layer definitions
 - [ROADMAP.md](ROADMAP.md) - Detailed timeline
 - [SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md) - Classification system
+- [consolidation_project/appendix_FORMAL_*.tex](consolidation_project/) - Formal verification appendices (Feb 2026)
