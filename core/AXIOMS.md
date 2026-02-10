@@ -54,28 +54,28 @@ where:
 
 ---
 
-## AXIOM C: Unique Emergent Metric (LOCKED)
+## AXIOM C: Generalized Metric and GR Limit (LOCKED)
 
-**Statement**: The spacetime metric is **emergent** from $\Theta$, defined uniquely through a two-level structure:
-
-**Two-Level Notation**:
+**Statement**: UBT is a **generalization of General Relativity**. Its fundamental geometric object is the generalized (biquaternionic) metric tensor:
 
 $$\mathcal{G}_{\mu\nu}(x,\tau) := (D_\mu \Theta(x,\tau))^\dagger D_\nu \Theta(x,\tau)$$
+
+This generalized metric takes values in a complex/biquaternionic algebra and encodes the full geometric and phase structure of UBT.
+
+The observable spacetime metric of General Relativity is obtained as the real projection (classical limit) of this generalized metric:
 
 $$g_{\mu\nu}(x) := \text{Re}\left[\mathcal{G}_{\mu\nu}(x,\tau)\right]$$
 
 where:
-- $\mathcal{G}_{\mu\nu}$ is the **complex/biquaternionic metric object** (full structure including imaginary components)
-- $g_{\mu\nu}$ is the **observable GR metric** (real-projected spacetime metric)
 - $D_\mu$ is the gauge-covariant derivative acting on $\Theta$
 - $(\cdot)^\dagger$ denotes the biquaternionic adjoint (conjugate transpose)
 - $\text{Re}[\cdot]$ denotes taking the real part (projection to real spacetime)
 - The metric is normalized to have signature $(-,+,+,+)$ in the classical limit
 
-**Critical Distinction**:
-- $\mathcal{G}_{\mu\nu}$ is **NOT an independent spacetime metric**; it is the intermediate biquaternionic construct before real projection
-- $g_{\mu\nu}$ is the **unique, real-projected spacetime metric** used in General Relativity
-- There is no additional metric beyond this construction
+**Interpretation**:
+- $\mathcal{G}_{\mu\nu}$ is the **UBT generalized metric tensor** (fundamental geometric object in UBT)
+- $g_{\mu\nu}$ is the **unique GR spacetime metric** seen by classical measurements
+- There is **no second GR metric** beyond $g_{\mu\nu}$
 
 **Equivalent Forms** (allowed):
 - Combined form: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]$ (direct definition)
@@ -85,10 +85,10 @@ where:
 
 **CRITICAL LOCK RULES**:
 1. **NO background metric**: There is no fundamental metric $g^{(0)}_{\mu\nu}$ that $\Theta$ propagates on
-2. **NO alternative metrics**: Do not define "effective metric", "metric v2", $\hat{g}_{\mu\nu}$, $g'_{\mu\nu}$, etc.
-3. **NO metric redefinition**: The formula above is canonical and unique
-4. **Emergent only**: The metric is a derived quantity, not a fundamental field
-5. **$\mathcal{G}_{\mu\nu}$ is not a metric**: The complex object $\mathcal{G}_{\mu\nu}$ is an intermediate construction, not a separate spacetime metric
+2. **NO alternative GR metrics**: Do not introduce alternative definitions of the GR metric $g_{\mu\nu}$
+3. **NO metric redefinition**: The formulas above are canonical and unique
+4. **Emergent only**: The GR metric $g_{\mu\nu}$ is a derived quantity, not a fundamental field
+5. **$\mathcal{G}_{\mu\nu}$ is not a GR metric**: The generalized metric $\mathcal{G}_{\mu\nu}$ must not be treated as an independent GR spacetime metric
 
 **Cross-References**:
 - `consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` (line 56)
@@ -96,7 +96,7 @@ where:
 - `consolidation_project/appendix_FORMAL_emergent_metric.tex` (Definition 3.1)
 - `THETA_FIELD_DEFINITION.md` (Section 7.1)
 
-**Lock Rule**: This is the **ONLY** metric definition in UBT. No alternatives, no background metric, no "metric v2".
+**Lock Rule**: This is the **ONLY** metric definition in UBT. GR is a real/classical limit of UBT, not an independent framework. No alternative GR metrics, no background metric.
 
 ---
 
