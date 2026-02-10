@@ -153,6 +153,10 @@ class AxiomEnforcer:
                 if file_path.name == "test_metric_lock.py":
                     continue
                 
+                # Skip AXIOMS_METRIC_LOCK_SUMMARY.md (documents forbidden patterns as examples)
+                if file_path.name == "AXIOMS_METRIC_LOCK_SUMMARY.md":
+                    continue
+                
                 if file_path.suffix in extensions:
                     yield file_path
     
