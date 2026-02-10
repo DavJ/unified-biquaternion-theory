@@ -56,17 +56,29 @@ where:
 
 ## AXIOM C: Unique Emergent Metric (LOCKED)
 
-**Statement**: The spacetime metric is **emergent** from $\Theta$, defined uniquely as:
+**Statement**: The spacetime metric is **emergent** from $\Theta$, defined uniquely through a two-level structure:
 
-$$g_{\mu\nu}(x) := \text{Re}\left[(D_\mu \Theta(x,\tau))^\dagger D_\nu \Theta(x,\tau)\right]$$
+**Two-Level Notation**:
+
+$$\mathcal{G}_{\mu\nu}(x,\tau) := (D_\mu \Theta(x,\tau))^\dagger D_\nu \Theta(x,\tau)$$
+
+$$g_{\mu\nu}(x) := \text{Re}\left[\mathcal{G}_{\mu\nu}(x,\tau)\right]$$
 
 where:
+- $\mathcal{G}_{\mu\nu}$ is the **complex/biquaternionic metric object** (full structure including imaginary components)
+- $g_{\mu\nu}$ is the **observable GR metric** (real-projected spacetime metric)
 - $D_\mu$ is the gauge-covariant derivative acting on $\Theta$
 - $(\cdot)^\dagger$ denotes the biquaternionic adjoint (conjugate transpose)
 - $\text{Re}[\cdot]$ denotes taking the real part (projection to real spacetime)
 - The metric is normalized to have signature $(-,+,+,+)$ in the classical limit
 
+**Critical Distinction**:
+- $\mathcal{G}_{\mu\nu}$ is **NOT an independent spacetime metric**; it is the intermediate biquaternionic construct before real projection
+- $g_{\mu\nu}$ is the **unique, real-projected spacetime metric** used in General Relativity
+- There is no additional metric beyond this construction
+
 **Equivalent Forms** (allowed):
+- Combined form: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]$ (direct definition)
 - With explicit normalization: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]/\mathcal{N}$
 - With inner product notation: $g_{\mu\nu} = \langle D_\mu \Theta | D_\nu \Theta \rangle_{\text{Re}}$
 - Component form: $g_{\mu\nu} = \text{Re}[\partial_\mu \Theta^\dagger \cdot \partial_\nu \Theta + \ldots]$
@@ -76,6 +88,7 @@ where:
 2. **NO alternative metrics**: Do not define "effective metric", "metric v2", $\hat{g}_{\mu\nu}$, $g'_{\mu\nu}$, etc.
 3. **NO metric redefinition**: The formula above is canonical and unique
 4. **Emergent only**: The metric is a derived quantity, not a fundamental field
+5. **$\mathcal{G}_{\mu\nu}$ is not a metric**: The complex object $\mathcal{G}_{\mu\nu}$ is an intermediate construction, not a separate spacetime metric
 
 **Cross-References**:
 - `consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` (line 56)
@@ -107,6 +120,19 @@ where:
   - Weak coupling: Small quantum corrections
 - UBT **generalizes** GR; it does not contradict it
 - All GR solutions (Schwarzschild, Kerr, FRW, etc.) emerge from appropriate $\Theta$ configurations
+
+**GR as Real/Classical Limit** (explicit clarification):
+
+General Relativity is recovered from UBT when two conditions are met:
+
+1. **Real projection**: The observable metric $g_{\mu\nu}$ is obtained by taking the real part of $\mathcal{G}_{\mu\nu}$ (Axiom C). Imaginary components of the biquaternionic metric structure remain invisible to classical gravitational measurements.
+
+2. **Classical/slow variation regime**: The $\psi$-dynamics (imaginary time evolution) is either:
+   - Not directly observable (ordinary matter couples only to real metric $g_{\mu\nu}$)
+   - Varies slowly compared to physical processes
+   - Averaged over in the classical limit
+
+In this limit, UBT exactly reproduces Einstein's field equations with the emergent metric $g_{\mu\nu}$ serving as the GR spacetime metric. The additional biquaternionic degrees of freedom represent phase curvature and nonlocal energy configurations that extend beyond classical GR but reduce to it when these effects are negligible or unobservable.
 
 **Lock Rule**: GR is a limit/projection of UBT, not an independent framework. Do not introduce GR as a separate theory requiring separate metric.
 
