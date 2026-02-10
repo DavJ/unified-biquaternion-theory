@@ -38,23 +38,33 @@ The goal of this framework is to provide rigorous mathematical proofs that:
 - ✅ Clear separation of microscopic (QM) and macroscopic (GR) limits
 - ✅ Fully covariant formulation
 
-### 2. Emergent Metric and Einstein Equation (`appendix_FORMAL_emergent_metric.tex`)
+### 2. Formalization of Existing UBT Metric (`appendix_FORMAL_emergent_metric.tex`)
 
-**Purpose**: Derive General Relativity as an emergent, effective description of Θ-field dynamics.
+**Purpose**: Formalize, verify, and connect the EXISTING emergent metric of UBT with standard General Relativity.
+
+**CRITICAL**: This appendix does NOT create a new metric. It formalizes the metric already defined in UBT core documents (appendix_A, appendix_QG, appendix_R).
+
+**Existing UBT Metric**:
+```
+g_μν := Re(𝒢_μν) = Re[(∂_μΘ · ∂_νΘ†)/𝒩]
+```
+where 𝒩 ensures correct signature (-,+,+,+).
 
 **Key Results**:
-- Metric tensor g_μν = (1/𝒩)Re[∫dψ w(ψ)(D_μΘ)†·(D_νΘ)] as bilinear functional
-- Christoffel symbols computed from emergent metric: Γ^ρ_μν = (1/2)g^ρσ(∂_μg_νσ + ∂_νg_μσ - ∂_σg_μν)
-- Curvature tensors follow from standard differential geometry
-- Einstein equation G_μν = κT^(Θ)_μν derived from Θ-field action
-- Stress-energy tensor T^(Θ)_μν emerges from variation δS_Θ/δg^μν
-- Classical GR recovered in slowly-varying phase limit
+- Made existing metric definition fully explicit and self-contained
+- Verified algebraic properties: symmetry, non-degeneracy, correct signature
+- Computed Christoffel symbols from existing metric using standard formula
+- Computed curvature tensors (Riemann, Ricci, Einstein) from existing metric
+- Identified stress-energy T_μν = Re(𝒯_μν) from Θ-field dynamics
+- Demonstrated GR recovery in weak-field, stationary phase, and classical limits
+- Complete traceability: UBT field Θ → metric g_μν → Einstein equations
 
 **Acceptance Criteria Met**:
-- ✅ Einstein equation emergent, not assumed
-- ✅ Stress-energy has clear Θ-field origin
-- ✅ Correct classical limit
-- ✅ Diffeomorphism invariance preserved
+- ✅ No alternative metric definitions introduced
+- ✅ Original UBT metric preserved exactly
+- ✅ All GR structures computed from existing metric
+- ✅ Classical GR recovered as limit, not assumption
+- ✅ Clear traceability from UBT to standard GR
 
 ### 3. Black Hole Radiation via Complex Time (`appendix_FORMAL_black_hole_radiation.tex`)
 
@@ -103,9 +113,9 @@ The goal of this framework is to provide rigorous mathematical proofs that:
    ∂Θ/∂τ = -D_μ(V^μ * Θ) + 𝒟 D_μD^μΘ
    ```
 
-2. **Emergent Metric**:
+2. **Existing UBT Metric** (from appendix_A):
    ```
-   g_μν = (1/𝒩)Re[∫dψ w(ψ)(D_μΘ)†·(D_νΘ)]
+   g_μν = Re[(∂_μΘ · ∂_νΘ†)/𝒩]
    ```
 
 3. **Einstein Equation**:
