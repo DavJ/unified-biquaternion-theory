@@ -22,10 +22,11 @@
 - ✅ **Fine-structure constant baseline**: α⁻¹ = 137.000 from topology (fit-free, geometric)
 - 🌟 **Electron mass - IMPROVED**: **~0.510-0.511 MeV (~0.2% accuracy)** with corrections
 - ✅ **Electron mass baseline**: m_e = 0.509856 MeV (0.22% error from topology)
-- 🌟 **NEW: Neutrino masses - PHYSICAL**: **Σm_ν = 8.4×10⁻⁵ eV** from full biquaternion time T = t₀ + it₁ + jt₂ + kt₃
+- ⚠️ **Neutrino masses (exploratory, non-canonical)**: Σm_ν = 8.4×10⁻⁵ eV - *Note: Uses biquaternion time which violates AXIOM B; see Section 1.3*
 - ✅ **SM gauge group SU(3)×SU(2)×U(1)** rigorously derived from biquaternionic geometry
 - ✅ **GR equivalence** in real limit proven (Appendix R)
 - ✅ **Quantum gravity unification** framework established
+- ✅ **Canonical axioms defined**: Four locked axioms in `core/AXIOMS.md` (February 2026)
 
 **Current Challenges:**
 1. **Alpha framework validation** - Exact prediction α⁻¹=137.036 achieved with 4 renormalization corrections (no fit)
@@ -148,24 +149,32 @@ Topology + Loop Structure → α(μ) → SM Renormalization (g_i) → Yukawa Tex
 - Alpha derivation uses NO fermion mass input
 - Mass calculation can use α as input (one-way dependency)
 
-#### 1.3 Neutrino Masses - Full Biquaternion Breakthrough 🌟 NEW!
+#### 1.3 Neutrino Masses - Exploratory Results ⚠️ NON-CANONICAL
 
-**MAJOR ACHIEVEMENT:** First physical neutrino masses from UBT geometry! ✅
+**⚠️ CRITICAL NOTE**: This section describes a neutrino mass derivation that uses "full biquaternion time" T = t₀ + it₁ + jt₂ + kt₃, which **VIOLATES AXIOM B** of the canonical UBT formulation (see `core/AXIOMS.md`). 
 
-**Previous Attempt (FAILED):**
+**AXIOM B states**: Time in UBT is **complex-valued only**: τ = t + iψ ∈ ℂ (NOT quaternionic/biquaternionic).
+
+This work represents an **exploratory extension** that produced interesting numerical results but is **not part of the canonical theory**. See `NEUTRINO_IMPLEMENTATION_STATUS.md` for full discussion and path forward.
+
+---
+
+**Numerical Results (Exploratory):**
+
+**Previous Attempt (Complex Time - Failed):**
 - Complex time τ = t + iψ: Σm_ν = 10¹⁹ eV (10²⁸× wrong), all PMNS angles = 0°
-- **Problem**: Only 2D structure insufficient for 3 neutrino generations
+- **Problem**: Implementation issues, not fundamental limitation
 
-**New Approach (SUCCESS):**
-- **Full biquaternion time** T = t₀ + it₁ + jt₂ + kt₃
-- **Three imaginary axes** → Three neutrino generations naturally!
-- **(i,j,k) ↔ (σ_x, σ_y, σ_z)** — SU(2)_weak encoded in time structure
+**Exploratory Approach (Biquaternion Time - Non-Canonical):**
+- **Full biquaternion time** T = t₀ + it₁ + jt₂ + kt₃ ⚠️ **Violates AXIOM B**
+- **Three imaginary axes** → Three neutrino generations
+- **(i,j,k) ↔ (σ_x, σ_y, σ_z)** — SU(2)_weak in time (non-canonical)
 
-**Results:**
+**Numerical Results (Exploratory - Non-Canonical):**
 
-| Observable | UBT Prediction | Experimental | Status |
+| Observable | UBT Prediction (Non-Canonical) | Experimental | Status |
 |------------|----------------|--------------|---------|
-| **Mass sum** | **Σm_ν = 8.4×10⁻⁵ eV** | < 0.12 eV | ✅ **Within bounds!** |
+| **Mass sum** | **Σm_ν = 8.4×10⁻⁵ eV** | < 0.12 eV | ✅ Within bounds |
 | m₁ | 1.87×10⁻⁶ eV | ~0.001-0.01 eV | ✅ Correct scale |
 | m₂ | 1.23×10⁻⁵ eV | ~0.009-0.02 eV | ✅ Correct scale |
 | m₃ | 6.97×10⁻⁵ eV | ~0.05-0.1 eV | ✅ Correct scale |
@@ -173,30 +182,41 @@ Topology + Loop Structure → α(μ) → SM Renormalization (g_i) → Yukawa Tex
 | PMNS angles | 7°, 14°, 4° | 33°, 49°, 9° | 🟡 Need refinement |
 | Mass splittings | 10⁻¹⁰, 10⁻⁹ eV² | 10⁻⁵, 10⁻³ eV² | 🟡 Need optimization |
 
-**Physical Framework:**
+**Exploratory Framework Used (⚠️ Non-Canonical):**
 
-1. **Three imaginary time compactifications**: t_i ~ t_i + 2πR_i (i=1,2,3)
+1. **Three imaginary time compactifications**: t_i ~ t_i + 2πR_i (i=1,2,3) ⚠️ Violates AXIOM B
 2. **Majorana masses from geometry**: M_R(i) ~ ℏc/(2πR_i) ~ 10⁹ GeV
 3. **Geometric phases from SU(2)**: φ_ij from [σ_i, σ_j] = 2i ε_ijk σ_k
 4. **Type-I seesaw**: m_ν = m_D^T M_R^{-1} m_D
 
-**Key Achievement:** ✅
-- **Physical mass scale** (not 10²⁸× wrong!)
-- **Non-zero PMNS mixing** (not all 0°!)
-- **Three generations from geometry** (not assumed!)
-- **First derivation from biquaternion structure**
+**Status:** ⚠️ **Non-Canonical Exploration**
+- Numerical results are encouraging (correct mass scale)
+- Theoretical framework violates AXIOM B (locked canonical axiom)
+- **Action required**: Either revise to use canonical complex time or move to speculative extensions
 
-**Refinement Status:** Framework working, parameter optimization in progress
+**Refinement Path:**
+- **Option 1**: Rework using canonical complex time τ = t + iψ only
+- **Option 2**: Reframe using Θ field structure (not time structure)
+- **Option 3**: Move to `speculative_extensions/` with appropriate disclaimers
 
 **Documentation:**
-- Implementation: `scripts/ubt_neutrino_biquaternion_derivation.py`
-- Technical report: `BIQUATERNION_NEUTRINO_IMPLEMENTATION_REPORT.md`
-- Proposal: `NAVRH_NEUTRINO_PLNY_BIQUATERNION_CZ.md`
-- Full report: `FERMION_MASS_COMPLETE_REPORT.md` (Part 3)
+- Axiom violation analysis: `NEUTRINO_IMPLEMENTATION_STATUS.md`
+- Canonical axioms: `core/AXIOMS.md` (AXIOM B - Complex Time)
+- Implementation: `scripts/ubt_neutrino_biquaternion_derivation.py` ⚠️ Non-canonical
+- Technical report: `BIQUATERNION_NEUTRINO_IMPLEMENTATION_REPORT.md` ⚠️ Non-canonical
+- Proposal: `NAVRH_NEUTRINO_PLNY_BIQUATERNION_CZ.md` ⚠️ Non-canonical
+- Full report: `FERMION_MASS_COMPLETE_REPORT.md` (Part 3) ⚠️ Needs revision
 
-**Key Insight:**
-> Full biquaternion time structure is ESSENTIAL for neutrino physics.
-> Complex time alone is insufficient.
+**Previous Claim (Incorrect):**
+> ~~Full biquaternion time structure is ESSENTIAL for neutrino physics.~~
+> ~~Complex time alone is insufficient.~~
+
+**Corrected Understanding:**
+> Biquaternion time is **non-canonical** (violates AXIOM B). The correct approach uses:
+> - **Complex time** τ = t + iψ (canonical coordinate)
+> - **Biquaternionic Θ field** (canonical internal structure)
+> 
+> The neutrino mass scale achieved here suggests the physics is correct, but the formalism needs revision to comply with canonical axioms.
 
 #### 1.4 Standard Model Gauge Group Derived
 

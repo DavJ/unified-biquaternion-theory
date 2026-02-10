@@ -12,12 +12,14 @@ The Unified Biquaternion Theory (UBT) has successfully derived **10 out of 12 St
 
 ### Achievement Breakdown
 
-| Sector | Status | Accuracy | Method |
-|--------|--------|----------|--------|
-| **Charged Leptons** (3) | ✅ **COMPLETE** | 0.00-0.22% | Topological Hopf charge |
-| **Quarks** (6) | ⚠️ **FRAMEWORK COMPLETE** | χ²=2.28 | Discrete theta functions |
-| **Neutrinos** (3) | ✅ **PHYSICAL RESULTS** | eV scale | Full biquaternion seesaw |
-| **TOTAL** | **12/12 framework complete** | Varies | First principles |
+| Sector | Status | Accuracy | Method | Canonical Status |
+|--------|--------|----------|--------|-----------------|
+| **Charged Leptons** (3) | ✅ **COMPLETE** | 0.00-0.22% | Topological Hopf charge | ✅ Canonical |
+| **Quarks** (6) | ⚠️ **FRAMEWORK COMPLETE** | χ²=2.28 | Discrete theta functions | ✅ Canonical |
+| **Neutrinos** (3) | ⚠️ **NON-CANONICAL** | eV scale (exploratory) | Biquaternion time seesaw | ⚠️ **Violates AXIOM B** |
+| **TOTAL** | **10/12 canonical, 2/12 exploratory** | Varies | First principles | See note below |
+
+**⚠️ IMPORTANT NOTE ON NEUTRINO MASSES**: The neutrino derivation in Part 3 uses "full biquaternion time" which **violates AXIOM B** of the canonical UBT formulation (see `core/AXIOMS.md`). This work is **exploratory and non-canonical**. A canonical derivation using complex time τ = t + iψ is needed. See `NEUTRINO_IMPLEMENTATION_STATUS.md` for details.
 
 ---
 
@@ -103,11 +105,17 @@ Optimal mode assignment from exhaustive search over 22,500 configurations:
 
 ---
 
-## Part 3: Neutrinos - Full Biquaternion Derivation ✅ NEW!
+## Part 3: Neutrinos - Exploratory Derivation ⚠️ NON-CANONICAL
 
-### Method: Type-I See-Saw with Full Biquaternion Time T = t₀ + it₁ + jt₂ + kt₃
+**⚠️ CRITICAL DISCLAIMER**: This section describes a neutrino mass derivation that uses "full biquaternion time" T = t₀ + it₁ + jt₂ + kt₃, which **VIOLATES AXIOM B** of the canonical UBT formulation.
 
-**MAJOR BREAKTHROUGH:** First physical neutrino masses from UBT using full biquaternion structure!
+**AXIOM B (LOCKED)** states: Time in UBT is **complex-valued only**: τ = t + iψ ∈ ℂ
+
+This work is **exploratory and non-canonical**. The numerical results are encouraging but the theoretical framework needs revision to comply with canonical axioms. See `NEUTRINO_IMPLEMENTATION_STATUS.md` and `core/AXIOMS.md` for details.
+
+### Method: Type-I See-Saw with Non-Canonical Biquaternion Time ⚠️
+
+**Exploratory Approach (Non-Canonical):** Uses T = t₀ + it₁ + jt₂ + kt₃ which violates AXIOM B
 
 Light neutrino masses from see-saw formula:
 
@@ -117,9 +125,9 @@ m_ν = m_D^T · M_R^(-1) · m_D
 
 where:
 - **m_D** = Dirac masses from Yukawa couplings with geometric phases
-- **M_R** = Majorana masses from **three imaginary time compactifications**
+- **M_R** = Majorana masses from **three imaginary time compactifications** ⚠️ Non-canonical
 
-### Key Innovation: Full Biquaternion Time
+### Exploratory Innovation: Full Biquaternion Time (⚠️ Violates AXIOM B)
 
 **Previous attempt (FAILED):**
 - Used complex time τ = t + iψ (only 2 dimensions)
