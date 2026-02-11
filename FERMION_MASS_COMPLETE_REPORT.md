@@ -446,6 +446,21 @@ The UBT has successfully:
 
 ---
 
+## Appendix: Biquaternion Time Neutrino Work (February 2026)
+
+**Update (February 2026)**: After this report was written, exploratory work was done using "full biquaternion time" T = t₀ + it₁ + jt₂ + kt₃ for neutrino masses. This produced physically reasonable mass scales (Σm_ν ≈ 8.4×10⁻⁵ eV), but **violates AXIOM B** of the canonical UBT formulation (see `core/AXIOMS.md`).
+
+**Canonical axiom**: Time must be **complex-valued only**: τ = t + iψ ∈ ℂ
+
+**Non-canonical exploration**: Files using biquaternion time structure:
+- `scripts/ubt_neutrino_biquaternion_derivation.py` (implementation)
+- `NEUTRINO_IMPLEMENTATION_STATUS.md` (analysis and path forward)
+- `BRANCH_VALIDATION_SUMMARY.md` (validation report)
+
+**Lesson learned**: The encouraging numerical results suggest neutrino physics is tractable within UBT, but future work must use canonical complex time τ = t + iψ with biquaternionic Θ field structure, not biquaternionic time.
+
+---
+
 ## License
 
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
@@ -453,5 +468,6 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 ---
 
 **Report prepared:** November 3, 2025  
+**Updated:** February 11, 2026 (master merge + neutrino work note)  
 **Next milestone:** Refine quark masses to sub-percent accuracy  
 **Estimated completion:** Q1 2026

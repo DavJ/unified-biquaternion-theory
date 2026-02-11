@@ -561,8 +561,31 @@ UBT is a **serious research framework** with **exceptional achievements** (exact
 
 ---
 
+## Appendix: Neutrino Mass Work (Non-Canonical)
+
+**Note (February 2026)**: This branch previously contained exploratory neutrino mass derivations that used "full biquaternion time" T = t₀ + it₁ + jt₂ + kt₃. This approach **violates AXIOM B** of the canonical UBT formulation (see `core/AXIOMS.md`), which specifies that time must be **complex-valued only**: τ = t + iψ ∈ ℂ.
+
+**Status**: The numerical results (Σm_ν ≈ 8.4×10⁻⁵ eV, correct mass scale) are preserved in:
+- `NEUTRINO_IMPLEMENTATION_STATUS.md` - Full analysis and resolution options
+- `BRANCH_VALIDATION_SUMMARY.md` - Branch validation report
+- `scripts/ubt_neutrino_biquaternion_derivation.py` - Implementation (non-canonical)
+
+**Canonical Path Forward**: Future neutrino mass work should use either:
+1. Complex time τ = t + iψ with biquaternionic Θ field structure
+2. Derivation from p-adic extensions in imaginary time compactification
+
+The exploratory work demonstrated that neutrino physics within UBT is tractable and can produce physical mass scales, but the formalism needs revision to comply with canonical axioms.
+
+---
+
 ## Revision History
 
+- **v1.1** (2026-02-11): Master merge completed
+  - Merged origin/master (669 commits)
+  - Added DATA/, FORENSICS/, FINGERPRINTS/, HUBBLE_LATENCY/ directories
+  - Added canonical axiom system (core/AXIOMS.md)
+  - Added note on non-canonical neutrino work
+  
 - **v1.0** (2025-11-14): Initial consolidated version
   - Merged from: EXECUTIVE_SUMMARY_STATUS.md, CHALLENGES_STATUS_UPDATE_NOV_2025.md, REMAINING_CHALLENGES_DETAILED_STATUS.md, THEORY_VS_IMPLEMENTATION_STATUS.md, COMPUTATION_STATUS.md, CALCULATION_STATUS_ANALYSIS.md
   - Comprehensive status across all aspects of UBT
