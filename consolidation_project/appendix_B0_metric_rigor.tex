@@ -56,7 +56,7 @@ Therefore, the metric transforms as:
 \mathcal{G}_{\mu\nu} = (D_\mu\Theta)^\dagger D_\nu\Theta \to \mathcal{G}'_{\mu\nu} = \frac{\partial x^\rho}{\partial x'^{\mu}} \frac{\partial x^\sigma}{\partial x'^{\nu}} (D_\rho\Theta)^\dagger D_\sigma\Theta = \frac{\partial x^\rho}{\partial x'^{\mu}} \frac{\partial x^\sigma}{\partial x'^{\nu}} \mathcal{G}_{\rho\sigma} .
 \end{equation}
 
-This is precisely the transformation law for a $(0,2)$ tensor. \qed
+This is precisely the transformation law for a $(0,2)$ tensor.
 
 \subsection{Proposition 2: Real Tensor Property of $g_{\mu\nu}$}
 
@@ -83,12 +83,17 @@ To verify that $g_{\mu\nu}$ is real-valued, we note that:
 g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu}) = \text{Re}\left( (D_\mu\Theta)^\dagger D_\nu\Theta \right) = \frac{1}{2}\left[ (D_\mu\Theta)^\dagger D_\nu\Theta + \left((D_\mu\Theta)^\dagger D_\nu\Theta\right)^\dagger \right] .
 \end{equation}
 
-Using the property that $(AB)^\dagger = B^\dagger A^\dagger$:
+Using the property that $(AB)^\dagger = B^\dagger A^\dagger$ and $(\cdot)^{\dagger\dagger} = (\cdot)$:
 \begin{equation}
 \left((D_\mu\Theta)^\dagger D_\nu\Theta\right)^\dagger = (D_\nu\Theta)^\dagger (D_\mu\Theta)^{\dagger\dagger} = (D_\nu\Theta)^\dagger D_\mu\Theta .
 \end{equation}
 
-If the metric is symmetric (which can be imposed or derived from the action principle), then $g_{\mu\nu} = g_{\nu\mu}$, and the above expression simplifies to show that $g_{\mu\nu}$ is manifestly real and symmetric. \qed
+Thus:
+\begin{equation}
+g_{\mu\nu} = \frac{1}{2}\left[ (D_\mu\Theta)^\dagger D_\nu\Theta + (D_\nu\Theta)^\dagger D_\mu\Theta \right] .
+\end{equation}
+
+This expression is manifestly real by construction (as the average of a complex number and its conjugate). The metric $g_{\mu\nu}$ is also symmetric under index exchange: $g_{\mu\nu} = g_{\nu\mu}$.
 
 \subsection{Proposition 3: Gauge Invariance}
 
@@ -128,7 +133,7 @@ Thus, $\mathcal{G}_{\mu\nu}$ is gauge-invariant. Taking the real part:
 \begin{equation}
 g'_{\mu\nu} = \text{Re}(\mathcal{G}'_{\mu\nu}) = \text{Re}(\mathcal{G}_{\mu\nu}) = g_{\mu\nu} ,
 \end{equation}
-confirming that $g_{\mu\nu}$ is also gauge-invariant. \qed
+confirming that $g_{\mu\nu}$ is also gauge-invariant.
 
 \subsection{Summary}
 
