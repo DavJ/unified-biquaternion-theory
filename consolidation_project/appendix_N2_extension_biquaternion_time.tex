@@ -3,14 +3,14 @@
 
 \subsubsection{Introduction}
 
-The previous sections utilized complex time $\tau = t + i\psi$ as a simplification of the full biquaternionic time structure native to UBT. This subsection establishes the formal criterion for when the complex time approximation is valid versus when the full biquaternion formalism is required. We demonstrate that complex time emerges as a holographic projection from biquaternion time onto an observer's reference frame.
+\textbf{Canonical UBT Formulation:} Time in UBT is canonically complex-valued $\tau = t + i\psi$ (AXIOM B). This appendix discusses an \textbf{extended formalism} using biquaternionic time structure for specialized theoretical contexts (extreme rotating spacetimes, consciousness modeling). The extended formalism is not part of the core axiomatic structure but represents a theoretical exploration of richer temporal structure. We establish criteria for when this extended formalism might be relevant versus when canonical complex time is sufficient.
 
 \paragraph{Note on Terminology.}
 \textbf{Important}: The term ``biquaternionic time'' as used in this theory refers to a quaternion-valued structure with complex coefficients, NOT a true biquaternion in $\mathbb{C} \otimes \mathbb{H}$ (which would have 8 real dimensions). A true biquaternion has the form $q = (a_0 + ib_0) + (a_1 + ib_1)\mathbf{i} + (a_2 + ib_2)\mathbf{j} + (a_3 + ib_3)\mathbf{k}$ with 8 real parameters. The UBT time structure has 4 real dimensions (quaternionic) with specific imaginary components. This should be clarified in future revisions of the theory.
 
-\subsubsection{Quaternion Time Structure}
+\subsubsection{Extended Formalism: Quaternionic Time Structure}
 
-The native time coordinate in UBT is quaternion-valued with complex components:
+The extended formalism explores a quaternion-valued time structure with complex components:
 \begin{equation}
 T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma}),
 \label{eq:biquaternion_time}
@@ -28,11 +28,11 @@ The full structure can be written explicitly as:
 T_B = t + i\psi + i v_x \sigma_x + i v_y \sigma_y + i v_z \sigma_z.
 \end{equation}
 
-In the biquaternion algebra $\mathbb{C} \otimes \mathbb{H}$, this represents the temporal component of the full biquaternionic field $\Theta(q, T_B)$.
+In the biquaternion algebra $\mathbb{C} \otimes \mathbb{H}$, this represents an extended temporal structure for the biquaternionic field $\Theta(q, T_B)$ in specialized contexts.
 
 \paragraph{Equivalence Between Operator and Algebraic Forms.}
 
-UBT employs two equivalent representations of biquaternionic time, each suited to different contexts:
+The extended formalism employs two equivalent representations of biquaternionic time, each suited to different contexts:
 
 \begin{itemize}
 \item \textbf{Operator form (local dynamics):} $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$  
@@ -480,7 +480,7 @@ recovering standard General Relativity.
 \subsubsection{Mapping to Chamseddine (1982) Hermitian Gravity}
 \label{subsec:chamseddine_mapping}
 
-The complex time approximation $\tau = t + i\psi$ used extensively in UBT has a direct correspondence with A. H. Chamseddine's Hermitian gravity formulation (1982)~\cite{Chamseddine2005,Chamseddine2006}. This subsection establishes the formal mathematical mapping and clarifies when the Hermitian limit is admissible.
+The canonical complex time formulation $\tau = t + i\psi$ (AXIOM B) has a direct correspondence with A. H. Chamseddine's Hermitian gravity formulation (1982)~\cite{Chamseddine2005,Chamseddine2006}. This subsection establishes the formal mathematical mapping between canonical UBT and Hermitian gravity.
 
 \paragraph{Chamseddine's Hermitian Metric.}
 In Hermitian gravity, the fundamental object is a Hermitian metric tensor:
@@ -564,40 +564,37 @@ The detailed correspondence between UBT and Hermitian gravity, including the fin
 \text{UBT (commuting fields)} \;\xrightarrow{\Pi}\; \text{Hermitian Gravity} \;\xrightarrow{B_{\mu\nu} \to 0}\; \text{General Relativity}\,.
 \end{equation}
 
-\paragraph{Justification for Complex Time Usage in UBT.}
-Given the Chamseddine correspondence, the complex time approximation $\tau = t + i\psi$ is \textbf{justified} in UBT derivations when:
+\paragraph{Canonical Complex Time in UBT.}
+Given the Chamseddine correspondence, the canonical complex time formulation $\tau = t + i\psi$ (AXIOM B) is the standard formulation in UBT. The extended biquaternionic time formalism discussed in this appendix represents a theoretical exploration for specialized contexts where:
 \begin{enumerate}
-\item The physical system is in the weakly-coupled regime: $g_{\text{eff}}^2 \ll 1$
-\item Field commutators are negligible: $\|\mathcal{C}\| \ll \|\Theta\|^2$ (cf.~Eq.~\eqref{eq:commutator_norm})
-\item The theory exhibits an emergent $U(1,3)$ symmetry consistent with Hermitian gravity
-\item The vector imaginary component is small: $\|\mathbf{v}\|^2 \ll |\psi|^2$ (cf.~Eq.~\eqref{eq:complex_criterion})
+\item The physical system involves strongly-coupled non-Abelian fields with significant commutators: $\|\mathcal{C}\| \sim \|\Theta\|^2$
+\item The theory requires extension beyond the emergent $U(1,3)$ symmetry of Hermitian gravity
+\item The system involves extreme rotation or strong angular momentum coupling
+\item Vector imaginary components become significant: $\|\mathbf{v}\|^2 \sim |\psi|^2$
 \end{enumerate}
 
-When all four conditions are satisfied, the complex time formalism provides an accurate and computationally tractable approximation, with corrections controlled by the parameters $[\Theta_i,\Theta_j]/\|\Theta\|^2$ and $\|\mathbf{v}\|^2/|\psi|^2$.
+For canonical UBT physics (QED, QCD, gravity, cosmology), complex time $\tau = t + i\psi$ is the appropriate formulation (AXIOM B).
 
 \subsubsection{Summary and Implications}
 
-The full biquaternion time structure $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ provides:
+The extended biquaternionic time formalism $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$ discussed in this appendix provides:
 
 \begin{enumerate}
-\item \textbf{Hierarchical Description}: 
-   \begin{equation}
-   T_B \xrightarrow{\|\mathbf{v}\| \to 0} \tau \xrightarrow{\psi \to 0} t
-   \end{equation}
-   from full structure to complex approximation to classical time.
+\item \textbf{Theoretical Framework for Specialized Contexts}: 
+   The extended formalism explores richer temporal structure beyond canonical complex time $\tau = t + i\psi$ (AXIOM B).
 
-\item \textbf{Holographic Interpretation}: Complex time $\tau$ emerges as the projection of biquaternion time $T_B$ onto an observer's boundary.
+\item \textbf{Relation to Canonical Formulation}: Canonical complex time $\tau = t + i\psi$ is not a projection or approximation but the fundamental time formulation in UBT. The extended formalism represents a theoretical exploration for specialized contexts.
 
-\item \textbf{Extended Dark Sector}: The vector component $\mathbf{v}$ provides additional dark sector degrees of freedom beyond the scalar $\psi$, potentially explaining:
+\item \textbf{Extended Dark Sector}: The vector component $\mathbf{v}$ in the extended formalism provides additional theoretical degrees of freedom that might be relevant for:
    \begin{itemize}
    \item Directional dark matter flows
    \item Anisotropic dark energy
    \item Frame-dragging anomalies
    \end{itemize}
 
-\item \textbf{Spin and Torsion}: The Pauli matrix structure $\boldsymbol{\sigma}$ naturally incorporates spin and spacetime torsion.
+\item \textbf{Spin and Torsion}: The Pauli matrix structure $\boldsymbol{\sigma}$ naturally incorporates spin and spacetime torsion in the extended formalism.
 
-\item \textbf{Testable Predictions}: The vector component predicts:
+\item \textbf{Testable Predictions}: The vector component in the extended formalism might predict:
    \begin{itemize}
    \item Directional variations in dark matter halos: $\rho_{\text{dark}}(\mathbf{r}) \propto \nabla \cdot S_{\mathbf{v}}$
    \item Anisotropic gravitational wave polarizations

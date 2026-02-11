@@ -5,11 +5,15 @@
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{xcolor}
+\usepackage{colortbl}
 
 \geometry{a4paper, margin=1in}
 
 \definecolor{ubtblue}{RGB}{0,51,102}
 \definecolor{resultgreen}{RGB}{0,102,51}
+
+% Use canonical constants from centralized file
+\input{tex/reference_constants}
 
 \title{\textbf{\Huge Emergent $\boldsymbol{\alpha}$}\\[0.5em]
 \Large Executive Summary}
@@ -135,7 +139,7 @@ We evaluated $V_{\text{eff}}(p)$ for all primes $p$ near 137:
 \begin{minipage}{0.85\textwidth}
 \begin{align*}
 \alpha_{\text{UBT}}^{-1} &= 137.000000000 \quad \text{(UBT prediction)} \\
-\alpha_{\text{exp}}^{-1} &= 137.035999084 \quad \text{(CODATA 2018)} \\
+\alpha_{\text{exp}}^{-1} &= \AlphaInvBest \quad \text{(CODATA 2018)} \\
 \Delta\alpha^{-1} &= 0.036 \quad \text{(difference)}
 \end{align*}
 \end{minipage}
@@ -162,18 +166,18 @@ UBT predicts the \emph{bare} value $\alpha_0^{-1} = 137$. Quantum corrections th
 \subsection{Conceptual Breakthrough}
 
 \begin{itemize}
-\item[$\star$] \textbf{α is not fundamental}—it emerges from spacetime geometry
-\item[$\star$] \textbf{The number 137 is inevitable}—selected by topology and stability
-\item[$\star$] \textbf{No free parameters}—derived from UBT axioms alone
-\item[$\star$] \textbf{Predictive power}—QFT takes α as input; UBT predicts it
+\item[$\star$] \textbf{$\alpha$ is not fundamental}---it emerges from spacetime geometry
+\item[$\star$] \textbf{The number 137 is inevitable}---selected by topology and stability
+\item[$\star$] \textbf{No free parameters}---derived from UBT axioms alone
+\item[$\star$] \textbf{Predictive power}---QFT takes $\alpha$ as input; UBT predicts it
 \end{itemize}
 
 \subsection{Historical Context}
 
 \begin{itemize}
-\item \textbf{1920s}: Sommerfeld measures α, Eddington attempts derivation
-\item \textbf{1948}: Feynman, Schwinger, Tomonaga develop QED—α remains input
-\item \textbf{2024}: UBT derives α from first principles \textcolor{resultgreen}{\checkmark}
+\item \textbf{1920s}: Sommerfeld measures $\alpha$, Eddington attempts derivation
+\item \textbf{1948}: Feynman, Schwinger, Tomonaga develop QED---$\alpha$ remains input
+\item \textbf{2024}: UBT derives $\alpha$ from first principles \textcolor{resultgreen}{\checkmark}
 \end{itemize}
 
 \section{Testable Predictions}
