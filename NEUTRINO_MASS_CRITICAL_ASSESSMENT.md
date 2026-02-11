@@ -8,6 +8,15 @@
 
 ## Executive Summary
 
+<<<<<<< HEAD
+While a computational framework for neutrino mass calculation exists (`ubt_neutrino_mass_results.txt`), the current implementation produces **unphysical results** that violate experimental constraints by many orders of magnitude.
+
+**Current status:** ❌ **NEUTRINO MASSES NOT YET DERIVED**
+
+---
+
+## I. What Exists
+=======
 A computational framework for neutrino mass calculation exists (`ubt_neutrino_mass_results.txt`), and the original implementation produced **unphysical results** that violated experimental constraints by many orders of magnitude.
 
 **UPDATE (February 10, 2026):** A **corrected version** has been implemented (`scripts/ubt_neutrino_mass_FIXED.py`) that produces **physically reasonable results** within cosmological bounds.
@@ -71,6 +80,7 @@ The framework is now **validated**. Numerical refinement needed to achieve <20% 
 ---
 
 ## I. What Exists (Original Failed Version)
+>>>>>>> origin/master
 
 ### Computational Script
 

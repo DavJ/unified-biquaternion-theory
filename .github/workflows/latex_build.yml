@@ -135,6 +135,21 @@ jobs:
           else
             echo "logs_exist=false" >> "$GITHUB_OUTPUT"
           fi
+      
+      - name: Check for LaTeX errors in logs
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          dir="${{ steps.detect.outputs.dir }}"
+          echo "Checking for undefined control sequences..."
+          if grep -q "Undefined control sequence" "$dir"/*.log 2>/dev/null; then
+            echo "❌ Found undefined control sequences in LaTeX log:"
+            grep -n "Undefined control sequence" "$dir"/*.log || true
+            echo "This usually means missing macro definitions or missing \\input statements."
+            exit 1
+          fi
+          echo "✓ No undefined control sequences found"
 
       - name: Upload PDF (only if created)
         if: always() && steps.produced.outputs.pdf_exists == 'true'
