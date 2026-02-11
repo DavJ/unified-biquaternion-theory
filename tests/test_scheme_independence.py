@@ -152,8 +152,6 @@ def test_B_scheme_invariance():
     print()
     print("✓ B is scheme-independent (defined purely geometrically)")
     print()
-    
-    return True
 
 
 def test_RG_scale_transformation():
@@ -208,8 +206,6 @@ def test_RG_scale_transformation():
     
     print("✓ B is μ-independent (RG-invariant)")
     print()
-    
-    return True
 
 
 def test_covariant_transformation():
@@ -279,8 +275,6 @@ def test_covariant_transformation():
     print("✓ Canonical normalization ensures B invariance")
     print("  (Reparametrizations absorbed into mode profile ξ₀)")
     print()
-    
-    return True
 
 
 def test_no_free_parameters():
@@ -337,8 +331,6 @@ def test_no_free_parameters():
     print(f"Formula verification: B = (2π × {N_eff:.1f}) / (3 × {R_psi:.1f}) × {R_UBT:.1f}")
     print(f"                        = {B:.10f} ✓")
     print()
-    
-    return True
 
 
 if __name__ == '__main__':

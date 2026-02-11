@@ -1,0 +1,197 @@
+name: Build all LaTeX PDFs
+permissions:
+  contents: write
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint complex time usage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Run complex time linter
+        run: |
+          python3 scripts/lint_complex_time_usage.py
+        continue-on-error: true  # Don't fail build, just warn
+      
+      - name: Run symbolic alpha tests
+        run: |
+          python3 scripts/test_symbolic_alpha.py
+
+  discover:
+    name: Discover LaTeX roots
+    runs-on: ubuntu-latest
+    outputs:
+      roots: ${{ steps.discover.outputs.roots }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: discover
+        run: |
+          set -euo pipefail
+
+          # Najdi všechny .tex soubory s \documentclass (vynecháme build/vendor)
+          mapfile -t roots < <(git ls-files '*.tex' \
+            | grep -Ev '^(vendor|node_modules|build|out|dist)/' \
+            | xargs -r grep -l -E '\\documentclass')
+
+          if [ ${#roots[@]} -eq 0 ]; then
+            echo "Nebyly nalezeny žádné LaTeX root soubory."
+            echo 'roots=[]' >> "$GITHUB_OUTPUT"
+          else
+            printf '%s\n' "${roots[@]}" \
+              | jq -R -s -c 'split("\n")[:-1]' \
+              | sed 's/^/roots=/' >> "$GITHUB_OUTPUT"
+            echo "Nalezeno ${#roots[@]} root soubor(ů)."
+          fi
+
+  compile:
+    name: compile (${{ matrix.root }})
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        root: ${{ fromJson(needs.discover.outputs.roots) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect engine + paths
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${{ matrix.root }}"
+          dir="$(dirname "$root")"
+          pdf="${root%.tex}.pdf"
+          # bezpečný název pro artefakty (nahraď / za __)
+          safe_root="${root//\//__}"
+
+          # Heuristika pro volbu engine:
+          engine="pdflatex"
+          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
+            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
+          fi
+          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
+          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
+
+          {
+            echo "dir=$dir"
+            echo "pdf=$pdf"
+            echo "engine=$engine"
+            echo "safe_root=$safe_root"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: LaTeX build ${{ matrix.root }}
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: ${{ matrix.root }}
+          work_in_root_file_dir: true
+          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
+          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
+          args: -interaction=nonstopmode -halt-on-error
+          extra_system_packages: "py-pygments"
+          pre_compile: "tlmgr install physics braket || true"
+
+      - name: Make safe artifact names
+        id: names
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${{ matrix.root }}"
+          safe="$(printf '%s' "$root" | sed 's|/|__|g; s|[^A-Za-z0-9._-]|_|g')"
+          pdf_name="pdf-${safe}"
+          log_name="logs-${safe}"
+          echo "pdf_name=$pdf_name" >> "$GITHUB_OUTPUT"
+          echo "log_name=$log_name" >> "$GITHUB_OUTPUT"
+
+      - name: Check produced files
+        id: produced
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdf="${{ steps.detect.outputs.pdf }}"
+          dir="${{ steps.detect.outputs.dir }}"
+          if [[ -f "$pdf" ]]; then
+            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          shopt -s nullglob
+          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
+          if (( ${#logs[@]} )); then
+            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload PDF (only if created)
+        if: always() && steps.produced.outputs.pdf_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.names.outputs.pdf_name }}
+          path: ${{ steps.detect.outputs.pdf }}
+
+      - name: Upload logs (only if any)
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.names.outputs.log_name }}
+          path: |
+            ${{ steps.detect.outputs.dir }}/*.log
+            ${{ steps.detect.outputs.dir }}/*.blg
+            ${{ steps.detect.outputs.dir }}/*.fls
+            ${{ steps.detect.outputs.dir }}/*.aux
+            ${{ steps.detect.outputs.dir }}/*.out
+
+  publish_pdfs:
+    needs: compile
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download PDF artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-*
+          path: build_pdfs
+          merge-multiple: true
+
+      - name: Collect PDFs into docs/pdfs
+        id: collect
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs/pdfs
+          shopt -s globstar nullglob
+          count=0
+          for f in build_pdfs/**/*.pdf; do
+            base="$(basename "$f")"
+            cp -f "$f" "docs/pdfs/$base"
+            count=$((count+1))
+          done
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & push PDFs
+        if: steps.collect.outputs.count != '0'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/pdfs/*.pdf
+          git commit -m "chore: update PDFs [skip ci]" || echo "No changes to commit"
+          git push
+

@@ -1,0 +1,84 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\title{Solution to the Scalar Constraint Equation (Priority P1)}
+\author{Unified Biquaternion Theory Team}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+In the Unified Biquaternion Theory (UBT), the imaginary scalar part of the main field equation leads to a novel constraint:
+\[
+\Im \left[\partial_\mu \Theta^\dagger \, \partial^\mu \Theta \right] = 0,
+\]
+where $\Theta(q, \tau)$ is a biquaternion-valued field over complexified spacetime.
+
+This constraint is not a wave equation but rather an algebraic or geometric condition that relates the amplitude and phase of the field.
+
+\section{Field Decomposition and Reformulation}
+
+Assume the field $\Theta$ can be decomposed into amplitude and phase components:
+\[
+\Theta = \rho(q) \, e^{i\phi(q)},
+\]
+where $\rho \in \mathbb{R}$ and $\phi \in \mathbb{R}$ (local phase).
+
+We compute:
+\[
+\partial_\mu \Theta = (\partial_\mu \rho + i\rho \partial_\mu \phi) e^{i\phi},
+\]
+\[
+\partial^\mu \Theta^\dagger = (\partial^\mu \rho - i\rho \partial^\mu \phi) e^{-i\phi},
+\]
+Then:
+\begin{align*}
+\partial^\mu \Theta^\dagger \, \partial_\mu \Theta &= (\partial^\mu \rho - i\rho \partial^\mu \phi)(\partial_\mu \rho + i\rho \partial_\mu \phi) \\
+&= \partial^\mu \rho \partial_\mu \rho + \rho^2 \partial^\mu \phi \partial_\mu \phi + i \left( \rho \partial^\mu \rho \partial_\mu \phi - \rho \partial_\mu \rho \partial^\mu \phi \right)
+\end{align*}
+
+The imaginary part yields:
+\[
+\Im \left[ \partial^\mu \Theta^\dagger \, \partial_\mu \Theta \right] = 2\rho \, \eta^{\mu\nu} \, \partial_\mu \rho \, \partial_\nu \phi = 0
+\]
+
+This gives the scalar constraint:
+\[
+\eta^{\mu\nu} \, \partial_\mu \rho \, \partial_\nu \phi = 0
+\]
+which requires orthogonality between gradients of amplitude and phase.
+
+\section{Example: Spherical Symmetry}
+
+Consider $\rho = \rho(r)$ and $\phi = \phi(t)$. Then:
+\[
+\partial_\mu \rho = \frac{d\rho}{dr} \delta^r_\mu, \quad \partial_\nu \phi = \frac{d\phi}{dt} \delta^t_\nu
+\]
+and the constraint becomes:
+\[
+\eta^{\mu\nu} \partial_\mu \rho \partial_\nu \phi = \eta^{rt} \frac{d\rho}{dr} \frac{d\phi}{dt} = 0
+\]
+so it's satisfied trivially, as $\eta^{rt} = 0$.
+
+\section{Interpretation}
+
+This constraint may act as a filter on allowed configurations of the field, excluding those where amplitude and phase gradients align. It may also relate to topological or informational conditions of spacetime geometry.
+
+\section{Outlook}
+
+Future work will explore:
+\begin{itemize}
+  \item General solutions in FRW and Schwarzschild backgrounds
+  \item Topological classification of field configurations satisfying the constraint
+  \item Role in quantum corrections and effective action
+\end{itemize}
+
+
+\section*{License}
+This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+\end{document}

@@ -1,0 +1,350 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{graphicx}
+  \usepackage{titlesec}
+  \usepackage{authblk}
+  
+  % Define theorem environments for standalone compilation
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+  
+  \title{\textbf{Emergent Metric and Einstein Equation in UBT}}
+  \author{David Jaroš}
+  \date{February 2026}
+  
+  \begin{document}
+  
+  \maketitle
+  
+  \begin{abstract}
+  We derive General Relativity as an emergent, effective description of the fundamental biquaternionic field $\Theta(q,\tau)$ rather than as a fundamental theory. The metric tensor $g_{\mu\nu}$ is constructed as a bilinear functional of $\Theta$ and its covariant derivatives. From this emergent metric, we compute Christoffel symbols and curvature tensors using standard differential geometry. We then derive the Einstein field equation $G_{\mu\nu} = \kappa T^{(\Theta)}_{\mu\nu}$ where the stress-energy tensor has a clear origin in $\Theta$-field dynamics. We prove that classical GR emerges in the limit of slowly varying phase and suppressed diffusion, while preserving diffeomorphism invariance throughout.
+  \end{abstract}
+\fi
+
+\section{Emergent Metric and Einstein Equation}
+\label{sec:emergent_metric_einstein}
+
+\subsection{Introduction: Gravity as Emergent Phenomenon}
+
+In conventional General Relativity, the metric tensor $g_{\mu\nu}$ is taken as a fundamental dynamical field. The Einstein-Hilbert action
+\begin{equation}
+S_{\text{EH}} = \frac{c^4}{16\pi G}\int d^4x \sqrt{-g} \, R
+\end{equation}
+is postulated, and variation with respect to $g_{\mu\nu}$ yields the Einstein field equations.
+
+\textbf{UBT Paradigm Shift}: In UBT, the metric is \textit{not} fundamental. Instead, $g_{\mu\nu}$ emerges as an effective description of the underlying biquaternionic field $\Theta(q,\tau)$. This resolves the quantization problem: we don't quantize the metric directly (which leads to non-renormalizable infinities), but rather quantize $\Theta$, and the metric inherits quantum properties indirectly.
+
+\subsection{Construction of the Emergent Metric}
+
+\subsubsection{Bilinear Functional Definition}
+
+\begin{definition}[Emergent Metric Tensor]
+The effective spacetime metric is defined as the bilinear functional
+\begin{equation}
+g_{\mu\nu}(x) = \frac{1}{\mathcal{N}(x)} \Re\left[\int d\psi \, w(\psi) \, (D_\mu \Theta)^\dagger \cdot (D_\nu \Theta) \right],
+\label{eq:metric_functional}
+\end{equation}
+where:
+\begin{itemize}
+    \item $D_\mu$ is the biquaternionic covariant derivative
+    \item $(\cdot)^\dagger$ denotes the biquaternion adjoint (conjugate transpose)
+    \item $\cdot$ is the biquaternion inner product
+    \item $w(\psi)$ is a weight function for averaging over the $\psi$-direction
+    \item $\mathcal{N}(x)$ is a normalization ensuring proper signature
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+The weight function $w(\psi)$ can be chosen as:
+\begin{itemize}
+    \item Uniform: $w(\psi) = 1$ (classical limit)
+    \item Gaussian: $w(\psi) = e^{-\psi^2/(2\sigma^2)}$ (localized quantum state)
+    \item Thermal: $w(\psi) = e^{-\beta E(\psi)}$ (finite temperature)
+\end{itemize}
+The choice affects quantum corrections but not the classical limit.
+\end{remark}
+
+\subsubsection{Normalization and Signature}
+
+The normalization factor $\mathcal{N}(x)$ is determined by requiring:
+\begin{enumerate}
+    \item \textbf{Lorentzian signature}: $\text{signature}(g_{\mu\nu}) = (-,+,+,+)$
+    \item \textbf{Unit determinant scale}: $|g| \sim L_P^{-4}$ where $L_P$ is the Planck length
+\end{enumerate}
+
+Explicitly:
+\begin{equation}
+\mathcal{N}(x) = \sqrt{-\det\left(\Re\left[\int d\psi \, w(\psi) \, (D_\mu \Theta)^\dagger \cdot (D_\nu \Theta) \right]\right)} / L_P^2
+\end{equation}
+
+\subsubsection{Phase Gradient Interpretation}
+
+For $\Theta$ with strong phase structure $\Theta \sim A(x) e^{iS(x)/\hbar}$:
+\begin{equation}
+D_\mu \Theta \approx \left(\partial_\mu A + \frac{i}{\hbar}A \partial_\mu S\right) e^{iS/\hbar}
+\end{equation}
+
+Substituting into \eqref{eq:metric_functional}:
+\begin{align}
+g_{\mu\nu} &\propto \Re\left[(\partial_\mu A - \frac{i}{\hbar}A\partial_\mu S)(\partial_\nu A + \frac{i}{\hbar}A\partial_\nu S)\right] \\
+&= \partial_\mu A \partial_\nu A + \frac{A^2}{\hbar^2}\partial_\mu S \partial_\nu S
+\end{align}
+
+The second term dominates in the semiclassical limit $A^2/\hbar^2 \gg (\partial A)^2$:
+\begin{equation}
+g_{\mu\nu} \approx \frac{A^2}{\hbar^2 \mathcal{N}} \partial_\mu S \partial_\nu S
+\label{eq:phase_gradient_metric}
+\end{equation}
+
+\textbf{Key insight}: The metric geometry is determined by the gradient of the quantum phase $S$.
+
+\subsection{Computation of Christoffel Symbols}
+
+Given the emergent metric $g_{\mu\nu}(x)$, we compute the Christoffel symbols using the standard formula:
+
+\begin{definition}[Christoffel Symbols from Emergent Metric]
+\begin{equation}
+\Gamma^\rho_{\mu\nu} = \frac{1}{2}g^{\rho\sigma}\left(\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\mu\sigma} - \partial_\sigma g_{\mu\nu}\right)
+\label{eq:christoffel}
+\end{equation}
+\end{definition}
+
+These Christoffel symbols define the Levi-Civita connection compatible with the emergent metric, ensuring:
+\begin{enumerate}
+    \item \textbf{Metric compatibility}: $\nabla_\rho g_{\mu\nu} = 0$
+    \item \textbf{Torsion-free}: $\Gamma^\rho_{\mu\nu} = \Gamma^\rho_{\nu\mu}$
+\end{enumerate}
+
+\subsection{Computation of Curvature Tensors}
+
+\subsubsection{Riemann Curvature Tensor}
+
+The Riemann curvature tensor is computed from the Christoffel symbols:
+
+\begin{equation}
+R^\rho_{\ \sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}
+\label{eq:riemann}
+\end{equation}
+
+\subsubsection{Ricci Tensor and Scalar}
+
+Contracting indices:
+\begin{align}
+R_{\mu\nu} &= R^\lambda_{\ \mu\lambda\nu} \label{eq:ricci_tensor} \\
+R &= g^{\mu\nu}R_{\mu\nu} \label{eq:ricci_scalar}
+\end{align}
+
+\subsubsection{Einstein Tensor}
+
+\begin{equation}
+G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R
+\label{eq:einstein_tensor}
+\end{equation}
+
+The Einstein tensor automatically satisfies the Bianchi identity:
+\begin{equation}
+\nabla^\mu G_{\mu\nu} = 0,
+\end{equation}
+ensuring local energy-momentum conservation.
+
+\subsection{Derivation of the Einstein Equation}
+
+\subsubsection{Stress-Energy Tensor from $\Theta$ Dynamics}
+
+The stress-energy tensor is not postulated but derived from the $\Theta$-field dynamics:
+
+\begin{definition}[Emergent Stress-Energy Tensor]
+The effective stress-energy tensor is defined through the variation of the $\Theta$-field action with respect to the emergent metric:
+\begin{equation}
+T^{(\Theta)}_{\mu\nu} = \frac{2}{\sqrt{-g}}\frac{\delta S_\Theta}{\delta g^{\mu\nu}},
+\label{eq:stress_energy_def}
+\end{equation}
+where $S_\Theta$ is the action for the $\Theta$-field.
+\end{definition}
+
+For the drift-diffusion action corresponding to the Fokker-Planck equation (see Appendix on QM-GR unification):
+\begin{equation}
+S_\Theta = \int d^4x d\psi \sqrt{-g} \left[\frac{1}{2}g^{\mu\nu}(D_\mu\Theta)^\dagger \cdot (D_\nu\Theta) - V(\Theta)\right],
+\end{equation}
+
+the stress-energy tensor becomes:
+\begin{equation}
+T^{(\Theta)}_{\mu\nu} = (D_\mu\Theta)^\dagger \cdot (D_\nu\Theta) - \frac{1}{2}g_{\mu\nu}\left[g^{\rho\sigma}(D_\rho\Theta)^\dagger \cdot (D_\sigma\Theta) + 2V(\Theta)\right]
+\label{eq:theta_stress_energy}
+\end{equation}
+
+This has the standard form of a scalar field stress-energy tensor but with biquaternionic structure.
+
+\subsubsection{The Effective Einstein Equation}
+
+\begin{theorem}[Emergent Einstein Equation]
+The dynamics of the emergent metric $g_{\mu\nu}$ derived from the $\Theta$-field evolution satisfy
+\begin{equation}
+G_{\mu\nu} = \kappa T^{(\Theta)}_{\mu\nu},
+\label{eq:emergent_einstein}
+\end{equation}
+where $\kappa = 8\pi G/c^4$ and $G$ is the effective gravitational constant determined by the normalization $\mathcal{N}$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+The proof proceeds in three steps:
+
+\textbf{Step 1}: Start with the fundamental $\Theta$-field equation:
+\begin{equation}
+\nabla^\dagger \nabla \Theta = \kappa' \mathcal{J}[\Theta],
+\end{equation}
+where $\mathcal{J}[\Theta]$ is the biquaternionic current/source.
+
+\textbf{Step 2}: Take the real-time projection and average over $\psi$:
+\begin{equation}
+\left\langle \Re[\nabla^\dagger \nabla \Theta] \right\rangle_\psi = \kappa' \left\langle \Re[\mathcal{J}[\Theta]] \right\rangle_\psi
+\end{equation}
+
+\textbf{Step 3}: Express the left-hand side in terms of the emergent metric using equations \eqref{eq:riemann}--\eqref{eq:einstein_tensor}. The operator $\nabla^\dagger \nabla$ acting on $\Theta$ produces curvature terms that, when averaged, yield the Einstein tensor $G_{\mu\nu}$.
+
+The right-hand side, when expressed in terms of $g_{\mu\nu}$ using definition \eqref{eq:stress_energy_def}, yields precisely $T^{(\Theta)}_{\mu\nu}$.
+\end{proof}
+
+\subsection{Classical General Relativity Limit}
+
+\subsubsection{Conditions for Classical Limit}
+
+General Relativity emerges when:
+
+\begin{enumerate}
+    \item \textbf{Slowly varying phase}: $|\partial_\mu \partial_\nu S| \ll |\partial_\mu S|^2/\lambda$ where $\lambda$ is a characteristic wavelength
+    
+    \item \textbf{Suppressed diffusion}: The diffusion term in the Fokker-Planck equation becomes negligible compared to the drift term:
+    \begin{equation}
+    \mathcal{D}|\nabla^2 \Theta| \ll |V^\mu \partial_\mu \Theta|
+    \end{equation}
+    
+    \item \textbf{Real-time projection}: The $\psi$-dependence is averaged out, $\langle \cdot \rangle_\psi$, leaving only real-time dynamics
+    
+    \item \textbf{Large quantum numbers}: $S/\hbar \gg 1$ (semiclassical regime)
+\end{enumerate}
+
+\begin{proposition}[Classical GR Recovery]
+Under the above conditions, the emergent Einstein equation \eqref{eq:emergent_einstein} reduces exactly to Einstein's field equations of General Relativity:
+\begin{equation}
+R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu},
+\end{equation}
+where $T_{\mu\nu} = \lim_{\text{classical}} T^{(\Theta)}_{\mu\nu}$ is the classical stress-energy tensor of matter fields.
+\end{proposition}
+
+\subsubsection{Quantum Corrections}
+
+Deviations from classical GR appear as quantum corrections:
+\begin{equation}
+G_{\mu\nu} = \kappa T_{\mu\nu} + \kappa \Delta T^{(\text{quantum})}_{\mu\nu},
+\end{equation}
+where
+\begin{equation}
+\Delta T^{(\text{quantum})}_{\mu\nu} \sim \frac{\hbar}{m c^2} \left[\langle(\partial_\mu \psi)(\partial_\nu \psi)\rangle - \frac{1}{2}g_{\mu\nu}\langle(\partial \psi)^2\rangle\right]
+\end{equation}
+represents the contribution from $\psi$-fluctuations.
+
+These corrections are suppressed by $\hbar/(mc^2L^2)$ where $L$ is the characteristic length scale, becoming important only near the Planck scale.
+
+\subsection{Diffeomorphism Invariance}
+
+\subsubsection{Coordinate Transformations}
+
+\begin{proposition}[Preserved Diffeomorphism Invariance]
+The emergent Einstein equation \eqref{eq:emergent_einstein} is invariant under diffeomorphisms $x^\mu \to x'^\mu(x)$.
+\end{proposition}
+
+\begin{proof}
+Under a coordinate transformation:
+\begin{itemize}
+    \item The metric transforms as: $g'_{\mu\nu} = \frac{\partial x^\rho}{\partial x'^\mu}\frac{\partial x^\sigma}{\partial x'^\nu}g_{\rho\sigma}$
+    \item The Einstein tensor transforms as: $G'_{\mu\nu} = \frac{\partial x^\rho}{\partial x'^\mu}\frac{\partial x^\sigma}{\partial x'^\nu}G_{\rho\sigma}$
+    \item The stress-energy transforms as: $T'_{\mu\nu} = \frac{\partial x^\rho}{\partial x'^\mu}\frac{\partial x^\sigma}{\partial x'^\nu}T_{\rho\sigma}$
+\end{itemize}
+
+Since equation \eqref{eq:emergent_einstein} is a tensor equation, it maintains the same form in all coordinate systems, preserving diffeomorphism invariance.
+\end{proof}
+
+This is crucial: even though the metric is emergent rather than fundamental, the resulting theory respects general covariance, a cornerstone of General Relativity.
+
+\subsection{Physical Interpretation}
+
+\subsubsection{Information Flow and Geometry}
+
+The emergent metric interpretation reveals a deep connection:
+\begin{equation}
+\text{Spacetime Curvature} \leftrightarrow \text{Information Flow Pattern in } \Theta
+\end{equation}
+
+Specifically:
+\begin{itemize}
+    \item \textbf{Flat spacetime}: Uniform information distribution, $\partial_\mu S = \text{const}$
+    \item \textbf{Curved spacetime}: Non-uniform information flow, $\partial_\mu \partial_\nu S \neq 0$
+    \item \textbf{Black hole singularity}: Information bottleneck, $|\nabla S| \to \infty$
+\end{itemize}
+
+\subsubsection{Effective vs Fundamental}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Quantity} & \textbf{GR (Conventional)} & \textbf{UBT (Emergent)} \\
+\hline
+Metric $g_{\mu\nu}$ & Fundamental field & Effective, derived from $\Theta$ \\
+Curvature $R_{\mu\nu\rho\sigma}$ & Fundamental & Emergent from phase gradients \\
+Matter $T_{\mu\nu}$ & External source & $\Theta$-field self-interaction \\
+Einstein equation & Postulated & Derived \\
+Quantization & Problematic & Natural (quantize $\Theta$) \\
+\hline
+\end{tabular}
+\caption{Comparison of metric status in conventional GR versus emergent UBT formulation}
+\end{table}
+
+\subsection{Summary: Emergent Gravity}
+
+We have demonstrated that:
+
+\begin{enumerate}
+    \item \textbf{The metric tensor is emergent}: Defined as a bilinear functional of $\Theta$ and its derivatives, not postulated as fundamental.
+    
+    \item \textbf{Curvature arises from phase gradients}: Standard geometric structures (Christoffel symbols, Riemann tensor, Ricci tensor) are computed from the emergent metric.
+    
+    \item \textbf{Einstein equation is derived}: The field equation $G_{\mu\nu} = \kappa T^{(\Theta)}_{\mu\nu}$ emerges from $\Theta$-dynamics, not assumed.
+    
+    \item \textbf{Classical GR is recovered}: In the limit of slowly varying phase and suppressed diffusion, we exactly reproduce Einstein's General Relativity.
+    
+    \item \textbf{Diffeomorphism invariance is preserved}: The emergent framework respects general covariance.
+\end{enumerate}
+
+This establishes gravity as an \textit{effective} rather than \textit{fundamental} interaction, resolving the quantization problem and providing a pathway to quantum gravity through the underlying $\Theta$-field theory.
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi

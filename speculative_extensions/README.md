@@ -32,7 +32,26 @@ The Complex Consciousness Theory (CCT) applies UBT principles to model conscious
 
 See [CONSCIOUSNESS_CLAIMS_ETHICS.md](../CONSCIOUSNESS_CLAIMS_ETHICS.md) for detailed ethical guidelines.
 
-### 2. Speculative Appendices (`appendices/`)
+### 2. Cosmological Fingerprint Proposals
+
+**Status**: Theoretical framework complete, awaiting numerical validation
+
+These proposals explore whether certain cosmological anomalies could be explained by parametric effects rather than new fundamental physics:
+
+- **Hubble Tension Appendix** (`appendices/appendix_HT_hubble_tension_metric_latency.tex`): 
+  - Explores whether the 9% discrepancy between early-universe (CMB) and late-universe (distance ladder) Hubble constant measurements could arise from effective time parametrization differences
+  - Uses minimal covariant extension: dτ = dt(1 + εf(z)) with ε ~ 0.1%
+  - **Status: VIABLE BUT CONSTRAINED** - mathematically consistent with GR and ΛCDM, lives in narrow parameter window
+  - Testable with future high-precision H(z) measurements at intermediate redshifts
+  - See `README_appendix_HT.md` for detailed summary and validation checklist
+
+**Important Notes**:
+- These are "forensic fingerprint proposals" - small, testable signatures that can be validated or discarded
+- Negative results are scientifically valuable (rule out classes of explanations)
+- No commitment to full theoretical framework required
+- Follows disciplined falsification protocol
+
+### 3. Speculative Appendices (`appendices/`)
 
 These appendices were separated from the main consolidation project because they contain content that is:
 - Not empirically validated
@@ -41,13 +60,21 @@ These appendices were separated from the main consolidation project because they
 - Philosophical or interpretational in nature
 
 **Contents**:
+- `appendix_F_fingerprint_protocol.tex` - Forensic fingerprint search protocol for UBT signatures
 - `appendix_F2_psychons_theta.tex` - Psychon field equations
+- `appendix_HT_hubble_tension_metric_latency.tex` - Hubble tension as effective metric latency (speculative fingerprint proposal)
 - `appendix_I_philosophical_coherence.tex` - Philosophical foundations (includes consciousness speculation)
+- `appendix_IT_information_theoretic_cosmology.tex` - **HIGHLY SPECULATIVE**: Reed-Solomon interpretation (digital simulation analogy)
 - `appendix_J_rotating_spacetime_ctc.tex` - Closed timelike curves in rotating spacetimes
 - `appendix_P2_multiverse_projection.tex` - Multiverse interpretation of biquaternionic dimensions
+- `appendix_PX_planck_validation.tex` - Planck 2018 parameter mapping and falsifiability tests
 - `appendix_S_speculative_notes.tex` - Collection of speculative ideas and work-in-progress
 - `ubt_appendix_12_psychons.tex` - Original psychon appendix from UBT
 - `ubt_appendix_13_psi_resonator.tex` - Theta/Psi resonator experimental proposals
+
+**Note on Hubble Tension Appendix**: This appendix (`appendix_HT_hubble_tension_metric_latency.tex`) demonstrates the **speculative fingerprint methodology** in action. It rigorously tests whether the Hubble tension could arise from an effective metric latency, derives quantitative predictions, and shows the hypothesis is **falsified by existing data**. This is a positive example of scientific reasoning: propose → test → falsify → accept negative result.
+
+**Note on Information-Theoretic Appendix**: The IT appendix (`appendix_IT_information_theoretic_cosmology.tex`) presents a **highly speculative** interpretation using digital communication analogies (Reed-Solomon codes, multiplexing, etc.). While mathematically interesting, this is explicitly **not** part of core UBT physics. It explores an extreme interpretation of information-theoretic limits and should be clearly distinguished from the more rigorous information-processing overhead hypothesis presented in the main repository's Hubble tension analysis.
 
 ### 3. Consciousness Model Solutions and Priorities
 
@@ -98,6 +125,8 @@ The **core Unified Biquaternion Theory** focuses on:
 The speculative extensions explore what UBT *might* imply for:
 - Consciousness and cognition
 - Time travel and causality
+- Cosmological anomalies (e.g., Hubble tension)
+- Alternative interpretations of dark sector physics
 - Multiverse interpretations
 - Exotic particles and phenomena
 

@@ -1,3 +1,14 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
 \documentclass[12pt]{article}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{geometry}
@@ -30,6 +41,21 @@
 
 \begin{document}
 \maketitle
+
+% License Notice - Visible in PDF
+\noindent
+\textbf{License:} © 2025 Ing. David Jaroš. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development. See \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} for details.
+
+\vspace{1em}
+
+\noindent\textbf{Lock-in statement:} Throughout this work, all geometric and dynamical structures are defined at the level of biquaternionic fields. Any real-valued spacetime metric, curvature, or stress--energy tensor represents a Hermitian projection corresponding to an observer-restricted sector. No physical conclusion should be interpreted at the level of the real projection alone.
+
+\vspace{0.5em}
+
+\noindent\textbf{Future-proofing rule:} Any future extension of UBT must (i) define new dynamics at the biquaternionic level, (ii) state explicitly how the GR sector is obtained as $\Re(\,\cdot\,)$, and (iii) avoid introducing classical GR objects (metrics, Levi--Civita symbols, or stress--energy tensors) as axioms without such a projection. This applies to all new appendices, phenomenological discussions, and experimental proposals.
+
+\vspace{1em}
+
 \tableofcontents
 
 \section*{CORE Scope and Claims}
@@ -85,6 +111,7 @@ UBT's originality lies not in the use of quaternions per se, but in the specific
 % ---- TESTABILITY AND TSVF (Priority 2 & 4) ----
 \input{appendix_W_testable_predictions}
 \input{appendix_CERN_BSM_predictions}
+\input{appendix_JWST_LHC_predictions}
 \input{appendix_X_TSVF_integration}
 
 % ---- CORE ----
@@ -107,6 +134,12 @@ UBT's originality lies not in the use of quaternions per se, but in the specific
 \input{appendix_U_dark_matter_unified_padic}
 \input{appendix_K2_fundamental_constants_consolidated}
 \input{appendix_O_padic_overview}
+% REMOVED: Information-theoretic cosmology appendix moved to speculative_extensions/
+% The IT appendix (Reed-Solomon codes, digital simulation analogies) is highly speculative
+% and has been separated from core UBT to maintain scientific clarity.
+% See: speculative_extensions/appendices/appendix_IT_information_theoretic_cosmology.tex
+% For information-theoretic aspects that ARE part of core UBT (Ω_b derivation, Hubble tension
+% as overhead hypothesis), see Layer B and Layer C documentation in main repository.
 
 % ---- ALPHA DERIVATION (One-loop and Two-loop CT) ----
 \input{appendix_ALPHA_one_loop_biquat}
@@ -133,6 +166,11 @@ UBT's originality lies not in the use of quaternions per se, but in the specific
 \input{appendix_Z_bibliography}
 
 \section*{License}
-This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+\textbf{License History:} Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development.
 
 \end{document}

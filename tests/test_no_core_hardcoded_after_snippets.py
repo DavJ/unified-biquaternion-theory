@@ -10,7 +10,11 @@ FATAL_PATTERNS = [
 
 def is_core_tex(p: pathlib.Path) -> bool:
     parts = set(p.parts)
+    # Exclude build/tooling directories
     if any(seg in parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__","tools","tests","scripts","validation","docs","archive","reports")):
+        return False
+    # Exclude speculative and auxiliary content (not canonical)
+    if any(seg in parts for seg in ("speculative_extensions","speculative","appendices","notes","drafts")):
         return False
     return p.suffix.lower() == ".tex"
 

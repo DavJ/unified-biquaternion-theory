@@ -90,6 +90,10 @@ WHITELIST = {
     "CALCULATION_STATUS_ANALYSIS.md",
     "TORUS_THETA_ALPHA_REPORT.md",
     "UBT_COPILOT_INSTRUCTIONS.md",  # Reference document with comparison values
+    "FILE_REORGANIZATION_2026-01-10.md",  # Documentation of reorganization (contains before/after values)
+    "CURRENT_STATUS.md",  # Status document with experimental comparison values
+    "generate_reference_constants.py",  # Tool that generates reference constants
+    "validate_alpha_renormalization.py",  # Validation script with reference values
 }
 
 # Directory segments to skip

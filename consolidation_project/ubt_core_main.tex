@@ -1,3 +1,14 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
 \documentclass[11pt,a4paper]{article}
 \usepackage{slashed}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
@@ -31,6 +42,20 @@
 \begin{document}
 \maketitle
 
+% License Notice - Visible in PDF
+\noindent
+\textbf{License:} © 2025 Ing. David Jaroš. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development. See \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} for details.
+
+\vspace{1em}
+
+\noindent\textbf{Lock-in statement:} Throughout this work, all geometric and dynamical structures are defined at the level of biquaternionic fields. Any real-valued spacetime metric, curvature, or stress--energy tensor represents a Hermitian projection corresponding to an observer-restricted sector. No physical conclusion should be interpreted at the level of the real projection alone.
+
+\vspace{0.5em}
+
+\noindent\textbf{Future-proofing rule:} Any future extension of UBT must (i) define new dynamics at the biquaternionic level, (ii) state explicitly how the GR sector is obtained as $\Re(\,\cdot\,)$, and (iii) avoid introducing classical GR objects (metrics, Levi--Civita symbols, or stress--energy tensors) as axioms without such a projection. This applies to all new appendices, phenomenological discussions, and experimental proposals.
+
+\vspace{1em}
+
 \appendix
 \tableofcontents
 
@@ -52,6 +77,14 @@ Acknowledging previous quaternionic unification efforts (e.g., Lanczos 1929, Gü
 % NOTE: do not include speculative/WIP files here.
 
 \input{appendix_originality_context}
+
+% FORMAL VERIFICATION APPENDICES (February 2026)
+\input{appendix_FORMAL_qm_gr_unification}  % Task 1: Formal QM-GR unification
+\input{appendix_FORMAL_emergent_metric}  % Task 2: Emergent metric and Einstein equation
+\input{appendix_FORMAL_black_hole_radiation}  % Task 3: Black hole radiation via complex time
+\input{appendix_FORMAL_constants_normalization}  % Task 4: Fundamental constants from normalization
+
+% CORE UBT APPENDICES
 \input{appendix_A_biquaternion_gravity_consolidated}
 \def\INCLUDEMODE{}  % Signal to appendices that we're including them, not compiling standalone
 \input{appendix_QG_quantum_gravity_unification}
@@ -70,6 +103,11 @@ Acknowledging previous quaternionic unification efforts (e.g., Lanczos 1929, Gü
 \input{appendix_alpha_statement}
 
 \section*{License}
-This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+\textbf{License History:} Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development.
 
 \end{document}

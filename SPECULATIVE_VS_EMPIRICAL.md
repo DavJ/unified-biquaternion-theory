@@ -2,7 +2,12 @@
 
 **Document Purpose:** Help readers distinguish between validated derivations and speculative hypotheses  
 **Importance:** Critical for scientific integrity and proper evaluation  
-**Last Updated:** November 5, 2025
+**Last Updated:** January 13, 2026
+
+**See Also:** 
+- [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) - 3-layer organization (Core/Observables/Research Front)
+- **[STATUS_OF_CODING_ASSUMPTIONS.md](docs/STATUS_OF_CODING_ASSUMPTIONS.md)** - Core vs modeling layers separation
+- **[RS_OPTIMAL_LENS.md](information_probes/RS_OPTIMAL_LENS.md)** - RS(255,201) optimality and probe-dependent predictions
 
 ---
 
@@ -10,14 +15,16 @@
 
 **Problem:** UBT contains both:
 - Rigorous mathematical derivations with experimental validation
+- Testable research hypotheses under investigation
 - Speculative hypotheses requiring extensive future work
 
 **Risk:** If not clearly separated, readers may:
 - Dismiss valid work due to speculative claims
 - Accept speculative claims as established science
+- Confuse active research (Layer C) with wild speculation
 - Misunderstand the theory's actual status
 
-**Solution:** This document provides clear categorization and labeling system.
+**Solution:** This document provides clear categorization and labeling system, integrated with UBT's 3-layer structure.
 
 ---
 
@@ -35,6 +42,8 @@
 - Standard Model gauge group derivation (rigorous)
 - Predictions matching experiment (α, m_e with caveats)
 
+**UBT Layer**: **Layer A (Core Ontology)**
+
 ### 🟡 SEMI-EMPIRICAL (Yellow): Partially Validated, Gaps Remain
 
 **Criteria:**
@@ -43,21 +52,29 @@
 - Mostly derived with fitted components
 
 **Examples:**
-- Fine-structure constant (α⁻¹ = 137 matches, but 12% perturbative gap)
+- Fine-structure constant (α⁻¹ = 137.036 matches, but ~12% renormalization gap)
 - Electron mass (topology proven, coefficients fitted)
-- Yukawa couplings (formalism established, values not calculated)
+- Baryonic density (Ω_b ≈ 4.9% from information structure)
+
+**UBT Layer**: **Layer B (Direct Observables)**
 
 ### 🔵 THEORETICAL (Blue): Framework Established, Predictions Pending
 
 **Criteria:**
 - Mathematical framework complete
-- No experimental predictions yet
-- Testable in principle
+- Testable predictions identified but not yet calculated/validated
+- Falsification criteria clear
 
 **Examples:**
-- Dark matter from p-adic extensions (framework exists, no specific mass/cross-section)
+- **Hubble tension as information overhead** (framework established, observational test pending)
+- Dark matter from p-adic extensions (framework exists, no specific mass/cross-section yet)
 - Modified gravity corrections (formalism exists, magnitude not calculated)
-- CMB signatures (protocol established, analysis not complete)
+
+**UBT Layer**: **Layer C (Research Front)**
+
+**Important Distinction**: Layer C content is **scientific research hypotheses**, NOT speculation.
+These are testable, falsifiable proposals under active investigation. Success would promote
+them to Layer B; falsification is equally valuable scientifically.
 
 ### 🟠 SPECULATIVE (Orange): Hypothesis Without Quantitative Predictions
 
@@ -69,7 +86,12 @@
 **Examples:**
 - Consciousness/psychon hypothesis (no quantitative parameters)
 - Closed timelike curves (framework only, no specific solutions analyzed)
-- Time travel possibilities (speculative application)
+- **Digital simulation analogies** (Reed-Solomon codes, 16-channel multiplex, etc.)
+
+**UBT Status**: **Outside core layers** - in `speculative_extensions/`
+
+**Critical Note**: 🟠 Speculative content is **qualitatively different** from 🔵 Layer C research.
+Layer C has quantitative frameworks and testable predictions; speculative content does not.
 
 ### 🔴 PHILOSOPHICAL (Red): Interpretational, Not Scientific Claim
 
@@ -238,26 +260,29 @@ Treat as philosophical exploration, not established science.
 
 ### Core Physics (Mostly Empirical/Semi-Empirical)
 
-| Document | Primary Category | Notes |
-|----------|------------------|-------|
-| **Appendix R (GR equivalence)** | 🟢 EMPIRICAL | Rigorous proof, experimentally validated |
-| **Appendix E (SM gauge group)** | 🟢 EMPIRICAL | Rigorous derivation, matches known SM |
-| **Appendix A (Θ-field action)** | 🟢 EMPIRICAL | Mathematical foundation solid |
-| **emergent_alpha_from_ubt.tex** | 🟡 SEMI-EMPIRICAL | Matches experiment, derivation gaps remain |
-| **Hopfion fermion mass** | 🟡 SEMI-EMPIRICAL | Topology solid, coefficients fitted |
-| **Appendix Y (Yukawa)** | 🔵 THEORETICAL | Framework complete, values not calculated |
+| Document | Primary Category | UBT Layer | Notes |
+|----------|------------------|-----------|-------|
+| **Appendix R (GR equivalence)** | 🟢 EMPIRICAL | Layer A | Rigorous proof, experimentally validated |
+| **Appendix E (SM gauge group)** | 🟢 EMPIRICAL | Layer A | Rigorous derivation, matches known SM |
+| **Appendix A (Θ-field action)** | 🟢 EMPIRICAL | Layer A | Mathematical foundation solid |
+| **emergent_alpha_from_ubt.tex** | 🟡 SEMI-EMPIRICAL | Layer B | Matches experiment, derivation gaps remain |
+| **Hopfion fermion mass** | 🟡 SEMI-EMPIRICAL | Layer B | Topology solid, coefficients fitted |
+| **Baryonic density (Ω_b)** | 🟡 SEMI-EMPIRICAL | Layer B | Information-theoretic derivation, validated |
+| **Appendix Y (Yukawa)** | 🔵 THEORETICAL | Layer C | Framework complete, values not calculated |
 
 ### Extensions (Theoretical/Speculative)
 
-| Document | Primary Category | Notes |
-|----------|------------------|-------|
-| **p-adic dark matter** | 🔵 THEORETICAL | Framework exists, no predictions yet |
-| **Modified gravity** | 🔵 THEORETICAL | Formalism established, magnitude TBD |
-| **CMB signatures** | 🔵 THEORETICAL | Protocol ready, analysis not complete |
-| **Psychons/consciousness** | 🟠 SPECULATIVE | No quantitative parameters |
-| **CTCs** | 🟠 SPECULATIVE | Mathematical solutions, physical status unclear |
-| **Time travel** | 🟠 SPECULATIVE | Conceptual only |
-| **Multiverse interpretation** | 🔴 PHILOSOPHICAL | Interpretation of formalism |
+| Document | Primary Category | UBT Layer | Notes |
+|----------|------------------|-----------|-------|
+| **Hubble tension overhead** | 🔵 THEORETICAL | Layer C | Framework exists, testable, observational validation pending |
+| **p-adic dark matter** | 🔵 THEORETICAL | Layer C | Framework exists, no predictions yet |
+| **Modified gravity** | 🔵 THEORETICAL | Layer C | Formalism established, magnitude TBD |
+| **CMB signatures** | 🔵 THEORETICAL | Layer C | Protocol ready, analysis not complete |
+| **Psychons/consciousness** | 🟠 SPECULATIVE | Outside core | No quantitative parameters |
+| **CTCs** | 🟠 SPECULATIVE | Outside core | Mathematical solutions, physical status unclear |
+| **Digital simulation (IT appendix)** | 🔴 PHILOSOPHICAL | Outside core | Reed-Solomon analogy, not physical claim |
+| **Time travel** | 🟠 SPECULATIVE | Outside core | Conceptual only |
+| **Multiverse interpretation** | 🔴 PHILOSOPHICAL | Outside core | Interpretation of formalism |
 
 ### Assessment Documents (Meta)
 

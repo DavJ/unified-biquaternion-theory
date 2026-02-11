@@ -47,3 +47,15 @@ reports/*.json
 data/alpha_two_loop_grid.csv
 tex/snippets_generated.tex
 reports/*.json
+
+# Forensic fingerprint output directory
+forensic_fingerprint/out/
+# But keep VERDICT files for court-grade results
+!forensic_fingerprint/out/**/VERDICT.md
+
+# CMB 2D FFT output directory
+research_front/cmb_2d_fft/out/
+
+# virtual python
+.venv
+.venv
