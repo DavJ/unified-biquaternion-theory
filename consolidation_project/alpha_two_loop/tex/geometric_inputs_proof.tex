@@ -1,0 +1,23 @@
+% =================== Geometric Inputs: Proof Sketch =====================
+\section*{Geometric Locking of \(N_{\mathrm{eff}}\) and \(R_\psi\)}
+\label{sec:geom-locking}
+\paragraph{Setup.}
+Let \(\mathbb H_{\mathbb C}\) denote the biquaternions and let \(\mathcal H\subset \mathbb H_{\mathbb C}\) be the Hermitian slice
+used to realize Minkowski signature (Appendix~P6). Let \(\Omega\subset\mathcal H\) be the spectral domain
+determined by Lorentz-invariant boundary conditions \(\mathcal B\) and Thomson-limit normalization at \(q^2=0\).
+
+\begin{lemma}[Uniqueness of \(N_{\mathrm{eff}}\) and \(R_\psi\)]
+Given \((\Omega,\mathcal B)\) as above, the effective mode count \(N_{\mathrm{eff}}\) and the normalization
+\(R_\psi\) are uniquely determined. No alternative \((\Omega',\mathcal B')\) satisfies simultaneously:
+(i) Lorentz invariance on \(\mathcal H\), (ii) CT\(\to\)QED reduction in the real-time limit \(\psi\to 0\),
+and (iii) Thomson-limit charge normalization.
+\end{lemma}
+\begin{proof}
+(1) \emph{Lorentz-invariant counting measure.} On \(\mathcal H\), define the invariant measure \(d\mu\) induced by the determinant quadratic form; \(\Omega\) is chosen so that \(\mu(\Lambda\Omega)=\mu(\Omega)\) for any Lorentz transform \(\Lambda\).
+(2) \emph{Normalization.} The factor \(R_\psi\) is fixed by imposing the Thomson-limit condition for the renormalized charge at \(q^2=0\).
+(3) \emph{Uniqueness.} Suppose \((\Omega',\mathcal B')\neq(\Omega,\mathcal B)\). If \(\Omega'\) breaks Lorentz invariance, the induced counting changes under \(\Lambda\), contradicting (i). If \(\mathcal B'\) or the normalization rule alters the \(\psi\to 0\) CT\(\to\)QED map or the Thomson constraint, (ii)–(iii) fail.
+Hence \(N_{\mathrm{eff}}\) and \(R_\psi\) are fixed and admit no tunable parameters.
+\end{proof}
+
+\paragraph{Consequence.}
+The product \(\frac{2\pi N_{\mathrm{eff}}}{3R_\psi}\) is determined solely by \((\Omega,\mathcal B)\) and contains no empirical fits.

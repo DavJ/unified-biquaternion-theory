@@ -30,13 +30,17 @@ UBT employs the \textbf{biquaternionic field}
 \Theta_\mu \in \mathbb{C}\otimes\mathbb{H},
 \]
 defined over the extended complex-time manifold $\tau = t + i\psi$. 
-Its internal structure carries four complex degrees of freedom, naturally encompassing both metric and antisymmetric components.
+Its internal structure carries four complex degrees of freedom, naturally encompassing both metric and antisymmetric components. The fundamental metric is biquaternionic,
+\[
+\mathcal{G}_{\mu\nu}:=\Theta_\mu^\dagger \Theta_\nu,
+\]
+and all connections/curvatures are derived from $\mathcal{G}_{\mu\nu}$.
 
 Chamseddine's Hermitian gravity, by contrast, uses a \textbf{Hermitian metric tensor}
 \[
-H_{\mu\nu} = g_{\mu\nu} + i B_{\mu\nu},
+H_{\mu\nu} = \Pi\!\left(\mathcal{G}_{\mu\nu}\right) = g_{\mu\nu} + i B_{\mu\nu},
 \]
-defined on a complex manifold with a holomorphic connection compatible with the $U(1,3)$ group.
+where $g_{\mu\nu}:=\Re(\mathcal{G}_{\mu\nu})$ is the real (GR) projection and $B_{\mu\nu}:=\Im(\mathcal{G}_{\mu\nu})$ captures the antisymmetric sector on the commuting subspace.
 
 \subsection*{F.2 Mapping between UBT and Hermitian Formulations}
 
@@ -48,10 +52,13 @@ applied to the composite $\Theta$-field:
 \[
 H_{\mu\nu} = \Pi\!\left(\Theta_\mu^\dagger \Theta_\nu\right).
 \]
+Here $\Pi$ projects onto the commuting complex subspace (Hermitian part), ensuring that the resulting tensor inherits the usual complex symmetry before any real projection $g_{\mu\nu}=\Re(\mathcal{G}_{\mu\nu})$ is taken.
 Taking the real and imaginary parts yields the identification:
 \[
 g_{\mu\nu} = \Re(H_{\mu\nu}), \qquad B_{\mu\nu} = \Im(H_{\mu\nu}).
 \]
+
+The Ricci tensor is therefore first defined biquaternionically as $\mathcal{R}_{\mu\nu}(\mathcal{G})$ from the full connection; the classical $R_{\mu\nu}$ is only the Hermitian projection $R_{\mu\nu}:=\Re(\mathcal{R}_{\mu\nu})$.
 
 \paragraph{Transition criterion.}
 The projection $\Pi$ is \emph{admissible} if and only if the noncommutativity of the biquaternionic components is negligible:
@@ -81,7 +88,7 @@ Time coordinate & $\tau = t + i\psi$ (biquaternionic time) & complex $z^\mu$ \\
 
 \subsection*{F.4 Field Equations and Curvature}
 
-In the Hermitian limit, the UBT covariant derivative reduces to the Chern-compatible connection:
+In the Hermitian limit, the UBT covariant derivative reduces to the Chern-compatible connection built from the projected metric $g_{\mu\nu}=\Re(\mathcal{G}_{\mu\nu})$:
 \[
 \nabla_\mu \Theta_\nu \; \longrightarrow \; \partial_\mu \Theta_\nu + \Gamma^\lambda_{\mu\nu}\Theta_\lambda,
 \]
@@ -126,4 +133,3 @@ it adds algebraic depth and potentially new topological degrees of freedom.
 
 \bigskip
 \noindent\textbf{References:} see file \texttt{references\_Hermitian.bib} for detailed bibliography.
-

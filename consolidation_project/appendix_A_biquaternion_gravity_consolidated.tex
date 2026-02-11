@@ -1,5 +1,20 @@
+% VERSION: v17 Stable Release
 
 \section{Biquaternion Gravity}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Biquaternionic Geometry Lock-In]
+\textbf{Gravitational field in UBT is fundamentally biquaternionic.}
+
+The fundamental objects are:
+\begin{itemize}
+\item \textbf{Metric}: $\mathcal{G}_{\mu\nu}(x) \in \mathbb{B}$, classical metric is $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$
+\item \textbf{Connection}: $\Omega_\mu(x) \in \mathbb{B}$, Christoffel symbols are $\Gamma^\lambda_{\mu\nu} := \text{Re}(\Omega^\lambda_{\mu\nu})$
+\item \textbf{Curvature}: $\mathcal{R}_{\mu\nu} \in \mathbb{B}$, Ricci tensor is $R_{\mu\nu} := \text{Re}(\mathcal{R}_{\mu\nu})$
+\item \textbf{Stress-energy}: $\mathcal{T}_{\mu\nu} \in \mathbb{B}$, classical stress-energy is $T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})$
+\end{itemize}
+
+Field equation: $\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}$ (biquaternionic). Einstein equations arise only after $\text{Re}(\cdot)$ projection.
+\end{tcolorbox}
 
 This appendix presents the gravitational sector of the Unified Biquaternion Theory (UBT).
 It combines the core theoretical framework from the original Biquaternion Gravity appendix
@@ -11,7 +26,11 @@ clarity and coherence.
 The gravitational field in UBT emerges naturally from the covariant formulation of the
 biquaternionic tensor-spinor field equations. UBT generalizes Einstein's General Relativity (GR) 
 by embedding the metric tensor in a biquaternionic field $\Theta(q,\tau)$ defined over 
-complex time $\tau = t + i\psi$. The real part of this field corresponds to the classical 
+complex time $\tau = t + i\psi$. 
+
+\textbf{Note on complex time approximation}: For the gravitational sector, the complex time approximation $\tau = t + i\psi$ (neglecting quaternionic vector components) is valid because: (1) gravity is effectively an Abelian field in this formulation, satisfying $[\Theta_i, \Theta_j] \approx 0$, and (2) for most gravitational phenomena, the vector components $\mathbf{v}$ satisfy $\|\mathbf{v}\|^2 \ll |\psi|^2$. The full quaternionic time structure would be required only for extreme rotating spacetimes or coupled non-Abelian gauge-gravity systems.
+
+The real part of this field corresponds to the classical 
 metric tensor, ensuring that \textbf{GR is fully contained within UBT as a special case}.
 
 In the real-valued limit (or equivalently, when the imaginary time component $\psi \to 0$), 
@@ -28,28 +47,28 @@ independent postulate, but a manifestation of the underlying field geometry.
 
 \subsection{Core Equations}
 
-The line element is expressed as:
+The classical line element (real projection):
 \begin{equation}
   ds^2 = g_{\mu\nu} \, dx^\mu dx^\nu ,
 \end{equation}
-where the metric tensor $g_{\mu\nu}$ is obtained from the biquaternion field via:
+where the metric tensor $g_{\mu\nu}$ is obtained as the real projection of the biquaternionic metric:
 \begin{equation}
-  g_{\mu\nu} = \Re\left[ \frac{\partial_\mu \Theta \cdot \partial_\nu \Theta^\dagger}{\mathcal{N}} \right],
+  g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}) = \Re\left[ \frac{\partial_\mu \Theta \cdot \partial_\nu \Theta^\dagger}{\mathcal{N}} \right],
 \end{equation}
 with $\mathcal{N}$ a normalisation factor ensuring the correct signature.
 
-The Einstein tensor in this framework takes the standard form:
+The classical Einstein tensor (real projection of biquaternionic Einstein tensor):
 \begin{equation}
-  G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R ,
+  G_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R ,
 \end{equation}
-but with curvature tensors $R_{\mu\nu}$ and $R$ propose from the biquaternionic connection
-coefficients $\Gamma^\rho_{\mu\nu}$ obtained from the extended algebra.
+where curvature tensors $R_{\mu\nu}$ and $R$ propose from the biquaternionic connection
+coefficients via real projection: $\Gamma^\rho_{\mu\nu} := \text{Re}(\Omega^\rho_{\mu\nu})$.
 
-The gravitational field equations couple $G_{\mu\nu}$ to the stress-energy tensor
-$T_{\mu\nu}$ constructed from the biquaternion field invariants:
+The gravitational field equations (GR limit after real projection):
 \begin{equation}
   G_{\mu\nu} = 8\pi G \, T_{\mu\nu}[\Theta] .
 \end{equation}
+where $T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})$ is the real projection of the biquaternionic stress-energy tensor.
 
 \subsection{analysis Summary}
 

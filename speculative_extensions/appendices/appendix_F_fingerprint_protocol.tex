@@ -1,0 +1,321 @@
+% Appendix F: Forensic Fingerprint Protocol
+% UBT Speculative Extensions
+% Version: 1.0
+% License: CC BY-NC-ND 4.0
+
+\section{Appendix F: Forensic Fingerprint Protocol}
+\label{app:forensic_fingerprint}
+
+\subsection{Overview}
+
+This appendix documents a pre-registered, court-grade statistical protocol to search for potential signatures of digital or lattice architecture in cosmological data that might be consistent with certain interpretations of the Unified Biquaternion Theory (UBT). This is \textbf{not} a discovery claim—it is a rigorous falsification protocol.
+
+\textbf{Falsifiability Statement}: If these tests fail to show statistically significant signals after replication in independent datasets, the digital-architecture interpretation of UBT is falsified in this form.
+
+Complete protocol documentation available in: \texttt{forensic\_fingerprint/PROTOCOL.md}
+
+\subsection{Three Pre-Registered Tests}
+
+\subsubsection{Test \#1: CMB Comb Signature}
+
+\textbf{Hypothesis}: CMB power spectrum residuals $(C_\ell^{\text{obs}} - C_\ell^{\Lambda\text{CDM}}) / \sigma_\ell$ contain periodic oscillations at one of the candidate periods $\Delta\ell \in \{8, 16, 32, 64, 128, 255\}$ (LOCKED set), suggesting discrete spacetime structure.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item Fit sinusoidal model: $r_\ell \approx A \sin(2\pi\ell/\Delta\ell + \varphi)$ via linear regression
+    \item Compute $\Delta\chi^2 = \chi^2(H_0) - \chi^2(H_1)$ for each candidate period
+    \item Select $\max(\Delta\chi^2)$ across all periods
+    \item Generate null distribution via Monte Carlo (10,000 Gaussian realizations)
+    \item Compute $p$-value with look-elsewhere correction (max statistic method)
+\end{enumerate}
+
+\textbf{Datasets}: Planck 2018 TT/TE/EE, WMAP 9-year (replication)
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Candidate signal: $p < 0.01$ (2.6$\sigma$ equivalent)
+    \item Strong signal: $p < 2.9 \times 10^{-7}$ ($\sim$5$\sigma$ equivalent)
+    \item Replication required in $\geq 2$ independent datasets
+\end{itemize}
+
+\subsubsection{Test \#2: Grid 255 Quantization}
+
+\textbf{Hypothesis}: MCMC posterior samples for cosmological parameters cluster preferentially near rational grid points $m/255$ (where $m \in \mathbb{Z}$), suggesting quantization on a byte-like structure.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item For each sample $x$, compute distance to nearest grid point: $d(x) = \min_{m \in \mathbb{Z}} |x - m/255|$
+    \item Compute summary statistics: $S_1 = \text{median}(d)$ and $S_2 = \text{mean}(\log_{10} d)$
+    \item Fit smooth distribution (KDE or Gaussian) to samples
+    \item Generate null distribution by resampling from fitted distribution (10,000 trials)
+    \item Compute $p$-values for $S_1$ and $S_2$
+\end{enumerate}
+
+\textbf{Parameters}: $\Omega_b h^2$, $\Omega_c h^2$, $\theta_s$, $\tau$, $n_s$, $\ln(10^{10} A_s)$ from Planck 2018 chains
+
+\textbf{Grid Denominator}: 255 (LOCKED - pre-registered, no alternatives allowed)
+
+\textbf{Rationale}: 255 = $2^8 - 1$ corresponds to GF($2^8$) structure. This value is fixed in Protocol v1.0 and cannot be changed based on data analysis results. Any alternative denominator would require a new protocol version.
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Candidate signal: $p < 0.01$ (either $S_1$ or $S_2$)
+    \item Strong signal: $p < 2.9 \times 10^{-7}$
+    \item No look-elsewhere correction (denominator fixed a priori)
+\end{itemize}
+
+\subsubsection{Test \#3: Cross-Dataset Invariance}
+
+\textbf{Hypothesis}: UBT-predicted invariant quantities (derived from cosmological parameters via fixed UBT formulae) show statistical consistency across independent datasets (Planck, BAO, SNe, lensing), supporting theoretical coherence.
+
+\textbf{Method}:
+\begin{enumerate}
+    \item Define UBT invariant with fixed formula: $\kappa = f(\Omega_b h^2)$ or $\eta = g(n_s)$
+    \item For each dataset, compute $\hat{\kappa}_i \pm \sigma_i$ via UBT mapping
+    \item Compute weighted mean: $\bar{\kappa} = \sum_i w_i \hat{\kappa}_i / \sum_i w_i$ where $w_i = 1/\sigma_i^2$
+    \item Compute consistency chi-square: $\chi^2 = \sum_i (\hat{\kappa}_i - \bar{\kappa})^2 / \sigma_i^2$
+    \item Compute $p$-value from $\chi^2_{N-1}$ distribution
+\end{enumerate}
+
+\textbf{Datasets}: Planck TT/TE/EE, Planck+lensing, Planck+BAO, Planck+BAO+Pantheon
+
+\textbf{Thresholds}:
+\begin{itemize}
+    \item Consistent (supports UBT): $p > 0.05$ (fail to reject consistency)
+    \item Inconsistent (falsifies UBT): $p < 0.01$ (strong evidence of inconsistency)
+\end{itemize}
+
+\textbf{Note}: This test is ``backwards''—UBT is \textit{supported} if $p$ is large (datasets agree), \textit{falsified} if $p$ is small (datasets disagree).
+
+\subsection{Pre-Registered Parameters Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\hline
+\textbf{Test} & \textbf{Fixed Parameters} & \textbf{Threshold (Candidate)} & \textbf{Threshold (Strong)} \\
+\hline
+CMB Comb & $\Delta\ell \in \{8,16,32,64,128,255\}$ & $p < 0.01$ & $p < 2.9 \times 10^{-7}$ \\
+Grid 255 & Denominator = 255 & $p < 0.01$ & $p < 2.9 \times 10^{-7}$ \\
+Invariance & UBT formula fixed & $p > 0.05$ (consistent) & $p > 0.32$ (strong) \\
+\hline
+\end{tabular}
+\caption{Summary of pre-registered parameters and thresholds for UBT forensic fingerprint tests.}
+\end{table}
+
+\subsection{Architectural Variants and Non-Assumptive Testing}
+
+\textbf{Critical Methodological Point}: The UBT forensic fingerprint protocol does \emph{not} assume a specific engineering implementation of spacetime. Instead, we treat synchronization mechanisms as a \emph{testable hypothesis class}.
+
+\subsubsection{Variant Framework}
+
+We define four mutually exclusive architectural variants (see \texttt{forensic\_fingerprint/ARCHITECTURE\_VARIANTS.md}):
+
+\begin{itemize}
+\item \textbf{Variant A (Continuous)}: No explicit synchronization. Continuous-time effective behavior emerges from field dynamics. Quantization arises only from standard $\hbar$ (no additional discrete structure).
+
+\item \textbf{Variant B (Implicit Sync)}: Discrete state transitions exist internally, but NO dedicated synchronization symbol. Timing emerges from field self-interactions. No separate "sync pulse."
+
+\item \textbf{Variant C (Explicit Frame Sync)}: Reed-Solomon RS(255,200) structure with \emph{explicit synchronization overhead} (e.g., GF($2^8$) zero element or frame marker). One additional non-information state per cycle.
+
+\item \textbf{Variant D (Hierarchical Sync)}: Local synchronization at Planck scale, global async behavior at cosmological scale. Decoherence as scale increases.
+\end{itemize}
+
+\subsubsection{Test Applicability}
+
+\textbf{Important}: Each fingerprint test is valid only under specific variant assumptions:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Test} & \textbf{Variant A} & \textbf{Variant B} & \textbf{Variant C} & \textbf{Variant D} \\
+\hline
+CMB Comb & NULL expected & NULL expected & \textbf{SIGNAL predicted} & Partial (scale-dep) \\
+Grid 255 & Falsifies & Partial & \textbf{SIGNAL predicted} & Partial (local) \\
+Invariance & Valid & Valid & Valid & Valid (scale-corrected) \\
+\hline
+\end{tabular}
+\caption{Applicability of forensic fingerprint tests to architectural variants. Tests must be interpreted conditionally based on variant selection.}
+\end{table}
+
+\subsubsection{Conditional Language Requirements}
+
+All results must use conditional statements tied to variant assumptions:
+
+\begin{itemize}
+\item ✓ Correct: ``\emph{If} the universe uses explicit frame synchronization (Variant C), \emph{then} we predict periodic structure at $\Delta\ell = 255$...''
+\item ✓ Correct: ``Under Variant C assumptions, the observed $p$-value supports/falsifies the hypothesis...''
+\item ✗ Incorrect: ``The Planck constant \emph{is} a synchronization pulse.''
+\item ✗ Incorrect: ``The universe \emph{uses} Reed-Solomon error correction.''
+\item ✗ Incorrect: ``Frame guards \emph{are present} in spacetime.''
+\end{itemize}
+
+\subsubsection{Implementation}
+
+The code implementation enforces variant selection:
+\begin{verbatim}
+# In forensic_fingerprint/cmb_comb/cmb_comb.py
+ARCHITECTURE_VARIANT = "C"  # Explicit selection required
+
+if ARCHITECTURE_VARIANT != "C":
+    print("WARNING: CMB comb test ONLY valid for Variant C")
+    print("Other variants predict NULL results")
+\end{verbatim}
+
+Running tests under non-applicable variants generates warnings and labels results as ``VARIANT MISMATCH'' if unexpected signals appear.
+
+\subsubsection{Scientific Safety}
+
+This variant framework ensures:
+\begin{enumerate}
+\item \textbf{No presupposition}: We do NOT assume synchronization exists
+\item \textbf{Falsifiability}: Each variant has clear rejection criteria
+\item \textbf{Transparency}: Variant assumptions stated explicitly
+\item \textbf{Hypothesis testing}: Variants are tested, not advocated
+\end{enumerate}
+
+See \texttt{forensic\_fingerprint/variant\_fingerprints.md} for complete falsifiable fingerprints per variant.
+
+\subsection{Reproducibility Requirements}
+
+All analyses must document:
+\begin{itemize}
+    \item Dataset hashes (SHA-256) and source URLs
+    \item Fixed random seeds for Monte Carlo simulations
+    \item Code version (Git commit hash)
+    \item Timestamp and protocol version (v1.0)
+    \item All intermediate outputs archived to public repository (Zenodo/OSF)
+\end{itemize}
+
+\subsection{Neutral Language and Reporting Standards}
+
+Results must be reported using neutral, pre-committed language:
+\begin{itemize}
+    \item If $p < 0.01$: ``Candidate signal detected, replication required''
+    \item If $p > 0.01$: ``No significant signal, $H_0$ not rejected''
+    \item If replication fails: ``Initial signal not replicated, likely statistical fluctuation''
+\end{itemize}
+
+No post-hoc parameter tuning is permitted. Both positive and null results reported with equal prominence.
+
+\subsection{Forensic Analysis of the Digital Grid Hypothesis}
+\label{subsec:digital_grid_forensic}
+
+We formalize the UBT digital-architecture interpretation not as a point-estimate model, but as a discrete state-space hypothesis. We test the ``Quantization Grid'' of the $GF(2^8)$ architecture against continuous $\Lambda$CDM parameters.
+
+\subsubsection{Parameter Quantization Step (The Grain of Reality)}
+
+Assuming the baryonic density $\Omega_b$ is a function of the code rate $R = k/n$ within a 16-channel multiplex, we define the UBT Fundamental Step $\Delta$:
+\begin{equation}
+\Delta = \frac{16}{256} \cdot \frac{1}{255} \approx 0.0002451 \quad (0.0245\%)
+\end{equation}
+The hypothesis predicts that all observed baryonic densities (from BBN to CMB) must cluster around discrete values $\Omega_b(k) = k \cdot \Delta$.
+
+\textbf{Rationale}: In the information-theoretic interpretation (see Appendix IT), the biquaternionic field operates as a digital channel with:
+\begin{itemize}
+    \item 256 total states ($2^8$ from $GF(2^8)$)
+    \item 16-channel multiplex ($2^8 / 2^4 = 16$)
+    \item 255 data symbols per Reed-Solomon block
+\end{itemize}
+
+This implies a minimum quantization step corresponding to one state change in the payload allocation within the RS block structure.
+
+\subsubsection{Variant Model Selection (Sensitivity Matrix)}
+
+We perform a comparative analysis of three architectural variants to determine the presence of a 256th synchronization symbol (Master Sync).
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Model Variant} & \textbf{k Parameter} & \textbf{Prediction $\Omega_b$} & \textbf{Residual to Planck 2018} \\ \hline
+UBT-255 (Asynchronous) & 201 & 4.926\% & +0.029\% \\ \hline
+UBT-256 (Synchronized) & 201 & 4.907\% & +0.010\% \\ \hline
+$\Lambda$CDM (Continuous) & N/A & 4.897\% (Measured) & 0.000\% (Reference) \\ \hline
+\end{tabular}
+\caption{Model selection matrix. The UBT-256 variant exhibits a 65\% reduction in residuals compared to UBT-255, identifying the 256th state as a potential frame-synchronization overhead.}
+\label{tab:variant_selection}
+\end{table}
+
+\textbf{Interpretation}: The UBT-256 variant assumes one reserved symbol per RS block for frame synchronization (analogous to sync pulses in digital communication systems). The improved agreement with observations suggests that \textit{if} the digital-architecture hypothesis is correct, \textit{then} explicit frame synchronization is likely present.
+
+\textbf{Critical Note}: This comparison does \textit{not} constitute validation of the digital-architecture hypothesis. It merely identifies which variant (255 vs 256 symbol blocks) would be more consistent with data \textit{if the hypothesis were true}. Both variants remain highly speculative interpretations.
+
+\subsubsection{Functional Prediction: $H(z)$ Buffer Drift}
+
+We propose that the $H_0$ tension (67.4 vs 73.0 km/s/Mpc) is an emergent effect of cumulative clock drift in the simulation's output buffer.
+\begin{equation}
+H_{\text{obs}}(z) = H_{\text{fundamental}} \cdot \left(1 + \delta_{\text{drift}}(z)\right)
+\end{equation}
+where $\delta_{\text{drift}}$ is a function of the frame-alignment overhead $1/256$. This identifies the tension not as new physics, but as a \textbf{sampling rate mismatch} between early-frame (CMB) and late-frame (Local) observations.
+
+\textbf{Testable Prediction}: If this interpretation is correct, the apparent $H_0$ should vary systematically with redshift according to:
+\begin{equation}
+\delta_{\text{drift}}(z) \propto \frac{1}{256} \cdot f(z)
+\end{equation}
+where $f(z)$ is a monotonic function representing accumulated phase drift. This predicts that intermediate-redshift measurements (BAO, SNe) should show systematic interpolation between early-universe and local values.
+
+\textbf{Falsification}: If future precision measurements show \textit{no} systematic trend in $H(z)$ matching the predicted $1/256$ scaling, or if the tension is resolved through standard astrophysical systematics, this buffer-drift hypothesis is falsified.
+
+\textbf{Status}: This remains a speculative interpretation. The $H_0$ tension is an active area of research with multiple competing explanations. The buffer-drift hypothesis requires quantitative derivation of $f(z)$ from UBT principles before it can be rigorously tested.
+
+\subsection{Falsifiability}
+
+If all three tests yield null results after examination of:
+\begin{itemize}
+    \item Planck 2018 full mission data (TT, TE, EE, lensing)
+    \item Independent CMB datasets (WMAP, ACT, SPT)
+    \item Multiple MCMC chains from different cosmological codes
+    \item All recommended cosmological parameter combinations
+\end{itemize}
+
+then the digital-architecture interpretation of UBT is \textbf{falsified} in this form. Alternative formulations would require a new pre-registered protocol (version 2.0) with independent theoretical motivation.
+
+\subsection{Implementation}
+
+Complete open-source implementations available in repository subdirectory:
+
+\texttt{forensic\_fingerprint/}
+\begin{itemize}
+    \item \texttt{PROTOCOL.md} — Complete protocol specification
+    \item \texttt{cmb\_comb/} — Test \#1 implementation
+    \item \texttt{grid\_255/} — Test \#2 implementation
+    \item \texttt{invariance/} — Test \#3 implementation
+\end{itemize}
+
+Tests validated via automated test suite: \texttt{tests/test\_forensic\_fingerprint.py}
+
+\subsection{Ethical Considerations}
+
+\begin{enumerate}
+    \item \textbf{No cherry-picking}: All datasets examined, null results reported
+    \item \textbf{No post-hoc changes}: Any modification to candidate periods, grid denominator, or UBT formulae constitutes a new protocol
+    \item \textbf{Independent replication}: External researchers encouraged to run protocol and propose improvements
+    \item \textbf{Publication bias}: Negative results have equal scientific value and will be archived regardless of outcome
+\end{enumerate}
+
+\subsection{Speculative Status}
+
+\textbf{Important}: This appendix describes a \textit{proposed} falsification protocol. It does not claim any detection or discovery. The digital-architecture interpretation of UBT remains speculative until:
+\begin{enumerate}
+    \item Candidate signals pass all three tests
+    \item Signals replicate in independent datasets
+    \item Instrumental and systematic checks rule out artifacts
+    \item Independent research groups confirm findings
+\end{enumerate}
+
+The protocol serves to make the digital-architecture hypothesis \textit{testable and falsifiable}, which is a necessary (but not sufficient) condition for scientific validity.
+
+\subsection{References}
+
+\begin{itemize}
+    \item Protocol v1.0: \texttt{forensic\_fingerprint/PROTOCOL.md}
+    \item Planck 2018 results: Planck Collaboration (2020), A\&A 641, A6
+    \item Statistical methods: Cowan et al. (2011), EPJC 71, 1554
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{Version}: 1.0 (2026-01-10)\\
+\textbf{License}: CC BY-NC-ND 4.0\\
+\textbf{Contact}: GitHub repository issues

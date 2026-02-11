@@ -1,16 +1,27 @@
 % This file can be compiled standalone or included in another document
+% VERSION: v17 Stable Release
 % When included, the preamble and document environment are skipped
-\ifdefined\UBTSTANDALONECOMPILE
-  % Do nothing - preamble already loaded
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
 \else
   % Standalone compilation - include preamble
   \documentclass[12pt]{article}
   \usepackage[a4paper, margin=2.5cm]{geometry}
-  \usepackage{amsmath, amssymb}
+  \usepackage{amsmath, amssymb, amsthm}
   \usepackage{hyperref}
   \usepackage{graphicx}
   \usepackage{titlesec}
   \usepackage{authblk}
+  
+  % Define theorem environments for standalone compilation
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
   
   \titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
   \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
@@ -483,7 +494,7 @@ With $r_\psi \sim 10^{-11}$ m, this gives:
     \rho_{\text{dark}} \sim 10^{-9} \text{ J/m}^3
 \end{equation}
 
-Compare to observed dark energy density: $\rho_{\Lambda} \sim 10^{-9}$ J/m$^3$ ✓
+Compare to observed dark energy density: $\rho_{\Lambda} \sim 10^{-9}$ J/m$^3$ $\checkmark$
 
 \paragraph{Accelerated Expansion}
 
@@ -583,9 +594,14 @@ This extended quantization demonstrates that UBT is not merely a reformulation o
 \noindent\textbf{Status}: This represents a theoretical framework in active development. The conceptual unification of GR+QFT is demonstrated, including the novel extended sector. Full mathematical rigor and experimental validation require further work. See UBT\_SCIENTIFIC\_STATUS\_AND\_DEVELOPMENT.md for detailed assessment of current theory status.
 
 \section*{License}
-This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
 
-\ifdefined\UBTSTANDALONECOMPILE
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0).
+
+\textbf{License History:} Earlier drafts (up to v0.3) were released under CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect the integrity of the theoretical work during ongoing academic development.
+
+\ifdefined\INCLUDEMODE
   % Included mode - no \end{document}
 \else
   % Standalone mode - close document

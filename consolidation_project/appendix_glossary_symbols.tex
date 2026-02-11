@@ -1,3 +1,4 @@
+% VERSION: v17 Stable Release
 \section{Glossary of Symbols}
 \label{app:glossary}
 
@@ -6,54 +7,46 @@ This glossary provides a comprehensive reference for the mathematical symbols, o
 \subsection{Fundamental Spacetime and Complex Time}
 
 \begin{description}
-\item[$\tau$] Complex time: $\tau = t + i\psi$ (simplified 2D projection of biquaternionic time)
-\item[$t$] Real time coordinate (standard temporal dimension)
-\item[$\psi$] Imaginary time or phase coordinate, representing internal/cognitive dynamics
-\item[$T$ or $T_B$] Biquaternionic time (full 4D time structure, see below)
-\item[$T$] Biquaternionic time (algebraic form): $T = t_0 + i t_1 + j t_2 + k t_3$, used in metric and topological formulations
-\item[$T_B$] Biquaternionic time (operator form): $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$, used in Hamiltonian and spinor dynamics
+\item[$\tau$] Complex time: $\tau = t + i\psi$ (canonical time coordinate in UBT; time is complex, not quaternionic)
+\item[$t$] Real time coordinate (standard temporal dimension, observable time)
+\item[$\psi$] Imaginary time or phase coordinate, representing phase space dynamics
+\item[$T$ or $T_B$] Biquaternionic time (extended formalism for specialized contexts; see Appendix N2)
+\item[$T$] Biquaternionic time (algebraic form): $T = t_0 + i t_1 + j t_2 + k t_3$, used in extended metric and topological formulations
+\item[$T_B$] Biquaternionic time (operator form): $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$, used in extended Hamiltonian and spinor dynamics
 \item[$x^\mu$] Standard spacetime coordinates, $\mu = 0,1,2,3$ (Lorentzian spacetime)
 \item[$q^\mu$] Biquaternion coordinates on manifold $\mathbb{B}^4$
 \item[$\mathbb{B}^4$] Four-dimensional biquaternionic manifold: $(\mathbb{C} \otimes \mathbb{H})^4$
 \item[$\mathbb{C}^5$] Five-dimensional complex manifold (alternative formulation): $(x^\mu, \psi)$
 \end{description}
 
-\paragraph{Note on Biquaternionic Time Representations.} UBT employs two equivalent representations:
+\paragraph{Note on Time Formulation.} \textbf{Canonical UBT}: Time is complex-valued $\tau = t + i\psi$ (AXIOM B). Quaternionic/biquaternionic structure belongs to the field $\Theta$, not to time. \textbf{Extended formalism}: Biquaternionic time ($T$ or $T_B$) is discussed in specialized appendices (e.g., Appendix N2, Appendix G6) as a theoretical extension for specific contexts (extreme rotating spacetimes, consciousness modeling). Two equivalent representations exist in extended formalism:
 \begin{itemize}
 \item \textbf{Algebraic form} $T = t_0 + i t_1 + j t_2 + k t_3$: Used in global geometric and topological contexts
 \item \textbf{Operator form} $T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})$: Used in local Hamiltonian and spinor evolution
 \end{itemize}
-These are equivalent under the mapping $(i,j,k) \leftrightarrow (\sigma_x, \sigma_y, \sigma_z)$ with $t_0=t$, $t_1=\psi$, $(t_2,t_3) \leftrightarrow \mathbf{v}_\perp$. Complex time $\tau = t + i\psi$ emerges as a 2D projection when vector components are negligible.
+These are equivalent under the mapping $(i,j,k) \leftrightarrow (\sigma_x, \sigma_y, \sigma_z)$ with $t_0=t$, $t_1=\psi$, $(t_2,t_3) \leftrightarrow \mathbf{v}_\perp$. Complex time $\tau = t + i\psi$ is the canonical formulation and corresponds to the case when vector components are negligible or averaged.
 
 \subsection{Fields and Operators}
 
 \begin{description}
 \item[$\Theta(q)$] Unified biquaternionic field encoding all interactions
 \item[$\Theta(q,\tau)$] Unified field with explicit complex time dependence
+\item[$\Theta(Q,T)$] Unified field with full biquaternionic time dependence (Hamiltonian-exponent formulation, Appendix G)
+\item[$\mathbb{H}(T)$] Biquaternionic Hamiltonian operator depending on all time components
+\item[$\mathbb{B}(n)$] Biquaternionic index or spinor basis vector, parameterized by integer $n \in \mathbb{Z}$ (Appendix G)
+\item[$A$] Outer chronometric manifold (quaternion, objective time component of $T = A + iB$)
+\item[$B$] Inner phase/subjective time manifold (quaternion, phase component of $T = A + iB$)
 \item[$\Psi$] Wave function or quantum state (context-dependent)
 \item[$\phi$] Scalar field
 \item[$A_\mu$] Gauge field (electromagnetic or general gauge connection)
 \item[$A_\mu^a$] Non-abelian gauge field with group index $a$
 \item[$g_{\mu\nu}$] Metric tensor (real-valued, standard GR metric)
-\item[$G_{\mu\nu}$] Complexified or biquaternionic metric tensor
+\item[$G_{\mu\nu}$] Complexified or biquaternionic metric tensor (or Einstein tensor, context-dependent)
 \item[$\Gamma^\rho_{\mu\nu}$] Christoffel symbols (affine connection)
 \item[$\Omega_\mu$] Spin connection
 \item[$\mathcal{D}_\mu$] Covariant derivative (includes affine, spin, and gauge connections)
 \item[$\nabla_\mu$] Standard covariant derivative
 \item[$\nabla^\dagger$] Adjoint covariant derivative operator
-\item[$\nabla_Q$] Gradient operator on biquaternionic manifold $\mathbb{B}^4$
-\item[$\nabla_Q^2$] Laplacian operator on biquaternionic manifold: $\nabla_Q \cdot \nabla_Q$
-\end{description}
-
-\subsection{Fokker--Planck and Stochastic Dynamics}
-
-\begin{description}
-\item[$\mathbb{A}(Q,T)$] Biquaternionic drift operator (vector field on $\mathbb{B}^4$) in the Fokker--Planck equation
-\item[$\mathbb{D}$] Biquaternionic diffusion operator (potentially non-commutative)
-\item[$\mathbb{H}(T)$] Biquaternionic Hamiltonian operator: $\mathbb{H}(T) = -\nabla_Q \cdot \mathbb{A}(Q,T) + \mathbb{D}\nabla_Q^2$
-\item[$\mathbb{B}(n)$] Biquaternionic index or spinor basis vector parameterized by integer $n \in \mathbb{Z}$
-\item[$P(Q,T)$] Probability distribution or field amplitude on biquaternionic phase space
-\item[BFPE] Biquaternionic Fokker--Planck Equation: $\partial_T P = -\nabla_Q \cdot (\mathbb{A} P) + \mathbb{D} \nabla_Q^2 P$
 \end{description}
 
 \subsection{Curvature and Geometry}

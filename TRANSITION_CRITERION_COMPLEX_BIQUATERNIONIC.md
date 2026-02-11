@@ -473,7 +473,7 @@ serves as:
 
 **References:**
 - THETA_FIELD_DEFINITION.md (field structure)
-- consolidation_project/appendix_P2_multiverse_projection.tex (projection mechanism)
+- speculative_extensions/appendices/appendix_P2_multiverse_projection.tex (projection mechanism - speculative)
 - UBT_REEVALUATION_2025.md (dimensional reduction challenge)
 
 **Status:** Formal derivation complete  

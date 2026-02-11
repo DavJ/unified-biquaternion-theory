@@ -1,0 +1,59 @@
+% ================== RG Flows for Fermion Masses ==================
+% AUTHOR: UBT Team
+% PURPOSE: Renormalization-group flow equations and fixed-point structure
+
+\section{Renormalization-Group Flows}
+\label{sec:rg-flows}
+
+\subsection{General RG Equations}
+
+The running of Yukawa couplings in UBT follows from the renormalization-group equations
+(RGE) for the coupling parameters. In the complex-time (CT) scheme with renormalization
+scale \(\mu\), the one-loop RGE for a generic Yukawa coupling \(y\) is:
+\begin{equation}
+\label{eq:rge-yukawa}
+\mu \frac{dy}{d\mu} = \beta_y(y, g_i, \lambda)
+\end{equation}
+where \(g_i\) are gauge couplings and \(\lambda\) is the Higgs self-coupling.
+
+\subsection{CT Scheme Modifications}
+
+The complex-time parameter \(\tau = t + i\psi\) introduces additional structure in the RG
+flow. The beta function decomposes as:
+\begin{equation}
+\beta_y = \beta_y^{\text{real}} + i\psi \beta_y^{\text{phase}} + \mathcal{O}(\psi^2)
+\end{equation}
+In the real-time limit \(\psi \to 0\), we recover standard QED/SM running:
+\begin{equation}
+\beta_y^{\text{real}} = \frac{1}{16\pi^2}\left[
+  \text{Tr}(Y^\dagger Y) y - \sum_i C_i g_i^2 y
+\right] + \mathcal{O}(g^4)
+\end{equation}
+
+\subsection{Fixed Points and Geometric Constraints}
+
+The biquaternionic structure may induce fixed points in the RG flow that are absent
+in standard field theory. We consider:
+
+\paragraph{Geometric fixed points.} If the Yukawa matrix aligns with geometric structures
+on the Hermitian slice, the RG flow may stabilize:
+\begin{equation}
+\beta_y|_{\text{geom}} = 0 \quad \text{when} \quad y = y_{\text{crit}}(\mathcal{H}, \mathcal{B})
+\end{equation}
+where \(\mathcal{H}\) is the Hermitian slice and \(\mathcal{B}\) are boundary conditions.
+
+\paragraph{Quasi-fixed points.} For hierarchical masses, the RG trajectories may approach
+quasi-fixed point behavior in certain energy ranges, providing natural explanations for
+observed mass ratios.
+
+\subsection{Connection to Mass Sum Rules}
+
+The fixed-point structure constrains possible mass ratios. Combined with the algebraic
+constraints from Section~\ref{sec:yukawa-structure}, this leads to testable predictions
+(Section~\ref{sec:mass-sum-rules}).
+
+The explicit calculation of \(\beta_y^{\text{phase}}\) and the identification of geometric
+fixed points requires numerical analysis of the mode structure on \(\mathbb{H}_{\mathbb{C}}\),
+which is deferred to future work.
+
+% =======================================================================

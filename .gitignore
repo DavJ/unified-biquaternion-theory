@@ -31,3 +31,31 @@ __pycache__/
 *.swp
 *.swo
 .DS_Store
+
+# Generated plots and analysis outputs
+ubt_mass_spectrum_analysis.png
+*.png
+!docs/**/*.png
+!consolidation_project/img/*.png
+!consolidation_project/fig_*.png
+consolidation_project/masses/.pytest_cache/
+
+data/alpha_two_loop_grid.csv
+tex/snippets_generated.tex
+reports/*.json
+
+data/alpha_two_loop_grid.csv
+tex/snippets_generated.tex
+reports/*.json
+
+# Forensic fingerprint output directory
+forensic_fingerprint/out/
+# But keep VERDICT files for court-grade results
+!forensic_fingerprint/out/**/VERDICT.md
+
+# CMB 2D FFT output directory
+research_front/cmb_2d_fft/out/
+
+# virtual python
+.venv
+.venv

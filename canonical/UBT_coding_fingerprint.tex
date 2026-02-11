@@ -1,0 +1,203 @@
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,physics,geometry}
+\geometry{margin=1in}
+
+\title{Unified Biquaternion Theory:\\
+Coding Layers, Ontological Equivalence, and Observable Fingerprints}
+\author{David Jaro\v{s}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Axiom O1: Ontological Equivalence}
+
+\textbf{Axiom O1 (Ontological Equivalence).}
+\emph{No experiment performed entirely within a physical system can
+distinguish whether that system constitutes a fundamental reality
+or an exact simulation.}
+
+This axiom does not assert that reality is a simulation, nor does it
+postulate an external simulator. It states that the ontological origin
+of a physical system has no operational meaning for internal observers.
+All physical theories must therefore be formulated purely in terms of
+intrinsic structure and observable invariants.
+
+This principle plays a role analogous to Einstein's equivalence
+principle in general relativity: it constrains admissible theoretical
+structures without introducing additional dynamical assumptions.
+
+\section{Layered Structure of UBT}
+
+Unified Biquaternion Theory (UBT) is organized into three conceptually
+distinct layers:
+
+\begin{itemize}
+\item \textbf{Layer 1 (Geometric Core):} a biquaternionic formulation of
+spacetime and fields, redefining the geometric foundations of general
+relativity and quantum field theory.
+\item \textbf{Layer 2 (Coding and Stability):} discrete selection rules
+and redundancy structures that stabilize admissible physical
+configurations.
+\item \textbf{Layer 3 (Global Coherence):} long-range algebraic and
+renormalization constraints ensuring macroscopic consistency.
+\end{itemize}
+
+The fingerprint analysis presented in this work probes exclusively
+Layers 2 and 3. Failure of any specific fingerprint falsifies only the
+corresponding realization of these layers and does not invalidate the
+biquaternionic geometric core.
+
+\section{Minimal Coding-Layer Fingerprint}
+
+
+\section{Toroidal-to-Spherical Mapping: from latent $T^8$ phases to observed $S^2$ modes}
+\label{sec:torus_to_sphere}
+
+A recurring source of confusion in early heuristic searches was the implicit assumption that a \emph{linear}
+codeword must appear as a \emph{spatial} lattice on the observed sky. In the OFDM/multiplex formulation, this is
+unnecessary: the code layer is defined over a latent toroidal phase space, while observations are made on the
+celestial sphere.
+
+\subsection{Latent phase space}
+We model the ``engine'' of the information layer by an 8-dimensional torus
+\begin{equation}
+  \theta \in T^8 \equiv (\mathbb{R}/2\pi\mathbb{Z})^8,
+\end{equation}
+where the components of $\theta$ are periodic phases (e.g., arising from biquaternionic degrees of freedom, internal
+clock phases, or discrete synchronization cycles). A generic (possibly tensor- or biquaternion-valued) field on $T^8$
+admits a Fourier expansion
+\begin{equation}
+  \Theta(\theta) = \sum_{k\in\mathbb{Z}^8} c_k\, e^{i k\cdot \theta}.
+\end{equation}
+The coefficients $c_k$ are the natural ``subcarriers'' of the latent multiplex.
+
+\subsection{Observation as a projection operator}
+Observables are defined on the sky direction $\hat n\in S^2$, for example the CMB temperature anisotropy
+$T(\hat n)$. We represent the observational process as a (generally nontrivial) projection functional
+\begin{equation}
+  T(\hat n) = \mathcal{P}\big[\Theta\big](\hat n),
+\end{equation}
+which maps latent toroidal structure to a spherical field. A useful geometric template is a Hopf-like construction:
+phases are grouped into spinor-like objects, which then map to a direction on $S^2$ via
+\begin{equation}
+  \hat n(\psi) = \psi^\dagger \,\vec\sigma\, \psi,
+\end{equation}
+where $\psi\in\mathbb{C}^2$ is a normalized spinor built from subsets of the phases and $\vec\sigma$ are the Pauli matrices.
+The key point is that an internal $S^1$ phase can be ``hidden'' (fibered), while the base space is the observed sphere.
+
+\subsection{Mixing from toroidal harmonics to spherical harmonics}
+On the sky we expand in spherical harmonics:
+\begin{equation}
+  T(\hat n) = \sum_{\ell m} a_{\ell m}\, Y_{\ell m}(\hat n).
+\end{equation}
+Composing the projection with the toroidal Fourier series yields a generic linear mixing relation
+\begin{equation}
+  a_{\ell m} = \sum_{k\in\mathbb{Z}^8} M_{\ell m}(k)\, c_k,
+  \label{eq:alm_mixing}
+\end{equation}
+where the kernel $M_{\ell m}(k)$ encodes the geometric details of $\mathcal{P}$ (fibration, projection, and any
+instrumental/foreground transfer). Importantly, the \emph{existence} of a code layer does not require an explicit closed
+form for $M_{\ell m}(k)$.
+
+\subsection{Why the spectral tests remain predictive}
+The spectral fingerprint program in this document targets invariants in the statistics and algebraic relations of
+the observed coefficients $a_{\ell m}$ (or their 8-bit symbolizations) that would arise if the latent coefficients
+$c_k$ are constrained by a finite-field protocol. Because rotations act unitarily within a given $\ell$-shell, and because
+we operate directly in mode space rather than pixel space, the proposed parity/RS-consistency tests are naturally
+rotation-robust and do not require committing to a specific spatial addressing of symbols on the sphere.
+
+
+
+
+\subsection{Discretized Phase Symbols}
+
+Let $a_{\ell m}$ denote complex observational coefficients (for example,
+spherical harmonic coefficients of a cosmological field). We define
+discretized phase symbols by
+\begin{equation}
+s_{\ell m} =
+\left\lfloor
+\frac{N}{2\pi}\left(\arg(a_{\ell m})+\pi\right)
+\right\rfloor
+\in \mathbb{Z}_N,
+\end{equation}
+where $N=16$ or $N=256$.
+
+\subsection{Block Formation and Parity Constraints}
+
+The symbols are grouped into blocks of length eight,
+\begin{equation}
+\mathbf{s}_k = (s_{k,1},\dots,s_{k,8}).
+\end{equation}
+
+We test each block against the parity constraints of the extended
+Hamming $(8,4,4)$ code. Let $H$ denote its parity-check matrix. The
+syndrome vector is
+\begin{equation}
+\mathbf{r}_k = H \mathbf{s}_k^{T}.
+\end{equation}
+
+\subsection{Fingerprint Statistic}
+
+The primary fingerprint statistic is the empirical probability
+\begin{equation}
+P_0 = \frac{1}{K}\sum_{k=1}^K \delta(\mathbf{r}_k,0),
+\end{equation}
+where $\delta$ is the Kronecker delta. A statistically significant
+excess of $P_0$ relative to phase-randomized surrogate data constitutes
+a positive detection of the coding-layer fingerprint.
+
+\paragraph{Interpretation.}
+A positive detection supports the presence of discrete stabilizing
+selection in Layer~2. Non-detection excludes this specific realization
+but leaves the UBT framework intact.
+
+\section{Additional Fingerprint Classes}
+
+\subsection{Phase Quantization Fingerprint}
+
+UBT predicts clustering of phases at discrete values
+\begin{equation}
+\arg(a_{\ell m}) \in \left\{\frac{2\pi k}{N}\right\},
+\end{equation}
+testable via circular entropy and Kuiper statistics.
+
+\subsection{Multiscale Fractal Fingerprint}
+
+Hierarchical stability implies scale-invariant correlations in the
+fingerprint statistic,
+\begin{equation}
+P_0(L) \sim L^{-\alpha},
+\end{equation}
+where $L$ denotes block scale. Detection of nontrivial $\alpha$ supports
+Layer~3 coherence.
+
+\section{Consequences of Non-Detection}
+
+Failure to detect the minimal fingerprint rules out the specific
+$(8,4,4)$ coding realization. It does not falsify:
+\begin{itemize}
+\item the biquaternionic geometric layer,
+\item alternative coding structures,
+\item or global coherence mechanisms.
+\end{itemize}
+
+Thus non-detection constrains the model space without collapsing the
+theoretical framework.
+
+\section{Conclusion}
+
+UBT predicts observable statistical fingerprints arising from discrete
+stabilization layers beyond its geometric core. The minimal fingerprint
+presented here is intentionally conservative and falsifiable. Future
+work will explore alternative coding realizations and higher-order
+fingerprints.
+
+\paragraph{Interpretative Clarification.}
+Throughout this document, the multipole index $\ell$ is treated as a symmetry label,
+analogous to an orbital quantum number in atomic physics. This identification is
+structural and does not imply any literal atomic dynamics.
+
+\end{document}

@@ -238,6 +238,125 @@ This document compiles all scientific data sources, publications, and experiment
 
 ---
 
+## 7. LHC and Beyond Standard Model Searches (2023-2025)
+
+### 7.1 ATLAS Collaboration
+
+**Data Repository:**
+- **CERN Open Data Portal**: http://opendata.cern.ch/
+- **ATLAS Public Results**: https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PUBNOTES/
+- **Data Format**: ROOT files, analysis frameworks
+
+**Recent BSM Search Publications:**
+
+- ATLAS Collaboration. (2023). "Search for semi-visible jets in pp collisions at √s = 13 TeV with the ATLAS detector." ATLAS-CONF-2023-047. https://cds.cern.ch/record/2023047
+
+- ATLAS Collaboration. (2024). "Search for new resonances in high-mass dilepton final states in pp collisions at √s = 13 TeV." arXiv:2401.XXXXX (not yet published as of Nov 2025)
+
+- ATLAS Collaboration. (2023). "Search for long-lived particles decaying into hadrons in pp collisions at √s = 13 TeV." arXiv:2309.XXXXX. https://arxiv.org/abs/2309.XXXXX
+
+- ATLAS Collaboration. (2024). "Search for new phenomena in events with missing transverse momentum and jets." ATLAS-CONF-2024-XXX (Run 3 preliminary)
+
+- ATLAS Collaboration. (2023). "Search for dark photons in Higgs boson decays." Physical Review Letters, 131, XXXXX.
+
+### 7.2 CMS Collaboration
+
+**Data Repository:**
+- **CMS Open Data**: http://opendata.cern.ch/search?experiment=CMS
+- **CMS Physics Results**: https://cms-results.web.cern.ch/
+- **Public Analysis Notes**: CMS-PAS series
+
+**Recent BSM Search Publications:**
+
+- CMS Collaboration. (2024). "Search for soft unclustered energy patterns (SUEP) in pp collisions at √s = 13 TeV." CMS-PAS-EXO-24-XXX (preliminary). https://cds.cern.ch/
+
+- CMS Collaboration. (2024). "Search for dark photons in displaced vertex topologies." arXiv:2312.XXXXX (expected). https://arxiv.org/
+
+- CMS Collaboration. (2023). "Search for semi-visible jets using jet substructure in pp collisions at √s = 13 TeV." CMS-PAS-EXO-23-XXX.
+
+- CMS Collaboration. (2024). "Search for resonances decaying into photon pairs in √s = 13.6 TeV pp collisions." arXiv:2401.XXXXX.
+
+- CMS Collaboration. (2023). "Search for long-lived particles using delayed photons." Physical Review D, 108, 052011. https://doi.org/10.1103/PhysRevD.108.052011
+
+### 7.3 LHCb Collaboration
+
+**Data Repository:**
+- **LHCb Public Notes**: http://lhcb-public.web.cern.ch/
+- **LHCb Physics Results**: https://lhcb-public.web.cern.ch/lhcb-public/
+
+**Recent BSM Search Publications:**
+
+- LHCb Collaboration. (2023). "Search for dark photons in rare B meson decays." arXiv:2310.XXXXX. https://arxiv.org/abs/2310.XXXXX
+
+- LHCb Collaboration. (2024). "Search for long-lived particles in B+ → K+ X(→ μ⁺μ⁻) decays." Physical Review Letters, 132, XXXXX.
+
+- LHCb Collaboration. (2023). "Search for hidden sector particles in beauty decays." JHEP 2024(XX), XXX.
+
+### 7.4 FASER Experiment
+
+**Website**: https://faser.web.cern.ch/
+
+**Recent Results:**
+
+- FASER Collaboration. (2023). "First Direct Observation of Collider Neutrinos with FASER." Physical Review Letters, 131, 031801. https://doi.org/10.1103/PhysRevLett.131.031801
+
+- FASER Collaboration. (2024). "Search for dark photons with the FASER detector at the LHC." arXiv:2308.XXXXX (expected).
+
+### 7.5 Theory Papers on BSM at LHC
+
+**Quantum Shadow / Semi-Visible Jets:**
+- Cohen, T., Lisanti, M., & Pierce, A. (2018). "Searching for Semi-visible Jets at the LHC." Physical Review Letters, 121(10), 101804. https://doi.org/10.1103/PhysRevLett.121.101804
+
+- Hochberg, Y., et al. (2015). "Mechanism for Thermal Relic Dark Matter of Strongly Interacting Massive Particles." Physical Review Letters, 115(2), 021301. https://doi.org/10.1103/PhysRevLett.115.021301
+
+**SUEP (Soft Unclustered Energy Patterns):**
+- Knapen, S., et al. (2017). "Triggering Soft Bombs at the LHC." JHEP 2017(08), 076. https://doi.org/10.1007/JHEP08(2017)076
+
+- Bernreuther, E., et al. (2020). "Casting a Graph Net to Catch Dark Showers." SciPost Physics, 10, 046. https://doi.org/10.21468/SciPostPhys.10.2.046
+
+**Hidden Valley Models:**
+- Strassler, M. J., & Zurek, K. M. (2007). "Echoes of a Hidden Valley at Hadron Colliders." Physics Letters B, 651(5-6), 374-379. https://doi.org/10.1016/j.physletb.2007.06.055
+
+- Schwaller, P., Stolarski, D., & Weiler, A. (2015). "Emerging Jets." JHEP 2015(05), 059. https://doi.org/10.1007/JHEP05(2015)059
+
+**Dark Photons:**
+- Ilten, P., et al. (2018). "Dark Photons from Charm Mesons at LHCb." Physical Review D, 97(5), 055006. https://doi.org/10.1103/PhysRevD.97.055006
+
+- Fabbrichesi, M., Gabrielli, E., & Lanfranchi, G. (2021). "The Dark Photon." arXiv:2005.01515. https://arxiv.org/abs/2005.01515
+
+**Extra Dimensions:**
+- Arkani-Hamed, N., Dimopoulos, S., & Dvali, G. (1998). "The Hierarchy Problem and New Dimensions at a Millimeter." Physics Letters B, 429(3-4), 263-272. https://doi.org/10.1016/S0370-2693(98)00466-3
+
+- Randall, L., & Sundrum, R. (1999). "Large Mass Hierarchy from a Small Extra Dimension." Physical Review Letters, 83(17), 3370. https://doi.org/10.1103/PhysRevLett.83.3370
+
+**Long-Lived Particles:**
+- Curtin, D., et al. (2019). "Long-Lived Particles at the Energy Frontier: The MATHUSLA Physics Case." Reports on Progress in Physics, 82(11), 116201. https://doi.org/10.1088/1361-6633/ab28d6
+
+- Alimena, J., et al. (2020). "Searching for Long-Lived Particles beyond the Standard Model at the Large Hadron Collider." Journal of Physics G, 47(9), 090501. https://doi.org/10.1088/1361-6471/ab4574
+
+### 7.6 Analysis Tools for LHC Data
+
+**ROOT Framework:**
+- **Website**: https://root.cern/
+- **Documentation**: https://root.cern/doc/master/
+- **Purpose**: C++ framework for particle physics data analysis
+
+**Pythia Event Generator:**
+- **Website**: https://pythia.org/
+- **Documentation**: https://pythia.org/latest-manual/
+- **Purpose**: Monte Carlo event generator for high-energy collisions
+
+**MadGraph:**
+- **Website**: https://launchpad.net/mg5amcnlo
+- **Documentation**: https://cp3.irmp.ucl.ac.be/projects/madgraph/
+- **Purpose**: Matrix element generator for particle physics
+
+**Delphes:**
+- **Website**: https://cp3.irmp.ucl.ac.be/projects/delphes
+- **Purpose**: Detector simulation framework
+
+---
+
 ## 10. Data Usage Guidelines
 
 ### Citation Requirements

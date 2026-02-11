@@ -95,11 +95,14 @@
 - Medical/therapeutic claims prohibited
 - Clear warnings about limitations
 
+**⚠️ All consciousness content moved to `speculative_extensions/` folder**
+
 **Key documents:**
-- `complex_consciousness/ctc_2.0_main.tex` (has disclaimer)
-- `unified_biquaternion_theory/ubt_appendix_12_psychons.tex` (has disclaimer)
-- `consolidation_project/appendix_F_psychons_theta.tex` (has disclaimer)
+- `speculative_extensions/complex_consciousness/ctc_2.0_main.tex` (has disclaimer)
+- `speculative_extensions/appendices/ubt_appendix_12_psychons.tex` (has disclaimer)
+- `speculative_extensions/appendices/appendix_F2_psychons_theta.tex` (has disclaimer)
 - [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)
+- [Speculative Extensions README](speculative_extensions/README.md)
 
 **All have prominent disclaimers - read them!**
 

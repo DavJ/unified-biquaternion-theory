@@ -86,6 +86,8 @@ Testability & 4.5/10 & 5.0/10 & +0.5 \\
 
 \subsubsection{Gibbons-Hawking-York Boundary Term}
 
+The bulk geometry is encoded in the biquaternionic metric $\mathcal{G}_{\mu\nu}$ and connection; the Hermitian projection $g_{\mu\nu}:=\Re(\mathcal{G}_{\mu\nu})$ appears only as a boundary/observable metric. The stress tensor follows the same convention with $\mathcal{T}_{\mu\nu}$ primary and $T_{\mu\nu}:=\Re(\mathcal{T}_{\mu\nu})$ its GR limit.
+
 The complete action for the $\Theta$-field is:
 \begin{equation}
 S_{\text{total}}[\Theta] = S_{\text{bulk}}[\Theta] + S_{\text{GHY}}[\Theta]
@@ -95,6 +97,7 @@ where:
 S_{\text{bulk}} &= \frac{1}{16\pi G} \int_{\mathcal{M}} d^4x \sqrt{-g} \left[\mathrm{Tr}(\nabla^\dagger\nabla\Theta \cdot \Theta^\dagger) - V(\Theta^\dagger\Theta)\right] \\
 S_{\text{GHY}} &= \frac{1}{8\pi G} \int_{\partial\mathcal{M}} d^3\Sigma \sqrt{h} \, \mathrm{Tr}(\Theta^\dagger K \Theta)
 \end{align}
+with $g_{\mu\nu}=\Re(\mathcal{G}_{\mu\nu})$ marking the Hermitian projection of the full biquaternionic geometry.
 
 \textbf{Theorem H1 (Boundary Cancellation):} For variations $\delta\Theta$ vanishing on $\partial\mathcal{M}$, all boundary terms in $\delta S_{\text{total}}$ exactly cancel, yielding:
 \begin{equation}
@@ -112,8 +115,8 @@ Complete bulk-boundary correspondence established:
 \textbf{Bulk} & \textbf{Boundary} \\
 \hline
 $\Theta(q,\tau)$ & $\langle\mathcal{O}(x)\rangle$ \\
-$G_{\mu\nu}$ & $g_{\mu\nu}$ (induced metric) \\
-$\nabla^2\Theta$ & $\langle T_{\mu\nu}\rangle$ (stress tensor) \\
+$\mathcal{G}_{\mu\nu}$ & $g_{\mu\nu}:=\Re(\mathcal{G}_{\mu\nu})$ (induced real metric) \\
+$\nabla^2\Theta$ & $\langle \Re(\mathcal{T}_{\mu\nu})\rangle$ (projected stress tensor) \\
 $K$ (extrinsic curv.) & $\Pi$ (momentum) \\
 $S_{\text{bulk}}$ & $-\ln Z[\Theta_0]$ (gen. func.) \\
 \hline
@@ -310,7 +313,7 @@ Testability & 10/10 & 3/10 & 4/10 & 5/10 \\
 \item \textbf{Derives SM}: Gauge group emerges from geometry, not assumed
 \item \textbf{Unifies forces}: Single $\Theta$-field encodes all interactions
 \item \textbf{Quantum + GR}: Reconciles quantum mechanics with gravity
-\item \textbf{Testable}: Makes specific predictions (α corrections, dark sector)
+\item \textbf{Testable}: Makes specific predictions ($\alpha$ corrections, dark sector)
 \end{enumerate}
 
 \subsection{Remaining Challenges}

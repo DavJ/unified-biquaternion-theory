@@ -1,0 +1,19 @@
+{
+  "generated": "2026-01-12T22:54:37.500579",
+  "tool": "hash_dataset.py",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "filename": "COM_PowerSpect_CMB-TT-full_R3.01.txt",
+      "size_bytes": 170547,
+      "sha256": "ccf3113604020536f6f13ccf51680a7316ad0f32da558eee7f625e613bdd5522",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt"
+    },
+    {
+      "filename": "COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt",
+      "size_bytes": 205647,
+      "sha256": "50eecd4422e22026070bdacf9fa8a7e7ef3badf4fa50fffea040df669715cf51",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-base-plikHM-TTTEEE-lowl-lowE-lensing-minimum-theory_R3.01.txt"
+    }
+  ]
+}

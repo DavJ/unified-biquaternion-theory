@@ -1,0 +1,64 @@
+
+\section{Biquaternion Spectral Operator}
+
+\begin{definition}[Biquaternion Time]
+Let
+\begin{equation}
+\tau_{\mathrm{BQ}} =
+(t_0 + t_1\mathbf{i} + t_2\mathbf{j} + t_3\mathbf{k})
++ i(u_0 + u_1\mathbf{i} + u_2\mathbf{j} + u_3\mathbf{k})
+\in \mathbb{C}\otimes\mathbb{H}.
+\end{equation}
+We define its quaternionic and complex conjugations as
+\begin{align}
+\overline{\tau}_{\mathrm{BQ}} &=
+(t_0 - t_1\mathbf{i} - t_2\mathbf{j} - t_3\mathbf{k})
++ i(u_0 - u_1\mathbf{i} - u_2\mathbf{j} - u_3\mathbf{k}), \\
+\tau_{\mathrm{BQ}}^{*} &=
+(t_0 + t_1\mathbf{i} + t_2\mathbf{j} + t_3\mathbf{k})
+- i(u_0 + u_1\mathbf{i} + u_2\mathbf{j} + u_3\mathbf{k}), \\
+\tau_{\mathrm{BQ}}^{\dagger} &= (\overline{\tau}_{\mathrm{BQ}})^{*}.
+\end{align}
+\end{definition}
+
+\begin{definition}[Biquaternion Spectral Operator]
+Let $\tau_{\mathrm{BQ}} = (t_0 + t_1\mathbf{i} + t_2\mathbf{j} + t_3\mathbf{k})
++ i(u_0 + u_1\mathbf{i} + u_2\mathbf{j} + u_3\mathbf{k}) \in \mathbb{C}\otimes\mathbb{H}$.
+Define
+\begin{equation}
+M_{\mathrm{BQ}} f(\tau_{\mathrm{BQ}}) =
+-\sum_{\mu=0}^{3} e_\mu \frac{\partial f}{\partial t_\mu}
+- i \sum_{\mu=0}^{3} e_\mu \frac{\partial f}{\partial u_\mu}
++ V(\tau_{\mathrm{BQ}}) f(\tau_{\mathrm{BQ}}),
+\end{equation}
+where $e_0=1$, $e_1=\mathbf{i}$, $e_2=\mathbf{j}$, $e_3=\mathbf{k}$,
+and $V(\tau_{\mathrm{BQ}})^\dagger = V(\tau_{\mathrm{BQ}})$.
+\end{definition}
+
+\begin{proposition}[Hermiticity Condition]
+If $V(\tau_{\mathrm{BQ}})$ is Hermitian and the boundary terms vanish at infinity,
+then $M_{\mathrm{BQ}}$ is self-adjoint in $\mathcal{H}(\mathbb{C}\otimes\mathbb{H})$:
+\begin{equation}
+\langle f, M_{\mathrm{BQ}} g \rangle = \langle M_{\mathrm{BQ}} f, g \rangle.
+\end{equation}
+\end{proposition}
+
+\begin{remark}
+The classical complex-time operator $M_{\mathbb{C}}$ corresponds
+to the projection $\Pi(\tau_{\mathrm{BQ}})=t_0+i u_0$.
+Thus the complex zeta spectrum is a slice projection of the full
+biquaternionic spectrum.
+\end{remark}
+
+\begin{remark}[Relation to Riemann Hypothesis]
+The Riemann zeta spectrum corresponds to the complex projection of the
+real spectrum of the self-adjoint operator $M_{\mathrm{BQ}}$ in $\mathbb{C}\otimes\mathbb{H}$.
+This connection is \emph{structural} and represents a natural mathematical analogy,
+not a proof of the Riemann Hypothesis. The spectral properties of $M_{\mathrm{BQ}}$
+are defined independently of number-theoretic conjectures.
+
+\textbf{Important:} The spectral framework is just a mathematical tool. It is not clear
+whether it can help prove RH, and we should not attempt to prove RH within UBT.
+While it is useful to show the connection of UBT with RH, zeta numbers, and theta,
+we must be very careful that we or somebody else does not claim to have proven anything about RH.
+\end{remark}

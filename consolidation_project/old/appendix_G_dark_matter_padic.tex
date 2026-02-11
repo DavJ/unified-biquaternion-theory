@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+%\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -700,7 +700,7 @@ We hypothesize that the three lepton generations correspond to topological state
 \begin{equation}
     S(n) = A \cdot n^7 - B \cdot n \ln(n)
 \end{equation}
-By fitting this model to the experimental masses of the muon (\(m_\mu \approx 105.66\) MeV, n=2) and the tauon (\(m_\tau \approx 1776.86\) MeV, n=3), we determine the theory's effective parameters:
+By fitting this model to the experimental masses of the muon (\(m_\mu \approx 105.66\) MeV, n=2) and the tauon (\(m_\tau \approx \TauMassMeV\) MeV, n=3), we determine the theory's effective parameters:
 \begin{align}
     A &\approx 0.8104 \\
     B &\approx -1.3948
@@ -738,7 +738,7 @@ S(n) = A n^p - B n \log n \quad \text{with } p = 6.96
 Using:
 \begin{align*}
 S(2) &= 105.658 \text{ MeV} \\
-S(3) &= 1776.86 \text{ MeV}
+S(3) &= \TauMassMeV \text{ MeV}
 \end{align*}
 
 we solve for constants $A$ and $B$:
@@ -766,7 +766,7 @@ This indicates a significant deviation for the electron, supporting the hypothes
 
 \includegraphics[width=\linewidth]{topological_mass_fit.png}
 
-\documentclass[12pt, a4paper]{article}
+%\documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb}

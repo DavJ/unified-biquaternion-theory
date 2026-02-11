@@ -1,0 +1,9 @@
+channel,analysis,target_mode,k_ell,k_m,obs,p_mc,field,m_mode,window2d,null,mc,target_ell,target_m,value
+BB,psd,,1,3,,,,,,,,137.0,137.0,0.14878916433275577
+BB,psd,,1,3,,,,,,,,137.0,139.0,0.14878916433275577
+BB,psd,,1,3,,,,,,,,139.0,137.0,0.14878916433275577
+BB,psd,,1,3,,,,,,,,139.0,139.0,0.14878916433275577
+BB,psd,period,1,3,0.14878916433275577,0.81,phase,full,hann,ell-rot,2000,137.0,137.0,
+BB,psd,period,1,3,0.14878916433275577,0.81,phase,full,hann,ell-rot,2000,137.0,139.0,
+BB,psd,period,1,3,0.14878916433275577,0.81,phase,full,hann,ell-rot,2000,139.0,137.0,
+BB,psd,period,1,3,0.14878916433275577,0.81,phase,full,hann,ell-rot,2000,139.0,139.0,

@@ -1,0 +1,395 @@
+% Canonical Standard Model Gauge Structure
+% Version: 1.0
+% Date: 2025-11-14
+% Status: Canonical - DO NOT DUPLICATE
+
+\section{Standard Model Gauge Structure}
+\label{sec:canonical:sm_gauge}
+
+\subsection{Canonical Definition}
+
+The complete Standard Model gauge Lagrangian in the Unified Biquaternion Theory framework is:
+
+\begin{equation}
+\label{eq:canonical:sm_lagrangian}
+\boxed{\mathcal{L}_{\text{SM}} = \text{Tr}\left[(D_\mu\Theta)^\dagger (D^\mu\Theta)\right] - \frac{1}{4}W^i_{\mu\nu}W^{i\mu\nu} - \frac{1}{4}B_{\mu\nu}B^{\mu\nu} - \frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu}}
+\end{equation}
+
+\noindent where the covariant derivative is:
+
+\begin{equation}
+\label{eq:canonical:sm_covariant}
+D_\mu = \partial_\mu + ig_s T^a G^a_\mu + ig \tau^i W^i_\mu + ig' Y B_\mu
+\end{equation}
+
+\subsection{Gauge Group}
+
+\begin{equation}
+\label{eq:canonical:sm_group}
+\boxed{G_{\text{SM}} = SU(3)_c \times SU(2)_L \times U(1)_Y}
+\end{equation}
+
+This is the \textbf{Standard Model gauge group} with three factors:
+
+\begin{enumerate}
+    \item $SU(3)_c$ = color symmetry (strong interactions, QCD)
+    \item $SU(2)_L$ = weak isospin (left-handed weak interactions)
+    \item $U(1)_Y$ = hypercharge (electromagnetic and weak)
+\end{enumerate}
+
+\subsection{Gauge Fields and Couplings}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Group} & \textbf{Field} & \textbf{Coupling} & \textbf{Index Range} \\
+\hline
+$SU(3)_c$ & $G^a_\mu$ (gluons) & $g_s$ & $a = 1, \ldots, 8$ \\
+$SU(2)_L$ & $W^i_\mu$ (weak bosons) & $g$ & $i = 1, 2, 3$ \\
+$U(1)_Y$ & $B_\mu$ (hypercharge) & $g'$ & (single field) \\
+\hline
+\end{tabular}
+\caption{Standard Model gauge fields and couplings}
+\label{tab:canonical:sm_fields}
+\end{table}
+
+\subsection{Field Strength Tensors}
+
+\subsubsection{SU(3) Gluon Field Strength}
+
+\begin{equation}
+\label{eq:canonical:sm_gluon}
+G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu + g_s f^{abc} G^b_\mu G^c_\nu
+\end{equation}
+
+where $f^{abc}$ are $SU(3)$ structure constants (see Section~\ref{sec:canonical:qcd}).
+
+\subsubsection{SU(2) Weak Field Strength}
+
+\begin{equation}
+\label{eq:canonical:sm_weak}
+W^i_{\mu\nu} = \partial_\mu W^i_\nu - \partial_\nu W^i_\mu + g \epsilon^{ijk} W^j_\mu W^k_\nu
+\end{equation}
+
+where $\epsilon^{ijk}$ is the Levi-Civita symbol ($\epsilon^{123} = 1$).
+
+\subsubsection{U(1) Hypercharge Field Strength}
+
+\begin{equation}
+\label{eq:canonical:sm_hypercharge}
+B_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu
+\end{equation}
+
+This is Abelian (no self-interaction term).
+
+\subsection{Generators}
+
+\subsubsection{SU(3) Generators}
+
+\begin{equation}
+T^a = \frac{\lambda^a}{2}, \quad a = 1, \ldots, 8
+\end{equation}
+
+where $\lambda^a$ are Gell-Mann matrices (see Section~\ref{sec:canonical:qcd}).
+
+Normalization:
+\begin{equation}
+\text{Tr}(T^a T^b) = \frac{1}{2}\delta^{ab}
+\end{equation}
+
+\subsubsection{SU(2) Generators}
+
+\begin{equation}
+\tau^i = \frac{\sigma^i}{2}, \quad i = 1, 2, 3
+\end{equation}
+
+where $\sigma^i$ are Pauli matrices:
+
+\begin{equation}
+\sigma^1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+\sigma^2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+\sigma^3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\end{equation}
+
+Commutation relations:
+\begin{equation}
+[\tau^i, \tau^j] = i\epsilon^{ijk}\tau^k
+\end{equation}
+
+Normalization:
+\begin{equation}
+\text{Tr}(\tau^i \tau^j) = \frac{1}{2}\delta^{ij}
+\end{equation}
+
+\subsubsection{U(1) Generator}
+
+\begin{equation}
+Y = \text{hypercharge operator}
+\end{equation}
+
+For fermions:
+\begin{equation}
+Y = Q - T_3
+\end{equation}
+
+where $Q$ is electric charge and $T_3 = \tau^3$ is the third component of weak isospin.
+
+\subsection{Electroweak Unification}
+
+\subsubsection{Electroweak Lagrangian}
+
+Combining $SU(2)_L \times U(1)_Y$:
+
+\begin{equation}
+\label{eq:canonical:ew_lagrangian}
+\mathcal{L}_{\text{EW}} = \text{Tr}\left[(D_\mu\Theta)^\dagger (D^\mu\Theta)\right] - \frac{1}{4}W^i_{\mu\nu}W^{i\mu\nu} - \frac{1}{4}B_{\mu\nu}B^{\mu\nu}
+\end{equation}
+
+\subsubsection{Physical Gauge Bosons}
+
+After electroweak symmetry breaking, the physical bosons are:
+
+\begin{align}
+W^\pm_\mu &= \frac{1}{\sqrt{2}}(W^1_\mu \mp i W^2_\mu) \label{eq:canonical:W_bosons} \\
+Z^0_\mu &= \cos\theta_W W^3_\mu - \sin\theta_W B_\mu \label{eq:canonical:Z_boson} \\
+A_\mu &= \sin\theta_W W^3_\mu + \cos\theta_W B_\mu \label{eq:canonical:photon}
+\end{align}
+
+where $\theta_W$ is the \textbf{weak mixing angle} (Weinberg angle).
+
+\subsubsection{Weak Mixing Angle}
+
+\begin{equation}
+\label{eq:canonical:weinberg_angle}
+\tan\theta_W = \frac{g'}{g}
+\end{equation}
+
+Experimental value:
+\begin{equation}
+\sin^2\theta_W \approx 0.23122
+\end{equation}
+
+In UBT, this is \textbf{derived} from the internal structure of $\Theta$ (see Section~\ref{sec:canonical:theta_w_derivation}).
+
+\subsection{Coupling Constants}
+
+\subsubsection{Gauge Couplings}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Coupling} & \textbf{Symbol} & \textbf{Approximate Value} \\
+\hline
+Strong coupling & $\alpha_s(M_Z)$ & $\approx 0.118$ \\
+Weak coupling & $\alpha_2 = g^2/(4\pi)$ & $\approx 1/30$ \\
+Hypercharge coupling & $\alpha_1 = g'^2/(4\pi)$ & $\approx 1/59$ \\
+Electromagnetic & $\alpha = e^2/(4\pi)$ & $\approx 1/137.036$ \\
+\hline
+\end{tabular}
+\caption{Standard Model coupling constants at $M_Z$}
+\label{tab:canonical:sm_couplings}
+\end{table}
+
+\subsubsection{Electromagnetic Coupling}
+
+The electromagnetic coupling relates to weak couplings via:
+
+\begin{equation}
+\label{eq:canonical:em_coupling}
+\frac{1}{\alpha} = \frac{1}{\alpha_2} + \frac{1}{\alpha_1}
+\end{equation}
+
+or equivalently:
+\begin{equation}
+e = g \sin\theta_W = g' \cos\theta_W
+\end{equation}
+
+\subsection{Fermion Representations}
+
+\subsubsection{Quark Doublets (Left-Handed)}
+
+\begin{equation}
+Q_L = \begin{pmatrix} u_L \\ d_L \end{pmatrix}, \quad
+Q_L' = \begin{pmatrix} c_L \\ s_L \end{pmatrix}, \quad
+Q_L'' = \begin{pmatrix} t_L \\ b_L \end{pmatrix}
+\end{equation}
+
+Quantum numbers:
+\begin{equation}
+(SU(3), SU(2), Y) = (\mathbf{3}, \mathbf{2}, +\frac{1}{6})
+\end{equation}
+
+\subsubsection{Quark Singlets (Right-Handed)}
+
+\begin{align}
+u_R, c_R, t_R &: \quad (\mathbf{3}, \mathbf{1}, +\frac{2}{3}) \\
+d_R, s_R, b_R &: \quad (\mathbf{3}, \mathbf{1}, -\frac{1}{3})
+\end{align}
+
+\subsubsection{Lepton Doublets (Left-Handed)}
+
+\begin{equation}
+L_L = \begin{pmatrix} \nu_e \\ e_L \end{pmatrix}, \quad
+L_L' = \begin{pmatrix} \nu_\mu \\ \mu_L \end{pmatrix}, \quad
+L_L'' = \begin{pmatrix} \nu_\tau \\ \tau_L \end{pmatrix}
+\end{equation}
+
+Quantum numbers:
+\begin{equation}
+(SU(3), SU(2), Y) = (\mathbf{1}, \mathbf{2}, -\frac{1}{2})
+\end{equation}
+
+\subsubsection{Lepton Singlets (Right-Handed)}
+
+\begin{equation}
+e_R, \mu_R, \tau_R : \quad (\mathbf{1}, \mathbf{1}, -1)
+\end{equation}
+
+\subsection{Higgs Mechanism}
+
+\subsubsection{Higgs Doublet}
+
+\begin{equation}
+\Phi = \begin{pmatrix} \phi^+ \\ \phi^0 \end{pmatrix}, \quad (SU(3), SU(2), Y) = (\mathbf{1}, \mathbf{2}, +\frac{1}{2})
+\end{equation}
+
+\subsubsection{Higgs Potential}
+
+\begin{equation}
+V(\Phi) = -\mu^2 \Phi^\dagger\Phi + \lambda(\Phi^\dagger\Phi)^2
+\end{equation}
+
+\subsubsection{Vacuum Expectation Value}
+
+\begin{equation}
+\langle \Phi \rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 0 \\ v \end{pmatrix}, \quad v \approx 246 \text{ GeV}
+\end{equation}
+
+\subsubsection{Gauge Boson Masses}
+
+\begin{align}
+M_W &= \frac{gv}{2} \approx 80.4 \text{ GeV} \label{eq:canonical:W_mass} \\
+M_Z &= \frac{v}{2}\sqrt{g^2 + g'^2} = \frac{M_W}{\cos\theta_W} \approx 91.2 \text{ GeV} \label{eq:canonical:Z_mass} \\
+M_\gamma &= 0 \quad \text{(photon remains massless)} \label{eq:canonical:photon_mass}
+\end{align}
+
+\subsection{Yukawa Couplings}
+
+Fermion masses arise from Yukawa interactions:
+
+\begin{equation}
+\mathcal{L}_{\text{Yukawa}} = -y_u \bar{Q}_L \tilde{\Phi} u_R - y_d \bar{Q}_L \Phi d_R - y_e \bar{L}_L \Phi e_R + \text{h.c.}
+\end{equation}
+
+where $\tilde{\Phi} = i\sigma^2\Phi^*$ and $y_u, y_d, y_e$ are Yukawa coupling matrices.
+
+Fermion masses:
+\begin{equation}
+m_f = \frac{y_f v}{\sqrt{2}}
+\end{equation}
+
+\subsection{CKM Matrix}
+
+Quark mixing is described by the Cabibbo-Kobayashi-Maskawa (CKM) matrix:
+
+\begin{equation}
+V_{\text{CKM}} = \begin{pmatrix}
+V_{ud} & V_{us} & V_{ub} \\
+V_{cd} & V_{cs} & V_{cb} \\
+V_{td} & V_{ts} & V_{tb}
+\end{pmatrix}
+\end{equation}
+
+Unitarity triangle relations provide CP violation tests.
+
+\subsection{PMNS Matrix}
+
+Neutrino mixing is described by the Pontecorvo-Maki-Nakagawa-Sakata (PMNS) matrix:
+
+\begin{equation}
+U_{\text{PMNS}} = \begin{pmatrix}
+U_{e1} & U_{e2} & U_{e3} \\
+U_{\mu 1} & U_{\mu 2} & U_{\mu 3} \\
+U_{\tau 1} & U_{\tau 2} & U_{\tau 3}
+\end{pmatrix}
+\end{equation}
+
+\subsection{Emergence in UBT}
+
+\subsubsection{Gauge Group from Theta Field}
+
+In UBT, the full SM gauge group \textbf{emerges} from the $8 \times 8$ extended $\Theta$ field:
+
+\begin{equation}
+\Theta_{8 \times 8} \quad \Rightarrow \quad SU(3)_c \times SU(2)_L \times U(1)_Y
+\end{equation}
+
+The decomposition:
+\begin{equation}
+\Theta = \sum_a \Theta_a^{\text{color}} \otimes T^a + \sum_i \Theta_i^{\text{weak}} \otimes \tau^i + \Theta^Y \otimes Y
+\end{equation}
+
+naturally produces the SM gauge structure.
+
+\subsubsection{Predictions}
+
+From the $\Theta$ field geometry, UBT predicts:
+\begin{itemize}
+    \item $\sin^2\theta_W$ (weak mixing angle)
+    \item $\alpha_s(M_Z)$ (strong coupling)
+    \item Fermion mass ratios
+    \item CKM/PMNS matrix elements
+\end{itemize}
+
+\subsection{Grand Unification}
+
+\subsubsection{GUT Scale}
+
+At high energies ($E \sim 10^{16}$ GeV), the three couplings may unify:
+
+\begin{equation}
+\alpha_s(M_{\text{GUT}}) = \alpha_2(M_{\text{GUT}}) = \alpha_1(M_{\text{GUT}}) = \alpha_{\text{GUT}}
+\end{equation}
+
+Possible GUT groups:
+\begin{itemize}
+    \item $SU(5)$
+    \item $SO(10)$
+    \item $E_6$
+\end{itemize}
+
+\subsubsection{UBT and GUT}
+
+The $\Theta$ field structure may naturally accommodate GUT symmetries at high energies while breaking to $SU(3) \times SU(2) \times U(1)$ at low energies.
+
+\subsection{Conflict Resolution}
+
+This canonical definition supersedes all previous inconsistent SM formulations by:
+
+\begin{itemize}
+    \item Unifying notation for all three gauge groups
+    \item Standardizing generator normalizations
+    \item Consistent index conventions throughout
+    \item Embedding in $\Theta$ field structure
+\end{itemize}
+
+\subsection{Experimental Status}
+
+All SM predictions have been confirmed by experiment, including:
+\begin{itemize}
+    \item Higgs boson discovery (2012, $m_H \approx 125$ GeV)
+    \item Precision electroweak tests
+    \item Quark and lepton masses
+    \item CKM matrix elements
+    \item Neutrino oscillations (PMNS matrix)
+\end{itemize}
+
+UBT must reproduce all these results in the limit $\psi \to 0$.
+
+\subsection{Historical Note}
+
+This canonical SM gauge structure provides the complete Standard Model within UBT, where all gauge symmetries emerge from the fundamental $\Theta$ field rather than being postulated \textit{a priori}.
+
+% End of canonical SM gauge structure definition

@@ -1,0 +1,67 @@
+% ================== Mass Sum Rules ==================
+% AUTHOR: UBT Team
+% PURPOSE: Candidate sum rules and relations testable against data
+
+\section{Mass Sum Rules}
+\label{sec:mass-sum-rules}
+
+\subsection{General Approach}
+
+Mass sum rules are algebraic relations among fermion masses that arise from symmetries
+or geometric constraints of the underlying theory. In UBT, such relations may emerge from:
+
+\begin{itemize}
+  \item Hermiticity conditions on the Hermitian slice (Section~\ref{sec:yukawa-structure})
+  \item Fixed-point structure of RG flows (Section~\ref{sec:rg-flows})
+  \item Topological invariants of the biquaternionic field configuration
+  \item Discrete symmetries preserved by the \(\mathbb{H}_{\mathbb{C}}\) formalism
+\end{itemize}
+
+\subsection{Candidate Relations}
+
+We identify several candidate sum rules for future testing:
+
+\paragraph{Lepton sector.} The charged lepton masses \(m_e, m_\mu, m_\tau\) may satisfy:
+\begin{equation}
+\label{eq:lepton-sum-rule}
+\frac{m_\mu}{m_e} + \frac{m_\tau}{m_\mu} = C_{\ell} \times \frac{m_\tau}{m_e}
+\end{equation}
+where \(C_{\ell}\) is a geometric constant determined by the Hermitian slice structure.
+This relation, if validated, would reduce one degree of freedom in the lepton sector.
+
+\paragraph{Quark sector.} For quarks, generational mixing introduces additional complexity.
+A simplified candidate relation for the up-type quarks is:
+\begin{equation}
+\label{eq:quark-sum-rule}
+\log\left(\frac{m_t}{m_u}\right) = C_q \left[
+  \log\left(\frac{m_c}{m_u}\right) + \log\left(\frac{m_t}{m_c}\right)
+\right]
+\end{equation}
+with \(C_q\) another geometric constant. This logarithmic form reflects the multiplicative
+nature of RG evolution.
+
+\subsection{Experimental Validation Strategy}
+
+Testing these sum rules requires:
+
+\begin{enumerate}
+  \item Calculation of \(C_{\ell}, C_q\) from the \(\mathbb{H}_{\mathbb{C}}\) geometry
+  (currently in progress)
+  \item Comparison with precision measurements of fermion masses at appropriate energy scales
+  \item Statistical analysis to determine if observed deviations are within theoretical
+  and experimental uncertainties
+\end{enumerate}
+
+\subsection{Connection to CKM Matrix}
+
+The quark mass sum rules are intertwined with the Cabibbo-Kobayashi-Maskawa (CKM) matrix
+through the diagonalization of the Yukawa matrices. Any relation among masses constrains
+the possible flavor-mixing patterns. This connection provides additional testable predictions
+and will be explored in detail once the geometric constants are computed.
+
+\paragraph{Status.} The mass sum rules program is at an early stage. Equations
+\eqref{eq:lepton-sum-rule} and \eqref{eq:quark-sum-rule} are \textbf{conjectures} based on
+structural arguments. Explicit derivation of \(C_{\ell}, C_q\) from first principles is
+required before empirical testing.
+
+% =======================================================================

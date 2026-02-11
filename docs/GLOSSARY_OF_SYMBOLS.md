@@ -83,7 +83,7 @@ Complete reference guide for mathematical notation and symbols used throughout t
 | g | Generic gauge coupling | — | Context-dependent |
 | g_s | Strong coupling (QCD) | SU(3) | α_s = g_s²/(4π) |
 | g_2 | Weak coupling | SU(2) | Electroweak theory |
-| α | Fine-structure constant | U(1) | ≈ 1/137.036 |
+| α | Fine-structure constant | U(1) | ≈ 1/137.035999084 |
 | α(μ) | Running α at scale μ | U(1) | Energy-dependent |
 | α_s | Strong coupling constant | SU(3) | ≈ 0.118 at M_Z |
 | e | Elementary charge | U(1) | 1.602×10⁻¹⁹ C |
@@ -102,7 +102,7 @@ Complete reference guide for mathematical notation and symbols used throughout t
 
 | Symbol | Description | Value | Status in UBT |
 |--------|-------------|-------|---------------|
-| α | Fine-structure constant | 1/137.036 | **Empirical input** |
+| α | Fine-structure constant | 1/137.035999084 | **Empirical input (CODATA 2018)** |
 | B or B_α | Vacuum polarization coefficient | ≈ 46.3 | Fitted in current UBT |
 | B_m | Mass formula log correction | ≈ -14.099 MeV | Distinct from B_α |
 | Λ_QCD | QCD scale parameter | ≈ 200 MeV | Standard QCD |
