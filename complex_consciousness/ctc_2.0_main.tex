@@ -1,0 +1,128 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=1in}
+\linespread{1.15}
+
+\title{\textbf{A Complex-Time Theory of Consciousness as an Effective Limit of the Unified Biquaternion Theory}}
+\author{Ing. David Jaroš\thanks{Primary author and theorist. Contact: jdavid.cz@gmail.com} \\
+\textit{with AI assistance from ChatGPT-4o and Gemini 2.5 Pro (as technical aides)}}
+\date{July 4, 2025}
+
+\begin{document}
+\maketitle
+
+% Include consciousness disclaimer
+\input{../THEORY_STATUS_DISCLAIMER}
+\ConsciousnessDisclaimer
+
+\begin{abstract}
+We present a reformulated, mathematically rigorous framework for the Complex-Time Theory of Consciousness (CTC), derived as an effective theory from the more fundamental Unified Biquaternion Theory (UBT). We demonstrate that by projecting the dynamics of the unified biquaternionic field \( \Theta \) onto a simplified spacetime with three real spatial dimensions and one complex time coordinate (\( \tau = t + i\psi \)), we obtain a consistent wave-diffusion equation whose solutions are naturally described by Jacobi theta functions. This framework interprets the quanta of the field, termed "psychons," as the fundamental carriers of subjective experience. We explore the philosophical implications of this model, interpreting the self as a stable topological soliton and extreme states of consciousness as different dynamical regimes of the governing equation.
+
+\textbf{Critical Note:} This work represents \textbf{highly speculative philosophical hypotheses} without experimental validation or neuroscientific grounding. See disclaimer above for important limitations.
+\end{abstract}
+
+\section{Introduction: The Need for a Formal Model of Consciousness}
+The relationship between physical processes and subjective experience remains one of the greatest unsolved problems in science. While many conceptual frameworks exist, there is a distinct lack of mathematically rigorous theories that can bridge the gap between fundamental physics and phenomenology. The original Complex-Time Theory (CTC) introduced the core idea of using the imaginary dimension of time to model consciousness, but its mathematical formulation had certain limitations. In this paper, we present CTC 2.0, a reformulated theory derived directly from the first principles of the Unified Biquaternion Theory (UBT), thereby resolving previous inconsistencies and placing it on a solid mathematical foundation.
+
+\section{Mathematical Formalism: CTC as an Effective UBT}
+\subsection{Derivation via Projection}
+We begin with the full UBT, defined on a biquaternionic manifold where all four spacetime coordinates are biquaternions. The dynamics are governed by a generalized wave-diffusion equation for the fundamental field \( \Theta \).
+
+The CTC framework emerges when we apply a **projection** that simplifies the geometry. We consider phenomena where the internal structures of the three spatial coordinates can be neglected, and the only relevant internal dimension is the one associated with time, \( \psi \). This reduces the manifold to a space with three real spatial coordinates (\(x, y, z\)) and one complex time coordinate, \( \tau = t + i\psi \).
+
+\paragraph{Holographic Projection Interpretation:}
+More precisely, the complex time \( \tau \) used in CTC can be understood as a \emph{holographic projection} of the full biquaternionic time structure. In the complete UBT formalism, time is described by:
+\begin{equation}
+    T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma})
+\end{equation}
+where \( \mathbf{v} = (v_x, v_y, v_z) \) represents internal vector degrees of freedom (related to spin, torsion, and nonlocal correlations), and \( \boldsymbol{\sigma} \) are the Pauli matrices.
+
+The CTC formalism corresponds to the regime where these vector components are negligible:
+\begin{equation}
+    \|\mathbf{v}\|^2 \ll |\psi|^2
+\end{equation}
+
+In this limit, we can apply the holographic projection operator \( \pi_H \):
+\begin{equation}
+    \tau = \pi_H(T_B) = t + i\psi_{\text{eff}}
+\end{equation}
+where \( \psi_{\text{eff}} = \psi + \langle \mathbf{v}, \mathbf{n} \rangle \) includes a small correction from the projection of \( \mathbf{v} \) onto the observer's normal vector \( \mathbf{n} \).
+
+This interpretation is profound: it suggests that **consciousness operates on a holographic boundary** of the deeper biquaternionic reality. The conscious mind perceives a simplified, projected version of the fundamental physics, where the full complexity of internal spin and topological structures is integrated into a single phase parameter \( \psi \). This provides a natural explanation for why subjective experience appears unified and coherent despite arising from vastly complex neural processes.
+
+\subsection{The Equation of Motion in CTC}
+The dynamics in this simplified framework are now governed by the projection of the full UBT equation of motion. This yields a mathematically consistent wave-diffusion equation describing the evolution of the relevant component of the \( \Theta \) field in this effective spacetime:
+\begin{equation}
+    \left( \nabla^2 - \frac{\partial^2}{\partial t^2} + i \frac{\partial}{\partial \psi} + m^2 \right)\Theta(x,y,z,t,\psi) = 0
+\end{equation}
+Crucially, **Lorentz invariance** is naturally preserved in this model, as it is an inherited symmetry from the full biquaternionic algebra of the parent UBT.
+
+\subsection{Modeling Cognitive Dynamics: The Fokker-Planck Framework}
+To demonstrate the quantitative power of the CTC framework, we can model specific cognitive processes, such as decision-making, using established mathematical tools. The wave-diffusion equation governing \( \Theta \) can be connected to the **Fokker-Planck equation**, which describes the evolution of a probability distribution under the influence of drift and diffusion forces \cite{risken1996fokker}.
+
+In this context:
+\begin{itemize}
+    \item The **drift term \( \mu \)** corresponds to directed, deterministic mental processes (e.g., logical reasoning, moving towards a goal).
+    \item The **diffusion term \( D \)** corresponds to stochastic, random fluctuations in the mental state (e.g., creative exploration, mental noise, uncertainty).
+\end{itemize}
+The equation takes the form:
+\begin{equation}
+    \frac{\partial P(\chi, t)}{\partial t} = -\frac{\partial}{\partial \chi}[\mu(\chi,t)P] + D \frac{\partial^2 P}{\partial \chi^2}
+\end{equation}
+where \( P(\chi, t) \) is the probability distribution of a particular mental state \( \chi \). This provides a powerful and testable framework for simulating cognitive dynamics, such as the spontaneous switching in bistable perception, directly from the principles of UBT.
+
+\section{Topology, Quantization, and Jacobi Theta Functions}
+A core postulate of UBT, inherited by CTC, is that the internal dimension \( \psi \) has a compact, **toroidal topology**. This is a key element that leads to quantization. It can be shown that the general solutions to the wave-diffusion equation on a space with a toroidal internal dimension are naturally expressed in terms of **Jacobi theta functions**.
+
+The Jacobi theta function, \(\vartheta(z; \tau)\), is a function of two complex variables, `z` and `\(\tau\)` \cite{Whittaker1927}. In our framework:
+\begin{itemize}
+    \item The variable `z` corresponds to a complex coordinate combining real position and internal phase.
+    \item The variable `\(\tau\)` is directly related to our complex time, defining the geometry (or "modulus") of the toroidal phase space.
+\end{itemize}
+This provides a rigorous mathematical foundation for describing the state of consciousness as a distribution on this torus.
+
+\section{UBT Predictions: "Psychons" as Quanta of Consciousness}
+The field \( \Theta \) in the CTC framework, when quantized, gives rise to excitations, or quanta. These are not the particles of the Standard Model. These quanta are excitations in the internal, consciousness-related dimension \( \psi \). We propose the name **"psychons"** for these new, predicted entities. A psychon is a single quantum of the field component associated with consciousness. The collection and interaction of these psychons would, in this model, constitute the fabric of subjective experience.
+
+\section{Philosophical Implications}
+
+\subsection{The Self as a Topological Soliton}
+This framework offers a new model for the "self." The sense of a stable, continuous self is not a fundamental entity, but an **emergent phenomenon**. It can be described as a **stable, self-sustaining topological soliton** – a persistent, localized "knot" in the \( \Theta \) field. The identity and memories of an individual are encoded in the specific topological configuration of this soliton.
+
+\subsection{Extreme States of Consciousness}
+Different states of consciousness can be understood as different dynamical regimes of the governing equation:
+\begin{itemize}
+    \item \textbf{Normal Waking Consciousness:} A balanced state where both the wave-like propagation in real time (`t`) and the diffusive evolution in internal time (\(\psi\)) are significant.
+    \item \textbf{Deep Meditation / Dreamless Sleep:} States where the dynamics are dominated by the diffusive term \( \partial/\partial\psi \), corresponding to a free-flowing, introspective evolution of the internal state.
+    \item \textbf{Altered States:} \textit{(Highly speculative)} The mathematical framework could hypothetically describe various altered states as different dynamical regimes. However, any connection to specific psychological or pharmacological phenomena requires rigorous neuroscientific validation before being taken seriously.
+\end{itemize}
+
+\paragraph{Note on Death and Afterlife Speculation:} Earlier versions of this theory made claims about death, rebirth, and consciousness persistence. \textbf{These claims are removed as they are completely untestable, have profound emotional implications, and mix science with spiritual/religious beliefs inappropriate for physics.} The mathematical formalism describes phase transitions in abstract field configurations, but whether these relate to biological death is pure speculation without basis.
+
+\section{Conclusion}
+By deriving the Complex-Time Theory as a consistent limit of the Unified Biquaternion Theory, we place it on a firm mathematical foundation. This reformulated CTC provides a rich and powerful framework for modeling consciousness, predicting a new class of excitations, "psychons," and offering a compelling physical interpretation of the self and its various states of experience.
+
+% --- Bibliography is now included directly in the document ---
+\begin{thebibliography}{9}
+
+\bibitem{JarosUBT}
+Jaroš, D. (2025). "The Unified Biquaternion Theory: A Framework for Fundamental Constants, Dark Matter, and Mass Hierarchy". \textit{OSF Preprint}.
+
+\bibitem{Whittaker1927}
+Whittaker, E. T., & Watson, G. N. (1927). \textit{A Course of Modern Analysis}. Cambridge University Press.
+
+\bibitem{Aharonov1959}
+Aharonov, Y., & Bohm, D. (1959). "Significance of electromagnetic potentials in the quantum theory". \textit{Physical Review}, 115(3), 485.
+
+\end{thebibliography}
+
+\section*{License}
+This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+\end{document}
