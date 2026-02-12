@@ -446,7 +446,6 @@ The UBT has successfully:
 
 ---
 
-<<<<<<< HEAD
 ## Appendix: Biquaternion Time Neutrino Work (February 2026)
 
 **Update (February 2026)**: After this report was written, exploratory work was done using "full biquaternion time" T = t₀ + it₁ + jt₂ + kt₃ for neutrino masses. This produced physically reasonable mass scales (Σm_ν ≈ 8.4×10⁻⁵ eV), but **violates AXIOM B** of the canonical UBT formulation (see `core/AXIOMS.md`).
@@ -462,8 +461,6 @@ The UBT has successfully:
 
 ---
 
-=======
->>>>>>> origin/master
 ## License
 
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
@@ -471,9 +468,6 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 ---
 
 **Report prepared:** November 3, 2025  
-<<<<<<< HEAD
 **Updated:** February 11, 2026 (master merge + neutrino work note)  
-=======
->>>>>>> origin/master
 **Next milestone:** Refine quark masses to sub-percent accuracy  
 **Estimated completion:** Q1 2026
