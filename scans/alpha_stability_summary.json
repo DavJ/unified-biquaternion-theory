@@ -1,0 +1,120 @@
+{
+  "scan_range": [
+    101,
+    199
+  ],
+  "filter": "all",
+  "seed": 0,
+  "total_candidates": 99,
+  "target_n": 137,
+  "local_max_analysis": {
+    "target_n": 137,
+    "found": true,
+    "target_value": 141214.8242576969,
+    "rank": 53,
+    "is_local_max": false,
+    "is_strict_local_max": false,
+    "neighbors_higher": 1,
+    "neighbors_same": 0,
+    "neighbors_lower": 9,
+    "higher_neighbors": [
+      [
+        139,
+        144300.8363850969
+      ]
+    ],
+    "window": 5
+  },
+  "top_10": [
+    {
+      "n": 199,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -45.941366040675916,
+      "robustness": 465921.06993840454,
+      "combined": 232937.56428618194,
+      "rank": 1
+    },
+    {
+      "n": 197,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -45.47908414844744,
+      "robustness": 460422.60078083054,
+      "combined": 230188.56084834106,
+      "rank": 2
+    },
+    {
+      "n": 193,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -44.5545027562443,
+      "robustness": 449318.7173521957,
+      "combined": 224637.08142471974,
+      "rank": 3
+    },
+    {
+      "n": 191,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -44.092202885909415,
+      "robustness": 443714.3822784131,
+      "combined": 221835.1450377636,
+      "rank": 4
+    },
+    {
+      "n": 181,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -41.780603644903266,
+      "robustness": 415193.72524966655,
+      "combined": 207575.97232301082,
+      "rank": 5
+    },
+    {
+      "n": 198,
+      "is_prime": 0,
+      "is_twin_prime": 0,
+      "spectral_gap": -39.57595308191586,
+      "robustness": 412372.10146803706,
+      "combined": 206166.26275747758,
+      "rank": 6
+    },
+    {
+      "n": 179,
+      "is_prime": 1,
+      "is_twin_prime": 1,
+      "spectral_gap": -41.318262249123485,
+      "robustness": 409394.78638378775,
+      "combined": 204676.73406076932,
+      "rank": 7
+    },
+    {
+      "n": 196,
+      "is_prime": 0,
+      "is_twin_prime": 0,
+      "spectral_gap": -39.17570652398001,
+      "robustness": 407460.738150993,
+      "combined": 203710.7812222345,
+      "rank": 8
+    },
+    {
+      "n": 195,
+      "is_prime": 0,
+      "is_twin_prime": 0,
+      "spectral_gap": -38.975581339762485,
+      "robustness": 404993.1529384418,
+      "combined": 202477.08867855102,
+      "rank": 9
+    },
+    {
+      "n": 194,
+      "is_prime": 0,
+      "is_twin_prime": 0,
+      "spectral_gap": -38.77545485907676,
+      "robustness": 402517.71007417596,
+      "combined": 201239.46730965844,
+      "rank": 10
+    }
+  ]
+}
