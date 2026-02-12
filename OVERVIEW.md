@@ -2,7 +2,9 @@
 
 **Document Purpose:** Concise high-level summary for newcomers and researchers  
 **Audience:** Physicists, mathematicians, and interested readers seeking quick understanding  
-**Last Updated:** November 8, 2025
+**Last Updated:** February 12, 2026
+
+**Layer Separation**: UBT distinguishes **Layer 1** (geometry/topology - derived from axioms) from **Layer 2** (coding/modulation - engineering choices). See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 
 ---
 
@@ -15,13 +17,19 @@
 
 **Key Innovation:** All physics emerges from a single biquaternionic field Θ(q,τ) on complex spacetime.
 
-**Current Status (November 2025):**
+**Current Status (February 2026):**
 - Research framework in Year 5 of development
 - Scientific Rating: **6.2/10** (upgraded from 5.5/10)
-- Geometric baselines validated: α⁻¹ = 137.000 (0.026%), m_e = 0.509856 MeV (0.22%)
+- Geometric baselines: α⁻¹ framework, m_e = 0.509856 MeV (0.22%)
 - SM gauge group SU(3)×SU(2)×U(1) rigorously derived from geometry
 - **Corrections ~90% derived for α, ~60% derived for m_e** (see FITTED_PARAMETERS.md)
+- **Layer separation**: n=137 is Layer 2 (channel selection), NOT Layer 1 (stability max)
+- **Stability scan**: n=137 ranks 53/99; better candidates exist (199, 197, 193, etc.)
 - CMB test feasible within 1-2 years
+
+**Key Documents**:
+- [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) - Layer 1 vs Layer 2 contract
+- [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md) - Why n=137 is not uniquely derived
 
 ---
 
@@ -106,21 +114,31 @@
 **Status:** ✅ Baseline achieved, refinements in progress  
 **Note:** Remaining small difference attributed to higher-order quantum corrections
 
-#### 2. Fine-Structure Constant (Baseline + Corrections Status)
-**Geometric Baseline (FULLY DERIVED):** α⁻¹ = 137.000 from complex time topology.  
-**With Corrections (~90% DERIVED):** α⁻¹ ≈ 137.036 from structural calculations.  
-**Experimental:** α⁻¹ = 137.035999084(21) (CODATA 2018).  
+#### 2. Fine-Structure Constant (Framework + Channel Selection)
+**Layer 1 (Geometric Framework):** α⁻¹ ≈ n + corrections from complex time topology ✅ Derived
+**Layer 2 (Channel Selection):** n=137 chosen to match experimental α ⚠️ **Hypothesis** (NOT stability max)
+
+**Stability Scan Results** ([`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)):
+- n=137 ranks **53/99** in combined stability score
+- Better candidates: n=199 (rank 1), n=197 (rank 2), n=193 (rank 3)
+- Even neighbor n=139 is more stable (rank 2)
+- **Conclusion**: n=137 is Layer 2 channel selection, NOT Layer 1 derivation
+
+**With n=137 Selected:**
+- Baseline: α⁻¹ = 137.000 (0.026% error from CODATA 2018)
+- With corrections: α⁻¹ ≈ 137.036 (~0.00003% error)
 
 **Current status:**
-- ✅ Baseline: 0.026% error (fully derived, zero fitted parameters)
-- ⚠️ With corrections: ~0.00003% error (~90% derived, ~12% renormalization gap)
+- ✅ Framework: Geometric structure allowing α⁻¹ ≈ n + corrections (fully derived)
+- ⚠️ Selection: Choice of n=137 (hypothesis/calibration, not uniquely derived)
+- ⚠️ Corrections: ~90% derived from structure, ~12% renormalization gap
 
-**Derivation:** Winding number on T² torus, prime constraint + structural corrections.  
-**Status:** ✅ Baseline fully derived, ⚠️ corrections mostly derived (~90%).  
+**Derivation:** Winding number framework + structural corrections.  
+**Status:** ✅ Framework derived, ⚠️ n=137 is hypothesis (see stability scan).  
 
-**Per FITTED_PARAMETERS.md:** B constant is "mostly derived (>80%)" with ~12% renormalization factor gap. The four structural corrections (δN_anti, Δ_RG, Δ_grav, Δ_asym) are calculated from UBT structure, not fitted to experiment.
+**Per FITTED_PARAMETERS.md and LAYERS.md:** n=137 is currently classified as Layer 2 (channel selection) because stability scan shows it's NOT a uniquely stable configuration.
 
-**Roadmap:** Complete renormalization derivation (Priority 1, 6-month timeline)
+**Roadmap:** Either find selection principle that picks n=137 uniquely, or acknowledge as calibration parameter.
 
 #### 3. Standard Model Gauge Group
 **Prediction:** SU(3)×SU(2)×U(1) structure emerges geometrically  
@@ -128,12 +146,29 @@
 **Status:** ✅ Rigorous mathematical proof complete  
 **Validation:** Matches known SM symmetries exactly
 
-### Status of fermion masses (current)
-- **α (fine-structure constant - baseline):** derived **fit-free** from topological prime constraint with α⁻¹ = 137.000 (0.026% error).
-- **α (with corrections):** ~90% derived with α⁻¹ ≈ 137.036 (~0.00003% error). Structural corrections calculated from UBT; ~12% renormalization gap remains (see FITTED_PARAMETERS.md).
-- **Electron mass (baseline):** derived **fit-free** from Hopfion topology with m_e = 0.509856 MeV (0.22% error).
-- **Electron mass (with corrections):** ~60% derived with m_e ≈ 0.510 MeV (~0.2% error). Correction parameters A, p, B currently fitted for validation; derivation roadmap in FITTED_PARAMETERS.md (Priority 2, 12-month timeline).
-- **Other fermion/quark masses:** **not yet derived from first UBT principles.** Framework established; full derivation program in progress.
+### Status of fermion masses (current - with Layer Separation)
+
+**Layer 1 (Geometric Framework - Derived):**
+- **α framework:** α⁻¹ ≈ n + corrections derived from biquaternionic structure ✅
+- **Electron mass baseline:** m_e = 0.509856 MeV from Hopfion topology (0.22% error) ✅
+
+**Layer 2 (Channel/Parameter Selection - Hypothesis/Fitted):**
+- **n=137 selection:** Chosen to match experimental α; stability scan shows NOT a stability max ⚠️
+  - Ranks 53/99 in stability metrics
+  - Better candidates: n=199, 197, 193, 191, 181
+  - Interpretation: Calibration/channel selection, not uniquely derived
+- **α baseline value:** α⁻¹ = 137.000 follows from n=137 selection (hypothesis) ⚠️
+
+**Partly Derived (Mix of Layers):**
+- **α corrections:** ~90% derived with α⁻¹ ≈ 137.036 (~0.00003% error). Structural corrections calculated from UBT; ~12% renormalization gap remains.
+- **Electron mass corrections:** ~60% derived with m_e ≈ 0.510 MeV (~0.2% error). Parameters A, p, B currently fitted for validation; derivation roadmap in FITTED_PARAMETERS.md.
+
+**Framework Only (Not Yet Calculated):**
+- **Other fermion/quark masses:** Framework established; full derivation program in progress.
+
+**See Also:**
+- [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) - Layer 1 vs Layer 2 separation rules
+- [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md) - Stability scan analysis
 
 ### Roadmap (fermion masses)
 1) **Yukawa in ℍ_ℂ:** derive the algebraic form of Yukawa couplings on the Hermitian slice (left/right actions, discrete symmetries via involutions).
