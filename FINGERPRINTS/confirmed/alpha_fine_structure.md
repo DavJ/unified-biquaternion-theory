@@ -56,7 +56,7 @@ Starting from CxH bare value (136.973), add 4 UBT structural corrections:
 - ✅ **ZERO FITTED PARAMETERS** - α⁻¹ = 137.000 from pure topological constraint
 - ✅ **Multiple independent derivations** converge on α⁻¹ ≈ 137
 - ✅ **Precision**: 0.026% from experiment
-- ✅ **Only theory** deriving α baseline from pure geometry
+- ✅ **Among the few theories** deriving α baseline from pure geometry
 
 ### With Corrections (~90% Derived)
 - ⚠️ **Mostly derived** - corrections calculated from UBT structure

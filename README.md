@@ -332,7 +332,7 @@ To prevent misconceptions, we state explicitly what UBT does **NOT** claim:
 
 ❌ **NOT a multiverse theory** - Parallel branches in computational model are coherent paths in a single universe, not separate worlds.
 
-❌ **NOT proven** - UBT has confirmed predictions (α, m_e), null results (Planck CMB comb), and many untested predictions. It is a working framework subject to empirical validation.
+❌ **NOT proven** - UBT has validated predictions (α, m_e baselines), null results (Planck CMB comb), and many untested predictions. It is a working framework subject to empirical validation.
 
 ---
 
