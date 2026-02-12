@@ -108,17 +108,23 @@ Active research hypotheses:
 
 **Quantitative Predictions:**
 
-| Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error | Status |
-|------------|----------------|-------------------|-------------|----------------|---------|
-| **Fine-structure constant (baseline)** | **α⁻¹ = 137.000** | 137.035999084 | ±0.000000021 | **0.026%** | ✅ Derived |
-| Fine-structure constant (with corrections) | α⁻¹ ≈ 137.036 | 137.035999084 | ±0.000000021 | ~0.00003% | ⚠️ Mostly derived (~90%) |
-| **Electron mass (baseline)** | **m_e = 0.509856 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **0.22%** | ✅ Derived |
-| Electron mass (with corrections) | m_e ≈ 0.510 MeV | 0.51099895000 MeV | ±0.00000015 MeV | ~0.2% | ⚠️ Partly derived (~60%) |
+| Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error | Derivation Status |
+|------------|----------------|-------------------|-------------|----------------|-------------------|
+| **Fine-structure constant (n=137 baseline)** | **α⁻¹ = 137.000** | 137.035999084 | ±0.000000021 | **0.026%** | **Hypothesis** (channel selection, not stability max) |
+| Fine-structure constant (with corrections) | α⁻¹ ≈ 137.036 | 137.035999084 | ±0.000000021 | ~0.00003% | Partly derived (~90%, corrections from structure) |
+| **Electron mass (baseline)** | **m_e = 0.509856 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **0.22%** | **Derived** (Hopfion topology, fit-free) |
+| Electron mass (with corrections) | m_e ≈ 0.510 MeV | 0.51099895000 MeV | ±0.00000015 MeV | ~0.2% | Partly derived (~60%, parameters A,p,B fitted) |
 
-- 🌟 **Fine Structure Constant - High Precision Achieved**: **α⁻¹ baseline = 137.000 (0.026% error)**
-  - **Geometric Baseline (Fully Derived)**: α⁻¹ = 137.000 from topological prime constraint
-    - Status: ✅ **Fit-free** - pure geometry and topology
-    - Precision: 0.026% from experimental value
+- 🌟 **Fine Structure Constant - Geometric Framework with Channel Selection**:
+  - **Layer 1 (Geometry)**: Biquaternionic structure → α⁻¹ ≈ n + corrections framework ✅ Derived
+  - **Layer 2 (Channel Selection)**: n=137 chosen as reference point ⚠️ **NOT uniquely derived**
+    - **Stability Scan Result**: n=137 ranks 53/99 in stability metrics
+    - Better candidates exist: n=199, 197, 193, 191 all score higher
+    - Even neighbor n=139 is more stable (rank 2 vs 137's rank 53)
+    - **Interpretation**: n=137 is a channel selection/calibration, not a stability maximum
+    - See: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)
+  - **Geometric Baseline (with n=137 selected)**: α⁻¹ = 137.000 (0.026% error)
+    - Status: ✅ Framework derived, ⚠️ n=137 is hypothesis/selection
   - **Multiple Independent Approaches** converge on α⁻¹ ≈ 137:
     - M⁴×T² (torus/theta): 137.032 (0.003% error)
     - CxH (biquaternionic): 136.973 (bare value)
@@ -131,10 +137,9 @@ Active research hypotheses:
       3. CxH gravitational dressing: Δ_grav ≈ 0.015
       4. Mirror asymmetry: Δ_asym ≈ 0.01
     - Result: 136.973 + 0.063 ≈ 137.036 (matches experiment to 4 decimal places)
-    - Status: ⚠️ **Mostly derived** - correction values are calculated/estimated, ~12% renormalization gap remains
-  - **UBT Achievement**: Geometric baseline fully derived; working toward 100% first-principles corrections
-  - See: `FITTED_PARAMETERS.md` for complete parameter transparency
-  - See: `NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md` for correction details
+    - Status: ⚠️ **Mostly derived** - correction values calculated from structure, ~12% gap
+  - **UBT Achievement**: Geometric framework fully derived; n=137 selection documented as hypothesis
+  - See: [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) | [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md)
 - 🌟 **Electron Mass - Topological Derivation with Corrections**: **m_e baseline = 0.509856 MeV (0.22% accuracy)**
 
 **Electron Mass - Multiple Approaches:**
@@ -168,6 +173,39 @@ Active research hypotheses:
 - ✅ **Quantum Gravity Unification**: GR+QFT unified in single Θ field framework
 - ✅ **Mathematical Validation**: All core predictions verified using SymPy/NumPy
 - ✅ **Scientific Rating Upgrade**: 4.5/10 → 5.5/10 → **6.2/10** following geometric baseline achievements
+
+### What IS and ISN'T Derived Yet
+
+**Fully Derived (Layer 1 - Geometry/Topology):**
+- ✅ Biquaternionic field structure ℂ⊗ℍ (axiom/definition)
+- ✅ Field equation ∇†∇Θ = κ𝒯 (framework)
+- ✅ GR recovery in real limit: R_μν - ½g_μν R = 8πG T_μν (proven in Appendix R)
+- ✅ SM gauge group SU(3)×SU(2)×U(1) from Aut(ℂ⊗ℍ) (rigorously derived)
+- ✅ Electron mass baseline m_e = 0.509856 MeV from Hopfion topology (0.22% error, zero fitted)
+- ✅ Prime constraint for winding numbers (from gauge quantization)
+
+**Partly Derived (Mix of Layer 1 and Layer 2):**
+- ⚠️ Alpha corrections (~90% derived): Four structural corrections calculated, ~12% renormalization gap
+- ⚠️ Electron mass corrections (~60% derived): QED cutoff estimated, parameters A,p,B fitted for validation
+
+**Hypothesis / Channel Selection (Layer 2):**
+- ⚠️ **Winding number n=137**: Selected to match experimental α, NOT a stability maximum
+  - Stability scan shows n=137 ranks 53/99
+  - Better candidates: n=199 (rank 1), 197 (rank 2), 193 (rank 3), etc.
+  - Interpretation: Layer 2 channel selection, not Layer 1 derivation
+  - See: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)
+- ⚠️ RS(255,201) error correction code parameters (engineering choice)
+- ⚠️ GF(2⁸) finite field / 256-state quantization (discretization choice)
+
+**Framework Only (Derivation Pending):**
+- 🔬 Yukawa couplings (formalism exists, explicit values not calculated)
+- 🔬 Dark matter properties (p-adic framework, no specific predictions yet)
+- 🔬 Multi-generation fermion masses (extension of baseline, not calculated)
+
+**For Complete Transparency:**
+- [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) - Authoritative parameter status
+- [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) - Layer 1 vs Layer 2 separation rules
+- [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md) - Why n=137 is not uniquely derived
 
 ### Theoretical Advances
 - **Appendix G (2025)**: Hamiltonian-in-exponent θ-function formulation
@@ -279,17 +317,17 @@ To prevent misconceptions, we state explicitly what UBT does **NOT** claim:
 
 ## Current Empirical Status
 
-| Observable | UBT Prediction | Experimental Value | Status | Error |
-|------------|----------------|-------------------|--------|-------|
-| **Fine structure constant (baseline)** | α⁻¹ = 137.000 | 137.035999084 ± 0.000000021 | ✅ **DERIVED** | **0.026%** |
-| **Fine structure constant (with corrections)** | α⁻¹ ≈ 137.036 | 137.035999084 ± 0.000000021 | ⚠️ **MOSTLY DERIVED (~90%)** | **~0.00003%** |
-| **Electron mass (baseline)** | m_e = 0.509856 MeV | 0.51099895 ± 0.00000015 MeV | ✅ **DERIVED** | **0.22%** |
-| **Electron mass (with corrections)** | m_e ≈ 0.510 MeV | 0.51099895 ± 0.00000015 MeV | ⚠️ **PARTLY DERIVED (~60%)** | **~0.2%** |
-| **Planck CMB TT comb** | Δℓ ∈ {8,16,32,64,128,255} | No signal detected (p=0.919) | ❌ **NULL** | N/A |
-| **WMAP CMB TT comb** | — | Δℓ=255 (p=1e-4, not replicated) | ⚠️ **CANDIDATE** | Non-replicating |
-| **Hubble latency** | δ ≈ 7.8% clock shear | H₀ tension ~8-9% | 🔄 **TESTABLE** | Awaiting standard sirens |
+| Observable | UBT Prediction | Experimental Value | Derivation Status | Error |
+|------------|----------------|-------------------|-------------------|-------|
+| **Fine structure constant (n=137 framework)** | α⁻¹ = 137.000 | 137.035999084 ± 0.000000021 | **Hypothesis** (channel n=137 selection) | **0.026%** |
+| **Fine structure constant (with corrections)** | α⁻¹ ≈ 137.036 | 137.035999084 ± 0.000000021 | **Partly derived** (~90%) | **~0.00003%** |
+| **Electron mass (baseline)** | m_e = 0.509856 MeV | 0.51099895 ± 0.00000015 MeV | **Derived** (Hopfion topology) | **0.22%** |
+| **Electron mass (with corrections)** | m_e ≈ 0.510 MeV | 0.51099895 ± 0.00000015 MeV | **Partly derived** (~60%) | **~0.2%** |
+| **Planck CMB TT comb** | Δℓ ∈ {8,16,32,64,128,255} | No signal detected (p=0.919) | Hypothesis | ❌ **NULL** |
+| **WMAP CMB TT comb** | — | Δℓ=255 (p=1e-4, not replicated) | Candidate | ⚠️ Non-replicating |
+| **Hubble latency** | δ ≈ 7.8% clock shear | H₀ tension ~8-9% | Hypothesis | 🔄 **TESTABLE** |
 
-**Summary**: 2 fully derived baselines + 2 partly derived refinements, 1 null result, 1 non-replicating candidate, many untested predictions.
+**Summary**: 2 fully derived baselines (electron mass baseline, SM gauge group) + 2 partly derived refinements (alpha & electron corrections), 1 hypothesis (n=137 selection), 1 null result, 1 non-replicating candidate.
 
 **Scientific rating**: ~6.2/10 (improved from 4.5 following geometric baseline achievements and honest parameter accounting)
 
@@ -386,26 +424,29 @@ unified-biquaternion-theory/
 
 ## Key Scientific Achievements
 
-### 1. Fine Structure Constant (α) - High Precision Baseline
+### 1. Fine Structure Constant (α) - Geometric Framework with Channel Selection
 
-**UBT Baseline (Fully Derived)**: α⁻¹ = 137.000 (from pure geometric structure)
-**UBT with Corrections (~90% derived)**: α⁻¹ ≈ 137.036
-**Experiment**: α⁻¹ = 137.035999084 ± 0.000000021 (CODATA 2018)
+**Layer 1 (Geometric Framework)**: α⁻¹ ≈ n + corrections ✅ Derived
+**Layer 2 (Channel Selection)**: n=137 chosen ⚠️ Hypothesis (NOT stability max)
 
-**Agreement**: 
-- Baseline: 0.026% error (fully derived, no fitted parameters)
-- With corrections: ~0.00003% error (~90% derived, ~12% renormalization gap)
+**Stability Scan Results** ([`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)):
+- n=137 ranks **53/99** in combined stability score
+- Better candidates: n=199 (rank 1), n=197 (rank 2), n=193 (rank 3), n=191 (rank 4), n=181 (rank 5)
+- Even neighbor n=139 is more stable (rank 2 vs 137's rank 53)
+- **Conclusion**: n=137 is a channel selection/calibration, NOT uniquely derived from stability
 
-**Multiple independent derivation approaches converge:**
+**With n=137 Selected**:
+- Baseline: α⁻¹ = 137.000 (0.026% error from CODATA)
+- With corrections: α⁻¹ ≈ 137.036 (~0.00003% error)
+
+**Multiple independent approaches** using n=137 converge:
 - M⁴×T² (torus/theta): 137.032
-- CxH (biquaternionic): 136.973 (bare) + structural corrections ≈ 137.036
+- CxH (biquaternionic): 136.973 (bare) + corrections ≈ 137.036
 - Geo-β (curvature): 137.000
 
-**Status of corrections**: Structural corrections are calculated/estimated from UBT framework. Per `FITTED_PARAMETERS.md`, the renormalization is "mostly derived (>80%)" with a ~12% gap remaining for full first-principles derivation.
+**Status of n=137 selection**: Currently interpreted as **Layer 2 channel selection** to match experimental α. Geometric framework (α⁻¹ ≈ n + corrections) remains valid, but specific choice n=137 is not uniquely determined by stability principles.
 
-**UBT Achievement**: Geometric baseline (137.000) is fully derived with NO fitted parameters. Working toward 100% first-principles corrections.
-
-See: [`FINGERPRINTS/confirmed/alpha_fine_structure.md`](FINGERPRINTS/confirmed/alpha_fine_structure.md) and [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md)
+**Transparency**: [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) | [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md)
 
 ### 2. Electron Mass (m_e) - Topological Baseline Derivation
 
