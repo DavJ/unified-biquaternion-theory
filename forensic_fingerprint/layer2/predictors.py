@@ -16,18 +16,27 @@ Copyright (c) 2025 Ing. David Jaroš
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from typing import Dict
+
 from .config_space import Layer2Config
 
+# Import from canonical constants module (single source of truth)
+repo_root = Path(__file__).resolve().parents[2]
+if str(repo_root) not in sys.path:
+    sys.path.insert(0, str(repo_root))
 
-# Experimental values for comparison
-ALPHA_INV_EXP = 137.035999084  # Fine structure constant inverse (CODATA 2018)
-ELECTRON_MASS_EXP = 0.51099895000  # Electron mass in MeV (CODATA 2018)
+from forensic_fingerprint.constants import (
+    get_observed_values,
+    get_default_tolerances as get_canonical_tolerances,
+)
 
 
 def predict_constants(
     cfg: Layer2Config, 
-    mode: str = 'placeholder'
+    mapping: str = 'placeholder',
+    targets: list = None
 ) -> Dict[str, float]:
     """
     Predict physical constants from Layer 2 configuration.
@@ -36,8 +45,11 @@ def predict_constants(
     ----------
     cfg : Layer2Config
         Layer 2 configuration
-    mode : str, optional
-        Prediction mode: 'placeholder' or 'ubt' (default: 'placeholder')
+    mapping : str, optional
+        Prediction mapping: 'placeholder' or 'ubt' (default: 'placeholder')
+    targets : list, optional
+        List of target observables to predict.
+        Default: ['alpha_inv', 'electron_mass']
         
     Returns
     -------
@@ -47,19 +59,27 @@ def predict_constants(
     Raises
     ------
     RuntimeError
-        If mode='ubt' but UBT mapping is not implemented
+        If mapping='ubt' but UBT mapping is not implemented or fails
     ValueError
-        If mode is unknown
+        If mapping is unknown
+        
+    Notes
+    -----
+    ⚠️ WARNING: mapping='placeholder' uses FAKE formulas with NO physical meaning!
+    Only mapping='ubt' produces scientifically interpretable results.
     """
-    if mode == 'placeholder':
-        return _predict_placeholder(cfg)
-    elif mode == 'ubt':
-        return _predict_ubt(cfg)
+    if targets is None:
+        targets = ['alpha_inv', 'electron_mass']
+    
+    if mapping == 'placeholder':
+        return _predict_placeholder(cfg, targets)
+    elif mapping == 'ubt':
+        return _predict_ubt(cfg, targets)
     else:
-        raise ValueError(f"Unknown prediction mode: {mode}")
+        raise ValueError(f"Unknown prediction mapping: {mapping}")
 
 
-def _predict_placeholder(cfg: Layer2Config) -> Dict[str, float]:
+def _predict_placeholder(cfg: Layer2Config, targets: list) -> Dict[str, float]:
     """
     ⚠️ PLACEHOLDER toy model - NOT real UBT physics!
     
@@ -70,42 +90,47 @@ def _predict_placeholder(cfg: Layer2Config) -> Dict[str, float]:
     ----------
     cfg : Layer2Config
         Layer 2 configuration
+    targets : list
+        List of targets to predict
         
     Returns
     -------
     Dict[str, float]
-        Dictionary with 'alpha_inv' and 'electron_mass' (PLACEHOLDER values)
+        Dictionary with requested targets (PLACEHOLDER values)
     """
-    # FAKE formula for alpha inverse
-    # This is NOT derived from UBT - just a toy model
-    correction_rs = (cfg.rs_n - 255) * 0.01
-    correction_ofdm = (cfg.ofdm_channels - 16) * 0.1
-    correction_grid = (cfg.quantization_grid - 255) * 0.001
+    results = {}
     
-    alpha_inv = (
-        cfg.winding_number 
-        + correction_rs 
-        + correction_ofdm 
-        + correction_grid
-    )
+    if 'alpha_inv' in targets:
+        # FAKE formula for alpha inverse
+        # This is NOT derived from UBT - just a toy model
+        correction_rs = (cfg.rs_n - 255) * 0.01
+        correction_ofdm = (cfg.ofdm_channels - 16) * 0.1
+        correction_grid = (cfg.quantization_grid - 255) * 0.001
+        
+        alpha_inv = (
+            cfg.winding_number 
+            + correction_rs 
+            + correction_ofdm 
+            + correction_grid
+        )
+        results['alpha_inv'] = alpha_inv
     
-    # FAKE formula for electron mass
-    # This is NOT derived from UBT - just a toy model
-    base_mass = 0.511  # MeV
-    mass_correction = (cfg.rs_k / cfg.rs_n - 0.78) * 0.01
-    electron_mass = base_mass + mass_correction
+    if 'electron_mass' in targets:
+        # FAKE formula for electron mass
+        # This is NOT derived from UBT - just a toy model
+        base_mass = 0.511  # MeV
+        mass_correction = (cfg.rs_k / cfg.rs_n - 0.78) * 0.01
+        electron_mass = base_mass + mass_correction
+        results['electron_mass'] = electron_mass
     
-    return {
-        'alpha_inv': alpha_inv,
-        'electron_mass': electron_mass,
-    }
+    return results
 
 
-def _predict_ubt(cfg: Layer2Config) -> Dict[str, float]:
+def _predict_ubt(cfg: Layer2Config, targets: list) -> Dict[str, float]:
     """
-    Real UBT physics mapping (TO BE IMPLEMENTED).
+    Real UBT physics mapping using adapters to existing UBT code.
     
-    This should wire to existing UBT calculation modules:
+    This wires to existing UBT calculation modules via adapters:
     - TOOLS/simulations/emergent_alpha_calculator.py for alpha
     - TOOLS/simulations/validate_electron_mass.py for electron mass
     - tools/planck_validation/mapping.py for cosmological parameters
@@ -114,6 +139,8 @@ def _predict_ubt(cfg: Layer2Config) -> Dict[str, float]:
     ----------
     cfg : Layer2Config
         Layer 2 configuration
+    targets : list
+        List of targets to predict
         
     Returns
     -------
@@ -123,36 +150,23 @@ def _predict_ubt(cfg: Layer2Config) -> Dict[str, float]:
     Raises
     ------
     RuntimeError
-        UBT mapping not yet implemented
+        If UBT adapters fail or are not available
     """
-    raise RuntimeError(
-        "UBT mapping mode requested but not yet implemented.\n"
-        "\n"
-        "To implement:\n"
-        "1. Wire to TOOLS/simulations/emergent_alpha_calculator.py for alpha prediction\n"
-        "2. Wire to TOOLS/simulations/validate_electron_mass.py for mass prediction\n"
-        "3. Wire to tools/planck_validation/mapping.py for cosmological params\n"
-        "\n"
-        "Until implemented, use --mapping placeholder (but results not interpretable)."
-    )
-    
-    # Template for future implementation:
-    # from TOOLS.simulations.emergent_alpha_calculator import compute_alpha
-    # from TOOLS.simulations.validate_electron_mass import compute_electron_mass
-    #
-    # alpha_inv = compute_alpha(
-    #     winding_number=cfg.winding_number,
-    #     # ... other Layer 2 params
-    # )
-    #
-    # electron_mass = compute_electron_mass(
-    #     # ... Layer 2 params
-    # )
-    #
-    # return {
-    #     'alpha_inv': alpha_inv,
-    #     'electron_mass': electron_mass,
-    # }
+    try:
+        from .ubt_adapters import predict_all_constants
+        return predict_all_constants(cfg, targets)
+    except ImportError as e:
+        raise RuntimeError(
+            f"Failed to import UBT adapters: {e}\n"
+            "Required: forensic_fingerprint/layer2/ubt_adapters.py\n"
+            "Make sure repository structure is intact."
+        ) from e
+    except Exception as e:
+        raise RuntimeError(
+            f"UBT prediction failed: {e}\n"
+            "Configuration: {cfg}\n"
+            "Targets: {targets}"
+        ) from e
 
 
 def get_experimental_values() -> Dict[str, float]:
@@ -164,10 +178,7 @@ def get_experimental_values() -> Dict[str, float]:
     Dict[str, float]
         Dictionary of {observable_name: experimental_value}
     """
-    return {
-        'alpha_inv': ALPHA_INV_EXP,
-        'electron_mass': ELECTRON_MASS_EXP,
-    }
+    return get_observed_values()
 
 
 def get_default_tolerances() -> Dict[str, float]:
@@ -179,7 +190,4 @@ def get_default_tolerances() -> Dict[str, float]:
     Dict[str, float]
         Dictionary of {observable_name: tolerance}
     """
-    return {
-        'alpha_inv': 0.5,  # Within 0.5 of experimental value
-        'electron_mass': 0.001,  # Within 1 keV
-    }
+    return get_canonical_tolerances()
