@@ -68,7 +68,26 @@ I(k) = mutual_information_stability
 
 ## Quick Start
 
-### 1. Configure Experiment
+### Option A: Run Complete Workflow (Recommended)
+
+The simplest way to run all experiments:
+
+```bash
+cd ubt-channel-lab
+./run_all_experiments.sh
+```
+
+This automated script will:
+1. Run all four stability criteria (S1-S4)
+2. Perform bootstrap null testing
+3. Generate visualizations
+4. Aggregate results into final ranking
+
+**See `QUICKSTART.md` for detailed instructions.**
+
+### Option B: Run Individual Experiments
+
+#### 1. Configure Experiment
 Edit `configs/scan_config.yaml` to set scan range and parameters:
 ```yaml
 scan_range:
@@ -76,7 +95,7 @@ scan_range:
   max: 200
 ```
 
-### 2. Run Stability Scans
+#### 2. Run Stability Scans
 ```bash
 # S1: Spectral robustness
 python experiments/spectral_scan.py --config configs/scan_config.yaml
@@ -91,17 +110,17 @@ python experiments/energy_scan.py --config configs/scan_config.yaml
 python experiments/information_scan.py --config configs/scan_config.yaml
 ```
 
-### 3. Bootstrap Null Testing
+#### 3. Bootstrap Null Testing
 ```bash
 python experiments/bootstrap_null.py --config configs/scan_config.yaml --n-bootstrap 10000
 ```
 
-### 4. Generate Visualizations
+#### 4. Generate Visualizations
 ```bash
 python experiments/heatmap_visualization.py --config configs/scan_config.yaml
 ```
 
-### 5. Aggregate Results
+#### 5. Aggregate Results
 ```bash
 python analysis/results_summary.py --config configs/scan_config.yaml
 ```
