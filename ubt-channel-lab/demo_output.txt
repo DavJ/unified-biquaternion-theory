@@ -1,0 +1,94 @@
+=================================================================
+UBT CHANNEL STABILITY LAB - DEMONSTRATION
+=================================================================
+
+This demonstrates the output of running all experiments.
+
+Step 1: S1 (Spectral Robustness)
+---------------------------------
+Top 3 Channels:
+  1. k=173 (prime) - S1=0.816, Z-score=2.58
+  2. k=197 (prime) - S1=0.810, Z-score=2.52
+  3. k=127 (prime) - S1=0.789, Z-score=2.31
+
+Channel 137: Rank 17/101, S1=0.684, Percentile=83.17%
+
+Step 2: S2 (Twin Prime Coherence)
+----------------------------------
+Top 3 Twin Prime Pairs:
+  1. (197, 199) - S2=1.548
+  2. (191, 193) - S2=1.531
+  3. (179, 181) - S2=1.473
+
+Pair (137, 139): Rank 5/7, S2=1.466, Percentile=28.57%
+
+Step 3: S3 (Energy Criterion)
+------------------------------
+Top 3 Lowest Energy (most stable):
+  1. k=101 (prime) - E=517.1
+  2. k=103 (prime) - E=540.1
+  3. k=100 (non-prime) - E=573.6
+
+Channel 137: Rank 31/101, E=841.7, Percentile=69.31%
+Is Local Minimum: True
+
+Step 4: S4 (Information Criterion)
+-----------------------------------
+Top 3 Information-Rich Channels:
+  1. k=181 (prime) - I=0.170
+  2. k=191 (prime) - I=0.168
+  3. k=199 (prime) - I=0.166
+
+Channel 137: Rank 13/101, I=0.152, Percentile=87.13%
+
+Step 5: Bootstrap Null Testing
+-------------------------------
+Significance threshold: p < 0.05 (after Bonferroni correction)
+Bootstrap iterations: 1000
+
+Channel 137 P-values:
+  S1: p=0.254 (p_corrected=1.000) - Not significant
+  S3: p=0.496 (p_corrected=1.000) - Not significant
+  S4: p=0.433 (p_corrected=1.000) - Not significant
+
+Result: No channels reached statistical significance
+(Note: This is with synthetic data and small bootstrap sample)
+
+Step 6: Combined Ranking
+-------------------------
+Top 10 Overall Stable Channels:
+  1. k=107 (prime) - Combined=1.334
+  2. k=197 (prime) - Combined=1.293
+  3. k=101 (prime) - Combined=1.239
+  4. k=191 (prime) - Combined=1.192
+  5. k=199 (prime) - Combined=1.184
+  6. k=193 (prime) - Combined=1.177
+  7. k=103 (prime) - Combined=1.039
+  8. k=109 (prime) - Combined=0.981
+  9. k=139 (prime) - Combined=0.928
+ 10. k=181 (prime) - Combined=0.869
+
+Channel 137 Final Rank: 13/101 (87.13th percentile)
+
+Observations:
+- All top 10 channels are prime numbers
+- Channel 137 ranks well but not exceptionally
+- Twin pair (137, 139) ranks moderately among twin primes
+- Statistical significance not achieved (needs real data)
+
+=================================================================
+CONCLUSIONS (with synthetic data)
+=================================================================
+
+1. Prime Enhancement: Primes dominate top rankings (consistent with hypothesis)
+2. Channel 137: Above average but not exceptional (Rank 13/101)
+3. Twin Pair (137, 139): Middle performance among twin primes (Rank 5/7)
+4. Statistical Significance: None reached after correction (expected with synthetic data)
+
+Next Steps:
+- Apply to real observational data
+- Increase bootstrap iterations to 10,000+
+- Expand scan range to [50, 500]
+- Refine synthetic data model
+
+=================================================================
