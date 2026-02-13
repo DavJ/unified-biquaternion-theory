@@ -1,0 +1,90 @@
+# Configuration for UBT Channel Stability Lab
+# All experiments read from this file to ensure reproducibility
+
+# Scan parameters
+scan_range:
+  min: 100
+  max: 200
+  step: 1
+
+# Stability criteria weights (must sum to 1.0)
+weights:
+  s1_spectral: 0.25
+  s2_twin_prime: 0.25
+  s3_energy: 0.25
+  s4_information: 0.25
+
+# S1: Spectral Robustness parameters
+spectral:
+  noise_window: 5  # k ± 5 for local noise calculation
+  peak_detection_threshold: 0.1
+  frequency_samples: 1000
+
+# S2: Twin Prime Coherence parameters
+twin_prime:
+  coherence_threshold: 0.7
+  phase_samples: 500
+
+# S3: Energy Criterion parameters
+energy:
+  grid_resolution: 100
+  laplacian_order: 2  # Second-order finite difference
+  detect_local_minima: true
+
+# S4: Information Criterion parameters
+information:
+  entropy_bins: 50
+  context_window: 3  # Number of neighboring channels
+  mutual_info_estimator: "ksg"  # Kraskov-Stögbauer-Grassberger
+
+# Bootstrap null testing
+bootstrap:
+  n_iterations: 10000
+  random_seed: 42
+  shuffle_method: "permutation"  # or "synthetic"
+  confidence_level: 0.95
+
+# Statistical controls
+statistics:
+  significance_level: 0.05
+  look_elsewhere_correction: true
+  bonferroni_correction: true
+  fdr_correction: false  # Benjamin-Hochberg FDR
+
+# Visualization settings
+visualization:
+  dpi: 300
+  format: "png"  # png, pdf, svg
+  colormap: "viridis"
+  heatmap_interpolation: "bilinear"
+
+# Output settings
+output:
+  save_intermediate: true
+  results_dir: "results"
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  timestamp_files: true
+
+# Data source (optional)
+data:
+  external_spectrum: null  # Path to CSV/NPY file, or null for synthetic
+  external_field: null     # Path to field configuration file
+
+# Prime number settings
+primes:
+  precomputed_file: null  # Path to pre-computed prime list, or null to compute
+  twin_prime_max_gap: 2   # Definition of twin primes (p, p+2)
+
+# Synthetic data generation (used if external_spectrum is null)
+synthetic:
+  noise_level: 0.1
+  signal_strength: 1.0
+  prime_enhancement: 0.2  # How much to enhance primes (0 = no enhancement, for null testing)
+  random_seed: 123
+
+# Blind protocol enforcement
+blind_protocol:
+  enabled: true
+  lock_config: true  # Prevent runtime modification
+  pre_registered: true
+  log_all_runs: true
