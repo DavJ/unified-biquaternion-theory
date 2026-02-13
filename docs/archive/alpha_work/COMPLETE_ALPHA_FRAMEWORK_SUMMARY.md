@@ -152,52 +152,57 @@ Agreement for channel 137: ~0.00003% ✨
 
 ## Key Scientific Achievements
 
-### 1. Exact Prediction Without Fitting (Level 2)
+### 1. Multi-Channel Framework with High-Precision Agreement
 
-**Level 2 renormalization parameters** (all from UBT structure, NO FITTING):
+**Multi-Channel Context**:
+- UBT admits a family of stable channels (n=137, 139, 199, ...)
+- Channel n=137 is the currently realized channel in our observed sector
+- Different channels would yield different α_eff values (testable prediction)
+
+**Structural corrections for channel n=137** (~90% derived):
 - δN_anti (anticommutator trace ratio from UBT action)
 - b_geom = 1/(8π) (toroidal beta function from geometry)
 - r_G (CxH gravity ratio from structure)
 - Δ_asym (mirror symmetry breaking from UBT)
 
-**Result**: Level 2 achieves **α⁻¹ = 137.036 exactly** with **NO parameters fitted**!
+**Result**: For channel n=137, α_eff⁻¹(137) ≈ 137.036 with ~90% derived corrections (~12% renormalization gap)
 
-**Level 1 geometric foundation** (provides validation and baseline):
+**Level 1 geometric foundation** (channel-dependent baselines):
 - τ = i (modularity, SL(2,ℤ) fixed point) ✓ No fit
 - B₁ = -1.0547 (Dedekind η(i) = Γ(1/4)/(2π^(3/4))) ✓ No fit
 - N_eff = 32 (CxH structural dimension 4×8) ✓ No fit
-- A₀ ~ 44.65 (fitted to approximately match α) ⚠ Fitted for validation
+- A₀ ~ 44.65 (fitted to establish baseline for channel 137) ⚠ Fitted for validation
 
-**Note**: Level 1 A₀ fitting validates geometric framework convergence. Level 2 uses structural corrections only.
+**Note**: Level 1 establishes channel-dependent framework; Level 2 structural corrections are mostly derived.
 
-### 2. Multi-Path Validation
+### 2. Multi-Path Validation (for Channel n=137)
 
-Five independent mechanisms validate framework (Level 1 + Level 2):
+Five independent mechanisms validate framework for channel n=137:
 
 ```
-Level 1 (Geometric validation):
+Level 1 (Geometric channel baselines):
   Modular symmetry (M⁴×T²)     → 137.032 (A₀ fitted)
-  Biquaternion structure (CxH)  → 136.973 (A₀ fitted, provides baseline)
+  Biquaternion structure (CxH)  → α₀(137) = 136.973 (A₀ fitted, channel baseline)
   Geometric RG flow             → 137.000 (prime selected)
   Action minimization           → 137.000 (B fitted)
 
-Level 2 (Exact prediction):
-  Full renormalization          → 137.036 ← exact, NO FITTING!
+Level 2 (High-precision agreement for channel n=137):
+  Full renormalization          → 137.036 (α_eff for channel 137, ~90% derived)
 ```
 
 This convergence from independent approaches **validates UBT framework**.
 
-### 3. Exact Experimental Agreement
+### 3. High-Precision Agreement (Channel n=137)
 
-Final prediction:
+Final prediction for channel 137:
 ```
-α⁻¹(m_e) = 137.0359  (UBT)
-α⁻¹(m_e) = 137.035999084  (CODATA 2018)
+α_eff⁻¹(137) = 137.0359  (UBT, channel n=137)
+α⁻¹(exp)     = 137.035999084  (CODATA 2018)
 
-Relative error: 0.00003%
+Relative error: ~0.00003%
 ```
 
-**This is exact agreement - Level 2 achieves prediction with NO fitted parameters!**
+**High-precision agreement for channel n=137 - corrections ~90% derived with ~12% renormalization gap remaining!**
 
 ---
 
@@ -218,18 +223,18 @@ Relative error: 0.00003%
 
 **Purpose**: Level 1 validates that UBT geometry converges to α ≈ 137 from multiple independent paths.
 
-### Level 2 (Exact Prediction - NO FITTING)
+### Level 2 (Structural Corrections - Channel n=137, ~90% Derived)
 
-**All parameters from UBT structure** ✓:
-- CxH baseline = 136.973 (uses fitted A₀ from Level 1, but not re-fitted)
+**Corrections from UBT structure** ⚠️:
+- CxH baseline α₀(137) = 136.973 (channel-dependent baseline)
 - δN_anti ~ 4.6×10⁻⁴ (anticommutator ratio from UBT action)
 - Δ_RG ~ 0.040 (geometric beta function b_geom = 1/(8π))
 - Δ_grav ~ 0.015 (gravitational dressing from r_G structure)
 - Δ_asym ~ 0.010 (mirror asymmetry from CxH)
 
-**Result**: α⁻¹ = 137.036 **exactly**, with **NO parameters fitted at Level 2**!
+**Result**: α_eff⁻¹(137) ≈ 137.036, with structural corrections ~90% derived (~12% renormalization gap)
 
-**Note**: While Level 1 used A₀ fitting to establish geometric baseline, Level 2 corrections are purely structural.
+**Note**: Level 1 establishes channel-dependent baselines; Level 2 corrections are structure-motivated with partial derivations (see FITTED_PARAMETERS.md).
 
 ---
 
@@ -269,14 +274,14 @@ Total: +0.063
 
 **Relationship**:
 - References our Appendix A2 as foundation
-- Uses our CxH result (136.973) as bare value
-- Adds 4 renormalization corrections
-- Achieves exact experimental agreement
+- Uses our CxH result α₀(137) = 136.973 as channel-dependent bare value
+- Adds 4 structural corrections
+- Achieves high-precision agreement for channel n=137
 
 **Quote from master document**:
-> "The CxH derivation gives a purely geometric prediction α⁻¹_geom = 136.973, within 0.046% of experiment. This article completes the programme by deriving the missing corrections directly from the UBT action."
+> "The CxH derivation gives a channel-dependent geometric baseline α₀⁻¹(137) = 136.973, within 0.046% of experiment. This article completes the programme by deriving the structural corrections from the UBT action."
 
-**This PR provides the essential geometric foundation that enables exact prediction!**
+**This framework provides the multi-channel geometric foundation!**
 
 ---
 
@@ -388,16 +393,18 @@ wolframscript scripts/torus_theta_alpha_verification.wls
 
 ## Conclusion
 
-This PR delivers a **complete, exact prediction of the fine structure constant** from UBT through a two-level framework:
+This document describes a **multi-channel framework for the fine structure constant** from UBT through a two-level approach:
 
-1. **Geometric foundation** (this PR): Four independent approaches converge to α⁻¹ ≈ 137
-2. **Renormalization completion** (master integration): Four UBT corrections → α⁻¹ = 137.036 exact
+1. **Geometric foundation**: Framework yields channel spectrum; approaches converge for channel n=137 to α₀⁻¹(137) ≈ 137
+2. **Structural corrections**: Four UBT corrections yield α_eff⁻¹(137) ≈ 137.036 for channel n=137
 
-**No parameters fitted at any level.**  
-**Exact agreement with experiment.**  
-**Complete theoretical framework.**
+**Transparency:**
+- Level 1 has some fitted parameters (A₀, B) to validate geometric framework
+- Level 2 corrections are structure-motivated, ~90% derived with ~12% renormalization gap
+- n=137 is the currently realized channel from a multi-channel family
+- Framework admits alternative stable channels (139, 199, ...) with different α_eff values
 
-This represents a **significant achievement** in theoretical physics: high-precision agreement with experiment for the fine-structure constant in the realized channel from a multi-channel geometric framework.
+**Achievement**: High-precision agreement with experiment for channel n=137 within a testable multi-channel framework.
 
 ---
 
