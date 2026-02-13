@@ -63,7 +63,8 @@ def run_sweep(
     seed: int,
     mapping_mode: str,
     outdir: Path,
-    show_progress: bool = False
+    show_progress: bool = False,
+    range_scale: float = 1.0
 ) -> Dict:
     """
     Execute the fingerprint sweep.
@@ -82,6 +83,8 @@ def run_sweep(
         Output directory
     show_progress : bool
         Whether to show progress
+    range_scale : float, optional
+        Range scaling factor (default: 1.0)
         
     Returns
     -------
@@ -89,7 +92,7 @@ def run_sweep(
         Summary statistics
     """
     # Create configuration space and RNG
-    config_space = ConfigurationSpace(space_type)
+    config_space = ConfigurationSpace(space_type, range_scale=range_scale)
     rng = np.random.default_rng(seed)
     
     # Get experimental values and tolerances
@@ -130,7 +133,7 @@ def run_sweep(
         config = config_space.sample(rng)
         
         # Predict observables
-        predictions = predict_constants(config, mode=mapping_mode)
+        predictions = predict_constants(config, mapping=mapping_mode)
         
         # Compute errors
         errors = {}
@@ -185,7 +188,7 @@ def run_sweep(
     rarity_bits = compute_rarity_bits(hit_rate)
     
     # Rank current UBT configuration
-    current_preds = predict_constants(CURRENT_CONFIG, mode=mapping_mode)
+    current_preds = predict_constants(CURRENT_CONFIG, mapping=mapping_mode)
     current_errors = {}
     for obs_name in current_preds.keys():
         if obs_name in exp_values:
