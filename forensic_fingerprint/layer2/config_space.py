@@ -92,9 +92,11 @@ class ConfigurationSpace:
     - 'debug': Small ranges for quick testing
     - 'baseline': Standard ranges around current UBT values  
     - 'wide': Broader ranges for wider exploration
+    
+    Supports range scaling for robustness testing via range_scale parameter.
     """
     
-    def __init__(self, space_type: str):
+    def __init__(self, space_type: str, range_scale: float = 1.0):
         """
         Initialize configuration space.
         
@@ -102,41 +104,84 @@ class ConfigurationSpace:
         ----------
         space_type : str
             One of: 'baseline', 'wide', 'debug'
+        range_scale : float, optional
+            Scale factor for numeric ranges (default: 1.0).
+            Values > 1.0 expand ranges, < 1.0 contract ranges.
+            Applied symmetrically around range centers.
         """
         self.space_type = space_type
+        self.range_scale = range_scale
         self._define_ranges()
     
     def _define_ranges(self):
-        """Define parameter ranges for each space type."""
+        """Define parameter ranges for each space type, with optional scaling."""
+        # Define base ranges first
         if self.space_type == 'baseline':
             # Standard ranges around current UBT values
-            self.rs_n_range = (200, 300)
-            self.rs_k_ratio_range = (0.6, 0.9)  # k/n ratio
-            self.ofdm_range = (8, 32)
-            self.winding_range = (101, 199)  # Prime numbers preferred
+            base_rs_n_range = (200, 300)
+            base_rs_k_ratio_range = (0.6, 0.9)  # k/n ratio
+            base_ofdm_range = (8, 32)
+            base_winding_range = (101, 199)  # Prime numbers preferred
             self.prime_gate_patterns = 10
             self.quantization_grids = [128, 255, 256, 512]
             
         elif self.space_type == 'wide':
             # Broader ranges for wider exploration
-            self.rs_n_range = (100, 500)
-            self.rs_k_ratio_range = (0.5, 0.95)
-            self.ofdm_range = (4, 64)
-            self.winding_range = (50, 250)
+            base_rs_n_range = (100, 500)
+            base_rs_k_ratio_range = (0.5, 0.95)
+            base_ofdm_range = (4, 64)
+            base_winding_range = (50, 250)
             self.prime_gate_patterns = 20
             self.quantization_grids = [64, 128, 255, 256, 512, 1024]
             
         elif self.space_type == 'debug':
             # Small range for quick testing
-            self.rs_n_range = (250, 260)
-            self.rs_k_ratio_range = (0.75, 0.85)
-            self.ofdm_range = (12, 20)
-            self.winding_range = (130, 145)
+            base_rs_n_range = (250, 260)
+            base_rs_k_ratio_range = (0.75, 0.85)
+            base_ofdm_range = (12, 20)
+            base_winding_range = (130, 145)
             self.prime_gate_patterns = 3
             self.quantization_grids = [255, 256]
             
         else:
             raise ValueError(f"Unknown space type: {self.space_type}")
+        
+        # Apply range scaling
+        self.rs_n_range = self._scale_range(base_rs_n_range)
+        self.rs_k_ratio_range = self._scale_range(base_rs_k_ratio_range)
+        self.ofdm_range = self._scale_range(base_ofdm_range)
+        self.winding_range = self._scale_range(base_winding_range)
+    
+    def _scale_range(self, range_tuple: Tuple[float, float]) -> Tuple[float, float]:
+        """
+        Scale a range symmetrically around its center.
+        
+        Parameters
+        ----------
+        range_tuple : Tuple[float, float]
+            (min, max) range to scale
+            
+        Returns
+        -------
+        Tuple[float, float]
+            Scaled range
+        """
+        min_val, max_val = range_tuple
+        center = (min_val + max_val) / 2
+        half_width = (max_val - min_val) / 2
+        
+        # Scale the half-width
+        scaled_half_width = half_width * self.range_scale
+        
+        # Return new range
+        new_min = center - scaled_half_width
+        new_max = center + scaled_half_width
+        
+        # For integer ranges, round appropriately
+        if isinstance(min_val, int) and isinstance(max_val, int):
+            return (int(round(new_min)), int(round(new_max)))
+        else:
+            return (new_min, new_max)
     
     def sample(self, rng: np.random.Generator) -> Layer2Config:
         """
@@ -217,6 +262,7 @@ class ConfigurationSpace:
         """Return description of this configuration space."""
         return {
             'space_type': self.space_type,
+            'range_scale': self.range_scale,
             'rs_n_range': self.rs_n_range,
             'rs_k_ratio_range': self.rs_k_ratio_range,
             'ofdm_range': self.ofdm_range,
