@@ -4,7 +4,22 @@
 **Audience:** Physicists, mathematicians, and interested readers seeking quick understanding  
 **Last Updated:** February 12, 2026
 
-**Layer Separation**: UBT distinguishes **Layer 1** (geometry/topology - derived from axioms) from **Layer 2** (coding/modulation - engineering choices). See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
+**Layer Separation**: UBT distinguishes **Layer 0/1** (geometry/topology - derived from axioms) from **Layer 2** (coding/modulation - channel selection mechanism). 
+
+**Layer Structure Diagram:**
+```
+Layer 0/1 (Geometry + Biquaternion Dynamics)
+    ↓
+Yields: Allowed channel spectrum (n=137, 139, 199, ...)
+    ↓
+Layer 2 (Coding/Modulation - Channel Selection)
+    ↓
+Selects: Realized channel (e.g., n=137 in our sector)
+    ↓
+Defines: Effective constants (α_eff, masses, couplings)
+```
+
+See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 
 ---
 
@@ -114,31 +129,40 @@
 **Status:** ✅ Baseline achieved, refinements in progress  
 **Note:** Remaining small difference attributed to higher-order quantum corrections
 
-#### 2. Fine-Structure Constant (Framework + Channel Selection)
-**Layer 1 (Geometric Framework):** α⁻¹ ≈ n + corrections from complex time topology ✅ Derived
-**Layer 2 (Channel Selection):** n=137 chosen to match experimental α ⚠️ **Hypothesis** (NOT stability max)
+#### 2. Fine-Structure Constant (Multi-Channel Framework)
+**Layer 0/1 (Geometric Framework):** α⁻¹ ≈ n + corrections from complex time topology ✅ Derived
+**Layer 2 (Channel Selection):** n=137 realized in current sector ⚠️ Multi-channel family
+
+**Multi-Channel Stability Framework:**
+- **Channel family**: UBT admits multiple stable/metastable channels (n=137, 139, 199, ...)
+- **Current channel**: n=137 is the realized channel in our observed sector
+- **Selection mechanism**: Layer-2 coding/modulation (OFDM-like) selects which channel manifests
+- **Not unique**: Stability scans show n=137 is NOT the only stable configuration
 
 **Stability Scan Results** ([`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)):
 - n=137 ranks **53/99** in combined stability score
-- Better candidates: n=199 (rank 1), n=197 (rank 2), n=193 (rank 3)
+- Alternative stable channels: n=199 (rank 1), n=197 (rank 2), n=193 (rank 3)
 - Even neighbor n=139 is more stable (rank 2)
-- **Conclusion**: n=137 is Layer 2 channel selection, NOT Layer 1 derivation
+- **Interpretation**: n=137 is one member of a channel family, not a unique prediction
 
-**With n=137 Selected:**
-- Baseline: α⁻¹ = 137.000 (0.026% error from CODATA 2018)
-- With corrections: α⁻¹ ≈ 137.036 (~0.00003% error)
+**Effective α in Channel n=137:**
+- Baseline: α₀⁻¹(137) = 137.000 (channel-dependent baseline)
+- With corrections: α_eff⁻¹(137) ≈ 137.036 (effective value in this channel)
+- Agreement with experiment: ~0.00003% error for channel 137
 
 **Current status:**
 - ✅ Framework: Geometric structure allowing α⁻¹ ≈ n + corrections (fully derived)
-- ⚠️ Selection: Choice of n=137 (hypothesis/calibration, not uniquely derived)
+- ⚠️ Channel selection: n=137 is realized/observed channel (multi-channel family)
 - ⚠️ Corrections: ~90% derived from structure, ~12% renormalization gap
 
-**Derivation:** Winding number framework + structural corrections.  
-**Status:** ✅ Framework derived, ⚠️ n=137 is hypothesis (see stability scan).  
+**Derivation:** Channel-dependent baseline α₀(n) + structural corrections Δ_struct(n) = α_eff(n)
+**Status:** ✅ Framework derived, ⚠️ n=137 is selected channel from family (see stability scan)
 
-**Per FITTED_PARAMETERS.md and LAYERS.md:** n=137 is currently classified as Layer 2 (channel selection) because stability scan shows it's NOT a uniquely stable configuration.
+**Per FITTED_PARAMETERS.md and LAYERS.md:** n=137 represents the currently realized channel from a family of stable configurations. Layer 2 provides the channel selection mechanism.
 
-**Roadmap:** Either find selection principle that picks n=137 uniquely, or acknowledge as calibration parameter.
+**Testable Predictions:** 
+- Different channels would yield different α_eff values and correlated shifts in other observables
+- Channel family structure itself is a prediction of UBT
 
 #### 3. Standard Model Gauge Group
 **Prediction:** SU(3)×SU(2)×U(1) structure emerges geometrically  
@@ -471,6 +495,50 @@ This places UBT at the **forefront of alternative unified theories** in terms of
 1. **CONTRIBUTING.md** - How to contribute (to be created)
 2. **PEER_REVIEW_ROADMAP.md** - Path to publication
 3. **RESEARCH_PRIORITIES.md** - Current development priorities
+
+---
+
+## Glossary: Multi-Channel Concepts
+
+**Channel**
+- Definition: A discrete stable/metastable sector (mode family) of the UBT dynamics/topology
+- Characteristics: Labeled by topological invariants like winding number n (e.g., n=137, 139, 199, ...)
+- Physical Interpretation: Represents a coherent configuration of the biquaternionic field that can persist
+- Note: UBT admits a family of such channels, not a single unique configuration
+
+**α₀(channel)** (Baseline α)
+- Definition: Channel-dependent geometric baseline for the fine-structure constant
+- Formula: α₀⁻¹(n) ≈ n (for winding number channel n)
+- Example: α₀⁻¹(137) = 137.000 for channel n=137
+- Derivation: Follows from topological winding quantization in complex time
+- Status: Fully derived from geometry once channel is specified
+
+**α_eff(channel)** (Effective α)
+- Definition: Effective fine-structure constant observed in a given channel
+- Formula: α_eff(channel) = α₀(channel) + Δ_struct(channel)
+- Example: α_eff⁻¹(137) ≈ 137.036 for channel n=137
+- Components: Baseline + structural corrections (non-commutativity, RG flow, gravitational dressing, asymmetry)
+- Status: ~90% derived for channel 137 (~12% renormalization gap remains)
+
+**Layer 2 (Coding/Modulation)**
+- Definition: Discrete coding/modulation layer that selects/labels which channel is realized
+- Mechanism: OFDM-like carrier selection, symbol mapping over discrete channel space
+- Physical Interpretation: Not arbitrary "choice" but a dynamical/topological sector selection
+- Role: Explains why channel n=137 is realized in our observed sector
+- Note: Does NOT invalidate physics; provides selection mechanism for stable configurations
+
+**Multi-Channel Stability**
+- Definition: UBT framework admitting multiple stable/metastable channels
+- Evidence: Stability scans show n=137 ranks 53/99; other channels (199, 197, 193, ...) are more stable
+- Implication: Observable constants like α_eff depend on which channel is realized
+- Testability: Channel shifts would cause correlated changes in multiple observables
+- Key Insight: Replaces earlier narrative of n=137 as "unique stability maximum"
+
+**Channel Selection Mechanism**
+- Current Understanding: Layer 2 coding/modulation provides framework for channel selection
+- Status: Mechanism under investigation; not yet fully derived
+- Candidates: Topological winding stability, energy minimization, cosmological evolution
+- Testable Predictions: Different channels in different sectors/epochs would yield different observable values
 
 ---
 

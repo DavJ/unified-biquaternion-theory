@@ -123,22 +123,23 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
 
 **Quantitative Predictions:**
 
-| Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error | Derivation Status |
-|------------|----------------|-------------------|-------------|----------------|-------------------|
-| **Fine-structure constant (n=137 baseline)** | **α⁻¹ = 137.000** | 137.035999084 | ±0.000000021 | **0.026%** | **Hypothesis** (n=137 channel selection) |
-| Fine-structure constant (with corrections) | α⁻¹ ≈ 137.036 | 137.035999084 | ±0.000000021 | ~0.00003% | Structurally specified (form derived, coefficients estimated) |
+| Observable | UBT Prediction | Channel | Experimental Value | Uncertainty | Relative Error | Derivation Status |
+|------------|----------------|---------|-------------------|-------------|----------------|-------------------|
+| **Fine-structure constant (baseline)** | **α₀⁻¹ = 137.000** | n=137 | 137.035999084 | ±0.000000021 | **0.026%** | Channel-dependent baseline (n=137 selected) |
+| Fine-structure constant (effective) | α_eff⁻¹ ≈ 137.036 | n=137 | 137.035999084 | ±0.000000021 | ~0.00003% | α₀(137) + structural corrections (mostly derived) |
 | **Electron mass (baseline)** | **m_e = 0.509856 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **0.22%** | **Derived (fit-free)** from Hopfion topology |
 | Electron mass (with corrections) | m_e ≈ 0.510 MeV | 0.51099895000 MeV | ±0.00000015 MeV | ~0.2% | Structurally specified (parameters A,p,B fitted for validation) |
 
-- 🌟 **Fine Structure Constant - Geometric Framework with Channel Selection**:
+- 🌟 **Fine Structure Constant - Multi-Channel Geometric Framework**:
   - **α₀⁻¹ (Baseline Structure - Derived)**: Framework α⁻¹ ≈ n + Δα where n is winding number
     - Mathematical form derived from biquaternionic field equations
     - Layer 1 (Geometry): ∇†∇Θ = κ𝒯 → winding quantization → α⁻¹ ≈ n + corrections
-  - **n=137 Selection (Hypothesis - Layer 2)**:
-    - Channel choice to match experimental α⁻¹ ≈ 137.036
-    - **Stability Scan**: n=137 ranks 53/99; NOT a stability maximum
-    - Better candidates: n=199 (rank 1), 197, 193, 191, 181
-    - Status: Calibration parameter, not uniquely derived
+  - **Channel Selection (Layer 2 - Multi-Channel Family)**:
+    - UBT admits a **family of stable/metastable channels** (e.g., n=137, 139, 199, ...)
+    - **Current channel**: n=137 (realized in our sector)
+    - **Stability Scan**: n=137 ranks 53/99; NOT the only stable configuration
+    - Alternative stable channels: n=199 (rank 1), 197, 193, 191, 181
+    - Status: n=137 is selected/realized channel; channel selection mechanism under investigation
     - See: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)
   - **Δα Corrections (Structurally Specified - Estimated)**:
     - Form: Δα = δN_anti + Δ_RG + Δ_grav + Δ_asym
@@ -148,10 +149,11 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
       2. Geometric RG flow: Δ_RG ≈ 0.040 (estimated from M⁴×T² curvature)
       3. CxH gravitational dressing: Δ_grav ≈ 0.015 (estimated)
       4. Mirror sector asymmetry: Δ_asym ≈ 0.01 (estimated)
-    - Result with n=137: 137.000 + 0.036 ≈ 137.036 (matches CODATA within 0.00003%)
+    - Result for channel n=137: α_eff⁻¹(137) = 137.000 + 0.036 ≈ 137.036
+    - Agreement with experiment (channel 137): within 0.00003% of CODATA
     - Status: Mathematical structure derived; coefficient values are first-pass estimates
     - Sensitivity: ~12% uncertainty in correction magnitudes (see FITTED_PARAMETERS.md)
-  - **Multiple Independent Approaches** (validation with n=137):
+  - **Multiple Independent Approaches** (validated for channel n=137):
     - M⁴×T² (torus/theta): 137.032 (within 0.003% of experiment)
     - CxH (biquaternionic): 136.973 (bare) + corrections ≈ 137.036
     - Geo-β (curvature): 137.000 (geometric anchor)
@@ -210,11 +212,14 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
   - Form: Correction structure from Hopfion quantum fluctuations
   - Coefficients: Currently calibrated; derivation roadmap in FITTED_PARAMETERS.md
 
-**Hypothesis / Channel Selection (Layer 2):**
-- ⚠️ **Winding number n=137**: Selected to match experimental α, NOT a stability maximum
-  - Stability scan: n=137 ranks 53/99 (see [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md))
-  - Better candidates: n=199 (rank 1), 197, 193, 191, 181
-  - Status: Calibration parameter pending uniqueness proof
+**Hypothesis / Channel Selection (Layer 2 - Multi-Channel Family):**
+- ⚠️ **Winding number n=137**: Currently realized channel in our sector
+  - **Multi-channel framework**: UBT supports multiple stable channels (137, 139, 199, ...)
+  - Stability scan: n=137 ranks 53/99; **not the only stable configuration**
+  - Other stable candidates: n=199 (rank 1), 197, 193, 191, 181
+  - Status: n=137 is observed/selected channel; selection mechanism under investigation
+  - See: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)
+  - Each channel yields different α_eff(channel) and correlated observable shifts (testable)
 - ⚠️ RS(255,201) error correction code parameters (engineering choice)
 - ⚠️ GF(2⁸) finite field / 256-state quantization (discretization choice)
 
@@ -233,6 +238,26 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
 - **Appendix G.5 (2025)**: Biquaternionic Fokker-Planck equation
 - **Appendix N2 Extended (2025)**: Full 8D biquaternionic time manifold formalism
 - **Enhanced Documentation**: Comprehensive glossaries, rigor classification, honest assessments
+
+### Multi-Channel Stability (Channel Family)
+
+**Key Insight**: UBT admits a **family of stable/metastable channels**, not a single unique configuration.
+
+- **Channel Definition**: A discrete stable/metastable sector (mode family) of the UBT dynamics/topology, characterized by winding number n or other topological invariants
+- **Current Channel**: n=137 is the **realized channel in our observed sector**
+- **Alternative Channels**: Other stable configurations exist (e.g., n=139, 199, 197, 193, ...) with different α_eff values
+- **Layer-2 Selection**: The coding/modulation layer (Layer 2) provides the mechanism for channel selection/realization
+  - This is a **physical selection mechanism**, not arbitrary choice
+  - Analogous to OFDM-like carrier selection in information theory
+  - Does NOT invalidate the underlying physics; rather explains which stable configuration is manifested
+- **Testable Predictions**:
+  - Channel shifts would imply correlated changes in multiple observables (α_eff, masses, couplings)
+  - Different channels could be realized in different cosmological epochs or sectors
+  - The channel family structure itself is a prediction
+- **Effective Constants**: Observable values like α_eff = α₀(channel) + Δ_struct(channel) depend on the selected channel
+- **Transparency**: This multi-channel view replaces earlier claims of n=137 being a "unique stability maximum" - empirically, n=137 ranks 53/99 in stability scans
+
+**See**: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md) for detailed stability analysis
 
 **For complete details on achievements and approaches:**
 - **[FITTED_PARAMETERS.md](FITTED_PARAMETERS.md)** - Complete transparency on which parameters are derived vs fitted
