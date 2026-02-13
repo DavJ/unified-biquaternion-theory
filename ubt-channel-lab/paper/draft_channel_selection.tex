@@ -1,0 +1,286 @@
+% UBT Layer 2 Channel Selection Paper Draft
+% This is a skeleton for documenting the channel stability lab results
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Objective Evaluation of UBT Layer 2 Channel Selection Principles:\\
+A Statistical Approach to Structural Stability}
+
+\author{UBT Research Team}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a rigorous statistical framework for evaluating channel stability in the Unified Biquaternion Theory (UBT) Layer 2 formulation. Using four independent stability criteria---spectral robustness (S1), twin prime coherence (S2), energy minimization (S3), and information optimality (S4)---we scan integer-labeled channels in the range $k \in [100, 200]$ to identify structurally stable modes. Bootstrap null hypothesis testing with look-elsewhere correction is applied to assess statistical significance. This blind protocol approach ensures objective evaluation without confirmation bias. Results are presented with full transparency, including null findings.
+
+\textbf{Keywords:} Unified Biquaternion Theory, Channel Selection, Statistical Physics, Prime Numbers, Null Hypothesis Testing
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+The Unified Biquaternion Theory (UBT) proposes that physical phenomena emerge from a biquaternionic field $\Theta(q, \tau)$ defined over complex time $\tau = t + i\psi$. Layer 2 of UBT introduces discrete channel modes labeled by integers $k$, where certain channels may exhibit enhanced structural stability.
+
+\subsection{Research Question}
+
+\textbf{Central Question:} Do prime numbers, particularly twin prime pairs, naturally emerge as stable channel labels in the UBT Layer 2 framework?
+
+\subsection{Hypothesis}
+
+We test the following falsifiable hypotheses:
+\begin{enumerate}
+    \item Prime channels exhibit higher spectral robustness than composite channels
+    \item Twin prime pairs (e.g., 137-139) show enhanced phase coherence
+    \item Stable channels correspond to local energy minima
+    \item Prime channels maximize information-theoretic stability
+\end{enumerate}
+
+\subsection{Scope}
+
+This paper focuses exclusively on \emph{objective evaluation} of stability criteria. We do not presuppose that any particular channel (including 137) is special. Results are interpreted using pre-registered statistical protocols.
+
+\section{UBT Layer 2: Theoretical Background}
+
+\subsection{Biquaternionic Field Equation}
+
+The fundamental field equation is:
+\begin{equation}
+\nabla^\dagger \nabla \Theta(q, \tau) = \kappa \mathcal{T}(q, \tau)
+\end{equation}
+where $\nabla^\dagger$ is the biquaternionic conjugate gradient.
+
+\subsection{Channel Discretization}
+
+Under periodic boundary conditions, the field admits discrete mode solutions:
+\begin{equation}
+\Theta_k(q, \tau) = \Theta_0 \exp\left(2\pi i k / N\right)
+\end{equation}
+
+\subsection{Stability Principle}
+
+Channels are hypothesized to be stable if they satisfy multiple independent criteria (detailed in Section~\ref{sec:criteria}).
+
+\section{Stability Criteria Definitions}
+\label{sec:criteria}
+
+\subsection{S1: Spectral Robustness}
+
+\textbf{Definition:}
+\begin{equation}
+S1(k) = \text{peak\_strength}(k) - \text{local\_noise}(k)
+\end{equation}
+
+\textbf{Physical Interpretation:} Measures how strongly a channel resonates compared to its local spectral background.
+
+\textbf{Implementation:} [Details of peak detection and noise window]
+
+\subsection{S2: Twin Prime Coherence}
+
+\textbf{Definition:}
+\begin{equation}
+S2(k_1, k_2) = S1(k_1) + S1(k_2) + \langle \Theta_{k_1} | \Theta_{k_2} \rangle
+\end{equation}
+
+\textbf{Physical Interpretation:} Twin primes may exhibit quantum-like coherence in phase space.
+
+\textbf{Implementation:} [Details of inner product calculation]
+
+\subsection{S3: Energy Criterion}
+
+\textbf{Definition:}
+\begin{equation}
+E(k) = \int |\nabla \Theta_k|^2 dV
+\end{equation}
+
+\textbf{Physical Interpretation:} Local energy minima resist perturbations.
+
+\textbf{Implementation:} [Details of discrete Laplacian approximation]
+
+\subsection{S4: Information Criterion}
+
+\textbf{Definition:}
+\begin{equation}
+I(k) = H(k) - H(k|\text{context}) = \text{MI}(\Theta_k, \Theta_{\text{neighbors}})
+\end{equation}
+
+\textbf{Physical Interpretation:} Measures unique information content.
+
+\textbf{Implementation:} [Details of entropy estimation]
+
+\section{Experimental Setup}
+
+\subsection{Scan Parameters}
+
+\begin{itemize}
+    \item \textbf{Range:} $k \in [100, 200]$
+    \item \textbf{Resolution:} Integer steps ($\Delta k = 1$)
+    \item \textbf{Criteria:} S1, S2, S3, S4 (equal weights)
+\end{itemize}
+
+\subsection{Data Source}
+
+% [INSERT: Whether synthetic or observational data was used]
+
+\subsection{Blind Protocol}
+
+To prevent confirmation bias:
+\begin{enumerate}
+    \item Scan range pre-registered before analysis
+    \item Metric definitions locked in configuration file
+    \item No manual parameter tuning after seeing results
+    \item All channels reported (not cherry-picked)
+\end{enumerate}
+
+\section{Statistical Controls}
+
+\subsection{Bootstrap Null Hypothesis Testing}
+
+\textbf{Method:} Monte Carlo permutation with $N_{\text{bootstrap}} = 10{,}000$ iterations.
+
+\textbf{Null Hypothesis:} Channel stability values are indistinguishable from random shuffling.
+
+\subsection{Look-Elsewhere Correction}
+
+Bonferroni correction applied:
+\begin{equation}
+p_{\text{corrected}} = \min(N_{\text{tests}} \cdot p_{\text{raw}}, 1)
+\end{equation}
+
+\subsection{Significance Threshold}
+
+$\alpha = 0.05$ after correction.
+
+\section{Results}
+
+% [INSERT: Tables and figures from analysis/results_summary.py]
+
+\subsection{Overall Ranking}
+
+% Table: Top 10 channels by combined score
+\begin{table}[H]
+\centering
+\caption{Top 10 Stable Channels (Combined Score)}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Rank & $k$ & Combined Score & Is Prime & Percentile (\%) & $p_{\text{corrected}}$ \\ \midrule
+1    &     &                &          &                 &                        \\
+2    &     &                &          &                 &                        \\
+...  & ... & ...            & ...      & ...             & ...                    \\ \bottomrule
+\end{tabular}
+\label{tab:top10}
+\end{table}
+
+\subsection{S1: Spectral Robustness}
+
+% Figure: S1 heatmap
+% Table: Top S1 channels
+
+\subsection{S2: Twin Prime Coherence}
+
+% Figure: S2 heatmap matrix
+% Table: Top twin prime pairs
+
+\subsection{S3: Energy Criterion}
+
+% Figure: Energy distribution
+% Table: Local energy minima
+
+\subsection{S4: Information Criterion}
+
+% Figure: Information distribution
+% Table: Top information channels
+
+\subsection{Channel 137 Analysis}
+
+% Dedicated subsection for 137 (if in range)
+% Report rank, percentile, p-values objectively
+
+\subsection{Twin Pair (137, 139) Analysis}
+
+% Report S2 performance if in range
+
+\subsection{Prime vs Non-Prime Comparison}
+
+% Statistical comparison: means, std, t-test
+
+\section{Discussion}
+
+\subsection{Interpretation of Results}
+
+% [To be filled after results are available]
+
+\subsection{Consistency with UBT Theory}
+
+% [Assess whether results support or challenge Layer 2 hypothesis]
+
+\subsection{Statistical Robustness}
+
+% [Discuss p-values, look-elsewhere effects]
+
+\subsection{Limitations}
+
+\begin{itemize}
+    \item Synthetic vs observational data
+    \item Finite scan range
+    \item Simplified field representations
+    \item Model assumptions
+\end{itemize}
+
+\subsection{Implications for Channel 137}
+
+% [Objective assessment: does 137 stand out or not?]
+
+\section{Conclusion}
+
+% [Summary of findings]
+% [Whether hypotheses are supported, rejected, or inconclusive]
+% [Next steps for research]
+
+\section{Future Work}
+
+\begin{itemize}
+    \item Expand scan range to $k \in [50, 500]$
+    \item Apply to observational datasets (CMB, etc.)
+    \item Refine stability criteria based on full biquaternionic field
+    \item Test with alternative null models
+\end{itemize}
+
+\section*{Acknowledgments}
+
+This research was conducted using an objective, pre-registered protocol to ensure scientific rigor and avoid confirmation bias.
+
+\bibliographystyle{plain}
+% \bibliography{references}  % Add references as needed
+
+\appendix
+
+\section{Configuration File}
+\label{app:config}
+
+% [Include scan_config.yaml]
+
+\section{Raw Data Tables}
+\label{app:data}
+
+% [Include full CSV rankings]
+
+\section{Bootstrap Null Distributions}
+\label{app:bootstrap}
+
+% [Include null distribution plots]
+
+\end{document}
