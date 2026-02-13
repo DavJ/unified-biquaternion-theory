@@ -7,7 +7,7 @@ Fit Jacobi theta function θ₃ to the measured cluster k=134-143 in CMB TT chan
 According to UBT, the dispersive imaginary scalar sector Θ̃_S evolves via:
     ∂_τ Θ̃_S = L_disp Θ̃_S
 
-Solutions on the 8D torus are given by Jacobi theta functions θ₃(z,q) where q = exp(iπτ).
+Solutions on the 8D torus are given by Jacobi theta functions θ₃(z,τ).
 The composite numbers 141, 142 showing higher amplitude than twin primes 137, 139 in the TT 
 channel is interpreted as a measurement of the dispersive parameter τ.
 
@@ -21,10 +21,11 @@ Theoretical Background:
 The Jacobi theta function θ₃ is defined as:
     θ₃(z, q) = Σ_{n=-∞}^{∞} q^{n²} exp(2πinz)
 
-For the radial k-spectrum on a toroidal projection:
-    P(k) ∝ |θ₃(k/k₀, exp(-D·τ))|²
+For the radial k-spectrum on a toroidal projection, the power spectral density follows:
+    P(k) ∝ |θ₃(k/k₀, q)|²
 
-where D is the diffusion coefficient and τ is the dispersive evolution parameter.
+where the nome parameter q = exp(-D·τ) encodes the diffusion coefficient D 
+and dispersive evolution parameter τ.
 
 Usage:
     python -m forensic_fingerprint.tools.jacobi_cluster_fit \\
