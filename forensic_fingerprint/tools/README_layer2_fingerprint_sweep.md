@@ -1,18 +1,37 @@
-# Layer 2 Fingerprint Sweep Tool
+# Layer 2 Fingerprint Sweep Tool (⚠️ PROTOTYPE)
+
+## ⚠️ CRITICAL WARNING - PLACEHOLDER PHYSICS
+
+**This tool is a PROTOTYPE with PLACEHOLDER physics mapping. Results are NOT physically interpretable.**
+
+- ✅ Configuration space sampling: Functional
+- ✅ Statistical framework: Functional  
+- ❌ **Physics mapping: PLACEHOLDER TOY MODEL**
+- ❌ **Results: NOT scientifically valid until UBT mapping implemented**
+
+**DO NOT use for scientific claims until real UBT mapping is wired in.**
+
+See `LAYER2_FINGERPRINT_PROTOTYPE_SUMMARY.md` for implementation status.
+
+---
 
 ## Overview
 
-The Layer 2 Fingerprint Sweep tool tests the rigidity of UBT's Layer 2 parameters (OFDM-like coding/modulation) by sweeping through the configuration space and evaluating how rare it is to hit observed physical constants without fine-tuning.
+The Layer 2 Fingerprint Sweep tool (prototype) will test the rigidity of UBT's Layer 2 parameters (OFDM-like coding/modulation) by sweeping through the configuration space and evaluating how rare it is to hit observed physical constants without fine-tuning.
+
+**Current implementation uses placeholder physics formulas** - predictions are NOT derived from UBT theory.
 
 ## Purpose
 
 **Motivation**: CMB heuristics have not yet led to a robust signal. We need Nobel-credible quantification: how much freedom does Layer 2 have, and how unique is our world within the permitted configurations?
 
-The tool answers questions like:
+The tool (when physics mapping is implemented) will answer:
 - How many Layer 2 configurations match observed physics?
 - How rare is the current UBT configuration?
 - What is the parameter space volume?
 - How constrained is Layer 2 compared to Layer 1?
+
+**Currently**: Framework demonstrates sampling and statistical analysis only.
 
 ## Usage
 
@@ -122,14 +141,16 @@ Human-readable report with:
 - Current configuration analysis
 - Interpretation (rigidity assessment)
 
-## Interpretation
+## Interpretation (⚠️ PLACEHOLDER RESULTS ONLY)
 
-### Rigidity Assessment
+**WARNING**: Until UBT physics mapping is implemented, all interpretations are INVALID.
 
-The tool provides a rigidity assessment based on how many configurations match both observables:
+### Rigidity Assessment (WILL BE MEANINGFUL when UBT mapping implemented)
+
+The tool framework can assess rigidity based on how many configurations match observables:
 
 - **High rigidity** (<1% match): Matching configurations are rare
-  - Suggests Layer 2 is highly constrained
+  - Would suggest Layer 2 is highly constrained
   - Current config may be special/optimized
   
 - **Moderate rigidity** (1-5% match): Matching configurations are uncommon
@@ -140,66 +161,74 @@ The tool provides a rigidity assessment based on how many configurations match b
   - Layer 2 has significant freedom
   - Current config is not uniquely determined
 
-### Current Configuration Ranking
+**Current status**: Framework works, but uses placeholder physics (meaningless results).
 
-The tool evaluates where the current UBT configuration (RS(255,200), OFDM=16, n=137) ranks among sampled configurations:
+### Current Configuration Ranking (PLACEHOLDER ONLY)
 
-- **Top 1%**: Highly optimized - current config is exceptional
-- **Top 10%**: Well optimized - current config is good but not unique
-- **Above median**: Moderately optimized - better configs exist
-- **Below median**: May need reconsideration
+Tool can compare current UBT configuration against sampled ones, but results are NOT meaningful with placeholder physics:
 
-## Physical Model
+- Placeholder rankings shown in examples are framework demonstrations
+- No physical interpretation possible until UBT mapping implemented
 
-**Important**: The current implementation uses a **simplified** Layer 2 → observables mapping. In the full UBT theory, deriving physical constants from Layer 2 parameters requires detailed calculations.
+## Physical Model (⚠️ PLACEHOLDER - NOT UBT PHYSICS)
 
-Current model:
-- α⁻¹ ≈ winding_number + corrections(RS, OFDM, grid)
-- m_e ≈ base_mass + corrections(RS_k/RS_n ratio)
+**CRITICAL WARNING**: The current implementation uses **PLACEHOLDER toy model formulas** that are NOT derived from UBT theory. Results have NO physical meaning.
 
-This is a placeholder. Future versions should use the full UBT derivations from:
-- `tools/planck_validation/mapping.py`
-- `TOOLS/simulations/emergent_alpha_calculator.py`
-- `TOOLS/simulations/validate_electron_mass.py`
+### Current Placeholder Model (TOY ONLY):
+- α⁻¹ ≈ winding_number + corrections(RS, OFDM, grid)  [**FAKE FORMULA**]
+- m_e ≈ base_mass + corrections(RS_k/RS_n ratio)  [**FAKE FORMULA**]
 
-## Examples
+These are **arbitrary placeholder formulas** to demonstrate the statistical framework.
 
-### Example 1: Quick Test
+### Required for Scientific Use:
+
+The tool MUST be wired to real UBT calculations from:
+- `TOOLS/simulations/emergent_alpha_calculator.py` - Real alpha derivation
+- `TOOLS/simulations/validate_electron_mass.py` - Real mass derivation
+- `tools/planck_validation/mapping.py` - Real Planck parameter mapping
+
+**Until UBT mapping is implemented**: All outputs are framework demonstrations only, with NO physical interpretation.
+
+## Examples (⚠️ FRAMEWORK DEMONSTRATIONS - PLACEHOLDER PHYSICS)
+
+**WARNING**: These examples show the tool's functionality only. Results use placeholder physics and have NO scientific meaning.
+
+### Example 1: Quick Test (Framework Demo)
 
 ```bash
 $ python3 forensic_fingerprint/tools/layer2_fingerprint_sweep.py \
     --space debug --samples 50
 
+⚠️ WARNING: Using PLACEHOLDER physics mapping - results not interpretable
 Layer 2 Fingerprint Sweep
 ================================================================================
 Configuration space: debug
 Number of samples: 50
 ...
 ================================================================================
-KEY RESULTS:
+KEY RESULTS (⚠️ PLACEHOLDER):
 ================================================================================
-Best score found: 0.061839
-Current config rank: 0/50 (0.00%)
-Configs matching both observables: 5 (10.00%)
+Best score found: 0.062 [placeholder metric]
+Current config rank: 0/50 (0.00%) [placeholder - NOT meaningful]
+Configs matching both observables: 5 (10.00%) [placeholder threshold]
 
-RIGIDITY ASSESSMENT: Low rigidity - matching configurations are common (≥5%)
+RIGIDITY ASSESSMENT: [placeholder - NOT valid]
 ```
 
-### Example 2: Baseline Production Run
+### Example 2: Baseline Production Run (Framework Demo)
 
 ```bash
 $ python3 forensic_fingerprint/tools/layer2_fingerprint_sweep.py \
     --space baseline --samples 5000 --seed 123
 
-Layer 2 Fingerprint Sweep
-================================================================================
-Configuration space: baseline
-Number of samples: 5000
+⚠️ WARNING: Using PLACEHOLDER physics mapping - results not interpretable
 ...
-Configs matching both observables: 23 (0.46%)
+Configs matching both observables: 23 (0.46%) [placeholder threshold]
 
-RIGIDITY ASSESSMENT: High rigidity - matching configurations are rare (<1%)
+RIGIDITY ASSESSMENT: [placeholder - NOT valid]
 ```
+
+**All outputs from current tool are framework demonstrations only.**
 
 ## Next Steps
 
