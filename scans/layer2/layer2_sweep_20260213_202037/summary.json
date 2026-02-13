@@ -1,7 +1,0 @@
-{
-  "space_type": "debug",
-  "n_samples": 50,
-  "seed": 42,
-  "best_score": 0.061838983729105124,
-  "best_config": {
-    "rs_n": 

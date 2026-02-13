@@ -53,6 +53,9 @@ forensic_fingerprint/out/
 # But keep VERDICT files for court-grade results
 !forensic_fingerprint/out/**/VERDICT.md
 
+# Layer 2 fingerprint sweep outputs (test runs)
+scans/layer2/
+
 # CMB 2D FFT output directory
 research_front/cmb_2d_fft/out/
 
