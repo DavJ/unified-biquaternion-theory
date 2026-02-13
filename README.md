@@ -104,66 +104,129 @@ Active research hypotheses:
 
 **UBT has achieved significant theoretical progress:**
 
+### Derivation Status Legend
+
+UBT uses a 4-level classification system for all quantitative predictions:
+
+| Status | Definition | Example |
+|--------|------------|---------|
+| **Derived (fit-free)** | Follows from axioms/geometry with zero fitted parameters | Electron mass baseline from Hopfion topology |
+| **Structurally specified** | Mathematical form derived; coefficients to be determined from first principles | Alpha correction structure (form known, coefficients estimated) |
+| **Estimated (first-pass)** | Coefficient values calculated from UBT structure but not yet rigorously derived | Structural corrections δN_anti, Δ_RG, Δ_grav, Δ_asym |
+| **Fitted (calibrated)** | Parameters explicitly calibrated to match experimental data | Electron mass formula parameters A, p, B |
+
+**Hypothesis**: Parameter selection pending derivation (e.g., n=137 channel choice)
+
+See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transparency and [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for Layer 1 (physics) vs Layer 2 (protocol) separation.
+
 ### Core Achievements
 
 **Quantitative Predictions:**
 
-| Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error |
-|------------|----------------|-------------------|-------------|----------------|
-| **Fine-structure constant (renormalized)** | **α⁻¹ = 137.036** | 137.035999084 | ±0.000000021 | **0.00003%** ✨ |
-| Fine-structure constant (geometric baseline) | α⁻¹ = 137.000 | 137.035999084 | ±0.000000021 | 0.026% |
-| **Electron mass (with corrections)** | **~0.510-0.511 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **~0.2%** |
-| Electron mass (baseline) | m_e = 0.509856 MeV | 0.51099895000 MeV | ±0.00000015 MeV | 0.22% |
+| Observable | UBT Prediction | Experimental Value | Uncertainty | Relative Error | Derivation Status |
+|------------|----------------|-------------------|-------------|----------------|-------------------|
+| **Fine-structure constant (n=137 baseline)** | **α⁻¹ = 137.000** | 137.035999084 | ±0.000000021 | **0.026%** | **Hypothesis** (n=137 channel selection) |
+| Fine-structure constant (with corrections) | α⁻¹ ≈ 137.036 | 137.035999084 | ±0.000000021 | ~0.00003% | Structurally specified (form derived, coefficients estimated) |
+| **Electron mass (baseline)** | **m_e = 0.509856 MeV** | 0.51099895000 MeV | ±0.00000015 MeV | **0.22%** | **Derived (fit-free)** from Hopfion topology |
+| Electron mass (with corrections) | m_e ≈ 0.510 MeV | 0.51099895000 MeV | ±0.00000015 MeV | ~0.2% | Structurally specified (parameters A,p,B fitted for validation) |
 
-- 🌟 **Fine Structure Constant - EXACT PREDICTION ACHIEVED**: **α⁻¹ = 137.036 (0.00003% error!)**
-  - **Multiple Independent Approaches** converge on α⁻¹ ≈ 137:
-    - M⁴×T² (torus/theta): 137.032 (0.003% error)
-    - CxH (biquaternionic): 136.973 (0.046% error - bare value)
-    - Geo-β (curvature): 137.000 (0.026% error - geometric baseline)
-    - Two-loop running: 137.107 (~0.05% error)
-  - **BREAKTHROUGH - Renormalized Prediction**: Starting from CxH bare value (136.973), add **4 UBT structural corrections** (NO fitting):
-    1. Non-commutative anticommutator: δN_anti ≈ 0.01
-    2. Geometric RG flow: Δ_RG ≈ 0.040
-    3. CxH gravitational dressing: Δ_grav ≈ 0.015
-    4. Mirror asymmetry: Δ_asym ≈ 0.01
-  - **Result**: 136.973 + 0.063 = **137.036** (matches experiment to 4 decimal places!)
-  - **Precision: 0.00003%** - exact agreement with CODATA 2018 value
-  - **NO PARAMETERS FITTED** - all corrections derived from UBT structure
-  - **UBT Advantage**: **Only theory achieving exact α prediction from pure geometry + structure**
-  - See: `NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md` and `docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md`
-  - Guard tests + CI prevent regression to empirical fits
-- 🌟 **Electron Mass - Multiple Derivation Approaches**: **m_e ≈ 0.510 MeV (~0.2% accuracy)**
+- 🌟 **Fine Structure Constant - Geometric Framework with Channel Selection**:
+  - **α₀⁻¹ (Baseline Structure - Derived)**: Framework α⁻¹ ≈ n + Δα where n is winding number
+    - Mathematical form derived from biquaternionic field equations
+    - Layer 1 (Geometry): ∇†∇Θ = κ𝒯 → winding quantization → α⁻¹ ≈ n + corrections
+  - **n=137 Selection (Hypothesis - Layer 2)**:
+    - Channel choice to match experimental α⁻¹ ≈ 137.036
+    - **Stability Scan**: n=137 ranks 53/99; NOT a stability maximum
+    - Better candidates: n=199 (rank 1), 197, 193, 191, 181
+    - Status: Calibration parameter, not uniquely derived
+    - See: [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)
+  - **Δα Corrections (Structurally Specified - Estimated)**:
+    - Form: Δα = δN_anti + Δ_RG + Δ_grav + Δ_asym
+    - Starting from CxH bare α⁻¹ = 136.973, corrections total ≈ 0.063
+    - Four structural corrections (coefficients estimated from UBT structure):
+      1. Non-commutative anticommutator: δN_anti ≈ 0.01 (estimated)
+      2. Geometric RG flow: Δ_RG ≈ 0.040 (estimated from M⁴×T² curvature)
+      3. CxH gravitational dressing: Δ_grav ≈ 0.015 (estimated)
+      4. Mirror sector asymmetry: Δ_asym ≈ 0.01 (estimated)
+    - Result with n=137: 137.000 + 0.036 ≈ 137.036 (matches CODATA within 0.00003%)
+    - Status: Mathematical structure derived; coefficient values are first-pass estimates
+    - Sensitivity: ~12% uncertainty in correction magnitudes (see FITTED_PARAMETERS.md)
+  - **Multiple Independent Approaches** (validation with n=137):
+    - M⁴×T² (torus/theta): 137.032 (within 0.003% of experiment)
+    - CxH (biquaternionic): 136.973 (bare) + corrections ≈ 137.036
+    - Geo-β (curvature): 137.000 (geometric anchor)
+  - **Documentation**: [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) | [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) | [`NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md`](NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md)
+- 🌟 **Electron Mass - Topological Derivation with Corrections**: **m_e baseline = 0.509856 MeV (0.22% accuracy)**
 
-**Electron Mass - Comprehensive Approaches:**
+**Electron Mass - Multiple Approaches:**
 
-| Approach | Method | m_e Prediction (MeV) | Error | Fit/No-fit | Parameters |
-|----------|--------|----------------------|-------|------------|------------|
-| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | ✓ NO FIT | Pure geometry |
-| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | ✓ NO FIT | Cutoff from UBT |
-| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | ✓ NO FIT | R_ψ from geometry (in progress) |
-| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | ✓ NO FIT | Quantum soliton (pending) |
+| Approach | Method | m_e Prediction (MeV) | Error | Status | Parameters |
+|----------|--------|----------------------|-------|--------|------------|
+| **Hopfion (baseline)** | Topological soliton | 0.509856 | 0.22% | ✅ **Fully derived** | Pure geometry |
+| **+ QED 1-loop** | EM self-energy | ~0.510 | ~0.2% | ⚠️ **Partly derived** | Cutoff from UBT |
+| **+ Biquaternionic** | Complex time corrections | ~0.5105 | ~0.15% | 🔬 **In progress** | R_ψ from geometry |
+| **+ Higher-order** | Multi-loop Hopfion | ~0.510-0.511 | ~0.1-0.2% | 🔬 **Pending** | Quantum soliton |
 | **Experimental** | PDG 2024 | 0.51099895 | ±0.00000015 | — | Measurement |
 
-**Best Current UBT Prediction: m_e ≈ 0.510 MeV** (baseline + QED, ~0.2% error)
+**Best Current UBT Status:**
+- ✅ **Baseline (fully derived)**: 0.509856 MeV from Hopfion topology (0.22% error, no fitted parameters)
+- ⚠️ **With corrections (partly derived)**: ~0.510 MeV (~0.2% error, some parameters fitted for validation)
 
-**Correction breakdown** (all from UBT structure, fit-free):
-1. **Hopfion baseline**: 0.509856 MeV (pure topology)
-2. **QED self-energy**: δm ≈ 0.001 MeV (electromagnetic correction)
-3. **Biquaternionic quantum**: δm ≈ 0.0005 MeV (complex time fluctuations) - *in progress*
-4. **Higher-order topology**: δm ≈ 0.0003 MeV (multi-loop soliton) - *pending*
+**Correction breakdown** (current implementation status):
+1. **Hopfion baseline**: 0.509856 MeV (pure topology) ✅ Complete, fit-free
+2. **QED self-energy**: δm ≈ 0.001 MeV (electromagnetic correction) ⚠️ Implemented, cutoff estimated
+3. **Biquaternionic quantum**: δm ≈ 0.0005 MeV (complex time fluctuations) 🔬 In progress
+4. **Higher-order topology**: δm ≈ 0.0003 MeV (multi-loop soliton) 🔬 Pending
 
 **Key features:**
-- **Only theory predicting electron mass from first principles** (SM, String Theory, LQG treat as free parameter)
-- **NO experimental input** - pure geometric calculation
-- **Baseline 0.509856 MeV** from Hopfion topology (0.22% error) ✓ Complete
-- **With corrections ~0.510 MeV** (~0.2% error) ✓ QED implemented, biquaternionic in progress
-- **Target: < 0.01% error** (< 50 eV) achievable with full quantum corrections
-- See: `ELECTRON_MASS_REFINEMENT_ANALYSIS.md` for detailed refinement roadmap
+- **Unique capability**: UBT is the only framework deriving electron mass baseline from topology (SM, String Theory, LQG all treat as free parameter)
+- **Fully derived baseline**: 0.509856 MeV (0.22% error) with NO experimental input
+- **Correction parameters**: Currently fitted for validation; derivation roadmap in `FITTED_PARAMETERS.md`
+- **Target**: < 0.01% error (< 50 eV) achievable with full quantum corrections from first principles
+- See: `ELECTRON_MASS_REFINEMENT_ANALYSIS.md` and `FITTED_PARAMETERS.md` for complete status
 - Source: `scripts/ubt_complete_fermion_derivation.py`
 - ⭐ **SM Gauge Group Derived**: SU(3)×SU(2)×U(1) rigorously derived from biquaternionic geometry (not assumed)
 - ✅ **Quantum Gravity Unification**: GR+QFT unified in single Θ field framework
 - ✅ **Mathematical Validation**: All core predictions verified using SymPy/NumPy
-- ✅ **Scientific Rating Upgrade**: 4.5/10 → 5.5/10 → **6.2/10** following fit-free baseline achievement
+- ✅ **Scientific Rating Upgrade**: 4.5/10 → 5.5/10 → **6.2/10** following geometric baseline achievements
+
+### What IS and ISN'T Derived Yet
+
+**Derived (fit-free) - Layer 1 Geometry:**
+- ✅ Biquaternionic field structure ℂ⊗ℍ (axiom/definition)
+- ✅ Field equation ∇†∇Θ = κ𝒯 (framework)
+- ✅ GR recovery in real limit: R_μν - ½g_μν R = 8πG T_μν (proven in Appendix R)
+- ✅ SM gauge group SU(3)×SU(2)×U(1) from Aut(ℂ⊗ℍ) (rigorously derived)
+- ✅ Electron mass baseline m_e = 0.509856 MeV from Hopfion topology (0.22% error, zero fitted)
+- ✅ Prime constraint for winding numbers (from gauge quantization)
+- ✅ Alpha framework: α⁻¹ ≈ n + Δα (mathematical structure derived)
+
+**Structurally Specified (form derived, coefficients TBD):**
+- ⚙️ Alpha corrections Δα: Four-term structure derived, coefficient values estimated
+  - Form: Δα = δN_anti + Δ_RG + Δ_grav + Δ_asym (derived from field equations)
+  - Coefficients: First-pass estimates from UBT structure (~12% uncertainty)
+  - Roadmap: Full derivation via heat-kernel/spectral expansion (Priority 1, 6-12 months)
+- ⚙️ Electron mass corrections: QED cutoff estimated, parameters A,p,B fitted for validation
+  - Form: Correction structure from Hopfion quantum fluctuations
+  - Coefficients: Currently calibrated; derivation roadmap in FITTED_PARAMETERS.md
+
+**Hypothesis / Channel Selection (Layer 2):**
+- ⚠️ **Winding number n=137**: Selected to match experimental α, NOT a stability maximum
+  - Stability scan: n=137 ranks 53/99 (see [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md))
+  - Better candidates: n=199 (rank 1), 197, 193, 191, 181
+  - Status: Calibration parameter pending uniqueness proof
+- ⚠️ RS(255,201) error correction code parameters (engineering choice)
+- ⚠️ GF(2⁸) finite field / 256-state quantization (discretization choice)
+
+**Framework Only (calculation pending):**
+- 🔬 Yukawa couplings (formalism exists, explicit values not calculated)
+- 🔬 Dark matter properties (p-adic framework, no specific predictions yet)
+- 🔬 Multi-generation fermion masses (extension of baseline, not calculated)
+
+**Complete Transparency:**
+- [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) - Authoritative parameter status
+- [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) - Layer 1 vs Layer 2 separation
+- [`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md) - Stability analysis
 
 ### Theoretical Advances
 - **Appendix G (2025)**: Hamiltonian-in-exponent θ-function formulation
@@ -172,7 +235,8 @@ Active research hypotheses:
 - **Enhanced Documentation**: Comprehensive glossaries, rigor classification, honest assessments
 
 **For complete details on achievements and approaches:**
-- **[NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md](NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md)** - Complete renormalization to α⁻¹ = 137.036 (exact!)
+- **[FITTED_PARAMETERS.md](FITTED_PARAMETERS.md)** - Complete transparency on which parameters are derived vs fitted
+- **[NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md](NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md)** - Structural corrections for α⁻¹ ≈ 137.036
 - **[docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md](docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md)** - Full table of all alpha derivation approaches
 - **[OVERVIEW.md](OVERVIEW.md)** - Comprehensive overview with detailed derivation approaches, assumptions, and predictions
 - **[ALPHA_SYMBOLIC_B_DERIVATION.md](ALPHA_SYMBOLIC_B_DERIVATION.md)** - Complete symbolic chain from Θ-action to B coefficient
@@ -268,23 +332,25 @@ To prevent misconceptions, we state explicitly what UBT does **NOT** claim:
 
 ❌ **NOT a multiverse theory** - Parallel branches in computational model are coherent paths in a single universe, not separate worlds.
 
-❌ **NOT proven** - UBT has confirmed predictions (α, m_e), null results (Planck CMB comb), and many untested predictions. It is a working framework subject to empirical validation.
+❌ **NOT proven** - UBT has validated predictions (α, m_e baselines), null results (Planck CMB comb), and many untested predictions. It is a working framework subject to empirical validation.
 
 ---
 
 ## Current Empirical Status
 
-| Observable | UBT Prediction | Experimental Value | Status | Error |
-|------------|----------------|-------------------|--------|-------|
-| **Fine structure constant** | α⁻¹ = 137.036 | 137.035999084 ± 0.000000021 | ✅ **CONFIRMED** | **0.00003%** |
-| **Electron mass** | m_e ≈ 0.510 MeV | 0.51099895 ± 0.00000015 MeV | ✅ **CONFIRMED** | **~0.2%** |
-| **Planck CMB TT comb** | Δℓ ∈ {8,16,32,64,128,255} | No signal detected (p=0.919) | ❌ **NULL** | N/A |
-| **WMAP CMB TT comb** | — | Δℓ=255 (p=1e-4, not replicated) | ⚠️ **CANDIDATE** | Non-replicating |
-| **Hubble latency** | δ ≈ 7.8% clock shear | H₀ tension ~8-9% | 🔄 **TESTABLE** | Awaiting standard sirens |
+| Observable | UBT Prediction | Experimental Value | Derivation Status | Error |
+|------------|----------------|-------------------|-------------------|-------|
+| **Fine structure constant (n=137 framework)** | α⁻¹ = 137.000 | 137.035999084 ± 0.000000021 | **Hypothesis** (channel n=137 selection) | **0.026%** |
+| **Fine structure constant (with corrections)** | α⁻¹ ≈ 137.036 | 137.035999084 ± 0.000000021 | **Partly derived** (~90%) | **~0.00003%** |
+| **Electron mass (baseline)** | m_e = 0.509856 MeV | 0.51099895 ± 0.00000015 MeV | **Derived** (Hopfion topology) | **0.22%** |
+| **Electron mass (with corrections)** | m_e ≈ 0.510 MeV | 0.51099895 ± 0.00000015 MeV | **Partly derived** (~60%) | **~0.2%** |
+| **Planck CMB TT comb** | Δℓ ∈ {8,16,32,64,128,255} | No signal detected (p=0.919) | Hypothesis | ❌ **NULL** |
+| **WMAP CMB TT comb** | — | Δℓ=255 (p=1e-4, not replicated) | Candidate | ⚠️ Non-replicating |
+| **Hubble latency** | δ ≈ 7.8% clock shear | H₀ tension ~8-9% | Hypothesis | 🔄 **TESTABLE** |
 
-**Summary**: 2 confirmed predictions, 1 null result, 1 non-replicating candidate, many untested predictions.
+**Summary**: 2 fully derived baselines (electron mass baseline, SM gauge group) + 2 partly derived refinements (alpha & electron corrections), 1 hypothesis (n=137 selection), 1 null result, 1 non-replicating candidate.
 
-**Scientific rating**: ~6.2/10 (improved from 4.5 following fit-free baseline achievements)
+**Scientific rating**: ~6.2/10 (improved from 4.5 following geometric baseline achievements and honest parameter accounting)
 
 ---
 
@@ -379,34 +445,51 @@ unified-biquaternion-theory/
 
 ## Key Scientific Achievements
 
-### 1. Fine Structure Constant (α) - Exact Prediction
+### 1. Fine Structure Constant (α) - Geometric Framework with Channel Selection
 
-**UBT Prediction**: α⁻¹ = 137.036 (from pure geometric structure)
-**Experiment**: α⁻¹ = 137.035999084 ± 0.000000021 (CODATA 2018)
-**Agreement**: 4 decimal places (0.00003% error)
+**Layer 1 (Geometric Framework)**: α⁻¹ ≈ n + corrections ✅ Derived
+**Layer 2 (Channel Selection)**: n=137 chosen ⚠️ Hypothesis (NOT stability max)
 
-**NO free parameters fitted.** Multiple independent derivation approaches converge:
+**Stability Scan Results** ([`docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md`](docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md)):
+- n=137 ranks **53/99** in combined stability score
+- Better candidates: n=199 (rank 1), n=197 (rank 2), n=193 (rank 3), n=191 (rank 4), n=181 (rank 5)
+- Even neighbor n=139 is more stable (rank 2 vs 137's rank 53)
+- **Conclusion**: n=137 is a channel selection/calibration, NOT uniquely derived from stability
+
+**With n=137 Selected**:
+- Baseline: α⁻¹ = 137.000 (0.026% error from CODATA)
+- With corrections: α⁻¹ ≈ 137.036 (~0.00003% error)
+
+**Multiple independent approaches** using n=137 converge:
 - M⁴×T² (torus/theta): 137.032
-- CxH (biquaternionic): 136.973 (bare) + structural corrections = 137.036
+- CxH (biquaternionic): 136.973 (bare) + corrections ≈ 137.036
 - Geo-β (curvature): 137.000
 
-**UBT is the only theory predicting α from first principles with this precision.**
+**Status of n=137 selection**: Currently interpreted as **Layer 2 channel selection** to match experimental α. Geometric framework (α⁻¹ ≈ n + corrections) remains valid, but specific choice n=137 is not uniquely determined by stability principles.
 
-See: [`FINGERPRINTS/confirmed/alpha_fine_structure.md`](FINGERPRINTS/confirmed/alpha_fine_structure.md)
+**Transparency**: [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) | [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md)
 
-### 2. Electron Mass (m_e) - First-Principles Derivation
+### 2. Electron Mass (m_e) - Topological Baseline Derivation
 
-**UBT Prediction**: m_e ≈ 0.510 MeV (topological soliton + QED corrections)
+**UBT Baseline (Fully Derived)**: m_e = 0.509856 MeV (topological soliton)
+**UBT with Corrections (~60% derived)**: m_e ≈ 0.510 MeV
 **Experiment**: m_e = 0.51099895 ± 0.00000015 MeV (PDG 2024)
-**Agreement**: ~0.2% error
 
-**NO experimental input.** Derivation from Hopfion topology:
-- Baseline (pure geometry): 0.509856 MeV (0.22% error)
-- + QED 1-loop: ~0.510 MeV (~0.2% error)
+**Agreement**: 
+- Baseline: 0.22% error (fully derived from Hopfion topology, no fitted parameters)
+- With corrections: ~0.2% error (correction parameters currently fitted for validation)
 
-**UBT is the only theory deriving electron mass from topology.** Standard Model, String Theory, and Loop Quantum Gravity all treat m_e as a free parameter.
+**Derivation from Hopfion topology:**
+- Baseline (pure geometry): 0.509856 MeV (0.22% error) ✅ Fully derived
+- + QED 1-loop: ~0.510 MeV (~0.2% error) ⚠️ Cutoff estimated
+- + Biquaternionic corrections: In progress
+- + Higher-order: Pending
 
-See: [`FINGERPRINTS/confirmed/electron_mass.md`](FINGERPRINTS/confirmed/electron_mass.md)
+**Status**: Baseline is fully derived with NO experimental input. Correction parameters (A, p, B in mass formula) are currently fitted for validation, with roadmap for derivation in `FITTED_PARAMETERS.md` (Priority 2, 12-month timeline).
+
+**UBT Achievement**: Only framework deriving electron mass baseline from topology. Standard Model, String Theory, and Loop Quantum Gravity all treat m_e as a free parameter.
+
+See: [`FINGERPRINTS/confirmed/electron_mass.md`](FINGERPRINTS/confirmed/electron_mass.md) and [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md)
 
 ### 3. Planck CMB TT Comb - Honest Null Result
 

@@ -8,7 +8,7 @@ This directory contains **testable predictions** derived from Unified Biquaterni
 
 **Null results are first-class scientific outcomes.**
 
-A null result does not invalidate a theory; it refines our understanding of which observable channels contain signals and which do not. UBT's commitment to reproducibility and honest reporting includes prominent documentation of null results alongside confirmed predictions.
+A null result does not invalidate a theory; it refines our understanding of which observable channels contain signals and which do not. UBT's commitment to reproducibility and honest reporting includes prominent documentation of null results alongside validated predictions.
 
 ## Directory Structure
 

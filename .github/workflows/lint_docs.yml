@@ -1,0 +1,35 @@
+name: Documentation Linting
+
+on:
+  push:
+    paths:
+      - '**.md'
+      - 'README*'
+  pull_request:
+    paths:
+      - '**.md'
+      - 'README*'
+
+jobs:
+  lint-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Run documentation linter
+      run: |
+        python3 tools/doc_lint.py --root .
+    
+    - name: Check result
+      if: failure()
+      run: |
+        echo "::error::Documentation contains banned phrases. See linter output above."
+        echo "Run 'python3 tools/doc_lint.py --list-banned' to see banned phrases."
+        exit 1

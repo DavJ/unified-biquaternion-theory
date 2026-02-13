@@ -82,7 +82,7 @@ From the axioms above, UBT **derives** (no additional assumptions):
 - **Electron mass**: m_e ≈ 0.510 MeV (~0.2% error)
 - **Other fermions**: In progress (see `FINGERPRINTS/`)
 
-**Status**: Confirmed predictions (see `FINGERPRINTS/confirmed/`)
+**Status**: Validated predictions (see `FINGERPRINTS/confirmed/`)
 
 ### 3. Gravitational + Quantum Unification
 
