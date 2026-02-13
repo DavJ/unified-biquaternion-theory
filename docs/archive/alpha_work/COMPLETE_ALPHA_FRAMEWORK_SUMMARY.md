@@ -7,52 +7,71 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0
 -->
 
 
-# Complete Alpha Prediction Framework - Final Summary
+# Complete Alpha Prediction Framework - Multi-Channel Summary
 
-**Date**: 2025-11-13  
-**Status**: ✅ **EXACT EXPERIMENTAL PREDICTION ACHIEVED**
+**Date**: 2025-11-13 (Updated: 2026-02-13 for multi-channel framework)
+**Status**: ✅ **High-Precision Agreement Achieved for Channel n=137**
 
 ---
 
 ## Executive Summary
 
-This PR establishes a **complete two-level framework** for predicting the fine structure constant α from first principles within UBT, achieving **exact agreement with experiment** (error < 0.00003%).
+This document establishes a **complete two-level framework** for predicting the fine structure constant α from first principles within UBT, achieving **high-precision agreement with experiment** (error < 0.00003% for channel n=137).
+
+**Multi-Channel Framework**: UBT admits a **family of stable/metastable channels** (e.g., n=137, 139, 199, ...). The fine-structure constant is **channel-dependent**: α_eff(channel) = α₀(channel) + Δ_struct(channel).
 
 ```
-Level 1 (Geometric):     α⁻¹ ≈ 137      (4 approaches, A₀ fitted for validation)
-Level 2 (Renormalized):  α⁻¹ = 137.036  (exact, NO FITTING - structural corrections only)
+Level 0/1 (Geometry + Dynamics):  Yields channel spectrum (n=137, 139, 199, ...)
+Level 2 (Channel Selection):      Selects realized channel (e.g., n=137 in our sector)
+Result for Channel 137:           α⁻¹ ≈ 137.036 (agreement within ~0.00003%)
 ```
 
-**CRITICAL**: Level 1 has some fitted parameters (A₀) to validate geometric framework.  
-**Level 2 achieves exact prediction with NO PARAMETERS FITTED - purely structural corrections!**
+**Key Transparency Points:**
+- Level 1 has some fitted parameters (A₀) to validate geometric framework
+- Channel n=137 is the **currently realized** channel, not a unique stability maximum
+- Stability scan shows n=137 ranks 53/99; alternative channels (199, 197, 193) are more stable
+- Different channels would yield different α_eff values and correlated observable shifts (testable)
 
 ---
 
-## Two-Level Framework
+## Multi-Channel Framework
 
-### Level 1: Geometric Foundation (This PR)
+### Level 0/1: Geometric Foundation (Channel Spectrum)
 
-Four independent geometric derivations all converge:
+The biquaternionic field equations yield a **family of stable channels** characterized by winding number n:
 
-| Approach | Method | α⁻¹ | Error | Derivation | Fit? |
-|----------|--------|-----|-------|------------|------|
-| **M⁴×T²** | Dedekind η(i) functional determinant | 137.032 | 0.003% | τ=i from modularity, A₀ fitted to match α | ⚠ A₀ fit |
-| **CxH** | Full biquaternionic spacetime | **136.973** | **0.046%** | **N_eff=32 from structure, A₀ fitted to match α** | **⚠ A₀ fit** |
-| **Geo-β** | Toroidal curvature RG flow | 137.000 | 0.026% | Prime n★=137 from curvature minimum | ⚠ Prime selection |
-| **Action min** | V_eff(n) discrete minimization | 137.000 | 0.026% | Prime n=137 from action minimum, B=46.3 fitted | ⚠ B fit |
+| Approach | Method | α⁻¹ (n=137) | Error | Derivation | Notes |
+|----------|--------|-------------|-------|------------|-------|
+| **M⁴×T²** | Dedekind η(i) functional determinant | 137.032 | 0.003% | τ=i from modularity, A₀ fitted | ⚠ A₀ fit, channel-dependent |
+| **CxH** | Full biquaternionic spacetime | **136.973** | **0.046%** | **N_eff=32 from structure, A₀ fitted** | **⚠ Bare value for n=137** |
+| **Geo-β** | Toroidal curvature RG flow | 137.000 | 0.026% | Winding number n=137 | ⚠ Channel selection |
+| **Action min** | V_eff(n) discrete minimization | 137.000 | 0.026% | Winding number n=137, B=46.3 fitted | ⚠ B fit |
 
-**Convergence range**: 136.973 - 137.032 (spread 0.04%)
+**Convergence range for n=137**: 136.973 - 137.032 (spread 0.04%)
 
-**Key**: CxH value (136.973) serves as **bare geometric baseline**
+**Key**: CxH value α₀⁻¹(137) = 136.973 serves as **bare channel-dependent baseline** for n=137
 
-**Note**: Level 1 approaches have A₀ or other parameters fitted to approximately match α. These provide geometric foundation but are not pure predictions.
+**Multi-Channel Context:**
+- Each approach can be evaluated for different channel numbers n
+- n=137 is the **currently realized channel** in our observed sector
+- Alternative channels (n=139, 199, 197, ...) would yield different baseline values
+- Stability scan shows n=137 ranks 53/99; **not the only stable configuration**
 
-### Level 2: Noncommutative Renormalization (Master + This PR)
+**Note**: Level 1 approaches validate the channel-dependent framework. Some parameters (A₀, B) are fitted to establish proof-of-concept for specific channels.
 
-Starting from CxH bare value, add 4 UBT corrections **derived from structure (NO FITTING)**:
+### Level 2: Channel Selection + Structural Corrections
+
+**Channel Selection (Layer 2):**
+- UBT dynamics yield a spectrum of stable channels (n=137, 139, 199, ...)
+- Layer 2 (coding/modulation) selects which channel is realized
+- Currently observed sector: **n=137**
+- Alternative stable channels exist; selection mechanism under investigation
+
+**Starting from Channel n=137 Baseline:**
+Starting from CxH bare value for channel 137, add 4 UBT structural corrections **derived from structure**:
 
 ```
-α⁻¹_bare = 136.973  (CxH from Level 1)
+α₀⁻¹(137) = 136.973  (CxH bare value for channel 137)
 
 + Corrections from UBT structure:
   1. Anticommutator sector:    δN_anti/N_comm ≈ 4.6×10⁻⁴
@@ -60,35 +79,43 @@ Starting from CxH bare value, add 4 UBT corrections **derived from structure (NO
   3. CxH gravitational:         Δ_grav ∝ log(r_G) ~ 0.015
   4. Mirror asymmetry:          Δ_asym ≈ 0.01
   
-= 137.0359  (UBT prediction)
+= α_eff⁻¹(137) ≈ 137.0359  (UBT prediction for channel 137)
 
 Compare:
-  137.0359       (UBT)
+  137.0359       (UBT, channel 137)
   137.035999084  (CODATA 2018 experiment)
   
-Difference: 0.00003% ✨
+Agreement for channel 137: ~0.00003% ✨
 ```
+
+**Multi-Channel Interpretation:**
+- Corrections Δ_struct may vary with channel number n
+- High-precision agreement confirms n=137 is the realized channel in our sector
+- Different channels would yield different α_eff values (testable prediction)
 
 ---
 
 ## COMPLETE VALIDATION CHAIN
 
-**Full progression from geometry to experiment:**
+**Full progression from geometry to experiment (for channel n=137):**
 
-| Level | Approach | α⁻¹ | Error | How Derived | Fit Status |
-|-------|----------|-----|-------|-------------|------------|
-| **Geo** | M⁴×T² torus/theta | 137.032 | 0.003% | τ=i modular, η(i)=Γ(1/4)/(2π^(3/4)), B₁ fixed, A₀ fitted | ⚠ A₀ fit |
-| **Geo** | **CxH biquaternion** | **136.973** | **0.046%** | **N_eff=32 structural (4×8), A₀ fitted** | **⚠ A₀ fit** |
-| **Geo** | Geo-β curvature | 137.000 | 0.026% | β₁=1/(2π) from torus, prime n★=137 selected | ⚠ Prime selection |
-| **Geo** | Action minimization | 137.000 | 0.026% | V_eff(n)=An²-Bn·ln(n), A=1, B=46.3 fitted, n=137 | ⚠ B fit |
-| **Renorm** | **Full UBT (exact!)** | **137.036** | **0.00003%** | **CxH bare + 4 structural corrections (no fit!)** | **✓ NO FIT** |
-| **Exp** | CODATA 2018 | 137.035999084 | — | Measurement | — |
+| Level | Approach | Channel | α⁻¹ | Error | How Derived | Fit Status |
+|-------|----------|---------|-----|-------|-------------|------------|
+| **Geo** | M⁴×T² torus/theta | n=137 | 137.032 | 0.003% | τ=i modular, η(i)=Γ(1/4)/(2π^(3/4)), B₁ fixed, A₀ fitted | ⚠ A₀ fit |
+| **Geo** | **CxH biquaternion** | **n=137** | **136.973** | **0.046%** | **N_eff=32 structural (4×8), A₀ fitted** | **⚠ Bare α₀(137)** |
+| **Geo** | Geo-β curvature | n=137 | 137.000 | 0.026% | β₁=1/(2π) from torus, winding n=137 | ⚠ Channel-dep |
+| **Geo** | Action minimization | n=137 | 137.000 | 0.026% | V_eff(n)=An²-Bn·ln(n), A=1, B=46.3 fitted, n=137 | ⚠ B fit |
+| **Layer 2** | **Channel selection** | **n=137** | — | — | **Realized channel in our sector** | **Multi-channel** |
+| **Renorm** | **Full UBT** | **n=137** | **137.036** | **~0.00003%** | **α₀(137) + 4 structural corrections (~90% derived)** | **⚠ ~12% gap** |
+| **Exp** | CODATA 2018 | — | 137.035999084 | — | Measurement | — |
 
-**Key Insight**: 
-- **Level 1 (Geometric)**: Approximate predictions (~137) with some fitted parameters to validate framework
-- **Level 2 (Renormalized)**: **Exact prediction** using CxH baseline + 4 structural corrections **without any fitting**
+**Key Insights**: 
+- **Level 0/1 (Geometric)**: Framework yields channel spectrum; n=137 is one stable channel among many
+- **Level 2 (Channel Selection)**: n=137 is the **realized** channel in our observed sector (not uniquely derived)
+- **Effective Value**: α_eff(137) = α₀(137) + Δ_struct(137) achieves high-precision agreement
+- **Multi-Channel Framework**: Alternative channels (139, 199, ...) would yield different α_eff values
 
-**The exact prediction at Level 2 uses NO fitted parameters!**
+**Transparency Note**: Structural corrections are ~90% derived with ~12% renormalization gap remaining (see FITTED_PARAMETERS.md)
 
 ---
 

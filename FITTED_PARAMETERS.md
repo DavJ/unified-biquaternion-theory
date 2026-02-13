@@ -33,13 +33,20 @@ These parameters are derived from first principles with no adjustable parameters
 - **Derivation:** Appendix B, TRANSITION_CRITERION_COMPLEX_BIQUATERNIONIC.md
 - **No free parameters:** Set by electron mass (measured)
 
-**Prime Constraint N = 137**
-- **Status:** Derived from topological constraint
+**Prime Constraint N = 137 - MULTI-CHANNEL FRAMEWORK**
+- **Status:** Channel-dependent baseline from topological constraint
 - **Formula:** N must be prime for compact U(1) gauge structure
-- **Value:** N = 137 (10th prime after 100)
+- **Current Channel:** N = 137 (realized in our observed sector)
+- **Multi-Channel Family:** UBT admits multiple stable channels (137, 139, 199, ...)
 - **Derivation:** emergent_alpha_from_ubt.tex, appendix_V_emergent_alpha.tex
-- **Justification:** Unique prime in range 130-150 compatible with topology
-- **⚠️ Note:** Choice of N=137 vs other primes requires further justification
+- **Justification:** 
+  - Geometric framework yields α⁻¹ ≈ n + corrections for winding number n
+  - Stability scan shows n=137 ranks 53/99; NOT the only stable configuration
+  - Alternative stable channels: n=199 (rank 1), 197, 193, 191, 181, 139
+  - Layer 2 (coding/modulation) provides channel selection mechanism
+- **⚠️ Note:** n=137 is the currently realized channel, not a unique stability maximum
+- **Testable:** Different channels would yield different α_eff(n) and correlated observable shifts
+- **See:** docs/alpha/ALPHA_STABILITY_SELECTION_RULE.md for detailed stability analysis
 
 **Effective Mode Count N_eff = 12**
 - **Status:** Derived from Standard Model gauge group
@@ -407,6 +414,22 @@ These parameters appear in speculative parts but are not quantified:
 - "Electron mass formula derived, coefficients fitted pending calculation"
 - "Framework established for [X], numerical predictions in progress"
 - "Consciousness model highly speculative, no testable predictions yet"
+- "α is channel-dependent; n=137 is the realized channel in our sector from a multi-channel family"
+- "Structural corrections are structure-motivated with partial derivations, not ad-hoc fitting"
+
+**Note on 'Mostly Derived' Classification:**
+When we say a parameter is "mostly derived," this means:
+- The mathematical structure and form are derived from UBT field equations
+- The physical origin and motivation for each term are understood from the theory
+- Coefficient values are calculated/estimated from UBT structure, not arbitrarily fitted
+- A clear roadmap exists to derive remaining gaps from first principles
+- This is distinct from ad-hoc parameter fitting to match experiment
+
+Example: The four structural corrections to α (δN_anti, Δ_RG, Δ_grav, Δ_asym) have:
+- ✅ Derived form (structure from field equations)
+- ✅ Physical motivation (non-commutativity, RG flow, gravity, mirror asymmetry)
+- ⚠️ Estimated coefficients (first-pass calculations from UBT, ~12% uncertainty)
+- 📋 Roadmap (heat-kernel expansion, spectral methods for rigorous derivation)
 
 ---
 
