@@ -1,0 +1,37 @@
+Layer 2 Fingerprint Sweep Results
+================================================================================
+
+Configuration Space: baseline
+Number of Samples: 200
+Random Seed: 123
+Timestamp: 2026-02-13T20:21:05.882039
+
+Best Configuration Found:
+--------------------------------------------------------------------------------
+  Combined Score: 0.579922
+  Alpha Inverse: 136.560000 (exp: 137.035999)
+  Electron Mass: 0.512038 MeV (exp: 0.510999)
+  RS(n,k): (241, 213)
+  OFDM Channels: 13
+  Winding Number: 137
+  Quantization Grid: 255
+
+Statistical Summary:
+--------------------------------------------------------------------------------
+  Mean Score: 32.680152
+  Median Score: 31.002797
+  Std Dev Score: 17.638540
+
+Match Statistics:
+--------------------------------------------------------------------------------
+  Configs matching alpha (within 0.5): 1 (0.50%)
+  Configs matching electron mass (within 1 keV): 139 (69.50%)
+  Configs matching both: 0 (0.00%)
+
+Current Configuration Analysis:
+--------------------------------------------------------------------------------
+  Score: 0.040418
+  Rank: 0/200
+  Percentile: 0.00%
+
+INTERPRETATION: Current configuration is in top 1% - highly optimized!

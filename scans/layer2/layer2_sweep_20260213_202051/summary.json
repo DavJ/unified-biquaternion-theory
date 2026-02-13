@@ -1,0 +1,28 @@
+{
+  "space_type": "debug",
+  "n_samples": 50,
+  "seed": 42,
+  "best_score": 0.061838983729105124,
+  "best_config": {
+    "rs_n": 251,
+    "rs_k": 205,
+    "ofdm_channels": 17,
+    "winding_number": 137,
+    "prime_gate_pattern": 2,
+    "quantization_grid": 256
+  },
+  "best_alpha_inv": 137.061,
+  "best_electron_mass": 0.5113673306772909,
+  "mean_score": 3.9096062682205366,
+  "median_score": 3.8327111191860546,
+  "std_score": 2.372830729185994,
+  "n_alpha_match": 5,
+  "n_mass_match": 50,
+  "n_both_match": 5,
+  "fraction_alpha_match": 0.1,
+  "fraction_mass_match": 1.0,
+  "fraction_both_match": 0.1,
+  "current_config_score": 0.040417809490203904,
+  "current_config_rank": 0,
+  "current_config_percentile": 0.0
+}
