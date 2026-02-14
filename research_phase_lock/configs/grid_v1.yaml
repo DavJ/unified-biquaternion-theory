@@ -36,6 +36,6 @@ grid:
   nside_out: [128, 256]
   nlat: [512]
   nlon: [1024]
-  null: ["phase-shuffle", "phi-roll"]
+  null_method: ["phase-shuffle", "phi-roll"]
   mc: [100, 500]
   targets: ["137,139", "134,135,136,137,138,139,140,141,142,143"]

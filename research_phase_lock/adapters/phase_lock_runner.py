@@ -205,8 +205,10 @@ def run_phase_lock_scan(
     if 'nlon' in config:
         args.extend(['--nlon', str(config['nlon'])])
     
-    if 'null' in config:
-        args.extend(['--null', config['null']])
+    # Handle both 'null' and 'null_method' for backwards compatibility
+    null_val = config.get('null_method', config.get('null'))
+    if null_val:
+        args.extend(['--null', null_val])
     
     if 'mc' in config:
         args.extend(['--mc', str(config['mc'])])
