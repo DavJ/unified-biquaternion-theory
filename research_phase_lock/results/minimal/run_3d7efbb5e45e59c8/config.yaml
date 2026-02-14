@@ -1,0 +1,10 @@
+projection: torus
+window: none
+window_size: 64
+nside_out: 32
+nlat: 128
+nlon: 256
+null_method: phase-shuffle
+mc: 10
+targets: 137,139
+seed: 42

@@ -52,11 +52,18 @@ def plot_parameter_sweep(
             continue
         
         try:
-            x = float(r[param_name]) if isinstance(r[param_name], (int, float, str)) else str(r[param_name])
+            # Try to convert to float, keep as string if conversion fails
+            x_raw = r[param_name]
+            try:
+                x = float(x_raw)
+            except (ValueError, TypeError):
+                x = str(x_raw)
+            
             y = float(r[metric])
             x_vals.append(x)
             y_vals.append(y)
         except (ValueError, TypeError):
+            # Skip rows where metric cannot be converted to float
             continue
     
     if not x_vals:

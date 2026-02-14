@@ -60,8 +60,9 @@ def run_command(
         
     except subprocess.CalledProcessError as e:
         # Re-raise with more context
-        stdout = e.stdout if hasattr(e, 'stdout') else ""
-        stderr = e.stderr if hasattr(e, 'stderr') else ""
+        # When capture_output=True, stdout and stderr are always available
+        stdout = e.stdout or ""
+        stderr = e.stderr or ""
         
         if verbose:
             print(f"[subprocess] Command failed with exit code {e.returncode}", file=sys.stderr)

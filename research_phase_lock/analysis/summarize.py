@@ -15,6 +15,7 @@ License: See repository LICENSE.md
 """
 
 import os
+import statistics
 from typing import Any, Dict, List
 from pathlib import Path
 
@@ -142,7 +143,6 @@ def print_summary_stats(results: List[Dict[str, Any]]) -> None:
                 pass
         
         if pcs:
-            import statistics
             print(f"  Phase coherence: min={min(pcs):.4f}, max={max(pcs):.4f}, mean={statistics.mean(pcs):.4f}")
         
         if pvals:
