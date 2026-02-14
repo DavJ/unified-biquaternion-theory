@@ -359,9 +359,9 @@ def monte_carlo_phase_lock(
     
     print(f"[mc] Running {n_mc} Monte Carlo samples with null={null_method}...")
     
-    for i in range(n_mc):
-        if (i + 1) % 100 == 0 or n_mc <= 100:
-            print(f"  MC sample {i+1}/{n_mc}")
+    for mc_idx in range(n_mc):
+        if (mc_idx + 1) % 100 == 0 or n_mc <= 100:
+            print(f"  MC sample {mc_idx+1}/{n_mc}")
         
         # Generate null by shuffling BB phases
         if null_method == "phase-shuffle":

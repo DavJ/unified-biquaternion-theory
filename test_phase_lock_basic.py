@@ -29,14 +29,12 @@ def test_perfect_phase_lock():
     fft_segments_tt = []
     fft_segments_bb = []
     
-    rng = np.random.default_rng(42)
-    
     for i in range(n_segments):
         # Create the same random complex field for all segments
         # This ensures perfect phase lock
-        F = rng.standard_normal((h, w)) + 1j * rng.standard_normal((h, w))
-        # Use the same seed to get identical patterns
+        # Reinitialize with same seed to get identical patterns
         rng = np.random.default_rng(42)
+        F = rng.standard_normal((h, w)) + 1j * rng.standard_normal((h, w))
         
         fft_segments_tt.append(F)
         fft_segments_bb.append(F.copy())  # Identical copy
