@@ -176,10 +176,71 @@ class TestPhaseLockCore:
 class TestPhaseLockIntegration:
     """Integration tests with synthetic CMB-like data."""
     
+    def test_synthetic_exact_fft_bin(self):
+        """
+        Test with exact FFT bin injection for reliable synthetic signal.
+        
+        Creates synthetic data by directly placing a coherent signal in specific
+        FFT bins, ensuring the test is deterministic and maps correctly to k values.
+        """
+        # Parameters
+        window_size = 64
+        n_segments = 10
+        k_target = 10  # Target frequency bin (must be < window_size/2)
+        
+        # Create segments with exact frequency injection
+        fft_segments_tt = []
+        fft_segments_bb = []
+        phase_offset = 0.1  # Small constant phase offset between channels
+        
+        rng = np.random.default_rng(789)
+        
+        for i in range(n_segments):
+            # Create FFT array (in frequency domain)
+            F_tt = np.zeros((window_size, window_size), dtype=complex)
+            F_bb = np.zeros((window_size, window_size), dtype=complex)
+            
+            # Inject signal at exact FFT bin (k_target, 0) and (0, k_target)
+            # These correspond to horizontal and vertical modes at k=k_target
+            amplitude = 100.0
+            
+            # Horizontal mode: F[0, k_target]
+            F_tt[0, k_target] = amplitude * np.exp(1j * 0)  # TT: phase = 0
+            F_bb[0, k_target] = amplitude * np.exp(1j * phase_offset)  # BB: phase = phase_offset
+            
+            # Vertical mode: F[k_target, 0]
+            F_tt[k_target, 0] = amplitude * np.exp(1j * 0)
+            F_bb[k_target, 0] = amplitude * np.exp(1j * phase_offset)
+            
+            # Add small random noise in frequency domain
+            noise_level = 1.0
+            F_tt += noise_level * (rng.standard_normal((window_size, window_size)) + 
+                                   1j * rng.standard_normal((window_size, window_size)))
+            F_bb += noise_level * (rng.standard_normal((window_size, window_size)) + 
+                                   1j * rng.standard_normal((window_size, window_size)))
+            
+            fft_segments_tt.append(F_tt)
+            fft_segments_bb.append(F_bb)
+        
+        # Compute phase coherence
+        coherence, targets = compute_phase_lock(
+            fft_segments_tt,
+            fft_segments_bb,
+            targets=[k_target]
+        )
+        
+        # With exact FFT bin injection and constant phase offset,
+        # we should get very high coherence at k_target
+        print(f"Exact FFT bin test: PC at k={k_target} is {targets[k_target]:.6f}")
+        assert targets[k_target] > 0.95, \
+            f"Expected high PC (>0.95) with exact bin injection, got {targets[k_target]:.6f}"
+    
     def test_synthetic_phase_locked_cmb(self):
         """
-        Test with synthetic CMB-like data where TT and BB are phase-locked
-        at specific k values.
+        Test with synthetic CMB-like spatial data where TT and BB are phase-locked.
+        
+        This generates spatial waves and checks that the phase coherence is detected,
+        though the mapping to k is approximate due to windowing.
         """
         # Create synthetic images with embedded phase-locked frequency
         nlat, nlon = 256, 512
@@ -189,43 +250,123 @@ class TestPhaseLockIntegration:
         x = np.arange(nlon)
         Y, X = np.meshgrid(y, x, indexing='ij')
         
-        # Add a coherent wave at k≈137 (scale to image dimensions)
-        k_target = 137
-        k_x = k_target * (2 * np.pi / nlon)
-        k_y = 0
+        # Inject wave with integer number of periods that fits window_size
+        window_size = 64
+        n_periods = 8  # 8 complete periods in window
+        wavelength = window_size / n_periods
+        k_spatial = 2 * np.pi / wavelength  # Spatial frequency
         
         # TT channel: cos wave
-        img_tt = np.cos(k_x * X + k_y * Y)
+        img_tt = np.cos(k_spatial * X)
         
-        # BB channel: cos wave with small phase offset
-        img_bb = np.cos(k_x * X + k_y * Y + 0.1)
+        # BB channel: cos wave with small constant phase offset
+        phase_offset = 0.1
+        img_bb = np.cos(k_spatial * X + phase_offset)
         
         # Add noise
         rng = np.random.default_rng(456)
-        img_tt += 0.1 * rng.standard_normal((nlat, nlon))
-        img_bb += 0.1 * rng.standard_normal((nlat, nlon))
+        noise_level = 0.1
+        img_tt += noise_level * rng.standard_normal((nlat, nlon))
+        img_bb += noise_level * rng.standard_normal((nlat, nlon))
         
         # Segment and compute FFTs
-        window_size = 64
-        stride = 32
+        stride = window_size // 2  # 50% overlap
         
         fft_tt = segment_and_fft(img_tt, window_size, stride, "none")
         fft_bb = segment_and_fft(img_bb, window_size, stride, "none")
         
-        # Compute phase coherence
-        # Note: k_target in global coordinates needs to be scaled to segment coordinates
-        # For W=64 segments, k in segment ≈ k_global * W / map_width
-        k_seg = int(k_target * window_size / nlon)
-        if k_seg == 0:
-            k_seg = 1  # Avoid DC
+        # The k value in FFT corresponds to n_periods
+        k_fft = n_periods
         
-        coherence, targets = compute_phase_lock(fft_tt, fft_bb, targets=[k_seg])
+        coherence, targets = compute_phase_lock(fft_tt, fft_bb, targets=[k_fft])
         
         # Should have elevated coherence at the embedded frequency
-        # (not perfect due to windowing and noise, but should be > random baseline)
-        print(f"Synthetic test: PC at k_seg={k_seg} is {targets[k_seg]:.4f}")
-        assert targets[k_seg] > 0.3, \
-            f"Expected elevated PC for phase-locked signal, got {targets[k_seg]}"
+        print(f"Spatial wave test: PC at k={k_fft} is {targets[k_fft]:.4f}")
+        assert targets[k_fft] > 0.5, \
+            f"Expected elevated PC (>0.5) for phase-locked spatial wave, got {targets[k_fft]:.4f}"
+
+
+class TestMaxstatPvalue:
+    """Test maxstat p-value computation."""
+    
+    def test_maxstat_identical_channels(self):
+        """
+        When TT=BB (identical), maxstat p-value should be extremely small.
+        
+        With identical channels, observed PC should be 1.0 at all k,
+        while null samples will have lower max PC, giving p-value ~ 0.
+        """
+        # Import the maxstat function
+        from unified_phase_lock_scan import compute_maxstat_pvalues
+        
+        # Create observed coherence (perfect lock everywhere)
+        n_k = 50
+        obs_coherence = np.ones(n_k)  # PC = 1.0 at all k
+        
+        # Create MC null samples (random, much lower coherence)
+        rng = np.random.default_rng(999)
+        n_mc = 100
+        mc_samples = []
+        for i in range(n_mc):
+            # Random coherence typically ~0.1-0.3
+            mc_spec = rng.uniform(0.0, 0.4, size=n_k)
+            mc_samples.append(mc_spec)
+        
+        # Compute maxstat p-values for middle range
+        k_range = (10, 40)
+        targets = [15, 20, 25]
+        
+        p_values = compute_maxstat_pvalues(obs_coherence, mc_samples, k_range, targets)
+        
+        # With perfect observed coherence and random null,
+        # p-values should be very small (none of the MC max values exceed 1.0)
+        print(f"Maxstat test (identical): p-values = {p_values}")
+        for k in targets:
+            assert p_values[k] < 0.01, \
+                f"Expected p-value << 1 for perfect coherence, got {p_values[k]:.4f} at k={k}"
+    
+    def test_maxstat_independent_channels(self):
+        """
+        When channels are independent random, maxstat p-value should be ~ uniform.
+        
+        Both observed and null samples are random, so observed PC should not
+        systematically exceed null max PC.
+        """
+        from unified_phase_lock_scan import compute_maxstat_pvalues
+        
+        # Create observed and null samples all from same random distribution
+        rng = np.random.default_rng(888)
+        n_k = 50
+        n_mc = 100
+        
+        # Observed: random coherence
+        obs_coherence = rng.uniform(0.0, 0.4, size=n_k)
+        
+        # MC samples: also random
+        mc_samples = []
+        for i in range(n_mc):
+            mc_spec = rng.uniform(0.0, 0.4, size=n_k)
+            mc_samples.append(mc_spec)
+        
+        # Compute maxstat p-values
+        k_range = (10, 40)
+        targets = [15, 20, 25, 30, 35]
+        
+        p_values = compute_maxstat_pvalues(obs_coherence, mc_samples, k_range, targets)
+        
+        # P-values should be distributed roughly uniformly in [0, 1]
+        # Not all should be near 0 or near 1
+        print(f"Maxstat test (independent): p-values = {p_values}")
+        p_vals_list = [p_values[k] for k in targets]
+        
+        # Check that we get a range of p-values (not all extreme)
+        assert min(p_vals_list) < 0.5, "Should have some p-values < 0.5"
+        assert max(p_vals_list) > 0.1, "Should have some p-values > 0.1"
+        
+        # Mean p-value should be around 0.5 for uniform distribution
+        mean_p = np.mean(p_vals_list)
+        assert 0.2 < mean_p < 0.8, \
+            f"Mean p-value should be ~0.5 for independent samples, got {mean_p:.2f}"
 
 
 def run_tests():
