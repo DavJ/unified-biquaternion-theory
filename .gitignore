@@ -40,6 +40,9 @@ ubt_mass_spectrum_analysis.png
 !consolidation_project/fig_*.png
 consolidation_project/masses/.pytest_cache/
 
+# Research phase lock results (exclude from commits)
+research_phase_lock/results/
+
 data/alpha_two_loop_grid.csv
 tex/snippets_generated.tex
 reports/*.json

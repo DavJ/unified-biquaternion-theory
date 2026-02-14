@@ -1,0 +1,33 @@
+# Test Grid Configuration
+# ========================
+# Minimal configuration for smoke testing
+
+# Global settings
+global:
+  output_root: "research_phase_lock/results/test"
+  seed: 42
+  max_runs: 2  # Limit to 2 runs for quick testing
+
+# Data configuration
+data:
+  mode: "synthetic"  # Use synthetic data (no Planck maps needed)
+  
+  # Synthetic data configuration
+  synthetic:
+    nlat: 128
+    nlon: 256
+    locked_targets: [137, 139]  # Embed coherent waves at these k values
+    noise_sigma: 0.1
+    phase_offset_rad: 0.1
+
+# Minimal grid for testing
+grid:
+  projection: ["torus"]
+  window: ["none"]
+  window_size: [64]
+  nside_out: [64]
+  nlat: [256]
+  nlon: [512]
+  null_method: ["phase-shuffle"]
+  mc: [50]  # Minimal MC for speed
+  targets: ["137,139"]
