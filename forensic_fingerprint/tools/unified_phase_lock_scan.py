@@ -317,6 +317,88 @@ def segment_and_fft(
     return fft_segments
 
 
+def compute_maxstat_pvalues(
+    obs_coherence: np.ndarray,
+    mc_coherence_samples: List[np.ndarray],
+    k_range: Tuple[int, int],
+    targets: List[int]
+) -> Dict[int, float]:
+    """
+    Compute maxstat p-values: account for multiple testing by using max PC in k-range.
+    
+    For each MC sample, we compute the maximum PC value across the k-range.
+    The p-value for a target k is then P(max_null >= obs_PC[k]).
+    
+    This is more conservative than local p-values and accounts for "look-elsewhere" effect.
+    
+    Args:
+        obs_coherence: Observed coherence spectrum
+        mc_coherence_samples: List of MC null coherence spectra
+        k_range: (kmin, kmax) range for computing max
+        targets: Target k values to report
+    
+    Returns:
+        Dict mapping target k to maxstat p-value
+    """
+    kmin, kmax = k_range
+    n_mc = len(mc_coherence_samples)
+    
+    # For each MC sample, find the maximum PC in the k-range
+    max_pc_null = []
+    for mc_spec in mc_coherence_samples:
+        max_in_range = np.max(mc_spec[kmin:kmax+1])
+        max_pc_null.append(max_in_range)
+    
+    max_pc_null = np.array(max_pc_null)
+    
+    # Compute p-value for each target: P(max_null >= obs_PC[k])
+    p_values = {}
+    for k in targets:
+        if 0 <= k < len(obs_coherence):
+            obs_val = obs_coherence[k]
+            p_values[k] = float(np.mean(max_pc_null >= obs_val))
+        else:
+            p_values[k] = float('nan')
+    
+    return p_values
+
+
+def compute_fdr_pvalues(
+    local_pvalues: Dict[int, float],
+    targets: List[int],
+    alpha: float = 0.05
+) -> Tuple[Dict[int, float], Dict[int, bool]]:
+    """
+    Compute FDR-corrected p-values using Benjamini-Hochberg procedure.
+    
+    Args:
+        local_pvalues: Dictionary of uncorrected p-values
+        targets: Target k values (ordered)
+        alpha: FDR level (default: 0.05)
+    
+    Returns:
+        corrected_pvalues: FDR-adjusted p-values
+        significant: Boolean mask for significance at FDR level
+    """
+    # Sort targets by p-value
+    sorted_targets = sorted(targets, key=lambda k: local_pvalues.get(k, 1.0))
+    m = len(sorted_targets)
+    
+    # Benjamini-Hochberg procedure
+    corrected = {}
+    significant = {}
+    
+    for i, k in enumerate(sorted_targets):
+        p = local_pvalues.get(k, 1.0)
+        # BH critical value: (i+1)/m * alpha
+        bh_threshold = (i + 1) / m * alpha
+        # Adjusted p-value: p * m / (i+1)
+        corrected[k] = min(1.0, p * m / (i + 1))
+        significant[k] = (p <= bh_threshold)
+    
+    return corrected, significant
+
+
 def monte_carlo_phase_lock(
     img_tt: np.ndarray,
     img_bb: np.ndarray,
@@ -326,8 +408,10 @@ def monte_carlo_phase_lock(
     seed: int = 0,
     stride: Optional[int] = None,
     window_name: str = "none",
-    null_method: str = "phase-shuffle"
-) -> Tuple[Dict[int, float], Dict[int, float], Dict[int, float]]:
+    null_method: str = "phase-shuffle",
+    pvalue_mode: str = "local",
+    k_range: Optional[Tuple[int, int]] = None
+) -> Tuple[Dict[int, float], Dict[int, float], Dict[int, float], Optional[np.ndarray], Optional[List[np.ndarray]]]:
     """
     Monte Carlo validation of phase coherence using null model.
     
@@ -339,12 +423,16 @@ def monte_carlo_phase_lock(
         seed: Random seed
         stride: Window stride
         window_name: Window function
-        null_method: "phase-shuffle" or "phi-roll"
+        null_method: "phase-shuffle", "phi-roll", or "segment-permute"
+        pvalue_mode: "local", "maxstat", or "fdr"
+        k_range: (kmin, kmax) for maxstat mode
     
     Returns:
         mc_mean: Mean PC for each target under null
         mc_std: Std dev of PC under null
-        p_values: One-sided p-values for each target
+        p_values: P-values for each target (method depends on pvalue_mode)
+        obs_coherence_full: Full observed coherence spectrum (if maxstat)
+        mc_coherence_samples: List of MC null spectra (if maxstat)
     """
     rng = np.random.default_rng(seed)
     
@@ -352,12 +440,14 @@ def monte_carlo_phase_lock(
     print("[mc] Computing observed phase coherence...")
     fft_tt = segment_and_fft(img_tt, window_size, stride, window_name)
     fft_bb = segment_and_fft(img_bb, window_size, stride, window_name)
-    _, obs_pc = compute_phase_lock(fft_tt, fft_bb, targets)
+    obs_coherence_full, obs_pc = compute_phase_lock(fft_tt, fft_bb, targets)
     
     # MC null distribution
     mc_samples = {k: [] for k in targets}
+    mc_coherence_spectra = []  # For maxstat mode
     
     print(f"[mc] Running {n_mc} Monte Carlo samples with null={null_method}...")
+    print(f"[mc] P-value mode: {pvalue_mode}")
     
     for mc_idx in range(n_mc):
         if (mc_idx + 1) % 100 == 0 or n_mc <= 100:
@@ -374,6 +464,10 @@ def monte_carlo_phase_lock(
             phase_shuffled = rng.permutation(phase_bb.ravel()).reshape(phase_bb.shape)
             F_bb_null = mag_bb * np.exp(1j * phase_shuffled)
             img_bb_null = np.real(np.fft.ifft2(F_bb_null))
+            
+            # Compute phase coherence for null
+            fft_bb_null = segment_and_fft(img_bb_null, window_size, stride, window_name)
+            null_coherence_full, null_pc = compute_phase_lock(fft_tt, fft_bb_null, targets)
         
         elif null_method == "phi-roll":
             # Roll each latitude row by random longitude shift
@@ -382,31 +476,78 @@ def monte_carlo_phase_lock(
             shifts = rng.integers(0, nlon, size=nlat)
             for i_lat in range(nlat):
                 img_bb_null[i_lat] = np.roll(img_bb[i_lat], int(shifts[i_lat]))
+            
+            # Compute phase coherence for null
+            fft_bb_null = segment_and_fft(img_bb_null, window_size, stride, window_name)
+            null_coherence_full, null_pc = compute_phase_lock(fft_tt, fft_bb_null, targets)
+        
+        elif null_method == "segment-permute":
+            # Permute BB segments across windows before computing coherence
+            # This destroys spatial coherence while preserving per-segment power
+            fft_bb_permuted = fft_bb.copy()
+            rng.shuffle(fft_bb_permuted)  # Shuffle list of segments
+            null_coherence_full, null_pc = compute_phase_lock(fft_tt, fft_bb_permuted, targets)
         
         else:
             raise ValueError(f"Unknown null method: {null_method}")
         
-        # Compute phase coherence for null
-        fft_bb_null = segment_and_fft(img_bb_null, window_size, stride, window_name)
-        _, null_pc = compute_phase_lock(fft_tt, fft_bb_null, targets)
-        
         for k in targets:
             mc_samples[k].append(null_pc[k])
+        
+        # Store full spectrum for maxstat mode
+        if pvalue_mode == "maxstat":
+            mc_coherence_spectra.append(null_coherence_full)
     
     # Compute statistics
     mc_mean = {}
     mc_std = {}
-    p_values = {}
     
-    print("\n[mc] Monte Carlo statistics:")
     for k in targets:
         samples = np.array(mc_samples[k])
         mc_mean[k] = float(np.mean(samples))
         mc_std[k] = float(np.std(samples))
+    
+    # Compute p-values based on mode
+    if pvalue_mode == "local":
+        # Local (pointwise) p-values: P(null[k] >= observed[k])
+        p_values = {}
+        for k in targets:
+            samples = np.array(mc_samples[k])
+            p_values[k] = float(np.mean(samples >= obs_pc[k]))
+    
+    elif pvalue_mode == "maxstat":
+        # Maxstat p-values: account for multiple testing
+        if k_range is None:
+            print("[warning] maxstat mode requires --k-range; falling back to local")
+            p_values = {}
+            for k in targets:
+                samples = np.array(mc_samples[k])
+                p_values[k] = float(np.mean(samples >= obs_pc[k]))
+        else:
+            p_values = compute_maxstat_pvalues(
+                obs_coherence_full, mc_coherence_spectra, k_range, targets
+            )
+    
+    elif pvalue_mode == "fdr":
+        # First compute local p-values
+        local_pvalues = {}
+        for k in targets:
+            samples = np.array(mc_samples[k])
+            local_pvalues[k] = float(np.mean(samples >= obs_pc[k]))
         
-        # One-sided p-value: P(null >= observed)
-        p_values[k] = float(np.mean(samples >= obs_pc[k]))
-        
+        # Apply FDR correction
+        p_values, fdr_significant = compute_fdr_pvalues(local_pvalues, targets)
+        print(f"\n[fdr] FDR-corrected p-values (BH procedure, alpha=0.05):")
+        for k in targets:
+            sig_str = "SIGNIFICANT" if fdr_significant[k] else "not significant"
+            print(f"  k={k}: p_adj={p_values[k]:.6g} ({sig_str})")
+    
+    else:
+        raise ValueError(f"Unknown pvalue_mode: {pvalue_mode}")
+    
+    # Print statistics
+    print("\n[mc] Monte Carlo statistics:")
+    for k in targets:
         z_score = (obs_pc[k] - mc_mean[k]) / mc_std[k] if mc_std[k] > 0 else 0.0
         
         print(f"  k={k}:")
@@ -414,9 +555,13 @@ def monte_carlo_phase_lock(
         print(f"    MC mean     = {mc_mean[k]:.6f}")
         print(f"    MC std      = {mc_std[k]:.6f}")
         print(f"    Z-score     = {z_score:.4f}")
-        print(f"    p-value     = {p_values[k]:.6g}")
+        print(f"    p-value ({pvalue_mode}) = {p_values[k]:.6g}")
     
-    return mc_mean, mc_std, p_values
+    # Return full spectra if maxstat mode
+    if pvalue_mode == "maxstat":
+        return mc_mean, mc_std, p_values, obs_coherence_full, mc_coherence_spectra
+    else:
+        return mc_mean, mc_std, p_values, None, None
 
 
 # -------------------------
@@ -430,6 +575,7 @@ class PhaseLockConfig:
     q_map_path: str
     u_map_path: str
     targets: List[int]
+    k_range: Optional[Tuple[int, int]]  # (kmin, kmax) for full spectrum
     nside_out: int
     lmax_alm: int
     nlat: int
@@ -440,6 +586,8 @@ class PhaseLockConfig:
     projection: str
     mc: int
     null_method: str
+    pvalue_mode: str  # 'local', 'maxstat', or 'fdr'
+    pair_mode: bool  # Compute pair metrics
     seed: int
     report_csv: str
     plot_png: str
@@ -468,6 +616,8 @@ def main() -> None:
     # Target frequencies
     ap.add_argument("--targets", default="137,139",
                     help="Comma-separated target k values (default: 137,139)")
+    ap.add_argument("--k-range", default=None,
+                    help="K range for full spectrum analysis: kmin,kmax (e.g., 130,150)")
     
     # Map processing
     ap.add_argument("--nside-out", type=int, default=256,
@@ -493,8 +643,13 @@ def main() -> None:
     ap.add_argument("--mc", type=int, default=0,
                     help="Number of Monte Carlo samples (default: 0, no MC)")
     ap.add_argument("--null", dest="null_method", 
-                    choices=["phase-shuffle", "phi-roll"], default="phase-shuffle",
+                    choices=["phase-shuffle", "phi-roll", "segment-permute"], default="phase-shuffle",
                     help="Null model method (default: phase-shuffle)")
+    ap.add_argument("--pvalue-mode", default="local",
+                    choices=["local", "maxstat", "fdr"],
+                    help="P-value computation: local (pointwise), maxstat (max over k-range), fdr (Benjamini-Hochberg)")
+    ap.add_argument("--pair-mode", action="store_true",
+                    help="Compute pair metrics (harmonic mean PC for pairs)")
     ap.add_argument("--seed", type=int, default=0,
                     help="Random seed (default: 0)")
     
@@ -508,12 +663,22 @@ def main() -> None:
     
     args = ap.parse_args()
     
+    # Parse k-range
+    k_range = None
+    if args.k_range:
+        k_parts = _parse_ints_csv(args.k_range)
+        if len(k_parts) != 2:
+            print(f"[error] --k-range must be kmin,kmax (got: {args.k_range})")
+            return
+        k_range = (k_parts[0], k_parts[1])
+    
     # Parse configuration
     config = PhaseLockConfig(
         tt_map_path=args.tt_map,
         q_map_path=args.q_map,
         u_map_path=args.u_map,
         targets=_parse_ints_csv(args.targets),
+        k_range=k_range,
         nside_out=args.nside_out,
         lmax_alm=args.lmax_alm,
         nlat=args.nlat,
@@ -524,6 +689,8 @@ def main() -> None:
         projection=args.projection,
         mc=args.mc,
         null_method=args.null_method,
+        pvalue_mode=args.pvalue_mode,
+        pair_mode=args.pair_mode,
         seed=args.seed,
         report_csv=args.report_csv,
         plot_png=args.plot_png,
@@ -545,20 +712,46 @@ def main() -> None:
     print("=" * 70 + "\n")
     
     # Load maps
-    print("[load] Loading TT map...")
-    tt_map = hp.read_map(config.tt_map_path, field=0, verbose=False)
-    tt_map = _ud_grade(tt_map, config.nside_out)
+    # Check if single IQU FITS file (all paths identical)
+    single_iqu_file = (
+        config.tt_map_path == config.q_map_path == config.u_map_path
+    )
     
-    print("[load] Loading Q/U maps...")
-    q_map = hp.read_map(config.q_map_path, field=0, verbose=False)
-    u_map = hp.read_map(config.u_map_path, field=0, verbose=False)
+    if single_iqu_file:
+        print(f"[load] Single IQU FITS detected: {config.tt_map_path}")
+        print("[load] Reading I, Q, U fields from single file...")
+        # Read all three fields from the same file
+        tt_map = hp.read_map(config.tt_map_path, field=0, verbose=False)  # I (intensity/TT)
+        q_map = hp.read_map(config.q_map_path, field=1, verbose=False)   # Q
+        u_map = hp.read_map(config.u_map_path, field=2, verbose=False)   # U
+    else:
+        print("[load] Loading TT map...")
+        tt_map = hp.read_map(config.tt_map_path, field=0, verbose=False)
+        
+        print("[load] Loading Q/U maps...")
+        q_map = hp.read_map(config.q_map_path, field=0, verbose=False)
+        u_map = hp.read_map(config.u_map_path, field=0, verbose=False)
+    
+    # Degrade maps to target nside
+    tt_map = _ud_grade(tt_map, config.nside_out)
     q_map = _ud_grade(q_map, config.nside_out)
     u_map = _ud_grade(u_map, config.nside_out)
     
-    # Compute BB map
+    # Compute BB map via E/B decomposition
+    # Method: Use healpy map2alm_spin to decompose Q,U → E,B modes
+    # This properly separates E-mode (gradient) from B-mode (curl) polarization
     print(f"[load] Computing E/B decomposition (lmax={config.lmax_alm})...")
+    print("[load]   Method: healpy.map2alm_spin with spin=2")
+    print(f"[load]   Input: Q,U maps at nside={config.nside_out}")
+    print(f"[load]   Output: E,B spherical harmonic coefficients up to lmax={config.lmax_alm}")
+    
     almE, almB = _map2alm_spin_compat([q_map, u_map], 2, config.lmax_alm)
+    
+    # Convert B-mode alm back to map
+    # This gives us the pure B-mode signal (cosmological + lensing)
+    print(f"[load] Synthesizing B-mode map from almB...")
     bb_map = hp.alm2map(almB, nside=config.nside_out, lmax=config.lmax_alm, verbose=False)
+    print(f"[load] BB map statistics: mean={np.mean(bb_map):.3e}, std={np.std(bb_map):.3e}")
     
     # Project to equirectangular
     print(f"[project] Projecting TT to {config.nlat}×{config.nlon}...")
@@ -588,10 +781,12 @@ def main() -> None:
     mc_mean = None
     mc_std = None
     p_values = None
+    obs_coherence_full_mc = None
+    mc_coherence_spectra = None
     
     if config.mc > 0:
         print("\n[analysis] Running Monte Carlo validation...")
-        mc_mean, mc_std, p_values = monte_carlo_phase_lock(
+        mc_mean, mc_std, p_values, obs_coherence_full_mc, mc_coherence_spectra = monte_carlo_phase_lock(
             img_tt, img_bb,
             window_size=config.window_size,
             targets=config.targets,
@@ -599,7 +794,9 @@ def main() -> None:
             seed=config.seed,
             stride=config.stride,
             window_name=config.window_name,
-            null_method=config.null_method
+            null_method=config.null_method,
+            pvalue_mode=config.pvalue_mode,
+            k_range=config.k_range
         )
     
     # Print results
