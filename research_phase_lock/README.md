@@ -4,6 +4,113 @@ Self-contained research project for systematic parameter grid experiments using 
 
 **CRITICAL:** This project does NOT modify anything under `forensic_fingerprint/tools/*`. All code lives under `research_phase_lock/` and only wraps/calls the existing tool.
 
+---
+
+## PRE-REGISTRATION: SUCCESS THRESHOLDS AND DECISION RULES
+
+**STATUS:** Pre-registered before large-scale data analysis  
+**PURPOSE:** Prevent p-hacking, data dredging, and confirmation bias
+
+### Primary Endpoints
+
+The following metrics define success/failure of the UBT phase-lock hypothesis:
+
+- **PC_137**: Phase coherence at k=137 (twin prime #1)
+- **PC_139**: Phase coherence at k=139 (twin prime #2)  
+- **p_137**: Monte Carlo p-value at k=137
+- **p_139**: Monte Carlo p-value at k=139
+- **z_137**: Z-score at k=137
+- **z_139**: Z-score at k=139
+- **DeltaPC**: Phase difference metric = |PC_137 - PC_139|
+- **TwinPrimeScore**: Combined metric = min(z_137, z_139) - λ·DeltaPC (λ=2.0)
+
+### Primary Success Criteria
+
+The hypothesis is considered **SUPPORTED** if ALL of the following hold:
+
+1. **Statistical Significance (Individual)**:
+   - p_137 ≤ 0.01 AND p_139 ≤ 0.01
+
+2. **Effect Size (Phase Coherence)**:
+   - PC_137 ≥ 0.50 AND PC_139 ≥ 0.50
+
+3. **Twin Prime Consistency**:
+   - DeltaPC ≤ 0.10 (both targets show similar coherence)
+
+4. **Multiple Testing Correction**:
+   - When grid contains N > 1 configurations, apply Benjamini-Hochberg FDR correction
+   - q_137 ≤ 0.05 AND q_139 ≤ 0.05 (FDR-adjusted significance)
+
+### Secondary Validation Criteria
+
+For **ROBUST** support, signal must additionally survive:
+
+5. **Null Model Tests**:
+   - Coherence survives phase-shuffle null model (p ≤ 0.01)
+   - Coherence survives phi-roll null model (p ≤ 0.01)
+
+6. **Parameter Robustness**:
+   - Signal present across multiple window sizes (at least 3 of 5 tested)
+   - Signal present across multiple nside_out values (at least 2 of 3 tested)
+   - Signal present for both window_func="none" and window_func="hann"
+
+7. **Component Map Consistency** (if Planck data available):
+   - Signal present in SMICA component-separated map
+   - Signal present in NILC component-separated map
+   - Signal present in SEVEM component-separated map
+
+8. **Control Experiments**:
+   - Negative controls show NO phase lock (median PC < 0.20, false positive rate ≤ 10%)
+   - Positive controls show STRONG phase lock (detection rate ≥ 90%)
+
+### Failure Criteria
+
+The hypothesis is considered **REJECTED** if ANY of:
+
+- Primary success criteria not met (p > 0.01 or PC < 0.50 or DeltaPC > 0.10)
+- FDR-corrected q-values exceed 0.05
+- Signal vanishes with different windowing or projection
+- Signal present at many k values (not specific to 137/139)
+- Negative controls show false positives
+- Positive controls fail to detect synthetic signals
+
+### Multiple Testing Strategy
+
+Given M grid configurations and K target frequencies:
+
+- **Total tests**: M × K comparisons
+- **Correction method**: Benjamini-Hochberg FDR at α=0.05
+- **Procedure**:
+  1. Collect all p-values from grid runs
+  2. Compute q-values via BH procedure
+  3. Declare significance only if q ≤ 0.05
+
+### Decision Thresholds Summary
+
+| Metric | Threshold | Direction |
+|--------|-----------|-----------|
+| p-value (individual) | 0.01 | ≤ |
+| q-value (FDR-corrected) | 0.05 | ≤ |
+| Phase coherence (PC) | 0.50 | ≥ |
+| DeltaPC | 0.10 | ≤ |
+| Z-score | 2.58 | ≥ |
+| Negative control FPR | 0.10 | ≤ |
+| Positive control detection rate | 0.90 | ≥ |
+
+### Reporting Standards
+
+All results will report:
+- Raw p-values
+- FDR-corrected q-values  
+- Effect sizes (PC values)
+- Number of tests performed
+- Which success criteria were met/failed
+- Results from ALL grid configurations (not cherry-picked)
+
+**NO POST-HOC CHANGES** to these thresholds are permitted after running experiments.
+
+---
+
 ## Overview
 
 This research harness enables systematic exploration of parameter space for Phase-Lock verification experiments. We test combinations of:
