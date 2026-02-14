@@ -16,6 +16,7 @@ Usage:
 """
 
 import os
+import subprocess
 import sys
 
 # Configuration - Update these paths to your Planck data
@@ -62,7 +63,7 @@ def check_data_files():
     if not all_exist:
         print("ERROR: Some data files are missing.")
         print("\nTo run this example, you need Planck CMB maps.")
-        print("Download from: https://pla.esac.esa.int/")
+        print("See Planck archive documentation for download instructions.")
         print("\nRecommended products:")
         print("  - COM_CMB_IQU-smica_2048_R3.00_full.fits (SMICA)")
         print("  - COM_CMB_IQU-nilc_2048_R3.00_full.fits (NILC)")
@@ -78,38 +79,39 @@ def run_analysis():
     # Ensure output directory exists
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    # Build command
-    cmd_parts = [
-        "python -m forensic_fingerprint.tools.unified_phase_lock_scan",
-        f"--tt-map {TT_MAP}",
-        f"--q-map {Q_MAP}",
-        f"--u-map {U_MAP}",
-        f"--targets {TARGETS}",
-        f"--nside-out {NSIDE_OUT}",
-        f"--window-size {WINDOW_SIZE}",
-        f"--window {WINDOW_FUNC}",
-        f"--projection torus",
-        f"--mc {MC_SAMPLES}",
-        f"--null phase-shuffle",
-        f"--seed 42",
-        f"--report-csv {OUTPUT_DIR}/phase_lock_targets.csv",
-        f"--dump-full-csv {OUTPUT_DIR}/phase_lock_full_spectrum.csv",
-        f"--plot {OUTPUT_DIR}/phase_lock_diagnostic.png",
+    # Build command as list for subprocess
+    cmd = [
+        sys.executable, "-m", "forensic_fingerprint.tools.unified_phase_lock_scan",
+        "--tt-map", TT_MAP,
+        "--q-map", Q_MAP,
+        "--u-map", U_MAP,
+        "--targets", TARGETS,
+        "--nside-out", str(NSIDE_OUT),
+        "--window-size", str(WINDOW_SIZE),
+        "--window", WINDOW_FUNC,
+        "--projection", "torus",
+        "--mc", str(MC_SAMPLES),
+        "--null", "phase-shuffle",
+        "--seed", "42",
+        "--report-csv", f"{OUTPUT_DIR}/phase_lock_targets.csv",
+        "--dump-full-csv", f"{OUTPUT_DIR}/phase_lock_full_spectrum.csv",
+        "--plot", f"{OUTPUT_DIR}/phase_lock_diagnostic.png",
     ]
-    
-    cmd = " \\\n    ".join(cmd_parts)
     
     print("=" * 70)
     print("RUNNING UNIFIED PHASE-LOCK SCAN")
     print("=" * 70)
     print("\nCommand:")
-    print(cmd)
+    print(" \\\n  ".join(cmd))
     print("\n" + "=" * 70 + "\n")
     
-    # Execute
-    exit_code = os.system(cmd)
-    
-    return exit_code == 0
+    # Execute with subprocess.run
+    try:
+        result = subprocess.run(cmd, check=True)
+        return result.returncode == 0
+    except subprocess.CalledProcessError as e:
+        print(f"\nError running analysis: {e}")
+        return False
 
 
 def show_results():
@@ -159,18 +161,22 @@ def show_results():
     print(f"  Diagnostic plot: {OUTPUT_DIR}/phase_lock_diagnostic.png")
     print("=" * 70 + "\n")
     
-    print("INTERPRETATION:")
+    print("INTERPRETATION GUIDELINES:")
     print("-" * 70)
-    print("According to UBT, if the universe is a 'biquaternion machine',")
-    print("TT and BB channels should be phase-locked at k=137/139.")
+    print("This analysis tests whether TT and BB channels show non-random")
+    print("phase relationships at the UBT-predicted frequencies k=137/139.")
     print()
-    print("Expected results for UBT confirmation:")
-    print("  • PC(137) and PC(139) > 0.5 (significant phase coherence)")
-    print("  • p-values < 0.01 (statistically significant)")
-    print("  • Similar PC values for twin-prime pair (137, 139)")
+    print("When evaluating results:")
+    print("  • Compare observed PC against null distribution (MC samples)")
+    print("  • Use maxstat or FDR correction to account for multiple testing")
+    print("  • Inspect full PC spectrum, not just target frequencies")
+    print("  • Consider physical interpretation alongside statistical tests")
     print()
-    print("If these conditions are met, the results support the UBT hypothesis")
-    print("that TT and BB are projections of a unified biquaternion field.")
+    print("Statistical significance does NOT automatically confirm UBT.")
+    print("Results must be interpreted in context of:")
+    print("  - Systematic effects (foregrounds, instrument noise, etc.)")
+    print("  - Alternative explanations for phase coherence")
+    print("  - Consistency across different datasets and methods")
     print("=" * 70 + "\n")
 
 
@@ -191,7 +197,7 @@ def main():
     if not check_data_files():
         print("\n⚠ Cannot proceed without Planck data files.")
         print("Update the DATA_DIR and file paths in this script,")
-        print("or download the data from ESA Planck archive.\n")
+        print("or consult Planck archive documentation for data access.\n")
         return 1
     
     # Run analysis

@@ -116,11 +116,14 @@ python -m forensic_fingerprint.tools.unified_phase_lock_scan \
 - `--stride S`: Window stride (default: W/2 for Welch overlap)
 - `--window FUNC`: Window function: none|hann|hamming (default: none)
 
-**Note**: UBT theory requires `--window none` because biquaternion code in sectors Θ_V and Θ̃_S exhibits high sensitivity to phase edges that standard window functions mask.
+**Note**: The default `--window none` is used for initial analyses. Sensitivity to different windowing functions should be tested to assess robustness of results.
 
 ### Monte Carlo
 - `--mc N`: Number of Monte Carlo samples (default: 0, no MC)
-- `--null METHOD`: Null model: phase-shuffle|phi-roll (default: phase-shuffle)
+- `--null METHOD`: Null model: phase-shuffle|phi-roll|segment-permute (default: phase-shuffle)
+- `--pvalue-mode MODE`: P-value computation: local|maxstat|fdr (default: local)
+- `--k-range KMIN,KMAX`: K range for full spectrum and maxstat (e.g., 130,150)
+- `--pair-mode`: Enable pair metrics (harmonic mean PC for pairs)
 - `--seed N`: Random seed (default: 0)
 
 ### Output
@@ -129,6 +132,26 @@ python -m forensic_fingerprint.tools.unified_phase_lock_scan \
 - `--dump-full-csv PATH`: Output CSV with full spectrum (all k values)
 
 ## Output Files
+
+### Multiple Testing Correction
+
+When testing multiple target frequencies, the risk of false positives increases. Three p-value modes are available:
+
+1. **Local (pointwise)**: Tests each k independently. P(null[k] >= observed[k])
+   - Simple but doesn't account for multiple comparisons
+   - Use when testing a single pre-specified frequency
+
+2. **Maxstat**: Accounts for "look-elsewhere" effect across k-range
+   - P(max_null[k_range] >= observed[k])
+   - More conservative than local p-values
+   - Recommended when scanning a frequency range
+
+3. **FDR (Benjamini-Hochberg)**: Controls false discovery rate
+   - Adjusts p-values to limit expected proportion of false positives
+   - Balances power and false positive control
+   - Recommended when testing multiple pre-specified targets
+
+**Recommendation**: Always report both local and corrected p-values. Use maxstat or FDR when testing multiple frequencies.
 
 ### Target Results CSV
 
@@ -213,14 +236,15 @@ python -m forensic_fingerprint.tools.unified_phase_lock_scan \
     --report-csv quick_check.csv
 ```
 
-### Example 2: Publication-Grade Analysis
+### Example 2: Analysis with Multiple Testing Correction
 
 ```bash
 python -m forensic_fingerprint.tools.unified_phase_lock_scan \
-    --tt-map planck_smica_tt_2048.fits \
-    --q-map planck_smica_q_2048.fits \
-    --u-map planck_smica_u_2048.fits \
+    --tt-map planck_smica_iqu_2048.fits \
+    --q-map planck_smica_iqu_2048.fits \
+    --u-map planck_smica_iqu_2048.fits \
     --targets 137,139 \
+    --k-range 130,150 \
     --nside-out 512 \
     --nlat 1024 \
     --nlon 2048 \
@@ -228,10 +252,11 @@ python -m forensic_fingerprint.tools.unified_phase_lock_scan \
     --window none \
     --mc 5000 \
     --null phase-shuffle \
+    --pvalue-mode maxstat \
     --seed 42 \
-    --report-csv publication/phase_lock_5000mc.csv \
-    --dump-full-csv publication/full_spectrum.csv \
-    --plot publication/phase_lock_diagnostic.png
+    --report-csv analysis/phase_lock_maxstat.csv \
+    --dump-full-csv analysis/full_spectrum.csv \
+    --plot analysis/phase_lock_diagnostic.png
 ```
 
 ## Testing
