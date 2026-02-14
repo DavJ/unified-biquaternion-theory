@@ -362,13 +362,13 @@ def run_rigidity_experiment(
     with open(stability_path, 'w') as f:
         # Convert to JSON-serializable format
         stability_json = {
-            'max_delta': float(stability['max_delta']),
-            'ratio_hit_rate': float(stability['ratio_hit_rate']) if not np.isinf(stability['ratio_hit_rate']) else None,
+            'max_delta': float(stability['max_delta']) if not (np.isinf(stability['max_delta']) or np.isnan(stability['max_delta'])) else None,
+            'ratio_hit_rate': float(stability['ratio_hit_rate']) if not (np.isinf(stability['ratio_hit_rate']) or np.isnan(stability['ratio_hit_rate'])) else None,
             'verdict': stability['verdict'],
-            'baseline_rarity_bits': float(stability['baseline_rarity_bits']),
+            'baseline_rarity_bits': float(stability['baseline_rarity_bits']) if not (np.isinf(stability['baseline_rarity_bits']) or np.isnan(stability['baseline_rarity_bits'])) else None,
             'scales': [float(s) for s in stability['scales']],
             'hit_rates': [float(hr) for hr in stability['hit_rates']],
-            'rarity_bits': [float(rb) if not np.isinf(rb) else None for rb in stability['rarity_bits']],
+            'rarity_bits': [float(rb) if not (np.isinf(rb) or np.isnan(rb)) else None for rb in stability['rarity_bits']],
         }
         json.dump(stability_json, f, indent=2)
     

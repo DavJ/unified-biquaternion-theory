@@ -172,17 +172,16 @@ def test_rigidity_experiment_stability_metrics():
         assert len(metrics['rarity_bits']) == 3
 
 
-def test_rigidity_experiment_different_seeds():
-    """Test that different seeds produce different results."""
-    # Use separate temp directories to avoid timestamp collisions
+def test_rigidity_experiment_reproducibility():
+    """Test that the same seed produces identical results."""
     with tempfile.TemporaryDirectory() as tmpdir1:
-        # Run with seed 111
+        # First run with seed 333
         result1 = subprocess.run(
             [
                 'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
-                '--seed', '111',
+                '--seed', '333',
                 '--space', 'debug',
                 '--outdir', tmpdir1
             ],
@@ -202,13 +201,13 @@ def test_rigidity_experiment_different_seeds():
             metrics1 = json.load(f)
     
     with tempfile.TemporaryDirectory() as tmpdir2:
-        # Run with seed 222
+        # Second run with same seed 333
         result2 = subprocess.run(
             [
                 'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
-                '--seed', '222',
+                '--seed', '333',
                 '--space', 'debug',
                 '--outdir', tmpdir2
             ],
@@ -227,11 +226,24 @@ def test_rigidity_experiment_different_seeds():
         with open(exp_dirs2[0] / "stability_metrics.json", 'r') as f:
             metrics2 = json.load(f)
         
-        # Results should be different (hit rates likely differ with different seeds)
-        # Note: They could theoretically be the same, but with random sampling it's unlikely
-        # We just check both runs completed successfully
-        assert metrics1 is not None
-        assert metrics2 is not None
+        # With the same seed, results should be identical
+        assert metrics1['hit_rates'] == metrics2['hit_rates'], \
+            "Same seed should produce identical hit rates"
+        assert metrics1['verdict'] == metrics2['verdict'], \
+            "Same seed should produce identical verdict"
+        
+        # Check that hit_rates and rarity_bits match (accounting for None values)
+        for i in range(3):
+            assert metrics1['hit_rates'][i] == metrics2['hit_rates'][i], \
+                f"Hit rate at index {i} should be identical"
+            
+            # Handle None values for rarity_bits (inf/nan)
+            if metrics1['rarity_bits'][i] is None:
+                assert metrics2['rarity_bits'][i] is None, \
+                    f"Rarity bits at index {i} should both be None"
+            else:
+                assert abs(metrics1['rarity_bits'][i] - metrics2['rarity_bits'][i]) < 1e-6, \
+                    f"Rarity bits at index {i} should be identical"
 
 
 if __name__ == '__main__':
@@ -252,8 +264,8 @@ if __name__ == '__main__':
     test_rigidity_experiment_stability_metrics()
     print("✓ PASSED")
     
-    print("\nRunning test_rigidity_experiment_different_seeds...")
-    test_rigidity_experiment_different_seeds()
+    print("\nRunning test_rigidity_experiment_reproducibility...")
+    test_rigidity_experiment_reproducibility()
     print("✓ PASSED")
     
     print("\n" + "=" * 60)
