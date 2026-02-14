@@ -1,0 +1,84 @@
+# UBT Experimental Channel Selection - Example Configuration
+# This configuration file demonstrates how to run the channel selection experiments
+
+# Analysis parameters
+analysis:
+  # Range of modes to analyze
+  n_min: 100
+  n_max: 200
+  
+  # Specific modes to highlight (without privileging)
+  highlight_modes: [137, 139]
+  
+  # Number of trials for statistical tests
+  n_trials: 1000
+  
+  # Lambda parameter for channel error model
+  # F(n) = I(n) + lambda * error_rate(n)
+  lambda: 0.5
+
+# Output settings
+output:
+  # Base directory for all results
+  base_dir: results
+  
+  # Generate plots
+  generate_plots: true
+  
+  # Save intermediate data
+  save_csv: true
+  
+  # DPI for saved plots
+  plot_dpi: 150
+
+# Interference functional settings
+interference:
+  # Weights for interference components
+  # I(n) = alpha * aliasing + beta * overlap
+  alpha: 1.0
+  beta: 1.0
+
+# Jacobi packet analysis settings
+jacobi:
+  # Centers to analyze
+  centers: [127, 131, 137, 139, 149, 151, 157]
+  
+  # Width of scan around each center
+  width: 20
+  
+  # Imaginary time parameter
+  tau: 0.1
+
+# Channel error model settings
+channel:
+  # Base error rate
+  base_error: 0.01
+  
+  # Target reliability for redundancy calculation
+  target_reliability: 0.999
+
+# Devil's advocate test settings
+devil_advocate:
+  # Confidence level for bootstrap CI
+  confidence: 0.95
+  
+  # Percentile threshold for stability regions
+  stability_threshold: 25
+  
+  # Run bonus tests for neighboring primes
+  test_neighbors: true
+
+# Validation settings
+validation:
+  # Run full scan from n_min to n_max
+  full_scan: true
+  
+  # Extended scan range (optional)
+  extended_min: 50
+  extended_max: 300
+  
+  # Permutation test parameters
+  permutation_tests: true
+  
+  # Generate statistical summary
+  statistical_summary: true
