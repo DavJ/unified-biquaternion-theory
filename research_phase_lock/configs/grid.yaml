@@ -1,0 +1,207 @@
+# UBT Phase-Lock Parameter Grid Configuration
+# 
+# This configuration defines the complete parameter space for systematic
+# phase-lock verification experiments.
+#
+# CRITICAL: All success thresholds and decision rules are pre-registered
+# in README.md before running experiments.
+
+# ============================================================================
+# GLOBAL SETTINGS
+# ============================================================================
+global:
+  # Output directory for all runs
+  output_root: "research_phase_lock/outputs"
+  
+  # Random seed for reproducibility (set to null for random)
+  seed: 42
+  
+  # Maximum number of grid runs (null = unlimited)
+  # Use this to limit grid size during testing
+  max_runs: null
+  
+  # Maximum parallel workers for grid execution
+  max_workers: 4
+  
+  # Verbosity level (0=quiet, 1=normal, 2=verbose)
+  verbosity: 1
+
+# ============================================================================
+# DATA CONFIGURATION
+# ============================================================================
+data:
+  # Data mode: "synthetic" or "planck"
+  mode: "synthetic"
+  
+  # Planck CMB data paths (used when mode="planck")
+  planck:
+    tt_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+    q_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+    u_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+    # Alternative: use different components
+    # tt_map: "data/planck_pr3/COM_CMB_IQU-nilc_2048_R3.00_full.fits"
+    # tt_map: "data/planck_pr3/COM_CMB_IQU-sevem_2048_R3.00_full.fits"
+  
+  # Synthetic data parameters (used when mode="synthetic")
+  synthetic:
+    # Map dimensions for synthetic HEALPix generation
+    nlat: 512
+    nlon: 1024
+    
+    # Target k-values to embed phase-locked signals
+    # [137, 139] = twin primes predicted by UBT
+    locked_targets: [137, 139]
+    
+    # Noise characteristics
+    noise_sigma: 0.1
+    
+    # Phase offset between locked channels (radians)
+    # Small offset tests robustness of detection
+    phase_offset_rad: 0.1
+
+# ============================================================================
+# PARAMETER GRID (Cartesian Product)
+# ============================================================================
+grid:
+  # Target k-values to analyze
+  # Format: comma-separated integers as strings
+  targets:
+    - "137,139"                                            # Twin primes (primary)
+    - "134,135,136,137,138,139,140,141,142,143"          # Full Jacobi packet
+  
+  # Projection types
+  projection:
+    - "torus"     # Primary: toroidal projection (periodic boundaries)
+    # - "lonlat"  # Alternative: longitude-latitude projection
+  
+  # Window sizes (W×W segments)
+  window_size:
+    - 64
+    - 96
+    - 128
+    - 192
+    - 256
+  
+  # HEALPix output resolution (nside parameter)
+  nside_out:
+    - 128
+    - 256
+    - 512
+  
+  # Grid resolution (latitude points)
+  # Must be compatible with nside_out
+  nlat:
+    - 256
+    - 512
+    - 1024
+  
+  # Grid resolution (longitude points)
+  # Typically 2*nlat for toroidal projection
+  nlon:
+    - 512
+    - 1024
+    - 2048
+  
+  # Window function applied to each segment
+  window_func:
+    - "none"   # Primary: no windowing (sharp boundaries)
+    - "hann"   # Robustness check: Hann window (smooth boundaries)
+  
+  # Null models for Monte Carlo significance testing
+  null_models:
+    - "phase-shuffle"   # Primary: randomize phases, preserve power spectrum
+    - "phi-roll"        # Secondary: longitude rolling (preserves TT, randomizes BB)
+  
+  # Monte Carlo sample sizes
+  mc_samples:
+    - 200    # Quick test
+    - 500    # Standard
+    - 1000   # High confidence
+  
+  # Random seeds for replicates
+  # Multiple seeds test stability across random initializations
+  seeds:
+    - 0
+    - 1
+    - 2
+
+# ============================================================================
+# SUCCESS THRESHOLDS (Pre-Registered Decision Rules)
+# ============================================================================
+# These thresholds are declared BEFORE running experiments.
+# See README.md for full specification.
+#
+# Primary endpoints:
+#   - PC_137: Phase coherence at k=137
+#   - PC_139: Phase coherence at k=139
+#   - p_137: p-value at k=137
+#   - p_139: p-value at k=139
+#   - z_137: z-score at k=137
+#   - z_139: z-score at k=139
+#   - DeltaPC = |PC_137 - PC_139|
+#   - TwinPrimeScore = min(z_137, z_139) - lambda*DeltaPC
+#
+# Primary success criteria:
+#   1. p_137 <= 0.01 AND p_139 <= 0.01
+#   2. PC_137 >= 0.50 AND PC_139 >= 0.50
+#   3. DeltaPC <= 0.10
+#
+# Secondary criteria:
+#   4. Survives both null models (phase-shuffle AND phi-roll)
+#   5. Survives multiple component maps (if available)
+#   6. Survives modest parameter perturbations
+#
+# Multiple testing correction:
+#   - Compute BH-FDR q-values across all grid runs
+#   - Success requires q <= 0.05 for both k=137 and k=139
+
+success_thresholds:
+  # Primary p-value threshold (individual tests)
+  p_threshold: 0.01
+  
+  # FDR-corrected q-value threshold (grid-wide)
+  q_threshold: 0.05
+  
+  # Minimum phase coherence
+  pc_min: 0.50
+  
+  # Maximum phase difference between twin primes
+  delta_pc_max: 0.10
+  
+  # Twin prime score parameter (lambda for penalty)
+  lambda: 2.0
+  
+  # Minimum z-score for significance
+  z_min: 2.58  # Corresponds to p ≈ 0.01 (two-tailed)
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+output:
+  # Save full spectrum (all k values) in addition to targets
+  save_full_spectrum: true
+  
+  # Generate diagnostic plots for each run
+  generate_plots: true
+  
+  # Save intermediate data (e.g., segment-wise results)
+  save_intermediate: false
+  
+  # Compression for large output files
+  compress: true
+
+# ============================================================================
+# ADVANCED OPTIONS
+# ============================================================================
+advanced:
+  # Skip completed runs (based on run_id hash)
+  resume_on_restart: true
+  
+  # Store full provenance (git commit, environment, timestamps)
+  store_provenance: true
+  
+  # Validate outputs after each run
+  validate_outputs: true
+  
+  # Clean up temporary files after successful run
+  cleanup_temp: true

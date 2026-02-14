@@ -1,0 +1,241 @@
+# UBT Phase-Lock Control Experiments Configuration
+#
+# This configuration defines control experiments to validate the analysis pipeline
+# and establish baseline expectations.
+#
+# Control Types:
+#   1. NEGATIVE CONTROLS: Should NOT show phase lock
+#   2. POSITIVE CONTROLS: Should DEFINITELY show phase lock
+#
+# These controls provide essential falsification tests and calibration.
+
+# ============================================================================
+# GLOBAL SETTINGS
+# ============================================================================
+global:
+  output_root: "research_phase_lock/outputs/controls"
+  seed: 12345
+  verbosity: 1
+
+# ============================================================================
+# NEGATIVE CONTROLS (Should show NO phase lock)
+# ============================================================================
+# These experiments test for false positives.
+# If negative controls show significant phase lock, the method is suspect.
+
+negative_controls:
+  # NC1: Pure Gaussian noise (uncorrelated channels)
+  pure_noise:
+    enabled: true
+    description: "Independent Gaussian noise in TT and BB channels"
+    n_replicates: 10
+    params:
+      nlat: 512
+      nlon: 1024
+      noise_sigma: 1.0
+      noise_type: "gaussian"
+      correlation: 0.0  # No correlation between channels
+      locked_targets: []  # No embedded signals
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]
+  
+  # NC2: Perfectly random phases (uniform phase distribution)
+  random_phases:
+    enabled: true
+    description: "Uniform random phases at all k"
+    n_replicates: 10
+    params:
+      nlat: 512
+      nlon: 1024
+      phase_distribution: "uniform"
+      power_spectrum: "white"  # Flat power spectrum
+      locked_targets: []
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]
+  
+  # NC3: Wrong targets (k != 137,139)
+  wrong_targets:
+    enabled: true
+    description: "Phase-locked signals at k=100,200 (not UBT predictions)"
+    n_replicates: 5
+    params:
+      nlat: 512
+      nlon: 1024
+      locked_targets: [100, 200]  # Deliberately wrong
+      noise_sigma: 0.1
+      phase_offset_rad: 0.0
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]  # Look for UBT targets (should find nothing)
+  
+  # NC4: Phase-scrambled real data
+  scrambled_planck:
+    enabled: false  # Enable only if Planck data available
+    description: "Planck data with scrambled phases"
+    n_replicates: 5
+    params:
+      planck:
+        tt_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+        q_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+        u_map: "data/planck_pr3/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+      scramble_phases: true  # Randomize phases before analysis
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]
+
+# ============================================================================
+# POSITIVE CONTROLS (Should show STRONG phase lock)
+# ============================================================================
+# These experiments test for false negatives (method sensitivity).
+# If positive controls fail, the method is too insensitive.
+
+positive_controls:
+  # PC1: Perfect phase lock (zero offset)
+  perfect_lock:
+    enabled: true
+    description: "Perfect phase lock at k=137,139 with zero offset"
+    n_replicates: 10
+    params:
+      nlat: 512
+      nlon: 1024
+      locked_targets: [137, 139]
+      noise_sigma: 0.01  # Minimal noise
+      phase_offset_rad: 0.0  # Perfect lock
+      lock_strength: 1.0  # Maximum coherence
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]
+    expected_results:
+      pc_min: 0.95  # Should see very high PC
+      p_max: 0.001  # Should be highly significant
+  
+  # PC2: Strong lock with moderate noise
+  strong_lock_noisy:
+    enabled: true
+    description: "Strong phase lock at k=137,139 with moderate noise"
+    n_replicates: 10
+    params:
+      nlat: 512
+      nlon: 1024
+      locked_targets: [137, 139]
+      noise_sigma: 0.2  # Moderate noise
+      phase_offset_rad: 0.1  # Small offset
+      lock_strength: 0.8  # Strong but not perfect
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["137,139"]
+    expected_results:
+      pc_min: 0.60  # Should still see clear signal
+      p_max: 0.01
+  
+  # PC3: Weak lock (near detection threshold)
+  weak_lock:
+    enabled: true
+    description: "Weak phase lock at detection threshold"
+    n_replicates: 10
+    params:
+      nlat: 512
+      nlon: 1024
+      locked_targets: [137, 139]
+      noise_sigma: 0.5  # High noise
+      phase_offset_rad: 0.2  # Moderate offset
+      lock_strength: 0.3  # Weak signal
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [1000]  # More samples for weak signal
+      targets: ["137,139"]
+    expected_results:
+      pc_min: 0.30  # Marginal detection
+      p_max: 0.05
+  
+  # PC4: Full Jacobi packet
+  jacobi_full:
+    enabled: true
+    description: "Phase lock across full Jacobi cluster (k=134-143)"
+    n_replicates: 5
+    params:
+      nlat: 512
+      nlon: 1024
+      locked_targets: [134, 135, 136, 137, 138, 139, 140, 141, 142, 143]
+      noise_sigma: 0.1
+      phase_offset_rad: 0.05
+      lock_strength: 0.7
+    grid:
+      projection: ["torus"]
+      window_size: [128]
+      nside_out: [256]
+      window_func: ["none"]
+      null_models: ["phase-shuffle"]
+      mc_samples: [500]
+      targets: ["134,135,136,137,138,139,140,141,142,143"]
+    expected_results:
+      pc_min: 0.50
+      p_max: 0.01
+
+# ============================================================================
+# CONTROL VALIDATION CRITERIA
+# ============================================================================
+# Criteria for declaring controls successful
+
+validation_criteria:
+  negative_controls:
+    # Negative controls should NOT exceed these thresholds
+    max_false_positive_rate: 0.10  # At most 10% false positives
+    max_median_pc: 0.20  # Median PC should be low
+    max_median_z: 1.0    # Median z-score should be small
+  
+  positive_controls:
+    # Positive controls should exceed these thresholds
+    min_detection_rate: 0.90  # At least 90% should detect signal
+    # Specific thresholds defined per control above
+
+# ============================================================================
+# OUTPUT CONFIGURATION
+# ============================================================================
+output:
+  # Generate control summary report
+  generate_summary: true
+  summary_path: "research_phase_lock/results/controls_summary.csv"
+  
+  # Generate diagnostic plots
+  generate_plots: true
+  plot_dir: "research_phase_lock/results/plots/controls"
+  
+  # Detailed validation report
+  validation_report: "research_phase_lock/results/controls_validation.md"
