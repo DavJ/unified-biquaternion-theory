@@ -1,0 +1,41 @@
+# Grid Configuration v1
+# =====================
+# YAML-driven parameter grid for Phase-Lock A/B/C/D verification
+
+# Global settings
+global:
+  output_root: "research_phase_lock/results"
+  seed: 42
+  max_runs: null  # null = no limit, or set to integer to limit runs
+
+# Data configuration
+data:
+  mode: "synthetic"  # "planck" or "synthetic"
+  
+  # Planck data configuration (used when mode=planck)
+  planck:
+    tt_map: "data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+    q_map: "data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+    u_map: "data/planck_pr3/maps/raw/COM_CMB_IQU-smica_2048_R3.00_full.fits"
+  
+  # Synthetic data configuration (used when mode=synthetic)
+  synthetic:
+    nlat: 256
+    nlon: 512
+    locked_targets: [137, 139]  # Embed coherent waves at these k values
+    noise_sigma: 0.1
+    phase_offset_rad: 0.1
+
+# Grid parameters (cartesian product)
+# Each parameter can be a single value or a list
+# The runner will enumerate all combinations
+grid:
+  projection: ["torus", "lonlat"]
+  window: ["none", "hann"]
+  window_size: [64, 128, 256]
+  nside_out: [128, 256]
+  nlat: [512]
+  nlon: [1024]
+  null: ["phase-shuffle", "phi-roll"]
+  mc: [100, 500]
+  targets: ["137,139", "134,135,136,137,138,139,140,141,142,143"]
