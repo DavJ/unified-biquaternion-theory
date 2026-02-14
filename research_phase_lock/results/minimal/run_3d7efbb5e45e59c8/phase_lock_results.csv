@@ -1,3 +1,0 @@
-k_target,phase_coherence,mc_mean,mc_std,z_score,p_value,window_size,stride,window_func,projection,mc_samples
-137,nan,nan,nan,0,0.0,64,32,none,torus,10
-139,nan,nan,nan,0,0.0,64,32,none,torus,10
