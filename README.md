@@ -2,6 +2,17 @@
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
+## 🏆 Nobel Prize Summary Documents
+
+**NEW:** Comprehensive summaries of UBT prepared for Nobel Prize consideration:
+
+- **[Nobel Prize Executive Summary](NOBEL_PRIZE_EXECUTIVE_SUMMARY.md)** - One-page overview of key achievements
+- **[Nobel Prize Full Summary](NOBEL_PRIZE_SUMMARY.md)** - Complete technical summary with detailed comparisons
+
+These documents provide accessible overviews of UBT's revolutionary unification of General Relativity and Quantum Mechanics, quantitative predictions, and scientific impact.
+
+---
+
 ## ⚠️ Repository Organization
 
 **UBT is organized into three distinct layers to maintain scientific clarity:**
