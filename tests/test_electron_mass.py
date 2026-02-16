@@ -120,9 +120,12 @@ def test_qed_conversion_roundtrip():
 
 def test_electron_msbar_mass_computed():
     """
-    Test that MSbar mass is computed without errors.
+    Test that MSbar mass is computed without errors (legacy validation mode).
+    
+    This test uses derived_mode=False to validate against PDG reference.
+    For theory-derived tests, see test_me_alpha_no_pdg.py
     """
-    mbar = compute_lepton_msbar_mass("e", mu=None)
+    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
     
     # Basic sanity checks
     assert mbar > 0, "MSbar mass must be positive"
@@ -135,11 +138,15 @@ def test_electron_mass_precision():
     """
     Main precision test: electron pole mass must match experiment within tolerance.
     
+    This test uses derived_mode=False to validate against PDG reference.
+    For theory-derived tests, see test_me_alpha_no_pdg.py
+    
     Current target: relative error < 10⁻⁴
     TODO: Tighten to < 10⁻⁵ after implementing 2-loop QED conversion
     """
     # Compute MSbar mass at μ = m̄_e (self-consistent choice)
-    mbar = compute_lepton_msbar_mass("e", mu=None)
+    # Use legacy mode for PDG validation
+    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
     
     # Get α at this scale
     alpha_mu = ubt_alpha_msbar(mbar)
@@ -168,11 +175,12 @@ def test_electron_mass_precision_target_10minus5():
     Future target test: relative error < 10⁻⁵.
     
     This test is marked as xfail (expected to fail) until we implement 2-loop QED.
+    Uses legacy mode for PDG validation.
     """
     pytest.skip("TODO: Implement 2-loop QED self-energy correction")
     
     # Same calculation as test_electron_mass_precision
-    mbar = compute_lepton_msbar_mass("e", mu=None)
+    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
     alpha_mu = ubt_alpha_msbar(mbar)
     m_pole = pole_from_msbar_lepton(mbar, mu=mbar, alpha_mu=alpha_mu)
     
@@ -190,14 +198,17 @@ def test_electron_mass_precision_target_10minus5():
 def test_fixed_point_convergence():
     """
     Test that fixed-point solver converges to self-consistent solution.
+    Uses legacy mode for PDG validation.
     """
     initial_guess = 0.510  # MeV
     
-    mbar_fixed = solve_msbar_fixed_point(initial_guess, lepton="e", tol=1e-10)
+    mbar_fixed = solve_msbar_fixed_point(
+        initial_guess, lepton="e", derived_mode=False, tol=1e-10
+    )
     
     # Verify it's a fixed point: μ = m̄(μ)
     alpha_mu = ubt_alpha_msbar(mbar_fixed)
-    mbar_check = compute_lepton_msbar_mass("e", mu=mbar_fixed)
+    mbar_check = compute_lepton_msbar_mass("e", mu=mbar_fixed, derived_mode=False)
     
     rel_diff = abs(mbar_check - mbar_fixed) / mbar_fixed
     assert rel_diff < 1e-9, (
