@@ -18,6 +18,16 @@ This analysis examines 15 scan datasets to determine:
 
 ### Mod-4 Prime Class Test
 
+**Result**: Analysis could not be completed due to insufficient prime data.
+
+- Most datasets only contain k=137 and k=139 (2 values, both prime)
+- Cannot perform class comparison with only one prime per class
+- Need broader integer scans covering [100-200] range
+- Estimated requirement: 20+ primes for statistical power
+
+**Verdict**: Test **SKIPPED** - data limitation, not methodological issue.
+
+See `mod4_class_energy.md` for detailed explanation and recommendations for future scans.
 
 ## Pipeline Dependencies
 
