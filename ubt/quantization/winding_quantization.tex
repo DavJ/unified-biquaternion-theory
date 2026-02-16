@@ -477,6 +477,99 @@ Condition (3) is already satisfied by the Standard Model (all observed charges a
     \item \textbf{Speculative}: Direct phase winding spectroscopy (requires quantum gravity probes)
 \end{itemize}
 
+\section{Quantization Status: LOCKED}
+
+\subsection{Derivation Status Summary}
+
+\begin{theorem}[Quantization Lock Status]
+The following quantization conditions are \textbf{MATHEMATICALLY DERIVED} from Layer-0 topology:
+\begin{align}
+n_\psi &\in \Z \quad \text{(from } \pi_1(U(1)) = \Z \text{)} \label{eq:derived_winding} \\
+n_{\text{hol}} &\in \Z \quad \text{(from Dirac quantization)} \label{eq:derived_holonomy} \\
+c_1 &\in \Z \quad \text{(from bundle topology)} \label{eq:derived_chern}
+\end{align}
+These are \textbf{topologically protected} and \textbf{NOT free parameters}.
+\end{theorem}
+
+\begin{theorem}[Prime Restriction Status]
+\label{thm:prime_structure_not_derived}
+The restriction of winding numbers to primes:
+\begin{equation}
+n_\psi \in \mathcal{P} = \{2, 3, 5, 7, 11, 13, \ldots\}
+\end{equation}
+is \textbf{NOT DERIVED} from:
+\begin{enumerate}
+    \item Topological quantization (Theorem~\ref{thm:winding_quantization} allows all $n \in \Z$)
+    \item Energy minimization (favors $n=0$ or $n=1$, not primes)
+    \item Current UBT axioms (no prime-specific structure identified)
+\end{enumerate}
+\textbf{Verdict}: \boxed{\text{prime\_structure\_status: NOT DERIVED}}
+\end{theorem}
+
+\begin{corollary}[Prime-Gating is Heuristic]
+Layer-2 procedures restricting scans to prime values $n \in \{2, 3, 5, 7, \ldots, 137, \ldots\}$ are \textbf{heuristic selections}, not Layer-0 predictions. This must be clearly stated in all publications.
+\end{corollary}
+
+\subsection{Specific Value $n=137$: Calibration Statement}
+
+\begin{definition}[Calibration vs Derivation]
+\textbf{Calibration}: Adjusting a parameter to match observations (post-hoc fitting).
+
+\textbf{Derivation}: Computing a parameter from first principles with no free input (a priori prediction).
+\end{definition}
+
+\begin{theorem}[Status of $n=137$]
+The choice $n_\psi = 137$ is an \textbf{EMPIRICAL CALIBRATION}, not a derivation:
+\begin{equation}
+n_\psi = 137 \text{ is chosen to match } \alpha^{-1}(m_e) \approx 137.036 \text{ (CODATA 2018)}
+\end{equation}
+\end{theorem}
+
+\textbf{Evidence against uniqueness}:
+\begin{itemize}
+    \item Energy analysis: $E[n] \sim n^2/R_\psi^2$ is minimized at $n=0$, not $n=137$
+    \item Stability scans: Higher primes (e.g., $n=199, 197, 193$) score better in certain metrics
+    \item No anomaly cancellation uniquely at $n=137$ has been established
+\end{itemize}
+
+\textbf{Honest communication}:
+\begin{itemize}
+    \item ❌ Avoid: ``UBT predicts $\alpha^{-1} = 137$ from pure geometry''
+    \item ✅ Use: ``UBT derives $n_\psi \in \Z$; we calibrate $n=137$ to match observed $\alpha^{-1}$''
+\end{itemize}
+
+\subsection{What IS Derived: Topological Invariants}
+
+\textbf{Rigorously derived from Layer-0}:
+\begin{enumerate}
+    \item \textbf{Integer winding}: $n_\psi \in \Z$ (Theorem~\ref{thm:winding_quantization})
+    \item \textbf{Integer holonomy}: $n_{\text{hol}} \in \Z$ (Dirac quantization)
+    \item \textbf{Integer Chern class}: $c_1 \in \Z$ (bundle topology)
+\end{enumerate}
+
+\textbf{Topological protection}: These invariants cannot change under continuous deformations of $\Theta$ or smooth changes in metric $g_{\mu\nu}$.
+
+\textbf{Gauge invariance}: All three invariants are gauge-invariant observables.
+
+\subsection{What is NOT Derived: Heuristics}
+
+\textbf{NOT derived from Layer-0, remains heuristic}:
+\begin{enumerate}
+    \item \textbf{Prime restriction} $n \in \mathcal{P}$ (Theorem~\ref{thm:prime_structure_not_derived})
+    \item \textbf{Specific value $n=137$} (empirical calibration)
+    \item \textbf{RS(255,201) code} (engineering optimization, not topology)
+    \item \textbf{Discretization grid} (computational choice)
+\end{enumerate}
+
+\textbf{Research paths to derive}:
+\begin{itemize}
+    \item Stability functional $V_{\text{eff}}(n)$ with minima at primes?
+    \item Representation theory of $\mathrm{Aut}(\B)$ with prime indexing?
+    \item Anomaly cancellation uniquely at $n=137$?
+\end{itemize}
+
+\textbf{Current status}: None of these paths have succeeded. Until they do, prime-gating and $n=137$ remain heuristic.
+
 \section{Conclusion}
 
 We have derived quantization conditions for UBT from Layer-0 topological structure:
@@ -490,9 +583,9 @@ These are \textbf{topologically protected, gauge-invariant, and representation-i
 
 \textbf{What remains heuristic}:
 \begin{enumerate}
-    \item Prime restriction (not derivable from current formulation)
-    \item Specific value $n=137$ (empirical calibration, not unique minimum)
-    \item Connection to RS codes and discretization grids
+    \item Prime restriction: \boxed{\text{NOT DERIVED}} (Theorem~\ref{thm:prime_structure_not_derived})
+    \item Specific value $n=137$: \boxed{\text{EMPIRICAL CALIBRATION}} (not unique minimum)
+    \item Connection to RS codes and discretization grids: \boxed{\text{ENGINEERING}}
 \end{enumerate}
 
 \textbf{Falsification}: Observation of fractional winding, continuous topological charge, or violation of charge quantization would falsify UBT.
@@ -502,8 +595,9 @@ This document satisfies the acceptance criteria for Deliverable B:
     \item ✓ Explicit definition of cycles ($\psi$-circle, loops $\gamma$)
     \item ✓ Integer invariants (winding $n_\psi$, holonomy $n_{\text{hol}}$, Chern $c_1$)
     \item ✓ Connection to discrete labels $n$ via topology
-    \item ✓ Prime structure addressed: \textbf{not derivable}, remains heuristic
+    \item ✓ Prime structure addressed: \textbf{NOT DERIVED}, explicitly stated with proof
     \item ✓ Falsification hook: fractional winding, charge violations
+    \item ✓ Clear verdict: \texttt{prime\_structure\_status: NOT DERIVED}
 \end{enumerate}
 
 \bibliographystyle{plain}

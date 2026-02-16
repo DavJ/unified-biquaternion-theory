@@ -12,6 +12,38 @@ This document provides a comprehensive mapping from Layer-2 discretization proce
 
 **Key Finding**: Layer-2 introduces **6 additional engineering/heuristic choices** beyond what can be derived from Layer-0 topology and symmetry. We classify each choice, provide mapping equations with error estimates, and outline a plan to either derive or eliminate each heuristic.
 
+### CRITICAL STATEMENT: Layer-2 is an Estimator, Not a Physics Source
+
+**What Layer-2 IS**:
+- ✅ A numerical estimator of Layer-0 invariants
+- ✅ A computational tool for finite-resolution approximation
+- ✅ A signal processing framework with engineering choices
+
+**What Layer-2 is NOT**:
+- ❌ A source of fundamental physics constants
+- ❌ A derivation engine for α⁻¹ = 137
+- ❌ An ontologically fundamental structure
+
+**Explicit Relationship**:
+```
+Layer-2 Output = f(Layer-0 Invariants, Heuristic Choices, Numerical Errors)
+                  ^^^^^^^^^^^^^^^^      ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+                  physics               engineering       computation
+
+Layer-2 does NOT produce I_spec.
+Layer-2 ESTIMATES I_spec with controlled + heuristic errors.
+```
+
+**Avoid False Claims**:
+- ❌ "Layer-2 proves α⁻¹ = 137"
+- ❌ "Prime-gating is topologically required"
+- ❌ "RS codes are fundamental to quantum geometry"
+
+**Correct Statements**:
+- ✅ "Layer-2 estimates Layer-0 invariants with δ_disc + δ_finite + δ_prime errors"
+- ✅ "Prime-gating is a heuristic scan strategy, not a derived constraint"
+- ✅ "n=137 is calibrated to observations, not predicted from first principles"
+
 ---
 
 ## 1. Mapping Diagram: Layer-2 → Layer-0 Invariants
@@ -84,14 +116,27 @@ where:
 - `w_n` are weights (currently: 1 if n prime, 0 otherwise — **HEURISTIC**)
 - Discretization: continuous spectrum → finite sample
 
+**Explicit Estimator Equation**:
+```
+I_est ≈ I + δ_disc + δ_finite + δ_window + δ_prime
+
+where:
+  I           = Tr[f(D²/Λ²)]                    [Layer-0 true value]
+  δ_disc      = O(Λ²/N_grid²)                   [discretization error]
+  δ_finite    = Σ_{n>K} f(λ_n/Λ²)              [truncation error]
+  δ_window    = ∫ [f_window(k) - 1] f(k) dk    [windowing bias]
+  δ_prime     = Σ_{n∈Z\P} f(λ_n/Λ²)            [prime-gating bias]
+```
+
 **Error Decomposition**:
 ```
-I_spec - Î_spec = δ_disc + δ_finite + δ_prime
+I_spec - Î_spec = δ_disc + δ_finite + δ_prime + δ_window
 ```
 where:
-- `δ_disc` = discretization error (from finite grid)
-- `δ_finite` = finite-sample error (incomplete spectrum)
-- `δ_prime` = prime-gating bias (**UNQUANTIFIED**)
+- `δ_disc` = discretization error (from finite grid) — **QUANTIFIABLE**
+- `δ_finite` = finite-sample error (incomplete spectrum) — **QUANTIFIABLE**
+- `δ_prime` = prime-gating bias — **UNQUANTIFIED, HEURISTIC**
+- `δ_window` = signal processing windowing effects — **QUANTIFIABLE**
 
 **Mapping Table**:
 
@@ -100,6 +145,17 @@ where:
 | I_spec[Θ] | Σ f(λ_n/Λ²) | δ_disc + δ_finite | Controlled |
 | Prime restriction | w_n = δ_{n∈P} | δ_prime | **Heuristic** |
 | Test function f | f(x) = e^(-x) | Choice-dependent | Assumed |
+
+**Explicit Estimator Form**:
+Layer-2 provides an estimator, NOT a fundamental constant producer:
+```
+I_spec[Θ]_estimated = Σ_{n∈P, n≤K} f(λ_n/Λ²) + O(e^(-λ_K/Λ²)) + δ_prime + O(1/N_grid²)
+                       ^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^   ^^^^^^^   ^^^^^^^^^^^^
+                       finite sum                 truncation         prime     discretization
+                       (computable)               (controlled)       (HEUR)    (controlled)
+```
+
+**CRITICAL**: Layer-2 does NOT produce I_spec; it ESTIMATES it with quantified and unquantified errors.
 
 ### 2.2 Winding Number ↔ n=137
 
