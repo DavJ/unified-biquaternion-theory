@@ -1,109 +1,107 @@
-# Mod-4 Class Energy Test Results
+## Mod-4 Class Energy Test
 
-## Summary
+**Source**: bb_scan_int_100_200.csv
+**Signal metric**: psd_obs
 
-**Result**: Analysis skipped for all datasets due to insufficient prime data.
+### Prime Statistics
 
-## Reason
+- Total primes analyzed: 21
+- Class C1 (p≡1 mod 4): 10 primes
+- Class C3 (p≡3 mod 4): 11 primes
 
-The mod-4 class energy test requires:
-1. Multiple prime numbers in the scan range
-2. At least 2 primes in each class (p≡1 mod 4 and p≡3 mod 4)
+### Energy Analysis
 
-## Findings
+**Raw Energy:**
+- E(C1) = 1.548392e+01
+- E(C3) = 1.466743e+01
+- ΔE = E(C1) - E(C3) = 8.164962e-01
 
-Most datasets in the `scans/` directory fall into one of these categories:
+**Z-score Energy (robust):**
+- E_z(C1) = 2.187421e+01
+- E_z(C3) = 1.471030e+01
+- ΔE_z = 7.163901e+00
 
-### Category 1: Targeted 137/139 Scans
-Files like `*k137_139*.csv` contain **only 2 data points**:
-- k=137 (prime, 137 ≡ 1 mod 4)
-- k=139 (prime, 139 ≡ 3 mod 4)
+### Permutation Test Result
 
-With only one prime in each class, statistical testing is impossible.
+- Number of permutations: 10000
+- Observed |ΔE|: 8.164962e-01
+- p-value (two-tailed): 8.377000e-01
 
-**Example**: `tt_fft2d_torus_welch_k137_139.csv`
-```
-Rows: 2
-Values: k=137, k=139
-Primes: 2 (one per class)
-```
+**Interpretation:**
 
-### Category 2: Fine-grained Scans
-Files like `bb_scan_100_200.csv` contain 600+ rows, but most are **non-integer** values (e.g., 138.402, 138.404).
+- **Verdict**: NOT SIGNIFICANT
+- No significant difference detected between mod-4 classes (p = 8.377000e-01)
 
-After filtering to integers:
-- Only 3 integer values found
-- Only 2 are prime (137, 139)
-- Still insufficient for class testing
-
-**Example**: `bb_scan_100_200.csv`
-```
-Total rows: 604
-Integer n: 3
-Prime n: 2 (137, 139)
-```
-
-### Category 3: Broader Range Scans
-Some files cover wider ranges (e.g., `scan_137_128_146.csv`), but the analysis script found:
-- Most non-prime values
-- Fewer than 10 primes total
-- Not enough for reliable permutation testing
-
-## Implications
-
-The current scan data is **optimized for 137/139 comparison**, not for prime class structure analysis.
-
-To properly test the mod-4 hypothesis, we would need:
-
-1. **Broader integer scans**: n ∈ [100, 200] with integer steps
-2. **More primes**: At least 20-30 primes to detect class differences
-3. **Unbiased protocol**: Not specifically targeting 137/139
-
-## Recommendation
-
-Design new scans specifically for mod-4 testing:
-- Scan all integers n ∈ [101, 199]
-- Filter to primes post-analysis
-- Compare class energies with adequate sample size
-- Use multiple protocols (TT, EE, BB) for consistency
-
-## Data Needed
-
-For statistical power at α=0.05 with 80% power:
-- Minimum: ~20 primes (10 per class)
-- Recommended: ~50 primes (25 per class)
-- Range [101-199] contains 20 primes suitable for this test
-
-Primes in [101-199]:
-```
-101, 103, 107, 109, 113, 127, 131, 137, 139, 149,
-151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199
-```
-
-Classes:
-- p≡1 mod 4: 101, 109, 113, 137, 149, 157, 173, 181, 193, 197 (10 primes)
-- p≡3 mod 4: 103, 107, 127, 131, 139, 151, 163, 167, 179, 191, 199 (11 primes)
-
-This would provide adequate statistical power.
-
-## Technical Note
-
-The analysis script `analyze_137_139_channels.py` implements the correct methodology:
-1. Filter to primes
-2. Partition by mod 4
-3. Compute class energies
-4. Run 10,000 permutations
-
-The issue is purely **data availability**, not methodology.
-
-## Files Analyzed
-
-All 15 datasets were checked:
-- 14 files: Only k=137 and k=139 (insufficient)
-- 1 file: Broader range but only 2 integer primes found (insufficient)
-
-See `input_inventory.md` for complete list.
 
 ---
 
-**Note**: This limitation should be addressed in future experimental design. The current focus on 137/139 comparison is appropriate for Part A (local peak analysis) but prevents testing of broader prime structure hypotheses.
+## Mod-4 Class Energy Test
+
+**Source**: ee_scan_int_100_200.csv
+**Signal metric**: psd_obs
+
+### Prime Statistics
+
+- Total primes analyzed: 21
+- Class C1 (p≡1 mod 4): 10 primes
+- Class C3 (p≡3 mod 4): 11 primes
+
+### Energy Analysis
+
+**Raw Energy:**
+- E(C1) = 1.026663e+01
+- E(C3) = 1.332807e+01
+- ΔE = E(C1) - E(C3) = -3.061443e+00
+
+**Z-score Energy (robust):**
+- E_z(C1) = 1.161903e+01
+- E_z(C3) = 2.287431e+01
+- ΔE_z = -1.125527e+01
+
+### Permutation Test Result
+
+- Number of permutations: 10000
+- Observed |ΔE|: 3.061443e+00
+- p-value (two-tailed): 0.000000e+00
+
+**Interpretation:**
+
+- **Verdict**: SIGNIFICANT
+- The difference between mod-4 classes is statistically significant (p < 0.01)
+
+
+---
+
+## Mod-4 Class Energy Test
+
+**Source**: tt_scan_int_100_200.csv
+**Signal metric**: psd_obs
+
+### Prime Statistics
+
+- Total primes analyzed: 21
+- Class C1 (p≡1 mod 4): 10 primes
+- Class C3 (p≡3 mod 4): 11 primes
+
+### Energy Analysis
+
+**Raw Energy:**
+- E(C1) = 2.330986e+01
+- E(C3) = 2.471256e+01
+- ΔE = E(C1) - E(C3) = -1.402704e+00
+
+**Z-score Energy (robust):**
+- E_z(C1) = 1.983132e+01
+- E_z(C3) = 1.955340e+01
+- ΔE_z = 2.779170e-01
+
+### Permutation Test Result
+
+- Number of permutations: 10000
+- Observed |ΔE|: 1.402704e+00
+- p-value (two-tailed): 9.755000e-01
+
+**Interpretation:**
+
+- **Verdict**: NOT SIGNIFICANT
+- No significant difference detected between mod-4 classes (p = 9.755000e-01)
