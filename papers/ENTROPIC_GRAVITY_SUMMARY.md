@@ -182,6 +182,38 @@ The derivation is mathematically sound, physically consistent, and provides a va
 
 ---
 
+## Integration Status (Updated 2025-02-16)
+
+✓ **INTEGRATED into consolidation_project**
+
+The entropic gravity derivation has been integrated into the main UBT consolidation document:
+
+1. **Core content extracted** from `papers/ubt_entropic_ds_section.tex`
+2. **Fragment created** at `consolidation_project/appendix_N1_entropic_ds_limit.tex`
+   - Removed standalone document structure
+   - Changed section hierarchy to subsubsections
+   - Preserved all mathematical content and derivations
+3. **Integrated** into `consolidation_project/appendix_N_holographic_verlinde_desitter.tex`
+   - New subsection: "Entropic Gravity Limit in de Sitter Background"
+   - Properly positioned within holographic/Verlinde/de Sitter context
+4. **Bibliography updated** in `consolidation_project/references.bib`
+   - Added GibbonsHawking1977 reference
+   - Verlinde2011 already present
+
+### Location in Consolidated Document
+
+The entropic gravity derivation is now part of:
+- **Document**: `consolidation_project/ubt_2_main.tex`
+- **Appendix**: N (Holographic Principle, Verlinde Gravity, and de Sitter Space)
+- **Subsection**: Entropic Gravity Limit in de Sitter Background
+- **Label**: `\subsec:entropic_ds_limit`
+
+### Standalone Document Status
+
+The original standalone document `papers/ubt_entropic_ds_section.tex` remains in place for reference but is **no longer the canonical location**. The canonical version is now in the consolidation project.
+
+---
+
 **Implementation**: GitHub Copilot  
 **Review**: Pending human verification  
-**Next steps**: LaTeX compilation via CI/CD, potential integration into main UBT documents
+**Next steps**: CI validation, verify LaTeX compilation succeeds
