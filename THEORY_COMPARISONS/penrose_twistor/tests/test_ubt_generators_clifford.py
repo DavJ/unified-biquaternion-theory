@@ -175,7 +175,8 @@ def test_determinant_numeric_timelike():
     det_X, interval_sq, diff = verify_determinant_minkowski_form(x0, x1, x2, x3)
     
     assert abs(complex(diff)) < 1e-10, "Determinant mismatch for timelike point"
-    assert complex(interval_sq) > 0, "Timelike point should have positive interval"
+    interval_val = complex(interval_sq).real
+    assert interval_val > 0, "Timelike point should have positive interval"
     print("✓ Timelike point: det(X) = interval² > 0")
 
 
@@ -186,7 +187,8 @@ def test_determinant_numeric_spacelike():
     det_X, interval_sq, diff = verify_determinant_minkowski_form(x0, x1, x2, x3)
     
     assert abs(complex(diff)) < 1e-10, "Determinant mismatch for spacelike point"
-    assert complex(interval_sq) < 0, "Spacelike point should have negative interval"
+    interval_val = complex(interval_sq).real
+    assert interval_val < 0, "Spacelike point should have negative interval"
     print("✓ Spacelike point: det(X) = interval² < 0")
 
 

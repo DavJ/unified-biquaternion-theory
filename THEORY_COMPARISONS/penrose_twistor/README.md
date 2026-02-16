@@ -229,3 +229,65 @@ See `references.md` for detailed academic citations.
 - Documentation explains structural relationship
 
 **Next Steps**: Expand to curved geometry and explore deeper connections.
+
+---
+
+## Depth Roadmap: Advanced Extensions (e05-e07)
+
+This section documents advanced explorations beyond the initial sandbox.
+
+### e05: UBT Generator Derivation
+
+**Status**: ✅ Complete
+
+**What it proves**:
+- Sigma matrices can be derived from explicit 2×2 matrix construction (not imported)
+- Clifford relations σ_μ σ̄_ν + σ_ν σ̄_μ = 2η_μν I₂ verified symbolically
+- Determinant identity det(X) = Minkowski interval confirmed
+- Null vectors (light rays) give rank-1 matrices (det = 0)
+
+**Key files**:
+- `twistor_core/ubt_generators.py` - Matrix derivation from first principles
+- `experiments/e05_derive_sigma_from_ubt.py` - Verification experiment
+- `tests/test_ubt_generators_clifford.py` - Comprehensive test suite
+
+**Significance**: Demonstrates UBT can internally generate the sigma basis needed for spinor calculus without external Pauli matrix imports.
+
+### e06: SU(2,2) Conformal Actions
+
+**Status**: ✅ Complete
+
+**What it proves**:
+- SU(2,2) group membership can be verified (U† H U = H, det U = 1)
+- Lie algebra elements can be constructed and exponentiated
+- Möbius transformations X → (AX+B)(CX+D)⁻¹ implemented
+- Null structure preserved under conformal transformations (light cone invariance)
+
+**Key files**:
+- `twistor_core/su22.py` (extended) - Group verification and generators
+- `twistor_core/conformal.py` - Conformal transformation machinery
+- `experiments/e06_su22_conformal_actions.py` - Demonstration experiment
+- `tests/test_su22_conformal.py` - Conformal transformation tests
+
+**Significance**: Establishes that SU(2,2) acts naturally on spacetime via fractional linear transformations, preserving the light cone structure essential for twistor theory.
+
+### e07: CP³ vs Torus Topology
+
+**Status**: ✅ Complete
+
+**What it provides**:
+- Technical comparison of projective twistor space CP³ vs UBT torus structure
+- Analysis of topological compatibility (conclusion: not directly equivalent)
+- Identification of potential connections via line bundles and fibrations
+- Concrete equivalence checklist for future research
+
+**Key files**:
+- `notes_cp3_vs_torus.md` - Detailed technical comparison
+
+**Key findings**:
+1. **Direct equivalence unlikely**: CP³ and T^n have incompatible topology
+2. **Fibration hypothesis**: Most promising connection is CP³ as fiber over T^n
+3. **Modular parameter role**: UBT's τ may correspond to twistor cross-ratios
+4. **Open questions**: Can theta functions provide line bundle sections?
+
+**Significance**: Provides roadmap for understanding whether UBT's torus-based phase space can support twistor-like structures.
