@@ -476,6 +476,7 @@ unified-biquaternion-theory/
 - **Testing reproducibility?** → Use protocols in [`FORENSICS/`](FORENSICS/)
 - **Evaluating Hubble latency?** → See [`HUBBLE_LATENCY/README.md`](HUBBLE_LATENCY/README.md)
 - **Looking for definitions?** → Check [`DOCS/glossary.md`](DOCS/glossary.md)
+- **Comparing with other theories?** → See [`THEORY_COMPARISONS/`](THEORY_COMPARISONS/)
 
 ---
 
