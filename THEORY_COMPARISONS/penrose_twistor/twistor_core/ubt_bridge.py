@@ -13,12 +13,6 @@ License: See repository LICENSE.md
 
 import sympy as sp
 from sympy import Matrix, zeros, simplify, eye, I
-import sys
-from pathlib import Path
-
-# Add parent directories to path
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
 
 from THEORY_COMPARISONS.penrose_twistor.common.linalg import (
     is_hermitian, hermitian_conjugate, trace, determinant

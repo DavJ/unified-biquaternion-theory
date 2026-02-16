@@ -13,12 +13,6 @@ License: See repository LICENSE.md
 import sympy as sp
 from sympy import Matrix, I, simplify
 from dataclasses import dataclass
-import sys
-from pathlib import Path
-
-# Add parent directories to path
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
 
 from THEORY_COMPARISONS.penrose_twistor.common.linalg import vec_to_column, inner_product
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.minkowski_spinor import x_to_X

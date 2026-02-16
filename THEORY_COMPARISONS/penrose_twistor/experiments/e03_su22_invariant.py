@@ -16,12 +16,6 @@ License: See repository LICENSE.md
 """
 
 import sys
-from pathlib import Path
-
-# Add repository root to path
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
-
 from sympy import symbols, Matrix, I, simplify, conjugate
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor, spinor
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.su22 import (
