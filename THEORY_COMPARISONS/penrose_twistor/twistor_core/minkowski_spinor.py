@@ -100,9 +100,10 @@ def X_to_x(X):
     X11 = X[1, 1]
     
     # Compute coordinates
+    # For Hermitian X: X₁₀ = X₀₁*
     x0 = simplify((X00 + X11) / 2)  # Tr(X) / 2
-    x1 = simplify((X01 + X10) / 2)  # Re(X₀₁)
-    x2 = simplify((X01 - X10) / (2*I))  # -Im(X₀₁)
+    x1 = simplify((X01 + X10) / 2)  # Re(X₀₁) = (X₀₁ + X₀₁*)/2
+    x2 = simplify((X10 - X01) / (2*I))  # Im(X₀₁) = (X₀₁ - X₀₁*)/(2i)
     x3 = simplify((X00 - X11) / 2)
     
     return (x0, x1, x2, x3)

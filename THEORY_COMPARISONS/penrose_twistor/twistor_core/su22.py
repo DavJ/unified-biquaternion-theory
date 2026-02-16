@@ -91,11 +91,14 @@ def twistor_inner(Z1, Z2):
     H = get_su22_hermitian_form()
     
     # Convert twistors to 4-vectors
-    vec1 = Z1.to_vector()
-    vec2 = Z2.to_vector()
+    vec1 = Z1.to_vector()  # 4×1 column vector
+    vec2 = Z2.to_vector()  # 4×1 column vector
     
     # Compute ⟨Z₁, Z₂⟩ = vec1† H vec2
-    result = (hermitian_conjugate(vec1).T * H * vec2)[0, 0]
+    # vec1† is (1×4) row vector, H is 4×4, vec2 is 4×1 column vector
+    # Result is 1×1
+    vec1_dag = vec1.H  # Hermitian conjugate: conjugate transpose, now 1×4
+    result = (vec1_dag * H * vec2)[0, 0]
     
     return simplify(result)
 
@@ -281,8 +284,11 @@ def create_orthogonal_twistor(Z1):
     """
     Create a twistor orthogonal to Z1 (if possible).
     
-    Uses the fact that H is block off-diagonal:
-    If Z₁ = (ω₁, π₁), then Z₂ = (π₁, ω₁) is orthogonal.
+    Uses the fact that for H with block anti-diagonal structure:
+    If Z₁ = (ω₁, π₁), then Z₂ = (π₁, -ω₁) is orthogonal.
+    
+    This is because: ⟨Z₁, Z₂⟩ = ω₁†π₁ + π₁†(-ω₁) = ω₁†π₁ - π₁†ω₁ = 0
+    (since ω₁†π₁ is a scalar, it equals (π₁†ω₁)†  = (π₁†ω₁)* = conjugate transpose).
     
     Parameters
     ----------
@@ -303,8 +309,8 @@ def create_orthogonal_twistor(Z1):
     >>> twistor_orthogonal(Z1, Z2)
     True
     """
-    # Swap ω and π to get orthogonal twistor
-    return Twistor(Z1.pi, Z1.omega)
+    # Swap ω and π and negate the new π to get orthogonal twistor
+    return Twistor(Z1.pi, -Z1.omega)
 
 
 def get_su22_signature():
