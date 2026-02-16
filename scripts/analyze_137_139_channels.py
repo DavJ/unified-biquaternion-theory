@@ -57,7 +57,8 @@ def load_and_normalize_csv(filepath):
     normalized = df.copy()
     
     # Detect and standardize the 'n' column (scanned integer)
-    n_candidates = ['p', 'period', 'k', 'ell', 'k_target', 'n']
+    # Extended list to include 'raw' and other common column names
+    n_candidates = ['n', 'k', 'k_target', 'raw', 'period', 'ell', 'target', 'value', 'p']
     n_col = None
     for col in n_candidates:
         if col in normalized.columns:
@@ -67,7 +68,21 @@ def load_and_normalize_csv(filepath):
     if n_col is None:
         raise ValueError(f"Could not find 'n' column in {filepath}")
     
-    normalized['n'] = pd.to_numeric(normalized[n_col], errors='coerce')
+    # Handle 'raw' column specially - round to integer when close
+    if n_col == 'raw':
+        raw_values = pd.to_numeric(normalized[n_col], errors='coerce')
+        # Round to integer when within 1e-6 of an integer
+        rounded = np.round(raw_values)
+        is_close_to_int = np.abs(raw_values - rounded) < 1e-6
+        # Use rounded value for integers, keep float for non-integers (local peaks)
+        normalized['n'] = np.where(is_close_to_int, rounded, raw_values)
+    else:
+        normalized['n'] = pd.to_numeric(normalized[n_col], errors='coerce')
+    
+    # Filter by 'kind' column if present, keeping scan-related rows
+    if 'kind' in normalized.columns:
+        valid_kinds = ['scan', 'target', 'scan_peak']
+        normalized = normalized[normalized['kind'].isin(valid_kinds)].copy()
     
     # Detect and standardize the 'signal' column
     # Priority: psd_obs > obs_psd > rarity_bits > -log10(p_mc) > -log10(p_global)
@@ -232,7 +247,7 @@ def compare_137_139(df, output_prefix):
             f"",
             f"- **Signal at 137**: {stats_137['signal']:.6e}",
             f"- **Signal at 139**: {stats_139['signal']:.6e}",
-            f"- **Ratio (137/139)**: {stats_137['signal']/stats_139['signal']:.4f}",
+            f"- **Ratio (137/139)**: {stats_137['signal']/stats_139['signal']:.6e}" if stats_139['signal'] != 0 else "- **Ratio (137/139)**: undefined (div by zero)",
             f"",
         ])
         
@@ -241,8 +256,8 @@ def compare_137_139(df, output_prefix):
             if f'{wk}_z' in stats_137 and f'{wk}_z' in stats_139:
                 report_lines.extend([
                     f"**Window ±{window_size}:**",
-                    f"- Z-score at 137: {stats_137[f'{wk}_z']:.3f}",
-                    f"- Z-score at 139: {stats_139[f'{wk}_z']:.3f}",
+                    f"- Z-score at 137: {stats_137[f'{wk}_z']:.6e}",
+                    f"- Z-score at 139: {stats_139[f'{wk}_z']:.6e}",
                     f"- Rank at 137: {stats_137[f'{wk}_rank']:.0f} ({stats_137[f'{wk}_rank_pct']:.1f}th percentile)",
                     f"- Rank at 139: {stats_139[f'{wk}_rank']:.0f} ({stats_139[f'{wk}_rank_pct']:.1f}th percentile)",
                     f"",
@@ -325,15 +340,15 @@ def mod4_class_energy_test(df, output_prefix, n_permutations=10000):
         f"- ΔE = E(C1) - E(C3) = {E_diff_obs:.6e}",
         f"",
         f"**Z-score Energy (robust):**",
-        f"- E_z(C1) = {z_c1:.4f}",
-        f"- E_z(C3) = {z_c3:.4f}",
-        f"- ΔE_z = {z_diff_obs:.4f}",
+        f"- E_z(C1) = {z_c1:.6e}",
+        f"- E_z(C3) = {z_c3:.6e}",
+        f"- ΔE_z = {z_diff_obs:.6e}",
         f"",
         f"### Permutation Test Result",
         f"",
         f"- Number of permutations: {n_permutations}",
         f"- Observed |ΔE|: {np.abs(E_diff_obs):.6e}",
-        f"- p-value (two-tailed): {p_value:.4f}",
+        f"- p-value (two-tailed): {p_value:.6e}",
         f"",
         f"**Interpretation:**",
         f"",
@@ -347,7 +362,7 @@ def mod4_class_energy_test(df, output_prefix, n_permutations=10000):
         interpretation = f"The difference shows marginal significance (p < 0.05)"
     else:
         verdict = "NOT SIGNIFICANT"
-        interpretation = f"No significant difference detected between mod-4 classes (p = {p_value:.3f})"
+        interpretation = f"No significant difference detected between mod-4 classes (p = {p_value:.6e})"
     
     report_lines.append(f"- **Verdict**: {verdict}")
     report_lines.append(f"- {interpretation}")
@@ -386,6 +401,7 @@ def main():
     # Preferred files
     preferred_patterns = [
         "bb_scan_100_200.csv",
+        "*scan_int_*.csv",  # Include integer scan files
         "tt_obs_w128.csv",
         "*k137_139*.csv"
     ]

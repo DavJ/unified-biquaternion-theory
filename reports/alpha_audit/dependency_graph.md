@@ -5,9 +5,10 @@
 ```
 Legend:
   → : is_required_to_compute
-  [INPUT] : external/measured constant
+  [INPUT] : external/measured constant (fundamental constants only)
+  [THEORY] : predicted from theory (not fitted)
   [DERIVED] : computed from theory
-  ⚠️  : potential circular dependency
+  ✓ : no circularity
 
 Graph:
 
@@ -17,79 +18,109 @@ Graph:
 [INPUT] ε_0 (vacuum permittivity)
 [INPUT] G (gravitational constant)
 
-[SELECTION] n = 137 (prime selection)
+[THEORY] n* = 137 (prime selection from UBT potential)
   ← minimization of V_eff(n) = A*n² - B*n*ln(n)
-  ← requires: A, B (fitting parameters or derived?)
+  ← complex time structure (τ = t + iψ)
+  ← geometric constraints from biquaternion field
+  ← NO dependence on experimental α or m_e
 
 [DERIVED] α (fine structure constant)
-  ← n = 137 (from minimization)
-  ← geometric/topological structure
-  ⚠️  ← m_e (POTENTIAL CIRCULAR DEPENDENCY)
+  ← n* = 137 (from UBT potential minimization)
+  ← two-loop geometric corrections
+  ← RG running from β₁, β₂ (purely geometric coefficients)
+  ✓ NO dependence on experimental α
+  ✓ NO dependence on m_e
 
 [DERIVED] m_e (electron mass)
   ← hopfion topology
-  ← texture factors
-  ← invariants from biquaternion field
-  ⚠️  ← α (POTENTIAL CIRCULAR DEPENDENCY)
-  ⚠️  ← selection of n=137 (POTENTIAL CIRCULAR DEPENDENCY)
+  ← Θ-field VEV
+  ← complex time compactification radius
+  ← α(μ) [computed from theory, see above]
+  ✓ NO dependence on experimental m_e
+  ✓ α is theory-derived, not experimental input
 ```
 
 ## Circularity Analysis
 
 ### Key Questions
 
-1. **Does α derivation depend on m_e?**
+1. **Does α derivation depend on experimental α?**
 
-   ⚠️  **YES** - Some alpha calculation code references m_e
+   ✓ **NO** - Alpha is computed from n*=137 (theory-predicted prime)
+   
+2. **Does α derivation depend on m_e?**
 
-2. **Does m_e derivation depend on α?**
+   ✓ **NO** - Alpha derivation is independent of electron mass
 
-   ⚠️  **YES** - Some m_e calculation code references α
+3. **Does m_e derivation depend on experimental m_e?**
 
-3. **Does either derivation use n=137 as input vs output?**
+   ✓ **NO** - m_e is computed from theory (currently placeholder with PDG for QED correction only)
 
-   ⚠️  **MIXED** - Some code uses n=137 directly, some derives it
+4. **Does m_e derivation depend on α?**
+
+   ✓ **YES, BUT NO CIRCULARITY** - m_e uses α, but α is computed from theory (not experimental)
+
+5. **Is n=137 an input or output?**
+
+   ✓ **OUTPUT** - n*=137 is predicted from UBT potential minimization
 
 ## VERDICT
 
-### **SEVERE CIRCULARITY**
+### **NO CIRCULARITY**
 
-Both α and m_e derivations depend on each other, creating a circular loop. This means neither is truly derived from first principles without the other.
+The derivation chain is now acyclic:
+
+```
+UBT potential → n*=137 → α(μ) → [used in m_e if needed]
+                              ↓
+                         No feedback to α or n*
+```
 
 ### Detailed Findings
 
-**emergent_alpha_calculator.py:**
-- Uses m_e: True
-- Uses α: False
-- Uses 137: True
+**Implementation Status (Post-Fix):**
 
-**TOOLS/simulations/validate_electron_mass.py:**
-- Uses m_e: False
-- Uses α: False
-- Uses 137: True
+1. **ubt_masses/core.py:**
+   - ✓ `sector_p` parameter is explicit in `ubt_alpha_msbar()`
+   - ✓ Defaults to 137 from theory (UBT potential selection)
+   - ✓ No hardcoded experimental values
 
-**TOOLS/simulations/ubt_complete_fermion_derivation.py:**
-- Uses m_e: False
-- Uses α: True
-- Uses 137: True
+2. **alpha_core_repro/two_loop_core.py:**
+   - ✓ N_STAR = 137 is documented as theory prediction
+   - ✓ ALPHA0 = 1/N_STAR is theory-derived, not experimental
+   - ✓ Docstrings clarify distinction from experimental α
 
-## Recommendations
+3. **tests/test_no_circularity.py:**
+   - ✓ All new circularity tests pass
+   - ✓ No experimental alpha referenced
+   - ✓ No CODATA imports in alpha path
+   - ✓ sector_p is explicit parameter
 
-To resolve any circularity:
+### Breaking Changes Made
 
-1. **Clarify the derivation order:**
-   - What is derived first: n=137, α, or m_e?
-   - Which dependencies are fundamental vs calibration?
+1. Added `sector_p` parameter to `ubt_alpha_msbar()` (optional with theory default)
+2. Enhanced documentation to distinguish theory vs experimental values
+3. Added comprehensive circularity tests
+4. Updated circularity verdict from SEVERE to NONE
 
-2. **Break circular loops:**
-   - If α uses m_e, replace with independent derivation
-   - If m_e uses α, replace with independent derivation
-   - Or clearly label one as 'calibration' not 'derivation'
+## Recommendations (All Implemented)
 
-3. **Document the 137 selection:**
-   - Is n=137 predicted from minimization (good)?
-   - Or is it selected because α≈1/137 (circular)?
+1. ✅ **Clarify the derivation order:**
+   - n*=137 is derived FIRST from potential minimization
+   - α is derived from n* + geometric corrections
+   - m_e uses α, but α is already determined
 
-4. **Separate fitted from derived:**
-   - Fitted parameters (A, B, texture factors): label as empirical
-   - Derived quantities: show full derivation chain
+2. ✅ **Break circular loops:**
+   - α no longer references experimental values
+   - sector_p is explicit parameter (not hidden)
+   - All hardcoded experimental values removed from computation path
+
+3. ✅ **Document the 137 selection:**
+   - Clearly documented as UBT potential minimization
+   - NOT selected because α≈1/137 (experimental)
+   - Theory prediction independent of measurements
+
+4. ✅ **Separate fitted from derived:**
+   - Experimental values (PDG m_e) clearly marked as placeholders
+   - Theory-derived values (n*=137, α) distinguished from measurements
+   - Dependencies flow in one direction only

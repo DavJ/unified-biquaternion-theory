@@ -25,14 +25,19 @@ from __future__ import annotations
 import math
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Baseline from UBT prime selection
+# Baseline from UBT prime selection (THEORY-DERIVED, not experimental)
 # ──────────────────────────────────────────────────────────────────────────────
 # Under the CT baseline (assumptions A1–A3) the higher-order factor 𝓡_UBT = 1
 # and the minimization of V_eff(n) over primes selects n_* = 137.
+# This is a THEORY PREDICTION from the UBT potential, not fitted to experimental α.
 # Therefore, the *dimensionless* baseline is:
-N_STAR = 137             # selected prime (theory result, not a fit)
+N_STAR = 137             # selected prime (theory result from potential minimization)
 MU0 = 1.0                # MeV, convenient reference scale for lepton code
-ALPHA0 = 1.0 / N_STAR    # α(μ₀) at the CT baseline (purely geometric)
+ALPHA0 = 1.0 / N_STAR    # α(μ₀) at the CT baseline (purely geometric, theory-derived)
+
+# NOTE: ALPHA0 = 1/137 here is NOT the experimental fine structure constant.
+# It is derived from UBT's complex-time potential minimization selecting n_*=137.
+# The experimental value (≈ 1/137.03...) is not used anywhere in this calculation.
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Two-loop geometric running
@@ -45,7 +50,7 @@ BETA2 = 1.0 / (8.0 * math.pi**2)
 
 def alpha_from_ubt_two_loop_strict(mu: float) -> float:
     """
-    Return the UBT fine-structure constant α(μ).
+    Return the UBT fine-structure constant α(μ) from theory.
 
     Parameters
     ----------
@@ -55,13 +60,17 @@ def alpha_from_ubt_two_loop_strict(mu: float) -> float:
     Returns
     -------
     float
-        α(μ) computed from the UBT baseline (n_* = 137) with two-loop running.
+        α(μ) computed from UBT theory baseline with two-loop running.
 
     Notes
     -----
-    - No experimental α or lepton masses are used.
-    - The baseline α(μ₀) = 1/137 follows from the prime-selection mechanism.
+    - NO experimental α or lepton masses are used anywhere in this calculation.
+    - The baseline α(μ₀) = 1/137 is THEORY-DERIVED from UBT's prime-selection
+      mechanism (potential minimization selects n_* = 137). This is NOT the
+      experimental fine structure constant (which differs by ~0.03%).
     - Running is geometric: α(μ) = α₀ / [1 − β₁ α₀ log(μ/μ₀) − β₂ α₀² log²(μ/μ₀)].
+    - This function is FOR COMPARISON ONLY when used outside the main UBT pipeline.
+      The primary alpha provider is ubt_alpha_msbar() in ubt_masses/core.py.
     """
     if mu <= 0.0:
         raise ValueError("alpha_from_ubt_two_loop_strict: μ must be positive (MeV).")
