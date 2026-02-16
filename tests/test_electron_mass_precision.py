@@ -31,6 +31,9 @@ def test_electron_mass_precision():
     """
     Test that computed electron pole mass matches experiment within tolerance.
     
+    This test uses derived_mode=False (legacy validation mode) to validate
+    against PDG reference. For theory-derived tests, see test_me_alpha_no_pdg.py
+    
     Current tolerance: 1e-4 (0.01%)
     TODO: Tighten to 1e-5 after implementing full 2-loop QED MSbar→pole conversion
     """
@@ -38,7 +41,8 @@ def test_electron_mass_precision():
     from ubt_masses.qed import pole_from_msbar_lepton
     
     # Compute MSbar mass at μ = m̄_e (self-consistent choice)
-    mbar = compute_lepton_msbar_mass("e", mu=None)
+    # Use legacy mode for PDG validation
+    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
     
     # Get alpha at the mass scale
     alpha_mu = ubt_alpha_msbar(mbar)
@@ -72,6 +76,7 @@ def test_electron_mass_precision_target_10minus5():
     
     This test is currently SKIPPED. It will pass once we implement
     the full 2-loop QED MSbar→pole conversion.
+    Uses legacy mode for PDG validation.
     """
     import pytest
     pytest.skip("TODO: Implement 2-loop QED conversion to reach 1e-5 precision")
@@ -80,7 +85,7 @@ def test_electron_mass_precision_target_10minus5():
     from ubt_masses.core import compute_lepton_msbar_mass, ubt_alpha_msbar
     from ubt_masses.qed import pole_from_msbar_lepton
     
-    mbar = compute_lepton_msbar_mass("e", mu=None)
+    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
     alpha_mu = ubt_alpha_msbar(mbar)
     m_pole = pole_from_msbar_lepton(mbar, mu=mbar, alpha_mu=alpha_mu)
     
