@@ -56,6 +56,11 @@ forensic_fingerprint/out/
 # But keep VERDICT files for court-grade results
 !forensic_fingerprint/out/**/VERDICT.md
 
+# Tau-fit tool outputs (reproducible from scans)
+scans/tau_fit_*.json
+scans/tau_fit_*.csv
+scans/tau_fit_*.png
+
 # Layer 2 fingerprint sweep outputs (test runs)
 scans/layer2/
 
