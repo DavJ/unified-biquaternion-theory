@@ -4,9 +4,10 @@ e06_su22_conformal_actions.py - SU(2,2) conformal transformations demonstration
 
 This experiment demonstrates:
 1. Verification that a matrix U is in SU(2,2)
-2. Generation of SU(2,2) elements from Lie algebra
+2. Generation of SU(2,2) elements via Cayley transform from Lie algebra
 3. Conformal (Möbius) action on 2×2 Hermitian matrices
 4. Preservation of null structure under conformal transformations
+5. Robust numerical verification with tight tolerances
 
 Run with:
     python -m THEORY_COMPARISONS.penrose_twistor.experiments.e06_su22_conformal_actions
@@ -23,13 +24,22 @@ from THEORY_COMPARISONS.penrose_twistor.twistor_core.su22 import (
     su22_lie_algebra_element,
     exponentiate_su22_algebra,
     random_su22_element_numeric,
+    H,
+    dagger,
+    is_H_unitary,
+    random_su22_lie_element,
+    cayley_transform,
+    to_blocks_2x2,
+    normalize_det,
 )
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.conformal import (
     mobius_transform_X,
     extract_block_structure,
     verify_null_preservation,
     conformal_factor,
+    is_hermitian,
 )
+from THEORY_COMPARISONS.penrose_twistor.twistor_core.numeric import norm_fro, max_abs
 
 
 def print_header(title):
@@ -93,111 +103,141 @@ def test_identity_is_su22():
     return result
 
 
-def test_lie_algebra_and_exponential():
-    """Test creation and exponentiation of Lie algebra element."""
-    print_header("TEST 2: LIE ALGEBRA ELEMENT → SU(2,2)")
+def test_lie_algebra_and_cayley():
+    """Test creation of Lie algebra element and Cayley transform to SU(2,2)."""
+    print_header("TEST 2: LIE ALGEBRA ELEMENT → SU(2,2) VIA CAYLEY")
     
-    print("Creating an su(2,2) Lie algebra element A...")
+    print("Creating a random su(2,2) Lie algebra element A...")
     print("(A satisfies: A† H + H A = 0)")
     print()
     
-    A = su22_lie_algebra_element({'theta': 0.1, 'scale': 1.0})
+    # Generate Lie algebra element with fixed seed for reproducibility
+    A = random_su22_lie_element(seed=12345, scale=1.0)
     
     print("Lie algebra element A (4×4):")
     print_matrix_compact("A", A)
     
     # Verify A† H + H A = 0
-    H = get_su22_hermitian_form()
-    A_dag = A.H
-    residual = simplify(A_dag * H + H * A)
+    H_form = H()
+    A_dag = dagger(A)
+    residual = A_dag * H_form + H_form * A
+    residual_norm = norm_fro(residual)
     
-    try:
-        residual_numeric = residual.evalf()
-        max_entry = max(abs(complex(residual_numeric[i, j])) 
-                       for i in range(4) for j in range(4))
-        algebra_check = max_entry < 1e-8
-    except:
-        algebra_check = (residual == Matrix.zeros(4, 4))
-    
-    print(f"Check A† H + H A ≈ 0: {algebra_check}")
+    print(f"Check ||A† H + H A||_F = {residual_norm:.2e}")
+    algebra_check = residual_norm < 1e-9
+    print(f"Algebra constraint satisfied: {algebra_check}")
     print()
     
-    # Exponentiate
-    print("Exponentiating: U = exp(A)...")
+    # Apply Cayley transform with small alpha for stability
+    alpha = 0.05
+    print(f"Applying Cayley transform with α = {alpha}...")
+    print(f"U = (I - αA)^(-1) (I + αA)")
     print()
     
-    U = exponentiate_su22_algebra(A, numeric=True)
+    U = cayley_transform(A, alpha=alpha)
     
-    print("U = exp(A):")
+    print("U = cayley_transform(A, α):")
     print_matrix_compact("U", U)
     
-    # Check if U is in SU(2,2)
-    u_check = is_su22(U, tolerance=1e-8)
-    
-    print(f"is_su22(U) = {u_check}")
+    # Check H-unitarity: U† H U = H
+    H_unitarity_residual = norm_fro(dagger(U) * H_form * U - H_form)
+    print(f"||U† H U - H||_F = {H_unitarity_residual:.2e}")
+    h_unitary = is_H_unitary(U, tol=1e-9)
+    print(f"is_H_unitary(U, tol=1e-9) = {h_unitary}")
     print()
     
-    if u_check:
-        print("✓ Exponentiated element is in SU(2,2)")
-        print("  Confirms: exp(su(2,2)) ⊆ SU(2,2)")
+    # Check det(U)
+    det_U = U.det()
+    det_val = complex(det_U.evalf())
+    print(f"det(U) before normalization = {det_val.real:.6f} {det_val.imag:+.6f}i")
+    print(f"|det(U)| = {abs(det_val):.6f}")
+    print()
+    
+    # Normalize det to 1
+    print("Normalizing det(U) to 1...")
+    U_norm = normalize_det(U)
+    det_U_norm = U_norm.det()
+    det_val_norm = complex(det_U_norm.evalf())
+    print(f"det(U) after normalization = {det_val_norm.real:.10f} {det_val_norm.imag:+.10f}i")
+    det_close_to_one = abs(det_val_norm - 1.0) < 1e-8
+    print(f"|det(U) - 1| < 1e-8: {det_close_to_one}")
+    print()
+    
+    # Re-check H-unitarity after normalization
+    h_unitarity_residual_norm = norm_fro(dagger(U_norm) * H_form * U_norm - H_form)
+    print(f"||U_norm† H U_norm - H||_F = {h_unitarity_residual_norm:.2e}")
+    h_unitary_norm = is_H_unitary(U_norm, tol=1e-9)
+    print()
+    
+    if h_unitary_norm and det_close_to_one:
+        print("✓ Cayley transform produces valid SU(2,2) element")
+        print("  Confirms: Cayley(su(2,2)) → SU(2,2) with det normalization")
     else:
-        print("✗ Exponentiated element NOT in SU(2,2) (within tolerance)")
-        print("  May indicate numerical precision issues")
+        print("✗ Element NOT fully in SU(2,2)")
+        if not h_unitary_norm:
+            print(f"  H-unitarity failed: ||U†HU-H|| = {h_unitarity_residual_norm:.2e}")
+        if not det_close_to_one:
+            print(f"  Det not 1: |det-1| = {abs(det_val_norm-1.0):.2e}")
     
     print()
-    return u_check
+    return h_unitary_norm and det_close_to_one, U_norm
 
 
 def test_random_su22_element():
-    """Test random SU(2,2) element generation."""
-    print_header("TEST 3: RANDOM SU(2,2) ELEMENT")
+    """Test random SU(2,2) element generation via Cayley transform."""
+    print_header("TEST 3: RANDOM SU(2,2) ELEMENT VIA CAYLEY")
     
-    print("Generating a random SU(2,2) element (via exp of algebra)...")
+    print("Generating a random SU(2,2) element (via Cayley of random Lie algebra element)...")
     print()
     
-    U = random_su22_element_numeric(seed=42, scale=0.1)
+    # Generate with fixed seed for reproducibility
+    A = random_su22_lie_element(seed=54321, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
     
     print("Random U:")
     print_matrix_compact("U", U)
     
-    # Verify it's in SU(2,2)
-    u_check = is_su22(U, tolerance=1e-8)
+    # Verify H-unitarity
+    H_form = H()
+    h_residual = norm_fro(dagger(U) * H_form * U - H_form)
+    u_check = is_H_unitary(U, tol=1e-9)
     
-    print(f"is_su22(U) = {u_check}")
+    print(f"||U† H U - H||_F = {h_residual:.2e}")
+    print(f"is_H_unitary(U, tol=1e-9) = {u_check}")
     print()
     
     # Check det(U)
     det_U = U.det()
     det_val = complex(det_U.evalf())
     
-    print(f"det(U) = {det_val.real:.6f} {det_val.imag:+.6f}i")
-    print(f"|det(U)| = {abs(det_val):.6f}")
+    print(f"det(U) = {det_val.real:.10f} {det_val.imag:+.10f}i")
+    print(f"|det(U)| = {abs(det_val):.10f}")
+    det_ok = abs(det_val - 1.0) < 1e-8
+    print(f"|det(U) - 1| < 1e-8: {det_ok}")
     print()
     
-    if u_check:
+    if u_check and det_ok:
         print("✓ Random element verified in SU(2,2)")
     else:
-        print("✗ Random element NOT in SU(2,2) (within tolerance)")
+        print("✗ Random element NOT in SU(2,2)")
     
     print()
-    return u_check
+    return u_check and det_ok, U
 
 
-def test_mobius_transformation():
+def test_mobius_transformation(U):
     """Test Möbius transformation on a specific X."""
     print_header("TEST 4: MÖBIUS TRANSFORMATION")
     
     print("Testing conformal action: X → X' = (AX + B)(CX + D)^{-1}")
     print()
     
-    # Create a test SU(2,2) element
-    U = random_su22_element_numeric(seed=123, scale=0.15)
-    
-    print("Using U from random generation:")
+    print("Using U from previous test:")
     print_matrix_compact("U (2×2 blocks shown)", U)
     
     # Extract blocks
-    A, B, C, D = extract_block_structure(U)
+    A, B, C, D = to_blocks_2x2(U)
     print("Block structure:")
     print_matrix_compact("  A (top-left)", A, max_rows=2)
     print_matrix_compact("  B (top-right)", B, max_rows=2)
@@ -205,13 +245,18 @@ def test_mobius_transformation():
     print_matrix_compact("  D (bottom-right)", D, max_rows=2)
     
     # Test on a simple Hermitian matrix
-    X = Matrix([[2, 1], [1, 2]])
+    X = Matrix([[2, 1+I], [1-I, 3]])
     
-    print("Input matrix X (timelike point):")
+    print("Input matrix X (Hermitian):")
     print_matrix_compact("X", X, max_rows=2)
     
+    # Check X is Hermitian
+    x_herm = is_hermitian(X, tol=1e-9)
+    print(f"X is Hermitian: {x_herm}")
+    
     det_X = X.det()
-    print(f"det(X) = {det_X}")
+    det_X_val = complex(det_X.evalf())
+    print(f"det(X) = {det_X_val.real:.6f} {det_X_val.imag:+.6f}i")
     print()
     
     # Transform
@@ -224,33 +269,29 @@ def test_mobius_transformation():
         print("Transformed matrix X':")
         print_matrix_compact("X'", X_prime, max_rows=2)
         
+        # Check Hermiticity
+        x_prime_herm = is_hermitian(X_prime, tol=1e-9)
+        herm_residual = norm_fro(X_prime - dagger(X_prime))
+        
+        print(f"||X' - X'^†||_F = {herm_residual:.2e}")
+        print(f"X' is Hermitian (tol=1e-9): {x_prime_herm}")
+        print()
+        
         det_X_prime = X_prime.det()
         det_val = complex(det_X_prime.evalf())
         
         print(f"det(X') = {det_val.real:.6f} {det_val.imag:+.6f}i")
+        print(f"|det(X')| = {abs(det_val):.6f}")
         print()
         
-        # Check Hermiticity
-        X_prime_dag = X_prime.H
-        hermitian_residual = simplify(X_prime - X_prime_dag)
-        
-        try:
-            max_herm = max(abs(complex(hermitian_residual[i, j].evalf())) 
-                          for i in range(2) for j in range(2))
-            is_hermitian = max_herm < 1e-8
-        except:
-            is_hermitian = (hermitian_residual == Matrix.zeros(2, 2))
-        
-        print(f"X' is Hermitian: {is_hermitian}")
-        print()
-        
-        if is_hermitian:
+        if x_prime_herm and herm_residual < 1e-8:
             print("✓ Transformed matrix is Hermitian")
             print("  Conformal transformation preserves Hermitian structure")
         else:
-            print("✗ Transformed matrix NOT Hermitian")
+            print("✗ Transformed matrix NOT Hermitian (within tolerance)")
+            print(f"  Residual: {herm_residual:.2e}")
         
-        success = True
+        success = x_prime_herm
     except Exception as e:
         print(f"✗ Transformation failed: {e}")
         success = False
@@ -259,7 +300,7 @@ def test_mobius_transformation():
     return success
 
 
-def test_null_preservation():
+def test_null_preservation(U):
     """Test preservation of null structure."""
     print_header("TEST 5: NULL STRUCTURE PRESERVATION")
     
@@ -267,6 +308,8 @@ def test_null_preservation():
     print()
     
     # Create null matrix (rank-1)
+    # Using light-like vector (1,1,0,0) in Minkowski coordinates
+    # X corresponds to x^μ = (1, 1, 0, 0)
     X_null = Matrix([[1, 1], [1, 1]])
     
     print("Null matrix X (rank-1):")
@@ -275,10 +318,11 @@ def test_null_preservation():
     det_X = X_null.det()
     print(f"det(X) = {det_X}  (should be 0)")
     print(f"rank(X) = {X_null.rank()}  (should be 1)")
-    print()
     
-    # Create SU(2,2) element
-    U = random_su22_element_numeric(seed=789, scale=0.1)
+    # Check X is Hermitian
+    x_herm = is_hermitian(X_null, tol=1e-9)
+    print(f"X is Hermitian: {x_herm}")
+    print()
     
     print("Applying SU(2,2) transformation...")
     print()
@@ -286,25 +330,31 @@ def test_null_preservation():
     # Verify null preservation
     result = verify_null_preservation(U, X_null)
     
+    det_X_prime_val = complex(result['det_X_prime'])
+    
     print(f"det(X) = {result['det_X']}")
-    print(f"det(X') = {result['det_X_prime']}")
-    print()
-    print(f"X is null: {result['X_is_null']}")
-    print(f"X' is null: {result['X_prime_is_null']}")
-    print(f"Null preserved: {result['null_preserved']}")
+    print(f"det(X') = {det_X_prime_val.real:.2e} {det_X_prime_val.imag:+.2e}i")
+    print(f"|det(X')| = {abs(det_X_prime_val):.2e}")
     print()
     
-    if result['null_preserved']:
+    null_preserved = abs(det_X_prime_val) < 1e-8
+    
+    print(f"X is null: {result['X_is_null']}")
+    print(f"X' is null (|det| < 1e-8): {null_preserved}")
+    print()
+    
+    if null_preserved:
         print("✓ NULL STRUCTURE PRESERVED")
         print("  This confirms conformal invariance of light cone")
         print("  (fundamental property for twistor theory)")
     else:
         print("✗ Null structure NOT preserved")
+        print(f"  |det(X')| = {abs(det_X_prime_val):.2e} (expected < 1e-8)")
         if 'error' in result:
             print(f"  Error: {result['error']}")
     
     print()
-    return result['null_preserved']
+    return null_preserved
 
 
 def summary():
@@ -315,23 +365,28 @@ def summary():
     print()
     print("1. ✓ Identity matrix I₄ is in SU(2,2)")
     print()
-    print("2. ✓ Lie algebra elements can be constructed and")
-    print("     exponentiated to give SU(2,2) group elements")
+    print("2. ✓ Lie algebra elements constructed via projection and")
+    print("     Cayley transform produces valid SU(2,2) group elements")
+    print("     with tight numerical tolerances (||U†HU-H|| < 1e-9)")
     print()
-    print("3. ✓ Random SU(2,2) elements generated successfully")
+    print("3. ✓ Random SU(2,2) elements generated successfully via")
+    print("     Cayley transform with det normalization")
     print()
     print("4. ✓ Möbius transformation (AX+B)(CX+D)^{-1} implemented")
-    print("     and preserves Hermitian structure")
+    print("     and preserves Hermitian structure (||X'^†-X'|| < 1e-9)")
     print()
     print("5. ✓ Null matrices remain null under SU(2,2) action")
-    print("     (conformal invariance of light cone)")
+    print("     (|det(X')| < 1e-8 when det(X) = 0)")
+    print("     Confirms conformal invariance of light cone")
     print()
     print("Conclusion:")
     print("-----------")
     print("SU(2,2) acts conformally on spacetime via fractional linear")
-    print("transformations. The null structure (light cone) is preserved,")
-    print("which is essential for the connection between twistor theory")
-    print("and Minkowski spacetime geometry.")
+    print("transformations. The Cayley transform provides numerically")
+    print("stable construction of group elements from the Lie algebra.")
+    print("The null structure (light cone) is preserved with tight")
+    print("tolerances, essential for the connection between twistor")
+    print("theory and Minkowski spacetime geometry.")
     print()
 
 
@@ -345,10 +400,18 @@ def main():
     all_pass = True
     
     all_pass &= test_identity_is_su22()
-    all_pass &= test_lie_algebra_and_exponential()
-    all_pass &= test_random_su22_element()
-    all_pass &= test_mobius_transformation()
-    all_pass &= test_null_preservation()
+    
+    cayley_pass, U_cayley = test_lie_algebra_and_cayley()
+    all_pass &= cayley_pass
+    
+    random_pass, U_random = test_random_su22_element()
+    all_pass &= random_pass
+    
+    # Use U from random test for remaining tests
+    U = U_random
+    
+    all_pass &= test_mobius_transformation(U)
+    all_pass &= test_null_preservation(U)
     
     summary()
     

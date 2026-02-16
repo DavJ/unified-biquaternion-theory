@@ -21,6 +21,9 @@ from sympy import Matrix, eye, simplify, conjugate, I
 
 from THEORY_COMPARISONS.penrose_twistor.common.linalg import hermitian_conjugate
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor
+from THEORY_COMPARISONS.penrose_twistor.twistor_core.numeric import (
+    norm_fro, max_abs, close_matrix, seeded_rng, random_complex
+)
 
 
 def get_su22_hermitian_form():
@@ -559,4 +562,295 @@ def random_su22_element_numeric(seed=None, scale=0.1):
     U = exponentiate_su22_algebra(A, numeric=True)
     
     return U
+
+
+def H():
+    """
+    Explicit helper to get the SU(2,2) Hermitian form H.
+    
+    Convenience alias for get_su22_hermitian_form().
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        Hermitian form H = [[0, I₂], [I₂, 0]]
+    """
+    return get_su22_hermitian_form()
+
+
+def dagger(M):
+    """
+    Compute conjugate transpose (Hermitian conjugate) of a matrix.
+    
+    M† = (M*)ᵀ = conjugate transpose
+    
+    Parameters
+    ----------
+    M : sympy.Matrix
+        Input matrix
+    
+    Returns
+    -------
+    sympy.Matrix
+        Hermitian conjugate M†
+    
+    Examples
+    --------
+    >>> from sympy import Matrix, I
+    >>> M = Matrix([[1, I], [0, 2]])
+    >>> M_dag = dagger(M)
+    >>> # M_dag = [[1, 0], [-I, 2]]
+    """
+    return M.H
+
+
+def is_H_unitary(U, tol=1e-9):
+    """
+    Check if U is H-unitary: U† H U = H within tolerance.
+    
+    An element of SU(2,2) must preserve the Hermitian form H.
+    This is the defining property: U† H U = H.
+    
+    Parameters
+    ----------
+    U : sympy.Matrix (4×4)
+        Matrix to check
+    tol : float, optional
+        Numerical tolerance (default 1e-9)
+    
+    Returns
+    -------
+    bool
+        True if U preserves H within tolerance
+    
+    Examples
+    --------
+    >>> from sympy import eye
+    >>> U = eye(4)
+    >>> is_H_unitary(U)  # True
+    True
+    """
+    H_form = H()
+    U_dag = dagger(U)
+    
+    # Compute U† H U
+    product = U_dag * H_form * U
+    
+    # Check ||U† H U - H||_F < tol
+    residual = product - H_form
+    return norm_fro(residual) < tol
+
+
+def random_su22_lie_element(seed=None, scale=1.0):
+    """
+    Generate a random su(2,2) Lie algebra element via projection.
+    
+    Produces A satisfying the Lie algebra constraint:
+        A† H + H A = 0  (H-anti-Hermitian condition)
+    
+    Algorithm:
+    1. Start with random complex 4×4 matrix A_random
+    2. Project to su(2,2) constraint:
+        A = 0.5 * (A_random - H^(-1) A_random† H)
+    
+    This ensures A† H + H A = 0 exactly (up to numerical precision).
+    
+    Parameters
+    ----------
+    seed : int, optional
+        Random seed for reproducibility
+    scale : float, optional
+        Scale factor for random entries (default 1.0)
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        H-anti-Hermitian Lie algebra element
+    
+    Examples
+    --------
+    >>> A = random_su22_lie_element(seed=42, scale=0.1)
+    >>> H_form = H()
+    >>> residual = dagger(A) * H_form + H_form * A
+    >>> norm_fro(residual) < 1e-10  # Should be True
+    True
+    
+    Notes
+    -----
+    For H = [[0, I], [I, 0]], we have H^(-1) = H.
+    So the projection simplifies to: A = 0.5 * (A_random - H A_random† H)
+    """
+    rng = seeded_rng(seed) if seed is not None else seeded_rng(42)
+    
+    # Generate random complex 4×4 matrix
+    A_random = Matrix([
+        [random_complex(rng, scale) for _ in range(4)]
+        for _ in range(4)
+    ])
+    
+    # Get H (note: H^(-1) = H for our specific form)
+    H_form = H()
+    
+    # Project to su(2,2): A = 0.5 * (A_random - H A_random† H)
+    A_dag_random = dagger(A_random)
+    A_proj = sp.Rational(1, 2) * (A_random - H_form * A_dag_random * H_form)
+    
+    # Evaluate numerically
+    A_proj = A_proj.evalf()
+    
+    return A_proj
+
+
+def cayley_transform(A, alpha=1.0):
+    """
+    Construct SU(2,2) group element via Cayley transform.
+    
+    Given A in su(2,2) (satisfying A† H + H A = 0), construct:
+        U = (I - αA)^(-1) (I + αA)
+    
+    This preserves H-unitarity: U† H U = H if A† H + H A = 0.
+    
+    The parameter alpha allows rescaling A for better numerical conditioning.
+    Small alpha (e.g., 0.05) helps avoid numerical issues.
+    
+    Parameters
+    ----------
+    A : sympy.Matrix (4×4)
+        H-anti-Hermitian Lie algebra element (A† H + H A = 0)
+    alpha : float, optional
+        Scaling factor (default 1.0)
+        Use smaller values (e.g., 0.05) for better numerical stability
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        Group element U in SU(2,2)
+    
+    Examples
+    --------
+    >>> A = random_su22_lie_element(seed=42, scale=0.1)
+    >>> U = cayley_transform(A, alpha=0.05)
+    >>> is_H_unitary(U, tol=1e-9)  # Should be True
+    True
+    
+    Notes
+    -----
+    The Cayley transform is numerically superior to matrix exponential for
+    constructing group elements. It preserves the H-unitarity exactly
+    (up to numerical precision) when A is H-anti-Hermitian.
+    
+    Branch choice: The resulting U may have det(U) ≠ 1 due to branch cuts.
+    Use normalize_det() to enforce det(U) = 1.
+    """
+    I4 = eye(4)
+    
+    # Scale A
+    A_scaled = alpha * A
+    
+    # Compute numerator and denominator
+    numerator = I4 + A_scaled
+    denominator = I4 - A_scaled
+    
+    # Check if denominator is invertible
+    det_denom = denominator.det()
+    det_val = complex(det_denom.evalf())
+    
+    if abs(det_val) < 1e-12:
+        raise ValueError(f"Cayley transform singular: det(I - αA) = {det_val}")
+    
+    # Compute U = (I - αA)^(-1) (I + αA)
+    denominator_inv = denominator.inv()
+    U = denominator_inv * numerator
+    
+    # Evaluate numerically
+    U = U.evalf()
+    
+    return U
+
+
+def to_blocks_2x2(U):
+    """
+    Split 4×4 matrix U into 2×2 blocks A, B, C, D.
+    
+    U = [[A, B],
+         [C, D]]
+    
+    where A, B, C, D are 2×2 matrices.
+    
+    Parameters
+    ----------
+    U : sympy.Matrix (4×4)
+        Matrix to decompose
+    
+    Returns
+    -------
+    tuple of sympy.Matrix
+        (A, B, C, D) as 2×2 matrices
+    
+    Examples
+    --------
+    >>> from sympy import eye
+    >>> U = eye(4)
+    >>> A, B, C, D = to_blocks_2x2(U)
+    >>> A == eye(2) and D == eye(2)  # True
+    True
+    """
+    A = U[:2, :2]
+    B = U[:2, 2:]
+    C = U[2:, :2]
+    D = U[2:, 2:]
+    
+    return A, B, C, D
+
+
+def normalize_det(U):
+    """
+    Normalize determinant to det(U) = 1.
+    
+    If det(U) ≠ 1 (numerically), normalize by:
+        U_normalized = U / det(U)^(1/4)
+    
+    Uses principal branch for complex 1/4 power.
+    
+    Parameters
+    ----------
+    U : sympy.Matrix (4×4)
+        Matrix to normalize
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        Normalized matrix with det ≈ 1
+    
+    Notes
+    -----
+    Branch caveat: The 1/4 power has multiple branches. We use the
+    principal branch. For small deviations from det=1, this is acceptable.
+    
+    For matrices very close to SU(2,2), the determinant should already
+    be near 1, so this is primarily a numerical cleanup.
+    
+    Examples
+    --------
+    >>> from sympy import eye
+    >>> U = 1.1 * eye(4)  # det = 1.1^4 ≈ 1.4641
+    >>> U_norm = normalize_det(U)
+    >>> abs(complex(U_norm.det().evalf()) - 1.0) < 1e-10  # True
+    True
+    """
+    det_U = U.det()
+    det_val = complex(det_U.evalf())
+    
+    if abs(det_val) < 1e-12:
+        raise ValueError(f"Cannot normalize: det(U) ≈ 0")
+    
+    # Compute det^(1/4) using principal branch
+    # For complex z, z^(1/4) = |z|^(1/4) * exp(i*arg(z)/4)
+    det_fourth_root = det_val ** (1/4)
+    
+    # Normalize: U_normalized = U / det^(1/4)
+    U_normalized = U / det_fourth_root
+    U_normalized = U_normalized.evalf()
+    
+    return U_normalized
 

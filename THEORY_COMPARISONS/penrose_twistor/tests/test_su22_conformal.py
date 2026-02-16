@@ -3,7 +3,7 @@
 test_su22_conformal.py - Tests for SU(2,2) conformal transformations
 
 Tests SU(2,2) group verification, Lie algebra, and conformal actions
-on 2×2 Hermitian matrices.
+on 2×2 Hermitian matrices with tight numerical tolerances.
 
 Author: UBT Research Team
 License: See repository LICENSE.md
@@ -17,6 +17,13 @@ from THEORY_COMPARISONS.penrose_twistor.twistor_core.su22 import (
     su22_lie_algebra_element,
     exponentiate_su22_algebra,
     random_su22_element_numeric,
+    H,
+    dagger,
+    is_H_unitary,
+    random_su22_lie_element,
+    cayley_transform,
+    to_blocks_2x2,
+    normalize_det,
 )
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.conformal import (
     mobius_transform_X,
@@ -24,8 +31,16 @@ from THEORY_COMPARISONS.penrose_twistor.twistor_core.conformal import (
     verify_null_preservation,
     conformal_factor,
     transform_twistor,
+    is_hermitian,
 )
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor
+from THEORY_COMPARISONS.penrose_twistor.twistor_core.numeric import norm_fro
+
+
+# Use fixed seeds for reproducibility
+TEST_SEED_1 = 42
+TEST_SEED_2 = 123
+TEST_SEED_3 = 456
 
 
 def test_identity_in_su22():
@@ -76,65 +91,56 @@ def test_su22_check_condition():
 
 def test_lie_algebra_anticommutation():
     """Test that Lie algebra elements satisfy A† H + H A = 0."""
-    A = su22_lie_algebra_element({'theta': 0.1, 'scale': 1.0})
-    H = get_su22_hermitian_form()
+    A = random_su22_lie_element(seed=TEST_SEED_1, scale=1.0)
+    H_form = H()
     
     # Check A† H + H A = 0
-    A_dag = A.H
-    residual = simplify(A_dag * H + H * A)
+    A_dag = dagger(A)
+    residual = A_dag * H_form + H_form * A
     
-    # Numeric check
-    try:
-        residual_numeric = residual.evalf()
-        max_entry = max(abs(complex(residual_numeric[i, j])) 
-                       for i in range(4) for j in range(4))
-        is_zero = max_entry < 1e-8
-    except:
-        is_zero = (residual == Matrix.zeros(4, 4))
-    
-    assert is_zero, "Lie algebra element should satisfy A† H + H A = 0"
-    print("✓ Lie algebra anticommutation verified")
+    # Use tight numeric tolerance
+    residual_norm = norm_fro(residual)
+    assert residual_norm < 1e-9, f"Lie algebra element should satisfy A† H + H A = 0 (residual: {residual_norm})"
+    print(f"✓ Lie algebra anticommutation verified (residual: {residual_norm:.2e})")
 
 
-def test_exponential_in_su22():
-    """Test that exp(A) is approximately in SU(2,2) for A in su(2,2)."""
-    A = su22_lie_algebra_element({'theta': 0.05, 'scale': 1.0})
-    U = exponentiate_su22_algebra(A, numeric=True)
+def test_cayley_transform_su22():
+    """Test that Cayley transform produces valid SU(2,2) elements."""
+    A = random_su22_lie_element(seed=TEST_SEED_1, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
     
-    # Note: First-order approximation exp(A) ≈ I + A + A²/2 doesn't exactly
-    # preserve det=1 or U†HU=H. This is acceptable for demonstration.
-    # For true SU(2,2) elements, use higher-order exponential or library functions.
-    H = get_su22_hermitian_form()
-    residual = simplify(U.H * H * U - H)
+    # Check H-unitarity with tight tolerance
+    assert is_H_unitary(U, tol=1e-9), "Cayley transform should produce H-unitary element"
     
-    # Just check it's close-ish (this is a proof-of-concept)
-    try:
-        max_res = max(abs(complex(residual[i,j].evalf())) for i in range(4) for j in range(4))
-        approximately_preserves = max_res < 0.05  # Very relaxed
-        assert approximately_preserves, f"exp(A) approximately preserves H (residual={max_res:.4f})"
-    except:
-        pass  # If symbolic check fails, that's OK for this demo
+    # Check det(U) = 1 with tight tolerance
+    det_U = U.det()
+    det_val = complex(det_U.evalf())
+    assert abs(det_val - 1.0) < 1e-8, f"det(U) should be 1 (got {det_val})"
     
-    print("✓ Exponentiated algebra element demonstrates SU(2,2) structure (numerical approximation)")
+    H_form = H()
+    h_residual = norm_fro(dagger(U) * H_form * U - H_form)
+    print(f"✓ Cayley transform produces SU(2,2) element (||U†HU-H||={h_residual:.2e}, |det-1|={abs(det_val-1):.2e})")
 
 
 def test_random_su22_element():
-    """Test random SU(2,2) element generation (demonstrates approach)."""
-    U = random_su22_element_numeric(seed=42, scale=0.1)
+    """Test random SU(2,2) element generation via Cayley transform."""
+    A = random_su22_lie_element(seed=TEST_SEED_2, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
     
-    # Note: Our exponential approximation creates approximately-SU(2,2) elements
-    # For production use, would need proper matrix exponential
-    H = get_su22_hermitian_form()
-    residual = simplify(U.H * H * U - H)
+    # Verify H-unitarity
+    assert is_H_unitary(U, tol=1e-9), "Random element should be H-unitary"
     
-    try:
-        max_res = max(abs(complex(residual[i,j].evalf())) for i in range(4) for j in range(4))
-        print(f"✓ Random element generated (H-preservation residual: {max_res:.4f})")
-    except:
-        print("✓ Random element generated (symbolic verification)")
+    # Verify det = 1
+    det_U = U.det()
+    det_val = complex(det_U.evalf())
+    assert abs(det_val - 1.0) < 1e-8, f"det(U) should be 1 (got {det_val})"
     
-    # Just verify it's a 4×4 matrix
+    # Verify it's a 4×4 matrix
     assert U.shape == (4, 4), "Should be 4×4 matrix"
+    
+    print(f"✓ Random element generated via Cayley transform (|det-1|={abs(det_val-1):.2e})")
 
 
 def test_extract_blocks():
@@ -169,55 +175,51 @@ def test_mobius_identity():
 
 
 def test_mobius_preserves_hermitian():
-    """Test that Möbius transformation approximately preserves Hermitian property."""
-    U = random_su22_element_numeric(seed=123, scale=0.1)
+    """Test that Möbius transformation preserves Hermitian property with tight tolerance."""
+    A = random_su22_lie_element(seed=TEST_SEED_2, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
+    
     X = Matrix([[2, 1+I], [1-I, 3]])  # Hermitian
     
+    assert is_hermitian(X, tol=1e-9), "Input X should be Hermitian"
+    
     X_prime = mobius_transform_X(U, X)
-    X_prime_dag = X_prime.H
     
-    residual = simplify(X_prime - X_prime_dag)
+    # Check Hermiticity with tight tolerance
+    assert is_hermitian(X_prime, tol=1e-9), "Transformed X' should be Hermitian"
     
-    # For demonstration: check it's approximately Hermitian
-    # With our approximate SU(2,2) elements, won't be perfect
-    try:
-        max_entry = max(abs(complex(residual[i, j].evalf())) 
-                       for i in range(2) for j in range(2))
-        is_approx_hermitian = max_entry < 0.2  # Very relaxed for demo
-        print(f"✓ Möbius transformation: Hermitian residual = {max_entry:.4f} (demo tolerance)")
-        assert is_approx_hermitian, f"Should be approximately Hermitian (got {max_entry:.4f})"
-    except:
-        # If evaluation fails, just check symbolically that both are 2×2
-        assert X_prime.shape == (2, 2), "Should be 2×2 matrix"
-        print("✓ Möbius transformation executed (symbolic check)")
+    herm_residual = norm_fro(X_prime - dagger(X_prime))
+    print(f"✓ Möbius transformation preserves Hermiticity (||X'-X'^†||={herm_residual:.2e})")
 
 
 def test_null_vector_preservation():
-    """Test that null matrices stay approximately null (numerical tolerance)."""
-    U = random_su22_element_numeric(seed=456, scale=0.08)
+    """Test that null matrices stay null with tight tolerance."""
+    A = random_su22_lie_element(seed=TEST_SEED_3, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
     
     # Null matrix (rank-1)
     X_null = Matrix([[1, 1], [1, 1]])
     
+    assert X_null.det() == 0, "Test matrix should be null"
+    
     result = verify_null_preservation(U, X_null)
     
-    # Note: Due to numerical approximations in exp(A), perfect preservation
-    # may not hold. We check that det stays small relative to transformation scale.
     det_prime_val = abs(complex(result['det_X_prime']))
-    scale_factor = 0.08  # Same as scale used in random generation
     
-    # Expect det to be O(scale²) or smaller
-    approx_null = det_prime_val < 0.5  # Relaxed significantly for demonstration
-    
-    assert approx_null, f"Null structure should stay small (got |det|={det_prime_val:.4f})"
-    print(f"✓ Null approximately preserved: |det(X')|={det_prime_val:.4f} (within tolerance for numerical demo)")
+    # Tight tolerance: null should stay null within 1e-8
+    assert det_prime_val < 1e-8, f"Null structure should be preserved (got |det|={det_prime_val:.2e})"
+    print(f"✓ Null preserved: |det(X')|={det_prime_val:.2e} < 1e-8")
 
 
 def test_null_vector_different_form():
-    """Test null preservation with different null matrix (numerical tolerance)."""
-    U = random_su22_element_numeric(seed=789, scale=0.1)
+    """Test null preservation with different null matrix."""
+    A = random_su22_lie_element(seed=TEST_SEED_1, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
     
-    # Different null matrix: light ray along x-axis
+    # Different null matrix
     X_null = Matrix([[1, 1], [1, 1]])
     
     det_X = X_null.det()
@@ -225,17 +227,19 @@ def test_null_vector_different_form():
     
     result = verify_null_preservation(U, X_null)
     
-    # Similar tolerance as above test
     det_prime_val = abs(complex(result['det_X_prime']))
-    approx_null = det_prime_val < 0.5
     
-    assert approx_null, f"Null approximately preserved (got |det|={det_prime_val:.4f})"
-    print(f"✓ Null preservation (alt. form): |det(X')|={det_prime_val:.4f} (numerical demo)")
+    # Tight tolerance
+    assert det_prime_val < 1e-8, f"Null preserved (got |det|={det_prime_val:.2e})"
+    print(f"✓ Null preservation (alt. form): |det(X')|={det_prime_val:.2e} < 1e-8")
 
 
 def test_conformal_factor_nonzero():
     """Test that conformal factor is finite for non-degenerate cases."""
-    U = random_su22_element_numeric(seed=111, scale=0.1)
+    A = random_su22_lie_element(seed=TEST_SEED_1, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
+    
     X = Matrix([[1, 0], [0, 1]])  # Simple Hermitian
     
     omega_squared = conformal_factor(U, X)
@@ -247,6 +251,7 @@ def test_conformal_factor_nonzero():
         is_nonzero = abs(omega_val) > 1e-10  # Not zero
         valid = is_finite and is_nonzero
     except:
+        import sympy as sp
         valid = (omega_squared != 0 and omega_squared != sp.oo)
     
     assert valid, "Conformal factor should be finite and nonzero"
@@ -272,7 +277,10 @@ def test_twistor_transformation():
 
 def test_twistor_transformation_nontrivial():
     """Test SU(2,2) action on twistors with nontrivial U."""
-    U = random_su22_element_numeric(seed=222, scale=0.05)
+    A = random_su22_lie_element(seed=TEST_SEED_3, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
+    
     Z = Twistor(Matrix([1, 0]), Matrix([0, 1]))
     
     Z_prime = transform_twistor(U, Z)
@@ -286,8 +294,11 @@ def test_twistor_transformation_nontrivial():
 
 def test_determinant_scaling():
     """Test determinant scaling under conformal transformation."""
-    U = random_su22_element_numeric(seed=333, scale=0.1)
-    X = Matrix([[2, 0], [0, 1]])  # det = 2
+    A = random_su22_lie_element(seed=TEST_SEED_2, scale=0.8)
+    U = cayley_transform(A, alpha=0.05)
+    U = normalize_det(U)
+    
+    X = Matrix([[2, 0], [0, 1]])  # det = 2, non-null
     
     X_prime = mobius_transform_X(U, X)
     
@@ -295,15 +306,13 @@ def test_determinant_scaling():
     det_X_prime = X_prime.det()
     
     # Both should be nonzero (X is not null)
-    try:
-        det_val = abs(complex(det_X.evalf()))
-        det_prime_val = abs(complex(det_X_prime.evalf()))
-        both_nonzero = det_val > 1e-10 and det_prime_val > 1e-10
-    except:
-        both_nonzero = (det_X != 0 and det_X_prime != 0)
+    det_val = abs(complex(det_X.evalf()))
+    det_prime_val = abs(complex(det_X_prime.evalf()))
     
-    assert both_nonzero, "Non-null matrices should stay non-null"
-    print("✓ Non-null matrix remains non-null under transformation")
+    assert det_val > 1e-8, "Input should be non-null"
+    assert det_prime_val > 1e-8, "Transformed should remain non-null"
+    
+    print(f"✓ Non-null matrix remains non-null: |det(X)|={det_val:.2e}, |det(X')|={det_prime_val:.2e}")
 
 
 def run_all_tests():
@@ -318,7 +327,7 @@ def run_all_tests():
         test_hermitian_form_structure,
         test_su22_check_condition,
         test_lie_algebra_anticommutation,
-        test_exponential_in_su22,
+        test_cayley_transform_su22,
         test_random_su22_element,
         test_extract_blocks,
         test_mobius_identity,
