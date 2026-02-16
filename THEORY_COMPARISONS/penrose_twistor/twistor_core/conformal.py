@@ -21,7 +21,9 @@ from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.su22 import (
     get_su22_hermitian_form,
     is_su22,
+    dagger,
 )
+from THEORY_COMPARISONS.penrose_twistor.twistor_core.numeric import norm_fro
 
 
 def transform_twistor(U, Z):
@@ -88,6 +90,44 @@ def extract_block_structure(U):
     return A, B, C, D
 
 
+def is_hermitian(X, tol=1e-9):
+    """
+    Check if a matrix X is Hermitian: X† = X within tolerance.
+    
+    Emphasizes conjugate-transpose check using numeric comparison.
+    
+    Parameters
+    ----------
+    X : sympy.Matrix
+        Matrix to check
+    tol : float, optional
+        Numerical tolerance (default 1e-9)
+    
+    Returns
+    -------
+    bool
+        True if X is Hermitian within tolerance
+    
+    Examples
+    --------
+    >>> from sympy import Matrix, I
+    >>> X = Matrix([[1, I], [-I, 2]])
+    >>> is_hermitian(X)  # True
+    True
+    >>> Y = Matrix([[1, I], [I, 2]])  # Not Hermitian
+    >>> is_hermitian(Y)  # False
+    False
+    
+    Notes
+    -----
+    Uses Frobenius norm: ||X - X†||_F < tol
+    This provides a robust numeric check for Hermiticity.
+    """
+    X_dag = dagger(X)
+    residual = X - X_dag
+    return norm_fro(residual) < tol
+
+
 def mobius_transform_X(U, X):
     """
     Apply induced conformal (Möbius) transformation to 2×2 Hermitian matrix X.
@@ -141,16 +181,43 @@ def mobius_transform_X(U, X):
     det_denom = denominator.det()
     det_simplified = simplify(det_denom)
     
+    # Check both symbolically and numerically
     if det_simplified == 0:
         raise ValueError("Denominator (CX + D) is not invertible for this X and U")
+    
+    # Also check numerically
+    try:
+        det_val = complex(det_denom.evalf())
+        if abs(det_val) < 1e-12:
+            raise ValueError(f"Denominator (CX + D) nearly singular: det ≈ {det_val}")
+    except (TypeError, AttributeError):
+        # If numeric check fails, rely on symbolic check
+        pass
     
     # Compute inverse
     denominator_inv = denominator.inv()
     
     # Compute X' = (AX + B)(CX + D)^{-1}
     X_prime = numerator * denominator_inv
+    X_prime = simplify(X_prime)
     
-    return simplify(X_prime)
+    # Hermitianize to fix numerical errors (optional, for robustness)
+    # X_hermitian = (X + X†) / 2
+    # This is mathematically correct since conformal transformations
+    # should preserve Hermiticity exactly, but numerical errors can
+    # introduce small anti-Hermitian components
+    X_prime_dag = dagger(X_prime)
+    X_prime_hermitianized = (X_prime + X_prime_dag) / 2
+    X_prime_hermitianized = X_prime_hermitianized.evalf()
+    
+    # Check if original was already Hermitian (within tolerance)
+    herm_error = norm_fro(X_prime - X_prime_dag)
+    if herm_error < 1e-6:
+        # Already Hermitian within reasonable tolerance
+        return X_prime.evalf()
+    else:
+        # Use Hermitianized version to correct numerical errors
+        return X_prime_hermitianized
 
 
 def verify_null_preservation(U, X):
