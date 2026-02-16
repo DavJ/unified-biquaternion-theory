@@ -14,12 +14,6 @@ License: See repository LICENSE.md
 
 import sympy as sp
 from sympy import Matrix, simplify, eye, I
-import sys
-from pathlib import Path
-
-# Add parent directories to path for imports
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
 
 from THEORY_COMPARISONS.penrose_twistor.common.linalg import (
     pauli_matrices, is_hermitian, trace, determinant

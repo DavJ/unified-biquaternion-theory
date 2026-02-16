@@ -18,12 +18,6 @@ License: See repository LICENSE.md
 
 import sympy as sp
 from sympy import Matrix, eye, simplify, conjugate, I
-import sys
-from pathlib import Path
-
-# Add parent directories to path
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
 
 from THEORY_COMPARISONS.penrose_twistor.common.linalg import hermitian_conjugate
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor

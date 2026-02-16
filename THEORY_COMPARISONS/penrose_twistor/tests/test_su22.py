@@ -8,13 +8,6 @@ Author: UBT Research Team
 License: See repository LICENSE.md
 """
 
-import sys
-from pathlib import Path
-
-# Add parent directory to path
-repo_root = Path(__file__).resolve().parents[4]
-sys.path.insert(0, str(repo_root))
-
 import pytest
 from sympy import symbols, Matrix, I, simplify, conjugate
 from THEORY_COMPARISONS.penrose_twistor.twistor_core.twistor import Twistor
