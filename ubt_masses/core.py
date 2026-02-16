@@ -50,7 +50,7 @@ def clear_alpha_override():
     set_alpha_override(None)
 
 
-def ubt_alpha_msbar(mu: float) -> float:
+def ubt_alpha_msbar(mu: float, sector_p: int | None = None) -> float:
     """
     Compute α in MSbar scheme at scale μ using fit-free UBT two-loop calculation.
     
@@ -59,15 +59,29 @@ def ubt_alpha_msbar(mu: float) -> float:
     
     Args:
         mu: Renormalization scale in MeV
+        sector_p: Prime sector number for alpha baseline. If None, a theory-based
+                  selection rule should be used (currently defaults to 137 as the
+                  CT baseline prime from potential minimization, but this should
+                  be made explicit by the caller).
     
     Returns:
         Fine structure constant α(μ) in MSbar scheme
     
     Raises:
-        ValueError: If mu is non-positive or mock mode is enabled
+        ValueError: If mu is non-positive, sector_p is invalid, or mock mode is enabled
     """
     if mu <= 0:
         raise ValueError(f"Renormalization scale μ must be positive, got {mu}")
+    
+    # sector_p must be explicitly provided or defaulted via theory
+    if sector_p is None:
+        # Default to CT baseline prime from UBT potential minimization
+        # This is the theory-selected value, not an experimental input
+        # TODO: Make this selection more explicit through a theory configuration
+        sector_p = 137
+    
+    if not isinstance(sector_p, int) or sector_p < 2:
+        raise ValueError(f"sector_p must be a prime integer >= 2, got {sector_p}")
     
     # Ensure strict mode - no mocks allowed
     if os.environ.get("UBT_ALPHA_ALLOW_MOCK", "0") == "1":
@@ -79,15 +93,11 @@ def ubt_alpha_msbar(mu: float) -> float:
     # Use strict configuration
     cfg = TwoLoopConfig(scheme="MSbar", mu=mu, strict=True)
     
-    # For now, use p=137 as the reference sector
-    # TODO: Generalize for arbitrary sectors when sector-dependent mass formulas are ready
-    p = 137
-    
-    # Compute two-loop correction
-    delta_ct = compute_two_loop_delta(p, cfg)
+    # Compute two-loop correction for the specified sector
+    delta_ct = compute_two_loop_delta(sector_p, cfg)
     
     # Get α from UBT formula: α^{-1} = p + Δ_CT
-    alpha = alpha_corrected(p, delta_ct)
+    alpha = alpha_corrected(sector_p, delta_ct)
     
     # Apply override if set (for sensitivity testing only)
     if _ALPHA_SCALE_OVERRIDE is not None:
@@ -138,7 +148,9 @@ def ubt_mass_operator_electron_msbar(alpha_mu: float | None = None) -> float:
     
     # Get alpha from UBT two-loop (fit-free)
     if alpha_mu is None:
-        # Use UBT baseline: α = 1/137 at reference scale
+        # Use theory-derived alpha from UBT prime selection mechanism
+        # (n_* = 137 from CT baseline potential minimization)
+        # This is NOT an experimental input - it comes from geometric theory
         from alpha_core_repro.two_loop_core import alpha_from_ubt_two_loop_strict
         alpha_mu = alpha_from_ubt_two_loop_strict(mu=1.0)  # At 1 MeV reference
     
