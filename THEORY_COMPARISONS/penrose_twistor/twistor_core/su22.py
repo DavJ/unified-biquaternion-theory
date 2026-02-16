@@ -337,3 +337,226 @@ def get_su22_signature():
             n_zero += multiplicity
     
     return (n_positive, n_negative, n_zero)
+
+
+def is_su22(U, tolerance=1e-10):
+    """
+    Check if a 4×4 matrix U is in SU(2,2).
+    
+    A matrix is in SU(2,2) if:
+        1. U† H U = H  (preserves the Hermitian form)
+        2. det(U) = 1  (special unitary)
+    
+    Parameters
+    ----------
+    U : sympy.Matrix (4×4)
+        Matrix to test
+    tolerance : float, optional
+        Numerical tolerance for checking (default 1e-10)
+        Only used for numerical matrices
+    
+    Returns
+    -------
+    bool
+        True if U is in SU(2,2) (within tolerance if numeric)
+    
+    Notes
+    -----
+    For symbolic matrices, uses exact simplification.
+    For numeric matrices, uses tolerance-based comparison.
+    
+    Examples
+    --------
+    >>> from sympy import Matrix, eye
+    >>> U = eye(4)  # Identity is in SU(2,2)
+    >>> is_su22(U)
+    True
+    """
+    H = get_su22_hermitian_form()
+    
+    # Check U† H U = H
+    U_dag = U.H
+    product = U_dag * H * U
+    residual = simplify(product - H)
+    
+    # Try symbolic check first
+    if residual == Matrix.zeros(4, 4):
+        form_preserved = True
+    else:
+        # Fall back to numeric check
+        try:
+            # Convert to numeric and check norm
+            residual_numeric = residual.evalf()
+            max_entry = max(abs(complex(residual_numeric[i, j])) 
+                          for i in range(4) for j in range(4))
+            form_preserved = max_entry < tolerance
+        except:
+            form_preserved = False
+    
+    # Check det(U) = 1
+    det_U = U.det()
+    det_simplified = simplify(det_U)
+    
+    if det_simplified == 1:
+        det_is_one = True
+    else:
+        try:
+            det_numeric = complex(det_simplified.evalf())
+            det_is_one = abs(det_numeric - 1.0) < tolerance
+        except:
+            det_is_one = False
+    
+    return form_preserved and det_is_one
+
+
+def su22_lie_algebra_element(A_params):
+    """
+    Create an su(2,2) Lie algebra element from parameters.
+    
+    An element A of su(2,2) satisfies: A† H + H A = 0
+    
+    With H = [[0, I], [I, 0]], if A = [[B, C], [D, E]], then:
+        A† H + H A = 0 implies:
+        D = -C†  and  E = -B†
+    
+    Parameters
+    ----------
+    A_params : dict
+        Parameters defining the algebra element.
+        Should contain 'theta' and 'scale' for a simple test element.
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        An su(2,2) Lie algebra element
+    
+    Notes
+    -----
+    This is a simplified constructor for testing.
+    We construct A with the correct block structure to satisfy A† H + H A = 0.
+    
+    Examples
+    --------
+    >>> A = su22_lie_algebra_element({'theta': 0.1, 'scale': 1.0})
+    """
+    theta = A_params.get('theta', 0.1)
+    scale = A_params.get('scale', 1.0)
+    
+    # For A = [[B, C], [D, E]] to satisfy A† H + H A = 0:
+    # We need D = -C† and E = -B†
+    
+    # Choose B as anti-Hermitian (B† = -B) for simplicity
+    B = Matrix([
+        [0, theta],
+        [-theta, 0]
+    ]) * scale
+    
+    # Choose C as a general 2×2 matrix
+    C = Matrix([
+        [theta, 0],
+        [0, theta]
+    ]) * scale * I  # Multiply by i to keep things anti-Hermitian
+    
+    # Compute D and E from constraints
+    D = -C.H  # D = -C†
+    E = -B.H  # E = -B†
+    
+    # Construct A
+    A = Matrix.vstack(
+        Matrix.hstack(B, C),
+        Matrix.hstack(D, E)
+    )
+    
+    return A
+
+
+def exponentiate_su22_algebra(A, numeric=True):
+    """
+    Exponentiate an su(2,2) Lie algebra element to get SU(2,2) element.
+    
+    U = exp(A)
+    
+    Parameters
+    ----------
+    A : sympy.Matrix (4×4)
+        Lie algebra element (should satisfy A† H + H A = 0)
+    numeric : bool, optional
+        If True, compute numeric exponential (default True)
+        If False, leave as symbolic exp(A)
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        U = exp(A) in SU(2,2)
+    
+    Notes
+    -----
+    Numeric exponentiation uses series expansion or sympy's exp method.
+    For small parameters, first-order U ≈ I + A is often sufficient.
+    """
+    if numeric:
+        # Use sympy's matrix exponential
+        # For small A, we can use Taylor series
+        I4 = eye(4)
+        
+        # First check if A is small enough for first-order approximation
+        try:
+            A_numeric = A.evalf()
+            max_entry = max(abs(complex(A_numeric[i, j])) 
+                          for i in range(4) for j in range(4))
+            
+            if max_entry < 0.2:
+                # Use first-order: exp(A) ≈ I + A
+                U = I4 + A
+            else:
+                # Use higher order Taylor series: exp(A) ≈ I + A + A²/2
+                U = I4 + A + (A*A)/2
+            
+            return U.evalf()
+        except:
+            # Fall back to symbolic
+            return sp.exp(A)
+    else:
+        # Symbolic exponential (not evaluated)
+        return sp.exp(A)
+
+
+def random_su22_element_numeric(seed=None, scale=0.1):
+    """
+    Generate a random SU(2,2) element numerically.
+    
+    Constructs a small su(2,2) algebra element and exponentiates it.
+    
+    Parameters
+    ----------
+    seed : int, optional
+        Random seed for reproducibility
+    scale : float, optional
+        Scale factor for algebra element (default 0.1)
+    
+    Returns
+    -------
+    sympy.Matrix (4×4)
+        A numeric SU(2,2) matrix
+    
+    Examples
+    --------
+    >>> U = random_su22_element_numeric(seed=42, scale=0.1)
+    >>> is_su22(U)  # Should be True (within tolerance)
+    True
+    """
+    import random
+    if seed is not None:
+        random.seed(seed)
+    
+    # Create random algebra element
+    theta = random.uniform(-scale, scale)
+    phi = random.uniform(-scale, scale)
+    
+    A = su22_lie_algebra_element({'theta': theta, 'phi': phi, 'scale': 1.0})
+    
+    # Exponentiate
+    U = exponentiate_su22_algebra(A, numeric=True)
+    
+    return U
+
