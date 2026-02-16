@@ -291,3 +291,47 @@ This section documents advanced explorations beyond the initial sandbox.
 4. **Open questions**: Can theta functions provide line bundle sections?
 
 **Significance**: Provides roadmap for understanding whether UBT's torus-based phase space can support twistor-like structures.
+
+### e08: Lie Algebra Audit (UBT → su(2,2)?)
+
+**Status**: ✅ Complete
+
+**What it proves**:
+- UBT-side generators (2×2 biquaternion basis embedded in 4×4 matrices) naturally close to a 15-dimensional Lie algebra
+- Killing form signature (8, 7, 0) indicates non-compact semisimple structure
+- Dimension and signature match su(2,2) expectations
+- Achieved without importing known su(2,2) generator constructions
+
+**Key files**:
+- `twistor_core/lie_audit.py` - Generic Lie algebra audit utilities (commutator closure, structure constants, Killing form)
+- `experiments/e08_lie_algebra_audit.py` - Main experiment deriving algebra from UBT generators
+- `tests/test_e08_lie_algebra_audit.py` - Comprehensive test suite for audit tools and e08
+- `reports/e08_commutator_table.csv` - Structure constants (156 non-zero entries)
+- `reports/e08_summary.md` - Detailed summary with dimension, signature, and analysis
+
+**Methodology**:
+1. Embed UBT 2×2 biquaternion basis {I, σ₁, σ₂, σ₃} into 4×4 matrices using:
+   - Block diagonal embeddings
+   - Off-diagonal embeddings
+   - Upper-left / lower-right block placements
+   - Complexified combinations
+2. Make all generators traceless (required for su(n,m))
+3. Compute iterative commutator closure with basis reduction
+4. Analyze structure constants and Killing form using exact symbolic arithmetic
+
+**Results**:
+- **Initial generators**: 10 (reduced to 8 independent)
+- **Closure iterations**: 3
+- **Final dimension**: 15 (matches su(2,2))
+- **Structure constants**: 156 non-zero
+- **Killing form signature**: (8, 7, 0) - non-compact
+- **Semisimple**: Yes (rank(K) = 15)
+- **Dimension trajectory**: [8, 14, 15, 15] (converged)
+
+**Significance**: This experiment provides strong evidence that su(2,2) emerges naturally from UBT's algebraic structure. The derived algebra has exactly the right dimension (15), is semisimple, and has a non-compact signature consistent with the conformal group. This suggests a deep structural connection between UBT's biquaternion framework and twistor theory's conformal symmetries.
+
+**Further verification needed**:
+- Cartan classification to confirm Lie algebra isomorphism
+- Verification of conformal group action on spacetime
+- Comparison with known su(2,2) representation theory
+- Connection to UBT's complex-time phase structure
