@@ -158,6 +158,34 @@ pytest THEORY_COMPARISONS/penrose_twistor/tests/
 
 ---
 
+## RUN: Reproducing Comparisons
+
+All experiments can be run from the repository root:
+
+```bash
+# Verify incidence relation
+python -m THEORY_COMPARISONS.penrose_twistor.experiments.e01_incidence_sanity
+
+# Reconstruct spacetime from twistors
+python -m THEORY_COMPARISONS.penrose_twistor.experiments.e02_reconstruct_X
+
+# Test SU(2,2) invariance
+python -m THEORY_COMPARISONS.penrose_twistor.experiments.e03_su22_invariant
+
+# Derive sigma matrices from first principles
+python -m THEORY_COMPARISONS.penrose_twistor.experiments.e05_derive_sigma_from_ubt
+
+# Test conformal transformations
+python -m THEORY_COMPARISONS.penrose_twistor.experiments.e06_su22_conformal_actions
+
+# Run all tests
+pytest THEORY_COMPARISONS/penrose_twistor/tests/ -v
+```
+
+**Expected runtime**: Each experiment completes in < 1 second. Full test suite < 5 seconds.
+
+---
+
 ## Limitations and Disclaimers
 
 ### What This Comparison Does NOT Claim

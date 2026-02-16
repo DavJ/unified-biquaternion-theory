@@ -385,8 +385,9 @@ python -m forensic_fingerprint.tools.theta_fit_tau \
 ### Internal Documentation
 
 - `forensic_fingerprint/tools/theta_fit_tau.py` - Implementation
-- `tests/test_theta_fit_tau.py` - Validation tests (if exists)
+- `tests/test_theta_fit_tau.py` - Validation tests
 - `scans/tt_scan_int_100_200.csv` - Example data
+- `THEORY_COMPARISONS/penrose_twistor/` - Related to complex structures, but τ in UBT ≠ twistor complexification
 
 ### UBT Theory
 
