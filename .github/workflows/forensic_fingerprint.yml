@@ -4,13 +4,15 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
   pull_request:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
 
@@ -33,6 +35,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest numpy scipy matplotlib
       
+      - name: Smoke import check
+        run: |
+          python -c 'import forensic_fingerprint; print("forensic_fingerprint shim OK:", forensic_fingerprint.get_target_root())'
+
       - name: Run forensic fingerprint tests
         run: |
           pytest tests/test_forensic_fingerprint.py -v
