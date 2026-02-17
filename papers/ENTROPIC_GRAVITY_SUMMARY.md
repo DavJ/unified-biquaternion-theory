@@ -182,38 +182,51 @@ The derivation is mathematically sound, physically consistent, and provides a va
 
 ---
 
-## Integration Status (Updated 2025-02-16)
+## Integration Status (Updated 2026-02-17)
 
-✓ **INTEGRATED into consolidation_project**
+✓ **FULLY INTEGRATED into consolidation_project**
 
-The entropic gravity derivation has been integrated into the main UBT consolidation document:
+The entropic gravity derivation has been integrated into the main UBT consolidation document in two complementary sections:
 
+### Integration 1: Full Entropic Construction (PR #287)
+1. **File created**: `consolidation_project/appendix_N3_entropic_full_derivation.tex`
+   - Complete algebraic foundations for UBT entropic thermodynamics
+   - Complex entropic functional with rigorous proofs
+   - Limit analyses and metric structure
+   - Epistemic rigor with statement tagging
+2. **Integrated** into `consolidation_project/appendix_N_holographic_verlinde_desitter.tex`
+   - Added via `\input{appendix_N3_entropic_full_derivation}`
+
+### Integration 2: Entropic Gravity in de Sitter Background (PR #286)
 1. **Core content extracted** from `papers/ubt_entropic_ds_section.tex`
 2. **Fragment created** at `consolidation_project/appendix_N1_entropic_ds_limit.tex`
    - Removed standalone document structure
    - Changed section hierarchy to subsubsections
    - Preserved all mathematical content and derivations
+   - Focus on Verlinde's emergent gravity and de Sitter thermodynamics
 3. **Integrated** into `consolidation_project/appendix_N_holographic_verlinde_desitter.tex`
    - New subsection: "Entropic Gravity Limit in de Sitter Background"
-   - Properly positioned within holographic/Verlinde/de Sitter context
+   - Properly positioned after N3, before N2
 4. **Bibliography updated** in `consolidation_project/references.bib`
    - Added GibbonsHawking1977 reference
    - Verlinde2011 already present
 
 ### Location in Consolidated Document
 
-The entropic gravity derivation is now part of:
+The entropic gravity derivations are now part of:
 - **Document**: `consolidation_project/ubt_2_main.tex`
 - **Appendix**: N (Holographic Principle, Verlinde Gravity, and de Sitter Space)
-- **Subsection**: Entropic Gravity Limit in de Sitter Background
-- **Label**: `\subsec:entropic_ds_limit`
+- **Subsections**: 
+  - Full Entropic Construction (N3) - algebraic/mathematical focus
+  - Entropic Gravity Limit in de Sitter Background (N1) - physics/Verlinde focus
+- **Labels**: `\sec:entropic_full_derivation`, `\subsec:entropic_ds_limit`
 
 ### Standalone Document Status
 
-The original standalone document `papers/ubt_entropic_ds_section.tex` remains in place for reference but is **no longer the canonical location**. The canonical version is now in the consolidation project.
+The original standalone document `papers/ubt_entropic_ds_section.tex` remains in place for reference but is **no longer the canonical location** and is **not compiled by CI**. The canonical version is now in the consolidation project as appendices N1 and N3.
 
 ---
 
-**Implementation**: GitHub Copilot  
+**Implementation**: GitHub Copilot (both PR #286 and #287)  
 **Review**: Pending human verification  
-**Next steps**: CI validation, verify LaTeX compilation succeeds
+**Next steps**: CI validation successful, both derivations integrated and complementary
