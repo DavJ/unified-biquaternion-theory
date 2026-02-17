@@ -2,6 +2,56 @@
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
+## 🚨 Repository Restructuring: Core vs Legacy
+
+**This repository has been restructured** to separate two formulations of UBT:
+
+### 🆕 UBT Core (Chronofactor-Free)
+**Location**: [`ubt_core/`](ubt_core/), [`derivations/`](derivations/), [`papers/`](papers/)
+
+A **clean-room formulation** where all physics emerges from a single 8D phase-capable field Θ(q):
+- **No external chronofactor**: τ = t + iψ is not used
+- **Two channels**: Entropy S_Θ (→ GR) and phase Σ_Θ (→ QM)
+- **From first principles**: Clean derivations without legacy assumptions
+
+**Status**: 🚧 Initial scaffolding complete, derivations in progress
+
+**Start here**: [`ubt_core/README.md`](ubt_core/README.md)
+
+### 📚 Legacy (With Chronofactor)
+**Location**: [`legacy/ubt_with_chronofactor/`](legacy/ubt_with_chronofactor/)
+
+The **original formulation** using complex time τ = t + iψ as a foundational parameter:
+- All existing papers, tools, experiments
+- Preserved with full git history via `git mv`
+- Maintained for reference and regression testing
+
+**Status**: ✅ Frozen for reference, fully functional
+
+**Start here**: [`legacy/ubt_with_chronofactor/README.md`](legacy/ubt_with_chronofactor/README.md)
+
+### Why the Split?
+
+**Rationale**: The external chronofactor τ = t + iψ, while mathematically tractable, introduces conceptual complications:
+- What is the physical meaning of imaginary time ψ?
+- How does ψ evolve dynamically?
+- Is it observer-dependent or universal?
+
+**UBT Core** eliminates these questions by making all phase information **intrinsic** to the 8D field structure, providing a cleaner conceptual foundation while preserving physical predictions.
+
+### Migration Guide
+
+| Looking for... | Core Path | Legacy Path |
+|----------------|-----------|-------------|
+| **Theory foundations** | `ubt_core/README.md` | `legacy/ubt_with_chronofactor/` |
+| **Derivations** | `derivations/D01-D06` | Original papers in legacy |
+| **Papers** | `papers/` (new) | `legacy/ubt_with_chronofactor/papers/` |
+| **Python tools** | `ubt_core/*.py` (minimal) | `legacy/ubt_with_chronofactor/scripts/` |
+| **Experiments** | Future (core-based) | `legacy/ubt_with_chronofactor/EXPERIMENTS/` |
+| **Forensic fingerprint** | Future | `legacy/ubt_with_chronofactor/forensic_fingerprint/` |
+
+---
+
 ## 🏆 Nobel Prize Summary Documents
 
 **NEW:** Comprehensive summaries of UBT prepared for Nobel Prize consideration:
