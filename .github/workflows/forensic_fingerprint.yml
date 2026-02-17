@@ -4,13 +4,15 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
   pull_request:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'ubt_with_chronofactor/forensic_fingerprint/**'
+      - 'forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
 
@@ -33,6 +35,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest numpy scipy matplotlib
       
+      - name: Smoke test - forensic_fingerprint shim
+        run: |
+          python -c "import forensic_fingerprint; print('Shim loaded successfully')"
+          python -c "import sys; import forensic_fingerprint; print('Module location:', sys.modules['forensic_fingerprint'].__file__)"
+      
       - name: Run forensic fingerprint tests
         run: |
           pytest tests/test_forensic_fingerprint.py -v
@@ -53,5 +60,5 @@ jobs:
           echo ""
           echo "All tests use synthetic data for validation."
           echo "Real analysis requires Planck/WMAP data."
-          echo "See forensic_fingerprint/RUNBOOK_REAL_DATA.md"
+          echo "See ubt_with_chronofactor/forensic_fingerprint/RUNBOOK_REAL_DATA.md"
           echo "================================================"

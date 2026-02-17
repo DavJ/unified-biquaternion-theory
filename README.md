@@ -2,53 +2,80 @@
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-## 🚨 Repository Restructuring: Core vs Legacy
+## 🚨 Repository Structure: Two First-Class Formulations
 
-**This repository has been restructured** to separate two formulations of UBT:
+**This repository presents two parallel formulations of UBT** for systematic A/B comparison:
 
-### 🆕 UBT Core (Chronofactor-Free)
-**Location**: [`ubt_core/`](ubt_core/), [`derivations/`](derivations/), [`papers/`](papers/)
+### 🔬 UBT with Chronofactor
+**Location**: [`ubt_with_chronofactor/`](ubt_with_chronofactor/)
 
-A **clean-room formulation** where all physics emerges from a single 8D phase-capable field Θ(q):
-- **No external chronofactor**: τ = t + iψ is not used
+Uses **complex time τ = t + iψ** as an external evolution parameter:
+- **Complete implementation**: Papers, tools, experiments, forensic fingerprint
+- **Mature codebase**: All predictions computed and validated
+- **Open question**: What is the physical meaning of imaginary time ψ?
+
+**Status**: ✅ Full formulation with extensive validation
+
+**Start here**: [`ubt_with_chronofactor/README.md`](ubt_with_chronofactor/README.md)
+
+### 🧮 UBT without Chronofactor  
+**Location**: [`ubt_no_chronofactor/`](ubt_no_chronofactor/)
+
+Uses only **standard real time t**, with all phase information intrinsic to the 8D field Θ(q):
 - **Two channels**: Entropy S_Θ (→ GR) and phase Σ_Θ (→ QM)
-- **From first principles**: Clean derivations without legacy assumptions
+- **Clean derivations**: From first principles without external time assumptions
+- **Conceptual clarity**: No ambiguity about imaginary time evolution
 
-**Status**: 🚧 Initial scaffolding complete, derivations in progress
+**Status**: 🚧 Core scaffolding complete, derivations in progress
 
-**Start here**: [`ubt_core/README.md`](ubt_core/README.md)
+**Start here**: [`ubt_no_chronofactor/core/README.md`](ubt_no_chronofactor/core/README.md)
 
-### 📚 Legacy (With Chronofactor)
-**Location**: [`legacy/ubt_with_chronofactor/`](legacy/ubt_with_chronofactor/)
+### 🔍 Comparison Protocol
+**Location**: [`ubt_compare/`](ubt_compare/)
 
-The **original formulation** using complex time τ = t + iψ as a foundational parameter:
-- All existing papers, tools, experiments
-- Preserved with full git history via `git mv`
-- Maintained for reference and regression testing
+Tools and protocols for **systematic A/B comparison**:
+- **Shared invariants**: Physical observables both formulations must predict
+- **Object mapping**: Correspondence between mathematical structures  
+- **Validation framework**: Check consistency and identify differences
 
-**Status**: ✅ Frozen for reference, fully functional
+**Purpose**: Determine which formulation provides:
+- Cleaner conceptual foundations
+- More testable predictions
+- Better match to observational data
+- Simpler derivations
 
-**Start here**: [`legacy/ubt_with_chronofactor/README.md`](legacy/ubt_with_chronofactor/README.md)
+**Start here**: [`ubt_compare/README.md`](ubt_compare/README.md)
 
-### Why the Split?
+### The Central Question
 
-**Rationale**: The external chronofactor τ = t + iψ, while mathematically tractable, introduces conceptual complications:
-- What is the physical meaning of imaginary time ψ?
+**What is the physical meaning of the chronofactor τ = t + iψ?**
+
+- Is ψ an observer-dependent phase or a universal field?
 - How does ψ evolve dynamically?
-- Is it observer-dependent or universal?
+- Is it a mathematical convenience or a physical degree of freedom?
 
-**UBT Core** eliminates these questions by making all phase information **intrinsic** to the 8D field structure, providing a cleaner conceptual foundation while preserving physical predictions.
+The **chronofactor-free formulation** eliminates these questions by making all phase information **intrinsic** to the 8D biquaternionic field structure. The **chronofactor formulation** keeps the complex time structure as a foundational element.
+
+Both are maintained as **first-class alternatives** to enable:
+1. Systematic comparison
+2. Independent verification
+3. Identification of conceptual advantages
+4. Empirical testing
+
+**Research Position**: The meaning of the chronofactor is an **open research question**. This repository does not prejudge the answer.
 
 ### Migration Guide
 
-| Looking for... | Core Path | Legacy Path |
-|----------------|-----------|-------------|
-| **Theory foundations** | `ubt_core/README.md` | `legacy/ubt_with_chronofactor/` |
-| **Derivations** | `derivations/D01-D06` | Original papers in legacy |
-| **Papers** | `papers/` (new) | `legacy/ubt_with_chronofactor/papers/` |
-| **Python tools** | `ubt_core/*.py` (minimal) | `legacy/ubt_with_chronofactor/scripts/` |
-| **Experiments** | Future (core-based) | `legacy/ubt_with_chronofactor/EXPERIMENTS/` |
-| **Forensic fingerprint** | Future | `legacy/ubt_with_chronofactor/forensic_fingerprint/` |
+| Looking for... | With Chronofactor | Without Chronofactor | Comparison |
+|----------------|-------------------|----------------------|------------|
+| **Theory foundations** | `ubt_with_chronofactor/` | `ubt_no_chronofactor/core/` | `ubt_compare/` |
+| **Derivations** | Original papers | `ubt_no_chronofactor/derivations/` | `ubt_compare/mapping_table.md` |
+| **Papers** | `ubt_with_chronofactor/papers/` | `ubt_no_chronofactor/papers/` | Both |
+| **Python tools** | `ubt_with_chronofactor/scripts/` | `ubt_no_chronofactor/core/*.py` | - |
+| **Experiments** | `ubt_with_chronofactor/EXPERIMENTS/` | Future | - |
+| **Forensic fingerprint** | `ubt_with_chronofactor/forensic_fingerprint/` | Future | `ubt_compare/invariants.md` |
+
+**Note**: Root-level `forensic_fingerprint/` is a compatibility shim that delegates to `ubt_with_chronofactor/forensic_fingerprint/` for backward compatibility with tests.
 
 ---
 
