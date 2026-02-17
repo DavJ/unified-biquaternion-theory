@@ -172,6 +172,10 @@ Active research hypotheses:
 **Speculative content separated from core:**
 - Core theory in `unified_biquaternion_theory/` and `consolidation_project/`
 - All consciousness-related content in `speculative_extensions/` folder
+- **Complex Consciousness Theory (CCT)**: Located in `speculative_extensions/complex_consciousness/` and `ubt_with_chronofactor/complex_consciousness/`
+  - CCT applies UBT principles to model consciousness as a physical phenomenon
+  - Classified as speculative/exploratory research
+  - Kept separate from empirically validated core theory
 - Digital simulation analogies clearly isolated in speculative extensions
 - See [speculative_extensions/README.md](speculative_extensions/README.md) for disclaimers
 
