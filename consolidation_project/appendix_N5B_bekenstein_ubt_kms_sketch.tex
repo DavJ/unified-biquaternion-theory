@@ -1,0 +1,63 @@
+
+\subsubsection{Bekenstein Bridge (Variant B): UBT Complex-Time/KMS Sketch}
+
+\paragraph{Goal.}
+This subsection outlines a research program to \emph{derive} a Bekenstein-like
+entropy-displacement relation from the complex-time structure $\tau=t+i\psi$
+and the local near-horizon (Rindler/KMS) limit. This is a sketch, not a completed proof.
+
+\paragraph{Step B1 (Local Rindlerization).}
+In the vicinity of any spacetime point, consider an accelerated frame defining
+an approximate local Rindler horizon. The corresponding thermal behavior in QFT
+is encoded by a KMS condition, leading to an effective temperature scale.
+
+\paragraph{Step B2 (Complex time and KMS periodicity).}
+In thermal/KMS states, imaginary time is periodic with period
+\[
+  \beta = \frac{\hbar}{k_B T}.
+\]
+With $\tau=t+i\psi$, interpret $\psi$ as the imaginary-time coordinate and
+posit that locally the dynamics admits an approximate KMS periodicity in $\psi$:
+\[
+  \psi \sim \psi + \beta.
+\]
+Combined with Unruh scaling in the Rindler frame, this yields
+\[
+  T \sim \frac{\hbar a}{2\pi k_B c},
+\]
+where the $2\pi$ factor is tied to the Euclidean continuation of boost/Rindler time.
+
+\paragraph{Step B3 (UBT entropic functional as modular generator candidate).}
+Use the complex entropic functional
+\[
+  \mathcal{S}(x)=k_B \operatorname{Tr}(\log\Theta(x)) = k_B\log\det\Theta(x),
+\]
+and define the physical entropic scalar by real projection:
+\[
+  S_\Theta(x)=2\,\mathrm{Re}(\mathcal{S}(x))=2k_B\log|\det\Theta(x)|.
+\]
+Hypothesis: In the local Rindler limit, variations of $S_\Theta$ with respect to
+transverse displacements $\Delta x$ encode information flow across the causal screen.
+
+\paragraph{Step B4 (Entropy-displacement relation).}
+Seek a derivation of
+\[
+  \Delta S_{\text{test}} \stackrel{?}{=} 2\pi k_B \frac{E}{\hbar c}\,\Delta x
+\]
+from the combination of:
+(i) KMS periodicity in $\psi$,
+(ii) local boost (Rindler) generators,
+and (iii) coupling of test-body energy $E$ to $\Theta$-induced entropic gradients.
+
+\paragraph{Step B5 (Chronofactor vs local spacetime).}
+The global chronofactor is treated as a background scaling mode,
+while the local Rindler/KMS construction is performed in the locally projected 4D frame.
+The program is to show that the local $2\pi$ (boost) factor is universal, independent
+of the global chronofactor, while the chronofactor sets cosmological background scales (e.g. $H$).
+
+\paragraph{Deliverable of Variant B.}
+Produce a minimal lemma of the form:
+\emph{If UBT admits local KMS periodicity in $\psi$ in the accelerated frame, then a Bekenstein-like
+entropy displacement law follows with the universal $2\pi$ factor.}
+This requires specifying the precise test-body coupling and the definition of the causal screen
+in UBT language.
