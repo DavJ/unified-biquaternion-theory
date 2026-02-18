@@ -4,13 +4,13 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/tools/planck_validation/**'
+      - 'ubt_with_chronofactor/tools/planck_validation/**'
       - 'tests/test_planck_validation_mapping.py'
       - '.github/workflows/planck_validation.yml'
   pull_request:
     branches: [ main, master ]
     paths:
-      - 'legacy/ubt_with_chronofactor/tools/planck_validation/**'
+      - 'ubt_with_chronofactor/tools/planck_validation/**'
       - 'tests/test_planck_validation_mapping.py'
       - '.github/workflows/planck_validation.yml'
 
