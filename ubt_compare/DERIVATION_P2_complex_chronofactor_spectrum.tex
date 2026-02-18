@@ -105,11 +105,31 @@ The matrix exponential simplifies if and only if $[A, B] = 0$:
 \end{equation}
 where to first order:
 \begin{equation}
-C_{\text{BCH}} \approx \frac{i}{2}(t^2 - \psi^2)[A,B] + O(t\psi)
+C_{\text{BCH}} \approx \frac{1}{2}[tA - \psi B, i(tB + \psi A)] + O([[[A,B],A],B])
 \end{equation}
 \end{theorem}
 
-\textbf{Physical Interpretation}: Non-commutativity introduces additional phase factors that depend on both $t$ and $\psi$ quadratically.
+Expanding the commutator explicitly:
+\begin{align}
+[tA - \psi B, i(tB + \psi A)] &= i[tA - \psi B, tB + \psi A] \nonumber \\
+&= i(t^2[A,B] + t\psi[A,A] - t\psi[B,B] - \psi^2[B,A])
+\end{align}
+
+Using the identities $[A,A] = 0$, $[B,B] = 0$, and $[B,A] = -[A,B]$:
+\begin{align}
+[tA - \psi B, i(tB + \psi A)] &= i(t^2[A,B] + 0 - 0 - \psi^2(-[A,B])) \nonumber \\
+&= i(t^2[A,B] + \psi^2[A,B]) \nonumber \\
+&= i(t^2 + \psi^2)[A,B]
+\end{align}
+
+Therefore:
+\begin{equation}
+C_{\text{BCH}} \approx \frac{i}{2}(t^2 + \psi^2)[A,B] + O([[[A,B],A],B])
+\end{equation}
+
+\textbf{Physical Interpretation}: Non-commutativity introduces additional phase factors that depend on both $t$ and $\psi$ quadratically, with the phase correction growing as $(t^2 + \psi^2)$. For small $\psi$, the correction is order $O(\psi^2)$. The positive sign indicates that both real and imaginary time components contribute additively to the non-commutative phase.
+
+\textbf{Remark on Higher-Order Terms}: The BCH formula contains higher-order nested commutators such as $[[A,B],A]$ and $[[A,B],B]$. The leading first-order approximation is valid when $||A||, ||B||$ are small or over short complex time intervals where $||\tau G|| \ll 1$.
 
 \subsection{Spectral Decomposition and Eigenmode Evolution}
 \label{sec:spectral-decomposition}
