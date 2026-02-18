@@ -1,0 +1,541 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Complex Chronofactor τ=t+iψ: Spectral Consequences and Links to S_Θ and Σ_Θ
+% LaTeX Version - Suitable for Paper Appendix or Standalone Document
+
+\section{Complex Chronofactor $\tau=t+i\psi$: Spectral Consequences}
+\label{sec:complex-chronofactor-spectrum}
+
+\subsection{Abstract}
+
+This section provides a rigorous symbolic derivation of how a complex chronofactor $\tau = t + i\psi$ manifests in spectral properties of the biquaternionic field $\Theta(\tau)$. We establish the formal mathematical connection between complex-time evolution and the UBT invariants $S_\Theta = k_B \log \det(\Theta^\dagger\Theta)$ (entropy channel) and $\Sigma_\Theta = k_B \arg \det \Theta$ (phase channel). The analysis focuses on linear complex-time flow, eigenmode decomposition, and the emergence of testable discriminators that distinguish real-time evolution from complex-time dynamics.
+
+\subsection{Setup and Assumptions}
+\label{sec:setup-assumptions}
+
+\subsubsection{The Biquaternionic Field}
+
+We work with a complex matrix field $\Theta(\tau)$ where:
+\begin{itemize}
+\item $\Theta$: $n\times n$ complex matrix field
+\item $\tau = t + i\psi$: Complex chronofactor ($t$ = real time, $\psi$ = imaginary/phase component)
+\item $q$: Spatial coordinates (suppressed when focusing on temporal evolution)
+\end{itemize}
+
+\subsubsection{Fundamental Assumptions}
+
+\textbf{Assumption 1.1} (Regularity): $\Theta(\tau)$ is holomorphic in a neighborhood of the real axis $\mathrm{Im}(\tau) = 0$ for physical time evolution.
+
+\textbf{Assumption 1.2} (Positive-Definiteness on Real Slice): For real $t$ with fixed $\psi$, the Hermitian product $O(t) := \Theta^\dagger(t+i\psi) \Theta(t+i\psi)$ is positive semidefinite.
+
+\textbf{Assumption 1.3} (Linear Flow): The evolution is governed by a time-independent generator $G$:
+\begin{equation}
+\partial_\tau \Theta = G \Theta
+\label{eq:linear-flow}
+\end{equation}
+where $G$ is a fixed $n\times n$ complex matrix (generally non-Hermitian).
+
+\subsubsection{UBT Invariants}
+
+The theory defines two primary channels:
+
+\textbf{Entropy Channel}:
+\begin{equation}
+S_\Theta(\tau) = k_B \log \det(\Theta^\dagger(\tau) \Theta(\tau)) = 2k_B \mathrm{Re}[\log \det \Theta(\tau)]
+\label{eq:entropy-channel}
+\end{equation}
+
+\textbf{Phase Channel}:
+\begin{equation}
+\Sigma_\Theta(\tau) = k_B \arg \det \Theta(\tau) = k_B \mathrm{Im}[\log \det \Theta(\tau)]
+\label{eq:phase-channel}
+\end{equation}
+where $k_B$ is Boltzmann's constant (set to 1 in natural units for this derivation).
+
+\subsection{Linear Complex-$\tau$ Flow}
+\label{sec:linear-flow}
+
+\subsubsection{Formal Solution}
+
+The linear flow equation \eqref{eq:linear-flow} has the formal solution:
+
+\begin{proposition}[Exponential Flow]
+\label{prop:exponential-flow}
+\begin{equation}
+\Theta(\tau) = \exp(\tau G) \Theta_0
+\end{equation}
+where $\Theta_0 = \Theta(0)$ is the initial condition and $\exp(\tau G)$ is the matrix exponential.
+\end{proposition}
+
+\subsubsection{Decomposition of Generator}
+
+Write the generator $G$ in terms of its real and imaginary parts:
+\begin{equation}
+G = A + iB
+\end{equation}
+where $A = \mathrm{Re}(G)$ and $B = \mathrm{Im}(G)$ are real $n\times n$ matrices.
+
+\begin{lemma}[Complex-Time Substitution]
+\label{lem:complex-time-sub}
+Substituting $\tau = t + i\psi$:
+\begin{equation}
+\tau G = (t + i\psi)(A + iB) = (tA - \psi B) + i(tB + \psi A)
+\end{equation}
+\end{lemma}
+
+This shows that complex time $\tau$ couples the real and imaginary parts of $G$ in a non-trivial way:
+\begin{itemize}
+\item Real part of $\tau G$: $tA - \psi B$ (combines real-time evolution with imaginary generator)
+\item Imaginary part of $\tau G$: $tB + \psi A$ (combines imaginary-time evolution with real generator)
+\end{itemize}
+
+\subsubsection{Commutator Analysis}
+
+\begin{theorem}[Decomposition Conditions]
+\label{thm:decomposition}
+The matrix exponential simplifies if and only if $[A, B] = 0$:
+
+\textbf{Case 1} (Commuting): If $[A, B] = 0$, then:
+\begin{equation}
+\exp(\tau G) = \exp(tA - \psi B) \exp(i(tB + \psi A))
+\end{equation}
+
+\textbf{Case 2} (Non-Commuting): If $[A, B] \neq 0$, use the Baker-Campbell-Hausdorff (BCH) formula:
+\begin{equation}
+\exp(\tau G) = \exp(tA - \psi B) \exp(i(tB + \psi A)) \exp(C_{\text{BCH}})
+\end{equation}
+where to first order:
+\begin{equation}
+C_{\text{BCH}} \approx \frac{i}{2}(t^2 - \psi^2)[A,B] + O(t\psi)
+\end{equation}
+\end{theorem}
+
+\textbf{Physical Interpretation}: Non-commutativity introduces additional phase factors that depend on both $t$ and $\psi$ quadratically.
+
+\subsection{Spectral Decomposition and Eigenmode Evolution}
+\label{sec:spectral-decomposition}
+
+\subsubsection{Eigendecomposition}
+
+Assume $G$ is diagonalizable:
+\begin{equation}
+G v_k = \mu_k v_k, \quad k = 1, \ldots, n
+\end{equation}
+where:
+\begin{itemize}
+\item $\mu_k = \alpha_k + i\omega_k$: Complex eigenvalues ($\alpha_k, \omega_k \in \mathbb{R}$)
+\item $v_k$: Right eigenvectors
+\item $w_k$: Left eigenvectors (bi-orthogonal: $w_k^\dagger v_j = \delta_{kj}$)
+\end{itemize}
+
+\begin{proposition}[Spectral Expansion]
+\label{prop:spectral-expansion}
+\begin{equation}
+\Theta(\tau) = \exp(\tau G) \Theta_0 = \sum_k \exp(\tau \mu_k) v_k w_k^\dagger \Theta_0
+\end{equation}
+\end{proposition}
+
+Each eigenmode $k$ evolves independently with amplitude factor $\exp(\tau \mu_k)$.
+
+\subsection{Complex $\tau$ Effects: Growth/Decay + Oscillation}
+\label{sec:complex-tau-effects}
+
+\subsubsection{Single Eigenmode Evolution}
+
+Consider a single eigenmode with eigenvalue $\mu = \alpha + i\omega$:
+\begin{align}
+\exp(\tau\mu) &= \exp((t + i\psi)(\alpha + i\omega)) \nonumber \\
+              &= \exp((t\alpha - \psi\omega) + i(t\omega + \psi\alpha)) \nonumber \\
+              &= \exp(t\alpha - \psi\omega) \cdot \exp(i(t\omega + \psi\alpha))
+\end{align}
+
+\begin{theorem}[Mode Amplitude Factor]
+\label{thm:mode-amplitude}
+The mode amplitude factor decomposes as:
+\begin{align}
+|\exp(\tau\mu)| &= \exp(t\alpha - \psi\omega) \\
+\arg(\exp(\tau\mu)) &= t\omega + \psi\alpha
+\end{align}
+\end{theorem}
+
+\textbf{Physical Interpretation}:
+\begin{enumerate}
+\item \textbf{Growth/Decay} (Amplitude): $|\exp(\tau\mu)| = \exp(t\alpha - \psi\omega)$
+   \begin{itemize}
+   \item Real time $t$ couples to $\mathrm{Re}(\mu) = \alpha$ (standard exponential growth/decay)
+   \item Imaginary time $\psi$ couples to $\mathrm{Im}(\mu) = \omega$ (modulates amplitude!)
+   \item A non-zero $\psi$ can turn decay into growth (if $\omega < 0$) or vice versa
+   \end{itemize}
+
+\item \textbf{Oscillation} (Phase): $\arg(\exp(\tau\mu)) = t\omega + \psi\alpha$
+   \begin{itemize}
+   \item Real time $t$ couples to $\mathrm{Im}(\mu) = \omega$ (standard oscillation)
+   \item Imaginary time $\psi$ couples to $\mathrm{Re}(\mu) = \alpha$ (phase shift!)
+   \item Growth rate $\alpha$ now contributes to phase accumulation
+   \end{itemize}
+\end{enumerate}
+
+\begin{corollary}[Cross-Coupling Principle]
+\label{cor:cross-coupling}
+Complex time $\tau$ introduces a fundamental cross-coupling:
+\begin{itemize}
+\item What is ``growth'' in real time becomes ``oscillation'' in imaginary time
+\item What is ``oscillation'' in real time becomes ``growth'' in imaginary time
+\end{itemize}
+This is the spectral signature of complex chronofactor evolution.
+\end{corollary}
+
+\subsection{Evolution of Observable Matrix $O(\tau) = \Theta^\dagger\Theta$}
+\label{sec:observable-evolution}
+
+Define the observable matrix:
+\begin{equation}
+O(t, \psi) := \Theta^\dagger(t + i\psi) \Theta(t + i\psi)
+\end{equation}
+
+\begin{theorem}[Real-Time Evolution of $O$]
+\label{thm:O-evolution}
+Taking $\partial_t$ derivative with $\psi$ fixed:
+\begin{equation}
+\partial_t O = \Theta^\dagger(G^\dagger + G)\Theta = 2\Theta^\dagger\mathrm{Herm}(G)\Theta
+\end{equation}
+where $\mathrm{Herm}(G) := (G + G^\dagger)/2$ is the Hermitian part of $G$.
+\end{theorem}
+
+\begin{corollary}[Conservation Condition]
+\label{cor:conservation}
+If $\mathrm{Herm}(G) = 0$ (i.e., $G$ is anti-Hermitian), then $\partial_t O = 0$ and $O$ is conserved on the real-time slice.
+\end{corollary}
+
+\textbf{Physical Interpretation}: Anti-Hermitian generators preserve the norm. This is the spectral manifestation of unitary evolution.
+
+\subsubsection{Imaginary-Time Dependence}
+
+If $\psi$ varies with $t$, i.e., $\psi = \psi(t)$, then:
+\begin{equation}
+\frac{dO}{dt} = \partial_t O + (\partial_\psi O)\frac{d\psi}{dt}
+\end{equation}
+
+Computing $\partial_\psi O$:
+\begin{equation}
+\partial_\psi O = 2i\Theta^\dagger\mathrm{AntiHerm}(G)\Theta
+\end{equation}
+where $\mathrm{AntiHerm}(G) := (G - G^\dagger)/(2i)$ is the anti-Hermitian part.
+
+\begin{theorem}[Full Time Derivative with Variable $\psi$]
+\label{thm:full-derivative}
+\begin{equation}
+\frac{dO}{dt} = 2\Theta^\dagger\left[\mathrm{Herm}(G) + i\frac{d\psi}{dt}\mathrm{AntiHerm}(G)\right]\Theta
+\end{equation}
+\end{theorem}
+
+\textbf{Physical Consequence}: If $\psi(t)$ varies, the effective generator becomes:
+\begin{equation}
+G_{\text{eff}} = \mathrm{Herm}(G) + i\frac{d\psi}{dt}\mathrm{AntiHerm}(G)
+\end{equation}
+This can cause spectral broadening even if $G$ itself is anti-Hermitian!
+
+\subsection{Determinant Channel and Connection to $S_\Theta$, $\Sigma_\Theta$}
+\label{sec:determinant-channel}
+
+\begin{theorem}[Determinant Identity for Linear Flow]
+\label{thm:det-identity}
+For linear flow $\partial_\tau \Theta = G\Theta$:
+\begin{equation}
+\det \Theta(\tau) = \det(\exp(\tau G)) \det \Theta_0 = \exp(\tau \mathrm{Tr}\, G) \det \Theta_0
+\end{equation}
+Taking logarithm:
+\begin{equation}
+\log \det \Theta(\tau) = \tau \mathrm{Tr}\, G + \log \det \Theta_0
+\label{eq:log-det-identity}
+\end{equation}
+\end{theorem}
+
+\subsubsection{Real and Imaginary Parts}
+
+Substituting $\tau = t + i\psi$ and $\mathrm{Tr}\, G = \mathrm{Tr}\, A + i \mathrm{Tr}\, B$:
+\begin{align}
+\log \det \Theta(\tau) &= (t + i\psi)(\mathrm{Tr}\, A + i \mathrm{Tr}\, B) + \log \det \Theta_0 \nonumber \\
+&= (t \mathrm{Tr}\, A - \psi \mathrm{Tr}\, B) + i(t \mathrm{Tr}\, B + \psi \mathrm{Tr}\, A) + \log \det \Theta_0
+\end{align}
+
+\begin{proposition}[Re/Im Decomposition]
+\label{prop:re-im-decomposition}
+\begin{align}
+\mathrm{Re}[\log \det \Theta(\tau)] &= t \mathrm{Tr}\, A - \psi \mathrm{Tr}\, B + \mathrm{Re}[\log \det \Theta_0] \\
+\mathrm{Im}[\log \det \Theta(\tau)] &= t \mathrm{Tr}\, B + \psi \mathrm{Tr}\, A + \mathrm{Im}[\log \det \Theta_0]
+\end{align}
+\end{proposition}
+
+\begin{theorem}[UBT Invariant Expressions]
+\label{thm:ubt-invariants}
+\textbf{Entropy Channel}:
+\begin{equation}
+S_\Theta(t, \psi) = 2k_B(t \mathrm{Tr}\, A - \psi \mathrm{Tr}\, B + \mathrm{Re}[\log \det \Theta_0])
+\label{eq:entropy-explicit}
+\end{equation}
+
+\textbf{Phase Channel}:
+\begin{equation}
+\Sigma_\Theta(t, \psi) = k_B(t \mathrm{Tr}\, B + \psi \mathrm{Tr}\, A + \mathrm{Im}[\log \det \Theta_0])
+\label{eq:phase-explicit}
+\end{equation}
+\end{theorem}
+
+\textbf{Key Observation}: The cross-coupling appears explicitly:
+\begin{itemize}
+\item $S_\Theta$: Real time couples to $\mathrm{Tr}\, A$, imaginary time couples to $\mathrm{Tr}\, B$
+\item $\Sigma_\Theta$: Real time couples to $\mathrm{Tr}\, B$, imaginary time couples to $\mathrm{Tr}\, A$
+\end{itemize}
+
+\begin{corollary}[Evolution Rates]
+\label{cor:evolution-rates}
+\begin{align}
+\partial_t S_\Theta &= 2k_B \mathrm{Tr}\, A, \quad \partial_\psi S_\Theta = -2k_B \mathrm{Tr}\, B \\
+\partial_t \Sigma_\Theta &= k_B \mathrm{Tr}\, B, \quad \partial_\psi \Sigma_\Theta = k_B \mathrm{Tr}\, A
+\end{align}
+\end{corollary}
+
+\subsection{Phase Channel as Holonomy}
+\label{sec:phase-holonomy}
+
+The phase channel $\Sigma_\Theta = k_B \arg \det \Theta$ can be interpreted as a holonomy or winding number in the complex-$\tau$ plane.
+
+\begin{definition}[Phase Holonomy]
+\label{def:phase-holonomy}
+For a closed loop $\gamma$ in the complex-$\tau$ plane:
+\begin{equation}
+\Delta\Sigma_\Theta[\gamma] = k_B \oint_\gamma d\tau\, \mathrm{Tr}(\Theta^{-1} \partial_\tau \Theta) = k_B \left(\mathrm{Tr}\, G\right) \oint_\gamma d\tau
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Imaginary-Time Winding]
+\label{prop:im-time-winding}
+Consider a loop in the $\psi$-direction at fixed $t$: $\psi \in [0, \Delta\psi]$:
+\begin{equation}
+\Delta\Sigma_\Theta = k_B (i\Delta\psi) (\mathrm{Tr}\, A + i \mathrm{Tr}\, B) = -k_B \Delta\psi\, \mathrm{Tr}\, B + ik_B \Delta\psi\, \mathrm{Tr}\, A
+\end{equation}
+The real winding is:
+\begin{equation}
+\mathrm{Re}[\Delta\Sigma_\Theta] = -k_B \Delta\psi\, \mathrm{Tr}\, B
+\end{equation}
+\end{proposition}
+
+\textbf{Physical Meaning}: The phase accumulation under imaginary-time translation is controlled by $\mathrm{Tr}\, B$, the imaginary part of the generator trace. This structure is analogous to Berry phase in quantum mechanics.
+
+\subsection{Non-Hermitian Case and Pseudospectrum}
+\label{sec:non-hermitian}
+
+\subsubsection{Non-Normal Matrices}
+
+A matrix $G$ is \textbf{normal} if $[G, G^\dagger] = 0$. For non-normal $G$:
+\begin{itemize}
+\item Eigenvalues can be highly sensitive to perturbations
+\item Eigenvectors are not orthogonal
+\item Transient growth can occur even if all $\mathrm{Re}(\mu_k) < 0$
+\end{itemize}
+
+\subsubsection{Pseudospectrum}
+
+\begin{definition}[$\epsilon$-Pseudospectrum]
+\label{def:pseudospectrum}
+The $\epsilon$-pseudospectrum of $G$ is:
+\begin{equation}
+\sigma_\epsilon(G) = \{z \in \mathbb{C} : ||(zI - G)^{-1}|| \geq 1/\epsilon\}
+\end{equation}
+\end{definition}
+
+\textbf{Physical Significance}: Even if eigenvalues suggest stability ($\mathrm{Re}(\mu_k) < 0$), the pseudospectrum can extend into $\mathrm{Re}(z) > 0$, indicating potential for transient growth.
+
+\begin{theorem}[Transient Amplification]
+\label{thm:transient-amplification}
+For non-normal $G$, there exists $t_{\max}$ such that:
+\begin{equation}
+||\Theta(t_{\max})|| > ||\Theta_0|| \exp\left(\max_k \mathrm{Re}(\mu_k) \cdot t_{\max}\right)
+\end{equation}
+\end{theorem}
+
+This is transient growth: temporary amplification beyond what eigenvalues predict.
+
+\subsection{Diagnostic Invariants and Discriminators}
+\label{sec:discriminators}
+
+We define three testable discriminators for distinguishing real-$\tau$ from complex-$\tau$ evolution.
+
+\subsubsection{Discriminator D1: Phase-Entropy Coupling Coefficient}
+
+\begin{definition}[Coupling Coefficient]
+\label{def:coupling-coeff}
+\begin{equation}
+C_{\Sigma S}(t) := \frac{\partial_t \Sigma_\Theta}{\partial_t S_\Theta} = \frac{k_B \mathrm{Tr}\, B}{2k_B \mathrm{Tr}\, A} = \frac{\mathrm{Tr}\, B}{2 \mathrm{Tr}\, A}
+\end{equation}
+\end{definition}
+
+\textbf{Test}:
+\begin{itemize}
+\item \textbf{Real $\tau$ ($\psi = 0$)}: $C_{\Sigma S}$ is constant, determined solely by $G$
+\item \textbf{Complex $\tau$ ($\psi \neq 0$)}: $C_{\Sigma S}$ can vary if $\psi(t)$ changes or if $G$ depends on $\psi$
+\end{itemize}
+
+\textbf{Prediction}: Observe time-varying $C_{\Sigma S}(t)$ as a signature of complex-time evolution.
+
+\subsubsection{Discriminator D2: Conservation Test}
+
+\begin{definition}[Spectral Drift]
+\label{def:spectral-drift}
+Define the eigenvalue variance of $O(t)$:
+\begin{equation}
+\mathrm{Var}_O(t) := \frac{\mathrm{Tr}(O^2(t))}{(\mathrm{Tr}\, O(t))^2} - \frac{1}{n}
+\end{equation}
+\end{definition}
+
+\textbf{Test}:
+\begin{itemize}
+\item \textbf{Anti-Hermitian $G$ with real $\tau$}: $\mathrm{Var}_O(t) = $ constant
+\item \textbf{Complex $\tau$ with $\mathrm{Herm}(G) \neq 0$}: $\mathrm{Var}_O(t)$ drifts
+\end{itemize}
+
+\textbf{Prediction}: Monitor $\mathrm{Var}_O(t)$ for unexpected drift:
+\begin{equation}
+\frac{d(\mathrm{Var}_O)}{dt} \neq 0 \implies \mathrm{Herm}(G) \neq 0 \text{ or complex-}\tau \text{ effects}
+\end{equation}
+
+\subsubsection{Discriminator D3: Mode Pairing and Oscillatory Signatures}
+
+\begin{definition}[Conjugate Mode Correlation]
+\label{def:mode-correlation}
+For complex eigenvalue pair $\mu = \alpha \pm i\omega$, the phase channel exhibits:
+\begin{equation}
+\Sigma_\Theta(t) \propto t\cdot\omega \quad \text{(oscillatory component)}
+\end{equation}
+while the entropy channel varies as:
+\begin{equation}
+S_\Theta(t) \propto t\cdot\alpha \quad \text{(monotonic growth/decay)}
+\end{equation}
+\end{definition}
+
+\textbf{Test}:
+\begin{itemize}
+\item \textbf{Real $\tau$}: $\Sigma_\Theta$ and $S_\Theta$ are uncorrelated
+\item \textbf{Complex $\tau$}: Oscillations in $\Sigma_\Theta$ correlate with features in $S_\Theta$
+\end{itemize}
+
+\textbf{Measurement Protocol}:
+\begin{equation}
+\text{FFT}[\Sigma_\Theta(t)] \to \text{extract } \omega_{\text{obs}}, \quad \text{FFT}[S_\Theta(t)] \to \text{check for features at } \omega_{\text{obs}}
+\end{equation}
+
+\subsubsection{Summary of Discriminators}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Discriminator} & \textbf{Observable} & \textbf{Real $\tau$ Behavior} & \textbf{Complex $\tau$ Signature} \\
+\hline
+D1: $C_{\Sigma S}$ & $\partial_t \Sigma_\Theta / \partial_t S_\Theta$ & Constant & Time-varying \\
+\hline
+D2: $\mathrm{Var}_O$ & $\mathrm{Tr}(O^2)/(\mathrm{Tr}\, O)^2$ & Conserved (if $G$ anti-Herm) & Drifts \\
+\hline
+D3: Mode Pairing & $\text{FFT}[\Sigma_\Theta]$ vs $\text{FFT}[S_\Theta]$ & Uncorrelated & Cross-correlation at $\omega_k$ \\
+\hline
+\end{tabular}
+\caption{Summary of three discriminators for real vs. complex chronofactor evolution}
+\label{tab:discriminators}
+\end{table}
+
+\subsection{Appendix A: $2\times 2$ Worked Example}
+\label{sec:appendix-2x2}
+
+Consider a $2\times 2$ generator:
+\begin{equation}
+G = \begin{pmatrix} \alpha_1 & i\omega \\ -i\omega & \alpha_2 \end{pmatrix}
+\end{equation}
+where $\alpha_1, \alpha_2, \omega \in \mathbb{R}$.
+
+The characteristic polynomial is:
+\begin{equation}
+\det(G - \lambda I) = (\alpha_1 - \lambda)(\alpha_2 - \lambda) + \omega^2 = 0
+\end{equation}
+
+Eigenvalues:
+\begin{equation}
+\lambda_\pm = \frac{\alpha_1 + \alpha_2}{2} \pm \sqrt{\frac{(\alpha_1 - \alpha_2)^2}{4} - \omega^2}
+\end{equation}
+
+For complex-time evolution $\tau = t + i\psi$:
+\begin{equation}
+\det \Theta(\tau) = \exp(\tau(\alpha_1 + \alpha_2)) \det \Theta_0
+\end{equation}
+
+Thus:
+\begin{align}
+S_\Theta(\tau) &= 2k_B t(\alpha_1 + \alpha_2) \\
+\Sigma_\Theta(\tau) &= k_B \psi(\alpha_1 + \alpha_2)
+\end{align}
+
+For an eigenvector $v_+$ with eigenvalue $\lambda_+ = \alpha_+ + i\omega_+$:
+\begin{align}
+|\exp(\tau\lambda_+)| &= \exp(t\alpha_+ - \psi\omega_+) \\
+\arg(\exp(\tau\lambda_+)) &= t\omega_+ + \psi\alpha_+
+\end{align}
+
+This explicitly shows the cross-coupling: $\psi$ modulates the amplitude through $\omega_+$.
+
+\subsection{Appendix B: Heat-Kernel Representation}
+\label{sec:appendix-heat-kernel}
+
+The heat kernel representation relates the determinant to the trace of the evolution operator:
+\begin{equation}
+\log \det \Theta = \mathrm{Tr}\, \log \Theta
+\end{equation}
+
+For the flow $\Theta(\tau) = \exp(\tau G)\Theta_0$:
+\begin{equation}
+\log \det \Theta(\tau) = \mathrm{Tr}[\log(\exp(\tau G)\Theta_0)] = \mathrm{Tr}[\tau G + \log \Theta_0] = \tau\, \mathrm{Tr}\, G + \mathrm{Tr}\, \log \Theta_0
+\end{equation}
+
+This reproduces Theorem~\ref{thm:det-identity}. The entropy channel connects to the trace logarithm:
+\begin{equation}
+S_\Theta = k_B \log \det(\Theta^\dagger\Theta) = k_B \mathrm{Tr}\, \log(\Theta^\dagger\Theta) = 2k_B \mathrm{Re}[\mathrm{Tr}\, \log \Theta]
+\end{equation}
+
+This is a standard quantity in quantum field theory.
+
+\subsection{Appendix C: Regularization Near $\det \to 0$}
+\label{sec:appendix-regularization}
+
+When $\det \Theta \to 0$, the matrix becomes singular. As $\det \Theta \to 0$:
+\begin{equation}
+\log \det \Theta \to -\infty
+\end{equation}
+
+This divergence represents:
+\begin{enumerate}
+\item \textbf{Entropy collapse}: $S_\Theta \to -\infty$ (infinite negative entropy)
+\item \textbf{Information loss}: The system approaches a zero-volume configuration
+\item \textbf{Phase singularity}: $\arg \det \Theta$ becomes ill-defined
+\end{enumerate}
+
+\textbf{Regularization Strategy}: Add a small regularization:
+\begin{equation}
+\Theta_{\text{reg}} = \Theta + \epsilon I
+\end{equation}
+Then:
+\begin{equation}
+\log \det \Theta_{\text{reg}} = \log \det(\Theta + \epsilon I) \approx \log \det \Theta + \epsilon\, \mathrm{Tr}(\Theta^{-1}) + O(\epsilon^2)
+\end{equation}
+
+The divergence $\log \det \Theta \to -\infty$ is not a pathology but a physical statement encoding critical information about singularities in the field configuration.
+
+\subsection{Summary}
+\label{sec:summary}
+
+\textbf{Main Results}:
+\begin{enumerate}
+\item Complex-$\tau$ couples growth and oscillation at the eigenmode level: $\exp(\tau\mu_k) = \exp(t\alpha_k - \psi\omega_k) \exp(i(t\omega_k + \psi\alpha_k))$
+\item Determinant identity: $\log \det \Theta(\tau) = \tau \mathrm{Tr}\, G + \log \det \Theta_0$ provides exact expressions for $S_\Theta$ and $\Sigma_\Theta$
+\item Three discriminators (D1-D3) provide testable signatures for real vs. complex-time evolution
+\item Non-Hermitian pseudospectrum explains sudden spectral broadening
+\end{enumerate}
+
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
