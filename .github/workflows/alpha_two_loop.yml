@@ -20,7 +20,7 @@ jobs:
           pytest -q consolidation_project/alpha_two_loop/tests
       - name: Run alpha core repro tests
         run: |
-          pytest -q legacy/ubt_with_chronofactor/alpha_core_repro/tests
+          pytest -q ubt_with_chronofactor/alpha_core_repro/tests
       - name: Run electron mass tests (fit-free)
         run: |
           pytest -v tests/test_electron_mass.py
