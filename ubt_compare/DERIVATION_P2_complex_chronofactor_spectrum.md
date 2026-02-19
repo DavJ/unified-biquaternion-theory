@@ -113,11 +113,29 @@ exp(τG) = exp(tA - ψB) exp(i(tB + ψA)) exp(C_BCH)
 where to first order:
 ```
 C_BCH ≈ (1/2)[tA - ψB, i(tB + ψA)] + O([[[A,B],A],B])
-       = (i/2)(t²[A,B] - ψ²[A,B] + 2tψ([A,A] - [B,B]))
-       = (i/2)(t² - ψ²)[A,B] + O(tψ)
 ```
 
-**Physical Interpretation**: Non-commutativity introduces additional phase factors that depend on both t and ψ quadratically. For small ψ, the correction is order O(ψ²).
+Expanding the commutator explicitly:
+```
+[tA - ψB, i(tB + ψA)] = i[tA - ψB, tB + ψA]
+                       = i(t²[A,B] + tψ[A,A] - tψ[B,B] - ψ²[B,A])
+```
+
+Using the identities [A,A] = 0, [B,B] = 0, and [B,A] = -[A,B]:
+```
+[tA - ψB, i(tB + ψA)] = i(t²[A,B] + 0 - 0 - ψ²(-[A,B]))
+                       = i(t²[A,B] + ψ²[A,B])
+                       = i(t² + ψ²)[A,B]
+```
+
+Therefore:
+```
+C_BCH ≈ (i/2)(t² + ψ²)[A,B] + O([[[A,B],A],B])
+```
+
+**Physical Interpretation**: Non-commutativity introduces additional phase factors that depend on both t and ψ quadratically, with the phase correction growing as (t² + ψ²). For small ψ, the correction is order O(ψ²). The positive sign indicates that both real and imaginary time components contribute additively to the non-commutative phase.
+
+**Remark on Higher-Order Terms**: The BCH formula contains higher-order nested commutators such as [[A,B],A] and [[A,B],B]. The leading first-order approximation is valid when ||A||, ||B|| are small or over short complex time intervals where ||τG|| << 1.
 
 ---
 
