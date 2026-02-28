@@ -161,5 +161,24 @@ If you find the speculative content unconvincing, you can safely ignore this fol
 
 ---
 
-**Last Updated**: November 7, 2025  
+## Core File Separation Policy (updated 2026-02-28)
+
+**Speculative interpretations are strictly separated from core physics.**
+
+The following terms do **NOT** appear in core geometry/physics files
+(`canonical/`, `THEORY/`, `consolidation_project/`):
+
+- `psychon`, `consciousness`, `substrate` (in physical sense)
+- `consciousness coupling`, `Theta-resonator` (as core physics claims)
+
+These concepts, if pursued, are contained exclusively within this `speculative_extensions/`
+directory and the `canonical/consciousness/` subdirectory (labeled speculative).
+
+Core files use neutral terminology:
+- `internal auxiliary sector` (for the imaginary $\psi$, $\chi$, $\xi$ components)
+- `phase sector` (for the imaginary time dynamics)
+
+---
+
+**Last Updated**: 2026-02-28  
 **Author**: David Jaroš (UBT Developer)

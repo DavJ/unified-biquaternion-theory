@@ -119,20 +119,26 @@ The biquaternionic Einstein tensor is defined as:
 
 \begin{equation}
 \label{eq:canonical:biq_einstein_tensor}
-\boxed{\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}}
+\boxed{\mathcal{E}_{\mu\nu} := \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
     \item $\mathcal{R}_{\mu\nu}$ is the biquaternionic Ricci tensor
     \item $\mathcal{R}$ is the biquaternionic Ricci scalar
-    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric
+    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic \textbf{metric} (distinct from $\mathcal{E}_{\mu\nu}$)
 \end{itemize}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Symbol Convention]
+$\mathcal{G}_{\mu\nu}$ always denotes the biquaternionic \textbf{metric tensor}.
+$\mathcal{E}_{\mu\nu}$ always denotes the biquaternionic \textbf{Einstein tensor}.
+These are distinct objects; using the same symbol for both caused confusion in earlier versions.
+\end{tcolorbox}
 
 The classical Einstein tensor is:
 
 \begin{equation}
-G_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
+G_{\mu\nu} = \text{Re}(\mathcal{E}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
 \end{equation}
 
 \subsection{Biquaternionic Decomposition}
@@ -258,12 +264,11 @@ In the biquaternionic case, symmetries are modified:
 \begin{itemize}
     \item Imaginary time curvature
     \item Invisible to classical observations
-    \item Couples to consciousness fields
+    \item Couples to internal auxiliary sector (see \texttt{speculative\_extensions/})
     \item Responsible for:
     \begin{itemize}
         \item Dark energy effects (cosmological acceleration)
-        \item Psychon field dynamics
-        \item Quantum coherence in biological systems
+        \item Internal auxiliary sector dynamics (speculative; see \texttt{speculative\_extensions/})
         \item Phase-locked states
     \end{itemize}
 \end{itemize}
@@ -288,12 +293,12 @@ The fundamental UBT field equation in terms of curvature is:
 
 \begin{equation}
 \label{eq:canonical:biq_field_equation}
-\boxed{\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
+\boxed{\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
-    \item $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor (Eq.~\ref{eq:canonical:biq_einstein_tensor})
     \item $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor (Section~\ref{sec:canonical:biquaternion_stress_energy})
     \item $\kappa = 8\pi G$ (in natural units)
 \end{itemize}
@@ -303,7 +308,7 @@ The fundamental UBT field equation in terms of curvature is:
 Taking the real part of Eq.~\ref{eq:canonical:biq_field_equation}:
 
 \begin{equation}
-\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\text{Re}(\mathcal{E}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
 \end{equation}
 
 This yields:
@@ -318,7 +323,7 @@ This yields:
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity Recovery]
 The fundamental field equation of UBT is:
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic)}
+\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic; $\mathcal{E}_{\mu\nu}$: Einstein tensor, $\mathcal{G}_{\mu\nu}$: metric)}
 \end{equation}
 
 In the real limit ($\text{Im}(\mathcal{G}_{\mu\nu}) \to 0$, $\text{Im}(\mathcal{T}_{\mu\nu}) \to 0$):
@@ -424,12 +429,12 @@ For practical calculations:
 
 \textbf{Step 5:} Form Einstein tensor:
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}
+\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}
 \end{equation}
 
 \textbf{Step 6:} Extract classical quantities:
 \begin{equation}
-R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu}), \quad G_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})
+R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu}), \quad G_{\mu\nu} = \text{Re}(\mathcal{E}_{\mu\nu})
 \end{equation}
 
 \subsection{Consistency with General Relativity}
