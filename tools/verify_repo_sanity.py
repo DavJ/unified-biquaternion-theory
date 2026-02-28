@@ -12,6 +12,9 @@ Checks enforced:
   S1     — No equation using 𝒢_μν (\\mathcal{G}_{\\mu\\nu}) as the *left-hand
            side* of the biquaternionic field equation (i.e. the Einstein-tensor
            role). The correct symbol is ℰ_μν (\\mathcal{E}_{\\mu\\nu}).
+  G1     — No claim that SU(3) is derived purely from ℂ⊗ℍ.
+           Allowed phrasing: "SU(3) via octonionic extension" or similar.
+           Forbidden phrasing: "SU(3) derived from ℂ⊗ℍ" (overstates result).
 
 Usage::
 
@@ -58,6 +61,23 @@ COLLISION_PATTERN = re.compile(
     r"\\mathcal\{G\}_\{\\mu\\nu\}\s*=\s*"
     r"(?:\\kappa|\\mathcal\{[RTE]\})",
 )
+
+# G1 — SU(3)-overstated-derivation guard.
+# Scanned in all .tex and .md files under the repo (excluding .git and
+# generated/archive directories that are read-only historical records).
+# Forbidden: claiming SU(3) is derived purely from ℂ⊗ℍ (associative sector).
+# The exact plain-text string is kept narrow to avoid false positives.
+SU3_OVERSTATEMENT_PATTERN = re.compile(
+    r"SU\(3\)\s+derived\s+from\s+[ℂ\\mathbb\{C\}].*[⊗\\otimes].*[ℍ\\mathbb\{H\}]",
+    re.IGNORECASE,
+)
+
+# Directories to skip when scanning for G1 violations (historical / external).
+SU3_SCAN_SKIP_DIRS = {
+    ".git",
+    "original_release_of_ubt",
+    "unified-biquaternion-theory-master",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -114,6 +134,39 @@ def check_symbol_collision(verbose: bool = False) -> list[str]:
     return violations
 
 
+def check_su3_overstatement(verbose: bool = False) -> list[str]:
+    """G1: Return violations where SU(3) is claimed derived purely from ℂ⊗ℍ.
+
+    Scans all .tex and .md files in the repository (excluding skip dirs).
+    Flags lines matching the pattern "SU(3) derived from ℂ⊗ℍ" (plain text).
+    """
+    violations = []
+    for path in sorted(REPO_ROOT.rglob("*")):
+        # Skip non-files and excluded directories
+        if not path.is_file():
+            continue
+        if path.suffix not in {".tex", ".md"}:
+            continue
+        if any(skip in path.parts for skip in SU3_SCAN_SKIP_DIRS):
+            continue
+        rel = str(path.relative_to(REPO_ROOT))
+        content = _read(path)
+        for line_no, line in enumerate(content.splitlines(), 1):
+            # Skip LaTeX comments and Markdown comments
+            stripped = line.lstrip()
+            if stripped.startswith("%") or stripped.startswith("<!--"):
+                continue
+            if SU3_OVERSTATEMENT_PATTERN.search(line):
+                msg = (
+                    f"{rel}:{line_no}: G1 — overstated SU(3) derivation "
+                    f"(SU(3) claimed derived from ℂ⊗ℍ alone): {line.strip()}"
+                )
+                violations.append(msg)
+                if verbose:
+                    print(f"  FAIL  {msg}")
+    return violations
+
+
 # ---------------------------------------------------------------------------
 # Main entry point
 # ---------------------------------------------------------------------------
@@ -122,8 +175,9 @@ def run(verbose: bool = False) -> int:
     """Run all checks; return exit code (0 = pass, 1 = fail)."""
     term_violations = check_forbidden_terms(verbose=verbose)
     collision_violations = check_symbol_collision(verbose=verbose)
+    su3_violations = check_su3_overstatement(verbose=verbose)
 
-    all_violations = term_violations + collision_violations
+    all_violations = term_violations + collision_violations + su3_violations
     if all_violations:
         print("verify_repo_sanity: FAILED")
         for v in all_violations:
