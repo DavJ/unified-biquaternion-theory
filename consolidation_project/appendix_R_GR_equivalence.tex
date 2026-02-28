@@ -53,25 +53,66 @@ where $g_{\mu\nu}(x)$ is the real part corresponding to the classical metric ten
 
 \subsection{Real-Valued Projection and the Einstein Tensor}
 
-To recover General Relativity, we take the real part of the biquaternionic field equation. The operator $\nabla^\dagger \nabla$ acting on $\Theta$ produces a tensor that, when decomposed, has both real and imaginary components.
+\subsection{Biquaternionic Connection and Its Real Projection}
 
-In the limit where the imaginary time component $\psi \to 0$ and we project onto the real spacetime manifold $\mathbb{R}^{1,3}$, the field equation reduces to:
+The biquaternionic connection $\Omega_\mu$ is derived from the tetrad postulate (see
+\texttt{canonical/geometry/biquaternion\_connection.tex}, Lemma~\ref{lem:omega_from_tetrad}).
+Christoffel symbols are \emph{not} defined by substituting $\mathcal{G}$ into the classical formula;
+that substitution is invalid because $\mathcal{G}_{\mu\nu}$ is non-commutative.
+
+The real spacetime metric is defined by:
 \begin{equation}
-\Re\big(\nabla^\dagger \nabla \Theta\big) = \kappa \, \Re(\mathcal{T}).
-\label{eq:real_projection}
+g_{\mu\nu} := \mathrm{Re}(\mathcal{G}_{\mu\nu}) = \mathrm{Re}\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr).
 \end{equation}
 
-The left-hand side can be shown to yield the Einstein tensor. Specifically, the biquaternionic covariant derivative structure, when restricted to real coordinates and real metric components, reproduces the standard Levi-Civita connection:
+\begin{lemma}[$\mathrm{Re}(\Omega)$ yields the Levi-Civita connection]
+\label{lem:re_omega_levi_civita}
+Under the following assumptions:
+\begin{enumerate}
+  \item[(A1)] (Hermitian tetrad) $E_\mu^\dagger = E_\mu$ in the real limit $\psi \to 0$, so that $\mathcal{G}_{\mu\nu} \to g_{\mu\nu} \in \mathbb{R}$.
+  \item[(A2)] (Torsion-free) $\Omega_{[\mu\nu]}^\lambda = 0$ in the real sector.
+  \item[(A3)] (Inverse tetrad exists) $\tilde{E}^\mu$ satisfies $\tilde{E}^\mu \circ E_\mu = \mathbf{1}$.
+\end{enumerate}
+the real projection of the affine part of $\Omega_\mu$, denoted
+$\Gamma^\lambda_{\mu\nu} := \mathrm{Re}(\Omega^\lambda_{\mu\nu})$,
+equals the Levi-Civita connection of $g_{\mu\nu}$:
 \begin{equation}
-\Gamma^\rho_{\mu\nu} = \frac{1}{2} g^{\rho\sigma} \left( \partial_\mu g_{\nu\sigma} + \partial_\nu g_{\mu\sigma} - \partial_\sigma g_{\mu\nu} \right),
+\Gamma^\lambda_{\mu\nu} = \frac{1}{2} g^{\lambda\rho}\bigl(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\bigr).
 \end{equation}
-where $g_{\mu\nu} = \Re[\Theta_{\mu\nu}]$.
+\end{lemma}
 
-The Riemann curvature tensor is then:
+\begin{proof}
+\textbf{Step 1: Metric compatibility.}
+From the tetrad postulate $\nabla_\mu E_\nu = 0$ and the metric definition
+$\mathcal{G}_{\mu\nu} = \mathrm{Sc}(E_\mu E_\nu^\dagger)$, compute:
+\begin{align}
+\nabla_\rho \mathcal{G}_{\mu\nu}
+  &= \nabla_\rho \mathrm{Sc}(E_\mu E_\nu^\dagger)
+   = \mathrm{Sc}\bigl((\nabla_\rho E_\mu) E_\nu^\dagger + E_\mu (\nabla_\rho E_\nu^\dagger)\bigr) = 0,
+\end{align}
+using $\nabla_\rho E_\mu = 0$.  Taking the real part: $\nabla^{(\Gamma)}_\rho g_{\mu\nu} = 0$.
+
+\textbf{Step 2: Torsion-free condition.}
+By assumption A2, $\Gamma^\lambda_{[\mu\nu]} = 0$.
+
+\textbf{Step 3: Uniqueness.}
+A connection that is (i) metric-compatible with $g_{\mu\nu}$ and (ii) torsion-free is
+uniquely the Levi-Civita connection (Fundamental Theorem of Riemannian Geometry).
+Solving $\nabla^{(\Gamma)}_\rho g_{\mu\nu} = 0$ for the symmetric part of $\Gamma$
+gives exactly the classical Christoffel formula:
 \begin{equation}
-R^\rho_{\ \sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma},
+\Gamma^\lambda_{\mu\nu} = \frac{1}{2} g^{\lambda\rho}\bigl(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\bigr).
 \end{equation}
-from which we obtain the Ricci tensor $R_{\mu\nu} = R^\lambda_{\ \mu\lambda\nu}$ and scalar curvature $R = g^{\mu\nu} R_{\mu\nu}$.
+
+\textbf{Cancellation of imaginary cross-terms.}
+Under assumption A1, the imaginary parts of $E_\mu$ vanish in the real limit, so
+$\mathrm{Im}(\mathcal{G}_{\mu\nu}) \to 0$ and imaginary cross-terms in the metric
+compatibility equation project to zero, leaving only the real equation used in Step 1.
+\end{proof}
+
+The Levi-Civita connection then yields the Riemann curvature tensor, the Ricci tensor
+$R_{\mu\nu} = R^\lambda{}_{\mu\lambda\nu}$, and the scalar curvature $R = g^{\mu\nu} R_{\mu\nu}$
+via the standard formulas below.
 
 Therefore:
 \begin{equation}
