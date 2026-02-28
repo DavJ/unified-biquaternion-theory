@@ -11,7 +11,7 @@ location of use is noted, and its current proof status is indicated.
 > **Under assumptions A1–A3 below, the real projection of the biquaternionic
 > field equation**
 >
->   Re(𝒢_μν) = κ Re(𝒯_μν)
+>   Re(ℰ_μν) = κ Re(𝒯_μν)
 >
 > **yields the Einstein tensor G_μν satisfying ∇^μ G_μν = 0 (Bianchi identity)
 > and matching the standard GR form G_μν = R_μν − ½ g_μν R = 8πG T_μν.**
@@ -73,8 +73,12 @@ limit of the richer biquaternionic structure.
 | `canonical/geometry/biquaternion_connection.tex` | Removed non-associativity claim; added Lemma `lem:omega_from_tetrad` (tetrad postulate derivation); removed invalid Christoffel substitution |
 | `canonical/geometry/biquaternion_curvature.tex` | Removed non-associativity claim; replaced Bianchi section with Theorem `thm:bianchi_biquaternion` (explicit proof) |
 | `canonical/geometry/biquaternion_tetrad.tex` | Removed non-associativity claim |
+| `canonical/geometry/biquaternion_metric.tex` | Removed "Consciousness coupling / psychon" item; fixed field-equation LHS from 𝒢_μν to ℰ_μν (symbol-collision fix) |
 | `THEORY/architecture/geometry/biquaternion_connection.tex` | Synced with canonical |
 | `THEORY/architecture/geometry/biquaternion_curvature.tex` | Synced with canonical |
 | `THEORY/architecture/geometry/biquaternion_tetrad.tex` | Synced with canonical |
+| `THEORY/architecture/geometry/biquaternion_metric.tex` | Synced with canonical (consciousness + symbol-collision fixes) |
 | `consolidation_project/appendix_R_GR_equivalence.tex` | Replaced "can be shown" with Lemma `lem:re_omega_levi_civita`; added assumptions A1–A3 |
-| `docs/ubt_gr_recovery/gr_recovery_status.md` | This file (new) |
+| `docs/ubt_gr_recovery/gr_recovery_status.md` | Precise Claim updated to use ℰ_μν; audit-closeout entries added |
+| `tools/verify_repo_sanity.py` | Created: forbidden-pattern regression guards for consciousness/psychon terms and ℰ_μν symbol collision |
+| `tests/test_repo_sanity.py` | Created: pytest wrapper for verify_repo_sanity.py |
