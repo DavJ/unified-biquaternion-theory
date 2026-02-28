@@ -45,7 +45,7 @@ and the Standard Model}
 \vspace{1em}
 
 \begin{abstract}
-The Unified Biquaternion Theory (UBT) presents a novel framework unifying General Relativity, Quantum Field Theory, and the Standard Model of particle physics within a single mathematical structure. The theory is based on a fundamental biquaternion field $\Theta(q,T_B) \in \mathbb{H} \otimes \mathbb{C}$ defined over biquaternion time $T_B = t + i\psi + j\chi + k\xi$, where $\psi, \chi, \xi$ are dynamical imaginary time components. In the isotropic limit, this reduces to complex time $\tau = t + i\psi$, and in the classical limit to standard time $t$. From this field emerges spacetime geometry, matter content, gauge interactions, and a substrate for consciousness. The biquaternionic metric tensor $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)$ arises from biquaternionic tetrads $E_\mu(x) \in \mathbb{B}$ which encode the fundamental geometric structure; the observable metric $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ reproduces Einstein's equations in the real projection (GR limit), while the extended biquaternionic structure predicts fundamental constants including the fine structure constant $\alpha \approx 1/137.036$, fermion masses, and QCD parameters. Gradients of $\Theta$ contribute to the biquaternionic stress-energy $\mathcal{T}_{\mu\nu}$, establishing geometry and matter as unified aspects of a single field. This article presents the canonical formulation of UBT, resolving previous inconsistencies and establishing a single, authoritative version of the theory.
+The Unified Biquaternion Theory (UBT) presents a novel framework unifying General Relativity, Quantum Field Theory, and the Standard Model of particle physics within a single mathematical structure. The theory is based on a fundamental biquaternion field $\Theta(q,T_B) \in \mathbb{H} \otimes \mathbb{C}$ defined over biquaternion time $T_B = t + i\psi + j\chi + k\xi$, where $\psi, \chi, \xi$ are dynamical imaginary time components. In the isotropic limit, this reduces to complex time $\tau = t + i\psi$, and in the classical limit to standard time $t$. From this field emerges spacetime geometry, matter content, and gauge interactions. The biquaternionic metric tensor $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)$ arises from biquaternionic tetrads $E_\mu(x) \in \mathbb{B}$ which encode the fundamental geometric structure; the observable metric $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ reproduces Einstein's equations in the real projection (GR limit), while the extended biquaternionic structure provides a framework for predicting fundamental constants. Gradients of $\Theta$ contribute to the biquaternionic stress-energy $\mathcal{T}_{\mu\nu}$, establishing geometry and matter as unified aspects of a single field. This article presents the canonical formulation of UBT, resolving previous inconsistencies and establishing a single, authoritative version of the theory.
 \end{abstract}
 
 \noindent\textbf{Lock-in statement:} Throughout this work, all geometric and dynamical structures are defined at the level of biquaternionic fields. Any real-valued spacetime metric, curvature, or stress--energy tensor represents a Hermitian projection corresponding to an observer-restricted sector. No physical conclusion should be interpreted at the level of the real projection alone.
@@ -92,7 +92,7 @@ This article is organized into 12 sections following the canonical structure:
     \item Quantum Electrodynamics (QED)
     \item Quantum Chromodynamics (QCD)
     \item Theta-functions and toroidal structure
-    \item Psychons and consciousness
+    \item Psychons and consciousness (speculative; see \texttt{speculative\_extensions/})
     \item Experimental designs and testable predictions
 \end{enumerate}
 
@@ -212,7 +212,7 @@ The fundamental field equation of UBT is:
 
 \noindent where:
 \begin{itemize}
-    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor ($\mathcal{G}_{\mu\nu}$: metric)
     \item $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ is the biquaternionic stress-energy tensor
     \item $\kappa = 8\pi G$ (in natural units, $c = \hbar = 1$)
 \end{itemize}
@@ -222,7 +222,7 @@ This single equation unifies:
     \item Gravitational dynamics (real sector)
     \item Dark energy effects (imaginary scalar sector)
     \item Dark matter structure (quaternionic sector)
-    \item Consciousness substrate (phase coupling)
+    \item Internal auxiliary sector (phase coupling; speculative interpretations in \texttt{speculative\_extensions/})
 \end{itemize}
 
 \subsection{Einstein's Equations as Real Projection}
@@ -230,7 +230,7 @@ This single equation unifies:
 Taking the real part of the fundamental equation:
 
 \begin{equation}
-\text{Re}(\mathcal{E}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
 \end{equation}
 
 we obtain Einstein's field equations:
@@ -294,7 +294,7 @@ This form makes explicit the connection to the fundamental $\Theta$ field dynami
 The cosmological constant can be included:
 
 \begin{equation}
-\mathcal{E}_{\mu\nu} + \Lambda \mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}
+\mathcal{G}_{\mu\nu} + \Lambda \mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}
 \end{equation}
 
 In the real limit:
@@ -382,27 +382,21 @@ The fine structure constant emerges from the toroidal geometry:
 % Derivation to be added from consolidated alpha appendices
 
 % ========================================
-% SECTION 12: PSYCHONS AND CONSCIOUSNESS
+% SECTION 12: SPECULATIVE EXTENSIONS (QUARANTINED)
 % ========================================
 
-\section{Psychons and Consciousness}
-\label{sec:psychons_consciousness}
+\section{Speculative Extensions}
+\label{sec:speculative_extensions}
 
-% Psychon definition
-% Consciousness substrate
-% Theta-resonator experimental design
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Note: Speculative Content Quarantined]
+The following speculative interpretations (psychons, consciousness coupling, Theta-resonator)
+are \textbf{not part of the core physics} and have been moved to
+\texttt{speculative\_extensions/complex\_consciousness/}.
 
-\subsection{Psychons as Excitations}
-
-Psychons are quantum excitations in the imaginary time component $\psi$:
-
-% Definition to be added
-
-\subsection{Theta-Resonator}
-
-Experimental device for detecting psychon excitations:
-
-% Design to be added
+The imaginary sector of UBT ($\psi$, $\chi$, $\xi$ components) is a well-defined
+\textbf{internal auxiliary sector} from the perspective of core physics.
+Any speculative physical interpretation of these components is strictly separated here.
+\end{tcolorbox}
 
 % ========================================
 % SECTION 13: EXPERIMENTAL TESTS

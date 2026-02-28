@@ -130,7 +130,7 @@ The Lorentzian signature emerges from the real projection.
     \item Responsible for:
     \begin{itemize}
         \item Dark energy effects
-        \item Consciousness substrate (via psychon fields)
+        \item Internal auxiliary sector (speculative; see \texttt{speculative\_extensions/})
         \item Phase-locked coherent states
     \end{itemize}
 \end{itemize}
@@ -212,7 +212,7 @@ These exotic regimes are responsible for:
     \item \textbf{Pseudo-antigravitational behavior}: Apparent repulsion due to phase curvature
     \item \textbf{Phase invisibility}: Dark matter and dark energy effects
     \item \textbf{Local temporal drift}: Imaginary time flow variations
-    \item \textbf{Consciousness coupling}: Psychon field interactions
+    \item \textbf{Phase-sector coupling}: Auxiliary interaction terms (speculative extensions moved to \texttt{speculative\_extensions/})
     \item \textbf{Quantum coherence preservation}: Phase-locked states in biological systems
 \end{enumerate}
 
@@ -259,7 +259,7 @@ The fundamental field equation of UBT is defined at the biquaternionic level:
 
 where:
 \begin{itemize}
-    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor (defined from biquaternionic curvature $\mathcal{R}_{\mu\nu}$)
+    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor ($\mathcal{G}_{\mu\nu}$ in this expression is the metric)
     \item $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor (Section~\ref{sec:canonical:biquaternion_stress_energy})
     \item $\kappa = 8\pi G/c^4$ (in SI units) or $\kappa = 8\pi G$ (in natural units)
 \end{itemize}
@@ -350,5 +350,38 @@ In practice, these mixed terms often vanish or are subdominant for most physical
 \subsection{Historical Note}
 
 This definition establishes the biquaternionic metric as the fundamental geometric object in UBT, from which all classical GR results emerge as real projections. This represents a paradigm shift from treating GR as foundational to recognizing it as a limiting case of a richer biquaternionic geometry.
+
+\subsection{Self-Consistency of the $\Theta \to \mathcal{G} \to \Omega \to \Theta$ Loop}
+\label{subsec:theta_self_consistency}
+
+The UBT construction involves a potential fixed-point loop:
+\begin{equation}
+\Theta \;\xrightarrow{\mathrm{(i)}}\; \mathcal{G}_{\mu\nu} = \mathrm{Sc}(E_\mu E_\nu^\dagger)
+  \;\xrightarrow{\mathrm{(ii)}}\; \Omega_\mu \;\xrightarrow{\mathrm{(iii)}}\; \text{dynamics of } \Theta.
+\end{equation}
+Existence of solutions to this loop is a necessary condition for UBT consistency.
+
+\paragraph{Trivial flat solution.}
+For constant $\Theta = \Theta_0 \in \mathbb{B}$ (uniform field), we have
+$E_\mu = \partial_\mu\Theta_0 = 0$ (vanishing derivatives), so $\mathcal{G}_{\mu\nu} = \eta_{\mu\nu}$ (Minkowski) in the linearized limit.
+The connection $\Omega_\mu = 0$, and the field equation reduces to $\Box\Theta = 0$, satisfied by $\Theta = \Theta_0$.
+This confirms a trivial flat solution exists.
+
+\paragraph{Linearized perturbation analysis.}
+Let $\Theta = \Theta_0 + \varepsilon\,\theta(x)$ with $|\varepsilon| \ll 1$.
+At linear order:
+\begin{align}
+\delta\mathcal{G}_{\mu\nu} &= \mathrm{Sc}((\partial_\mu\theta)(\partial_\nu\Theta_0^\dagger) + (\partial_\mu\Theta_0)(\partial_\nu\theta^\dagger)), \\
+\delta\Omega_\mu &\sim \partial_\mu(\delta E_\nu)\circ\tilde{E}^\nu_0 \quad\text{(from tetrad postulate)}, \\
+\delta(\Box\Theta) &= \delta\Omega_\mu\circ\partial^\mu\Theta_0 + \Omega^\mu_0\circ\partial_\mu\theta + \cdots
+\end{align}
+These are wave-like equations for $\theta(x)$ on the Minkowski background,
+which admit plane-wave solutions $\theta \propto e^{ik\cdot x}$.
+This demonstrates existence of linearized (graviton-like) excitations.
+
+\paragraph{Open problem.}
+Non-perturbative existence (beyond linear order), uniqueness, and regularity
+of solutions to the full $\Theta\to\mathcal{G}\to\Omega\to\Theta$ loop are open problems.
+A rigorous fixed-point theorem in an appropriate function space is required.
 
 % End of fundamental biquaternionic metric definition

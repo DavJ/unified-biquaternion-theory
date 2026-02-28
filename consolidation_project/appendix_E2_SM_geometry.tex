@@ -36,7 +36,7 @@
 \maketitle
 
 \begin{abstract}
-We provide a stepwise rigorous proof that the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ emerges uniquely from local automorphisms of the biquaternionic manifold $\B^4$. This includes: (1) explicit Lie algebra maps, (2) structure constants and commutators, (3) representations on the field $\Theta$, (4) proof that $U(1)$ is gauge (not just global phase), and (5) identification of gauge potentials as connection components.
+We provide a stepwise analysis of the Standard Model gauge structure in the Unified Biquaternion Theory (UBT). $SU(2) \times U(1)$ arises from the associative biquaternionic structure $\B = \C \otimes \H$. $SU(3)$ appears upon extension to $\C \otimes \O$ (octonionic completion); it does \emph{not} follow from $\C \otimes \H$ alone. This document explicitly distinguishes derived results (associative sector) from the \textbf{Octonionic Completion Hypothesis} (Track~B, conditional on $\C \otimes \O$ extension). This includes: (1) explicit Lie algebra maps, (2) structure constants and commutators, (3) representations on the field $\Theta$, (4) proof that $U(1)$ is gauge (not just global phase), and (5) identification of gauge potentials as connection components.
 \end{abstract}
 
 \tableofcontents
@@ -96,6 +96,20 @@ where $[X,Y] = XY - YX$ is the matrix commutator.
 \end{definition}
 
 \section{Emergence of SU(3)}
+
+\begin{center}
+\fbox{\begin{minipage}{0.92\textwidth}
+\textbf{Octonionic Completion Hypothesis (Track B):}\\
+$SU(3)$ arises via embedding $\C \otimes \H \hookrightarrow \C \otimes \O$.
+This does \textbf{NOT} follow from $\C \otimes \H$ alone.
+The derivation in this section assumes the octonionic extension $\C \otimes \O$
+and is therefore conditional on that hypothesis.
+See \texttt{research\_tracks/octonionic\_completion/hypothesis.md} for the
+conditions required to establish necessity of this extension.
+An independent associative-only approach is pursued in Track A
+(\texttt{research\_tracks/associative\_su3/strategy.md}).
+\end{minipage}}
+\end{center}
 
 \subsection{Octonionic Extension}
 
@@ -550,10 +564,11 @@ The gauge transformations arise naturally from the automorphism group:
 acting on the $\Theta$-field. This demonstrates that gauge symmetry is not imposed but emerges from biquaternionic geometry.
 \end{corollary}
 
-\section{Uniqueness}
+\section{Uniqueness (Conditional on Octonionic Extension)}
 
-\begin{theorem}[Uniqueness of SM Gauge Group]
-Given the biquaternionic structure $\B = \C \otimes \H$ and octonionic extension $\C \otimes \O$, the gauge group $SU(3) \times SU(2) \times U(1)$ is \emph{uniquely determined} up to isomorphism.
+\begin{theorem}[Uniqueness of SM Gauge Group — conditional]
+Given the biquaternionic structure $\B = \C \otimes \H$ \emph{and} the octonionic extension $\C \otimes \O$, the gauge group $SU(3) \times SU(2) \times U(1)$ is \emph{uniquely determined} up to isomorphism.
+The $SU(3)$ factor requires the octonionic extension; it is \textbf{not} derived from $\C \otimes \H$ alone.
 \end{theorem}
 
 \begin{proof}[Proof Sketch]
@@ -567,7 +582,7 @@ Given the biquaternionic structure $\B = \C \otimes \H$ and octonionic extension
 \end{proof}
 
 \begin{remark}
-This uniqueness theorem is a major result: SM gauge structure is not assumed but \emph{derived} from biquaternionic geometry.
+This uniqueness theorem is a significant result, \emph{conditional} on the Octonionic Completion Hypothesis: SM gauge structure is not assumed but \emph{derived} given $\C \otimes \O$ extension. The necessity of this extension is an open research question (Track~B).
 \end{remark}
 
 \section{Anomaly Cancellation}
@@ -608,10 +623,16 @@ We have established:
 \item \textbf{Representations:} Quarks in $\mathbf{3}$, leptons in $\mathbf{2}$ or $\mathbf{1}$, gauge fields in adjoint
 \item \textbf{U(1) is gauge:} Local phase symmetry with hypercharge potential $A_\mu^Y$
 \item \textbf{Connection components:} $\nabla_\mu = \partial_\mu + \Omega_\mu + igA_\mu$ with $A_\mu = \sum A_\mu^a T_a + \cdots$
-\item \textbf{Uniqueness:} SM gauge group uniquely determined by biquaternionic structure
+\item \textbf{Uniqueness (conditional):} SM gauge group uniquely determined by biquaternionic structure \emph{plus} octonionic extension $\C \otimes \O$; $SU(3)$ does \textbf{not} follow from $\C \otimes \H$ alone.
 \end{enumerate}
 
-\textbf{Status:} Rigorous derivation complete. Physical predictions (masses, mixings) require further calculation.
+\textbf{Status (dual-track):}
+\begin{itemize}
+\item \textbf{Derived} (associative sector, Track~A): $SU(2)$ candidate from quaternionic structure; $U(1)$ phase symmetry.
+\item \textbf{Hypothesis} (octonionic extension, Track~B): $SU(3)$ via $\C \otimes \O$ embedding.
+\item Physical predictions (masses, mixings) require further calculation.
+\item Whether octonions are necessary or merely sufficient is an open question; see \texttt{research\_tracks/}.
+\end{itemize}
 
 \begin{thebibliography}{99}
 \bibitem{sm_deriv} SM\_GAUGE\_GROUP\_RIGOROUS\_DERIVATION.md, November 2025

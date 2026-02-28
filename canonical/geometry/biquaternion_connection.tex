@@ -71,38 +71,62 @@ The connection is uniquely determined by the compatibility condition with the te
     \item $\Gamma^\lambda_{\mu\nu}$ are the derived Christoffel symbols
 \end{itemize}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Critical: Non-Commutativity]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Non-Commutativity (ordering matters)]
 \textbf{Do NOT assume commutativity of $\Omega_\mu$ and $E_\nu$.}
 
-\textbf{Do NOT simplify associators.} Terms like $[\Omega_\mu, \Omega_\nu, E_\rho] = (\Omega_\mu \Omega_\nu)E_\rho - \Omega_\mu(\Omega_\nu E_\rho)$ for biquaternions are generally non-zero.
-
-\textbf{The full non-commutative, non-associative structure must be preserved.}
-
-Biquaternionic multiplication is:
+Biquaternionic multiplication ($\mathbb{C}\otimes\mathbb{H}$) is:
 \begin{itemize}
     \item \textbf{Non-commutative}: $AB \neq BA$ in general
-    \item \textbf{Non-associative}: $(AB)C \neq A(BC)$ in general
+    \item \textbf{Associative}: $(AB)C = A(BC)$ always (inherited from the matrix/tensor-product representation)
 \end{itemize}
 
-Simplifications valid only in real/Hermitian limit must be labeled as "GR limit".
+Therefore the associator $[\Omega_\mu, \Omega_\nu, E_\rho] := (\Omega_\mu \Omega_\nu)E_\rho - \Omega_\mu(\Omega_\nu E_\rho) = 0$ identically; only ordering of factors matters.
+Simplifications valid only in the real/Hermitian limit must be labeled ``GR limit''.
 \end{tcolorbox}
 
-\subsection{Derivation from Metric}
+\subsection{Derivation of $\Omega_\mu$ from the Tetrad Postulate}
+\label{subsec:connection_from_tetrad}
 
-The biquaternionic connection can be derived from the biquaternionic metric $\mathcal{G}_{\mu\nu}$:
+\textbf{The biquaternionic connection is defined and derived from the tetrad postulate, not by substituting $\mathcal{G}$ into the classical Christoffel formula.}
 
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Assumption: Existence of inverse tetrad]
+We assume the biquaternionic tetrad $E_\mu$ has a left-inverse $\tilde{E}^\mu$ satisfying
+$\tilde{E}^\mu \circ E_\mu = \mathbf{1}$ (summation over $\mu$),
+so that we can solve the tetrad postulate for $\Omega_\mu$.
+\end{tcolorbox}
+
+\begin{lemma}[Derivation of $\Omega_\mu$ from tetrad postulate]
+\label{lem:omega_from_tetrad}
+Given biquaternionic tetrad fields $E_\nu \in \mathbb{B}$ and their inverse $\tilde{E}^\nu$, the
+connection $\Omega_\mu$ satisfying the tetrad postulate
 \begin{equation}
-\label{eq:canonical:connection_from_metric}
-\Omega_\mu = \frac{1}{2} \mathcal{G}^{\rho\sigma} \left( \partial_\mu \mathcal{G}_{\nu\sigma} + \partial_\nu \mathcal{G}_{\mu\sigma} - \partial_\sigma \mathcal{G}_{\mu\nu} \right)
+\nabla_\mu E_\nu = \partial_\mu E_\nu + \Omega_\mu \circ E_\nu - \Gamma^\lambda_{\mu\nu} E_\lambda = 0
 \end{equation}
-
-In the real limit ($\text{Im}(\mathcal{G}_{\mu\nu}) \to 0$), this reduces to:
-
+is given by
 \begin{equation}
-\omega^\lambda_{\mu\nu} = \frac{1}{2} g^{\lambda\rho} \left( \partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu} \right) = \Gamma^\lambda_{\mu\nu}
+\label{eq:canonical:omega_from_tetrad}
+\boxed{\Omega_\mu = \bigl(-\partial_\mu E_\nu + \Gamma^\lambda_{\mu\nu} E_\lambda\bigr) \circ \tilde{E}^\nu}
 \end{equation}
+where the affine part $\Gamma^\lambda_{\mu\nu}$ is the (real) Levi-Civita connection of $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$, and right-multiplication by $\tilde{E}^\nu$ is explicit to respect non-commutativity.
+\end{lemma}
 
-This recovers the classical Christoffel symbols.
+\begin{proof}
+Starting from the tetrad postulate $\partial_\mu E_\nu + \Omega_\mu \circ E_\nu = \Gamma^\lambda_{\mu\nu} E_\lambda$, right-multiply both sides by $\tilde{E}^\nu$ and sum over $\nu$:
+\begin{align}
+\partial_\mu E_\nu \circ \tilde{E}^\nu + \Omega_\mu \circ (E_\nu \circ \tilde{E}^\nu) &= \Gamma^\lambda_{\mu\nu} E_\lambda \circ \tilde{E}^\nu.
+\end{align}
+By the inverse tetrad assumption, $E_\nu \circ \tilde{E}^\nu = \mathbf{1}$, hence $\Omega_\mu \circ \mathbf{1} = \Omega_\mu$.  Rearranging gives Eq.~\eqref{eq:canonical:omega_from_tetrad}.
+The derivation uses only associativity $(AB)C = A(BC)$ of $\mathbb{B}$, which holds since $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$ is a tensor product of associative algebras.
+\end{proof}
+
+\begin{remark}
+The classical Christoffel formula $\Omega^\lambda_{\mu\nu} = \tfrac{1}{2}\mathcal{G}^{\lambda\rho}(\partial_\mu \mathcal{G}_{\nu\rho}+\cdots)$
+is \emph{not} valid as a definition of $\Omega_\mu$ in the biquaternionic setting, because
+$\mathcal{G}_{\mu\nu}$ is non-commutative and ``$\mathcal{G}^{-1}$'' does not commute with the
+metric components.  The tetrad postulate derivation above is the correct first-principles approach.
+In the commutative real limit $\mathcal{G}_{\mu\nu} \to g_{\mu\nu} \in \mathbb{R}$, both approaches
+agree and yield the Levi-Civita connection (see Lemma~\ref{lem:re_omega_levi_civita} in Appendix~R).
+\end{remark}
 
 \subsection{Covariant Derivative}
 
@@ -263,8 +287,8 @@ See Section~\ref{sec:canonical:biquaternion_curvature} for details.
 
 \begin{itemize}
     \item Imaginary time parallel transport
-    \item Couples to consciousness fields (psychons)
-    \item Produces Berry phase-like effects in biological systems
+    \item Couples to internal auxiliary sector (speculative extensions are in \texttt{speculative\_extensions/})
+    \item Produces Berry phase-like effects (potential experimental signature)
     \item Invisible to classical observations
 \end{itemize}
 
@@ -348,10 +372,11 @@ For practical calculations:
 
 \textbf{Step 1:} Compute the biquaternionic metric $\mathcal{G}_{\mu\nu}$ from the tetrad.
 
-\textbf{Step 2:} Calculate connection coefficients:
+\textbf{Step 2:} Derive connection via tetrad postulate (Lemma~\ref{lem:omega_from_tetrad}):
 \begin{equation}
-\Omega^\lambda_{\mu\nu} = \frac{1}{2} \mathcal{G}^{\lambda\rho} \left( \partial_\mu \mathcal{G}_{\nu\rho} + \partial_\nu \mathcal{G}_{\mu\rho} - \partial_\rho \mathcal{G}_{\mu\nu} \right)
+\Omega_\mu = \bigl(-\partial_\mu E_\nu + \Gamma^\lambda_{\mu\nu} E_\lambda\bigr) \circ \tilde{E}^\nu
 \end{equation}
+where $\tilde{E}^\nu$ is the inverse tetrad and $\Gamma^\lambda_{\mu\nu}$ is the Levi-Civita connection of $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$.
 
 \textbf{Step 3:} Extract real Christoffel symbols:
 \begin{equation}

@@ -1,83 +1,85 @@
-# Lepton Ratios Forensic Audit — Inventory
+# Lepton Mass Ratio Audit — Inventory
 
-**Date**: 2026-02-28  
-**Audit scope**: Reproduce or refute the claims of Appendix W:
-- `m_μ/m_e ≈ 207.3`
-- `m_τ/m_μ ≈ 16.9`
+© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
 
----
-
-## Files Searched
-
-Keywords searched: `Appendix W`, `m_mu/m_e`, `m_tau/m_mu`, `207`, `16.9`, `E_{0,1}`, `E_{0,2}`,
-`eigenmode`, `torus`, `radius`, `R`, `scale`, `Lambda`.
+Forensic inventory of all claims about lepton mass ratios m_μ/m_e and m_τ/m_μ
+in the UBT repository.
 
 ---
 
-## Files Found and Claims
+## Source Locations
 
-### 1. `consolidation_project/appendix_W2_lepton_spectrum.tex`
-
-**Primary source** for the lepton-ratio claims.
-
-| Section | Claim |
-|---------|-------|
-| W.1 | Electron arises as the first non-trivial Dirac eigenmode on compact torus T²(τ) |
-| W.2 | Dirac operator eigenspectrum: `E_{n,m} = (1/R) √[(n+δ)² + (m+δ')²]` |
-| W.3 | Electron identified with mode (0,1): `m_e = E_{0,1} ≈ 1/R` with `δ=½` |
-| W.4 | Muon identified with (0,2), tau with (1,0) or (1,1) |
-| W.5 | Claims `E_{0,2}/E_{0,1} ≈ 207.3` and `E_{1,0}/E_{0,2} ≈ 16.9` |
-| W.T | Table lists eigenvalue `√((0+½)²+2²)` for (0,2) and says ratio-to-E_{0,1} ≈ 207.3 |
-
-**Critical observation**: The table entry for (0,2) gives the correct *eigenvalue* formula
-`√((0+½)²+2²) = √4.25 ≈ 2.062`, but then asserts the *ratio* to E_{0,1} is ≈ 207.3.
-These two statements are mutually inconsistent: `√4.25 / √1.25 ≈ 1.844`, not 207.3.
+| File | Lines | Claim | Status |
+|------|-------|-------|--------|
+| `consolidation_project/appendix_W2_lepton_spectrum.tex` | 41–44 | `E(0,2)/E(0,1) ≈ 207.3`, `E(1,0)/E(0,2) ≈ 16.9` | **INCORRECT** — see critical note below |
+| `consolidation_project/appendix_W2_lepton_spectrum.tex` | 76 | Table row: `(0,2)` → ratio `≈ 207.3` | Same error |
+| `consolidation_project/appendix_K2_fundamental_constants_consolidated.tex` | 39 | References "207 and 3477" as near-integers | **Sourced from W2** |
+| `consolidation_project/appendix_V2_emergent_alpha.tex` | 95–97 | `m_μ/m_e ≈ 207.3 vs 206.77_exp` | **Sourced from W2** |
+| `consolidation_project/masses/sum_rules_and_ratios.tex` | 39–50 | Experimental values only | OK (labeled as experimental) |
 
 ---
 
-### 2. `consolidation_project/appendix_V2_emergent_alpha.tex`
+## Critical Finding: Formula Mismatch in Appendix W
 
-Claims the torus modulus `τ = iy_*` is dynamically fixed by minimising a one-loop Casimir
-effective potential at scale `μ₀ ~ M_Z`.  
-Provides the formula `α(M_Z)⁻¹ = 4πN/y_*` with `N=10`.  
-The modulus value `y_*` is referenced by Appendix W ("For τ = τ_* determined in Appendix V …"),
-but the eigenvalue formula in Appendix W **does not include `y_*`** explicitly.
+The toroidal eigenvalue formula stated in Appendix W is:
+
+```
+E_{n,m} = (1/R) * sqrt((n + δ)² + (m + δ')²)
+```
+
+with δ = 1/2, δ' unspecified (assumed 0 from context).
+
+**Actual computed ratios** (see `tools/reproduce_lepton_ratios.py`):
+
+| Mode assignment | Formula ratio | Claimed ratio | Experimental |
+|----------------|--------------|---------------|-------------|
+| m_μ/m_e = E(0,2)/E(0,1) | **1.844** | 207.3 | 206.768 |
+| m_τ/m_μ = E(1,0)/E(0,2) | **0.728** | 16.9 | 16.817 |
+
+**The formula as written does NOT reproduce the claimed ratios.**
+
+The ratios "207.3" and "16.9" in the text appear to be the **experimental values**, not
+computed eigenvalue ratios. The formula produces dimensionless ratios of order 1, not 200+.
+
+### Possible Explanations (All Require Verification)
+
+1. **Missing overall scale factor**: A radius parameter R or additional scale factor
+   could shift the ratios, but cannot change a ratio of eigenvalues for same R.
+2. **Different formula**: The actual formula may involve R-dependent absolute energies
+   compared to a fixed scale (e.g., Planck scale), not eigenvalue *ratios*.
+3. **Different mode assignment**: Perhaps m_e is not E(0,1) but some other reference scale.
+4. **Typographical error in appendix**: The claimed ratios 207.3 and 16.9 are simply
+   copied from experimental data without a correct derivation.
+
+### Current Status
+
+- The claim "lepton mass ratios arise from toroidal eigenmodes" is a **conjecture**.
+- The supporting numerical calculation in Appendix W is **not internally consistent**.
+- The appendix must be labeled as a conjecture pending a corrected derivation.
 
 ---
 
-### 3. `consolidation_project/appendix_G6_neutrino_mass_biquaternionic_time.tex`
+## Single Canonical Formula Chain (T8)
 
-Uses `R` (torus radius) and Majorana scale `M_R = (ℏc)/R_eff`.  
-Does not independently predict `m_μ/m_e` or `m_τ/m_μ`.
+The formula chain, as stated in Appendix W, is:
 
----
+1. **Background**: Torus T²(τ) with modulus τ = τ_* from Appendix V, Wilson branch θ_H = π.
+2. **Hosotani shift**: δ = 1/2 for Q = -1 charge along Wilson cycle.
+3. **Dirac spectrum**: E_{n,m} = (1/R) sqrt((n+δ)² + (m+δ')²)
+4. **Electron**: m_e = E(0,1) = (1/R) sqrt(0.25 + 1)
+5. **Muon**: m_μ ~ E(0,2) = (1/R) sqrt(0.25 + 4)
+6. **Tau**: m_τ ~ E(1,0) or E(1,1)
+7. **Ratios**: m_μ/m_e = E(0,2)/E(0,1), m_τ/m_μ = E(1,0)/E(0,2)
 
-### 4. `consolidation_project/appendix_K5_Lambda_QCD.tex`
+**Critical gap**: Step 7 gives ratios ≈ 1.8, 0.7 — not 207, 16.9.
 
-Uses `μ = R⁻¹` as a matching scale for QCD running coupling.  
-Does not predict lepton mass ratios.
-
----
-
-### 5. `consolidation_project/appendix_FORMAL_constants_normalization.tex`
-
-Defines normalisation conventions; references `R`, `Λ`, `ℏc`.  
-No independent lepton-ratio claim.
+No calibration vs. prediction separation is possible until the formula is corrected.
 
 ---
 
-## Summary
+## Required Actions
 
-The **only** source for the 207.3 and 16.9 claims is `appendix_W2_lepton_spectrum.tex`.  
-The eigenvalue formula given there is `E_{n,m} = (1/R)√[(n+δ)²+(m+δ')²]`.  
-Evaluating this formula **directly** gives:
-
-| Mode (n,m) | δ | δ' | E·R     | E_{n,m}/E_{0,1} |
-|------------|---|----|---------|-----------------|
-| (0,1)      | ½ | 0  | 1.11803 | 1.000           |
-| (0,2)      | ½ | 0  | 2.06155 | 1.844           |
-| (1,0)      | ½ | 0  | 1.50000 | 1.342           |
-| (1,1)      | ½ | 0  | 1.80278 | 1.612           |
-
-None of these ratios reproduce 207.3 or 16.9.  
-See `reproduction.md` and `missing_step.md` for detailed analysis.
+- [ ] Correct or retract the numerical claim in appendix_W2_lepton_spectrum.tex
+- [ ] Label the toroidal eigenmode mechanism as a **conjecture pending derivation**
+- [ ] Identify the actual formula needed to produce ratios ~207 and ~16.9
+- [ ] Create corrected script in `tools/reproduce_lepton_ratios.py`
