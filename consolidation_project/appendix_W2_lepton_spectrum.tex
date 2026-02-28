@@ -2,6 +2,19 @@
 \appendix
 \section*{Appendix W: Lepton Mass Ratios from Toroidal Eigenmodes}
 
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{%
+\textbf{Reproducibility audit notice (2026-02-28).}
+A forensic audit (\texttt{reports/lepton\_audit/}) shows that eq.~(W.2) as written
+yields $E_{0,2}/E_{0,1}\approx 1.844$ and $E_{1,0}/E_{0,2}\approx 0.728$ (wrong
+direction), not $207.3$ and $16.9$.  The values 207.3 and 16.9 are
+\emph{experimental reference values}, not predictions derived from eq.~(W.2).
+Sections W.4--W.5 and table W.T have been updated accordingly.
+See \texttt{tools/reproduce\_lepton\_ratios.py} and
+\texttt{reports/lepton\_audit/reproduction.md} for details.
+}}
+\end{center}
+
 \subsection*{W.1 Motivation}
 In Appendix~K we argued that the electron mass arises as the first non-trivial eigenmode of the internal Dirac operator on the compact torus $T^2(\tau)$ with Hosotani background. 
 It is then natural to conjecture that higher charged leptons ($\mu,\tau$) correspond to higher eigenmodes of the same operator. This yields a concrete, testable hypothesis for the so-called ``magic numbers'' in lepton mass ratios.
@@ -14,6 +27,7 @@ D \;=\; i\gamma^\psi \!\left(\partial_\psi + i Q \theta_H/L_\psi\right) \;+\; i\
 with eigenfunctions labelled by integers $(n,m)\in\mathbb{Z}^2$.
 The Hosotani background induces shifts $(\delta,\delta')$, leading to the spectrum
 \begin{equation}
+\label{eq:W2_spectrum}
 E_{n,m} \;=\; \frac{1}{R}\,\sqrt{(n+\delta)^2+(m+\delta')^2}.
 \end{equation}
 
@@ -23,58 +37,81 @@ For $Q=-1$ and $\theta_H=\pi$ we obtain $\delta=\tfrac{1}{2}$ along the Wilson c
 m_e \;=\; E_{0,1} \;\simeq\; \frac{1}{R}.
 \end{equation}
 
-\subsection*{W.4 Higher Modes and Ratios}
-We identify higher modes with heavier leptons. Natural candidates are
+\subsection*{W.4 Higher Modes --- Conjecture (Open)}
+We conjecture that heavier leptons correspond to higher eigenmodes.
+Natural mode candidates are:
 \begin{align}
 m_\mu &\;\sim\; E_{0,2}, \\
-m_\tau &\;\sim\; E_{1,0} \;\text{ or }\; E_{1,1}.
+m_\tau &\;\sim\; E_{0,3} \;\text{ or higher}.
 \end{align}
-Hence the ratios are
-\begin{equation}
-\frac{m_\mu}{m_e} \;\simeq\; \frac{E_{0,2}}{E_{0,1}}, \qquad
-\frac{m_\tau}{m_\mu} \;\simeq\; \frac{E_{1,0}}{E_{0,2}} \;(\text{or } E_{1,1}/E_{0,2}).
-\end{equation}
+\textbf{Important caveat.}
+Evaluating eq.~\eqref{eq:W2_spectrum} with $\delta=\tfrac{1}{2}$, $\delta'=0$ gives
+\[
+\frac{E_{0,2}}{E_{0,1}} = \sqrt{\frac{0.25+4}{0.25+1}} \approx 1.844,
+\]
+which is \emph{two orders of magnitude smaller} than the experimental ratio $m_\mu/m_e\approx 206.8$.
+Furthermore, $E_{1,0}<E_{0,2}$ under eq.~\eqref{eq:W2_spectrum}, so
+mode $(1,0)$ cannot represent the $\tau$ without violating the mass hierarchy.
+The mode assignment in this section remains a qualitative conjecture;
+no closed derivation from eq.~\eqref{eq:W2_spectrum} currently yields the experimental
+ratios.  See \texttt{reports/lepton\_audit/missing\_step.md} for a systematic
+analysis of why all straightforward generalisations (rectangular modulus $y_*$,
+power-law mapping, 3-torus mode counting) also fail.
 
-\subsection*{W.5 Numerical Illustration}
-For the modulus $\tau=\tau_\ast$ determined in Appendix~V we evaluate the ratios. With $\delta=\tfrac{1}{2}$ one obtains illustratively
+\subsection*{W.5 Experimental Reference Values (not derived from eq.~W.2)}
+The experimentally observed ratios (PDG 2022) are listed below for reference.
+These values are \textbf{not predictions of eq.~\eqref{eq:W2_spectrum}}.
+An earlier draft of this appendix incorrectly presented them as derived results;
+that error is documented in \texttt{reports/lepton\_audit/reproduction.md}.
 \begin{align}
-\frac{E_{0,2}}{E_{0,1}} &\approx 207.3, \\
-\frac{E_{1,0}}{E_{0,2}} &\approx 16.9.
+\left(\frac{m_\mu}{m_e}\right)_{\rm exp} &= 206.768\,283 \quad (\text{OPEN: not derived from eq.~W.2}), \\
+\left(\frac{m_\tau}{m_\mu}\right)_{\rm exp} &= 16.817\,16 \quad (\text{OPEN: not derived from eq.~W.2}).
 \end{align}
-These agree closely with the observed ratios $m_\mu/m_e \simeq 206.8$ and $m_\tau/m_\mu \simeq 16.8$.
 
-\subsection*{W.6 Discussion}
-This indicates that the lepton mass hierarchy arises naturally from the discrete spectrum of internal eigenmodes on the compact torus. 
-The appearance of the ``magic numbers'' $207$ and $3477$ follows from the toroidal geometry and Hosotani phase.
-Future work should refine the eigenvalue calculation (radiative corrections, mixing) and extend the analysis to neutrinos and quarks.
+\subsection*{W.6 Discussion and Open Problems}
+A complete derivation of the lepton mass hierarchy within the toroidal eigenmode framework
+requires at minimum one of:
+\begin{itemize}
+\item A corrected eigenvalue formula that explicitly incorporates the torus modulus
+      $\tau_*$ from Appendix~V and produces ratios $\approx 207$ and $\approx 16.8$
+      with at most one calibration parameter.
+\item An explicit nonlinear mass mapping $M(E)$ with a physical justification that
+      simultaneously gives the right ratios for \emph{both} $\mu/e$ and $\tau/\mu$.
+\end{itemize}
+Neither ingredient is currently present.  The ``magic numbers'' $207$ and $3477$ are
+\emph{experimental observations}, not predictions of the theory as presently formulated.
+Future work should close this gap.
 
 \subsection*{W.M Methods: Toroidal Eigenmodes and Lepton Ratios}
 \begin{enumerate}
-  \item Fix $\tau_\*=i\,y_\*$ from Appendix~V (minimum of $V_{\rm eff}$) and the Wilson branch $\theta_H=\pi$.
+  \item Fix $\tau_*=i\,y_*$ from Appendix~V (minimum of $V_{\rm eff}$) and the Wilson branch $\theta_H=\pi$.
   \item Choose spin structure (NS/R) consistent with the Hosotani background; for $Q=-1$ this yields a shift $\delta=\tfrac{1}{2}$ along the Wilson cycle.
-  \item Solve the internal Dirac spectrum on $T^2(\tau_\*)$: 
+  \item Solve the internal Dirac spectrum on $T^2(\tau_*)$: 
   \[
   E_{n,m}=\frac{1}{R}\sqrt{(n+\delta)^2+(m+\delta')^2}\,,
   \]
   with $(n,m)\in\mathbb{Z}^2$ and the second shift $\delta'$ fixed by the spin structure.
-  \item Identify $m_e=E_{0,1}$ as the first non-trivial mode; predict
-  \(
-  \tfrac{m_\mu}{m_e}\approx\tfrac{E_{0,2}}{E_{0,1}},\quad
-  \tfrac{m_\tau}{m_\mu}\approx\tfrac{E_{1,0}}{E_{0,2}}
-  \)
-  (or $E_{1,1}$ as an alternative). \emph{No continuous parameters are fitted.}
-  \item Provide the table of ratios $E_{n,m}/E_{0,1}$ and an error budget (spin-structure choice, radiative shifts). 
+  \item Identify $m_e=E_{0,1}$ as the first non-trivial mode.
+        \textbf{Note:} the naive ratios $E_{0,2}/E_{0,1}\approx 1.844$ and
+        $E_{1,0}/E_{0,2}\approx 0.728$ do \emph{not} match experiment;
+        the derivation of $m_\mu/m_e$ from this formula is currently open.
+  \item Provide the table of eigenvalues $E_{n,m}/E_{0,1}$ and document any gap
+        relative to experimental values. 
 \end{enumerate}
 
-\subsection*{W.T First Eigenmodes and Lepton Ratios}
+\subsection*{W.T First Eigenmodes (formula values vs.\ experimental reference)}
 \begin{center}
-\begin{tabular}{c c c c}
+\begin{tabular}{c c c c c}
 \toprule
-Mode $(n,m)$ & Eigenvalue $E_{n,m}/(1/R)$ & Ratio to $E_{0,1}$ & Candidate \\
+Mode $(n,m)$ & $E_{n,m}\cdot R$ & Formula ratio to $E_{0,1}$ & Exp.\ ratio (ref.) & Candidate \\
 \midrule
-$(0,1)$ & $\sqrt{(0+\tfrac{1}{2})^2+1^2}$ & $1.000$ & $e$ \\
-$(0,2)$ & $\sqrt{(0+\tfrac{1}{2})^2+2^2}$ & $\approx 207.3$ & $\mu$ \\
-$(1,0)$ & $\sqrt{(1+\tfrac{1}{2})^2+0^2}$ & $\approx 3477$ & $\tau$ \\
+$(0,1)$ & $\sqrt{0.25+1}=1.118$ & $1.000$ & $1.000$ & $e$ \\
+$(0,2)$ & $\sqrt{0.25+4}=2.062$ & $\mathbf{1.844}$ & $206.77\;(\text{exp})$ & $\mu$ (conjecture) \\
+$(1,0)$ & $\sqrt{2.25+0}=1.500$ & $\mathbf{1.342}$ & $3477\;(\text{exp})$ & \emph{lighter than $\mu$; cannot be $\tau$} \\
+$(0,3)$ & $\sqrt{0.25+9}=3.041$ & $\mathbf{2.720}$ & --- & higher mode \\
 \bottomrule
 \end{tabular}
 \end{center}
+\noindent\textbf{The ``Formula ratio'' column is computed from eq.~\eqref{eq:W2_spectrum}.
+The ``Exp.\ ratio'' column lists experimental PDG values.
+These two columns are \emph{not equal}; the gap is the open problem of this appendix.}

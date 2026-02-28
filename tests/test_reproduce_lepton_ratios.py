@@ -2,10 +2,12 @@
 Tests for the lepton mass ratio reproduction script (Appendix W forensic audit).
 
 These tests verify that:
-  1. The script tools/reproduce_lepton_ratios.py exists and is importable.
-  2. The eigenvalue formula produces the exact values locked in the canonical derivation.
-  3. The formula gives a MISMATCH with the Appendix W claims (exit code 1),
-     which is the documented and expected behaviour.
+  1. The script tools/reproduce_lepton_ratios.py exists and all variants run.
+  2. The canonical eigenvalue formula produces the exact locked reference values.
+  3. The canonical formula gives a MISMATCH (exit code 1) — documented expected result.
+  4. candidate_integer exits 1 (NOT_A_PREDICTION — uses 3 calibrations).
+  5. candidate_hopf exits 1 (MISMATCH — p=3/2 gives ~2.83, not 207).
+  6. --variant all exits 1 (no variant reproduces ratios under 1-calibration rule).
 
 Run from the repository root:
     pytest tests/test_reproduce_lepton_ratios.py -v
@@ -49,18 +51,19 @@ DELTA = 0.5
 DELTA_PRIME = 0.0
 
 LOCKED = {
-    "E_01_R":              1.11803399,
-    "E_02_R":              2.06155281,
-    "E_10_R":              1.50000000,
-    "E_11_R":              1.80277564,
-    "ratio_mu_e_formula":  1.84390889,
+    "E_01_R":               1.11803399,
+    "E_02_R":               2.06155281,
+    "E_10_R":               1.50000000,
+    "E_11_R":               1.80277564,
+    "ratio_mu_e_formula":   1.84390889,
     "ratio_tau_mu_formula": 0.72760688,
 }
 
-CLAIMED_MU_OVER_E   = 207.3
-CLAIMED_TAU_OVER_MU = 16.9
+EXP_MU_OVER_E   = 206.768283
+EXP_TAU_OVER_MU = 16.817029
 
-TOLERANCE = 1e-6   # for locked formula values
+TOLERANCE_LOCK = 1e-6   # tolerance for locked formula values
+TOLERANCE_PCT  = 0.01   # 1% tolerance for "reproduced" verdict
 
 
 # ---------------------------------------------------------------------------
@@ -71,8 +74,18 @@ def eigenvalue(n: int, m: int, delta: float = DELTA, dp: float = DELTA_PRIME) ->
     return math.sqrt((n + delta) ** 2 + (m + dp) ** 2)
 
 
+def run_script(*extra_args) -> subprocess.CompletedProcess:
+    """Run the reproduction script and return completed process."""
+    return subprocess.run(
+        [sys.executable, str(SCRIPT)] + list(extra_args),
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+    )
+
+
 # ---------------------------------------------------------------------------
-# Tests
+# Tests: script exists
 # ---------------------------------------------------------------------------
 
 class TestScriptExists:
@@ -83,99 +96,168 @@ class TestScriptExists:
         assert SCRIPT.suffix == ".py"
 
 
-class TestFormulaValues:
+# ---------------------------------------------------------------------------
+# Tests: canonical formula values (locked)
+# ---------------------------------------------------------------------------
+
+class TestCanonicalFormulaValues:
     """Verify the eigenvalue formula produces the locked reference values."""
 
     def test_E_01(self):
-        val = eigenvalue(0, 1)
-        assert abs(val - LOCKED["E_01_R"]) < TOLERANCE, (
-            f"E_(0,1)·R = {val}, expected {LOCKED['E_01_R']}"
-        )
+        assert abs(eigenvalue(0, 1) - LOCKED["E_01_R"]) < TOLERANCE_LOCK
 
     def test_E_02(self):
-        val = eigenvalue(0, 2)
-        assert abs(val - LOCKED["E_02_R"]) < TOLERANCE
+        assert abs(eigenvalue(0, 2) - LOCKED["E_02_R"]) < TOLERANCE_LOCK
 
     def test_E_10(self):
-        val = eigenvalue(1, 0)
-        assert abs(val - LOCKED["E_10_R"]) < TOLERANCE
+        assert abs(eigenvalue(1, 0) - LOCKED["E_10_R"]) < TOLERANCE_LOCK
 
     def test_E_11(self):
-        val = eigenvalue(1, 1)
-        assert abs(val - LOCKED["E_11_R"]) < TOLERANCE
+        assert abs(eigenvalue(1, 1) - LOCKED["E_11_R"]) < TOLERANCE_LOCK
 
     def test_ratio_mu_e(self):
         ratio = eigenvalue(0, 2) / eigenvalue(0, 1)
-        assert abs(ratio - LOCKED["ratio_mu_e_formula"]) < TOLERANCE
+        assert abs(ratio - LOCKED["ratio_mu_e_formula"]) < TOLERANCE_LOCK
 
     def test_ratio_tau_mu(self):
         ratio = eigenvalue(1, 0) / eigenvalue(0, 2)
-        assert abs(ratio - LOCKED["ratio_tau_mu_formula"]) < TOLERANCE
+        assert abs(ratio - LOCKED["ratio_tau_mu_formula"]) < TOLERANCE_LOCK
 
 
-class TestMismatchDocumented:
-    """
-    The formula does NOT reproduce the claimed 207.3 / 16.9.
-    These tests lock in that the mismatch IS the documented result.
-    """
+# ---------------------------------------------------------------------------
+# Tests: canonical mismatch is the documented expected result
+# ---------------------------------------------------------------------------
 
-    def test_mu_e_does_not_match_claim(self):
+class TestCanonicalMismatchDocumented:
+    """Lock in that the canonical formula does NOT reproduce experiment."""
+
+    def test_mu_e_large_mismatch(self):
         ratio = eigenvalue(0, 2) / eigenvalue(0, 1)
-        rel_err = abs(ratio - CLAIMED_MU_OVER_E) / CLAIMED_MU_OVER_E
+        rel_err = abs(ratio - EXP_MU_OVER_E) / EXP_MU_OVER_E
         assert rel_err > 0.90, (
-            f"Unexpectedly, m_μ/m_e formula ratio {ratio:.4f} matches the claim "
-            f"{CLAIMED_MU_OVER_E} within 10 % — mismatch should be ~99 %."
+            f"Canonical m_μ/m_e = {ratio:.4f} unexpectedly close to exp {EXP_MU_OVER_E}"
         )
 
-    def test_tau_mu_does_not_match_claim(self):
-        ratio = eigenvalue(1, 0) / eigenvalue(0, 2)
-        rel_err = abs(ratio - CLAIMED_TAU_OVER_MU) / CLAIMED_TAU_OVER_MU
-        assert rel_err > 0.90, (
-            f"Unexpectedly, m_τ/m_μ formula ratio {ratio:.4f} matches the claim "
-            f"{CLAIMED_TAU_OVER_MU} within 10 % — mismatch should be ~96 %."
-        )
-
-    def test_mode_ordering_wrong(self):
-        """E_(1,0) < E_(0,2): the 'tau' mode is lighter than the 'muon' mode."""
+    def test_tau_mu_wrong_direction(self):
+        """E_(1,0) < E_(0,2): mode hierarchy contradicts mass hierarchy."""
         assert eigenvalue(1, 0) < eigenvalue(0, 2), (
-            "Expected E_(1,0) < E_(0,2) (wrong-direction problem documented in audit)"
+            "Expected E_(1,0) < E_(0,2) (documented wrong-direction problem)"
         )
 
+    def test_tau_mu_large_mismatch(self):
+        ratio = eigenvalue(1, 0) / eigenvalue(0, 2)
+        rel_err = abs(ratio - EXP_TAU_OVER_MU) / EXP_TAU_OVER_MU
+        assert rel_err > 0.90
 
-class TestScriptExitCode:
-    """Run the script and verify it exits with code 1 (mismatch documented)."""
 
-    def test_script_exits_with_mismatch(self):
-        result = subprocess.run(
-            [sys.executable, str(SCRIPT)],
-            capture_output=True,
-            text=True,
-            cwd=REPO_ROOT,
-        )
-        # Exit code 1 means mismatch — which is the expected/documented outcome
+# ---------------------------------------------------------------------------
+# Tests: script --variant canonical
+# ---------------------------------------------------------------------------
+
+class TestScriptCanonical:
+    def test_exits_with_mismatch(self):
+        result = run_script()   # default = canonical
         assert result.returncode == 1, (
-            f"Expected exit code 1 (mismatch documented), got {result.returncode}.\n"
-            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+            f"Expected exit 1 (mismatch); got {result.returncode}\n{result.stdout}"
         )
 
-    def test_script_outputs_mismatch_message(self):
-        result = subprocess.run(
-            [sys.executable, str(SCRIPT)],
-            capture_output=True,
-            text=True,
-            cwd=REPO_ROOT,
-        )
-        assert "MISMATCH" in result.stdout, (
-            "Expected 'MISMATCH' in script output"
+    def test_canonical_variant_explicit(self):
+        result = run_script("--variant", "canonical")
+        assert result.returncode == 1
+
+    def test_output_contains_mismatch(self):
+        result = run_script("--variant", "canonical")
+        assert "MISMATCH" in result.stdout
+
+    def test_output_contains_missing_factor(self):
+        result = run_script("--variant", "canonical")
+        assert "Missing factor" in result.stdout
+
+    def test_output_contains_eigenvalues(self):
+        result = run_script("--variant", "canonical")
+        assert "E_(0,1)" in result.stdout
+        assert "E_(0,2)" in result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Tests: script --variant candidate_integer
+# ---------------------------------------------------------------------------
+
+class TestScriptCandidateInteger:
+    def test_exits_1_not_a_prediction(self):
+        result = run_script("--variant", "candidate_integer")
+        assert result.returncode == 1, (
+            "candidate_integer should exit 1 (NOT_A_PREDICTION)"
         )
 
-    def test_script_outputs_missing_factor(self):
-        result = subprocess.run(
-            [sys.executable, str(SCRIPT)],
-            capture_output=True,
-            text=True,
-            cwd=REPO_ROOT,
+    def test_output_labels_not_a_prediction(self):
+        result = run_script("--variant", "candidate_integer")
+        assert "NOT_A_PREDICTION" in result.stdout or "NOT derived" in result.stdout
+
+    def test_output_names_extra_calibrations(self):
+        result = run_script("--variant", "candidate_integer")
+        # n_mu and n_tau must be flagged as calibration parameters
+        assert "n_mu" in result.stdout and "n_tau" in result.stdout
+
+    def test_integer_ratios_numerically_close(self):
+        """n_mu=207, n_tau=3477 give <1% error vs experiment — but that's by construction."""
+        n_mu, n_tau = 207, 3477
+        err_mu  = abs(n_mu               - EXP_MU_OVER_E)   / EXP_MU_OVER_E
+        err_tau = abs(n_tau / n_mu        - EXP_TAU_OVER_MU) / EXP_TAU_OVER_MU
+        assert err_mu  < TOLERANCE_PCT, "n_mu=207 numerically close to exp (expected)"
+        assert err_tau < TOLERANCE_PCT, "n_tau/n_mu numerically close to exp (expected)"
+
+
+# ---------------------------------------------------------------------------
+# Tests: script --variant candidate_hopf
+# ---------------------------------------------------------------------------
+
+class TestScriptCandidateHopf:
+    def test_exits_1_mismatch(self):
+        result = run_script("--variant", "candidate_hopf")
+        assert result.returncode == 1, (
+            "candidate_hopf should exit 1 (MISMATCH)"
         )
-        assert "Missing factor" in result.stdout or "missing" in result.stdout.lower(), (
-            "Expected missing-factor explanation in output"
+
+    def test_output_contains_mismatch(self):
+        result = run_script("--variant", "candidate_hopf")
+        assert "MISMATCH" in result.stdout
+
+    def test_hopf_p15_gives_small_ratio(self):
+        """With p=1.5 the formula gives m_μ/m_e = 2^1.5 ≈ 2.83, not 207."""
+        ratio_mu_e = 2 ** 1.5
+        assert abs(ratio_mu_e - 2.828427) < 1e-5
+        # Must be very far from experiment
+        rel_err = abs(ratio_mu_e - EXP_MU_OVER_E) / EXP_MU_OVER_E
+        assert rel_err > 0.98
+
+    def test_no_single_p_fits_both(self):
+        """log(207)/log(2) ≠ log(16.8)/log(3/2): no single p works."""
+        p_mu  = math.log(EXP_MU_OVER_E)   / math.log(2)
+        p_tau = math.log(EXP_TAU_OVER_MU) / math.log(1.5)
+        assert abs(p_mu - p_tau) > 0.5, (
+            f"p_mu={p_mu:.3f}, p_tau={p_tau:.3f} — should be inconsistent"
         )
+
+
+# ---------------------------------------------------------------------------
+# Tests: --variant all
+# ---------------------------------------------------------------------------
+
+class TestScriptVariantAll:
+    def test_exits_1_no_variant_works(self):
+        result = run_script("--variant", "all")
+        assert result.returncode == 1, (
+            "Expected exit 1: no variant reproduces ratios under 1-calibration rule"
+        )
+
+    def test_overall_message_present(self):
+        result = run_script("--variant", "all")
+        assert "OVERALL" in result.stdout
+
+    def test_all_three_variants_run(self):
+        result = run_script("--variant", "all")
+        assert "VARIANT: canonical" in result.stdout
+        assert "VARIANT: candidate_integer" in result.stdout
+        assert "VARIANT: candidate_hopf" in result.stdout
+

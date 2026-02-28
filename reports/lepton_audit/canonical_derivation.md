@@ -109,6 +109,27 @@ Until these are provided, the claims of Appendix W remain **unsubstantiated**.
 
 ## 8. Locked Reference Values (for regression tests)
 
+The claims in Appendix W have been corrected in:
+
+    consolidation_project/appendix_W2_lepton_spectrum.tex
+
+Specific changes (2026-02-28):
+- **Section W.5**: The numbers 207.3 and 16.9 are now labelled as
+  "experimental reference values (PDG 2022), NOT derived from eq. W.2."
+- **Table W.T**: The "Ratio to E_{0,1}" column now shows both the formula value
+  and the experimental value side-by-side, making the gap explicit.
+- **Section W.4**: The tau mode assignment (1,0) has been removed from the
+  "prediction" category; a caveat is added explaining the wrong-direction problem.
+- **Section W.6**: Replaced confident narrative with an explicit list of what
+  is missing for a complete derivation.
+- **Boxed audit notice**: Added at the top of the appendix, directing readers to
+  this audit directory.
+
+A reader navigating from Appendix W to this audit needs at most one hop:
+the boxed notice at the top of `appendix_W2_lepton_spectrum.tex` references
+`reports/lepton_audit/` and `tools/reproduce_lepton_ratios.py`.
+
+
 These are the values the formula **as written** produces.
 Any future change to the formula must justify why these change.
 
