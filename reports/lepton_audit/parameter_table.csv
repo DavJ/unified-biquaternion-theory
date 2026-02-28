@@ -1,0 +1,18 @@
+name,units,value,source_file,role
+delta,dimensionless,0.5,consolidation_project/appendix_W2_lepton_spectrum.tex,input
+delta_prime,dimensionless,0.0,consolidation_project/appendix_W2_lepton_spectrum.tex,input
+R,length (natural),calibration,consolidation_project/appendix_W2_lepton_spectrum.tex (W.3),calibration
+m_e_exp,MeV/c^2,0.51099895,PDG 2022,reference
+m_mu_exp,MeV/c^2,105.6583755,PDG 2022,reference
+m_tau_exp,MeV/c^2,1776.86,PDG 2022,reference
+E_01_times_R,dimensionless,1.11803399,derived from formula,derived
+E_02_times_R,dimensionless,2.06155281,derived from formula,derived
+E_10_times_R,dimensionless,1.50000000,derived from formula,derived
+E_11_times_R,dimensionless,1.80277564,derived from formula,derived
+ratio_mu_e_formula,dimensionless,1.84390889,derived,derived
+ratio_tau_mu_formula_10,dimensionless,0.72760688,derived,derived
+ratio_tau_mu_formula_11,dimensionless,0.87447516,derived,derived
+ratio_mu_e_claimed,dimensionless,207.3,consolidation_project/appendix_W2_lepton_spectrum.tex (W.5),claimed
+ratio_tau_mu_claimed,dimensionless,16.9,consolidation_project/appendix_W2_lepton_spectrum.tex (W.5),claimed
+ratio_mu_e_experimental,dimensionless,206.7682830,PDG 2022,reference
+ratio_tau_mu_experimental,dimensionless,16.8167912,PDG 2022,reference
