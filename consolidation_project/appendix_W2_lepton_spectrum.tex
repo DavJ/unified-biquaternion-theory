@@ -1,6 +1,19 @@
 
 \appendix
-\section*{Appendix W: Lepton Mass Ratios from Toroidal Eigenmodes}
+\section*{Appendix W: Lepton Mass Ratios from Toroidal Eigenmodes (Conjecture)}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Status: Conjecture — Numerical Claim Not Yet Verified]
+The numerical values ``207.3'' and ``16.9'' quoted below match experimental data but
+are \textbf{not correctly derived from the eigenvalue formula stated in this appendix}.
+The formula $E_{n,m} = (1/R)\sqrt{(n+\delta)^2+(m+\delta')^2}$ with $\delta=\tfrac{1}{2}$
+yields dimensionless ratios $E_{0,2}/E_{0,1} \approx 1.84$ and $E_{1,0}/E_{0,2} \approx 0.73$,
+not $207$ and $16.9$.
+
+A corrected derivation (possibly involving absolute energy scale comparison, not just ratios)
+is required before this conjecture can be treated as a prediction.
+See \texttt{reports/lepton\_audit/inventory.md} and
+\texttt{tools/reproduce\_lepton\_ratios.py} for the full analysis.
+\end{tcolorbox}
 
 \subsection*{W.1 Motivation}
 In Appendix~K we argued that the electron mass arises as the first non-trivial eigenmode of the internal Dirac operator on the compact torus $T^2(\tau)$ with Hosotani background. 

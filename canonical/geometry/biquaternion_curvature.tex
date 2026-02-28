@@ -30,23 +30,22 @@ The biquaternionic curvature is defined as the field strength of the biquaternio
 \begin{itemize}
     \item $\Omega_\mu$ is the biquaternionic connection (Section~\ref{sec:canonical:biquaternion_connection})
     \item $[\Omega_\mu, \Omega_\nu]_\star = \Omega_\mu \star \Omega_\nu - \Omega_\nu \star \Omega_\mu$ is the biquaternionic commutator
-    \item $\star$ denotes the full biquaternionic product (non-commutative, non-associative)
+    \item $\star$ denotes the full biquaternionic product (associative, non-commutative)
 \end{itemize}
 
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Critical: Non-Commutativity]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Non-Commutativity (ordering matters)]
 \textbf{Do NOT simplify commutators.}
-
-\textbf{Do NOT assume associativity.}
 
 The biquaternionic commutator $[\Omega_\mu, \Omega_\nu]_\star = \Omega_\mu \star \Omega_\nu - \Omega_\nu \star \Omega_\mu$ is generally non-zero even when components commute individually.
 
-Biquaternionic multiplication is:
+Biquaternionic multiplication ($\mathbb{C}\otimes\mathbb{H}$) is:
 \begin{itemize}
     \item \textbf{Non-commutative}: $AB \neq BA$ in general
-    \item \textbf{Non-associative}: $(AB)C \neq A(BC)$ in general
+    \item \textbf{Associative}: $(AB)C = A(BC)$ always (tensor product of associative algebras)
 \end{itemize}
 
-The full algebraic structure must be preserved. Simplifications valid only in the real limit must be labeled "GR limit".
+Associativity is used explicitly in the proof of the Bianchi identity (Section~\ref{subsec:bianchi_biquaternion}).
+The full non-commutative structure must be preserved; simplifications valid only in the real limit must be labeled ``GR limit''.
 \end{tcolorbox}
 
 \subsection{Full Riemann Tensor}
@@ -120,20 +119,26 @@ The biquaternionic Einstein tensor is defined as:
 
 \begin{equation}
 \label{eq:canonical:biq_einstein_tensor}
-\boxed{\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}}
+\boxed{\mathcal{E}_{\mu\nu} := \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
     \item $\mathcal{R}_{\mu\nu}$ is the biquaternionic Ricci tensor
     \item $\mathcal{R}$ is the biquaternionic Ricci scalar
-    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric
+    \item $\mathcal{G}_{\mu\nu}$ is the biquaternionic \textbf{metric} (distinct from $\mathcal{E}_{\mu\nu}$)
 \end{itemize}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Symbol Convention]
+$\mathcal{G}_{\mu\nu}$ always denotes the biquaternionic \textbf{metric tensor}.
+$\mathcal{E}_{\mu\nu}$ always denotes the biquaternionic \textbf{Einstein tensor}.
+These are distinct objects; using the same symbol for both caused confusion in earlier versions.
+\end{tcolorbox}
 
 The classical Einstein tensor is:
 
 \begin{equation}
-G_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
+G_{\mu\nu} = \text{Re}(\mathcal{E}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
 \end{equation}
 
 \subsection{Biquaternionic Decomposition}
@@ -154,20 +159,70 @@ where:
 \subsection{Properties}
 
 \subsubsection{Bianchi Identities}
+\label{subsec:bianchi_biquaternion}
 
-The biquaternionic curvature satisfies generalized Bianchi identities:
+The biquaternionic curvature satisfies generalized Bianchi identities, which we now prove
+explicitly in the non-commutative (but associative) setting.
 
-\textbf{First Bianchi identity:}
+\paragraph{Setup.}
+Define the curvature 2-form $\boldsymbol{\mathcal{R}} = d\Omega + \Omega \wedge \Omega$
+where the wedge product carries the ordering convention
 \begin{equation}
-\mathcal{R}_{\rho\sigma\mu\nu} + \mathcal{R}_{\rho\mu\nu\sigma} + \mathcal{R}_{\rho\nu\sigma\mu} = 0
+(\Omega \wedge \Omega)_{\mu\nu} = \tfrac{1}{2}[\Omega_\mu, \Omega_\nu]_\star
+    = \tfrac{1}{2}(\Omega_\mu \Omega_\nu - \Omega_\nu \Omega_\mu).
+\end{equation}
+The covariant exterior derivative is $D := d + [\Omega, \cdot]$ with
+$[A, B] := A \wedge B - B \wedge A$.
+
+\begin{theorem}[Second Bianchi identity in $\mathbb{B}$]
+\label{thm:bianchi_biquaternion}
+$D\boldsymbol{\mathcal{R}} = 0$.
+\end{theorem}
+
+\begin{proof}
+Compute $D\boldsymbol{\mathcal{R}} = d\boldsymbol{\mathcal{R}} + [\Omega, \boldsymbol{\mathcal{R}}]$.
+
+\textbf{Step 1} ($d\boldsymbol{\mathcal{R}}$): Differentiate $\boldsymbol{\mathcal{R}} = d\Omega + \Omega \wedge \Omega$:
+\begin{equation}
+d\boldsymbol{\mathcal{R}} = d(d\Omega) + d(\Omega \wedge \Omega) = 0 + (d\Omega) \wedge \Omega - \Omega \wedge (d\Omega).
 \end{equation}
 
-\textbf{Second Bianchi identity (contracted):}
+\textbf{Step 2} ($[\Omega, \boldsymbol{\mathcal{R}}]$):
 \begin{equation}
-\nabla^\mu \mathcal{G}_{\mu\nu} = 0
+[\Omega, \boldsymbol{\mathcal{R}}] = \Omega \wedge \boldsymbol{\mathcal{R}} - \boldsymbol{\mathcal{R}} \wedge \Omega
+    = \Omega \wedge (d\Omega + \Omega \wedge \Omega) - (d\Omega + \Omega \wedge \Omega) \wedge \Omega.
 \end{equation}
+Expanding and using \textbf{associativity} $(AB)C = A(BC)$ in $\mathbb{B}$:
+\begin{equation}
+[\Omega, \boldsymbol{\mathcal{R}}] = \Omega \wedge d\Omega + \Omega \wedge (\Omega \wedge \Omega)
+    - d\Omega \wedge \Omega - (\Omega \wedge \Omega) \wedge \Omega.
+\end{equation}
+By associativity, $\Omega \wedge (\Omega \wedge \Omega) = (\Omega \wedge \Omega) \wedge \Omega$, so these cancel.
 
-where $\nabla^\mu$ is the biquaternionic covariant derivative.
+\textbf{Step 3}: Combining Steps 1 and 2:
+\begin{align}
+D\boldsymbol{\mathcal{R}} &= (d\Omega) \wedge \Omega - \Omega \wedge (d\Omega)
+    + \Omega \wedge d\Omega - d\Omega \wedge \Omega = 0.
+\end{align}
+\end{proof}
+
+\paragraph{First Bianchi identity.}
+The first (algebraic) Bianchi identity in its component form states:
+\begin{equation}
+\mathcal{R}_{\rho[\sigma\mu\nu]} := \mathcal{R}_{\rho\sigma\mu\nu} + \mathcal{R}_{\rho\mu\nu\sigma} + \mathcal{R}_{\rho\nu\sigma\mu} = 0
+\end{equation}
+when the connection is torsion-free ($\nabla_{[\mu}E_{\nu]} = 0$).
+
+\paragraph{Contracted form and conservation.}
+After real projection, the contracted second Bianchi identity gives:
+\begin{equation}
+\nabla^\mu G_{\mu\nu} = 0
+\end{equation}
+where $G_{\mu\nu} = \mathrm{Re}(\mathcal{E}_{\mu\nu})$ is the classical Einstein tensor,
+with $\mathcal{E}_{\mu\nu} := \mathcal{R}_{\mu\nu} - \tfrac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$
+the biquaternionic Einstein tensor
+(see Appendix~R for the full derivation and the conditions under which imaginary
+cross-terms vanish under the projection).
 
 \subsubsection{Hermiticity}
 
@@ -209,12 +264,11 @@ In the biquaternionic case, symmetries are modified:
 \begin{itemize}
     \item Imaginary time curvature
     \item Invisible to classical observations
-    \item Couples to consciousness fields
+    \item Couples to internal auxiliary sector (see \texttt{speculative\_extensions/})
     \item Responsible for:
     \begin{itemize}
         \item Dark energy effects (cosmological acceleration)
-        \item Psychon field dynamics
-        \item Quantum coherence in biological systems
+        \item Internal auxiliary sector dynamics (speculative; see \texttt{speculative\_extensions/})
         \item Phase-locked states
     \end{itemize}
 \end{itemize}
@@ -239,12 +293,12 @@ The fundamental UBT field equation in terms of curvature is:
 
 \begin{equation}
 \label{eq:canonical:biq_field_equation}
-\boxed{\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
+\boxed{\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
-    \item $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor (Eq.~\ref{eq:canonical:biq_einstein_tensor})
     \item $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor (Section~\ref{sec:canonical:biquaternion_stress_energy})
     \item $\kappa = 8\pi G$ (in natural units)
 \end{itemize}
@@ -254,7 +308,7 @@ The fundamental UBT field equation in terms of curvature is:
 Taking the real part of Eq.~\ref{eq:canonical:biq_field_equation}:
 
 \begin{equation}
-\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\text{Re}(\mathcal{E}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
 \end{equation}
 
 This yields:
@@ -269,7 +323,7 @@ This yields:
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity Recovery]
 The fundamental field equation of UBT is:
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic)}
+\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic; $\mathcal{E}_{\mu\nu}$: Einstein tensor, $\mathcal{G}_{\mu\nu}$: metric)}
 \end{equation}
 
 In the real limit ($\text{Im}(\mathcal{G}_{\mu\nu}) \to 0$, $\text{Im}(\mathcal{T}_{\mu\nu}) \to 0$):
@@ -375,12 +429,12 @@ For practical calculations:
 
 \textbf{Step 5:} Form Einstein tensor:
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}
+\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2} \mathcal{G}_{\mu\nu} \mathcal{R}
 \end{equation}
 
 \textbf{Step 6:} Extract classical quantities:
 \begin{equation}
-R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu}), \quad G_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})
+R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu}), \quad G_{\mu\nu} = \text{Re}(\mathcal{E}_{\mu\nu})
 \end{equation}
 
 \subsection{Consistency with General Relativity}

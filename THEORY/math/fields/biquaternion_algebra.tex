@@ -232,7 +232,7 @@ Special cases:
 \begin{enumerate}
     \item \textbf{Non-commutative}: $\Theta \Phi \neq \Phi \Theta$ in general
     
-    \item \textbf{Associative}: $(\Theta \Phi) \Psi = \Theta (\Phi \Psi)$
+    \item \textbf{Associative}: $(\Theta \Phi) \Psi = \Theta (\Phi \Psi)$ for all $\Theta, \Phi, \Psi \in \mathcal{B}$
     
     \item \textbf{Division algebra}: Non-zero biquaternions have inverses
     \begin{equation}
@@ -241,6 +241,25 @@ Special cases:
     
     \item \textbf{Normed algebra}: $|\Theta \Phi| = |\Theta| |\Phi|$ (when properly defined)
 \end{enumerate}
+
+\begin{lemma}[Associativity of $\mathcal{B}$]
+\label{lem:biquat_associativity}
+The biquaternion algebra $\mathcal{B} = \mathbb{H} \otimes_{\mathbb{R}} \mathbb{C}$ is associative.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+$\mathbb{H}$ is associative (the unit quaternions form a group under multiplication, and
+the associativity of $\mathbb{H}$ is verified directly from the multiplication rules
+$i^2=j^2=k^2=ijk=-1$).  $\mathbb{C}$ is a commutative associative field.  The tensor
+product of two associative algebras over a commutative ring is again associative, because
+$((\Theta_1 \otimes c_1)(\Theta_2 \otimes c_2))(\Theta_3 \otimes c_3)
+= ((\Theta_1\Theta_2)\Theta_3) \otimes (c_1 c_2 c_3)
+= \Theta_1(\Theta_2\Theta_3) \otimes (c_1 c_2 c_3)
+= (\Theta_1 \otimes c_1)((\Theta_2 \otimes c_2)(\Theta_3 \otimes c_3))$,
+where we used associativity of $\mathbb{H}$ and commutativity+associativity of $\mathbb{C}$.
+Alternatively, the $2\times2$ complex matrix representation (Eq.~\ref{eq:canonical:biquat_2x2}) is
+a ring homomorphism into $M_2(\mathbb{C})$, and matrix multiplication is associative.
+\end{proof}
 
 \subsection{Connection to Spin and SU(2)}
 
