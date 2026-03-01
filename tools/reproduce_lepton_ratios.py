@@ -3,6 +3,40 @@
 # Licensed under the MIT License
 # See LICENSE file in the repository root for full license text
 """
+
+Evaluates multiple candidate formulas for the lepton mass ratios
+m_μ/m_e ≈ 207.3 and m_τ/m_μ ≈ 16.9 claimed in Appendix W.
+
+KNOWN ISSUE: The canonical Appendix W2 formula (E_{n,m} = (1/R) *
+sqrt((n+delta)^2 + (m+delta')^2)) produces eigenvalue *ratios* of order ~1,
+not ~207 and ~16.9. See reports/lepton_audit/inventory.md for the full
+forensic analysis. This script documents that discrepancy for transparency.
+
+Usage:
+    python tools/reproduce_lepton_ratios.py [--variant VARIANT]
+
+Variants:
+    canonical          (default) Formula W.2 as written in Appendix W
+    candidate_integer  Old Appendix N "integer mode law": m = n × m_e
+    candidate_hopf     ThetaM_MassHierarchy: m = a × n^p (Hopf charge model)
+    all                Run all variants
+
+Each variant prints:
+  - Exact formula used
+  - All parameters (calibrated vs fixed)
+  - Computed ratios
+  - Verdict (REPRODUCED / MISMATCH / NOT_A_PREDICTION)
+
+Exit codes (for --variant canonical or default):
+    0 — ratios reproduce the claim within 1 %
+    1 — ratios do NOT reproduce the claim (mismatch is documented on stdout)
+
+Exit codes (for --variant all):
+    0 — at least one variant reproduces both ratios
+    1 — no variant reproduces both ratios
+"""
+
+import argparse
 Reproduce lepton mass ratios from UBT toroidal eigenmode conjecture.
 
 This script implements the formula from Appendix W2 (appendix_W2_lepton_spectrum.tex):
