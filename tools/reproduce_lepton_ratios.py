@@ -9,6 +9,11 @@ Lepton Mass Ratios — Forensic Reproduction Script
 Evaluates multiple candidate formulas for the lepton mass ratios
 m_μ/m_e ≈ 207.3 and m_τ/m_μ ≈ 16.9 claimed in Appendix W.
 
+KNOWN ISSUE: The canonical Appendix W2 formula (E_{n,m} = (1/R) *
+sqrt((n+delta)^2 + (m+delta')^2)) produces eigenvalue *ratios* of order ~1,
+not ~207 and ~16.9. See reports/lepton_audit/inventory.md for the full
+forensic analysis. This script documents that discrepancy for transparency.
+
 Usage:
     python tools/reproduce_lepton_ratios.py [--variant VARIANT]
 
@@ -80,10 +85,58 @@ DELTA       = 0.5   # Hosotani shift along ψ-cycle; W.3
 DELTA_PRIME = 0.0   # Spin-structure shift; implicit from W.T table
 
 
+# ---------------------------------------------------------------------------
+# Public API — imported by tests and external callers
+# ---------------------------------------------------------------------------
+
+def torus_eigenvalue(n: int, m: int, delta: float = DELTA,
+                     delta_prime: float = DELTA_PRIME) -> float:
+    """
+    Compute dimensionless eigenvalue E_{n,m}·R from the Appendix W2 Dirac spectrum.
+
+    Formula: sqrt((n + delta)^2 + (m + delta_prime)^2)
+
+    Args:
+        n: First mode number (integer)
+        m: Second mode number (integer)
+        delta: Hosotani shift along first cycle (default 0.5 for Q=-1, theta_H=pi)
+        delta_prime: Shift along second cycle (default 0.0; spin structure dependent)
+
+    Returns:
+        Dimensionless eigenvalue sqrt((n+delta)^2 + (m+delta_prime)^2)
+    """
+    return math.sqrt((n + delta) ** 2 + (m + delta_prime) ** 2)
+
+
+def compute_ratios(delta: float = DELTA, delta_prime: float = DELTA_PRIME) -> dict:
+    """
+    Compute eigenvalue ratios for lepton mass predictions.
+
+    Returns a dict with individual eigenvalues and derived ratios.
+    """
+    e01 = torus_eigenvalue(0, 1, delta, delta_prime)
+    e02 = torus_eigenvalue(0, 2, delta, delta_prime)
+    e10 = torus_eigenvalue(1, 0, delta, delta_prime)
+    e11 = torus_eigenvalue(1, 1, delta, delta_prime)
+
+    return {
+        "delta": delta,
+        "delta_prime": delta_prime,
+        "E(0,1)": e01,
+        "E(0,2)": e02,
+        "E(1,0)": e10,
+        "E(1,1)": e11,
+        "ratio_mu_e":       e02 / e01,
+        "ratio_tau_mu_v1":  e10 / e02,   # tau ~ (1,0) mode
+        "ratio_tau_mu_v2":  e11 / e02,   # tau ~ (1,1) alternative
+    }
+
+
+# Private alias used internally by run_canonical()
 def _eigenvalue(n: int, m: int, delta: float = DELTA,
                 delta_prime: float = DELTA_PRIME) -> float:
     """E_{n,m}·R = sqrt((n+δ)² + (m+δ')²) — Appendix W, eq. W.2."""
-    return math.sqrt((n + delta) ** 2 + (m + delta_prime) ** 2)
+    return torus_eigenvalue(n, m, delta, delta_prime)
 
 
 def run_canonical() -> int:
