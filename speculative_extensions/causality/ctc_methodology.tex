@@ -1,0 +1,337 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{ST-5: Methodology Summary —\\
+Closed Timelike Curves and Time Travel in\\
+Unified Biquaternion Theory\\[0.5em]
+\large\textsc{Speculative Extension}}
+\author{David Jaroš}
+\date{2026-03-01}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework. It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{tcolorbox}[colback=red!5, title=Framing Requirement]
+All claims in this document are \textbf{SPECULATIVE}.
+No claim asserts that time travel is possible.
+All statements are conditional: they describe what field configurations
+\emph{would be necessary if} CTCs exist within UBT.
+\end{tcolorbox}
+
+\vspace{0.5em}
+\noindent\textit{Output of Sub-task ST-5 (methodology summary) from the
+CTC/Causal-Structure investigation track.  This document synthesises the
+results of ST-1 through ST-4:
+\texttt{complex\_time\_causal\_structure.tex},
+\texttt{rotation\_complex\_time.tex},
+\texttt{ctc\_conditions.tex},
+\texttt{chronology\_protection\_ubt.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We synthesise the findings of sub-tasks ST-1 through ST-4 into a concise
+methodology for investigating closed timelike curves (CTCs) in the
+Unified Biquaternion Theory (UBT).  We identify the necessary conditions
+for CTC existence, the minimal modification to the canonical field
+equations that could admit CTCs, and describe what a ``time-travel
+protocol'' would look like in terms of field configurations of the UBT
+master field $\Theta$.  All claims are framed as conjectures and are
+strictly conditional on listed assumptions.
+
+%----------------------------------------------------------------------
+\section{Synthesis of ST-1 through ST-4}
+%----------------------------------------------------------------------
+\subsection{Causal Structure (ST-1)}
+Complex time $\tau = t + i\psi$ admits three interpretations of $\psi$:
+\begin{itemize}
+  \item \textbf{B (preferred):} $\psi$ is an internal phase coordinate.
+    Causal order is determined by real time $t$; no new causal pathologies.
+  \item \textbf{A (speculative):} $\psi$ is a second independent time
+    direction; closed paths in $(t,\psi)$ can wrap around $\psi$ and
+    return to the same point while $t$ advances — a direct CTC mechanism.
+  \item \textbf{C (degenerate):} $\psi$ is auxiliary; no causal implications.
+\end{itemize}
+The canonical UBT framework favours Interpretation B.
+Interpretation A is required for the most direct CTC mechanism.
+
+\subsection{Complex-Time Rotations (ST-2)}
+The $SO(2)$ rotation $\tau \mapsto e^{i\alpha}\tau$ in the complex time
+plane:
+\begin{itemize}
+  \item $\alpha = \pi/2$ (Wick rotation): analytic continuation, not a
+    physical symmetry.
+  \item General $\alpha$: possible $U(1)_\tau$ symmetry if the UBT action
+    is invariant; generates a conserved temporal charge $Q_\tau$.
+  \item $\alpha = \pi$ (full inversion): candidate for $T$-reversal in UBT;
+    combined with $C$ and $P$, extends the CPT symmetry.
+\end{itemize}
+The existence of a $U(1)_\tau$ symmetry would generate a topological
+obstruction to CTC formation: $Q_\tau$ must be conserved along any closed
+path, which constrains which closed paths are physically accessible.
+
+\subsection{CTC Conditions (ST-3)}
+The biquaternionic metric $\mathcal{G}_{\mu\nu}$ contributes an effective
+stress-energy $T_{\mu\nu}^{\mathrm{eff}}$ to the real Einstein equation.
+The imaginary sector $h_{\mu\nu}$ can provide negative effective energy
+density, which:
+\begin{itemize}
+  \item Is a necessary ingredient for CTC-enabling geometries in GR
+    (energy condition violation).
+  \item In UBT arises from the $\Theta$-field itself without ad hoc exotic
+    matter.
+  \item Both the Gödel and Kerr metrics can be embedded as real projections
+    of UBT solutions with non-trivial $h_{\mu\nu}$.
+\end{itemize}
+
+\subsection{Chronology Protection (ST-4)}
+Hawking's chronology protection conjecture rests on QFT assumptions that are
+modified in UBT:
+\begin{itemize}
+  \item Semiclassical gravity is replaced by coupled biquaternionic dynamics.
+  \item The $\psi$ sector provides a UV regulator for high-frequency modes.
+  \item The Cauchy-horizon divergence may be softened (finite KK sum) or
+    enhanced (divergent KK sum), corresponding to chronology protection
+    circumvention or enforcement, respectively.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Necessary and Sufficient Conditions for CTCs in UBT}
+%----------------------------------------------------------------------
+Based on the synthesis above, we state the following:
+
+\begin{conjecture}[Necessary conditions for CTCs in UBT]
+\label{conj:necessary}
+\textbf{(Speculative)}  If a UBT solution admits a CTC, then all of the
+following hold:
+\begin{enumerate}
+  \item The imaginary sector $h_{\mu\nu}$ is non-trivial and provides
+    negative effective energy density in a region $\mathcal{V}$.
+  \item The real metric $g_{\mu\nu}$ in $\mathcal{V}$ contains a Killing
+    vector $\xi^\mu$ with $g_{\mu\nu}\xi^\mu\xi^\nu < 0$ and compact orbits.
+  \item Either (a) $\psi$ is a second independent time direction
+    (Interpretation A), or (b) the energy condition violation from
+    $h_{\mu\nu}$ is large enough to tilt light cones in the real sector.
+  \item The Cauchy-horizon back-reaction from the UBT quantum stress-energy
+    is finite (the KK sum \eqref{eq:kk_sum} in ST-4 converges).
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}
+The conjunction of conditions~1--4 is not yet known to be sufficient.
+Additional conditions may be required, for example topological
+non-triviality of the $\psi$-fibre bundle or specific boundary conditions
+on the $\Theta$-field at spatial infinity.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Minimal Modification to Canonical Field Equations}
+%----------------------------------------------------------------------
+The canonical UBT field equation is
+\begin{equation}
+  \mathcal{E}_{\mu\nu}[\Theta,\mathcal{G}] \;=\;
+  \kappa\,\mathcal{T}_{\mu\nu}[\Theta,\mathcal{G}].
+  \label{eq:canonical_ubt}
+\end{equation}
+This equation, in the real projection, recovers Einstein's equations with
+an effective stress-energy sourced by $\Theta$.  For CTCs to be
+\emph{dynamically stable} solutions (rather than fine-tuned initial data),
+the field equation must actively support negative energy density regions.
+
+The minimal modification we identify is the addition of a
+\emph{complex cosmological term}:
+\begin{equation}
+  \mathcal{E}_{\mu\nu}[\Theta,\mathcal{G}]
+  + \Lambda_\mathbb{B}\,\mathcal{G}_{\mu\nu}
+  \;=\;
+  \kappa\,\mathcal{T}_{\mu\nu}[\Theta,\mathcal{G}],
+  \label{eq:modified_ubt}
+\end{equation}
+where $\Lambda_\mathbb{B} = \Lambda_r + i\Lambda_i$ is a
+\emph{biquaternionic cosmological constant}.  The imaginary part
+$\Lambda_i$ contributes directly to the effective energy density in the
+imaginary sector:
+\begin{equation}
+  \rho_h^{(\Lambda)} \;=\; -\frac{\Lambda_i}{8\pi G}.
+\end{equation}
+For $\Lambda_i > 0$ this generates positive imaginary energy density,
+which in the effective real equation \eqref{eq:einstein_eff} acts as a
+negative energy density component — precisely the energy condition
+violation required for CTCs.
+
+\begin{conjecture}[Minimal CTC-enabling modification]
+\label{conj:minimal_mod}
+\textbf{(Speculative)}  The addition of a biquaternionic cosmological
+constant $\Lambda_\mathbb{B}$ with $\operatorname{Im}(\Lambda_\mathbb{B})
+> 0$ to the canonical field equation \eqref{eq:canonical_ubt} constitutes
+the minimal modification that enables CTC-compatible solutions.  No
+modification of the kinetic or interaction terms of $\Theta$ is required.
+\end{conjecture}
+
+\begin{remark}
+This conjecture does not assert that such a modification is physically
+motivated or that $\Lambda_\mathbb{B} \neq 0$ is required by the canonical
+UBT framework.  It identifies the minimal mathematical change.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Time-Travel Protocol in UBT Field Language}
+%----------------------------------------------------------------------
+A ``time-travel protocol'' in UBT refers to a sequence of field
+configurations of $\Theta$ that, if realised, would correspond to a
+CTC in the spacetime geometry.  We describe such a protocol
+\emph{in principle} — not as engineering instructions, but as a
+characterisation of the field configurations involved.
+
+\paragraph{Step 1: Establish a rotating phase configuration.}
+Configure $\Theta$ in a spatially localised, rotating state:
+\begin{equation}
+  \Theta_0(q,\tau) \;=\; A_0\,e^{i(\omega_\psi\psi - \omega_t t)}\,
+  f(\mathbf{x}),
+\end{equation}
+where $f(\mathbf{x})$ is a localised envelope function and
+$\omega_\psi/\omega_t = r_\omega$ is the ratio of phase rotation to real
+rotation rates.
+
+\paragraph{Step 2: Seed imaginary metric sector.}
+The rotating $\Theta_0$ sources a non-zero $h_{\mu\nu}$ through the
+imaginary part of the biquaternionic stress-energy:
+\begin{equation}
+  h_{\mu\nu}^{(\mathrm{source})} \;\propto\;
+  \operatorname{Im}\!\left\langle D_\mu\Theta_0, D_\nu\Theta_0
+  \right\rangle_\mathbb{B}.
+\end{equation}
+For $r_\omega > r_\omega^{\mathrm{crit}}$ (a critical ratio determined by
+the UBT coupling constants), $h_{\mu\nu}$ attains a magnitude sufficient
+to locally violate the WEC via the effective stress-energy.
+
+\paragraph{Step 3: Develop CTC-compatible real metric.}
+Back-reaction of $h_{\mu\nu}$ on $g_{\mu\nu}$ through equation
+\eqref{eq:modified_ubt} deforms the causal structure of the real sector.
+If conditions 1--4 of Conjecture~\ref{conj:necessary} are satisfied, the
+real metric develops a region with a timelike Killing vector with compact
+orbits — a CTC region.
+
+\paragraph{Step 4: Persistence or dissolution.}
+The CTC region either:
+\begin{itemize}
+  \item \textbf{Persists}: if the KK sum converges (Scenario B of ST-4),
+    the Cauchy-horizon back-reaction is finite and the CTC is stable.
+  \item \textbf{Dissolves}: if the KK sum diverges (Scenario A of ST-4),
+    the back-reaction destroys the CTC region and chronology protection
+    is enforced.
+\end{itemize}
+
+\begin{tcolorbox}[colback=orange!10, title=Critical Framing Note]
+The above protocol describes what field configurations $\Theta$ would be
+\emph{involved} if CTCs exist in UBT.  It does not claim that:
+\begin{itemize}
+  \item Such configurations can be realised by any physical process.
+  \item The energy scales involved are accessible to any known technology.
+  \item The UBT framework permits CTC formation.
+  \item Time travel is physically possible.
+\end{itemize}
+The protocol is a \emph{theoretical characterisation}, not a claim about
+physical accessibility.
+\end{tcolorbox}
+
+%----------------------------------------------------------------------
+\section{Summary: Open Questions and Research Directions}
+%----------------------------------------------------------------------
+The analysis of ST-1 through ST-4 identifies the following open questions
+as the critical bottlenecks for establishing whether UBT admits CTCs:
+
+\begin{enumerate}
+  \item \textbf{Interpretation of $\psi$:}  Resolve whether $\psi$ is an
+    internal phase (Interpretation B) or a second time direction
+    (Interpretation A) by deriving the propagator of the $\Theta$-field
+    in both cases and comparing with observable predictions.
+  \item \textbf{Convergence of the KK sum:}  Evaluate the Kaluza–Klein
+    sum of the renormalised stress-energy on a prototypical Cauchy horizon
+    in UBT.  This requires the full UBT propagator on a CTC background.
+  \item \textbf{Stability of imaginary energy solutions:}  Identify
+    explicit solutions of \eqref{eq:canonical_ubt} with $h_{\mu\nu} \neq 0$
+    and check whether they satisfy the CTC conditions of ST-3.
+  \item \textbf{$U(1)_\tau$ symmetry:}  Verify or refute the existence
+    of the temporal $U(1)$ symmetry (Conjecture~2 of ST-2) by computing
+    the variation of the UBT action under $\tau \mapsto e^{i\alpha}\tau$.
+\end{enumerate}
+
+\paragraph{Null result.}
+If the above analysis ultimately shows that UBT does not admit CTCs more
+naturally than GR — for example because the KK sum always diverges or
+because $\psi$ is strictly an internal phase — that is an equally valid
+and publishable result, establishing a rigorous ``no-CTC theorem'' for
+UBT.
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.  No
+claim constitutes an established result of the canonical UBT framework.
+No conjecture may be promoted to a Theorem or Lemma without independent
+proof in the canonical framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{Hawking1992}
+  S.~W.~Hawking,
+  \emph{Chronology protection conjecture},
+  Phys.\ Rev.\ D \textbf{46}, 603 (1992).
+\bibitem{Godel1949}
+  K.~Gödel,
+  \emph{An example of a new type of cosmological solution of Einstein's
+  field equations of gravitation},
+  Rev.\ Mod.\ Phys.\ \textbf{21}, 447 (1949).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{CTC_ST1}
+  D.~Jaroš,
+  \emph{ST-1: Causal Structure of Complex Time},
+  \texttt{speculative\_extensions/causality/complex\_time\_causal\_structure.tex}
+  (2026).
+\bibitem{CTC_ST2}
+  D.~Jaroš,
+  \emph{ST-2: Rotation in the $(t,\psi)$ Plane},
+  \texttt{speculative\_extensions/causality/rotation\_complex\_time.tex}
+  (2026).
+\bibitem{CTC_ST3}
+  D.~Jaroš,
+  \emph{ST-3: CTC Conditions in the Biquaternionic Metric},
+  \texttt{speculative\_extensions/causality/ctc\_conditions.tex} (2026).
+\bibitem{CTC_ST4}
+  D.~Jaroš,
+  \emph{ST-4: Chronology Protection in UBT},
+  \texttt{speculative\_extensions/causality/chronology\_protection\_ubt.tex}
+  (2026).
+\end{thebibliography}
+
+\end{document}

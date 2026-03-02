@@ -1,0 +1,266 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{ST-2: Rotation in the $(t,\psi)$ Plane and Symmetries of\\
+the UBT Field Equations\\[0.5em]
+\large\textsc{Speculative Extension}}
+\author{David Jaroš}
+\date{2026-03-01}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework. It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-2 from the CTC/Causal-Structure investigation track.
+See also: \texttt{complex\_time\_causal\_structure.tex},
+\texttt{ctc\_conditions.tex},
+\texttt{chronology\_protection\_ubt.tex}, \texttt{ctc\_methodology.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We investigate the one-parameter family of $SO(2)$ rotations in the
+complex-time plane $(t,\psi)$ acting on the UBT master field $\Theta$.
+The three special cases $\alpha = \pi/2$ (Wick rotation), general
+$\alpha$ (complex-time rotation), and $\alpha = \pi$ (full inversion)
+are examined.  We ask whether any of these are symmetries of the
+canonical UBT field equations, gauge transformations, or physically
+observable operations.  All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{The $(t,\psi)$ Rotation}
+%----------------------------------------------------------------------
+Define the one-parameter rotation acting on the real and imaginary parts
+of complex time $\tau = t + i\psi$:
+\begin{equation}
+  R_\alpha:\quad
+  \begin{pmatrix} t \\ \psi \end{pmatrix}
+  \;\longmapsto\;
+  \begin{pmatrix} t\cos\alpha - \psi\sin\alpha \\
+                  t\sin\alpha + \psi\cos\alpha \end{pmatrix},
+  \qquad \alpha \in [0, 2\pi).
+  \label{eq:rotation}
+\end{equation}
+Equivalently, on $\tau \in \mathbb{C}$:
+\begin{equation}
+  R_\alpha(\tau) \;=\; e^{i\alpha}\,\tau.
+  \label{eq:complex_rotation}
+\end{equation}
+The field is transformed as
+\begin{equation}
+  \Theta(t,\psi,x^k) \;\longmapsto\;
+  \Theta\!\left(t\cos\alpha - \psi\sin\alpha,\;
+                t\sin\alpha + \psi\cos\alpha,\; x^k\right).
+  \label{eq:field_transform}
+\end{equation}
+
+%----------------------------------------------------------------------
+\section{Case $\alpha = \pi/2$: Wick Rotation}
+%----------------------------------------------------------------------
+For $\alpha = \pi/2$:
+\begin{equation}
+  R_{\pi/2}:\quad (t,\psi) \;\mapsto\; (-\psi,\, t).
+\end{equation}
+Under this map real time $t$ and imaginary time $\psi$ are exchanged
+(up to a sign): $t' = -\psi$, $\psi' = t$.  On the complex plane this
+is multiplication by $i$: $\tau \mapsto i\tau$.
+
+\paragraph{Is this a symmetry of the UBT field equations?}
+The canonical UBT field equation is
+\begin{equation}
+  \mathcal{E}_{\mu\nu}[\Theta, \mathcal{G}]
+  \;=\; \kappa\,\mathcal{T}_{\mu\nu}[\Theta, \mathcal{G}].
+  \label{eq:field_eq}
+\end{equation}
+The real projection of the metric $g_{\mu\nu} = \operatorname{Re}(\mathcal{G}_{\mu\nu})$
+couples to ordinary matter.  Under Wick rotation, the Lorentzian signature
+$(-,+,+,+)$ of $g_{\mu\nu}$ maps to Euclidean signature $(+,+,+,+)$.
+This is not an invariance of the field equations in Lorentzian signature;
+it is instead an \emph{analytic continuation} used as a computational tool.
+
+\begin{conjecture}[Wick rotation as analytic continuation]
+\label{conj:wick}
+The map $R_{\pi/2}$ is not a physical symmetry of the UBT field equations
+in Lorentzian signature.  It is an \emph{analytic continuation} that maps
+UBT solutions in Lorentzian signature to corresponding solutions in
+Euclidean signature, provided the field $\Theta$ is analytic in $\tau$ in
+a strip containing the real axis.
+\end{conjecture}
+
+\begin{remark}
+In standard quantum field theory the Wick rotation is used to define the
+Euclidean path integral and is not a physical symmetry.  The same
+interpretation is expected to hold in UBT.  The existence of the imaginary
+component $\psi$ in UBT does not alter this: $\psi$ plays the role of the
+Euclidean time after a Wick rotation of the real time $t$.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{General $\alpha$: Physical Interpretation}
+%----------------------------------------------------------------------
+For a general angle $\alpha$, the rotation $R_\alpha$ mixes $t$ and $\psi$
+continuously.  We consider three possibilities:
+
+\subsection{$R_\alpha$ as a Physical Symmetry}
+If the action functional $S[\Theta]$ is invariant under $R_\alpha$ for all
+$\alpha$, then by Noether's theorem there is a conserved charge associated
+with rotations in the $(t,\psi)$ plane.
+
+The UBT Lagrangian density contains terms of the form
+$\partial_\tau \Theta \cdot \partial_{\bar\tau} \Theta^*$ which are
+invariant under $\tau \mapsto e^{i\alpha}\tau$ only if $\Theta$ transforms
+with a compensating phase.  A minimal coupling
+\begin{equation}
+  \Theta \;\longmapsto\; e^{-i n\alpha}\,\Theta, \qquad n \in \mathbb{Z},
+\end{equation}
+would restore invariance.  This would constitute a $U(1)$ symmetry in
+complex time and would generate a conserved ``temporal charge''.
+
+\begin{conjecture}[$U(1)_\tau$ symmetry]
+\label{conj:u1_tau}
+The UBT field equations admit a $U(1)$ symmetry
+$(\tau, \Theta) \mapsto (e^{i\alpha}\tau, e^{-i\alpha}\Theta)$
+if and only if the biquaternionic mass term and interaction vertices are
+invariant under simultaneous rescaling of $\tau$ and $\Theta$.  This
+symmetry, if it exists, generates a conserved temporal charge $Q_\tau$.
+Verification requires explicit computation of the UBT action functional.
+\end{conjecture}
+
+\subsection{$R_\alpha$ as a Gauge Transformation}
+Alternatively, $R_\alpha$ may be a \emph{gauge redundancy}: two field
+configurations related by $R_\alpha$ describe the same physical state.
+In this case the phase $\alpha$ labels a gauge orbit and the physical
+Hilbert space is the quotient of the full configuration space by
+$R_\alpha$.
+
+\begin{remark}
+If $R_\alpha$ is a gauge transformation, then the imaginary component
+$\psi$ is pure gauge and carries no independent physical information.
+This aligns with Interpretation C (auxiliary degree of freedom) in
+\texttt{complex\_time\_causal\_structure.tex}.
+\end{remark}
+
+\subsection{$R_\alpha$ as a Non-Symmetry Transformation}
+If the UBT action changes non-trivially under $R_\alpha$, then the
+rotation is neither a symmetry nor a gauge redundancy.  Different values
+of $\alpha$ label genuinely distinct physical configurations.
+
+%----------------------------------------------------------------------
+\section{Case $\alpha = \pi$: Full Inversion and CPT}
+%----------------------------------------------------------------------
+For $\alpha = \pi$:
+\begin{equation}
+  R_\pi:\quad \tau \;\mapsto\; -\tau, \quad
+  \text{i.e.,}\quad t \mapsto -t,\; \psi \mapsto -\psi.
+\end{equation}
+This simultaneously reverses real time and negates the phase coordinate.
+
+\paragraph{Relationship to CPT.}
+In standard QFT, CPT symmetry combines charge conjugation ($C$), parity
+($P$), and time reversal ($T$).  The $T$-operation sends $t \mapsto -t$.
+In UBT the natural extension of $T$ is:
+\begin{equation}
+  T_{\mathrm{UBT}}:\quad (t,\psi) \;\mapsto\; (-t, -\psi),
+\end{equation}
+which is precisely $R_\pi$.  If charge conjugation $C$ and parity $P$
+act in the standard way on the spatial and internal degrees of freedom,
+then $CPT_{\mathrm{UBT}} = C \cdot P \cdot R_\pi$.
+
+\begin{conjecture}[CPT in UBT]
+\label{conj:cpt}
+The operation $R_\pi$ on complex time $\tau$ is the UBT analogue of
+$T$-reversal.  Combined with $C$ and $P$ in the standard way, $R_\pi$
+extends CPT symmetry to the complex-time sector.  In particular, if
+the UBT Lagrangian is CPT-invariant in the real sector, it is also
+invariant under $R_\pi$ in the complex sector, provided the imaginary
+metric components $h_{\mu\nu}$, $a_{\mu\nu}$, $b_{\mu\nu}$ transform
+covariantly.
+\end{conjecture}
+
+\begin{remark}
+An important subtlety: $T$-reversal in the real sector maps Lorentzian
+solutions to Lorentzian solutions.  The $\psi \mapsto -\psi$ part of
+$R_\pi$ maps phase-advancing solutions to phase-receding solutions.
+Whether these are physically equivalent depends on the topology of the
+$\psi$ coordinate (compact or non-compact).
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Summary Table}
+%----------------------------------------------------------------------
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Angle $\alpha$} & \textbf{Map} & \textbf{Interpretation} & \textbf{Status}\\
+\hline
+$\pi/2$ & $\tau \mapsto i\tau$ & Wick rotation & Analytic continuation\\
+General & $\tau \mapsto e^{i\alpha}\tau$ & $U(1)_\tau$ rotation & Possible symmetry (conjecture)\\
+$\pi$ & $\tau \mapsto -\tau$ & Full inversion & Candidate $T$-reversal in UBT\\
+\hline
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------
+\section{Conclusions}
+%----------------------------------------------------------------------
+\begin{itemize}
+  \item The Wick rotation ($\alpha=\pi/2$) is an analytic continuation
+    tool, not a physical symmetry of UBT in Lorentzian signature.
+  \item General rotations in $(t,\psi)$ may constitute a $U(1)_\tau$
+    symmetry if the UBT action is invariant under simultaneous phase
+    rotations of $\tau$ and $\Theta$.  This remains unverified.
+  \item The full inversion $R_\pi$ is the natural extension of
+    $T$-reversal to UBT's complex time, and the combined $CPT_{\mathrm{UBT}}$
+    symmetry is expected to hold under standard assumptions.
+\end{itemize}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.  No
+claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{Streater1964}
+  R.~F.~Streater and A.~S.~Wightman,
+  \emph{PCT, Spin and Statistics, and All That},
+  Princeton University Press (1964).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{Causal_ST1}
+  D.~Jaroš,
+  \emph{ST-1: Causal Structure of Complex Time},
+  Repository document
+  \texttt{speculative\_extensions/causality/complex\_time\_causal\_structure.tex} (2026).
+\end{thebibliography}
+
+\end{document}
