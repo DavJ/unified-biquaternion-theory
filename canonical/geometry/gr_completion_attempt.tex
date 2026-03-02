@@ -1,0 +1,173 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% GR Recovery Completion Attempt
+% Status: PARTIAL — linearised recovery proved; obstruction for direct
+%         Re(∇†∇Θ) → G_{μν} identified.
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{GR Recovery: Completion Attempt}
+\label{sec:gr_completion_attempt}
+
+\subsection{Objective}
+
+This section attempts an explicit operator derivation of the conjecture
+\begin{equation}
+  \label{eq:conjecture_gr}
+  \mathrm{Re}(\nabla^\dagger \nabla \Theta) \;\stackrel{?}{\longrightarrow}\; G_{\mu\nu},
+\end{equation}
+and documents the outcome: a confirmed obstruction at the level of tensor
+rank, together with a correct multi-step recovery chain through the
+biquaternionic curvature apparatus.
+
+\subsection{Setup and Notation}
+
+Throughout, $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ denotes the biquaternion
+algebra, $\Theta: M^4 \to \mathcal{B}$ the fundamental biquaternionic field, and
+\begin{equation}
+  \nabla^\dagger \nabla \Theta \;:=\; g^{\mu\nu}\bigl(\partial_\mu \partial_\nu\Theta
+  - \Gamma^\rho_{\mu\nu}\partial_\rho\Theta\bigr)
+\end{equation}
+the biquaternionic d'Alembertian (with $\Gamma^\rho_{\mu\nu}$ the Christoffel
+symbols of the real metric $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$).
+
+The \emph{biquaternionic Einstein tensor} is denoted $\mathcal{E}_{\mu\nu}$
+(never $\mathcal{G}_{\mu\nu}$, which is reserved for the metric; see
+\S\ref{sec:canonical:biquaternion_metric}).
+
+\subsection{Linearised GR Recovery}
+
+\begin{theorem}[Linearised GR recovery]
+  \label{thm:linearised_gr}
+  Let $\Theta = \Theta_0 + \varepsilon\,\theta(x)$ with $|\varepsilon|\ll 1$
+  and $\Theta_0$ a constant background.  Then, at first order in $\varepsilon$,
+  \begin{equation}
+    \mathrm{Re}\!\left(\delta\mathcal{E}_{\mu\nu}\right)
+    = \kappa\,\mathrm{Re}\!\left(\delta\mathcal{T}_{\mu\nu}\right)
+    \;\implies\;
+    \delta G_{\mu\nu} = 8\pi G\,\delta T_{\mu\nu}.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  At linear order, the biquaternionic tetrad perturbation is
+  $\delta E_\mu = \partial_\mu\theta\cdot\mathcal{N}$, giving
+  \begin{equation}
+    \delta\mathcal{G}_{\mu\nu}
+    = \mathrm{Sc}\!\left((\partial_\mu\theta)(\partial_\nu\Theta_0^\dagger)
+      + (\partial_\mu\Theta_0)(\partial_\nu\theta^\dagger)\right).
+  \end{equation}
+  The real part $\delta g_{\mu\nu} = \mathrm{Re}(\delta\mathcal{G}_{\mu\nu})$
+  is the standard GR metric perturbation.  The linearised biquaternionic
+  curvature $\delta\mathcal{R}_{\mu\nu}$ reduces in its real projection to the
+  linearised Ricci tensor $\delta R_{\mu\nu}$, and hence
+  $\mathrm{Re}(\delta\mathcal{E}_{\mu\nu}) = \delta G_{\mu\nu}$.
+  Similarly, $\mathrm{Re}(\delta\mathcal{T}_{\mu\nu}) = \delta T_{\mu\nu}$
+  from the stress-energy prescription
+  $\mathcal{T}_{\mu\nu} = \langle D_\mu\Theta, D_\nu\Theta\rangle_\mathcal{B}
+  - \tfrac{1}{2}\mathcal{G}_{\mu\nu}\langle D\Theta,D\Theta\rangle$.
+  The linearised field equation $\delta\mathcal{E}_{\mu\nu}=\kappa\,\delta\mathcal{T}_{\mu\nu}$
+  then projects to $\delta G_{\mu\nu} = 8\pi G\,\delta T_{\mu\nu}$.
+\end{proof}
+
+\subsection{Obstruction for the Direct Identification}
+\label{subsec:obstruction}
+
+We now show that the conjectured direct identity \eqref{eq:conjecture_gr}
+cannot hold as stated.
+
+\begin{proposition}[Rank obstruction]
+  \label{prop:rank_obstruction}
+  The object $\mathrm{Re}(\nabla^\dagger\nabla\Theta)$ is a
+  \emph{rank-0 spacetime tensor} (a scalar biquaternion projected to a real
+  number at each point), whereas $G_{\mu\nu}$ is a rank-$(2,0)$ symmetric
+  tensor.  No natural identification between them exists without additional
+  symmetrisation structure.
+\end{proposition}
+
+\begin{proof}
+  $\nabla^\dagger\nabla\Theta \in \mathcal{B}$ is the result of contracting all
+  spacetime indices in the second-order differential operator; it carries no
+  free spacetime indices.  Hence $\mathrm{Re}(\nabla^\dagger\nabla\Theta)$
+  is a real scalar field on $M^4$, transforming as a $(0,0)$ tensor under
+  diffeomorphisms.  In contrast, $G_{\mu\nu}$ transforms as a $(0,2)$ tensor.
+  A direct equality between them is dimensionally inconsistent.
+\end{proof}
+
+\begin{remark}[Correct tensor-rank identity]
+  The correct rank-$(0,2)$ object constructed from $\Theta$ is the
+  stress-energy-like expression
+  \begin{equation}
+    \label{eq:correct_rank2}
+    \mathcal{T}_{\mu\nu}
+    = \mathrm{Re}\!\left(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\mathcal{B}\right)
+    - \tfrac{1}{2}g_{\mu\nu}\,
+      \mathrm{Re}\!\left(\langle\partial^\alpha\Theta,\partial_\alpha\Theta\rangle_\mathcal{B}\right).
+  \end{equation}
+  This identifies with the GR stress-energy tensor $T_{\mu\nu}$ in the real
+  projection, not with the Einstein tensor $G_{\mu\nu}$.
+\end{remark}
+
+\subsection{Correct Multi-Step GR Recovery Chain}
+
+The complete, consistent derivation of GR from UBT proceeds through the
+following chain:
+\begin{equation}
+  \label{eq:gr_recovery_chain}
+  \Theta
+  \;\xrightarrow{(1)}\; E_\mu = \partial_\mu\Theta\cdot\mathcal{N}
+  \;\xrightarrow{(2)}\; \mathcal{G}_{\mu\nu} = \mathrm{Sc}(E_\mu E_\nu^\dagger)
+  \;\xrightarrow{(3)}\; \Omega_\mu
+  \;\xrightarrow{(4)}\; \mathcal{R}_{\mu\nu\rho\sigma}
+  \;\xrightarrow{(5)}\; \mathcal{E}_{\mu\nu}
+  \;\xrightarrow{(6)}\; G_{\mu\nu} = \mathrm{Re}(\mathcal{E}_{\mu\nu}).
+\end{equation}
+
+\begin{itemize}
+  \item Step (1): tetrad from $\Theta$ gradient.
+  \item Step (2): biquaternionic metric from tetrad (Section~\ref{sec:canonical:biquaternion_metric}).
+  \item Step (3): biquaternionic connection from metric compatibility
+    (Section~\ref{sec:canonical:biquaternion_connection}).
+  \item Step (4): biquaternionic Riemann tensor from connection
+    (Section~\ref{sec:canonical:biquaternion_curvature}).
+  \item Step (5): biquaternionic Einstein tensor
+    $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \tfrac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$.
+  \item Step (6): real projection recovers the classical Einstein tensor.
+\end{itemize}
+
+\subsection{Summary of GR Recovery Status}
+
+\begin{table}[h]
+  \centering
+  \caption{GR Recovery Status.}
+  \label{tab:gr_status}
+  \begin{tabular}{lll}
+    \hline
+    Claim & Status & Reference \\
+    \hline
+    GR as real projection of UBT field equations & Confirmed & Eq.~\eqref{eq:gr_recovery_chain} \\
+    Linearised GR recovery & Proved & Theorem~\ref{thm:linearised_gr} \\
+    Non-linear GR recovery (perturbative) & Partly proved & Eq.~\eqref{eq:gr_recovery_chain} \\
+    $\mathrm{Re}(\nabla^\dagger\nabla\Theta) = G_{\mu\nu}$ & Not proved --- obstruction & Prop.~\ref{prop:rank_obstruction} \\
+    Full non-perturbative embedding & Open problem & See text \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Open Problems}
+
+\begin{enumerate}
+  \item Prove (or disprove) existence and uniqueness of non-perturbative
+    solutions to the self-consistency loop \eqref{eq:gr_recovery_chain}
+    via a fixed-point theorem in an appropriate Banach or Sobolev space.
+  \item Verify the contracted Bianchi identity
+    $\nabla^\mu G_{\mu\nu} = 0$ holds for the projected curvature at all
+    orders.
+  \item Explicitly recover Schwarzschild and Kerr solutions from a concrete
+    ansatz for $\Theta$ in the full non-linear biquaternionic setting.
+\end{enumerate}
+
+% End of GR completion attempt section

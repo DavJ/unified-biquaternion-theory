@@ -1,0 +1,164 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Track A Dynamic Test: Local SU(3) Gauge Extension (Candidate)
+% Condition: only_if_global_invariance_proven
+% Status: CANDIDATE EXTENSION — clearly labelled as such.
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{Local $\mathrm{SU}(3)$ Gauge Extension (Candidate)}
+\label{sec:local_gauge}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!80!black,
+  title=Status: Candidate Extension]
+  This section is a \textbf{candidate construction} conditional on
+  Theorem~\ref{thm:global_su3} (global $\mathrm{SU}(3)$ invariance,
+  proved in \S\ref{sec:global_invariance}).  The local extension is a
+  standard gauge-theoretic step; no new claims about physical interpretation
+  are made.  All results are labelled explicitly.
+\end{tcolorbox}
+
+\subsection{Motivation}
+
+Theorem~\ref{thm:global_su3} establishes invariance of the $\Theta$-triplet
+action under \emph{constant} $U\in\mathrm{SU}(3)_{V_c}$.  A natural candidate
+extension is to allow $U=U(x)$ to be spacetime-dependent.  This requires
+introducing a gauge connection.
+
+\subsection{Gauge Field Introduction}
+
+\begin{definition}[Gauge connection — candidate]
+  \label{def:gauge_field}
+  Introduce an $\mathfrak{su}(3)$-valued gauge field
+  \begin{equation}
+    A_\mu(x) = A_\mu^A(x)\,T^A,
+    \qquad A_\mu^A\in\mathbb{R},\quad T^A\text{ Gell-Mann generators},
+  \end{equation}
+  transforming under a local $U(x)\in\mathrm{SU}(3)$ as
+  \begin{equation}
+    \label{eq:gauge_transform_A}
+    A_\mu \;\mapsto\; U A_\mu U^\dagger - \tfrac{i}{g}(\partial_\mu U)\,U^\dagger,
+  \end{equation}
+  where $g$ is a coupling constant.
+\end{definition}
+
+\subsection{Covariant Derivative}
+
+\begin{definition}[Covariant derivative — candidate]
+  \label{def:covariant_derivative}
+  Define the covariant derivative of the triplet field by
+  \begin{equation}
+    \label{eq:covariant_derivative}
+    D_\mu\boldsymbol{\Theta}
+    \;:=\;
+    \partial_\mu\boldsymbol{\Theta} - ig\,A_\mu\boldsymbol{\Theta}
+    \;=\;
+    \partial_\mu\boldsymbol{\Theta} - ig\,A_\mu^A T^A\boldsymbol{\Theta}.
+  \end{equation}
+\end{definition}
+
+\begin{proposition}[Covariance — candidate]
+  \label{prop:covariance}
+  Under the local transformation
+  $\boldsymbol{\Theta}(x)\mapsto U(x)\boldsymbol{\Theta}(x)$ combined with
+  \eqref{eq:gauge_transform_A}, the covariant derivative transforms
+  covariantly:
+  \begin{equation}
+    D_\mu\boldsymbol{\Theta} \;\mapsto\; U(x)\,D_\mu\boldsymbol{\Theta}.
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Standard gauge-theoretic calculation:
+  \begin{align}
+    D_\mu(U\boldsymbol{\Theta})
+    &= \partial_\mu(U\boldsymbol{\Theta}) - igA_\mu'(U\boldsymbol{\Theta})
+    \nonumber\\
+    &= (\partial_\mu U)\boldsymbol{\Theta} + U(\partial_\mu\boldsymbol{\Theta})
+      - ig\Bigl(UA_\mu U^\dagger - \tfrac{i}{g}(\partial_\mu U)U^\dagger\Bigr)
+      U\boldsymbol{\Theta}
+    \nonumber\\
+    &= (\partial_\mu U)\boldsymbol{\Theta} + U(\partial_\mu\boldsymbol{\Theta})
+      - igUA_\mu\boldsymbol{\Theta}
+      - (\partial_\mu U)\boldsymbol{\Theta}
+    \nonumber\\
+    &= U\bigl(\partial_\mu\boldsymbol{\Theta} - igA_\mu\boldsymbol{\Theta}\bigr)
+    \;=\; U(D_\mu\boldsymbol{\Theta}).
+  \end{align}
+\end{proof}
+
+\subsection{Gauge-Invariant Action (Candidate)}
+
+\begin{definition}[Locally gauge-invariant action — candidate]
+  \label{def:gauged_action}
+  Replace $\partial_\mu$ with $D_\mu$ in the triplet action:
+  \begin{equation}
+    \label{eq:gauged_action}
+    S_\mathrm{gauged}[\boldsymbol{\Theta},A]
+    = \int d^4x\;
+    \langle D_\mu\boldsymbol{\Theta},\,D^\mu\boldsymbol{\Theta}\rangle
+    - \tfrac{1}{2g^2}\int d^4x\;\mathrm{tr}(F_{\mu\nu}F^{\mu\nu}),
+  \end{equation}
+  where
+  $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu
+  - ig[A_\mu,A_\nu]$
+  is the field strength tensor.
+\end{definition}
+
+\begin{remark}[Status and caveats]
+  \label{rem:local_gauge_status}
+  \begin{enumerate}
+    \item This is a \textbf{candidate extension}, not an independently derived
+      consequence of the biquaternion algebra.  It uses the standard
+      Yang-Mills construction applied to the $\mathrm{SU}(3)_{V_c}$ symmetry
+      group.
+    \item The coupling constant $g$ is a free parameter; no prediction of its
+      value is made here.
+    \item Whether $A_\mu$ has any interpretation in terms of the biquaternion
+      geometry (e.g.\ as a component of the biquaternionic connection
+      $\Omega_\mu$) is an open problem.
+    \item This section does not establish any connection to QCD; the physical
+      interpretation of $A_\mu$ and $F_{\mu\nu}$ is left open.
+  \end{enumerate}
+\end{remark}
+
+\subsection{Equations of Motion (Candidate)}
+
+Varying \eqref{eq:gauged_action} with respect to $\bar{\boldsymbol{\Theta}}$:
+\begin{equation}
+  D^\mu D_\mu\boldsymbol{\Theta} = 0.
+\end{equation}
+Varying with respect to $A_\mu^A$:
+\begin{equation}
+  D_\nu F^{\nu\mu\,A} = g\,J^{\mu\,A},
+  \qquad
+  J^{\mu\,A}
+  = i\!\left(
+      \bar\Theta^a(T^A)^a{}_b D^\mu\Theta^b
+      - \overline{D^\mu\Theta^a}(T^A)^a{}_b\Theta^b
+    \right),
+\end{equation}
+which is the standard Yang-Mills equation sourced by the triplet current.
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Statement & Status & Notes \\
+  \hline
+  Global SU(3) invariance established & Proved & \S\ref{sec:global_invariance} \\
+  Gauge field $A_\mu$ introduced & Candidate & Def.~\ref{def:gauge_field} \\
+  Covariant derivative $D_\mu\boldsymbol{\Theta}$ defined & Candidate & Def.~\ref{def:covariant_derivative} \\
+  Local covariance under $U(x)$ & Proved (conditional) & Prop.~\ref{prop:covariance} \\
+  Gauge-invariant action & Candidate & Def.~\ref{def:gauged_action} \\
+  Physical interpretation of $A_\mu$ & Open & Rem.~\ref{rem:local_gauge_status} \\
+  Connection to QCD & Not claimed & Rem.~\ref{rem:local_gauge_status} \\
+  \hline
+\end{tabular}
+\end{center}
+
+% End of local gauge extension section

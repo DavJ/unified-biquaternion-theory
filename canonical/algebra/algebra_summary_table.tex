@@ -1,0 +1,148 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Algebra Summary Table — Biquaternion Algebra ℬ = ℂ⊗ℍ
+% Status: Canonical
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{Algebra Summary: $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$}
+\label{sec:algebra:summary_table}
+
+This section collects the key algebraic properties of the biquaternion algebra
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ used throughout UBT and the Track~A
+candidate construction.  All statements in this table are rigorous; speculative
+extensions (e.g.\ octonions, non-associative structures) are explicitly excluded
+from Track~A and are handled in
+\texttt{speculative\_extensions/}.
+
+\subsection{Quick-Reference Table}
+
+\begin{table}[h]
+  \centering
+  \caption{Properties of $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ (biquaternions).}
+  \label{tab:algebra:summary}
+  \begin{tabular}{lll}
+    \hline
+    Property & Value / Statement & Notes \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Structure}} \\
+    Underlying field & $\mathbb{R}$ & Real algebra \\
+    $\dim_\mathbb{R}\mathcal{B}$ & 8 & Basis: $\{1,\mathbf{I},\mathbf{J},\mathbf{K},i,i\mathbf{I},i\mathbf{J},i\mathbf{K}\}$ \\
+    $\dim_\mathbb{C}\mathcal{B}$ & 4 & As a $\mathbb{C}$-algebra (right or left) \\
+    Isomorphism & $\mathcal{B}\cong M_2(\mathbb{C})$ & Full $2\times 2$ complex matrix algebra \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Associativity}} \\
+    $\mathcal{B}$ associative & \textbf{Yes} & $(ab)c = a(bc)$ for all $a,b,c\in\mathcal{B}$ \\
+    Non-commutative & Yes & $\mathbf{I}\mathbf{J} = \mathbf{K} \neq -\mathbf{K} = \mathbf{J}\mathbf{I}$ \\
+    Octonion-free & \textbf{Yes} & No octonion or non-associative structure in Track~A \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Centre}} \\
+    $Z(\mathcal{B})$ & $\mathbb{C}\cdot 1$ & Complex scalar multiples of the identity \\
+    $i$ central & \textbf{Yes} & $i$ commutes with $\mathbf{I},\mathbf{J},\mathbf{K}$ \\
+    $\mathbb{C}$ central & \textbf{Yes} & $\mathbb{C}$ sits in the centre of $\mathcal{B}$ \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Involutions}} \\
+    $P_1$ (complex conjugation) & $P_1(i)=-i$, fixes $\mathbf{I},\mathbf{J},\mathbf{K}$ & Anti-$\mathbb{C}$-linear \\
+    $P_2$ (quaternion conjugation) & $P_2(\mathbf{X})=-\mathbf{X}$ for $\mathbf{X}\in\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ & $\mathbb{C}$-linear \\
+    $P_3$ (axis-flip $\parallel\mathbf{I}$) & $P_3(x)=\mathbf{I}x\mathbf{I}^{-1}$ & Inner automorphism \\
+    $P_k^2 = \mathrm{id}$ & \textbf{Yes, all three} & Proved in \S\ref{sec:algebra:involutions_z2z2z2} \\
+    $[P_i,P_j]=0$ & \textbf{Yes} & Pairwise commuting \\
+    Group generated & $\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$ & Eight sectors \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Involutions commute}} \\
+    $P_1\circ P_2 = P_2\circ P_1$ & \textbf{Yes} & On all basis elements \\
+    $P_1\circ P_3 = P_3\circ P_1$ & \textbf{Yes} & \\
+    $P_2\circ P_3 = P_3\circ P_2$ & \textbf{Yes} & \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Candidate carrier space}} \\
+    $V_c = \mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ & $\dim_\mathbb{C}V_c = 3$ & $P_2=-1$ eigenspace \\
+    Hermitian form on $V_c$ & $\langle X,Y\rangle = \tfrac{1}{4}\mathrm{Tr}(X^\dagger Y)$ & Standard on $V_c\cong\mathbb{C}^3$ \\
+    SU(3) candidate & $\mathrm{SU}(3)_{V_c}\cong\mathrm{SU}(3)$ & Acts on $V_c$, not on all of $\mathcal{B}$ \\
+    $\mathrm{SU}(3)\subset\mathrm{Aut}(\mathcal{B})$? & \textbf{No} & Obstruction: $\mathrm{Aut}(\mathcal{B})\cong[\mathrm{GL}(2,\mathbb{C})^2]/\mathbb{Z}_2$ \\
+    \hline
+    \multicolumn{3}{l}{\textbf{Automorphism group}} \\
+    $\mathrm{Aut}_\mathbb{R}(\mathcal{B})$ & $[\mathrm{GL}(2,\mathbb{C})\times\mathrm{GL}(2,\mathbb{C})]/\mathbb{Z}_2$ & Does not contain $\mathrm{SU}(3)$ \\
+    $\mathrm{Aut}_\mathbb{C}(\mathcal{B})$ & $\mathrm{PGL}(2,\mathbb{C})$ & Inner automorphisms over $\mathbb{C}$ \\
+    $\mathrm{Aut}(\mathbb{H})$ (quaternions alone) & $\mathrm{SO}(3)$ & Standard result \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Associativity Statement}
+
+\begin{proposition}[$\mathcal{B}$ is associative]
+  \label{prop:B_associative}
+  The biquaternion algebra $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$ is
+  \emph{associative}: for all $a,b,c\in\mathcal{B}$,
+  \begin{equation}
+    (ab)c = a(bc).
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Both $\mathbb{C}$ and $\mathbb{H}$ are associative algebras.  Their tensor
+  product over $\mathbb{R}$ is again associative: the product in
+  $\mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H}$ is defined by
+  $(z_1\otimes h_1)(z_2\otimes h_2) = (z_1 z_2)\otimes(h_1 h_2)$ and
+  extended bilinearly, so associativity follows from associativity in each
+  factor.  Equivalently, $\mathcal{B}\cong M_2(\mathbb{C})$ (matrix
+  multiplication is associative).
+\end{proof}
+
+\begin{remark}[No octonions in Track~A]
+  \label{rem:no_octonions}
+  The construction leading to the SU(3) candidate (Section~\ref{subsec:inv:su3})
+  uses only the associative algebra $\mathcal{B}$.  No octonion extension is
+  required or invoked in Track~A.  Any reference to octonions in this
+  repository refers exclusively to speculative extensions under
+  \texttt{speculative\_extensions/octonionic\_completion/}.
+\end{remark}
+
+\subsection{Central Embedding of $\mathbb{C}$}
+
+\begin{lemma}[$\mathbb{C}$ is central]
+  \label{lem:C_central}
+  The complex unit $i\in\mathcal{B}$ commutes with every element of
+  $\mathcal{B}$; equivalently, $\mathbb{C}\cdot 1 \subseteq Z(\mathcal{B})$.
+\end{lemma}
+
+\begin{proof}
+  For any $h\in\mathbb{H}$ and $z\in\mathbb{C}$,
+  $(z\otimes 1)(1\otimes h) = z\otimes h = (1\otimes h)(z\otimes 1)$
+  in $\mathbb{C}\otimes_\mathbb{R}\mathbb{H}$.
+\end{proof}
+
+\subsection{Symbol Conventions Enforced in This Repository}
+
+\begin{table}[h]
+  \centering
+  \caption{Mandatory symbol conventions.}
+  \label{tab:symbol_conventions}
+  \begin{tabular}{lll}
+    \hline
+    Symbol & Role & Notes \\
+    \hline
+    $g_{\mu\nu}$ & Classical (real) GR metric & $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$ \\
+    $\mathcal{G}_{\mu\nu}$ & Biquaternionic metric & Fundamental geometric object \\
+    $\mathcal{E}_{\mu\nu}$ & Biquaternionic Einstein tensor & \textbf{Not} $\mathcal{G}_{\mu\nu}$ \\
+    $G_{\mu\nu}$ & Classical Einstein tensor & $G_{\mu\nu}=\mathrm{Re}(\mathcal{E}_{\mu\nu})$ \\
+    $\mathcal{T}_{\mu\nu}$ & Biquaternionic stress-energy & \\
+    $T_{\mu\nu}$ & Classical stress-energy & $T_{\mu\nu}=\mathrm{Re}(\mathcal{T}_{\mu\nu})$ \\
+    $\Theta$ & Biquaternionic field & Primary dynamical variable \\
+    $V_c$ & Θ-triplet carrier space & $\mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Enforced Prohibition]
+  The symbol $\mathcal{G}_{\mu\nu}$ is \textbf{reserved for the biquaternionic
+  metric}.  It must \textbf{never} appear as the left-hand side of the
+  biquaternionic field equation in the role of the Einstein tensor.
+  Use $\mathcal{E}_{\mu\nu}$ for the biquaternionic Einstein tensor in all
+  equations of the form $\mathcal{E}_{\mu\nu} = \kappa\mathcal{T}_{\mu\nu}$.
+\end{tcolorbox}
+
+% End of algebra summary table section
