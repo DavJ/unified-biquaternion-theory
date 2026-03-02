@@ -46,7 +46,9 @@ Usage (from repository root):
 
 from __future__ import annotations
 
+import json
 import pathlib
+import sys
 from typing import Dict, List, Tuple
 
 
@@ -321,10 +323,53 @@ def generate_report(
 REPORT_PATH = pathlib.Path("reports/involutions_triplet_report.md")
 
 
+def build_json_output(rows: List[Dict], verif: Dict[str, bool], carrier: Dict) -> Dict:
+    """Return a JSON-serialisable dict summarising all computed results.
+
+    This output is used by the golden test
+    ``tests/test_involutions_triplet_space.py`` to assert algebraic facts
+    about the involution decomposition.
+    """
+    return {
+        "involution_verification": verif,
+        "basis_signatures": [
+            {
+                "element": r["element"],
+                "s1": r["s1"],
+                "s2": r["s2"],
+                "s3": r["s3"],
+                "sector": r["sector"],
+            }
+            for r in rows
+        ],
+        "carrier_space": {
+            "Vc_real_basis": carrier["Vc_real_basis"],
+            "Vc_complex_dim": carrier["Vc_complex_dim"],
+            "S1_members": carrier["S1_members"],
+            "S2_members": carrier["S2_members"],
+            "S3_members": carrier["S3_members"],
+            "S3_empty": carrier["S3_empty"],
+        },
+    }
+
+
 def main() -> None:
     verif = verify_involutions()
     rows = compute_signatures()
     carrier = analyse_carrier_space(rows)
+
+    # --json-out <path>: write JSON output and exit (used by golden tests).
+    if "--json-out" in sys.argv:
+        idx = sys.argv.index("--json-out")
+        if idx + 1 >= len(sys.argv):
+            print("ERROR: --json-out requires a file path argument", file=sys.stderr)
+            sys.exit(1)
+        json_path = pathlib.Path(sys.argv[idx + 1])
+        json_path.parent.mkdir(parents=True, exist_ok=True)
+        payload = build_json_output(rows, verif, carrier)
+        json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        print(f"JSON output written to: {json_path}")
+        return
 
     # Print table to stdout
     print("=== Basis signature table ===")

@@ -20,10 +20,10 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Install pytest
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          pip install pytest numpy
       
       - name: Check Python syntax (all files)
         run: |
@@ -35,9 +35,29 @@ jobs:
           fi
           echo "✓ All Python files compile successfully"
       
+      - name: Run repo sanity check (includes symbol consistency)
+        run: |
+          echo "Running verify_repo_sanity (covers consciousness terms, symbol collisions, SU3 overstatements, and repo-wide symbol consistency)..."
+          python tools/verify_repo_sanity.py --verbose
+          if [ $? -ne 0 ]; then
+            echo "❌ Repo sanity check FAILED — see file:line above"
+            exit 1
+          fi
+          echo "✓ verify_repo_sanity passed"
+
+      - name: Run symbol consistency check
+        run: |
+          echo "Running verify_symbol_consistency (SC2/SC3/SC4)..."
+          python tools/verify_symbol_consistency.py --verbose
+          if [ $? -ne 0 ]; then
+            echo "❌ Symbol consistency check FAILED — see file:line above"
+            exit 1
+          fi
+          echo "✓ verify_symbol_consistency passed"
+
       - name: Run UBT theory invariant tests
         run: |
-          pytest tests/test_ubt_tex_invariants.py -v
+          pytest tests/test_ubt_tex_invariants.py tests/test_repo_sanity.py tests/test_symbol_consistency.py -v
         
       - name: Test summary
         if: always()
@@ -51,6 +71,8 @@ jobs:
           echo "  2. Biquaternionic objects (𝓖, Ω, 𝓡, 𝓣) remain primary"
           echo "  3. GR appears only as Re(...) projection"
           echo "  4. Required lock-in files exist"
+          echo "  5. \\mathcal{G}_{μν} is not used as Einstein-tensor LHS"
+          echo "  6. No SU(3)-overstatement claims"
           echo ""
-          echo "Failures indicate theory regression to classical GR."
+          echo "Failures indicate theory regression or symbol collision."
           echo "================================================"

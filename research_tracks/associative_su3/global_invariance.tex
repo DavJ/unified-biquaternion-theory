@@ -5,11 +5,37 @@
 %
 % Track A Dynamic Test: Global SU(3) Invariance of Θ-Triplet Kinetics
 % Status: Proved for constant U; local extension conditional.
-% Version: 1.0
-% Date: 2026-03-01
+% Version: 1.1
+% Date: 2026-03-02
 
 \section{Global $\mathrm{SU}(3)$ Invariance of the $\Theta$-Triplet Dynamics}
 \label{sec:global_invariance}
+
+\subsection{Assumptions}
+\label{subsec:global_assumptions}
+
+The following assumptions are explicitly required for the theorem in this section.
+They are labelled for clarity; none of them constitutes a new physics claim.
+
+\begin{enumerate}[label=\textbf{A\arabic*.}]
+  \item \textbf{Flat background.} Spacetime is $(M^4, \eta_{\mu\nu})$, flat
+    Minkowski space.  (Extension to a general curved background
+    $(M^4, g_{\mu\nu})$ is covered by Corollary~\ref{cor:curved_invariance}
+    under the additional assumption that the metric is fixed/external.)
+  \item \textbf{Free (non-interacting) triplet.} The action contains only the
+    kinetic term \eqref{eq:triplet_action}; no potential, mass, or coupling
+    terms are included.  Addition of $\mathrm{SU}(3)$-invariant terms would
+    not invalidate the result, but the present proof covers the free case.
+  \item \textbf{Canonical triplet space $V_c$.}  The carrier space is
+    $V_c = \mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}$
+    equipped with the Hermitian form $\langle\cdot,\cdot\rangle =
+    \tfrac{1}{4}\mathrm{Tr}(\cdot^\dagger\cdot)$.  This space and form are
+    proved canonical in Theorem~\ref{thm:su3_action}.
+  \item \textbf{Constant transformation.} $U\in\mathrm{SU}(3)_{V_c}$ is
+    independent of the spacetime point $x$.  Local (spacetime-dependent)
+    gauge invariance is addressed separately as a \emph{candidate extension}
+    in \S\ref{sec:local_gauge}; it is \emph{not} proved here.
+\end{enumerate}
 
 \subsection{Setup: Triplet Lift of $\Theta$}
 
