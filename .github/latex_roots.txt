@@ -26,6 +26,11 @@ UBT_Final_Consolidation_Report.tex
 # emergent_alpha_executive_summary.tex
 # emergent_alpha_from_ubt.tex
 
+# SU(3) triplet papers (Track A math-ph)
+papers/su3_triplet/main.tex
+papers/su3_triplet/arxiv_version.tex
+papers/su3_triplet/noether_current_paper.tex
+
 # Complex theta transform paper
 complex-theta-transform-paper/main.tex
 
