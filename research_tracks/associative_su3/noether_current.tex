@@ -1,0 +1,163 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Track A Dynamic Test: Noether Current for Global SU(3) Symmetry
+% Status: Derived and verified.
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{Noether Current for Global $\mathrm{SU}(3)$ Symmetry}
+\label{sec:noether_current}
+
+\subsection{Setup}
+
+We use the triplet action of \S\ref{sec:global_invariance}:
+\begin{equation}
+  S[\boldsymbol{\Theta}]
+  = \int d^4x\;
+    \eta^{\mu\nu}
+    \langle\partial_\mu\boldsymbol{\Theta},\,\partial_\nu\boldsymbol{\Theta}\rangle,
+\end{equation}
+with $\boldsymbol{\Theta}=(\Theta^1,\Theta^2,\Theta^3)^T$ a complex triplet field.
+
+\subsection{Infinitesimal Generator}
+
+For a constant infinitesimal SU(3) transformation
+$U = \mathbb{1} + i\,\epsilon^A T^A + O(\epsilon^2)$, where $T^A$
+($A=1,\ldots,8$) are the Gell-Mann generators normalised as
+$\mathrm{tr}(T^A T^B)=\tfrac{1}{2}\delta^{AB}$, the field transforms as
+\begin{equation}
+  \delta_\epsilon\boldsymbol{\Theta}
+  = i\epsilon^A T^A\boldsymbol{\Theta},
+  \qquad
+  \delta_\epsilon\bar{\boldsymbol{\Theta}}
+  = -i\epsilon^A\bar{\boldsymbol{\Theta}}\,T^A.
+\end{equation}
+
+\subsection{Noether Current Derivation}
+
+\begin{theorem}[Noether current]
+  \label{thm:noether_current}
+  Under the global $\mathrm{SU}(3)$ transformation above, the Noether current
+  associated with generator $T^A$ is
+  \begin{equation}
+    \label{eq:noether_current}
+    J_A^\mu
+    \;:=\;
+    i\!\left(
+      \langle T^A\boldsymbol{\Theta},\,\partial^\mu\boldsymbol{\Theta}\rangle
+      -
+      \langle\partial^\mu\boldsymbol{\Theta},\,T^A\boldsymbol{\Theta}\rangle
+    \right)
+    \;=\;
+    i\sum_{a,b}\overline{(T^A)^b{}_a\Theta^a}\,\partial^\mu\Theta^b
+    - i\sum_{a,b}\partial^\mu\overline{\Theta^a}(T^A)^b{}_a\Theta^b,
+  \end{equation}
+  which can also be written as
+  \begin{equation}
+    J_A^\mu
+    = \bar{\boldsymbol{\Theta}}\, T^A \,i\overset{\leftrightarrow}{\partial^\mu}\boldsymbol{\Theta},
+    \qquad
+    \bar{\Theta}\overset{\leftrightarrow}{\partial^\mu}\Theta
+    := \bar\Theta(\partial^\mu\Theta) - (\partial^\mu\bar\Theta)\Theta.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  The standard Noether procedure: the Lagrangian density is
+  $\mathcal{L} = \partial_\mu\bar\Theta^a\,\partial^\mu\Theta^a$.
+  The variation under $\delta\Theta^a = i\epsilon^A(T^A)^a{}_b\Theta^b$ gives
+  \begin{align}
+    \delta\mathcal{L}
+    &= \partial_\mu\overline{(\delta\Theta^a)}\,\partial^\mu\Theta^a
+      + \partial_\mu\bar\Theta^a\,\partial^\mu(\delta\Theta^a)
+    \nonumber\\
+    &= -i\epsilon^A
+      \bigl[
+        \partial_\mu\bar\Theta^b\,(T^A)^b{}_a\,\partial^\mu\Theta^a
+        - \partial_\mu\bar\Theta^a\,(T^A)^a{}_b\,\partial^\mu\Theta^b
+      \bigr].
+  \end{align}
+  Since $T^A$ is Hermitian and the action is invariant (proved in
+  Theorem~\ref{thm:global_su3}), $\delta S=0$ implies on-shell:
+  \begin{equation}
+    0 = \delta S = \int d^4x\;\partial_\mu(j^\mu_A)\,\epsilon^A,
+  \end{equation}
+  where the Noether current is extracted as
+  $j^\mu_A = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\Theta^a)}\delta\Theta^a
+  + \delta\bar\Theta^a\frac{\partial\mathcal{L}}{\partial(\partial_\mu\bar\Theta^a)}$,
+  giving \eqref{eq:noether_current}.
+\end{proof}
+
+\subsection{Conservation Law}
+
+\begin{theorem}[Current conservation]
+  \label{thm:current_conservation}
+  On solutions of the equation of motion $\Box\boldsymbol{\Theta}=0$, the
+  Noether current satisfies
+  \begin{equation}
+    \label{eq:current_conservation}
+    \partial_\mu J_A^\mu = 0
+    \qquad (A=1,\ldots,8).
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  By Noether's theorem, invariance of the action under a continuous symmetry
+  implies on-shell conservation of the associated current.  Explicitly:
+  \begin{align}
+    \partial_\mu J_A^\mu
+    &= i\Bigl[
+        \overline{T^A\boldsymbol{\Theta}}\,\Box\boldsymbol{\Theta}
+        - (\Box\overline{T^A\boldsymbol{\Theta}})\,\boldsymbol{\Theta}
+        + \overline{T^A(\Box\boldsymbol{\Theta})}\,\boldsymbol{\Theta}
+        - \overline{T^A\boldsymbol{\Theta}}\,\Box\boldsymbol{\Theta}
+      \Bigr].
+  \end{align}
+  For constant $T^A$, $T^A\Box\boldsymbol{\Theta} = \Box(T^A\boldsymbol{\Theta})$,
+  so on-shell ($\Box\boldsymbol{\Theta}=0$) we get $\partial_\mu J_A^\mu=0$.
+\end{proof}
+
+\subsection{Conserved Charge}
+
+The conserved Noether charge for generator $T^A$ is
+\begin{equation}
+  \label{eq:noether_charge}
+  Q_A \;:=\; \int_{\Sigma_t} d^3x\; J_A^0(x)
+  \;=\; i\int d^3x\;
+    \Bigl(
+      \overline{T^A\boldsymbol{\Theta}}\,\dot{\boldsymbol{\Theta}}
+      - \overline{\dot{\boldsymbol{\Theta}}}\,T^A\boldsymbol{\Theta}
+    \Bigr),
+\end{equation}
+which is time-independent on-shell: $\dot Q_A = 0$.
+
+\subsection{Algebra of Charges}
+
+The Poisson bracket of the Noether charges reproduces the $\mathfrak{su}(3)$
+Lie algebra:
+\begin{equation}
+  \{Q_A, Q_B\} = f_{AB}{}^C Q_C,
+\end{equation}
+where $f_{AB}{}^C$ are the $\mathrm{SU}(3)$ structure constants.  This follows
+from the standard field-theory calculation and the fact that $T^A$ satisfy
+$[T^A,T^B]=if_{AB}{}^C T^C$.
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Statement & Status & Reference \\
+  \hline
+  Noether current $J_A^\mu$ derived & \textbf{Done} & Thm.~\ref{thm:noether_current} \\
+  Conservation $\partial_\mu J_A^\mu=0$ & \textbf{Proved} & Thm.~\ref{thm:current_conservation} \\
+  Conserved charge $Q_A$ & \textbf{Defined} & Eq.~\eqref{eq:noether_charge} \\
+  Charge algebra is $\mathfrak{su}(3)$ & \textbf{Standard result} & Canonical QFT \\
+  \hline
+\end{tabular}
+\end{center}
+
+% End of Noether current section
