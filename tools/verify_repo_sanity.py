@@ -23,6 +23,7 @@ Usage::
 """
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -177,7 +178,30 @@ def run(verbose: bool = False) -> int:
     collision_violations = check_symbol_collision(verbose=verbose)
     su3_violations = check_su3_overstatement(verbose=verbose)
 
-    all_violations = term_violations + collision_violations + su3_violations
+    # Also run the full repo-wide symbol-consistency checks from
+    # tools/verify_symbol_consistency.py so both tools are enforced in one place.
+    sym_violations: list[str] = []
+    try:
+        from tools.verify_symbol_consistency import (
+            check_metric_symbol_collision,
+            check_einstein_tensor_symbol,
+        )
+        sym_violations = (
+            check_metric_symbol_collision(verbose=verbose)
+            + check_einstein_tensor_symbol(verbose=verbose)
+        )
+    except ImportError:
+        # Fallback: call as subprocess so the file can also be run standalone.
+        result = subprocess.run(
+            [sys.executable, str(REPO_ROOT / "tools" / "verify_symbol_consistency.py")],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            for line in (result.stdout + result.stderr).splitlines():
+                sym_violations.append(line)
+
+    all_violations = term_violations + collision_violations + su3_violations + sym_violations
     if all_violations:
         print("verify_repo_sanity: FAILED")
         for v in all_violations:
