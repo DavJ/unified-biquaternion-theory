@@ -1,0 +1,130 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Track A Dynamic Test: Global SU(3) Invariance of Θ-Triplet Kinetics
+% Status: Proved for constant U; local extension conditional.
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{Global $\mathrm{SU}(3)$ Invariance of the $\Theta$-Triplet Dynamics}
+\label{sec:global_invariance}
+
+\subsection{Setup: Triplet Lift of $\Theta$}
+
+Let $V_c = \mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}\subset
+\mathcal{B}$ be the canonical carrier space defined in
+\S\ref{subsec:inv:carrier_space}.  A \emph{$\Theta$-triplet} is a
+$V_c$-valued field on spacetime $M^4$:
+\begin{equation}
+  \label{eq:Theta_triplet}
+  \boldsymbol{\Theta}(x) = \Theta^a(x)\,\mathbf{e}_a, \quad a = 1,2,3,
+\end{equation}
+where $\{\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\}=\{\mathbf{I},\mathbf{J},\mathbf{K}\}$
+is the $\mathbb{C}$-basis of $V_c$ and $\Theta^a(x)\in\mathbb{C}$.  Equivalently,
+$\boldsymbol{\Theta}$ is a section of the trivial bundle $M^4\times\mathbb{C}^3$.
+
+\subsection{Kinetic Operator for the Triplet}
+
+On flat Minkowski spacetime $(M^4,\eta_{\mu\nu})$, define the kinetic operator
+\begin{equation}
+  \label{eq:kinetic_operator}
+  \mathcal{K}[\boldsymbol{\Theta}]
+  \;:=\;
+  \eta^{\mu\nu}\partial_\mu\partial_\nu\boldsymbol{\Theta}
+  \;=\;
+  \Box\boldsymbol{\Theta}
+  \;=\;
+  (\Box\Theta^a)\,\mathbf{e}_a,
+\end{equation}
+where $\Box = \partial_t^2 - \nabla^2$ is the d'Alembertian acting
+component-wise on each $\Theta^a\in\mathbb{C}$.  The action functional is
+\begin{equation}
+  \label{eq:triplet_action}
+  S[\boldsymbol{\Theta}]
+  = \int_{M^4} d^4x\;
+    \langle\partial_\mu\boldsymbol{\Theta},\,\partial^\mu\boldsymbol{\Theta}\rangle,
+\end{equation}
+where $\langle\cdot,\cdot\rangle$ is the Hermitian form on $V_c\cong\mathbb{C}^3$
+from Definition~\ref{def:inv:Vc}:
+\begin{equation}
+  \langle\boldsymbol{\Theta},\boldsymbol{\Phi}\rangle
+  = \sum_{a=1}^3 \overline{\Theta^a}\,\Phi^a.
+\end{equation}
+
+\subsection{Global $\mathrm{SU}(3)$ Invariance}
+
+\begin{theorem}[Global $\mathrm{SU}(3)$ invariance]
+  \label{thm:global_su3}
+  The action \eqref{eq:triplet_action} and kinetic operator
+  \eqref{eq:kinetic_operator} are invariant under constant
+  $U\in\mathrm{SU}(3)_{V_c}$:
+  \begin{equation}
+    \boldsymbol{\Theta}(x) \;\mapsto\; U\boldsymbol{\Theta}(x)
+    \qquad\text{(U constant, } U^\dagger U = \mathbb{1},\; \det U = 1).
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Since $U$ is constant (independent of $x$), $\partial_\mu(U\boldsymbol{\Theta})
+  = U(\partial_\mu\boldsymbol{\Theta})$.  Then
+  \begin{align}
+    \langle\partial_\mu(U\boldsymbol{\Theta}),\,\partial^\mu(U\boldsymbol{\Theta})\rangle
+    &= \langle U\partial_\mu\boldsymbol{\Theta},\,U\partial^\mu\boldsymbol{\Theta}\rangle
+    \nonumber\\
+    &= \langle\partial_\mu\boldsymbol{\Theta},\,\partial^\mu\boldsymbol{\Theta}\rangle,
+  \end{align}
+  where the last equality uses unitarity $\langle Ux,Uy\rangle=\langle x,y\rangle$
+  (Theorem~\ref{thm:su3_action}).  Integrating over $M^4$,
+  $S[U\boldsymbol{\Theta}]=S[\boldsymbol{\Theta}]$.  The equation of motion
+  $\Box\boldsymbol{\Theta}=0$ transforms as $U\Box\boldsymbol{\Theta}=0$, which
+  holds iff $\Box\boldsymbol{\Theta}=0$ (since $U$ is invertible).
+\end{proof}
+
+\begin{remark}[Scope]
+  Theorem~\ref{thm:global_su3} establishes invariance for \emph{constant}
+  $U\in\mathrm{SU}(3)$.  The extension to local (spacetime-dependent) gauge
+  transformations $U(x)\in\mathrm{SU}(3)$ requires the introduction of a
+  gauge connection and is addressed separately (conditionally) in
+  \S\ref{sec:local_gauge} (if proved) or stated as an open problem.
+\end{remark}
+
+\subsection{Symmetry Under Curved Background}
+
+On a general curved background $(M^4,g_{\mu\nu})$, the kinetic operator
+becomes the covariant d'Alembertian
+\begin{equation}
+  \Box_g\boldsymbol{\Theta} = g^{\mu\nu}\nabla_\mu\nabla_\nu\boldsymbol{\Theta},
+\end{equation}
+where $\nabla_\mu$ involves only the Levi-Civita connection of $g_{\mu\nu}$
+(acting trivially on the internal $V_c$ indices for constant $U$).
+
+\begin{corollary}[Background independence of global $\mathrm{SU}(3)$]
+  \label{cor:curved_invariance}
+  Global $\mathrm{SU}(3)_{V_c}$ invariance holds on any Riemannian or
+  Lorentzian background $(M^4,g_{\mu\nu})$, since constant $U$ commutes
+  with any background covariant derivative.
+\end{corollary}
+
+\begin{proof}
+  $\nabla_\mu(U\boldsymbol{\Theta}) = U\nabla_\mu\boldsymbol{\Theta}$ for
+  constant $U$; the argument of Theorem~\ref{thm:global_su3} applies verbatim.
+\end{proof}
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Statement & Status & Reference \\
+  \hline
+  $\mathrm{SU}(3)_{V_c}$ exists as symmetry of $(V_c,\langle\cdot,\cdot\rangle)$ & Proved & Thm.~\ref{thm:su3_action} \\
+  Global SU(3) invariance (flat background) & \textbf{Proved} & Thm.~\ref{thm:global_su3} \\
+  Global SU(3) invariance (curved background) & Proved & Cor.~\ref{cor:curved_invariance} \\
+  Local SU(3) gauge invariance & Conditional & \S\ref{sec:local_gauge} \\
+  \hline
+\end{tabular}
+\end{center}
+
+% End of global invariance section

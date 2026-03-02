@@ -1,0 +1,390 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Track A math-ph paper: SU(3) candidate via Z2^3 involutions on B = C⊗H
+% Status: Draft for arXiv submission — math-ph
+% Version: 1.0
+% Date: 2026-03-01
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Notation
+\newcommand{\B}{\mathcal{B}}          % biquaternion algebra
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Vc}{V_c}                 % carrier space
+\newcommand{\su}{\mathfrak{su}}
+
+\title{%
+  A Natural $\mathrm{SU}(3)$ Action on a Canonical Subspace of\\
+  $\mathbb{C}\otimes\mathbb{H}$ via $\mathbb{Z}_2^3$ Involutions
+}
+
+\author{David Jaro\v{s}}
+
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We construct a canonical three-dimensional complex subspace $V_c$ of the
+biquaternion algebra $\B = \C\otimes\H$, extracted via a system of three
+commuting $\R$-linear involutions $P_1, P_2, P_3$ on $\B$.  The subspace
+$V_c = \mathrm{span}_\C\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ (the $P_2 = -1$
+eigenspace under quaternion conjugation) carries a natural Hermitian inner
+product, and the group of $\C$-linear isometries of determinant one acting on
+$V_c$ is isomorphic to $\mathrm{SU}(3)$.  We prove three theorems: (1) the
+involution decomposition of $\B$; (2) the canonical triplet structure of
+$V_c \cong \C^3$; and (3) that $\mathrm{SU}(3)$ preserves the Hermitian form
+on $V_c$.  The entire construction is associative ($\B \cong M_2(\C)$); no
+octonions or non-associative structures appear.  We note that
+$\mathrm{SU}(3)_{V_c}$ is not a subgroup of $\mathrm{Aut}(\B)$, and we
+explicitly compare our result with classical theorems on $\mathrm{Aut}(\H)
+\cong \mathrm{SO}(3)$ and the $\mathrm{GL}(2,\C)$ obstruction.  Open problems
+are stated.
+\end{abstract}
+
+\tableofcontents
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+The biquaternion algebra $\B = \C\otimes_\R\H$ is an associative
+$8$-dimensional real algebra isomorphic to $M_2(\C)$, the algebra of
+$2\times 2$ complex matrices.  It has appeared in special relativity, quantum
+mechanics, and mathematical physics in various guises since Hamilton and
+Clifford \cite{Hamilton1866,Clifford1878}.
+
+In this paper we study the algebraic decomposition of $\B$ induced by a
+system of three commuting real-linear involutions and identify a canonical
+three-complex-dimensional subspace on which a natural $\mathrm{SU}(3)$
+symmetry acts.
+
+Our motivation comes from the observation that biquaternionic field theories
+\cite{Dixon1994,Furey2016} seek to understand Standard Model gauge symmetries
+as arising from the algebraic structure of $\B$ or related algebras.  Our
+construction isolates a clean, proof-ready $\mathrm{SU}(3)$ action that does
+not require octonions and that can be stated and proved entirely within
+classical algebra.
+
+\medskip
+\noindent\textbf{Main results.}
+\begin{itemize}
+\item \textbf{Theorem~\ref{thm:involution_decomp}}: Three commuting
+  $\mathbb{Z}_2$-involutions $P_1,P_2,P_3$ decompose $\B$ into eight
+  simultaneous eigenspaces.  The $\mathbb{Z}_2^3$ action is explicit and
+  canonical.
+\item \textbf{Theorem~\ref{thm:triplet_space}}: The $P_2=-1$ eigenspace is a
+  three-dimensional complex vector space $V_c \cong \C^3$ with a canonical
+  Hermitian inner product.
+\item \textbf{Theorem~\ref{thm:su3_action}}: The group $\mathrm{SU}(3)_{V_c}$
+  of $\C$-linear isometries of $(V_c,\langle\cdot,\cdot\rangle)$ with
+  determinant one is isomorphic to $\mathrm{SU}(3)$.  It acts naturally on
+  $V_c$ and preserves the Hermitian form.
+\end{itemize}
+
+\medskip
+\noindent\textbf{What we do not claim.}
+We do not claim that $\mathrm{SU}(3)_{V_c}$ is the colour gauge group of
+Quantum Chromodynamics, nor that it is a subgroup of $\mathrm{Aut}(\B)$.
+These are open problems stated in Section~\ref{sec:open_problems}.  The paper
+is written as a pure mathematics result.
+
+% ============================================================
+\section{Algebraic Background}
+\label{sec:background}
+% ============================================================
+
+\subsection{The biquaternion algebra}
+
+Let $\H = \R\langle 1,\mathbf{I},\mathbf{J},\mathbf{K}\rangle$ denote the
+quaternion algebra with $\mathbf{I}^2=\mathbf{J}^2=\mathbf{K}^2=-1$,
+$\mathbf{I}\mathbf{J}=\mathbf{K}$, and cyclic permutations.  The biquaternion
+algebra is
+\[
+  \B \;:=\; \C \otimes_\R \H,
+\]
+an $8$-dimensional real (or $4$-dimensional complex) associative algebra.
+The complex unit $i\in\C$ lies in the \emph{centre} of $\B$ (it commutes with
+all quaternion units).
+
+\begin{lemma}[$\C$ is central]
+  \label{lem:C_central}
+  For all $h\in\H$ and $z\in\C$, $z\cdot h = h\cdot z$ in $\B$.
+\end{lemma}
+\begin{proof}
+  In $\C\otimes_\R\H$, $(z\otimes 1)(1\otimes h) = z\otimes h
+  = (1\otimes h)(z\otimes 1)$.
+\end{proof}
+
+\subsection{Ordered basis}
+
+We fix the ordered $\R$-basis
+\begin{equation}
+  \label{eq:basis}
+  \mathcal{B}_\mathrm{basis} = \{1,\,\mathbf{I},\,\mathbf{J},\,\mathbf{K},\,
+    i,\,i\mathbf{I},\,i\mathbf{J},\,i\mathbf{K}\}.
+\end{equation}
+
+% ============================================================
+\section{Three Commuting Involutions and Their Decomposition}
+\label{sec:involutions}
+% ============================================================
+
+\begin{definition}[Three involutions]
+  \label{def:involutions}
+  Define three $\R$-linear maps $P_k:\B\to\B$ by their action on the basis
+  \eqref{eq:basis}:
+  \begin{align*}
+    P_1 &:\; i\mapsto -i,\quad \mathbf{I}\mapsto\mathbf{I},\quad
+      \mathbf{J}\mapsto\mathbf{J},\quad \mathbf{K}\mapsto\mathbf{K}.
+      \quad\text{(complex conjugation)}\\
+    P_2 &:\; i\mapsto i,\quad \mathbf{I}\mapsto-\mathbf{I},\quad
+      \mathbf{J}\mapsto-\mathbf{J},\quad \mathbf{K}\mapsto-\mathbf{K}.
+      \quad\text{(quaternion conjugation)}\\
+    P_3 &:\; P_3(x) = \mathbf{I}x\mathbf{I}^{-1},\; x\in\B.
+      \quad\text{(axis-flip, inner automorphism by }\mathbf{I})
+  \end{align*}
+\end{definition}
+
+\begin{theorem}[Involution decomposition]
+  \label{thm:involution_decomp}
+  (a) Each $P_k$ is an $\R$-linear involution: $P_k^2 = \mathrm{id}$.
+  (b) The $P_k$ commute pairwise: $[P_i,P_j]=0$.
+  (c) They generate a $\mathbb{Z}_2^3$ action on $\B$.
+  (d) The simultaneous eigenspace decomposition
+  $\B = \bigoplus_{s\in\{+1,-1\}^3} \B_s$, where $\B_s = \{b\in\B:P_k(b)=s_k b\}$,
+  has the following non-zero components:
+  \[
+    \B_{(+,+,+)} = \R\cdot 1,\quad
+    \B_{(+,-,+)} = \R\cdot\mathbf{I},\quad
+    \B_{(+,-,-)} = \R\cdot\mathbf{J}\oplus\R\cdot\mathbf{K},
+  \]
+  \[
+    \B_{(-,+,+)} = \R\cdot i,\quad
+    \B_{(-,-,+)} = \R\cdot i\mathbf{I},\quad
+    \B_{(-,-,-)} = \R\cdot i\mathbf{J}\oplus\R\cdot i\mathbf{K}.
+  \]
+  The sectors $(+,+,-)$ and $(-,+,-)$ are empty.
+\end{theorem}
+
+\begin{proof}
+  (a) Every basis vector $b\in\mathcal{B}_\mathrm{basis}$ satisfies
+  $P_k(b) = s_k b$ for some $s_k\in\{+1,-1\}$ (see the signature table).
+  Then $P_k^2(b) = s_k^2 b = b$; by $\R$-linearity, $P_k^2=\mathrm{id}$.
+
+  (b) For any basis element, $P_i(P_j(b)) = P_i(s_j b) = s_j s_i b
+  = s_i s_j b = P_j(P_i(b))$; by linearity $[P_i,P_j]=0$.
+
+  (c) $\{P_1,P_2,P_3\}$ generates a group under composition; since each
+  generator has order $2$ and they commute, this group is $\Z_2^3$.
+
+  (d) Direct computation from Definition~\ref{def:involutions}: the
+  signature of each basis element is read from the table.  For the emptiness
+  of $(+,+,-)$: any element with $P_1=+1$ and $P_2=+1$ is a real scalar
+  multiple of $1$; since $P_3(1)=\mathbf{I}\cdot 1\cdot\mathbf{I}^{-1}=1$,
+  it lies in $(+,+,+)$ not $(+,+,-)$.
+\end{proof}
+
+% ============================================================
+\section{The Canonical Triplet Space}
+\label{sec:triplet}
+% ============================================================
+
+\begin{theorem}[Canonical triplet space]
+  \label{thm:triplet_space}
+  The $P_2=-1$ eigenspace
+  \begin{equation}
+    \label{eq:Vc}
+    V_c \;:=\; \ker(P_2+\mathrm{id})
+       \;=\; \mathrm{span}_\C\{\mathbf{I},\mathbf{J},\mathbf{K}\}
+  \end{equation}
+  is a three-dimensional complex vector space ($\dim_\C V_c = 3$) and is
+  naturally isomorphic to $\C^3$ via
+  $\phi: V_c\to\C^3$, $\phi(a\mathbf{I}+b\mathbf{J}+c\mathbf{K}) = (a,b,c)$.
+\end{theorem}
+
+\begin{proof}
+  The six $\R$-vectors $\{\mathbf{I},i\mathbf{I},\mathbf{J},i\mathbf{J},
+  \mathbf{K},i\mathbf{K}\}$ are distinct elements of the basis
+  \eqref{eq:basis} and hence $\R$-linearly independent.  Every element of
+  $V_c$ is $a\mathbf{I}+b\mathbf{J}+c\mathbf{K}$ with $a,b,c\in\C$;
+  so $\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ is a $\C$-basis and
+  $\dim_\C V_c = 3$.  The map $\phi$ is manifestly an isomorphism of
+  complex vector spaces.
+\end{proof}
+
+\begin{definition}[Hermitian form on $V_c$]
+  \label{def:inner_product}
+  For $X,Y\in V_c$, define
+  \begin{equation}
+    \label{eq:inner_product}
+    \langle X,Y\rangle \;:=\;
+    \tfrac{1}{4}\,\mathrm{Tr}(X^\dagger Y),
+  \end{equation}
+  where $X^\dagger = P_1(P_2(X)^*)\in V_c$ and $\mathrm{Tr}$ is the reduced
+  trace of $\B$.
+\end{definition}
+
+Under $\phi$, this reduces to the standard Hermitian inner product on $\C^3$:
+$\langle X,Y\rangle = \overline{a_1}a_2+\overline{b_1}b_2+\overline{c_1}c_2$
+for $X=a_1\mathbf{I}+b_1\mathbf{J}+c_1\mathbf{K}$ and
+$Y=a_2\mathbf{I}+b_2\mathbf{J}+c_2\mathbf{K}$.
+
+% ============================================================
+\section{SU(3) Action on $V_c$}
+\label{sec:su3}
+% ============================================================
+
+\begin{theorem}[$\mathrm{SU}(3)$ preserves the Hermitian form]
+  \label{thm:su3_action}
+  Define
+  \begin{equation}
+    \label{eq:SU3_Vc}
+    \mathrm{SU}(3)_{V_c} \;:=\;
+    \bigl\{U\in\mathrm{GL}_\C(V_c) \;\big|\;
+    \langle Ux,Uy\rangle = \langle x,y\rangle\;\forall\,x,y\in V_c,\;
+    \det_\C(U)=1\bigr\}.
+  \end{equation}
+  Then:
+  \begin{enumerate}
+    \item[(a)] $\mathrm{SU}(3)_{V_c}$ is isomorphic to the standard
+      $\mathrm{SU}(3)$.
+    \item[(b)] The action $U\cdot x = Ux$ preserves the inner product
+      \eqref{eq:inner_product} on $V_c$.
+    \item[(c)] The action is faithful.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  (a) Via the isomorphism $\phi:V_c\to\C^3$, the inner product
+  \eqref{eq:inner_product} becomes the standard Hermitian inner product on
+  $\C^3$, so $\mathrm{SU}(3)_{V_c}\cong\mathrm{SU}(3)$ by definition.
+
+  (b) By the defining property of $\mathrm{SU}(3)_{V_c}$.
+
+  (c) If $Ux=x$ for all $x\in V_c$, then $U=\mathrm{id}_{V_c}$.
+\end{proof}
+
+\begin{remark}[$\mathrm{SU}(3)_{V_c}$ is not in $\mathrm{Aut}(\B)$]
+  \label{rem:not_aut}
+  The group $\mathrm{SU}(3)_{V_c}$ acts on the \emph{subspace} $V_c\subset\B$;
+  it is not a subgroup of the algebra automorphism group
+  $\mathrm{Aut}_\R(\B)\cong[\mathrm{GL}(2,\C)\times\mathrm{GL}(2,\C)]/\mathbb{Z}_2$.
+  This is consistent with the classical observation that
+  $\mathrm{Aut}(\H)\cong\mathrm{SO}(3)$ and the $\mathrm{GL}(2,\C)$ rank
+  obstruction; see Section~\ref{sec:related} for details.
+\end{remark}
+
+% ============================================================
+\section{Related Work and Literature Comparison}
+\label{sec:related}
+% ============================================================
+
+\input{related_work}
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open_problems}
+% ============================================================
+
+\begin{enumerate}
+  \item \textbf{Dynamics.}  Does the $\mathrm{SU}(3)_{V_c}$ symmetry extend
+    to a symmetry of a natural kinetic operator on sections of a bundle with
+    fibre $V_c$?  Specifically, is the operator
+    $\Box_\Theta = \nabla^\dagger\nabla$ acting on $\Theta$-triplet fields
+    $(\Theta^1,\Theta^2,\Theta^3)\in V_c$ invariant under constant
+    $U\in\mathrm{SU}(3)_{V_c}$?  (This is the global invariance question;
+    see \texttt{research\_tracks/associative\_su3/global\_invariance.tex}.)
+
+  \item \textbf{Gauge extension.}  Can a local $\mathrm{SU}(3)$ gauge
+    extension be consistently formulated, and does it remain associative?
+
+  \item \textbf{Physical interpretation.}  Is $\mathrm{SU}(3)_{V_c}$ related
+    to any observed symmetry of particle physics?  This is an open and
+    speculative question, not addressed in this paper.
+
+  \item \textbf{Alternative involutions.}  Can a modified $P_3'$ be defined
+    that fills the empty $(+,+,-)$ sector while maintaining associativity?
+
+  \item \textbf{Uniqueness.}  Is the construction of $V_c$ canonical up to
+    automorphisms of $\B$, or are there other natural three-dimensional
+    complex subspaces?
+\end{enumerate}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We have proved three theorems establishing a natural $\mathrm{SU}(3)$
+symmetry acting on a canonical three-dimensional complex subspace $V_c$ of
+the biquaternion algebra $\B = \C\otimes\H$.  The construction is entirely
+within the associative algebra $\B\cong M_2(\C)$; no octonions or
+non-associative structures are needed.
+
+The group $\mathrm{SU}(3)_{V_c}$ is not a subgroup of $\mathrm{Aut}(\B)$, in
+agreement with classical results.  Its potential role as a symmetry of
+dynamical equations on biquaternionic fields remains an open problem.
+
+\begin{thebibliography}{99}
+
+\bibitem{Hamilton1866}
+W.~R. Hamilton,
+\emph{Elements of Quaternions},
+Longmans, Green, 1866.
+
+\bibitem{Clifford1878}
+W.~K. Clifford,
+Applications of Grassmann's Extensive Algebra,
+\emph{Am.\ J.\ Math.} \textbf{1} (1878) 350--358.
+
+\bibitem{Dixon1994}
+G.~M. Dixon,
+\emph{Division Algebras: Octonions, Quaternions, Complex Numbers and the
+Algebraic Design of Physics},
+Kluwer Academic Publishers, 1994.
+
+\bibitem{Furey2016}
+C.~Furey,
+Standard Model Physics from an Algebra?,
+Ph.D.\ Thesis, University of Waterloo, 2015; \texttt{arXiv:1611.09182}.
+
+\bibitem{Connes1994}
+A.~Connes,
+\emph{Noncommutative Geometry},
+Academic Press, 1994.
+
+\bibitem{Porteous1995}
+I.~R. Porteous,
+\emph{Clifford Algebras and the Classical Groups},
+Cambridge University Press, 1995.
+
+\bibitem{FitzGerald2009}
+R.~W. FitzGerald,
+\emph{Biquaternions and the Clifford Algebra $\mathrm{Cl}_{3,0}$},
+Advances in Applied Clifford Algebras, 2009.
+
+\end{thebibliography}
+
+\end{document}
