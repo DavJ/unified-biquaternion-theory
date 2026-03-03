@@ -1,0 +1,141 @@
+% General Relativity as the Constant-Phase Limit of UBT
+% Version: 1.0
+% Date: 2026-03-03
+% Status: Canonical - GR LIMIT THEOREM
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+\section{GR as the Constant-Phase Limit of UBT}
+\label{sec:canonical:gr_as_limit}
+
+This section proves that General Relativity is recovered from the full biquaternionic
+field equations for \emph{any} constant phase $\varphi$, not merely for $\varphi = 0$.
+The operator $P_\varphi$ is defined in Section~\ref{sec:canonical:phase_projection}.
+
+\subsection{Starting Point: Full Biquaternionic Field Equations}
+
+The fundamental UBT field equation (see \texttt{canonical/geometry/biquaternion\_metric.tex},
+Eq.~\ref{eq:canonical:biq_field_equation}) is
+
+\begin{equation}
+\label{eq:ubiq_field_eq}
+\mathcal{E}_{\mu\nu} = \kappa\,\mathcal{T}_{\mu\nu},
+\end{equation}
+
+where $\mathcal{E}_{\mu\nu}$ is the biquaternionic Einstein tensor constructed from
+$\mathcal{G}_{\mu\nu}$ and $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor, both
+valued in $\mathbb{C}\otimes\mathbb{H}$.
+
+\subsection{Applying the Phase Projection}
+
+Let $\varphi \in \mathbb{R}$ be a \textbf{spatiotemporally constant} phase,
+i.e.\ $\partial_\mu\varphi = 0$ (equivalently $\nabla_\mu\varphi = 0$).
+Apply $P_\varphi$ (Eq.~\ref{eq:phase_projection_def}) to both sides of
+Eq.~\eqref{eq:ubiq_field_eq}:
+
+\begin{equation}
+\label{eq:proj_both_sides}
+P_\varphi[\mathcal{E}_{\mu\nu}] = \kappa\,P_\varphi[\mathcal{T}_{\mu\nu}].
+\end{equation}
+
+Since $\kappa = 8\pi G/c^4$ is a real constant, it commutes with $P_\varphi$.
+
+\subsection{Commutativity of $P_\varphi$ with Covariant Derivatives}
+
+For $\nabla_\mu\varphi = 0$ the phase factor $e^{-i\varphi}$ is a covariantly constant scalar, so
+
+\begin{equation}
+\label{eq:proj_commutes_cov}
+\nabla_\rho\,P_\varphi[\mathcal{G}_{\mu\nu}] = P_\varphi[\nabla_\rho\,\mathcal{G}_{\mu\nu}].
+\end{equation}
+
+This follows from $\nabla_\rho(e^{-i\varphi}\,\mathcal{G}_{\mu\nu}) = e^{-i\varphi}\,\nabla_\rho\mathcal{G}_{\mu\nu}$
+and the fact that $\mathrm{Re}(\cdot)$ commutes with contraction (both are $\mathbb{R}$-linear and
+preserve the index structure).
+
+\subsection{Reduction to Einstein's Field Equations}
+
+The biquaternionic Riemann, Ricci, and scalar curvature all derive from $\mathcal{G}_{\mu\nu}$ and its
+derivatives via the standard Levi-Civita construction generalized to $\mathbb{C}\otimes\mathbb{H}$.
+Because $P_\varphi$ commutes with all covariant derivatives (Eq.~\eqref{eq:proj_commutes_cov}), it
+commutes with the curvature construction:
+
+\begin{equation}
+P_\varphi[\mathcal{R}_{\mu\nu}] = R_{\mu\nu}^{(\varphi)},\qquad
+P_\varphi[\mathcal{R}] = R^{(\varphi)},
+\end{equation}
+
+where $R_{\mu\nu}^{(\varphi)}$ and $R^{(\varphi)}$ are the Ricci tensor and scalar computed from the
+\emph{real, projected} metric $g_{\mu\nu}^{(\varphi)} := P_\varphi[\mathcal{G}_{\mu\nu}]$.  Hence
+
+\begin{equation}
+P_\varphi[\mathcal{E}_{\mu\nu}]
+= R_{\mu\nu}^{(\varphi)} - \tfrac{1}{2}g_{\mu\nu}^{(\varphi)}\,R^{(\varphi)}
+= G_{\mu\nu}^{(\varphi)},
+\end{equation}
+
+the standard Einstein tensor for $g_{\mu\nu}^{(\varphi)}$.  Substituting into
+Eq.~\eqref{eq:proj_both_sides}:
+
+\begin{equation}
+\label{eq:gr_recovered}
+\boxed{G_{\mu\nu}^{(\varphi)} = \kappa\,T_{\mu\nu}^{(\varphi)}},
+\end{equation}
+
+where $T_{\mu\nu}^{(\varphi)} := P_\varphi[\mathcal{T}_{\mu\nu}]$ is the real projected stress-energy.
+This is precisely Einstein's field equation for the metric $g_{\mu\nu}^{(\varphi)}$.
+
+\subsection{Preservation of the Bianchi Identity}
+
+The contracted Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ holds for \emph{any} Levi-Civita
+connection constructed from a smooth Riemannian (or Lorentzian) metric.  Since $g_{\mu\nu}^{(\varphi)}$
+is a smooth real metric for constant $\varphi$, the Bianchi identity holds identically:
+
+\begin{equation}
+\nabla^{(\varphi)\,\mu} G_{\mu\nu}^{(\varphi)} = 0.
+\end{equation}
+
+Equivalently, $P_\varphi$ maps the biquaternionic Bianchi identity
+$\nabla^{\mu}\mathcal{E}_{\mu\nu} = 0$ to its real counterpart, so consistency is guaranteed.
+
+\subsection{Theorem: GR Holds in Any Constant Phase Frame}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Theorem (GR as Constant-Phase Limit)]
+\textbf{For any spatiotemporally constant phase $\varphi$ (i.e.\ $\nabla_\mu\varphi = 0$),
+the projected metric}
+\begin{equation*}
+g_{\mu\nu}^{(\varphi)} = P_\varphi[\mathcal{G}_{\mu\nu}] = \mathrm{Re}(e^{-i\varphi}\,\mathcal{G}_{\mu\nu})
+\end{equation*}
+\textbf{satisfies Einstein's field equations exactly.  General Relativity is therefore recovered
+in every constant phase frame, not only in the $\varphi = 0$ frame.}
+\end{tcolorbox}
+
+\subsection{$\varphi = 0$ is a Gauge Choice, Not a Physical Requirement}
+
+The choice $\varphi = 0$ in Axiom C is the conventional \textbf{standard observer gauge}: it selects
+the real part of $\mathcal{G}_{\mu\nu}$ without rotation in the complex plane.  This gauge is
+convenient but not physically preferred.  Two observers related by a constant phase shift
+$\varphi_1 - \varphi_2 = \Delta\varphi$ both see a valid GR metric; they are related by
+
+\begin{equation}
+g_{\mu\nu}^{(\varphi_2)} = P_{\varphi_2}[\mathcal{G}_{\mu\nu}]
+= P_{\varphi_1}\!\left[e^{i(\varphi_1-\varphi_2)}\mathcal{G}_{\mu\nu}\right],
+\end{equation}
+
+which is a phase-frame transformation within the bundle $\mathcal{F}$ defined in
+Section~\ref{subsec:kk_ultrametric}.
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,title=Canonical Statement]
+\textbf{$\varphi = 0$ is a gauge choice (standard observer convention), not a theoretical requirement.
+GR is the constant-$\varphi$ limit of UBT for \emph{any} $\varphi$.}
+\end{tcolorbox}
+
+\subsection{Stable Values of $\varphi$ and Attractor Selection}
+
+The physically realized values of $\varphi$ are not arbitrary: they are selected by the
+drift-diffusion attractor dynamics of the $\Theta$-field (Appendix~H).  Only the prime-indexed
+KK modes $n \in \mathcal{P}$ survive as stable attractors, giving a countable, prime-indexed set of
+physically preferred constant phase frames (see Section~\ref{subsec:kk_ultrametric} for the
+ultrametric structure of this set).
+
+% End of GR-as-limit section
