@@ -90,11 +90,14 @@ where:
 4. **Emergent only**: The GR metric $g_{\mu\nu}$ is a derived quantity, not a fundamental field
 5. **$\mathcal{G}_{\mu\nu}$ is not a GR metric**: The generalized metric $\mathcal{G}_{\mu\nu}$ must not be treated as an independent GR spacetime metric
 
+**Note — Generalized Phase Projection**: The formula $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the **$\varphi = 0$ special case** of the general operator $P_\varphi[\mathcal{G}_{\mu\nu}] := \text{Re}(e^{-i\varphi}\mathcal{G}_{\mu\nu})$ defined in `canonical/geometry/phase_projection.tex`. The choice $\varphi = 0$ is the standard observer gauge convention. GR is recovered for *any* spatiotemporally constant $\varphi$ (see `canonical/geometry/gr_as_limit.tex`). **Axiom C is unchanged**; this note records the broader framework.
 **Cross-References**:
 - `consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` (line 56)
 - `consolidation_project/appendix_R_GR_equivalence.tex` (equation 68)
 - `consolidation_project/appendix_FORMAL_emergent_metric.tex` (Definition 3.1)
 - `THETA_FIELD_DEFINITION.md` (Section 7.1)
+- `canonical/geometry/phase_projection.tex` (generalized $P_\varphi$ operator)
+- `canonical/geometry/gr_as_limit.tex` (GR for any constant $\varphi$)
 
 **Lock Rule**: This is the **ONLY** metric definition in UBT. GR is a real/classical limit of UBT, not an independent framework. No alternative GR metrics, no background metric.
 
