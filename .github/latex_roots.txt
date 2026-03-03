@@ -44,6 +44,12 @@ speculative_extensions/causality/ctc_conditions.tex
 speculative_extensions/causality/chronology_protection_ubt.tex
 speculative_extensions/causality/ctc_methodology.tex
 
+# Invisibility via imaginary sector (SPECULATIVE)
+speculative_extensions/invisibility/st1_imaginary_object_definition.tex
+speculative_extensions/invisibility/st2_sector_interaction.tex
+speculative_extensions/invisibility/st3_stability.tex
+speculative_extensions/invisibility/st4_ctc_invisibility_connection.tex
+
 # Original UBT theory documents
 unified_biquaternion_theory/ubt_main_article.tex
 unified_biquaternion_theory/ubt_osf_overview_article.tex
