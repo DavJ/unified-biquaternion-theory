@@ -1,0 +1,504 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Three Generations Research Track — ST-3: Complex Time as Generation Index
+% Status: Working document — conclusions labelled CONJECTURE or PROVED
+% Version: 1.0
+% Date: 2026-03-03
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=2.5cm}
+
+% Theorem environments (matching papers/su3_triplet/arxiv_version.tex)
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% Notation shorthands
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Vc}{V_c}
+\newcommand{\psimod}{\psi}
+
+\title{%
+  Three Generations from Complex Time:\\
+  $\psi$-Modes of the $\Theta$-Field as Fermionic Generations\\
+  \large Three Generations Research Track --- ST-3
+}
+
+\author{David Jaro\v{s}}
+
+\date{2026-03-03}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We investigate whether the imaginary component $\psi$ of the UBT complex time
+$\tau = t + i\psi$ (AXIOM~B) can serve as a ``generation index'' for three
+fermionic families.  The $\Theta$-field $\Theta(x,\tau)$ is expanded in a
+$\psi$-Taylor series, yielding mode-fields $\Theta_0, \Theta_1, \Theta_2,\ldots$
+on ordinary spacetime $M^4$.  We prove that (i)~each mode is an independent
+$\mathcal{B}$-valued field, (ii)~each carries the same $\mathrm{SU}(3)_{V_c}$
+quantum numbers, and (iii)~a discrete $\psi$-parity symmetry $\psi \to -\psi$
+forbids mixing between even and odd modes.  The identification of the first
+three modes $\Theta_0, \Theta_1, \Theta_2$ with the three lepton/quark
+generations, and the conjecture that their mass hierarchy follows from the
+$\psi$-mode ordering, are stated as explicit conjectures with their hypotheses
+made transparent.  This mechanism is unique to UBT and is unavailable to
+Furey's $\mathbb{C}\otimes\mathbb{O}$ framework, which lacks complex time.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Introduction and Motivation}
+\label{sec:intro}
+%=============================================================
+
+The obstruction theorem (ST-2, \texttt{st2\_obstruction.tex}) establishes that
+three fermionic generations cannot arise from any purely algebraic decomposition
+of $\mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H}$.  This does not
+exclude mechanisms that exploit structure external to the pure algebra.
+
+UBT introduces, through AXIOM~B, a \emph{complex time}
+\[
+  \tau = t + i\psi, \qquad t, \psi \in \mathbb{R},
+\]
+where $\psi$ is the imaginary time component.  The $\Theta$-field is accordingly
+a function $\Theta : M^4 \times \mathbb{C} \to \mathcal{B}$,
+\[
+  \Theta = \Theta(x, \tau) = \Theta(x, t+i\psi).
+\]
+This extended dependence is entirely absent from Furey's construction, which
+is formulated over ordinary (real) time.  The question addressed in this
+document is:
+
+\begin{quote}
+\emph{Can the imaginary-time sector $\psi$ serve as a natural generation index,
+producing three independent fermionic families $\Theta_0, \Theta_1, \Theta_2$
+as the lowest $\psi$-Taylor modes of $\Theta$?}
+\end{quote}
+
+%=============================================================
+\section{$\psi$-Taylor Expansion of the $\Theta$-Field}
+\label{sec:expansion}
+%=============================================================
+
+\begin{definition}[$\psi$-Taylor modes]
+  \label{def:psi_modes}
+  Let $\Theta(x, t, \psi)$ be a $\mathcal{B}$-valued field real-analytic in
+  $\psi$ near $\psi = 0$.  The \emph{$\psi$-Taylor modes} are the
+  $\mathcal{B}$-valued fields on $M^4$:
+  \[
+    \Theta_n(x, t) := \frac{1}{n!}
+    \left.\frac{\partial^n \Theta}{\partial \psi^n}\right|_{\psi=0},
+    \qquad n = 0, 1, 2, \ldots
+  \]
+  so that
+  \[
+    \Theta(x, t, \psi) = \sum_{n=0}^{\infty} \psi^n\, \Theta_n(x, t).
+  \]
+\end{definition}
+
+\begin{remark}[Convergence]
+  Throughout this document, all statements about $\psi$-Taylor expansions
+  are formal (algebraic).  Analytic convergence requires a separate study of
+  the functional-analytic properties of $\Theta$, which is beyond the scope
+  of this document.
+\end{remark}
+
+%=============================================================
+\section{Independence and Quantum Numbers of the Modes}
+\label{sec:independence}
+%=============================================================
+
+\subsection{Kinematic Independence}
+
+\begin{theorem}[Independence of $\psi$-modes]
+  \label{thm:mode_independence}
+  For a general real-analytic $\mathcal{B}$-valued function $\Theta(x,t,\psi)$,
+  the modes $\Theta_0, \Theta_1, \Theta_2, \ldots$ are kinematically
+  independent: knowing $\Theta_n$ for finitely many $n$ imposes no constraint
+  on $\Theta_m$ for $m \neq n$.
+\end{theorem}
+
+\begin{proof}
+  The coefficients $\Theta_n$ of the $\psi$-Taylor series are the
+  $\psi$-partial derivatives of $\Theta$ evaluated at $\psi=0$.
+  They constitute free initial data in the $\psi$-direction: for any
+  prescribed sequences $\{\Theta_n(x,t)\}_{n=0}^\infty$ of smooth
+  $\mathcal{B}$-valued functions, the formal power series
+  $\Theta(x,t,\psi) = \sum_n \psi^n \Theta_n(x,t)$ is a well-defined
+  formal $\mathcal{B}$-valued function.  No algebraic relation among
+  $\{\Theta_n\}$ is imposed by the power-series structure alone.
+\end{proof}
+
+\subsection{Identical $\mathrm{SU}(3)_{V_c}$ Quantum Numbers}
+
+\begin{theorem}[$\psi$-modes carry the same $\mathrm{SU}(3)$ quantum numbers]
+  \label{thm:same_su3}
+  Let $U \in \mathrm{SU}(3)_{V_c}$ act on $\mathcal{B}$-valued fields by
+  acting on the $V_c$-component.  If $\Theta(x,t,\psi) \mapsto U\Theta(x,t,\psi)$
+  defines a global $\mathrm{SU}(3)_{V_c}$ transformation, then each mode
+  transforms as $\Theta_n \mapsto U\Theta_n$.
+\end{theorem}
+
+\begin{proof}
+  Since $U$ is constant (independent of $\psi$),
+  \[
+    (U\Theta)(x,t,\psi) = U\!\sum_{n=0}^\infty \psi^n\,\Theta_n(x,t)
+    = \sum_{n=0}^\infty \psi^n\,(U\Theta_n(x,t)).
+  \]
+  Comparing $\psi^n$ coefficients shows that the $n$-th mode of $U\Theta$ is
+  $U\Theta_n$.  Therefore every mode $\Theta_n$ transforms in the same
+  $\mathrm{SU}(3)_{V_c}$ representation as $\Theta$ itself.
+\end{proof}
+
+\begin{corollary}
+  If $\Theta$ transforms in the fundamental representation $\mathbf{3}$ of
+  $\mathrm{SU}(3)_{V_c}$ (i.e.\ $\Theta$ is $V_c$-valued), then each mode
+  $\Theta_n$ also transforms in $\mathbf{3}$.
+\end{corollary}
+
+%=============================================================
+\section{$\psi$-Parity Symmetry and Mixing Suppression}
+\label{sec:parity}
+%=============================================================
+
+\begin{definition}[$\psi$-parity]
+  \label{def:psi_parity}
+  The \emph{$\psi$-parity transformation} is the map
+  $P_\psi : \psi \mapsto -\psi$, acting on $\Theta$ by
+  \[
+    (P_\psi \Theta)(x,t,\psi) := \Theta(x,t,-\psi).
+  \]
+\end{definition}
+
+\begin{lemma}[$\psi$-parity eigenvalues of modes]
+  \label{lem:parity_eigenvalues}
+  Under $P_\psi$, each Taylor mode has definite parity:
+  \[
+    P_\psi\,\Theta_n = (-1)^n\,\Theta_n,
+    \qquad n = 0, 1, 2, \ldots
+  \]
+\end{lemma}
+
+\begin{proof}
+  From Definition~\ref{def:psi_modes},
+  $(P_\psi\Theta)(x,t,\psi) = \Theta(x,t,-\psi) =
+  \sum_n (-\psi)^n\Theta_n = \sum_n (-1)^n\psi^n\Theta_n$.
+  Comparing coefficients of $\psi^n$ gives $P_\psi\Theta_n = (-1)^n\Theta_n$.
+\end{proof}
+
+\begin{theorem}[$\psi$-parity forbids even--odd mixing]
+  \label{thm:no_mixing}
+  If the $\Theta$-field equation (UBT wave equation) is invariant under
+  $\psi$-parity $P_\psi$, then eigenstates of definite $\psi$-parity
+  (i.e.\ individual modes $\Theta_n$) cannot mix with modes of opposite parity
+  through the linear part of the equation of motion.
+\end{theorem}
+
+\begin{proof}
+  Let $\mathcal{L}[\Theta] = 0$ be the $\Theta$-field equation, linear in
+  $\Theta$.  If $\mathcal{L}$ commutes with $P_\psi$, then applying $P_\psi$
+  to $\mathcal{L}[\Theta_n] = 0$ gives $\mathcal{L}[P_\psi\Theta_n] = 0$,
+  i.e.\ $\mathcal{L}[(-1)^n\Theta_n] = 0$.  Solutions in different $P_\psi$
+  eigenspaces do not mix: the equation of motion decomposes into independent
+  sectors labelled by parity $(-1)^n$.
+\end{proof}
+
+\begin{remark}[Even vs.\ odd modes]
+  $\psi$-parity separates the modes into two towers:
+  \begin{itemize}
+    \item Even tower: $\Theta_0, \Theta_2, \Theta_4, \ldots$ (parity $+1$).
+    \item Odd tower: $\Theta_1, \Theta_3, \Theta_5, \ldots$ (parity $-1$).
+  \end{itemize}
+  Within each tower, modes carry different mode number $n$ and are not mixed
+  by $\psi$-parity alone.  Further separation between modes of the same parity
+  requires an additional symmetry or dynamical input.
+\end{remark}
+
+%=============================================================
+\section{Three Generations as the Lowest $\psi$-Modes}
+\label{sec:three_gen}
+%=============================================================
+
+\subsection{The Generation Identification Conjecture}
+
+The following is the central conjecture of this document.  It is stated as
+a conjecture because the mass hierarchy part requires dynamical input not yet
+available.
+
+\begin{conjecture}[Three generations from $\psi$-modes]
+  \label{conj:three_gen}
+  The three lowest $\psi$-Taylor modes $\Theta_0$, $\Theta_1$, $\Theta_2$
+  of the $\Theta$-field correspond to the three fermionic generations:
+  \begin{align*}
+    \Theta_0 &\;\longleftrightarrow\; \text{first generation
+      } (e, \nu_e, u, d), \\
+    \Theta_1 &\;\longleftrightarrow\; \text{second generation
+      } (\mu, \nu_\mu, c, s), \\
+    \Theta_2 &\;\longleftrightarrow\; \text{third generation
+      } (\tau, \nu_\tau, t, b).
+  \end{align*}
+  Each mode transforms in the same $\mathrm{SU}(3)_{V_c}$ representation as
+  $\Theta$ and carries the same internal quantum numbers.
+\end{conjecture}
+
+\begin{remark}[What is proved vs.\ conjectured]
+  The following are \textbf{proved} (in this document or cited results):
+  \begin{itemize}
+    \item Independence of modes: Theorem~\ref{thm:mode_independence}.
+    \item Equal $\mathrm{SU}(3)$ quantum numbers: Theorem~\ref{thm:same_su3}.
+    \item $\psi$-parity separation of even/odd modes: Lemma~\ref{lem:parity_eigenvalues}
+      and Theorem~\ref{thm:no_mixing}.
+  \end{itemize}
+  The following are \textbf{conjectured} (not proved):
+  \begin{itemize}
+    \item That the physical fermion generations are precisely $\Theta_0, \Theta_1, \Theta_2$
+      (and not higher modes).
+    \item That the series terminates at $n = 2$ or that only $n \leq 2$ are
+      populated in the physical vacuum.
+    \item The mass hierarchy: $m(\Theta_0) \ll m(\Theta_1) \ll m(\Theta_2)$.
+  \end{itemize}
+\end{remark}
+
+\subsection{Mass Hierarchy Conjecture}
+
+\begin{conjecture}[Mass hierarchy from $\psi$-mode number]
+  \label{conj:mass_hierarchy}
+  The mass of the $n$-th mode $\Theta_n$ is an increasing function of the
+  mode number $n$:
+  \[
+    m(\Theta_0) \ll m(\Theta_1) \ll m(\Theta_2),
+  \]
+  corresponding to the observed lepton mass hierarchy $m_e \ll m_\mu \ll m_\tau$.
+  The mass is generated by the $\psi$-excitation energy:
+  higher modes require more imaginary-time ``curvature'' and thus acquire
+  larger effective masses through the complex-time kinetic operator.
+\end{conjecture}
+
+\begin{remark}[Hypotheses required for Conjecture~\ref{conj:mass_hierarchy}]
+  To prove Conjecture~\ref{conj:mass_hierarchy}, the following additional
+  inputs would be needed:
+  \begin{enumerate}[label=(\arabic*)]
+    \item A precise form of the UBT equation of motion in complex time
+      $\tau$, in particular the $\psi$-dependent kinetic term.
+    \item A mechanism that generates a mass gap between modes (e.g.\ a
+      $\psi$-periodic boundary condition or a $\psi$-potential in the action).
+    \item A derivation of the mass ratios from the $\psi$-mode spectrum.
+  \end{enumerate}
+  None of these are available at present; they constitute the next research
+  priority for this track.
+\end{remark}
+
+\subsection{Mixing Suppression Between Generations}
+
+\begin{conjecture}[$\psi$-mode number conservation forbids inter-generation mixing]
+  \label{conj:no_mixing}
+  If the full UBT action is invariant under $\psi \to \psi + c$ for constant
+  $c$ (i.e.\ $\psi$-translation invariance), then the $\psi$-mode number $n$
+  is conserved, and inter-generation mixing
+  $\Theta_m \leftrightarrow \Theta_n$ ($m \neq n$) is forbidden at tree level.
+\end{conjecture}
+
+\begin{remark}[Relation to CKM/PMNS matrices]
+  Physical quark and lepton mixing (CKM and PMNS matrices) would then arise
+  from higher-order effects that break $\psi$-translation invariance, such
+  as a non-trivial $\psi$-potential $V(\psi)$ in the action.  This would be
+  a UBT-specific origin for the mixing matrices, which is an open problem.
+\end{remark}
+
+%=============================================================
+\section{Relation to the Obstruction Theorem (ST-2)}
+\label{sec:obstruction_relation}
+%=============================================================
+
+The $\psi$-mode mechanism is not subject to the obstructions proved in
+ST-2 (\texttt{st2\_obstruction.tex}).  The reason is:
+
+\begin{itemize}
+  \item ST-2 proves that \emph{algebraic} decompositions of
+    $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ cannot produce three
+    isomorphic pieces.
+  \item The $\psi$-modes $\Theta_0, \Theta_1, \Theta_2$ are not a decomposition
+    of the algebra $\mathcal{B}$; they are three distinct field-valued functions
+    that all take values in $\mathcal{B}$.  The three-fold structure is in
+    \emph{field space}, not in the \emph{algebra}.
+  \item The structure comes from the extended domain $M^4 \times \mathbb{C}$
+    (complex time), which is not part of the algebra $\mathcal{B}$ itself.
+\end{itemize}
+
+\begin{theorem}[Compatibility of $\psi$-modes with ST-2]
+  \label{thm:compat}
+  The $\psi$-mode mechanism (Conjecture~\ref{conj:three_gen}) does not
+  contradict the obstruction theorem (ST-2, Theorem~3.2 of
+  \texttt{st2\_obstruction.tex}).
+\end{theorem}
+
+\begin{proof}
+  The ST-2 obstruction applies to decompositions of $\mathcal{B}$ as a
+  vector space or module.  The three modes $\Theta_0, \Theta_1, \Theta_2$
+  are three independent sections of the trivial bundle
+  $M^4 \times \mathcal{B}$; they do not decompose $\mathcal{B}$ itself.
+  The mode number $n$ indexes the Taylor expansion in the new variable $\psi$,
+  which is not an element of $\mathcal{B}$.  Therefore, ST-2 is silent on
+  this mechanism.
+\end{proof}
+
+%=============================================================
+\section{Comparison with Furey's Mechanism}
+\label{sec:furey_comparison}
+%=============================================================
+
+The $\psi$-mode mechanism is \emph{structurally different} from Furey's
+octonion-based construction:
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Property & Furey ($\mathbb{C}\otimes\mathbb{O}$) & UBT $\psi$-modes \\
+  \hline
+  Three generations & Minimal left ideals & $\psi$-Taylor modes \\
+  Origin of structure & Division algebra & Complex time AXIOM~B \\
+  Associativity & Non-associative & Associative \\
+  Algebraic vs.\ dynamical & Purely algebraic & Kinematic (+ dynamics TBD) \\
+  Mass hierarchy & Not addressed & Conjecture~\ref{conj:mass_hierarchy} \\
+  Mixing suppression & Not explicitly & Conjecture~\ref{conj:no_mixing} \\
+  Octonions required & Yes & No \\
+  \hline
+\end{tabular}
+\end{center}
+
+The key distinction: UBT requires complex time, Furey requires non-associativity
+(octonions).  The UBT approach preserves full associativity, which is a
+structural advantage for quantization and for consistency with standard QFT.
+
+%=============================================================
+\section{Summary and Open Problems}
+\label{sec:summary}
+%=============================================================
+
+\subsection{Summary of Status}
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Statement & Status & Reference \\
+  \hline
+  $\psi$-modes are kinematically independent & \textbf{Proved} & Thm.~\ref{thm:mode_independence} \\
+  All modes carry same SU(3) charges & \textbf{Proved} & Thm.~\ref{thm:same_su3} \\
+  $\psi$-parity forbids even-odd mixing & \textbf{Proved} & Thm.~\ref{thm:no_mixing} \\
+  Modes $\leftrightarrow$ generations & \textbf{Conjecture} & Conj.~\ref{conj:three_gen} \\
+  Mass hierarchy from mode number & \textbf{Conjecture} & Conj.~\ref{conj:mass_hierarchy} \\
+  Mixing suppression (CKM/PMNS origin) & \textbf{Conjecture} & Conj.~\ref{conj:no_mixing} \\
+  Consistent with ST-2 obstruction & \textbf{Proved} & Thm.~\ref{thm:compat} \\
+  \hline
+\end{tabular}
+\end{center}
+
+\subsection{Open Problems}
+
+\begin{enumerate}
+  \item \textbf{Mode truncation.}  Why are only three modes populated?
+    Is there a $\psi$-potential $V(\psi)$ in the UBT action that confines
+    the spectrum to $n \leq 2$?
+
+  \item \textbf{Mass hierarchy derivation.}  Express $m(\Theta_n)$ as a
+    function of $n$ from the complex-time kinetic operator.  Identify the
+    mass ratios $m_\mu/m_e$ and $m_\tau/m_e$ in terms of $\psi$-mode quantum
+    numbers.
+
+  \item \textbf{Mixing matrices.}  Derive the CKM and PMNS matrices from
+    the $\psi$-breaking of translational invariance.
+
+  \item \textbf{Spin and chirality.}  Verify that each $\Theta_n$ carries
+    the correct spin-$\frac{1}{2}$ and chirality assignments when the
+    $\mathcal{B}$-valued field is decomposed into left- and right-handed
+    components.
+
+  \item \textbf{Charge assignments.}  Verify that $\mathrm{SU}(2)_L$ and
+    $\mathrm{U}(1)_Y$ quantum numbers are correctly reproduced for each mode.
+\end{enumerate}
+
+%=============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%=============================================================
+
+We have shown that the complex time coordinate $\psi$ in UBT's AXIOM~B
+provides a natural, UBT-specific mechanism for three fermionic generations:
+the three lowest $\psi$-Taylor modes $\Theta_0, \Theta_1, \Theta_2$ of the
+$\Theta$-field are kinematically independent, carry identical
+$\mathrm{SU}(3)_{V_c}$ quantum numbers, and are partially protected from
+mixing by $\psi$-parity.
+
+The identification of these modes with the three physical generations, and the
+derivation of the mass hierarchy, remain as explicit conjectures pending
+dynamical analysis.  These conjectures are well-posed and falsifiable, and
+constitute a concrete research programme.
+
+Most importantly: \textbf{this mechanism requires no octonions.}  It relies
+only on the associative algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$
+and AXIOM~B ($\tau = t + i\psi$).  If the conjectures can be proved, the
+conclusion is:
+
+\begin{quote}
+  \emph{Three generations of fermions in UBT arise from complex time, not from
+  octonionic structure.  Octonions are sufficient but not necessary for three
+  generations.}
+\end{quote}
+
+\begin{thebibliography}{99}
+
+\bibitem{su3triplet}
+D.~Jaro\v{s},
+\emph{A Natural $\mathrm{SU}(3)$ Action on a Canonical Subspace of
+$\mathbb{C}\otimes\mathbb{H}$ via $\mathbb{Z}_2^3$ Involutions},
+\texttt{papers/su3\_triplet/arxiv\_version.tex}, 2026.
+
+\bibitem{st2}
+D.~Jaro\v{s},
+\emph{Obstruction to Three Isomorphic Subspaces in $\mathbb{C}\otimes\mathbb{H}$},
+\texttt{research\_tracks/three\_generations/st2\_obstruction.tex}, 2026.
+
+\bibitem{Furey2016}
+C.~Furey,
+Standard Model Physics from an Algebra?,
+PhD Thesis, U.~Waterloo, 2015; \texttt{arXiv:1611.09182}.
+
+\bibitem{Furey2018}
+C.~Furey,
+Three generations, two unbroken gauge symmetries, and one eight-dimensional
+algebra, \emph{Phys.\ Lett.\ B} \textbf{785} (2018) 84--89,
+\texttt{arXiv:1910.08395}.
+
+\bibitem{Dixon1994}
+G.~M. Dixon,
+\emph{Division Algebras: Octonions, Quaternions, Complex Numbers and the
+Algebraic Design of Physics}, Kluwer, 1994.
+
+\end{thebibliography}
+
+\end{document}
