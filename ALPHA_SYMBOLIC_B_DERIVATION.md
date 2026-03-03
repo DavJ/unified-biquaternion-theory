@@ -1,12 +1,25 @@
 # Alpha Derivation: Complete Symbolic Chain from Θ-Action to B ≈ 46.3
 
+<!-- TODO(alpha-B-inconsistency): The title claims B ≈ 46.3 but the derivation
+     chain below (steps i–iv) only establishes B₀ ≈ 25.1 at one loop. The ratio
+     46.3/25.1 ≈ 1.844 cannot be explained by a perturbative two-loop QED correction
+     (which contributes only ~0.1%). The 46.3 value appears via a separate
+     N_eff^(3/2) formula (Section 4) that has not been reconciled with the standard
+     one-loop result. Until the discrepancy is resolved, B must be treated as a
+     measured input parameter following SM convention. See
+     appendix_ALPHA_one_loop_biquat.tex Section "B/alpha Inconsistency". -->
+
 **Date:** November 6, 2025 (Updated for Release 20)  
 **Purpose:** Complete symbolic derivation chain from Θ-action to B coefficient - fit-free with CT baseline R_UBT = 1  
-**Status:** Unified derivation - single source of truth
+**Status:** ⚠️ OPEN INCONSISTENCY — the chain derives B₀ ≈ 25.1 (one-loop); B ≈ 46.3 required by α⁻¹ = 137 is NOT yet derived. See [B/α inconsistency note](#11-b-alpha-inconsistency) below.
 
 ---
 
 ## Executive Summary
+
+<!-- TODO(alpha-B-inconsistency): The summary below states "B ≈ 25.1" as the
+     final result (consistent with steps i–iv), but later sections of this
+     document use B ≈ 46.3 without a completed derivation of the gap factor. -->
 
 This document provides a **continuous symbolic chain** from the biquaternionic field action to the numerical value B ≈ 46.3, following the numbered derivation in `consolidation_project/appendix_ALPHA_one_loop_biquat.tex`.
 
@@ -810,14 +823,23 @@ S = \int d^4x \sqrt{-g} \mathcal{L}  \dimcheck{[1] = [M^{-4}] \times [M^4]}
 
 ## 9. Summary Table: B Coefficient
 
+<!-- TODO(alpha-B-inconsistency): The two rows "Tree-level" and "One-loop (with R)"
+     use B = N_eff^(3/2) × ... ≈ 46.3, while the numbered derivation chain (steps
+     i–iv) gives B₀ = 2π N_eff/3 ≈ 25.1. These two formulas have not been
+     reconciled. The entry "46.3 (match)" is circular: 46.3 was chosen to match
+     n_opt = 137. Treat B as a measured input parameter until the gap is closed. -->
+
 | Source | Expression | Numerical Value |
 |--------|------------|-----------------|
-| **Tree-level (geometric)** | N_eff^(3/2) | 41.57 |
-| **One-loop (with R)** | N_eff^(3/2) × R(μ) | 46.3 ± 2 |
+| **One-loop (numbered derivation, steps i–iv)** | 2π N_eff / 3 | **25.1** ⚠️ |
+| **Tree-level (N_eff^(3/2) route)** | N_eff^(3/2) | 41.57 |
+| **One-loop (N_eff^(3/2) with R)** | N_eff^(3/2) × R(μ) | 46.3 ± 2 |
 | **Ratio B/A** | B/A | 20.3 ± 0.9 |
 | **From n_opt = 137** | (emergent) | 46.3 (match) |
 
-**Status (v9 UPDATE):** B is **derived symbolically** from gauge structure with Λ = 1/R_Θ geometrically constrained.
+⚠️ **B/α inconsistency:** The numbered derivation (steps i–iv, mirrored in `appendix_ALPHA_one_loop_biquat.tex`) gives B₀ ≈ 25.1, but the effective potential requires B ≈ 46.3. These values differ by a factor of ≈ 1.844 — see [Section 11](#11-b-alpha-inconsistency) below.
+
+**Status (v9 UPDATE):** B is claimed to be **derived symbolically** from gauge structure with Λ = 1/R_Θ geometrically constrained. However, the N_eff^(3/2) formula used here has not been derived from the standard one-loop vacuum-polarization approach; it represents an alternative (unreconciled) counting scheme.
 
 **Theoretical advancement:**
 - v8: R(μ) ~ 1.1 from phenomenological matching
@@ -877,13 +899,71 @@ B = N_eff^(3/2) × C_geo × R_loop(μ/Λ)
 **After v9 enhancement:**
 - "One-loop derivation with geometric UV cutoff"
 - Λ = 1/R_Θ tied to Θ-manifold curvature radius
-- B derived from first principles given R_Θ = 1.324 × 10⁻¹⁸ m
-- α = 1/137.036 obtained from geometric constraint
+- B₀ ≈ 25.1 derived from first principles (one-loop); B ≈ 46.3 remains a measured input
 
-**Rating improvement:** 
+**Current rating:**
 - v8: Semi-rigorous (one adjustable parameter R ~ 1.1)
-- v9: Geometrically constrained (Λ bound to curvature)
-- Future: Fully rigorous (once R_Θ calculated from field equations)
+- v9: Geometrically constrained (Λ bound to curvature), but B/α inconsistency open
+- Future: Fully rigorous (once B₀ → B gap closed by explicit CT two-loop calculation)
+
+---
+
+## 11. B/α Inconsistency — Open Problem {#11-b-alpha-inconsistency}
+
+<!-- TODO(alpha-B-inconsistency): This section must remain until the gap is closed. -->
+
+### 11.1 Statement
+
+The numbered derivation chain (steps i–iv) unambiguously yields:
+
+```
+B₀ = 2π N_eff / 3 = 8π ≈ 25.1   [one-loop, dimensional regularization]
+```
+
+The effective-potential topological selection (appendix_ALPHA_one_loop_biquat.tex, Section "Calculation of α") requires:
+
+```
+B ≈ 46.3   [needed for n_min = 137, hence α⁻¹ = 137]
+```
+
+The ratio is:
+
+```
+B_required / B₀ = 46.3 / 25.1 ≈ 1.844
+```
+
+### 11.2 Why the Gap Cannot Be Perturbative
+
+Standard two-loop QED corrections to the β-function are of order α/π ≈ 0.002, giving an enhancement factor ≈ 1.001 — three orders of magnitude smaller than 1.844. The gap cannot arise from a perturbative CT two-loop correction.
+
+### 11.3 Source of the 46.3 Value
+
+The value B ≈ 46.3 appears in this document (Sections 4–5) via the formula:
+
+```
+B = N_eff^(3/2) × C_geo × R_loop(μ/Λ) = 12^(3/2) × 1 × 1.11 ≈ 46.3
+```
+
+This formula uses N_eff^(3/2) (with a 3/2 exponent arising from mode counting plus field normalization), whereas the standard one-loop result uses N_eff linearly. The two formulas represent **different physical approaches** that have not been reconciled in the UBT framework.
+
+### 11.4 Current Treatment: B as Measured Input
+
+Following SM convention (where α(m_e) is a measured input, not a prediction), we treat:
+
+```
+B = 46.3   (measured input parameter, SM convention)
+A/B = 1/46.3 ≈ 0.0216   (measured ratio)
+```
+
+All UBT predictions depending on B are conditional on this measured input. The claim that α is derived without free parameters is **premature** until the B₀ → B gap is resolved.
+
+### 11.5 Resolution Pathway
+
+The inconsistency will be resolved when one of the following is completed:
+
+1. An explicit CT two-loop calculation derives the large enhancement factor ≈ 1.844 from first principles within the UBT framework.
+2. The N_eff^(3/2) formula is rigorously derived from the UBT action and shown to be the correct replacement for the standard one-loop result.
+3. An alternative mechanism yields α⁻¹ = 137 with B₀ ≈ 25.1.
 
 ---
 
