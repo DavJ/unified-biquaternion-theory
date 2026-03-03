@@ -1,0 +1,31 @@
+# CODEOWNERS
+# Defines required reviewers per directory.
+# Format: <path pattern>  <@owner> [<@owner2> ...]
+#
+# Roles map to GitHub usernames. Replace the placeholder usernames below
+# (@librarian, @auditor, @engineer, @experimentalist) with real GitHub
+# account names once contributors are assigned to each role.
+# Until then, CODEOWNERS review enforcement is inactive for these paths.
+
+# ── Docs / theory ──────────────────────────────────────────────────────────────
+# Librarian + Auditor must review changes to theoretical documentation.
+docs/theory/                    @librarian @auditor
+docs/RESEARCH_OPERATING_SYSTEM.md @librarian @auditor
+
+# ── Tools ──────────────────────────────────────────────────────────────────────
+# Engineer + Auditor own the tools directory.
+tools/                          @engineer @auditor
+
+# ── Experiments ────────────────────────────────────────────────────────────────
+# Experimentalist + Auditor own the experiments directory.
+experiments/                    @experimentalist @auditor
+
+# ── Protected core — Auditor mandatory ─────────────────────────────────────────
+# Any change here requires Auditor review AND the allow-core-change label.
+original_release_of_ubt/        @auditor
+canonical/                      @auditor
+core/                           @auditor
+unified_biquaternion_theory/    @auditor
+
+# ── CI / workflow configuration ────────────────────────────────────────────────
+.github/                        @auditor

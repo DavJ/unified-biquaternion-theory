@@ -1,0 +1,63 @@
+name: "Research Experiment"
+description: "Design or report a reproducible computational experiment."
+title: "[EXPERIMENT] "
+labels: ["role:experimentalist"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Read** `docs/RESEARCH_OPERATING_SYSTEM.md` before submitting.
+        Experiments must be reproducible. Include execution instructions and expected artifacts.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: "Objective"
+      description: "What does this experiment test or measure?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repo_grounding
+    attributes:
+      label: "Repo Grounding"
+      description: "At least 2 path:line citations linking the experiment to theory."
+      placeholder: |
+        - canonical/fields/theta_field.tex:33 — equation being numerically tested
+        - tools/alpha_running.py:12 — existing utility reused
+    validations:
+      required: true
+
+  - type: textarea
+    id: execution
+    attributes:
+      label: "Execution Instructions"
+      description: "Step-by-step commands to reproduce the experiment."
+      placeholder: |
+        ```bash
+        python experiments/my_experiment.py --param 42
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_artifacts
+    attributes:
+      label: "Expected Artifacts / Logs"
+      description: "Describe the output files or logs that will be committed as evidence."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have read `docs/RESEARCH_OPERATING_SYSTEM.md`"
+          required: true
+        - label: "I have provided ≥2 path:line citations in Repo Grounding"
+          required: true
+        - label: "Execution instructions are included"
+          required: true
+        - label: "Expected artifacts/logs are described"
+          required: true

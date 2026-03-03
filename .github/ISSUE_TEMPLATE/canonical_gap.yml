@@ -1,0 +1,49 @@
+name: "Canonical Gap"
+description: "A definition, proof, or derivation is missing from the canonical paths."
+title: "[GAP] "
+labels: ["role:librarian", "canonical-gap"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Read** `docs/RESEARCH_OPERATING_SYSTEM.md` before submitting.
+        The Librarian uses this template to flag missing canonical content.
+
+  - type: textarea
+    id: missing_item
+    attributes:
+      label: "Missing Item"
+      description: "What definition, proof, or derivation is absent from canonical paths?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: where_referenced
+    attributes:
+      label: "Where it is referenced (but not defined)"
+      description: "Provide path:line citations where the item is used or assumed without definition."
+      placeholder: |
+        - unified_biquaternion_theory/ubt_main_article.tex:78 — references Θ without canonical definition
+        - consolidation_project/ubt_2_main.tex:120 — same symbol used differently
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_location
+    attributes:
+      label: "Suggested Canonical Location"
+      description: "Where should the definition live? (e.g., `canonical/AXIOMS.md` or a new file)"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have read `docs/RESEARCH_OPERATING_SYSTEM.md`"
+          required: true
+        - label: "I have performed a grep/ripgrep search to confirm the item is truly absent"
+          required: true
+        - label: "I have provided ≥2 path:line citations where the item is referenced but not defined"
+          required: true

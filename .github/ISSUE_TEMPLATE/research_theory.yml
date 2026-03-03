@@ -1,0 +1,57 @@
+name: "Research Theory"
+description: "Propose or discuss a theoretical structure, conjecture, or derivation."
+title: "[THEORY] "
+labels: ["role:scientist"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Read** `docs/RESEARCH_OPERATING_SYSTEM.md` before submitting.
+        Label your claim as `[CLAIM]`, `[HYPOTHESIS]`, or `[SPECULATION]`.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Summary"
+      description: "One-paragraph description of the theoretical proposal."
+    validations:
+      required: true
+
+  - type: textarea
+    id: repo_grounding
+    attributes:
+      label: "Repo Grounding"
+      description: "At least 2 path:line citations from the repository."
+      placeholder: |
+        - canonical/AXIOMS.md:12 — definition of the biquaternion field Θ
+        - unified_biquaternion_theory/ubt_main_article.tex:45 — field equation
+    validations:
+      required: true
+
+  - type: textarea
+    id: claim_type
+    attributes:
+      label: "Claim / Hypothesis / Speculation"
+      description: "State clearly whether this is [CLAIM], [HYPOTHESIS], or [SPECULATION] and why."
+    validations:
+      required: true
+
+  - type: textarea
+    id: derivation
+    attributes:
+      label: "Derivation outline or diff proposal"
+      description: "Sketch the derivation or proposed changes. Attach diffs if applicable."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have read `docs/RESEARCH_OPERATING_SYSTEM.md`"
+          required: true
+        - label: "I have provided ≥2 path:line citations in Repo Grounding"
+          required: true
+        - label: "I have labeled the claim type ([CLAIM]/[HYPOTHESIS]/[SPECULATION])"
+          required: true
