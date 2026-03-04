@@ -8,6 +8,14 @@
   \usepackage{hyperref}
 
   % VERSION: v17 Stable Release
+% TODO(alpha-B-inconsistency): The one-loop derivation yields B_0 = 8pi ~ 25.1,
+%   but B ~ 46.3 is required for n_min = 137. The ratio 46.3/25.1 ~ 1.844 is far
+%   too large for a perturbative two-loop QED correction (O(alpha/pi) ~ 0.002).
+%   The 46.3 value appears in ALPHA_SYMBOLIC_B_DERIVATION.md via a separate
+%   N_eff^(3/2) formula that is not reconciled with the standard one-loop result.
+%   Until the discrepancy is resolved by an explicit CT two-loop calculation,
+%   B/A must be treated as a measured input parameter following SM convention.
+%   See Section~\ref{sec:B-alpha-inconsistency} for the full status.
 
   \newtheorem{theorem}{Theorem}
   \newtheorem{definition}{Definition}
@@ -34,7 +42,9 @@ This appendix provides the \textbf{single source of truth} for the derivation of
 \begin{itemize}
 \item The UV cutoff $\Lambda$ is set geometrically by the compact imaginary-time radius: $\Lambda = 1/R_\psi$, where $\psi \sim \psi + 2\pi$ defines $R_\psi = 1$.
 \item The renormalization condition is set at scale $\mu_0$ (default: $\mu_0 = m_e$, but defined as a macro for flexibility).
-\item The coefficient $B$ in the running coupling is derived as a closed symbolic expression: $B = F(R_\psi, N_{\text{eff}})$, with no free parameters.
+% TODO(alpha-B-inconsistency): B_0 ~ 25.1 is derived; B ~ 46.3 needed for alpha^{-1}=137 is NOT yet derived. Treat B as measured input pending resolution.
+\item The one-loop $\beta$-function coefficient $B_0 = 2\pi N_{\mathrm{eff}}/3 \approx 25.1$ is derived symbolically from mode counting.
+\item The value $B \approx 46.3$ required by the effective-potential topological selection (Sec.~\ref{sec:alpha-value}) has \emph{not} yet been derived from first principles. Until the discrepancy is resolved, $B$ and $A/B$ are treated as measured input parameters following SM convention (see Sec.~\ref{sec:B-alpha-inconsistency}).
 \item The effective number of modes $N_{\text{eff}}$ is justified from mode counting in the $\tau = t + i\psi + j\chi + k\xi$ structure, including internal phases, helicities, and particle/antiparticle degrees of freedom.
 \end{itemize}
 
@@ -503,12 +513,56 @@ $\Lambda$ & Adjusted & Derived: $1/R_\psi$ \\
 One-loop $B_0$ & Not calculated & Derived: 25.1 \\
 Two-loop $\mathcal{R}$ & Not specified & CT baseline: 1 (A1--A3) \\
 \hline
-\textbf{Overall} & 100\% fitted & 100\% fit-free \\
+\textbf{Overall} & 100\% fitted & Partially derived (see below) \\
 \hline
 \end{tabular}
 \end{center}
 
-The remaining 10\% gap (calculation of $\mathcal{R}_{\text{UBT}}$ from first principles) represents ongoing work.
+% TODO(alpha-B-inconsistency): the gap is larger than the "10%" stated here; see Sec.~\ref{sec:B-alpha-inconsistency}.
+The derivation of the full coefficient $B \approx 46.3$ from first principles (specifically, closing the factor-of-$1.844$ gap between the one-loop result $B_0 \approx 25.1$ and the empirically required value) represents the main outstanding open problem; see Sec.~\ref{sec:B-alpha-inconsistency}.
+
+\subsection{Open Problem: B/\texorpdfstring{$\alpha$}{alpha} Inconsistency}
+\label{sec:B-alpha-inconsistency}
+
+% TODO(alpha-B-inconsistency): This section documents the open inconsistency
+%   and must be resolved before claiming a parameter-free derivation of alpha.
+
+\paragraph{Statement of the inconsistency.}
+The one-loop calculation in Sections~\ref{sec:one-loop}--\ref{sec:renormalization} yields:
+\begin{equation}
+B_0 = \frac{2\pi N_{\mathrm{eff}}}{3} = \frac{2\pi \times 12}{3} = 8\pi \approx 25.1.
+\label{eq:B0-one-loop}
+\end{equation}
+However, the effective-potential topological selection (Section~\ref{sec:alpha-value}) requires $B \approx 46.3$ to produce $n_{\min} = 137$, hence $\alpha^{-1} = 137$. The discrepancy is:
+\begin{equation}
+\frac{B_{\mathrm{required}}}{B_0} = \frac{46.3}{25.1} \approx 1.844.
+\label{eq:B-ratio}
+\end{equation}
+
+\paragraph{Why the gap cannot be closed by a perturbative two-loop correction.}
+Standard two-loop QED corrections to the $\beta$-function coefficient are of order $\alpha/\pi \approx 0.002$, giving:
+\begin{equation}
+\mathcal{R}_{\mathrm{2\text{-}loop}}^{\mathrm{QED}} = 1 + \mathcal{O}(\alpha/\pi) \approx 1.001.
+\label{eq:two-loop-QED-small}
+\end{equation}
+The required enhancement factor $1.844$ is three orders of magnitude larger than Eq.~\eqref{eq:two-loop-QED-small} and therefore \emph{cannot} be attributed to a perturbative two-loop CT correction. An alternative derivation route present in the repository (\texttt{ALPHA\_SYMBOLIC\_B\_DERIVATION.md}) uses the formula $B = N_{\mathrm{eff}}^{3/2} \times C_{\mathrm{geo}} \times R_{\mathrm{loop}}(\mu/\Lambda)$, which gives $12^{3/2} \approx 41.6$ and, with a running-coupling factor $R_{\mathrm{loop}} \approx 1.11$, yields $B \approx 46.3$. This formula and the standard one-loop formula~\eqref{eq:B0-one-loop} have not been reconciled.
+
+\paragraph{Current status: $B$ as a measured input parameter.}
+Following Standard Model convention---where the QED coupling $\alpha(m_e)$ is a measured input, not a predicted output---we treat $B$ (and the ratio $A/B$) as a \emph{measured input parameter} until an explicit derivation closes the gap:
+\begin{equation}
+B = 46.3 \quad \text{(measured input; SM convention)}.
+\label{eq:B-SM-convention}
+\end{equation}
+All UBT predictions that depend on $B$ are therefore \emph{conditional} on this input. The topological selection mechanism $n_{\min} = 137 \Leftrightarrow \alpha^{-1} = 137$ is valid given this input, but does not yet constitute a parameter-free derivation of $\alpha$.
+
+\paragraph{Resolution pathway.}
+The inconsistency will be resolved when one of the following is completed:
+\begin{enumerate}
+  \item An explicit complex-time (CT) two-loop calculation is performed that gives $\mathcal{R}_{\mathrm{UBT}} \approx 1.844$, together with a derivation of why this large enhancement factor arises in the UBT framework.
+  \item The formula $B = N_{\mathrm{eff}}^{3/2} \times C_{\mathrm{geo}} \times R_{\mathrm{loop}}$ is rigorously derived from the UBT action and shown to supersede the one-loop result~\eqref{eq:B0-one-loop}.
+  \item An alternative topological-selection mechanism is found that yields $\alpha^{-1} = 137$ with $B \approx 25.1$.
+\end{enumerate}
+Until one of these resolutions is achieved, any claim that $\alpha$ is \emph{derived} without free parameters in UBT is premature.
 
 \section{Calculation of $\alpha$ at Low Energy}
 \label{sec:alpha-value}
@@ -520,7 +574,8 @@ The effective potential for electromagnetic winding modes is:
 V_{\text{eff}}(n) = A n^2 - B n \ln(n),
 \label{eq:V-eff}
 \end{equation}
-where $A = 1$ (normalized kinetic energy) and $B \approx 46.3$ (derived above).
+% TODO(alpha-B-inconsistency): B ~ 46.3 is used here as a measured input; the one-loop derivation gives B_0 ~ 25.1 only. See Sec.~\ref{sec:B-alpha-inconsistency}.
+where $A = 1$ (normalized kinetic energy) and $B \approx 46.3$ (measured input parameter following SM convention). Note that the one-loop derivation gives only $B_0 \approx 25.1$; the origin of the larger value is an open problem documented in Sec.~\ref{sec:B-alpha-inconsistency}.
 
 The minimum of $V_{\text{eff}}(n)$ determines the topologically stable winding number:
 \begin{equation}
@@ -559,7 +614,8 @@ The experimental value is $\alpha^{-1} \approx 137.036$, differing by 0.026\%, w
 \begin{enumerate}
 \item \textbf{UV cutoff:} $\Lambda = 1/R_\psi = 1$ (geometric, not fitted)
 \item \textbf{Mode count:} $N_{\text{eff}} = 12$ (from biquaternion structure)
-\item \textbf{Coefficient $B$:} $B = 2\pi N_{\text{eff}} / 3 \times \beta_{\text{2-loop}} \approx 46.3$ (derived)
+% TODO(alpha-B-inconsistency): beta_2-loop ~ 1.844 needed here is not derived; B ~ 46.3 must be treated as a measured input parameter until CT two-loop calculation is complete.
+\item \textbf{Coefficient $B$:} The one-loop result is $B_0 \approx 25.1$ (Sec.~\ref{sec:one-loop}). The value $B \approx 46.3$ used in the effective potential (Sec.~\ref{sec:alpha-value}) requires a two-loop correction factor $\beta_{\text{2-loop}} \approx 1.844$ that has not been derived. Pending this derivation, $B$ is treated as a measured input parameter following SM convention.
 \item \textbf{Fine-structure constant:} $\alpha^{-1} = 137$ (topologically selected)
 \end{enumerate}
 
@@ -572,7 +628,8 @@ All quantities are determined by:
 \item Standard perturbative QFT one-loop and two-loop formulas (calculational)
 \end{itemize}
 
-There are \textbf{no hand-tuned parameters}.
+% TODO(alpha-B-inconsistency): B ~ 46.3 is a measured input, not yet derived from first principles.
+The quantities $\Lambda$, $N_{\mathrm{eff}}$, and $R_\psi$ are determined purely from geometry and mode counting. The coefficient $B_0 \approx 25.1$ is derived from these inputs at one loop. The phenomenologically required value $B \approx 46.3$ is currently treated as a \emph{measured input parameter} (SM convention) pending resolution of the open inconsistency in Sec.~\ref{sec:B-alpha-inconsistency}.
 
 \subsection{Consistency with Renormalization Group}
 
@@ -682,7 +739,8 @@ This analysis demonstrates that the UBT derivation of $\alpha$ is not fine-tuned
 \section{Conclusion}
 \label{sec:conclusion}
 
-We have derived the fine-structure constant $\alpha$ from first principles within UBT, using only the biquaternionic field structure, geometric compactification, and standard QFT techniques. The coefficient $B$ is a derived quantity, not a fitted parameter, and the UV cutoff $\Lambda$ is set by the compact imaginary-time radius $R_\psi$.
+% TODO(alpha-B-inconsistency): B is NOT fully derived; see Sec.~\ref{sec:B-alpha-inconsistency}.
+We have derived the one-loop coefficient $B_0 \approx 25.1$ from first principles within UBT, using only the biquaternionic field structure, geometric compactification, and standard QFT techniques. The UV cutoff $\Lambda$ is set by the compact imaginary-time radius $R_\psi$. However, the effective-potential calculation requires $B \approx 46.3$ to yield $\alpha^{-1} = 137$; this value has \emph{not} yet been derived—the ratio $46.3/25.1 \approx 1.844$ is far too large for a perturbative two-loop QED correction. Until an explicit derivation bridges this gap, $B$ and the ratio $A/B$ are treated as measured input parameters following SM convention (see Sec.~\ref{sec:B-alpha-inconsistency}).
 
 \textbf{All references to $\alpha$ in the UBT framework should cite this appendix as the primary source.}
 
