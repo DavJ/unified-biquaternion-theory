@@ -123,8 +123,12 @@ def ubt_biquaternionic_vacuum_params(h_over_g: float = 0.1) -> Tuple[float, floa
     Parameters for a generic biquaternionic vacuum with h_μν ≠ 0.
 
     For simplicity, assume:
-        𝒜ᴿ and 𝒜ᴵ are proportional: ρ = 1 (maximal correlation).
+        𝒜ᴿ and 𝒜ᴵ are proportional: ρ = 1 (maximal positive correlation).
         r = |h_μν| / |g_μν| ≈ h_over_g.
+
+    Note on ρ=1: this is the upper bound on |∂α/∂φ| = 2|ρ|r·α(0), giving the
+    maximum possible variation of α with φ. Use ρ < 1 for more conservative
+    estimates of the physical effect.
 
     Args:
         h_over_g:  Ratio |h_μν|/|g_μν| (imaginary-to-real metric component ratio).
@@ -132,7 +136,7 @@ def ubt_biquaternionic_vacuum_params(h_over_g: float = 0.1) -> Tuple[float, floa
     Returns:
         (r, rho)   [CONJECTURE — full computation requires explicit vacuum solution]
     """
-    return h_over_g, 1.0  # ρ=1 conservative upper bound; [CONJECTURE]
+    return h_over_g, 1.0  # ρ=1 gives maximum |∂α/∂φ|; [CONJECTURE]
 
 
 # ---------------------------------------------------------------------------
@@ -303,7 +307,9 @@ Examples:
         plot_path=args.plot_path,
     )
 
-    # Exit code: 0 if φ is pure gauge (r=0), 1 if physical (r≠0)
+    # Exit code: 0 if φ is pure gauge (∂α/∂φ = 0), 1 if physical (∂α/∂φ ≠ 0).
+    # Note: both are valid scientific outcomes — exit code 1 here means "φ is a
+    # genuine landscape parameter", not a program error.
     raise SystemExit(0 if abs(result["dalpha_dphi_at_0"]) < 1e-15 else 1)
 
 
