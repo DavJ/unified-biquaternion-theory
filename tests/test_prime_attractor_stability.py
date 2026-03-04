@@ -595,14 +595,15 @@ def _additive_mode_rhs(
     gamma: float = 1.0,
     coupling: float = 0.1,
 ) -> np.ndarray:
-    """Additive coupling ODE: ∂_t a_n = -γ·n·a_n + λ·Σ_{j+m-k=n} a_j·Re(ā_k·a_m).
+    """Additive coupling ODE: ∂_t a_n = -γ·n·a_n + λ·Σ_{k+m=n} a_k·a_m.
 
-    Simplified for real a (Sc(ā_k·a_m) = a_k·a_m for real modes):
-        ∂_t a_n = -γ·n·a_n + λ·Σ_{k+m=n+j, j≠0} ...
-
-    For tractability we use the reduced form:
+    This implements the reduced (two-index) additive convolution form:
         ∂_t a_n = -γ·n·a_n + λ·Σ_{k+m=n, k≥1, m≥1} a_k·a_m
-    This is the standard additive convolution (k+m=n) from QFT.
+
+    The full three-index constraint from the field equation is j+m-k=n
+    (see Appendix_H §H.7a.1).  Setting j=k recovers the two-index form k+m=n
+    (for the diagonal term Sc(ā_k·a_k) = |a_k|²).
+    Both forms give nonzero injection to prime modes, confirming the DEAD END.
     """
     da = np.zeros_like(a)
     for idx in range(n_modes):

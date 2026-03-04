@@ -413,8 +413,8 @@ def final_summary(v1: str, v2: str, v3: str) -> None:
         B_req = 12.0 ** 1.5
 
         print(f"    B_flat (one-loop, derived):        {B0_12:.4f}  → n* = 67")
-        print(f"    S_KK   (KK mode sum):              {S12:.4f}  → n* = {_n_star(B0_12, S12)}")
-        print(f"    B_zeta (zeta regularization):      {Bz12:.4f}  → n* = {_n_star(B0_12, Bz12)}")
+        print(f"    S_KK   (KK mode sum):              {S12:.4f}  → n* = {_n_star(S12)}")
+        print(f"    B_zeta (zeta regularization):      {Bz12:.4f}  → n* = {_n_star(Bz12)}")
         print(f"    B_required (N_eff^{{3/2}}):          {B_req:.4f}  → n* = 127")
         print(f"    B_full (B_base × R=1.114):         {B_req * 1.114:.4f}  → n* = 137")
         print()
@@ -435,7 +435,7 @@ def final_summary(v1: str, v2: str, v3: str) -> None:
     print()
 
 
-def _n_star(B0: float, B_test: float) -> int:
+def _n_star(B_test: float) -> int:
     """Return the prime minimizing V_eff(n) = n² - B_test·n·ln(n)."""
     # Use the same prime sieve and V_eff computation as validate_B_coefficient.py
     primes = _sieve(600)
