@@ -564,6 +564,142 @@ The inconsistency will be resolved when one of the following is completed:
 \end{enumerate}
 Until one of these resolutions is achieved, any claim that $\alpha$ is \emph{derived} without free parameters in UBT is premature.
 
+% ================================================================
+% §B.3 — KK Mode Sum Correction to B
+% Status: [HONEST GAP] — three independent approaches tested;
+%         none reproduces N_eff^{3/2} scaling.  Documented for
+%         completeness and as a record for future investigators.
+% See: tools/compute_B_KK_sum.py for numerical verification.
+% ================================================================
+\subsection{KK Mode Sum Correction to $B$ — Three Approaches}
+\label{sec:B-KK-correction}
+
+\textbf{[HONEST GAP — no derivation found; documented as open problem]}
+
+This section reports the results of testing three independent approaches to
+deriving $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ from first principles.
+All numerical computations are implemented in \texttt{tools/compute\_B\_KK\_sum.py},
+which may be executed to reproduce these results.  No input uses the target
+value $n^* = 137$ or $\alpha = 1/137$; the only inputs are $N_{\mathrm{eff}}$
+and the compactification geometry.
+
+\subsubsection*{B.3.1 — KK Mode Sum (Euler-Maclaurin approach)  \textbf{[HONEST GAP]}}
+\label{sec:B3-KK-euler}
+
+The compact $\psi$-circle $S^1$ with radius $R_\psi$ introduces a Kaluza-Klein
+(KK) tower of virtual fermion modes running in the one-loop vacuum polarization
+loop~\cite{Appelquist1983}.  The KK masses are
+\begin{equation}
+m_k = k/R_\psi, \quad k \in \mathbb{Z} \setminus \{0\},
+\label{eq:KK-masses}
+\end{equation}
+(setting $m_f = 0$ for the massless limit).  Mode-by-mode, the standard
+Feynman-parameter form of the vacuum polarization contributes
+\begin{equation}
+\Pi_k(q^2) \propto \int_0^1 dz\, z(1-z)\ln\!\left[1 + \frac{q^2 z(1-z)}{m_k^2}\right].
+\label{eq:Pi-k}
+\end{equation}
+\textbf{[SKETCH — applies the standard vacuum polarization integral
+mode-by-mode to the KK tower; see Appelquist-Chodos (1983) for the full
+Kaluza-Klein quantum correction derivation.]}
+
+Setting the renormalization scale $q^2 = \Lambda^2 = 1/R_\psi^2$ (geometric UV
+cutoff) and defining
+\begin{equation}
+f(k) = \int_0^1 dz\, z(1-z)\ln\!\left[1 + \frac{z(1-z)}{k^2}\right],
+\label{eq:f-k}
+\end{equation}
+the compact-dimension one-loop sum is
+$S_{\mathrm{KK}}(N_{\mathrm{eff}}) = (N_{\mathrm{eff}}/3\pi)\sum_{k \neq 0} f(k)$.
+
+\paragraph{Numerical results} (see \texttt{tools/compute\_B\_KK\_sum.py}, convergence
+verified at $K_{\max} = 100$):
+
+\begin{equation}
+\frac{S_{\mathrm{KK}}(N_{\mathrm{eff}})}{B_0(N_{\mathrm{eff}})} \approx 0.0052
+\quad \text{for all } N_{\mathrm{eff}} \in \{4, 8, 12, 24\},
+\label{eq:KK-ratio}
+\end{equation}
+whereas the ratio required for $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ would be
+$N_{\mathrm{eff}}^{1/2}/(2\pi/3) \approx 1.65$ for $N_{\mathrm{eff}} = 12$.
+The KK mode sum gives a result nearly 300 times smaller than required.
+
+\textbf{Verdict}: The massless-KK-mode sum does \emph{not} reproduce the
+$N_{\mathrm{eff}}^{3/2}$ scaling.  \textbf{[HONEST GAP]}
+
+\subsubsection*{B.3.2 — Zeta-Function Regularization  \textbf{[HONEST GAP]}}
+\label{sec:B3-zeta}
+
+An alternative route uses the Riemann zeta regularization $\sum_{k=1}^\infty k \to \zeta(-1) = -1/12$:
+\begin{equation}
+\Delta B_\zeta = \frac{N_{\mathrm{eff}}}{3} \cdot 2\zeta(-1) \cdot \left(\frac{2\pi}{R_\psi\Lambda}\right)^2.
+\label{eq:DeltaB-zeta}
+\end{equation}
+\textbf{[SKETCH — this is a formal zeta regularization; physical applicability to
+the compact-dimension KK correction requires careful treatment of boundary
+conditions.]}
+
+\paragraph{Numerical results} ($R_\psi = \Lambda = 1$):
+\begin{equation}
+B_\zeta(N_{\mathrm{eff}} = 12) = B_0 + \Delta B_\zeta \approx 25.1 - 26.3 = -1.2.
+\label{eq:Bzeta-12}
+\end{equation}
+The large factor $(2\pi)^2 \approx 39.5$ combined with $\zeta(-1) = -1/12$ gives a
+correction $\Delta B_\zeta \approx -26.3$, which moves $B$ \emph{away} from the
+required value $B_{\mathrm{base}} = 41.6$.
+
+\textbf{Verdict}: Zeta regularization of the KK sum gives the wrong sign and
+magnitude.  \textbf{[HONEST GAP]}
+
+\subsubsection*{B.3.3 — Gauge Orbit Volume (Weyl Formula)  \textbf{[DEAD END]}}
+\label{sec:B3-gauge-volume}
+
+The hypothesis $B_{\mathrm{base}} \propto \mathrm{Vol}(\mathrm{SU}(N_{\mathrm{eff}}))$
+was checked using the Weyl integration formula~\cite{Brocker1985}:
+\begin{equation}
+\mathrm{Vol}(\mathrm{SU}(N)) = \frac{(2\pi)^{N(N+1)/2}}{\prod_{k=1}^{N-1} k!}.
+\label{eq:Vol-SUN}
+\end{equation}
+A power-law fit over $N \in \{4, 5, 6, 8, 10, 12\}$ gives
+\begin{equation}
+\mathrm{Vol}(\mathrm{SU}(N)) \sim C \cdot N^\alpha, \quad \alpha \approx 42.3
+\label{eq:Vol-power-law}
+\end{equation}
+due to the super-exponential growth from the factorial denominator
+($\mathrm{Vol}(\mathrm{SU}(N)) \sim (2\pi e/N)^{N^2/2}$ by Stirling's approximation).
+This scaling is far from $N^{3/2}$.
+
+\textbf{Verdict}: The Weyl formula gives super-exponential growth, not $N^{3/2}$.
+The gauge orbit volume hypothesis is \textbf{[DEAD END]} as a direct derivation
+of $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$.
+
+\subsubsection*{B.3.4 — Honest Summary  \textbf{[OPEN HARD PROBLEM]}}
+\label{sec:B3-summary}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Method} & \textbf{Result} & \textbf{Status} \\
+\hline
+KK mode sum (Euler-Maclaurin) & Ratio $\approx 0.005$, not $1.65$ & [HONEST GAP] \\
+Zeta-function regularization  & $B_\zeta \approx -1.2$, wrong sign & [HONEST GAP] \\
+Gauge orbit volume             & $\mathrm{Vol}(SU(N)) \sim N^{42}$  & [DEAD END] \\
+\hline
+\textbf{Required} & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 41.57$ & \\
+\hline
+\end{tabular}
+\end{center}
+
+None of the three approaches gives $N_{\mathrm{eff}}^{3/2}$ scaling.  The
+formula $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 41.57$ \textbf{remains
+phenomenological}.  The correctly derived one-loop value $B_0 = 25.1$ predicts
+$n^*(B_0) = 67 \neq 137$.  This is an \textbf{OPEN HARD PROBLEM}.  The
+$\alpha$ derivation at bare level requires $B_{\mathrm{base}}$ to be treated as
+a fitted parameter until a geometric derivation is found.
+
+\textbf{No-circularity verification}: see \texttt{validation/validate\_B\_coefficient.py},
+which confirms this status independently.
+
 \section{Calculation of $\alpha$ at Low Energy}
 \label{sec:alpha-value}
 

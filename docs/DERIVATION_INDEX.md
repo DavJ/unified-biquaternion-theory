@@ -101,6 +101,8 @@
 
 ---
 
+---
+
 ## φ-Universe Parameter and h_μν Vacuum  *(added 2026-03-04)*
 
 | Claim | Location | Math Status | Numeric Repro | Free Parameters |
@@ -125,6 +127,7 @@
 | Fine structure α | 8 | 3 | 3 | 2 | 5 |
 | Electron mass | 4 | 0 | 2 | 2 | 2 |
 | Hubble tension | 3 | 0 | 0 | 3 | 2 |
+| Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |
 | Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |
 | φ-universe / h_μν | 7 | 5 | 0 | 2 | 1 |
 

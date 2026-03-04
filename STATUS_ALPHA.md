@@ -269,23 +269,30 @@ B_base = N_eff^{3/2} = 12^(3/2) ≈ 41.57
 ```
 
 **This formula has no derivation anywhere in the repository.** The B_base = N_eff^{3/2} formula
-is phenomenological. Possible geometric origins under investigation:
+is phenomenological.
 
-- **KK mode form factor**: The compact ψ-circle modifies the one-loop β-function via
-  a KK mode sum: `B_compact = B₀ × F(R_ψ·Λ)` where F sums over KK modes running in
-  the loop. If F evaluated at Λ = 1/R_ψ gives F ≈ N_eff^{1/2}/(2π/3), this would
-  explain B_base = N_eff^{3/2}.
-- **Gauge orbit volume**: Vol(SU(N)) ~ N^{3/2} for large N (Weyl integration formula).
-  If B_base = C·Vol(gauge orbit), computing the normalisation C and checking against
-  41.57 for N_eff=12 would provide a geometric derivation.
+**Three independent approaches were tested** (see `tools/compute_B_KK_sum.py` for all
+numerical computations; no circularity — inputs are only N_eff and geometry, not n*=137):
 
-**Honest check** (see `validation/validate_B_coefficient.py`):
-If neither derivation works, the rigorously derived one-loop value must be used:
-```
-n*(B₀=25.1) = exp(A/B₀ - 1/(2B₀)) = exp(1/25.1 - 1/50.2) ≈ exp(0.0199) ≈ 1.02
-```
-This gives n* ≈ 1, not 137. The B_base = N_eff^{3/2} formula is therefore
-**essential** to the derivation and its geometric origin is an **open problem**.
+- **KK mode form factor** [HONEST GAP]: The compact ψ-circle KK mode sum gives
+  `S_KK/B₀ ≈ 0.0052` for all tested N_eff values.  The required ratio would be
+  `N_eff^{1/2}/(2π/3) ≈ 1.65` for N_eff=12.  The massless-KK-mode sum gives a
+  result ~300× too small and does NOT reproduce N_eff^{3/2} scaling.
+- **Zeta-function regularization** [HONEST GAP]: Zeta regularization of Σk with
+  ζ(-1)=-1/12 gives B_ζ ≈ -1.2 for N_eff=12 (wrong sign and magnitude).  This
+  approach does NOT reproduce B_base = N_eff^{3/2}.
+- **Gauge orbit volume** [DEAD END]: Vol(SU(N)) via the Weyl formula scales as
+  N^α with α ≈ 42 (super-exponential due to factorial denominator), not N^{3/2}.
+  The gauge orbit volume hypothesis is a DEAD END for direct derivation.
+
+**Result of all three approaches**: NONE gives N_eff^{3/2} scaling.
+
+**OPEN PROBLEM A remains OPEN.** The formula B_base = N_eff^{3/2} = 41.57 is
+PHENOMENOLOGICAL. The correct one-loop value B₀ = 25.1 predicts n*(B₀) = 67 ≠ 137.
+This is an **OPEN HARD PROBLEM**.
+
+See `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` §B.3 for the full
+derivation attempt with all three methods documented.
 
 ---
 
