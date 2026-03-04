@@ -1,6 +1,6 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# UBT Fitted Parameters Register
+# FITTED_PARAMETERS.md — UBT Fitted and Free Parameters
 
 > **Purpose**: Track which parameters in UBT are fitted/semi-empirical (not derived),
 > and which have been promoted to fully derived status.
@@ -8,11 +8,14 @@
 > **Maintenance rule (R5):** Update this file on every gap closure.
 > - Remove a parameter when it is derived from first principles.
 > - Keep a parameter when it remains fitted to data.
->
-> **Note on "mostly derived":** When a formula has one semi-empirical coefficient and all
-> other terms are structure-motivated (partial derivation from geometry), it is labelled
-> "mostly derived." This means the essential structure (e.g., the An² term) is derived,
-> while the normalisation (e.g., B̃) awaits a full one-loop derivation (Gap 6 roadmap).
+
+This file tracks all parameters in UBT that are either:
+- **Fitted** — value chosen to match an experimental result (not predicted)
+- **Semi-empirical** — partially derived but with unexplained residual
+- **Free** — no derivation; must be input from experiment
+
+Parameters that are **fully derived** from first principles are NOT listed here as active
+(they appear in DERIVATION_INDEX.md as "Proven" and in the "Promoted" table below).
 
 ---
 
@@ -33,10 +36,23 @@
 
 | Parameter | Domain | Formula | Current Status | Data Used | Gap |
 |---|---|---|---|---|---|
-| **B̃** (logarithmic correction) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | Semi-empirical | SM gauge-boson content (N_eff = 12) | Gap 6 |
-| **R factor** | Fine structure α | B coefficient from N_eff | Semi-empirical | SM particle spectrum | Gap 6 |
+| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A) | SM gauge-boson content (N_eff = 12) | Gap 6 |
+| **R factor** (≈ 1.114) | Fine structure α | B = B_base × R | **Semi-empirical** (OPEN PROBLEM B) | SM particle spectrum | Gap 6 |
 | **Λ** (cosmological constant) | Cosmology / GR | FRW embedding | Semi-empirical | CMB Planck data | — |
-| **Electroweak mixing angle** | Standard Model | SU(2)×U(1) embedding | Semi-empirical (Sketch) | PDG value sin²θ_W = 0.231 | — |
+| **Electroweak mixing angle** θ_W | Standard Model | SU(2)×U(1) embedding | **Semi-empirical** | PDG value sin²θ_W = 0.231 | Gap 5 |
+| **SU(2)_L coupling** g | Standard Model | Covariant derivative D_μ | **Free** | PDG g ≈ 0.653 | — |
+| **U(1)_Y coupling** g' | Standard Model | Covariant derivative D_μ | **Free** | PDG g' ≈ 0.357 | — |
+| **ψ-instanton action** S_inst | Lepton masses | m_n ~ exp(S_inst·n)/n! | **Fitted** to muon | S_inst = ln(m_μ/m_e) ≈ 5.33; tau not reproduced | Gap 4 |
+
+Notes on the α derivation:
+- Once Problem A (B_base) and Problem B (R) are resolved, both should be **removed** from this table.
+- The A kinetic coefficient is normalised to 1.0 by convention and is NOT a free parameter.
+- See `STATUS_ALPHA.md §9` for the full derivation strategy.
+
+Notes on lepton masses:
+- The naive KK formula is DERIVED and gives ratio 1:2, which is WRONG (mismatch theorem).
+- No mechanism with ≤1 free parameter reproduces 1:207:3477.
+- All free parameters for lepton masses are pending until the mass generation mechanism is identified.
 
 ---
 
@@ -58,28 +74,28 @@ number n. Within the multi-channel framework, multiple prime channels are stable
 - **Our channel**: n = 137 is selected by energy minimisation (V_eff minimum), not stability rank alone.
 
 The "mostly derived" status of V_eff(n) means:
-- The An² term is **derived** from KK kinematics (no free parameters): partial derivation complete.
+- The An² term is **derived** from KK kinematics (Gap 1, no free parameters).
 - The B̃·n·ln(n) term is **semi-empirical**: structure-motivated by one-loop arguments,
   coefficient fitted to SM content (N_eff = 12 gauge bosons).
 - The roadmap (Gap 6) is to derive B̃ from first principles.
 
-See `STATUS_ALPHA.md` §3 for the full multi-channel stability scan.
+See `STATUS_ALPHA.md §9` and `validation/validate_B_coefficient.py` for the no-circularity test.
 
 ---
 
-## Notes
+## Parameters That Would Be Removed If Derived
 
-- **B̃**: The one-loop logarithmic coefficient B̃ in V_eff(n) = An² − B̃·n·ln(n) remains
-  semi-empirical pending the full one-loop computation (Gap 6).
-  The A coefficient has been derived analytically from Kaluza-Klein kinematics (Gap 1).
-
-- **A coefficient derivation (Gap 1):** A = κ/R_ψ² = ℏ²/(2m_field·R_ψ²), derived from
-  the kinetic energy of winding-n KK configurations on S¹ of radius R_ψ.
-  No free parameters: κ and R_ψ are determined by the UBT field content.
-  See `ubt_core/verify_Vpsi.py` class `WindingPotential`.
+| Parameter | Removal condition |
+|-----------|-------------------|
+| R ≈ 1.114 | Derive R from [D_μ,D_ν] in ℂ⊗ℍ (Option B2) or gravitational dressing (Option B3) |
+| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume |
+| θ_W | Derive sin²θ_W from extended algebra structure or ψ-circle dynamics |
 
 ---
 
 *Full details also in `docs/FITTED_PARAMETERS.md`.*
 
+*Last updated: 2026-03-04. See STATUS_ALPHA.md §9 and docs/PROOFKIT_ALPHA.md §5 for details.*
+
 *© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0*
+

@@ -173,15 +173,51 @@ Expected: α⁻¹(0.511 MeV) ≈ 137.036.
 
 ---
 
-## 5. Parameter Table
+## 5. Parameter Table and Derivation Strategy
 
-| Parameter | Symbol | Value | Derived from UBT | Estimated | Calibrated |
-|---|---|---|---|---|---|
-| Kinetic coefficient | A | 1.0 (normalised) | Yes | No | No |
-| Vacuum polarisation coefficient | B | ≈ 46.3 | ~90% derived | No | No |
-| SM gauge-boson count | N_eff | 12 | Yes | No | No |
-| Radiative correction factor | R | ≈ 1.114 | No | Yes | Partial |
-| Two-loop QED correction | Δ(α⁻¹) | 0.036 | Yes (QED limit) | No | No |
+| Parameter | Symbol | Value | Status | Origin |
+|---|---|---|---|---|
+| Kinetic coefficient | A | 1.0 (normalised) | Derived | Gauge kinetic energy normalisation |
+| One-loop B baseline | B₀ | ≈ 25.1 | **Fully derived** | B₀ = 2π·N_eff/3 (standard one-loop) |
+| B base (N_eff^{3/2}) | B_base | ≈ 41.57 | **OPEN PROBLEM A** | No geometric derivation; phenomenological |
+| Correction factor | R | ≈ 1.114 | **OPEN PROBLEM B** | Geometric origin unknown |
+| Full B coefficient | B | ≈ 46.3 | Semi-empirical | B = B_base × R; requires A and B resolution |
+| SM gauge-boson count | N_eff | 12 | Derived | 3 × 2 × 2 (phases × helicities × charges) |
+| Two-loop QED correction | Δ(α⁻¹) | 0.036 | Derived (QED limit) | Standard two-loop vacuum polarisation |
+
+### Derivation Strategy for B (Gap 6)
+
+**Problem A — Derive B_base = N_eff^{3/2}:**
+
+Option 1 (KK mode form factor):
+```
+B_compact = B₀ × F(R_ψ·Λ)   where   F = Σ_{k=-∞}^{∞} f(k²/(R_ψ²·Λ²))
+```
+Check: does F at Λ = 1/R_ψ give F ≈ N_eff^{1/2}/(2π/3)?
+
+Option 2 (Gauge orbit volume):
+```
+Vol(SU(N)) ~ N^{3/2}  (Weyl integration formula, large N)
+If B_base = C·Vol(gauge orbit) → compute C and check against 41.57 for N=12
+```
+
+If neither option works, the honest result is:
+```
+With B₀ = 25.1 (rigorous):  n*(B₀) = exp(A/B₀ − 1/(2B₀)) ≈ 1  (not 137)
+```
+Statement: "With the rigorously derived one-loop B coefficient, UBT predicts
+n* ≈ 1, not 137. The B_base = N_eff^{3/2} formula is phenomenological and
+its geometric origin is an open problem."
+
+**Problem B — Derive R ≈ 1.114:**
+
+- B1: RG running between compactification scale and m_e → R ≈ 1 [likely dead end]
+- B2: Non-commutative correction δΠ_NC = C_NC·Tr([D_μ,D_ν]²) [under investigation]
+- B3: Gravitational dressing from imaginary metric component h_μν [under investigation]
+
+**No-circularity test** (see `validation/validate_B_coefficient.py`):
+B must be computed without knowing the answer is 137. N_eff=12 should give n*=137;
+other N_eff values should give different primes.
 
 ---
 

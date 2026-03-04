@@ -336,6 +336,179 @@ Q = T_3 + Y
 where $T_3$ is the third component of weak isospin.
 \end{proposition}
 
+%=============================================================
+\section{$SU(2)_L \times U(1)_Y$ from Left/Right Actions on $\mathrm{Mat}(2,\C)$}
+\label{sec:su2_u1_from_actions}
+%=============================================================
+
+The isomorphism $\mathcal{B} \cong \mathrm{Mat}(2,\C)$ allows us to extract
+$SU(2)_L$ and $U(1)_Y$ directly from the left and right actions of
+$\mathrm{Aut}(\mathcal{B})$.
+
+%---------------------------------------------------------
+\subsection{$SU(2)_L$ from the Left Action}
+\label{subsec:su2l_left_action}
+%---------------------------------------------------------
+
+\begin{theorem}[$SU(2)_L$ from norm-preserving left action --- DERIVED]
+\label{thm:su2l}
+Identify $\mathcal{B} \cong \mathrm{Mat}(2,\C)$ and let automorphisms act as
+$T(M) = A M B^{-1}$ with $A, B \in GL(2,\C)$.
+The \emph{left-action subgroup} is $T_L(M) = A \cdot M$ (i.e.\ $B = \mathbf{1}$).
+Restricting to norm-preserving transformations $\mathrm{Sc}(MM^\dagger) = \mathrm{const}$
+requires $A^\dagger A = \mathbf{1}$, i.e.\ $A \in U(2)$.
+Restricting further to $\det(A) = 1$ gives $A \in SU(2)$.
+Hence:
+\begin{equation}
+  SU(2)_L = \text{norm-preserving, unit-determinant left action on } \mathrm{Mat}(2,\C).
+  \tag{DERIVED}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Norm preservation: $\mathrm{Sc}[(AM)(AM)^\dagger] = \mathrm{Sc}[A M M^\dagger A^\dagger] =
+\mathrm{Sc}[M M^\dagger]$ requires $A^\dagger A = \mathbf{1}$.
+Unit determinant is imposed to distinguish $SU(2)$ from the full $U(2)$.
+\end{proof}
+
+\begin{definition}[$SU(2)_L$ generators as left-multiplication maps --- DERIVED]
+\label{def:su2l_generators}
+The three generators of $SU(2)_L$ act on $M \in \mathrm{Mat}(2,\C)$ as
+left multiplication by $\frac{i\sigma^a}{2}$:
+\begin{equation}
+  T^a : M \;\mapsto\; \frac{i\sigma^a}{2} \cdot M, \qquad a = 1, 2, 3,
+\end{equation}
+where $\sigma^a$ are the Pauli matrices:
+\begin{equation}
+  \sigma^1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+  \sigma^2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+  \sigma^3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Commutation relations --- DERIVED]
+\label{prop:su2l_commutators}
+The generators $T^a$ satisfy the $\su(2)$ Lie algebra:
+\begin{equation}
+  [T^a, T^b] = \varepsilon^{abc} T^c. \tag{DERIVED}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Direct computation: for any $M$,
+\begin{align*}
+  [T^a, T^b] M &= T^a(T^b M) - T^b(T^a M)
+    = \frac{i\sigma^a}{2} \cdot \frac{i\sigma^b}{2} M - \frac{i\sigma^b}{2} \cdot \frac{i\sigma^a}{2} M \\
+    &= -\tfrac{1}{4}[\sigma^a, \sigma^b] M
+    = -\tfrac{1}{4} \cdot 2i\varepsilon^{abc}\sigma^c \cdot M
+    = \varepsilon^{abc} \cdot \frac{i\sigma^c}{2} M = \varepsilon^{abc} T^c M.
+\end{align*}
+\end{proof}
+
+\begin{remark}[Gauge symmetry status --- DERIVED or POSTULATE]
+\label{rem:su2l_gauge}
+The identification of the $T^a$ as \emph{gauge} generators (rather than global symmetry
+generators) requires identifying a connection $W^i_\mu$ as the component of the covariant
+derivative:
+\begin{equation}
+  D_\mu = \partial_\mu + ig W^i_\mu T^i. \tag{DERIVED, given UBT fiber bundle structure}
+\end{equation}
+This follows from the UBT gauge principle (the $\Theta$-field is a section of a bundle
+with structure group $\mathcal{B}^\times$) together with the left-action structure.
+The identification of $W^i_\mu$ as a physical weak boson requires input from
+electroweak symmetry breaking, which is outside the scope of this Appendix.
+If the bundle structure is taken as an axiom, this step is \textbf{[DERIVED]};
+if it requires additional postulates, it is \textbf{[POSTULATE --- gauge principle]}.
+\end{remark}
+
+%---------------------------------------------------------
+\subsection{$U(1)_Y$ from the Right Action}
+\label{subsec:u1y_right_action}
+%---------------------------------------------------------
+
+\begin{theorem}[$U(1)_Y$ from scalar right action --- DERIVED]
+\label{thm:u1y}
+The right action with scalar phase $T_R(M) = M \cdot (e^{i\theta}\mathbf{1})^{-1}
+= e^{-i\theta} M$ defines a one-parameter subgroup:
+\begin{equation}
+  U(1)_Y : \quad \Theta \;\mapsto\; e^{-i\theta} \Theta
+  \qquad \text{(hypercharge rescaling)}. \tag{DERIVED}
+\end{equation}
+\end{theorem}
+
+\begin{remark}[$U(1)_Y \neq U(1)_\mathrm{EM}$ --- DERIVED]
+\label{rem:u1y_not_em}
+The hypercharge $U(1)_Y$ is \emph{not} the electromagnetic $U(1)_\mathrm{EM}$.
+After electroweak symmetry breaking, the physical photon and $Z^0$ boson arise
+from the Weinberg rotation:
+\begin{align}
+  A_\mu &= \cos\theta_W \cdot B_\mu - \sin\theta_W \cdot W^3_\mu
+    \quad \text{(photon)}, \\
+  Z_\mu &= \sin\theta_W \cdot B_\mu + \cos\theta_W \cdot W^3_\mu
+    \quad \text{($Z$ boson)},
+\end{align}
+where $B_\mu$ is the $U(1)_Y$ gauge field and $W^3_\mu$ is the neutral
+$SU(2)_L$ gauge field.
+\end{remark}
+
+\begin{remark}[Weinberg angle from $\C\otimes\H$ geometry?]
+\label{rem:weinberg}
+The Weinberg angle $\theta_W$ is determined by the ratio of the $U(1)_Y$ coupling
+$g'$ and the $SU(2)_L$ coupling $g$ via $\tan\theta_W = g'/g$.
+A key question is whether the algebra structure of $\mathcal{B} = \C\otimes_\R\H$ fixes
+a preferred ratio between these couplings:
+\begin{itemize}
+  \item The left-action $SU(2)_L$ and the right-action $U(1)_Y$ have \emph{independent}
+    normalisations in the automorphism group $\Aut(\mathcal{B})$.
+  \item No additional algebraic constraint in $\C\otimes\H$ alone selects a specific
+    ratio $g'/g$.
+  \item Hence $\theta_W$ \textbf{cannot be fixed by $\C\otimes\H$ geometry alone}.
+\end{itemize}
+\textbf{Conclusion}: $\theta_W$ is a \textbf{[SEMI-EMPIRICAL]} free parameter in
+the current $\C\otimes\H$ framework.  Deriving $\sin^2\theta_W$ from first principles
+would require either an extension of the algebra or an additional dynamical input
+(e.g.\ from the $\psi$-circle compactification radius).
+\end{remark}
+
+%---------------------------------------------------------
+\subsection{Chirality: Why $SU(2)_L$ Only?}
+\label{subsec:chirality}
+%---------------------------------------------------------
+
+The left and right actions naturally give $SU(2)_L \times SU(2)_R$.
+The Standard Model has only $SU(2)_L$.  One of the following mechanisms
+must select the left over the right.
+
+\textbf{Option A --- $\psi$-parity selection:}
+The $\psi$-parity $P_\psi : \psi \to -\psi$ (``$\psi$-Parity Symmetry and Mixing Suppression'',
+\texttt{research\_tracks/three\_generations/st3\_complex\_time\_generations.tex})
+acts as a chirality projector:
+odd modes $\Theta_1, \Theta_3, \ldots$ couple to $SU(2)_L$;
+even modes $\Theta_0, \Theta_2, \ldots$ are right-handed singlets (or vice versa).
+The $\psi$-parity selection that appears in the three-generation mechanism
+(ST-3) may simultaneously explain chirality.
+Symmetry-breaking pattern: $SU(2)_L \times SU(2)_R \to SU(2)_L$.
+\textbf{[POSTULATE --- to be derived from psi-parity dynamics]}.
+
+\textbf{Option B --- $SU(2)_R$ broken by VEV:}
+The vacuum $\langle\Theta_0\rangle \neq 0$ breaks $SU(2)_R$ spontaneously at the
+Planck or compactification scale.  $SU(2)_L$ survives as a low-energy symmetry.
+\textbf{[POSTULATE]}.
+
+\textbf{Option C --- Arrow of time from complex time:}
+Complex time $\tau = t + i\psi$ is not symmetric under $t \to -t$ (arrow of time).
+This time-asymmetry selects one chirality.
+\textbf{[POSTULATE --- speculative]}.
+
+\begin{remark}[Status of chirality derivation]
+\label{rem:chirality_status}
+None of Options A, B, C provides a rigorous derivation from $\C\otimes\H$ alone.
+Option~A is most natural within UBT because it links chirality to the same
+$\psi$-parity mechanism that may explain three generations (Gap~4).
+Until a derivation is completed, the statement ``$SU(2)_L$ only'' is
+\textbf{[SEMI-EMPIRICAL]}: structurally motivated but not yet proved.
+\end{remark}
+
 \section{Complete Gauge Group}
 
 \subsection{Direct Product Structure}

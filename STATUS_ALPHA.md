@@ -241,29 +241,86 @@ The p-adic multi-channel framework provides a natural setting for the landscape 
 
 ## 9. Open Issues and Inconsistencies
 
-### B Coefficient Discrepancy ⚠️
+### OPEN INCONSISTENCY: Two Separate Problems in the B Coefficient
 
-**Status: OPEN INCONSISTENCY**
-
-The one-loop derivation rigorously gives:
+**Status: OPEN INCONSISTENCY — two separate problems must be distinguished**
 
 ```
-B₀ = (2π × 12) / 3 × 𝓡_UBT = 25.1   (one-loop, fully derived under assumptions A1–A3)
+One-loop formula gives:     B₀  = 2π·N_eff/3 = 25.1
+Required for n* = 137:      B   = 46.3
+Ratio:                      46.3/25.1 ≈ 1.844   ← the REAL gap
+R ≈ 1.114 only bridges:     41.57 → 46.3        ← smaller issue
 ```
 
-The value required to place the V_eff minimum at n = 137 is:
+The B coefficient discrepancy is actually **two separate problems**:
 
+---
+
+#### Problem A — Where does B_base = N_eff^{3/2} = 41.57 come from?
+
+The standard one-loop β-function (flat spacetime) gives:
 ```
-B = 46.3
+B₀ = 2π·N_eff/3 = 2π·12/3 = 25.1
 ```
 
-The ratio 46.3 / 25.1 ≈ 1.844 **cannot** be explained by perturbative two-loop QED corrections (~0.1%). This discrepancy is unresolved. Possible resolutions under investigation:
+The formula used in the derivation is:
+```
+B_base = N_eff^{3/2} = 12^(3/2) ≈ 41.57
+```
 
-- Non-perturbative contributions from the biquaternionic sector
-- Higher-loop contributions specific to the compact ψ-geometry
-- Modified UV boundary conditions at the compactification scale Λ = 1/R_ψ
+**This formula has no derivation anywhere in the repository.** The B_base = N_eff^{3/2} formula
+is phenomenological. Possible geometric origins under investigation:
 
-Until this discrepancy is resolved, the B ≈ 46.3 value retains a phenomenological component despite the structural derivation.
+- **KK mode form factor**: The compact ψ-circle modifies the one-loop β-function via
+  a KK mode sum: `B_compact = B₀ × F(R_ψ·Λ)` where F sums over KK modes running in
+  the loop. If F evaluated at Λ = 1/R_ψ gives F ≈ N_eff^{1/2}/(2π/3), this would
+  explain B_base = N_eff^{3/2}.
+- **Gauge orbit volume**: Vol(SU(N)) ~ N^{3/2} for large N (Weyl integration formula).
+  If B_base = C·Vol(gauge orbit), computing the normalisation C and checking against
+  41.57 for N_eff=12 would provide a geometric derivation.
+
+**Honest check** (see `validation/validate_B_coefficient.py`):
+If neither derivation works, the rigorously derived one-loop value must be used:
+```
+n*(B₀=25.1) = exp(A/B₀ - 1/(2B₀)) = exp(1/25.1 - 1/50.2) ≈ exp(0.0199) ≈ 1.02
+```
+This gives n* ≈ 1, not 137. The B_base = N_eff^{3/2} formula is therefore
+**essential** to the derivation and its geometric origin is an **open problem**.
+
+---
+
+#### Problem B — What is R ≈ 1.114 geometrically?
+
+Assuming Problem A gives B_base ≈ 41.57, the remaining factor R ≈ 1.114 brings
+B_base·R ≈ 46.3. Three options under investigation:
+
+- **Option B1 — RG running**: B(μ) = B(Λ_ψ)·[1 + β₁·ln(m_e/Λ_ψ)]. Since
+  Λ_ψ = 1/R_ψ = m_e·c/ℏ, this is running between the same scale → R ≈ 1.
+  **[Likely DEAD END]**
+- **Option B2 — Non-commutative correction**: [D_μ, D_ν] ≠ 0 in ℂ⊗ℍ adds a term
+  δΠ_NC = C_NC·Tr([D_μ,D_ν]²) to the polarisation. Computing [D_μ,D_ν] explicitly
+  from the biquaternionic algebra and evaluating for the UBT vacuum may give R ≈ 1.114.
+  **[Under investigation]**
+- **Option B3 — Gravitational dressing**: The imaginary metric component h_μν modifies
+  photon propagation: R = 1 + ⟨h_μν⟩²/⟨g_μν⟩²·C_grav. **[Under investigation]**
+
+---
+
+### No-Circularity Test (mandatory)
+
+The B coefficient derivation must not be circular (i.e., B must be derived without
+knowing the answer is 137). See `validation/validate_B_coefficient.py` for a test
+that computes n* for N_eff ∈ {4, 8, 12, 24} independently:
+
+- N_eff=4  (EW only):  n* = ?  (genuine prediction)
+- N_eff=8  (SU3 only): n* = ?  (genuine prediction)
+- N_eff=12 (SM):       n* should equal 137 if the derivation is correct
+- N_eff=24 (SU5 GUT):  n* = ?  (genuine prediction)
+
+The derivation is non-circular only if N_eff=12 gives 137 **and** the other cases
+give different primes consistently.
+
+---
 
 ### Summary of Rigorous vs. Pending Components
 
@@ -275,7 +332,9 @@ Until this discrepancy is resolved, the B ≈ 46.3 value retains a phenomenologi
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B = 46.3 (required value) | ⚠️ Structural derivation present; factor ~1.844 unexplained |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **OPEN PROBLEM A** — no geometric derivation; formula is phenomenological |
+| R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
+| B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
 | α⁻¹ = 137.036 (quantum corrected) | ✅ Two-loop running |
 
