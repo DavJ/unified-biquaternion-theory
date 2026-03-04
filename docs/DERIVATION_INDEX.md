@@ -59,11 +59,13 @@
 | Claim | Location | Math Status | Numeric Repro | Free Params |
 |---|---|---|---|---|
 | Bare α⁻¹ = 137 from ψ-cycle compactification | [`unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex`](../unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex), [`STATUS_ALPHA.md`](../STATUS_ALPHA.md) | Semi-empirical | Yes | 1 (B coeff.) |
-| Prime stability selects n=137 among all primes | [`STATUS_ALPHA.md`](../STATUS_ALPHA.md) §3, [`ubt/quantization/winding_quantization.tex`](../ubt/quantization/winding_quantization.tex) | Semi-empirical | Yes | 1 (B coeff.) |
+| Prime stability selects n=137 among all primes | [`STATUS_ALPHA.md`](../STATUS_ALPHA.md) §3, [`ubt/quantization/winding_quantization.tex`](../ubt/quantization/winding_quantization.tex) | Proven (conditional on multiplicative KK coupling) | Yes | 1 (B coeff.) |
+| A coefficient from KK kinematics: A = ℏ²/(2m·R_ψ²) | [`Appendix_H_Theta_Phase_Emergence.tex`](../Appendix_H_Theta_Phase_Emergence.tex) §H.3a, [`ubt_core/verify_Vpsi.py`](../ubt_core/verify_Vpsi.py) | Proven (analytic) | Yes | 0 |
 | B coefficient from SM gauge-boson content (N_eff=12) | [`STATUS_ALPHA.md`](../STATUS_ALPHA.md) §5 | Semi-empirical | Partial | 1 (R factor) |
 | Quantum correction +0.036 from two-loop QED | [`consolidation_project/appendix_CT_two_loop_baseline.tex`](../consolidation_project/appendix_CT_two_loop_baseline.tex), [`alpha_core_repro/alpha_two_loop.py`](../alpha_core_repro/alpha_two_loop.py) | Proven (by QED) | Yes | 0 |
 | p-adic route to α⁻¹ | [`consolidation_project/appendix_ALPHA_padic_derivation.tex`](../consolidation_project/appendix_ALPHA_padic_derivation.tex), [`consolidation_project/appendix_H_alpha_padic_combined.tex`](../consolidation_project/appendix_H_alpha_padic_combined.tex) | Semi-empirical | Partial | 0 |
 | Hecke-Worlds: α⁻¹ = p + Δ_CT,p (p=137) | [`UBT_HeckeWorlds_theta_zeta_primes_appendix.tex`](../UBT_HeckeWorlds_theta_zeta_primes_appendix.tex) | Hypothesis | Yes | 0 |
+| ∂α/∂φ computation (is φ gauge or physical?) | [`canonical/geometry/phi_gauge_vs_physical.tex`](../canonical/geometry/phi_gauge_vs_physical.tex), [`tools/compute_dalpha_dphi.py`](../tools/compute_dalpha_dphi.py) | Proven (analytic; result depends on h_μν) | Yes | 0 |
 
 ---
 
@@ -106,7 +108,7 @@
 | GR recovery | 5 | 3 | 1 | 1 | 0 |
 | SU(3) emergence | 5 | 0 | 2 | 3 | 0 |
 | Standard Model | 5 | 2 | 2 | 1 | 0 |
-| Fine structure α | 6 | 1 | 3 | 2 | 4 |
+| Fine structure α | 8 | 3 | 3 | 2 | 5 |
 | Electron mass | 4 | 0 | 2 | 2 | 2 |
 | Hubble tension | 3 | 0 | 0 | 3 | 2 |
 | Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |

@@ -71,22 +71,35 @@ phase rotation of a single biquaternionic field 𝒢_μν.
 If ∂α/∂φ = 0: φ is a pure gauge redundancy (all φ give the same physics).  
 If ∂α/∂φ ≠ 0: φ is a "landscape parameter" — different φ give different physics.
 
-**Current status [CONJECTURE — requires computation]:**
+**Status [DERIVED — see canonical/geometry/phi_gauge_vs_physical.tex]:**
 
-The fine structure constant α arises from the electromagnetic sector of T_μν.
-Under φ → φ + δφ:
-- The metric g^(φ)_μν → Re(e^{-i(φ+δφ)} · 𝒢_μν) ≠ g^(φ)_μν in general.
-- However, if 𝒢_μν = g_μν (real), then e^{-iφ} · g_μν = cos(φ)·g_μν and
-  the projection gives cos(φ)·g_μν — scaling the metric, which rescales
-  dimensional quantities but not dimensionless ratios like α.
+From the phase-projection formula [DERIVED]:
 
-**Working hypothesis [CONJECTURE]:**
-For a purely imaginary off-diagonal biquaternionic structure, ∂α/∂φ ≠ 0,
-making φ a genuine landscape parameter.
-For a real-valued 𝒢_μν, ∂α/∂φ = 0 (pure gauge).
+    α(φ) = α(0)·[cos²φ + 2ρ·r·cosφ·sinφ + r²·sin²φ]
 
-**Resolution:** The answer depends on the specific biquaternionic solution for 𝒢_μν.
-This computation is left for future work.
+    ∂α/∂φ|_{φ=0} = 2ρ·r·α(0)
+
+where:
+- r = |𝒜ᴵ_μ|/|𝒜ᴿ_μ|  (imaginary-to-real amplitude ratio of biquaternionic gauge potential)
+- ρ = correlation coefficient between real and imaginary gauge components
+
+**Conclusion [DERIVED]:**
+
+| UBT vacuum | h_μν | ∂α/∂φ | φ status |
+|-----------|------|-------|---------|
+| Flat (Minkowski) | = 0 → r = 0 | 0 | Pure gauge |
+| Biquaternionic (h_μν ≠ 0) | ≠ 0 → r ≠ 0 | 2ρr·α(0) ≠ 0 | Physical (moduli) |
+
+- **If h_μν = 0 (flat vacuum):** r = 0 → ∂α/∂φ = 0 → "The φ-universe parameter is
+  a gauge redundancy for the UBT flat vacuum. Different φ-frames describe the same
+  physics. The landscape interpretation requires a solution with h_μν ≠ 0." [DERIVED]
+
+- **If h_μν ≠ 0 (biquaternionic vacuum):** r ≠ 0 → ∂α/∂φ ≠ 0 → "φ is a genuine
+  moduli parameter. The prime-selected value φ₁₃₇ = 2π/137 predicts
+  α(φ₁₃₇) = α(0)·[cos²(2π/137) + 2ρr·cos(2π/137)sin(2π/137) + r²sin²(2π/137)]."
+  [DERIVED]
+
+See `tools/compute_dalpha_dphi.py` for numerical computation and plots.
 
 ---
 
