@@ -1,0 +1,226 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B Coefficient from Loop Expansion in UBT — Candidate 3: Imaginary Metric Correction
+% Track: CORE — α derivation
+% Date: 2026-03-04
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{lemma}{Lemma}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Candidate 3: Imaginary Metric Contribution \texorpdfstring{$h_{\mu\nu}$}{h\_munu}\\
+    \large B Coefficient from Loop Expansion — Metric Sector Analysis}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-04}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Candidate 3: Imaginary Metric Contribution
+  \texorpdfstring{$h_{\mu\nu}$}{h\_munu}}
+\label{sec:candidate3_metric}
+
+\subsection{Physical Motivation}
+
+In the UBT biquaternionic metric,
+$\mathcal{G}_{\mu\nu} = g_{\mu\nu} + i\,h_{\mu\nu}$,
+the imaginary component $h_{\mu\nu}$ is a UBT-specific structure absent in standard QED
+(where the base space is flat and all metric components are real). For the two-mode winding
+vacuum, $h_{\mu\nu} \neq 0$ is an established result
+(canonical/geometry/biquaternionic\_vacuum\_solutions.tex \S1.3).
+
+The imaginary metric modifies photon propagation and, in principle, shifts the UV-divergent
+coefficient $B$ through a gravitational-like correction:
+\begin{equation}
+  B = B_0 \cdot R_{\mathrm{grav}}, \qquad
+  R_{\mathrm{grav}} = 1 + \frac{\langle h_{\mu\nu}h^{\mu\nu}\rangle}{\langle g_{\mu\nu}g^{\mu\nu}\rangle}
+    \cdot C_{\mathrm{grav}}.
+  \label{eq:R_grav}
+\end{equation}
+
+\subsection{Two-Mode Winding Vacuum: Known Results}
+
+From canonical/geometry/biquaternionic\_vacuum\_solutions.tex \S1.3, the two-mode ansatz
+\begin{equation}
+  \Theta(\psi) = \Theta_0\,e^{i\psi/R_\psi} + \Theta_1\,e^{2i\psi/R_\psi}
+  \label{eq:two_mode}
+\end{equation}
+gives:
+\begin{equation}
+  h_{\psi\psi}(\psi) = \frac{2}{R_\psi^2}\sin\!\Bigl(\frac{\psi}{R_\psi}\Bigr)
+    \cdot \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)\bigr].
+  \label{eq:h_psi_psi_C3}
+\end{equation}
+
+The following values are established (tools/compute\_h\_munu\_vacuum.py, canonical example):
+\begin{align}
+  R_\psi &= 1, \label{eq:Rpsi_value}\\
+  \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)\bigr] &= 1, \label{eq:sc_im_value}\\
+  h_{\psi\psi}(\psi) &= 2\sin\psi, \label{eq:h_canonical}\\
+  r &\equiv \frac{|\mathcal{A}^\mathrm{I}_\psi|}{|\mathcal{A}^\mathrm{R}_\psi|} = 4.661. \label{eq:r_value}
+\end{align}
+The value $r \approx 4.66$ is the ratio of imaginary to real components of the gauge potential
+$\mathcal{A}_\psi$, derived numerically from the two-mode vacuum (tools/compute\_h\_munu\_vacuum.py).
+
+\subsection{Step 1: Compute \texorpdfstring{$\langle h_{\mu\nu}h^{\mu\nu}\rangle$}{<h h>}}
+
+For the canonical two-mode vacuum with only $h_{\psi\psi} \neq 0$:
+\begin{align}
+  \langle h_{\mu\nu}h^{\mu\nu}\rangle
+    &= \frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}
+       h_{\psi\psi}^2(\psi)\,d\psi \notag\\
+    &= \frac{1}{2\pi}\int_0^{2\pi}
+       \Bigl[\frac{2}{R_\psi^2}\sin\!\Bigl(\frac{\psi}{R_\psi}\Bigr)\Bigr]^2
+       d\!\Bigl(\frac{\psi}{R_\psi}\Bigr) \notag\\
+    &= \frac{4}{R_\psi^4}\cdot\frac{1}{2\pi}\int_0^{2\pi}\sin^2(u)\,du
+    = \frac{4}{R_\psi^4}\cdot\frac{1}{2}
+    = \frac{2}{R_\psi^4}.
+  \label{eq:hh_result}
+\end{align}
+For $R_\psi = 1$: $\langle h_{\mu\nu}h^{\mu\nu}\rangle = 2$.
+
+\subsection{Step 2: Compute \texorpdfstring{$\langle g_{\mu\nu}g^{\mu\nu}\rangle$}{<g g>}}
+
+The real metric component is:
+\begin{equation}
+  g_{\psi\psi}(\psi) = \mathrm{Re}\bigl[\mathcal{G}_{\psi\psi}(\psi)\bigr]
+    = \frac{1}{R_\psi^2}\Bigl[N_0 + 4N_1 + 2\cos\!\Bigl(\frac{\psi}{R_\psi}\Bigr)
+      \,\mathrm{Re}\bigl[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)\bigr]\Bigr],
+  \label{eq:g_psi_psi}
+\end{equation}
+where $N_0 = |\Theta_0|^2$ and $N_1 = |\Theta_1|^2$. For the canonical example:
+\begin{align}
+  \Theta_0 &= (1+i_c, 0, 0, 0), & N_0 &= 2, \label{eq:theta0_norm}\\
+  \Theta_1 &= (1, 0, i_c, 0),   & N_1 &= 2, \label{eq:theta1_norm}\\
+  \mathrm{Re}\bigl[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)\bigr] &= 1, \label{eq:sc_re_value}
+\end{align}
+giving:
+\begin{equation}
+  g_{\psi\psi}(\psi) = N_0 + 4N_1 + 2\cos\psi = 10 + 2\cos\psi.
+  \label{eq:g_canonical}
+\end{equation}
+
+\begin{align}
+  \langle g_{\mu\nu}g^{\mu\nu}\rangle
+    &= \frac{1}{2\pi}\int_0^{2\pi}(10 + 2\cos u)^2\,du \notag\\
+    &= \frac{1}{2\pi}\int_0^{2\pi}(100 + 40\cos u + 4\cos^2 u)\,du \notag\\
+    &= 100 + 0 + 4\cdot\tfrac{1}{2} = 102.
+  \label{eq:gg_result}
+\end{align}
+
+\subsection{Step 3: Compute the Ratio}
+
+\begin{equation}
+  \mathcal{Q} \equiv \frac{\langle h_{\mu\nu}h^{\mu\nu}\rangle}
+    {\langle g_{\mu\nu}g^{\mu\nu}\rangle}
+  = \frac{2}{102} = \frac{1}{51} \approx 0.01961.
+  \label{eq:Q_ratio}
+\end{equation}
+
+\textbf{Cross-check with $r = 4.66$.}
+The gauge-potential ratio $r = |\mathcal{A}^\mathrm{I}_\psi|/|\mathcal{A}^\mathrm{R}_\psi|$ is
+related to but distinct from $\mathcal{Q}$. Schematically, the gauge potential is proportional
+to a derivative of the metric: $\mathcal{A}_\psi \sim \partial_\psi \log|\Theta|^2$. The ratio
+$r^2 \approx 21.7$ represents the squared ratio of imaginary to real gauge coupling components,
+not the metric ratio. The consistency check is that $r^2 \gg \mathcal{Q}$, indicating the
+gauge potential is more sensitive to the imaginary sector than the metric trace.
+This is consistent: $r \approx 4.66$ arises from derivatives, while $\mathcal{Q} \approx 0.02$
+arises from the undifferentiated metric components.
+
+\subsection{Step 4: Required \texorpdfstring{$C_{\mathrm{grav}}$}{C\_grav}}
+
+For $B_0 \cdot R_{\mathrm{grav}} = 46.3$:
+\begin{equation}
+  R_{\mathrm{grav}} = \frac{B_{\mathrm{req}}}{B_0} = \frac{46.3}{8\pi} \approx 1.844.
+  \label{eq:R_grav_required}
+\end{equation}
+From~\eqref{eq:R_grav}:
+\begin{equation}
+  C_{\mathrm{grav}} = \frac{R_{\mathrm{grav}} - 1}{\mathcal{Q}}
+    = \frac{0.844}{0.01961} \approx 43.0.
+  \label{eq:C_grav_required}
+\end{equation}
+
+\subsection{Assessment of \texorpdfstring{$C_{\mathrm{grav}} \approx 43$}{C\_grav ~ 43}}
+
+A loop coefficient $C_{\mathrm{grav}} \approx 43$ is \textbf{not geometrically natural}
+for a one-loop integral. Standard loop coefficients arising from the trace over spinor
+and gauge indices are of order 1--10. A value of $43$ would require an exceptional
+enhancement from the biquaternionic structure.
+
+However, an alternative interpretation is possible: the correction formula~\eqref{eq:R_grav}
+assumes a linear response, valid only for $h_{\mu\nu} \ll g_{\mu\nu}$. For the canonical vacuum,
+$h_{\max} = 2$ while $g_{\min} = 8$, so $h/g \sim 0.25$, which is not parametrically small.
+A non-linear treatment may be required.
+
+\textbf{Perturbative regime check.}
+For the linear response formula~\eqref{eq:R_grav} to be valid:
+\begin{equation}
+  \mathcal{Q}^{1/2} = \sqrt{1/51} \approx 0.14 \ll 1.
+  \label{eq:perturbative_check}
+\end{equation}
+This is marginally in the perturbative regime but not strongly so. Non-linear effects in
+$h_{\mu\nu}/g_{\mu\nu}$ could enhance $C_{\mathrm{grav}}$ beyond the perturbative estimate.
+
+\subsection{QED Limit Verification}
+
+In the QED limit ($\psi \to 0$):
+\begin{itemize}
+  \item Two-mode vacuum collapses: $\Theta_1 \to 0$.
+  \item $\mathrm{Im}[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)] \to 0$.
+  \item $h_{\psi\psi} \to 0$, so $\langle h_{\mu\nu}h^{\mu\nu}\rangle \to 0$.
+  \item $\mathcal{Q} \to 0$, so $R_{\mathrm{grav}} \to 1$.
+  \item $B \to B_0(N_{\mathrm{eff}} = 1) = 2\pi/3$.
+\end{itemize}
+The QED anchor is satisfied. \checkmark
+
+\subsection{Status Assessment}
+
+\begin{proposition}[Metric correction: status]
+\label{prop:metric_status}
+The imaginary metric correction $R_{\mathrm{grav}}$ from the two-mode winding vacuum:
+\begin{enumerate}
+  \item Has $\langle h_{\mu\nu}h^{\mu\nu}\rangle = 2$ (derived, canonical vacuum).
+  \item Has $\langle g_{\mu\nu}g^{\mu\nu}\rangle = 102$ (derived, canonical vacuum).
+  \item Ratio $\mathcal{Q} = 1/51 \approx 0.020$.
+  \item Required $C_{\mathrm{grav}} \approx 43$ to close the gap.
+  \item This value of $C_{\mathrm{grav}}$ is \emph{not geometrically natural} for a
+    perturbative one-loop coefficient; an explicit loop computation is required.
+  \item The correction vanishes in the QED limit, as required.
+\end{enumerate}
+\end{proposition}
+
+\textbf{Conclusion.} The metric correction formula gives the correct structure ($R_{\mathrm{grav}} \to 1$
+in QED limit) but requires $C_{\mathrm{grav}} \approx 43$. Until the loop integral with the
+$h_{\mu\nu}$ background is computed explicitly, this candidate is \textbf{not confirmed}.
+It is not ruled out, but the required coefficient is anomalously large for a perturbative result.
+
+\begin{center}
+\textbf{Candidate 3 (metric correction): STATUS — $C_{\mathrm{grav}}$ NOT YET DERIVED}
+
+$\mathcal{Q} = 1/51 \approx 0.020$, required $C_{\mathrm{grav}} \approx 43$.
+
+This value is anomalously large; explicit loop integral needed.
+
+\medskip
+\textbf{Open question:} Does the non-linear regime ($h/g \sim 0.25$, non-perturbative)
+yield $C_{\mathrm{grav}} \sim 43$ from a resummation, or is this ruled out?
+\end{center}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
