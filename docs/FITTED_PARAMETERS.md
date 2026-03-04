@@ -32,6 +32,8 @@
 | **R factor** | Fine structure α | B coefficient from N_eff | Semi-empirical | SM particle spectrum | Gap 6 |
 | **Λ** (cosmological constant) | Cosmology / GR | FRW embedding | Semi-empirical | CMB Planck data | — |
 | **Electroweak mixing angle** | Standard Model | SU(2)×U(1) embedding | Semi-empirical (Sketch) | PDG value sin²θ_W = 0.231 | — |
+| **R_ψ** (ψ-circle radius) | Geometry / α | R_ψ = ℏ/(m_e·c) | Calibrated | m_e (electron mass, PDG) | Task 3 |
+| **C/A ratio** (curvature-to-kinetic) | Geometry / α | α_predicted = C/(2A) | Sketch | required C/A = 2α_exp for α ≈ 1/137 | Task 2 |
 
 ---
 
@@ -53,6 +55,21 @@
   the kinetic energy of winding-n KK configurations on S¹ of radius R_ψ.
   No free parameters: κ and R_ψ are determined by the UBT field content.
   See `ubt_core/verify_Vpsi.py` class `WindingPotential`.
+
+- **R_ψ (Task 3 result):** The identification R_ψ = ℏ/(m_e·c) is necessary for
+  consistency but was not derivable from pure geometry (2026-03-04).
+  Three topological candidates were tested (self-duality, winding consistency,
+  modularity) — all dead ends or reproductions of the calibrated value.
+  See `canonical/geometry/biquaternionic_vacuum_solutions.tex §2` for the analysis.
+  Status remains: **Calibrated** — will be promoted to Derived when a geometric
+  derivation of R_ψ independent of m_e is found.
+
+- **C/A ratio (Task 2 result):** The stationarity conditions on the (t,ψ) torus give
+  α_predicted = C/(2A) for the simplest curvature potential U_geom = −C/(R_t·R_ψ).
+  The ratio C/A = 2α_exp ≈ 0.01460 is required for α_predicted = α_exp.
+  This is a prediction for the biquaternionic curvature-to-kinetic ratio.
+  Computing C from ℒ_geom closes the derivation (currently [SKETCH]).
+  See `tools/m0_from_torus.py` and `appendix_E_m0_derivation_strict.tex §E.4`.
 
 ---
 
