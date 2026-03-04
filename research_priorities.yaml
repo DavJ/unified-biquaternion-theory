@@ -1,0 +1,484 @@
+# Copyright (c) 2026 Ing. David Jaroš
+# Licensed under the MIT License
+# See LICENSE file in the repository root for full license text
+#
+# research_priorities.yaml
+#
+# Machine-readable research priorities for the Unified Biquaternion Theory team.
+# Mirrors and extends RESEARCH_PRIORITIES.md for automated tooling and role assignment.
+#
+# Schema:
+#   meta          — document metadata and current phase
+#   layers        — Layer A / B / C definitions (theory classification system)
+#   roles         — ROS roles (see docs/RESEARCH_OPERATING_SYSTEM.md)
+#   priorities    — ordered list of research priorities
+#     Each priority has:
+#       id, title, layer, status, timeline_start, timeline_end
+#       goal, owner_role, tasks[], outcome, notes
+#     Each task has:
+#       id, title, layer, status, owner_role, description
+#
+# Statuses: active | pending | completed | deprioritized | speculative
+# Layer values: A | B | C | speculative
+# Owner roles: scientist | engineer | experimentalist | librarian | auditor
+
+---
+meta:
+  version: "1.0"
+  date: "2026-03-04"
+  author: "Ing. David Jaroš"
+  phase: "Mathematical formalization and testable predictions"
+  focus: >
+    Complete remaining derivations, prepare for peer review, execute CMB test.
+  review_cadence: "quarterly"
+  next_review: "2026-06-01"
+  references:
+    - path: "RESEARCH_PRIORITIES.md"
+      description: "Human-readable source document (canonical reference for content)"
+    - path: "docs/RESEARCH_OPERATING_SYSTEM.md"
+      description: "ROS roles and workflow rules"
+    - path: "core/AXIOMS.md"
+      description: "Locked canonical axioms that all priorities must respect"
+
+# ---------------------------------------------------------------------------
+# LAYER DEFINITIONS
+# ---------------------------------------------------------------------------
+layers:
+  A:
+    name: "Core"
+    emoji: "🟢"
+    description: "Validated mathematical foundations. Locked unless a major version change is approved."
+    promotion_from_B_requires:
+      - "Full first-principles derivation (no gaps)"
+      - "Mathematical proof complete"
+      - "Independent verification"
+      - "Peer review validation"
+
+  B:
+    name: "Observables"
+    emoji: "🟡"
+    description: "Semi-empirical predictions (α, Ω_b, m_e). Quantitative, but derivation gaps remain."
+    promotion_from_C_requires:
+      - "Quantitative predictions calculated"
+      - "Multiple independent derivation approaches agree"
+      - "No free parameters or clearly documented fitting"
+      - "Observational data supports prediction"
+    demotion_to_C_triggers:
+      - "Derivation gap discovered"
+      - "Prediction fails observational test"
+
+  C:
+    name: "Research Front"
+    emoji: "🔵"
+    description: "Testable hypotheses under active investigation."
+    demotion_to_speculative_triggers:
+      - "Hypothesis becomes untestable"
+      - "Requires extreme unverified assumptions"
+    archive_triggers:
+      - "Superseded by better framework"
+      - "Definitively falsified"
+
+  speculative:
+    name: "Speculative"
+    emoji: "🟠"
+    description: >
+      Exploratory ideas with minimal mathematical support.
+      MUST live under speculative_extensions/. NOT part of Layers A, B, or C.
+
+# ---------------------------------------------------------------------------
+# ROLE DEFINITIONS (summary — full spec in docs/RESEARCH_OPERATING_SYSTEM.md)
+# ---------------------------------------------------------------------------
+roles:
+  librarian:
+    label: "Librarian"
+    scope: "Canonical source-of-truth keeper; produces path:line citations; never commits theory changes."
+  scientist:
+    label: "Scientist"
+    scope: "Theoretical structures, conjectures, derivations. Every claim must cite repo evidence."
+  engineer:
+    label: "Engineer"
+    scope: "Code, tools, scripts. Cannot modify protected paths without allow-core-change label."
+  experimentalist:
+    label: "Experimentalist"
+    scope: "Reproducible computational experiments. Every PR must include execution instructions + artifacts."
+  auditor:
+    label: "Auditor"
+    scope: "Quality gate. Blocks merge if Repo Grounding is missing or citations are unverifiable."
+
+# ---------------------------------------------------------------------------
+# RESEARCH PRIORITIES
+# ---------------------------------------------------------------------------
+priorities:
+
+  # -------------------------------------------------------------------------
+  - id: P1
+    title: "Peer Review Preparation"
+    status: active
+    layer: A   # Strengthens Layer A; presents Layer B achievements
+    timeline_start: "2025-Q4"
+    timeline_end:   "2026-Q3"
+    goal: "Submit first papers to peer-reviewed journals."
+    owner_role: scientist
+    tasks:
+      - id: P1.1
+        title: "Complete mathematical foundations (inner product, integration measure)"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: >
+          Formal inner product definition on ℂ⊗ℍ and integration measure on B⁴.
+          See also P4.1–P4.4.
+
+      - id: P1.2
+        title: "Finalize Paper 1A — Mathematical Foundations"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: "LaTeX manuscript: consolidation_project/ubt_core_main.tex"
+
+      - id: P1.3
+        title: "Finalize Paper 1B — GR Recovery"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: >
+          Full derivation that GR Einstein equations emerge as real/classical limit of UBT.
+          Reference: consolidation_project/appendix_R_GR_equivalence.tex
+
+      - id: P1.4
+        title: "Document α and Ω_b predictions with full derivation chains"
+        layer: B
+        status: active
+        owner_role: scientist
+        description: >
+          Trace from first-principles axioms to fine structure constant α and baryon density Ω_b.
+          Reference: unified_biquaternion_theory/solution_P4_fine_structure_constant/
+
+      - id: P1.5
+        title: "Post preprints on arXiv"
+        layer: B
+        status: pending
+        owner_role: scientist
+        description: "Submit Papers 1A and 1B to arXiv once internal review is complete."
+
+      - id: P1.6
+        title: "Target journal submission"
+        layer: B
+        status: pending
+        owner_role: scientist
+        description: >
+          Target journals: Classical and Quantum Gravity, Journal of Mathematical Physics.
+    notes: >
+      Papers submitted Q2-Q3 2026.
+
+  # -------------------------------------------------------------------------
+  - id: P2
+    title: "CMB Analysis Protocol"
+    status: active
+    layer: C
+    timeline_start: "2025-Q3"
+    timeline_end:   "2027-Q1"
+    goal: "Test UBT prediction against Planck 2018 CMB data; validate or falsify Layer C hypotheses."
+    owner_role: experimentalist
+    tasks:
+      - id: P2.1
+        title: "Complete MCMC parameter estimation protocol"
+        layer: C
+        status: active
+        owner_role: experimentalist
+        description: >
+          Bayesian MCMC to constrain UBT parameters against CMB power spectrum data.
+
+      - id: P2.2
+        title: "Calculate predicted deviations from ΛCDM"
+        layer: C
+        status: active
+        owner_role: scientist
+        description: "Derive analytic or numerical UBT corrections to CMB TT/EE/BB spectra."
+
+      - id: P2.3
+        title: "Compare to actual Planck 2018 data"
+        layer: C
+        status: pending
+        owner_role: experimentalist
+        description: >
+          Run comparison pipeline; publish results regardless of outcome (positive or falsification).
+
+      - id: P2.4
+        title: "Test Hubble tension information-overhead hypothesis"
+        layer: C
+        status: active
+        owner_role: experimentalist
+        description: >
+          [HYPOTHESIS] Hubble tension arises from information-processing overhead (δ ≈ 0.08).
+          Frame as information-theoretic limit — NOT as simulation or digital universe.
+          References: docs/NOBEL_HUBBLE_ANALYSIS.md, scripts/reproduce_hubble_prediction.py
+
+      - id: P2.5
+        title: "Publish CMB results"
+        layer: C
+        status: pending
+        owner_role: scientist
+        description: "Paper: Analysis complete Q4 2026, submitted Q1 2027."
+    notes: >
+      Hubble tension analysis is Layer C (Research Front), not an established result.
+      Must be framed as information-theoretic overhead hypothesis, never as "simulation latency."
+
+  # -------------------------------------------------------------------------
+  - id: P3
+    title: "Complete Parameter Derivations"
+    status: active
+    layer: B
+    timeline_start: "2026-Q1"
+    timeline_end:   "2026-Q4"
+    goal: >
+      Derive remaining fitted parameters from first principles; upgrade Layer B from
+      semi-empirical to fully first-principles.
+    owner_role: scientist
+    tasks:
+      - id: P3.1
+        title: "B constant renormalization factor (12 % gap)"
+        layer: B
+        status: active
+        owner_role: scientist
+        description: >
+          Close the remaining 12 % derivation gap in the B constant renormalization factor.
+
+      - id: P3.2
+        title: "Hopfion mass formula coefficients (A, p, B)"
+        layer: B
+        status: active
+        owner_role: scientist
+        description: "Derive coefficients in the Hopfion mass formula from first principles."
+
+      - id: P3.3
+        title: "Yukawa coupling matrix elements"
+        layer: B
+        status: active
+        owner_role: scientist
+        description: "First-principles derivation of Yukawa coupling matrix (lepton and quark sectors)."
+
+      - id: P3.4
+        title: "Dark matter mass prediction from p-adic structure"
+        layer: C
+        status: active
+        owner_role: scientist
+        description: >
+          [HYPOTHESIS] Dark matter candidates arise from p-adic extensions of UBT.
+          Goal: promote from Layer C to Layer B when quantitative prediction is secured.
+    success_metric: >
+      Layer B predictions become fully first-principles (no free parameters, no unexplained fitting).
+
+  # -------------------------------------------------------------------------
+  - id: P4
+    title: "Mathematical Rigor Completion"
+    status: active
+    layer: A
+    timeline_start: "2025-Q4"
+    timeline_end:   "2026-Q2"
+    goal: "Complete the remaining ~20 % of formal mathematical foundations (Layer A)."
+    owner_role: scientist
+    tasks:
+      - id: P4.1
+        title: "Formal inner product definition on ℂ⊗ℍ"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: "Define a positive-definite inner product on the biquaternion algebra ℂ⊗ℍ."
+
+      - id: P4.2
+        title: "Integration measure on B⁴"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: "Construct and justify the integration measure on the biquaternionic configuration space."
+
+      - id: P4.3
+        title: "Hilbert space construction"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: "Construct the Hilbert space of physical states from the Θ field."
+
+      - id: P4.4
+        title: "Causality and unitarity proofs (or documented limitations)"
+        layer: A
+        status: active
+        owner_role: scientist
+        description: >
+          Formal proofs of micro-causality and unitarity, or explicit documentation
+          of where they break down and under what conditions.
+
+  # -------------------------------------------------------------------------
+  - id: P5
+    title: "Layer C Research Hypotheses"
+    status: active
+    layer: C
+    timeline_start: "2026-Q1"
+    timeline_end:   "2027-Q2"
+    goal: "Advance testable hypotheses from Layer C to falsifiable predictions or documented falsifications."
+    owner_role: scientist
+    tasks:
+      - id: P5.1
+        title: "Hubble tension — tighten overhead parameters (N, F, O)"
+        layer: C
+        status: active
+        owner_role: scientist
+        description: >
+          Derive tighter analytic constraints on information-overhead parameters N, F, O.
+          If validated by H(z) measurements → promote to Layer B.
+          Reference: docs/NOBEL_HUBBLE_ANALYSIS.md
+
+      - id: P5.2
+        title: "Hubble tension — H(z) intermediate-redshift predictions"
+        layer: C
+        status: active
+        owner_role: experimentalist
+        description: >
+          Calculate UBT predictions for H(z) at intermediate redshifts;
+          compare to cosmic chronometer data and gravitational wave standard sirens.
+
+      - id: P5.3
+        title: "Dark matter — p-adic extension identification"
+        layer: C
+        status: active
+        owner_role: scientist
+        description: >
+          Determine which p-adic extension (p = 2, 3, 5, …) produces a viable dark matter candidate.
+
+      - id: P5.4
+        title: "Dark matter — candidate mass and detection cross-section"
+        layer: C
+        status: pending
+        owner_role: scientist
+        description: >
+          Calculate dark matter candidate mass and direct detection cross-section;
+          compare to XENON/LZ experimental limits.
+          Timeline: specific testable prediction or falsification by Q2 2027.
+
+      - id: P5.5
+        title: "Modified gravity — magnitude and observable regime"
+        layer: C
+        status: active
+        owner_role: scientist
+        description: >
+          Calculate magnitude of GR deviations from UBT biquaternionic corrections;
+          identify observable regimes. Note: corrections likely ~10⁻⁶⁸ — may not be
+          experimentally accessible in the near term.
+    outcome: >
+      Each sub-task resolves to one of: (a) promoted to Layer B with quantitative prediction,
+      or (b) documented falsification / demotion to speculative.
+
+  # -------------------------------------------------------------------------
+  - id: P6
+    title: "Nobel-Oriented Documentation and Audit"
+    status: active
+    layer: B
+    timeline_start: "2026-Q1"
+    timeline_end:   "2026-Q4"
+    goal: >
+      Produce publication-quality documentation of UBT's strongest falsifiable predictions
+      suitable for external audit (Nobel-level verification standard).
+    owner_role: auditor
+    tasks:
+      - id: P6.1
+        title: "Nobel Audit Report — Phase 0–4 verification"
+        layer: B
+        status: active
+        owner_role: auditor
+        description: "Reference: docs/NOBEL_AUDIT_REPORT.md"
+
+      - id: P6.2
+        title: "Fine structure constant α — full derivation audit"
+        layer: B
+        status: active
+        owner_role: auditor
+        description: >
+          Independent audit of α derivation chain; document every assumption.
+          Reference: docs/NOBEL_ALPHA_ANALYSIS.md
+
+      - id: P6.3
+        title: "Gauge relations audit"
+        layer: B
+        status: active
+        owner_role: auditor
+        description: "Reference: docs/NOBEL_GAUGE_RELATIONS.md"
+
+      - id: P6.4
+        title: "Priority matrix — falsifiable predictions register"
+        layer: B
+        status: active
+        owner_role: auditor
+        description: >
+          Maintain a live register of all falsifiable predictions with status,
+          confidence level, and observational test.
+          Reference: docs/NOBEL_PRIORITY_MATRIX.md
+
+# ---------------------------------------------------------------------------
+# COMPLETED ITEMS
+# ---------------------------------------------------------------------------
+completed:
+  - id: C1
+    title: "Formal consolidation of UBT core equations"
+    completed: "2025-Q4"
+  - id: C2
+    title: "SM gauge group derivation (SU(3)×SU(2)×U(1) from geometry)"
+    completed: "2025-Q4"
+  - id: C3
+    title: "Electron mass prediction validation"
+    completed: "2025-Q4"
+  - id: C4
+    title: "Content reorganization into 3-layer structure (Layer A/B/C)"
+    completed: "2026-Q1"
+  - id: C5
+    title: "Formal verification framework (QM-GR unification, emergent metric, black hole radiation, constants)"
+    completed: "2026-02"
+  - id: C6
+    title: "Generalized phase projection P_φ formalism"
+    completed: "2026-Q1"
+    reference: "canonical/geometry/phase_projection.tex"
+  - id: C7
+    title: "GR-as-limit theorem for any constant φ"
+    completed: "2026-Q1"
+    reference: "canonical/geometry/gr_as_limit.tex"
+
+# ---------------------------------------------------------------------------
+# DEPRIORITIZED / NON-CORE
+# ---------------------------------------------------------------------------
+deprioritized:
+  - id: D1
+    title: "Psychon dynamics"
+    reason: "Moved to speculative_extensions/"
+    layer: speculative
+
+  - id: D2
+    title: "Closed Timelike Curve (CTC) solutions"
+    reason: "Theoretical interest only; not an experimental priority"
+    layer: speculative
+
+  - id: D3
+    title: "Theta Resonator experiment"
+    reason: "Requires consciousness framework development (speculative)"
+    layer: speculative
+
+  - id: D4
+    title: "Simulation hypothesis / digital universe interpretations"
+    reason: >
+      Moved to speculative_extensions/appendices/appendix_IT_information_theoretic_cosmology.tex.
+      Clearly non-core; no scientific evidence.
+    layer: speculative
+    warning: >
+      Do NOT conflate with the information-theoretic Hubble tension overhead hypothesis (P5.1/P5.2),
+      which is a falsifiable Layer C scientific hypothesis, not a philosophical analogy.
+
+# ---------------------------------------------------------------------------
+# LAYER PROMOTION PATHWAY (summary)
+# ---------------------------------------------------------------------------
+# Full rules are in RESEARCH_PRIORITIES.md (§ Layer Promotion Pathway)
+# Quick reference:
+#
+#   C → B: quantitative predictions, multiple independent derivations, no free params, obs. support
+#   B → A: full first-principles derivation, proof complete, independent verification, peer review
+#   B → C: derivation gap discovered or prediction fails
+#   C → speculative: hypothesis becomes untestable or requires extreme assumptions
+#   Any → archive: superseded or definitively falsified
