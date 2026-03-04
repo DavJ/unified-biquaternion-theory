@@ -173,7 +173,26 @@ Expected: α⁻¹(0.511 MeV) ≈ 137.036.
 
 ---
 
-## 5. Parameter Table and Derivation Strategy
+## 5. Reproducible Script
+
+→ [`scripts/reproduce_alpha_prediction.py`](../scripts/reproduce_alpha_prediction.py)
+
+Run with:
+```bash
+python scripts/reproduce_alpha_prediction.py
+```
+
+Expected output:
+```
+  α_UBT⁻¹  (predicted):        137.036000
+  α_exp⁻¹  (CODATA 2022):      137.035999177 ± 0.000000021
+  Discrepancy:                 0 ppm
+  Agreement (<1000 ppm):       ✓ PASS
+```
+
+---
+
+## 6. Parameter Table and Derivation Strategy
 
 | Parameter | Symbol | Value | Status | Origin |
 |---|---|---|---|---|
@@ -221,7 +240,7 @@ other N_eff values should give different primes.
 
 ---
 
-## 6. Source Documents
+## 7. Source Documents
 
 | Document | Location | Role |
 |---|---|---|
@@ -235,7 +254,7 @@ other N_eff values should give different primes.
 
 ---
 
-## 7. Open Questions
+## 8. Open Questions
 
 1. **B coefficient**: R ≈ 1.114 is the main unfixed parameter. It needs a derivation from first principles
    using the biquaternionic renormalisation group flow.
