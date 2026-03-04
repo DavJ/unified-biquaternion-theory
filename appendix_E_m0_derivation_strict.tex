@@ -50,23 +50,55 @@ Define the energy per torus period (one cell) as
   \;+\; \mathcal{U}_{\text{geom}}(R_t,R_\psi)\,,
   \label{eq:cell-energy}
 \end{equation}
-where $A$ is a normalization from $\mathcal{L}_{\text{kin}}$ and $\mathcal{U}_{\text{geom}}$ is the curvature functional induced by $\mathcal{L}_{\text{geom}}$.
-The stationary torus is found by minimizing $\mathcal{E}_\text{cell}$ over $(R_t,R_\psi)$ subject to the geometric constraint encoded by $\alpha=R_t/R_\psi$ and its scale dependence $\alpha(\mu)$:
+where $A$ is a normalization from $\mathcal{L}_{\text{kin}}$
+\textbf{[DERIVED: $A=\hbar^2/(2m_\text{field}R_\psi^2)$, see Appendix~H]}
+and $\mathcal{U}_{\text{geom}}$ is the curvature functional induced by $\mathcal{L}_{\text{geom}}$
+\textbf{[SKETCH: explicit form from biquaternionic Ricci scalar, see
+\texttt{canonical/geometry/biquaternion\_curvature.tex}]}.
+
+\medskip
+\noindent\textbf{Reformulated stationary conditions (no circular $\alpha$ input).}
+The stationary torus is found by solving the two conditions
 \begin{equation}
   \frac{\partial \mathcal{E}_\text{cell}}{\partial R_t} \,=\, 0\,,\qquad
   \frac{\partial \mathcal{E}_\text{cell}}{\partial R_\psi} \,=\, 0\,,
-  \quad
-  \alpha \,=\, \frac{R_t}{R_\psi}\,,
-  \quad
-  \frac{\mathrm{d}\alpha}{\mathrm{d}\ln\mu} \,=\, -\beta_1\alpha^2-\beta_2\alpha^3+\dots
   \label{eq:stationary-conditions}
 \end{equation}
+\emph{independently}, without imposing $\alpha=R_t/R_\psi$ as a third constraint. The ratio
+\begin{equation}
+  \alpha_\text{predicted} \;=\; \frac{R_t^\star}{R_\psi^\star}
+  \label{eq:alpha-output}
+\end{equation}
+is then an \textbf{output} of the variational problem, not an input. [ODVOZENO — removes circular dependence of earlier formulation]
+
+\medskip
+\noindent\textbf{Explicit solution for the simplest curvature potential.}
+For the candidate geometric potential $\mathcal{U}_{\text{geom}}=-C/(R_t R_\psi)$ with $C>0$ [SKETCH — requires derivation of $C$ from $\mathcal{L}_\text{geom}$], the two conditions~\eqref{eq:stationary-conditions} give:
+\begin{align}
+  \frac{\partial\mathcal{E}_\text{cell}}{\partial R_t}=0 &\;\Rightarrow\;
+    \frac{R_t}{R_\psi} = \frac{2A\,\omega^2}{C}\,, \label{eq:stat-Rt}\\
+  \frac{\partial\mathcal{E}_\text{cell}}{\partial R_\psi}=0 &\;\Rightarrow\;
+    \frac{R_\psi}{R_t} = \frac{2A\,n^2}{C}\,. \label{eq:stat-Rpsi}
+\end{align}
+Multiplying~\eqref{eq:stat-Rt} and~\eqref{eq:stat-Rpsi} yields the on-shell frequency constraint [ODVOZENO]:
+\begin{equation}
+  \omega\cdot n \;=\; \frac{C}{2A}\,.
+\end{equation}
+Substituting the on-shell condition $\omega_\star = m_0 R_t^\star$ (rest-mass dispersion on $S^1_t$) and evaluating at $n=1$ gives:
+\begin{equation}
+  \alpha_\text{predicted} = \frac{R_t^\star}{R_\psi^\star} = \frac{C}{2A}\,.
+  \label{eq:alpha-from-geometry}
+\end{equation}
+For $\alpha_\text{predicted}=\alpha_\text{exp}\approx1/137.036$ this requires the curvature-to-kinetic ratio $C/A = 2\alpha_\text{exp}\approx0.01460$ [SKETCH — to be derived from $\mathcal{L}_\text{geom}$; see \texttt{tools/m0\_from\_torus.py}].
+
+The cell energy at the stationary point for $n=1$ evaluates to $\mathcal{E}_\text{cell}^\star = A\,m_0^2\,(n^2-1)=0$, yielding a trivial $m_0=0$ from the energy definition alone. A non-trivial mass scale requires either $n>1$ as the reference harmonic or an independent dimensionful input from $\mathcal{L}_\text{geom}$ [SLEPÁ ULIČKA: $n=1$ energy vanishes; documented in \texttt{tools/m0\_from\_torus.py}].
+
 Evaluated at the lowest sheet ($n=1$) and at the self-consistent frequency $\omega=\omega_\star$, the stationary energy defines the geometric mass scale
 \begin{equation}
    m_0 \;\equiv\; \frac{1}{2\pi}\,\mathcal{E}_\text{cell}(n{=}1,\omega_\star;R_t^\star,R_\psi^\star)\,,
    \label{eq:m0-definition}
 \end{equation}
-where $R_t^\star,R_\psi^\star$ solve~\eqref{eq:stationary-conditions}. The $2\pi$ factor normalizes one period on $S^1_t$. No measured masses enter; $m_0$ is fixed by geometry and dynamics alone.
+where $R_t^\star,R_\psi^\star$ solve~\eqref{eq:stationary-conditions}. The $2\pi$ factor normalizes one period on $S^1_t$. No measured masses enter; $m_0$ is fixed by geometry and dynamics alone, once $\mathcal{U}_{\text{geom}}$ is derived from $\mathcal{L}_{\text{geom}}$.
 
 \subsection*{E.5 Electron Sheet and the Fixed-Point}
 For the electron ($n=1$), the lepton fixed point (Appendix~D) reads
@@ -86,3 +118,72 @@ The uniqueness of $m_0$ follows from the strict minimization~\eqref{eq:stationar
 
 \subsection*{E.7 Summary}
 We have derived $m_0$ as the stationary energy per period of the UBT field on the $(t,\psi)$ torus, using only geometry and the UBT action. This closes the strict spectrum without empirical fits: $m_0$ is determined theoretically, $\alpha(\mu)$ is geometric (Appendix~C), and lepton masses follow from the fixed-point equations (Appendix~D).
+
+\subsection*{E.8 Self-Consistency Equation for $\alpha$ via QED Mass Correction}
+\label{sec:E8-alpha-selfconsistency}
+
+\noindent\textbf{Status: [HYPOTÉZA — žádný standardní UBT cutoff nepotvrdil $<1\%$ přesnost bez $m_e$ jako vstupu]}
+
+\medskip
+\noindent\textbf{Motivation.}
+Numerically, $\alpha \approx m_0/(n^\star m_e)$ where $m_0=0.509856\,\text{MeV}$ [CALIBRATED],
+$m_e=0.510999\,\text{MeV}$ (PDG), $n^\star=137$ [TOPOLOGICAL INPUT]. The gap
+\begin{equation}
+  \Delta m = m_e - m_0 = 1.143\,\text{keV}\,,\quad
+  \frac{\Delta m}{m_e} = 0.002237 \approx \frac{\alpha}{2\pi}=0.001161
+  \quad\text{[not equal]}
+\end{equation}
+suggests interpreting $\Delta m$ as a QED radiative correction to the geometric mass $m_0$.
+
+\medskip
+\noindent\textbf{QED one-loop mass correction.}
+In the QED limit ($\partial_\psi=0$, Appendix~D), the one-loop fermion mass correction reads [ODVOZENO from standard QED; recovered in UBT limit]:
+\begin{equation}
+  \delta m_{\text{QED}} = \frac{3\alpha}{4\pi}\,m_e\,\ln\!\frac{\Lambda^2}{m_e^2}
+  = \frac{3\alpha}{2\pi}\,m_e\,\ln\!\frac{\Lambda}{m_e}\,,
+  \label{eq:QED-mass-correction}
+\end{equation}
+where $\Lambda$ is the UV cutoff.  Setting $m_0 = m_e - \delta m_{\text{QED}}$ and $\alpha = m_0/(n^\star m_e)$ gives the self-consistency equation:
+\begin{equation}
+  \boxed{n^\star\,\alpha \;+\; g(\alpha) \;=\; 1\,,
+  \qquad g(\alpha) = \frac{3\alpha}{2\pi}\,\ln\!\frac{\Lambda}{m_e}}
+  \label{eq:alpha-selfconsistency}
+\end{equation}
+with \emph{zero free parameters}, given $n^\star=137$ and a choice of $\Lambda$.
+
+\medskip
+\noindent\textbf{Natural UBT cutoffs and numerical results.}
+The self-consistency equation~\eqref{eq:alpha-selfconsistency} is solved numerically in \texttt{tools/alpha\_selfconsistency.py}. Results for natural UBT cutoffs:
+
+\begin{center}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Cutoff} $\Lambda$ & \textbf{Motivation} & $\alpha^{-1}_\text{sol}$ & \textbf{Error} \\
+\hline
+$n^\star m_e = 137\,m_e$ & KK tower at winding $n^\star$ [HYPOTHESIS] & 139.35 & 1.66\% \\
+$m_e/\alpha$             & classical electron radius [STANDARD]        & 139.36 & 1.67\% \\
+$m_e/\sqrt{\alpha}$      & geometric mean scale [HYPOTHESIS]           & 138.18 & 0.83\% \\
+$2\,m_e$                 & pair-creation threshold [STANDARD QED]      & 137.33 & 0.22\% \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Required cutoff.}
+Inverting~\eqref{eq:QED-mass-correction} for $\delta m = \Delta m = 1.143\,\text{keV}$ gives [ODVOZENO]:
+\begin{equation}
+  \ln\!\frac{\Lambda}{m_e} = \frac{\Delta m/m_e}{3\alpha/(2\pi)} = 0.642
+  \quad\Rightarrow\quad \Lambda = 1.90\,m_e \approx 971\,\text{keV}\,.
+\end{equation}
+This lies between $m_e$ and $2m_e$ (pair threshold) and is not a recognised \emph{independent} UBT geometric scale.
+
+\medskip
+\noindent\textbf{Assessment.}
+The pair-threshold cutoff $\Lambda=2m_e$ gives error $0.22\%$, matching the $0.22\%$ systematic in $m_0$, but it uses $m_e$ directly as input — the independence requirement is not satisfied.  All purely geometric UBT cutoffs produce errors $>0.8\%$, above the target of $<1\%$.
+
+\emph{Conclusion:} Equation~\eqref{eq:alpha-selfconsistency} represents a genuine \emph{self-consistency} structure (not a tautology for any fixed cutoff), but no natural UBT scale has been identified that satisfies it to $<1\%$ without using $m_e$ as input.
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\textbf{Classification: [HYPOTÉZA]}\\
+$n^\star\alpha + g(\alpha) = 1$ with $g$ from QED in UBT limit.\\
+\textbf{What would confirm it:} derivation of $\Lambda \approx 1.90\,m_e$ (or equivalently $\Lambda = 971\,\text{keV}$) from UBT geometry without reference to $m_e$ or $\alpha$.}}
+\end{center}

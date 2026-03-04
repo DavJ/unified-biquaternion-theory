@@ -117,6 +117,18 @@
 
 ---
 
+## α Self-Consistency and m_0 Torus Derivation  *(added 2026-03-04)*
+
+| Claim | Location | Math Status | Numeric Repro | Free Params |
+|---|---|---|---|---|
+| Self-consistency equation n*·α + g(α) = 1 (pair-threshold cutoff: 0.22% error) | `appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | Hypothesis (cutoff uses m_e) | Yes | 0 |
+| Self-consistency equation dead end for independent UBT cutoffs (error >0.8%) | `appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | Dead End | Yes | 0 |
+| α = C/(2A·n²) as output of torus stationarity (Form A) | `appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | Sketch (C/A from ℒ_geom pending) | Yes | 1 (C/A) |
+| m_0 from torus energy: trivial for n=1 (dead end) | `appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | Dead End | Yes | 0 |
+| R_ψ = ℏ/(m_e·c) — no independent topological derivation | `canonical/geometry/biquaternionic_vacuum_solutions.tex §2` | Calibrated | Yes | 1 (m_e) |
+
+---
+
 ## Summary Statistics
 
 | Domain | Total Claims | Proven | Semi-empirical | Hypothesis/Sketch | Numeric Scripts |
@@ -128,8 +140,8 @@
 | Electron mass | 4 | 0 | 2 | 2 | 2 |
 | Hubble tension | 3 | 0 | 0 | 3 | 2 |
 | Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |
-| Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |
 | φ-universe / h_μν | 7 | 5 | 0 | 2 | 1 |
+| α self-consistency / m_0 torus | 5 | 0 | 0 | 5 | 2 |
 
 ---
 

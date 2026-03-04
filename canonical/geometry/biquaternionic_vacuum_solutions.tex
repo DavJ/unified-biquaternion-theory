@@ -329,3 +329,103 @@ updated numerical value.''
 
 \noindent\textbf{Update} \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md} §4: explicit $r$ value
 from two-mode vacuum added.
+
+% =====================================================================
+% TASK 3 — Independent Fixation of R_ψ
+% Status: §2 [KALIBROVÁNO — no independent topological derivation found]
+% Layer: [L1] — biquaternionic geometry only
+% =====================================================================
+
+\section{Independent Fixation of $R_\psi$: Topological Analysis}
+\label{sec:Rpsi_fixation}
+
+\noindent\textbf{Status:} [KALIBROVÁNO — nutná pro konzistenci; nederivovatele z čisté
+geometrie v současné teorii]
+
+\noindent\textbf{Problem.}
+The radius $R_\psi$ of the imaginary-time circle $S^1_\psi$ is currently identified as
+\begin{equation}
+  R_\psi = \frac{\hbar}{m_e c}
+  \label{eq:Rpsi-current}
+\end{equation}
+[CALIBRATED — chosen so that $\Lambda_\psi = \hbar c/R_\psi = m_e c^2$].
+This identification collapses two independent scales ($R_\psi$ and $m_e$) into one.
+This section tests whether a purely topological condition can fix $R_\psi$
+independently of $m_e$.
+
+---
+
+\subsection{Candidate 1: Self-Duality of the Torus}
+
+The torus $S^1_t\times S^1_\psi$ is self-dual (invariant under modular transformation
+$\tau\to-1/\tau$) if and only if $R_t = R_\psi$.  From $\alpha = R_t/R_\psi$, this
+requires $\alpha=1$.  \textbf{[DEAD END — $\alpha=1$ is unphysical.]}
+
+---
+
+\subsection{Candidate 2: Winding Consistency on $S^1_\psi$}
+\label{sec:winding-consistency}
+
+Single-valuedness of the charged $\Theta$-field under $n^\star$ complete traversals
+of the $\psi$-circle requires the accumulated phase to be a multiple of $2\pi$:
+\begin{equation}
+  n^\star \cdot \frac{2\pi R_\psi \, m_e c}{\hbar} = 2\pi k\,,\quad k\in\mathbb{Z}\,.
+  \label{eq:winding-consistency}
+\end{equation}
+This gives
+\begin{equation}
+  R_\psi = \frac{k\,\hbar}{n^\star\, m_e c}\,.
+  \label{eq:Rpsi-winding}
+\end{equation}
+The two simplest cases are:
+
+\begin{center}
+\begin{tabular}{|c|l|l|l|}
+\hline
+$k$ & $R_\psi$ & $\Lambda_\psi = \hbar c/R_\psi$ & Consequence for $\alpha$ \\
+\hline
+$1$ & $\hbar/(n^\star m_e c)=\hbar/(137\,m_e c)$ & $n^\star m_e c^2 = 137\,m_e c^2$ &
+  $\alpha = m_0/(n^{\star\,2} m_e) \approx 1/137^2$ \ [too small] \\
+$n^\star$ & $n^\star\hbar/(n^\star m_e c)=\hbar/(m_e c)$ & $m_e c^2$ &
+  recovers Eq.~\eqref{eq:Rpsi-current} [original identification] \\
+\hline
+\end{tabular}
+\end{center}
+
+Neither $k=1$ nor $k=n^\star$ provides a genuinely new, independent fixing of $R_\psi$:
+the former gives the wrong order of magnitude for $\alpha$; the latter reproduces
+the calibrated identification.
+
+\textbf{[DEAD END for $k=1$; REPRODUCES CALIBRATION for $k=n^\star$.]}
+
+---
+
+\subsection{Candidate 3: Modularity / Theta-Function Consistency}
+
+The UBT partition function involves theta functions on $S^1_\psi$.  For the partition
+function to transform covariantly under $S\in SL(2,\mathbb{Z})$ (modular group), one
+needs $R_\psi^2 \in \mathbb{Q}$ in natural units.  This constrains $R_\psi$ to a
+dense set, not a unique value — it does not pin down $R_\psi$ without additional
+input.  \textbf{[DEAD END — modularity alone does not fix $R_\psi$]}
+
+---
+
+\subsection{Honest Summary: Status of $R_\psi$}
+
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{%
+\textbf{Conclusion [KALIBROVÁNO]:}\\
+The identification $R_\psi = \hbar/(m_e c)$ is required for internal consistency
+(it ensures $\Lambda_\psi = m_e$, which closes the fermion mass spectrum), but
+no purely topological or geometric condition has been found that derives this value
+\emph{independently} of $m_e$.\\[4pt]
+\textbf{What would change this:}\\
+A derivation of $R_\psi$ from the UBT action alone (e.g., from the spectrum of
+$\mathcal{L}_\text{geom}$ on $S^1_\psi$) without referring to any lepton mass.
+}}
+\end{center}
+
+\noindent See \texttt{docs/ALPHA\_FROM\_ME\_ANALYSIS.md} §6.2 for numerical details
+and the impact on $\alpha$ predictions.
+
+\noindent See \texttt{docs/FITTED\_PARAMETERS.md} for the updated parameter status.
