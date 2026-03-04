@@ -1,0 +1,33 @@
+{
+  "root": "/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/ubt_audit_pack_v2",
+  "main_tex": "/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/ubt_audit_pack_v2/emergent_alpha_from_ubt.tex",
+  "failures": [
+    "Missing data/alpha_two_loop_grid.csv (export alpha grid first)."
+  ],
+  "warnings": [
+    "Main TeX not found: /home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory/ubt_audit_pack_v2/emergent_alpha_from_ubt.tex",
+    "Missing data/leptons.csv (lepton table won't render).",
+    "Alpha provider not found (no alpha_from_ubt_two_loop_strict or compute_two_loop_delta).",
+    "Mass pipeline provider ubt_alpha_msbar() not found (cannot audit mass provenance)."
+  ],
+  "hits": {
+    "fatal": [],
+    "warn": []
+  },
+  "tex_check": {
+    "exists": false,
+    "has_input_patch": false,
+    "has_input_hecke": false,
+    "uses_pgfplotstable": false,
+    "mentions_csv": false
+  },
+  "csv_presence": {
+    "alpha_csv": false,
+    "leptons_csv": false
+  },
+  "provenance": {
+    "alpha_from_ubt_two_loop_strict": [],
+    "compute_two_loop_delta": [],
+    "ubt_alpha_msbar": []
+  }
+}

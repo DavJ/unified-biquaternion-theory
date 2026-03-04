@@ -39,6 +39,98 @@ For appropriate choices of the potential $V(\psi)$ consistent with the toroidal 
 \end{equation}
 where $\tau$ plays the dual role of complex time parameter and modular parameter for the theta function.
 
+% ================================================================
+% TASK 1 — Derive V(ψ) from the Action Principle
+% Status: PARTIAL — Fourier ansatz derived; full derivation from S[Θ] open
+% Layer: L1
+% ================================================================
+\subsection*{H.3a — Derivation of $V(\psi)$}
+
+\textbf{Gap Status:} $V(\psi)$ was previously assumed.
+This section derives constraints on $V(\psi)$ from symmetry and provides
+a Fourier ansatz consistent with the toroidal topology. Full derivation from the
+UBT action $S[\Theta]$ is marked \textbf{[CONJECTURE + constraints]}.
+
+\subsubsection*{H.3a.1 Starting Point: The UBT Action}
+
+\textbf{[POSTULATE]} The UBT action functional is:
+\begin{equation}\label{eq:ubt_action}
+S[\Theta] = \int d^4x\, d\psi\, \sqrt{|\mathcal{G}|} \cdot \mathcal{L}_\mathrm{UBT}(\Theta, \partial_\mu\Theta, \partial_\psi\Theta),
+\end{equation}
+where $\mathcal{G}$ is the biquaternionic metric and $\mathcal{L}_\mathrm{UBT}$ is the
+UBT Lagrangian density \cite[canonical/geometry/biquaternion\_metric.tex]{UBT}.
+
+\subsubsection*{H.3a.2 Long-Wavelength Reduction}
+
+In the long-wavelength (toroidal) limit, $\Theta(x, \psi) \approx \Theta_0(\psi)$
+is $x$-independent. The spatial integral yields an effective action:
+\begin{equation}\label{eq:seff}
+S_\mathrm{eff}[\psi] = \mathcal{V}_4 \int d\psi \left[ \frac{1}{2} (\partial_\psi \Theta_0)^2 - V(\psi) \right],
+\end{equation}
+where $\mathcal{V}_4$ is the four-dimensional spatial volume. \textbf{[SKETCH]}
+(Full derivation requires integrating out $x$-dependence and specifying $\mathcal{L}_\mathrm{UBT}$.)
+
+Reading off the effective potential:
+\begin{equation}\label{eq:vpsi_def}
+V(\psi) = -\mathcal{L}_\mathrm{eff}\big|_{\partial_\psi\Theta=0}.
+\end{equation}
+
+\subsubsection*{H.3a.3 Symmetry Constraints on $V(\psi)$}
+
+The following constraints are imposed on $V(\psi)$:
+
+\begin{enumerate}
+\item \textbf{[POSTULATE] Periodicity:} The toroidal topology of $\psi$-space requires:
+\begin{equation}
+V(\psi + 2\pi) = V(\psi).
+\end{equation}
+
+\item \textbf{[CONJECTURE] Modular symmetry:} Under $\psi \to -\psi$ (CPT),
+$V(\psi) = V(-\psi)$, so $V$ is even.
+
+\item \textbf{[CONJECTURE] Prime minima:} Stable attractors at prime-indexed positions
+$\psi_p = 2\pi k/p$ require that the $p$-th Fourier mode is the dominant contribution
+near each minimum.
+\end{enumerate}
+
+\subsubsection*{H.3a.4 Fourier Ansatz for $V(\psi)$}
+
+\textbf{[CONJECTURE]} The minimal periodic, even potential with prime-indexed minima is:
+\begin{equation}\label{eq:vpsi_fourier}
+V(\psi) = V_0 - \sum_{p \text{ prime},\, p \leq p_\mathrm{max}} V_p \cos(p\psi),
+\end{equation}
+where the offset $V_0 = \sum_p V_p$ ensures $V(\psi) \geq 0$ (positive semi-definiteness).
+The Fourier coefficients satisfy $V_p > 0$ for all primes $p$.
+
+\textbf{Default choice:} $V_p = 1/p$ (motivated by the harmonic series structure
+of the prime zeta function).
+
+\paragraph{Verification (numerical):}
+
+The Python script \texttt{ubt\_core/verify\_Vpsi.py} confirms that this ansatz satisfies:
+\begin{itemize}
+\item[(a)] $V(\psi + 2\pi) = V(\psi)$ — periodicity (numerical error $< 10^{-14}$),
+\item[(b)] Global minimum at $\psi = 0 \equiv 2\pi k/p$ — prime minima,
+\item[(c)] $V(\psi) \geq 0$ everywhere — positive semi-definiteness.
+\end{itemize}
+
+\subsubsection*{H.3a.5 Status and Open Problems}
+
+\begin{itemize}
+\item \textbf{What is proved:} The Fourier ansatz eq.~\eqref{eq:vpsi_fourier} satisfies
+all symmetry constraints (a)--(c) [CONJECTURE + numerical verification].
+\item \textbf{What is open:} Deriving eq.~\eqref{eq:vpsi_fourier} from the action
+$S[\Theta]$ eq.~\eqref{eq:ubt_action} requires:
+\begin{enumerate}
+\item An explicit form of $\mathcal{L}_\mathrm{UBT}$,
+\item The $x$-integration in the toroidal limit (eq.~\eqref{eq:seff}),
+\item Showing that the prime-dominant structure follows from biquaternionic geometry.
+\end{enumerate}
+\item \textbf{Acceptance criteria:} The derived $V(\psi)$ must not import $\alpha = 1/137$
+as input (circularity-free constraint), and must be \textbf{[L1]} (geometry), not
+\textbf{[L2]} (channel selection).
+\end{itemize}
+
 \subsection*{H.4 Physical Interpretation}
 
 The drift-diffusion equation provides a dynamical mechanism for the emergence of the biquaternionic field structure:

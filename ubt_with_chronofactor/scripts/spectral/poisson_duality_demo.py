@@ -94,8 +94,8 @@ def spectral_sum(tau: float, d: int, k_max: int) -> float:
     # Sum exp(-πτ|k|²)
     raw_sum = np.sum(np.exp(-np.pi * tau * k_squared))
     
-    # Apply Poisson prefactor: τ^{-d/2}
-    normalized_sum = tau**(-d / 2) * raw_sum
+    # Apply Poisson prefactor: τ^{d/2}  (from Fourier transform of Gaussian)
+    normalized_sum = tau**(d / 2) * raw_sum
     
     return normalized_sum
 
