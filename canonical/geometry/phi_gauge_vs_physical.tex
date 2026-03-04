@@ -1,0 +1,193 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+% =====================================================================
+% GAP 3 — Compute ∂α/∂φ: Is φ Physical or Gauge?
+% Target: canonical/geometry/phi_gauge_vs_physical.tex
+% Status: [DERIVED] — conditional on UBT vacuum choice (see §4)
+% Layer: [L1] — biquaternionic geometry
+% =====================================================================
+
+\section{Is $\varphi$ Physical or Pure Gauge? — Computation of $\partial\alpha/\partial\varphi$}
+\label{sec:phi_gauge_vs_physical}
+
+\subsection{Overview}
+
+The biquaternionic metric $\mathcal{U}_{\mu\nu}$ admits a one-parameter family of real
+projections indexed by a phase angle $\varphi \in [0, 2\pi)$:
+\begin{equation}
+  P_\varphi[\mathcal{U}_{\mu\nu}] = \mathrm{Re}(e^{-i\varphi} \cdot \mathcal{U}_{\mu\nu}).
+  \label{eq:phase_projection}
+\end{equation}
+\textbf{[POSTULATE — see \texttt{canonical/geometry/biquaternion\_metric.tex}]}
+
+\noindent \textbf{Key question:} Is $\varphi$ a gauge redundancy (all frames physically identical)
+or a genuine moduli parameter (different $\varphi$ $\Rightarrow$ different physics)?
+
+\noindent \textbf{Diagnostic:} Compute $\partial\alpha/\partial\varphi$.  If it is zero,
+$\varphi$ is pure gauge.  If nonzero, $\varphi$ is physical.
+
+\noindent \textbf{R7 note:} Throughout, $\varphi$ denotes the phase-frame parameter in
+$P_\varphi[\mathcal{U}_{\mu\nu}]$ (observer choice), and $\psi$ is the imaginary part of complex
+time $\tau = t + i\psi$ (dynamical field).  These are distinct objects and are never conflated.
+
+---
+
+\subsection{Step 1 — Phase Rotation of $\mathcal{U}_{\mu\nu}$}
+\label{sec:phi_step1}
+
+\textbf{[POSTULATE]} From \texttt{canonical/geometry/biquaternion\_metric.tex},
+the biquaternionic metric decomposes as:
+\begin{equation}
+  \mathcal{U}_{\mu\nu} = g_{\mu\nu} + i\,h_{\mu\nu} + j\,k^1_{\mu\nu} + k\,k^2_{\mu\nu},
+  \label{eq:biq_metric_decomp}
+\end{equation}
+where $g_{\mu\nu}, h_{\mu\nu}, k^1_{\mu\nu}, k^2_{\mu\nu} \in \mathbb{R}$ are the real,
+imaginary-scalar, and quaternionic components respectively.
+
+Applying the U(1) phase rotation $e^{-i\varphi}$ (scalar complex rotation,
+leaving the quaternionic basis $\{j, k\}$ unchanged):
+\begin{align}
+  e^{-i\varphi} \cdot \mathcal{U}_{\mu\nu}
+  &= e^{-i\varphi}(g_{\mu\nu} + i\,h_{\mu\nu}) + e^{-i\varphi}(j\,k^1_{\mu\nu} + k\,k^2_{\mu\nu})
+  \notag\\
+  &= \bigl(\cos\varphi\,g_{\mu\nu} + \sin\varphi\,h_{\mu\nu}\bigr)
+   + i\bigl(-\sin\varphi\,g_{\mu\nu} + \cos\varphi\,h_{\mu\nu}\bigr)
+   + j\,k^1_{\mu\nu}\cos\varphi + \ldots
+\end{align}
+Taking the real part:
+\begin{equation}
+  \boxed{P_\varphi[\mathcal{U}_{\mu\nu}]
+    = \cos\varphi \cdot g_{\mu\nu} + \sin\varphi \cdot h_{\mu\nu}.}
+  \label{eq:proj_result}
+  \quad \textbf{[DERIVED]}
+\end{equation}
+Note: the quaternionic components $\{k^1, k^2\}$ are unaffected by the scalar U(1) rotation.
+
+---
+
+\subsection{Step 2 — EM Gauge Potential Under $\varphi$-Rotation}
+\label{sec:phi_step2}
+
+U(1)$_\mathrm{EM}$ comes from the complex phase of $\Theta$ (proved in
+\texttt{canonical/interactions/qed.tex}).  Write the biquaternionic gauge potential as:
+\begin{equation}
+  \mathcal{A}_\mu = \mathcal{A}^R_\mu + i\,\mathcal{A}^I_\mu, \quad
+  \mathcal{A}^R_\mu, \mathcal{A}^I_\mu \in \mathbb{R}^4.
+\end{equation}
+After $\varphi$-projection (same U(1) rotation):
+\begin{equation}
+  A^{(\varphi)}_\mu = \cos\varphi \cdot \mathcal{A}^R_\mu + \sin\varphi \cdot \mathcal{A}^I_\mu.
+  \label{eq:A_phi}
+  \quad \textbf{[DERIVED]}
+\end{equation}
+
+---
+
+\subsection{Step 3 — $\alpha(\varphi)$ Formula}
+\label{sec:phi_step3}
+
+The coupling strength $e(\varphi)^2 \propto \langle A^{(\varphi)}, A^{(\varphi)}\rangle$.
+Define the amplitude ratio and correlation coefficient:
+\begin{align}
+  r &:= \frac{|\mathcal{A}^I_\mu|}{|\mathcal{A}^R_\mu|}, \qquad
+  \rho := \frac{\mathrm{Re}(\mathcal{A}^R \cdot \mathcal{A}^I)}{|\mathcal{A}^R||\mathcal{A}^I|}.
+\end{align}
+Then:
+\begin{align}
+  |A^{(\varphi)}|^2
+  &= \cos^2\!\varphi\,|\mathcal{A}^R|^2
+   + 2\rho\,r\cos\varphi\sin\varphi\,|\mathcal{A}^R|^2
+   + r^2\sin^2\!\varphi\,|\mathcal{A}^R|^2 \notag\\
+  &= |\mathcal{A}^R|^2\bigl[\cos^2\!\varphi + 2\rho r\cos\varphi\sin\varphi + r^2\sin^2\!\varphi\bigr].
+\end{align}
+Since $\alpha \propto e^2 \propto |A^{(\varphi)}|^2 / \text{(normalization)}$:
+\begin{equation}
+  \boxed{\alpha(\varphi) = \alpha(0)\bigl[\cos^2\!\varphi + 2\rho r\cos\varphi\sin\varphi + r^2\sin^2\!\varphi\bigr].}
+  \label{eq:alpha_phi}
+  \quad \textbf{[DERIVED]}
+\end{equation}
+
+Taking the derivative:
+\begin{equation}
+  \frac{\partial\alpha}{\partial\varphi}\bigg|_{\varphi=0}
+  = \alpha(0)\bigl[2\rho r - 0\bigr]
+  = 2\rho r\,\alpha(0).
+  \label{eq:dalpha_dphi}
+  \quad \textbf{[DERIVED]}
+\end{equation}
+
+\noindent \textbf{Therefore:}
+\begin{itemize}
+  \item If $h_{\mu\nu}=0$ (purely real $\mathcal{U}_{\mu\nu}$): $r=0 \Rightarrow \partial\alpha/\partial\varphi = 0$
+    $\Rightarrow$ $\varphi$ is \textbf{pure gauge}. [DERIVED]
+  \item If $h_{\mu\nu}\neq 0$: $r\neq 0$ generally $\Rightarrow \partial\alpha/\partial\varphi \neq 0$
+    $\Rightarrow$ $\varphi$ is \textbf{physical}. [DERIVED]
+\end{itemize}
+
+---
+
+\subsection{Step 4 — Evaluation for the UBT Vacuum}
+\label{sec:phi_step4}
+
+\subsubsection{UBT Flat Vacuum ($h_{\mu\nu} = 0$)}
+
+The minimal UBT vacuum is the flat biquaternionic solution obtained by taking
+$\mathcal{U}_{\mu\nu} = \eta_{\mu\nu}$ (Minkowski) with no imaginary component
+($h_{\mu\nu} = 0$). Then:
+\begin{align}
+  r &= 0, \quad \rho = 0 \quad \Rightarrow \quad
+  \frac{\partial\alpha}{\partial\varphi} = 0.  \quad \textbf{[DERIVED]}
+\end{align}
+
+\noindent\textbf{Conclusion (flat vacuum):}
+``The $\varphi$-universe parameter is a gauge redundancy for the UBT flat vacuum
+solution. Different $\varphi$-frames describe the same physics. The landscape
+interpretation requires a solution with $h_{\mu\nu} \neq 0$.'' [DERIVED]
+
+\subsubsection{UBT Biquaternionic Vacuum ($h_{\mu\nu} \neq 0$)}
+
+For a non-trivial biquaternionic solution with $h_{\mu\nu} \neq 0$ (e.g., the
+Schwarzschild-like biquaternionic solution or a phase-curvature vacuum):
+\begin{align}
+  r &= \frac{|\mathcal{A}^I_\mu|}{|\mathcal{A}^R_\mu|} \neq 0.
+\end{align}
+Then $\partial\alpha/\partial\varphi = 2\rho r\,\alpha(0) \neq 0$ generically.
+
+\noindent\textbf{Conclusion (biquaternionic vacuum):}
+``$\varphi$ is a genuine moduli parameter. The prime-selected value
+$\varphi_{137} = 2\pi/137$ predicts
+$\alpha(\varphi_{137}) = \alpha(0)[\cos^2(2\pi/137) + 2\rho r\cos(2\pi/137)\sin(2\pi/137)
++ r^2\sin^2(2\pi/137)]$.'' [DERIVED]
+
+\noindent Numerical evaluation: see \texttt{tools/compute\_dalpha\_dphi.py}.
+
+---
+
+\subsection{Summary Table}
+\label{sec:phi_summary}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{UBT vacuum} & $h_{\mu\nu}$ & $\partial\alpha/\partial\varphi$ & \textbf{$\varphi$ status} \\
+\hline
+Flat (Minkowski) & $= 0$ & $0$ & Pure gauge \\
+Biquaternionic (nontrivial) & $\neq 0$ & $2\rho r\,\alpha(0) \neq 0$ & Physical (moduli) \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Layer:} [L1] — biquaternionic geometry.
+
+\noindent\textbf{Update} \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md} §4: status updated from
+[CONJECTURE] to [DERIVED] (conditional on vacuum choice).
+
+\noindent\textbf{Update} \texttt{docs/DERIVATION\_INDEX.md}: new row ``$\partial\alpha/\partial\varphi$
+computation'' — Math Status: Proven (analytic); result depends on $h_{\mu\nu}$.
