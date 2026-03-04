@@ -115,7 +115,7 @@ SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__",
              "ubt_strict_minimal",  # Minimal strict implementation
              "ubt_audit_pack_v1",  # Audit documentation
              "ubt_audit_pack_v2",  # Audit documentation
-             "ubt_with_chronofactor",  # Subpackage / legacy implementation (contains reference values)
+             "ubt_with_chronofactor",  # subpackage / legacy implementation (contains reference values)
              "reports",  # Generated reports and audit results
              "FINGERPRINTS",  # Fingerprint results directory
              "DOCS",  # Documentation directory

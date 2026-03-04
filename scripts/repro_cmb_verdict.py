@@ -219,9 +219,8 @@ def run_pipeline(args: argparse.Namespace) -> int:
     print()
 
     # Check dependencies
-    try:
-        import numpy  # noqa: F401
-    except ImportError:
+    import importlib.util
+    if importlib.util.find_spec("numpy") is None:
         print("ERROR: numpy is required. Install with: pip install numpy", file=sys.stderr)
         return 1
 

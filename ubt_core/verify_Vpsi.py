@@ -53,7 +53,8 @@ def sieve_primes(n_max: int) -> List[int]:
         return []
     sieve = [True] * (n_max + 1)
     sieve[0] = sieve[1] = False
-    for i in range(2, int(n_max**0.5) + 1):
+    sqrt_n = int(n_max**0.5)
+    for i in range(2, sqrt_n + 1):
         if sieve[i]:
             for j in range(i * i, n_max + 1, i):
                 sieve[j] = False
@@ -140,8 +141,6 @@ def check_prime_minima(
         (all_passed, details_per_prime)
         where details_per_prime = list of (prime, ψ_min_found, V_at_min)
     """
-    psi = np.linspace(0, 2 * np.pi / primes[0] if primes else 2 * np.pi,
-                      psi_resolution)
     all_psi = np.linspace(0, 2 * np.pi, psi_resolution, endpoint=False)
     V_all = trial_potential(all_psi, primes)
     global_min = float(np.min(V_all))

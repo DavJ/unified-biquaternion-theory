@@ -98,7 +98,7 @@ def read_text(p: Path) -> str:
     for enc in ("utf-8", "latin-1", "windows-1250"):
         try:
             return p.read_text(encoding=enc)
-        except Exception:
+        except (UnicodeDecodeError, OSError):
             continue
     return ""
 

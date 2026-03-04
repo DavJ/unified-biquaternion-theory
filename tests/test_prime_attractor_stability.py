@@ -361,11 +361,12 @@ class TestPrimeAttractorNumberTheory:
 
     def test_prime_factorization_uniqueness(self):
         """
-        Every composite n has a unique prime factorization.
+        Every prime p has no proper factors.
         This underlies the mode coupling structure.
         """
+        primes_30 = set(sieve_primes(30))
         for n in range(2, 30):
-            if sieve_primes(n) and n in sieve_primes(30):
+            if n in primes_30:
                 # n is prime: no proper factorization
                 factors = [k for k in range(2, n) if n % k == 0]
                 assert factors == [], f"Prime {n} should have no proper factors"
