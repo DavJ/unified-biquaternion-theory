@@ -101,6 +101,20 @@
 
 ---
 
+## φ-Universe Parameter and h_μν Vacuum  *(added 2026-03-04)*
+
+| Claim | Location | Math Status | Numeric Repro | Free Parameters |
+|---|---|---|---|---|
+| h_ψψ = 0 for single-mode winding (dead end) | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Proven | Yes | 0 |
+| h_ψψ ≠ 0 two-mode winding vacuum | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | Proven | Yes | 0 |
+| r ≈ 4.66 for canonical two-mode vacuum | `tools/compute_h_munu_vacuum.py` | Proven (numerical; gauge sketch) | Yes | 0 |
+| φ is physical (r ≠ 0) for two-mode vacuum | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | Proven | Yes | 0 |
+| ψ↔φ are distinct operations, both prime-indexed | `docs/PHI_UNIVERSE_PARAMETER.md §5a` | Proven | No | 0 |
+| dim(ℳ_UBT) ≥ 1 (U(1) moduli) | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Proven | No | 0 |
+| dim(ℳ_UBT) = 4 (U(1)×Sp(1)) | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Hypothesis | No | 0 |
+
+---
+
 ## Summary Statistics
 
 | Domain | Total Claims | Proven | Semi-empirical | Hypothesis/Sketch | Numeric Scripts |
@@ -112,6 +126,7 @@
 | Electron mass | 4 | 0 | 2 | 2 | 2 |
 | Hubble tension | 3 | 0 | 0 | 3 | 2 |
 | Cosmology / CMB | 4 | 0 | 0 | 4 | 0 |
+| φ-universe / h_μν | 7 | 5 | 0 | 2 | 1 |
 
 ---
 
