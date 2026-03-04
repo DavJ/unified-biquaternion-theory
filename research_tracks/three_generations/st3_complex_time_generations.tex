@@ -443,6 +443,140 @@ structural advantage for quantization and for consistency with standard QFT.
 \end{enumerate}
 
 %=============================================================
+\section{$\psi$-Mode Mass Ratios vs.\ $m_e : m_\mu : m_\tau$}
+\label{sec:mass_ratios}
+%=============================================================
+
+This section analyses whether the mass hierarchy of the three generations
+can be derived from the $\psi$-mode structure.  The treatment follows three
+steps: (1)~prove the Kaluza--Klein mismatch as a theorem before proposing any
+fix; (2)~evaluate three candidate mass mechanisms; (3)~state the honest
+fallback.
+
+%-------------------------------------------------------------
+\subsection{Step 1: The KK Mismatch is a Theorem}
+\label{subsec:kk_mismatch}
+%-------------------------------------------------------------
+
+\begin{theorem}[KK mismatch — DERIVED]
+  \label{thm:kk_mismatch}
+  The standard Kaluza--Klein mass formula for mode $n$ on a $\psi$-circle
+  of radius $R_\psi$ is
+  \[
+    m_n^2(\mathrm{KK}) = \frac{n^2}{R_\psi^2},
+    \qquad n = 0, 1, 2, \ldots
+    \tag{KK}
+  \]
+  This gives $m_0 : m_1 : m_2 = 0 : 1 : 2$, so $m_1 : m_2 = 1 : 2$.
+  The observed lepton mass ratios are $m_\mu : m_\tau \approx 207 : 3477$,
+  i.e.\ $m_1 : m_2 \approx 1 : 16.8$.
+  These are incompatible: the KK ratio $1{:}2$ disagrees with the observed
+  ratio $207{:}3477$ by a factor of approximately $1700$.
+\end{theorem}
+
+\begin{proof}
+  The KK formula follows from a standard separation-of-variables analysis
+  of the Klein--Gordon operator on $M^4 \times S^1_{R_\psi}$.  Modes with
+  winding number $n$ acquire a mass-squared contribution $n^2/R_\psi^2$.
+  The ratio $m_1 : m_2 = 1 : 2$ is an immediate consequence and holds
+  independently of $R_\psi$.  Comparing to the PDG 2022 values
+  $m_\mu = 105.66\,\text{MeV}$ and $m_\tau = 1776.86\,\text{MeV}$ confirms
+  the incompatibility.  \emph{[DERIVED --- mismatch is a theorem.]}
+\end{proof}
+
+\begin{remark}[Mandatory caveat before any fix]
+  The naive KK formula gives $m_1 : m_2 = 1 : 2$, incompatible with the
+  observed ratio $207 : 3477$.  Additional mass dynamics are required.
+  The $\psi$-mode generation mechanism is conjectural pending identification
+  of the correct mass generation mechanism.
+\end{remark}
+
+%-------------------------------------------------------------
+\subsection{Step 2: Three Candidate Mass Mechanisms}
+\label{subsec:mass_mechanisms}
+%-------------------------------------------------------------
+
+We now test three mechanisms.  Each is evaluated for whether it can
+reproduce $m_0 : m_1 : m_2 \approx 1 : 207 : 3477$ with $\leq 1$ free parameter.
+
+\subsubsection{Option A --- $\psi$-Parity Breaking Mass Matrix}
+
+The $\psi$-parity breaking Lagrangian
+\[
+  \mathcal{L}_\mathrm{break} = \mu \cdot \mathrm{Sc}[\Theta_0^\dagger \cdot \Theta_1] + \mathrm{h.c.}
+\]
+induces an off-diagonal mass matrix for the zero mode and the first KK mode.
+For $n = 0, 1, 2$ the mass matrix (in units of $1/R_\psi$) is
+\[
+  M_{nn'} = \delta_{nn'} m_n(\mathrm{KK}) + \Delta_{nn'},
+  \qquad
+  M = \begin{pmatrix} 0 & \delta & 0 \\ \delta & 1 & \delta \\ 0 & \delta & 2 \end{pmatrix}.
+\]
+Numerical scan (see \texttt{tools/reproduce\_lepton\_ratios.py --mechanism A}) shows:
+the best-fit mixing $\delta \approx 0.066$ yields eigenvalue ratios
+$\approx 1 : 230 : 461$.  The ratio $m_2/m_0 \approx 461$ is far below the
+required $3477$.  Linear mixing provides a limited range of ratios.
+\textbf{[DEAD END --- linear mixing has limited range.]}
+
+\subsubsection{Option B --- Linear Yukawa from $\langle\Theta_0\rangle$}
+
+If the mass arises from a Yukawa coupling to the VEV of the zero mode,
+\[
+  m_f(n) \propto \langle\Theta_0\rangle \cdot g_\mathrm{Yukawa} \cdot (n+1),
+\]
+the ratio is $m_0 : m_1 : m_2 = 1 : 2 : 3$.  This is far from $1 : 207 : 3477$.
+\textbf{[DEAD END --- linear hierarchy.]}
+
+\subsubsection{Option C --- $\psi$-Instantons (most promising)}
+
+An instanton of winding number $n$ on the $\psi$-circle has action
+\[
+  S_\mathrm{inst}(n) = 2\pi n R_\psi \frac{m_\mathrm{field} c}{\hbar}
+  \qquad \text{[SKETCH --- from kinetic term]}.
+\]
+The standard dilute-instanton-gas result (masses growing with mode number):
+\[
+  m_n \sim m_0 \cdot \frac{\exp(S_\mathrm{inst} \cdot n)}{n!}.
+\]
+
+\noindent\textbf{Computation:}
+\begin{enumerate}
+  \item[(a)] $m_1/m_0 = \exp(S_\mathrm{inst})$, so requiring $m_1/m_0 = 207$
+    gives $S_\mathrm{inst} = \ln 207 \approx 5.33$.
+  \item[(b)] Prediction for $m_2/m_0$:
+    \[
+      m_2/m_0 = \frac{\exp(2 S_\mathrm{inst})}{2} = \frac{207^2}{2} \approx 21\,400.
+    \]
+  \item[(c)] Experimental value: $m_2/m_0 = 3477$.
+    Discrepancy: factor $\approx 6.1$.
+  \item[(d)] Compatibility check: $S_\mathrm{inst} \approx 5.33$ with
+    $R_\psi = \hbar/(m_e c)$ gives a field mass
+    $m_\mathrm{field} = S_\mathrm{inst} \hbar/(2\pi R_\psi c) \approx 0.43\,\text{MeV}$,
+    comparable to $m_e$.  The instanton scale is physically reasonable,
+    but the mass hierarchy is not reproduced.
+\end{enumerate}
+
+The dilute-instanton-gas formula calibrated to the muon predicts $m_2/m_0
+\approx 21\,400$, whereas the experimental value is $3477$ (factor~$6$
+mismatch).  A non-perturbative resummation or a different instanton action
+is required.
+\textbf{[OPEN HARD PROBLEM --- instanton formula, dilute-gas approximation.]}
+
+%-------------------------------------------------------------
+\subsection{Step 3: Honest Fallback}
+\label{subsec:honest_fallback}
+%-------------------------------------------------------------
+
+\begin{remark}[Honest fallback --- mandatory if no mechanism works]
+  The $\psi$-mode generation conjecture is currently incompatible with
+  observed lepton mass ratios.  The mass generation mechanism is an
+  \textbf{OPEN HARD PROBLEM}.  The identification $\Theta_0/\Theta_1/\Theta_2
+  \leftrightarrow e/\mu/\tau$ remains a conjecture.
+  This conjecture must not be upgraded from [CONJECTURE] unless the mass
+  ratios $1 : 207 : 3477$ are reproduced with $\leq 1$ free parameter.
+\end{remark}
+
+%=============================================================
 \section{Conclusion}
 \label{sec:conclusion}
 %=============================================================
