@@ -36,7 +36,7 @@ Parameters that are **fully derived** from first principles are NOT listed here 
 
 | Parameter | Domain | Formula | Current Status | Data Used | Gap |
 |---|---|---|---|---|---|
-| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A) | SM gauge-boson content (N_eff = 12) | Gap 6 |
+| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A — three derivation approaches tested; all give HONEST GAP or DEAD END; see `tools/compute_B_KK_sum.py` and `STATUS_ALPHA.md §9`) | SM gauge-boson content (N_eff = 12) | Gap 6 |
 | **R factor** (≈ 1.114) | Fine structure α | B = B_base × R | **Semi-empirical** (OPEN PROBLEM B) | SM particle spectrum | Gap 6 |
 | **Λ** (cosmological constant) | Cosmology / GR | FRW embedding | Semi-empirical | CMB Planck data | — |
 | **Electroweak mixing angle** θ_W | Standard Model | SU(2)×U(1) embedding | **Semi-empirical** | PDG value sin²θ_W = 0.231 | Gap 5 |
@@ -88,7 +88,7 @@ See `STATUS_ALPHA.md §9` and `validation/validate_B_coefficient.py` for the no-
 | Parameter | Removal condition |
 |-----------|-------------------|
 | R ≈ 1.114 | Derive R from [D_μ,D_ν] in ℂ⊗ℍ (Option B2) or gravitational dressing (Option B3) |
-| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume |
+| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume. KK sum, zeta regularization, and Weyl gauge-orbit volume all tested in `tools/compute_B_KK_sum.py` — all give HONEST GAP / DEAD END as of 2026-03-04 |
 | θ_W | Derive sin²θ_W from extended algebra structure or ψ-circle dynamics |
 
 ---

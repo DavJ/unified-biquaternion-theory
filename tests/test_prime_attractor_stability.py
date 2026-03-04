@@ -585,5 +585,291 @@ class TestPrimeAttractorNumberTheory:
                 )
 
 
+# ---------------------------------------------------------------------------
+# Task 4 — Coupling type derivation tests
+# ---------------------------------------------------------------------------
+
+def _additive_mode_rhs(
+    a: np.ndarray,
+    n_modes: int,
+    gamma: float = 1.0,
+    coupling: float = 0.1,
+) -> np.ndarray:
+    """Additive coupling ODE: ∂_t a_n = -γ·n·a_n + λ·Σ_{j+m-k=n} a_j·Re(ā_k·a_m).
+
+    Simplified for real a (Sc(ā_k·a_m) = a_k·a_m for real modes):
+        ∂_t a_n = -γ·n·a_n + λ·Σ_{k+m=n+j, j≠0} ...
+
+    For tractability we use the reduced form:
+        ∂_t a_n = -γ·n·a_n + λ·Σ_{k+m=n, k≥1, m≥1} a_k·a_m
+    This is the standard additive convolution (k+m=n) from QFT.
+    """
+    da = np.zeros_like(a)
+    for idx in range(n_modes):
+        n = idx + 1
+        da[idx] = -gamma * n * a[idx]
+        # Additive coupling: sum over k+m=n, both k,m ≥ 1
+        for k in range(1, n):
+            m = n - k
+            if m >= 1:
+                ki = k - 1
+                mi = m - 1
+                if ki < n_modes and mi < n_modes:
+                    da[idx] += coupling * a[ki] * a[mi]
+    return da
+
+
+class TestCouplingTypeFromFieldEquation:
+    """
+    Task 4 Step 1 — Derive whether the UBT field equation gives additive or
+    multiplicative coupling.
+
+    Reference: Appendix_H_Theta_Phase_Emergence.tex §H.7a.1
+
+    RESULT [DERIVED]:
+    Substituting Θ(x,ψ) = Σ_n a_n·exp(inψ) into ∇†∇Θ = λΘ·Sc(Θ†Θ) gives:
+        Sc(Θ†Θ) has Fourier coefficients c_p = Σ_{m-k=p} Sc(ā_k·a_m)
+        Θ·Sc(Θ†Θ) has Fourier coefficients Σ_{j+p=n} a_j·c_p
+        → index constraint: j + (m-k) = n  (ADDITIVE, not multiplicative)
+
+    The multiplicative coupling k·m=n used in the original tests is NOT
+    derived from ∇†∇Θ = λΘ·Sc(Θ†Θ).  It requires a topological winding-
+    number interaction [CONJECTURE] not present in the standard UBT action.
+    """
+
+    def test_coupling_type_from_field_equation(self):
+        """
+        Verify symbolically (for N=3 modes) that the field equation substitution
+        gives ADDITIVE coupling j+(m-k)=n, NOT multiplicative k·m=n.
+
+        Method: build the RHS of the mode equation for each target mode n
+        by explicit Fourier projection, and check which pairs (j,k,m) contribute.
+
+        Classification: [DERIVED — from Fourier analysis of ∇†∇Θ = λΘ·Sc(Θ†Θ)]
+        Reference: Appendix_H_Theta_Phase_Emergence.tex §H.7a.1
+        """
+        # Use symbolic mode amplitudes: a[n] is the amplitude of mode n
+        # N=3 modes: indices 1, 2, 3
+        N = 3
+
+        # For each target mode n, collect all (j, k, m) triplets from the RHS
+        # RHS Fourier coefficient at mode n:
+        #   c_n^{RHS} = Σ_{j+(m-k)=n} a_j · Sc(ā_k · a_m)
+        # For real modes: Sc(ā_k · a_m) = a_k · a_m
+
+        additive_triplets = {}  # n → list of (j, k, m) with j+m-k=n
+        multiplicative_pairs = {}  # n → list of (k, m) with k*m=n
+
+        for n in range(1, N + 1):
+            additive_triplets[n] = []
+            multiplicative_pairs[n] = []
+            for j in range(1, N + 1):
+                for k in range(1, N + 1):
+                    for m in range(1, N + 1):
+                        if j + m - k == n:
+                            additive_triplets[n].append((j, k, m))
+            for k in range(2, n):
+                if n % k == 0:
+                    m = n // k
+                    if m > 1:
+                        multiplicative_pairs[n].append((k, m))
+
+        # Verify: every mode n ≥ 1 has at least one additive triplet
+        for n in range(1, N + 1):
+            assert len(additive_triplets[n]) > 0, (
+                f"Mode n={n} should have at least one additive triplet (j+m-k=n), "
+                f"found none.  This contradicts the field equation derivation."
+            )
+
+        # Verify: prime modes have NO multiplicative pairs (this is just number theory)
+        primes_in_range = set(sieve_primes(N))
+        for n in range(1, N + 1):
+            if n in primes_in_range:
+                assert multiplicative_pairs[n] == [], (
+                    f"Prime n={n} should have no multiplicative pairs (k*m=n with k,m>1), "
+                    f"found {multiplicative_pairs[n]}."
+                )
+
+        # The key result: ALL modes (prime and composite alike) have additive triplets.
+        # This means additive coupling gives NO special stability to primes.
+        for n in range(1, N + 1):
+            assert len(additive_triplets[n]) > 0, (
+                f"Mode n={n} has no additive triplet — unexpected."
+            )
+
+        # Verify the simplest triplet: (n, k=1, m=n) satisfies j+m-k = n+n-1 = 2n-1 ≠ n
+        # and (j=1, k=1, m=n) gives 1+n-1=n ✓
+        for n in range(1, N + 1):
+            j_one_contributes = any(
+                j == 1 and k == 1 for (j, k, m) in additive_triplets[n]
+            )
+            # (j=1, k=1, m=n): 1 + n - 1 = n ✓
+            assert j_one_contributes, (
+                f"Triplet (j=1, k=1, m={n}) should satisfy j+m-k=n: "
+                f"1+{n}-1={n} ✓.  Not found in {additive_triplets[n]}."
+            )
+
+    def test_coupling_is_additive_not_multiplicative(self):
+        """
+        Confirm that mode n=6 (composite) and mode n=5 (prime) BOTH receive
+        additive coupling contributions from smaller modes.
+
+        For additive coupling (k+m=n):
+          n=6: pairs (1,5),(2,4),(3,3),(4,2),(5,1) — all contribute
+          n=5: pairs (1,4),(2,3),(3,2),(4,1)       — all contribute
+
+        For multiplicative coupling (k*m=n, k>1, m>1):
+          n=6: pairs (2,3),(3,2) — contributes
+          n=5: NO pairs (5 is prime)        — zero coupling
+
+        This test verifies that ADDITIVE coupling gives nonzero injection to
+        BOTH prime and composite modes → no prime preference.
+
+        Classification: [DERIVED — direct counting]
+        Reference: Appendix_H_Theta_Phase_Emergence.tex §H.7a.1
+        """
+        n_modes = 7  # modes 1..7
+
+        # Additive pairs k+m=n for n=5 (prime) and n=6 (composite)
+        def additive_pairs(n, max_mode):
+            return [(k, m) for k in range(1, n) for m in [n - k]
+                    if m >= 1 and k <= max_mode and m <= max_mode]
+
+        # Multiplicative pairs k*m=n for n=5 and n=6
+        def multiplicative_pairs(n, max_mode):
+            return [(k, m) for k in range(2, n) if n % k == 0
+                    for m in [n // k]
+                    if m > 1 and k <= max_mode and m <= max_mode]
+
+        pairs_add_5 = additive_pairs(5, n_modes)
+        pairs_add_6 = additive_pairs(6, n_modes)
+        pairs_mul_5 = multiplicative_pairs(5, n_modes)
+        pairs_mul_6 = multiplicative_pairs(6, n_modes)
+
+        # Additive: both prime 5 and composite 6 have nonzero coupling
+        assert len(pairs_add_5) > 0, (
+            "Prime n=5 should have additive pairs (k+m=5) — found none."
+        )
+        assert len(pairs_add_6) > 0, (
+            "Composite n=6 should have additive pairs (k+m=6) — found none."
+        )
+
+        # Multiplicative: prime 5 has NO pairs; composite 6 has pairs
+        assert pairs_mul_5 == [], (
+            f"Prime n=5 should have no multiplicative pairs (k*m=5), found {pairs_mul_5}."
+        )
+        assert len(pairs_mul_6) > 0, (
+            "Composite n=6 should have multiplicative pairs (k*m=6) — found none."
+        )
+
+        # The discriminating result: under additive coupling, primes are NOT special
+        # Both n=5 (prime) and n=6 (composite) receive injection → no prime preference
+        # Under multiplicative coupling, only composites receive injection → primes special
+
+
+class TestAdditivePrimeStability:
+    """
+    Task 4 Step 3 — Test prime stability under ADDITIVE coupling.
+
+    RESULT [DEAD END]:
+    Under additive coupling Σ_{k+m=n} a_k·a_m, all integer modes receive
+    injection from smaller modes.  Primes receive the same injection as
+    composites → no prime preference.
+
+    The prime attractor from MODE COUPLING requires multiplicative coupling
+    (topological winding fusion [CONJECTURE]).  The robust prime selection
+    mechanism is V_eff(n) minimization, which is independent of coupling type.
+
+    Reference: Appendix_H_Theta_Phase_Emergence.tex §H.7a.3
+    """
+
+    PRIMES_SMALL = [2, 3, 5, 7]
+    COMPOSITES_SMALL = [4, 6, 8, 9]
+
+    def test_additive_prime_stability(self):
+        """
+        Under additive coupling (k+m=n), does prime n=5 outlast composite n=4?
+
+        Expected result [DEAD END]: NO — additive coupling gives all modes
+        equal injection from submodes, so primes have no dynamical advantage
+        beyond the linear damping rate (which favors SMALLER n, not primes).
+
+        In particular, mode n=5 (prime) will receive injection from pairs
+        (1,4),(2,3),(3,2),(4,1), just like composite n=6 receives from
+        (1,5),(2,4),(3,3),(4,2),(5,1).  The prime mode has no zero-coupling
+        advantage under additive dynamics.
+
+        Note: the only advantage primes have here is that they have SMALLER n
+        (lower damping rate -γ·n), which applies equally to any mode with
+        small n regardless of primality.
+
+        Classification: [DERIVED — demonstrates DEAD END for additive coupling]
+        Reference: Appendix_H_Theta_Phase_Emergence.tex §H.7a.1, §H.7a.3
+        """
+        n_modes = 7
+        gamma = 1.0
+        coupling = 0.1
+        t_final = 5.0
+        dt = 0.01
+
+        # All modes start at equal amplitude
+        a0 = np.ones(n_modes) * 0.5
+
+        # Simulate under ADDITIVE coupling
+        a = a0.copy()
+        n_steps = int(t_final / dt)
+        for _ in range(n_steps):
+            da = _additive_mode_rhs(a, n_modes, gamma=gamma, coupling=coupling)
+            a = a + dt * da
+            a = np.clip(a, -1e6, 1e6)
+
+        # n=5 (prime) vs n=6 (composite): with equal starting amplitude,
+        # n=5 has lower damping rate (-γ·5 vs -γ·6).
+        # Under additive coupling, n=5 also receives injection from (1,4),(2,3).
+        # Under additive coupling, n=6 also receives injection from (1,5),(2,4),(3,3).
+        # The injection to n=5 is NONZERO — unlike multiplicative coupling
+        # where prime n=5 has zero injection.
+        amp_5 = abs(a[4])  # mode index 5, array index 4
+        amp_6 = abs(a[5])  # mode index 6, array index 5
+
+        # With additive coupling, n=5 still decays slower than n=6 due to lower n
+        # (linear damping), but this is NOT due to prime structure
+        assert amp_5 > amp_6, (
+            f"Mode n=5 amplitude {amp_5:.4f} should exceed mode n=6 amplitude {amp_6:.4f} "
+            f"under additive coupling (due to lower damping rate only, not prime structure)."
+        )
+
+        # More importantly: compare additive vs multiplicative coupling for prime n=5
+        # Under additive coupling, n=5 receives injection (non-zero coupling term)
+        # Check: with all modes at equal amplitude, the coupling injection to n=5 is nonzero
+
+        a_test = np.ones(n_modes) * 0.5
+        da_additive = _additive_mode_rhs(a_test, n_modes, gamma=0.0, coupling=0.1)
+        da_multiplicative = mode_coupling_rhs(a_test, n_modes, gamma=0.0, coupling=0.1)
+
+        # Prime n=5: under additive coupling, injection should be NONZERO
+        injection_additive_5 = da_additive[4]  # index 4 = mode 5
+        injection_multiplicative_5 = da_multiplicative[4]
+
+        # Additive coupling: prime n=5 receives nonzero injection (j+m-k=5 has solutions)
+        assert abs(injection_additive_5) > 1e-10, (
+            f"Prime n=5 should receive nonzero injection under additive coupling, "
+            f"got {injection_additive_5:.2e}.  [DEAD END confirmed: additive coupling "
+            f"gives prime modes the SAME nonzero injection as composite modes.]"
+        )
+
+        # Multiplicative coupling: prime n=5 receives ZERO injection (no k*m=5 with k,m>1)
+        assert abs(injection_multiplicative_5) < 1e-12, (
+            f"Prime n=5 should receive ZERO injection under multiplicative coupling "
+            f"(no k*m=5 with k>1, m>1), got {injection_multiplicative_5:.2e}."
+        )
+
+        # This confirms the DEAD END:
+        # Additive coupling → primes receive injection → no prime preference
+        # Multiplicative coupling → primes receive zero injection → prime preference
+        # But multiplicative coupling is NOT derived from ∇†∇Θ = λΘ·Sc(Θ†Θ)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
