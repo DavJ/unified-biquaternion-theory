@@ -1,0 +1,205 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B Coefficient from Loop Expansion in UBT — Candidate 4: Combined Effect
+% Track: CORE — α derivation
+% Date: 2026-03-04
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Candidate 4: Combined Effect\\
+    \large B Coefficient from Loop Expansion — Synthesis and Obstruction}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-04}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Candidate 4: Combined Effect}
+\label{sec:candidate4_combined}
+
+\subsection{Combined Formula}
+
+Having analysed the three individual candidates, we now consider their combined effect.
+Define:
+\begin{equation}
+  B_{\mathrm{total}} = B_0 \cdot (1 + \delta_{\mathrm{loops}})
+    \cdot (1 + \delta_{\mathrm{NC}})
+    \cdot (1 + \delta_{\mathrm{grav}}),
+  \label{eq:B_combined}
+\end{equation}
+where:
+\begin{align}
+  \delta_{\mathrm{loops}} &= c_1\Bigl(\frac{\alpha}{\pi}\Bigr)
+    + c_2\Bigl(\frac{\alpha}{\pi}\Bigr)^{\!2} + \cdots, \label{eq:delta_loops}\\
+  \delta_{\mathrm{NC}} &= C_{\mathrm{NC}} \cdot
+    \mathrm{Tr}(\Omega^2) = 2\,C_{\mathrm{NC}}, \label{eq:delta_NC}\\
+  \delta_{\mathrm{grav}} &= C_{\mathrm{grav}} \cdot \mathcal{Q}
+    = \frac{C_{\mathrm{grav}}}{51}. \label{eq:delta_grav}
+\end{align}
+The QED limit condition requires:
+\begin{equation}
+  B_{\mathrm{total}}\bigl(N_{\mathrm{eff}} = 1,\; C_{\mathrm{NC}} = 0,\;
+    C_{\mathrm{grav}} = 0\bigr) = \frac{2\pi}{3},
+  \label{eq:qed_combined}
+\end{equation}
+which is satisfied by construction since all corrections vanish in the QED limit. \checkmark
+
+\subsection{Summary of Individual Candidates}
+
+\begin{table}[h]
+  \centering
+  \caption{Status of individual candidates.}
+  \label{tab:candidates_summary}
+  \begin{tabular}{lcccl}
+    \toprule
+    Candidate & $B^{(0)} = B_0$ & Correction & $B_{\mathrm{pred}}$ & Status \\
+    \midrule
+    1: Multi-loop   & 25.133 & $+0.088$ & $25.22$ & \textbf{Proved Dead End} \\
+    2: NC ($C_{\mathrm{NC}}=0.422$) & 25.133 & $+21.2$ & $46.3$ & Requires derivation \\
+    3: Metric ($C_{\mathrm{grav}}=43$) & 25.133 & $+21.2$ & $46.3$ & Requires derivation \\
+    \midrule
+    Combined (all) & 25.133 & see below & see below & Obstructed \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Can the Three Corrections Combine to Give \texorpdfstring{$B = 46.3$}{B = 46.3}?}
+
+\textbf{Candidate 1 (multi-loop)} is a proved Dead End: its contribution is $\delta_{\mathrm{loops}} \approx 0.0035$, giving at most $B_{\mathrm{loops}} \approx 25.22$.
+
+For candidates 2 and 3, we have not yet derived $C_{\mathrm{NC}}$ and $C_{\mathrm{grav}}$. However, we can ask what combination of the two \emph{would} be needed:
+
+From~\eqref{eq:B_combined}, ignoring the negligible loop correction:
+\begin{equation}
+  (1 + 2\,C_{\mathrm{NC}})(1 + C_{\mathrm{grav}}/51) = 1.844.
+  \label{eq:combined_equation}
+\end{equation}
+Some solutions to~\eqref{eq:combined_equation}:
+
+\begin{table}[h]
+  \centering
+  \caption{Combinations of $C_{\mathrm{NC}}$ and $C_{\mathrm{grav}}$ yielding
+    $B_{\mathrm{total}} = 46.3$.}
+  \label{tab:C_combinations}
+  \begin{tabular}{ccc}
+    \toprule
+    $C_{\mathrm{NC}}$ & $C_{\mathrm{grav}}$ & $B_{\mathrm{total}}$ \\
+    \midrule
+    $0.422$ & $0$    & $46.3$ \\
+    $0$     & $43.0$ & $46.3$ \\
+    $0.2$   & $21.8$ & $46.3$ \\
+    $0.1$   & $31.0$ & $46.3$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Dominant Mechanism}
+
+The dominant mechanism depends on the relative magnitude of $C_{\mathrm{NC}}$ and $C_{\mathrm{grav}}$:
+
+\begin{itemize}
+  \item If $C_{\mathrm{NC}} \approx 0.42$ is derivable from the biquaternionic loop
+    integral (see \texttt{candidate2\_noncommutative.tex}, Eq.~\eqref{eq:C_NC_integral}), then
+    the \textbf{NC correction alone} closes the gap, with $C_{\mathrm{grav}}$ being a
+    small perturbative correction.
+  \item If $C_{\mathrm{NC}}$ is suppressed (e.g.\ by a small trace over quaternionic indices),
+    the metric correction must provide the bulk, requiring $C_{\mathrm{grav}} \approx 43$.
+    This is \emph{a priori} unusual for a loop coefficient.
+  \item The most natural scenario is that both corrections are $O(1)$, contributing roughly
+    equally. However, without explicit calculations, this cannot be confirmed.
+\end{itemize}
+
+\subsection{Precise Obstruction Statement}
+
+\begin{proposition}[Obstruction to closing the B gap]
+\label{prop:obstruction}
+Given the current state of the UBT derivations:
+\begin{enumerate}
+  \item Candidate 1 (multi-loop): \textbf{Proved Dead End.}
+    $B_{\mathrm{loops}} \approx 25.22 \ll 46.3$.
+  \item Candidates 2 and 3: The NC correction $C_{\mathrm{NC}}$ and the metric correction
+    $C_{\mathrm{grav}}$ \emph{have not been computed from first principles}.
+  \item The required values $C_{\mathrm{NC}} = 0.422$ or $C_{\mathrm{grav}} = 43.0$ (or
+    a combination thereof) are specific predictions that must be verified by explicit
+    biquaternionic loop integrals.
+  \item The precise obstruction is: \emph{no derivation of $C_{\mathrm{NC}}$ or
+    $C_{\mathrm{grav}}$ from the UBT Lagrangian currently exists in the repository.}
+\end{enumerate}
+\end{proposition}
+
+\subsection{What Additional Physics is Needed}
+
+If both $C_{\mathrm{NC}}$ and $C_{\mathrm{grav}}$ are insufficient, additional physics would be needed. The candidates for additional mechanisms are:
+
+\begin{enumerate}
+  \item \textbf{Non-perturbative effects}: Instantons in the $\mathbb{C} \otimes \mathbb{H}$
+    geometry, analogous to QCD instantons. These contribute as $e^{-1/\alpha}$ and could be
+    relevant at $\alpha = 1/137$ since $e^{-137} \ll 1$ is negligible, but the
+    \emph{pre-factor} from the instanton measure in 8D biquaternionic space could be
+    $O(N_{\mathrm{eff}}^{3/2}) \approx 41.6$, which is tantalizingly close to $B_{\mathrm{req}} = 46.3$.
+  \item \textbf{Topological contributions}: Chern--Simons terms from the compact imaginary-time
+    circle, contributing a Chern number to the effective coupling. This is a natural UBT
+    structure (the winding number of the $\psi$-circle).
+  \item \textbf{Biquaternionic Hopfion sector}: The Hopfion solutions of the $\Theta$ field
+    carry topological charge and may contribute to the vacuum energy and hence to $B$.
+\end{enumerate}
+
+\subsection{Circularity Check}
+
+\begin{remark}[No circularity]
+The computation is non-circular: we use $\alpha_0 = 1/137$ as input only to evaluate the
+numerical size of loop corrections. The value $B = 46.3$ is \emph{not} used as input at any
+step; it is the target to be derived. If any candidate yields $B \approx 46.3$ after
+explicit calculation, this would constitute a non-circular prediction.
+\end{remark}
+
+\subsection{QED Limit — Final Check}
+
+In the QED limit:
+\begin{align}
+  N_{\mathrm{eff}} &\to 1, & \delta_{\mathrm{NC}} &\to 0, & \delta_{\mathrm{grav}} &\to 0, \\
+  B_{\mathrm{total}} &\to B_0(N_{\mathrm{eff}} = 1) = \frac{2\pi}{3} \approx 2.094.
+\end{align}
+The QED anchor is satisfied in the combined formula. \checkmark
+
+\subsection{Summary and Conclusions}
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Candidate} & \textbf{Verdict} \\
+  \midrule
+  1: Multi-loop $\beta$-function & \textbf{Proved Dead End.} $\delta \approx 0.003$. \\
+  2: NC correction $[D_\mu, D_\nu]$ & \textbf{Open.} $C_{\mathrm{NC}} \approx 0.42$ needed; \\
+    & explicit loop integral required. \\
+  3: Metric correction $h_{\mu\nu}$ & \textbf{Open.} $C_{\mathrm{grav}} \approx 43$ needed; \\
+    & anomalously large, non-perturbative regime suspected. \\
+  4: Combined & \textbf{Obstructed} until 2 or 3 is computed. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\textbf{Highest-priority next step:} Compute $C_{\mathrm{NC}}$ from the one-loop integral
+with biquaternionic connection $\Gamma_\mu^{\mathbb{H}}$ from the two-mode vacuum
+(candidate~2, Eq.~\eqref{eq:C_NC_integral}). This is the most theoretically tractable
+calculation and has the smallest required value ($C_{\mathrm{NC}} \approx 0.42$).
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
