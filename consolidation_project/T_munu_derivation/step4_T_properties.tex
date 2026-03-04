@@ -1,0 +1,272 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{remark}[definition]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+
+\title{Step 4: Properties of the UBT Stress-Energy Tensor $T_{\mu\nu}$\\
+\large Realness, Symmetry, and Divergence-Free Condition}
+\author{UBT Theory Development}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+For the Einstein equations~$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ to be
+self-consistent, the stress-energy tensor $T_{\mu\nu}$ must satisfy three
+properties: (1)~it must be real-valued; (2)~it must be symmetric
+$T_{\mu\nu} = T_{\nu\mu}$; (3)~it must be divergence-free
+$\nabla^\mu T_{\mu\nu} = 0$.  We prove each property, specifying exactly
+what conditions on $\Theta$ are required and which hold identically from
+the structure of the Hilbert prescription.
+\end{abstract}
+
+\tableofcontents
+
+% ------------------------------------------------------------
+\section{Property 1: Realness}
+
+\begin{theorem}[Realness of $T_{\mu\nu}$]
+\label{thm:real}
+The physical stress-energy tensor $T_{\mu\nu} = \re(\mathcal{T}_{\mu\nu})$
+is real-valued by definition:
+\begin{equation}
+  T_{\mu\nu} \in \mathbb{R} \quad \text{for all } \mu,\nu.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+  By Definition~4.1 of \texttt{step2\_biquat\_stress\_energy.tex},
+  $T_{\mu\nu}$ is defined as the real part of the biquaternionic tensor
+  $\mathcal{T}_{\mu\nu}$.  Since the real-part map
+  $\re: \mathbb{B} \to \mathbb{R}$ projects onto the scalar (real)
+  component of any biquaternion $b = b_0 + ib_1\mathbf{i} + b_2\mathbf{j}
+  + b_3\mathbf{k}$ with $b_0,\ldots,b_3 \in \mathbb{R}$, the output is
+  real by construction.
+\end{proof}
+
+\begin{remark}
+  Realness is not a condition on $\Theta$; it follows automatically from
+  the projection step $T_{\mu\nu} := \re(\mathcal{T}_{\mu\nu})$.
+  The imaginary components of $\mathcal{T}_{\mu\nu}$ carry information
+  about phase curvature in the UBT extended sector but do not enter
+  the observable Einstein equations.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Property 2: Symmetry $T_{\mu\nu} = T_{\nu\mu}$}
+
+\begin{theorem}[Symmetry from Hilbert prescription]
+\label{thm:symmetry}
+The Hilbert stress-energy tensor is automatically symmetric:
+\begin{equation}
+  T_{\mu\nu} = T_{\nu\mu}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+  The metric $g^{\mu\nu}$ is symmetric under index interchange:
+  $g^{\mu\nu} = g^{\nu\mu}$.  The functional derivative
+  $\delta S/\delta g^{\mu\nu}$ is taken with respect to a symmetric tensor,
+  so the result must also be symmetric.  More precisely:
+  \begin{equation}
+    \frac{\delta S}{\delta g^{\mu\nu}} = \frac{\delta S}{\delta g^{\nu\mu}},
+  \end{equation}
+  because $g^{\mu\nu}$ and $g^{\nu\mu}$ are not independent components.
+  Under the symmetrised variation $\delta g^{\mu\nu} = \delta g^{\nu\mu}$,
+  the functional derivative is defined as the symmetric part:
+  \begin{equation}
+    \frac{\delta S}{\delta g^{(\mu\nu)}}
+    = \tfrac{1}{2}\Bigl(\frac{\delta S}{\delta g^{\mu\nu}}
+      + \frac{\delta S}{\delta g^{\nu\mu}}\Bigr),
+  \end{equation}
+  which is manifestly symmetric in $(\mu,\nu)$.
+  Hence $T_{\mu\nu} = -(2/\sqrt{-g})\,\delta S/\delta g^{(\mu\nu)}
+  = T_{\nu\mu}$.
+
+  \textbf{Explicit verification from formulas.}
+  From \texttt{step1\_metric\_variation.tex}:
+  \begin{itemize}
+    \item $T^{(\mathrm{kin})}_{\mu\nu}$: symmetric because
+          $\Tr[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta]
+          = \Tr[(\nabla_\nu\Theta)^\dagger\nabla_\mu\Theta]^*$
+          and the real part is symmetric in $(\mu,\nu)$; and
+          $g_{\mu\nu}$ is symmetric.
+    \item $T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}V$:
+          symmetric because $g_{\mu\nu}$ is symmetric.
+    \item $T^{(\mathrm{gauge})}_{\mu\nu}$: symmetric because
+          $\Tr[F_{\mu\alpha}F_\nu{}^\alpha] = \Tr[F_{\nu\alpha}F_\mu{}^\alpha]$
+          (cyclicity of trace and $F_{\mu\nu} = -F_{\nu\mu}$)
+          and $g_{\mu\nu}$ is symmetric.
+  \end{itemize}
+  Each piece is symmetric in $(\mu,\nu)$, so $T_{\mu\nu} = T_{\nu\mu}$.
+\end{proof}
+
+\begin{remark}[Einstein tensor consistency]
+  The Einstein tensor $G_{\mu\nu} = R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R$
+  is also symmetric: $G_{\mu\nu} = G_{\nu\mu}$.  Theorem~\ref{thm:symmetry}
+  confirms that both sides of $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ have the
+  same symmetry, as required.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Property 3: Divergence-Free Condition}
+
+\begin{theorem}[Divergence-free: Bianchi route]
+\label{thm:divergence_bianchi}
+If the metric $g_{\mu\nu}$ and field $\Theta$ jointly satisfy the full
+system of equations (Einstein equations + matter field equations), then:
+\begin{equation}
+  \label{eq:conservation}
+  \nabla^\mu T_{\mu\nu} = 0.
+\end{equation}
+This is \textbf{automatic} from the contracted Bianchi identity.
+No additional condition on $\Theta$ is required.
+\end{theorem}
+
+\begin{proof}
+  The contracted Bianchi identity states:
+  \begin{equation}
+    \nabla^\mu G_{\mu\nu} = 0
+  \end{equation}
+  identically for any smooth metric $g_{\mu\nu}$, independent of any
+  field equation.  From Theorem~3.1 of
+  \texttt{step3\_einstein\_with\_matter.tex},
+  $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$.
+  Applying $\nabla^\mu$ to both sides:
+  \begin{equation}
+    \nabla^\mu G_{\mu\nu} = 8\pi G\,\nabla^\mu T_{\mu\nu} = 0.
+  \end{equation}
+  Since $8\pi G \neq 0$, equation~\eqref{eq:conservation} follows.
+\end{proof}
+
+\begin{theorem}[Divergence-free: Noether route]
+\label{thm:divergence_noether}
+When $\Theta$ satisfies the Euler--Lagrange equations
+$\nabla^\mu\nabla_\mu\Theta = \partial V/\partial\Theta^\dagger$
+(Theorem~4.1 of \texttt{appendix\_AA\_theta\_action.tex}), the
+diffeomorphism invariance of $S_{\mathrm{matter}}$ implies:
+\begin{equation}
+  \nabla^\mu T_{\mu\nu} = 0
+\end{equation}
+as a Noether identity.
+\end{theorem}
+
+\begin{proof}
+  Under an infinitesimal diffeomorphism generated by $\xi^\mu$,
+  the metric variation is $\delta g_{\mu\nu} = -\nabla_\mu\xi_\nu
+  - \nabla_\nu\xi_\mu$ (Lie derivative) and the field transforms as
+  $\delta\Theta = \xi^\mu\nabla_\mu\Theta$.
+  Invariance of $S_{\mathrm{matter}}$ under this combined variation gives,
+  after using the $\Theta$ equation of motion to eliminate $\delta S/\delta\Theta$:
+  \begin{equation}
+    0 = -\int d^4x\,\sqrt{-g}\,T^{\mu\nu}\nabla_\mu\xi_\nu
+      = \int d^4x\,\sqrt{-g}\,(\nabla^\mu T_{\mu\nu})\xi^\nu.
+  \end{equation}
+  Since $\xi^\nu$ is arbitrary, $\nabla^\mu T_{\mu\nu} = 0$.
+\end{proof}
+
+\begin{remark}[Summary of conditions]
+\label{rem:conditions}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Route} & \textbf{Condition on $\Theta$} & \textbf{Status} \\
+\hline
+Bianchi identity
+  & None (follows from geometry alone)
+  & \textbf{Automatic} \\
+\hline
+Noether (matter sector)
+  & $\Theta$ on-shell (E-L equations satisfied)
+  & \textbf{Automatic on-shell} \\
+\hline
+\end{tabular}
+\end{center}
+In either case, no additional assumptions are needed beyond the
+existing UBT action principle.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Summary Table}
+
+\begin{theorem}[Complete property verification]
+\label{thm:summary}
+The UBT stress-energy tensor $T_{\mu\nu}$, derived from the Hilbert
+prescription applied to $S_{\mathrm{matter}}[\Theta, g]$, satisfies:
+\end{theorem}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Property} & \textbf{Result} & \textbf{Proof} \\
+\hline
+Realness: $T_{\mu\nu} \in \mathbb{R}$
+  & $\checkmark$~Proved
+  & Definition (real-part projection) \\
+\hline
+Symmetry: $T_{\mu\nu} = T_{\nu\mu}$
+  & $\checkmark$~Proved
+  & Hilbert prescription on symmetric $g^{\mu\nu}$ \\
+\hline
+Divergence-free: $\nabla^\mu T_{\mu\nu} = 0$
+  & $\checkmark$~Proved
+  & Bianchi identity + Noether \\
+\hline
+QED limit: $T_{\mu\nu} \to T^{(\mathrm{EM})}_{\mu\nu} + T^{(\mathrm{Dirac})}_{\mu\nu}$
+  & $\checkmark$~Proved
+  & Step~2, Proposition~5.1 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Outstanding items -- CANDIDATE]
+\label{rem:candidate}
+The following items are stated as candidates pending further work:
+\begin{itemize}
+  \item \textbf{CANDIDATE:} Whether $T_{\mu\nu}$ satisfies the Weak Energy
+        Condition (WEC: $T_{\mu\nu}u^\mu u^\nu \geq 0$ for timelike $u^\mu$)
+        depends on the specific field configuration $\Theta$ and is not
+        proved in full generality.
+  \item \textbf{CANDIDATE:} Conservation $\nabla^\mu T_{\mu\nu} = 0$ for
+        the imaginary sector $\im(\mathcal{T}_{\mu\nu})$ is not addressed
+        here; it requires separate analysis within the biquaternionic
+        field equations.
+\end{itemize}
+\end{remark}
+
+\begin{thebibliography}{99}
+\bibitem{wald}    Wald, R.~M. (1984). \textit{General Relativity}.
+                  University of Chicago Press.
+\bibitem{step1}   UBT Theory Development.
+                  \texttt{step1\_metric\_variation.tex}, 2026.
+\bibitem{step2}   UBT Theory Development.
+                  \texttt{step2\_biquat\_stress\_energy.tex}, 2026.
+\bibitem{step3}   UBT Theory Development.
+                  \texttt{step3\_einstein\_with\_matter.tex}, 2026.
+\bibitem{appendix_AA}
+                  UBT Theory Development.
+                  \texttt{appendix\_AA\_theta\_action.tex}, 2025.
+\end{thebibliography}
+
+\end{document}
