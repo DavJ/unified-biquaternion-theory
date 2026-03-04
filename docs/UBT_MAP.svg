@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 900 780" width="900" height="780">
+
+  <!-- Background -->
+  <rect width="900" height="780" fill="#0d1117"/>
+
+  <!-- ===== STYLES ===== -->
+  <defs>
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#58a6ff"/>
+    </marker>
+    <marker id="arrowhead-white" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TITLE ===== -->
+  <text x="450" y="38" text-anchor="middle" font-family="monospace" font-size="20"
+        font-weight="bold" fill="#f0f6fc">Unified Biquaternion Theory — Visual Map</text>
+  <text x="450" y="58" text-anchor="middle" font-family="monospace" font-size="11"
+        fill="#8b949e">© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0</text>
+
+  <!-- ===== NODE: Core Field ===== -->
+  <rect x="310" y="75" width="280" height="70" rx="10" ry="10"
+        fill="#1f2d3d" stroke="#58a6ff" stroke-width="2"/>
+  <text x="450" y="100" text-anchor="middle" font-family="monospace" font-size="14"
+        font-weight="bold" fill="#58a6ff">Θ(q, τ)  ∈  ℂ ⊗ ℍ</text>
+  <text x="450" y="118" text-anchor="middle" font-family="monospace" font-size="11"
+        fill="#c9d1d9">complex time  τ = t + iψ</text>
+  <text x="450" y="134" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#8b949e">∇†∇ Θ(q,τ) = κ 𝒯(q,τ)</text>
+  <!-- link label -->
+  <text x="450" y="151" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#3fb950">AXIOMS.md · BIQUATERNION_GEOMETRY_LOCK_IN.md</text>
+
+  <!-- ===== ARROW: Core → Geometry sector ===== -->
+  <line x1="370" y1="145" x2="200" y2="230" stroke="#58a6ff" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== ARROW: Core → Algebra sector ===== -->
+  <line x1="530" y1="145" x2="700" y2="230" stroke="#58a6ff" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== NODE: Geometry sector ===== -->
+  <rect x="60" y="230" width="280" height="70" rx="10" ry="10"
+        fill="#1d2d1f" stroke="#3fb950" stroke-width="2"/>
+  <text x="200" y="254" text-anchor="middle" font-family="monospace" font-size="13"
+        font-weight="bold" fill="#3fb950">Geometry Sector</text>
+  <text x="200" y="272" text-anchor="middle" font-family="monospace" font-size="11"
+        fill="#c9d1d9">g_μν = Re[(D_μΘ)† D_νΘ]</text>
+  <text x="200" y="289" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">FORMAL_INVARIANT_EXTRACTION_LAYER0.tex</text>
+
+  <!-- ===== NODE: Algebra sector ===== -->
+  <rect x="560" y="230" width="280" height="70" rx="10" ry="10"
+        fill="#2d1d1f" stroke="#f78166" stroke-width="2"/>
+  <text x="700" y="254" text-anchor="middle" font-family="monospace" font-size="13"
+        font-weight="bold" fill="#f78166">Algebra Sector</text>
+  <text x="700" y="272" text-anchor="middle" font-family="monospace" font-size="11"
+        fill="#c9d1d9">SU(3) × SU(2) × U(1)</text>
+  <text x="700" y="289" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">Appendix_G_Emergent_SU3.tex</text>
+
+  <!-- ===== ARROW: Geometry → Emergent metric ===== -->
+  <line x1="200" y1="300" x2="200" y2="375" stroke="#3fb950" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== ARROW: Algebra → Gauge algebra ===== -->
+  <line x1="700" y1="300" x2="700" y2="375" stroke="#f78166" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== NODE: Emergent metric ===== -->
+  <rect x="60" y="375" width="280" height="60" rx="8" ry="8"
+        fill="#1a2a1a" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="200" y="397" text-anchor="middle" font-family="monospace" font-size="12"
+        font-weight="bold" fill="#3fb950">Emergent Metric</text>
+  <text x="200" y="414" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">g_μν = Re[(D_μΘ)† D_νΘ]</text>
+  <text x="200" y="429" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">Appendix_F_Hermitian_Limit.tex</text>
+
+  <!-- ===== NODE: Gauge algebra ===== -->
+  <rect x="560" y="375" width="280" height="60" rx="8" ry="8"
+        fill="#2a1a1a" stroke="#f78166" stroke-width="1.5"/>
+  <text x="700" y="397" text-anchor="middle" font-family="monospace" font-size="12"
+        font-weight="bold" fill="#f78166">Gauge Algebra</text>
+  <text x="700" y="414" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">Aut(ℂ⊗ℍ⊗𝕆) → SM group</text>
+  <text x="700" y="429" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">QED_SM_FROM_UBT_ANALYSIS.md</text>
+
+  <!-- ===== ARROW: Emergent metric → General Relativity ===== -->
+  <line x1="200" y1="435" x2="200" y2="505" stroke="#3fb950" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== ARROW: Gauge algebra → Standard Model ===== -->
+  <line x1="700" y1="435" x2="700" y2="505" stroke="#f78166" stroke-width="1.5"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== NODE: General Relativity ===== -->
+  <rect x="60" y="505" width="280" height="60" rx="8" ry="8"
+        fill="#1a2a1a" stroke="#3fb950" stroke-width="2"/>
+  <text x="200" y="527" text-anchor="middle" font-family="monospace" font-size="12"
+        font-weight="bold" fill="#3fb950">General Relativity</text>
+  <text x="200" y="545" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">R_μν − ½g_μνR = κ T_μν</text>
+  <text x="200" y="560" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">appendix_R_GR_equivalence.tex</text>
+
+  <!-- ===== NODE: Standard Model ===== -->
+  <rect x="560" y="505" width="280" height="60" rx="8" ry="8"
+        fill="#2a1a1a" stroke="#f78166" stroke-width="2"/>
+  <text x="700" y="527" text-anchor="middle" font-family="monospace" font-size="12"
+        font-weight="bold" fill="#f78166">Standard Model</text>
+  <text x="700" y="545" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">QCD + Electroweak</text>
+  <text x="700" y="560" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">Appendix_G_Emergent_SU3.tex</text>
+
+  <!-- ===== ARROW: GR → Observable predictions ===== -->
+  <line x1="340" y1="535" x2="415" y2="610" stroke="#8b949e" stroke-width="1.5"
+        marker-end="url(#arrowhead-white)"/>
+
+  <!-- ===== ARROW: SM → Observable predictions ===== -->
+  <line x1="560" y1="535" x2="485" y2="610" stroke="#8b949e" stroke-width="1.5"
+        marker-end="url(#arrowhead-white)"/>
+
+  <!-- ===== NODE: Observable Predictions ===== -->
+  <rect x="310" y="610" width="280" height="50" rx="8" ry="8"
+        fill="#1f1f2d" stroke="#a371f7" stroke-width="2"/>
+  <text x="450" y="632" text-anchor="middle" font-family="monospace" font-size="13"
+        font-weight="bold" fill="#a371f7">Observable Predictions</text>
+  <text x="450" y="650" text-anchor="middle" font-family="monospace" font-size="9"
+        fill="#8b949e">docs/DERIVATION_INDEX.md</text>
+
+  <!-- ===== ARROWS: Predictions → leaf nodes ===== -->
+  <line x1="385" y1="660" x2="150" y2="710" stroke="#a371f7" stroke-width="1.2"
+        marker-end="url(#arrowhead)"/>
+  <line x1="440" y1="660" x2="440" y2="710" stroke="#a371f7" stroke-width="1.2"
+        marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="660" x2="590" y2="710" stroke="#a371f7" stroke-width="1.2"
+        marker-end="url(#arrowhead)"/>
+  <line x1="530" y1="660" x2="770" y2="710" stroke="#a371f7" stroke-width="1.2"
+        marker-end="url(#arrowhead)"/>
+
+  <!-- ===== NODE: Fine structure ===== -->
+  <rect x="25" y="710" width="250" height="55" rx="7" ry="7"
+        fill="#1e1a2e" stroke="#a371f7" stroke-width="1.5"/>
+  <text x="150" y="730" text-anchor="middle" font-family="monospace" font-size="11"
+        font-weight="bold" fill="#d2a8ff">Fine Structure α</text>
+  <text x="150" y="747" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">α⁻¹ = 137.036</text>
+  <text x="150" y="760" text-anchor="middle" font-family="monospace" font-size="8"
+        fill="#8b949e">PROOFKIT_ALPHA.md</text>
+
+  <!-- ===== NODE: Electron mass ===== -->
+  <rect x="315" y="710" width="250" height="55" rx="7" ry="7"
+        fill="#1e1a2e" stroke="#a371f7" stroke-width="1.5"/>
+  <text x="440" y="730" text-anchor="middle" font-family="monospace" font-size="11"
+        font-weight="bold" fill="#d2a8ff">Electron Mass</text>
+  <text x="440" y="747" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">m_e ≈ 0.5099 MeV</text>
+  <text x="440" y="760" text-anchor="middle" font-family="monospace" font-size="8"
+        fill="#8b949e">appendix_E_m0_derivation_strict.tex</text>
+
+  <!-- ===== NODE: Hubble tension ===== -->
+  <rect x="460" y="710" width="250" height="55" rx="7" ry="7"
+        fill="#1e1a2e" stroke="#a371f7" stroke-width="1.5"/>
+  <text x="585" y="730" text-anchor="middle" font-family="monospace" font-size="11"
+        font-weight="bold" fill="#d2a8ff">Hubble Tension</text>
+  <text x="585" y="747" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">δ ≈ 7.8%  (H₀ ratio)</text>
+  <text x="585" y="760" text-anchor="middle" font-family="monospace" font-size="8"
+        fill="#8b949e">PROOFKIT_HUBBLE.md</text>
+
+  <!-- ===== NODE: Gauge couplings label (on far right) ===== -->
+  <rect x="630" y="710" width="250" height="55" rx="7" ry="7"
+        fill="#1e1a2e" stroke="#a371f7" stroke-width="1.5"/>
+  <text x="755" y="730" text-anchor="middle" font-family="monospace" font-size="11"
+        font-weight="bold" fill="#d2a8ff">Gauge Couplings</text>
+  <text x="755" y="747" text-anchor="middle" font-family="monospace" font-size="10"
+        fill="#c9d1d9">SU(3)×SU(2)×U(1)</text>
+  <text x="755" y="760" text-anchor="middle" font-family="monospace" font-size="8"
+        fill="#8b949e">PROOFKIT_GAUGE.md</text>
+
+  <!-- ===== LAYER LABELS ===== -->
+  <text x="15" y="160" font-family="monospace" font-size="9" fill="#8b949e"
+        transform="rotate(-90,15,160)">Layer 0/1</text>
+  <text x="15" y="435" font-family="monospace" font-size="9" fill="#8b949e"
+        transform="rotate(-90,15,435)">Layer B</text>
+  <text x="15" y="680" font-family="monospace" font-size="9" fill="#8b949e"
+        transform="rotate(-90,15,680)">Layer C</text>
+
+  <!-- Right-side label -->
+  <text x="895" y="160" font-family="monospace" font-size="9" fill="#8b949e"
+        text-anchor="end" transform="rotate(90,895,160)">AXIOMS</text>
+  <text x="895" y="450" font-family="monospace" font-size="9" fill="#8b949e"
+        text-anchor="end" transform="rotate(90,895,450)">EMERGENT</text>
+  <text x="895" y="700" font-family="monospace" font-size="9" fill="#8b949e"
+        text-anchor="end" transform="rotate(90,895,700)">PREDICTIONS</text>
+
+</svg>
