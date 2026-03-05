@@ -106,12 +106,22 @@ Under left-quaternionic gauge transformation `Θ → U_L(x) Θ` where `U_L ∈ S
 
 ### 4.3 SU(3) Gauge Invariance
 
-If SU(3) acts via the octonionic extension, the action is invariant by construction
-of the gauge-covariant derivative. However, the **derivation of SU(3) from
-first principles** remains a hypothesis (Track B — octonionic completion).
+SU(3) color symmetry arises from the **internal phase fiber** of the Θ-field
+via the factorization `Θ = Ξ·𝒰` where `𝒰 ∈ U(3)` (Appendix G of the
+consolidated document). The action is invariant under SU(3) color rotations
+`Θ → Θ·V`, `V ∈ SU(3)`, because:
+- `𝒰 → 𝒰·V` leaves `Θ†Θ = Ξ†Ξ` unchanged (V is unitary on the internal fiber)
+- The covariant derivative transforms as `D_μΘ → (D_μΘ)·V` by construction
+- No octonionic extension is required for this construction
 
-**Result:** ⚠️ SU(3) gauge invariance holds IF the octonionic extension is
-correct. The Track B hypothesis has not been proven necessary.
+**Status:** The SU(3) gauge invariance of the action is verified for the
+candidate construction. However, the **full derivation** of SU(3) from first
+principles remains incomplete (Appendix G status box: formal proof of Lie
+algebra emergence, fundamental representation, and decoupling still required).
+
+**Result:** ⚠️ SU(3) gauge invariance is self-consistent within the Appendix G
+candidate construction. The construction does not require octonions but is not
+yet a complete derivation.
 
 ---
 
@@ -244,7 +254,7 @@ UBT in this derivation chain; it is assumed as given. The derivation is therefor
 | Issue | Severity | Description | Resolution |
 |-------|----------|-------------|------------|
 | B-coefficient circularity | Medium | N_eff from SM (not from UBT) | Derive N_eff from UBT action |
-| SU(3) necessity | Medium | Octonionic extension unproven | Track B research |
+| SU(3) incomplete derivation | Medium | Appendix G candidate; formal proof outstanding | Complete items 1–5 in Appendix G status box |
 | R_UBT = 1.114 | Medium | Renorm factor not derived | BG RG equations |
 | Yukawa structure | Low | Matrix elements semi-empirical | Appendix Y work |
 | Quaternionic time (legacy) | Low | Some old files mention it | Historical only; not in axioms |
@@ -259,7 +269,7 @@ UBT in this derivation chain; it is assumed as given. The derivation is therefor
 | Lorentz invariance | ✅ PASS | Manifest in action |
 | U(1) gauge invariance | ✅ PASS | Exactly verified |
 | SU(2) gauge invariance | ✅ PASS | For left-action |
-| SU(3) gauge invariance | ⚠️ CONDITIONAL | Requires octonionic extension |
+| SU(3) gauge invariance | ⚠️ CONDITIONAL | Candidate construction (Appendix G); full derivation incomplete |
 | Conservation laws | ✅ PASS | Via Bianchi identity |
 | GR recovery | ✅ PASS | Formal limit proven |
 | Symbol consistency | ✅ PASS | Automated checks pass |

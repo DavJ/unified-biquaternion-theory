@@ -8,16 +8,16 @@
 - `docs/sm_qed_qcd_status.md` (per-sector status)
 - `canonical/interactions/qed.tex`, `canonical/interactions/qcd.tex`
 - `consolidation_project/appendix_E_SM_QCD_embedding.tex`
-- `research_tracks/associative_su3/`
-- `research_tracks/octonionic_completion/`
+- `consolidation_project/appendix_G_internal_color_symmetry.tex` (SU(3) candidate construction)
+- `reports/associative_su3_scan.md` (Aut(ℂ⊗ℍ) rank obstruction result)
 
 ---
 
 ## 1. Summary
 
 The Standard Model gauge group `G_SM = SU(3)_c × SU(2)_L × U(1)_Y` is partially
-embedded in UBT through the automorphism structure of the biquaternionic algebra
-`ℂ⊗ℍ`, with an octonionic extension for the color sector.
+embedded in UBT through the structure of the biquaternionic field `Θ(q,τ)` and
+its automorphism algebra.
 
 **Overall embedding status:**
 
@@ -25,7 +25,7 @@ embedded in UBT through the automorphism structure of the biquaternionic algebra
 |--------|--------|--------------------|
 | U(1)_Y electromagnetic | ✅ Derived | Aut(ℂ) ≅ U(1) → minimal coupling |
 | SU(2)_L weak isospin | ✅ Candidate | Left-multiplication on ℍ → sp(1) ≅ su(2) |
-| SU(3)_c color | ⚠️ Hypothesis | Octonionic extension ℂ⊗𝕆; SU(3) ⊂ G₂ = Aut(𝕆) |
+| SU(3)_c color | ⚠️ Candidate construction | Internal phase fiber: Θ = Ξ·𝒰, 𝒰∈U(3); traceless part → su(3). No octonions required. Not yet a full derivation. |
 | G_SM direct product | ❌ Open | Decoupling of factors not demonstrated |
 | Chirality (L/R asymmetry) | ❌ Open | Key missing piece |
 | Three generations | ❌ Open | Why exactly 3? |
@@ -49,9 +49,14 @@ This follows from the factored structure:
 - `Aut(ℍ) = SO(3) ≅ SU(2)/ℤ₂` → SU(2)_L candidate (via double cover)
 
 **Caveat (from `reports/associative_su3_scan.md`):** A complete scan of
-`Aut(ℂ⊗ℍ)` confirms that SU(3) does **not** appear in the associative sector alone.
-The claim "SU(3) derived from ℂ⊗ℍ" is an **overstated result** — rejected by
-the G1 guard in `tools/verify_repo_sanity.py`.
+`Aut(ℂ⊗ℍ)` confirms that SU(3) does **not** appear in the **automorphism group**
+of the associative algebra alone (rank obstruction: su(3) has rank 2, gl(2,ℂ) has
+rank 1; SU(3) ⊄ Aut(ℂ⊗ℍ)).
+
+**However**, this does not rule out SU(3) from the theory. Appendix G
+(`consolidation_project/appendix_G_internal_color_symmetry.tex`) presents a
+**non-octonionic candidate construction** via the internal phase fiber of Θ itself
+(see Section 2.4 below).
 
 ### 2.2 U(1) Electromagnetic from Complex Phase
 
@@ -97,24 +102,45 @@ Making this local gives the weak gauge bosons `W_μ^a`.
 - Left-chirality (SU(2)_L vs SU(2)_R) requires an additional physical argument
 - Hypercharge assignment remains open
 
-### 2.4 SU(3)_c Color from Octonionic Extension
+### 2.4 SU(3)_c Color from Internal Phase Fiber (Appendix G Approach)
 
-The color sector requires going beyond `ℂ⊗ℍ`:
+SU(3) color arises in UBT from the **internal phase structure** of the Θ-field itself,
+without requiring an octonionic extension. The construction (from
+`consolidation_project/appendix_G_internal_color_symmetry.tex`) proceeds as follows:
 
-**Track B hypothesis:** Extend to `ℂ⊗𝕆` (biquaternions → bioctonions):
-
+**Factorization of Θ:**
 ```
-SU(3) ⊂ G₂ = Aut(𝕆)
+Θ(x,τ) = Ξ(x,τ) · 𝒰(x,τ),    𝒰 ∈ U(3),  𝒰†𝒰 = 1₃
 ```
 
-The octonion automorphism group G₂ is the smallest exceptional Lie group and
-contains SU(3) as a maximal subgroup. The three color degrees of freedom
-correspond to the three imaginary "octonion axes" beyond the quaternionic
-subalgebra.
+where Ξ carries the biquaternionic kinematics (metric, GR sector) and 𝒰 is a
+unitary internal phase factor acting on a rank-3 fiber. The traceless part
+immediately gives SU(3):
+```
+Φ ∈ su(3) ⟺ tr Φ = 0     (9 − 1 = 8 generators)
+```
 
-**Status: Hypothesis** — The necessity of `ℂ⊗𝕆` (vs remaining in `ℂ⊗ℍ`)
-is not yet proven. The condition required for this to be a genuine derivation is
-stated in `research_tracks/octonionic_completion/hypothesis.md`.
+The color connection emerges as the Maurer–Cartan form:
+```
+A_μ = 𝒰† ∂_μ 𝒰 − (1/3) Tr(𝒰† ∂_μ 𝒰) 1₃  ∈  su(3)
+```
+
+This is not an externally postulated gauge field — it is the intrinsic phase
+connection of Θ's internal fiber. The Yang–Mills field strength
+`F_μν = ∂_μA_ν − ∂_νA_μ + [A_μ,A_ν]` follows automatically.
+
+**Status: Candidate Construction (Not Full Derivation)**
+Appendix G explicitly lists what is still required:
+1. Formal proof that su(3) Lie algebra emerges without additional assumptions
+2. Derivation of the fundamental representation (quarks in **3**)
+3. Adjoint representation (gluons in **8**) from phase deformations
+4. Confinement mechanism (open problem)
+5. Decoupling of SU(3)_c from SU(2)_L × U(1)_Y
+
+**Octonionic route (Track B — separate hypothesis):**
+An independent Track B hypothesis proposes extending to `ℂ⊗𝕆` where
+`SU(3) ⊂ G₂ = Aut(𝕆)`. This is a distinct approach that is NOT required
+by the canonical Appendix G construction. Its necessity has not been proven.
 
 ---
 
@@ -227,7 +253,7 @@ This is automatically satisfied by the UBT covariant derivative structure.
 
 Priority gaps (ordered by blocking impact):
 
-1. **SU(3) necessity proof** — Show that `ℂ⊗ℍ` is insufficient and `ℂ⊗𝕆` is required
+1. **SU(3) Lie algebra emergence** — Formal proof that su(3) arises from the internal rank-3 phase fiber without additional assumptions (Appendix G items 1–3)
 2. **Hypercharge quantization** — Derive rational hypercharge assignments geometrically
 3. **Chirality mechanism** — Derive why only SU(2)_L (left) and not SU(2)_R (right)
 4. **Three-generation mechanism** — Derive why exactly 3 fermion generations
@@ -245,8 +271,8 @@ See `docs/sm_embedding_roadmap.md` for the full roadmap.
 | QED recovery | `consolidation_project/appendix_D_qed_consolidated.tex` |
 | Electromagnetism | `consolidation_project/appendix_C_electromagnetism_gauge_consolidated.tex` |
 | Fermion masses | `consolidation_project/appendix_E2_fermion_masses.tex` |
-| Color (octonionic) | `consolidation_project/appendix_G_internal_color_symmetry.tex` |
-| Associative SU(3) scan | `reports/associative_su3_scan.md` |
+| Color (internal phase fiber) | `consolidation_project/appendix_G_internal_color_symmetry.tex` |
+| Associative SU(3) scan (Aut failure) | `reports/associative_su3_scan.md` |
 | SM embedding roadmap | `docs/sm_embedding_roadmap.md` |
 
 ---
