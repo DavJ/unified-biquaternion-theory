@@ -73,11 +73,14 @@ SU3_OVERSTATEMENT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-# Directories to skip when scanning for G1 violations (historical / external).
+# Directories to skip when scanning for G1 violations (historical / external /
+# generated).  "reports" contains CI output files that may document the check
+# pattern itself; scanning them produces false positives.
 SU3_SCAN_SKIP_DIRS = {
     ".git",
     "original_release_of_ubt",
     "unified-biquaternion-theory-master",
+    "reports",
 }
 
 

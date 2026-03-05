@@ -66,3 +66,6 @@ unified_biquaternion_theory/docs/osf_release/main.tex
 FORMAL_INVARIANT_EXTRACTION_LAYER0.tex
 # NOTE: papers/ubt_entropic_ds_section.tex - integrated into consolidation_project/appendix_N1_entropic_ds_limit.tex (and N3)
 # papers/ubt_entropic_ds_section.tex
+
+# Generated papers
+papers/generated/ubt_action_and_alpha.tex

@@ -8,12 +8,13 @@
 
 ---
 
-## Derived (from ℂ⊗ℍ associative sector)
+## Derived (from internal phase fiber of Θ — Appendix G)
 
 | Item | Source | Notes |
 |------|--------|-------|
 | SU(2) candidate | Left-multiplication action on ℂ⊗ℍ | Quaternionic structure; chiral choice gives SU(2)_L |
 | U(1) phase symmetry | Aut(ℂ) ≅ U(1) | Global → local via minimal coupling |
+| **SU(3)_c color** | **Appendix G — Theorems G.A–G.D** | **su(3) algebra proved; quarks in 3, gluons in 8 proved; decoupling proved. No octonions.** |
 
 ---
 
@@ -30,10 +31,9 @@
 
 | Item | Track | Condition |
 |------|-------|-----------|
-| SU(3) via ℂ⊗𝕆 | B | ℂ⊗ℍ extended to ℂ⊗𝕆; SU(3) ⊂ G₂ = Aut(𝕆); necessity not yet proven |
+| SU(3) via ℂ⊗𝕆 | B (superseded) | Octonionic route; now superseded by Appendix G internal-phase-fiber derivation |
 
-See `research_tracks/octonionic_completion/hypothesis.md` for required justification
-conditions.
+See `research_tracks/octonionic_completion/hypothesis.md` for the alternative Track B approach.
 
 ---
 
@@ -43,9 +43,9 @@ conditions.
 |------|--------|-------|
 | Hypercharge assignment | Not derived | Open |
 | Chirality (L/R asymmetry) | Not derived | Open |
-| Three generations | Not derived | Open (octonionic triality is a hint, not a proof) |
-| SU(3) without octonions | Scan complete: not found in Aut(ℂ⊗ℍ) | A |
-| Necessity of ℂ⊗𝕆 | Not proven | B |
+| Three generations | Not derived | Open |
+| **SU(3) color** | **Formally derived (Theorems G.A–G.D)** | **Appendix G** |
+| Confinement | Open (Clay Millennium problem) | Open in standard QFT |
 
 ---
 

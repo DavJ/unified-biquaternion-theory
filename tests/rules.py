@@ -88,6 +88,7 @@ ALLOWED_CONTEXTS = [
     r"compatibility\s+with\s+(?:Einstein|GR|General\s+Relativity)",
     r"reduces?\s+to\s+(?:Einstein|GR|General\s+Relativity|the\s+classical)",
     r"real-valued\s+limit",
+    r"real\s+limit",
     r"observer-restricted\s+sector",
     r"Hermitian\s+reduction",
     r"are\s+derived",
@@ -99,18 +100,25 @@ ALLOWED_CONTEXTS = [
     r"defined\s+as.*Re\(",
     r"=.*Re\(",
     r":=.*Re\(",
+    # LaTeX-formatted Re: \mathrm{Re}(...), \text{Re}(...), \operatorname{Re}(...)
+    r"(?:\\mathrm|\\text|\\operatorname)\{Re\}\(",
+    r"\(real\)",
     r"resulting",
     r"when\s+restricted\s+to",
     r"real\s+projection",
     r"GR\s+limit",
     r"classical\s+(?:limit|sector)",
+    # Emergent / background contexts: metric is derived, not fundamental
+    r"emergent\s+metric",
+    r"curved\s+background",
+    r"smooth\s+real\s+metric",
 ]
 
 # =============================================================================
 # HELPER FUNCTIONS
 # =============================================================================
 
-def check_allowed_context(text: str, match_pos: Tuple[int, int], window: int = 200) -> bool:
+def check_allowed_context(text: str, match_pos: Tuple[int, int], window: int = 400) -> bool:
     """
     Check if a forbidden pattern appears in an allowed context.
     

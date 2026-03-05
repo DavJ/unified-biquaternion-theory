@@ -437,6 +437,23 @@ UBT provides formal mathematical derivations demonstrating complete unification:
 
 ---
 
+## Why biquaternionic time
+
+Complex time τ = t + iψ is a **necessary technical device**, not a speculative add-on.
+Without it, the derivation of the fine-structure constant α ≈ 1/137 (and other
+fundamental constants) from first principles is impossible within the real-valued UBT
+sector alone.  The imaginary time component ψ acts as a phase regulator: it selects the
+discrete torus-mode eigenvalues that fix α without any free parameters or numeric
+fitting.
+
+**Macroscopic causality**: The CT (complex-time) scheme preserves macroscopic causality.
+In the limit ψ → 0, UBT exactly recovers standard QED — all familiar propagators and
+Ward identities are reproduced.  The ψ ≠ 0 deformation is sub-Planck in the
+macroscopic observations.  **CT scheme preserves macroscopic causality** because the
+ψ → 0 limit is smooth and well-defined for all observable amplitudes.
+
+---
+
 ## What UBT is NOT
 
 To prevent misconceptions, we state explicitly what UBT does **NOT** claim:
