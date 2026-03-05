@@ -100,6 +100,17 @@ R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = 8\pi G T_{\mu\nu}
 \end{equation}
 This ensures full compatibility with all experimental confirmations of General Relativity, including perihelion precession, gravitational waves, and cosmological solutions.
 
+The stress-energy tensor $T_{\mu\nu}$ on the right-hand side is derived from the UBT matter action $S_{\mathrm{matter}}[\Theta, g]$ via the Hilbert (metric variation) prescription
+\[
+  T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\,\frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}},
+\]
+and is explicitly given by kinetic, potential, and gauge contributions from $\Theta$.
+A detailed derivation, including the full Hilbert variation, the biquaternionic lift
+$\mathcal{T}_{\mu\nu} = -(2/\sqrt{-g})\,\delta S[\Theta]/\delta g^{\mu\nu}$,
+the projection $T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$, and the reduction
+to the classical Klein--Gordon form, is provided in
+\texttt{docs/papers/appendix\_GR\_embedding.tex}.
+
 \subsection{Why GR Misses Exotic Regimes}
 
 Classical GR observes only $g_{\mu\nu}=\Re(\mathcal{G}_{\mu\nu})$, so any solution with $\Im(\mathcal{G}_{\mu\nu})\neq 0$ projects to the same real geometry and remains invisible. Antigravitational responses, metric cloaking, or temporal drift arise from these imaginary components and are suppressed in the projection. They are not forbidden by physics; they are hidden by the Hermitian reduction. UBT therefore extends GR without contradiction: the real sector matches Einsteinian dynamics, while the full biquaternionic geometry supports exotic but observationally hidden regimes.
