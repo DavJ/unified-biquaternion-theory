@@ -49,6 +49,28 @@ See `penrose_twistor/README.md` for details.
 
 ---
 
+### 2. Dimensional Economy and Rigor
+
+**Directory**: `dimensional_economy/`
+
+**Focus**: Comparative analysis of how UBT competes with all major unified theories
+on the dimension of *what each theory actually proves from first principles*:
+
+- **Dimensional inventory**: Extra spatial dims vs. internal algebra dims across
+  String Theory, Kaluza-Klein, LQG, Furey (ℂ⊗𝕆), Connes NCG, and UBT (ℂ⊗ℍ).
+- **SU(2)_L derivation**: Generators T^a = -(i/2)σ^a from the left action of
+  ℂ⊗ℍ; commutation relations [T^a, T^b] = ε^{abc}T^c verified by direct computation.
+- **U(1)_Y derivation**: Generator Y = -iI₂ from the right action; commutativity
+  with SU(2)_L proved symbolically.
+- **Associativity advantage**: ℂ⊗ℍ ≅ Mat(2,ℂ) is associative (standard QFT applies);
+  octonion non-associativity demonstrated with classic counterexample.
+
+**Status**: ✅ All algebraic claims computationally verified.
+
+See `dimensional_economy/README.md` for details.
+
+---
+
 ## Future Comparisons (Planned)
 
 Potential future sandboxes:
