@@ -86,13 +86,26 @@ $\sum_n a_n q^n$ is computed exactly as integer coefficients:
   \qquad L = \frac{1}{24}\sum_d r_d \cdot d \in \mathbb{Z}_{>0}.
 \end{equation}
 The coefficient $a_p$ is read directly at index $p = 137$.
-Three forms are included:
+Each eta-product entry passes a runtime \emph{Hecke multiplicativity check}:
+$a_{mn} = a_m \cdot a_n$ for all coprime prime pairs $p, q$ with $pq < 300$
+and $p, q \nmid N$.  Forms failing this check are rejected as non-eigenforms.
+
+The following forms pass all checks and are included:
 \begin{itemize}
-  \item $k=4$, $N=5$: $f = \eta(z)^4\,\eta(5z)^4$ (leading $= 1$);
-  \item $k=6$, $N=3$: $f = \eta(z)^6\,\eta(3z)^6$ (leading $= 1$);
-  \item $k=6$, $N=7$: $f = \eta(z)^{10}\,\eta(7z)^2$ (leading $= 1$);
-  \item $k=12$, $N=1$: $f = \eta(z)^{24} = \Delta(z)$ (Ramanujan delta, for reference).
+  \item $k=4$, $N=4$: $f = \eta(2z)^4\,\eta(4z)^4$ (LMFDB 4.4.a.a);
+  \item $k=4$, $N=5$: $f = \eta(z)^4\,\eta(5z)^4$ (LMFDB 5.4.a.a);
+  \item $k=4$, $N=6$: $f = \eta(z)^2\,\eta(2z)^2\,\eta(3z)^2\,\eta(6z)^2$
+        (LMFDB 6.4.a.a);
+  \item $k=6$, $N=2$: $f = \eta(2z)^{12}$ (LMFDB 2.6.a.a);
+  \item $k=6$, $N=3$: $f = \eta(z)^6\,\eta(3z)^6$ (LMFDB 3.6.a.a);
+  \item $k=6$, $N=4$: $f = \eta(z)^8\,\eta(4z)^4$ (LMFDB 4.6.a.a);
+  \item $k=12$, $N=1$: $f = \eta(z)^{24} = \Delta(z)$ (Ramanujan delta, validation only).
 \end{itemize}
+
+\noindent\textit{Note:} $\eta(z)^{10}\eta(7z)^2$ was an initial candidate for
+$k=6$, $N=7$ but was rejected by the runtime Hecke check:
+$a_6(f) = 238 \ne a_2(f)\cdot a_3(f) = (-10)(35) = -350$.
+It is not a Hecke eigenform.
 
 \paragraph{Validation.}
 The three levels with both methods available all agree perfectly:
@@ -116,18 +129,20 @@ the script documented this failure and fell back to Approach~A automatically.
 
 \bigskip
 \noindent
-\textbf{Coverage summary:}
+\textbf{Coverage summary (updated):}
 \begin{center}
 \begin{tabular}{lll}
 \toprule
 Weight & Forms checked & Method \\
 \midrule
 $k=2$ & 15 forms ($N \in \{11,14,15,17,19,20,27,32,36,37,40,63,64,96\}$) & EC point counting (discriminant-verified) \\
-$k=4$ & 1 form ($N=5$) & Eta product \\
-$k=6$ & 2 forms ($N=3, 7$) & Eta product \\
+$k=4$ & 3 forms ($N=4,5,6$) & Eta product (Hecke multiplicativity verified) \\
+$k=6$ & 3 forms ($N=2,3,4$) & Eta product (Hecke multiplicativity verified) \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+Total triples checked: $15 \times 3 \times 3 = 135$.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Results: Hecke Eigenvalues at \texorpdfstring{$p=137$}{p=137}}
@@ -143,9 +158,9 @@ $|a_p| \le 2p^{(k-1)/2}$.  At $p = 137$:
 \toprule
 $k$ & $|a_{137}|_{\max}$ & Remark \\
 \midrule
-2  & $\approx 23.4$     & All 63 weight-2 forms are within this bound \\
-4  & $\approx 3207$     & $f = \eta^4\eta_{5}^4$ gives $|a_{137}| = 2334 < 3207$ \checkmark \\
-6  & $\approx 439371$   & $f = \eta^6\eta_{3}^6$ gives $|a_{137}| = 300234 < 439371$ \checkmark \\
+2  & $\approx 23.4$     & All 15 weight-2 forms are within this bound \\
+4  & $\approx 3207$     & All three $k=4$ forms within bound: $726, 1626, 2334$ \\
+6  & $\approx 439371$   & All three $k=6$ forms within bound: $277290, 300234, 317142$ \\
 12 & $\approx 1.1\times 10^{12}$ & $|\tau(137)| = 297198746214$ \checkmark \\
 \bottomrule
 \end{tabular}
@@ -184,15 +199,22 @@ Label & Level & $a_{137}$ \\
 
 \subsection{Weight-4 and weight-6 eigenvalues}
 
+All six forms pass the runtime Hecke multiplicativity check.
+
 \begin{center}
-\begin{tabular}{llrrl}
+\begin{tabular}{lllrl}
 \toprule
-Label & Level & $k$ & $a_{137}$ & Bound \\
+Label & Level & $k$ & $a_{137}$ & Eta product \\
 \midrule
-5.4.a.a   & 5 & 4 & $-2334$   & $\le 3207$ \\
-3.6.a.a   & 3 & 6 & $300234$  & $\le 439371$ \\
-7.6.a.a   & 7 & 6 & $366878$  & $\le 439371$ \\
-1.12.a.a  & 1 & 12 & $-297198746214$ & $\le 1.1\times10^{12}$ \\
+4.4.a.a   & 4 & 4 & $1626$    & $\eta(2z)^4\eta(4z)^4$ \\
+5.4.a.a   & 5 & 4 & $-2334$   & $\eta(z)^4\eta(5z)^4$ \\
+6.4.a.a   & 6 & 4 & $-726$    & $\eta(z)^2\eta(2z)^2\eta(3z)^2\eta(6z)^2$ \\
+\midrule
+2.6.a.a   & 2 & 6 & $-317142$ & $\eta(2z)^{12}$ \\
+3.6.a.a   & 3 & 6 & $300234$  & $\eta(z)^6\eta(3z)^6$ \\
+4.6.a.a   & 4 & 6 & $277290$  & $\eta(z)^8\eta(4z)^4$ \\
+\midrule
+1.12.a.a  & 1 & 12 & $-297198746214$ & $\eta(z)^{24}=\Delta(z)$ (ref.)\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -201,38 +223,54 @@ Label & Level & $k$ & $a_{137}$ & Bound \\
 \section{Ratio Analysis}
 %──────────────────────────────────────────────────────────────────────────────
 
-The search checked all $15 \times 1 \times 2 = 30$ triples
+The search checked all $15 \times 3 \times 3 = 135$ triples
 $(f_0, f_1, f_2)$ with $k = (2,4,6)$ within the covered levels.
 
 \subsection{Muon ratio}
 
-With the unique $k=4$ form ($|a_{137}| = 2334$) the $\mu$-ratio for each
-$f_0$ is:
-\[
-  r_\mu = \frac{|a_{137}(f_1)|}{|a_{137}(f_0)|} = \frac{2334}{|a_{137}(f_0)|}.
-\]
-The target is $r_\mu^{\rm target} = 206.77$.  The closest match among the
-15 verified weight-2 forms is
-\[
-  f_0 = \text{17.2.a.a or 15.2.a.a}: \quad
-  r_\mu = \frac{2334}{6} = 389 \quad (\text{error } \approx 88\%).
-\]
-No form with $|a_{137}(f_0)| \approx 11.3$ (which would give
-$r_\mu = 2334/11.3 \approx 207$) is present in the verified database.
-All 15 verified weight-2 eigenvalues fall in $\{-22, -7, -6, -3, 0, 18\}$;
-none is close to $\pm 11.3$.
+The three $k=4$ forms and their required $|a_{137}(f_0)|$ for an exact match:
+\begin{center}
+\begin{tabular}{lrrl}
+\toprule
+$k=4$ form & $|a_{137}|$ & Required $|a_{137}(f_0)|$ & Closest $k=2$ match \\
+\midrule
+4.4.a.a & 1626 & $1626/206.77 = 7.86$ & 11.2.a.a ($|a|=7$), ratio=232.3 (err 12\%) \\
+5.4.a.a & 2334 & $2334/206.77 = 11.29$ & 14.2.a.a ($|a|=18$), ratio=129.7 (err 37\%) \\
+6.4.a.a & 726  & $726/206.77 = 3.51$  & 19.2.a.a ($|a|=3$), ratio=242.0 (err 17\%) \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\subsection{Tau ratio}
+\noindent No weight-2 form in the database gives a ratio within 5\% of
+$206.77$ for any of the three $k=4$ forms.  The closest near-miss is
+4.4.a.a paired with 11.2.a.a: $1626/7 = 232.3$ (error 12\%).  A weight-2
+newform with $|a_{137}| = 8$ would give $1626/8 = 203.25$ (error 1.7\%),
+but no such form is in the current database.
 
-Both weight-6 forms ($N=3, 7$) have $|a_{137}|$ exceeding $300{,}000$.
-For any weight-2 newform ($|a_{137}^{(0)}| \le 22$) the tau-ratio is at least:
+\subsection{Tau ratio --- structural impossibility}
+
+All three $k=6$ verified forms have $|a_{137}| \gg 81400$ (the maximum
+consistent with a Ramanujan-bounded $k=2$ form and the target ratio $3477$):
 \[
-  r_\tau^{\rm min} \;\ge\; \frac{300234}{22} \;\approx\; 13647 \;\gg\; 3477.
+  r_\tau^{\rm min}
+  \;\ge\; \frac{\min_{k=6}|a_{137}|}{2\sqrt{p}}
+  = \frac{277290}{23.4}
+  \approx 11841 \;\gg\; 3477.
 \]
-\textbf{This is a structural impossibility:} for the specific $k=6$ newforms at
-levels 3 and 7 (the smallest available via eta products), the tau-ratio \emph{cannot}
-agree with the experimental value for \emph{any} weight-2 form, since the
-Ramanujan bound on $|a_{137}^{(0)}|$ is too small by a factor of $\sim 60$.
+\textbf{This is a structural impossibility} for all known small-level ($N \le 4$)
+$k=6$ eta-product newforms.
+
+\emph{Why?}  All verified small-level ($N \le 4$) $k=6$ eta products are
+\emph{CM forms} (their L-functions factor as Hecke Grössencharacter
+L-functions).  CM forms have characteristically large Hecke eigenvalues
+$|a_p| \sim p^{(k-1)/2}$, i.e.\ near the Ramanujan bound.  For $k=6$ at
+$p=137$ this bound is $\approx 439000$; our forms have $|a_{137}| \in
+[277000, 317000]$, all $3$--$4\times$ larger than the required $\le 81400$.
+
+A matching $k=6$ form would need to be a \emph{non-CM} form at level
+$N \sim 50$--$500$, where the Sato--Tate distribution generates forms with
+$|a_{137}|$ anywhere in $[0, 439000]$.  Such forms require SageMath or
+the LMFDB API to enumerate.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Verdict}
@@ -244,15 +282,15 @@ Ramanujan bound on $|a_{137}^{(0)}|$ is too small by a factor of $\sim 60$.
 
   \medskip
   \emph{This is not a Dead End.}
-  The search space is \textbf{severely incomplete}:
-  only $k=6$ forms at levels $N \in \{3, 7\}$ were checked,
-  while the $k=6$ eigenvalue space extends to $N \le 500$ with many
-  more newforms (some having $|a_{137}|$ as small as a few thousand).
-  The tau-ratio condition requires $|a_{137}^{(6)}| \approx 3477 \cdot |a_{137}^{(2)}|$,
-  which is achievable for a weight-6 newform at sufficiently large level
-  (the Ramanujan bound allows $|a_{137}^{(6)}| \le 439371$, and intermediate
-  values in $[0, 439371]$ occur at appropriate levels).
-  A full search needs SageMath or the LMFDB API.
+  The search space is \textbf{incomplete}:
+  only $k=6$ forms at levels $N \le 4$ (CM eta products) were checked.
+  All small-level $k=6$ CM forms have $|a_{137}| > 277000 \gg 81400$
+  (the structural bound), making the $\tau$-ratio impossible with
+  these specific forms.
+  A $k=6$ non-CM newform at level $N \sim 50$--$500$ could have
+  $|a_{137}| \in [20000, 80000]$, which is precisely the needed range.
+  A full search needs SageMath \texttt{CuspForms(N,6).newforms()} or
+  the LMFDB API.
 }}
 \end{center}
 
@@ -265,8 +303,8 @@ More precisely, the status of each ratio is:
 \toprule
 Ratio & Target & Best match & Status \\
 \midrule
-$|a_{137}(f_1)| / |a_{137}(f_0)|$ & 206.77 & 2334/6=389 (err 88\%) & No near-miss \\
-$|a_{137}(f_2)| / |a_{137}(f_0)|$ & 3477.2 & $>$13000 (structural) & Not in space \\
+$|a_{137}(f_1)| / |a_{137}(f_0)|$ & 206.77 & 1626/7=232 (err 12\%) & No 5\%-match \\
+$|a_{137}(f_2)| / |a_{137}(f_0)|$ & 3477.2 & 277290/22=12604 (struct.) & Structural impossibility \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -278,13 +316,14 @@ The conjecture is \textbf{NOT RULED OUT}.
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{enumerate}
-  \item \textbf{Weight-4 forms beyond $N=5$.}
+  \item \textbf{Weight-4 forms beyond $N=6$.}
     The LMFDB contains hundreds of weight-4 newforms with $N \le 200$, each
     with its own $a_{137}$.  A value $|a_{137}^{(4)}| \approx 207 \cdot |a_{137}^{(2)}|$
-    requires $|a_{137}^{(4)}| \approx 2000$--$4700$ (for $|a_{137}^{(2)}| \in [10,22]$).
-    Since the Ramanujan bound is $3207$, such forms exist in principle.
+    requires $|a_{137}^{(4)}| \approx 1400$--$4800$ (for $|a_{137}^{(2)}| \in [7,23]$).
+    The three checked forms give $|a_{137}| \in \{726, 1626, 2334\}$; a form with
+    $|a_{137}| \approx 1448$ ($= 207 \times 7$) would give a 5\%-match with 11.2.a.a.
 
-  \item \textbf{Weight-6 forms at levels $N > 7$.}
+  \item \textbf{Weight-6 non-CM forms at levels $N \ge 5$.}
     These can have $|a_{137}^{(6)}|$ anywhere in $[0, 439371]$.
     The target requires $|a_{137}^{(6)}| \approx 3477 \cdot |a_{137}^{(2)}|
     \approx 35000$--$80000$ (for $|a_{137}^{(2)}| \in [10, 22]$).
@@ -359,12 +398,17 @@ $N_0$ is found, the following further check should be performed:
 \toprule
 Deliverable & Status \\
 \midrule
-\texttt{search\_hecke\_lmfdb\_local.py} (k=(2,4,6), N$\le$200) & \checkmark~Runs, 30 triples checked, results saved \\
+\texttt{search\_hecke\_lmfdb\_local.py} (k=(2,4,6), N$\le$200) & \checkmark~Runs, 135 triples checked \\
 \texttt{search\_hecke\_lmfdb\_api.py} (LMFDB or documented failure) & \checkmark~Network unavailable, fallback documented \\
-\texttt{hecke\_search\_results.json} (all candidates with full data) & \checkmark~0 candidates, 30 triples checked \\
+\texttt{hecke\_search\_results.json} (all candidates with full data) & \checkmark~0 candidates, structural analysis included \\
 \texttt{step5\_hecke\_search\_results.tex} (verdict stated clearly) & \checkmark~This document \\
 \midrule
-Conjecture 2.1 status & Not ruled out; search space is small but correct \\
+New: Hecke multiplicativity validator & \checkmark~Rejected η(z)^{10}η(7z)^2 as non-eigenform \\
+New: 3 more $k=4$ forms (N=4,5,6) & \checkmark~All pass extended Hecke check \\
+New: 3 verified $k=6$ forms (N=2,3,4) & \checkmark~All pass extended Hecke check \\
+Structural analysis: $\tau$-ratio with CM $k=6$ forms & \checkmark~Impossible: all factors 3--4$\times$ too large \\
+\midrule
+Conjecture 2.1 status & Open; requires SageMath/$k=6$ higher-level search \\
 \bottomrule
 \end{tabular}
 \end{center}

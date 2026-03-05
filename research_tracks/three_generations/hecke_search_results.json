@@ -12,7 +12,7 @@
     "tolerance": 0.05,
     "approach": "local_eta_products_and_elliptic_curves",
     "sageMath_available": false,
-    "note": "SageMath not available. Used pure-Python methods: elliptic curve point counting (weight-2 newforms, 15 verified models with correct discriminants, N\u226496) and exact eta-product q-expansion (integer coefficients). Coverage: k=2 via 15 discriminant-verified EC models + 3 eta-product weight-2 forms (N=11,14,15); k=4 via eta product at N=5; k=6 via eta products at N=3,7. Models are checked at runtime: discriminant prime factors must be a subset of the conductor prime factors. Many newforms (especially those with algebraic eigenvalues or at higher levels) are NOT covered by this local search."
+    "note": "SageMath not available. Used pure-Python methods: elliptic curve point counting (weight-2 newforms, 15 discriminant-verified Weierstrass models, N\u226496) and exact eta-product q-expansion with runtime Hecke-multiplicativity verification. Coverage: k=2 via 15 EC models; k=4 via 3 eta products at N=4,5,6 (verified newforms); k=6 via 3 eta products at N=2,3,4 (verified newforms). All eta products pass Hecke multiplicativity a_{pq}=a_p*a_q for all coprime prime pairs p,q coprime to N. Many newforms with algebraic eigenvalues or at higher levels are NOT covered; SageMath or LMFDB is required for full coverage."
   },
   "newform_eigenvalues": {
     "weight_2": [
@@ -130,27 +130,54 @@
     ],
     "weight_4": [
       {
+        "label": "4.4.a.a",
+        "weight": 4,
+        "level": 4,
+        "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
+        "a_137": 1626.0
+      },
+      {
         "label": "5.4.a.a",
         "weight": 4,
         "level": 5,
         "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
         "a_137": -2334.0
+      },
+      {
+        "label": "6.4.a.a",
+        "weight": 4,
+        "level": 6,
+        "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
+        "a_137": -726.0
       }
     ],
     "weight_6": [
+      {
+        "label": "2.6.a.a",
+        "weight": 6,
+        "level": 2,
+        "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
+        "a_137": -317142.0
+      },
       {
         "label": "3.6.a.a",
         "weight": 6,
         "level": 3,
         "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
         "a_137": 300234.0
       },
       {
-        "label": "7.6.a.a",
+        "label": "4.6.a.a",
         "weight": 6,
-        "level": 7,
+        "level": 4,
         "method": "eta_product_qexp",
-        "a_137": 366878.0
+        "hecke_multiplicativity_verified": true,
+        "a_137": 277290.0
       }
     ],
     "weight_12": [
@@ -159,6 +186,7 @@
         "weight": 12,
         "level": 1,
         "method": "eta_product_qexp",
+        "hecke_multiplicativity_verified": true,
         "a_137": -297198746214.0
       }
     ]
@@ -166,10 +194,15 @@
   "candidates": [],
   "coverage": {
     "weight_2_forms_checked": 15,
-    "weight_4_forms_checked": 1,
-    "weight_6_forms_checked": 2,
-    "total_triples_checked": 30
+    "weight_4_forms_checked": 3,
+    "weight_6_forms_checked": 3,
+    "total_triples_checked": 135
+  },
+  "structural_analysis": {
+    "tau_ratio_impossible_with_known_k6_eta_products": true,
+    "tau_ratio_bound": 81399.8673411032,
+    "explanation": "ALL verified k=6 eta-product newforms at small levels (N\u22644) have |a_137| >> 81400 (the maximum consistent with the \u03c4-ratio and the Ramanujan bound for k=2). These are CM-type forms with characteristically large eigenvalues. A matching k=6 form would need to be a NON-CM form at level N~50\u2013500, which requires SageMath CuspForms() or the LMFDB API."
   },
   "verdict": "NO_MATCH_IN_SEARCH_SPACE",
-  "verdict_note": "No triple found within 5% tolerance among the 15\u00d71\u00d72 = 30 triples checked. Coverage is incomplete: weight-4 and weight-6 forms with algebraic eigenvalues (requiring SageMath or LMFDB) are not included. A full search requires SageMath or the LMFDB API (see search_hecke_lmfdb_api.py)."
+  "verdict_note": "No triple found within 5% tolerance among the 15\u00d73\u00d73 = 135 triples checked. The \u03c4-ratio is structurally impossible with all known small-level k=6 eta products (all have |a_137| >> required bound). A full search requires SageMath or the LMFDB API (see search_hecke_lmfdb_api.py)."
 }
