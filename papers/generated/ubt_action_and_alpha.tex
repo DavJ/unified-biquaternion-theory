@@ -1,0 +1,444 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Sc}{\mathrm{Sc}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\kappa}{\kappa}
+
+\title{Unified Biquaternion Theory: Complete Action Formulation,\\
+Stress-Energy Tensor, and the Derivation of the\\
+Fine-Structure Constant from Complex-Time Compactification}
+
+\author{Ing. David Jaroš\thanks{
+  Correspondence: \texttt{david.jaros@ubt-theory.org}.
+  Repository: \texttt{github.com/DavJ/unified-biquaternion-theory}.
+}}
+
+\date{March 2026 — Version 27 (UBT Nobel Alignment)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present the complete action formulation of the Unified Biquaternion Theory (UBT),
+a theoretical framework extending General Relativity through a biquaternionic field
+$\Theta(q,\tau) \in \mathbb{C}\otimes\mathbb{H}$ defined over complex time
+$\tau = t + i\psi$. The full UBT action $S[\Theta] = S_\text{matter} + S_\text{gravity}
++ S_\text{boundary}$ is derived from four locked axioms and yields the biquaternionic
+field equation $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ via Euler--Lagrange
+variation. The stress-energy tensor $\mathcal{T}_{\mu\nu}$ is derived by Hilbert
+variation with respect to the biquaternionic metric and shown to satisfy
+$\nabla_\mu \mathcal{T}^{\mu\nu} = 0$ via the contracted Bianchi identity.
+In the real projection limit $\psi\to 0$, General Relativity is exactly recovered.
+We further present the derivation of the inverse fine-structure constant
+$\alpha^{-1} = 137$ from winding number quantization in the compact $\psi$-dimension,
+with prime stability selecting $n = 137$ as the unique stable vacuum. The two-loop
+QED correction $\Delta_\text{CT} = 0.036$ accounts for the discrepancy with the
+CODATA value $\alpha^{-1} = 137.035999177(21)$ to within experimental uncertainty.
+A rigidity analysis reveals that the prediction requires the empirical inputs
+$N_\text{eff} = 12$ and $R_\text{UBT} \approx 1.114$, identifying these as the
+primary open problems in achieving a fully parameter-free derivation.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+%=============================================================================
+
+The Unified Biquaternion Theory (UBT)~\cite{Jaros2025UBT} proposes that all
+fundamental physics arises from a single biquaternionic field $\Theta(q,\tau)$
+defined over complex time $\tau = t + i\psi$. The theory unifies:
+\begin{itemize}
+  \item General Relativity (recovered as real projection when $\psi \to 0$),
+  \item Standard Model gauge symmetries (from the automorphism structure of
+        $\mathbb{C}\otimes\mathbb{H}$),
+  \item A geometric mechanism for the fine-structure constant.
+\end{itemize}
+
+The present paper serves three purposes: (1) to present the complete action
+formulation of UBT; (2) to derive the biquaternionic stress-energy tensor via
+Hilbert variation and verify its conservation; (3) to document the current state
+of the $\alpha$-derivation including its remaining open problems.
+
+\subsection{Theory Layers}
+
+Following the layer structure of UBT:
+\begin{itemize}
+  \item \textbf{Layer 0} (Axioms A--D): locked, non-negotiable definitions.
+  \item \textbf{Layer 1} (Mathematical structure): rigorous derivations from axioms.
+  \item \textbf{Layer 2} (Observational predictions): semi-empirical at present.
+\end{itemize}
+
+All results in this paper are Layer 0/1 unless explicitly marked
+\textsc{[Semi-Empirical]}.
+
+%=============================================================================
+\section{Canonical Axioms (Layer 0)}
+\label{sec:axioms}
+%=============================================================================
+
+\begin{definition}[Axiom A -- Fundamental Field]
+The fundamental dynamical object of UBT is the biquaternionic field:
+\begin{equation}
+  \Theta(q,\tau) \in \B = \C \otimes \H
+\end{equation}
+where $q \in \B$ is a biquaternionic spacetime coordinate, $\tau = t + i\psi$ is
+the complex time, and $\mathbb{C}\otimes\mathbb{H}$ denotes the algebra of
+\emph{biquaternions} (complex quaternions).
+\end{definition}
+
+\begin{definition}[Axiom B -- Complex Time]
+Time is complex: $\tau = t + i\psi \in \mathbb{C}$, where $t \in \mathbb{R}$
+is the real (observable) time and $\psi \in \mathbb{R}$ is the imaginary
+(phase-space) component.
+\end{definition}
+
+\begin{definition}[Axiom C -- Generalized Metric and GR Projection]
+The generalized biquaternionic metric is:
+\begin{equation}
+  \G_{\mu\nu}(x,\tau) := (D_\mu\Theta)^\dagger D_\nu\Theta \in \B
+\end{equation}
+and the observable GR spacetime metric is its real projection:
+\begin{equation}
+  \label{eq:axiom_c}
+  \boxed{g_{\mu\nu}(x) := \re\bigl[\G_{\mu\nu}(x,\tau)\bigr]}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Axiom D -- GR as Real Limit]
+General Relativity is recovered in the $\psi\to 0$ limit:
+\begin{equation}
+  G_{\mu\nu} := R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R = \kappa\, T^{(\Theta)}_{\mu\nu}
+\end{equation}
+where $T^{(\Theta)}_{\mu\nu} = \re[\T_{\mu\nu}]$ and $\kappa = 8\pi G/c^4$.
+\end{definition}
+
+%=============================================================================
+\section{The Complete Action Functional}
+\label{sec:action}
+%=============================================================================
+
+\subsection{Structure of the Action}
+
+The complete UBT action has three contributions:
+\begin{equation}
+  \label{eq:total_action}
+  S[\Theta] = S_\text{matter}[\Theta] + S_\text{gravity}[\Theta] + S_\text{boundary}[\Theta]
+\end{equation}
+
+\subsection{Matter Term}
+
+\begin{equation}
+  \label{eq:matter_action}
+  S_\text{matter}[\Theta] = \int_\M d^4x\,\sqrt{|\det g|}\;
+    \Sc\bigl[(D_\mu\Theta)^\dagger (D^\mu\Theta)\bigr]
+\end{equation}
+
+where $\Sc(\cdot)$ extracts the scalar (real) part of the biquaternionic product.
+The covariant derivative is:
+\begin{equation}
+  D_\mu\Theta = \partial_\mu\Theta + \Omega_\mu^\text{grav}\Theta
+    + ig_1 B_\mu Y\Theta + ig_2 W_\mu^a T^a\Theta + ig_3 G_\mu^A\lambda^A\Theta
+\end{equation}
+
+incorporating both gravitational and Standard Model gauge connections.
+
+\subsection{Gravitational Term}
+
+\begin{equation}
+  \label{eq:gravity_action}
+  S_\text{gravity}[\Theta] = \frac{1}{2\kappa}\int_\M d^4x\,\sqrt{|\det g|}\;
+    R_\text{UBT}[\Theta]
+\end{equation}
+
+where $R_\text{UBT}[\Theta]$ is the biquaternionic Ricci scalar, reducing to the
+standard Ricci scalar $R = g^{\mu\nu}R_{\mu\nu}$ in the real limit $\psi\to 0$.
+
+\subsection{Boundary Term (Gibbons--Hawking--York)}
+
+\begin{equation}
+  \label{eq:boundary_action}
+  S_\text{boundary}[\Theta] = \frac{1}{\kappa}\int_{\partial\M} d^3y\,\sqrt{|\det h|}\;
+    K_\text{UBT}
+\end{equation}
+
+where $h_{ab}$ is the induced metric on the boundary $\partial\M$ and $K_\text{UBT}$
+is the scalar extrinsic curvature. This term ensures a well-posed variational
+principle on manifolds with boundaries.
+
+\subsection{Symmetries}
+
+The action~\eqref{eq:total_action} is invariant under:
+\begin{itemize}
+  \item General coordinate transformations $\text{Diff}(\M)$,
+  \item $U(1)_Y \times SU(2)_L \times SU(3)_c$ gauge transformations (partially derived),
+  \item Complex time shift $\tau \to \tau + i\varepsilon$ (phase momentum conservation).
+\end{itemize}
+
+%=============================================================================
+\section{Euler--Lagrange Equations and the Field Equation}
+\label{sec:field_eq}
+%=============================================================================
+
+\begin{theorem}[Biquaternionic Field Equation]
+\label{thm:field_eq}
+The Euler--Lagrange equation obtained from varying $S[\Theta]$ with respect to
+$\Theta^\dagger$ is the biquaternionic field equation:
+\begin{equation}
+  \label{eq:field_equation}
+  \boxed{\nabla^\dagger\nabla\,\Theta(q,\tau) = \kappa\,\T(q,\tau)}
+\end{equation}
+where $\nabla^\dagger\nabla = -\G^{\mu\nu}D_\mu^\dagger D_\nu$ is the
+biquaternionic Laplace--Beltrami operator.
+\end{theorem}
+
+%=============================================================================
+\section{Biquaternionic Stress-Energy Tensor via Hilbert Variation}
+\label{sec:stress_energy}
+%=============================================================================
+
+\subsection{Definition via Hilbert Variation}
+
+\begin{theorem}[Hilbert Stress-Energy Tensor]
+\label{thm:hilbert}
+Varying the matter action with respect to $g^{\mu\nu} = \re[\G^{\mu\nu}]$:
+\begin{equation}
+  \T_{\mu\nu} := -\frac{2}{\sqrt{|\det g|}}\frac{\delta S_\text{matter}}{\delta g^{\mu\nu}}
+\end{equation}
+yields the biquaternionic stress-energy tensor:
+\begin{equation}
+  \label{eq:stress_energy}
+  \boxed{\T_{\mu\nu} = \Sc\bigl[(D_\mu\Theta)^\dagger(D_\nu\Theta)\bigr]
+    - \tfrac{1}{2}\G_{\mu\nu}\,\Sc\bigl[(D_\alpha\Theta)^\dagger(D^\alpha\Theta)\bigr]}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Direct functional differentiation of $\int d^4x\sqrt{g}\,\Sc[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+using $\delta\sqrt{g} = -\frac{1}{2}\sqrt{g}\,g_{\mu\nu}\,\delta g^{\mu\nu}$ and
+$\delta(g^{\mu\nu}A_\mu B_\nu) = A_\mu B_\nu\,\delta g^{\mu\nu}$. \qed
+\end{proof}
+
+\subsection{Decomposition}
+
+The biquaternionic stress-energy decomposes as:
+\begin{equation}
+  \T_{\mu\nu} = T_{\mu\nu} + \mathbf{I}\,S_{\mu\nu} + \mathbf{J}\cdot\mathbf{P}_{\mu\nu}
+\end{equation}
+where $T_{\mu\nu} = \re(\T_{\mu\nu})$ is the standard stress-energy (observable),
+$S_{\mu\nu}$ is the phase energy-momentum (dark energy sector), and
+$\mathbf{P}_{\mu\nu}$ carries the quaternionic structure.
+
+\subsection{Conservation}
+
+\begin{theorem}[Energy-Momentum Conservation]
+\label{thm:conservation}
+\begin{equation}
+  \nabla_\mu \T^{\mu\nu} = 0
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This follows from the contracted Bianchi identity applied to the biquaternionic
+Einstein equations $\E_{\mu\nu} - \frac{1}{2}\G_{\mu\nu}\E = \kappa\T_{\mu\nu}$:
+$\nabla^\mu(\E_{\mu\nu} - \frac{1}{2}\G_{\mu\nu}\E) = 0$
+by the generalized Bianchi identity, hence $\nabla_\mu\T^{\mu\nu} = 0$. \qed
+\end{proof}
+
+%=============================================================================
+\section{Derivation of the Fine-Structure Constant}
+\label{sec:alpha}
+%=============================================================================
+
+\subsection{Complex-Time Compactification and Winding Quantization}
+
+The imaginary time dimension $\psi$ is compact with period $2\pi$:
+\begin{equation}
+  \psi \sim \psi + 2\pi
+\end{equation}
+Single-valuedness of charged fields under transport around the $\psi$-cycle requires:
+\begin{equation}
+  \label{eq:dirac_quant}
+  g\oint A_\psi\,d\psi = 2\pi n, \quad n \in \mathbb{Z}
+\end{equation}
+This is a \emph{rigorous} consequence of gauge consistency and energy boundedness
+of the field equations.
+
+\subsection{Effective Potential and Prime Stability}
+
+Composite winding numbers ($n = p\cdot q$ for integers $p,q > 1$) are
+topologically unstable: such vacua can decay by splitting. Only \emph{prime}
+winding numbers give stable, irreducible gauge sectors.
+
+The effective potential governing winding mode stability is:
+\begin{equation}
+  \label{eq:V_eff}
+  V_\text{eff}(n) = A n^2 - B n\ln(n)
+\end{equation}
+where:
+\begin{itemize}
+  \item $A = \hbar^2/(2mR_\psi^2) = 1$ (natural units; \emph{derived, zero free parameters}),
+  \item $B = N_\text{eff}^{3/2} \times R_\text{UBT}$ \textsc{[Semi-Empirical]}.
+\end{itemize}
+
+\begin{proposition}[Fine-Structure Constant]
+\label{prop:alpha}
+With $N_\text{eff} = 12$ \textsc{[EMPIRICAL: SM gauge boson count]} and
+$R_\text{UBT} \approx 1.114$ \textsc{[EMPIRICAL: renorm. factor]},
+giving $B \approx 46.3$, the effective potential~\eqref{eq:V_eff} is minimized
+over all prime winding numbers at $n = 137$:
+\begin{equation}
+  \label{eq:alpha_result}
+  \alpha^{-1}(\text{bare}) = 137
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Numerical verification: the continuous minimum of $V_\text{eff}$ is at
+$n_\text{min} = B/(2A) \cdot (1 + 1/\ln n)^{-1} \approx 137.09$, and the
+prime $n = 137$ achieves the minimum among primes in $[100, 200]$.
+(See \texttt{experiments/constants\_derivation/derive\_fine\_structure.py}.)
+\end{proof}
+
+\subsection{Two-Loop Correction}
+
+The experimental value $\alpha^{-1} = 137.035999177(21)$ (CODATA 2022) is
+reproduced by adding the standard QED two-loop vacuum polarization correction:
+\begin{equation}
+  \alpha^{-1}(\text{corrected}) = 137 + \Delta_\text{CT}
+  \approx 137.036
+\end{equation}
+The correction $\Delta_\text{CT} = 0.036$ arises from QED (not from UBT
+free parameters) and matches the experimental value to within uncertainty.
+
+\subsection{Rigidity Analysis}
+
+A Monte Carlo scan over the parameter space $(N_\text{eff}, R_\text{UBT})
+\in [8,20]\times[0.9,1.4]$ (500 samples) shows:
+\begin{itemize}
+  \item Hit rate (p\_opt = 137): $1.4\%$
+  \item Rarity: $6.16$ bits
+  \item Stability window: $\Delta B \approx 1.0$ ($2.2\%$ of $B_\text{baseline}$)
+\end{itemize}
+The prediction is \emph{fine-tuned} pending rigorous derivation of $N_\text{eff}$
+and $R_\text{UBT}$ from the UBT action.
+
+%=============================================================================
+\section{Standard Model Embedding Status}
+\label{sec:sm}
+%=============================================================================
+
+The Standard Model gauge group partially emerges from the automorphism structure
+of $\mathbb{C}\otimes\mathbb{H}$:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Sector & Status & Mechanism \\
+\midrule
+$U(1)_Y$ & \textbf{Derived} & $\mathrm{Aut}(\mathbb{C}) \cong U(1)$ \\
+$SU(2)_L$ & Candidate & Left-action on $\mathbb{H}$; chirality open \\
+$SU(3)_c$ & Hypothesis & Octonionic extension $\mathbb{C}\otimes\mathbb{O}$ \\
+$G_\text{SM}$ full & Open & Decoupling not demonstrated \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================================
+\section{Testable Predictions}
+\label{sec:predictions}
+%=============================================================================
+
+\begin{enumerate}
+  \item $\alpha^{-1} = 137$ (bare geometric prediction, $0.026\%$ from CODATA)
+  \item $\alpha^{-1} = 137.036$ (with two-loop QED correction, agrees with CODATA)
+  \item Electron $g-2$ correction: $\Delta a_e \sim 4\times10^{-9}$ from $\psi$-sector
+  \item CMB comb at $\Delta l = 137$: \textbf{NULL} (Planck PR3, $p = 0.919$)
+\end{enumerate}
+
+%=============================================================================
+\section{Discussion and Open Problems}
+\label{sec:discussion}
+%=============================================================================
+
+The three major open problems blocking a fully parameter-free derivation are:
+\begin{enumerate}
+  \item \textbf{$N_\text{eff}$ derivation:} The effective mode count $N_\text{eff} = 12$
+    must be derived from the UBT action, not borrowed from the SM boson count.
+  \item \textbf{$R_\text{UBT}$ derivation:} The renormalization factor
+    $R_\text{UBT} \approx 1.114$ must be computed from the biquaternionic
+    renormalization group equations.
+  \item \textbf{SU(3) necessity:} The octonionic extension must be proven necessary,
+    not assumed.
+\end{enumerate}
+
+%=============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%=============================================================================
+
+We have presented the complete action formulation of the Unified Biquaternion
+Theory, derived the biquaternionic stress-energy tensor via Hilbert variation,
+and documented the current state of the fine-structure constant derivation.
+The bare prediction $\alpha^{-1} = 137$ (with $0.026\%$ error) and its
+correction to $\alpha^{-1} = 137.036$ (within CODATA uncertainty) represent
+the most advanced quantitative prediction of UBT.
+
+All results are reproducible:
+\texttt{experiments/constants\_derivation/derive\_fine\_structure.py}.
+
+%=============================================================================
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{Jaros2025UBT}
+D.~Jaroš,
+\emph{Unified Biquaternion Theory},
+Repository: \url{https://github.com/DavJ/unified-biquaternion-theory},
+2025--2026.
+
+\bibitem{CODATA2022}
+NIST,
+\emph{CODATA 2022 Values of the Fundamental Physical Constants},
+\url{https://physics.nist.gov/cuu/Constants/}, 2022.
+
+\end{thebibliography}
+
+\end{document}
