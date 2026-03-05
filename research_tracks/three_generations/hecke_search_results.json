@@ -1,0 +1,175 @@
+{
+  "search_parameters": {
+    "prime": 137,
+    "weights": [
+      2,
+      4,
+      6
+    ],
+    "max_level": 200,
+    "target_mu": 206.768283,
+    "target_tau": 3477.23,
+    "tolerance": 0.05,
+    "approach": "local_eta_products_and_elliptic_curves",
+    "sageMath_available": false,
+    "note": "SageMath not available. Used pure-Python methods: elliptic curve point counting (weight-2 newforms, 15 verified models with correct discriminants, N\u226496) and exact eta-product q-expansion (integer coefficients). Coverage: k=2 via 15 discriminant-verified EC models + 3 eta-product weight-2 forms (N=11,14,15); k=4 via eta product at N=5; k=6 via eta products at N=3,7. Models are checked at runtime: discriminant prime factors must be a subset of the conductor prime factors. Many newforms (especially those with algebraic eigenvalues or at higher levels) are NOT covered by this local search."
+  },
+  "newform_eigenvalues": {
+    "weight_2": [
+      {
+        "label": "11.2.a.a",
+        "weight": 2,
+        "level": 11,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -7,
+        "a_137_eta_check": -7.0,
+        "eta_ec_agree": true
+      },
+      {
+        "label": "14.2.a.a",
+        "weight": 2,
+        "level": 14,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 18,
+        "a_137_eta_check": 18.0,
+        "eta_ec_agree": true
+      },
+      {
+        "label": "15.2.a.a",
+        "weight": 2,
+        "level": 15,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -6,
+        "a_137_eta_check": -6.0,
+        "eta_ec_agree": true
+      },
+      {
+        "label": "17.2.a.a",
+        "weight": 2,
+        "level": 17,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -6
+      },
+      {
+        "label": "19.2.a.a",
+        "weight": 2,
+        "level": 19,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -3
+      },
+      {
+        "label": "20.2.a.a",
+        "weight": 2,
+        "level": 20,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 18
+      },
+      {
+        "label": "27.2.a.a",
+        "weight": 2,
+        "level": 27,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 0
+      },
+      {
+        "label": "32.2.a.a",
+        "weight": 2,
+        "level": 32,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -22
+      },
+      {
+        "label": "36.2.a.a",
+        "weight": 2,
+        "level": 36,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 0
+      },
+      {
+        "label": "37.2.a.a",
+        "weight": 2,
+        "level": 37,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -6
+      },
+      {
+        "label": "37.2.b.a",
+        "weight": 2,
+        "level": 37,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -6
+      },
+      {
+        "label": "40.2.a.a",
+        "weight": 2,
+        "level": 40,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 18
+      },
+      {
+        "label": "63.2.a.a",
+        "weight": 2,
+        "level": 63,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 0
+      },
+      {
+        "label": "64.2.a.a",
+        "weight": 2,
+        "level": 64,
+        "method": "elliptic_curve_point_counting",
+        "a_137": -22
+      },
+      {
+        "label": "96.2.a.a",
+        "weight": 2,
+        "level": 96,
+        "method": "elliptic_curve_point_counting",
+        "a_137": 0
+      }
+    ],
+    "weight_4": [
+      {
+        "label": "5.4.a.a",
+        "weight": 4,
+        "level": 5,
+        "method": "eta_product_qexp",
+        "a_137": -2334.0
+      }
+    ],
+    "weight_6": [
+      {
+        "label": "3.6.a.a",
+        "weight": 6,
+        "level": 3,
+        "method": "eta_product_qexp",
+        "a_137": 300234.0
+      },
+      {
+        "label": "7.6.a.a",
+        "weight": 6,
+        "level": 7,
+        "method": "eta_product_qexp",
+        "a_137": 366878.0
+      }
+    ],
+    "weight_12": [
+      {
+        "label": "1.12.a.a",
+        "weight": 12,
+        "level": 1,
+        "method": "eta_product_qexp",
+        "a_137": -297198746214.0
+      }
+    ]
+  },
+  "candidates": [],
+  "coverage": {
+    "weight_2_forms_checked": 15,
+    "weight_4_forms_checked": 1,
+    "weight_6_forms_checked": 2,
+    "total_triples_checked": 30
+  },
+  "verdict": "NO_MATCH_IN_SEARCH_SPACE",
+  "verdict_note": "No triple found within 5% tolerance among the 15\u00d71\u00d72 = 30 triples checked. Coverage is incomplete: weight-4 and weight-6 forms with algebraic eigenvalues (requiring SageMath or LMFDB) are not included. A full search requires SageMath or the LMFDB API (see search_hecke_lmfdb_api.py)."
+}
