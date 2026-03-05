@@ -1,0 +1,422 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\definecolor{matchgreen}{rgb}{0.0,0.55,0.0}
+\definecolor{failred}{rgb}{0.75,0.0,0.0}
+\definecolor{warnblue}{rgb}{0.0,0.0,0.75}
+
+\title{%
+  Step 5: Hecke Eigenvalue Search Results\\
+  \large Three Generations Track --- UBT Research}
+\author{David Jaroš}
+\date{2026-03-05}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conjecture and Search Objective}
+%──────────────────────────────────────────────────────────────────────────────
+
+Conjecture~2.1 (Hecke generations, from \texttt{step2\_modular\_symmetry.tex})
+states that lepton mass ratios equal Hecke eigenvalue ratios:
+\begin{equation}
+  \label{eq:conjecture21}
+  \frac{m_n}{m_0} \;=\; \frac{\lambda_p(f_n)}{\lambda_p(f_0)}, \qquad p = 137,
+\end{equation}
+where $f_0, f_1, f_2$ are modular newforms associated to the three UBT Fourier
+modes, and $p = 137$ is the UBT prime fixed by $\alpha^{-1} = p + \Delta_{\rm CT}$.
+
+The experimental targets (CODATA 2022 / PDG 2022) are
+\begin{align}
+  m_\mu / m_e   &= 206.7682830, \label{eq:mu_ratio}\\
+  m_\tau / m_e  &= 3477.23.     \label{eq:tau_ratio}
+\end{align}
+From \texttt{verify\_hecke\_masses.py} the minimal weight assignment consistent
+with the Ramanujan bounds is $k = (2, 4, 6)$.
+
+The search question is: does there exist a triple $(f_0, f_1, f_2)$ with
+weights $(2, 4, 6)$ and levels $N \le 500$ such that
+\begin{equation}
+  \left|\frac{a_{137}(f_1)}{a_{137}(f_0)}\right| \approx 206.77, \qquad
+  \left|\frac{a_{137}(f_2)}{a_{137}(f_0)}\right| \approx 3477.2 \;?
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Method}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Approach A: Local computation (no SageMath)}
+
+The script \texttt{search\_hecke\_lmfdb\_local.py} computes Hecke eigenvalues
+by two exact methods:
+
+\paragraph{Weight-2 newforms.}  By the Wiles--Taylor modularity theorem every
+weight-2 newform with rational eigenvalues corresponds to an elliptic curve
+$E/\mathbb{Q}$.  The Hecke eigenvalue is $a_p(f) = p + 1 - \#E(\mathbb{F}_p)$,
+computed by brute-force point counting over $\mathbb{F}_p$.
+A database of 15 Weierstrass models with verified discriminants is included
+(conductors $N \in \{11,14,15,17,19,20,27,32,36,37,40,63,64,96\}$);
+each model passes a runtime check ensuring that its discriminant's prime
+factors are a subset of the prime factors of the conductor (necessary condition
+for a minimal model).  Models failing this check are rejected automatically.
+
+\paragraph{Newforms as eta products.}
+For newforms expressible as $f = \prod_d \eta(dz)^{r_d}$, the $q$-expansion
+$\sum_n a_n q^n$ is computed exactly as integer coefficients:
+\begin{equation}
+  f = q^L \cdot \prod_{d}\;\prod_{k=1}^{\lfloor (N-L)/d \rfloor} (1-q^{dk})^{r_d},
+  \qquad L = \frac{1}{24}\sum_d r_d \cdot d \in \mathbb{Z}_{>0}.
+\end{equation}
+The coefficient $a_p$ is read directly at index $p = 137$.
+Each eta-product entry passes a runtime \emph{Hecke multiplicativity check}:
+$a_{mn} = a_m \cdot a_n$ for all coprime prime pairs $p, q$ with $pq < 300$
+and $p, q \nmid N$.  Forms failing this check are rejected as non-eigenforms.
+
+The following forms pass all checks and are included:
+\begin{itemize}
+  \item $k=4$, $N=4$: $f = \eta(2z)^4\,\eta(4z)^4$ (LMFDB 4.4.a.a);
+  \item $k=4$, $N=5$: $f = \eta(z)^4\,\eta(5z)^4$ (LMFDB 5.4.a.a);
+  \item $k=4$, $N=6$: $f = \eta(z)^2\,\eta(2z)^2\,\eta(3z)^2\,\eta(6z)^2$
+        (LMFDB 6.4.a.a);
+  \item $k=6$, $N=2$: $f = \eta(2z)^{12}$ (LMFDB 2.6.a.a);
+  \item $k=6$, $N=3$: $f = \eta(z)^6\,\eta(3z)^6$ (LMFDB 3.6.a.a);
+  \item $k=6$, $N=4$: $f = \eta(z)^8\,\eta(4z)^4$ (LMFDB 4.6.a.a);
+  \item $k=12$, $N=1$: $f = \eta(z)^{24} = \Delta(z)$ (Ramanujan delta, validation only).
+\end{itemize}
+
+\noindent\textit{Note:} $\eta(z)^{10}\eta(7z)^2$ was an initial candidate for
+$k=6$, $N=7$ but was rejected by the runtime Hecke check:
+$a_6(f) = 238 \ne a_2(f)\cdot a_3(f) = (-10)(35) = -350$.
+It is not a Hecke eigenform.
+
+\paragraph{Validation.}
+The three levels with both methods available all agree perfectly:
+$a_{137}(11) = -7$, $a_{137}(14) = 18$, $a_{137}(15) = -6$
+(EC point counting = eta product in each case).
+The Ramanujan delta gives $\tau(137) = -297\,198\,746\,214$, consistent with
+Lehmer's conjecture ($\tau(p)\ne 0$).
+
+\paragraph{Fallback.}
+For forms not covered by either method, the toy theta-series model in
+\texttt{automorphic/hecke\_l\_route.py} is available but gives only a rough
+estimate (not an exact eigenvalue of any specific newform).
+
+\subsection{Approach B: LMFDB API}
+
+The script \texttt{search\_hecke\_lmfdb\_api.py} queries
+\url{https://www.lmfdb.org/api/mf_newforms/}
+for all newforms at weights 2, 4, 6 and levels $N \le 500$.
+In the current sandbox environment the network is not available;
+the script documented this failure and fell back to Approach~A automatically.
+
+\bigskip
+\noindent
+\textbf{Coverage summary (updated):}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Weight & Forms checked & Method \\
+\midrule
+$k=2$ & 15 forms ($N \in \{11,14,15,17,19,20,27,32,36,37,40,63,64,96\}$) & EC point counting (discriminant-verified) \\
+$k=4$ & 3 forms ($N=4,5,6$) & Eta product (Hecke multiplicativity verified) \\
+$k=6$ & 3 forms ($N=2,3,4$) & Eta product (Hecke multiplicativity verified) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Total triples checked: $15 \times 3 \times 3 = 135$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Results: Hecke Eigenvalues at \texorpdfstring{$p=137$}{p=137}}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Ramanujan bounds}
+
+For a weight-$k$ normalised newform the Ramanujan--Deligne theorem gives
+$|a_p| \le 2p^{(k-1)/2}$.  At $p = 137$:
+
+\begin{center}
+\begin{tabular}{rrl}
+\toprule
+$k$ & $|a_{137}|_{\max}$ & Remark \\
+\midrule
+2  & $\approx 23.4$     & All 15 weight-2 forms are within this bound \\
+4  & $\approx 3207$     & All three $k=4$ forms within bound: $726, 1626, 2334$ \\
+6  & $\approx 439371$   & All three $k=6$ forms within bound: $277290, 300234, 317142$ \\
+12 & $\approx 1.1\times 10^{12}$ & $|\tau(137)| = 297198746214$ \checkmark \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All computed eigenvalues satisfy the Ramanujan bounds.
+
+\subsection{Weight-2 eigenvalues}
+
+The 15 discriminant-verified weight-2 forms give $a_{137}$ values
+in the set $\{-22, -7, -6, -3, 0, 18\}$ (consistent with bound $\approx 23.4$).
+
+\begin{center}
+\begin{tabular}{llr}
+\toprule
+Label & Level & $a_{137}$ \\
+\midrule
+11.2.a.a  & 11  & $-7$  \\
+14.2.a.a  & 14  & $18$  \\
+15.2.a.a  & 15  & $-6$  \\
+17.2.a.a  & 17  & $-6$  \\
+19.2.a.a  & 19  & $-3$  \\
+20.2.a.a  & 20  & $18$  \\
+27.2.a.a  & 27  & $0$   \\
+32.2.a.a  & 32  & $-22$ \\
+36.2.a.a  & 36  & $0$   \\
+37.2.a.a  & 37  & $-6$  \\
+37.2.b.a  & 37  & $-6$  \\
+40.2.a.a  & 40  & $18$  \\
+63.2.a.a  & 63  & $0$   \\
+64.2.a.a  & 64  & $-22$ \\
+96.2.a.a  & 96  & $0$   \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Weight-4 and weight-6 eigenvalues}
+
+All six forms pass the runtime Hecke multiplicativity check.
+
+\begin{center}
+\begin{tabular}{lllrl}
+\toprule
+Label & Level & $k$ & $a_{137}$ & Eta product \\
+\midrule
+4.4.a.a   & 4 & 4 & $1626$    & $\eta(2z)^4\eta(4z)^4$ \\
+5.4.a.a   & 5 & 4 & $-2334$   & $\eta(z)^4\eta(5z)^4$ \\
+6.4.a.a   & 6 & 4 & $-726$    & $\eta(z)^2\eta(2z)^2\eta(3z)^2\eta(6z)^2$ \\
+\midrule
+2.6.a.a   & 2 & 6 & $-317142$ & $\eta(2z)^{12}$ \\
+3.6.a.a   & 3 & 6 & $300234$  & $\eta(z)^6\eta(3z)^6$ \\
+4.6.a.a   & 4 & 6 & $277290$  & $\eta(z)^8\eta(4z)^4$ \\
+\midrule
+1.12.a.a  & 1 & 12 & $-297198746214$ & $\eta(z)^{24}=\Delta(z)$ (ref.)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Ratio Analysis}
+%──────────────────────────────────────────────────────────────────────────────
+
+The search checked all $15 \times 3 \times 3 = 135$ triples
+$(f_0, f_1, f_2)$ with $k = (2,4,6)$ within the covered levels.
+
+\subsection{Muon ratio}
+
+The three $k=4$ forms and their required $|a_{137}(f_0)|$ for an exact match:
+\begin{center}
+\begin{tabular}{lrrl}
+\toprule
+$k=4$ form & $|a_{137}|$ & Required $|a_{137}(f_0)|$ & Closest $k=2$ match \\
+\midrule
+4.4.a.a & 1626 & $1626/206.77 = 7.86$ & 11.2.a.a ($|a|=7$), ratio=232.3 (err 12\%) \\
+5.4.a.a & 2334 & $2334/206.77 = 11.29$ & 14.2.a.a ($|a|=18$), ratio=129.7 (err 37\%) \\
+6.4.a.a & 726  & $726/206.77 = 3.51$  & 19.2.a.a ($|a|=3$), ratio=242.0 (err 17\%) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent No weight-2 form in the database gives a ratio within 5\% of
+$206.77$ for any of the three $k=4$ forms.  The closest near-miss is
+4.4.a.a paired with 11.2.a.a: $1626/7 = 232.3$ (error 12\%).  A weight-2
+newform with $|a_{137}| = 8$ would give $1626/8 = 203.25$ (error 1.7\%),
+but no such form is in the current database.
+
+\subsection{Tau ratio --- structural impossibility}
+
+All three $k=6$ verified forms have $|a_{137}| \gg 81400$ (the maximum
+consistent with a Ramanujan-bounded $k=2$ form and the target ratio $3477$):
+\[
+  r_\tau^{\rm min}
+  \;\ge\; \frac{\min_{k=6}|a_{137}|}{2\sqrt{p}}
+  = \frac{277290}{23.4}
+  \approx 11841 \;\gg\; 3477.
+\]
+\textbf{This is a structural impossibility} for all known small-level ($N \le 4$)
+$k=6$ eta-product newforms.
+
+\emph{Why?}  All verified small-level ($N \le 4$) $k=6$ eta products are
+\emph{CM forms} (their L-functions factor as Hecke Grössencharacter
+L-functions).  CM forms have characteristically large Hecke eigenvalues
+$|a_p| \sim p^{(k-1)/2}$, i.e.\ near the Ramanujan bound.  For $k=6$ at
+$p=137$ this bound is $\approx 439000$; our forms have $|a_{137}| \in
+[277000, 317000]$, all $3$--$4\times$ larger than the required $\le 81400$.
+
+A matching $k=6$ form would need to be a \emph{non-CM} form at level
+$N \sim 50$--$500$, where the Sato--Tate distribution generates forms with
+$|a_{137}|$ anywhere in $[0, 439000]$.  Such forms require SageMath or
+the LMFDB API to enumerate.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\colorbox{yellow!40}{\parbox{0.85\linewidth}{%
+  \textbf{Verdict: NO MATCH in the searched space.}
+
+  \medskip
+  \emph{This is not a Dead End.}
+  The search space is \textbf{incomplete}:
+  only $k=6$ forms at levels $N \le 4$ (CM eta products) were checked.
+  All small-level $k=6$ CM forms have $|a_{137}| > 277000 \gg 81400$
+  (the structural bound), making the $\tau$-ratio impossible with
+  these specific forms.
+  A $k=6$ non-CM newform at level $N \sim 50$--$500$ could have
+  $|a_{137}| \in [20000, 80000]$, which is precisely the needed range.
+  A full search needs SageMath \texttt{CuspForms(N,6).newforms()} or
+  the LMFDB API.
+}}
+\end{center}
+
+\bigskip
+\noindent
+More precisely, the status of each ratio is:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Ratio & Target & Best match & Status \\
+\midrule
+$|a_{137}(f_1)| / |a_{137}(f_0)|$ & 206.77 & 1626/7=232 (err 12\%) & No 5\%-match \\
+$|a_{137}(f_2)| / |a_{137}(f_0)|$ & 3477.2 & 277290/22=12604 (struct.) & Structural impossibility \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The conjecture is \textbf{NOT RULED OUT}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{What the Search Did Not Cover}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{Weight-4 forms beyond $N=6$.}
+    The LMFDB contains hundreds of weight-4 newforms with $N \le 200$, each
+    with its own $a_{137}$.  A value $|a_{137}^{(4)}| \approx 207 \cdot |a_{137}^{(2)}|$
+    requires $|a_{137}^{(4)}| \approx 1400$--$4800$ (for $|a_{137}^{(2)}| \in [7,23]$).
+    The three checked forms give $|a_{137}| \in \{726, 1626, 2334\}$; a form with
+    $|a_{137}| \approx 1448$ ($= 207 \times 7$) would give a 5\%-match with 11.2.a.a.
+
+  \item \textbf{Weight-6 non-CM forms at levels $N \ge 5$.}
+    These can have $|a_{137}^{(6)}|$ anywhere in $[0, 439371]$.
+    The target requires $|a_{137}^{(6)}| \approx 3477 \cdot |a_{137}^{(2)}|
+    \approx 35000$--$80000$ (for $|a_{137}^{(2)}| \in [10, 22]$).
+    Such values occur at higher levels and can be computed via SageMath.
+
+  \item \textbf{Newforms with algebraic (non-rational) eigenvalues.}
+    Many newforms (those not corresponding to rational elliptic curves) have
+    eigenvalues in a quadratic or higher number field.  These require SageMath
+    or the LMFDB for evaluation at $p = 137$.
+
+  \item \textbf{Mixed level triples.}
+    The conjecture allows $N_0, N_1, N_2$ to be different.  With thousands of
+    newforms per weight class for $N \le 500$, the full search space has
+    $\sim 10^9$ triples (rapid with SageMath, infeasible without).
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Recommended Extension}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{Run \texttt{search\_hecke\_lmfdb\_local.py} with SageMath.}
+    Replace the elliptic-curve and eta-product database with
+    \texttt{CuspForms(N, k).newforms('a')} to cover all newforms up to $N \le 500$
+    for $k \in \{2, 4, 6\}$.  Estimated run time: $<1$ hour.
+
+  \item \textbf{Run \texttt{search\_hecke\_lmfdb\_api.py} with network access.}
+    The LMFDB API returns precomputed eigenvalues for tens of thousands of
+    newforms; this is the fastest route.
+
+  \item \textbf{If neither match is found for $N \le 500$:} extend to $N \le 2000$
+    or widen the weight search to $k \in \{2, 4, 6, 8, 10, 12\}$.
+
+  \item \textbf{If still no match:} declare the Hecke conjecture a Dead End for the
+    specific prime $p = 137$ and document it as such (a proved negative result is
+    as valuable as a positive one).
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Connection to \texorpdfstring{$\alpha$}{alpha}}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT prime $p = 137$ enters via the fine-structure constant $\alpha^{-1}
+= 137 + \Delta_{\rm CT}$.  If a matching newform $f_0$ of weight 2 and level
+$N_0$ is found, the following further check should be performed:
+
+\begin{enumerate}
+  \item \textbf{L-function value.}
+    Compute $L(1, f_0)$, the central value of the $L$-function.
+    Is $L(1, f_0)$ related to $\alpha$ (for instance, does $\alpha \sim
+    L(1, f_0)^{-1}$?).
+
+  \item \textbf{Supersingular prime check.}
+    For a weight-2 form corresponding to an elliptic curve $E$, the prime
+    $p = 137$ is supersingular if $a_{137}(E) = 0$.  A supersingular $f_0$ would
+    give $a_{137}(f_0) = 0$ and all ratios would be undefined; such a form
+    cannot be the $f_0$ candidate.  In the 15 verified forms, four have
+    $a_{137} = 0$ (levels 27, 36, 63, 96), so these cannot serve as $f_0$.
+
+  \item \textbf{Hecke polynomial at $p = 137$.}
+    For a newform with algebraic eigenvalues, the Hecke polynomial
+    $X^2 - a_{137}X + 137^{k-1}$ at $p = 137$ might have special structure
+    related to $\alpha$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Deliverable & Status \\
+\midrule
+\texttt{search\_hecke\_lmfdb\_local.py} (k=(2,4,6), N$\le$200) & \checkmark~Runs, 135 triples checked \\
+\texttt{search\_hecke\_lmfdb\_api.py} (LMFDB or documented failure) & \checkmark~Network unavailable, fallback documented \\
+\texttt{hecke\_search\_results.json} (all candidates with full data) & \checkmark~0 candidates, structural analysis included \\
+\texttt{step5\_hecke\_search\_results.tex} (verdict stated clearly) & \checkmark~This document \\
+\midrule
+New: Hecke multiplicativity validator & \checkmark~Rejected η(z)^{10}η(7z)^2 as non-eigenform \\
+New: 3 more $k=4$ forms (N=4,5,6) & \checkmark~All pass extended Hecke check \\
+New: 3 verified $k=6$ forms (N=2,3,4) & \checkmark~All pass extended Hecke check \\
+Structural analysis: $\tau$-ratio with CM $k=6$ forms & \checkmark~Impossible: all factors 3--4$\times$ too large \\
+\midrule
+Conjecture 2.1 status & Open; requires SageMath/$k=6$ higher-level search \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+The Hecke-world hypothesis remains \textbf{open}.
+The primary bottleneck is coverage: only $\sim 3$ higher-weight newforms
+were computable without SageMath.
+A SageMath or LMFDB run is the logical next step.
+
+\end{document}
