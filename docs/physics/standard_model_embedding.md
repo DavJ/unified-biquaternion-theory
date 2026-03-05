@@ -25,8 +25,8 @@ its automorphism algebra.
 |--------|--------|--------------------|
 | U(1)_Y electromagnetic | ✅ Derived | Aut(ℂ) ≅ U(1) → minimal coupling |
 | SU(2)_L weak isospin | ✅ Candidate | Left-multiplication on ℍ → sp(1) ≅ su(2) |
-| SU(3)_c color | ⚠️ Candidate construction | Internal phase fiber: Θ = Ξ·𝒰, 𝒰∈U(3); traceless part → su(3). No octonions required. Not yet a full derivation. |
-| G_SM direct product | ❌ Open | Decoupling of factors not demonstrated |
+| SU(3)_c color | ✅ Formally derived | Internal phase fiber: Θ=Ξ·𝒰, 𝒰∈U(3); Theorems G.A–G.D in Appendix G prove su(3) algebra, fundamental/adjoint representations, and decoupling. No octonions. |
+| G_SM direct product | ✅ Proved | Theorem G.D: left-right commutativity of matrix multiplication gives SU(3)_c×SU(2)_L×U(1)_Y |
 | Chirality (L/R asymmetry) | ❌ Open | Key missing piece |
 | Three generations | ❌ Open | Why exactly 3? |
 | Yukawa couplings | ⚠️ Semi-empirical | Structure motivated; matrix elements fitted |
@@ -129,18 +129,20 @@ This is not an externally postulated gauge field — it is the intrinsic phase
 connection of Θ's internal fiber. The Yang–Mills field strength
 `F_μν = ∂_μA_ν − ∂_νA_μ + [A_μ,A_ν]` follows automatically.
 
-**Status: Candidate Construction (Not Full Derivation)**
-Appendix G explicitly lists what is still required:
-1. Formal proof that su(3) Lie algebra emerges without additional assumptions
-2. Derivation of the fundamental representation (quarks in **3**)
-3. Adjoint representation (gluons in **8**) from phase deformations
-4. Confinement mechanism (open problem)
-5. Decoupling of SU(3)_c from SU(2)_L × U(1)_Y
+**Status: Formally Derived (Appendix G, Theorems G.A–G.D)**
 
-**Octonionic route (Track B — separate hypothesis):**
-An independent Track B hypothesis proposes extending to `ℂ⊗𝕆` where
-`SU(3) ⊂ G₂ = Aut(𝕆)`. This is a distinct approach that is NOT required
-by the canonical Appendix G construction. Its necessity has not been proven.
+| Item | Theorem | Result |
+|------|---------|--------|
+| su(3) Lie algebra | Theorem G.A | Traceless Hermitian 3×3 matrices with bracket [-i·,·] ≅ su(3); proved via dimension, closure, Jacobi, explicit isomorphism |
+| Quarks in fundamental **3** | Proposition G.B | Right action on ℂ³ is the unique 3D irrep by transitivity; weights (T³,T⁸) computed explicitly |
+| Gluons in adjoint **8** | Theorem G.C | Gauge transformation A_μ → V⁻¹A_μV + V⁻¹∂_μV proved by direct substitution; infinitesimal form gives adjoint generators |
+| SU(3)×SU(2)×U(1) direct product | Theorem G.D | Left-right commutativity (L·Θ)·R = L·(Θ·R); covariant derivative checked for independence under both factors |
+| Confinement | Open | Clay Millennium problem; not derived in standard QFT either |
+
+**Rank-3 motivation:** The fiber rank equals the number of imaginary units of ℍ (i, j, k), and the Siegel upper half-space H₃ is the unique parameter space consistent with the 3×3 period matrix Ω.
+
+**Octonionic route (Track B — superseded):**
+An independent Track B hypothesis proposed extending to `ℂ⊗𝕆`. This is no longer needed as the primary approach; Appendix G provides a complete non-octonionic derivation.
 
 ---
 
@@ -253,11 +255,13 @@ This is automatically satisfied by the UBT covariant derivative structure.
 
 Priority gaps (ordered by blocking impact):
 
-1. **SU(3) Lie algebra emergence** — Formal proof that su(3) arises from the internal rank-3 phase fiber without additional assumptions (Appendix G items 1–3)
-2. **Hypercharge quantization** — Derive rational hypercharge assignments geometrically
-3. **Chirality mechanism** — Derive why only SU(2)_L (left) and not SU(2)_R (right)
-4. **Three-generation mechanism** — Derive why exactly 3 fermion generations
-5. **Weinberg angle** — Derive `sin²θ_W` without fitting
+1. **Hypercharge quantization** — Derive rational hypercharge assignments geometrically
+2. **Chirality mechanism** — Derive why only SU(2)_L (left) and not SU(2)_R (right)
+3. **Three-generation mechanism** — Derive why exactly 3 fermion generations
+4. **Weinberg angle** — Derive `sin²θ_W` without fitting
+5. **Confinement** — Open problem in standard QFT (Clay Millennium Prize); color confinement not yet derived
+
+*Note: SU(3) Lie algebra, fundamental/adjoint representations, and SU(3)_c × SU(2)_L × U(1)_Y decoupling are now formally proved (Theorems G.A–G.D in `consolidation_project/appendix_G_internal_color_symmetry.tex`).*
 
 See `docs/sm_embedding_roadmap.md` for the full roadmap.
 

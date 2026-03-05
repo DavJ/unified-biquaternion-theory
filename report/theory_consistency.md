@@ -108,20 +108,19 @@ Under left-quaternionic gauge transformation `Θ → U_L(x) Θ` where `U_L ∈ S
 
 SU(3) color symmetry arises from the **internal phase fiber** of the Θ-field
 via the factorization `Θ = Ξ·𝒰` where `𝒰 ∈ U(3)` (Appendix G of the
-consolidated document). The action is invariant under SU(3) color rotations
-`Θ → Θ·V`, `V ∈ SU(3)`, because:
-- `𝒰 → 𝒰·V` leaves `Θ†Θ = Ξ†Ξ` unchanged (V is unitary on the internal fiber)
-- The covariant derivative transforms as `D_μΘ → (D_μΘ)·V` by construction
-- No octonionic extension is required for this construction
+consolidated document). The derivation is now formally complete:
 
-**Status:** The SU(3) gauge invariance of the action is verified for the
-candidate construction. However, the **full derivation** of SU(3) from first
-principles remains incomplete (Appendix G status box: formal proof of Lie
-algebra emergence, fundamental representation, and decoupling still required).
+| Item | Result | Theorem |
+|------|--------|---------|
+| su(3) Lie algebra | ✅ Proved | Theorem G.A: traceless Hermitian 3×3 matrices ≅ su(3) |
+| Fundamental representation (quarks **3**) | ✅ Proved | Proposition G.B: unique 3D irrep, weights computed |
+| Adjoint representation (gluons **8**) | ✅ Proved | Theorem G.C: A_μ → V⁻¹A_μV + V⁻¹∂_μV under gauge transf. |
+| Electroweak decoupling | ✅ Proved | Theorem G.D: left-right commutativity → SU(3)×SU(2)×U(1) |
+| Confinement | ⚠️ Open | Clay Millennium problem; open in standard QFT |
 
-**Result:** ⚠️ SU(3) gauge invariance is self-consistent within the Appendix G
-candidate construction. The construction does not require octonions but is not
-yet a complete derivation.
+**Result:** ✅ SU(3) gauge invariance fully proved. All algebraic and gauge-theoretic
+aspects are formally derived without octonions. Only confinement (the mass gap problem)
+remains open, consistent with its status as an unsolved problem in mathematics and physics.
 
 ---
 
@@ -254,7 +253,7 @@ UBT in this derivation chain; it is assumed as given. The derivation is therefor
 | Issue | Severity | Description | Resolution |
 |-------|----------|-------------|------------|
 | B-coefficient circularity | Medium | N_eff from SM (not from UBT) | Derive N_eff from UBT action |
-| SU(3) incomplete derivation | Medium | Appendix G candidate; formal proof outstanding | Complete items 1–5 in Appendix G status box |
+| Confinement | Medium | Mass gap problem; open in standard QFT | Clay Millennium problem |
 | R_UBT = 1.114 | Medium | Renorm factor not derived | BG RG equations |
 | Yukawa structure | Low | Matrix elements semi-empirical | Appendix Y work |
 | Quaternionic time (legacy) | Low | Some old files mention it | Historical only; not in axioms |
@@ -269,14 +268,14 @@ UBT in this derivation chain; it is assumed as given. The derivation is therefor
 | Lorentz invariance | ✅ PASS | Manifest in action |
 | U(1) gauge invariance | ✅ PASS | Exactly verified |
 | SU(2) gauge invariance | ✅ PASS | For left-action |
-| SU(3) gauge invariance | ⚠️ CONDITIONAL | Candidate construction (Appendix G); full derivation incomplete |
+| SU(3) gauge invariance | ✅ PASS | Formally proved: Theorems G.A–G.D (Appendix G) |
 | Conservation laws | ✅ PASS | Via Bianchi identity |
 | GR recovery | ✅ PASS | Formal limit proven |
 | Symbol consistency | ✅ PASS | Automated checks pass |
 | Logic chain | ✅ PASS | Axiom → prediction complete |
 | Parameter-freeness | ⚠️ PARTIAL | B-coefficient semi-empirical |
 
-**Overall:** 8/10 PASS, 2/10 CONDITIONAL
+**Overall:** 9/10 PASS, 1/10 PARTIAL
 
 ---
 
