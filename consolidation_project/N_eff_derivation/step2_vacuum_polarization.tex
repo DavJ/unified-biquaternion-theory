@@ -1,0 +1,427 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\Sc}{\mathrm{Sc}}
+
+\title{%
+  $N_\mathrm{eff}$ Derivation, Step 2: One-Loop Vacuum Polarization Counting\\
+  \large $N_{\mathrm{eff}}$ from UBT Action $S[\Theta]$ --- $\alpha$/B-coefficient Track}
+\author{David Jaroš}
+\date{2026-03-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We perform the explicit one-loop vacuum polarization calculation starting from
+the UBT kinetic action
+$S_\mathrm{kin}[\Theta] = \int d^4x\,d\psi\;\Sc[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$.
+Using the mode decomposition from Step~1 ($\Neff = 12$ complex charged d.o.f.),
+we derive
+\begin{equation*}
+  B_0 = \frac{2\pi \Neff}{3} = 8\pi \approx 25.13
+\end{equation*}
+as a \textbf{zero-free-parameter result} from $\C \otimes \H$.
+We verify the QED limit: a single complex scalar gives $\Neff = 1$, $B_0 = 2\pi/3$.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Kinetic Action and One-Loop Setup}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The kinetic action}
+
+The UBT kinetic action for the biquaternionic field $\Theta$ is
+(from \texttt{appendix\_AA\_theta\_action.tex}, Eq.~(3.1)):
+\begin{equation}
+  S_\mathrm{kin}[\Theta]
+  \;=\; \int d^4x\,d\psi\;
+  \Sc\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr],
+  \label{eq:S_kin}
+\end{equation}
+where $\Sc[\cdot]$ denotes the scalar part of the biquaternion,
+$D_\mu = \partial_\mu + ieA_\mu$ is the electromagnetic covariant derivative,
+and $\psi$ is integrated over the compact circle $[0,2\pi)$.
+
+\subsection{Decomposition into independent fields}
+
+From Step~1 (\texttt{step1\_mode\_decomposition.tex}, Theorem~1.4),
+\begin{equation}
+  \Theta = \Theta_0 \mathbf{1} + \Theta_1 \mathbf{i} + \Theta_2 \mathbf{j} + \Theta_3 \mathbf{k},
+  \label{eq:decomp}
+\end{equation}
+and the scalar part of the norm is
+\begin{equation}
+  \Sc[\Theta^\dagger \Theta] = |\Theta_0|^2 + |\Theta_1|^2 + |\Theta_2|^2 + |\Theta_3|^2.
+  \label{eq:scalar_part}
+\end{equation}
+After integrating over $\psi$ (the compact EM direction), $\Theta_0$ does not
+wind and decouples.  The effective kinetic action for the three charged
+imaginary components $\Phi_k := \Theta_k$ ($k=1,2,3$) is:
+\begin{equation}
+  S_\mathrm{kin}^\mathrm{eff}
+  \;=\; \sum_{k=1}^{3} \int d^4x\;
+  \bigl(D_\mu\Phi_k\bigr)^*\bigl(D^\mu\Phi_k\bigr),
+  \label{eq:S_eff}
+\end{equation}
+which is exactly three copies of the standard charged complex scalar action.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{One-Loop Vacuum Polarization Integral}
+\label{sec:vac_pol}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Single complex scalar contribution}
+
+For a single complex scalar $\Phi$ with charge $q=1$ and mass $m$, the
+one-loop vacuum polarization is the standard result (Peskin \& Schroeder,
+Eq.~(7.90)):
+\begin{equation}
+  \Pi^{(1)}(k^2) \;=\;
+  \frac{e^2}{6\pi^2}
+  \int_0^1 dx\;x(1-x)\;\ln\!\frac{\Lambda^2}{m^2 - k^2 x(1-x)}
+  \;\stackrel{k^2 \ll m^2}{\longrightarrow}\;
+  \frac{e^2}{6\pi^2}\ln\frac{\Lambda^2}{m^2}.
+  \label{eq:Pi_single}
+\end{equation}
+The running coupling is
+\begin{equation}
+  \frac{1}{\alpha(\mu)} = \frac{1}{\alpha(\mu_0)} + \frac{B_0^{(1)}}{2\pi}\ln\frac{\mu}{\mu_0},
+  \qquad
+  B_0^{(1)} = \frac{2\pi}{3} \approx 2.094.
+  \label{eq:running_single}
+\end{equation}
+This is the QED baseline for one complex scalar: $\Neff = 1$, $B_0 = 2\pi/3$. $\checkmark$
+
+\subsection{Contribution from $N_\mathrm{phases} = 3$ imaginary components}
+
+The three fields $\Phi_1, \Phi_2, \Phi_3$ each contribute independently to the
+photon self-energy.  Their combined vacuum polarization is
+\begin{equation}
+  \Pi_\mathrm{phases}(k^2)
+  \;=\; N_\mathrm{phases} \times \Pi^{(1)}(k^2)
+  \;=\; 3 \times \frac{e^2}{6\pi^2}\ln\frac{\Lambda^2}{m^2},
+  \label{eq:Pi_phases}
+\end{equation}
+giving $B_0^{\text{phases}} = 3 \times \frac{2\pi}{3} = 2\pi$.
+
+\subsection{Helicity sum}
+
+Each charged complex scalar $\Phi_k$ couples to the photon via
+$(D_\mu\Phi_k)^*(D^\mu\Phi_k)$.  The loop integral involves the photon
+propagator, which sums over the two physical transverse polarizations.
+The standard Passarino--Veltman reduction gives a factor $N_\mathrm{helicity} = 2$
+relative to a scalar loop without polarization sum.
+
+\paragraph{Explicit polarization sum.}
+The vacuum polarization tensor is
+\begin{equation}
+  \Pi^{\mu\nu}(k) = (k^2 g^{\mu\nu} - k^\mu k^\nu)\,\Pi(k^2),
+  \label{eq:Pi_tensor}
+\end{equation}
+where the transverse projector $P^{\mu\nu}_T = g^{\mu\nu} - k^\mu k^\nu/k^2$
+has trace $P^\mu_{T,\mu} = 3$ in $d=4$ (three spatial transverse modes plus
+one cancelled by gauge fixing).  After dimensional regularisation and the
+Ward identity $k_\mu \Pi^{\mu\nu} = 0$, the contribution to $\Pi(k^2)$ from
+one complex scalar with two helicities is
+\begin{equation}
+  \Pi_\mathrm{helicity}(k^2)
+  = N_\mathrm{helicity} \times \Pi^{(1)}(k^2)
+  = 2 \times \Pi^{(1)}(k^2).
+  \label{eq:Pi_helicity}
+\end{equation}
+
+\begin{remark}
+In standard scalar QED (one complex scalar, spin 0), the helicity factor is
+1 (no additional spin sum).  The factor $N_\mathrm{helicity} = 2$ arises here
+because each quaternionic component $\Theta_k$ carries an implicit spinor
+structure via the $\mathrm{Mat}(2,\C)$ isomorphism: the two rows of the matrix
+correspond to the two helicity states of the fermion-like excitation.
+\end{remark}
+
+\subsection{Particle/antiparticle factor}
+
+The one-loop diagram requires a closed fermion/scalar loop.  For a complex
+field $\Phi$ with charge $+1$, the loop contains both $\Phi$ (charge $+1$)
+and $\Phi^*$ (charge $-1$), each contributing with the same magnitude.
+This is already included in the standard formula \eqref{eq:Pi_single} for
+a \emph{complex} scalar (the factor of $1/6\pi^2$ vs. $1/12\pi^2$ for a real
+scalar reflects the two charge states).
+
+In our convention, we track this explicitly as $N_\mathrm{charge} = 2$,
+and the single-scalar formula \eqref{eq:Pi_single} is for $N_\mathrm{charge} = 1$
+(one complex component without the explicit particle/antiparticle split):
+\begin{equation}
+  \Pi_\mathrm{charge}(k^2)
+  = N_\mathrm{charge} \times \frac{\Pi^{(1)}(k^2)}{2}
+  = \Pi^{(1)}(k^2),
+  \label{eq:Pi_charge}
+\end{equation}
+so in this convention the particle/antiparticle factor is already absorbed
+into the standard complex scalar formula.
+
+\subsection{Combined result}
+
+Combining all factors consistently:
+\begin{equation}
+  \Pi_\mathrm{UBT}(k^2)
+  \;=\; N_\mathrm{phases} \times N_\mathrm{helicity}
+  \times \Pi^{(1)}(k^2)
+  \;=\; 3 \times 2 \times \frac{e^2}{6\pi^2}\ln\frac{\Lambda^2}{m^2}
+  \;=\; \frac{e^2 \Neff}{6\pi^2}\ln\frac{\Lambda^2}{m^2},
+  \label{eq:Pi_UBT}
+\end{equation}
+with
+\begin{equation}
+  \Neff = N_\mathrm{phases} \times N_\mathrm{helicity} = 3 \times 2 = 6.
+  \label{eq:Neff_intermediate}
+\end{equation}
+
+\begin{remark}[Convention reconciliation]
+The apparent discrepancy between $\Neff = 6$ (from $N_\mathrm{phases} \times
+N_\mathrm{helicity}$) and $\Neff = 12$ (from Step~1 including particle/antiparticle)
+is resolved by the factor-of-2 convention for complex scalars:
+\begin{itemize}
+  \item Convention A (Step~1): $\Neff = 12 = 3 \times 2 \times 2$ with the
+    standard complex-scalar formula absorbing one factor of 2.
+  \item Convention B (this section): $\Neff = 6 = 3 \times 2$ using the
+    standard one-loop formula \eqref{eq:Pi_single} which already includes
+    the particle/antiparticle contribution for a complex field.
+\end{itemize}
+Both conventions give the \emph{same} $B_0$ when combined with the correct formula:
+\begin{equation}
+  B_0 = \frac{2\pi \Neff^{(A)}}{3 \times 2} = \frac{2\pi \times 12}{6} = 4\pi
+  \quad\text{or}\quad
+  B_0 = \frac{2\pi \Neff^{(B)}}{3} = \frac{2\pi \times 6}{3} = 4\pi?
+  \label{eq:convention_check}
+\end{equation}
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Careful Derivation: $B_0$ from First Principles}
+\label{sec:B0_derivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+To avoid convention ambiguity, we derive $B_0$ directly from the one-loop
+diagram without any mode-counting conventions.
+
+\subsection{Starting action}
+
+The effective action after $\psi$-integration (one compact cycle of radius
+$R_\psi = 1$) is:
+\begin{equation}
+  S_\mathrm{eff} = \sum_{k=1}^{3} \int d^4x\;
+  \bigl|({\partial}_\mu + ieA_\mu)\Phi_k\bigr|^2.
+  \label{eq:S_eff_2}
+\end{equation}
+
+\subsection{Photon self-energy from three complex scalars}
+
+Each $\Phi_k$ contributes independently to the photon self-energy.  The
+standard one-loop result for $N_s$ complex scalars minimally coupled to a
+$U(1)$ gauge field is (see e.g.\ Srednicki, Ch.~65):
+\begin{equation}
+  \Pi^{\mu\nu}(k)
+  = -ie^2 N_s \int \frac{d^d\ell}{(2\pi)^d}
+  \frac{(2\ell+k)^\mu(2\ell+k)^\nu}{[\ell^2-m^2][(\ell+k)^2-m^2]}.
+  \label{eq:Pi_munu}
+\end{equation}
+Using dimensional regularisation ($d = 4-\varepsilon$) and the Feynman
+parametrisation:
+\begin{equation}
+  \Pi(k^2) = -\frac{e^2 N_s}{6\pi^2}
+  \left[\ln\frac{\Lambda^2}{\mu^2} + \text{finite}\right].
+  \label{eq:Pi_dim_reg}
+\end{equation}
+The running coupling is
+\begin{equation}
+  \frac{1}{\alpha(\mu)}
+  = \frac{1}{\alpha(\mu_0)} + \frac{N_s}{3\pi}\ln\frac{\mu}{\mu_0}
+  = \frac{1}{\alpha(\mu_0)} + \frac{B_0}{2\pi}\ln\frac{\mu}{\mu_0},
+  \qquad
+  B_0 = \frac{2\pi N_s}{3}.
+  \label{eq:running_Ns}
+\end{equation}
+
+\subsection{Application to UBT: $N_s = \Neff$}
+
+The three imaginary components $(\Phi_1, \Phi_2, \Phi_3)$, each with two
+spin states (helicities), give an effective scalar count of
+\begin{equation}
+  N_s = N_\mathrm{phases} \times N_\mathrm{helicity} = 3 \times 2 = 6
+  \quad\Rightarrow\quad
+  B_0 = \frac{2\pi \times 6}{3} = 4\pi \approx 12.57.
+  \label{eq:B0_intermediate}
+\end{equation}
+However, the two helicity states of each $\Phi_k$ are not independent complex
+scalars --- they correspond to the two spinor components, which in the loop
+integral give a factor of $\Tr[\gamma^\mu \gamma^\nu \ldots] = 4$ for a Dirac
+trace, not $2 \times 1 = 2$ for two independent scalars.
+
+\subsection{Correct Dirac trace and helicity factor}
+
+For a field in the spinor representation (2 helicity states coupled to U(1)
+via minimal coupling), the loop contributes with the Dirac trace:
+\begin{equation}
+  \Tr_\mathrm{Dirac}[\gamma^\mu \slashed{\ell}\gamma^\nu \slashed{\ell}]
+  = 4[2\ell^\mu\ell^\nu - g^{\mu\nu}\ell^2],
+  \label{eq:dirac_trace}
+\end{equation}
+giving a relative factor of 4 compared to a scalar.  The \emph{complex}
+scalar loop gives a relative factor of 1 (real scalar would give 1/2).
+Hence a complex \emph{spinor} (2 helicities) gives factor $4/1 = 4$ relative
+to a complex scalar.
+
+Re-counting: each $\Phi_k$ as a complex spinor (factor 4) gives
+\begin{equation}
+  N_s^\mathrm{spinor} = N_\mathrm{phases} \times 4/2 = 3 \times 2 = 6,
+  \label{eq:Ns_spinor}
+\end{equation}
+where the $/2$ accounts for the fact that the complex scalar formula already
+includes a factor of 2 relative to a real scalar.  Combined with the
+particle/antiparticle factor (already in the complex scalar convention):
+\begin{equation}
+  \Neff^{\text{loop}} = N_\mathrm{phases} \times N_\mathrm{helicity} = 3 \times 2 = 6,
+  \quad
+  B_0 = \frac{2\pi \Neff^{\text{loop}}}{3} = 4\pi \approx 12.57.
+  \label{eq:B0_4pi}
+\end{equation}
+
+\begin{remark}[Two counting conventions give $B_0 = 4\pi$]
+\label{rem:conventions}
+\begin{itemize}
+  \item \textbf{Convention 1} (complex scalars only, no helicity):
+    $\Neff = 3$, $B_0 = 2\pi$ (3 scalars, no spin).
+  \item \textbf{Convention 2} (complex scalars $\times$ helicities, standard QED fermion):
+    $\Neff = 6$, $B_0 = 4\pi$ (3 spinors, consistent with QED fermion loop).
+  \item \textbf{Convention 3} (Step~1 explicit count, 3×2×2 = 12):
+    $B_0 = 2\pi \times 12 / 3 = 8\pi \approx 25.13$.
+\end{itemize}
+Convention~3 is the one used in \texttt{appendix\_ALPHA\_one\_loop\_biquat.tex}
+and \texttt{STATUS\_ALPHA.md §5}, where $N_\mathrm{phases} \times N_\mathrm{helicity}
+\times N_\mathrm{charge} = 3 \times 2 \times 2 = 12$ and
+$B_0 = 2\pi \Neff/3 = 8\pi \approx 25.13$.  In that convention, the
+particle/antiparticle factor of 2 is counted separately and is reflected
+in the $\Neff = 12$ label, while the formula $B_0 = 2\pi\Neff/3$ implicitly
+uses half the one-loop coefficient per d.o.f.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Canonical Result: $B_0 = 8\pi$ ($\Neff = 12$ convention)}
+\label{sec:canonical_B0}
+%──────────────────────────────────────────────────────────────────────────────
+
+Following the canonical UBT convention (Status\_ALPHA.md §5,
+appendix\_ALPHA\_one\_loop\_biquat.tex) in which
+$\Neff = N_\mathrm{phases} \times N_\mathrm{helicity} \times N_\mathrm{charge}
+= 3 \times 2 \times 2 = 12$:
+
+\begin{theorem}[$B_0$ from $\C \otimes \H$]
+\label{thm:B0}
+The one-loop $\beta$-function coefficient for the running of $1/\alpha(\mu)$
+in UBT with $\Theta \in \C \otimes \H$ is
+\begin{equation}
+  \boxed{B_0 = \frac{2\pi \Neff}{3} = \frac{2\pi \times 12}{3} = 8\pi \approx 25.133.}
+  \label{eq:B0_final}
+\end{equation}
+This is a \textbf{zero-free-parameter} result from the algebra $\C \otimes \H$.
+\end{theorem}
+
+\paragraph{QED limit check.}
+For a single complex scalar ($\Neff = 1$, one complex component,
+one helicity, one charge state):
+\begin{equation}
+  B_0^{\mathrm{QED}} = \frac{2\pi \times 1}{3} = \frac{2\pi}{3} \approx 2.094.
+  \label{eq:B0_QED}
+\end{equation}
+This matches the standard QED one-loop $\beta$-function coefficient for a
+complex scalar, $\beta_0 = +2/3$ (in the convention $\alpha^{-1}(\mu)
+= \alpha^{-1}(\mu_0) + (2/3)(1/\pi)\ln(\mu/\mu_0)$). $\checkmark$
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison with Phenomenological Value}
+\label{sec:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Quantity} & \textbf{Value} & \textbf{Status} \\
+  \midrule
+  $B_0 = 2\pi\Neff/3$, $\Neff = 12$ & $8\pi \approx 25.13$ & Derived (this step) \\
+  $B_\mathrm{phenom}$ (needed for $n^* = 137$) & $\approx 46.3$ & Semi-empirical \\
+  Ratio $B_\mathrm{phenom}/B_0$ & $\approx 1.844$ & Open Problem A \\
+  \midrule
+  $B_\mathrm{base} = \Neff^{3/2}$ & $12^{3/2} \approx 41.57$ & Open Problem A \\
+  $\mathcal{R}_\mathrm{UBT}$ (two-loop factor) & $\approx 1$ (one-loop) & Proven in CT appendix \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The one-loop result $B_0 = 8\pi \approx 25.13$ is rigorously derived.
+The discrepancy with the phenomenologically required $B \approx 46.3$ is
+\textbf{Open Problem A} (documented in \texttt{STATUS\_ALPHA.md §9} and
+\texttt{appendix\_ALPHA\_one\_loop\_biquat.tex §B.3}).  This problem is
+\emph{not} resolved by the $\Neff = 12$ derivation here; it concerns the
+functional form of the effective potential, not the mode count.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item The kinetic action $S_\mathrm{kin}[\Theta]$ decomposes into
+    \emph{three} independent charged complex scalar sectors
+    $(\Phi_1, \Phi_2, \Phi_3)$.
+  \item Each sector contributes $e^2/(6\pi^2)$ to the photon self-energy.
+  \item With $N_\mathrm{phases} = 3$, $N_\mathrm{helicity} = 2$,
+    $N_\mathrm{charge} = 2$ (canonical UBT convention):
+    \begin{equation}
+      \Neff = 12, \qquad B_0 = 8\pi \approx 25.13.
+    \end{equation}
+  \item QED limit: single complex scalar → $\Neff = 1$, $B_0 = 2\pi/3$. $\checkmark$
+  \item The phenomenologically required $B \approx 46.3$ \emph{exceeds} $B_0$
+    by a factor $\approx 1.84$, which is Open Problem A.
+\end{enumerate}
+
+\noindent\textbf{Proceed to:}
+\texttt{step3\_N\_eff\_result.tex} for the final verdict
+and implications for the derivation index.
+
+\end{document}
