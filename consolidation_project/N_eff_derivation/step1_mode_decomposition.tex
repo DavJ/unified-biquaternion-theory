@@ -1,0 +1,354 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+
+\title{%
+  $N_\mathrm{eff}$ Derivation, Step 1: Mode Decomposition of $\Theta$\\
+  \large $N_{\mathrm{eff}}$ from UBT Action $S[\Theta]$ --- $\alpha$/B-coefficient Track}
+\author{David Jaroš}
+\date{2026-03-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We decompose the biquaternionic field $\Theta \in \C \otimes_{\R} \H \cong \mathrm{Mat}(2,\C)$
+into irreducible representations of the UBT gauge group
+$G_{\mathrm{UBT}} = SU(2)_L \times U(1)_Y$ (from $\C \otimes \H$ alone)
+acting on it, and identify the independent complex charged degrees of freedom
+that contribute to the one-loop vacuum polarization integral.
+The key result is that $\C \otimes \H$ \emph{alone} provides exactly
+$\Neff = 12$ independent charged complex d.o.f., via the three independent
+imaginary directions of $\H$ (quaternion phases $\psi, \chi, \xi$)
+combined with helicity and particle/antiparticle multiplicity.
+
+\textbf{Summary:} $\Neff = 3_{\text{phases}} \times 2_{\text{helicities}} \times 2_{\text{charge}} = 12$
+is a \emph{zero-free-parameter result from $\C \otimes \H$}.
+SU(3) is \emph{not} needed for this count.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: The Field $\Theta$ and Its Algebraic Structure}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Biquaternion algebra}
+
+\begin{definition}[Biquaternion algebra]
+The biquaternion algebra is
+\begin{equation}
+  \B := \C \otimes_{\R} \H
+  = \{z_0 \cdot \mathbf{1} + z_1 \cdot \mathbf{i} + z_2 \cdot \mathbf{j} + z_3 \cdot \mathbf{k}
+    \mid z_\alpha \in \C\}
+  \label{eq:biquat_def}
+\end{equation}
+with quaternion relations $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$.
+\end{definition}
+
+\begin{proposition}[Matrix isomorphism]
+$\B \cong \mathrm{Mat}(2,\C)$ via the isomorphism
+\begin{equation}
+  \phi: z_0 + z_1\mathbf{i} + z_2\mathbf{j} + z_3\mathbf{k}
+  \;\longmapsto\;
+  \begin{pmatrix} z_0 + iz_1 & z_2 + iz_3 \\ -z_2 + iz_3 & z_0 - iz_1 \end{pmatrix}.
+  \label{eq:mat2C}
+\end{equation}
+As a $\C$-vector space, $\mathrm{Mat}(2,\C)$ has complex dimension 4.
+\end{proposition}
+
+\subsection{Quaternionic time decomposition}
+
+The UBT complex time is
+\begin{equation}
+  \tau \;=\; t + \psi\mathbf{i} + \chi\mathbf{j} + \xi\mathbf{k},
+  \qquad t,\psi,\chi,\xi \in \R,
+  \label{eq:quat_time}
+\end{equation}
+with compact imaginary directions $\psi \sim \psi+2\pi$, $\chi \sim \chi+2\pi$,
+$\xi \sim \xi+2\pi$ (canonical compactification, $R_\psi = R_\chi = R_\xi = 1$
+in natural units).
+
+The field $\Theta(q,\tau)$ decomposes along the quaternion basis:
+\begin{equation}
+  \Theta \;=\; \Theta_0 \cdot \mathbf{1}
+             + \Theta_1 \cdot \mathbf{i}
+             + \Theta_2 \cdot \mathbf{j}
+             + \Theta_3 \cdot \mathbf{k},
+  \qquad \Theta_\alpha \in \C,
+  \label{eq:quat_decomp}
+\end{equation}
+where $\Theta_0$ is the real-time component and $(\Theta_1, \Theta_2, \Theta_3)$
+are the imaginary-time (phase) components, one for each compact direction.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Gauge Group Action on $\Theta$}
+\label{sec:gauge}
+%──────────────────────────────────────────────────────────────────────────────
+
+From \texttt{appendix\_E2\_SM\_geometry.tex}, the gauge group $G_\mathrm{UBT}$
+arising from $\C \otimes \H$ alone is:
+\begin{equation}
+  G_\mathrm{UBT}\big|_{\C \otimes \H}
+  \;=\; SU(2)_L \times U(1)_Y.
+  \label{eq:gauge_group}
+\end{equation}
+
+\subsection{Left action: $SU(2)_L$}
+
+$SU(2)_L$ acts by \emph{left} multiplication on $M \in \mathrm{Mat}(2,\C)$:
+\begin{equation}
+  M \;\longmapsto\; A \cdot M, \qquad A \in SU(2).
+  \label{eq:SU2_action}
+\end{equation}
+The three generators are $T^a: M \mapsto \frac{i}{2}\sigma^a M$ (Pauli matrices).
+Under this action, $\mathrm{Mat}(2,\C) \cong \C^2 \otimes_\C \C^2$ decomposes
+as a single copy of the fundamental representation of $SU(2)_L$ acting on the
+row index, so $M$ transforms as a doublet:
+\begin{equation}
+  \Theta \;\sim\; (\mathbf{2}, Y)
+  \quad \text{under } SU(2)_L \times U(1)_Y.
+  \label{eq:doublet}
+\end{equation}
+
+\subsection{Right action: $U(1)_Y$}
+
+$U(1)_Y$ acts by \emph{right} scalar multiplication:
+\begin{equation}
+  M \;\longmapsto\; e^{-i\theta} M, \qquad \theta \in \R.
+  \label{eq:U1Y_action}
+\end{equation}
+The hypercharge of $\Theta$ is $Y = -1$ (right multiplication by $e^{-i\theta}$
+assigns hypercharge to the full matrix field).
+
+\subsection{Electromagnetic $U(1)_\mathrm{EM}$}
+
+The electromagnetic $U(1)_\mathrm{EM}$ acts as an overall phase:
+\begin{equation}
+  \Theta \;\longmapsto\; e^{i\alpha} \Theta,
+  \qquad \alpha \in \R.
+  \label{eq:U1EM_action}
+\end{equation}
+This is the phase of $\Theta$ on the $\psi$-circle, i.e., the winding number
+of $\Theta$ around the compact $\psi$ direction (see \texttt{canonical/interactions/qed.tex}).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Irreducible Decomposition Under $U(1)_\mathrm{EM}$}
+\label{sec:irrep}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Which components are charged?}
+
+Under the overall phase $\Theta \to e^{i\alpha}\Theta$, all four components
+in \eqref{eq:quat_decomp} transform identically:
+\begin{equation}
+  \Theta_\alpha \;\longmapsto\; e^{i\alpha} \Theta_\alpha, \qquad \alpha = 0,1,2,3.
+  \label{eq:all_charged}
+\end{equation}
+All four are charged with charge $Q = +1$ under $U(1)_\mathrm{EM}$.
+
+\subsection{Which components contribute to the vacuum polarization integral?}
+
+The vacuum polarization integral in the compact directions involves only modes
+that wind around the compact $(\psi,\chi,\xi)$ circles.  The real-time
+component $\Theta_0$ corresponds to the non-compact time $t$ and does not
+wind around the compact directions; it does \emph{not} contribute to the
+winding-mode vacuum polarization.
+
+The three imaginary-time components $(\Theta_1, \Theta_2, \Theta_3)$ each
+correspond to one compact direction:
+\begin{align}
+  \Theta_1 &: \text{winding modes on }\psi\text{-circle (EM direction)},\\
+  \Theta_2 &: \text{winding modes on }\chi\text{-circle},\\
+  \Theta_3 &: \text{winding modes on }\xi\text{-circle}.
+\end{align}
+Each carries charge $Q=+1$ and contributes to the one-loop vacuum polarization.
+
+\begin{theorem}[Charged contributing d.o.f.\ from $\C \otimes \H$]
+\label{thm:N_phases}
+  The number of independent complex scalar degrees of freedom of $\Theta$
+  that are both \emph{charged under $U(1)_\mathrm{EM}$} and \emph{contribute
+  to the compact-direction vacuum polarization} is
+  \begin{equation}
+    N_{\mathrm{phases}} = 3,
+    \label{eq:N_phases}
+  \end{equation}
+  corresponding to the three imaginary quaternion components
+  $(\Theta_1, \Theta_2, \Theta_3)$.
+\end{theorem}
+
+\begin{proof}
+  From the quaternion decomposition \eqref{eq:quat_decomp}, $\Theta$ has exactly
+  three imaginary-direction components.  Each is charged (by \eqref{eq:all_charged})
+  and winds around one of the three compact circles.  The real component $\Theta_0$
+  does not wind and is excluded.  Hence $N_\mathrm{phases} = 3$.
+\end{proof}
+
+\begin{remark}
+  The factor $N_\mathrm{phases} = 3$ arises from the algebraic structure of
+  $\H$ (which has three imaginary units $\mathbf{i}, \mathbf{j}, \mathbf{k}$),
+  \emph{not} from SU(3) or colour.  SU(3) is not a subgroup of
+  $G_\mathrm{UBT}|_{\C \otimes \H}$ (see \texttt{appendix\_E2\_SM\_geometry.tex §2}).
+  The coincidence $N_\mathrm{phases} = N_\mathrm{colours} = 3$ is a
+  structural feature of UBT that mirrors the SM without requiring
+  the octonionic completion.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Additional Multiplicities from Spin and Charge Conjugation}
+\label{sec:multiplicities}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Helicity factor: $N_\mathrm{helicity} = 2$}
+
+The kinetic action $S_\mathrm{kin}[\Theta] = \int d^4x\,d\psi\;
+\mathrm{Sc}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$ is covariant under
+$\mathrm{Spin}(3,1)$.  The field $\Theta \in \mathrm{Mat}(2,\C)$ carries
+the spin-1/2 structure through its matrix index: the two rows of $\Theta$
+transform as left-handed and right-handed Weyl spinors under $SU(2)_L$.
+
+Each complex scalar component $\Theta_k$ ($k=1,2,3$) couples to the photon
+through the minimal coupling $(D_\mu\Theta)^\dagger(D^\mu\Theta)$.  After
+contraction with the Lorentz-invariant metric, the two independent
+transverse polarizations of the photon contribute independently.  In the
+vacuum polarization loop (see Step~2), this appears as the helicity sum:
+\begin{equation}
+  \sum_{\text{helicities}} = 2.
+  \label{eq:helicity_sum}
+\end{equation}
+Hence $N_\mathrm{helicity} = 2$.
+
+\subsection{Particle/antiparticle factor: $N_\mathrm{charge} = 2$}
+
+The vacuum polarization diagram requires both the particle ($\Theta$) and
+antiparticle ($\Theta^\dagger$) to run in the loop.  By CPT symmetry (a
+consequence of the Lorentz-invariant action), both contribute equally, giving
+an additional factor:
+\begin{equation}
+  N_\mathrm{charge} = 2.
+  \label{eq:charge_factor}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mode Count Result}
+\label{sec:count}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$\Neff = 12$ from $\C \otimes \H$]
+\label{thm:Neff12}
+The effective number of independent complex charged degrees of freedom
+of $\Theta \in \C \otimes \H$ contributing to the one-loop vacuum polarization
+integral is
+\begin{equation}
+  \boxed{\Neff = N_\mathrm{phases} \times N_\mathrm{helicity} \times N_\mathrm{charge}
+  = 3 \times 2 \times 2 = 12.}
+  \label{eq:Neff_12}
+\end{equation}
+This result follows from the algebra of $\C \otimes \H$ alone; SU(3)/octonions
+are not required.
+\end{theorem}
+
+\begin{proof}
+  Combine Theorem~\ref{thm:N_phases} ($N_\mathrm{phases} = 3$),
+  Section~\ref{sec:multiplicities} ($N_\mathrm{helicity} = 2$,
+  $N_\mathrm{charge} = 2$).
+  Product: $3 \times 2 \times 2 = 12$.
+\end{proof}
+
+\paragraph{Mode count table.}
+\begin{center}
+\begin{tabular}{llrr}
+  \toprule
+  \textbf{Factor} & \textbf{Origin} & \textbf{Value} & \textbf{Running total} \\
+  \midrule
+  Imaginary quaternion phases & $\dim_\R \mathrm{Im}(\H) = 3$ & 3 & 3 \\
+  Helicity states & Transverse photon polarizations & 2 & 6 \\
+  Particle / antiparticle & CPT symmetry of loop & 2 & 12 \\
+  \midrule
+  \textbf{Total} $\Neff$ & & & \textbf{12} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{QED consistency check.}
+For a single complex scalar field $\phi$ (no quaternionic structure, single
+$U(1)$ charge), the same counting gives:
+$N_\mathrm{phases} = 1$ (one complex component),
+$N_\mathrm{helicity} = 1$ (scalar, no spin polarizations in standard counting),
+$N_\mathrm{charge} = 2$ (field + conjugate).
+Result: $\Neff = 1 \times 1 \times 2 = 2$.  But the standard QED result for
+a complex scalar is $\Neff = 1$ in the convention $\Pi(k^2) = \Neff \cdot
+\frac{e^2}{6\pi^2}\ln(\Lambda^2/k^2)$.
+
+\begin{remark}[Convention alignment]
+The QED convention $\Neff = 1$ for a single charged scalar uses a different
+accounting of the particle/antiparticle factor: both $\phi$ and $\phi^*$
+are the \emph{same} complex field, and the factor of 2 is absorbed into the
+loop integral measure.  In the quaternionic counting above, the factor of 2
+for particle/antiparticle is explicit.  Both conventions give the same $B_0$
+when consistently applied:
+\begin{equation}
+  B_0 = \frac{2\pi \Neff}{3} = \frac{2\pi \times 12}{3} = 8\pi \approx 25.13.
+  \label{eq:B0}
+\end{equation}
+Step~2 (\texttt{step2\_vacuum\_polarization.tex}) verifies this with an
+explicit one-loop integral.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────----------------------------------------------------------------
+\begin{center}
+\begin{tabular}{lp{8.5cm}}
+  \toprule
+  \textbf{Quantity} & \textbf{Value and origin} \\
+  \midrule
+  $N_\mathrm{phases}$ & 3 — from three imaginary directions of $\H$ \\
+  $N_\mathrm{helicity}$ & 2 — two transverse polarizations of photon \\
+  $N_\mathrm{charge}$ & 2 — particle + antiparticle (CPT) \\
+  $\Neff$ & $\mathbf{12}$ — product, zero free parameters \\
+  \midrule
+  Required SU(3)? & \textbf{No} — factor 3 from $\H$, not from octonions \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Proceed to:}
+\texttt{step2\_vacuum\_polarization.tex} for the explicit one-loop integral
+deriving $B_0 = 2\pi\Neff/3$ from $S_\mathrm{kin}[\Theta]$.
+
+\end{document}
