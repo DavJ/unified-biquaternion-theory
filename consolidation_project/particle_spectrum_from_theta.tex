@@ -1,0 +1,648 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Particle Spectrum from Theta Excitation Types — UBT Particle Dictionary
+% Status: MAP document — every assignment carries a status label (Proved/Conjecture/Open/Speculative)
+% Version: 1.0
+% Date: 2026-03-05
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\geometry{margin=2.5cm}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% Notation shorthands
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Tfield}{\Theta}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+% Status labels
+\newcommand{\proved}{\textbf{[Proved]}}
+\newcommand{\conjecture}{\textbf{[Conjecture]}}
+\newcommand{\openq}{\textbf{[Open]}}
+\newcommand{\speculative}{\textbf{[Speculative]}}
+
+\title{%
+  Particle Spectrum from $\Theta$ Excitation Types:\\
+  A Map of UBT Particle Assignments\\[0.5ex]
+  \large UBT Core Document --- Particle Dictionary v1.0
+}
+
+\author{David Jaro\v{s}}
+
+\date{2026-03-05}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the Unified Biquaternion Theory (UBT) there is ONE fundamental dynamical
+object: the biquaternionic master field
+$\Theta(x,\tau)\in\B = \C\otimes_\R\H$, with complex time
+$\tau = t + i\psi$.  Every observed particle is identified with a distinct
+\emph{type of excitation} of this single field.  This document is a
+\textbf{map}, not a proof.  It catalogues four excitation types (A--D),
+assigns each known particle type to one or more excitation types, labels
+every assignment with its current proof status (\proved, \conjecture,
+\openq, or \speculative), counts the degrees of freedom, and states the
+open problems honestly.  The goal is to turn conjectures into falsifiable
+targets.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Introduction: One Field, All Particles}
+\label{sec:intro}
+%=============================================================
+
+In the Standard Model (SM) of particle physics each particle species comes
+with its own independent field: an electron field $\psi_e$, a photon field
+$A_\mu$, quark fields $q$, and so forth.  Unification in the SM sense means
+finding a gauge group large enough to contain all of them; it does not reduce
+their number.
+
+UBT proposes a sharper unification:
+
+\begin{quote}
+\emph{There is one field $\Theta(x,\tau)\in\B$.  All particles are different
+excitation modes of this field.  Their apparent diversity reflects the
+geometric richness of $\B$ over complex time $\tau = t+i\psi$.}
+\end{quote}
+
+The decomposition
+\begin{equation}
+  \Theta = \Theta_{\text{scalar}} + \Theta_{\text{vector}}
+           + \Theta_{\text{spinor}} + \Theta_{\text{gauge}}
+  \label{eq:decomp}
+\end{equation}
+(from \texttt{THETA\_FIELD\_DEFINITION.md}) provides the first, coarsest
+classification.  This document refines it into four excitation types and
+builds a full particle dictionary.
+
+The document is structured as follows: Section~\ref{sec:types} defines the
+four excitation types A--D.  Section~\ref{sec:dict} is the particle
+dictionary table.  Section~\ref{sec:qft} states the structural difference
+from QFT.  Section~\ref{sec:dof} counts the degrees of freedom.
+Section~\ref{sec:open} is an honest statement of open problems.
+
+%=============================================================
+\section{Four Excitation Types of $\Theta$}
+\label{sec:types}
+%=============================================================
+
+\subsection{Type A — $\psi$-Taylor Modes (Imaginary-Time Expansion)}
+\label{sec:typeA}
+
+Because $\tau = t + i\psi$ and $\Theta$ is analytic in $\tau$, we may expand
+around $\psi = 0$:
+\begin{equation}
+  \Theta(x, t, \psi) = \sum_{n=0}^{\infty} \frac{\psi^n}{n!}\,\Theta_n(x,t),
+  \qquad
+  \Theta_n := \frac{\partial^n\Theta}{\partial\psi^n}\bigg|_{\psi=0}.
+  \label{eq:taylor}
+\end{equation}
+Each $\Theta_n$ is an ordinary $\B$-valued field on $M^4$.  The
+identification is:
+
+\begin{itemize}
+  \item $n=0$: first fermionic generation (electron family) \conjecture
+  \item $n=1$: second generation (muon family) \conjecture
+  \item $n=2$: third generation (tau family) \conjecture
+  \item $n\ge 3$: heavier, increasingly unstable modes;
+        no stable fourth generation observed to date \conjecture
+\end{itemize}
+
+\paragraph{Physical reason for three stable generations.}
+The $\psi$-circle is compact, $\psi\in[0,2\pi]$.  Factorial suppression in
+\eqref{eq:taylor} causes higher-$n$ modes to carry progressively smaller
+residues, explaining the observed mass hierarchy.  Furthermore, a discrete
+$\psi$-\emph{parity} symmetry $\psi\mapsto -\psi$ is proved to be a symmetry
+of the UBT action \proved\ (see \texttt{st3\_complex\_time\_generations.tex},
+Sec.~3).  Under this parity $\Theta_n\mapsto(-1)^n\Theta_n$, so even-$n$
+modes ($\Theta_0,\Theta_2$) and odd-$n$ modes ($\Theta_1$) belong to
+different superselection sectors.  In particular $\Theta_0$ carries conserved
+$\psi$-parity and cannot decay to lower modes \conjecture.  This provides a
+topological stability argument for the electron analogous to charge
+conservation.
+
+\paragraph{Same quantum numbers.}
+It is proved \proved\ that each mode $\Theta_n$ transforms identically under
+any symmetry that acts only on the real sector $(M^4,t)$; in particular each
+mode carries the same gauge quantum numbers under whatever gauge group emerges
+from $\B$.  The mass difference between generations must therefore arise from
+the $\psi$-sector dynamics, not from the gauge sector.
+
+\paragraph{Quark generations.}
+Quarks carry colour charge.  Whether quarks are also Type-A modes of $\Theta$
+depends on whether colour ($\mathrm{SU}(3)_c$) is embedded in $\B$ or requires
+octonionic extension.  This is \openq\ (see Section~\ref{sec:open}).
+
+\subsection{Type B — Internal Algebra Projection}
+\label{sec:typeB}
+
+The biquaternion algebra $\B = \C\otimes_\R\H$ has 8 real basis elements,
+which split under the Lorentz group into representations of definite spin:
+\begin{equation}
+  \{1\} \;\oplus\; \{i,j,k\} \;\oplus\; \{ij,ik,jk\} \;\oplus\; \{ijk\}
+  \label{eq:alg_split}
+\end{equation}
+(using $i,j,k$ for quaternion imaginary units and $\overline{\cdot}$ for the
+complex imaginary factor $\sqrt{-1}$).  The spin assignments are:
+
+\begin{itemize}
+  \item $\{1\}$ (scalar, spin 0) $\longrightarrow$ Higgs / scalar curvature
+        \conjecture
+  \item $\{i,j,k\}$ (vector, spin 1) $\longrightarrow$ photon, $W^\pm$, $Z$,
+        gluons \conjecture\ (with status differing by particle; see
+        Section~\ref{sec:dict})
+  \item $\{ij,ik,jk\}$ (bivector, spin 1/2) $\longrightarrow$ fermions
+        \conjecture
+  \item $\{ijk\}$ (pseudoscalar/axial, spin 0 or 2?) $\longrightarrow$
+        graviton candidate? \openq
+\end{itemize}
+
+\begin{remark}
+The spin-$\tfrac{1}{2}$ character of the bivector sector follows from the
+fact that the three imaginary quaternion units $\{i,j,k\}$ generate an
+$\mathfrak{su}(2)$ algebra, and the bivectors $\{ij,ik,jk\}$ form the
+$\mathbf{2}$ representation under the complexification of this algebra.
+This is the algebraic source of spinors within $\B$. \conjecture
+\end{remark}
+
+Gauge bosons arise from phases on the $\psi$-circle:
+
+\begin{itemize}
+  \item $\mathrm{U}(1)_{\mathrm{EM}}$: identified with the global phase on the
+        $\psi$-circle $e^{i\varphi}$, $\varphi\in[0,2\pi]$.  Localization
+        of this phase yields the $\mathrm{U}(1)$ gauge field $A_\mu$.
+        Maxwell's equations follow.  \proved\ (Appendix~C,
+        \texttt{appendix\_C\_electromagnetism\_gauge\_consolidated.tex})
+  \item $\mathrm{SU}(2)_L$: the left-action of unit quaternions on $\B$ is
+        shown to be an $\mathrm{SU}(2)$ automorphism group.  Gauging this
+        action gives $W^\pm$, $Z$.  \proved\ (Appendix~E2,
+        \texttt{appendix\_E2\_SM\_geometry.tex}, Sec.~2)
+  \item $\mathrm{SU}(2)_R\times\mathrm{U}(1)_Y$ from right-actions of
+        unit quaternions: derived from $\B$ structure.  \proved\
+  \item $\mathrm{SU}(3)_c$ (colour): \textbf{NOT} derived from $\B=\C\otimes\H$
+        alone.  Requires octonionic extension $\C\otimes\mathbb{O}$ (Track~B).
+        \openq
+\end{itemize}
+
+\subsection{Type C — Topological Configurations}
+\label{sec:typeC}
+
+When $\Theta$ is smooth on $M^4$ with boundary conditions
+$\Theta\to\Theta_\infty$ as $|x|\to\infty$, space compactifies to $S^3$ and
+$\Theta$ defines a map $S^3\to\text{target}$.  Different homotopy classes of
+such maps are \emph{topological sectors}, stable against perturbative decay.
+
+\begin{itemize}
+  \item Winding number $n=0$: vacuum. \proved
+  \item Winding number $n=1$ (simplest soliton): lightest stable topological
+        excitation.  Candidate for electron at a mass scale determined by UBT
+        coupling constants.  Relationship to Type-A $n=0$ mode is unclear.
+        \openq
+  \item \textbf{Hopfion} ($Q_H=1$, Hopf fibration $S^3\to S^2$): a knotted
+        field configuration with conserved integer Hopf charge $Q_H\in\Z$.
+        Stability is guaranteed by the Vakulenko--Kapitanski bound
+        $E\ge c\,|Q_H|^{3/4}$ \proved\ (Appendix~I,
+        \texttt{appendix\_I\_new\_fields\_and\_particles.tex}, Sec.~I.4).
+        Proposed as candidate for proton / neutron: each nucleon is a
+        $Q_H=\pm 1$ hopfion.  \openq\
+        (See also \texttt{solution\_P5\_dark\_matter/dark\_matter\_hopfion\_solution.tex})
+  \item Higher-charge hopfions $|Q_H|>1$: heavier topological objects.
+        Candidate for excited baryons.  \speculative
+\end{itemize}
+
+\begin{remark}
+Composite hadrons (proton, neutron) appear in UBT as topological defects, NOT
+as $\psi$-Taylor modes.  This is structurally important: it means the proton
+is \emph{not} a third-generation fermion but a qualitatively different object
+— a soliton.  Proton stability then follows from topological charge
+conservation, not from a gauge symmetry.
+\end{remark}
+
+\subsection{Type D — Real vs.\ Imaginary Projection}
+\label{sec:typeD}
+
+The biquaternion field has real and imaginary parts:
+\begin{equation}
+  \Theta = \re(\Theta) + i\,\im(\Theta),
+  \qquad
+  \re(\Theta), \im(\Theta) \in \H.
+\end{equation}
+In the $\psi\to 0$ limit, observable Standard Model fields arise from
+$\re(\Theta)$.  The imaginary components $\im(\Theta)$ are present in the
+algebra but decouple from classical SM observations:
+
+\begin{itemize}
+  \item $\re(\Theta)$: observable sector (SM particles, metric) \proved
+  \item $\im(\Theta)$: dark sector.  These components contribute to the
+        stress-energy tensor and hence to gravity but do not couple to the
+        SM gauge fields.  Candidate for dark matter and dark energy.
+        \speculative\
+        (Appendix~U, \texttt{appendix\_U\_dark\_matter\_unified\_padic.tex})
+\end{itemize}
+
+%=============================================================
+\section{The Particle Dictionary}
+\label{sec:dict}
+%=============================================================
+
+Table~\ref{tab:dict} assigns each known particle (or particle class) to an
+excitation type, a component of $\Theta$, and a proof status.  Where the
+assignment is genuinely unknown, the table says so explicitly.
+
+\begin{table}[htbp]
+\centering
+\caption{UBT Particle Dictionary. Status: \textbf{P}=Proved,
+  \textbf{C}=Conjecture, \textbf{O}=Open, \textbf{S}=Speculative.}
+\label{tab:dict}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{>{\raggedright}p{3.2cm}
+                >{\raggedright}p{2.8cm}
+                >{\raggedright}p{4.8cm}
+                c}
+\toprule
+\textbf{Particle} & \textbf{Excitation type} & \textbf{$\Theta$ component} & \textbf{Status} \\
+\midrule
+Electron ($e^-$)
+  & Type A, $n=0$
+  & $\Theta_0$, $\psi$-even mode; bivector ($\{ij,ik,jk\}$) sector
+  & C \\
+Muon ($\mu^-$)
+  & Type A, $n=1$
+  & $\Theta_1$, $\psi$-odd mode; bivector sector
+  & C \\
+Tau ($\tau^-$)
+  & Type A, $n=2$
+  & $\Theta_2$, $\psi$-even mode; bivector sector
+  & C \\
+Electron neutrino ($\nu_e$)
+  & Type A, $n=0$?
+  & $\Theta_0$, neutral projection; exact component unknown
+  & O \\
+Muon neutrino ($\nu_\mu$)
+  & Type A, $n=1$?
+  & $\Theta_1$, neutral projection
+  & O \\
+Tau neutrino ($\nu_\tau$)
+  & Type A, $n=2$?
+  & $\Theta_2$, neutral projection
+  & O \\
+Up, charm, top quarks
+  & Type A?, $n=0,1,2$?
+  & $\Theta_{0,1,2}$ in colour sector; requires SU$(3)_c$
+  & O \\
+Down, strange, bottom quarks
+  & Type A?, $n=0,1,2$?
+  & $\Theta_{0,1,2}$ in colour sector; requires SU$(3)_c$
+  & O \\
+Photon ($\gamma$)
+  & Type B, vector
+  & U$(1)_{\mathrm{EM}}$ phase on $\psi$-circle; $\{i,j,k\}$ sector
+  & P \\
+$W^\pm$
+  & Type B, vector
+  & SU$(2)_L$ left-action generators on $\B$
+  & P \\
+$Z^0$
+  & Type B, vector
+  & SU$(2)_L \times$ U$(1)_Y$ mixing; derived from $\B$
+  & P \\
+Gluons ($g^a$, $a=1\ldots 8$)
+  & Type B, vector
+  & SU$(3)_c$ generators; \emph{not} from $\B$ alone
+  & O \\
+Graviton ($h_{\mu\nu}$)
+  & Type B, tensor?
+  & $\re(\mathcal{G}_{\mu\nu})$ fluctuation about vacuum metric
+  & C \\
+Proton ($p$)
+  & Type C, topological
+  & Hopfion $Q_H=+1$ configuration
+  & O \\
+Neutron ($n$)
+  & Type C, topological
+  & Hopfion $Q_H=-1$ or $Q_H=+1$ with isospin flip
+  & O \\
+Excited baryons
+  & Type C, $|Q_H|>1$?
+  & Higher-charge hopfions
+  & S \\
+Higgs boson ($H$)
+  & Type B, scalar
+  & Scalar part $\{1\}$ of $\Theta$; vacuum expectation drives SSB
+  & O \\
+Dark matter
+  & Type D, imaginary
+  & $\im(\Theta)$; decoupled from SM gauge sector
+  & S \\
+Dark energy
+  & Type D, imaginary
+  & Cosmological component of $\im(\Theta)$; p-adic sector
+  & S \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}
+Quark assignments are marked \openq\ because $\mathrm{SU}(3)_c$ colour
+symmetry has not been derived from $\B = \C\otimes\H$ alone.  Quarks require
+colour and therefore their Type-A identification is contingent on the
+octonionic extension (Track B).  Treating quark generation indices as
+$\psi$-Taylor modes is a plausible extrapolation of the lepton result but is
+not independently established.
+\end{remark}
+
+%=============================================================
+\section{Structural Difference from QFT}
+\label{sec:qft}
+%=============================================================
+
+\subsection{Particle spectrum in QFT}
+
+In quantum field theory the particle spectrum is defined by:
+\begin{quote}
+\emph{Particle spectrum = irreducible representations of the Poincaré group
+$\times$ the gauge group $G_{\mathrm{SM}} = \mathrm{SU}(3)_c\times
+\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$.}
+\end{quote}
+Each particle species corresponds to a separate field, and that field
+transforms in a specific representation.  The gauge group and its
+representations are inputs — they are \emph{postulated}, not derived.
+
+\subsection{Particle spectrum in UBT}
+
+In UBT the situation is structurally different:
+\begin{quote}
+\emph{Particle spectrum = excitation modes of the single field
+$\Theta(x,\tau)\in\B$, where $\B = \C\otimes_\R\H$ with complex time
+$\tau=t+i\psi$.}
+\end{quote}
+The Poincaré and gauge structure should \emph{emerge} from the geometry of
+$\B$ and the complex time cylinder $\tau\in\C$, rather than being postulated
+independently.
+
+\paragraph{What has been derived (not postulated) in UBT.}
+\begin{itemize}
+  \item Lorentz group $\mathrm{SO}(3,1)$ from real quaternion rotations.
+        \proved
+  \item $\mathrm{U}(1)_{\mathrm{EM}}$ from phase on $\psi$-circle.  \proved
+  \item $\mathrm{SU}(2)_L$ from left-unit-quaternion action on $\B$.  \proved
+  \item $\mathrm{SU}(2)_R\times\mathrm{U}(1)_Y$ from right action.  \proved
+  \item Three-generation structure via $\psi$-Taylor modes.  \conjecture
+  \item Einstein's equations $G_{\mu\nu}=8\pi G T_{\mu\nu}$ as the real
+        projection of the biquaternionic field equation.  \proved\
+        (Appendix~R, \texttt{appendix\_R\_GR\_equivalence.tex})
+\end{itemize}
+
+\paragraph{What still requires postulate or extension.}
+\begin{itemize}
+  \item $\mathrm{SU}(3)_c$ (colour).  Requires $\C\otimes\mathbb{O}$.
+        \openq
+  \item Higgs mechanism (spontaneous symmetry breaking of electroweak).
+        \openq
+  \item Quark mass spectrum and CKM mixing.  \openq
+  \item Neutrino masses and PMNS mixing.  \openq
+\end{itemize}
+
+\paragraph{Key structural contrast.}
+In QFT: $\psi_e, A_\mu, q, \ldots$ are independent fields with independent
+degrees of freedom.  The index structure of each is determined by the
+representation theory of the postulated gauge group.
+
+In UBT: $\Theta$ is a single object.  The different ``particles'' are
+projections of $\Theta$ onto the different subalgebras, Taylor modes, and
+topological sectors of one geometric object.  The independence of SM fields
+is approximate: it holds to the extent that different excitation types
+decouple in the low-energy limit.
+
+%=============================================================
+\section{Degree-of-Freedom Counting}
+\label{sec:dof}
+%=============================================================
+
+\subsection{Excitation modes of $\Theta$}
+
+\paragraph{Internal algebra (Type B).}
+$\B = \C\otimes_\R\H$ has 8 real dimensions.  The basic decomposition
+\eqref{eq:alg_split} gives $1+3+3+1 = 8$ basis elements.  With two
+polarisations per spin-1 mode: $1\,(\text{scalar}) + 2\times 3\,
+(\text{transverse vector}) + 4\,(\text{spinor}) + 1\,
+(\text{pseudoscalar}) = 12$ physical modes per point.
+
+\paragraph{$\psi$-Taylor modes (Type A).}
+Infinite tower, but only the first $\sim 3$ are relevant due to factorial
+suppression.  Each mode is an independent $\B$-valued field: $3\times 8 = 24$
+internal d.o.f.\ for generations.
+
+\paragraph{Extended matrix representation.}
+The canonical extended field
+$\Theta_{\mathrm{SM}}\in\C^{8\times 8}$ (\texttt{canonical/fields/theta\_field.tex})
+has 128 real degrees of freedom.
+
+\subsection{SM particle content}
+
+A rough d.o.f.\ count for on-shell SM particles:
+\begin{align}
+  \text{6 quarks} \times 3\,\text{colours} \times 2\,\text{spins}
+    &= 36\;\text{(plus antiparticles: 72)} \notag \\
+  \text{6 leptons} \times 2\,\text{spins}
+    &= 12\;\text{(plus: 24)} \notag \\
+  \text{Gauge bosons: } \gamma(2)+W^\pm(6)+Z(3)+8g(16)
+    &= 27 \notag \\
+  \text{Higgs: }
+    &= 4 \notag \\
+  \text{Total (including antiparticles)}
+    &\approx 127\;\text{physical d.o.f.}
+  \label{eq:SMcount}
+\end{align}
+
+\subsection{Comparison}
+
+The extended field $\Theta_{\mathrm{SM}}\in\C^{8\times 8}$ with 128 real
+d.o.f.\ matches the SM count of $\approx 127$ to within one unit.  This
+agreement is encouraging but should be treated as \conjecture: the mapping
+between specific matrix entries and specific SM particles has not been
+established in full generality.
+
+The minimal field $\Theta\in\C^{4\times 4}$ (32 real d.o.f.) is sufficient
+for one generation of SM particles without colour, consistent with the fact
+that $\B = \C\otimes\H$ gives $\mathrm{SU}(2)\times\mathrm{U}(1)$ but not
+$\mathrm{SU}(3)_c$.  Three generations require $3\times 32 = 96$ d.o.f.,
+still below 128.  The remaining $128-96 = 32$ d.o.f.\ may accommodate gauge
+bosons and the Higgs.
+
+\begin{remark}
+This counting does not prove that the identification is correct; it shows
+that the $\C^{8\times 8}$ representation is at least \emph{large enough} to
+contain the SM content.  A precise bijection between matrix entries and
+particle quantum numbers remains \openq.
+\end{remark}
+
+%=============================================================
+\section{Open Problems: An Honest Statement}
+\label{sec:open}
+%=============================================================
+
+\subsection{What is proved}
+
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathrm{U}(1)_{\mathrm{EM}}$ as a phase on the $\psi$-circle,
+        with Maxwell's equations as a consequence.  (Appendix~C)
+  \item $\mathrm{SU}(2)_L$ from left-action automorphisms of $\B$.
+        (Appendix~E2)
+  \item $\mathrm{SU}(2)_R\times\mathrm{U}(1)_Y$ from right action.
+        (Appendix~E2)
+  \item General Relativity as the real projection of the biquaternionic
+        field equation.  (Appendix~R)
+  \item $\psi$-parity is a symmetry of the UBT action; it places even and
+        odd $\psi$-Taylor modes in different superselection sectors.
+        (ST-3)
+  \item The Vakulenko--Kapitanski bound $E\ge c\,|Q_H|^{3/4}$ ensures
+        topological stability of hopfions.  (Appendix~I)
+\end{enumerate}
+
+\subsection{What is conjectured}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Lepton generations $e,\mu,\tau$ correspond to $\psi$-Taylor modes
+        $\Theta_0,\Theta_1,\Theta_2$.  (ST-3)
+  \item The mass hierarchy $m_e < m_\mu < m_\tau$ arises from $\psi$-mode
+        ordering with factorial suppression.
+  \item The bivector sector of $\B$ provides the algebraic source of spin-$\tfrac{1}{2}$
+        for fermions.
+  \item The graviton is a linearised fluctuation of $\re(\mathcal{G}_{\mu\nu})$.
+  \item The d.o.f.\ count of $\Theta_{\mathrm{SM}}\in\C^{8\times 8}$ ($128$
+        real d.o.f.) matches the SM particle content.
+\end{enumerate}
+
+\subsection{What is open}
+
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathrm{SU}(3)_c$: it does NOT follow from $\B = \C\otimes\H$ alone.
+        Deriving colour requires the octonionic extension
+        $\C\otimes\mathbb{O}$ (Track B in DERIVATION\_INDEX).  Whether this
+        extension is natural or ad hoc is a central open question.
+  \item Quark assignments: the identification of quarks as Type-A
+        $\psi$-Taylor modes is a plausible extrapolation from leptons, but
+        is not independently established; it is contingent on point (a).
+  \item Neutrino masses: the PMNS mixing matrix and absolute neutrino mass
+        scale have not been derived from UBT.
+  \item Higgs mechanism: spontaneous symmetry breaking of
+        $\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y\to\mathrm{U}(1)_{\mathrm{EM}}$
+        requires a scalar sector vacuum expectation value.  The scalar
+        component of $\Theta$ is a candidate, but the full mechanism is
+        not derived.
+  \item Hadron structure beyond proton/neutron: the identification of
+        higher baryons and mesons as higher topological sectors is
+        speculative; no quantitative predictions exist yet.
+  \item Precise bijection between $\Theta_{\mathrm{SM}}\in\C^{8\times 8}$
+        matrix entries and SM particle quantum numbers.
+\end{enumerate}
+
+\subsection{What is unknown (fundamental)}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Whether $\B = \C\otimes\H$ alone (without octonions) is sufficient
+        for a complete description of nature, or whether $\C\otimes\mathbb{O}$
+        is required.
+  \item Whether UBT is renormalizable as a quantum field theory.
+  \item Whether topological solitons (hopfions) can reproduce the proton
+        mass from first principles ($m_p \approx 938\,\mathrm{MeV}$).
+\end{enumerate}
+
+%=============================================================
+\section*{Summary}
+%=============================================================
+
+\noindent\textbf{The central claim} of UBT is that a single biquaternionic
+field $\Theta$ with complex time gives rise to all observed particles through
+four distinct excitation mechanisms.
+
+\noindent\textbf{Strongest results:} $\mathrm{U}(1)_{\mathrm{EM}}$,
+$\mathrm{SU}(2)_L$, GR — all derived, not postulated.
+
+\noindent\textbf{Main conjecture:} three lepton generations from three
+$\psi$-Taylor modes — structurally motivated, not yet a quantitative
+prediction.
+
+\noindent\textbf{Biggest gap:} $\mathrm{SU}(3)_c$ colour requires extension
+beyond $\C\otimes\H$.
+
+\noindent\textbf{This map turns conjectures into targets.} If
+$\Theta_0\leftrightarrow e^-$ is correct, electron properties follow from
+the $n=0$ mode geometry.  If proton~$\leftrightarrow$~hopfion is correct,
+proton stability is topological.  If photon~$\leftrightarrow$~$\mathrm{U}(1)_{\mathrm{EM}}$
+phase is correct (and it \emph{is} proved), Maxwell's equations follow from
+UBT.
+
+%=============================================================
+\begin{thebibliography}{99}
+\bibitem{appendix_C}
+  D.~Jaro\v{s}, \textit{Appendix C: Electromagnetism and Gauge Structure},
+  \texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}
+
+\bibitem{appendix_E2}
+  D.~Jaro\v{s}, \textit{Appendix E2: Standard Model Gauge Group from
+  Biquaternionic Geometry},
+  \texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex}
+
+\bibitem{appendix_I}
+  D.~Jaro\v{s}, \textit{Appendix I: Hopfions and Topological Field
+  Configurations},
+  \texttt{consolidation\_project/appendix\_I\_new\_fields\_and\_particles.tex}
+
+\bibitem{appendix_R}
+  D.~Jaro\v{s}, \textit{Appendix R: Recovery of General Relativity},
+  \texttt{consolidation\_project/appendix\_R\_GR\_equivalence.tex}
+
+\bibitem{appendix_U}
+  D.~Jaro\v{s}, \textit{Appendix U: Dark Matter from p-adic and Imaginary
+  Sector},
+  \texttt{consolidation\_project/appendix\_U\_dark\_matter\_unified\_padic.tex}
+
+\bibitem{st3}
+  D.~Jaro\v{s}, \textit{ST-3: Three Generations from Complex Time},
+  \texttt{research\_tracks/three\_generations/st3\_complex\_time\_generations.tex}
+
+\bibitem{theta_field_md}
+  D.~Jaro\v{s}, \textit{Formal Definition of the Biquaternionic Field
+  $\Theta(q,\tau)$},
+  \texttt{THETA\_FIELD\_DEFINITION.md}
+
+\bibitem{canonical_theta}
+  D.~Jaro\v{s}, \textit{Canonical Theta Field Definition},
+  \texttt{canonical/fields/theta\_field.tex}
+\end{thebibliography}
+
+\end{document}

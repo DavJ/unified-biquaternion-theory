@@ -6,6 +6,7 @@ consolidation_project/ubt_osf_publication.tex
 consolidation_project/holographic_verlinde_desitter_standalone.tex
 
 # Standalone appendices in consolidation_project
+consolidation_project/particle_spectrum_from_theta.tex
 consolidation_project/appendix_AA_theta_action.tex
 consolidation_project/appendix_E2_SM_geometry.tex
 consolidation_project/appendix_H2_holography_variational.tex
