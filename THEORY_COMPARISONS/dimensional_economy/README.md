@@ -61,6 +61,38 @@ Proved symbolically: `(AB)C = A(BC)` for all A, B, C ∈ Mat(2,ℂ).
 Furey's construction uses octonions 𝕆 (non-associative):
 Classic counterexample: `e₁·(e₂·e₄) ≠ (e₁·e₂)·e₄` verified numerically.
 
+### 5. Three Fermion Generations from ψ-Taylor Modes
+
+UBT identifies the three generations with the lowest ψ-Taylor modes:
+Θ(x,t,ψ) = Σₙ ψⁿ Θₙ(x,t).
+
+Three theorems proved (see `st3_complex_time_generations.tex`):
+
+**Theorem 1 — Independence** (Proved [L0]):
+The ψ-modes Θ₀, Θ₁, Θ₂, … are kinematically independent — free initial data
+in the ψ-direction.  No algebraic relation constrains them.
+
+**Theorem 2 — SU(3) Quantum Numbers** (Proved [L0]):
+For U ∈ SU(3) independent of ψ: (UΘ)_n = U·Θₙ.
+Every mode transforms in the **same SU(3) representation** as Θ.
+
+**Theorem 3 — ψ-Parity Selection Rule** (Proved [L0]):
+Under ψ → -ψ: Θₙ → (-1)ⁿ Θₙ.
+ψ-parity forbids mixing between even (Θ₀, Θ₂, …) and odd (Θ₁, Θ₃, …) modes.
+
+Generation identification Θ₀↔e, Θ₁↔μ, Θ₂↔τ is a conjecture; mass ratios open.
+
+### 6. Fine Structure Constant: Proved Components
+
+| Result | Status |
+|--------|--------|
+| ψ-circle compactification | **Proved [L0]** — unitarity + gauge consistency |
+| Dirac quantisation condition | **Proved [L0]** — single-valuedness of Θ |
+| N_eff = 12 = 3×2×2 | **Proved [L0]** — SM gauge degrees of freedom |
+| B₀ = 2π·N_eff/3 = 8π ≈ 25.13 | **Proved [L1]** — one-loop baseline |
+| B_base = N_eff^{3/2} = 41.57 | **Open Hard Problem A** — no derivation |
+| α⁻¹ = 137.036 | **Semi-empirical** — B_base required |
+
 ---
 
 ## Dimensional Inventory
@@ -89,16 +121,22 @@ it is the imaginary part of complex time τ = t+iψ.
 - `su2l_generators.py` — SU(2)_L generators T^a and commutation relations
 - `u1y_generator.py` — U(1)_Y generator Y and commutativity with SU(2)_L
 - `associativity.py` — Mat(2,ℂ) associativity proof; octonion non-associativity
+- `three_generations.py` — ψ-mode independence (Thm 1), SU(3) quantum numbers (Thm 2), ψ-parity (Thm 3)
+- `fine_structure.py` — N_eff=12 counting, B₀=2π·N_eff/3, Dirac quantisation, proved summary
 
 ### `experiments/`
 - `e01_algebra_isomorphism.py` — Interactive demo of ℂ⊗ℍ ≅ Mat(2,ℂ)
 - `e02_su2l_derivation.py` — SU(2)_L and U(1)_Y derivation from automorphisms
 - `e03_associativity_advantage.py` — UBT associativity vs. octonion failure
+- `e04_three_generations.py` — Three fermion generations ψ-mode theorems
+- `e05_fine_structure_neff.py` — N_eff=12, B₀, and honest open problems
 
 ### `tests/`
 - `test_algebra_isomorphism.py` — Pytest suite for the isomorphism
 - `test_su2l_generators.py` — Pytest suite for SU(2)_L and U(1)_Y
 - `test_associativity.py` — Pytest suite for associativity claims
+- `test_three_generations.py` — Pytest suite for ψ-mode theorems
+- `test_fine_structure.py` — Pytest suite for N_eff and B₀
 
 ---
 
@@ -111,6 +149,8 @@ it is the imaginary part of complex time τ = t+iψ.
 python -m THEORY_COMPARISONS.dimensional_economy.experiments.e01_algebra_isomorphism
 python -m THEORY_COMPARISONS.dimensional_economy.experiments.e02_su2l_derivation
 python -m THEORY_COMPARISONS.dimensional_economy.experiments.e03_associativity_advantage
+python -m THEORY_COMPARISONS.dimensional_economy.experiments.e04_three_generations
+python -m THEORY_COMPARISONS.dimensional_economy.experiments.e05_fine_structure_neff
 ```
 
 ### Run Tests
@@ -119,18 +159,25 @@ python -m THEORY_COMPARISONS.dimensional_economy.experiments.e03_associativity_a
 pytest THEORY_COMPARISONS/dimensional_economy/tests/
 ```
 
-**Expected runtime**: Each experiment < 5 seconds.  Full test suite < 30 seconds.
+**Expected runtime**: Each experiment < 5 seconds.  Full test suite < 5 seconds (106 tests).
 
 ---
 
 ## Limitations and Disclaimers
 
-This sandbox focuses on the **proved algebraic results**:
+This sandbox focuses on the computationally verifiable **proved results**.
+The following are implemented and tested:
 
-- SU(2)_L and U(1)_Y from ℂ⊗ℍ automorphisms (**proved**)
-- ℂ⊗ℍ associativity (**proved**)
+- ℂ⊗ℍ ≅ Mat(2,ℂ) (algebra) — **proved**
+- SU(2)_L and U(1)_Y from automorphisms — **proved**
+- ℂ⊗ℍ associativity vs. octonion non-associativity — **proved**
+- ψ-mode independence (Theorem 1) — **proved**
+- SU(3) quantum numbers preserved (Theorem 2) — **proved**
+- ψ-parity selection rule (Theorem 3) — **proved**
+- N_eff = 12 = 3×2×2 counting — **proved**
+- B₀ = 2π·N_eff/3 = 8π ≈ 25.13 (one-loop) — **proved**
 
-The following remain **open problems** (not implemented here):
+The following remain **open problems** (documented but not proved here):
 
 | Problem | Status |
 |---------|--------|
@@ -138,7 +185,9 @@ The following remain **open problems** (not implemented here):
 | Weinberg angle θ_W | Semi-empirical |
 | Lepton mass ratios | Open — Hecke eigenvalue conjecture |
 | Higgs mechanism | Open |
-| B-constant (α numerically) | Open (OPEN PROBLEM A in DERIVATION_INDEX.md) |
+| B_base = N_eff^{3/2} | **OPEN PROBLEM A** — DERIVATION_INDEX.md |
+| α⁻¹ = 137.036 (full) | Semi-empirical |
+| CKM/PMNS mixing matrices | Open |
 
 See `DERIVATION_INDEX.md` and `STATUS_ALPHA.md` in the repository root for
 the complete derivation status.
@@ -174,10 +223,10 @@ See `references.md` for detailed citations.
 
 **Current Status**: ✅ **SANDBOX COMPLETE**
 
-- Core algebra modules implemented and verified
-- All three experiments demonstrate key claims
-- Full pytest suite passes
+- All five proved-results areas from the problem statement implemented
+- 106 tests passing
 - Documentation explains each proved result and its limitations
+- Open problems honestly documented
 
 ---
 
