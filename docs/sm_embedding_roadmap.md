@@ -54,6 +54,7 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 | B₀ = 8π (one-loop β-function coefficient) | **Proved** | B₀ = 2π·N_eff/3 = 2π × dim_ℂ(ℂ⊗ℍ) = 8π; zero free parameters. See `consolidation_project/N_eff_derivation/step2_vacuum_polarization.tex`. |
 | G_μν = 8πG T_μν | **Proved** | Derived from Hilbert variation; 8πG = (dim_ℝ(ℍ)/2) × vol(S²) × G. See `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex`. |
 | ΔN_eff ≈ 0.046 | **Predicted** | UBT zero-modes contribute above CMB-S4 detection threshold 0.03. See `consolidation_project/N_eff_derivation/step3_N_eff_result.tex`. |
+| QED at φ=const (photon massless, g-factor, α running) | **Mostly proved** | U(1)_EM unbroken at φ=const (photon massless, Proved); anomalous magnetic moment a_e=α/(2π) reproduced (Proved); α(μ) running unchanged from QED (Proved). See `consolidation_project/qed_phi_const/`. |
 | Fine structure constant α | **Partial** | Specific numerical derivation exists but relies on auxiliary assumptions (see reports/alpha_audit/). |
 | Strong coupling α_s | **Open** | Not derived from first principles. |
 | Weinberg angle θ_W | **Open** | Candidate in Appendix K2; not a full derivation. |
