@@ -48,7 +48,7 @@ Status labels:
 | U(1)_EM from ψ-cycle phase | **Proven** [L0] | `canonical/interactions/qed.tex` | Phase of Θ on ψ-circle |
 | SU(3)_c from involutions on ℂ⊗ℍ | **Proved [L0]** | `consolidation_project/appendix_G_internal_color_symmetry.tex`, `consolidation_project/SU3_derivation/step1_involution_summary.tex` | Theorems G.A–G.D: Lie algebra 𝔰𝔲(3), fundamental rep (quarks), adjoint rep (gluons), EW decoupling — all proved; confinement gap remains (Clay Millennium Problem) |
 | Weinberg angle θ_W fixed | **Semi-empirical** | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone |
-| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L0]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex`, `step2_chirality_result.tex`, `step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
+| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L1]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex`, `step2_chirality_result.tex`, `step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
 
 ---
 
@@ -194,7 +194,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | ∂_ψ anti-commutes with P_ψ | **Proven** [L0] | `consolidation_project/chirality_derivation/step1_psi_parity.tex §3` | Lem. 2; direct calculation |
 | P_ψ acts as γ⁵ in ψ-sector | **Proven** [L0] | `consolidation_project/chirality_derivation/step1_psi_parity.tex §4` | Prop. 3; [P_ψ, γ^μ∇_μ]=0 and {P_ψ, γ⁵∂_ψ}=0 |
 | Preferred ψ-circle orientation (matter n>0 by CPT) | **Proven** [L0] | `consolidation_project/chirality_derivation/step1_psi_parity.tex §5` | Lem. 4; P_ψ = CP in ψ-sector |
-| SU(2)_L on odd modes ℋ₋ | **Proved [L0]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex §6`, `step3_gap_C1_resolution.tex` | Thm. 5; Gap C1 closed (no W_R in S[Θ]) |
+| SU(2)_L on odd modes ℋ₋ | **Proved [L1]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex §6`, `step3_gap_C1_resolution.tex` | Thm. 5; Gap C1 closed (no W_R in S[Θ]) — proved from S[Θ] action |
 
 ### Open Sub-Tasks (Chirality Gaps)
 
