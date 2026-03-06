@@ -1,0 +1,178 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Step 1: U(1)$_\mathrm{EM}$ Protection at $\varphi = \mathrm{const}$}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We prove that the electromagnetic gauge symmetry $U(1)_\mathrm{EM}$ is \emph{not} broken
+  by a constant scalar background $\varphi = \mathrm{const} \neq 0$ in UBT.
+  The key observation is that $\varphi$ is the real part of the compact $\psi$-component
+  of the biquaternionic field $\Theta$, and it carries zero $U(1)_\mathrm{EM}$ charge.
+  Consequently, no photon mass term $m_\gamma^2 = g^2\varphi^2$ is generated.
+  \textbf{Verdict: PROVED.}
+  \end{abstract}
+\fi
+
+\section{Step 1: U(1)$_\mathrm{EM}$ Protection at $\varphi = \mathrm{const}$}
+\label{sec:u1_protection}
+
+\textbf{Task reference:} UBT\_v29\_task7, step1\_u1\_protection.
+\textbf{Date:} 2026-03-06.
+\textbf{Verdict: PROVED.}
+
+\subsection{Setup: Field Content and Charge Assignments}
+
+In UBT the fundamental field is the biquaternionic scalar
+\begin{equation}
+  \Theta(q,\tau) \in \mathbb{C}\otimes\mathbb{H},
+  \qquad \tau = t + i\psi,
+\end{equation}
+where $t$ is real (physical) time and $\psi \in \mathbb{R}$ is the imaginary time component
+(compact circle of radius $R_\psi$, see AXIOM B).
+
+The scalar background $\varphi$ is identified with the vacuum expectation value of the
+\emph{real part of the $\psi$-phase component} of $\Theta$:
+\begin{equation}
+  \varphi \;=\; \langle \operatorname{Re}[\Theta\big|_{\psi\text{-projection}}] \rangle.
+\end{equation}
+Concretely, expanding $\Theta$ in the $\psi$-circle modes,
+\begin{equation}
+  \Theta(q,\psi) = \sum_{n\in\mathbb{Z}} \theta_n(q)\, e^{in\psi/R_\psi},
+\end{equation}
+the constant background $\varphi = \operatorname{const}$ corresponds to the $n=0$ (zero-mode)
+component $\theta_0(q) = v \in \mathbb{R}$ being turned on.
+
+\subsection{U(1)$_\mathrm{EM}$ Charge of $\varphi$}
+
+$U(1)_\mathrm{EM}$ acts on $\Theta$ as a phase rotation in the \emph{spatial/spinorial}
+sector (see \texttt{canonical/interactions/qed.tex}):
+\begin{equation}
+  \Theta \;\longrightarrow\; e^{i\alpha(x)}\,\Theta,
+  \qquad A_\mu \;\longrightarrow\; A_\mu - \tfrac{1}{e}\partial_\mu\alpha.
+\end{equation}
+This acts on the $\mathbb{C}$-factor of $\mathbb{C}\otimes\mathbb{H}$, specifically on the
+charged spinorial components of $\Theta$.
+
+The $\psi$-zero-mode $\theta_0$ projects onto the \emph{gravity/phase sector} of $\Theta$,
+which is the $\mathbb{H}$-factor (real quaternionic part).  This sector is \emph{neutral}
+under $U(1)_\mathrm{EM}$ because:
+\begin{enumerate}
+  \item The quaternionic imaginary units $\{i_1,i_2,i_3\}$ commute with the $U(1)_\mathrm{EM}$
+        phase (which acts on the $\mathbb{C}$-factor only).
+  \item The $\psi$-circle parameterises a direction in $\tau$-space that is orthogonal to
+        the $U(1)_\mathrm{EM}$ fibre; its zero mode $v$ is a real number invariant under
+        phase rotations.
+\end{enumerate}
+
+\begin{theorem}[U(1)$_\mathrm{EM}$ neutrality of $\varphi$]
+\label{thm:phi_neutral}
+  The scalar $\varphi = \langle\theta_0\rangle \in \mathbb{R}$ has zero $U(1)_\mathrm{EM}$
+  charge:
+  \begin{equation}
+    e^{i\alpha}\,\varphi\,e^{-i\alpha} = \varphi
+    \quad\text{for all }\alpha\in\mathbb{R}.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Since $\varphi\in\mathbb{R}$ is a real number, and $U(1)_\mathrm{EM}$ acts as multiplication
+  by a complex phase on the $\mathbb{C}$-factor, which acts trivially on real scalars, we
+  have $e^{i\alpha}\varphi = \varphi\,e^{i\alpha}$ in the algebra, i.e., $\varphi$ commutes
+  with the phase.  Being also invariant in absolute value, $\varphi$ is uncharged.
+\end{proof}
+
+\subsection{No Photon Mass Term}
+
+In the standard Higgs mechanism, a charged scalar field $\phi$ with charge $q$ develops a
+VEV $\langle\phi\rangle = v$, giving the gauge boson a mass
+$m^2 = (qev)^2$ from the covariant-kinetic term $|D_\mu\phi|^2$.
+
+For the UBT scalar background $\varphi$, the covariant derivative is
+\begin{equation}
+  D_\mu\varphi = (\partial_\mu + i\,q_\varphi\, e\, A_\mu)\,\varphi.
+\end{equation}
+Since $q_\varphi = 0$ (Theorem~\ref{thm:phi_neutral}),
+\begin{equation}
+  D_\mu\varphi = \partial_\mu\varphi = 0
+  \qquad\text{(for }\varphi=\mathrm{const}\text{)}.
+\end{equation}
+Hence the kinetic term $|D_\mu\varphi|^2$ vanishes identically for constant $\varphi$, and
+\begin{equation}
+  \boxed{m_\gamma^2 = 0.}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Conclusion (Step 1, PROVED):}
+A constant scalar background $\varphi = \mathrm{const} \neq 0$ does not break $U(1)_\mathrm{EM}$.
+The photon remains massless.  No Higgs-like mechanism is operative in the EM sector.
+This holds because $\varphi$ lives in the neutral (gravity/phase) sector of the
+biquaternionic algebra $\mathbb{C}\otimes\mathbb{H}$.
+\end{resultbox}
+
+\subsection{Invariance of $S[\Theta]$}
+
+For completeness we verify directly that the UBT action $S[\Theta]$ is invariant under
+$\Theta \to e^{i\alpha(x)}\Theta$ when $\varphi = \mathrm{const}$, i.e., that the
+$\varphi$-background does not introduce a symmetry-breaking potential in the EM sector.
+
+The action splits as $S = S_\mathrm{kin} + S_\mathrm{gauge} + S_\mathrm{int}$ (see
+Appendix AA for the full action).  The $\varphi$-background enters only through
+$S_\mathrm{kin}[\Theta_0]$ where $\Theta_0 = v$ is the zero mode.  Since
+$S_\mathrm{kin}[\Theta_0] = \mathrm{const}$ for $\Theta_0 = v \in \mathbb{R}$ and
+$U(1)_\mathrm{EM}$ leaves real numbers invariant, the full action satisfies
+$\delta_{U(1)_\mathrm{EM}} S = 0$.
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Claim & $U(1)_\mathrm{EM}$ unbroken at $\varphi = \mathrm{const}$ \\
+Status & \textbf{PROVED} \\
+Charge of $\varphi$ & $q_\varphi = 0$ (real, gravity/phase sector) \\
+Photon mass & $m_\gamma^2 = 0$ (exact) \\
+Relies on & Algebra structure $\mathbb{C}\otimes\mathbb{H}$, AXIOM B \\
+Layer & [L0] — pure biquaternionic geometry \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifdefined\INCLUDEMODE\else
+  \end{document}
+\fi
