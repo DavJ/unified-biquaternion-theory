@@ -18,7 +18,7 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 |---------|--------|-------|
 | U(1)_Y hypercharge quantization | **Open** | Why are hypercharges rational? Not derived from biquaternion structure. |
 | SU(2)_L weak isospin | **Proved [L1]** | Generators T^a: M → (iσ^a/2)M from left action on ℂ⊗ₐℍ; commutation [T^a,T^b]=ε^{abc}T^c verified by direct computation. See `consolidation_project/appendix_E2_SM_geometry.tex §6`. |
-| SU(3)_C color symmetry | **Proved [L0]** | Algebra and gauge structure proved via involutions (V_c = span_ℂ{I,J,K}); Theorems G.A–G.D in `consolidation_project/appendix_G_internal_color_symmetry.tex`; confinement open (Clay Millennium Problem). See `consolidation_project/SU3_derivation/step1_involution_summary.tex`. |
+| SU(3)_C color symmetry | **Proved [L0]** | Algebra and gauge structure proved via involutions (V_c = span_ℂ{I,J,K}); Theorems G.A–G.D in `consolidation_project/appendix_G_internal_color_symmetry.tex`; confinement open (Clay Millennium Problem). See `consolidation_project/SU3_derivation/step1_involution_summary.tex`. Complementary derivation via quantum superposition (v46): Θ_color = α·I+β·J+γ·K, symmetry U(3)→SU(3) after U(1)_Y; verified numerically in `tools/verify_su3_superposition.py`; see `consolidation_project/SU3_derivation/step1_superposition_approach.tex`. |
 | Full SM group G_SM = SU(3)×SU(2)×U(1) | **Substantially proved** | SU(3) proved via involutions (Thm. G.D: EW decoupling); SU(2)_L from left action; U(1)_Y from right action. Direct product structure follows from commutativity of color and EW sectors. Weinberg angle and hypercharge quantization remain open. |
 
 ## Matter Content
