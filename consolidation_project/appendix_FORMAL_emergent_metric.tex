@@ -108,23 +108,45 @@ This consistency across documents confirms this is THE metric of UBT, not one of
 
 \subsubsection{Normalization Factor}
 
-The normalization factor $\mathcal{N}$ is explicitly defined to ensure the metric has the correct Lorentzian signature:
+The normalization factor $\mathcal{N}$ fixes the scale of the emergent metric.
+Its role is \emph{not} to impose Lorentzian signature — rescaling a matrix by a
+positive scalar does not change its signature.  The Lorentzian signature $(-,+,+,+)$
+is a theorem of the UBT algebra (see Remark~\ref{rem:signature_theorem_reference} below).
 
 \begin{definition}[Normalization Factor]
-The normalization $\mathcal{N}(x)$ is chosen such that:
-\begin{equation}
-\text{signature}(g_{\mu\nu}) = (-,+,+,+)
-\end{equation}
-in the classical limit, and
+The normalization $\mathcal{N}(x) > 0$ is defined by:
 \begin{equation}
 \mathcal{N}(x) = \sqrt{-\det\left(\Re\left[\partial_\mu \Theta \cdot \partial_\nu \Theta^\dagger\right]\right)} \cdot L_P^{-2},
 \end{equation}
-where $L_P$ is the Planck length.
+where $L_P$ is the Planck length.  This choice fixes the metric in Planck units
+($\det g = -1$ in appropriate normalization), but does \emph{not} determine the signature.
 \end{definition}
 
-\begin{remark}
-From Appendix A: ``$\mathcal{N}$ a normalisation factor ensuring the correct signature'' (line 58).
-From Appendix QG: ``$\mathcal{N}$ is a normalization ensuring correct signature $(-, +, +, +)$'' (line 102).
+\begin{remark}[Signature is a theorem, not a choice]
+\label{rem:signature_theorem_reference}
+The Lorentzian signature $(-,+,+,+)$ of $g_{\mu\nu}$ follows from the algebraic
+structure of UBT — specifically from AXIOM~B (complex time $\tau = t + i\psi$)
+via the isomorphism $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$
+(Clifford algebra of Minkowski space).  In the Clifford algebra, the time-like
+generator satisfies $e_0^2 = -1$, giving a negative time-time metric component.
+See GR\_closure/step3\_signature\_theorem.tex, Theorem on Lorentzian signature
+from AXIOM~B, for the complete proof.
+
+The statement in previous versions — ``$\mathcal{N}$ is chosen such that
+$\mathrm{signature}(g_{\mu\nu}) = (-,+,+,+)$'' — was imprecise.
+The correct statement is: \emph{$\mathcal{N} > 0$ normalizes scale;
+signature $(-,+,+,+)$ follows from the Clifford algebra structure induced by
+AXIOM~B (complex time).}
+\end{remark}
+
+\begin{remark}[Equivalence with tetrad-based formula]
+\label{rem:bridge_FORMAL}
+The derivative-based formula $g_{\mu\nu} = \Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger/\mathcal{N}]$
+defined here is equivalent to the tetrad-based formula
+$g_{\mu\nu} = \Re(\mathrm{Sc}(E_\mu E_\nu^\dagger))$ used in
+\texttt{appendix\_R\_GR\_equivalence.tex}, under the natural identification
+$E_\mu := \partial_\mu\Theta/\sqrt{\mathcal{N}}$.
+See \texttt{GR\_closure/step1\_metric\_bridge.tex} for the complete bridge theorem.
 \end{remark}
 
 \subsubsection{Biquaternionic Inner Product}
