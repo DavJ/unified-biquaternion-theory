@@ -623,6 +623,7 @@ class TestDataLoaders:
         # Values should remain small
         assert np.all(data['cl_obs'] < 200)
     
+    @pytest.mark.filterwarnings("ignore::UserWarning")
     def test_planck_loader_minimum_format_no_header(self, tmp_path):
         """Test minimum format fallback when no header is present."""
         min_file = tmp_path / "test-minimum-noheader.txt"

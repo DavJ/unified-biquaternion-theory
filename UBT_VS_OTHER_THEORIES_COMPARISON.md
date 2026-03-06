@@ -41,7 +41,7 @@ This document provides a **precise comparison** of UBT predictions against:
 | **Holographic models** | Varies | Model-dependent | 🟡 Some match, less motivated |
 
 **UBT Advantage:**
-- ✅ **Only theory with specific numerical prediction** for CMB suppression
+- ✅ **Among the few theories with a specific numerical prediction** for CMB suppression
 - ✅ **Correct direction** (suppression, not enhancement)
 - ✅ **Correct scale dependence** (exponential decay with ℓ)
 - ⚠️ **Magnitude too small** by factor of 2-4

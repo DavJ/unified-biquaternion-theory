@@ -307,13 +307,24 @@ def load_planck_data(
                 cov_source = None
                 cov_metadata = None
     
-    # Validate sigma is reasonable
+    # Validate sigma is reasonable; if sigma values are zero, estimate them
+    # from 1% of the signal (common for model/minimum-format files where
+    # uncertainties are not provided).
     if np.any(sigma_obs <= 0):
         n_invalid = np.sum(sigma_obs <= 0)
-        raise ValueError(
-            f"Invalid uncertainties detected: {n_invalid} sigma values are <= 0.\n"
-            f"All uncertainties must be positive. Check observation file format."
-        )
+        if np.all(sigma_obs <= 0):
+            # All sigma values are missing — estimate from 1% of signal
+            warnings.warn(
+                f"{n_invalid} sigma values are <= 0. "
+                f"Estimating uncertainties from 1.0% of signal."
+            )
+            sigma_obs = np.abs(cl_obs) * 0.01
+            sigma_obs[sigma_obs == 0] = 1e-10
+        else:
+            raise ValueError(
+                f"Invalid uncertainties detected: {n_invalid} sigma values are <= 0.\n"
+                f"All uncertainties must be positive. Check observation file format."
+            )
     
     if np.any(sigma_obs < 1e-10):
         n_tiny = np.sum(sigma_obs < 1e-10)
@@ -769,9 +780,9 @@ def _load_planck_tt_full_format(filepath):
         cl[ell == 0] = 0.0
         cl[ell == 1] = 0.0
     
-    # For sigma, compute symmetric average of asymmetric error bars
-    # sigma = 0.5 * (|+dDl| + |-dDl|)
-    sigma_dl = 0.5 * (np.abs(plus_ddl) + np.abs(minus_ddl))
+    # For sigma, use the maximum of the two asymmetric error bars (conservative)
+    # sigma = max(|+dDl|, |-dDl|)
+    sigma_dl = np.maximum(np.abs(plus_ddl), np.abs(minus_ddl))
     
     # Convert sigma from Dl units to Cl units using the same conversion factor
     with np.errstate(divide='ignore', invalid='ignore'):

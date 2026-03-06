@@ -9,7 +9,7 @@ Unified Biquaternion Theory (UBT) is a theoretical physics framework that attemp
 ## Current Status
 
 **Empirical Status**: Mixed results
-- ✅ **2 Confirmed predictions**: Fine structure constant α (0.00003% error), Electron mass m_e (~0.2% error)
+- ✅ **2 Validated predictions**: Fine structure constant α (0.00003% error), Electron mass m_e (~0.2% error)
 - ❌ **1 Null result**: Planck CMB temperature power spectrum comb (p = 0.919)
 - ⚠️ **1 Candidate**: WMAP comb (not replicated in Planck)
 
@@ -67,7 +67,7 @@ UBT **generalizes** GR, does not replace it:
 ### Not Proven
 
 UBT has:
-- ✅ Confirmed predictions (α, m_e)
+- ✅ Validated predictions (α, m_e)
 - ❌ Null results (Planck CMB)
 - ⏳ Untested predictions (many)
 
@@ -122,7 +122,7 @@ unified-biquaternion-theory/
 
 ## Key Achievements
 
-### Confirmed Predictions
+### Validated Predictions
 
 1. **Fine Structure Constant**
    - Prediction: α⁻¹ = 137.036

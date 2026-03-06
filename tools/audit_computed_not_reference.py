@@ -64,6 +64,7 @@ SOFT_FILES = {
     "validate_alpha_renormalization.py",
     "generate_reference_constants.py",
     "reproduce_lepton_ratios.py",
+    "verify_N_eff.py",  # Verification script that legitimately references experimental α⁻¹
     "STATUS_ALPHA.md",
     "STATUS_FERMIONS.md",
     "STATUS_THEORY_ASSESSMENT.md",

@@ -9,7 +9,7 @@
 
 ## Recommended Publication Strategy
 
-### Phase 1: Confirmed Predictions (High Priority)
+### Phase 1: Validated Predictions (High Priority)
 
 **Target**: Physical Review Letters or Physical Review D
 
@@ -190,7 +190,7 @@
 
 ### Presentation Tips
 
-1. **Lead with confirmed predictions** (α, m_e)
+1. **Lead with validated predictions** (α, m_e)
 2. **Show null results prominently** (demonstrates falsifiability)
 3. **Use conservative language** (avoid hype)
 4. **Separate core from speculation** (acknowledge SPECULATIVE/ content)

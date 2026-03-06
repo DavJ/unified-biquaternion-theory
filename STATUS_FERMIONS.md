@@ -115,7 +115,7 @@ Status: Formula is rigorous; parameter κ and m₀ are currently fitted for vali
 | Loop Quantum Gravity | Does not address | — |
 | **UBT** | **0.22% accuracy from geometry** | Unprecedented |
 
-UBT is currently the only theory that predicts the electron mass from geometric/topological principles, even if full first-principles status is not yet achieved.
+UBT is currently one of the few theories that predicts the electron mass from geometric/topological principles, even if full first-principles status is not yet achieved.
 
 ### 3.3 Proposed Refinements (All Fit-Free)
 

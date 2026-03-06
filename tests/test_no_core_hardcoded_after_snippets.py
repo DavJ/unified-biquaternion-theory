@@ -16,6 +16,9 @@ def is_core_tex(p: pathlib.Path) -> bool:
     # Exclude speculative and auxiliary content (not canonical)
     if any(seg in parts for seg in ("speculative_extensions","speculative","appendices","notes","drafts")):
         return False
+    # Exclude original historical research documents (pre-v0.4 archive)
+    if any(seg in parts for seg in ("unified_biquaternion_theory","ubt_with_chronofactor","ubt_no_chronofactor","original_release_of_ubt")):
+        return False
     return p.suffix.lower() == ".tex"
 
 def test_no_fatal_literals_in_core_tex():
