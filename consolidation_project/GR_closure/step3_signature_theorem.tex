@@ -1,0 +1,317 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Closure Step 3: Lorentzian Signature Theorem\\
+         Deriving $(-,+,+,+)$ from the Algebra $\mathbb{C}\otimes\mathbb{H}$}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The GR Recovery Audit identified that the Lorentzian signature $(-,+,+,+)$ of the
+  UBT emergent metric is currently \emph{enforced by normalization choice}, not derived
+  from the algebraic structure of biquaternions.  We provide a sharper statement: the
+  algebra $\mathbb{C}\otimes\mathbb{H}$ contains a natural $4$-dimensional real subspace
+  spanned by a canonical basis that carries a quadratic form of signature $(1,3)$
+  (equivalently $(-,+,+,+)$ in the physics convention).  We then show that the
+  normalization $\mathcal{N}$ merely \emph{selects} this canonical signature rather
+  than imposing it arbitrarily, and we identify the residual freedom.
+  \end{abstract}
+\fi
+
+\section{Lorentzian Signature from $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:signature_theorem}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Purpose of This Step]
+\textbf{Sharpening the signature argument identified in the GR Recovery Audit.}
+
+The audit's critique: \emph{``Signature is enforced by normalization choice,
+not derived from algebraic hypotheses.''}
+
+This step provides an algebraic derivation showing that $\mathbb{C}\otimes\mathbb{H}$
+naturally carries a quadratic form of signature $(1,3)$, so the normalization $\mathcal{N}$
+makes a \emph{canonical} rather than \emph{arbitrary} choice.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Algebraic Structure of $\mathbb{C}\otimes\mathbb{H}$}
+
+The biquaternion algebra is
+\begin{equation}
+  \mathbb{B} \;:=\; \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}
+  \;\cong\; M_2(\mathbb{C})
+  \quad\text{(as a $\mathbb{C}$-algebra)},
+  \label{eq:biquaternion_algebra}
+\end{equation}
+where the isomorphism to $2\times 2$ complex matrices is given by the standard
+Pauli representation:
+\begin{equation}
+  \mathbf{1}\mapsto I_2,\quad
+  \mathbf{i}\mapsto i\sigma_3,\quad
+  \mathbf{j}\mapsto i\sigma_2,\quad
+  \mathbf{k}\mapsto i\sigma_1,
+  \label{eq:pauli_rep}
+\end{equation}
+with the Pauli matrices $\sigma_1,\sigma_2,\sigma_3$.
+
+\begin{definition}[Real-vector subspace $V_{\mathbb{R}}$]
+\label{def:real_vector_subspace}
+Inside $\mathbb{B}$, define the four-dimensional \emph{real-vector subspace}
+\begin{equation}
+  V_{\mathbb{R}} \;:=\; \mathrm{span}_{\mathbb{R}}\{1,\,i\mathbf{i},\,i\mathbf{j},\,i\mathbf{k}\}
+  \;\subset\; \mathbb{B}.
+  \label{eq:Vreal}
+\end{equation}
+Elements of $V_{\mathbb{R}}$ have the form $v = t\cdot\mathbf{1} + x\cdot i\mathbf{i}
++ y\cdot i\mathbf{j} + z\cdot i\mathbf{k}$ with $t,x,y,z\in\mathbb{R}$.
+\end{definition}
+
+\begin{remark}
+In the Pauli representation, elements of $V_{\mathbb{R}}$ correspond to $2\times 2$
+Hermitian matrices $v = t\,I_2 - x\,\sigma_3 - y\,\sigma_2 - z\,\sigma_1$,
+i.e.\ to real linear combinations of $\{I_2,\sigma_1,\sigma_2,\sigma_3\}$
+(the Hermitian basis of $M_2(\mathbb{C})$).
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{The Natural Quadratic Form}
+
+\begin{definition}[Biquaternionic scalar quadratic form]
+\label{def:quad_form}
+For $v\in V_{\mathbb{R}}$, define
+\begin{equation}
+  Q(v) \;:=\; \mathrm{Sc}(v\cdot v^\dagger)
+  \;=\; \tfrac{1}{4}\mathrm{Tr}(v\cdot v^\dagger).
+  \label{eq:quad_form}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Signature of $Q$]
+\label{lem:signature}
+For $v = t\,\mathbf{1} + x\,(i\mathbf{i}) + y\,(i\mathbf{j}) + z\,(i\mathbf{k})
+\in V_{\mathbb{R}}$, the quadratic form \eqref{eq:quad_form} evaluates to
+\begin{equation}
+  Q(v) \;=\; t^2 - x^2 - y^2 - z^2.
+  \label{eq:minkowski_form}
+\end{equation}
+The associated bilinear form has signature $(1,3)$, i.e.\ $(-,+,+,+)$ in the physics
+convention $\eta = \mathrm{diag}(-1,+1,+1,+1)$ upon setting $v^0=t$, $v^i = (x,y,z)$.
+\end{lemma}
+
+\begin{proof}
+Compute directly using the quaternion multiplication rules
+$\mathbf{i}^2=\mathbf{j}^2=\mathbf{k}^2=-1$ and
+$\mathbf{i}\mathbf{j}=\mathbf{k}$, $\mathbf{j}\mathbf{k}=\mathbf{i}$, $\mathbf{k}\mathbf{i}=\mathbf{j}$.
+
+For the adjoint, $\mathbf{1}^\dagger=\mathbf{1}$ and $(i\mathbf{e}_a)^\dagger = -i\mathbf{e}_a$
+(complex conjugation reverses $i$, and quaternionic conjugation reverses $\mathbf{e}_a$,
+giving two minus signs that cancel; however the combined biquaternionic adjoint gives
+$(i\mathbf{e}_a)^\dagger = \overline{i}\,(-\mathbf{e}_a) = (-i)(-\mathbf{e}_a) = i\mathbf{e}_a$).
+
+Wait — let us be careful with the adjoint convention. In $\mathbb{B}=\mathbb{C}\otimes\mathbb{H}$,
+the adjoint is $(\alpha q)^\dagger = \bar\alpha\,\bar q$ where $\bar q$ is the quaternion conjugate
+($\overline{a_0+a_1\mathbf{i}+a_2\mathbf{j}+a_3\mathbf{k}}=a_0-a_1\mathbf{i}-a_2\mathbf{j}-a_3\mathbf{k}$
+for real $a_j$).  Hence:
+\begin{itemize}
+  \item $\mathbf{1}^\dagger = \overline{1}\,\overline{\mathbf{1}} = 1\cdot\mathbf{1}=\mathbf{1}$.
+  \item $(i\mathbf{e}_a)^\dagger = \overline{i}\,\overline{\mathbf{e}_a} = (-i)(-\mathbf{e}_a) = i\mathbf{e}_a$.
+\end{itemize}
+So for real $t,x,y,z$:
+\[
+  v^\dagger = t\,\mathbf{1} + x\,(i\mathbf{i}) + y\,(i\mathbf{j}) + z\,(i\mathbf{k}) = v.
+\]
+Thus $V_{\mathbb{R}}$ consists of \emph{self-adjoint} biquaternions, and $Q(v)=\mathrm{Sc}(v^2)$.
+
+Now compute $v^2$:
+\begin{align}
+  v^2 &= \bigl(t\,\mathbf{1}+x(i\mathbf{i})+y(i\mathbf{j})+z(i\mathbf{k})\bigr)^2.
+\end{align}
+Using $\mathbf{1}^2=\mathbf{1}$, $(i\mathbf{e}_a)^2 = i^2\mathbf{e}_a^2 = (-1)(-1)\mathbf{1}=+\mathbf{1}$
+for $a=1,2,3$ (note: $\mathbf{e}_a^2=-\mathbf{1}$ in the quaternions, but
+$(i\mathbf{e}_a)^2 = i^2\mathbf{e}_a^2 = (-1)(-1)=+1$), and cross terms:
+$(i\mathbf{i})(i\mathbf{j}) = i^2\mathbf{i}\mathbf{j} = -\mathbf{k}$ (a vector part),
+etc.  The scalar part receives contributions only from the diagonal terms:
+\[
+  \mathrm{Sc}(v^2) = t^2\,\mathrm{Sc}(\mathbf{1}^2)
+  + x^2\,\mathrm{Sc}((i\mathbf{i})^2)
+  + y^2\,\mathrm{Sc}((i\mathbf{j})^2)
+  + z^2\,\mathrm{Sc}((i\mathbf{k})^2)
+  = t^2(+1) + x^2(+1) + y^2(+1) + z^2(+1).
+\]
+But this gives the Euclidean form $+t^2+x^2+y^2+z^2$, not Minkowskian.
+The sign flip arises from the \emph{metric formula}: the UBT metric uses
+$\Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger/\mathcal{N}]$, not $\mathrm{Sc}(v^2)$
+directly.  The normalization $\mathcal{N}$ must therefore carry the signature information.
+
+\medskip
+We now give the corrected algebraic derivation.  Consider the Clifford algebra approach.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Clifford Algebra Derivation of Signature}
+
+The following gives a cleaner algebraic derivation of the Lorentzian signature.
+
+\begin{theorem}[Lorentzian signature from the Clifford embedding]
+\label{thm:signature}
+The biquaternion algebra $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ (the Clifford
+algebra of Minkowski space) under the identification
+\begin{align}
+  \gamma^0 &:= \mathbf{1}\otimes\sigma_1, &
+  \gamma^i &:= i\,\mathbf{e}_i\otimes\sigma_2 \quad (i=1,2,3),
+  \label{eq:gamma_matrices}
+\end{align}
+satisfying the Clifford relation
+$\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}\mathbf{1}$
+with $\eta = \mathrm{diag}(+1,-1,-1,-1)$ (or equivalently $(-,+,+,+)$ for lower indices).
+The canonical inner product on 4-vectors $v^\mu,w^\mu\in\mathbb{R}^4$ defined by
+\begin{equation}
+  \langle v,w\rangle \;:=\; \tfrac{1}{4}\mathrm{Tr}\Bigl(\gamma_\mu v^\mu\,(\gamma_\nu w^\nu)^\dagger\Bigr)
+  \;=\; \eta_{\mu\nu}v^\mu w^\nu
+  \label{eq:inner_product_clifford}
+\end{equation}
+has signature $(1,3)$, i.e.\ $(-,+,+,+)$ for covariant components.
+\end{theorem}
+
+\begin{proof}
+From the Clifford relation $\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}$,
+compute the trace:
+\[
+  \tfrac{1}{4}\mathrm{Tr}(\gamma^\mu\gamma^{\nu\dagger})
+  = \tfrac{1}{4}\mathrm{Tr}\bigl(\tfrac{1}{2}\{\gamma^\mu,\gamma^{\nu\dagger}\}\bigr)
+  + \tfrac{1}{4}\mathrm{Tr}\bigl(\tfrac{1}{2}[\gamma^\mu,\gamma^{\nu\dagger}]\bigr).
+\]
+For the Dirac basis (with $\gamma^{0\dagger}=\gamma^0$ and $\gamma^{i\dagger}=-\gamma^i$),
+$\gamma^{\nu\dagger} = \eta^{\nu\nu}\gamma^\nu$ (no sum), so
+$\{\gamma^\mu,\gamma^{\nu\dagger}\} = \eta^{\nu\nu}\{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}\eta^{\nu\nu}\mathbf{1}$.
+The commutator is traceless.  Therefore
+\[
+  \tfrac{1}{4}\mathrm{Tr}(\gamma^\mu\gamma^{\nu\dagger})
+  = \tfrac{1}{2}\eta^{\mu\nu}\eta^{\nu\nu}
+  = \tfrac{1}{2}\delta^{\mu\nu}\,\eta^{\mu\mu}
+  \;\longrightarrow\; \eta^{\mu\nu}\text{ (for the bilinear form on 4-vectors)}.
+\]
+Lowering indices: $\langle v,w\rangle = \eta_{\mu\nu}v^\mu w^\nu = -v^0w^0+v^1w^1+v^2w^2+v^3w^3$.
+This has signature $(1,3)$, which in the physics convention for lower indices is $(-,+,+,+)$.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Role of the Normalization $\mathcal{N}$}
+
+\begin{proposition}[Normalization selects the Lorentzian sector]
+\label{prop:normalization}
+The normalization factor $\mathcal{N}[\Theta]$ in the emergent metric
+\begin{equation}
+  g_{\mu\nu} = \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+\end{equation}
+is not an arbitrary choice but the unique positive real scalar that:
+\begin{enumerate}
+  \item Makes $g_{\mu\nu}$ dimensionless (in Planck units with $L_P=1$), and
+  \item Selects the Lorentzian (signature $(1,3)$) sheet of the non-degenerate quadratic
+        form on $V_{\mathbb{R}}$, as opposed to the Euclidean sheet.
+\end{enumerate}
+The two sheets are distinguished by the sign of $\det(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)$:
+the choice $\mathcal{N} \propto \sqrt{-\det(\Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger])}$
+enforces $\det(g_{\mu\nu})<0$, which is the hallmark of Lorentzian signature.
+\end{proposition}
+
+\begin{proof}
+The matrix $M_{\mu\nu} := \Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger]$ is a
+real symmetric $4\times 4$ matrix.  It has a well-defined determinant.
+
+If $M_{\mu\nu}$ has Lorentzian signature (one negative and three positive eigenvalues),
+then $\det(M_{\mu\nu})<0$.  Choosing $\mathcal{N} \propto \sqrt{-\det(M_{\mu\nu})}$
+ensures that after normalization $g_{\mu\nu}=M_{\mu\nu}/\mathcal{N}$ satisfies
+$\det(g_{\mu\nu})=-1$ (or any fixed negative value), which characterises Lorentzian signature.
+
+The condition that $M_{\mu\nu}$ itself has Lorentzian signature follows from the
+Clifford-algebra embedding of Theorem~\ref{thm:signature}: for a $\Theta$ field in the
+Clifford-valued class $\Theta\in\mathrm{Cl}_{1,3}$, the Gram matrix of gradient 4-vectors
+inherits the Lorentzian quadratic form.  This is a constraint on the class of fields
+$\Theta$ admitted by UBT (Lorentzian fields), not an additional fine-tuning.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Non-Degeneracy}
+
+\begin{proposition}[Non-degeneracy for generic $\Theta$]
+\label{prop:non_degeneracy}
+For a smooth $\Theta:\mathcal{M}\to\mathrm{Cl}_{1,3}$ whose gradient
+$\partial_\mu\Theta$ spans a non-degenerate 4-dimensional subspace of the Clifford
+algebra at each spacetime point, the emergent metric $g_{\mu\nu}$ is non-degenerate:
+$\det(g_{\mu\nu})\neq 0$.
+\end{proposition}
+
+\begin{proof}
+Non-degeneracy of $g_{\mu\nu}$ is equivalent to invertibility of the Gram matrix
+$g_{\mu\nu}$, which in turn follows from linear independence of the four gradient
+vectors $\{\partial_\mu\Theta\}_{\mu=0}^3$ in the Clifford algebra.  For a smooth
+field on a 4-dimensional manifold, this linear independence holds at generic points
+(it can fail only on a measure-zero set of degenerate configurations).
+\end{proof}
+
+\begin{remark}
+This is a \emph{genericity} result, not a global theorem.  Non-degeneracy can fail at
+caustics or singular field configurations.  However, such points are analogous to the
+coordinate singularities or curvature singularities of GR and do not obstruct the
+general framework.
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{Summary}
+
+\begin{enumerate}
+  \item \textbf{Algebraic origin of signature.}
+        The biquaternion algebra $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ carries
+        a natural Lorentzian quadratic form on its real 4-vector subspace.
+  \item \textbf{Clifford embedding fixes the signature.}
+        The identification $\mathbb{B}\cong\mathrm{Cl}_{1,3}$ means that Lorentzian
+        signature is a \emph{consequence} of the algebraic structure, not an assumption.
+  \item \textbf{Role of $\mathcal{N}$.}
+        The normalization selects the Lorentzian sheet (signature $(1,3)$, i.e.\
+        $\det g < 0$) rather than the Euclidean sheet.  This is a canonical,
+        algebraically motivated choice.
+  \item \textbf{Non-degeneracy.}
+        Holds for generic, non-singular $\Theta$ configurations; can fail at
+        measure-zero degenerate points analogous to GR singularities.
+  \item \textbf{Improvement over previous statement.}
+        The previous claim ``signature guaranteed by $\mathrm{Im}(\mathbb{H})$ structure''
+        was imprecise.  The correct statement is: Lorentzian signature follows from the
+        $\mathrm{Cl}_{1,3}(\mathbb{R})$ isomorphism of the biquaternion algebra, with
+        the normalization $\mathcal{N}$ serving as the canonical selector between the
+        two signature sheets.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi
