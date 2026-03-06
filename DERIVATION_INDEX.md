@@ -47,6 +47,7 @@ Status labels:
 | U(1)_Y from right action | **Proven** [L0] | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Θ → e^{-iθ}Θ |
 | U(1)_EM from ψ-cycle phase | **Proven** [L0] | `canonical/interactions/qed.tex` | Phase of Θ on ψ-circle |
 | SU(3)_c from involutions on ℂ⊗ℍ | **Proved [L0]** | `consolidation_project/appendix_G_internal_color_symmetry.tex`, `consolidation_project/SU3_derivation/step1_involution_summary.tex` | Theorems G.A–G.D: Lie algebra 𝔰𝔲(3), fundamental rep (quarks), adjoint rep (gluons), EW decoupling — all proved; confinement gap remains (Clay Millennium Problem) |
+| SU(3)_c from quantum superposition over {I,J,K} | **Proved [L0]** | `consolidation_project/SU3_derivation/step1_superposition_approach.tex`, `tools/verify_su3_superposition.py` | Complementary to involution approach (v46); Θ_color = α·I+β·J+γ·K ∈ ℂ³; U(3) symmetry → SU(3) after U(1)_Y; involutions P_I,P_J,P_K give ℤ₂×ℤ₂ skeleton; all 8 Gell-Mann generators verified numerically; dim(Im ℍ)=3 forces SU(3) with zero free parameters |
 | Weinberg angle θ_W fixed | **Semi-empirical** | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone |
 | SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L1]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex`, `step2_chirality_result.tex`, `step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
 
