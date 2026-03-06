@@ -22,9 +22,22 @@
   → `research_tracks/three_generations/st3_complex_time_generations.tex`
 - **N_eff = 12** from ℂ⊗ℍ algebra alone (3 × 2 × 2; zero free parameters)  
   → `consolidation_project/N_eff_derivation/`
-- **B₀ = 8π** (one-loop vacuum polarisation baseline)  
+- **B₀ = 8π** (one-loop vacuum polarisation baseline) = 2π × dim_ℂ(ℂ⊗ℍ)  
   → `consolidation_project/N_eff_derivation/step2_vacuum_polarization.tex`
+- **G_μν = 8πG T_μν** derived from Hilbert variation (not asserted)  
+  → `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex`
+- **FPE ↔ Euler–Lagrange equivalence** (scalar sector): QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ  
+  → `consolidation_project/FPE_verification/step4_fpe_equivalence.tex`
+- **ΔN_eff ≈ 0.046** predicted from UBT zero-modes — above CMB-S4 threshold 0.03  
+  → `consolidation_project/N_eff_derivation/step3_N_eff_result.tex`
+- **QED reproducibility at φ=const** (U(1)_EM unbroken, α(μ) unchanged, a_e=α/(2π))  
+  → `consolidation_project/qed_phi_const/`
 - **Prime attractor**: V_eff(n) minimum selects primes; robust across coupling types
+
+### Sketch (algebraic structure proved, one dynamic gap remaining)
+
+- **SU(2)_L chirality**: ψ-parity P_ψ acts as γ⁵; odd modes = left-handed; Gap C1 (W± vertex P_ψ-odd from S[Θ]) — upgraded from Semi-empirical  
+  → `consolidation_project/chirality_derivation/`
 
 ### Supported by Numerical Evidence
 

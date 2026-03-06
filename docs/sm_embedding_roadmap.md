@@ -26,7 +26,7 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 | Element | Status | Notes |
 |---------|--------|-------|
 | Three generations of quarks and leptons | **Mechanism proved; mass ratios supported numerically** | ψ-modes of Θ are proved independent [L0] with same SU(3) quantum numbers; ψ-parity forbids inter-generational mixing. Mass ratios: Hecke eigenvalue matches at p=137, p=139 (numerical support only). See `research_tracks/three_generations/`. |
-| Chirality mechanism (L/R asymmetry) | **Open** | Key missing piece; biquaternionic structure is formally symmetric. |
+| Chirality mechanism (L/R asymmetry) | **Sketch** | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1: W± vertex P_ψ-odd from S[Θ] not yet derived. See `consolidation_project/chirality_derivation/`. Upgraded from Open → Sketch (2026-03-06). |
 | Quark color quantum numbers | **Open** | Dependent on SU(3) derivation (see above). |
 | Lepton number conservation | **Open** | No mechanism demonstrated. |
 
@@ -51,6 +51,9 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 | Element | Status | Notes |
 |---------|--------|-------|
 | N_eff = 12 from ℂ⊗ℍ algebra | **Proved** | 3×2×2 = N_phases × N_helicity × N_charge; N_phases=3 from dim Im(ℍ)=3; zero free parameters. See `consolidation_project/N_eff_derivation/`. |
+| B₀ = 8π (one-loop β-function coefficient) | **Proved** | B₀ = 2π·N_eff/3 = 2π × dim_ℂ(ℂ⊗ℍ) = 8π; zero free parameters. See `consolidation_project/N_eff_derivation/step2_vacuum_polarization.tex`. |
+| G_μν = 8πG T_μν | **Proved** | Derived from Hilbert variation; 8πG = (dim_ℝ(ℍ)/2) × vol(S²) × G. See `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex`. |
+| ΔN_eff ≈ 0.046 | **Predicted** | UBT zero-modes contribute above CMB-S4 detection threshold 0.03. See `consolidation_project/N_eff_derivation/step3_N_eff_result.tex`. |
 | Fine structure constant α | **Partial** | Specific numerical derivation exists but relies on auxiliary assumptions (see reports/alpha_audit/). |
 | Strong coupling α_s | **Open** | Not derived from first principles. |
 | Weinberg angle θ_W | **Open** | Candidate in Appendix K2; not a full derivation. |

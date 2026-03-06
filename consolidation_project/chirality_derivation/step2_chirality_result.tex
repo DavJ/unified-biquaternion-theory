@@ -1,0 +1,197 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Chirality Derivation, Step 2: Result Summary and Consequences}}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We summarise the status of the $SU(2)_L$ chirality derivation and state
+  the precise remaining gap (Gap~C1).  The algebraic part of Option~A
+  ($\psi$-parity selection) is proved.  The derivation from $S[\Theta]$
+  requires showing the $W^\pm$ vertex is $P_\psi$-odd.  We also state
+  the consequences of Option~A being true: parity violation in weak
+  interactions follows from the $\psi$-circle orientation, not from a
+  separate postulate.
+  \end{abstract}
+\fi
+
+\section{Step 2: Chirality Selection --- Result Summary}
+\label{sec:chirality_result}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Summary of Step 1 Results}
+\label{subsec:step1_summary}
+%────────────────────────────────────────────────────────────────────────────
+
+From \texttt{step1\_psi\_parity.tex} (this derivation chain):
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Statement} & \textbf{Status} & \textbf{Reference} \\
+  \midrule
+  $\mathbb{H}$ gives $SU(2)_L\times SU(2)_R$
+    & Proved & \texttt{appendix\_E2\_SM\_geometry.tex~§5} \\
+  $P_\psi:\psi\to-\psi$ maps $n\to-n$ (mode exchange)
+    & Proved & Step~1, Def.~1 \\
+  $\partial_\psi$ anti-commutes with $P_\psi$
+    & Proved & Step~1, Lem.~2 \\
+  $P_\psi$ acts as $\gamma^5$ in $\psi$-sector
+    & Proved & Step~1, Prop.~3 \\
+  Preferred $\psi$-orientation: matter $n>0$ (CPT)
+    & Proved & Step~1, Lem.~4 \\
+  $SU(2)_L$ on odd modes $\mathcal{H}_-$, $SU(2)_R$ on even $\mathcal{H}_+$
+    & Proved, conditional on Gap~C1 & Step~1, Thm.~5 \\
+  $W^\pm$ vertex is $P_\psi$-odd from $S[\Theta]$
+    & Gap~C1 (open) & \S\ref{subsec:gap_c1} below \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Precise Statement of Gap~C1}
+\label{subsec:gap_c1}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap~C1 --- $W^\pm$ vertex parity from $S[\Theta]$}:
+
+The action $S[\Theta]$ includes a gauge coupling term:
+\begin{equation}
+  S_{\mathrm{gauge}} = \int \bar\Theta\, i\gamma^\mu(\partial_\mu - igW_\mu^a\tau^a)\Theta\,
+    d^4Q\, dt\, d\psi.
+\label{eq:gauge_coupling}
+\end{equation}
+For Gap~C1, we need to show that when $\Theta_L$ (left-handed, i.e.,
+$P_\psi\Theta_L = -\Theta_L$) is used in~\eqref{eq:gauge_coupling}, the
+$SU(2)_L$ vertex is $P_\psi$-odd:
+\begin{equation}
+  P_\psi(S_{\mathrm{gauge}}[\Theta_L]) = -S_{\mathrm{gauge}}[\Theta_L].
+\label{eq:gap_c1}
+\end{equation}
+This requires:
+\begin{enumerate}
+  \item[(a)] Showing the left-handed projector $\Pi_L = \frac{1}{2}(1-\gamma^5)$
+    in 4D is reproduced by $\frac{1}{2}(1 - P_\psi)$ in the UBT framework.
+  \item[(b)] Verifying that $\gamma^\mu(1-P_\psi)W_\mu^a\tau^a$ has the
+    correct transformation properties under $P_\psi$.
+\end{enumerate}
+\textbf{This is the highest-priority open problem in the chirality sector.}
+\end{gapbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Consequences if Option~A is Proved}
+\label{subsec:consequences}
+%────────────────────────────────────────────────────────────────────────────
+
+If Gap~C1 is closed (Option~A fully proved), the following results follow
+\emph{without additional postulates}:
+
+\begin{enumerate}
+  \item \textbf{Parity violation}: $W^\pm$ couples only to left-handed quarks
+    and leptons.  This is the defining feature of the SM electroweak sector.
+    It would follow from the $\psi$-circle orientation, not from a separate
+    symmetry-breaking postulate.
+
+  \item \textbf{No right-handed $W$ bosons at low energy}: $SU(2)_R$ gauge
+    bosons are absent from the physical spectrum (or super-heavy if present),
+    because they would have to couple to $\mathcal{H}_+$ (even modes, $n<0$
+    antiparticle sector).
+
+  \item \textbf{CKM mixing}: Complex phases in the mode-eigenvalues of the
+    three generations ($n=1,2,3$ identified with $e,\mu,\tau$) generate
+    a natural mixing matrix.  The phase of the $\psi$-circle eigenvalue
+    $e^{in\psi/R_\psi}$ provides the CP-violating phase.
+
+  \item \textbf{Unification of parity violation and CPT}: $P_\psi$ is the
+    UBT analogue of CP (charge-parity); CPT invariance is the full
+    complex-time reflection $\tau\to-\tau^*$.  The Standard Model's
+    CP-violation is a consequence of the $\psi$-circle topology.
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{What Would Falsify Option~A}
+\label{subsec:falsification}
+%────────────────────────────────────────────────────────────────────────────
+
+Option~A would be falsified (and replaced by Option~B or a new mechanism) if:
+\begin{enumerate}
+  \item The $W^\pm$ vertex computed from $S[\Theta]$ is \emph{even} under
+    $P_\psi$ (i.e., couples equally to left and right modes).
+  \item The three-generation $\psi$-mode identification breaks down
+    (e.g., if Hecke eigenvalue matching fails at higher weights).
+  \item A self-consistent $SU(2)_R$ gauge boson mass is required from
+    $S[\Theta]$ at low energy, contradicting the SM spectrum.
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{DERIVATION\_INDEX Update}
+\label{subsec:index_update}
+%────────────────────────────────────────────────────────────────────────────
+
+The entry in \texttt{DERIVATION\_INDEX.md} for ``SU(2)\_L chirality'' should be
+updated from ``Semi-empirical'' to:
+
+\begin{resultbox}
+\textbf{DERIVATION\_INDEX entry (updated):}
+\begin{verbatim}
+| SU(2)_L chirality | Sketch | chirality_derivation/step1_psi_parity.tex |
+| ψ-parity P_ψ acts as γ⁵; odd modes = left-handed; Gap C1: W± vertex
+  P_ψ-odd from S[Θ] not yet derived |
+\end{verbatim}
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Verdict}
+\label{subsec:verdict}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Verdict: SKETCH (stronger than Semi-empirical).}
+The $\psi$-parity mechanism is the correct and natural explanation
+for chirality within the UBT framework.  The algebraic structure
+is complete.  One dynamical gap remains (Gap~C1: $W^\pm$ vertex
+$P_\psi$-parity from $S[\Theta]$).
+
+Progress: Semi-empirical $\to$ Sketch.  Full proof pending Gap~C1.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
