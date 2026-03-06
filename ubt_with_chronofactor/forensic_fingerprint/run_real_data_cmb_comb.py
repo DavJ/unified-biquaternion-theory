@@ -103,10 +103,17 @@ def find_repo_root(start_path=None):
 # Find repository root (works regardless of CWD)
 repo_root = find_repo_root()
 
+# Use the script's own directory as the base for local submodules so that the
+# script works correctly whether it is invoked from the repo root or from
+# within ubt_with_chronofactor/.
+_script_dir = Path(__file__).resolve().parent
+
 # Add loaders and cmb_comb to path
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'loaders'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'cmb_comb'))
+sys.path.insert(0, str(_script_dir / 'loaders'))
+sys.path.insert(0, str(_script_dir / 'cmb_comb'))
 sys.path.insert(0, str(repo_root / 'tools' / 'data_provenance'))
+# Fallback: if hash_dataset is not in tools/data_provenance look in repo root
+sys.path.insert(0, str(repo_root))
 
 import planck
 import wmap
@@ -114,8 +121,8 @@ import cmb_comb
 import validate_manifest
 
 # Add ablation and synthetic modules to path
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'synthetic'))
+sys.path.insert(0, str(_script_dir))
+sys.path.insert(0, str(_script_dir / 'synthetic'))
 
 import ablation
 from synthetic import lcdm

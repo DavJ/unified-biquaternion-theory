@@ -100,6 +100,7 @@ WHITELIST = {
     "INTEGRATION_SUMMARY_LEPTON_QUARK_ISSUES.md",  # Integration summary with reference values
     "REVIEW_COMPLETE_ADDRESS_LEPTON_QUARK_ISSUES.md",  # Review document with reference values
     "reproduce_lepton_ratios.py",  # Lepton ratio tool (uses reference masses for comparison)
+    "verify_N_eff.py",             # N_eff verification script (uses CODATA α⁻¹ as reference)
 }
 
 # Directory segments to skip

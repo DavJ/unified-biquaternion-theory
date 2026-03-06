@@ -68,7 +68,10 @@ def spectral_gap_metric(n: int, baseline_tau: complex = 1j) -> float:
     # Spectral gap: separation between ground state and first excited state
     # Normalized by total weight for scale invariance
     total_weight = w0 + w1 + w2
-    gap = (w0 - w1) / total_weight
+    # Use absolute value of the mode separation: the magnitude of the gap
+    # determines stability regardless of sign (a larger separation between
+    # the two dominant modes indicates a more stable configuration).
+    gap = abs(w0 - w1) / total_weight
     
     # Add prime bonus: primes have better number-theoretic properties
     if is_prime(n):

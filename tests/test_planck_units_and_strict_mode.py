@@ -17,6 +17,7 @@ Covers:
 import sys
 import tempfile
 import numpy as np
+import pytest
 from pathlib import Path
 
 # Ensure imports work
@@ -269,6 +270,7 @@ def test_strict_mode_raises_on_mismatch():
     print(f"  Sanity checks passed: {metadata['sanity_checks_passed']}")
 
 
+@pytest.mark.filterwarnings("ignore::UserWarning")
 def test_load_planck_data_with_auto_resolution():
     """
     Test load_planck_data with model file requiring auto-resolution.

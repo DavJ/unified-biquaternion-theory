@@ -293,10 +293,179 @@ def mechanism_C(R_psi: float = R_PSI_DEFAULT, S_inst: float = None) -> dict:
         "verdict": verdict,
     }
 
+# ──────────────────────────────────────────────────────────────────────────────
+# Variant implementations (--variant interface, Appendix W forensic audit)
+# ──────────────────────────────────────────────────────────────────────────────
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Reporting helpers
-# ──────────────────────────────────────────────────────────────────────────────
+import math as _math
+
+_DELTA       = 0.5
+_DELTA_PRIME = 0.0
+
+
+def _eigenvalue(n: int, m: int, delta: float = _DELTA, dp: float = _DELTA_PRIME) -> float:
+    """UBT canonical psi-mode eigenvalue E_(n,m) = sqrt((n+delta)^2 + (m+dp)^2)."""
+    return _math.sqrt((n + delta) ** 2 + (m + dp) ** 2)
+
+
+def _run_variant_canonical() -> int:
+    """
+    Canonical UBT eigenvalue formula (Appendix W).
+
+    Assigns psi-modes to leptons via eigenvalues E_(n,m):
+      e   → E_(0,1) = sqrt(delta^2 + 1) ≈ 1.118
+      mu  → E_(0,2) = sqrt(delta^2 + 4) ≈ 2.062
+      tau → E_(1,0) = sqrt((1+delta)^2) = 1 + delta = 1.500
+
+    The ratio m_mu/m_e ≈ E_(0,2)/E_(0,1) ≈ 1.844 — far from experiment (206.77).
+    This is a MISMATCH by a factor of ~112.  An additional "Missing factor"
+    (dynamical mass enhancement) would be needed to recover the observed ratio.
+
+    Result: MISMATCH — exit 1.
+    """
+    e01 = _eigenvalue(0, 1)
+    e02 = _eigenvalue(0, 2)
+    e10 = _eigenvalue(1, 0)
+
+    ratio_mu_e   = e02 / e01
+    ratio_tau_mu = e10 / e02
+
+    exp_mu_e   = EXP[1]   # ~206.77
+    exp_tau_mu = EXP[2] / EXP[1]  # ~16.82
+
+    err_mu_e   = abs(ratio_mu_e   - exp_mu_e)   / exp_mu_e
+    err_tau_mu = abs(ratio_tau_mu - exp_tau_mu) / exp_tau_mu
+
+    missing_mu_e   = exp_mu_e   / ratio_mu_e   if ratio_mu_e   > 0 else float("inf")
+    missing_tau_mu = exp_tau_mu / ratio_tau_mu if ratio_tau_mu > 0 else float("inf")
+
+    print("=" * 72)
+    print("VARIANT: canonical")
+    print("  Formula: m_n ~ E_(n,m) = sqrt((n+delta)^2 + (m+delta')^2)")
+    print(f"  delta = {_DELTA}, delta' = {_DELTA_PRIME}")
+    print()
+    print(f"  E_(0,1) = {e01:.8f}  [e]")
+    print(f"  E_(0,2) = {e02:.8f}  [mu]")
+    print(f"  E_(1,0) = {e10:.8f}  [tau]")
+    print()
+    print(f"  Predicted m_mu/m_e   = E_(0,2)/E_(0,1) = {ratio_mu_e:.6f}")
+    print(f"  Experiment m_mu/m_e  = {exp_mu_e:.6f}")
+    print(f"  Error: {err_mu_e * 100:.1f}%   Missing factor: {missing_mu_e:.2f}")
+    print()
+    print(f"  Predicted m_tau/m_mu = E_(1,0)/E_(0,2) = {ratio_tau_mu:.6f}")
+    print(f"  Experiment m_tau/m_mu = {exp_tau_mu:.6f}")
+    print(f"  Error: {err_tau_mu * 100:.1f}%   Missing factor: {missing_tau_mu:.2f}")
+    print()
+    print("Verdict: MISMATCH — canonical eigenvalues do not reproduce lepton")
+    print("         mass ratios.  Missing factor ~112 for m_mu/m_e.")
+    print("         The mode assignment e→(0,1), mu→(0,2), tau→(1,0) is an")
+    print("         OPEN HARD PROBLEM.  Additional mass dynamics required.")
+    return 1
+
+
+def _run_variant_candidate_integer() -> int:
+    """
+    Candidate: integer mass calibration (NOT a prediction).
+
+    Assigns n_mu = 207, n_tau = 3477 to reproduce experiment by construction.
+    These are calibration parameters, not derived from UBT geometry.
+
+    Result: NOT_A_PREDICTION — exit 1.
+    """
+    n_mu  = 207
+    n_tau = 3477
+
+    exp_mu_e   = EXP[1]
+    exp_tau_mu = EXP[2] / EXP[1]
+
+    err_mu_e   = abs(n_mu          - exp_mu_e)   / exp_mu_e
+    err_tau_mu = abs(n_tau / n_mu  - exp_tau_mu) / exp_tau_mu
+
+    print("=" * 72)
+    print("VARIANT: candidate_integer")
+    print("  Formula: m_n = n_mu * m_e  with n_mu, n_tau calibrated to experiment")
+    print()
+    print("  Calibration parameters:")
+    print(f"    n_mu  = {n_mu}   (fitted to m_mu/m_e ~ {exp_mu_e:.2f})")
+    print(f"    n_tau = {n_tau}  (fitted to m_tau/m_e ~ {EXP[2]:.2f})")
+    print(f"  → 2 extra calibration parameters beyond m_e baseline")
+    print()
+    print(f"  Predicted m_mu/m_e   = n_mu            = {n_mu}")
+    print(f"  Experiment m_mu/m_e  = {exp_mu_e:.4f}   Error: {err_mu_e * 100:.3f}%")
+    print()
+    print(f"  Predicted m_tau/m_mu = n_tau/n_mu      = {n_tau/n_mu:.4f}")
+    print(f"  Experiment m_tau/m_mu = {exp_tau_mu:.4f}   Error: {err_tau_mu * 100:.3f}%")
+    print()
+    print("Verdict: NOT_A_PREDICTION — n_mu and n_tau are calibration inputs,")
+    print("         NOT derived from UBT geometry.  This variant uses 3 total")
+    print("         calibrations (m_e, n_mu, n_tau) and violates the 1-calibration")
+    print("         rule.  NOT derived from first principles.")
+    return 1
+
+
+def _run_variant_candidate_hopf() -> int:
+    """
+    Candidate: Hopf-topology mass formula  m_n = m_e * 2^(p * n).
+
+    With p = 3/2 (Hopf fibration winding number):
+      m_mu/m_e = 2^(3/2) ≈ 2.83   (experiment: 206.77 — MISMATCH)
+      No single value of p fits both m_mu and m_tau ratios.
+
+    Result: MISMATCH — exit 1.
+    """
+    p = 1.5   # Hopf winding exponent
+
+    ratio_mu_e   = 2 ** (p * 1)
+    ratio_tau_mu = 2 ** (p * 1)   # same step under naive Hopf
+
+    exp_mu_e   = EXP[1]
+    exp_tau_mu = EXP[2] / EXP[1]
+
+    err_mu_e   = abs(ratio_mu_e   - exp_mu_e)   / exp_mu_e
+    err_tau_mu = abs(ratio_tau_mu - exp_tau_mu) / exp_tau_mu
+
+    # log-based p that would fit mu and tau separately
+    p_mu  = _math.log(exp_mu_e)   / _math.log(2)
+    p_tau = _math.log(exp_tau_mu) / _math.log(1.5)
+
+    print("=" * 72)
+    print("VARIANT: candidate_hopf")
+    print("  Formula: m_n = m_e * 2^(p * n),  p = 3/2 (Hopf winding)")
+    print()
+    print(f"  p = {p}")
+    print(f"  Predicted m_mu/m_e   = 2^(p*1) = {ratio_mu_e:.6f}")
+    print(f"  Experiment m_mu/m_e  = {exp_mu_e:.6f}")
+    print(f"  Error: {err_mu_e * 100:.1f}%")
+    print()
+    print(f"  Predicted m_tau/m_mu = 2^(p*1) = {ratio_tau_mu:.6f}")
+    print(f"  Experiment m_tau/m_mu = {exp_tau_mu:.6f}")
+    print(f"  Error: {err_tau_mu * 100:.1f}%")
+    print()
+    print(f"  p for mu  fit: log(206.77)/log(2) = {p_mu:.4f}")
+    print(f"  p for tau fit: log(16.82)/log(1.5) = {p_tau:.4f}")
+    print(f"  Inconsistency: Δp = {abs(p_mu - p_tau):.4f}  (no single p fits both)")
+    print()
+    print("Verdict: MISMATCH — Hopf formula with p=3/2 gives ratio ~2.83,")
+    print("         not 207.  No single exponent p reproduces both ratios.")
+    return 1
+
+
+def _run_variants_all() -> int:
+    """Run canonical, candidate_integer, candidate_hopf; print OVERALL summary."""
+    results = []
+    for fn in [_run_variant_canonical,
+               _run_variant_candidate_integer,
+               _run_variant_candidate_hopf]:
+        results.append(fn())
+        print()
+
+    print("=" * 72)
+    print("OVERALL: No variant reproduces lepton mass ratios under the")
+    print("         1-calibration rule.  The psi-mode mass generation")
+    print("         mechanism is an OPEN HARD PROBLEM.")
+    any_ok = all(r == 0 for r in results)
+    return 0 if any_ok else 1
+
 
 def _report(result: dict) -> bool:
     """Print a single mechanism report; return True if ratios match within 1%."""
@@ -334,14 +503,31 @@ def main():
     parser = argparse.ArgumentParser(
         description="UBT psi-mode lepton mass ratio tool")
     parser.add_argument(
-        "--mechanism", default="all",
+        "--mechanism", default=None,
         choices=["kk", "A", "B", "C", "all"],
-        help="Mass mechanism to evaluate (default: all)")
+        help="Mass mechanism to evaluate (legacy interface)")
+    parser.add_argument(
+        "--variant", default=None,
+        choices=["canonical", "candidate_integer", "candidate_hopf", "all"],
+        help="Forensic-audit variant to run (default: canonical)")
     parser.add_argument(
         "--R_psi", type=float, default=R_PSI_DEFAULT,
         help=f"psi-circle radius in metres (default: Compton wavelength = {R_PSI_DEFAULT:.4e} m)")
     args = parser.parse_args()
 
+    # If --variant is requested (or neither flag given), use the variant interface.
+    if args.mechanism is None:
+        variant = args.variant if args.variant is not None else "canonical"
+        if variant == "canonical":
+            return _run_variant_canonical()
+        elif variant == "candidate_integer":
+            return _run_variant_candidate_integer()
+        elif variant == "candidate_hopf":
+            return _run_variant_candidate_hopf()
+        elif variant == "all":
+            return _run_variants_all()
+
+    # ── Legacy --mechanism interface ──────────────────────────────────────────
     R = args.R_psi
     mechs = (["kk", "A", "B", "C"] if args.mechanism == "all"
              else [args.mechanism])
