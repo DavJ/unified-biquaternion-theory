@@ -1,0 +1,254 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Closure Step 2: $\Theta$-Only Emergent Closure\\
+         Recovering Einstein Equations from a Pure-$\Theta$ Action}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The metric+$\Theta$ action $S_{\text{total}}[g,\Theta]$ already gives a Level-3
+  variational derivation of $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.  We now address the
+  stronger claim: that substituting the emergent metric $g=g[\Theta]$ into
+  $S_{\text{total}}$ and varying with respect to $\Theta$ alone yields the same
+  Einstein equations without new independent constraints.  We show this holds up
+  to the on-shell Euler--Lagrange equations of $\Theta$, and we identify the
+  precise sense in which the $\Theta$-only formulation is equivalent.
+  \end{abstract}
+\fi
+
+\section{$\Theta$-Only Emergent Closure}
+\label{sec:theta_only_closure}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Purpose of This Step]
+\textbf{Closing the Level-3b gap identified in the GR Recovery Audit.}
+
+\medskip
+\noindent\textbf{Level-3a (proved in T\_munu derivation):}
+Vary $S_{\text{total}}[g,\Theta]$ with $g^{\mu\nu}$ and $\Theta$ independently.
+The metric variation gives $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
+
+\medskip
+\noindent\textbf{Level-3b (this step):}
+Substitute $g_{\mu\nu}=g_{\mu\nu}[\Theta]$ (from step 1, eq.~\eqref{eq:g_from_Theta})
+into $S_{\text{total}}$, obtaining the pure-$\Theta$ functional
+$\hat{S}[\Theta]:=S_{\text{total}}[g[\Theta],\Theta]$.  Show that
+$\delta\hat{S}/\delta\Theta=0$ is equivalent to the Einstein equations.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Setup: Total Action and Emergent Metric}
+
+The total action (Level-3a, Step 3 of the T$_{\mu\nu}$ derivation chain) is
+\begin{equation}
+  S_{\text{total}}[g,\Theta]
+  \;=\; S_{\text{EH}}[g] + S_\Theta[g,\Theta],
+  \label{eq:S_total}
+\end{equation}
+with Einstein--Hilbert and matter parts
+\begin{align}
+  S_{\text{EH}}[g]
+  &= \frac{1}{16\pi G}\int d^4x\sqrt{-g}\,R[g], \\
+  S_\Theta[g,\Theta]
+  &= \int d^4x\sqrt{-g}\,\mathcal{L}_\Theta(g,\Theta,\partial\Theta),
+\end{align}
+where $\mathcal{L}_\Theta$ is the biquaternionic matter Lagrangian.
+
+The emergent metric from Step~1 (GR\_closure/step1\_metric\_unification.tex) is
+\begin{equation}
+  g_{\mu\nu}[\Theta](x)
+  \;:=\; \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}[\Theta]}\right],
+  \label{eq:g_from_Theta}
+\end{equation}
+where $\mathcal{N}[\Theta]$ is the normalization scalar.
+
+% -----------------------------------------------------------------------
+\subsection{The Pure-$\Theta$ Functional}
+
+\begin{definition}
+Define the \emph{pure-$\Theta$ action functional}
+\begin{equation}
+  \hat{S}[\Theta]
+  \;:=\; S_{\text{total}}\bigl[g[\Theta],\,\Theta\bigr].
+  \label{eq:S_hat}
+\end{equation}
+\end{definition}
+
+The stationary-point condition for $\hat{S}$ is obtained by taking the total variation
+with respect to $\Theta$ at fixed spacetime points:
+\begin{equation}
+  \frac{\delta\hat{S}}{\delta\Theta}
+  = \frac{\delta S_{\text{total}}}{\delta\Theta}\bigg|_{g=g[\Theta]}
+  + \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g=g[\Theta]}
+    \cdot\frac{\delta g^{\mu\nu}[\Theta]}{\delta\Theta}.
+  \label{eq:chain_rule}
+\end{equation}
+This is the \emph{chain rule} for the functional derivative.
+
+% -----------------------------------------------------------------------
+\subsection{Decomposition of the Variation}
+
+\textbf{Term A:} The first term in \eqref{eq:chain_rule} is the variation of the
+action at \emph{fixed} $g$:
+\begin{equation}
+  \mathrm{Term\,A} \;=\; \frac{\delta S_{\text{total}}}{\delta\Theta}\bigg|_{g \text{ fixed}},
+\end{equation}
+which gives the biquaternionic Euler--Lagrange equation for $\Theta$:
+\begin{equation}
+  \nabla^\dagger\nabla\Theta = \kappa\,\mathcal{T}(q,\tau).
+  \label{eq:EL_Theta}
+\end{equation}
+
+\textbf{Term B:} The second term involves the metric variation contracted with the
+Jacobian $\delta g^{\mu\nu}/\delta\Theta$.  By definition,
+\begin{equation}
+  \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}} = -\frac{\sqrt{-g}}{2}\,T^\Theta_{\mu\nu},
+  \label{eq:metric_variation}
+\end{equation}
+where $T^\Theta_{\mu\nu}$ is the Hilbert stress-energy tensor of $\Theta$ and we have
+used the Einstein--Hilbert result $\delta S_{\text{EH}}/\delta g^{\mu\nu}
+= (\sqrt{-g}/16\pi G)\,G_{\mu\nu}$ (contributing the gravity part) plus the matter
+variation (contributing $-(\sqrt{-g}/2)\,T^\Theta_{\mu\nu}$).  Setting the total metric
+variation to zero at $g=g[\Theta]$ gives the \emph{metric equation}:
+\begin{equation}
+  G_{\mu\nu}[g[\Theta]] \;=\; 8\pi G\,T^\Theta_{\mu\nu}[g[\Theta],\Theta].
+  \label{eq:metric_eq_on_shell}
+\end{equation}
+
+% -----------------------------------------------------------------------
+\subsection{Equivalence Theorem}
+
+\begin{theorem}[$\Theta$-only closure]
+\label{thm:theta_only}
+Let $\Theta_*$ be a solution of the biquaternionic Euler--Lagrange equation
+\eqref{eq:EL_Theta} for $g$ fixed at $g[\Theta_*]$.  Then:
+\begin{enumerate}
+  \item $\delta\hat{S}[\Theta_*]/\delta\Theta = 0$ if and only if the metric equation
+        \eqref{eq:metric_eq_on_shell} holds at $\Theta_*$.
+  \item The metric equation \eqref{eq:metric_eq_on_shell} is identical to the
+        Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$ evaluated on
+        $g=g[\Theta_*]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Part 1.}
+On the solution locus where $\Theta$ satisfies \eqref{eq:EL_Theta}, Term~A vanishes
+identically.  Hence $\delta\hat{S}/\delta\Theta = 0$ reduces to
+\[
+  \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g[\Theta_*]}
+  \cdot\frac{\delta g^{\mu\nu}[\Theta]}{\delta\Theta}\bigg|_{\Theta_*} = 0.
+\]
+The Jacobian $\delta g^{\mu\nu}/\delta\Theta$ is generically a non-zero functional
+(it is essentially a derivative operator applied to the metric definition
+\eqref{eq:g_from_Theta}).  Therefore, assuming this Jacobian has no kernel direction
+at $\Theta_*$ (i.e.\ $g[\Theta]$ is locally injective around $\Theta_*$), the
+vanishing of the contracted expression implies
+\[
+  \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g[\Theta_*]} = 0,
+\]
+which is precisely \eqref{eq:metric_eq_on_shell}.
+
+\textbf{Part 2.}
+Equation \eqref{eq:metric_eq_on_shell} reads
+$G_{\mu\nu}[g[\Theta_*]] = 8\pi G\,T^\Theta_{\mu\nu}[g[\Theta_*],\Theta_*]$.
+With $g_{\mu\nu} := g_{\mu\nu}[\Theta_*]$ and $T_{\mu\nu} := T^\Theta_{\mu\nu}$,
+this is exactly the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Status of the Claim and Remaining Caveat}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Precise Statement]
+\textbf{Theorem~\ref{thm:theta_only} establishes:}
+On-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation), the
+$\Theta$-only variational equation $\delta\hat{S}/\delta\Theta=0$ is equivalent to
+the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$ evaluated on the
+emergent metric $g=g[\Theta]$.
+
+\medskip
+\noindent\textbf{Remaining caveat:}
+The argument uses the non-degeneracy of the Jacobian $\delta g^{\mu\nu}/\delta\Theta$
+(injectivity of the map $\Theta\mapsto g[\Theta]$).  This is a genericity condition:
+it holds for generic $\Theta$ but could in principle fail at degenerate configurations
+(e.g.\ $\partial_\mu\Theta=0$).  A full off-shell proof for all field configurations
+would require bounding the kernel of this Jacobian globally; this is left for future work.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Absence of New Independent Constraints}
+
+A concern raised in the audit is whether substituting $g=g[\Theta]$ might generate
+additional constraint equations beyond the Einstein equations.  We address this here.
+
+\begin{proposition}[No new constraints]
+\label{prop:no_new_constraints}
+The chain-rule equation \eqref{eq:chain_rule} does not introduce new field equations
+beyond \eqref{eq:EL_Theta} and \eqref{eq:metric_eq_on_shell}.
+\end{proposition}
+
+\begin{proof}
+The chain rule \eqref{eq:chain_rule} expresses $\delta\hat{S}/\delta\Theta$ as a
+\emph{sum} of two contributions, not as a separate equation.  Setting this sum to
+zero imposes a single equation on $\Theta$.  When $\Theta$ satisfies Term~A~$=0$
+(the $\Theta$ equation of motion), the remaining condition is Term~B~$=0$, which
+is the metric equation.  These two equations form a \emph{consistent system}:
+together they are the Euler--Lagrange equations of the metric+$\Theta$ formulation,
+so the $\Theta$-only formulation produces \emph{at most} the same number of equations.
+No new constraints arise because no new independent functional derivatives have been
+taken; the chain rule merely reorganises existing equations.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Summary}
+
+\begin{enumerate}
+  \item \textbf{Pure-$\Theta$ action defined.}
+        $\hat{S}[\Theta]:=S_{\text{total}}[g[\Theta],\Theta]$ is the functionally well-defined
+        $\Theta$-only action obtained by substituting the emergent metric.
+  \item \textbf{Chain rule decomposition.}
+        $\delta\hat{S}/\delta\Theta = \text{Term A}(\text{EL equation}) + \text{Term B}(\text{Einstein eq.})$.
+  \item \textbf{On-shell equivalence.}
+        At solutions of the $\Theta$ equation of motion, $\delta\hat{S}/\delta\Theta=0$
+        is equivalent to the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
+  \item \textbf{No new constraints.}
+        The substitution does not generate additional independent field equations.
+  \item \textbf{Injectivity caveat.}
+        The argument requires the map $\Theta\mapsto g[\Theta]$ to be locally injective;
+        this holds generically but is not a global theorem.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi
