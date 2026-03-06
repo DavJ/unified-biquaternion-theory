@@ -76,3 +76,21 @@ jobs:
           echo ""
           echo "Failures indicate theory regression or symbol collision."
           echo "================================================"
+
+      - name: Generate theory status map
+        run: |
+          python tools/generate_theory_map.py
+          echo "Theory map generated."
+
+      - name: Commit updated theory map
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "UBT CI"
+          git config user.email "ci@ubt"
+          git add docs/THEORY_STATUS.md docs/THEORY_STATUS_SUMMARY.md
+          if git diff --staged --quiet; then
+            echo "No changes to theory map."
+          else
+            git commit -m "ci: auto-update theory status map [skip ci]"
+            git push || echo "⚠️ git push failed (non-fatal: branch may be protected or read-only in PR context)"
+          fi
