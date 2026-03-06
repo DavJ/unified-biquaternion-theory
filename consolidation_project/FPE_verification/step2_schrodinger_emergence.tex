@@ -1,0 +1,279 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{bbm}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{distinctionbox}
+
+  \title{\textbf{Step 2: Schrödinger Equation Emergence from Complex Time}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We verify the claim that the Schrödinger equation emerges from the biquaternionic
+  field equation $\partial_\tau\Theta = \Box\Theta$ when $\tau = t + i\psi$ is complex
+  time and we project onto the imaginary-$\psi$ evolution.
+  \textbf{Verdict: SKETCH.}
+  The structural emergence is correct: the imaginary part of the complex-time equation
+  gives a heat/Schrödinger-type structure.  However, the identification of the diffusion
+  coefficient $\mathcal{D} = \hbar/(2m)$ and the Born rule $|\Theta|^2 \sim \text{probability}$
+  require additional physical postulates beyond the analytic structure of $\tau$.
+  We carefully preserve the distinction between UBT $\psi$ and the standard Wick rotation.
+  \end{abstract}
+\fi
+
+\section{Step 2: Schrödinger Equation Emergence from Complex Time}
+\label{sec:schrodinger_emergence}
+
+\subsection{Critical Distinction: UBT $\psi$ vs.\ Wick Rotation}
+
+\begin{distinctionbox}
+\textbf{Important}: The imaginary-time component $\psi$ in UBT is \emph{NOT} a Wick rotation.
+
+\medskip
+\textbf{Wick rotation}: $t \to -it_E$ is a formal analytic continuation of the time
+coordinate used to convert Minkowski path integrals to Euclidean ones.
+$t_E$ is not a physical parameter.
+
+\medskip
+\textbf{UBT $\psi$}: $\psi \in \mathbb{R}$ is a \emph{physical} degree of freedom, the
+scalar imaginary component of biquaternion time $T_B = t + i\psi + j\chi + k\xi$.
+All components $t, \psi, \chi, \xi$ are real physical parameters with their own dynamics
+(see \texttt{THEORY/math/fields/biquaternion\_time.tex}).
+
+\medskip
+The Schrödinger structure does \emph{not} require Wick-rotating time.
+It emerges from the same equation evaluated along the $\psi$-direction.
+\end{distinctionbox}
+
+\subsection{The Field Equation in Complex Time}
+
+In the complex-time limit $\chi, \xi \to 0$ (valid when vector components are negligible),
+$T_B \to \tau = t + i\psi$, and the UBT master field equation reduces to:
+\begin{equation}
+  \partial_\tau \Theta(q, \tau) = \Box\,\Theta(q, \tau),
+  \label{eq:complex_time_eq}
+\end{equation}
+where $\Box = \partial_\mu \partial^\mu$ is the d'Alembertian in the spatial directions.
+
+\subsection{Separation into Real and Imaginary Parts}
+
+Write $\tau = t + i\psi$ and use the Wirtinger-type derivative:
+\begin{equation}
+  \partial_\tau = \frac{1}{2}\left(\partial_t - i\,\partial_\psi\right).
+\end{equation}
+
+Equation~\eqref{eq:complex_time_eq} becomes:
+\begin{equation}
+  \frac{1}{2}\left(\partial_t - i\,\partial_\psi\right)\Theta = \Box\,\Theta.
+  \label{eq:wirtinger_form}
+\end{equation}
+
+Decompose $\Theta = \Theta_R + i\,\Theta_I$ with $\Theta_R, \Theta_I$ real-valued.
+Taking real and imaginary parts of \eqref{eq:wirtinger_form}:
+
+\begin{align}
+  \textbf{Real part:} \quad
+  \frac{1}{2}\,\partial_t \Theta_R + \frac{1}{2}\,\partial_\psi \Theta_I
+  &= \Box\,\Theta_R,
+  \label{eq:real_part}\\
+  \textbf{Imaginary part:} \quad
+  \frac{1}{2}\,\partial_t \Theta_I - \frac{1}{2}\,\partial_\psi \Theta_R
+  &= \Box\,\Theta_I.
+  \label{eq:imag_part}
+\end{align}
+
+\subsection{Projection onto Real-Time Evolution ($\psi = 0$)}
+
+When we restrict to real-time evolution, setting $\psi = 0$ and $\partial_\psi = 0$, equations
+\eqref{eq:real_part}--\eqref{eq:imag_part} decouple:
+\begin{align}
+  \partial_t \Theta_R &= 2\,\Box\,\Theta_R, \label{eq:wave_R}\\
+  \partial_t \Theta_I &= 2\,\Box\,\Theta_I. \label{eq:wave_I}
+\end{align}
+Both components satisfy the \textbf{wave equation} (Klein--Gordon with $m=0$).
+This is the relativistic/real-time sector: $\Box\Theta = 0$.
+
+\subsection{Projection onto Imaginary-Time Evolution}
+
+Now consider evolution in the $\psi$-direction with $\partial_t = 0$ (stationary in $t$):
+\begin{align}
+  \partial_\psi \Theta_I &= -2\,\Box\,\Theta_R, \label{eq:psi_evol_R}\\
+  -\partial_\psi \Theta_R &= -2\,\Box\,\Theta_I. \label{eq:psi_evol_I}
+\end{align}
+
+For a single complex field $\Phi = \Theta_R + i\Theta_I$, combining yields:
+\begin{equation}
+  \partial_\psi \Phi = 2i\,\Box\,\Phi = -2i\,\nabla^2\Phi + 2i\,\partial_t^2\Phi.
+\end{equation}
+
+In the non-relativistic limit ($\partial_t^2\Phi \ll \nabla^2\Phi$), or in the spatial sector alone:
+\begin{equation}
+  \boxed{\partial_\psi \Phi = -2i\,\nabla^2\Phi.}
+  \label{eq:schrodinger_structure}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Established}: Equation~\eqref{eq:schrodinger_structure} has the form of the
+\emph{free Schrödinger equation} with $\psi$ playing the role of time:
+\[
+  i\,\partial_\psi \Phi = 2\,\nabla^2\Phi.
+\]
+This is the \textbf{heat/Schrödinger structure} emerging from the imaginary direction
+of complex time.  No Wick rotation is required; the structure is intrinsic to
+$\partial_\tau\Theta = \Box\Theta$ with $\tau = t + i\psi$.
+\end{resultbox}
+
+\subsection{Identification with the Physical Schrödinger Equation}
+
+The standard free-particle Schrödinger equation is:
+\begin{equation}
+  i\hbar\,\partial_t\psi_{\rm QM} = -\frac{\hbar^2}{2m}\,\nabla^2\psi_{\rm QM}.
+\end{equation}
+
+Comparing with \eqref{eq:schrodinger_structure} under the identification $\psi \leftrightarrow t_{\rm QM}$
+and $\Phi \leftrightarrow \psi_{\rm QM}$ requires:
+\begin{equation}
+  \frac{\hbar^2}{2m} = 2 \cdot (\text{dimensional factor}).
+  \label{eq:diffusion_identification}
+\end{equation}
+
+\begin{gapbox}
+\textbf{Gap S1 — Diffusion Coefficient Not Derived}:
+The UBT parameter $\psi$ has dimensions.  To obtain $\hbar/(2m)$ from equation
+\eqref{eq:schrodinger_structure}, one must identify:
+\[
+  \mathcal{D}_{\rm eff} = \frac{\hbar}{2m}
+\]
+from first principles.  In \texttt{appendix\_FORMAL\_qm\_gr\_unification.tex}, this is stated
+as an assumption (``Proposition 1, condition 2'').  An independent derivation of
+$\mathcal{D}_{\rm eff}$ from the UBT action $S[\Theta]$ is \textbf{missing}.
+
+\textbf{Status}: OPEN sub-task.
+\end{gapbox}
+
+\subsection{What is the Wavefunction?}
+
+The field $\Theta$ is a biquaternion, not a complex scalar.  The emergence of
+$\psi_{\rm QM}$ requires a projection.
+
+\begin{proposition}[Projection to Complex Wavefunction]
+In the complex-time limit, the complex scalar projection of $\Theta$ is:
+\[
+  \psi_{\rm QM}(q, t) = \int_{\mathbb{R}} d\psi \; w(\psi)\;\Theta_0(q, \psi; t),
+\]
+where $\Theta_0$ is the scalar (quaternion-$\mathbf{1}$) component of $\Theta$ and
+$w(\psi)$ is a weight function.
+\end{proposition}
+
+The proof follows from the real-time projection defined in
+\texttt{appendix\_FORMAL\_qm\_gr\_unification.tex}.
+
+\subsection{Born Rule: Does $|\Theta|^2$ Emerge as Probability?}
+
+\begin{gapbox}
+\textbf{Gap S2 — Born Rule Requires Additional Postulate}:
+The Fokker--Planck continuity equation in Appendix~G.5 shows that $\Theta$ satisfies
+a conservation law $\partial_T\Theta + \nabla_Q\cdot J_Q = 0$, which is consistent with
+interpreting $|\Theta|^2$ as a density.
+
+However, \textbf{the Born rule} $P(x) = |\Theta_{\rm proj}|^2$ is not derived from the formalism.
+It requires an additional postulate connecting $\Theta$ to observed frequencies.
+This is analogous to the measurement problem in standard QM.
+
+\textbf{What does follow}: The FPE structure ensures probability is \emph{conserved}.
+The specific form of the probability density is not determined without further postulates.
+\end{gapbox}
+
+\subsection{Summary of What Emerges vs.\ What Requires Postulates}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Status} & \textbf{Source} \\
+\hline
+Heat/Schrödinger structure from Im$(\partial_\tau\Theta = \Box\Theta)$
+  & \textbf{Proved} & \eqref{eq:schrodinger_structure} \\
+$\psi \ne$ Wick rotation (physical parameter)
+  & \textbf{Proved} & \texttt{biquaternion\_time.tex} \\
+Diffusion coefficient $\mathcal{D} = \hbar/(2m)$
+  & \textbf{Assumed} & Gap S1 \\
+Born rule $|\Theta|^2 = $ probability density
+  & \textbf{Postulate} & Gap S2 \\
+Potential term $V(x)$ in Schrödinger eq.
+  & \textbf{Assumed} & Self-consistent field \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Verdict}
+
+\begin{center}
+\large\textbf{VERDICT: SKETCH}
+\end{center}
+
+The \emph{structural} emergence of the Schrödinger equation is proved:
+\[
+  \partial_\tau\Theta = \Box\Theta \text{ with } \tau = t + i\psi
+  \;\Longrightarrow\;
+  \partial_\psi\Phi = -2i\nabla^2\Phi \quad \text{(Schrödinger structure)}.
+\]
+This is a significant result: QM structure is \emph{not externally imposed} but
+follows from the analytic structure of complex time.
+
+However, the full identification with physical quantum mechanics requires:
+\begin{enumerate}
+  \item Independent derivation of $\mathcal{D}_{\rm eff} = \hbar/(2m)$ (Gap S1).
+  \item Physical postulate for Born rule (Gap S2) — this may be irreducible
+        (measurement problem exists in standard QM as well).
+\end{enumerate}
+
+\textbf{Overclaiming warning}: ``Schrödinger structure emerges'' $\neq$ ``QM is fully derived.''
+The wave equation structure and the $i\partial_\psi$ form are derived.
+The quantum probability interpretation requires additional input.
+
+\noindent\textbf{Source files checked}:
+\begin{itemize}
+  \item \texttt{consolidation\_project/appendix\_FORMAL\_qm\_gr\_unification.tex}
+  \item \texttt{THEORY/math/fields/biquaternion\_time.tex}
+\end{itemize}
+\noindent\textbf{Date}: 2026-03-06\\
+\textbf{Author}: David Jaroš
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi
