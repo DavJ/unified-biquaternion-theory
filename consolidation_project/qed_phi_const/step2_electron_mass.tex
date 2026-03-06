@@ -1,0 +1,169 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Step 2: Electron Mass from Yukawa Coupling at $\varphi = \mathrm{const}$}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We derive the electron mass from the Yukawa-type coupling between the biquaternionic
+  scalar background $\varphi = v = \mathrm{const}$ and the spinor field $\psi$.
+  The coupling $\mathcal{L}_Y = y\,\varphi\,\bar\psi\psi$ gives $m_e = y\cdot v$ in exact
+  analogy with the Standard Model Higgs mechanism.  We discuss which aspects are derived
+  from UBT structure and which remain as free parameters at the current stage.
+  \textbf{Verdict: SKETCH — structural derivation complete; $y$ and $v$ not yet derived
+  from first principles.}
+  \end{abstract}
+\fi
+
+\section{Step 2: Electron Mass from Yukawa Coupling at $\varphi = \mathrm{const}$}
+\label{sec:electron_mass}
+
+\textbf{Task reference:} UBT\_v29\_task7, step2\_electron\_mass.
+\textbf{Date:} 2026-03-06.
+\textbf{Verdict: SKETCH.}
+
+\subsection{Dirac Structure in UBT}
+
+From Step~3 of the FPE verification chain
+(\texttt{consolidation\_project/FPE\_verification/step3\_dirac\_emergence.tex}),
+the biquaternion algebra
+$\mathbb{B} = \mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$
+provides a natural representation of the Dirac gamma matrices:
+\begin{equation}
+  \gamma^\mu \;\in\; \mathbb{B}\otimes\mathbb{B},
+  \qquad \{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}.
+\end{equation}
+The spinor field $\psi(x)$ emerges as the restriction of $\Theta$ to the spinorial
+subspace of $\mathbb{B}$.
+
+\subsection{Yukawa Coupling from the Action}
+
+The UBT action $S[\Theta]$ contains an interaction term between the charged spinorial
+component and the neutral scalar zero-mode $\theta_0$ of $\Theta$ (see Appendix AA,
+eq.~(A.7)):
+\begin{equation}
+  \mathcal{L}_Y = y\,\theta_0\,\bar\psi\psi,
+\end{equation}
+where $y$ is the dimensionless Yukawa coupling constant.
+
+\begin{gapbox}
+\textbf{Gap Y1 (open):} The Yukawa coupling $y$ is not yet derived from first principles
+within UBT.  It depends on the projection of the biquaternionic interaction vertex onto
+the spinorial subspace.  A complete derivation would require evaluating the matrix element
+$\langle\mathrm{spinor}|\mathcal{L}_\mathrm{int}|\mathrm{scalar}\otimes\mathrm{spinor}\rangle$
+directly from $S[\Theta]$.
+\end{gapbox}
+
+\subsection{Mass Generation}
+
+For $\theta_0 = \langle\theta_0\rangle = v = \mathrm{const}$ (the constant scalar background
+from the problem statement), the Yukawa term becomes a mass term:
+\begin{equation}
+  \mathcal{L}_Y\big|_{\varphi=v} = (y\cdot v)\,\bar\psi\psi \;\equiv\; m_e\,\bar\psi\psi,
+\end{equation}
+with
+\begin{equation}
+  \boxed{m_e = y\cdot v.}
+\end{equation}
+This is structurally identical to the Standard Model Higgs mechanism with $v$ playing the
+role of the Higgs VEV.
+
+\subsection{What Is $v$ in UBT?}
+
+The scalar VEV $v$ is determined by the vacuum structure of $\Theta$ on the $\psi$-circle.
+The $\psi$-zero-mode is the constant mode $e^{i\cdot0\cdot\psi/R_\psi} = 1$; its
+coefficient $v$ is set by minimising the effective potential on the $\psi$-circle.
+
+At one-loop level (see Appendix CT for the two-loop baseline), the effective potential
+for $\theta_0$ reads schematically:
+\begin{equation}
+  V_\mathrm{eff}(\theta_0)
+  = -\mu^2|\theta_0|^2 + \lambda|\theta_0|^4 + \cdots,
+\end{equation}
+with $\mu^2, \lambda$ determined by loop corrections from the charged sector.  The
+minimum at $|\theta_0| = v = \mu/\sqrt{2\lambda}$ sets the scale of $v$.
+
+\begin{gapbox}
+\textbf{Gap Y2 (open):} The parameters $\mu$ and $\lambda$ in $V_\mathrm{eff}(\theta_0)$
+are not yet computed from $S[\Theta]$ without external input.  In particular:
+\begin{itemize}
+  \item $\mu^2$ requires a mass-squared parameter in the $\psi$-sector action;
+  \item $\lambda$ arises from the $|\theta_0|^4$ self-interaction vertex.
+\end{itemize}
+Both are in principle determined by the topology of the $\psi$-circle (radius $R_\psi$)
+and the biquaternionic geometry, but the explicit computation is an open task.
+\end{gapbox}
+
+\subsection{Lepton Mass Ratios}
+
+If the three lepton generations are identified with the $\psi$-modes $\Theta_0, \Theta_1,
+\Theta_2$ (see \texttt{research\_tracks/three\_generations/}), then the mass ratios
+$m_e : m_\mu : m_\tau$ follow from the Yukawa couplings of each mode:
+\begin{equation}
+  m_\ell = y_\ell \cdot v,
+  \qquad \ell = e, \mu, \tau.
+\end{equation}
+Whether $y_\ell$ can be derived from the eigenvalue spectrum of the Hecke operators
+(the Hecke conjecture, see \texttt{research\_tracks/three\_generations/step6\_hecke\_matches.tex})
+is an open question classified as \textbf{Supported by numerical evidence}.
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Claim & Electron mass $m_e = y\cdot v$ from Yukawa at $\varphi = \mathrm{const}$ \\
+Status & \textbf{SKETCH} \\
+Structural mechanism & Identical to SM Higgs; natural in $\mathbb{C}\otimes\mathbb{H}$ \\
+Gap Y1 & Yukawa coupling $y$ not yet derived from $S[\Theta]$ \\
+Gap Y2 & VEV $v$ not yet computed from $V_\mathrm{eff}$ without input \\
+Layer & [L1] — one-loop effective potential \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Conclusion (Step 2, SKETCH):}
+The electron mass $m_e = y\cdot v$ arises from the Yukawa coupling of the spinor field
+to the constant scalar background $\varphi = v$.  The mechanism is structurally identical
+to the SM Higgs mechanism and is naturally realised within $\mathbb{C}\otimes\mathbb{H}$.
+Two gaps remain: (Y1) derivation of $y$ from $S[\Theta]$, and (Y2) derivation of $v$
+from the $\psi$-circle effective potential.  Neither gap affects the validity of Steps 1,
+3, or 4 at the leading-order level.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+  \end{document}
+\fi

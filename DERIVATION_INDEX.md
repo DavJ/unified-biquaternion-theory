@@ -142,4 +142,39 @@ Status labels:
 
 ---
 
+## QED Reproducibility at φ = const (Track: CORE)
+
+*Added 2026-03-06. Task: UBT\_v29\_task7\_qed\_phi\_const.*
+*Source: `consolidation_project/qed_phi_const/`. Script: `tools/verify_qed_phi_const.py`.*
+
+This section tracks the stronger QED constraint: UBT must reproduce standard QED not
+only at φ=0 (vacuum limit, previously verified) but for any constant scalar background
+φ = const ≠ 0 (cosmological background, Higgs-vev analog).
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| U(1)\_EM unbroken at φ=const | **Proven** [L0] | `consolidation_project/qed_phi_const/step1_u1_protection.tex` | q\_φ=0 (neutral scalar); m²\_γ=0 exact; no Higgs mechanism for EM |
+| Electron mass m\_e=y·v at φ=const | **Sketch** [L1] | `consolidation_project/qed_phi_const/step2_electron_mass.tex` | Structural: identical to SM Higgs; Gaps Y1 (derive y) and Y2 (derive v) open |
+| δB(φ)=0 at one loop — α(μ) running unchanged | **Proven** [L1] | `consolidation_project/qed_phi_const/step3_beta_function.tex` | Outcome A: UV divergence mass-independent; φ-loop absent (q\_φ=0); standard QED running exact |
+| Schwinger term a\_e=α/(2π) at φ=const | **Proven** [L1] | `consolidation_project/qed_phi_const/step4_schwinger_term.tex` | Massless photon (Step 1) + Dirac vertex (Step 2) → identical 1-loop diagram; φ-correction ~10⁻¹⁶ (unobservable) |
+| Lamb shift 1057.8 MHz at φ=const | **Sketch** [L1] | `consolidation_project/qed_phi_const/step5_lamb_shift.tex` | Structural: reduction to Steps 1–4 complete; explicit UBT path-integral computation lacking (Gap L1) |
+| QED reproducibility summary | **Substantially Proved** [L1] | `consolidation_project/qed_phi_const/step6_qed_summary.tex` | 3 proved + 2 sketch; minimum criterion (U(1)\_EM unbroken) met; script passes all checks |
+
+### Open Sub-Tasks (QED φ=const Gaps)
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| Y1 | Derive Yukawa coupling y from S[Θ] | HIGH |
+| Y2 | Derive VEV v from V\_eff(θ₀) on ψ-circle | HIGH |
+| L1 | Explicit UBT path-integral Lamb-shift computation at φ=const | MEDIUM |
+
+### UBT Predictions from φ-Background
+
+| Prediction | Value | Observable | Notes |
+|------------|-------|-----------|-------|
+| P-QED-1 | δα/α ~ 10⁻²¹ at 2-loop | α running | Spatial variation of α in cosmological φ-background |
+| P-QED-2 | δa\_e ~ 10⁻¹⁶ | electron g-2 | Below current sensitivity ~10⁻¹³ |
+
+---
+
 *Last updated: 2026-03-06. See STATUS_ALPHA.md, docs/PROOFKIT_ALPHA.md for details.*
