@@ -1,0 +1,190 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Electron Mass --- Step 3: Modular Period Approach}\\
+         \large Can the Period of a Modular Form Fix $m_e$?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We explore whether the electron mass $m_e$ is related to the period
+  $\Omega(f)$ of the Hecke newform $f_1$ encoding the electron generation.
+  Periods of modular forms are transcendental but computable numbers that
+  encode the arithmetic of the modular curve.  We test: is
+  $m_e = C\,\Omega(f_1)$ for some natural constant $C$ with a UBT
+  interpretation?  We find that this approach requires a dimensional
+  bridge between the period (a length in modular space) and $m_e$
+  (a mass), which is not present in the current UBT framework.
+  Gap~Y2 remains open.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Modular Periods as Transcendental Constants}
+\label{sec:periods}
+%──────────────────────────────────────────────────────────────────────────────
+
+For a weight-2 newform $f \in S_2(\Gamma_0(N))$ with Fourier expansion
+$f(\tau) = \sum_{n\geq 1} a_n\,q^n$ ($q = e^{2\pi i\tau}$), the
+\emph{period lattice} is spanned by:
+\begin{equation}
+  \Omega^+(f) \;=\; \int_0^{i\infty} f(\tau)\,d\tau, \qquad
+  \Omega^-(f) \;=\; \int_0^{1/2} f(\tau)\,d\tau.
+\end{equation}
+The real period $\Omega^+(f) = -i\,L(1,f)$ is computable from the
+$L$-function.
+
+\begin{insightbox}
+\textbf{Connection to the Hecke conjecture:}
+If $f_1$ is the electron-generation form (Step~1) and the Hecke
+conjecture holds, then $\Omega^+(f_1)$ is a natural modular-arithmetic
+quantity associated with $m_e$.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Dimensional Analysis}
+\label{sec:dimensional}
+%──────────────────────────────────────────────────────────────────────────────
+
+The period $\Omega^+(f_1)$ is a dimensionless complex number (in the
+convention $d\tau = i\,dt$, it has dimensions of area in $\tau$-space,
+but in the standard normalisation it is a pure number).  The electron
+mass $m_e$ has dimensions of energy.
+
+To relate them, one needs a dimensional bridge:
+\begin{equation}
+  m_e c^2 \;=\; \frac{\hbar\,c}{R_\psi} \times F(\Omega^+(f_1)),
+\end{equation}
+where $F$ is some function and $R_\psi$ provides the dimensional factor.
+But $R_\psi$ is calibrated to $m_e$, making this circular.
+
+An alternative: use the Planck scale as the bridge:
+\begin{equation}
+  m_e \;=\; m_P \times F(\Omega^+(f_1)),
+\end{equation}
+where $m_P = \sqrt{\hbar c/G} \approx 2.18 \times 10^{-8}\;\mathrm{kg}$.
+Then $m_e/m_P \approx 4.19 \times 10^{-23}$.  This requires
+$F(\Omega^+(f_1)) \approx 4 \times 10^{-23}$, an extremely small number
+that cannot be a simple modular period value.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Test}
+\label{sec:numerical}
+%──────────────────────────────────────────────────────────────────────────────
+
+For the LMFDB label \texttt{38.2.a.a} (pending David's SageMath run),
+the numerical value $L(1,f_1) \approx O(1)$ gives:
+\begin{equation}
+  |\Omega^+(f_1)| = |L(1,f_1)| \;\sim\; O(1).
+\end{equation}
+To give $m_e = 0.511\;\mathrm{MeV}$, the constant $C$ must carry the
+mass dimension:
+\begin{equation}
+  m_e \;=\; C \;=\; \frac{\hbar}{c\,R_\psi} \times O(1),
+\end{equation}
+which is again calibrated to $R_\psi \propto 1/m_e$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{A Speculative Arithmetic Connection}
+\label{sec:speculative}
+%──────────────────────────────────────────────────────────────────────────────
+
+There is a deep conjecture (Birch and Swinnerton-Dyer, for $k=2$) that
+$L(1,f)$ is related to the N\'eron-Tate heights and ranks of associated
+elliptic curves.  For the electron-generation form $f_1$ (associated
+to an elliptic curve $E$ of conductor 38):
+\begin{equation}
+  L(1,f_1) \;=\; \frac{\Omega(E) \times \prod c_p \times |\Sha(E)|}
+                       {|E(\mathbb{Q})_{\mathrm{tors}}|^2},
+\end{equation}
+where $\Omega(E)$ is the real period, $c_p$ are Tamagawa numbers,
+$\Sha(E)$ is the Tate-Shafarevich group, and $E(\mathbb{Q})_{\mathrm{tors}}$
+is the torsion subgroup.  All of these are computable but require the
+explicit elliptic curve.
+
+\begin{conjecture}[Speculative: $m_e$ from BSD]
+\label{conj:BSD}
+The electron mass is given by:
+\begin{equation}
+  m_e c^2 \;=\; \frac{\hbar c}{\ell_P} \times \frac{\Omega(E_e)}{\text{vol}(X_0(38))},
+\end{equation}
+where $E_e$ is the elliptic curve of conductor 38 associated with $f_1$,
+$\ell_P$ is the Planck length, and vol$(X_0(38))$ normalises to the
+modular curve area.
+\end{conjecture}
+
+\begin{remark}
+Conjecture~\ref{conj:BSD} is highly speculative and not yet testable
+without the explicit identification of $E_e$ (pending LMFDB).  It is
+presented as a research direction, not a result.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Status: OPEN.  Gap~Y2 not closed.}
+
+The modular period approach requires a dimensional bridge between
+the dimensionless period $\Omega^+(f_1) \sim O(1)$ and the electron mass.
+No natural bridge exists in current UBT without either:
+(a) Calibrating $R_\psi$ to $m_e$ (circular), or
+(b) Using the Planck scale (gives $m_e/m_P \sim 10^{-23}$, which modular
+    periods cannot naturally produce).
+
+\textbf{Honest statement:} The three approaches to fixing $m_e$ in Steps~1--3
+are:
+\begin{itemize}
+  \item Step~1: Conditional on Hecke --- reduces from 3 free to 1 free
+        parameter.  This is real progress.
+  \item Step~2: Geometric $R_\psi$ --- dead end.
+  \item Step~3: Modular period --- open/speculative.
+\end{itemize}
+
+Gap~Y1 (derive $y_e$ from $S[\Theta]$) and Gap~Y2 (derive $v$ without
+$m_e$ input) remain open.  The electron mass scale is the fundamental
+free parameter of the UBT lepton sector (conditional on Hecke).
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
