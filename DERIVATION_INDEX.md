@@ -113,4 +113,33 @@ Status labels:
 
 ---
 
-*Last updated: 2026-03-05. See STATUS_ALPHA.md, docs/PROOFKIT_ALPHA.md for details.*
+## QM Emergence from Complex Time (Track: CORE)
+
+*Added 2026-03-06. Source verification: `consolidation_project/FPE_verification/`.*
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| ℂ⊗ℍ ≅ Mat(2,ℂ) algebra isomorphism | **Proven** [L0] | `consolidation_project/FPE_verification/step3_dirac_emergence.tex §2` | Standard algebra; generators map to Pauli matrices |
+| Pauli matrices σᵢ from quaternion generators | **Proven** [L0] | `consolidation_project/FPE_verification/step3_dirac_emergence.tex §3` | Direct from isomorphism; not postulated |
+| Dirac γ^μ from ℂ⊗ℍ ⊗ ℂ⊗ℍ tensor product | **Proven** [L0] | `consolidation_project/FPE_verification/step3_dirac_emergence.tex §4` | γ^μ in Weyl rep. = σ₁⊗𝟙, iσ₂⊗σᵢ; Clifford relation verified |
+| Dirac-like operator 𝒟 = iγ^μ∇_μ uniquely determined | **Proven** [L0] | `ubt/operators/dirac_like_operator.tex Thm. 2.1` | Unique up to gauge equivalence from bundle structure |
+| Schrödinger structure from Im(∂_τΘ = □Θ) | **Sketch** [L0] | `consolidation_project/FPE_verification/step2_schrodinger_emergence.tex §5` | ∂_ψΦ = −2i∇²Φ follows analytically; diffusion coeff. 𝒟=ℏ/(2m) is assumed (Gap S1) |
+| UBT ψ is physical — NOT a Wick rotation | **Proven** [L0] | `THEORY/math/fields/biquaternion_time.tex §5.1` | ψ∈ℝ is dynamical; Wick rotation is formal analytic continuation only |
+| Biquaternionic FPE with Θ = Σ exp[πB(n)·H(T)] | **Sketch** [L0] | `consolidation_project/FPE_verification/step1_fpe_check.tex` | Scalar sector numerically verified (see tools/verify_fpe.py); three gaps remain: G1 (A(Q) assumed), G2 (consistency condition on H), G3 (non-commutativity) |
+| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | **Sketch** [L0] | `consolidation_project/FPE_verification/step3_dirac_emergence.tex §6` | Algebraic structure proved; spinorial subspace constraint not derived from S[Θ] (Gap D1) |
+| Born rule \|Θ\|² = probability density | **Postulate** | `consolidation_project/FPE_verification/step2_schrodinger_emergence.tex §7` | FPE gives conservation law; Born rule interpretation requires physical postulate (Gap S2) |
+| QM unification via drift-diffusion | **Sketch** [L0] | `consolidation_project/appendix_FORMAL_qm_gr_unification.tex` | Madelung equations reproduced; specific parameter choices needed (see Step 2) |
+
+### Open Sub-Tasks (QM Emergence Gaps)
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| G1 | Derive drift A(Q) = −∇H from S[Θ] via Euler-Lagrange | HIGH |
+| G2 | Prove consistency condition on H for general biquaternionic case | HIGH |
+| G3 | Handle non-commutative biquaternionic product ordering in FPE | MEDIUM |
+| S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | HIGH |
+| D1 | Derive spinorial subspace constraint from S[Θ] | HIGH |
+
+---
+
+*Last updated: 2026-03-06. See STATUS_ALPHA.md, docs/PROOFKIT_ALPHA.md for details.*
