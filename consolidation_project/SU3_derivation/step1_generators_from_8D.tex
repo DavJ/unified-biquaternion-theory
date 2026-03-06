@@ -1,0 +1,236 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Step 1: Direct 8D Map --- Biquaternion Basis to Gell-Mann Matrices}\\
+         \large $\mathbb{C}\otimes\mathbb{H}$ Basis Elements vs.\ $\lambda_1,\ldots,\lambda_8$}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We attempt to identify the 8 basis elements of $\mathbb{C}\otimes\mathbb{H}$
+  directly with the 8 Gell-Mann matrices $\lambda_1,\ldots,\lambda_8$ and
+  check whether the $SU(3)$ commutation relations
+  $[\lambda_a,\lambda_b] = 2if_{abc}\lambda_c$ are satisfied.
+  We find that the identification fails: $\mathbb{C}\otimes\mathbb{H}$ is a
+  4-complex-dimensional associative algebra acting on $\mathbb{C}^2$, while
+  $SU(3)$ acts on $\mathbb{C}^3$.  The 8 real dimensions match in count
+  but the algebraic structure (representation space and structure constants)
+  does not.  Verdict: \textbf{SKETCH} --- direct 8D identification fails.
+  Refer to step2 for the octonion embedding approach.
+  \end{abstract}
+
+  \noindent\textbf{Companion script:}
+  \texttt{tools/verify\_su3\_from\_biquaternion.py}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The 8 Basis Elements of $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:basis}
+%──────────────────────────────────────────────────────────────────────────────
+
+The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ has
+real dimension 8.  Choosing $i$ as the imaginary unit of $\mathbb{C}$
+and $\{I, J, K\}$ as the quaternion units (satisfying $I^2 = J^2 = K^2 = -1$,
+$IJ = K$, $JK = I$, $KI = J$), the 8 basis elements are:
+
+\begin{equation}
+  \mathcal{B}_{\mathrm{basis}} \;=\;
+  \bigl\{\,1,\; I,\; J,\; K,\; i,\; iI,\; iJ,\; iK\,\bigr\}.
+  \label{eq:basis}
+\end{equation}
+
+These satisfy:
+\begin{itemize}
+  \item $\dim_\mathbb{R}(\mathcal{B}) = 8$.
+  \item $\dim_\mathbb{C}(\mathcal{B}) = 4$ (as a $\mathbb{C}$-module).
+  \item $\mathcal{B}$ is \emph{associative} (unlike the octonions).
+  \item $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ as a $\mathbb{C}$-algebra.
+\end{itemize}
+
+The isomorphism $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ is given by:
+\begin{equation}
+  1 \mapsto \begin{pmatrix}1&0\\0&1\end{pmatrix}, \quad
+  I \mapsto \begin{pmatrix}i&0\\0&-i\end{pmatrix}, \quad
+  J \mapsto \begin{pmatrix}0&1\\-1&0\end{pmatrix}, \quad
+  K \mapsto \begin{pmatrix}0&i\\i&0\end{pmatrix}.
+  \label{eq:iso}
+\end{equation}
+(The complex factor $i$ commutes with everything.)
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proposed Mapping to Gell-Mann Matrices}
+\label{sec:mapping}
+%──────────────────────────────────────────────────────────────────────────────
+
+The 8 Gell-Mann matrices $\lambda_1,\ldots,\lambda_8$ are $3\times 3$
+traceless Hermitian matrices satisfying
+$[\lambda_a,\lambda_b] = 2if_{abc}\lambda_c$
+where $f_{abc}$ are the $SU(3)$ structure constants:
+
+\begin{align}
+  \lambda_1 &= \begin{pmatrix}0&1&0\\1&0&0\\0&0&0\end{pmatrix}, &
+  \lambda_2 &= \begin{pmatrix}0&-i&0\\i&0&0\\0&0&0\end{pmatrix}, &
+  \lambda_3 &= \begin{pmatrix}1&0&0\\0&-1&0\\0&0&0\end{pmatrix},
+  \notag\\[4pt]
+  \lambda_4 &= \begin{pmatrix}0&0&1\\0&0&0\\1&0&0\end{pmatrix}, &
+  \lambda_5 &= \begin{pmatrix}0&0&-i\\0&0&0\\i&0&0\end{pmatrix}, &
+  \lambda_6 &= \begin{pmatrix}0&0&0\\0&0&1\\0&1&0\end{pmatrix},
+  \notag\\[4pt]
+  \lambda_7 &= \begin{pmatrix}0&0&0\\0&0&-i\\0&i&0\end{pmatrix}, &
+  \lambda_8 &= \frac{1}{\sqrt{3}}\begin{pmatrix}1&0&0\\0&1&0\\0&0&-2\end{pmatrix}.
+  \label{eq:gellmann}
+\end{align}
+
+A natural attempt is to map the 8 basis elements~\eqref{eq:basis} to
+$\{\lambda_a\}$ by matching dimensions.  Under $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$,
+the natural generators of $\mathfrak{su}(2) \subset \mathcal{B}$ are:
+\begin{equation}
+  T_1 = \tfrac{1}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  T_2 = \tfrac{1}{2}\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+  T_3 = \tfrac{1}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+These are $2\times 2$ matrices and satisfy $[T_a, T_b] = i\epsilon_{abc}T_c$
+(the $SU(2)$ algebra), \emph{not} the $SU(3)$ algebra.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Obstacle: Dimensional and Algebraic Mismatch}
+\label{sec:obstacle}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{The direct 8D identification fails for three reasons:}
+
+\begin{enumerate}
+  \item \textbf{Representation space mismatch.}
+    $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ acts naturally on $\mathbb{C}^2$
+    (a 2-dimensional complex vector space), while $SU(3)$ acts on $\mathbb{C}^3$.
+    No $3\times 3$ matrix can arise from $2\times 2$ biquaternion matrices.
+
+  \item \textbf{Structure constant mismatch.}
+    The commutators of the $\mathrm{Mat}(2,\mathbb{C})$ generators satisfy
+    $[T_a, T_b] = i\epsilon_{abc}T_c$ (the $\mathfrak{su}(2)$ relations with
+    structure constants $\epsilon_{abc}$), not the $SU(3)$ structure constants
+    $f_{abc}$.  One has $f_{123} = 1$ (same as $\epsilon_{123}$) but
+    $f_{147} = f_{246} = f_{345} = f_{516} = f_{625} = f_{734} = \tfrac{1}{2}$
+    and $f_{458} = f_{678} = \tfrac{\sqrt{3}}{2}$, which have no counterpart
+    in $\mathrm{Mat}(2,\mathbb{C})$.
+
+  \item \textbf{Rank mismatch.}
+    $SU(3)$ has rank 2 (two commuting diagonal generators: $\lambda_3$ and
+    $\lambda_8$).  The Cartan subalgebra of $\mathrm{Mat}(2,\mathbb{C})$ has
+    rank 1.  Therefore $\mathfrak{su}(3) \not\subset \mathrm{Mat}(2,\mathbb{C})$.
+\end{enumerate}
+\end{gapbox}
+
+\begin{proposition}[Commutator check]
+\label{prop:comm}
+Let $\phi\colon \mathcal{B}_{\mathrm{basis}} \to \{\lambda_a\}_{a=1}^8$ be
+any bijection.  Then there exist indices $a, b$ such that
+$[\phi(e_a), \phi(e_b)] \neq 2if_{abc}\phi(e_c)$ for all extensions
+to $3\times 3$ matrices.
+\end{proposition}
+
+\begin{proof}
+Any element of $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ acts on
+$\mathbb{C}^2$.  The map $\phi$ must embed $\mathcal{B}$ into
+$\mathrm{End}(\mathbb{C}^3)$ to produce $3\times 3$ matrices.
+However, the image of $\mathcal{B}$ under any faithful representation
+is contained in a subalgebra of $\mathrm{End}(\mathbb{C}^3)$ isomorphic
+to $\mathrm{Mat}(2,\mathbb{C})$, which does not contain the full
+$\mathfrak{su}(3)$ as a Lie subalgebra (since $\mathrm{rank}(\mathfrak{su}(2)) = 1
+< 2 = \mathrm{rank}(\mathfrak{su}(3))$).  Therefore the structure
+constants cannot be reproduced.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Verification}
+\label{sec:numerical}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Companion script:}
+\texttt{tools/verify\_su3\_from\_biquaternion.py} explicitly:
+\begin{enumerate}
+  \item Constructs the $2\times 2$ matrix representations of all 8 basis
+        elements~\eqref{eq:basis} under $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$.
+  \item Attempts all bijections $\phi$ to $3\times 3$ Gell-Mann matrices
+        by block-embedding.
+  \item Computes all 28 commutators $[\phi(e_a), \phi(e_b)]$ and checks
+        against the $SU(3)$ structure constants.
+  \item Confirms: no identification satisfies all 28 relations simultaneously.
+\end{enumerate}
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict and Forward Reference}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Verdict: SKETCH --- direct 8D identification fails.}
+
+\textbf{Summary:}
+\begin{itemize}
+  \item The count of 8 real dimensions matches $\dim_\mathbb{R}(\mathfrak{su}(3)) = 8$.
+  \item However, $\mathbb{C}\otimes\mathbb{H}$ (as an algebra) is \emph{not}
+        isomorphic to $\mathfrak{su}(3)$ (as a Lie algebra).
+  \item $\mathbb{C}\otimes\mathbb{H}$ acts on $\mathbb{C}^2$; $SU(3)$ acts on $\mathbb{C}^3$.
+  \item The structure constants do not match.
+\end{itemize}
+
+\textbf{Two alternative approaches exist:}
+\begin{enumerate}
+  \item \textbf{Octonion embedding} (see \texttt{step2\_octonion\_embedding.tex}):
+        Embed $\mathbb{C}\otimes\mathbb{H} \subset \mathbb{C}\otimes\mathbb{O}$ and
+        use $SU(3) = \mathrm{Aut}(\mathbb{O})|_{\mathrm{fix\,}e_7}$.
+        Status: sketch (octonions are non-associative, outside the UBT foundation).
+  \item \textbf{Involution approach} (see \texttt{step1\_involution\_summary.tex}):
+        Define the carrier space $V_c = \ker(P_2 + 1) \cong \mathbb{C}^3$ and
+        derive $SU(3)$ as $\mathrm{Aut}(V_c, \langle\cdot,\cdot\rangle)$.
+        Status: \textbf{PROVED [L0]} (Theorems G.A--G.D).
+\end{enumerate}
+
+The proved approach is the involution approach.  This step serves as a
+\emph{negative result} establishing that the simpler direct identification
+does not work and motivating the involution construction.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
