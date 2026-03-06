@@ -65,7 +65,7 @@ Status labels:
 | Option C (ψ-instantons) reproduces ratios | **Open Hard Problem** | `research_tracks/three_generations/st3_complex_time_generations.tex §7` | Calibrated to muon; tau off by factor ~6 |
 | Identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ | **Conjecture** | `research_tracks/three_generations/st3_complex_time_generations.tex §5` | Mass ratios not reproduced |
 | Mass ratio script (Options A/B/C) | Documented | `tools/reproduce_lepton_ratios.py` | Exit code 1 = no mechanism works |
-| Hecke eigenvalue conjecture (k=2,4,6) | **Conjecture** | `research_tracks/three_generations/step5_hecke_search_results.tex` | Lepton ratios = Hecke eigenvalue ratios at p=137 |
+| Hecke eigenvalue conjecture (k=2,4,6) | **Supported by numerical evidence (p=137: 0.4%+3.1%, p=139: 0.05%+1.6%)** | `research_tracks/three_generations/step6_hecke_matches.tex` | SageMath found matching triples at both p=137 and p=139; LMFDB verification pending |
 | CM k=6 forms at any level | **Dead End** | `research_tracks/three_generations/step5_hecke_search_results.tex §5.2`, `research_tracks/three_generations/step6_nonCM_search.tex` | \|a_137\| ~ 439371 ≫ 81400; structural impossibility |
 | Non-CM k=6 forms, N≤4 | **Dead End** | `research_tracks/three_generations/step5_hecke_search_results.tex` | No non-CM forms exist at these levels |
 | Non-CM k=6 forms, N∈[50,500] | **Extended Dead End** | `research_tracks/three_generations/step6_nonCM_search.tex`, `research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |

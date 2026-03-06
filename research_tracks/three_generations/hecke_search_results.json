@@ -204,5 +204,66 @@
     "explanation": "ALL verified k=6 eta-product newforms at small levels (N\u22644) have |a_137| >> 81400 (the maximum consistent with the \u03c4-ratio and the Ramanujan bound for k=2). These are CM-type forms with characteristically large eigenvalues. A matching k=6 form would need to be a NON-CM form at level N~50\u2013500, which requires SageMath CuspForms() or the LMFDB API."
   },
   "verdict": "NO_MATCH_IN_SEARCH_SPACE",
-  "verdict_note": "No triple found within 5% tolerance among the 15\u00d73\u00d73 = 135 triples checked. The \u03c4-ratio is structurally impossible with all known small-level k=6 eta products (all have |a_137| >> required bound). A full search requires SageMath or the LMFDB API (see search_hecke_lmfdb_api.py)."
+  "verdict_note": "No triple found within 5% tolerance among the 15\u00d73\u00d73 = 135 triples checked. The \u03c4-ratio is structurally impossible with all known small-level k=6 eta products (all have |a_137| >> required bound). A full search requires SageMath or the LMFDB API (see search_hecke_lmfdb_api.py).",
+  "sage_search": {
+    "date": "2026-03-06",
+    "method": "SageMath CuspForms(N,k).newforms('a')",
+    "note": "David Jar\u0161 ran SageMath locally. Raw output in hecke_sage_results.txt.",
+    "matches": [
+      {
+        "prime": 137,
+        "match_id": 1,
+        "forms": [
+          {"weight": 2, "level": 38, "a_p": -9},
+          {"weight": 4, "level": 56, "a_p": -1854},
+          {"weight": 6, "level": 50, "a_p": -32253}
+        ],
+        "mu_ratio": 206.000,
+        "mu_target": 206.768283,
+        "mu_error_pct": 0.37,
+        "tau_ratio": 3583.67,
+        "tau_target": 3477.23,
+        "tau_error_pct": 3.06,
+        "ramanujan_bounds_satisfied": true,
+        "lmfdb_labels": "TBD \u2014 network lookup required"
+      },
+      {
+        "prime": 139,
+        "match_id": 1,
+        "forms": [
+          {"weight": 2, "level": 200, "a_p": 9},
+          {"weight": 4, "level": 51, "a_p": 1864},
+          {"weight": 6, "level": 10, "a_p": 30860}
+        ],
+        "mu_ratio": 207.111,
+        "mu_target": 206.768283,
+        "mu_error_pct": 0.17,
+        "tau_ratio": 3428.89,
+        "tau_target": 3477.23,
+        "tau_error_pct": 1.39,
+        "ramanujan_bounds_satisfied": true,
+        "lmfdb_labels": "TBD \u2014 network lookup required"
+      },
+      {
+        "prime": 139,
+        "match_id": 2,
+        "note": "Best match overall \u2014 lowest mu-error",
+        "forms": [
+          {"weight": 2, "level": 195, "a_p": 15},
+          {"weight": 4, "level": 50, "a_p": 3100},
+          {"weight": 6, "level": 54, "a_p": 53009}
+        ],
+        "mu_ratio": 206.667,
+        "mu_target": 206.768283,
+        "mu_error_pct": 0.05,
+        "tau_ratio": 3533.93,
+        "tau_target": 3477.23,
+        "tau_error_pct": 1.63,
+        "ramanujan_bounds_satisfied": true,
+        "lmfdb_labels": "TBD \u2014 network lookup required"
+      }
+    ],
+    "verdict": "MATCHES_FOUND",
+    "verdict_note": "Numerical support for Conjecture 2.1. Not a proof: LMFDB labels and genuine newform verification required. See step6_hecke_matches.tex and TASK_NEXT_HECKE.md."
+  }
 }
