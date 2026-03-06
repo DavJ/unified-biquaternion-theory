@@ -2,6 +2,60 @@
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
+---
+
+## 📊 Theory Status — What UBT Proves (as of 2026-03-06)
+
+> **Full map**: [`docs/THEORY_STATUS.md`](docs/THEORY_STATUS.md) (Mermaid diagram, auto-generated)  
+> **Summary table**: [`docs/THEORY_STATUS_SUMMARY.md`](docs/THEORY_STATUS_SUMMARY.md)  
+> **Derivation index**: [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md)
+
+### Proved Results (zero free parameters)
+
+- **GR recovery**: G_μν = 8πG T_μν reproduced from biquaternionic φ-projection  
+  → `canonical/geometry/phase_projection.tex`
+- **SM gauge group SU(2)_L × U(1)_Y** from ℂ⊗ℍ algebra isomorphism  
+  → `consolidation_project/appendix_E2_SM_geometry.tex`
+- **U(1)_EM** from ψ-cycle phase of Θ  
+  → `canonical/interactions/qed.tex`
+- **Three generation mechanism**: ψ-modes of the biquaternionic field Θ are independent, carry same SU(3) quantum numbers, and ψ-parity forbids inter-generational mixing  
+  → `research_tracks/three_generations/st3_complex_time_generations.tex`
+- **N_eff = 12** from ℂ⊗ℍ algebra alone (3 × 2 × 2; zero free parameters)  
+  → `consolidation_project/N_eff_derivation/`
+- **B₀ = 8π** (one-loop vacuum polarisation baseline)  
+  → `consolidation_project/N_eff_derivation/step2_vacuum_polarization.tex`
+- **Prime attractor**: V_eff(n) minimum selects primes; robust across coupling types
+
+### Supported by Numerical Evidence
+
+- Lepton mass ratio support: Hecke eigenvalue matches at p = 137 (0.4 % + 3.1 %) and p = 139 (0.05 % + 1.6 %)
+
+### Semi-empirical (≥1 free parameter)
+
+- α⁻¹ = 137 bare (requires B coefficient)  
+- SU(3)_c via octonionic extension (hypothesis)
+
+### Open Hard Problems
+
+- B_phenom coefficient (B_base = N_eff^{3/2}): three approaches tested, all fail
+- Lepton mass ratios from first principles (mechanism conjectured, not derived)
+
+### Current Status Table
+
+<!-- Auto-generated — run `python tools/generate_theory_map.py` to update -->
+
+| Area | Proved | Supported | Semi-empirical | Open |
+|------|--------|-----------|----------------|------|
+| Algebra | — | — | — | — |
+| Gravity | — | — | — | — |
+| Generations | — | — | — | — |
+| Constants | — | — | — | — |
+| Cosmology | — | — | — | — |
+
+*For current numbers see [`docs/THEORY_STATUS_SUMMARY.md`](docs/THEORY_STATUS_SUMMARY.md)*
+
+---
+
 ## 🚨 Repository Structure: Two First-Class Formulations
 
 **This repository presents two parallel formulations of UBT** for systematic A/B comparison:
