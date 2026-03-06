@@ -1,0 +1,180 @@
+{
+  "model": "UBT_CMB_angular_power_spectrum_low_l",
+  "method": "Sachs-Wolfe approximation",
+  "warning": "APPROXIMATE: Sachs-Wolfe valid for l <= 10 only. Full precision requires CAMB/CLASS with UBT primordial spectrum.",
+  "eta_0_mpc": 14000.0,
+  "planck_2018_low_l": {
+    "2": {
+      "observed": 1160.0,
+      "lcdm_bestfit": 1800.0
+    },
+    "3": {
+      "observed": 1060.0,
+      "lcdm_bestfit": 1480.0
+    },
+    "4": {
+      "observed": 1060.0,
+      "lcdm_bestfit": 1560.0
+    },
+    "5": {
+      "observed": 1500.0,
+      "lcdm_bestfit": 1600.0
+    },
+    "6": {
+      "observed": 1700.0,
+      "lcdm_bestfit": 1780.0
+    },
+    "10": {
+      "observed": 2300.0,
+      "lcdm_bestfit": 2400.0
+    }
+  },
+  "scenarios": {
+    "B_hubble": {
+      "R_psi_mpc": 4448.652157189273,
+      "label": "Scenario B: R_\u03c8 = c/H_0 = 4449 Mpc",
+      "results_by_l": {
+        "2": {
+          "C_l_ubt": 6.864979638363586e-21,
+          "C_l_lcdm": 6.895135128371061e-21,
+          "D_l_ubt": 6.5555726620246604e-21,
+          "D_l_lcdm": 6.584369033800949e-21,
+          "ubt_lcdm_ratio": 0.9956265556155098,
+          "planck_observed": 1160.0,
+          "planck_lcdm_bestfit": 1800.0,
+          "planck_obs_lcdm_ratio": 0.6444444444444445,
+          "consistent_with_planck": false
+        },
+        "3": {
+          "C_l_ubt": 6.6393267749875295e-21,
+          "C_l_lcdm": 6.646661600377015e-21,
+          "D_l_ubt": 1.2680180100499646e-20,
+          "D_l_lcdm": 1.2694188585109079e-20,
+          "ubt_lcdm_ratio": 0.9988964647471944,
+          "planck_observed": 1060.0,
+          "planck_lcdm_bestfit": 1480.0,
+          "planck_obs_lcdm_ratio": 0.7162162162162162,
+          "consistent_with_planck": false
+        },
+        "4": {
+          "C_l_ubt": 6.860498249054857e-21,
+          "C_l_lcdm": 6.85369347325224e-21,
+          "D_l_ubt": 2.1837644168207467e-20,
+          "D_l_lcdm": 2.1815983894095095e-20,
+          "ubt_lcdm_ratio": 1.0009928625826605,
+          "planck_observed": 1060.0,
+          "planck_lcdm_bestfit": 1560.0,
+          "planck_obs_lcdm_ratio": 0.6794871794871795,
+          "consistent_with_planck": false
+        },
+        "5": {
+          "C_l_ubt": 6.706251798568029e-21,
+          "C_l_lcdm": 6.69257630355133e-21,
+          "D_l_ubt": 3.2019993700830466e-20,
+          "D_l_lcdm": 3.1954698021896376e-20,
+          "ubt_lcdm_ratio": 1.0020433827567186,
+          "planck_observed": 1500.0,
+          "planck_lcdm_bestfit": 1600.0,
+          "planck_obs_lcdm_ratio": 0.9375,
+          "consistent_with_planck": true
+        },
+        "6": {
+          "C_l_ubt": 6.798677166193087e-21,
+          "C_l_lcdm": 6.782414065855618e-21,
+          "D_l_ubt": 4.5445809254396414e-20,
+          "D_l_lcdm": 4.53370984364307e-20,
+          "ubt_lcdm_ratio": 1.002397833600184,
+          "planck_observed": 1700.0,
+          "planck_lcdm_bestfit": 1780.0,
+          "planck_obs_lcdm_ratio": 0.9550561797752809,
+          "consistent_with_planck": true
+        },
+        "10": {
+          "C_l_ubt": 6.559105610861257e-21,
+          "C_l_lcdm": 6.5472414177041e-21,
+          "D_l_ubt": 1.1483054882533903e-19,
+          "D_l_lcdm": 1.1462284187679558e-19,
+          "ubt_lcdm_ratio": 1.0018120903752037,
+          "planck_observed": 2300.0,
+          "planck_lcdm_bestfit": 2400.0,
+          "planck_obs_lcdm_ratio": 0.9583333333333334,
+          "consistent_with_planck": true
+        }
+      }
+    },
+    "C_fitted": {
+      "R_psi_mpc": 3000.0,
+      "label": "Scenario C: R_\u03c8 = 3000 Mpc (free parameter)",
+      "results_by_l": {
+        "2": {
+          "C_l_ubt": 6.817996417837468e-21,
+          "C_l_lcdm": 6.895135128371061e-21,
+          "D_l_ubt": 6.510706991290012e-21,
+          "D_l_lcdm": 6.584369033800949e-21,
+          "ubt_lcdm_ratio": 0.9888125890069661,
+          "planck_observed": 1160.0,
+          "planck_lcdm_bestfit": 1800.0,
+          "planck_obs_lcdm_ratio": 0.6444444444444445,
+          "consistent_with_planck": false
+        },
+        "3": {
+          "C_l_ubt": 6.595874432051349e-21,
+          "C_l_lcdm": 6.646661600377015e-21,
+          "D_l_ubt": 1.259719223849304e-20,
+          "D_l_lcdm": 1.2694188585109079e-20,
+          "ubt_lcdm_ratio": 0.9923589959322158,
+          "planck_observed": 1060.0,
+          "planck_lcdm_bestfit": 1480.0,
+          "planck_obs_lcdm_ratio": 0.7162162162162162,
+          "consistent_with_planck": false
+        },
+        "4": {
+          "C_l_ubt": 6.82761610502502e-21,
+          "C_l_lcdm": 6.85369347325224e-21,
+          "D_l_ubt": 2.1732977052971306e-20,
+          "D_l_lcdm": 2.1815983894095095e-20,
+          "ubt_lcdm_ratio": 0.996195136486773,
+          "planck_observed": 1060.0,
+          "planck_lcdm_bestfit": 1560.0,
+          "planck_obs_lcdm_ratio": 0.6794871794871795,
+          "consistent_with_planck": false
+        },
+        "5": {
+          "C_l_ubt": 6.686370608814665e-21,
+          "C_l_lcdm": 6.69257630355133e-21,
+          "D_l_ubt": 3.192506801211659e-20,
+          "D_l_lcdm": 3.1954698021896376e-20,
+          "ubt_lcdm_ratio": 0.9990727494980712,
+          "planck_observed": 1500.0,
+          "planck_lcdm_bestfit": 1600.0,
+          "planck_obs_lcdm_ratio": 0.9375,
+          "consistent_with_planck": true
+        },
+        "6": {
+          "C_l_ubt": 6.790232494258887e-21,
+          "C_l_lcdm": 6.782414065855618e-21,
+          "D_l_ubt": 4.538936078058949e-20,
+          "D_l_lcdm": 4.53370984364307e-20,
+          "ubt_lcdm_ratio": 1.0011527500868205,
+          "planck_observed": 1700.0,
+          "planck_lcdm_bestfit": 1780.0,
+          "planck_obs_lcdm_ratio": 0.9550561797752809,
+          "consistent_with_planck": true
+        },
+        "10": {
+          "C_l_ubt": 6.568622178609776e-21,
+          "C_l_lcdm": 6.5472414177041e-21,
+          "D_l_ubt": 1.1499715579316805e-19,
+          "D_l_lcdm": 1.1462284187679558e-19,
+          "ubt_lcdm_ratio": 1.0032656136442228,
+          "planck_observed": 2300.0,
+          "planck_lcdm_bestfit": 2400.0,
+          "planck_obs_lcdm_ratio": 0.9583333333333334,
+          "consistent_with_planck": true
+        }
+      }
+    }
+  },
+  "status": "CONJECTURE \u2014 quantitative result pending Boltzmann code integration",
+  "reference": "docs/predictions/cmb_prediction.md"
+}
