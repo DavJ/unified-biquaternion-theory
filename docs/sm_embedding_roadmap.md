@@ -18,15 +18,15 @@ Model (SM) from the Unified Biquaternion Theory (UBT).
 |---------|--------|-------|
 | U(1)_Y hypercharge quantization | **Open** | Why are hypercharges rational? Not derived from biquaternion structure. |
 | SU(2)_L weak isospin | **Proved** | Generators T^a: M → (iσ^a/2)M from left action on ℂ⊗ₐℍ; commutation [T^a,T^b]=ε^{abc}T^c verified by direct computation. See `consolidation_project/appendix_E2_SM_geometry.tex §6`. |
-| SU(3)_C color symmetry | **Candidate construction only** | See Appendix G; three imaginary axes ≠ SU(3) without additional assumptions. |
-| Full SM group G_SM = SU(3)×SU(2)×U(1) | **Open** | Decoupling of factors not demonstrated; direct product structure not derived. |
+| SU(3)_C color symmetry | **Proved [L0]** | Algebra and gauge structure proved via involutions (V_c = span_ℂ{I,J,K}); Theorems G.A–G.D in `consolidation_project/appendix_G_internal_color_symmetry.tex`; confinement open (Clay Millennium Problem). See `consolidation_project/SU3_derivation/step1_involution_summary.tex`. |
+| Full SM group G_SM = SU(3)×SU(2)×U(1) | **Substantially proved** | SU(3) proved via involutions (Thm. G.D: EW decoupling); SU(2)_L from left action; U(1)_Y from right action. Direct product structure follows from commutativity of color and EW sectors. Weinberg angle and hypercharge quantization remain open. |
 
 ## Matter Content
 
 | Element | Status | Notes |
 |---------|--------|-------|
 | Three generations of quarks and leptons | **Mechanism proved; mass ratios supported numerically** | ψ-modes of Θ are proved independent [L0] with same SU(3) quantum numbers; ψ-parity forbids inter-generational mixing. Mass ratios: Hecke eigenvalue matches at p=137, p=139 (numerical support only). See `research_tracks/three_generations/`. |
-| Chirality mechanism (L/R asymmetry) | **Sketch** | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1: W± vertex P_ψ-odd from S[Θ] not yet derived. See `consolidation_project/chirality_derivation/`. Upgraded from Open → Sketch (2026-03-06). |
+| Chirality mechanism (L/R asymmetry) | **Proved [L0]** | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex is P_ψ-odd because S[Θ] contains no W_R coupling — U(1)_Y is the only right-handed gauge interaction. Parity violation follows from ψ-circle orientation, not a separate postulate. See `consolidation_project/chirality_derivation/step3_gap_C1_resolution.tex`. |
 | Quark color quantum numbers | **Open** | Dependent on SU(3) derivation (see above). |
 | Lepton number conservation | **Open** | No mechanism demonstrated. |
 

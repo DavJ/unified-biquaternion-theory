@@ -1,0 +1,86 @@
+# arXiv Submission Metadata
+# Paper: N_eff = 12 from Biquaternion Algebra
+# Prepared: 2026-03-06
+
+title: |
+  N_eff = 12 from Biquaternion Algebra and Its Cosmological Implications:
+  ΔN_eff ≈ 0.046 as a Prediction of the Unified Biquaternion Theory
+
+authors:
+  - name: David Jaroš
+    affiliation: Independent researcher
+    email: david.jaros@unifiedbiquaternion.org
+    orcid: (to be added)
+
+primary_class: hep-ph
+
+secondary_classes:
+  - hep-th
+  - gr-qc
+
+abstract: |
+  We derive N_eff = 12 from the structure of the biquaternion algebra C⊗H
+  without free parameters: N_eff = N_phases × N_helicity × N_charge = 3×2×2 = 12,
+  where N_phases = dim_R(Im(H)) = 3. This gives a one-loop β-function coefficient
+  B_0 = 8π ≈ 25.13 for the running of the fine-structure constant, as a
+  zero-free-parameter result from the kinetic action S_kin[Θ].
+  As a cosmological corollary, the massless zero-modes of the unified
+  biquaternionic field Θ contribute ΔN_eff ≈ 0.046 to the effective neutrino
+  number above the Standard Model prediction — above the CMB-S4 detection
+  threshold of 0.03. We identify the discrepancy B_phenom ≈ 46.3 ≠ B_0 ≈ 25.13
+  as Open Problem A, precisely characterised and unchanged by this derivation.
+  The derivation is fully reproducible: the accompanying script
+  tools/verify_N_eff.py passes all numerical checks.
+
+keywords:
+  - effective number of neutrinos
+  - biquaternion algebra
+  - fine structure constant
+  - CMB cosmology
+  - unified field theory
+  - extra dimensions
+  - Kaluza-Klein modes
+
+msc_codes:
+  - 81T13  (Yang-Mills theory)
+  - 83F05  (Cosmology)
+  - 17A35  (Division algebras)
+  - 11F11  (Holomorphic modular forms)
+
+journal_ref: (preprint only)
+
+comments: |
+  25 pages, 0 figures. Reproducibility: all numerical results are verified
+  by tools/verify_N_eff.py (Python 3). Repository:
+  https://github.com/DavJ/unified-biquaternion-theory
+
+report_number: UBT-2026-001
+
+related_dois:
+  - (none yet)
+
+submission_checklist:
+  - [x] Abstract contains main result (N_eff = 12, ΔN_eff ≈ 0.046)
+  - [x] Open Problem A stated explicitly (B_phenom ≠ B_0)
+  - [x] Comparison with Planck 2018 in text
+  - [x] CMB-S4 forecast cited
+  - [x] All claims categorised as PROVED / PREDICTED / OPEN
+  - [x] Reproducibility script referenced (tools/verify_N_eff.py)
+  - [x] No claim stronger than its evidence
+  - [x] References complete (7 references)
+  - [ ] ORCID added (pending)
+  - [ ] DOI for UBT main paper (pending arXiv submission)
+  - [ ] Final read-through by David
+
+source_file: papers/generated/neff_biquaternion.tex
+
+notes: |
+  This paper contains the following provably correct results with zero free parameters:
+    1. N_eff = 12 from dim Im(H) = 3 (algebraic fact about H)
+    2. B_0 = 8π = 2π × dim_C(C⊗H) (one-loop, proved)
+    3. ΔN_eff ≈ 0.046 (from zero-mode count, proved)
+
+  Honest limitations:
+    - B_phenom ≠ B_0 (Open Problem A, three approaches failed)
+    - α^{-1} = 137 requires B_phenom input (not proved from first principles)
+    - Two-loop correction to α^{-1} = 137.036 is standard QED, not UBT-specific
