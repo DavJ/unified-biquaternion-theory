@@ -4,25 +4,24 @@
 
 ---
 
-## What UBT proves — current status (2026-03-06)
+## Current proof status (2026-03-06)
 
 | Result | Status |
 |--------|--------|
 | GR with matter: G_μν = 8πG T_μν | ✅ Proved |
-| SU(2)_L from ℂ⊗ℍ left action | ✅ Proved |
-| U(1)_Y from ℂ⊗ℍ right action | ✅ Proved |
-| Three generations from ψ-winding | ✅ Proved |
-| N_eff = 12 from algebra (zero free params) | ✅ Proved |
+| SU(2)_L × U(1)_Y from ℂ⊗ℍ | ✅ Proved |
+| Three generations from ψ-winding modes | ✅ Proved |
+| N_eff = 12 from algebra (zero free parameters) | ✅ Proved |
 | B₀ = 8π from S_kin[Θ] | ✅ Proved |
-| QED reproduced at φ=const (photon massless, g-factor) | ✅ Proved |
-| FPE equivalent formulation (scalar sector) | ✅ Proved |
-| SU(3)_c color symmetry | ✅ Proved [L0] |
-| SU(2)_L chirality (W± vertex P_ψ-odd, Gap C1 closed) | ✅ Proved [L0] |
+| QED at φ=const: photon massless, g-factor, α(μ) | ✅ Proved |
+| FPE as equivalent formulation (scalar sector) | ✅ Proved |
+| SU(2)_L chirality (W± vertex P_ψ-odd, Gap C1 closed) | ✅ Proved [L1] |
 | Lepton mass ratios — Hecke support p=139 (μ: 0.05%) | ⚡ Supported |
-| ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | 🔭 Predicted |
+| ΔN_eff ≈ 0.046 — above CMB-S4 detection threshold | 🔭 Predicted |
+| SU(3)_c color symmetry | ✅ Proved [L0] |
 | α⁻¹ = 137 from first principles | ❌ Open Problem A |
 
-→ Full map: [docs/THEORY_STATUS.md](docs/THEORY_STATUS.md)
+→ Full status map: [docs/THEORY_STATUS.md](docs/THEORY_STATUS.md)
 → Derivation index: [DERIVATION_INDEX.md](DERIVATION_INDEX.md)
 → arXiv: [link when submitted]
 
