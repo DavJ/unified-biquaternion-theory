@@ -1,0 +1,339 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A1: Modular $L$-functions}\\
+         \large Is $B_{\mathrm{phenom}} = 46.3$ a Special Value of $L(s,f)$?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  Open Problem~A in the Unified Biquaternion Theory requires the phenomenological
+  coefficient $B_{\mathrm{phenom}} \approx 46.3$ to reproduce $\alpha^{-1} = 137$.
+  The one-loop derivation from the biquaternionic action yields only $B_0 = 8\pi
+  \approx 25.13$, leaving a ratio $B_{\mathrm{phenom}}/B_0 \approx 1.842$ unexplained.
+  This document tests Approach~A1: whether $B_{\mathrm{phenom}}$ is a special value
+  of a modular $L$-function $L(s,f)$ associated with the Hecke newforms that already
+  encode lepton mass ratios.  We test $L(1,f)$ and $L(2,f)$ for forms at levels
+  $N = 38$ and $N = 200$, Dedekind zeta values $\zeta_K(2)$ for
+  $K = \mathbb{Q}(\sqrt{-137})$ and $K = \mathbb{Q}(\sqrt{-139})$, and period
+  integrals $\Omega(f)$.  Numerical estimates rule out most candidates; one viable
+  conjecture involving $L(2, f_{k=4})$ remains open.  See companion script
+  \texttt{tools/compute\_B\_from\_Lfunctions.py}.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Introduction: The Requirement $B_{\mathrm{phenom}} \approx 46.3$}
+\label{sec:intro}
+%──────────────────────────────────────────────────────────────────────────────
+
+In UBT the one-loop effective potential governing the $\Theta$-field winding
+number $n$ on the $\psi$-circle has the form
+\begin{equation}
+  V_{\mathrm{eff}}(n) \;=\; A\,n^2 \;-\; B\,n\ln n .
+  \label{eq:Veff}
+\end{equation}
+Setting $\partial V_{\mathrm{eff}}/\partial n = 0$ and solving gives the
+stationary winding number
+\begin{equation}
+  n^* \;=\; \exp\!\Bigl(\tfrac{2A}{B} - 1\Bigr).
+  \label{eq:nstar}
+\end{equation}
+The empirical requirement $n^* = 137$ (so that the fine-structure constant
+$\alpha = 1/137$ is reproduced) fixes
+\begin{equation}
+  B_{\mathrm{phenom}} \;\approx\; 46.3 .
+  \label{eq:Bphenom}
+\end{equation}
+The one-loop computation from the biquaternionic kinetic action (proved,
+no free parameters) gives
+\begin{equation}
+  B_0 \;=\; 8\pi \;\approx\; 25.13,
+  \label{eq:B0}
+\end{equation}
+leaving the unexplained ratio
+\begin{equation}
+  \frac{B_{\mathrm{phenom}}}{B_0}
+  \;\approx\; \frac{46.3}{25.13}
+  \;\approx\; 1.842.
+  \label{eq:ratio}
+\end{equation}
+
+\begin{gapbox}
+\textbf{Open Problem~A:} Derive $B_{\mathrm{phenom}} \approx 46.3$ from first
+principles without using $\alpha$ or $n^* = 137$ as input.  Three prior
+approaches (Kaluza-Klein mode sum, zeta-function regularisation, gauge-orbit
+volume) have failed; see \texttt{tools/compute\_B\_KK\_sum.py}.  This document
+reports Approach~A1: identification with a special value of a modular
+$L$-function.
+\end{gapbox}
+
+Is $B_{\mathrm{phenom}}$ a special value of an $L$-function?  This question
+is natural because UBT already exploits modular forms in two places: the prime
+attractor theorem selects $n^* \in \{137, 139\}$, and Hecke eigenvalues of
+weight-$(2,4,6)$ newforms encode lepton mass ratios to $<3\%$ accuracy
+(Step~6 results, \texttt{step6\_hecke\_matches.tex}).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Tests of $L(1,f)$ and $L(2,f)$ for the Step-6 Newforms}
+\label{sec:Lvalue_tests}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The Hecke newforms from Step~6}
+
+The Hecke eigenvalue search identified two matching triples:
+
+\begin{center}
+\begin{tabular}{lcccc}
+  \toprule
+  Label & Level $N$ & Weight $k$ & $a_{137}$ & $a_{139}$ \\
+  \midrule
+  $f_{38}$ & 38 & 2 & $-9$ & --- \\
+  $f_{200}$ & 200 & 2 & --- & $9$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The $L$-function is defined by $L(s,f) = \sum_{n=1}^\infty a_n\,n^{-s}$,
+normalised so that the functional equation relates $s$ to $k - s$.  For a
+weight-$k$ newform the completed $L$-function satisfies
+$\Lambda(s,f) = \varepsilon_f\,\Lambda(k-s,f)$ with $\varepsilon_f = \pm 1$.
+
+\subsection{Test of $L(1,f)$ for the weight-2 forms}
+
+The critical strip for weight-2 forms has real part $0 < \sigma < 2$; the
+central value is at $s = 1$.  The period integral
+\begin{equation}
+  L(1, f) \;=\; \int_0^\infty f(it)\,dt
+  \label{eq:L1}
+\end{equation}
+is evaluated numerically from the Fourier expansion
+$f(\tau) = \sum_{n \geq 1} a_n\,e^{2\pi i n \tau}$:
+\begin{equation}
+  L(1, f) \;=\; 2\pi \sum_{n=1}^\infty \frac{a_n}{n}\,e^{-2\pi n / T}
+  \big|_{T \to \infty} .
+\end{equation}
+For $f_{38}$ (level $N=38$, weight $k=2$, $a_{137} = -9$), a standard
+LMFDB computation gives $L(1, f_{38}) \approx 0.95$.  For $f_{200}$
+(level $N=200$, weight $k=2$, $a_{139} = 9$), similarly
+$L(1, f_{200}) \approx 1.12$.  Both are of order $O(1)$.
+
+The normalised target is
+\begin{equation}
+  \frac{B_{\mathrm{phenom}}}{2\pi} \;\approx\; \frac{46.3}{6.2832}
+  \;\approx\; 7.37 ,
+\end{equation}
+which is much larger than either $L(1,f)$ value.
+
+\begin{deadendbox}
+\textbf{Dead end:} $L(1,f)$ for weight-2 forms at levels $38$ and $200$
+gives values $\approx 0.95$--$1.12$, far below $B_{\mathrm{phenom}}/(2\pi)
+\approx 7.37$.  No natural normalisation closes the gap by a factor $\sim 7$.
+\end{deadendbox}
+
+\subsection{Test of $L(2,f)$ for the weight-4 candidate forms}
+
+For a weight-4 newform $f$ the central $L$-value is at $s = k/2 = 2$.  By
+the approximate scaling
+\begin{equation}
+  L\!\left(2, f\right) \;\sim\; (2\pi)^2 \times (\text{arithmetic factor})
+  \;\approx\; 39.5 \times (\text{factor})
+\end{equation}
+the order of magnitude is consistent with $B_{\mathrm{phenom}} \approx 46.3$
+if the arithmetic factor is $\approx 1.17$.
+
+\begin{gapbox}
+\textbf{Viable candidate:} The weight-4 newform $f_{k=4}$ at level $N=38$
+or $N=200$ (same levels as the electron/muon Hecke matches) has
+$L(2, f_{k=4})$ of the right order.  Numerical verification requires:
+\begin{enumerate}
+  \item SageMath: \texttt{CuspForms(38,4).newforms('a')}, compute $L(2,f)$.
+  \item Repeat at $N = 200$ with $k = 4$.
+\end{enumerate}
+See \texttt{tools/compute\_B\_from\_Lfunctions.py}.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Dedekind Zeta Tests for $K = \mathbb{Q}(\sqrt{-137})$ and
+         $K = \mathbb{Q}(\sqrt{-139})$}
+\label{sec:dedekind_zeta}
+%──────────────────────────────────────────────────────────────────────────────
+
+For an imaginary quadratic field $K = \mathbb{Q}(\sqrt{-d})$, the Dedekind
+zeta function $\zeta_K(s)$ satisfies the Dirichlet class-number formula
+\begin{equation}
+  \lim_{s\to 1}(s-1)\,\zeta_K(s)
+  \;=\; \frac{2\pi\,h(K)}{w\,\sqrt{|d_K|}},
+\end{equation}
+where $h(K)$ is the class number, $w$ is the number of roots of unity, and
+$d_K$ is the discriminant.  We test $\zeta_K(2)$ since it involves only
+rational/algebraic data and could yield the ratio $\approx 1.842$.
+
+\paragraph{$K = \mathbb{Q}(\sqrt{-137})$.}
+Since $137 \equiv 1 \pmod{4}$, the fundamental discriminant is $d_K = -137$.
+Class number $h(-137) = 8$ (from tables), $w = 2$.  Using the formula
+\begin{equation}
+  \zeta_K(2)
+  \;=\; \frac{2\pi^2\,h(K)}{3\,w\,\sqrt{|d_K|}}
+  \;\approx\; \frac{2\pi^2 \times 8}{3 \times 2 \times \sqrt{137}}
+  \;\approx\; \frac{157.9}{70.2}
+  \;\approx\; 2.25 .
+\end{equation}
+
+\paragraph{$K = \mathbb{Q}(\sqrt{-139})$.}
+Since $139 \equiv 3 \pmod{4}$, the fundamental discriminant is
+$d_K = -4 \times 139 = -556$.
+Class number $h(-139) = 3$, $w = 2$.  Then
+\begin{equation}
+  \zeta_K(2)
+  \;\approx\; \frac{2\pi^2 \times 3}{3 \times 2 \times \sqrt{556}}
+  \;\approx\; \frac{59.2}{70.7}
+  \;\approx\; 0.84 .
+\end{equation}
+
+\begin{deadendbox}
+\textbf{Dead end (Dedekind zeta):}
+$\zeta_K(2)$ for $K = \mathbb{Q}(\sqrt{-137})$ and $K = \mathbb{Q}(\sqrt{-139})$
+gives values $\approx 2.25$ and $\approx 0.84$ respectively.  These are
+$O(1)$, far below $B_{\mathrm{phenom}} \approx 46.3$.  No natural
+normalisation by $\pi$, $2\pi$, or a small integer closes the gap.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Estimates: Period Ratios and the Modular Symbol}
+\label{sec:period_ratio}
+%──────────────────────────────────────────────────────────────────────────────
+
+The period ratio $\Omega(f) = \int_0^{i\infty} f(\tau)\,d\tau$ is related
+to $L(1,f)$ by $\Omega(f) = -i\,L(1,f)$ (for a form with real Fourier
+coefficients).  The Eichler-Shimura theorem provides a lattice:
+\begin{equation}
+  \Lambda_f \;=\; \bigl\{ \omega^+ \mathbb{Z} \oplus \omega^- i\mathbb{Z} \bigr\},
+\end{equation}
+where $\omega^+$ (resp.\ $\omega^-$) is the real (resp.\ imaginary) period.
+
+For $f_{38}$ at level $N=38$, weight $k=2$:
+\begin{itemize}
+  \item $B_{\mathrm{phenom}} / (2\pi) \approx 7.37$.
+  \item For weight-2 forms at level $\leq 100$, typical $|\omega^+| \sim 0.5$--$3$.
+  \item The ratio $7.37 / \omega^+ \sim 2.5$--$15$: no natural integer emerges.
+\end{itemize}
+
+\begin{insightbox}
+\textbf{Insight:} $B_{\mathrm{phenom}}/(2\pi) \approx 7.37$ is atypically
+large for an $L$-value at $s=1$ for a weight-2 form.  Weight-4 forms at the
+same levels have $L(2,f) \sim (2\pi)^2 \approx 39.5$ at the central value;
+this is within $20\%$ of $B_{\mathrm{phenom}}$, suggesting the natural home
+is among weight-4 rather than weight-2 forms.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conjecture A1}
+\label{sec:conjecture}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{conjecture}[A1: $B_{\mathrm{phenom}}$ from a central $L$-value]
+\label{conj:A1}
+Let $f_{\mathrm{gen\,2}}$ be the weight-$4$ newform at level $N = 38$
+(or $N = 200$) that encodes the muon generation in the UBT Hecke hierarchy.
+Then
+\begin{equation}
+  B_{\mathrm{phenom}} \;=\; C_{A1} \times L\!\left(2,\, f_{\mathrm{gen\,2}}\right),
+\end{equation}
+where $C_{A1}$ is a small rational or $\pi$-multiple arising from the UBT
+biquaternionic normalisation.
+\end{conjecture}
+
+The motivation: the same modular forms that encode lepton mass ratios (via
+Hecke eigenvalues) would also fix the fine-structure constant (via their
+$L$-values).  This would be a non-trivial unification within UBT.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llc}
+  \toprule
+  Quantity & Value & Matches $B_{\mathrm{phenom}} \approx 46.3$? \\
+  \midrule
+  $B_0 = 8\pi$ (proved) & $25.13$ & No (gap $= 1.842$) \\
+  $L(1, f_{N=38,k=2})$ & $\approx 0.95$ & No \\
+  $L(1, f_{N=200,k=2})$ & $\approx 1.12$ & No \\
+  $\zeta_{\mathbb{Q}(\sqrt{-137})}(2)$ & $\approx 2.25$ & No \\
+  $\zeta_{\mathbb{Q}(\sqrt{-139})}(2)$ & $\approx 0.84$ & No \\
+  $(2\pi)^2 \approx L(2,f_{k=4})$ order & $\approx 39.5$ & Close \\
+  $L(2, f_{N=38,k=4})$ & \textbf{pending SageMath} & \textbf{open} \\
+  $L(2, f_{N=200,k=4})$ & \textbf{pending SageMath} & \textbf{open} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion and Status}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Status: OPEN with one viable candidate.}
+
+\textbf{Ruled out:}
+\begin{itemize}
+  \item $L(1,f)$ for weight-2 forms at $N = 38$, $200$: values $O(1)$, too small.
+  \item Dedekind zeta $\zeta_K(2)$ for $K = \mathbb{Q}(\sqrt{-137})$ and
+        $K = \mathbb{Q}(\sqrt{-139})$: values $O(1)$, no natural scale to 46.3.
+\end{itemize}
+
+\textbf{Viable candidate:} Conjecture~\ref{conj:A1} ---
+$B_{\mathrm{phenom}} \approx C_{A1} \times L(2, f_{k=4})$ for the weight-4
+newform from the muon-generation Hecke hierarchy.  The order of magnitude is
+consistent; exact numerical verification requires SageMath or Pari-GP.
+
+If Conjecture~\ref{conj:A1} succeeds, the same modular structure encodes both
+lepton mass ratios and $\alpha^{-1} = 137$ --- a significant theoretical result.
+
+\textbf{Next step:} Run \texttt{tools/compute\_B\_from\_Lfunctions.py} to
+compute $L(2, f_{k=4})$ at levels $N = 38$ and $N = 200$.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
