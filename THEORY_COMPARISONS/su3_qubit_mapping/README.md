@@ -174,6 +174,30 @@ python -m THEORY_COMPARISONS.su3_qubit_mapping.experiments.e01_mapping_summary
 
 ---
 
+## Relationship to Mainline UBT Derivation
+
+> **[MATHEMATICAL SANDBOX]** — This module is a self-contained mathematical exploration.
+> It is **not** part of the mainline UBT derivation pipeline for SU(3)_color.
+
+The canonical UBT derivation of SU(3) proceeds via the **involution approach**:
+
+- **Primary source**: `consolidation_project/appendix_G_internal_color_symmetry.tex`
+  — Theorems G.A–G.D (status: **Proved [L0]**)
+- **Summary**: `consolidation_project/SU3_derivation/step1_involution_summary.tex`
+- **Method**: V_c = ker(P₂+1) ≅ ℂ³, SU(3) = Aut(V_c, ⟨·,·⟩) derived from
+  involutions on ℂ⊗ℍ without external gauge input.
+
+The one-hot qubit mapping in this sandbox (`φ: su(3) → End(ℂ²⊗ℂ²⊗ℂ²)`) is a
+**mathematically valid Lie algebra homomorphism** but uses a different construction
+(embedding ℂ³ into the 8-dimensional qubit space). It can be viewed as an independent
+mathematical verification that su(3) admits a 3-qubit operator representation, rather
+than as a derivation of SU(3) from UBT first principles.
+
+See `DERIVATION_INDEX.md` (Standard Model Gauge Group section) for the full status
+summary of all SU(3) approaches.
+
+---
+
 ## Notes
 
 - This is a **mathematical sandbox** — no physical interpretation is claimed
