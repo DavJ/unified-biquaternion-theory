@@ -36,8 +36,8 @@ Parameters that are **fully derived** from first principles are NOT listed here 
 
 | Parameter | Domain | Formula | Current Status | Data Used | Gap |
 |---|---|---|---|---|---|
-| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A — three derivation approaches tested; all give HONEST GAP or DEAD END; see `tools/compute_B_KK_sum.py` and `STATUS_ALPHA.md §9`) | SM gauge-boson content (N_eff = 12) | Gap 6 |
-| **R factor** (≈ 1.114) | Fine structure α | B = B_base × R | **Semi-empirical** (OPEN PROBLEM B) | SM particle spectrum | Gap 6 |
+| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A — four derivation approaches tested; all give HONEST GAP or DEAD END: KK sum, zeta regularization, Weyl gauge-orbit volume, twin-prime hypothesis (B=139/3); see `tools/compute_B_KK_sum.py`, `STATUS_ALPHA.md §9`, and `scripts/padic/sage_B_derivation.sage`) | SM gauge-boson content (N_eff = 12) | Gap 6 |
+| **R factor** (≈ 1.114) | Fine structure α | B = B_base × R | **Semi-empirical** (OPEN PROBLEM B — twin-prime reformulation R=139/(3·N_eff^{3/2})=1.1146 is a numerical near-coincidence with no geometric derivation [DEAD END]; B2 and B3 under investigation; see `STATUS_ALPHA.md §9`) | SM particle spectrum | Gap 6 |
 | **Λ** (cosmological constant) | Cosmology / GR | FRW embedding | Semi-empirical | CMB Planck data | — |
 | **Electroweak mixing angle** θ_W | Standard Model | SU(2)×U(1) embedding | **Semi-empirical** | PDG value sin²θ_W = 0.231 | Gap 5 |
 | **SU(2)_L coupling** g | Standard Model | Covariant derivative D_μ | **Free** | PDG g ≈ 0.653 | — |
@@ -87,15 +87,15 @@ See `STATUS_ALPHA.md §9` and `validation/validate_B_coefficient.py` for the no-
 
 | Parameter | Removal condition |
 |-----------|-------------------|
-| R ≈ 1.114 | Derive R from [D_μ,D_ν] in ℂ⊗ℍ (Option B2) or gravitational dressing (Option B3) |
-| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume. KK sum, zeta regularization, and Weyl gauge-orbit volume all tested in `tools/compute_B_KK_sum.py` — all give HONEST GAP / DEAD END as of 2026-03-04 |
+| R ≈ 1.114 | Derive R from [D_μ,D_ν] in ℂ⊗ℍ (Option B2) or gravitational dressing (Option B3). Twin-prime reformulation R=139/(3·N_eff^{3/2}) is a DEAD END (no geometric basis). |
+| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume or algebraic power law. KK sum, zeta regularization, Weyl gauge-orbit volume, and twin-prime (B=139/3) all tested — all give HONEST GAP / DEAD END as of 2026-03-07; see `tools/compute_B_KK_sum.py`, `STATUS_ALPHA.md §9`, `scripts/padic/sage_B_derivation.sage`. |
 | θ_W | Derive sin²θ_W from extended algebra structure or ψ-circle dynamics |
 
 ---
 
 *Full details also in `docs/FITTED_PARAMETERS.md`.*
 
-*Last updated: 2026-03-04. See STATUS_ALPHA.md §9 and docs/PROOFKIT_ALPHA.md §5 for details.*
+*Last updated: 2026-03-07. See STATUS_ALPHA.md §9 and docs/PROOFKIT_ALPHA.md §6 for details.*
 
 *© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0*
 

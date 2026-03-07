@@ -208,31 +208,44 @@ Expected output:
 
 **Problem A — Derive B_base = N_eff^{3/2}:**
 
-Option 1 (KK mode form factor):
+Option 1 (KK mode form factor) — **[DEAD END]**:
 ```
 B_compact = B₀ × F(R_ψ·Λ)   where   F = Σ_{k=-∞}^{∞} f(k²/(R_ψ²·Λ²))
 ```
-Check: does F at Λ = 1/R_ψ give F ≈ N_eff^{1/2}/(2π/3)?
+Result: KK mode sum gives ratio ≈ 0.005, not the required factor 1.65. Dead end.
 
-Option 2 (Gauge orbit volume):
+Option 2 (Gauge orbit volume) — **[DEAD END]**:
 ```
 Vol(SU(N)) ~ N^{3/2}  (Weyl integration formula, large N)
-If B_base = C·Vol(gauge orbit) → compute C and check against 41.57 for N=12
 ```
+Result: Vol(SU(N)) scales as N^{42} (super-exponential due to Stirling), not N^{3/2}. Dead end.
 
-If neither option works, the honest result is:
+Option 3 (Zeta-function regularization) — **[DEAD END]**:
+Result: ζ(-1) = -1/12 gives B_ζ ≈ −1.2 (wrong sign). Dead end.
+
+Option 4 (Twin-prime hypothesis, explored March 2026) — **[DEAD END]**:
 ```
-With B₀ = 25.1 (rigorous):  n*(B₀) = exp(A/B₀ − 1/(2B₀)) ≈ 1  (not 137)
+Hypothesis: B = p_twin/N_color = 139/3 ≈ 46.33
 ```
-Statement: "With the rigorously derived one-loop B coefficient, UBT predicts
-n* ≈ 1, not 137. The B_base = N_eff^{3/2} formula is phenomenological and
-its geometric origin is an open problem."
+Result: 0.11% from B_required = 46.28, but no geometric derivation in UBT.
+The power-law exponent α = log_{N_eff}(B_req) = 1.543 ≠ 3/2 or any algebraic value.
+See `scripts/padic/sage_B_derivation.sage` and `STATUS_ALPHA.md §9`.
+
+**Honest result** (confirmed):
+```
+With B₀ = 25.1 (rigorous):  n*(B₀) ≈ 65  (not 137)
+```
+Statement: "With the rigorously derived one-loop B coefficient, UBT predicts n* ≈ 65,
+not 137. The B_base = N_eff^{3/2} formula is phenomenological and its geometric origin
+remains an OPEN HARD PROBLEM. Four approaches tested; all fail."
 
 **Problem B — Derive R ≈ 1.114:**
 
-- B1: RG running between compactification scale and m_e → R ≈ 1 [likely dead end]
+- B1: RG running between compactification scale and m_e → R ≈ 1 [**DEAD END**]
 - B2: Non-commutative correction δΠ_NC = C_NC·Tr([D_μ,D_ν]²) [under investigation]
 - B3: Gravitational dressing from imaginary metric component h_μν [under investigation]
+- B4: Twin-prime reformulation R = 139/(3·N_eff^{3/2}) ≈ 1.1146 [**DEAD END** — reformulates
+  the problem, provides no independent derivation; see `STATUS_ALPHA.md §9`]
 
 **No-circularity test** (see `validation/validate_B_coefficient.py`):
 B must be computed without knowing the answer is 137. N_eff=12 should give n*=137;
