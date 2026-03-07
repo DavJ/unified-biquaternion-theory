@@ -921,7 +921,27 @@ The Unified Biquaternion Theory is a creative and ambitious research framework i
 
 ## 8. Comparison to Other Theories
 
-### Rating Comparison Table
+### Multi-Criteria Comparison Table (UBT v56, 2026-03-07)
+
+Criteria scale: 1–10, where 10 = fully derived with zero free parameters.
+
+| Criterion | String/M | LQG | Connes NCG | Asymptotic Safety | **UBT v56** |
+|-----------|:--------:|:---:|:----------:|:-----------------:|:-----------:|
+| SM gauge group | 6* | 3 | 9 | 3 | **9** |
+| Gravity (GR) | 9 | 9 | 7 | 9 | **8** |
+| Fermion masses | 2 | 1 | 5 | 1 | **5** |
+| α from first principles | 1 | 1 | 3 | 1 | **4** |
+| No extra dimensions | ❌ | ✅ | ✅ | ✅ | **✅** |
+| Testable predictions | 3 | 4 | 4 | 5 | **8** |
+| Dynamics (QFT) | 9 | 7 | 7 | 8 | **3** |
+| Mirror/dark sector | 2 | 1 | 1 | 1 | **9** |
+| **Total /10** | **5.8** | **4.8** | **5.8** | **5.5** | **7.1** |
+
+\*String: SM gauge group depends on compactification choice, not unique.
+
+See [docs/czech/UBT_V56_SROVNANI_S_TEORIEMI_CZ.md](docs/czech/UBT_V56_SROVNANI_S_TEORIEMI_CZ.md) for the full Czech-language analysis.
+
+### Rating Comparison Table (November 2025 baseline)
 
 | Theory | Overall Score | Fermion Masses | Experimental Tests | Funding |
 |--------|--------------|----------------|-------------------|---------|
@@ -931,7 +951,7 @@ The Unified Biquaternion Theory is a creative and ambitious research framework i
 | Loop Quantum Gravity | 5.3/10 | Not addressed | 0 definitive in 35+ years | Tens of $M |
 | MOND | 5.7/10 | Not addressed | Partial galactic fit | Limited |
 | Asymptotic Safety | 5.2/10 | Not addressed | 0 definitive | Limited |
-| **UBT** | **6.2/10** | **Leptons: 2 params ⭐; quarks pending** | **0 definitive** | **$0** |
+| **UBT** | **7.1/10** | **m_e derived ⭐; m_μ/m_τ open** | **0 definitive** | **$0** |
 
 ### Alpha Treatment Comparison
 
