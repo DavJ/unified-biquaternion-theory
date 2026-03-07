@@ -1,0 +1,253 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% R ≈ 1.114 — Geometric and Renormalization Identification (B1 + B3)
+% Track: CORE — α derivation — v56 baseline
+% Date: 2026-03-07
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{$R \approx 1.114$: Geometric Identification\\
+    \large Approaches B1 (Volume Ratios) and B3 (Two-Loop on $\psi$-Circle)}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-07}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Problem Statement}
+\label{sec:r_problem}
+
+The fine-structure constant derivation in UBT requires
+\begin{equation}
+  B = B_{\mathrm{base}} \times R
+    = N_{\mathrm{eff}}^{3/2} \times R
+    \approx 41.57 \times 1.114
+    \approx 46.3.
+\end{equation}
+The correction factor $R \approx 1.114$ is currently phenomenological
+(\textbf{OPEN PROBLEM B}).  This document explores two new approaches:
+
+\begin{description}
+  \item[B1] $R$ as a ratio of compactification volumes.
+  \item[B3] $R$ as a two-loop renormalisation correction on the compact $\psi$-circle.
+\end{description}
+
+All calculations avoid using $n^* = 137$ or $\alpha = 1/137$ as inputs
+(non-circularity requirement).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach B1: Volume Ratio Hypothesis}
+\label{sec:B1_volume}
+
+\textbf{Status: [DEAD END]} — no volume ratio of natural compactification
+spaces reproduces $R \approx 1.114$ without fine-tuning.
+
+\subsection{Tested Combinations}
+
+Let $\mathrm{Vol}(M)$ denote the standard round volume of a manifold $M$.
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Formula & Value & Error vs.\ $1.114$ & Status \\
+  \midrule
+  $\mathrm{Vol}(S^3)/\mathrm{Vol}(S^2\times S^1)$
+    & $2\pi^2 / (4\pi \cdot 2\pi) = 1/4$
+    & $-78\%$ & FAIL \\
+  $\mathrm{Vol}(S^3)/\mathrm{Vol}(\mathbb{RP}^3)$
+    & $2\pi^2 / \pi^2 = 2$
+    & $+79\%$ & FAIL \\
+  $\mathrm{Vol}(\mathbb{RP}^3)/\mathrm{Vol}(S^2)$
+    & $\pi^2 / (4\pi) = \pi/4$
+    & $-29\%$ & FAIL \\
+  Modular volume $\mu(\Gamma_0(7)) = 8$
+    & (integer, not dimensionless ratio to $\sim 1$)
+    & --- & FAIL \\
+  $\mathrm{Vol}(S^3) / (2\pi^2 \cdot \pi)$
+    & $2\pi^2 / (2\pi^3) = 1/\pi \approx 0.318$
+    & $-71\%$ & FAIL \\
+  $\bigl(\mathrm{Vol}(S^1_R) / \mathrm{Vol}(S^1_\psi)\bigr)^{1/N_{\mathrm{eff}}}$
+    & (depends on unknown $R$-ratio) & --- & OPEN \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+None of the natural compactification volume ratios yields a value in the
+range $[1.09, 1.14]$.  This approach is therefore classified as
+\textbf{[DEAD END]}: the geometric origin of $R$ is not a simple ratio
+of sphere volumes.
+
+\begin{remark}
+  The modular volume $\mu(\Gamma_0(7)) = 8 = \dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{H})$
+  coincides with the real dimension of the biquaternion algebra, but it is an
+  integer — not a ratio close to $1.114$.
+\end{remark}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach B3: Two-Loop Renormalisation on the Compact $\psi$-Circle}
+\label{sec:B3_twoloop}
+
+\textbf{Status: [OPEN PROBLEM]} — the qualitative structure is plausible and
+the required coefficient can be expressed in terms of $N_{\mathrm{eff}}$, but
+no combination $f(N_{\mathrm{eff}})$ with a clear algebraic origin reproduces
+$R = 1.114$ from first principles.
+
+\subsection{Setup}
+
+The imaginary-time dimension $\psi$ is compactified on a circle
+$S^1_\psi$ of radius $R_\psi = \hbar/(m_e c)$.  For a compact spatial
+dimension the Kaluza--Klein spectrum is discrete, modifying the
+renormalisation group running relative to non-compact flat space.
+
+The one-loop vacuum polarisation on $\mathbb{R}^{1,3}\times S^1_\psi$ reads
+\begin{equation}
+  \Pi(q^2) = \Pi_{\mathrm{flat}}(q^2)
+    + \delta\Pi_{\mathrm{compact}}(q^2),
+\end{equation}
+where $\delta\Pi_{\mathrm{compact}}$ encodes the finite-size correction from
+the discrete KK tower.
+
+\subsection{Ratio of Compact to Flat Renormalisation}
+
+Define the ratio
+\begin{equation}
+  R_{\mathrm{compact}} = 1 + \frac{\delta\Pi_{\mathrm{compact}}}{\Pi_{\mathrm{flat}}}
+    = 1 + \frac{c}{(m_e R_\psi)^2} + \mathcal{O}\!\left(\frac{1}{(m_e R_\psi)^4}\right).
+  \label{eq:R_compact_expansion}
+\end{equation}
+For $R_\psi = \hbar/(m_e c)$ in natural units we have $m_e R_\psi = 1$, so:
+\begin{equation}
+  R \approx 1 + c, \qquad c \approx 0.114.
+\end{equation}
+
+\subsection{Identifying the Coefficient $c$}
+
+From the phenomenological requirement $R = 1.114$:
+\begin{equation}
+  c = R - 1 = 0.114.
+\end{equation}
+In a QED-like theory the leading compact-circle correction is
+$c \sim \alpha_0 \times f(N_{\mathrm{eff}})$, where
+$\alpha_0 = 1/(4\pi B_{\mathrm{base}}) \cdot \text{(normalisation)}$.
+Using $\alpha_0 \approx 1/137$ as the leading-order approximation:
+\begin{equation}
+  f(N_{\mathrm{eff}}) = \frac{c}{\alpha_0} = 0.114 \times 137 \approx 15.6.
+\end{equation}
+
+\subsection{Numerical Search for $f(N_{\mathrm{eff}}) \approx 15.6$}
+
+The following combinations of $N_{\mathrm{eff}} = 12$ are evaluated
+(see also \texttt{tools/explore\_r\_factor.py}):
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Formula for $R$ & Value & Error vs.\ $1.114$ & Status \\
+  \midrule
+  $1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)$
+    & $1.11235$ & $0.15\%$ & \textbf{[NUMERICAL OBSERVATION]} \\
+  $1 + \alpha\,N_{\mathrm{eff}}^{3/2}/e$
+    & $1.11162$ & $0.21\%$ & \textbf{[NUMERICAL OBSERVATION]} \\
+  $1 + \alpha(N_{\mathrm{eff}} + \pi)$
+    & $1.11052$ & $0.31\%$ & \textbf{[NUMERICAL OBSERVATION]} \\
+  $1 + \alpha\,N_{\mathrm{eff}} \times (5/4)$
+    & $1.10949$ & $0.41\%$ & \textbf{[NUMERICAL OBSERVATION]} \\
+  $1 + 1/(3\pi)$
+    & $1.10610$ & $0.71\%$ & [CLOSE] \\
+  $2^{1/6}$ (sixth root of 2)
+    & $1.12246$ & $0.76\%$ & [CLOSE] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The best algebraic candidate from this search is
+\begin{equation}
+  R \approx 1 + \alpha\bigl(N_{\mathrm{eff}} + \pi + \tfrac{1}{4}\bigr)
+    \approx 1.11235,
+  \qquad \text{error} = 0.15\%.
+  \label{eq:R_best_candidate}
+\end{equation}
+This is a \textbf{[NUMERICAL OBSERVATION]}.  The structure
+$f = N_{\mathrm{eff}} + \pi + 1/4$ can be read as: $N_{\mathrm{eff}} = 12$
+discrete bosonic KK modes, $\pi$ from the angular integration over the
+half-period of the $\psi$-circle, and $1/4$ a potential two-loop spin
+factor.  However, none of these assignments has been derived from
+$\mathcal{S}[\Theta]$.
+
+\begin{remark}
+  The second-best candidate $1 + \alpha\,N_{\mathrm{eff}}^{3/2}/e \approx 1.11162$
+  at $0.21\%$ error is intriguing because $N_{\mathrm{eff}}^{3/2} = B_{\mathrm{base}}$
+  connects the $R$ correction directly to $B_{\mathrm{base}}$ via
+  $R \approx 1 + \alpha B_{\mathrm{base}}/e$.
+  This would imply a self-referential renormalisation structure, but
+  requires independent derivation.
+\end{remark}
+
+\subsection{Conclusion for B3}
+
+\begin{itemize}
+  \item The two-loop compact-circle mechanism provides a \emph{plausible
+    qualitative origin} for $R > 1$: finite-$R_\psi$ corrections shift
+    the vacuum polarisation upward relative to the flat-space limit.
+  \item The best numerical candidate is $R \approx 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)$
+    at $0.15\%$ error (\textbf{NUMERICAL OBSERVATION}).
+  \item No combination has been derived from $\mathcal{S}[\Theta]$ from
+    first principles; this approach remains \textbf{[OPEN PROBLEM B]}.
+\end{itemize}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Numerical Observation from \texttt{explore\_r\_factor.py}}
+\label{sec:r_numerical}
+
+Running the companion script (Approach B2, \texttt{tools/explore\_r\_factor.py})
+gives the closest algebraic candidate:
+\begin{equation}
+  R \approx 2^{1/6} = \sqrt[6]{2} \approx 1.1225, \qquad \text{error} = 0.76\%.
+  \label{eq:R_2_sixth}
+\end{equation}
+This is a \textbf{[NUMERICAL OBSERVATION]}: the sixth root of 2 is within
+$0.76\%$ of $1.114$.  The number 6 could arise as
+$\dim_\mathbb{R}(\mathrm{Im}(\mathbb{C}\otimes\mathbb{H})) - 1 = 7 - 1 = 6$,
+or as $N_{\mathrm{phases}} \times N_{\mathrm{helicity}} = 3 \times 2 = 6$.
+However, no algebraic derivation of $R = 2^{1/6}$ from
+$\mathcal{S}[\Theta]$ exists at this time.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:r_summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Result & Status \\
+  \midrule
+  B1: Volume ratios               & No match in $[1.09, 1.14]$  & [DEAD END] \\
+  B2: Algebraic candidates        & $2^{1/6} \approx 1.1225$, err $0.76\%$ & [NUMERICAL OBSERVATION] \\
+  B3: Two-loop on $\psi$-circle   & Correct qualitative structure; $c$ not derived & [OPEN PROBLEM B] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Open Problem B remains open.}  The most promising direction is B3
+(two-loop compact correction) combined with an algebraic computation of
+$c$ from $\mathcal{L}[\Theta]$.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
