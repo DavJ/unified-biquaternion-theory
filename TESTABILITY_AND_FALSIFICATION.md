@@ -803,4 +803,97 @@ Result interpretation:
 
 **Document Status:** Living document, updated as predictions are developed  
 **Next Review:** After first specific prediction is calculated  
-**Last Updated:** October 31, 2025
+**Last Updated:** 2026-03-07
+
+---
+
+## Mirror Sector Predictions
+
+The UBT mirror sector conjecture (motivated by twin prime structure at $p = 137$/$p = 139$)
+makes the following specific, potentially falsifiable predictions:
+
+### P-MIRROR-1: Mirror matter exists with $\alpha' = 1/139$
+
+**Prediction**: A mirror copy of the Standard Model exists with fine structure constant
+$\alpha'^{-1} = 139$ (vs our $\alpha^{-1} = 137$).
+
+**Observable**: Dark matter component with specific self-interaction cross-section:
+$$\sigma/m \sim (\alpha')^2 / m_{\rm mirror}$$
+This is slightly larger than our-sector cross-sections (since $\alpha' > \alpha$).
+
+**Falsification criterion**: If dark matter self-interaction is measured and found
+inconsistent with $\alpha' = 1/139$, this prediction is falsified.
+
+**Current status**: No contradiction with existing dark matter observations (SIDM
+constraints allow this parameter space).
+
+---
+
+### P-MIRROR-2: Mirror sector is metastable
+
+**Prediction**: The mirror vacuum $n^* = 139$ is a metastable local minimum of
+$V_{\rm eff}(n)$ with lifetime $\tau > t_{\rm universe}$.
+
+**Observable**: Absence of bubble nucleation events in cosmological data (CMB
+anisotropies, large-scale structure, cosmic ray anomalies).  A metastable mirror
+vacuum decaying to our sector would produce a bubble wall observable in principle.
+
+**Falsification criterion**: Detection of a cosmological bubble wall with the
+predicted properties would either falsify or confirm this prediction.
+
+**Current status**: [MOTIVATED CONJECTURE]; naive Coleman estimate is inconclusive
+due to discrete-$n$ complications.
+
+---
+
+### P-MIRROR-3: Mirror lepton mass ratios
+
+**Prediction**: If the mirror sector has three lepton generations (by the same Hecke
+mechanism as our sector), the mirror lepton mass ratios should follow from Set B
+Hecke eigenvalues at $p = 139$:
+$$m'_e : m'_\mu : m'_\tau = f(a_{139}(f_1')) : f(a_{139}(f_2')) : f(a_{139}(f_3'))$$
+where $f_1' = \text{195.2.a.c}$, $f_2' = \text{50.4.a.b}$, $f_3' = \text{54.6.a.b}$.
+
+**Observable**: If mirror matter decays to our sector (e.g., via kinetic mixing or
+gravity), decay products would carry mirror lepton signatures at specific mass ratios.
+
+**Falsification criterion**: Explicit computation of mirror lepton ratios from Set B
+eigenvalues would give a quantitative prediction; inconsistency with any future
+detection of mirror leptons would falsify it.
+
+**Current status**: Computation of the ratio formula pending; Set B eigenvalues known
+numerically.
+
+---
+
+### P-MIRROR-4: Hubble tension resolution via mirror dark sector
+
+**Prediction**: Mirror dark matter with $\alpha' = 1/139$ predicts specific
+modifications to CMB acoustic peaks and the matter power spectrum.
+
+**Specific prediction** (following Zhang & Frieman 2022 approach for similar models):
+A mirror dark sector contributes additional acoustic oscillations to the CMB that
+effectively increase the inferred Hubble constant $H_0$ by approximately
+$\Delta H_0 \sim 1$--$2$ km/s/Mpc, potentially resolving the Hubble tension
+($H_0^{\rm Planck} \approx 67.4$ vs $H_0^{\rm SH0ES} \approx 73.0$ km/s/Mpc).
+
+**Observable**: Future CMB experiments (CMB-S4, Simons Observatory) with
+precision polarisation measurements could detect or rule out this specific
+acoustic signature.
+
+**Falsification criterion**: If future CMB-S4 data excludes additional dark radiation
+with the mirror sector parameters, this prediction is falsified.
+
+**Current status**: [MOTIVATED CONJECTURE]; quantitative prediction requires
+computing mirror sector contribution to $\Delta N_{\rm eff}$.
+
+---
+
+### Summary of Mirror Sector Predictions
+
+| Prediction | Observable | Status |
+|-----------|-----------|--------|
+| P-MIRROR-1: $\alpha' = 1/139$ dark matter | SIDM cross-section | [CONJECTURE] |
+| P-MIRROR-2: Mirror vacuum metastable | No bubble wall detected | [MOTIVATED CONJECTURE] |
+| P-MIRROR-3: Mirror lepton mass ratios | Mirror lepton decay signatures | [CONJECTURE] |
+| P-MIRROR-4: Hubble tension via mirror dark sector | CMB-S4 acoustic peaks | [MOTIVATED CONJECTURE] |

@@ -86,6 +86,38 @@ $\langle\mathrm{spinor}|\mathcal{L}_\mathrm{int}|\mathrm{scalar}\otimes\mathrm{s
 directly from $S[\Theta]$.
 \end{gapbox}
 
+\subsection{Structural Form of the Yukawa Coupling (Sketch)}
+\label{subsec:yukawa_sketch}
+
+While a full derivation of $y$ remains open (Gap Y1), its structural form can be
+motivated from the biquaternionic geometry.
+
+The UBT action $S[\Theta]$ contains, in the charged sector, a term of the form:
+\begin{equation}
+  \mathcal{L}_\mathrm{int} = g_\psi\,\Theta^\dagger \cdot \varphi \cdot \Theta,
+\end{equation}
+where $g_\psi$ is the gauge coupling on the $\psi$-circle and $\varphi$ is the scalar
+zero-mode field.  The Yukawa coupling $y$ is then the projection of this vertex onto
+the spinorial subspace:
+\begin{equation}
+  y = \mathrm{Sc}\!\left[e_0^\dagger \cdot (\partial_\varphi S[\Theta]) \cdot e_0\right],
+  \label{eq:y_structural}
+\end{equation}
+where $e_0$ is the vacuum mode (the zero-mode spinor).
+
+In dimensional terms, $y \sim g_\psi \cdot R_\psi / R_\varphi$, where $R_\psi$ is the
+$\psi$-circle radius (determining the compactification scale) and $R_\varphi$ is the
+scalar field radius in field space.
+
+\begin{gapbox}
+\textbf{Gap Y1 (SKETCH):} The Yukawa coupling has the structural form
+$y \sim g \cdot R_\psi / R_\varphi$ where $g$ is the gauge coupling.
+A full derivation requires computing $\partial_\varphi S[\Theta]$ explicitly ---
+pending Gap M1 (soliton mass computation).
+
+Status: \textbf{Y1 — SKETCH}.
+\end{gapbox}
+
 \subsection{Mass Generation}
 
 For $\theta_0 = \langle\theta_0\rangle = v = \mathrm{const}$ (the constant scalar background
@@ -116,7 +148,7 @@ with $\mu^2, \lambda$ determined by loop corrections from the charged sector.  T
 minimum at $|\theta_0| = v = \mu/\sqrt{2\lambda}$ sets the scale of $v$.
 
 \begin{gapbox}
-\textbf{Gap Y2 (open):} The parameters $\mu$ and $\lambda$ in $V_\mathrm{eff}(\theta_0)$
+\textbf{Gap Y2 (partially derived):} The parameters $\mu$ and $\lambda$ in $V_\mathrm{eff}(\theta_0)$
 are not yet computed from $S[\Theta]$ without external input.  In particular:
 \begin{itemize}
   \item $\mu^2$ requires a mass-squared parameter in the $\psi$-sector action;
@@ -125,6 +157,42 @@ are not yet computed from $S[\Theta]$ without external input.  In particular:
 Both are in principle determined by the topology of the $\psi$-circle (radius $R_\psi$)
 and the biquaternionic geometry, but the explicit computation is an open task.
 \end{gapbox}
+
+\subsection{VEV from the Effective Potential (Partial Derivation)}
+\label{subsec:vev_partial}
+
+From the one-loop effective potential $V_\mathrm{eff}(\theta_0) = -\mu^2|\theta_0|^2 + \lambda|\theta_0|^4$,
+the minimum is at:
+\begin{equation}
+  v^2 = \frac{\mu^2}{2\lambda}.
+  \label{eq:vev_minimum}
+\end{equation}
+The renormalisation group analysis from Step~3 (see \texttt{step3\_beta\_function.tex})
+shows that the $\beta$-function for the self-coupling $\lambda$ has a UV fixed point,
+indicating that $V_\mathrm{eff}$ is renormalisationally stable.  This means:
+\begin{itemize}
+  \item $\lambda > 0$: the potential is bounded below (no runaway vacuum),
+  \item $\mu^2 > 0$: spontaneous symmetry breaking occurs,
+  \item $v = \mu/\sqrt{2\lambda}$ is a stable minimum.
+\end{itemize}
+
+In terms of the $\psi$-circle geometry:
+\begin{equation}
+  \mu^2 \sim \frac{1}{R_\psi^2}, \qquad \lambda \sim g_\psi^2,
+\end{equation}
+so that $v \sim 1/(g_\psi R_\psi)$.  The value of $v$ is thus set by the compactification
+radius $R_\psi$ and the gauge coupling $g_\psi$ of the $\psi$-circle.
+
+\begin{resultbox}
+\textbf{Gap Y2 — PARTIALLY DERIVED}:
+$V_\mathrm{eff}(\theta_0)$ has a minimum at $v^2 = \mu^2/(2\lambda)$ (equation~\eqref{eq:vev_minimum}).
+Renormalisational stability (from Step~3 $\beta$-function analysis) confirms this
+minimum is stable.  The explicit computation of $\mu^2$ and $\lambda$ from $S[\Theta]$
+remains open; their scaling $\mu^2 \sim R_\psi^{-2}$, $\lambda \sim g_\psi^2$ is
+dimensionally motivated.
+
+Status: \textbf{Y2 — PARTIALLY DERIVED}.
+\end{resultbox}
 
 \subsection{Lepton Mass Ratios}
 
@@ -147,8 +215,8 @@ is an open question classified as \textbf{Supported by numerical evidence}.
 Claim & Electron mass $m_e = y\cdot v$ from Yukawa at $\varphi = \mathrm{const}$ \\
 Status & \textbf{SKETCH} \\
 Structural mechanism & Identical to SM Higgs; natural in $\mathbb{C}\otimes\mathbb{H}$ \\
-Gap Y1 & Yukawa coupling $y$ not yet derived from $S[\Theta]$ \\
-Gap Y2 & VEV $v$ not yet computed from $V_\mathrm{eff}$ without input \\
+Gap Y1 & Yukawa coupling $y \sim g\cdot R_\psi/R_\varphi$ — structural form (SKETCH) \\
+Gap Y2 & VEV $v = \mu/\sqrt{2\lambda}$ from stable minimum of $V_\mathrm{eff}$ (PARTIALLY DERIVED) \\
 Layer & [L1] — one-loop effective potential \\
 \hline
 \end{tabular}

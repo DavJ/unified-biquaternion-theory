@@ -50,7 +50,7 @@ Status labels:
 | SU(3)_c from quantum superposition over {I,J,K} | **Proved [L0]** | `consolidation_project/SU3_derivation/step1_superposition_approach.tex`, `tools/verify_su3_superposition.py` | Complementary to involution approach (v46); Θ_color = α·I+β·J+γ·K ∈ ℂ³; U(3) symmetry → SU(3) after U(1)_Y; involutions P_I,P_J,P_K give ℤ₂×ℤ₂ skeleton; all 8 Gell-Mann generators verified numerically; dim(Im ℍ)=3 forces SU(3) with zero free parameters |
 | SU(3)_c via i,j,k → r,g,b axis mapping | **[HEURISTIC / MOTIVATING SKETCH]** | `Appendix_G_Emergent_SU3.tex` | Intuitive correspondence only; NOT an algebraic proof; see disclaimer at top of that file; canonical derivation is involution approach above |
 | SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | **[MATHEMATICAL SANDBOX]** | `THEORY_COMPARISONS/su3_qubit_mapping/` | Valid Lie algebra homomorphism (51 tests pass); separate from mainline UBT derivation; does not derive SU(3) from ℂ⊗ℍ first principles |
-| Color confinement (algebraic) | **[CONJECTURED L0]** | `consolidation_project/confinement/algebraic_confinement.tex`, `consolidation_project/confinement/confinement_verification.py` | H_phys = Im(Π_color) in ℂ²⊗ℂ²⊗ℂ²; free quark algebraically inadmissible (not a colour singlet, ⟨C₂⟩=4/3≠0); all hadrons (baryon, meson, tetraquark, pentaquark) verified to satisfy ⟨C₂⟩=0; distinct from Clay Prize (YM mass gap) — see §4 of tex file; needs peer review |
+| Color confinement (algebraic) | **[CONJECTURED WITH EXPERIMENTAL SUPPORT L0]** | `consolidation_project/confinement/algebraic_confinement.tex`, `consolidation_project/confinement/confinement_verification.py` | H_phys = Im(Π_color) in ℂ²⊗ℂ²⊗ℂ²; free quark algebraically inadmissible (not a colour singlet, ⟨C₂⟩=4/3≠0); all hadrons (baryon, meson, tetraquark, pentaquark) verified to satisfy ⟨C₂⟩=0; distinct from Clay Prize (YM mass gap) — see §5; exotic hadrons at LHCb consistent (§6); needs peer review |
 | Weinberg angle θ_W fixed | **Semi-empirical** | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone |
 | SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L1]** | `consolidation_project/chirality_derivation/step1_psi_parity.tex`, `step2_chirality_result.tex`, `step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
 
@@ -252,9 +252,9 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | FPE ↔ E-L equivalence (scalar, free field) | **Proven** [L0] | `step4_fpe_equivalence.tex Thm. 1` | Algebraic identity: both reduce to ∂_TΘ = D∇²Θ under C1,C2 |
 | Norm conservation from FPE | **Proven** [L0] | `step4_fpe_equivalence.tex Prop. 2` | d/dT ∫\|Θ\|² dQ = 0; Born rule consistent without extra postulate |
 | Projection A: Re sector → GR/KG | **Proven** [L0] | `step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) = GR sector; confirmed numerically |
-| Projection B: Im sector → QM/Schrödinger | **Sketch** | `step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) remains |
+| Projection B: Im sector → QM/Schrödinger | **Sketch** | `step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) PARTIALLY CLOSED via dimensional analysis (step2_schrodinger_emergence.tex §2.5) |
 | Projection C: Full FPE → statistical mechanics | **Proven** [L0] | `step4_fpe_equivalence.tex §4` | FPE IS stat.mech. by construction |
-| FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `step4_fpe_equivalence.tex §6`, `step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced |
+| FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `step4_fpe_equivalence.tex §6`, `step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced; Gap G1 CLOSED for scalar sector (step1_fpe_check.tex §1.3.1) |
 
 **Strongest unification result**: QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ — not emergent from a deeper layer.
 
@@ -286,7 +286,7 @@ and an emergent-metric construction strongly connected to Θ.
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
 | GR equivalence via tetrad pipeline | **Conditional** | `consolidation_project/appendix_R_GR_equivalence.tex` | Requires Hermitian tetrad (A1), torsion-free (A2), invertible tetrad (A3) |
-| Θ-only closure (on-shell) | **Proved on-shell** | `consolidation_project/GR_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; off-shell requires injectivity of g[Θ] |
+| Θ-only closure (on-shell) | **Proved on-shell** | `consolidation_project/GR_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; on-shell injectivity proved for A_UBT class (§1.5); off-shell requires global section existence [L2 OPEN] |
 
 ### Not Yet Proved
 
@@ -294,4 +294,29 @@ and an emergent-metric construction strongly connected to Θ.
 |--------|--------|-------|
 | Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires proving injectivity of Θ↦g[Θ] globally; genericity argument only |
 | Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
+
+---
+
+## Mirror Sector (Twin Prime Vacuum)
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| V_eff(137) < V_eff(139) numerically | **NUMERICAL OBSERVATION** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Follows from V_eff form with B > B₀; needs B derivation |
+| n*=139 metastable vacuum | **MOTIVATED CONJECTURE** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Coleman tunnelling estimate; τ >> t_universe predicted but naive estimate inconclusive |
+| Mirror sector α⁻¹ = 139 | **NUMERICAL OBSERVATION** | `reports/hecke_lepton/mirror_world_139.md` | Set B forms globally unique at p=139 |
+| Mirror sector is habitable | **DERIVED** | `consolidation_project/mirror_sector/README.md` | α⁻¹=139 within anthropic bounds (95-195); stars burn, carbon forms, water is solvent |
+| Mirror matter as dark matter candidate | **CONJECTURE** | `consolidation_project/mirror_sector/README.md` | Interacts gravitationally only; Foot-Volkas precedent; UBT adds algebraic motivation from twin prime structure |
+
+---
+
+## Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Weights k=2,4,6 from n-th ψ-mode | **MOTIVATED CONJECTURE** | `consolidation_project/hecke_bridge/motivation.tex §2` | k=2n for n-th generation; kinetic/quartic/sextic terms in S[Θ] |
+| Level N=7, μ(Γ₀(7))=8 = dim_ℝ(ℂ⊗ℍ) | **MOTIVATED CONJECTURE** | `consolidation_project/hecke_bridge/motivation.tex §3` | Index coincidence suggestive; not proved |
+| Trivial character χ=1 from ℤ-rationality | **MOTIVATED CONJECTURE** | `consolidation_project/hecke_bridge/motivation.tex §4` | ℂ⊗ℍ over ℤ → ℚ-rational forms |
+| Three forms (not one, not five) | **MOTIVATED CONJECTURE** | `consolidation_project/hecke_bridge/motivation.tex §5` | Three ψ-modes; algebraic derivation OPEN |
+| Derivation of specific forms from ℂ⊗ℍ | **OPEN** | — | Requires identifying L-function of ℂ⊗ℍ/ℤ |
+
 

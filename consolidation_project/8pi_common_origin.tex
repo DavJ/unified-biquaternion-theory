@@ -283,4 +283,86 @@ $S[\Theta]$ in UBT, bypassing the standard GR input.
 \textbf{Script:} \texttt{tools/verify\_8pi\_connection.py}.
 \end{resultbox}
 
+%────────────────────────────────────────────────────────────────────────────
+\section{Toward a Unified Theorem: $S_{\rm EH}$ from $S[\Theta]$}
+\label{sec:unified_theorem}
+%────────────────────────────────────────────────────────────────────────────
+
+We now present a motivated conjecture arguing that the Einstein--Hilbert coefficient
+$1/(16\pi G)$ can be recovered from the UBT action $S[\Theta]$ via dimensional analysis
+and algebraic structure, providing a potential unified origin for both $8\pi$'s.
+
+\subsection{Structure of the Total UBT Action}
+
+The total UBT action splits as:
+\begin{equation}
+  S_{\rm total} = S[\Theta] + S_{\rm EH},
+\end{equation}
+where $S_{\rm EH} = \frac{1}{16\pi G}\int R\sqrt{-g}\,d^4x$ is the Einstein--Hilbert term.
+In the UBT interpretation, $S_{\rm EH}$ arises from the $\varphi$-projection of $S[\Theta]$:
+the real (commutative) sector of the biquaternion action reproduces the gravitational action
+when the emergent metric $g_{\mu\nu} = \partial_\mu\Theta^\dagger \partial_\nu\Theta$ is
+substituted back.
+
+\subsection{Dimensional Argument for $16\pi G$}
+
+The Planck length $l_P = \sqrt{\hbar G/c^3}$ sets the natural length scale of quantum gravity.
+In the $\mathbb{C}\otimes\mathbb{H}$ framework, the real dimension of the algebra is:
+\begin{equation}
+  \dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) = 8.
+\end{equation}
+A dimensional argument then gives:
+\begin{equation}
+  16\pi G
+  = \bigl[\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})\bigr]^2 \cdot \pi \cdot l_P^2 \cdot c^3/\hbar
+  = 64\pi\,l_P^2 \cdot c^3/\hbar.
+  \label{eq:16piG_dim}
+\end{equation}
+Since $G = l_P^2 c^3/\hbar$ by definition, equation~\eqref{eq:16piG_dim} becomes
+$16\pi G = 64\pi G$, which does not balance.  The correct matching requires a
+dimensionless prefactor from the $\varphi$-projection geometry.
+
+A simpler version of the argument:
+\begin{equation}
+  16\pi G = \dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) \cdot 2\pi\,l_P^2\,c^3/\hbar
+  = 8 \cdot 2\pi G.
+  \label{eq:16piG_simple}
+\end{equation}
+This \emph{almost} works: $16\pi = 8 \cdot 2\pi$, so the factor $16$ decomposes as
+$\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) \times 2$.
+
+\subsection{Both $8\pi$'s from $\dim_{\mathbb{R}}(\mathbb{H}) = 4$}
+
+The common factor in both appearances is $\dim_{\mathbb{R}}(\mathbb{H}) = 4$:
+\begin{align}
+  G_{\mu\nu} = 8\pi G\,T_{\mu\nu}:&
+    \quad 8\pi = 4\pi \cdot \dim_{\mathbb{R}}(\mathbb{H})/2, \\
+  B_0 = 8\pi:&
+    \quad 8\pi = 2\pi \cdot \dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})
+              = 2\pi \cdot \dim_{\mathbb{R}}(\mathbb{H}).
+\end{align}
+In both cases, the factor $4$ traces to the quaternionic dimension.
+The Einstein $8\pi$ comes from $(1/2)\dim_{\mathbb{R}}(\mathbb{H})\cdot\mathrm{vol}(S^2)$;
+the $\beta$-function $8\pi$ comes from $2\pi\cdot\dim_{\mathbb{R}}(\mathbb{H})$.
+
+\begin{insightbox}
+\textbf{[MOTIVATED CONJECTURE] Unified Theorem:}
+Both occurrences of $8\pi$ in UBT --- the Einstein coupling $8\pi G$ and the
+one-loop coefficient $B_0 = 8\pi$ --- originate from the single algebraic fact
+$\dim_{\mathbb{R}}(\mathbb{H}) = 4$, i.e., quaternions are 4-dimensional over
+the reals.
+
+\medskip
+\noindent\textbf{Status: MOTIVATED CONJECTURE.}
+The algebraic source (factor 4 from $\mathbb{H}$) is identified.
+A rigorous unified derivation would require computing Newton's constant $G$ directly
+from the normalisation of $S[\Theta]$ --- a deep unification problem [L2], open.
+
+\medskip
+\noindent\textbf{Rigorous derivation requires}: Computing $G$ from $S[\Theta]$
+by identifying the gravitational coupling as the coefficient of the emergent
+curvature term in the $\varphi$-projection of $S[\Theta]$.  This is the deep
+unification problem, classified as [L2] (requires beyond-one-loop analysis).
+\end{insightbox}
+
 \end{document}

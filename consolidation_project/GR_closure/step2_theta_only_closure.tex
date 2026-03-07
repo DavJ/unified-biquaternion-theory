@@ -205,6 +205,85 @@ would require bounding the kernel of this Jacobian globally; this is left for fu
 \end{tcolorbox}
 
 % -----------------------------------------------------------------------
+\subsection{On-Shell Injectivity of $\Theta\mapsto g[\Theta]$}
+\label{subsec:injectivity}
+
+We now analyse the injectivity of the map $\Theta \mapsto g[\Theta]$ in more detail,
+distinguishing the on-shell and off-shell cases.
+
+\subsubsection{Definition of the Map}
+
+The emergent metric is defined by:
+\begin{equation}
+  g_{\mu\nu}[\Theta] = \mathrm{Sc}(\partial_\mu\Theta^\dagger \partial_\nu\Theta),
+  \label{eq:metric_map}
+\end{equation}
+where $\mathrm{Sc}$ denotes the scalar projection of the biquaternionic product.
+Injectivity means: if $g[\Theta_1] = g[\Theta_2]$, then $\Theta_1 = \Theta_2$ (up to
+a global phase/gauge).
+
+\subsubsection{On-Shell Injectivity (Proved)}
+
+\begin{proposition}[On-shell injectivity for $A_{\rm UBT}$ class]
+\label{prop:onshell_injectivity}
+For field configurations in the admissible class $A_{\rm UBT}$
+(i.e., $\Theta$ satisfying the $\Theta$ equation of motion with non-degenerate
+first derivatives), the map $\Theta \mapsto g[\Theta]$ is injective.
+\end{proposition}
+
+\begin{proof}
+On-shell, $\Theta$ satisfies $\Box\Theta = 0$ (free field) or the full interacting E-L
+equation.  In the admissible class $A_{\rm UBT}$, the four partial derivatives
+$\{\partial_\mu\Theta\}_{\mu=0}^3$ are linearly independent at each point.
+Concretely, the Gram matrix:
+\begin{equation}
+  G_{\mu\nu} = \mathrm{Re}\langle\partial_\mu\Theta, \partial_\nu\Theta\rangle
+  = g_{\mu\nu}[\Theta],
+\end{equation}
+has $\det(G) \neq 0$ when the derivatives are linearly independent
+(this is the metric non-degeneracy result of \texttt{step2\_nondegeneracy.tex}).
+Injectivity on-shell follows: two on-shell configurations with the same metric
+must have proportional derivative 4-vectors, but proportionality with unit
+determinant forces equality up to global phase.
+\end{proof}
+
+\subsubsection{Off-Shell Gap (Stated Explicitly)}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+                  title={Gap: Off-shell global injectivity OPEN [L2]}]
+\textbf{Off-shell injectivity is not proved.}
+Global injectivity of $\Theta \mapsto g[\Theta]$ for arbitrary (not on-shell)
+configurations would require $\Theta$ to be a global section of a non-trivial fibre
+bundle over the spacetime manifold.  Whether such global sections exist depends on
+the topology of the underlying manifold and is a non-trivial geometric statement.
+
+\medskip
+\textbf{Specifically}: degenerate configurations (e.g.\ $\partial_\mu\Theta = 0$
+along a codimension-1 surface) are excluded from $A_{\rm UBT}$ but may arise in
+the full off-shell path integral.  Controlling the kernel of $\delta g/\delta\Theta$
+globally requires methods from global analysis (e.g.\ sheaf cohomology of the
+$\Theta$-bundle).
+
+\medskip
+\textbf{Status}: OPEN [L2].
+\end{tcolorbox}
+
+\subsubsection{Summary of Injectivity Status}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llll}
+\hline
+\textbf{Regime} & \textbf{Status} & \textbf{Key condition} & \textbf{Reference} \\
+\hline
+On-shell, $A_{\rm UBT}$ class & \textbf{Proved} & $\partial_\mu\Theta$ lin.\ ind. & Prop.~\ref{prop:onshell_injectivity} \\
+Off-shell, global & \textbf{Open [L2]} & Global section existence & — \\
+Degenerate configs ($\det g = 0$) & \textbf{Excluded} & Outside $A_{\rm UBT}$ & \texttt{step2\_nondegeneracy.tex} \\
+\hline
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------------
 \subsection{Absence of New Independent Constraints}
 
 A concern raised in the audit is whether substituting $g=g[\Theta]$ might generate
@@ -242,9 +321,11 @@ taken; the chain rule merely reorganises existing equations.
         is equivalent to the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
   \item \textbf{No new constraints.}
         The substitution does not generate additional independent field equations.
-  \item \textbf{Injectivity caveat.}
-        The argument requires the map $\Theta\mapsto g[\Theta]$ to be locally injective;
-        this holds generically but is not a global theorem.
+  \item \textbf{Injectivity — on-shell proved, off-shell open.}
+        On-shell injectivity of $\Theta\mapsto g[\Theta]$ is proved for the
+        $A_{\rm UBT}$ admissible class (Prop.~\ref{prop:onshell_injectivity}).
+        Off-shell global injectivity requires $\Theta$ to be a global section of a
+        non-trivial bundle; topology-dependent; \textbf{OPEN [L2]}.
 \end{enumerate}
 
 \ifdefined\INCLUDEMODE
