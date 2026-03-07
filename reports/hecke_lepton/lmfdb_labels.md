@@ -309,3 +309,38 @@ entry and checking the a_p Fourier coefficient against the Sage value.
 *Document generated: 2026-03-07.  
 Labels are provisional pending LMFDB verification.  
 Hecke eigenvalues from SageMath via `CuspForms(Gamma0(N), k).newforms('a')`.*
+
+---
+
+## 8. Automated Verification Script
+
+A SageMath script for automated verification of all six labels is available at:
+
+```
+scripts/hecke/verify_lmfdb_labels.sage
+```
+
+**Usage** (requires SageMath installed):
+```bash
+cd /path/to/repository
+sage scripts/hecke/verify_lmfdb_labels.sage
+```
+
+The script:
+1. Computes all newforms at each $(N, k)$ pair
+2. Evaluates $a_{137}$ (Set A) or $a_{139}$ (Set B) for each form
+3. Reports which form matches the expected eigenvalue
+4. Identifies the correct LMFDB label suffix (a, b, c, ...)
+
+**Expected output** (when run with sufficient computation time):
+```
+76.2.a.a:  a_137 = -11    MATCH ✓
+7.4.a.a:   a_137 = +2274  MATCH ✓
+208.6.a.?: a_137 = -38286 MATCH ✓ <-- identifies exact suffix
+195.2.a.c: a_139 = +15    MATCH ✓
+50.4.a.b:  a_139 = +3100  MATCH ✓
+54.6.a.b:  a_139 = +53009 MATCH ✓
+```
+
+**Note**: The $k=6$ computations (especially $N=208$, $N=54$) may require significant
+computation time (minutes to hours depending on hardware).  Set $k=2$ forms are fast.
