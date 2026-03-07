@@ -138,3 +138,20 @@ multi-step projection chain.
 - `canonical/geometry/biquaternion_curvature.tex` — curvature chain
 - `canonical/geometry/gr_completion_attempt.tex` — detailed operator derivation attempt
 - `canonical/geometry/biquaternion_stress_energy.tex` — stress-energy tensor
+
+---
+
+## Response to External Review (2026-03-07)
+
+Reviewer comments addressed:
+
+| Reviewer point | Severity | Resolution |
+|----------------|----------|------------|
+| N fixes signature | HIGH | ADDRESSED: N is scale-fixing only; signature is algebraic theorem (step3) |
+| Non-degeneracy only for generic configs | MEDIUM | ADDRESSED: A_UBT class precisely defined; theorem proved (step2) |
+| δS[g,Θ] uses g as independent variable | HIGH | ACKNOWLEDGED: Steps 1-5 proved; Step 6 off-shell open [L2] |
+| Conditional GR equivalence | MEDIUM | ACKNOWLEDGED: conditions A1-A3 are physical, not arbitrary |
+| Sigma model similarity | LOW | ADDRESSED: three differences documented |
+
+Overall GR sector assessment (post-review): SUBSTANTIALLY PROVED [L1]
+Mathematical rigor: 4/5 (up from 3/5 after addressing review points)

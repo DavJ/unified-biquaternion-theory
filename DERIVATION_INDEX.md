@@ -280,6 +280,9 @@ and an emergent-metric construction strongly connected to Θ.
 | Lorentzian signature (-,+,+,+) from AXIOM B | **Proven** [L0] | `consolidation_project/GR_closure/step3_signature_theorem.tex §Lorentzian Signature from AXIOM B` | Complex time τ=t+iψ → Cl_{1,3}(ℝ) → e₀²=-1 → g₀₀<0; signature is theorem not choice |
 | Metric non-degeneracy for A_UBT class | **Proven** [L0] | `consolidation_project/GR_closure/step2_nondegeneracy.tex` | Linear independence of ∂_μΘ ↔ det(g)≠0; degenerate configs explicitly identified |
 | Derivative-based ≡ tetrad-based metric formula | **Proven** [L0] | `consolidation_project/GR_closure/step1_metric_bridge.tex` | Under E_μ = ∂_μΘ; single canonical metric definition |
+| GR chain summary (Θ→g→Γ→R→Einstein) | **Proved [L1]** | `consolidation_project/GR_closure/GR_chain_summary.tex` | Steps 1-5 proved; Step 6 off-shell open [L2]; see summary doc |
+| N is scale-fixing, not signature-fixing | **Proved [L0]** | `consolidation_project/GR_closure/step3_signature_theorem.tex` | Explicitly documented in step1_metric_bridge.tex remark |
+| UBT vs sigma model distinction | **Documented** | `consolidation_project/GR_closure/step1_metric_bridge.tex` | Three key differences stated |
 
 ### Conditional (under assumptions A1–A3)
 
