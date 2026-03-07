@@ -203,13 +203,13 @@ appendix\_R\_GR\_equivalence.tex refer to this single object.
 \end{corollary}
 
 \begin{remark}[Role of $\mathcal{N}$]
-The normalization $\mathcal{N}[\Theta]$ is a positive real scalar field that appears
-identically in both formalisms — it is part of the \emph{definition} of the tetrad vectors
-$E_\mu' = \partial_\mu\Theta/\sqrt{\mathcal{N}}$.  It does \emph{not} introduce any
-independent degree of freedom: once $\Theta$ is given, $\mathcal{N}[\Theta]$ is
-determined.  Its role is discussed in detail in step3\_signature\_theorem.tex
-(Proposition on normalization): $\mathcal{N}$ selects the unit-determinant normalization
-of the metric, not its signature.
+The normalization $\mathcal{N} > 0$ is a \emph{scale-fixing} positive scalar.
+It determines the physical units of the metric but \textbf{does not determine
+the signature}.  The Lorentzian signature $(-,+,+,+)$ follows from the algebraic
+structure of $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Cl}_{1,3}(\mathbb{R})$
+via AXIOM~B — see \texttt{step3\_signature\_theorem.tex}, Theorem~2.
+Even if $\mathcal{N}$ were chosen differently (any positive value), the signature
+would remain $(-,+,+,+)$.
 \end{remark}
 
 \begin{remark}[Equivalence noted in both appendices]
@@ -265,6 +265,24 @@ Under $E_\mu=\partial_\mu\Theta$: & \multicolumn{2}{c}{$\bm{g_{\mu\nu}^{(A)} = g
         All subsequent GR recovery results (Steps 2--4) may invoke either representation
         of $g_{\mu\nu}$ without ambiguity.
 \end{enumerate}
+
+\begin{remark}[Relation to sigma models]
+The construction $g_{\mu\nu} = \Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger]$
+resembles the induced metric in nonlinear sigma models, where a target-space metric
+is pulled back via a field map $\phi: \mathcal{M} \to \mathcal{T}$.
+
+The key differences in UBT are:
+\begin{enumerate}
+  \item The target space is $\mathbb{C}\otimes\mathbb{H}$ (an algebra, not a Riemannian
+        manifold); the metric structure comes from the Clifford norm, not a fixed
+        background metric.
+  \item The signature of $g_{\mu\nu}$ is not imposed by a target-space metric
+        but derived from the algebraic axioms (AXIOM~B, Theorem~2).
+  \item The field $\Theta$ is not a map into an external space but a fundamental
+        field whose dynamics determines spacetime geometry itself.
+\end{enumerate}
+In sigma models, gravity is a fixed background; in UBT, gravity \emph{is} the field.
+\end{remark}
 
 \ifdefined\INCLUDEMODE
   % Being included - no end document
