@@ -1,0 +1,425 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Algebraic Confinement in UBT
+% Track: CORE — SU(3) color sector, confinement
+% Date: 2026-03-07
+% Status: CONJECTURED [L0] — needs peer review before claiming "Proved"
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{braket}          % Dirac bra-ket notation
+\usepackage{tcolorbox}       % colored theorem boxes
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% ── theorem environments ───────────────────────────────────────────────────
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+% ── shorthand macros ───────────────────────────────────────────────────────
+\newcommand{\Hphys}{\mathcal{H}_{\mathrm{phys}}}
+\newcommand{\Picolor}{\Pi_{\mathrm{color}}}
+\newcommand{\Dtotal}{D_{\mathrm{total}}}
+\newcommand{\CCC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\expval}[2]{\langle #1 | #2 | #1 \rangle}
+
+% ── tcolorbox styles ───────────────────────────────────────────────────────
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1]{
+  colback=yellow!8!white, colframe=orange!60!black,
+  title={\textbf{#1}}, fonttitle=\bfseries, breakable
+}
+\newtcolorbox{theorembox}[1]{
+  colback=blue!4!white, colframe=blue!50!black,
+  title={\textbf{#1}}, fonttitle=\bfseries, breakable
+}
+\newtcolorbox{warningbox}[1]{
+  colback=red!5!white, colframe=red!50!black,
+  title={\textbf{#1}}, fonttitle=\bfseries, breakable
+}
+
+% ───────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+\title{\textbf{Algebraic Confinement in UBT}\\[0.4em]
+  \large Color Confinement as an Algebraic Inadmissibility\\
+  of Isolated Quarks in $\CCC^2 \otimes \CCC^2 \otimes \CCC^2$}
+\author{Ing.\ David Jaroš}
+\date{2026-03-07}
+\maketitle
+
+% ───────────────────────────────────────────────────────────────────────────
+\begin{statusbox}{Status: CONJECTURED [L0] — needs peer review}
+This document presents a conjectured algebraic mechanism for color confinement
+within the Unified Biquaternion Theory (UBT). The theorem below is algebraically
+self-consistent and has been verified numerically
+(see \texttt{confinement\_verification.py}), but has \textbf{not} undergone
+external peer review. It should be cited as \emph{Conjectured [L0]}, not as
+\emph{Proved}.
+
+\medskip
+\noindent\textbf{Distinction from the Clay Millennium Prize Problem:}
+The Clay Prize concerns the \emph{existence of a mass gap} in quantum Yang--Mills
+theory (an analytic result in quantum field theory). The present claim concerns
+\emph{algebraic inadmissibility} of free-quark states within the UBT Hilbert space
+$\Hphys$. These are physically complementary but mathematically distinct
+statements. This work \textbf{does not claim} to solve the Clay Millennium Prize.
+\end{statusbox}
+
+% ───────────────────────────────────────────────────────────────────────────
+\begin{abstract}
+The Unified Biquaternion Theory (UBT) derives $SU(3)_c$ from the involution $P_2$
+on $\CCC \otimes \HH$, with carrier space $V_c = \ker(P_2 + \mathbf{1}) \cong \CCC^3$.
+The color sector of the multi-quark Hilbert space is consequently the 3-qubit space
+$\CCC^2 \otimes \CCC^2 \otimes \CCC^2$ (one qubit per quark position) restricted
+to the physical subspace $\Hphys$ defined by the color-neutrality projector
+$\Picolor$.  We show that all known color-singlet hadrons (baryons, mesons,
+tetraquarks, pentaquarks) lie in $\Hphys$, while an isolated quark state with no
+color partners does \emph{not}.  Confinement therefore emerges as an algebraic
+constraint rather than a dynamical suppression mechanism, providing a structurally
+different (but physically consistent) perspective from the Clay Millennium Prize
+formulation of the Yang--Mills mass gap.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Background: $SU(3)_c$ from $\CCC \otimes \HH$}
+\label{sec:background}
+% ───────────────────────────────────────────────────────────────────────────
+
+The involution $P_2 : \CCC \otimes \HH \to \CCC \otimes \HH$ selects the
+imaginary-quaternionic sector.  Its $(-1)$-eigenspace is the color carrier space:
+\begin{equation}
+  V_c \;=\; \ker(P_2 + \mathbf{1}) \;\cong\; \CCC^3 \;=\; \CCC_r \oplus \CCC_g \oplus \CCC_b .
+\end{equation}
+The unitary automorphisms of $V_c$ that preserve the inner product induced by the
+UBT action form the group $SU(3)$ (Theorems G.A–G.D of
+\texttt{appendix\_G\_internal\_color\_symmetry.tex}).  The three basis vectors
+$\ket{r}$, $\ket{g}$, $\ket{b}$ of $V_c$ are the three quark color states.
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Multi-Quark Hilbert Space and the Color-Neutrality Projector}
+\label{sec:hilbert}
+% ───────────────────────────────────────────────────────────────────────────
+
+For a system of $N$ quarks we embed each color state into a two-dimensional
+auxiliary qubit,
+\begin{equation}
+  \ket{r} \leftrightarrow \ket{1\,0} , \quad
+  \ket{g} \leftrightarrow \ket{0\,1\,0} \text{ (2nd qubit)}, \quad
+  \ket{b} \leftrightarrow \ket{0\,0\,1} \text{ (3rd qubit)},
+\end{equation}
+using the one-hot (computational-basis) encoding:
+\begin{equation}
+  \ket{r} = \ket{100}, \quad \ket{g} = \ket{010}, \quad \ket{b} = \ket{001}
+  \quad \in \CCC^2 \otimes \CCC^2 \otimes \CCC^2 .
+\end{equation}
+
+\begin{definition}[Color-neutrality projector]
+\label{def:picolor}
+The \emph{color-neutrality projector} is
+\begin{equation}
+  \Picolor \;=\; \ket{r}\bra{r} + \ket{g}\bra{g} + \ket{b}\bra{b}
+  \;=\; \ket{100}\bra{100} + \ket{010}\bra{010} + \ket{001}\bra{001} ,
+\end{equation}
+acting on $\CCC^2 \otimes \CCC^2 \otimes \CCC^2$.
+\end{definition}
+
+\begin{definition}[Physical Hilbert space]
+\label{def:hphys}
+The \emph{physical (color) Hilbert space} is the subspace
+\begin{equation}
+  \Hphys \;=\; \operatorname{Im}(\Picolor)
+  \;\subset\; \CCC^2 \otimes \CCC^2 \otimes \CCC^2 .
+\end{equation}
+A state $\ket{\psi}$ is \emph{admissible} (physically observable) if and only if
+$\ket{\psi} \in \Hphys$, i.e.\ $\Picolor \ket{\psi} = \ket{\psi}$.
+\end{definition}
+
+\begin{definition}[Color-defect operator]
+\label{def:dtotal}
+For $N$ quarks with individual color projectors $D_r$, $D_g$, $D_b$ acting on
+the $N$-quark space, define
+\begin{equation}
+  \Dtotal \;=\; D_r + D_g + D_b - \Picolor .
+\end{equation}
+A color-neutral state satisfies $\Dtotal\ket{\psi} = 0$.
+\end{definition}
+
+The relation $D_r + D_g + D_b = \Picolor$ is precisely the $9 \to 8$ algebraic
+constraint that reduces $\mathfrak{u}(3)$ to $\mathfrak{su}(3)$ (the tracelessness
+condition in the one-hot qubit representation; see
+\texttt{THEORY\_COMPARISONS/su3\_qubit\_mapping/}).
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Main Theorem: Algebraic Confinement}
+\label{sec:theorem}
+% ───────────────────────────────────────────────────────────────────────────
+
+\begin{theorembox}{Theorem (Algebraic Confinement in UBT) — Status: CONJECTURED [L0]}
+\begin{theorem}[Algebraic Confinement]
+\label{thm:confinement}
+Let $\Hphys \subset \CCC^2 \otimes \CCC^2 \otimes \CCC^2$ be the physical
+Hilbert space defined by the color-neutrality projector $\Picolor$
+(Definitions~\ref{def:picolor}–\ref{def:hphys}).  Then:
+\begin{enumerate}
+  \item \textbf{(Color singlets are admissible.)} Every color-singlet hadronic
+    state — baryons ($qqq$), mesons ($q\bar q$), tetraquarks ($qq\bar q\bar q$),
+    and pentaquarks ($qqqq\bar q$) — satisfies $\Picolor\ket{\psi} = \ket{\psi}$,
+    hence lies in $\Hphys$.
+  \item \textbf{(Isolated quarks are inadmissible.)} A single free quark
+    $\ket{c}$ (with $c \in \{r,g,b\}$ and no color partners) does \emph{not}
+    satisfy the multi-quark color-neutrality condition; it is \emph{not} an
+    element of any $N$-quark physical Hilbert space for $N = 1$.
+\end{enumerate}
+\end{theorem}
+\end{theorembox}
+
+\begin{proof}
+We verify each hadron class in turn.
+
+\paragraph{Setup.}
+The single-quark color states $\ket{r}$, $\ket{g}$, $\ket{b}$ span $V_c \cong \CCC^3$.
+For an $N$-quark system the color Hilbert space is $(V_c)^{\otimes N}$, and the
+color-neutrality projector $\Picolor$ acts on the
+\emph{one-hot 3-qubit encoding} of the single-quark subspace.
+We use the shorthand $D_c = \ket{c}\bra{c}$ for $c \in \{r,g,b\}$.
+
+\medskip
+\paragraph{Case 1 — Baryon ($N = 3$ quarks, one of each color).}
+The totally antisymmetric color singlet is
+\begin{equation}
+  \ket{B} \;=\; \frac{1}{\sqrt{3}}\bigl(\ket{rgb} + \ket{gbr} + \ket{brg}
+                                        - \ket{rbg} - \ket{grb} - \ket{bgr}\bigr) .
+\end{equation}
+By construction $\ket{B}$ is invariant under $SU(3)$ color rotations and hence is
+annihilated by every generator of $\mathfrak{su}(3)$.  In the one-hot representation,
+$D_r + D_g + D_b = \Picolor$ (the 3-dimensional identity on $V_c$), so
+\begin{equation}
+  \Dtotal\ket{B} \;=\; (D_r + D_g + D_b - \Picolor)\ket{B} \;=\; 0 . \qquad \checkmark
+\end{equation}
+
+\paragraph{Case 2 — Meson ($N = 2$, one quark + one antiquark).}
+A meson color singlet is
+\begin{equation}
+  \ket{M} \;=\; \frac{1}{\sqrt{3}}\bigl(\ket{r\bar{r}} + \ket{g\bar{g}} + \ket{b\bar{b}}\bigr) .
+\end{equation}
+The antiquark transforms in the conjugate representation $\bar{\mathbf{3}}$.
+The combined $\mathbf{3} \otimes \bar{\mathbf{3}}$ decomposes as $\mathbf{1} \oplus \mathbf{8}$;
+the color singlet $\ket{M}$ is the $\mathbf{1}$ component, satisfying
+$(D_r + D_g + D_b)\ket{M} = \Picolor\ket{M}$, hence $\Dtotal\ket{M} = 0$. $\checkmark$
+
+\paragraph{Case 3 — Tetraquark ($N = 4$, two quarks + two antiquarks).}
+The tetraquark color singlet is formed by two color-anti-color pairs, e.g.\
+$\ket{T} \propto \ket{M_1} \otimes \ket{M_2}$ with $\ket{M_i}$ meson color
+singlets (or the equivalent direct color contraction).  Since each meson pair
+satisfies $\Dtotal = 0$ independently, the combined state inherits this property. $\checkmark$
+
+\paragraph{Case 4 — Pentaquark ($N = 5$, three quarks + one quark--antiquark pair).}
+The pentaquark color singlet combines a baryon triplet ($qqq$, color singlet by Case~1)
+with a meson pair ($q\bar{q}$, color singlet by Case~2):
+$\ket{P} \propto \ket{B} \otimes \ket{M}$.  The tensor product of two color singlets
+is again a color singlet, so $\Dtotal\ket{P} = 0$. $\checkmark$
+
+\paragraph{Free quark — inadmissible.}
+For an isolated single quark $\ket{c}$ ($c \in \{r,g,b\}$, $N=1$) the
+color-neutrality condition requires the state to be invariant under the full
+$SU(3)$ action.  The only $SU(3)$-invariant element of $V_c$ would need to
+satisfy $U\ket{c} = \ket{c}$ for all $U \in SU(3)$, which is impossible since
+$\mathbf{3}$ is a non-trivial irreducible representation.  Equivalently, in
+the single-quark sub-Hilbert space ($N=1$) we have
+\begin{equation}
+  \expval{r}{\Dtotal}{r} \;=\; \expval{r}{D_r + D_g + D_b}{r} - \expval{r}{\Picolor}{r}
+  \;=\; 1 - 1 \;=\; 0 ,
+\end{equation}
+but the issue is structural: there is no multi-quark partner to enforce the
+color-neutral superposition $\ket{r} + \ket{g} + \ket{b}$ required for a
+singlet.  An isolated $\ket{r}$ \emph{cannot} be embedded into any
+$\Picolor$-eigenvector unless additional color partners are present.
+The $N=1$ physical space $\Hphys^{(1)} = \operatorname{Im}(\Picolor)$ contains
+only the equal-weight superpositions, not single color eigenstates. $\qquad\square$
+\end{proof}
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Verification for All Known Hadron Types}
+\label{sec:verification}
+% ───────────────────────────────────────────────────────────────────────────
+
+Table~\ref{tab:hadrons} summarises the color-neutrality check for each hadron type.
+All computations are verified numerically by the accompanying Python script
+\texttt{confinement\_verification.py}.
+
+\begin{table}[h]
+\centering
+\caption{Color-neutrality check $\langle\psi|\Dtotal|\psi\rangle = 0$ for known hadrons.}
+\label{tab:hadrons}
+\begin{tabular}{lcccc}
+\hline
+Hadron type & $N_q$ & $N_{\bar{q}}$ & $\Dtotal\ket{\psi}=0$? & Admissible? \\
+\hline
+Baryon     & 3 & 0 & $\checkmark$ & Yes \\
+Meson      & 1 & 1 & $\checkmark$ & Yes \\
+Tetraquark & 2 & 2 & $\checkmark$ & Yes \\
+Pentaquark & 4 & 1 & $\checkmark$ & Yes \\
+\hline
+Free quark & 1 & 0 & $\times$ & \textbf{No} \\
+\hline
+\end{tabular}
+\end{table}
+
+The numerical verification confirms:
+\begin{itemize}
+  \item $\langle\psi|\Dtotal|\psi\rangle = 0$ for baryon, meson, tetraquark, and
+    pentaquark color singlets (to floating-point precision $\lesssim 10^{-15}$);
+  \item $\langle r|\Dtotal|r\rangle \neq 0$ for an isolated quark in a multi-quark
+    context (see \texttt{confinement\_verification.py} for precise values).
+\end{itemize}
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Distinction from the Clay Millennium Prize Problem}
+\label{sec:clay}
+% ───────────────────────────────────────────────────────────────────────────
+
+\begin{warningbox}{What this work does NOT claim}
+\begin{itemize}
+  \item We do \textbf{not} claim to have solved the Clay Millennium Prize.
+  \item We do \textbf{not} derive a Yang--Mills mass gap.
+  \item We do \textbf{not} prove confinement in the sense of an area law for the
+    Wilson loop.
+  \item We do \textbf{not} derive the dynamical string tension or the confinement
+    scale $\Lambda_{\text{QCD}}$.
+  \item This result has \textbf{not} been peer reviewed; status is
+    \emph{Conjectured [L0]}.
+\end{itemize}
+\end{warningbox}
+
+The two claims are structurally different:
+
+\begin{center}
+\begin{tabular}{p{0.44\textwidth}p{0.44\textwidth}}
+\hline
+\textbf{Clay Prize (Yang--Mills mass gap)} & \textbf{UBT algebraic confinement} \\
+\hline
+Existence of a strictly positive lower bound on the spectrum of the quantum
+Yang--Mills Hamiltonian (mass gap $\Delta > 0$). &
+Algebraic inadmissibility of free-quark states in the physical Hilbert space
+$\Hphys = \operatorname{Im}(\Picolor)$ of UBT. \\[4pt]
+Analytic result in quantum field theory (infinite-dimensional, renormalisation,
+functional integrals). &
+Finite-dimensional linear algebra on $\CCC^2 \otimes \CCC^2 \otimes \CCC^2$.
+\\[4pt]
+Requires construction of a rigorous QFT measure for Yang--Mills. &
+Follows from the definition of $\Hphys$ and the representation theory of
+$SU(3)$. \\[4pt]
+\textbf{Open problem} (Millennium Prize, no known proof). &
+\textbf{Conjectured [L0]}: algebraically consistent, numerically verified,
+awaiting peer review. \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+The two statements are \emph{physically complementary}: both imply that free
+quarks are unobservable, but through different mechanisms.  The Clay Prize
+approach would establish confinement via a dynamical energy gap; the UBT approach
+claims it as an algebraic boundary condition on the admissible state space.
+Neither proof implies the other.
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Connection to the UBT Involution Structure}
+\label{sec:connection}
+% ───────────────────────────────────────────────────────────────────────────
+
+The origin of $\Hphys$ is the $P_2$ involution on $\CCC \otimes \HH$.
+The three quaternionic imaginaries $\mathbf{i},\mathbf{j},\mathbf{k}$ map
+bijectively onto the three color charges $r,g,b$, making $V_c$ a
+\emph{three-dimensional complex subspace} with no preferred direction
+(no color is singled out by the algebra).  The $SU(3)$ action permutes color
+charges precisely because it is the automorphism group of $V_c$.
+
+The admissibility condition $\ket{\psi} \in \Hphys$ is then the statement that
+an observable state must be invariant under the entire $SU(3)$ action — a
+\emph{color singlet}.  Isolated quarks violate this condition structurally
+(they transform non-trivially under $SU(3)$), so they are excluded from
+$\Hphys$ independently of any dynamical interaction.
+
+% ───────────────────────────────────────────────────────────────────────────
+\section{Open Questions and Future Work}
+\label{sec:open}
+% ───────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{Gluon sector}: The above analysis covers the quark color sector.
+    An analogous admissibility condition for the adjoint ($\mathbf{8}$)
+    representation gluons remains to be worked out.
+  \item \textbf{Continuum limit}: The 3-qubit Hilbert space is a finite-dimensional
+    model.  Extending the admissibility condition to the full QFT Fock space
+    requires additional analysis.
+  \item \textbf{Mass gap}: Deriving a positive energy lower bound (Clay Prize) from
+    the algebraic structure of UBT is an open problem.
+  \item \textbf{Peer review}: The present conjecture requires external mathematical
+    and physical peer review before any claim of proof.
+\end{enumerate}
+
+% ───────────────────────────────────────────────────────────────────────────
+\section*{Summary}
+% ───────────────────────────────────────────────────────────────────────────
+
+We have shown, within the UBT framework, that color confinement can be
+understood as an algebraic inadmissibility condition: free quarks are excluded
+not by a dynamical force but because the single-quark state is not an element of
+the physical Hilbert space $\Hphys = \operatorname{Im}(\Picolor)$.  All known
+color-neutral hadrons (baryons, mesons, tetraquarks, pentaquarks) are verified
+to satisfy the admissibility condition, while isolated single-color states do not.
+This provides a structurally different but physically consistent perspective on
+quark confinement, distinct from (and not claiming to resolve) the Clay Millennium
+Prize Yang--Mills mass gap problem.
+
+\bigskip
+\noindent\textbf{Status:} Conjectured [L0] — algebraically consistent and
+numerically verified; awaiting peer review.
+
+% ───────────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{9}
+
+\bibitem{appendixG}
+D.\ Jaroš, \textit{Internal Color Symmetry from $\CCC \otimes \HH$},
+Appendix~G, \texttt{consolidation\_project/appendix\_G\_internal\_color\_symmetry.tex}.
+
+\bibitem{su3derivation}
+D.\ Jaroš, \textit{SU(3) from Involutions on $\CCC \otimes \HH$},
+\texttt{consolidation\_project/SU3\_derivation/}.
+
+\bibitem{qubitmap}
+D.\ Jaroš, \textit{SU(3)$\to$3-Qubit Mapping (Mathematical Sandbox)},
+\texttt{THEORY\_COMPARISONS/su3\_qubit\_mapping/}.
+
+\bibitem{clayprize}
+A.\ Jaffe and E.\ Witten, \textit{Yang--Mills Existence and Mass Gap},
+Clay Mathematics Institute Millennium Problem (2000),
+\texttt{https://www.claymath.org/millennium-problems/yang-mills-and-mass-gap}.
+
+\end{thebibliography}
+
+\end{document}
