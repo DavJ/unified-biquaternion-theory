@@ -313,6 +313,54 @@ B_base·R ≈ 46.3. Three options under investigation:
 
 ---
 
+### Problem A+B: Twin-Prime Exploration (new direction, investigated March 2026)
+
+**Hypothesis explored**: B arises from the twin-prime pair (137, 139) of n*.
+
+**Motivation**:
+- n* = 137 is prime; 139 is its twin prime (both are prime, |137−139| = 2)
+- N_color = 3 is the number of QCD colours (fundamental SM parameter)
+- Candidate formula: **B = p_twin / N_color = 139/3 ≈ 46.33**
+
+**Numerical results** (see `scripts/padic/sage_B_derivation.sage` for full computation):
+
+```
+B_required (exact, A=1):        46.284   (such that n*=137)
+139/3     (twin-prime/colour):  46.333   error +0.107%  ← closest match
+(137+139)/6 (mean/colour):      46.000   error −0.613%
+√(137×139)/3:                   46.000   error −0.616%
+
+Implied R if B = 139/3:         R = 139/(3 × 12^{3/2}) = 1.1146  (vs 1.114 used; 0.06% off)
+```
+
+**Self-consistency check**: With B = 139/3 and A = 1, Newton iteration gives n* = 137.18,
+i.e., 0.13% above the target.  Not exact.
+
+**Why this is NOT a derivation**:
+1. The formula B = 139/3 has no geometric motivation within UBT.  139/3 is a numerical
+   near-coincidence, not derived from the biquaternionic field equations.
+2. Even if B = 139/3 were accepted, it would not explain Problem A (why B_base = N_eff^{3/2}
+   rather than B₀ = 2π·N_eff/3 = 25.1).
+3. It merely reformulates Problem B as "why is B = p_twin/N_color?" — which has no answer.
+4. The grid scan shows the same prime p=139 is closest for all N_eff ∈ {4, 8, 12, 24},
+   independent of N_eff — indicating the match is to n*=137 directly, not to N_eff.
+
+**Power-law search result**:
+The exponent α such that N_eff^α = B_required is α = 1.5432 (for N_eff=12), compared to
+3/2 = 1.500.  No algebraically motivated value of α (3/2, 8/5, π/2, √2, …) reproduces
+B_required exactly.
+
+**VERDICT: DEAD END.**
+
+Both the twin-prime approach (B = 139/3) and the power-law search (B = N_eff^α) fail to
+provide a geometric derivation.  The numerical near-coincidences are documented as
+interesting observations, not as results.  Problems A and B remain OPEN HARD PROBLEMS.
+
+Reference: `scripts/padic/sage_B_derivation.sage` (all computations; run with `sage` or `python3`)
+Also: `consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3.5`
+
+---
+
 ### No-Circularity Test (mandatory)
 
 The B coefficient derivation must not be circular (i.e., B must be derived without

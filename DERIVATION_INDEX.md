@@ -73,6 +73,26 @@ Status labels:
 | Non-CM k=6 forms, N≤4 | **Dead End** | `research_tracks/three_generations/step5_hecke_search_results.tex` | No non-CM forms exist at these levels |
 | Non-CM k=6 forms, N∈[50,500] | **Extended Dead End** | `research_tracks/three_generations/step6_nonCM_search.tex`, `research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |
 
+### Lepton Sector Parameter Audit
+
+The following table classifies every parameter appearing in the two lepton-mass
+formulas by whether it is **Structural** (fixed by algebra/topology, no fit) or
+**Semi-empirical** (requires ≥1 calibration to experiment).
+Full justification: `reports/lepton_audit/publication_readiness.md`.
+
+| Parameter / Result | Label | File | Notes |
+|--------------------|-------|------|-------|
+| KK eigenvalue formula form E_{n,m} = (1/R)√[(n+δ)²+m²] | **Structural** | `consolidation_project/appendix_W2_lepton_spectrum.tex` | Form of Dirac operator on T² with Hosotani shift; no fit |
+| Hosotani shift δ = ½ | **Structural** | `consolidation_project/appendix_W2_lepton_spectrum.tex §W.4` | Fixed by Q=−1, θ_H=π; derived from U(1)_EM coupling |
+| R = 1/m_e (torus radius) | **Semi-empirical** | `reports/lepton_audit/canonical_derivation.md` | One calibration to set overall mass scale |
+| KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | **Structural** | `reports/lepton_audit/status_summary.md` | Theorem: ratio ≤ 2 for any real modulus; not a failure but an honest gap |
+| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | **Structural** | `STATUS_FERMIONS.md §4`, `reports/lepton_audit/equations.md` | Functional form motivated by one-loop effective potential; no free parameters in the form |
+| A (hopfion mass scale) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to m_e; Gap M1: derive from soliton tension |
+| p (topological winding exponent) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M2: derive from soliton stability |
+| B_m (log correction in mass formula) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M3: derive from loop corrections |
+| m_e prediction at 0.22% | **Semi-empirical** | `reports/lepton_audit/reproduction.md` | Post-fit cross-check, not a zero-parameter prediction |
+| m_μ/m_e ≈ 207, m_τ/m_μ ≈ 16.8 | **Not reproduced** | `reports/lepton_audit/status_summary.md` | KK mismatch theorem forbids reproduction from W2 formula; Gap M4 |
+
 ---
 
 ---
