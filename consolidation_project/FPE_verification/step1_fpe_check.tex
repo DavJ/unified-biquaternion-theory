@@ -160,13 +160,16 @@ the Euler--Lagrange equation:
 \end{equation}
 
 \paragraph{Polar decomposition.}
-Write $\Theta = R(Q,T)\,e^{iH(Q,T)}$ with $R \geq 0$ real and $H$ real.  Then:
+Write $\Theta = R(Q,T)\,e^{iH(Q,T)}$ with $R \geq 0$ real and $H$ real.
+The following identities follow from the product rule and chain rule applied to $\Theta = R e^{iH}$
+(see, e.g., Madelung decomposition in quantum hydrodynamics):
 \begin{align}
   \partial_T\Theta &= (\partial_T R + iR\,\partial_T H)\,e^{iH}, \\
   \nabla_Q \Theta  &= (\nabla_Q R + iR\,\nabla_Q H)\,e^{iH}, \\
   \nabla_Q^2\Theta &= \bigl[\nabla_Q^2 R - R|\nabla_Q H|^2
                       + i(2\nabla_Q R\cdot\nabla_Q H + R\,\nabla_Q^2 H)\bigr]e^{iH}.
 \end{align}
+The last identity uses $\nabla^2(R e^{iH}) = (\nabla^2 R)e^{iH} + 2(\nabla R)\cdot(iH\,e^{iH}) + R(-|\nabla H|^2 + i\nabla^2 H)e^{iH}$.
 
 \paragraph{Real and imaginary parts of \eqref{eq:el_scalar}.}
 Separating real and imaginary parts:

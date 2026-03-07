@@ -97,17 +97,14 @@ print("\nVerifying 195.2.a.c (k=2, N=195):")
 try:
     forms_195_2 = CuspForms(Gamma0(195), 2).newforms('a')
     print(f"  Number of newforms at (N=195, k=2): {len(forms_195_2)}")
+    target = 15
     for i, f in enumerate(forms_195_2):
         try:
             a139 = f[139]
             label = f"195.2.a.{chr(97+i)}"
-            target = 15
-            match = "MATCH ✓" if abs(int(a139) - target) < 1 else ""
-            if match:
-                print(f"  {label}: a_139 = {a139}  {match} <-- 195.2.a.c")
-            # Only print if it's the third form (index 2 = 'c') or a match
-            if i == 2 or match:
-                print(f"  {label}: a_139 = {a139} {'MATCH ✓' if abs(int(a139) - target) < 1 else ''}")
+            match_str = "MATCH ✓ <-- 195.2.a.c" if abs(int(a139) - target) < 1 else ""
+            if i == 2 or match_str:  # print 'c' or any match
+                print(f"  {label}: a_139 = {a139}  {match_str}")
         except Exception as e:
             print(f"  195.2.a.{chr(97+i)}: ERROR — {e}")
 except Exception as e:
