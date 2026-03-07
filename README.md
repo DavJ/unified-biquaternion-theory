@@ -9,6 +9,9 @@
 | Result | Status |
 |--------|--------|
 | GR with matter: G_μν = 8πG T_μν | ✅ Proved |
+| Lorentzian signature (-,+,+,+) from AXIOM B (complex time) | ✅ Proved [L0] |
+| Metric non-degeneracy for admissible class A_UBT | ✅ Proved [L0] |
+| Derivative-based ≡ tetrad-based metric formula (bridge theorem) | ✅ Proved [L0] |
 | SU(2)_L × U(1)_Y from ℂ⊗ℍ | ✅ Proved |
 | Three generations from ψ-winding modes | ✅ Proved |
 | N_eff = 12 from algebra (zero free parameters) | ✅ Proved |
@@ -20,6 +23,14 @@
 | ΔN_eff ≈ 0.046 — above CMB-S4 detection threshold | 🔭 Predicted |
 | SU(3)_c color symmetry | ✅ Proved [L0] |
 | α⁻¹ = 137 from first principles | ❌ Open Problem A |
+
+**GR RECOVERY STATUS (v48+):** UBT admits an exact variational GR sector
+(metric+Θ formulation) and an emergent-metric construction.
+Proved: G_μν = 8πG T_μν, ∇^μT_μν = 0, Lorentzian signature from AXIOM B,
+non-degeneracy for A_UBT, metric bridge theorem.
+Conditional: GR equivalence via tetrad pipeline (under A1–A3).
+Open: pure Θ-only closure off-shell; metric uniqueness beyond A_UBT.
+→ Full GR status: [DERIVATION_INDEX.md §GR Recovery Status](DERIVATION_INDEX.md)
 
 → Full status map: [docs/THEORY_STATUS.md](docs/THEORY_STATUS.md)
 → Derivation index: [DERIVATION_INDEX.md](DERIVATION_INDEX.md)

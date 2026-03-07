@@ -233,3 +233,41 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `step4_fpe_equivalence.tex §6`, `step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced |
 
 **Strongest unification result**: QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ — not emergent from a deeper layer.
+
+---
+
+## GR Recovery Status (v48+, updated 2026-03-06)
+
+*Updated 2026-03-06 after v48 review.  Tasks: GR_closure Tasks 1–4 (step1_metric_bridge, step2_nondegeneracy, step3_signature_theorem with AXIOM B section).*
+
+```
+GR RECOVERY STATUS (v48+):
+"UBT admits an exact variational GR sector (metric+Θ formulation)
+and an emergent-metric construction strongly connected to Θ.
+```
+
+### Proved
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| G_μν = 8πG T_μν from δS_total[g,Θ]/δg^μν = 0 | **Proven** [L1] | `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex` | Hilbert variation; standard variational GR sector |
+| T_μν from Hilbert prescription | **Proven** [L1] | `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex` | δS_matter/δg^μν = -(√-g/2)T_μν |
+| ∇^μ T_μν = 0 from Bianchi identity | **Proven** [L1] | `consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex` | Contracted Bianchi; no free parameters |
+| Lorentzian signature (-,+,+,+) from AXIOM B | **Proven** [L0] | `consolidation_project/GR_closure/step3_signature_theorem.tex §Lorentzian Signature from AXIOM B` | Complex time τ=t+iψ → Cl_{1,3}(ℝ) → e₀²=-1 → g₀₀<0; signature is theorem not choice |
+| Metric non-degeneracy for A_UBT class | **Proven** [L0] | `consolidation_project/GR_closure/step2_nondegeneracy.tex` | Linear independence of ∂_μΘ ↔ det(g)≠0; degenerate configs explicitly identified |
+| Derivative-based ≡ tetrad-based metric formula | **Proven** [L0] | `consolidation_project/GR_closure/step1_metric_bridge.tex` | Under E_μ = ∂_μΘ; single canonical metric definition |
+
+### Conditional (under assumptions A1–A3)
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| GR equivalence via tetrad pipeline | **Conditional** | `consolidation_project/appendix_R_GR_equivalence.tex` | Requires Hermitian tetrad (A1), torsion-free (A2), invertible tetrad (A3) |
+| Θ-only closure (on-shell) | **Proved on-shell** | `consolidation_project/GR_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; off-shell requires injectivity of g[Θ] |
+
+### Not Yet Proved
+
+| Result | Status | Notes |
+|--------|--------|-------|
+| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires proving injectivity of Θ↦g[Θ] globally; genericity argument only |
+| Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
+

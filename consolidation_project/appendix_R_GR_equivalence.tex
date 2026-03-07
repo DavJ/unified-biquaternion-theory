@@ -65,6 +65,17 @@ The real spacetime metric is defined by:
 g_{\mu\nu} := \mathrm{Re}(\mathcal{G}_{\mu\nu}) = \mathrm{Re}\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr).
 \end{equation}
 
+\begin{remark}[Equivalence with derivative-based formula]
+\label{rem:bridge_R}
+The tetrad-based formula $g_{\mu\nu} = \Re(\mathrm{Sc}(E_\mu E_\nu^\dagger))$ used here
+is equivalent to the derivative-based formula
+$g_{\mu\nu} = \Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger/\mathcal{N}]$
+from \texttt{appendix\_FORMAL\_emergent\_metric.tex}, under the natural identification
+$E_\mu := \partial_\mu\Theta/\sqrt{\mathcal{N}}$.
+Both describe the same geometric object.
+See \texttt{GR\_closure/step1\_metric\_bridge.tex} for the complete bridge theorem.
+\end{remark}
+
 \begin{lemma}[$\mathrm{Re}(\Omega)$ yields the Levi-Civita connection]
 \label{lem:re_omega_levi_civita}
 Under the following assumptions:
