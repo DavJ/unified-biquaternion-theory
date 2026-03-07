@@ -1,0 +1,153 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base = N_eff^{3/2} — Approach A2: Hausdorff Dimension of Im(H)
+% Track: CORE — α derivation — v56 baseline
+% Date: 2026-03-07
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Approach A2: $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$\\
+    \large Hausdorff Dimension of $\mathrm{Im}(\mathbb{H})$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-07}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Approach A2: Hausdorff Dimension and \texorpdfstring{$\mathrm{Im}(\mathbb{H})$}{Im(H)}}
+\label{sec:hausdorff_approach}
+
+\textbf{Status: [MOTIVATED CONJECTURE]} — algebraically consistent with
+known algebraic structure of $\mathbb{C}\otimes\mathbb{H}$; not a derivation
+from the action $\mathcal{S}[\Theta]$. No circular use of $\alpha^{-1} = 137$.
+
+\subsection{Key Algebraic Fact}
+
+The quaternion algebra $\mathbb{H}$ splits as
+\begin{equation}
+  \mathbb{H} = \mathrm{Sc}(\mathbb{H}) \oplus \mathrm{Im}(\mathbb{H}),
+\end{equation}
+where $\mathrm{Sc}(\mathbb{H}) \cong \mathbb{R}$ (the real scalars) and
+$\mathrm{Im}(\mathbb{H})$ is the space of pure imaginary quaternions,
+spanned by $\{i, j, k\}$.  The real dimension is
+\begin{equation}
+  d_H := \dim_{\mathbb{R}}\bigl(\mathrm{Im}(\mathbb{H})\bigr) = 3.
+  \label{eq:dH}
+\end{equation}
+In UBT this is not a coincidence: $N_{\mathrm{phases}} = 3$ in the established
+counting $N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$ is identified with
+$d_H = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+
+\subsection{The Exponent Hypothesis}
+
+\begin{conjecture}[Hausdorff exponent — MOTIVATED CONJECTURE]
+  The vacuum renormalisation coefficient scales as
+  \begin{equation}
+    B_{\mathrm{base}} = N_{\mathrm{eff}}^{d_H/2}
+      = N_{\mathrm{eff}}^{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/2}
+      = 12^{3/2} = \sqrt{1728} \approx 41.57.
+    \label{eq:B_hausdorff}
+  \end{equation}
+\end{conjecture}
+
+\textbf{Motivation.}  The imaginary part $\mathrm{Im}(\mathbb{H})$ generates
+the Lie algebra $\mathfrak{su}(2)$: the three basis elements $i,j,k$ satisfy
+$[i,j] = 2k$, $[j,k] = 2i$, $[k,i] = 2j$.  Under the identification in UBT,
+these three directions correspond to the three physical gauge phases
+(the $N_{\mathrm{phases}} = 3$ factor).
+
+Physical interpretation: each of the $d_H = 3$ independent $\mathrm{Im}(\mathbb{H})$
+rotations contributes a renormalisation factor $\sqrt{N_{\mathrm{eff}}}$ to
+the vacuum polarisation amplitude.  Combining $d_H$ independent factors:
+\begin{equation}
+  B_{\mathrm{base}} = \bigl(\sqrt{N_{\mathrm{eff}}}\bigr)^{d_H}
+    = N_{\mathrm{eff}}^{d_H/2} = N_{\mathrm{eff}}^{3/2}.
+  \label{eq:B_hausdorff_product}
+\end{equation}
+
+\subsection{Algebraic Consistency Check}
+
+The formula $N_{\mathrm{eff}}^{d_H/2}$ is \emph{algebraically natural}
+because:
+\begin{enumerate}
+  \item $d_H = 3$ is a \emph{derived} quantity — it is the real dimension
+    of $\mathrm{Im}(\mathbb{H})$, fixed by the algebra alone.
+  \item $N_{\mathrm{eff}} = 12$ is a \emph{proved} quantity in UBT
+    (Theorem N.3.1 in the $N_{\mathrm{eff}}$ derivation chain).
+  \item No free parameters are introduced: the formula contains only
+    quantities already established in the framework.
+\end{enumerate}
+
+In the QED limit $d_H = 1$ (a single $\mathrm{U}(1)$ rotation, corresponding
+to $\mathrm{Im}(\mathbb{C}) \cong i\mathbb{R}$) and $N_{\mathrm{eff}} = 1$:
+\begin{equation}
+  B_{\mathrm{base}}\big|_{\mathrm{QED}} = 1^{1/2} = 1,
+\end{equation}
+consistent with the QED one-loop coefficient being of order 1 (the $2\pi/3$
+normalisation comes from the angular integration, not from the mode count).
+
+\subsection{Dimensional Comparison Table}
+
+\begin{center}
+\begin{tabular}{lcccc}
+  \hline
+  Algebra & $\dim_\mathbb{R}(\mathrm{Im})$ & $N_{\mathrm{eff}}$ & $B_{\mathrm{base}} = N^{d/2}$ \\
+  \hline
+  $\mathbb{C}$ (QED)     & 1 & 1  & $1^{1/2} = 1$       \\
+  $\mathbb{H}$           & 3 & 3  & $3^{3/2} \approx 5.2$ \\
+  $\mathbb{C}\otimes\mathbb{H}$ (UBT) & 3 & 12 & $12^{3/2} \approx 41.6$ \\
+  \hline
+\end{tabular}
+\end{center}
+
+The UBT row gives the observed $B_{\mathrm{base}} \approx 41.57$.
+
+\subsection{What This Approach Does and Does Not Prove}
+
+\textbf{Does:}
+\begin{itemize}
+  \item Identifies a \emph{structural reason} for the exponent $3/2$:
+    it is $d_H/2$ where $d_H = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$.
+  \item Connects $B_{\mathrm{base}}$ to the same algebraic structure
+    ($\mathrm{Im}(\mathbb{H})$ generating $\mathrm{SU}(2)_L$) that underlies
+    $N_{\mathrm{phases}} = 3$.
+  \item Introduces zero new free parameters.
+\end{itemize}
+
+\textbf{Does not:}
+\begin{itemize}
+  \item Derive the formula $B = N_{\mathrm{eff}}^{d_H/2}$ from
+    $\mathcal{S}[\Theta]$ by explicit computation.
+  \item Explain \emph{why} each $\mathrm{Im}(\mathbb{H})$ rotation contributes
+    exactly $\sqrt{N_{\mathrm{eff}}}$, rather than some other power.
+  \item Prove that the three $\sqrt{N_{\mathrm{eff}}}$ factors are
+    \emph{independent} (i.e.\ no correlations between phase directions).
+\end{itemize}
+
+\begin{remark}
+  The Hausdorff approach is more structurally motivated than the spinor
+  counting (Approach A1), because $d_H = 3$ is an exact algebraic quantity
+  and it is already linked to $N_{\mathrm{phases}}$ in the proved $N_{\mathrm{eff}}$
+  derivation.  The residual gap is the dynamical claim that each phase
+  direction contributes $\sqrt{N_{\mathrm{eff}}}$ independently.
+  \textbf{This remains [MOTIVATED CONJECTURE].}
+\end{remark}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
