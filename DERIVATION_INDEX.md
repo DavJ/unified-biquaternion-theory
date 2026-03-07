@@ -69,7 +69,8 @@ Status labels:
 | Option C (ψ-instantons) reproduces ratios | **Open Hard Problem** | `research_tracks/three_generations/st3_complex_time_generations.tex §7` | Calibrated to muon; tau off by factor ~6 |
 | Identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ | **Conjecture** | `research_tracks/three_generations/st3_complex_time_generations.tex §5` | Mass ratios not reproduced |
 | Mass ratio script (Options A/B/C) | Documented | `tools/reproduce_lepton_ratios.py` | Exit code 1 = no mechanism works |
-| Hecke eigenvalue conjecture (k=2,4,6) | **Supported by numerical evidence (p=137: 0.4%+3.1%, p=139: 0.05%+1.6%)** | `research_tracks/three_generations/step6_hecke_matches.tex` | SageMath found matching triples at both p=137 and p=139; LMFDB scripts written: identify_lmfdb_labels.py, check_shimura_lift.py; David runs locally |
+| Hecke conjecture p=137 | **STRONG NUMERICAL SUPPORT** | `reports/hecke_lepton/` | Set A (76.2, 7.4, 208.6): unique global hit p=137 in 50–300; mu_err=0.02%, tau_err=0.10%; 47 other primes far off |
+| Hecke twin prime p=139 (mirror sector) | **NUMERICAL OBSERVATION** | `reports/hecke_lepton/mirror_world_139.md` | Set B (195.2, 50.4, 54.6): unique global hit p=139 in 50–300; Sets A and B mutually exclusive on twin primes (137, 139) |
 | CM k=6 forms at any level | **Dead End** | `research_tracks/three_generations/step5_hecke_search_results.tex §5.2`, `research_tracks/three_generations/step6_nonCM_search.tex` | \|a_137\| ~ 439371 ≫ 81400; structural impossibility |
 | Non-CM k=6 forms, N≤4 | **Dead End** | `research_tracks/three_generations/step5_hecke_search_results.tex` | No non-CM forms exist at these levels |
 | Non-CM k=6 forms, N∈[50,500] | **Extended Dead End** | `research_tracks/three_generations/step6_nonCM_search.tex`, `research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |
