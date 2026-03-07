@@ -15,9 +15,11 @@ is a near-copy of our sector with $\alpha'^{-1} = 139$ instead of $\alpha^{-1} =
 
 | Result | Status | File |
 |--------|--------|------|
-| $V_{\rm eff}(137) < V_{\rm eff}(139)$ | NUMERICAL OBSERVATION | `vacuum_stability.tex` |
-| $n^* = 139$ is metastable vacuum | MOTIVATED CONJECTURE | `vacuum_stability.tex` |
+| $n^*=139$ is NOT a local min of $V_{B_{137}}$ | PROVED NUMERICALLY | `vacuum_stability.tex` |
+| $n^*=139$ is global min of mirror branch $B_{139}$ | MOTIVATED CONJECTURE | `vacuum_stability.tex` |
+| $\Delta B/B = 1.21\%$ between sectors | NUMERICAL OBSERVATION | `vacuum_stability.tex` |
 | Mirror sector $\alpha'^{-1} = 139$ | NUMERICAL OBSERVATION | `../../reports/hecke_lepton/mirror_world_139.md` |
+| Mirror sector is fully stable (not metastable) | FOLLOWS FROM CONJECTURE | `vacuum_stability.tex` |
 | Mirror sector is habitable | DERIVED | See below |
 | Mirror matter as dark matter candidate | CONJECTURE | This file |
 
@@ -68,24 +70,25 @@ model can resolve the Hubble tension ($H_0$ discrepancy).  This is a potential
    hard problem; its derivation is needed for quantitative vacuum stability predictions.
 2. **Mirror lepton masses**: The mass ratios in the mirror sector should follow from
    Set B Hecke eigenvalues at $p = 139$; explicit computation pending.
-3. **Discrete tunnelling**: The Coleman tunnelling estimate for integer-valued $n$ is
-   non-trivial; a proper treatment requires discrete quantum mechanics methods.
+3. **ΔB physical origin**: The 1.21% difference between $B_{137}$ and $B_{139}$
+   needs a physical explanation within UBT. Does it arise from different
+   $N_{\rm eff}$, a different $R$ correction, or a deeper algebraic mechanism?
+   This is the key open question for the mirror sector.
 4. **Observational signature**: Mirror matter self-interaction cross-section needs
    to be computed from UBT parameters to make quantitative predictions for
    galaxy cluster observations (Bullet Cluster constraint).
 
 ## Files in This Directory
 
-- `vacuum_stability.tex` — Vacuum stability analysis and Coleman tunnelling estimate
+- `vacuum_stability.tex` — Two independent vacua analysis: n*=137 and n*=139 as parallel solutions
 - `README.md` — This overview file
 
 ## References
 
-- S. Coleman, "Fate of the false vacuum," Phys. Rev. D 15, 2929 (1977)
 - R. Foot & R. R. Volkas, "Neutrino physics and the mirror world," Phys. Rev. D 52, 6595 (1995)
 - Zhang & Frieman, "Hubble tension and mirror dark sector," (2022)
 
 ---
-**Status**: [NEW CONJECTURE — motivated by twin prime observation]  
+**Status**: [MOTIVATED CONJECTURE — two independent algebraic sectors]  
 **Last Updated**: 2026-03-07  
 **Author**: David Jaroš
