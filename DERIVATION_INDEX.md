@@ -304,11 +304,14 @@ and an emergent-metric construction strongly connected to Θ.
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
-| V_eff(137) < V_eff(139) numerically | **NUMERICAL OBSERVATION** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Follows from V_eff form with B > B₀; needs B derivation |
-| n*=139 metastable vacuum | **MOTIVATED CONJECTURE** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Coleman tunnelling estimate; τ >> t_universe predicted but naive estimate inconclusive |
-| Mirror sector α⁻¹ = 139 | **NUMERICAL OBSERVATION** | `reports/hecke_lepton/mirror_world_139.md` | Set B forms globally unique at p=139 |
-| Mirror sector is habitable | **DERIVED** | `consolidation_project/mirror_sector/README.md` | α⁻¹=139 within anthropic bounds (95-195); stars burn, carbon forms, water is solvent |
-| Mirror matter as dark matter candidate | **CONJECTURE** | `consolidation_project/mirror_sector/README.md` | Interacts gravitationally only; Foot-Volkas precedent; UBT adds algebraic motivation from twin prime structure |
+| V_eff(137) < V_eff(139) for same B | **NUMERICAL OBSERVATION** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Calibrated to our sector |
+| n=139 is NOT a discrete local min of V_{B_137} | **PROVED NUMERICALLY** | `consolidation_project/mirror_sector/vacuum_stability.tex` | V(138) < V(139); ascending branch |
+| n*=139 is global min of branch B'=B_139 | **MOTIVATED CONJECTURE** | `consolidation_project/mirror_sector/vacuum_stability.tex` | ΔB/B=1.21%; two independent sectors |
+| Mirror sector is fully stable | **FOLLOWS FROM CONJECTURE** | `consolidation_project/mirror_sector/vacuum_stability.tex` | No false vacuum; no Coleman tunnelling |
+| Set A and Set B algebraically independent | **NUMERICAL OBSERVATION** | `reports/hecke_lepton/` | Different levels/weights/eigenvalues |
+| Mirror sector α⁻¹ = 139 | **NUMERICAL OBSERVATION** | `reports/hecke_lepton/mirror_world_139.md` | Set B globally unique at p=139 |
+| Mirror sector is habitable | **DERIVED** | — | α⁻¹=139 within anthropic bounds (95-195) |
+| Mirror matter as dark matter candidate | **CONJECTURE** | `consolidation_project/mirror_sector/README.md` | Gravitational coupling only; Foot-Volkas precedent |
 
 ---
 

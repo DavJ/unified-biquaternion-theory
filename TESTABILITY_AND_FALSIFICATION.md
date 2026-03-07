@@ -829,20 +829,22 @@ constraints allow this parameter space).
 
 ---
 
-### P-MIRROR-2: Mirror sector is metastable
+### P-MIRROR-2: Mirror sector is a fully autonomous vacuum
 
-**Prediction**: The mirror vacuum $n^* = 139$ is a metastable local minimum of
-$V_{\rm eff}(n)$ with lifetime $\tau > t_{\rm universe}$.
+**Prediction**: The mirror sector with $\alpha'^{-1} = 139$ is a fully stable,
+autonomous vacuum of UBT --- not a metastable excitation.  It corresponds to a
+branch of the theory with loop-correction coefficient $B' = B_{139} \approx 46.845$
+(vs $B_{137} \approx 46.284$ for our sector, $\Delta B/B = 1.21\%$).
 
-**Observable**: Absence of bubble nucleation events in cosmological data (CMB
-anisotropies, large-scale structure, cosmic ray anomalies).  A metastable mirror
-vacuum decaying to our sector would produce a bubble wall observable in principle.
+**Observable consequence**: No bubble nucleation events from mirror-to-our-sector
+decay (there is no such decay --- the mirror sector is stable).  Mirror matter, if
+it exists, is permanently stable and forms structure analogously to visible matter.
 
-**Falsification criterion**: Detection of a cosmological bubble wall with the
-predicted properties would either falsify or confirm this prediction.
+**Falsification**: Discovery of mirror matter decay products inconsistent with
+a stable mirror sector would falsify this conjecture.
 
-**Current status**: [MOTIVATED CONJECTURE]; naive Coleman estimate is inconclusive
-due to discrete-$n$ complications.
+**Current status**: [MOTIVATED CONJECTURE]; rests on the algebraic independence
+of Set A and Set B modular forms and the 1.21% B-coefficient difference.
 
 ---
 
@@ -894,6 +896,6 @@ computing mirror sector contribution to $\Delta N_{\rm eff}$.
 | Prediction | Observable | Status |
 |-----------|-----------|--------|
 | P-MIRROR-1: $\alpha' = 1/139$ dark matter | SIDM cross-section | [CONJECTURE] |
-| P-MIRROR-2: Mirror vacuum metastable | No bubble wall detected | [MOTIVATED CONJECTURE] |
+| P-MIRROR-2: Mirror sector fully stable | No mirror matter decay observed | [MOTIVATED CONJECTURE] |
 | P-MIRROR-3: Mirror lepton mass ratios | Mirror lepton decay signatures | [CONJECTURE] |
 | P-MIRROR-4: Hubble tension via mirror dark sector | CMB-S4 acoustic peaks | [MOTIVATED CONJECTURE] |
