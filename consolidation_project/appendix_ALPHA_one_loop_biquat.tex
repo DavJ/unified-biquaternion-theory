@@ -700,6 +700,94 @@ a fitted parameter until a geometric derivation is found.
 \textbf{No-circularity verification}: see \texttt{validation/validate\_B\_coefficient.py},
 which confirms this status independently.
 
+\subsubsection*{B.3.5 — Twin-Prime Candidate ($B = p_{\rm twin}/N_{\rm color}$)
+  \textbf{[DEAD END]}}
+\label{sec:B3-twin-prime}
+
+A new numerical direction was explored in March 2026: whether $B$ can be expressed
+in terms of the twin-prime pair $(137, 139)$ of the target $n^* = 137$.
+
+\paragraph{Hypothesis.}
+Let $p_{\rm twin} = 139$ (twin prime of $n^* = 137$) and $N_{\rm color} = 3$.
+Define the candidate
+\begin{equation}
+  B_{\rm twin} \;=\; \frac{p_{\rm twin}}{N_{\rm color}} \;=\; \frac{139}{3} \;\approx\; 46.333.
+  \label{eq:B-twin-prime}
+\end{equation}
+With $A = 1$ (normalised kinetic coefficient) the exact $B$ required so that $n^* = 137$
+satisfies $2An^* = B(\ln n^* + 1)$ is
+\[
+  B_{\rm required} = \frac{2A \cdot 137}{\ln 137 + 1} = \frac{274}{5.9195} \approx 46.284.
+\]
+The candidate~\eqref{eq:B-twin-prime} deviates from $B_{\rm required}$ by $+0.11\%$.
+
+\paragraph{Implied $R$ factor.}
+If $B = 139/3$ and $B_{\rm base} = N_{\rm eff}^{3/2} = 41.57$, then
+\[
+  R = \frac{B_{\rm twin}}{B_{\rm base}}
+    = \frac{139}{3 \times 12^{3/2}}
+    = \frac{139}{3\sqrt{1728}}
+    = 1.1146,
+\]
+which is within $0.06\%$ of the phenomenological value $R = 1.114$.
+
+\paragraph{Self-consistency.}
+Newton iteration with $B = 139/3$ and $A = 1$ gives $n^* = 137.18$, i.e.\ $0.13\%$
+above the target.  The result is not an exact integer.
+
+\paragraph{Numerical scan.}
+The script \texttt{scripts/padic/sage\_B\_derivation.sage} searched all algebraically
+motivated exponents $\alpha$ for $B_{\rm required} = N_{\rm eff}^\alpha$:
+no value in $\{3/2,\,8/5,\,\sqrt{2},\,\pi/2,\,\ldots\}$ gives an exact match.
+A grid scan over $N_{\rm eff} \in \{4, 8, 12, 24\}$ finds that $p = 139$ is the
+closest prime to $3 B_{\rm required}$ for \emph{all} values, independent of
+$N_{\rm eff}$ — confirming the match is to $n^* = 137$ directly.
+
+\paragraph{Why this is not a derivation.}
+\begin{enumerate}
+  \item The formula $B = 139/3$ has no geometric derivation within UBT.
+        There is no mechanism in $S[\Theta]$ that selects $p_{\rm twin}/N_{\rm color}$.
+  \item Even if accepted, the formula does not explain Problem~A:
+        the ratio $B_{\rm base}/B_0 = N_{\rm eff}^{1/2}/(2\pi/3) \approx 1.654$ remains
+        unexplained whether or not $B_{\rm twin}$ replaces $B_{\rm base}$.
+  \item The numerical near-coincidence is of the same character as Eddington's numerology
+        for 137 (1929) and must not be presented as a derivation.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Expression} & \textbf{Value} & \textbf{Error vs $B_{\rm req}$} \\
+\hline
+$139/3$               & 46.333  & $+0.11\%$ \\
+$(137+139)/6$         & 46.000  & $-0.61\%$ \\
+$\sqrt{137\times139}/3$ & 45.999 & $-0.62\%$ \\
+$N_{\rm eff}^{3/2}$   & 41.569  & $-10.2\%$ \\
+$B_0 = 2\pi N_{\rm eff}/3$ & 25.133 & $-45.7\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Verdict}: \textbf{[DEAD END]}.
+The twin-prime approach gives an interesting numerical near-coincidence but no derivation.
+Problems~A and~B remain \textbf{OPEN HARD PROBLEMS}.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Method} & \textbf{Result} & \textbf{Status} \\
+\hline
+KK mode sum (Euler-Maclaurin) & Ratio $\approx 0.005$, not $1.65$ & [HONEST GAP] \\
+Zeta-function regularization  & $B_\zeta \approx -1.2$, wrong sign & [HONEST GAP] \\
+Gauge orbit volume             & $\mathrm{Vol}(SU(N)) \sim N^{42}$  & [DEAD END] \\
+Twin-prime ($139/3$)           & $0.11\%$ off, no geometric basis   & [DEAD END] \\
+Power-law scan ($N_{\rm eff}^\alpha$) & $\alpha = 1.543$, not algebraic & [DEAD END] \\
+\hline
+\textbf{Required} & $B_{\rm base} = N_{\rm eff}^{3/2} = 41.57$ & \\
+\hline
+\end{tabular}
+\end{center}
+
 \section{Calculation of $\alpha$ at Low Energy}
 \label{sec:alpha-value}
 
