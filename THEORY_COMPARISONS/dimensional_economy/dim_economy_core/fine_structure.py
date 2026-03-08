@@ -23,8 +23,11 @@ Proved [L1] — B₀ = 2π·N_eff/3 (one-loop baseline):
     The one-loop vacuum polarization coefficient is B₀ = 2π·N_eff/3.
     For N_eff = 12: B₀ = 2π·12/3 = 8π ≈ 25.13.
 
-OPEN PROBLEMS (NOT proved here):
-    B_base = N_eff^{3/2} = 41.57 — no derivation (Open Problem A)
+MOTIVATED CONJECTURE (NOT proved here):
+    B_base = N_eff^{3/2} = 41.57 — Motivated Conjecture [with explicit gap] (v58)
+        Exponent 3/2 = dim_R(Im H)/2: factor 3 from Im(H)=span{i,j,k}, factor 2
+        from Gaussian path-integral det^{-1/2}. Gaps (a)(b) remain OPEN.
+        See: consolidation_project/alpha_derivation/b_base_hausdorff.tex
     α⁻¹ = 137.036 — requires B_base derivation
     R_ψ independent fixation — Dead End
 
@@ -315,7 +318,7 @@ def fine_structure_proved_summary():
         'Dirac quantisation condition':     'Proved [L0]',
         'N_eff = 12 (3×2×2 counting)':      'Proved [L0]',
         'B₀ = 2π·N_eff/3 (one-loop)':       'Proved [L1]',
-        'B_base = N_eff^{3/2} = 41.57':     'Open Hard Problem — OPEN PROBLEM A',
+        'B_base = N_eff^{3/2} = 41.57':     'Motivated Conjecture [with explicit gap] — exponent 3/2 = dim_R(Im H)/2; gaps (a)(b) OPEN',
         'R_ψ independent fixation':          'Dead End [L0]',
         'α⁻¹ = 137 (bare)':                 'Semi-empirical',
         'α⁻¹ = 137.036 (full)':             'Semi-empirical',
