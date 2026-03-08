@@ -2,9 +2,9 @@
 
 # LMFDB Label Identification — Hecke Forms for Lepton Ratios
 
-**Date**: 2026-03-07  
+**Date**: 2026-03-08 (updated from 2026-03-07)  
 **Author**: Ing. David Jaroš  
-**Status**: **[PARTIALLY CONFIRMED — 7.4.a.a and 76.2.a.a confirmed from LMFDB PDF (2026-03-07); 208.6.a subspace confirmed; Set B labels probable pending individual a_p verification]**  
+**Status**: **[PARTIALLY CONFIRMED — 7.4.a.a and 76.2.a.a confirmed from LMFDB PDF; 208.6.a subspace confirmed; Set B labels under verification — see Section 9]**  
 **Related**: `reports/hecke_lepton/sage_results_2026_03_07.md`
 
 ---
@@ -344,3 +344,46 @@ The script:
 
 **Note**: The $k=6$ computations (especially $N=208$, $N=54$) may require significant
 computation time (minutes to hours depending on hardware).  Set $k=2$ forms are fast.
+
+---
+
+## 9. Verification Results (v61, 2026-03-08)
+
+The automated verification script (`scripts/hecke/verify_lmfdb_labels.sage`, updated
+2026-03-08) was updated to use `q_expansion_coefficients()` for reliable coefficient
+access and full scanning of all Set B newforms.  The expected results upon running
+the script are documented below; actual output should be committed to this section
+when the script is executed.
+
+### Script verification targets (v61)
+
+| Form label    | Expected $a_p$ | p   | Verification method                                   | Status             |
+|---------------|----------------|-----|-------------------------------------------------------|--------------------|
+| `76.2.a.a`    | $-11$          | 137 | `CuspForms(Gamma0(76),2).newforms('a')[0][137]`       | ✅ CONFIRMED       |
+| `7.4.a.a`     | $+2274$        | 137 | `CuspForms(Gamma0(7),4).newforms('a')[0][137]`        | ✅ CONFIRMED       |
+| `208.6.a.?`   | $-38286$       | 137 | Full scan via `q_expansion_coefficients(138)[137]`    | ⚠️ SUFFIX PENDING  |
+| `195.2.a.c`   | $+15$          | 139 | `newforms2[2].q_expansion_coefficients(140)[139]`     | ⚠️ PENDING RUN     |
+| `50.4.a.b`    | $+3100$        | 139 | `newforms3[1].q_expansion_coefficients(140)[139]`     | ⚠️ PENDING RUN     |
+| `54.6.a.b`    | $+53009$       | 139 | `newforms4[1].q_expansion_coefficients(140)[139]`     | ⚠️ PENDING RUN     |
+
+**Legend for v61 status column:**
+- ✅ CONFIRMED — $a_p$ value independently verified (SageMath + LMFDB PDF 2026-03-07)
+- ⚠️ SUFFIX PENDING — subspace `208.6.a` confirmed; exact suffix requires script run
+- ⚠️ PENDING RUN — script updated 2026-03-08; awaiting execution to confirm $a_p$ match
+
+### Instructions for completing verification
+
+Run the updated script and fill in actual output:
+
+```bash
+cd /path/to/repository
+sage scripts/hecke/verify_lmfdb_labels.sage 2>&1 | tee /tmp/lmfdb_verification_v61.txt
+```
+
+For each form:
+- If $a_p$ matches: update status to **✅ CONFIRMED**
+- If $a_p$ does not match: update status to **❌ WRONG LABEL** and search for the
+  correct index by scanning all newforms at that $(N, k)$ pair
+- For `208.6.a.?`: record the letter suffix identified by the full scan
+
+*Verification section added: 2026-03-08 (v61).*

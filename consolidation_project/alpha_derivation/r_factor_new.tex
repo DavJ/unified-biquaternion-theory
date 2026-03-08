@@ -1,0 +1,346 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% R ≈ 1.114 — New Approaches (Open Problem B): F1–F4
+% Track: CORE — α derivation — v61 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{gap}{Gap}
+
+  \title{$R \approx 1.114$: New Approaches (Open Problem B)\\
+    \large Approaches F1 (Two-Loop KK), F2 (Modular Weights),\\
+    F3 (Ramanujan $\tau$), and F4 ($\psi$-Circle Holonomy)}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08}
+
+  \begin{document}
+  \maketitle
+\fi
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Problem Statement}
+\label{sec:r_new_problem}
+
+The fine-structure constant derivation in UBT requires
+\begin{equation}
+  B = B_{\mathrm{base}} \times R
+    = N_{\mathrm{eff}}^{3/2} \times R
+    \approx 41.57 \times 1.114
+    \approx 46.3.
+\end{equation}
+The correction factor $R \approx 1.114$ is phenomenological (\textbf{OPEN PROBLEM B}).
+Previous approaches (B1: volume ratios, B2: algebraic candidates, B3: two-loop
+on $\psi$-circle) have been documented in \texttt{r\_factor\_geometry.tex}.
+Best known candidate: $R \approx 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4) \approx
+1.11235$, error $0.15\%$, status \textbf{[NUMERICAL OBSERVATION]}.
+
+This document explores four new approaches F1–F4, all avoiding $n^* = 137$
+or $\alpha = 1/137$ as inputs (non-circularity requirement).
+
+\begin{description}
+  \item[F1] $R$ from two-loop QED correction on the compact $\psi$-circle
+            with discrete Kaluza--Klein spectrum.
+  \item[F2] $R$ as a ratio of modular weights from the Hecke analysis.
+  \item[F3] $R$ from the Ramanujan $\tau$-function.
+  \item[F4] $R$ from $\psi$-circle holonomy (Hosotani phase).
+\end{description}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach F1: Two-Loop QED Correction with KK Spectrum}
+\label{sec:F1_twoloop_KK}
+
+\textbf{Status: [DEAD END]} — the required two-loop coefficient $g(1) \approx 49$
+does not emerge naturally from known QED two-loop structures.
+
+\subsection{Setup}
+
+The imaginary-time circle $S^1_\psi$ of radius $R_\psi = \hbar/(m_e c)$
+quantises the Kaluza--Klein (KK) spectrum.  The standard two-loop vacuum
+polarisation acquires a finite-size correction:
+\begin{equation}
+  B = B_{1\text{-loop}} \times \Bigl[1 + \frac{\alpha}{\pi}\,f(m_e R_\psi)\Bigr].
+\end{equation}
+In the $\psi$-circle compactification, the loop integral splits as
+\begin{equation}
+  \int\!\frac{d^4 k}{(2\pi)^4} \;\longrightarrow\;
+  \frac{1}{2\pi R_\psi}\sum_{n=-\infty}^{\infty}\int\!\frac{d^3 k}{(2\pi)^3},
+  \qquad k_\psi = \frac{n}{R_\psi}.
+\end{equation}
+For $R_\psi = \hbar/(m_e c)$, we have $m_e R_\psi = 1$ in natural units, so:
+\begin{equation}
+  R = 1 + \frac{\alpha}{\pi}\,g(1),
+  \qquad
+  g(1) = \frac{(R-1)\,\pi}{\alpha}
+        = \frac{0.114 \times \pi}{\alpha}
+        \approx 0.114 \times 430 \approx 49.
+  \label{eq:F1_g1_required}
+\end{equation}
+
+\subsection{Numerical Exploration}
+
+The standard two-loop QED corrections to the photon propagator give
+coefficients such as
+\begin{equation}
+  C_{2\text{L}} = \frac{11}{12}\,N_{\mathrm{eff}} \approx 11 \quad
+  \text{(for } N_{\mathrm{eff}} = 12\text{)},
+\end{equation}
+which falls short of the required $g(1) \approx 49$ by a factor of $\sim 4.5$.
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  $g(1)$ candidate & Value & Error vs.\ required $49$ \\
+  \midrule
+  $\frac{11}{12} N_{\mathrm{eff}}$          & $11$      & $-78\%$ \\
+  $4\pi$                                     & $12.57$   & $-74\%$ \\
+  $N_{\mathrm{eff}}^2/4$                    & $36$      & $-27\%$ \\
+  $N_{\mathrm{eff}}^2/3$                    & $48$      & $-2\%$  \\
+  $N_{\mathrm{eff}}^2/(3 - \epsilon)$       & depends   & open    \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The closest algebraic candidate is $g(1) \approx N_{\mathrm{eff}}^2/3 = 48$
+(error $2\%$), which would give $R = 1 + \alpha N_{\mathrm{eff}}^2/(3\pi)
+\approx 1.111$ (error $0.27\%$).  However, the combination
+$N_{\mathrm{eff}}^2/3$ lacks physical motivation in the two-loop QED context.
+
+\subsection{Conclusion for F1}
+
+$g(1) \approx 49$ is \emph{not} a natural two-loop QED coefficient.  The
+one closest standard result ($\frac{11}{12}N_{\mathrm{eff}} = 11$) is off by
+a factor $\sim 4.5$, and no combination of known two-loop coefficients with
+$N_{\mathrm{eff}} = 12$ recovers $g(1) \approx 49$ from first principles.
+This approach is classified as \textbf{[DEAD END]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach F2: R as a Ratio of Modular Weights}
+\label{sec:F2_modular_weights}
+
+\textbf{Status: [DEAD END]} — no natural ratio of the weights $\{2, 4, 6\}$
+and $N_{\mathrm{eff}} = 12$ gives a value in $[1.09, 1.14]$.
+
+\subsection{Setup}
+
+Both Set A and Set B Hecke forms (UBT lepton conjecture) have weights
+$k = 2, 4, 6$, whose sum equals $12 = N_{\mathrm{eff}}$.  A systematic
+search for a ratio built from $\{2, 4, 6\}$ and $N_{\mathrm{eff}} = 12$
+that yields $R \approx 1.114$ was performed.
+
+\subsection{Systematic Search}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Formula & Value & Error vs.\ $1.114$ & Status \\
+  \midrule
+  $k_{\max}/k_{\mathrm{avg}} = 6/4$           & $1.500$  & $+35\%$ & FAIL \\
+  $(k_1+k_2+k_3)/(3\,k_1) = 12/6$            & $2.000$  & $+79\%$ & FAIL \\
+  $\sqrt{k_{\mathrm{avg}}/k_{\min}} = \sqrt{4/2}$ & $1.414$ & $+27\%$ & FAIL \\
+  $1 + k_{\min}/k_{\max} = 1 + 2/6$          & $1.333$  & $+20\%$ & FAIL \\
+  $k_{\mathrm{avg}}/k_{\min} \cdot 1/4 = 4/2/4$ & $0.500$ & $-55\%$ & FAIL \\
+  $1 + 1/N_{\mathrm{eff}} = 1 + 1/12$        & $1.083$  & $-2.8\%$ & [CLOSE] \\
+  $1 + k_{\min}/N_{\mathrm{eff}} = 1 + 2/12$ & $1.167$  & $+4.8\%$ & FAIL \\
+  $(k_{\max} + k_{\min})/(k_{\mathrm{avg}}+k_{\min}) = 8/6$ & $1.333$ & $+20\%$ & FAIL \\
+  $N_{\mathrm{eff}}^{1/2}/k_{\mathrm{avg}} = \sqrt{12}/4$ & $0.866$ & $-22\%$ & FAIL \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The closest result is $1 + 1/N_{\mathrm{eff}} = 13/12 \approx 1.083$
+(error $-2.8\%$), which is outside the target window $[1.09, 1.14]$.
+
+\begin{remark}
+  The value $1 + 1/N_{\mathrm{eff}} = 13/12$ is tantalisingly close and
+  has a natural interpretation: a fractional KK mode $1/N_{\mathrm{eff}}$
+  on the $\psi$-circle.  However, the $2.8\%$ deviation cannot be dismissed
+  as a rounding error, and no derivation of this formula from
+  $\mathcal{S}[\Theta]$ exists.  This is a \textbf{[NUMERICAL OBSERVATION]},
+  not a proof.
+\end{remark}
+
+\subsection{Conclusion for F2}
+
+No natural ratio of the Hecke weights $\{2,4,6\}$ and $N_{\mathrm{eff}} = 12$
+reproduces $R = 1.114$ within $1\%$.  This approach is classified as
+\textbf{[DEAD END]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach F3: R from the Ramanujan $\tau$-Function}
+\label{sec:F3_ramanujan}
+
+\textbf{Status: [DEAD END]} — no combination of $\tau(p)$ values and
+$N_{\mathrm{eff}}$ recovers $R = 1.114$ without using $\alpha$ as input.
+
+\subsection{Background}
+
+The Ramanujan $\tau$-function gives the Fourier coefficients of the unique
+weight-12 cusp form $\Delta(z) = q\prod_{n=1}^\infty(1-q^n)^{24}$:
+\begin{equation}
+  \tau(2) = -24, \quad \tau(3) = 252, \quad \tau(5) = 4830,
+  \quad \tau(7) = -16744, \quad \tau(11) = 534612.
+\end{equation}
+These are intimately related to $N_{\mathrm{eff}} = 12 = k_{\Delta}$
+(the weight of $\Delta$) and the number $24 = |\tau(2)|$.
+
+\subsection{Systematic Search}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Formula & Value & Error vs.\ $1.114$ & Status \\
+  \midrule
+  $1 + |\tau(2)|/N_{\mathrm{eff}}^2 = 1 + 24/144$ & $1.167$ & $+4.8\%$ & FAIL \\
+  $1 + |\tau(2)|/(N_{\mathrm{eff}} \cdot 17) = 1 + 24/204$ & $1.118$ & $+0.3\%$ & [CLOSE] \\
+  $1 + |\tau(2)|/(N_{\mathrm{eff}} \cdot 18)$       & $1.111$ & $-0.3\%$ & [CLOSE] \\
+  $1 + |\tau(2)|/(N_{\mathrm{eff}} \cdot k_\Delta)$ & $1 + 24/144 = 1.167$ & $+4.8\%$ & FAIL \\
+  $|\tau(2)|/(N_{\mathrm{eff}} + |\tau(2)|) = 24/36$ & $0.667$ & $-40\%$ & FAIL \\
+  $\tau(3)/\tau(2)^2 = 252/576$                      & $0.438$ & $-61\%$ & FAIL \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Two close observations:
+\begin{align}
+  1 + \frac{|\tau(2)|}{N_{\mathrm{eff}} \times 17} &= 1 + \frac{24}{204} \approx 1.118, \quad \text{error } +0.3\%, \\
+  1 + \frac{|\tau(2)|}{N_{\mathrm{eff}} \times 18} &= 1 + \frac{24}{216} \approx 1.111, \quad \text{error } -0.3\%.
+\end{align}
+Both are \textbf{[NUMERICAL OBSERVATIONS]}.  The denominator factor 17
+(or 18) has no clear physical motivation.
+
+\begin{remark}
+  $|\tau(2)| = 24$ is also the dimension of the Leech lattice \(\Lambda_{24}\),
+  connected to the Monster group and moonshine.  The appearance of 24 in the
+  denominator of a formula close to $R$ is intriguing but purely numerical.
+  No algebraic derivation from $\mathcal{S}[\Theta]$ exists at this time.
+\end{remark}
+
+\subsection{Conclusion for F3}
+
+The Ramanujan $\tau$-function provides no derivation of $R = 1.114$ from
+first principles without using $\alpha$ or other fitted inputs.  This approach
+is classified as \textbf{[DEAD END]}, though the observation
+$1 + 24/(N_{\mathrm{eff}} \times 17) \approx 1.118$ at $0.3\%$ error is
+recorded as a \textbf{[NUMERICAL OBSERVATION]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach F4: R from $\psi$-Circle Holonomy}
+\label{sec:F4_holonomy}
+
+\textbf{Status: [DEAD END]} — $|2|^x = 1.114$ requires $x = \ln(1.114)/\ln 2
+\approx 0.155$, which is not a simple fraction.
+
+\subsection{Setup}
+
+On the compact $\psi$-circle the gauge holonomy is
+\begin{equation}
+  U = \exp\!\Bigl(i\oint A_\psi\,d\psi\Bigr) = \exp(2\pi i\,\theta_H),
+\end{equation}
+where $\theta_H$ is the Hosotani phase.  For a $U(1)$ gauge field with
+an electron ($Q = -1$) in the fundamental representation,
+$\theta_H = 1/2$ (mod 1), giving $U = \exp(i\pi) = -1$.
+
+\subsection{Holonomy-Based Candidates}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Formula & Value & Error vs.\ $1.114$ & Status \\
+  \midrule
+  $|1 - \exp(i\pi)| = |1 - (-1)|$         & $2$       & $+79\%$ & FAIL \\
+  $|1 + \exp(i\pi)| = |1 - 1|$            & $0$       & $-100\%$ & FAIL \\
+  $|1 - \exp(i\pi)|^{1/6} = 2^{1/6}$      & $1.122$   & $+0.76\%$ & [CLOSE, known B2] \\
+  $|1 - \exp(i\pi)|^x$, $x = 0.155$       & $1.114$   & exact fit & no simple $x$ \\
+  $|\det(1+U)|^{1/N_{\mathrm{eff}}}$ ($U$ = $2\times 2$ matrix $-I$)
+    & $|0|^{1/12} = 0$ & $-100\%$ & FAIL \\
+  $|\mathrm{tr}(1 + U)|^{1/N_{\mathrm{eff}}} = |0|^{1/12}$
+    & $0$ & $-100\%$ & FAIL \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The only viable formula is $2^{1/6}$ (known approach B2, documented in
+\texttt{r\_factor\_geometry.tex}), which requires $x = 1/6$.  For $R =
+1.114$ exactly one needs $x = \ln(1.114)/\ln 2 \approx 0.1549$; the
+nearest simple fractions are:
+\begin{equation}
+  x = \frac{1}{6} \approx 0.1667 \;\text{(error }7.6\%\text{ on }x\text{)},
+  \qquad
+  x = \frac{3}{19} \approx 0.1579 \;\text{(error }1.9\%\text{ on }x\text{)}.
+\end{equation}
+Neither $1/6$ nor $3/19$ has been derived from $\mathcal{S}[\Theta]$.
+
+\subsection{Conclusion for F4}
+
+Holonomy-based formulas either reproduce the known $2^{1/6}$ candidate
+(B2) or give trivial/zero values.  The required exponent $x \approx 0.155$
+is not a simple fraction.  This approach is classified as
+\textbf{[DEAD END]} (with $2^{1/6}$ already documented in B2).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:r_new_summary}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Best result & Status \\
+  \midrule
+  F1: Two-loop KK on $\psi$-circle
+    & $g(1) \approx N_{\mathrm{eff}}^2/3 = 48$, $R \approx 1.111$, err $0.27\%$
+    & [DEAD END] \\
+  F2: Modular weight ratios
+    & $1 + 1/N_{\mathrm{eff}} = 13/12 \approx 1.083$, err $-2.8\%$
+    & [DEAD END] \\
+  F3: Ramanujan $\tau$-function
+    & $1 + 24/(N_{\mathrm{eff}} \times 17) \approx 1.118$, err $+0.3\%$
+    & [NUMERICAL OBS, DEAD END] \\
+  F4: $\psi$-circle holonomy
+    & $2^{1/6} \approx 1.122$, err $0.76\%$ (= known B2)
+    & [DEAD END] \\
+  \midrule
+  B3 best (from \texttt{r\_factor\_geometry.tex})
+    & $1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4) \approx 1.11235$, err $0.15\%$
+    & [NUMERICAL OBS] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Open Problem B remains fully open after eight approaches (B1, B2, B3,
+F1, F2, F3, F4 and the algebraic scan).}  No approach has produced a derivation
+of $R = 1.114$ from $\mathcal{S}[\Theta]$ without using $\alpha$ as an input.
+
+\begin{gap}
+  The geometric or algebraic origin of $R \approx 1.114$ is unknown.
+  The most promising numerical observations are:
+  \begin{enumerate}
+    \item $1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4) \approx 1.11235$ (err $0.15\%$,
+          requires $\alpha$ as input — circular).
+    \item $1 + 24/(N_{\mathrm{eff}} \times 17) \approx 1.118$ (err $0.3\%$,
+          denominator factor 17 unmotivated).
+    \item $1 + 1/N_{\mathrm{eff}} = 13/12 \approx 1.083$ (err $-2.8\%$,
+          simplest formula but outside the target window).
+  \end{enumerate}
+  A derivation from first principles requires identifying a geometric or
+  algebraic quantity in $\mathcal{S}[\Theta]$ that evaluates to $\approx 0.114$
+  without using $n^* = 137$ or $\alpha$ as inputs.
+\end{gap}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
