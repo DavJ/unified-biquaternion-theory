@@ -26,7 +26,7 @@
   \title{$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ — Rigorous Motivation of the Exponent\\
     \large Why 3 and why 2, derived from $\mathcal{S}[\Theta]$ and $\mathbb{C}\otimes\mathbb{H}$}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-07 (v58)}
+  \date{2026-03-08 (v59)}
 
   \begin{document}
   \maketitle
@@ -242,6 +242,23 @@ The remaining gaps are stated explicitly:
   on the mode space to the specific value $N_{\mathrm{eff}}^{3/2}$.
   The structural origin of both factors is clear; the quantitative computation
   is the open problem.
+\end{remark}
+
+\begin{remark}[Effective dimension — Approach A4 consistency check]
+  \label{rem:d_eff}
+  Define the \emph{effective dimension} $d_{\mathrm{eff}}(B) := 2\log B / \log N_{\mathrm{eff}}$,
+  so that $B = N_{\mathrm{eff}}^{d_{\mathrm{eff}}/2}$.  Then:
+  \begin{itemize}
+    \item $d_{\mathrm{eff}}(B_0) = 2\log(2\pi N_{\mathrm{eff}}/3)/\log(N_{\mathrm{eff}}) \approx 2.595$
+      \quad [non-integer, from the proved one-loop result];
+    \item $d_{\mathrm{eff}}(B_{\mathrm{base}}) = 3.000$ exactly \quad
+      [integer = $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$, algebraic identity].
+  \end{itemize}
+  Gap~(a) is therefore equivalent to explaining why the physical renormalisation
+  lifts the effective dimension from $d_{\mathrm{eff}}(B_0) \approx 2.60$ to
+  the algebraic value $d = 3.00$ (a shift $\Delta d \approx 0.40$).
+  Numerical details are in \texttt{tools/compute\_B\_effective\_dimension.py}
+  (Approach~A4, v59).
 \end{remark}
 
 %--------------------------------------------------------------------

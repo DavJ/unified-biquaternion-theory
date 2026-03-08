@@ -268,7 +268,7 @@ The formula used in the derivation is:
 B_base = N_eff^{3/2} = 12^(3/2) ≈ 41.57
 ```
 
-**Status (v58): Motivated Conjecture [with explicit gap].** The exponent 3/2 is now
+**Status (v59): Motivated Conjecture [with explicit gap].** The exponent 3/2 is now
 algebraically motivated in `consolidation_project/alpha_derivation/b_base_hausdorff.tex`
 (Approach A2, v58):
 - **Factor 3** = dim_ℝ(Im ℍ) — proved algebraic fact; Im(ℍ) = span{i,j,k} carries the
@@ -277,8 +277,15 @@ algebraically motivated in `consolidation_project/alpha_derivation/b_base_hausdo
   giving exponent −1/2 on det universally, hence d/2 in the one-loop effective action.
 - **Neither factor is a free parameter.**
 
+**Approach A4 (v59) — Effective Dimension Analysis** (`tools/compute_B_effective_dimension.py`):
+Define d_eff(B) = 2·log(B)/log(N_eff) so that B = N_eff^{d_eff/2}. Then:
+- d_eff(B₀) = 2.595 (non-integer, proved from the one-loop formula)
+- d_eff(B_base) = 3.000 exactly (= dim_ℝ(Im ℍ), algebraic identity)
+- Gap (a) quantified as: Δd = 3.000 − 2.595 = 0.405
+
 **Two explicit gaps remain [OPEN]:**
-- (a) Explicit computation of det(S''[Θ₀]) on Im(ℍ) confirming the value N_eff^{3/2}.
+- (a) Explicit computation of det(S''[Θ₀]) on Im(ℍ) confirming the value N_eff^{3/2}
+  (equivalently: explain Δd ≈ 0.41 between the proved d_eff(B₀) and the algebraic d = 3).
 - (b) Proof that higher-loop corrections do not modify the d/2 exponent.
 
 **Three previously tested approaches** (KK mode sum, zeta regularization, gauge orbit
@@ -385,7 +392,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN] — see `b_base_hausdorff.tex` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
