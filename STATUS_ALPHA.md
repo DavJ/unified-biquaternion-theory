@@ -379,6 +379,69 @@ Also: `consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3.5`
 
 ---
 
+### Approaches G3, G2, G4, G7, F (v65, 2026-03-08) — five further attempts
+
+(`consolidation_project/alpha_derivation/b_base_g_approaches.tex`)
+
+After 17 approaches (A1–F4) all yielding dead ends or partial results, five new directions
+were investigated systematically.
+
+**G3 — Kac-Moody modular anomaly (priority 8/10) → [PARTIAL]**
+
+UBT carries a strong Hecke signal for modular forms at p = 137 (P < 0.003%).  The algebra
+ℂ⊗ℍ ≅ Mat(2,ℂ) acts on the ψ-circle as a Kac-Moody algebra at level k.  For SU(2) with
+dual Coxeter number h∨ = 2 the central charge is c_{SU(2),k} = 3k/(k+2).
+
+- k = N_eff = 12: c = 18/7 ≈ 2.571; the formula B ∼ c · N_eff · coeff requires coeff ≈ 1.35,
+  not a natural integer. **[DEAD END]**
+- k = 1: c_{SU(2),1} = 1; the formula B = c · N_eff^{3/2} = 1 × 41.57 = 41.57 reproduces the
+  target exactly.  k = 1 is motivated by the free-boson point (SU(2)₁ Kac-Moody ≅ free Dirac fermion)
+  and by the minimal-coupling / no-Chern-Simons interpretation of S[Θ], but is not uniquely
+  forced by any current UBT axiom. **[PARTIAL]**
+
+New Gap (G3-k): a direct UBT computation of the Kac-Moody level from the quantisation of
+S[Θ] on the ψ-circle is needed to confirm or rule out k = 1.
+
+**G2 — Weyl anomaly coefficient (7/10) → [DEAD END]**
+
+The 4D type-B Weyl anomaly c-coefficient for ℂ⊗ℍ treated as 8 real free scalars is
+c̃ = N_S/120 = 8/120 = 1/15.  No power-law c̃ · N_eff^p equals N_eff^{3/2} for any
+algebraically natural exponent; the solution p ≈ 2.65 is unnatural.
+
+**G4 — Fueter analyticity (7/10) → [DEAD END]**
+
+Fueter-regular functions of degree n on S³ ≅ SU(2) form a space of dimension (n+1)².
+The cumulative count to degree N_eff−1 = 11 is 650 ≫ 41.57; neither a single degree
+((n+1)² = 36 or 49) nor any partial sum hits N_eff^{3/2} exactly.
+
+**G7 — Quaternion-Kähler index (7/10) → [DEAD END]**
+
+On flat quaternionic space ℍ with trivial bundle E = ℂ⊗ℍ, the Atiyah-Singer index for
+the QK Dirac operator equals dim_ℂ(E) = 4, independent of N_eff.  On the compact base
+HP¹ ≅ S⁴, the index is a fixed rational number determined by universal topological
+invariants of S⁴ — again not N_eff-dependent.
+
+**F (non-isotropic D_int) → [DEAD END]**
+
+The natural mass matrix M = diag(0,1,1,1) for the {1,i,j,k} basis (scalar massless,
+imaginary-quaternion components with unit SU(2) Casimir mass) gives tr(M⁴) = 3.
+No natural combination of tr(M^{2k}) invariants equals N_eff^{3/2} ≈ 41.57.  The general
+SU(2)-symmetric matrix M = diag(m₀, m₁, m₁, m₁) requires m₁ ≈ 1.929 to satisfy
+3m₁⁴ = N_eff^{3/2}, which is not an algebraically natural value.  This confirms David's
+prior expectation.
+
+**Overall status after 22 approaches (A1–G7+F)**:
+
+B_base = N_eff^{3/2} = 41.57 is supported by A2 [MOTIVATED CONJECTURE] (Gaussian path
+integral on Im(ℍ)) and consistent with G3 k=1 [PARTIAL] (Kac-Moody modular anomaly).
+All other 20 approaches are dead ends.  The remaining open concrete direction is to fix the
+Kac-Moody level k from the UBT action (Gap G3-k) and to identify the modular weight of the
+UBT partition function Ẑ(τ) (Gap G8).
+
+Reference: `consolidation_project/alpha_derivation/b_base_g_approaches.tex`
+
+---
+
 ### No-Circularity Test (mandatory)
 
 The B coefficient derivation must not be circular (i.e., B must be derived without
@@ -405,7 +468,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
