@@ -8,6 +8,9 @@ Validates:
 - Computed averages match expected values from the comparison table.
 - UBT v56 leads the ranking.
 - B-derivation scenario data is self-consistent.
+- Goal-based recommendations are correct ("Která teorie je nejlepší?").
+- UBT's five unique simultaneous advantages are present (objektivní závěr).
+- Per-theory qualitative analysis (strengths/weaknesses) is well-formed.
 
 Author: UBT Research Team
 License: See repository LICENSE.md
@@ -26,11 +29,17 @@ from THEORY_COMPARISONS.multi_criteria_v56.scoring_core.criteria import (
 )
 from THEORY_COMPARISONS.multi_criteria_v56.scoring_core.comparison import (
     B_DERIVATION_SCENARIOS,
+    GOAL_RECOMMENDATIONS,
+    UBT_UNIQUE_ADVANTAGES,
     best_theory_for_criterion,
     get_current_scenario,
     get_breakthrough_scenario,
     summary_table,
     ubt_is_top_candidate,
+    recommend_for_goal,
+    all_goals,
+    ubt_unique_advantages,
+    theory_analysis,
 )
 
 # ---------------------------------------------------------------------------
@@ -311,3 +320,184 @@ class TestBDerivationScenarios:
             assert required.issubset(scenario.keys()), (
                 f"Missing keys in scenario: {required - scenario.keys()}"
             )
+
+
+# ---------------------------------------------------------------------------
+# Goal-based recommendation tests
+# ---------------------------------------------------------------------------
+
+class TestGoalRecommendations:
+    """Tests for the goal-based theory recommendation data."""
+
+    def test_four_goals_defined(self):
+        """Exactly four research goals are defined."""
+        assert len(GOAL_RECOMMENDATIONS) == 4
+
+    def test_all_goals_returns_four_keys(self):
+        """all_goals() returns four entries."""
+        assert len(all_goals()) == 4
+
+    def test_gravity_plus_sm_goal_exists(self):
+        """'gravity_plus_sm_no_extra_dims' goal is defined."""
+        assert "gravity_plus_sm_no_extra_dims" in all_goals()
+
+    def test_most_developed_math_goal_exists(self):
+        """'most_developed_math' goal is defined."""
+        assert "most_developed_math" in all_goals()
+
+    def test_quantum_gravity_goal_exists(self):
+        """'quantum_gravity_only' goal is defined."""
+        assert "quantum_gravity_only" in all_goals()
+
+    def test_sm_elegant_goal_exists(self):
+        """'sm_most_elegant' goal is defined."""
+        assert "sm_most_elegant" in all_goals()
+
+    def test_ubt_recommended_for_gravity_plus_sm(self):
+        """UBT is recommended for 'gravity + SM without extra dimensions'."""
+        rec = recommend_for_goal("gravity_plus_sm_no_extra_dims")
+        assert "ubt_v56" in rec["recommended"]
+
+    def test_string_recommended_for_most_developed(self):
+        """String/M is recommended for most developed mathematics."""
+        rec = recommend_for_goal("most_developed_math")
+        assert "string_m" in rec["recommended"]
+
+    def test_lqg_recommended_for_quantum_gravity(self):
+        """LQG is among the recommendations for quantum gravity only."""
+        rec = recommend_for_goal("quantum_gravity_only")
+        assert "lqg" in rec["recommended"]
+
+    def test_asymptotic_safety_recommended_for_quantum_gravity(self):
+        """Asymptotic Safety is among the recommendations for quantum gravity only."""
+        rec = recommend_for_goal("quantum_gravity_only")
+        assert "asymptotic_safety" in rec["recommended"]
+
+    def test_connes_recommended_for_sm_elegant(self):
+        """Connes NCG is recommended for most elegant SM."""
+        rec = recommend_for_goal("sm_most_elegant")
+        assert "connes_ncg" in rec["recommended"]
+
+    def test_recommend_for_unknown_goal_raises(self):
+        """recommend_for_goal with unknown key raises KeyError."""
+        with pytest.raises(KeyError):
+            recommend_for_goal("nonexistent_goal")
+
+    def test_each_recommendation_has_required_keys(self):
+        """Each recommendation has goal, description, recommended, and note keys."""
+        required = {"goal", "description", "recommended", "note"}
+        for rec in GOAL_RECOMMENDATIONS:
+            assert required.issubset(rec.keys()), (
+                f"Missing keys in recommendation: {required - rec.keys()}"
+            )
+
+    def test_recommended_lists_are_nonempty(self):
+        """Each recommendation must have at least one recommended theory."""
+        for rec in GOAL_RECOMMENDATIONS:
+            assert len(rec["recommended"]) >= 1, (
+                f"Empty recommended list for goal '{rec['goal']}'"
+            )
+
+    def test_recommended_keys_are_valid_theory_keys(self):
+        """All recommended theory keys must exist in THEORIES."""
+        valid_keys = {t["key"] for t in THEORIES}
+        for rec in GOAL_RECOMMENDATIONS:
+            for key in rec["recommended"]:
+                assert key in valid_keys, (
+                    f"Unknown theory key '{key}' in goal '{rec['goal']}'"
+                )
+
+
+# ---------------------------------------------------------------------------
+# UBT unique advantages tests
+# ---------------------------------------------------------------------------
+
+class TestUbtUniqueAdvantages:
+    """Tests for UBT's five unique simultaneous advantages (objektivní závěr)."""
+
+    def test_five_advantages_defined(self):
+        """Exactly five unique advantages are defined."""
+        assert len(UBT_UNIQUE_ADVANTAGES) == 5
+
+    def test_ubt_unique_advantages_returns_five(self):
+        """ubt_unique_advantages() returns five items."""
+        assert len(ubt_unique_advantages()) == 5
+
+    def test_advantages_are_nonempty_strings(self):
+        """Each advantage is a non-empty string."""
+        for adv in ubt_unique_advantages():
+            assert isinstance(adv, str) and len(adv) > 0
+
+    def test_sm_gauge_group_derivation_mentioned(self):
+        """SM gauge group derivation is in the advantages list."""
+        text = " ".join(ubt_unique_advantages()).lower()
+        assert "su(3)" in text or "sm gauge" in text or "gauge group" in text
+
+    def test_gr_mentioned(self):
+        """GR (emergent sector) is mentioned in the advantages."""
+        text = " ".join(ubt_unique_advantages()).lower()
+        assert "gr" in text or "emergent" in text or "general relativ" in text
+
+    def test_alpha_signal_mentioned(self):
+        """The α⁻¹ = 137 numerical signal is mentioned."""
+        text = " ".join(ubt_unique_advantages()).lower()
+        assert "137" in text or "α" in text or "alpha" in text
+
+    def test_mirror_sector_mentioned(self):
+        """Mirror sector prediction is mentioned."""
+        text = " ".join(ubt_unique_advantages()).lower()
+        assert "mirror" in text or "dark" in text
+
+    def test_biquaternion_field_mentioned(self):
+        """The biquaternion field Θ is mentioned."""
+        text = " ".join(ubt_unique_advantages())
+        assert "Θ" in text or "theta" in text.lower() or "ℂ⊗ℍ" in text
+
+    def test_returns_copy_not_reference(self):
+        """ubt_unique_advantages() returns a new list (not the original)."""
+        a = ubt_unique_advantages()
+        b = ubt_unique_advantages()
+        assert a is not b
+
+
+# ---------------------------------------------------------------------------
+# Theory qualitative analysis tests
+# ---------------------------------------------------------------------------
+
+class TestTheoryAnalysis:
+    """Tests for the per-theory qualitative analysis (strengths/weaknesses)."""
+
+    @pytest.mark.parametrize("theory_key", THEORY_KEYS)
+    def test_analysis_has_strengths_and_weaknesses(self, theory_key):
+        """Each theory has non-empty strengths and weaknesses."""
+        analysis = theory_analysis(theory_key)
+        assert "strengths" in analysis and len(analysis["strengths"]) > 0
+        assert "weaknesses" in analysis and len(analysis["weaknesses"]) > 0
+
+    def test_ubt_strengths_mention_confinement(self):
+        """UBT strengths mention confinement."""
+        analysis = theory_analysis("ubt_v56")
+        strengths_lower = analysis["strengths"].lower()
+        assert "confinement" in strengths_lower or "inadmissible" in strengths_lower
+
+    def test_ubt_weaknesses_mention_s_matrix(self):
+        """UBT weaknesses mention missing S-matrix / dynamics."""
+        analysis = theory_analysis("ubt_v56")
+        text = analysis["weaknesses"].lower()
+        assert "s-matrix" in text or "dynamics" in text or "qft" in text
+
+    def test_string_weaknesses_mention_landscape(self):
+        """String/M weaknesses mention the landscape problem (10^500 vacua)."""
+        analysis = theory_analysis("string_m")
+        text = analysis["weaknesses"].lower()
+        assert "500" in text or "vacua" in text or "landscape" in text
+
+    def test_connes_strengths_mention_higgs(self):
+        """Connes NCG strengths mention Higgs boson prediction."""
+        analysis = theory_analysis("connes_ncg")
+        assert "higgs" in analysis["strengths"].lower()
+
+    def test_lqg_strengths_mention_discrete(self):
+        """LQG strengths mention discrete geometry."""
+        analysis = theory_analysis("lqg")
+        assert "discrete" in analysis["strengths"].lower() or "singular" in analysis["strengths"].lower()

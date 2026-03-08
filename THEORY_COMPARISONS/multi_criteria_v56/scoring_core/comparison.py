@@ -5,6 +5,8 @@ Provides:
 - best_theory_for_criterion: which theory leads on a given criterion
 - b_derivation_scenarios: four scenarios for deriving the B coefficient
 - summary_table: list of (theory, avg_score) sorted descending
+- recommend_for_goal: goal-based theory recommendation ("Která teorie je nejlepší?")
+- ubt_unique_advantages: UBT's 5 unique simultaneous achievements (objektivní závěr)
 
 Source document: docs/czech/UBT_V56_SROVNANI_S_TEORIEMI_CZ.md (2026-03-07)
 
@@ -21,6 +23,7 @@ from .criteria import (
     THEORIES,
     SCORES,
     NUMERIC_CRITERIA_KEYS,
+    THEORY_ANALYSIS,
     get_total,
     all_averages,
 )
@@ -133,3 +136,136 @@ def get_breakthrough_scenario() -> Dict:
     """
     not_achieved = [s for s in B_DERIVATION_SCENARIOS if not s["achieved"]]
     return not_achieved[0]
+
+
+# ---------------------------------------------------------------------------
+# Goal-based theory recommendations
+# ---------------------------------------------------------------------------
+# Source: "Která teorie je nejlepší?" section,
+#         docs/czech/UBT_V56_SROVNANI_S_TEORIEMI_CZ.md
+
+# Each entry maps a research goal to the recommended theory key(s) and a note.
+GOAL_RECOMMENDATIONS: List[Dict] = [
+    {
+        "goal": "gravity_plus_sm_no_extra_dims",
+        "description": (
+            "Gravity + SM from one principle, without extra dimensions"
+        ),
+        "recommended": ["ubt_v56"],
+        "note": (
+            "Only theory that does this with proved results"
+        ),
+    },
+    {
+        "goal": "most_developed_math",
+        "description": (
+            "Most developed mathematics and largest community"
+        ),
+        "recommended": ["string_m"],
+        "note": "But without SM prediction",
+    },
+    {
+        "goal": "quantum_gravity_only",
+        "description": "Quantum gravity only (not full ToE)",
+        "recommended": ["lqg", "asymptotic_safety"],
+        "note": "",
+    },
+    {
+        "goal": "sm_most_elegant",
+        "description": "Standard Model most elegantly",
+        "recommended": ["connes_ncg"],
+        "note": "But gravity is not emergent",
+    },
+]
+
+
+def recommend_for_goal(goal_key: str) -> Dict:
+    """Return the recommendation dict for a given research goal.
+
+    Parameters
+    ----------
+    goal_key:
+        One of: ``'gravity_plus_sm_no_extra_dims'``,
+        ``'most_developed_math'``, ``'quantum_gravity_only'``,
+        ``'sm_most_elegant'``.
+
+    Returns
+    -------
+    dict
+        With keys: ``goal``, ``description``, ``recommended``, ``note``.
+
+    Raises
+    ------
+    KeyError
+        If goal_key is not recognised.
+    """
+    matches = [r for r in GOAL_RECOMMENDATIONS if r["goal"] == goal_key]
+    if not matches:
+        raise KeyError(f"Unknown goal key: {goal_key!r}")
+    return matches[0]
+
+
+def all_goals() -> List[str]:
+    """Return all defined goal keys.
+
+    Returns
+    -------
+    list[str]
+    """
+    return [r["goal"] for r in GOAL_RECOMMENDATIONS]
+
+
+# ---------------------------------------------------------------------------
+# UBT unique simultaneous advantages
+# ---------------------------------------------------------------------------
+# Source: "Objektivní závěr" section,
+#         docs/czech/UBT_V56_SROVNANI_S_TEORIEMI_CZ.md
+
+UBT_UNIQUE_ADVANTAGES: List[str] = [
+    "Derives the exact SM gauge group SU(3)×SU(2)_L×U(1) — not variants",
+    "Contains GR as an emergent sector",
+    "Has a numerical signal for α⁻¹ = 137 with P(chance) < 0.003%",
+    "Naturally predicts a mirror sector without ad hoc additions",
+    "Achieves all of the above from a single object: field Θ ∈ ℂ⊗ℍ",
+]
+
+
+def ubt_unique_advantages() -> List[str]:
+    """Return the list of UBT's unique simultaneous achievements.
+
+    These are the five properties that UBT satisfies simultaneously
+    and that no single competing theory also satisfies simultaneously.
+
+    A new list is returned on each call so callers cannot inadvertently
+    mutate the module-level ``UBT_UNIQUE_ADVANTAGES`` list.
+
+    Returns
+    -------
+    list[str]
+        The five advantage statements.
+    """
+    return list(UBT_UNIQUE_ADVANTAGES)
+
+
+def theory_analysis(theory_key: str) -> Dict[str, str]:
+    """Return the qualitative strengths/weaknesses dict for a theory.
+
+    Parameters
+    ----------
+    theory_key:
+        Key from THEORIES list.
+
+    Returns
+    -------
+    dict
+        With keys ``'strengths'`` and ``'weaknesses'``.
+
+    Raises
+    ------
+    KeyError
+        If theory_key is not recognised.
+    """
+    valid_keys = {t["key"] for t in THEORIES}
+    if theory_key not in valid_keys:
+        raise KeyError(f"Unknown theory key: {theory_key!r}")
+    return dict(THEORY_ANALYSIS[theory_key])
