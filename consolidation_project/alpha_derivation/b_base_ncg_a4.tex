@@ -1,0 +1,717 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base — Explicit a_4 Computation for ℂ⊗ℍ Spectral Triple (Approaches F1–F4)
+% Track: CORE — α derivation — v64 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{observation}{Observation}
+
+  \title{$B_{\mathrm{base}}$ — Explicit $a_4$ for the $\mathbb{C}\otimes\mathbb{H}$
+    Spectral Triple\\
+    \large Approaches F1--F4: UBT Triplet, Product Action,\\
+    \large Wodzicki Residue, and Spectral Invariants}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v64)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Recap: Where E4 Ended — and What It Missed}
+\label{sec:recap_e4}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
+anywhere in this document.
+The only inputs are: $N_{\mathrm{eff}} = 12$ (proved from
+$\mathbb{C}\otimes\mathbb{H}$ algebra), $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+(algebraic fact), and the UBT kinetic action $\mathcal{S}[\Theta]$.
+
+\subsection{Established baseline (v64)}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Quantity & Value & Status \\
+  \midrule
+  $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $25.133$ & \textbf{[PROVED]} (one-loop, flat space) \\
+  $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $41.569$ & [CONJECTURED] \\
+  $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$ & $1.6540$ & algebraic identity \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What E4 actually computed}
+
+Approach E4 (\texttt{b\_base\_new\_directions.tex}) applied the
+\emph{standard Connes--Lott} spectral triple construction for the
+Standard Model:
+\begin{itemize}
+  \item Algebra: $A_F = \mathbb{C} \oplus \mathbb{H} \oplus \mathrm{Mat}(3,\mathbb{C})$
+    (the full SM algebra, not just $\mathbb{C}\otimes\mathbb{H}$).
+  \item Hilbert space: $\mathcal{H}_F = \mathbb{C}^{96}$ (all SM fermion generations,
+    chiralities, and colours with $N_{\mathrm{gen}} = 3$).
+  \item Dirac operator: SM Yukawa coupling matrix $D_Y$.
+\end{itemize}
+The $\beta$-function coefficient computed from this standard triple gave
+$B_{\mathrm{SU}(2)}^{\mathrm{NCG}} = -32/3 \approx -10.67$ (negative,
+asymptotically free), which is not $B_{\mathrm{base}} = +41.57$.
+
+\subsection{The key difference E4 overlooked}
+
+\textbf{UBT is not the Standard Model.}
+The UBT field $\Theta$ takes values in $\mathbb{C}\otimes\mathbb{H} \cong
+\mathrm{Mat}(2,\mathbb{C})$ — a \emph{single} biquaternionic field,
+not $\mathbb{C}^{96}$ SM fermions.
+The natural spectral triple for UBT is:
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  & Standard NCG (SM, E4) & UBT (this document) \\
+  \midrule
+  Algebra $A$ & $\mathbb{C}\oplus\mathbb{H}\oplus\mathrm{Mat}(3,\mathbb{C})$
+    & $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$ \\
+  Hilbert space $\mathcal{H}$ & $\mathbb{C}^{96}$
+    & $\mathbb{C}^4$ (adjoint) or $\mathbb{C}^2$ (fundamental) \\
+  Field & 96 SM fermions & 1 biquaternionic scalar $\Theta$ \\
+  $B$ sign & $-$ (asymptotic freedom) & $+$ (IR freedom, like QED) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+Approaches F1--F4 below treat the UBT spectral triple in its own right.
+
+%--------------------------------------------------------------------
+\section{Approach F1: UBT Spectral Triple — Natural Choice of
+  $\mathcal{H}$ and $a_4$}
+\label{sec:F1}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL] — adjoint representation is natural; exact $a_4$
+computed; does not give $N_{\mathrm{eff}}^{3/2}$ directly.}
+
+\subsection{The natural spectral triple for UBT}
+
+Since $\Theta \in \mathbb{C}\otimes\mathbb{H}$ itself, the most natural
+choice is to take $\mathcal{H}$ to be the algebra acting on itself as
+a left module.
+As a complex vector space,
+\begin{equation}
+  \mathbb{C}\otimes\mathbb{H} \;\cong\; \mathrm{Mat}(2,\mathbb{C}),
+  \qquad
+  \dim_\mathbb{C}(\mathbb{C}\otimes\mathbb{H}) = 4.
+\end{equation}
+The natural representations of $A = \mathrm{Mat}(2,\mathbb{C})$ are:
+\begin{itemize}
+  \item \textbf{Fundamental:} $\mathbb{C}^2$ (dim$_\mathbb{C} = 2$).
+  \item \textbf{Adjoint as Lie algebra:} $\mathfrak{su}(2) \otimes_\mathbb{R}\mathbb{C}
+    \cong \mathbb{C}^3$ (dim$_\mathbb{C} = 3$).
+  \item \textbf{$A$ on itself (left-regular):} $\mathbb{C}^4 \cong \mathrm{Mat}(2,\mathbb{C})$
+    (dim$_\mathbb{C} = 4$), decomposing as $\mathbb{C}^1_{\mathrm{triv}} \oplus
+    \mathbb{C}^3_{\mathrm{adj}}$ under the $\mathrm{SU}(2)$ sub-action.
+\end{itemize}
+We take $\mathcal{H}_F = \mathbb{C}^4$ (the \emph{left-regular} representation
+of $\mathrm{Mat}(2,\mathbb{C})$).
+
+\subsection{Dirac operator from the UBT action}
+
+The UBT internal Dirac operator is constructed from $\mathcal{S}[\Theta]$.
+In the minimal (isotropic mass) case, the internal (finite) Dirac operator on
+$\mathcal{H}_F = \mathbb{C}^4 = \mathbb{C}^2_L \oplus \mathbb{C}^2_R$ is:
+\begin{equation}
+  D_{\mathrm{int}} \;=\; \begin{pmatrix} 0 & M^\dagger \\ M & 0 \end{pmatrix},
+  \qquad M = m\,\mathbf{1}_2 \in \mathrm{Mat}(2,\mathbb{C}),
+  \label{eq:Dint}
+\end{equation}
+where $m$ is the internal mass scale.
+Then $D_{\mathrm{int}}^2 = m^2\,\mathbf{1}_4$ (a scalar multiple of the
+identity), with eigenvalues $m^2$ (multiplicity 4).
+
+\subsection{Heat kernel coefficients for the finite part}
+
+For a \emph{finite} spectral triple, the heat kernel is exact (not asymptotic):
+\begin{equation}
+  K_{\mathrm{int}}(t) \;=\; \mathrm{Tr}_{\mathcal{H}_F}\bigl(e^{-t\,D_{\mathrm{int}}^2}\bigr)
+  \;=\; 4\,e^{-tm^2}
+  \;=\; 4\Bigl(1 - tm^2 + \tfrac{t^2m^4}{2} - \cdots\Bigr).
+  \label{eq:Kint}
+\end{equation}
+Reading off the ``Seeley--DeWitt-like'' coefficients of the finite triple:
+\begin{align}
+  a_0^{\mathrm{int}} &\;=\; \dim(\mathcal{H}_F) \;=\; 4,
+    \label{eq:a0int}\\
+  a_2^{\mathrm{int}} &\;=\; -\mathrm{Tr}(D_{\mathrm{int}}^2) \;=\; -4m^2,
+    \label{eq:a2int}\\
+  a_4^{\mathrm{int}} &\;=\; \tfrac{1}{2}\,\mathrm{Tr}(D_{\mathrm{int}}^4)
+    \;=\; 2m^4.
+    \label{eq:a4int}
+\end{align}
+
+\subsection{$a_4$ from the gauge connection on $\mathcal{H}_F = \mathbb{C}^4$}
+
+For the gauge field contribution to $a_4$, the relevant term is:
+\begin{equation}
+  a_4 \;\supset\; \frac{1}{12}\,\mathrm{Tr}_{\mathcal{H}_F}\!\bigl(\Omega_{\mu\nu}^2\bigr)
+  \;=\; \frac{1}{12}\,\mathrm{Tr}_{\mathbb{C}^4}(F_{\mu\nu}^2),
+  \label{eq:a4gauge}
+\end{equation}
+where $F_{\mu\nu}$ acts on $\mathcal{H}_F = \mathbb{C}^4 \cong \mathbb{C}^1 \oplus
+\mathbb{C}^3$ as a $\mathrm{SU}(2)$ representation.
+Decomposing:
+\begin{equation}
+  \mathrm{Tr}_{\mathbb{C}^4}(F^2)
+  \;=\; \underbrace{\mathrm{Tr}_{\mathbb{C}^1}(F^2)}_{= 0\ (\text{trivial rep})}
+  + \mathrm{Tr}_{\mathbb{C}^3}(F^2).
+  \label{eq:a4decomp}
+\end{equation}
+For the adjoint representation of $\mathrm{SU}(2)$, the Dynkin index is
+$T(\mathbf{adj}) = C_2(\mathbf{adj}) = 2$, and
+\begin{equation}
+  \mathrm{Tr}_{\mathbf{adj}}(F^2)
+  \;=\; T(\mathbf{adj})\,\mathrm{Tr}_{\mathbf{fund}}(F^2)
+  \;=\; 2\,\mathrm{Tr}_{\mathbf{fund}}(F^2)
+  \;=\; 2 \times 2\,\mathrm{tr}(F^2)
+  \;=\; 4\,\mathrm{tr}(F^2),
+  \label{eq:Tradj}
+\end{equation}
+where $\mathrm{tr}(F^2) \equiv \frac{1}{2}\mathrm{Tr}_{\mathbf{fund}}(F^2)$ is the
+normalised trace.
+Substituting into~\eqref{eq:a4gauge}:
+\begin{equation}
+  \bigl[a_4^{(\mathrm{gauge})}\bigr]_{\mathcal{H}_F = \mathbb{C}^4}
+  \;=\; \frac{1}{12} \times 4\,\mathrm{tr}(F^2)
+  \;=\; \frac{1}{3}\,\mathrm{tr}(F^2).
+  \label{eq:a4gauge_final}
+\end{equation}
+
+\subsection{Comparison with standard NCG and with $N_{\mathrm{eff}}^{3/2}$}
+
+For the standard NCG fundamental-representation choice
+$\mathcal{H} = \mathbb{C}^2$:
+\begin{equation}
+  \bigl[a_4^{(\mathrm{gauge})}\bigr]_{\mathbb{C}^2}
+  \;=\; \frac{T(\mathbf{fund})}{12}\,\mathrm{Tr}_{\mathbf{fund}}(F^2)
+  \;=\; \frac{1/2}{12} \times 2\,\mathrm{tr}(F^2)
+  \;=\; \frac{1}{12}\,\mathrm{tr}(F^2).
+  \label{eq:a4fund}
+\end{equation}
+The ratio of the UBT-adjoint contribution to the standard fundamental:
+\begin{equation}
+  \frac{[a_4]_{\mathbb{C}^4}}{[a_4]_{\mathbb{C}^2}}
+  \;=\; \frac{1/3}{1/12} \;=\; 4.
+  \label{eq:ratio_F1}
+\end{equation}
+The $\mathcal{H}_F = \mathbb{C}^4$ internal space enhances the effective
+coupling coefficient by a factor of $4$ compared to the $\mathbb{C}^2$
+choice.
+This implies a $\beta$-function ratio:
+\begin{equation}
+  \frac{B_{\mathrm{F1}}}{B_0}
+  \;\stackrel{?}{=}\; 4 \times \frac{B_0}{B_0} = 4
+  \quad\Rightarrow\quad
+  B_{\mathrm{F1}} \stackrel{?}{=} 4 B_0 = 4 \times 25.13 = 100.5.
+  \label{eq:B_F1_wrong}
+\end{equation}
+This is \emph{not} $N_{\mathrm{eff}}^{3/2} = 41.57$.
+
+\begin{observation}[F1 structural result]
+  \label{obs:F1}
+  The left-regular representation $\mathcal{H}_F = \mathbb{C}^4$ of
+  $A = \mathrm{Mat}(2,\mathbb{C})$ naturally decomposes into a trivial
+  plus adjoint $\mathrm{SU}(2)$-representation, giving a $a_4$ gauge
+  coefficient four times larger than the fundamental-representation choice.
+  The resulting $B_{\mathrm{F1}} \approx 100$ is too large by a factor
+  of $\approx 2.4$ relative to $N_{\mathrm{eff}}^{3/2} = 41.57$.
+  The sign is positive (the scalar field in the adjoint contributes IR freedom,
+  consistent with UBT), but the magnitude is not explained.
+\end{observation}
+
+\textbf{F1 result summary:}
+\begin{itemize}
+  \item $a_0^{\mathrm{int}} = 4$, $a_4^{\mathrm{int, gauge}} = \frac{1}{3}\mathrm{tr}(F^2)$.
+  \item Sign: positive (IR-free), consistent with UBT.
+  \item Magnitude: $B_{\mathrm{F1}} \approx 4 B_0$; does not match
+    $N_{\mathrm{eff}}^{3/2}$.
+  \item \textbf{[PARTIAL]:} The natural adjoint representation and sign are correct,
+    but the explicit $a_4$ value does not reproduce $B_{\mathrm{base}}$.
+    Next step: investigate whether a non-isotropic mass matrix $M \neq m\mathbf{1}$
+    in~\eqref{eq:Dint} can reduce $[a_4]$ from $4B_0$ to $N_{\mathrm{eff}}^{3/2}$.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach F2: Product Spacetime $\times$ $\mathbb{C}\otimes\mathbb{H}$
+  — Total Spectral Action}
+\label{sec:F2}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL] — framework correct; sign consistent;
+cross-terms do not produce $N_{\mathrm{eff}}^{3/2}$.}
+
+\subsection{Product spectral triple}
+
+Combining 4D continuous spacetime with the finite internal space gives
+the \emph{product spectral triple}:
+\begin{equation}
+  D_{\mathrm{total}} \;=\; D_{\mathrm{space}} \otimes \mathbf{1}_{H_F}
+  + \gamma_5 \otimes D_{\mathrm{int}},
+  \qquad
+  \mathcal{H}_{\mathrm{total}} = L^2(M, S) \otimes \mathcal{H}_F,
+  \label{eq:Dtotal}
+\end{equation}
+where $D_{\mathrm{space}}$ is the 4D Dirac operator on the spin bundle $S$,
+and $\mathcal{H}_F = \mathbb{C}^4$ as above.
+
+\subsection{Heat kernel factorisation}
+
+For the product triple, the heat kernel factorises:
+\begin{align}
+  \mathrm{Tr}_{\mathcal{H}_{\mathrm{total}}}\!\bigl(e^{-t D_{\mathrm{total}}^2}\bigr)
+  &\;=\; \mathrm{Tr}_{\mathrm{space}}\!\bigl(e^{-t D_{\mathrm{space}}^2}\bigr)
+    \;\times\; K_{\mathrm{int}}(t)  \notag\\
+  &\;\sim\; \Bigl[\sum_{k} t^{(k-4)/2} a_k^{\mathrm{space}}\Bigr]
+    \times \Bigl[a_0^{\mathrm{int}} - t\,a_2^{\mathrm{int}} + t^2\,a_4^{\mathrm{int}} - \cdots\Bigr].
+    \label{eq:product_HK}
+\end{align}
+Collecting the power-of-$t$ terms:
+\begin{align}
+  a_0^{\mathrm{total}} &\;=\; a_0^{\mathrm{space}} \times a_0^{\mathrm{int}}
+    \;=\; a_0^{\mathrm{space}} \times 4, \label{eq:a0total}\\
+  a_2^{\mathrm{total}} &\;=\; a_2^{\mathrm{space}} \times a_0^{\mathrm{int}}
+    + a_0^{\mathrm{space}} \times (-a_2^{\mathrm{int}}),
+    \label{eq:a2total}\\
+  a_4^{\mathrm{total}} &\;=\; a_4^{\mathrm{space}} \times a_0^{\mathrm{int}}
+    + a_2^{\mathrm{space}} \times (-a_2^{\mathrm{int}})
+    + a_0^{\mathrm{space}} \times a_4^{\mathrm{int}}.
+    \label{eq:a4total}
+\end{align}
+
+\subsection{Evaluation of each term on flat spacetime}
+
+On flat 4D spacetime (Minkowski vacuum, $R_{\mu\nu\rho\sigma} = 0$):
+\begin{equation}
+  a_0^{\mathrm{space}} = \frac{\mathrm{vol}(M)}{(4\pi)^2},
+  \qquad
+  a_2^{\mathrm{space}} = 0 \quad\text{(no curvature)},
+  \qquad
+  a_4^{\mathrm{space}} = \frac{1}{(4\pi)^2}\frac{1}{12}\int\mathrm{tr}(F^2)\,d^4x.
+  \label{eq:aspace_flat}
+\end{equation}
+Substituting into~\eqref{eq:a4total}:
+\begin{equation}
+  a_4^{\mathrm{total}} \;=\;
+  \underbrace{a_4^{\mathrm{space}} \times 4}_{= 4\,a_4^{\mathrm{space}}}
+  + \underbrace{0 \times (-a_2^{\mathrm{int}})}_{= 0}
+  + \underbrace{a_0^{\mathrm{space}} \times 2m^4}_{\text{mass term, $\propto \Lambda^0$}}.
+  \label{eq:a4total_flat}
+\end{equation}
+The gauge coupling coefficient in the spectral action is:
+\begin{equation}
+  \frac{1}{g^2_{\mathrm{eff}}} \;\propto\; f_0 \times a_4^{\mathrm{total, gauge}}
+  \;=\; f_0 \times a_0^{\mathrm{int}} \times a_4^{\mathrm{space, gauge}}
+  \;=\; f_0 \times 4 \times \frac{1}{12(4\pi)^2}\int\mathrm{tr}(F^2).
+  \label{eq:geff_F2}
+\end{equation}
+The internal dimension $a_0^{\mathrm{int}} = 4$ appears as a
+\emph{multiplicative factor} in the gauge coupling.
+
+\subsection{Consequence for the $\beta$-function coefficient}
+
+The enhancement of the gauge coupling by $a_0^{\mathrm{int}} = 4$ means
+that the UBT spectral action ``sees'' the gauge fields through an effective
+number of degrees of freedom equal to $4 \times N_{\mathrm{rep}}$ where
+$N_{\mathrm{rep}}$ is the number of spinor components of $D_{\mathrm{space}}$.
+For a 4D Weyl spinor: $N_{\mathrm{rep}} = 2$.
+\begin{equation}
+  N_{\mathrm{eff}}^{(\mathrm{F2})} \;=\; a_0^{\mathrm{int}} \times N_{\mathrm{rep}}
+  \;=\; 4 \times 2 \;=\; 8.
+  \label{eq:Neff_F2}
+\end{equation}
+This is less than the UBT value $N_{\mathrm{eff}} = 12$.
+The cross-term $a_2^{\mathrm{space}} \times a_2^{\mathrm{int}} = 0$ on flat
+spacetime.
+On curved spacetime, $a_2^{\mathrm{space}} = \frac{R}{6(4\pi)^2}\int d^4x$, and
+$a_2^{\mathrm{int}} = -4m^2$, giving a mass-dependent curvature coupling
+\begin{equation}
+  a_4^{\mathrm{total}}\big|_{\mathrm{cross}}
+  \;=\; \frac{4m^2 R}{6(4\pi)^2}\int d^4x
+  \quad(\text{curvature-mass cross-term}).
+  \label{eq:cross_term}
+\end{equation}
+This is a mass-dependent correction, not a pure spectral invariant.
+
+\begin{observation}[F2 structural result]
+  \label{obs:F2}
+  In the product spectral action on flat spacetime, the internal dimension
+  $a_0^{\mathrm{int}} = 4$ appears as an overall multiplier of the gauge
+  coupling, effectively increasing the number of gauge degrees of freedom.
+  The resulting effective $N_{\mathrm{eff}}^{(\mathrm{F2})} = 8$ does not
+  equal the UBT value $N_{\mathrm{eff}} = 12$.
+  The cross-term between spacetime curvature and internal mass is non-zero
+  on curved spacetime but vanishes in flat space and carries a free parameter $m$.
+\end{observation}
+
+\textbf{F2 result summary:}
+\begin{itemize}
+  \item The product structure correctly describes gauge coupling enhancement
+    from internal degrees of freedom.
+  \item $a_0^{\mathrm{int}} = 4$ (adjoint) enhances gauge coupling by factor 4
+    vs.\ $a_0^{\mathrm{int}} = 2$ (fundamental), giving $B \approx 4B_0$.
+  \item $N_{\mathrm{eff}}^{(\mathrm{F2})} = 8 \neq 12$ in this counting.
+  \item \textbf{[PARTIAL]:} The product spectral action gives a sensible positive
+    $B$, but neither $4B_0$ nor $2B_0$ matches $N_{\mathrm{eff}}^{3/2}$.
+    The discrepancy suggests that $N_{\mathrm{eff}} = 12$ (the UBT count)
+    requires input beyond the pure spectral-action product formula.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach F3: Wodzicki Residue for $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:F3}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] — reduces to the same $a_4$ computation.}
+
+\subsection{Wodzicki residue definition}
+
+For a pseudo-differential operator $P$ of order $-n$ on a compact Riemannian
+manifold $M$ of dimension $n$, the \emph{Wodzicki residue} is:
+\begin{equation}
+  \mathrm{Res}(P)
+  \;=\; \int_M \int_{|ξ|=1} \mathrm{tr}\,\sigma_{-n}(P)(x,\xi)\,d\xi\,dx,
+  \label{eq:Wodzicki}
+\end{equation}
+where $\sigma_{-n}(P)$ is the principal symbol of order $-n$.
+The Wodzicki residue is a spectral invariant — it equals (up to a constant)
+the $a_{n}$ Seeley--DeWitt coefficient of the associated elliptic operator.
+
+\subsection{Application to UBT}
+
+For the product manifold $M^4 \times F_{\mathbb{C}\otimes\mathbb{H}}$ with
+$\dim(M^4) = 4$, we take $P = D_{\mathrm{total}}^{-2}$.
+The principal symbol of $D_{\mathrm{total}}^{-2}$ at order $-4$ is:
+\begin{equation}
+  \sigma_{-4}(D_{\mathrm{total}}^{-2})(x,\xi)
+  \;=\; |\xi|^{-4} \,\mathbf{1}_{\mathcal{H}_F \otimes S},
+  \label{eq:sigma4}
+\end{equation}
+where $S$ is the 4D spinor bundle and $\mathcal{H}_F$ is the internal space.
+Integrating over the unit cosphere $|ξ| = 1$ in $\mathbb{R}^4$:
+\begin{equation}
+  \mathrm{Res}(D^{-2})
+  \;=\; \int_M \int_{S^3} |\xi|^{-4}\,\mathrm{tr}_{\mathcal{H}_F \otimes S}
+    (\mathbf{1})\,d\xi\,dx
+  \;=\; \dim(\mathcal{H}_F) \times \dim(S) \times \mathrm{vol}(S^3) \times \mathrm{vol}(M).
+  \label{eq:Res_result}
+\end{equation}
+This is proportional to $a_0^{\mathrm{int}} = \dim(\mathcal{H}_F) = 4$, the
+same dimension factor that appeared in F1 and F2.
+The Wodzicki residue adds \emph{no new information} beyond the heat kernel
+coefficient $a_0^{\mathrm{int}}$.
+
+\subsection{Why the Wodzicki residue cannot distinguish $N_{\mathrm{eff}}^{3/2}$}
+
+The Wodzicki residue of $D^{-2}$ on a product space equals
+$\dim(\mathcal{H}_F) \times \mathrm{vol}(M) \times (\text{universal factor})$,
+which depends on $\dim(\mathcal{H}_F)$ but not on its specific algebraic
+structure.
+To get $N_{\mathrm{eff}}^{3/2}$ from a Wodzicki residue, one would need an
+operator $P$ whose symbol carries the factor $N_{\mathrm{eff}}^{3/2}$ — which
+requires knowing $N_{\mathrm{eff}}^{3/2}$ already.
+This is circular.
+
+\textbf{F3 result summary:}
+\begin{itemize}
+  \item $\mathrm{Res}(D^{-2}) \propto \dim(\mathcal{H}_F) = 4$ on flat space.
+  \item No new invariant compared to $a_4$.
+  \item \textbf{[DEAD END]:} The Wodzicki residue reduces to the same computation
+    as F1/F2, and cannot produce $N_{\mathrm{eff}}^{3/2}$ without circular
+    input.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach F4: $N_{\mathrm{eff}}$ as a Spectral Invariant —
+  Systematic Exploration}
+\label{sec:F4}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL] — $N_{\mathrm{eff}}^{3/2}$ has a natural algebraic
+expression in terms of $\mathbb{H}$ dimensions, but no purely spectral-algebraic
+formula gives it without invoking the path-integral counting already proved.}
+
+\subsection{Setup}
+
+We systematically search for combinations of spectral invariants of
+$A = \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$ that equal
+$N_{\mathrm{eff}}^{3/2} = 12^{3/2} = 24\sqrt{3} \approx 41.569$.
+The available invariants are:
+\begin{align}
+  \dim_\mathbb{R}(A) &\;=\; \dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{H}) = 8,
+    \label{eq:dimR_A}\\
+  \dim_\mathbb{C}(A) &\;=\; \dim_\mathbb{C}(\mathrm{Mat}(2,\mathbb{C})) = 4,
+    \label{eq:dimC_A}\\
+  \dim_\mathbb{R}(\mathbb{H}) &\;=\; 4, \label{eq:dimR_H}\\
+  \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) &\;=\; 3, \label{eq:dimR_ImH}\\
+  N_{\mathrm{rep, fund}} &\;=\; 2 \quad\text{(fundamental of $\mathrm{SU}(2)$)},\\
+  N_{\mathrm{rep, adj}} &\;=\; 3 \quad\text{(adjoint of $\mathrm{SU}(2)$)},\\
+  C_2(\mathbf{adj}) &\;=\; 2, \quad T(\mathbf{fund}) = \tfrac{1}{2},
+    \quad T(\mathbf{adj}) = 2 \quad\text{($\mathrm{SU}(2)$ Casimirs)}.
+\end{align}
+
+\subsection{Systematic table of candidates}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Candidate combination & Explicit value & Error from $41.57$ & Verdict \\
+  \midrule
+  $(\dim_\mathbb{R}\,A)^{3/2} = 8^{3/2}$ & $22.63$ & $-45.6\%$ & [no] \\
+  $(\dim_\mathbb{C}\,A)^{3/2} = 4^{3/2}$ & $8.00$ & $-80.8\%$ & [no] \\
+  $(\dim_\mathbb{R}\,\mathbb{H})^{3/2} = 4^{3/2}$ & $8.00$ & $-80.8\%$ & [no] \\
+  $\dim_\mathbb{R}\,A \times \dim_\mathbb{C}\,A = 8\times4$ & $32.00$ & $-23.0\%$ & [no] \\
+  $(\dim_\mathbb{R}\,A \times \dim_\mathbb{C}\,A)^{3/4} = 32^{3/4}$ & $13.45$ & $-67.7\%$ & [no] \\
+  $\dim_\mathbb{R}\,A \times \sqrt{\dim_\mathbb{C}\,A} = 8\times2$ & $16.00$ & $-61.5\%$ & [no] \\
+  $(\dim_\mathbb{R}\,\mathbb{H})^2 \times \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})^{1/2}
+    = 16\sqrt{3}$ & $27.71$ & $-33.4\%$ & [no] \\
+  $[\dim_\mathbb{R}\,\mathbb{H} \times (\dim_\mathbb{R}\,\mathbb{H}-1)]^{3/2}
+    = (4\times3)^{3/2} = 12^{3/2}$ & $41.57$ & $0\%$ & \checkmark \\
+  $(\dim_\mathbb{R}\,A)^{3/2} \times \pi / \sqrt{2} = 22.63\times\pi/\sqrt{2}$
+    & $50.18$ & $+20.7\%$ & [no] \\
+  $C_2(\mathbf{adj}) \times (\dim_\mathbb{R}\,A)^{3/2} = 2\times22.63$ & $45.25$ & $+8.9\%$
+    & [no] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The unique natural candidate}
+
+The only candidate that gives exactly $N_{\mathrm{eff}}^{3/2}$ is:
+\begin{equation}
+  \bigl[\dim_\mathbb{R}(\mathbb{H}) \times \bigl(\dim_\mathbb{R}(\mathbb{H}) - 1\bigr)\bigr]^{3/2}
+  \;=\; \bigl[4 \times 3\bigr]^{3/2}
+  \;=\; \bigl[\dim_\mathbb{R}(\mathbb{H}) \times \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})\bigr]^{3/2}
+  \;=\; 12^{3/2}
+  \;=\; N_{\mathrm{eff}}^{3/2}.
+  \label{eq:F4_candidate}
+\end{equation}
+This can be rewritten using the algebraic identity
+\begin{equation}
+  N_{\mathrm{eff}}
+  \;=\; \dim_\mathbb{R}(\mathbb{H}) \times \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})
+  \;=\; 4 \times 3,
+  \label{eq:Neff_algebraic}
+\end{equation}
+which follows from the proved counting
+$N_{\mathrm{eff}} = N_{\mathrm{phases}} \times N_{\mathrm{hel}} \times N_{\mathrm{charge}}
+= 3 \times 2 \times 2 = 12$, where $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+is already a proved algebraic fact.
+
+\subsection{Does this constitute a new derivation of $N_{\mathrm{eff}}^{3/2}$?}
+
+\begin{observation}[F4 algebraic identity]
+  \label{obs:F4}
+  Equation~\eqref{eq:F4_candidate} is an algebraic identity, not an independent
+  derivation.
+  It expresses $N_{\mathrm{eff}}^{3/2}$ in terms of $\dim(\mathbb{H})$ and
+  $\dim(\mathrm{Im}\,\mathbb{H})$, but both of these dimensions were already
+  the inputs to the proved one-loop formula $B_0 = 2\pi N_{\mathrm{eff}}/3$.
+  The exponent $3/2$ is not explained by this dimensional formula; it
+  must come from the Gaussian path-integral measure on
+  $\mathrm{Im}(\mathbb{H})$ (Approach A2 in \texttt{b\_base\_hausdorff.tex}).
+\end{observation}
+
+A purely spectral/algebraic formula that derives the exponent $3/2$ from
+the structure of $\mathbb{C}\otimes\mathbb{H}$ (without invoking the
+Gaussian measure) does not emerge from this systematic search.
+
+\textbf{F4 result summary:}
+\begin{itemize}
+  \item The unique natural candidate is $[\dim_\mathbb{R}(\mathbb{H}) \times
+    \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})]^{3/2} = N_{\mathrm{eff}}^{3/2}$.
+  \item This is an algebraic identity expressing what is already known.
+  \item \textbf{[PARTIAL]:} The algebraic structure uniquely selects
+    $N_{\mathrm{eff}}^{3/2}$ among dimension combinations, but the $3/2$
+    exponent itself requires the Gaussian path-integral argument (Gap~(a) /
+    Gap~(b) in \texttt{b\_base\_hausdorff.tex}).
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Summary: All Approaches F1--F4}
+\label{sec:summary_F}
+%--------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Result & Status \\
+  \midrule
+  F1: UBT spectral triple, $\mathcal{H} = \mathbb{C}^4$ (adjoint)
+    & $a_4 = \frac{1}{3}\mathrm{tr}(F^2)$; $B_{\mathrm{F1}} \approx 4B_0$
+    & \textbf{[PARTIAL]} \\
+  F2: Product spacetime $\times$ $\mathbb{C}\otimes\mathbb{H}$
+    & $a_0^{\mathrm{int}} = 4$ multiplies $B$; $N_{\mathrm{eff}}^{(\mathrm{F2})} = 8$
+    & \textbf{[PARTIAL]} \\
+  F3: Wodzicki residue
+    & Reduces to $a_4$; no new invariant
+    & \textbf{[DEAD END]} \\
+  F4: $N_{\mathrm{eff}}$ as spectral invariant
+    & Unique: $[\dim_\mathbb{R}(\mathbb{H})\times\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})]^{3/2}$;
+      algebraic identity only
+    & \textbf{[PARTIAL]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cumulative status of all approaches (A1--F4)}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Approach & Mechanism & Status & File \\
+  \midrule
+  A1 & KK mode sum & [DEAD END] & \texttt{b\_base\_spinor\_approach.tex} \\
+  A2 & Spectral zeta / Hausdorff & [MOTIVATED CONJECTURE] & \texttt{b\_base\_hausdorff.tex} \\
+  A3 & Gauge orbit volume & [DEAD END] & \texttt{b\_base\_hausdorff.tex} \\
+  A4 & Effective dimension & [STRUCTURAL INSIGHT] & tools \\
+  C1 & Seeley--DeWitt (pert.) & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  C2 & Mode pair coherence & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  D1 & Unitarity constraint & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D2 & Dimensional transmutation & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D3 & Cartan--Killing metric & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  E1 & Instantons on $\mathrm{SU}(2)$ & [DEAD END] & \texttt{b\_base\_new\_directions.tex} \\
+  E2 & Index theorem / anomaly & [DEAD END] & \texttt{b\_base\_new\_directions.tex} \\
+  E3 & Holomorphic factorisation & [DEAD END/CONFIRM] & \texttt{b\_base\_new\_directions.tex} \\
+  E4 & NCG spectral triple (SM) & [PARTIAL] & \texttt{b\_base\_new\_directions.tex} \\
+  F1 & UBT spectral triple, adjoint & [PARTIAL] & this file \\
+  F2 & Product spacetime action & [PARTIAL] & this file \\
+  F3 & Wodzicki residue & [DEAD END] & this file \\
+  F4 & Spectral invariant search & [PARTIAL] & this file \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Remaining gaps and next steps}
+
+\begin{gap}[Gap (a): Explicit $\det(\mathcal{S}'')$]
+  \label{gap:a}
+  The functional determinant of the second variation of the UBT action
+  $\mathcal{S}[\Theta]$ on $\mathrm{Im}(\mathbb{H})$ has not been computed
+  explicitly.
+  F1--F4 confirm that the natural spectral dimension is $a_0^{\mathrm{int}} = 4$
+  (adjoint representation), not directly $N_{\mathrm{eff}}^{3/2}$.
+  Status: \textbf{[OPEN]}.
+\end{gap}
+
+\begin{gap}[Gap (b): Protection of the $3/2$ exponent]
+  \label{gap:b}
+  The exponent $3/2$ in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is
+  structurally forced by the real Gaussian integration over the odd-dimensional
+  space $\mathrm{Im}(\mathbb{H})$, structurally confirmed in E3
+  (holomorphic factorisation, \texttt{b\_base\_new\_directions.tex} §E3)
+  and motivated by A2 (Hausdorff / Gaussian path integral,
+  \texttt{b\_base\_hausdorff.tex} §2).
+  Approaches F1--F4 are consistent with this but do not add new protection.
+  Status: \textbf{[PARTIAL PROGRESS from E3; no new progress in F1--F4]}.
+\end{gap}
+
+\begin{gap}[Gap (F): Non-isotropic Dirac operator]
+  \label{gap:F}
+  F1 showed that the isotropic Dirac operator $D_{\mathrm{int}} = m\mathbf{1}$
+  gives $B_{\mathrm{F1}} = 4B_0 \neq N_{\mathrm{eff}}^{3/2}$.
+  The next natural step is to compute $a_4$ for a \emph{non-isotropic}
+  $D_{\mathrm{int}}$ (with $\mathrm{SU}(2)$-breaking mass terms), and check
+  whether a specific mass matrix that respects the $\mathrm{Im}(\mathbb{H})$
+  structure gives the correct value.
+  Status: \textbf{[OPEN — concrete next direction]}.
+\end{gap}
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+We tried four new approaches to explain why the UBT running constant
+$B_{\mathrm{base}} = 41.57$ instead of the proved one-loop value $B_0 = 25.13$.
+All four approaches use the idea that the UBT field $\Theta$ is a biquaternionic
+object ($2 \times 2$ complex matrix), and we asked what the natural quantum
+calculation looks like when we treat this properly.
+
+\textbf{F1 (UBT spectral triple):}
+The most natural mathematical setting for the biquaternion field gives a
+``quantum stage'' (Hilbert space) of 4 complex dimensions rather than the 2 used
+by the Standard Model approach in E4.
+We computed the relevant quantity ($a_4$, the Seeley--DeWitt coefficient)
+exactly for this 4-dimensional stage.
+The result is that the coupling constant is multiplied by 4 compared to the
+minimal case, giving $B_{\mathrm{F1}} \approx 100$ — too large by a factor of 2.4.
+The right sign (the theory is IR-free like electromagnetism, not asymptotically
+free like QCD) is confirmed, which is an important consistency check.
+But the exact value $41.57$ is not reproduced.
+
+\textbf{F2 (Product action):}
+We combined the 4D spacetime calculation with the biquaternionic internal
+structure using a product formula.
+The internal space contributes an overall factor (its dimension, $= 4$) to the
+gauge coupling.
+On flat spacetime the mixing terms (between spacetime curvature and the mass
+of the field) vanish, so there are no surprises.
+The effective number of modes this formula counts is 8, not the required 12,
+so $B_{\mathrm{base}} = 41.57$ is not explained.
+
+\textbf{F3 (Wodzicki residue):}
+There is a sophisticated mathematical tool called the Wodzicki residue that
+is supposed to be a ``topological invariant'' — a number that does not depend
+on any free parameters.
+We asked whether this tool gives $41.57$ directly.
+The answer is no: the Wodzicki residue of the natural operator reduces to
+exactly the same calculation as in F1 and F2 (it counts the dimension of the
+quantum stage, which is 4).
+No new information is obtained.
+
+\textbf{F4 (Spectral invariant search):}
+We systematically listed all natural combinations of dimensions and Casimir
+invariants of the biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$ and
+checked which ones equal $41.57$.
+Only one combination works:
+$[\dim(\mathbb{H})\times\dim(\mathrm{Im}\,\mathbb{H})]^{3/2} = (4\times 3)^{3/2} = 41.57$.
+This is the unique purely algebraic expression.
+However, it is just a restatement of the already-known fact that
+$N_{\mathrm{eff}} = 12$ combined with the Gaussian exponent $3/2$.
+It does not explain \emph{where the $3/2$ comes from} — that question still
+requires the Gaussian path-integral argument established in earlier work
+(Approach A2, \texttt{b\_base\_hausdorff.tex} §2, and structural
+confirmation E3, \texttt{b\_base\_new\_directions.tex} §E3).
+
+\textbf{Overall summary of F1--F4:}
+F3 is a dead end (no new information).
+F1, F2, and F4 are all partial: they confirm the correct sign and algebraic
+structure, but do not independently derive $B_{\mathrm{base}} = 41.57$.
+The most concrete next step (Gap F) is to compute $a_4$ for a non-isotropic
+Dirac operator that respects the $\mathrm{Im}(\mathbb{H})$ structure, and
+check whether this shifts $B$ from $4B_0$ to $N_{\mathrm{eff}}^{3/2}$.
+The fundamental obstacle remains: the $3/2$ exponent requires the Gaussian
+path-integral argument, and no purely algebraic combination of spectral
+invariants of $\mathbb{C}\otimes\mathbb{H}$ can generate it from scratch.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
