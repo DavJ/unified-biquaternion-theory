@@ -1,0 +1,395 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Δd = 0.405 — Explaining the gap B₀ → B_base
+% Track: CORE — α derivation — v59 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{$\Delta d = 0.405$ — Explaining the Transition $B_0 \to B_{\mathrm{base}}$\\
+    \large Approaches C1 (Heat Kernel Curvature) and C2 (Mode Interference)}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v59)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Approach C: Explaining $\Delta d = 0.405$ — the gap $B_0 \to B_{\mathrm{base}}$}
+\label{sec:delta_d_main}
+
+\textbf{Overall status: [OPEN GAP — both approaches below lead to dead ends].}
+No circular use of $\alpha^{-1} = 137$ or $n^* = 137$ anywhere in this document.
+$N_{\mathrm{eff}} = 12$ and $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ are fixed inputs (both proved).
+
+%--------------------------------------------------------------------
+\subsection{Section 1: Problem Formulation}
+\label{sec:formulation}
+%--------------------------------------------------------------------
+
+From the v59 baseline the following quantities are established:
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Quantity & Value & Status \\
+  \hline
+  $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $25.133$ & \textbf{[PROVED]} (one-loop, flat space) \\
+  $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $41.569$ & [CONJECTURED] \\
+  $d_{\mathrm{eff}}(B_0)$ & $2.595$ & \textbf{[PROVED]} (from one-loop $B_0$) \\
+  $d_{\mathrm{eff}}(B_{\mathrm{base}})$ & $3.000$ & algebraic identity \\
+  $\Delta d = d - d_{\mathrm{eff}}(B_0)$ & $0.405$ & \textbf{[OPEN]} \\
+  \hline
+\end{tabular}
+\end{center}
+
+where the effective dimension is defined by
+$d_{\mathrm{eff}}(B) := 2\log B / \log N_{\mathrm{eff}}$,
+so that $B = N_{\mathrm{eff}}^{d_{\mathrm{eff}}/2}$
+(see Remark~\ref{rem:d_eff} in \texttt{b\_base\_hausdorff.tex}).
+
+The algebraic ratio is an exact identity:
+\begin{equation}
+  \frac{B_{\mathrm{base}}}{B_0}
+    = \frac{N_{\mathrm{eff}}^{3/2}}{2\pi N_{\mathrm{eff}}/3}
+    = \frac{3}{2\pi}\,\sqrt{N_{\mathrm{eff}}}
+    = \frac{3}{2\pi}\,\sqrt{12}
+    \approx 1.654.
+  \label{eq:ratio_identity}
+\end{equation}
+
+\textbf{Question:} What physical mechanism lifts $d_{\mathrm{eff}}$ from $2.595$
+(proved one-loop flat-space value) to $3.000$
+(algebraic value $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$)?
+Two candidate mechanisms are investigated below.
+
+%--------------------------------------------------------------------
+\subsection{Section 2: Approach C1 — Heat Kernel Curvature Correction on $\mathrm{Im}(\mathbb{H})$}
+\label{sec:C1_curvature}
+%--------------------------------------------------------------------
+
+\textbf{Hypothesis.}
+The proved $B_0$ is computed in flat space $\mathbb{R}^d$.
+However, $\mathrm{Im}(\mathbb{H})$ carries the structure of the Lie algebra
+$\mathfrak{su}(2)$; exponentiating gives $\mathrm{SU}(2) \cong S^3$, which has
+non-zero scalar curvature.
+Could the Seeley--DeWitt curvature correction lift $B_0 \to B_{\mathrm{base}}$?
+
+\subsubsection{Step 1: Heat kernel representation of $B_0$}
+
+The one-loop contribution to the renormalisation coefficient $B$ can be written as
+\begin{equation}
+  B_0 \;=\; \int_0^{1/\Lambda^2} \frac{dt}{t}\;
+           \mathrm{Tr}\,K_{\mathrm{flat}}(t),
+  \qquad
+  K_{\mathrm{flat}}(t,x,x) = (4\pi t)^{-d/2},
+  \label{eq:B0_heatkernel}
+\end{equation}
+where $\Lambda$ is the UV cutoff and $d = 3$.
+This integral is UV divergent; the regularised value $B_0 = 2\pi N_{\mathrm{eff}}/3$
+is obtained after including the gauge-structure factor $N_{\mathrm{eff}}$ and the
+$2\pi/d$ prefactor from the one-loop calculation
+(\texttt{b\_base\_spinor\_approach.tex}, \texttt{b\_base\_hausdorff.tex}).
+
+\subsubsection{Step 2: Seeley--DeWitt correction from curvature of $\mathrm{Im}(\mathbb{H})$}
+
+The standard heat kernel expansion on a $d$-dimensional Riemannian manifold $M$
+with scalar curvature $R$ is
+\begin{equation}
+  K(t,x,x)
+    = (4\pi t)^{-d/2}\bigl[1 + \tfrac{R}{6}\,t + O(t^2)\bigr].
+  \label{eq:seeley_dewitt}
+\end{equation}
+The curvature correction shifts $B$ by
+\begin{equation}
+  \Delta B_{\mathrm{curv}}
+    = \frac{R_{\mathrm{Im}\mathbb{H}}}{6}
+      \int_0^{1/\Lambda^2} \frac{dt}{t}\;(4\pi t)^{-d/2}\cdot t
+    = \frac{R_{\mathrm{Im}\mathbb{H}}}{6}\;
+      \int_0^{1/\Lambda^2} dt\;(4\pi)^{-3/2}\,t^{-3/2}.
+  \label{eq:DeltaB_curv}
+\end{equation}
+
+For $d = 3$, the integrals evaluate to:
+\begin{align}
+  B_0 &\;\propto\; \int_0^{1/\Lambda^2} dt\;t^{-5/2}
+       \;=\; \tfrac{2}{3}\,\Lambda^3
+       \quad (\text{leading UV divergence}),
+       \label{eq:B0_UV} \\[4pt]
+  \Delta B_{\mathrm{curv}} &\;\propto\;
+       \frac{R_{\mathrm{Im}\mathbb{H}}}{6}
+       \int_0^{1/\Lambda^2} dt\;t^{-3/2}
+    \;=\; \frac{R_{\mathrm{Im}\mathbb{H}}}{6}\cdot 2\Lambda.
+       \label{eq:DeltaB_UV}
+\end{align}
+Therefore:
+\begin{equation}
+  \frac{\Delta B_{\mathrm{curv}}}{B_0}
+    \;\propto\; \frac{R_{\mathrm{Im}\mathbb{H}}}{6}\cdot \frac{2\Lambda}{(2/3)\Lambda^3}
+    = \frac{R_{\mathrm{Im}\mathbb{H}}}{2\Lambda^2}
+    \;\xrightarrow{\Lambda \to \infty}\; 0.
+  \label{eq:ratio_curv}
+\end{equation}
+
+\textbf{Key result:} the Seeley--DeWitt curvature correction is \emph{subleading
+in the UV limit} — it vanishes as $\Lambda \to \infty$.
+The ratio $\Delta B_{\mathrm{curv}} / B_0 \propto \Lambda^{-2} \to 0$,
+regardless of the value of $R_{\mathrm{Im}\mathbb{H}}$.
+This is a general feature of Seeley--DeWitt corrections in $d \ge 2$:
+the curvature term enters at one order lower in $\Lambda$ than the leading divergence.
+
+\subsubsection{Step 3: Required curvature (numerical check, massive regularisation)}
+
+If one instead uses a massive regulator $M$ (replacing $\Lambda$) and evaluates
+$B$ at $t = 1/M^2$:
+\begin{equation}
+  \frac{B_{\mathrm{curved}}}{B_{\mathrm{flat}}}
+    = 1 + \frac{R_{\mathrm{Im}\mathbb{H}}}{6\,M^2}
+    \stackrel{!}{=} \frac{B_{\mathrm{base}}}{B_0} \approx 1.654.
+  \label{eq:R_required}
+\end{equation}
+This requires:
+\begin{equation}
+  R_{\mathrm{Im}\mathbb{H}} = 0.654 \times 6 M^2 = 3.924\,M^2.
+  \label{eq:R_numerical}
+\end{equation}
+For the natural normalization $M = 1$ (unit quaternion scale $|i| = |j| = |k| = 1$):
+$R_{\mathrm{Im}\mathbb{H}} = 3.924$.
+
+\noindent\textbf{Comparison with $\mathfrak{su}(2)$ geometry:}
+$\mathrm{Im}(\mathbb{H})$ as a vector space is flat $\mathbb{R}^3$ (curvature zero).
+The curvature arises only when we identify $\exp(\mathrm{Im}(\mathbb{H})) = \mathrm{SU}(2) \cong S^3$.
+For the bi-invariant metric on $\mathrm{SU}(2)$ induced by the quaternion inner product
+$\langle e_a, e_b \rangle = \delta_{ab}$:
+\begin{equation}
+  R_{S^3}(r=1) = \frac{6}{r^2}\Big|_{r=1} = 6.
+  \label{eq:R_S3}
+\end{equation}
+The value $R = 6$ (for the unit sphere) does not match the required $R = 3.924$
+from~\eqref{eq:R_numerical}.
+To match, one would need $r = \sqrt{6/3.924} \approx 1.237$,
+which has no natural algebraic meaning.
+
+\begin{gap}[Approach C1 — Curvature correction]
+\label{gap:C1}
+  \textbf{[DEAD END].}
+  Two independent reasons:
+  \begin{enumerate}
+    \item[(i)] For UV-divergent integrals (power-law cutoff $\Lambda$), the
+      Seeley--DeWitt correction is subleading: $\Delta B / B_0 \propto \Lambda^{-2} \to 0$.
+      It cannot produce a finite correction factor $\approx 0.654$.
+    \item[(ii)] For a massive regulator $M = 1$ (natural quaternion unit),
+      the required curvature is $R = 3.924$,
+      while the natural $S^3$ value is $R = 6$ (unit radius),
+      or zero (flat $\mathbb{R}^3$).
+      No normalization of $\mathfrak{su}(2)$ gives $R = 3.924$ without a free parameter.
+  \end{enumerate}
+  The hypothesis that $\Delta d = 0.405$ arises from the Seeley--DeWitt curvature
+  correction on $\mathrm{Im}(\mathbb{H})$ is \textbf{falsified by the power-counting argument}.
+\end{gap}
+
+%--------------------------------------------------------------------
+\subsection{Section 3: Approach C2 — Mode Pair Interference}
+\label{sec:C2_interference}
+%--------------------------------------------------------------------
+
+\textbf{Hypothesis.}
+The factor $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$
+might arise from coherent interference of $\sim\!\sqrt{N_{\mathrm{eff}}}$ mode pairs
+out of the $N_{\mathrm{eff}}$ total modes.
+
+\subsubsection{Naive $\sqrt{N_{\mathrm{eff}}}$ coherence}
+
+If $\sqrt{N_{\mathrm{eff}}}$ modes contribute coherently, one might expect
+$B_{\mathrm{eff}} = B_0 \cdot \sqrt{N_{\mathrm{eff}}}$.
+Numerically:
+\begin{equation}
+  B_0 \cdot \sqrt{N_{\mathrm{eff}}} = 25.133 \times \sqrt{12} = 25.133 \times 3.464 \approx 87.05
+  \;\ne\; B_{\mathrm{base}} = 41.569.
+  \label{eq:naive_sqrt_fails}
+\end{equation}
+\textbf{This version fails immediately.}
+The naive $\sqrt{N_{\mathrm{eff}}}$ scaling overshoots by a factor of $2.09$.
+
+\subsubsection{Decomposing the ratio}
+
+The algebraic identity \eqref{eq:ratio_identity} decomposes as:
+\begin{equation}
+  \frac{B_{\mathrm{base}}}{B_0}
+  = \frac{3}{2\pi}\,\sqrt{N_{\mathrm{eff}}}
+  = \underbrace{\frac{d}{2\pi}}_{\text{from }B_0\text{ formula}}
+    \cdot \underbrace{\sqrt{N_{\mathrm{eff}}}}_{\text{factor to explain}}
+  = \frac{N_{\mathrm{eff}}^{3/2}}{(2\pi/d)\,N_{\mathrm{eff}}}.
+  \label{eq:ratio_decomposed}
+\end{equation}
+In other words, $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$ is precisely
+the statement $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ rewritten using $B_0 = (2\pi/d)\,N_{\mathrm{eff}}$.
+Any ``physical interpretation'' of the $\sqrt{N_{\mathrm{eff}}}$ factor would therefore
+need to explain $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ from first principles,
+which is precisely Gap~(a) in \texttt{b\_base\_hausdorff.tex}.
+
+\subsubsection{Can $\sqrt{N_{\mathrm{eff}}}$ arise from pair counting?}
+
+The number of distinct unordered pairs of $N_{\mathrm{eff}}$ modes is
+$\binom{N_{\mathrm{eff}}}{2} = N_{\mathrm{eff}}(N_{\mathrm{eff}}-1)/2 = 66$ (for $N_{\mathrm{eff}} = 12$).
+If only a fraction $\sim 1/\sqrt{N_{\mathrm{eff}}}$ of pairs contributes coherently:
+$66 / \sqrt{12} \approx 19$, which has no obvious connection to the prefactor $3/2\pi$.
+
+Alternatively, if the coherent sum scales as $N_{\mathrm{eff}}^{1/2}$ (random-walk-like),
+then $B = B_{\mathrm{single}} \cdot N_{\mathrm{eff}}^{1/2}$ requires
+$B_{\mathrm{single}} = B_{\mathrm{base}} / N_{\mathrm{eff}}^{1/2} = 12^{3/2}/12^{1/2} = 12$.
+But $B_0/N_{\mathrm{eff}} = 25.133/12 \approx 2.09 \ne 12$,
+so there is no consistent single-mode contribution.
+
+\begin{gap}[Approach C2 — Mode pair interference]
+\label{gap:C2}
+  \textbf{[DEAD END].}
+  \begin{enumerate}
+    \item[(i)] Naive $\sqrt{N_{\mathrm{eff}}}$ coherence:
+      $B_0 \cdot \sqrt{N_{\mathrm{eff}}} \approx 87.05 \ne 41.57$.
+      Off by factor $2.09$.
+    \item[(ii)] The ratio $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$
+      is an algebraic identity following directly from $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+      and $B_0 = (2\pi/d)N_{\mathrm{eff}}$.
+      Explaining it via mode interference is equivalent to explaining the conjecture
+      $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ itself — it does not provide an independent derivation.
+    \item[(iii)] No pairing or coherence prescription yields the factor $(3/2\pi)$
+      without a free parameter.
+  \end{enumerate}
+  The mode-pair-interference hypothesis does not provide a new derivation
+  and reduces to restating the original conjecture.
+\end{gap}
+
+%--------------------------------------------------------------------
+\subsection{Section 4: Numerical Control — for which $N_{\mathrm{eff}}$ is $d_{\mathrm{eff}}(B_0) = 3$?}
+\label{sec:numerical_control}
+%--------------------------------------------------------------------
+
+The condition $d_{\mathrm{eff}}(B_0) = d = 3$ is:
+\begin{equation}
+  \frac{2\log(2\pi N/3)}{\log N} = 3
+  \;\;\Longrightarrow\;\;
+  \bigl(2\pi N/3\bigr)^2 = N^3
+  \;\;\Longrightarrow\;\;
+  \frac{4\pi^2}{9} = N.
+  \label{eq:N_star_condition}
+\end{equation}
+Hence:
+\begin{equation}
+  N^* \;:=\; \frac{4\pi^2}{9} \;\approx\; 4.386.
+  \label{eq:N_star_value}
+\end{equation}
+Verification: $d_{\mathrm{eff}}(B_0)\big|_{N=4.386}
+= 2\log(2\pi\cdot 4.386/3)/\log(4.386)
+= 2\log(9.189)/\log(4.386)
+\approx 2(2.218)/1.477 \approx 3.003$. \checkmark
+
+\medskip
+\noindent
+Comparison for selected values of $N_{\mathrm{eff}}$:
+
+\begin{center}
+\begin{tabular}{cccc}
+  \hline
+  $N_{\mathrm{eff}}$ & $B_0 = 2\pi N/3$ & $d_{\mathrm{eff}}(B_0)$ & $\Delta d = 3 - d_{\mathrm{eff}}(B_0)$ \\
+  \hline
+  $4.386 = N^*$ & $9.188$ & $3.000$ & $0.000$ \\
+  $4$ & $8.378$ & $3.067$ & $-0.067$ \\
+  $6$ & $12.566$ & $2.825$ & $+0.175$ \\
+  $8$ & $16.755$ & $2.711$ & $+0.289$ \\
+  $12$ & $25.133$ & $2.595$ & $+0.405$ \quad {\small $\leftarrow$ UBT} \\
+  $24$ & $50.265$ & $2.465$ & $+0.535$ \\
+  \hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[$\Delta d = 0.405$ is specific to $N_{\mathrm{eff}} = 12$]
+\label{rem:delta_d_specific}
+  The gap $\Delta d = d - d_{\mathrm{eff}}(B_0)$ depends on $N_{\mathrm{eff}}$:
+  it equals zero only at $N^* = 4\pi^2/9 \approx 4.386$,
+  and grows monotonically with $N_{\mathrm{eff}}$ for $N_{\mathrm{eff}} > N^*$.
+  For the UBT value $N_{\mathrm{eff}} = 12$, $\Delta d = 0.405$.
+  This number is not a free parameter: it is a \emph{derived consequence}
+  of $N_{\mathrm{eff}} = 12$ (proved from $\mathbb{C}\otimes\mathbb{H}$ algebra)
+  and $d = 3$ (proved from $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$).
+  The physical mechanism that enforces $d_{\mathrm{eff}} \to d$ despite $N_{\mathrm{eff}} \ne N^*$
+  remains the core open question.
+\end{remark}
+
+%--------------------------------------------------------------------
+\subsection{Section 5: Conclusion — Status Summary}
+\label{sec:conclusion}
+%--------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Approach & Result & Status \\
+  \hline
+  C1: Seeley--DeWitt curvature on $\mathrm{Im}(\mathbb{H})$
+    & Correction $\propto \Lambda^{-2} \to 0$
+    & \textbf{[DEAD END]} \\
+  C2: Mode pair interference ($\sqrt{N_{\mathrm{eff}}}$ coherence)
+    & Algebraic identity restatement
+    & \textbf{[DEAD END]} \\
+  \hline
+\end{tabular}
+\end{center}
+
+Gap~(a) from \texttt{b\_base\_hausdorff.tex} therefore remains \textbf{[OPEN]}.
+
+\medskip\noindent\textbf{What was learned:}
+\begin{itemize}
+  \item $\Delta d = 0.405$ is a derived numerical consequence of $N_{\mathrm{eff}} = 12$
+    and $d = 3$ (both proved); it is not a free parameter
+    (Remark~\ref{rem:delta_d_specific}).
+  \item A standard Seeley--DeWitt correction on the mode space cannot lift
+    $d_{\mathrm{eff}}$ by a finite amount independent of the UV cutoff,
+    because curvature corrections are subleading in the UV.
+  \item The algebraic ratio $(3/2\pi)\sqrt{N_{\mathrm{eff}}}$ is an identity,
+    not an independent mechanism.
+  \item The open question is: what renormalisation effect or geometric structure
+    constrains $d_{\mathrm{eff}}(B)$ to be exactly the algebraic dimension $d = 3$?
+    Possible directions not yet explored: zeta-function regularisation of
+    $\mathrm{Spec}(-\nabla^2|_{\mathrm{Im}(\mathbb{H})})$;
+    index theorem constraints; non-perturbative effects.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\subsection{Section 6: In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+The proved one-loop calculation gives $B_0 \approx 25.13$, which corresponds to
+an ``effective dimension'' of $2.60$ rather than the algebraic value $3.00$.
+The gap $\Delta d = 0.405$ is the amount by which some mechanism must lift this
+effective dimension to recover the conjectured $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$.
+Two candidate mechanisms were investigated: (C1) a curvature correction from the
+quaternionic geometry of the mode space, and (C2) coherent interference of mode pairs.
+Both turned out to be dead ends — C1 because curvature corrections in quantum field
+theory are subleading (negligible) in the ultraviolet limit, and C2 because the
+$\sqrt{N_{\mathrm{eff}}}$ factor is merely an algebraic restatement of the conjecture itself.
+The gap remains open; explaining $\Delta d = 0.405$ from first principles is
+equivalent to completing the proof of $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
