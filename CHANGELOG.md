@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **B_base non-perturbative approaches (v60 baseline)**: New document
+  `consolidation_project/alpha_derivation/b_base_nonpert.tex` documenting three
+  non-perturbative candidates for the gap B₀ → B_base (equivalently Δd = 0.405):
+  - **D1 — Unitarity constraint on Im(ℍ)**: Constraint reduces N_eff 12→8, wrong
+    direction; target effective mode count < 1 is algebraically impossible. **[DEAD END]**
+  - **D2 — Dimensional transmutation on Im(ℍ)**: Requires R_ψ as a calibrated (not
+    algebraically fixed) parameter; no zero-free-parameter derivation possible.
+    **[DEAD END]** — revisit if R_ψ topological fixation is resolved.
+  - **D3 — Cartan–Killing metric on su(2)**: Normalised Killing form equals Euclidean
+    metric (factor 1, no correction); unnormalised forms give wrong values.  **[DEAD END]**
+  - Updated `DERIVATION_INDEX.md` B_base row with v60 notes and file reference.
+  - Updated `STATUS_ALPHA.md` B_base section with v60 summary and dead-end catalogue.
+  - Gap (a) remains **[OPEN]** after 8 independent dead ends.
+
 - **Speculative Fingerprint Proposal**: Hubble Tension as Effective Metric Latency
   - New appendix: `speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex`
   - Comprehensive mathematical analysis of hypothesis that Hubble tension arises from effective time parametrization differences

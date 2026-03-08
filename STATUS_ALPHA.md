@@ -268,7 +268,7 @@ The formula used in the derivation is:
 B_base = N_eff^{3/2} = 12^(3/2) ≈ 41.57
 ```
 
-**Status (v59): Motivated Conjecture [with explicit gap].** The exponent 3/2 is now
+**Status (v60): Motivated Conjecture [with explicit gap].** The exponent 3/2 is now
 algebraically motivated in `consolidation_project/alpha_derivation/b_base_hausdorff.tex`
 (Approach A2, v58):
 - **Factor 3** = dim_ℝ(Im ℍ) — proved algebraic fact; Im(ℍ) = span{i,j,k} carries the
@@ -288,16 +288,29 @@ Define d_eff(B) = 2·log(B)/log(N_eff) so that B = N_eff^{d_eff/2}. Then:
   (equivalently: explain Δd ≈ 0.41 between the proved d_eff(B₀) and the algebraic d = 3).
 - (b) Proof that higher-loop corrections do not modify the d/2 exponent.
 
-**Three previously tested approaches** (KK mode sum, zeta regularization, gauge orbit
-volume) remain dead ends and are documented in `tools/compute_B_KK_sum.py` and
-`consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3`.
+**Five perturbative approaches exhausted** (KK mode sum, zeta regularisation, gauge orbit
+volume, Seeley–DeWitt curvature, mode-pair interference): documented in
+`tools/compute_B_KK_sum.py`, `consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3`,
+and `consolidation_project/alpha_derivation/b_base_delta_d.tex`.
+
+**Approaches D1–D3 (v60, non-perturbative) — all [DEAD END]**
+(`consolidation_project/alpha_derivation/b_base_nonpert.tex`):
+- **D1 — Unitarity constraint on Im(ℍ)**: reduces N_eff 12→8 (wrong direction);
+  the target effective mode count implied by B_base is < 1, algebraically impossible.
+- **D2 — Dimensional transmutation on Im(ℍ)**: requires R_ψ as a free (calibrated)
+  parameter; no algebraic fixation of R_ψ exists yet, so the condition can be trivially
+  satisfied and provides no prediction.
+- **D3 — Cartan–Killing metric on su(2)**: normalised Killing form = Euclidean metric
+  (correction factor = 1); unnormalised forms give B/2 ≈ 12.6 or ≈ 100.5 depending
+  on convention — neither matches B_base.
 
 **The correct one-loop value B₀ = 25.1 predicts n*(B₀) = 67 ≠ 137.** The gap between
-B₀ and B_base is not explained by any of the three dead-end approaches, but the Gaussian
-path-integral argument (Approach A2) provides the algebraic structure for the exponent.
+B₀ and B_base remains open after 8 independent dead ends. A genuinely new structural
+input appears to be required.
 
 See `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` §B.3 for the full
-derivation attempt with all three methods documented.
+derivation attempt. Full dead-end catalogue: `b_base_spinor_approach.tex`,
+`b_base_hausdorff.tex`, `b_base_delta_d.tex`, `b_base_nonpert.tex`.
 
 ---
 
@@ -392,7 +405,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
