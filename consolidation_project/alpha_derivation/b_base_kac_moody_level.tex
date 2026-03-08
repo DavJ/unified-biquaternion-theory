@@ -1,0 +1,855 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base — Kac-Moody Level k from UBT Action S[Θ] on ψ-Circle
+% Track: CORE — α derivation — v67 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{observation}{Observation}
+
+  \title{$B_{\mathrm{base}}$ --- Kac-Moody Level $k$ from UBT Action $\mathcal{S}[\Theta]$\\
+    \large Approaches H1 (WZW Normalization), H2 (Absent CS Term),\\
+    H3 (Dynkin Index): v67 Baseline}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v67)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Context and Problem Statement}
+\label{sec:context}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
+anywhere in this document.
+The only inputs are:
+$N_{\mathrm{eff}} = 12$ (proved from $\mathbb{C}\otimes\mathbb{H}$ algebra,
+\texttt{step1\_mode\_decomposition.tex} Theorem~1.4),
+$\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ (algebraic fact), and the UBT
+kinetic action $\mathcal{S}[\Theta]$ without explicit coupling constant.
+
+\medskip
+\noindent\textbf{Motivation.}
+Approach G3 in \texttt{b\_base\_g\_approaches.tex} (\S\ref{sec:context}
+above, and Gap~(G3-k) therein) showed that if the $\psi$-circle carries a
+$\widehat{\mathrm{SU}(2)}_k$ Kac-Moody symmetry at level $k = 1$, then the
+central charge is $c = 1$ and $B_{\mathrm{base}} = c \cdot N_{\mathrm{eff}}^{3/2}
+= 41.57$ exactly.  The level $k = 1$ was labelled \textbf{[PARTIAL]}
+because no UBT calculation had yet derived $k$ from $\mathcal{S}[\Theta]$.
+
+\medskip
+\noindent\textbf{Goal of this document.}
+Compute $k$ directly from $\mathcal{S}[\Theta]$ using three independent
+approaches:
+\begin{itemize}
+  \item \textbf{H1:} WZW normalization matching --- read $k$ off the
+    coefficient of the kinetic term for $g \in \mathrm{SU}(2)$ on the
+    $\psi$-circle.
+  \item \textbf{H2:} Absence of Chern-Simons term --- use parity symmetry
+    to rule out a CS contribution to $k$ and identify the minimal
+    consistent level.
+  \item \textbf{H3:} Dynkin index counting --- express $k$ as a sum of
+    representation-theoretic indices over the physical modes.
+\end{itemize}
+If any approach yields $k = 1$ from first principles, Gap~(G3-k)
+closes and $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is promoted
+from \textbf{[MOTIVATED CONJECTURE]} to \textbf{[PROVED]}.
+
+%--------------------------------------------------------------------
+\section{Setup: UBT Action on the $\psi$-Circle}
+\label{sec:setup}
+%--------------------------------------------------------------------
+
+The UBT kinetic action is (from \texttt{step2\_vacuum\_polarization.tex},
+Eq.~(1.1)):
+\begin{equation}
+  \mathcal{S}_{\mathrm{kin}}[\Theta]
+  \;=\;
+  \int d^4x\,d\psi\;
+  \mathrm{Sc}\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr],
+  \label{eq:S_kin}
+\end{equation}
+where $\mathrm{Sc}[\cdot]$ denotes the scalar (identity) part of a
+biquaternion, $D_\mu = \partial_\mu + ieA_\mu$ is the electromagnetic
+covariant derivative, and $\psi \in [0,2\pi)$ is the compact imaginary-time
+circle.  The field $\Theta \in \mathbb{C}\otimes\mathbb{H}$ decomposes as:
+\begin{equation}
+  \Theta
+  \;=\;
+  \Theta_0\mathbf{1}
+  + \Theta_1\mathbf{i}
+  + \Theta_2\mathbf{j}
+  + \Theta_3\mathbf{k},
+  \qquad \Theta_k \in \mathbb{C},
+  \label{eq:decomp}
+\end{equation}
+with
+$\mathrm{Sc}[\Theta^\dagger\Theta]
+= |\Theta_0|^2 + |\Theta_1|^2 + |\Theta_2|^2 + |\Theta_3|^2$.
+The three charged imaginary components $\Phi_k := \Theta_k$ ($k=1,2,3$)
+couple to the electromagnetic field; $\Theta_0$ is neutral and decouples.
+The effective action is:
+\begin{equation}
+  \mathcal{S}_{\mathrm{kin}}^{\mathrm{eff}}
+  \;=\;
+  \int d^4x\,d\psi\;
+  \sum_{k=1}^{3} |D_\mu\Phi_k|^2.
+  \label{eq:S_eff}
+\end{equation}
+
+The target value of $B_{\mathrm{base}}$ (from $N_{\mathrm{eff}} = 12$,
+proved independently of $\alpha^{-1}$) is:
+\begin{equation}
+  B_{\mathrm{base}}
+  \;=\;
+  N_{\mathrm{eff}}^{3/2}
+  \;=\;
+  12^{3/2}
+  \;=\;
+  24\sqrt{3}
+  \;\approx\;
+  41.569.
+  \label{eq:B_base_target}
+\end{equation}
+All numerical values $\approx 41.57$ below refer to this exact algebraic expression.
+
+\subsection{SU(2) identification on the $\psi$-circle}
+\label{sec:SU2_id}
+
+The Lie algebra $\mathfrak{su}(2)$ is spanned by $\{\mathbf{i},\mathbf{j},\mathbf{k}\}$
+with $[\mathbf{i},\mathbf{j}] = 2\mathbf{k}$ etc., and the compact group
+$\mathrm{SU}(2)$ corresponds to the \emph{real} unit quaternions $S^3$:
+\begin{equation}
+  \mathrm{SU}(2)
+  \;\cong\;
+  \{g = a_0\mathbf{1} + a_1\mathbf{i} + a_2\mathbf{j} + a_3\mathbf{k}
+   \;|\; a_\mu \in \mathbb{R},\; a_0^2 + a_1^2 + a_2^2 + a_3^2 = 1\}
+  \;\subset\; \mathbb{H}
+  \;\subset\; \mathbb{C}\otimes\mathbb{H}.
+  \label{eq:SU2_def}
+\end{equation}
+For the WZW identification, we restrict to real-valued field configurations
+$\Theta_{\mathrm{real}}(x,\psi) \in \mathbb{H}$ and decompose:
+\begin{equation}
+  \Theta_{\mathrm{real}} \;=\; r \cdot g,
+  \qquad
+  r = |\Theta_{\mathrm{real}}| \in \mathbb{R}_{\geq 0},
+  \quad
+  g \in \mathrm{SU}(2).
+  \label{eq:polar}
+\end{equation}
+This decomposition identifies the ``radial'' mode $r$ and the ``angular'' mode
+$g$ on the $\psi$-circle.  The biquaternionic field $\Theta \in \mathbb{C}\otimes\mathbb{H}$
+does \emph{not} generically lie in $\mathrm{SU}(2)$; the restriction to the
+real locus is a necessary assumption for the WZW identification (see
+Remark~\ref{rem:complex_obstruction}).
+
+\begin{remark}[Obstruction from complex values]
+  \label{rem:complex_obstruction}
+  The full UBT field $\Theta$ has $\Theta_k \in \mathbb{C}$,
+  so $\Theta \in \mathbb{C}\otimes\mathbb{H}$ with $8$ real degrees of freedom.
+  The real locus $\mathbb{H} \subset \mathbb{C}\otimes\mathbb{H}$ has only $4$
+  real degrees of freedom; the projection $\Theta \to \mathrm{Re}(\Theta) \in \mathbb{H}$
+  discards the imaginary parts $\mathrm{Im}(\Theta_k)$.
+  Unit-norm elements of $\mathbb{C}\otimes\mathbb{H}$ form $\mathrm{SL}(2,\mathbb{C})$,
+  not $\mathrm{SU}(2)$.
+  Approaches H1--H3 therefore apply only under the restriction to the
+  $\mathrm{SU}(2)$ locus, and this restriction is not derived from UBT axioms.
+\end{remark}
+
+%--------------------------------------------------------------------
+\section{Approach H1: WZW Normalization}
+\label{sec:H1}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] --- the vacuum expectation value
+$\langle|\Theta|^2\rangle_{\mathrm{vac}}$ needed to extract $k$ either depends
+on $n^* = 137$ (circular) or reduces to a normalization convention.
+Neither path derives $k = 1$ from UBT axioms alone.}
+
+\subsection{Deriving $k$ from the kinetic action}
+\label{sec:H1_derivation}
+
+Under the polar decomposition~\eqref{eq:polar}, the kinetic action restricted
+to $\psi$-circle dependence (suppressing the $d^4x$ integral at fixed
+$\langle r^2\rangle = r_{\mathrm{vac}}^2$) becomes:
+\begin{equation}
+  \mathcal{S}_{\mathrm{kin}}[\psi]
+  \;=\;
+  r_{\mathrm{vac}}^2 \int_0^{2\pi} d\psi\;
+  \mathrm{Sc}\bigl[(g^\dagger \partial_\psi g)^\dagger\,(g^\dagger \partial_\psi g)\bigr].
+  \label{eq:S_psi}
+\end{equation}
+
+\noindent\textit{Why this form:} Inserting $\Theta = r_{\mathrm{vac}} g$ with
+$\partial_\psi r_{\mathrm{vac}} = 0$ (we evaluate at the vacuum), and using
+$\partial_\psi g^\dagger = -\omega^\dagger g^\dagger = \omega g^\dagger$
+where $\omega = g^\dagger\partial_\psi g \in \mathfrak{su}(2)$
+(antihermitian: $\omega^\dagger = -\omega$), one obtains
+$(g^\dagger\partial_\psi g)^\dagger = -\omega$ and thus:
+\begin{equation}
+  \mathrm{Sc}\bigl[(g^\dagger\partial_\psi g)^\dagger\,(g^\dagger\partial_\psi g)\bigr]
+  \;=\;
+  \mathrm{Sc}[-\omega^2]
+  \;=\;
+  |\omega|^2
+  \;\equiv\;
+  \omega_1^2 + \omega_2^2 + \omega_3^2,
+  \label{eq:Sc_omega}
+\end{equation}
+where $\omega = \omega_1\mathbf{i} + \omega_2\mathbf{j} + \omega_3\mathbf{k}$
+and we used $\mathbf{e}^2 = -1$ for any $\mathbf{e} \in \{\mathbf{i},\mathbf{j},\mathbf{k}\}$
+so that $\omega^2 = -(|\omega|^2)\mathbf{1}$ (no cross terms because
+$\{\mathbf{e}_a, \mathbf{e}_b\} = -2\delta_{ab}$ in $\mathbb{H}$).
+Hence:
+\begin{equation}
+  \mathcal{S}_{\mathrm{kin}}[\psi]
+  \;=\;
+  r_{\mathrm{vac}}^2 \int_0^{2\pi} d\psi\; |\omega|^2.
+  \label{eq:S_kinematic_psi}
+\end{equation}
+
+\subsection{Standard WZW normalization}
+\label{sec:WZW_norm}
+
+The Wess-Zumino-Witten action on $\mathrm{SU}(2)$ at level $k$ on the circle
+$S^1$ is (in the kinetic-term form, without the topological Wess-Zumino term
+which integrates over a 3-manifold bounding $S^1$):
+\begin{equation}
+  \mathcal{S}_{\mathrm{WZW}}^{(k)}
+  \;=\;
+  -\frac{k}{4\pi}
+  \int_0^{2\pi} d\psi\;
+  \mathrm{Tr}_{\mathrm{fund}}\!\bigl[(g^\dagger\partial_\psi g)^2\bigr],
+  \label{eq:WZW}
+\end{equation}
+where $\mathrm{Tr}_{\mathrm{fund}}$ is the matrix trace in the fundamental
+($2$-dimensional) representation of $\mathrm{SU}(2)$.
+For $\omega = \omega_a(i\sigma_a/2) \in \mathfrak{su}(2)$
+(in terms of Pauli matrices $\sigma_a$):
+\begin{equation}
+  \mathrm{Tr}_{\mathrm{fund}}(\omega^2)
+  \;=\;
+  \mathrm{Tr}_{\mathrm{fund}}\!\left[
+    -\frac{\omega_1^2+\omega_2^2+\omega_3^2}{4}\,I_2
+  \right]
+  \;=\;
+  -\frac{|\omega|^2}{2}.
+  \label{eq:Tr_omega2}
+\end{equation}
+Substituting into \eqref{eq:WZW}:
+\begin{equation}
+  \mathcal{S}_{\mathrm{WZW}}^{(k)}
+  \;=\;
+  \frac{k}{8\pi}
+  \int_0^{2\pi} d\psi\; |\omega|^2.
+  \label{eq:WZW_positive}
+\end{equation}
+
+\subsection{Level identification}
+\label{sec:level_id}
+
+Matching \eqref{eq:S_kinematic_psi} against \eqref{eq:WZW_positive}
+coefficient-by-coefficient:
+\begin{equation}
+  \boxed{
+    k
+    \;=\;
+    8\pi\, r_{\mathrm{vac}}^2
+    \;=\;
+    8\pi\, \langle|\Theta_{\mathrm{real}}|^2\rangle_{\mathrm{vac}}.
+  }
+  \label{eq:k_H1}
+\end{equation}
+\textit{Why the vacuum amplitude matters:} The WZW level $k$ must be a
+positive integer (quantisation condition from the topological Wess-Zumino
+term); Eq.~\eqref{eq:k_H1} says $k$ equals $8\pi$ times the
+squared amplitude of the $\psi$-circle configuration at the vacuum.
+
+\subsection{Can $r_{\mathrm{vac}}^2$ be determined from UBT without $n^*$?}
+\label{sec:r_vac}
+
+There are two natural candidates for $r_{\mathrm{vac}}^2$:
+
+\paragraph{Candidate 1 — from the effective potential minimum.}
+The UBT effective potential $V_{\mathrm{eff}}(n)$ has its minimum at $n^*$.
+In principle, the vacuum amplitude $r_{\mathrm{vac}}^2 = \langle|\Theta|^2\rangle$
+could be extracted from the equations of motion at this minimum.
+However, $n^*$ is the \emph{winding number} (phase variable), not the
+radial amplitude $r$; the two are \emph{conjugate} variables on the
+$\psi$-circle (angle vs.\ radius).
+More concretely, the minimum $n^* = 137$ is the output we are trying
+to derive ($n^* \leftrightarrow \alpha^{-1}$), and any extraction of
+$r_{\mathrm{vac}}$ from $V_{\mathrm{eff}}$ at $n = n^*$ would use $n^*$
+as input.
+
+\begin{observation}[H1 Circularity]
+  \label{obs:H1_circular}
+  If $r_{\mathrm{vac}}^2$ is computed from the vacuum structure of
+  $V_{\mathrm{eff}}(n)$ at $n = n^*$, the result depends on $n^*$,
+  which equals $\alpha^{-1} = 137$.
+  This makes Eq.~\eqref{eq:k_H1} circular:
+  the very quantity ($\alpha^{-1}$) that $k = 1$ is supposed to derive
+  (via $B_{\mathrm{base}} = c_{k=1}\cdot N_{\mathrm{eff}}^{3/2}$) would
+  already appear as an input to $r_{\mathrm{vac}}$.
+\end{observation}
+
+\paragraph{Candidate 2 — canonical normalization convention.}
+The UBT action~\eqref{eq:S_kin} has no explicit coupling-constant prefactor.
+A natural choice is to impose the canonical normalization
+$\mathrm{Sc}[\Theta^\dagger\Theta] = 1$ (dimensionless, in natural units
+$\hbar = c = 1$), giving $r_{\mathrm{vac}}^2 = 1$.
+Then from Eq.~\eqref{eq:k_H1}:
+\begin{equation}
+  k
+  \;=\;
+  8\pi \times 1
+  \;=\;
+  8\pi
+  \;\approx\;
+  25.1,
+  \label{eq:k_convention}
+\end{equation}
+which is not a positive integer.
+Alternatively, rescaling the action as
+$\tilde{\mathcal{S}}_{\mathrm{kin}} = (1/4\pi)\mathcal{S}_{\mathrm{kin}}$
+and $r_{\mathrm{vac}}^2 = 1/(4\pi)$ gives $k = 2$.
+No canonical procedure produces $k = 1$ from the normalization convention alone.
+
+\begin{observation}[H1 normalization non-uniqueness]
+  \label{obs:H1_norm}
+  Under the convention $r_{\mathrm{vac}}^2 = 1$,
+  Eq.~\eqref{eq:k_H1} gives $k = 8\pi \notin \mathbb{Z}$.
+  The level $k = 1$ requires $r_{\mathrm{vac}}^2 = 1/(8\pi)$, which
+  is not distinguished by any algebraic property of
+  $\mathbb{C}\otimes\mathbb{H}$.
+\end{observation}
+
+\textbf{H1 result summary:}
+\begin{itemize}
+  \item $k = 8\pi\, r_{\mathrm{vac}}^2$ (exact formula from kinetic action matching).
+  \item $r_{\mathrm{vac}}^2$ from $V_{\mathrm{eff}}$ minimum: circular ($n^*$ is an output,
+    not an input).
+  \item $r_{\mathrm{vac}}^2 = 1$ (canonical normalization): $k = 8\pi \notin \mathbb{Z}$.
+  \item $k = 1$: requires $r_{\mathrm{vac}}^2 = 1/(8\pi)$, not algebraically
+    natural.
+  \item \textbf{[DEAD END]:} H1 does not derive $k$ from UBT axioms without
+    a free normalization parameter or circular input.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach H2: Absence of Chern-Simons Term}
+\label{sec:H2}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL] --- parity symmetry rigorously excludes
+a Chern-Simons contribution to $k$.
+Combined with the free-boson realisation of the WZW model, this
+identifies $k = 1$ as the \emph{unique minimal consistent level} for
+UBT.
+However, ``minimal'' is a physical argument, not a theorem from
+UBT axioms; $k > 1$ from a non-CS mechanism cannot be excluded by H2 alone.}
+
+\subsection{Structure of the UBT action}
+\label{sec:action_structure}
+
+The full UBT action is:
+\begin{equation}
+  \mathcal{S}[\Theta]
+  \;=\;
+  \mathcal{S}_{\mathrm{kin}}[\Theta]
+  + \mathcal{S}_{\mathrm{pot}}[\Theta],
+  \label{eq:S_full}
+\end{equation}
+where $\mathcal{S}_{\mathrm{kin}}$ is the kinetic term~\eqref{eq:S_kin}
+and $\mathcal{S}_{\mathrm{pot}}$ is the effective potential derived from
+one-loop vacuum polarisation.
+Both terms are built from $\mathrm{Sc}[\Theta^\dagger\Theta]$ and its
+derivatives; no topological density of Chern-Simons type
+$\epsilon^{\mu\nu\rho}\mathrm{Tr}(A_\mu\partial_\nu A_\rho + \tfrac{2}{3}A_\mu A_\nu A_\rho)$
+appears in either term.
+
+\subsection{Parity argument for the absence of CS}
+\label{sec:parity_CS}
+
+\begin{proposition}[No Chern-Simons term in $\mathcal{S}[\Theta]$]
+  \label{prop:no_CS}
+  The action $\mathcal{S}[\Theta]$ contains no Chern-Simons term.
+\end{proposition}
+
+\begin{proof}
+  A Chern-Simons term $\mathcal{S}_{\mathrm{CS}} \propto
+  \int \epsilon^{\mu\nu\rho}\mathrm{Tr}(A_\mu\partial_\nu A_\rho + \cdots)$
+  is odd under the parity transformation $P$: it changes sign when
+  spatial coordinates are reflected ($x^i \to -x^i$), because the
+  Levi-Civita symbol $\epsilon^{\mu\nu\rho}$ is a pseudotensor.
+
+  UBT has an explicit $P$-even/odd decomposition of the $\psi$-circle
+  into the primary sector ($n^* = 137$) and the mirror sector
+  ($n^* = 139$, $CP$-conjugate), where $P$ is a global symmetry of the
+  two-sector system (see \texttt{step1\_psi\_parity.tex}).
+  Since the full theory is $P$-symmetric, no $P$-odd term can appear in
+  $\mathcal{S}[\Theta]$.
+
+  Furthermore, the explicit construction of $\mathcal{S}[\Theta]$ from
+  the biquaternionic norm $\mathrm{Sc}[\Theta^\dagger\Theta]$ shows that
+  every term is $P$-even.
+  \textit{(Why: $\mathrm{Sc}[\Theta^\dagger\Theta] = \sum_k|\Theta_k|^2$
+  is a scalar density under all discrete symmetries; its Lagrangian
+  density transforms as a genuine scalar under $P$.)}
+\end{proof}
+
+\begin{remark}
+  Proposition~\ref{prop:no_CS} is a \emph{structural} result: it follows
+  from the algebra, not from the specific value of any parameter.
+  It holds for all values of $n^*$, in particular without requiring
+  $n^* = 137$.
+\end{remark}
+
+\subsection{The free-boson realisation and the minimal level}
+\label{sec:free_boson}
+
+The $\widehat{\mathrm{SU}(2)}_k$ WZW model at level $k = 1$ is
+\emph{equivalent} to a free Dirac fermion on the circle (via bosonisation)
+or, equivalently, to three free massless real scalars compactified at the
+$\mathrm{SU}(2)_1$ self-dual radius.
+This is the standard textbook result sometimes called the
+``free-fermion point'' or ``Gepner point'' of the WZW model.
+
+More generally, for a non-linear sigma model on $\mathrm{SU}(2)$ with no
+Chern-Simons term:
+\begin{itemize}
+  \item The WZW term (Wess-Zumino topological term) is generated at one
+    loop with level $k = 1$ per fundamental scalar degree of freedom.
+  \item Without a CS term, the only source of a positive integer shift to
+    $k$ is the number of fundamental scalars contributing to the one-loop
+    WZW anomaly.
+  \item A single free real scalar on $\mathrm{SU}(2)$ generates $k = 1$.
+  \item The minimal consistent level for any unitary $\widehat{\mathrm{SU}(2)}$
+    WZW model is $k = 1$ (positivity of the central charge requires
+    $k \geq 1$).
+\end{itemize}
+
+\begin{observation}[H2: Minimal level for UBT]
+  \label{obs:H2_minimal}
+  Since Proposition~\ref{prop:no_CS} rules out a CS term, the UBT
+  $\psi$-circle WZW level $k$ is determined entirely by the kinetic action.
+  The kinetic action~\eqref{eq:S_kin} describes a \emph{free minimally-coupled
+  scalar} $\Theta$ (no higher derivatives, no self-interaction in the kinetic
+  term).
+  By the free-boson/WZW correspondence, this corresponds to the minimal
+  level $k = 1$.
+\end{observation}
+
+\subsection{Limitation of H2}
+\label{sec:H2_limit}
+
+The free-boson/WZW correspondence in Observation~\ref{obs:H2_minimal}
+strictly applies when $\Theta$ is a \emph{real} scalar on $\mathrm{SU}(2)$.
+As noted in Remark~\ref{rem:complex_obstruction}, the UBT field has
+$\Theta_k \in \mathbb{C}$; the correct group manifold for complex biquaternions
+of unit norm is $\mathrm{SL}(2,\mathbb{C})$, not $\mathrm{SU}(2)$.
+The WZW model on $\mathrm{SL}(2,\mathbb{C})$ is a non-compact WZNW model
+(Wess-Zumino-Novikov-Witten) whose level structure differs from the
+$\mathrm{SU}(2)$ case.
+
+Therefore:
+\begin{itemize}
+  \item H2 \emph{proves} that no CS term shifts $k$ upward.
+  \item H2 \emph{motivates} $k = 1$ as the minimal level by the
+    free-boson correspondence, but only rigorously for the real locus
+    $\Theta \in \mathbb{H} \subset \mathbb{C}\otimes\mathbb{H}$.
+  \item H2 does \emph{not} prove that $k = 1$ rather than $k > 1$, because a
+    higher level could arise from the kinetic term normalisation (H1) without
+    any CS contribution, or from the non-compact ($\mathrm{SL}(2,\mathbb{C})$)
+    nature of the full field.
+\end{itemize}
+
+\textbf{H2 result summary:}
+\begin{itemize}
+  \item CS term absent: proved from $P$-symmetry.
+  \item Minimal consistent level without CS: $k = 1$ (free-boson correspondence).
+  \item Restriction: free-boson correspondence is rigorous only on the real
+    $\mathrm{SU}(2)$ locus; the full complex-valued UBT field could have
+    $k > 1$ from the kinetic normalisation.
+  \item \textbf{[PARTIAL]:} H2 proves absence of CS and identifies $k = 1$
+    as the natural minimal level, but does not uniquely force $k = 1$ for
+    the full $\mathbb{C}\otimes\mathbb{H}$ theory.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach H3: Dynkin Index Counting}
+\label{sec:H3}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] --- the natural representation-theoretic
+counting of the $N_{\mathrm{eff}} = 12$ modes gives $k = 3/2$
+(half-integer), which yields
+$c_{\widehat{\mathrm{SU}(2)},3/2} = 9/7 \approx 1.286$ and
+$B_{\mathrm{base}} \approx 53.5 \neq 41.57$.
+Alternative representations (adjoint, $k=1$ from two modes) also fail.}
+
+\subsection{Dynkin index formula for the WZW level}
+\label{sec:H3_formula}
+
+In the operator-algebraic derivation of WZW models, the level $k$ of
+$\widehat{\mathfrak{g}}_k$ equals the sum of Dynkin indices over all
+field modes contributing to the current algebra:
+\begin{equation}
+  k
+  \;=\;
+  \sum_i n_i \cdot T(\mathrm{rep}_i),
+  \label{eq:k_Dynkin}
+\end{equation}
+where $n_i$ is the multiplicity of representation $\mathrm{rep}_i$ and
+$T(\mathrm{rep})$ is the Dynkin index (normalised so that the fundamental
+representation of $\mathrm{SU}(N)$ has $T = 1/2$).
+
+For $\mathrm{SU}(2)$: $T(\mathbf{1}) = 0$, $T(\mathbf{2}) = 1/2$,
+$T(\mathbf{3}) = 2$, $T(\mathbf{j+1}) = j(j+1)(2j+1)/3$.
+
+\subsection{The three imaginary components as $\mathrm{SU}(2)$ representations}
+\label{sec:H3_reps}
+
+The three imaginary quaternion directions
+$\{\mathbf{i},\mathbf{j},\mathbf{k}\} \cong \mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$
+form the adjoint representation $\mathbf{3}$ of $\mathrm{SU}(2)$.
+However, each $\Phi_k \in \mathbb{C}$ carries a \emph{complex} degree of
+freedom.
+A complex scalar in the fundamental $\mathbf{2}$ has $T = 1/2$; a real
+scalar in the $\mathbf{3}$ has $T = 2$; a complex scalar in the $\mathbf{3}$
+has $T = 2$.
+
+\paragraph{Case A --- Three fundamental modes ($N_{\mathrm{phases}} = 3$, each in $\mathbf{2}$):}
+\begin{equation}
+  k_A
+  \;=\;
+  3 \times T(\mathbf{2})
+  \;=\;
+  3 \times \tfrac{1}{2}
+  \;=\;
+  \tfrac{3}{2}.
+  \label{eq:k_A}
+\end{equation}
+For $k = 3/2$ (half-integer levels are allowed in $\widehat{\mathrm{SU}(2)}$):
+\begin{equation}
+  c_{\widehat{\mathrm{SU}(2)},\,3/2}
+  \;=\;
+  \frac{3 \times 3/2}{3/2 + 2}
+  \;=\;
+  \frac{9/2}{7/2}
+  \;=\;
+  \frac{9}{7}
+  \;\approx\;
+  1.286.
+  \label{eq:c_k32}
+\end{equation}
+\begin{equation}
+  B_{\mathrm{base}}(k=3/2)
+  \;=\;
+  c_{\widehat{\mathrm{SU}(2)},\,3/2} \times N_{\mathrm{eff}}^{3/2}
+  \;=\;
+  \tfrac{9}{7} \times 41.57
+  \;\approx\;
+  53.4.
+  \label{eq:B_k32}
+\end{equation}
+This is $28\%$ above the target $41.57$.
+\textbf{[DEAD END] for $k_A = 3/2$.}
+
+\paragraph{Case B --- One adjoint mode ($\mathbf{3}$):}
+\begin{equation}
+  k_B
+  \;=\;
+  1 \times T(\mathbf{3})
+  \;=\;
+  2.
+  \label{eq:k_B}
+\end{equation}
+\begin{equation}
+  c_{\widehat{\mathrm{SU}(2)},\,2}
+  \;=\;
+  \frac{3 \times 2}{2 + 2}
+  \;=\;
+  \frac{6}{4}
+  \;=\;
+  \frac{3}{2}.
+  \label{eq:c_k2}
+\end{equation}
+\begin{equation}
+  B_{\mathrm{base}}(k=2)
+  \;=\;
+  \tfrac{3}{2} \times 41.57
+  \;\approx\;
+  62.4.
+  \label{eq:B_k2}
+\end{equation}
+\textbf{[DEAD END] for $k_B = 2$.}
+
+\paragraph{Case C --- $N_{\mathrm{eff}} = 12$ modes, each in $\mathbf{2}$:}
+\begin{equation}
+  k_C
+  \;=\;
+  12 \times T(\mathbf{2})
+  \;=\;
+  12 \times \tfrac{1}{2}
+  \;=\;
+  6.
+  \label{eq:k_C}
+\end{equation}
+\begin{equation}
+  c_{\widehat{\mathrm{SU}(2)},\,6}
+  \;=\;
+  \frac{3 \times 6}{6 + 2}
+  \;=\;
+  \frac{18}{8}
+  \;=\;
+  \frac{9}{4}
+  \;=\;
+  2.25.
+  \label{eq:c_k6}
+\end{equation}
+\begin{equation}
+  B_{\mathrm{base}}(k=6)
+  \;=\;
+  2.25 \times 41.57
+  \;\approx\;
+  93.5.
+  \label{eq:B_k6}
+\end{equation}
+\textbf{[DEAD END] for $k_C = 6$.}
+
+\paragraph{Could $k = 1$ arise from H3?}
+For $k = 1$ from Eq.~\eqref{eq:k_Dynkin}, we need:
+$\sum_i n_i T(\mathrm{rep}_i) = 1$.
+The natural options:
+\begin{itemize}
+  \item $n = 2$, $T = 1/2$ (two fundamental modes): $k = 1$.
+    But the UBT derivation fixes $N_{\mathrm{phases}} = 3$ (proved algebraically
+    from $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$), not $2$.
+    Reducing to $2$ modes would contradict the proved value.
+  \item $n = 1$, $T = 1$: requires a spin-$j$ representation with
+    $T(j) = j(j+1)(2j+1)/3 = 1$, giving $j \approx 0.77$ --- not a
+    half-integer. No such representation exists in $\mathrm{SU}(2)$.
+\end{itemize}
+No natural combination of $\mathrm{SU}(2)$ representations with
+$N_{\mathrm{phases}} = 3$ modes gives $k = 1$ exactly.
+
+\begin{center}
+\begin{tabular}{lllll}
+  \toprule
+  Representation & $n$ modes & $T(\mathrm{rep})$ & $k$ & $B_{\mathrm{base}}$ \\
+  \midrule
+  $\mathbf{2}$ (fundamental) & 3 & $1/2$ & $3/2$ & $53.4$ \quad [DEAD END] \\
+  $\mathbf{3}$ (adjoint) & 1 & $2$ & $2$ & $62.4$ \quad [DEAD END] \\
+  $\mathbf{2}$ (fundamental) & 12 & $1/2$ & $6$ & $93.5$ \quad [DEAD END] \\
+  $\mathbf{2}$ (fundamental) & 2 & $1/2$ & $1$ & $41.57$ \quad [CONTRADICTS $N_{\mathrm{phases}}=3$] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{H3 result summary:}
+\begin{itemize}
+  \item Most natural counting ($N_{\mathrm{phases}} = 3$, fund.\ rep.):
+    $k = 3/2$, $B_{\mathrm{base}} \approx 53.4 \neq 41.57$.
+  \item Adjoint rep: $k = 2$, $B_{\mathrm{base}} \approx 62.4 \neq 41.57$.
+  \item $k = 1$ requires $n = 2$ fundamental modes, contradicting the
+    proved $N_{\mathrm{phases}} = 3$.
+  \item \textbf{[DEAD END]:} No natural $\mathrm{SU}(2)$-representation
+    assignment to the UBT modes with $N_{\mathrm{phases}} = 3$ gives $k = 1$.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Synthesis and Conclusion}
+\label{sec:synthesis}
+%--------------------------------------------------------------------
+
+\subsection{Comparison of H1--H3}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Result & Status \\
+  \midrule
+  H1: WZW normalization
+    & $k = 8\pi r_{\mathrm{vac}}^2$; $r_{\mathrm{vac}}$ unknown
+    & \textbf{[DEAD END]} \\
+  H1 (variant): canonical $r^2 = 1$
+    & $k = 8\pi \notin \mathbb{Z}$
+    & \textbf{[DEAD END]} \\
+  H2: Absence of CS term
+    & No CS shift; $k=1$ is minimal free-scalar level
+    & \textbf{[PARTIAL]} \\
+  H3: $N_{\mathrm{phases}}=3$ fundamental modes
+    & $k = 3/2$; $B_{\mathrm{base}} = 53.4$
+    & \textbf{[DEAD END]} \\
+  H3: adjoint ($\mathbf{3}$)
+    & $k = 2$; $B_{\mathrm{base}} = 62.4$
+    & \textbf{[DEAD END]} \\
+  H3: 2 fundamental modes
+    & $k = 1$; contradicts $N_{\mathrm{phases}}=3$
+    & \textbf{[DEAD END]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Is $k = 1$ proved?}
+
+\textbf{Short answer: No.}
+None of H1--H3 derives $k = 1$ from UBT first principles without either
+(a) introducing a normalization convention (H1), (b) relying on the
+real-locus approximation $\Theta \in \mathbb{H}$ (H2), or (c) contradicting
+the proved value $N_{\mathrm{phases}} = 3$ (H3).
+
+\textbf{Best positive result:}
+H2 (absence of Chern-Simons) establishes that no integer uplift of $k$
+comes from a CS term, and the free-boson correspondence identifies
+$k = 1$ as the unique minimal level for a free scalar on the $\mathrm{SU}(2)$
+locus.
+This strengthens the motivation for $k = 1$ beyond the original G3
+observation, but does not constitute a proof.
+
+\textbf{Key obstruction:}
+The full UBT field is complex-valued ($\Theta_k \in \mathbb{C}$), and unit-norm
+complex biquaternions form $\mathrm{SL}(2,\mathbb{C})$ rather than $\mathrm{SU}(2)$.
+The WZW theory for $\mathrm{SL}(2,\mathbb{C})$ is a non-unitary, non-compact
+model; the standard level-quantisation argument does not apply.
+Resolving this obstruction — either by projecting to $\mathrm{SU}(2)$ with
+a rigorous justification, or by analysing the non-compact WZW model for
+$\mathrm{SL}(2,\mathbb{C})$ --- is the concrete next step.
+
+%--------------------------------------------------------------------
+\section{Updated Gap Status}
+\label{sec:gaps}
+%--------------------------------------------------------------------
+
+\begin{gap}[Gap (G3-k): Level of $\widehat{\mathrm{SU}(2)}$ in UBT — updated]
+  \label{gap:G3_k_updated}
+  \textbf{Previous status (b\_base\_g\_approaches.tex):} [OPEN]
+
+  \textbf{After H1--H3:} [PARTIAL PROGRESS]
+
+  \begin{itemize}
+    \item H2 proves: no Chern-Simons term, hence no CS contribution to $k$.
+    \item H2 motivates: $k = 1$ is the minimal consistent level for the
+      $\mathrm{SU}(2)$ locus of the UBT field.
+    \item H1 shows: $k$ is not uniquely determined from the kinetic
+      action without knowing $r_{\mathrm{vac}}$, which is either circular
+      (from $n^*$) or a free normalization convention.
+    \item H3 shows: the natural Dynkin-index counting with $N_{\mathrm{phases}}=3$
+      gives $k = 3/2$ (wrong $B_{\mathrm{base}}$), not $k = 1$.
+    \item Key open question: Can the restriction $\Theta \in \mathrm{SU}(2)$
+      (real locus) be justified from UBT axioms?
+      If yes, H2 promotes $k = 1$ to [MOTIVATED ARGUMENT].
+  \end{itemize}
+  Status: \textbf{[PARTIAL --- no-CS proved; $k=1$ minimal but not uniquely forced]}.
+\end{gap}
+
+\begin{gap}[Gap (H-complex): WZW theory for $\mathrm{SL}(2,\mathbb{C})$ on $\psi$-circle]
+  \label{gap:H_complex}
+  The correct WZW/WZNW analysis for unit-norm complex biquaternions uses
+  the non-compact group $\mathrm{SL}(2,\mathbb{C})$ rather than $\mathrm{SU}(2)$.
+  The representation theory of $\widehat{\mathfrak{sl}}(2,\mathbb{C})_k$
+  (non-compact WZW model) allows non-integer and even complex levels $k$.
+  Determining the level for the UBT $\psi$-circle action in the
+  non-compact setting is the next concrete direction.
+  Status: \textbf{[OPEN --- new gap identified by H1--H3 analysis]}.
+\end{gap}
+
+\medskip
+\noindent\textbf{Impact on $B_{\mathrm{base}}$ status:}
+The overall status of $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ remains
+\textbf{[MOTIVATED CONJECTURE]}.
+The H2 result (no CS term + minimal level $k = 1$ on the $\mathrm{SU}(2)$
+locus) provides an additional motivation alongside Approach A2
+(Gaussian path integral) and G3 ($k=1$ matches $B_{\mathrm{base}}$ exactly),
+but does not close the derivation.
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+We tried three methods to determine the ``level'' $k$ --- a positive
+integer that labels how strong a symmetry algebra is on the imaginary-time
+circle of UBT.
+The reason $k$ matters: if $k = 1$, then the Kac-Moody central charge
+equals exactly $1$, and the formula $B_{\mathrm{base}} = c \cdot N_{\mathrm{eff}}^{3/2}$
+gives the correct value $41.57$ with no free parameters.
+If $k \neq 1$, the formula fails.
+
+\textbf{Method H1 (WZW normalization):}
+We computed the coefficient in front of the kinetic energy of the group-valued
+part of $\Theta$ on the imaginary-time circle, and compared it to the
+standard formula for the $k$-th level WZW model.
+The result is: $k$ equals $8\pi$ times the squared ``amplitude'' of the
+field at the vacuum.
+The problem is that we do not know this vacuum amplitude independently:
+reading it off the vacuum structure of the effective potential would
+require knowing $\alpha^{-1} = 137$ in advance (circular),
+and the ``natural'' normalization ($|\Theta|^2 = 1$) gives $k = 8\pi \approx 25$,
+which is not an integer.
+\textit{Dead end.}
+
+\textbf{Method H2 (No Chern-Simons term):}
+We showed --- rigorously --- that the UBT action contains no
+Chern-Simons term.
+Such a term is ``P-odd'' (it changes sign when you look at it in a
+mirror), but UBT has a mirror sector (the twin-prime sector at $n^*=139$),
+so the full theory is mirror-symmetric and a CS term is forbidden.
+Without a CS term, the level $k$ receives no extra integer contribution.
+The known physics of free scalar fields on the sphere $S^3$ tells us
+that the minimal consistent level is $k = 1$.
+So H2 gives a strong physical argument for $k = 1$ (no extra contributions +
+free scalar gives minimal level), but it is not a full proof:
+the UBT field is \emph{complex}-valued, and the free-scalar/$k=1$ argument
+strictly applies only to \emph{real}-valued fields on $S^3$.
+\textit{Partial result: motivates $k = 1$, but does not prove it.}
+
+\textbf{Method H3 (Counting representations):}
+We tried to compute $k$ by adding up the ``weight'' (Dynkin index) of
+each UBT field mode.
+UBT has $N_{\mathrm{phases}} = 3$ imaginary components, each transforming
+under $\mathrm{SU}(2)$.
+If each transforms as the fundamental (spin-$\tfrac{1}{2}$) representation,
+we get $k = 3 \times \tfrac{1}{2} = \tfrac{3}{2}$.
+The central charge at $k = \tfrac{3}{2}$ is $\tfrac{9}{7}$, which gives
+$B_{\mathrm{base}} \approx 53.4$ --- $28\%$ too large.
+The only way to get $k = 1$ from this counting is to use $n = 2$
+(not $3$) modes, contradicting the proved value $N_{\mathrm{phases}} = 3$.
+\textit{Dead end.}
+
+\textbf{Overall verdict:}
+After three new approaches, $k = 1$ remains well-motivated but not proved.
+The strongest new result is the rigorous \emph{absence} of a Chern-Simons
+term (H2), which removes one potential obstruction and focuses the search.
+The key open question is whether the complex-valued UBT field effectively
+reduces to a real-valued field on the $\mathrm{SU}(2) = S^3$ submanifold
+of $\mathbb{C}\otimes\mathbb{H}$; if yes, $k = 1$ follows from standard
+free-scalar/WZW theory.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

@@ -442,6 +442,65 @@ Reference: `consolidation_project/alpha_derivation/b_base_g_approaches.tex`
 
 ---
 
+### Approaches H1, H2, H3 (v67, 2026-03-08) — Kac-Moody level k from UBT action
+
+(`consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`)
+
+Gap (G3-k) from v65 required a direct computation of the Kac-Moody level k from S[Θ] on
+the ψ-circle.  Three independent approaches were investigated.  Inputs: S[Θ], N_eff=12,
+ψ∈[0,2π) only — no α⁻¹=137 used anywhere.
+
+**H1 — WZW normalization → [DEAD END]**
+
+Polar decomposition Θ = r·g (r ∈ ℝ≥₀, g ∈ SU(2)) inserted into the ψ-circle kinetic
+term gives k = 8π·⟨|Θ|²⟩_vac (exact formula from coefficient matching to the standard
+WZW action).  The vacuum amplitude ⟨|Θ|²⟩_vac cannot be determined independently:
+reading it from V_eff at its minimum uses n* as input (circular), and the canonical
+normalization |Θ|² = 1 gives k = 8π ≈ 25.1, which is not an integer.  k = 1 would
+require ⟨|Θ|²⟩_vac = 1/(8π), which has no algebraic justification.
+
+**H2 — Absence of Chern-Simons term → [PARTIAL]**
+
+A Chern-Simons term in S[Θ] would provide an integer uplift to k beyond the kinetic-term
+value.  CS terms are P-odd (they change sign under spatial reflection).  UBT has a
+mirror sector (n*=139, CP-conjugate), making P a global symmetry of the full theory; hence
+no P-odd term can appear in S[Θ].  Furthermore, every term in the explicit S[Θ] = S_kin +
+S_pot is built from the scalar biquaternion norm Sc[Θ†Θ], which is manifestly P-even.
+**The absence of CS is thus a rigorous structural result.**  Without a CS term, the WZW
+free-boson/minimal-coupling correspondence identifies k = 1 as the minimal consistent
+level.  *Limitation:* this argument applies strictly to real-valued fields on SU(2) = S³;
+the full complex-valued UBT field Θ ∈ ℂ⊗ℍ has unit-norm configurations in SL(2,ℂ) (not
+SU(2)), and the non-compact WZW model for SL(2,ℂ) allows non-integer levels.
+
+**H3 — Dynkin index counting → [DEAD END]**
+
+WZW level k = Σ_i n_i · T(rep_i) over all modes.  For SU(2): T(fund, j=1/2) = 1/2.
+The N_phases = 3 imaginary components Φ_k (k=1,2,3) contribute:
+- 3 fundamental modes: k = 3 × 1/2 = 3/2; c = 9/7 ≈ 1.286; B_base ≈ 53.4 ≠ 41.57.
+- 1 adjoint (3-dim) mode: k = 1 × 2 = 2; c = 3/2; B_base ≈ 62.4 ≠ 41.57.
+- k = 1 requires n = 2 fundamental modes, contradicting proved N_phases = 3.
+No natural SU(2)-representation assignment with N_phases = 3 gives k = 1.
+
+**New Gap (H-complex):** The rigorous WZW analysis requires the non-compact SL(2,ℂ)
+WZNW model for complex-valued biquaternion fields.  The level structure for
+sl̂(2,ℂ)_k allows non-integer and complex k; determining the correct level for UBT in
+this non-compact setting is the next concrete direction.
+
+**Gap (G3-k) update:** [OPEN] → [PARTIAL].  H2 rigorously establishes no-CS; free-scalar/
+WZW correspondence on the SU(2) locus gives k = 1 as the minimal level.  Not proved for
+the full complex field.
+
+**Overall status after 25 approaches (A1–H3)**:
+
+B_base = N_eff^{3/2} = 41.57 is supported by A2 [MOTIVATED CONJECTURE] and consistent
+with G3 k=1/H2 [PARTIAL].  H2 adds the new structural result: CS term rigorously absent.
+All 23 other approaches are dead ends.  The remaining concrete open directions are Gap
+(H-complex) (SL(2,ℂ) WZNW level) and Gap (G8) (modular weight of UBT partition function).
+
+Reference: `consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`
+
+---
+
 ### No-Circularity Test (mandatory)
 
 The B coefficient derivation must not be circular (i.e., B must be derived without
@@ -468,7 +527,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex`; **v67 (25 approaches total): H1 WZW norm [DEAD END] (k=8π·r²_vac; circular or non-integer); H2 no-CS [PARTIAL] (P-symmetry rigorously excludes CS; k=1 is minimal free-scalar level; non-compact SL(2,ℂ) caveat); H3 Dynkin index [DEAD END] (k=3/2 for N_phases=3 fund.\ reps; B_base≈53.4); Gap (G3-k): OPEN→PARTIAL; new Gap (H-complex): SL(2,ℂ) WZNW level** — see `b_base_kac_moody_level.tex` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
