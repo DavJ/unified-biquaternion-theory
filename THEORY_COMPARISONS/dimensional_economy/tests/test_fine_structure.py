@@ -196,10 +196,13 @@ class TestProvedSummary:
         summary = fine_structure_proved_summary()
         assert any('Proved' in summary[k] for k in summary if 'B' in k and 'loop' in k)
 
-    def test_B_base_is_open(self):
-        """B_base is listed as Open Hard Problem."""
+    def test_B_base_is_motivated_conjecture(self):
+        """B_base is listed as Motivated Conjecture with explicit gap."""
         summary = fine_structure_proved_summary()
-        assert any('Open' in summary[k] for k in summary if 'B_base' in k or 'base' in k.lower())
+        assert any(
+            'Conjecture' in summary[k] and 'gap' in summary[k]
+            for k in summary if 'B_base' in k or 'base' in k.lower()
+        )
 
     def test_all_entries_have_status(self):
         """Every entry in the summary has a non-empty status string."""

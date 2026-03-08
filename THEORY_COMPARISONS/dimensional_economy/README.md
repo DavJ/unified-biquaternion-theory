@@ -90,7 +90,7 @@ Generation identification Θ₀↔e, Θ₁↔μ, Θ₂↔τ is a conjecture; mas
 | Dirac quantisation condition | **Proved [L0]** — single-valuedness of Θ |
 | N_eff = 12 = 3×2×2 | **Proved [L0]** — SM gauge degrees of freedom |
 | B₀ = 2π·N_eff/3 = 8π ≈ 25.13 | **Proved [L1]** — one-loop baseline |
-| B_base = N_eff^{3/2} = 41.57 | **Open Hard Problem A** — no derivation |
+| B_base = N_eff^{3/2} = 41.57 | **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2; see `b_base_hausdorff.tex` |
 | α⁻¹ = 137.036 | **Semi-empirical** — B_base required |
 
 ---
