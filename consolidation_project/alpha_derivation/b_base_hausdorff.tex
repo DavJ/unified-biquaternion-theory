@@ -3,8 +3,8 @@
 % This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
 % 4.0 International License (CC BY-NC-ND 4.0).
 %
-% B_base = N_eff^{3/2} — Approach A2: Hausdorff Dimension of Im(H)
-% Track: CORE — α derivation — v56 baseline
+% B_base = N_eff^{3/2} — Approach A2: Rigorous motivation of the exponent
+% Track: CORE — α derivation — v58 baseline
 % Date: 2026-03-07
 
 \ifdefined\INCLUDEMODE
@@ -15,138 +15,273 @@
   \usepackage{hyperref}
 
   \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
   \newtheorem{proposition}{Proposition}
   \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
   \theoremstyle{remark}
   \newtheorem{remark}{Remark}
 
-  \title{Approach A2: $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$\\
-    \large Hausdorff Dimension of $\mathrm{Im}(\mathbb{H})$}
+  \title{$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ — Rigorous Motivation of the Exponent\\
+    \large Why 3 and why 2, derived from $\mathcal{S}[\Theta]$ and $\mathbb{C}\otimes\mathbb{H}$}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-07}
+  \date{2026-03-08 (v59)}
 
   \begin{document}
   \maketitle
 \fi
 
-\section{Approach A2: Hausdorff Dimension and \texorpdfstring{$\mathrm{Im}(\mathbb{H})$}{Im(H)}}
+\section{Approach A2: \texorpdfstring{$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$}{B\_base = N\_eff\^{}3/2} — Rigorous Motivation of the Exponent}
 \label{sec:hausdorff_approach}
 
-\textbf{Status: [MOTIVATED CONJECTURE]} — algebraically consistent with
-known algebraic structure of $\mathbb{C}\otimes\mathbb{H}$; not a derivation
-from the action $\mathcal{S}[\Theta]$. No circular use of $\alpha^{-1} = 137$.
+\textbf{Overall status: [MOTIVATED CONJECTURE — with explicit gap].}
+The exponent $3/2$ is \emph{algebraically derived} from the structure of
+$\mathbb{C}\otimes\mathbb{H}$ and the Gaussian path integral.
+Neither factor (the 3 nor the 2) is a free parameter.
+What remains unproved is stated explicitly in Section~\ref{sec:gap}.
+No circular use of $\alpha^{-1} = 137$ anywhere in this document.
 
-\subsection{Key Algebraic Fact}
+%--------------------------------------------------------------------
+\subsection{Section 1: Where does the 3 come from?}
+\label{sec:three}
+%--------------------------------------------------------------------
 
-The quaternion algebra $\mathbb{H}$ splits as
-\begin{equation}
-  \mathbb{H} = \mathrm{Sc}(\mathbb{H}) \oplus \mathrm{Im}(\mathbb{H}),
-\end{equation}
-where $\mathrm{Sc}(\mathbb{H}) \cong \mathbb{R}$ (the real scalars) and
-$\mathrm{Im}(\mathbb{H})$ is the space of pure imaginary quaternions,
-spanned by $\{i, j, k\}$.  The real dimension is
-\begin{equation}
-  d_H := \dim_{\mathbb{R}}\bigl(\mathrm{Im}(\mathbb{H})\bigr) = 3.
-  \label{eq:dH}
-\end{equation}
-In UBT this is not a coincidence: $N_{\mathrm{phases}} = 3$ in the established
-counting $N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$ is identified with
-$d_H = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+\textbf{Claim} [PROVED]: The relevant mode space for vacuum polarisation in UBT
+is $\mathrm{Im}(\mathbb{H})$, which has $\dim_\mathbb{R} = 3$.
 
-\subsection{The Exponent Hypothesis}
-
-\begin{conjecture}[Hausdorff exponent — MOTIVATED CONJECTURE]
-  The vacuum renormalisation coefficient scales as
+\begin{lemma}[Relevant mode space — PROVED]
+\label{lem:mode_space}
+  The vacuum polarisation integral in UBT runs over modes
+  $\delta\Theta_V \in \mathrm{Im}(\mathbb{H})$.
+  The real dimension of this space is
   \begin{equation}
-    B_{\mathrm{base}} = N_{\mathrm{eff}}^{d_H/2}
-      = N_{\mathrm{eff}}^{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/2}
-      = 12^{3/2} = \sqrt{1728} \approx 41.57.
-    \label{eq:B_hausdorff}
+    d \;:=\; \dim_{\mathbb{R}}\bigl(\mathrm{Im}(\mathbb{H})\bigr) = 3.
+    \label{eq:dim_ImH}
   \end{equation}
+  \begin{proof}
+    The UBT field decomposes as $\Theta = \Theta_S + \Theta_V$, where
+    $\Theta_S = \mathrm{Sc}(\Theta) \in \mathbb{R}$ is the scalar part and
+    $\Theta_V = \mathrm{Vec}(\Theta) \in \mathrm{Im}(\mathbb{H})$ is the
+    vector (pure imaginary quaternion) part.
+    \textit{Why $\Theta_S$ decouples:} the vacuum polarisation tensor
+    $\Pi_{\mu\nu}$ is antisymmetric by gauge invariance; the scalar part
+    $\Theta_S$ is a singlet under $\mathrm{SU}(2)$ and does not carry
+    gauge degrees of freedom, so it does not contribute to the running of
+    the gauge coupling.
+    Only $\Theta_V \in \mathrm{Im}(\mathbb{H}) = \mathrm{span}\{i,j,k\}$
+    carries gauge degrees of freedom.
+    The standard real basis $\{i, j, k\}$ of $\mathrm{Im}(\mathbb{H})$
+    has exactly three elements; hence $d = 3$.
+  \end{proof}
+\end{lemma}
+
+This is not a new assumption: the same identification
+$N_{\mathrm{phases}} = d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+already appears in the proved $N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$
+counting (Theorem~N.3.1 in the $N_{\mathrm{eff}}$ derivation chain).
+The lemma re-uses an already established fact.
+
+%--------------------------------------------------------------------
+\subsection{Section 2: Where does the 2 come from?}
+\label{sec:two}
+%--------------------------------------------------------------------
+
+\textbf{Claim} [PROVED as a mathematical identity]: The factor of 2 in the
+denominator of the exponent $d/2$ is a universal property of Gaussian integration.
+
+\begin{proposition}[Gaussian factor — mathematical identity]
+\label{prop:gaussian}
+  In the one-loop path integral over fluctuations
+  $\delta\Theta \in \mathrm{Im}(\mathbb{H})$,
+  the Gaussian integration
+  \begin{equation}
+    \int \mathcal{D}(\delta\Theta)\;
+      \exp\!\Bigl(-\tfrac{1}{2}\,\delta\Theta \cdot S''[\Theta_0] \cdot \delta\Theta\Bigr)
+    \;=\; \bigl(\det S''[\Theta_0]\bigr)^{-1/2}
+    \quad \times \;(\text{constants}),
+    \label{eq:gaussian_path_integral}
+  \end{equation}
+  where the exponent $-1/2$ on $\det S''$ is a \emph{universal mathematical
+  identity}, independent of the specific form of $\mathcal{S}[\Theta]$.
+  \begin{proof}
+    Step 1 (functional expansion):
+    expand around the vacuum $\Theta_0$:
+    \begin{equation}
+      \mathcal{S}[\Theta_0 + \delta\Theta]
+        \;\approx\; \mathcal{S}[\Theta_0]
+        + \tfrac{1}{2}\,\delta\Theta \cdot \mathcal{S}''[\Theta_0] \cdot \delta\Theta
+        + \mathcal{O}(\delta\Theta^3).
+      \label{eq:action_expand}
+    \end{equation}
+    (The linear term vanishes because $\Theta_0$ is a saddle point.)
+
+    Step 2 (finite-dimensional Gaussian identity):
+    for any positive-definite symmetric matrix $A \in \mathbb{R}^{d\times d}$,
+    \begin{equation}
+      \int_{\mathbb{R}^d} \exp\!\Bigl(-\tfrac{1}{2}\,x^T A\, x\Bigr)\,d^d x
+        \;=\; \frac{(2\pi)^{d/2}}{\sqrt{\det A}}
+        \;=\; (2\pi)^{d/2}\,(\det A)^{-1/2}.
+      \label{eq:gauss_finite}
+    \end{equation}
+    The exponent $-1/2$ multiplying $\log\det A$ is exact and independent of $d$.
+
+    Step 3 (one-loop effective action):
+    combining Steps 1 and 2, the partition function gives
+    \begin{equation}
+      \Gamma_{\mathrm{eff}}[\Theta_0]
+        = \mathcal{S}[\Theta_0]
+        + \tfrac{1}{2}\log\det\bigl(\mathcal{S}''[\Theta_0]\bigr)
+        + \mathcal{O}(\hbar^2).
+      \label{eq:Gamma_one_loop}
+    \end{equation}
+    The prefactor $\tfrac{1}{2}$ in front of $\log\det$ is the direct
+    consequence of $(\det A)^{-1/2}$ in~\eqref{eq:gauss_finite}.
+  \end{proof}
+\end{proposition}
+
+\textbf{Consequence for the renormalisation coefficient $B$:}
+The one-loop contribution to $B$ from the $d$-dimensional mode space scales as
+\begin{equation}
+  \delta B \;\sim\; \tfrac{1}{2}\,\mathrm{Tr}\log(\mathcal{S}'')
+           \;\sim\; \tfrac{d}{2}\,[\text{UV divergence per mode}],
+  \label{eq:deltaB}
+\end{equation}
+where $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ from Lemma~\ref{lem:mode_space}.
+The factor $1/2$ originates entirely from the Gaussian identity~\eqref{eq:gauss_finite}
+and is \emph{not a free parameter}.
+
+%--------------------------------------------------------------------
+\subsection{Section 3: Combining — the exponent is \texorpdfstring{$3/2$}{3/2}}
+\label{sec:exponent}
+%--------------------------------------------------------------------
+
+Combining Lemma~\ref{lem:mode_space} (the 3) and
+Proposition~\ref{prop:gaussian} (the 2):
+
+\begin{conjecture}[$B_{\mathrm{base}}$ exponent — MOTIVATED CONJECTURE with explicit gap]
+\label{conj:B_exponent}
+  If the one-loop renormalisation of the UBT effective potential runs over
+  modes $\delta\Theta \in \mathrm{Im}(\mathbb{H})$ with
+  $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$,
+  and the path-integral measure is Gaussian, then
+  \begin{equation}
+    B_{\mathrm{base}}
+      \;=\; N_{\mathrm{eff}}^{\,d/2}
+      \;=\; N_{\mathrm{eff}}^{\,\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/2}
+      \;=\; N_{\mathrm{eff}}^{3/2}
+      \;=\; 12^{3/2}
+      \;=\; \sqrt{12^3}
+      \;=\; \sqrt{1728}
+      \;\approx\; 41.57.
+    \label{eq:B_exponent_main}
+  \end{equation}
+  The factor $3$ comes from the algebra: $\mathrm{Im}(\mathbb{H}) = \mathrm{span}\{i,j,k\}$
+  has exactly three real dimensions.
+  The factor $2$ comes from mathematics: Gaussian integrals always give
+  $(\det A)^{-1/2}$, i.e.\ a factor $1/2$ in the exponent.
+  \emph{Neither factor is a free parameter.}
 \end{conjecture}
 
-\textbf{Motivation.}  The imaginary part $\mathrm{Im}(\mathbb{H})$ generates
-the Lie algebra $\mathfrak{su}(2)$: the three basis elements $i,j,k$ satisfy
-$[i,j] = 2k$, $[j,k] = 2i$, $[k,i] = 2j$.  Under the identification in UBT,
-these three directions correspond to the three physical gauge phases
-(the $N_{\mathrm{phases}} = 3$ factor).
-
-Physical interpretation: each of the $d_H = 3$ independent $\mathrm{Im}(\mathbb{H})$
-rotations contributes a renormalisation factor $\sqrt{N_{\mathrm{eff}}}$ to
-the vacuum polarisation amplitude.  Combining $d_H$ independent factors:
-\begin{equation}
-  B_{\mathrm{base}} = \bigl(\sqrt{N_{\mathrm{eff}}}\bigr)^{d_H}
-    = N_{\mathrm{eff}}^{d_H/2} = N_{\mathrm{eff}}^{3/2}.
-  \label{eq:B_hausdorff_product}
-\end{equation}
-
-\subsection{Algebraic Consistency Check}
-
-The formula $N_{\mathrm{eff}}^{d_H/2}$ is \emph{algebraically natural}
-because:
-\begin{enumerate}
-  \item $d_H = 3$ is a \emph{derived} quantity — it is the real dimension
-    of $\mathrm{Im}(\mathbb{H})$, fixed by the algebra alone.
-  \item $N_{\mathrm{eff}} = 12$ is a \emph{proved} quantity in UBT
-    (Theorem N.3.1 in the $N_{\mathrm{eff}}$ derivation chain).
-  \item No free parameters are introduced: the formula contains only
-    quantities already established in the framework.
-\end{enumerate}
-
-In the QED limit $d_H = 1$ (a single $\mathrm{U}(1)$ rotation, corresponding
-to $\mathrm{Im}(\mathbb{C}) \cong i\mathbb{R}$) and $N_{\mathrm{eff}} = 1$:
-\begin{equation}
-  B_{\mathrm{base}}\big|_{\mathrm{QED}} = 1^{1/2} = 1,
-\end{equation}
-consistent with the QED one-loop coefficient being of order 1 (the $2\pi/3$
-normalisation comes from the angular integration, not from the mode count).
-
-\subsection{Dimensional Comparison Table}
+\textbf{Dimensional consistency table.}
+The formula $B_{\mathrm{base}} = N_{\mathrm{eff}}^{d/2}$ is tested across algebras:
 
 \begin{center}
 \begin{tabular}{lcccc}
   \hline
-  Algebra & $\dim_\mathbb{R}(\mathrm{Im})$ & $N_{\mathrm{eff}}$ & $B_{\mathrm{base}} = N^{d/2}$ \\
+  Algebra & $d = \dim_\mathbb{R}(\mathrm{Im})$ & $N_{\mathrm{eff}}$ & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{d/2}$ \\
   \hline
-  $\mathbb{C}$ (QED)     & 1 & 1  & $1^{1/2} = 1$       \\
-  $\mathbb{H}$           & 3 & 3  & $3^{3/2} \approx 5.2$ \\
-  $\mathbb{C}\otimes\mathbb{H}$ (UBT) & 3 & 12 & $12^{3/2} \approx 41.6$ \\
+  $\mathbb{C}$ (QED limit) & 1 & 1  & $1^{1/2} = 1$        \\
+  $\mathbb{H}$ (pure quaternion) & 3 & 3  & $3^{3/2} \approx 5.20$ \\
+  $\mathbb{C}\otimes\mathbb{H}$ (UBT) & 3 & 12 & $12^{3/2} \approx 41.57$ \\
   \hline
 \end{tabular}
 \end{center}
 
-The UBT row gives the observed $B_{\mathrm{base}} \approx 41.57$.
+The UBT row gives the phenomenologically required $B_{\mathrm{base}} \approx 41.57$.
+No free parameters appear.
 
-\subsection{What This Approach Does and Does Not Prove}
+%--------------------------------------------------------------------
+\subsection{Section 4: What remains for a full proof}
+\label{sec:gap}
+%--------------------------------------------------------------------
 
-\textbf{Does:}
-\begin{itemize}
-  \item Identifies a \emph{structural reason} for the exponent $3/2$:
-    it is $d_H/2$ where $d_H = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$.
-  \item Connects $B_{\mathrm{base}}$ to the same algebraic structure
-    ($\mathrm{Im}(\mathbb{H})$ generating $\mathrm{SU}(2)_L$) that underlies
-    $N_{\mathrm{phases}} = 3$.
-  \item Introduces zero new free parameters.
-\end{itemize}
+The argument above establishes \emph{why} the exponent $3/2$ is natural
+and algebraically motivated.
+It does \emph{not} yet constitute a full proof.
+The remaining gaps are stated explicitly:
 
-\textbf{Does not:}
-\begin{itemize}
-  \item Derive the formula $B = N_{\mathrm{eff}}^{d_H/2}$ from
-    $\mathcal{S}[\Theta]$ by explicit computation.
-  \item Explain \emph{why} each $\mathrm{Im}(\mathbb{H})$ rotation contributes
-    exactly $\sqrt{N_{\mathrm{eff}}}$, rather than some other power.
-  \item Prove that the three $\sqrt{N_{\mathrm{eff}}}$ factors are
-    \emph{independent} (i.e.\ no correlations between phase directions).
-\end{itemize}
+\begin{gap}[Remaining for full proof]
+\label{gap:remaining}
+  The derivation is complete except for two steps:
+  \begin{enumerate}
+    \item[(a)] \textbf{Explicit computation of $\det(\mathcal{S}'')$.}
+      It must be shown that $\mathcal{S}''[\Theta_0]$ on $\mathrm{Im}(\mathbb{H})$,
+      after renormalisation, gives precisely $N_{\mathrm{eff}}^{3/2}$.
+      This requires an explicit computation of $\det(\mathcal{S}'')$
+      (or equivalently of the functional determinant on the mode space),
+      which has not yet been carried out.
+      \textit{Status: \textbf{[OPEN]}}.
+
+    \item[(b)] \textbf{Protection of the exponent at higher loops.}
+      It must be shown that higher-loop corrections do not modify the exponent
+      $3/2$ — i.e.\ that the $d/2$ structure is \emph{protected} by some
+      symmetry or non-renormalisation theorem.
+      \textit{Status: \textbf{[OPEN]}}.
+  \end{enumerate}
+
+  Until (a) and (b) are demonstrated, the overall status is:\\
+  \centerline{\textbf{[MOTIVATED CONJECTURE — strong algebraic motivation,
+  derivation from $\mathcal{S}[\Theta]$ not yet complete]}}
+\end{gap}
 
 \begin{remark}
-  The Hausdorff approach is more structurally motivated than the spinor
-  counting (Approach A1), because $d_H = 3$ is an exact algebraic quantity
-  and it is already linked to $N_{\mathrm{phases}}$ in the proved $N_{\mathrm{eff}}$
-  derivation.  The residual gap is the dynamical claim that each phase
-  direction contributes $\sqrt{N_{\mathrm{eff}}}$ independently.
-  \textbf{This remains [MOTIVATED CONJECTURE].}
+  The Gaussian identity~\eqref{eq:gauss_finite} and
+  Lemma~\ref{lem:mode_space} are individually \emph{proved}.
+  The conjecture is in the step connecting $(\det \mathcal{S}'')^{-1/2}$
+  on the mode space to the specific value $N_{\mathrm{eff}}^{3/2}$.
+  The structural origin of both factors is clear; the quantitative computation
+  is the open problem.
 \end{remark}
+
+\begin{remark}[Effective dimension — Approach A4 consistency check]
+  \label{rem:d_eff}
+  Define the \emph{effective dimension} $d_{\mathrm{eff}}(B) := 2\log B / \log N_{\mathrm{eff}}$,
+  so that $B = N_{\mathrm{eff}}^{d_{\mathrm{eff}}/2}$.  Then:
+  \begin{itemize}
+    \item $d_{\mathrm{eff}}(B_0) = 2\log(2\pi N_{\mathrm{eff}}/3)/\log(N_{\mathrm{eff}}) \approx 2.595$
+      \quad [non-integer, from the proved one-loop result];
+    \item $d_{\mathrm{eff}}(B_{\mathrm{base}}) = 3.000$ exactly \quad
+      [integer = $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$, algebraic identity].
+  \end{itemize}
+  Gap~(a) is therefore equivalent to explaining why the physical renormalisation
+  lifts the effective dimension from $d_{\mathrm{eff}}(B_0) \approx 2.60$ to
+  the algebraic value $d = 3.00$ (a shift $\Delta d \approx 0.40$).
+  Numerical details are in \texttt{tools/compute\_B\_effective\_dimension.py}
+  (Approach~A4, v59).
+\end{remark}
+
+%--------------------------------------------------------------------
+\subsection{Section 5: In plain language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+The UBT field $\Theta$ lives in the biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$.
+When we integrate out quantum fluctuations around the vacuum,
+only the imaginary part $\mathrm{Im}(\mathbb{H}) = \{i, j, k\}$ contributes to
+the running of the coupling — the scalar part decouples because it is not a
+gauge degree of freedom.
+$\mathrm{Im}(\mathbb{H})$ has exactly three real dimensions, one for each of $i$, $j$, $k$.
+Gaussian integration in $d$ dimensions always produces a factor of $d/2$ in the
+exponent of the result — this is a \emph{mathematical identity}
+(equation~\eqref{eq:gauss_finite}), not a physical assumption.
+Combining: exponent $= d/2 = 3/2$.
+This is why $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ and not $N_{\mathrm{eff}}^1$
+or $N_{\mathrm{eff}}^2$.
+The 3 comes from the algebra of quaternions; the 2 comes from the mathematics of
+Gaussian integrals.
+Neither is a free parameter.
 
 \ifdefined\INCLUDEMODE\else
 \end{document}

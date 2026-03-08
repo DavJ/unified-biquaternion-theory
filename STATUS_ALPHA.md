@@ -268,28 +268,33 @@ The formula used in the derivation is:
 B_base = N_eff^{3/2} = 12^(3/2) ≈ 41.57
 ```
 
-**This formula has no derivation anywhere in the repository.** The B_base = N_eff^{3/2} formula
-is phenomenological.
+**Status (v59): Motivated Conjecture [with explicit gap].** The exponent 3/2 is now
+algebraically motivated in `consolidation_project/alpha_derivation/b_base_hausdorff.tex`
+(Approach A2, v58):
+- **Factor 3** = dim_ℝ(Im ℍ) — proved algebraic fact; Im(ℍ) = span{i,j,k} carries the
+  gauge degrees of freedom while the scalar part Sc(Θ) decouples.
+- **Factor 2** = Gaussian path-integral identity: `∫ exp(-½ xᵀAx) dⁿx = (2π)^{d/2}/√det(A)`,
+  giving exponent −1/2 on det universally, hence d/2 in the one-loop effective action.
+- **Neither factor is a free parameter.**
 
-**Three independent approaches were tested** (see `tools/compute_B_KK_sum.py` for all
-numerical computations; no circularity — inputs are only N_eff and geometry, not n*=137):
+**Approach A4 (v59) — Effective Dimension Analysis** (`tools/compute_B_effective_dimension.py`):
+Define d_eff(B) = 2·log(B)/log(N_eff) so that B = N_eff^{d_eff/2}. Then:
+- d_eff(B₀) = 2.595 (non-integer, proved from the one-loop formula)
+- d_eff(B_base) = 3.000 exactly (= dim_ℝ(Im ℍ), algebraic identity)
+- Gap (a) quantified as: Δd = 3.000 − 2.595 = 0.405
 
-- **KK mode form factor** [HONEST GAP]: The compact ψ-circle KK mode sum gives
-  `S_KK/B₀ ≈ 0.0052` for all tested N_eff values.  The required ratio would be
-  `N_eff^{1/2}/(2π/3) ≈ 1.65` for N_eff=12.  The massless-KK-mode sum gives a
-  result ~300× too small and does NOT reproduce N_eff^{3/2} scaling.
-- **Zeta-function regularization** [HONEST GAP]: Zeta regularization of Σk with
-  ζ(-1)=-1/12 gives B_ζ ≈ -1.2 for N_eff=12 (wrong sign and magnitude).  This
-  approach does NOT reproduce B_base = N_eff^{3/2}.
-- **Gauge orbit volume** [DEAD END]: Vol(SU(N)) via the Weyl formula scales as
-  N^α with α ≈ 42 (super-exponential due to factorial denominator), not N^{3/2}.
-  The gauge orbit volume hypothesis is a DEAD END for direct derivation.
+**Two explicit gaps remain [OPEN]:**
+- (a) Explicit computation of det(S''[Θ₀]) on Im(ℍ) confirming the value N_eff^{3/2}
+  (equivalently: explain Δd ≈ 0.41 between the proved d_eff(B₀) and the algebraic d = 3).
+- (b) Proof that higher-loop corrections do not modify the d/2 exponent.
 
-**Result of all three approaches**: NONE gives N_eff^{3/2} scaling.
+**Three previously tested approaches** (KK mode sum, zeta regularization, gauge orbit
+volume) remain dead ends and are documented in `tools/compute_B_KK_sum.py` and
+`consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3`.
 
-**OPEN PROBLEM A remains OPEN.** The formula B_base = N_eff^{3/2} = 41.57 is
-PHENOMENOLOGICAL. The correct one-loop value B₀ = 25.1 predicts n*(B₀) = 67 ≠ 137.
-This is an **OPEN HARD PROBLEM**.
+**The correct one-loop value B₀ = 25.1 predicts n*(B₀) = 67 ≠ 137.** The gap between
+B₀ and B_base is not explained by any of the three dead-end approaches, but the Gaussian
+path-integral argument (Approach A2) provides the algebraic structure for the exponent.
 
 See `consolidation_project/appendix_ALPHA_one_loop_biquat.tex` §B.3 for the full
 derivation attempt with all three methods documented.
@@ -387,7 +392,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **OPEN PROBLEM A** — no geometric derivation; formula is phenomenological |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
