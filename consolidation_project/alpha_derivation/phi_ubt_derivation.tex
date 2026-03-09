@@ -7,8 +7,8 @@
 % From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
 % the integrity of the theoretical work during ongoing academic development.
 %
-% Φ_UBT from First Principles — Approaches L1–L4
-% Track: CORE — α derivation — v70b
+% Φ_UBT from First Principles — Approaches L1–L4, L2-dS
+% Track: CORE — α derivation — v72
 % Date: 2026-03-09
 
 \ifdefined\INCLUDEMODE
@@ -30,10 +30,10 @@
 
   \title{$\Phi_{\mathrm{UBT}}$ from First Principles:\\
     \large Approaches L1 (Photon Zero-Mode),
-    L2 (Atiyah--Singer),\\
+    L2 (Atiyah--Singer), L2-dS (de Sitter Holography),\\
     L3 (Zeta-Det), and L4 (Renormalization Finiteness)}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-09 (v70b)}
+  \date{2026-03-09 (v72)}
 
   \begin{document}
   \maketitle
@@ -294,6 +294,336 @@ integer holonomy.
 A non-trivial index relevant to $\Phi_{\mathrm{UBT}}$ would require
 either a non-integer effective holonomy or a non-flat base manifold.
 Status: \textbf{[INCONCLUSIVE]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach L2-dS: de Sitter Holography}
+\label{sec:L2_dS}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Status: [PARTIAL --- Hosotani route yields $\alpha^{-1}\approx 111$;
+winding route gives anti-de Sitter vacuum; no candidate yet reaches $137$.]}
+
+\subsection{Identification $R_\psi = l_{\mathrm{dS}}$}
+\label{subsec:L2dS_identification}
+
+UBT defines complex time $\tau = t + i\psi$ with the imaginary part
+$\psi$ compactified on $S^1_\psi$ of radius $R_\psi$.
+A compact Euclidean periodic direction gives a natural temperature through
+the periodicity of the thermal Green's function:
+\begin{equation}
+  T_\psi = \frac{\hbar}{2\pi R_\psi}.
+\end{equation}
+De Sitter space has an intrinsic Gibbons--Hawking temperature
+\begin{equation}
+  T_{\mathrm{dS}} = \frac{\hbar}{2\pi l_{\mathrm{dS}}},
+  \qquad
+  l_{\mathrm{dS}} = \sqrt{\frac{3}{\Lambda}},
+\end{equation}
+associated with the cosmological event horizon, where $\Lambda$ is the
+cosmological constant.
+Both temperatures arise from the \emph{same mechanism}: a compact Euclidean
+time direction with periodic boundary conditions.
+Setting $T_\psi = T_{\mathrm{dS}}$ therefore identifies
+\begin{equation}
+  \boxed{R_\psi = l_{\mathrm{dS}}.}
+  \label{eq:Rpsi_ldS}
+\end{equation}
+This is not a postulate but a \emph{consequence} of UBT describing a de Sitter
+background: both radii are periodic Euclidean times of the same physical
+origin.  The remaining task is to compute $\Lambda_{\mathrm{eff}}$ from the
+UBT effective potential $V_{\mathrm{eff}}(\Theta)$ and substitute
+$R_\psi = \sqrt{3/\Lambda_{\mathrm{eff}}}$ into the self-consistency
+equation~\eqref{eq:alpha_sc}.
+
+For related holographic aspects of the UBT--de Sitter correspondence see
+Appendix~N (holographic--Verlinde--de Sitter connection).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{L2-dS-1: $\Lambda_{\mathrm{eff}}$ from $V_{\mathrm{eff}}(\Theta)$}
+\label{subsec:L2dS1}
+
+The standard quantum-field-theory relation between the vacuum energy
+density and the cosmological constant is (in Planck units $G_N=1$):
+\begin{equation}
+  \Lambda_{\mathrm{eff}} = \frac{-V_{\min}}{8\pi},
+  \label{eq:Lambda_from_Vmin}
+\end{equation}
+which gives
+\begin{equation}
+  l_{\mathrm{dS}} = \sqrt{\frac{3}{\Lambda_{\mathrm{eff}}}},
+  \qquad
+  R_\psi = l_{\mathrm{dS}}.
+\end{equation}
+
+\subsubsection*{(a) Hosotani potential}
+
+The one-loop effective potential for massless fields on $M^4\times S^1$
+with Hosotani background $A_\psi = \theta_H/(2\pi R_\psi)$ is
+\begin{equation}
+  V_{\mathrm{Hos}}(L,\theta_H)
+  = -\frac{3}{2\pi^2 L^5}
+    \sum_B \sigma_B\,d_B\,\mathrm{Re}\bigl[\mathrm{Li}_5(e^{iq\theta_H})\bigr],
+  \label{eq:V_hosotani}
+\end{equation}
+where $\sigma_B = +1$ (bosons) / $-1$ (fermions, spin-statistics sign),
+$d_B$ is the degeneracy,
+$q$ is the $U(1)_\psi$ charge, and $\mathrm{Li}_5$ is the polylogarithm.
+
+\textbf{UBT field content:}
+The $\mathbb{C}\otimes\mathbb{H}$ algebra has $N_{\mathrm{eff}} = 12$
+effective modes (proved).  For the minimal bosonic sector
+(12 periodic bosons, $d=12$, $\sigma=+1$, $q=1$, $L=1$):
+\begin{equation}
+  V_{\min}^{(\mathrm{Hos})} \approx -1.891
+  \quad\text{at}\quad
+  \theta_H^{\min} = 0.
+  \label{eq:Vmin_hosotani}
+\end{equation}
+Applying equation~\eqref{eq:Lambda_from_Vmin}:
+\begin{align}
+  \Lambda_{\mathrm{eff}}^{(\mathrm{Hos})}
+    &= \frac{1.891}{8\pi} \approx 0.0752,
+  \label{eq:Lambda_hosotani} \\
+  l_{\mathrm{dS}}^{(\mathrm{Hos})}
+    &= \sqrt{3/0.0752} \approx 6.314,
+  \label{eq:ldS_hosotani} \\
+  R_\psi^{(\mathrm{Hos})}
+    &\approx 6.314.
+  \label{eq:Rpsi_hosotani}
+\end{align}
+Compare to the algebraic candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}
+\approx 0.907$: the Hosotani route gives $R_\psi^{(\mathrm{Hos})} \approx 7\,R_\psi^{(\mathrm{cand})}$.  The discrepancy is significant and signals
+that either (i) the UBT field content in the Hosotani calculation needs
+to include the full KK spectrum (not just the zero mode), or (ii) the
+$L$-scaling must be fixed by the UBT action normalization.
+The field-content and normalisation questions remain open.
+
+\begin{remark}
+  The value $V_{\min} \approx -1.891$ at $L=1$ scales as $L^{-5}$
+  (see equation~\eqref{eq:V_hosotani}).
+  After identifying $L = R_\psi$, the minimum shifts and
+  $\Lambda_{\mathrm{eff}}$ becomes a self-consistent function of $R_\psi$.
+  This self-consistent equation is not solved here and constitutes
+  an open sub-problem.
+\end{remark}
+
+\subsubsection*{(b) Winding potential}
+
+The winding potential from the emergent-alpha approach is
+\begin{equation}
+  V_{\mathrm{wind}}(n) = A n^2 - B n \ln n,
+  \quad A = 1,\quad B_{\mathrm{req}} = \frac{2\times 137}{\ln 137 + 1} \approx 46.28,
+  \label{eq:V_winding}
+\end{equation}
+where $A=1$ is the dimensionless kinetic-term normalisation (set to unity
+without loss of generality) and $B_{\mathrm{req}}$ is the coefficient required
+to place the minimum at $n^*=137$ (derived in \texttt{emergent\_alpha\_calculations.tex}).
+The minimum value is
+\begin{align}
+  V_{\min}^{(\mathrm{wind})}
+  &= A(137)^2 - B_{\mathrm{req}}\cdot 137\cdot\ln 137 \notag\\
+  &= 18769 - 46.28 \times 137 \times 4.920
+  \approx -12428.
+  \label{eq:Vmin_winding}
+\end{align}
+Since $V_{\min}^{(\mathrm{wind})} < 0$, equation~\eqref{eq:Lambda_from_Vmin}
+gives $\Lambda_{\mathrm{eff}} = V_{\min}/(8\pi) \approx -494 < 0$.
+A \emph{negative} $\Lambda_{\mathrm{eff}}$ corresponds to anti-de Sitter space;
+there is no real $l_{\mathrm{dS}}$ and hence no real $R_\psi$ from this route.
+
+\textbf{Conclusion (b):} The winding potential route yields an
+anti-de Sitter vacuum.  The identification $R_\psi = l_{\mathrm{dS}}$ is
+\textbf{[DEAD END]} for this potential.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{L2-dS-2: dS/CFT Central Charge and $N_{\mathrm{eff}}$}
+\label{subsec:L2dS2}
+
+Strominger's dS/CFT correspondence maps de Sitter$_4$ bulk physics to an
+Euclidean CFT$_3$ on the future boundary $\mathcal{I}^+ \cong S^3$.
+The Brown--Henneaux central charge for the boundary CFT is
+\begin{equation}
+  c_{\mathrm{BH}} = \frac{3 l_{\mathrm{dS}}}{2 G_N}
+  \xrightarrow{G_N=1} \frac{3 R_\psi}{2},
+  \label{eq:c_BH}
+\end{equation}
+using the identification $R_\psi = l_{\mathrm{dS}}$
+(equation~\eqref{eq:Rpsi_ldS}).
+
+\textbf{Check against proved UBT quantities.}
+The table below evaluates $c_{\mathrm{BH}}$ for each candidate $R_\psi$
+and the corresponding $\alpha^{-1}$ from equation~\eqref{eq:alpha_check}:
+
+\begin{center}
+\begin{tabular}{llllll}
+  \toprule
+  Candidate $c$ & $R_\psi = 2c/3$ & $c_{\mathrm{BH}}$ & Integer? & $\Phi_{\mathrm{UBT}}$ & $\alpha^{-1}$ \\
+  \midrule
+  $c = N_{\mathrm{eff}} = 12$
+    & $8.000$
+    & $12$
+    & yes
+    & $0.098$
+    & $\approx 116$ \\
+  $c = N_{\mathrm{eff}}^{3/2} \approx 41.6$
+    & $27.7$
+    & $41.6$
+    & no
+    & $0.008$
+    & $\approx 120$ \\
+  $c = B_0 = 2\pi N_{\mathrm{eff}}/3 \approx 25.1$
+    & $16.8$
+    & $25.1$
+    & no
+    & $0.022$
+    & $\approx 118$ \\
+  $c = 3R_\psi/2$, $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$
+    & $0.907$
+    & $\approx 1.36$
+    & no
+    & $7.64$
+    & $\approx 18$ \\
+  $c = 3R_\psi/2$, $R_\psi = l_{\mathrm{dS}}^{(\mathrm{Hos})}$
+    & $6.314$
+    & $\approx 9.47$
+    & no
+    & $0.158$
+    & $\approx 111$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+None of these candidates yields $\alpha^{-1} = 137$.
+For the physically motivated case $R_\psi = l_{\mathrm{dS}}^{(\mathrm{Hos})}
+\approx 6.314$ (from the Hosotani calculation),
+$c_{\mathrm{BH}} \approx 9.47$, which is not an integer.
+The non-integer value is consistent with a non-unitary Euclidean CFT on
+$\mathcal{I}^+$, which is the expected structure in the dS/CFT
+correspondence (the boundary CFT is Euclidean and generally non-unitary).
+This is therefore not an obstruction in principle, but the value of
+$c_{\mathrm{BH}}$ is not a proved UBT invariant, so this route does
+not algebraically fix $R_\psi$.
+
+\textbf{Conclusion (L2-dS-2):} The Brown--Henneaux formula determines
+$c_{\mathrm{BH}}$ \emph{given} $R_\psi$, but does not independently fix
+$R_\psi$ unless an integer-$c$ constraint is imposed.
+Status: \textbf{[OPEN --- integer-$c$ constraint not established]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{L2-dS-3: Holographic Entropy and $\alpha$}
+\label{subsec:L2dS3}
+
+The Gibbons--Hawking entropy of the de Sitter horizon is
+\begin{equation}
+  S_{\mathrm{dS}} = \frac{\pi l_{\mathrm{dS}}^2}{G_N}
+  \xrightarrow{G_N=1} \pi R_\psi^2.
+  \label{eq:S_dS}
+\end{equation}
+For $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$:
+\begin{equation}
+  S_{\mathrm{dS}} = \pi \cdot \frac{\pi^2}{N_{\mathrm{eff}}}
+  = \frac{\pi^3}{N_{\mathrm{eff}}}
+  = \frac{\pi^3}{12}
+  \approx 2.584.
+  \label{eq:S_dS_candidate}
+\end{equation}
+For $R_\psi = l_{\mathrm{dS}}^{(\mathrm{Hos})} \approx 6.314$:
+\begin{equation}
+  S_{\mathrm{dS}}^{(\mathrm{Hos})} = \pi \times (6.314)^2 \approx 125.3.
+  \label{eq:S_dS_hosotani}
+\end{equation}
+
+\textbf{Attempted relation to $\alpha$:}
+\begin{itemize}
+\item If $1/\alpha = S_{\mathrm{dS}}$:
+  $\alpha^{-1} \approx 2.58$ (too small by factor $\sim 53$). \textbf{[fails]}
+\item If $1/\alpha = N_{\mathrm{eff}}\cdot S_{\mathrm{dS}}$:
+  $\alpha^{-1} = \pi^3 \approx 31$ (wrong). \textbf{[fails]}
+\item If $N_{\mathrm{Planck}} = S_{\mathrm{dS}}$ and the winding number
+  $n^* = N_{\mathrm{Planck}}$:
+  $n^* \approx 2.58$ (wrong). \textbf{[fails]}
+\item $S_{\mathrm{dS}}^{(\mathrm{Hos})} \approx 125.3$:
+  none of the simple holographic maps gives $125.3 \approx l_{\mathrm{dS}}^{-2}$
+  as a proxy for $1/\alpha_{\mathrm{exp}}\approx 137$
+  (the two values differ by $\sim 9\%$). \textbf{[fails --- gap not closed]}
+\end{itemize}
+
+\textbf{Conclusion (L2-dS-3):}
+No simple holographic mapping $S_{\mathrm{dS}} \mapsto \alpha^{-1}$ works
+with the available UBT candidates.
+Status: \textbf{[DEAD END for simple maps; non-trivial holographic
+dictionary remains open]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Numerical Consistency of L2-dS Candidates}
+\label{subsec:L2dS_numcheck}
+
+Using the self-consistency equation~\eqref{eq:alpha_check}
+\begin{equation}
+  4\pi\alpha
+  = \Phi_{\mathrm{UBT}} \cdot \frac{3}{4\pi^2} + \frac{1}{\pi^2},
+\end{equation}
+with the L3 identification $\Phi_{\mathrm{UBT}} = 2\pi/R_\psi^2$
+and the required value from equation~\eqref{eq:phi_required}
+$\Phi_{\mathrm{UBT}}^{\mathrm{req}} \approx -0.127 < 0$:
+
+\begin{center}
+\begin{tabular}{lllll}
+  \toprule
+  Source of $R_\psi$ & $R_\psi$ & $\Phi_{\mathrm{UBT}}$
+    & $\alpha^{-1}$ & Status \\
+  \midrule
+  Hosotani (12 bosons)
+    & $\approx 6.314$
+    & $\approx 0.158$
+    & $\approx 111$
+    & \textbf{[closest so far]} \\
+  Hosotani (8 bos + 4 ferm)
+    & $\approx 6.381$
+    & $\approx 0.154$
+    & $\approx 111$
+    & \textbf{[close]} \\
+  BH, $c = N_{\mathrm{eff}} = 12$
+    & $8.000$
+    & $\approx 0.098$
+    & $\approx 116$
+    & \textbf{[off]} \\
+  Algebraic, $\pi/\sqrt{N_{\mathrm{eff}}}$
+    & $\approx 0.907$
+    & $\approx 7.64$
+    & $\approx 18$
+    & \textbf{[DEAD END]} \\
+  \midrule
+  \multicolumn{2}{l}{\emph{Target ($\alpha^{-1}=137$)}}
+    & $< 0$ & $137$ & \textbf{[STRUCTURAL OBSTRUCTION]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Structural obstruction (inherited from Section~\ref{sec:numerical_consistency}):}
+The bosonic spectral term $1/\pi^2 \approx 0.101$ exceeds
+$4\pi/137 \approx 0.092$, so \emph{no positive} $\Phi_{\mathrm{UBT}}$
+(from any $R_\psi > 0$) satisfies $4\pi\alpha = 1/137$.
+The Hosotani route gives the numerically closest result
+($\alpha^{-1} \approx 111$) among all candidates in this document,
+suggesting the dS-holographic identification is \emph{on the right track}
+but requires either:
+\begin{enumerate}
+  \item a fermionic spectral contribution ($b_{\mathrm{eff}} < 0$) to
+        resolve the spectral obstruction, or
+  \item a self-consistent field-content calculation with $L = R_\psi$
+        (rather than $L=1$) which may shift $V_{\min}$ and hence $R_\psi$, or
+  \item a modified normalisation of the Hosotani potential matching the
+        UBT action normalization.
+\end{enumerate}
+
+\textbf{Summary of L2-dS:}
+The identification $R_\psi = l_{\mathrm{dS}}$ is physically motivated and
+produces the numerically closest approach to $\alpha^{-1} = 137$ among all
+routes explored in this document.
+None of the three sub-calculations (L2-dS-1 through L2-dS-3) closes the gap
+algebraically.
+Status: \textbf{[PARTIAL --- promising but not conclusive]}.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Approach L3: Zeta-Regularised Determinant of $\partial_\psi + A_\psi$}
@@ -1008,6 +1338,17 @@ The constraint~\eqref{eq:phi_required} constitutes a
       twisted ($a\notin\mathbb{Z}$) case open
     & Integer holonomy forces trivial index
     & \textbf{[INCONCLUSIVE]} \\[6pt]
+  L2-dS (dS holography)
+    & $R_\psi = l_{\mathrm{dS}}$ from $T_\psi = T_{\mathrm{dS}}$;\par
+      Hosotani $V_{\min}\!\approx\!{-1.891}$
+      $\Rightarrow$ $R_\psi\!\approx\!6.31$,
+      $\alpha^{-1}\!\approx\!111$;\par
+      winding: AdS, no real $l_{\mathrm{dS}}$;\par
+      holographic entropy maps fail
+    & Spectral obstruction persists;\par
+      $R_\psi \approx 6.3 \neq 0.907$;\par
+      field-content/normalisation open
+    & \textbf{[PARTIAL]} \\[6pt]
   L3 (zeta-det)
     & $\det(\partial_\psi+A_\psi) = 2|\sin(\pi a)|$;\par
       \emph{$R_\psi$-independent!}\par
