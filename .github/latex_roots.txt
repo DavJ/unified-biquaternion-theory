@@ -17,6 +17,7 @@ consolidation_project/appendix_ALPHA_one_loop_biquat.tex
 consolidation_project/new_alpha_derivations/noether_to_alpha_clean_v1.2.tex
 
 # Alpha derivation exploration files (standalone)
+consolidation_project/alpha_derivation/phi_ubt_derivation.tex
 consolidation_project/alpha_derivation/b_base_new_directions.tex
 consolidation_project/alpha_derivation/b_base_ncg_a4.tex
 consolidation_project/alpha_derivation/b_base_kac_moody_level.tex
