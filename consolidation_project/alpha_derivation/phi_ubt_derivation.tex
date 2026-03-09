@@ -8,7 +8,7 @@
 % the integrity of the theoretical work during ongoing academic development.
 %
 % Φ_UBT from First Principles — Approaches L1–L4
-% Track: CORE — α derivation — v70b
+% Track: CORE — α derivation — v72
 % Date: 2026-03-09
 
 \ifdefined\INCLUDEMODE
@@ -33,7 +33,7 @@
     L2 (Atiyah--Singer),\\
     L3 (Zeta-Det), and L4 (Renormalization Finiteness)}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-09 (v70b)}
+  \date{2026-03-09 (v72)}
 
   \begin{document}
   \maketitle
@@ -227,8 +227,8 @@ Status: \textbf{[OPEN PROBLEM]}.
 \label{sec:L2_AS}
 % ─────────────────────────────────────────────────────────────────────────────
 
-\textbf{Status: [INCONCLUSIVE — index vanishes for flat base, twisted case needs
-further development.]}
+\textbf{Status: [DEAD END — index vanishes for flat base; curved base (K3)
+computations A--C below show all routes require free topological parameters.]}
 
 \subsection{Setup}
 
@@ -288,12 +288,195 @@ the physical vacuum has trivial holonomy and $\mathrm{ind} = 0$.
   and deserves further investigation.
 \end{remark}
 
-\textbf{Conclusion for L2:}
-The Atiyah--Singer index vanishes for the canonical flat vacuum with
-integer holonomy.
-A non-trivial index relevant to $\Phi_{\mathrm{UBT}}$ would require
-either a non-integer effective holonomy or a non-flat base manifold.
-Status: \textbf{[INCONCLUSIVE]}.
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Computation A: K3\,$\times$\,S$^1$ with trivial
+  $\mathbb{C}\otimes\mathbb{H}$ bundle}
+\label{subsec:L2_compA}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Motivation.}
+K3 is the unique compact simply-connected complex surface with
+$\mathrm{SU}(2)$ holonomy, mirroring the $\mathrm{SU}(2)$ structure of
+$\mathbb{C}\otimes\mathbb{H}$.  It satisfies $\chi(\mathrm{K3})=24=2N_{\mathrm{eff}}$
+(with $N_{\mathrm{eff}}=12$ proved) and $\hat{A}(\mathrm{K3})\neq 0$, making
+it the minimal compact curved base with a non-trivial A-S index.
+
+\textbf{Step 1: $\hat{A}(\mathrm{K3})$ from topology.}
+K3 has Euler characteristic $\chi(\mathrm{K3})=24$ and signature
+$\tau(\mathrm{K3})=-16$.  By the Hirzebruch signature theorem
+$p_1[\mathrm{K3}] = 3\tau(\mathrm{K3}) = -48$.
+The $\hat{A}$-genus of a compact spin 4-manifold is
+$\hat{A} = -p_1[M]/24$, giving
+\begin{equation}
+  \hat{A}(\mathrm{K3}) = -\frac{-48}{24} = 2.
+  \label{eq:Ahat_K3}
+\end{equation}
+\emph{Consistency check via Noether formula} (K3 is Calabi--Yau: $c_1=0$,
+$c_2=\chi=24$):
+$\chi_{\mathrm{hol}} = (c_1^2+c_2)/12 = 24/12 = 2 = \hat{A}(\mathrm{K3})$.~$\checkmark$
+
+\textbf{Step 2: Index on K3 with trivial bundle.}
+For the trivial $\mathbb{C}\otimes\mathbb{H}$ bundle $\mathcal{E}_\Theta$
+of complex rank~$8$ over K3, $\mathrm{ch}(\mathcal{E}_\Theta)=8$ (only the
+rank term survives for a trivial bundle).
+\begin{equation}
+  \mathrm{ind}(D^+_\Theta\text{ on K3})
+  = \int_{\mathrm{K3}} \hat{A}(T\mathrm{K3})\,\mathrm{ch}(\mathcal{E}_\Theta)
+  = \hat{A}(\mathrm{K3})\times\mathrm{rank}(\mathcal{E}_\Theta)
+  = 2\times 8 = 16.
+  \label{eq:ind_K3_trivial}
+\end{equation}
+
+\textbf{Step 3: Winding $n$ on K3\,$\times$\,S$^1$.}
+Lemma~1 establishes $\theta_H^* = 2\pi n$ for any $n\in\mathbb{Z}\setminus\{0\}$.
+For a gauge field with $n$ units of topological winding around $S^1_\psi$,
+the bundle $\mathcal{E}_\Theta$ acquires first Chern class $n$ in the
+$S^1_\psi$ direction.  The A-S formula on $\mathrm{K3}\times S^1$ gives
+\begin{equation}
+  \mathrm{ind}(D^+_\Theta,\,n)
+  = n\times\mathrm{ind}(D^+_\Theta\text{ on K3})
+  = 16n.
+  \label{eq:ind_K3S1_n}
+\end{equation}
+The first values are $16,\,32,\,48,\,64,\,80,\ldots$ for $n=1,2,3,4,5,\ldots$
+For $n=4$: $\mathrm{ind}=64\in[61,71]$.
+
+\textbf{Is $n$ algebraically fixed?}
+Lemma~1 permits any $n\in\mathbb{Z}\setminus\{0\}$; the
+$\mathbb{C}\otimes\mathbb{H}$ algebraic structure places no further
+constraint on the winding number~$n$.  It is a free integer parameter.
+
+\textbf{Result A:}
+$n=4$ gives $\mathrm{ind}=64\in[61,71]$, but $n$ is a free parameter.
+No fixed index in the target range.  Status: \textbf{[DEAD END]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Computation B: Twisted $\mathbb{C}\otimes\mathbb{H}$ bundle
+  (instanton number $k$)}
+\label{subsec:L2_compB}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Setup.}
+Since $\mathbb{C}\otimes\mathbb{H}\cong M_2(\mathbb{C})
+=\mathrm{End}_\mathbb{C}(\mathbb{C}^2)$ as algebras, the natural
+gauge-twisted bundle over K3 is $\mathcal{E}=\mathrm{End}(V)$, where
+$V$ is a rank-2 $\mathrm{SU}(2)$ bundle with instanton number
+$c_2(V)=k\in\mathbb{Z}$.
+
+\textbf{Chern character of $\mathrm{End}(V)$.}
+For $c_1(V)=0$ and $c_2(V)=k$, the Chern character formula
+$\mathrm{ch}(V) = \mathrm{rank} + c_1 + (c_1^2-2c_2)/2 = 2+0+(0-2k)/2$
+gives $\mathrm{ch}(V)=2-k$ in degrees $0$ and $4$ (i.e.\ $\mathrm{ch}_0=2$
+and $\int_{\mathrm{K3}}\mathrm{ch}_2(V)=-k$); likewise $\mathrm{ch}(V^*)=2-k$
+since $c_1(V^*)=0$ for SU(2).
+The tensor-product formula for $\mathrm{End}(V)=V\otimes V^*$
+(complex rank $4$) gives
+\begin{equation}
+  \int_{\mathrm{K3}}\mathrm{ch}_2(\mathrm{End}(V))
+  = \mathrm{ch}_0(V)\!\int_{\mathrm{K3}}\!\mathrm{ch}_2(V^*)
+    + \mathrm{ch}_0(V^*)\!\int_{\mathrm{K3}}\!\mathrm{ch}_2(V)
+  = 2(-k)+2(-k) = -4k.
+  \label{eq:ch2_EndV}
+\end{equation}
+
+\textbf{Atiyah--Singer index.}
+\begin{equation}
+  \mathrm{ind}(D^+_{\mathrm{End}(V)})
+  = \underbrace{\mathrm{rank}(\mathrm{End}(V))}_{4}\cdot\hat{A}(\mathrm{K3})
+    + \int_{\mathrm{K3}}\mathrm{ch}_2(\mathrm{End}(V))
+  = 8-4k.
+  \label{eq:ind_EndV}
+\end{equation}
+For the target range:
+\begin{equation}
+  \mathrm{ind}\in[61,71]
+  \;\Longleftrightarrow\;
+  -4k\in[53,63]
+  \;\Longleftrightarrow\;
+  k\in[-15.75,\,-13.25].
+\end{equation}
+The only integers in this interval are $k=-14$ (giving $\mathrm{ind}=64$)
+and $k=-15$ (giving $\mathrm{ind}=68$).
+
+\textbf{Is $k$ algebraically fixed?}
+The algebra $\mathbb{C}\otimes\mathbb{H}\cong M_2(\mathbb{C})$ determines
+the fibre structure of $\mathrm{End}(V)$ but places \emph{no constraint} on
+the topological instanton number $k$ of the underlying bundle $V$.  Any
+$k\in\mathbb{Z}$ is topologically consistent with the algebraic structure.
+
+\textbf{Result B:}
+$k\in\{-14,-15\}$ yields $\mathrm{ind}\in\{64,68\}\subset[61,71]$, but $k$
+is a free topological parameter not selected by the $\mathbb{C}\otimes\mathbb{H}$
+algebra.  Status: \textbf{[DEAD END]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Computation C: APS index on K3\,$\times$\,S$^1/\mathbb{Z}_2$}
+\label{subsec:L2_compC}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Setup.}
+The $\mathbb{Z}_2$ orbifold $S^1/\mathbb{Z}_2$ (the involution
+$\psi\mapsto-\psi$) has two fixed points $\psi\in\{0,\pi\}$, yielding the
+manifold-with-boundary $M=\mathrm{K3}\times[0,\pi]$ with
+$\partial M=\mathrm{K3}\sqcup\mathrm{K3}$.
+Anti-periodic boundary conditions correspond to effective holonomy $a=1/2$,
+consistent with the $\det=2$ result of L3
+(Section~\ref{sec:L3_zetadet}).
+
+\textbf{Atiyah--Patodi--Singer formula.}
+\begin{equation}
+  \mathrm{ind}_{\mathrm{APS}}(D^+_5)
+  = \int_M \hat{A}(TM)\,\mathrm{ch}(\mathcal{E})
+    - \frac{\eta(D_{\partial M})+h}{2},
+  \label{eq:APS_K3}
+\end{equation}
+where $\eta(D_{\partial M})$ is the eta-invariant of the boundary Dirac
+operator and $h=\dim\ker D_{\partial M}$.
+
+\textbf{Eta-invariant for K3.}
+K3 is a compact hyperkähler (Calabi--Yau) surface with $b_1=b_3=0$
+and $\mathrm{SU}(2)$ holonomy.  For any compact Kähler manifold the
+Dirac operator $D_{\mathrm{K3}}$ anticommutes with the Kähler involution $J$
+acting on spinors: $J D_{\mathrm{K3}} = -D_{\mathrm{K3}} J$.
+Consequently the spectrum is symmetric about zero (each eigenvalue
+$\lambda$ is paired with $-\lambda$), which gives
+\begin{equation}
+  \eta(D_{\mathrm{K3}}) = 0,\qquad h=0.
+  \label{eq:eta_K3}
+\end{equation}
+
+\textbf{Spectral-flow computation.}
+With anti-periodic BC ($a=1/2$) and $\eta=h=0$, the APS index equals the
+spectral flow of $D_{\mathrm{K3}}\otimes\mathcal{E}$ as $a$ increases from
+$0$ to $\tfrac{1}{2}$:
+\begin{equation}
+  \mathrm{ind}_{\mathrm{APS}}
+  = \mathrm{sf}\!\left(D_{\mathrm{K3}}\otimes\mathcal{E},\;
+    a:\,0\to\tfrac{1}{2}\right)
+  = \frac{1}{2}\,\mathrm{ind}(D^+_{\mathrm{K3}}\otimes\mathcal{E})
+  = \frac{1}{2}\times 16 = 8.
+  \label{eq:APS_result}
+\end{equation}
+This is a \emph{fixed} topological integer; no free parameter enters.
+
+\textbf{Result C:}
+$\mathrm{ind}_{\mathrm{APS}}=8$, fixed and outside the target range
+$[61,71]$.  Status: \textbf{[DEAD END]}.
+
+\textbf{Conclusion for L2 (updated):}
+Three calculations on curved base manifolds complete the L2 analysis:
+\begin{itemize}
+  \item \textbf{Computation A} (K3$\times$S$^1$, trivial bundle):
+        $\mathrm{ind}=16n$; $n=4$ gives $64\in[61,71]$ but $n$ is a free parameter.
+  \item \textbf{Computation B} (twisted $\mathrm{End}(V)$, instanton $k$):
+        $\mathrm{ind}=8-4k$; $k\in\{-14,-15\}$ hits the target range but $k$ is free.
+  \item \textbf{Computation C} (APS on K3$\times$S$^1/\mathbb{Z}_2$):
+        $\mathrm{ind}_{\mathrm{APS}}=8$, fixed and outside $[61,71]$.
+\end{itemize}
+No computation yields $\mathrm{ind}\in[61,71]$ without a free topological
+parameter.  The Atiyah--Singer route to a parameter-free derivation of
+$\Phi_{\mathrm{UBT}}$ is exhausted.
+Status: \textbf{[DEAD END]}.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Approach L3: Zeta-Regularised Determinant of $\partial_\psi + A_\psi$}
@@ -1004,10 +1187,12 @@ The constraint~\eqref{eq:phi_required} constitutes a
     & $R_\psi$ not fixed algebraically
     & \textbf{[OPEN]} \\[6pt]
   L2 (Atiyah--Singer)
-    & $\mathrm{ind}=0$ for canonical flat vacuum;\par
-      twisted ($a\notin\mathbb{Z}$) case open
-    & Integer holonomy forces trivial index
-    & \textbf{[INCONCLUSIVE]} \\[6pt]
+    & $\mathrm{ind}=0$ flat vacuum;\par
+      K3: $16n$ (free $n$),\par
+      twisted End$(V)$: $8{-}4k$ (free $k$),\par
+      APS orbifold: $8$ (fixed, $\notin[61,71]$)
+    & No free-parameter-free route to $[61,71]$
+    & \textbf{[DEAD END]} \\[6pt]
   L3 (zeta-det)
     & $\det(\partial_\psi+A_\psi) = 2|\sin(\pi a)|$;\par
       \emph{$R_\psi$-independent!}\par
@@ -1124,13 +1309,17 @@ The constraint~\eqref{eq:phi_required} constitutes a
           ($b_{\mathrm{eff}} < 0$), a modified spectral cutoff, or a
           reconciliation of the L1 and L3 identifications of
           $\Phi_{\mathrm{UBT}}$.
-    \item \emph{Link L2 (Atiyah--Singer) to L3.}
-          If the index of the $\mathbb{C}\otimes\mathbb{H}$ bundle over
-          a compact curved base is non-zero, it may set the overall
-          normalisation of $\Phi_{\mathrm{UBT}}$ through the index theorem.
-          This possibility is not excluded by Lemma~1 (which only establishes
-          integer holonomy on flat $\mathbb{R}^4 \times S^1$) and remains
-          \textbf{[OPEN]}.
+    \item \emph{Link L2 (Atiyah--Singer) to L3 --- closed.}
+          Computations A--C (Section~\ref{sec:L2_AS}) systematically
+          survey compact curved bases: K3$\times$S$^1$ (trivial bundle,
+          index $16n$, $n$ free), twisted $\mathrm{End}(V)$ (index $8-4k$,
+          $k$ free), and the APS orbifold K3$\times$S$^1/\mathbb{Z}_2$
+          (index $8$, fixed but outside $[61,71]$).
+          Every route either requires a free topological parameter or yields
+          a fixed index outside the target range.
+          The Atiyah--Singer approach cannot derive $\Phi_{\mathrm{UBT}}$
+          without additional input.
+          Status: \textbf{[DEAD END]}.
   \end{enumerate}
 \end{gap}
 
