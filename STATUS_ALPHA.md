@@ -442,6 +442,68 @@ Reference: `consolidation_project/alpha_derivation/b_base_g_approaches.tex`
 
 ---
 
+### Approaches H1, H2, H3 (v67, 2026-03-08) — Kac-Moody level k from S[Θ]
+
+(`consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`)
+
+Gap (G3-k) from v65 required a direct computation of the Kac-Moody level k from the UBT
+action S[Θ] on the ψ-circle, without using α⁻¹ = 137 or n* = 137 as inputs.
+Three approaches were investigated.
+
+**H1 — WZW normalization → k = 2π r²_vac → [DEAD END (both routes)]**
+
+The UBT kinetic action S_kin[Θ] on S¹_ψ was expanded in the polar decomposition Θ = r·g
+(r = |Θ|, g ∈ SU(2)).  Using Sc[A] = ½Tr_fund(A) for 2×2 matrices and J_ψ := g⁻¹∂_ψg,
+the g-sector kinetic term becomes r² ∫ (−½ Tr_fund[J²_ψ]) dψ.  Comparing with the standard
+WZW action (k/4π) ∫ (−Tr_fund[J²_ψ]) dψ gives the exact formula k = 2π r² = 2π⟨Sc[Θ†Θ]⟩_vac.
+
+- Via V_eff minimum: r²_vac = f(n*) where n* = 137 is the quantity being derived → **circular
+  [DEAD END]**.
+- Via canonical normalization r² = 1: k = 2π ∉ ℤ → **non-integer level [DEAD END]**.
+
+**H2 — Absence of Chern-Simons term → k = 1 motivated → [MOTIVATED CONJECTURE]**
+
+The CS term S_CS = (k_CS/4π) ∫ Tr(A∧dA + ⅔ A∧A∧A) would shift the Kac-Moody level.
+Three arguments show it is absent from UBT:
+1. CS is P-odd; UBT has parity symmetry (the mirror sectors n*=137 and n**=139 are
+   P-conjugates of each other) → no P-odd term in the action.
+2. The ψ-circle holonomy is trivial (proved via Hosotani mechanism) → topological CS term
+   vanishes on the circle.
+3. S[Θ] = S_kin + S_pot with S_kin quadratic in Θ (free field) → no CS-type coupling.
+
+With k_CS = 0 proved, k is set entirely by the kinetic term: k = 2π r²_vac.  The
+SU(2)_1 WZW model is the unique free-field / minimal-coupling point (it is equivalent via
+bosonisation to one free Dirac fermion on the circle).  Since S_kin is a free quadratic
+action with no CS shift and no non-minimal interaction, the minimality principle selects
+k = 1 as the lowest consistent integer level.  Status: **[MOTIVATED CONJECTURE]**.
+What is proved: CS absent, k = 2π r²_vac.  What is conjectured: that free action +
+no CS uniquely forces k = 1 (requires r²_vac = 1/(2π) from an independent argument).
+
+**H3 — Dynkin index → representation counting → [DEAD END for k=1]**
+
+The WZW level from representation theory is k = Σ nᵢ T(rᵢ) where T is the Dynkin index.
+
+- H3a (fundamental rep, T=½): k = 3 × ½ = 3/2; c = 9/7 ≈ 1.286; B ≈ 53.4 ≠ 41.57.
+  **[DEAD END]**.
+- H3b (adjoint rep, T=2, natural assignment for Im(ℍ)): k = 3 × 2 = 6; c = 9/4 = 2.25;
+  B ≈ 93.5 ≠ 41.57.  **[DEAD END]**.
+- H3c (search for k=1): requires n × T = 1; no natural assignment from ℂ⊗ℍ achieves
+  this with UBT's 3 or 4 modes.  **[DEAD END]**.
+
+**Overall status after v67:**
+
+Gap (G3-k) remains **[OPEN]** but is better characterised.  The formula k = 2π r²_vac is
+now derived from S[Θ] exactly.  The CS term is proved absent.  k = 1 is elevated from
+[PARTIAL] (v65) to **[MOTIVATED CONJECTURE]** via the minimality principle.  The
+representation-theory route (H3) is fully exhausted.  The concrete remaining step is to
+compute r²_vac = ⟨Sc[Θ†Θ]⟩_vac from the effective potential without using n* as input.
+The WZW non-renormalization theorem confirms that a classical derivation of k = 1 is
+sufficient (quantum corrections cannot shift k).
+
+Reference: `consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`
+
+---
+
 ### No-Circularity Test (mandatory)
 
 The B coefficient derivation must not be circular (i.e., B must be derived without
@@ -468,7 +530,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex`; **v67 (Gap G3-k): H1/H3 [DEAD END]; H2 CS-absence [PROVED]; k=1 upgraded to [MOTIVATED CONJECTURE]** — see `b_base_kac_moody_level.tex` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
