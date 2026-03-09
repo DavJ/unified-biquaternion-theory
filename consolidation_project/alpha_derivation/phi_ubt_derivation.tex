@@ -8,7 +8,7 @@
 % the integrity of the theoretical work during ongoing academic development.
 %
 % Φ_UBT from First Principles — Approaches L1–L4
-% Track: CORE — α derivation — v70 baseline
+% Track: CORE — α derivation — v70b
 % Date: 2026-03-09
 
 \ifdefined\INCLUDEMODE
@@ -33,7 +33,7 @@
     L2 (Atiyah--Singer),\\
     L3 (Zeta-Det), and L4 (Renormalization Finiteness)}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-09 (v70)}
+  \date{2026-03-09 (v70b)}
 
   \begin{document}
   \maketitle
@@ -687,14 +687,18 @@ The self-consistency equation~\eqref{eq:alpha_sc} then reads
 Treating $R_\psi$ as the unknown and imposing the UV normalisation
 $\alpha = 1$ (strong coupling at the UBT cutoff scale, i.e.\ the
 bracket in the self-consistency equation equals $4\pi$):
-\begin{equation}
-  4\pi = \frac{3}{2\pi R_\psi^2} + \frac{1}{\pi^2}
+\begin{align}
+  4\pi &= \frac{3}{2\pi R_\psi^2} + \frac{1}{\pi^2}
+  \notag\\
+  \frac{3}{2\pi R_\psi^2} &= 4\pi - \frac{1}{\pi^2} = \frac{4\pi^3-1}{\pi^2}
+  \notag\\
+  R_\psi^2 &= \frac{3\pi}{2(4\pi^3-1)} = \frac{3\pi}{8\pi^3-2}
   \qquad\Longrightarrow\qquad
   R_\psi^{\mathrm{SC}}
-  = \sqrt{\frac{3\pi}{8\pi^3 - 2}}
+  = \sqrt{\frac{3\pi}{8\pi^3-2}}
   \approx 0.196.
   \label{eq:Rpsi_selfcons}
-\end{equation}
+\end{align}
 The ratio to the algebraic candidate is
 $R_\psi^{\mathrm{alg}}/R_\psi^{\mathrm{SC}}
 = (\pi/\sqrt{12})/0.196 \approx 4.6$;
@@ -716,7 +720,8 @@ combined with the spectral term~\eqref{eq:spectral_exact},
 
 \medskip
 \textbf{Status: \textbf{[DEAD END]} ---
-$R_\psi^{\mathrm{SC}} \approx 0.196 \neq \pi/\sqrt{N_{\mathrm{eff}}} \approx 0.907$;
+$R_\psi^{\mathrm{SC}} \approx 0.196 \neq \pi/\sqrt{N_{\mathrm{eff}}} \approx 0.907$
+(discrepancy $\approx 78\%$);
 moreover, $\alpha = 1/137$ is algebraically unreachable from the L3
 formula with $b_B = N_{\mathrm{eff}}/(6\pi) > 0$.}
 
@@ -1030,7 +1035,7 @@ The constraint~\eqref{eq:phi_required} constitutes a
   1(c): SC det'
     & $R_\psi^{\mathrm{SC}} = \sqrt{3\pi/(8\pi^3-2)} \approx 0.196$;\par
       $\alpha=1/137$ requires $\Phi_{\mathrm{UBT}}<0$
-    & $R_\psi^{\mathrm{SC}} \neq \pi/\sqrt{N_{\mathrm{eff}}}$;\par
+    & $R_\psi^{\mathrm{SC}} \neq \pi/\sqrt{N_{\mathrm{eff}}}$ ($\approx 4.6\times$ off);\par
       structural obstruction
     & \textbf{[DEAD END]} \\[6pt]
   1(d): modular inv.
@@ -1102,7 +1107,8 @@ The constraint~\eqref{eq:phi_required} constitutes a
           self-consistency from $\det'$, and modular invariance) all conclude
           \textbf{[DEAD END]}.
           The self-consistency equation with $b_B = N_{\mathrm{eff}}/(6\pi)$
-          gives $R_\psi^{\mathrm{SC}} \approx 0.196 \neq \pi/\sqrt{N_{\mathrm{eff}}}$,
+          gives $R_\psi^{\mathrm{SC}} = \sqrt{3\pi/(8\pi^3-2)} \approx 0.196
+          \neq \pi/\sqrt{N_{\mathrm{eff}}} \approx 0.907$ (a factor $\approx 4.6$ discrepancy),
           and furthermore renders $\alpha = 1/137$ algebraically unreachable
           (equation~\eqref{eq:alpha137_impossible}).
     \item \emph{Zero-mode regulation --- all three prescriptions are dead ends.}
