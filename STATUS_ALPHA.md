@@ -504,6 +504,78 @@ Reference: `consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`
 
 ---
 
+### Approaches I2, I5, I4, I3 (v68, 2026-03-09) — Kac-Moody level k bypassing the circularity
+
+(`consolidation_project/alpha_derivation/b_base_km_level_ii.tex`)
+
+Four new approaches were designed to determine k without going through V_eff or r²_vac.
+
+**I2 — Hosotani holonomy → topological winding number → [DEAD END (w = 0)]**
+
+The proved Hosotani angle θ_H = π gives holonomy U = exp(iπ σ³/2) = diag(i,−i) in the
+fundamental representation of SU(2).  The topological winding number
+w = (1/2π²) ∫_{S³} Tr(U⁻¹dU)³ was computed:
+
+- Constant Hosotani holonomy: dU = 0 → w = 0.  **[DEAD END]**.
+- Path g(ψ) = exp(iψθ_H T³/(2π)): Tr[(g⁻¹∂_ψg)³] = 0 because the generators
+  T^a = σ^a/2 are traceless.  **[DEAD END]**.
+- Root cause: π₁(SU(2)) = 0 — the fundamental group of SU(2) is trivial; all loops in
+  SU(2) are contractible; no integer-valued winding number exists for maps S¹→SU(2).
+
+Secondary Z₂ NS-twist argument: θ_H = π activates the anti-periodic (NS) sector,
+which requires k ≥ 1 (NS primary j = 1/2 exists for any k ≥ 1).  This is identical to
+the H2 lower bound; no new constraint.  **[MOTIVATED CONJECTURE (= H2)]**.
+
+**I5 — Modular invariance + ψ-parity → [DEAD END (condition automatic for all k)]**
+
+The ψ-parity ψ → −ψ (proved symmetry of UBT) acts on the partition function as
+Z(τ) → Z(−τ̄).  All characters of ŝu(2)_k satisfy χ_j(−τ̄) = χ_j(τ)* (because the
+character series has real coefficients and q_{−τ̄} = q*).  For any modular-invariant
+Z = Σ M_{jj'} χ_j χ̄_{j'} with symmetric M (M_{jj'} = M_{j'j}):
+
+  Z(−τ̄) = Σ M_{jj'} χ_j(τ)* χ_{j'}(τ) = Σ M_{j'j} χ_{j'}(τ) χ_j(τ)* = Z(τ).
+
+The condition Z(−τ̄) = Z(τ) is therefore satisfied by ALL real modular-invariant
+partition functions (A-type, D-type, E-type) for EVERY k ≥ 1.  **[DEAD END]**.
+
+**I4 — Anomaly cancellation → [DEAD END (trivial for non-chiral bosons)]**
+
+The 2D SU(2) gauge anomaly on S¹_ψ requires k_anom = Σ_L n_i T(r_i) − Σ_R n_i T(r_i) = 0.
+For the non-chiral bosonic field Θ: each KK mode Θ_n at momentum +n/R is accompanied
+by the conjugate Θ_{−n} at momentum −n/R with the same representation; contributions
+cancel pairwise → k_anom = 0 identically.  The NS shift δ = 1/2 does not restore
+chirality.  **[DEAD END — trivial]**.
+When the anomaly formula is extended to matter-content level counting, it reduces
+exactly to the H3 Dynkin-index formula: adjoint gives k = 6, fundamental gives k = 3/2.
+**[DEAD END (= H3)]**.
+
+**I3 — Representation theory of Θ with Sc[·] selector → [DEAD END (k ∈ {2, 6})]**
+
+The scalar selector Sc[Q] = ½Tr₂[Q] is the standard SU(2)-invariant Frobenius norm
+(not a group-theoretic singlet projector).  It does not reduce k.
+
+- Left action g·Θ = gΘ: each column of Mat(2,ℂ) is a complex fundamental of SU(2)_L;
+  2 complex fundamentals give k = 2 × 1 = 2; B ≈ 62.4 ≠ 41.57.  **[DEAD END]**.
+- Adjoint action g·Θ·g⁻¹: Im(ℍ) = 3 real adjoint scalars; k = 3 × 2 = 6 (= H3b).
+  **[DEAD END]**.
+- Search for k=1: requires Σ n_i T(r_i) = 1; no natural assignment from ℂ⊗ℍ achieves
+  this (natural counts are 3 or 4 modes, not 2; and 2 real fundamentals with T=1/2 would
+  give k=1, but ℂ⊗ℍ does not provide exactly 2 real fundamental modes).  **[DEAD END]**.
+
+**Overall status after v68 (30 approaches total):**
+
+All four new approaches I2–I5 are [DEAD END].  Gap (G3-k) remains **[OPEN]**.
+The level k = 1 remains a **[MOTIVATED CONJECTURE]** (H2, unchanged since v67).
+The obstruction is now precisely identified after 30 attempts: k is not determined by
+(a) the topology of S¹_ψ (trivial π₁), (b) ψ-parity of the partition function (automatic),
+(c) 2D gauge anomaly structure (trivial for non-chiral bosons), or (d) the representation
+content of Θ in Mat(2,ℂ) (gives k = 2 or k = 6).  A proof of k = 1 requires either a
+novel algebraic invariant of S[Θ] or an independent determination of r²_vac.
+
+Reference: `consolidation_project/alpha_derivation/b_base_km_level_ii.tex`
+
+---
+
 ### No-Circularity Test (mandatory)
 
 The B coefficient derivation must not be circular (i.e., B must be derived without
@@ -530,7 +602,7 @@ give different primes consistently.
 | Prime constraint (topological stability) | ✅ Rigorous (homotopy theory) |
 | N_eff = 12 from SM gauge group | ✅ Derived (3 × 2 × 2 phases × helicities × charges) |
 | B₀ = 25.1 (one-loop baseline) | ✅ Fully derived |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex`; **v67 (Gap G3-k): H1/H3 [DEAD END]; H2 CS-absence [PROVED]; k=1 upgraded to [MOTIVATED CONJECTURE]** — see `b_base_kac_moody_level.tex` |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Motivated Conjecture [with explicit gap]** — exponent 3/2 = dim_ℝ(Im ℍ)/2 from Gaussian path integral; gaps (a)(b) [OPEN]; A4 (v59): d_eff(B₀)=2.595, d_eff(B_base)=3.000=d, Δd=0.405 — see `b_base_hausdorff.tex`, `compute_B_effective_dimension.py`; **v60: D1 (unitarity constraint) → [DEAD END]; D2 (dimensional transmutation) → [DEAD END]; D3 (Cartan–Killing metric) → [DEAD END]** — see `b_base_nonpert.tex`; **v65 (22 approaches total): G3 k=1 [PARTIAL] (c=1; B=c·N_eff^{3/2} exact; k=1 not yet uniquely forced); G2 Weyl c̃=1/15 [DEAD END]; G4 Fueter counts 650/36/49 [DEAD END]; G7 QK index=4 [DEAD END]; F diag(0,1,1,1) tr(M⁴)=3 [DEAD END]** — see `b_base_g_approaches.tex`; **v67 (Gap G3-k): H1/H3 [DEAD END]; H2 CS-absence [PROVED]; k=1 upgraded to [MOTIVATED CONJECTURE]** — see `b_base_kac_moody_level.tex`; **v68 (30 approaches, I2–I5): I2 winding w=0 [DEAD END]; I5 ψ-parity automatic [DEAD END]; I4 anomaly trivial [DEAD END]; I3 left-action k=2/adjoint k=6 [DEAD END]** — see `b_base_km_level_ii.tex` |
 | R ≈ 1.114 (correction factor) | ⚠️ **OPEN PROBLEM B** — geometric origin unknown; Options B1/B2/B3 under investigation |
 | B = 46.3 (required value) | ⚠️ Follows from B_base × R; requires resolution of Problems A and B |
 | α⁻¹ = 137 (bare) | ✅ Follows from framework given B = 46.3 |
