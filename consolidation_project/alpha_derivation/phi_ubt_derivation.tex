@@ -8,7 +8,7 @@
 % the integrity of the theoretical work during ongoing academic development.
 %
 % Φ_UBT from First Principles — Approaches L1–L4
-% Track: CORE — α derivation — v69 baseline
+% Track: CORE — α derivation — v70 baseline
 % Date: 2026-03-09
 
 \ifdefined\INCLUDEMODE
@@ -33,7 +33,7 @@
     L2 (Atiyah--Singer),\\
     L3 (Zeta-Det), and L4 (Renormalization Finiteness)}
   \author{Ing.\ David Jaroš}
-  \date{2026-03-09 (v69)}
+  \date{2026-03-09 (v70)}
 
   \begin{document}
   \maketitle
@@ -586,12 +586,410 @@ No approach yields $\alpha^{-1} = 137$ as an \emph{output}
 without $R_\psi$ or $\alpha$ as an input.
 
 % ─────────────────────────────────────────────────────────────────────────────
+\section{Algebraic Fixation of $R_\psi$: Sub-tasks 1(a)--(d)}
+\label{sec:algebraic_Rpsi}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Context.}
+All four sub-tasks below probe whether the numerical candidate
+$R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ (equation~\eqref{eq:R_psi_algebraic})
+follows from first principles.
+Non-circularity constraint: $\alpha = 1/137$ may not enter as an input.
+
+\subsection{1(a): Action normalization on $S^1_\psi$}
+
+The UBT action evaluated on the fundamental winding mode
+$\Theta = e^{i\psi/R_\psi}$ (winding number 1) on $S^1_\psi$ is
+\begin{equation}
+  \mathcal{S}[\Theta]\big|_{S^1}
+  = V_4 \int_0^{2\pi R_\psi}
+    \mathrm{Sc}\!\bigl[(\partial_\psi\Theta)^\dagger(\partial_\psi\Theta)\bigr]
+    \,d\psi
+  = V_4\cdot\frac{1}{R_\psi^2}\cdot 2\pi R_\psi
+  = V_4\cdot\frac{2\pi}{R_\psi},
+  \label{eq:action_winding}
+\end{equation}
+where $V_4$ is the 4D reference volume and
+$\mathrm{Sc}[(-i/R_\psi)(i/R_\psi)] = 1/R_\psi^2$.
+The ``natural scale'' condition $\mathcal{S} = 1$ requires
+$R_\psi = 2\pi V_4$.
+For the L1 normalisation $V_4 = (2\pi)^4$ this gives
+$R_\psi = 2^5\pi^5 \approx 9740$;
+for the unit volume $V_4 = 1$ one gets $R_\psi = 2\pi \approx 6.28$.
+Neither matches $\pi/\sqrt{N_{\mathrm{eff}}} \approx 0.907$,
+and no value of $V_4$ derivable solely from $\mathbb{C}\otimes\mathbb{H}$
+algebra reproduces the algebraic candidate.
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} --- condition~\eqref{eq:action_winding}
+does not fix $R_\psi$ without an independent specification of $V_4$.}
+
+\subsection{1(b): Combinations of proved quantities}
+
+Direct search over products and ratios of proved quantities
+$\{B_0 = 8\pi,\; N_{\mathrm{eff}} = 12,\; \theta_H^* = 2\pi\}$
+and the candidate $R_\psi^{\mathrm{alg}} = \pi/\sqrt{12}$:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Expression & Numerical value & Equal to $\pi$ or $1$? \\
+  \midrule
+  $B_0 R_\psi^{\mathrm{alg}}$
+    & $8\pi^2/\sqrt{12} \approx 22.7$ & No \\
+  $B_0\,(R_\psi^{\mathrm{alg}})^2$
+    & $2\pi^3/3 \approx 20.7$ & No \\
+  $(B_0/N_{\mathrm{eff}})\,R_\psi^{\mathrm{alg}}$
+    & $2\pi^2/(3\sqrt{12}) \approx 1.90$ & No \\
+  $\theta_H^*\, R_\psi^{\mathrm{alg}}$
+    & $2\pi^2/\sqrt{12} \approx 5.68$ & No \\
+  $\theta_H^*/(N_{\mathrm{eff}}\,R_\psi^{\mathrm{alg}})$
+    & $\sqrt{12}/6 \approx 0.577$ & No \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+No combination yields $\pi$, $1$, or another algebraically distinguished
+constant that would impose $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$.
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} --- no closed-form algebraic combination
+found among proved quantities.}
+
+\subsection{1(c): Self-consistency from $\det'(\mathcal{D}_1)$}
+\label{subsec:Rpsi_selfconsistency}
+
+With $\Phi_{\mathrm{UBT}} = 2\pi/R_\psi^2$
+(from $\Lambda = 1/R_\psi$ and $Z^* = \det'(\mathcal{D}_1) = 2\pi/R_\psi$,
+equation~\eqref{eq:detprime_a1}), and KK spectral density $\rho(m) = 2R_\psi$,
+the spectral integral with $b_B = N_{\mathrm{eff}}/(6\pi)$ evaluates as
+\begin{equation}
+  \mathcal{I}_{\mathrm{sp}}
+  := \frac{b_B}{4\pi}
+     \int_0^{1/R_\psi} 2R_\psi\,\ln\!\frac{1}{R_\psi m}\,dm
+  = \frac{b_B}{4\pi}\cdot 2R_\psi\cdot\frac{1}{R_\psi}
+  = \frac{b_B}{2\pi}
+  = \frac{N_{\mathrm{eff}}}{12\pi^2}
+  = \frac{1}{\pi^2},
+  \label{eq:spectral_exact}
+\end{equation}
+where $\int_0^\Lambda \ln(\Lambda/m)\,dm = \Lambda$ was used
+together with $R_\psi \Lambda = 1$.
+The self-consistency equation~\eqref{eq:alpha_sc} then reads
+\begin{equation}
+  4\pi\alpha
+  = \frac{2\pi}{R_\psi^2}\cdot\frac{3}{4\pi^2}
+    + \frac{1}{\pi^2}
+  = \frac{3}{2\pi R_\psi^2} + \frac{1}{\pi^2}.
+  \label{eq:alpha_Rpsi}
+\end{equation}
+Treating $R_\psi$ as the unknown and imposing the UV normalisation
+$\alpha = 1/(4\pi)$ (unit coupling at the UBT scale, i.e.\ the
+left-hand side of the self-consistency equation equals $1/(4\pi)$):
+\begin{equation}
+  1 = \frac{3}{2\pi R_\psi^2} + \frac{1}{\pi^2}
+  \qquad\Longrightarrow\qquad
+  R_\psi^{\mathrm{SC}}
+  = \sqrt{\frac{3\pi}{8\pi^3 - 2}}
+  \approx 0.196.
+  \label{eq:Rpsi_selfcons}
+\end{equation}
+The ratio to the algebraic candidate is
+$R_\psi^{\mathrm{alg}}/R_\psi^{\mathrm{SC}}
+= (\pi/\sqrt{12})/0.196 \approx 4.6$;
+the two values are \emph{not equal}.
+
+Furthermore, from~\eqref{eq:alpha_Rpsi}, the physical requirement
+$\alpha = 1/137$ would demand
+\begin{equation}
+  \frac{3}{2\pi R_\psi^2}
+  = \frac{4\pi}{137} - \frac{1}{\pi^2}
+  \approx 0.0917 - 0.1013
+  = -0.0096 < 0,
+  \label{eq:alpha137_impossible}
+\end{equation}
+which is impossible for real positive $R_\psi$.
+The L3 reduced-determinant formula $\Phi_{\mathrm{UBT}} = 2\pi/R_\psi^2$,
+combined with the spectral term~\eqref{eq:spectral_exact},
+\emph{cannot} produce $\alpha = 1/137$ for any positive $R_\psi$.
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} ---
+$R_\psi^{\mathrm{SC}} \approx 0.196 \neq \pi/\sqrt{N_{\mathrm{eff}}} \approx 0.907$;
+moreover, $\alpha = 1/137$ is algebraically unreachable from the L3
+formula with $b_B = N_{\mathrm{eff}}/(6\pi) > 0$.}
+
+\subsection{1(d): Modular invariance of $S^1_\psi$}
+\label{subsec:modular_invariance}
+
+The compact imaginary-time circle $S^1_\psi$ of radius $R_\psi$ carries
+the Euclidean modular parameter $\tau = iR_\psi$ (purely imaginary).
+Under the modular $S$-transformation $\tau \to -1/\tau$:
+\begin{equation}
+  iR_\psi \;\xrightarrow{\;S\;}\; -\frac{1}{iR_\psi} = \frac{i}{R_\psi}.
+  \label{eq:S_transform}
+\end{equation}
+The self-dual (S-fixed) point requires $iR_\psi = i/R_\psi$, i.e.\
+$R_\psi^2 = 1$:
+\begin{equation}
+  R_\psi^{S\text{-dual}} = 1.
+  \label{eq:Sdual}
+\end{equation}
+Checking whether the candidate $\tau^* = i\pi/\sqrt{N_{\mathrm{eff}}}$
+satisfies any modular relation:
+$-1/\tau^* = i\sqrt{N_{\mathrm{eff}}}/\pi \neq \tau^*$
+unless $\pi^2 = N_{\mathrm{eff}} = 12$;
+however $\pi^2 \approx 9.870 \neq 12$ (discrepancy $\approx 18\%$).
+The T-duality partner of $R_\psi = \pi/\sqrt{12}$ is
+$\tilde{R}_\psi = \sqrt{12}/\pi \approx 1.103$,
+which is also not algebraically distinguished.
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} ---
+modular invariance fixes $R_\psi = 1$ (S-self-dual point).
+The candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ would require
+$\pi^2 = N_{\mathrm{eff}}$, which is false by $\approx 18\%$.}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Zero-Mode Regulation}
+\label{sec:zeromode_regulation}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Context.}
+The canonical vacuum $\theta_H^* = 2\pi$ ($a = 1$) forces a zero mode
+$\lambda_{-1} = 0$ in $\mathcal{D}_1$, making $\det(\mathcal{D}_1) = 0$.
+The reduced determinant $\det'(\mathcal{D}_1) = 2\pi/R_\psi$ removes the
+zero mode but introduces $R_\psi$ dependence.
+Three standard regulation prescriptions are analysed below.
+
+\subsection{2(a): Collective coordinate (instanton method)}
+\label{subsec:collective_coord}
+
+The zero mode of $\mathcal{D}_1$ corresponds to the flat direction of
+the Hosotani vacuum: holonomy shifts $\theta_H \to \theta_H + \delta$
+cost no action.
+In the instanton calculus the zero-mode integration is extracted as
+the collective coordinate $\theta_H$:
+\begin{equation}
+  \int_0^{2\pi} d\theta_H\,e^{-S_{\mathrm{eff}}(\theta_H)}
+  = \int_0^{2\pi} 1\,d\theta_H = 2\pi,
+  \label{eq:cc_volume}
+\end{equation}
+where $S_{\mathrm{eff}} = 0$ along the flat direction.
+The regulated amplitude is
+\begin{equation}
+  Z^*_{\mathrm{cc}}
+  := \det'(\mathcal{D}_1)\times 2\pi
+  = \frac{2\pi}{R_\psi}\cdot 2\pi
+  = \frac{4\pi^2}{R_\psi},
+  \label{eq:Zcc}
+\end{equation}
+giving
+\begin{equation}
+  \Phi_{\mathrm{UBT}}^{(\mathrm{cc})}
+  = \Lambda\,Z^*_{\mathrm{cc}}
+  = \frac{1}{R_\psi}\cdot\frac{4\pi^2}{R_\psi}
+  = \frac{4\pi^2}{R_\psi^2}.
+  \label{eq:phi_cc}
+\end{equation}
+For the algebraic candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$:
+\begin{equation}
+  \Phi_{\mathrm{UBT}}^{(\mathrm{cc})}
+  = \frac{4\pi^2\,N_{\mathrm{eff}}}{\pi^2}
+  = 4N_{\mathrm{eff}} = 48.
+  \label{eq:phi_cc_value}
+\end{equation}
+The result $48 = 4 \times 12$ is a pure integer multiple of
+$N_{\mathrm{eff}}$ and is $\pi$-free, which is algebraically elegant.
+However, it requires $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ as input.
+
+\medskip
+\textbf{Status: \textbf{[NUMERICAL OBSERVATION]} ---
+$\Phi^{(\mathrm{cc})} = 4N_{\mathrm{eff}} = 48$ for
+$R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$;
+$R_\psi$ is not independently derived.
+Numerical $\alpha$ check: Section~\ref{sec:numerical_consistency}.}
+
+\subsection{2(b): Limit $a \to 1^-$}
+\label{subsec:lim_a1}
+
+For $a \to 1^-$ (approaching the degenerate vacuum from the non-integer
+side), $\det(\mathcal{D}_a) = 2\sin(\pi a) \to 0^+$.
+The ratio to the singular factor has a finite limit:
+\begin{equation}
+  \lim_{a\to 1^-}
+  \frac{\det(\mathcal{D}_a)}{|\sin(\pi a)|}
+  = \lim_{a\to 1^-} 2 = 2.
+  \label{eq:ratio_limit}
+\end{equation}
+Defining the renormalised zero-mode amplitude
+$Z^*_{\mathrm{ren}} := 2$ ($R_\psi$-independent),
+the corresponding $\Phi_{\mathrm{UBT}}$ is
+\begin{equation}
+  \Phi_{\mathrm{UBT}}^{(\mathrm{ren})}
+  = \Lambda\,Z^*_{\mathrm{ren}}
+  = \frac{2}{R_\psi}.
+  \label{eq:phi_ren}
+\end{equation}
+For $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$:
+$\Phi_{\mathrm{UBT}}^{(\mathrm{ren})} = 2\sqrt{N_{\mathrm{eff}}}/\pi
+= 2\sqrt{12}/\pi \approx 2.21$.
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} ---
+the $a \to 1^-$ limit yields the universal factor $Z^* = 2$
+but leaves $\Phi_{\mathrm{UBT}} = 2/R_\psi$ $R_\psi$-dependent.}
+
+\subsection{2(c): $\mathbb{Z}_2$ orbifolding $S^1_\psi/\mathbb{Z}_2$}
+\label{subsec:orbifold}
+
+Under the $\mathbb{Z}_2$ identification $\psi \to -\psi$, the circle
+$S^1_\psi$ is reduced to the interval $[0,\pi R_\psi]$.
+Anti-periodic boundary conditions correspond to the twisted sector with
+effective holonomy parameter
+\begin{equation}
+  a_{\mathrm{eff}} = a + \tfrac{1}{2}
+  \big|_{a=1}
+  = \tfrac{3}{2} \notin \mathbb{Z},
+  \label{eq:a_eff}
+\end{equation}
+so the zero mode is absent and the full zeta-det formula gives
+\begin{equation}
+  Z^*_{\mathrm{orb}}
+  = \det\!\left(\mathcal{D}_{3/2}\right)
+  = 2\left|\sin\!\tfrac{3\pi}{2}\right|
+  = 2\cdot 1 = 2.
+  \label{eq:Zorb}
+\end{equation}
+With $\Lambda_{\mathrm{orb}} = 1/R_\psi$ (the UV cutoff remains
+the inverse circle radius):
+\begin{equation}
+  \Phi_{\mathrm{UBT}}^{(\mathrm{orb})}
+  = \frac{2}{R_\psi},
+  \label{eq:phi_orb}
+\end{equation}
+identical to the renormalised-limit result~\eqref{eq:phi_ren}.
+The untwisted sector ($a_{\mathrm{eff}} = 1$) still contains the zero
+mode and requires collective-coordinate treatment as in
+Section~\ref{subsec:collective_coord}.
+
+\begin{remark}
+  The coincidence $Z^*_{\mathrm{orb}} = Z^*_{\mathrm{ren}} = 2$ arises
+  because both prescriptions regulate $\det = 2$ while keeping
+  $\Lambda = 1/R_\psi$; the $R_\psi$-dependence of
+  $\Phi_{\mathrm{UBT}}$ is therefore unavoidable in both cases.
+\end{remark}
+
+\medskip
+\textbf{Status: \textbf{[DEAD END]} ---
+orbifold twisted sector gives $\Phi^{(\mathrm{orb})} = 2/R_\psi$,
+same as the $a \to 1^-$ limit; $R_\psi$-dependence not eliminated.}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Numerical Consistency Check}
+\label{sec:numerical_consistency}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Using equation~\eqref{eq:alpha_sc} with the spectral
+integral~\eqref{eq:spectral_exact} (valid when $R_\psi\Lambda = 1$,
+$b_B = N_{\mathrm{eff}}/(6\pi)$):
+\begin{equation}
+  4\pi\alpha
+  = \Phi_{\mathrm{UBT}}\cdot\frac{3}{4\pi^2}
+    + \frac{1}{\pi^2},
+  \label{eq:alpha_check}
+\end{equation}
+each regulated candidate is evaluated at $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}
+\approx 0.907$.
+
+\begin{center}
+\begin{tabular}{lllll}
+  \toprule
+  Source & Formula for $\Phi_{\mathrm{UBT}}$
+    & $\Phi_{\mathrm{UBT}}$ & $\alpha^{-1}$ & Status \\
+  \midrule
+  L3, $\det'$ (Section~\ref{sec:L3_zetadet})
+    & $2\pi/R_\psi^2 = 24/\pi$
+    & $\approx 7.64$
+    & $\approx 18$
+    & \textbf{[DEAD END]} \\[3pt]
+  Collective coord.\ (2a, eq.~\eqref{eq:phi_cc_value})
+    & $4\pi^2/R_\psi^2 = 4N_{\mathrm{eff}}$
+    & $48$
+    & $\approx 3.4$
+    & \textbf{[DEAD END]} \\[3pt]
+  $a\!\to\!1^-$ limit (2b, eq.~\eqref{eq:phi_ren})
+    & $2/R_\psi = 2\sqrt{12}/\pi$
+    & $\approx 2.21$
+    & $\approx 47$
+    & \textbf{[DEAD END]} \\[3pt]
+  Orbifold twisted (2c, eq.~\eqref{eq:phi_orb})
+    & $2/R_\psi = 2\sqrt{12}/\pi$
+    & $\approx 2.21$
+    & $\approx 47$
+    & \textbf{[DEAD END]} \\
+  \midrule
+  \multicolumn{2}{l}{\emph{Target (required for $\alpha = 1/137$)}}
+    & $< 0$  & $137$ & \textbf{[TARGET]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}
+  The row ``Target'' in the table shows $\Phi_{\mathrm{UBT}} < 0$ because
+  equation~\eqref{eq:alpha_check} gives
+  $\Phi_{\mathrm{UBT}} = (4\pi^2/3)\,(4\pi/137 - 1/\pi^2) \approx -0.127$
+  when $\alpha = 1/137$ is imposed --- a negative value, hence unphysical.
+  See equation~\eqref{eq:phi_required} for the full derivation.
+\end{remark}
+
+\medskip
+
+None of the regulated candidates yields $\alpha^{-1} \approx 137$.
+The spectral term $1/\pi^2 \approx 0.101$ already exceeds
+$4\pi/137 \approx 0.092$ in equation~\eqref{eq:alpha_check},
+so \emph{no positive} $\Phi_{\mathrm{UBT}}$ can close the gap:
+\begin{equation}
+  \Phi_{\mathrm{UBT}}^{\mathrm{req}}
+  = \frac{4\pi^2}{3}\!\left(\frac{4\pi}{137} - \frac{1}{\pi^2}\right)
+  \approx \frac{4\pi^2}{3}\times(-0.00964)
+  \approx -0.127.
+  \label{eq:phi_required}
+\end{equation}
+This is a \textbf{[STRUCTURAL OBSTRUCTION]}: the bosonic spectral term
+$b_B = N_{\mathrm{eff}}/(6\pi) > 0$ forces the spectral contribution
+above the target $4\pi\alpha = 4\pi/137$, making $\alpha = 1/137$
+unreachable without a compensating fermionic term or an alternative
+spectral cutoff.
+
+\begin{remark}
+  This obstruction is specific to the L3-based identification
+  $\Phi_{\mathrm{UBT}} = 2\pi/R_\psi^2$ combined with
+  $b_B = N_{\mathrm{eff}}/(6\pi)$.
+  The L1 approach (Section~\ref{sec:L1_zeromode}) uses
+  $\Phi = 1/((2\pi)^3 R_\psi^2) \approx 0.004$, which is
+  roughly $2000$--$10000$ times smaller and lies in the regime
+  where equation~\eqref{eq:alpha_check} (with a different spectral
+  coefficient) can produce $\alpha \approx 1/137$ for the fitted
+  $R_\psi \approx 0.917$.
+  The tension between L1 and L3 identifications of $\Phi_{\mathrm{UBT}}$
+  is an open question.
+\end{remark}
+
+\medskip
+\textbf{Summary: all L3-regulated candidates yield
+$\alpha^{-1} \in \{3, 18, 47\}$, far below $137$.
+The constraint~\eqref{eq:phi_required} constitutes a
+\textbf{[STRUCTURAL OBSTRUCTION]} within the present framework.}
+
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Conclusion: Cumulative Status}
 \label{sec:conclusion}
 % ─────────────────────────────────────────────────────────────────────────────
 
 \begin{center}
-\begin{tabular}{lp{5.2cm}p{3.4cm}l}
+\begin{tabular}{lp{4.8cm}p{3.6cm}l}
   \toprule
   Approach & Key result & Blocker & Status \\
   \midrule
@@ -616,6 +1014,47 @@ without $R_\psi$ or $\alpha$ as an input.
     & Finiteness condition~\eqref{eq:finiteness_impossible}
       is unsatisfiable
     & Introduces free scale $\mu$
+    & \textbf{[DEAD END]} \\[6pt]
+  \midrule
+  \multicolumn{4}{l}{\textit{New analyses (Sections~\ref{sec:algebraic_Rpsi}--\ref{sec:numerical_consistency})}} \\[3pt]
+  1(a): action norm.
+    & $\mathcal{S}=1 \Rightarrow R_\psi = 2\pi V_4$;\par
+      no canonical $V_4$ gives $\pi/\sqrt{N_{\mathrm{eff}}}$
+    & $V_4$ unspecified
+    & \textbf{[DEAD END]} \\[6pt]
+  1(b): proved combos
+    & No combination of $\{B_0,N_{\mathrm{eff}},\theta_H^*\}$\par
+      fixes $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$
+    & No constraint found
+    & \textbf{[DEAD END]} \\[6pt]
+  1(c): SC det'
+    & $R_\psi^{\mathrm{SC}} = \sqrt{3\pi/(8\pi^3-2)} \approx 0.196$;\par
+      $\alpha=1/137$ requires $\Phi_{\mathrm{UBT}}<0$
+    & $R_\psi^{\mathrm{SC}} \neq \pi/\sqrt{N_{\mathrm{eff}}}$;\par
+      structural obstruction
+    & \textbf{[DEAD END]} \\[6pt]
+  1(d): modular inv.
+    & S-self-dual: $R_\psi = 1$;\par
+      candidate needs $\pi^2 = N_{\mathrm{eff}}$ (false by 18\%)
+    & $\pi^2 \neq 12$
+    & \textbf{[DEAD END]} \\[6pt]
+  2(a): collective coord.
+    & $\Phi^{(\mathrm{cc})} = 4N_{\mathrm{eff}} = 48$\par
+      for $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$;\par
+      $\alpha^{-1} \approx 3.4$
+    & $R_\psi$ not derived;\par
+      $\alpha^{-1} \ll 137$
+    & \textbf{[DEAD END]} \\[6pt]
+  2(b): $a\!\to\!1^-$ limit
+    & $Z^*_{\mathrm{ren}} = 2$ ($R_\psi$-indep.);\par
+      $\Phi = 2/R_\psi$, $\alpha^{-1} \approx 47$
+    & $R_\psi$ survives in $\Phi$;\par
+      $\alpha^{-1} \ll 137$
+    & \textbf{[DEAD END]} \\[6pt]
+  2(c): $\mathbb{Z}_2$ orbifold
+    & $Z^*_{\mathrm{orb}} = 2$ ($R_\psi$-indep.);\par
+      $\Phi = 2/R_\psi$, $\alpha^{-1} \approx 47$
+    & Same as 2(b)
     & \textbf{[DEAD END]} \\
   \bottomrule
 \end{tabular}
@@ -654,23 +1093,38 @@ without $R_\psi$ or $\alpha$ as an input.
   The canonical vacuum ($\theta_H^* = 2\pi$) has an integer holonomy
   that forces a zero mode, preventing a direct application of the
   $\det = 2|\sin(\pi a)|$ formula.
-  Three sub-problems remain:
+  Sections~\ref{sec:algebraic_Rpsi}--\ref{sec:numerical_consistency}
+  have now analysed all immediate sub-problems; the remaining
+  open questions are:
   \begin{enumerate}
-    \item \emph{Fix $R_\psi$ algebraically.}
-          The candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$
-          (equation~\eqref{eq:R_psi_algebraic})
-          is a \textbf{[NUMERICAL OBSERVATION]}; its derivation from
-          $\mathcal{S}[\Theta]$ would close the gap.
-    \item \emph{Regulate the zero mode in the canonical vacuum.}
-          The zero mode of $\mathcal{D}_1$ must be handled separately
-          (collective coordinate, modular space integral, or
-          $\partial_\psi + a$ with $a\to 1^-$).
-          A natural regulated value could recover $\Phi_{\mathrm{UBT}}$
-          as a pure number.
+    \item \emph{Algebraic origin of $R_\psi$ --- all four routes are dead ends.}
+          Sub-tasks 1(a)--(d) (action normalisation, proved-quantity combinations,
+          self-consistency from $\det'$, and modular invariance) all conclude
+          \textbf{[DEAD END]}.
+          The self-consistency equation with $b_B = N_{\mathrm{eff}}/(6\pi)$
+          gives $R_\psi^{\mathrm{SC}} \approx 0.196 \neq \pi/\sqrt{N_{\mathrm{eff}}}$,
+          and furthermore renders $\alpha = 1/137$ algebraically unreachable
+          (equation~\eqref{eq:alpha137_impossible}).
+    \item \emph{Zero-mode regulation --- all three prescriptions are dead ends.}
+          Collective coordinate (2a), renormalised limit $a\to 1^-$ (2b), and
+          $\mathbb{Z}_2$ orbifold (2c) all leave $R_\psi$ as a free parameter
+          in $\Phi_{\mathrm{UBT}}$, and none yields $\alpha^{-1} \approx 137$
+          (Section~\ref{sec:numerical_consistency}).
+    \item \emph{Spectral sign: structural obstruction.}
+          The bosonic KK spectral term $1/\pi^2$ exceeds $4\pi/137$,
+          making $\alpha = 1/137$ unreachable from the L3 formula
+          (equation~\eqref{eq:phi_required}).
+          A resolution requires either a net fermionic spectral contribution
+          ($b_{\mathrm{eff}} < 0$), a modified spectral cutoff, or a
+          reconciliation of the L1 and L3 identifications of
+          $\Phi_{\mathrm{UBT}}$.
     \item \emph{Link L2 (Atiyah--Singer) to L3.}
           If the index of the $\mathbb{C}\otimes\mathbb{H}$ bundle over
           a compact curved base is non-zero, it may set the overall
           normalisation of $\Phi_{\mathrm{UBT}}$ through the index theorem.
+          This possibility is not excluded by Lemma~1 (which only establishes
+          integer holonomy on flat $\mathbb{R}^4 \times S^1$) and remains
+          \textbf{[OPEN]}.
   \end{enumerate}
 \end{gap}
 
