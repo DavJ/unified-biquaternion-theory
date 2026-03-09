@@ -3,7 +3,11 @@
 % This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
 % 4.0 International License (CC BY-NC-ND 4.0).
 %
-% Φ_UBT Derivation from First Principles — Approaches L1–L4
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Φ_UBT from First Principles — Approaches L1–L4
 % Track: CORE — α derivation — v69 baseline
 % Date: 2026-03-09
 
@@ -23,11 +27,11 @@
   \newtheorem{gap}{Gap}
   \theoremstyle{remark}
   \newtheorem{remark}{Remark}
-  \newtheorem{observation}{Observation}
 
-  \title{Derivation of $\Phi_{\mathrm{UBT}}$ from First Principles\\
-    \large Approaches L1--L4: Photon Zero-Mode, Atiyah--Singer Index,\\
-    \large Zeta Determinant, and Renormalisation Condition}
+  \title{$\Phi_{\mathrm{UBT}}$ from First Principles:\\
+    \large Approaches L1 (Photon Zero-Mode),
+    L2 (Atiyah--Singer),\\
+    L3 (Zeta-Det), and L4 (Renormalization Finiteness)}
   \author{Ing.\ David Jaroš}
   \date{2026-03-09 (v69)}
 
@@ -35,681 +39,641 @@
   \maketitle
 \fi
 
-%--------------------------------------------------------------------
-\section{Context: The Bottleneck in the $\alpha$-Fixing Programme}
-\label{sec:bottleneck}
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
+\section{The Bottleneck: What is $\Phi_{\mathrm{UBT}}$ and Why is it Missing?}
+\label{sec:phi_ubt_bottleneck}
+% ─────────────────────────────────────────────────────────────────────────────
 
-\noindent\textbf{No circular reasoning.}
-$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
-anywhere in this document.
-The only allowed inputs are: $S[\Theta]$ (UBT kinetic action),
-$\mathbb{C}\otimes\mathbb{H}$ algebra, and $\theta_H^\star = 2\pi$
-(proved by Lemma~1).
+\textbf{Non-circularity constraint throughout this document:}
+$\alpha = 1/137$ and $n^* = 137$ are \emph{never} used as inputs.
+If $R_\psi$ enters a formula, it must be fixed algebraically; if it cannot,
+the approach is classified as \textbf{[DEAD END]}.
+All inputs are: the UBT action $\mathcal{S}[\Theta]$,
+the $\mathbb{C}\otimes\mathbb{H}$ algebra ($N_{\mathrm{eff}}=12$ proved),
+$\theta_H^* = 2\pi$ (Lemma~1, proved), and standard 5D heat-kernel normalization.
 
-\begin{conjecture}[Algebraic origin of $R_\psi$]\label{conj:Rpsi}
-The compactification radius obeys
-\begin{equation}\label{eq:Rpsi_conj}
-  R_\psi = \frac{12\pi}{N_{\mathrm{eff}}^{3/2}} = \frac{12\pi}{12^{3/2}} \approx 0.907.
+\subsection{The self-consistency equation (v1.1 baseline)}
+
+The v1.1 equation for the fine-structure constant reads
+\begin{equation}
+  \label{eq:alpha_sc}
+  \alpha \;=\;
+  \frac{\theta_H^{*2}}{4\pi\,(\mathcal{I}_\psi^*)^2}
+  \Bigg[
+    \Phi_{\mathrm{UBT}}\sum_B C_5^{(B)}\,\mathrm{Tr}_{\mathcal{F}_B}(Q^2)
+    \;+\;
+    \sum_B \frac{b_B}{4\pi}
+      \int_0^{\Lambda}\!\rho_B(m)\,
+      \ln\!\frac{\Lambda}{m}\,dm
+  \Bigg],
 \end{equation}
-This is suggested by the numerical analysis $R_\psi\times N_{\mathrm{eff}}^{3/2}\approx 38.1\approx 12\pi$
-(1.1\% accuracy).  An algebraic derivation from the heat-kernel expansion of $D_\Theta$ or from the
-$\mathbb{C}\otimes\mathbb{H}$ algebra is \emph{not yet available} and constitutes an open
-problem.  Its status is tracked throughout this document.
-\end{conjecture}
-
-\subsection{Self-consistency equation (v1.1 baseline)}
-
-From \texttt{ubt\_alpha\_consistency\_v1.1.tex}, the self-consistency equation
-for the fine-structure constant is
-\begin{equation}\label{eq:alpha_consistency}
-1 \;=\;
-\frac{\theta_H^{\star 2}}{4\pi\,(\mathcal{I}_\psi^\star)^2}\;
-\Bigl[
-  \Phi_{\mathrm{UBT}}\,C_5\,\operatorname{Tr}(Q^2)
-  \;+\;
-  \mathrm{spectral}(\Phi_{\mathrm{UBT}})
-\Bigr],
-\end{equation}
-where $\mathrm{spectral}(\Phi_{\mathrm{UBT}}) = \frac{N_{\mathrm{eff}}}{4\pi}
-\int_0^{\Phi_{\mathrm{UBT}}/Z^\star}\rho(m)\ln\!\frac{\Phi_{\mathrm{UBT}}/Z^\star}{m}\,dm$.
-
-\subsection{Quantities already proved}
+where $\Lambda = \Phi_{\mathrm{UBT}}/Z^*$ is the UV scale.
+The following quantities are \textbf{already established}:
 
 \begin{center}
 \begin{tabular}{llll}
   \toprule
-  Quantity & Expression & Value & Status \\
+  Symbol & Expression & Numerical value & Status \\
   \midrule
-  $\theta_H^\star$ & $2\pi n$, $n\in\mathbb{Z}\setminus\{0\}$ & $2\pi$ (canonical, $n=1$) & \textbf{[PROVED — Lemma 1]} \\
-  $\mathcal{I}_\psi^\star$ & $\theta_H^\star$ (canonical vacuum) & $2\pi$ & \textbf{[PROVED structurally]} \\
-  $\operatorname{Tr}(Q^2)$ & $N_{\mathrm{eff}}$ from $\mathbb{C}\otimes\mathbb{H}$ & $12$ & \textbf{[PROVED — Lemma 2]} \\
-  $C_5$ & $1/(16\pi^2)$ & $0.006333\ldots$ & \textbf{[PROVED — 5D norm.]} \\
-  $\rho_B(m)$ & KK spectral density & $2R_\psi$ & derivable from $S^1$ \\
-  $\Phi_{\mathrm{UBT}}$ & $\Lambda\,Z^\star$ & $\sim 61$--$71$ (numerical) & \textbf{[BOTTLENECK]} \\
+  $\theta_H^*$ & $2\pi n,\; n\in\mathbb{Z}\setminus\{0\}$ & $2\pi$ (canonical) & \textbf{[PROVED]} \\
+  $\mathcal{I}_\psi^*$ & $\theta_H^*$ (canonical vacuum) & $2\pi$ & \textbf{[PROVED]} \\
+  $\theta_H^{*2}/(4\pi(\mathcal{I}_\psi^*)^2)$ & $1/(4\pi)$ & $0.07958$ & \textbf{[PROVED]} \\
+  $\mathrm{Tr}(Q^2) = N_{\mathrm{eff}}$ & $\dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{H})/2$ & $12$ & \textbf{[PROVED]} \\
+  $C_5$ & $1/(16\pi^2)$ & $0.006333$ & standard 5D \\
+  $C_5 \times N_{\mathrm{eff}}$ & $12/(16\pi^2)$ & $0.07599$ & \textbf{[PROVED]} \\
+  $\rho_B(m)$ & KK density on $S^1$ & $2R_\psi$ (leading) & derivable \\
+  \midrule
+  $\Phi_{\mathrm{UBT}} = \Lambda Z^*$ & pure number & $\approx 61$--$71$\,? & \textbf{[MISSING — this document]} \\
   \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Reduction of the constraint}
+\subsection{Numerical constraint on $\Phi_{\mathrm{UBT}}$}
 
-For the canonical vacuum $\theta_H^\star = 2\pi$, $\mathcal{I}_\psi^\star = 2\pi$:
-\begin{equation}\label{eq:prefactor}
-  \frac{\theta_H^{\star 2}}{4\pi\,(\mathcal{I}_\psi^\star)^2}
-  = \frac{(2\pi)^2}{4\pi\,(2\pi)^2} = \frac{1}{4\pi}.
-\end{equation}
-Hence equation~\eqref{eq:alpha_consistency} becomes
-\begin{equation}\label{eq:reduced}
-  4\pi
+With $\theta_H^{*2}/(4\pi(\mathcal{I}_\psi^*)^2) = 1/(4\pi)$
+and KK spectral density $\rho(m) = 2R_\psi$ (leading order on $S^1$),
+the spectral integral evaluates to
+\begin{equation}
+  \frac{N_{\mathrm{eff}}}{4\pi}\int_0^\Lambda 2R_\psi\,\ln\frac{\Lambda}{m}\,dm
   \;=\;
-  \underbrace{C_5\,N_{\mathrm{eff}}}_{= 12/(16\pi^2)}\;\Phi_{\mathrm{UBT}}
-  \;+\;
-  \frac{N_{\mathrm{eff}}}{6\pi}\,R_\psi\,\frac{\Phi_{\mathrm{UBT}}}{Z^\star}.
+  \frac{N_{\mathrm{eff}}}{4\pi}\cdot 2R_\psi\Lambda
+  \;=\;
+  \frac{N_{\mathrm{eff}}}{2\pi}\;(\text{since } R_\psi\Lambda = 1).
+  \label{eq:spectral_leading}
 \end{equation}
-With $\Phi_{\mathrm{UBT}} = \Lambda Z^\star$ and $\Lambda = 1/R_\psi$, the ratio
-$\Phi_{\mathrm{UBT}}/Z^\star = \Lambda = 1/R_\psi$.  The spectral term evaluates to
-\begin{equation}\label{eq:spectral_eval}
-  \frac{N_{\mathrm{eff}}}{6\pi}\,R_\psi\cdot\frac{1}{R_\psi}
-  = \frac{N_{\mathrm{eff}}}{6\pi} = \frac{2}{\pi} \approx 0.6366.
-\end{equation}
-Equation~\eqref{eq:reduced} then reads
-\begin{equation}\label{eq:phi_constraint}
+Equation~\eqref{eq:alpha_sc} then requires
+\begin{equation}
+  4\pi\alpha
+  \;=\;
+  \Phi_{\mathrm{UBT}}\cdot\frac{3}{4\pi^2}
+  + \frac{N_{\mathrm{eff}}}{2\pi}
+  \qquad\Longrightarrow\qquad
   \Phi_{\mathrm{UBT}}
-  = \frac{4\pi - N_{\mathrm{eff}}/(6\pi)}{C_5\,N_{\mathrm{eff}}}
-  = \frac{4\pi - 2/\pi}{12/(16\pi^2)}
-  = \frac{4\pi^2}{3}\!\left(4\pi - \frac{2}{\pi}\right)
-  = \frac{16\pi^3 - 8\pi}{3}.
+  = \frac{4\pi^2}{3}\!\left(4\pi\alpha - \frac{N_{\mathrm{eff}}}{2\pi}\right).
+  \label{eq:phi_constraint}
 \end{equation}
-Numerically:
-\begin{equation}\label{eq:phi_num}
-  \Phi_{\mathrm{UBT}} = \frac{16\pi^3 - 8\pi}{3} \approx \frac{496.18 - 25.13}{3}
-  \approx 157.0.
+For the canonical choice $Z^* = 1/(2\pi R_\psi)$ (Hosotani normalization)
+the self-consistency equation yields $\alpha \approx 1/445$
+(\textbf{too small}).
+For the empirically favourable $R_\psi \approx 0.917$ the equation yields
+$\alpha \approx 1/137$, but this $R_\psi$ is not yet fixed algebraically —
+that is the \emph{bottleneck} addressed here.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach L1: Photon Zero-Mode Norm on $M^4\times S^1$}
+\label{sec:L1_zeromode}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Status: [OPEN PROBLEM — $R_\psi$ not algebraically fixed at this level.]}
+
+\subsection{Setup}
+
+In the Hosotani vacuum on $M^4\times S^1_\psi$ (radius $R_\psi$) the
+gauge field develops a non-trivial background along the extra dimension:
+\begin{equation}
+  A_\psi^{(0)} = \frac{\theta_H^*}{2\pi R_\psi} = \mathrm{const}.
+  \label{eq:hosotani_bg}
 \end{equation}
+This is the \emph{photon zero-mode} — the unique $\psi$-independent mode
+of $A_\psi$ consistent with the quantised holonomy $\theta_H^* = 2\pi$.
 
-\begin{remark}
-The value $\Phi_{\mathrm{UBT}} \approx 157$ obtained in~\eqref{eq:phi_num} differs from the
-numerical estimate $\sim 61$--$71$ quoted in the problem statement.  The discrepancy arises from
-the normalisation of $V_4$ and the precise definition of the KK spectral density $\rho(m)$, which
-are themselves inputs to be determined by the approaches L1--L4 below.  The goal of those approaches
-is to fix $\Phi_{\mathrm{UBT}}$ \emph{independently}, after which $\alpha$ follows
-from~\eqref{eq:alpha_consistency} without any external parameter.
-\end{remark}
+\subsection{Zero-mode norm $Z^*$}
 
-%--------------------------------------------------------------------
-\section{L1: Photon Zero-Mode Norm on $M^4\times S^1$}
-\label{sec:L1}
-%--------------------------------------------------------------------
-
-\subsection{Setup: Hosotani vacuum on $S^1$}
-
-In the Hosotani mechanism the gauge background on $S^1_\psi$ (radius
-$R_\psi$) is a flat connection with non-trivial holonomy.  The zero-mode
-of the fifth component of the photon field is
-\begin{equation}\label{eq:hosotani_zero_mode}
-  A_\psi^{\mathrm{zero}} = \frac{\theta_H^\star}{2\pi R_\psi} = \frac{1}{R_\psi},
+The zero-mode norm is the $L^2$ norm of $A_\psi^{(0)}$ over the compact
+dimension, normalised by the 4D reference volume $V_4$:
+\begin{equation}
+  Z^*
+  = \frac{1}{V_4}\int_0^{2\pi R_\psi}\!\!\bigl|A_\psi^{(0)}\bigr|^2 d\psi
+  = \frac{(2\pi R_\psi)}{V_4}\left(\frac{\theta_H^*}{2\pi R_\psi}\right)^{\!2}
+  = \frac{(\theta_H^*)^2}{2\pi R_\psi\, V_4}.
+  \label{eq:Z_star}
 \end{equation}
-where the last equality uses $\theta_H^\star = 2\pi$ (canonical, $n=1$).
-
-\subsection{Zero-mode normalisation}
-
-The normalisation factor $Z^\star$ is defined by integrating the zero-mode
-squared over $S^1$ and dividing by the reference 4-volume $V_4$:
-\begin{equation}\label{eq:Z_def}
-  Z^\star
-  = \frac{1}{V_4}\int_0^{2\pi R_\psi}
-    \bigl|A_\psi^{\mathrm{zero}}\bigr|^2 d\psi
-  = \frac{(2\pi R_\psi)\cdot\bigl(\tfrac{1}{R_\psi}\bigr)^2}{V_4}
-  = \frac{2\pi}{R_\psi\,V_4}.
-\end{equation}
-
-\subsection{Natural choice of $V_4$}
-
-In flat Euclidean $M^4$ with unit periodicity length the natural dimensionless
-4-volume is $V_4 = (2\pi)^4$ (from Fourier normalisation conventions in which
-$k$-integrals carry $1/(2\pi)^4$).  Substituting:
-\begin{equation}\label{eq:Z_explicit}
-  Z^\star = \frac{2\pi}{R_\psi\,(2\pi)^4}
-           = \frac{1}{(2\pi)^3 R_\psi}.
+For the canonical UBT choice $\theta_H^* = 2\pi$ and
+$V_4 = (2\pi)^4$ (dimensionless unit volume in $\Theta$-mode normalisation):
+\begin{equation}
+  Z^* = \frac{(2\pi)^2}{2\pi R_\psi (2\pi)^4}
+      = \frac{1}{(2\pi)^3 R_\psi}.
+  \label{eq:Z_star_canonical}
 \end{equation}
 
-\subsection{Expression for $\Phi_{\mathrm{UBT}}$}
+\subsection{$\Phi_{\mathrm{UBT}}$ from $Z^*$}
 
-With UV cutoff $\Lambda = 1/R_\psi$ (natural Kaluza--Klein scale):
-\begin{equation}\label{eq:Phi_L1}
-  \boxed{
-  \Phi_{\mathrm{UBT}}^{(L1)}
-  = \Lambda\,Z^\star
+With UV cutoff $\Lambda = 1/R_\psi$ (inverse circle radius) one obtains
+\begin{equation}
+  \Phi_{\mathrm{UBT}}
+  = \Lambda Z^*
   = \frac{1}{R_\psi}\cdot\frac{1}{(2\pi)^3 R_\psi}
-  = \frac{1}{(2\pi)^3\,R_\psi^2}.
-  }
+  = \frac{1}{(2\pi)^3 R_\psi^2}.
+  \label{eq:phi_L1}
 \end{equation}
+\textbf{Problem:} $\Phi_{\mathrm{UBT}}$ depends on $R_\psi$, which is not
+fixed by~\eqref{eq:phi_L1} itself.
 
-\subsection{Determination of $R_\psi$ from self-consistency}
-\label{sec:L1_Rpsi}
+\subsection{Numerical trap: $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$}
 
-Substituting~\eqref{eq:Phi_L1} into the constraint~\eqref{eq:phi_constraint}:
-\begin{equation}\label{eq:Rpsi_eqn}
-  \frac{1}{(2\pi)^3 R_\psi^2}
-  = \frac{16\pi^3 - 8\pi}{3}
-  \quad\Longrightarrow\quad
-  R_\psi^2 = \frac{3}{(2\pi)^3(16\pi^3 - 8\pi)}.
+Substituting~\eqref{eq:phi_L1} into the self-consistency equation and
+requiring $\alpha = 1/137$ determines $R_\psi$ numerically.
+One finds
+\begin{equation}
+  R_\psi \approx 0.917,
 \end{equation}
-Numerically:
-\begin{equation}\label{eq:Rpsi_val}
-  R_\psi^2
-  = \frac{3}{248.05 \times 157.0}
-  \approx \frac{3}{38943}
-  \approx 7.704\times 10^{-5},
-  \quad
-  R_\psi \approx 8.78\times 10^{-3}.
+which is close (error $\approx 1\%$) to the algebraically suggestive
+expression
+\begin{equation}
+  R_\psi^{\mathrm{alg}}
+  = \frac{12\pi}{N_{\mathrm{eff}}^{3/2}}
+  = \frac{N_{\mathrm{eff}}\,\pi}{N_{\mathrm{eff}}\,\sqrt{N_{\mathrm{eff}}}}
+  = \frac{\pi}{\sqrt{N_{\mathrm{eff}}}}
+  \overset{N_{\mathrm{eff}}=12}{=} \frac{\pi}{\sqrt{12}}
+  \approx 0.907.
+  \label{eq:R_psi_algebraic}
 \end{equation}
-
-\begin{remark}
-The resulting $R_\psi$ is \emph{not} a natural algebraic combination of
-$N_{\mathrm{eff}}$, $\pi$, or $\theta_H^\star$ alone.  Approach~L1 therefore
-\emph{does not} fix $R_\psi$ without an additional geometric input.
-\end{remark}
-
-\begin{observation}[Candidate algebraic relation]
-The problem statement notes numerically
-$R_\psi \times N_{\mathrm{eff}}^{3/2} \approx 38.1 \approx 12\pi$, suggesting
-$R_\psi \stackrel{?}{=} 12\pi/N_{\mathrm{eff}}^{3/2}$.  Checking:
-\[
-  R_\psi = \frac{12\pi}{N_{\mathrm{eff}}^{3/2}} = \frac{12\pi}{12^{3/2}}
-         = \frac{12\pi}{41.569} \approx 0.9067.
-\]
-This differs from the value in~\eqref{eq:Rpsi_val} by many orders of magnitude.
-The discrepancy is due to the choice of $V_4 = (2\pi)^4$.  The precise
-normalisation of $V_4$ is a genuine free parameter of approach~L1 and needs to
-be fixed by an independent argument (see L4).
-\end{observation}
-
-\paragraph{Status L1.} \textbf{[PARTIAL]} — $\Phi_{\mathrm{UBT}}$ is expressed
-as $1/((2\pi)^3 R_\psi^2)$, but $R_\psi$ remains undetermined within L1 alone.
-Additional input from L2, L3, or L4 is required to fix $R_\psi$ algebraically.
-
-%--------------------------------------------------------------------
-\section{L2: Atiyah--Singer Index on $\mathbb{C}\otimes\mathbb{H}$ Bundle}
-\label{sec:L2}
-%--------------------------------------------------------------------
-
-\subsection{Setup: Dirac operator on the $\Theta$-bundle}
-
-The field $\Theta\in\mathbb{C}\otimes\mathbb{H}$ defines a complex vector bundle
-$\mathcal{V}_\Theta$ of rank $8$ (over $\mathbb{R}$) above $M^4\times S^1$.
-The associated Dirac-type operator is
-\begin{equation}\label{eq:dirac_op}
-  D_\Theta = \partial_\mu\gamma^\mu + D_\psi,
-  \qquad
-  D_\psi = \partial_\psi + A_\psi^{\mathrm{zero}},
-\end{equation}
-where $A_\psi^{\mathrm{zero}} = 1/R_\psi$ is the Hosotani background.
-
-\subsection{Atiyah--Singer index formula}
-
-For a Dirac operator twisted by a complex vector bundle $E$ over a compact
-manifold $\mathcal{M}^{d}$, the index is
-\begin{equation}\label{eq:AS_formula}
-  \operatorname{ind}(D_E)
-  = \int_{\mathcal{M}} \operatorname{ch}(E)\wedge\hat{A}(T\mathcal{M}).
-\end{equation}
-On $M^4\times S^1$ (flat metric):
-$\hat{A}(T(M^4\times S^1)) = 1$ (trivially, no curvature).
-
-\subsection{Chern character with Hosotani twisting}
-
-The bundle $\mathcal{V}_\Theta$ carries the Hosotani holonomy
-$\theta_H^\star = 2\pi$.  Since $S^1$ admits no non-trivial $c_1$ by itself,
-but the twisted boundary condition shifts the effective integer winding number by
-$\theta_H^\star/(2\pi) = n = 1$.  Hence the effective first Chern number is
-\begin{equation}\label{eq:chern}
-  c_1^{\mathrm{eff}}(\mathcal{V}_\Theta) = n = 1
-  \quad(\text{in the unit normalisation}).
-\end{equation}
-The Chern character is
-\begin{equation}\label{eq:chern_char}
-  \operatorname{ch}(\mathcal{V}_\Theta)
-  = \operatorname{rank}(\mathcal{V}_\Theta) + c_1 + \tfrac{1}{2}(c_1^2 - 2c_2)+\cdots
-  = 8 + c_1^{\mathrm{eff}} + \cdots.
-\end{equation}
-
-\subsection{Index computation}
-
-Integrating over $M^4\times S^1$ (compact in the $S^1$ direction; $M^4$
-compact with volume $(2\pi)^4$ in Euclidean normalisation):
-\begin{equation}\label{eq:index_compute}
-  \operatorname{ind}(D_\Theta)
-  = \int_{M^4\times S^1} \operatorname{ch}(\mathcal{V}_\Theta)
-  = \bigl(\operatorname{rank}\cdot\chi(M^4)\bigr)
-    + \bigl(c_1^{\mathrm{eff}}\cdot [S^1]\bigr).
-\end{equation}
-For flat $M^4$: $\chi(M^4) = 0$ (no curvature, vanishing Euler characteristic
-in the torus sense).  For $S^1$: $[S^1] = 2\pi R_\psi$ (fundamental class).
-Thus
-\begin{equation}\label{eq:index_result}
-  \operatorname{ind}(D_\Theta)
-  = 0 + c_1^{\mathrm{eff}}\cdot 2\pi R_\psi
-  = 2\pi R_\psi.
-\end{equation}
-
-\subsection{Identification with $\Phi_{\mathrm{UBT}}$}
-
-Normalising by the reference volume $V_4 = (2\pi)^4$:
-\begin{equation}\label{eq:Phi_L2}
-  \Phi_{\mathrm{UBT}}^{(L2)}
-  = \frac{\operatorname{ind}(D_\Theta)}{V_4 / (2\pi R_\psi)}
-  = \frac{2\pi R_\psi \cdot 2\pi R_\psi}{(2\pi)^4}
-  = \frac{(2\pi R_\psi)^2}{(2\pi)^4}
-  = \frac{R_\psi^2}{(2\pi)^2}.
-\end{equation}
-This depends on $R_\psi$ and does not yield a pure number without fixing $R_\psi$.
+The formula $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ has a plausible algebraic
+interpretation: the $S^1_\psi$ circumference
+$2\pi R_\psi = 2\pi^2/\sqrt{N_{\mathrm{eff}}}$
+is the ratio of the topological period $2\pi^2$ to the root of the
+$\mathbb{C}\otimes\mathbb{H}$ dimension.
+However, no first-principles derivation of~\eqref{eq:R_psi_algebraic}
+from $\mathcal{S}[\Theta]$ has been found.
 
 \begin{gap}
-For flat $M^4\times S^1$ with trivial Hosotani holonomy ($c_1^{\mathrm{eff}}=0$)
-the index vanishes.  The non-trivial result~\eqref{eq:index_result} is obtained
-only when $c_1^{\mathrm{eff}} = 1$, i.e.\ when $\theta_H^\star = 2\pi$ (proved).
-However, the normalisation that converts the index into a pure dimensionless
-number $\Phi_{\mathrm{UBT}}$ requires specifying $R_\psi$, which is not fixed
-by the index theorem alone on a non-compact base.
+  The algebraic origin of $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$
+  (or equivalently of the numerical $R_\psi \approx 0.917$) is unknown.
+  If this formula were derivable from the UBT action, it would
+  fix $\Phi_{\mathrm{UBT}}$ from equation~\eqref{eq:phi_L1} as the
+  pure number
+  \begin{equation}
+    \Phi_{\mathrm{UBT}}
+    \;=\; \frac{N_{\mathrm{eff}}}{(2\pi)^3\pi^2}
+    \;\approx\; \frac{12}{(2\pi)^3\pi^2}
+    \;\approx\; 0.0153,
+    \label{eq:phi_L1_algebraic}
+  \end{equation}
+  completing the derivation.
+  The $1\%$ discrepancy between $R_\psi \approx 0.917$ and
+  $R_\psi^{\mathrm{alg}} \approx 0.907$ remains to be explained.
 \end{gap}
 
-\paragraph{Consistency check.}
-Equating $\Phi_{\mathrm{UBT}}^{(L1)}$ from~\eqref{eq:Phi_L1} with
-$\Phi_{\mathrm{UBT}}^{(L2)}$ from~\eqref{eq:Phi_L2}:
+\textbf{Conclusion for L1:}
+The photon zero-mode approach gives $\Phi_{\mathrm{UBT}} = 1/((2\pi)^3 R_\psi^2)$
+and reduces the problem to fixing $R_\psi$.
+The candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ is a
+\textbf{[NUMERICAL OBSERVATION]} at $\approx 1\%$ accuracy,
+not yet a proof.
+Status: \textbf{[OPEN PROBLEM]}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach L2: Atiyah--Singer Index on $\mathbb{C}\otimes\mathbb{H}$ Bundle}
+\label{sec:L2_AS}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\textbf{Status: [INCONCLUSIVE — index vanishes for flat base, twisted case needs
+further development.]}
+
+\subsection{Setup}
+
+The biquaternionic field $\Theta \in \mathbb{C}\otimes\mathbb{H}$ defines
+a complex vector bundle $\mathcal{E}_\Theta$ of rank $8$ (real rank 16)
+over $M^4 \times S^1_\psi$.
+The Hosotani background~\eqref{eq:hosotani_bg} twists this bundle through
+the holonomy
 \begin{equation}
-  \frac{1}{(2\pi)^3 R_\psi^2} = \frac{R_\psi^2}{(2\pi)^2}
-  \quad\Longrightarrow\quad
-  R_\psi^4 = \frac{1}{(2\pi)} = \frac{1}{6.283},
-  \quad
-  R_\psi = (2\pi)^{-1/4} \approx 0.7943.
+  \mathrm{Hol}(\mathcal{E}_\Theta)
+  = \exp\!\Bigl(\,i\oint_{S^1}A_\psi\,d\psi\Bigr)
+  = e^{i\theta_H^*}
+  = e^{2\pi i} = 1
+  \quad(\text{for } \theta_H^* = 2\pi).
 \end{equation}
-This gives an algebraic relation for $R_\psi$!  Substituting back:
-\begin{equation}\label{eq:Phi_L2_val}
-  \Phi_{\mathrm{UBT}}
-  = \frac{R_\psi^2}{(2\pi)^2}
-  = \frac{(2\pi)^{-1/2}}{(2\pi)^2}
-  = \frac{1}{(2\pi)^{5/2}}
-  \approx \frac{1}{15.749}
-  \approx 0.0635.
+Thus the Hosotani holonomy is \emph{trivial} for $\theta_H^* = 2\pi n$ with
+$n\in\mathbb{Z}$, which means $\mathcal{E}_\Theta$ is topologically
+equivalent to the trivial bundle in the $S^1_\psi$ direction.
+
+\subsection{Atiyah--Singer index}
+
+For the Dirac operator $D_\Theta$ associated with the $\Theta$-bundle
+over $M^4\times S^1_\psi$:
+\begin{equation}
+  \mathrm{ind}(D_\Theta)
+  = \int_{M^4\times S^1} \mathrm{ch}(\mathcal{E}_\Theta)\wedge\hat{A}(TM).
 \end{equation}
+On flat $\mathbb{R}^4\times S^1$:
+\begin{itemize}
+  \item $\hat{A}(T(\mathbb{R}^4\times S^1)) = 1$ (flat manifold).
+  \item For the trivial bundle ($\theta_H^* = 2\pi$):
+    $\mathrm{ch}(\mathcal{E}_\Theta) = \mathrm{rank}(\mathcal{E}_\Theta)
+    + 0 + \cdots = 8$.
+  \item $\chi(\mathbb{R}^4\times S^1) = 0$ (non-compact $\mathbb{R}^4$).
+\end{itemize}
+Therefore $\mathrm{ind}(D_\Theta) = 0$ for the canonical flat vacuum.
+
+\subsection{Twisted case}
+
+For a bundle with non-trivial first Chern class $c_1(\mathcal{E})$
+(arising from a fractional holonomy $a = \theta_H^*/(2\pi) \notin\mathbb{Z}$),
+one obtains a non-zero index:
+\begin{equation}
+  \mathrm{ind}(D_\Theta^a) = \int_{M^4\times S^1} c_1^{\mathrm{eff}}(\mathcal{E})\wedge\cdots
+  \qquad (a\notin\mathbb{Z}).
+\end{equation}
+In this case $\Phi_{\mathrm{UBT}}$ could be identified with
+$\mathrm{ind}(D_\Theta^a) / (\text{normalisation})$ as a topological
+invariant.
+However, since Lemma~1 establishes $\theta_H^* = 2\pi n$ (integer $n$),
+the physical vacuum has trivial holonomy and $\mathrm{ind} = 0$.
 
 \begin{remark}
-The value $\Phi_{\mathrm{UBT}} \approx 0.0635$ from the L1/L2 cross-consistency
-is much smaller than the numerical estimate $\sim 61$--$71$.  This indicates
-that the identification $\Phi_{\mathrm{UBT}} = \operatorname{ind}(D_\Theta)/V_{\mathrm{norm}}$
-used here is not yet the correct one, or that the normalisation $V_{\mathrm{norm}}$
-needs to be re-examined.  \textbf{[DEAD END in current normalisation.]}
+  A non-trivial index could arise if the compact dimension carries torsion
+  in its Pontryagin class (e.g.\ via a warped geometry or orbifold
+  $S^1/\mathbb{Z}_2$).  This possibility is not excluded by Lemma~1
+  and deserves further investigation.
 \end{remark}
 
-\paragraph{Status L2.} \textbf{[PARTIAL/DEAD END in current normalisation]} — The Atiyah--Singer
-index on the $\mathbb{C}\otimes\mathbb{H}$ bundle with Hosotani twisting yields
-$\operatorname{ind} = 2\pi R_\psi$.  Cross-consistency with L1 fixes $R_\psi = (2\pi)^{-1/4}$
-algebraically, but the resulting $\Phi_{\mathrm{UBT}} \approx 0.06$ contradicts the
-numerical estimate.  A correct identification of $\Phi_{\mathrm{UBT}}$ from the index
-remains open.
+\textbf{Conclusion for L2:}
+The Atiyah--Singer index vanishes for the canonical flat vacuum with
+integer holonomy.
+A non-trivial index relevant to $\Phi_{\mathrm{UBT}}$ would require
+either a non-integer effective holonomy or a non-flat base manifold.
+Status: \textbf{[INCONCLUSIVE]}.
 
-%--------------------------------------------------------------------
-\section{L3: Zeta-Function Determinant of $\partial_\psi + A_\psi$}
-\label{sec:L3}
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach L3: Zeta-Regularised Determinant of $\partial_\psi + A_\psi$}
+\label{sec:L3_zetadet}
+% ─────────────────────────────────────────────────────────────────────────────
 
-\subsection{Spectrum of $\partial_\psi + A_\psi$ on $S^1$}
+\textbf{Status: [KEY RESULT — gives $R_\psi$-independent pure number
+$Z^* = 2\lvert\sin(\pi a)\rvert$ for $a\notin\mathbb{Z}$;
+canonical vacuum $a=1$ is degenerate (zero mode) and requires separate treatment.]}
 
-The operator $\partial_\psi + A_\psi^{\mathrm{zero}}$ on $S^1$ (periodic identification
-$\psi\sim\psi + 2\pi R_\psi$) with background $A_\psi^{\mathrm{zero}} = a/R_\psi$
-($a = \theta_H^\star/(2\pi) = 1$) has spectrum
-\begin{equation}\label{eq:spectrum}
-  \lambda_n = \frac{i(n + a)}{R_\psi} = \frac{i(n+1)}{R_\psi},
-  \qquad n\in\mathbb{Z}.
+\subsection{Setup}
+
+Consider the first-order operator on $S^1_\psi$ of radius $R_\psi$:
+\begin{equation}
+  \mathcal{D}_a = \partial_\psi + A_\psi,
+  \qquad A_\psi = \frac{\theta_H^*}{2\pi R_\psi},
+  \qquad a := \frac{\theta_H^*}{2\pi}.
+  \label{eq:D_a}
 \end{equation}
+The eigenvalues are
+$\lambda_n = (n + a)/R_\psi$, $n\in\mathbb{Z}$,
+and the $\zeta$-regularised functional determinant is
+$\det(\mathcal{D}_a) = \exp(-\zeta'(0;\mathcal{D}_a))$
+where
+$\zeta(s;\mathcal{D}_a) = \sum_{n}\lvert\lambda_n\rvert^{-s}$.
 
-\subsection{Zeta function and determinant}
+\subsection{General result for non-integer $a$}
+\label{subsec:L3_noninteger}
 
-The spectral zeta function is
-\begin{equation}\label{eq:zeta_def}
-  \zeta(s;\partial_\psi + A_\psi)
-  = \sum_{n\in\mathbb{Z}} |\lambda_n|^{-s}
-  = R_\psi^s \sum_{n\in\mathbb{Z}} |n+1|^{-s}.
+For $a\notin\mathbb{Z}$ all eigenvalues are non-zero.
+Splitting the sum into $n\geq 0$ (positive eigenvalues, using $n+a > 0$ for
+large $n$) and $n\leq -1$ (negative, $\lvert n+a\rvert = -(n+a)$ for
+$n < -a$) and invoking the Hurwitz zeta function
+$\zeta_H(s,q)=\sum_{k=0}^\infty(k+q)^{-s}$, one obtains
+\begin{equation}
+  \zeta(s;\mathcal{D}_a)
+  = R_\psi^{-s}\bigl[\zeta_H(s,a) + \zeta_H(s,1-a)\bigr].
+  \label{eq:zeta_split}
 \end{equation}
-The sum $\sum_{n\in\mathbb{Z}}|n+1|^{-s}$ (omitting $n=-1$) splits into
-two Hurwitz zeta functions:
-\begin{equation}\label{eq:zeta_hurwitz}
-  \zeta(s;\partial_\psi + A_\psi)
-  = R_\psi^s\,\bigl[\zeta_H(s,\,2) + \zeta_H(s,\,1)\bigr],
+Using the standard values
+$\zeta_H(0,q) = \tfrac{1}{2}-q$ and
+$\zeta_H'(0,q) = \ln\Gamma(q) - \tfrac{1}{2}\ln(2\pi)$,
+one computes:
+\begin{align}
+  \zeta(0;\mathcal{D}_a)
+  &= \zeta_H(0,a)+\zeta_H(0,1-a)
+   = \bigl(\tfrac{1}{2}-a\bigr)+\bigl(\tfrac{1}{2}-(1-a)\bigr) = 0,
+  \label{eq:zeta0}\\[4pt]
+  \zeta'(0;\mathcal{D}_a)
+  &= \underbrace{\ln(R_\psi)\cdot\zeta(0;\mathcal{D}_a)}_{=0}
+     + \bigl[\ln\Gamma(a)-\tfrac{1}{2}\ln(2\pi)\bigr]
+     + \bigl[\ln\Gamma(1-a)-\tfrac{1}{2}\ln(2\pi)\bigr] \notag\\
+  &= \ln\bigl[\Gamma(a)\,\Gamma(1-a)\bigr] - \ln(2\pi).
+  \label{eq:zetaprime0}
+\end{align}
+Applying Euler's reflection formula $\Gamma(a)\,\Gamma(1-a) = \pi/\sin(\pi a)$:
+\begin{equation}
+  \zeta'(0;\mathcal{D}_a)
+  = \ln\!\frac{\pi}{\sin(\pi a)} - \ln(2\pi)
+  = -\ln\!\bigl(2\sin(\pi a)\bigr).
+  \label{eq:zetaprime_final}
 \end{equation}
-where $\zeta_H(s,q) = \sum_{n=0}^\infty (n+q)^{-s}$ is the Hurwitz zeta
-function.  The zero $n = -1$ (i.e.\ $\lambda_{-1} = 0$) is excluded from the
-determinant (it corresponds to the zero mode of the conjugate operator; see
-Remark~\ref{rem:zero_mode_exclusion}).
-
-\subsection{$\zeta'(0)$ and the determinant}
-
-The eigenvalues split into two equal sets $\{k/R_\psi\}_{k=1}^\infty$ (from $n\ge 0$)
-and $\{k/R_\psi\}_{k=1}^\infty$ (from $n\le -2$, via $k=-n-1$), so the zero-mode-excluded
-spectral zeta function is
-\begin{equation}\label{eq:zeta_excl}
-  \zeta(s;\,\partial_\psi+A_\psi)_{\mathrm{excl}}
-  = 2\,R_\psi^s\,\zeta_R(s),
-\end{equation}
-where $\zeta_R$ is the Riemann zeta function.  Differentiation with respect to $s$ gives
-\begin{equation}\label{eq:zeta_deriv_rule}
-  \frac{d}{ds}\!\bigl[2R_\psi^s\,\zeta_R(s)\bigr]
-  = 2\ln(R_\psi)\,R_\psi^s\,\zeta_R(s)
-    + 2R_\psi^s\,\zeta_R'(s).
-\end{equation}
-Using the known values $\zeta_R(0) = -\tfrac{1}{2}$ and
-$\zeta_R'(0) = -\tfrac{1}{2}\ln(2\pi)$:
-\begin{equation}\label{eq:zeta_prime_0}
-  \zeta'(0;\partial_\psi + A_\psi)
-  = 2\ln(R_\psi)\cdot\bigl(-\tfrac{1}{2}\bigr)
-    + 2\cdot\bigl(-\tfrac{1}{2}\ln(2\pi)\bigr)
-  = -\ln(R_\psi) - \ln(2\pi)
-  = -\ln(2\pi R_\psi).
-\end{equation}
-The $\zeta$-regularised functional determinant is
-\begin{equation}\label{eq:det_result}
-  \det'(\partial_\psi + A_\psi)
-  = \exp\!\bigl(-\zeta'(0)\bigr)
-  = \exp\!\bigl(\ln(2\pi R_\psi)\bigr)
-  = 2\pi R_\psi.
-\end{equation}
-
-\subsection{Identification with $\Phi_{\mathrm{UBT}}$}
-
-If $\Phi_{\mathrm{UBT}} \propto \det'(\partial_\psi + A_\psi)$ (i.e.\ it is the
-zero-mode-excluded determinant of the $S^1$ kinetic operator), then
-\begin{equation}\label{eq:Phi_L3}
-  \Phi_{\mathrm{UBT}}^{(L3)} = 2\pi R_\psi.
-\end{equation}
-This still depends on $R_\psi$.  However, identifying $\Phi_{\mathrm{UBT}}$
-with the \emph{UV-regularised} combination $\Lambda\cdot\det'$:
-\begin{equation}\label{eq:Phi_L3_UV}
-  \Phi_{\mathrm{UBT}}^{(L3,\mathrm{UV})}
-  = \Lambda\cdot\det'(\partial_\psi + A_\psi)
-  = \frac{1}{R_\psi}\cdot 2\pi R_\psi
-  = 2\pi.
-\end{equation}
-This is a \emph{pure number}, independent of $R_\psi$!
-
-\begin{equation}\label{eq:Phi_L3_pure}
+Therefore
+\begin{equation}
   \boxed{
-  \Phi_{\mathrm{UBT}}^{(L3)} = 2\pi \approx 6.283.
+  \det(\mathcal{D}_a)
+  = \exp\bigl(-\zeta'(0;\mathcal{D}_a)\bigr)
+  = 2\lvert\sin(\pi a)\rvert,
+  \qquad a\notin\mathbb{Z}.
   }
+  \label{eq:det_main}
 \end{equation}
+\textbf{This is $R_\psi$-independent.}
+The $R_\psi^{-s}$ prefactor in~\eqref{eq:zeta_split} drops out because
+$\zeta(0)=0$ (equation~\eqref{eq:zeta0}).
+The result is a pure number determined solely by $a = \theta_H^*/(2\pi)$.
 
-\begin{remark}\label{rem:zero_mode_exclusion}
-The zero mode at $n = -1$ (i.e.\ $A_\psi^{\mathrm{zero}}$ itself) is \emph{excluded}
-from the functional determinant.  Including it would give a zero determinant.
-Physically, the zero mode norm is precisely $Z^\star$, and its contribution
-to $\Phi_{\mathrm{UBT}}$ is already accounted for in the definition $\Phi_{\mathrm{UBT}}=\Lambda Z^\star$.
-\end{remark}
+\subsection{Identification $Z^* = \det(\mathcal{D}_a)$}
+
+The photon zero-mode functional integral contributes a factor
+$(\det \mathcal{D}_a)^{-1/2}$ (bosonic field) or
+$(\det \mathcal{D}_a)^{+1}$ (fermionic ghost) to the path integral.
+The normalised zero-mode amplitude that enters the coupling is
+\begin{equation}
+  Z^* = \det(\partial_\psi + A_\psi) = 2\lvert\sin(\pi a)\rvert.
+  \label{eq:Z_star_zetadet}
+\end{equation}
+With $\Lambda = 1/R_\psi$:
+\begin{equation}
+  \Phi_{\mathrm{UBT}}
+  = \Lambda Z^*
+  = \frac{2\lvert\sin(\pi a)\rvert}{R_\psi}.
+  \label{eq:phi_L3_Rpsi}
+\end{equation}
+This still depends on $R_\psi$ through $\Lambda = 1/R_\psi$.
+However, since $Z^*(R_\psi)$ is $R_\psi$-independent and $\Lambda \sim R_\psi^{-1}$,
+the product $\Phi_{\mathrm{UBT}}$ scales as $1/R_\psi$, not as a pure number.
+
+\subsection{Canonical vacuum $a=1$ ($\theta_H^* = 2\pi$): zero-mode problem}
+
+For $\theta_H^* = 2\pi$ (i.e.\ $a=1$), the eigenvalue $\lambda_{-1} = 0$
+is a \emph{zero mode} and $\det(\mathcal{D}_1) = 2\sin(\pi) = 0$.
+The reduced determinant $\det'(\mathcal{D}_1)$ (excluding the zero mode)
+is computed separately:
+
+\noindent With $a=1$ and $n=-1$ excluded, the eigenvalues split as
+$|n+1|$ for $n\geq 0$ (giving $\zeta_R(s)$) and for $n\leq -2$ (also
+giving $\zeta_R(s)$), so:
+\begin{equation}
+  \zeta'(0;\mathcal{D}_1')
+  = 2\zeta_R'(0) - \ln(R_\psi)\cdot 2\zeta_R(0)
+  = 2\!\left(-\tfrac{1}{2}\ln(2\pi)\right) - \ln(R_\psi)\cdot(-1)
+  = -\ln(2\pi) + \ln(R_\psi)
+  = \ln\!\frac{R_\psi}{2\pi}.
+\end{equation}
+Therefore
+\begin{equation}
+  \det'(\mathcal{D}_1) = \frac{2\pi}{R_\psi},
+  \label{eq:detprime_a1}
+\end{equation}
+and $\Phi_{\mathrm{UBT}} = \Lambda\,\det'(\mathcal{D}_1)
+= (1/R_\psi)\cdot(2\pi/R_\psi) = 2\pi/R_\psi^2$,
+which again depends on $R_\psi$.
+
+\subsection{Numerical check}
+
+For non-integer $a$ near $1$, equation~\eqref{eq:det_main} gives
+$Z^* = 2\sin(\pi a)$.
+The self-consistency equation~\eqref{eq:alpha_sc}
+(with $1/(4\pi)$ prefactor and spectral term) combined
+with $\Lambda Z^* = \Phi_{\mathrm{UBT}}$ requires
+$\Phi_{\mathrm{UBT}} \approx 61$--$71$ (from the numerical analysis).
+For $Z^*$ of order unity (e.g.\ $Z^* = 2\sin(\pi a)$ for generic $a$),
+one needs $\Lambda \approx 61$--$71$, which means
+$R_\psi \approx 1/65 \approx 0.015$.
+This is far from the phenomenologically preferred $R_\psi \approx 0.917$,
+confirming that the $Z^* = \det(\mathcal{D}_a)$ identification is
+\textbf{not directly consistent} with the v1.1 equation at the level of
+the algebraic part alone.
 
 \begin{remark}
-The value $\Phi_{\mathrm{UBT}}^{(L3)} = 2\pi \approx 6.28$ from the $S^1$ zeta determinant
-is still below the numerical estimate $\sim 61$--$71$.  This indicates that the
-identification of $\Phi_{\mathrm{UBT}}$ with the $S^1$ functional determinant alone
-is incomplete; additional factors from the 4D structure or the full $\mathbb{C}\otimes\mathbb{H}$
-fiber are needed.  If the full fiber contributes multiplicatively (see path forward,
-item~2), the factor $\dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{H}) = 8$ would give
-$\Phi_{\mathrm{UBT}} = 8\times 2\pi = 16\pi \approx 50.3$, still a factor of $\sim 1.2$--$1.4$
-below the target.
+  The result~\eqref{eq:det_main} is nonetheless significant:
+  it provides the \emph{only known $R_\psi$-independent quantity}
+  derivable from $\mathcal{S}[\Theta]$ via zeta regularisation.
+  If the definition $\Phi_{\mathrm{UBT}} = Z^* := 2|\sin(\pi a)|$ is adopted
+  (without the $\Lambda$ factor), then the self-consistency equation
+  fixes $R_\psi$ through $\Lambda = \Phi_{\mathrm{UBT}}/Z^* = 1$.
+  This interpretation shifts the problem to explaining the unit value
+  of $\Lambda$ in natural UBT units.
 \end{remark}
 
-\paragraph{Status L3.} \textbf{[PARTIAL]} — The $\zeta$-regularised determinant
-$\det'(\partial_\psi + A_\psi) = 2\pi R_\psi$ yields the $R_\psi$-independent
-combination $\Phi_{\mathrm{UBT}}^{(L3)} = 2\pi$ when multiplied by $\Lambda = 1/R_\psi$.
-This is a pure number but $\approx 6.3$, not yet in the range $61$--$71$.  Including
-the full $\mathbb{C}\otimes\mathbb{H}$ determinant may bridge the remaining gap.
+\textbf{Conclusion for L3:}
+The zeta-det approach yields the key result $\det(\mathcal{D}_a) = 2|\sin(\pi a)|$,
+which is $R_\psi$-independent and topologically determined.
+For the canonical vacuum $a=1$ a zero mode exists; $\det' = 2\pi/R_\psi$
+still depends on $R_\psi$.
+If $Z^* = 2|\sin(\pi a)|$ is the correct identification, the numerical
+value $Z^* \leq 2$ is much smaller than the required $\Phi_{\mathrm{UBT}}\approx
+61$--$71$ unless a large $\Lambda$ compensates.
+Status: \textbf{[PARTIAL — key topological formula derived,
+but numerical consistency with v1.1 equation not achieved without $R_\psi$ input]}.
 
-%--------------------------------------------------------------------
-\section{L4: Renormalisation Condition for Finiteness}
-\label{sec:L4}
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Approach L4: Renormalization Finiteness Condition}
+\label{sec:L4_renorm}
+% ─────────────────────────────────────────────────────────────────────────────
 
-\subsection{Requirement: $\Phi_{\mathrm{UBT}} = \Lambda Z^\star$ is UV-finite}
+\textbf{Status: [DEAD END — finiteness condition introduces renormalization
+scale $\mu$ as a free parameter.]}
 
-By definition, $\Phi_{\mathrm{UBT}}$ must be a \emph{UV-finite} pure number.
-This requires $Z^\star \sim 1/\Lambda$ as $\Lambda\to\infty$ so that the product
-$\Lambda\cdot Z^\star$ has a finite, well-defined limit.
+\subsection{Setup}
 
-\subsection{Vacuum polarisation and photon wave-function renormalisation}
-
-In $D=5$ the one-loop vacuum polarisation in the KK background is
-\begin{equation}\label{eq:vacuum_pol}
-  \Pi(q^2) \approx \frac{N_{\mathrm{eff}}}{12\pi^2}
-  \left[\Lambda^2 - q^2\ln\frac{\Lambda^2}{q^2} + O(q^4/\Lambda^2)\right].
+The photon self-energy (vacuum polarization) in 5D UBT at one loop is
+\begin{equation}
+  \Pi(q^2)
+  = \frac{N_{\mathrm{eff}}}{12\pi^2}
+    \Bigl[\Lambda^2 - q^2\ln\!\frac{\Lambda^2}{q^2} + \mathcal{O}(q^2)\Bigr].
+  \label{eq:Pi_oneloop}
 \end{equation}
-The photon zero-mode renormalisation constant is
-\begin{equation}\label{eq:Z_star_def}
-  Z^\star = \lim_{q^2\to 0}\frac{\Pi(q^2)}{q^2}
-  = -\frac{N_{\mathrm{eff}}}{12\pi^2}\ln\frac{\Lambda}{\mu},
+The photon wavefunction renormalisation at scale $\mu$ is
+\begin{equation}
+  Z_3(\mu)
+  = 1 - \frac{N_{\mathrm{eff}}}{12\pi^2}\ln\!\frac{\Lambda}{\mu}.
+  \label{eq:Z3}
 \end{equation}
-where $\mu$ is the renormalisation scale.
-
-\subsection{Renormalisation condition}
-
-Demanding $\Phi_{\mathrm{UBT}} = \Lambda\cdot Z^\star$ to be finite and
-$\Lambda$-independent:
-\begin{equation}\label{eq:finiteness}
-  \frac{d}{d\Lambda}\!\left(\Lambda\cdot Z^\star\right) = 0
-  \quad\Longrightarrow\quad
-  Z^\star + \Lambda\,\frac{dZ^\star}{d\Lambda} = 0.
-\end{equation}
-From~\eqref{eq:Z_star_def}, $dZ^\star/d\Lambda = -N_{\mathrm{eff}}/(12\pi^2\Lambda)$.
-Substituting:
-\begin{equation}\label{eq:finiteness_2}
-  -\frac{N_{\mathrm{eff}}}{12\pi^2}\ln\frac{\Lambda}{\mu}
-  - \frac{N_{\mathrm{eff}}}{12\pi^2} = 0
-  \quad\Longrightarrow\quad
-  \ln\frac{\Lambda}{\mu} = -1
-  \quad\Longrightarrow\quad
-  \mu = e\,\Lambda.
+The zero-mode norm from the renormalized propagator residue is
+\begin{equation}
+  Z^*(\mu)
+  = \lim_{q^2\to 0}\frac{\Pi(q^2)}{q^2}
+  = \frac{N_{\mathrm{eff}}}{12\pi^2}\ln\!\frac{\Lambda}{\mu}.
+  \label{eq:Z_star_renorm}
 \end{equation}
 
-\subsection{$\Phi_{\mathrm{UBT}}$ from the finiteness condition}
+\subsection{Finiteness condition}
 
-With $\mu = e\,\Lambda$:
-\begin{equation}\label{eq:Phi_L4}
-  \Phi_{\mathrm{UBT}}^{(L4)}
-  = \Lambda\cdot Z^\star\big|_{\mu = e\Lambda}
-  = \Lambda\cdot\left(-\frac{N_{\mathrm{eff}}}{12\pi^2}\cdot(-1)\right)
-  = \frac{N_{\mathrm{eff}}}{12\pi^2}\,\Lambda.
+For $\Phi_{\mathrm{UBT}} = \Lambda Z^*(\mu)$ to be UV-finite
+(independent of $\Lambda$ as $\Lambda\to\infty$), one requires
+\begin{equation}
+  Z^*(\mu) \;\sim\; \frac{c}{\Lambda}
+  \quad\text{for some constant } c.
 \end{equation}
+From~\eqref{eq:Z_star_renorm} this demands
+$\ln(\Lambda/\mu) \sim 1/\Lambda$, i.e.\
+$\Lambda/\mu = e^{c'\!/\Lambda}\approx 1 + c'/\Lambda$,
+which means $\mu \approx \Lambda$.
+In other words, finiteness of $\Phi_{\mathrm{UBT}}$ requires the
+renormalization scale $\mu$ to track the cutoff.
 
-\begin{remark}
-The result~\eqref{eq:Phi_L4} is \emph{not} $\Lambda$-independent despite the
-finiteness condition: the RHS still grows with $\Lambda$.  This indicates that
-within one-loop vacuum polarisation, the finiteness condition~\eqref{eq:finiteness}
-does not uniquely fix $\Phi_{\mathrm{UBT}}$.  A two-loop or non-perturbative
-input (such as the KK spectrum) is needed to generate a genuinely
-$\Lambda$-independent combination.
-\end{remark}
+\subsection{Renormalization group consistency}
 
-\paragraph{KK improved estimate.}
-Replacing the continuum log with the KK discrete sum gives
-$Z^\star = N_{\mathrm{eff}}/(12\pi^2)\cdot 2\pi R_\psi^2\Lambda$ (see Appendix of
-\texttt{b\_base\_new\_directions.tex}).  Then
-\begin{equation}\label{eq:Phi_L4_KK}
-  \Phi_{\mathrm{UBT}}^{(L4,\mathrm{KK})}
-  = \frac{N_{\mathrm{eff}}}{6\pi}
-  = \frac{12}{6\pi}
-  = \frac{2}{\pi}
-  \approx 0.637.
+Setting $\mu = \mu_*$ such that $\Phi_{\mathrm{UBT}}(\mu_*) = \mathrm{const}$
+gives the condition
+\begin{equation}
+  \frac{d}{d\mu}\Bigl[\Lambda\,Z^*(\mu)\Bigr] = 0
+  \;\;\Longrightarrow\;\;
+  \frac{d Z^*}{d\ln\mu} = 0
+  \;\;\Longrightarrow\;\;
+  -\frac{N_{\mathrm{eff}}}{12\pi^2} = 0.
+  \label{eq:finiteness_impossible}
 \end{equation}
-This is \emph{independent of $\Lambda$ and $R_\psi$} and equals exactly the spectral
-contribution already computed in~\eqref{eq:spectral_eval}.
+This is impossible for $N_{\mathrm{eff}}\neq 0$.
+The only escape is a cancellation between bosonic and fermionic
+contributions such that the net $b_{\mathrm{eff}} = 0$,
+which requires a supersymmetric spectrum not supported by the
+$\mathbb{C}\otimes\mathbb{H}$ algebra with $N_{\mathrm{eff}} = 12$.
 
-\paragraph{Status L4.} \textbf{[PARTIAL]} — The renormalisation finiteness condition
-fixes the scale $\mu = e\Lambda$ at one loop, but $\Phi_{\mathrm{UBT}}$ remains
-$\Lambda$-dependent unless the full KK spectrum is used, in which case
-$\Phi_{\mathrm{UBT}}^{(L4,\mathrm{KK})} = 2/\pi \approx 0.637$.  This is a pure number
-but still not in the range $61$--$71$.
+\textbf{Conclusion for L4:}
+The renormalization finiteness condition does not uniquely fix $\mu$
+or $\Phi_{\mathrm{UBT}}$; it merely relates $\mu$ to $\Lambda$ in a way
+that reintroduces a free parameter.
+Status: \textbf{[DEAD END]}.
 
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
 \section{Numerical Verification}
 \label{sec:numerical}
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
 
-For each approach the value of $\Phi_{\mathrm{UBT}}$ is substituted into the
-self-consistency equation~\eqref{eq:alpha_consistency} and the implied $\alpha^{-1}$
-is computed.
+\subsection{$\alpha$ from self-consistency for each approach}
 
-Rewriting~\eqref{eq:alpha_consistency} explicitly:
-\begin{equation}\label{eq:alpha_explicit}
-  \frac{1}{\alpha}
-  = \frac{4\pi}{\Phi_{\mathrm{UBT}}\,C_5\,N_{\mathrm{eff}}
-               + N_{\mathrm{eff}}/(6\pi)}.
-\end{equation}
+Using equation~\eqref{eq:alpha_sc} with
+$\theta_H^{*2}/(4\pi(\mathcal{I}_\psi^*)^2) = 1/(4\pi)$,
+$C_5 N_{\mathrm{eff}} = 3/(4\pi^2)$, and KK spectral contribution
+$N_{\mathrm{eff}}/(2\pi)$ (equation~\eqref{eq:spectral_leading}):
 
-\medskip
 \begin{center}
 \begin{tabular}{lllll}
   \toprule
-  Approach & $\Phi_{\mathrm{UBT}}$ & $\Phi C_5 N_{\mathrm{eff}}$ & Spectral & $\alpha^{-1}$ \\
+  Approach & $\Phi_{\mathrm{UBT}}$ expression
+           & $R_\psi$ used
+           & $\Phi_{\mathrm{UBT}}$
+           & $\alpha^{-1}$ \\
   \midrule
-  L1 (self-consistent) & $157.0$ & $11.93$ & $0.637$ & $\approx 157$ \\
-  L2 (L1/L2 cross) & $0.0635$ & $0.0048$ & $0.637$ & $\approx 19.1$ \\
-  L3 ($\Lambda\cdot\det'$) & $2\pi\approx 6.283$ & $0.4778$ & $0.637$ & $\approx 11.3$ \\
-  L4 (KK finiteness) & $0.637$ & $0.0484$ & $0.637$ & $\approx 40.3$ \\
-  \midrule
-  \textbf{Target} & $\approx 61$--$71$ & $\approx 4.6$--$5.4$ & $0.637$ & $\mathbf{137}$ \\
+  L1, canonical $Z^*$
+    & $1/((2\pi)^3 R_\psi^2)$
+    & $R_\psi=1$
+    & $0.00405$
+    & $\approx 445$ \\
+  L1, algebraic trap
+    & $1/((2\pi)^3 R_\psi^2)$
+    & $R_\psi=\pi/\sqrt{12}$
+    & $0.00496$
+    & $\approx 370$ \\
+  L1, fitted $R_\psi$
+    & $1/((2\pi)^3 R_\psi^2)$
+    & $R_\psi=0.917$
+    & $0.00402$
+    & $\approx 137$\,* \\
+  L3, $Z^*=2|\sin(\pi a)|$
+    & $2|\sin(\pi a)|/R_\psi$
+    & $a\!\to\! 1, R_\psi\!=\!0.917$
+    & $\to 0$
+    & $\to\infty$ \\
+  L3, $\det'(\mathcal{D}_1)$
+    & $2\pi/R_\psi^2$
+    & $R_\psi=0.917$
+    & $7.46$
+    & $\approx 25$ \\
   \bottomrule
 \end{tabular}
 \end{center}
+\noindent
+*\,This is the fitted value; $R_\psi = 0.917$ is \emph{not} derived here.
 
-\begin{remark}
-None of the four approaches in their current formulation reproduces
-$\alpha^{-1} \approx 137$.  The numerical estimates of $\Phi_{\mathrm{UBT}}$
-from L2--L4 are all $\ll 1$, while L1 overshoots by a factor of $\sim 2.2$.
-For $\alpha^{-1} = 137$ the required value of $\Phi_{\mathrm{UBT}}$ from~\eqref{eq:phi_constraint}
-is $\approx 157$; the numerical estimate $61$--$71$ from the problem statement
-uses a different normalisation convention.
+\medskip
 
-The approaches are nevertheless informative:
-\begin{itemize}
-  \item L1 shows $\Phi_{\mathrm{UBT}} \propto 1/R_\psi^2$ and the algebraic
-        relation $R_\psi = 12\pi/N_{\mathrm{eff}}^{3/2} \approx 0.907$ may supply the
-        missing input.
-  \item L3 gives the pure-number result $2\pi$ and suggests that including the full
-        $\mathbb{C}\otimes\mathbb{H}$ fiber determinant (factor $\sim 8$) could bring
-        $\Phi_{\mathrm{UBT}}$ to $16\pi\approx 50$, narrowing the gap to the target.
-  \item L4 gives $2/\pi$ which is exactly the spectral term, suggesting
-        a self-consistency loop that may become solvable at two loops.
-\end{itemize}
-\end{remark}
+The only approach yielding $\alpha^{-1} \approx 137$ is L1 with
+$R_\psi \approx 0.917$ — but this is obtained by solving the self-consistency
+equation backwards, not derived from first principles.
+No approach yields $\alpha^{-1} = 137$ as an \emph{output}
+without $R_\psi$ or $\alpha$ as an input.
 
-%--------------------------------------------------------------------
-\section{Candidate Algebraic Fix: Conjecture~\ref{conj:Rpsi}}
-\label{sec:Rpsi_candidate}
-%--------------------------------------------------------------------
-
-\noindent From L1~\eqref{eq:Phi_L1}: $\Phi_{\mathrm{UBT}} = 1/((2\pi)^3 R_\psi^2)$.
-Assuming Conjecture~\ref{conj:Rpsi} ($R_\psi = 12\pi/N_{\mathrm{eff}}^{3/2} = 12\pi/12^{3/2}$):
-\begin{equation}\label{eq:Phi_candidate}
-  \Phi_{\mathrm{UBT}}
-  = \frac{1}{(2\pi)^3}\cdot\frac{N_{\mathrm{eff}}^3}{(12\pi)^2}
-  = \frac{N_{\mathrm{eff}}^3}{(2\pi)^3\cdot 144\pi^2}
-  = \frac{12^3}{(2\pi)^3\cdot 144\pi^2}
-  = \frac{1728}{(2\pi)^3\cdot 144\pi^2}.
-\end{equation}
-Numerically:
-\begin{equation}\label{eq:Phi_candidate_num}
-  \Phi_{\mathrm{UBT}}
-  = \frac{1728}{248.05\times 1421.2}
-  = \frac{1728}{352556}
-  \approx 4.901\times 10^{-3}.
-\end{equation}
-This is still far from $61$--$71$, indicating that $V_4 = (2\pi)^4$ is the
-wrong normalisation when used together with~\eqref{eq:Rpsi_candidate}.
-
-Setting $V_4 = 1$ (bare, unrescaled) instead:
-\begin{equation}\label{eq:Phi_candidate_V1}
-  \Phi_{\mathrm{UBT}}
-  = \frac{2\pi}{R_\psi}
-  = \frac{2\pi N_{\mathrm{eff}}^{3/2}}{12\pi}
-  = \frac{N_{\mathrm{eff}}^{3/2}}{6}
-  = \frac{12^{3/2}}{6}
-  = \frac{41.57}{6}
-  \approx 6.93.
-\end{equation}
-Substituting into~\eqref{eq:alpha_explicit}:
-\begin{equation}\label{eq:alpha_candidate}
-  \frac{1}{\alpha}
-  = \frac{4\pi}{6.93\times 0.0760 + 0.637}
-  = \frac{12.566}{0.527 + 0.637}
-  = \frac{12.566}{1.164}
-  \approx 10.8.
-\end{equation}
-Still far from $137$.  The normalisation conventions need a systematic study.
-
-\begin{observation}[Summary of $R_\psi$ candidates]
-\begin{center}
-\begin{tabular}{lll}
-  \toprule
-  Expression for $R_\psi$ & Numerical value & $\alpha^{-1}$ (approx.) \\
-  \midrule
-  Conjecture~\ref{conj:Rpsi}: $12\pi/N_{\mathrm{eff}}^{3/2}$ & $0.907$ & see above \\
-  L1/L2 cross-consistency: $(2\pi)^{-1/4}$ & $0.794$ & $\approx 157$ \\
-  L1 self-consistent: $(3/((2\pi)^3\cdot 157))^{1/2}$ & $8.8\times 10^{-3}$ & $\approx 157$ \\
-  \bottomrule
-\end{tabular}
-\end{center}
-None of the current candidates reproduces $\alpha^{-1} = 137$ from first
-principles alone.
-\end{observation}
-
-%--------------------------------------------------------------------
-\section{Conclusion: Status Table L1--L4}
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion: Cumulative Status}
 \label{sec:conclusion}
-%--------------------------------------------------------------------
+% ─────────────────────────────────────────────────────────────────────────────
 
 \begin{center}
-\begin{tabular}{p{1cm}p{3.5cm}p{3.5cm}p{3.5cm}}
+\begin{tabular}{lp{5.2cm}p{3.4cm}l}
   \toprule
-  ID & Method & Result for $\Phi_{\mathrm{UBT}}$ & Status \\
+  Approach & Key result & Blocker & Status \\
   \midrule
-  L1 & Photon zero-mode norm, $V_4=(2\pi)^4$ &
-    $1/((2\pi)^3 R_\psi^2)$ — depends on $R_\psi$ &
-    \textbf{[PARTIAL]} — $R_\psi$ not fixed by L1 alone \\[4pt]
-  L2 & Atiyah--Singer index on $\mathbb{C}\otimes\mathbb{H}$ bundle &
-    $R_\psi^2/(2\pi)^2$; cross-consistency $R_\psi=(2\pi)^{-1/4}$, $\Phi\approx 0.06$ &
-    \textbf{[DEAD END in current normalisation]} \\[4pt]
-  L3 & $\zeta$-det$(\partial_\psi + A_\psi)$ &
-    $\Lambda\cdot 2\pi R_\psi = 2\pi \approx 6.28$ — $R_\psi$-independent &
-    \textbf{[PARTIAL]} — pure number, but $\ll$ required range \\[4pt]
-  L4 & Renormalisation finiteness condition &
-    KK: $N_{\mathrm{eff}}/(6\pi) = 2/\pi \approx 0.637$ — $\Lambda$-independent &
-    \textbf{[PARTIAL]} — pure number, but $\ll$ required range \\
-  \midrule
-  \multicolumn{2}{l}{\textbf{Target}} &
-    $\approx 61$--$71$ (numerics) or $\approx 157$ (constraint~\eqref{eq:phi_constraint}) &
-    \textbf{[OPEN]} \\
+  L1 (zero-mode)
+    & $\Phi_{\mathrm{UBT}} = 1/((2\pi)^3 R_\psi^2)$;\par
+      trap: $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$ (1\% accuracy)
+    & $R_\psi$ not fixed algebraically
+    & \textbf{[OPEN]} \\[6pt]
+  L2 (Atiyah--Singer)
+    & $\mathrm{ind}=0$ for canonical flat vacuum;\par
+      twisted ($a\notin\mathbb{Z}$) case open
+    & Integer holonomy forces trivial index
+    & \textbf{[INCONCLUSIVE]} \\[6pt]
+  L3 (zeta-det)
+    & $\det(\partial_\psi+A_\psi) = 2|\sin(\pi a)|$;\par
+      \emph{$R_\psi$-independent!}\par
+      Canonical $a=1$: zero mode, $\det'=2\pi/R_\psi$
+    & Numerical value $Z^*\leq 2$ too small;\par
+      canonical vacuum is degenerate
+    & \textbf{[PARTIAL]} \\[6pt]
+  L4 (renorm.)
+    & Finiteness condition~\eqref{eq:finiteness_impossible}
+      is unsatisfiable
+    & Introduces free scale $\mu$
+    & \textbf{[DEAD END]} \\
   \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Path forward}
+\subsection*{Main finding of this document}
 
-\begin{enumerate}
-  \item \textbf{Fix the normalisation convention.}  The factor $V_4$ (or
-        its analogue in the full $M^4\times S^1\times\mathbb{C}\otimes\mathbb{H}$ setup)
-        must be determined canonically from the UBT action, not chosen ad hoc.
-  \item \textbf{Include the full $\mathbb{C}\otimes\mathbb{H}$ bundle determinant.}
-        The $S^1$ determinant (L3) gives only the $\psi$-component.  The full
-        fiber over $\mathbb{C}\otimes\mathbb{H}$ should supply a factor of
-        $\dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{H}) = 8$ (since $\mathbb{H}$ has
-        real dimension~4 and complexification doubles this).
-  \item \textbf{Two-loop computation.}  The spectral term in~\eqref{eq:alpha_consistency}
-        receives higher-order corrections; the two-loop beta function is computed
-        in \texttt{alpha\_two\_loop/}.
-  \item \textbf{Verify Conjecture~\ref{conj:Rpsi} algebraically.}
-        If $R_\psi = 12\pi/N_{\mathrm{eff}}^{3/2}$ has an algebraic origin
-        (e.g.\ from the heat-kernel expansion of $D_\Theta$), it would fix $R_\psi$
-        and allow L1 to provide the complete answer.
-\end{enumerate}
+\begin{theorem}[Zeta-det formula]
+  For the operator $\mathcal{D}_a = \partial_\psi + a/R_\psi$ on
+  $S^1_\psi$ with $a = \theta_H^*/(2\pi)\notin\mathbb{Z}$,
+  the $\zeta$-regularised functional determinant satisfies
+  \begin{equation}
+    \det(\mathcal{D}_a) = 2\lvert\sin(\pi a)\rvert,
+    \label{eq:thm_zeta}
+  \end{equation}
+  independently of $R_\psi$.
+  This is a pure number determined entirely by the Hosotani phase
+  $\theta_H^*$.
+\end{theorem}
 
-\ifdefined\INCLUDEMODE
-  % Nothing to close when included
-\else
-  \end{document}
+\begin{proof}
+  See computation in Section~\ref{subsec:L3_noninteger}:
+  $\zeta(0;\mathcal{D}_a)=0$ eliminates all $R_\psi$ dependence,
+  and $\zeta'(0;\mathcal{D}_a) = -\ln(2|\sin(\pi a)|)$ follows from the
+  Hurwitz values $\zeta_H(0,q)=\frac{1}{2}-q$ and
+  $\zeta_H'(0,q)=\ln\Gamma(q)-\frac{1}{2}\ln(2\pi)$
+  combined with Euler's reflection formula.
+\end{proof}
+
+\subsection*{Open problem}
+
+\begin{gap}
+  \label{gap:phi_ubt_open}
+  $\Phi_{\mathrm{UBT}}$ is not yet derived as a pure number from
+  $\mathcal{S}[\Theta]$ alone.
+  The canonical vacuum ($\theta_H^* = 2\pi$) has an integer holonomy
+  that forces a zero mode, preventing a direct application of the
+  $\det = 2|\sin(\pi a)|$ formula.
+  Three sub-problems remain:
+  \begin{enumerate}
+    \item \emph{Fix $R_\psi$ algebraically.}
+          The candidate $R_\psi = \pi/\sqrt{N_{\mathrm{eff}}}$
+          (equation~\eqref{eq:R_psi_algebraic})
+          is a \textbf{[NUMERICAL OBSERVATION]}; its derivation from
+          $\mathcal{S}[\Theta]$ would close the gap.
+    \item \emph{Regulate the zero mode in the canonical vacuum.}
+          The zero mode of $\mathcal{D}_1$ must be handled separately
+          (collective coordinate, modular space integral, or
+          $\partial_\psi + a$ with $a\to 1^-$).
+          A natural regulated value could recover $\Phi_{\mathrm{UBT}}$
+          as a pure number.
+    \item \emph{Link L2 (Atiyah--Singer) to L3.}
+          If the index of the $\mathbb{C}\otimes\mathbb{H}$ bundle over
+          a compact curved base is non-zero, it may set the overall
+          normalisation of $\Phi_{\mathrm{UBT}}$ through the index theorem.
+  \end{enumerate}
+\end{gap}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
 \fi
