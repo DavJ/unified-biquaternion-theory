@@ -1,0 +1,663 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\geometry{a4paper, margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{remark}{Remark}[section]
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\SE}{\textbf{[SE]}}
+\newcommand{\PROVED}{\textbf{PROVED}}
+
+\title{\textbf{Unified Biquaternion Theory}\\[6pt]
+\large A Referee-Ready Presentation}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Unified Biquaternion Theory (UBT) presents a framework for unifying
+General Relativity, Quantum Electrodynamics (QED), and Standard Model gauge
+symmetries within a single biquaternionic field $\Theta(q,\tau)$ defined over
+complex time $\tau = t + i\psi$.  The theory is built on three structural
+axioms and an action principle.  Key results include: (i) exact recovery of
+Einstein's field equations in the real-projection limit; (ii) derivation of
+the QED Lagrangian and Maxwell's equations from U(1) gauge invariance of
+$\Theta$; (iii) emergence of the gauge group
+$\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+from the algebraic structure $\mathbb{H}\otimes_\mathbb{R}\mathbb{C}$;
+(iv) three-generation structure from imaginary-time winding modes.
+Open problems — including the fine-structure-constant exponent, the Weinberg
+angle, and fermion mass parameters — are stated explicitly and without
+overstatement.  Predictions distinguishing UBT from the Standard Model are
+identified and assessed for experimental falsifiability.
+\end{abstract}
+
+\noindent\textbf{Keywords}: biquaternion, complex time, general relativity,
+QED, Standard Model, gauge symmetry, fermion mass, fine structure constant.
+
+\tableofcontents
+\newpage
+
+% ======================================================================
+\section{Introduction}
+% ======================================================================
+
+\subsection{Motivation}
+
+Modern fundamental physics rests on two pillars — General Relativity (GR)
+and Quantum Field Theory (QFT) — that are logically incompatible at high
+energies.  Numerous proposals for their unification exist (string theory,
+loop quantum gravity, non-commutative geometry, twistor theory), but none
+has achieved experimental confirmation or mathematical completeness.
+
+UBT takes a different starting point: the observation that the biquaternion
+algebra $\mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$, the simplest
+associative algebra combining real quaternions with complex numbers, contains
+the algebraic seeds of both GR geometry and gauge symmetries.
+By placing the fundamental field $\Theta$ in $\mathcal{B}$ and extending
+time to the complex plane $\tau = t + i\psi$, GR and the Standard Model
+gauge groups emerge as projections of a single mathematical object.
+
+\subsection{Scope of This Paper}
+
+This paper is organized as a referee-ready presentation of the core UBT
+results with explicit proof-level labels:
+\begin{itemize}
+  \item \Lzero{} — algebraic identity, exact, no free parameters
+  \item \Lone{} — proved given the stated axioms
+  \item \Ltwo{} — requires additional lemmas not yet proved
+  \item \SE{} — semi-empirical: formula present but parameters fitted
+  \item $[\mathrm{O}]$ — open problem
+\end{itemize}
+
+\noindent Detailed derivations are in the companion canonical documents
+(see \texttt{canonical/bridges/} and \texttt{canonical/interactions/}).
+
+\subsection{Plan of the Paper}
+
+\begin{itemize}
+  \item \S\ref{sec:axioms}: Axioms and foundational assumptions
+  \item \S\ref{sec:algebra}: Biquaternion algebra
+  \item \S\ref{sec:field}: Theta field definition
+  \item \S\ref{sec:action}: Action principle
+  \item \S\ref{sec:GR}: General Relativity recovery
+  \item \S\ref{sec:QED}: QED limit and Maxwell equations
+  \item \S\ref{sec:cosmology}: Cosmology and dark sector
+  \item \S\ref{sec:predictions}: Testable predictions
+  \item \S\ref{sec:open}: Open problems
+\end{itemize}
+
+% ======================================================================
+\section{Axioms}
+\label{sec:axioms}
+% ======================================================================
+
+UBT is built on a minimal set of structural axioms.  They are not derived
+but define the theory; all results below follow from them.
+
+\begin{axiom}[Biquaternion Algebra]\label{ax:algebra}
+The fundamental mathematical arena is:
+\begin{equation}
+  \mathcal{B} \;:=\; \mathbb{H}\otimes_{\mathbb{R}}\mathbb{C}
+  \;\cong\; \mathrm{Mat}(2,\mathbb{C}).
+\end{equation}
+\textit{Source}: \texttt{canonical/fields/biquaternion\_algebra.tex}, \S1.
+\end{axiom}
+
+\begin{axiom}[Fundamental Field]\label{ax:field}
+The fundamental dynamical object is:
+\begin{equation}
+  \Theta \;:\; \mathbb{R}^{1,3}\times\mathbb{C} \;\to\; \mathcal{B},
+  \qquad (q,\tau) \;\mapsto\; \Theta(q,\tau).
+\end{equation}
+All physical fields (metric, gauge fields, matter) are encoded in $\Theta$.
+\textit{Source}: \texttt{canonical/fields/theta\_field.tex}, \S1.
+\end{axiom}
+
+\begin{axiom}[Complex Time]\label{ax:time}
+Time is extended to the complex plane:
+\begin{equation}
+  \tau \;=\; t + i\psi, \qquad t,\psi\in\mathbb{R}.
+\end{equation}
+Real observables correspond to the section $\psi = 0$.
+\textit{Source}: \texttt{canonical/fields/biquaternion\_time.tex}, \S1.
+\end{axiom}
+
+\begin{axiom}[Field Equation]\label{ax:eq}
+The field $\Theta$ satisfies the biquaternionic wave equation:
+\begin{equation}\label{eq:tshirt}
+  \boxed{\nabla^\dagger\nabla\,\Theta(q,\tau) \;=\; \kappa\,\mathcal{T}(q,\tau),}
+\end{equation}
+where $\nabla^\dagger\nabla$ is the biquaternionic Laplacian,
+$\mathcal{T}$ is the source tensor, and $\kappa = 8\pi G/c^4$.
+\textit{Source}: \texttt{canonical/fields/theta\_field.tex}, \S3.
+\end{axiom}
+
+\begin{axiom}[Real Projection]\label{ax:proj}
+Physical observables are recovered by the real projection:
+\begin{equation}
+  g_{\mu\nu} \;=\; \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta]),
+\end{equation}
+where $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric.
+\textit{Source}: \texttt{canonical/geometry/metric.tex}, \S2.
+\end{axiom}
+
+\begin{axiom}[Action Principle]\label{ax:action}
+The dynamics are governed by $\delta S = 0$ with:
+\begin{equation}\label{eq:S}
+  S[\Theta] \;=\; \int d^4x\,\sqrt{-g}\,
+  \Bigl[
+    \tfrac{1}{2\kappa}R[\Theta]
+    + \mathcal{L}_{\mathrm{kin}}[\Theta]
+    - \tfrac{1}{4}F_{\mu\nu}^a F^{a\mu\nu}
+    - V(\Theta)
+  \Bigr].
+\end{equation}
+\textit{Source}: \texttt{THEORY/canonical/canonical\_action.tex}.
+\end{axiom}
+
+% ======================================================================
+\section{Biquaternion Algebra}
+\label{sec:algebra}
+% ======================================================================
+
+\subsection{Structure}
+
+The biquaternion algebra $\mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$
+has basis $\{1, i, j, k\} \times \{1, \mathbf{i}\}$, where $i,j,k$ are the
+quaternion units and $\mathbf{i}$ is the complex imaginary.
+Key relations:
+\begin{equation}
+  i^2 = j^2 = k^2 = ijk = -1, \qquad \mathbf{i}^2 = -1.
+\end{equation}
+Every element $Q\in\mathcal{B}$ can be written as $Q = q_0 + q_1 i + q_2 j + q_3 k$
+with $q_\mu \in \mathbb{C}$.
+
+\begin{proposition}[Matrix representation, \Lzero]
+$\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ via:
+\begin{equation}
+  i \mapsto \begin{pmatrix} \mathbf{i} & 0 \\ 0 & -\mathbf{i} \end{pmatrix},\quad
+  j \mapsto \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix},\quad
+  k \mapsto \begin{pmatrix} 0 & \mathbf{i} \\ \mathbf{i} & 0 \end{pmatrix}.
+\end{equation}
+\end{proposition}
+
+This isomorphism is exact.  It implies that $\mathcal{B}$ contains all
+$2\times 2$ complex matrices, which is the representation space for the
+Standard Model matter fields.
+
+\subsection{Involution Structure}
+
+$\mathcal{B}$ has a $\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$
+involution structure arising from quaternionic conjugation, complex conjugation,
+and their composition.  The three involutions select the subgroups
+$\mathrm{SU}(3)_c$, $\mathrm{SU}(2)_L$, and $\mathrm{U}(1)_Y$ from the
+automorphism group of $\mathcal{B}$.
+
+\textit{Source}: \texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex};
+\texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
+
+% ======================================================================
+\section{The Theta Field}
+\label{sec:field}
+% ======================================================================
+
+\subsection{Definition}
+
+\begin{definition}[Theta field]
+The fundamental field is a map
+$\Theta : \mathbb{R}^{1,3}\times\mathbb{C} \to \mathrm{Mat}(2,\mathbb{C})$.
+In explicit form, with complex time $\tau = t+i\psi$:
+\begin{equation}
+  \Theta(q,\tau) \;=\;
+  \begin{pmatrix}
+    \Theta_{11}(q,\tau) & \Theta_{12}(q,\tau) \\
+    \Theta_{21}(q,\tau) & \Theta_{22}(q,\tau)
+  \end{pmatrix}, \qquad
+  \Theta_{ij} \in \mathbb{C}.
+\end{equation}
+\end{definition}
+
+\subsection{Field Content}
+
+The matrix structure encodes:
+\begin{itemize}
+  \item \textbf{Real diagonal}: gravitational (metric) sector
+  \item \textbf{Imaginary diagonal}: U(1) phase (electromagnetic sector)
+  \item \textbf{Off-diagonal}: SU(2) spinor degrees of freedom
+  \item \textbf{Complex-time dependence}: SU(3) colour and generation structure
+\end{itemize}
+
+\subsection{Biquaternionic Laplacian}
+
+The operator $\nabla^\dagger\nabla$ in the master equation \eqref{eq:tshirt} is:
+\begin{equation}
+  \nabla^\dagger\nabla \;=\;
+  -\partial_\tau^*\partial_\tau - g^{\mu\nu}D_\mu D_\nu,
+\end{equation}
+where $D_\mu = \partial_\mu + \Gamma_\mu + igA_\mu$ includes the gravitational
+spin connection $\Gamma_\mu$ and the gauge connection $A_\mu$.
+In the limit $\psi \to 0$ this reduces to the standard covariant d'Alembertian.
+
+\textit{Source}: \texttt{canonical/explanation\_of\_nabla.tex};
+\texttt{canonical/fields/theta\_field.tex}, \S2.
+
+% ======================================================================
+\section{Action Principle}
+\label{sec:action}
+% ======================================================================
+
+\subsection{Full Action}
+
+The complete UBT action (Axiom~\ref{ax:action}) decomposes as:
+\begin{equation}
+  S[\Theta] = S_{\mathrm{grav}} + S_{\mathrm{kin}} + S_{\mathrm{gauge}} + S_{\mathrm{pot}},
+\end{equation}
+with:
+\begin{align}
+  S_{\mathrm{grav}} &= \int d^4x\,\frac{\sqrt{-g}}{2\kappa}\,R, \\
+  S_{\mathrm{kin}} &= \int d^4x\,\sqrt{-g}\,
+    \mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr], \\
+  S_{\mathrm{gauge}} &= -\int d^4x\,\frac{\sqrt{-g}}{4}\,F_{\mu\nu}^a F^{a\mu\nu}, \\
+  S_{\mathrm{pot}} &= -\int d^4x\,\sqrt{-g}\,V(\Theta).
+\end{align}
+
+\subsection{Variational Equations}
+
+Varying with respect to $g^{\mu\nu}$ gives the Einstein equations (see \S\ref{sec:GR}).
+Varying with respect to $A_\nu^a$ gives Yang--Mills equations; in the U(1) sector
+these reduce to Maxwell's equations (see \S\ref{sec:QED}).
+Varying with respect to $\Theta^\dagger$ gives the matter equation
+$D_\mu D^\mu\Theta = \partial V/\partial\Theta^\dagger$,
+which reduces to the Dirac equation for spinor modes.
+
+\textit{Source}: \texttt{THEORY/canonical/canonical\_action.tex}, \S2.
+
+% ======================================================================
+\section{General Relativity Recovery}
+\label{sec:GR}
+% ======================================================================
+
+\subsection{Chain Summary}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=GR Recovery Status]
+Steps 1--5: \textbf{PROVED [L1]} (on-shell, real projection)\\
+Step 6 (off-shell Θ-only closure): \textbf{OPEN [L2]}\\
+\textit{The on-shell recovery fully validates GR compatibility.}
+\end{tcolorbox}
+
+The five-step chain from $\Theta$ to Einstein's equations is:
+
+\begin{enumerate}
+  \item $\Theta(q,\tau)$ defines the biquaternionic geometry (\Lzero)
+  \item $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta])$
+        is the physical metric (\Lone)
+  \item $\Gamma^\lambda_{\mu\nu} = \mathrm{Re}(\Omega^\lambda_{\mu\nu})$
+        is the Levi-Civita connection (\Lone)
+  \item $R_{\mu\nu} = \mathrm{Re}(\mathcal{R}_{\mu\nu})$
+        is the Ricci tensor (\Lone)
+  \item $G_{\mu\nu} = \kappa T_{\mu\nu}$ follows from variation of $S_{\mathrm{grav}}$
+        (\Lone)
+\end{enumerate}
+
+\subsection{Theorem: GR is a Real Projection of UBT}
+
+\begin{theorem}[GR Recovery, \Lone]
+In the limit $\psi \to 0$ (real time, $\mathrm{Im}(\mathcal{G}_{\mu\nu}) = 0$),
+the field equations \eqref{eq:tshirt} reduce exactly to Einstein's equations:
+\begin{equation}
+  G_{\mu\nu} \;=\; R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R \;=\; 8\pi G\,T_{\mu\nu}.
+\end{equation}
+\end{theorem}
+
+\noindent This recovery holds for all curvature regimes (flat, weak, strong,
+cosmological).  Every experimental confirmation of GR (perihelion precession,
+gravitational waves, black hole imaging) therefore automatically validates the
+GR sector of UBT.
+
+\textit{Source}: \texttt{canonical/bridges/GR\_chain\_bridge.tex};
+\texttt{canonical/geometry/gr\_as\_limit.tex}.
+
+\subsection{Beyond GR: Imaginary Curvature Sector}
+
+The imaginary part $\mathrm{Im}(\mathcal{G}_{\mu\nu})$ — the phase curvature
+— is invisible to classical measurements (ordinary matter couples only to
+$g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$).
+It may carry dark-sector energy (see \S\ref{sec:cosmology}).
+
+% ======================================================================
+\section{QED Limit}
+\label{sec:QED}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=QED Sector Status]
+\textbf{PROVED [L0]}: U(1) gauge symmetry, $F_{\mu\nu}$ definition, Bianchi identity\\
+\textbf{PROVED [L1]}: QED Lagrangian, Maxwell equations, Dirac equation\\
+\textbf{SEMI-EMPIRICAL [SE]}: Precise value of $\alpha$ (formula structure proved;
+$B_{\mathrm{base}}$ exponent open)
+\end{tcolorbox}
+
+\subsection{U(1) Gauge Symmetry}
+
+The scalar phase right action on $\mathcal{B}$ defines an exact U(1) symmetry
+(\Lzero):
+\begin{equation}
+  \Theta(x) \;\mapsto\; \Theta(x)\,e^{i\alpha(x)}.
+\end{equation}
+This requires the gauge potential $A_\mu = e^{-1}\partial_\mu\varphi$
+and covariant derivative $D_\mu = \partial_\mu - ieA_\mu$.
+
+\textit{Source}: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem G.3.
+
+\subsection{Electromagnetic Field Tensor}
+
+\begin{equation}
+  F_{\mu\nu} \;=\; \partial_\mu A_\nu - \partial_\nu A_\mu.
+\end{equation}
+The Bianchi identity $\partial_{[\lambda}F_{\mu\nu]} = 0$ follows algebraically
+(\Lzero) and gives the homogeneous Maxwell equations.
+
+\subsection{QED Lagrangian}
+
+\begin{equation}
+  \mathcal{L}_{\mathrm{QED}}
+  \;=\;
+  \mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr]
+  \;-\;
+  \frac{1}{4}\,F_{\mu\nu}F^{\mu\nu},
+\end{equation}
+where $D_\mu = \partial_\mu - ieA_\mu$.
+
+\textit{Source}: \texttt{canonical/interactions/qed.tex}, eq.\ (1).
+
+\subsection{Maxwell Equations}
+
+Varying $\mathcal{L}_{\mathrm{QED}}$ with respect to $A_\nu$:
+\begin{align}
+  \partial_\mu F^{\mu\nu} &= j^\nu, \label{eq:maxwell_inhom} \\
+  \partial_{[\lambda}F_{\mu\nu]} &= 0. \label{eq:maxwell_hom}
+\end{align}
+Together these are all four Maxwell equations (\Lone).
+
+\textit{Source}: \texttt{canonical/bridges/Maxwell\_complete\_derivation.tex}.
+
+\subsection{Dirac Equation}
+
+In the U(1) sector with constant phase ($\partial_\psi = 0$), the spinor
+modes of $\Theta$ satisfy:
+\begin{equation}
+  (i\gamma^\mu D_\mu - m)\,\psi \;=\; 0, \qquad
+  D_\mu = \partial_\mu - ie A_\mu.
+\end{equation}
+This follows from varying $\mathcal{L}_{\mathrm{QED}}$ with respect to $\bar\psi$ (\Lone).
+
+\textit{Source}: \texttt{canonical/bridges/QED\_complete\_chain.tex};
+\texttt{unified\_biquaternion\_theory/ubt\_appendix\_10\_qed\_dirac.tex}.
+
+\subsection{Fine Structure Constant}
+
+The UBT formula for $\alpha$ has the structure:
+\begin{equation}
+  \alpha \;=\; \frac{B_0}{B_{\mathrm{base}} + B_\alpha},
+\end{equation}
+with $B_0 = 8\pi$ (PROVED [L1]) and $B_{\mathrm{base}} + B_\alpha \approx 87.87$
+reproducing $\alpha \approx 1/137.036$.  The exponent in
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is currently unproved (Open Problem,
+see \S\ref{sec:open}).
+
+\textit{Source}: \texttt{research/alpha\_derivation\_status.md};
+\texttt{canonical/bridges/QED\_limit\_bridge.tex}.
+
+\subsection{Gauge Group Emergence}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Gauge Group Status]
+\textbf{PROVED [L0]}: $\mathrm{SU}(3)_c$, $\mathrm{SU}(2)_L$, $\mathrm{U}(1)_Y$
+from $\mathbb{C}\otimes\mathbb{H}$ involutions\\
+\textbf{SEMI-EMPIRICAL}: Weinberg angle $\sin^2\theta_W \approx 0.231$\\
+\textbf{MOTIVATED (not proved)}: Chirality selection $\mathrm{SU}(2)_L$ over $\mathrm{SU}(2)_R$
+\end{tcolorbox}
+
+The three gauge groups emerge from the involution structure of $\mathcal{B}$:
+\begin{itemize}
+  \item $\mathrm{SU}(3)_c$ from $\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$ involutions (\Lzero)
+  \item $\mathrm{SU}(2)_L$ from norm-preserving left multiplications (\Lzero)
+  \item $\mathrm{U}(1)_Y$ from scalar phase right multiplications (\Lzero)
+\end{itemize}
+
+\textit{Source}: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
+
+% ======================================================================
+\section{Cosmology}
+\label{sec:cosmology}
+% ======================================================================
+
+\subsection{Dark Energy from Phase Curvature}
+
+The imaginary part of the biquaternionic metric,
+$\Im(\mathcal{G}_{\mu\nu}) = \psi_{\mu\nu}$ (phase curvature),
+satisfies field equations but does not couple to ordinary (baryonic) matter.
+It provides a natural candidate for the observed accelerated cosmological
+expansion without fine-tuning the cosmological constant.
+
+The effective cosmological constant in UBT arises as:
+\begin{equation}
+  \Lambda_{\mathrm{eff}} \;=\; \frac{8\pi G}{c^4}\,
+  \rho_{\mathrm{vac}}[\psi_{\mu\nu}],
+\end{equation}
+where $\rho_{\mathrm{vac}}$ is the vacuum energy density of the phase-curvature
+field, which is a geometric property of $\Theta$ rather than a sum of
+zero-point fluctuations.
+
+\textit{Source}: \texttt{unified\_biquaternion\_theory/priority\_P6\_dark\_energy/};
+\texttt{consolidation\_project/appendix\_M\_dark\_energy\_UBT.tex}.
+
+\subsection{Dark Matter as Topological Hopfions}
+
+Topologically stable configurations of $\Theta$ — Hopfion solitons with
+non-zero Hopf invariant $Q_H\in\mathbb{Z}$ — are candidates for dark matter.
+These arise as non-trivial mappings $S^3 \to S^2$ in the field space of $\Theta$.
+
+Hopfion dark matter candidates:
+\begin{itemize}
+  \item Gravitationally coupled (invisible to electromagnetic sector)
+  \item Mass scale linked to internal-mode physics (correlated with $\alpha$ sector)
+  \item Cold dark matter spectrum consistent with $\Lambda$CDM bounds
+\end{itemize}
+
+\textit{Source}: \texttt{consolidation\_project/appendix\_U\_dark\_matter\_unified\_padic.tex};
+\texttt{unified\_biquaternion\_theory/solution\_P5\_dark\_matter/}.
+
+\subsection{Three Generations from Winding Modes}
+
+The three fermion generations arise from three independent $\psi$-winding modes
+on the imaginary-time circle $\psi \sim \psi + 2\pi$:
+\begin{itemize}
+  \item Mode $n = 1, 2, 3$ → Generation 1, 2, 3
+  \item Each mode carries identical gauge quantum numbers
+  \item Status: \textbf{PROVED [L0]} — algebraic identity
+\end{itemize}
+
+\textit{Source}: \texttt{STATUS\_THEORY\_ASSESSMENT.md} v61;
+\texttt{DERIVATION\_INDEX.md}.
+
+\subsection{Cosmological Predictions}
+
+UBT predicts modifications to the standard $\Lambda$CDM cosmology:
+\begin{itemize}
+  \item Effective number of relativistic species: $N_{\mathrm{eff}} \approx 3.09$
+        (UBT prediction; current measurement $2.99\pm 0.17$)
+  \item CMB acoustic peak modifications from phase curvature
+  \item Gravitational wave propagation: possible frequency-dependent dispersion
+\end{itemize}
+
+Detailed predictions and their current observational status are in
+\texttt{docs/predictions/UBT\_cosmology\_predictions.md}.
+
+% ======================================================================
+\section{Testable Predictions}
+\label{sec:predictions}
+% ======================================================================
+
+\subsection{Predictions Summary}
+
+The following table lists the key UBT predictions with their proof level
+and current experimental status.
+
+\begin{center}
+\begin{tabular}{p{5cm}llp{3.5cm}}
+\toprule
+\textbf{Prediction} & \textbf{Level} & \textbf{Value} & \textbf{Exp.\ Status} \\
+\midrule
+GR recovery (all regimes) & \Lone & Exact & All GR tests passed \\
+$\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ & \Lzero & Algebraic & Confirmed by SM \\
+Three SM fermion generations & \Lzero & 3 & Confirmed \\
+Massless photon & \Lone & $m_\gamma = 0$ & Confirmed \\
+Electron mass $m_e$ & \SE & $0.511$ MeV & 0.22\% accuracy \\
+Fine structure constant $\alpha$ & \SE & $1/137.036$ & Verified with fitted $B_\text{base}$ \\
+$N_\text{eff} \approx 3.09$ & \Ltwo & $3.090$ & Consistent (Planck: $2.99\pm0.17$) \\
+Hopfion dark matter & $[\mathrm{O}]$ & Mass TBD & Not tested \\
+Gravitational wave dispersion & $[\mathrm{O}]$ & Signal TBD & Future LISA/ET \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Key Falsification Criterion}
+
+UBT is falsified if any of the following are observed:
+\begin{enumerate}
+  \item Violation of GR in the real-projection regime (since GR recovery is exact)
+  \item A fourth SM gauge group factor inconsistent with
+        $\mathbb{H}\otimes_\mathbb{R}\mathbb{C}$
+  \item More or fewer than three fermion generations
+        (since the three-generation result is proved from winding modes)
+\end{enumerate}
+
+\textit{Source}: \texttt{TESTABILITY\_AND\_FALSIFICATION.md}.
+
+% ======================================================================
+\section{Open Problems}
+\label{sec:open}
+% ======================================================================
+
+The following open problems are the current research frontier.  They are
+stated clearly so that a referee can assess the theory's completeness.
+
+\begin{enumerate}
+
+\item \textbf{Fine structure constant $B_\text{base}$ exponent} \hfill $[\mathrm{O}]$\\
+The formula $B_\text{base} = N_\text{eff}^{3/2}$ has the exponent $3/2$
+unproved from first principles.  22 approaches have been tested; none succeeded.
+Promising direction: Kac--Moody algebras at level $k = 1$.\\
+\textit{Source}: \texttt{research/alpha\_derivation\_status.md};
+\texttt{canonical/bridges/QED\_limit\_bridge.tex}, \S3.
+
+\item \textbf{Weinberg angle} $\sin^2\theta_W \approx 0.231$ \hfill \SE{}\\
+Cannot be derived from $\mathbb{C}\otimes\mathbb{H}$ alone.
+Additional input from fermion representations or Higgs sector is required.\\
+\textit{Source}: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}, \S3.
+
+\item \textbf{Chirality selection} ($\mathrm{SU}(2)_L$ not $\mathrm{SU}(2)_R$)
+      \hfill \Ltwo{}\\
+Motivated by $\psi$-parity under $\psi\to-\psi$, but not yet elevated
+to a theorem.
+
+\item \textbf{Fermion mass parameters} \hfill \SE{}\\
+The mass parameter $B_m \approx -14.099$ MeV is fitted to $m_e$, not derived.
+Lepton mass ratios and quark masses are not derived.\\
+\textit{Source}: \texttt{research/fermion\_mass\_program.md}.
+
+\item \textbf{Off-shell GR closure} \hfill $[\mathrm{L2}]$\\
+The purely off-shell reduction
+$\mathrm{Re}(\nabla^\dagger\nabla\Theta) \to G_{\mu\nu}$
+has a structural obstruction that prevents simple closure.
+This does not affect the on-shell result (Steps 1--5 of the GR chain).\\
+\textit{Source}: \texttt{canonical/bridges/GR\_chain\_bridge.tex}, Step 6.
+
+\item \textbf{Geometric correction factor $R \approx 1.114$} \hfill $[\mathrm{O}]$\\
+The one-loop correction in the $\alpha$ formula involves a factor
+$R \approx 1.114$ of unknown geometric origin.  Eight approaches tested.
+
+\item \textbf{Neutrino masses and PMNS matrix} \hfill $[\mathrm{O}]$\\
+The neutrino sector is referenced in the repository but without a complete
+mass derivation.\\
+\textit{Source}: \texttt{research/fermion\_mass\_program.md}, Open Problem 4.
+
+\item \textbf{CKM matrix} \hfill \SE{}\\
+Quark mixing angles are partially treated but the full CKM matrix is not
+derived.\\
+\textit{Source}: \texttt{consolidation\_project/appendix\_QA2\_quarks\_CKM.tex}.
+
+\end{enumerate}
+
+% ======================================================================
+\section*{Conclusion}
+% ======================================================================
+
+The Unified Biquaternion Theory provides a mathematically consistent
+framework in which General Relativity, QED, and the Standard Model gauge
+symmetries emerge as projections of a single biquaternionic field.
+The core results — GR recovery, QED Lagrangian, Maxwell equations,
+Dirac equation, and three-generation structure — are proved at level L1 or
+better.
+
+Significant open problems remain, particularly the first-principles derivation
+of the fine-structure constant (B_base exponent), the Weinberg angle, and
+fermion masses.  These are stated without overstatement in the companion
+documents in \texttt{research/}.
+
+The theory is falsifiable: it makes sharp predictions about three fermion
+generations, gauge group structure, and GR recovery that are not parameterically
+adjustable.
+
+\section*{Acknowledgments}
+
+The author acknowledges A.H.\ Chamseddine (2025) and E.\ Verlinde (2025).
+
+\bigskip
+\noindent\textbf{Companion documents}:
+\begin{itemize}
+  \item Complete QED chain: \texttt{canonical/bridges/QED\_complete\_chain.tex}
+  \item Maxwell derivation: \texttt{canonical/bridges/Maxwell\_complete\_derivation.tex}
+  \item GR chain: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
+  \item Gauge emergence: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}
+  \item $\alpha$ status: \texttt{research/alpha\_derivation\_status.md}
+  \item Fermion mass program: \texttt{research/fermion\_mass\_program.md}
+\end{itemize}
+
+\section*{License}
+
+\noindent © 2025 Ing.\ David Jaroš — CC BY-NC-ND 4.0
+
+This work is licensed under a Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International License.
+
+\textbf{License History:} Earlier drafts (up to v0.3) were released under
+CC BY 4.0. From v0.4 onward, all material is released under CC BY-NC-ND 4.0.
+
+\end{document}

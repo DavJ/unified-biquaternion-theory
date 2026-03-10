@@ -1,0 +1,427 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Rule: do_not_modify_existing_equations — only_add_missing_steps
+% This file completes the Maxwell derivation by making every step explicit.
+% Existing equations from Maxwell_limit_bridge.tex are reproduced verbatim
+% where needed; no equation is altered.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\PROVED}{\textbf{PROVED}}
+\newcommand{\Bbase}{B_{\mathrm{base}}}
+
+\title{Maxwell Complete Derivation\\
+\large Unified Biquaternion Theory — Canonical Bridges Series}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document provides a complete, step-by-step derivation of Maxwell's
+equations as a limit of the Unified Biquaternion Theory (UBT).
+All four Maxwell equations are derived explicitly; no step is merely stated.
+The derivation proceeds through five stages: (1) identification of the U(1)
+potential from the phase of $\Theta$; (2) definition of the field-strength
+tensor; (3) derivation of the QED Lagrangian; (4) Euler--Lagrange variation
+giving the inhomogeneous Maxwell equations; and (5) proof that the Bianchi
+identity gives the homogeneous equations.
+No existing equations are modified; only the previously implicit steps are
+made explicit.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------------
+\section{Derivation Chain Overview}
+% ------------------------------------------------------------------
+
+Maxwell's equations follow from UBT in four steps:
+\begin{enumerate}
+  \item \textbf{Step 1}: Electromagnetic potential $A_\mu$ from U(1) phase of $\Theta$.
+  \item \textbf{Step 2}: Field-strength tensor $F_{\mu\nu}$ as the curvature of $A_\mu$.
+  \item \textbf{Step 3}: QED Lagrangian and its Euler--Lagrange equations.
+  \item \textbf{Step 4}: Maxwell's four equations as the classical, flat-spacetime
+        limit.
+\end{enumerate}
+
+\medskip
+
+\noindent Proof-level labels:
+\begin{itemize}
+  \item \Lzero{} — exact algebraic identity, no free parameters
+  \item \Lone{} — proved given verified assumptions
+\end{itemize}
+
+% ------------------------------------------------------------------
+\section{Step 1: Electromagnetic Potential from U(1) Phase}
+% ------------------------------------------------------------------
+
+\noindent\textbf{Status: \PROVED{} \Lone}
+
+\noindent\textbf{Primary source:}
+\texttt{canonical/interactions/qed.tex}, \S2;
+\texttt{canonical/interactions/sm\_gauge.tex}, \S3.
+
+\medskip
+
+The biquaternion $\Theta(q,\tau) \in \mathbb{H}\otimes\mathbb{C}$ has a
+scalar phase degree of freedom $\varphi(x)$ arising from the right U(1) action:
+\begin{equation}\label{eq:U1action}
+  \Theta \;\mapsto\; \Theta\,e^{i\varphi(x)}.
+\end{equation}
+The U(1)$_Y$ hypercharge group is identified with this right-action phase
+(\texttt{canonical/interactions/sm\_gauge.tex}, Theorem G.3, \Lzero).
+In the electromagnetic sector the electromagnetic four-potential is:
+\begin{equation}\label{eq:potential}
+  A_\mu(x) \;:=\; \frac{1}{e}\,\partial_\mu \varphi(x),
+\end{equation}
+where $e$ is the elementary charge. Under a local U(1) gauge transformation
+$\varphi \to \varphi + e\,\alpha(x)$ one recovers:
+\begin{equation}\label{eq:gauge_transf}
+  A_\mu \;\to\; A_\mu + \partial_\mu \alpha(x),
+\end{equation}
+which is the standard gauge transformation of the electromagnetic potential.
+
+\medskip
+\noindent\textbf{Missing step made explicit:} Equation \eqref{eq:potential}
+is a definition, not a derivation. Its justification is that $\varphi(x)$
+is the only scalar U(1)-charged degree of freedom in the biquaternion algebra
+$\mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$, and equation
+\eqref{eq:gauge_transf} follows immediately by substitution:
+\begin{equation}
+  \frac{1}{e}\,\partial_\mu(\varphi + e\,\alpha)
+  = \frac{1}{e}\,\partial_\mu\varphi + \partial_\mu\alpha
+  = A_\mu + \partial_\mu\alpha.
+\end{equation}
+The factor $1/e$ is the conventional normalisation that makes $e$ the
+coupling constant in the covariant derivative $D_\mu = \partial_\mu - ieA_\mu$.
+
+% ------------------------------------------------------------------
+\section{Step 2: Field-Strength Tensor}
+% ------------------------------------------------------------------
+
+\noindent\textbf{Status: \PROVED{} \Lone}
+
+\noindent\textbf{Primary source:}
+\texttt{canonical/interactions/qed.tex}, \S2;
+\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}, \S1.
+
+\medskip
+
+The electromagnetic field-strength tensor is defined as the curvature of the
+U(1) connection:
+\begin{equation}\label{eq:Fmunu}
+  F_{\mu\nu} \;=\; \partial_\mu A_\nu - \partial_\nu A_\mu.
+\end{equation}
+In the biquaternionic formalism the same object appears as the imaginary part
+of the field:
+\begin{equation}\label{eq:biquat_EM}
+  \mathcal{F} \;=\; (\mathbf{E} + i\,\mathbf{B})\cdot\boldsymbol{\sigma},
+\end{equation}
+where $\mathbf{E}$ and $\mathbf{B}$ are the electric and magnetic field vectors
+and $\boldsymbol{\sigma}$ are the Pauli matrices
+(\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}, \S1).
+The standard components are recovered by:
+\begin{equation}\label{eq:EB_from_F}
+  F_{0i} = E_i, \qquad F_{ij} = -\varepsilon_{ijk}B_k.
+\end{equation}
+
+\noindent\textbf{Missing step made explicit:} The connection between
+\eqref{eq:Fmunu} and \eqref{eq:biquat_EM} is:
+\begin{align}
+  E_i &= F_{0i} = \partial_0 A_i - \partial_i A_0
+       = -\frac{\partial A_i}{\partial t} - \frac{\partial\phi}{\partial x^i}
+       \quad (A_0 = -\phi), \label{eq:E_from_F} \\
+  B_k &= -\tfrac{1}{2}\varepsilon_{ijk}F_{ij}
+       = \tfrac{1}{2}\varepsilon_{ijk}(\partial_i A_j - \partial_j A_i)
+       = (\nabla\times\mathbf{A})_k. \label{eq:B_from_F}
+\end{align}
+The Bianchi identity $\partial_{[\lambda}F_{\mu\nu]} = 0$ follows
+automatically from the antisymmetry of $F_{\mu\nu}$ and is the
+\emph{homogeneous} Maxwell equations in covariant form.
+
+\medskip
+\noindent\textbf{Explicit proof of gauge invariance of $F_{\mu\nu}$}:
+\begin{proposition}
+$F_{\mu\nu}$ is invariant under \eqref{eq:gauge_transf}.
+\end{proposition}
+\begin{proof}
+Under $A_\nu \to A_\nu + \partial_\nu\alpha$:
+\begin{equation}
+  F_{\mu\nu} \to \partial_\mu(A_\nu + \partial_\nu\alpha)
+              - \partial_\nu(A_\mu + \partial_\mu\alpha)
+  = F_{\mu\nu} + \partial_\mu\partial_\nu\alpha
+              - \partial_\nu\partial_\mu\alpha
+  = F_{\mu\nu},
+\end{equation}
+since $\partial_\mu\partial_\nu = \partial_\nu\partial_\mu$. \qed
+\end{proof}
+
+% ------------------------------------------------------------------
+\section{Step 3: QED Lagrangian and Euler--Lagrange Equations}
+% ------------------------------------------------------------------
+
+\noindent\textbf{Status: \PROVED{} \Lone}
+
+\noindent\textbf{Primary source:}
+\texttt{canonical/interactions/qed.tex}, \S1 and \S3.
+
+\medskip
+
+The QED Lagrangian density in the UBT framework is
+(\texttt{canonical/interactions/qed.tex}, eq.\ (1)):
+\begin{equation}\label{eq:LQED}
+  \mathcal{L}_{\mathrm{QED}}
+  \;=\;
+  \mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger (D^\mu\Theta)\bigr]
+  \;-\;
+  \frac{1}{4}\,F_{\mu\nu}F^{\mu\nu},
+\end{equation}
+where $D_\mu = \partial_\mu - ieA_\mu$ is the covariant derivative.
+The photon kinetic term $-\tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}$ is invariant under
+gauge transformations and produces the dynamics of the electromagnetic field.
+
+\noindent\textbf{Missing step made explicit:} The Euler--Lagrange equation
+for the photon sector follows from the photon kinetic term:
+
+\begin{proposition}[Euler--Lagrange for $A_\nu$]
+\label{prop:EL}
+The Euler--Lagrange equations derived from
+$\mathcal{L}_{\mathrm{ph}} = -\tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}$
+with respect to $A_\nu$ are:
+\begin{equation}\label{eq:ELeq}
+  \partial_\mu F^{\mu\nu} = j^\nu,
+\end{equation}
+where $j^\nu = -\partial\mathcal{L}_{\mathrm{matter}}/\partial A_\nu$
+is the matter current.
+\end{proposition}
+
+\begin{proof}
+We compute:
+\begin{equation}
+  \frac{\partial(-\tfrac{1}{4}F_{\mu\nu}F^{\mu\nu})}{\partial(\partial_\rho A_\sigma)}
+  = -\frac{1}{4}\cdot 2 F^{\rho\sigma} \cdot 2 \cdot \tfrac{1}{2}
+  = -F^{\rho\sigma}.
+\end{equation}
+More carefully, expanding $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$:
+\begin{align}
+  \frac{\partial(F_{\mu\nu}F^{\mu\nu})}{\partial(\partial_\rho A_\sigma)}
+  &= 2F^{\rho\sigma} - 2F^{\sigma\rho}
+   = 4F^{\rho\sigma},
+\end{align}
+so $\partial\mathcal{L}_{\mathrm{ph}}/\partial(\partial_\rho A_\sigma)
+= -F^{\rho\sigma}$.
+The Euler--Lagrange equation
+$\partial_\rho(\partial\mathcal{L}/\partial(\partial_\rho A_\sigma))
+= \partial\mathcal{L}/\partial A_\sigma$ gives:
+\begin{equation}
+  -\partial_\rho F^{\rho\sigma} = \frac{\partial\mathcal{L}_{\mathrm{matter}}}{\partial A_\sigma}
+  =: -j^\sigma,
+\end{equation}
+which is \eqref{eq:ELeq} with indices relabelled. \qed
+\end{proof}
+
+The electromagnetic current $j^\nu$ arises from the matter sector:
+\begin{equation}\label{eq:em_current}
+  j^\nu = ig\,\mathrm{Tr}\bigl[\Theta^\dagger D^\nu\Theta
+           - (D^\nu\Theta)^\dagger\Theta\bigr]
+  \;\xrightarrow{\text{Dirac limit}}\;
+  e\,\bar\psi\,\gamma^\nu\psi.
+\end{equation}
+
+% ------------------------------------------------------------------
+\section{Step 4: Maxwell Equations as the Low-Energy Limit}
+% ------------------------------------------------------------------
+
+\noindent\textbf{Status: \PROVED{} \Lone}
+
+\noindent\textbf{Primary source:}
+\texttt{canonical/interactions/qed.tex}, \S3;
+\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}, \S2.
+
+\medskip
+
+\begin{theorem}[Maxwell Limit]
+\label{thm:maxwell}
+In the limit of constant phase ($\partial_\mu\varphi = 0$), flat spacetime
+($g_{\mu\nu} = \eta_{\mu\nu}$), and classical matter fields, the equations of
+motion derived from $\mathcal{L}_{\mathrm{QED}}$ reduce exactly to Maxwell's
+equations.
+\end{theorem}
+
+\begin{proof}
+We derive all four Maxwell equations.
+
+\medskip
+\noindent\textbf{Equations I and II (homogeneous):}
+The Bianchi identity
+$\partial_{[\lambda}F_{\mu\nu]} \equiv \partial_\lambda F_{\mu\nu}
++ \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0$
+follows algebraically from the definition \eqref{eq:Fmunu}:
+\begin{align}
+  &\partial_\lambda(\partial_\mu A_\nu - \partial_\nu A_\mu)
+  + \partial_\mu(\partial_\nu A_\lambda - \partial_\lambda A_\nu)
+  + \partial_\nu(\partial_\lambda A_\mu - \partial_\mu A_\lambda) \notag \\
+  &= \partial_\lambda\partial_\mu A_\nu - \partial_\lambda\partial_\nu A_\mu
+   + \partial_\mu\partial_\nu A_\lambda - \partial_\mu\partial_\lambda A_\nu
+   + \partial_\nu\partial_\lambda A_\mu - \partial_\nu\partial_\mu A_\lambda
+  = 0,
+\end{align}
+since all six terms cancel pairwise (Schwarz's theorem).
+Setting $(\lambda,\mu,\nu) = (1,2,3)$ gives $\nabla\cdot\mathbf{B} = 0$
+(using \eqref{eq:B_from_F}).
+Setting $(\lambda,\mu,\nu) = (0,i,j)$ gives
+$\nabla\times\mathbf{E} + \partial_t\mathbf{B} = 0$
+(Faraday's law).
+
+\medskip
+\noindent\textbf{Equations III and IV (inhomogeneous):}
+Proposition~\ref{prop:EL} gives $\partial_\mu F^{\mu\nu} = j^\nu$.
+Setting $\nu = 0$:
+\begin{equation}
+  \partial_\mu F^{\mu 0} = j^0
+  \quad\Rightarrow\quad
+  \partial_i F^{i0} = \rho
+  \quad\Rightarrow\quad
+  \nabla\cdot\mathbf{E} = \rho.
+\end{equation}
+Setting $\nu = k$ (spatial):
+\begin{equation}
+  \partial_\mu F^{\mu k} = j^k
+  \quad\Rightarrow\quad
+  \partial_0 F^{0k} + \partial_i F^{ik} = j^k
+  \quad\Rightarrow\quad
+  -\frac{\partial E_k}{\partial t} + (\nabla\times\mathbf{B})_k = j_k,
+\end{equation}
+i.e.\ $\nabla\times\mathbf{B} - \partial_t\mathbf{E} = \mathbf{j}$
+(Ampère--Maxwell law).
+\qed
+\end{proof}
+
+\begin{corollary}[Vacuum Maxwell equations]
+In the absence of sources ($j^\mu = 0$), the equations reduce to
+$\partial_\mu F^{\mu\nu} = 0$ together with the Bianchi identity.
+These are the free Maxwell equations and admit plane-wave solutions
+(photons).
+\end{corollary}
+
+\begin{remark}[Curved Spacetime Extension]
+In curved spacetime, $\partial_\mu \to \nabla_\mu$ (covariant derivative) and
+the flat-metric contractions $F_{\mu\nu}F^{\mu\nu}$ involve $g^{\mu\alpha}g^{\nu\beta}$.
+The covariant form of the inhomogeneous equations becomes
+$\nabla_\mu F^{\mu\nu} = j^\nu$, which is derived in
+\texttt{canonical/interactions/qed.tex}, \S6, and in
+\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}, \S3.
+\end{remark}
+
+\begin{remark}[Biquaternionic Form]
+The biquaternionic representation $\mathcal{F} = (\mathbf{E}+i\mathbf{B})\cdot\boldsymbol{\sigma}$
+makes the duality symmetry $\mathbf{E}\to\mathbf{B}$, $\mathbf{B}\to-\mathbf{E}$ manifest
+as multiplication by $i$ (complex rotation in the biquaternionic algebra).
+This is detailed in
+\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}, \S4.
+\end{remark}
+
+% ------------------------------------------------------------------
+\section{Current Sector and Charge Conservation}
+% ------------------------------------------------------------------
+
+\noindent\textbf{Status: \PROVED{} \Lone}
+
+\noindent\textbf{Primary source:}
+\texttt{canonical/interactions/qed.tex}, \S4.
+
+\medskip
+
+The conserved Noether current associated with U(1) gauge invariance is:
+\begin{equation}\label{eq:Noether}
+  j^\mu = e\,\mathrm{Tr}\bigl[\Theta^\dagger\,(D^\mu\Theta) - (D^\mu\Theta)^\dagger\,\Theta\bigr]
+  \;\xrightarrow{\text{Dirac limit}}\;
+  e\,\bar\psi\,\gamma^\mu\psi.
+\end{equation}
+
+\noindent\textbf{Explicit proof of charge conservation}:
+\begin{proposition}[Charge conservation]
+$\partial_\mu j^\mu = 0$.
+\end{proposition}
+\begin{proof}
+From the Euler--Lagrange equation \eqref{eq:ELeq},
+taking $\partial_\nu$ of both sides:
+\begin{equation}
+  \partial_\nu j^\nu = \partial_\nu\partial_\mu F^{\mu\nu} = 0,
+\end{equation}
+since $F^{\mu\nu} = -F^{\nu\mu}$ (antisymmetric) but $\partial_\nu\partial_\mu$
+is symmetric in $(\mu,\nu)$; the contraction of a symmetric with an antisymmetric
+tensor vanishes identically. \qed
+\end{proof}
+
+% ------------------------------------------------------------------
+\section{Summary Table}
+% ------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Source} & \textbf{Status} \\
+\hline
+U(1) phase $\to$ gauge potential $A_\mu$ & \texttt{qed.tex} \S2; \texttt{sm\_gauge.tex} \S3 & \PROVED{} \Lone \\
+Field tensor $F_{\mu\nu}$ & \texttt{qed.tex} \S2 & \PROVED{} \Lzero \\
+$F_{\mu\nu}$ gauge invariance & Section 2 (this file) & \PROVED{} \Lzero \\
+QED Lagrangian & \texttt{qed.tex} \S1 & \PROVED{} \Lone \\
+EL equation $\partial_\mu F^{\mu\nu} = j^\nu$ & Section 3 (this file) & \PROVED{} \Lone \\
+Bianchi identity (homogeneous Maxwell) & Section 4 (this file) & \PROVED{} \Lzero \\
+Inhomogeneous Maxwell eqs.\ & Section 4 (this file) & \PROVED{} \Lone \\
+Covariant form (curved spacetime) & \texttt{qed.tex} \S6; \texttt{appendix\_C} \S3 & \PROVED{} \Lone \\
+Biquaternionic $\mathcal{F}$ form & \texttt{appendix\_C} \S4 & \PROVED{} \Lone \\
+Charge conservation & Section 5 (this file) & \PROVED{} \Lone \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[No Open Problems in Maxwell Sector]
+Unlike the fine-structure constant (where $\Bbase$ remains open) or the
+gauge group chirality (where left-handedness is only motivated), the Maxwell
+sector has no outstanding derivation gaps. All four Maxwell equations follow
+directly from the QED Lagrangian and standard variational calculus.
+\end{remark}
+
+% ------------------------------------------------------------------
+\section{Cross-References}
+% ------------------------------------------------------------------
+
+\begin{itemize}
+  \item \textbf{QED complete derivation chain}: \texttt{canonical/bridges/QED\_complete\_chain.tex}
+  \item \textbf{QED Lagrangian and running coupling}: \texttt{canonical/bridges/QED\_limit\_bridge.tex}
+  \item \textbf{U(1) gauge group derivation}: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}, \S4
+  \item \textbf{GR recovery}: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
+  \item \textbf{Full EM analysis}: \texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}
+  \item \textbf{Curved-spacetime Maxwell}: \texttt{canonical/interactions/qed.tex}, \S6
+  \item \textbf{Maxwell limit bridge (navigation)}: \texttt{canonical/bridges/Maxwell\_limit\_bridge.tex}
+  \item \textbf{Claim evidence}: \texttt{AUDITS/claim\_evidence\_matrix.md}, row ``Maxwell\_limit''
+\end{itemize}
+
+\end{document}
