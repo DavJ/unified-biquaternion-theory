@@ -1,0 +1,250 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Hecke Eigenvalue Triples and Lepton Mass Ratios\\
+\large Arithmetic Structure, Modular Forms, and Spectral Attractors in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyse the arithmetic structure of the Hecke eigenvalue triples that
+numerically reproduce the charged lepton mass ratios in Unified Biquaternion
+Theory (UBT).  The observation that Set~A (at prime $p = 137$) and Set~B
+(at $p = 139$) of modular newforms reproduce $m_\mu/m_e$ and $m_\tau/m_e$
+to 0.02\% and 0.10\% accuracy is documented, and the theoretical mechanisms
+that could explain this coincidence are examined.  The focus is on the
+arithmetic structure rather than numerical search.
+All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Recap of the Numerical Observation}
+\label{sec:data}
+% ======================================================================
+
+The following is a summary of the results documented in
+\texttt{research/mirror\_sector\_modular\_status.md} and verified by
+SageMath computation (\texttt{research\_tracks/three\_generations/step5\_hecke\_search\_results.tex}).
+
+\subsection{Set A: Hecke eigenvalues at $p = 137$}
+
+\begin{center}
+\begin{tabular}{lccccc}
+\hline
+Form & Level $N$ & Weight $k$ & $a_{137}$ & Ratio & Target & Error \\
+\hline
+$f_1$ (electron ref.) & 76 & 2 & $-11$ & 1 & 1 & — \\
+$f_2$ (muon) & 7 & 4 & $+2274$ & 206.727 & 206.768 & 0.02\% \\
+$f_3$ (tau) & 208 & 6 & $-38286$ & 3480.5 & 3477.23 & 0.10\% \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Status:} Numerical observation \textbf{[NO]}.  Independently
+reproducible with SageMath.
+
+\subsection{Lepton mass ratios (experimental)}
+
+\begin{equation}
+  \frac{m_\mu}{m_e} = 206.7682831(46), \qquad
+  \frac{m_\tau}{m_e} = 3477.23(23).
+\end{equation}
+
+\begin{remark}[Epistemic status]
+  All mass-ratio agreements cited in this document are \textbf{numerical
+  observations at specific primes}.  No theoretical derivation connecting
+  the Hecke eigenvalues to physical lepton masses is known.  The results
+  are intriguing but must not be presented as predictions of UBT without
+  a theoretical mechanism.
+\end{remark}
+
+% ======================================================================
+\section{Arithmetic Structure of the Modular Forms}
+\label{sec:arith}
+% ======================================================================
+
+\subsection{Level factorizations}
+
+The levels of the three Set~A forms are:
+\begin{align}
+  N_1 &= 76 = 4 \times 19, \\
+  N_2 &= 7 \quad \text{(prime)}, \\
+  N_3 &= 208 = 16 \times 13.
+\end{align}
+
+\begin{remark}[Prime structure]
+  The level $N_2 = 7$ is the unique minimal prime level for a weight-4 newform
+  with the observed $a_{137}$ value.  The occurrence of $N_3 = 208 = 16 \times 13$
+  is structurally non-trivial; the factor of 16 suggests a connection to the
+  2-adic structure.  Status: \textbf{[NO]} — observed, no theoretical explanation.
+\end{remark}
+
+\subsection{Weight progression}
+
+The weights $k = 2, 4, 6$ form a regular progression with step 2.
+
+\begin{remark}[Weight-2 step]
+  In the theory of modular forms, even weights $k = 2, 4, 6, \ldots$ are
+  precisely those occurring for modular forms on $\Gamma_0(N)$ with trivial
+  character.  The step of 2 is consistent with the three generations arising
+  from three even winding modes (see \texttt{research/generation\_structure.tex}
+  §\ref{sec:modular_arithmetic}).  Status: \textbf{[L2]}.
+\end{remark}
+
+\subsection{$L$-function structure}
+
+The $L$-function of each form $f_k$ of weight $k$ is:
+\begin{equation}
+  L(f_k, s) = \sum_{n=1}^\infty \frac{a_n(f_k)}{n^s}
+  = \prod_p \frac{1}{1 - a_p p^{-s} + \chi(p) p^{k-1-2s}},
+\end{equation}
+where $\chi$ is the nebentypus character (trivial here).
+
+\begin{remark}[GRH and zeros]
+  Under the Generalized Riemann Hypothesis, all non-trivial zeros of $L(f_k, s)$
+  lie on the critical line $\mathrm{Re}(s) = k/2$.  The critical line varies
+  with weight $k$.  If the lepton masses are related to the zeros of the
+  $L$-functions, the weight progression $k = 2, 4, 6$ would produce three
+  distinct critical lines, consistent with three mass scales.
+  Status: \textbf{[L2]} — speculative structural observation.
+\end{remark}
+
+% ======================================================================
+\section{Stability of the $p = 137$ and $p = 139$ Sectors}
+\label{sec:stability}
+% ======================================================================
+
+\subsection{The twin-prime pair $(137, 139)$}
+
+The primes $p = 137$ and $p = 139$ form a twin-prime pair separated by 2.
+
+\begin{remark}[Why twin primes?]
+  The appearance of two adjacent primes is not explained by any known
+  theorem in modular form theory.  It may be a numerical coincidence,
+  or it may reflect the parity symmetry $n \leftrightarrow -n$ of the
+  KK tower (which maps winding mode $+n$ to $-n$).
+  Status: \textbf{[L2]}.
+\end{remark}
+
+\subsection{Stability check: nearby primes}
+
+\begin{remark}[Sensitivity to prime choice]
+  The Hecke eigenvalue ratios are specific to $p = 137$ and do not hold
+  at nearby primes such as $p = 131$ or $p = 149$.  This sensitivity is
+  documented in \texttt{reports/hecke\_lepton/statistical\_significance.md}.
+
+  The statistical significance of the match at $p = 137$ is approximately
+  3.5$\sigma$ above random chance for a triple of random modular forms.
+  This is significant but not conclusive.  Status: \textbf{[NO]}.
+\end{remark}
+
+% ======================================================================
+\section{Spectral Attractors}
+\label{sec:attractors}
+% ======================================================================
+
+\subsection{Definition}
+
+\begin{definition}[Spectral attractor]\label{def:attractor}
+  A \emph{spectral attractor} at prime $p$ is a modular form $f$ of level $N$
+  and weight $k$ such that the Hecke eigenvalue $a_p(f)$ is an extremum
+  (maximum or minimum) over all forms in the family $\{f_{N, k}\}_{N \leq N_{\max}}$.
+\end{definition}
+
+The hypothesis is that the Set~A forms at $p = 137$ are spectral attractors in
+the sense that their Hecke eigenvalues are determined by an extremisation
+principle related to the UBT effective potential.
+
+\begin{conjecture}[Hecke eigenvalues from spectral attractor]\label{conj:attractor}
+  The three modular forms in Set~A are spectral attractors of the Hecke operator
+  $T_{137}$ acting on forms of weights $k = 2, 4, 6$, in the sense that they
+  have Hecke eigenvalues closest to the golden ratio times the Ramanujan bound
+  $|a_{137}| \leq 2 \cdot 137^{(k-1)/2}$.
+
+  \textbf{Status: [L2]} — not verified; the Ramanujan bound is saturated at
+  Hecke eigenvalues $|a_{137}|^2 = 4 \cdot 137^{k-1}$, not at the lepton
+  mass ratios.  This remains a speculative direction.
+\end{conjecture}
+
+% ======================================================================
+\section{Relation to UBT Field Dynamics}
+\label{sec:dynamics}
+% ======================================================================
+
+\subsection{Modular forms from the KK partition function}
+
+The KK partition function $Z_{\mathrm{KK}}(\tau) = \vartheta_3^3(\tau)$ is
+a modular form of weight $3/2$ under a congruence subgroup.  Its Hecke
+eigenvalues at prime $p$ are:
+\begin{equation}
+  T_p\, Z_{\mathrm{KK}} = (1 + p^{3/2})\, Z_{\mathrm{KK}} + \ldots
+\end{equation}
+
+\begin{remark}[Hecke weight $3/2$ vs integer weight]
+  The KK partition function is a half-integer weight form (weight $3/2$),
+  while the Set~A forms have integer weights $k = 2, 4, 6$.  These are
+  mathematically distinct spaces.  A connection between them would require
+  a Shimura correspondence or Waldspurger-type lift.
+  Status: \textbf{[O]} — a theoretical mechanism is completely unknown.
+\end{remark}
+
+\subsection{Physical interpretation candidates}
+
+Two candidate physical mechanisms connecting Hecke eigenvalues to masses are:
+
+\begin{enumerate}
+  \item \textbf{Period map}: Fermion masses are periods of differential forms
+    on arithmetic varieties.  The Hecke eigenvalues label the arithmetic
+    variety (modular curve) whose period reproduces the mass.
+    Status: \textbf{[L2]} — inspired by the theory of complex multiplication.
+
+  \item \textbf{Spectral triple}: The Dirac operator on the noncommutative
+    geometry of the SM spectral triple has a spectrum related to Hecke
+    eigenvalues.  Status: \textbf{[L2]} — inspired by Connes NCG.
+\end{enumerate}
+
+% ======================================================================
+\section{Open Problems}
+\label{sec:open}
+% ======================================================================
+
+\begin{enumerate}
+  \item \textbf{[O] Theoretical derivation}: No mechanism relating Hecke
+    eigenvalues at $p = 137$ to lepton masses is known.  This is the
+    central open problem.
+
+  \item \textbf{[O] Why $p = 137$?}: The fine-structure constant
+    $\alpha \approx 1/137$ is defined in terms of $p = 137$.  The
+    appearance of the same prime in both the $\alpha$ formula and the
+    Hecke observation may be a coincidence or a deep structural feature.
+
+  \item \textbf{[O] Set~B consistency}: The twin-prime mirror sector at
+    $p = 139$ (Set~B) reproduces the same ratios.  The theoretical reason
+    for this mirror symmetry is unknown.  See
+    \texttt{research/mirror\_sector\_dynamics.tex}.
+\end{enumerate}
+
+\end{document}
