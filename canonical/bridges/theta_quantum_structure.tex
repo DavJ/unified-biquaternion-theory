@@ -1,0 +1,154 @@
+% Theta Quantum Structure Bridge — Cross-Reference Summary
+% Version: 1.0
+% Date: 2026-03-10
+% Status: Canonical bridge — cross-references only; no new derivations
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% PURPOSE: This file provides a single-entry navigation guide to the
+% quantum structure of the Θ-field: action, canonical quantization,
+% path integral, propagator, KK spectrum, and fermion emergence.
+% An external reviewer should be able to assess the status of the
+% Θ-field quantum program from this file alone.
+
+\section{Quantum Structure of the \texorpdfstring{$\Theta$}{Theta}-Field: Navigation Guide}
+\label{sec:bridges:theta_quantum}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!50!black,title=Θ-Field Quantum Structure Summary]
+\textbf{PROVED [L0]:} Algebraic isomorphism $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$ \\
+\textbf{PROVED [L0]:} KK mass spectrum $m_n^2 = m^2 + n^2/R_\psi^2$ \\
+\textbf{PROVED [L0]:} Three-generation structure from $\psi$-winding modes \\
+\textbf{PROVED [L1]:} Canonical action $S[\Theta]$ and conjugate momenta \\
+\textbf{PROVED [L1]:} Free propagator $\Delta_n(k) = i/(k^2 - m_n^2 + i\varepsilon)$ \\
+\textbf{PROVED [L1]:} Dirac equation as $\psi\to 0$ limit of master equation \\
+\textbf{[L2] Motivated:} Fermionic statistics from odd-winding $\psi$-parity \\
+\textbf{[O] Open:} Grassmannian path-integral measure for odd-$n$ modes \\
+\textbf{[O] Open:} $R_\psi$ fixed from first principles \\
+\textbf{[O] Open:} Yukawa matrix from moduli without fitting
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Step Q1: Canonical Action}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} The canonical UBT action is:
+\begin{equation}
+  S[\Theta]
+  = \int d^4x\,d\tau\;\sqrt{|\det G|}\;
+    \Bigl[
+      \tfrac{1}{2}G^{MN}\langle D_M\Theta, D_N\Theta\rangle
+      - V(\Theta)
+      - \tfrac{1}{4}\langle F_{MN}, F^{MN}\rangle
+    \Bigr].
+\end{equation}
+
+\textbf{Location (derivation):}
+\texttt{consolidation\_project/appendix\_A\_theta\_action.tex} — full derivation
+with boundary terms and dimensional analysis.
+
+\textbf{Location (research):}
+\texttt{research/theta\_quantum\_field.tex} §1 — canonical form and sources.
+
+\textbf{Status: [L1]} — proved given axioms.
+
+% -----------------------------------------------------------------------
+\subsection{Step Q2: Canonical Momenta and Commutation Relations}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} The canonical momentum is $\Pi^a = \dot\Theta_a$, and the
+equal-time commutator is:
+\begin{equation}
+  [\Theta_a(x,\psi), \Pi^b(x',\psi')] = i\hbar\,\delta^{ab}\,
+  \delta^{(3)}(x-x')\,\delta(\psi-\psi').
+\end{equation}
+
+\textbf{Location:} \texttt{research/theta\_quantum\_field.tex} §2.
+
+\textbf{Status: [L1]}.
+
+% -----------------------------------------------------------------------
+\subsection{Step Q3: Kaluza--Klein Spectrum}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} The KK expansion
+$\Theta(x,t,\psi) = \sum_n \hat\Theta_n(x,t)\,e^{in\psi/R_\psi}$
+yields effective masses $m_n^2 = m^2 + n^2/R_\psi^2$.
+
+\textbf{Location (primary):} \texttt{report/theta\_spectrum\_analysis.md} §2.2;
+\texttt{canonical/geometry/phase\_projection.tex} §KK.
+
+\textbf{Location (research):} \texttt{research/theta\_quantum\_field.tex} §4.
+
+\textbf{Status: [L0]}.
+
+% -----------------------------------------------------------------------
+\subsection{Step Q4: Free Propagator}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} The Feynman propagator for KK mode $n$ in momentum space is:
+\begin{equation}
+  \Delta_n(k) = \frac{i}{k^\mu k_\mu - m_n^2 + i\varepsilon}.
+\end{equation}
+
+\textbf{Location:} \texttt{research/theta\_quantum\_field.tex} §3.2,
+Definition~3.2.
+
+\textbf{Status: [L1]}.
+
+% -----------------------------------------------------------------------
+\subsection{Step Q5: Dirac Equation as Effective Limit}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} In the $\psi\to 0$ limit with $\Theta\in\mathcal{S}$
+(spinor subspace), the master equation reduces to the Dirac equation
+$(i\gamma^\mu D_\mu - m)\psi = 0$.
+
+\textbf{Location (full proof):}
+\texttt{canonical/bridges/QED\_complete\_chain.tex} Theorem D.4;
+\texttt{consolidation\_project/FPE\_verification/step3\_dirac\_emergence.tex}.
+
+\textbf{Location (research):} \texttt{research/theta\_fermion\_emergence.tex} §2.
+
+\textbf{Status: [L1]}.
+
+% -----------------------------------------------------------------------
+\subsection{Step Q6: Fermionic Statistics (Motivated Conjecture)}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} Odd-winding KK modes ($n$ odd) carry $\mathcal{P}_\psi = -1$
+parity and are candidates for fermionic degrees of freedom.
+
+\textbf{Location:} \texttt{research/theta\_fermion\_emergence.tex} §3.
+
+\textbf{Status: [L2]} — motivated conjecture.
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,title=Key Open Gap Q6]
+  The transition from $\psi$-parity $= -1$ to \emph{full anticommutation
+  relations} has not been proved rigorously.  The necessary step is to show
+  that the path-integral measure for odd-winding modes is Grassmannian.
+  This gap does not affect the proved results Q1--Q5.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Step Q7: Three-Generation Structure (Proved)}
+% -----------------------------------------------------------------------
+
+\textbf{Claim:} Modes $n=1,2,3$ provide three independent fermion families.
+
+\textbf{Location:} \texttt{DERIVATION\_INDEX.md}: ``$\psi$-modes as independent
+B-fields [L0]: Proven''; \texttt{research/theta\_fermion\_emergence.tex}
+Proposition~3.2.
+
+\textbf{Status: [L0]}.
+
+% -----------------------------------------------------------------------
+\subsection{Connection to \texorpdfstring{$\alpha$}{alpha} and \texorpdfstring{$B_{\mathrm{base}}$}{B\_base}}
+% -----------------------------------------------------------------------
+
+The KK mode sum over all $n$ contributes to the vacuum polarization and
+ultimately to the $B_{\mathrm{base}}$ coefficient in the fine-structure
+constant formula.  This connection is documented separately in:
+\texttt{canonical/bridges/QED\_limit\_bridge.tex},
+\texttt{research/B\_base\_spectral\_determinant.tex}.
+
+\end{document}

@@ -1,0 +1,291 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Dynamical Equations of the \texorpdfstring{$\Theta$}{Theta}-Field in UBT\\
+\large Field Equations, Euler--Lagrange Structure, and Particle Spectra}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We write the full dynamical field equations derived from the biquaternionic
+$\Theta$-field action in Unified Biquaternion Theory (UBT) and analyse how
+particle spectra emerge.  The Euler--Lagrange equations are derived
+component-by-component, the KK decomposition is used to obtain the 4D
+effective equations for each mode, and the linearised spectrum around the
+vacuum is computed.  All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Euler--Lagrange Equations}
+\label{sec:el}
+% ======================================================================
+
+\subsection{Variation of the action}
+
+Starting from the canonical action (eq.\ (1) of
+\texttt{research/theta\_quantum\_field.tex} and
+\texttt{consolidation\_project/appendix\_A\_theta\_action.tex}):
+\begin{equation}
+\label{eq:action}
+  S[\Theta]
+  = \int d^4x\, d\tau\;\sqrt{|\det G|}\;
+    \Bigl[\tfrac{1}{2}G^{MN}\langle D_M\Theta, D_N\Theta\rangle
+          - V(\Theta)
+          - \tfrac{1}{4}\langle F_{MN}, F^{MN}\rangle\Bigr],
+\end{equation}
+the Euler--Lagrange equations follow from $\delta S / \delta\Theta^\dagger = 0$.
+
+\begin{theorem}[Θ-field equation of motion]\label{thm:eom}
+  The equation of motion for $\Theta$ derived from \eqref{eq:action} is:
+  \begin{equation}
+  \label{eq:eom}
+    -D^M D_M\,\Theta + V'(\Theta) = 0,
+  \end{equation}
+  or equivalently in terms of the biquaternionic d'Alembertian:
+  \begin{equation}
+  \label{eq:box}
+    \Box_{\mathbb{B}}\,\Theta \;=\; V'(\Theta),
+  \end{equation}
+  where $\Box_{\mathbb{B}} = G^{MN}D_M D_N$ is the biquaternionic
+  covariant d'Alembertian and $V'(\Theta) = \partial V/\partial\Theta^\dagger$.
+  \textbf{Status: [L1]} — proved given action \eqref{eq:action} and axioms.
+\end{theorem}
+
+\begin{remark}[Relation to master equation]
+  Equation \eqref{eq:eom} is the Euler--Lagrange form of the UBT master
+  equation $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ in the absence
+  of external currents.  The two forms agree when $V'(\Theta) = \kappa\mathcal{T}$.
+  Source: \texttt{canonical/fields/theta\_field.tex} §Field Equations.
+\end{remark}
+
+% ======================================================================
+\section{Component Field Equations}
+\label{sec:components}
+% ======================================================================
+
+\subsection{Quaternionic components}
+
+Expanding $\Theta = \Theta_0 + \Theta_1 i + \Theta_2 j + \Theta_3 k$
+(quaternion basis), \eqref{eq:eom} splits into four coupled equations
+for the complex scalars $\Theta_a$, $a = 0,1,2,3$:
+\begin{equation}
+\label{eq:component_eom}
+  -G^{MN}D_M D_N\,\Theta_a + \sum_{b=0}^{3} M_{ab}^2\,\Theta_b
+  = J_a,
+\end{equation}
+where $M_{ab}^2 = \partial^2 V/(\partial\Theta_a\partial\Theta_b^\dagger)|_{\Theta=v}$
+is the mass matrix evaluated at the vacuum $v$, and $J_a$ are source currents.
+
+\begin{remark}[Status]
+  Equation \eqref{eq:component_eom} is a set of four coupled
+  Klein--Gordon-type equations with a $4\times 4$ mass matrix.  The
+  diagonalisation of $M_{ab}^2$ produces the physical particle spectrum.
+  Status: \textbf{[L1]}.
+\end{remark}
+
+% ======================================================================
+\section{4D Effective Equations from KK Reduction}
+\label{sec:kk_eff}
+% ======================================================================
+
+\subsection{Mode-by-mode equations}
+
+Inserting the KK expansion $\Theta_a(x,t,\psi) = \sum_n \hat\Theta_{a,n}(x,t)\,
+e^{in\psi/R_\psi}$ into \eqref{eq:component_eom}:
+
+\begin{proposition}[4D effective equation for KK mode $n$]\label{prop:eff_eq}
+  \begin{equation}
+  \label{eq:kk_eff}
+    \Bigl(-\partial^\mu\partial_\mu + m_{a,n}^2\Bigr)\hat\Theta_{a,n}(x,t)
+    = \hat J_{a,n}(x,t),
+  \end{equation}
+  where $m_{a,n}^2 = M_{aa}^2 + n^2/R_\psi^2$ (no sum on $a$) for the
+  diagonal sector, and $\hat J_{a,n}$ collects interaction vertices.
+  \textbf{Status: [L1]}.
+\end{proposition}
+
+\subsection{Low-energy spectrum ($|n|/R_\psi \ll M_{aa}$)}
+
+In the low-energy limit where all KK modes with $n \neq 0$ decouple
+($R_\psi^{-1} \gg M_{aa}$), the effective 4D theory contains only the
+zero-mode $n=0$ fields:
+\begin{itemize}
+  \item $\hat\Theta_{0,0}$ — massless scalar (Higgs zero mode)
+  \item $\hat\Theta_{1,0}, \hat\Theta_{2,0}, \hat\Theta_{3,0}$ — vector fields
+        (gauge bosons in low-energy limit)
+\end{itemize}
+
+\begin{remark}[Higgs and gauge bosons as zero modes]
+  The identification of $n=0$ modes with Higgs and gauge fields follows
+  the standard Kaluza--Klein argument.  It is consistent with the gauge
+  group derivation in \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
+  Status: \textbf{[L1]}.
+\end{remark}
+
+% ======================================================================
+\section{Mass Generation}
+\label{sec:mass}
+% ======================================================================
+
+\subsection{Vacuum and symmetry breaking}
+
+The potential is taken as the Mexican-hat form:
+\begin{equation}
+\label{eq:potential}
+  V(\Theta) = \tfrac{1}{4}\lambda\bigl(|\Theta|^2 - v^2\bigr)^2,
+\end{equation}
+with $v > 0$ real.  The vacuum manifold is
+$\{|\Theta| = v\} \cong S^7 \subset \mathbb{H}\otimes\mathbb{C}$
+(a 7-sphere in the biquaternion algebra).
+
+\begin{proposition}[Mass matrix from symmetry breaking]\label{prop:mass_matrix}
+  Expanding around the vacuum $\Theta = v + h + i\phi_a\, e_a$
+  ($h$ Higgs, $\phi_a$ Goldstone), the mass matrix at tree level is:
+  \begin{equation}
+  \label{eq:mass_matrix}
+    M_h^2 = 2\lambda v^2, \qquad M_{\phi_a}^2 = 0 \quad (a=1,2,3).
+  \end{equation}
+  The three Goldstone modes $\phi_a$ are eaten by the gauge bosons via the
+  Higgs mechanism.
+  \textbf{Status: [L1]}.
+\end{proposition}
+
+\subsection{Fermion masses from Yukawa coupling}
+
+From \texttt{research/theta\_fermion\_emergence.tex} §4, the Yukawa
+Lagrangian is $\mathcal{L}_Y = -y\bar\psi\phi\chi + \mathrm{h.c.}$
+After Higgs condensation $\langle\phi\rangle = v$:
+\begin{equation}
+\label{eq:fermion_mass}
+  m_f = y\,v.
+\end{equation}
+
+\begin{remark}[Status and open problem]
+  The relation \eqref{eq:fermion_mass} is standard and Status: \textbf{[L1]}.
+  However, the Yukawa coupling $y$ and the vacuum value $v$ are not yet
+  derived from $R_\psi$ and the moduli.  See \texttt{research/fermion\_mass\_generation.tex}
+  for the detailed status of this open problem.
+\end{remark}
+
+% ======================================================================
+\section{KK Mode Effective Mass Matrix}
+\label{sec:kk_mass_matrix}
+% ======================================================================
+
+\subsection{Coupling between KK modes}
+
+The potential $V(\Theta)$ mixes different KK modes.  For the cubic term
+$V_3 = \lambda v |\Theta|^3$, the coupling between modes $n_1, n_2, n_3$
+is:
+\begin{equation}
+\label{eq:kk_coupling}
+  C_{n_1 n_2 n_3}
+  = \lambda v \int_0^{2\pi R_\psi} \!\! d\psi\;
+    e^{i(n_1+n_2+n_3)\psi/R_\psi}
+  = 2\pi R_\psi\, \lambda v\, \delta_{n_1+n_2+n_3,0}.
+\end{equation}
+
+KK-number conservation is exact at tree level (Status: \textbf{[L0]}).
+
+\subsection{Effective mass matrix in mode space}
+
+Diagonalising the full mass matrix including KK mixing, the physical masses
+of the lightest modes (quartic potential) are:
+\begin{equation}
+\label{eq:kk_mass_eff}
+  m_{n,\mathrm{phys}}^2
+  = M_h^2 + \frac{n^2}{R_\psi^2}
+    + \mathcal{O}\!\Bigl(\frac{\lambda v^2}{R_\psi^2}\Bigr).
+\end{equation}
+
+\begin{remark}[Status]
+  Equation \eqref{eq:kk_mass_eff} is the leading-order result.
+  Higher-order KK mixing corrections are suppressed by $\lambda v^2 R_\psi^2$.
+  Status: \textbf{[L1]}.
+  Comparison with the Standard Model mass spectrum (Higgs, $W$, $Z$, fermions)
+  is discussed in \texttt{research/fermion\_mass\_generation.tex}.
+\end{remark}
+
+% ======================================================================
+\section{Propagation in Curved Background}
+\label{sec:curved}
+% ======================================================================
+
+In the presence of gravity (non-flat $g_{\mu\nu}$), the d'Alembertian
+$\Box_{\mathbb{B}}$ in \eqref{eq:box} receives curvature corrections:
+\begin{equation}
+  \Box_{\mathbb{B}}\,\Theta
+  = \frac{1}{\sqrt{|g|}}\partial_M(\sqrt{|g|}\,G^{MN}\partial_N\Theta)
+    + \xi R\,\Theta + \ldots,
+\end{equation}
+where $\xi$ is the non-minimal coupling to curvature and $R$ is the Ricci
+scalar.  The minimal coupling choice $\xi = 0$ is assumed unless stated
+otherwise.
+
+\begin{remark}[GR compatibility]
+  As established in \texttt{canonical/bridges/GR\_chain\_bridge.tex},
+  UBT fully embeds General Relativity.  The Θ-field propagates on the
+  emergent metric $g_{\mu\nu} = \mathrm{Re}\,\mathrm{Tr}(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger)$.
+  Status: \textbf{[L1]}.
+\end{remark}
+
+% ======================================================================
+\section{Open Problems}
+\label{sec:open}
+% ======================================================================
+
+\begin{enumerate}
+  \item \textbf{[O] Non-minimal coupling $\xi$}: Whether $\xi = 0$ or
+    $\xi = 1/6$ (conformal coupling) is preferred by the biquaternion
+    structure is open.
+
+  \item \textbf{[O] Off-shell consistency}: The Θ-only closure of the
+    master equation (Step 6 of the GR chain) remains an open gap.
+
+  \item \textbf{[O] Comparison with SM spectrum}: Systematic identification
+    of UBT mode masses with Standard Model particle masses has not been
+    completed.  See \texttt{research/fermion\_mass\_generation.tex}.
+\end{enumerate}
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Canonical action & \texttt{consolidation\_project/appendix\_A\_theta\_action.tex} \\
+Quantum field theory of $\Theta$ & \texttt{research/theta\_quantum\_field.tex} \\
+GR chain & \texttt{canonical/bridges/GR\_chain\_bridge.tex} \\
+Gauge group emergence & \texttt{canonical/bridges/gauge\_emergence\_bridge.tex} \\
+Fermion masses & \texttt{research/fermion\_mass\_generation.tex} \\
+Three generations & \texttt{research/generation\_structure.tex} \\
+\hline
+\end{tabular}
+
+\end{document}

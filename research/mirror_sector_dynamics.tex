@@ -1,0 +1,222 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Mirror Sector Dynamics at \texorpdfstring{$p = 139$}{p=139}\\
+\large Twin-Prime Structure, Set~B Hecke Eigenvalues, and Physical Interpretation}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We document and analyse the ``mirror sector'' numerical observation in Unified
+Biquaternion Theory (UBT): a second set of modular newforms (Set~B) whose
+Hecke eigenvalues at the twin prime $p = 139$ reproduce the charged lepton
+mass ratios to similar accuracy as Set~A at $p = 137$.  We examine the
+theoretical mechanisms that could explain the mirror-symmetry between the
+$p = 137$ and $p = 139$ sectors, including parity symmetry of the KK tower,
+CPT duality, and modular symmetry of the UBT partition function.  The term
+``mirror sector'' is used descriptively for a mathematically observed pattern;
+no physical mirror world is claimed.
+All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{The Set~B Numerical Observation}
+\label{sec:setb}
+% ======================================================================
+
+\begin{remark}[Epistemic notice]
+  All mass-ratio agreements in this document are numerical observations.
+  No theoretical derivation connecting Hecke eigenvalues to physical masses
+  is known.  See the full epistemic statement in
+  \texttt{research/mirror\_sector\_modular\_status.md}.
+\end{remark}
+
+\subsection{Set~B: Hecke eigenvalues at $p = 139$}
+
+From \texttt{research/mirror\_sector\_modular\_status.md} §2:
+
+\begin{center}
+\begin{tabular}{lccccc}
+\hline
+Form & Level $N$ & Weight $k$ & $a_{139}$ & Ratio & Target & Error \\
+\hline
+$g_1$ (electron ref.) & $N_1'$ & 2 & $a_{139}^{(1)}$ & 1 & 1 & — \\
+$g_2$ (muon) & $N_2'$ & 4 & $a_{139}^{(2)}$ & $\approx 206.77$ & 206.768 & $<0.1\%$ \\
+$g_3$ (tau) & $N_3'$ & 6 & $a_{139}^{(3)}$ & $\approx 3477$ & 3477.23 & $<0.2\%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Status: [NO]} — numerical observation.  Source: \texttt{reports/hecke\_lepton/mirror\_world\_139.md}.
+
+% ======================================================================
+\section{Theoretical Mechanisms for Mirror Symmetry}
+\label{sec:mechanisms}
+% ======================================================================
+
+\subsection{Parity of the KK tower}
+
+The KK modes $n$ and $-n$ are related by $\psi \to -\psi$ (parity of the
+imaginary time direction).  In UBT, $\psi$-parity is a symmetry of the
+classical action (Status: \textbf{[L0]}).
+
+\begin{conjecture}[Mirror sector from $\psi$-parity]\label{conj:psi_parity}
+  The twin-prime pair $(p, p+2) = (137, 139)$ corresponds to modes $+n$ and
+  $-n$ of the $\psi$-circle, related by $\psi$-parity.  The mirror sector at
+  $p = 139$ is the $\psi$-parity image of the physical sector at $p = 137$.
+
+  \textbf{Status: [L2]} — motivated by the parity structure, but the
+  connection to twin primes is not explained.
+\end{conjecture}
+
+\subsection{CPT duality}
+
+In a CPT-symmetric theory, the spectrum of particles and antiparticles are
+related.  If the $p = 139$ sector corresponds to antiparticles, then the
+mirror observation reflects CPT duality.
+
+\begin{remark}[Status]
+  CPT symmetry in UBT follows from the Hermitian structure of the
+  $\mathbb{H}\otimes\mathbb{C}$ algebra (Status: \textbf{[L1]}).
+  However, CPT relates particles to antiparticles \emph{of the same mass},
+  not to a sector with a different prime $p$.  The CPT interpretation of
+  the mirror sector therefore requires a specific mechanism connecting
+  prime shifts to CPT operations.  Status: \textbf{[O]}.
+\end{remark}
+
+\subsection{Modular Atkin--Lehner involution}
+
+Every newform $f$ of level $N$ has an Atkin--Lehner involution:
+\begin{equation}
+\label{eq:al}
+  W_N f = \varepsilon_f f, \quad \varepsilon_f = \pm 1.
+\end{equation}
+
+Under $W_N$, the prime $p$ is mapped to $p' = N/p \pmod{N}$ (for $p | N$).
+
+\begin{conjecture}[Mirror sector from Atkin--Lehner]\label{conj:al}
+  The Set~B forms at $p = 139$ are the Atkin--Lehner images of the Set~A
+  forms at $p = 137$ under $W_N$.
+
+  \textbf{Status: [L2]}.  This would require the levels $N_1', N_2', N_3'$
+  to satisfy $N'/137 \equiv 139 \pmod{N'}$, which imposes arithmetic
+  constraints that have not been checked.
+\end{conjecture}
+
+% ======================================================================
+\section{Physical Interpretation Candidates}
+\label{sec:physical}
+% ======================================================================
+
+\subsection{No physical mirror world claimed}
+
+The term ``mirror sector'' is used solely as a descriptive label for the
+Set~B numerical observation.  No physical mirror-world scenario (mirror
+SM, mirror dark matter, etc.) is claimed.
+
+\subsection{Possible structural roles}
+
+\begin{enumerate}
+  \item \textbf{Functional equation}: The $L$-functions $L(f_k, s)$ and
+    $L(g_k, s)$ may be related by a functional equation connecting
+    $p = 137$ and $p = 139$ evaluations.  This would be a purely arithmetic
+    statement with no direct physical content.
+
+  \item \textbf{Vacuum degeneracy}: If the UBT vacuum is doubly degenerate
+    (two inequivalent vacua at $p = 137$ and $p = 139$), then Set~A and
+    Set~B would correspond to two different vacuum sectors.  The physical
+    universe occupies one of them.  Status: \textbf{[L2]}.
+
+  \item \textbf{Numerical coincidence}: The match at both $p = 137$ and
+    $p = 139$ may be a numerical coincidence within the expected accuracy
+    of the modular-form approach.  Status: must be tested by computing
+    the probability of two independent primes both matching.
+\end{enumerate}
+
+% ======================================================================
+\section{Vacuum Stability Analysis}
+\label{sec:vacuum}
+% ======================================================================
+
+Following \texttt{consolidation\_project/mirror\_sector/vacuum\_stability.tex}:
+
+\subsection{Effective potential at $p = 137$ and $p = 139$}
+
+If the effective potential $V_{\mathrm{eff}}(n)$ is evaluated at the
+prime $p$ corresponding to each sector, the difference
+$\Delta V = V_{\mathrm{eff}}(137) - V_{\mathrm{eff}}(139)$ determines
+which vacuum is preferred.
+
+\begin{remark}[Status]
+  The computation of $V_{\mathrm{eff}}$ at prime values has not been
+  performed from the UBT action.  The mirror-sector analysis in
+  \texttt{consolidation\_project/mirror\_sector/vacuum\_stability.tex}
+  uses a phenomenological ansatz for $V_{\mathrm{eff}}$.
+  Status: \textbf{[L2]}.
+\end{remark}
+
+% ======================================================================
+\section{Summary and Open Problems}
+\label{sec:open}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Claim & Status & Source \\
+\hline
+Set~B matches at $p=139$ & \textbf{[NO]} numerical & \texttt{reports/hecke\_lepton/mirror\_world\_139.md} \\
+$\psi$-parity mechanism & \textbf{[L2]} conjecture & This document \\
+Atkin--Lehner mechanism & \textbf{[L2]} conjecture & This document \\
+Physical mirror world & \textbf{NOT CLAIMED} & This document \\
+$\Delta V$ between sectors & \textbf{[O]} open & \texttt{mirror\_sector/vacuum\_stability.tex} \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Key open problem}: No theoretical mechanism connecting the twin-prime
+pair $(137, 139)$ to the $\psi \to -\psi$ symmetry or any other UBT symmetry
+has been derived.  The observation remains numerically interesting but
+theoretically unexplained.
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Mirror sector overview & \texttt{research/mirror\_sector\_modular\_status.md} \\
+Set~A Hecke analysis & \texttt{research/hecke\_generation\_structure.tex} \\
+SageMath computation & \texttt{research\_tracks/three\_generations/step5\_hecke\_search\_results.tex} \\
+Vacuum stability & \texttt{consolidation\_project/mirror\_sector/vacuum\_stability.tex} \\
+Statistical significance & \texttt{reports/hecke\_lepton/statistical\_significance.md} \\
+\hline
+\end{tabular}
+
+\end{document}

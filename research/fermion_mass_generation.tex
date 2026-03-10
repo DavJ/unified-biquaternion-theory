@@ -1,0 +1,257 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Fermion Mass Generation in Unified Biquaternion Theory\\
+\large Coupling Between \texorpdfstring{$\Theta$}{Theta} Modes, Mass Matrix, and Hierarchy}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate the mechanisms generating particle masses within the
+Unified Biquaternion Theory (UBT).  Starting from the Yukawa-type coupling
+between KK modes of the $\Theta$-field, we derive the effective mass matrix
+and identify the open gaps preventing a complete first-principles mass
+derivation.  The comparison of the resulting structure with the Standard
+Model Yukawa matrix is analysed.  All claims are labelled with their proof
+status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Framework: Mass from the \texorpdfstring{$\Theta$}{Theta}-Field Action}
+\label{sec:framework}
+% ======================================================================
+
+\subsection{Source of mass in UBT}
+
+Particle masses in UBT originate from the potential term $V(\Theta)$ in the
+canonical action (see \texttt{research/theta\_dynamics\_equations.tex} §4):
+\begin{equation}
+\label{eq:yukawa_lag}
+  \mathcal{L}_{\mathrm{mass}}
+  = -y_{ij}\,\bar\psi_{L,i}\,\phi\,\psi_{R,j} + \mathrm{h.c.}
+    - \tfrac{1}{2} M^2_{ab}\,\Theta_a\Theta_b + \ldots,
+\end{equation}
+where:
+\begin{itemize}
+  \item $\phi$ is the scalar (Higgs) component of $\Theta$ (the $n=0$ KK zero-mode);
+  \item $\psi_{L,i}$, $\psi_{R,j}$ are the left- and right-handed fermion
+        components of the $n=i$ and $n=j$ winding modes (see
+        \texttt{research/theta\_fermion\_emergence.tex} §4);
+  \item $y_{ij}$ is the Yukawa coupling matrix;
+  \item $M^2_{ab}$ is the scalar mass matrix from the Mexican-hat potential.
+\end{itemize}
+
+\subsection{Higgs mechanism and fermion mass}
+
+After the vacuum condensation $\langle\phi\rangle = v$, the Yukawa coupling
+produces:
+\begin{equation}
+\label{eq:mass_from_yukawa}
+  m_{ij} = y_{ij}\,v.
+\end{equation}
+
+\begin{remark}[Status]
+  Equation \eqref{eq:mass_from_yukawa} is the standard Yukawa mechanism
+  applied to the UBT field structure.  Status: \textbf{[L1]}.
+  The open problem is deriving $y_{ij}$ and $v$ from $R_\psi$ and the
+  modular parameter $\tau_{\mathrm{mod}}$ without empirical fitting.
+\end{remark}
+
+% ======================================================================
+\section{Mode Coupling and Mass Matrix}
+\label{sec:coupling}
+% ======================================================================
+
+\subsection{KK mode overlap integrals}
+
+The Yukawa coupling matrix element $y_{ij}$ arises from the overlap integral
+of KK mode wave-functions on the $\psi$-circle:
+\begin{equation}
+\label{eq:overlap}
+  y_{ij}
+  = y_0 \int_0^{2\pi R_\psi} \!\! d\psi\;
+    f_i^*(\psi)\, f_0(\psi)\, f_j(\psi),
+\end{equation}
+where $f_n(\psi) = (2\pi R_\psi)^{-1/2}\, e^{in\psi/R_\psi}$ are the
+normalised KK wave-functions and $y_0$ is an overall coupling constant.
+
+Using orthonormality:
+\begin{equation}
+\label{eq:y_selection}
+  y_{ij} = y_0\, \delta_{i+j, 0 \bmod 1}.
+\end{equation}
+
+\begin{remark}[Status]
+  Selection rule \eqref{eq:y_selection} is an exact algebraic identity
+  (Status: \textbf{[L0]}).  It implies that KK modes $i$ and $j$ couple
+  to the Higgs zero-mode only when $i = -j$ (or equivalently, when the
+  pair is a winding/anti-winding mode pair).  This is consistent with
+  charge conjugation symmetry.
+\end{remark}
+
+\subsection{Physical mass matrix}
+
+For the three lightest winding modes $n = 1, 2, 3$:
+\begin{equation}
+\label{eq:mass_matrix}
+  (M_f)_{ij} = y_{0}\,v\,\delta_{ij}
+    + \text{(mixing from higher-order \textit{V} terms)}.
+\end{equation}
+
+At leading order (no mixing), the three generation masses are:
+\begin{equation}
+\label{eq:gen_masses}
+  m_n = y_0\, v, \quad n = 1, 2, 3.
+\end{equation}
+
+\begin{remark}[Leading-order degeneracy]
+  At leading order, \eqref{eq:gen_masses} predicts equal masses for all
+  three generations — in contradiction to experiment.  The observed
+  mass hierarchy $m_e : m_\mu : m_\tau \approx 1 : 207 : 3477$ must
+  therefore arise from:
+  \begin{enumerate}
+    \item Off-diagonal mixing via higher-order $V$ terms, or
+    \item Winding-number-dependent coupling constants $y_n$, or
+    \item Holonomy profiles on the internal torus (see below).
+  \end{enumerate}
+  This is an identified open problem.  Status: \textbf{[O]}.
+\end{remark}
+
+% ======================================================================
+\section{Holonomy Profile Mechanism}
+\label{sec:holonomy}
+% ======================================================================
+
+\subsection{Higgs holonomy on the torus}
+
+Following \texttt{unified\_biquaternion\_theory/fermion\_mass\_derivation\_complete.tex}
+§Yukawa, the Higgs field on the internal torus $\mathbb{T}^2 = S^1_\chi \times S^1_\xi$
+acquires a non-trivial holonomy profile:
+\begin{equation}
+\label{eq:holonomy}
+  \Phi_{ij}(\chi, \xi) = \sum_{k \in \mathcal{H}} b_k\, e^{2\pi i k \cdot y},
+\end{equation}
+where $\mathcal{H} \subset \mathbb{Z}^2$ is the support set and
+$b_k \in \{1, -1, i, -i\}$.
+
+The effective Yukawa coupling for the $n$-th generation is then:
+\begin{equation}
+\label{eq:yukawa_holonomy}
+  y_n = y_0 \int_{T^2} \Phi_{nn}(\chi,\xi)\, d\chi\, d\xi.
+\end{equation}
+
+\begin{remark}[Status]
+  The holonomy mechanism is a motivated conjecture (\textbf{[L2]}).
+  The discrete structure of $\mathcal{H}$ is motivated by gauge covariance
+  (Status: \textbf{[L1]}), but its relation to the observed mass ratios
+  is \textbf{semi-empirical [SE]} — the set $\mathcal{H}$ is fitted to
+  reproduce the lepton masses.
+\end{remark}
+
+% ======================================================================
+\section{Comparison with Standard Model Structure}
+\label{sec:sm}
+% ======================================================================
+
+\subsection{Standard Model Yukawa matrix}
+
+The SM Yukawa matrix in the mass eigenstate basis is diagonal:
+\begin{equation}
+  Y_{\mathrm{SM}} = \mathrm{diag}(y_e, y_\mu, y_\tau)
+  \approx \mathrm{diag}(2.9\times10^{-6},\; 6.1\times10^{-4},\; 1.0\times10^{-2}).
+\end{equation}
+
+\subsection{UBT prediction and gaps}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Quantity & UBT status & Source \\
+\hline
+Higgs mass $m_h = \sqrt{2\lambda}\,v$ & \textbf{[SE]} — $\lambda$, $v$ fitted &
+  \texttt{canonical/interactions/higgs.tex} \\
+Electron mass $m_e \approx 0.511$~MeV & \textbf{[SE]} — 0.22\% accuracy &
+  \texttt{consolidation\_project/electron\_mass/} \\
+Muon–electron ratio $m_\mu/m_e \approx 207$ & \textbf{[O]} — not derived &
+  \texttt{research/generation\_structure.tex} \\
+Tau–muon ratio $m_\tau/m_\mu \approx 17$ & \textbf{[O]} — not derived &
+  \texttt{research/generation\_structure.tex} \\
+CKM matrix & \textbf{[P]} — partial & \texttt{appendix\_QA2\_quarks\_CKM.tex} \\
+Neutrino masses & \textbf{[P]} — not treated & \texttt{STATUS\_NEUTRINOS.md} \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Towards a First-Principles Derivation}
+\label{sec:first_principles}
+% ======================================================================
+
+\subsection{B\_m from action parameters}
+
+The fermion mass formula (from \texttt{research/fermion\_mass\_program.md}) is:
+\begin{equation}
+  m(n) = A\, n^p - B_m\, n\,\ln(n),
+\end{equation}
+where $B_m \approx -14.099$~MeV is fitted.  A first-principles derivation
+of $B_m$ requires identifying it as a combination of $R_\psi$, $y_0$, $v$,
+and $\lambda$ from the action.
+
+\begin{remark}[Status: Open]
+  No complete derivation of $B_m$ from action parameters exists.
+  Status: \textbf{[O]}.  See \texttt{research/fermion\_mass\_program.md}
+  §Open Problem 1.
+\end{remark}
+
+\subsection{Strategy: moduli stabilization}
+
+A natural path to fixing all mass parameters is moduli stabilisation:
+if $R_\psi$ is fixed by a dynamical mechanism (e.g., from the modular
+potential discussed in \texttt{research/modular\_dynamics.tex}), then
+$v \propto R_\psi^{-1}$ and the entire mass spectrum could follow.
+
+This represents the most important single open problem in the UBT mass
+programme.
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Yukawa structure & \texttt{consolidation\_project/masses/yukawa\_structure.tex} \\
+Fermion mass derivation & \texttt{unified\_biquaternion\_theory/fermion\_mass\_derivation\_complete.tex} \\
+Electron mass & \texttt{consolidation\_project/electron\_mass/} \\
+Three generations (proof) & \texttt{DERIVATION\_INDEX.md} \\
+Generation mass ratios & \texttt{research/generation\_structure.tex} \\
+Modular dynamics & \texttt{research/modular\_dynamics.tex} \\
+\hline
+\end{tabular}
+
+\end{document}

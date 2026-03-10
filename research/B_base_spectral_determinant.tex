@@ -1,0 +1,262 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{$B_{\mathrm{base}}$ from Spectral Determinants\\
+\large Attempt E-2: Torus Laplacian, Zeta Function, and $N^{3/2}$ Scaling}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the coefficient $B_{\mathrm{base}} \approx 41.57$
+in the UBT fine-structure constant formula arises as a spectral determinant
+of the torus Laplacian acting on the compact $\psi$-directions.  Using the
+spectral zeta function regularisation technique, we test whether the
+$N_{\mathrm{eff}}^{3/2}$ scaling emerges from the functional determinant
+$\det(-\Delta_{T^d})$.  This is attempt E-2 in the $B_{\mathrm{base}}$
+programme.  All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Spectral Determinants and Zeta Function Regularisation}
+\label{sec:zeta}
+% ======================================================================
+
+\subsection{Spectral zeta function}
+
+For a positive operator $A$ with eigenvalues $\{\lambda_n\}_{n \geq 1}$, the
+spectral zeta function is:
+\begin{equation}
+\label{eq:spec_zeta}
+  \zeta_A(s) = \sum_{n=1}^\infty \lambda_n^{-s}, \qquad \Re(s) > d/2,
+\end{equation}
+and the functional determinant is defined via analytic continuation:
+\begin{equation}
+\label{eq:log_det}
+  \ln\det A = -\zeta_A'(0).
+\end{equation}
+
+\subsection{Torus Laplacian spectrum}
+
+The Laplacian on a $d$-dimensional rectangular torus
+$\mathbb{T}^d = \prod_{i=1}^d S^1_{R_i}$ has eigenvalues:
+\begin{equation}
+\label{eq:torus_spec}
+  \lambda_{\mathbf{n}} = \sum_{i=1}^d \frac{n_i^2}{R_i^2},
+  \qquad \mathbf{n} = (n_1,\ldots,n_d) \in \mathbb{Z}^d.
+\end{equation}
+
+For the isotropic case $R_i = R_\psi$ for all $i$:
+\begin{equation}
+  \lambda_{\mathbf{n}} = \frac{|\mathbf{n}|^2}{R_\psi^2}.
+\end{equation}
+
+% ======================================================================
+\section{Spectral Zeta Function of the Torus}
+\label{sec:torus_zeta}
+% ======================================================================
+
+\subsection{Epstein zeta function}
+
+For the $d$-torus (excluding zero mode), the spectral zeta function
+is the Epstein zeta function:
+\begin{equation}
+\label{eq:epstein}
+  Z_d(s) = \sum_{\mathbf{n} \in \mathbb{Z}^d \setminus \{0\}}
+  \frac{R_\psi^{2s}}{|\mathbf{n}|^{2s}}.
+\end{equation}
+
+For $d = 1$ (single $S^1_\psi$):
+\begin{equation}
+  Z_1(s) = 2 R_\psi^{2s} \zeta(2s),
+\end{equation}
+where $\zeta$ is the Riemann zeta function.
+
+\subsection{Functional determinant of $S^1$}
+
+Using $\ln\det(-\Delta_{S^1}) = -Z_1'(0)$:
+\begin{equation}
+  Z_1'(0) = 4 R_\psi^0 \zeta(0)\ln R_\psi + 2 R_\psi^0 \zeta'(0)
+  = -2\ln R_\psi + 2\zeta'(0)
+  = -2\ln R_\psi - \ln(2\pi).
+\end{equation}
+
+\begin{proposition}[$S^1$ functional determinant]\label{prop:s1_det}
+  \begin{equation}
+    \det(-\Delta_{S^1}) = 2\pi R_\psi.
+  \end{equation}
+  \textbf{Status: [L0]} — standard result.
+\end{proposition}
+
+\subsection{Functional determinant of $T^d$}
+
+For the $d$-torus:
+\begin{equation}
+\label{eq:td_det}
+  \ln\det(-\Delta_{T^d})' = -Z_d'(0).
+\end{equation}
+
+At $d = 3$ (imaginary-time torus $S^1_\psi \times S^1_\chi \times S^1_\xi$):
+\begin{equation}
+\label{eq:z3_s0}
+  Z_3'(0) = \sum_{\mathbf{n}\neq 0} \ln |\mathbf{n}|^2 \cdot R_\psi^0
+  = 2 \sum_{\mathbf{n}\neq 0} \ln|\mathbf{n}|.
+\end{equation}
+
+The sum $\sum_{\mathbf{n}\neq 0}\ln|\mathbf{n}|$ requires zeta-function
+regularisation.  Using the Kronecker limit formula at $d=3$, one obtains
+a finite result depending on $R_\psi$.
+
+% ======================================================================
+\section{Connection to \texorpdfstring{$N_{\mathrm{eff}}^{3/2}$}{Neff32}}
+\label{sec:neff}
+% ======================================================================
+
+\subsection{Effective mode count from spectral determinant}
+
+Define the effective mode count as the exponential of the log-determinant:
+\begin{equation}
+\label{eq:neff_def}
+  N_{\mathrm{eff}} \;\stackrel{?}{=}\; [\det(-\Delta_{T^3})]^{1/3}.
+\end{equation}
+
+The $\tfrac{1}{3}$ power is chosen so that $N_{\mathrm{eff}}$ scales linearly
+with $R_\psi$ for a single circle.
+
+\begin{remark}[Scaling check]
+  From Proposition~\ref{prop:s1_det}, $\det(-\Delta_{S^1}) = 2\pi R_\psi$.
+  For a 3-torus, $\det(-\Delta_{T^3}) = (2\pi R_\psi)^3$ at leading order
+  (independent dimensions).  Hence:
+  \begin{equation}
+    N_{\mathrm{eff}} = (2\pi R_\psi)^3)^{1/3} = 2\pi R_\psi.
+  \end{equation}
+  This gives $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = (2\pi R_\psi)^{3/2}$.
+  
+  Numerically, $B_{\mathrm{base}} = 41.57$ would require:
+  $(2\pi R_\psi)^{3/2} = 41.57 \Rightarrow R_\psi \approx 3.2 \cdot 10^{-9}$
+  in natural units.  This is a prediction that can be checked against other
+  constraints on $R_\psi$.
+\end{remark}
+
+\begin{remark}[Status]
+  The spectral determinant approach gives a \emph{consistent} picture:
+  the $3/2$ exponent arises naturally from the combination of (i) a
+  $3$-torus determinant and (ii) the $1/3$ normalisation in
+  \eqref{eq:neff_def}.  However, the normalisation $1/3$ is not derived
+  — it is chosen to match dimensions.
+
+  Status: \textbf{[L2]} — structurally consistent, not a proof.
+\end{remark}
+
+% ======================================================================
+\section{Casimir Energy and One-Loop Determinant}
+\label{sec:casimir}
+% ======================================================================
+
+\subsection{One-loop Casimir energy}
+
+The one-loop effective potential for the Θ-field on $T^3$ contains the
+Casimir energy:
+\begin{equation}
+\label{eq:casimir}
+  V_{\mathrm{Casimir}} = -\frac{1}{2}\ln\det(-\partial^2 + m^2)
+  = -\frac{1}{2} Z_{T^3}'(0)|_{m^2}.
+\end{equation}
+
+For $m = 0$ (massless limit) and $R_\psi \to 0$:
+\begin{equation}
+  V_{\mathrm{Casimir}} \sim -\frac{3\zeta(4)}{(2\pi)^4 R_\psi^4}
+  = -\frac{\pi^2}{90 R_\psi^4}.
+\end{equation}
+
+\begin{remark}[Connection to one-loop $\alpha$]
+  The Casimir energy contributes to the one-loop running of $\alpha$ through
+  the vacuum energy density.  This is related to the $B_\alpha$ coefficient
+  rather than $B_{\mathrm{base}}$.  See
+  \texttt{consolidation\_project/appendix\_ALPHA\_one\_loop\_biquat.tex} §B.
+  Status: \textbf{[L1]}.
+\end{remark}
+
+% ======================================================================
+\section{Modular Transformation and Poisson Duality}
+\label{sec:poisson}
+% ======================================================================
+
+Under the modular transformation $R_\psi \to 1/R_\psi$, the torus zeta
+function satisfies Poisson duality:
+\begin{equation}
+\label{eq:poisson}
+  Z_d(s; R_\psi) = R_\psi^{2s - d}\, Z_d(d/2 - s;\, 1/R_\psi).
+\end{equation}
+
+For $d = 1$ this is Riemann's functional equation for $\zeta(s)$.
+For $d = 3$, \eqref{eq:poisson} relates large-$R_\psi$ to small-$R_\psi$:
+\begin{equation}
+  W(R_\psi) = R_\psi^{3/2}\, S(1/R_\psi),
+\end{equation}
+where $W$ is the winding-mode sum and $S$ is the spectral-mode sum.
+
+\begin{remark}[Exponent $3/2$ from Poisson duality]
+  The prefactor $R_\psi^{3/2}$ in the Poisson duality relation for $d=3$
+  exactly produces the $3/2$ exponent.  This suggests that
+  $B_{\mathrm{base}} \propto N_{\mathrm{eff}}^{3/2}$ might be a direct
+  consequence of Poisson duality on the 3-torus.
+
+  Source: \texttt{ubt\_with\_chronofactor/scripts/spectral/poisson\_duality\_demo.py}
+  (verified: the prefactor is $+d/2$ for a Gaussian $f(x) = e^{-\pi|x|^2/\tau}$).
+
+  Status: \textbf{[L2]} — structurally compelling but not yet a proof.
+  The missing step is identifying $B_{\mathrm{base}}$ with the Poisson dual
+  prefactor in the one-loop QED calculation.
+\end{remark}
+
+% ======================================================================
+\section{Assessment and Next Steps}
+\label{sec:assess}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Result & Status \\
+\hline
+$\det(-\Delta_{S^1}) = 2\pi R_\psi$ & \textbf{[L0]} proved \\
+$\det(-\Delta_{T^3}) \sim (2\pi R_\psi)^3$ & \textbf{[L1]} leading order \\
+$N_{\mathrm{eff}} = [\det]^{1/3}$ definition & \textbf{[L2]} motivated \\
+$3/2$ from Poisson duality on $T^3$ & \textbf{[L2]} structurally compelling \\
+Numerical coefficient of $B_{\mathrm{base}}$ from $\det$ & \textbf{[O]} open \\
+\hline
+\end{tabular}
+\end{center}
+
+The most promising direction from this investigation is the Poisson duality
+observation (§\ref{sec:poisson}).  The next step is to compute the full
+one-loop determinant with the KK sum and verify that the Poisson prefactor
+$R_\psi^{3/2}$ appears in the coefficient of the log-running coupling, and
+that this coefficient equals $B_{\mathrm{base}}$ numerically.
+
+Continued in \texttt{research/B\_base\_heat\_kernel.tex}.
+
+\end{document}

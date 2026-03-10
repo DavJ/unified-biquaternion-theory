@@ -1,0 +1,358 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Quantization of the \texorpdfstring{$\Theta$}{Theta}-Field in Unified Biquaternion Theory\\
+\large Action, Canonical Structure, Path Integral, and Propagator}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalise the quantum field theory of the biquaternionic $\Theta$-field in
+Unified Biquaternion Theory (UBT).  Starting from the canonical action
+$S[\Theta]$, we identify the canonical conjugate momenta, construct the
+path-integral formulation, derive the Feynman propagator, and identify the
+Kaluza--Klein (KK) mode structure arising from the compact imaginary-time
+direction $\psi \sim \psi + 2\pi R_\psi$.  All claims are labelled with their
+proof status following the UBT notation: \textbf{[L0]} proved, \textbf{[L1]}
+proved given stated assumptions, \textbf{[L2]} motivated conjecture,
+\textbf{[O]} open, \textbf{[SE]} semi-empirical.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Canonical \texorpdfstring{$\Theta$}{Theta}-Field Action}
+\label{sec:action}
+% ======================================================================
+
+\subsection{Definition and sources}
+
+The fundamental field of UBT is the biquaternion
+$\Theta(q,\tau) \in \mathbb{H} \otimes \mathbb{C}$ defined in
+\texttt{canonical/fields/theta\_field.tex} (Definition 1, status \textbf{[L0]}).
+The complex time is $\tau = t + i\psi$ with $\psi \sim \psi + 2\pi R_\psi$
+(Axiom A2, \texttt{THEORY/axioms/canonical\_axioms.tex}).
+
+\subsection{Action functional}
+
+Following \texttt{consolidation\_project/appendix\_ALPHA\_one\_loop\_biquat.tex}
+(eq.\ \eqref{eq:theta-action-source}) and
+\texttt{THETA\_FIELD\_DEFINITION.md} §5.1, the canonical action is:
+\begin{equation}
+\label{eq:action}
+S[\Theta]
+= \int d^4x\, dt\, d\psi\; \sqrt{|\det G|}\;
+  \Bigl[
+    \tfrac{1}{2} G^{MN} \langle D_M \Theta,\, D_N \Theta\rangle
+    - V(\Theta)
+    - \tfrac{1}{4}\langle F_{MN},\, F^{MN}\rangle
+  \Bigr],
+\end{equation}
+where:
+\begin{itemize}
+  \item $G_{MN}$ is the biquaternionic metric on the $4+2$-dimensional
+        manifold $(x^\mu, t, \psi)$;
+  \item $D_M = \partial_M + igA_M$ is the gauge-covariant derivative;
+  \item $\langle \cdot, \cdot \rangle$ is the Hermitian inner product on
+        $\mathbb{H}\otimes\mathbb{C}$;
+  \item $V(\Theta)$ is the Higgs-type potential whose form is given in
+        \texttt{canonical/interactions/higgs.tex};
+  \item $F_{MN} = \partial_M A_N - \partial_N A_M - ig[A_M, A_N]$ is the
+        gauge field strength.
+\end{itemize}
+
+\begin{remark}[Status]
+  The action \eqref{eq:action} is the canonical UBT action derived from the
+  Hermitian structure of $\mathbb{H}\otimes\mathbb{C}$.  Its full derivation,
+  including boundary terms, is in
+  \texttt{consolidation\_project/appendix\_A\_theta\_action.tex}.
+  Status: \textbf{[L1]} — proved given the axioms.
+\end{remark}
+
+% ======================================================================
+\section{Canonical Conjugate Variables}
+\label{sec:canonical}
+% ======================================================================
+
+\subsection{Separation into physical and imaginary sectors}
+
+In the isotropic limit $G_{MN} = \mathrm{diag}(g_{\mu\nu},-1,-1)$, the
+action splits as
+\begin{equation}
+  S = S_{\mathrm{4D}} + S_\psi,
+\end{equation}
+where $S_{\mathrm{4D}}$ is the four-dimensional part and $S_\psi$ is the
+kinetic term in the $\psi$-direction.
+
+\subsection{Canonical momenta}
+
+For a generic component $\Theta_a$ ($a = 0,1,2,3$) in the quaternion basis
+$\{1, i, j, k\}$, the Euler--Lagrange formalism yields the canonical momenta:
+\begin{equation}
+\label{eq:pi}
+  \Pi^a(x, t, \psi) \;=\; \frac{\partial \mathcal{L}}{\partial(\partial_t \Theta_a)}
+  \;=\; \dot{\Theta}_a(x, t, \psi),
+\end{equation}
+where a dot denotes $\partial_t$.
+
+\begin{definition}[Equal-time commutation relations]\label{def:etcr}
+After canonical quantisation:
+\begin{equation}
+\label{eq:etcr}
+  \bigl[\Theta_a(x, t, \psi),\, \Pi^b(x', t, \psi')\bigr]
+  = i\hbar\, \delta^{ab}\, \delta^{(3)}(x - x')\, \delta(\psi - \psi').
+\end{equation}
+\end{definition}
+
+\begin{remark}[Status]
+  The commutation relation \eqref{eq:etcr} is a direct application of
+  standard canonical quantisation to the biquaternionic field.
+  Status: \textbf{[L1]} — proved given action \eqref{eq:action}.
+  The non-trivial content lies in the $\delta(\psi-\psi')$ factor which
+  implies that modes at different $\psi$-slices are independent quantum
+  degrees of freedom.
+\end{remark}
+
+% ======================================================================
+\section{Path-Integral Formulation}
+\label{sec:path_integral}
+% ======================================================================
+
+\subsection{Partition function}
+
+The generating functional is:
+\begin{equation}
+\label{eq:Z}
+  Z[J]
+  = \int \mathcal{D}\Theta\; \exp\!\Bigl(
+      \frac{i}{\hbar} S[\Theta]
+      + \frac{i}{\hbar}\int J_a \Theta^a
+    \Bigr),
+\end{equation}
+where $J_a(x,\tau)$ are biquaternionic source fields.
+
+\subsection{Gaussian sector and free propagator}
+
+In the free (non-interacting) limit, $V(\Theta) = \tfrac{1}{2}m^2\langle\Theta,\Theta\rangle$
+and the gauge fields are set to zero.  The action becomes:
+\begin{equation}
+\label{eq:S_free}
+  S_{\mathrm{free}}[\Theta]
+  = \int d^4x\, d\tau\; \Bigl[
+    \tfrac{1}{2} G^{MN} \partial_M \Theta^\dagger \partial_N \Theta
+    - \tfrac{1}{2} m^2 |\Theta|^2
+  \Bigr].
+\end{equation}
+
+After Fourier transform in all directions, including the KK expansion on the
+compact $\psi$-circle (see Section~\ref{sec:kk}), one obtains the free
+inverse propagator for KK mode $n$:
+\begin{equation}
+\label{eq:inv_prop}
+  \tilde{G}^{-1}(k, n) \;=\; k^\mu k_\mu + \frac{n^2}{R_\psi^2} + m^2,
+\end{equation}
+where $k^\mu$ is the 4-momentum and $n \in \mathbb{Z}$ is the KK mode number.
+
+\begin{definition}[Feynman Propagator]\label{def:propagator}
+The Feynman propagator for KK mode $n$ in momentum space is:
+\begin{equation}
+\label{eq:propagator}
+  \boxed{
+  \Delta_n(k) \;=\; \frac{i}{k^\mu k_\mu - m_n^2 + i\varepsilon},
+  \qquad
+  m_n^2 \;=\; m^2 + \frac{n^2}{R_\psi^2}.
+  }
+\end{equation}
+\end{definition}
+
+\begin{remark}[Biquaternionic tensor structure]
+  The full propagator carries tensor indices in the biquaternionic algebra
+  $\mathbb{H}\otimes\mathbb{C}$.  In the component basis it becomes a
+  $4\times 4$ complex matrix in quaternionic index space.  For a single
+  component $\Theta_a$, Definition~\ref{def:propagator} applies component-wise.
+  Status: \textbf{[L1]}.
+\end{remark}
+
+% ======================================================================
+\section{Kaluza--Klein Mode Expansion}
+\label{sec:kk}
+% ======================================================================
+
+\subsection{Fourier expansion on the \texorpdfstring{$\psi$}{psi}-circle}
+
+Following \texttt{report/theta\_spectrum\_analysis.md} §2.2 and
+\texttt{canonical/geometry/phase\_projection.tex} §KK, the compactification
+$\psi \sim \psi + 2\pi R_\psi$ yields the mode expansion:
+\begin{equation}
+\label{eq:kk_expansion}
+  \Theta(x, t, \psi)
+  = \sum_{n \in \mathbb{Z}} \hat\Theta_n(x, t)\;
+    e^{i n \psi / R_\psi}.
+\end{equation}
+
+\begin{proposition}[KK mass spectrum]\label{prop:kk_masses}
+  The 4D effective mass of mode $n$ is:
+  \begin{equation}
+  \label{eq:kk_masses}
+    m_n^2 = m^2 + \frac{n^2}{R_\psi^2}.
+  \end{equation}
+  The $n = 0$ mode is exactly massless (in the $m = 0$ limit) by translation
+  invariance in $\psi$.
+  \textbf{Status: [L0]} — algebraic identity.
+\end{proposition}
+
+\subsection{Mode commutation relations}
+
+Inserting \eqref{eq:kk_expansion} into \eqref{eq:etcr} and using
+orthonormality $\int_0^{2\pi R_\psi} d\psi\; e^{i(n-m)\psi/R_\psi}
+= 2\pi R_\psi\, \delta_{nm}$:
+\begin{equation}
+\label{eq:mode_etcr}
+  \bigl[\hat\Theta_{n,a}(x),\; \hat\Pi^{m,b}(x')\bigr]
+  = \frac{i\hbar}{2\pi R_\psi}\, \delta_{nm}\, \delta^{ab}\,
+    \delta^{(3)}(x - x').
+\end{equation}
+
+\begin{remark}[Status]
+  The mode algebra \eqref{eq:mode_etcr} is a straightforward Fourier decomposition
+  of the canonical commutators.  Status: \textbf{[L1]}.
+\end{remark}
+
+\subsection{Fermionic representations in the mode algebra}
+
+The question of whether any modes form fermionic representations is
+addressed in \texttt{research/theta\_fermion\_emergence.tex}.  Here we note
+only the structural observation:
+
+\begin{remark}[Winding parity]
+  The $\psi$-winding number $n$ provides a $\mathbb{Z}_2$ parity by
+  $(-1)^n$.  Modes with odd $n$ are $\psi$-odd.  This grading is
+  the algebraic seed of the fermionic sector; see
+  \texttt{research/theta\_fermion\_emergence.tex} for the detailed analysis.
+\end{remark}
+
+% ======================================================================
+\section{Interaction Vertices and Feynman Rules}
+\label{sec:vertices}
+% ======================================================================
+
+\subsection{Cubic and quartic vertices from the potential}
+
+Expanding the potential $V(\Theta)$ around the vacuum expectation value
+$\langle\Theta\rangle = v$ (Higgs mechanism, canonical source:
+\texttt{canonical/interactions/higgs.tex}):
+\begin{equation}
+  V(\Theta) = \tfrac{1}{4}\lambda(|\Theta|^2 - v^2)^2
+  = \lambda v^2 |\delta\Theta|^2 + \lambda v |\delta\Theta|^3
+    + \tfrac{1}{4}\lambda |\delta\Theta|^4 + \text{const.},
+\end{equation}
+where $\delta\Theta = \Theta - v$.  This produces the standard cubic (Yukawa-type)
+and quartic self-interaction vertices.
+
+\subsection{KK mode vertices}
+
+KK number is conserved at each vertex due to the periodicity of $e^{in\psi/R_\psi}$:
+\begin{equation}
+\label{eq:kk_conservation}
+  n_1 + n_2 + \cdots + n_k = 0 \pmod{1}
+  \quad \text{(at each $k$-point vertex).}
+\end{equation}
+
+This is the KK mode-number conservation law (\textbf{[L0]}).
+
+% ======================================================================
+\section{One-Loop Effective Action}
+\label{sec:one_loop}
+% ======================================================================
+
+\subsection{Vacuum polarization from KK modes}
+
+Each KK mode $n \neq 0$ contributes to the vacuum polarization through the
+standard one-loop diagram.  The leading contribution from mode $n$ is
+\begin{equation}
+  \Pi^{(n)}(k^2)
+  = \frac{g^2}{16\pi^2} \int_0^1 dx\; x(1-x)\,
+    \ln\!\Bigl(\frac{m_n^2 - x(1-x)k^2}{\mu^2}\Bigr),
+\end{equation}
+following the detailed calculation in
+\texttt{consolidation\_project/appendix\_ALPHA\_one\_loop\_biquat.tex} §B.3.
+
+\begin{remark}[Connection to B\_base]
+  The KK sum $\sum_{n\in\mathbb{Z}} \Pi^{(n)}$ is directly related to
+  the $B_{\mathrm{base}}$ coefficient appearing in the fine structure constant
+  formula.  The current status of this connection is documented in
+  \texttt{research/B\_base\_spectral\_determinant.tex} and
+  \texttt{canonical/bridges/QED\_limit\_bridge.tex}.
+\end{remark}
+
+% ======================================================================
+\section{Open Problems and Research Tracks}
+\label{sec:open}
+% ======================================================================
+
+\begin{enumerate}
+  \item \textbf{[O] Off-shell closure}: The Θ-field equation
+    $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ is verified on-shell
+    (Steps 1--5 of \texttt{canonical/bridges/GR\_chain\_bridge.tex}).
+    Off-shell closure is an identified open gap.
+
+  \item \textbf{[O] R\_psi from first principles}: The compactification
+    radius $R_\psi$ is a free parameter.  Fixing it dynamically (e.g.,
+    from a moduli stabilisation mechanism) is open; see
+    \texttt{AUDITS/complex\_time\_modular\_audit.md}.
+
+  \item \textbf{[O] Fermionic statistics from KK algebra}:
+    Whether odd-winding modes obey fermionic commutation relations
+    (anticommutators) requires showing that the biquaternionic algebra
+    supports a consistent $\mathbb{Z}_2$ grading at the quantum level.
+    See \texttt{research/theta\_fermion\_emergence.tex}.
+
+  \item \textbf{[O] Unitarity and renormalisability}:
+    The infinite KK tower raises questions of unitarity and
+    renormalisability.  Standard decoupling arguments suggest the
+    tower is safe for $R_\psi^{-1} \gg \mu$, but a rigorous proof
+    in the biquaternionic context is open.
+\end{enumerate}
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Canonical Θ-field definition & \texttt{canonical/fields/theta\_field.tex} \\
+Θ-field action (full derivation) & \texttt{consolidation\_project/appendix\_A\_theta\_action.tex} \\
+KK spectrum analysis & \texttt{report/theta\_spectrum\_analysis.md} \\
+KK phase projection & \texttt{canonical/geometry/phase\_projection.tex} \\
+Fermion emergence & \texttt{research/theta\_fermion\_emergence.tex} \\
+Bridge: quantum structure & \texttt{canonical/bridges/theta\_quantum\_structure.tex} \\
+One-loop $\alpha$ calculation & \texttt{consolidation\_project/appendix\_ALPHA\_one\_loop\_biquat.tex} \\
+QED limit chain & \texttt{canonical/bridges/QED\_complete\_chain.tex} \\
+\hline
+\end{tabular}
+
+\end{document}

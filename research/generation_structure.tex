@@ -1,0 +1,226 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Three Fermion Generations in Unified Biquaternion Theory\\
+\large Spectral Degeneracy, Algebraic Origin, and Mass Hierarchy}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyse the origin of three fermion generations in Unified Biquaternion
+Theory (UBT).  The algebraic proof that three independent copies of the
+Standard Model quantum number structure arise from $\psi$-winding modes
+is recalled from the repository, and the open question of why exactly
+three light generations appear (rather than infinitely many, one per
+$n \in \mathbb{Z}$) is examined.  The spectral degeneracy of $\Theta$-modes
+and the algebraic or modular origin of the generation number are analysed.
+All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{The Proved Three-Generation Result}
+\label{sec:three_gen_proof}
+% ======================================================================
+
+\subsection{Statement}
+
+\begin{theorem}[Three generations from $\psi$-winding]\label{thm:three_gen}
+  The three winding modes $n = 1, 2, 3$ of the $\Theta$-field on the compact
+  imaginary-time circle $\psi \sim \psi + 2\pi R_\psi$ provide three
+  independent copies of the Standard Model fermion quantum number structure.
+
+  \textbf{Status: [L0]} — proved algebraic identity.
+
+  \textbf{Source:}
+  \begin{itemize}
+    \item \texttt{DERIVATION\_INDEX.md}: ``$\psi$-modes as independent
+      B-fields [L0]: Proven''
+    \item \texttt{STATUS\_THEORY\_ASSESSMENT.md} v61 proved results
+    \item \texttt{research/theta\_fermion\_emergence.tex} Proposition~3.2
+  \end{itemize}
+\end{theorem}
+
+\subsection{Proof sketch}
+
+The three winding modes have identical quantum numbers under
+$\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ because
+the gauge group acts on the \emph{quaternionic} index $a = 0,1,2,3$ of
+$\Theta_a$, independently of the winding number $n$.  Each winding sector
+$n = 1, 2, 3$ thus provides a complete copy of the SM fermion representation:
+\begin{equation}
+  Q_{L,n},\; u_{R,n},\; d_{R,n},\; L_{L,n},\; e_{R,n}
+  \quad n = 1, 2, 3.
+\end{equation}
+
+% ======================================================================
+\section{Why Three (and Not Infinitely Many)?}
+\label{sec:why_three}
+% ======================================================================
+
+\subsection{The spectrum-degeneracy question}
+
+The KK spectrum is infinite ($n \in \mathbb{Z}$).  The question is why only
+$n = 1, 2, 3$ are ``light'' (i.e., correspond to observed fermion generations
+below the TeV scale) while all higher modes are heavy.
+
+\subsection{Two candidate mechanisms}
+
+\subsubsection{Mechanism A: Modular stability (motivated)}
+
+The modular parameter $\tau_{\mathrm{mod}} = iR_\psi/R_t$ lies in the
+fundamental domain of $\mathrm{SL}(2,\mathbb{Z})$.  For specific values of
+$\tau_{\mathrm{mod}}$, the modular group has enhanced symmetry ($\mathbb{Z}_4$
+at $\tau = i$; $\mathbb{Z}_6$ at $\tau = e^{2\pi i/3}$).
+
+\begin{conjecture}[Three generations from modular stabilisation]\label{conj:modular}
+  The modular potential (see \texttt{research/modular\_dynamics.tex})
+  stabilises $\tau_{\mathrm{mod}}$ at a special value where exactly three
+  winding modes are light.  Modes $n \geq 4$ acquire masses of order
+  $R_\psi^{-1}$ and decouple.
+
+  \textbf{Status: [L2]} — motivated conjecture.  The modular potential has
+  not been computed from the UBT action.
+\end{conjecture}
+
+\subsubsection{Mechanism B: Spectral gap from KK tower (motivated)}
+
+The KK masses $m_n = |n|/R_\psi$ are all of order $R_\psi^{-1}$ for
+$n \neq 0$.  For $R_\psi$ of order the Compton wavelength of the electron,
+all KK modes would be observable at collider energies.
+
+However, if $R_\psi \ll 10^{-16}$~cm (sub-nuclear), then
+$m_n \gg 1$~TeV for all $n \neq 0$ and the \emph{only} light
+modes are those made light by the Yukawa mechanism (§\ref{sec:yukawa}).
+
+\begin{remark}[Status]
+  Mechanism B does not explain why \emph{exactly three} modes are light;
+  it only explains why all KK modes heavier than $R_\psi^{-1}$ decouple.
+  A specific selection mechanism for $n = 1, 2, 3$ is needed in addition.
+  Status: \textbf{[O]}.
+\end{remark}
+
+% ======================================================================
+\section{Spectral Degeneracy Analysis}
+\label{sec:degeneracy}
+% ======================================================================
+
+\subsection{Degeneracy of the KK operator}
+
+The KK operator on $S^1_\psi$ is $\hat{L} = -\partial_\psi^2$ with
+eigenvalues $\lambda_n = n^2/R_\psi^2$.  Its degeneracy is:
+\begin{equation}
+  d(n) = \begin{cases} 1 & n = 0, \\ 2 & n \geq 1. \end{cases}
+\end{equation}
+(The factor of 2 accounts for winding number $+n$ and $-n$.)
+
+\begin{remark}[No algebraic reason for 3]
+  There is no inherent algebraic reason for the spectrum to single out
+  $n = 1, 2, 3$.  The selection must come from dynamics (potential or
+  moduli) rather than kinematics.  Status: \textbf{[O]}.
+\end{remark}
+
+\subsection{Algebraic constraint from the biquaternion algebra}
+
+The quaternion basis $\{1, i, j, k\}$ has \emph{four} elements, not three.
+The projection from four biquaternionic components $\Theta_a$ ($a = 0,1,2,3$)
+to three generations of SM fermions discards one scalar degree of freedom
+(the Higgs) and retains the three vector components.
+
+\begin{proposition}[Quaternionic origin of three fermion copies]\label{prop:quat_3}
+  The three imaginary quaternion units $\{i, j, k\}$ correspond to the
+  three off-diagonal components of $\Theta$ in the spinor basis, giving
+  three fermion families as the non-scalar irreducible components.
+
+  \textbf{Status: [L1]} — a natural algebraic correspondence, not a proof
+  of uniqueness.
+\end{proposition}
+
+\begin{remark}[Complementary to winding mechanism]
+  Propositions~\ref{prop:quat_3} and Theorem~\ref{thm:three_gen} are
+  \emph{complementary} mechanisms: the former is algebraic (three
+  imaginary quaternion units), the latter is dynamical (three winding modes).
+  Whether they point to the same physical mechanism is an open question.
+  Status: \textbf{[L2]}.
+\end{remark}
+
+% ======================================================================
+\section{Modular or Arithmetic Origin of the Generation Number}
+\label{sec:modular_arithmetic}
+% ======================================================================
+
+\subsection{Connection to Hecke theory}
+
+An independent observation (see \texttt{research/hecke\_generation\_structure.tex})
+is that the lepton mass ratios are reproduced by Hecke eigenvalues of
+specific modular forms at primes $p = 137$ and $p = 139$.  The three forms
+involved in this observation naturally have weights $k = 2, 4, 6$, differing
+by 2.
+
+\begin{conjecture}[Modular forms as generation labels]\label{conj:forms}
+  The three fermion generations correspond to the three lowest even-weight
+  modular forms whose $L$-functions have compatible conductor structure.
+
+  \textbf{Status: [L2]} — numerical observation, no theoretical derivation.
+  Source: \texttt{research/hecke\_generation\_structure.tex}.
+\end{conjecture}
+
+\subsection{Connection to the tau-torus construction}
+
+The torus $\mathbb{T}^2 = \mathbb{C}/(\mathbb{Z}+\tau_{\mathrm{mod}}\mathbb{Z})$
+has a topological invariant: the first homology $H_1(\mathbb{T}^2,\mathbb{Z}) = \mathbb{Z}^2$.
+
+\begin{remark}[Two vs three cycles]
+  The torus has two fundamental cycles, not three.  For the generation
+  number to be three, an additional topological structure (e.g., a
+  third compact direction $\xi$) or an algebraic argument is needed.
+  Status: \textbf{[O]}.  See \texttt{research/modular\_dynamics.tex}.
+\end{remark}
+
+% ======================================================================
+\section{Summary and Open Problems}
+\label{sec:summary}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Claim & Status & Source \\
+\hline
+Three independent $\psi$-winding copies of SM & \textbf{[L0]} proved &
+  \texttt{DERIVATION\_INDEX.md} \\
+Quaternionic origin of three families & \textbf{[L1]} algebraic &
+  This document, Prop.~\ref{prop:quat_3} \\
+Why exactly $n=1,2,3$ are light & \textbf{[O]} open &
+  This document §\ref{sec:why_three} \\
+Modular stabilisation producing 3 generations & \textbf{[L2]} conjecture &
+  \texttt{research/modular\_dynamics.tex} \\
+Hecke origin of generation labels & \textbf{[L2]} conjecture &
+  \texttt{research/hecke\_generation\_structure.tex} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
