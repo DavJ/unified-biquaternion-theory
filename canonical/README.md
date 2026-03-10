@@ -12,6 +12,10 @@ The `canonical/` directory serves as the **single source of truth** for UBT to r
 canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
+├── bridges/                     # Navigation bridges (cross-references only)
+│   ├── GR_chain_bridge.tex     # GR recovery chain Θ→g→Γ→R→Einstein
+│   ├── QED_limit_bridge.tex    # QED limit, running α, B_base gap
+│   └── gauge_emergence_bridge.tex  # SU(3)×SU(2)_L×U(1)_Y status
 ├── fields/                      # Canonical field definitions
 │   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
 │   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition (canonical)
@@ -19,7 +23,9 @@ canonical/
 │   └── electron_mass.tex       # Unified electron mass derivation
 ├── geometry/                    # Canonical geometric structures
 │   ├── metric.tex              # g_μν canonical metric
+│   ├── connection.tex          # Γ^λ_μν Levi-Civita connection (stub → curvature.tex)
 │   ├── curvature.tex           # Riemann tensor, GR equivalence
+│   ├── gr_as_limit.tex         # GR recovery theorem (constant-phase limit)
 │   └── stress_energy.tex       # T_μν canonical form
 ├── interactions/                # Canonical interaction Lagrangians
 │   ├── qed.tex                 # QED complete
@@ -31,6 +37,20 @@ canonical/
 └── appendices/                  # Canonical appendices
     └── symbol_dictionary.tex    # Symbol standardization
 ```
+
+## Bridges Directory
+
+The `bridges/` subdirectory contains **navigation bridge files** — cross-reference-only documents that help an external reviewer traverse the repository without reading multiple scattered files. They contain no new derivations.
+
+| Bridge file | Purpose |
+|---|---|
+| `GR_chain_bridge.tex` | Locates each step of the GR recovery chain (Θ→g→Γ→R→Einstein) with proof-status labels |
+| `QED_limit_bridge.tex` | Collects QED limit claims, running coupling derivation, and marks the B_base open problem explicitly |
+| `gauge_emergence_bridge.tex` | Lists each gauge group component (SU(3), SU(2)_L, U(1)_Y) with proved / semi-empirical / open labels |
+
+**When to use bridges vs. primary files:**
+- Use **primary canonical files** (geometry/, interactions/, fields/) when you need the actual mathematical definition or derivation.
+- Use **bridge files** when you need to understand which claims are proved, which are open, and where to find the proof.
 
 ## Principles
 
@@ -93,12 +113,14 @@ When reviewing UBT documents:
   - [x] Theta field Θ(q,T_B)
   - [x] Biquaternion time T_B = t + iψ + jχ + kξ (canonical)
   - [x] Metric g_μν
+  - [x] Connection Γ^λ_μν (stub)
   - [x] Stress-energy T_μν
   - [x] QED Lagrangian
   - [x] QCD Lagrangian
   - [x] SM gauge structure
   - [x] Biquaternion algebra foundations
   - [x] Curvature tensors
+  - [x] GR limit theorem
   - [x] Psychon formalization
   - [ ] Electron mass unification
   - [ ] Theta-resonator design

@@ -291,6 +291,17 @@ This canonical definition supersedes:
 
 \textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:metric} with signature $(+,-,-,-)$ and index convention $\mu,\nu = 0,1,2,3$ consistently throughout.
 
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,title=Signature convention note]
+The canonical signature here is $(+,-,-,-)$ (mostly minus, spacelike negative).
+Some older files in the repository use the equivalent ``mostly plus'' convention
+$(-,+,+,+)$ (e.g.\ parts of \texttt{unified\_biquaternion\_theory/} and
+\texttt{STATUS\_THEORY\_ASSESSMENT.md} entries predating v60).
+
+The two conventions are physically equivalent up to an overall sign of the metric
+and a corresponding sign flip in any Lagrangian density.  No physics claim
+is affected.  When comparing equations across files, verify which convention is in use.
+\end{tcolorbox}
+
 \subsection{Computational Formula}
 
 For practical calculations with $\Theta \in \mathbb{C}^{4 \times 4}$:

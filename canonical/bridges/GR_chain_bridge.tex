@@ -1,0 +1,122 @@
+% GR Chain Bridge — Cross-Reference Summary
+% Version: 1.0
+% Date: 2026-03-10
+% Status: Canonical bridge — cross-references only; no new derivations
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% PURPOSE: This file locates every step of the GR recovery chain
+% Θ → g → Γ → R → Einstein across the repository so that an external
+% reviewer can traverse the chain without reading 6 separate files.
+
+\section{GR Recovery Chain: Navigation Guide}
+\label{sec:bridges:gr_chain}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Chain Status Summary]
+Steps 1--5: \textbf{PROVED [L1]} (on-shell, real projection) \\
+Step 6 (off-shell $\Theta$-only closure): \textbf{OPEN [L2]} — structural obstruction identified \\
+\textit{Step 6 does not affect the validity of Steps 1--5.}
+\end{tcolorbox}
+
+The full derivation is spread across the following canonical files.
+Each step below gives the precise location of its proof.
+
+\subsection{Step 1: Fundamental field \texorpdfstring{$\Theta$}{Theta}}
+
+\textbf{Claim:} The UBT fundamental object is $\Theta(q, T_B) \in \mathbb{H} \otimes \mathbb{C}$,
+a biquaternion field satisfying the T-shirt equation
+$\nabla^\dagger \nabla\,\Theta(q,\tau) = \kappa\,\mathcal{T}(q,\tau)$.
+
+\textbf{Location:} \texttt{canonical/fields/theta\_field.tex},
+Section~\ref{sec:canonical:theta_field}. Definition, gauge transformations,
+normalization, and units are all canonical there.
+
+\subsection{Step 2: Metric emergence \texorpdfstring{$g_{\mu\nu}$}{g\_munu}}
+
+\textbf{Claim:} The spacetime metric is the real projection of the biquaternionic metric,
+$g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$, equivalently
+$g_{\mu\nu}(\Theta) = \mathrm{Re}\,\mathrm{Tr}(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger)$.
+It is a \emph{derived} quantity, not postulated.
+
+\textbf{Location:} \texttt{canonical/geometry/metric.tex},
+Section~\ref{sec:canonical:metric}. Non-degeneracy and Lorentzian signature
+$(+,-,-,-)$ are proved there and in \texttt{STATUS\_THEORY\_ASSESSMENT.md} v61.
+
+\subsection{Step 3: Connection \texorpdfstring{$\Gamma^\lambda_{\mu\nu}$}{Gamma}}
+
+\textbf{Claim:} The Levi-Civita connection is the real projection of the biquaternionic
+connection, $\Gamma^\lambda_{\mu\nu} = \mathrm{Re}(\Omega^\lambda_{\mu\nu})$.
+It is derived from $g_{\mu\nu}$ via metric-compatibility and torsion-free conditions
+in the standard way.
+
+\textbf{Location:} \texttt{canonical/geometry/curvature.tex},
+Subsection \emph{Metric and Connection}. See also
+\texttt{canonical/geometry/connection.tex} for a navigational pointer.
+
+\subsection{Step 4: Curvature \texorpdfstring{$R^\rho{}_{\sigma\mu\nu}$, $R_{\mu\nu}$, $R$}{R}}
+
+\textbf{Claim:} The Riemann tensor $R^\rho{}_{\sigma\mu\nu}$, Ricci tensor $R_{\mu\nu}$,
+and Ricci scalar $R$ are all real projections of the corresponding biquaternionic objects.
+
+\textbf{Location:} \texttt{canonical/geometry/curvature.tex},
+Sections \emph{Riemann Tensor}, \emph{Ricci Tensor and Scalar},
+and \emph{Einstein Tensor}.
+
+\subsection{Step 5: Einstein equations}
+
+\textbf{Claim:} $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ is derived by (a) Hilbert variation
+of the action $S[\Theta, g]$, and (b) real projection of the biquaternionic field equation
+$\mathcal{E}_{\mu\nu} = \kappa\,\mathcal{T}_{\mu\nu}$.
+
+\textbf{Location (Hilbert variation):}
+\texttt{docs/papers/appendix\_GR\_embedding.tex} — explicit variation $\delta S/\delta g^{\mu\nu}$;
+$T_{\mu\nu}$ derived from kinetic, potential, and gauge terms.
+
+\textbf{Location (real-projection proof):}
+\texttt{canonical/geometry/curvature.tex}, boxed result ``GR Equivalence'';
+\texttt{canonical/geometry/gr\_as\_limit.tex}, Theorem: $G_{\mu\nu}^{(\varphi)} = \kappa T_{\mu\nu}^{(\varphi)}$
+for any constant phase $\varphi$.
+
+\textbf{Location (chain summary):}
+\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex} — Steps 1--5
+collected in a single document with explicit [L1] proof labels.
+
+\textbf{Location (symbolic verification):}
+\texttt{unified\_biquaternion\_theory/validation/validate\_GR\_recovery.py} —
+SymPy verification.
+
+\subsection{Stress-energy tensor \texorpdfstring{$T_{\mu\nu}$}{T\_munu}}
+
+\textbf{Claim:} $T_{\mu\nu}$ is derived, not postulated.
+$T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$;
+$T_{\mu\nu} = \partial_\mu\Theta\,\partial_\nu\Theta^\dagger - \tfrac{1}{2}g_{\mu\nu}
+g^{\alpha\beta}\partial_\alpha\Theta\,\partial_\beta\Theta^\dagger$.
+
+\textbf{Location:} \texttt{canonical/geometry/stress\_energy.tex},
+Section~\ref{sec:canonical:stress_energy}. Symmetry and conservation
+$\nabla^\mu T_{\mu\nu} = 0$ proved there.
+
+\subsection{Step 6 (open): Off-shell \texorpdfstring{$\Theta$}{Theta}-only closure}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!50!black,title=Open Problem [L2]]
+The purely off-shell reduction
+$\mathrm{Re}(\nabla^\dagger\nabla\Theta) \to G_{\mu\nu}$
+has an identified structural obstruction. This is documented as Step~6 in
+\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex} and
+\texttt{reports/gr\_recovery\_final\_status.md}.
+It does \emph{not} affect the on-shell validity of Steps 1--5.
+\end{tcolorbox}
+
+\subsection{Further reading}
+
+\begin{itemize}
+  \item \texttt{docs/papers/appendix\_GR\_embedding.tex} — action principle derivation
+  \item \texttt{reports/gr\_recovery\_final\_status.md} — linearised and non-linear status
+  \item \texttt{canonical/geometry/metric.tex} — metric definition and properties
+  \item \texttt{canonical/geometry/curvature.tex} — all curvature objects
+  \item \texttt{canonical/geometry/gr\_as\_limit.tex} — constant-phase limit theorem
+  \item \texttt{canonical/geometry/stress\_energy.tex} — $T_{\mu\nu}$ derivation
+
+\end{itemize}
+
+% End of GR_chain_bridge.tex
