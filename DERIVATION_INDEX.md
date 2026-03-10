@@ -13,9 +13,27 @@ Status labels:
 - **Open Hard Problem** — no known approach reproduces the result
 - **Dead End** — approach proved to fail; documented for completeness
 
+File role labels (see `AUDITS/repo_overlap_and_canonicalization_report.md`):
+- ⭐ **CANONICAL** — single authoritative source; start here
+- **supporting** — valid derivation referenced by canonical source
+- **heuristic** — intuitive sketch; not a proof
+- **sandbox** — exploratory; outputs captured elsewhere
+- **speculative** — extrapolates beyond current evidence
+- **historical** — superseded; preserved for reference
+
+**Topic index files** (one canonical entry point per topic):
+- Fine structure constant: `THEORY/topic_indexes/alpha_index.md`
+- SU(3) color symmetry: `THEORY/topic_indexes/SU3_index.md`
+- GR recovery: `THEORY/topic_indexes/GR_index.md`
+- Hecke / 137–139: `THEORY/topic_indexes/hecke_index.md`
+- Mirror sector: `THEORY/topic_indexes/mirror_sector_index.md`
+
 ---
 
 ## Fine Structure Constant (α)
+
+> ⭐ **Canonical source**: `STATUS_ALPHA.md` — complete derivation chain with explicit gap inventory.  
+> Topic index: `THEORY/topic_indexes/alpha_index.md`
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -38,6 +56,9 @@ Status labels:
 
 ## Standard Model Gauge Group
 
+> ⭐ **Canonical source for SU(3)**: `consolidation_project/appendix_G_internal_color_symmetry.tex`  
+> Topic index: `THEORY/topic_indexes/SU3_index.md`
+
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
 | B = ℂ⊗ₐℍ ≅ Mat(2,ℂ) | **Proven** [L0] | `consolidation_project/appendix_E2_SM_geometry.tex §1` | Standard algebra isomorphism |
@@ -57,6 +78,9 @@ Status labels:
 ---
 
 ## Three Fermion Generations
+
+> ⭐ **Canonical Hecke sources**: `reports/hecke_lepton/` (numerical) + `consolidation_project/hecke_bridge/motivation.tex` (theoretical)  
+> Topic index: `THEORY/topic_indexes/hecke_index.md`
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -262,6 +286,9 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ## GR Recovery Status (v48+, updated 2026-03-06)
 
+> ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `consolidation_project/GR_closure/` chain  
+> Topic index: `THEORY/topic_indexes/GR_index.md`
+
 *Updated 2026-03-06 after v48 review.  Tasks: GR_closure Tasks 1–4 (step1_metric_bridge, step2_nondegeneracy, step3_signature_theorem with AXIOM B section).*
 
 ```
@@ -302,6 +329,9 @@ and an emergent-metric construction strongly connected to Θ.
 
 ## Mirror Sector (Twin Prime Vacuum)
 
+> ⭐ **Canonical sources**: `consolidation_project/mirror_sector/README.md` + `reports/hecke_lepton/mirror_world_139.md`  
+> Topic index: `THEORY/topic_indexes/mirror_sector_index.md`
+
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
 | V_eff(137) < V_eff(139) for same B | **NUMERICAL OBSERVATION** | `consolidation_project/mirror_sector/vacuum_stability.tex` | Calibrated to our sector |
@@ -316,6 +346,9 @@ and an emergent-metric construction strongly connected to Θ.
 ---
 
 ## Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)
+
+> ⭐ **Canonical sources**: `reports/hecke_lepton/` + `consolidation_project/hecke_bridge/motivation.tex`  
+> Topic index: `THEORY/topic_indexes/hecke_index.md`
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
