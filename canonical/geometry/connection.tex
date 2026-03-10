@@ -1,0 +1,62 @@
+% Canonical Levi-Civita Connection (navigational stub)
+% Version: 1.0
+% Date: 2026-03-10
+% Status: Canonical — navigational stub pointing to curvature.tex
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% NOTE: Christoffel symbols and the Levi-Civita connection are defined
+% within canonical/geometry/curvature.tex (Section: "Metric and Connection").
+% This file exists to complete the one-file-per-concept structure of the
+% canonical/geometry/ directory and to provide a direct cross-reference point.
+
+\section{The Levi-Civita Connection \texorpdfstring{$\Gamma^\lambda_{\mu\nu}$}{Gamma} (Navigational Stub)}
+\label{sec:canonical:connection}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Important: Defined in curvature.tex]
+The canonical definition of the Christoffel symbols $\Gamma^\lambda_{\mu\nu}$ and
+the full Levi-Civita connection is located in:
+
+\[
+  \texttt{canonical/geometry/curvature.tex}, \quad
+  \text{Subsection: \emph{Metric and Connection}}
+\]
+
+This stub exists only for navigability.
+\end{tcolorbox}
+
+\subsection{Connection as a Derived Quantity}
+
+As with all classical geometric objects in UBT, the connection is a real projection
+of a fundamental biquaternionic object:
+\[
+  \Gamma^\lambda_{\mu\nu} = \mathrm{Re}\!\left(\Omega^\lambda_{\mu\nu}\right),
+\]
+where $\Omega^\lambda_{\mu\nu} \in \mathbb{C}\otimes\mathbb{H}$ is the biquaternionic
+connection derived from the biquaternionic metric $\mathcal{G}_{\mu\nu}$
+(see \texttt{canonical/geometry/metric.tex}).
+
+The Levi-Civita connection is uniquely fixed by:
+\begin{enumerate}
+  \item Metric compatibility: $\nabla_\rho g_{\mu\nu} = 0$
+  \item Torsion-free: $\Gamma^\lambda_{\mu\nu} = \Gamma^\lambda_{\nu\mu}$
+\end{enumerate}
+yielding the standard formula
+\[
+  \Gamma^\lambda_{\mu\nu} = \tfrac{1}{2}\,g^{\lambda\rho}
+  \!\left(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\right).
+\]
+
+\subsection{Cross-references}
+
+\begin{itemize}
+  \item Full definition and properties:
+        \texttt{canonical/geometry/curvature.tex}, Subsection \emph{Metric and Connection}
+  \item Biquaternionic connection $\Omega_\mu$:
+        \texttt{canonical/geometry/curvature.tex}, Subsection \emph{Biquaternionic Connection}
+  \item Metric $g_{\mu\nu}$:
+        \texttt{canonical/geometry/metric.tex}, Section~\ref{sec:canonical:metric}
+  \item GR chain: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
+\end{itemize}
+
+% End of connection.tex

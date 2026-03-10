@@ -91,7 +91,7 @@ Full justification: `reports/lepton_audit/publication_readiness.md`.
 | Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | **Structural** | `STATUS_FERMIONS.md §4`, `reports/lepton_audit/equations.md` | Functional form motivated by one-loop effective potential; no free parameters in the form |
 | A (hopfion mass scale) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to m_e; Gap M1: derive from soliton tension |
 | p (topological winding exponent) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M2: derive from soliton stability |
-| B_m (log correction in mass formula) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M3: derive from loop corrections |
+| B_m (log correction in mass formula) | **Semi-empirical** | `reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M3: derive from loop corrections. **Note:** B_m (fermion masses, ≈ −14.099 MeV, dimensionful) is distinct from B_base (α derivation, ≈ 41.57, dimensionless) — different objects, different physics. |
 | m_e prediction at 0.22% | **Semi-empirical** | `reports/lepton_audit/reproduction.md` | Post-fit cross-check, not a zero-parameter prediction |
 | m_μ/m_e ≈ 207, m_τ/m_μ ≈ 16.8 | **Not reproduced** | `reports/lepton_audit/status_summary.md` | KK mismatch theorem forbids reproduction from W2 formula; Gap M4 |
 

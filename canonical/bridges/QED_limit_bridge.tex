@@ -1,0 +1,135 @@
+% QED Limit Bridge — Cross-Reference Summary
+% Version: 1.0
+% Date: 2026-03-10
+% Status: Canonical bridge — cross-references only; no new derivations
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% PURPOSE: This file collects the QED limit claims and locates them
+% across the repository, with explicit status labels (proved /
+% semi-empirical / open) so that an external reviewer can assess
+% the QED sector without reading multiple scattered files.
+
+\section{QED Limit: Navigation Guide and Status}
+\label{sec:bridges:qed_limit}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=QED Limit Status Summary]
+\textbf{PROVED:} QED Lagrangian, U(1) gauge invariance, massless photon, $B_0 = 8\pi$ \\
+\textbf{PROVED:} Running coupling form $1/\alpha(\mu) = 1/\alpha(\mu_0) + (B_\alpha/2\pi)\ln(\mu/\mu_0)$ \\
+\textbf{SEMI-EMPIRICAL:} Precise value $B_\alpha \approx 46.3$ (requires $B_\text{base}$, which is open) \\
+\textbf{OPEN HARD PROBLEM:} $B_\text{base} = N_\text{eff}^{3/2} = 41.57$ — exponent 3/2 not derived \\
+\textbf{OPEN HARD PROBLEM:} Correction factor $R \approx 1.114$ — geometric origin unknown
+\end{tcolorbox}
+
+\subsection{QED Lagrangian (PROVED)}
+
+\textbf{Claim:} The QED Lagrangian emerges from the UBT kinetic term via U(1) gauge coupling:
+\[
+\mathcal{L}_\text{QED} = \mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)] - \tfrac{1}{4}F_{\mu\nu}F^{\mu\nu},
+\qquad D_\mu = \partial_\mu + igA_\mu.
+\]
+
+\textbf{Location:} \texttt{canonical/interactions/qed.tex},
+Section~\ref{sec:canonical:qed}. U(1) gauge invariance
+($\Theta \to e^{i\alpha(x)}\Theta$, $A_\mu \to A_\mu - g^{-1}\partial_\mu\alpha$)
+and gauge fixing are canonical there.
+
+\subsection{Maxwell Limit (PRESENT; follows from QED Lagrangian)}
+
+\textbf{Claim:} The Maxwell kinetic term $-\tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}$ with
+$F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ is the Maxwell Lagrangian.
+The Maxwell limit is obtained by setting matter fields to their vacuum values
+(constant phase $\varphi = \mathrm{const}$).
+
+\textbf{Location:} \texttt{canonical/interactions/qed.tex} — $F_{\mu\nu}$ definition.
+No dedicated Maxwell derivation file exists; the limit is immediate from the
+QED Lagrangian.
+
+The gauge field contribution to $T_{\mu\nu}$ is derived in
+\texttt{docs/papers/appendix\_GR\_embedding.tex}.
+
+\subsection{Massless Photon (PROVED)}
+
+\textbf{Claim:} The photon is massless at constant phase $\varphi = \mathrm{const}$
+(no Proca mass term generated).
+
+\textbf{Location:} \texttt{canonical/interactions/qed.tex};
+\texttt{DERIVATION\_INDEX.md}: ``massless photon: verified''.
+
+\subsection{\texorpdfstring{$B_0 = 8\pi$ from $S_\text{kin}[\Theta]$}{B0 = 8pi} (PROVED [L1])}
+
+\textbf{Claim:} The one-loop baseline $B_0 = 8\pi = 2\pi N_\text{eff}/3$
+is a zero-free-parameter result from the kinetic action $S_\text{kin}[\Theta]$.
+The QED limit $N_\text{eff} = 1$ gives $B_0 = 2\pi/3$, consistent.
+
+\textbf{Location:} \texttt{STATUS\_ALPHA.md}, §5;
+\texttt{consolidation\_project/N\_eff\_derivation/step2\_vacuum\_polarization.tex}
+(Theorem 3.1);
+\texttt{DERIVATION\_INDEX.md}: ``$B_0 = 25.1$ (one-loop baseline): Proved [L1]''.
+
+\subsection{Running Coupling \texorpdfstring{$\alpha(\mu)$}{alpha(mu)} (PROVED structure; SEMI-EMPIRICAL numerics)}
+
+\textbf{Claim:} The running coupling formula
+\[
+\frac{1}{\alpha(\mu)} = \frac{1}{\alpha(\mu_0)} + \frac{B_\alpha}{2\pi}\ln\frac{\mu}{\mu_0}
+\]
+is derived from $N_\text{eff} = 12$. The \emph{structural} form is proved;
+the precise coefficient $B_\alpha \approx 46.3$ depends on the open $B_\text{base}$ value.
+
+\textbf{Location:} \texttt{STATUS\_ALPHA.md}, §7.
+
+\subsection{\texorpdfstring{$B_\text{base} = N_\text{eff}^{3/2} = 41.57$}{B\_base} (OPEN HARD PROBLEM)}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,title=Open Hard Problem: $B_\text{base}$]
+The formula $B_\text{base} = N_\text{eff}^{3/2} = 12^{3/2} = 41.57$ is a
+\textbf{motivated conjecture}, not a first-principles derivation.
+
+\textbf{What is proved:}
+\begin{itemize}
+  \item Factor 3 = $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$ — algebraic fact [L0]
+  \item Factor 2 from Gaussian integration — proved [L1]
+\end{itemize}
+
+\textbf{What remains open:}
+\begin{itemize}
+  \item The exponent 3/2 (22 approaches tested; all dead ends except
+        Kac-Moody $k=1$ motivated conjecture via H2)
+  \item Gap G3-k: direct computation of Kac-Moody level $k$ from $S[\Theta]$
+  \item Gap G8: modular weight of UBT partition function $\hat{Z}(\tau)$
+\end{itemize}
+
+\textbf{Do not invent a derivation.} The honest status is documented in
+\texttt{STATUS\_ALPHA.md}, §9 and
+\texttt{DERIVATION\_INDEX.md} (row: $B_\text{base} = N_\text{eff}^{3/2}$).
+\end{tcolorbox}
+
+\subsection{Correction Factor \texorpdfstring{$R \approx 1.114$}{R} (OPEN HARD PROBLEM)}
+
+The correction factor bridging $B_\text{base} = 41.57 \to B_\alpha \approx 46.3$
+has unknown geometric origin. Eight approaches tested; all dead ends.
+See \texttt{docs/PROOFKIT\_ALPHA.md}, §5;
+\texttt{consolidation\_project/alpha\_derivation/r\_factor\_geometry.tex}.
+
+\subsection{Notation disambiguation: \texorpdfstring{$B_\text{base}$ vs.\ $B_m$}{B\_base vs B\_m}}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,title=Notation note]
+$B_\text{base} \approx 41.57$ (dimensionless) is the running-coupling coefficient
+used in the $\alpha$ derivation.
+
+$B_m \approx -14.099\ \mathrm{MeV}$ is the logarithmic correction in the Hopfion
+lepton mass formula $m(n) = A\,n^p - B_m\,n\ln n$.
+
+These are \emph{distinct} objects with different dimensions and physical interpretations.
+\end{tcolorbox}
+
+\subsection{Further reading}
+
+\begin{itemize}
+  \item \texttt{canonical/interactions/qed.tex} — QED Lagrangian (canonical)
+  \item \texttt{STATUS\_ALPHA.md} — full $\alpha$ derivation chain and gap list
+  \item \texttt{DERIVATION\_INDEX.md} — row-by-row derivation status for all $\alpha$ steps
+  \item \texttt{consolidation\_project/alpha\_derivation/} — all B\_base attempts
+  \item \texttt{docs/papers/appendix\_GR\_embedding.tex} — gauge field contribution to $T_{\mu\nu}$
+\end{itemize}
+
+% End of QED_limit_bridge.tex

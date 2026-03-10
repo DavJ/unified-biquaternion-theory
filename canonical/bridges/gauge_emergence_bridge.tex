@@ -1,0 +1,120 @@
+% Gauge Group Emergence Bridge — Status Summary
+% Version: 1.0
+% Date: 2026-03-10
+% Status: Canonical bridge — cross-references only; no new derivations
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% PURPOSE: This file gives the precise derivation status of each component
+% of the SU(3)×SU(2)_L×U(1)_Y emergence claim, with pointers to the
+% canonical source files.  An external reviewer should be able to assess
+% the gauge sector in one place.
+
+\section{Gauge Group Emergence: Navigation Guide and Status}
+\label{sec:bridges:gauge_emergence}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Gauge Group Status Summary]
+\textbf{PROVED [L0]:} $\mathrm{SU}(3)_c$ from involutions on $\mathbb{C}\otimes\mathbb{H}$ \\
+\textbf{PROVED [L0]:} $\mathrm{SU}(2)_L$ from norm-preserving left action \\
+\textbf{PROVED [L0]:} $\mathrm{U}(1)_Y$ from scalar phase right action \\
+\textbf{SEMI-EMPIRICAL:} Weinberg angle $\theta_W$ — cannot be fixed by $\mathbb{C}\otimes\mathbb{H}$ alone \\
+\textbf{MOTIVATED (not fully proved):} Chirality selection (SU(2)$_L$ only, not SU(2)$_R$) — motivated by $\psi$-parity
+\end{tcolorbox}
+
+\subsection{\texorpdfstring{$\mathrm{SU}(3)_c$}{SU(3)c} emergence (PROVED [L0])}
+
+\textbf{Claim:} The strong colour gauge group $\mathrm{SU}(3)_c$ arises from
+the $\mathbb{Z}_2 \times \mathbb{Z}_2 \times \mathbb{Z}_2$ involution structure
+of $\mathbb{C}\otimes\mathbb{H}$.
+
+\textbf{Theorems G.A--G.D} (proved):
+\begin{itemize}
+  \item G.A — The Lie algebra $\mathfrak{su}(3)$ is realised in $\mathbb{C}\otimes\mathbb{H}$
+  \item G.B — Quarks transform in the fundamental representation
+  \item G.C — Gluons transform in the adjoint representation
+  \item G.D — Electroweak and strong sectors decouple
+\end{itemize}
+
+\textbf{Location:} \texttt{canonical/interactions/sm\_gauge.tex},
+Section~\ref{sec:canonical:sm_gauge}, Theorems G.A--G.D.
+
+\textbf{Colour confinement:} Algebraically, free quarks are inadmissible and
+hadrons satisfy the colour singlet condition $\langle C_2\rangle = 0$.
+Status: \textbf{conjectured with experimental support [L0]} (LHCb exotic hadron
+data consistent). No rigorous proof of confinement from dynamics exists (as in
+standard QCD).
+
+\subsection{\texorpdfstring{$\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$}{SU(2)\_L x U(1)\_Y} emergence (PROVED [L0])}
+
+\textbf{Claim:}
+\begin{itemize}
+  \item $\mathrm{SU}(2)_L$ is the group of norm-preserving left multiplications
+        on $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+  \item $\mathrm{U}(1)_Y$ is the group of scalar phase right multiplications
+\end{itemize}
+
+These are proved algebraic facts, not assumptions.
+
+\textbf{Location:} \texttt{canonical/interactions/sm\_gauge.tex},
+\emph{Geometric derivation of $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$};
+\texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex};
+\texttt{DERIVATION\_INDEX.md}: ``$\mathrm{SU}(2)_L$ from left action: Proved [L0]'';
+``$\mathrm{U}(1)_Y$ from right action: Proved [L0]''.
+
+\subsection{Weinberg Angle \texorpdfstring{$\theta_W$}{theta\_W} (SEMI-EMPIRICAL)}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,title=Semi-empirical: $\theta_W$]
+$\sin^2\theta_W \approx 0.23122$ cannot be derived from $\mathbb{C}\otimes\mathbb{H}$
+alone. Additional input (fermion representations or Higgs sector structure) is required.
+
+Status: \textbf{semi-empirical} — not a failure of the framework but an identified
+limitation of the $\mathbb{C}\otimes\mathbb{H}$ algebraic sector.
+
+\textbf{Location:} \texttt{canonical/interactions/sm\_gauge.tex} — explicitly
+flagged as semi-empirical; \texttt{DERIVATION\_INDEX.md}: ``Weinberg angle
+$\theta_W$: Semi-empirical''.
+\end{tcolorbox}
+
+\subsection{Chirality Selection: Why \texorpdfstring{$\mathrm{SU}(2)_L$}{SU(2)\_L} and not \texorpdfstring{$\mathrm{SU}(2)_R$}{SU(2)\_R} (MOTIVATED)}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,title=Motivated (not fully proved): chirality]
+Chirality selection — the fact that the weak interaction is left-handed — is
+motivated by $\psi$-parity in the complex-time sector $\tau = t + i\psi$.
+
+The physical argument: under $\psi \to -\psi$ (time-reversal in imaginary sector),
+left- and right-handed couplings transform differently. However, this has not been
+elevated to a formal theorem in the repository.
+
+Status: \textbf{motivated, semi-empirical} — documented as open in
+\texttt{DERIVATION\_INDEX.md} and \texttt{canonical/interactions/sm\_gauge.tex}.
+\end{tcolorbox}
+
+\subsection{Algebra: \texorpdfstring{$\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$}{C⊗H ≅ Mat(2,C)} (PROVED [L0])}
+
+This algebraic isomorphism is the foundation of the entire gauge sector derivation.
+It is an exact algebraic identity requiring no approximation.
+
+\textbf{Location:} \texttt{canonical/fields/biquaternion\_algebra.tex};
+\texttt{DERIVATION\_INDEX.md}: ``$\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+[L0]: algebraic identity''; \texttt{STATUS\_THEORY\_ASSESSMENT.md} v61 proved results.
+
+\subsection{Three Generations from \texorpdfstring{$\psi$}{psi}-winding modes (PROVED [L0])}
+
+Three identical copies of the SM quantum number structure arise from the three
+$\psi$-winding modes on the imaginary time circle $\psi \sim \psi + 2\pi$.
+
+\textbf{Location:} \texttt{DERIVATION\_INDEX.md}: ``$\psi$-modes as independent
+B-fields [L0]: Proven''; \texttt{STATUS\_THEORY\_ASSESSMENT.md} v61, proved results.
+
+\subsection{Further reading}
+
+\begin{itemize}
+  \item \texttt{canonical/interactions/sm\_gauge.tex} — canonical SM gauge structure
+  \item \texttt{canonical/fields/biquaternion\_algebra.tex} — $\mathbb{C}\otimes\mathbb{H}$ algebra
+  \item \texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex} — $\mathbb{Z}_2^3$ involutions
+  \item \texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex} — geometric derivation
+  \item \texttt{DERIVATION\_INDEX.md} — row-by-row gauge derivation status
+  \item \texttt{STATUS\_THEORY\_ASSESSMENT.md} — overall theory assessment with proof list
+\end{itemize}
+
+% End of gauge_emergence_bridge.tex
