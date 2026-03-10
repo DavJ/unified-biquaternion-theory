@@ -1,0 +1,196 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{rule}{Rule}
+\newtheorem{remark}{Remark}
+
+\title{Canonical Projection Rules\\
+\large Unified Biquaternion Theory — Canonical Theory Series}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The biquaternionic field $\Theta$ encodes geometry, gauge fields, and matter
+simultaneously. Physical observables are extracted from $\Theta$ through
+structured projection rules. This document defines all canonical projection
+rules used in UBT. It does not contain new derivations; it collects and
+cross-references existing definitions from canonical source files.
+\end{abstract}
+
+\section{Overview}
+
+A biquaternion $b \in \mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$
+has the decomposition:
+\begin{equation}
+  b \;=\; b_0 + b_1\mathbf{i} + b_2\mathbf{j} + b_3\mathbf{k},
+  \qquad b_\mu \in \mathbb{C},
+\end{equation}
+where $\{\mathbf{i},\mathbf{j},\mathbf{k}\}$ are the quaternion units.
+Each $b_\mu = \mathrm{Re}(b_\mu) + i\,\mathrm{Im}(b_\mu)$, giving 8 real
+degrees of freedom per spacetime point for a single biquaternion.
+
+\noindent\textbf{Source}: \texttt{canonical/fields/biquaternion\_algebra.tex}, \S1.
+
+\section{Rule P1: Metric Projection}
+
+\begin{rule}[Metric Extraction]\label{rule:metric}
+The classical spacetime metric is extracted by:
+\begin{equation}\label{eq:P1}
+  g_{\mu\nu}
+  \;=\;
+  \mathrm{Re}\bigl(\mathcal{G}_{\mu\nu}[\Theta]\bigr)
+  \;=\;
+  \mathrm{Re}\,\mathrm{Tr}\bigl(\partial_\mu\Theta\cdot(\partial_\nu\Theta)^\dagger\bigr).
+\end{equation}
+\textbf{Forbidden}: introducing $g_{\mu\nu}$ as an independent variable without
+explicit reference to \eqref{eq:P1}.
+\end{rule}
+
+\noindent\textbf{Status}: PROVED [L0] (algebraic identity).\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/metric.tex}, Rule M1;
+\texttt{canonical/geometry/biquaternion\_metric.tex}, \S2.
+
+\section{Rule P2: Phase Projection}
+
+\begin{rule}[Phase Frame Projection]\label{rule:phase}
+For a phase angle $\varphi \in [0,2\pi)$, the phase-projected metric is:
+\begin{equation}
+  g_{\mu\nu}^{(\varphi)}
+  \;=\;
+  \mathrm{Re}\bigl(e^{-i\varphi}\,\mathcal{G}_{\mu\nu}[\Theta]\bigr).
+\end{equation}
+The standard choice $\varphi = 0$ (Rule P1) is a gauge choice.
+Different phase frames are connected by a U(1) phase transformation.
+\end{rule}
+
+\noindent\textbf{Status}: PROVED [L0].\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/phase\_projection.tex}, \S2.
+
+\section{Rule P3: Gauge Field Extraction}
+
+\begin{rule}[Electromagnetic Potential]\label{rule:A}
+The U(1) electromagnetic potential is extracted from the phase of $\Theta$:
+\begin{equation}
+  A_\mu(x) \;=\; \frac{1}{e}\,\partial_\mu\,\mathrm{arg}(\Theta_{\text{scalar}}),
+\end{equation}
+where $\mathrm{arg}(\Theta_{\text{scalar}})$ is the complex argument of the
+scalar component of $\Theta$.
+More precisely, $A_\mu$ arises from the U(1) connection in the covariant
+derivative $D_\mu = \partial_\mu - ieA_\mu$.
+\end{rule}
+
+\begin{rule}[Non-Abelian Gauge Fields]\label{rule:YM}
+The SU(3) color gauge field $G_\mu^a$ and SU(2)$_L$ weak gauge field $W_\mu^a$
+are extracted from the quaternionic components of $\Theta$ under the respective
+group actions:
+\begin{itemize}
+  \item $G_\mu^a$: from left SU(3) action on the $3\times 3$ color block of $\Theta$
+  \item $W_\mu^a$: from left SU(2) action on the spinorial component of $\Theta$
+  \item $B_\mu$: from the right U(1)$_Y$ scalar phase (overlaps with Rule P3)
+\end{itemize}
+\end{rule}
+
+\noindent\textbf{Status}: PROVED [L0] for group structure; full extraction
+map is partial [L2].\\
+\noindent\textbf{Source}: \texttt{canonical/interactions/sm\_gauge.tex}, \S2--\S4;
+\texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
+
+\section{Rule P4: Matter Field Extraction}
+
+\begin{rule}[Fermion Fields]\label{rule:fermion}
+Spinorial matter fields are identified with the off-diagonal biquaternionic
+components of $\Theta$ in the 4-spinor representation:
+\begin{equation}
+  \psi_\alpha(x) \;\subset\; \Theta(x,\tau)\big|_{\text{spinor block}}.
+\end{equation}
+The Dirac spinor $\psi$ satisfies $(i\gamma^\mu D_\mu - m)\psi = 0$
+in the appropriate limit.
+\end{rule}
+
+\noindent\textbf{Status}: PRESENT [P] — identification is motivated;
+complete projection map is partial.\\
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S4.
+
+\section{Rule P5: Stress-Energy Extraction}
+
+\begin{rule}[Physical Stress-Energy]\label{rule:Tmunu}
+The physical stress-energy tensor is extracted by Hilbert variation:
+\begin{equation}
+  T_{\mu\nu}
+  \;=\;
+  -\frac{2}{\sqrt{-g}}\,
+  \frac{\delta\bigl(\sqrt{-g}\,\mathcal{L}_{\mathrm{matter}}\bigr)}{\delta g^{\mu\nu}},
+\end{equation}
+where $\mathcal{L}_{\mathrm{matter}} = \mathrm{Re}\,\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+is the matter Lagrangian density extracted from the real part of the
+biquaternionic kinetic term.
+\end{rule}
+
+\noindent\textbf{Status}: PROVED [L1].\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/stress\_energy.tex};
+\texttt{consolidation\_project/GR\_closure/step4\_offshell\_Tmunu.tex}.
+
+\section{Rule P6: Observable Limit}
+
+\begin{rule}[Classical Observable Limit]\label{rule:classical}
+All classical observables are recovered in the joint limit:
+\begin{enumerate}
+  \item Real-sector projection: $\psi \to 0$ (or equivalently $\varphi = 0$),
+  \item Weak-field limit for GR (or strong field — both are covered),
+  \item Classical matter limit: $\hbar \to 0$ for particle trajectories.
+\end{enumerate}
+The biquaternionic corrections (imaginary components) are invisible to
+classical measurements because ordinary matter couples only to $g_{\mu\nu}$,
+not to the full $\mathcal{G}_{\mu\nu}$.
+\end{rule}
+
+\noindent\textbf{Status}: PROVED [L1] for gravitational sector; PRESENT [P]
+for quantum sectors.\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_as\_limit.tex}, \S2;
+\texttt{THEORY/README.md}, \S3.
+
+\section{Summary of Projection Rules}
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+\textbf{Rule} & \textbf{Input} & \textbf{Output} & \textbf{Status} & \textbf{Source} \\
+\hline
+P1 & $\Theta$ & $g_{\mu\nu}$ (metric) & [L0] & \texttt{metric.tex} M1 \\
+P2 & $\mathcal{G}_{\mu\nu}$, $\varphi$ & $g_{\mu\nu}^{(\varphi)}$ & [L0] & \texttt{phase\_projection.tex} \\
+P3 & phase of $\Theta$ & $A_\mu$, $B_\mu$ & [L0]/[L2] & \texttt{sm\_gauge.tex} \\
+P3b & quaternion of $\Theta$ & $G_\mu^a$, $W_\mu^a$ & [L0]/[L2] & \texttt{sm\_gauge.tex} \\
+P4 & spinor block & $\psi_\alpha$ & [P] & \texttt{qed.tex} \S4 \\
+P5 & $\mathcal{L}_{\mathrm{matter}}$ & $T_{\mu\nu}$ & [L1] & \texttt{stress\_energy.tex} \\
+P6 & $\Theta$ + limits & classical fields & [L1] & \texttt{gr\_as\_limit.tex} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Cross-References}
+
+\begin{itemize}
+  \item Axioms: \texttt{THEORY/canonical/canonical\_axioms.tex}
+  \item Action: \texttt{THEORY/canonical/canonical\_action.tex}
+  \item Metric: \texttt{THEORY/canonical/canonical\_metric\_definition.tex}
+  \item Field equations: \texttt{THEORY/canonical/canonical\_field\_equations.tex}
+  \item Full algebra: \texttt{canonical/fields/biquaternion\_algebra.tex}
+  \item Phase projection: \texttt{canonical/geometry/phase\_projection.tex}
+  \item Gauge groups: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}
+\end{itemize}
+
+\end{document}
