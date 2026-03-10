@@ -1,0 +1,195 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{Canonical Field Equations\\
+\large Unified Biquaternion Theory — Canonical Theory Series}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document collects the canonical field equations of UBT. There are three
+levels: (1) the master biquaternionic equation encoding all sectors,
+(2) the Einstein field equations recovered as the real-sector limit,
+and (3) the matter/gauge field equations. Each equation is cross-referenced
+to the primary source file and labelled with its proof status.
+\end{abstract}
+
+\section{Master Field Equation}
+
+The master equation of UBT is the biquaternionic wave equation
+(``T-shirt formula''):
+\begin{equation}\label{eq:master}
+  \boxed{
+    \nabla^\dagger\nabla\,\Theta(q,\tau)
+    \;=\;
+    \kappa\,\mathcal{T}(q,\tau)
+  }
+\end{equation}
+where:
+\begin{itemize}
+  \item $\Theta(q,\tau) \in \mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$
+        is the fundamental biquaternionic field
+  \item $\nabla^\dagger\nabla$ is the biquaternionic Laplacian
+        (conjugate gradient squared)
+  \item $\kappa = 8\pi G/c^4$ is the gravitational coupling constant
+  \item $\mathcal{T}(q,\tau)$ is the biquaternionic source tensor
+  \item $q \in \mathbb{R}^{1,3}$ is the spacetime point,
+        $\tau = t + i\psi$ is complex time
+\end{itemize}
+
+\noindent\textbf{Status}: Axiom (Layer 0/1); source of all UBT field equations.\\
+\noindent\textbf{Source}: \texttt{canonical/fields/theta\_field.tex}, \S3.
+
+\section{Einstein Field Equations (Real Sector)}
+
+\begin{theorem}[Einstein Equations from UBT]
+In the real sector (constant phase $\varphi$, $\psi \to 0$ limit), the master
+equation \eqref{eq:master} projected to the real metric
+$g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta])$ becomes:
+\begin{equation}\label{eq:Einstein}
+  G_{\mu\nu}
+  \;=\;
+  R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R
+  \;=\;
+  \kappa\,T_{\mu\nu},
+\end{equation}
+where $G_{\mu\nu}$ is the Einstein tensor and $T_{\mu\nu}$ is the
+stress-energy tensor derived (not postulated) from the matter sector of
+$\mathcal{T}$.
+\end{theorem}
+
+\noindent\textbf{Status}: PROVED [L1] via Hilbert variation.\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_as\_limit.tex}, \S3--\S4;
+\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex}, Steps 1--5;
+\texttt{canonical/bridges/GR\_chain\_bridge.tex}.
+
+\begin{remark}[GR Embedding]
+Equation \eqref{eq:Einstein} is identical to Einstein's field equations.
+UBT \emph{embeds} GR as the real limit of a richer biquaternionic geometry;
+it does not replace GR. All experimental confirmations of GR validate UBT's
+real sector.
+\end{remark}
+
+\section{Stress-Energy Tensor}
+
+\begin{proposition}[Derived Stress-Energy]
+The stress-energy tensor $T_{\mu\nu}$ in \eqref{eq:Einstein} is derived from
+the matter Lagrangian by the Hilbert formula:
+\begin{equation}
+  T_{\mu\nu}
+  \;=\;
+  -\frac{2}{\sqrt{-g}}\,\frac{\delta(\sqrt{-g}\,\mathcal{L}_{\mathrm{matter}})}{\delta g^{\mu\nu}}.
+\end{equation}
+It is not postulated — it follows from the variational principle applied
+to the matter and gauge sectors of $\mathcal{L}_{\mathrm{UBT}}$.
+\end{proposition}
+
+\noindent\textbf{Status}: PROVED [L1].\\
+\noindent\textbf{Source}: \texttt{canonical/geometry/stress\_energy.tex};
+\texttt{consolidation\_project/GR\_closure/step4\_offshell\_Tmunu.tex}.
+
+\section{Electromagnetic Field Equations (Maxwell)}
+
+In the U(1) gauge sector, varying the action with respect to $A_\nu$ yields:
+\begin{align}
+  \partial_{[\lambda}F_{\mu\nu]} &= 0 \label{eq:Maxwell1} \\
+  \partial_\mu F^{\mu\nu} &= j^\nu \label{eq:Maxwell2}
+\end{align}
+Equations \eqref{eq:Maxwell1}--\eqref{eq:Maxwell2} are Maxwell's equations.
+
+\noindent\textbf{Status}: PROVED [L1].\\
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S3;
+\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex}.
+
+\section{QED Field Equations}
+
+The Dirac equation for the matter field in the U(1) background:
+\begin{equation}\label{eq:Dirac}
+  (i\gamma^\mu D_\mu - m)\,\psi \;=\; 0,
+  \qquad
+  D_\mu = \partial_\mu - ieA_\mu,
+\end{equation}
+emerges from the matter sector of the UBT Lagrangian
+$\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+in the fermionic limit.
+
+\noindent\textbf{Status}: PRESENT [P] — Dirac equation follows from standard
+QFT applied to the U(1) sector; full biquaternionic derivation of the
+Dirac spinor structure is partial.\\
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S4.
+
+\section{Yang--Mills Field Equations}
+
+For the non-abelian gauge sectors (SU(3) and SU(2)):
+\begin{equation}\label{eq:YM}
+  D_\mu F^{a\,\mu\nu} \;=\; j^{a\,\nu},
+\end{equation}
+where $F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu
++ g_s f^{abc} A^b_\mu A^c_\nu$ and $f^{abc}$ are the structure constants
+of SU(3) or SU(2).
+
+\noindent\textbf{Status}: Yang--Mills equations derived from gauge sector
+of UBT Lagrangian. SU(3) fully embedded [L0]; full dynamical content
+(confinement, asymptotic freedom) is partial [P].\\
+\noindent\textbf{Source}: \texttt{canonical/interactions/sm\_gauge.tex};
+\texttt{consolidation\_project/appendix\_E\_SM\_QCD\_embedding.tex}.
+
+\section{Off-Shell Closure (Open Problem)}
+
+\begin{remark}[Open Problem: Off-Shell Θ-Only Closure]
+Step 6 of the GR chain — deriving the Einstein equations purely from $\Theta$
+without any explicit matter source $\mathcal{T}$ — has a structural obstruction
+and remains an open problem (Layer 2). This does \emph{not} invalidate Steps 1--5.
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_completion\_attempt.tex};
+\texttt{canonical/bridges/GR\_chain\_bridge.tex}, \S6;
+\texttt{AUDITS/copilot\_repo\_verification\_and\_gap\_report.md}.
+\end{remark}
+
+\section{Summary Table}
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Equation} & \textbf{Sector} & \textbf{Source File} & \textbf{Status} \\
+\hline
+Master eq.\ \eqref{eq:master} & All & \texttt{theta\_field.tex} \S3 & Axiom \\
+Einstein eq.\ \eqref{eq:Einstein} & Gravity & \texttt{gr\_as\_limit.tex} & PROVED [L1] \\
+$T_{\mu\nu}$ derivation & Gravity & \texttt{stress\_energy.tex} & PROVED [L1] \\
+Maxwell eqs.\ \eqref{eq:Maxwell1}--\eqref{eq:Maxwell2} & EM & \texttt{qed.tex} \S3 & PROVED [L1] \\
+Dirac eq.\ \eqref{eq:Dirac} & Matter & \texttt{qed.tex} \S4 & PRESENT [P] \\
+Yang--Mills eq.\ \eqref{eq:YM} & Gauge & \texttt{sm\_gauge.tex} & PRESENT [P] \\
+Off-shell Θ-closure & Gravity & \texttt{gr\_completion\_attempt.tex} & OPEN [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Cross-References}
+
+\begin{itemize}
+  \item Axioms: \texttt{THEORY/canonical/canonical\_axioms.tex}
+  \item Action: \texttt{THEORY/canonical/canonical\_action.tex}
+  \item Metric: \texttt{THEORY/canonical/canonical\_metric\_definition.tex}
+  \item Projection rules: \texttt{THEORY/canonical/canonical\_projection\_rules.tex}
+  \item GR chain: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
+  \item QED/Maxwell: \texttt{canonical/bridges/Maxwell\_limit\_bridge.tex}
+  \item Gauge sector: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}
+\end{itemize}
+
+\end{document}
