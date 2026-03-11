@@ -284,12 +284,18 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ---
 
-## GR Recovery Status (v48+, updated 2026-03-06)
+## GR Recovery Status (v48+, updated 2026-03-11)
 
 > ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `consolidation_project/GR_closure/` chain  
 > Topic index: `THEORY/topic_indexes/GR_index.md`
 
-*Updated 2026-03-06 after v48 review.  Tasks: GR_closure Tasks 1–4 (step1_metric_bridge, step2_nondegeneracy, step3_signature_theorem with AXIOM B section).*
+*Updated 2026-03-11 to align language with the UBT-vs-GR clarification.
+**There is no contradiction between UBT and GR.** UBT reproduces GR on the admissible
+sector A_UBT (Level 2 = constrained_sector_recovery) while admitting additional non-GR
+degrees of freedom.  The combined variational condition E_Θ + J*E_g = 0 is fundamental;
+termwise separation is not automatic.  See `reports/gr_recovery_levels.md` for the
+three-level taxonomy and `consolidation_project/GR_closure/theta_vs_metric_variation_note.tex`
+for the variational analysis.*
 
 ```
 GR RECOVERY STATUS (v48+):
@@ -316,13 +322,13 @@ and an emergent-metric construction strongly connected to Θ.
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
 | GR equivalence via tetrad pipeline | **Conditional** | `consolidation_project/appendix_R_GR_equivalence.tex` | Requires Hermitian tetrad (A1), torsion-free (A2), invertible tetrad (A3) |
-| Θ-only closure (on-shell) | **Proved on-shell** | `consolidation_project/GR_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; on-shell injectivity proved for A_UBT class (§1.5); off-shell requires global section existence [L2 OPEN] |
+| Θ-only closure (on-shell) | **GR-compatible sector recovered (Level 2)** | `consolidation_project/GR_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; rank condition (non-degeneracy of δg/δΘ on admissible sector) proved for A_UBT class (§1.5); off-shell requires global rank argument [L2 OPEN; GAP-01, GAP-10] |
 
 ### Not Yet Proved
 
 | Result | Status | Notes |
 |--------|--------|-------|
-| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires proving injectivity of Θ↦g[Θ] globally; genericity argument only |
+| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires global rank argument for J=δg/δΘ; not merely injectivity (see GAP-10). Correct claim: Level-2 sector recovery. |
 | Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
 
 ---

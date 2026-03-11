@@ -72,7 +72,7 @@ Riemann → Ricci → Einstein chain, not directly from ∇†∇Θ.
 | GR equations recovered as real projection | **CONFIRMED** |
 | Linearised GR recovery | **PROVED** |
 | Non-linear GR recovery | **PARTIALLY PROVED** (flat + perturbation) |
-| Θ-only closure (on-shell, injectivity assumed) | **INDICATED** (not unconditionally proved; see GAP-01) |
+| Θ-only closure (on-shell, rank condition on admissible sector) | **INDICATED** (not unconditionally proved; see GAP-01) |
 | Re(∇†∇Θ) → G_{μν} as identity | **NOT PROVED — obstruction identified** |
 | Full non-perturbative GR embedding | **OPEN PROBLEM** |
 | Hilbert variation (g independent): G_{μν}=8πGT_{μν} | **PROVED** (step3\_einstein\_with\_matter.tex) |
@@ -157,7 +157,32 @@ Reviewer comments addressed:
 
 Overall GR sector assessment (post-review): **INDICATED [L1]** (not "substantially proved" without caveat)  
 **Note on Θ-only claim**: The claim that Θ-only variation recovers GR holds only on-shell
-and under a local injectivity assumption (see GAP-01 in `AUDITS/followup_gap_backlog_2026_03.md`
+and under a rank condition (local non-degeneracy of $\delta g/\delta\Theta$ on the
+admissible metric-generating sector; see GAP-01 and GAP-10 in `AUDITS/followup_gap_backlog_2026_03.md`
 and `GR_closure/step2_theta_only_closure.tex`).  The Hilbert variation result (g independent)
 is fully proved (`step3_einstein_with_matter.tex`).  
 Mathematical rigor: 4/5 (up from 3/5 after addressing review points)
+
+---
+
+## Key Conceptual Clarification (2026-03-11)
+
+**There is no contradiction between UBT and GR.**
+
+UBT can reproduce GR on a physical sector while still containing additional non-GR
+degrees of freedom.  This is not a weakness; it is the expected structure of a
+deeper theory.
+
+The three levels of GR recovery are now formally defined in
+`reports/gr_recovery_levels.md`:
+- **Level 1** (`exact_projected_recovery`): unconditional Θ-only theorem — **open problem**
+- **Level 2** (`constrained_sector_recovery`): GR on the admissible sector — **current best description**
+- **Level 3** (`low_energy_limit_recovery`): GR as classical effective limit — **plausible**
+
+The variational structure is: the combined condition
+$\mathcal{E}_\Theta + J^*\mathcal{E}_g = 0$ is the fundamental equation.
+This is NOT the same as two independently vanishing terms.  Separate recovery of
+$\mathcal{E}_g = 0$ (Einstein's equations) requires additional structure
+(rank condition, sector restriction, or projection) and is not automatic.
+See `consolidation_project/GR_closure/theta_vs_metric_variation_note.tex` for the
+complete analysis.

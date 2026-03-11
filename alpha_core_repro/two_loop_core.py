@@ -3,6 +3,11 @@
 """Root shim: alpha_core_repro.two_loop_core -> ubt_with_chronofactor."""
 import importlib as _importlib
 import sys as _sys
+import pathlib as _pathlib
+
+_archive = _pathlib.Path(__file__).resolve().parents[2] / "ARCHIVE" / "legacy_variants"
+if str(_archive) not in _sys.path:
+    _sys.path.insert(0, str(_archive))
 
 _real = _importlib.import_module("ubt_with_chronofactor.alpha_core_repro.two_loop_core")
 _sys.modules[__name__] = _real

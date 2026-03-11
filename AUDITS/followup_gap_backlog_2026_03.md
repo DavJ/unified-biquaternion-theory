@@ -272,6 +272,148 @@ calculation.
 
 ---
 
+---
+
+## GAP-10: Stronger theorem for exact extraction of E_g = 0 from combined Θ variation
+
+**Category**: Mathematical / derivation  
+**Severity**: High — this is the missing step for Level-1 GR recovery
+
+**Problem**: The combined Euler--Lagrange condition is
+$\mathcal{E}_\Theta + J^*\mathcal{E}_g = 0$.  Separately extracting
+$\mathcal{E}_g = 0$ (Einstein's equations) requires either a surjectivity
+(full-rank) condition on the induced variation map $J = \delta g/\delta\Theta$,
+or a projection/contraction theorem.  Neither has been proved globally.
+
+**What IS proved**: On-shell + rank condition (perturbative); Hilbert variation
+(Level 1 in metric+Θ formulation with $g$ independent).  
+**What is NOT proved**: Global rank of $J$; off-shell extraction of $\mathcal{E}_g = 0$
+from the combined condition without rank assumption.
+
+**Files**:
+- `consolidation_project/GR_closure/theta_vs_metric_variation_note.tex` — analysis of combined vs termwise
+- `consolidation_project/GR_closure/step2_theta_only_closure.tex` — current on-shell result
+- `reports/gr_recovery_levels.md` — Level 1 vs Level 2 distinction
+
+**Required action**:
+- Attempt to bound or compute the rank of $J$ globally (or on $\mathcal{A}_{\mathrm{UBT}}$).
+- Alternatively, identify a projection theorem converting the combined condition to $\mathcal{E}_g = 0$.
+- Until resolved, all claims must use Level-2 language ("sector recovery"), not Level-1
+  language ("exact Θ-only derivation").
+
+**Status**: ❓ open — formulated 2026-03-11 as follow-up to W1 analysis.
+
+---
+
+## GAP-11: Characterise the three types of GR recovery (projection vs sector vs limit)
+
+**Category**: Conceptual / documentation  
+**Severity**: Medium — required for precise communication
+
+**Problem**: The repository has been using "GR recovery" to mean different things
+in different contexts.  A taxonomy of three levels is now defined
+in `reports/gr_recovery_levels.md`, but existing documents have not been
+fully aligned to this taxonomy.
+
+**Files**:
+- `reports/gr_recovery_levels.md` — new taxonomy (Level 1/2/3)
+- `README.md`, `CURRENT_STATUS.md`, `DERIVATION_INDEX.md` — need labelling
+- `docs/THEORY_STATUS.md` — GR row labels
+
+**Required action**:
+- For each GR-related claim in the repository, assign the correct level label
+  (exact_projected_recovery / constrained_sector_recovery / low_energy_limit_recovery).
+- The `test_gr_status_consistency.py` regression test catches the most severe violations.
+- Full alignment is ongoing documentation work.
+
+**Status**: 🔶 partial — taxonomy defined; full alignment is future work.
+
+---
+
+## GAP-12: Characterise extra non-GR Θ degrees of freedom
+
+**Category**: Physical / theoretical  
+**Severity**: Medium — needed to understand what UBT predicts beyond GR
+
+**Problem**: The $\Theta$ field carries degrees of freedom beyond the metric
+sector: imaginary-part modes, $\psi$-circle winding modes, non-metric
+biquaternionic polarisations.  These are the physical content of the non-GR
+sector of UBT.  Their nature (gauge, physical, topological) and their
+observational consequences have not been characterised.
+
+**Files**:
+- `consolidation_project/GR_closure/gr_sector_conditions.tex` §4 — defines extra d.o.f.
+- `docs/ubt_gr_relationship.md` §"What may exist outside GR sector" — physical list
+- No derivation file yet exists.
+
+**Required action**:
+- Identify which extra $\Theta$ modes are pure gauge (unobservable in principle)
+  and which are physical.
+- For physical modes: determine their mass/energy scale and whether they are
+  suppressed at classical gravitational scales.
+- Determine if any non-GR modes leave observable signatures (e.g.\ in CMB,
+  gravitational wave spectrum, or black hole thermodynamics).
+
+**Status**: ❓ open — formulated 2026-03-11.
+
+---
+
+## GAP-13: Investigate whether Θ acts as generalised tetrad or spin-connection
+
+**Category**: Mathematical / structural  
+**Severity**: Low-Medium — structural insight, not blocking any core claim
+
+**Problem**: The induced metric formula
+$g_{\mu\nu} = \operatorname{Re}[\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger / \mathcal{N}]$
+has the structural form of a tetrad bilinear.  Whether $\partial_\mu\Theta$ can
+be identified with a generalised tetrad or spin-connection field (possibly in
+some gauge) is not known.  Such an identification would clarify the geometric
+interpretation of $\Theta$ and potentially simplify the rank/injectivity analysis
+(GAP-10).
+
+**Files**:
+- `consolidation_project/GR_closure/step1_metric_unification.tex`
+- `canonical/geometry/biquaternion_tetrad.tex`
+
+**Required action**:
+- Compare the $\partial_\mu\Theta$ structure with first-order (Palatini/tetrad)
+  formalisms of GR.
+- Determine whether $\Theta$ is closer to a scalar field, a tetrad field, or a
+  spin-connection field.
+- Document the comparison in a new file (e.g.\ `GR_closure/theta_as_tetrad_comparison.tex`).
+
+**Status**: ❓ open — formulated 2026-03-11.
+
+---
+
+## GAP-14: Observable signatures of the non-GR sector
+
+**Category**: Physical / phenomenological  
+**Severity**: Low — important for testability of UBT
+
+**Problem**: If UBT extends GR with additional non-GR degrees of freedom (GAP-12),
+there should in principle be observable consequences.  No systematic study of
+these signatures exists.
+
+**Candidates** (speculative, not yet analysed):
+- Modified dispersion relation for gravitons.
+- Additional polarisation modes of gravitational waves.
+- CMB non-Gaussianity or anomalous $\Delta N_{\mathrm{eff}}$.
+- Black hole thermodynamics modifications.
+
+**Files**:
+- `docs/ubt_gr_relationship.md` §"What may exist outside GR sector" — physical list
+- No analysis file yet.
+
+**Required action**:
+- Systematic analysis of each candidate signature.
+- Comparison with current observational bounds.
+- This is future research; documentation of the gap is sufficient for now.
+
+**Status**: ❓ open — formulated 2026-03-11.
+
+---
+
 ## Resolution Tracking
 
 | Gap | Description | Status | Last updated |
@@ -285,3 +427,8 @@ calculation.
 | GAP-07 | α chain semi-empirical | 🔶 partial | 2026-03-11 |
 | GAP-08 | Fermion mass coefficients fitted | 🔶 partial | 2026-03-11 |
 | GAP-09 | Status labels inconsistent | ❓ open | 2026-03-11 |
+| GAP-10 | Stronger theorem for exact E_g=0 extraction | ❓ open | 2026-03-11 |
+| GAP-11 | Characterise three types of GR recovery | 🔶 partial | 2026-03-11 |
+| GAP-12 | Characterise extra non-GR Θ degrees of freedom | ❓ open | 2026-03-11 |
+| GAP-13 | Θ as generalised tetrad/spin-connection | ❓ open | 2026-03-11 |
+| GAP-14 | Observable signatures of non-GR sector | ❓ open | 2026-03-11 |
