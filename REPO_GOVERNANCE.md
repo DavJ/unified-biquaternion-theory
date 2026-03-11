@@ -1,7 +1,7 @@
 # UBT Repository Governance
 
-**Version**: 1.0  
-**Date**: 2026-01-10  
+**Version**: 1.1  
+**Date**: 2026-03-11  
 **Purpose**: Define clear rules for canonical vs. speculative content classification and organization
 
 ---
@@ -313,6 +313,79 @@ This governance document supersedes and consolidates rules from:
 
 ---
 
+## Archive Policy
+
+### Allowed Archive Targets
+
+Only the following categories of files may be moved to `archive/`:
+
+- Deprecated status snapshots
+- Abandoned experimental attempts with no active references
+- Duplicate derivations superseded by canonical versions
+- Repository snapshots and historical versions
+- Generated build artifacts
+
+### Safe-to-Archive File Patterns
+
+Files matching these name patterns are candidates for archival (subject to reference check):
+
+- `*_attempt*`
+- `*_old*`
+- `*_draft*`
+- `*_backup*`
+- `*_experimental*`
+
+### Reference Integrity Rule
+
+**Before moving any file to `archive/`, verify it is not referenced anywhere in the repository:**
+
+```bash
+grep -R "<filename>" .
+```
+
+If the file is referenced in `canonical/`, `research/`, or `AUDITS/`, it **MUST NOT** be archived.
+
+### Protected Paths (Never Archive Automatically)
+
+The following paths and their contents are permanently protected from archival:
+
+- `canonical/`
+- `THEORY/`
+- `DERIVATION_INDEX.md`
+- `CURRENT_STATUS.md`
+- `README.md`
+
+### Protected Research Topics
+
+The following research topics must always remain available in `research/` and must not be archived while any active document references them:
+
+- `modular_dynamics`
+- `theta_modular_geometry`
+- `theta_alpha_connection`
+- `moduli_space_ads_vs_physical_ds`
+- `mirror_sector_modular_status`
+- `B_base_heat_kernel`
+- `B_base_spectral_determinant`
+
+### Git Operations for Archive Moves
+
+All file moves (both to archive and out of archive) **must use `git mv`** to preserve history:
+
+```bash
+# Correct — preserves history
+git mv research/some_file.tex archive/deprecated/research_tracks/some_file.tex
+
+# Wrong — destroys history
+mv research/some_file.tex archive/deprecated/research_tracks/some_file.tex
+```
+
+### Restoration Principle
+
+Prefer **restoring** an incorrectly archived file over rewriting it from scratch.
+Restoration preserves authorship, derivation history, and original context.
+
+---
+
 ## Updates and Versioning
 
 **This document follows semantic versioning:**
@@ -321,6 +394,7 @@ This governance document supersedes and consolidates rules from:
 - **Patch (1.0.X)**: Clarifications and minor corrections
 
 **Version History:**
+- **v1.1** (2026-03-11): Added Archive Policy, Reference Integrity Rule, Protected Research Topics, Git Operations rule, and Restoration Principle
 - **v1.0** (2026-01-10): Initial governance document
 
 **Review Schedule:** Quarterly  
