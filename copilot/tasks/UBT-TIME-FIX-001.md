@@ -12,7 +12,7 @@ After the audit exists, apply **minimal textual patches** to the highest-visibil
    - Add one sentence clarifying:
      - `T_B` is primary; `τ` is a limit/projection.
    - Add a link to:
-     - `DOCS/time_selection_criteria.md`
+     - `ARCHIVE/duplicate_or_snapshot_roots/DOCS/time_selection_criteria.md`
    - Add `[TRANSITION_CRITERION]` tag or explicit reference to:
      - `TRANSITION_CRITERION_COMPLEX_BIQUATERNIONIC.md` / Appendix N2
 3. Keep edits localized and reviewable.

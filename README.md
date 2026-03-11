@@ -108,7 +108,7 @@ Open: pure Θ-only closure off-shell; metric uniqueness beyond A_UBT.
 **This repository presents two parallel formulations of UBT** for systematic A/B comparison:
 
 ### 🔬 UBT with Chronofactor
-**Location**: [`ubt_with_chronofactor/`](ubt_with_chronofactor/)
+**Location**: [`ARCHIVE/legacy_variants/ubt_with_chronofactor/`](ARCHIVE/legacy_variants/ubt_with_chronofactor/)
 
 Uses **complex time τ = t + iψ** as an external evolution parameter:
 - **Complete implementation**: Papers, tools, experiments, forensic fingerprint
@@ -117,10 +117,10 @@ Uses **complex time τ = t + iψ** as an external evolution parameter:
 
 **Status**: ✅ Full formulation with extensive validation
 
-**Start here**: [`ubt_with_chronofactor/README.md`](ubt_with_chronofactor/README.md)
+**Start here**: [`ARCHIVE/legacy_variants/ubt_with_chronofactor/README.md`](ARCHIVE/legacy_variants/ubt_with_chronofactor/README.md)
 
 ### 🧮 UBT without Chronofactor  
-**Location**: [`ubt_no_chronofactor/`](ubt_no_chronofactor/)
+**Location**: [`ARCHIVE/legacy_variants/ubt_no_chronofactor/`](ARCHIVE/legacy_variants/ubt_no_chronofactor/)
 
 Uses only **standard real time t**, with all phase information intrinsic to the 8D field Θ(q):
 - **Two channels**: Entropy S_Θ (→ GR) and phase Σ_Θ (→ QM)
@@ -129,10 +129,10 @@ Uses only **standard real time t**, with all phase information intrinsic to the 
 
 **Status**: 🚧 Core scaffolding complete, derivations in progress
 
-**Start here**: [`ubt_no_chronofactor/core/README.md`](ubt_no_chronofactor/core/README.md)
+**Start here**: [`ARCHIVE/legacy_variants/ubt_no_chronofactor/core/README.md`](ARCHIVE/legacy_variants/ubt_no_chronofactor/core/README.md)
 
 ### 🔍 Comparison Protocol
-**Location**: [`ubt_compare/`](ubt_compare/)
+**Location**: [`ARCHIVE/legacy_variants/ubt_compare/`](ARCHIVE/legacy_variants/ubt_compare/)
 
 Tools and protocols for **systematic A/B comparison**:
 - **Shared invariants**: Physical observables both formulations must predict
@@ -145,7 +145,7 @@ Tools and protocols for **systematic A/B comparison**:
 - Better match to observational data
 - Simpler derivations
 
-**Start here**: [`ubt_compare/README.md`](ubt_compare/README.md)
+**Start here**: [`ARCHIVE/legacy_variants/ubt_compare/README.md`](ARCHIVE/legacy_variants/ubt_compare/README.md)
 
 ### The Central Question
 
@@ -169,14 +169,14 @@ Both are maintained as **first-class alternatives** to enable:
 
 | Looking for... | With Chronofactor | Without Chronofactor | Comparison |
 |----------------|-------------------|----------------------|------------|
-| **Theory foundations** | `ubt_with_chronofactor/` | `ubt_no_chronofactor/core/` | `ubt_compare/` |
-| **Derivations** | Original papers | `ubt_no_chronofactor/derivations/` | `ubt_compare/mapping_table.md` |
-| **Papers** | `ubt_with_chronofactor/papers/` | `ubt_no_chronofactor/papers/` | Both |
-| **Python tools** | `ubt_with_chronofactor/scripts/` | `ubt_no_chronofactor/core/*.py` | - |
-| **Experiments** | `ubt_with_chronofactor/EXPERIMENTS/` | Future | - |
-| **Forensic fingerprint** | `ubt_with_chronofactor/forensic_fingerprint/` | Future | `ubt_compare/invariants.md` |
+| **Theory foundations** | `ARCHIVE/legacy_variants/ubt_with_chronofactor/` | `ARCHIVE/legacy_variants/ubt_no_chronofactor/core/` | `ARCHIVE/legacy_variants/ubt_compare/` |
+| **Derivations** | Original papers | `ARCHIVE/legacy_variants/ubt_no_chronofactor/derivations/` | `ARCHIVE/legacy_variants/ubt_compare/mapping_table.md` |
+| **Papers** | `ARCHIVE/legacy_variants/ubt_with_chronofactor/papers/` | `ARCHIVE/legacy_variants/ubt_no_chronofactor/papers/` | Both |
+| **Python tools** | `ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/` | `ARCHIVE/legacy_variants/ubt_no_chronofactor/core/*.py` | - |
+| **Experiments** | `ARCHIVE/legacy_variants/ubt_with_chronofactor/EXPERIMENTS/` | Future | - |
+| **Forensic fingerprint** | `ARCHIVE/legacy_variants/ubt_with_chronofactor/forensic_fingerprint/` | Future | `ARCHIVE/legacy_variants/ubt_compare/invariants.md` |
 
-**Note**: Root-level `forensic_fingerprint/` is a compatibility shim that delegates to `ubt_with_chronofactor/forensic_fingerprint/` for backward compatibility with tests.
+**Note**: Root-level `forensic_fingerprint/` is a compatibility shim that delegates to `ARCHIVE/legacy_variants/ubt_with_chronofactor/forensic_fingerprint/` for backward compatibility with tests.
 
 ---
 
@@ -273,7 +273,7 @@ Active research hypotheses:
 **Speculative content separated from core:**
 - Core theory in `unified_biquaternion_theory/` and `consolidation_project/`
 - All consciousness-related content in `speculative_extensions/` folder
-- **Complex Consciousness Theory (CCT)**: Located in `speculative_extensions/complex_consciousness/` and `ubt_with_chronofactor/complex_consciousness/`
+- **Complex Consciousness Theory (CCT)**: Located in `speculative_extensions/complex_consciousness/` and `ARCHIVE/legacy_variants/ubt_with_chronofactor/complex_consciousness/`
   - CCT applies UBT principles to model consciousness as a physical phenomenon
   - Classified as speculative/exploratory research
   - Kept separate from empirically validated core theory
@@ -492,7 +492,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 - **HUBBLE_LATENCY/** - Hubble tension interpretation (Layer C)
 - **DATA/** - Observational data with SHA-256 manifests
 - **TOOLS/** - Data provenance, simulations, plotting
-- **DOCS/** - Overview, abstracts, glossary, publication notes
+- **ARCHIVE/duplicate_or_snapshot_roots/DOCS/** - Overview, abstracts, glossary, publication notes
 - **SPECULATIVE/** - Non-core extensions clearly separated
 
 **See [REORGANIZATION_2026-01.md](REORGANIZATION_2026-01.md) for migration guide and detailed directory structure**
@@ -653,7 +653,7 @@ unified-biquaternion-theory/
 │   ├── simulations/        # Computational predictions (α, m_e, etc.)
 │   └── plotting/           # Visualization tools
 │
-├── DOCS/                    # Documentation for various audiences
+├── ARCHIVE/duplicate_or_snapshot_roots/DOCS/   # Legacy docs (archived)
 │   ├── overview.md         # High-level introduction (start here)
 │   ├── hubble_latency_abstract.md  # Conservative astro-ph style abstract
 │   ├── glossary.md         # Terminology and definitions
@@ -668,13 +668,13 @@ unified-biquaternion-theory/
 
 ### Quick Navigation
 
-- **New to UBT?** → Start with [`DOCS/overview.md`](DOCS/overview.md)
+- **New to UBT?** → Start with [`ARCHIVE/duplicate_or_snapshot_roots/DOCS/overview.md`](ARCHIVE/duplicate_or_snapshot_roots/DOCS/overview.md)
 - **Checking empirical claims?** → See [`FINGERPRINTS/`](FINGERPRINTS/)
 - **Validating null results?** → Check [`FINGERPRINTS/null_results/combined_verdict.md`](FINGERPRINTS/null_results/combined_verdict.md)
 - **Understanding theory?** → Read [`THEORY/README.md`](THEORY/README.md)
 - **Testing reproducibility?** → Use protocols in [`FORENSICS/`](FORENSICS/)
 - **Evaluating Hubble latency?** → See [`HUBBLE_LATENCY/README.md`](HUBBLE_LATENCY/README.md)
-- **Looking for definitions?** → Check [`DOCS/glossary.md`](DOCS/glossary.md)
+- **Looking for definitions?** → Check [`ARCHIVE/duplicate_or_snapshot_roots/DOCS/glossary.md`](ARCHIVE/duplicate_or_snapshot_roots/DOCS/glossary.md)
 - **Comparing with other theories?** → See [`THEORY_COMPARISONS/`](THEORY_COMPARISONS/)
 
 ---
@@ -756,7 +756,7 @@ The **Hubble tension** (~8-9% discrepancy between early and late H₀ measuremen
 
 **Language**: "Can be modeled as", "interpreted as", "consistent with" - NOT "proves" or "solves"
 
-See: [`HUBBLE_LATENCY/README.md`](HUBBLE_LATENCY/README.md) and [`DOCS/hubble_latency_abstract.md`](DOCS/hubble_latency_abstract.md)
+See: [`HUBBLE_LATENCY/README.md`](HUBBLE_LATENCY/README.md) and [`ARCHIVE/duplicate_or_snapshot_roots/DOCS/hubble_latency_abstract.md`](ARCHIVE/duplicate_or_snapshot_roots/DOCS/hubble_latency_abstract.md)
 
 ---
 

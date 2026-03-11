@@ -144,12 +144,12 @@ Two independent numerical approaches are available:
 
 ### 4a. Effective potential scan (prime stability)
 
-**Script**: [`ubt_with_chronofactor/scripts/emergent_alpha_calculator.py`](../ubt_with_chronofactor/scripts/emergent_alpha_calculator.py)
+**Script**: [`ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/emergent_alpha_calculator.py`](../ARCHIVE/legacy_variants/ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/emergent_alpha_calculator.py)
 
 Scans V_eff(n) over prime n and finds the minimum:
 
 ```bash
-python ubt_with_chronofactor/scripts/emergent_alpha_calculator.py
+python ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/emergent_alpha_calculator.py
 ```
 
 Expected: minimum at n = 137 (for B ≈ 46.3).

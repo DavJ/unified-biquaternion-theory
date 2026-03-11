@@ -181,7 +181,7 @@ See `FINGERPRINTS/` for complete list:
 1. Check `FINGERPRINTS/null_results/` FIRST - we document failures
 2. Review `FORENSICS/` for testing methodology
 3. Examine `axioms/` for what is assumed vs derived
-4. See `DOCS/` for honest assessment of theory status
+4. See `ARCHIVE/duplicate_or_snapshot_roots/DOCS/` for honest assessment of theory status
 
 ## Relationship to Other Theories
 
@@ -219,7 +219,7 @@ When reviewing UBT theory:
 
 - **Fingerprints**: `FINGERPRINTS/` - Empirical predictions and tests
 - **Forensics**: `FORENSICS/` - Court-grade testing protocols
-- **Documentation**: `DOCS/` - Overview and publication notes
+- **Documentation**: `ARCHIVE/duplicate_or_snapshot_roots/DOCS/` - Overview and publication notes
 - **Speculative**: `SPECULATIVE/` - Clearly separated speculative content
 
 ---

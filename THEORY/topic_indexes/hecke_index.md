@@ -117,7 +117,7 @@ Raw numerical scans of CMB-derived data around k=137,139 are in `scans/raw/`:
 | `reports/combined_137_139_and_alpha_audit.md` | Combined audit | **supporting** |
 | `reports/channel_analysis/local_137_139_comparison.md` | Channel comparison | **supporting** |
 | `findings/carrier_137/Carrier_137_Synthesis.md` | Carrier 137 synthesis | **supporting** |
-| `ubt_with_chronofactor/scripts/analyze_137_139_channels.py` | Channel analysis script | **sandbox** |
+| `ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/analyze_137_139_channels.py` | Channel analysis script | **sandbox** |
 
 ---
 
