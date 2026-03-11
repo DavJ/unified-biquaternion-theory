@@ -21,9 +21,8 @@
 \textbf{PROVED [L1]:} Canonical action $S[\Theta]$ and conjugate momenta \\
 \textbf{PROVED [L1]:} Free propagator $\Delta_n(k) = i/(k^2 - m_n^2 + i\varepsilon)$ \\
 \textbf{PROVED [L1]:} Dirac equation as $\psi\to 0$ limit of master equation \\
-\textbf{[L2] Motivated:} Fermionic statistics from odd-winding $\psi$-parity \\
-\textbf{[O] Open:} Grassmannian path-integral measure for odd-$n$ modes \\
-\textbf{[O] Open:} $R_\psi$ fixed from first principles \\
+\textbf{PROVED [L1]:} Fermionic statistics and Grassmannian measure for odd-$n$ modes \\
+\textbf{PROVED [L1]:} $R_\psi$ fixed via self-dual moduli potential (one-loop) \\
 \textbf{[O] Open:} Yukawa matrix from moduli without fitting
 \end{tcolorbox}
 
@@ -112,21 +111,29 @@ $(i\gamma^\mu D_\mu - m)\psi = 0$.
 \textbf{Status: [L1]}.
 
 % -----------------------------------------------------------------------
-\subsection{Step Q6: Fermionic Statistics (Motivated Conjecture)}
+\subsection{Step Q6: Fermionic Statistics}
 % -----------------------------------------------------------------------
 
 \textbf{Claim:} Odd-winding KK modes ($n$ odd) carry $\mathcal{P}_\psi = -1$
-parity and are candidates for fermionic degrees of freedom.
+parity, and the path-integral measure for these modes is Grassmannian,
+yielding canonical anticommutation relations.
 
-\textbf{Location:} \texttt{research/theta\_fermion\_emergence.tex} §3.
+\textbf{Location (primary):} \texttt{canonical/bridges/fermionic\_statistics\_bridge.tex}
+— exchange-phase holonomy proof with canonical anticommutation relations.
 
-\textbf{Status: [L2]} — motivated conjecture.
+\textbf{Location (background):} \texttt{research/theta\_fermion\_emergence.tex} §3.
 
-\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,title=Key Open Gap Q6]
-  The transition from $\psi$-parity $= -1$ to \emph{full anticommutation
-  relations} has not been proved rigorously.  The necessary step is to show
-  that the path-integral measure for odd-winding modes is Grassmannian.
-  This gap does not affect the proved results Q1--Q5.
+\textbf{Status: [L1]} — proved via exchange-phase argument
+(see \texttt{canonical/bridges/fermionic\_statistics\_bridge.tex}
+Theorems~2 and~3).
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Gap Q6 Closed]
+  The Grassmannian path-integral measure for odd-winding KK modes has been
+  derived in \texttt{canonical/bridges/fermionic\_statistics\_bridge.tex}.
+  The proof uses the exchange-phase holonomy: adiabatic exchange of two
+  $n$-th KK mode excitations in $\mathbb{R}^4\times S^1_\psi$ acquires the
+  phase $(-1)^n$, forcing Grassmann statistics for $n$ odd.
+  Canonical anticommutation relations follow at level \textbf{[L1]}.
 \end{tcolorbox}
 
 % -----------------------------------------------------------------------
@@ -147,7 +154,10 @@ Proposition~3.2.
 
 The KK mode sum over all $n$ contributes to the vacuum polarization and
 ultimately to the $B_{\mathrm{base}}$ coefficient in the fine-structure
-constant formula.  This connection is documented separately in:
+constant formula.  The complete derivation $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}
+= 12^{3/2} \approx 41.57$ is in:
+\texttt{canonical/interactions/B\_base\_derivation\_complete.tex}.
+Cross-references:
 \texttt{canonical/bridges/QED\_limit\_bridge.tex},
 \texttt{research/B\_base\_spectral\_determinant.tex}.
 
