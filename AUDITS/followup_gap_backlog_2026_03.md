@@ -85,10 +85,12 @@ confused about the role of 𝒩.
 - The Clifford proof (Theorem: Lorentzian signature from Clifford embedding) is correct
   and should be presented as the authoritative result.
 
-**Current resolution**: Not yet resolved — the failed block is present without
-a clear "FAILED APPROACH" label.
+**Current resolution**: ✅ Resolved — the failed block is now quarantined with a prominent
+`% --- FAILED APPROACH — quarantined, kept for transparency ---` comment block, explaining
+that the Euclidean result is a dead end and that positive rescaling by 𝒩 > 0 cannot change
+signature.  A clear pointer to the correct Clifford argument is included.
 
-**Status**: ❓ open — editorial fix needed.
+**Status**: ✅ resolved — 2026-03-11.
 
 ---
 
@@ -114,9 +116,13 @@ valid for:
   cases (linearity and real derivatives).
 - See: GR recovery and canonical geometry documents.
 
-**Current resolution**: Not yet resolved.
+**Current resolution**: ✅ Resolved — `canonical/geometry/curvature.tex` line 85 now reads:
+"commutes with *real* derivatives … and is *linear*" with an explicit **Caution** note
+that Re does NOT commute with general biquaternionic products: Re(AB) ≠ Re(A)Re(B).
+The text clarifies the formula is valid specifically because Christoffel symbols are
+derived from the real metric using only real arithmetic after projection.
 
-**Status**: ❓ open — one-line fix needed.
+**Status**: ✅ resolved — 2026-03-11.
 
 ---
 
@@ -141,9 +147,14 @@ different and stronger (unproved) claim.
 - Explicitly state that this is **not** the full Θ-only closure (which requires
   additional injectivity assumptions; see `step2_theta_only_closure.tex`).
 
-**Current resolution**: Not yet resolved.
+**Current resolution**: ✅ Resolved — the abstract of `step3_einstein_with_matter.tex`
+now contains an explicit **Scope note (important)** stating: "This derivation is the
+*Hilbert variation*: the metric g^{μν} is treated as an *independent* dynamical variable,
+varied independently of Θ.  This is **not** the Θ-only closure, which is addressed
+separately in `GR_closure/step2_theta_only_closure.tex` and requires an additional
+rank/nondegeneracy condition; it holds on-shell but not unconditionally off-shell."
 
-**Status**: ❓ open — clarification note needed.
+**Status**: ✅ resolved — 2026-03-11.
 
 ---
 
@@ -419,9 +430,9 @@ these signatures exists.
 | Gap | Description | Status | Last updated |
 |-----|-------------|--------|--------------|
 | GAP-01 | GR Θ-only closure not proved | 🔶 partial | 2026-03-11 |
-| GAP-02 | Euclidean block in signature proof | ❓ open | 2026-03-11 |
-| GAP-03 | Real projection over products claim | ❓ open | 2026-03-11 |
-| GAP-04 | T_munu step3 not labelled Hilbert | ❓ open | 2026-03-11 |
+| GAP-02 | Euclidean block in signature proof | ✅ resolved | 2026-03-11 |
+| GAP-03 | Real projection over products claim | ✅ resolved | 2026-03-11 |
+| GAP-04 | T_munu step3 not labelled Hilbert | ✅ resolved | 2026-03-11 |
 | GAP-05 | su(2,2) candidate not classified | 🔶 partial | 2026-03-11 |
 | GAP-06 | τ=t+iψ mapping to twistor open | ❓ open | 2026-03-11 |
 | GAP-07 | α chain semi-empirical | 🔶 partial | 2026-03-11 |
