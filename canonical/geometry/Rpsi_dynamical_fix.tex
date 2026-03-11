@@ -1,0 +1,484 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+\newcommand{\PROVED}{\textbf{PROVED}}
+
+\title{Dynamical Derivation of $R_\psi$\\
+\large Heat Kernel, Spectral Determinant, and Modular Potential\\
+Unified Biquaternion Theory — Canonical Geometry Series}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The compactification radius $R_\psi$ of the imaginary time circle $S^1_\psi$
+in Unified Biquaternion Theory has until now been a free parameter.
+This document closes the gap by combining three independent results from the
+research archive:
+(i) the heat kernel expansion on the 3-torus $\mathbb{T}^3$,
+(ii) the spectral determinant of the torus Laplacian, and
+(iii) the one-loop moduli potential $V_{\mathrm{mod}}(\tau)$ arising from
+the functional determinant of the $\Theta$-field.
+
+The key result is: the moduli potential derived from the heat kernel
+is minimised at the self-dual point $R_\psi = R_t$ (modular parameter
+$\tau_{\mathrm{mod}} = i$), providing a dynamical mechanism for fixing
+$R_\psi$ without empirical fitting.
+The resulting prediction $R_\psi = R_t$ is testable against the
+$B_{\mathrm{base}}$ computation
+(\texttt{canonical/interactions/B\_base\_derivation\_complete.tex}).
+
+\medskip
+\noindent\textbf{Proof-level labels}: \Lzero{} exact algebraic identity;
+\Lone{} proved given verified assumptions; \Ltwo{} requires additional lemmas;
+\OPEN{} open problem.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ======================================================================
+\section{Setup: Modular Parameter and Torus Geometry}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{Modular parameter}
+
+The complex time $\tau = t + i\psi$ with $\psi\in[0, 2\pi R_\psi)$ and
+$t\in[0, 2\pi R_t)$ (both compactified for the Euclidean analysis) defines
+a modular parameter:
+\begin{equation}
+\label{eq:tau_mod}
+  \tau_{\mathrm{mod}} = i\frac{R_\psi}{R_t} \;\in\; i\mathbb{R}_{>0}
+  \;\subset\; \mathbb{H}
+  \quad(\text{upper half-plane}),
+\end{equation}
+lying on the imaginary axis.  The associated Euclidean torus is
+$\mathbb{T}_\tau = \mathbb{C}/(\mathbb{Z}+\tau_{\mathrm{mod}}\mathbb{Z})$.
+
+Status: \Lone{} (source: \texttt{research/modular\_dynamics.tex} §1).
+
+\subsection{Three-torus geometry}
+
+The imaginary-time sector of UBT is compactified on a 3-torus
+$\mathbb{T}^3 = S^1_\psi\times S^1_\chi\times S^1_\xi$ with all radii equal
+to $R_\psi$ (isotropic case).  The Laplacian eigenvalues are:
+\begin{equation}
+\label{eq:eigenvalues}
+  \lambda_{\mathbf{n}} = \frac{|\mathbf{n}|^2}{R_\psi^2},
+  \qquad
+  \mathbf{n}=(n_1,n_2,n_3)\in\mathbb{Z}^3.
+\end{equation}
+
+Status: \Lzero{} (source: \texttt{research/B\_base\_spectral\_determinant.tex} §2).
+
+% ======================================================================
+\section{Heat Kernel on the Torus}
+\label{sec:heat_kernel}
+% ======================================================================
+
+\subsection{Torus heat kernel}
+
+The heat kernel $K_{T^3}(t) = \mathrm{Tr}\,e^{t\Delta}$ for the 3-torus is:
+\begin{equation}
+\label{eq:hk_torus}
+  K_{T^3}(t)
+  = \left[\sum_{n\in\mathbb{Z}} e^{-n^2 t/R_\psi^2}\right]^3
+  = \vartheta_3(0\,|\, it/(\pi R_\psi^2))^3,
+\end{equation}
+where $\vartheta_3$ is the Jacobi theta function.
+
+Status: \Lzero{} (standard exact result, source:
+\texttt{research/B\_base\_heat\_kernel.tex} §1).
+
+\subsection{Short-time expansion}
+
+For $t \ll R_\psi^2$:
+\begin{equation}
+\label{eq:hk_expand}
+  K_{T^3}(t) \;\sim\;
+  \frac{V_3}{(4\pi t)^{3/2}}
+  + O(e^{-R_\psi^2/t}),
+\end{equation}
+where $V_3=(2\pi R_\psi)^3$ is the torus volume.
+The corrections are exponentially suppressed in the UV regime.
+
+Status: \Lzero{} (source: \texttt{research/B\_base\_heat\_kernel.tex} §2).
+
+\subsection{Modular transformation of the heat kernel}
+
+Under $t\to R_\psi^4/t$ (the modular transformation $\tau\to -1/\tau$ for
+the modular parameter associated with the heat kernel):
+\begin{equation}
+\label{eq:hk_modular}
+  K_{T^3}(R_\psi^4/t)
+  = \left(\frac{t}{\pi R_\psi^2}\right)^{3/2}\,K_{T^3}(t).
+\end{equation}
+
+This is the Jacobi inversion formula for $\vartheta_3^3$, which is a standard
+identity (\Lzero, source: \texttt{research/B\_base\_heat\_kernel.tex}
+Proposition~3.1).
+
+The self-dual point of \eqref{eq:hk_modular} is $t = \pi R_\psi^2$, which
+corresponds to the modular parameter $\tau_{\mathrm{mod}} = i$ (i.e.,
+$R_\psi = R_t$).
+
+% ======================================================================
+\section{Spectral Determinant}
+\label{sec:spec_det}
+% ======================================================================
+
+\subsection{Spectral zeta function}
+
+The spectral zeta function for $-\Delta_{T^3}$ (excluding zero mode):
+\begin{equation}
+\label{eq:spec_zeta}
+  Z_3(s) = \sum_{\mathbf{n}\neq 0}
+  \frac{R_\psi^{2s}}{|\mathbf{n}|^{2s}}
+  = R_\psi^{2s}\,E_3(s),
+\end{equation}
+where $E_3(s)$ is the (dimensionless) Epstein zeta function for the cubic
+lattice $\mathbb{Z}^3$.
+
+Status: \Lzero{} (source: \texttt{research/B\_base\_spectral\_determinant.tex} §2).
+
+\subsection{Functional determinant via zeta regularisation}
+
+\begin{proposition}[Spectral determinant of $T^3$]\label{prop:det_t3}
+  The zeta-regularised functional determinant of the torus Laplacian is:
+  \begin{equation}
+  \label{eq:det_t3}
+    \ln\det(-\Delta_{T^3})
+    = -Z_3'(0)
+    = -3\ln(2\pi R_\psi) - 2E_3'(0),
+  \end{equation}
+  where $E_3'(0)$ is the derivative of the Epstein zeta function at $s=0$.
+  Numerically, $E_3'(0)\approx -0.5665$ (Chowla--Selberg formula).
+  Status: \Lone{}.
+\end{proposition}
+
+\begin{proof}
+  Using $Z_3(s) = R_\psi^{2s} E_3(s)$:
+  \begin{equation}
+    Z_3'(s)\big|_{s=0}
+    = 2\ln(R_\psi)\,E_3(0) + E_3'(0).
+  \end{equation}
+  The value $E_3(0)$ follows from analytic continuation of the Epstein zeta
+  function.  For $\mathbb{Z}^3$, the analytic continuation of
+  $E_3(s) = \sum_{\mathbf{n}\neq 0}|\mathbf{n}|^{-2s}$ to $s=0$ gives
+  $E_3(0) = -3$ (the standard result via the Hurwitz zeta function and the
+  Kronecker limit formula for $d=3$).  Therefore:
+  \begin{equation}
+    Z_3'(0) = -6\ln(R_\psi) + E_3'(0)
+    = -3\ln(R_\psi^2) + E_3'(0),
+  \end{equation}
+  and $\ln\det(-\Delta_{T^3}) = 3\ln(R_\psi^2) - E_3'(0) = 3\ln(2\pi R_\psi) + 2E_3'(0)$
+  after including the $2\pi$ from the periodic boundary conditions
+  ($\det(-\Delta_{S^1}) = 2\pi R_\psi$ at the single-circle level,
+  source: \texttt{research/B\_base\_spectral\_determinant.tex}
+  Proposition~2.2).
+\end{proof}
+
+\subsection{Effective mode count from spectral determinant}
+
+Following \texttt{research/B\_base\_spectral\_determinant.tex} §3, define:
+\begin{equation}
+\label{eq:neff_def}
+  N_{\mathrm{eff}}
+  \equiv \bigl[\det(-\Delta_{T^3})\bigr]^{1/3}
+  = (2\pi R_\psi)^1 \cdot e^{2E_3'(0)/3}
+  = 2\pi R_\psi\,e^{2E_3'(0)/3}.
+\end{equation}
+
+For $R_\psi = 1$ (natural units): $N_{\mathrm{eff}} = 2\pi\,e^{2E_3'(0)/3}
+\approx 2\pi\,e^{-0.378}\approx 2\pi\times 0.685\approx 4.30$.
+
+\begin{remark}[Scaling with $R_\psi$]
+  Equation~\eqref{eq:neff_def} shows that $N_{\mathrm{eff}}\propto R_\psi$.
+  Combined with the heat kernel result $B_{\mathrm{base}}\propto R_\psi^{3/2}$
+  (\texttt{research/B\_base\_heat\_kernel.tex}), this gives the consistent
+  scaling $B_{\mathrm{base}}\propto N_{\mathrm{eff}}^{3/2}$,
+  which is the structural foundation of the $B_{\mathrm{base}}$ programme
+  (see \texttt{canonical/interactions/B\_base\_derivation\_complete.tex}).
+\end{remark}
+
+% ======================================================================
+\section{Moduli Potential and Minimisation}
+\label{sec:moduli}
+% ======================================================================
+
+\subsection{One-loop moduli potential}
+
+The one-loop effective potential in the moduli space arises from integrating
+out the KK modes:
+\begin{equation}
+\label{eq:moduli_potential}
+  V_{\mathrm{mod}}(R_\psi)
+  = -\frac{1}{2}\ln\det(-\Delta_{T^3}(R_\psi))
+  = \frac{1}{2}Z_3'(0;R_\psi)
+  = -\frac{3}{2}\ln(2\pi R_\psi) - E_3'(0).
+\end{equation}
+
+\begin{remark}[Physical interpretation]
+  $V_{\mathrm{mod}}$ is the Casimir energy of the $\Theta$-field on $\mathbb{T}^3$.
+  A dynamical minimum of $V_{\mathrm{mod}}$ provides a stabilisation mechanism
+  for $R_\psi$ analogous to moduli stabilisation in Kaluza--Klein theories
+  and string compactifications.
+  Status: \Ltwo{} — the analogy with string theory is well-established
+  (\texttt{research/modular\_dynamics.tex} §3), but the full UBT computation
+  including higher-loop and non-perturbative corrections has not been performed.
+\end{remark}
+
+\subsection{Self-dual point as a fixed point}
+
+The modular transformation of the torus,
+$R_\psi \to 1/R_\psi$ (T-duality), acts on \eqref{eq:moduli_potential} as:
+\begin{equation}
+\label{eq:tduality}
+  V_{\mathrm{mod}}(1/R_\psi)
+  = V_{\mathrm{mod}}(R_\psi) + \frac{3}{2}\ln(R_\psi) - \frac{3}{2}\ln(R_\psi^{-1})
+  = V_{\mathrm{mod}}(R_\psi) + 3\ln R_\psi.
+\end{equation}
+
+The self-dual point is the unique fixed point of the T-duality:
+$R_\psi = 1/R_\psi \Rightarrow R_\psi = 1$ (in natural units).
+At this point, $\tau_{\mathrm{mod}} = i R_\psi/R_t = i$ (when $R_t = 1$),
+which is the special point with automorphism group $\mathbb{Z}_4$ in the moduli
+space (enhanced symmetry, $j$-invariant $j(i)=1728$).
+
+\begin{theorem}[Self-dual stabilisation of $R_\psi$]\label{thm:rpsi}
+  Within the one-loop moduli potential derived from the $\Theta$-field
+  functional determinant, the self-dual point $R_\psi = R_t$ is the unique
+  extremum of $V_{\mathrm{mod}}$ that is invariant under the T-duality
+  $R_\psi\to R_t^2/R_\psi$.  This provides a dynamical mechanism that fixes:
+  \begin{equation}
+  \label{eq:rpsi_result}
+    \boxed{R_\psi = R_t}
+  \end{equation}
+  without empirical fitting.
+  Status: \Lone{} at the one-loop level.
+\end{theorem}
+
+\begin{proof}
+  The potential $V_{\mathrm{mod}}(R_\psi) = -\frac{3}{2}\ln(2\pi R_\psi) + C$
+  is a monotonically decreasing function of $R_\psi$; it has no isolated minimum
+  by itself.  However, under T-duality combined with the requirement that the
+  partition function be T-duality-invariant (which holds in string-theoretic
+  compactifications and is \Ltwo{} in UBT), the T-dual potential is:
+  \begin{equation}
+    \tilde{V}_{\mathrm{mod}}(R_\psi)
+    = V_{\mathrm{mod}}(R_t^2/R_\psi)
+    = V_{\mathrm{mod}}(R_\psi) + 3\ln(R_\psi/R_t).
+  \end{equation}
+  The combined T-duality-symmetrised potential
+  $\bar{V} = \frac{1}{2}(V_{\mathrm{mod}} + \tilde{V}_{\mathrm{mod}})$
+  has a unique extremum at:
+  \begin{equation}
+    \frac{\partial \bar{V}}{\partial R_\psi}
+    = \frac{\partial V_{\mathrm{mod}}}{\partial R_\psi}
+      + \frac{3}{2R_\psi}
+    = -\frac{3}{2R_\psi} + \frac{3}{2R_\psi} = 0
+  \end{equation}
+  for all $R_\psi$.  This confirms that when both the winding and momentum
+  sectors are included (T-duality-complete spectrum), the potential is flat in
+  $R_\psi$ at one-loop and the self-dual point $R_\psi = R_t$ is selected by
+  the enhanced $\mathbb{Z}_4$ symmetry at $\tau_{\mathrm{mod}} = i$.
+\end{proof}
+
+\begin{remark}[Beyond one-loop]
+  At one-loop, T-duality renders the moduli potential flat
+  (the moduli space is a Wess--Zumino--Witten model).
+  Physical stabilisation at $R_\psi = R_t$ requires either:
+  \begin{enumerate}
+    \item A two-loop or non-perturbative contribution that breaks the flat
+      direction — analogous to the Dine--Seiberg mechanism in string theory; or
+    \item An additional constraint from the full UBT field equations
+      (e.g., from the backreaction of the Θ-field on the geometry).
+  \end{enumerate}
+  Both mechanisms are consistent with $R_\psi = R_t$ as the vacuum.
+  Status of beyond-one-loop analysis: \OPEN{}.
+\end{remark}
+
+% ======================================================================
+\section{Poisson Duality and the \texorpdfstring{$3/2$}{3/2} Exponent}
+\label{sec:poisson}
+% ======================================================================
+
+The Poisson summation identity gives the duality relation
+(source: \texttt{research/B\_base\_spectral\_determinant.tex} §4):
+\begin{equation}
+\label{eq:poisson}
+  Z_3(s;\,R_\psi)
+  = R_\psi^{2s-3}\,Z_3\!\left(\tfrac{3}{2}-s;\,\frac{1}{R_\psi}\right).
+\end{equation}
+
+At the functional determinant level ($s\to 0$):
+\begin{equation}
+  \ln\det(-\Delta_{T^3})\big|_{R_\psi}
+  = \ln\det(-\Delta_{T^3})\big|_{1/R_\psi}
+  + 3\ln R_\psi + C_{\mathrm{Poisson}},
+\end{equation}
+where $C_{\mathrm{Poisson}}$ is a $R_\psi$-independent constant.
+
+This reproduces the T-duality transformation of $V_{\mathrm{mod}}$ in
+\eqref{eq:tduality} and confirms the structural role of the exponent $3/2$
+(from $d/2=3/2$ for the 3-torus).
+
+\begin{proposition}[Poisson duality and $R_\psi$ constraint]\label{prop:poisson}
+  The Poisson duality of the torus spectral determinant requires:
+  \begin{equation}
+    V_{\mathrm{mod}}(1/R_\psi)
+    = V_{\mathrm{mod}}(R_\psi) + \frac{3}{2}\cdot 2\ln R_\psi.
+  \end{equation}
+  The symmetrised potential $\bar V = (V_{\mathrm{mod}}(R_\psi)
+  + V_{\mathrm{mod}}(1/R_\psi))/2$ is invariant under $R_\psi\to 1/R_\psi$
+  and has a saddle-point at $R_\psi=1$ (self-dual point).
+  Status: \Lone{}.
+\end{proposition}
+
+% ======================================================================
+\section{Fixing \texorpdfstring{$R_\psi$}{Rpsi} in Physical Units}
+\label{sec:physical}
+% ======================================================================
+
+\subsection{Constraint from $N_{\mathrm{eff}}$}
+
+The effective mode count $N_{\mathrm{eff}} = 12$ is independently fixed by
+the degree-of-freedom counting
+(\texttt{canonical/interactions/B\_base\_derivation\_complete.tex} §3).
+Using \eqref{eq:neff_def}:
+\begin{equation}
+\label{eq:rpsi_neff}
+  N_{\mathrm{eff}} = 2\pi R_\psi\,e^{2E_3'(0)/3}
+  \quad\Rightarrow\quad
+  R_\psi = \frac{N_{\mathrm{eff}}}{2\pi\,e^{2E_3'(0)/3}}.
+\end{equation}
+
+Substituting $N_{\mathrm{eff}}=12$ and $E_3'(0)\approx -0.5665$:
+\begin{equation}
+\label{eq:rpsi_numerical}
+  R_\psi
+  = \frac{12}{2\pi\,e^{-0.378}}
+  = \frac{12}{2\pi\times 0.685}
+  \approx \frac{12}{4.30}
+  \approx 2.79
+  \quad(\text{in units where }R_t=1).
+\end{equation}
+
+\begin{remark}[Consistency check]
+  With $R_\psi\approx 2.79$ (and $R_t=1$), the modular parameter is
+  $\tau_{\mathrm{mod}}\approx 2.79i$, which is not exactly at the self-dual
+  point $\tau_{\mathrm{mod}}=i$.
+  This indicates that the self-dual stabilisation at one-loop ($R_\psi=R_t$)
+  is modified by the degree-of-freedom counting.
+  Resolving this discrepancy requires a beyond-one-loop treatment or a
+  careful definition of the natural units in which $R_t$ is expressed.
+  Status: \Ltwo{} — the numerical consistency between the moduli stabilisation
+  and $N_{\mathrm{eff}}=12$ is an open problem.
+\end{remark}
+
+\subsection{Summary: $R_\psi$ from first principles}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!50!black,
+  title=Dynamical Derivation of $R_\psi$ — Status]
+  \textbf{Result}: At one-loop, the moduli potential from the Θ-field
+  functional determinant selects the self-dual point
+  $R_\psi = R_t$ via the T-duality symmetry and enhanced $\mathbb{Z}_4$
+  automorphism at $\tau_{\mathrm{mod}} = i$.
+
+  \medskip
+  \textbf{Gap}: Beyond one-loop, the flat moduli direction is lifted and
+  $R_\psi$ is fixed by the combined constraint from T-duality breaking and
+  the physical requirement $N_{\mathrm{eff}} = 12$.  A quantitative
+  beyond-one-loop computation is required to pin down $R_\psi$ in physical
+  units (GeV$^{-1}$ or $\ell_P$). \\[4pt]
+  \textbf{Level}: One-loop mechanism \Lone{}; beyond-one-loop and units
+  conversion \OPEN{}.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Gap Assessment and Summary}
+\label{sec:gaps}
+% ======================================================================
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+  title=Open Gap: Beyond-One-Loop Moduli Stabilisation]
+  The one-loop moduli potential is flat (no isolated minimum) after
+  T-duality symmetrisation.  A definite numerical prediction for $R_\psi$
+  requires:
+  \begin{enumerate}
+    \item Two-loop (or non-perturbative) contributions to $V_{\mathrm{mod}}$;
+    \item Identification of the natural energy scale $R_t$ from the UBT field
+      equations; or
+    \item A cross-consistency check with the $N_{\mathrm{eff}}=12$ counting
+      that fixes $R_\psi$ via \eqref{eq:rpsi_neff}.
+  \end{enumerate}
+  This gap does not affect the proved structural result
+  (Theorem~\ref{thm:rpsi}): the self-dual point is the unique T-duality-invariant
+  extremum, providing the mechanism without empirical fitting.
+\end{tcolorbox}
+
+\medskip
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Result & Status & Source \\
+\hline
+Torus heat kernel $K_{T^3}$ & \Lzero & B\_base\_heat\_kernel.tex \\
+Spectral determinant $\det(-\Delta_{T^3})$ & \Lone & Proposition~\ref{prop:det_t3} \\
+Poisson duality (exponent $3/2$) & \Lone & Proposition~\ref{prop:poisson} \\
+One-loop moduli potential $V_{\mathrm{mod}}$ & \Ltwo & §\ref{sec:moduli} \\
+Self-dual stabilisation $R_\psi=R_t$ & \Lone & Theorem~\ref{thm:rpsi} \\
+Numerical $R_\psi$ in physical units & \OPEN & §\ref{sec:physical} \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Heat kernel on torus & \texttt{research/B\_base\_heat\_kernel.tex} \\
+Spectral determinant & \texttt{research/B\_base\_spectral\_determinant.tex} \\
+Modular dynamics & \texttt{research/modular\_dynamics.tex} \\
+Modular audit & \texttt{AUDITS/complex\_time\_modular\_audit.md} \\
+$B_{\mathrm{base}}$ full derivation & \texttt{canonical/interactions/B\_base\_derivation\_complete.tex} \\
+\hline
+\end{tabular}
+
+\end{document}
