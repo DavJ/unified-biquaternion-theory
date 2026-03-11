@@ -147,10 +147,27 @@ variation to zero at $g=g[\Theta]$ gives the \emph{metric equation}:
 % -----------------------------------------------------------------------
 \subsection{Equivalence Theorem}
 
-\begin{theorem}[$\Theta$-only closure]
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,
+  title={Assumption Required: On-Shell Injectivity}]
+\textbf{The theorem below is conditional.}
+It holds on-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation)
+\emph{and} under the assumption that the Jacobian $\delta g^{\mu\nu}/\delta\Theta$
+has no kernel direction at the solution (local injectivity of $\Theta\mapsto g[\Theta]$).
+
+\medskip
+Off-shell injectivity is \textbf{not proved}; it is an open problem [GAP-01 in
+\texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md}].  The result is therefore
+status: \textbf{indicated} (on-shell, with injectivity assumption), \textbf{not}
+status: proved (unconditionally).
+\end{tcolorbox}
+
+\begin{theorem}[$\Theta$-only closure — conditional on injectivity, on-shell]
 \label{thm:theta_only}
 Let $\Theta_*$ be a solution of the biquaternionic Euler--Lagrange equation
-\eqref{eq:EL_Theta} for $g$ fixed at $g[\Theta_*]$.  Then:
+\eqref{eq:EL_Theta} for $g$ fixed at $g[\Theta_*]$.
+\textbf{Assume} the map $\Theta\mapsto g[\Theta]$ is locally injective at $\Theta_*$
+(i.e., the Jacobian $\delta g^{\mu\nu}/\delta\Theta|_{\Theta_*}$ has no kernel
+direction in the space of $\Theta$ variations).  Then:
 \begin{enumerate}
   \item $\delta\hat{S}[\Theta_*]/\delta\Theta = 0$ if and only if the metric equation
         \eqref{eq:metric_eq_on_shell} holds at $\Theta_*$.
@@ -170,8 +187,8 @@ identically.  Hence $\delta\hat{S}/\delta\Theta = 0$ reduces to
 \]
 The Jacobian $\delta g^{\mu\nu}/\delta\Theta$ is generically a non-zero functional
 (it is essentially a derivative operator applied to the metric definition
-\eqref{eq:g_from_Theta}).  Therefore, assuming this Jacobian has no kernel direction
-at $\Theta_*$ (i.e.\ $g[\Theta]$ is locally injective around $\Theta_*$), the
+\eqref{eq:g_from_Theta}).  Therefore, \emph{by the injectivity assumption of this
+theorem}, the Jacobian has no kernel direction at $\Theta_*$, so the
 vanishing of the contracted expression implies
 \[
   \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g[\Theta_*]} = 0,
@@ -189,19 +206,24 @@ this is exactly the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
 \subsection{Status of the Claim and Remaining Caveat}
 
 \begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Precise Statement]
-\textbf{Theorem~\ref{thm:theta_only} establishes:}
-On-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation), the
+\textbf{Theorem~\ref{thm:theta_only} establishes (on-shell + injectivity):}
+On-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation) and
+\emph{assuming local injectivity of $\Theta\mapsto g[\Theta]$}, the
 $\Theta$-only variational equation $\delta\hat{S}/\delta\Theta=0$ is equivalent to
 the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$ evaluated on the
 emergent metric $g=g[\Theta]$.
 
 \medskip
-\noindent\textbf{Remaining caveat:}
+\noindent\textbf{Status}: \textbf{indicated} (not unconditionally proved).
+
+\medskip
+\noindent\textbf{Remaining gap (GAP-01):}
 The argument uses the non-degeneracy of the Jacobian $\delta g^{\mu\nu}/\delta\Theta$
 (injectivity of the map $\Theta\mapsto g[\Theta]$).  This is a genericity condition:
 it holds for generic $\Theta$ but could in principle fail at degenerate configurations
 (e.g.\ $\partial_\mu\Theta=0$).  A full off-shell proof for all field configurations
 would require bounding the kernel of this Jacobian globally; this is left for future work.
+See \texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md} GAP-01.
 \end{tcolorbox}
 
 % -----------------------------------------------------------------------
