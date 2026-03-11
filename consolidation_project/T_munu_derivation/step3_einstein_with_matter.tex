@@ -40,6 +40,15 @@ Einstein's equations with $T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$.
 We also address energy-momentum conservation $\nabla^\mu T_{\mu\nu} = 0$
 via the Bianchi identity and Noether's theorem.
 This closes item~II.9 of \texttt{THEORY\_INCONSISTENCIES\_REPORT.md}.
+
+\medskip
+\textbf{Scope note (important):} This derivation is the \emph{Hilbert variation}:
+the metric $g^{\mu\nu}$ is treated as an \emph{independent} dynamical variable,
+varied independently of $\Theta$.  This is \textbf{not} the $\Theta$-only closure,
+in which $g = g[\Theta]$ is substituted before varying.  The $\Theta$-only formulation
+is addressed separately in \texttt{GR\_closure/step2\_theta\_only\_closure.tex}
+and requires an additional injectivity assumption; it holds on-shell but not
+unconditionally off-shell.
 \end{abstract}
 
 \tableofcontents

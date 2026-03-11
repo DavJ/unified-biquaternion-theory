@@ -72,8 +72,10 @@ Riemann → Ricci → Einstein chain, not directly from ∇†∇Θ.
 | GR equations recovered as real projection | **CONFIRMED** |
 | Linearised GR recovery | **PROVED** |
 | Non-linear GR recovery | **PARTIALLY PROVED** (flat + perturbation) |
+| Θ-only closure (on-shell, injectivity assumed) | **INDICATED** (not unconditionally proved; see GAP-01) |
 | Re(∇†∇Θ) → G_{μν} as identity | **NOT PROVED — obstruction identified** |
 | Full non-perturbative GR embedding | **OPEN PROBLEM** |
+| Hilbert variation (g independent): G_{μν}=8πGT_{μν} | **PROVED** (step3\_einstein\_with\_matter.tex) |
 
 ---
 
@@ -153,5 +155,9 @@ Reviewer comments addressed:
 | Conditional GR equivalence | MEDIUM | ACKNOWLEDGED: conditions A1-A3 are physical, not arbitrary |
 | Sigma model similarity | LOW | ADDRESSED: three differences documented |
 
-Overall GR sector assessment (post-review): SUBSTANTIALLY PROVED [L1]
+Overall GR sector assessment (post-review): **INDICATED [L1]** (not "substantially proved" without caveat)  
+**Note on Θ-only claim**: The claim that Θ-only variation recovers GR holds only on-shell
+and under a local injectivity assumption (see GAP-01 in `AUDITS/followup_gap_backlog_2026_03.md`
+and `GR_closure/step2_theta_only_closure.tex`).  The Hilbert variation result (g independent)
+is fully proved (step3\_einstein\_with\_matter.tex).  
 Mathematical rigor: 4/5 (up from 3/5 after addressing review points)

@@ -82,7 +82,14 @@ Alternatively, computed from Christoffel symbols (which are themselves derived):
 R^\rho{}_{\sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}
 \end{equation}
 
-\textbf{Note:} This classical formula is valid because the real projection commutes with derivatives and products.
+\textbf{Note:} This classical formula is valid because the real projection commutes with
+\emph{real} derivatives ($\text{Re}(\partial_\mu f) = \partial_\mu \text{Re}(f)$ for
+real $\partial_\mu$) and is \emph{linear}: $\text{Re}(A + B) = \text{Re}(A) + \text{Re}(B)$.
+\textbf{Caution}: $\text{Re}$ does \emph{not} commute with general biquaternionic
+products: $\text{Re}(AB) \neq \text{Re}(A)\,\text{Re}(B)$ in general.
+The above formula is valid specifically because the Christoffel symbols are derived from
+the real metric $g_{\mu\nu}$ using only real arithmetic once the real projection has
+been applied; the formula does not generalise to arbitrary biquaternionic products.
 
 Alternatively, via the commutator of covariant derivatives:
 \begin{equation}

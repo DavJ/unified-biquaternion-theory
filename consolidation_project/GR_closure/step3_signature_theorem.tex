@@ -169,19 +169,49 @@ etc.  The scalar part receives contributions only from the diagonal terms:
   + z^2\,\mathrm{Sc}((i\mathbf{k})^2)
   = t^2(+1) + x^2(+1) + y^2(+1) + z^2(+1).
 \]
-But this gives the Euclidean form $+t^2+x^2+y^2+z^2$, not Minkowskian.
-The sign flip arises from the \emph{metric formula}: the UBT metric uses
-$\Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger/\mathcal{N}]$, not $\mathrm{Sc}(v^2)$
-directly.  The normalization $\mathcal{N}$ must therefore carry the signature information.
+
+% --- FAILED APPROACH — quarantined, kept for transparency ---
+% The computation above yields the EUCLIDEAN form +t²+x²+y²+z², NOT the
+% Minkowski form.  The original draft of this lemma then argued that the
+% normalization N must carry the signature information.  That argument is
+% INCORRECT: a positive rescaling by N > 0 cannot change the signature of
+% a bilinear form.  This approach is a dead end.
+%
+% The correct derivation of Lorentzian signature is the CLIFFORD ALGEBRA
+% argument given below (Section 1.3, Theorem on Lorentzian signature from
+% the Clifford embedding).  The present lemma as stated (claiming signature
+% (1,3) for Q = Sc(v·v†)) is NOT PROVED by the scalar-part route; it
+% requires the Clifford identification.
+% --- END QUARANTINE ---
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,
+  title={Failed Approach — Euclidean Result (Kept for Transparency)}]
+\textbf{Warning}: The $\mathrm{Sc}(v^2)$ computation above yields the
+\emph{Euclidean} form $+t^2+x^2+y^2+z^2$, not the Minkowski form.
+
+An earlier draft claimed that the normalization $\mathcal{N}$ fixes the signature.
+That argument is \textbf{incorrect}: a positive scalar rescaling cannot change the
+signature of a bilinear form.
 
 \medskip
-We now give the corrected algebraic derivation.  Consider the Clifford algebra approach.
+The correct derivation of Lorentzian signature is via the Clifford algebra
+isomorphism $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ given in the next
+subsection (Theorem~\ref{thm:signature}).  The present Lemma holds conditionally
+on identifying the correct quadratic form via the Clifford embedding; the
+$\mathrm{Sc}(v^2)$ route alone does not suffice.
+\end{tcolorbox}
+
+\medskip
+We now give the correct algebraic derivation.  Consider the Clifford algebra approach.
 \end{proof}
 
 % -----------------------------------------------------------------------
 \subsection{Clifford Algebra Derivation of Signature}
 
-The following gives a cleaner algebraic derivation of the Lorentzian signature.
+The following gives the authoritative algebraic derivation of the Lorentzian signature.
+The result is conditional on the Clifford embedding $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$
+(Theorem~\ref{thm:signature} below); the $\mathrm{Sc}(v^2)$ route of the preceding
+lemma does not independently establish the signature.
 
 \begin{theorem}[Lorentzian signature from the Clifford embedding]
 \label{thm:signature}
