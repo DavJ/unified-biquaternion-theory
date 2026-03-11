@@ -87,7 +87,7 @@ confused about the role of 𝒩.
 
 **Current resolution**: ✅ Resolved — the failed block is now quarantined with a prominent
 `% --- FAILED APPROACH — quarantined, kept for transparency ---` comment block, explaining
-that the Euclidean result is a dead end and that positive rescaling by 𝒩 > 0 cannot change
+that the Euclidean result is a dead end and that positive rescaling by N > 0 cannot change
 signature.  A clear pointer to the correct Clifford argument is included.
 
 **Status**: ✅ resolved — 2026-03-11.
@@ -116,11 +116,12 @@ valid for:
   cases (linearity and real derivatives).
 - See: GR recovery and canonical geometry documents.
 
-**Current resolution**: ✅ Resolved — `canonical/geometry/curvature.tex` line 85 now reads:
-"commutes with *real* derivatives … and is *linear*" with an explicit **Caution** note
-that Re does NOT commute with general biquaternionic products: Re(AB) ≠ Re(A)Re(B).
-The text clarifies the formula is valid specifically because Christoffel symbols are
-derived from the real metric using only real arithmetic after projection.
+**Current resolution**: ✅ Resolved — the Note block following the Riemann tensor formula in
+`canonical/geometry/curvature.tex` now reads: "commutes with *real* derivatives … and is
+*linear*", with an explicit **Caution** note that Re does NOT commute with general
+biquaternionic products: Re(AB) ≠ Re(A)Re(B).  The text clarifies the formula is valid
+specifically because Christoffel symbols are derived from the real metric using only real
+arithmetic after projection.
 
 **Status**: ✅ resolved — 2026-03-11.
 
@@ -149,7 +150,7 @@ different and stronger (unproved) claim.
 
 **Current resolution**: ✅ Resolved — the abstract of `step3_einstein_with_matter.tex`
 now contains an explicit **Scope note (important)** stating: "This derivation is the
-*Hilbert variation*: the metric g^{μν} is treated as an *independent* dynamical variable,
+*Hilbert variation*: the metric g^μν is treated as an *independent* dynamical variable,
 varied independently of Θ.  This is **not** the Θ-only closure, which is addressed
 separately in `GR_closure/step2_theta_only_closure.tex` and requires an additional
 rank/nondegeneracy condition; it holds on-shell but not unconditionally off-shell."
