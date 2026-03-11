@@ -159,5 +159,5 @@ Overall GR sector assessment (post-review): **INDICATED [L1]** (not "substantial
 **Note on Θ-only claim**: The claim that Θ-only variation recovers GR holds only on-shell
 and under a local injectivity assumption (see GAP-01 in `AUDITS/followup_gap_backlog_2026_03.md`
 and `GR_closure/step2_theta_only_closure.tex`).  The Hilbert variation result (g independent)
-is fully proved (step3\_einstein\_with\_matter.tex).  
+is fully proved (`step3_einstein_with_matter.tex`).  
 Mathematical rigor: 4/5 (up from 3/5 after addressing review points)

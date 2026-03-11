@@ -103,7 +103,7 @@ UBT restricts to the subset where only the time coordinate is complexified:
   where X is Hermitian (real coordinates).
 
 **Partial result** (symbolic):
-```
+```text
 X(τ) = x⁰ σ₀ + x¹ σ₁ + x² σ₂ + x³ σ₃   (standard, real)
 X(τ) → X + iψ I₂                            (complex shift)
 det(X(τ)) = det(X) + iψ·Tr(X) - ψ²         (modified interval)
