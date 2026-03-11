@@ -148,26 +148,29 @@ variation to zero at $g=g[\Theta]$ gives the \emph{metric equation}:
 \subsection{Equivalence Theorem}
 
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!75!black,
-  title={Assumption Required: On-Shell Injectivity}]
+  title={Rank Condition Required: Local Non-Degeneracy on Admissible Sector}]
 \textbf{The theorem below is conditional.}
 It holds on-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation)
-\emph{and} under the assumption that the Jacobian $\delta g^{\mu\nu}/\delta\Theta$
-has no kernel direction at the solution (local injectivity of $\Theta\mapsto g[\Theta]$).
+\emph{and} under the rank condition that the induced variation map
+$J = \delta g^{\mu\nu}/\delta\Theta$ is non-degenerate on the admissible
+metric-generating sector (gauge-reduced local injectivity of $\Theta\mapsto g[\Theta]$).
 
 \medskip
-Off-shell injectivity is \textbf{not proved}; it is an open problem [GAP-01 in
+Off-shell, global non-degeneracy is \textbf{not proved}; it is an open problem [GAP-01 in
 \texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md}].  The result is therefore
-status: \textbf{indicated} (on-shell, with injectivity assumption), \textbf{not}
+status: \textbf{indicated} (on-shell, with rank condition), \textbf{not}
 status: proved (unconditionally).
 \end{tcolorbox}
 
-\begin{theorem}[$\Theta$-only closure — conditional on injectivity, on-shell]
+\begin{theorem}[$\Theta$-only closure — conditional on rank condition, on-shell]
 \label{thm:theta_only}
 Let $\Theta_*$ be a solution of the biquaternionic Euler--Lagrange equation
 \eqref{eq:EL_Theta} for $g$ fixed at $g[\Theta_*]$.
-\textbf{Assume} the map $\Theta\mapsto g[\Theta]$ is locally injective at $\Theta_*$
-(i.e., the Jacobian $\delta g^{\mu\nu}/\delta\Theta|_{\Theta_*}$ has no kernel
-direction in the space of $\Theta$ variations).  Then:
+\textbf{Assume} the map $\Theta\mapsto g[\Theta]$ satisfies the
+\emph{gauge-reduced local rank condition} at $\Theta_*$:
+the induced map $J = \delta g^{\mu\nu}/\delta\Theta|_{\Theta_*}$ is
+non-degenerate on the metric-generating sector (i.e., its kernel contains
+only gauge directions that do not affect the physical metric).  Then:
 \begin{enumerate}
   \item $\delta\hat{S}[\Theta_*]/\delta\Theta = 0$ if and only if the metric equation
         \eqref{eq:metric_eq_on_shell} holds at $\Theta_*$.
@@ -185,10 +188,10 @@ identically.  Hence $\delta\hat{S}/\delta\Theta = 0$ reduces to
   \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g[\Theta_*]}
   \cdot\frac{\delta g^{\mu\nu}[\Theta]}{\delta\Theta}\bigg|_{\Theta_*} = 0.
 \]
-The Jacobian $\delta g^{\mu\nu}/\delta\Theta$ is generically a non-zero functional
+The induced variation map $J = \delta g^{\mu\nu}/\delta\Theta$ is generically a non-zero functional
 (it is essentially a derivative operator applied to the metric definition
-\eqref{eq:g_from_Theta}).  Therefore, \emph{by the injectivity assumption of this
-theorem}, the Jacobian has no kernel direction at $\Theta_*$, so the
+\eqref{eq:g_from_Theta}).  Therefore, \emph{by the rank condition of this
+theorem}, the map $J$ is non-degenerate on the metric-generating sector at $\Theta_*$, so the
 vanishing of the contracted expression implies
 \[
   \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{g[\Theta_*]} = 0,
@@ -206,9 +209,10 @@ this is exactly the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$.
 \subsection{Status of the Claim and Remaining Caveat}
 
 \begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Precise Statement]
-\textbf{Theorem~\ref{thm:theta_only} establishes (on-shell + injectivity):}
+\textbf{Theorem~\ref{thm:theta_only} establishes (on-shell + rank condition):}
 On-shell (i.e.\ at $\Theta$ satisfying its own Euler--Lagrange equation) and
-\emph{assuming local injectivity of $\Theta\mapsto g[\Theta]$}, the
+\emph{assuming the gauge-reduced local rank condition (non-degeneracy of
+$J = \delta g/\delta\Theta$ on the metric-generating sector)}, the
 $\Theta$-only variational equation $\delta\hat{S}/\delta\Theta=0$ is equivalent to
 the Einstein field equation $G_{\mu\nu}=8\pi G\,T_{\mu\nu}$ evaluated on the
 emergent metric $g=g[\Theta]$.
@@ -218,12 +222,13 @@ emergent metric $g=g[\Theta]$.
 
 \medskip
 \noindent\textbf{Remaining gap (GAP-01):}
-The argument uses the non-degeneracy of the Jacobian $\delta g^{\mu\nu}/\delta\Theta$
-(injectivity of the map $\Theta\mapsto g[\Theta]$).  This is a genericity condition:
-it holds for generic $\Theta$ but could in principle fail at degenerate configurations
-(e.g.\ $\partial_\mu\Theta=0$).  A full off-shell proof for all field configurations
-would require bounding the kernel of this Jacobian globally; this is left for future work.
-See \texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md} GAP-01.
+The argument uses the non-degeneracy of the induced variation map $J = \delta g^{\mu\nu}/\delta\Theta$
+on the metric-generating sector (regularity of the $\Theta\to g$ map on the physical sector).
+This is a natural regularity condition analogous to tetrad non-degeneracy in first-order GR:
+it holds for generic $\Theta \in \mathcal{A}_{\mathrm{UBT}}$ but could fail at degenerate
+configurations (e.g.\ $\partial_\mu\Theta=0$).  A full off-shell proof for all field
+configurations would require bounding the kernel of $J$ globally; this is left for future
+work.  See \texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md} GAP-01 and GAP-10.
 \end{tcolorbox}
 
 % -----------------------------------------------------------------------

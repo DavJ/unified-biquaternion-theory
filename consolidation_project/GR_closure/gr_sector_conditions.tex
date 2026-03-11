@@ -1,0 +1,319 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Sector Conditions in UBT:\\
+         Explicit Assumptions for Einstein's Equations Recovery}}
+  \author{Ing.\ David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  This document states explicitly the conditions on the biquaternionic field
+  $\Theta$ under which the Unified Biquaternion Theory (UBT) reproduces
+  Einstein's field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$.  Each
+  condition is given a physical interpretation and its current proof status
+  is recorded.  The main result is: GR is recovered \emph{exactly on the
+  sector satisfying the listed conditions}; outside that sector, UBT may
+  admit additional non-GR solutions, which represents an extension of GR
+  rather than a contradiction.
+  \end{abstract}
+\fi
+
+% =========================================================================
+\section{Introduction}
+\label{sec:intro}
+
+The UBT field $\Theta: M^4 \to \mathcal{B}$ generates a metric through
+the formula
+\begin{equation}
+  g_{\mu\nu}[\Theta](x)
+  = \operatorname{Re}\!\left[
+      \frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}
+           {\mathcal{N}[\Theta]}
+    \right],
+  \label{eq:emergent_metric}
+\end{equation}
+where $\mathcal{N}[\Theta]$ is a normalisation scalar.  Not every $\Theta$
+configuration corresponds to an admissible spacetime geometry; additional
+conditions are required.  This document enumerates those conditions with
+precision.
+
+\medskip
+\noindent
+\textbf{Key principle:} GR recovery is \emph{not} claimed for all $\Theta$
+configurations.  It is claimed—and established—for $\Theta$ in the
+\emph{admissible class} $\mathcal{A}_{\mathrm{UBT}}$ defined below.
+Outside $\mathcal{A}_{\mathrm{UBT}}$, UBT may admit non-GR dynamics.
+
+% =========================================================================
+\section{Admissible Configuration Space}
+\label{sec:admissible}
+
+\begin{definition}[Admissible class $\mathcal{A}_{\mathrm{UBT}}$]
+\label{def:admissible}
+A $\Theta$ configuration belongs to $\mathcal{A}_{\mathrm{UBT}}$ if and only
+if all conditions C1–C6 listed in Section~\ref{sec:conditions} hold at every
+point of $M^4$.
+\end{definition}
+
+\begin{remark}
+The admissible class is non-empty: flat Minkowski space ($\Theta = \Theta_0$
+constant) belongs to $\mathcal{A}_{\mathrm{UBT}}$, as do the linearised
+perturbations studied in the GR recovery proof.  Whether all classical GR
+solutions lift to $\mathcal{A}_{\mathrm{UBT}}$ is an open problem.
+\end{remark}
+
+% =========================================================================
+\section{Gauge / Redundancy Quotient}
+\label{sec:gauge}
+
+The map $\Theta \mapsto g[\Theta]$ is not injective: multiple $\Theta$
+configurations may induce the same metric.  The kernel of the induced
+variation map $J = \delta g / \delta\Theta$ consists of directions in
+$\Theta$-space that do not move the metric.  These are gauge redundancies
+of the metric representation.
+
+One must quotient by these redundancies before asking whether
+$\Theta \mapsto g[\Theta]$ is invertible.  After this quotienting, the
+relevant notion of injectivity is:
+
+\begin{definition}[Gauge-reduced local injectivity]
+\label{def:gr_injectivity}
+The map $\Theta \mapsto g[\Theta]$ is \emph{gauge-reduced locally injective}
+at $\Theta_0 \in \mathcal{A}_{\mathrm{UBT}}$ if the induced map on the
+quotient space $T_{\Theta_0}\mathcal{F}/\ker J$ is injective.
+Equivalently, for all $\delta\Theta \notin \ker J$, $J\,\delta\Theta \neq 0$.
+\end{definition}
+
+This is a \emph{regularity condition}, not an arbitrary assumption: it asserts
+that the metric-generating map is non-degenerate modulo gauge, which is the
+natural analog of the tetrad non-degeneracy condition in standard GR.
+
+% =========================================================================
+\section{Metric-Inducing Sector of $\Theta$}
+\label{sec:metric_sector}
+
+The metric-inducing sector is the image of $\mathcal{A}_{\mathrm{UBT}}$
+under the projection $\pi_g: \Theta \mapsto g[\Theta]$.  On this sector:
+\begin{itemize}
+  \item The metric $g_{\mu\nu}$ is real, symmetric, and has Lorentzian
+    signature $(-,+,+,+)$ (guaranteed by AXIOM B of UBT and the signature
+    theorem; see \texttt{step3\_signature\_theorem.tex}).
+  \item The connection $\Gamma^\lambda_{\mu\nu}$ is uniquely determined as
+    the Levi-Civita connection of $g$ (follows from conditions C2 and C3).
+  \item The Einstein tensor $G_{\mu\nu}$ is well-defined and satisfies the
+    contracted Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$.
+\end{itemize}
+
+% =========================================================================
+\section{Suppressed / Frozen Extra Degrees of Freedom}
+\label{sec:extra_dofs}
+
+Beyond the metric sector, $\Theta$ carries additional degrees of freedom:
+\begin{itemize}
+  \item Imaginary-part degrees of freedom: $\operatorname{Im}[\Theta]$ components
+    not encoded in $g_{\mu\nu}$.
+  \item Phase-structure degrees of freedom on the $\psi$-circle.
+  \item Biquaternionic polarisation modes not projected to standard spin-2.
+\end{itemize}
+
+On $\mathcal{A}_{\mathrm{UBT}}$, these extra modes are assumed to either:
+(a) decouple dynamically (their equations of motion are satisfied independently), or
+(b) be frozen/suppressed by a classical-limit assumption that their fluctuations
+are small compared to the metric fluctuations.
+
+This is condition C5 in the table below.  Its physical meaning is that the
+classical gravitational sector corresponds to the regime where non-GR $\Theta$
+modes are suppressed—analogous to the way scalar graviton modes decouple in
+standard GR.
+
+% =========================================================================
+\section{Classical Limit Assumptions}
+\label{sec:classical_limit}
+
+The GR recovery result is a \emph{classical} statement.  It assumes:
+\begin{enumerate}
+  \item $\hbar \to 0$ (or equivalently, the action $S[\Theta] \gg \hbar$),
+    so that the path integral is dominated by the saddle point.
+  \item The Lorentzian sector dominates over complex-time corrections;
+    i.e.\ the imaginary time coordinate $\psi$ contributes corrections
+    suppressed by $\psi/t$.
+  \item The biquaternionic field equation reduces to its real projection
+    (the Einstein equation) when quantum corrections and imaginary-time
+    effects are suppressed.
+\end{enumerate}
+
+These are standard assumptions in any derivation of GR from a more
+fundamental theory and do not constitute a weakness of UBT.
+
+% =========================================================================
+\section{Projection to Metric Observables}
+\label{sec:projection}
+
+The physically observable degrees of freedom of gravity are encoded in
+$g_{\mu\nu}$ (through geodesics, causal structure, etc.).  The UBT field
+$\Theta$ carries more information than $g_{\mu\nu}$.  The projection is:
+\begin{equation}
+  \pi_{\text{obs}}: \Theta \;\longmapsto\; g_{\mu\nu}[\Theta]
+  \;\longmapsto\; G_{\mu\nu}[g],
+\end{equation}
+and GR is recovered precisely as the statement that this projected
+dynamics satisfies $G_{\mu\nu} = 8\pi G\, T_{\mu\nu}$ on
+$\mathcal{A}_{\mathrm{UBT}}$.
+
+% =========================================================================
+\section{Condition Table}
+\label{sec:conditions}
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!60!black,
+                  title=Mandatory Statement]
+\textbf{GR reproduction is exact only on the sector satisfying the conditions
+below.  Outside that sector, UBT may admit additional non-GR solutions.}
+\end{tcolorbox}
+
+\medskip
+
+\noindent
+The following table records every condition required for exact GR recovery,
+its physical meaning, the part of the derivation where it is needed, and its
+current proof status.
+
+\bigskip
+
+\begin{longtable}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{1.8cm}p{1.8cm}@{}}
+\toprule
+\textbf{Condition} &
+\textbf{Physical meaning} &
+\textbf{Mathematically required for} &
+\textbf{Currently proved} &
+\textbf{Currently assumed}
+\\
+\midrule
+\endhead
+%
+C1.\ Local non-degeneracy of $\Theta \to g$ map
+& The metric does not degenerate; no direction in $\Theta$-space
+  is metric-invisible except gauge directions.
+& Gauge-reduced injectivity; allows recovering
+  $\mathcal{E}_g = 0$ from the combined EL equation.
+& \emph{Proved for $\mathcal{A}_{\mathrm{UBT}}$ (perturbative);
+  open non-perturbatively.}
+& Assumed at finite coupling.
+\\[4pt]
+%
+C2.\ Gauge-reduced uniqueness or equivalence
+& Distinct $\Theta$ configurations that are gauge-equivalent
+  (same $g$) are identified; the quotient is well-defined.
+& Uniqueness of the emergent metric on physical states.
+& \emph{Plausible; gauge structure not fully classified.}
+& Assumed (consistent with standard tetrad gauge freedom).
+\\[4pt]
+%
+C3.\ Regularity of induced metric
+& $g_{\mu\nu}[\Theta]$ is smooth, has Lorentzian signature,
+  and satisfies the metric postulates of GR.
+& Well-definedness of curvature tensors and Bianchi identity.
+& \emph{Proved: signature theorem (step3), non-degeneracy for
+  $\mathcal{A}_{\mathrm{UBT}}$ (step2).}
+& —
+\\[4pt]
+%
+C4.\ Existence of classical metric sector
+& There exist $\Theta$ configurations whose induced metric
+  matches any given GR solution $g_{\mu\nu}$.
+& GR is embeddable in UBT (not just that GR equations follow
+  from UBT, but that UBT admits all GR solutions).
+& \emph{Proved for flat + linearised perturbations; non-linear
+  GR solutions — open problem.}
+& Assumed at non-linear level.
+\\[4pt]
+%
+C5.\ Decoupling or freezing of extra $\Theta$ modes
+& Additional UBT degrees of freedom beyond the metric sector
+  (imaginary-part modes, $\psi$-modes, etc.) are dynamically
+  suppressed or satisfy their own equations independently.
+& Reduces the combined EL equation to the Einstein equation
+  alone at the classical level.
+& \emph{Not proved in general; plausible at low energies.}
+& Assumed for classical gravity applications.
+\\[4pt]
+%
+C6.\ Compatibility with Bianchi identity and conservation
+& The emergent metric satisfies $\nabla^\mu G_{\mu\nu} = 0$
+  and $\nabla^\mu T_{\mu\nu} = 0$ after projection.
+& Consistency of GR (guaranteed by the Bianchi identity once
+  C3 holds).
+& \emph{Proved: contracted Bianchi identity under A1--A2 (see
+  appendix\_R\_GR\_equivalence.tex and gr\_recovery\_status.md).}
+& —
+\\
+\bottomrule
+\end{longtable}
+
+\bigskip
+
+\begin{remark}[Summary of proof status]
+Conditions C3 and C6 are fully proved within UBT.
+Conditions C1 and C4 are proved in the linearised (perturbative) regime
+and remain open at the non-perturbative level.
+Conditions C2 and C5 are physically motivated assumptions consistent with
+the structure of UBT; formal proofs are open problems listed in
+\texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md}.
+\end{remark}
+
+% =========================================================================
+\section{Conclusion: UBT $\supseteq$ GR}
+\label{sec:conclusion}
+
+The conditions above define a precise sector of $\Theta$-configurations on
+which GR is exactly reproduced.  The sector is non-empty (it contains at
+least flat space and all linearised GR solutions) and physically well-motivated.
+
+Outside this sector, UBT may admit additional dynamics—non-GR solutions—which
+represent genuine extensions of Einstein gravity.  These extra solutions are
+expected physical predictions of UBT, not inconsistencies.
+
+\medskip
+\noindent
+\textbf{The correct statement} of the UBT--GR relationship is therefore:
+\begin{equation}
+  \mathrm{GR} \subset \mathcal{A}_{\mathrm{UBT}} \subset \mathrm{UBT},
+\end{equation}
+where the inclusions are understood as: GR solutions form a sector of the
+UBT admissible class, which is itself a sector of the full UBT configuration
+space.
+
+\ifdefined\INCLUDEMODE
+  % no end{document} when included
+\else
+  \end{document}
+\fi

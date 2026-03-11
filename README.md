@@ -30,6 +30,15 @@ Proved: G_μν = 8πG T_μν, ∇^μT_μν = 0, Lorentzian signature from AXIOM 
 non-degeneracy for A_UBT, metric bridge theorem.
 Conditional: GR equivalence via tetrad pipeline (under A1–A3).
 Open: pure Θ-only closure off-shell; metric uniqueness beyond A_UBT.
+
+**There is no contradiction between UBT and GR.** UBT reproduces GR on the
+admissible sector A_UBT (constrained_sector_recovery — Level 2) while admitting
+additional non-GR degrees of freedom beyond that sector.  The combined variational
+condition E_Θ + J*E_g = 0 is the fundamental equation; termwise separation is not
+automatic and does not contradict UBT.  See
+[docs/ubt_gr_relationship.md](docs/ubt_gr_relationship.md) and
+[reports/gr_recovery_levels.md](reports/gr_recovery_levels.md).
+
 → Full GR status: [DERIVATION_INDEX.md §GR Recovery Status](DERIVATION_INDEX.md)
 
 → Full status map: [docs/THEORY_STATUS.md](docs/THEORY_STATUS.md)
