@@ -27,7 +27,7 @@ number:
 > **ΔN_eff ≈ 0.046** (central estimate, complex scalar zero mode)
 > **N_eff(UBT) ≈ 3.090**
 
-See `report/UBT_delta_Neff_prediction.md` for the full derivation.
+See `ARCHIVE/duplicate_or_snapshot_roots/report/UBT_delta_Neff_prediction.md` for the full derivation.
 
 ### 2.2 Range
 

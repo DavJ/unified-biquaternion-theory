@@ -8,7 +8,7 @@ Create a **single canonical** document that explains the *time regime selection 
 
 ## Instructions
 1. Create a new file:
-   - `DOCS/time_selection_criteria.md`
+   - `ARCHIVE/duplicate_or_snapshot_roots/DOCS/time_selection_criteria.md`
 2. Keep it short (≈ 1 page).
 3. It must include:
    - A clear statement: **`T_B` is primary; `τ` is a limit/projection**.
@@ -29,5 +29,5 @@ Link to these files (do not paraphrase them extensively; point to them):
 - ❌ No new notation unless mapped to existing symbols.
 
 ## Definition of done
-- `DOCS/time_selection_criteria.md` exists.
+- `ARCHIVE/duplicate_or_snapshot_roots/DOCS/time_selection_criteria.md` exists.
 - It is short, explicit, and references the established sources.

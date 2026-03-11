@@ -138,7 +138,7 @@ Running baryon density and CMB acoustic peak positions receive calculable UBT co
 |---|---|---|---|
 | GR recovery | [`appendix_R_GR_equivalence.tex`](../consolidation_project/appendix_R_GR_equivalence.tex) | — | Analytic |
 | SU(3) emergence | [`Appendix_G_Emergent_SU3.tex`](../Appendix_G_Emergent_SU3.tex) | — | Analytic |
-| α⁻¹ = 137 (bare) | [`alpha_constant_derivation_precise.tex`](../unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex) | [`emergent_alpha_calculator.py`](../ubt_with_chronofactor/scripts/emergent_alpha_calculator.py) | Semi-empirical |
+| α⁻¹ = 137 (bare) | [`alpha_constant_derivation_precise.tex`](../unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex) | [`emergent_alpha_calculator.py`](../ARCHIVE/legacy_variants/ubt_with_chronofactor/scripts/emergent_alpha_calculator.py) | Semi-empirical |
 | α⁻¹ = 137.036 | [`STATUS_ALPHA.md`](../STATUS_ALPHA.md) | [`alpha_two_loop.py`](../alpha_core_repro/alpha_two_loop.py) | Numeric |
 | Hubble tension δ ≈ 8% | [`appendix_HT_hubble_tension_metric_latency.tex`](../speculative_extensions/appendices/appendix_HT_hubble_tension_metric_latency.tex) | [`reproduce_hubble_prediction.py`](../scripts/reproduce_hubble_prediction.py) | Research front |
 | Electron mass | [`appendix_E_m0_derivation_strict.tex`](../appendix_E_m0_derivation_strict.tex) | — | Semi-empirical |
