@@ -1,6 +1,6 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# UBT Fitted Parameters Register
+# FITTED_PARAMETERS.md — UBT Fitted and Free Parameters
 
 > **Purpose**: Track which parameters in UBT are fitted/semi-empirical (not derived),
 > and which have been promoted to fully derived status.
@@ -8,6 +8,14 @@
 > **Maintenance rule (R5):** Update this file on every gap closure.
 > - Remove a parameter when it is derived from first principles.
 > - Keep a parameter when it remains fitted to data.
+
+This file tracks all parameters in UBT that are either:
+- **Fitted** — value chosen to match an experimental result (not predicted)
+- **Semi-empirical** — partially derived but with unexplained residual
+- **Free** — no derivation; must be input from experiment
+
+Parameters that are **fully derived** from first principles are NOT listed here as active
+(they appear in DERIVATION_INDEX.md as "Proven" and in the "Promoted" table below).
 
 ---
 
@@ -28,12 +36,23 @@
 
 | Parameter | Domain | Formula | Current Status | Data Used | Gap |
 |---|---|---|---|---|---|
-| **B̃** (logarithmic correction) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | Semi-empirical | SM gauge-boson content (N_eff = 12) | Gap 6 |
-| **R factor** | Fine structure α | B coefficient from N_eff | Semi-empirical | SM particle spectrum | Gap 6 |
+| **B̃** (B_base = N_eff^{3/2}) | Fine structure α | V_eff(n) = An² − B̃·n·ln(n) | **Semi-empirical** (OPEN PROBLEM A — four derivation approaches tested; all give HONEST GAP or DEAD END: KK sum, zeta regularization, Weyl gauge-orbit volume, twin-prime hypothesis (B=139/3); see `tools/compute_B_KK_sum.py`, `STATUS_ALPHA.md §9`, and `scripts/padic/sage_B_derivation.sage`) | SM gauge-boson content (N_eff = 12) | Gap 6 |
+| **R factor** (≈ 1.114) | Fine structure α | B = B_base × R | **Semi-empirical** (OPEN PROBLEM B — twin-prime reformulation R=139/(3·N_eff^{3/2})=1.1146 is a numerical near-coincidence with no geometric derivation [DEAD END]; B2 and B3 under investigation; see `STATUS_ALPHA.md §9`) | SM particle spectrum | Gap 6 |
 | **Λ** (cosmological constant) | Cosmology / GR | FRW embedding | Semi-empirical | CMB Planck data | — |
-| **Electroweak mixing angle** | Standard Model | SU(2)×U(1) embedding | Semi-empirical (Sketch) | PDG value sin²θ_W = 0.231 | — |
-| **R_ψ** (ψ-circle radius) | Geometry / α | R_ψ = ℏ/(m_e·c) | Calibrated | m_e (electron mass, PDG) | Task 3 |
-| **C/A ratio** (curvature-to-kinetic) | Geometry / α | α_predicted = C/(2A) | Sketch | required C/A = 2α_exp for α ≈ 1/137 | Task 2 |
+| **Electroweak mixing angle** θ_W | Standard Model | SU(2)×U(1) embedding | **Semi-empirical** | PDG value sin²θ_W = 0.231 | Gap 5 |
+| **SU(2)_L coupling** g | Standard Model | Covariant derivative D_μ | **Free** | PDG g ≈ 0.653 | — |
+| **U(1)_Y coupling** g' | Standard Model | Covariant derivative D_μ | **Free** | PDG g' ≈ 0.357 | — |
+| **ψ-instanton action** S_inst | Lepton masses | m_n ~ exp(S_inst·n)/n! | **Fitted** to muon | S_inst = ln(m_μ/m_e) ≈ 5.33; tau not reproduced | Gap 4 |
+
+Notes on the α derivation:
+- Once Problem A (B_base) and Problem B (R) are resolved, both should be **removed** from this table.
+- The A kinetic coefficient is normalised to 1.0 by convention and is NOT a free parameter.
+- See `STATUS_ALPHA.md §9` for the full derivation strategy.
+
+Notes on lepton masses:
+- The naive KK formula is DERIVED and gives ratio 1:2, which is WRONG (mismatch theorem).
+- No mechanism with ≤1 free parameter reproduces 1:207:3477.
+- All free parameters for lepton masses are pending until the mass generation mechanism is identified.
 
 ---
 
@@ -41,36 +60,42 @@
 
 | Parameter | Derived in | Gap | Reference | Date |
 |---|---|---|---|---|
-| **A** (quadratic coefficient) | KK kinetic energy: A = ℏ²/(2m_field·R_ψ²) | Gap 1 | [`Appendix_H_Theta_Phase_Emergence.tex`](../Appendix_H_Theta_Phase_Emergence.tex) §H.3a.3 | 2025 |
+| **A** (quadratic coefficient) | KK kinetic energy: A = ℏ²/(2m_field·R_ψ²) | Gap 1 | `Appendix_H_Theta_Phase_Emergence.tex` §H.3a.3 | 2025 |
 
 ---
 
-## Notes
+## Multi-Channel Framework for N=137
 
-- **B̃**: The one-loop logarithmic coefficient B̃ in V_eff(n) = An² − B̃·n·ln(n) remains
-  semi-empirical pending the full one-loop computation (Gap 6).
-  The A coefficient has been derived analytically from Kaluza-Klein kinematics (Gap 1).
+The effective potential V_eff(n) = An² − B̃·n·ln(n) has a minimum at a specific winding
+number n. Within the multi-channel framework, multiple prime channels are stable:
 
-- **A coefficient derivation (Gap 1):** A = κ/R_ψ² = ℏ²/(2m_field·R_ψ²), derived from
-  the kinetic energy of winding-n KK configurations on S¹ of radius R_ψ.
-  No free parameters: κ and R_ψ are determined by the UBT field content.
-  See `ubt_core/verify_Vpsi.py` class `WindingPotential`.
+- **Channel family** of prime attractors: n = 131, 137, 139, 149, ...
+- **Alternative channels**: n = 199 ranks highest by stability scan; n = 139 is adjacent prime.
+- **Our channel**: n = 137 is selected by energy minimisation (V_eff minimum), not stability rank alone.
 
-- **R_ψ (Task 3 result):** The identification R_ψ = ℏ/(m_e·c) is necessary for
-  consistency but was not derivable from pure geometry (2026-03-04).
-  Three topological candidates were tested (self-duality, winding consistency,
-  modularity) — all dead ends or reproductions of the calibrated value.
-  See `canonical/geometry/biquaternionic_vacuum_solutions.tex §2` for the analysis.
-  Status remains: **Calibrated** — will be promoted to Derived when a geometric
-  derivation of R_ψ independent of m_e is found.
+The "mostly derived" status of V_eff(n) means:
+- The An² term is **derived** from KK kinematics (Gap 1, no free parameters).
+- The B̃·n·ln(n) term is **semi-empirical**: structure-motivated by one-loop arguments,
+  coefficient fitted to SM content (N_eff = 12 gauge bosons).
+- The roadmap (Gap 6) is to derive B̃ from first principles.
 
-- **C/A ratio (Task 2 result):** The stationarity conditions on the (t,ψ) torus give
-  α_predicted = C/(2A) for the simplest curvature potential U_geom = −C/(R_t·R_ψ).
-  The ratio C/A = 2α_exp ≈ 0.01460 is required for α_predicted = α_exp.
-  This is a prediction for the biquaternionic curvature-to-kinetic ratio.
-  Computing C from ℒ_geom closes the derivation (currently [SKETCH]).
-  See `tools/m0_from_torus.py` and `appendix_E_m0_derivation_strict.tex §E.4`.
+See `STATUS_ALPHA.md §9` and `validation/validate_B_coefficient.py` for the no-circularity test.
 
 ---
+
+## Parameters That Would Be Removed If Derived
+
+| Parameter | Removal condition |
+|-----------|-------------------|
+| R ≈ 1.114 | Derive R from [D_μ,D_ν] in ℂ⊗ℍ (Option B2) or gravitational dressing (Option B3). Twin-prime reformulation R=139/(3·N_eff^{3/2}) is a DEAD END (no geometric basis). |
+| B_base = N_eff^{3/2} | Derive from KK mode form factor or gauge-orbit volume or algebraic power law. KK sum, zeta regularization, Weyl gauge-orbit volume, and twin-prime (B=139/3) all tested — all give HONEST GAP / DEAD END as of 2026-03-07; see `tools/compute_B_KK_sum.py`, `STATUS_ALPHA.md §9`, `scripts/padic/sage_B_derivation.sage`. |
+| θ_W | Derive sin²θ_W from extended algebra structure or ψ-circle dynamics |
+
+---
+
+*Full details also in `docs/FITTED_PARAMETERS.md`.*
+
+*Last updated: 2026-03-07. See STATUS_ALPHA.md §9 and docs/PROOFKIT_ALPHA.md §6 for details.*
 
 *© 2025 Ing. David Jaroš — CC BY-NC-ND 4.0*
+

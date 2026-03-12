@@ -24,7 +24,7 @@ body:
       description: "Provide path:line citations where the item is used or assumed without definition."
       placeholder: |
         - unified_biquaternion_theory/ubt_main_article.tex:78 — references Θ without canonical definition
-        - consolidation_project/ubt_2_main.tex:120 — same symbol used differently
+        - archive/consolidation_project/ubt_2_main.tex:120 — same symbol used differently
     validations:
       required: true
 

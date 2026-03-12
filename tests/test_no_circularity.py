@@ -291,9 +291,9 @@ def test_alpha_derivation_does_not_reference_experimental_alpha():
     
     repo_root = Path(__file__).parent.parent
     alpha_sources = [
-        repo_root / "alpha_core_repro" / "two_loop_core.py",
-        repo_root / "alpha_core_repro" / "alpha_two_loop.py",
-        repo_root / "ubt_masses" / "core.py",
+        repo_root / "experiments" / "alpha_core_repro" / "two_loop_core.py",
+        repo_root / "experiments" / "alpha_core_repro" / "alpha_two_loop.py",
+        repo_root / "research_tracks" / "ubt_masses" / "core.py",
     ]
     
     # Problematic patterns
@@ -429,9 +429,9 @@ def test_no_codata_in_alpha_computation():
     
     repo_root = Path(__file__).parent.parent
     alpha_sources = [
-        repo_root / "alpha_core_repro" / "two_loop_core.py",
-        repo_root / "alpha_core_repro" / "alpha_two_loop.py",
-        repo_root / "ubt_masses" / "core.py",
+        repo_root / "experiments" / "alpha_core_repro" / "two_loop_core.py",
+        repo_root / "experiments" / "alpha_core_repro" / "alpha_two_loop.py",
+        repo_root / "research_tracks" / "ubt_masses" / "core.py",
     ]
     
     violations = []

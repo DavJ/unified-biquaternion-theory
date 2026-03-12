@@ -23,7 +23,7 @@ sys.path.insert(0, str(repo_root))
 def test_rigidity_experiment_help():
     """Test that the rigidity experiment tool shows help."""
     result = subprocess.run(
-        ['python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py', '--help'],
+        ['python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py', '--help'],
         cwd=repo_root,
         capture_output=True,
         text=True
@@ -42,7 +42,7 @@ def test_rigidity_experiment_dry_run():
     with tempfile.TemporaryDirectory() as tmpdir:
         result = subprocess.run(
             [
-                'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
+                'python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
                 '--seed', '999',
@@ -91,7 +91,7 @@ def test_rigidity_experiment_verdict_content():
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.run(
             [
-                'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
+                'python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
                 '--seed', '999',
@@ -134,7 +134,7 @@ def test_rigidity_experiment_stability_metrics():
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.run(
             [
-                'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
+                'python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
                 '--seed', '999',
@@ -178,7 +178,7 @@ def test_rigidity_experiment_reproducibility():
         # First run with seed 333
         result1 = subprocess.run(
             [
-                'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
+                'python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
                 '--seed', '333',
@@ -204,7 +204,7 @@ def test_rigidity_experiment_reproducibility():
         # Second run with same seed 333
         result2 = subprocess.run(
             [
-                'python3', 'forensic_fingerprint/tools/layer2_rigidity_experiment.py',
+                'python3', 'tools/forensic_fingerprint/tools/layer2_rigidity_experiment.py',
                 '--samples', '5',
                 '--mapping', 'placeholder',
                 '--seed', '333',

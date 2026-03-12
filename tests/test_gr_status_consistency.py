@@ -49,9 +49,9 @@ class TestRequiredFilesExist:
     """Guard: GR-sector deliverable files must be present."""
 
     REQUIRED = [
-        "reports/gr_recovery_levels.md",
-        "consolidation_project/GR_closure/theta_vs_metric_variation_note.tex",
-        "consolidation_project/GR_closure/gr_sector_conditions.tex",
+        "docs/reports/gr_recovery_levels.md",
+        "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex",
+        "archive/consolidation_project/GR_closure/gr_sector_conditions.tex",
         "docs/ubt_gr_relationship.md",
     ]
 
@@ -92,9 +92,9 @@ _SCAN_FILES = [
     "CURRENT_STATUS.md",
     "DERIVATION_INDEX.md",
     "docs/THEORY_STATUS.md",
-    "reports/gr_recovery_final_status.md",
-    "reports/gr_recovery_levels.md",
-    "consolidation_project/GR_closure/step2_theta_only_closure.tex",
+    "docs/reports/gr_recovery_final_status.md",
+    "docs/reports/gr_recovery_levels.md",
+    "archive/consolidation_project/GR_closure/step2_theta_only_closure.tex",
 ]
 
 
@@ -138,21 +138,21 @@ class TestGRRecoveryLevelsContent:
     ]
 
     def test_level_labels_present(self):
-        path = ROOT / "reports/gr_recovery_levels.md"
+        path = ROOT / "docs/reports/gr_recovery_levels.md"
         if not path.exists():
-            pytest.fail("reports/gr_recovery_levels.md does not exist")
+            pytest.fail("docs/reports/gr_recovery_levels.md does not exist")
         text = _read_file(path)
         missing = [lbl for lbl in self.LEVEL_LABELS if lbl not in text]
         assert not missing, (
-            "reports/gr_recovery_levels.md is missing required level labels:\n"
+            "docs/reports/gr_recovery_levels.md is missing required level labels:\n"
             + "\n".join(f"  {lbl}" for lbl in missing)
         )
 
     def test_consistency_sentence_present(self):
         """The mandatory consistency sentence must appear in gr_recovery_levels.md."""
-        path = ROOT / "reports/gr_recovery_levels.md"
+        path = ROOT / "docs/reports/gr_recovery_levels.md"
         if not path.exists():
-            pytest.fail("reports/gr_recovery_levels.md does not exist")
+            pytest.fail("docs/reports/gr_recovery_levels.md does not exist")
         text = _read_file(path)
         # Check for the key phrase about no contradiction
         assert re.search(
@@ -160,7 +160,7 @@ class TestGRRecoveryLevelsContent:
             text,
             re.IGNORECASE,
         ), (
-            "reports/gr_recovery_levels.md must contain a statement that "
+            "docs/reports/gr_recovery_levels.md must contain a statement that "
             "'There is no contradiction between UBT and GR'."
         )
 
@@ -180,7 +180,7 @@ class TestThetaVariationNoteContent:
     ]
 
     def test_key_operators_defined(self):
-        path = ROOT / "consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
+        path = ROOT / "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
         if not path.exists():
             pytest.fail("theta_vs_metric_variation_note.tex does not exist")
         text = _read_file(path)
@@ -192,7 +192,7 @@ class TestThetaVariationNoteContent:
 
     def test_warning_box_present(self):
         """The note must contain an explicit warning against termwise separation."""
-        path = ROOT / "consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
+        path = ROOT / "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
         if not path.exists():
             pytest.fail("theta_vs_metric_variation_note.tex does not exist")
         text = _read_file(path)
@@ -210,7 +210,7 @@ class TestGRSectorConditionsContent:
     """Guard: gr_sector_conditions.tex must list explicit conditions C1–C6."""
 
     def test_conditions_listed(self):
-        path = ROOT / "consolidation_project/GR_closure/gr_sector_conditions.tex"
+        path = ROOT / "archive/consolidation_project/GR_closure/gr_sector_conditions.tex"
         if not path.exists():
             pytest.fail("gr_sector_conditions.tex does not exist")
         text = _read_file(path)
@@ -222,7 +222,7 @@ class TestGRSectorConditionsContent:
 
     def test_mandatory_statement_present(self):
         """Must explicitly state GR recovery is exact only on the sector."""
-        path = ROOT / "consolidation_project/GR_closure/gr_sector_conditions.tex"
+        path = ROOT / "archive/consolidation_project/GR_closure/gr_sector_conditions.tex"
         if not path.exists():
             pytest.fail("gr_sector_conditions.tex does not exist")
         text = _read_file(path)

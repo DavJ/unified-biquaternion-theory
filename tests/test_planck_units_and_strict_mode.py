@@ -26,11 +26,11 @@ if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 # Add forensic_fingerprint loaders to path
-loaders_path = repo_root / 'forensic_fingerprint' / 'loaders'
+loaders_path = repo_root / 'tools' / 'forensic_fingerprint' / 'loaders'
 if str(loaders_path) not in sys.path:
     sys.path.insert(0, str(loaders_path))
 
-cmb_comb_path = repo_root / 'forensic_fingerprint' / 'cmb_comb'
+cmb_comb_path = repo_root / 'tools' / 'forensic_fingerprint' / 'cmb_comb'
 if str(cmb_comb_path) not in sys.path:
     sys.path.insert(0, str(cmb_comb_path))
 

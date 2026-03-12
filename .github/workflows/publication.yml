@@ -4,14 +4,14 @@ on:
   push:
     branches: [ main, copilot/** ]
     paths:
-      - 'publication/**'
-      - 'consolidation_project/alpha_two_loop/tex/**'
+      - 'docs/publication/**'
+      - 'archive/consolidation_project/alpha_two_loop/tex/**'
       - '.github/workflows/publication.yml'
   pull_request:
     branches: [ main ]
     paths:
-      - 'publication/**'
-      - 'consolidation_project/alpha_two_loop/tex/**'
+      - 'docs/publication/**'
+      - 'archive/consolidation_project/alpha_two_loop/tex/**'
   workflow_dispatch:
 
 jobs:

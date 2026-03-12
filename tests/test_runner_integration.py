@@ -58,7 +58,7 @@ def test_runner_rejects_mismatched_manifest():
             json.dump(manifest, f, indent=2)
         
         # Try to run with manifest that doesn't include model_file
-        runner_script = repo_root / 'ubt_with_chronofactor' / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py'
+        runner_script = repo_root / 'experiments' / 'run_real_data_cmb_comb.py'
         
         cmd = [
             sys.executable, str(runner_script),
@@ -104,7 +104,7 @@ def test_runner_rejects_likelihood_file():
             for i in range(30, 130):
                 f.write(f"{i} {1234.56 + i*0.1} {100.0}\n")
         
-        runner_script = repo_root / 'ubt_with_chronofactor' / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py'
+        runner_script = repo_root / 'experiments' / 'run_real_data_cmb_comb.py'
         
         cmd = [
             sys.executable, str(runner_script),
@@ -149,7 +149,7 @@ def test_runner_accepts_valid_setup():
         # Create output directory
         output_dir = tmpdir / "output"
         
-        runner_script = repo_root / 'ubt_with_chronofactor' / 'forensic_fingerprint' / 'run_real_data_cmb_comb.py'
+        runner_script = repo_root / 'experiments' / 'run_real_data_cmb_comb.py'
         
         cmd = [
             sys.executable, str(runner_script),

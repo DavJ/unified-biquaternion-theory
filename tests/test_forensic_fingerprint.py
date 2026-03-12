@@ -20,10 +20,10 @@ repo_root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(repo_root))
 
 # Import forensic fingerprint modules
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'cmb_comb'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'grid_255'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'invariance'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'loaders'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'cmb_comb'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'grid_255'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'invariance'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'loaders'))
 
 import cmb_comb
 import grid_255
@@ -851,7 +851,7 @@ class TestRealDataRunner:
     def test_runner_import(self):
         """Test that the runner script can be imported."""
         # Import the runner script
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Check key functions exist
@@ -861,7 +861,7 @@ class TestRealDataRunner:
     
     def test_save_results_json(self, tmp_path):
         """Test JSON results saving with numpy array conversion."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create test results with numpy arrays
@@ -896,7 +896,7 @@ class TestRealDataRunner:
     
     def test_generate_combined_verdict_pass(self, tmp_path):
         """Test combined verdict generation for PASS case."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create mock results that should PASS all criteria
@@ -945,7 +945,7 @@ class TestRealDataRunner:
     
     def test_generate_combined_verdict_fail(self, tmp_path):
         """Test combined verdict generation for FAIL case."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create mock results that should FAIL (different periods)
@@ -990,7 +990,7 @@ class TestRealDataRunner:
     
     def test_generate_combined_verdict_planck_only(self, tmp_path):
         """Test combined verdict with only Planck results."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         planck_results = {
@@ -1021,7 +1021,7 @@ class TestRealDataRunner:
     
     def test_generate_combined_verdict_court_grade_warning(self, tmp_path):
         """Test that court-grade warnings appear when covariance is missing."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         planck_results = {
@@ -1108,7 +1108,7 @@ class TestRealDataRunner:
         test_output_dir = tmp_path / 'test_output'
         
         # Import runner
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Simulate command-line args
@@ -1188,7 +1188,7 @@ class TestManifestPathResolution:
     
     def test_resolve_manifest_path_exists(self, tmp_path):
         """Test that existing manifest path is used directly."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create a manifest file
@@ -1205,7 +1205,7 @@ class TestManifestPathResolution:
     
     def test_resolve_manifest_path_planck_fallback_standard(self, tmp_path):
         """Test Planck manifest fallback to planck_pr3_tt_manifest.json."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create directory structure
@@ -1228,7 +1228,7 @@ class TestManifestPathResolution:
     
     def test_resolve_manifest_path_planck_fallback_sha256(self, tmp_path):
         """Test Planck manifest fallback to sha256.json when standard is missing."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         # Create directory structure
         data_dir = tmp_path / 'data' / 'planck_pr3' / 'manifests'
@@ -1250,7 +1250,7 @@ class TestManifestPathResolution:
     
     def test_resolve_manifest_path_wmap_fallback(self, tmp_path):
         """Test WMAP manifest fallback to wmap_tt_manifest.json."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Create directory structure
@@ -1272,7 +1272,7 @@ class TestManifestPathResolution:
     
     def test_resolve_manifest_path_no_fallback_found(self, tmp_path):
         """Test that None is returned when no fallback exists."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Don't create any fallback files
@@ -1288,7 +1288,7 @@ class TestManifestPathResolution:
     
     def test_validate_data_manifest_with_fallback_warning(self, tmp_path, capsys):
         """Test that validate_data_manifest prints warning when using fallback."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         sys.path.insert(0, str(repo_root / 'tools' / 'data_provenance'))
         import run_real_data_cmb_comb
         
@@ -1351,7 +1351,7 @@ class TestManifestPathResolution:
     
     def test_validate_data_manifest_error_with_suggestion(self, tmp_path, capsys):
         """Test that error message includes attempted paths and generation suggestion."""
-        sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+        sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
         import run_real_data_cmb_comb
         
         # Don't create any fallback files
