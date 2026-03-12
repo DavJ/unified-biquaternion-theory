@@ -28,7 +28,7 @@
 - [ ] Ran relevant tests / scripts (paste output or link to CI run)
 
 ## Requires Auditor Approval
-- [ ] This PR touches protected paths (`original_release_of_ubt/`, `canonical/`, `core/`, `unified_biquaternion_theory/`)
+- [ ] This PR touches protected paths (`original_release_of_ubt/`, `core/`, `unified_biquaternion_theory/`)
 - [ ] Auditor has been added as a reviewer
 
 ## Notes

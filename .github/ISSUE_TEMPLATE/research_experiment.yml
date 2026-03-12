@@ -23,7 +23,7 @@ body:
       label: "Repo Grounding"
       description: "At least 2 path:line citations linking the experiment to theory."
       placeholder: |
-        - canonical/fields/theta_field.tex:33 — equation being numerically tested
+        - core/canonical/fields/theta_field.tex:33 — equation being numerically tested
         - tools/alpha_running.py:12 — existing utility reused
     validations:
       required: true
