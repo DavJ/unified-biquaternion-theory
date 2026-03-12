@@ -1,0 +1,23 @@
+path	category	reason	date_archived
+archive/abandoned_tracks/B_base_entropy_attempt.tex	abandoned_track	Entropy-based approach to B_base derivation; superseded by Hausdorff/Kac-Moody approaches	2026-03-12
+archive/deprecated/research_tracks/alpha_derivation_status.md	deprecated_status	Old alpha derivation status; superseded by THEORY/topic_indexes/alpha_index.md and DERIVATION_INDEX.md	2026-03-12
+archive/deprecated/research_tracks/alpha_program_status.md	deprecated_status	Old alpha program status; superseded by current DERIVATION_INDEX.md	2026-03-12
+archive/deprecated/research_tracks/fermion_mass_program.md	deprecated_status	Old fermion mass program doc; superseded by current research tracks	2026-03-12
+archive/deprecated/research_tracks/fermion_mass_status.md	deprecated_status	Old fermion mass status; superseded by current DERIVATION_INDEX.md	2026-03-12
+archive/deprecated/research_tracks/rh_biquaternion_extension/README.md	deprecated_track	Riemann hypothesis / biquaternion extension track; inactive	2026-03-12
+archive/deprecated/research_tracks/rh_biquaternion_extension/RH_Spectral_Link.md	deprecated_track	Riemann hypothesis spectral link; inactive track	2026-03-12
+archive/deprecated/research_tracks/spectral_3over2/B_base_from_spectral_density.tex	deprecated_track	Spectral density approach to B_base; superseded by Hausdorff analysis	2026-03-12
+archive/deprecated/research_tracks/spectral_3over2/heat_kernel_theta.tex	deprecated_track	Heat kernel approach; superseded	2026-03-12
+archive/deprecated/research_tracks/spectral_3over2/quaternionic_dimension_test.md	deprecated_track	Quaternionic dimension test notes; superseded	2026-03-12
+archive/deprecated/research_tracks/spectral_3over2/theta_operator_candidates.tex	deprecated_track	Theta operator candidates; superseded	2026-03-12
+archive/deprecated/research_tracks/spectral_3over2/weyl_counting_theta.tex	deprecated_track	Weyl counting approach; superseded	2026-03-12
+archive/historical_versions/repo_snapshots/unified-biquaternion-theory-master/	historical_snapshot	Full repository snapshot at master branch; preserved for reproducibility	2026-03-12
+archive/historical_versions/status/STATUS_ALPHA.md	historical_status	Historical alpha derivation status snapshot	2026-03-12
+archive/historical_versions/status/STATUS_FERMIONS.md	historical_status	Historical fermion mass status snapshot	2026-03-12
+archive/historical_versions/status/STATUS_NEUTRINOS.md	historical_status	Historical neutrino mass status snapshot	2026-03-12
+archive/historical_versions/status/STATUS_OBSERVATIONAL.md	historical_status	Historical observational status snapshot	2026-03-12
+archive/historical_versions/status/STATUS_THEORY_ASSESSMENT.md	historical_status	Historical theory assessment snapshot	2026-03-12
+docs/CONSOLIDATION_ROADMAP.md	process_doc	Consolidation process roadmap; moved from core/ (was core/canonical/) — meta/governance, not physics	2026-03-12
+docs/IMPLEMENTATION_CHECKLIST.md	process_doc	Implementation checklist; moved from core/ (was core/canonical/) — meta/governance, not physics	2026-03-12
+docs/NABLA_APPENDIX_VERIFICATION.md	process_doc	Nabla appendix verification notes; moved from core/ (was core/canonical/) — meta/governance, not physics	2026-03-12
+docs/PHASE_1_COMPLETE_SUMMARY.md	process_doc	Phase 1 completion summary; moved from core/ (was core/canonical/) — meta/governance, not physics	2026-03-12

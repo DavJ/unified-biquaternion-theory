@@ -80,20 +80,20 @@ unified-biquaternion-theory/
 **Role**: The single authoritative home for proved and canonical UBT physics.
 
 `core/` contains:
-- `core/canonical/` — the current-best, tightened canonical mainline (see `core/canonical/SCOPE.md`)
+- `core/` — the current-best, tightened canonical mainline (see `core/SCOPE.md`)
 - `core/AXIOMS.md` — locked canonical axioms (must not be redefined)
 - `core/gr_limit/` — the GR limit proof
 
 **Rules**:
 - All content in `core/` must be internally consistent with `README.md` and `DERIVATION_INDEX.md`.
-- `core/canonical/` follows the strict inclusion rules defined in `core/canonical/SCOPE.md`.
+- `core/` follows the strict inclusion rules defined in `core/SCOPE.md`.
 - Any change to `core/` requires Auditor approval (see `.github/CODEOWNERS`).
 
 ### `extensions/`
 
 **Role**: Formal extensions of the UBT framework that are well-formalized but not yet canonical.
 
-Extensions differ from `core/canonical/` in that they:
+Extensions differ from `core/` in that they:
 - Address new physical sectors (dark sector, holographic, p-adic, noncommutative, ...)
 - Have some open questions or conditional assumptions
 - Are not yet proved on the canonical admissible sector A_UBT
@@ -177,10 +177,10 @@ UBT uses the following status labels throughout the repository (defined in `DERI
 |----------|---------------|
 | What has UBT actually proved? | `DERIVATION_INDEX.md` |
 | Current theory status? | `docs/THEORY_STATUS.md` |
-| Canonical definitions? | `core/canonical/CANONICAL_DEFINITIONS.md` |
+| Canonical definitions? | `core/CANONICAL_DEFINITIONS.md` |
 | Canonical axioms? | `core/AXIOMS.md` |
 | GR recovery proof? | `core/gr_limit/GR_limit_of_UBT.tex` |
-| QED from UBT? | `core/canonical/interactions/qed.tex` |
+| QED from UBT? | `core/interactions/qed.tex` |
 | Consciousness content? | `speculative_extensions/consciousness/` |
 | Fingerprint tests? | `research_tracks/fingerprints/` |
 | Numerical experiments? | `experiments/` |

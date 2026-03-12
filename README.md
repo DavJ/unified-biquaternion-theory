@@ -4,6 +4,22 @@
 
 ---
 
+## Repository Structure (5 Top-Level Directories)
+
+| Directory | What it contains | When to read |
+|---|---|---|
+| [`core/`](core/) | Canonical physics and math (start here) | Understanding the theory |
+| [`research_tracks/`](research_tracks/) | Active non-mainline research | Following open problems |
+| [`speculative_extensions/`](speculative_extensions/) | Unproved speculative extensions | Exploring implications |
+| [`experiments/`](experiments/) | Numerical code and computations | Reproducing results |
+| [`archive/`](archive/) | Superseded/deprecated content | Historical reference |
+| [`docs/`](docs/) | Process, governance, meta documents | Project navigation |
+
+**Entry point:** [`core/UBT_canonical_main.tex`](core/UBT_canonical_main.tex)  
+**Full structure guide:** [`docs/REPOSITORY_STRUCTURE.md`](docs/REPOSITORY_STRUCTURE.md)
+
+---
+
 ## Current proof status (2026-03-06)
 
 | Result | Status |
@@ -60,7 +76,7 @@ automatic and does not contradict UBT.  See
 - **SM gauge group SU(2)_L × U(1)_Y** from ℂ⊗ℍ algebra isomorphism  
   → `consolidation_project/appendix_E2_SM_geometry.tex`
 - **U(1)_EM** from ψ-cycle phase of Θ  
-  → `core/canonical/interactions/qed.tex`
+  → `core/interactions/qed.tex`
 - **Three generation mechanism**: ψ-modes of the biquaternionic field Θ are independent, carry same SU(3) quantum numbers, and ψ-parity forbids inter-generational mixing  
   → `research_tracks/three_generations/st3_complex_time_generations.tex`
 - **N_eff = 12** from ℂ⊗ℍ algebra alone (3 × 2 × 2; zero free parameters)  
@@ -222,16 +238,23 @@ The scientific content is organised into three layers reflecting increasing leve
 core/                    ← Layer 0: axioms, Θ definition, GR limit derivation
   AXIOMS.md
   core_assumptions.tex
-  gr_limit/
-    GR_limit_of_UBT.tex  ← CANONICAL: single coherent GR limit derivation
+  core/                    ← Canonical UBT physics and math (start here)
+    UBT_canonical_main.tex  ← MAIN canonical document
+    algebra/             ← Biquaternion algebra foundations
+    bridges/             ← Navigation cross-reference bridges
+    fields/              ← Canonical field definitions
+    geometry/            ← Metric, curvature, GR limit
+    interactions/        ← QED, QCD, SM gauge
+    gr_limit/
+        GR_limit_of_UBT.tex  ← CANONICAL: single coherent GR limit derivation
 extensions/              ← Layer 1/2 extensions (AdS/CFT-like, mirror sector, etc.)
 experiments/             ← Numerical simulations, parameter scans
 sandbox/                 ← Unfinished derivations, speculative models
 archive/                 ← Obsolete notes, previous versions, duplicated material
-core/canonical/          ← Current canonical UBT documents (canonical physics under core/)
 consolidation_project/   ← Consolidated derivations and appendices
 research/                ← Active research files
 speculative_extensions/  ← Explicitly speculative content
+research_tracks/         ← Active non-mainline research tracks
 ```
 
 **See also:** [`UBT_LAYERED_STRUCTURE.md`](UBT_LAYERED_STRUCTURE.md) for detailed explanation.
@@ -262,7 +285,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 **UBT is organized into conceptual layers to separate geometric foundations from modeling choices:**
 
 ### Core UBT (Layer A) - Geometric Foundations
-**Location:** `core/`, `core/canonical/`, `THEORY/architecture/geometry/`
+**Location:** `core/`, `THEORY/architecture/geometry/`
 
 Pure biquaternionic geometry:
 - Field equations: ∇†∇Θ(q,τ) = κ𝒯(q,τ)
