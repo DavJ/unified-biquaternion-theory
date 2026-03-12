@@ -31,15 +31,13 @@ Equivalently: `T_B = t + i(ψ + v·σ)` where `v = (χ, ξ, 0)` is a vector.
 
 **Scalar imaginary (ψ)**:
 - Isotropic phase structure of Θ field
-- Consciousness substrate (psychon excitations)
-- Scalar dark energy
+- Scalar dark-sector degree of freedom *(interpretation: speculative/open)*
 - Universal quantum coherence (direction-independent)
 
 **Vector imaginary (χ, ξ)**:
 - Directional phase structures
 - Spacetime torsion and spin effects
-- Anisotropic dark matter distributions
-- Directional consciousness modes
+- Anisotropic dark-sector contributions *(interpretation: speculative/open)*
 
 **Critical**: All imaginary components are **dynamical variables**, not passive parameters.
 
@@ -75,8 +73,7 @@ Use τ when:
 
 Use full T_B when:
 - Torsion effects important
-- Anisotropic dark matter
-- Collective consciousness
+- Anisotropic dark-sector fields *(speculative)*
 - Strong coupling regimes
 
 ### Resolution of Conflicts
@@ -363,13 +360,13 @@ These are **predicted** by UBT:
 ### Status of Each
 | Constant | Status | Source |
 |----------|--------|--------|
-| α | **Predicted** | Geometric/topological derivation |
-| m_e | **Predicted** | From Θ field self-energy |
-| m_μ | **Predicted** | From phase structure |
-| m_τ | **Predicted** | From phase structure |
-| Λ_QCD | **Predicted** | From SU(3) emergence |
+| α | **Open (Problem A)** | Bare value derivation gap — see root DERIVATION_INDEX.md |
+| m_e | **Semi-empirical** | From Θ field self-energy (mechanism conjectured) |
+| m_μ | **Supported** | Hecke eigenvalue match at p=139 (0.05% + 1.6%) |
+| m_τ | **Supported** | Hecke eigenvalue match |
+| Λ_QCD | **Semi-empirical** | From SU(3) emergence (≥1 free parameter) |
 | G | **Input** | Newton's constant |
-| θ_W | **Derived** | Weak mixing angle |
+| θ_W | **Derived (conditional)** | Weak mixing angle |
 
 ---
 
@@ -428,24 +425,15 @@ The final single method and formula will be established in `canonical/fields/ele
 
 ## 11. Psychons and Θ-Resonance
 
-### Canonical Definition
-**Psychons** are quantum excitations of the consciousness field, defined as:
-```
-ψ_psychon: excitations in the imaginary time component ψ
-```
-
-### Lagrangian (to be formalized)
-The psychon Lagrangian must be derived from variation of the action:
-```
-S[Θ,ψ] = ∫ d⁴x √(-g) L[Θ,ψ]
-```
-
-**Action Required**: Formalize in Phase 3 - currently lacks precise mathematical form.
-
-### Θ-Resonator
-Experimental device concept for detecting psychon excitations.
-
-**Status**: Conceptual design exists, mathematical formalization needed.
+> **Note**: Psychon content has been moved out of `canonical/` into
+> `speculative_extensions/consciousness/psychons.tex`.
+> Consciousness is **not** a canonical claim of core UBT.
+>
+> The imaginary time components (ψ, χ, ξ) are genuine mathematical degrees of freedom
+> of biquaternion time T_B.  Their possible physical interpretation as a "consciousness
+> substrate" is *speculative / open* and must not be treated as a proved or mainline result.
+>
+> For the speculative consciousness formulation see `speculative_extensions/consciousness/`.
 
 ---
 
