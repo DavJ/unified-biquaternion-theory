@@ -32,7 +32,7 @@ body:
       description: "At least 2 path:line citations showing the current state being changed."
       placeholder: |
         - tools/alpha_running.py:5 — function to be refactored
-        - canonical/AXIOMS.md:20 — equation implemented
+        - core/canonical/CANONICAL_DEFINITIONS.md:20 — equation implemented
     validations:
       required: true
 

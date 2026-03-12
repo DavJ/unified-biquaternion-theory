@@ -23,7 +23,6 @@ experiments/                    @experimentalist @auditor
 # ── Protected core — Auditor mandatory ─────────────────────────────────────────
 # Any change here requires Auditor review AND the allow-core-change label.
 original_release_of_ubt/        @auditor
-canonical/                      @auditor
 core/                           @auditor
 unified_biquaternion_theory/    @auditor
 

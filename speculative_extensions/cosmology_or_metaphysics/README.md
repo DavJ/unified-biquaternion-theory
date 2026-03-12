@@ -18,5 +18,5 @@ do not belong in `canonical/`.
 tightened to current-best, mostly-proved content only.
 Full git history is preserved.
 
-For canonical UBT content see `canonical/`.
+For canonical UBT content see `core/canonical/`.
 For consciousness-related speculation see `speculative_extensions/consciousness/`.

@@ -32,7 +32,7 @@ body:
     id: suggested_location
     attributes:
       label: "Suggested Canonical Location"
-      description: "Where should the definition live? (e.g., `canonical/AXIOMS.md` or a new file)"
+      description: "Where should the definition live? (e.g., `core/canonical/CANONICAL_DEFINITIONS.md` or a new file)"
     validations:
       required: false
 

@@ -4,7 +4,7 @@ This directory contains the **current-best, internally consistent, low-speculati
 
 ## Purpose
 
-`canonical/` is the **single reference formulation** of UBT for resolving conflicts and duplications.  
+`core/canonical/` is the **single reference formulation** of UBT for resolving conflicts and duplications.  
 It is **stricter** than the historical or conceptual scope of the repository:
 
 - Not all historical UBT material belongs here.
@@ -12,12 +12,12 @@ It is **stricter** than the historical or conceptual scope of the repository:
 - Only current-best and sufficiently established material stays.
 - **Speculative extensions** (including consciousness / psychons, universe-as-atom, fingerprint/parity side-tracks) are **not** part of canonical UBT — they live in `speculative_extensions/` and `research_tracks/`.
 
-See `canonical/SCOPE.md` for the full inclusion/exclusion policy.
+See `core/canonical/SCOPE.md` for the full inclusion/exclusion policy.
 
 ## Structure
 
 ```
-canonical/
+core/canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── SCOPE.md                    # Inclusion / exclusion policy
 ├── README.md                   # This file
@@ -48,11 +48,11 @@ canonical/
     └── symbol_dictionary.tex   # Symbol standardization
 ```
 
-## What is NOT in canonical/
+## What is NOT in core/canonical/
 
 The following content has been intentionally moved out:
 
-| Removed from canonical/ | Moved to |
+|  Removed from core/canonical/ | Moved to |
 |--------------------------|----------|
 | `consciousness/psychons.tex` | `speculative_extensions/consciousness/` |
 | `UBT_coding_fingerprint.tex` | `research_tracks/fingerprints/` |
@@ -82,7 +82,7 @@ Each concept has **exactly one** canonical definition in this directory. All oth
 
 ### 2. Conflict Resolution
 When multiple versions of a definition exist in the repository:
-- The `canonical/` version is authoritative
+- The `core/canonical/` version is authoritative
 - Conflicting versions should be marked as deprecated
 - Legacy versions remain in `unified_biquaternion_theory/` (read-only)
 
@@ -152,8 +152,8 @@ When reviewing UBT documents:
 
 ## Related Documents
 
-- `canonical/SCOPE.md` - Inclusion / exclusion policy for this directory
-- `canonical/CANONICAL_DEFINITIONS.md` - Master definitions document
+- `core/canonical/SCOPE.md` - Inclusion / exclusion policy for this directory
+- `core/canonical/CANONICAL_DEFINITIONS.md` - Master definitions document
 - `consolidation_project/metadata/todos.md` - Consolidation task list
 - `DERIVATION_INDEX.md` - Root derivation status map
 - `speculative_extensions/` - Speculative content (consciousness, cosmological speculation)
@@ -165,7 +165,7 @@ When reviewing UBT documents:
 Files in `unified_biquaternion_theory/` are original research documents and should NOT be modified. They are preserved for historical reference.
 
 ### Consolidation Source
-Most consolidated content comes from `consolidation_project/` which contains partial consolidations. The `canonical/` directory represents the final, authoritative versions.
+Most consolidated content comes from `consolidation_project/` which contains partial consolidations. The `core/canonical/` directory represents the final, authoritative versions.
 
 ---
 

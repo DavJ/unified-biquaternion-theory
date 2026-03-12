@@ -60,7 +60,7 @@ automatic and does not contradict UBT.  See
 - **SM gauge group SU(2)_L × U(1)_Y** from ℂ⊗ℍ algebra isomorphism  
   → `consolidation_project/appendix_E2_SM_geometry.tex`
 - **U(1)_EM** from ψ-cycle phase of Θ  
-  → `canonical/interactions/qed.tex`
+  → `core/canonical/interactions/qed.tex`
 - **Three generation mechanism**: ψ-modes of the biquaternionic field Θ are independent, carry same SU(3) quantum numbers, and ψ-parity forbids inter-generational mixing  
   → `research_tracks/three_generations/st3_complex_time_generations.tex`
 - **N_eff = 12** from ℂ⊗ℍ algebra alone (3 × 2 × 2; zero free parameters)  
@@ -228,7 +228,7 @@ extensions/              ← Layer 1/2 extensions (AdS/CFT-like, mirror sector, 
 experiments/             ← Numerical simulations, parameter scans
 sandbox/                 ← Unfinished derivations, speculative models
 archive/                 ← Obsolete notes, previous versions, duplicated material
-canonical/               ← Current canonical UBT documents
+core/canonical/          ← Current canonical UBT documents (canonical physics under core/)
 consolidation_project/   ← Consolidated derivations and appendices
 research/                ← Active research files
 speculative_extensions/  ← Explicitly speculative content
@@ -262,7 +262,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 **UBT is organized into conceptual layers to separate geometric foundations from modeling choices:**
 
 ### Core UBT (Layer A) - Geometric Foundations
-**Location:** `core_ubt/`, `canonical/`, `THEORY/architecture/geometry/`
+**Location:** `core/`, `core/canonical/`, `THEORY/architecture/geometry/`
 
 Pure biquaternionic geometry:
 - Field equations: ∇†∇Θ(q,τ) = κ𝒯(q,τ)
