@@ -1,21 +1,21 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# core/canonical/ — Scope and Inclusion Policy
+# core/ — Scope and Inclusion Policy
 
-This document defines precisely what belongs in `core/canonical/` and what must be kept outside it.
+This document defines precisely what belongs in `core/` and what must be kept outside it.
 
-## Definition of core/canonical/
+## Definition of core/
 
-`core/canonical/` contains the **current-best, internally consistent, low-speculation** formulation of
+`core/` contains the **current-best, internally consistent, low-speculation** formulation of
 Unified Biquaternion Theory (UBT): material that the theory currently treats as correct, and that is
 preferably proved, reproduced, or clearly established as the canonical mainline.
 
-`core/canonical/` is **stricter** than the full historical or conceptual scope of the repository.
+`core/` is **stricter** than the full historical or conceptual scope of the repository.
 It is the reference formulation — not an archive, not a brainstorming space, not a side-track.
 
 ## Inclusion rules
 
-Material stays in `core/canonical/` only if it is:
+Material stays in `core/` only if it is:
 
 1. **Current-best mainline** — reflects the current state of the theory, not superseded variants.
 2. **Internally consistent** — does not contradict root `README.md` or root `DERIVATION_INDEX.md`.
@@ -28,7 +28,7 @@ Some non-proved material is allowed **only if**:
 
 ## Exclusion rules
 
-The following categories must be moved out of `core/canonical/`:
+The following categories must be moved out of `core/`:
 
 | Category | Destination |
 |----------|-------------|
@@ -44,13 +44,13 @@ The following categories must be moved out of `core/canonical/`:
 
 **Consciousness is not part of canonical UBT.**
 
-- Do not put strong claims about consciousness in `core/canonical/`.
+- Do not put strong claims about consciousness in `core/`.
 - Psychon content, theta-resonator design, and related interpretive material live in
   `speculative_extensions/consciousness/`.
 - `canonical/CANONICAL_DEFINITIONS.md` does not assert consciousness as part of core UBT.
 - The imaginary time components (ψ, χ, ξ) are canonical mathematical degrees of freedom;
   their possible physical interpretation as a "consciousness substrate" is speculative and
-  lives outside `core/canonical/`.
+  lives outside `core/`.
 
 ## Required content (must stay in canonical/)
 
@@ -76,8 +76,8 @@ The following categories must be moved out of `core/canonical/`:
 | `UBT_spectral_parity_test.tex` | `research_tracks/fingerprints/UBT_spectral_parity_test.tex` | Parity test side-track |
 | `appendix_universe_as_atom.tex` | `speculative_extensions/cosmology_or_metaphysics/appendix_universe_as_atom.tex` | Universe-as-atom speculation |
 
-Note: The entire `canonical/` directory has been moved to `core/canonical/` as part of
-the repository structure phase 2 reorganisation.  Former path `canonical/X` is now `core/canonical/X`.
+Note: The `canonical/` directory was first moved to `core/canonical/` (phase 2), then flattened
+to `core/` (phase 3).  Former path `canonical/X` is now `core/X`.
 
 All moves preserve full git history.
 

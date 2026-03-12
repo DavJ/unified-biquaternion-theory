@@ -7,11 +7,11 @@ be) part of the narrowly proved canonical mainline.
 
 ## Role
 
-`extensions/` sits between the proved canonical core (`core/canonical/`) and the
+`extensions/` sits between the proved canonical core (`core/`) and the
 loosely speculative content (`speculative_extensions/`).  Content here should be:
 
 - Mathematically formalized
-- Not contradicting `core/canonical/` or root `DERIVATION_INDEX.md`
+- Not contradicting `core/` or root `DERIVATION_INDEX.md`
 - Extending UBT to new sectors (e.g. dark sector, holographic duals, p-adic arithmetic)
 - Clearly labeled with proof/support status per the conventions in `DERIVATION_INDEX.md`
 
@@ -26,7 +26,7 @@ loosely speculative content (`speculative_extensions/`).  Content here should be
 
 ## What does NOT belong here
 
-- Content that has been proved on the canonical admissible sector → belongs in `core/canonical/`
+- Content that has been proved on the canonical admissible sector → belongs in `core/`
 - Content that is purely speculative ontology or lacks formalization → belongs in `speculative_extensions/`
 - Numerical experiments and parameter scans → belongs in `experiments/`
 

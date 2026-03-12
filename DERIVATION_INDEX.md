@@ -50,7 +50,7 @@ File role labels (see `AUDITS/repo_overlap_and_canonicalization_report.md`):
 | Non-circularity test | **Verified** | `validation/validate_B_coefficient.py` | Different N_eff → different n* |
 | Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
-| R_ψ independent topological fixation | **Dead End** [L0] | `core/canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | All three candidates (self-duality, winding consistency, modularity) fail; R_ψ = ℏ/(m_e·c) remains [CALIBRATED] |
+| R_ψ independent topological fixation | **Dead End** [L0] | `core/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | All three candidates (self-duality, winding consistency, modularity) fail; R_ψ = ℏ/(m_e·c) remains [CALIBRATED] |
 
 ---
 
@@ -66,7 +66,7 @@ File role labels (see `AUDITS/repo_overlap_and_canonicalization_report.md`):
 | SU(2)_L from left action | **Proven** [L0] | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Generators T^a: M → (iσ^a/2)M |
 | [T^a, T^b] = ε^{abc}T^c | **Proven** [L0] | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Direct computation |
 | U(1)_Y from right action | **Proven** [L0] | `consolidation_project/appendix_E2_SM_geometry.tex §6` | Θ → e^{-iθ}Θ |
-| U(1)_EM from ψ-cycle phase | **Proven** [L0] | `core/canonical/interactions/qed.tex` | Phase of Θ on ψ-circle |
+| U(1)_EM from ψ-cycle phase | **Proven** [L0] | `core/interactions/qed.tex` | Phase of Θ on ψ-circle |
 | SU(3)_c from involutions on ℂ⊗ℍ | **Proved [L0]** ⭐ **CANONICAL** | `consolidation_project/appendix_G_internal_color_symmetry.tex`, `consolidation_project/SU3_derivation/step1_involution_summary.tex` | Theorems G.A–G.D: Lie algebra 𝔰𝔲(3), fundamental rep (quarks), adjoint rep (gluons), EW decoupling — all proved; confinement gap remains (Clay Millennium Problem) |
 | SU(3)_c from quantum superposition over {I,J,K} | **Proved [L0]** | `consolidation_project/SU3_derivation/step1_superposition_approach.tex`, `tools/verify_su3_superposition.py` | Complementary to involution approach (v46); Θ_color = α·I+β·J+γ·K ∈ ℂ³; U(3) symmetry → SU(3) after U(1)_Y; involutions P_I,P_J,P_K give ℤ₂×ℤ₂ skeleton; all 8 Gell-Mann generators verified numerically; dim(Im ℍ)=3 forces SU(3) with zero free parameters |
 | SU(3)_c via i,j,k → r,g,b axis mapping | **[HEURISTIC / MOTIVATING SKETCH]** | `Appendix_G_Emergent_SU3.tex` | Intuitive correspondence only; NOT an algebraic proof; see disclaimer at top of that file; canonical derivation is involution approach above |
@@ -140,10 +140,10 @@ Full justification: `reports/lepton_audit/publication_readiness.md`.
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
-| φ-projection theorem (P_φ[𝒢_μν] satisfies GR) | **Proven** [L1] | `core/canonical/geometry/phase_projection.tex` | U(1) automorphism of ℂ⊗ℍ |
-| ∂α/∂φ = 2ρr·α(0) formula | **Proven** [L1] | `core/canonical/geometry/phi_gauge_vs_physical.tex` | Analytic derivation; result depends on vacuum |
-| h_μν = 0 for single-mode winding vacuum | **Proven** [L1] | `core/canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Dead End documented |
-| h_μν ≠ 0 two-mode winding vacuum | **Proven** [L1] | `core/canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | h_ψψ = (2/R_ψ²)sin(ψ/R_ψ)·Im[Sc(Θ₀Θ₁†)] |
+| φ-projection theorem (P_φ[𝒢_μν] satisfies GR) | **Proven** [L1] | `core/geometry/phase_projection.tex` | U(1) automorphism of ℂ⊗ℍ |
+| ∂α/∂φ = 2ρr·α(0) formula | **Proven** [L1] | `core/geometry/phi_gauge_vs_physical.tex` | Analytic derivation; result depends on vacuum |
+| h_μν = 0 for single-mode winding vacuum | **Proven** [L1] | `core/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Dead End documented |
+| h_μν ≠ 0 two-mode winding vacuum | **Proven** [L1] | `core/geometry/biquaternionic_vacuum_solutions.tex §1.3` | h_ψψ = (2/R_ψ²)sin(ψ/R_ψ)·Im[Sc(Θ₀Θ₁†)] |
 | r ≈ 4.66 for canonical two-mode vacuum | **Proven** [L1] | `tools/compute_h_munu_vacuum.py` | Numerical; gauge potential formula is SKETCH |
 | φ is physical (not pure gauge) for two-mode vacuum | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | r ≠ 0 → φ is physical |
 | ψ↔φ are distinct operations (not equivalent) | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §5a` | Both indexed by primes; different geometric mechanisms |
@@ -286,7 +286,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ## GR Recovery Status (v48+, updated 2026-03-11)
 
-> ⭐ **Canonical source**: `core/canonical/bridges/GR_chain_bridge.tex` + `consolidation_project/GR_closure/` chain  
+> ⭐ **Canonical source**: `core/bridges/GR_chain_bridge.tex` + `consolidation_project/GR_closure/` chain  
 > Topic index: `THEORY/topic_indexes/GR_index.md`
 
 *Updated 2026-03-11 to align language with the UBT-vs-GR clarification.

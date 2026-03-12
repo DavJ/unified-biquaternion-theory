@@ -21,5 +21,5 @@ speculative extension that has **not** been proved or empirically reproduced.
 It was moved here when `canonical/` was tightened to current-best, mostly-proved content only.
 Full git history is preserved.
 
-For canonical UBT content see `core/canonical/`.
+For canonical UBT content see `core/`.
 For other speculative extensions see `speculative_extensions/`.

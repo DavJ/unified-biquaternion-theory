@@ -1,10 +1,10 @@
-# Canonical UBT Directory
+# core/ — Canonical UBT Physics
 
 This directory contains the **current-best, internally consistent, low-speculation** version of Unified Biquaternion Theory: what the theory currently treats as correct, preferably proved, reproduced, or clearly established as the canonical mainline.
 
 ## Purpose
 
-`core/canonical/` is the **single reference formulation** of UBT for resolving conflicts and duplications.  
+`core/` is the **single reference formulation** of UBT for resolving conflicts and duplications.  
 It is **stricter** than the historical or conceptual scope of the repository:
 
 - Not all historical UBT material belongs here.
@@ -12,16 +12,18 @@ It is **stricter** than the historical or conceptual scope of the repository:
 - Only current-best and sufficiently established material stays.
 - **Speculative extensions** (including consciousness / psychons, universe-as-atom, fingerprint/parity side-tracks) are **not** part of canonical UBT — they live in `speculative_extensions/` and `research_tracks/`.
 
-See `core/canonical/SCOPE.md` for the full inclusion/exclusion policy.
+See `core/SCOPE.md` for the full inclusion/exclusion policy.
 
 ## Structure
 
 ```
-core/canonical/
+core/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
 ├── SCOPE.md                    # Inclusion / exclusion policy
 ├── README.md                   # This file
-├── UBT_canonical_main.tex      # Main canonical document
+├── AXIOMS.md                   # UBT axioms
+├── UBT_canonical_main.tex      # Main canonical document (start here)
+├── core_assumptions.tex        # Core assumptions
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
 ├── algebra/                    # Biquaternion algebra foundations
 │   ├── algebra_summary_table.tex
@@ -40,6 +42,8 @@ core/canonical/
 │   ├── curvature.tex           # Riemann tensor, GR equivalence
 │   ├── gr_as_limit.tex         # GR recovery theorem (constant-phase limit)
 │   └── stress_energy.tex       # T_μν canonical form
+├── gr_limit/                   # Full GR recovery derivation
+│   └── GR_limit_of_UBT.tex
 ├── interactions/               # Canonical interaction Lagrangians
 │   ├── qed.tex                 # QED complete
 │   ├── qcd.tex                 # QCD complete
@@ -48,18 +52,22 @@ core/canonical/
     └── symbol_dictionary.tex   # Symbol standardization
 ```
 
-## What is NOT in core/canonical/
+## What is NOT in core/
 
 The following content has been intentionally moved out:
 
-|  Removed from core/canonical/ | Moved to |
-|--------------------------|----------|
+| Removed from core/ | Moved to |
+|---|---|
 | `consciousness/psychons.tex` | `speculative_extensions/consciousness/` |
 | `UBT_coding_fingerprint.tex` | `research_tracks/fingerprints/` |
 | `UBT_spectral_parity_test.tex` | `research_tracks/fingerprints/` |
 | `appendix_universe_as_atom.tex` | `speculative_extensions/cosmology_or_metaphysics/` |
+| `CONSOLIDATION_ROADMAP.md` | `docs/` |
+| `IMPLEMENTATION_CHECKLIST.md` | `docs/` |
+| `NABLA_APPENDIX_VERIFICATION.md` | `docs/` |
+| `PHASE_1_COMPLETE_SUMMARY.md` | `docs/` |
 
-Consciousness claims, dark-matter/dark-energy interpretive assertions beyond proved status, fingerprint/parity side-tracks, and universe-as-atom cosmological speculation are **not** part of canonical UBT.
+Consciousness claims, dark-matter/dark-energy interpretive assertions beyond proved status, fingerprint/parity side-tracks, universe-as-atom cosmological speculation, and process/governance documents are **not** part of canonical UBT physics.
 
 ## Bridges Directory
 
@@ -82,7 +90,7 @@ Each concept has **exactly one** canonical definition in this directory. All oth
 
 ### 2. Conflict Resolution
 When multiple versions of a definition exist in the repository:
-- The `core/canonical/` version is authoritative
+- The `core/` version is authoritative
 - Conflicting versions should be marked as deprecated
 - Legacy versions remain in `unified_biquaternion_theory/` (read-only)
 
@@ -106,7 +114,7 @@ All symbols follow the dictionary in `CANONICAL_DEFINITIONS.md`:
 ### For Authors
 When writing new UBT content:
 1. Check `CANONICAL_DEFINITIONS.md` first
-2. Use `\input{canonical/fields/theta_field.tex}` in LaTeX
+2. Use `\input{core/fields/theta_field.tex}` in LaTeX
 3. Do NOT redefine canonical symbols
 4. Report conflicts as issues
 5. **Note**: Biquaternion time T_B is canonical; complex time τ is the isotropic limit
@@ -152,12 +160,13 @@ When reviewing UBT documents:
 
 ## Related Documents
 
-- `core/canonical/SCOPE.md` - Inclusion / exclusion policy for this directory
-- `core/canonical/CANONICAL_DEFINITIONS.md` - Master definitions document
+- `core/SCOPE.md` - Inclusion / exclusion policy for this directory
+- `core/CANONICAL_DEFINITIONS.md` - Master definitions document
 - `consolidation_project/metadata/todos.md` - Consolidation task list
 - `DERIVATION_INDEX.md` - Root derivation status map
 - `speculative_extensions/` - Speculative content (consciousness, cosmological speculation)
 - `research_tracks/` - Side-tracks (fingerprints, parity tests)
+- `docs/REPOSITORY_STRUCTURE.md` - Full repository structure guide
 
 ## Notes
 
@@ -165,9 +174,9 @@ When reviewing UBT documents:
 Files in `unified_biquaternion_theory/` are original research documents and should NOT be modified. They are preserved for historical reference.
 
 ### Consolidation Source
-Most consolidated content comes from `consolidation_project/` which contains partial consolidations. The `core/canonical/` directory represents the final, authoritative versions.
+Most consolidated content comes from `consolidation_project/` which contains partial consolidations. The `core/` directory represents the final, authoritative versions.
 
 ---
 
 **Last Updated**: 2026-03-12  
-**Status**: Canonical-tightened — speculative extensions removed
+**Status**: Canonical-tightened — speculative extensions removed; `core/canonical/` flattened to `core/`

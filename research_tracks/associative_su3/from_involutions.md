@@ -3,7 +3,7 @@
 
 **Status:** Candidate construction — Track A, conservative framing.  
 **Related files:**
-- `core/canonical/algebra/involutions_Z2xZ2xZ2.tex` — formal lemmas
+- `core/algebra/involutions_Z2xZ2xZ2.tex` — formal lemmas
 - `tools/involutions_triplet_projectors.py` — computational verification
 - `reports/involutions_triplet_report.md` — auto-generated signature table
 
@@ -224,5 +224,5 @@ This is isomorphic to the standard SU(3) (unitary group of determinant 1 on
 ---
 
 *See `tools/involutions_triplet_projectors.py` for the computational
-verification and `core/canonical/algebra/involutions_Z2xZ2xZ2.tex` for the
+verification and `core/algebra/involutions_Z2xZ2xZ2.tex` for the
 formal LaTeX lemmas.*

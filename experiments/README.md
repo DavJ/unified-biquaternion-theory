@@ -21,14 +21,14 @@ for Unified Biquaternion Theory.
 
 ## Guidelines
 
-- Each experiment should reference the canonical equation/result it tests via a comment at the top of the script: `# Tests: core/canonical/... §equation_label`
+- Each experiment should reference the canonical equation/result it tests via a comment at the top of the script: `# Tests: core/... §equation_label`
 - Results (JSON, CSV) may be stored alongside the script
 - Raw data and large output files should be kept in `DATA/` or ignored via `.gitignore`
-- Scripts here must NOT redefine canonical objects — reference `core/canonical/` instead
+- Scripts here must NOT redefine canonical objects — reference `core/` instead
 
 ## Related directories
 
-- `core/canonical/` — canonical theory being tested
+- `core/` — canonical theory being tested
 - `research_tracks/` — exploratory mathematical tracks (less computational)
 - `tools/` — repository-level analysis and audit tools
 
