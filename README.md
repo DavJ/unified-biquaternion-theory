@@ -8,7 +8,7 @@
 
 | Result | Status |
 |--------|--------|
-| GR with matter: G_μν = 8πG T_μν | ✅ Proved |
+| GR limit on admissible sector A_UBT: G_μν = 8πG T_μν | ✅ Reproduced (on A_UBT; Level 2) |
 | Lorentzian signature (-,+,+,+) from AXIOM B (complex time) | ✅ Proved [L0] |
 | Metric non-degeneracy for admissible class A_UBT | ✅ Proved [L0] |
 | Derivative-based ≡ tetrad-based metric formula (bridge theorem) | ✅ Proved [L0] |
@@ -55,8 +55,8 @@ automatic and does not contradict UBT.  See
 
 ### Proved Results (zero free parameters)
 
-- **GR recovery**: G_μν = 8πG T_μν reproduced from biquaternionic φ-projection  
-  → `canonical/geometry/phase_projection.tex`
+- **GR limit on admissible sector**: G_μν = 8πG T_μν reproduced on A_UBT from biquaternionic φ-projection (Level 2 recovery; conditions C1–C6 required)  
+  → `core/gr_limit/GR_limit_of_UBT.tex`
 - **SM gauge group SU(2)_L × U(1)_Y** from ℂ⊗ℍ algebra isomorphism  
   → `consolidation_project/appendix_E2_SM_geometry.tex`
 - **U(1)_EM** from ψ-cycle phase of Θ  
@@ -202,10 +202,50 @@ These documents provide accessible overviews of UBT's revolutionary unification 
 
 ## ⚠️ Repository Organization
 
-**UBT is organized into three distinct layers to maintain scientific clarity:**
+### Three-Layer Architecture (Layer 0 / 1 / 2)
+
+The scientific content is organised into three layers reflecting increasing levels of physical interpretation:
+
+| Layer | Content | Status |
+|-------|---------|--------|
+| **Layer 0** | Axioms, biquaternion algebra ℂ⊗ℍ, Θ field definition, complex time τ = t+iψ | Locked — mathematical foundations |
+| **Layer 1** | Physical sector: GR limit (on admissible sector A_UBT), Standard Model gauge fields (SU(3)×SU(2)×U(1)), emergent metric | Active derivation |
+| **Layer 2** | Informational/coding structures: winding numbers, channel selection, discrete GF(2⁸) structures | Hypothesis — not uniquely determined |
+
+**Key principle:** Layer 0 axioms generate Layer 1 physics through projection; Layer 2 selects specific channels within Layer 1. No claim of Layer 2 derivability is made without explicit statement.
+
+**GR recovery (Layer 1):** GR is reproduced on the admissible sector A_UBT (Level 2 recovery — constrained sector). The combined variational condition E_Θ + J\*E_g = 0 is the fundamental equation; termwise separation is not automatic. See [`core/gr_limit/GR_limit_of_UBT.tex`](core/gr_limit/GR_limit_of_UBT.tex) for the canonical derivation.
+
+### Repository Structure Map
+
+```
+core/                    ← Layer 0: axioms, Θ definition, GR limit derivation
+  AXIOMS.md
+  core_assumptions.tex
+  gr_limit/
+    GR_limit_of_UBT.tex  ← CANONICAL: single coherent GR limit derivation
+extensions/              ← Layer 1/2 extensions (AdS/CFT-like, mirror sector, etc.)
+experiments/             ← Numerical simulations, parameter scans
+sandbox/                 ← Unfinished derivations, speculative models
+archive/                 ← Obsolete notes, previous versions, duplicated material
+canonical/               ← Current canonical UBT documents
+consolidation_project/   ← Consolidated derivations and appendices
+research/                ← Active research files
+speculative_extensions/  ← Explicitly speculative content
+```
+
+**See also:** [`UBT_LAYERED_STRUCTURE.md`](UBT_LAYERED_STRUCTURE.md) for detailed explanation.
+
+---
+
+**Legacy layer labels (used in some older documents):**
+
+- Layer A = Core Ontology ≈ Layer 0 + Layer 1 physical results
+- Layer B = Direct Observables ≈ Layer 1 predictions
+- Layer C = Research Front ≈ Layer 2 hypotheses
 
 ### 🟢 Layer A: Core Ontology
-Biquaternionic field structure, GR recovery, SM gauge group derivation (validated)
+Biquaternionic field structure, GR limit on admissible sector A_UBT, SM gauge group derivation (validated)
 
 ### 🟡 Layer B: Direct Observables  
 α ≈ 137, Ω_b ≈ 4.9%, m_e ≈ 0.51 MeV (predictions from core structure)
@@ -226,7 +266,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 
 Pure biquaternionic geometry:
 - Field equations: ∇†∇Θ(q,τ) = κ𝒯(q,τ)
-- GR recovery (proven)
+- GR limit reproduced on admissible sector A_UBT (Level 2)
 - SM gauge structure (derived)
 - Baseline α, m_e (geometric)
 
@@ -399,7 +439,7 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
 **Derived (fit-free) - Layer 1 Geometry:**
 - ✅ Biquaternionic field structure ℂ⊗ℍ (axiom/definition)
 - ✅ Field equation ∇†∇Θ = κ𝒯 (framework)
-- ✅ GR recovery in real limit: R_μν - ½g_μν R = 8πG T_μν (proven in Appendix R)
+- ✅ GR limit reproduced on admissible sector A_UBT: G_μν = 8πG T_μν (on A_UBT; see `core/gr_limit/GR_limit_of_UBT.tex`)
 - ✅ SM gauge group SU(3)×SU(2)×U(1) from Aut(ℂ⊗ℍ) (rigorously derived)
 - ✅ Electron mass baseline m_e = 0.509856 MeV from Hopfion topology (0.22% error, zero fitted)
 - ✅ Prime constraint for winding numbers (from gauge quantization)
