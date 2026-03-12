@@ -1,0 +1,541 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{The GR Limit of Unified Biquaternion Theory:\\
+       Combined Variation, Admissible Sector, and\\
+       the Role of the $\Theta$ Field}}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{abstract}
+This document provides the single, canonical derivation of how Unified
+Biquaternion Theory (UBT) reproduces Einstein's field equations
+$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ in the general-relativistic sector.
+Three themes are unified here:
+
+\begin{enumerate}
+  \item \textbf{The $\Theta$ field as a generating field.}  The biquaternionic
+    field $\Theta(q,\tau)$ is a potential-like object from which both spacetime
+    geometry (the metric $g_{\mu\nu}$) and gauge fields emerge.
+
+  \item \textbf{Combined variation vs.\ termwise separation.}  Varying the
+    pure-$\Theta$ action yields a single coupled Euler--Lagrange condition
+    $\mathcal{E}_\Theta + J^{*}\mathcal{E}_g = 0$, not two independently
+    vanishing terms.  Einstein's equations are extracted from this combined
+    condition under explicit regularity assumptions.
+
+  \item \textbf{The admissible GR sector.}  GR is reproduced \emph{exactly on
+    the admissible class} $\mathcal{A}_{\mathrm{UBT}}$ defined by conditions
+    C1--C6.  Outside that sector, UBT may admit additional non-GR solutions,
+    representing an extension of Einstein gravity rather than a contradiction.
+\end{enumerate}
+
+\medskip\noindent
+\textbf{Correct language for GR recovery:}
+\begin{itemize}
+  \item[\checkmark] ``GR limit reproduced on the admissible sector'' — accurate.
+  \item[\checkmark] ``UBT generalises GR'' — accurate.
+  \item[$\times$] ``GR proved (universally)'' — overstated; recovery is conditional.
+  \item[$\times$] ``UBT contradicts GR'' — incorrect.
+\end{itemize}
+\end{abstract}
+
+% =========================================================================
+\section{The $\Theta$ Field as a Generating Field}
+\label{sec:theta_role}
+
+\subsection{Definition and structure}
+
+The fundamental object of UBT is the biquaternionic field
+\begin{equation}
+  \Theta: M^4 \times \mathcal{C} \;\longrightarrow\; \mathcal{B},
+\end{equation}
+where $M^4$ is four-dimensional spacetime, $\mathcal{C}$ is the complex-time
+fibre (parameterised by $\tau = t + i\psi$), and $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$
+is the biquaternion algebra.  The field $\Theta$ is \emph{not} itself the
+metric or a gauge connection; it is a more fundamental, potential-like object
+from which these geometric structures emerge.
+
+\subsection{Emergent metric}
+
+The spacetime metric is defined as the real part of the normalised outer
+product of $\Theta$ with its quaternionic conjugate:
+\begin{equation}
+  g_{\mu\nu}[\Theta](x)
+  = \operatorname{Re}\!\left[
+      \frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}
+           {\mathcal{N}[\Theta]}
+    \right],
+  \label{eq:emergent_metric}
+\end{equation}
+where $\mathcal{N}[\Theta] = \operatorname{Re}[\partial^\mu\Theta\cdot\partial_\mu\Theta^\dagger]$
+is the normalisation scalar.  This formula is the \emph{derivative-based
+metric}, proved equivalent to the tetrad-based metric under AXIOM~B and the
+metric bridge theorem (see \texttt{GR\_closure/step1\_metric\_bridge.tex}).
+
+\subsection{Emergent gauge fields}
+
+Beyond the metric, the full biquaternion structure of $\Theta$ encodes gauge
+connections.  The imaginary-part components of $\Theta$ generate the $\mathrm{U}(1)$,
+$\mathrm{SU}(2)_L$, and $\mathrm{SU}(3)_c$ gauge fields of the Standard Model
+through the automorphism structure of $\mathbb{C}\otimes\mathbb{H}$ (see
+\texttt{consolidation\_project/appendix\_E\_SM\_QCD\_embedding.tex} and
+\texttt{appendix\_E2\_SM\_geometry.tex}).
+
+\subsection{Layer architecture}
+
+The generating role of $\Theta$ gives rise to the following conceptual
+hierarchy:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Layer} & \textbf{Content} & \textbf{Status} \\
+\midrule
+Layer 0 & Axioms, $\mathcal{B}$-algebra, $\Theta$ definition,
+          complex time $\tau = t+i\psi$ & Locked \\
+Layer 1 & Physical sector: GR, Standard Model gauge fields,
+          emergent metric & Active derivation \\
+Layer 2 & Informational/coding structures: winding numbers,
+          channel selection, discrete structures & Hypothesis \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Layer~0 provides the axioms and mathematical structure from which all other
+layers are derived.  Layer~1 contains the physical predictions (GR, gauge
+fields) obtained by projecting the Layer~0 structure onto observable degrees
+of freedom.  Layer~2 contains informational and coding structures that select
+specific physical channels within the Layer~1 solution space.
+
+% =========================================================================
+\section{The Total Action and Its Variation}
+\label{sec:action_variation}
+
+\subsection{Setup: total action}
+
+Let the total action be
+\begin{equation}
+  S_{\text{total}}[g, \Theta]
+  = S_{\text{EH}}[g] + S_\Theta[g, \Theta],
+  \label{eq:total_action}
+\end{equation}
+where $S_{\text{EH}}[g] = \frac{1}{16\pi G}\int\!\sqrt{-g}\,R\,d^4x$ is the
+Einstein--Hilbert action and $S_\Theta[g,\Theta]$ contains all $\Theta$-dependent
+terms (kinetic term, coupling to matter, etc.).
+
+\subsection{Euler--Lagrange operators}
+\label{subsec:el_ops}
+
+\begin{definition}[Euler--Lagrange operators]
+\label{def:el_operators}
+\begin{align}
+  \mathcal{E}_\Theta[\Theta, g]
+  &:= \frac{\delta S_\Theta}{\delta\Theta}\bigg|_{g \text{ fixed}},
+  \label{eq:E_Theta}\\[4pt]
+  \mathcal{E}_g[g, \Theta]
+  &:= \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{\Theta \text{ fixed}}
+   = \frac{1}{16\pi G}\!\left(G_{\mu\nu} - 8\pi G\, T_{\mu\nu}[\Theta,g]\right),
+  \label{eq:E_g}
+\end{align}
+and the \emph{induced variation map}
+\begin{equation}
+  J\,\delta\Theta := \frac{\delta g_{\mu\nu}[\Theta]}{\delta\Theta}\,\delta\Theta.
+  \label{eq:J_map}
+\end{equation}
+The formal $L^2$-adjoint of $J$ is denoted $J^*$.
+\end{definition}
+
+\subsection{Pure-$\Theta$ functional}
+
+Substituting the emergent metric $g_{\mu\nu}[\Theta]$ from
+Eq.~\eqref{eq:emergent_metric} into $S_{\text{total}}$, one obtains the
+pure-$\Theta$ functional
+\begin{equation}
+  \hat{S}[\Theta] := S_{\text{total}}\bigl[g[\Theta],\,\Theta\bigr].
+  \label{eq:S_hat}
+\end{equation}
+
+Applying the chain rule to $\delta\hat{S}/\delta\Theta$:
+\begin{equation}
+  \frac{\delta\hat{S}}{\delta\Theta}\,\delta\Theta
+  = \mathcal{E}_\Theta\,\delta\Theta
+  + \mathcal{E}_g^{\mu\nu}\,J\,\delta\Theta,
+  \label{eq:variation_chain}
+\end{equation}
+so stationarity $\delta\hat{S} = 0$ for all admissible $\delta\Theta$ reads:
+
+% =========================================================================
+\section{Combined Variation and the Admissible GR Sector}
+\label{sec:combined_variation}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title=Fundamental Variational Equation of UBT]
+The Euler--Lagrange equation obtained from the pure-$\Theta$ action is the
+\textbf{combined condition}
+\begin{equation}
+  \mathcal{E}_\Theta + J^{*}\mathcal{E}_g = 0.
+  \tag{$\star$}
+  \label{eq:combined_EL}
+\end{equation}
+This is a \textbf{single} coupled equation, \emph{not} two equations
+$\mathcal{E}_\Theta = 0$ and $\mathcal{E}_g = 0$ imposed independently.
+\end{tcolorbox}
+
+\subsection{Why termwise separation does not follow automatically}
+
+\begin{remark}[No automatic separation]
+\label{rem:no_separation}
+Even though Eq.~\eqref{eq:combined_EL} holds for all $\delta\Theta$, one
+\emph{cannot} conclude that $\mathcal{E}_\Theta = 0$ and $\mathcal{E}_g = 0$
+independently.  The two terms both depend on the \emph{same} variation
+$\delta\Theta$; they are not independently varied.  The correct statement is
+only that the linear combination $\mathcal{E}_\Theta + J^{*}\mathcal{E}_g$
+vanishes.
+\end{remark}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!80!black,
+                  title=Warning: Do Not Assume Independent Termwise Vanishing]
+It is mathematically \emph{incorrect} to argue: ``since the variation holds for
+arbitrary $\delta\Theta$, each term must vanish separately.''  Separate vanishing
+requires $\delta\Theta$ to vary each term independently, which is generally
+impossible when both terms depend on the same $\delta\Theta$.
+\end{tcolorbox}
+
+\subsection{When does $\mathcal{E}_g = 0$ (Einstein's equations) follow?}
+\label{subsec:when_sep}
+
+Separate vanishing $\mathcal{E}_g = 0$ — i.e.\ Einstein's equations
+$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ — follows from Eq.~\eqref{eq:combined_EL}
+under any one of the following conditions:
+
+\begin{enumerate}
+  \item \textbf{Surjectivity / rank condition on $J$:} If $J$ is locally
+    surjective (full column rank), any metric variation $\delta g^{\mu\nu}$
+    can be written as $J\,\delta\Theta$, so
+    $\langle\mathcal{E}_g, J\,\delta\Theta\rangle = 0$ for all $\delta\Theta$
+    implies $\mathcal{E}_g = 0$.
+
+  \item \textbf{Gauge-reduced local injectivity:} After quotienting by metric-invisible
+    gauge directions in $\Theta$-space, the map $\Theta\mapsto g[\Theta]$ is
+    locally invertible, so $\Theta$-variations span the full metric variation
+    space.
+
+  \item \textbf{Projection to metric observables:} If all non-metric $\Theta$
+    modes are either gauge redundancies or frozen (suppressed at classical
+    scales), the contracted form of Eq.~\eqref{eq:combined_EL} reduces to
+    $\mathcal{E}_g = 0$.
+
+  \item \textbf{On-shell $\mathcal{E}_\Theta = 0$:} If $\Theta$ satisfies its
+    own field equation separately, Eq.~\eqref{eq:combined_EL} reduces to
+    $J^{*}\mathcal{E}_g = 0$, and condition~(1) then implies $\mathcal{E}_g = 0$.
+\end{enumerate}
+
+\begin{theorem}[GR recovery on the admissible sector]
+\label{thm:gr_recovery}
+Suppose $\Theta \in \mathcal{A}_{\mathrm{UBT}}$ (Definition~\ref{def:admissible}).
+Then the combined condition~\eqref{eq:combined_EL} implies
+\begin{equation}
+  G_{\mu\nu} = 8\pi G\, T_{\mu\nu}[\Theta, g[\Theta]].
+  \label{eq:einstein}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Under the rank condition (conditions~1 or~2), any metric variation
+$\delta g^{\mu\nu}$ is of the form $J\,\delta\Theta$ for some $\delta\Theta$.
+Therefore $\langle\mathcal{E}_g,\,J\,\delta\Theta\rangle = 0$ for all
+$\delta\Theta$ implies $\langle J^*\mathcal{E}_g,\,\delta\Theta\rangle = 0$
+for all $\delta\Theta$.  Surjectivity of $J$ then gives $\mathcal{E}_g = 0$.
+\hfill$\square$
+\end{proof}
+
+\subsection{Outside the admissible sector}
+
+In the general case, outside $\mathcal{A}_{\mathrm{UBT}}$:
+\begin{itemize}
+  \item The kernel of $J$ may be non-trivial: some $\delta\Theta$ directions
+    do not change the metric.  These ``metric-invisible'' directions are
+    genuine UBT degrees of freedom absent from GR.
+  \item The combined condition may be satisfied by configurations where
+    $\mathcal{E}_g \neq 0$ (non-GR solutions of UBT).
+  \item This is \emph{not a defect}: UBT contains GR as a proper subsector
+    while admitting additional dynamics.
+\end{itemize}
+
+% =========================================================================
+\section{The Admissible Configuration Space}
+\label{sec:admissible}
+
+\begin{definition}[Admissible class $\mathcal{A}_{\mathrm{UBT}}$]
+\label{def:admissible}
+A $\Theta$ configuration belongs to $\mathcal{A}_{\mathrm{UBT}}$ if and only
+if conditions C1--C6 (Table~\ref{tab:conditions}) hold at every point of $M^4$.
+\end{definition}
+
+\begin{remark}
+The admissible class is non-empty: flat Minkowski space ($\Theta = \Theta_0$
+constant) belongs to $\mathcal{A}_{\mathrm{UBT}}$, as do all linearised GR
+perturbations studied in the GR recovery proof.  Whether every classical GR
+solution lifts to $\mathcal{A}_{\mathrm{UBT}}$ at the non-perturbative level
+is an open problem.
+\end{remark}
+
+% -------------------------------------------------------------------------
+\subsection{Gauge redundancies}
+
+The map $\Theta \mapsto g[\Theta]$ is not injective: multiple $\Theta$
+configurations may induce the same metric.  The kernel of $J$ consists of
+``metric-invisible'' $\Theta$ directions.  Before asking whether the map is
+invertible, one must quotient by this gauge redundancy.
+
+\begin{definition}[Gauge-reduced local injectivity]
+\label{def:gr_injectivity}
+The map $\Theta \mapsto g[\Theta]$ is \emph{gauge-reduced locally injective}
+at $\Theta_0$ if the induced map on the quotient $T_{\Theta_0}\mathcal{F}/\ker J$
+is injective: for all $\delta\Theta \notin \ker J$, $J\,\delta\Theta \neq 0$.
+\end{definition}
+
+% -------------------------------------------------------------------------
+\subsection{Classical limit and decoupling assumptions}
+
+The GR recovery result is a \emph{classical} statement.  It assumes:
+\begin{enumerate}
+  \item $\hbar \to 0$: the path integral is dominated by the saddle point.
+  \item The Lorentzian sector dominates: imaginary-time corrections are
+    suppressed by $\psi/t \ll 1$.
+  \item The biquaternionic field equation reduces to its real projection
+    when quantum and imaginary-time effects are suppressed.
+\end{enumerate}
+
+% =========================================================================
+\section{Condition Table and Proof Status}
+\label{sec:conditions}
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!60!black,
+                  title=Mandatory Caveat]
+\textbf{GR reproduction is exact only on the sector satisfying conditions
+C1--C6 below.  Outside that sector, UBT may admit additional non-GR
+solutions.  No claim is made that GR is universally derived from UBT without
+these conditions.}
+\end{tcolorbox}
+
+\bigskip
+
+\begin{longtable}{@{}p{3.2cm}p{3.4cm}p{3.5cm}p{1.8cm}p{2.0cm}@{}}
+\caption{Conditions for exact GR recovery in UBT.\label{tab:conditions}}\\
+\toprule
+\textbf{Condition} &
+\textbf{Physical meaning} &
+\textbf{Required for} &
+\textbf{Proved} &
+\textbf{Status}
+\\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{\textit{(continued)}}\\
+\toprule
+\textbf{Condition} &
+\textbf{Physical meaning} &
+\textbf{Required for} &
+\textbf{Proved} &
+\textbf{Status}
+\\
+\midrule
+\endhead
+%
+C1.\ Non-degeneracy of $\Theta \to g$ map
+& Metric non-degenerate; no metric-invisible $\Theta$ directions except gauge.
+& Gauge-reduced injectivity; allows recovering $\mathcal{E}_g = 0$.
+& Perturbative.
+& Open non-perturbatively.
+\\[4pt]
+%
+C2.\ Gauge-reduced uniqueness
+& Gauge-equivalent $\Theta$ configurations yield the same metric.
+& Uniqueness of emergent metric on physical states.
+& Plausible.
+& Gauge structure not fully classified.
+\\[4pt]
+%
+C3.\ Regularity of induced metric
+& $g_{\mu\nu}[\Theta]$ is smooth, Lorentzian $(-,+,+,+)$, satisfies metric postulates.
+& Well-defined curvature and Bianchi identity.
+& \textbf{Proved}: signature theorem (step3), non-degeneracy for $\mathcal{A}_{\mathrm{UBT}}$.
+& —
+\\[4pt]
+%
+C4.\ Existence of classical metric sector
+& Every GR solution $g_{\mu\nu}$ can be lifted to some $\Theta \in \mathcal{A}_{\mathrm{UBT}}$.
+& GR is embeddable in UBT.
+& Proved for flat + linearised; non-linear: open.
+& Assumed at non-linear level.
+\\[4pt]
+%
+C5.\ Decoupling of extra $\Theta$ modes
+& Non-metric $\Theta$ degrees of freedom (imaginary part, $\psi$-modes) are dynamically suppressed.
+& Reduces combined EL equation to Einstein equation alone.
+& Not proved in general.
+& Assumed for classical gravity.
+\\[4pt]
+%
+C6.\ Bianchi compatibility
+& $\nabla^\mu G_{\mu\nu} = 0$ and $\nabla^\mu T_{\mu\nu} = 0$ after projection.
+& Consistency of GR.
+& \textbf{Proved}: contracted Bianchi identity under A1--A2.
+& —
+\\
+\bottomrule
+\end{longtable}
+
+\begin{remark}[Summary of proof status]
+Conditions C3 and C6 are \textbf{fully proved} within UBT.
+Conditions C1 and C4 are \textbf{proved in the linearised (perturbative) regime}
+and remain open non-perturbatively.
+Conditions C2 and C5 are \textbf{physically motivated assumptions} consistent
+with UBT structure; formal proofs are listed as open problems in
+\texttt{AUDITS/followup\_gap\_backlog\_2026\_03.md}.
+\end{remark}
+
+% =========================================================================
+\section{Three Levels of GR Recovery}
+\label{sec:three_levels}
+
+Depending on the strength of conditions imposed, three levels can be
+distinguished (see also \texttt{reports/gr\_recovery\_levels.md}):
+
+\begin{enumerate}
+  \item \textbf{Exact projected recovery (Level 1):} A clean projection theorem
+    maps the $\Theta$ equation directly to $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+    without additional assumptions.
+    \emph{Status: open problem; requires full rank condition (C1) non-perturbatively.}
+
+  \item \textbf{Constrained sector recovery (Level 2):} On $\mathcal{A}_{\mathrm{UBT}}$,
+    the induced dynamics reproduces Einstein gravity.
+    \emph{Status: current best-established result; conditions stated explicitly
+    in this document.}
+
+  \item \textbf{Low-energy effective limit (Level 3):} After freezing
+    additional $\Theta$ degrees of freedom that decouple at macroscopic scales,
+    the theory reduces to GR in the infrared.
+    \emph{Status: plausible; requires analysis of the $\Theta$-mode spectrum.}
+\end{enumerate}
+
+\textbf{The current standing of UBT is Level~2.}
+
+% =========================================================================
+\section{Why UBT $\supseteq$ GR Is Not a Contradiction}
+\label{sec:no_contradiction}
+
+\begin{tcolorbox}[colback=green!8!white,colframe=green!60!black,
+                  title=Consistency Statement]
+There is \textbf{no contradiction} between UBT and GR.  UBT reproduces GR
+on the admissible sector $\mathcal{A}_{\mathrm{UBT}}$ while containing
+additional non-GR degrees of freedom beyond that sector.  The absence of
+automatic termwise separation is a \emph{feature}: it indicates UBT is
+\emph{richer} than GR, not inconsistent with it.
+\end{tcolorbox}
+
+Standard analogies from physics illustrate this structure:
+
+\begin{itemize}
+  \item \textbf{Tetrad/Palatini formulation of GR:} Varying the tetrad and
+    connection yields Einstein's equations plus a torsion-free condition;
+    neither condition follows from the other without additional structure.
+    UBT is analogous: $\Theta$ is fundamental and the metric is derived.
+
+  \item \textbf{EFT / integrating out heavy fields:} In effective field theory,
+    the low-energy action does not satisfy the UV field equations termwise;
+    agreement holds only on-shell or in a specific limit.  GR recovery from
+    UBT is structurally of this type.
+
+  \item \textbf{Precedent from other fundamental theories:} String theory
+    recovers GR as a low-energy limit; loop quantum gravity recovers GR in
+    the classical limit; both reproduce GR on a sector, not universally.
+\end{itemize}
+
+\medskip\noindent
+\textbf{Correct and incorrect formulations:}
+\begin{itemize}
+  \item[\checkmark] ``GR limit reproduced on admissible sector $\mathcal{A}_{\mathrm{UBT}}$''
+  \item[\checkmark] ``UBT generalises GR''
+  \item[\checkmark] ``UBT extends GR with additional degrees of freedom''
+  \item[\checkmark] ``GR is a sector of UBT: $\mathrm{GR}\subset\mathcal{A}_{\mathrm{UBT}}\subset\mathrm{UBT}$''
+  \item[$\times$] ``GR proved (universally)''
+  \item[$\times$] ``UBT contradicts GR''
+  \item[$\times$] ``Absence of termwise separation weakens UBT fatally''
+\end{itemize}
+
+% =========================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+The fundamental equation of UBT in the $\Theta$-only formulation is the
+combined variational condition
+\begin{equation}
+  \mathcal{E}_\Theta + J^{*}\mathcal{E}_g = 0.
+  \label{eq:combined_final}
+\end{equation}
+Einstein's field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ are recovered
+from this condition on the admissible class $\mathcal{A}_{\mathrm{UBT}}$
+(Level~2 recovery).  The mathematical structure is summarised by:
+\begin{equation}
+  \mathrm{GR} \subset \mathcal{A}_{\mathrm{UBT}} \subset \mathrm{UBT}.
+\end{equation}
+
+The $\Theta$ field plays the role of a generating field: spacetime geometry
+and gauge fields emerge from it through the projection maps described in
+Section~\ref{sec:theta_role}.  The three-layer architecture (Layer~0:
+axioms and algebra; Layer~1: physical sector; Layer~2: informational/coding
+structures) organises this derivation hierarchy.
+
+\medskip\noindent
+\textbf{Source documents merged into this file:}
+\begin{itemize}
+  \item \texttt{consolidation\_project/GR\_closure/theta\_vs\_metric\_variation\_note.tex}
+    — combined variation and termwise separation analysis.
+  \item \texttt{consolidation\_project/GR\_closure/gr\_sector\_conditions.tex}
+    — explicit conditions C1--C6 and condition table.
+\end{itemize}
+
+\medskip\noindent
+\textbf{Related documents:}
+\begin{itemize}
+  \item \texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex}
+    — step-by-step GR derivation chain.
+  \item \texttt{reports/gr\_recovery\_levels.md} — summary of proof levels.
+  \item \texttt{docs/ubt\_gr\_relationship.md} — non-technical overview.
+  \item \texttt{core/AXIOMS.md} — Layer~0 axioms.
+\end{itemize}
+
+\end{document}
