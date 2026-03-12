@@ -235,26 +235,23 @@ The scientific content is organised into three layers reflecting increasing leve
 ### Repository Structure Map
 
 ```
-core/                    ← Layer 0: axioms, Θ definition, GR limit derivation
+core/                    ← Canonical UBT physics and math (start here)
   AXIOMS.md
   core_assumptions.tex
-  core/                    ← Canonical UBT physics and math (start here)
-    UBT_canonical_main.tex  ← MAIN canonical document
-    algebra/             ← Biquaternion algebra foundations
-    bridges/             ← Navigation cross-reference bridges
-    fields/              ← Canonical field definitions
-    geometry/            ← Metric, curvature, GR limit
-    interactions/        ← QED, QCD, SM gauge
-    gr_limit/
-        GR_limit_of_UBT.tex  ← CANONICAL: single coherent GR limit derivation
+  UBT_canonical_main.tex  ← MAIN canonical document
+  algebra/             ← Biquaternion algebra foundations
+  bridges/             ← Navigation cross-reference bridges
+  fields/              ← Canonical field definitions
+  geometry/            ← Metric, curvature, GR limit
+  interactions/        ← QED, QCD, SM gauge
+  gr_limit/
+      GR_limit_of_UBT.tex  ← CANONICAL: single coherent GR limit derivation
 extensions/              ← Layer 1/2 extensions (AdS/CFT-like, mirror sector, etc.)
 experiments/             ← Numerical simulations, parameter scans
 sandbox/                 ← Unfinished derivations, speculative models
 archive/                 ← Obsolete notes, previous versions, duplicated material
 consolidation_project/   ← Consolidated derivations and appendices
 research/                ← Active research files
-speculative_extensions/  ← Explicitly speculative content
-research_tracks/         ← Active non-mainline research tracks
 ```
 
 **See also:** [`UBT_LAYERED_STRUCTURE.md`](UBT_LAYERED_STRUCTURE.md) for detailed explanation.
