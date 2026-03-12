@@ -45,21 +45,21 @@ papers/su3_triplet/noether_current_paper.tex
 # Complex theta transform paper
 complex-theta-transform-paper/main.tex
 
-# Complex consciousness theory (SPECULATIVE - moved to speculative_extensions/)
-speculative_extensions/complex_consciousness/ctc_2.0_main.tex
+# Complex consciousness theory (SPECULATIVE - file no longer present)
+# speculative_extensions/complex_consciousness/ctc_2.0_main.tex
 
-# Causality and CTC investigation (SPECULATIVE)
-speculative_extensions/causality/complex_time_causal_structure.tex
-speculative_extensions/causality/rotation_complex_time.tex
-speculative_extensions/causality/ctc_conditions.tex
-speculative_extensions/causality/chronology_protection_ubt.tex
-speculative_extensions/causality/ctc_methodology.tex
+# Causality and CTC investigation (SPECULATIVE - moved to archive/speculative/)
+archive/speculative/causality/complex_time_causal_structure.tex
+archive/speculative/causality/rotation_complex_time.tex
+archive/speculative/causality/ctc_conditions.tex
+archive/speculative/causality/chronology_protection_ubt.tex
+archive/speculative/causality/ctc_methodology.tex
 
-# Invisibility via imaginary sector (SPECULATIVE)
-speculative_extensions/invisibility/st1_imaginary_object_definition.tex
-speculative_extensions/invisibility/st2_sector_interaction.tex
-speculative_extensions/invisibility/st3_stability.tex
-speculative_extensions/invisibility/st4_ctc_invisibility_connection.tex
+# Invisibility via imaginary sector (SPECULATIVE - moved to archive/speculative/)
+archive/speculative/invisibility/st1_imaginary_object_definition.tex
+archive/speculative/invisibility/st2_sector_interaction.tex
+archive/speculative/invisibility/st3_stability.tex
+archive/speculative/invisibility/st4_ctc_invisibility_connection.tex
 
 # Original UBT theory documents
 unified_biquaternion_theory/ubt_main_article.tex
