@@ -85,7 +85,11 @@ jobs:
             echo "No changes to push to wiki."
           else
             git commit -m "Auto-update wiki from repository canonical sources"
-            git push \
+            # Use --force because wiki/ in the main repository is the
+            # authoritative source. Direct edits to the GitHub Wiki or
+            # concurrent CI runs can cause the remote to diverge; force-push
+            # ensures the generated content always wins.
+            git push --force \
               "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git" \
               HEAD:master
             echo "✓ Wiki updated successfully."
