@@ -1,4 +1,4 @@
-<!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+<!-- © 2025–2026 David Jaroš — Licensed under CC BY 4.0 -->
 <!-- Auto-generated sections are marked with BEGIN/END GENERATED markers.
      Run tools/generate_wiki.py to refresh them. -->
 
