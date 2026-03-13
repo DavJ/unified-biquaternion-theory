@@ -29,9 +29,9 @@ residual open problem at Step 6.
 |----------|------|--------|
 | `canonical/bridges/GR_chain_bridge.tex` | **CANONICAL NAVIGATION** — lists all six steps with cross-references | Navigation |
 | `canonical/geometry/metric.tex` | Step 1: metric g_μν = Re Tr(∂_μΘ · ∂_νΘ†) | PROVED [L1] |
-| `consolidation_project/GR_closure/step1_metric_bridge.tex` | Step 1b: equivalence of derivative and tetrad definitions | PROVED [L0] |
-| `consolidation_project/GR_closure/step2_nondegeneracy.tex` | Step 2: non-degeneracy det(g) ≠ 0 | PROVED [L0] |
-| `consolidation_project/GR_closure/step3_signature_theorem.tex` | Step 3: Lorentzian signature (−,+,+,+) | PROVED [L0] |
+| `ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex` | Step 1b: equivalence of derivative and tetrad definitions | PROVED [L0] |
+| `ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex` | Step 2: non-degeneracy det(g) ≠ 0 | PROVED [L0] |
+| `ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex` | Step 3: Lorentzian signature (−,+,+,+) | PROVED [L0] |
 | `canonical/geometry/connection.tex` | Step 4a: Levi-Civita connection Γ | Standard GR |
 | `canonical/geometry/curvature.tex` | Step 4b: Riemann curvature, Einstein tensor G_μν | Standard GR |
 | `canonical/geometry/gr_as_limit.tex` | Step 5: Einstein field equations via Hilbert variation | PROVED [L1] |
@@ -46,9 +46,9 @@ Step 6 is an additional theoretical tightening that remains open.
 
 | Document | Label | Content |
 |----------|-------|---------|
-| `THEORY/architecture/geometry/biquaternion_curvature.tex` | **supporting** | Biquaternionic curvature tensor background |
-| `THEORY/architecture/geometry/biquaternion_stress_energy.tex` | **supporting** | Stress-energy derivation background |
-| `consolidation_project/GR_closure/GR_chain_summary.tex` | **supporting** | Compact summary of the full chain |
+| `canonical/THEORY/architecture/geometry/biquaternion_curvature.tex` | **supporting** | Biquaternionic curvature tensor background |
+| `canonical/THEORY/architecture/geometry/biquaternion_stress_energy.tex` | **supporting** | Stress-energy derivation background |
+| `ARCHIVE/archive_legacy/consolidation_project/GR_closure/GR_chain_summary.tex` | **supporting** | Compact summary of the full chain |
 | `canonical/geometry/stress_energy.tex` | **supporting** | T_μν derivation; ∇^μ T_μν = 0 conservation |
 | `canonical/geometry/biquaternion_metric.tex` | **supporting** | Full biquaternionic metric decomposition |
 
@@ -58,11 +58,11 @@ Step 6 is an additional theoretical tightening that remains open.
 
 | Document | Label | Why Not Canonical |
 |----------|-------|-------------------|
-| `consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` | **historical** | Earlier consolidation; superseded by GR_closure/ chain |
-| `unified_biquaternion_theory/ubt_appendix_1_biquaternion_gravity.tex` | **historical** | Original derivation; action principle section still canonical source |
+| `ARCHIVE/archive_legacy/consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` | **historical** | Earlier consolidation; superseded by GR_closure/ chain |
+| `research_tracks/legacy_theory_variants/unified_biquaternion_theory/ubt_appendix_1_biquaternion_gravity.tex` | **historical** | Original derivation; action principle section still canonical source |
 | `docs/papers/appendix_GR_embedding.tex` | **supporting** | Hilbert variation of full action; remains a valid derivation reference |
-| `reports/gr_recovery_final_status.md` | **historical** | Status snapshot; live status is in `AUDITS/repository_claim_map.md` |
-| `docs/ubt_gr_recovery/gr_recovery_status.md` | **historical** | Earlier status file; see `AUDITS/` for current state |
+| `docs/reports/gr_recovery_final_status.md` | **historical** | Status snapshot; live status is in `docs/AUDITS/repository_claim_map.md` |
+| `docs/ubt_gr_recovery/gr_recovery_status.md` | **historical** | Earlier status file; see `docs/AUDITS/` for current state |
 
 ---
 
@@ -94,14 +94,14 @@ Step 6 is an additional theoretical tightening that remains open.
 Main entries in `DERIVATION_INDEX.md`:
 - **GR Recovery Status** section with all proved/conditional/open sub-claims
 - Bridge: `canonical/bridges/GR_chain_bridge.tex`
-- Claim evidence: `AUDITS/claim_evidence_matrix.md` rows 1–7
+- Claim evidence: `docs/AUDITS/claim_evidence_matrix.md` rows 1–7
 
 ---
 
 ## What a New Reader Should Do
 
 1. Read the bridge document `canonical/bridges/GR_chain_bridge.tex` (canonical navigation, ~4 pages)
-2. For the full derivation chain, follow Steps 1–5 in `consolidation_project/GR_closure/`
-3. For the algebraic proof of Lorentzian signature, see Step 3 (`step3_signature_theorem.tex`)
+2. For the full derivation chain, follow Steps 1–5 in `ARCHIVE/archive_legacy/consolidation_project/GR_closure/`
+3. For the algebraic proof of Lorentzian signature, see Step 3 (`ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex`)
 4. For the action principle and Hilbert variation, see `canonical/geometry/gr_as_limit.tex`
 5. Step 6 (off-shell closure) is an advanced open problem and can be skipped on first reading
