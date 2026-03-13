@@ -4,18 +4,32 @@
 
 ---
 
-## Repository Structure (5 Top-Level Directories)
+## Navigation (Start Here)
+
+1. **Theory status & derivation index** → [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md)
+2. **Topic indexes** (one entry point per topic) → [`canonical/THEORY/topic_indexes/`](canonical/THEORY/topic_indexes/)
+   - Fine structure constant α: [`alpha_index.md`](canonical/THEORY/topic_indexes/alpha_index.md)
+   - SU(3) color symmetry: [`SU3_index.md`](canonical/THEORY/topic_indexes/SU3_index.md)
+   - GR recovery: [`GR_index.md`](canonical/THEORY/topic_indexes/GR_index.md)
+   - Hecke / 137–139: [`hecke_index.md`](canonical/THEORY/topic_indexes/hecke_index.md)
+   - Mirror sector: [`mirror_sector_index.md`](canonical/THEORY/topic_indexes/mirror_sector_index.md)
+3. **Repository map** → [`docs/repo_map.md`](docs/repo_map.md)
+4. **Theory map (from derivation index)** → [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](docs/THEORY_MAP_FROM_DERIVATION_INDEX.md)
+
+---
+
+## Repository Structure (Top-Level Directories)
 
 | Directory | What it contains | When to read |
 |---|---|---|
-| [`core/`](core/) | Canonical physics and math (start here) | Understanding the theory |
+| [`canonical/`](canonical/) | Canonical physics and math (start here) | Understanding the theory |
 | [`research_tracks/`](research_tracks/) | Active non-mainline research | Following open problems |
 | [`speculative_extensions/`](speculative_extensions/) | Unproved speculative extensions | Exploring implications |
 | [`experiments/`](experiments/) | Numerical code and computations | Reproducing results |
-| [`archive/`](archive/) | Superseded/deprecated content | Historical reference |
+| [`ARCHIVE/`](ARCHIVE/) | Superseded/deprecated content | Historical reference |
 | [`docs/`](docs/) | Process, governance, meta documents | Project navigation |
 
-**Entry point:** [`core/UBT_canonical_main.tex`](core/UBT_canonical_main.tex)  
+**Entry point:** [`canonical/UBT_canonical_main.tex`](canonical/UBT_canonical_main.tex)  
 **Full structure guide:** [`docs/REPOSITORY_STRUCTURE.md`](docs/REPOSITORY_STRUCTURE.md)
 
 ---
@@ -72,11 +86,11 @@ automatic and does not contradict UBT.  See
 ### Proved Results (zero free parameters)
 
 - **GR limit on admissible sector**: G_μν = 8πG T_μν reproduced on A_UBT from biquaternionic φ-projection (Level 2 recovery; conditions C1–C6 required)  
-  → `core/gr_limit/GR_limit_of_UBT.tex`
+  → `canonical/gr_limit/GR_limit_of_UBT.tex`
 - **SM gauge group SU(2)_L × U(1)_Y** from ℂ⊗ℍ algebra isomorphism  
   → `consolidation_project/appendix_E2_SM_geometry.tex`
 - **U(1)_EM** from ψ-cycle phase of Θ  
-  → `core/interactions/qed.tex`
+  → `canonical/interactions/qed.tex`
 - **Three generation mechanism**: ψ-modes of the biquaternionic field Θ are independent, carry same SU(3) quantum numbers, and ψ-parity forbids inter-generational mixing  
   → `research_tracks/three_generations/st3_complex_time_generations.tex`
 - **N_eff = 12** from ℂ⊗ℍ algebra alone (3 × 2 × 2; zero free parameters)  
@@ -230,12 +244,12 @@ The scientific content is organised into three layers reflecting increasing leve
 
 **Key principle:** Layer 0 axioms generate Layer 1 physics through projection; Layer 2 selects specific channels within Layer 1. No claim of Layer 2 derivability is made without explicit statement.
 
-**GR recovery (Layer 1):** GR is reproduced on the admissible sector A_UBT (Level 2 recovery — constrained sector). The combined variational condition E_Θ + J\*E_g = 0 is the fundamental equation; termwise separation is not automatic. See [`core/gr_limit/GR_limit_of_UBT.tex`](core/gr_limit/GR_limit_of_UBT.tex) for the canonical derivation.
+**GR recovery (Layer 1):** GR is reproduced on the admissible sector A_UBT (Level 2 recovery — constrained sector). The combined variational condition E_Θ + J\*E_g = 0 is the fundamental equation; termwise separation is not automatic. See [`canonical/gr_limit/GR_limit_of_UBT.tex`](canonical/gr_limit/GR_limit_of_UBT.tex) for the canonical derivation.
 
 ### Repository Structure Map
 
 ```
-core/                    ← Canonical UBT physics and math (start here)
+canonical/               ← Canonical UBT physics and math (start here)
   AXIOMS.md
   core_assumptions.tex
   UBT_canonical_main.tex  ← MAIN canonical document
@@ -282,7 +296,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 **UBT is organized into conceptual layers to separate geometric foundations from modeling choices:**
 
 ### Core UBT (Layer A) - Geometric Foundations
-**Location:** `core/`, `THEORY/architecture/geometry/`
+**Location:** `canonical/`, `canonical/THEORY/architecture/geometry/`
 
 Pure biquaternionic geometry:
 - Field equations: ∇†∇Θ(q,τ) = κ𝒯(q,τ)
@@ -459,7 +473,7 @@ See [`FITTED_PARAMETERS.md`](FITTED_PARAMETERS.md) for complete parameter transp
 **Derived (fit-free) - Layer 1 Geometry:**
 - ✅ Biquaternionic field structure ℂ⊗ℍ (axiom/definition)
 - ✅ Field equation ∇†∇Θ = κ𝒯 (framework)
-- ✅ GR limit reproduced on admissible sector A_UBT: G_μν = 8πG T_μν (on A_UBT; see `core/gr_limit/GR_limit_of_UBT.tex`)
+- ✅ GR limit reproduced on admissible sector A_UBT: G_μν = 8πG T_μν (on A_UBT; see `canonical/gr_limit/GR_limit_of_UBT.tex`)
 - ✅ SM gauge group SU(3)×SU(2)×U(1) from Aut(ℂ⊗ℍ) (rigorously derived)
 - ✅ Electron mass baseline m_e = 0.509856 MeV from Hopfion topology (0.22% error, zero fitted)
 - ✅ Prime constraint for winding numbers (from gauge quantization)
@@ -555,7 +569,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 
 **The repository files are physically organized into 8 audit-ready directories:**
 
-- **THEORY/** - Core axioms, math, architecture (Layer A content)
+- **canonical/THEORY/** - Core axioms, math, architecture (Layer A content)
 - **FINGERPRINTS/** - Confirmed/candidate/null predictions (Layer B observables + tests)
 - **FORENSICS/** - Court-grade testing protocols
 - **HUBBLE_LATENCY/** - Hubble tension interpretation (Layer C)
@@ -571,7 +585,7 @@ Hubble tension as information overhead, p-adic dark matter (testable hypotheses)
 - **[REPO_GOVERNANCE.md](REPO_GOVERNANCE.md)** - Content classification rules
 - **[SPECULATIVE_VS_EMPIRICAL.md](SPECULATIVE_VS_EMPIRICAL.md)** - Rigor level system
 
-**Quick decision tree:** Is it proven? → Layer A/THEORY/ | Predicted & validated? → Layer B/FINGERPRINTS/ | Testable hypothesis? → Layer C | Speculative? → `SPECULATIVE/`
+**Quick decision tree:** Is it proven? → Layer A/canonical/THEORY/ | Predicted & validated? → Layer B/FINGERPRINTS/ | Testable hypothesis? → Layer C | Speculative? → `SPECULATIVE/`
 
 ---
 
@@ -692,7 +706,7 @@ This repository is organized for **audit-ready scientific review**:
 ```
 unified-biquaternion-theory/
 │
-├── THEORY/                  # Core axioms, mathematics, architecture
+├── canonical/THEORY/        # Core axioms, mathematics, architecture
 │   ├── axioms/             # What UBT assumes
 │   ├── math/               # Biquaternionic field formalism
 │   └── architecture/       # Discrete-time structure (most speculative)
@@ -740,7 +754,7 @@ unified-biquaternion-theory/
 - **New to UBT?** → Start with [`ARCHIVE/duplicate_or_snapshot_roots/DOCS/overview.md`](ARCHIVE/duplicate_or_snapshot_roots/DOCS/overview.md)
 - **Checking empirical claims?** → See [`FINGERPRINTS/`](FINGERPRINTS/)
 - **Validating null results?** → Check [`FINGERPRINTS/null_results/combined_verdict.md`](FINGERPRINTS/null_results/combined_verdict.md)
-- **Understanding theory?** → Read [`THEORY/README.md`](THEORY/README.md)
+- **Understanding theory?** → Read [`canonical/THEORY/README.md`](canonical/THEORY/README.md)
 - **Testing reproducibility?** → Use protocols in [`FORENSICS/`](FORENSICS/)
 - **Evaluating Hubble latency?** → See [`HUBBLE_LATENCY/README.md`](HUBBLE_LATENCY/README.md)
 - **Looking for definitions?** → Check [`ARCHIVE/duplicate_or_snapshot_roots/DOCS/glossary.md`](ARCHIVE/duplicate_or_snapshot_roots/DOCS/glossary.md)
@@ -836,7 +850,7 @@ We **welcome** critical scrutiny. To facilitate audit:
 1. **Check null results FIRST** → [`FINGERPRINTS/null_results/`](FINGERPRINTS/null_results/)
 2. **Verify data provenance** → SHA-256 manifests in [`DATA/manifests/`](DATA/manifests/)
 3. **Reproduce analyses** → Exact commands in [`FORENSICS/protocols/`](FORENSICS/protocols/)
-4. **Examine assumptions** → Core axioms in [`THEORY/axioms/`](THEORY/axioms/)
+4. **Examine assumptions** → Core axioms in [`canonical/THEORY/axioms/`](THEORY/axioms/)
 5. **Test predictions** → Protocol templates in [`FORENSICS/README.md`](FORENSICS/README.md)
 
 **No p-hacking, no parameter tuning, no cherry-picking.** All results (positive and negative) are documented.
