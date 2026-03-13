@@ -1,0 +1,116 @@
+# Copyright (c) 2025 Ing. David Jaroš
+# Licensed under the MIT License
+# See LICENSE file in the repository root for full license text
+#
+# wiki_update.yml
+#
+# Update the GitHub Wiki whenever DERIVATION_INDEX.md or canonical/ files change.
+#
+# What this workflow does:
+#   1. Run tools/generate_wiki.py to regenerate status sections in wiki/ pages
+#   2. Commit any changed wiki/ files back to the repo (so wiki/ stays in sync)
+#   3. Push the wiki/ pages to the GitHub Wiki git repository
+#
+# Trigger conditions:
+#   - Push to main when DERIVATION_INDEX.md or canonical/ files change
+#   - Manual workflow_dispatch
+
+name: Update Wiki
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - DERIVATION_INDEX.md
+      - canonical/**
+      - wiki/**
+      - tools/generate_wiki.py
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force full wiki regeneration even if no files changed"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  update-wiki:
+    name: Regenerate and push wiki
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run generate_wiki.py
+        run: python tools/generate_wiki.py
+
+      - name: Commit updated wiki pages (if any)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet wiki/; then
+            echo "No wiki/ changes to commit."
+          else
+            git add wiki/
+            git commit -m "chore: regenerate wiki from DERIVATION_INDEX.md [skip ci]"
+            git push
+          fi
+
+      - name: Clone wiki repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.wiki.git" \
+            /tmp/wiki_repo
+
+      - name: Sync wiki pages to wiki repository
+        run: |
+          # Copy all .md files from wiki/ to the wiki repository root
+          cp wiki/*.md /tmp/wiki_repo/
+
+          cd /tmp/wiki_repo
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage all changes
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to push to wiki."
+          else
+            git commit -m "Wiki update from commit ${{ github.sha }}"
+            git push origin HEAD
+            echo "✓ Wiki updated successfully."
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "================================================"
+          echo "Wiki Update Complete"
+          echo "================================================"
+          echo ""
+          echo "Pages synced from wiki/ to GitHub Wiki:"
+          ls wiki/*.md | xargs -I{} basename {}
+          echo ""
+          echo "DERIVATION_INDEX.md sections parsed:"
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from tools.generate_wiki import parse_derivation_index
+          secs = parse_derivation_index('DERIVATION_INDEX.md')
+          total = sum(len(v) for v in secs.values())
+          print(f'  {len(secs)} sections, {total} entries')
+          "
+          echo "================================================"
