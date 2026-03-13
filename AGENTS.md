@@ -1,88 +1,50 @@
-# AGENTS.md — Unified Biquaternion Theory Repository Protocol
+# AGENTS.md — Unified Biquaternion Theory Development Protocol
 
-This document defines rules for AI agents and contributors working in the
-Unified Biquaternion Theory (UBT) repository.
+This document defines operational rules for AI agents and contributors working
+inside the Unified Biquaternion Theory (UBT) repository.
 
-The goal is to maintain:
-- theoretical clarity
-- structural stability of the repository
-- minimal entropy in the theory tree
-- reproducible scientific development
+The repository is treated as a **scientific research environment**, not a
+generic software project.
 
-The repository is treated as a scientific theory laboratory, not a general
-software project.
+Agents must preserve both:
+
+• theoretical consistency  
+• repository structural stability  
 
 ---
 
-# 1. Core Philosophy
+# 1. Repository Structure
 
-The repository is organized around a strict separation of:
+The repository follows a strict separation of concerns.
 
-- canonical/ → current best formulation of the theory
-- research_tracks/ → active research directions
-- speculative_extensions/ → conceptual extensions
-- ARCHIVE/ → historical material
+canonical/
+Current best internally consistent formulation of UBT.
+
+research_tracks/
+Active research directions that are not yet canonical.
+
+speculative_extensions/
+Conceptual or exploratory ideas not yet mathematically closed.
+
+ARCHIVE/
+Historical or superseded material.
 
 Agents must respect this separation.
 
-No other top-level theory roots are allowed.
+No additional top-level theory roots may be created.
 
 ---
 
-# 2. Canonical Theory Rules
-
-The directory canonical/ contains the current reference formulation of UBT.
-
-This means:
-- the most internally consistent version of the theory
-- the formulation we currently consider correct
-- the formulation used for audits and publications
-
-Canonical does not mean final or infallible.
-
-However, canonical must remain low-speculation and mathematically defined.
-
----
-
-## Material allowed in canonical
-
-Content must satisfy at least one of the following:
-- formal definitions of theory objects
-- derivations used in the mainline theory
-- mathematical structures required by the theory
-- appendices supporting canonical derivations
-- bridges between canonical sectors
-
----
-
-## Material forbidden in canonical
-
-The following must not appear in canonical:
-- conceptual designs
-- speculative ontologies
-- philosophical interpretations
-- experimental probes
-- exploratory mathematical constructions
-- unfinished derivations
-
-Such work must go to:
-research_tracks/
-speculative_extensions/
-
----
-
-# 3. Repository Discipline
-
-Agents must treat repository structure as part of the scientific method.
-
-## Root directory rules
+# 2. Root Directory Discipline
 
 Agents MUST NOT:
-- create new directories in the repository root
-- create parallel theory roots
-- reorganize the repository structure without instruction
 
-Allowed top-level directories:
+• create new directories in repository root  
+• duplicate theory trees  
+• reorganize repository structure without instruction  
+
+Allowed root directories:
+
 canonical/
 research_tracks/
 speculative_extensions/
@@ -93,125 +55,228 @@ tools/
 scripts/
 reports/
 
----
-
-## Canonical directory rules
-
-Agents MUST NOT:
-- create new files in canonical unnecessarily
-- duplicate existing derivations
-- introduce competing formulations
-
-Agents SHOULD:
-- extend existing documents
-- refine definitions
-- improve derivations in place
-
-Prefer editing existing files instead of creating new ones.
+If new material is created, it must go into an existing category.
 
 ---
 
-# 4. Scientific Development Rules
+# 3. Canonical Theory Rules
 
-The following sectors define the theoretical core of UBT:
+canonical/ contains the **current reference formulation of UBT**.
+
+Canonical means:
+
+• internally consistent  
+• mathematically defined  
+• used for audits and publications  
+
+Canonical does NOT mean final or infallible.
+
+---
+
+Material allowed in canonical:
+
+• definitions of theory objects  
+• core algebraic structures  
+• main derivations  
+• appendices supporting canonical derivations  
+• bridges between theory sectors  
+
+---
+
+Material forbidden in canonical:
+
+• conceptual designs  
+• philosophical interpretations  
+• experimental probes  
+• incomplete derivations  
+• speculative ontologies  
+
+Such work belongs in:
+
+research_tracks/
+speculative_extensions/
+
+---
+
+# 4. Core Mathematical Structure of UBT
+
+UBT is built around the following structural components.
+
+Agents must preserve compatibility with these elements.
+
+## Algebra
+
+Biquaternion algebra
+
+ℂ ⊗ ℍ
+
+This algebra forms the base mathematical structure of the theory.
+
+Located in:
 
 canonical/algebra/
+
+---
+
+## Fundamental Field
+
+The fundamental field of the theory is:
+
+Θ(q, τ)
+
+where:
+
+q = biquaternion coordinate  
+τ = complex time parameter
+
+Θ is treated as a generating structure for fields and geometry.
+
+Located in:
+
 canonical/fields/
+
+---
+
+## Emergent Geometry
+
+Spacetime geometry is derived from the Θ field structure.
+
+Located in:
+
 canonical/geometry/
+
+Agents must preserve compatibility with the GR limit.
+
+---
+
+## Interaction Sector
+
+Gauge structures and interaction sectors are located in:
+
 canonical/interactions/
 
-Agents should prioritize work in these sectors.
+Agents should maintain compatibility with:
+
+SU(3) × SU(2) × U(1)
+
+as the Standard Model limit.
 
 ---
 
 # 5. Development Priorities
 
-Agents should prioritize:
+Agents should prioritize improvements in:
+
 1. algebraic consistency of the biquaternion framework
-2. field derivations from Θ(q, τ)
-3. emergence of spacetime geometry
-4. interaction structures (gauge sector)
+2. derivations involving Θ(q, τ)
+3. emergence of metric structure
+4. interaction sector derivations
 5. compatibility with GR and Standard Model limits
 
-Work that strengthens derivations is preferred.
+Work that strengthens derivations is preferred over new speculation.
 
 ---
 
-# 6. What Agents Must Avoid
+# 6. Open Problems
+
+Agents should be aware that some aspects of the theory remain open.
+
+Examples include:
+
+• derivation of the fine structure constant α  
+• derivation of particle mass spectrum  
+• deeper structure of Θ spectral modes
+
+Work on these problems belongs in research_tracks unless fully derived.
+
+---
+
+# 7. What Agents Must Avoid
 
 Agents must avoid:
-- introducing speculative particles or entities
-- adding ontology without equations
-- modifying axioms without justification
-- duplicating theory branches
-- increasing repository complexity
 
-Agents must always prefer clarification over expansion.
+• introducing new entities without equations  
+• adding ontology without mathematical definition  
+• duplicating theory structures  
+• increasing repository structural entropy  
+
+Agents should prefer **clarification over expansion**.
 
 ---
 
-# 7. Change Strategy
+# 8. Change Strategy
 
 When modifying theory content:
+
 1. propose minimal change
-2. implement change
-3. verify internal consistency
+2. modify existing file
+3. verify consistency with canonical structure
 4. avoid structural side effects
 
-Large reorganizations must be avoided unless explicitly requested.
+Agents should prefer editing existing documents rather than creating new ones.
 
 ---
 
-# 8. Promotion Workflow
+# 9. Promotion Workflow
 
-New ideas must follow this path:
-research_tracks → canonical (after validation)
+New theory elements must follow this progression:
 
-Material must not enter canonical directly unless it is a refinement of an
-existing canonical derivation.
+research_tracks → canonical
+
+Promotion requires:
+
+• internal consistency  
+• mathematical closure  
+• compatibility with canonical structure
 
 ---
 
-# 9. Archival Policy
+# 10. Archival Policy
 
-Scientific material must never be deleted.
+Scientific content must never be deleted.
 
-Instead it should be moved to:
+Historical material should be moved to:
+
 ARCHIVE/
 
-for historical preservation.
-
----
-
-# 10. Repository Design Principle
-
-The repository should evolve toward:
-- one canonical theory tree
-- clear separation of research directions
-- minimal structural entropy
-- maximal theoretical clarity
-
-Agents must treat repository structure as part of the theory itself.
+This preserves reproducibility of theory evolution.
 
 ---
 
 # 11. Minimal Change Principle
 
 Agents must prefer:
-- editing existing files
-- extending sections
-- improving clarity
+
+• extending existing documents
+• refining definitions
+• clarifying derivations
 
 over:
-- creating new files
-- duplicating derivations
-- fragmenting theory documents
+
+• creating new files
+• duplicating derivations
+• fragmenting the theory
 
 ---
 
-# 12. Final Rule
+# 12. Repository Philosophy
+
+The repository should evolve toward:
+
+• one canonical theory tree
+• clear research tracks
+• minimal structural entropy
+• maximal theoretical clarity
+
+Agents must treat repository organization as part of the scientific method.
+
+---
+
+# 13. Final Rule
 
 When uncertain:
-do less, not more.
 
-Minimal, precise improvements are preferred over large speculative changes.
+**do less, not more.**
+
+Minimal precise improvements are preferred over speculative expansion.
+
