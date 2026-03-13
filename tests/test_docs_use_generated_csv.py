@@ -18,7 +18,7 @@ import re
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 # Expected CSV files
-ALPHA_CSV = ROOT / "alpha_core_repro" / "out" / "alpha_two_loop_grid.csv"
+ALPHA_CSV = ROOT / "experiments" / "alpha_core_repro" / "out" / "alpha_two_loop_grid.csv"
 LEPTON_CSV = ROOT / "data" / "leptons.csv"
 
 # Main TeX document

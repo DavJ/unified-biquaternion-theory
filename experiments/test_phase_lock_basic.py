@@ -7,8 +7,10 @@ import numpy as np
 import sys
 import os
 
-# Add parent directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+# Add repo root and archive to path (forensic_fingerprint moved to tools/)
+_repo_root = os.path.join(os.path.dirname(__file__), '..')
+sys.path.insert(0, _repo_root)
+sys.path.insert(0, os.path.join(_repo_root, 'tools'))
 
 from forensic_fingerprint.tools.unified_phase_lock_scan import (
     compute_phase_lock,

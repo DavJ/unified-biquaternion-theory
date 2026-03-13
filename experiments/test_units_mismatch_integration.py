@@ -13,9 +13,10 @@ import tempfile
 import numpy as np
 from pathlib import Path
 
-repo_root = Path(__file__).resolve().parent
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'loaders'))
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint' / 'cmb_comb'))
+repo_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'loaders'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint' / 'cmb_comb'))
+sys.path.insert(0, str(repo_root / 'experiments'))
 
 import planck
 import cmb_comb

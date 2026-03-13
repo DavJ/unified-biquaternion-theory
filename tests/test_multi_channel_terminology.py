@@ -16,11 +16,11 @@ from pathlib import Path
 # Priority documentation files to check
 PRIORITY_FILES = [
     "README.md",
-    "OVERVIEW.md",
-    "FITTED_PARAMETERS.md",
-    "FINGERPRINTS/confirmed/alpha_fine_structure.md",
+    "docs/OVERVIEW.md",
+    "docs/FITTED_PARAMETERS.md",
+    "archive/FINGERPRINTS/confirmed/alpha_fine_structure.md",
     "docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md",
-    "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
+    "docs/NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
 ]
 
 repo_root = Path(__file__).resolve().parents[1]
@@ -62,7 +62,7 @@ def test_overview_has_glossary_entries():
     """
     Verify that OVERVIEW.md contains glossary entries for channel concepts.
     """
-    overview_path = repo_root / "OVERVIEW.md"
+    overview_path = repo_root / "docs" / "OVERVIEW.md"
     content = overview_path.read_text()
     
     # Check for key glossary terms
@@ -82,7 +82,7 @@ def test_overview_has_layer_diagram():
     """
     Verify that OVERVIEW.md contains Layer structure explanation.
     """
-    overview_path = repo_root / "OVERVIEW.md"
+    overview_path = repo_root / "docs" / "OVERVIEW.md"
     content = overview_path.read_text()
     
     # Check for Layer 0/1 and Layer 2 explanation
@@ -102,7 +102,7 @@ def test_alpha_fingerprint_has_channel_annotation():
     """
     Verify that alpha fingerprint document annotates channel information.
     """
-    fingerprint_path = repo_root / "FINGERPRINTS" / "confirmed" / "alpha_fine_structure.md"
+    fingerprint_path = repo_root / "archive" / "FINGERPRINTS" / "confirmed" / "alpha_fine_structure.md"
     content = fingerprint_path.read_text()
     
     # Check for channel annotation
@@ -121,7 +121,7 @@ def test_fitted_parameters_explains_mostly_derived():
     """
     Verify that FITTED_PARAMETERS.md explains what 'mostly derived' means.
     """
-    fitted_path = repo_root / "FITTED_PARAMETERS.md"
+    fitted_path = repo_root / "docs" / "FITTED_PARAMETERS.md"
     content = fitted_path.read_text()
     
     # Check for explanation of "mostly derived"
@@ -142,7 +142,7 @@ def test_fitted_parameters_has_multi_channel_n137():
     """
     Verify that FITTED_PARAMETERS.md mentions multi-channel framework for N=137.
     """
-    fitted_path = repo_root / "FITTED_PARAMETERS.md"
+    fitted_path = repo_root / "docs" / "FITTED_PARAMETERS.md"
     content = fitted_path.read_text()
     
     # Check for multi-channel explanation in N=137 section
@@ -240,7 +240,7 @@ def test_noncommutative_renorm_has_channel_context():
     """
     Verify that NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md has channel context.
     """
-    renorm_path = repo_root / "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md"
+    renorm_path = repo_root / "docs" / "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md"
     content = renorm_path.read_text()
     
     # Check for channel annotations
