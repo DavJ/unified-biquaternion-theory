@@ -1,0 +1,154 @@
+name: Build Research PDFs (optional)
+# Triggered manually only — does not block CI.
+# Builds research, speculative, and archive LaTeX documents
+# that are excluded from the canonical automatic build.
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+
+jobs:
+  compile:
+    name: compile (${{ matrix.root }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        root:
+          # Consolidated project documents
+          - consolidation_project/ubt_core_main.tex
+          - consolidation_project/ubt_2_main.tex
+          - consolidation_project/ubt_osf_publication.tex
+          - consolidation_project/holographic_verlinde_desitter_standalone.tex
+          # Standalone appendices
+          - consolidation_project/particle_spectrum_from_theta.tex
+          - consolidation_project/appendix_AA_theta_action.tex
+          - consolidation_project/appendix_E2_SM_geometry.tex
+          - consolidation_project/appendix_H2_holography_variational.tex
+          - consolidation_project/appendix_Y3_yukawa_couplings.tex
+          - consolidation_project/appendix_ALPHA_one_loop_biquat.tex
+          # Alpha derivations
+          - consolidation_project/new_alpha_derivations/noether_to_alpha_clean_v1.2.tex
+          - consolidation_project/alpha_derivation/phi_ubt_derivation.tex
+          - consolidation_project/alpha_derivation/b_base_new_directions.tex
+          - consolidation_project/alpha_derivation/b_base_ncg_a4.tex
+          - consolidation_project/alpha_derivation/b_base_kac_moody_level.tex
+          - consolidation_project/alpha_derivation/b_base_km_level_ii.tex
+          # Root-level summaries
+          - alpha_padic_executive_summary.tex
+          - UBT_Main.tex
+          - UBT_Abstract_OSF.tex
+          - UBT_Final_Consolidation_Report.tex
+          - FORMAL_INVARIANT_EXTRACTION_LAYER0.tex
+          # Papers
+          - docs/papers/appendix_GR_embedding.tex
+          - papers/su3_triplet/main.tex
+          - papers/su3_triplet/arxiv_version.tex
+          - papers/su3_triplet/noether_current_paper.tex
+          - complex-theta-transform-paper/main.tex
+          - papers/generated/ubt_action_and_alpha.tex
+          # Original UBT theory documents
+          - unified_biquaternion_theory/ubt_main_article.tex
+          - unified_biquaternion_theory/ubt_osf_overview_article.tex
+          - unified_biquaternion_theory/fermion_mass_derivation_complete.tex
+          - unified_biquaternion_theory/docs/osf_release/main.tex
+          # Archive — speculative causality
+          - archive/speculative/causality/complex_time_causal_structure.tex
+          - archive/speculative/causality/rotation_complex_time.tex
+          - archive/speculative/causality/ctc_conditions.tex
+          - archive/speculative/causality/chronology_protection_ubt.tex
+          - archive/speculative/causality/ctc_methodology.tex
+          # Archive — speculative invisibility
+          - archive/speculative/invisibility/st1_imaginary_object_definition.tex
+          - archive/speculative/invisibility/st2_sector_interaction.tex
+          - archive/speculative/invisibility/st3_stability.tex
+          - archive/speculative/invisibility/st4_ctc_invisibility_connection.tex
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect engine + paths
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${{ matrix.root }}"
+          dir="$(dirname "$root")"
+          pdf="${root%.tex}.pdf"
+
+          engine="pdflatex"
+          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
+            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
+          fi
+          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
+          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
+
+          {
+            echo "dir=$dir"
+            echo "pdf=$pdf"
+            echo "engine=$engine"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: LaTeX build ${{ matrix.root }}
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: ${{ matrix.root }}
+          work_in_root_file_dir: true
+          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
+          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
+          args: -interaction=nonstopmode -halt-on-error
+          extra_system_packages: "py-pygments"
+          pre_compile: "tlmgr install physics braket || true"
+
+      - name: Make safe artifact names
+        id: names
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${{ matrix.root }}"
+          safe="$(printf '%s' "$root" | sed 's|/|__|g; s|[^A-Za-z0-9._-]|_|g')"
+          echo "pdf_name=pdf-${safe}" >> "$GITHUB_OUTPUT"
+          echo "log_name=logs-${safe}" >> "$GITHUB_OUTPUT"
+
+      - name: Check produced files
+        id: produced
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdf="${{ steps.detect.outputs.pdf }}"
+          dir="${{ steps.detect.outputs.dir }}"
+          if [[ -f "$pdf" ]]; then
+            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          shopt -s nullglob
+          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
+          if (( ${#logs[@]} )); then
+            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload PDF (only if created)
+        if: always() && steps.produced.outputs.pdf_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.names.outputs.pdf_name }}
+          path: ${{ steps.detect.outputs.pdf }}
+
+      - name: Upload logs (only if any)
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.names.outputs.log_name }}
+          path: |
+            ${{ steps.detect.outputs.dir }}/*.log
+            ${{ steps.detect.outputs.dir }}/*.blg
+            ${{ steps.detect.outputs.dir }}/*.fls
+            ${{ steps.detect.outputs.dir }}/*.aux
+            ${{ steps.detect.outputs.dir }}/*.out
