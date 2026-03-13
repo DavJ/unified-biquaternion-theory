@@ -45,14 +45,13 @@ def repo_root() -> Path:
 def forensic_root() -> Path:
     """
     Get the forensic_fingerprint root directory.
-    
-    Returns the shim directory at repo root, which delegates to
-    ubt_with_chronofactor/forensic_fingerprint/.
-    
+
+    forensic_fingerprint was moved to tools/ during root_detox_phase1.
+
     Returns:
-        Path to forensic_fingerprint shim directory
+        Path to tools/forensic_fingerprint directory
     """
-    return repo_root() / 'forensic_fingerprint'
+    return repo_root() / 'tools' / 'forensic_fingerprint'
 
 
 def forensic_target_root() -> Path:
@@ -88,12 +87,13 @@ def ubt_no_chronofactor_root() -> Path:
 def ensure_forensic_importable() -> None:
     """
     Ensure forensic_fingerprint can be imported.
-    
-    This imports the shim module, which handles sys.path manipulation.
-    Call this before importing forensic_fingerprint in tests if needed.
+
+    forensic_fingerprint was moved to tools/ during root_detox_phase1.
+    This adds tools/ to sys.path so that 'import forensic_fingerprint' works.
     """
-    # Simply importing the shim package triggers path setup
-    import forensic_fingerprint
+    tools_path = str(repo_root() / 'tools')
+    if tools_path not in sys.path:
+        sys.path.insert(0, tools_path)
     
 
 def add_path(path: Path) -> None:

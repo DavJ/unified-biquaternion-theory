@@ -17,7 +17,7 @@ jobs:
           pip install numpy sympy pytest
       - name: Run CT tests
         run: |
-          pytest -q consolidation_project/alpha_two_loop/tests
+          pytest -q archive/consolidation_project/alpha_two_loop/tests
       - name: Run alpha core repro tests
         run: |
           pytest -q ubt_with_chronofactor/alpha_core_repro/tests
@@ -26,4 +26,4 @@ jobs:
           pytest -v tests/test_electron_mass.py
       - name: Run masses symbolic tests
         run: |
-          cd consolidation_project/masses && pytest -q tests
+          cd archive/consolidation_project/masses && pytest -q tests

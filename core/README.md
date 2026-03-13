@@ -179,4 +179,4 @@ Most consolidated content comes from `consolidation_project/` which contains par
 ---
 
 **Last Updated**: 2026-03-12  
-**Status**: Canonical-tightened — speculative extensions removed; `core/canonical/` flattened to `core/`
+**Status**: Canonical-tightened — speculative extensions removed; content lives directly in `core/`

@@ -26,7 +26,7 @@ def test_cli_outputs_exist():
         # Run CLI tool in debug mode with minimal samples
         cmd = [
             'python3',
-            'forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
+            'tools/forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
             '--space', 'debug',
             '--samples', '10',
             '--mapping', 'placeholder',
@@ -92,7 +92,7 @@ def test_cli_robustness_outputs():
         # Run CLI tool with robustness mode
         cmd = [
             'python3',
-            'forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
+            'tools/forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
             '--space', 'debug',
             '--samples', '5',  # Very small for speed
             '--mapping', 'placeholder',
@@ -148,7 +148,7 @@ def test_cli_placeholder_warning():
         # Run CLI tool in placeholder mode
         cmd = [
             'python3',
-            'forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
+            'tools/forensic_fingerprint/tools/layer2_fingerprint_sweep_v2.py',
             '--space', 'debug',
             '--samples', '5',
             '--mapping', 'placeholder',

@@ -5,14 +5,14 @@ on:
     branches: [ main, master ]
     paths:
       - 'ubt_with_chronofactor/forensic_fingerprint/**'
-      - 'forensic_fingerprint/**'
+      - 'tools/forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
   pull_request:
     branches: [ main, master ]
     paths:
       - 'ubt_with_chronofactor/forensic_fingerprint/**'
-      - 'forensic_fingerprint/**'
+      - 'tools/forensic_fingerprint/**'
       - 'tests/test_forensic_fingerprint.py'
       - '.github/workflows/forensic_fingerprint.yml'
 
@@ -37,8 +37,8 @@ jobs:
       
       - name: Smoke test - forensic_fingerprint shim
         run: |
-          python -c "import forensic_fingerprint; print('Shim loaded successfully')"
-          python -c "import sys; import forensic_fingerprint; print('Module location:', sys.modules['forensic_fingerprint'].__file__)"
+          python -c "import sys; sys.path.insert(0, 'tools'); import forensic_fingerprint; print('Shim loaded successfully')"
+          python -c "import sys; sys.path.insert(0, 'tools'); import forensic_fingerprint; print('Module location:', sys.modules['forensic_fingerprint'].__file__)"
       
       - name: Run forensic fingerprint tests
         run: |
