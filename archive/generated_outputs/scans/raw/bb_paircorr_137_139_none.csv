@@ -1,0 +1,3 @@
+kind,channel,label,raw,freq,bin,psd_obs,p_mc,p_global
+target,BB,p=137,137,0.00729927007299,111,0.659305266281,0.458,
+target,BB,p=139,139,0.00719424460432,110,1.87816829235,0.105,

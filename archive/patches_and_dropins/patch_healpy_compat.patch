@@ -1,0 +1,11 @@
+diff --git a/forensic_fingerprint/tools/spectral_parity_test.py b/forensic_fingerprint/tools/spectral_parity_test.py
+--- a/forensic_fingerprint/tools/spectral_parity_test.py
++++ b/forensic_fingerprint/tools/spectral_parity_test.py
+@@ -1,99999 +1,99999 @@
+-    almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax, iter=3)
++    # healpy API compatibility:
++    # some versions support iter=..., some do not
++    try:
++        almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax, iter=3)
++    except TypeError:
++        almE, almB = hp.map2alm_spin([q, u], spin=2, lmax=lmax)

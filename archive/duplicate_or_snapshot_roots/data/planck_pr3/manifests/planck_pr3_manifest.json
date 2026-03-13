@@ -1,0 +1,19 @@
+{
+  "generated": "2026-01-10T20:10:08.933221",
+  "tool": "hash_dataset.py",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "filename": "COM_PowerSpect_CMB-TT-full_R3.01.txt",
+      "size_bytes": 434,
+      "sha256": "44458c9bb5f4a638645df9e52ea475ee95465d36d7adb79ac54b493aac997c0a",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-TT-full_R3.01.txt"
+    },
+    {
+      "filename": "COM_PowerSpect_CMB-TT-model_R3.01.txt",
+      "size_bytes": 324,
+      "sha256": "74cbf60d3b92dce5e5a7770dbc782a7db0973f58e01ac05173e76bd8b8810d81",
+      "path": "data/planck_pr3/raw/COM_PowerSpect_CMB-TT-model_R3.01.txt"
+    }
+  ]
+}

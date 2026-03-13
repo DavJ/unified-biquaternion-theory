@@ -1,0 +1,13 @@
+{
+  "generated": "2026-01-12T02:00:08.408595",
+  "tool": "hash_dataset.py",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {
+      "filename": "wmap_tt_spectrum_9yr_v5.txt",
+      "size_bytes": 88635,
+      "sha256": "935e9cfa936b0161303dbf46c725c4a6cec92b9a45983e64200e760d9a6756c7",
+      "path": "data/wmap/raw/wmap_tt_spectrum_9yr_v5.txt"
+    }
+  ]
+}

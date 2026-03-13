@@ -1,0 +1,3 @@
+channel,nside_out,nlat,nlon,lat_cut_deg,field,window2d,radial,null,mc,seed,k_target,obs_psd,p_mc
+TT,256,512,1024,0.0,value,none,True,phi-roll,2000,0,137,3.1484358398937775e-08,0.0
+TT,256,512,1024,0.0,value,none,True,phi-roll,2000,0,139,3.383553961665926e-08,0.0

@@ -1,0 +1,24 @@
+# WMAP Raw Data Files
+#
+# DO NOT commit large data files to the repository.
+# Only commit manifest JSON files for provenance tracking.
+
+# Raw data directory - exclude all contents except manifests
+raw/*
+
+# But allow the raw directory itself to exist
+!raw/.gitkeep
+
+# Allow manifest directory
+!manifests/
+!manifests/*.json
+
+# Exclude temporary/extracted files
+*.fits
+*.dat
+*.txt
+*.csv
+*.tar.gz
+
+# But keep any pre-registered manifests
+!manifests/*.json
