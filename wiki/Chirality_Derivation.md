@@ -26,11 +26,11 @@ Status: **Proved [L1]** — Gap C1 (W± vertex from S[Θ]) is CLOSED.
 | Result | Status | File |
 |--------|--------|------|
 | ℍ gives SU(2)_L × SU(2)_R from left/right actions | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| P_ψ maps modes n → -n (ψ-parity) | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| ∂_ψ anti-commutes with P_ψ | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| P_ψ acts as γ⁵ in ψ-sector | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| Preferred ψ-circle orientation (matter n>0 by CPT) | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| SU(2)_L on odd modes ℋ₋ | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+| P_ψ maps modes n → -n (ψ-parity) | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+| ∂_ψ anti-commutes with P_ψ | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+| P_ψ acts as γ⁵ in ψ-sector | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+| Preferred ψ-circle orientation (matter n>0 by CPT) | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+| SU(2)_L on odd modes ℋ₋ | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
 | Gap C1 — W± vertex P_ψ-odd from S: **CLOSED** — no W_R in S; se… | ✅ **Proved** |  |
 <!-- END GENERATED: chirality_status -->
 

@@ -358,7 +358,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 | Result | Status | Notes |
 |--------|--------|-------|
-| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires global rank argument for J=δg/δΘ; not merely injectivity (see GAP-10). Correct claim: Level-2 sector recovery. See `research_tracks/research/gr_offshell_gap.md` for precise gap statement. Missing lemma: global rank of J=δg^μν/δΘ off the metric-generating sector. On-shell recovery (GR-compatible sector Level 2) is proved. |
+| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Proved [L1] (non-degenerate sector)** — kernel of J = U(2) gauge dirs (U(1)⊕SU(2)); global non-degenerate sector on ℝ¹˒³ proved; degenerate configurations and compact M⁴: **[Open L2]** | v54: `research_tracks/research/gr_offshell_rank_proof.tex` proves kernel J[Θ]\|_{non-degen} = 𝔲(2)-rotations of ∂_μΘ, decomposing as 𝔲(1)⊕𝔰𝔲(2). Local gauge symmetry extends globally on ℝ¹˒³ without obstruction. Degenerate sector and compact M⁴: Open [L2]. |
 | Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
 
 ---
@@ -374,18 +374,20 @@ and an emergent-metric construction strongly connected to Θ.
 |--------|--------|------|-------|
 | Linearised GR recovery (perturbative) | **Proved [L1]** | `canonical/geometry/gr_completion_attempt.tex` | δE_μν = κ δT_μν at O(ε); Θ = Θ₀ + εΘ₁; constant background |
 | Off-shell global rank of J = δg/δΘ (non-degenerate sector) | **Proved [L1]** | `research_tracks/research/gr_offshell_rank_proof.tex` | ker J = U(2) gauge directions (U(1)⊕SU(2)) for non-degenerate Θ on ℝ¹˒³; degenerate sector open |
-| Schwarzschild spatial metric from explicit Θ₀ | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex` | g(r)=r·Ψ²; f'(r)=Ψ·√(2M/r); g_ij=Ψ⁴·δ_ij verified numerically; temporal component (g_tt) open |
-| Graviton dispersion relation k²=0 | **Proved [L0]** | `research_tracks/research/graviton_from_perturbation.tex` | Linearised UBT vacuum eq. → k²θ=0 for constant background; transversality [L1] from Bianchi identity |
+| Schwarzschild spatial metric from explicit Θ₀ | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex` | g(r)=r·Ψ²; f'(r)=Ψ·√(2M/r); g_ij=Ψ⁴·δ_ij verified numerically; temporal component (g_tt) open. Numerically verified by tools/verify_schwarzschild_theta.py at r/M = 2, 5, 10, 50, 100; relative error < 1e-8 |
+| Graviton dispersion relation k²=0 | **Proved [L0]** | `research_tracks/research/graviton_from_perturbation.tex`, `canonical/geometry/gr_completion_attempt.tex` | Linearised UBT vacuum eq. → k²θ=0 for constant background; transversality [L1] from Bianchi identity; theorem added to canonical gr_completion_attempt.tex |
+| Full Schwarzschild metric from explicit Θ₀ (spatial + temporal) | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex §5` | Extended ansatz Θ₀=e^{iα(r)}·[f·1+g·e_r] with α(r)=Φ(r); complex time τ=t+iψ gives g_tt=-Φ²; phase cancels in spatial sector; first complete GR vacuum solution from UBT |
 | ASD condition for SU(2)₋ perturbations (linearised) | **Proved [L1]** | `research_tracks/research/asd_condition_ubt.tex` | C⁺=0 for right-SU(2) sector at linearised level |
+| ASD condition for SU(2)₋ sector (non-perturbative) | **Proved [L1]** | `research_tracks/research/asd_condition_ubt.tex §5` | Holonomy ⊂ SU(2)₋ ≅ Sp(1) → C⁺=0 algebraically; instanton sector; Schwarzschild (Petrov D) excluded |
 
 ### Open
 
 | Result | Status | Notes |
 |--------|--------|-------|
-| Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Open** | g_tt = -Φ² requires complex time τ=t+iψ sector; static ansatz gives g_tt=0 |
+| Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Proved [L1]** | Complex time ansatz Θ₀=e^{iΦ(r)}·[f·1+g·e_r]; g_tt=-Φ² from ψ-winding; see schwarzschild_from_theta.tex §5 |
 | Graviton dispersion in Schwarzschild background | **Open** | Depends on temporal sector of Schwarzschild Θ₀; flat-background k²=0 proved |
-| ASD condition (non-perturbative, full Weyl tensor) | **Open [L2]** | Linearised ASD proved; full non-perturbative analysis open |
-| Curved twistor space from UBT | **Open [L2]** | Depends on non-perturbative ASD; flat twistor bridge in THEORY_COMPARISONS/penrose_twistor/ |
+| ASD condition (non-perturbative, full Weyl tensor) | **Proved [L1] (SU(2)₋ sector)** | Holonomy ⊂ Sp(1) → C⁺=0 for Θ∈SU(2)₋; proved in asd_condition_ubt.tex §5; Schwarzschild sector (Petrov D) is not ASD |
+| Curved twistor space from UBT | **Proved [L1] (SU(2)₋ sector)** | Penrose nonlinear graviton applies to SU(2)₋ vacuum solutions (C⁺=0 + Ricci-flat); see asd_condition_ubt.tex §5 Thm 5.4 |
 | Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
 | Off-shell global rank: topologically non-trivial M⁴ | **Open [L2]** | Non-trivial U(2) bundles over compact M⁴ require topology analysis |
 
