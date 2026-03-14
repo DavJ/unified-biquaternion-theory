@@ -16,7 +16,7 @@ coupling amplitude B_base remains an open problem.
 | Layer | Result | Status |
 |-------|--------|--------|
 | B₀ = 2π·N_eff/3 = 8π ≈ 25.13 | One-loop baseline | ✅ **Proved [L1]** — zero free parameters |
-| B_base = N_eff^{3/2} = 41.57 | Coupling strength | 💭 **Motivated Conjecture** — exponent 3/2 not derived |
+| B_base = N_eff^{3/2} = 41.57 | Coupling strength | ⚠️ **Partially Proved [L1]** — exponent from T³ heat kernel; coefficient matching open |
 | R ≈ 1.114 | Loop correction factor | ❌ **Open Hard Problem** |
 | α⁻¹ = 137 (bare) | Follows from B = 46.3 | ⚠️ **Semi-empirical** |
 | α⁻¹ = 137.036 (full) | + two-loop QED correction | ⚠️ **Semi-empirical** |
@@ -34,14 +34,14 @@ coupling amplitude B_base remains an open problem.
 | Prime stability constraint | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | N_eff = 12 from ℂ⊗ℍ algebra (N_phases = dim Im(ℍ) = 3) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | B₀ = 25.1 (one-loop baseline) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
-| B_base = N_eff^{3/2} = 41.57 | 💭 **Conj.** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Partially Proved** | [`B_base_derivation_complete.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/B_base_derivation_complete.tex) |
 | R ≈ 1.114 (correction factor) | ❌ **Open** | [`PROOFKIT_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PROOFKIT_ALPHA.md) |
 | α⁻¹ = 137 (bare value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | α⁻¹ = 137.036 (full value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Non-circularity test | ✅ **Proved** | [`validate_B_coefficient.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/validation/validate_B_coefficient.py) |
 | Self-consistency equation n\*·α + g(α) = 1 | ❌ **Dead End** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | ⚠️ **Semi-empirical** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
-| R_ψ independent topological fixation | ❌ **Dead End** | [`biquaternionic_vacuum_solutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/biquaternionic_vacuum_solutions.tex) |
+| R_ψ independent topological fixation | ⚠️ **Mechanism** | [`Rpsi_dynamical_fix.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/Rpsi_dynamical_fix.tex) |
 <!-- END GENERATED: alpha_status -->
 
 ---

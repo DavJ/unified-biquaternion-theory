@@ -78,6 +78,7 @@ _STATUS_MAP = [
     ("partially verified",      ("Semi-empirical",  "⚠️")),
     ("conditional",             ("Conditional",     "⚠️")),
     ("gr-compatible sector",    ("GR-compat.",      "⚠️")),
+    ("mechanism",               ("Mechanism",       "⚠️")),
     ("not reproduced",          ("Open",            "❌")),
     ("open hard problem",       ("Open",            "❌")),
     ("dead end",                ("Dead End",        "❌")),

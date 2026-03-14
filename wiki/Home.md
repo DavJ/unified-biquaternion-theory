@@ -64,12 +64,12 @@ See the full architecture in [Overview](Overview).
 | Area | ✅ Proved | ⚡ Supported | ⚠️ Semi-emp. | 💭 Conjecture | ❌ Open/Dead-end |
 |------|----------|------------|------------|-------------|----------------|
 | Gauge Structure | 20 | 1 | 1 | 0 | 3 |
-| Fine Structure Constant | 10 | 0 | 3 | 2 | 5 |
+| Fine Structure Constant | 10 | 0 | 3 | 1 | 4 |
 | Three Generations | 5 | 2 | 5 | 5 | 8 |
 | Gravity / φ-Universe | 17 | 0 | 0 | 1 | 2 |
 | Mirror Sector | 2 | 3 | 0 | 3 | 0 |
 | Algebra | 15 | 0 | 0 | 0 | 4 |
-| **Total** | **69** | **6** | **9** | **11** | **22** |
+| **Total** | **69** | **6** | **9** | **10** | **21** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 
