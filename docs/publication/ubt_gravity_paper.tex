@@ -1,0 +1,224 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% SKELETON — v59 (2026-03-14)
+% Title: Schwarzschild Metric and Twistor Correspondence in Biquaternionic Field Theory
+% Status: SKELETON ONLY — do not submit; source material referenced from canonical/*.tex
+%         Target: Class. Quantum Grav. or Phys. Lett. B (short format, 10-15 pages)
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+\title{\textbf{Schwarzschild Metric and Twistor Correspondence\\
+       in Biquaternionic Field Theory}}
+\author{Ing.\ David Jaroš\\
+  \small Independent Researcher, Czech Republic\\
+  \small \href{https://github.com/DavJ/unified-biquaternion-theory}{github.com/DavJ/unified-biquaternion-theory}}
+\date{2026 (v59 skeleton)}
+
+% © 2026 Ing. David Jaroš
+% Licensed under CC BY-NC-ND 4.0
+% https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+\begin{document}
+\maketitle
+
+% ------------------------------------------------------------
+\begin{abstract}
+% [SKELETON — fill from source material below]
+%
+% Source: canonical/geometry/biquaternionic_vacuum_solutions.tex §3,
+%         research_tracks/research/graviton_from_perturbation.tex,
+%         research_tracks/research/asd_condition_ubt.tex §5,
+%         research_tracks/research/graviton_schwarzschild.tex §4
+%
+% Draft abstract (to be refined):
+We derive the Schwarzschild metric from the biquaternionic vacuum field
+$\Theta_0^{(S)} = e^{i\Phi(r)}\cdot[f(r)\mathbf{1}+g(r)\boldsymbol{e}_r]$
+in Unified Biquaternion Theory (UBT). The exact solution proves that
+UBT recovers General Relativity in the real-field limit.
+We show that massless gravitons ($k^2 = 0$) arise as linearised perturbations
+of the vacuum, and that in the Schwarzschild background the dispersion
+relation acquires an effective potential $k^2 + V_{\text{eff}}(r) = 0$
+analogous to the Regge-Wheeler equation.
+The anti-self-dual (ASD) sector of UBT corresponds to Penrose's nonlinear
+graviton via the curved twistor space construction.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+% [SKELETON — brief introduction to UBT gravitational sector]
+%
+% Key points to make:
+%   - UBT: field Θ(q,τ) ∈ ℂ⊗ℍ over complex time τ = t + iψ
+%   - Core equation: ∇†∇Θ = κ𝒯(q,τ)
+%   - In real limit (ψ→0): recovers Einstein field equations R_μν - ½g_μν R = 8πGT_μν
+%   - This paper: gravitational sector at [L1] level
+%   - Three main results: Schwarzschild, massless gravitons, twistor correspondence
+%   - One open result: graviton in Schwarzschild background (Regge-Wheeler analog)
+%
+% Reference: first paper [alpha_prime_attractor_arxiv] for UBT basics and α derivation.
+%
+% Target length for this section: ~1 page
+
+% ============================================================
+\section{Biquaternion Field and Metric}
+\label{sec:field_metric}
+% ============================================================
+
+% [SKELETON — brief summary; refer to first paper for full derivation]
+%
+% Source: canonical/geometry/metric_from_theta.tex,
+%         canonical/core_assumptions.tex
+%
+% Key equations:
+%   - Algebra: ℂ⊗ℍ with basis {1, e_1, e_2, e_3} over ℂ
+%   - Complex time: τ = t + iψ, ψ ∈ [0, 2πR_ψ)
+%   - Fundamental field: Θ: ℍ × ℂ → ℂ⊗ℍ
+%   - Metric: g_μν[Θ] = Sc[∂_μΘ† · ∂_νΘ] (induced from kinetic term)
+%   - UBT vacuum equation: ∇†∇Θ = 0 (Θ₀ a biquaternion vacuum)
+%
+% Target length: ~1.5 pages
+
+% ============================================================
+\section{Schwarzschild Vacuum Solution}
+\label{sec:schwarzschild}
+% ============================================================
+
+% [SKELETON — full derivation is in source file]
+%
+% Source: canonical/geometry/biquaternionic_vacuum_solutions.tex §3,
+%         research_tracks/research/schwarzschild_from_theta.tex
+%
+% Main result to present:
+%   - Ansatz: Θ₀^{(S)} = e^{iΦ(r)}·[f(r)·1 + g(r)·e_r]
+%   - Explicit solution: Ψ = 1+M/(2r), Φ = (1-M/2r)/(1+M/2r), g(r) = rΨ²
+%   - Metric: g_tt = -Φ², g_ij = Ψ⁴δ_ij (isotropic Schwarzschild)
+%   - Proof that this satisfies ∇†∇Θ = 0 [L1]
+%   - GR recovery: identical to standard Schwarzschild in isotropic coords
+%
+% Target length: ~3 pages
+
+% ============================================================
+\section{Massless Gravitons from Perturbation Theory}
+\label{sec:gravitons}
+% ============================================================
+
+% [SKELETON — flat background result; curved background result in §5]
+%
+% Source: research_tracks/research/graviton_from_perturbation.tex,
+%         canonical/geometry/gr_completion_attempt.tex
+%
+% Main result to present:
+%   - Perturbation: Θ = Θ₀ + εΘ₁ around flat background Θ₀ = 1
+%   - Linearised equation: ∇†∇Θ₁ = 0
+%   - Plane-wave ansatz: Θ₁ ~ e^{ik·x} → dispersion k² = 0 [L0]
+%   - Spin-2 character from biquaternion algebra (transversality from Bianchi)
+%   - In curved background: k² + V_eff(r) = 0 (§5)
+%
+% Target length: ~2 pages
+
+% ============================================================
+\section{ASD Condition and Twistor Correspondence}
+\label{sec:asd_twistor}
+% ============================================================
+
+% [SKELETON — ASD sector and curved twistor space]
+%
+% Source: research_tracks/research/asd_condition_ubt.tex §5,
+%         docs/publication/GR_chain_summary.tex
+%
+% Main result to present:
+%   - SU(2)₋ sector of UBT: Θ ∈ SU(2)₋ ⟺ C⁺ = 0 (anti-self-dual Weyl tensor)
+%   - Proof: holonomy ⊂ Sp(1) → ASD automatically (Theorem 5.4 in asd_condition_ubt.tex)
+%   - Curved twistor space: Penrose nonlinear graviton construction applies
+%     to SU(2)₋ vacuum solutions with C⁺=0 + Ricci-flat [L1]
+%   - Schwarzschild (Petrov type D): not ASD; lives outside SU(2)₋ sector
+%   - Interpretation: SU(2)₋ sector is the "left-twistor" subsector of UBT gravity
+%
+% Target length: ~2.5 pages
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open}
+% ============================================================
+
+% [SKELETON — open problems to state clearly]
+%
+% List:
+%   (1) Graviton dispersion in Schwarzschild background:
+%       k² + V_eff(r) = 0 derived at [L1]; Regge-Wheeler coefficient
+%       matching remains Open [L2]
+%       (source: research_tracks/research/graviton_schwarzschild.tex §4)
+%   (2) Full SM sector: Higgs, Yukawa — Motivated Conjectures only
+%       (source: research_tracks/research/higgs_yukawa_scan.md)
+%   (3) sin²θ_W from ℂ⊗ℍ: confirmed Dead End
+%
+% Target length: ~0.5 pages
+
+% ============================================================
+% Bibliography
+% ============================================================
+
+\begin{thebibliography}{99}
+
+% [SKELETON — bibliography to be filled from alpha_prime_attractor_arxiv.tex]
+%
+% Key references needed:
+%   [1] Penrose 1967 — twistor theory (Twistor algebra, J. Math. Phys.)
+%   [2] Penrose 1976 — nonlinear graviton (Gen. Rel. Grav.)
+%   [3] Regge-Wheeler 1957 — gravitational perturbations of Schwarzschild
+%   [4] Zerilli 1970 — even-parity perturbations
+%   [5] Connes-Lott 1990 — NCG and SM
+%   [6] Jaroš — first UBT paper (alpha_prime_attractor_arxiv)
+
+\bibitem{Penrose1967}
+R.~Penrose, \emph{Twistor algebra}, J.\ Math.\ Phys.\ \textbf{8}, 345 (1967).
+
+\bibitem{Penrose1976}
+R.~Penrose, \emph{Nonlinear gravitons and curved twistor theory},
+Gen.\ Rel.\ Grav.\ \textbf{7}, 31 (1976).
+
+\bibitem{ReggeWheeler1957}
+T.~Regge and J.~A.~Wheeler, \emph{Stability of a Schwarzschild singularity},
+Phys.\ Rev.\ \textbf{108}, 1063 (1957).
+
+\bibitem{Zerilli1970}
+F.~J.~Zerilli, \emph{Effective potential for even-parity Regge-Wheeler
+gravitational perturbation equations},
+Phys.\ Rev.\ Lett.\ \textbf{24}, 737 (1970).
+
+\bibitem{UBTAlpha}
+D.~Jaroš, \emph{Fine structure constant as prime attractor in biquaternionic
+field theory}, arXiv preprint, 2026.
+
+\end{thebibliography}
+
+\end{document}

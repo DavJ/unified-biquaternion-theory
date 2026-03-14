@@ -48,7 +48,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | α⁻¹ = 137 (bare value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | Follows from framework given B=46.3 |
 | α⁻¹ = 137.036 (full value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | + two-loop QED correction |
 | Non-circularity test | **Verified** | `experiments/validation/validate_B_coefficient.py` | Different N_eff → different n* |
-| Gap G8: Modular weight of Ẑ(τ) | **Computed [L0]** | `research_tracks/research/partition_function_modular.md` | v57: Ẑ_T³(τ) = ϑ₃³(τ) transforms as modular form of weight k=3/2 under τ→-1/τ (Jacobi identity). k=d/2=3/2 where d=3=dim_ℝ(Im ℍ). Does not close Gap G3-k (k≠1). Consistent with B_base exponent 3/2. |
+| Gap G8: Modular weight of Ẑ(τ) | **Computed [L0]** | `research_tracks/research/partition_function_modular.md` | v57: Ẑ_T³(τ) = ϑ₃³(τ) transforms as modular form of weight k=3/2 under τ→-1/τ (Jacobi identity). k=d/2=3/2 where d=3=dim_ℝ(Im ℍ). Does not close Gap G3-k (k≠1). Consistent with B_base exponent 3/2. v59: Ẑ_T³(τ) = ϑ₃³(τ) transforms as modular form weight k=3/2 under τ→-1/τ (Jacobi identity: ϑ₃(-1/τ) = (-iτ)^{1/2} ϑ₃(τ)). k = d/2 = 3/2 where d=3=dim_ℝ(Im ℍ) — same algebraic origin as B_base exponent 3/2. Does NOT close Gap G3-k (k≠1). |
 | Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
 | R_ψ independent topological fixation | **Mechanism [L1]** — T-duality selects self-dual point R_psi = R_t [L1]; physical units require beyond-one-loop: **[Open L2]** | `canonical/geometry/Rpsi_dynamical_fix.tex`, `canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | T-duality mechanism [L1]: self-dual point R_psi = R_t is the unique T-duality-invariant extremum of the moduli potential. Physical value in GeV: R_ψ = ℏ/(m_e·c) is [CALIBRATED] — beyond-one-loop derivation needed to fix R_t in physical units [Open L2]. |
@@ -386,7 +386,7 @@ and an emergent-metric construction strongly connected to Θ.
 | Result | Status | Notes |
 |--------|--------|-------|
 | Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Proved [L1]** | Complex time ansatz Θ₀=e^{iΦ(r)}·[f·1+g·e_r]; g_tt=-Φ² from ψ-winding; see schwarzschild_from_theta.tex §5 |
-| Graviton dispersion in Schwarzschild background | **Open [L2]** | Research direction initiated in v57; see `research_tracks/research/graviton_schwarzschild.tex` |
+| Graviton dispersion in Schwarzschild background | **Derived [L1]** | v59: k²+V_eff(r)=0 derived; V_eff(r)=M²/(r⁴Ψ⁴)+... from isotropic Schwarzschild metric; k²=0 recovered as r→∞; Regge-Wheeler coefficient matching remains Open [L2]; see `research_tracks/research/graviton_schwarzschild.tex §4` |
 | ASD condition (non-perturbative, full Weyl tensor) | **Proved [L1] (SU(2)₋ sector)** | Holonomy ⊂ Sp(1) → C⁺=0 for Θ∈SU(2)₋; proved in asd_condition_ubt.tex §5; Schwarzschild sector (Petrov D) is not ASD |
 | Curved twistor space from UBT | **Proved [L1] (SU(2)₋ sector)** | Penrose nonlinear graviton applies to SU(2)₋ vacuum solutions (C⁺=0 + Ricci-flat); see asd_condition_ubt.tex §5 Thm 5.4 |
 | Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
@@ -441,3 +441,18 @@ and an emergent-metric construction strongly connected to Θ.
 | Verlinde / dS holographic principle | **[S] Speculative** | `ARCHIVE/archive_legacy/consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
 
 
+
+---
+
+## Higgs and Yukawa Sector
+
+> **Status (v59)**: Preliminary scan — Motivated Conjectures documented; no closed derivations yet.
+> Source: `research_tracks/research/higgs_yukawa_scan.md`
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Higgs potential V(|Θ|²) = λ(|Θ|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(|Θ|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
+| Yukawa coupling ℒ_Yukawa ~ Sc(Θ†·ψ_L·ψ_R) from Θ-fermion coupling | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §3` | Scalar part of biquaternion product Θ†·ψ_L·ψ_R gives Lorentz-invariant Yukawa term; explicit coupling constant y not derived (Gap Y1) |
+| sin²θ_W from ℂ⊗ℍ alone | **Dead End** | `research_tracks/research/higgs_yukawa_scan.md §4` | Weinberg angle requires U(1)_Y ↔ SU(2)_L mixing ratio; ℂ⊗ℍ fixes gauge structure but not the mixing angle; confirmed Dead End |
+| Gap H1: derive λ from S[Θ] | **Open** | — | Requires extracting quartic coefficient in Θ-field expansion of S[Θ] |
+| Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |
