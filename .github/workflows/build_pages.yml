@@ -42,17 +42,42 @@ jobs:
         run: mkdir -p _site/canonical _site/wiki _site/assets
 
       - name: Compile main canonical document to HTML (make4ht)
+        id: make4ht_step
         working-directory: canonical
         run: |
-          # make4ht uses LaTeX itself — all macros/packages resolved correctly
-          # mathjax option: renders math via MathJax in browser
+          set +e
           make4ht -d ../_site/canonical UBT_canonical_main.tex \
-            "mathjax,html5" \
-            "-cunihtf -utf8" \
-            2>&1 | tail -30 || \
-          make4ht -d ../_site/canonical UBT_canonical_main.tex \
-            "mathjax" 2>&1 | tail -30 || \
-          echo "make4ht failed — falling back to pandoc"
+            "mathjax,html5" "-cunihtf -utf8" 2>&1 | tee /tmp/make4ht.log
+          EXIT1=${PIPESTATUS[0]}
+
+          if [ $EXIT1 -ne 0 ] || ! [ -f "../_site/canonical/UBT_canonical_main.html" ]; then
+            echo "::warning::make4ht attempt 1 failed, trying minimal"
+            make4ht -d ../_site/canonical UBT_canonical_main.tex \
+              "mathjax" 2>&1 | tee -a /tmp/make4ht.log
+            EXIT2=${PIPESTATUS[0]}
+          fi
+
+          if ! [ -f "../_site/canonical/UBT_canonical_main.html" ]; then
+            echo "MAKE4HT_FAILED=true" >> $GITHUB_ENV
+            echo "::warning::make4ht failed — building PDF fallback"
+            latexmk -pdf -interaction=nonstopmode UBT_canonical_main.tex || true
+            [ -f UBT_canonical_main.pdf ] && cp UBT_canonical_main.pdf ../_site/ || true
+            cat > ../_site/canonical/UBT_canonical_main.html << 'EOF'
+          <h1>UBT Canonical Theory</h1>
+          <p>⚠️ HTML rendering via make4ht is temporarily unavailable.</p>
+          <ul>
+          <li>📄 <a href="/unified-biquaternion-theory/UBT_canonical_main.pdf"><strong>Download PDF</strong></a></li>
+          <li>📝 <a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">View .tex source</a></li>
+          </ul>
+          EOF
+          fi
+
+      - name: Upload make4ht log
+        if: env.MAKE4HT_FAILED == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: make4ht-log
+          path: /tmp/make4ht.log
 
       - name: Fallback — pandoc for any .tex with \documentclass
         run: |

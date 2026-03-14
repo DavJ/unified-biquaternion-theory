@@ -24,6 +24,12 @@
 \usepackage{hyperref}
 \usepackage{cite}
 \usepackage{longtable}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{booktabs}
 
 % Title and Author
 \title{Unified Biquaternion Theory:\\
@@ -161,12 +167,12 @@ General Relativity emerges as the real, commutative projection of this richer st
 \end{tcolorbox}
 
 % Include fundamental biquaternionic geometry definitions
-\input{core/geometry/biquaternion_tetrad.tex}
-\input{core/geometry/biquaternion_metric.tex}
-\input{core/geometry/biquaternion_connection.tex}
-\input{core/geometry/biquaternion_curvature.tex}
-\input{core/geometry/biquaternion_stress_energy.tex}
-\input{core/geometry/exotic_regimes.tex}
+\input{geometry/biquaternion_tetrad.tex}
+\input{geometry/biquaternion_metric.tex}
+\input{geometry/biquaternion_connection.tex}
+\input{geometry/biquaternion_curvature.tex}
+\input{geometry/biquaternion_stress_energy.tex}
+\input{geometry/exotic_regimes.tex}
 
 % ========================================
 % SECTION 6: CLASSICAL GEOMETRY (DERIVED)
@@ -180,19 +186,17 @@ The following sections present the classical geometric objects of General Relati
 \subsection{Classical Metric Tensor}
 
 % Include canonical metric definition (now marked as derived)
-\input{core/geometry/metric.tex}
-
-\input{core/geometry/metric.tex}
+\input{geometry/metric.tex}
 
 \subsection{Classical Curvature Tensors}
 
 % Include canonical curvature definition (now marked as derived)
-\input{core/geometry/curvature.tex}
+\input{geometry/curvature.tex}
 
 \subsection{Classical Stress-Energy Tensor}
 
 % Include canonical stress-energy definition (now marked as derived)
-\input{core/geometry/stress_energy.tex}
+\input{geometry/stress_energy.tex}
 
 % ========================================
 % SECTION 7: FIELD EQUATIONS
@@ -329,7 +333,7 @@ UBT reproduces all classical GR solutions:
 \label{sec:qed}
 
 % Include canonical QED definition
-\input{core/interactions/qed.tex}
+\input{interactions/qed.tex}
 
 % ========================================
 % SECTION 9: QCD
@@ -339,7 +343,7 @@ UBT reproduces all classical GR solutions:
 \label{sec:qcd}
 
 % Include canonical QCD definition
-\input{core/interactions/qcd.tex}
+\input{interactions/qcd.tex}
 
 % ========================================
 % SECTION 10: STANDARD MODEL
@@ -349,7 +353,7 @@ UBT reproduces all classical GR solutions:
 \label{sec:sm_gauge}
 
 % Include canonical SM gauge structure
-\input{core/interactions/sm_gauge.tex}
+\input{interactions/sm_gauge.tex}
 
 % ========================================
 % SECTION 11: THETA-FUNCTIONS
@@ -473,13 +477,13 @@ Future work includes:
 \label{app:nabla}
 
 % Include explanation of the full covariant derivative structure
-\input{core/explanation_of_nabla.tex}
+\input{explanation_of_nabla.tex}
 
 \section{Symbol Dictionary}
 \label{app:symbols}
 
 % Include canonical symbol dictionary
-\input{core/appendices/symbol_dictionary.tex}
+\input{appendices/symbol_dictionary.tex}
 
 \section{Mathematical Derivations}
 \label{app:derivations}
