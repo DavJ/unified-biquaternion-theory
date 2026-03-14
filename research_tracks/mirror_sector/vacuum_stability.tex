@@ -1,0 +1,246 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% Mirror Sector: Two Independent Vacua in UBT
+% Status: [MOTIVATED CONJECTURE — two independent algebraic sectors]
+% Date: 2026-03-07
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{conjecturebox}
+
+  \tcbuselibrary{skins,breakable}
+  \newtcolorbox{statusbox}[1]{
+    colback=yellow!8!white, colframe=orange!60!black,
+    title={\textbf{#1}}, fonttitle=\bfseries, breakable
+  }
+
+  \title{\textbf{Mirror Sector: Two Independent Vacua in UBT}\\
+         \large $n^* = 137$ and $n^* = 139$ as Parallel Solutions}
+  \author{David Jaroš}
+  \date{2026-03-07}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The UBT effective potential $V_{\rm eff}(n) = A\cdot n^2 - B\cdot n\ln(n)$
+  has a unique global minimum at $n^* = 137$ when calibrated to our sector.
+  We show that the twin prime $n^* = 139$ is \emph{not} a local minimum
+  of the same potential, but rather the global minimum of a parallel branch
+  of the theory with a slightly different loop-correction coefficient
+  $B' = B_{139} = 2A\cdot 139/(\ln 139 + 1)$, differing from $B_{137}$
+  by only $\Delta B/B = 1.21\%$.
+
+  The mirror sector with $n^* = 139$ is therefore a \textbf{fully autonomous
+  vacuum} --- not a metastable excitation.  It does not decay to our sector,
+  requires no Coleman tunnelling, and supports stable matter structures
+  with $\alpha'^{-1} = 139$.  The two sectors are related by twin prime
+  symmetry of the Hecke eigenvalue analysis and correspond to two independent
+  sets of modular forms (Set A and Set B).
+
+  \textbf{Status: [MOTIVATED CONJECTURE --- two independent algebraic sectors]}
+  \end{abstract}
+\fi
+
+\section{Mirror Sector: Vacuum Stability}
+\label{sec:vacuum_stability}
+
+\begin{statusbox}{Status: [MOTIVATED CONJECTURE --- two independent algebraic sectors]}
+This analysis is motivated by the numerical observation that Hecke eigenvalues at
+primes $p=137$ (Set A, our sector) and $p=139$ (Set B, mirror sector) are both
+globally unique in the range $50$--$300$.  Set A and Set B correspond to modular
+forms at different levels and weights, suggesting two \emph{algebraically independent}
+sectors rather than an excitation of a single sector.  All conclusions beyond
+the numerical observations are conjectural at this stage.
+\end{statusbox}
+
+\subsection{The Effective Potential}
+
+The UBT effective potential for the vacuum mode number $n$ takes the one-loop form:
+\begin{equation}
+  V_{\rm eff}(n) = A\cdot n^2 - B\cdot n\ln(n),
+  \label{eq:Veff}
+\end{equation}
+where:
+\begin{itemize}
+  \item $A$ is the quadratic coefficient from the kinetic term (positive; sets energy scale),
+  \item $B$ is the logarithmic correction from one-loop running (positive; destabilises).
+\end{itemize}
+
+The minimum of $V_{\rm eff}(n)$ at $n = n^*$ satisfies $V_{\rm eff}'(n^*) = 0$:
+\begin{equation}
+  2A\cdot n^* = B\cdot (\ln n^* + 1)
+  \;\Longrightarrow\;
+  n^* = \frac{B}{2A}\left(\ln n^* + 1\right).
+  \label{eq:minimum_condition}
+\end{equation}
+The observed value $n^* = 137$ gives the calibration relation
+$B_0 = 2A\cdot 137 / (\ln 137 + 1)$.
+
+\subsection{Numerical Analysis: $V_{\rm eff}(137)$ vs $V_{\rm eff}(139)$}
+
+We evaluate $V_{\rm eff}$ at the twin prime values using the calibration
+$B = B_{137} = 2A \cdot 137/(\ln 137 + 1)$.
+With $A=1$ (setting energy units) and $\ln 137 \approx 4.920$:
+\begin{equation}
+  B_{137} = \frac{2 \times 137}{4.920 + 1} = \frac{274}{5.920} \approx 46.284.
+  \label{eq:B137}
+\end{equation}
+
+\subsubsection{At $n = 137$:}
+\begin{align}
+  V_{\rm eff}(137) &= 137^2 - 46.284 \cdot 137 \cdot \ln(137) \notag\\
+  &= 18769 - 46.284 \times 137 \times 4.920 \notag\\
+  &= 18769 - 46.284 \times 674.04 \notag\\
+  &= 18769 - 31197.1 \notag\\
+  &\approx -12428.1.
+  \label{eq:Veff137}
+\end{align}
+
+\subsubsection{At $n = 138$:}
+\begin{align}
+  V_{\rm eff}(138) &= 138^2 - 46.284 \cdot 138 \cdot \ln(138) \notag\\
+  &= 19044 - 46.284 \times 138 \times 4.927 \notag\\
+  &= 19044 - 46.284 \times 679.93 \notag\\
+  &= 19044 - 31471.3 \notag\\
+  &\approx -12427.3.
+  \label{eq:Veff138}
+\end{align}
+
+\subsubsection{At $n = 139$:}
+\begin{align}
+  V_{\rm eff}(139) &= 139^2 - 46.284 \cdot 139 \cdot \ln(139) \notag\\
+  &= 19321 - 46.284 \times 139 \times 4.934 \notag\\
+  &= 19321 - 46.284 \times 685.83 \notag\\
+  &= 19321 - 31745.8 \notag\\
+  &\approx -12424.8.
+  \label{eq:Veff139}
+\end{align}
+
+\begin{resultbox}
+\textbf{[NUMERICAL OBSERVATION]:}
+$V_{\rm eff}(137) \approx -12428.1 < V_{\rm eff}(139) \approx -12424.8$,
+with $n^* = 137$ as the global minimum when $B = B_{137}$.
+
+\medskip
+\textbf{Important}: $n = 139$ is \emph{not} a local minimum of $V_{\rm eff}$
+calibrated to our sector.  The discrete test confirms:
+$V_{\rm eff}(138) \approx -12427.3 < V_{\rm eff}(139) \approx -12424.8$,
+so $n=139$ lies on the ascending branch above the minimum.  The earlier
+claim that $V''(139) > 0$ implies a local minimum was an error:
+$V''(n) > 0$ holds for all $n > B/(2A) \approx 23$ since the potential
+is convex in this region.
+\end{resultbox}
+
+\subsection{The Correct Interpretation: Two Independent Vacua}
+
+The question is not \emph{``is $n=139$ a local minimum?''} but rather
+\emph{``can $n^*=139$ be the minimum of a physically valid branch?''}.
+
+The answer is yes.  The condition $V'_{\rm eff}(n^*) = 0$ gives:
+\begin{equation}
+  B_{n^*} = \frac{2A \cdot n^*}{\ln n^* + 1}.
+\end{equation}
+For the two twin primes:
+\begin{align}
+  B_{137} &= \frac{2 \times 137}{\ln 137 + 1} \approx 46.284, \\
+  B_{139} &= \frac{2 \times 139}{\ln 139 + 1} \approx 46.845.
+\end{align}
+The relative difference is:
+\begin{equation}
+  \frac{\Delta B}{B} = \frac{B_{139} - B_{137}}{B_{137}} \approx 1.21\%.
+\end{equation}
+
+\begin{conjecturebox}
+\textbf{[MOTIVATED CONJECTURE --- Two Independent Sectors]:}
+The mirror sector is a branch of UBT with loop-correction coefficient
+$B' = B_{139} \approx 46.845$, for which $n^* = 139$ is the \emph{global}
+minimum.  This branch is \textbf{fully stable} --- it is not a false vacuum,
+requires no tunnelling mechanism, and does not decay.
+
+The two branches correspond to the two independent sets of Hecke modular forms:
+\begin{itemize}
+  \item Set A (levels 76, 7, 208): global minimum at $n^* = 137$, $B = B_{137}$
+  \item Set B (levels 195, 50, 54): global minimum at $n^* = 139$, $B = B_{139}$
+\end{itemize}
+The algebraic independence of Set A and Set B (different levels, different weights,
+different Hecke eigenvalues) is consistent with two autonomous sectors, not with
+an excitation of a single sector.
+\end{conjecturebox}
+
+\subsection{Stability of the Mirror Sector}
+
+Since $n^* = 139$ is the \emph{global} minimum of the mirror branch
+(with $B = B_{139}$), no decay mechanism is required or expected.
+Coleman tunnelling does not apply: there is no false vacuum.
+The mirror sector is \textbf{permanently stable}.
+
+The two sectors coexist as independent solutions of the UBT algebraic
+structure.  Their interaction is purely gravitational (mirror matter couples
+to our sector only via the $\phi$-projection, which is gravitational).
+
+\subsection{Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+$V_{\rm eff}(137) < V_{\rm eff}(139)$ (same $B$) & \textbf{[NUMERICAL OBSERVATION]} &
+  Calibrated to our sector \\
+$n=139$ is not a local min of $V_{B_{137}}$ & \textbf{[PROVED NUMERICALLY]} &
+  Discrete test: $V(138) < V(139)$ \\
+$n^*=139$ is global min of branch $B_{139}$ & \textbf{[MOTIVATED CONJECTURE]} &
+  $\Delta B/B = 1.21\%$ \\
+Mirror sector is fully stable & \textbf{[FOLLOWS FROM CONJECTURE]} &
+  No Coleman tunnelling needed \\
+Set A and Set B are algebraically independent & \textbf{[NUMERICAL OBSERVATION]} &
+  Different levels and weights \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Date}: 2026-03-07 \\
+\textbf{Author}: David Jaroš
+
+\begin{thebibliography}{9}
+\bibitem{MirrorSector}
+R.\ Foot and R.\ R.\ Volkas, \textit{Neutrino physics and the mirror world:
+How exact parity symmetry explains the solar neutrino deficit, the atmospheric
+neutrino anomaly and the LSND experiment},
+Phys.\ Rev.\ D \textbf{52}, 6595 (1995).
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

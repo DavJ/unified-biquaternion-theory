@@ -1,0 +1,291 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Closure: Bridge Theorem\\
+         Equivalence of Derivative-Based and Tetrad-Based Metric Formulas}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The UBT literature contains two metric formulas: a derivative-based formula
+  $g_{\mu\nu} = \Re[(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)/\mathcal{N}]$
+  (appendix\_FORMAL\_emergent\_metric.tex) and a tetrad-based formula
+  $g_{\mu\nu} = \Re(\mathrm{Sc}(E_\mu E_\nu^\dagger))$
+  (appendix\_R\_GR\_equivalence.tex).  We prove that these two expressions describe the
+  \emph{same geometric object} under the natural identification $E_\mu := \partial_\mu\Theta$
+  (with normalization absorbed into $\mathcal{N}$).  The normalization factor $\mathcal{N}$
+  plays the same role in both formulas and does not introduce any discrepancy.
+  \end{abstract}
+\fi
+
+\section{Bridge Theorem: Two Metric Formalisms Are Identical}
+\label{sec:metric_bridge}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=The Gap Being Closed]
+\textbf{Two coexisting metric formulas in the UBT repository:}
+
+\begin{itemize}
+  \item \textbf{Formula~A} (derivative-based, appendix\_FORMAL\_emergent\_metric.tex):
+    \[
+      g_{\mu\nu}^{(A)} \;:=\; \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+    \]
+  \item \textbf{Formula~B} (tetrad-based, appendix\_R\_GR\_equivalence.tex):
+    \[
+      g_{\mu\nu}^{(B)} \;:=\; \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr)
+    \]
+\end{itemize}
+
+\textbf{This section proves:} $g_{\mu\nu}^{(A)} = g_{\mu\nu}^{(B)}$ under $E_\mu := \partial_\mu\Theta$.
+The two formulas describe the same object.  No redundancy, no contradiction.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{The Natural Identification}
+
+\begin{definition}[Biquaternionic tetrad from $\Theta$]
+\label{def:tetrad_natural}
+Given the fundamental biquaternionic field $\Theta(q,\tau)$, define the
+\emph{biquaternionic coframe tetrad} by
+\begin{equation}
+  \boxed{E_\mu \;:=\; \partial_\mu\Theta.}
+  \label{eq:tetrad_identification}
+\end{equation}
+This is the canonical, unique identification: the coframe tetrad vectors are
+the coordinate derivatives of the fundamental field.
+\end{definition}
+
+\begin{remark}
+The identification $E_\mu = \partial_\mu\Theta$ is the natural analogue of the
+frame-field (vielbein) identification in standard differential geometry, where
+one identifies the tangent frame with the pushforward of coordinate basis vectors.
+In UBT, the field $\Theta$ plays the role of a biquaternionic ``embedding map'',
+and $\partial_\mu\Theta$ are the corresponding pullback frame vectors.
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{Main Bridge Theorem}
+
+\begin{theorem}[Metric bridge]
+\label{thm:metric_bridge}
+Under the identification $E_\mu := \partial_\mu\Theta$ and with $\mathcal{N} = 1$
+(unnormalized case), Formula~A and Formula~B coincide:
+\begin{equation}
+  \Re\!\left[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\right]
+  \;=\;
+  \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr).
+  \label{eq:bridge_N1}
+\end{equation}
+With the normalization factor $\mathcal{N} > 0$:
+\begin{equation}
+  \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  \;=\;
+  \Re\!\bigl(\mathrm{Sc}(E_\mu' E_\nu'^\dagger)\bigr),
+  \qquad
+  E_\mu' \;:=\; \frac{\partial_\mu\Theta}{\sqrt{\mathcal{N}}}.
+  \label{eq:bridge_normalized}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: Scalar part and matrix product.}
+For any $A, B \in \mathbb{B} := \mathbb{C}\otimes\mathbb{H}$, the scalar part
+$\mathrm{Sc}(AB^\dagger)$ is defined as $\tfrac{1}{4}\mathrm{Tr}(AB^\dagger)$
+in the $2\times 2$ matrix representation, where $\mathrm{Tr}$ is the standard
+matrix trace.  This equals the coefficient of the identity basis element
+$\mathbf{1}$ in the product $AB^\dagger$.
+
+In the UBT literature (appendix\_A, eq.~(56)), the notation
+$\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger$ denotes exactly
+$\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)$, i.e.\ the scalar part
+of the biquaternionic product.  We use this identification throughout.
+
+\textbf{Step 2: Substituting $E_\mu = \partial_\mu\Theta$.}
+Substituting into Formula~B:
+\begin{align}
+  \mathrm{Sc}(E_\mu E_\nu^\dagger)
+  \;\Big|_{E_\mu = \partial_\mu\Theta}
+  &= \mathrm{Sc}((\partial_\mu\Theta)(\partial_\nu\Theta)^\dagger)
+   = \mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger).
+\end{align}
+Here $(\partial_\nu\Theta)^\dagger = \partial_\nu\Theta^\dagger$ because the partial
+derivative commutes with the biquaternionic adjoint for real coordinates $x^\nu$.
+
+\textbf{Step 3: Taking the real part.}
+The real-part operator $\Re$ commutes with the scalar-part operator $\mathrm{Sc}$
+(both project to real-valued components via orthogonal projections):
+\begin{equation}
+  \Re\!\bigl(\mathrm{Sc}(Q)\bigr) = \mathrm{Sc}\!\bigl(\Re(Q)\bigr)
+  \quad\forall\; Q\in\mathbb{B}.
+\end{equation}
+Therefore:
+\begin{align}
+  \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr)
+  &= \Re\!\bigl(\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr)
+   = \Re\!\bigl(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr)
+   = g_{\mu\nu}^{(A)}\big|_{\mathcal{N}=1}.
+\end{align}
+
+\textbf{Step 4: Including normalization.}
+For $E_\mu' = \partial_\mu\Theta/\sqrt{\mathcal{N}}$ with $\mathcal{N}>0$ a real scalar:
+\begin{align}
+  \mathrm{Sc}(E_\mu' E_\nu'^\dagger)
+  &= \mathrm{Sc}\!\!\left(\frac{\partial_\mu\Theta}{\sqrt{\mathcal{N}}}
+    \cdot\frac{\partial_\nu\Theta^\dagger}{\sqrt{\mathcal{N}}}\right)
+   = \frac{1}{\mathcal{N}}\,\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger).
+\end{align}
+Taking $\Re$:
+\[
+  \Re\!\bigl(\mathrm{Sc}(E_\mu' E_\nu'^\dagger)\bigr)
+  = \frac{1}{\mathcal{N}}\,\Re\!\bigl(\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr)
+  = \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  = g_{\mu\nu}^{(A)}.
+\]
+This completes the proof of \eqref{eq:bridge_normalized}.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Interpretation and Consequences}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Verdict: PROVED]
+\textbf{The two metric formalisms are identical under $E_\mu = \partial_\mu\Theta$.}
+
+\begin{itemize}
+  \item The derivative-based formula (Formula~A) and the tetrad-based formula (Formula~B)
+        describe the \emph{same} real symmetric $(0,2)$ tensor.
+  \item The identification $E_\mu = \partial_\mu\Theta$ is the unique natural choice.
+  \item The normalization factor $\mathcal{N}$ in Formula~A corresponds to normalizing
+        the tetrad vectors as $E_\mu' = \partial_\mu\Theta/\sqrt{\mathcal{N}}$ in Formula~B.
+  \item Formula~A with $\mathcal{N}=1$ is Formula~B with $E_\mu = \partial_\mu\Theta$.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{corollary}[Single canonical metric]
+\label{cor:canonical}
+There is a single canonical UBT emergent metric:
+\begin{equation}
+  \boxed{g_{\mu\nu}(x)
+  \;=\; \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  \;=\; \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr),
+  \quad E_\mu := \frac{\partial_\mu\Theta}{\sqrt{\mathcal{N}}}.}
+  \label{eq:canonical_single}
+\end{equation}
+Both expressions in appendix\_FORMAL\_emergent\_metric.tex and
+appendix\_R\_GR\_equivalence.tex refer to this single object.
+\end{corollary}
+
+\begin{remark}[Role of $\mathcal{N}$]
+The normalization $\mathcal{N} > 0$ is a \emph{scale-fixing} positive scalar.
+It determines the physical units of the metric but \textbf{does not determine
+the signature}.  The Lorentzian signature $(-,+,+,+)$ follows from the algebraic
+structure of $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Cl}_{1,3}(\mathbb{R})$
+via AXIOM~B — see \texttt{step3\_signature\_theorem.tex}, Theorem~2.
+Even if $\mathcal{N}$ were chosen differently (any positive value), the signature
+would remain $(-,+,+,+)$.
+\end{remark}
+
+\begin{remark}[Equivalence noted in both appendices]
+\label{rem:bridge_note}
+This bridge theorem should be noted in both appendix files for cross-referencing:
+\begin{itemize}
+  \item In appendix\_FORMAL\_emergent\_metric.tex: ``The derivative-based and tetrad-based
+        metric formulas are equivalent under the identification $E_\mu = \partial_\mu\Theta$;
+        see GR\_closure/step1\_metric\_bridge.tex.''
+  \item In appendix\_R\_GR\_equivalence.tex: ``The tetrad vectors $E_\mu$ used here
+        are identified with $\partial_\mu\Theta$ of the derivative-based formulation;
+        see GR\_closure/step1\_metric\_bridge.tex.''
+\end{itemize}
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{Comparison of the Two Approaches}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+& \textbf{Formula~A} & \textbf{Formula~B} \\
+\hline
+Source & appendix\_FORMAL\_emergent\_metric & appendix\_R\_GR\_equivalence \\
+Expression & $\Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger/\mathcal{N}]$ &
+            $\Re(\mathrm{Sc}(E_\mu E_\nu^\dagger))$ \\
+Tetrad & implicit ($E_\mu' = \partial_\mu\Theta/\sqrt{\mathcal{N}}$) &
+         explicit ($E_\mu$ given) \\
+Normalization & $\mathcal{N}$ in denominator & absorbed into $E_\mu$ \\
+Under $E_\mu=\partial_\mu\Theta$: & \multicolumn{2}{c}{$\bm{g_{\mu\nu}^{(A)} = g_{\mu\nu}^{(B)}}$ \quad (Theorem~\ref{thm:metric_bridge})} \\
+\hline
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------------
+\subsection{Summary}
+
+\begin{enumerate}
+  \item \textbf{Bridge identified.}
+        The natural identification $E_\mu := \partial_\mu\Theta$ (or
+        $E_\mu' := \partial_\mu\Theta/\sqrt{\mathcal{N}}$ with normalization)
+        directly maps Formula~B to Formula~A.
+  \item \textbf{Identity proved.}
+        Theorem~\ref{thm:metric_bridge} establishes $g_{\mu\nu}^{(A)} = g_{\mu\nu}^{(B)}$
+        as an algebraic identity, not a coincidence or approximation.
+  \item \textbf{Single geometric object.}
+        The derivative-based and tetrad-based formulas both describe the same emergent
+        real symmetric $(0,2)$ tensor field on spacetime.
+  \item \textbf{No free parameter.}
+        The normalization $\mathcal{N}$ is uniquely determined by $\Theta$ and appears
+        consistently in both formulas.
+  \item \textbf{Foundation for GR closure.}
+        All subsequent GR recovery results (Steps 2--4) may invoke either representation
+        of $g_{\mu\nu}$ without ambiguity.
+\end{enumerate}
+
+\begin{remark}[Relation to sigma models]
+The construction $g_{\mu\nu} = \Re[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger]$
+resembles the induced metric in nonlinear sigma models, where a target-space metric
+is pulled back via a field map $\phi: \mathcal{M} \to \mathcal{T}$.
+
+The key differences in UBT are:
+\begin{enumerate}
+  \item The target space is $\mathbb{C}\otimes\mathbb{H}$ (an algebra, not a Riemannian
+        manifold); the metric structure comes from the Clifford norm, not a fixed
+        background metric.
+  \item The signature of $g_{\mu\nu}$ is not imposed by a target-space metric
+        but derived from the algebraic axioms (AXIOM~B, Theorem~2).
+  \item The field $\Theta$ is not a map into an external space but a fundamental
+        field whose dynamics determines spacetime geometry itself.
+\end{enumerate}
+In sigma models, gravity is a fixed background; in UBT, gravity \emph{is} the field.
+\end{remark}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi

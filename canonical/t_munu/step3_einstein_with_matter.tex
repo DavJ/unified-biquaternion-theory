@@ -1,0 +1,309 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{remark}[definition]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+
+\title{Step 3: Einstein Field Equations with Matter from UBT\\
+\large $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ Derived, Not Asserted}
+\author{UBT Theory Development}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We derive the full Einstein equations with matter $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+from the combined UBT action $S_{\mathrm{total}}[g,\Theta]
+= S_{\mathrm{EH}}[g] + S_{\mathrm{matter}}[\Theta, g]$.
+Varying $S_{\mathrm{total}}$ with respect to $g^{\mu\nu}$ and using the
+results of Steps~1--2, we show that the stationary condition reproduces
+Einstein's equations with $T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$.
+We also address energy-momentum conservation $\nabla^\mu T_{\mu\nu} = 0$
+via the Bianchi identity and Noether's theorem.
+This closes item~II.9 of \texttt{THEORY\_INCONSISTENCIES\_REPORT.md}.
+
+\medskip
+\textbf{Scope note (important):} This derivation is the \emph{Hilbert variation}:
+the metric $g^{\mu\nu}$ is treated as an \emph{independent} dynamical variable,
+varied independently of $\Theta$.  This is \textbf{not} the $\Theta$-only closure,
+in which $g = g[\Theta]$ is substituted before varying.  The $\Theta$-only formulation
+is addressed separately in \texttt{GR\_closure/step2\_theta\_only\_closure.tex}
+and requires an additional injectivity assumption; it holds on-shell but not
+unconditionally off-shell.
+\end{abstract}
+
+\tableofcontents
+
+% ------------------------------------------------------------
+\section{The Total UBT Action}
+
+\subsection{Einstein--Hilbert Term}
+
+\begin{definition}[Einstein--Hilbert action]
+\label{def:EH}
+\begin{equation}
+  \label{eq:S_EH}
+  S_{\mathrm{EH}}[g] = \frac{1}{16\pi G}\int d^4x\,\sqrt{-g}\; R,
+\end{equation}
+where $R = g^{\mu\nu}R_{\mu\nu}$ is the Ricci scalar and
+$G$ is Newton's gravitational constant.
+\end{definition}
+
+\subsection{Matter Action}
+
+From \texttt{appendix\_AA\_theta\_action.tex} and Steps~1--2:
+\begin{equation}
+  \label{eq:S_matter}
+  S_{\mathrm{matter}}[\Theta, g]
+  = S_{\mathrm{kin}} + S_{\mathrm{pot}} + S_{\mathrm{gauge}}.
+\end{equation}
+
+\subsection{Combined Action}
+
+\begin{definition}[Full UBT action]
+\label{def:S_total}
+\begin{equation}
+  \label{eq:S_total}
+  S_{\mathrm{total}}[g, \Theta]
+  = S_{\mathrm{EH}}[g] + S_{\mathrm{matter}}[\Theta, g].
+\end{equation}
+The dynamical variables are the metric $g^{\mu\nu}$ and the biquaternionic
+field $\Theta$.
+\end{definition}
+
+% ------------------------------------------------------------
+\section{Variation with Respect to the Metric}
+
+\subsection{Palatini Identity for the Einstein--Hilbert Term}
+
+\begin{lemma}[Hilbert variation of $S_{\mathrm{EH}}$]
+\label{lem:EH_var}
+\begin{equation}
+  \label{eq:var_EH}
+  \frac{\delta S_{\mathrm{EH}}}{\delta g^{\mu\nu}}
+  = \frac{\sqrt{-g}}{16\pi G}
+    \Bigl(R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R\Bigr)
+  = \frac{\sqrt{-g}}{16\pi G}\,G_{\mu\nu},
+\end{equation}
+where $G_{\mu\nu} = R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R$ is the Einstein tensor.
+\end{lemma}
+
+\begin{proof}
+  Standard derivation.  Using $\delta(\sqrt{-g}R) = \sqrt{-g}
+  (R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R)\delta g^{\mu\nu}
+  + \sqrt{-g}\,\nabla_\mu V^\mu$ where $V^\mu$ is the Palatini boundary
+  vector, and discarding the total derivative term under the integral sign.
+  See Wald~\cite{wald}, Appendix~E.
+\end{proof}
+
+\subsection{Variation of the Matter Action}
+
+From Definition~2.1 of \texttt{step1\_metric\_variation.tex}:
+\begin{equation}
+  \label{eq:var_matter}
+  \frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}
+  = -\frac{\sqrt{-g}}{2}\,T_{\mu\nu},
+\end{equation}
+where $T_{\mu\nu} = \re(\mathcal{T}_{\mu\nu})$ is the stress-energy tensor
+derived in Steps~1--2.
+
+\subsection{Combined Stationarity Condition}
+
+Setting $\delta S_{\mathrm{total}}/\delta g^{\mu\nu} = 0$:
+\begin{equation}
+  \frac{\delta S_{\mathrm{EH}}}{\delta g^{\mu\nu}}
+  + \frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}} = 0.
+\end{equation}
+Substituting~\eqref{eq:var_EH} and~\eqref{eq:var_matter}:
+\begin{equation}
+  \frac{\sqrt{-g}}{16\pi G}\,G_{\mu\nu}
+  - \frac{\sqrt{-g}}{2}\,T_{\mu\nu} = 0.
+\end{equation}
+Dividing by $\sqrt{-g}/2$:
+\begin{equation}
+  \frac{1}{8\pi G}\,G_{\mu\nu} = T_{\mu\nu}.
+\end{equation}
+
+% ------------------------------------------------------------
+\section{Einstein Field Equations with Matter}
+
+\begin{theorem}[Einstein equations from UBT]
+\label{thm:einstein}
+Stationarity of the total UBT action~\eqref{eq:S_total} with respect to
+the metric $g^{\mu\nu}$ yields:
+\begin{equation}
+  \label{eq:einstein_matter}
+  \boxed{G_{\mu\nu} = 8\pi G\,T_{\mu\nu},}
+\end{equation}
+i.e.\ the full Einstein field equations \emph{with matter}, where
+\begin{equation}
+  T_{\mu\nu}
+  = \re(\mathcal{T}_{\mu\nu})
+  = \Tr\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+    -\tfrac{1}{2}g_{\mu\nu}\Tr\!\bigl[(\nabla_\alpha\Theta)^\dagger
+    \nabla^\alpha\Theta\bigr]
+    - g_{\mu\nu}V(\Theta)
+    + K\Bigl[\Tr[F_{\mu\alpha}F_\nu{}^\alpha]
+      -\tfrac{1}{4}g_{\mu\nu}\Tr[F_{\alpha\beta}F^{\alpha\beta}]\Bigr].
+\end{equation}
+\end{theorem}
+
+\begin{remark}[Vacuum limit]
+  Setting $\Theta = 0$ and $A_\mu = 0$ (vacuum), all matter terms vanish
+  and~\eqref{eq:einstein_matter} reduces to the vacuum Einstein equations
+  $G_{\mu\nu} = 0$, as derived in \texttt{appendix\_R\_GR\_equivalence.tex}.
+  $\checkmark$
+\end{remark}
+
+\begin{remark}[No new parameters]
+  Equation~\eqref{eq:einstein_matter} introduces no new free parameters.
+  The coupling constant $8\pi G$ is already present in $S_{\mathrm{EH}}$
+  via Definition~\ref{def:EH}.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Energy-Momentum Conservation}
+\label{sec:conservation}
+
+\subsection{Bianchi Identity Route}
+
+\begin{theorem}[Automatic conservation from contracted Bianchi identity]
+\label{thm:bianchi}
+The contracted Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ holds
+identically for any metric $g_{\mu\nu}$.  Combined with the Einstein
+equations~\eqref{eq:einstein_matter}, it implies:
+\begin{equation}
+  \label{eq:conservation}
+  \nabla^\mu T_{\mu\nu} = 0.
+\end{equation}
+This holds for \emph{any} $T_{\mu\nu}$ satisfying~\eqref{eq:einstein_matter},
+regardless of the specific form of the matter action.
+\end{theorem}
+
+\begin{proof}
+  From~\eqref{eq:einstein_matter}: $\nabla^\mu(8\pi G\,T_{\mu\nu})
+  = \nabla^\mu G_{\mu\nu} = 0$ (contracted Bianchi).
+  Since $8\pi G \neq 0$, we obtain $\nabla^\mu T_{\mu\nu} = 0$.
+\end{proof}
+
+\begin{remark}[No extra condition needed]
+  Conservation~\eqref{eq:conservation} is \emph{automatic}; it does not
+  require any additional assumption on $\Theta$.  It is a consequence of
+  diffeomorphism invariance of the total action (see also the Noether
+  route below).
+\end{remark}
+
+\subsection{Noether Route (Diffeomorphism Invariance)}
+
+\begin{proposition}[Noether conservation]
+\label{prop:noether}
+The total action $S_{\mathrm{total}}$ is invariant under diffeomorphisms
+$x^\mu \to x^\mu + \xi^\mu(x)$.  By Noether's second theorem applied to
+the matter action:
+\begin{equation}
+  \nabla^\mu T_{\mu\nu} = 0
+\end{equation}
+holds as a \emph{Noether identity}, valid on the constraint surface
+(when $\Theta$ satisfies its own Euler--Lagrange equations).
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+  Under $x^\mu \to x^\mu + \xi^\mu$, the metric transforms as
+  $\delta g_{\mu\nu} = -\mathcal{L}_\xi g_{\mu\nu}
+  = -\nabla_\mu\xi_\nu - \nabla_\nu\xi_\mu$.
+  Invariance of $S_{\mathrm{matter}}$ gives:
+  \begin{equation}
+    0 = \delta S_{\mathrm{matter}}
+      = -\int d^4x\,\sqrt{-g}\,T^{\mu\nu}\nabla_\mu\xi_\nu
+      = \int d^4x\,\sqrt{-g}\,(\nabla^\mu T_{\mu\nu})\xi^\nu,
+  \end{equation}
+  after integration by parts (boundary terms vanish for $\xi^\mu$ with
+  compact support).  Since $\xi^\nu$ is arbitrary,
+  $\nabla^\mu T_{\mu\nu} = 0$.
+\end{proof}
+
+\begin{remark}[Conditions for conservation]
+  Both routes give $\nabla^\mu T_{\mu\nu} = 0$:
+  \begin{itemize}
+    \item \textbf{Bianchi route:} requires only that $\Theta$ and $g$ jointly
+          satisfy the full system of equations (Einstein + matter);
+          no additional assumption.
+    \item \textbf{Noether route:} requires that $\Theta$ satisfies the
+          Euler--Lagrange equations (the $\Theta$ equation of motion from
+          Appendix~AA, Theorem~4.1) \emph{and} that the action is
+          diffeomorphism-invariant (which it is by construction).
+  \end{itemize}
+  In both cases no additional free parameters or conditions are needed
+  beyond the existing UBT action principle.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Summary and Connection to Existing Proofs}
+
+\begin{corollary}[Closure of gap in \texttt{appendix\_R\_GR\_equivalence.tex}]
+  \label{cor:gap_closed}
+  The identification $T_{\mu\nu} = \re(\mathcal{T}_{\mu\nu})$ in
+  \texttt{appendix\_R\_GR\_equivalence.tex} is now fully justified by the
+  derivation chain:
+  \begin{equation}
+    S[\Theta]
+    \xrightarrow{\delta/\delta g^{\mu\nu}\,(S_{\mathrm{matter}})}
+    T_{\mu\nu}
+    \xrightarrow{\delta/\delta g^{\mu\nu}\,(S_{\mathrm{EH}} + S_{\mathrm{matter}})}
+    G_{\mu\nu} = 8\pi G\,T_{\mu\nu}.
+  \end{equation}
+\end{corollary}
+
+Key results established in this chain:
+\begin{enumerate}
+  \item $T_{\mu\nu}$ is derived from $S[\Theta]$ by the Hilbert prescription
+        (not asserted).
+  \item $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ follows from
+        $\delta S_{\mathrm{total}}/\delta g^{\mu\nu} = 0$.
+  \item $\nabla^\mu T_{\mu\nu} = 0$ is automatic (Bianchi + Noether).
+  \item In the vacuum limit ($\Theta=0$), Einstein vacuum equations are
+        recovered.
+  \item In the QED limit, $T_{\mu\nu} \to T^{(\mathrm{EM})}_{\mu\nu}
+        + T^{(\mathrm{Dirac})}_{\mu\nu}$ (Step~2, Proposition~5.1).
+\end{enumerate}
+
+The properties of $T_{\mu\nu}$ (realness, symmetry, divergence-free) are
+verified in \texttt{step4\_T\_properties.tex}.
+
+\begin{thebibliography}{99}
+\bibitem{wald}    Wald, R.~M. (1984). \textit{General Relativity}.
+                  University of Chicago Press.
+\bibitem{misner}  Misner, C.~W., Thorne, K.~S., \& Wheeler, J.~A. (1973).
+                  \textit{Gravitation}. Freeman.
+\bibitem{step1}   UBT Theory Development.
+                  \texttt{step1\_metric\_variation.tex}, 2026.
+\bibitem{step2}   UBT Theory Development.
+                  \texttt{step2\_biquat\_stress\_energy.tex}, 2026.
+\bibitem{appendix_AA}
+                  UBT Theory Development.
+                  \texttt{appendix\_AA\_theta\_action.tex}, 2025.
+\bibitem{appendix_R}
+                  UBT Theory Development.
+                  \texttt{appendix\_R\_GR\_equivalence.tex}, 2025.
+\end{thebibliography}
+
+\end{document}

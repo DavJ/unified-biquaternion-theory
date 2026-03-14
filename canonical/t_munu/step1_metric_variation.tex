@@ -1,0 +1,357 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{remark}[definition]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+
+\title{Step 1: Metric Variation of the UBT Matter Action\\
+\large Derivation of the Stress-Energy Tensor $T_{\mu\nu}$ from $S[\Theta]$}
+\author{UBT Theory Development}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We derive the stress-energy tensor $T_{\mu\nu}$ of the UBT matter sector via the
+Hilbert (metric variation) prescription.  Starting from the complete matter action
+$S_{\mathrm{matter}}[\Theta, g] = S_{\mathrm{kin}} + S_{\mathrm{pot}} +
+S_{\mathrm{gauge}}$ defined in \texttt{appendix\_AA\_theta\_action.tex}, we
+compute $\delta S_{\mathrm{matter}}/\delta g^{\mu\nu}$ for each term explicitly,
+step by step.  The results close the gap in
+\texttt{appendix\_R\_GR\_equivalence.tex} where $T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$
+is stated without derivation.
+\end{abstract}
+
+\tableofcontents
+
+% ------------------------------------------------------------
+\section{Setup and Conventions}
+
+\subsection{Metric Signature and Notation}
+
+We work in Lorentzian signature $(-,+,+,+)$ throughout:
+$g_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ in flat space.
+Indices are raised and lowered with $g^{\mu\nu}$ and $g_{\mu\nu}$.
+We write $g := \det(g_{\mu\nu}) < 0$ and $\sqrt{-g} > 0$.
+
+The covariant derivative acting on $\Theta$ is:
+\begin{equation}
+  \nabla_\mu = \partial_\mu + \Omega_\mu + i g_{\mathrm{YM}} A_\mu,
+\end{equation}
+where $\Omega_\mu$ is the spin connection and $A_\mu$ is the gauge connection.
+
+\subsection{Hilbert Stress-Energy Tensor}
+
+\begin{definition}[Hilbert stress-energy tensor]
+\label{def:hilbert}
+Given a matter action $S_{\mathrm{matter}}[\Theta, g]$, the
+\emph{Hilbert (metric variation) stress-energy tensor} is:
+\begin{equation}
+  \label{eq:hilbert}
+  T_{\mu\nu} := -\frac{2}{\sqrt{-g}}\,
+    \frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}.
+\end{equation}
+\end{definition}
+
+\begin{remark}
+  The sign in \eqref{eq:hilbert} is chosen so that the matter sector in
+  Einstein's equations contributes $+8\pi G\,T_{\mu\nu}$ on the right-hand side.
+  The convention follows Wald~\cite{wald} and Carroll~\cite{carroll}.
+\end{remark}
+
+\subsection{Matter Action}
+
+The UBT matter action (from \texttt{appendix\_AA\_theta\_action.tex},
+Section~3) read, in the effective 4D Lorentzian projection:
+\begin{align}
+  S_{\mathrm{kin}}   &= -\tfrac{1}{2}\int d^4x\,\sqrt{-g}\;
+    g^{\alpha\beta}\,\Tr\!\bigl[(\nabla_\alpha\Theta)^\dagger\,
+    \nabla_\beta\Theta\bigr], \label{eq:skin} \\
+  S_{\mathrm{pot}}   &= -\int d^4x\,\sqrt{-g}\; V(\Theta),
+    \label{eq:spot} \\
+  S_{\mathrm{gauge}} &= -\frac{K}{4}\int d^4x\,\sqrt{-g}\;
+    \Tr[F_{\mu\nu}F^{\mu\nu}].
+    \label{eq:sgauge}
+\end{align}
+Here $K = K_{\mathrm{gauge}} > 0$ is the gauge kinetic normalisation
+($K = 1$ for the Abelian case), and $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu
++ i g_{\mathrm{YM}}[A_\mu, A_\nu]$.
+
+\begin{remark}[Sign of $S_{\mathrm{kin}}$]
+  The minus sign in \eqref{eq:skin} is required by the $(-,+,+,+)$ convention.
+  In this signature $g^{\alpha\beta}(\nabla_\alpha\Theta)^\dagger\nabla_\beta\Theta
+  = -({\partial_t\Theta})^2 + (\nabla\Theta)^2$,
+  so a minus sign in the action yields positive kinetic energy density
+  $\tfrac{1}{2}(\partial_t\Theta)^2 + \tfrac{1}{2}(\nabla\Theta)^2 > 0$.
+\end{remark}
+
+\subsection{Standard Variational Identities}
+
+\begin{lemma}[Metric variation identities]
+\label{lem:var_ids}
+Under a variation $g^{\mu\nu} \to g^{\mu\nu} + \delta g^{\mu\nu}$:
+\begin{align}
+  \delta\sqrt{-g}
+    &= -\tfrac{1}{2}\sqrt{-g}\; g_{\mu\nu}\,\delta g^{\mu\nu},
+    \label{eq:var_sqrtg} \\
+  \delta g_{\alpha\beta}
+    &= -g_{\alpha\mu}\,g_{\beta\nu}\,\delta g^{\mu\nu},
+    \label{eq:var_lower} \\
+  \delta\!\bigl(\sqrt{-g}\,g^{\alpha\beta}\bigr)
+    &= \sqrt{-g}\Bigl[\delta^{(\alpha}_\mu\delta^{\beta)}_\nu
+       -\tfrac{1}{2}g_{\mu\nu}g^{\alpha\beta}\Bigr]\delta g^{\mu\nu}.
+    \label{eq:var_combined}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+  Identity~\eqref{eq:var_sqrtg}: from $\delta\ln|\det g| = g^{\mu\nu}\delta g_{\mu\nu}
+  = -g_{\mu\nu}\delta g^{\mu\nu}$ (using $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu_\nu$).
+  Identity~\eqref{eq:var_lower}: differentiate $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu_\nu$.
+  Identity~\eqref{eq:var_combined}: combine the first two with the product rule
+  and symmetrise in $(\mu,\nu)$.
+\end{proof}
+
+% ------------------------------------------------------------
+\section{Variation of the Kinetic Term}
+\label{sec:kin}
+
+\subsection{Explicit Computation}
+
+We write $S_{\mathrm{kin}} = -\tfrac{1}{2}\int d^4x\,
+\sqrt{-g}\,g^{\alpha\beta}\,K_{\alpha\beta}$, where
+$K_{\alpha\beta} := \Tr[(\nabla_\alpha\Theta)^\dagger\nabla_\beta\Theta]$.
+
+Varying with respect to $g^{\mu\nu}$:
+\begin{equation}
+  \delta S_{\mathrm{kin}}
+  = -\tfrac{1}{2}\int d^4x\,\Bigl[
+      \delta(\sqrt{-g}\,g^{\alpha\beta})\,K_{\alpha\beta}
+    + \sqrt{-g}\,g^{\alpha\beta}\,\delta K_{\alpha\beta}
+    \Bigr].
+\end{equation}
+
+\paragraph{First piece (explicit metric dependence).}
+Using identity~\eqref{eq:var_combined}:
+\begin{equation}
+  \delta(\sqrt{-g}\,g^{\alpha\beta})\,K_{\alpha\beta}
+  = \sqrt{-g}\Bigl[K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}\,g^{\alpha\beta}K_{\alpha\beta}
+    \Bigr]\delta g^{\mu\nu}.
+\end{equation}
+
+\paragraph{Second piece (connection variation).}
+The connection $\Omega_\mu$ depends on $g_{\mu\nu}$ through the tetrad.
+Under metric variation, $\delta\Omega_\mu \sim \delta\Gamma^\lambda_{\mu\nu}$,
+producing terms of the form
+$\sqrt{-g}\,g^{\alpha\beta}\Tr[(\delta\nabla_\alpha\Theta)^\dagger\nabla_\beta\Theta]$.
+Integrating by parts converts these into bulk terms proportional to
+$(\nabla^\mu\nabla_\mu\Theta)\,\delta\Theta$ plus boundary terms.
+When $\Theta$ satisfies the Euler--Lagrange equation
+$\nabla^\mu\nabla_\mu\Theta = \partial V/\partial\Theta^\dagger$
+(Theorem~4.1 of \texttt{appendix\_AA}), the connection variation contributes
+only boundary terms that vanish for variations with compact support.
+We therefore \emph{discard} this piece \textbf{on-shell}.
+
+\begin{proposition}[Kinetic stress-energy tensor]
+\label{prop:T_kin}
+For $\Theta$ satisfying the UBT field equations:
+\begin{equation}
+  \frac{\delta S_{\mathrm{kin}}}{\delta g^{\mu\nu}}
+  = \tfrac{1}{2}\sqrt{-g}\Bigl[
+      K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}\,K^\alpha{}_\alpha
+    \Bigr],
+\end{equation}
+where $K^\alpha{}_\alpha = g^{\alpha\beta}K_{\alpha\beta}
+= \Tr[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta]$.
+Hence:
+\begin{equation}
+  \label{eq:T_kin}
+  \boxed{
+    T^{(\mathrm{kin})}_{\mu\nu}
+    = \Tr\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+      -\tfrac{1}{2}g_{\mu\nu}\,
+       \Tr\!\bigl[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta\bigr].
+  }
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+  Direct application of Definition~\ref{def:hilbert} to the first piece:
+  $T^{(\mathrm{kin})}_{\mu\nu} = -(2/\sqrt{-g})\times
+  (-\tfrac{1}{2})\times\tfrac{1}{2}\sqrt{-g}[K_{\mu\nu} -
+  \tfrac{1}{2}g_{\mu\nu}K^\alpha{}_\alpha]
+  = K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}K^\alpha{}_\alpha$.
+\end{proof}
+
+\begin{remark}[Scalar field check]
+  For a real scalar $\phi$ (setting $\Tr[\cdot] \to \tfrac{1}{2}\cdot$):
+  $T^{(\mathrm{kin})}_{\mu\nu} = \partial_\mu\phi\,\partial_\nu\phi
+  - \tfrac{1}{2}g_{\mu\nu}(\partial\phi)^2$,
+  the standard Klein--Gordon kinetic stress-energy tensor.~$\checkmark$
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Variation of the Potential Term}
+\label{sec:pot}
+
+\begin{proposition}[Potential stress-energy tensor]
+\label{prop:T_pot}
+The potential $V(\Theta)$ depends on $g^{\mu\nu}$ only through the
+integration measure $\sqrt{-g}$ (it is a scalar built from $\Theta$ with
+no explicit metric contractions).  Therefore:
+\begin{equation}
+  \frac{\delta S_{\mathrm{pot}}}{\delta g^{\mu\nu}}
+  = -\int d^4x\,\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\,V(\Theta)
+  = \tfrac{1}{2}\sqrt{-g}\;g_{\mu\nu}\,V(\Theta).
+\end{equation}
+The potential contribution to the stress-energy tensor is:
+\begin{equation}
+  \label{eq:T_pot}
+  \boxed{T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}\,V(\Theta).}
+\end{equation}
+\end{proposition}
+
+\begin{remark}[Vacuum energy interpretation]
+  $T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}V$ has the form of a
+  cosmological constant.  For the Mexican-hat potential
+  $V = \tfrac{\lambda}{4}(|\Theta|^2-v^2)^2$, at the vacuum
+  $|\Theta|=v$ we have $V=0$ and $T^{(\mathrm{pot})}_{\mu\nu}=0$.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Variation of the Gauge Kinetic Term}
+\label{sec:gauge}
+
+\subsection{Decomposing the Metric Dependence}
+
+With $F^{\mu\nu} = g^{\mu\alpha}g^{\nu\beta}F_{\alpha\beta}$, the
+integrand is $\sqrt{-g}\,g^{\mu\alpha}g^{\nu\beta}F_{\alpha\beta}F_{\mu\nu}$.
+The metric appears in three independent factors: $\sqrt{-g}$, the first
+$g^{\mu\alpha}$, and the second $g^{\nu\beta}$.
+
+\subsection{Explicit Computation}
+
+\begin{proposition}[Gauge kinetic stress-energy tensor]
+\label{prop:T_gauge}
+Varying $S_{\mathrm{gauge}}$ term by term with respect to $g^{\rho\sigma}$:
+
+\paragraph{Variation of $\sqrt{-g}$:}
+\begin{equation}
+  -\frac{K}{4}\Bigl(-\tfrac{1}{2}\sqrt{-g}\,g_{\rho\sigma}\Bigr)
+  F_{\mu\nu}F^{\mu\nu}
+  = \frac{K}{8}\sqrt{-g}\;g_{\rho\sigma}\Tr[F_{\mu\nu}F^{\mu\nu}].
+\end{equation}
+
+\paragraph{Variation of the first $g^{\mu\alpha}$:}
+\begin{equation}
+  -\frac{K}{4}\sqrt{-g}\;\delta^{(\mu}_\rho\delta^{\alpha)}_\sigma
+  \,g^{\nu\beta}\Tr[F_{\alpha\beta}F_{\mu\nu}]
+  = -\frac{K}{4}\sqrt{-g}\;\Tr[F_{\rho\beta}F_\sigma{}^\beta
+    + F_{\sigma\beta}F_\rho{}^\beta].
+\end{equation}
+
+\paragraph{Variation of the second $g^{\nu\beta}$:}
+By the antisymmetry $F_{\mu\nu} = -F_{\nu\mu}$,
+this is identical to the previous piece.
+
+\paragraph{Total:}
+\begin{equation}
+  \frac{\delta S_{\mathrm{gauge}}}{\delta g^{\rho\sigma}}
+  = \sqrt{-g}\,\frac{K}{4}\Bigl[
+      \tfrac{1}{2}g_{\rho\sigma}\Tr[F_{\mu\nu}F^{\mu\nu}]
+      - 2\Tr[F_{\rho\alpha}F_\sigma{}^{\alpha}]
+    \Bigr].
+\end{equation}
+Applying Definition~\ref{def:hilbert}:
+\begin{equation}
+  \label{eq:T_gauge}
+  \boxed{
+    T^{(\mathrm{gauge})}_{\mu\nu}
+    = K\Bigl[
+        \Tr\!\bigl[F_{\mu\alpha}F_\nu{}^{\alpha}\bigr]
+        -\tfrac{1}{4}g_{\mu\nu}\Tr\!\bigl[F_{\alpha\beta}F^{\alpha\beta}\bigr]
+      \Bigr].
+  }
+\end{equation}
+\end{proposition}
+
+\begin{remark}[Electromagnetic limit]
+  For $K=1$ and Abelian $F_{\mu\nu}$ (with $\Tr[\cdot]\to\cdot$):
+  $T^{(\mathrm{EM})}_{\mu\nu} = F_{\mu\alpha}F_\nu{}^\alpha
+  - \tfrac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}$,
+  which is the standard Maxwell stress-energy tensor.
+  This is traceless in $d=4$: $g^{\mu\nu}T^{(\mathrm{EM})}_{\mu\nu}=0$.~$\checkmark$
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Summary of Results}
+\label{sec:summary}
+
+\begin{theorem}[Metric variation of UBT matter action]
+\label{thm:T_matter}
+The complete UBT matter stress-energy tensor, obtained by the Hilbert
+prescription from $S_{\mathrm{matter}} = S_{\mathrm{kin}}
++ S_{\mathrm{pot}} + S_{\mathrm{gauge}}$, is:
+\begin{equation}
+  \label{eq:T_total}
+  \boxed{
+    T_{\mu\nu}
+    \;=\;
+    \underbrace{\Tr[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta]
+      -\tfrac{1}{2}g_{\mu\nu}\Tr[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta]}_{%
+      T^{(\mathrm{kin})}_{\mu\nu}}
+    \;-\;
+    \underbrace{g_{\mu\nu}V(\Theta)}_{%
+      -T^{(\mathrm{pot})}_{\mu\nu}}
+    \;+\;
+    K\underbrace{\Bigl[\Tr[F_{\mu\alpha}F_\nu{}^\alpha]
+      -\tfrac{1}{4}g_{\mu\nu}\Tr[F_{\alpha\beta}F^{\alpha\beta}]\Bigr]}_{%
+      T^{(\mathrm{gauge})}_{\mu\nu}/K}.
+  }
+\end{equation}
+This derivation is on-shell (valid when $\Theta$ satisfies the Euler--Lagrange
+equations of Appendix~AA, Theorem~4.1).
+\end{theorem}
+
+\begin{remark}[Status]
+  Equation~\eqref{eq:T_total} is derived purely from the existing action in
+  \texttt{appendix\_AA\_theta\_action.tex} with no new free parameters.
+  No new physics is introduced.
+  The biquaternionic generalisation $\mathcal{T}_{\mu\nu}$ is constructed in
+  \texttt{step2\_biquat\_stress\_energy.tex}.
+  The Einstein equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ are derived in
+  \texttt{step3\_einstein\_with\_matter.tex}.
+\end{remark}
+
+\begin{thebibliography}{99}
+\bibitem{wald}    Wald, R.~M. (1984). \textit{General Relativity}.
+                  University of Chicago Press.
+\bibitem{carroll} Carroll, S.~M. (2004). \textit{Spacetime and Geometry}.
+                  Addison--Wesley.
+\bibitem{ps}      Peskin, M.~E.\ \& Schroeder, D.~V. (1995).
+                  \textit{An Introduction to Quantum Field Theory}. Westview Press.
+\bibitem{appendix_AA}
+                  UBT Theory Development.
+                  \texttt{appendix\_AA\_theta\_action.tex}, 2025.
+\end{thebibliography}
+
+\end{document}

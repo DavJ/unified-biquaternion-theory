@@ -1,0 +1,305 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+
+  \title{\textbf{Chirality Derivation, Step 1: $\psi$-Parity and the
+                 $SU(2)_L\times SU(2)_R \to SU(2)_L$ Selection}}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We analyse the $\psi$-parity operator $P_\psi:\psi\to -\psi$ in the UBT
+  complex-time framework and determine whether it selects $SU(2)_L$ from the
+  full $SU(2)_L\times SU(2)_R$ symmetry that arises naturally from
+  $\mathbb{C}\otimes\mathbb{H}$.  We find that $P_\psi$ acts as a chirality
+  projector for the three-generation $\psi$-mode expansion, \emph{restricting
+  coupling to odd-mode (left-handed) components} when the gauge field couples
+  only to the $\partial_\psi$ derivative --- analogous to $\gamma^5$ projection.
+  \textbf{Verdict: SKETCH.}
+  The algebraic argument is complete; the dynamical derivation of \emph{why}
+  $SU(2)_L$ gauge bosons couple only to $\partial_\psi$ and not $\partial_{-\psi}$
+  requires showing that the $W^\pm$ vertex in $S[\Theta]$ is odd under $P_\psi$
+  (Gap~C1).
+  \end{abstract}
+\fi
+
+\section{Step 1: $\psi$-Parity and Chirality Selection}
+\label{sec:psi_parity}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Starting Point: $\mathbb{C}\otimes\mathbb{H}$ Gives $SU(2)_L\times SU(2)_R$}
+\label{subsec:biH_structure}
+%────────────────────────────────────────────────────────────────────────────
+
+From \texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex~§5}:
+
+\begin{proposition}[$SU(2)_L\times SU(2)_R$ from $\mathbb{H}$ actions]
+\label{prop:su2lxsu2r}
+The automorphism group of $\mathbb{H}$ decomposes as left and right actions:
+\begin{align}
+  L_q : x &\mapsto q\cdot x \quad (q\in\mathbb{H},\, |q|=1), \\
+  R_q : x &\mapsto x\cdot q \quad (q\in\mathbb{H},\, |q|=1).
+\end{align}
+Together:
+\begin{equation}
+  \mathrm{Inn}(\mathbb{H})_L \times \mathrm{Inn}(\mathbb{H})_R
+  \cong SU(2)_L \times SU(2)_R \cong \mathrm{Spin}(4).
+\end{equation}
+The Standard Model requires only $SU(2)_L$.  An additional selection mechanism
+is needed.
+\end{proposition}
+
+The selection mechanism listed in \texttt{appendix\_E2\_SM\_geometry.tex~§6}
+as ``Option~A'' is:
+
+\begin{quote}
+\textit{``The $\psi$-parity $P_\psi: \psi \to -\psi$ acts as a chirality projector:
+odd modes $\Theta_1, \Theta_3,\ldots$ couple to $SU(2)_L$;
+even modes $\Theta_0, \Theta_2,\ldots$ are right-handed singlets.''}
+\end{quote}
+
+In this document we formalise and evaluate Option~A.
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Definition of $\psi$-Parity}
+\label{subsec:psi_parity_def}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[$\psi$-Parity Operator]
+\label{def:psi_parity}
+Let $\tau = t + i\psi$ be the complex time with $\psi\in\mathbb{R}$.
+The $\psi$-parity operator is:
+\begin{equation}
+  P_\psi : (t,\psi) \mapsto (t,-\psi),
+  \qquad
+  P_\psi\Theta(Q,t,\psi) := \Theta(Q,t,-\psi).
+\label{eq:psi_parity}
+\end{equation}
+The mode expansion on the $\psi$-circle of radius $R_\psi$ is:
+\begin{equation}
+  \Theta(Q,t,\psi) = \sum_{n\in\mathbb{Z}} \Theta_n(Q,t)\,e^{in\psi/R_\psi}.
+\label{eq:mode_expansion}
+\end{equation}
+Under $P_\psi$:
+\begin{equation}
+  (P_\psi\Theta)_n = \Theta_{-n}.
+\label{eq:parity_on_modes}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[$P_\psi$-eigenspaces]
+\label{lem:eigenspaces}
+The eigenspaces of $P_\psi$ (with eigenvalue $\pm 1$) are:
+\begin{align}
+  \mathcal{H}_+ &= \bigl\{\Theta : P_\psi\Theta = +\Theta\bigr\}
+    = \operatorname{span}\{e^{in\psi/R_\psi} + e^{-in\psi/R_\psi} : n\geq 0\}
+    \quad\text{(even / right-handed)}, \\
+  \mathcal{H}_- &= \bigl\{\Theta : P_\psi\Theta = -\Theta\bigr\}
+    = \operatorname{span}\{e^{in\psi/R_\psi} - e^{-in\psi/R_\psi} : n\geq 1\}
+    \quad\text{(odd / left-handed)}.
+\end{align}
+\end{lemma}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Action of $P_\psi$ on the Derivative $\partial_\psi$}
+\label{subsec:derivative_action}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}[$P_\psi$ and $\partial_\psi$]
+\label{lem:psi_deriv}
+Under $P_\psi$:
+\begin{equation}
+  P_\psi \circ \partial_\psi = -\partial_\psi \circ P_\psi.
+\label{eq:parity_deriv}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $f(\psi) = \sum_n f_n e^{in\psi/R_\psi}$.  Then:
+\begin{align}
+  (P_\psi \circ \partial_\psi)f(\psi)
+  &= P_\psi\!\left(\sum_n \frac{in}{R_\psi} f_n e^{in\psi/R_\psi}\right)
+  = \sum_n \frac{in}{R_\psi} f_n e^{-in\psi/R_\psi}, \\
+  (-\partial_\psi \circ P_\psi)f(\psi)
+  &= -\partial_\psi\!\left(\sum_n f_n e^{-in\psi/R_\psi}\right)
+  = \sum_n \frac{in}{R_\psi} f_n e^{-in\psi/R_\psi}. \quad\square
+\end{align}
+\end{proof}
+
+\begin{corollary}
+Since $\partial_\psi$ anti-commutes with $P_\psi$, the operator $\partial_\psi$
+maps $\mathcal{H}_+\to\mathcal{H}_-$ and $\mathcal{H}_-\to\mathcal{H}_+$.
+In other words, $\partial_\psi$ is a chirality-\emph{flipping} operator.
+\end{corollary}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Connection to $\gamma^5$ Chirality}
+\label{subsec:gamma5}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[$P_\psi$ acts as $\gamma^5$ in the $\psi$-sector]
+\label{prop:gamma5}
+In the spinorial sector (from
+\texttt{consolidation\_project/FPE\_verification/step3\_dirac\_emergence.tex}),
+the Dirac operator includes $\partial_\psi$ via:
+\begin{equation}
+  \mathcal{D} = i\gamma^\mu\nabla_\mu + \gamma^5 \partial_\psi.
+\label{eq:dirac_with_psi}
+\end{equation}
+The operator $P_\psi$ acts as $\gamma^5$ in the sense that it commutes with
+$\gamma^\mu\nabla_\mu$ and anti-commutes with $\gamma^5\partial_\psi$:
+\begin{align}
+  [P_\psi,\, \gamma^\mu\nabla_\mu] &= 0, \\
+  \{P_\psi,\, \gamma^5\partial_\psi\} &= 0.
+\end{align}
+Therefore, $P_\psi$ \emph{projects} the Dirac spinor onto definite chirality.
+\end{proposition}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Winding Number and CPT Orientation}
+\label{subsec:winding}
+%────────────────────────────────────────────────────────────────────────────
+
+In the three-generation mechanism (see
+\texttt{research\_tracks/three\_generations/st3\_complex\_time\_generations.tex}):
+\begin{itemize}
+  \item \textbf{Matter fields}: winding number $n > 0$ on the $\psi$-circle.
+  \item \textbf{Antimatter fields}: winding number $n < 0$ by CPT.
+\end{itemize}
+
+\begin{lemma}[Preferred orientation of $\psi$-circle]
+The matter sector $\{n=1,2,3,\ldots\}$ is not symmetric under $P_\psi$,
+because $P_\psi$ maps $n \to -n$.
+Under CPT, $P_\psi$ corresponds to charge conjugation in the $\psi$-sector:
+matter ($n>0$) and antimatter ($n<0$) are physically distinct.
+Therefore the $\psi$-circle carries a preferred orientation.
+\end{lemma}
+
+This preferred orientation breaks the symmetry between $SU(2)_L$ (acting on
+$\mathcal{H}_-$) and $SU(2)_R$ (acting on $\mathcal{H}_+$):
+matter fields occupy $\mathcal{H}_-$ (odd winding), and $SU(2)_L$ is
+the gauge group of the odd sector.
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Main Result}
+\label{subsec:main_result}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$\psi$-Parity Selects $SU(2)_L$: Algebraic Statement]
+\label{thm:chirality_selection}
+If the $SU(2)_L$ gauge interaction couples only to modes with $n>0$
+(matter, odd-winding sector $\mathcal{H}_-$), then:
+\begin{enumerate}
+  \item[(i)] $SU(2)_L$ acts on $\mathcal{H}_-$ (left-handed doublets).
+  \item[(ii)] $SU(2)_R$ acts on $\mathcal{H}_+$ (right-handed singlets in SM).
+  \item[(iii)] The physical spectrum --- restricted to $n > 0$ matter fields ---
+    displays $SU(2)_L$ symmetry and no $SU(2)_R$ gauge interactions.
+\end{enumerate}
+\end{theorem}
+
+\begin{gapbox}
+\textbf{Gap~C1 --- Dynamical Derivation of Coupling Restriction:}
+Theorem~\ref{thm:chirality_selection} relies on the assumption ``$SU(2)_L$
+couples only to $n>0$ modes.''  This is the correct statement of the SM.
+However, to \emph{derive} this from $S[\Theta]$, one must show that the
+$W^\pm$ vertex in the UBT action is odd under $P_\psi$, i.e.:
+\[
+  P_\psi\!\left(\frac{\delta S}{\delta W^\pm_\mu}\right) = -\frac{\delta S}{\delta W^\pm_\mu}.
+\]
+This requires evaluating the coupling term
+$\int \bar\Theta_L \gamma^\mu W_\mu \Theta_L\, d^4Q\, d\psi$
+and checking its parity under $\psi\to-\psi$.
+The coupling to $\Theta_L$ (odd modes) automatically makes the vertex
+odd under $P_\psi$, but the left-handed projection of $\Theta$ must be
+derived, not assumed.
+\textbf{Priority: HIGH.}
+\end{gapbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Comparison with Appendix E2 Options}
+\label{subsec:comparison}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+  \hline
+  \textbf{Option} & \textbf{Mechanism} & \textbf{Status} \\
+  \hline
+  A ($\psi$-parity) & Odd modes couple to $SU(2)_L$;
+    even modes are $SU(2)_R$ singlets & \textbf{Sketch} (Gap~C1) \\
+  B (VEV breaking) & $\langle\Theta_0\rangle\neq 0$ breaks $SU(2)_R$
+    at Planck scale & \textbf{Postulate} \\
+  C (Arrow of time) & Time asymmetry selects one chirality & \textbf{Speculative} \\
+  \hline
+\end{tabular}
+\end{center}
+
+Option~A is \emph{structurally the most natural} within the UBT framework because:
+(a) $\psi$-parity is already present in the three-generation mechanism;
+(b) it connects chirality directly to CPT and winding number;
+(c) the algebraic structure is established (Lemma~\ref{lem:psi_deriv},
+    Proposition~\ref{prop:gamma5}).
+
+The remaining work is to close Gap~C1: showing the $W^\pm$ vertex is odd under
+$P_\psi$ from the $S[\Theta]$ action.
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Verdict}
+\label{subsec:verdict}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Verdict: SKETCH.}
+The $\psi$-parity operator $P_\psi$ is the correct mechanism for
+$SU(2)_L\times SU(2)_R \to SU(2)_L$:
+\begin{itemize}
+  \item $P_\psi$ acts as $\gamma^5$ in the $\psi$-sector (Proved).
+  \item The preferred orientation of the $\psi$-circle (winding $n>0$ for matter)
+        breaks left-right symmetry (Proved, algebraic).
+  \item $SU(2)_L$ gauge bosons coupling exclusively to odd-winding modes
+        gives the SM chirality pattern (Proved, conditional on Gap~C1).
+\end{itemize}
+Gap~C1: Dynamical derivation of $P_\psi$-odd coupling from $S[\Theta]$ is
+the remaining step.  This is the highest-priority open problem in the
+chirality sector.
+See \texttt{step2\_chirality\_result.tex} for consequences.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

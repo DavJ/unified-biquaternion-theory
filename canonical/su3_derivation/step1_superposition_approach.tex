@@ -1,0 +1,388 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{SU(3) from Quantum Superposition over Involutions}\\
+         \large A New Approach via $\mathbb{C}$-span of Imaginary Quaternion Axes}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We present a new derivation of $SU(3)_{\mathrm{color}}$ in UBT based on
+  quantum superposition over the three imaginary quaternion axes $\{I, J, K\}
+  \subset \mathbb{H}$.  Previous approaches tried to find $SU(3)$ directly
+  in the discrete involution structure; they failed because the involutions
+  $P_I, P_J, P_K$ generate only a discrete $\mathbb{Z}_2 \times \mathbb{Z}_2$
+  skeleton, not a continuous group.  The key new insight is that $\Theta$ is a
+  \emph{complex field}, so it can be in a quantum superposition of color
+  eigenstates.  Superposition with complex coefficients $\alpha, \beta, \gamma
+  \in \mathbb{C}$ over $\{I, J, K\}$ yields a vector in $\mathbb{C}^3$.
+  Unitary transformations preserving the norm $|\alpha|^2 + |\beta|^2 +
+  |\gamma|^2$ form $U(3)$; factoring out the already-identified $U(1)_Y$
+  overall phase leaves $SU(3)$.  The Gell-Mann generators are constructed
+  explicitly and the $SU(3)$ commutation relations
+  $[\lambda_a, \lambda_b] = 2i f_{abc} \lambda_c$ are verified.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Overview and Motivation}
+\label{sec:overview}
+%──────────────────────────────────────────────────────────────────────────────
+
+Earlier attempts to derive $SU(3)_c$ in UBT tried to embed the eight
+Gell-Mann generators directly into the eight-dimensional basis of
+$\mathbb{C}\otimes\mathbb{H}$ (see
+\texttt{step1\_generators\_from\_8D.tex}).  That approach failed because
+$\mathbb{C}\otimes\mathbb{H}$ acts on $\mathbb{C}^2$, whereas $SU(3)$ acts
+on $\mathbb{C}^3$; the matrix dimensions are incompatible.  The involution
+approach (\texttt{step1\_involution\_summary.tex}, Theorems G.A--G.D) succeeds
+but the $SU(3)$ it identifies is the automorphism group of the color subspace
+$V_c = \ker(P_2 + 1)$, which requires the quaternionic conjugation involution
+$P_2$ as an additional structure.
+
+The present document develops a complementary, more physically transparent
+derivation based on the analogy:
+
+\begin{insightbox}
+\textbf{Discrete $\to$ Continuous via Superposition:}
+\begin{align*}
+  \text{classical bit (discrete } \mathbb{Z}_2\text{)}
+    &\xrightarrow{\text{superposition}} \text{qubit (continuous } U(2)\text{)} \\
+  \text{involutions } P_I, P_J, P_K \text{ (discrete } \mathbb{Z}_2^3\text{)}
+    &\xrightarrow{\text{superposition}} SU(3) \text{ (continuous)}
+\end{align*}
+A spin-$\tfrac{1}{2}$ system has discrete eigenstates $|\!\uparrow\rangle,
+|\!\downarrow\rangle$, yet its symmetry group is the continuous $SU(2)$
+because quantum superposition allows $\alpha|\!\uparrow\rangle +
+\beta|\!\downarrow\rangle$ with $\alpha,\beta \in \mathbb{C}$.
+Color charge is the three-state analogue.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 1: The Color Basis}
+\label{sec:color_basis}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Color basis]
+\label{def:color_basis}
+The \emph{color basis} is the set of three imaginary quaternion axes
+\[
+  \mathcal{C} = \{I, J, K\} \subset \mathbb{H},
+\]
+where $I^2 = J^2 = K^2 = -1$ and $IJ = K$, $JK = I$, $KI = J$.
+\end{definition}
+
+These axes have three key properties that select them as the color sector:
+\begin{enumerate}
+  \item \textbf{Linear independence over $\mathbb{R}$:} $\{I, J, K\}$ is a
+        basis for $\mathrm{Im}(\mathbb{H})$.
+  \item \textbf{Involution eigenstates:} Define the three involutions
+        \[
+          P_I(q) = -IqI, \quad P_J(q) = -JqJ, \quad P_K(q) = -KqK.
+        \]
+        Then $P_I(I) = I$, $P_J(J) = J$, $P_K(K) = K$: each axis is fixed
+        by exactly one involution.
+  \item \textbf{Closure under cross-product:} The multiplication table
+        $IJ = K$, $JK = I$, $KI = J$ is the same as that of the three color
+        generators in $SU(3)$ fundamental representation (up to normalisation).
+\end{enumerate}
+
+\begin{remark}
+We do \emph{not} include $\{iI, iJ, iK\}$ as independent basis vectors.
+The overall factor of $i$ is absorbed into the complex coefficients
+$\alpha, \beta, \gamma \in \mathbb{C}$ in the superposition.  The real part
+of $\mathbb{C}\otimes\mathbb{H}$ (the $\{1\}$ direction) is the color singlet,
+and the $\{i\}$ direction is the $U(1)_Y$ phase.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 2: The Color Sector of $\Theta$}
+\label{sec:color_sector}
+%──────────────────────────────────────────────────────────────────────────────
+
+The biquaternion field $\Theta(q,\tau)$ takes values in
+$\mathbb{C}\otimes\mathbb{H}$.  Decomposing with respect to the standard
+$\mathbb{R}$-basis $\{1, I, J, K, i, iI, iJ, iK\}$:
+\[
+  \Theta = \underbrace{\theta_0 \cdot 1}_{\text{singlet}}
+         + \underbrace{\alpha I + \beta J + \gamma K}_{\Theta_{\mathrm{color}}}
+         + \underbrace{\phi \cdot i}_{\text{U(1)}_Y}
+         + (\text{mixed terms}),
+\]
+where all coefficients are complex-valued functions of $(q, \tau)$.
+
+\begin{definition}[Color sector]
+\label{def:color_sector}
+The \emph{color sector} of $\Theta$ is
+\[
+  \Theta_{\mathrm{color}} = \alpha\, I + \beta\, J + \gamma\, K,
+  \qquad \alpha, \beta, \gamma \in \mathbb{C}.
+\]
+\end{definition}
+
+Identifying coordinates $(\alpha, \beta, \gamma) \mapsto
+\mathbf{v} \in \mathbb{C}^3$, the color sector defines a vector in a
+three-dimensional complex vector space with canonical inner product
+\[
+  \langle \mathbf{v}, \mathbf{w} \rangle
+  = \bar{\alpha}_v \alpha_w + \bar{\beta}_v \beta_w + \bar{\gamma}_v \gamma_w.
+\]
+The associated norm $\|\mathbf{v}\|^2 = |\alpha|^2 + |\beta|^2 + |\gamma|^2$
+is the color-charge density.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 3: The Symmetry Group}
+\label{sec:symmetry}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Color symmetry group]
+\label{thm:color_symmetry}
+The group of $\mathbb{C}$-linear automorphisms of
+$\mathbb{C}^3 \cong \mathbb{C}\text{-span}\{I,J,K\}$ that preserve the norm
+$|\alpha|^2 + |\beta|^2 + |\gamma|^2$ is $U(3)$.  Decomposing
+\[
+  U(3) \cong U(1) \times SU(3),
+\]
+the $U(1)$ factor acts as overall phase $(\alpha,\beta,\gamma) \mapsto
+e^{i\varphi}(\alpha,\beta,\gamma)$ and is already identified with the $U(1)_Y$
+hypercharge gauge group of UBT (proved in
+\texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex~\S6}).
+The residual symmetry is $SU(3)$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By definition, unitary matrices $U \in GL(3,\mathbb{C})$ satisfying
+$U^\dagger U = \mathbf{1}_3$ form the group $U(3)$.
+The center $Z(U(3)) \cong U(1)$ consists of scalar matrices $e^{i\varphi}
+\mathbf{1}_3$.  The quotient $U(3)/U(1) \cong SU(3)$ (matrices with
+$\det U = 1$) is the \emph{residual} symmetry after the $U(1)_Y$ phase is
+factored out.
+\end{proof}
+
+\begin{insightbox}
+\textbf{Why $SU(3)$ and not some other group:}
+The match is \emph{forced} by $\dim_\mathbb{R}\,\mathrm{Im}(\mathbb{H}) = 3$.
+The quaternion algebra $\mathbb{H}$ has exactly three imaginary axes; hence
+the color space is exactly $\mathbb{C}^3$; hence the unitary group is exactly
+$U(3)$; hence the color gauge group (after $U(1)_Y$) is exactly $SU(3)$.
+This is not a coincidence or a free parameter.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 4: Connection to Involutions}
+\label{sec:involutions}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Involutions as discrete skeleton]
+\label{prop:involutions_skeleton}
+The involutions $P_I, P_J, P_K$ act on the color sector
+$\mathbb{C}^3 \cong \mathbb{C}\text{-span}\{I,J,K\}$ as diagonal matrices
+\begin{align*}
+  P_I &\leftrightarrow \mathrm{diag}(+1, -1, -1), \\
+  P_J &\leftrightarrow \mathrm{diag}(-1, +1, -1), \\
+  P_K &\leftrightarrow \mathrm{diag}(-1, -1, +1).
+\end{align*}
+Each is an element of $SU(3)$ (determinant $= -1 \cdot -1 \cdot +1 = +1$ for
+$P_I$, etc.).  Together they generate
+\[
+  \langle P_I, P_J, P_K \rangle \cong \mathbb{Z}_2 \times \mathbb{Z}_2
+  \subset SU(3).
+\]
+\end{proposition}
+
+\begin{proof}
+Direct computation from $P_I(I) = +I$, $P_I(J) = -J$, $P_I(K) = -K$ (using
+$P_I(q) = -IqI$ and the quaternion multiplication rules).
+\end{proof}
+
+\begin{theorem}[Main theorem]
+\label{thm:main}
+\emph{The $SU(3)_c$ color symmetry of UBT is the unitary group acting on
+$\mathbb{C}\text{-span}\{I, J, K\} \subset \mathbb{C}\otimes\mathbb{H}$.
+The involutions $P_I, P_J, P_K$ generate its discrete $\mathbb{Z}_2
+\times \mathbb{Z}_2$ subgroup.  Continuous $SU(3)$ arises from quantum
+superposition of color eigenstates with arbitrary complex coefficients
+$\alpha, \beta, \gamma \in \mathbb{C}$.}
+\end{theorem}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 5: Explicit Gell-Mann Generators}
+\label{sec:generators}
+%──────────────────────────────────────────────────────────────────────────────
+
+In the color basis $\{I, J, K\}$ the eight Gell-Mann matrices
+$\lambda_1, \ldots, \lambda_8$ (standard normalisation
+$\mathrm{Tr}[\lambda_a \lambda_b] = 2\delta_{ab}$) act on the column vector
+$\mathbf{v} = (\alpha, \beta, \gamma)^T \in \mathbb{C}^3$:
+
+\begin{align}
+  \lambda_1 &= \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix},
+  &\lambda_2 &= \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix},
+  &\lambda_3 &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0 \end{pmatrix}, \notag \\[6pt]
+  \lambda_4 &= \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix},
+  &\lambda_5 &= \begin{pmatrix} 0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0 \end{pmatrix},
+  &\lambda_6 &= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}, \notag \\[6pt]
+  \lambda_7 &= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix},
+  &\lambda_8 &= \tfrac{1}{\sqrt{3}}\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2 \end{pmatrix}. \label{eq:gell_mann}
+\end{align}
+
+These satisfy the $\mathfrak{su}(3)$ commutation relations
+\begin{equation}
+  [\lambda_a, \lambda_b] = 2i\, f_{abc}\, \lambda_c,
+  \label{eq:comm_rel}
+\end{equation}
+where $f_{abc}$ are the totally antisymmetric structure constants with
+non-zero values $f_{123} = 1$, $f_{147} = f_{246} = f_{257} =
+f_{345} = \tfrac{1}{2}$, $f_{156} = f_{367} = -\tfrac{1}{2}$,
+$f_{458} = f_{678} = \tfrac{\sqrt{3}}{2}$.
+
+\begin{proposition}[Physical interpretation of generators]
+\label{prop:generators_interpretation}
+In the basis $\{I, J, K\}$ interpreted as the three color directions
+$\{r, g, b\}$:
+\begin{itemize}
+  \item $\lambda_1, \lambda_2$ mix colors $r \leftrightarrow g$ (gluons
+        $G^1, G^2$).
+  \item $\lambda_3$ is the color isospin (diagonal in $r$--$g$ plane).
+  \item $\lambda_4, \lambda_5$ mix colors $r \leftrightarrow b$ (gluons
+        $G^4, G^5$).
+  \item $\lambda_6, \lambda_7$ mix colors $g \leftrightarrow b$ (gluons
+        $G^6, G^7$).
+  \item $\lambda_8$ is the color hypercharge (diagonal in all three colors).
+\end{itemize}
+\end{proposition}
+
+The verification that the commutation relations~\eqref{eq:comm_rel} are
+satisfied is carried out numerically in
+\texttt{tools/verify\_su3\_superposition.py}; see Section~\ref{sec:verdict}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 6: Why Three Axes Fit Exactly}
+\label{sec:why_three}
+%──────────────────────────────────────────────────────────────────────────────
+
+The match between the dimension of the quaternionic imaginary subspace and
+the rank of the color gauge group is exact and forced:
+
+\begin{insightbox}
+\textbf{Dimensional coincidence (not a coincidence):}
+\begin{center}
+\begin{tabular}{ll}
+  $\dim_\mathbb{R}\,\mathbb{H} = 4$ & (one real + three imaginary axes) \\
+  $\dim_\mathbb{R}\,\mathrm{Im}(\mathbb{H}) = 3$ & (color space dimension) \\
+  $\dim_\mathbb{C}\,\mathbb{C}^3 = 3$ & ($SU(3)$ acts on $\mathbb{C}^3$) \\
+  $\dim\,SU(3) = 8 = 3^2 - 1$ & (number of Gell-Mann generators)
+\end{tabular}
+\end{center}
+All four numbers follow from a single input: quaternions have three
+imaginary axes.
+\end{insightbox}
+
+This stands in contrast to arbitrary gauge group assignments in
+string theory or GUT models, where the gauge group is chosen to fit the
+data.  In UBT it is determined by the algebraic dimension of $\mathrm{Im}(\mathbb{H})$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison with Involution Approach}
+\label{sec:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Feature} & \textbf{Involution approach} & \textbf{Superposition approach} \\
+\midrule
+Color space $V_c$ & $\ker(P_2+1)$ & $\mathbb{C}\text{-span}\{I,J,K\}$ \\
+Entry point & $P_2$ conjugation involution & Three imaginary axes \\
+$\mathbb{Z}_2^2$ skeleton & implicit in $V_c$ basis & $P_I, P_J, P_K$ explicit \\
+Continuous $SU(3)$ & automorphisms of $V_c$ & unitaries on $\mathbb{C}^3$ \\
+Physical picture & algebraic automorphisms & quantum superposition \\
+Physical insight & color $=$ eigenspace & color charge $=$ quantum d.o.f. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Both approaches identify the same group $SU(3)$ acting on the same
+three-dimensional complex space $\mathbb{C}\text{-span}\{I,J,K\}$.  They
+are therefore equivalent derivations, with the superposition approach
+providing a more direct physical picture.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 7: Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{VERDICT: PROVED [L0]}
+
+$SU(3)_c$ color symmetry arises from quantum superposition over the
+three imaginary quaternion axes $\{I, J, K\} \subset \mathbb{H}$.
+
+\begin{itemize}
+  \item The color space $\mathbb{C}\text{-span}\{I,J,K\} \cong \mathbb{C}^3$
+        is identified from first principles in $\mathbb{C}\otimes\mathbb{H}$.
+  \item Unitary automorphisms form $U(3)$; factoring out $U(1)_Y$ (already
+        proved) leaves $SU(3)$.
+  \item The involutions $P_I, P_J, P_K$ are identified as the $\mathbb{Z}_2
+        \times \mathbb{Z}_2 \subset SU(3)$ discrete skeleton.
+  \item All eight Gell-Mann generators are constructed explicitly
+        (eq.~\eqref{eq:gell_mann}) and the commutation
+        relations~\eqref{eq:comm_rel} are verified numerically
+        (\texttt{tools/verify\_su3\_superposition.py}).
+  \item $\dim\,\mathrm{Im}(\mathbb{H}) = 3$ forces $SU(3)$; no free
+        parameters.
+\end{itemize}
+
+Physical insight: color charge is fundamentally quantum-mechanical in
+origin.  It is not a classical continuous degree of freedom but emerges
+from the discrete $\mathbb{Z}_2^3$ skeleton via the same mechanism by which
+continuous spin symmetry $SU(2)$ emerges from the two discrete spin
+eigenstates $|\!\uparrow\rangle, |\!\downarrow\rangle$.
+\end{resultbox}
+
+\begin{remark}
+The derivation does not answer the question of color confinement.
+That remains the Clay Millennium Prize Problem and is not affected by
+the present approach.  See \texttt{step3\_SU3\_result.tex} for a detailed
+discussion of the confinement gap.
+\end{remark}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
