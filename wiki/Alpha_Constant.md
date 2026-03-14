@@ -34,14 +34,14 @@ coupling amplitude B_base remains an open problem.
 | Prime stability constraint | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | N_eff = 12 from ℂ⊗ℍ algebra (N_phases = dim Im(ℍ) = 3) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | B₀ = 25.1 (one-loop baseline) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
-| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Partially Proved** | [`B_base_derivation_complete.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/B_base_derivation_complete.tex) |
+| B_base = N_eff^{3/2} = 41.57 | ⚠️ **Partially Proved** | [🌐 `B_base_derivation_complete.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/interactions/B_base_derivation_complete.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/B_base_derivation_complete.tex) |
 | R ≈ 1.114 (correction factor) | ❌ **Open** | [`PROOFKIT_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PROOFKIT_ALPHA.md) |
 | α⁻¹ = 137 (bare value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | α⁻¹ = 137.036 (full value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Non-circularity test | ✅ **Proved** | [`validate_B_coefficient.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/validation/validate_B_coefficient.py) |
 | Self-consistency equation n\*·α + g(α) = 1 | ❌ **Dead End** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | ⚠️ **Semi-empirical** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
-| R_ψ independent topological fixation | ⚠️ **Mechanism** | [`Rpsi_dynamical_fix.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/Rpsi_dynamical_fix.tex) |
+| R_ψ independent topological fixation | ⚠️ **Mechanism** | [🌐 `Rpsi_dynamical_fix.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/geometry/Rpsi_dynamical_fix.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/Rpsi_dynamical_fix.tex) |
 <!-- END GENERATED: alpha_status -->
 
 ---

@@ -243,12 +243,71 @@ def _extract_primary_file(file_col: str) -> str:
     return raw
 
 
+# GitHub Pages base URL
+_PAGES_BASE = "https://davj.github.io/unified-biquaternion-theory"
+
+# Canonical standalone files that have a Pages HTML version.
+# These are files with \documentclass processed by build_pages.yml.
+# Key: repo-relative path → value: Pages HTML path (relative to _PAGES_BASE)
+_PAGES_HTML_MAP: dict = {
+    # Main document
+    "canonical/UBT_canonical_main.tex":
+        "canonical/UBT_canonical_main.html",
+    # Geometry
+    "canonical/geometry/Rpsi_dynamical_fix.tex":
+        "canonical/geometry/Rpsi_dynamical_fix.html",
+    "canonical/geometry/biquaternionic_vacuum_solutions.tex":
+        "canonical/geometry/biquaternionic_vacuum_solutions.html",
+    # Interactions
+    "canonical/interactions/B_base_derivation_complete.tex":
+        "canonical/interactions/B_base_derivation_complete.html",
+    # Bridges
+    "canonical/bridges/QED_limit_bridge.tex":
+        "canonical/bridges/QED_limit_bridge.html",
+    "canonical/bridges/GR_chain_bridge.tex":
+        "canonical/bridges/GR_chain_bridge.html",
+    "canonical/bridges/fermionic_statistics_bridge.tex":
+        "canonical/bridges/fermionic_statistics_bridge.html",
+    "canonical/bridges/Maxwell_limit_bridge.tex":
+        "canonical/bridges/Maxwell_limit_bridge.html",
+    "canonical/bridges/QED_complete_chain.tex":
+        "canonical/bridges/QED_complete_chain.html",
+    # GR closure chain
+    "canonical/gr_closure/GR_chain_summary.tex":
+        "canonical/gr_closure/GR_chain_summary.html",
+    "canonical/gr_closure/step2_theta_only_closure.tex":
+        "canonical/gr_closure/step2_theta_only_closure.html",
+    "canonical/gr_closure/step3_signature_theorem.tex":
+        "canonical/gr_closure/step3_signature_theorem.html",
+    # Chirality
+    "canonical/chirality/step1_psi_parity.tex":
+        "canonical/chirality/step1_psi_parity.html",
+    "canonical/chirality/step2_chirality_result.tex":
+        "canonical/chirality/step2_chirality_result.html",
+    # QM emergence
+    "canonical/qm_emergence/step3_dirac_emergence.tex":
+        "canonical/qm_emergence/step3_dirac_emergence.html",
+    "canonical/qm_emergence/step7_born_rule.tex":
+        "canonical/qm_emergence/step7_born_rule.html",
+    # SU(3)
+    "canonical/su3_derivation/step3_SU3_result.tex":
+        "canonical/su3_derivation/step3_SU3_result.html",
+    # 8pi
+    "canonical/8pi_common_origin.tex":
+        "canonical/8pi_common_origin.html",
+}
+
+_PAGES_PDF = f"{_PAGES_BASE}/UBT_canonical_main.pdf"
+
+
 def _file_link(file_col: str) -> str:
     """
-    Return a Markdown hyperlink for the primary file in a DERIVATION_INDEX
-    file column cell, or an empty string if no valid file is found.
+    Return Markdown link(s) for the primary file in a DERIVATION_INDEX cell.
 
-    Only creates a link if the file actually exists in the repository.
+    For canonical standalone files with a Pages HTML version:
+      🌐 [filename](Pages HTML URL) · [pdf](PDF URL) · [tex](GitHub blob)
+    For all other files:
+      [`filename`](GitHub blob)  — existing behaviour
     """
     if not file_col:
         return ""
@@ -258,10 +317,22 @@ def _file_link(file_col: str) -> str:
     full = os.path.join(REPO_ROOT, path)
     if not os.path.exists(full):
         return ""
-    # Use /blob/ for files and /tree/ for directories
-    link_type = "tree" if os.path.isdir(full) else "blob"
+
     basename = os.path.basename(path) or os.path.basename(os.path.dirname(path))
-    return f"[`{basename}`]({REPO_URL}/{link_type}/master/{path})"
+    link_type = "tree" if os.path.isdir(full) else "blob"
+    github_url = f"{REPO_URL}/{link_type}/master/{path}"
+
+    # Smart triple-link for canonical files with Pages HTML
+    if path in _PAGES_HTML_MAP:
+        pages_url = f"{_PAGES_BASE}/{_PAGES_HTML_MAP[path]}"
+        return (
+            f"[🌐 `{basename}`]({pages_url})"
+            f" · [pdf]({_PAGES_PDF})"
+            f" · [tex]({github_url})"
+        )
+
+    # Default: single GitHub blob link
+    return f"[`{basename}`]({github_url})"
 
 
 def _status_table(entries: list[dict], max_rows: int = 20) -> str:
