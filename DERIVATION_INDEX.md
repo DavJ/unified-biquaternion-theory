@@ -97,7 +97,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | Hecke twin prime p=139 (mirror sector) | **NUMERICAL OBSERVATION** | `docs/reports/hecke_lepton/mirror_world_139.md` | Set B (195.2, 50.4, 54.6): unique global hit p=139 in 50–300; Sets A and B mutually exclusive on twin primes (137, 139) |
 | CM k=6 forms at any level | **Dead End** | `experiments/research_tracks/three_generations/step5_hecke_search_results.tex §5.2`, `experiments/research_tracks/three_generations/step6_nonCM_search.tex` | \|a_137\| ~ 439371 ≫ 81400; structural impossibility |
 | Non-CM k=6 forms, N≤4 | **Dead End** | `experiments/research_tracks/three_generations/step5_hecke_search_results.tex` | No non-CM forms exist at these levels |
-| Non-CM k=6 forms, N∈[50,500] | **Extended Dead End** | `experiments/research_tracks/three_generations/step6_nonCM_search.tex`, `experiments/research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |
+| Non-CM k=6 forms, N∈[50,500] | **Partially Searched — Open** | `experiments/research_tracks/three_generations/step6_nonCM_search.tex`, `experiments/research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |
 
 ### Lepton Sector Parameter Audit
 
@@ -142,7 +142,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 |--------|--------|------|-------|
 | φ-projection theorem (P_φ[𝒢_μν] satisfies GR) | **Proven** [L1] | `canonical/geometry/phase_projection.tex` | U(1) automorphism of ℂ⊗ℍ |
 | ∂α/∂φ = 2ρr·α(0) formula | **Proven** [L1] | `canonical/geometry/phi_gauge_vs_physical.tex` | Analytic derivation; result depends on vacuum |
-| h_μν = 0 for single-mode winding vacuum | **Proven** [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Dead End documented |
+| h_μν = 0 for single-mode winding vacuum | **Proven** [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Proved [L1]. Earlier approaches were dead ends; current result from biquaternionic_vacuum_solutions.tex §1.2 |
 | h_μν ≠ 0 two-mode winding vacuum | **Proven** [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | h_ψψ = (2/R_ψ²)sin(ψ/R_ψ)·Im[Sc(Θ₀Θ₁†)] |
 | r ≈ 4.66 for canonical two-mode vacuum | **Proven** [L1] | `tools/compute_h_munu_vacuum.py` | Numerical; gauge potential formula is SKETCH |
 | φ is physical (not pure gauge) for two-mode vacuum | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | r ≠ 0 → φ is physical |
@@ -404,7 +404,8 @@ and an emergent-metric construction strongly connected to Θ.
 | ψ-circle S¹(R_ψ) is flat (zero curvature) | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §3` | Standard diff.geom.; no AdS factor |
 | Moduli space ℍ has hyperbolic geometry K=−1 | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §4` | Parameter space, not physical spacetime |
 | AdS/CFT-like informational encoding analogy | **[O] Open Research** | `research_tracks/THEORY_COMPARISONS/ads_cft_like_encoding_in_ubt.md` | Structural analogy only; not a duality |
-| Λ_eff from V_eff(Θ) minimum | **[O] Dead End [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | v47 numerical check: V_eff(n*=137) = A·137²−B·137·ln(137) ≈ −12428 (dimensionless winding-sector potential). Direct identification V_eff(n*) = Λ_eff gives wrong units and magnitude (≠ 10⁻¹²² in Planck units by many orders of magnitude). Dead End for direct identification. A unit-conversion bridge from the winding potential to vacuum energy density requires an independent UV cut-off argument not present in the current framework. |
+| Λ_eff from V_eff(Θ) direct identification | **Dead End [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | v47 numerical check: V_eff(n*=137) = A·137²−B·137·ln(137) ≈ −12428 (dimensionless winding-sector potential). Direct identification V_eff(n*) = Λ_eff gives wrong units and magnitude (≠ 10⁻¹²² in Planck units by many orders of magnitude). Dead End for direct identification. |
+| Λ_eff via UV cut-off bridge from V_eff | **Open [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | A unit-conversion bridge from the winding potential to vacuum energy density via an independent UV cut-off argument is not yet present in the framework; route is open. |
 | Verlinde / dS holographic principle | **[S] Speculative** | `ARCHIVE/archive_legacy/consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
 
 
