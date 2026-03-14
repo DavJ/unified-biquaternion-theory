@@ -277,6 +277,131 @@ $k^2 + V_{\text{eff}}(r) = 0$ derived; coefficient matching with
 Regge-Wheeler remains \OPEN\ [L2].
 
 % ======================================================================
+\section{Regge-Wheeler Coefficient Comparison}
+\label{sec:regge_wheeler_comparison}
+% ======================================================================
+
+\subsection{Goal}
+
+Section~\ref{sec:dispersion_curved} established the modified dispersion
+relation $k^2 + V_{\text{eff}}(r) = 0$ with $V_{\text{eff}}$ given by
+\eqref{eq:Veff_explicit}.  This section attempts explicit coefficient
+matching against the standard Regge-Wheeler potential $V_{\text{RW}}(r)$
+\eqref{eq:regge_wheeler}, as required for an [L1] result.
+
+\subsection{Coordinate Transformation: Isotropic to Schwarzschild}
+
+The UBT effective potential~\eqref{eq:Veff_explicit} is expressed in
+isotropic radial coordinate $r_{\text{iso}}$, while the Regge-Wheeler
+potential uses the Schwarzschild (areal) coordinate $r_{\text{Schw}}$,
+related by
+\begin{equation}
+  r_{\text{Schw}} = r_{\text{iso}}\,\Psi(r_{\text{iso}})^2
+  = r_{\text{iso}}\!\left(1 + \frac{M}{2r_{\text{iso}}}\right)^{\!2}.
+  \label{eq:coord_transform}
+\end{equation}
+At large $r$ (i.e., $r \gg M$): $r_{\text{Schw}} \approx r_{\text{iso}} + M$,
+and the two coordinates differ only at $O(M)$.
+
+\subsection{Explicit Comparison at Leading Order}
+
+Expanding $V_{\text{eff}}(r_{\text{iso}})$ \eqref{eq:Veff_explicit} in
+the limit $r_{\text{iso}} \gg M$:
+\begin{equation}
+  V_{\text{eff}}(r_{\text{iso}}) \approx \frac{2M}{r_{\text{iso}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{iso}}^4}\right).
+  \label{eq:Veff_leading}
+\end{equation}
+
+Converting to Schwarzschild coordinates via \eqref{eq:coord_transform}
+at leading order ($r_{\text{Schw}} \approx r_{\text{iso}}$):
+\begin{equation}
+  V_{\text{eff}}(r_{\text{Schw}}) \approx \frac{2M}{r_{\text{Schw}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{Schw}}^4}\right).
+  \label{eq:Veff_Schw}
+\end{equation}
+
+The Regge-Wheeler potential for $\ell = 2$ (tensor gravitons),
+expanding for $r_{\text{Schw}} \gg M$:
+\begin{equation}
+  V_{\text{RW}}(r_{\text{Schw}}) \approx \frac{\ell(\ell+1)}{r_{\text{Schw}}^2}
+  - \frac{6M + 2M\ell(\ell+1)}{r_{\text{Schw}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{Schw}}^4}\right).
+  \label{eq:Vrw_expanded}
+\end{equation}
+
+\subsection{Mismatch: Missing Angular Structure}
+
+\textbf{Leading-order mismatch}: $V_{\text{eff}}$ scales as $M/r^3$
+while $V_{\text{RW}}$ has a dominant $\ell(\ell+1)/r^2$ centrifugal term
+for $\ell \geq 1$.  This discrepancy arises because $V_{\text{eff}}$ in
+\eqref{eq:Veff_explicit} was derived for \emph{radial} perturbations only,
+without angular mode decomposition.
+
+Specifically:
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{eff}}$ (UBT, radial) & $V_{\text{RW}}$ (GR, $\ell=2$) \\
+\hline
+$O(1/r^2)$ centrifugal & absent & $\ell(\ell+1)/r^2 = 6/r^2$ \\
+$O(M/r^3)$ leading & $+2M/r^3$ & $-(6+2\ell(\ell+1))M/r^3 = -18M/r^3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Physical interpretation}: The angular barrier term
+$\ell(\ell+1)/r^2$ in $V_{\text{RW}}$ arises from separating
+the perturbation into spin-weighted spherical harmonics ${}_{-2}Y_{\ell m}$.
+This step has not been performed in the UBT linearisation above.
+
+\subsection{Requirement for Full Matching}
+
+To perform coefficient matching at [L1], three additional steps are needed:
+
+\begin{enumerate}
+  \item \textbf{Angular mode decomposition}: Expand the biquaternion
+        perturbation $\Theta_1$ in spin-weighted spherical harmonics
+        ${}_{s}Y_{\ell m}(\theta,\phi)$ with spin weight $s = -2$
+        (tensor perturbations).
+
+  \item \textbf{Tortoise coordinate}: Express the radial equation in the
+        Schwarzschild tortoise coordinate
+        $r_* = r_{\text{Schw}} + 2M\ln\bigl|r_{\text{Schw}}/(2M)-1\bigr|$,
+        which maps $[2M, \infty) \to (-\infty, +\infty)$.
+
+  \item \textbf{Odd/even parity separation}: Identify UBT perturbations
+        with odd-parity (Regge-Wheeler) or even-parity (Zerilli)
+        perturbations in GR.
+\end{enumerate}
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \Lone \\
+Modified dispersion $k^2+V_{\text{eff}}(r)=0$ & \Lone \\
+Coordinate transformation to Schwarzschild coords & Explicit (§5.2) \\
+Regge-Wheeler coefficient matching (full, with angular modes) & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Conclusion}: Coefficient matching is incomplete because the UBT
+linearisation has not yet been decomposed into spin-2 spherical harmonics.
+The structural correspondence ($k^2 + V_{\text{eff}} = 0$ vs.\
+Regge-Wheeler) is established \Lone, but the coefficient values do not
+agree until the angular decomposition is included.  This is consistent
+with a matching expected to emerge after step~1 above — the $\ell(\ell+1)$
+centrifugal term will appear once spin-weighted harmonics are introduced.
+Gap status: \OPEN\ [L2].
+
+% ======================================================================
 \section{Next Steps}
 \label{sec:nextsteps}
 % ======================================================================
