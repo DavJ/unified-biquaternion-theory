@@ -2,13 +2,13 @@ name: Build Publication PDFs
 
 on:
   push:
-    branches: [ main, copilot/** ]
+    branches: [ master, copilot/** ]
     paths:
       - 'docs/publication/**'
       - 'archive/consolidation_project/alpha_two_loop/tex/**'
       - '.github/workflows/publication.yml'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'docs/publication/**'
       - 'archive/consolidation_project/alpha_two_loop/tex/**'
@@ -64,8 +64,8 @@ jobs:
         name: publication-checksums
         path: publication/artifacts/checksums.txt
         
-    - name: Commit artifacts (on main branch)
-      if: github.ref == 'refs/heads/main'
+    - name: Commit artifacts (on master branch)
+      if: github.ref == 'refs/heads/master'
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"

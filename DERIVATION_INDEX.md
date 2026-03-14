@@ -196,7 +196,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 | Schrödinger structure from Im(∂_τΘ = □Θ) | **Sketch** [L0] | `canonical/qm_emergence/step2_schrodinger_emergence.tex §5` | ∂_ψΦ = −2i∇²Φ follows analytically; diffusion coeff. 𝒟=ℏ/(2m) is assumed (Gap S1) |
 | UBT ψ is physical — NOT a Wick rotation | **Proven** [L0] | `canonical/THEORY/math/fields/biquaternion_time.tex §5.1` | ψ∈ℝ is dynamical; Wick rotation is formal analytic continuation only |
 | Biquaternionic FPE with Θ = Σ exp[πB(n)·H(T)] | **Sketch** [L0] | `canonical/qm_emergence/step1_fpe_check.tex` | Scalar sector numerically verified (see tools/verify_fpe.py); three gaps remain: G1 (A(Q) assumed), G2 (consistency condition on H), G3 (non-commutativity) |
-| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | **Sketch** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §6` | Algebraic structure proved; spinorial subspace constraint not derived from S[Θ] (Gap D1) |
+| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | **Proved [L1]** | `canonical/qm_emergence/step3_dirac_emergence.tex §6`, `canonical/qm_emergence/step6_spinorial_subspace.tex` | Algebraic structure proved; Gap D1 (spinorial subspace) closed by step6: Θ₁ (n=1 ψ-mode) transforms as Dirac spinor via winding + SL(2,ℂ) double cover (Thm. D1); massless case has zero free parameters |
 | Born rule: Θ†Θ is probability density | **Proved [L0]** | `canonical/qm_emergence/step7_born_rule.tex` | Sc[Θ†Θ] is conserved by FPE (∂_T∫P dQ=0); Born rule follows without postulate; see step7 |
 | QM unification via drift-diffusion | **Sketch** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_FORMAL_qm_gr_unification.tex` | Madelung equations reproduced; specific parameter choices needed (see Step 2) |
 | FPE ↔ Euler–Lagrange equivalence (scalar sector) | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex` | Algebraic identity under conditions C1 (∇²H=0) and C2 (∇H⊥∇Θ); script tools/verify_fpe_equivalence.py — ALL CHECKS PASSED |
@@ -293,7 +293,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | B₀ = 8π from dim_ℂ(ℂ⊗ℍ) = 4 | **Proven** [L1] | `canonical/8pi_common_origin.tex §3`, `canonical/n_eff/step2_vacuum_polarization.tex` | B₀ = 2π × dim_ℂ(ℂ⊗ℍ) = 8π; script verify_8pi_connection.py ALL PASS |
 | Common algebraic ancestor: dim 4 | **Structural** [L0] | `canonical/8pi_common_origin.tex §4` | dim_ℝ(ℍ) = dim_ℂ(Mat(2,ℂ)) = 4; both 8π's share this factor |
 | N_phases = 3 and spin-trace = 1/3: algebraically independent | **Proven** [L0] | `canonical/8pi_common_origin.tex §3 Thm. 3` | Numerical equality in d=4 is coincidental; cancellation gives dim_ℂ(ℂ⊗ℍ) = 4 |
-| Unified theorem: single origin for both 8π's | **Open** | `canonical/8pi_common_origin.tex §5` | Would require deriving 1/(16πG) from S[Θ] directly; deep unification OPEN |
+| Unified theorem: single origin for both 8π's | **Motivated Conjecture [Open L2]** | `canonical/8pi_common_origin.tex §5` | Common algebraic ancestor dim_ℝ(ℍ) = 4 identified; MOTIVATED CONJECTURE: both 8π's trace to quaternionic dimension 4; rigorous unification would require deriving 1/(16πG) from S[Θ] directly — deep [L2] open problem |
 
 ---
 

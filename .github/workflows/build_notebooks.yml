@@ -6,7 +6,7 @@ name: Build Jupyter Notebooks
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - "tools/verify_*.py"
       - "experiments/constants_derivation/*.py"

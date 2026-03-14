@@ -34,10 +34,25 @@ Numerical verification: ALL PASS — see `tools/verify_8pi_connection.py`.
 | B₀ = 8π from dim_ℂ(ℂ⊗ℍ) = 4 | ✅ **Proved** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 | Common algebraic ancestor: dim 4 | 🔶 **Structural** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 | N_phases = 3 and spin-trace = 1/3: algebraically independent | ✅ **Proved** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
-| Unified theorem: single origin for both 8π's | ❌ **Open** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
+| Unified theorem: single origin for both 8π's | 💭 **Motivated Conjecture [Open L2]** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 <!-- END GENERATED: eightpi_status -->
 
 ---
+
+## Unified Theorem Status
+
+The algebraic source of both 8π's is **identified**: both trace to
+dim_ℝ(ℍ) = 4 (quaternionic dimension). The conjecture is now formalised
+as a **Motivated Conjecture** in `canonical/8pi_common_origin.tex §5`:
+
+- **What is proved**: Both 8π's share the common algebraic ancestor dim_ℝ(ℍ) = 4:
+  - G_μν: 8π = (1/2) × dim_ℝ(ℍ) × vol(S²) / (2π)
+  - B₀: 8π = 2π × dim_ℂ(ℂ⊗ℍ) = 2π × dim_ℝ(ℍ)
+- **What is conjectured**: A single variational argument δS[Θ] produces both,
+  with the Einstein–Hilbert coefficient 1/(16πG) arising from the φ-projection
+  of S[Θ] onto its real commutative sector.
+- **What is blocked**: Rigorous unification requires deriving Newton's constant G
+  directly from the normalisation of S[Θ] — a deep [L2] open problem.
 
 ## Open Problem
 
