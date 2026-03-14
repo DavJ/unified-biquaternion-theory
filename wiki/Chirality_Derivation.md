@@ -30,10 +30,10 @@ Status: **Proved [L1]** — Gap C1 (W± vertex from S[Θ]) is CLOSED.
 | ∂_ψ anti-commutes with P_ψ | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
 | P_ψ acts as γ⁵ in ψ-sector | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
 | Preferred ψ-circle orientation (matter n>0 by CPT) | ✅ **Proved** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| SU(2)_L on odd modes ℋ₋ | ❓ **Unknown** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| Gap | ❓ **Unknown** |  |
-| C1 | ❓ **Unknown** |  |
+| SU(2)_L on odd modes ℋ₋ | ✅ **Proved [L1]** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
 <!-- END GENERATED: chirality_status -->
+
+> **Note:** Gap C1 (W± vertex P_ψ-odd from S[Θ]) is CLOSED — see [`step3_gap_C1_resolution.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step3_gap_C1_resolution.tex)
 
 ---
 

@@ -25,6 +25,24 @@ File: [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquater
 
 ---
 
+## Θ as Tensor Potential for Gravity
+
+In precise analogy with electromagnetism — where the vector potential A_μ
+generates the field strength F_μν = ∂_μA_ν − ∂_νA_μ — the field Θ acts as a
+**tensor potential** for the gravitational metric:
+
+    g_μν = Re Tr(∂_μΘ · ∂_νΘ†)
+
+Key properties:
+- The metric is **not independent** of Θ — it is fully determined by Θ's derivative structure
+- This is not a postulate but follows from the variational principle δS[Θ] = 0
+- In the real limit ψ → 0, this reduces to standard GR metric with Lorentzian signature
+
+Status: **Proved [L1]**  
+Source: [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/metric.tex)
+
+---
+
 ## Key Properties of the Emergent Metric
 
 | Property | Status | File |
