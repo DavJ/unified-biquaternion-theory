@@ -21,9 +21,11 @@
 
 - [GR Recovery](GR_Recovery)
 - [Fine Structure Constant α](Alpha_Constant)
+- [Prime Attractor Theorem](Prime_Attractor)
 - [SU(3) Structure](SU3_Structure)
 - [Hecke / Modular Structure](Hecke_Modular_Structure)
 - [Mirror Sector](Mirror_Sector)
+- [φ-Universe Parameter](Phi_Universe)
 
 ---
 
@@ -32,6 +34,16 @@
 - [Biquaternion Algebra](Biquaternion_Algebra)
 - [Modular Forms](Modular_Forms)
 - [Operator Formalism](Operator_Formalism)
+
+---
+
+## ⚛️ Canonical Core Results (CORE)
+
+- [QM Emergence](QM_Emergence)
+- [FPE Equivalence](FPE_Equivalence)
+- [QED Reproducibility](QED_Reproducibility)
+- [Chirality Derivation](Chirality_Derivation)
+- [8π Common Origin](EightPi_Origin)
 
 ---
 
