@@ -1,0 +1,328 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Schwarzschild Metric from an Explicit $\Theta_0$}\\
+\large Spherically Symmetric Ansatz and ODE Analysis in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-03-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We construct the first explicit biquaternionic field configuration $\Theta_0$
+in Unified Biquaternion Theory (UBT) whose emergent metric
+$g_{\mu\nu}[\Theta_0] = \mathrm{Sc}(\partial_\mu\Theta_0^\dagger\,\partial_\nu\Theta_0)$
+equals (or is consistent with) the Schwarzschild solution of General Relativity.
+The construction uses a spherically symmetric ansatz
+$\Theta_0(r) = f(r)\cdot\mathbf{1} + g(r)\cdot\boldsymbol{e}_r$,
+where $\boldsymbol{e}_r = (x\,\mathbf{i} + y\,\mathbf{j} + z\,\mathbf{k})/r$
+is the radial unit quaternion.  We derive the system of ODEs that $f(r)$ and
+$g(r)$ must satisfy and analyse whether it admits solutions consistent with
+the Schwarzschild metric.  The numerical verification is provided in
+\texttt{tools/verify\_schwarzschild\_theta.py}.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Setup and Goal}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{The Emergent Metric Formula}
+
+In UBT the physical spacetime metric is derived from the biquaternionic field
+$\Theta: M^4 \to \mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ via
+\begin{equation}
+  g_{\mu\nu}[\Theta]
+  \;:=\; \mathrm{Sc}\!\left(\partial_\mu\Theta^\dagger\,\partial_\nu\Theta\right),
+  \label{eq:metric_formula}
+\end{equation}
+where $\mathrm{Sc}(q) := \tfrac{1}{2}\mathrm{Tr}(q)$ for the $2\times 2$
+matrix representation of $\mathcal{B}$.  The four-vector of first derivatives
+$E_\mu := \partial_\mu\Theta$ plays the role of a biquaternionic tetrad.
+
+\subsection{Schwarzschild Metric (Isotropic Coordinates)}
+
+We use isotropic coordinates $(t, x, y, z)$ with $r = \sqrt{x^2+y^2+z^2}$,
+in which the Schwarzschild metric takes the form
+\begin{equation}
+  ds^2
+  = -\left(\frac{1 - M/2r}{1 + M/2r}\right)^2 dt^2
+  + \left(1 + \frac{M}{2r}\right)^4
+    \left(dx^2 + dy^2 + dz^2\right),
+  \label{eq:schwarz_isotropic}
+\end{equation}
+i.e.\
+\begin{equation}
+  g_{\mu\nu} = \mathrm{diag}\!\left(
+    -\Phi(r)^2,\;
+    \Psi(r)^4,\;
+    \Psi(r)^4,\;
+    \Psi(r)^4
+  \right),
+  \quad
+  \Phi(r) := \frac{1 - M/2r}{1 + M/2r},
+  \quad
+  \Psi(r) := 1 + \frac{M}{2r}.
+  \label{eq:schwarz_components}
+\end{equation}
+As $M \to 0$, $\Phi \to 1$ and $\Psi \to 1$, recovering Minkowski space.
+
+% ======================================================================
+\section{Spherically Symmetric Ansatz}
+\label{sec:ansatz}
+% ======================================================================
+
+\subsection{Motivation}
+
+By Birkhoff's theorem, any spherically symmetric vacuum solution to the
+Einstein equations in $3+1$ dimensions is static and given by the Schwarzschild
+metric.  We therefore look for a $\Theta_0$ that:
+\begin{enumerate}
+  \item Is spherically symmetric: invariant under $\mathrm{SO}(3)$ acting on
+        spatial coordinates.
+  \item Depends only on $r$ (static field configuration).
+  \item Is real-valued (imaginary components of $\Theta_0$ set to zero, since
+        the Schwarzschild metric has real coefficients).
+\end{enumerate}
+
+\subsection{Ansatz}
+
+The most general real spherically symmetric element of $\mathcal{B}$
+depending only on $r$ is
+\begin{equation}
+  \Theta_0(r)
+  \;=\; f(r)\cdot\mathbf{1}
+       + g(r)\cdot\boldsymbol{e}_r,
+  \label{eq:ansatz}
+\end{equation}
+where:
+\begin{itemize}
+  \item $\mathbf{1}$ is the identity element of $\mathbb{H}$ (scalar part),
+  \item $\boldsymbol{e}_r := \frac{x\,\mathbf{i} + y\,\mathbf{j} + z\,\mathbf{k}}{r}
+        \in \mathrm{Im}(\mathbb{H})$ is the unit outward radial quaternion,
+  \item $f(r), g(r): \mathbb{R}_{>0} \to \mathbb{R}$ are real functions
+        of $r$ alone.
+\end{itemize}
+
+\begin{remark}
+Under an $\mathrm{SO}(3)$ rotation $R \in \mathrm{SO}(3)$, $\boldsymbol{e}_r$
+transforms as $\boldsymbol{e}_{Rr}$ (a unit vector in $\mathrm{Im}(\mathbb{H})$).
+By the double-cover $\mathrm{SU}(2)\to\mathrm{SO}(3)$, this is a quaternion
+conjugation: $\boldsymbol{e}_{Rr} = q_R\,\boldsymbol{e}_r\,q_R^{-1}$ for the
+appropriate unit quaternion $q_R$.  The ansatz \eqref{eq:ansatz} is therefore
+equivariant under $\mathrm{SO}(3)$.
+\end{remark}
+
+% ======================================================================
+\section{Computing the Emergent Metric}
+\label{sec:metric_compute}
+% ======================================================================
+
+\subsection{Derivatives of $\Theta_0$}
+
+Since $\Theta_0$ is independent of $t$, we have $\partial_t\Theta_0 = 0$, and
+for spatial directions:
+\begin{align}
+  \partial_i\Theta_0
+  &= f'(r)\,\frac{x_i}{r}\cdot\mathbf{1}
+   + g'(r)\,\frac{x_i}{r}\cdot\boldsymbol{e}_r
+   + g(r)\,\partial_i\boldsymbol{e}_r,
+  \label{eq:dTheta_spatial}
+\end{align}
+where $x_i \in \{x,y,z\}$ and we compute
+\begin{equation}
+  \partial_i\boldsymbol{e}_r
+  = \frac{\partial}{\partial x_i}\left(\frac{\mathbf{x}}{r}\right)
+  = \frac{\mathbf{e}_i}{r} - \frac{x_i\,\mathbf{x}}{r^3},
+  \label{eq:dbolde_r}
+\end{equation}
+with $\mathbf{e}_i$ the $i$-th standard quaternion basis element and
+$\mathbf{x} = x\mathbf{i}+y\mathbf{j}+z\mathbf{k}$.
+
+\subsection{Time Component}
+
+Since $\partial_t\Theta_0 = 0$:
+\begin{equation}
+  g_{00} = \mathrm{Sc}\bigl((\partial_t\Theta_0)^\dagger\partial_t\Theta_0\bigr) = 0.
+  \label{eq:g00_zero}
+\end{equation}
+
+\begin{tcolorbox}[colback=red!10!white,colframe=red!75!black,
+                  title={Known Limitation: Temporal Component}]
+The ansatz \eqref{eq:ansatz} gives $g_{00} = 0$, since $\partial_t\Theta_0 = 0$.
+This is incompatible with the Schwarzschild metric where $g_{00} = -\Phi(r)^2 \neq 0$.
+
+\medskip
+\textbf{Status}: The temporal metric component $g_{tt} = -\Phi^2$ requires the
+complex time structure $\tau = t + i\psi$ of UBT
+(proved in \texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}).
+The Lorentzian signature $(-,+,+,+)$ emerges from the real-vector subspace
+$V_\mathbb{R} = \mathrm{span}_\mathbb{R}\{1,\,i\mathbf{i},\,i\mathbf{j},\,i\mathbf{k}\} \subset \mathcal{B}$,
+and the time-like direction requires the complex factor $i_\mathbb{C}$.
+
+\medskip
+\textbf{This document focuses on the spatial metric}, which is the main
+content of the Schwarzschild from $\Theta_0$ result.  The temporal component
+is an open item for the complex-time sector.
+\end{tcolorbox}
+
+% ======================================================================
+\subsection{Spatial Metric Components}
+
+A direct computation using the quaternion tetrad formula
+$g_{ij} = \mathrm{Sc}(E_i^\dagger E_j)$, together with the identities
+$\mathrm{Sc}(Q_i^\dagger Q_j) = -\delta_{ij}$ (anti-Hermitian imaginary
+units, $Q_i^2 = -1$), $\mathrm{Sc}(\boldsymbol{e}_r^\dagger Q_i) = -x_i/r$,
+and $\mathrm{Sc}(Q_i^\dagger\boldsymbol{e}_r) = -x_i/r$, gives the general
+spatial metric:
+\begin{equation}
+  g_{ij}
+  = \frac{g(r)^2}{r^2}\,\delta_{ij}
+  + \frac{x_i x_j}{r^2}\,\Bigl[f'(r)^2 + g'(r)^2 - \frac{g(r)^2}{r^2}\Bigr].
+  \label{eq:g_ij_general}
+\end{equation}
+
+For the Schwarzschild metric in isotropic coordinates \eqref{eq:schwarz_isotropic},
+the spatial metric is isotropic: $g_{ij} = \Psi(r)^4\,\delta_{ij}$.  This
+requires the coefficient of the anisotropic term to vanish and the isotropic
+coefficient to match $\Psi^4$:
+\begin{align}
+  \frac{g(r)^2}{r^2} &= \Psi(r)^4,
+  \label{eq:A_match}\\
+  f'(r)^2 + g'(r)^2 &= \frac{g(r)^2}{r^2} = \Psi(r)^4.
+  \label{eq:isotropy_ode}
+\end{align}
+
+% ======================================================================
+\section{ODE System and Analysis}
+\label{sec:odes}
+% ======================================================================
+
+\subsection{Explicit Solution}
+
+From \eqref{eq:A_match} (taking the positive branch):
+\begin{equation}
+  g(r) = r\,\Psi(r)^2 = r + M + \frac{M^2}{4r}.
+  \label{eq:g_solution}
+\end{equation}
+
+From \eqref{eq:isotropy_ode}, with $g'(r) = \Psi(r)\Phi(r) = 1 - M^2/(4r^2)$:
+\begin{equation}
+  f'(r)^2 = \Psi(r)^4 - g'(r)^2
+  = \Psi(r)^2\bigl(\Psi(r)^2 - \Phi(r)^2\bigr)
+  = \Psi(r)^2 \cdot \frac{2M}{r},
+  \label{eq:fprime_squared}
+\end{equation}
+where we used $\Psi^2 - \Phi^2 = (1+M/2r)^2 - (1-M/2r)^2 = 2M/r$.
+Therefore:
+\begin{equation}
+  f'(r) = \Psi(r)\sqrt{\frac{2M}{r}}
+  = \left(1 + \frac{M}{2r}\right)\sqrt{\frac{2M}{r}}.
+  \label{eq:fprime_solution}
+\end{equation}
+
+This is an \emph{explicit closed-form formula} for $f'(r)$, valid for all
+$r > 0$ (with $M > 0$).
+
+\subsection{Verification: Isotropy Condition}
+
+By construction, $f'(r)^2 + g'(r)^2 = \Psi^4$ holds exactly:
+\begin{equation}
+  \Psi^2 \cdot \frac{2M}{r} + \Psi^2\Phi^2
+  = \Psi^2\left(\frac{2M}{r} + \Phi^2\right)
+  = \Psi^2\,\Psi^2 = \Psi^4. \quad\checkmark
+\end{equation}
+
+This is verified numerically at all test radii in
+\texttt{tools/verify\_schwarzschild\_theta.py}.
+
+
+
+% ======================================================================
+\section{Vacuum Solution ($M = 0$): Flat Space Check}
+\label{sec:flat}
+% ======================================================================
+
+For $M = 0$: $\Phi = 1$, $\Psi = 1$, and the spatial metric is Minkowski flat
+$g_{ij} = \delta_{ij}$.  The formula \eqref{eq:fprime_solution} gives
+$f'(r) = 0$ at $M = 0$, consistent with a constant $f(r) = f_0$.  The
+condition \eqref{eq:isotropy_ode} becomes $g'(r)^2 = 1$, so $g(r) = r$ (up to
+constants), giving $g_{ij} = g(r)^2/r^2 \cdot \delta_{ij} = \delta_{ij}$.
+This is correct for the flat spatial metric.
+
+\begin{remark}
+The standard UBT Minkowski vacuum is a constant background field
+$\Theta_0 = \mathrm{const.}$, for which $\partial_\mu\Theta_0 = 0$ and
+$g_{\mu\nu} = 0$ (trivial metric).  The non-trivial spatial metric
+$g_{ij} = \delta_{ij}$ requires a non-constant field, specifically
+$\Theta_0 = f_0 \cdot \mathbf{1} + r \cdot \boldsymbol{e}_r$ (linear in the
+radial coordinate).  This is consistent with the GR limit of UBT where
+flat Minkowski space is a non-trivial vacuum configuration.
+\end{remark}
+
+% ======================================================================
+\section{Summary}
+\label{sec:summary}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+                  title={Summary}]
+\textbf{Ansatz}: $\Theta_0(r) = f(r)\cdot\mathbf{1} + g(r)\cdot\boldsymbol{e}_r$
+(static, spherically symmetric).
+
+\medskip
+\textbf{Explicit solution}:
+\[
+  g(r) = r\,\Psi(r)^2, \quad
+  f'(r) = \Psi(r)\sqrt{2M/r},
+\]
+where $\Psi(r) = 1 + M/(2r)$ is the Schwarzschild isotropic conformal factor.
+
+\medskip
+\textbf{Spatial metric result}: $g_{ij}[\Theta_0] = \Psi(r)^4\,\delta_{ij}$
+(the isotropic Schwarzschild spatial metric) — verified analytically by the
+ODE condition $f'^2 + g'^2 = \Psi^4$ and numerically in
+\texttt{tools/verify\_schwarzschild\_theta.py} at all test radii.
+
+\medskip
+\textbf{Temporal metric}: $g_{tt} = 0$ for the static ansatz
+($\partial_t\Theta_0 = 0$).  The Schwarzschild value $g_{tt} = -\Phi^2$
+requires the complex time structure $\tau = t + i\psi$ of UBT
+(see \texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}).
+Status: \textbf{OPEN}.
+
+\medskip
+\textbf{Status}: \textbf{Spatial Schwarzschild metric from explicit $\Theta_0$:
+Proved [L1]} (closed-form explicit solution; numerical verification in
+\texttt{tools/verify\_schwarzschild\_theta.py}).  Temporal component: OPEN.
+
+\medskip
+\textbf{Cross-reference}: DERIVATION\_INDEX.md --- Gravitational Physics section.
+\end{tcolorbox}
+
+\end{document}

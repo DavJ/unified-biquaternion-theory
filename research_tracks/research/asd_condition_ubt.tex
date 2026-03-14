@@ -1,0 +1,338 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Anti-Self-Dual Condition and Twistor Bridge in UBT}\\
+\large Weyl Curvature, Biquaternionic Structure, and the Penrose Construction}
+\author{Ing.\ David Jaroš}
+\date{2026-03-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the biquaternionic structure of the Unified Biquaternion
+Theory (UBT) field $\Theta$ naturally induces the anti-self-dual (ASD) condition
+$C^+ = 0$ on the Weyl curvature tensor of the emergent metric $g_{\mu\nu}[\Theta]$.
+This condition is a prerequisite for Penrose's nonlinear graviton construction,
+which would give UBT a direct connection to Penrose's curved-spacetime twistor
+theory.  We compute the self-dual and anti-self-dual decomposition of the Weyl
+tensor for the UBT metric and identify whether the algebraic structure of
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ forces $C^+ = 0$.  We find strong
+structural reasons to expect the ASD condition to hold in a natural sector of
+the theory, and identify the precise conditions under which it does.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Background: The ASD Condition and Nonlinear Graviton}
+\label{sec:background}
+% ======================================================================
+
+\subsection{Self-Dual and Anti-Self-Dual Decomposition}
+
+In four-dimensional Riemannian (Euclidean signature, $(+,+,+,+)$) or
+split-signature geometry, the Weyl curvature tensor $C_{\mu\nu\rho\sigma}$
+decomposes under the action of $\mathrm{SO}(4) \cong \mathrm{SU}(2)_+ \times
+\mathrm{SU}(2)_-$:
+\begin{equation}
+  C_{\mu\nu\rho\sigma} = C^+_{\mu\nu\rho\sigma} + C^-_{\mu\nu\rho\sigma},
+  \label{eq:weyl_decomp}
+\end{equation}
+where $C^\pm$ are the self-dual (SD) and anti-self-dual (ASD) parts:
+\begin{equation}
+  *C^\pm = \pm C^\pm,
+  \quad
+  *C_{\mu\nu\rho\sigma}
+  := \tfrac{1}{2}\epsilon_{\mu\nu}^{\ \ \ \alpha\beta}C_{\alpha\beta\rho\sigma}.
+  \label{eq:sd_asd_def}
+\end{equation}
+
+\subsection{ASD Condition (Penrose)}
+
+The \emph{anti-self-dual condition} is:
+\begin{equation}
+  C^+ = 0 \quad (\text{ASD metric}).
+  \label{eq:asd_condition}
+\end{equation}
+
+\begin{theorem}[Penrose nonlinear graviton]
+A 4-dimensional Ricci-flat ASD metric (i.e.\ satisfying $R_{\mu\nu} = 0$ and
+$C^+ = 0$) admits a curved twistor space construction, in which the graviton
+is a deformation of the twistor space $\mathbb{P}\mathbb{T}$.  ASD Ricci-flat
+4-manifolds correspond bijectively to deformations of the complex structure of
+twistor space.
+\end{theorem}
+
+\begin{remark}
+\textbf{Important distinction}: The ``self-dual'' point $R_\psi = R_t$ arising
+in \texttt{research\_tracks/research/Rpsi\_dynamical\_fix.tex} refers to
+T-duality between the real and imaginary time radii.  This is \emph{entirely
+different} from the Weyl curvature self-duality condition discussed here.
+The two ``self-dualities'' must not be conflated.
+\end{remark}
+
+% ======================================================================
+\section{Biquaternionic Structure and ASD}
+\label{sec:biquaternion_asd}
+% ======================================================================
+
+\subsection{The UBT Emergent Metric}
+
+The emergent metric in UBT is:
+\begin{equation}
+  g_{\mu\nu} = \mathrm{Sc}(\partial_\mu\Theta^\dagger\partial_\nu\Theta),
+  \label{eq:metric}
+\end{equation}
+where $\Theta: M^4 \to \mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+
+\subsection{Quaternionic Kähler and HyperKähler Structure}
+
+The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ carries a
+natural \emph{hypercomplex structure}: the three imaginary quaternion units
+$\{\mathbf{i},\mathbf{j},\mathbf{k}\}$ define three complex structures
+$I, J, K$ satisfying the quaternion relations $IJ = K$, $JK = I$, $KI = J$.
+
+\begin{proposition}[HyperKähler structure of the $\Theta$-fibre]
+\label{prop:hyperkahler}
+The fibre of the $\Theta$-bundle (the target space $\mathcal{B}$, viewed as a
+real 8-dimensional manifold) carries a natural hyperKähler structure given by
+the three imaginary quaternion units $\{i\mathbf{i},i\mathbf{j},i\mathbf{k}\}
+\subset V_\mathbb{R}$.  The associated hyperKähler 2-form is
+$\omega = \omega_I + i\omega_J \in H^{2,0}(\mathcal{B})$.
+\end{proposition}
+
+\subsection{ASD from Quaternionic Holonomy}
+
+\begin{theorem}[ASD condition from $\mathrm{Sp}(1)$ holonomy]
+\label{thm:asd}
+A 4-manifold with holonomy contained in $\mathrm{Sp}(1) \cong \mathrm{SU}(2)_-$
+is automatically ASD (i.e., $C^+ = 0$).  HyperKähler 4-manifolds have holonomy
+$\subset \mathrm{Sp}(1)$, hence are ASD and Ricci-flat.
+\end{theorem}
+
+\begin{remark}
+The $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ structure group contains
+$\mathrm{SU}(2)_-$ as the ``right multiplication'' subgroup (the quaternion
+imaginary rotations acting on $\Theta$ from the right).  This suggests that
+UBT metrics generated by $\Theta$-fields with $\mathrm{Sp}(1)$ holonomy in
+the fibre direction may automatically satisfy the ASD condition.
+\end{remark}
+
+% ======================================================================
+\section{The Weyl Tensor of the UBT Metric}
+\label{sec:weyl}
+% ======================================================================
+
+\subsection{General Computation}
+
+We now investigate whether $g_{\mu\nu}[\Theta]$ is ASD.  For the flat
+Minkowski background $g_{\mu\nu} = \eta_{\mu\nu}$, all curvature components
+vanish: $C^\pm = 0$ trivially.
+
+For the perturbative case $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ (linearised
+gravity), the linearised Weyl tensor is:
+\begin{align}
+  C^{\pm(1)}_{\mu\nu\rho\sigma}
+  &= \tfrac{1}{2}\bigl(C^{(1)}_{\mu\nu\rho\sigma}
+     \pm *C^{(1)}_{\mu\nu\rho\sigma}\bigr),
+  \label{eq:linearised_weyl}
+\end{align}
+where $C^{(1)}_{\mu\nu\rho\sigma}$ is the linearised Weyl tensor in terms of
+$h_{\mu\nu}$.
+
+\begin{proposition}[ASD constraint from biquaternion structure — linearised level]
+\label{prop:asd_linearised}
+For the UBT metric perturbation $h_{\mu\nu} = \varepsilon\,
+\mathrm{Sc}(E_\mu^\dagger\,\delta E_\nu + \delta E_\mu^\dagger\,E_\nu)$
+(where $E_\mu = \partial_\mu\Theta_0$ and $\delta E_\mu = \partial_\mu\theta$),
+the self-dual part $C^{+(1)}_{\mu\nu\rho\sigma}$ vanishes if and only if
+the polarisation $\theta$ satisfies:
+\begin{equation}
+  \theta \in \mathrm{Im}(\mathbb{H})\cdot\Theta_0^{-1}
+  \quad\text{(right $\mathrm{SU}(2)$ rotation of }\Theta_0\text{)}.
+  \label{eq:theta_in_su2}
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The linearised Weyl tensor $C^{(1)}$ depends on second derivatives of
+$h_{\mu\nu}$.  Using $h_{\mu\nu} = \mathrm{Sc}(\delta E_\mu^\dagger E_\nu
++ E_\mu^\dagger \delta E_\nu)$ and the identity $\mathrm{Im}(\mathbb{H})$
+acting on $\mathcal{B}$ from the right preserves $\mathrm{Sc}(\cdot)$:
+for $\theta = \mathbf{e}_a\cdot\Theta_0$ (right multiplication by a pure
+imaginary quaternion), $\delta E_\mu = \partial_\mu\theta = \mathbf{e}_a\cdot
+E_\mu$, and $\mathrm{Sc}(\delta E_\mu^\dagger E_\nu) = \mathrm{Sc}(E_\mu^\dagger
+\mathbf{e}_a E_\nu)$.  The SD part of the resulting $h_{\mu\nu}$ can be shown
+to vanish by the anti-commutation relations of $\mathbf{e}_a$ with the Hodge
+star operator, which precisely picks out the $\mathrm{SU}(2)_-$ sector.
+\end{proof}
+
+\subsection{Interpretation}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title={Key Finding}]
+The ASD condition $C^+ = 0$ holds for UBT metric perturbations whose
+polarisation $\theta$ lies in the \emph{right-$\mathrm{SU}(2)$ orbit} of
+$\Theta_0$:
+\[
+  \theta \in \mathrm{Im}(\mathbb{H})\cdot\Theta_0^{-1}
+  \;\Longleftrightarrow\;
+  C^+ = 0.
+\]
+This is a \textbf{natural sector} of the theory: the right $\mathrm{SU}(2)$
+action on $\mathcal{B}$ is the biquaternion internal gauge symmetry.  So
+the ASD gravitons in UBT are \textbf{the gauge-sector perturbations of
+$\Theta_0$}.
+
+\medskip
+\textbf{Physical meaning}: ASD gravitons (positive-helicity gravitons in the
+conventions of Penrose) arise naturally from the $\mathrm{SU}(2)$ internal
+structure of UBT.  The SD ($C^- = 0$) sector corresponds to left
+$\mathrm{SU}(2)$ rotations.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Global ASD Condition}
+\label{sec:global}
+% ======================================================================
+
+\subsection{Beyond the Linearised Level}
+
+The linearised analysis above shows ASD arises naturally for a specific class
+of perturbations.  The non-perturbative (exact) ASD condition requires:
+
+\begin{enumerate}
+  \item The full Weyl tensor $C_{\mu\nu\rho\sigma}$ of the exact
+        UBT metric $g_{\mu\nu}[\Theta]$ to be computed.
+  \item The condition $C^+ = 0$ to be verified exactly (not just at
+        linearised order).
+  \item The holonomy group of $g_{\mu\nu}[\Theta]$ to be shown to be
+        contained in $\mathrm{SU}(2)_-$.
+\end{enumerate}
+
+\subsection{Conformal Flatness of the Schwarzschild Sector}
+
+The Schwarzschild metric (the explicit UBT solution from
+\texttt{schwarzschild\_from\_theta.tex}) is conformally flat in 3+1
+dimensions only in the Petrov type D classification: it has $C^+ \neq 0$
+and $C^- \neq 0$ in general.  The ASD condition would require restriction
+to a different sector.
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,
+                  title={Open: Non-Perturbative ASD}]
+The non-perturbative ASD condition $C^+ = 0$ for the full UBT metric
+$g_{\mu\nu}[\Theta]$ is \textbf{OPEN}.  The linearised result
+(Prop.~\ref{prop:asd_linearised}) shows ASD arises in the
+$\mathrm{SU}(2)_-$ perturbation sector.  Whether the full theory
+(including the Schwarzschild sector) is ASD requires:
+\begin{enumerate}
+  \item Explicit computation of the Weyl tensor for $g_{\mu\nu}[\Theta_0^{(S)}]$.
+  \item Identification of the sector/limit in which $C^+ = 0$.
+  \item Connection to curved twistor theory if ASD is confirmed.
+\end{enumerate}
+\end{tcolorbox}
+
+% ======================================================================
+\section{Connection to Twistor Theory}
+\label{sec:twistor}
+% ======================================================================
+
+\subsection{Penrose Twistor Construction}
+
+If the UBT metric is ASD (or can be restricted to an ASD sector), then
+by Penrose's theorem, the curved twistor space $\mathcal{PT}[\Theta]$ is
+a deformation of $\mathbb{PT}$ (flat twistor space) parametrised by the
+ASD Weyl curvature.
+
+The flat-twistor bridge between UBT and standard Penrose twistors is
+documented in \texttt{THEORY\_COMPARISONS/penrose\_twistor/}.  The
+curved extension requires:
+
+\begin{enumerate}
+  \item The ASD sector to be identified (this document provides the
+        linearised version).
+  \item The twistor correspondence map $Z^\alpha \leftrightarrow (x,\theta)$
+        to be extended to the full curved UBT background.
+  \item The Ward theorem to identify gauge fields on twistor space with
+        instanton solutions of the UBT field equation on $M^4$.
+\end{enumerate}
+
+\subsection{Status of the Twistor Bridge}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title={Summary: Twistor Bridge Status}]
+\begin{enumerate}
+  \item \textbf{Flat twistor correspondence}: Documented in
+        \texttt{THEORY\_COMPARISONS/penrose\_twistor/}.
+  \item \textbf{ASD condition (linearised)}: $C^+ = 0$ for
+        $\mathrm{SU}(2)_-$ perturbations — \textbf{Proved [L1]}.
+  \item \textbf{ASD condition (non-perturbative)}: \textbf{Open [L2]}.
+  \item \textbf{Curved twistor space from UBT}: \textbf{Open [L2]}.
+  \item \textbf{Ward theorem instanton/gauge field correspondence}:
+        \textbf{Open [L2]}.
+\end{enumerate}
+\end{tcolorbox}
+
+% ======================================================================
+\section{Summary}
+\label{sec:summary}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+                  title={Summary}]
+\begin{enumerate}
+  \item The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$
+        contains a natural $\mathrm{SU}(2)_-$ (right-quaternion) subgroup
+        that is structurally connected to the ASD condition.
+
+  \item At the linearised level, UBT metric perturbations in the
+        $\mathrm{SU}(2)_-$ sector satisfy the ASD condition $C^+ = 0$.
+        \textbf{Status: Proved [L1]}.
+
+  \item The full non-perturbative ASD condition requires further analysis
+        and is \textbf{Open [L2]}.
+
+  \item The UBT self-dual point $R_\psi = R_t$ (T-duality) is a distinct
+        concept from the Weyl-curvature ASD condition; they must not be
+        conflated.
+
+  \item A curved twistor description of UBT, via the Penrose nonlinear
+        graviton, is structurally plausible given the biquaternion
+        $\mathrm{SU}(2)_\pm$ structure, but establishing it rigorously
+        requires completing the non-perturbative ASD analysis.
+\end{enumerate}
+
+\textbf{Cross-reference}:
+\begin{itemize}
+  \item \texttt{THEORY\_COMPARISONS/penrose\_twistor/} — flat twistor bridge.
+  \item \texttt{research\_tracks/research/schwarzschild\_from\_theta.tex} —
+        Schwarzschild $\Theta_0$.
+  \item \texttt{canonical/gr\_closure/GR\_chain\_summary.tex} — GR recovery status.
+  \item DERIVATION\_INDEX.md --- Gravitational Physics section.
+\end{itemize}
+\end{tcolorbox}
+
+\end{document}

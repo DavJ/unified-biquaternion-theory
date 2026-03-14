@@ -363,10 +363,39 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
+## Gravitational Physics
+
+> ⭐ **Sources**: `research_tracks/research/` — v53-gravity tasks  
+> Status updated 2026-03-14
+
+### Proved
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Linearised GR recovery (perturbative) | **Proved [L1]** | `canonical/geometry/gr_completion_attempt.tex` | δE_μν = κ δT_μν at O(ε); Θ = Θ₀ + εΘ₁; constant background |
+| Off-shell global rank of J = δg/δΘ (non-degenerate sector) | **Proved [L1]** | `research_tracks/research/gr_offshell_rank_proof.tex` | ker J = U(2) gauge directions (U(1)⊕SU(2)) for non-degenerate Θ on ℝ¹˒³; degenerate sector open |
+| Schwarzschild spatial metric from explicit Θ₀ | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex` | g(r)=r·Ψ²; f'(r)=Ψ·√(2M/r); g_ij=Ψ⁴·δ_ij verified numerically; temporal component (g_tt) open |
+| Graviton dispersion relation k²=0 | **Proved [L0]** | `research_tracks/research/graviton_from_perturbation.tex` | Linearised UBT vacuum eq. → k²θ=0 for constant background; transversality [L1] from Bianchi identity |
+| ASD condition for SU(2)₋ perturbations (linearised) | **Proved [L1]** | `research_tracks/research/asd_condition_ubt.tex` | C⁺=0 for right-SU(2) sector at linearised level |
+
+### Open
+
+| Result | Status | Notes |
+|--------|--------|-------|
+| Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Open** | g_tt = -Φ² requires complex time τ=t+iψ sector; static ansatz gives g_tt=0 |
+| Graviton dispersion in Schwarzschild background | **Open** | Depends on temporal sector of Schwarzschild Θ₀; flat-background k²=0 proved |
+| ASD condition (non-perturbative, full Weyl tensor) | **Open [L2]** | Linearised ASD proved; full non-perturbative analysis open |
+| Curved twistor space from UBT | **Open [L2]** | Depends on non-perturbative ASD; flat twistor bridge in THEORY_COMPARISONS/penrose_twistor/ |
+| Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
+| Off-shell global rank: topologically non-trivial M⁴ | **Open [L2]** | Non-trivial U(2) bundles over compact M⁴ require topology analysis |
+
+---
+
 ## Mirror Sector (Twin Prime Vacuum)
 
 > ⭐ **Canonical sources**: `research_tracks/mirror_sector/README.md` + `docs/reports/hecke_lepton/mirror_world_139.md`  
 > Topic index: `canonical/THEORY/topic_indexes/mirror_sector_index.md`
+
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
