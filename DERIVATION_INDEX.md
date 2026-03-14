@@ -446,7 +446,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ## Higgs and Yukawa Sector
 
-> **Status (v60)**: Gap H1 attempted (tree+one-loop); Gap Y1 partially computed via KK overlap.
+> **Status (v63)**: Gap H1 Dead End (free kinetic action) confirmed; Hosotani mechanism identified as next path (see `research_tracks/research/hosotani_higgs.tex`); Gap Y1 partially computed via KK overlap.
 > Source: `research_tracks/research/higgs_yukawa_scan.md`
 
 | Result | Status | File | Notes |
@@ -454,5 +454,5 @@ and an emergent-metric construction strongly connected to Θ.
 | Higgs potential V(|Θ|²) = λ(|Θ|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(|Θ|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
 | Yukawa coupling y = 1/√(2πR_ψ) from KK overlap | **Sketch [L1]** | `research_tracks/research/higgs_yukawa_scan.md §3` | ψ-mode overlap integral for n_H=0, n_L=1, n_R=1 gives y=C_alg/√(2πR_ψ); R_ψ calibrated; Gap Y1 partially closed |
 | sin²θ_W from ℂ⊗ℍ alone | **Dead End** | `research_tracks/research/higgs_yukawa_scan.md §4` | Weinberg angle requires U(1)_Y ↔ SU(2)_L mixing ratio; ℂ⊗ℍ fixes gauge structure but not the mixing angle; confirmed Dead End |
-| Gap H1: derive λ from S[Θ] | **Open** — v60 attempt: a₄=0 (tree + one-loop) for free kinetic action | `research_tracks/research/higgs_yukawa_scan.md §2.3` | v60: tree-level expansion gives a₄^{tree}=0; one-loop Casimir sum gives field-independent constant; non-trivial λ requires interactions absent from free kinetic UBT action; Hosotani-type mechanism or boundary conditions needed |
+| Gap H1: derive λ from S[Θ] | **Dead End (free kinetic action)** — v63: tree-level a₄=0 (constant background → action independent of v); one-loop Casimir = constant (KK masses independent of \|Θ₀\|). Non-trivial λ requires interactions absent from free kinetic UBT action OR Hosotani mechanism from Wilson line condensation on ψ-circle. Next approach: Hosotani (see `research_tracks/research/hosotani_higgs.tex`). | `research_tracks/research/higgs_yukawa_scan.md §2.3`; `research_tracks/research/hosotani_higgs.tex` | v63: free kinetic Dead End confirmed; Hosotani path: Wilson line θ_W on ψ-circle gives V(θ_W) radiatively; Z₂ mirror symmetry (n*=137↔n**=139) forces minimum at θ_W=π/2; v≈n_R·π/(2gR_ψ)≈230 GeV (estimate); λ∝N_eff·g²·ζ(3)/R_ψ³ (N_eff count open). Status: OPEN [Hosotani path] |
 | Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |
