@@ -1,0 +1,184 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{predbox}
+
+  \title{\textbf{Step 3: One-Loop $\beta$-Function at $\varphi = \mathrm{const}$}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We compute the correction $\delta B(\varphi)$ to the one-loop $\beta$-function
+  coefficient $B_0$ arising from a constant scalar background $\varphi = v = \mathrm{const}$.
+  We show that $\delta B(\varphi) = 0$ for constant $\varphi$ at one-loop order in the
+  UBT effective action.  Consequently, the standard QED running coupling
+  $\alpha(\mu)$ is reproduced exactly at $\varphi = \mathrm{const}$.
+  \textbf{Verdict: PROVED (Outcome A) — standard QED running unchanged.}
+  \end{abstract}
+\fi
+
+\section{Step 3: One-Loop $\beta$-Function at $\varphi = \mathrm{const}$}
+\label{sec:beta_function}
+
+\textbf{Task reference:} UBT\_v29\_task7, step3\_beta\_function.
+\textbf{Date:} 2026-03-06.
+\textbf{Verdict: PROVED (Outcome A).}
+\textbf{Script:} \texttt{tools/verify\_qed\_phi\_const.py} (function \texttt{compute\_delta\_B}).
+
+\subsection{Setup: $B$-Coefficient at $\varphi = 0$}
+
+The UBT one-loop effective action for the $U(1)_\mathrm{EM}$ sector gives (see
+\texttt{consolidation\_project/N\_eff\_derivation/step2\_vacuum\_polarization.tex},
+Theorem~3.1):
+\begin{equation}
+  B_0 = \frac{2\pi\,N_\mathrm{eff}}{3},
+  \qquad N_\mathrm{eff} = 1 \text{ (QED limit)},
+  \qquad B_0^\mathrm{QED} = \frac{2\pi}{3}.
+\end{equation}
+The running coupling in the $\overline{\mathrm{MS}}$ scheme at one-loop is
+\begin{equation}
+  \frac{1}{\alpha(\mu)} = \frac{B_0}{\ln(\mu/\mu_0)} + \cdots
+  \qquad\Rightarrow\qquad
+  \alpha(\mu) = \frac{\alpha_0}{1 - \frac{\alpha_0}{3\pi}\ln\frac{\mu^2}{m_e^2}},
+\end{equation}
+in agreement with the standard QED formula (up to scheme conventions).
+
+\subsection{Effect of Constant $\varphi$ on the One-Loop Effective Action}
+
+The one-loop effective action in the background $A_\mu^\mathrm{cl}$ and
+$\varphi = v = \mathrm{const}$ reads
+\begin{equation}
+  \Gamma^{(1)}[A^\mathrm{cl},\varphi]
+  = -i\ln\det\bigl(i\slashed{D}[A^\mathrm{cl}] - m_e(\varphi)\bigr)^{-1}
+    - \tfrac{i}{2}\ln\det\bigl(-D^2[A^\mathrm{cl}] + m_\varphi^2\bigr)^{-1}
+    + \cdots
+\end{equation}
+where $m_e(\varphi) = y\varphi$ (from Step~2) and $m_\varphi$ is the mass of
+$\varphi$-fluctuations around the background.
+
+The photon self-energy $\Pi_{\mu\nu}(k)$ at one-loop receives contributions from:
+\begin{enumerate}
+  \item \textbf{Electron loop}: the standard QED vacuum polarisation,
+  \item \textbf{$\varphi$-loop}: a loop of scalar $\varphi$-fluctuations coupled to
+        $A_\mu$ via $\mathcal{L}_\mathrm{int} = q_\varphi\,e\,A_\mu\,\varphi\,\partial^\mu\varphi$.
+\end{enumerate}
+
+From Step~1 (Theorem~\ref{thm:phi_neutral} in step1), $q_\varphi = 0$.  Therefore the
+$\varphi$-loop vertex $q_\varphi\,e\,A_\mu\,\varphi\,\partial^\mu\varphi$ vanishes
+identically, and the scalar loop contributes zero to the photon self-energy:
+\begin{equation}
+  \Pi_{\mu\nu}^{(\varphi\text{-loop})}(k) = 0.
+\end{equation}
+
+\subsection{Computation of $\delta B(\varphi)$}
+
+The $\beta$-function coefficient at $\varphi = \mathrm{const}$ is
+\begin{equation}
+  B(\varphi) = B_0 + \delta B(\varphi),
+\end{equation}
+where $\delta B(\varphi)$ captures all new contributions from the background.
+
+Since the electron propagator in the background $\varphi = v$ is
+$S_F(p) = i(\slashed{p} - m_e(v) + i\epsilon)^{-1}$, the electron loop contribution
+to the photon self-energy is identical to the standard QED result with $m_e \to y\cdot v$:
+\begin{equation}
+  \Pi^{(e\text{-loop})}_{\mu\nu}(k;\varphi) = (k^2\eta_{\mu\nu} - k_\mu k_\nu)\,
+    \frac{-e^2}{2\pi^2}\int_0^1 dx\,x(1-x)\ln\frac{\Lambda^2}{m_e^2(v) - x(1-x)k^2}.
+\end{equation}
+This has the \emph{same UV structure} (i.e., same coefficient of $\ln\Lambda^2$) as the
+$\varphi = 0$ result; the $\varphi$-dependence enters only through $m_e(v)$ in the finite
+part, which does not affect the $\beta$-function (UV divergence structure).
+
+In dimensional regularisation, the one-loop $\beta$-function is extracted from the pole
+in $d=4-2\epsilon$:
+\begin{equation}
+  \beta(e) = -\epsilon\,e - \frac{e^3}{12\pi^2} + O(e^5),
+\end{equation}
+independent of the electron mass $m_e(v)$.  Therefore
+\begin{equation}
+  \boxed{\delta B(\varphi) = 0.}
+\end{equation}
+
+\begin{theorem}[Outcome A: $\delta B = 0$]
+  At one-loop order, the $\beta$-function coefficient $B(\varphi) = B_0$ is independent
+  of the constant scalar background $\varphi = \mathrm{const}$.  The standard QED running
+  coupling $\alpha(\mu)$ is reproduced exactly.
+\end{theorem}
+
+\begin{proof}
+  The $\beta$-function is determined entirely by the UV divergence structure of the photon
+  self-energy.  In dimensional regularisation this is mass-independent at one loop.
+  The $\varphi$-scalar is uncharged ($q_\varphi = 0$, Step~1), so it contributes no new
+  loop diagram to $\Pi_{\mu\nu}$.  The electron loop is unchanged up to the mass parameter
+  $m_e(v) = yv$, which cancels from the UV divergence.
+\end{proof}
+
+\subsection{Remark on Higher-Loop Corrections}
+
+At two loops, a diagram exists where $\varphi$ enters through the Yukawa vertex
+(electron--$\varphi$ coupling $y$).  This gives a correction
+\begin{equation}
+  \delta B^{(2)}(\varphi) \sim \frac{y^2 e^2}{(4\pi)^4}\,\mathcal{O}(1),
+\end{equation}
+which is suppressed by two additional loop factors and also by the smallness of $y^2$
+relative to the QED coupling.  This is a genuine two-loop correction, consistent with
+the UBT two-loop baseline in Appendix CT.  It is classified as a \textbf{small UBT
+prediction} rather than a problem.
+
+\begin{predbox}
+\textbf{UBT Prediction (two-loop, sub-leading):}
+At two-loop order, the $\varphi$-background generates a tiny correction to $\alpha$ running:
+$\delta\alpha/\alpha \sim (y^2/16\pi^2)\,\cdot\,(\alpha/\pi) \ll 10^{-10}$ for SM Yukawa
+couplings.  This is consistent with precision QED data and constitutes a sub-leading
+prediction of UBT in cosmological backgrounds with $\varphi \neq 0$.
+\end{predbox}
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Claim & $\delta B(\varphi) = 0$ at one-loop (Outcome A) \\
+Status & \textbf{PROVED} \\
+Mechanism & $q_\varphi = 0$ (Step 1) + mass-independence of UV divergence \\
+$\alpha(\mu)$ running & Identical to standard QED \\
+Two-loop correction & $\delta\alpha/\alpha \sim y^2\alpha/(16\pi^3) \ll 10^{-10}$ \\
+Layer & [L1] — one-loop exact \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifdefined\INCLUDEMODE\else
+  \end{document}
+\fi

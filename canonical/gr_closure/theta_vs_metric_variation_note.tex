@@ -1,0 +1,349 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{Combined Variation vs.\ Termwise Separation\\
+         in the UBT Action Principle}}
+  \author{Ing.\ David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  This note clarifies a subtle but important point in the variational derivation
+  of Einstein's equations from the Unified Biquaternion Theory (UBT) action.
+  When the metric $g_{\mu\nu}$ is promoted to a functional of the fundamental
+  field $\Theta$ via $g_{\mu\nu} = g_{\mu\nu}[\Theta]$, the action becomes a
+  functional of $\Theta$ alone, and its variation yields a single coupled
+  Euler--Lagrange condition—\emph{not} two independently vanishing terms.
+  Absence of automatic termwise separation is \emph{not} a mathematical flaw;
+  it indicates that UBT may be broader than GR.  Einstein's equations are
+  recovered on an admissible sector satisfying additional regularity and
+  rank conditions, which are physically motivated and explicitly stated.
+  UBT therefore \emph{contains} GR as a sector rather than contradicting it.
+  \end{abstract}
+\fi
+
+% =========================================================================
+\section{Combined Variation vs.\ Termwise Separation}
+\label{sec:combined_vs_termwise}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title=Central Message of This Note]
+The Euler--Lagrange equation obtained by varying the pure-$\Theta$ action
+$\hat{S}[\Theta]$ is the \textbf{combined condition}
+\begin{equation}
+  \mathcal{E}_\Theta + J^{*}\mathcal{E}_g = 0,
+  \tag{$\star$}
+\end{equation}
+where $\mathcal{E}_\Theta$ is the explicit-$\Theta$ Euler--Lagrange operator,
+$\mathcal{E}_g$ is the metric Euler--Lagrange operator (the Einstein-sector
+residual), and $J^{*}$ is the adjoint of the induced variation map
+$J = \delta g / \delta\Theta$.
+
+This is \emph{one} coupled equation, \emph{not} two equations $\mathcal{E}_\Theta = 0$
+and $\mathcal{E}_g = 0$ imposed independently.  Termwise separation requires
+additional structure (rank conditions, projections, or gauge choices) and is
+not automatic.
+\end{tcolorbox}
+
+\subsection{Setup: Definitions}
+\label{subsec:setup}
+
+Let $\Theta: M^4 \to \mathcal{B}$ be the biquaternionic field, and let the
+total action be
+\begin{equation}
+  S_{\text{total}}[g, \Theta]
+  = S_{\text{EH}}[g] + S_\Theta[g, \Theta],
+\end{equation}
+where $S_{\text{EH}}$ is the Einstein--Hilbert action and $S_\Theta$ contains
+all $\Theta$-dependent terms.
+
+Define the operators:
+
+\begin{definition}[Euler--Lagrange operators]
+\label{def:el_operators}
+\begin{align}
+  \mathcal{E}_\Theta[\Theta, g]
+  &:= \frac{\delta S_\Theta}{\delta\Theta}\bigg|_{g \text{ fixed}},
+  \label{eq:E_Theta}\\[6pt]
+  \mathcal{E}_g[g, \Theta]
+  &:= \frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}\bigg|_{\Theta \text{ fixed}}
+   = \frac{1}{16\pi G}\left(G_{\mu\nu} - 8\pi G\, T_{\mu\nu}[\Theta,g]\right),
+  \label{eq:E_g}
+\end{align}
+and the \emph{induced variation map}
+\begin{equation}
+  J\,\delta\Theta := \frac{\delta g_{\mu\nu}[\Theta]}{\delta\Theta}\,\delta\Theta
+  \qquad\text{(a tensor-valued linear map)}.
+  \label{eq:J_map}
+\end{equation}
+The formal $L^2$-adjoint of $J$ is denoted $J^*$.
+\end{definition}
+
+% =========================================================================
+\section{Why This Is Not Separation of Variables or Separation of Constants}
+\label{sec:not_separation}
+
+\subsection{The Pure-$\Theta$ Functional and Its Variation}
+\label{subsec:pure_theta}
+
+Substituting the emergent metric $g_{\mu\nu}[\Theta]$ into
+$S_{\text{total}}$, we obtain the pure-$\Theta$ functional
+\begin{equation}
+  \hat{S}[\Theta]
+  := S_{\text{total}}\bigl[g[\Theta],\, \Theta\bigr].
+  \label{eq:S_hat}
+\end{equation}
+
+Varying with respect to $\Theta$ and applying the chain rule:
+\begin{equation}
+  \frac{\delta\hat{S}}{\delta\Theta}\,\delta\Theta
+  = \underbrace{\frac{\delta S_{\text{total}}}{\delta\Theta}\bigg|_g}_{\mathcal{E}_\Theta}
+    \delta\Theta
+  + \underbrace{\frac{\delta S_{\text{total}}}{\delta g^{\mu\nu}}}_{\mathcal{E}_g^{\mu\nu}}
+    \underbrace{\frac{\delta g^{\mu\nu}[\Theta]}{\delta\Theta}}_{J}\delta\Theta.
+  \label{eq:variation_chain}
+\end{equation}
+
+The stationarity condition $\delta\hat{S} = 0$ for all admissible variations
+$\delta\Theta$ therefore reads:
+\begin{equation}
+  \boxed{
+    \mathcal{E}_\Theta + J^{*}\mathcal{E}_g = 0.
+  }
+  \label{eq:combined_EL}
+\end{equation}
+
+\begin{remark}[Why separation does not follow]
+\label{rem:no_separation}
+Even though Eq.~\eqref{eq:combined_EL} holds for all $\delta\Theta$, one
+\emph{cannot} conclude that $\mathcal{E}_\Theta = 0$ and $\mathcal{E}_g = 0$
+independently.  The correct statement is only that the \emph{linear combination}
+$\mathcal{E}_\Theta + J^{*}\mathcal{E}_g$ vanishes.  This is analogous to a
+linear equation $a\,x + b\,y = 0$: knowing this holds for all vectors
+$(x, y)$ would allow separation, but here $\delta\Theta$ is a single variation
+and the two terms are coupled.
+\end{remark}
+
+\begin{remark}[No resemblance to separation of constants]
+This structure should \emph{not} be described as ``separation of variables''
+or ``separation of constants'' in any sense.  Those terms refer to specific
+algebraic decoupling techniques that have no bearing here.
+The correct description is: the combined variational condition is a
+\emph{single first-order functional differential equation} in $\Theta$.
+\end{remark}
+
+\subsection{When Does $\mathcal{E}_g = 0$ Follow Separately?}
+\label{subsec:when_sep}
+
+Separate vanishing $\mathcal{E}_g = 0$ (i.e.\ Einstein's equations
+$G_{\mu\nu} = 8\pi G\, T_{\mu\nu}$) follows from Eq.~\eqref{eq:combined_EL}
+under any one of the following additional conditions:
+
+\begin{enumerate}
+  \item \textbf{Rank condition on $J$:} If the map $J$ is locally surjective
+    (full column rank on the relevant function space) and $\mathcal{E}_\Theta$
+    vanishes on the solution, then $J^{*}\mathcal{E}_g = 0$ together with
+    surjectivity implies $\mathcal{E}_g = 0$.
+
+  \item \textbf{Gauge-reduced injectivity:} If, after quotienting by gauge
+    redundancies, the map $\Theta \mapsto g[\Theta]$ is locally invertible
+    (non-degenerate Jacobian on the physical sector), then variations of
+    $g$ induced by $\delta\Theta$ span the full metric variation space, and
+    independent metric stationarity follows.
+
+  \item \textbf{Projection to metric observables:} If one restricts attention
+    to $\Theta$ configurations whose only observable degrees of freedom are
+    metric (all additional $\Theta$ modes are either gauge or frozen), then
+    the contracted form of Eq.~\eqref{eq:combined_EL} reduces to
+    $\mathcal{E}_g = 0$.
+
+  \item \textbf{On-shell $\mathcal{E}_\Theta = 0$:} If $\Theta$ satisfies its
+    own field equation separately (e.g.\ on a constrained sub-sector or after
+    solving for the matter equations of motion), then Eq.~\eqref{eq:combined_EL}
+    reduces to $J^{*}\mathcal{E}_g = 0$, and the rank condition above suffices.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!80!black,
+                  title=Warning: Do Not Assume Arbitrary Independent Variation]
+It is mathematically \emph{incorrect} to argue:
+\begin{quote}
+``Since the variation holds for arbitrary $\delta\Theta$, each term in
+Eq.~\eqref{eq:combined_EL} must vanish separately.''
+\end{quote}
+The two terms $\mathcal{E}_\Theta\,\delta\Theta$ and
+$J^{*}\mathcal{E}_g\,\delta\Theta$ are \emph{not} independently varied;
+they both depend on the same variation $\delta\Theta$.  Separate vanishing
+would require $\delta\Theta$ to vary each term independently, which is
+generally impossible.
+\end{tcolorbox}
+
+% =========================================================================
+\section{The Fundamental Equation $\mathcal{E}_\Theta + J^*\mathcal{E}_g = 0$}
+\label{sec:fundamental_equation}
+
+Equation~\eqref{eq:combined_EL} is the \textbf{fundamental variational
+statement} of UBT in the $\Theta$-only formulation.  Its properties:
+
+\begin{enumerate}
+  \item It is a \emph{necessary} condition for stationarity of $\hat{S}[\Theta]$.
+  \item It encodes both the $\Theta$-field dynamics and the Einstein-sector
+    constraint in a single equation.
+  \item It reduces to \emph{Einstein's equations plus the $\Theta$ field
+    equation} when the rank condition holds (Section~\ref{subsec:when_sep}).
+  \item It is \emph{weaker} than the system
+    $\{\mathcal{E}_\Theta = 0,\; \mathcal{E}_g = 0\}$:
+    the combined condition admits additional solutions not present in
+    Einstein gravity.  These additional solutions live in the
+    \emph{non-GR sector} of UBT.
+\end{enumerate}
+
+% =========================================================================
+\section{When Separate Recovery of $\mathcal{E}_g = 0$ Does and Does Not Follow}
+\label{sec:recovery}
+
+\subsection{Does Follow}
+
+\begin{theorem}[GR recovery on admissible metric-generating sector]
+\label{thm:gr_recovery}
+Suppose $\Theta$ lies in the admissible class $\mathcal{A}_{\mathrm{UBT}}$ defined
+by the conditions in \textup{Section~\ref{subsec:when_sep}}.  Then the combined
+Euler--Lagrange condition~\eqref{eq:combined_EL} implies
+\begin{equation}
+  G_{\mu\nu} = 8\pi G\, T_{\mu\nu}[\Theta, g[\Theta]],
+  \label{eq:einstein}
+\end{equation}
+i.e.\ Einstein's field equations hold on this sector.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Under the rank condition (Case 1 or 2 of Section~\ref{subsec:when_sep}), any
+variation $\delta g^{\mu\nu}$ can be written as $J\,\delta\Theta$ for some
+$\delta\Theta$.  Therefore $\langle \mathcal{E}_g,\, J\,\delta\Theta \rangle = 0$
+for all $\delta\Theta$ implies $\langle J^*\mathcal{E}_g,\, \delta\Theta \rangle = 0$
+for all $\delta\Theta$.  Surjectivity of $J$ then gives $\mathcal{E}_g = 0$. \qed
+\end{proof}
+
+\subsection{Does Not Follow (General Case)}
+
+In the general case, outside $\mathcal{A}_{\mathrm{UBT}}$:
+\begin{itemize}
+  \item The kernel of $J$ may be non-trivial: some $\delta\Theta$ directions
+    do not change the metric.  These ``metric-invisible'' variations are
+    genuine UBT degrees of freedom absent from GR.
+  \item The combined condition may be satisfied by configurations where
+    $\mathcal{E}_g \neq 0$ (non-GR solutions of UBT).
+  \item This is \emph{not a defect}: it signals that UBT contains GR as a
+    proper subsector while admitting additional dynamics.
+\end{itemize}
+
+% =========================================================================
+\section{Three Notions of GR Recovery}
+\label{sec:three_notions}
+
+Depending on the strength of the conditions imposed, three distinct levels of
+GR recovery can be distinguished.  These are elaborated in
+\texttt{reports/gr\_recovery\_levels.md}; a brief summary follows.
+
+\begin{enumerate}
+  \item \textbf{Exact projected recovery:} A mathematically clean
+    projection/contraction theorem maps the $\Theta$ equation to
+    $G_{\mu\nu} = 8\pi G\, T_{\mu\nu}$ exactly.
+    \emph{Status: open problem (requires full rank condition).}
+
+  \item \textbf{Constrained sector recovery:} On the admissible class
+    $\mathcal{A}_{\mathrm{UBT}}$ (metric-generating sector with gauge
+    reduction), the induced dynamics reproduces Einstein gravity.
+    \emph{Status: the current best-established description;
+    conditions are stated explicitly in
+    \texttt{GR\_closure/gr\_sector\_conditions.tex}.}
+
+  \item \textbf{Low-energy effective limit recovery:} After freezing
+    additional $\Theta$ degrees of freedom that decouple at macroscopic
+    scales, the theory reduces to GR in the infrared.
+    \emph{Status: plausible; requires analysis of the $\Theta$-mode
+    spectrum.}
+\end{enumerate}
+
+% =========================================================================
+\section{Why UBT $\supseteq$ GR Is Not a Contradiction}
+\label{sec:no_contradiction}
+
+\begin{tcolorbox}[colback=green!8!white,colframe=green!60!black,
+                  title=Consistency Statement]
+There is \textbf{no contradiction} between UBT and GR.  UBT can reproduce GR
+on a physical sector while still containing additional non-GR degrees of
+freedom.  The absence of automatic termwise separation is a feature, not a
+bug: it indicates that UBT is \emph{richer} than GR, not inconsistent with it.
+\end{tcolorbox}
+
+The logic is standard in fundamental physics:
+
+\begin{itemize}
+  \item \textbf{Analogy 1 — Tetrad vs.\ metric variation:} In first-order
+    (Palatini or tetrad) formulations of GR, varying the tetrad $e^a{}_\mu$
+    and the connection $\omega^{ab}{}_\mu$ independently yields Einstein's
+    equations plus a torsion-free condition.  Neither condition follows from
+    the other without additional structure; yet the combined system is fully
+    consistent.  The UBT situation is analogous: $\Theta$ is the fundamental
+    object, and the metric is a derived (induced) quantity.
+
+  \item \textbf{Analogy 2 — Constrained field redefinitions in effective field
+    theory (EFT):} In EFT, integrating out heavy fields yields a low-energy
+    effective action whose field equations are not termwise equal to those of
+    the UV theory; they agree only on-shell or in a specific limit.  GR
+    recovery from UBT is structurally of this type.
+
+  \item \textbf{General principle:} A deeper theory is expected to contain
+    the standard theory as a sector or limit, not to reproduce it in every
+    configuration.  String theory contains GR as a low-energy limit;
+    loop quantum gravity recovers GR in the classical limit; UBT recovers
+    GR on the metric-generating sector.  None of these is a contradiction.
+\end{itemize}
+
+\bigskip
+\noindent
+\textbf{Correct language:}
+\begin{itemize}
+  \item[\checkmark] ``UBT generalises GR'' — accurate.
+  \item[\checkmark] ``GR is recovered as a sector/limit/projection of UBT'' — accurate.
+  \item[\checkmark] ``UBT extends GR with additional degrees of freedom'' — accurate.
+  \item[$\times$] ``UBT contradicts GR'' — incorrect.
+  \item[$\times$] ``Absence of termwise separation weakens UBT fatally'' — incorrect.
+  \item[$\times$] ``If exact GR is not separately extracted, UBT fails'' — incorrect.
+\end{itemize}
+
+% =========================================================================
+
+\ifdefined\INCLUDEMODE
+  % no end{document} when included
+\else
+  \end{document}
+\fi

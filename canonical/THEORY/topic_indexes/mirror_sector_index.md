@@ -4,7 +4,7 @@
 
 **Status**: **NUMERICAL OBSERVATION** (twin prime structure); **MOTIVATED CONJECTURE** (vacuum stability)  
 **Last updated**: 2026-03-10  
-**Canonical source**: `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md`
+**Canonical source**: `research_tracks/mirror_sector/README.md`
 
 ---
 
@@ -35,8 +35,8 @@ via gravity.
 
 | Document | Role | Status |
 |----------|------|--------|
-| `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md` | **CANONICAL** — overview, key findings, dark matter connection | Navigation |
-| `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex` | **CANONICAL** — vacuum stability analysis, V_eff comparison | NUMERICAL/CONJECTURE |
+| `research_tracks/mirror_sector/README.md` | **CANONICAL** — overview, key findings, dark matter connection | Navigation |
+| `research_tracks/mirror_sector/vacuum_stability.tex` | **CANONICAL** — vacuum stability analysis, V_eff comparison | NUMERICAL/CONJECTURE |
 | `docs/reports/hecke_lepton/mirror_world_139.md` | **CANONICAL** — Set B Hecke forms, global scan at p=139 | NUMERICAL OBSERVATION |
 
 ---
@@ -75,7 +75,7 @@ The mirror sector is intimately linked to both:
 
 | Problem | Description | Files |
 |---------|-------------|-------|
-| Derive B_{139} from ℂ⊗ℍ first principles | Currently motivated by analogy with B_{137} | `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex` |
+| Derive B_{139} from ℂ⊗ℍ first principles | Currently motivated by analogy with B_{137} | `research_tracks/mirror_sector/vacuum_stability.tex` |
 | Quantitative dark matter prediction | Mirror matter abundance, self-interaction cross-section | `mirror_sector/README.md §4` |
 | Connection to Hubble tension | Mirror sector photons could affect CMB N_eff | `mirror_sector/README.md §5` |
 | Why twin primes? | No algebraic explanation for why 137 and 139 specifically | Open |
@@ -96,8 +96,8 @@ Main entries in `DERIVATION_INDEX.md`, Mirror Sector section:
 
 ## What a New Reader Should Do
 
-1. Read `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md` (canonical overview, ~3 pages)
+1. Read `research_tracks/mirror_sector/README.md` (canonical overview, ~3 pages)
 2. Read `docs/reports/hecke_lepton/mirror_world_139.md` for the Hecke numerical evidence
-3. For vacuum stability analysis, read `ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex`
+3. For vacuum stability analysis, read `research_tracks/mirror_sector/vacuum_stability.tex`
 4. For the connection to α derivation, see `b_base_kac_moody_level.tex §H2` (CS-term absence proof)
 5. Treat `speculative_extensions/UBT_HeckeWorlds_theta_zeta_primes_appendix.tex` as speculative background reading only

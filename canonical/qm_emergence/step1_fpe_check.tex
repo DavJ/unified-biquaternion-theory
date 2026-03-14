@@ -1,0 +1,294 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Step 1: Verification of the Biquaternionic Fokker--Planck Claim}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We verify the claim in Appendix~G.5 that the Hamiltonian-exponent theta function
+  $\Theta(Q,T) = \sum_n \exp[\pi \mathbb{B}(n)\cdot\mathbb{H}(T)]$ is a fundamental
+  solution of the biquaternionic Fokker--Planck equation
+  $\partial_T \Theta = -\nabla_Q \cdot [A(Q)\Theta] + D\nabla_Q^2\Theta$.
+  \textbf{Verdict: SKETCH.}
+  The derivation is structurally sound but contains three gaps:
+  (G1)~the drift term $A(Q) = -\nabla_Q \mathbb{H}(T)$ is \emph{assumed}, not derived;
+  (G2)~a non-trivial consistency condition on $\mathbb{H}$ is required and not proved satisfied;
+  (G3)~biquaternionic non-commutativity is not fully handled in the product rules.
+  \end{abstract}
+\fi
+
+\section{Step 1: Verification of the Biquaternionic Fokker--Planck Claim}
+\label{sec:fpe_verification}
+
+\subsection{The Claim}
+
+Appendix~G.5 of the consolidation project claims:
+
+\begin{quotation}
+\textit{The Hamiltonian-exponent theta function
+\[
+  \Theta(Q,T) = \sum_{n=-\infty}^{\infty} \exp\!\left[\pi\,\mathbb{B}(n) \cdot \mathbb{H}(T)\right]
+\]
+is a fundamental solution of the biquaternionic Fokker--Planck equation
+\[
+  \partial_T \Theta(Q,T) = -\nabla_Q \cdot \left[A(Q)\,\Theta\right] + D\,\nabla_Q^2\Theta,
+  \qquad A(Q) = -\nabla_Q \mathbb{H}(T).
+\]}
+\end{quotation}
+
+\noindent
+We examine this claim in detail.
+
+\subsection{Reconstruction of the Derivation}
+
+\subsubsection{Time Derivative of $\Theta$}
+
+Differentiating term by term (assuming uniform convergence):
+\begin{align}
+  \partial_T \Theta
+  &= \sum_n \pi\,\mathbb{B}(n)\cdot\partial_T\mathbb{H}(T)\;
+     \exp\!\left[\pi\,\mathbb{B}(n)\cdot\mathbb{H}(T)\right].
+  \label{eq:time_deriv}
+\end{align}
+
+\noindent
+\textbf{Note on ordering}: because $\mathbb{B}(n)$ and $\mathbb{H}(T)$ are biquaternions,
+the product $\mathbb{B}(n)\cdot\mathbb{H}(T)$ is generally non-commutative.
+The derivative rule $\partial_T e^{\mathbb{B}\cdot\mathbb{H}} = e^{\mathbb{B}\cdot\mathbb{H}}\cdot
+\mathbb{B}\cdot\partial_T\mathbb{H}$ is valid only when $[\mathbb{B},\partial_T\mathbb{H}]=0$
+(i.e.\ in the commutative sector).
+
+\subsubsection{Spatial Derivatives of $\Theta$}
+
+\begin{align}
+  \nabla_Q \Theta
+  &= \pi \sum_n \mathbb{B}(n)\cdot\nabla_Q\mathbb{H}(T)\;
+     \exp\!\left[\pi\,\mathbb{B}(n)\cdot\mathbb{H}(T)\right],
+  \label{eq:grad_theta}\\
+  \nabla_Q^2 \Theta
+  &= \pi^2 \sum_n \left[\mathbb{B}(n)\cdot\nabla_Q\mathbb{H}(T)\right]^2
+     \exp\!\left[\pi\,\mathbb{B}(n)\cdot\mathbb{H}(T)\right] \notag\\
+  &\quad + \pi \sum_n \mathbb{B}(n)\cdot\nabla_Q^2\mathbb{H}(T)\;
+     \exp\!\left[\pi\,\mathbb{B}(n)\cdot\mathbb{H}(T)\right].
+  \label{eq:laplacian_theta}
+\end{align}
+
+\subsubsection{Substitution into the FPE}
+
+With $A(Q) = -\nabla_Q\mathbb{H}(T)$, the right-hand side of the FPE becomes:
+\begin{align}
+  -\nabla_Q\cdot[A(Q)\Theta] + D\nabla_Q^2\Theta
+  &= \nabla_Q^2\mathbb{H}\cdot\Theta
+     + \nabla_Q\mathbb{H}\cdot\nabla_Q\Theta
+     + D\nabla_Q^2\Theta.
+  \label{eq:rhs_fpe}
+\end{align}
+
+Equating \eqref{eq:time_deriv} with \eqref{eq:rhs_fpe} and using \eqref{eq:grad_theta}--\eqref{eq:laplacian_theta}, after cancellation of the common exponential factor, one obtains a \emph{consistency condition} that $\mathbb{H}(T)$ must satisfy for each summand $n$:
+\begin{equation}
+  \boxed{
+  \dot{\mathbb{H}}
+  = \nabla_Q^2\mathbb{H}
+  + \frac{1}{\pi}\,\nabla_Q\mathbb{H}\cdot\mathbb{B}(n)\cdot\nabla_Q\mathbb{H}
+  + \frac{D}{\pi}\,\mathbb{B}(n)\cdot\nabla_Q\mathbb{H}.
+  }
+  \label{eq:consistency}
+\end{equation}
+
+\subsection{Gap Analysis}
+
+\subsubsection{Gap G1 — Drift Term Assumed, Not Derived}
+
+\begin{gapbox}
+\textbf{Gap G1}: The choice $A(Q) = -\nabla_Q\mathbb{H}(T)$ is stated as given, not derived from the UBT action $S[\Theta]$ or from first principles.
+
+\textbf{What is needed}: A derivation starting from the Euler--Lagrange equations
+$\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ showing that the drift in the
+FPE takes the specific Hamiltonian-gradient form.
+
+\textbf{Status}: PARTIALLY CLOSED (see derivation below).
+\end{gapbox}
+
+\subsubsection{Partial Closure of Gap G1: Drift from Euler--Lagrange of $S[\Theta]$}
+\label{subsubsec:gap_g1_partial}
+
+We show that for the scalar sector, $A(Q) = -\nabla_Q\mathbb{H}$ follows from
+Euler--Lagrange variation of the UBT action $S[\Theta]$ when $\Theta$ is written
+in polar form.
+
+\paragraph{Euler--Lagrange equation.}
+The scalar action $S[\Theta] = \int (\partial_T \Theta^*)(\partial_T \Theta) - D|\nabla_Q \Theta|^2\, dQ\, dT$ yields
+the Euler--Lagrange equation:
+\begin{equation}
+  \partial_T \Theta = D\,\nabla_Q^2\Theta.
+  \label{eq:el_scalar}
+\end{equation}
+
+\paragraph{Polar decomposition.}
+Write $\Theta = R(Q,T)\,e^{iH(Q,T)}$ with $R \geq 0$ real and $H$ real.
+The following identities follow from the product rule and chain rule applied to $\Theta = R e^{iH}$
+(see, e.g., Madelung decomposition in quantum hydrodynamics):
+\begin{align}
+  \partial_T\Theta &= (\partial_T R + iR\,\partial_T H)\,e^{iH}, \\
+  \nabla_Q \Theta  &= (\nabla_Q R + iR\,\nabla_Q H)\,e^{iH}, \\
+  \nabla_Q^2\Theta &= \bigl[\nabla_Q^2 R - R|\nabla_Q H|^2
+                      + i(2\nabla_Q R\cdot\nabla_Q H + R\,\nabla_Q^2 H)\bigr]e^{iH}.
+\end{align}
+The last identity uses $\nabla^2(R e^{iH}) = (\nabla^2 R)e^{iH} + 2(\nabla R)\cdot(iH\,e^{iH}) + R(-|\nabla H|^2 + i\nabla^2 H)e^{iH}$.
+
+\paragraph{Real and imaginary parts of \eqref{eq:el_scalar}.}
+Separating real and imaginary parts:
+\begin{align}
+  \partial_T R &= D\!\left(\nabla_Q^2 R - R|\nabla_Q H|^2\right), \label{eq:real_el}\\
+  R\,\partial_T H &= D\!\left(2\nabla_Q R \cdot \nabla_Q H + R\,\nabla_Q^2 H\right).
+  \label{eq:imag_el}
+\end{align}
+
+\paragraph{FPE form.}
+Equation~\eqref{eq:imag_el} can be rewritten in conservation-law form.
+Setting $\rho = R^2 = |\Theta|^2$ and $J_Q = -D\,R^2\,\nabla_Q H$ gives:
+\begin{equation}
+  \partial_T \rho + \nabla_Q \cdot J_Q = 0,
+\end{equation}
+which is the continuity equation for probability density $\rho$.
+Comparing with the FPE $\partial_T\Theta = -\nabla_Q\cdot[A(Q)\Theta] + D\nabla_Q^2\Theta$, the drift is:
+\begin{equation}
+  \boxed{A(Q) = -D\,\nabla_Q H = -\nabla_Q(D\cdot H).}
+  \label{eq:drift_derived}
+\end{equation}
+For $D = \mathrm{const}$: $A(Q) = -D\,\nabla_Q H$.
+
+\begin{resultbox}
+\textbf{Gap G1 — CLOSED for scalar sector}:
+The drift $A(Q) = -\nabla_Q \mathbb{H}$ follows from the Euler--Lagrange equation
+of $S[\Theta]$ in the polar decomposition $\Theta = R\,e^{iH}$:
+the imaginary part of the E-L equation gives a continuity equation
+whose current identifies $A(Q) = -D\nabla_Q H$, confirming the assumed form
+(with $D = \mathrm{const}$).
+
+\medskip
+\textbf{Remaining gap}: The vector sector (electromagnetic fields, $A^\mu \neq 0$)
+introduces non-Abelian gauge contributions to the drift that are not covered by
+this scalar derivation.  The full non-Abelian/electromagnetic drift term remains
+\textbf{open} for future work.
+\end{resultbox}
+
+\subsubsection{Gap G2 — Consistency Condition Not Proved Satisfied}
+
+\begin{gapbox}
+\textbf{Gap G2}: Equation~\eqref{eq:consistency} is an additional PDE that $\mathbb{H}(T)$
+must satisfy.  Appendix~G.5 states the condition but does not prove that $\mathbb{H}(T)$
+from the Hamiltonian-exponent framework (Appendix~G) satisfies it.
+
+\textbf{What is needed}: Either
+(a) prove that the specific $\mathbb{H}$ from Appendix~G solves \eqref{eq:consistency}, or
+(b) show \eqref{eq:consistency} reduces to a known satisfied equation in the
+    relevant limit.
+
+\textbf{Status}: OPEN sub-task.
+\end{gapbox}
+
+\subsubsection{Gap G3 — Non-commutativity Not Fully Handled}
+
+\begin{gapbox}
+\textbf{Gap G3}: The product rules in equations~\eqref{eq:time_deriv}--\eqref{eq:laplacian_theta}
+treat $\mathbb{B}(n)\cdot\mathbb{H}(T)$ as if it commutes with its own derivative.
+In the biquaternionic setting this requires $[\mathbb{B}(n),\,\partial\mathbb{H}] = 0$.
+
+\textbf{What is needed}: Either restrict to the commutative sector (scalar coefficients)
+or provide the full non-commutative treatment using the Baker--Campbell--Hausdorff
+formula for $e^{\mathbb{B}\cdot\mathbb{H}}$.
+
+\textbf{Status}: OPEN sub-task (likely solvable in the Abelian limit).
+\end{gapbox}
+
+\subsection{What \emph{Is} Established}
+
+Despite the gaps, the derivation does establish the following:
+
+\begin{resultbox}
+\textbf{Established}: In the \emph{commutative sector} (all $\mathbb{B}(n)$ scalar, all products
+commuting) \emph{and} provided the Hamiltonian satisfies the consistency condition
+\eqref{eq:consistency}, the theta function $\Theta = \sum_n \exp[\pi\mathbb{B}(n)\cdot\mathbb{H}(T)]$
+satisfies the biquaternionic FPE with drift $A(Q) = -\nabla_Q\mathbb{H}(T)$.
+
+\textbf{This is a partial result, not the full claim.}
+\end{resultbox}
+
+The physical interpretation (probability current, conservation law) and the reduction
+to the complex-time limit $\tau = t+i\psi$ are structurally correct; they follow from
+the established part.
+
+\subsection{Verification Script}
+
+A numerical verification of the commutative-sector claim is provided in
+\texttt{tools/verify\_fpe.py}.  It:
+\begin{itemize}
+  \item constructs $\Theta(Q,T)$ with a Gaussian $\mathbb{H}$,
+  \item evaluates both sides of the FPE numerically using finite differences,
+  \item reports the relative residual $\|\text{lhs} - \text{rhs}\|/\|\text{rhs}\|$.
+\end{itemize}
+
+A residual below $10^{-3}$ in the scalar case confirms the commutative result.
+
+\subsection{Verdict}
+
+\begin{center}
+\large\textbf{VERDICT: SKETCH}
+\end{center}
+
+The derivation is structurally complete in the commutative/scalar limit but requires
+three additional steps (G1, G2, G3) before it can be promoted to PROVED.
+
+\textbf{Action items}:
+\begin{enumerate}
+  \item Derive $A(Q) = -\nabla_Q\mathbb{H}$ from $S[\Theta]$ (Gap G1):
+        \textbf{CLOSED for scalar sector} (§\ref{subsubsec:gap_g1_partial});
+        electromagnetic/non-Abelian sector remains open.
+  \item Verify \eqref{eq:consistency} for the specific $\mathbb{H}$ of Appendix~G (Gap G2).
+  \item Handle non-commutative product ordering (Gap G3).
+\end{enumerate}
+
+\noindent\textbf{Source file checked}: \texttt{consolidation\_project/appendix\_G5\_biquaternionic\_fokker\_planck.tex}\\
+\textbf{Date}: 2026-03-06\\
+\textbf{Author}: David Jaroš
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

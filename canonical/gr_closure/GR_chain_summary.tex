@@ -1,0 +1,166 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Recovery Chain Summary:\\
+         $\Theta \to g \to \Gamma \to R \to \text{Einstein}$}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  This document summarises the complete chain of results establishing that
+  UBT (Unified Biquaternion Theory) contains standard General Relativity
+  as a sector.  The chain proceeds from the fundamental biquaternionic field
+  $\Theta$ through metric emergence, non-degeneracy, Lorentzian signature,
+  the standard GR geometric apparatus, and finally to Einstein's field
+  equations.  Steps~1--5 are proved.  Step~6 (full off-shell closure) is an
+  open problem at level [L2] and does not affect the validity of Steps~1--5.
+  \end{abstract}
+\fi
+
+\section{GR Recovery Chain: $\Theta \to g \to \Gamma \to R \to \text{Einstein}$}
+\label{sec:gr_chain_summary}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+  title=Theorem (GR Recovery Chain)]
+
+The following chain of results establishes that UBT contains standard
+General Relativity as a sector.
+
+\medskip
+\textbf{Step 1: $\Theta \to g_{\mu\nu}$}
+\[
+  g_{\mu\nu} \;=\; \frac{\Re[\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger]}{\mathcal{N}},
+  \qquad \mathcal{N} > 0 \text{ (scale-fixing scalar)}.
+\]
+$\mathcal{N}$ determines the physical units of the metric but \textbf{does not
+determine the signature} — see Step~3.
+\hfill\textit{[Ref: \texttt{step1\_metric\_bridge.tex}]}
+
+\medskip
+\textbf{Step 2: $g_{\mu\nu}$ is non-degenerate}
+
+For $\Theta \in \mathcal{A}_\mathrm{UBT}$: $\det(g) \neq 0$.
+\[
+  \mathcal{A}_\mathrm{UBT} \;:=\;
+  \{\Theta \mid \partial_\mu\Theta \text{ linearly independent},\; \Theta \neq \text{const}\}.
+\]
+\hfill\textit{[Ref: \texttt{step2\_nondegeneracy.tex}, Theorem~1]}
+
+\medskip
+\textbf{Step 3: Signature $(-,+,+,+)$}
+
+From AXIOM~B: $\tau = t + i\psi \Rightarrow \partial_\tau$ lies in the timelike
+sector of $\mathrm{Cl}_{1,3}(\mathbb{R})$, giving $g_{00} < 0$, $g_{ii} > 0$.
+\textbf{$\mathcal{N}$ does not fix the signature} — the Lorentzian signature is
+an algebraic theorem from the axioms.
+\hfill\textit{[Ref: \texttt{step3\_signature\_theorem.tex}, Theorem~2]}
+
+\medskip
+\textbf{Step 4: $g \to \Gamma \to R$ (derived GR structure, real limit)}
+
+In the real limit, the derived metric $g_{\mu\nu} := \mathrm{Re}(\mathcal{G}_{\mu\nu})$
+determines the Levi-Civita connection via metric compatibility; Riemann $\to$ Ricci $\to$
+Einstein tensor via standard differential geometry.
+These classical GR structures are obtained as projections from UBT, not fundamental.
+\hfill\textit{[Standard differential geometry, applied to derived $g$]}
+
+\medskip
+\textbf{Step 5: Einstein field equations}
+\[
+  \frac{\delta S_\mathrm{total}[g,\Theta]}{\delta g^{\mu\nu}} \;=\; 0
+  \;\;\Longrightarrow\;\; G_{\mu\nu} \;=\; 8\pi G\, T_{\mu\nu}.
+\]
+$T_{\mu\nu}$ from the Hilbert prescription $\delta S_\mathrm{matter}/\delta g^{\mu\nu} =
+-(\sqrt{-g}/2)\,T_{\mu\nu}$.
+\hfill\textit{[Ref: \texttt{T\_munu\_derivation/step3\_einstein\_with\_matter.tex}]}
+
+\medskip
+\textbf{Step 6 [ON-SHELL]: Fully emergent gravity}
+
+After substituting $g = g[\Theta]$: Einstein equations become equations for
+$\Theta$ alone. \\
+\textit{Status:} \textbf{PROVED ON-SHELL} for $\Theta \in \mathcal{A}_\mathrm{UBT}$. \\
+Off-shell: requires global injectivity of $\Theta \mapsto g[\Theta]$
+\hfill\textbf{[OPEN L2]}
+
+\hfill\textit{[Ref: \texttt{step2\_theta\_only\_closure.tex}]}
+
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Overall Status}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+  title=GR Recovery Status: SUBSTANTIALLY PROVED {[L1]}]
+
+\begin{itemize}
+  \item \textbf{Steps 1--5: proved.}
+        The chain $\Theta \to g_{\mu\nu} \to \Gamma \to R \to G_{\mu\nu} = 8\pi G T_{\mu\nu}$
+        is fully established.
+  \item \textbf{Step~6 off-shell: open.}
+        The pure $\Theta$-only formulation (eliminating $g$ before variation) is
+        open at [L2]; it is topology-dependent and does not affect Steps~1--5.
+\end{itemize}
+
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Step-by-Step Reference Table}
+
+\begin{center}
+\begin{tabular}{clll}
+\hline
+\textbf{Step} & \textbf{Claim} & \textbf{Status} & \textbf{Reference} \\
+\hline
+1 & $\Theta \to g_{\mu\nu}$ via derivative formula & Proved [L0] & \texttt{step1\_metric\_bridge.tex} \\
+2 & $\det(g) \neq 0$ for $\mathcal{A}_\mathrm{UBT}$ & Proved [L0] & \texttt{step2\_nondegeneracy.tex} \\
+3 & Signature $(-,+,+,+)$ from AXIOM~B & Proved [L0] & \texttt{step3\_signature\_theorem.tex} \\
+4 & $g \to \Gamma \to R$ geometric chain & Standard & Differential geometry \\
+5 & $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ from $\delta S/\delta g = 0$ & Proved [L1] & \texttt{step3\_einstein\_with\_matter.tex} \\
+6 & Off-shell $\Theta$-only closure & Open [L2] & \texttt{step2\_theta\_only\_closure.tex} \\
+\hline
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------------
+\begin{remark}[UBT contains GR]
+This chain shows that UBT contains standard GR as a sector.
+The metric $g_{\mu\nu}$ is \textbf{not} put in by hand — it emerges from $\Theta$.
+The off-shell closure (Step~6) is an open problem at [L2] and
+does not affect the validity of Steps~1--5.
+\end{remark}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi

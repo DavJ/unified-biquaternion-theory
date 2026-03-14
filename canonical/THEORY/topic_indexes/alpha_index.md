@@ -4,7 +4,7 @@
 
 **Status**: **PARTIALLY DERIVED** — structural framework proved; two key quantities remain open  
 **Last updated**: 2026-03-10  
-**Canonical source**: `ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md`
+**Canonical source**: `docs/STATUS_ALPHA.md`
 
 ---
 
@@ -30,9 +30,9 @@ is a rigorous first-principles derivation of B_base and R.
 
 | Document | Role | Status |
 |----------|------|--------|
-| `ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md` | **CANONICAL** — complete derivation chain with gap inventory | Master reference |
+| `docs/STATUS_ALPHA.md` | **CANONICAL** — complete derivation chain with gap inventory | Master reference |
 
-`ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md` is the single authoritative source covering:
+`docs/STATUS_ALPHA.md` is the single authoritative source covering:
 - §2 Complex time compactification and Dirac quantisation
 - §3 Prime stability constraint and V_eff(n) minimum
 - §4 Effective potential one-loop structure
@@ -47,9 +47,9 @@ is a rigorous first-principles derivation of B_base and R.
 
 | Document | Label | Content |
 |----------|-------|---------|
-| `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/step1_mode_decomposition.tex` | **supporting** | N_eff = 12 (Theorem 1.4) |
-| `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/step2_vacuum_polarization.tex` | **supporting** | B₀ = 8π (Theorem 3.1) |
-| `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/step3_N_eff_result.tex` | **supporting** | N_eff = 12 result compilation |
+| `canonical/n_eff/step1_mode_decomposition.tex` | **supporting** | N_eff = 12 (Theorem 1.4) |
+| `canonical/n_eff/step2_vacuum_polarization.tex` | **supporting** | B₀ = 8π (Theorem 3.1) |
+| `canonical/n_eff/step3_N_eff_result.tex` | **supporting** | N_eff = 12 result compilation |
 | `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/verify_N_eff.py` | **supporting** | Numerical verification |
 | `ARCHIVE/archive_legacy/consolidation_project/appendix_ALPHA_one_loop_biquat.tex` | **supporting** | One-loop alpha derivation (§B.3 for B_base) |
 
@@ -131,10 +131,10 @@ Main entries in `DERIVATION_INDEX.md`, Fine Structure Constant section:
 
 ## What a New Reader Should Do
 
-1. Read `ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md` §§1–5 for the proved results (B₀, V_eff minimum, N_eff=12)
-2. Read §9 of `ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md` for the B_base gap landscape
+1. Read `docs/STATUS_ALPHA.md` §§1–5 for the proved results (B₀, V_eff minimum, N_eff=12)
+2. Read §9 of `docs/STATUS_ALPHA.md` for the B_base gap landscape
 3. For the deepest current approach to B_base, read
    `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_hausdorff.tex` (Approach A2)
    and `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_kac_moody_level.tex` (Approach H2)
 4. For numerical verification, run `experiments/validation/validate_B_coefficient.py`
-5. Do not use `emergent_alpha_*.tex` files as primary sources — they are superseded by `ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md`
+5. Do not use `emergent_alpha_*.tex` files as primary sources — they are superseded by `docs/STATUS_ALPHA.md`

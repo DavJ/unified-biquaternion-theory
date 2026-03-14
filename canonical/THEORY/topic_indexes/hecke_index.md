@@ -4,7 +4,7 @@
 
 **Status**: **STRONG NUMERICAL SUPPORT** for p=137 (Set A); **NUMERICAL OBSERVATION** for p=139 (Set B)  
 **Last updated**: 2026-03-10  
-**Canonical source**: `docs/reports/hecke_lepton/` and `ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex`
+**Canonical source**: `docs/reports/hecke_lepton/` and `research_tracks/hecke_bridge/motivation.tex`
 
 ---
 
@@ -34,7 +34,7 @@ remains an open problem.
 | Document | Role | Status |
 |----------|------|--------|
 | `docs/reports/hecke_lepton/` (directory) | **CANONICAL** — all Hecke numerical results | See table below |
-| `ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex` | **CANONICAL** — theoretical motivation (weights, levels, characters) | MOTIVATED CONJECTURE |
+| `research_tracks/hecke_bridge/motivation.tex` | **CANONICAL** — theoretical motivation (weights, levels, characters) | MOTIVATED CONJECTURE |
 
 ### Key files in `docs/reports/hecke_lepton/`:
 
@@ -74,7 +74,7 @@ remains an open problem.
 | `experiments/research_tracks/three_generations/verify_hecke_masses.py` | **supporting** | Mass verification script |
 | `research_tracks/automorphic/hecke_l_route.py` | **supporting** | Hecke L-function computation |
 | `research_tracks/automorphic/tests/test_hecke_l_route.py` | **supporting** | Tests for L-function code |
-| `ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex` | **supporting** | Weight/level/character motivation |
+| `research_tracks/hecke_bridge/motivation.tex` | **supporting** | Weight/level/character motivation |
 
 ---
 
@@ -157,5 +157,5 @@ Main entries in `DERIVATION_INDEX.md`, Three Fermion Generations section:
 1. Read `docs/reports/hecke_lepton/mirror_world_139.md` for the Set B observation (clear, self-contained)
 2. Read `experiments/research_tracks/three_generations/step5_hecke_search_results.tex` for Set A methodology
 3. Run `experiments/research_tracks/three_generations/verify_hecke_masses.py` to confirm numbers
-4. Read `ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex` for the theoretical motivation
+4. Read `research_tracks/hecke_bridge/motivation.tex` for the theoretical motivation
 5. Note that `speculative_extensions/UBT_HeckeWorlds_theta_zeta_primes_appendix.tex` is speculative — treat with caution

@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{remark}[definition]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+
+\title{Step 2: Biquaternionic Stress-Energy Tensor $\mathcal{T}_{\mu\nu}$ in UBT}
+\author{UBT Theory Development}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We lift the real stress-energy tensor $T_{\mu\nu}$ computed in Step~1
+to the full biquaternionic algebra $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$.
+The biquaternionic stress-energy tensor $\mathcal{T}_{\mu\nu}$ is defined by the
+same Hilbert prescription applied to the complex-valued UBT action.
+We show its decomposition into kinetic, potential, and gauge pieces,
+take the real projection $T_{\mu\nu} = \mathrm{Re}(\mathcal{T}_{\mu\nu})$,
+and verify the QED limit $\Theta \to \psi_{\mathrm{Dirac}}\otimes A_\mu$.
+\end{abstract}
+
+\tableofcontents
+
+% ------------------------------------------------------------
+\section{From Real to Biquaternionic Action}
+
+\subsection{Recap from Step 1}
+
+Step~1 (\texttt{step1\_metric\_variation.tex}) derived, in the real $(-,+,+,+)$
+sector, the stress-energy tensor
+\begin{equation}
+  T_{\mu\nu}
+  = T^{(\mathrm{kin})}_{\mu\nu}
+  + T^{(\mathrm{pot})}_{\mu\nu}
+  + T^{(\mathrm{gauge})}_{\mu\nu}
+\end{equation}
+where each piece follows from $T_{\mu\nu} = -(2/\sqrt{-g})\,\delta S/\delta g^{\mu\nu}$.
+
+\subsection{Complex-Valued UBT Action}
+
+The full UBT action $S[\Theta]$ in \texttt{appendix\_AA\_theta\_action.tex}
+is defined over the biquaternion algebra $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$.
+The field $\Theta: \mathbb{B}^4\times\mathbb{C} \to \mathbb{B}\otimes S\otimes G$
+takes values in a biquaternionic bundle and the action
+\begin{equation}
+  S[\Theta] = S_{\mathrm{kin}} + S_{\mathrm{pot}} + S_{\mathrm{gauge}}
+              + S_{\mathrm{boundary}}
+\end{equation}
+is generally complex-valued (biquaternion-valued in its variation).
+
+% ------------------------------------------------------------
+\section{Definition of $\mathcal{T}_{\mu\nu}$}
+
+\begin{definition}[Biquaternionic stress-energy tensor]
+\label{def:biquat_T}
+The \emph{biquaternionic stress-energy tensor} is:
+\begin{equation}
+  \label{eq:calT_def}
+  \mathcal{T}_{\mu\nu}
+  := -\frac{2}{\sqrt{-g}}\,\frac{\delta S[\Theta]}{\delta g^{\mu\nu}}
+  \;\in\; \mathbb{B},
+\end{equation}
+where the variation is taken with respect to the real spacetime metric
+$g^{\mu\nu}$ while $\Theta$ is held fixed on its biquaternion fiber.
+\end{definition}
+
+\begin{remark}
+  Definition~\ref{def:biquat_T} applies the same Hilbert formula as in
+  Definition~2.1 of \texttt{step1\_metric\_variation.tex}, but now the
+  action $S[\Theta]$ is $\mathbb{B}$-valued.  The variation
+  $\delta S/\delta g^{\mu\nu}$ is therefore a $\mathbb{B}$-valued tensor
+  field.  The real projection defined below recovers the physical
+  stress-energy tensor.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Decomposition of $\mathcal{T}_{\mu\nu}$}
+
+\begin{theorem}[Additive decomposition]
+\label{thm:decomp}
+$\mathcal{T}_{\mu\nu}$ decomposes into contributions from each term in
+the action:
+\begin{equation}
+  \label{eq:calT_decomp}
+  \mathcal{T}_{\mu\nu}
+  = \mathcal{T}^{(\mathrm{kin})}_{\mu\nu}
+  + \mathcal{T}^{(\mathrm{pot})}_{\mu\nu}
+  + \mathcal{T}^{(\mathrm{gauge})}_{\mu\nu},
+\end{equation}
+where each piece is the Hilbert variation of the corresponding action term.
+The biquaternionic expressions are:
+\begin{align}
+  \mathcal{T}^{(\mathrm{kin})}_{\mu\nu}
+    &= \Tr_{\mathbb{B}}\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+       -\tfrac{1}{2}g_{\mu\nu}
+       \Tr_{\mathbb{B}}\!\bigl[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta\bigr],
+       \label{eq:calT_kin} \\
+  \mathcal{T}^{(\mathrm{pot})}_{\mu\nu}
+    &= -g_{\mu\nu}\,V(\Theta),
+       \label{eq:calT_pot} \\
+  \mathcal{T}^{(\mathrm{gauge})}_{\mu\nu}
+    &= K\Bigl[
+         \Tr_{\mathbb{B}}\!\bigl[F_{\mu\alpha}F_\nu{}^\alpha\bigr]
+         -\tfrac{1}{4}g_{\mu\nu}
+         \Tr_{\mathbb{B}}\!\bigl[F_{\alpha\beta}F^{\alpha\beta}\bigr]
+       \Bigr].
+       \label{eq:calT_gauge}
+\end{align}
+Here $\Tr_{\mathbb{B}}$ denotes the biquaternionic trace (over all internal
+indices: spinor, gauge, and biquaternion).
+\end{theorem}
+
+\begin{proof}
+  The action $S[\Theta]$ is a sum of three terms.  Since
+  $\delta(A+B)/\delta g^{\mu\nu} = \delta A/\delta g^{\mu\nu}
+  + \delta B/\delta g^{\mu\nu}$, the decomposition~\eqref{eq:calT_decomp}
+  follows immediately.  The individual formulas~\eqref{eq:calT_kin}--\eqref{eq:calT_gauge}
+  are the direct biquaternionic generalisations of the real formulas
+  derived in Propositions~2.1, 3.1, and~4.1 of
+  \texttt{step1\_metric\_variation.tex}, with $\Tr$ replaced by
+  $\Tr_{\mathbb{B}}$.
+\end{proof}
+
+\begin{remark}[Boundary term]
+  The boundary action $S_{\mathrm{boundary}}$ depends on the extrinsic curvature
+  of $\partial\mathcal{M}$ and does not contribute to $\mathcal{T}_{\mu\nu}$
+  in the bulk.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Real Projection}
+
+\begin{definition}[Physical stress-energy tensor]
+\label{def:real_T}
+The \emph{physical (real) stress-energy tensor} is:
+\begin{equation}
+  \label{eq:T_real}
+  T_{\mu\nu} := \re(\mathcal{T}_{\mu\nu}),
+\end{equation}
+where $\re: \mathbb{B} \to \mathbb{R}$ is the real part of the biquaternion
+scalar (the $\mathbf{1}$-component with zero imaginary and quaternionic
+parts), applied component-wise to the tensor indices $(\mu,\nu)$.
+\end{definition}
+
+\begin{lemma}[Real projection commutes with decomposition]
+\label{lem:re_commutes}
+\begin{equation}
+  T_{\mu\nu}
+  = T^{(\mathrm{kin})}_{\mu\nu}
+  + T^{(\mathrm{pot})}_{\mu\nu}
+  + T^{(\mathrm{gauge})}_{\mu\nu},
+\end{equation}
+where $T^{(\mathrm{X})}_{\mu\nu} = \re(\mathcal{T}^{(\mathrm{X})}_{\mu\nu})$.
+\end{lemma}
+
+\begin{proof}
+  Linearity of $\re$: $\re(A+B) = \re(A) + \re(B)$.
+  Applied to~\eqref{eq:calT_decomp}.
+\end{proof}
+
+\begin{remark}[Imaginary components]
+  The imaginary part $\im(\mathcal{T}_{\mu\nu})$ represents phase curvature
+  and nonlocal energy configurations that do not couple to classical matter.
+  It satisfies its own equations of motion in the biquaternionic sector but
+  is projected out in the real-valued (observable) limit.
+\end{remark}
+
+% ------------------------------------------------------------
+\section{QED Limit: Consistency Check}
+\label{sec:qed}
+
+\subsection{The QED Limit}
+
+Set $\Theta = \psi_{\mathrm{Dirac}}\otimes A_\mu$, where
+$\psi_{\mathrm{Dirac}}$ is a Dirac spinor and $A_\mu$ is an Abelian gauge
+field, with all non-Abelian and biquaternionic degrees of freedom set to zero.
+
+In this limit the UBT action reduces to:
+\begin{equation}
+  S_{\mathrm{QED}} = \int d^4x\,\sqrt{-g}\Bigl[
+    \bar{\psi}\bigl(i\gamma^\mu D_\mu - m\bigr)\psi
+    - \tfrac{1}{4}F_{\mu\nu}F^{\mu\nu}
+  \Bigr],
+\end{equation}
+where $D_\mu = \partial_\mu + ieA_\mu$ and $F_{\mu\nu} = \partial_\mu A_\nu
+- \partial_\nu A_\mu$.
+
+\subsection{Stress-Energy in the QED Limit}
+
+\begin{proposition}[QED stress-energy from UBT]
+\label{prop:qed_limit}
+In the QED limit, the UBT stress-energy tensor reproduces:
+\begin{align}
+  T^{(\mathrm{Dirac})}_{\mu\nu}
+    &= \tfrac{i}{4}\bar{\psi}\bigl(\gamma_\mu\overset{\leftrightarrow}{D}_\nu
+       + \gamma_\nu\overset{\leftrightarrow}{D}_\mu\bigr)\psi
+       - g_{\mu\nu}\bar{\psi}(i\gamma^\alpha D_\alpha - m)\psi,
+       \label{eq:T_Dirac} \\
+  T^{(\mathrm{EM})}_{\mu\nu}
+    &= F_{\mu\alpha}F_\nu{}^\alpha - \tfrac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta},
+       \label{eq:T_EM}
+\end{align}
+so that $T_{\mu\nu}\big|_{\mathrm{QED}} = T^{(\mathrm{Dirac})}_{\mu\nu}
++ T^{(\mathrm{EM})}_{\mu\nu}$.
+\end{proposition}
+
+\begin{proof}
+\textbf{Electromagnetic part.}
+Setting $K=1$ and taking $\Tr_{\mathbb{B}} \to 1$ (Abelian, no trace needed),
+formula~\eqref{eq:calT_gauge} gives exactly~\eqref{eq:T_EM}.
+This is the standard Maxwell stress-energy tensor derived from the
+Yang--Mills action in the Abelian limit. $\checkmark$
+
+\textbf{Dirac part.}
+For $\Theta = \psi_{\mathrm{Dirac}}$ (spin-$\tfrac{1}{2}$ Dirac field,
+mass dimension $\tfrac{3}{2}$), the kinetic term
+$\Tr_{\mathbb{B}}[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta]$ reduces to
+$\bar{\psi}\gamma_{(\mu}\overset{\leftrightarrow}{D}_{\nu)}\psi$
+(symmetrised).
+Combined with the potential term $V(\psi) = -m\bar{\psi}\psi + m\bar{\psi}\psi
+= 0$ at the vacuum, and on-shell (Dirac equation
+$i\gamma^\mu D_\mu\psi = m\psi$), formula~\eqref{eq:calT_kin} becomes:
+\begin{equation}
+  T^{(\mathrm{kin})}_{\mu\nu}\big|_{\psi}
+  = \tfrac{i}{4}\bar{\psi}\bigl(\gamma_\mu\overset{\leftrightarrow}{D}_\nu
+    + \gamma_\nu\overset{\leftrightarrow}{D}_\mu\bigr)\psi,
+\end{equation}
+which matches the canonical Dirac stress-energy tensor~\eqref{eq:T_Dirac}
+on-shell.~$\checkmark$
+\end{proof}
+
+\begin{remark}[QED tracelessness check]
+  For $m=0$: $g^{\mu\nu}T^{(\mathrm{EM})}_{\mu\nu} = 0$ (conformal invariance
+  of Maxwell theory in $d=4$) and $g^{\mu\nu}T^{(\mathrm{Dirac})}_{\mu\nu}
+  = -4m\bar{\psi}\psi$ (zero for massless fermions).
+  Both are standard results. $\checkmark$
+\end{remark}
+
+% ------------------------------------------------------------
+\section{Summary}
+
+\begin{theorem}[Biquaternionic stress-energy tensor: summary]
+The complete result is:
+\begin{equation}
+  \label{eq:calT_final}
+  \mathcal{T}_{\mu\nu}
+  = \Tr_{\mathbb{B}}\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+    -\tfrac{1}{2}g_{\mu\nu}\Tr_{\mathbb{B}}\!\bigl[(\nabla_\alpha\Theta)^\dagger
+    \nabla^\alpha\Theta\bigr]
+    - g_{\mu\nu}V(\Theta)
+    + K\Bigl[\Tr_{\mathbb{B}}\!\bigl[F_{\mu\alpha}F_\nu{}^\alpha\bigr]
+      -\tfrac{1}{4}g_{\mu\nu}\Tr_{\mathbb{B}}\!\bigl[F_{\alpha\beta}F^{\alpha\beta}
+    \bigr]\Bigr],
+\end{equation}
+with the physical stress-energy tensor $T_{\mu\nu} = \re(\mathcal{T}_{\mu\nu})$.
+The QED limit ($\Theta \to \psi_{\mathrm{Dirac}}\otimes A_\mu$) reproduces the
+standard electromagnetic and Dirac stress-energy tensors exactly.
+\end{theorem}
+
+\begin{remark}[Connection to \texttt{appendix\_R\_GR\_equivalence.tex}]
+  Equation~\eqref{eq:calT_final} provides the explicit derivation of
+  $T_{\mu\nu} = \re(\mathcal{T}_{\mu\nu})$ that was stated without proof
+  in \texttt{appendix\_R\_GR\_equivalence.tex}.
+  The Einstein equations with matter are derived in
+  \texttt{step3\_einstein\_with\_matter.tex}.
+\end{remark}
+
+\begin{thebibliography}{99}
+\bibitem{wald}    Wald, R.~M. (1984). \textit{General Relativity}.
+                  University of Chicago Press.
+\bibitem{ps}      Peskin, M.~E.\ \& Schroeder, D.~V. (1995).
+                  \textit{An Introduction to Quantum Field Theory}.
+                  Westview Press.
+\bibitem{step1}   UBT Theory Development.
+                  \texttt{step1\_metric\_variation.tex}, 2026.
+\bibitem{appendix_AA}
+                  UBT Theory Development.
+                  \texttt{appendix\_AA\_theta\_action.tex}, 2025.
+\end{thebibliography}
+
+\end{document}

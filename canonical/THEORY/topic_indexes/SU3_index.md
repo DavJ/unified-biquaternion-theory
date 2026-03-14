@@ -4,7 +4,7 @@
 
 **Status**: ⭐ **PROVED [L0]** — zero free parameters  
 **Last updated**: 2026-03-10  
-**Canonical file**: `ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex`
+**Canonical file**: `canonical/su3_derivation/su3_from_involutions.tex`
 
 ---
 
@@ -24,7 +24,7 @@ SU(3) — there is no room for a different gauge group.
 
 | Document | Role | Status |
 |----------|------|--------|
-| `ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex` | **CANONICAL** — complete algebraic proof, Theorems G.A–G.D | PROVED [L0] ⭐ |
+| `canonical/su3_derivation/su3_from_involutions.tex` | **CANONICAL** — complete algebraic proof, Theorems G.A–G.D | PROVED [L0] ⭐ |
 
 **Theorem structure in canonical file**:
 - **Thm. G.A** — Lie algebra: Im(ℍ) involutions generate 𝔰𝔲(3)
@@ -38,9 +38,9 @@ SU(3) — there is no room for a different gauge group.
 
 | Document | Label | Content |
 |----------|-------|---------|
-| `ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_involution_summary.tex` | **supporting** | Involution-based construction (the canonical approach, abbreviated) |
-| `ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_superposition_approach.tex` | **supporting** | Complementary derivation via quantum superposition over {I,J,K} |
-| `ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step3_SU3_result.tex` | **supporting** | Result compilation; cross-references to canonical |
+| `canonical/su3_derivation/step1_involution_summary.tex` | **supporting** | Involution-based construction (the canonical approach, abbreviated) |
+| `canonical/su3_derivation/step1_superposition_approach.tex` | **supporting** | Complementary derivation via quantum superposition over {I,J,K} |
+| `canonical/su3_derivation/step3_SU3_result.tex` | **supporting** | Result compilation; cross-references to canonical |
 | `tools/verify_su3_superposition.py` | **supporting** | Numerical verification: all 8 Gell-Mann generators confirmed |
 | `tools/verify_su3_from_biquaternion.py` | **supporting** | Alternative numerical check |
 
@@ -86,7 +86,7 @@ Main entries in `DERIVATION_INDEX.md`:
 
 ## What a New Reader Should Do
 
-1. Read `ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex` (canonical proof, ~8 pages)
+1. Read `canonical/su3_derivation/su3_from_involutions.tex` (canonical proof, ~8 pages)
 2. Run `tools/verify_su3_superposition.py` to numerically confirm all generators (< 1 second)
 3. If interested in the heuristic motivation, consult `ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex` with
    the explicit understanding it is a sketch, not a proof

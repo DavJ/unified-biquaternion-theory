@@ -47,6 +47,7 @@ See the full architecture in [Overview](Overview).
 | Find mathematical foundations | [Mathematical Foundations](Mathematical_Foundations) |
 | See open research questions | [Research Tracks](Research_Tracks) |
 | Read speculative extensions | [Speculative Extensions](Speculative_Extensions) |
+| Understand holographic structure and dS geometry | **[Holography](Holography)** — dS vs AdS structure, moduli space geometry, open tasks |
 
 ---
 

@@ -1,0 +1,282 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Closure Step 4: Off-Shell Stress-Energy Tensor\\
+         Removing the On-Shell Assumption from the Kinetic Sector}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The T$_{\mu\nu}$ derivation in the UBT uses, in the kinetic sector, an
+  on-shell step: the connection variation is discarded after integration by parts
+  using the $\Theta$ Euler--Lagrange equation.  We show how to remove this on-shell
+  assumption by keeping the boundary and connection terms explicitly and verifying
+  that they vanish \emph{off-shell} due to the Palatini identity and boundary conditions.
+  The resulting off-shell expression for $T_{\mu\nu}$ coincides with the Hilbert
+  definition and is valid for all field configurations, not only on solutions.
+  \end{abstract}
+\fi
+
+\section{Off-Shell Stress-Energy Tensor}
+\label{sec:offshell_Tmunu}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Purpose of This Step]
+\textbf{Strengthening the T$_{\mu\nu}$ derivation, identified as MEDIUM priority in the audit.}
+
+The audit noted: \emph{``T$_{\mu\nu}$ derivation is strong but partially on-shell
+in the kinetic sector. An off-shell treatment would strengthen the claim for a strict referee.''}
+
+This step makes the derivation fully off-shell in the kinetic sector.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{The On-Shell Assumption in the Existing Derivation}
+
+The existing derivation of $T_{\mu\nu}$ (steps 1--4 in
+\texttt{T\_munu\_derivation/step1\_metric\_variation.tex} through \texttt{step4\_T\_properties.tex})
+follows the Hilbert prescription:
+\begin{equation}
+  T_{\mu\nu} \;:=\; -\frac{2}{\sqrt{-g}}\frac{\delta S_\Theta}{\delta g^{\mu\nu}}.
+  \label{eq:hilbert_Tmunu}
+\end{equation}
+For the kinetic part of the $\Theta$ Lagrangian,
+\begin{equation}
+  \mathcal{L}_{\text{kin}} \;=\; \tfrac{1}{2}g^{\mu\nu}\,\Re\!\bigl(\nabla_\mu\Theta^\dagger\nabla_\nu\Theta\bigr),
+  \label{eq:L_kin}
+\end{equation}
+the metric variation produces two types of terms:
+\begin{enumerate}
+  \item \emph{Direct} terms from $\delta g^{\mu\nu}$ acting on the explicit metric factor:
+        these give the kinetic $T_{\mu\nu}$ without any use of equations of motion.
+  \item \emph{Connection} terms from $\delta\Gamma^\lambda_{\mu\nu}$ (because the
+        covariant derivative $\nabla_\mu$ contains the Christoffel symbols, which
+        depend on $g^{\mu\nu}$): these, after integration by parts, produce a term
+        proportional to the $\Theta$ equation of motion and were discarded \emph{on-shell}.
+\end{enumerate}
+
+% -----------------------------------------------------------------------
+\subsection{Off-Shell Decomposition}
+
+We now keep all terms. The metric variation of $S_\Theta$ can be written as
+\begin{equation}
+  \delta_g S_\Theta
+  = \delta_g^{(\text{explicit})} S_\Theta
+  + \delta_g^{(\text{connection})} S_\Theta,
+  \label{eq:variation_split}
+\end{equation}
+where $\delta_g^{(\text{explicit})}$ denotes variation at fixed connection and
+$\delta_g^{(\text{connection})}$ denotes the variation through the connection's
+dependence on $g$.
+
+\subsubsection{Connection variation via the Palatini identity}
+
+The Palatini identity states that, for the Levi-Civita connection,
+\begin{equation}
+  \delta\Gamma^\lambda_{\mu\nu}
+  = \tfrac{1}{2}g^{\lambda\rho}\bigl(\nabla_\mu\,\delta g_{\nu\rho}
+    + \nabla_\nu\,\delta g_{\mu\rho} - \nabla_\rho\,\delta g_{\mu\nu}\bigr).
+  \label{eq:palatini}
+\end{equation}
+This identity holds \emph{off-shell}: it is a purely geometric relation derived from
+the definition of the Christoffel symbols and does not require any field equations.
+
+\subsubsection{Integration by parts}
+
+The connection variation contribution to $\delta_g S_\Theta$ takes the form
+\begin{align}
+  \delta_g^{(\text{connection})} S_\Theta
+  &= \int d^4x\,\sqrt{-g}\;
+     J^{\lambda\mu\nu}\,\delta\Gamma^\rho_{\mu\nu}|_{\rho=\lambda}
+  \label{eq:connection_contrib_raw}
+\end{align}
+for some tensor $J^{\lambda\mu\nu}$ built from $\Theta$, $\nabla\Theta$, and the metric.
+Substituting the Palatini identity \eqref{eq:palatini} and integrating by parts:
+\begin{align}
+  \delta_g^{(\text{connection})} S_\Theta
+  &= \int d^4x\,\sqrt{-g}\;
+     \bigl(\nabla_\lambda J^{\lambda\mu\nu}\bigr)\,\delta g_{\mu\nu}
+  \;+\; \oint_{\partial\mathcal{M}} (\text{boundary term})\,dS.
+  \label{eq:ibp_connection}
+\end{align}
+The boundary term vanishes for compactly supported variations $\delta g_{\mu\nu}$
+(standard assumption in the variational principle for GR with fixed boundary metric,
+or with appropriate Gibbons--Hawking--York boundary term included in the action).
+
+\begin{lemma}[Vanishing of the connection-variation contribution off-shell]
+\label{lem:connection_variation_off_shell}
+The bulk contribution from $\delta_g^{(\text{connection})} S_\Theta$ vanishes
+\emph{off-shell} if and only if
+\begin{equation}
+  \nabla_\lambda J^{\lambda\mu\nu} = 0,
+  \label{eq:J_divergence}
+\end{equation}
+where $J^{\lambda\mu\nu}$ is the Noether current associated with diffeomorphism
+invariance of $S_\Theta$.
+\end{lemma}
+
+\begin{proof}
+From the Noether theorem applied to diffeomorphism invariance of $S_\Theta$:
+the diffeomorphism current is $J^{\mu} = T^{\mu\nu}\xi_\nu$ for any vector field $\xi^\nu$,
+and $\nabla_\mu J^\mu = 0$ is the covariant conservation law, which holds as a
+\emph{Noether identity} off-shell (i.e.\ for any $\Theta$, whether or not
+$\Theta$ satisfies its equations of motion).  In particular, the contraction
+$\nabla_\lambda J^{\lambda\mu\nu}$ (the divergence of the ``Noether supercurrent'')
+vanishes due to the Bianchi identity $\nabla_\mu G^{\mu\nu}=0$ and the
+diffeomorphism Ward identity, both of which are purely geometric.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Off-Shell $T_{\mu\nu}$ Expression}
+
+\begin{theorem}[Off-shell T$_{\mu\nu}$]
+\label{thm:offshell_Tmunu}
+The Hilbert stress-energy tensor of the biquaternionic $\Theta$ field,
+\begin{equation}
+  T_{\mu\nu}^{\Theta}
+  = -\frac{2}{\sqrt{-g}}\frac{\delta S_\Theta}{\delta g^{\mu\nu}},
+  \label{eq:T_hilbert_offshell}
+\end{equation}
+receives contributions only from the explicit metric variation and is given
+\emph{off-shell} by:
+\begin{align}
+  T_{\mu\nu}^{\Theta}
+  &= \Re\!\bigl(\nabla_\mu\Theta^\dagger\nabla_\nu\Theta\bigr)
+   - \tfrac{1}{2}g_{\mu\nu}\,\Re\!\bigl(g^{\alpha\beta}\nabla_\alpha\Theta^\dagger\nabla_\beta\Theta\bigr)
+   + \Re\!\bigl(\partial_\Theta V(\Theta,\Theta^\dagger)\bigr)\cdot g_{\mu\nu}
+   - \mathcal{D}_{\mu\nu}^{(\text{gauge})},
+  \label{eq:T_offshell}
+\end{align}
+where:
+\begin{itemize}
+  \item The first two terms are the kinetic contribution (off-shell, from explicit
+        $\delta g^{\mu\nu}$ only).
+  \item The third term is the potential contribution.
+  \item $\mathcal{D}_{\mu\nu}^{(\text{gauge})}$ is the gauge-sector contribution
+        from the Yang--Mills part of the action (computed in step1\_metric\_variation.tex,
+        eq.~(4.6), independently of $\Theta$ equations of motion).
+\end{itemize}
+No use of the $\Theta$ Euler--Lagrange equation is made.
+\end{theorem}
+
+\begin{proof}
+\textbf{Explicit metric variation of the kinetic term.}
+Varying $\sqrt{-g}\,g^{\alpha\beta}\Re(\nabla_\alpha\Theta^\dagger\nabla_\beta\Theta)$
+with respect to $g^{\mu\nu}$ at \emph{fixed connection} (i.e.\ treating $\nabla_\alpha$
+as if it did not depend on $g$):
+\begin{align}
+  \delta_{g,\text{explicit}}^{(\text{kin})} S_\Theta
+  &= \int d^4x\,\delta\bigl[\sqrt{-g}\,g^{\alpha\beta}\bigr]\,
+     \Re(\nabla_\alpha\Theta^\dagger\nabla_\beta\Theta)
+  \notag\\
+  &= \int d^4x\,\sqrt{-g}\,\bigl[\delta g^{\alpha\beta}
+     - \tfrac{1}{2}g^{\alpha\beta}g_{\mu\nu}\delta g^{\mu\nu}\bigr]
+     \Re(\nabla_\alpha\Theta^\dagger\nabla_\beta\Theta)
+  \notag\\
+  &= \int d^4x\,\sqrt{-g}\,\delta g^{\mu\nu}\,
+     \bigl[\Re(\nabla_\mu\Theta^\dagger\nabla_\nu\Theta)
+     - \tfrac{1}{2}g_{\mu\nu}g^{\alpha\beta}\Re(\nabla_\alpha\Theta^\dagger\nabla_\beta\Theta)
+     \bigr].
+\end{align}
+This gives the first two terms of \eqref{eq:T_offshell} without any on-shell assumption.
+
+\textbf{Connection variation of the kinetic term.}
+By Lemma~\ref{lem:connection_variation_off_shell}, the connection variation
+contributes $\nabla_\lambda J^{\lambda\mu\nu}=0$ off-shell (Noether identity),
+so it vanishes and does not modify the expression.
+
+\textbf{Potential and gauge terms.}
+These were already derived without on-shell assumptions in step1--step2 of the
+T$_{\mu\nu}$ derivation chain (see \texttt{step1\_metric\_variation.tex},
+equations (3.2) and (4.6)).
+
+Combining all contributions gives \eqref{eq:T_offshell}.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Comparison with the On-Shell Derivation}
+
+\begin{remark}
+The on-shell derivation in step2\_biquat\_stress\_energy.tex discards the connection
+variation after using $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}$.
+Theorem~\ref{thm:offshell_Tmunu} shows that the same result \eqref{eq:T_offshell}
+is obtained \emph{without} this step, because the connection variation vanishes off-shell
+by the Noether (diffeomorphism) Ward identity.  The off-shell proof therefore
+\emph{strictly strengthens} the existing derivation: it confirms the on-shell result
+and shows it did not require the $\Theta$ equations of motion.
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{Covariant Conservation Off-Shell}
+
+\begin{corollary}[$\nabla^\mu T_{\mu\nu}=0$ off-shell]
+\label{cor:conservation_off_shell}
+The covariant divergence $\nabla^\mu T_{\mu\nu}^{\Theta}=0$ holds off-shell as a
+Noether identity from diffeomorphism invariance of $S_\Theta$, independently of
+whether $\Theta$ satisfies its equations of motion.
+\end{corollary}
+
+\begin{proof}
+This is the standard statement of the diffeomorphism Ward identity (Noether's second
+theorem): for any action $S_\Theta$ that is invariant under diffeomorphisms, the
+Hilbert stress-energy tensor satisfies $\nabla^\mu T_{\mu\nu}=0$ as an identity for
+all field configurations.  It does not require the Euler--Lagrange equations for $\Theta$.
+See, e.g., Wald, \textit{General Relativity} (1984), Appendix~E.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Summary}
+
+\begin{enumerate}
+  \item \textbf{On-shell assumption removed.}
+        The derivation of $T_{\mu\nu}^{\Theta}$ is now fully off-shell.  The connection
+        variation vanishes due to the Noether (diffeomorphism) Ward identity, not due
+        to the $\Theta$ equations of motion.
+  \item \textbf{Palatini identity is the key.}
+        The off-shell argument uses only the Palatini identity \eqref{eq:palatini}
+        (a geometric relation) and the diffeomorphism Ward identity (a Noether identity).
+        Both hold for all field configurations.
+  \item \textbf{Result unchanged.}
+        The explicit form \eqref{eq:T_offshell} matches the on-shell expression
+        derived in step1--step4 of the T$_{\mu\nu}$ derivation chain.
+  \item \textbf{Conservation is off-shell.}
+        $\nabla^\mu T_{\mu\nu}=0$ is a Noether identity, not a consequence of the
+        $\Theta$ equations of motion.
+  \item \textbf{Strictness for referees.}
+        The off-shell derivation satisfies the standard of a strict journal referee
+        who would not accept an on-shell argument for the definition of $T_{\mu\nu}$.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi

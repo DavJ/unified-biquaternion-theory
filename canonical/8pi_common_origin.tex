@@ -1,0 +1,368 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{insightbox}
+
+\title{\textbf{The Common Origin of $8\pi$ in UBT}\\
+       \large $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ and $B_0 = 8\pi$ from
+       $\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H}) = 4$}
+\author{David Jaro\v{s}}
+\date{2026-03-06}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The factor $8\pi$ appears in two seemingly unrelated places in the
+Unified Biquaternion Theory:
+(1)~the Einstein field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+derived from the Hilbert action, and
+(2)~the one-loop $\beta$-function coefficient $B_0 = 8\pi \approx 25.13$
+derived from $N_{\mathrm{eff}} = 12$ modes of $\mathbb{C}\otimes\mathbb{H}$.
+We test whether both arise from the same algebraic origin:
+$\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H}) = 4$.
+
+\textbf{Finding:}
+The two $8\pi$'s have \emph{different} algebraic origins:
+$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ comes from the coefficient
+$1/(16\pi G)$ in the Hilbert action (a normalisation convention);
+$B_0 = 8\pi$ comes from $N_{\mathrm{eff}} = 12 = 3\times 2\times 2$
+from $\mathbb{C}\otimes\mathbb{H}$.
+However, both are controlled by $\dim_{\mathbb{R}}(\mathbb{H}) = 4$
+in the following sense:
+$16\pi G = 4\times\mathrm{vol}(S^2)\times G = \dim_{\mathbb{H}}
+\times 4\pi \times G$,
+and $N_{\mathrm{eff}} = 3\times 2\times 2$
+where $3 = \dim_{\mathbb{R}}(\mathrm{Im}(\mathbb{H}))$
+and the $2\times 2 = $ (helicity)$\times$(charge) are standard.
+The connection is \textbf{structural, not coincidental}, but they are
+\emph{not} the same $8\pi$:
+they arise from different contractions of the dimension of $\mathbb{H}$.
+\end{abstract}
+
+\tableofcontents
+
+%────────────────────────────────────────────────────────────────────────────
+\section{The Two Appearances of $8\pi$}
+\label{sec:two_appearances}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{Appearance 1: Einstein Field Equations}
+
+From \texttt{consolidation\_project/T\_munu\_derivation/step3\_einstein\_with\_matter.tex},
+the Hilbert action is:
+\begin{equation}
+  S_{\mathrm{EH}}[g] = \frac{1}{16\pi G}\int d^4x\,\sqrt{-g}\,R.
+\label{eq:hilbert_action}
+\end{equation}
+Variation gives (see that file for details):
+\begin{equation}
+  \frac{1}{8\pi G} G_{\mu\nu} = T_{\mu\nu},
+  \qquad\text{i.e.,}\quad
+  \boxed{G_{\mu\nu} = 8\pi G\,T_{\mu\nu}.}
+\label{eq:einstein}
+\end{equation}
+The $8\pi G$ is half the coefficient in $S_{\mathrm{EH}}$:
+$16\pi G / 2 = 8\pi G$.
+
+\subsection{Appearance 2: One-Loop $\beta$-Function Coefficient}
+
+From \texttt{consolidation\_project/N\_eff\_derivation/step2\_vacuum\_polarization.tex}
+(Theorem~3.1 in that document):
+\begin{equation}
+  B_0 = \frac{2\pi\,N_{\mathrm{eff}}}{3} = \frac{2\pi\times 12}{3} = 8\pi,
+\label{eq:B0}
+\end{equation}
+where $N_{\mathrm{eff}} = 12 = N_{\mathrm{phases}}\times N_{\mathrm{helicity}}
+\times N_{\mathrm{charge}} = 3\times 2\times 2$,
+and $N_{\mathrm{phases}} = \dim_{\mathbb{R}}(\mathrm{Im}(\mathbb{H})) = 3$.
+
+Both~\eqref{eq:einstein} and~\eqref{eq:B0} give $8\pi$ as a key numerical
+factor.  The question is: are they related?
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Dimensional Analysis}
+\label{sec:dimensional}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{$16\pi G$ and $\dim(\mathbb{H})$}
+
+\begin{proposition}[$16\pi G$ from $\dim_{\mathbb{H}}$]
+\label{prop:16piG}
+The coefficient $16\pi G$ in the Hilbert action can be written:
+\begin{equation}
+  16\pi G = \dim_{\mathbb{R}}(\mathbb{H}) \times \mathrm{vol}(S^2) \times G
+          = 4 \times 4\pi \times G,
+\label{eq:16piG}
+\end{equation}
+where:
+\begin{itemize}
+  \item $\dim_{\mathbb{R}}(\mathbb{H}) = 4$ (quaternion algebra dimension),
+  \item $\mathrm{vol}(S^2) = 4\pi$ (surface area of unit 2-sphere).
+\end{itemize}
+\end{proposition}
+
+\begin{remark}
+The factor $4\pi G$ arises in Newton's gravitational theory ($\nabla^2\Phi = 4\pi G\rho$);
+the factor of $4$ lifts it to the 4-dimensional quaternionic volume.
+This is a \emph{structural} statement about $\mathbb{H}$, but not an
+independent derivation of the Hilbert normalisation.
+\end{remark}
+
+\subsection{$B_0 = 8\pi$ and $\dim(\mathbb{H})$}
+
+\begin{proposition}[$B_0 = 8\pi$ from $\dim_{\mathbb{R}}(\mathrm{Im}(\mathbb{H}))$]
+\label{prop:B0}
+The one-loop coefficient is:
+\begin{equation}
+  B_0 = \frac{2\pi\,N_{\mathrm{eff}}}{3}
+      = \frac{2\pi\times(3\times 2\times 2)}{3}
+      = 2\pi\times(2\times 2)
+      = 8\pi.
+\label{eq:B0_detail}
+\end{equation}
+Here $3 = \dim_{\mathbb{R}}(\mathrm{Im}(\mathbb{H}))$ is the number of
+imaginary quaternion directions, and the $3$ in the denominator is the
+spin-trace factor in 4D from the $\gamma$-matrix algebra ($\mathrm{tr}(\gamma^\mu\gamma^\nu)
+= 4 g^{\mu\nu}$, effectively giving a 3-component phase-space factor).
+
+The cancellation $N_{\mathrm{phases}} / 3 = 3/3 = 1$ leaves
+$B_0 = 2\pi\times 4 = 8\pi$,
+where the $4 = N_{\mathrm{helicity}}\times N_{\mathrm{charge}} = 2\times 2$.
+\end{proposition}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Are $N_{\mathrm{phases}} = 3$ and Spin-Trace $= 3$ Equal for
+         an Algebraic Reason?}
+\label{sec:algebraic_reason}
+%────────────────────────────────────────────────────────────────────────────
+
+The central question of this document:
+\begin{center}
+\textit{Is $N_{\mathrm{phases}} = 3$ (from $\mathrm{Im}(\mathbb{H})$) equal to the
+  spin-trace factor $3$ (from $\gamma$-matrix algebra) for an algebraic reason,
+  or is this a coincidence?}
+\end{center}
+
+\begin{theorem}[Algebraic Equality of Phase Count and Spin Trace]
+\label{thm:equality}
+In 4D spacetime:
+\begin{enumerate}
+  \item[(i)] The number of imaginary quaternion directions:
+    $\dim_{\mathbb{R}}(\mathrm{Im}(\mathbb{H})) = 3$,
+    coming from $\mathbb{H} = \mathbb{R}\oplus\mathbb{R}\mathbf{i}\oplus\mathbb{R}\mathbf{j}
+    \oplus\mathbb{R}\mathbf{k}$.
+
+  \item[(ii)] The standard QED $\beta$-function for one complex scalar
+    has $B_0^{(\mathrm{scalar})} = 2\pi/3$.  The denominator $3$ arises from
+    the 1-loop Feynman diagram integral in $d=4-\epsilon$ dimensions:
+    \[
+      \int_0^1 dx\, 2x(1-x) = \frac{1}{3}.
+    \]
+
+  \item[(iii)] The Euler integral $\int_0^1 2x(1-x)\,dx = 1/3$ is a property
+    of the 1D Feynman parametrisation, \emph{not} of $\mathbb{H}$.
+    It equals $1/3$ independently of the number of quaternionic phases.
+\end{enumerate}
+Therefore: $N_{\mathrm{phases}} = 3$ and spin-trace factor $= 3$ are
+\textbf{numerically equal but algebraically independent}.
+Their equality is a \emph{numerical coincidence in $d=4$}, not an identity.
+\end{theorem}
+
+\begin{remark}[Consequence for $B_0$]
+Despite the coincidence in Theorem~\ref{thm:equality},
+the result $B_0 = 8\pi$ is still a zero-free-parameter derivation:
+it uses $N_{\mathrm{eff}} = 12$ from $\mathbb{C}\otimes\mathbb{H}$
+and the standard Feynman integral.  The equality $3/3 = 1$ is
+``accidental'' but harmless --- the physical result is correct regardless.
+\end{remark}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{$N_{\mathrm{eff}}/(\mathrm{spin-trace}) = 12/3 = 4$ and
+         $\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})$}
+\label{sec:neff_over_spin}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[$N_{\mathrm{eff}} / \mathrm{spin\ trace} = \dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})$]
+\label{prop:neff_dim}
+\begin{equation}
+  \frac{N_{\mathrm{eff}}}{\mathrm{spin\ trace}} = \frac{12}{3} = 4
+  = \dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H}).
+\label{eq:ratio}
+\end{equation}
+The complex dimension of the biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$ is:
+$\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H}) = 4$
+(since $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$, which has
+complex dimension $4$).
+\end{proposition}
+
+This gives a clean statement:
+\[
+  B_0 = \frac{2\pi\,N_{\mathrm{eff}}}{3}
+      = 2\pi\times\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})
+      = 2\pi\times 4 = 8\pi.
+\]
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Summary: Structural Connection of the Two $8\pi$'s}
+\label{sec:summary}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Structural Relation:}
+Both appearances of $8\pi$ in UBT are controlled by
+$\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H}) = 4$:
+\begin{align}
+  G_{\mu\nu} = 8\pi G\,T_{\mu\nu}: &\quad
+    8\pi G = \frac{\dim_{\mathbb{R}}(\mathbb{H})}{2}\times\mathrm{vol}(S^2)\times G
+    = 2 \times 4\pi G. \\
+  B_0 = 8\pi: &\quad
+    8\pi = 2\pi\times\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})
+    = 2\pi\times 4.
+\end{align}
+Both involve the factor $4 = \dim_{\mathbb{R}}(\mathbb{H}) = \dim_{\mathbb{C}}(\mathrm{Mat}(2,\mathbb{C}))$.
+\end{insightbox}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Quantity} & \textbf{$8\pi$ from} & \textbf{Algebraic source} \\
+  \midrule
+  $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+    & $16\pi G / 2$, with $16\pi = 4\times 4\pi$
+    & $\dim_{\mathbb{R}}(\mathbb{H})\times\mathrm{vol}(S^2)$ \\
+  $B_0 = 8\pi$
+    & $2\pi\times N_{\mathrm{eff}}/3 = 2\pi\times 4$
+    & $\dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})$ \\
+  \midrule
+  \textbf{Common factor}
+    & $4$
+    & $\dim_{\mathbb{R}}(\mathbb{H}) = \dim_{\mathbb{C}}(\mathrm{Mat}(2,\mathbb{C}))$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Conclusion:}
+The two $8\pi$'s are \emph{not} the same derivation but they share a
+common algebraic ancestor: the dimension $4$ of either $\mathbb{H}$
+(over $\mathbb{R}$) or $\mathbb{C}\otimes\mathbb{H}$ (over $\mathbb{C}$).
+This is a structural connection, not a coincidence, but also not a
+single unified theorem.  A deeper unification would require deriving
+the Hilbert normalisation coefficient $1/(16\pi G)$ directly from
+$S[\Theta]$ in UBT, bypassing the standard GR input.
+\textbf{Status: Structural connection identified. Deep theorem: OPEN.}
+\textbf{Script:} \texttt{tools/verify\_8pi\_connection.py}.
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Toward a Unified Theorem: $S_{\rm EH}$ from $S[\Theta]$}
+\label{sec:unified_theorem}
+%────────────────────────────────────────────────────────────────────────────
+
+We now present a motivated conjecture arguing that the Einstein--Hilbert coefficient
+$1/(16\pi G)$ can be recovered from the UBT action $S[\Theta]$ via dimensional analysis
+and algebraic structure, providing a potential unified origin for both $8\pi$'s.
+
+\subsection{Structure of the Total UBT Action}
+
+The total UBT action splits as:
+\begin{equation}
+  S_{\rm total} = S[\Theta] + S_{\rm EH},
+\end{equation}
+where $S_{\rm EH} = \frac{1}{16\pi G}\int R\sqrt{-g}\,d^4x$ is the Einstein--Hilbert term.
+In the UBT interpretation, $S_{\rm EH}$ arises from the $\varphi$-projection of $S[\Theta]$:
+the real (commutative) sector of the biquaternion action reproduces the gravitational action
+when the emergent metric $g_{\mu\nu} = \partial_\mu\Theta^\dagger \partial_\nu\Theta$ is
+substituted back.
+
+\subsection{Dimensional Argument for $16\pi G$}
+
+The Planck length $l_P = \sqrt{\hbar G/c^3}$ sets the natural length scale of quantum gravity.
+In the $\mathbb{C}\otimes\mathbb{H}$ framework, the real dimension of the algebra is:
+\begin{equation}
+  \dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) = 8.
+\end{equation}
+A dimensional argument then gives:
+\begin{equation}
+  16\pi G
+  = \bigl[\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})\bigr]^2 \cdot \pi \cdot l_P^2 \cdot c^3/\hbar
+  = 64\pi\,l_P^2 \cdot c^3/\hbar.
+  \label{eq:16piG_dim}
+\end{equation}
+Since $G = l_P^2 c^3/\hbar$ by definition, equation~\eqref{eq:16piG_dim} becomes
+$16\pi G = 64\pi G$, which does not balance.  The correct matching requires a
+dimensionless prefactor from the $\varphi$-projection geometry.
+
+A simpler version of the argument:
+\begin{equation}
+  16\pi G = \dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) \cdot 2\pi\,l_P^2\,c^3/\hbar
+  = 8 \cdot 2\pi G.
+  \label{eq:16piG_simple}
+\end{equation}
+This \emph{almost} works: $16\pi = 8 \cdot 2\pi$, so the factor $16$ decomposes as
+$\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) \times 2$.
+
+\subsection{Both $8\pi$'s from $\dim_{\mathbb{R}}(\mathbb{H}) = 4$}
+
+The common factor in both appearances is $\dim_{\mathbb{R}}(\mathbb{H}) = 4$:
+\begin{align}
+  G_{\mu\nu} = 8\pi G\,T_{\mu\nu}:&
+    \quad 8\pi = 4\pi \cdot \dim_{\mathbb{R}}(\mathbb{H})/2, \\
+  B_0 = 8\pi:&
+    \quad 8\pi = 2\pi \cdot \dim_{\mathbb{C}}(\mathbb{C}\otimes\mathbb{H})
+              = 2\pi \cdot \dim_{\mathbb{R}}(\mathbb{H}).
+\end{align}
+In both cases, the factor $4$ traces to the quaternionic dimension.
+The Einstein $8\pi$ comes from $(1/2)\dim_{\mathbb{R}}(\mathbb{H})\cdot\mathrm{vol}(S^2)$;
+the $\beta$-function $8\pi$ comes from $2\pi\cdot\dim_{\mathbb{R}}(\mathbb{H})$.
+
+\begin{insightbox}
+\textbf{[MOTIVATED CONJECTURE] Unified Theorem:}
+Both occurrences of $8\pi$ in UBT --- the Einstein coupling $8\pi G$ and the
+one-loop coefficient $B_0 = 8\pi$ --- originate from the single algebraic fact
+$\dim_{\mathbb{R}}(\mathbb{H}) = 4$, i.e., quaternions are 4-dimensional over
+the reals.
+
+\medskip
+\noindent\textbf{Status: MOTIVATED CONJECTURE.}
+The algebraic source (factor 4 from $\mathbb{H}$) is identified.
+A rigorous unified derivation would require computing Newton's constant $G$ directly
+from the normalisation of $S[\Theta]$ --- a deep unification problem [L2], open.
+
+\medskip
+\noindent\textbf{Rigorous derivation requires}: Computing $G$ from $S[\Theta]$
+by identifying the gravitational coupling as the coefficient of the emergent
+curvature term in the $\varphi$-projection of $S[\Theta]$.  This is the deep
+unification problem, classified as [L2] (requires beyond-one-loop analysis).
+\end{insightbox}
+
+\end{document}

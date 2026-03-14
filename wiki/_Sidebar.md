@@ -37,6 +37,8 @@
 
 ## 🔭 [Research Tracks](Research_Tracks)
 
+## 🌌 [Holography](Holography)
+
 ## 🌌 [Speculative Extensions](Speculative_Extensions)
 
 ---
