@@ -30,9 +30,9 @@ Numerical verification: ALL PASS — see `tools/verify_8pi_connection.py`.
 <!-- BEGIN GENERATED: eightpi_status -->
 | Result | Status | File |
 |--------|--------|------|
-| 8π in G_μν = 8πG T_μν from dim(ℍ) | ✅ **Structural [L0]** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
+| 8π in G_μν = 8πG T_μν from dim(ℍ) | 🔶 **Structural** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 | B₀ = 8π from dim_ℂ(ℂ⊗ℍ) = 4 | ✅ **Proved** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
-| Common algebraic ancestor: dim 4 | ✅ **Structural [L0]** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
+| Common algebraic ancestor: dim 4 | 🔶 **Structural** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 | N_phases = 3 and spin-trace = 1/3: algebraically independent | ✅ **Proved** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 | Unified theorem: single origin for both 8π's | ❌ **Open** | [`8pi_common_origin.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex) |
 <!-- END GENERATED: eightpi_status -->

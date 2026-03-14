@@ -33,7 +33,7 @@ Numerical verification: ALL CHECKS PASSED — see `tools/verify_fpe_equivalence.
 | FPE ↔ E-L equivalence (scalar, free field) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | Norm conservation from FPE | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | Projection A: Re sector → GR/KG | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| Projection B: Im sector → QM/Schrödinger | 🔶 **Sketch [L0]** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
+| Projection B: Im sector → QM/Schrödinger | 🔶 **Sketch** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | Projection C: Full FPE → statistical mechanics | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | FPE ↔ E-L (full biquaternionic) | ⚠️ **Partially Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 <!-- END GENERATED: fpe_status -->

@@ -32,7 +32,7 @@ coupling amplitude B_base remains an open problem.
 | Dirac quantisation condition | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Effective potential V_eff(n) form | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Prime stability constraint | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
-| N_eff = 12 from ℂ⊗ℍ algebra (N_phases = dim Im(ℍ) = 3) | ✅ **Proved [L0]** | [`canonical/n_eff/step3_N_eff_result.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/n_eff/step3_N_eff_result.tex) |
+| N_eff = 12 from ℂ⊗ℍ algebra (N_phases = dim Im(ℍ) = 3) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | B₀ = 25.1 (one-loop baseline) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | B_base = N_eff^{3/2} = 41.57 | 💭 **Conj.** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | R ≈ 1.114 (correction factor) | ❌ **Open** | [`PROOFKIT_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PROOFKIT_ALPHA.md) |

@@ -30,11 +30,14 @@ constraint.
 | Result | Status | File |
 |--------|--------|------|
 | U(1)\_EM unbroken at φ=const | ✅ **Proved** | [`step1_u1_protection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step1_u1_protection.tex) |
-| Electron mass m\_e=y·v at φ=const | 🔶 **Sketch [L1]** | [`step2_electron_mass.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step2_electron_mass.tex) |
+| Electron mass m\_e=y·v at φ=const | 🔶 **Sketch** | [`step2_electron_mass.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step2_electron_mass.tex) |
 | δB(φ)=0 at one loop — α(μ) running unchanged | ✅ **Proved** | [`step3_beta_function.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step3_beta_function.tex) |
 | Schwinger term a\_e=α/(2π) at φ=const | ✅ **Proved** | [`step4_schwinger_term.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step4_schwinger_term.tex) |
-| Lamb shift 1057.8 MHz at φ=const | 🔶 **Sketch [L1]** | [`step5_lamb_shift.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step5_lamb_shift.tex) |
-| QED reproducibility summary | ✅ **Substantially Proved [L1]** | [`step6_qed_summary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step6_qed_summary.tex) |
+| Lamb shift 1057.8 MHz at φ=const | 🔶 **Sketch** | [`step5_lamb_shift.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step5_lamb_shift.tex) |
+| QED reproducibility summary | ✅ **Proved** | [`step6_qed_summary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qed_phi_const/step6_qed_summary.tex) |
+| Gap Y1 — Derive Yukawa coupling y from S | ❌ **Open** |  |
+| Gap Y2 — Derive VEV v from V\_eff(θ₀) on ψ-circle | ❌ **Open** |  |
+| Gap L1 — Explicit UBT path-integral Lamb-shift computation at φ=const | ❌ **Open** |  |
 <!-- END GENERATED: qed_phi_const_status -->
 
 ### Open Sub-Tasks
