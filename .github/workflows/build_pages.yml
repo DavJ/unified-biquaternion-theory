@@ -24,69 +24,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install TeX Live and make4ht
+      - name: Install pandoc and LaTeX
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y \
+          sudo apt-get install -y pandoc latexmk \
             texlive-latex-extra texlive-fonts-recommended \
-            texlive-science texlive-publishers \
-            make4ht tex4ht pandoc latexmk \
             texlive-latex-recommended
-
-      - name: Install missing LaTeX packages
-        run: |
-          sudo tlmgr update --self || true
-          sudo tlmgr install tcolorbox environ trimspaces || true
 
       - name: Create output directories
         run: mkdir -p _site/canonical _site/wiki _site/assets
 
-      - name: Compile main canonical document to HTML (make4ht)
-        id: make4ht_step
+      - name: Compile main canonical document (pandoc from canonical/)
         working-directory: canonical
         run: |
-          set +e
-          make4ht -d ../_site/canonical UBT_canonical_main.tex \
-            "mathjax,html5" "-cunihtf -utf8" 2>&1 | tee /tmp/make4ht.log
-          EXIT1=${PIPESTATUS[0]}
+          pandoc UBT_canonical_main.tex \
+            --standalone \
+            --mathjax="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" \
+            --metadata title="Unified Biquaternion Theory — Canonical Theory" \
+            --css /unified-biquaternion-theory/assets/style.css \
+            -o ../_site/canonical/UBT_canonical_main.html 2>&1 | head -20
+          [ -f "../_site/canonical/UBT_canonical_main.html" ] && \
+            echo "✓ Main HTML generated ($(wc -l < ../_site/canonical/UBT_canonical_main.html) lines)" || \
+            (echo "✗ Main HTML NOT generated" && exit 1)
 
-          if [ $EXIT1 -ne 0 ] || ! [ -f "../_site/canonical/UBT_canonical_main.html" ]; then
-            echo "::warning::make4ht attempt 1 failed, trying minimal"
-            make4ht -d ../_site/canonical UBT_canonical_main.tex \
-              "mathjax" 2>&1 | tee -a /tmp/make4ht.log
-            EXIT2=${PIPESTATUS[0]}
-          fi
-
-          if ! [ -f "../_site/canonical/UBT_canonical_main.html" ]; then
-            echo "MAKE4HT_FAILED=true" >> $GITHUB_ENV
-            echo "::warning::make4ht failed — building PDF fallback"
-            latexmk -pdf -interaction=nonstopmode UBT_canonical_main.tex || true
-            [ -f UBT_canonical_main.pdf ] && cp UBT_canonical_main.pdf ../_site/ || true
-            cat > ../_site/canonical/UBT_canonical_main.html << 'EOF'
-          <h1>UBT Canonical Theory</h1>
-          <p>⚠️ HTML rendering via make4ht is temporarily unavailable.</p>
-          <ul>
-          <li>📄 <a href="/unified-biquaternion-theory/UBT_canonical_main.pdf"><strong>Download PDF</strong></a></li>
-          <li>📝 <a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">View .tex source</a></li>
-          </ul>
-          EOF
-          fi
-
-      - name: Upload make4ht log
-        if: env.MAKE4HT_FAILED == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: make4ht-log
-          path: /tmp/make4ht.log
-
-      - name: Fallback — pandoc for any .tex with \documentclass
+      - name: Compile standalone derivation files
         run: |
-          # Only process standalone files (with \documentclass)
-          for f in canonical/geometry/Rpsi_dynamical_fix.tex \
-                    canonical/geometry/biquaternionic_vacuum_solutions.tex \
-                    canonical/interactions/B_base_derivation_complete.tex \
-                    canonical/bridges/QED_limit_bridge.tex \
-                    canonical/bridges/GR_chain_bridge.tex; do
+          for f in \
+            canonical/geometry/Rpsi_dynamical_fix.tex \
+            canonical/geometry/biquaternionic_vacuum_solutions.tex \
+            canonical/interactions/B_base_derivation_complete.tex \
+            canonical/bridges/QED_limit_bridge.tex \
+            canonical/bridges/GR_chain_bridge.tex \
+            canonical/bridges/fermionic_statistics_bridge.tex; do
             [ -f "$f" ] || continue
             grep -q "\\\\documentclass" "$f" || continue
             name=$(basename "$f" .tex)
@@ -94,33 +63,33 @@ jobs:
             mkdir -p "_site/canonical/$subdir"
             pandoc "$f" \
               --standalone \
-              --mathjax \
+              --mathjax="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" \
               --metadata title="UBT — $name" \
               --css /unified-biquaternion-theory/assets/style.css \
-              -o "_site/canonical/$subdir/${name}.html" || true
+              -o "_site/canonical/$subdir/${name}.html" 2>/dev/null && \
+              echo "✓ $name.html" || echo "⚠ $name.html skipped"
           done
 
-      - name: Convert wiki Markdown to HTML (pandoc)
+      - name: Convert wiki Markdown to HTML
         run: |
           for f in wiki/*.md; do
             name=$(basename "$f" .md)
             [ "$name" = "_Sidebar" ] && continue
             pandoc "$f" \
               --standalone \
-              --mathjax \
+              --mathjax="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" \
               --metadata title="UBT Wiki — $name" \
               --css /unified-biquaternion-theory/assets/style.css \
-              -o "_site/wiki/${name}.html" || true
+              -o "_site/wiki/${name}.html" 2>/dev/null || true
           done
+          echo "✓ Wiki pages converted"
 
       - name: Create CSS stylesheet
         run: |
           cat > _site/assets/style.css << 'CSS'
-          body {
-            font-family: Georgia, "Times New Roman", serif;
-            max-width: 960px; margin: 40px auto;
-            padding: 0 24px; line-height: 1.7; color: #222;
-          }
+          body { font-family: Georgia, "Times New Roman", serif;
+            max-width: 960px; margin: 40px auto; padding: 0 24px;
+            line-height: 1.7; color: #222; }
           h1, h2, h3, h4 { color: #1a1a2e; margin-top: 2em; }
           code, pre { font-family: "Courier New", monospace;
             background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
@@ -128,20 +97,7 @@ jobs:
           table { border-collapse: collapse; width: 100%; margin: 1em 0; }
           td, th { border: 1px solid #ccc; padding: 8px 12px; }
           th { background: #f0f0f0; }
-          .source-links { font-size: 0.85em; color: #666; margin-bottom: 1.5em; }
-          .source-links a { margin-right: 12px; }
-          .tcolorbox { border: 1px solid #aaa; padding: 12px 16px;
-            margin: 1em 0; border-radius: 4px; background: #fafafa; }
           CSS
-
-      - name: Ensure MathJax CDN in HTML output
-        run: |
-          for f in _site/canonical/*.html _site/canonical/**/*.html; do
-            [ -f "$f" ] || continue
-            if ! grep -qi "mathjax" "$f"; then
-              sed -i 's|</head>|<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>\n</head>|' "$f"
-            fi
-          done
 
       - name: Copy PDF if available
         run: |
@@ -165,40 +121,26 @@ jobs:
           <p><strong>Author</strong>: Ing. David Jaroš &nbsp;|&nbsp;
              <strong>License</strong>: CC BY-NC-ND 4.0 &nbsp;|&nbsp;
              <a href="https://github.com/DavJ/unified-biquaternion-theory">GitHub repo</a></p>
-
-          <h2>Canonical Theory</h2>
-          <ul>
-            <li><a href="/unified-biquaternion-theory/canonical/UBT_canonical_main.html">Full document</a>
-                &mdash; compiled from UBT_canonical_main.tex via make4ht + MathJax
-                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">.tex</a>]</li>
-          </ul>
-
+          <p>
+            <a href="/unified-biquaternion-theory/canonical/UBT_canonical_main.html">&#x1F310; View rendered (HTML+MathJax)</a> &nbsp;|&nbsp;
+            <a href="/unified-biquaternion-theory/UBT_canonical_main.pdf">&#x1F4C4; Download PDF</a> &nbsp;|&nbsp;
+            <a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">&#x1F4DD; Raw .tex</a>
+          </p>
           <h2>Individual Derivations</h2>
           <ul>
-            <li><a href="/unified-biquaternion-theory/canonical/geometry/Rpsi_dynamical_fix.html">R_&#x03C8; dynamical fixation</a>
-                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/Rpsi_dynamical_fix.tex">.tex</a>]</li>
-            <li><a href="/unified-biquaternion-theory/canonical/interactions/B_base_derivation_complete.html">B_base derivation</a>
-                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/B_base_derivation_complete.tex">.tex</a>]</li>
-            <li><a href="/unified-biquaternion-theory/canonical/bridges/QED_limit_bridge.html">QED limit bridge</a>
-                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/QED_limit_bridge.tex">.tex</a>]</li>
-            <li><a href="/unified-biquaternion-theory/canonical/bridges/GR_chain_bridge.html">GR chain bridge</a>
-                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/GR_chain_bridge.tex">.tex</a>]</li>
+            <li><a href="/unified-biquaternion-theory/canonical/geometry/Rpsi_dynamical_fix.html">R_&#x03C8; dynamical fixation</a></li>
+            <li><a href="/unified-biquaternion-theory/canonical/interactions/B_base_derivation_complete.html">B_base derivation</a></li>
+            <li><a href="/unified-biquaternion-theory/canonical/bridges/QED_limit_bridge.html">QED limit bridge</a></li>
+            <li><a href="/unified-biquaternion-theory/canonical/bridges/GR_chain_bridge.html">GR chain bridge</a></li>
+            <li><a href="/unified-biquaternion-theory/canonical/bridges/fermionic_statistics_bridge.html">Fermionic statistics bridge</a></li>
           </ul>
-
           <h2>Wiki</h2>
           <ul>
             <li><a href="/unified-biquaternion-theory/wiki/Home.html">Home</a></li>
             <li><a href="/unified-biquaternion-theory/wiki/Overview.html">Overview</a></li>
-            <li><a href="/unified-biquaternion-theory/wiki/GR_Recovery.html">GR Recovery</a></li>
+            <li><a href="/unified-biquaternion-theory/wiki/Derivations.html">All Derivations</a></li>
             <li><a href="/unified-biquaternion-theory/wiki/Alpha_Constant.html">Fine Structure Constant &#x03B1;</a></li>
             <li><a href="/unified-biquaternion-theory/wiki/SU3_Structure.html">SU(3) Structure</a></li>
-            <li><a href="/unified-biquaternion-theory/wiki/Derivations.html">All Derivations</a></li>
-          </ul>
-
-          <h2>Downloads</h2>
-          <ul>
-            <li><a href="/unified-biquaternion-theory/UBT_canonical_main.pdf">&#x1F4C4; Canonical theory PDF</a>
-                (auto-built from LaTeX)</li>
           </ul>
           </body>
           </html>
