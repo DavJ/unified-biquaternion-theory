@@ -386,7 +386,7 @@ and an emergent-metric construction strongly connected to Θ.
 | Result | Status | Notes |
 |--------|--------|-------|
 | Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Proved [L1]** | Complex time ansatz Θ₀=e^{iΦ(r)}·[f·1+g·e_r]; g_tt=-Φ² from ψ-winding; see schwarzschild_from_theta.tex §5 |
-| Graviton dispersion in Schwarzschild background | **Derived [L1]** | v59: k²+V_eff(r)=0 derived; V_eff(r)=M²/(r⁴Ψ⁴)+... from isotropic Schwarzschild metric; k²=0 recovered as r→∞; Regge-Wheeler coefficient matching remains Open [L2]; see `research_tracks/research/graviton_schwarzschild.tex §4` |
+| Graviton dispersion in Schwarzschild background | **Derived [L1]** | v59: k²+V_eff(r)=0 derived; V_eff(r)=M²/(r⁴Ψ⁴)+... from isotropic Schwarzschild metric; k²=0 recovered as r→∞; v60: coordinate transformation to Schwarzschild coords explicit; coefficient comparison shows mismatch due to missing angular (ℓ-mode) decomposition; Regge-Wheeler coefficient matching remains Open [L2]; see `research_tracks/research/graviton_schwarzschild.tex §5` |
 | ASD condition (non-perturbative, full Weyl tensor) | **Proved [L1] (SU(2)₋ sector)** | Holonomy ⊂ Sp(1) → C⁺=0 for Θ∈SU(2)₋; proved in asd_condition_ubt.tex §5; Schwarzschild sector (Petrov D) is not ASD |
 | Curved twistor space from UBT | **Proved [L1] (SU(2)₋ sector)** | Penrose nonlinear graviton applies to SU(2)₋ vacuum solutions (C⁺=0 + Ricci-flat); see asd_condition_ubt.tex §5 Thm 5.4 |
 | Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
@@ -446,13 +446,13 @@ and an emergent-metric construction strongly connected to Θ.
 
 ## Higgs and Yukawa Sector
 
-> **Status (v59)**: Preliminary scan — Motivated Conjectures documented; no closed derivations yet.
+> **Status (v60)**: Gap H1 attempted (tree+one-loop); Gap Y1 partially computed via KK overlap.
 > Source: `research_tracks/research/higgs_yukawa_scan.md`
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
 | Higgs potential V(|Θ|²) = λ(|Θ|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(|Θ|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
-| Yukawa coupling ℒ_Yukawa ~ Sc(Θ†·ψ_L·ψ_R) from Θ-fermion coupling | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §3` | Scalar part of biquaternion product Θ†·ψ_L·ψ_R gives Lorentz-invariant Yukawa term; explicit coupling constant y not derived (Gap Y1) |
+| Yukawa coupling y = 1/√(2πR_ψ) from KK overlap | **Sketch [L1]** | `research_tracks/research/higgs_yukawa_scan.md §3` | ψ-mode overlap integral for n_H=0, n_L=1, n_R=1 gives y=C_alg/√(2πR_ψ); R_ψ calibrated; Gap Y1 partially closed |
 | sin²θ_W from ℂ⊗ℍ alone | **Dead End** | `research_tracks/research/higgs_yukawa_scan.md §4` | Weinberg angle requires U(1)_Y ↔ SU(2)_L mixing ratio; ℂ⊗ℍ fixes gauge structure but not the mixing angle; confirmed Dead End |
-| Gap H1: derive λ from S[Θ] | **Open** | — | Requires extracting quartic coefficient in Θ-field expansion of S[Θ] |
+| Gap H1: derive λ from S[Θ] | **Open** — v60 attempt: a₄=0 (tree + one-loop) for free kinetic action | `research_tracks/research/higgs_yukawa_scan.md §2.3` | v60: tree-level expansion gives a₄^{tree}=0; one-loop Casimir sum gives field-independent constant; non-trivial λ requires interactions absent from free kinetic UBT action; Hosotani-type mechanism or boundary conditions needed |
 | Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |
