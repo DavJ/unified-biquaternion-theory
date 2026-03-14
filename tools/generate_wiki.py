@@ -48,24 +48,45 @@ WIKI_DIR = os.path.join(REPO_ROOT, "wiki")
 REPO_URL = "https://github.com/DavJ/unified-biquaternion-theory"
 BLOB_BASE = f"{REPO_URL}/blob/master"
 
+# Maximum characters for a gap description shown inline in the wiki table
+_MAX_GAP_DESCRIPTION_LEN = 60
+
 # ---------------------------------------------------------------------------
 # Status normalisation (shared with generate_theory_map.py)
 # ---------------------------------------------------------------------------
 
 _STATUS_MAP = [
+    # Entries must be ordered from most-specific to least-specific substring so
+    # that e.g. "substantially proved" is matched before the plain "proved" key.
+    ("substantially proved",    ("Proved",          "✅")),
+    ("proved numerically",      ("Proved",          "✅")),
+    ("partially proved",        ("Partially Proved", "⚠️")),
+    ("partially resolved",      ("Partially Proved", "⚠️")),
     ("proven",                  ("Proved",          "✅")),
+    ("proved",                  ("Proved",          "✅")),
     ("derived",                 ("Proved",          "✅")),
     ("verified",                ("Proved",          "✅")),
     ("documented",              ("Proved",          "✅")),
+    ("closed",                  ("Proved",          "✅")),
+    ("conjectured with experimental support", ("Supported", "⚡")),
+    ("follows from conjecture",  ("Conj.",          "💭")),
     ("supported by numerical",  ("Supported",       "⚡")),
     ("strong numerical",        ("Supported",       "⚡")),
     ("numerical observation",   ("Supported",       "⚡")),
     ("supported",               ("Supported",       "⚡")),
     ("semi-empirical",          ("Semi-empirical",  "⚠️")),
     ("partially verified",      ("Semi-empirical",  "⚠️")),
+    ("conditional",             ("Conditional",     "⚠️")),
+    ("gr-compatible sector",    ("GR-compat.",      "⚠️")),
+    ("not reproduced",          ("Open",            "❌")),
     ("open hard problem",       ("Open",            "❌")),
     ("dead end",                ("Dead End",        "❌")),
     ("extended dead end",       ("Dead End",        "❌")),
+    ("mathematical sandbox",    ("Sandbox",         "🔬")),
+    ("heuristic",               ("Heuristic",       "🔶")),
+    ("sketch",                  ("Sketch",          "🔶")),
+    ("structural",              ("Structural",      "🔶")),
+    ("speculative",             ("Speculative",     "💭")),
     ("motivated conjecture",    ("Conj.",           "💭")),
     ("conjecture",              ("Conjecture",      "💭")),
     ("open",                    ("Open",            "❌")),
@@ -77,7 +98,12 @@ def _normalise_status(raw: str) -> tuple[str, str]:
     """Return (canonical_label, symbol) from raw status cell text."""
     s = raw.lower()
     s = re.sub(r"\*+", "", s)
-    s = re.sub(r"\[.*?\]", "", s).strip()
+    # For bracket-only statuses (e.g. [MATHEMATICAL SANDBOX]), the bracket
+    # content is the status; strip level markers otherwise (e.g. [L0]).
+    if re.match(r"^\s*\[.*\]\s*$", s):
+        s = re.sub(r"[\[\]]", "", s).strip()
+    else:
+        s = re.sub(r"\[.*?\]", "", s).strip()
     for key, val in _STATUS_MAP:
         if key in s:
             return val
@@ -115,8 +141,11 @@ def parse_derivation_index(filepath: str) -> dict[str, list[dict]]:
             # Skip table separator rows
             if re.match(r"^\|[-\s|:]+\|", line):
                 continue
-            # Skip header rows
-            if re.match(r"^\|\s*(Result|Check|Claim)\b", line, re.IGNORECASE):
+            # Skip header rows (various first-column labels used in DERIVATION_INDEX)
+            if re.match(
+                r"^\|\s*(Result|Check|Claim|Parameter|Description|Value|Label|Θ|Gap|Prediction)\b",
+                line, re.IGNORECASE
+            ):
                 continue
 
             if not line.startswith("|"):
@@ -130,9 +159,41 @@ def parse_derivation_index(filepath: str) -> dict[str, list[dict]]:
             file_col = parts[3] if len(parts) > 3 else ""
             notes = parts[4] if len(parts) > 4 else ""
 
+            # Detect Gap sub-table entries: second column is a description text,
+            # third column is a priority indicator (HIGH/MEDIUM/LOW).
+            # Extract any embedded status from the description; default to Open.
+            _priority_pat = re.compile(r"^(HIGH|MEDIUM|LOW)$", re.IGNORECASE)
+            notes_parts = notes.split()
+            if _priority_pat.match(file_col) or (notes_parts and _priority_pat.match(notes_parts[0])):
+                # Re-interpret: result=gap_id, description in status_raw, priority in file_col
+                gap_id = result
+                description = status_raw
+                # Extract embedded status if present (e.g. "**CLOSED** — ...")
+                embedded = re.search(r"\*\*([^*]+)\*\*", description)
+                if embedded:
+                    status_raw = embedded.group(0)  # keep the bold-wrapped status
+                else:
+                    status_raw = "**Open**"
+                truncated = description[:_MAX_GAP_DESCRIPTION_LEN]
+                ellipsis = "…" if len(description) > _MAX_GAP_DESCRIPTION_LEN else ""
+                result = f"Gap {gap_id} — {truncated}{ellipsis}"
+                file_col = ""
+                notes = ""
+
             if not result or not status_raw:
                 continue
             if result.lower() in ("result", "check", "claim") or result.startswith("---"):
+                continue
+
+            # Skip prediction/value rows: status_raw looks like a formula/value
+            # (not wrapped in ** and not a known status keyword)
+            if not status_raw.startswith("**") and not any(
+                kw in status_raw.lower() for kw in (
+                    "proved", "proven", "derived", "open", "conjecture", "supported",
+                    "semi-empirical", "sketch", "structural", "verified", "documented",
+                    "closed", "dead end", "conditional", "speculative",
+                )
+            ):
                 continue
 
             label, symbol = _normalise_status(status_raw)
@@ -242,7 +303,10 @@ def _status_table(entries: list[dict], max_rows: int = 20) -> str:
 def _count_statuses(entries: list[dict]) -> dict[str, int]:
     counts: dict[str, int] = {
         "Proved": 0, "Supported": 0, "Semi-empirical": 0,
-        "Conj.": 0, "Conjecture": 0, "Open": 0, "Dead End": 0, "Unknown": 0,
+        "Partially Proved": 0, "Conditional": 0, "GR-compat.": 0,
+        "Sketch": 0, "Structural": 0, "Heuristic": 0, "Sandbox": 0,
+        "Speculative": 0, "Conj.": 0, "Conjecture": 0,
+        "Open": 0, "Dead End": 0, "Unknown": 0,
     }
     for e in entries:
         key = e["label"]

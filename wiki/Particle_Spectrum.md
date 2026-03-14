@@ -2,8 +2,10 @@
 
 # Particle Spectrum
 
-UBT predicts three fermion generations from the ψ-winding mode structure of Θ,
-and recovers Standard Model quantum numbers from the gauge algebra.
+UBT **proposes** three fermion generations from the ψ-winding mode structure of Θ.
+The identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ is a **conjecture**; lepton mass ratios
+are an **open hard problem** (KK mismatch theorem).
+UBT recovers Standard Model quantum numbers from the gauge algebra.
 
 **Canonical source**: [`experiments/research_tracks/three_generations/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/experiments/research_tracks/three_generations)  
 **Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/hecke_index.md)
@@ -44,13 +46,13 @@ The three fermion generations are proposed to correspond to three independent
 | CM k=6 forms at any level | ❌ **Dead End** | [`step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) |
 | Non-CM k=6 forms, N≤4 | ❌ **Dead End** | [`step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) |
 | Non-CM k=6 forms, N∈ | ❌ **Dead End** | [`step6_nonCM_search.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step6_nonCM_search.tex) |
-| Parameter / Result | ❓ **Unknown** |  |
-| KK eigenvalue formula form E_{n,m} = (1/R)√ | ❓ **Unknown** | [`appendix_W2_lepton_spectrum.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex) |
-| Hosotani shift δ = ½ | ❓ **Unknown** | [`appendix_W2_lepton_spectrum.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex) |
+| KK eigenvalue formula form E_{n,m} = (1/R)√ | 🔶 **Structural** | [`appendix_W2_lepton_spectrum.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex) |
+| Hosotani shift δ = ½ | 🔶 **Structural** | [`appendix_W2_lepton_spectrum.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex) |
 | R = 1/m_e (torus radius) | ⚠️ **Semi-empirical** | [`canonical_derivation.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/canonical_derivation.md) |
-| KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | ❓ **Unknown** | [`status_summary.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/status_summary.md) |
-| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | ❓ **Unknown** | [`STATUS_FERMIONS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_FERMIONS.md) |
-| *… and 5 more results* | *See [DERIVATION_INDEX.md](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)* | |
+| KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | 🔶 **Structural** | [`status_summary.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/status_summary.md) |
+| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | 🔶 **Structural** | [`STATUS_FERMIONS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_FERMIONS.md) |
+| A (hopfion mass scale) | ⚠️ **Semi-empirical** | [`parameter_table.csv`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/parameter_table.csv) |
+| *… and 4 more results* | *See [DERIVATION_INDEX.md](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)* | |
 <!-- END GENERATED: three_generations_status -->
 
 ---

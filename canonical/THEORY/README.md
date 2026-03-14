@@ -78,11 +78,14 @@ From the axioms above, UBT **derives** (no additional assumptions):
 
 ### 2. Particle Masses
 
-- **Fine structure constant**: α⁻¹ = 137.036 (0.00003% error)
-- **Electron mass**: m_e ≈ 0.510 MeV (~0.2% error)
+- **Fine structure constant**: α⁻¹ = 137.036 reproduced within semi-empirical
+  framework. Structural vacuum n* = 137 is **proved**; coupling B_base is a
+  **motivated conjecture**; correction R is an **open problem**.
+- **Electron mass**: m_e ≈ 0.511 MeV reproduced with **one calibration parameter**
+  (R = 1/m_e is fitted, not predicted).
 - **Other fermions**: In progress (see `FINGERPRINTS/`)
 
-**Status**: Validated predictions (see `FINGERPRINTS/confirmed/`)
+**Status**: ⚠️ Semi-empirical — see DERIVATION_INDEX.md §Alpha and §Lepton Sector.
 
 ### 3. Gravitational + Quantum Unification
 
@@ -156,7 +159,8 @@ Dark matter and dark energy emerge from **p-adic extensions** of the number fiel
 ### Empirical Status
 
 See `FINGERPRINTS/` for complete list:
-- ✅ **Confirmed**: α, m_e
+- ⚠️ **Semi-empirical**: α (structural vacuum proved; full value semi-empirical),
+   m_e (reproduced with one fitted parameter)
 - ⚠️ **Candidate**: WMAP comb (not replicated)
 - ❌ **Null**: Planck CMB TT comb
 
@@ -187,7 +191,8 @@ See `FINGERPRINTS/` for complete list:
 
 **vs Standard Model**:
 - UBT derives SM gauge group (SM assumes it)
-- UBT predicts particle masses (SM fits them)
+- UBT provides a semi-empirical framework for particle masses
+  (mass scale requires calibration; not yet derived from first principles)
 - UBT includes gravity (SM does not)
 
 **vs General Relativity**:

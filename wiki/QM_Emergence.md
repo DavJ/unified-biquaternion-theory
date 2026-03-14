@@ -33,15 +33,19 @@ The Pauli and Dirac structures arise algebraically from ℂ⊗ℍ.
 | Pauli matrices σᵢ from quaternion generators | ✅ **Proved** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
 | Dirac γ^μ from ℂ⊗ℍ ⊗ ℂ⊗ℍ tensor product | ✅ **Proved** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
 | Dirac-like operator 𝒟 = iγ^μ∇_μ uniquely determined | ✅ **Proved** | [`dirac_like_operator.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/legacy_theory_variants/ubt/operators/dirac_like_operator.tex) |
-| Schrödinger structure from Im(∂_τΘ = □Θ) | 🔶 **Sketch [L0]** | [`step2_schrodinger_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step2_schrodinger_emergence.tex) |
+| Schrödinger structure from Im(∂_τΘ = □Θ) | 🔶 **Sketch** | [`step2_schrodinger_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step2_schrodinger_emergence.tex) |
 | UBT ψ is physical — NOT a Wick rotation | ✅ **Proved** | [`biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/math/fields/biquaternion_time.tex) |
-| Biquaternionic FPE with Θ = Σ exp | 🔶 **Sketch [L0]** | [`step1_fpe_check.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step1_fpe_check.tex) |
-| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | 🔶 **Sketch [L0]** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
-| Born rule \|Θ\|² = probability density | ✅ **Proved [L0]** | [`step7_born_rule.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step7_born_rule.tex) |
-| QM unification via drift-diffusion | 🔶 **Sketch [L0]** | [`appendix_FORMAL_qm_gr_unification.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_FORMAL_qm_gr_unification.tex) |
+| Biquaternionic FPE with Θ = Σ exp | 🔶 **Sketch** | [`step1_fpe_check.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step1_fpe_check.tex) |
+| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | 🔶 **Sketch** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
+| Born rule: Θ†Θ is probability density | ✅ **Proved** | [`step7_born_rule.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step7_born_rule.tex) |
+| QM unification via drift-diffusion | 🔶 **Sketch** | [`appendix_FORMAL_qm_gr_unification.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_FORMAL_qm_gr_unification.tex) |
 | FPE ↔ Euler–Lagrange equivalence (scalar sector) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| FPE ↔ E-L (full biquaternionic) | ⚠️ **Partially Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | Three projections: GR, QM, statistical mechanics | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
+| Gap G1 — Derive drift A(Q) = −∇H from S via Euler-Lagrange | ❌ **Open** |  |
+| Gap G2 — Prove consistency condition on H for general biquaternionic … | ❌ **Open** |  |
+| Gap G3 — Non-commutative FPE ordering: **PARTIALLY RESOLVED** — [∂_T,… | ⚠️ **Partially Proved** |  |
+| Gap S1 — Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S | ❌ **Open** |  |
+| Gap D1 — Spinorial subspace: **CLOSED** — Θ₁ (n=1 mode) transforms as… | ✅ **Proved** |  |
 <!-- END GENERATED: qm_emergence_status -->
 
 ### Open Gaps
