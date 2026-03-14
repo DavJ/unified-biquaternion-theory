@@ -46,10 +46,19 @@ to UBT are developed in Appendix N.
 **Status: [S] Speculative / Exploratory**
 Source: `consolidation_project/appendix_N_holographic_verlinde_desitter.tex`
 
-## Λ_eff from V_eff(Θ) — Open Task
+## Λ_eff from V_eff(Θ) — Investigated (v47)
 
 Computing the effective cosmological constant from the minimum of the UBT
-effective potential V_eff(Θ) is an open L2-dS task.
+effective potential V_eff(Θ) was investigated in v47.
 
-**Status: [O] Open Hard Problem**
+**V_eff(n*=137) = A·137² − B·137·ln(137) ≈ −12428** (dimensionless winding-sector potential,
+A=1, B=46.284 calibrated to place minimum at n*=137).
+
+The direct identification V_eff(n*) = Λ_eff is a **Dead End**: the winding-sector
+potential is dimensionless and its value at the minimum differs from the observed
+Λ_obs ≈ 10⁻¹²² (Planck units) by many orders of magnitude with no natural unit bridge.
+A UV cut-off argument connecting the winding vacuum energy to Λ_eff is not currently
+present in the UBT framework.
+
+**Status: [O] Dead End [L2]** (v47 numerical investigation)
 See: `DERIVATION_INDEX.md` §Holography and de Sitter Structure

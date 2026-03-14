@@ -36,7 +36,7 @@ The Pauli and Dirac structures arise algebraically from ℂ⊗ℍ.
 | Schrödinger structure from Im(∂_τΘ = □Θ) | 🔶 **Sketch** | [`step2_schrodinger_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step2_schrodinger_emergence.tex) |
 | UBT ψ is physical — NOT a Wick rotation | ✅ **Proved** | [`biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/math/fields/biquaternion_time.tex) |
 | Biquaternionic FPE with Θ = Σ exp | 🔶 **Sketch** | [`step1_fpe_check.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step1_fpe_check.tex) |
-| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | 🔶 **Sketch** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
+| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | ✅ **Proved** | [`step3_dirac_emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step3_dirac_emergence.tex) |
 | Born rule: Θ†Θ is probability density | ✅ **Proved** | [`step7_born_rule.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step7_born_rule.tex) |
 | QM unification via drift-diffusion | 🔶 **Sketch** | [`appendix_FORMAL_qm_gr_unification.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_FORMAL_qm_gr_unification.tex) |
 | FPE ↔ Euler–Lagrange equivalence (scalar sector) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |

@@ -68,8 +68,8 @@ See the full architecture in [Overview](Overview).
 | Three Generations | 5 | 2 | 5 | 5 | 8 |
 | Gravity / φ-Universe | 17 | 0 | 0 | 1 | 2 |
 | Mirror Sector | 2 | 3 | 0 | 3 | 0 |
-| Algebra | 15 | 0 | 0 | 0 | 4 |
-| **Total** | **69** | **6** | **9** | **10** | **21** |
+| Algebra | 16 | 0 | 0 | 1 | 3 |
+| **Total** | **70** | **6** | **9** | **11** | **20** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 
@@ -80,7 +80,9 @@ See the full architecture in [Overview](Overview).
 The full canonical theory is available as a compiled PDF, auto-built
 from `canonical/UBT_canonical_main.tex` on every push to main:
 
-📄 **<a href="https://raw.githubusercontent.com/DavJ/unified-biquaternion-theory/master/docs/pdfs/UBT_canonical_main.pdf">UBT_canonical_main.pdf</a>**
+🌐 **<a href="https://davj.github.io/unified-biquaternion-theory/canonical/UBT_canonical_main.html">View rendered (GitHub Pages)</a>**
+· 📄 **<a href="https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf">Download PDF</a>**
+· 📝 **<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">Raw .tex source</a>**
 
 The PDF contains all canonical derivations with full LaTeX typesetting
 and cross-references. For individual derivation files, follow links
