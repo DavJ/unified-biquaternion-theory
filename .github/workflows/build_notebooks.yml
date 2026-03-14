@@ -1,0 +1,72 @@
+# Copyright (c) 2025 Ing. David Jaroš
+# Licensed under the MIT License
+# See LICENSE file in the repository root for full license text
+
+name: Build Jupyter Notebooks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/verify_*.py"
+      - "experiments/constants_derivation/*.py"
+      - "research_tracks/THEORY_COMPARISONS/**/experiments/*.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install jupytext numpy sympy
+
+      - name: Convert scripts to notebooks
+        run: |
+          mkdir -p docs/notebooks/verify
+          mkdir -p docs/notebooks/experiments
+          mkdir -p docs/notebooks/research_tracks
+
+          for f in tools/verify_8pi_connection.py \
+                    tools/verify_su3_superposition.py \
+                    tools/verify_fpe_equivalence.py \
+                    tools/verify_qed_phi_const.py \
+                    tools/explore_r_factor.py; do
+            [ -f "$f" ] || continue
+            name=$(basename "$f" .py)
+            jupytext --to notebook --output "docs/notebooks/verify/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
+          done
+
+          for f in experiments/constants_derivation/derive_fine_structure.py; do
+            [ -f "$f" ] || continue
+            name=$(basename "$f" .py)
+            jupytext --to notebook --output "docs/notebooks/experiments/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
+          done
+
+          for f in research_tracks/THEORY_COMPARISONS/penrose_twistor/experiments/e01_incidence_sanity.py \
+                    research_tracks/THEORY_COMPARISONS/penrose_twistor/experiments/e05_derive_sigma_from_ubt.py \
+                    research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/experiments/e01_mapping_summary.py; do
+            [ -f "$f" ] || continue
+            name=$(basename "$f" .py)
+            jupytext --to notebook --output "docs/notebooks/research_tracks/${name}.ipynb" "$f" || echo "Warning: Failed to convert $f"
+          done
+
+      - name: Commit notebooks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/notebooks/
+          if git diff --cached --quiet; then
+            echo "No notebook changes."
+          else
+            git commit -m "chore: rebuild Jupyter notebooks [skip ci]"
+            git push
+          fi
