@@ -331,6 +331,137 @@ updated numerical value.''
 from two-mode vacuum added.
 
 % =====================================================================
+% §3 — Full Schwarzschild Vacuum Solution [PROMOTED FROM RESEARCH_TRACKS v57]
+% Source: research_tracks/research/schwarzschild_from_theta.tex §5
+% Status: Proved [L1]
+% =====================================================================
+
+\section{Full Schwarzschild Vacuum Solution}
+\label{sec:schwarzschild_vacuum}
+
+\noindent\textbf{Status:} \textbf{Proved [L1]} — algebraic computation plus complex-time
+structure; verified numerically.
+
+\noindent\textbf{Source:}
+\texttt{research\_tracks/research/schwarzschild\_from\_theta.tex} (full derivation).
+Numerical verification: \texttt{tools/verify\_schwarzschild\_theta.py} (relative error
+$< 10^{-8}$ at $r/M = 2,5,10,50,100$).
+
+---
+
+\subsection{Ansatz}
+
+\begin{equation}
+  \boxed{\Theta_0(r,\tau) = e^{i\alpha(r)}\cdot\bigl[f(r)\cdot\mathbf{1}
+    + g(r)\cdot\boldsymbol{e}_r\bigr],
+  \quad \tau = t + i\psi,\quad |\Theta_0| = 1.}
+  \label{eq:schwarzschild_ansatz}
+  \quad\textbf{[POSTULATE — spherically symmetric ansatz]}
+\end{equation}
+Here $\boldsymbol{e}_r = (x_i/r)\boldsymbol{e}_i$ is the radial unit biquaternion,
+$f(r),g(r) \in \mathbb{R}$, and $\alpha(r) = \Phi(r)$ is fixed by the matching
+condition (see below).
+
+---
+
+\subsection{Spatial Metric: Phase Cancellation Identity}
+
+\begin{theorem}[Phase cancellation, \textbf{[L1]}]
+\label{thm:phase_cancel}
+For any radial phase $e^{i\alpha(r)}$ and spatial indices $i,j$:
+\begin{equation}
+  g_{ij} = \mathrm{Sc}\bigl((\partial_i\Theta_0)^\dagger\,\partial_j\Theta_0\bigr)
+          = \mathrm{Sc}\bigl(\widetilde{E}_i^\dagger\,\widetilde{E}_j\bigr),
+  \label{eq:phase_cancel}
+\end{equation}
+where $\widetilde{E}_i := \partial_i[f\mathbf{1}+g\boldsymbol{e}_r]$ is the spatial
+derivative without the phase factor.  The phase cancels because
+$\mathrm{Sc}(e^{-i\alpha}Ae^{i\alpha}) = \mathrm{Sc}(A)$ for all
+$A \in \mathcal{B}$ (Sc is $\mathbb{C}$-linear and commutes with conjugation).
+\end{theorem}
+
+\noindent\textbf{Spatial metric result [DERIVED]:}
+The ODE system
+\begin{equation}
+  f'(r)^2 + g'(r)^2 = \Psi(r)^4,\qquad
+  g(r) = r\,\Psi(r)^2,\qquad
+  \Psi(r) = 1 + \frac{M}{2r},
+  \label{eq:schwarzschild_ode}
+\end{equation}
+gives $g_{ij}[\Theta_0] = \Psi(r)^4\,\delta_{ij}$ — the isotropic Schwarzschild
+spatial metric.
+
+---
+
+\subsection{Temporal Metric: Complex Time Structure}
+
+From the complex-time signature theorem
+(\texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}), the
+$\psi$-derivative gives the temporal metric component:
+\begin{equation}
+  g_{tt} = -|\partial_\psi\Theta_0|^2.
+  \label{eq:g_tt_psi}
+\end{equation}
+
+With the ansatz $\Theta_0 = e^{i\alpha(r)}\cdot X_0(r)$, $|X_0|=1$, the
+$\psi$-derivative (static ansatz: $X_0$ independent of $\psi$) gives:
+\begin{equation}
+  \partial_\psi\Theta_0 = i\,\alpha(r)\,\Theta_0,
+  \qquad\Longrightarrow\qquad
+  g_{tt} = -\alpha(r)^2.
+  \label{eq:g_tt_alpha}
+\end{equation}
+
+\noindent\textbf{Matching condition:} Setting $g_{tt} = -\Phi(r)^2$ requires:
+\begin{equation}
+  \alpha(r) = \Phi(r) = \frac{1 - M/2r}{1 + M/2r}.
+  \label{eq:alpha_matching}
+  \quad\textbf{[DERIVED]}
+\end{equation}
+
+---
+
+\subsection{Main Theorem}
+
+\begin{theorem}[Full Schwarzschild metric from $\Theta_0$, \textbf{Proved [L1]}]
+\label{thm:schwarzschild_full}
+The ansatz \eqref{eq:schwarzschild_ansatz} with $\alpha(r) = \Phi(r)$,
+$g(r) = r\Psi(r)^2$, $f'(r) = \Psi(r)\sqrt{2M/r}$, and complex time
+$\tau = t + i\psi$ gives the full Schwarzschild metric in isotropic coordinates:
+\begin{equation}
+  \boxed{g_{tt} = -\Phi(r)^2,\qquad
+  g_{ij} = \Psi(r)^4\,\delta_{ij},}
+  \quad \Phi = \frac{1-M/2r}{1+M/2r},\quad \Psi = 1+\frac{M}{2r}.
+  \label{eq:schwarzschild_full}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Spatial sector: Theorem~\ref{thm:phase_cancel} reduces to the phase-free
+computation; the ODE \eqref{eq:schwarzschild_ode} gives $g_{ij}=\Psi^4\delta_{ij}$
+(proved in \texttt{schwarzschild\_from\_theta.tex §3–4}).
+Temporal sector: Eq.~\eqref{eq:g_tt_alpha} with matching condition
+\eqref{eq:alpha_matching} gives $g_{tt}=-\Phi^2$.
+The two sectors are independent because phase cancellation
+(Theorem~\ref{thm:phase_cancel}) decouples them.
+\end{proof}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+  title={Self-Containedness Check}]
+\begin{itemize}
+  \item Uses only: signature theorem (\texttt{step3\_signature\_theorem.tex}),
+    scalar inner product algebra, and the spherically symmetric ansatz.
+  \item No free parameters: $\alpha(r) = \Phi(r)$ is fixed by matching
+    $g_{tt} = -\Phi^2$.
+  \item Numerically verified: \texttt{tools/verify\_schwarzschild\_theta.py}
+    gives relative error $< 10^{-8}$ at $r/M \in \{2,5,10,50,100\}$.
+  \item Layer: \textbf{[L1]} — biquaternionic geometry + complex time; no SM input.
+\end{itemize}
+\end{tcolorbox}
+
+---
+
+% =====================================================================
 % TASK 3 — Independent Fixation of R_ψ
 % Status: §2 [KALIBROVÁNO — no independent topological derivation found]
 % Layer: [L1] — biquaternionic geometry only

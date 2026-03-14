@@ -1,0 +1,175 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+% =====================================================================
+% TASK 4 — Gravitons in Schwarzschild Background
+% Status: [OPEN] — research direction initiated in v57
+% Source: DERIVATION_INDEX.md §"Gravitational Physics"
+% Layer: [L2] — depends on temporal sector of Schwarzschild Θ₀
+% =====================================================================
+
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+\title{\textbf{Gravitons in Schwarzschild Background\\
+       from UBT Linearisation}}
+\author{Ing. David Jaroš}
+\date{March 2026 (v57 — research direction)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We initiate the study of graviton perturbations around the Schwarzschild
+background $\Theta_0^{(S)}$ in Unified Biquaternion Theory (UBT).
+The flat-background case ($k^2 = 0$) is proved at level [L0].
+The curved case requires linearising the UBT equation
+$\nabla^\dagger\nabla\Theta = 0$ around the explicit Schwarzschild
+solution $\Theta_0^{(S)} = e^{i\Phi(r)}\cdot[f(r)\mathbf{1}+g(r)\boldsymbol{e}_r]$.
+This is an open problem at [L2].
+\end{abstract}
+
+% ======================================================================
+\section{Background and Motivation}
+% ======================================================================
+
+\textbf{Known result (flat background):}
+Linearising $\nabla^\dagger\nabla\Theta = 0$ around $\Theta_0 = \mathbf{1}$
+gives dispersion relation $k^2 = 0$ \Lzero\ for spin-2 perturbations
+(see \texttt{research\_tracks/research/graviton\_from\_perturbation.tex},
+\texttt{canonical/geometry/gr\_completion\_attempt.tex}).
+
+\textbf{New goal:}
+Now that the full Schwarzschild $\Theta_0^{(S)}$ is available
+(\texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex §3},
+\Lone), we can attempt gravitons in curved background.
+
+% ======================================================================
+\section{Setup: Linearisation Around Schwarzschild}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{Perturbation Ansatz}
+
+Write the full field as
+\begin{equation}
+  \Theta = \Theta_0^{(S)} + \varepsilon\,\Theta_1,
+  \label{eq:pert_ansatz}
+\end{equation}
+where $\Theta_0^{(S)}(r,\tau)$ is the exact Schwarzschild solution (Proved [L1]):
+\begin{equation}
+  \Theta_0^{(S)} = e^{i\Phi(r)}\cdot\bigl[f(r)\,\mathbf{1}
+    + g(r)\,\boldsymbol{e}_r\bigr],
+  \quad \Phi(r) = \frac{1-M/2r}{1+M/2r},\quad
+  g(r) = r\Psi(r)^2,\quad \Psi = 1+\frac{M}{2r}.
+  \label{eq:theta0_schw}
+\end{equation}
+and $\Theta_1$ is a small perturbation (the graviton field in curved background).
+
+\subsection{Linearised UBT Equation}
+
+The full UBT equation is
+\begin{equation}
+  \nabla^\dagger\nabla\Theta = 0,
+  \label{eq:ubt_eq}
+\end{equation}
+where $\nabla^\dagger\nabla$ is the biquaternionic Laplacian in the
+$\mathcal{G}_{\mu\nu}[\Theta_0^{(S)}]$ background metric.
+
+Expanding to first order in $\varepsilon$:
+\begin{equation}
+  \nabla^\dagger_{(0)}\nabla_{(0)}\Theta_1
+  + \bigl(\delta\nabla^\dagger\bigr)\nabla_{(0)}\Theta_0^{(S)}
+  + \nabla^\dagger_{(0)}\bigl(\delta\nabla\bigr)\Theta_0^{(S)}
+  = 0,
+  \label{eq:linearised_eq}
+\end{equation}
+where $\nabla_{(0)}$ is the covariant derivative in the Schwarzschild
+background and $\delta\nabla$ denotes first-order corrections from
+the metric perturbation $\delta g_{\mu\nu} = g_{\mu\nu}[\varepsilon\Theta_1]$.
+
+% ======================================================================
+\section{Expected Result and Open Status}
+\label{sec:expected}
+% ======================================================================
+
+\subsection{What the Linearised Equation Should Give}
+
+In standard GR, linearisation of the vacuum Einstein equations around the
+Schwarzschild metric gives the \emph{Regge-Wheeler equation} for odd-parity
+perturbations and the \emph{Zerilli equation} for even-parity perturbations.
+
+\textbf{Conjecture:} The linearised UBT equation \eqref{eq:linearised_eq}
+should reproduce these equations in the appropriate sector, confirming
+that UBT gravitational waves match standard GR in curved backgrounds.
+
+\subsection{Technical Obstacles}
+
+\begin{enumerate}
+  \item The Schwarzschild background $\Theta_0^{(S)}$ has position-dependent
+        phase $\Phi(r)$ — the linearisation is non-trivial and requires
+        careful treatment of the phase-cancellation identity.
+  \item The biquaternionic Laplacian $\nabla^\dagger\nabla$ in curved
+        background involves Christoffel symbols from $\Psi(r)^4\delta_{ij}$
+        spatial metric — straightforward to compute but tedious.
+  \item The temporal sector ($g_{tt} = -\Phi(r)^2$, non-trivial $r$-dependence)
+        introduces mixing between radial and temporal perturbations.
+\end{enumerate}
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \OPEN\ [L2] \\
+Regge-Wheeler / Zerilli from UBT & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Next Steps}
+\label{sec:nextsteps}
+% ======================================================================
+
+\begin{enumerate}
+  \item Compute $\nabla^\dagger_{(0)}\nabla_{(0)}$ in Schwarzschild isotropic
+        coordinates $g_{ij} = \Psi^4\delta_{ij}$, $g_{tt} = -\Phi^2$.
+  \item Substitute $\Theta_1 = \Theta_1(\mathbf{x},\tau)$ in \eqref{eq:linearised_eq}
+        and separate angular modes (spin-2 spherical harmonics).
+  \item Check whether the $\ell=2$ mode satisfies the Regge-Wheeler equation
+        (odd parity) and the Zerilli equation (even parity).
+  \item If yes: upgrade status to \Lone\ and promote to canonical.
+  \item If no: document the deviation from standard GR and analyse implications.
+\end{enumerate}
+
+\textbf{DERIVATION\_INDEX.md} row to update:
+``Graviton dispersion in Schwarzschild background'' — currently \OPEN.
+
+\end{document}

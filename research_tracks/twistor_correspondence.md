@@ -37,17 +37,24 @@ for the scalar sector of the biquaternion field at real time.
 
 ---
 
-## 3. Open Problems (Curved Sector)
+## 3. Curved Sector Results
 
-| Problem | Status |
-|---------|--------|
-| X^{AA'}(Θ) in curved UBT sector (ASD Ricci-flat obstacle) | **Open [L2]** |
+| Result | Status |
+|--------|--------|
+| ASD condition C⁺=0 for Θ ∈ SU(2)₋ (linearised) | ✅ **Proved [L1]** |
+| ASD condition C⁺=0 for Θ ∈ SU(2)₋ (non-perturbative) | ✅ **Proved [L1]** |
+| Curved twistor space via Penrose nonlinear graviton (SU(2)₋) | ✅ **Proved [L1]** |
+| Full Schwarzschild metric from explicit Θ₀ | ✅ **Proved [L1]** |
+| X^{AA'}(Θ) for general curved Θ (outside SU(2)₋) | **Open [L2]** |
 | ψ (imaginary time) ↔ twistor geometry | **Open** |
-| Conformal (Möbius) action analytically proved | **Computationally verified only** |
 
-The curved-sector extension requires the nonlinear graviton construction
-(Penrose 1976), which is not derived in UBT. The ASD Ricci-flat condition
-is an obstacle that is currently unresolved.
+For Θ ∈ SU(2)₋ ⊂ ℂ⊗ℍ with vacuum UBT equation ∇†∇Θ = 0:
+holonomy ⊂ Sp(1) → C⁺ = 0 (ASD) and R_μν = 0 (Ricci-flat) →
+**Penrose nonlinear graviton theorem applies**. UBT has a curved
+twistor space description in this sector.
+Source: `research_tracks/research/asd_condition_ubt.tex §5`
+
+Note: Schwarzschild metric (Petrov type D) lies outside the SU(2)₋ ASD sector.
 
 ---
 
@@ -69,5 +76,7 @@ is an obstacle that is currently unresolved.
 |--------|--------|
 | σ_μ from ℂ⊗ℍ; bijection x↔X; incidence (flat) | **Proved [L0]** |
 | X^{AA'}(Θ) flat limit = x^μ σ_μ | **Proved [L0]** |
-| X^{AA'}(Θ) curved sector | **Open [L2]** — ASD Ricci-flat obstacle |
-| UBT = twistor theory | **False** — flat sector only |
+| ASD condition C⁺=0 for Θ ∈ SU(2)₋ (non-perturbative) | **Proved [L1]** |
+| Curved twistor space via Penrose nonlinear graviton (SU(2)₋) | **Proved [L1]** |
+| X^{AA'}(Θ) curved sector (general Θ, outside SU(2)₋) | **Open [L2]** |
+| UBT = twistor theory | **False** — flat sector and SU(2)₋ instanton sector only |

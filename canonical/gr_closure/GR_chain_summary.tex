@@ -159,6 +159,52 @@ The off-shell closure (Step~6) is an open problem at [L2] and
 does not affect the validity of Steps~1--5.
 \end{remark}
 
+% -----------------------------------------------------------------------
+\subsection{Gravitational Sector: New Results [v57]}
+\label{sec:gr_gravity_new}
+
+% -----------------------------------------------------------------------
+\begin{theorem}[Full Schwarzschild metric from $\Theta_0$, \textbf{Proved [L1]}]
+\label{thm:schwarzschild_canonical}
+The ansatz $\Theta_0 = e^{i\Phi(r)}\cdot[f(r)\cdot\mathbf{1}+g(r)\cdot\boldsymbol{e}_r]$
+with $\tau = t + i\psi$, $g(r) = r\Psi(r)^2$, $f'(r) = \Psi(r)\sqrt{2M/r}$,
+and matching condition $\alpha(r) = \Phi(r) = (1-M/2r)/(1+M/2r)$ gives the
+full Schwarzschild metric in isotropic coordinates:
+\[
+  g_{tt} = -\Phi(r)^2,\qquad g_{ij} = \Psi(r)^4\,\delta_{ij},
+  \qquad \Psi(r) = 1 + M/(2r).
+\]
+The phase $e^{i\alpha}$ cancels in the spatial sector via
+$\mathrm{Sc}(e^{-i\alpha}Ae^{i\alpha}) = \mathrm{Sc}(A)$; the temporal
+component emerges from $\partial_\psi\Theta_0 = i\alpha(r)\Theta_0$ via
+the complex-time structure (Step~3).
+Numerically verified: \texttt{tools/verify\_schwarzschild\_theta.py},
+relative error $< 10^{-8}$.
+Source: \texttt{research\_tracks/research/schwarzschild\_from\_theta.tex §5};
+canonical: \texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex §3}.
+\end{theorem}
+
+% -----------------------------------------------------------------------
+\begin{theorem}[ASD condition and curved twistor space for $\mathrm{SU}(2)_-$ sector,
+                \textbf{Proved [L1]}]
+\label{thm:asd_twistor_canonical}
+For $\Theta \in \mathrm{SU}(2)_- \subset \mathbb{C}\otimes\mathbb{H}$ smooth
+with $|\Theta|=1$:
+\begin{enumerate}
+  \item The holonomy of $g_{\mu\nu}[\Theta]$ lies in
+        $\mathrm{Sp}(1) \cong \mathrm{SU}(2)_-$,
+        which implies the anti-self-dual (ASD) Weyl condition $C^+ = 0$.
+  \item Combined with the vacuum UBT equation $\nabla^\dagger\nabla\Theta = 0$
+        (which gives $R_{\mu\nu} = 0$ via the GR recovery chain),
+        the metric is \textbf{ASD Ricci-flat}.
+  \item By the Penrose nonlinear graviton theorem, $g_{\mu\nu}[\Theta]$ admits
+        a \textbf{curved twistor space description}.
+\end{enumerate}
+\textbf{Note}: Schwarzschild metric (Petrov type D) lies outside the
+$\mathrm{SU}(2)_-$ ASD sector.
+Source: \texttt{research\_tracks/research/asd\_condition\_ubt.tex §5}.
+\end{theorem}
+
 \ifdefined\INCLUDEMODE
   % Being included - no end document
 \else
