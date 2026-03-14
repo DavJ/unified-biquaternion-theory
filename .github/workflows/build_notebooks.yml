@@ -39,6 +39,7 @@ jobs:
                     tools/verify_su3_superposition.py \
                     tools/verify_fpe_equivalence.py \
                     tools/verify_qed_phi_const.py \
+                    tools/verify_b_base_derivation.py \
                     tools/explore_r_factor.py; do
             [ -f "$f" ] || continue
             name=$(basename "$f" .py)

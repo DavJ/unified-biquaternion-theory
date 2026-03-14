@@ -259,4 +259,55 @@ that this coefficient equals $B_{\mathrm{base}}$ numerically.
 
 Continued in \texttt{research/B\_base\_heat\_kernel.tex}.
 
+% ======================================================================
+\section{Gap Inventory for $R \approx 1.114$}
+\label{sec:r_factor_gaps}
+% ======================================================================
+
+% v42 scientific_task_5: document tested approaches and their outcomes
+% Status: Open Hard Problem — do NOT promote to Proved
+
+The correction factor $R \approx 1.114$ appears in the full coupling
+$B = R \cdot B_{\mathrm{base}} \approx 46.3$ that enters the UBT
+fine-structure formula $\alpha^{-1} \approx (B/B_0)^2$.
+The value $R \approx 1.114$ is currently \textbf{fitted, not derived}.
+The following approaches have been tested and their outcomes documented.
+
+\begin{center}
+\begin{tabular}{p{5cm}p{4.5cm}p{4cm}}
+\hline
+\textbf{Approach} & \textbf{Outcome} & \textbf{Notes} \\
+\hline
+B1: Volume ratios from compact ψ-geometry &
+  \textbf{Dead End} &
+  Ratio depends on $R_\psi$; circular \\
+B2: Algebraic search over elementary functions &
+  \textbf{Numerical observation} &
+  Best candidate $1+\alpha_\mathrm{fs}(N_\mathrm{eff}+\pi+\tfrac{1}{4}) \approx 1.1123$ (where $\alpha_\mathrm{fs} \approx 1/137$ is the fine-structure constant used as a fitted coefficient); err~0.15\%; not derived from first principles \\
+B2b: $2^{1/6}$ &
+  \textbf{Close but wrong} &
+  $\approx 1.1225$; err~0.76\%; no algebraic argument \\
+B3: Two-loop QED on ψ-circle &
+  \textbf{Open} &
+  Correct qualitative structure; coefficient $c$ not derived \\
+B4: Spectral determinant ratio &
+  \textbf{Dead End} &
+  Reduces to $B_{\mathrm{base}}$ computation; no new information \\
+B5: Modular form of weight $k$ &
+  \textbf{Dead End} &
+  No natural modular weight assignment from $\mathbb{C}\otimes\mathbb{H}$ \\
+B6: Numerical candidates with $\geq 0.15\%$ error &
+  \textbf{Insufficient} &
+  Multiple candidates with sub-percent agreement; no selection principle \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Status as of v42]
+  $R \approx 1.114$ remains an \textbf{Open Hard Problem}.
+  The derivation index entry is \textbf{not to be changed} to Proved
+  or Partially Proved without a new computation from first principles.
+  The most promising open direction is B3 (two-loop on ψ-circle).
+\end{remark}
+
 \end{document}
