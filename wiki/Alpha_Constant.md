@@ -39,8 +39,8 @@ coupling amplitude B_base remains an open problem.
 | α⁻¹ = 137 (bare value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | α⁻¹ = 137.036 (full value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Non-circularity test | ✅ **Proved** | [`validate_B_coefficient.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/validation/validate_B_coefficient.py) |
-| Self-consistency equation n\*·α + g(α) = 1 | ❌ **Dead End** |  |
-| m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | ⚠️ **Semi-empirical** |  |
+| Self-consistency equation n\*·α + g(α) = 1 | ❌ **Dead End** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
+| m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | ⚠️ **Semi-empirical** | [`appendix_E_m0_derivation_strict.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex) |
 | R_ψ independent topological fixation | ❌ **Dead End** | [`biquaternionic_vacuum_solutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/biquaternionic_vacuum_solutions.tex) |
 <!-- END GENERATED: alpha_status -->
 

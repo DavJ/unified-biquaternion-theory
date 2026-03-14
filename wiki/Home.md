@@ -48,6 +48,13 @@ See the full architecture in [Overview](Overview).
 | See open research questions | [Research Tracks](Research_Tracks) |
 | Read speculative extensions | [Speculative Extensions](Speculative_Extensions) |
 | Understand holographic structure and dS geometry | **[Holography](Holography)** — dS vs AdS structure, moduli space geometry, open tasks |
+| QM / GR / stat-mech from one field equation | **[FPE Equivalence](FPE_Equivalence)** — strongest unification result |
+| QM emergence and Born rule | **[QM Emergence](QM_Emergence)** — Dirac, Schrödinger, Born rule from ℂ⊗ℍ |
+| Why α⁻¹ = 137 is prime-stable | **[Prime Attractor](Prime_Attractor)** — V_eff minimum at n* = 137 |
+| Why SU(2) is left-handed only | **[Chirality Derivation](Chirality_Derivation)** — ψ-parity selects SU(2)_L |
+| QED at φ≠0 | **[QED Reproducibility](QED_Reproducibility)** — α, Schwinger term, Lamb shift |
+| φ-Universe parameter and vacuum | **[φ-Universe](Phi_Universe)** — h_μν vacuum, moduli space |
+| Common origin of 8π in GR and QFT | **[8π Origin](EightPi_Origin)** — dim_ℂ(ℂ⊗ℍ) = 4
 
 ---
 
@@ -56,13 +63,13 @@ See the full architecture in [Overview](Overview).
 <!-- BEGIN GENERATED: status_summary -->
 | Area | ✅ Proved | ⚡ Supported | ⚠️ Semi-emp. | 💭 Conjecture | ❌ Open/Dead-end |
 |------|----------|------------|------------|-------------|----------------|
-| Gauge Structure | 11 | 0 | 1 | 0 | 0 |
-| Fine Structure Constant | 7 | 0 | 3 | 1 | 3 |
+| Gauge Structure | 14 | 0 | 1 | 0 | 0 |
+| Fine Structure Constant | 10 | 0 | 3 | 2 | 5 |
 | Three Generations | 5 | 2 | 5 | 5 | 7 |
 | Gravity / φ-Universe | 15 | 0 | 0 | 1 | 2 |
 | Mirror Sector | 1 | 3 | 0 | 3 | 0 |
-| Algebra | 3 | 0 | 0 | 1 | 2 |
-| **Total** | **42** | **5** | **9** | **11** | **14** |
+| Algebra | 13 | 0 | 0 | 0 | 1 |
+| **Total** | **58** | **5** | **9** | **11** | **15** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 

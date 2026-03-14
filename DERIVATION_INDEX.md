@@ -48,8 +48,8 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | α⁻¹ = 137 (bare value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | Follows from framework given B=46.3 |
 | α⁻¹ = 137.036 (full value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | + two-loop QED correction |
 | Non-circularity test | **Verified** | `experiments/validation/validate_B_coefficient.py` | Different N_eff → different n* |
-| Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
-| m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
+| Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
+| m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
 | R_ψ independent topological fixation | **Dead End** [L0] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | All three candidates (self-duality, winding consistency, modularity) fail; R_ψ = ℏ/(m_e·c) remains [CALIBRATED] |
 
 ---
@@ -112,7 +112,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 | Hosotani shift δ = ½ | **Structural** | `ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex §W.4` | Fixed by Q=−1, θ_H=π; derived from U(1)_EM coupling |
 | R = 1/m_e (torus radius) | **Semi-empirical** | `docs/reports/lepton_audit/canonical_derivation.md` | One calibration to set overall mass scale |
 | KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | **Structural** | `docs/reports/lepton_audit/status_summary.md` | Theorem: ratio ≤ 2 for any real modulus; not a failure but an honest gap |
-| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | **Structural** | `STATUS_FERMIONS.md §4`, `docs/reports/lepton_audit/equations.md` | Functional form motivated by one-loop effective potential; no free parameters in the form |
+| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | **Structural** | `ARCHIVE/archive_legacy/historical_versions/status/STATUS_FERMIONS.md §4`, `docs/reports/lepton_audit/equations.md` | Functional form motivated by one-loop effective potential; no free parameters in the form |
 | A (hopfion mass scale) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to m_e; Gap M1: derive from soliton tension |
 | p (topological winding exponent) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M2: derive from soliton stability |
 | B_m (log correction in mass formula) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M3: derive from loop corrections. **Note:** B_m (fermion masses, ≈ −14.099 MeV, dimensionful) is distinct from B_base (α derivation, ≈ 41.57, dimensionless) — different objects, different physics. |
@@ -127,11 +127,11 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
-| Prime selection by V_eff(n) minimum | **Proven** [L1] | `docs/STATUS_ALPHA.md §4`, `Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Robust regardless of coupling type |
-| Coupling type from ∇†∇Θ = κ𝒯 | **Derived** [L1] | `Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Substitution gives ADDITIVE coupling j+m-k=n (three-index constraint) |
-| Multiplicative coupling k·m=n | **Dead End** (standard QFT) | `Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Not from ∇†∇Θ with standard self-interaction |
-| Topological winding interaction | **Conjecture** | `Appendix_H_Theta_Phase_Emergence.tex §H.7a §H.7a.2` | Could give multiplicative coupling; no derivation |
-| Prime attractor (mode coupling) | **Dead End** (additive coupling) | `Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Additive coupling gives no prime preference |
+| Prime selection by V_eff(n) minimum | **Proven** [L1] | `docs/STATUS_ALPHA.md §4`, `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Robust regardless of coupling type |
+| Coupling type from ∇†∇Θ = κ𝒯 | **Derived** [L1] | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Substitution gives ADDITIVE coupling j+m-k=n (three-index constraint) |
+| Multiplicative coupling k·m=n | **Dead End** (standard QFT) | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Not from ∇†∇Θ with standard self-interaction |
+| Topological winding interaction | **Conjecture** | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a §H.7a.2` | Could give multiplicative coupling; no derivation |
+| Prime attractor (mode coupling) | **Dead End** (additive coupling) | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Additive coupling gives no prime preference |
 | Prime selection (V_eff minimum) | **Proven** | `docs/STATUS_ALPHA.md §4` | Independent of coupling type; robust claim |
 
 ---
@@ -171,7 +171,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 | ℂ⊗ℍ ≅ Mat(2,ℂ) algebra isomorphism | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §2` | Standard algebra; generators map to Pauli matrices |
 | Pauli matrices σᵢ from quaternion generators | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §3` | Direct from isomorphism; not postulated |
 | Dirac γ^μ from ℂ⊗ℍ ⊗ ℂ⊗ℍ tensor product | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §4` | γ^μ in Weyl rep. = σ₁⊗𝟙, iσ₂⊗σᵢ; Clifford relation verified |
-| Dirac-like operator 𝒟 = iγ^μ∇_μ uniquely determined | **Proven** [L0] | `ubt/operators/dirac_like_operator.tex Thm. 2.1` | Unique up to gauge equivalence from bundle structure |
+| Dirac-like operator 𝒟 = iγ^μ∇_μ uniquely determined | **Proven** [L0] | `research_tracks/legacy_theory_variants/ubt/operators/dirac_like_operator.tex Thm. 2.1` | Unique up to gauge equivalence from bundle structure |
 | Schrödinger structure from Im(∂_τΘ = □Θ) | **Sketch** [L0] | `canonical/qm_emergence/step2_schrodinger_emergence.tex §5` | ∂_ψΦ = −2i∇²Φ follows analytically; diffusion coeff. 𝒟=ℏ/(2m) is assumed (Gap S1) |
 | UBT ψ is physical — NOT a Wick rotation | **Proven** [L0] | `canonical/THEORY/math/fields/biquaternion_time.tex §5.1` | ψ∈ℝ is dynamical; Wick rotation is formal analytic continuation only |
 | Biquaternionic FPE with Θ = Σ exp[πB(n)·H(T)] | **Sketch** [L0] | `canonical/qm_emergence/step1_fpe_check.tex` | Scalar sector numerically verified (see tools/verify_fpe.py); three gaps remain: G1 (A(Q) assumed), G2 (consistency condition on H), G3 (non-commutativity) |
@@ -273,12 +273,12 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
-| FPE ↔ E-L equivalence (scalar, free field) | **Proven** [L0] | `step4_fpe_equivalence.tex Thm. 1` | Algebraic identity: both reduce to ∂_TΘ = D∇²Θ under C1,C2 |
-| Norm conservation from FPE | **Proven** [L0] | `step4_fpe_equivalence.tex Prop. 2` | d/dT ∫\|Θ\|² dQ = 0; Born rule consistent without extra postulate |
-| Projection A: Re sector → GR/KG | **Proven** [L0] | `step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) = GR sector; confirmed numerically |
-| Projection B: Im sector → QM/Schrödinger | **Sketch** | `step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) PARTIALLY CLOSED via dimensional analysis (step2_schrodinger_emergence.tex §2.5) |
-| Projection C: Full FPE → statistical mechanics | **Proven** [L0] | `step4_fpe_equivalence.tex §4` | FPE IS stat.mech. by construction |
-| FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `step4_fpe_equivalence.tex §6`, `step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced; Gap G1 CLOSED for scalar sector (step1_fpe_check.tex §1.3.1) |
+| FPE ↔ E-L equivalence (scalar, free field) | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex Thm. 1` | Algebraic identity: both reduce to ∂_TΘ = D∇²Θ under C1,C2 |
+| Norm conservation from FPE | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex Prop. 2` | d/dT ∫\|Θ\|² dQ = 0; Born rule consistent without extra postulate |
+| Projection A: Re sector → GR/KG | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) = GR sector; confirmed numerically |
+| Projection B: Im sector → QM/Schrödinger | **Sketch** | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) PARTIALLY CLOSED via dimensional analysis (step2_schrodinger_emergence.tex §2.5) |
+| Projection C: Full FPE → statistical mechanics | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | FPE IS stat.mech. by construction |
+| FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `canonical/qm_emergence/step4_fpe_equivalence.tex §6`, `ARCHIVE/archive_legacy/consolidation_project/FPE_verification/step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced; Gap G1 CLOSED for scalar sector (step1_fpe_check.tex §1.3.1) |
 
 **Strongest unification result**: QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ — not emergent from a deeper layer.
 
@@ -374,7 +374,7 @@ and an emergent-metric construction strongly connected to Θ.
 | ψ-circle S¹(R_ψ) is flat (zero curvature) | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §3` | Standard diff.geom.; no AdS factor |
 | Moduli space ℍ has hyperbolic geometry K=−1 | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §4` | Parameter space, not physical spacetime |
 | AdS/CFT-like informational encoding analogy | **[O] Open Research** | `research_tracks/THEORY_COMPARISONS/ads_cft_like_encoding_in_ubt.md` | Structural analogy only; not a duality |
-| Λ_eff from V_eff(Θ) minimum | **[O] Open Hard Problem [L2]** | `consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | L2-dS task; copilot working |
-| Verlinde / dS holographic principle | **[S] Speculative** | `consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
+| Λ_eff from V_eff(Θ) minimum | **[O] Open Hard Problem [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | L2-dS task; copilot working |
+| Verlinde / dS holographic principle | **[S] Speculative** | `ARCHIVE/archive_legacy/consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
 
 

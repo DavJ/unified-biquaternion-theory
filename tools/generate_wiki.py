@@ -11,14 +11,22 @@ Reads:
   DERIVATION_INDEX.md
 
 Updates (between BEGIN/END GENERATED markers):
-  wiki/Home.md            — status_summary
-  wiki/Derivations.md     — derivation_summary
-  wiki/Gauge_Structure.md — gauge_status
-  wiki/GR_Recovery.md     — gr_recovery_status
-  wiki/Alpha_Constant.md  — alpha_status
-  wiki/SU3_Structure.md   — su3_status
+  wiki/Home.md                    — status_summary
+  wiki/Derivations.md             — derivation_summary
+  wiki/Gauge_Structure.md         — gauge_status
+  wiki/GR_Recovery.md             — gr_recovery_status
+  wiki/Alpha_Constant.md          — alpha_status
+  wiki/SU3_Structure.md           — su3_status
   wiki/Hecke_Modular_Structure.md — hecke_status
-  wiki/Mirror_Sector.md   — mirror_status
+  wiki/Mirror_Sector.md           — mirror_status
+  wiki/Particle_Spectrum.md       — three_generations_status
+  wiki/QM_Emergence.md            — qm_emergence_status
+  wiki/FPE_Equivalence.md         — fpe_status
+  wiki/QED_Reproducibility.md     — qed_phi_const_status
+  wiki/Chirality_Derivation.md    — chirality_status
+  wiki/EightPi_Origin.md          — eightpi_status
+  wiki/Phi_Universe.md            — phi_universe_status
+  wiki/Prime_Attractor.md         — prime_attractor_status
 
 Also updates _Sidebar.md navigation if section titles change.
 
@@ -149,13 +157,15 @@ def _extract_primary_file(file_col: str) -> str:
     Extract the first file path from a DERIVATION_INDEX file column cell.
 
     The cell may contain one or more backtick-quoted paths, possibly followed
-    by section references (e.g. §1) and/or comma-separated additional files.
+    by section references (e.g. §1, Thm. 2.1, Prop. 2) and/or comma-separated
+    additional files.
     Returns the first clean path, or empty string if none found.
 
     Examples:
-      '`canonical/geometry/metric.tex`'          → 'canonical/geometry/metric.tex'
-      '`ARCHIVE/foo.tex §2`, `bar.tex`'           → 'ARCHIVE/foo.tex'
-      '`experiments/three_gen/file.tex §3` notes' → 'experiments/three_gen/file.tex'
+      '`canonical/geometry/metric.tex`'                  → 'canonical/geometry/metric.tex'
+      '`ARCHIVE/foo.tex §2`, `bar.tex`'                  → 'ARCHIVE/foo.tex'
+      '`experiments/three_gen/file.tex §3` notes'        → 'experiments/three_gen/file.tex'
+      '`research_tracks/foo.tex Thm. 2.1`'               → 'research_tracks/foo.tex'
     """
     if not file_col:
         return ""
@@ -164,8 +174,8 @@ def _extract_primary_file(file_col: str) -> str:
     if not m:
         return ""
     raw = m.group(1).strip()
-    # Strip section references: space + § or space + (
-    raw = re.split(r"\s+[§(]", raw)[0].strip()
+    # Strip section references: space + § or space + ( or space + Thm. or space + Prop.
+    raw = re.split(r"\s+(?:[§(]|Thm\.|Prop\.|Lem\.|Cor\.|Def\.)", raw)[0].strip()
     # Strip trailing slash (directories)
     raw = raw.rstrip("/")
     return raw
@@ -246,12 +256,19 @@ def _count_statuses(entries: list[dict]) -> dict[str, int]:
 # Section-specific generators
 # ---------------------------------------------------------------------------
 
-_SECTION_SM     = "Standard Model Gauge Group"
-_SECTION_ALPHA  = "Fine Structure Constant (α)"
-_SECTION_GEN    = "Three Fermion Generations"
-_SECTION_HECKE  = "Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)"
-_SECTION_GR     = "GR Recovery Status (v48+, updated 2026-03-11)"
-_SECTION_MIRROR = "Mirror Sector (Twin Prime Vacuum)"
+_SECTION_SM       = "Standard Model Gauge Group"
+_SECTION_ALPHA    = "Fine Structure Constant (α)"
+_SECTION_GEN      = "Three Fermion Generations"
+_SECTION_HECKE    = "Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)"
+_SECTION_GR       = "GR Recovery Status (v48+, updated 2026-03-11)"
+_SECTION_MIRROR   = "Mirror Sector (Twin Prime Vacuum)"
+_SECTION_QM       = "QM Emergence from Complex Time (Track: CORE)"
+_SECTION_QED      = "QED Reproducibility at φ = const (Track: CORE)"
+_SECTION_CHIRAL   = "Chirality Derivation — SU(2)_L Selection (Track: CORE)"
+_SECTION_8PI      = "8π Common Origin (Track: CORE)"
+_SECTION_FPE      = "FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE)"
+_SECTION_PHI      = "φ-Universe Parameter and h_μν Vacuum"
+_SECTION_PRATT    = "Prime Attractor Theorem"
 
 # Sections that are explicitly about GR recovery in DERIVATION_INDEX
 _GR_KEYWORDS = ["metric", "signature", "non-degeneracy", "einstein", "hilbert",
@@ -280,12 +297,13 @@ def gen_status_summary(sections: dict) -> str:
         "Mirror Sector (Twin Prime Vacuum)":           "Mirror Sector",
         "Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)":         "Three Generations",
         "Cross-Gap Consistency Checks":                None,
-        "Prime Attractor Theorem":                     "Algebra",
-        "QM Emergence from Complex Time (Track: CORE)": None,
-        "QED Reproducibility at φ = const (Track: CORE)": None,
+        "Prime Attractor Theorem":                     "Fine Structure Constant",
+        "QM Emergence from Complex Time (Track: CORE)": "Algebra",
+        "QED Reproducibility at φ = const (Track: CORE)": "Gauge Structure",
         "Chirality Derivation — SU(2)_L Selection (Track: CORE)": "Gauge Structure",
-        "8π Common Origin (Track: CORE)":              None,
-        "FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE)": None,
+        "8π Common Origin (Track: CORE)":              "Algebra",
+        "FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE)": "Algebra",
+        "Holography and de Sitter Structure":          None,
     }
     area_order = [
         "Gauge Structure", "Fine Structure Constant",
@@ -389,19 +407,67 @@ def gen_mirror_status(sections: dict) -> str:
     return _status_table(entries)
 
 
+def gen_three_generations_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_GEN, [])
+    return _status_table(entries)
+
+
+def gen_qm_emergence_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_QM, [])
+    return _status_table(entries)
+
+
+def gen_qed_phi_const_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_QED, [])
+    return _status_table(entries)
+
+
+def gen_chirality_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_CHIRAL, [])
+    return _status_table(entries)
+
+
+def gen_eightpi_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_8PI, [])
+    return _status_table(entries)
+
+
+def gen_fpe_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_FPE, [])
+    return _status_table(entries)
+
+
+def gen_phi_universe_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_PHI, [])
+    return _status_table(entries)
+
+
+def gen_prime_attractor_status(sections: dict) -> str:
+    entries = sections.get(_SECTION_PRATT, [])
+    return _status_table(entries)
+
+
 # ---------------------------------------------------------------------------
 # Section registry
 # ---------------------------------------------------------------------------
 
 SECTION_GENERATORS = {
-    "status_summary":    gen_status_summary,
-    "derivation_summary": gen_derivation_summary,
-    "gauge_status":      gen_gauge_status,
-    "gr_recovery_status": gen_gr_recovery_status,
-    "alpha_status":      gen_alpha_status,
-    "su3_status":        gen_su3_status,
-    "hecke_status":      gen_hecke_status,
-    "mirror_status":     gen_mirror_status,
+    "status_summary":           gen_status_summary,
+    "derivation_summary":       gen_derivation_summary,
+    "gauge_status":             gen_gauge_status,
+    "gr_recovery_status":       gen_gr_recovery_status,
+    "alpha_status":             gen_alpha_status,
+    "su3_status":               gen_su3_status,
+    "hecke_status":             gen_hecke_status,
+    "mirror_status":            gen_mirror_status,
+    "three_generations_status": gen_three_generations_status,
+    "qm_emergence_status":      gen_qm_emergence_status,
+    "qed_phi_const_status":     gen_qed_phi_const_status,
+    "chirality_status":         gen_chirality_status,
+    "eightpi_status":           gen_eightpi_status,
+    "fpe_status":               gen_fpe_status,
+    "phi_universe_status":      gen_phi_universe_status,
+    "prime_attractor_status":   gen_prime_attractor_status,
 }
 
 # ---------------------------------------------------------------------------
