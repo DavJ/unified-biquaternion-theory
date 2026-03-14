@@ -6,8 +6,8 @@ The mirror sector is a **motivated conjecture** arising from the twin prime stru
 (137, 139) in the Hecke analysis. It predicts a parallel habitable sector with
 fine structure constant α' = 1/139.
 
-**Canonical source**: [`ARCHIVE/archive_legacy/consolidation_project/mirror_sector/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector)  
-**Topic index**: [`canonical/THEORY/topic_indexes/mirror_sector_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/THEORY/topic_indexes/mirror_sector_index.md)
+**Canonical source**: [`ARCHIVE/archive_legacy/consolidation_project/mirror_sector/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector)  
+**Topic index**: [`canonical/THEORY/topic_indexes/mirror_sector_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/mirror_sector_index.md)
 
 ---
 
@@ -28,14 +28,14 @@ only via gravity and is a viable dark matter candidate.
 <!-- BEGIN GENERATED: mirror_status -->
 | Result | Status | File |
 |--------|--------|------|
-| V_eff(137) < V_eff(139) for same B | ⚡ **Supported** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
-| n=139 is NOT a discrete local min of V_{B_137} | ❓ **Unknown** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
-| n*=139 is global min of branch B'=B_139 | 💭 **Conj.** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
-| Mirror sector is fully stable | 💭 **Conjecture** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
-| Set A and Set B algebraically independent | ⚡ **Supported** | [`hecke_lepton`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/docs/reports/hecke_lepton) |
-| Mirror sector α⁻¹ = 139 | ⚡ **Supported** | [`mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/reports/hecke_lepton/mirror_world_139.md) |
+| V_eff(137) < V_eff(139) for same B | ⚡ **Supported** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| n=139 is NOT a discrete local min of V_{B_137} | ❓ **Unknown** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| n*=139 is global min of branch B'=B_139 | 💭 **Conj.** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| Mirror sector is fully stable | 💭 **Conjecture** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| Set A and Set B algebraically independent | ⚡ **Supported** | [`hecke_lepton`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/docs/reports/hecke_lepton) |
+| Mirror sector α⁻¹ = 139 | ⚡ **Supported** | [`mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/hecke_lepton/mirror_world_139.md) |
 | Mirror sector is habitable | ✅ **Proved** |  |
-| Mirror matter as dark matter candidate | 💭 **Conjecture** | [`README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md) |
+| Mirror matter as dark matter candidate | 💭 **Conjecture** | [`README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md) |
 <!-- END GENERATED: mirror_status -->
 
 ---
@@ -59,7 +59,7 @@ The parity symmetry between n* = 137 and n** = 139 is used to **prove** the
 absence of a Chern–Simons term in S[Θ]. This proof is used in the α derivation
 to motivate k = 1 for the Kac-Moody level.
 
-→ See [`b_base_kac_moody_level.tex §H2`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_kac_moody_level.tex)
+→ See [`b_base_kac_moody_level.tex §H2`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_kac_moody_level.tex)
 
 ---
 
@@ -67,9 +67,9 @@ to motivate k = 1 for the Kac-Moody level.
 
 | File | Content |
 |------|---------|
-| [`mirror_sector/README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md) | Overview and dark matter connection |
-| [`mirror_sector/vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) | Vacuum stability analysis, V_eff comparison |
-| [`docs/reports/hecke_lepton/mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/reports/hecke_lepton/mirror_world_139.md) | Set B Hecke forms, global scan at p = 139 |
+| [`mirror_sector/README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md) | Overview and dark matter connection |
+| [`mirror_sector/vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) | Vacuum stability analysis, V_eff comparison |
+| [`docs/reports/hecke_lepton/mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/hecke_lepton/mirror_world_139.md) | Set B Hecke forms, global scan at p = 139 |
 
 ---
 

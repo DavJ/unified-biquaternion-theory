@@ -5,8 +5,8 @@
 UBT predicts three fermion generations from the ψ-winding mode structure of Θ,
 and recovers Standard Model quantum numbers from the gauge algebra.
 
-**Canonical source**: [`experiments/research_tracks/three_generations/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/experiments/research_tracks/three_generations)  
-**Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/THEORY/topic_indexes/hecke_index.md)
+**Canonical source**: [`experiments/research_tracks/three_generations/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/experiments/research_tracks/three_generations)  
+**Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/hecke_index.md)
 
 ---
 
@@ -31,7 +31,7 @@ The three fermion generations are proposed to correspond to three independent
 | Identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ | **Conjecture** |
 | Mass ratios reproduced | **Open Hard Problem** |
 
-**File**: [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/experiments/research_tracks/three_generations/st3_complex_time_generations.tex)
+**File**: [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex)
 
 ---
 
@@ -46,7 +46,7 @@ Three approaches to reproducing lepton mass ratios have been explored:
 | C | ψ-instantons | **Open Hard Problem** — calibrated to muon; tau off by factor ~6 |
 
 Mass ratio reproduction is an **open hard problem**.  
-Script: [`tools/reproduce_lepton_ratios.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/tools/reproduce_lepton_ratios.py)
+Script: [`tools/reproduce_lepton_ratios.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/tools/reproduce_lepton_ratios.py)
 
 ---
 

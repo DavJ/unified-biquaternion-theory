@@ -62,7 +62,7 @@ See the full architecture in [Overview](Overview).
 | Mirror Sector | 1 | 3 | 0 | 3 | 0 |
 | Algebra | 3 | 0 | 0 | 1 | 2 |
 | **Total** | **42** | **5** | **9** | **11** | **14** |
-*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
+*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 
 ---
@@ -71,15 +71,15 @@ See the full architecture in [Overview](Overview).
 
 | Directory | Contents |
 |-----------|----------|
-| [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical) | Current canonical UBT formulation |
-| [`research_tracks/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/research_tracks) | Active exploratory directions |
-| [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/speculative_extensions) | Conceptual extensions beyond canonical theory |
-| [`ARCHIVE/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/ARCHIVE) | Historical and superseded material |
-| [`tools/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/tools) | Computation and validation scripts |
-| [`experiments/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/experiments) | Experimental computations |
+| [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical) | Current canonical UBT formulation |
+| [`research_tracks/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks) | Active exploratory directions |
+| [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/speculative_extensions) | Conceptual extensions beyond canonical theory |
+| [`ARCHIVE/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/ARCHIVE) | Historical and superseded material |
+| [`tools/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/tools) | Computation and validation scripts |
+| [`experiments/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/experiments) | Experimental computations |
 
 **Single source of truth for derivation status**:
-[`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md)
+[`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)
 
 ---
 

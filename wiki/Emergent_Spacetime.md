@@ -5,8 +5,8 @@
 Spacetime geometry in UBT is **not fundamental** — it emerges from the biquaternion
 field Θ. The metric tensor g_μν is a derived object, not an input.
 
-**Canonical sources**: [`canonical/geometry/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical/geometry)  
-**GR recovery chain**: [`canonical/bridges/GR_chain_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/bridges/GR_chain_bridge.tex)
+**Canonical sources**: [`canonical/geometry/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/geometry)  
+**GR recovery chain**: [`canonical/bridges/GR_chain_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/GR_chain_bridge.tex)
 
 ---
 
@@ -21,7 +21,7 @@ g_μν = Re Tr(∂_μΘ · ∂_νΘ†)
 This is the **real part of the biquaternionic derivative inner product**.
 
 Status: **Proved [L1]**  
-File: [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/metric.tex)
+File: [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/metric.tex)
 
 ---
 
@@ -29,12 +29,12 @@ File: [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquater
 
 | Property | Status | File |
 |----------|--------|------|
-| Non-degeneracy: det(g) ≠ 0 | **Proved [L0]** | [`GR_closure/step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
-| Lorentzian signature (−,+,+,+) | **Proved [L0]** | [`GR_closure/step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
-| Levi-Civita connection Γ | **Standard GR** | [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/connection.tex) |
-| Riemann curvature tensor | **Standard GR** | [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/curvature.tex) |
-| Einstein equations from Hilbert variation | **Proved [L1]** | [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/gr_as_limit.tex) |
-| Conservation ∇^μ T_μν = 0 | **Standard GR** | [`canonical/geometry/stress_energy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/stress_energy.tex) |
+| Non-degeneracy: det(g) ≠ 0 | **Proved [L0]** | [`GR_closure/step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
+| Lorentzian signature (−,+,+,+) | **Proved [L0]** | [`GR_closure/step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
+| Levi-Civita connection Γ | **Standard GR** | [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/connection.tex) |
+| Riemann curvature tensor | **Standard GR** | [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/curvature.tex) |
+| Einstein equations from Hilbert variation | **Proved [L1]** | [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/gr_as_limit.tex) |
+| Conservation ∇^μ T_μν = 0 | **Standard GR** | [`canonical/geometry/stress_energy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/stress_energy.tex) |
 
 ---
 
@@ -74,12 +74,12 @@ This explains why GR appears complete experimentally, while UBT extends it.
 
 | File | Content |
 |------|---------|
-| [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/metric.tex) | Emergent metric definition |
-| [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/connection.tex) | Levi-Civita connection |
-| [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/curvature.tex) | Riemann tensor, Einstein tensor |
-| [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/gr_as_limit.tex) | GR recovery theorem |
-| [`canonical/geometry/stress_energy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/stress_energy.tex) | Stress-energy tensor T_μν |
-| [`canonical/gr_limit/GR_limit_of_UBT.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/gr_limit/GR_limit_of_UBT.tex) | Full GR limit derivation |
+| [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/metric.tex) | Emergent metric definition |
+| [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/connection.tex) | Levi-Civita connection |
+| [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/curvature.tex) | Riemann tensor, Einstein tensor |
+| [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/gr_as_limit.tex) | GR recovery theorem |
+| [`canonical/geometry/stress_energy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/stress_energy.tex) | Stress-energy tensor T_μν |
+| [`canonical/gr_limit/GR_limit_of_UBT.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/gr_limit/GR_limit_of_UBT.tex) | Full GR limit derivation |
 
 ---
 

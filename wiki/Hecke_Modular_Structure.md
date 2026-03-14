@@ -6,9 +6,9 @@ The Hecke operator framework provides **strong numerical evidence** that the pri
 p = 137 selects the physical lepton mass ratios, and p = 139 selects mirror sector ratios.
 
 **Canonical sources**:  
-- [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/docs/reports/hecke_lepton) — numerical results  
-- [`ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) — theoretical motivation  
-**Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/THEORY/topic_indexes/hecke_index.md)
+- [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/docs/reports/hecke_lepton) — numerical results  
+- [`ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) — theoretical motivation  
+**Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/hecke_index.md)
 
 ---
 
@@ -32,10 +32,10 @@ pair in [50, 300] that gives distinct sector solutions.
 <!-- BEGIN GENERATED: hecke_status -->
 | Result | Status | File |
 |--------|--------|------|
-| Weights k=2,4,6 from n-th ψ-mode | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
-| Level N=7, μ(Γ₀(7))=8 = dim_ℝ(ℂ⊗ℍ) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
-| Trivial character χ=1 from ℤ-rationality | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
-| Three forms (not one, not five) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
+| Weights k=2,4,6 from n-th ψ-mode | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
+| Level N=7, μ(Γ₀(7))=8 = dim_ℝ(ℂ⊗ℍ) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
+| Trivial character χ=1 from ℤ-rationality | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
+| Three forms (not one, not five) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) |
 | Derivation of specific forms from ℂ⊗ℍ | ❌ **Open** |  |
 <!-- END GENERATED: hecke_status -->
 
@@ -77,11 +77,11 @@ This cross-sector consistency is a strong non-trivial check.
 
 | File | Content |
 |------|---------|
-| [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/docs/reports/hecke_lepton) | Full numerical results, SageMath outputs |
-| [`docs/reports/hecke_lepton/mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/reports/hecke_lepton/mirror_world_139.md) | Mirror sector Set B analysis |
-| [`hecke_bridge/motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) | Theoretical motivation |
-| [`experiments/research_tracks/three_generations/step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) | Hecke search results |
-| [`experiments/research_tracks/three_generations/step6_nonCM_search.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/experiments/research_tracks/three_generations/step6_nonCM_search.tex) | Non-CM form search |
+| [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/docs/reports/hecke_lepton) | Full numerical results, SageMath outputs |
+| [`docs/reports/hecke_lepton/mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/hecke_lepton/mirror_world_139.md) | Mirror sector Set B analysis |
+| [`hecke_bridge/motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/hecke_bridge/motivation.tex) | Theoretical motivation |
+| [`experiments/research_tracks/three_generations/step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) | Hecke search results |
+| [`experiments/research_tracks/three_generations/step6_nonCM_search.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step6_nonCM_search.tex) | Non-CM form search |
 
 ---
 

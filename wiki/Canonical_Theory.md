@@ -6,8 +6,8 @@ This section covers the **current canonical formulation** of Unified Biquaternio
 material that is internally consistent, mathematically defined, and accepted as the
 reference formulation.
 
-**Canonical directory**: [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical)  
-**Main document**: [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/UBT_canonical_main.tex)
+**Canonical directory**: [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical)  
+**Main document**: [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex)
 
 ---
 
@@ -25,7 +25,7 @@ reference formulation.
 
 ## Scope Policy
 
-See [`canonical/SCOPE.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/SCOPE.md)
+See [`canonical/SCOPE.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/SCOPE.md)
 for what is and is not included in canonical UBT.
 
 Excluded from canonical:

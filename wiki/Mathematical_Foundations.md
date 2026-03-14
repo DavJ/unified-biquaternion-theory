@@ -34,7 +34,7 @@ This section covers the mathematical background underlying UBT.
 
 | File | Content |
 |------|---------|
-| [`canonical/algebra/biquaternion_algebra.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/algebra/biquaternion_algebra.tex) | Algebra foundations |
-| [`canonical/algebra/algebra_summary_table.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/algebra/algebra_summary_table.tex) | Summary table |
-| [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/explanation_of_nabla.tex) | ∇ operator |
-| [`canonical/appendices/symbol_dictionary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/appendices/symbol_dictionary.tex) | Symbol standardization |
+| [`canonical/algebra/biquaternion_algebra.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/biquaternion_algebra.tex) | Algebra foundations |
+| [`canonical/algebra/algebra_summary_table.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/algebra_summary_table.tex) | Summary table |
+| [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex) | ∇ operator |
+| [`canonical/appendices/symbol_dictionary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/appendices/symbol_dictionary.tex) | Symbol standardization |
