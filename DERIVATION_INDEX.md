@@ -50,7 +50,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | Non-circularity test | **Verified** | `experiments/validation/validate_B_coefficient.py` | Different N_eff → different n* |
 | Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
-| R_ψ independent topological fixation | **Mechanism [L1]** — T-duality selects self-dual point R_psi = R_t [L1]; physical units require beyond-one-loop: **[Open L2]** | `canonical/geometry/Rpsi_dynamical_fix.tex`, `canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | All three candidates (self-duality, winding consistency, modularity) fail; R_ψ = ℏ/(m_e·c) remains [CALIBRATED] |
+| R_ψ independent topological fixation | **Mechanism [L1]** — T-duality selects self-dual point R_psi = R_t [L1]; physical units require beyond-one-loop: **[Open L2]** | `canonical/geometry/Rpsi_dynamical_fix.tex`, `canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | T-duality mechanism [L1]: self-dual point R_psi = R_t is the unique T-duality-invariant extremum of the moduli potential. Physical value in GeV: R_ψ = ℏ/(m_e·c) is [CALIBRATED] — beyond-one-loop derivation needed to fix R_t in physical units [Open L2]. |
 
 ---
 
@@ -211,6 +211,15 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 | G3 | Non-commutative FPE ordering: **PARTIALLY RESOLVED** — [∂_T, ∇_Q²]=0 proved; left FPE from S[Θ]; scalar-Hamiltonian case closed; vector potential case checked separately | MEDIUM |
 | S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | HIGH |
 | D1 | Spinorial subspace: **CLOSED** — Θ₁ (n=1 mode) transforms as Dirac spinor via winding + SL(2,C) spinor rep; see step6_spinorial_subspace.tex | HIGH |
+
+---
+
+## Fermionic Statistics
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Grassmannian path-integral measure for odd-winding KK modes | **Proved [L1]** | `canonical/bridges/fermionic_statistics_bridge.tex` | Exchange-phase calculation yields −1 for odd-n modes; Berezin measure required |
+| Spin from Noether angular-momentum operator (KK soliton) | **[Open L2]** | `canonical/bridges/fermionic_statistics_bridge.tex §Gap` | Grassmannian measure proved [L1]; spin eigenvalue computation pending |
 
 ---
 

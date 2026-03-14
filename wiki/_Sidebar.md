@@ -14,6 +14,7 @@
 - [Emergent Spacetime](Emergent_Spacetime)
 - [Gauge Structure](Gauge_Structure)
 - [Particle Spectrum](Particle_Spectrum)
+- [Holography](Holography)
 
 ---
 
@@ -49,7 +50,7 @@
 
 ## 🔭 [Research Tracks](Research_Tracks)
 
-## 🌌 [Holography](Holography)
+- [Twistor Correspondence](Research_Tracks)
 
 ## 🌌 [Speculative Extensions](Speculative_Extensions)
 

@@ -78,7 +78,7 @@ These have a complete framework but at least one open parameter or step.
 | Claim | Status | Gap | Source |
 |-------|--------|-----|--------|
 | B_α ≈ 46.3 (running correction) | **[SE]** | Depends on open B_base | `appendix_ALPHA_one_loop_biquat.tex` |
-| B_base ≈ 41.57 numerical value | **[P]** | Exponent 3/2 not derived | `appendix_ALPHA_padic_derivation.tex` |
+| B_base ≈ 41.57 numerical value | **[L1]** | Exponent from T³ heat kernel [L0]; coefficient matching open | `canonical/interactions/B_base_derivation_complete.tex` |
 | N_eff = 11.53 from BRST | **[L2]** | Spectral uniqueness not proved | `THEORY/axioms/core_assumptions.tex` A1–A3 |
 | R ≈ 1.114 geometric factor | **[P]** | Geometric origin unknown | *(8 approaches tested)* |
 
@@ -131,7 +131,7 @@ throughout the repository and are not claimed as solved.
 
 | Problem | Description | Approaches Tried | Source |
 |---------|-------------|-----------------|--------|
-| **B_base exponent** | Derive why N_eff^(3/2) with exponent 3/2 | 22 approaches, none complete | `canonical/bridges/QED_limit_bridge.tex` §3 |
+| **B_base exponent** | Exponent 3/2 proved from T³ heat kernel [L0]; ab initio beta-fn coefficient matching: **[Open]** | — | `canonical/interactions/B_base_derivation_complete.tex` |
 | **R ≈ 1.114 factor** | Derive geometric origin of radiative correction R | 8 approaches, none complete | `canonical/bridges/QED_limit_bridge.tex` §3 |
 | **Off-shell Θ-only GR closure** (Step 6) | Derive Einstein eq. purely from Θ with no matter source | Structural obstruction found | `canonical/geometry/gr_completion_attempt.tex` |
 | **Fermion mass ratios** | Derive m_μ/m_e and m_τ/m_μ from first principles | Fitted parameters | `consolidation_project/masses/` |
@@ -165,7 +165,7 @@ as speculative — not part of the verified UBT framework:
 | Fully proved [L0/L1] results | ~20 | Algebra, GR chain, Maxwell, U(1) |
 | Semi-empirical [SE] results | ~5 | α, m_e, θ_W — formula correct, one parameter open |
 | Partially present [P] results | ~8 | Framework exists, derivation incomplete |
-| Open problems [O] | ~5 | Critical gaps: B_base, R, off-shell closure |
+| Open problems [O] | ~4 | Critical gaps: R factor, off-shell closure, R_psi physical units |
 | Absent | 1 | S-matrix/perturbative QFT |
 | Speculative | ~5 | Maintained separately |
 

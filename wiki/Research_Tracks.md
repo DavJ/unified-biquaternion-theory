@@ -46,6 +46,14 @@ Mathematical sandboxes comparing UBT structures to other approaches:
 | Dimensional economy | Comparison with other dimensionality-based unification frameworks |
 | Penrose twistor | Comparison of ℂ⊗ℍ with twistor space structure |
 
+---
+
+### UBT–Twistor Bridge
+
+| Sub-track | Status | Files |
+|-----------|--------|-------|
+| UBT–Twistor bridge | Flat-space bridge **proved** (σ_μ from ℂ⊗ℍ, incidence relation, SU(2,2)); curved-sector extension open | `research_tracks/THEORY_COMPARISONS/penrose_twistor/` |
+
 **Directory**: [`research_tracks/THEORY_COMPARISONS/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS)
 
 ⚠️ **Note**: These are mathematical sandboxes. Results are valid in their own right
