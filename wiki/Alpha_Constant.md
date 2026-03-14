@@ -28,16 +28,16 @@ coupling amplitude B_base remains an open problem.
 <!-- BEGIN GENERATED: alpha_status -->
 | Result | Status | File |
 |--------|--------|------|
-| Complex time compactification | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| Dirac quantisation condition | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| Effective potential V_eff(n) form | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| Prime stability constraint | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| N_eff = 12 from SM gauge group | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| B₀ = 25.1 (one-loop baseline) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| B_base = N_eff^{3/2} = 41.57 | 💭 **Conj.** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
+| Complex time compactification | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| Dirac quantisation condition | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| Effective potential V_eff(n) form | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| Prime stability constraint | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| N_eff = 12 from SM gauge group | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| B₀ = 25.1 (one-loop baseline) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| B_base = N_eff^{3/2} = 41.57 | 💭 **Conj.** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | R ≈ 1.114 (correction factor) | ❌ **Open** | [`PROOFKIT_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PROOFKIT_ALPHA.md) |
-| α⁻¹ = 137 (bare value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
-| α⁻¹ = 137.036 (full value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_ALPHA.md) |
+| α⁻¹ = 137 (bare value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+| α⁻¹ = 137.036 (full value) | ⚠️ **Semi-empirical** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
 | Non-circularity test | ✅ **Proved** | [`validate_B_coefficient.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/validation/validate_B_coefficient.py) |
 | Self-consistency equation n\*·α + g(α) = 1 | ❌ **Dead End** |  |
 | m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | ⚠️ **Semi-empirical** |  |
