@@ -26,16 +26,16 @@ only via gravity and is a viable dark matter candidate.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: mirror_status -->
-| Result | Status |
-|--------|--------|
-| V_eff(137) < V_eff(139) for same B | ⚡ **Supported** |
-| n=139 is NOT a discrete local min of V_{B_137} | ❓ **Unknown** |
-| n*=139 is global min of branch B'=B_139 | 💭 **Conj.** |
-| Mirror sector is fully stable | 💭 **Conjecture** |
-| Set A and Set B algebraically independent | ⚡ **Supported** |
-| Mirror sector α⁻¹ = 139 | ⚡ **Supported** |
-| Mirror sector is habitable | ✅ **Proved** |
-| Mirror matter as dark matter candidate | 💭 **Conjecture** |
+| Result | Status | File |
+|--------|--------|------|
+| V_eff(137) < V_eff(139) for same B | ⚡ **Supported** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| n=139 is NOT a discrete local min of V_{B_137} | ❓ **Unknown** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| n*=139 is global min of branch B'=B_139 | 💭 **Conj.** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| Mirror sector is fully stable | 💭 **Conjecture** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/vacuum_stability.tex) |
+| Set A and Set B algebraically independent | ⚡ **Supported** | [`hecke_lepton`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/docs/reports/hecke_lepton) |
+| Mirror sector α⁻¹ = 139 | ⚡ **Supported** | [`mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/reports/hecke_lepton/mirror_world_139.md) |
+| Mirror sector is habitable | ✅ **Proved** |  |
+| Mirror matter as dark matter candidate | 💭 **Conjecture** | [`README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/mirror_sector/README.md) |
 <!-- END GENERATED: mirror_status -->
 
 ---
