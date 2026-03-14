@@ -22,11 +22,11 @@ Color confinement: **Conjectured with experimental support**
 <!-- BEGIN GENERATED: su3_status -->
 | Result | Status | File |
 |--------|--------|------|
-| SU(3)_c from involutions on ℂ⊗ℍ | ❓ **Unknown** | [`su3_from_involutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/su3_from_involutions.tex) |
-| SU(3)_c from quantum superposition over {I,J,K} | ❓ **Unknown** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/step1_superposition_approach.tex) |
-| SU(3)_c via i,j,k → r,g,b axis mapping | ❓ **Unknown** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
-| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | ❓ **Unknown** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
-| Color confinement (algebraic) | ❓ **Unknown** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
+| SU(3)_c from involutions on ℂ⊗ℍ | ✅ **Proved [L0]** ⭐ | [`su3_from_involutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/su3_from_involutions.tex) |
+| SU(3)_c from quantum superposition over {I,J,K} | ✅ **Proved [L0]** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/step1_superposition_approach.tex) |
+| SU(3)_c via i,j,k → r,g,b axis mapping | 🔶 **Heuristic / Motivating Sketch** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
+| SU(3) via triqubit one-hot embedding | ✅ **Proved (mathematical sandbox)** | [`su3_qubit_mapping/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
+| Color confinement (algebraic) | ⚡ **Conjectured with experimental support** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
 <!-- END GENERATED: su3_status -->
 
 ---
@@ -83,6 +83,26 @@ File: [`confinement/algebraic_confinement.tex`](https://github.com/DavJ/unified-
 |------|-------|--------|
 | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) | Heuristic | Maps i,j,k → r,g,b intuitively; NOT an algebraic proof |
 | [`research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) | Mathematical sandbox | Valid homomorphism but starts from qubit encoding, not ℂ⊗ℍ |
+
+---
+
+## Triqubit Encoding (Research Track)
+
+The 3-qubit (triqubit) one-hot encoding provides an independent valid representation
+of SU(3) on a binary quantum substrate.
+
+**Key proved results:**
+- 3 qubits are the **minimal** binary one-hot encoding for an SU(3) color triplet (proved by counting argument)
+- φ: su(3) → End(ℂ²⊗ℂ²⊗ℂ²) is a **faithful Lie algebra homomorphism** (51 tests pass)
+- Weyl group S₃ is realized as SWAP gates (structurally optimal)
+
+**Relationship to mainline UBT:**
+- This is a *mathematical sandbox* separate from the canonical Im(ℍ) involution derivation
+- Both approaches arrive at SU(3) from the ℂ⊗ℍ structure, via different paths
+- The triqubit gives a quantum-computational interpretation; involutions give the algebraic proof
+
+**Status:** Research track — not part of canonical theory  
+**Files:** [`research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping)
 
 ---
 
