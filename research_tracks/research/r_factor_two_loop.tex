@@ -1,0 +1,214 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+% =====================================================================
+% TASK 8 — R Factor Two-Loop Analysis
+% Status: [OPEN HARD PROBLEM] — B3 approach, coefficient c not derived
+% Source: DERIVATION_INDEX.md §"Fine Structure Constant" R-factor row
+% =====================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+\title{\textbf{R Factor: Two-Loop Analysis on the $\psi$-Circle}}
+\author{Ing. David Jaroš}
+\date{March 2026 (v57)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The correction factor $R \approx 1.114$ in the UBT fine-structure derivation
+($B = B_{\mathrm{base}} \times R$) is an open hard problem.  The best
+algebraic candidate is $R = 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4) \approx 1.1123$
+(error $0.15\%$), found numerically (\texttt{tools/explore\_r\_factor.py}).  Neither
+the coefficient $c = N_{\mathrm{eff}} + \pi + 1/4 \approx 15.39$ nor the formula
+$R = 1 + c\alpha$ has been derived from $\mathcal{S}[\Theta]$.  This document
+analyses the two-loop beta-function approach (Approach~B3) and documents the
+result.
+\end{abstract}
+
+% ======================================================================
+\section{Setup: The $R$ Factor Problem}
+\label{sec:setup}
+% ======================================================================
+
+The UBT prediction for $\alpha^{-1}$ requires:
+\begin{equation}
+  \alpha = \frac{B_{\mathrm{base}} \times R}{n^{*\,2}},
+  \qquad
+  B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57,
+  \qquad n^* = 137.
+  \label{eq:alpha_formula}
+\end{equation}
+With $\alpha = 1/137.036$:
+\begin{equation}
+  R = \frac{\alpha \cdot n^{*\,2}}{B_{\mathrm{base}}}
+    = \frac{137.036^2}{137^2 \cdot 41.57 \cdot 137.036}
+    \approx 1.114.
+  \label{eq:R_target}
+\end{equation}
+
+\noindent\textbf{Status of $R$:}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & Partially Proved [L1] \\
+$n^* = 137$ (prime attractor) & Proved [L1] \\
+$R \approx 1.114$ & \OPEN\ Hard Problem \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Current State: \texttt{explore\_r\_factor.py}}
+\label{sec:current}
+% ======================================================================
+
+Running \texttt{tools/explore\_r\_factor.py} gives the closest algebraic
+candidates (sorted by error):
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Candidate} & \textbf{Value} & \textbf{Error} \\
+\hline
+$1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)$ & 1.11235 & 0.148\% \\
+$1 + \alpha N_{\mathrm{eff}}^{3/2}/e$ & 1.11162 & 0.213\% \\
+$1 + \alpha(N_{\mathrm{eff}} + \pi)$ & 1.11052 & 0.312\% \\
+$2^{1/6}$ & 1.12246 & 0.760\% \\
+\hline
+\end{tabular}
+\end{center}
+
+Best candidate: $R = 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)$.
+This is a \textbf{Numerical Observation} only — not derived from $\mathcal{S}[\Theta]$.
+
+% ======================================================================
+\section{Two-Loop Beta Function on the $\psi$-Circle (Approach B3)}
+\label{sec:twoloop}
+% ======================================================================
+
+\subsection{One-Loop Structure}
+
+At one loop, the renormalisation group equation on the $\psi$-circle is:
+\begin{equation}
+  \mu\frac{d\alpha}{d\mu} = \beta_1\,\alpha^2 + \mathcal{O}(\alpha^3),
+  \qquad \beta_1 = -\frac{2N_{\mathrm{eff}}}{3\pi}.
+  \label{eq:one_loop_beta}
+\end{equation}
+The one-loop running gives the standard QED-like correction:
+$\alpha(M_Z^2) \approx 1/128$, consistent with the observed running of $\alpha$.
+
+\subsection{Two-Loop Contribution}
+
+At two loops, the beta function is:
+\begin{equation}
+  \mu\frac{d\alpha}{d\mu}
+    = \beta_1\,\alpha^2 + \beta_2\,\alpha^3 + \mathcal{O}(\alpha^4),
+  \label{eq:two_loop_beta}
+\end{equation}
+where $\beta_2$ arises from the two-loop diagram on the $\psi$-circle.
+
+The two-loop correction to the effective coupling is:
+\begin{equation}
+  \alpha_{\mathrm{eff}}
+    = \alpha_0\bigl(1 + c\,\alpha_0\bigr) + \mathcal{O}(\alpha_0^3),
+  \label{eq:alpha_two_loop}
+\end{equation}
+where $c$ is the two-loop coefficient.
+
+\subsection{Identifying $c$}
+
+The best numerical candidate gives $c \approx N_{\mathrm{eff}} + \pi + 1/4 = 15.39$.
+
+Decomposing this:
+\begin{itemize}
+  \item $N_{\mathrm{eff}} = 12$: counting effective bosonic modes on $\psi$-circle.
+  \item $\pi$: candidate origin — volume factor from angular integration over
+    the $\psi$-circle half-period ($\mathrm{vol}(S^1)/(2\cdot 1) = \pi$).
+  \item $1/4$: candidate origin — Weyl spinor loop factor
+    ($2$ real DOF / $4D$ spacetime = $1/2$ per DOF; $1/2 \times 1/2 = 1/4$
+    for two fermionic lines in the two-loop diagram).
+\end{itemize}
+
+\begin{conjecture}[Two-loop coefficient, B3]
+\label{conj:two_loop}
+The two-loop coefficient on the $\psi$-circle is:
+\begin{equation}
+  c = N_{\mathrm{eff}} + \pi + \frac{1}{4},
+  \label{eq:c_conjecture}
+\end{equation}
+where $\pi$ comes from half-period integration and $1/4$ from the Weyl
+spinor loop factor.  This gives $R = 1 + c\alpha \approx 1.1123$.
+\end{conjecture}
+
+\textbf{Status of Conjecture~\ref{conj:two_loop}:}
+\textbf{Numerical Observation only} — neither the $\pi$ nor the $1/4$
+contribution has been derived from an explicit two-loop Feynman diagram
+computation in $\mathcal{S}[\Theta]$ on the $\psi$-circle.
+
+% ======================================================================
+\section{What Would Close the Problem}
+\label{sec:what_would_close}
+% ======================================================================
+
+\begin{enumerate}
+  \item \textbf{Explicit two-loop diagram}: Compute the two-loop self-energy
+    on the $\psi$-circle using the UBT action $\mathcal{S}[\Theta]$.
+    Extract the coefficient $c$ algebraically.
+  \item \textbf{Check}: Does $c = N_{\mathrm{eff}} + \pi + 1/4$ follow from
+    the diagram?  If yes: Motivated Conjecture → Proved [L1].
+  \item \textbf{If no}: Document the algebraic result and update Gap B status.
+\end{enumerate}
+
+% ======================================================================
+\section{Summary and Status}
+\label{sec:summary}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Result} & \textbf{Value} & \textbf{Status} \\
+\hline
+$R$ target (phenomenological) & $\approx 1.114$ & Empirical \\
+Best algebraic candidate & $1 + \alpha(N_{\mathrm{eff}}+\pi+1/4) \approx 1.1123$ & Numerical Observation \\
+Two-loop structure (qualitative) & Correct form $1 + c\alpha$ & B3 Motivated \\
+Coefficient $c$ derived & $c = N_{\mathrm{eff}}+\pi+1/4$ & \OPEN\ Hard Problem \\
+Two-loop diagram computed & — & \OPEN \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Conclusion}: The $R$ factor problem (Gap B) remains open.
+The two-loop approach has correct qualitative structure ($R = 1 + c\alpha$),
+but the coefficient $c$ has not been derived algebraically.
+Status: \textbf{Motivated Conjecture (B3)} — $c = N_{\mathrm{eff}} + \pi + 1/4$
+is the best numerical match but is not algebraically derived.
+
+\medskip
+\noindent\textbf{Update DERIVATION\_INDEX.md}: R factor row — B3 approach
+documented; Numerical Observation for $c$ value; status remains
+[OPEN HARD PROBLEM].
+
+\end{document}

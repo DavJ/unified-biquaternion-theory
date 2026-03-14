@@ -52,7 +52,9 @@ Mathematical sandboxes comparing UBT structures to other approaches:
 
 | Sub-track | Status | Files |
 |-----------|--------|-------|
-| UBT–Twistor bridge | Flat-space bridge **proved** (σ_μ from ℂ⊗ℍ, incidence relation, SU(2,2)); curved-sector extension open | `research_tracks/THEORY_COMPARISONS/penrose_twistor/` |
+| UBT–Twistor bridge (flat) | Flat-space bridge **proved** (σ_μ from ℂ⊗ℍ, incidence relation, SU(2,2)) | `research_tracks/THEORY_COMPARISONS/penrose_twistor/` |
+| Curved-sector (SU(2)₋ sector) | **Proved [L1]** — ASD C⁺=0 + Ricci-flat; Penrose nonlinear graviton applies | `research_tracks/research/asd_condition_ubt.tex §5` |
+| Curved-sector (general Θ) | **Open [L2]** — outside SU(2)₋ | `research_tracks/twistor_correspondence.md` |
 
 **Directory**: [`research_tracks/THEORY_COMPARISONS/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS)
 

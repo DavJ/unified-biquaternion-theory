@@ -46,8 +46,8 @@
 \title{Fine Structure Constant as Prime Attractor\\
   in Biquaternionic Field Theory}
 \author{Ing.\ David Jaroš\\
-  \small \href{https://github.com/DavJ/unified-biquaternion-theory}{%
-    github.com/DavJ/unified-biquaternion-theory}}
+  \small Independent Researcher, Czech Republic\\
+  \small \href{https://github.com/DavJ/unified-biquaternion-theory}{github.com/DavJ/unified-biquaternion-theory}}
 \date{2026 (v52-next, arXiv preprint)}
 
 \begin{document}
@@ -370,6 +370,45 @@ $\alpha^{-1} = 137.036$ & 137.036 & Semi-empirical & + two-loop QED \\
 
 
 % ============================================================
+\section{Gravitational Sector}
+\label{sec:gravity}
+% ============================================================
+
+Beyond the fine-structure derivation, UBT produces several gravitational
+results that we summarise here.
+
+\subsection{Schwarzschild Vacuum Solution}
+
+The ansatz $\Theta_0 = e^{i\Phi(r)}\cdot[f(r)\cdot\mathbf{1}
++ g(r)\cdot\boldsymbol{e}_r]$ with complex time $\tau = t + i\psi$
+yields the full Schwarzschild metric in isotropic coordinates \Lone.
+The phase $e^{i\alpha}$ cancels in the spatial sector via
+$\mathrm{Sc}(e^{-i\alpha}Ae^{i\alpha}) = \mathrm{Sc}(A)$, while the
+temporal component $g_{tt} = -\Phi(r)^2$ emerges from
+$\partial_\psi\Theta_0 = i\alpha(r)\Theta_0$ (complex-time structure):
+\[
+  g_{tt} = -\Phi(r)^2,\qquad g_{ij} = \Psi(r)^4\,\delta_{ij},
+  \quad \Phi = \frac{1-M/2r}{1+M/2r},\quad \Psi = 1+\frac{M}{2r}.
+\]
+Numerically verified (\texttt{tools/verify\_schwarzschild\_theta.py}),
+relative error $< 10^{-8}$.
+
+\subsection{Massless Gravitons}
+
+Linearisation around the flat vacuum $\Theta_0 = \mathbf{1}$ gives
+$k^2 = 0$ \Lzero, confirming massless spin-2 excitations consistent
+with standard GR.
+
+\subsection{Twistor Correspondence}
+
+For $\Theta \in \mathrm{SU}(2)_- \subset \mathbb{C}\otimes\mathbb{H}$,
+holonomy $\subset \mathrm{Sp}(1)$ implies $C^+ = 0$ (ASD) \Lone.
+Combined with the vacuum equation giving $R_{\mu\nu} = 0$, the
+Penrose nonlinear graviton theorem applies: UBT admits a curved twistor
+space description in the $\mathrm{SU}(2)_-$ sector \Lone.
+(Schwarzschild, Petrov type D, lies outside this sector.)
+
+% ============================================================
 \section{Conclusion and Open Problems}
 \label{sec:conclusion}
 % ============================================================
@@ -425,6 +464,21 @@ Izv.\ Akad.\ Nauk USSR Ser.\ Mat.\ \textbf{32}, 1323--1367 (1968).
 R.\ V.\ Moody,
 \textit{A new class of Lie algebras},
 J.\ Algebra \textbf{10}, 211--230 (1968).
+
+\bibitem{penrose1967}
+R.\ Penrose,
+\textit{Twistor algebra},
+J.\ Math.\ Phys.\ \textbf{8}, 345--366 (1967).
+
+\bibitem{penrose1976}
+R.\ Penrose,
+\textit{Non-linear gravitons and curved twistor theory},
+Gen.\ Rel.\ Grav.\ \textbf{7}, 31--52 (1976).
+
+\bibitem{conneslott1990}
+A.\ Connes and J.\ Lott,
+\textit{Particle models and non-commutative geometry},
+Nucl.\ Phys.\ B (Proc.\ Suppl.) \textbf{18B}, 29--47 (1990).
 
 \end{thebibliography}
 
