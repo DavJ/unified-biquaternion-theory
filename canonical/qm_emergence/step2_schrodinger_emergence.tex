@@ -360,6 +360,100 @@ The quantum probability interpretation requires additional input.
 \noindent\textbf{Date}: 2026-03-06\\
 \textbf{Author}: David Jaroš
 
+% ======================================================================
+\section{$\mathcal{D}_{\rm eff}$ from KK Mass on $\psi$-Circle}
+\label{sec:deff_kk}
+% ======================================================================
+
+This section attempts to close Gap~S1 via the KK mass on the $\psi$-circle.
+
+\subsection{KK Mass Spectrum on the $\psi$-Circle}
+
+The UBT field $\Theta(x^\mu, \psi)$ is periodic in $\psi$ with period
+$2\pi R_\psi$.  The KK mode decomposition gives:
+\begin{equation}
+  \Theta(x^\mu, \psi) = \sum_{n \in \mathbb{Z}} \Theta_n(x^\mu)\,
+  \frac{e^{in\psi/R_\psi}}{\sqrt{2\pi R_\psi}},
+\end{equation}
+with KK masses (in natural units $\hbar = c = 1$):
+\begin{equation}
+  m_n = \frac{|n|}{R_\psi}, \qquad n \in \mathbb{Z}.
+  \label{eq:kk_mass}
+\end{equation}
+The lowest non-trivial KK mode is $n = 1$:
+\begin{equation}
+  m_1 = \frac{1}{R_\psi} = \frac{\hbar}{R_\psi\,c}
+        \quad \text{(restoring units)}.
+  \label{eq:m1}
+\end{equation}
+
+\subsection{$\mathcal{D}_{\rm eff}$ from $m_1$}
+
+Setting $\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ (from Gap~S1 partial
+closure in \S\ref{subsec:gap_s1_partial}):
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar}{2m_1} = \frac{\hbar\,R_\psi}{2}
+  \quad (\text{in units } c = 1).
+  \label{eq:deff_from_kk}
+\end{equation}
+
+\subsection{Self-Consistency with Calibrated $R_\psi$}
+
+In UBT, the $\psi$-circle radius is calibrated as:
+\begin{equation}
+  R_\psi = \frac{\hbar}{m_e c}
+  \quad [\text{calibrated from } m_e].
+  \label{eq:rpsi_calibrated}
+\end{equation}
+Substituting into \eqref{eq:deff_from_kk}:
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar R_\psi}{2}
+    = \frac{\hbar}{2}\cdot\frac{\hbar}{m_e c}
+    = \frac{\hbar^2}{2m_e c}
+    = \frac{\hbar}{2m_e}
+  \quad (c = 1).
+\end{equation}
+This exactly reproduces the standard quantum-mechanical diffusion coefficient
+$\mathcal{D}_{\rm eff} = \hbar/(2m_e)$.
+
+\begin{resultbox}
+\textbf{Result (§4):} $\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ is algebraically
+self-consistent when $m_1 = 1/R_\psi$ is the lowest KK mode on the
+$\psi$-circle.  With $R_\psi = \hbar/m_e$ (calibrated), this gives
+$\mathcal{D}_{\rm eff} = \hbar/(2m_e)$ — identical to standard QM.
+\end{resultbox}
+
+\subsection{Promotion Assessment}
+
+\textbf{Promotion criterion}: Promote from Sketch to Proved~[L1] only if
+$\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ follows algebraically from $S[\Theta]$
+\emph{without circular use of $m_e$ as input}.
+
+\begin{gapbox}
+\textbf{Gap S1 — Assessment (v62):}
+The KK derivation is \textbf{algebraically self-consistent} but
+\textbf{circular}: $R_\psi = \hbar/m_e$ is calibrated from $m_e$, so
+$m_1 = 1/R_\psi = m_e$ trivially.  The identity
+$\mathcal{D}_{\rm eff} = \hbar/(2m_1) = \hbar/(2m_e)$ holds by construction,
+not by independent derivation.
+
+\medskip
+\textbf{Promotion criterion is NOT met}: The circular dependence on $m_e$
+prevents closing Gap~S1 from the KK mass alone.
+
+\medskip
+\textbf{What is needed}: An independent derivation of $R_\psi$ from $S[\Theta]$
+first principles (Gap~G-Rpsi, see \texttt{DERIVATION\_INDEX.md}) that does
+not assume $m_e$ as input.  If $R_\psi$ is derived independently, then
+$m_1 = \hbar/R_\psi$ is predicted and $\mathcal{D}_{\rm eff} = \hbar R_\psi/2$
+becomes a genuine consequence of UBT kinematics.
+
+\medskip
+\textbf{Verdict: SKETCH remains} — structural derivation confirmed;
+algebraic self-consistency shown; circular dependence on $m_e$ prevents
+full [L1] status.
+\end{gapbox}
+
 \ifdefined\INCLUDEMODE
 \else
 \end{document}

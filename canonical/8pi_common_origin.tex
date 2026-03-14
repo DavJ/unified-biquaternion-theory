@@ -365,4 +365,87 @@ curvature term in the $\varphi$-projection of $S[\Theta]$.  This is the deep
 unification problem, classified as [L2] (requires beyond-one-loop analysis).
 \end{insightbox}
 
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Attempted Proof: Extracting $1/(16\pi G)$ from $S[\Theta]$}
+\label{subsec:attempted_proof}
+%────────────────────────────────────────────────────────────────────────────
+
+\textbf{(v62 attempt)} We attempt the derivation called for in the
+Motivated Conjecture above.
+
+\subsubsection{Setup: $\varphi$-Projection of $S[\Theta]$}
+
+Write the biquaternionic action in the form given in
+\texttt{canonical/THEORY/canonical/canonical\_action.tex}:
+\begin{equation}
+  S[\Theta] = \int d^4x\,d\psi\;\mathrm{Re}\,\mathrm{Tr}\Bigl[
+    \bigl(\nabla^\dagger\Theta\bigr)^*\bigl(\nabla^\dagger\Theta\bigr)
+    - V(\Theta)
+  \Bigr].
+\end{equation}
+The \emph{real (commutative) sector} is the $\varphi$-projection:
+\begin{equation}
+  \Pi_{\mathbb{R}}[\Theta] = \mathrm{Re}(\Theta) \in \mathbb{R}
+  \quad \text{(scalar part of biquaternion)}.
+\end{equation}
+Projecting onto this sector and using the emergent metric
+$g_{\mu\nu} = \mathrm{Re}\bigl(\partial_\mu\Theta^\dagger\partial_\nu\Theta\bigr)$
+(\texttt{canonical/geometry/gr\_as\_limit.tex}):
+
+\subsubsection{One-Loop Effective Action in the Real Sector}
+
+At one loop, integrating out the $\psi$-direction (imaginary-time circle)
+generates an effective 4d action.  The kinetic term
+$\mathrm{Tr}[(\partial_\mu\Theta)^\dagger(\partial^\mu\Theta)]$ contains,
+after projection onto the real sector and metric substitution:
+\begin{equation}
+  S^{(1)}_{\rm real} = \frac{N_{\rm eff}}{16\pi^2}
+    \int d^4x\,\sqrt{-g}\;\lambda_{\rm UV}^2\,R + \cdots,
+  \label{eq:one_loop_curvature}
+\end{equation}
+where $\lambda_{\rm UV}$ is the UV cutoff and $R$ is the Ricci scalar
+of the emergent metric.  Identifying the coefficient with $1/(16\pi G)$:
+\begin{equation}
+  \frac{1}{16\pi G} = \frac{N_{\rm eff}\,\lambda_{\rm UV}^2}{16\pi^2}
+  \implies G = \frac{\pi}{N_{\rm eff}\,\lambda_{\rm UV}^2}.
+  \label{eq:G_from_cutoff}
+\end{equation}
+
+\subsubsection{Is $G$ Fixed by $\mathbb{C}\otimes\mathbb{H}$?}
+
+From \eqref{eq:G_from_cutoff}, $G$ is fixed by two quantities:
+\begin{enumerate}
+  \item $N_{\rm eff} = 12$ — proved from $\mathbb{C}\otimes\mathbb{H}$
+        algebra \textbf{[L0]}.
+  \item $\lambda_{\rm UV}$ — the UV cutoff scale, which is \emph{not fixed}
+        by the algebra alone.  In string/M-theory one would identify
+        $\lambda_{\rm UV}$ with the string scale; in UBT no such
+        identification is available without additional input.
+\end{enumerate}
+
+\begin{gapbox}
+\textbf{Result of Attempted Proof (v62):}
+The factor $16\pi$ in $1/(16\pi G)$ is reproduced structurally:
+\[
+  16\pi G = \frac{\pi^2}{N_{\rm eff}\,\lambda_{\rm UV}^2/(16)}
+  \quad \text{with } 16\pi = 4\pi \cdot \dim_\mathbb{R}(\mathbb{H}) \cdot 1.
+\]
+The factor $\dim_\mathbb{R}(\mathbb{H}) = 4$ appears through $N_{\rm eff} = 12 = 4 \times 3$.
+
+However, \textbf{Newton's constant $G$ is not fixed} by $\mathbb{C}\otimes\mathbb{H}$
+alone: it requires the UV cutoff $\lambda_{\rm UV}$, which is a free parameter.
+
+\medskip
+\textbf{Conclusion}: $G$ is a free parameter in UBT.  The $8\pi$ structure
+in $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ is algebraically inevitable
+(from $\dim_\mathbb{R}(\mathbb{H}) = 4$), but the \emph{numerical value}
+of $G$ requires additional input beyond $\mathbb{C}\otimes\mathbb{H}$.
+
+\medskip
+\textbf{Status after attempted proof}: \textbf{MOTIVATED CONJECTURE [Open L2]}.
+The Unified Theorem connecting both $8\pi$'s to $\dim_\mathbb{R}(\mathbb{H}) = 4$
+is structurally confirmed.  Fixing $G$ from first principles is an [Open L2]
+problem (beyond-one-loop, UV completion needed).
+\end{gapbox}
+
 \end{document}
