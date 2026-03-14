@@ -144,23 +144,86 @@ def parse_derivation_index(filepath: str) -> dict[str, list[dict]]:
 # Generate content fragments for each wiki section
 # ---------------------------------------------------------------------------
 
+def _extract_primary_file(file_col: str) -> str:
+    """
+    Extract the first file path from a DERIVATION_INDEX file column cell.
+
+    The cell may contain one or more backtick-quoted paths, possibly followed
+    by section references (e.g. §1) and/or comma-separated additional files.
+    Returns the first clean path, or empty string if none found.
+
+    Examples:
+      '`canonical/geometry/metric.tex`'          → 'canonical/geometry/metric.tex'
+      '`ARCHIVE/foo.tex §2`, `bar.tex`'           → 'ARCHIVE/foo.tex'
+      '`experiments/three_gen/file.tex §3` notes' → 'experiments/three_gen/file.tex'
+    """
+    if not file_col:
+        return ""
+    # Find the first backtick-quoted token
+    m = re.search(r"`([^`]+)`", file_col)
+    if not m:
+        return ""
+    raw = m.group(1).strip()
+    # Strip section references: space + § or space + (
+    raw = re.split(r"\s+[§(]", raw)[0].strip()
+    # Strip trailing slash (directories)
+    raw = raw.rstrip("/")
+    return raw
+
+
+def _file_link(file_col: str) -> str:
+    """
+    Return a Markdown hyperlink for the primary file in a DERIVATION_INDEX
+    file column cell, or an empty string if no valid file is found.
+
+    Only creates a link if the file actually exists in the repository.
+    """
+    if not file_col:
+        return ""
+    path = _extract_primary_file(file_col)
+    if not path:
+        return ""
+    full = os.path.join(REPO_ROOT, path)
+    if not os.path.exists(full):
+        return ""
+    # Use /blob/ for files and /tree/ for directories
+    link_type = "tree" if os.path.isdir(full) else "blob"
+    basename = os.path.basename(path) or os.path.basename(os.path.dirname(path))
+    return f"[`{basename}`]({REPO_URL}/{link_type}/main/{path})"
+
+
 def _status_table(entries: list[dict], max_rows: int = 20) -> str:
     """Render a compact Markdown status table from DERIVATION_INDEX entries."""
     if not entries:
         return "_No entries found in DERIVATION_INDEX.md for this section._"
 
-    rows = ["| Result | Status |", "|--------|--------|"]
-    for e in entries[:max_rows]:
+    # Determine whether any entry has a valid file link before building the table,
+    # so we add the File column only when it provides useful information.
+    # Use a two-pass approach: first scan for any valid link, then render rows.
+    visible = entries[:max_rows]
+    has_links = any(_file_link(e["file"]) for e in visible)
+
+    if has_links:
+        rows = ["| Result | Status | File |", "|--------|--------|------|"]
+    else:
+        rows = ["| Result | Status |", "|--------|--------|"]
+
+    for e in visible:
         result = re.sub(r"\[.*?\]", "", e["result"]).strip()
         result = result[:80] + "…" if len(result) > 80 else result
         label = e["label"]
         symbol = e["symbol"]
-        rows.append(f"| {result} | {symbol} **{label}** |")
+        if has_links:
+            link = _file_link(e["file"])
+            rows.append(f"| {result} | {symbol} **{label}** | {link} |")
+        else:
+            rows.append(f"| {result} | {symbol} **{label}** |")
 
     if len(entries) > max_rows:
         rows.append(
             f"| *… and {len(entries) - max_rows} more results* "
             f"| *See [DERIVATION_INDEX.md]({REPO_URL}/blob/main/DERIVATION_INDEX.md)* |"
+            + (" |" if has_links else "")
         )
 
     return "\n".join(rows)

@@ -20,7 +20,7 @@ name: Update Wiki
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - "*.wiki/*"
   workflow_dispatch:

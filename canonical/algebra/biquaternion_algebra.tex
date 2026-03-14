@@ -1,0 +1,107 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Biquaternion Algebra — Canonical Definition
+% Status: Canonical
+% Version: 1.0
+% Date: 2026-03-01
+
+\section{Biquaternion Algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$}
+\label{sec:algebra:biquaternion_algebra}
+
+\subsection{Definition}
+
+The \textbf{biquaternion algebra} $\mathcal{B}$ is the tensor product of the field
+of complex numbers with the quaternion algebra:
+
+\begin{equation}
+  \label{eq:biquat_def}
+  \mathcal{B} = \mathbb{C} \otimes_{\mathbb{R}} \mathbb{H}.
+\end{equation}
+
+A general biquaternion has the form
+\begin{equation}
+  \label{eq:biquat_general}
+  q = z_0 + z_1\,\mathbf{I} + z_2\,\mathbf{J} + z_3\,\mathbf{K},
+  \qquad z_\mu \in \mathbb{C},
+\end{equation}
+where $\{1, \mathbf{I}, \mathbf{J}, \mathbf{K}\}$ is the standard quaternion basis
+satisfying
+\begin{equation}
+  \label{eq:quat_rules}
+  \mathbf{I}^2 = \mathbf{J}^2 = \mathbf{K}^2 = \mathbf{I}\mathbf{J}\mathbf{K} = -1.
+\end{equation}
+
+\subsection{Matrix Isomorphism}
+
+There is a canonical $\mathbb{C}$-algebra isomorphism
+\begin{equation}
+  \label{eq:biquat_iso}
+  \mathcal{B} \;\cong\; \mathrm{Mat}(2, \mathbb{C}),
+\end{equation}
+given explicitly by
+\begin{equation}
+  1 \mapsto I_2, \quad
+  \mathbf{I} \mapsto i\sigma_1, \quad
+  \mathbf{J} \mapsto i\sigma_2, \quad
+  \mathbf{K} \mapsto i\sigma_3,
+\end{equation}
+where $\sigma_1, \sigma_2, \sigma_3$ are the Pauli matrices.
+
+\subsection{Involutions and $\mathbb{Z}_2 \times \mathbb{Z}_2 \times \mathbb{Z}_2$}
+
+The imaginary subspace $\mathrm{Im}(\mathbb{H}) = \mathrm{span}_{\mathbb{R}}\{\mathbf{I},
+\mathbf{J}, \mathbf{K}\}$ admits three commuting involutions:
+\begin{align}
+  P_{\mathbf{I}}(q) &= -\mathbf{I}\,q\,\mathbf{I}^{-1}, \\
+  P_{\mathbf{J}}(q) &= -\mathbf{J}\,q\,\mathbf{J}^{-1}, \\
+  P_{\mathbf{K}}(q) &= -\mathbf{K}\,q\,\mathbf{K}^{-1}.
+\end{align}
+These satisfy $P_{\mathbf{I}}^2 = P_{\mathbf{J}}^2 = P_{\mathbf{K}}^2 = \mathrm{id}$
+and generate $\mathbb{Z}_2 \times \mathbb{Z}_2 \times \mathbb{Z}_2$.
+Their Lie algebra equals $\mathfrak{su}(3)$; see
+\texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex} and
+\texttt{canonical/algebra/algebra\_summary\_table.tex}
+for the detailed derivation.
+
+\subsection{Automorphism Group}
+
+\begin{proposition}[Automorphism group of $\mathcal{B}$]
+  \label{prop:aut_B}
+  $\mathrm{Aut}_{\mathbb{R}}(\mathcal{B}) \cong
+  \bigl[\mathrm{GL}(2,\mathbb{C}) \times \mathrm{GL}(2,\mathbb{C})\bigr]/\mathbb{Z}_2.$
+\end{proposition}
+
+The left factor of $\mathrm{GL}(2,\mathbb{C})$ gives rise to $\mathrm{SU}(2)_L \times
+\mathrm{U}(1)_Y$ (electroweak gauge group) after restriction to unitary elements.
+The right factor gives $\mathrm{U}(1)_{\mathrm{EM}}$.
+
+\subsection{Key Algebraic Properties}
+
+\begin{itemize}
+  \item \textbf{Associative}: $\mathcal{B}$ is associative (inherited from
+    $\mathbb{H}$ and $\mathbb{C}$, or via $\mathrm{Mat}(2,\mathbb{C})$).
+  \item \textbf{Non-commutative}: $\mathbf{I}\mathbf{J} \neq \mathbf{J}\mathbf{I}$
+    in general.
+  \item \textbf{Dimension}: $\dim_{\mathbb{R}} \mathcal{B} = 8$;
+    $\dim_{\mathbb{C}} \mathcal{B} = 4$.
+  \item \textbf{Centre}: $Z(\mathcal{B}) = \mathbb{C} \cdot 1$ (complex scalars).
+\end{itemize}
+
+\subsection{Role in UBT}
+
+The fundamental field of UBT is a $\mathcal{B}$-valued section
+$\Theta(q, \tau)$ over biquaternion coordinate $q$ and complex time
+$\tau = t + i\psi$.  All physical content — spacetime geometry, gauge symmetries,
+and particle content — emerges from $\Theta$ and the algebraic structure of
+$\mathcal{B}$.
+
+The three-dimensionality $\dim_{\mathbb{R}}(\mathrm{Im}\,\mathbb{H}) = 3$ directly
+forces $\mathrm{SU}(3)_c$ as the color gauge group with zero free parameters.
+
+% See also:
+%   canonical/algebra/algebra_summary_table.tex   — quick-reference table
+%   canonical/algebra/involutions_Z2xZ2xZ2.tex    — Z2xZ2xZ2 involution structure
+%   canonical/fields/biquaternion_algebra.tex      — detailed field-theory treatment
