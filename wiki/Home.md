@@ -75,6 +75,35 @@ See the full architecture in [Overview](Overview).
 
 ---
 
+## Canonical Theory Document
+
+The full canonical theory is available as a compiled PDF, auto-built
+from `canonical/UBT_canonical_main.tex` on every push to main:
+
+📄 **<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/pdfs/UBT_canonical_main.pdf">UBT_canonical_main.pdf</a>**
+
+The PDF contains all canonical derivations with full LaTeX typesetting
+and cross-references. For individual derivation files, follow links
+in the wiki tables below.
+
+---
+
+## Interactive Notebooks
+
+Key verification scripts are available as runnable Jupyter notebooks.
+Launch them in the browser — no installation required:
+
+<a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/main?filepath=docs/notebooks/"><img src="https://mybinder.org/badge_logo.svg"></a>
+
+| Notebook | What it verifies |
+|----------|-----------------|
+| <a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/main?filepath=docs/notebooks/verify/verify_8pi_connection.ipynb">verify_8pi_connection</a> | Common algebraic origin of 8π in GR and QFT |
+| <a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/main?filepath=docs/notebooks/verify/verify_su3_superposition.ipynb">verify_su3_superposition</a> | SU(3) from ℂ³ superposition over {I,J,K} |
+| <a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/main?filepath=docs/notebooks/experiments/derive_fine_structure.ipynb">derive_fine_structure</a> | Fine structure constant derivation chain |
+| <a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/main?filepath=docs/notebooks/research_tracks/e01_incidence_sanity.ipynb">e01_incidence_sanity</a> | UBT–Twistor incidence relation (flat Minkowski) |
+
+---
+
 ## Repository Structure
 
 | Directory | Contents |

@@ -152,6 +152,27 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
+## UBT–Twistor Bridge
+
+> ⭐ **Canonical source**: `research_tracks/THEORY_COMPARISONS/penrose_twistor/STATUS.md`
+> Hard rule: UBT is NOT twistor theory. Results below establish a compatible substructure
+> over flat Minkowski space only.
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| σ_μ matrices derived from ℂ⊗ℍ biquaternion basis | **Proved [L0]** | `penrose_twistor/twistor_core/ubt_generators.py` | 15 tests pass; no external Pauli import needed |
+| det(X) = Minkowski interval for X = x^μ σ_μ | **Proved [L0]** | `penrose_twistor/twistor_core/minkowski_spinor.py` | Symbolic verification |
+| Bijection x ↔ X^{AA'} well-defined and invertible | **Proved [L0]** | `penrose_twistor/twistor_core/minkowski_spinor.py` | Roundtrip tests pass |
+| Null vectors ↔ rank-1 Hermitian matrices | **Proved [L0]** | `penrose_twistor/tests/test_light_cone.py` | det X = 0 iff s² = 0 |
+| Incidence relation ω^A = iX^{AA'}π_{A'} (flat Minkowski) | **Proved [L0]** | `penrose_twistor/twistor_core/twistor.py` | Flat space only; ψ not carried through |
+| SU(2,2) Hermitian form and group action | **Proved [L0]** | `penrose_twistor/twistor_core/su22.py` | Signature (2,2) verified |
+| Conformal (Möbius) action on X-space | **Computationally verified** | `penrose_twistor/twistor_core/conformal.py` | Numerical; analytic proof pending |
+| UBT generator closure → 15D Lie algebra | **Computationally verified** | `penrose_twistor/twistor_core/lie_audit.py` | Killing form (8,7,0); semisimple |
+| X^{AA'}(Θ) in curved UBT sector | **Open** | `penrose_twistor/curved_bridge_todo.md` | Requires nonlinear graviton extension |
+| ψ (imaginary time) ↔ twistor geometry | **Open** | `penrose_twistor/tau_phase_mapping.md` | No candidate mapping found |
+
+---
+
 ## Cross-Gap Consistency Checks
 
 | Check | Status | Notes |
