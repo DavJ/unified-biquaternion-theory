@@ -47,6 +47,19 @@ jobs:
             echo "✓ Main HTML generated ($(wc -l < ../_site/canonical/UBT_canonical_main.html) lines)" || \
             (echo "✗ Main HTML NOT generated" && exit 1)
 
+      - name: Smoke test HTML output
+        run: |
+          HTML=_site/canonical/UBT_canonical_main.html
+          [ -f "$HTML" ] || (echo "✗ HTML missing" && exit 1)
+          LINES=$(wc -l < "$HTML")
+          echo "✓ HTML present ($LINES lines)"
+          grep -qE 'tex-mml-chtml|mathjax' "$HTML" && \
+            echo "✓ MathJax CDN present" || echo "⚠ MathJax missing"
+          grep -q '\\begin{equation}' "$HTML" && \
+            echo "⚠ Raw LaTeX leaked" || echo "✓ No raw equations"
+          HEADINGS=$(grep -c "<h[1-6]" "$HTML" || true)
+          echo "✓ Heading elements found: $HEADINGS"
+
       - name: Compile standalone derivation files
         run: |
           for f in \
