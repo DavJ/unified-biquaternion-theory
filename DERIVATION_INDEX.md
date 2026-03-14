@@ -72,7 +72,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | SU(3)_c via i,j,k → r,g,b axis mapping | **[HEURISTIC / MOTIVATING SKETCH]** | `ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex` | Intuitive correspondence only; NOT an algebraic proof; see disclaimer at top of that file; canonical derivation is involution approach above |
 | SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | **[MATHEMATICAL SANDBOX]** | `research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/` | Valid Lie algebra homomorphism (51 tests pass); separate from mainline UBT derivation; does not derive SU(3) from ℂ⊗ℍ first principles |
 | Color confinement (algebraic) | **[CONJECTURED WITH EXPERIMENTAL SUPPORT L0]** | `ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex`, `ARCHIVE/archive_legacy/consolidation_project/confinement/confinement_verification.py` | H_phys = Im(Π_color) in ℂ²⊗ℂ²⊗ℂ²; free quark algebraically inadmissible (not a colour singlet, ⟨C₂⟩=4/3≠0); all hadrons (baryon, meson, tetraquark, pentaquark) verified to satisfy ⟨C₂⟩=0; distinct from Clay Prize (YM mass gap) — see §5; exotic hadrons at LHCb consistent (§6); needs peer review |
-| Weinberg angle θ_W fixed | **Semi-empirical** | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone |
+| Weinberg angle θ_W fixed | **Semi-empirical** | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone. Structural argument (v47): ℂ⊗ℍ automorphism group provides SU(2)_L × U(1)_Y but g/g' ratio is a free parameter of the embedding; no algebraic constraint on sin²θ_W arises from ℂ⊗ℍ geometry. |
 | SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L1]** | `canonical/chirality/step1_psi_parity.tex`, `canonical/chirality/step2_chirality_result.tex`, `canonical/chirality/step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
 
 ---
@@ -90,7 +90,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | KK mismatch (ratio 1:2 vs 207:3477) | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | [DERIVED — mismatch is a theorem] |
 | Option A (linear mixing) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Max ratio ~461, far below 3477 |
 | Option B (linear Yukawa) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Ratio 1:2:3 only |
-| Option C (ψ-instantons) reproduces ratios | **Open Hard Problem** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Calibrated to muon; tau off by factor ~6 |
+| Option C (ψ-instantons) reproduces ratios | **Open Hard Problem** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Calibrated to muon; tau off by factor ~6. v47 scan: ±20% variation of S_inst is a Dead End — S_inst required for muon (5.332) and for tau (4.424) differ by 17%; no single S_inst in [4.266, 6.398] simultaneously fits both within 1%. Simple modification of the dilute-gas S_inst is insufficient; non-perturbative resummation or modified instanton action required. |
 | Identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ | **Conjecture** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §5` | Mass ratios not reproduced |
 | Mass ratio script (Options A/B/C) | Documented | `tools/reproduce_lepton_ratios.py` | Exit code 1 = no mechanism works |
 | Hecke conjecture p=137 | **STRONG NUMERICAL SUPPORT** | `docs/reports/hecke_lepton/` | Set A (76.2, 7.4, 208.6): unique global hit p=137 in 50–300; mu_err=0.02%, tau_err=0.10%; 47 other primes far off |
@@ -358,7 +358,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 | Result | Status | Notes |
 |--------|--------|-------|
-| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires global rank argument for J=δg/δΘ; not merely injectivity (see GAP-10). Correct claim: Level-2 sector recovery. |
+| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Open** | Requires global rank argument for J=δg/δΘ; not merely injectivity (see GAP-10). Correct claim: Level-2 sector recovery. See `research_tracks/research/gr_offshell_gap.md` for precise gap statement. Missing lemma: global rank of J=δg^μν/δΘ off the metric-generating sector. On-shell recovery (GR-compatible sector Level 2) is proved. |
 | Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
 
 ---
@@ -404,7 +404,7 @@ and an emergent-metric construction strongly connected to Θ.
 | ψ-circle S¹(R_ψ) is flat (zero curvature) | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §3` | Standard diff.geom.; no AdS factor |
 | Moduli space ℍ has hyperbolic geometry K=−1 | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §4` | Parameter space, not physical spacetime |
 | AdS/CFT-like informational encoding analogy | **[O] Open Research** | `research_tracks/THEORY_COMPARISONS/ads_cft_like_encoding_in_ubt.md` | Structural analogy only; not a duality |
-| Λ_eff from V_eff(Θ) minimum | **[O] Open Hard Problem [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | L2-dS task; copilot working |
+| Λ_eff from V_eff(Θ) minimum | **[O] Dead End [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | v47 numerical check: V_eff(n*=137) = A·137²−B·137·ln(137) ≈ −12428 (dimensionless winding-sector potential). Direct identification V_eff(n*) = Λ_eff gives wrong units and magnitude (≠ 10⁻¹²² in Planck units by many orders of magnitude). Dead End for direct identification. A unit-conversion bridge from the winding potential to vacuum energy density requires an independent UV cut-off argument not present in the current framework. |
 | Verlinde / dS holographic principle | **[S] Speculative** | `ARCHIVE/archive_legacy/consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
 
 

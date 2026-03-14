@@ -43,7 +43,7 @@ residual open problem at Step 6.
 | N is scale-fixing, not signature-fixing | ✅ **Proved** | [`step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/gr_closure/step3_signature_theorem.tex) |
 | UBT vs sigma model distinction | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/gr_closure/step1_metric_bridge.tex) |
 | GR equivalence via tetrad pipeline | ⚠️ **Conditional** | [`appendix_R_GR_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_R_GR_equivalence.tex) |
-| Pure Θ-only closure (g substitution before variation, off-shell) | ❌ **Open** |  |
+| Pure Θ-only closure (g substitution before variation, off-shell) | ❌ **Open** | [`gr_offshell_gap.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/research/gr_offshell_gap.md) |
 | Metric uniqueness beyond A_UBT | ❌ **Open** |  |
 <!-- END GENERATED: gr_recovery_status -->
 

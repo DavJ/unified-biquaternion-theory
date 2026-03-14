@@ -1,0 +1,163 @@
+name: Build GitHub Pages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "canonical/**"
+      - "wiki/**"
+      - "docs/pdfs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pandoc and TeX Live
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc texlive-latex-extra \
+            texlive-fonts-recommended latexmk
+
+      - name: Create output directory
+        run: mkdir -p _site/canonical _site/wiki
+
+      - name: Convert canonical .tex files to HTML
+        run: |
+          for f in canonical/UBT_canonical_main.tex \
+                    canonical/geometry/metric.tex \
+                    canonical/geometry/gr_as_limit.tex \
+                    canonical/interactions/qed.tex \
+                    canonical/interactions/qcd.tex \
+                    canonical/interactions/sm_gauge.tex \
+                    canonical/8pi_common_origin.tex \
+                    canonical/bridges/QED_limit_bridge.tex \
+                    canonical/bridges/GR_chain_bridge.tex; do
+            [ -f "$f" ] || continue
+            name=$(basename "$f" .tex)
+            dir=$(dirname "$f" | sed 's|canonical/||')
+            mkdir -p "_site/canonical/$dir"
+            pandoc "$f" \
+              --standalone \
+              --mathjax \
+              --metadata title="UBT — $(basename $f .tex)" \
+              --css /unified-biquaternion-theory/assets/style.css \
+              -o "_site/canonical/$dir/${name}.html" 2>/dev/null || \
+            pandoc "$f" \
+              --standalone \
+              --mathjax \
+              --metadata title="UBT — $(basename $f .tex)" \
+              -o "_site/canonical/$dir/${name}.html" || true
+          done
+
+      - name: Convert wiki .md files to HTML
+        run: |
+          for f in wiki/*.md; do
+            name=$(basename "$f" .md)
+            pandoc "$f" \
+              --standalone \
+              --mathjax \
+              --metadata title="UBT Wiki — $name" \
+              --css /unified-biquaternion-theory/assets/style.css \
+              -o "_site/wiki/${name}.html" 2>/dev/null || \
+            pandoc "$f" \
+              --standalone \
+              --mathjax \
+              --metadata title="UBT Wiki — $name" \
+              -o "_site/wiki/${name}.html" || true
+          done
+
+      - name: Copy PDF if it exists
+        run: |
+          if [ -f docs/pdfs/UBT_canonical_main.pdf ]; then
+            cp docs/pdfs/UBT_canonical_main.pdf _site/
+          fi
+
+      - name: Create CSS stylesheet
+        run: |
+          mkdir -p _site/assets
+          cat > _site/assets/style.css << 'CSS'
+          body { font-family: Georgia, serif; max-width: 900px;
+                 margin: 40px auto; padding: 0 20px;
+                 line-height: 1.6; color: #333; }
+          h1,h2,h3 { color: #1a1a2e; }
+          code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+          pre { background: #f4f4f4; padding: 15px; overflow-x: auto; }
+          .source-link { font-size: 0.85em; color: #666; float: right; }
+          table { border-collapse: collapse; width: 100%; }
+          td, th { border: 1px solid #ddd; padding: 8px; }
+          CSS
+
+      - name: Create index.html
+        run: |
+          cat > _site/index.html << 'HTML'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Unified Biquaternion Theory</title>
+            <link rel="stylesheet" href="/unified-biquaternion-theory/assets/style.css">
+          </head>
+          <body>
+          <h1>Unified Biquaternion Theory</h1>
+          <p>Author: Ing. David Jaroš | License: CC BY-NC-ND 4.0</p>
+          <h2>Canonical Theory</h2>
+          <ul>
+            <li><a href="/unified-biquaternion-theory/canonical/UBT_canonical_main.html">Full canonical document</a>
+                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">.tex</a>]</li>
+          </ul>
+          <h2>Key Derivations</h2>
+          <ul>
+            <li><a href="/unified-biquaternion-theory/canonical/geometry/gr_as_limit.html">GR Recovery</a>
+                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/gr_as_limit.tex">.tex</a>]</li>
+            <li><a href="/unified-biquaternion-theory/canonical/interactions/qed.html">QED</a>
+                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qed.tex">.tex</a>]</li>
+            <li><a href="/unified-biquaternion-theory/canonical/interactions/sm_gauge.html">SM Gauge Structure</a>
+                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/sm_gauge.tex">.tex</a>]</li>
+            <li><a href="/unified-biquaternion-theory/canonical/8pi_common_origin.html">8π Common Origin</a>
+                [<a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/8pi_common_origin.tex">.tex</a>]</li>
+          </ul>
+          <h2>Wiki</h2>
+          <ul>
+            <li><a href="/unified-biquaternion-theory/wiki/Home.html">Home</a></li>
+            <li><a href="/unified-biquaternion-theory/wiki/Overview.html">Overview</a></li>
+            <li><a href="/unified-biquaternion-theory/wiki/GR_Recovery.html">GR Recovery</a></li>
+            <li><a href="/unified-biquaternion-theory/wiki/Alpha_Constant.html">Fine Structure Constant α</a></li>
+            <li><a href="/unified-biquaternion-theory/wiki/SU3_Structure.html">SU(3) Structure</a></li>
+          </ul>
+          <h2>Downloads</h2>
+          <ul>
+            <li><a href="/unified-biquaternion-theory/UBT_canonical_main.pdf">📄 Canonical theory PDF</a>
+                (auto-built from LaTeX)</li>
+          </ul>
+          </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -7,8 +7,10 @@ material that is internally consistent, mathematically defined, and accepted as 
 reference formulation.
 
 **Canonical directory**: [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical)  
-**Main document**: [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex)  
-**Latest PDF**: <a href="https://raw.githubusercontent.com/DavJ/unified-biquaternion-theory/master/docs/pdfs/UBT_canonical_main.pdf">`UBT_canonical_main.pdf`</a> *(auto-built on every commit to master — PDF is generated on first push to master after this change)*  
+**Main document**:
+🌐 <a href="https://davj.github.io/unified-biquaternion-theory/canonical/UBT_canonical_main.html">View rendered (GitHub Pages)</a>
+· 📄 <a href="https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf">Download PDF</a>
+· 📝 <a href="https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex">Raw .tex source</a>  
 **Interactive notebooks**: <a href="https://mybinder.org/v2/gh/DavJ/unified-biquaternion-theory/master?filepath=docs/notebooks/"><img src="https://mybinder.org/badge_logo.svg"></a> — open and run verification scripts in the browser
 
 ---
