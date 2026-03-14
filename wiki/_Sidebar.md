@@ -41,4 +41,4 @@
 
 ---
 
-*Source of truth: [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md)*
+*Source of truth: [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)*

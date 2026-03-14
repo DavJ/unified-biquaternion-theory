@@ -6,8 +6,8 @@ The Standard Model gauge group SU(3)×SU(2)_L×U(1)_Y emerges from the automorph
 and involution structure of the biquaternion algebra ℂ⊗ℍ, with **zero free parameters**
 at the structural level.
 
-**Canonical source**: [`canonical/interactions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical/interactions)  
-**Gauge bridge**: [`canonical/bridges/gauge_emergence_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/bridges/gauge_emergence_bridge.tex)
+**Canonical source**: [`canonical/interactions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/interactions)  
+**Gauge bridge**: [`canonical/bridges/gauge_emergence_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/gauge_emergence_bridge.tex)
 
 ---
 
@@ -16,19 +16,19 @@ at the structural level.
 <!-- BEGIN GENERATED: gauge_status -->
 | Result | Status | File |
 |--------|--------|------|
-| B = ℂ⊗ₐℍ ≅ Mat(2,ℂ) | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| Aut(B) ≅ /ℤ₂ | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| SU(2)_L from left action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| = ε^{abc}T^c | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| U(1)_Y from right action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| U(1)_EM from ψ-cycle phase | ✅ **Proved** | [`qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/interactions/qed.tex) |
-| SU(3)_c from involutions on ℂ⊗ℍ | ❓ **Unknown** | [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex) |
-| SU(3)_c from quantum superposition over {I,J,K} | ❓ **Unknown** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_superposition_approach.tex) |
-| SU(3)_c via i,j,k → r,g,b axis mapping | ❓ **Unknown** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
-| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | ❓ **Unknown** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
-| Color confinement (algebraic) | ❓ **Unknown** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
-| Weinberg angle θ_W fixed | ⚠️ **Semi-empirical** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | ❓ **Unknown** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/chirality_derivation/step1_psi_parity.tex) |
+| B = ℂ⊗ₐℍ ≅ Mat(2,ℂ) | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| Aut(B) ≅ /ℤ₂ | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| SU(2)_L from left action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| = ε^{abc}T^c | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| U(1)_Y from right action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| U(1)_EM from ψ-cycle phase | ✅ **Proved** | [`qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qed.tex) |
+| SU(3)_c from involutions on ℂ⊗ℍ | ❓ **Unknown** | [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex) |
+| SU(3)_c from quantum superposition over {I,J,K} | ❓ **Unknown** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_superposition_approach.tex) |
+| SU(3)_c via i,j,k → r,g,b axis mapping | ❓ **Unknown** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
+| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | ❓ **Unknown** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
+| Color confinement (algebraic) | ❓ **Unknown** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
+| Weinberg angle θ_W fixed | ⚠️ **Semi-empirical** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
+| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | ❓ **Unknown** | [`step1_psi_parity.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/chirality_derivation/step1_psi_parity.tex) |
 <!-- END GENERATED: gauge_status -->
 
 ---
@@ -45,11 +45,11 @@ Generator T^a : M  →  (iσ^a/2) · M
 ```
 
 Status: **Proved [L0]**  
-File: [`appendix_E2_SM_geometry.tex §6`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex)
+File: [`appendix_E2_SM_geometry.tex §6`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex)
 
 The **chirality** of SU(2)_L (left-handed only, not SU(2)_L × SU(2)_R) is proved
 through ψ-parity analysis:  
-File: [`chirality_derivation/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/ARCHIVE/archive_legacy/consolidation_project/chirality_derivation)
+File: [`chirality_derivation/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/ARCHIVE/archive_legacy/consolidation_project/chirality_derivation)
 
 ### U(1)_Y — Hypercharge
 
@@ -66,7 +66,7 @@ Status: **Proved [L0]**
 U(1)_EM arises from the phase of Θ on the ψ-circle:
 
 Status: **Proved [L0]**  
-File: [`canonical/interactions/qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/interactions/qed.tex)
+File: [`canonical/interactions/qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qed.tex)
 
 ### Weinberg Angle
 
@@ -84,7 +84,7 @@ The dimension dim Im(ℍ) = 3 **forces** SU(3) — there is no room for a differ
 color group given the ℂ⊗ℍ algebra.
 
 Status: **Proved [L0]** ⭐  
-Canonical file: [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex)
+Canonical file: [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex)
 
 → Full details: [SU(3) Structure](SU3_Structure)
 
@@ -104,10 +104,10 @@ Note: Distinct from Clay Millennium Prize (Yang–Mills mass gap).
 
 | File | Content |
 |------|---------|
-| [`canonical/interactions/qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/interactions/qed.tex) | QED complete |
-| [`canonical/interactions/qcd.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/interactions/qcd.tex) | QCD complete |
-| [`canonical/interactions/sm_gauge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/interactions/sm_gauge.tex) | Full SM gauge structure |
-| [`canonical/bridges/gauge_emergence_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/bridges/gauge_emergence_bridge.tex) | Navigation bridge: SU(3)×SU(2)_L×U(1)_Y status |
+| [`canonical/interactions/qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qed.tex) | QED complete |
+| [`canonical/interactions/qcd.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qcd.tex) | QCD complete |
+| [`canonical/interactions/sm_gauge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/sm_gauge.tex) | Full SM gauge structure |
+| [`canonical/bridges/gauge_emergence_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/gauge_emergence_bridge.tex) | Navigation bridge: SU(3)×SU(2)_L×U(1)_Y status |
 
 ---
 

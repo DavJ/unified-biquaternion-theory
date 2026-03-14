@@ -4,8 +4,8 @@
 
 This section tracks the derivation status of all major UBT results.
 
-**Single source of truth**: [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md)  
-**Full theory map**: [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/THEORY_MAP_FROM_DERIVATION_INDEX.md)
+**Single source of truth**: [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)  
+**Full theory map**: [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/THEORY_MAP_FROM_DERIVATION_INDEX.md)
 
 ---
 
@@ -45,7 +45,7 @@ This section tracks the derivation status of all major UBT results.
 | Mirror Sector | 1 | 3 | 0 | 3 | 0 |
 | Algebra | 3 | 0 | 0 | 1 | 2 |
 | **Total** | **42** | **5** | **9** | **11** | **14** |
-*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
+*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: derivation_summary -->
 
 ---
@@ -61,5 +61,5 @@ Status labels in the table follow the Layer convention:
 - `[L1]` = one-loop quantum corrections
 - `[L2]` = higher-loop or non-perturbative
 
-The topic index files in [`canonical/THEORY/topic_indexes/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical/THEORY/topic_indexes)
+The topic index files in [`canonical/THEORY/topic_indexes/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/THEORY/topic_indexes)
 provide a quick-reference entry point per topic with links to canonical sources.

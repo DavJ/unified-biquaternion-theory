@@ -38,7 +38,7 @@ DERIVATION_INDEX = os.path.join(REPO_ROOT, "DERIVATION_INDEX.md")
 WIKI_DIR = os.path.join(REPO_ROOT, "wiki")
 
 REPO_URL = "https://github.com/DavJ/unified-biquaternion-theory"
-BLOB_BASE = f"{REPO_URL}/blob/main"
+BLOB_BASE = f"{REPO_URL}/blob/master"
 
 # ---------------------------------------------------------------------------
 # Status normalisation (shared with generate_theory_map.py)
@@ -189,7 +189,7 @@ def _file_link(file_col: str) -> str:
     # Use /blob/ for files and /tree/ for directories
     link_type = "tree" if os.path.isdir(full) else "blob"
     basename = os.path.basename(path) or os.path.basename(os.path.dirname(path))
-    return f"[`{basename}`]({REPO_URL}/{link_type}/main/{path})"
+    return f"[`{basename}`]({REPO_URL}/{link_type}/master/{path})"
 
 
 def _status_table(entries: list[dict], max_rows: int = 20) -> str:
@@ -222,7 +222,7 @@ def _status_table(entries: list[dict], max_rows: int = 20) -> str:
     if len(entries) > max_rows:
         rows.append(
             f"| *… and {len(entries) - max_rows} more results* "
-            f"| *See [DERIVATION_INDEX.md]({REPO_URL}/blob/main/DERIVATION_INDEX.md)* |"
+            f"| *See [DERIVATION_INDEX.md]({REPO_URL}/blob/master/DERIVATION_INDEX.md)* |"
             + (" |" if has_links else "")
         )
 
@@ -329,7 +329,7 @@ def gen_status_summary(sections: dict) -> str:
 
     note = (
         "\n*Auto-generated from "
-        f"[`DERIVATION_INDEX.md`]({REPO_URL}/blob/main/DERIVATION_INDEX.md). "
+        f"[`DERIVATION_INDEX.md`]({REPO_URL}/blob/master/DERIVATION_INDEX.md). "
         "Dead Ends are counted in Open/Dead-end.*"
     )
     return "\n".join(rows) + note

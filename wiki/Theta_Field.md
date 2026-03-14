@@ -5,7 +5,7 @@
 The **Theta field** Θ(q, τ) is the fundamental dynamical object of UBT. All physical
 content — geometry, gauge fields, particle spectrum — is encoded in Θ.
 
-**Canonical source**: [`canonical/fields/theta_field.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/fields/theta_field.tex)
+**Canonical source**: [`canonical/fields/theta_field.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/fields/theta_field.tex)
 
 ---
 
@@ -31,7 +31,7 @@ The fundamental field equation of UBT is:
 ```
 
 where:
-- ∇ is the biquaternionic covariant derivative (see [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/explanation_of_nabla.tex))
+- ∇ is the biquaternionic covariant derivative (see [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex))
 - ∇† is its quaternionic conjugate
 - 𝒯 is the biquaternionic stress-energy tensor
 - κ is the coupling constant
@@ -86,10 +86,10 @@ The winding number n plays a central role:
 
 | File | Content |
 |------|---------|
-| [`canonical/fields/theta_field.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/fields/theta_field.tex) | Θ definition, field equation, action |
-| [`canonical/fields/biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/fields/biquaternion_time.tex) | Complex time T_B definition |
-| [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/explanation_of_nabla.tex) | Covariant derivative ∇ |
-| [`canonical/core_assumptions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/core_assumptions.tex) | Core assumptions behind the field |
+| [`canonical/fields/theta_field.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/fields/theta_field.tex) | Θ definition, field equation, action |
+| [`canonical/fields/biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/fields/biquaternion_time.tex) | Complex time T_B definition |
+| [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex) | Covariant derivative ∇ |
+| [`canonical/core_assumptions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/core_assumptions.tex) | Core assumptions behind the field |
 
 ---
 

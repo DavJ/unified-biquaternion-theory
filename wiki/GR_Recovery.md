@@ -4,8 +4,8 @@
 
 UBT **generalises and embeds** General Relativity — it does not replace or contradict it.
 
-**Canonical bridge**: [`canonical/bridges/GR_chain_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/bridges/GR_chain_bridge.tex)  
-**Topic index**: [`canonical/THEORY/topic_indexes/GR_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/THEORY/topic_indexes/GR_index.md)
+**Canonical bridge**: [`canonical/bridges/GR_chain_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/bridges/GR_chain_bridge.tex)  
+**Topic index**: [`canonical/THEORY/topic_indexes/GR_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/GR_index.md)
 
 ---
 
@@ -33,17 +33,17 @@ residual open problem at Step 6.
 <!-- BEGIN GENERATED: gr_recovery_status -->
 | Result | Status | File |
 |--------|--------|------|
-| G_μν = 8πG T_μν from δS_total/δg^μν = 0 | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
-| T_μν from Hilbert prescription | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
-| ∇^μ T_μν = 0 from Bianchi identity | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
-| Lorentzian signature (-,+,+,+) from AXIOM B | ✅ **Proved** | [`step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
-| Metric non-degeneracy for A_UBT class | ✅ **Proved** | [`step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
-| Derivative-based ≡ tetrad-based metric formula | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
-| GR chain summary (Θ→g→Γ→R→Einstein) | ❓ **Unknown** | [`GR_chain_summary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/GR_chain_summary.tex) |
-| N is scale-fixing, not signature-fixing | ❓ **Unknown** | [`step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
-| UBT vs sigma model distinction | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
-| GR equivalence via tetrad pipeline | ❓ **Unknown** | [`appendix_R_GR_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_R_GR_equivalence.tex) |
-| Θ-only closure (on-shell) | ❓ **Unknown** | [`step2_theta_only_closure.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_theta_only_closure.tex) |
+| G_μν = 8πG T_μν from δS_total/δg^μν = 0 | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
+| T_μν from Hilbert prescription | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
+| ∇^μ T_μν = 0 from Bianchi identity | ✅ **Proved** | [`step3_einstein_with_matter.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/T_munu_derivation/step3_einstein_with_matter.tex) |
+| Lorentzian signature (-,+,+,+) from AXIOM B | ✅ **Proved** | [`step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
+| Metric non-degeneracy for A_UBT class | ✅ **Proved** | [`step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
+| Derivative-based ≡ tetrad-based metric formula | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
+| GR chain summary (Θ→g→Γ→R→Einstein) | ❓ **Unknown** | [`GR_chain_summary.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/GR_chain_summary.tex) |
+| N is scale-fixing, not signature-fixing | ❓ **Unknown** | [`step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
+| UBT vs sigma model distinction | ✅ **Proved** | [`step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
+| GR equivalence via tetrad pipeline | ❓ **Unknown** | [`appendix_R_GR_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_R_GR_equivalence.tex) |
+| Θ-only closure (on-shell) | ❓ **Unknown** | [`step2_theta_only_closure.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_theta_only_closure.tex) |
 | Pure Θ-only closure (g substitution before variation, off-shell) | ❌ **Open** |  |
 | Metric uniqueness beyond A_UBT | ❌ **Open** |  |
 <!-- END GENERATED: gr_recovery_status -->
@@ -52,14 +52,14 @@ residual open problem at Step 6.
 
 | Step | Result | Status | File |
 |------|--------|--------|------|
-| 1 | g_μν = Re Tr(∂_μΘ · ∂_νΘ†) | **Proved [L1]** | [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/metric.tex) |
-| 1b | Equivalence: derivative ↔ tetrad definitions | **Proved [L0]** | [`GR_closure/step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
-| 2 | Non-degeneracy: det(g) ≠ 0 | **Proved [L0]** | [`GR_closure/step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
-| 3 | Lorentzian signature (−,+,+,+) | **Proved [L0]** | [`GR_closure/step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
-| 4a | Levi-Civita connection Γ | **Standard GR** | [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/connection.tex) |
-| 4b | Riemann curvature → Einstein tensor G_μν | **Standard GR** | [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/curvature.tex) |
-| 5 | G_μν = 8πG T_μν via Hilbert variation | **Proved [L1]** | [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/gr_as_limit.tex) |
-| 6 | Off-shell Θ-only closure | **Open [L2]** | [`canonical/geometry/gr_completion_attempt.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/geometry/gr_completion_attempt.tex) |
+| 1 | g_μν = Re Tr(∂_μΘ · ∂_νΘ†) | **Proved [L1]** | [`canonical/geometry/metric.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/metric.tex) |
+| 1b | Equivalence: derivative ↔ tetrad definitions | **Proved [L0]** | [`GR_closure/step1_metric_bridge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step1_metric_bridge.tex) |
+| 2 | Non-degeneracy: det(g) ≠ 0 | **Proved [L0]** | [`GR_closure/step2_nondegeneracy.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_nondegeneracy.tex) |
+| 3 | Lorentzian signature (−,+,+,+) | **Proved [L0]** | [`GR_closure/step3_signature_theorem.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/GR_closure/step3_signature_theorem.tex) |
+| 4a | Levi-Civita connection Γ | **Standard GR** | [`canonical/geometry/connection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/connection.tex) |
+| 4b | Riemann curvature → Einstein tensor G_μν | **Standard GR** | [`canonical/geometry/curvature.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/curvature.tex) |
+| 5 | G_μν = 8πG T_μν via Hilbert variation | **Proved [L1]** | [`canonical/geometry/gr_as_limit.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/gr_as_limit.tex) |
+| 6 | Off-shell Θ-only closure | **Open [L2]** | [`canonical/geometry/gr_completion_attempt.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/gr_completion_attempt.tex) |
 
 Steps 1–5 are sufficient for the physical claim that GR is recovered.
 

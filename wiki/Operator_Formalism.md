@@ -5,7 +5,7 @@
 The biquaternionic covariant derivative ∇ is the central differential operator
 in UBT. The field equation ∇†∇Θ = κ𝒯 governs all physical dynamics.
 
-**Canonical file**: [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/explanation_of_nabla.tex)
+**Canonical file**: [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex)
 
 ---
 
@@ -26,7 +26,7 @@ The **quaternionic conjugate** ∇† reverses the order of quaternion multiplic
 ∇†Θ = ∂_μ Θ† - [A_μ, Θ†]
 ```
 
-File: [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/explanation_of_nabla.tex)
+File: [`canonical/explanation_of_nabla.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/explanation_of_nabla.tex)
 
 ---
 

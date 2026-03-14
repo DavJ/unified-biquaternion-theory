@@ -6,7 +6,7 @@ Speculative extensions are **conceptual extrapolations** beyond the canonical th
 They are not part of canonical UBT and are maintained separately to preserve the
 rigour of the core theory.
 
-**Directory**: [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/speculative_extensions)
+**Directory**: [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/speculative_extensions)
 
 ---
 
@@ -28,7 +28,7 @@ as a physical phenomenon in complex-time phase space.
 
 **Status**: **Speculative** — no mathematical derivation or experimental validation
 
-**Directory**: [`speculative_extensions/consciousness/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/speculative_extensions/consciousness)
+**Directory**: [`speculative_extensions/consciousness/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/speculative_extensions/consciousness)
 
 ---
 
@@ -43,7 +43,7 @@ Dark matter and dark energy interpreted via p-adic extensions of UBT.
 | CMB spectrum prediction from UBT | 💭 **Conjecture** |
 | ΔN_eff (extra neutrino species from mirror sector) | 💭 **Conjecture** |
 
-**Directory**: [`speculative_extensions/cosmology/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/speculative_extensions/cosmology)
+**Directory**: [`speculative_extensions/cosmology/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/speculative_extensions/cosmology)
 
 ---
 

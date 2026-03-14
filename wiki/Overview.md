@@ -55,9 +55,9 @@ UBT maintains a strict separation between three knowledge tiers:
 
 | Tier | Directory | Contents |
 |------|-----------|----------|
-| **Canonical** | [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical) | Internally consistent, mathematically defined results |
-| **Research tracks** | [`research_tracks/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/research_tracks) | Exploratory directions not yet canonicalised |
-| **Speculative** | [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/speculative_extensions) | Extrapolations beyond current evidence |
+| **Canonical** | [`canonical/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical) | Internally consistent, mathematically defined results |
+| **Research tracks** | [`research_tracks/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks) | Exploratory directions not yet canonicalised |
+| **Speculative** | [`speculative_extensions/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/speculative_extensions) | Extrapolations beyond current evidence |
 
 The wiki mirrors this separation — each section is labelled accordingly.
 
@@ -101,7 +101,7 @@ The coupling amplitude B_base = 41.57 remains a motivated conjecture.
 
 | File | Role |
 |------|------|
-| [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/DERIVATION_INDEX.md) | Single source of truth for all derivation statuses |
-| [`canonical/THEORY/topic_indexes/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical/THEORY/topic_indexes) | One canonical entry point per topic |
-| [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/UBT_canonical_main.tex) | Main canonical LaTeX document |
-| [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/docs/THEORY_MAP_FROM_DERIVATION_INDEX.md) | Full theory map derived from DERIVATION_INDEX |
+| [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md) | Single source of truth for all derivation statuses |
+| [`canonical/THEORY/topic_indexes/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/THEORY/topic_indexes) | One canonical entry point per topic |
+| [`canonical/UBT_canonical_main.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/UBT_canonical_main.tex) | Main canonical LaTeX document |
+| [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/THEORY_MAP_FROM_DERIVATION_INDEX.md) | Full theory map derived from DERIVATION_INDEX |

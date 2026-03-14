@@ -5,9 +5,9 @@
 The mathematical foundation of UBT is the **biquaternion algebra** ℂ⊗ℍ and its
 associated structures.
 
-**Canonical source**: [`canonical/algebra/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/canonical/algebra)  
-**Definitions**: [`canonical/CANONICAL_DEFINITIONS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/CANONICAL_DEFINITIONS.md)  
-**Axioms**: [`canonical/AXIOMS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/AXIOMS.md)
+**Canonical source**: [`canonical/algebra/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/canonical/algebra)  
+**Definitions**: [`canonical/CANONICAL_DEFINITIONS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/CANONICAL_DEFINITIONS.md)  
+**Axioms**: [`canonical/AXIOMS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/AXIOMS.md)
 
 ---
 
@@ -23,8 +23,8 @@ q = a + bi + cj + dk,   a,b,c,d ∈ ℂ
 Key algebraic fact: **ℂ⊗ℍ ≅ Mat(2,ℂ)** — the algebra of 2×2 complex matrices.
 This isomorphism is the structural bridge to the Standard Model.
 
-**Canonical file**: [`canonical/algebra/biquaternion_algebra.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/algebra/biquaternion_algebra.tex)  
-**Summary table**: [`canonical/algebra/algebra_summary_table.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/algebra/algebra_summary_table.tex)
+**Canonical file**: [`canonical/algebra/biquaternion_algebra.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/biquaternion_algebra.tex)  
+**Summary table**: [`canonical/algebra/algebra_summary_table.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/algebra_summary_table.tex)
 
 ---
 
@@ -39,7 +39,7 @@ T_B = t + iψ + jχ + kξ
 where t is real time and ψ, χ, ξ are imaginary components. In the main physical
 sector only τ = t + iψ is active (two-component complex time).
 
-**Canonical file**: [`canonical/fields/biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/fields/biquaternion_time.tex)
+**Canonical file**: [`canonical/fields/biquaternion_time.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/fields/biquaternion_time.tex)
 
 ---
 
@@ -49,7 +49,7 @@ The imaginary quaternion subspace Im(ℍ) = span{i, j, k} admits three involutio
 P_I, P_J, P_K that form a Z₂×Z₂×Z₂ group. This structure forces SU(3)_c with
 zero free parameters (dim Im(ℍ) = 3 is the key constraint).
 
-**Canonical file**: [`canonical/algebra/involutions_Z2xZ2xZ2.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/algebra/involutions_Z2xZ2xZ2.tex)
+**Canonical file**: [`canonical/algebra/involutions_Z2xZ2xZ2.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/algebra/involutions_Z2xZ2xZ2.tex)
 
 ---
 
@@ -63,7 +63,7 @@ The left and right actions of this group on Θ give rise to the electroweak and
 color gauge symmetries.  
 Status: **Proved [L0]**
 
-**Canonical file**: [`ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §1`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex)
+**Canonical file**: [`ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §1`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex)
 
 ---
 

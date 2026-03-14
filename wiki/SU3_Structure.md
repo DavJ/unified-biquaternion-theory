@@ -5,8 +5,8 @@
 SU(3)_c color symmetry is **derived** from the biquaternion algebra ℂ⊗ℍ with
 zero free parameters. dim Im(ℍ) = 3 forces SU(3).
 
-**Canonical source**: [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex)  
-**Topic index**: [`canonical/THEORY/topic_indexes/SU3_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/canonical/THEORY/topic_indexes/SU3_index.md)
+**Canonical source**: [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex)  
+**Topic index**: [`canonical/THEORY/topic_indexes/SU3_index.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/THEORY/topic_indexes/SU3_index.md)
 
 ---
 
@@ -22,11 +22,11 @@ Color confinement: **Conjectured with experimental support**
 <!-- BEGIN GENERATED: su3_status -->
 | Result | Status | File |
 |--------|--------|------|
-| SU(3)_c from involutions on ℂ⊗ℍ | ❓ **Unknown** | [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex) |
-| SU(3)_c from quantum superposition over {I,J,K} | ❓ **Unknown** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_superposition_approach.tex) |
-| SU(3)_c via i,j,k → r,g,b axis mapping | ❓ **Unknown** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
-| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | ❓ **Unknown** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
-| Color confinement (algebraic) | ❓ **Unknown** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
+| SU(3)_c from involutions on ℂ⊗ℍ | ❓ **Unknown** | [`appendix_G_internal_color_symmetry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_G_internal_color_symmetry.tex) |
+| SU(3)_c from quantum superposition over {I,J,K} | ❓ **Unknown** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/SU3_derivation/step1_superposition_approach.tex) |
+| SU(3)_c via i,j,k → r,g,b axis mapping | ❓ **Unknown** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
+| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | ❓ **Unknown** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
+| Color confinement (algebraic) | ❓ **Unknown** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
 <!-- END GENERATED: su3_status -->
 
 ---
@@ -59,7 +59,7 @@ Complementary derivation via quantum superposition:
 
 The U(3) symmetry of this representation reduces to SU(3) after factoring out U(1)_Y.
 All 8 Gell-Mann generators verified numerically.  
-Script: [`tools/verify_su3_superposition.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/tools/verify_su3_superposition.py)
+Script: [`tools/verify_su3_superposition.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/tools/verify_su3_superposition.py)
 
 ---
 
@@ -73,7 +73,7 @@ Script: [`tools/verify_su3_superposition.py`](https://github.com/DavJ/unified-bi
 | Exotic hadrons (tetraquark, pentaquark): ⟨C₂⟩ = 0 | **Numerically verified** |
 | Yang-Mills mass gap (Clay Prize) | **Open** — separate problem |
 
-File: [`confinement/algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex)
+File: [`confinement/algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex)
 
 ---
 
@@ -81,8 +81,8 @@ File: [`confinement/algebraic_confinement.tex`](https://github.com/DavJ/unified-
 
 | File | Label | Reason |
 |------|-------|--------|
-| [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) | Heuristic | Maps i,j,k → r,g,b intuitively; NOT an algebraic proof |
-| [`research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) | Mathematical sandbox | Valid homomorphism but starts from qubit encoding, not ℂ⊗ℍ |
+| [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) | Heuristic | Maps i,j,k → r,g,b intuitively; NOT an algebraic proof |
+| [`research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) | Mathematical sandbox | Valid homomorphism but starts from qubit encoding, not ℂ⊗ℍ |
 
 ---
 

@@ -88,9 +88,9 @@ to the physical lepton mass ratios (μ error 0.02%, τ error 0.10%).
 
 | File | Content |
 |------|---------|
-| [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/main/docs/reports/hecke_lepton) | Full Hecke numerical results |
-| [`step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) | Search results |
-| [`step6_nonCM_search.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/main/experiments/research_tracks/three_generations/step6_nonCM_search.tex) | Non-CM search |
+| [`docs/reports/hecke_lepton/`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/docs/reports/hecke_lepton) | Full Hecke numerical results |
+| [`step5_hecke_search_results.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step5_hecke_search_results.tex) | Search results |
+| [`step6_nonCM_search.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/step6_nonCM_search.tex) | Non-CM search |
 
 ---
 
