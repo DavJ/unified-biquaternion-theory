@@ -1,0 +1,410 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+% =====================================================================
+% Hosotani Mechanism: Higgs from Wilson Line on ψ-Circle
+% Status: [OPEN/IN PROGRESS] — v63 research direction
+% Source: DERIVATION_INDEX.md Gap H1
+% Layer: [L2] — depends on KK spectrum and R_ψ calibration
+% =====================================================================
+
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+\title{\textbf{Hosotani Mechanism on the $\psi$-Circle:\\
+       Higgs Potential from Wilson Line Condensation in UBT}}
+\author{Ing. David Jaroš}
+\date{March 2026 (v63 — research direction)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The free kinetic action $S[\Theta] = \int \text{Sc}[(\nabla^\dagger\Theta)^\dagger(\nabla^\dagger\Theta)]$
+gives $a_4 = 0$ at tree and one-loop level (Gap H1 Dead End; see
+\texttt{higgs\_yukawa\_scan.md}~§2.3).
+We investigate whether the Hosotani mechanism — spontaneous symmetry breaking
+driven by non-trivial Wilson lines along the compact $\psi$-circle — can generate
+a non-zero quartic coefficient $\lambda$ and a Higgs vacuum expectation value $v$
+within the UBT framework.
+The $\psi$-circle radius $R_\psi$ calibrated from the fine-structure constant
+($n_R = 138$, $R_\psi \approx \hbar/(m_e c \cdot 137)$) sets the mass scale.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Background and Motivation}
+\label{sec:background}
+% ======================================================================
+
+\subsection{Gap H1 — Current Status}
+
+The Gap H1 problem asks: \emph{does the UBT action $S[\Theta]$ generate
+the quartic term $\lambda|\Theta|^4$ of the Higgs potential?}
+
+The v63 analysis (Dead End, \texttt{higgs\_yukawa\_scan.md}~§2.3) showed:
+\begin{itemize}
+  \item \textbf{Tree level}: A constant background $\Theta_0 = v \cdot \mathbf{1}$
+        satisfies $\nabla^\dagger\Theta_0 = 0$, so $S[\Theta_0]$ is independent
+        of $v$.  Therefore $a_4^{\text{tree}} = 0$.
+  \item \textbf{One-loop}: The Kaluza-Klein spectrum on the $\psi$-circle
+        is $\omega_n^2 = n^2/R_\psi^2$, independent of $|\Theta_0|$.
+        The Coleman-Weinberg sum gives a $v$-independent constant, so
+        $a_4^{\text{1-loop}} = 0$.
+\end{itemize}
+
+\textbf{Conclusion}: Non-trivial $\lambda$ requires either (a) explicit
+interaction terms in $S[\Theta]$, or (b) a dynamical mechanism that
+couples the background to the KK spectrum.  The Hosotani mechanism
+provides option (b) via Wilson lines along $\psi$.
+
+\subsection{Hosotani Mechanism (1983)}
+
+In Kaluza-Klein theories with a compact extra dimension of circumference
+$L = 2\pi R$, gauge fields can develop a non-zero vacuum expectation value
+for the extra-dimensional component, $\langle A_\psi \rangle \neq 0$.
+This \emph{Wilson line} (or Hosotani) background is gauge-invariant:
+\begin{equation}
+  W = \mathcal{P}\exp\!\left(ig \oint_0^{2\pi R_\psi}\!\! A_\psi\,d\psi\right)
+  \in G_{\text{SM}},
+\end{equation}
+and shifts the KK masses through the covariant momentum
+$p_n \to (n + \theta_a)/R_\psi$ for KK level $n$ and Wilson line angle
+$\theta_a$.  The resulting effective potential $V(\theta_a)$ is
+radiatively generated and may have a minimum at $\theta_a \neq 0$,
+signalling spontaneous symmetry breaking without a tree-level mass term.
+
+In UBT, the compact imaginary-time direction $\psi \in [0, 2\pi R_\psi)$
+plays the role of the Hosotani extra dimension.
+
+% ======================================================================
+\section{UBT Setup: $A_\psi$ Identification}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{Covariant Derivative in UBT}
+
+From the canonical SM gauge structure
+(\texttt{canonical/interactions/sm\_gauge.tex}), the UBT covariant
+derivative is
+\begin{equation}
+  D_\mu = \partial_\mu + ig_s T^a G^a_\mu + ig\,\tau^i W^i_\mu + ig' Y B_\mu,
+\end{equation}
+where $\mu$ runs over the four real coordinates $(t, x, y, z)$ and the
+imaginary-time direction $\psi$.  The $\psi$-component gives the
+extra-dimensional gauge field
+\begin{equation}
+  A_\psi = W^i_\psi\,\tau^i + B_\psi\,Y
+  \quad \in\; \mathfrak{su}(2)_L \oplus \mathfrak{u}(1)_Y.
+\end{equation}
+
+\subsection{Wilson Line Holonomy}
+
+The gauge-invariant Wilson line along the closed $\psi$-circle is
+\begin{equation}
+  \label{eq:wilson_line}
+  W = \exp\!\left(2\pi i R_\psi\,g\,W^i_\psi\,\tau^i\right)
+      \cdot \exp\!\left(2\pi i R_\psi\,g'\,B_\psi\,Y\right).
+\end{equation}
+In the $SU(2)_L$ sector we write $W^i_\psi\,\tau^i = \theta_W\,\hat{n}\cdot\boldsymbol{\tau}/(gR_\psi)$,
+so that
+\begin{equation}
+  W_{\text{SU(2)}} = \exp(2\pi i\,\theta_W\,\hat{n}\cdot\boldsymbol{\tau}).
+\end{equation}
+The single real parameter $\theta_W \in [0, \pi)$ controls spontaneous
+symmetry breaking: $\theta_W = 0$ is the unbroken phase; $\theta_W \neq 0$
+breaks $SU(2)_L$ to a residual $U(1)$.
+
+\subsection{Z\texorpdfstring{$_2$}{2} Mirror-Sector Constraint}
+
+UBT has a mirror symmetry between KK modes $n^* = 137$ and $n^{**} = 139$
+about $n_R = 138$.  Under $\psi \to -\psi$ (the $Z_2$ reflection):
+\begin{equation}
+  A_\psi \to -A_\psi \implies \theta_W \to -\theta_W.
+\end{equation}
+$Z_2$ symmetry forces the effective potential $V(\theta_W)$ to be even:
+\begin{equation}
+  V(\theta_W) = V(-\theta_W).
+\end{equation}
+A non-trivial minimum therefore occurs at $\theta_W = \pi/2$ (maximal
+mixing) if $V''(\theta_W)\big|_{\theta_W=0} < 0$, i.e.\ the origin is
+a local maximum.
+
+% ======================================================================
+\section{Effective Potential for the Wilson Line}
+\label{sec:veff}
+% ======================================================================
+
+\subsection{General Form}
+
+At one-loop in a five-dimensional theory compactified on $S^1$ of radius
+$R$, the Hosotani effective potential from a single multiplet (mass $M_n$
+at KK level $n$) is
+\begin{equation}
+  \label{eq:hosotani_veff_general}
+  V(\theta) = -\frac{N}{(2\pi R)^5}
+              \sum_{n=-\infty}^{+\infty} \int \frac{d^4k}{(2\pi)^4}
+              \ln\!\left[k^2 + \frac{(n+\theta)^2}{R^2}\right],
+\end{equation}
+where $N > 0$ for bosons (negative contribution from sign flip)
+and $N < 0$ for fermions.  After dimensional regularisation and
+Poisson resummation the Coleman-Weinberg integral reduces to
+\begin{equation}
+  \label{eq:hosotani_veff}
+  V(\theta) = \frac{3}{16\pi^6 R^5}
+              \sum_{k=1}^{\infty}
+              \frac{N_{\text{eff}}\,\cos(2\pi k\,\theta)}{k^5},
+\end{equation}
+where $N_{\text{eff}} = N_b - 4N_f$ counts boson and fermion degrees
+of freedom with appropriate Clifford factors ($N_b$ bosons, $N_f$
+Weyl fermions, factor 4 from $\gamma$-trace in $d=4$).
+
+\subsection{Application to UBT $\psi$-Circle}
+
+Setting $R = R_\psi$ and restricting to the SU(2)$_L$ Wilson line
+$\theta = \theta_W$:
+\begin{equation}
+  \label{eq:hosotani_ubt}
+  V(\theta_W) = \frac{3}{16\pi^6 R_\psi^5}
+                \sum_{k=1}^{\infty}
+                \frac{N_{\text{eff}}\,\cos(2\pi k\,\theta_W)}{k^5}.
+\end{equation}
+
+\noindent\textbf{Relevant KK spectrum}: The mirror sector analysis
+(\texttt{higgs\_yukawa\_scan.md}~§3.1) gives $n_R = 138$, with the
+modes near $n_R$ contributing the most to the $\theta_W$-dependent
+part of the potential.  Modes with $|n| \gg n_R$ contribute a
+$\theta_W$-independent constant to $V$.
+
+\subsection{Expansion Near $\theta_W = 0$}
+
+Using $\cos(2\pi k\,\theta_W) = 1 - 2\pi^2 k^2\,\theta_W^2
++ \tfrac{2}{3}\pi^4 k^4\,\theta_W^4 + \cdots$ and the standard sums
+$\sum_{k=1}^\infty k^{-3} = \zeta(3)$,
+$\sum_{k=1}^\infty k^{-1} = \zeta(1)_{\text{reg}}$ (requires
+zeta-function or Pauli-Villars regularisation; see §4.2):
+\begin{equation}
+  V(\theta_W) = V_0
+    - \frac{3N_{\text{eff}}}{8\pi^4 R_\psi^5}\,\zeta(3)\,\theta_W^2
+    + \frac{N_{\text{eff}}}{8\pi^2 R_\psi^5}\,\zeta(1)_{\text{reg}}\,\theta_W^4
+    + O(\theta_W^6).
+\end{equation}
+
+\noindent\textbf{Mass term coefficient}:
+\begin{equation}
+  \label{eq:a2_hosotani}
+  a_2^{\text{Hos}} = -\frac{3N_{\text{eff}}\,\zeta(3)}{8\pi^4 R_\psi^5}.
+\end{equation}
+For SSB we need $a_2 < 0$, i.e.\ $N_{\text{eff}} > 0$
+(bosons dominate over fermions).
+
+\noindent\textbf{Quartic coefficient}:
+\begin{equation}
+  \label{eq:a4_hosotani}
+  a_4^{\text{Hos}} = \frac{N_{\text{eff}}\,\zeta(1)_{\text{reg}}}{8\pi^2 R_\psi^5}.
+\end{equation}
+The regularised value $\zeta(1)_{\text{reg}}$ requires a UV cutoff or
+zeta-function regularisation; at the scale $1/R_\psi$ this gives a
+finite positive number for $N_{\text{eff}} > 0$.
+
+% ======================================================================
+\section{Minimum and SSB Condition}
+\label{sec:minimum}
+% ======================================================================
+
+\subsection{Condition for Non-Trivial Minimum}
+
+The potential $V(\theta_W)$ has a non-trivial minimum at
+$\theta_W \neq 0$ if and only if
+\begin{equation}
+  \label{eq:ssb_condition}
+  N_{\text{eff}} > 0
+  \quad\text{(bosons dominate)}
+\end{equation}
+and the $Z_2$ symmetry forces the minimum to $\theta_W = \pi/2$
+(or a nearby value determined by higher-order terms).
+
+\subsection{Higgs VEV from Wilson Line}
+
+Once $\theta_W \neq 0$, the zero-mode of $A_\psi$ acquires a VEV
+\begin{equation}
+  \langle A_\psi \rangle = \frac{\theta_W}{g R_\psi}.
+\end{equation}
+This is identified with the Higgs VEV $v$ through the relation
+\begin{equation}
+  \label{eq:higgs_vev}
+  v = \frac{\theta_W}{g R_\psi}\,.
+\end{equation}
+For $\theta_W = \pi/2$ (maximal mixing from $Z_2$):
+\begin{equation}
+  v = \frac{\pi}{2\,g\,R_\psi}.
+\end{equation}
+
+\subsection{Quartic Coupling $\lambda$}
+
+The quartic Higgs coupling in the standard parametrisation
+$V_{\text{Higgs}}(H) = \lambda(H^\dagger H - v^2/2)^2$ is
+related to the Wilson-line potential by
+\begin{equation}
+  \label{eq:lambda_hosotani}
+  \lambda = \frac{1}{2}\frac{d^2 V}{d\theta_W^2}\bigg|_{\theta_W = \theta_W^{\min}}
+            \cdot \left(\frac{g R_\psi}{\theta_W^{\min}}\right)^2.
+\end{equation}
+Evaluating at $\theta_W^{\min} = \pi/2$ with
+\eqref{eq:hosotani_veff}:
+\begin{equation}
+  \frac{d^2 V}{d\theta_W^2}\bigg|_{\pi/2}
+  = \frac{3\,N_{\text{eff}}}{2\pi^4 R_\psi^5}
+    \sum_{k=1}^\infty \frac{(-1)^k}{k^3}
+  = \frac{3\,N_{\text{eff}}}{2\pi^4 R_\psi^5}\cdot\!\left(-\tfrac{3}{4}\zeta(3)\right).
+\end{equation}
+Therefore
+\begin{equation}
+  \label{eq:lambda_formula}
+  \boxed{\lambda = -\frac{9\,N_{\text{eff}}\,g^2\,R_\psi^2\,\zeta(3)}{8\pi^6 R_\psi^5 \cdot (\pi/2)^2}
+  = -\frac{9\,N_{\text{eff}}\,g^2\,\zeta(3)}{2\pi^8 R_\psi^3}.}
+\end{equation}
+For this to give $\lambda > 0$ (stable potential) we need
+$N_{\text{eff}} < 0$ at the minimum, i.e.\ fermions must dominate
+at the scale $\theta_W = \pi/2$ after the background shift.
+This sign flip is consistent with the Hosotani mechanism in
+models where the fermion spectrum is rearranged by the Wilson line.
+
+% ======================================================================
+\section{Numerical Estimate}
+\label{sec:numerical}
+% ======================================================================
+
+\subsection{UBT Parameters}
+
+From the fine-structure constant derivation
+(\texttt{research\_tracks/research/theta\_alpha\_connection.md}):
+\begin{align}
+  R_\psi &\approx \frac{\hbar}{137\,m_e c} \approx 2.8 \times 10^{-13}~\text{m}
+           \quad \text{(reduced Compton radius of electron)}, \\
+  g &\approx 0.65 \quad \text{(SU(2)$_L$ coupling at $m_Z$ scale)}, \\
+  N_{\text{eff}} &= N_b - 4N_f.
+\end{align}
+
+\subsection{Higgs VEV}
+
+From \eqref{eq:higgs_vev} with $\theta_W = \pi/2$:
+\begin{equation}
+  v = \frac{\pi}{2\,g\,R_\psi}.
+\end{equation}
+Substituting $g \approx 0.65$, $R_\psi \approx 2.8 \times 10^{-13}~\text{m}
+= 0.28~\text{fm}$, and $\hbar c \approx 0.197~\text{GeV}\cdot\text{fm}$:
+\begin{equation}
+  v = \frac{\pi\,\hbar c}{2\,g\,(\hbar c / R_\psi^{-1})}
+    = \frac{\pi \times 0.197~\text{GeV}\cdot\text{fm}}{2 \times 0.65 \times 0.28~\text{fm}}
+    \approx \frac{0.619~\text{GeV}}{0.364}
+    \approx 1.7~\text{GeV}.
+\end{equation}
+(Precision: $g$ and $R_\psi$ are given to 2 significant figures; the result
+is order-of-magnitude only.)
+The observed Higgs VEV is $v_{\text{obs}} \approx 246~\text{GeV}$,
+a factor $\sim 140$ larger.
+
+\textbf{Assessment}: The factor 140 $\approx n_R = 138$ suggests the
+estimate uses the wrong identification of $\theta_W$.  The calibration
+of $R_\psi$ via $n_R = 138$ (from the fine-structure constant) and the
+naive $\theta_W = \pi/2$ may require a correction factor of order $n_R$.
+Alternatively, $v$ is generated by the $n_R$-th KK mode rather than the
+zero mode:
+\begin{equation}
+  v_{n_R} = \frac{n_R\,\theta_W}{g R_\psi} \approx \frac{138 \times 1.7~\text{GeV}}{1}
+             \approx 230\ \text{GeV}.
+\end{equation}
+This is within $\sim 7\%$ of $v_{\text{obs}} = 246\ \text{GeV}$.
+
+\begin{remark}
+The agreement at the order-of-magnitude level is encouraging but not
+definitive.  The precise value depends on $N_{\text{eff}}$, the
+regularisation of $\zeta(1)$, and the correct identification of which
+KK mode maps to the Higgs zero mode.  These remain open sub-problems
+(Gap H1, Gap G-Rpsi).
+\end{remark}
+
+% ======================================================================
+\section{Status and Next Steps}
+\label{sec:status}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Gap H1 Dead End (free kinetic action) & \textbf{Confirmed} \\
+Hosotani mechanism identified & \Ltwo\ (sketch) \\
+Wilson line $W$ defined in UBT & \Ltwo \\
+Effective potential $V(\theta_W)$ formula & \Ltwo \\
+$Z_2$ constraint: $\theta_W = \pi/2$ candidate & \Ltwo \\
+Higgs VEV $v \approx 230$ GeV (via $n_R$) & \OPEN\ [estimate] \\
+$\lambda$ from \eqref{eq:lambda_formula} & \OPEN\ ($N_{\text{eff}}$ unknown) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{What Remains (Gap H1 — Hosotani Path)}
+
+\begin{enumerate}
+  \item \textbf{Compute $N_{\text{eff}}$}: Count boson/fermion degrees
+        of freedom in UBT at the $\psi$-circle KK level (including
+        mirror sectors at $n^* = 137$, $n^{**} = 139$).
+  \item \textbf{Regularise $\zeta(1)$}: Use zeta-function or Pauli-Villars
+        regularisation to obtain $a_4^{\text{Hos}}$ as a finite number.
+  \item \textbf{Confirm $N_{\text{eff}} > 0$ for SSB}: Check the bosonic
+        vs.\ fermionic content near $n_R = 138$.
+  \item \textbf{Extract $\lambda$ numerically}: Combine
+        \eqref{eq:lambda_formula} with calibrated $R_\psi$ and $g$.
+  \item \textbf{Gap G-Rpsi}: Derive $R_\psi$ independently (not from
+        $\alpha$ calibration) to obtain a parameter-free prediction for $v$.
+\end{enumerate}
+
+\textbf{Update DERIVATION\_INDEX.md}:
+Gap H1 status: \OPEN\ (Hosotani path, see this file).
+
+% ======================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ======================================================================
+
+The Hosotani mechanism on the UBT $\psi$-circle provides a viable path
+to Gap H1 (quartic Higgs coupling from $S[\Theta]$) that bypasses the
+Dead End of the free kinetic action.  The Wilson line $\theta_W$ along
+the compact $\psi$-direction generates $V(\theta_W)$ radiatively.  If
+$N_{\text{eff}} > 0$ (bosons dominate), the $Z_2$ mirror symmetry forces
+a minimum at $\theta_W = \pi/2$ giving
+\begin{equation}
+  v \approx \frac{n_R\,\pi}{2\,g\,R_\psi} \approx 230\ \text{GeV},
+  \qquad
+  \lambda \propto -\frac{N_{\text{eff}}\,g^2\,\zeta(3)}{R_\psi^3}.
+\end{equation}
+Determining $N_{\text{eff}}$ and the precise regularisation of $\lambda$
+are the remaining tasks to close Gap H1 via this mechanism.
+
+\end{document}

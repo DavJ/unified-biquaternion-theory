@@ -375,6 +375,99 @@ To perform coefficient matching at [L1], three additional steps are needed:
         perturbations in GR.
 \end{enumerate}
 
+\subsection{Angular Mode Decomposition and $\ell$-Dependent $V_{\text{eff}}$}
+
+\subsubsection{Decomposition Ansatz}
+
+We expand the biquaternion perturbation in scalar spherical harmonics
+$Y_{\ell m}(\theta, \phi)$ (Step 1 of the requirement above):
+\begin{equation}
+  \label{eq:angular_decomp}
+  \Theta_1(r, \theta, \phi, t) = \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{+\ell}
+  \theta_\ell(r, t)\,Y_{\ell m}(\theta, \phi)\,\mathbf{e},
+\end{equation}
+where $\mathbf{e}$ is a biquaternion polarisation tensor (taken as constant
+for this scalar-harmonic decomposition) and
+$\theta_\ell(r,t)$ is the radial-temporal amplitude for mode $(\ell, m)$.
+Using scalar $Y_{\ell m}$ here is a first approximation; the exact graviton
+decomposition requires spin-weighted harmonics ${}_{s}Y_{\ell m}$ with $s=-2$
+(see \S5.5), which modifies the polarisation tensor $\mathbf{e}$ accordingly
+and is needed to match the full Regge-Wheeler potential.
+The perturbation is $m$-degenerate so the radial equation depends only on $\ell$.
+
+\subsubsection{Linearised UBT Equation for $\theta_\ell$}
+
+Substituting \eqref{eq:angular_decomp} into the linearised UBT equation
+$\nabla^\dagger_{(0)}\nabla_{(0)}\Theta_1 = 0$ on the Schwarzschild background
+and using $\nabla^2_{\mathbb{S}^2} Y_{\ell m} = -\ell(\ell+1)Y_{\ell m}$, the
+angular part contributes an additional term:
+\begin{equation}
+  \label{eq:radial_angular}
+  \frac{1}{f(r)}\partial_t^2\theta_\ell
+  - f(r)\partial_r^2\theta_\ell
+  - f'(r)\partial_r\theta_\ell
+  + \frac{\ell(\ell+1)}{r^2}\,\theta_\ell
+  + V_{\text{radial}}(r)\,\theta_\ell = 0,
+\end{equation}
+where $f(r) = 1 - 2M/r$ is the Schwarzschild factor and
+$V_{\text{radial}}(r)$ is the monopole ($\ell=0$) effective potential
+from \S4.  Expressing in the tortoise coordinate
+$r_* = r + 2M\ln|r/(2M)-1|$, eq.~\eqref{eq:radial_angular} becomes
+a Schr\"odinger-type wave equation
+\begin{equation}
+  \label{eq:schrodinger_ell}
+  -\partial_{r_*}^2\theta_\ell + V_{\text{eff}}^{\text{UBT}}(r,\ell)\,\theta_\ell
+  = \omega^2\,\theta_\ell,
+\end{equation}
+with the $\ell$-dependent UBT effective potential
+\begin{equation}
+  \label{eq:Veff_ell}
+  \boxed{V_{\text{eff}}^{\text{UBT}}(r,\ell)
+    = f(r)\left[\frac{\ell(\ell+1)}{r^2} + V_{\text{radial}}(r)\right].}
+\end{equation}
+Here $V_{\text{radial}}(r)$ contains the monopole Schwarzschild terms
+(proportional to $M/r^3$) derived in \S4.
+
+\subsubsection{Coefficient Comparison with Regge-Wheeler Potential}
+
+The standard Regge-Wheeler potential for spin-2 (tensor) gravitons is
+\begin{equation}
+  \label{eq:VRW}
+  V_{\text{RW}}(r, \ell) = f(r)\left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right].
+\end{equation}
+Comparing with \eqref{eq:Veff_ell}:
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{eff}}^{\text{UBT}}(r,\ell)$ & $V_{\text{RW}}(r,\ell)$ \\
+\hline
+Overall factor & $f(r) = 1-2M/r$ & $f(r) = 1-2M/r$ \\
+Centrifugal $1/r^2$ & $\ell(\ell+1)/r^2$ & $\ell(\ell+1)/r^2$ \\
+$M/r^3$ coefficient & $+V_{\text{radial}}$ (derived in §4) & $-6M/r^3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The centrifugal term $\ell(\ell+1)/r^2$ now \textbf{matches} between UBT
+and Regge-Wheeler.  The remaining mismatch is in the $O(M/r^3)$
+coefficient: UBT gives $V_{\text{radial}} = +2M/r^3$ (§4) while $V_{\text{RW}}$
+gives $-6M/r^3$.  This sign-and-coefficient discrepancy arises because:
+\begin{enumerate}
+  \item UBT does not yet separate odd-parity (Regge-Wheeler) from
+        even-parity (Zerilli) modes — the two sectors have different
+        $O(M/r^3)$ terms.
+  \item The tensor polarisation $\mathbf{e}$ in \eqref{eq:angular_decomp}
+        should be taken as a spin-weighted spherical harmonic
+        ${}_{-2}Y_{\ell m}$ rather than a scalar $Y_{\ell m}$ to
+        correctly project onto the graviton sector.
+\end{enumerate}
+
+\textbf{Partial result}: Using scalar harmonics (Step 1 completed),
+the dominant centrifugal term $\ell(\ell+1)/r^2$ is recovered.
+The $O(M/r^3)$ coefficient requires spin-weight $s=-2$ harmonics
+(Step 2: parity separation) to match $V_{\text{RW}}$ exactly.
+
 \subsection{Status}
 
 \begin{center}
@@ -387,19 +480,21 @@ Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
 Linearised UBT around $\Theta_0^{(S)}$ & \Lone \\
 Modified dispersion $k^2+V_{\text{eff}}(r)=0$ & \Lone \\
 Coordinate transformation to Schwarzschild coords & Explicit (§5.2) \\
-Regge-Wheeler coefficient matching (full, with angular modes) & \OPEN\ [L2] \\
+Centrifugal term $\ell(\ell+1)/r^2$ from scalar-harmonic decomp & \Lone\ (v63) \\
+$O(M/r^3)$ coefficient matching & \OPEN\ [L2] (parity sep. needed) \\
+Full Regge-Wheeler match (spin-weighted harmonics) & \OPEN\ [L2] \\
 \hline
 \end{tabular}
 \end{center}
 
-\textbf{Conclusion}: Coefficient matching is incomplete because the UBT
-linearisation has not yet been decomposed into spin-2 spherical harmonics.
-The structural correspondence ($k^2 + V_{\text{eff}} = 0$ vs.\
-Regge-Wheeler) is established \Lone, but the coefficient values do not
-agree until the angular decomposition is included.  This is consistent
-with a matching expected to emerge after step~1 above — the $\ell(\ell+1)$
-centrifugal term will appear once spin-weighted harmonics are introduced.
-Gap status: \OPEN\ [L2].
+\textbf{Conclusion}: The angular decomposition (v63, §5.6) recovers the
+centrifugal term $\ell(\ell+1)/r^2$, closing the leading-order mismatch.
+The structural correspondence is now \Lone.  The $O(M/r^3)$ coefficient
+remains mismatched because parity separation (odd/even) and spin-weighted
+spherical harmonics have not yet been applied.  These are required to
+distinguish the Regge-Wheeler ($-6M/r^3$) from the Zerilli potential
+and to obtain the correct numerical coefficient.
+Gap status: \OPEN\ [L2] (parity separation pending).
 
 % ======================================================================
 \section{Next Steps}
