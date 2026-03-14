@@ -88,6 +88,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | ψ-modes as independent B-fields | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §3` | From power-series structure |
 | Modes carry same SU(3) quantum numbers | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §3` | SU(3) commutes with ψ |
 | ψ-parity forbids even↔odd mixing | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §4` | Symmetry argument |
+| Quaternionic origin of three families: {i,j,k} ↔ three fermion families | **Algebraic [L1]** | `research_tracks/research/generation_structure.tex Prop. 2` | Three imaginary quaternion units = three non-scalar irreducible Θ-components; Higgs=scalar discarded; natural algebraic correspondence (complementary to ψ-winding mechanism; whether same physical mechanism is [Open L2]) |
 | KK mismatch (ratio 1:2 vs 207:3477) | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | [DERIVED — mismatch is a theorem] |
 | Option A (linear mixing) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Max ratio ~461, far below 3477 |
 | Option B (linear Yukawa) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Ratio 1:2:3 only |
@@ -294,7 +295,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | B₀ = 8π from dim_ℂ(ℂ⊗ℍ) = 4 | **Proven** [L1] | `canonical/8pi_common_origin.tex §3`, `canonical/n_eff/step2_vacuum_polarization.tex` | B₀ = 2π × dim_ℂ(ℂ⊗ℍ) = 8π; script verify_8pi_connection.py ALL PASS |
 | Common algebraic ancestor: dim 4 | **Structural** [L0] | `canonical/8pi_common_origin.tex §4` | dim_ℝ(ℍ) = dim_ℂ(Mat(2,ℂ)) = 4; both 8π's share this factor |
 | N_phases = 3 and spin-trace = 1/3: algebraically independent | **Proven** [L0] | `canonical/8pi_common_origin.tex §3 Thm. 3` | Numerical equality in d=4 is coincidental; cancellation gives dim_ℂ(ℂ⊗ℍ) = 4 |
-| Unified theorem: single origin for both 8π's | **Motivated Conjecture [Open L2]** | `canonical/8pi_common_origin.tex §5` | Common algebraic ancestor dim_ℝ(ℍ) = 4 identified; MOTIVATED CONJECTURE: both 8π's trace to quaternionic dimension 4; rigorous unification would require deriving 1/(16πG) from S[Θ] directly — deep [L2] open problem |
+| Unified theorem: single origin for both 8π's | **Motivated Conjecture [Open L2]** — v62 attempted proof: 16π in 1/(16πG) reproduced structurally (N_eff=12=4×3; factor 4=dim_ℝ(ℍ)); G is free parameter (requires UV cutoff λ_UV not fixed by ℂ⊗ℍ alone); 8π structure algebraically inevitable, numerical G requires [Open L2] | `canonical/8pi_common_origin.tex §6` | v62 §6.4 "Attempted Proof": common algebraic ancestor dim_ℝ(ℍ)=4 confirmed; G not fixed by algebra alone; Unified Theorem remains Motivated Conjecture [Open L2]; see also `wiki/EightPi_Origin.md` |
 
 ---
 
@@ -309,7 +310,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | Projection A: Re sector → GR/KG | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) = GR sector; confirmed numerically |
 | Projection B: Im sector → QM/Schrödinger | **Sketch** | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) PARTIALLY CLOSED via dimensional analysis (step2_schrodinger_emergence.tex §2.5) |
 | Projection C: Full FPE → statistical mechanics | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | FPE IS stat.mech. by construction |
-| FPE ↔ E-L (full biquaternionic) | **Partially Proved** | `canonical/qm_emergence/step4_fpe_equivalence.tex §6`, `ARCHIVE/archive_legacy/consolidation_project/FPE_verification/step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced; Gap G1 CLOSED for scalar sector (step1_fpe_check.tex §1.3.1) |
+| FPE ↔ E-L (full biquaternionic) | **Partially Proved** — v62: U(1)/Abelian sector Proved [L0] (commutator vanishes); SU(2)/SU(3) Sketch (commutator correction identified: ∇_Q[(∇_Q H), Θ]; ordering prescription pending) | `canonical/qm_emergence/step4_fpe_equivalence.tex §6`, `ARCHIVE/archive_legacy/consolidation_project/FPE_verification/step5_noncommutativity.tex` | [∂_T,∇_Q²]=0; left FPE from S[Θ]; scalar-H case closed; Gap G3 reduced; Gap G1 CLOSED for scalar sector (step1_fpe_check.tex §1.3.1); v62: U(1) Gap G3 closed; SU(2)/SU(3) correction terms identified explicitly |
 
 **Strongest unification result**: QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ — not emergent from a deeper layer.
 
@@ -386,7 +387,7 @@ and an emergent-metric construction strongly connected to Θ.
 | Result | Status | Notes |
 |--------|--------|-------|
 | Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Proved [L1]** | Complex time ansatz Θ₀=e^{iΦ(r)}·[f·1+g·e_r]; g_tt=-Φ² from ψ-winding; see schwarzschild_from_theta.tex §5 |
-| Graviton dispersion in Schwarzschild background | **Derived [L1]** | v59: k²+V_eff(r)=0 derived; V_eff(r)=M²/(r⁴Ψ⁴)+... from isotropic Schwarzschild metric; k²=0 recovered as r→∞; v60: coordinate transformation to Schwarzschild coords explicit; coefficient comparison shows mismatch due to missing angular (ℓ-mode) decomposition; Regge-Wheeler coefficient matching remains Open [L2]; see `research_tracks/research/graviton_schwarzschild.tex §5` |
+| Graviton dispersion in Schwarzschild background | **Derived [L1]** — v59: k²+V_eff(r)=0 derived; v60: coord transform explicit; v63: centrifugal term ℓ(ℓ+1)/r² recovered from scalar-harmonic decomposition [L1]; O(M/r³) coefficient remains [Open L2] (parity separation needed) | `research_tracks/research/graviton_schwarzschild.tex §5` | v63 §5.4: Θ₁=Σ R_ℓ(r)Y_ℓm(θ,φ); centrifugal term ℓ(ℓ+1)/r² matches Regge-Wheeler; O(M/r³) coefficient mismatch (+2M/r³ vs -6M/r³) due to missing odd/even parity separation; spin-weighted harmonics _{-2}Y_ℓm needed for full match |
 | ASD condition (non-perturbative, full Weyl tensor) | **Proved [L1] (SU(2)₋ sector)** | Holonomy ⊂ Sp(1) → C⁺=0 for Θ∈SU(2)₋; proved in asd_condition_ubt.tex §5; Schwarzschild sector (Petrov D) is not ASD |
 | Curved twistor space from UBT | **Proved [L1] (SU(2)₋ sector)** | Penrose nonlinear graviton applies to SU(2)₋ vacuum solutions (C⁺=0 + Ricci-flat); see asd_condition_ubt.tex §5 Thm 5.4 |
 | Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
@@ -446,13 +447,18 @@ and an emergent-metric construction strongly connected to Θ.
 
 ## Higgs and Yukawa Sector
 
-> **Status (v63)**: Gap H1 Dead End (free kinetic action) confirmed; Hosotani mechanism identified as next path (see `research_tracks/research/hosotani_higgs.tex`); Gap Y1 partially computed via KK overlap.
+> **Status (v62)**: Gap H1 — Hosotani investigation: gauge holonomy W_ψ^{gauge}=1 (trivial, Dead End for tree-level gauge Hosotani); gravitational holonomy W_ψ^{grav} potentially non-trivial (Motivated Conjecture [L2]); radiative Hosotani V(θ_W) open (N_eff count needed). Interaction term g(Θ†Θ)² allowed by canonical action but g is free parameter. Gap Y1 structure Proved [L1] (C_alg=1 from ℂ⊗ℍ algebra).
 > Source: `research_tracks/research/higgs_yukawa_scan.md`
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
-| Higgs potential V(|Θ|²) = λ(|Θ|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(|Θ|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
-| Yukawa coupling y = 1/√(2πR_ψ) from KK overlap | **Sketch [L1]** | `research_tracks/research/higgs_yukawa_scan.md §3` | ψ-mode overlap integral for n_H=0, n_L=1, n_R=1 gives y=C_alg/√(2πR_ψ); R_ψ calibrated; Gap Y1 partially closed |
+| Higgs potential V(\|Θ\|²) = λ(\|Θ\|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(\|Θ\|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
+| Yukawa coupling y = C_alg/√(2πR_ψ) — STRUCTURE | **Proved [L1]** | `research_tracks/research/higgs_yukawa_scan.md §3` | C_alg=1 derived from ℂ⊗ℍ algebra (v62: Sc[1·e_L·e_R]=1 for diagonal embedding); mode matching n_R=n_H+n_L proved from chirality; Gap Y1 structure closed |
+| Yukawa coupling y magnitude | **Semi-empirical** | `research_tracks/research/higgs_yukawa_scan.md §3.3` | y=1/√(2πR_ψ) with R_ψ calibrated from m_e; circular until Gap G-Rpsi resolved |
 | sin²θ_W from ℂ⊗ℍ alone | **Dead End** | `research_tracks/research/higgs_yukawa_scan.md §4` | Weinberg angle requires U(1)_Y ↔ SU(2)_L mixing ratio; ℂ⊗ℍ fixes gauge structure but not the mixing angle; confirmed Dead End |
-| Gap H1: derive λ from S[Θ] | **Dead End (free kinetic action)** — v63: tree-level a₄=0 (constant background → action independent of v); one-loop Casimir = constant (KK masses independent of \|Θ₀\|). Non-trivial λ requires interactions absent from free kinetic UBT action OR Hosotani mechanism from Wilson line condensation on ψ-circle. Next approach: Hosotani (see `research_tracks/research/hosotani_higgs.tex`). | `research_tracks/research/higgs_yukawa_scan.md §2.3`; `research_tracks/research/hosotani_higgs.tex` | v63: free kinetic Dead End confirmed; Hosotani path: Wilson line θ_W on ψ-circle gives V(θ_W) radiatively; Z₂ mirror symmetry (n*=137↔n**=139) forces minimum at θ_W=π/2; v≈n_R·π/(2gR_ψ)≈230 GeV (estimate); λ∝N_eff·g²·ζ(3)/R_ψ³ (N_eff count open). Status: OPEN [Hosotani path] |
+| Gap H1: derive λ from S[Θ] — free kinetic | **Dead End (free kinetic action)** | `research_tracks/research/higgs_yukawa_scan.md §2.3`; `research_tracks/research/hosotani_higgs.tex` | v60: tree-level a₄=0; one-loop Casimir=const. Free kinetic action Dead End confirmed |
+| Gap H1 via gauge Hosotani: W_ψ^{gauge} | **Dead End (tree level)** | `research_tracks/research/higgs_yukawa_scan.md §2.4` | v62: CS term absent → W_ψ^{gauge}=1 (trivial gauge holonomy); Z₂ mirror symmetry forces θ=0. Tree-level gauge Hosotani Dead End |
+| Gap H1 via gravitational Hosotani: W_ψ^{grav} | **Motivated Conjecture [L2]** | `research_tracks/research/higgs_yukawa_scan.md §2.4` | v62: Schwarzschild phase Φ(r) winds around ψ-circle → W_ψ^{grav} potentially non-trivial; explicit computation pending |
+| Gap H1 via radiative Hosotani: V(θ_W) one-loop | **Open [L2]** | `research_tracks/research/hosotani_higgs.tex`; `research_tracks/research/higgs_yukawa_scan.md §2.4` | V(θ_W)∝N_eff·cos(2πθ_W); minimum at θ_W=π/2 if N_eff>0; N_eff count (bosonic vs fermionic near n_R=138) not yet done |
+| Gap H1 via interaction term g(Θ†Θ)² | **Additional input needed** | `research_tracks/research/higgs_yukawa_scan.md §2.5` | v62: Sc[(Θ†Θ)²] is gauge-invariant; g is free parameter not fixed by ℂ⊗ℍ algebra; canonical action allows V(Θ) but does not fix g |
 | Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |

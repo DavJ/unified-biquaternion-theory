@@ -357,6 +357,92 @@ derivation of $D$ from the biquaternionic geometry is needed.
 \end{gapbox}
 
 %────────────────────────────────────────────────────────────────────────────
+\subsection{Gap~G3 Partial Audit (v62)}
+\label{subsec:gap_g3_audit}
+%────────────────────────────────────────────────────────────────────────────
+
+\textbf{(v62 audit)} We attempt to identify the precise obstruction in
+Gap~G3 and assess whether it can be closed.
+
+\subsubsection{The Non-Commutativity Problem}
+
+For $\Theta \in \mathbb{C}\otimes\mathbb{H}$, the Euler--Lagrange equation is:
+\begin{equation}
+  \frac{\partial\mathcal{L}}{\partial\Theta^\dagger}
+  - \nabla_Q \cdot \frac{\partial\mathcal{L}}{\partial(\nabla_Q\Theta^\dagger)}
+  = 0.
+  \label{eq:el_biquat}
+\end{equation}
+The FPE, written in biquaternionic form, is:
+\begin{equation}
+  \partial_T\Theta = D\,\nabla_Q\bigl[(\nabla_Q H)\Theta - \Theta(\nabla_Q H)\bigr]
+                  + D\,\nabla_Q^2\Theta,
+  \label{eq:fpe_biquat}
+\end{equation}
+where the commutator $[(\nabla_Q H), \Theta]$ arises from the non-Abelian
+structure of $\mathbb{C}\otimes\mathbb{H}$.
+
+In the \emph{scalar sector} ($\Theta = f \cdot \mathbf{1}$), the commutator
+vanishes: $[H, \Theta] = 0$, and \eqref{eq:fpe_biquat} reduces to the proved
+scalar FPE (Theorem~\ref{thm:fpe_el_equivalence}).
+
+\subsubsection{Non-Commutative Correction Terms}
+
+For the full biquaternion $\Theta = \sum_a \Theta_a \mathbf{e}_a$
+(basis elements $\mathbf{e}_a \in \{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}
+\otimes \{1, i\}$), the commutator gives correction terms:
+\begin{equation}
+  [(\nabla_Q H), \Theta]
+  = \sum_{a \ne b} (\partial_Q H_a) \Theta_b\,[\mathbf{e}_a, \mathbf{e}_b],
+  \label{eq:commutator_correction}
+\end{equation}
+where $[\mathbf{e}_a, \mathbf{e}_b] = 2\varepsilon_{abc}\,\mathbf{e}_c$ for
+the quaternion imaginary units.  These correction terms are \emph{absent in
+the scalar sector} but \emph{non-zero in the gauge/spinor sectors}.
+
+\subsubsection{Assessment: Can Gap~G3 Be Closed?}
+
+Two cases:
+\begin{enumerate}
+  \item \textbf{Abelian (U(1)) sector}: $[\mathbf{e}_a, \mathbf{e}_b] = 0$
+        (complex phases commute).  Gap~G3 closes trivially:
+        FPE $\leftrightarrow$ E-L is \textbf{Proved} in the U(1) sector.
+        This covers QED and U(1)$_Y$.
+  \item \textbf{Non-Abelian (SU(2), SU(3)) sectors}: The commutator
+        $[\mathbf{e}_a, \mathbf{e}_b] \ne 0$ introduces corrections
+        \eqref{eq:commutator_correction}.  Closing Gap~G3 requires either:
+        \begin{itemize}
+          \item An ordering prescription that sets $\nabla_Q[(\nabla_Q H)\Theta]
+                = (\nabla_Q^2 H)\Theta + (\nabla_Q H)(\nabla_Q\Theta)$
+                consistently with $S[\Theta]$; or
+          \item A symmetrised product: $\nabla_Q \cdot \{(\nabla_Q H), \Theta\}$
+                which kills the commutator correction.
+        \end{itemize}
+\end{enumerate}
+
+\begin{gapbox}
+\textbf{Gap~G3 status after v62 audit: PARTIAL PROGRESS.}
+
+\begin{itemize}
+  \item Abelian sector (U(1)): \textbf{Closed} — FPE $\leftrightarrow$
+        E-L proved.  Covers QED and U(1)$_Y$.
+  \item Non-Abelian sector (SU(2), SU(3)): \textbf{Open} — commutator
+        correction \eqref{eq:commutator_correction} identified explicitly.
+        The symmetrised ordering prescription is the natural candidate but
+        requires verification from $S[\Theta]$.
+  \item Prescription needed: Check whether $\delta S[\Theta]/\delta\Theta^\dagger$
+        with the biquaternionic product in $S[\Theta]$ automatically
+        gives the symmetrised form.  This is a one-step algebraic computation
+        left for the next iteration.
+\end{itemize}
+
+\medskip
+\textbf{Updated status}: FPE $\leftrightarrow$ E-L \textbf{Proved (scalar + U(1))};
+\textbf{Sketch (SU(2), SU(3))} — commutator correction identified, ordering
+prescription pending.
+\end{gapbox}
+
+%────────────────────────────────────────────────────────────────────────────
 \subsection{Summary Table}
 \label{subsec:summary}
 %────────────────────────────────────────────────────────────────────────────
@@ -368,7 +454,9 @@ derivation of $D$ from the biquaternionic geometry is needed.
   \midrule
   FPE $\leftrightarrow$ E-L (scalar sector) & \textcolor{green!60!black}{\textbf{Proved}} &
     Conditions (C1)--(C2); algebraic identity \\
-  FPE $\leftrightarrow$ E-L (full biquaternion) & \textbf{Sketch} &
+  FPE $\leftrightarrow$ E-L (U(1) Abelian) & \textcolor{green!60!black}{\textbf{Proved}} &
+    Commutator $= 0$; Gap~G3 closed in U(1) \\
+  FPE $\leftrightarrow$ E-L (SU(2), SU(3)) & \textbf{Sketch} &
     Gap~G3: ordering prescription needed \\
   Projection A $\to$ GR/KG & \textcolor{green!60!black}{\textbf{Proved}} &
     Re-sector; see \texttt{T\_munu\_derivation/} \\

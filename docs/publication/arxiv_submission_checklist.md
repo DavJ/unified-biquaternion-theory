@@ -24,3 +24,8 @@
 - [ ] Add arXiv ID to CITATION.cff
 - [ ] Add arXiv link to wiki/Alpha_Constant.md
 - [ ] Add arXiv link to DERIVATION_INDEX.md B_base row
+
+## Second Paper: ubt_gravity_paper.tex
+- [x] License comment added (CC BY-NC-ND 4.0 header present in file)
+- [ ] arXiv submission (after first paper ID known)
+- [ ] Add cross-reference to first paper once arXiv ID available
