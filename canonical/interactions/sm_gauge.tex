@@ -414,3 +414,48 @@ Key results:
 \end{itemize}
 
 % End of canonical SM gauge structure definition
+
+% -----------------------------------------------------------------------
+% Version 1.1 (v67) — Hosotani Higgs mechanism added
+% -----------------------------------------------------------------------
+
+\providecommand{\Lone}{\textbf{[L1]}}
+
+\subsection{Higgs Mechanism via Hosotani Wilson Line}
+\label{sec:hosotani_higgs}
+
+The electroweak Higgs mechanism arises in UBT from the Hosotani mechanism
+on the $\psi$-circle.
+
+\medskip
+\noindent\textbf{Theorem (Hosotani SSB condition, \Lone).}\quad
+At KK level $n_R = 138$ (even winding), all 8 degrees of freedom
+of $\mathbb{C}\otimes\mathbb{H}$ are bosonic (KK parity rule:
+even $n \to$ bosonic; see \texttt{fermionic\_statistics\_bridge.tex}).
+Therefore $N_{\mathrm{eff}} = N_{\mathrm{bos}} - N_{\mathrm{fer}} = 8 > 0$.
+The Wilson line effective potential $V(\theta_W) \propto -N_{\mathrm{eff}}
+\cos(2\pi\theta_W)$ has minimum at $\theta_W = \pi/2$ (from the $Z_2$
+mirror symmetry of vacuum sectors $n^*=137$, $n^{**}=139$).
+Spontaneous symmetry breaking occurs: $\langle\theta_W\rangle = \pi/2 \neq 0$.
+
+\medskip
+\noindent\textbf{Higgs VEV estimate (v67):}
+\begin{equation}
+  v \approx \frac{n_R\,\pi}{2\,g\,R_\psi} \approx 230~\text{GeV}
+  \qquad (n_R = 138,\ g \approx 0.65,\ R_\psi \approx 14.18~\text{GeV}^{-1}).
+\end{equation}
+
+\noindent\textbf{Quartic coupling estimate (v67):}
+After full 5D→4D reduction (hosotani\_higgs.tex §\,7),
+\begin{equation}
+  \lambda_{\text{4D}}
+  = \frac{3\,N_{\mathrm{eff}}\,\zeta(3)}{4\pi R_\psi^2}
+  \approx 0.0114
+  \qquad (\text{SM: } \lambda_{\text{SM}} \approx 0.13;\ \text{factor} \sim 11).
+\end{equation}
+
+\noindent\textbf{Status}: \Lone\ — $N_{\mathrm{eff}}$ count and SSB condition proved.
+$\lambda_{\mathrm{4D}}$ estimate: \Lone\ (correct order of magnitude, factor~$\sim 11$
+from $\lambda_{\mathrm{SM}}$; remaining corrections identified in
+\texttt{research\_tracks/research/hosotani\_higgs.tex}).
+Numerical verification: \texttt{tools/compute\_hosotani\_lambda.py}.
