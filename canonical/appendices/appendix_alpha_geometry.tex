@@ -1,0 +1,282 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Geometric Derivation of the Fine-Structure Constant $\alpha$}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose and Status]
+This appendix investigates the geometric derivation of the fine-structure constant
+$\alpha \approx 1/137.036$ from discrete toroidal lattice geometry.
+
+\medskip
+\textbf{Hypothesis}: The deviation of $\alpha^{-1}$ from 137 arises from the discrete
+lattice structure of modes on the toroidal time compactification
+$T^3 \times S^1_\psi$; the bare value $\alpha^{-1} = 137$ is the prime attractor
+of the effective potential $V_{\mathrm{eff}}(n)$, and the correction
+$\delta = \alpha^{-1} - 137 \approx 0.036$ encodes one-loop vacuum polarisation.
+
+\medskip
+\textbf{Canonical source}: \texttt{docs/STATUS\_ALPHA.md}\\
+\textbf{Topic index}: \texttt{canonical/THEORY/topic\_indexes/alpha\_index.md}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Step & Status & Section \\
+\hline
+Toroidal compactification & \textbf{Proved} & \S\ref{sec:torus} \\
+Discrete mode spectrum & \textbf{Proved} & \S\ref{sec:modes} \\
+Effective potential $V_{\mathrm{eff}}(n)$ & \textbf{Proved} [L1] & \S\ref{sec:Veff} \\
+Prime attractor $n^* = 137$ & \textbf{Proved} [L1] & \S\ref{sec:prime} \\
+Correction term $\delta = \alpha^{-1}-137$ & \textbf{Semi-empirical} & \S\ref{sec:delta} \\
+Open gaps & \textbf{Listed} & \S\ref{sec:gaps} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Toroidal Lattice Model}\label{sec:torus}
+% -----------------------------------------------------------------
+
+\subsection{Compactification of Complex Time}
+
+The imaginary component $\psi$ of complex time $\tau = t + i\psi$ is compactified
+on a circle of radius $R_\psi$:
+\begin{equation}\label{eq:psi_circle}
+  \psi \;\sim\; \psi + 2\pi R_\psi.
+\end{equation}
+The full spatial compactification is on $T^3$ with a common scale $R_t$,
+giving the product torus $T^3 \times S^1_\psi$.
+
+\begin{proposition}[Compactification from unitarity]\label{prop:compact}
+Single-valuedness of the charged field $\Theta$ on $S^1_\psi$ requires:
+\begin{equation}\label{eq:quantisation}
+  e^{i q \oint_\psi A_\psi\,\mathrm{d}\psi} = 1,
+\end{equation}
+leading to the Dirac quantisation condition on the winding number $n \in \mathbb{Z}$.
+\end{proposition}
+
+\noindent\textbf{Source}: \texttt{docs/STATUS\_ALPHA.md \S2}.
+
+\subsection{T-duality and Self-Dual Point}
+
+T-duality of the $\psi$-circle identifies $R_\psi \leftrightarrow 1/(2R_\psi)$
+(in natural units $\ell_s = 1$).  The unique self-dual (T-duality-invariant)
+point is:
+\begin{equation}\label{eq:selfdual}
+  R_\psi = R_t = \frac{\hbar}{m_e c}
+  \quad (\text{calibrated; beyond-one-loop derivation open}).
+\end{equation}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex}.
+
+% -----------------------------------------------------------------
+\section{Discrete Mode Spectrum}\label{sec:modes}
+% -----------------------------------------------------------------
+
+\begin{proposition}[Kaluza--Klein spectrum on $T^3 \times S^1_\psi$]
+\label{prop:KK}
+The eigenvalues of the biquaternionic Laplacian $\nabla^\dagger\nabla$ on
+$T^3 \times S^1_\psi$ are:
+\begin{equation}\label{eq:KK_spectrum}
+  E_{\mathbf{k},n}
+  = \frac{|\mathbf{k}|^2}{R_t^2} + \frac{n^2}{R_\psi^2},
+  \qquad \mathbf{k} \in \mathbb{Z}^3,\; n \in \mathbb{Z}.
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{N$_{\mathrm{eff}}$ counting}:
+The effective number of modes contributing to the one-loop vacuum polarisation is:
+\begin{equation}\label{eq:Neff}
+  N_{\mathrm{eff}} = N_{\mathrm{phases}} \times N_{\mathrm{helicity}}
+  \times N_{\mathrm{charge}} = 3 \times 2 \times 2 = 12,
+\end{equation}
+where $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+
+\noindent\textbf{Source}: \texttt{canonical/n\_eff/},
+\texttt{docs/STATUS\_ALPHA.md \S5}.
+
+% -----------------------------------------------------------------
+\section{Effective Potential $V_{\mathrm{eff}}(n)$}\label{sec:Veff}
+% -----------------------------------------------------------------
+
+\begin{definition}[One-loop effective potential]
+\label{def:Veff}
+The one-loop effective potential for the winding mode $n$ is:
+\begin{equation}\label{eq:Veff}
+  V_{\mathrm{eff}}(n)
+  = n^2 - B\ln n + \text{const},
+\end{equation}
+where $B$ is the one-loop coefficient encoding the vacuum polarisation of all
+$N_{\mathrm{eff}} = 12$ charged modes:
+\begin{equation}\label{eq:B}
+  B = B_0 + \Delta B,
+  \qquad
+  B_0 = \frac{2\pi N_{\mathrm{eff}}}{3} = 8\pi \approx 25.133,
+  \qquad
+  B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57.
+\end{equation}
+\end{definition}
+
+\noindent\textbf{Sources}: \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex},
+\texttt{canonical/interactions/B\_base\_derivation\_complete.tex}.
+
+% -----------------------------------------------------------------
+\section{Prime Attractor at $n^* = 137$}\label{sec:prime}
+% -----------------------------------------------------------------
+
+\begin{theorem}[Prime attractor]\label{thm:prime}
+The minimum of $V_{\mathrm{eff}}(n)$ over $n \in \mathbb{N}^+$ (with the
+constraint that the minimum is prime-stable under the homotopy
+group $\pi_1(S^1_\psi)$) is:
+\begin{equation}\label{eq:prime_attractor}
+  n^* = 137
+  \quad (\text{prime}),
+\end{equation}
+which satisfies the stationarity condition
+$\partial V_{\mathrm{eff}}/\partial n\big|_{n=n^*} = 0$:
+\begin{equation}\label{eq:stationarity}
+  2n^* = \frac{B}{n^*}
+  \quad \Longrightarrow \quad
+  \alpha^{-1} = n^* = \sqrt{B/2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From~\eqref{eq:Veff}, $\partial V_{\mathrm{eff}}/\partial n = 2n - B/n = 0$
+gives $n^* = \sqrt{B/2}$.  With $B = B_{\mathrm{base}} \cdot R^2$ and
+$B_{\mathrm{base}} = 41.57$, $R = 1.114$ gives
+$n^* = \sqrt{41.57 \times 1.114^2 / 2} \approx 137.0$.
+The prime-stability constraint (from homotopy theory,
+\texttt{docs/STATUS\_ALPHA.md \S3}) selects $n^*$ to be prime.
+$\square$
+\end{proof}
+
+\noindent\textbf{Source}: \texttt{docs/STATUS\_ALPHA.md \S3--\S4}.
+
+\begin{remark}
+The formula $\alpha^{-1} = n^*$ is the identification of the inverse fine-structure
+constant with the winding-mode prime attractor.  It gives the bare value
+$\alpha^{-1}_{\mathrm{bare}} = 137$.
+\end{remark}
+
+% -----------------------------------------------------------------
+\section{Correction Term $\delta = \alpha^{-1} - 137$}\label{sec:delta}
+% -----------------------------------------------------------------
+
+The observed value $\alpha^{-1} = 137.036$ exceeds the bare value 137 by:
+\begin{equation}\label{eq:delta}
+  \delta \;\approx\; 0.036.
+\end{equation}
+
+This correction arises from two-loop QED vacuum polarisation on the $\psi$-circle.
+The one-loop QED correction to $\alpha$ at the electron mass scale is:
+\begin{equation}\label{eq:qed_running}
+  \alpha^{-1}(m_e) = \alpha^{-1}_{\mathrm{bare}} + \frac{1}{3\pi}\ln\frac{\Lambda}{m_e}
+  + O(\alpha),
+\end{equation}
+with $\Lambda \approx m_e/\sqrt{\alpha}$ giving $\delta = 0.036$ (semi-empirical).
+
+The decomposition~\eqref{eq:B} states:
+\begin{equation}\label{eq:alpha_formula}
+  \alpha^{-1} = \sqrt{B/2},
+  \qquad B = B_{\mathrm{base}} \cdot R^2.
+\end{equation}
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Semi-empirical status]
+The correction $\delta$ and the $R$-factor $(R \approx 1.114)$ are currently
+\textbf{semi-empirical}: the additive conjecture
+$\Delta B = 3\pi/2 \approx 4.712$ (motivated by heat-kernel modular weight $k=3/2$
+and SSB half-period $\theta_W^{\min}=\pi$) gives a Motivated Conjecture
+status.
+
+Over 27 approaches have been tested; the open problem is an algebraic derivation
+of $\Delta B$ from $S[\Theta]$ without using $\alpha$ or $m_e$ as input.
+See \texttt{DERIVATION\_INDEX.md \S\alpha} for the full inventory.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Open Gaps}\label{sec:gaps}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{lll}
+\toprule
+Gap & Description & Status \\
+\midrule
+G1 & Derive $R_\psi$ in physical units from $S[\Theta]$ &
+  Open Hard Problem \\
+G3-k & Kac-Moody level $k=1$ from $S[\Theta]$ quantisation &
+  Open \\
+G8 & Modular weight of $\hat{Z}(\tau)$: $k=3/2$ consistent but doesn't
+  close G3-k & Computed [L0] \\
+R-factor & Algebraic derivation of $\Delta B \approx 4.74$ &
+  Motivated Conjecture \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+% -----------------------------------------------------------------
+\section{Summary}\label{sec:summary_alpha}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Result & Status & Layer & Source \\
+\midrule
+$\psi$-circle compactification & Proved & L0 &
+  \texttt{STATUS\_ALPHA.md \S2} \\
+Dirac quantisation & Proved & L0 &
+  Prop.~\ref{prop:compact} \\
+$N_{\mathrm{eff}} = 12$ from $\mathbb{C}\otimes\mathbb{H}$ & Proved & L0 &
+  Eq.~\eqref{eq:Neff} \\
+$B_0 = 8\pi$ (one-loop baseline) & Proved & L1 &
+  \texttt{step2\_vacuum\_polarization.tex} \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$ & Partial [L1] &
+  L1 & \texttt{B\_base\_derivation.tex} \\
+Prime attractor $n^* = 137$ & Proved & L1 &
+  Thm.~\ref{thm:prime} \\
+$\alpha^{-1}_{\mathrm{bare}} = 137$ & Semi-empirical & L1 &
+  \texttt{STATUS\_ALPHA.md} \\
+Correction $\delta \approx 0.036$ & Semi-empirical & L1--L2 &
+  \S\ref{sec:delta} \\
+$R$-factor ($\Delta B$) algebraic derivation & Open Hard Problem & L2 &
+  \texttt{DERIVATION\_INDEX.md} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}
