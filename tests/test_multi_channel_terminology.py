@@ -18,7 +18,7 @@ PRIORITY_FILES = [
     "README.md",
     "docs/OVERVIEW.md",
     "docs/FITTED_PARAMETERS.md",
-    "archive/FINGERPRINTS/confirmed/alpha_fine_structure.md",
+    "ARCHIVE/archive_legacy/FINGERPRINTS/confirmed/alpha_fine_structure.md",
     "docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md",
     "docs/NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
 ]
@@ -102,7 +102,7 @@ def test_alpha_fingerprint_has_channel_annotation():
     """
     Verify that alpha fingerprint document annotates channel information.
     """
-    fingerprint_path = repo_root / "archive" / "FINGERPRINTS" / "confirmed" / "alpha_fine_structure.md"
+    fingerprint_path = repo_root / "ARCHIVE" / "archive_legacy" / "FINGERPRINTS" / "confirmed" / "alpha_fine_structure.md"
     content = fingerprint_path.read_text()
     
     # Check for channel annotation

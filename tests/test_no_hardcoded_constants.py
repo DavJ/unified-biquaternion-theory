@@ -83,6 +83,8 @@ WHITELIST = {
     "ALPHA_CXH_COMPARISON.md",
     "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
     "VERIFICATION_CHECKLIST_TORUS_THETA_ALPHA.md",
+    "VERIFICATION_CHECKLIST.md",    # Docs checklist with experimental comparison values
+    "reference_constants.tex",      # TeX file with CODATA reference constants for comparison
     "COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md",
     "APPENDIX_A2_INTEGRATION_SUMMARY.md",
     "SCRIPT_INTEGRATION_REPORT.md",
@@ -106,7 +108,8 @@ WHITELIST = {
 # Directory segments to skip
 SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__", 
              ".pytest_cache", "out", "alpha_core_repro/out", "data",
-             "archive",  # Historical documentation
+             "archive",  # Historical documentation (lowercase legacy)
+             "ARCHIVE",  # Historical documentation (uppercase current)
              "archived",  # Historical documentation
              "osf_release",  # Published versions (frozen)
              "osf_release_not_released",  # Draft publications

@@ -11,13 +11,16 @@ FATAL_PATTERNS = [
 def is_core_tex(p: pathlib.Path) -> bool:
     parts = set(p.parts)
     # Exclude build/tooling directories
-    if any(seg in parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__","tools","tests","scripts","validation","docs","archive","reports")):
+    if any(seg in parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__","tools","tests","scripts","validation","docs","archive","ARCHIVE","reports")):
         return False
     # Exclude speculative and auxiliary content (not canonical)
     if any(seg in parts for seg in ("speculative_extensions","speculative","appendices","notes","drafts")):
         return False
     # Exclude original historical research documents (pre-v0.4 archive)
     if any(seg in parts for seg in ("unified_biquaternion_theory","ubt_with_chronofactor","ubt_no_chronofactor","original_release_of_ubt")):
+        return False
+    # Exclude auto-generated reference files
+    if p.name in {"reference_constants.tex"}:
         return False
     return p.suffix.lower() == ".tex"
 

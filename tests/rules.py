@@ -71,8 +71,8 @@ REQUIRED_METRIC_PROJECTIONS.extend([
 # =============================================================================
 
 REQUIRED_LOCK_IN_FILES = [
-    "archive/tex/UBT_Main.tex",
-    "archive/tex/THEORY_STATUS_DISCLAIMER.tex",
+    "ARCHIVE/archive_legacy/tex/UBT_Main.tex",
+    "ARCHIVE/archive_legacy/tex/THEORY_STATUS_DISCLAIMER.tex",
 ]
 
 # =============================================================================

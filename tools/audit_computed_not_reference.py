@@ -47,6 +47,7 @@ IGNORE_DIRS = {
     "data", "out",
     # Old / archived versions
     "old", "archived", "archive",
+    "ARCHIVE",  # uppercase archived material
     "osf_release", "osf_release_not_released",
     "ubt_strict_fix", "ubt_strict_minimal",
     # Reports directory (generated outputs — may contain any constant values)
@@ -63,6 +64,7 @@ SOFT_DIRS = {
 SOFT_FILES = {
     "validate_alpha_renormalization.py",
     "generate_reference_constants.py",
+    "reference_constants.tex",      # AUTO-GENERATED CODATA reference file
     "reproduce_lepton_ratios.py",
     "verify_N_eff.py",  # Verification script that legitimately references experimental α⁻¹
     "STATUS_ALPHA.md",

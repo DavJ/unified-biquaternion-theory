@@ -11,9 +11,27 @@ import runpy as _runpy
 import sys as _sys
 from pathlib import Path as _Path
 
-# Resolve the real module path so it can be executed as a script
+
+def _find_repo_root(start: _Path) -> _Path:
+    """Walk upward from start to find the repo root (contains pytest.ini)."""
+    for parent in [start, *start.parents]:
+        if (parent / "pytest.ini").exists():
+            return parent
+    return start.parents[3]  # fallback
+
+
+# Resolve the real module path so it can be executed as a script.
+# NOTE: The path ARCHIVE/archive_legacy/ARCHIVE/legacy_variants/ has nested
+# ARCHIVE segments. This reflects the actual directory structure created during
+# root_detox_phase1: the outer ARCHIVE/ is the top-level archive, archive_legacy/
+# holds pre-refactor content, and ARCHIVE/legacy_variants/ is the original
+# archive tree that was inside the monorepo before reorganisation.
 _REAL_SCRIPT = (
-    _Path(__file__).parent.parent.parent
+    _find_repo_root(_Path(__file__).resolve())
+    / "ARCHIVE"
+    / "archive_legacy"
+    / "ARCHIVE"
+    / "legacy_variants"
     / "ubt_with_chronofactor"
     / "forensic_fingerprint"
     / "tools"

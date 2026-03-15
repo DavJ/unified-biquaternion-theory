@@ -15,7 +15,7 @@ def _find_repo_root(start: _pathlib.Path) -> _pathlib.Path:
 
 
 _repo_root = _find_repo_root(_pathlib.Path(__file__).resolve().parent)
-_archive = _repo_root / "ARCHIVE" / "legacy_variants"
+_archive = _repo_root / "ARCHIVE" / "archive_legacy" / "ARCHIVE" / "legacy_variants"
 if str(_archive) not in _sys.path:
     _sys.path.insert(0, str(_archive))
 

@@ -37,13 +37,13 @@ class AxiomEnforcer:
     
     def __init__(self, repo_root: Path):
         self.repo_root = repo_root
-        self.axioms_file = repo_root / "core" / "AXIOMS.md"
+        self.axioms_file = repo_root / "canonical" / "AXIOMS.md"
         
     def test_axioms_file_exists(self):
-        """Verify core/AXIOMS.md exists"""
+        """Verify canonical/AXIOMS.md exists"""
         assert self.axioms_file.exists(), (
             f"AXIOMS file not found: {self.axioms_file}\n"
-            "The canonical axioms must be documented in core/AXIOMS.md"
+            "The canonical axioms must be documented in canonical/AXIOMS.md"
         )
     
     def test_axioms_content_complete(self):
@@ -108,7 +108,8 @@ class AxiomEnforcer:
         # Directories to exclude
         exclude_dirs = {
             '.git', '__pycache__', 'node_modules', 'build', 'dist', 
-            '.pytest_cache', 'vendor', 'venv', '.venv', 'docs/archive'
+            '.pytest_cache', 'vendor', 'venv', '.venv', 'docs/archive',
+            'ARCHIVE', 'archive',  # Historical material excluded from canonical checks
         }
         
         violations = []
@@ -130,7 +131,7 @@ class AxiomEnforcer:
                 violation_msg += f"    Line: {line_content.strip()}\n\n"
             
             violation_msg += "These patterns violate UBT Canonical Axiom C (Unique Emergent Metric).\n"
-            violation_msg += "See core/AXIOMS.md for details.\n"
+            violation_msg += "See canonical/AXIOMS.md for details.\n"
             violation_msg += "\n" + "="*70 + "\n"
             
             raise MetricLockViolation(violation_msg)
@@ -196,7 +197,7 @@ class AxiomEnforcer:
 
 # Test functions for pytest
 def test_axioms_file_exists():
-    """Test that core/AXIOMS.md exists"""
+    """Test that canonical/AXIOMS.md exists"""
     repo_root = Path(__file__).parent.parent
     enforcer = AxiomEnforcer(repo_root)
     enforcer.test_axioms_file_exists()
@@ -232,7 +233,7 @@ if __name__ == "__main__":
     all_passed = True
     
     # Test 1: Axioms file exists
-    print("Test 1: Checking core/AXIOMS.md exists...")
+    print("Test 1: Checking canonical/AXIOMS.md exists...")
     try:
         enforcer.test_axioms_file_exists()
         print("  ✓ PASS: AXIOMS.md found")
