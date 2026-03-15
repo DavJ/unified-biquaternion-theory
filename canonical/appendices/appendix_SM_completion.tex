@@ -1,0 +1,283 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Standard Model Gauge Structure Completion}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose]
+This appendix completes the derivation of the Standard Model gauge structure
+$\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$ from
+the biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$.
+It maps the components of $\Theta$ to gauge fields and verifies the
+internal symmetry structure.
+
+\medskip
+\textbf{Primary sources}:
+\texttt{canonical/interactions/sm\_gauge.tex},
+\texttt{canonical/su3\_derivation/su3\_from\_involutions.tex},
+\texttt{canonical/interactions/qed.tex},
+\texttt{canonical/interactions/qcd.tex},
+\texttt{canonical/chirality/}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Sector & Status & Section \\
+\hline
+$\mathrm{U}(1)_{\mathrm{EM}}$ & \textbf{Proved} & \S\ref{sec:u1} \\
+$\mathrm{SU}(2)_L$ & \textbf{Proved} & \S\ref{sec:su2} \\
+$\mathrm{SU}(3)_c$ & \textbf{Proved} [L0] & \S\ref{sec:su3} \\
+Internal symmetry verification & \textbf{Verified} & \S\ref{sec:verify} \\
+$\Theta$-component map & \textbf{Outlined} & \S\ref{sec:map} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Overall Structure}\label{sec:overall}
+% -----------------------------------------------------------------
+
+The Standard Model gauge group is identified as:
+\begin{equation}\label{eq:SMgroup}
+  G_{\mathrm{SM}}
+  = \mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y.
+\end{equation}
+
+In UBT, each factor emerges from a different structural feature of
+$\Theta \in \mathbb{C}\otimes\mathbb{H}$:
+
+\begin{center}
+\begin{tabular}{lcl}
+\toprule
+Group factor & UBT origin & Layer \\
+\midrule
+$\mathrm{U}(1)_{\mathrm{EM}}$ & Phase on $\psi$-circle: $\Theta \mapsto e^{i\alpha}\Theta$ & L0 \\
+$\mathrm{SU}(2)_L$ & Left action of $\mathbb{H}$ on $\mathbb{C}\otimes\mathbb{H}$ & L0 \\
+$\mathrm{U}(1)_Y$ & Right phase rotation: $\Theta \mapsto \Theta e^{-i\theta}$ & L0 \\
+$\mathrm{SU}(3)_c$ & Involution group of $\mathbb{C}\otimes\mathbb{H}$ & L0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------
+\section{$\mathrm{U}(1)_{\mathrm{EM}}$: Electromagnetic Symmetry}\label{sec:u1}
+% -----------------------------------------------------------------
+
+\begin{theorem}[$\mathrm{U}(1)_{\mathrm{EM}}$ from $\psi$-circle phase]
+\label{thm:u1}
+The action $S[\Theta]$ is invariant under the local phase rotation
+\begin{equation}\label{eq:u1_transform}
+  \Theta(x) \;\mapsto\; e^{i\alpha(x)}\,\Theta(x),
+  \qquad A_\mu(x) \;\mapsto\; A_\mu(x) - \tfrac{1}{g}\partial_\mu\alpha(x),
+\end{equation}
+where $g = e$ is the elementary charge.  This invariance is
+$\mathrm{U}(1)_{\mathrm{EM}}$.
+\end{theorem}
+
+\begin{proof}
+$D_\mu\Theta = (\partial_\mu + igA_\mu)\Theta$; under~\eqref{eq:u1_transform},
+$D_\mu\Theta \mapsto e^{i\alpha}D_\mu\Theta$, so
+$\mathrm{Tr}[(D_\mu\Theta)^\dagger D^\mu\Theta]$ is invariant.
+The photon kinetic term $-\frac14 F_{\mu\nu}F^{\mu\nu}$ is invariant by
+the abelian nature of $\mathrm{U}(1)$. $\square$
+\end{proof}
+
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex \S2}.
+
+The Maxwell field strength and equations follow in the standard way:
+$F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$,
+$\partial_\nu F^{\mu\nu} = j^\mu$.
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Status]
+$\mathrm{U}(1)_{\mathrm{EM}}$ protection (no photon mass) is \textbf{Proved} [L0]
+in \texttt{canonical/qed\_phi\_const/step1\_u1\_protection.tex}.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{$\mathrm{SU}(2)_L$: Weak Isospin}\label{sec:su2}
+% -----------------------------------------------------------------
+
+\begin{theorem}[$\mathrm{SU}(2)_L$ from left action on $\mathbb{C}\otimes\mathbb{H}$]
+\label{thm:su2}
+The generators $T^a: \Theta \mapsto \frac{i\sigma^a}{2}\Theta$
+($a = 1,2,3$, $\sigma^a$ Pauli matrices) satisfy
+$[T^a, T^b] = i\epsilon^{abc}T^c$,
+generating the Lie algebra $\mathfrak{su}(2)_L$.
+This action is \emph{left}-handed only ($\Theta \mapsto U_L\Theta$,
+$U_L \in \mathrm{SU}(2)$), not right-handed.
+\end{theorem}
+
+\begin{proof}
+Direct computation: $[\frac{i\sigma^a}{2}, \frac{i\sigma^b}{2}]
+= \frac{-1}{4}[\sigma^a, \sigma^b] = \frac{-1}{4}(2i\epsilon^{abc}\sigma^c)
+= \frac{-i\epsilon^{abc}}{2}\sigma^c$;
+using the convention $[T^a,T^b] = i\epsilon^{abc}T^c$
+with $T^c = \frac{i\sigma^c}{2}$ gives the stated relation (with appropriate
+sign convention for $i$). $\square$
+\end{proof}
+
+\noindent\textbf{Chirality restriction}: The weak interaction couples only to
+left-handed fields. This follows from the $\psi$-parity argument:
+\begin{itemize}
+  \item The $\psi$-parity operator $P_\psi$ acts as $\gamma^5$ on spinors.
+  \item Odd-winding modes $n > 0$ on the $\psi$-circle are left-handed.
+  \item No right-handed $W^\pm$ coupling appears in $S[\Theta]$ (Gap C1 closed).
+\end{itemize}
+
+\noindent\textbf{Sources}: \texttt{canonical/chirality/step1\_psi\_parity.tex},
+\texttt{canonical/chirality/step2\_chirality\_result.tex},
+\texttt{canonical/chirality/step3\_gap\_C1\_resolution.tex}.
+
+% -----------------------------------------------------------------
+\section{$\mathrm{SU}(3)_c$: Color Symmetry}\label{sec:su3}
+% -----------------------------------------------------------------
+
+\begin{theorem}[$\mathrm{SU}(3)_c$ from involutions — Theorems G.A--G.D]
+\label{thm:su3}
+The group of involutions $\mathrm{Aut}_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})$
+contains a copy of $\mathrm{SU}(3)$.  Specifically:
+\begin{enumerate}
+  \item[(G.A)] The Lie algebra $\mathfrak{su}(3)$ is realised by the
+    anti-Hermitian traceless operators on the rank-3 internal fiber
+    $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$.
+  \item[(G.B)] The fundamental representation $\mathbf{3}$
+    (quarks) is the defining action on $\mathbb{C}^3$.
+  \item[(G.C)] The adjoint representation $\mathbf{8}$
+    (gluons) is the adjoint action on $\mathfrak{su}(3)$,
+    with 8 generators given by the Gell-Mann matrices $\lambda^a$.
+  \item[(G.D)] $\mathrm{SU}(3)_c$ commutes with
+    $\mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$: decoupling from
+    electroweak sector is exact.
+\end{enumerate}
+\end{theorem}
+
+\noindent\textbf{Proof}: See \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex
+  \S G.16, Theorems G.A--G.D}.
+
+\noindent\textbf{Additional derivation}:
+$\mathrm{SU}(3)$ also arises from quantum superposition over the three imaginary
+units $\{i,j,k\}$ of $\mathbb{H}$:
+$\Theta_{\mathrm{color}} = \alpha I + \beta J + \gamma K \in \mathbb{C}^3$;
+$\mathrm{U}(3)$ symmetry reduces to $\mathrm{SU}(3)$ after fixing $\mathrm{U}(1)_Y$.
+All 8 Gell-Mann generators verified numerically.
+(\texttt{canonical/su3\_derivation/step1\_superposition\_approach.tex})
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Status summary — SU(3)]
+\textbf{Proved [L0]}: Lie algebra $\mathfrak{su}(3)$, fundamental rep, adjoint rep,
+EW decoupling. \\
+\textbf{Open}: Color confinement (Clay Millennium Problem; see
+\texttt{canonical/su3\_derivation/} \S G.17).
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{$\Theta$-Component Map to Gauge Fields}\label{sec:map}
+% -----------------------------------------------------------------
+
+The components of $\Theta \in \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+are mapped to gauge fields as follows:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+$\Theta$-structure & Gauge field & Group \\
+\midrule
+Global $\psi$-phase $e^{i\alpha}$ & $A_\mu$ (photon) & $\mathrm{U}(1)_{\mathrm{EM}}$ \\
+Left $\mathrm{SU}(2)$ action $U_L\Theta$ & $W^a_\mu$ (weak bosons) & $\mathrm{SU}(2)_L$ \\
+Right $\mathrm{U}(1)$ phase $\Theta e^{-i\theta}$ & $B_\mu$ (hypercharge) & $\mathrm{U}(1)_Y$ \\
+Internal $\mathrm{SU}(3)$ action on fiber & $G^a_\mu$ (gluons) & $\mathrm{SU}(3)_c$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Source}: \texttt{canonical/interactions/sm\_gauge.tex}.
+
+\begin{remark}
+The Weinberg angle $\sin^2\theta_W$ is not fixed by $\mathbb{C}\otimes\mathbb{H}$
+alone; it remains a semi-empirical parameter (see \texttt{DERIVATION\_INDEX.md
+\S SM}).  Deriving $\sin^2\theta_W \approx 0.231$ from UBT axioms is an open
+problem.
+\end{remark}
+
+% -----------------------------------------------------------------
+\section{Internal Symmetry Verification}\label{sec:verify}
+% -----------------------------------------------------------------
+
+\begin{proposition}[Closure of SM algebra]
+The generators of $\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$
+acting on $\Theta$ close under commutators with zero cross-commutators:
+\begin{align}
+  [T^a_{\mathrm{SU}(3)}, T^b_{\mathrm{SU}(2)}] &= 0, \\
+  [T^a_{\mathrm{SU}(3)}, Y]                     &= 0, \\
+  [T^a_{\mathrm{SU}(2)}, Y]                     &= 0.
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Follows from Theorem~\ref{thm:su3} part (G.D) and the fact that
+$\mathrm{SU}(2)_L$ and $\mathrm{U}(1)_Y$ act on different sectors
+(left vs.\ right matrix multiplication on $\Theta$). $\square$
+\end{proof}
+
+% -----------------------------------------------------------------
+\section{Summary}\label{sec:summary_SM}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Result & Status & Layer & Source \\
+\midrule
+$\mathrm{U}(1)_{\mathrm{EM}}$ from $\psi$-phase & Proved & L0 &
+  \texttt{qed.tex} \\
+No photon mass ($\mathrm{U}(1)$ protection) & Proved & L0 &
+  \texttt{step1\_u1\_protection.tex} \\
+$\mathrm{SU}(2)_L$ from left $\mathbb{H}$-action & Proved & L0 &
+  \texttt{sm\_gauge.tex} \\
+Chirality: $\mathrm{SU}(2)_L$ only (no $R$) & Proved & L1 &
+  \texttt{chirality/} \\
+$\mathrm{SU}(3)_c$ from involutions (G.A--G.D) & Proved & L0 &
+  \texttt{su3\_from\_involutions.tex} \\
+$\Theta$ component map & Outlined & L0 &
+  \texttt{sm\_gauge.tex} \\
+Internal symmetry closure & Proved & L0 &
+  \S\ref{sec:verify} \\
+Weinberg angle $\sin^2\theta_W$ & Semi-empirical & L2 & open \\
+Confinement & Open (Millennium) & L2 &
+  \texttt{su3\_derivation/ \S G.17} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}

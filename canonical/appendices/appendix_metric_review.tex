@@ -1,0 +1,256 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Emergent Metric Review}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose]
+This appendix verifies and strengthens the emergent metric derivation in UBT.
+It consolidates the tensor construction, verifies coordinate covariance,
+derives the Levi-Civita connection, and identifies missing mathematical steps.
+
+\medskip
+\textbf{Primary sources}:
+\texttt{canonical/geometry/biquaternion\_metric.tex},
+\texttt{canonical/geometry/metric.tex},
+\texttt{canonical/geometry/connection.tex},
+\texttt{canonical/geometry/curvature.tex}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Check & Status & Section \\
+\hline
+Tensor construction of $\mathcal{G}_{\mu\nu}$ & \textbf{Verified} & \S\ref{sec:tensor} \\
+Coordinate covariance & \textbf{Verified} & \S\ref{sec:covariance} \\
+Connection and Christoffel symbols & \textbf{Verified} & \S\ref{sec:connection} \\
+Riemann curvature & \textbf{Verified} & \S\ref{sec:curvature} \\
+Missing steps identified & \textbf{Listed} & \S\ref{sec:gaps} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Biquaternionic Metric Tensor}\label{sec:tensor}
+% -----------------------------------------------------------------
+
+\subsection{Fundamental Construction}
+
+\begin{definition}[Biquaternionic metric]\label{def:biqmetric}
+The biquaternionic metric tensor is constructed from the fundamental
+field $\Theta(q,\tau) \in \mathbb{C}\otimes\mathbb{H}$ as:
+\begin{equation}\label{eq:Gmunu}
+  \mathcal{G}_{\mu\nu}[\Theta]
+  \;:=\;
+  \mathrm{Tr}\!\bigl(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger\bigr)
+  \;\in\; \mathbb{C}\otimes\mathbb{H}.
+\end{equation}
+\end{definition}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/biquaternion\_metric.tex \S1--\S2}.
+
+\subsection{Symmetry}
+
+\begin{proposition}[Symmetry of $\mathcal{G}_{\mu\nu}$]\label{prop:sym}
+  $\mathcal{G}_{\mu\nu} = \mathcal{G}_{\nu\mu}^*$
+  (Hermitian symmetry).  In the real projection,
+  $g_{\mu\nu} = g_{\nu\mu}$.
+\end{proposition}
+
+\begin{proof}
+$\mathrm{Tr}(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger)
+ = [\mathrm{Tr}(\partial_\nu\Theta\,\partial_\mu\Theta^\dagger)]^*$
+by the cyclic property of the trace and the involution
+$(\partial\Theta)^\dagger\mapsto\partial\Theta^\dagger$.
+$\square$
+\end{proof}
+
+\subsection{Real Projection}
+
+\begin{definition}[Classical metric]\label{def:classicmetric}
+The classical (GR) metric tensor is the real part of the biquaternionic metric:
+\begin{equation}\label{eq:gmunu}
+  \boxed{g_{\mu\nu} \;:=\; \mathrm{Re}\!\bigl(\mathcal{G}_{\mu\nu}[\Theta]\bigr).}
+\end{equation}
+\end{definition}
+
+\begin{remark}
+The imaginary part $h_{\mu\nu} := \mathrm{Im}(\mathcal{G}_{\mu\nu})$ encodes
+phase curvature invisible to classical observers coupling only to the real sector.
+\end{remark}
+
+% -----------------------------------------------------------------
+\section{Coordinate Covariance}\label{sec:covariance}
+% -----------------------------------------------------------------
+
+\begin{theorem}[Tensorial character of $g_{\mu\nu}$]\label{thm:tensor}
+  Under smooth coordinate changes $x^\mu \to x'^\mu(x)$,
+  $g_{\mu\nu}$ transforms as a covariant rank-2 tensor:
+  \begin{equation}
+    g'_{\mu\nu}(x')
+    = \frac{\partial x^\rho}{\partial x'^\mu}
+      \frac{\partial x^\sigma}{\partial x'^\nu}
+      g_{\rho\sigma}(x).
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+$\partial_\mu\Theta$ transforms as $\partial'_\mu\Theta = (\partial x^\rho/\partial x'^\mu)\partial_\rho\Theta$.
+The trace in~\eqref{eq:Gmunu} contracts the internal $\mathbb{C}\otimes\mathbb{H}$ indices only,
+leaving two free covariant spacetime indices.  Applying the
+chain rule twice gives the stated transformation law. $\square$
+\end{proof}
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Consistency check: covariance]
+\textbf{Verdict: VERIFIED.}
+The construction \eqref{eq:Gmunu} is manifestly covariant; the real projection
+preserves tensorial character.  No additional conditions are required.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Connection and Christoffel Symbols}\label{sec:connection}
+% -----------------------------------------------------------------
+
+Given the derived metric $g_{\mu\nu}$, the Levi-Civita connection is:
+\begin{equation}\label{eq:christoffel}
+  \Gamma^\lambda{}_{\mu\nu}
+  \;=\;
+  \tfrac{1}{2}\,g^{\lambda\rho}
+  \!\left(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\right).
+\end{equation}
+This is the unique torsion-free, metric-compatible connection.
+
+\begin{proposition}[Connection from biquaternionic metric]
+The classical Christoffel symbols~\eqref{eq:christoffel} are the real projection
+of the biquaternionic connection:
+\begin{equation}
+  \Gamma^\lambda{}_{\mu\nu} = \mathrm{Re}\!\left(\Omega^\lambda{}_{\mu\nu}\right),
+\end{equation}
+where $\Omega^\lambda{}_{\mu\nu}$ is the biquaternionic Levi-Civita connection
+defined in \texttt{canonical/geometry/biquaternion\_connection.tex}.
+\end{proposition}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/connection.tex \S2},
+\texttt{canonical/geometry/biquaternion\_connection.tex}.
+
+% -----------------------------------------------------------------
+\section{Curvature}\label{sec:curvature}
+% -----------------------------------------------------------------
+
+The Riemann curvature tensor is:
+\begin{equation}\label{eq:riemann}
+  R^\rho{}_{\sigma\mu\nu}
+  \;=\;
+  \partial_\mu\Gamma^\rho{}_{\nu\sigma}
+  - \partial_\nu\Gamma^\rho{}_{\mu\sigma}
+  + \Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+  - \Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
+\end{equation}
+
+\noindent The Ricci tensor and Ricci scalar follow by contraction:
+\begin{align}
+  R_{\mu\nu} &= R^\rho{}_{\mu\rho\nu}, \\
+  R &= g^{\mu\nu}R_{\mu\nu}.
+\end{align}
+
+\begin{proposition}[Curvature from $\Theta$]
+The full Riemann curvature is a functional of $\Theta$:
+\begin{equation}
+  R^\rho{}_{\sigma\mu\nu}[\Theta]
+  \;=\;
+  \mathrm{Re}\!\left(\mathcal{R}^\rho{}_{\sigma\mu\nu}[\Theta]\right),
+\end{equation}
+where $\mathcal{R}^\rho{}_{\sigma\mu\nu}$ is the biquaternionic Riemann
+curvature defined in \texttt{canonical/geometry/biquaternion\_curvature.tex}.
+\end{proposition}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/curvature.tex},
+\texttt{canonical/geometry/biquaternion\_curvature.tex}.
+
+% -----------------------------------------------------------------
+\section{Missing Mathematical Steps}\label{sec:gaps}
+% -----------------------------------------------------------------
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Identified gaps]
+The following steps are sketched or open in the current canonical sources:
+
+\begin{enumerate}
+  \item \textbf{Non-degeneracy of $g_{\mu\nu}$}: Conditions under which
+    $\det(g_{\mu\nu}) \neq 0$ are stated but not fully proved for generic
+    $\Theta$.  See \texttt{canonical/gr\_closure/step2\_nondegeneracy.tex}.
+
+  \item \textbf{Signature theorem}: The derivation that
+    $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$ relies on
+    conditions C1--C3 of the admissible sector; the full proof is in
+    \texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}.
+
+  \item \textbf{Equivalence of the two metric formulas}: The identity
+    $\mathrm{Re}\,\mathrm{Tr}(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger)
+     = \mathrm{Re}(\mathcal{G}_{\mu\nu})$
+    is stated in \texttt{canonical/THEORY/canonical/canonical\_metric\_definition.tex}
+    but the detailed algebraic proof is a sketch.
+
+  \item \textbf{Stress-energy tensor}: The full off-shell expression for
+    $T_{\mu\nu}[\Theta]$ and its positivity are partly open; see
+    \texttt{canonical/gr\_closure/step4\_offshell\_Tmunu.tex}.
+\end{enumerate}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Summary}\label{sec:summary_metric}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Step & Status & Layer & Source \\
+\midrule
+Def.\ of $\mathcal{G}_{\mu\nu}[\Theta]$ via~\eqref{eq:Gmunu} & Proved & L0 &
+  \texttt{biquaternion\_metric.tex} \\
+Hermitian symmetry & Proved & L0 & Prop.~\ref{prop:sym} \\
+Real projection $g_{\mu\nu}=\mathrm{Re}(\mathcal{G}_{\mu\nu})$ & Proved & L0 &
+  Def.~\ref{def:classicmetric} \\
+Coordinate covariance & Proved & L0 & Thm.~\ref{thm:tensor} \\
+Levi-Civita connection & Proved & L0 & \S\ref{sec:connection} \\
+Riemann curvature & Proved & L0 & \S\ref{sec:curvature} \\
+Non-degeneracy for generic $\Theta$ & Partial & L1 & \S\ref{sec:gaps} item 1 \\
+Lorentzian signature & Proved on $\mathcal{A}_{\mathrm{UBT}}$ & L1 &
+  \S\ref{sec:gaps} item 2 \\
+Off-shell $T_{\mu\nu}$ positivity & Open & L2 & \S\ref{sec:gaps} item 4 \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}

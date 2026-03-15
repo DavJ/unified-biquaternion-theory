@@ -1,0 +1,272 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Action Principle Review}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose]
+This appendix verifies the mathematical consistency of the UBT action
+principle. It does not introduce new derivations; it consolidates existing
+results and explicitly checks: (1) mathematical consistency of
+$S[\Theta]$; (2) Lorentz invariance; (3) the Euler--Lagrange procedure;
+(4) well-posedness of the resulting field equations.
+
+\medskip
+\textbf{Primary source}:
+\texttt{canonical/THEORY/canonical/canonical\_action.tex}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Check & Status & Source \\
+\hline
+Lagrangian decomposition & \textbf{Verified} & \S\ref{sec:action} \\
+Lorentz invariance & \textbf{Verified} & \S\ref{sec:lorentz} \\
+Euler--Lagrange derivation & \textbf{Verified} (sketch) & \S\ref{sec:EL} \\
+Well-posedness of field equations & \textbf{Partial} & \S\ref{sec:wellposed} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{The UBT Action}\label{sec:action}
+% -----------------------------------------------------------------
+
+\subsection{Definition}
+
+The total UBT action is:
+\begin{equation}\label{eq:S}
+  S[\Theta]
+  \;=\;
+  \int_{\mathcal{M}} \mathrm{d}^4x\,\sqrt{-g}\,\mathcal{L}_{\mathrm{UBT}},
+\end{equation}
+where $\mathcal{M}$ is the real spacetime manifold, $g = \det(g_{\mu\nu})$,
+$g_{\mu\nu} = \mathrm{Re}\bigl(\mathcal{G}_{\mu\nu}[\Theta]\bigr)$,
+and the Lagrangian density decomposes as
+\begin{equation}\label{eq:Ltotal}
+  \mathcal{L}_{\mathrm{UBT}}
+  \;=\;
+  \mathcal{L}_{\mathrm{grav}}
+  + \mathcal{L}_{\mathrm{kin}}
+  + \mathcal{L}_{\mathrm{gauge}}
+  + \mathcal{L}_{\mathrm{pot}},
+\end{equation}
+with
+\begin{align}
+  \mathcal{L}_{\mathrm{grav}}  &= \frac{1}{2\kappa}\,R,
+  \label{eq:Lgrav}\\
+  \mathcal{L}_{\mathrm{kin}}   &= \mathrm{Tr}\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr],
+  \label{eq:Lkin}\\
+  \mathcal{L}_{\mathrm{gauge}} &= -\tfrac{1}{4}\,F^a_{\mu\nu}F^{a\,\mu\nu},
+  \label{eq:Lgauge}\\
+  \mathcal{L}_{\mathrm{pot}}   &= -V(\Theta).
+  \label{eq:Lpot}
+\end{align}
+Here $R = R[g]$ is the Ricci scalar, $\kappa = 8\pi G/c^4$,
+$D_\mu = \partial_\mu + \Gamma_\mu + \mathrm{i}g A^a_\mu T_a$ is the full
+covariant derivative (gravity + gauge), $F^a_{\mu\nu}$ is the gauge field
+strength, and $V(\Theta)$ encodes mass terms.
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Consistency check: decomposition]
+\textbf{Verdict: CONSISTENT.}
+Each term in~\eqref{eq:Ltotal} is independently Hermitian and gauge-invariant
+at the level of $\Theta \in \mathbb{C}\otimes\mathbb{H}$.
+The Hilbert--Einstein sector $\mathcal{L}_{\mathrm{grav}}$ appears as a
+\emph{projected} sector of the biquaternionic Lagrangian; see
+\texttt{canonical/gr\_limit/GR\_limit\_of\_UBT.tex \S3}.
+\end{tcolorbox}
+
+\subsection{Boundary Terms}
+
+The action~\eqref{eq:S} requires the Gibbons--Hawking--York boundary term for
+a well-defined variational principle on a manifold with boundary:
+\begin{equation}
+  S_{\mathrm{bdy}} = \frac{1}{\kappa}\oint_{\partial\mathcal{M}} \mathrm{d}^3y
+  \sqrt{|\gamma|}\,K,
+\end{equation}
+where $K$ is the extrinsic curvature of $\partial\mathcal{M}$ and $\gamma$ is
+the induced metric. This term is standard and does not affect the bulk field
+equations.
+
+% -----------------------------------------------------------------
+\section{Lorentz Invariance}\label{sec:lorentz}
+% -----------------------------------------------------------------
+
+\begin{proposition}[Lorentz invariance of $S[\Theta]$]\label{prop:lorentz}
+  Under a local Lorentz transformation
+  $x^\mu \to \Lambda^\mu{}_\nu x^\nu$, the action $S[\Theta]$ defined
+  by \eqref{eq:S}--\eqref{eq:Lpot} is invariant.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Each term is checked separately.
+\begin{itemize}
+  \item \textbf{Gravitational sector}: $\sqrt{-g}\,R$ is a scalar density;
+    standard GR result.
+  \item \textbf{Kinetic sector}: $\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+    contracts a covariant and a contravariant index through $g^{\mu\nu}$;
+    Lorentz invariant by construction.
+  \item \textbf{Gauge sector}: $F^a_{\mu\nu}F^{a\,\mu\nu}$ is a Lorentz scalar;
+    standard Yang--Mills result.
+  \item \textbf{Potential}: $V(\Theta)$ depends only on algebraic invariants of
+    $\Theta$ (trace norms); Lorentz invariant.
+\end{itemize}
+The measure $\sqrt{-g}\,\mathrm{d}^4x$ is a scalar density. Combined, $S[\Theta]$
+is a Lorentz scalar. $\square$
+\end{proof}
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Consistency check: Lorentz invariance]
+\textbf{Verdict: VERIFIED.}
+Each sector of $\mathcal{L}_{\mathrm{UBT}}$ is manifestly Lorentz-covariant
+by construction through the use of $g^{\mu\nu}$, the metric volume element,
+and the gauge-covariant derivative.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Euler--Lagrange Derivation}\label{sec:EL}
+% -----------------------------------------------------------------
+
+\subsection{Variation with Respect to $\Theta^\dagger$}
+
+Treating $\Theta$ and $\Theta^\dagger$ as independent fields, variation of the
+kinetic term gives:
+\begin{equation}
+  \frac{\delta(\sqrt{-g}\,\mathcal{L}_{\mathrm{kin}})}
+       {\delta(\sqrt{-g}\,\Theta^\dagger)}
+  = -D^\mu D_\mu \Theta + \frac{\delta V}{\delta \Theta^\dagger} = 0.
+\end{equation}
+This is the \textbf{biquaternionic Klein--Gordon} equation.  In the
+source-free case ($V=0$, $\mathcal{T}=0$):
+\begin{equation}\label{eq:KG}
+  \nabla^\dagger\nabla\,\Theta = 0.
+\end{equation}
+
+With a source tensor $\mathcal{T}$ coupling to $\Theta$, the master
+field equation becomes:
+\begin{equation}\label{eq:master}
+  \boxed{\nabla^\dagger\nabla\,\Theta(q,\tau)
+  = \kappa\,\mathcal{T}(q,\tau).}
+\end{equation}
+Equation~\eqref{eq:master} is the ``T-shirt formula'' of UBT.
+
+\subsection{Variation with Respect to the Metric}
+
+Varying $S[\Theta]$ with respect to $g^{\mu\nu}$ yields the combined condition
+(see \texttt{canonical/gr\_limit/GR\_limit\_of\_UBT.tex \S3.2}):
+\begin{equation}\label{eq:EL_metric}
+  \mathcal{E}_\Theta + J^*\mathcal{E}_g = 0,
+\end{equation}
+where $\mathcal{E}_\Theta$ and $\mathcal{E}_g$ are the Euler--Lagrange
+expressions for the $\Theta$ and metric sectors respectively, and $J^*$ is
+the Jacobian of the map $\Theta \mapsto g_{\mu\nu}[\Theta]$.  On the
+admissible sector $\mathcal{A}_{\mathrm{UBT}}$ (conditions C1--C6 of
+\texttt{GR\_limit\_of\_UBT.tex}), Eq.~\eqref{eq:EL_metric} reduces to the
+Einstein field equations.
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Open item]
+The full off-shell Euler--Lagrange derivation for $\mathcal{L}_{\mathrm{pot}}$
+is a sketch in \texttt{canonical/THEORY/canonical/canonical\_field\_equations.tex}.
+A rigorous derivation for a general $V(\Theta)$ is an open task.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Well-Posedness of the Field Equations}\label{sec:wellposed}
+% -----------------------------------------------------------------
+
+\subsection{Hyperbolicity}
+
+The principal symbol of the biquaternionic wave operator
+$\nabla^\dagger\nabla$ is
+\begin{equation}
+  P(\xi) = g^{\mu\nu}\xi_\mu\xi_\nu \cdot \mathbf{1}_{\mathbb{B}},
+\end{equation}
+which is hyperbolic with respect to timelike $\xi$ whenever $g_{\mu\nu}$ has
+Lorentzian signature $(-,+,+,+)$.  The metric $g_{\mu\nu}$ inherits
+Lorentzian signature from the biquaternionic metric
+$\mathcal{G}_{\mu\nu}[\Theta]$ under the admissibility conditions
+(see \texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}).
+
+\subsection{Cauchy Problem}
+
+\begin{proposition}[Local existence]\label{prop:cauchy}
+  Locally, given smooth Cauchy data
+  $(\Theta|_{t=0},\,\partial_t\Theta|_{t=0})$ satisfying the constraints,
+  the master equation~\eqref{eq:master} admits a unique smooth solution.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The principal part of~\eqref{eq:master} is the wave operator $g^{\mu\nu}\partial_\mu\partial_\nu$
+on $\Theta$, which is a strictly hyperbolic operator for Lorentzian $g_{\mu\nu}$.
+Local existence and uniqueness follow from standard results for symmetric
+hyperbolic systems (Leray 1953; Choquet-Bruhat 1952 for the coupled
+gravity--matter system).  The biquaternionic algebra does not affect
+hyperbolicity since the principal symbol is proportional to
+$\mathbf{1}_\mathbb{B}$. $\square$
+\end{proof}
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Gap: global well-posedness]
+\textbf{Open problem}: Global existence for large data, long-time behaviour,
+and formation of singularities in the coupled $\Theta$--gravity system
+are not yet addressed.  This is an expected open problem analogous to
+the Einstein--Klein--Gordon system in GR.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Summary and Gap Inventory}\label{sec:summary}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Item & Status & Layer & Source \\
+\midrule
+Action decomposition~\eqref{eq:Ltotal} & Verified & L0 &
+  \texttt{canonical\_action.tex} \\
+Lorentz invariance & Verified & L0 &
+  Prop.~\ref{prop:lorentz} \\
+E-L eq.\ for $\Theta$: master eq.~\eqref{eq:master} & Verified & L0 &
+  \texttt{canonical\_field\_equations.tex} \\
+E-L eq.\ for metric → Einstein & Verified on $\mathcal{A}_{\mathrm{UBT}}$ & L1 &
+  \texttt{GR\_limit\_of\_UBT.tex} \\
+E-L eq.\ for general $V(\Theta)$ & Sketch & L1 &
+  \texttt{canonical\_field\_equations.tex} \\
+Local well-posedness & Verified (sketch) & L1 &
+  Prop.~\ref{prop:cauchy} \\
+Global well-posedness & Open & L2 & — \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}
