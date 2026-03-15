@@ -727,4 +727,213 @@ $V_{\mathrm{eff}}$ linearly (additive formulation natural); derivation from
 $\mathcal{S}[\Theta]$ required to close gap; status: \OPEN\ Motivated
 Conjecture.
 
+% ======================================================================
+\section{Attempted Algebraic Derivation of $\Delta B = 3\pi/2$ from $\mathcal{S}[\Theta]$ (v73)}
+\label{sec:deltaB_derivation_v73}
+% ======================================================================
+
+This section attempts the algebraic derivation of $\Delta B = 3\pi/2$ from the
+UBT action $\mathcal{S}[\Theta]$.  The goal is to show that the two-loop
+correction to the one-loop $\beta$-function coefficient equals $3\pi/2$, which
+would close the R-factor gap and make $\alpha^{-1} = n^* = 137$ a
+zero-parameter prediction.
+
+\subsection{Partition Function Split: $Z = Z_{T^3} \times Z_{S^1}$}
+\label{subsec:partition_split}
+
+The UBT imaginary-time (Euclidean) path integral on $T^3 \times S^1_\psi$
+factorises at one loop as:
+\begin{equation}
+  Z = Z_{T^3} \times Z_{S^1_\psi},
+  \label{eq:Z_factorisation}
+\end{equation}
+where $T^3$ is the spatial 3-torus with volume $V_3 = (2\pi R)^3$ and
+$S^1_\psi$ is the imaginary-time circle with circumference $\beta_\psi = 2\pi
+R_\psi$.
+
+\subsubsection{One-Loop Contribution from $Z_{T^3}$}
+
+The one-loop contribution on $T^3$ is controlled by the heat kernel.  For a
+gauge field with $N_{\mathrm{eff}}$ massless modes on $T^3$, the heat kernel
+takes the form:
+\begin{equation}
+  K_{T^3}(t) \;\sim\; t^{-3/2} \quad (t \to 0^+),
+  \label{eq:heat_kernel_T3}
+\end{equation}
+where $t$ is the proper time and the exponent $-3/2 = -d/2$ with $d = 3$ is
+the \emph{modular weight} $k_{\mathrm{mod}} = 3/2$.  Integrating over $t$ and
+summing over the $N_{\mathrm{eff}}$ modes:
+\begin{equation}
+  \ln Z_{T^3}\big|_{1\text{-loop}}
+    = \int_\epsilon^\infty \frac{dt}{t} \, K_{T^3}(t)
+    \supset N_{\mathrm{eff}} \cdot t^{-3/2}\big|_{\text{regulated}}
+    = B_{\mathrm{base}}
+    = N_{\mathrm{eff}}^{3/2}.
+  \label{eq:Bbase_from_ZT3}
+\end{equation}
+This is the established one-loop result \Lone.
+
+\subsubsection{Two-Loop Contribution from $Z_{S^1_\psi}$}
+
+At two loops, the $\psi$-circle contributes via the Hosotani Wilson line
+$\theta_W = \oint A_\psi \, d\psi$.  The effective potential on $S^1_\psi$ is:
+\begin{equation}
+  V_{\mathrm{Hos}}(\theta_W)
+    = -N_{\mathrm{eff}} \sum_{n \neq 0}
+      \frac{\cos(n\theta_W)}{(2\pi n R_\psi)^{d+1}},
+  \label{eq:hosotani_potential}
+\end{equation}
+with $d = 3$.  At the SSB minimum $\theta_W = \pi/2$ (proved \Lone, see
+\texttt{research\_tracks/research/hosotani\_higgs.tex}~§6), the effective
+period seen by the Wilson line is:
+\begin{equation}
+  \theta_W^{\min} = \frac{\pi}{2}
+  \quad\Rightarrow\quad
+  \text{effective half-period} = \pi.
+  \label{eq:theta_W_min}
+\end{equation}
+
+The two-loop correction to $\ln Z$ from the $S^1_\psi$ sector is the second
+derivative of $V_{\mathrm{Hos}}$ evaluated at the minimum:
+\begin{equation}
+  \delta_2 \ln Z_{S^1_\psi}
+    = -\frac{1}{2} \frac{\partial^2 V_{\mathrm{Hos}}}{\partial\theta_W^2}
+      \bigg|_{\theta_W = \pi/2} \cdot \Delta\theta_W^2,
+  \label{eq:two_loop_Z_S1}
+\end{equation}
+where $\Delta\theta_W^2 = \langle(\theta_W - \pi/2)^2\rangle$ is the
+one-loop variance of the Wilson line.
+
+\subsection{The $\Delta B$ Computation}
+\label{subsec:deltaB_computation}
+
+\subsubsection{Step 1: Heat Kernel Weight from $T^3$}
+
+The heat kernel on $T^3$ with $d = 3$ spatial dimensions gives a one-loop
+integrand $\propto t^{-3/2}$.  This contributes a factor of $k_{\mathrm{mod}}
+= 3/2$ (the power of $t$) to the two-loop correction.  Concretely, the
+regulated two-loop $\beta$-function coefficient on $T^3 \times S^1_\psi$
+receives a contribution:
+\begin{equation}
+  \delta B \;\supset\; k_{\mathrm{mod}} \times (\text{$S^1_\psi$ period factor}).
+  \label{eq:deltaB_sketch}
+\end{equation}
+
+\subsubsection{Step 2: SSB Period Factor from $S^1_\psi$}
+
+At $\theta_W = \pi/2$, the Hosotani potential has its first non-trivial minimum.
+The full range of the Wilson line on $S^1_\psi$ is $[0, 2\pi)$, but the SSB
+minimum divides this into two half-periods.  The \emph{effective} period seen by
+quantum fluctuations around $\theta_W = \pi/2$ is:
+\begin{equation}
+  \Delta\theta_W^{\mathrm{eff}} = \pi.
+  \label{eq:effective_period}
+\end{equation}
+Identifying this as the $S^1_\psi$ contribution to $\delta B$:
+\begin{equation}
+  \text{$S^1_\psi$ period factor} = \theta_W^{\mathrm{eff}} = \pi.
+  \label{eq:S1_factor}
+\end{equation}
+
+\subsubsection{Step 3: Candidate Formula}
+
+Combining Steps 1 and 2:
+\begin{equation}
+  \Delta B
+    = k_{\mathrm{mod}} \times \theta_W^{\mathrm{eff}}
+    = \frac{3}{2} \times \pi
+    = \frac{3\pi}{2}
+    \approx 4.712.
+  \label{eq:DeltaB_candidate}
+\end{equation}
+This matches the empirical target $\Delta B \approx 4.74$ to $0.6\%$.
+
+\subsection{Where the Argument Holds and Where It Breaks}
+\label{subsec:argument_gaps}
+
+\subsubsection{What Is Established}
+
+\begin{itemize}
+  \item \textbf{[Proved \Lzero]}: $k_{\mathrm{mod}} = 3/2$ is the modular
+        weight of the partition function $\hat{Z}(\tau)$ on $T^3$.  This
+        follows from $d/2 = 3/2$ in the Poisson duality $W(\tau) =
+        \tau^{d/2} S(\tau)$; see \texttt{canonical/n\_eff/N\_eff\_proof.tex}.
+  \item \textbf{[Proved \Lone]}: $\theta_W^{\min} = \pi/2$ (SSB angle of the
+        Hosotani potential); see \texttt{hosotani\_higgs.tex}~§6.  The
+        effective half-period is $\pi$.
+  \item \textbf{Numerical agreement}: $3\pi/2 \approx 4.712$ vs.\ target
+        $4.74$, error $0.6\%$.
+\end{itemize}
+
+\subsubsection{What Is Not Yet Derived}
+
+\begin{enumerate}
+  \item \textbf{Gap D1 — Factorisation}: The partition function split
+        $Z = Z_{T^3} \times Z_{S^1_\psi}$ is assumed at one loop.  At two
+        loops, mixing terms $Z_{T^3 \times S^1_\psi}^{(\mathrm{cross})}$
+        may be present.  These cross-terms must be shown to vanish or be
+        sub-leading.
+
+  \item \textbf{Gap D2 — Coefficient identification}: The step
+        ``$\delta B \supset k_{\mathrm{mod}} \times \theta_W^{\mathrm{eff}}$''
+        is asserted on physical grounds but not derived by explicit
+        Feynman-diagram computation on $T^3 \times S^1_\psi$.  A rigorous
+        derivation requires computing the two-loop vacuum diagram with one
+        propagator wrapping $S^1_\psi$ and extracting the coefficient of the
+        logarithmically divergent piece.
+
+  \item \textbf{Gap D3 — Dimensional consistency}: The product
+        $k_{\mathrm{mod}} \times \theta_W^{\mathrm{eff}}$ has dimensions
+        $[\text{dimensionless}] \times [\text{radians}]$.  Since $\theta_W$
+        is an angle and $B$ is dimensionless, this is formally consistent
+        only if the periodicity $\pi$ appears as a pure number (counting
+        degrees of freedom), not as a physical angle.  This requires
+        clarification: whether $\theta_W^{\mathrm{eff}} = \pi$ enters as
+        (a) the period of a compact direction in units of $R_\psi$, or (b)
+        a combinatorial factor $(\text{number of half-periods}) \times
+        \pi/\pi = 1$.
+\end{enumerate}
+
+\subsection{Status of the Derivation}
+\label{subsec:derivation_status}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Step} & \textbf{Result} & \textbf{Status} \\
+\hline
+$Z = Z_{T^3} \times Z_{S^1_\psi}$ factorisation & Assumed at 1-loop & Gap D1 \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ from $Z_{T^3}$ & Confirmed & \Lone \\
+$k_{\mathrm{mod}} = 3/2$ from heat kernel power & $t^{-3/2}$ & \Lzero \\
+$\theta_W^{\min} = \pi/2$, eff.\ period $\pi$ & Confirmed & \Lone \\
+Two-loop $\delta B = k_{\mathrm{mod}} \times \pi$ & Candidate formula & Gap D2 \\
+Dimensional consistency of product & Needs clarification & Gap D3 \\
+Full algebraic derivation from $\mathcal{S}[\Theta]$ & \textbf{Not completed} & \OPEN \\
+\hline
+$\Delta B = 3\pi/2 \approx 4.712$ (0.6\% from target) & Motivated Conjecture & \OPEN \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Summary of Attempted Derivation]
+The partition function split $Z = Z_{T^3} \times Z_{S^1_\psi}$, combined with
+the heat kernel modular weight $k_{\mathrm{mod}} = 3/2$ (\Lzero) and the SSB
+effective period $\theta_W^{\mathrm{eff}} = \pi$ (\Lone), produces the
+candidate $\Delta B = 3\pi/2$ in three natural steps.  However, the derivation
+is not complete: the factorisation at two loops (Gap D1) and the explicit
+coefficient identification via Feynman diagrams (Gap D2) remain unperformed.
+The argument is best described as a \emph{Motivated Conjecture} — the product
+of two proved results gives the correct numerical answer to 0.6\%, but the
+algebraic connection to $\mathcal{S}[\Theta]$ is not yet established.
+\end{remark}
+
+\medskip
+\noindent\textbf{DERIVATION\_INDEX.md update (v73)}: R factor row — §10
+derivation attempt: partition split $Z = Z_{T^3} \times Z_{S^1_\psi}$
+documented; $B_{\mathrm{base}}$ from $Z_{T^3}$ confirmed; candidate two-loop
+formula $\Delta B = k_{\mathrm{mod}} \times \theta_W^{\mathrm{eff}} = 3\pi/2$
+derived schematically; three gaps identified (factorisation D1, coefficient D2,
+dimensional D3); status remains \OPEN\ Motivated Conjecture; explicit
+Feynman-diagram computation needed to close D1+D2.
+
 \end{document}
