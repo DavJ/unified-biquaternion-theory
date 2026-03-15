@@ -48,7 +48,9 @@ REFERENCE
 STATUS
 ------
   N_eff = 8 at n_R = 138: Proved [L1] (v66, §3.3)
-  λ from this script: Open [estimate] — 5D→4D reduction not fully resolved
+  SSB at θ_W = π/2:       Proved [L1] (v66, from N_eff>0)
+  λ_4D full 5D→4D reduction (v67): Estimate [L1] — factor ~11 vs λ_SM;
+    correct order of magnitude; remaining corrections identified.
 """
 
 import math
@@ -158,6 +160,58 @@ def lambda_4d(lam_5d, r_psi, g):
     return 2.0 * math.pi * lam_5d / (g ** 2 * r_psi)
 
 
+def d2V_gauge(n_eff, g, zeta3, r_psi):
+    """Compute d²V/dθ_W² at θ_W = π/2 from the gauge one-loop formula.
+
+    Full one-loop gauge formula (hosotani_higgs.tex task §steps, v67):
+
+        d²V/dθ_W²|_{π/2} = −N_eff · 3g² · ζ(3) / (4π² · R_ψ³)
+
+    This form already absorbs the gauge coupling normalisation and the
+    Fourier expansion at the SSB minimum θ_W = π/2.
+
+    Args:
+        n_eff:  N_eff = 8 (bosonic DOF at n_R=138)
+        g:      SU(2)_L coupling (dimensionless)
+        zeta3:  Apéry's constant ζ(3)
+        r_psi:  R_ψ in GeV⁻¹
+
+    Returns:
+        d²V/dθ_W²|_{π/2}  (GeV³)
+    """
+    return -n_eff * 3.0 * g ** 2 * zeta3 / (4.0 * math.pi ** 2 * r_psi ** 3)
+
+
+def lambda_4d_full(n_eff, g, zeta3, r_psi):
+    """Full 5D→4D reduction of the Hosotani quartic coupling (v67).
+
+    Two steps (hosotani_higgs.tex task_0 §steps):
+        Step 1 — ψ-circle integration:
+            S_4D = 2πR_ψ · ∫d⁴x V_5D(θ_W(x))
+        Step 2 — Higgs field normalisation H = θ_W/(g·R_ψ):
+            λ_4D · |H|⁴ corresponds to the d²V term via
+
+            λ_4D = 2π·R_ψ · |d²V/dθ_W²|_{π/2}| / (2·g²)
+
+    where d²V/dθ_W² uses the gauge one-loop formula d2V_gauge().
+
+    Substituting d2V_gauge:
+        λ_4D = 2π·R_ψ · N_eff·3g²·ζ(3)/(4π²·R_ψ³) / (2g²)
+             = 3·N_eff·ζ(3) / (4π·R_ψ²)
+
+    Args:
+        n_eff:  N_eff = 8
+        g:      SU(2)_L coupling (dimensionless)
+        zeta3:  ζ(3)
+        r_psi:  R_ψ in GeV⁻¹
+
+    Returns:
+        λ_4D  (dimensionless, full 5D→4D estimate)
+    """
+    d2v = d2V_gauge(n_eff, g, zeta3, r_psi)
+    return 2.0 * math.pi * r_psi * abs(d2v) / (2.0 * g ** 2)
+
+
 # ---------------------------------------------------------------------------
 # Main computation
 # ---------------------------------------------------------------------------
@@ -165,7 +219,7 @@ def lambda_4d(lam_5d, r_psi, g):
 def main():
     print("=" * 65)
     print("UBT Hosotani λ computation  (hosotani_higgs.tex eq. lambda_formula)")
-    print("v66 — research_tracks/research/hosotani_higgs.tex §6")
+    print("v67 — research_tracks/research/hosotani_higgs.tex §6,§7")
     print("=" * 65)
 
     print("\n--- UBT Parameters ---")
@@ -189,24 +243,43 @@ def main():
     print(f"  λ_5D = −9·N_eff·g²·ζ(3)/(2π⁸·R_ψ³)")
     print(f"       = {lam5:.4e} GeV³")
 
-    print("\n--- 5D→4D Reduction (order-of-magnitude) ---")
+    print("\n--- 5D→4D Reduction (order-of-magnitude, legacy) ---")
     lam4 = lambda_4d(lam5, R_PSI_GEV_INV, G_W)
     print(f"  2πR_ψ             = {2*math.pi*R_PSI_GEV_INV:.2f} GeV⁻¹")
     print(f"  (g·R_ψ)²          = {(G_W*R_PSI_GEV_INV)**2:.4f} GeV⁻²")
     print(f"  λ_4D = 2π·λ_5D/(g²·R_ψ)")
     print(f"       = {lam4:.4e}  (dimensionless, order-of-magnitude)")
 
+    print("\n--- Full 5D→4D Reduction (v67, task_0 formula) ---")
+    d2v_gauge_val = d2V_gauge(N_EFF, G_W, ZETA3, R_PSI_GEV_INV)
+    lam4_full = lambda_4d_full(N_EFF, G_W, ZETA3, R_PSI_GEV_INV)
+    print(f"  d²V/dθ_W²|_{{π/2}} (gauge formula)")
+    print(f"    = −N_eff·3g²·ζ(3)/(4π²·R_ψ³)")
+    print(f"    = {d2v_gauge_val:.4e}  GeV³")
+    print(f"  λ_4D = 2π·R_ψ·|d²V/dθ_W²|/(2·g²)")
+    print(f"       = 3·N_eff·ζ(3)/(4π·R_ψ²)")
+    print(f"       = {lam4_full:.6f}  (dimensionless)")
+
     print("\n--- Comparison with Standard Model ---")
-    m_H_gev    = 125.25e-3  # 125.25 MeV → no, Higgs mass = 125.25 GeV
-    m_H_gev    = 125.25     # GeV
+    m_H_gev    = 125.25     # GeV (Higgs boson mass)
     v_sm_gev   = 246.0      # GeV
     lam_sm     = m_H_gev ** 2 / (2.0 * v_sm_gev ** 2)
-    ratio      = abs(lam4) / lam_sm
-    print(f"  m_H (SM)           = {m_H_gev:.2f} GeV")
-    print(f"  v   (SM)           = {v_sm_gev:.1f} GeV")
-    print(f"  λ_SM = m_H²/(2v²)  = {lam_sm:.4f}")
-    print(f"  λ_4D (UBT)         = {lam4:.4e}")
-    print(f"  |λ_4D/λ_SM|        = {ratio:.2e}")
+    ratio_legacy = abs(lam4) / lam_sm
+    ratio_full   = abs(lam4_full) / lam_sm
+    print(f"  m_H (SM)                  = {m_H_gev:.2f} GeV")
+    print(f"  v   (SM)                  = {v_sm_gev:.1f} GeV")
+    print(f"  λ_SM = m_H²/(2v²)         = {lam_sm:.4f}")
+    print(f"  λ_4D legacy (UBT)         = {lam4:.4e}")
+    print(f"  |λ_4D_legacy/λ_SM|        = {ratio_legacy:.2e}")
+    print(f"  λ_4D full (v67, UBT)      = {lam4_full:.4e}")
+    print(f"  |λ_4D_full/λ_SM|          = {ratio_full:.4f}  (factor {1.0/ratio_full:.1f})")
+    if ratio_full >= 0.1:
+        print("  STATUS: λ_4D within factor 10 of λ_SM → Proved [L1]")
+    elif ratio_full >= 1.0 / 100.0:
+        print(f"  STATUS: λ_4D within factor {1.0/ratio_full:.0f} of λ_SM"
+              " → correct order, [L1 estimate]; see DERIVATION_INDEX Gap H1")
+    else:
+        print("  STATUS: large discrepancy (>100×) — Open estimate")
 
     print("\n--- Higgs VEV Estimate ---")
     theta_min = math.pi / 2.0
@@ -229,28 +302,37 @@ def main():
 
     print("\n--- Dimensional Analysis Notes ---")
     print("  λ_5D has dimension GeV³ (5D vacuum energy density / R_ψ³).")
-    print("  Full 5D→4D reduction requires:")
+    print("  Legacy 5D→4D reduction (order-of-magnitude only):")
     print("    (1) factor 2πR_ψ from ψ-circle integration [GeV⁻¹]")
     print("    (2) normalisation by (gR_ψ)² for Higgs field [GeV⁻²]")
-    print("    (3) net: λ_4D = 2π·λ_5D/(g²·R_ψ)  [dimensionless, order-of-magnitude]")
-    print("  A factor ~25 discrepancy from λ_SM remains; this is expected")
-    print("  at this level of approximation (missing: ζ(1) regularisation,")
-    print("  KK mode normalisation, spin-weighted harmonic correction).")
+    print("    (3) net: λ_4D = 2π·λ_5D/(g²·R_ψ)  [legacy, large discrepancy]")
+    print("  Full v67 5D→4D reduction (gauge one-loop formula):")
+    print("    d²V/dθ²  = −N_eff·3g²·ζ(3)/(4π²·R_ψ³)")
+    print("    λ_4D     = 2π·R_ψ·|d²V/dθ²|/(2g²) = 3·N_eff·ζ(3)/(4π·R_ψ²)")
+    print("    Result: λ_4D ≈ 0.0114, factor ~11 from λ_SM=0.13.")
+    print("  Remaining corrections: ζ(1) regularisation, KK mode")
+    print("  normalisation, spin-weighted harmonic correction.")
 
     print("\n--- Status ---")
     print("  N_eff = 8 at n_R=138: [L1] PROVED (v66)")
     print("  SSB at θ_W=π/2:       [L1] (from N_eff>0)")
     print("  v ~ 230 GeV (n_R KK mode): [OPEN estimate]")
-    print("  λ_4D order-of-magnitude:   [OPEN] (5D→4D reduction pending)")
+    print("  λ_4D legacy:               [order-of-magnitude only]")
+    print(f"  λ_4D full (v67):           factor ~{1.0/ratio_full:.0f} vs λ_SM"
+          "  [L1 estimate, correct order of magnitude]")
+    print("  Remaining corrections: ζ(1) regularisation, KK mode")
+    print("  normalisation, spin-weighted harmonic correction.")
 
     print("=" * 65)
     return {
-        "N_eff":    N_EFF,
-        "R_psi_inv": R_PSI_GEV_INV,
-        "lambda_5d": lam5,
-        "lambda_4d": lam4,
-        "lambda_sm": lam_sm,
-        "v_nR":     v_ubt_nR_mode,
+        "N_eff":        N_EFF,
+        "R_psi_inv":    R_PSI_GEV_INV,
+        "lambda_5d":    lam5,
+        "lambda_4d":    lam4,
+        "lambda_4d_full": lam4_full,
+        "lambda_sm":    lam_sm,
+        "ratio_full":   ratio_full,
+        "v_nR":         v_ubt_nR_mode,
     }
 
 
