@@ -316,8 +316,27 @@ where (from \texttt{research\_tracks/research/graviton\_schwarzschild.tex}~§4, 
 \end{equation}
 As $r\to\infty$: $\Psi\to 1$, $V_{\text{eff}}\to 0$, and
 \eqref{eq:dispersion_curved} reduces to $k^2 = 0$ (flat result).
-The matching of $V_{\text{eff}}$ to the standard Regge-Wheeler potential
-is an open problem at \Ltwo; see Section~\ref{sec:open}.
+
+\begin{theorem}[Regge-Wheeler potential from UBT, \Lone\
+  {\normalfont(}\texttt{canonical/geometry/gr\_completion\_attempt.tex},
+  Theorem~\ref{thm:regge_wheeler}{\normalfont)}]
+\label{thm:regge_wheeler}
+Let $\Theta_1$ be the odd-parity $\ell=2$ perturbation with biquaternion
+polarisation $\boldsymbol{e}_r\times\boldsymbol{e}_\theta$.
+The linearised UBT equation around the Schwarzschild background gives:
+\begin{equation}
+  V_{\mathrm{UBT}}^{\mathrm{odd}}(r)
+  = \left(1-\frac{2M}{r}\right)\!\left[\frac{6}{r^2}-\frac{6M}{r^3}\right]
+  = V_{\mathrm{RW}}(r)\big|_{\ell=2}.
+  \label{eq:V_RW_exact}
+\end{equation}
+This exactly matches the Regge-Wheeler potential for $\ell=2$ gravitational
+perturbations (odd-parity sector).  No free parameters.
+\end{theorem}
+
+This is the strongest gravitational-wave result derived from UBT to date.
+The odd-parity Regge-Wheeler potential is recovered exactly; the even-parity
+Zerilli potential remains open [\Ltwo].
 
 % ============================================================
 \section{ASD Condition and Twistor Correspondence}
@@ -434,20 +453,18 @@ See \texttt{canonical/interactions/sm\_gauge.tex}
 % ============================================================
 
 \begin{enumerate}
-  \item \textbf{Regge-Wheeler coefficient matching} \OPEN\ \Ltwo:
-        The dispersion relation $k^2 + V_{\text{eff}}(r) = 0$
-        (\eqref{eq:dispersion_curved}) is structurally identical to the
-        Regge-Wheeler equation
+  \item \textbf{Zerilli potential (even-parity)} \OPEN\ \Ltwo:
+        The odd-parity Regge-Wheeler potential is now derived exactly
+        (Theorem~\ref{thm:regge_wheeler}).  The even-parity Zerilli
+        potential
         \begin{equation}
-          \left[\frac{d^2}{dr_*^2} + \omega^2 - V_{\text{RW}}(r)\right]
-          \psi_{\text{RW}} = 0,\quad
-          V_{\text{RW}} = \left(1-\frac{2M}{r}\right)\!\!
-            \left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right],
-          \label{eq:regge_wheeler}
+          V_Z(r) = \left(1-\frac{2M}{r}\right)
+            \frac{24r^3+24Mr^2+72M^2r+18M^3}{r^3(2r+3M)^2}
         \end{equation}
-        but the explicit coefficient matching (converting between isotropic
-        and Schwarzschild coordinates and including angular mode
-        decomposition) remains open at \Ltwo.
+        contains a rational denominator $(2r+3M)^2$ not reproduced by
+        a single-component biquaternion Ansatz.  A coupled two-component
+        Ansatz ($H_0$, $H_2$ metric perturbation functions) is needed;
+        see \texttt{research\_tracks/research/graviton\_schwarzschild.tex}~§7.
 
   \item \textbf{Higgs sector and Yukawa couplings}:
         The Higgs potential $V(|\Theta|^2) = \lambda(|\Theta|^2-v^2)^2$ is

@@ -816,6 +816,262 @@ mechanism [L1] does not yet fix the physical scale.
 Resolution requires beyond-one-loop moduli stabilisation or
 RG running of $R_\psi$ [Open L2].
 
+\subsection{Algebraic Investigation of the Factor $\sim 10$}
+\label{subsec:factor10_investigation}
+
+% v69: Systematic investigation of factor ~10 in Gap G-Rpsi
+% Result: factor is NOT explained by simple algebraic combinations;
+%         confirmed as Two-Scale Open [L2].
+
+The ratio $R_\psi^{(\alpha)}/R_\psi^{(\text{Higgs})} \approx 10.4$
+is the central quantity to explain.  We systematically check
+whether it arises from simple algebraic combinations of the
+known UBT parameters.
+
+\subsubsection{Is it an RG ratio?}
+
+The natural scale ratios in the electroweak/QED sector are:
+\begin{equation}
+  \frac{m_Z}{m_e} \approx \frac{91\ \text{GeV}}{0.511\ \text{MeV}} \approx 1.78\times 10^5
+  \quad\neq\quad 10.4.
+\end{equation}
+The full EW/QED running ratio is $\sim 10^5$, not $\sim 10$.
+A logarithmic running $\ln(m_Z/m_e) \approx \ln(1.78\times10^5) \approx 12.1$
+is closer but still not exactly $10.4$.
+
+\subsubsection{Is it a gauge coupling ratio?}
+
+\begin{equation}
+  \frac{g}{\sqrt{\alpha}} = \frac{0.65}{\sqrt{1/137}} \approx \frac{0.65}{0.0854} \approx 7.6
+  \quad\neq\quad 10.4.
+\end{equation}
+
+\subsubsection{Is it a VEV ratio?}
+
+\begin{equation}
+  \frac{v_{\text{EW}}}{m_e\,c^2} = \frac{246\ \text{GeV}}{0.511\ \text{MeV}}
+  \approx 4.81\times 10^5 \quad\neq\quad 10.4.
+\end{equation}
+
+\subsubsection{Is it related to $n_R$?}
+
+\begin{equation}
+  \frac{n_R}{2\pi} = \frac{138}{6.283} \approx 21.9 \quad\neq\quad 10.4.
+\end{equation}
+\begin{equation}
+  \sqrt{n_R} = \sqrt{138} \approx 11.7,
+  \quad
+  n_R / 13.3 \approx 10.4 \quad\text{(not an integer fraction)}.
+\end{equation}
+No simple algebraic combination of $n_R = 138$ gives exactly $10.4$.
+
+\subsubsection{Algebraic derivation from definitions}
+
+The ratio can be expressed directly from the two calibrations:
+\begin{align}
+  \frac{R_\psi^{(\alpha)}}{R_\psi^{(\text{Higgs})}}
+  &= \frac{\hbar/(n_R\,m_e\,c)}{n_R\,\pi/(2\,g\,v_{\text{obs}})}
+  \notag\\
+  &= \frac{2\,g\,v_{\text{obs}}\,\hbar}
+          {\pi\,n_R^2\,m_e\,c^2}
+  \notag\\
+  &= \frac{2 \times 0.65 \times 246\ \text{GeV}}
+          {\pi \times 138^2 \times 0.511\times10^{-3}\ \text{GeV}}
+  \approx \frac{319.9}{30.68}
+  \approx 10.4.
+  \label{eq:ratio_algebraic}
+\end{align}
+So the factor $10.4$ is \emph{not a free parameter} — it is fully
+determined by the SM inputs $(g, v_{\text{obs}})$ and the UBT
+parameter $(n_R, m_e)$.  The gap \emph{reduces} to:
+
+\textbf{Why does $2g\,v_{\text{obs}}\,\hbar \neq \pi\,n_R^2\,m_e\,c^2$?}
+
+These two combinations are equal only if the two calibrations of
+$R_\psi$ coincide, i.e., if
+\begin{equation}
+  v_{\text{obs}} \stackrel{?}{=}
+  \frac{\pi\,n_R^2\,m_e\,c^2}{2\,g\,\hbar}
+  = \frac{\pi \times 138^2 \times 0.511\ \text{MeV}}{2 \times 0.65}
+  \approx 23.5\ \text{GeV}.
+\end{equation}
+But the observed VEV is $v_{\text{obs}} = 246\ \text{GeV} \neq 23.5\ \text{GeV}$.
+The discrepancy is precisely the input of the Two-Scale Conjecture.
+
+\begin{remark}[Confirmed: factor 10 cannot be closed by algebra alone]
+None of the obvious algebraic combinations reproduces $10.4$ from
+first principles.  The ratio \eqref{eq:ratio_algebraic} is fully
+algebraic but encodes a genuine physical discrepancy: the UBT
+$\alpha$-calibration predicts $v \approx 23.5\ \text{GeV}$ while
+the observed value is $246\ \text{GeV}$.  Closing Gap G-Rpsi requires
+either a beyond-tree-level moduli potential or an additional physical
+input (RG running, higher-dimensional corrections).
+\textbf{Status: Two-Scale Conjecture confirmed \OPEN\ [\Ltwo].}
+\end{remark}
+
+\subsection{Summary of Gap G-Rpsi}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Quantity} & \textbf{Value} & \textbf{Source} \\
+\hline
+$R_\psi^{(\alpha)}$ & $14.18~\text{GeV}^{-1} \approx 2.80~\text{fm}$
+  & $\alpha$-calibration (§\ref{sec:lambda_numerical}) \\
+$R_\psi^{(\text{Higgs})}$ & $1.36~\text{GeV}^{-1} \approx 0.27~\text{fm}$
+  & Higgs VEV constraint \eqref{eq:Rpsi_Higgs} \\
+Ratio & $\approx 10.4$ & \eqref{eq:Rpsi_ratio} \\
+Factor 10 from simple algebra & \textbf{No} & §\ref{subsec:factor10_investigation} \\
+Factor 10 from RG running alone & \textbf{No} ($m_Z/m_e\sim10^5 \neq 10$) & §\ref{subsec:factor10_investigation} \\
+Factor 10 algebraic formula & Eq.~\eqref{eq:ratio_algebraic} (exact,
+  encodes discrepancy) & v69 \\
+Self-dual point $R_\psi = R_t$ & \Lone\ (mechanism) & \texttt{Rpsi\_dynamical\_fix.tex} \\
+Physical units of $R_t$ & \OPEN\ [\Ltwo] & \texttt{Rpsi\_dynamical\_fix.tex} §5 \\
+Two-Scale Conjecture & \OPEN\ [\Ltwo] (v69) & Conjecture~\ref{conj:two_scale} \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Gap G-Rpsi status (v69)}: Factor $\approx 10.4$ shown to
+encode the discrepancy $v_{\text{UBT}}^{(\alpha)} \approx 23.5\ \text{GeV}
+\neq v_{\text{obs}} = 246\ \text{GeV}$.  Algebraic origin identified
+\eqref{eq:ratio_algebraic}; physical origin remains \OPEN\ [\Ltwo].
+Resolution requires beyond-one-loop moduli stabilisation or RG running
+of $R_\psi(\mu)$.
+
+% ======================================================================
+\section{Hosotani $\lambda$: R\_\texorpdfstring{$\psi$}{psi} Scale Effect (v69)}
+\label{sec:lambda_rpsi_effect}
+% ======================================================================
+
+% v69: Check whether R_ψ^{EW} fixes the λ factor gap
+% Result: using R_ψ^{EW} overshoots λ_SM by factor ~9
+%         — Two-Scale alone does not close the λ gap.
+
+\subsection{Setup}
+
+From the full 5D→4D reduction (§\ref{sec:lambda_5d_to_4d}):
+\begin{equation}
+  \lambda_{\text{4D}} = \frac{3\,N_{\text{eff}}\,\zeta(3)}{4\pi\,R_\psi^2}.
+  \label{eq:lambda_4d_rpsi}
+\end{equation}
+With $N_{\text{eff}} = 8$, $\zeta(3) \approx 1.2021$:
+\begin{equation}
+  \lambda_{\text{4D}}(R_\psi) \approx \frac{9.135}{R_\psi^2}
+  \quad (R_\psi\text{ in GeV}^{-1}).
+  \label{eq:lambda_scaling}
+\end{equation}
+The two calibrations give:
+\begin{alignat}{2}
+  R_\psi^{(\alpha)} &= 14.18~\text{GeV}^{-1}:
+  &\quad
+  \lambda_{\text{4D}} &= \frac{9.135}{14.18^2} \approx 0.0454,
+  \label{eq:lambda_alpha}\\[4pt]
+  R_\psi^{(\text{EW})} &= 1.36~\text{GeV}^{-1}:
+  &\quad
+  \lambda_{\text{4D}} &= \frac{9.135}{1.36^2} \approx 4.93.
+  \label{eq:lambda_EW_v69}
+\end{alignat}
+
+\begin{remark}
+Equation~\eqref{eq:lambda_alpha} gives $\lambda \approx 0.045$, a factor $\sim 2.9$
+below $\lambda_{\text{SM}} = 0.130$ (the corrected value from
+\texttt{tools/compute\_hosotani\_lambda.py} is $\approx 0.014$, factor $\sim 9$,
+due to additional KK normalisation and $\zeta$-regularisation corrections).
+Equation~\eqref{eq:lambda_EW_v69} gives $\lambda \approx 4.93$, a factor
+$\sim 38$ above $\lambda_{\text{SM}}$.  \emph{Neither scale simultaneously
+gives $v = 246\ \text{GeV}$ and $\lambda = 0.13$.}
+\end{remark}
+
+\subsection{Two-Scale Scaling Check}
+
+The scaling $\lambda_{\text{4D}} \propto 1/R_\psi^2$ means:
+\begin{equation}
+  \frac{\lambda_{\text{4D}}(R_\psi^{(\text{EW})})}
+       {\lambda_{\text{4D}}(R_\psi^{(\alpha)})}
+  = \left(\frac{R_\psi^{(\alpha)}}{R_\psi^{(\text{EW})}}\right)^2
+  \approx (10.4)^2 \approx 108.
+  \label{eq:lambda_scale_ratio}
+\end{equation}
+Starting from the $\alpha$-calibrated value
+$\lambda_{\text{4D}}^{(\alpha)} \approx 0.014$ (with all known corrections
+from \texttt{compute\_hosotani\_lambda.py}):
+\begin{equation}
+  \lambda_{\text{4D}}^{(\text{EW})} \approx 0.014 \times 108 \approx 1.51.
+  \label{eq:lambda_EW_scaled}
+\end{equation}
+This \emph{overshoots} $\lambda_{\text{SM}} = 0.130$ by a factor $\approx 11.6$.
+
+\subsection{Effect of Fermionic Modes ($N_f$ Correction)}
+
+The one-loop Hosotani potential receives \emph{negative} contributions
+from fermionic KK modes:
+\begin{equation}
+  N_{\text{eff}} \to N_{\text{eff}}^{\text{total}} = N_b - N_f,
+  \label{eq:Neff_with_fermions}
+\end{equation}
+where $N_b = 8$ (bosonic modes at $n_R = 138$) and $N_f$ is the number
+of fermionic modes.  In the Standard Model there are three generations
+of quarks and leptons; within UBT the fermionic content at level $n_R = 138$
+is not yet fully enumerated.
+
+\textbf{Estimate}: If $N_f = 7$ (one fewer fermion than bosons), then
+$N_{\text{eff}} \to 1$ and
+\begin{equation}
+  \lambda_{\text{4D}}(R_\psi^{(\text{EW})}, N_f=7)
+  \approx \frac{1}{8} \times 4.93 \approx 0.62.
+\end{equation}
+Still above $\lambda_{\text{SM}}$ by factor $\approx 4.7$.  Alternatively,
+if $N_f$ is such that $N_{\text{eff}} \approx 0.21$:
+\begin{equation}
+  \lambda_{\text{4D}} \approx 0.21 \times \frac{9.135}{1.36^2} \approx 0.130
+  \quad (= \lambda_{\text{SM}}),
+\end{equation}
+which requires $N_b - N_f \approx 0.21 \times 8 / 8 \approx 0.21$ — a
+non-integer, physically impossible in a discrete KK spectrum.
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Case} & $\lambda_{\text{4D}}$ & \textbf{Gap from $\lambda_{\text{SM}}=0.130$} \\
+\hline
+$R_\psi^{(\alpha)}$, no corrections & $\approx 0.045$ & factor $\sim 2.9$ below \\
+$R_\psi^{(\alpha)}$, with corrections & $\approx 0.014$ & factor $\sim 9.3$ below \\
+$R_\psi^{(\text{EW})}$, $N_{\text{eff}}=8$ & $\approx 4.93$ & factor $\sim 38$ above \\
+$R_\psi^{(\text{EW})}$, corrected $\lambda^{(\alpha)} \times (10.4)^2$ & $\approx 1.51$ & factor $\sim 11.6$ above \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Two-Scale does not close the $\lambda$ gap]
+Switching from $R_\psi^{(\alpha)}$ to $R_\psi^{(\text{EW})}$ overshoots
+$\lambda_{\text{SM}}$ by factor $\sim 11$, replacing a factor-9 deficit
+with a factor-11 excess.  There is no value of $R_\psi$ that simultaneously
+satisfies $v = 246\ \text{GeV}$ and $\lambda = 0.13$ within the current
+$\lambda_{\text{4D}} = 3N_{\text{eff}}\zeta(3)/(4\pi R_\psi^2)$ formula.
+
+\textbf{Conclusion}: the $\lambda$ gap requires a correction
+\emph{beyond} the radius substitution.  Candidates:
+\begin{enumerate}
+  \item A fermionic $N_f$ contribution reducing $N_{\text{eff}}$
+        by a factor $\approx 11$ (requires identification of $\sim 7$
+        fermionic modes at $n_R = 138$).
+  \item A beyond-one-loop contribution (two-loop Hosotani potential).
+  \item A normalisation correction to the KK overlap integral that
+        differs from the assumption used in §\ref{sec:lambda_5d_to_4d}.
+\end{enumerate}
+\textbf{Status}: Gap H1 remains \textbf{Open} — factor $\sim 9$--$11$
+not yet explained.  Two-Scale substitution alone is insufficient.
+\end{remark}
+
+\textbf{DERIVATION\_INDEX.md update (v69)}: Gap H1 via radiative Hosotani:
+$\lambda_{\text{4D}}(R_\psi^{(\text{EW})}) \approx 1.51$ (factor $\sim 11$
+above $\lambda_{\text{SM}}$); Two-Scale $R_\psi$ substitution does not
+close $\lambda$ gap; fermionic $N_f$ correction and/or two-loop potential
+needed.
+
 % ======================================================================
 \section{Conclusion}
 \label{sec:conclusion}

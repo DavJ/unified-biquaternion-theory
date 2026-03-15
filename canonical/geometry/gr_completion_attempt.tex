@@ -185,4 +185,45 @@ UBT propagates massless spin-2 excitations (gravitons) in flat vacuum.
 \textbf{Source}: \texttt{research\_tracks/research/graviton\_from\_perturbation.tex}.
 \end{theorem}
 
+\subsection{Regge-Wheeler Potential from UBT}
+
+\begin{theorem}[Regge-Wheeler potential from UBT, \textbf{[L1]}]
+\label{thm:regge_wheeler}
+Let $\Theta = \Theta_0^{(S)} + \varepsilon\Theta_1$ where
+$\Theta_0^{(S)}$ is the Schwarzschild solution and $\Theta_1$
+is the odd-parity $\ell=2$ perturbation with biquaternion
+polarisation $\boldsymbol{e}_r \times \boldsymbol{e}_\theta$.
+The linearised UBT equation gives the effective potential:
+\begin{equation}
+  \label{eq:V_UBT_odd}
+  V_{\mathrm{UBT}}^{\mathrm{odd}}(r) =
+  \left(1 - \frac{2M}{r}\right)\!\left[\frac{6}{r^2} - \frac{6M}{r^3}\right]
+  = V_{\mathrm{RW}}(r)\big|_{\ell=2},
+\end{equation}
+which is exactly the Regge-Wheeler potential for $\ell=2$ gravitational
+perturbations.
+
+\textbf{Proof sketch}: The match requires two ingredients:
+(1) parity decomposition $\Theta_1 = \Theta_1^{\mathrm{odd}} + \Theta_1^{\mathrm{even}}$
+isolating the odd-parity sector; and
+(2) the spin-weight correction from the biquaternion polarisation
+$\boldsymbol{e}_r \times \boldsymbol{e}_\theta = \boldsymbol{e}_\phi$,
+which contributes $V_{\mathrm{spin}} = -6M/r^3$ via the Riemann tensor
+commutator $[\nabla_\mu, \nabla_\nu]\Theta_1^{\boldsymbol{e}_\phi}
+= R_{\mu\nu\rho}{}^\sigma\Theta_1^{\boldsymbol{e}_\sigma}$.
+The centrifugal term $\ell(\ell+1)/r^2 = 6/r^2$ comes from the angular
+eigenvalue; the spin term gives exactly $-6M/r^3$, reproducing
+$V_{\mathrm{RW}}$ without free parameters.
+
+\textbf{Source}: \texttt{research\_tracks/research/graviton\_schwarzschild.tex}
+Theorem~6.4.1 (Odd-Parity Regge-Wheeler from UBT).
+\end{theorem}
+
+\begin{remark}
+This is the first exact general-relativistic gravitational-wave result
+derived from UBT.  The odd-parity ($\ell=2$) Regge-Wheeler potential
+is reproduced without any free parameters.  The even-parity Zerilli
+potential remains open [\Ltwo]; see \texttt{research\_tracks/research/graviton\_schwarzschild.tex}~§7.
+\end{remark}
+
 % End of GR completion attempt section

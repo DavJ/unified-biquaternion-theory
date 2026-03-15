@@ -38,8 +38,9 @@
 - [x] §1 Introduction: motivates biquaternion framework; cite{UBTAlpha} cross-ref present
 - [ ] §2 UBT action and covariant derivative
 - [ ] §3 Schwarzschild background Θ₀^(S) derived
-- [ ] §4 Graviton dispersion and V_eff(r)
-- [ ] §5 Regge-Wheeler coefficient comparison (Gap L2: OPEN — angular decomposition pending)
+- [x] §4 Graviton dispersion and V_eff(r); **Regge-Wheeler exact match [L1] added (v69)**
+- [x] §4 Regge-Wheeler result: `thm:regge_wheeler` references canonical/ theorem (added v69)
+- [ ] §5 (was Regge-Wheeler open): now Zerilli even-parity (Gap L2: OPEN — rational denominator)
 - [ ] §6 Twistor correspondence
 - [x] §7 Electroweak Symmetry Breaking via Hosotani Mechanism (added v68)
 - [ ] References: Regge & Wheeler (1957), Zerilli (1970), Penrose (1976), UBT Alpha paper
