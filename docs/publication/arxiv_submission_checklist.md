@@ -29,3 +29,4 @@
 - [x] License comment added (CC BY-NC-ND 4.0 header present in file)
 - [ ] arXiv submission (after first paper ID known)
 - [ ] Add cross-reference to first paper once arXiv ID available
+- [ ] SUBMIT to https://arxiv.org — target: hep-th + math-ph cross-list

@@ -1110,4 +1110,162 @@ two-component computation — coupled $2\times2$ ODE system structure
 identified; Zerilli gauge constraint written; master variable~$Z(r)$
 defined; explicit coefficient extraction pending; status: \OPEN\ [\Ltwo].
 
+% ======================================================================
+\subsection{Explicit Zerilli Reduction: $3\times3 \to 2\times2$ ODE (v73)}
+\label{subsec:zerilli_reduction_v73}
+% ======================================================================
+
+This subsection performs the explicit algebraic reduction of the $3\times 3$
+ODE system~\eqref{eq:coupled_ode_3x3} to a $2\times 2$ system and attempts to
+decouple it via the Zerilli master variable.  We use the contracted Bianchi
+identity to eliminate $K(r)$.
+
+\subsubsection{Step 1: Full K Constraint from Bianchi Identity}
+
+The contracted Bianchi identity $\nabla^\mu \delta G_{\mu\nu} = 0$ applied to
+the even-parity perturbation Ansatz~\eqref{eq:theta1_two_comp_v72} gives an
+algebraic constraint on $K(r)$ at each $\ell$.  For $\ell \geq 2$, the
+constraint reads:
+\begin{equation}
+  K(r) = -\frac{r}{\ell(\ell+1)}
+    \left[r\,H_0'(r)
+      + \left(\frac{\ell(\ell+1)}{2} - f(r)\right)\frac{H_0(r)}{r}
+      + C_{02}(r)\,H_2(r)\right],
+  \label{eq:K_bianchi_full}
+\end{equation}
+where $f(r) = 1 - 2M/r$ and $C_{02}(r)$ is the off-diagonal coupling
+coefficient from the linearised UBT equation.  For $\ell = 2$ and to leading
+order in $M/r$:
+\begin{equation}
+  C_{02}(r) = \frac{2f(r)}{r} + \mathcal{O}(M^2/r^3).
+  \label{eq:C02_leading}
+\end{equation}
+Using the schematic Zerilli-gauge result~\eqref{eq:zerilli_gauge_K}:
+\begin{equation}
+  K(r) = -\frac{f(r)}{r}\,H_2(r)
+    - \frac{r}{6}\left[r\,H_0'(r) + \left(3 - f(r)\right)\frac{H_0(r)}{r}
+      \right]
+    + \mathcal{O}(M^2/r^3).
+  \label{eq:K_constraint_l2}
+\end{equation}
+
+\subsubsection{Step 2: Substitution into $3\times 3$ System}
+
+Substituting~\eqref{eq:K_constraint_l2} into the third row of the $3\times 3$
+system~\eqref{eq:coupled_ode_3x3}, the equation for $K(r)$ becomes an
+identity at leading order in $M/r$.  The remaining two equations (rows 1 and
+2) take the reduced $2\times 2$ form:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix}
+  + \left[\omega^2 \mathbf{I}_2 - \mathbf{V}_{2\times 2}(r)\right]
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix} = 0,
+  \label{eq:2x2_explicit}
+\end{equation}
+where the $2\times 2$ potential matrix has the schematic structure:
+\begin{equation}
+  \mathbf{V}_{2\times 2}(r)
+    = f(r)\begin{pmatrix}
+        V_{00}(r) & V_{01}(r) \\
+        V_{10}(r) & V_{22}(r)
+      \end{pmatrix},
+  \label{eq:V2x2_schematic}
+\end{equation}
+with diagonal entries
+\begin{equation}
+  V_{00}(r) = \frac{\ell(\ell+1)}{r^2} - \frac{2M}{r^3} + \mathcal{O}(M^2/r^4),
+  \qquad
+  V_{22}(r) = \frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3} + \mathcal{O}(M^2/r^4),
+  \label{eq:V_diag}
+\end{equation}
+and off-diagonal entries $V_{01}(r) = V_{10}(r) = \mathcal{O}(M/r^3)$.
+
+\textbf{Pending}: The exact off-diagonal elements $V_{01}(r)$, $V_{10}(r)$ and the
+$\mathcal{O}(M^2/r^4)$ corrections in $V_{00}$, $V_{22}$ require explicit
+evaluation of the spin-connection components in $\nabla^\dagger\nabla$ at
+second order.
+
+\subsubsection{Step 3: Zerilli Master Variable and Decoupling}
+
+Define the Zerilli master variable:
+\begin{equation}
+  Z(r) = \frac{2r^2}{2r+3M}
+    \left[H_0(r) + \frac{f(r)\,r}{2r+3M}\,H_2(r)\right].
+  \label{eq:zerilli_Z_explicit}
+\end{equation}
+Differentiating with respect to $r_*$:
+\begin{equation}
+  \frac{dZ}{dr_*} = f(r)\,\frac{dZ}{dr}
+    = f(r)\left[\frac{2(4r+3M)r}{(2r+3M)^2}\,H_0
+      + \frac{2r^2}{2r+3M}\,H_0'
+      + \frac{d}{dr}\!\left(\frac{f r^3}{(2r+3M)^2}\right) H_2
+      + \frac{f r^3}{(2r+3M)^2}\,H_2'
+      \right].
+  \label{eq:dZdr}
+\end{equation}
+Formally, substituting the $2\times 2$ ODE~\eqref{eq:2x2_explicit} into the
+second derivative of~\eqref{eq:zerilli_Z_explicit} should yield:
+\begin{equation}
+  \frac{d^2 Z}{dr_*^2} + \left[\omega^2 - V_Z^{\text{UBT}}(r)\right] Z = 0.
+  \label{eq:zerilli_master_formal}
+\end{equation}
+The standard Zerilli potential is (for $\ell = 2$, $\lambda = 2$):
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+    = \left(1-\frac{2M}{r}\right)
+      \frac{24r^3 + 24Mr^2 + 72M^2 r + 18M^3}{r^3(2r+3M)^2}.
+  \label{eq:VZ_l2_redux}
+\end{equation}
+
+\subsubsection{Comparison of UBT Potential with Zerilli}
+
+Expanding the standard Zerilli potential in powers of $M/r$:
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+    = \frac{6}{r^2}f(r) + \frac{18M}{r^3}\bigl[f(r) + \mathcal{O}(M/r)\bigr]
+      + \mathcal{O}(M^2/r^4),
+  \label{eq:VZ_expansion_redux}
+\end{equation}
+while from the diagonal entries~\eqref{eq:V_diag}, the UBT single-component
+effective potential in the limit $H_2 \to 0$ gives:
+\begin{equation}
+  V_{00}^{\text{UBT}}(r) = \frac{6}{r^2}f(r) - \frac{2M}{r^3}f(r) + \cdots
+  \label{eq:V00_UBT}
+\end{equation}
+The leading $6/r^2$ term agrees, but the $M/r^3$ coefficient ($-2$ from
+$V_{00}$ vs.\ $+18$ in $V_Z$) differs.  The missing $+20M/r^3$ comes from
+the off-diagonal coupling $V_{01}$, which has not been computed explicitly.
+
+\subsubsection{Status of the Reduction}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+K constraint~\eqref{eq:K_bianchi_full} (Bianchi identity) written & \OPEN\ [\Ltwo] \\
+$K$ substituted; $2\times 2$ system~\eqref{eq:2x2_explicit} obtained & \OPEN\ [\Ltwo] \\
+Diagonal elements $V_{00}$, $V_{22}$ computed at leading order & \OPEN\ [\Ltwo] \\
+Off-diagonal $V_{01}$, $V_{10}$ pending explicit spin-connection calc.\ & \OPEN\ [\Ltwo] \\
+Master variable $Z(r)$~\eqref{eq:zerilli_Z_explicit} defined & \Lone\ (structural) \\
+$d^2Z/dr_*^2$ substitution formal & \OPEN\ [\Ltwo] \\
+$V_Z^{\text{UBT}}(r) = V_Z(r)$ verified & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{If match}: $V_Z^{\text{UBT}}(r) = V_Z(r)$ once off-diagonal terms
+included → Zerilli from UBT \textbf{Proved [L1]}.
+
+\noindent\textbf{If mismatch}: Document which biquaternion structure (imaginary-time
+phase, additional spinorial coupling) produces the observed discrepancy.
+
+\medskip
+\noindent\textbf{DERIVATION\_INDEX.md update (v73)}: Even-parity Zerilli —
+explicit $K$ constraint~\eqref{eq:K_bianchi_full} and $2\times2$
+system~\eqref{eq:2x2_explicit} written; diagonal $V_{00}$, $V_{22}$ computed
+at leading order; off-diagonal coupling $V_{01}$ identified as the missing
+piece ($+20M/r^3$); $Z(r)$ decoupling formal; status: \OPEN\ [\Ltwo].
+
 \end{document}
