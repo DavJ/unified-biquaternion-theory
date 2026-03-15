@@ -43,7 +43,7 @@ The Pauli and Dirac structures arise algebraically from ℂ⊗ℍ.
 | Three projections: GR, QM, statistical mechanics | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
 | Gap G1 — Derive drift A(Q) = −∇H from S via Euler-Lagrange | ❌ **Open** |  |
 | Gap G2 — Prove consistency condition on H for general biquaternionic … | ❌ **Open** |  |
-| Gap G3 — Non-commutative FPE ordering: **PARTIALLY RESOLVED** — [∂_T,… | ⚠️ **Partially Proved** |  |
+| G3 | ✅ **Proved** |  |
 | Gap S1 — Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S | ❌ **Open** |  |
 | Gap D1 — Spinorial subspace: **CLOSED** — Θ₁ (n=1 mode) transforms as… | ✅ **Proved** |  |
 <!-- END GENERATED: qm_emergence_status -->
@@ -54,7 +54,7 @@ The Pauli and Dirac structures arise algebraically from ℂ⊗ℍ.
 |-----|-------------|--------|
 | Gap G1 | Derive drift A(Q) = −∇H from S[Θ] | ❌ **Open** |
 | Gap G2 | Prove consistency condition on H | ❌ **Open** |
-| Gap G3 | Non-commutative FPE ordering | ⚠️ **Partially resolved** |
+| Gap G3 | Non-commutative FPE ordering | ✅ **Closed [L0] ⭐** — Sc annihilates Im(ℍ); v70 |
 | Gap S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | ❌ **Open** |
 | Gap D1 | Spinorial subspace | ✅ **Closed** |
 
@@ -94,7 +94,7 @@ Status: **Proved [L0]**
 |-----|-------------|----------|
 | G1 | Derive drift A(Q) = −∇H from S[Θ] via Euler-Lagrange | HIGH |
 | G2 | Prove consistency condition on H for general biquaternionic case | HIGH |
-| G3 | Non-commutative FPE ordering (scalar case closed) | MEDIUM |
+| G3 | Non-commutative FPE ordering — **CLOSED [L0] ⭐** (v70, Sc-projection) | CLOSED |
 | S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | HIGH |
 
 ---

@@ -68,8 +68,8 @@ See the full architecture in [Overview](Overview).
 | Three Generations | 5 | 2 | 5 | 5 | 8 |
 | Gravity / φ-Universe | 18 | 0 | 0 | 1 | 1 |
 | Mirror Sector | 2 | 3 | 0 | 3 | 0 |
-| Algebra | 16 | 0 | 0 | 1 | 3 |
-| **Total** | **71** | **6** | **9** | **11** | **19** |
+| Algebra | 18 | 0 | 0 | 0 | 3 |
+| **Total** | **73** | **6** | **9** | **10** | **19** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 

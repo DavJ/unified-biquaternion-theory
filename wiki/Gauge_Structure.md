@@ -29,7 +29,6 @@ at the structural level.
 | Color confinement (algebraic) | ⚡ **Supported** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
 | Weinberg angle θ_W fixed | ⚠️ **Semi-empirical** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
 | SU(2)_L chirality (not SU(2)_L×SU(2)_R) | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
-| Higgs potential from Hosotani mechanism | ⚠️ **Partially Proved [L1]** | [🌐 `sm_gauge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/sm_gauge.tex) |
 <!-- END GENERATED: gauge_status -->
 
 ---

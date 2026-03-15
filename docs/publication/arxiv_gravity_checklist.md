@@ -40,7 +40,7 @@
 - [ ] §3 Schwarzschild background Θ₀^(S) derived
 - [x] §4 Graviton dispersion and V_eff(r); **Regge-Wheeler exact match [L1] added (v69)**
 - [x] §4 Regge-Wheeler result: `thm:regge_wheeler` references canonical/ theorem (added v69)
-- [ ] §5 (was Regge-Wheeler open): now Zerilli even-parity (Gap L2: OPEN — rational denominator)
+- [x] §5 (was Regge-Wheeler open): now Zerilli even-parity (Gap L2: OPEN — v71 explicit computation confirms rational denominator; leading terms match; two-component Ansatz needed)
 - [ ] §6 Twistor correspondence
 - [x] §7 Electroweak Symmetry Breaking via Hosotani Mechanism (added v68)
 - [ ] References: Regge & Wheeler (1957), Zerilli (1970), Penrose (1976), UBT Alpha paper

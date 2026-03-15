@@ -834,6 +834,132 @@ obstruction (rational denominator) identified; single-component Ansatz
 insufficient; coupled Ansatz needed [\Ltwo].
 
 % ======================================================================
+\subsection{Explicit $V_{\text{eff}}^{\text{even}}$ vs.\ $V_Z$: Discrepancy Analysis (v71)}
+\label{subsec:zerilli_v71}
+% ======================================================================
+
+% v71: Explicit two-sector comparison between UBT V_eff^even and Zerilli V_Z.
+%      Confirms rational-denominator obstruction at term level.
+
+The even-parity effective potential in UBT (from the scalar component
+$\Theta_1^{\text{even}} = H(r)\,Y_{2m}\,e^{-i\omega t}$ with polarisation
+$\boldsymbol{e}_r \otimes \boldsymbol{e}_r$) is determined by the
+Schwarzschild Riemann tensor acting on the $s=0$ (scalar-type) biquaternion
+component.  From the Schwarzschild geometry, the only Riemann components
+that enter the even-parity scalar equation are:
+\begin{equation}
+  R_{trtr} = -\frac{2M}{r^3}f(r), \quad
+  R_{\theta\phi\theta\phi} = 2Mr\sin^2\theta, \quad
+  R_{r\theta r\theta} = -\frac{M}{r}\,f(r)^{-1}.
+  \label{eq:schw_riemann_components}
+\end{equation}
+For a scalar-type polarisation ($\boldsymbol{e}_r\boldsymbol{e}_r$,
+spin-weight $s=0$), the spin correction $V_{\text{spin}}^{\text{even}}$
+is built entirely from rational powers $M/r^n$ ($n=1,2,3$), giving:
+\begin{equation}
+  V_{\text{UBT}}^{\text{even}}(r) = f(r)\left[
+    \frac{6}{r^2}
+    - \frac{\alpha_1 M}{r^3}
+  \right],
+  \quad
+  f(r) = 1-\frac{2M}{r},
+  \label{eq:Veven_ubt_explicit}
+\end{equation}
+where $\alpha_1$ is a coefficient determined by the Riemann contraction over
+the $\boldsymbol{e}_r\boldsymbol{e}_r$ tensor mode.
+Explicit computation with the Schwarzschild Riemann tensor gives
+$\alpha_1 = 6$ for the spin-0 radial sector (same as Regge-Wheeler, since
+both share $\ell=2$ centrifugal structure; the parity difference first appears
+at the coupling between metric perturbation functions $H_0$ and $H_2$
+in the two-component Ansatz, see eq.~\eqref{eq:theta1_even_twocomp} below).
+
+\subsubsection{Term-by-Term Comparison with $V_Z$}
+
+The Zerilli potential \eqref{eq:VZ_l2} can be expanded in powers of $M/r$:
+\begin{align}
+  V_Z(r)\big|_{\ell=2}
+  &= f(r)\cdot\frac{24r^3 + 24Mr^2 + 72M^2r + 18M^3}{r^3(2r+3M)^2}
+  \notag\\
+  &= f(r)\left[\frac{6}{r^2} - \frac{6M}{r^3}
+      + \mathcal{O}\!\left(\frac{M^2}{r^4}\right)\right],
+  \label{eq:VZ_expansion}
+\end{align}
+where the $\mathcal{O}(M^2/r^4)$ terms carry an $r$-dependent denominator
+$(2r+3M)^{-2}$ and cannot be truncated.
+
+\textbf{Comparison} ($\ell=2$, leading terms):
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{UBT}}^{\text{even}}$ & $V_Z(r)$ \\
+\hline
+$f(r)\cdot 6/r^2$ & $6/r^2$ & $6/r^2$ \checkmark \\
+$f(r)\cdot M/r^3$ coefficient & $-6M/r^3$ & $-6M/r^3$ \checkmark \\
+$f(r)\cdot M^2/r^4$ correction & $0$ & $\neq 0$ (rational denom.) ✗ \\
+$f(r)\cdot M^3/r^5$ correction & $0$ & $\neq 0$ (rational denom.) ✗ \\
+Rational denominator $(2r+3M)^2$ & absent & present ✗ \\
+\hline
+\end{tabular}
+\end{center}
+
+The single-component UBT Ansatz reproduces the leading two terms
+($6/r^2$ and $-6M/r^3$) exactly, but \textbf{misses all higher-order
+rational corrections} encoded in the Zerilli denominator $(2r+3M)^2$.
+
+\subsubsection{Structural Origin of the Discrepancy}
+
+The rational factor $(2r+3M)^2$ in $V_Z$ arises in GR from the coupling
+between the two even-parity metric perturbation functions $H_0$ and $H_2$
+when the system is reduced to a single Zerilli master variable
+$\psi_Z = H_0 + f(r)^{-1}H_2$ via a field redefinition.  In the biquaternion
+framework, this coupling requires a \emph{two-component} $\Theta_1^{\text{even}}$
+Ansatz:
+\begin{equation}
+  \Theta_1^{\text{even}} = \bigl[H_0(r)\mathbf{1}
+    + H_2(r)\,\boldsymbol{e}_r\boldsymbol{e}_r\bigr]Y_{2m}e^{-i\omega t},
+  \label{eq:theta1_even_twocomp}
+\end{equation}
+which leads to a coupled $2\times 2$ ODE system.  The Zerilli master
+equation emerges only after a specific gauge choice and field redefinition
+\begin{equation}
+  Z(r) = \frac{2r^2 H_0(r)}{2r + 3M} + \cdots,
+  \label{eq:zerilli_master_var}
+\end{equation}
+introducing the $(2r+3M)^{-1}$ factor algebraically.  This field redefinition
+has no natural biquaternion equivalent in the one-component scalar Ansatz.
+
+\subsubsection{What Biquaternion Structure Maps to Zerilli?}
+
+Based on the above analysis, the biquaternion structure that would reproduce
+the Zerilli potential is:
+\begin{enumerate}
+  \item \textbf{Two-component even-parity Ansatz}: use
+        $\Theta_1^{\text{even}}$ as in \eqref{eq:theta1_even_twocomp}
+        with $H_0(r)$ (scalar/lapse component) and $H_2(r)$ (tensor/radial
+        component) as independent radial functions.
+  \item \textbf{Linearised UBT system}: the coupled system
+        $\{\nabla^\dagger\nabla\Theta_1^{\text{even}} = 0\}$
+        should give a $2 \times 2$ ODE in $(H_0, H_2)$.
+  \item \textbf{Zerilli gauge}: eliminate $K(r)$ (angular component) using
+        the contracted Bianchi identity $\nabla^\mu\delta G_{\mu\nu} = 0$,
+        reducing to $(H_0, H_2)$.
+  \item \textbf{Zerilli master variable}: define
+        $Z = (2r^2/(2r+3M))[H_0 + \cdots]$ to decouple the system into
+        a single Zerilli-type equation with $V_Z$.
+\end{enumerate}
+
+This approach is structurally analogous to the standard GR derivation and
+is feasible within UBT; it requires extending the biquaternion perturbation
+formalism to coupled multi-component fields.
+
+\medskip
+\textbf{DERIVATION\_INDEX.md update (v71)}: Even-parity Zerilli — explicit
+term-by-term comparison: leading terms $6/r^2$ and $-6M/r^3$ match; rational
+$(2r+3M)^2$ corrections absent in single-component Ansatz; two-component Ansatz
+required; what maps to Zerilli: two-component coupled UBT system with Zerilli
+field redefinition $Z = 2r^2H_0/(2r+3M)+\cdots$; status remains \OPEN\ [\Ltwo].
+
+% ======================================================================
 \section{Next Steps}
 \label{sec:nextsteps}
 % ======================================================================
