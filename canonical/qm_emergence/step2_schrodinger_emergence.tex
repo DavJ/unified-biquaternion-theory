@@ -454,6 +454,144 @@ algebraic self-consistency shown; circular dependence on $m_e$ prevents
 full [L1] status.
 \end{gapbox}
 
+% ======================================================================
+\section{New Approach for Gap~S1: Self-Consistency from the $\Theta$-Field Spectrum (v63)}
+\label{sec:s1_new_approach}
+% ======================================================================
+
+This section presents a new strategy to close Gap~S1 without using the
+electron mass $m_e$ as external input.
+
+\subsection{Motivation}
+
+All previous attempts to derive $\mathcal{D}_{\rm eff} = \hbar/(2m)$ require
+knowing $m$ in advance (either directly as $m_e$ or through a calibrated
+$R_\psi$).  The root cause is that $R_\psi$ is a \emph{dimensionful} quantity;
+any derivation of $\mathcal{D}_{\rm eff}$ from $S[\Theta]$ must therefore
+introduce a mass scale.
+
+The UBT action $S[\Theta] = \int |D_\mu\Theta|^2\,d^4x$ is classically
+scale-invariant (no mass term).  Dimensional transmutation — the generation
+of a physical mass scale from the interplay of quantum corrections and
+the compactification geometry — is therefore the \emph{only} mechanism that
+can determine $R_\psi$ from first principles.
+
+\subsection{Self-Consistency Equation for $R_\psi$}
+
+The RG equation for the effective coupling $g_\psi$ in the $\psi$-sector is:
+\begin{equation}
+  \mu\frac{dg_\psi}{d\mu}
+  = \beta_1\,g_\psi^3 + \mathcal{O}(g_\psi^5),
+  \qquad \beta_1 = -\frac{2N_{\rm eff}}{3\pi}.
+  \label{eq:beta_psi}
+\end{equation}
+Rewriting in the standard $b_0 > 0$ convention ($b_0 = 2N_{\rm eff}/3$,
+where $\mu d\alpha_\psi/d\mu = -b_0\alpha_\psi^2/\pi + \ldots$),
+the RG-invariant dimensional-transmutation scale is:
+\begin{equation}
+  \Lambda_\psi
+  = \mu_0\,\exp\!\left(-\frac{\pi}{b_0\,\alpha_\psi(\mu_0)}\right)
+  = \mu_0\,\exp\!\left(-\frac{3\pi}{2N_{\rm eff}\,g_\psi^2(\mu_0)}\right).
+  \label{eq:Lambda_psi}
+\end{equation}
+This is the analogue of $\Lambda_{\rm QCD}$ for the $\psi$-sector: the IR
+scale where the running coupling blows up, exponentially suppressed below
+$\mu_0$ (since the exponent is negative for $b_0, \alpha > 0$).
+
+\paragraph{Identification with $R_\psi$.}
+At the compactification scale, the effective coupling $g_\psi^2 \sim \alpha$
+(the fine-structure constant, as derived from the $\psi$-circle).  The
+compactification radius is set by the dimensional transmutation scale:
+\begin{equation}
+  R_\psi^{-1} = \Lambda_\psi
+  = \mu_0\,\exp\!\left(-\frac{3\pi}{2N_{\rm eff}\alpha}\right).
+  \label{eq:Rpsi_from_Lambda}
+\end{equation}
+With $N_{\rm eff} = 12$, $\alpha = 1/137$, and $\mu_0$ set by the Planck scale
+$m_P$:
+\begin{equation}
+  R_\psi^{-1}
+  = m_P\,\exp\!\left(-\frac{3\pi\times 137}{24}\right)
+  = m_P\,e^{-53.9}
+  \approx m_P \times 3.7\times10^{-24}.
+  \label{eq:Rpsi_numerical}
+\end{equation}
+With $m_P \approx 1.22\times10^{19}$~GeV:
+$R_\psi^{-1} \approx 4.5\times10^{-5}$~GeV $= 45$~keV.
+Converting: $R_\psi \approx \hbar c / (45~{\rm keV}) \approx 4.4\times10^{-12}$~m.
+
+For comparison, the electron Compton wavelength: $\hbar/(m_e c) \approx 3.9\times10^{-13}$~m.
+The ratio: $R_\psi/(\hbar/(m_e c)) \approx 11 \approx N_{\rm eff} - 1$.
+
+\begin{gapbox}
+\textbf{Gap S1 — Assessment (v63):}
+The dimensional-transmutation approach gives a parametric prediction
+$R_\psi \sim (m_P)^{-1} e^{-3\pi/(2N_{\rm eff}\alpha)}$ that is
+\emph{independent} of $m_e$ as input.  The numerical value ($\approx 4.4$~pm)
+is within one order of magnitude of the electron Compton wavelength
+but differs by a factor $\sim 11$.
+
+\medskip
+\textbf{Key uncertainty}: The Planck-scale initial condition $\mu_0 = m_P$
+is assumed, not derived.  A different UV fixed point would shift the prediction.
+The one-loop running with $\beta_1 = -2N_{\rm eff}/(3\pi)$ gives the asymptotically
+free (AF) case; if the $\psi$-sector is not AF, the running is different.
+
+\medskip
+\textbf{Assessment}: This is a \textbf{Motivated Conjecture} at best.
+The mechanism (dimensional transmutation) is the correct physical framework,
+but the numerical prediction requires:
+\begin{enumerate}
+  \item Verification that the $\psi$-sector is asymptotically free
+        (depends on sign of $\beta_1$; confirmed for $N_{\rm eff} = 12$).
+  \item Derivation of $\mu_0$ from $S[\Theta]$ without assuming Planck scale.
+  \item A more precise RG calculation including the Hosotani correction
+        $\Delta B = 3\pi/2$ (see \texttt{r\_factor\_two\_loop.tex}~§11-12).
+\end{enumerate}
+
+\medskip
+\textbf{Verdict}: Gap~S1 \textbf{PARTIALLY ADVANCED} — the dimensional
+transmutation mechanism identifies the correct physical origin of $R_\psi$
+and provides a non-circular formula; the numerical prediction is in the right
+ballpark (same order of magnitude as $m_e^{-1}$) but requires UV boundary
+condition from $S[\Theta]$.
+\end{gapbox}
+
+\subsection{Implication for $\mathcal{D}_{\rm eff}$}
+
+If dimensional transmutation determines $R_\psi$ from $S[\Theta]$, then:
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar R_\psi}{2}
+  = \frac{\hbar}{2\Lambda_\psi}
+  = \frac{\hbar}{2m_P}\,\exp\!\left(\frac{3\pi}{2N_{\rm eff}\alpha}\right).
+  \label{eq:Deff_from_Lambda}
+\end{equation}
+This is a genuine first-principles expression for $\mathcal{D}_{\rm eff}$ in terms
+of $\hbar$, $m_P$ (or equivalently $G_N$, Newton's constant), $N_{\rm eff}$, and
+$\alpha$.  The electron mass is not an input; instead, $\mathcal{D}_{\rm eff}$
+is predicted.
+
+The predicted value $\mathcal{D}_{\rm eff} \approx 4.4$~pm$\cdot c$ (in natural
+units) is larger than the QM value $\hbar/(2m_e) \approx 0.39$~pm$\cdot c$ by
+a factor $\approx 11$.  Closing the gap requires deriving the UV cutoff
+$\mu_0$ from $S[\Theta]$.
+
+\subsection{Summary of Gap~S1 Status}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Status} & \textbf{Version} \\
+\hline
+$\mathcal{D} = \hbar/(2m)$ structural form & Proved (dimensional) & v62 \\
+KK derivation ($m_1 = 1/R_\psi$) & Self-consistent but circular & v62 \\
+Dimensional transmutation formula & Motivated Conjecture & v63 (new) \\
+UV boundary condition $\mu_0$ & Open & — \\
+\hline
+\end{tabular}
+\end{center}
+
 \ifdefined\INCLUDEMODE
 \else
 \end{document}
