@@ -4,7 +4,7 @@
 **Target**: hep-th (primary), math-ph (cross-list)
 
 ## Pre-submission checks
-- [ ] Abstract ≤ 1920 characters
+- [x] Abstract ≤ 1920 characters
 - [x] Replace `\usepackage{tcolorbox}` — arXiv may not have it
   → use `\usepackage{mdframed}` or plain `\fbox`
 - [x] All `\bibitem` entries complete — Penrose 1967/1976 + Connes–Lott 1990 added (v57)
