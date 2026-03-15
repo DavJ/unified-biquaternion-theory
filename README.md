@@ -15,6 +15,9 @@
    - Mirror sector: [`mirror_sector_index.md`](canonical/THEORY/topic_indexes/mirror_sector_index.md)
 3. **Repository map** → [`docs/repo_map.md`](docs/repo_map.md)
 4. **Theory map (from derivation index)** → [`docs/THEORY_MAP_FROM_DERIVATION_INDEX.md`](docs/THEORY_MAP_FROM_DERIVATION_INDEX.md)
+5. **Repository layers & authority model** → [`docs/REPO_LAYERS.md`](docs/REPO_LAYERS.md)
+6. **Concept inventory & triage** → [`docs/CONCEPT_INVENTORY_AND_TRIAGE.md`](docs/CONCEPT_INVENTORY_AND_TRIAGE.md)
+7. **Canonical chain check** → [`docs/CANONICAL_CHAIN_CHECK.md`](docs/CANONICAL_CHAIN_CHECK.md)
 
 ---
 

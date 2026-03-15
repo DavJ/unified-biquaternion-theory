@@ -26,7 +26,12 @@ def _find_repo_root(start: Path) -> Path:
     return start.parents[3]  # fallback
 
 
-# Locate the real implementation
+# Locate the real implementation.
+# NOTE: The path ARCHIVE/archive_legacy/ARCHIVE/legacy_variants/ has nested
+# ARCHIVE segments. This reflects the actual directory structure created during
+# root_detox_phase1: the outer ARCHIVE/ is the top-level archive, archive_legacy/
+# holds pre-refactor content, and ARCHIVE/legacy_variants/ is the original
+# archive tree that was inside the monorepo before reorganisation.
 _REPO_ROOT = _find_repo_root(Path(__file__).resolve())
 _REAL_SCRIPT = (
     _REPO_ROOT

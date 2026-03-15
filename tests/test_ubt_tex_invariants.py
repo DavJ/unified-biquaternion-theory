@@ -50,6 +50,7 @@ def find_all_tex_files() -> List[Path]:
         if any(part.startswith('.') for part in tex_file.parts):
             continue
         # Skip archived material — ARCHIVE/ is historical and excluded from canonical checks
+        # Both "ARCHIVE" (current) and "archive" (legacy path names) are excluded for safety
         if any(part in EXCLUDE_DIRS for part in tex_file.parts):
             continue
         tex_files.append(tex_file)
