@@ -50,8 +50,8 @@ class TestRequiredFilesExist:
 
     REQUIRED = [
         "docs/reports/gr_recovery_levels.md",
-        "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex",
-        "archive/consolidation_project/GR_closure/gr_sector_conditions.tex",
+        "ARCHIVE/archive_legacy/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex",
+        "ARCHIVE/archive_legacy/consolidation_project/GR_closure/gr_sector_conditions.tex",
         "docs/ubt_gr_relationship.md",
     ]
 
@@ -94,7 +94,7 @@ _SCAN_FILES = [
     "docs/THEORY_STATUS.md",
     "docs/reports/gr_recovery_final_status.md",
     "docs/reports/gr_recovery_levels.md",
-    "archive/consolidation_project/GR_closure/step2_theta_only_closure.tex",
+    "ARCHIVE/archive_legacy/consolidation_project/GR_closure/step2_theta_only_closure.tex",
 ]
 
 
@@ -180,7 +180,7 @@ class TestThetaVariationNoteContent:
     ]
 
     def test_key_operators_defined(self):
-        path = ROOT / "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
+        path = ROOT / "ARCHIVE/archive_legacy/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
         if not path.exists():
             pytest.fail("theta_vs_metric_variation_note.tex does not exist")
         text = _read_file(path)
@@ -192,7 +192,7 @@ class TestThetaVariationNoteContent:
 
     def test_warning_box_present(self):
         """The note must contain an explicit warning against termwise separation."""
-        path = ROOT / "archive/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
+        path = ROOT / "ARCHIVE/archive_legacy/consolidation_project/GR_closure/theta_vs_metric_variation_note.tex"
         if not path.exists():
             pytest.fail("theta_vs_metric_variation_note.tex does not exist")
         text = _read_file(path)
@@ -210,7 +210,7 @@ class TestGRSectorConditionsContent:
     """Guard: gr_sector_conditions.tex must list explicit conditions C1–C6."""
 
     def test_conditions_listed(self):
-        path = ROOT / "archive/consolidation_project/GR_closure/gr_sector_conditions.tex"
+        path = ROOT / "ARCHIVE/archive_legacy/consolidation_project/GR_closure/gr_sector_conditions.tex"
         if not path.exists():
             pytest.fail("gr_sector_conditions.tex does not exist")
         text = _read_file(path)
@@ -222,7 +222,7 @@ class TestGRSectorConditionsContent:
 
     def test_mandatory_statement_present(self):
         """Must explicitly state GR recovery is exact only on the sector."""
-        path = ROOT / "archive/consolidation_project/GR_closure/gr_sector_conditions.tex"
+        path = ROOT / "ARCHIVE/archive_legacy/consolidation_project/GR_closure/gr_sector_conditions.tex"
         if not path.exists():
             pytest.fail("gr_sector_conditions.tex does not exist")
         text = _read_file(path)

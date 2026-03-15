@@ -17,10 +17,23 @@ import runpy
 import sys
 from pathlib import Path
 
+
+def _find_repo_root(start: Path) -> Path:
+    """Walk upward from start to find the repo root (contains pytest.ini)."""
+    for parent in [start, *start.parents]:
+        if (parent / "pytest.ini").exists():
+            return parent
+    return start.parents[3]  # fallback
+
+
 # Locate the real implementation
-_REPO_ROOT = Path(__file__).resolve().parents[2]
+_REPO_ROOT = _find_repo_root(Path(__file__).resolve())
 _REAL_SCRIPT = (
     _REPO_ROOT
+    / "ARCHIVE"
+    / "archive_legacy"
+    / "ARCHIVE"
+    / "legacy_variants"
     / "ubt_with_chronofactor"
     / "forensic_fingerprint"
     / "tools"
@@ -34,9 +47,10 @@ if not _REAL_SCRIPT.exists():
     )
     sys.exit(1)
 
-# Ensure the repo root is on sys.path so that subpackage imports work
-if str(_REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(_REPO_ROOT))
+# Ensure the ubt_with_chronofactor parent dir is on sys.path so imports work
+_LEGACY_ROOT = _REPO_ROOT / "ARCHIVE" / "archive_legacy" / "ARCHIVE" / "legacy_variants"
+if str(_LEGACY_ROOT) not in sys.path:
+    sys.path.insert(0, str(_LEGACY_ROOT))
 
 # Run the real script as __main__
 runpy.run_path(str(_REAL_SCRIPT), run_name="__main__")

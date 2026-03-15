@@ -13,7 +13,7 @@ _repo_root = _Path(__file__).resolve().parent.parent
 
 # Add paths needed by the implementation
 for _p in [
-    _repo_root / "archive" / "ARCHIVE" / "legacy_variants",
+    _repo_root / "ARCHIVE" / "archive_legacy" / "ARCHIVE" / "legacy_variants",
     _repo_root / "scripts",
     _repo_root / "tools",
     _repo_root / "experiments",

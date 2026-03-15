@@ -42,10 +42,15 @@ def find_all_tex_files() -> List[Path]:
     Returns:
         List of Path objects for .tex files
     """
+    # Directory segments to exclude from scan (historical/archived material)
+    EXCLUDE_DIRS = {"ARCHIVE", "archive", ".git"}
     tex_files = []
     for tex_file in REPO_ROOT.rglob("*.tex"):
         # Skip hidden directories and common build artifacts
         if any(part.startswith('.') for part in tex_file.parts):
+            continue
+        # Skip archived material — ARCHIVE/ is historical and excluded from canonical checks
+        if any(part in EXCLUDE_DIRS for part in tex_file.parts):
             continue
         tex_files.append(tex_file)
     return tex_files

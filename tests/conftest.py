@@ -46,6 +46,9 @@ _add(_repo_root)
 # core/           → enables `import strict_ubt` and other core packages
 _add(_repo_root / "core")
 
-# archive/ARCHIVE/legacy_variants/ → enables `import ubt_with_chronofactor`
+# ARCHIVE/archive_legacy/ARCHIVE/legacy_variants/ → enables `import ubt_with_chronofactor`
 # (ubt_with_chronofactor was archived from root during root_detox_phase1)
-_add(_repo_root / "archive" / "ARCHIVE" / "legacy_variants")
+_add(_repo_root / "ARCHIVE" / "archive_legacy" / "ARCHIVE" / "legacy_variants")
+
+# research_tracks/legacy_theory_variants/ → enables `import ubt`, `import ubt_core`
+_add(_repo_root / "research_tracks" / "legacy_theory_variants")
