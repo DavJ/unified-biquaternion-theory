@@ -469,10 +469,30 @@ See \texttt{canonical/interactions/sm\_gauge.tex}
         the leading terms $6/r^2$ and $-6M/r^3$ match, but the rational
         corrections from the Zerilli denominator $(2r+3M)^2$ are absent
         in the single-component Ansatz.
-        Resolution requires a two-component biquaternion Ansatz
-        $\{H_0(r)\mathbf{1} + H_2(r)\boldsymbol{e}_r\boldsymbol{e}_r\}$
-        with the Zerilli field redefinition $Z = 2r^2H_0/(2r+3M)+\cdots$;
-        see \texttt{research\_tracks/research/graviton\_schwarzschild.tex}~§7.6.
+
+        \textit{v72 — Two-component approach}: The resolution has been
+        identified and set up explicitly (see
+        \texttt{research\_tracks/research/graviton\_schwarzschild.tex}~§7.3):
+        \begin{itemize}
+          \item Two-component even-parity Ansatz:
+                $\Theta_1^{\text{even}} =
+                  [H_0(r)\mathbf{1} + H_2(r)\boldsymbol{e}_r\boldsymbol{e}_r]
+                  Y_{2m}\,e^{-i\omega t}$
+                (plus angular component $K(r)$, eliminated by Zerilli gauge).
+          \item Linearising $\nabla^\dagger\nabla\Theta = 0$ around the
+                Schwarzschild background yields a coupled $2\times 2$ ODE
+                for $(H_0, H_2)$.
+          \item The Zerilli master variable
+                $Z = 2r^2H_0/(2r+3M) + \cdots$
+                formally decouples the system into the Zerilli equation.
+          \item \textbf{Pending}: explicit extraction of the off-diagonal
+                coupling coefficients from the UBT action and verification
+                that the master equation reproduces $V_Z(r)$ exactly.
+        \end{itemize}
+        Status: \OPEN\ [\Ltwo] — structural identification complete;
+        explicit coefficient computation not yet done.
+        If the two-component computation succeeds: Zerilli from UBT
+        Proved [L1] — major result for the second paper.
 
   \item \textbf{Higgs sector and Yukawa couplings}:
         The Higgs potential $V(|\Theta|^2) = \lambda(|\Theta|^2-v^2)^2$ is

@@ -48,7 +48,7 @@ See the full architecture in [Overview](Overview).
 | See open research questions | [Research Tracks](Research_Tracks) |
 | Read speculative extensions | [Speculative Extensions](Speculative_Extensions) |
 | Understand holographic structure and dS geometry | **[Holography](Holography)** — dS vs AdS structure, moduli space geometry, open tasks |
-| QM / GR / stat-mech from one field equation | **[FPE Equivalence](FPE_Equivalence)** — strongest unification result |
+| QM / GR / stat-mech from one field equation | **[FPE Equivalence](FPE_Equivalence)** — Gap G3 Closed [L0] ⭐ — FPE ↔ EL Proved ALL sectors (U(1), SU(2), SU(3)) |
 | QM emergence and Born rule | **[QM Emergence](QM_Emergence)** — Dirac, Schrödinger, Born rule from ℂ⊗ℍ |
 | Why α⁻¹ = 137 is prime-stable | **[Prime Attractor](Prime_Attractor)** — V_eff minimum at n* = 137 |
 | Why SU(2) is left-handed only | **[Chirality Derivation](Chirality_Derivation)** — ψ-parity selects SU(2)_L |
@@ -68,8 +68,8 @@ See the full architecture in [Overview](Overview).
 | Three Generations | 5 | 2 | 5 | 5 | 8 |
 | Gravity / φ-Universe | 18 | 0 | 0 | 1 | 1 |
 | Mirror Sector | 2 | 3 | 0 | 3 | 0 |
-| Algebra | 18 | 0 | 0 | 0 | 3 |
-| **Total** | **73** | **6** | **9** | **10** | **19** |
+| Algebra | 21 | 0 | 0 | 0 | 3 |
+| **Total** | **76** | **6** | **9** | **10** | **19** |
 *Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: status_summary -->
 
