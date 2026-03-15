@@ -54,7 +54,7 @@ The Pauli and Dirac structures arise algebraically from ℂ⊗ℍ.
 |-----|-------------|--------|
 | Gap G1 | Derive drift A(Q) = −∇H from S[Θ] | ❌ **Open** |
 | Gap G2 | Prove consistency condition on H | ❌ **Open** |
-| Gap G3 | Non-commutative FPE ordering | ✅ **Closed [L0] ⭐** — Sc annihilates Im(ℍ); v70 |
+| Gap G3 | Non-commutative FPE ordering | ✅ **Closed [L0] ⭐** — Sc annihilates Im(ℍ); FPE ↔ EL Proved [L0] for ALL sectors (U(1), SU(2), SU(3)); v70 |
 | Gap S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | ❌ **Open** |
 | Gap D1 | Spinorial subspace | ✅ **Closed** |
 
@@ -94,7 +94,7 @@ Status: **Proved [L0]**
 |-----|-------------|----------|
 | G1 | Derive drift A(Q) = −∇H from S[Θ] via Euler-Lagrange | HIGH |
 | G2 | Prove consistency condition on H for general biquaternionic case | HIGH |
-| G3 | Non-commutative FPE ordering — **CLOSED [L0] ⭐** (v70, Sc-projection) | CLOSED |
+| G3 | Non-commutative FPE ordering — **CLOSED [L0] ⭐** (v70, Sc-projection); FPE ↔ EL Proved [L0] ALL sectors (U(1), SU(2), SU(3)) | CLOSED |
 | S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | HIGH |
 
 ---

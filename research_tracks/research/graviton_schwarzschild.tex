@@ -982,4 +982,132 @@ Regge-Wheeler match \Lone\ (canonical: \texttt{gr\_completion\_attempt.tex}
 Thm.~\ref{thm:regge_wheeler}); even-parity Zerilli structural obstruction
 identified, \OPEN\ [\Ltwo].
 
+% ======================================================================
+\subsection{Two-Component Computation Attempt (v72)}
+\label{subsec:zerilli_two_component}
+% ======================================================================
+
+% v72: Two-component even-parity computation — Gap [L2]
+% Status: OPEN [L2] — coupled 2×2 ODE system set up;
+%         Zerilli gauge applied; master variable defined;
+%         explicit extraction of V_Z not yet completed.
+
+\subsubsection{Setup: Coupled Two-Component Ansatz}
+
+Following the structural identification in §\ref{subsec:zerilli_v71}, the
+two-component even-parity biquaternion perturbation at $\ell = 2$ is:
+\begin{equation}
+  \Theta_1^{\text{even}}
+  = e^{-i\omega\tau}\Bigl[
+      H_0(r)\,\mathbf{1}\cdot Y_{2m}(\theta,\phi)
+    + H_2(r)\,(\boldsymbol{e}_r\boldsymbol{e}_r)\cdot Y_{2m}(\theta,\phi)
+    + K(r)\,(\boldsymbol{e}_\theta\boldsymbol{e}_\theta
+             + \boldsymbol{e}_\phi\boldsymbol{e}_\phi)\cdot Y_{2m}
+  \Bigr],
+  \label{eq:theta1_two_comp_v72}
+\end{equation}
+where $H_0(r)$ is the lapse (scalar) component, $H_2(r)$ is the radial
+tensor component, and $K(r)$ is the angular component.
+
+\subsubsection{Linearised UBT System}
+
+Linearising the UBT field equation $\nabla^\dagger\nabla\Theta = 0$ around
+the Schwarzschild background $\Theta_0^{(S)}$ (see §\ref{sec:schwarzschild})
+with the Ansatz~\eqref{eq:theta1_two_comp_v72} yields a coupled
+$3\times 3$ ODE system for $(H_0, H_2, K)$.  In the Schwarzschild
+tortoise coordinate $r_*$ with $dr_*/dr = f(r)^{-1}$ and
+$f(r) = 1 - 2M/r$, the schematic form is:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \\ K \end{pmatrix}
+  + \Bigl[\omega^2\,\mathbf{I} - \mathbf{M}(r)\Bigr]
+  \begin{pmatrix} H_0 \\ H_2 \\ K \end{pmatrix} = 0,
+  \label{eq:coupled_ode_3x3}
+\end{equation}
+where $\mathbf{M}(r)$ is a $3\times 3$ matrix of effective potentials
+built from $f(r)$, $M/r^n$, and $\ell(\ell+1)/r^2$ terms.
+
+\subsubsection{Zerilli Gauge Reduction}
+
+In the Zerilli gauge, the contracted Bianchi identity
+$\nabla^\mu\delta G_{\mu\nu} = 0$ eliminates the angular component
+$K(r)$ via an algebraic constraint.  For $\ell = 2$:
+\begin{equation}
+  K(r) = -\frac{f(r)}{r}\,H_2(r) + \mathcal{O}(M/r^2),
+  \label{eq:zerilli_gauge_K}
+\end{equation}
+reducing the system to a $2\times 2$ ODE for $(H_0, H_2)$:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix}
+  + \Bigl[\omega^2\,\mathbf{I}_2 - \mathbf{V}_{2\times2}(r)\Bigr]
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix} = 0.
+  \label{eq:coupled_ode_2x2}
+\end{equation}
+
+\subsubsection{Zerilli Master Variable}
+
+Define the Zerilli master variable:
+\begin{equation}
+  Z(r) = \frac{2r^2}{2r + 3M}
+    \Bigl[H_0(r) + \frac{f(r)\,r}{2r+3M}\,H_2(r)\Bigr].
+  \label{eq:zerilli_master_v72}
+\end{equation}
+Formally substituting~\eqref{eq:zerilli_master_v72} into the
+system~\eqref{eq:coupled_ode_2x2} should decouple $(H_0, H_2)$ into a
+single master equation
+\begin{equation}
+  \frac{d^2 Z}{dr_*^2} + \bigl[\omega^2 - V_Z^{\text{UBT}}(r)\bigr]Z = 0.
+  \label{eq:zerilli_master_eq_v72}
+\end{equation}
+
+\subsubsection{Status of Explicit Extraction}
+
+\noindent\textbf{Pending}: The explicit computation of the matrix
+$\mathbf{V}_{2\times2}(r)$ from the UBT linearised equation and the
+subsequent decoupling via field redefinition~\eqref{eq:zerilli_master_v72}
+have not yet been carried through algebraically.
+
+Specifically:
+\begin{enumerate}
+  \item The off-diagonal elements of $\mathbf{M}(r)$ (coupling $H_0$ and
+        $H_2$) require explicit evaluation of the spin-connection and
+        Riemann-tensor components at second order in the biquaternionic
+        derivative $\nabla^\dagger\nabla$.
+  \item The Zerilli gauge condition~\eqref{eq:zerilli_gauge_K} must be
+        checked at next-to-leading order in $M/r$ to capture the
+        $(2r+3M)^{-2}$ rational factor.
+  \item The substitution~\eqref{eq:zerilli_master_v72} must be verified
+        to decouple the system and yield $V_Z^{\text{UBT}}(r) = V_Z(r)$.
+\end{enumerate}
+
+\noindent\textbf{If match}: Zerilli potential from UBT \textbf{Proved [L1]}
+— a major result for the second paper.
+
+\noindent\textbf{If mismatch}: Document precisely which additional
+biquaternion structure (e.g.\ imaginary-time phase contribution,
+additional spinorial coupling) is required.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+Two-component Ansatz $\Theta_1^{\text{even}}$ identified & \Lone\ (§\ref{subsec:zerilli_v71}) \\
+Structural identification of two-component requirement & \Lone\ \\
+$3\times3$ linearised ODE system~\eqref{eq:coupled_ode_3x3} set up & \OPEN\ [\Ltwo] \\
+Zerilli gauge applied, $K$ eliminated & \OPEN\ [\Ltwo] \\
+$2\times2$ system~\eqref{eq:coupled_ode_2x2} reduced & \OPEN\ [\Ltwo] \\
+Zerilli master variable $Z(r)$ defined & \Lone\ (structural) \\
+Decoupling: $V_Z^{\text{UBT}}(r) = V_Z(r)$ verified & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{DERIVATION\_INDEX.md update (v72)}: Even-parity Zerilli
+two-component computation — coupled $2\times2$ ODE system structure
+identified; Zerilli gauge constraint written; master variable~$Z(r)$
+defined; explicit coefficient extraction pending; status: \OPEN\ [\Ltwo].
+
 \end{document}
