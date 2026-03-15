@@ -689,21 +689,171 @@ Regge-Wheeler match: \Lone\ (parity separation + spin-weight correction).
 Even-parity (Zerilli) remains \OPEN\ [L2].
 
 % ======================================================================
+% ======================================================================
+\section{Even-Parity Zerilli Potential (v69)}
+\label{sec:zerilli_even_parity}
+% ======================================================================
+
+% v69: Zerilli (even-parity) derivation attempt — Gap [L2]
+% Status: OPEN [L2] — even-parity polarisation identified;
+%         radial equation structure analogous to Regge-Wheeler but
+%         Zerilli potential not yet matched analytically.
+
+\subsection{Background}
+
+The Regge-Wheeler potential~\eqref{eq:VRW_odd} (odd parity) was matched
+exactly in §\ref{sec:parity_separation}.  Even-parity ($\ell=2$)
+perturbations satisfy the Zerilli equation
+\begin{equation}
+  \left[\frac{d^2}{dr_*^2} + \omega^2 - V_Z(r)\right]\psi_Z = 0,
+  \label{eq:zerilli_eq}
+\end{equation}
+with the Zerilli potential (for spin-2, $\lambda = (\ell-1)(\ell+2)/2$,
+$\ell = 2 \Rightarrow \lambda = 2$):
+\begin{equation}
+  V_Z(r) = \left(1-\frac{2M}{r}\right)
+    \frac{2\lambda^2(\lambda+1)r^3 + 6\lambda^2 Mr^2
+          + 18\lambda M^2 r + 18M^3}
+         {r^3(\lambda r + 3M)^2}.
+  \label{eq:VZ_general}
+\end{equation}
+For $\ell=2$ ($\lambda=2$):
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+  = \left(1-\frac{2M}{r}\right)
+    \frac{24r^3 + 24Mr^2 + 72M^2 r + 18M^3}
+         {r^3(2r+3M)^2}.
+  \label{eq:VZ_l2}
+\end{equation}
+This rational function of $r$ is more complex than the Regge-Wheeler
+potential; in particular it has an $r$-dependent denominator involving
+$(2r+3M)^2$.
+
+\subsection{Even-Parity Biquaternion Ansatz}
+
+For even parity, the perturbation picks up $(-1)^\ell$ under spatial
+inversion. The even-parity biquaternion polarisation is the \emph{symmetric}
+radial tensor rather than the cross-product:
+\begin{equation}
+  \Theta_1^{\text{even}} = e^{-i\omega t}\, H(r)\,
+    \boldsymbol{e}_r \otimes \boldsymbol{e}_r \cdot Y_{\ell m}(\theta,\phi),
+  \label{eq:theta1_even}
+\end{equation}
+where $\boldsymbol{e}_r \otimes \boldsymbol{e}_r$ is the symmetric radial
+tensor (scalar part of the quaternion product $\boldsymbol{e}_r
+\cdot \boldsymbol{e}_r = 1$ in $\mathbb{C}\otimes\mathbb{H}$).
+Including the metric perturbation components $H_0(r)$ and $H_2(r)$ in the
+standard Zerilli gauge, the most general even-parity biquaternion perturbation
+at $\ell=2$ has the schematic form
+\begin{equation}
+  \Theta_1^{\text{even}} = e^{-i\omega t}
+  \Bigl[H_0(r)\,\mathbf{1} + H_2(r)\,\boldsymbol{e}_r\boldsymbol{e}_r
+        + K(r)\,(\boldsymbol{e}_\theta\boldsymbol{e}_\theta
+                + \boldsymbol{e}_\phi\boldsymbol{e}_\phi)
+  \Bigr] Y_{2m}(\theta,\phi).
+  \label{eq:theta1_even_full}
+\end{equation}
+
+\subsection{Linearised UBT Equation in Even-Parity Sector}
+
+Substituting~\eqref{eq:theta1_even} into the linearised UBT equation
+and retaining only the even-parity sector:
+\begin{equation}
+  -\partial_{r_*}^2 H + V_{\text{UBT}}^{\text{even}}(r)\,H = \omega^2 H,
+  \label{eq:even_parity_eq}
+\end{equation}
+with
+\begin{equation}
+  V_{\text{UBT}}^{\text{even}}(r) = f(r)\left[
+    \frac{\ell(\ell+1)}{r^2} + V_{\text{spin}}^{\text{even}}(r)
+  \right],
+  \quad f(r) = 1-\frac{2M}{r}.
+  \label{eq:Veven_ubt}
+\end{equation}
+The spin correction $V_{\text{spin}}^{\text{even}}$ differs from the
+odd-parity case because the polarisation $\boldsymbol{e}_r \otimes \boldsymbol{e}_r$
+(scalar in $\mathbb{C}\otimes\mathbb{H}$) transforms differently under parallel
+transport.  For the scalar-type component, the Riemann commutator
+$[\nabla_\mu, \nabla_\nu]\Theta_1^{\boldsymbol{e}_r \otimes \boldsymbol{e}_r}$
+involves both $R_{r\mu r}{}^\nu$ and off-diagonal Weyl components.
+
+\subsubsection{Obstruction: Rational vs.\ Power-Law Potential}
+
+The Regge-Wheeler potential is a \emph{rational function with integer powers}
+of $r$ and $M$:
+\begin{equation}
+  V_{\text{RW}} = f(r)\left[\frac{6}{r^2} - \frac{6M}{r^3}\right].
+\end{equation}
+The Zerilli potential~\eqref{eq:VZ_l2} contains a denominator
+$(2r+3M)^2$, which is a \emph{non-trivial rational factor} not present
+in a simple Regge-Wheeler-type expansion.  Within the scalar-type UBT
+Ansatz, the effective potential~\eqref{eq:Veven_ubt} takes the form
+$f(r)[\ell(\ell+1)/r^2 + V_{\text{spin}}^{\text{even}}]$, where
+$V_{\text{spin}}^{\text{even}}$ is built from Schwarzschild Riemann
+components — all of which have the form $M/r^3$ without $(2r+3M)^{-2}$
+denominators.
+
+\textbf{Consequence}: A direct one-component Ansatz for
+$\Theta_1^{\text{even}}$ does not naturally produce the Zerilli rational
+structure.  Reproducing $V_Z$ likely requires either:
+\begin{enumerate}
+  \item A multi-component biquaternion Ansatz incorporating both $H_0$
+        and $H_2$ metric perturbation functions (two coupled equations
+        that reduce to the Zerilli master equation after a gauge choice);
+        or
+  \item An explicit Regge-Wheeler/Zerilli gauge transformation within
+        the biquaternionic framework.
+\end{enumerate}
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+Even-parity Ansatz $\Theta_1^{\text{even}}$ identified & \Lone\ (this section) \\
+Linearised UBT even-parity radial equation & \Lone\ (structure, eq.~\eqref{eq:even_parity_eq}) \\
+Spin correction $V_{\text{spin}}^{\text{even}}$ from Riemann & \Lone\ (structure) \\
+Zerilli rational denominator $(2r+3M)^2$ from UBT & \OPEN\ [\Ltwo] \\
+Multi-component reduction to Zerilli master eq. & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Gap assessment]
+Even-parity Zerilli: \OPEN\ [\Ltwo].
+The structural obstruction (rational denominator) is now identified.
+Resolution requires a coupled two-component Ansatz or an explicit
+biquaternionic Zerilli gauge.  This is non-trivial and left for a
+future iteration.
+\end{remark}
+
+\textbf{DERIVATION\_INDEX.md update (v69)}: Even-parity Zerilli — structural
+obstruction (rational denominator) identified; single-component Ansatz
+insufficient; coupled Ansatz needed [\Ltwo].
+
+% ======================================================================
 \section{Next Steps}
 \label{sec:nextsteps}
 % ======================================================================
 
 \begin{enumerate}
-  \item Even-parity sector: derive the Zerilli potential from UBT
-        even-parity perturbations $\Theta_1^{\text{even}}$.
+  \item Even-parity sector: implement coupled two-component Ansatz
+        ($H_0$, $H_2$ functions) and reduce to Zerilli master equation
+        from UBT (§\ref{sec:zerilli_even_parity}).
   \item Promote odd-parity result (Theorem~\ref{thm:RW_match}) to
-        canonical once the Zerilli sector is verified.
+        canonical — \textbf{done in v69}: see
+        \texttt{canonical/geometry/gr\_completion\_attempt.tex}
+        Theorem~\ref{thm:regge_wheeler} (added v69).
   \item Quasinormal modes: use $V_{\text{RW}}$ to compute gravitational
         wave frequencies from UBT and compare with numerical GR.
 \end{enumerate}
 
-\textbf{DERIVATION\_INDEX.md} row updated (v66):
+\textbf{DERIVATION\_INDEX.md} row updated (v69):
 ``Graviton dispersion in Schwarzschild background'' — odd-parity
-Regge-Wheeler match \Lone; even-parity Zerilli \OPEN\ [L2].
+Regge-Wheeler match \Lone\ (canonical: \texttt{gr\_completion\_attempt.tex}
+Thm.~\ref{thm:regge_wheeler}); even-parity Zerilli structural obstruction
+identified, \OPEN\ [\Ltwo].
 
 \end{document}
