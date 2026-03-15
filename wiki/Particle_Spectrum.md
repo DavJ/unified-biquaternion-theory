@@ -68,6 +68,7 @@ The three fermion generations are proposed to correspond to three independent
 | ψ-modes as independent B-fields | ✅ **Proved** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
 | Modes carry same SU(3) quantum numbers | ✅ **Proved** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
 | ψ-parity forbids even↔odd mixing | ✅ **Proved** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
+| Quaternionic origin of three families: {i,j,k} ↔ three fermion families | ❓ **Unknown** | [`generation_structure.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/research/generation_structure.tex) |
 | KK mismatch (ratio 1:2 vs 207:3477) | ✅ **Proved** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
 | Option A (linear mixing) reproduces ratios | ❌ **Dead End** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
 | Option B (linear Yukawa) reproduces ratios | ❌ **Dead End** | [`st3_complex_time_generations.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/experiments/research_tracks/three_generations/st3_complex_time_generations.tex) |
@@ -84,8 +85,7 @@ The three fermion generations are proposed to correspond to three independent
 | R = 1/m_e (torus radius) | ⚠️ **Semi-empirical** | [`canonical_derivation.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/canonical_derivation.md) |
 | KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | 🔶 **Structural** | [`status_summary.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/status_summary.md) |
 | Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | 🔶 **Structural** | [`STATUS_FERMIONS.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/historical_versions/status/STATUS_FERMIONS.md) |
-| A (hopfion mass scale) | ⚠️ **Semi-empirical** | [`parameter_table.csv`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/lepton_audit/parameter_table.csv) |
-| *… and 4 more results* | *See [DERIVATION_INDEX.md](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)* | |
+| *… and 5 more results* | *See [DERIVATION_INDEX.md](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md)* | |
 <!-- END GENERATED: three_generations_status -->
 
 ---
