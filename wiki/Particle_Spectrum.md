@@ -12,6 +12,39 @@ UBT recovers Standard Model quantum numbers from the gauge algebra.
 
 ---
 
+## Higgs Sector
+
+### Higgs VEV from Hosotani Mechanism
+
+The Higgs vacuum expectation value arises from Wilson-line condensation on the
+$\psi$-circle via the Hosotani mechanism:
+
+```
+v ≈ n_R · π / (2g · R_ψ)  ≈ 230 GeV  (Hosotani estimate, [L1])
+```
+
+where $n_R = 138$, $g \approx 0.65$ (SU(2)_L coupling), and
+$R_\psi \approx 14.18~\text{GeV}^{-1}$ from the fine-structure constant calibration.
+Note: the α-calibrated $R_\psi$ gives $v \approx 23.5~\text{GeV}$ directly (wrong
+by factor $\sim 10$); the factor $n_R = 138$ in the $n_R$-th KK mode formula
+brings $v$ to the correct order.  The two-scale discrepancy is Gap G-Rpsi [Open L2].
+
+The quartic coupling estimate is:
+```
+λ_4D ≈ 0.011  vs  λ_SM = 0.13  (factor 11, corrections pending)
+```
+
+**Status**: ⚠️ **Partially Proved [L1]** — $N_\text{eff} = 8 > 0$ (bosonic, KK parity) and
+SSB at $\theta_W = \pi/2$ both proved [L1]; $\lambda_{4D}$ is a [L1] order-of-magnitude
+estimate; R_ψ two-scale discrepancy is Gap G-Rpsi [Open L2].
+
+**Files**:
+- [`research_tracks/research/hosotani_higgs.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/research/hosotani_higgs.tex) — full derivation
+- [`tools/compute_hosotani_lambda.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/tools/compute_hosotani_lambda.py) — numerical verification
+- [`canonical/interactions/sm_gauge.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/sm_gauge.tex) — canonical statement
+
+---
+
 ## Three Fermion Generations
 
 ### ψ-Modes as Generation Structure

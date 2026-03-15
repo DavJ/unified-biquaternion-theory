@@ -336,5 +336,192 @@ def main():
     }
 
 
+# ---------------------------------------------------------------------------
+# Task 1 (v68): Three identified corrections to λ_4D
+# ---------------------------------------------------------------------------
+
+def zeta1_regularisation_factor():
+    r"""Estimate the ζ(1) regularisation correction to the Hosotani potential.
+
+    At the SSB minimum θ_W = π/2, the quartic coefficient of V(θ_W) comes
+    from the fourth derivative d⁴V/dθ_W⁴, which involves the alternating
+    Dirichlet series:
+
+        Σ_{k=1}^∞ (-1)^k / k  =  −η(1)  =  −ln(2)
+
+    where η(s) = Σ_{k=1}^∞ (-1)^{k-1}/k^s is the Dirichlet eta function
+    (η(1) = 1 - 1/2 + 1/3 - ... = ln(2) > 0; note the sum with (-1)^k
+    equals -η(1) = -ln(2)).
+    The base formula uses the second derivative, which involves:
+
+        Σ_{k=1}^∞ (-1)^k / k³  =  −η(3)  =  −(3/4)ζ(3)
+
+    The ζ(1) regularisation correction factor is the ratio of absolute
+    values of these two series:
+
+        C_ζ(1) = |η(1)| / |η(3)| = ln(2) / ((3/4)·ζ(3))
+
+    This is the relative contribution of the quartic (d⁴V) sector compared
+    to the quadratic (d²V) sector.  Status: O(1) correction ≈ 0.77.
+
+    Returns:
+        (eta1, C_ζ): eta(1) = ln(2) ≈ 0.693, correction factor C_ζ ≈ 0.77
+    """
+    eta1 = math.log(2)                   # η(1) = ln(2) ≈ 0.693 (positive)
+    eta3 = (3.0 / 4.0) * ZETA3          # η(3) = (3/4)ζ(3) ≈ 0.901
+    c_zeta = eta1 / eta3
+    return eta1, c_zeta
+
+
+def kk_mode_normalisation_factor():
+    r"""KK mode normalisation correction to λ_4D.
+
+    In the standard Hosotani formula the Wilson-line sum is:
+
+        Σ_{k=1}^∞ (-1)^k / k^s
+
+    In the properly normalised quantum field theory each KK mode at level n
+    contributes with amplitude 1/(2n) (zero-point normalisation from the
+    second-quantised expansion, where ω_n·R_ψ = n is dimensionless).
+    The corrected sum is:
+
+        Σ_{k=1}^∞ (-1)^k / (k^s × 2k)  =  (1/2) Σ (-1)^k / k^{s+1}
+
+    For s = 3 (the d²V/dθ² series), this becomes:
+        (1/2) Σ (-1)^k / k^4  =  −(1/2) η(4)
+
+    The correction ratio relative to the uncorrected sum −η(3) is:
+
+        C_KK  =  η(4) / (2 η(3))
+
+    where η(4) = 7π^4/720 ≈ 0.9470  and  η(3) = (3/4)ζ(3) ≈ 0.9016.
+
+    Returns:
+        C_KK: multiplicative correction factor ≈ 0.525 (O(1) suppression)
+    """
+    eta4 = 7.0 * math.pi ** 4 / 720.0   # η(4) = 7π⁴/720 ≈ 0.9470
+    eta3 = (3.0 / 4.0) * ZETA3          # η(3) = (3/4)ζ(3) ≈ 0.9016
+    c_kk = eta4 / (2.0 * eta3)          # ≈ 0.525
+    return c_kk
+
+
+def spin_weighted_harmonic_factor():
+    r"""Spin-weighted harmonic correction from the biquaternionic structure.
+
+    The biquaternion field Θ ∈ ℂ⊗ℍ carries spin-weighted fields when
+    expanded on the ψ-circle.  The standard Hosotani formula assumes
+    scalar (spin-0) harmonics; the actual UBT field has three physical
+    polarisation states in the SU(2)_L vector representation
+    (W⁺, W⁻, W³), contributing a multiplicative factor:
+
+        C_sw  =  2s + 1  =  3   (for spin weight s = 1)
+
+    Returns:
+        C_sw: spin-weighted correction factor = 3
+    """
+    s_weight = 1   # spin weight of SU(2)_L doublet (vector)
+    c_sw = float(2 * s_weight + 1)
+    return c_sw
+
+
+def lambda_4d_corrected(n_eff, g, zeta3, r_psi):
+    r"""Compute λ_4D with all three identified corrections applied (v68).
+
+    The three corrections to the base estimate
+        λ_4D^base = 3·N_eff·ζ(3)/(4π·R_ψ²)
+    are:
+        (a) ζ(1) regularisation:  C_ζ  = η(1)/η(3) ≈ 0.77   [O(1)]
+        (b) KK mode normalisation: C_KK = η(4)/(2η(3)) ≈ 0.53 [O(1)]
+        (c) Spin-weighted harmonic: C_sw = 3                   [O(1-3)]
+
+    Combined:
+        λ_4D^corr = λ_4D^base × C_ζ × C_KK × C_sw
+
+    Note: these corrections produce a combined factor ≈ 1.2, which only
+    partially closes the factor ~11 gap vs λ_SM.  A full closure requires
+    the precise beyond-one-loop treatment and proper R_ψ identification
+    (see hosotani_higgs.tex §8, Gap G-Rpsi).
+
+    Args:
+        n_eff:  N_eff = 8
+        g:      SU(2)_L coupling
+        zeta3:  ζ(3)
+        r_psi:  R_ψ in GeV⁻¹
+
+    Returns:
+        dict with base, corrected λ_4D and individual factors
+    """
+    lam_base = lambda_4d_full(n_eff, g, zeta3, r_psi)
+
+    _, c_zeta = zeta1_regularisation_factor()
+    c_kk = kk_mode_normalisation_factor()
+    c_sw = spin_weighted_harmonic_factor()
+
+    lam_corrected = lam_base * c_zeta * c_kk * c_sw
+
+    return {
+        "lambda_base":      lam_base,
+        "C_zeta1":          c_zeta,
+        "C_kk":             c_kk,
+        "C_sw":             c_sw,
+        "lambda_corrected": lam_corrected,
+    }
+
+
 if __name__ == "__main__":
-    main()
+    results = main()
+
+    # --- Task 1 (v68): Corrections ---
+    print("\n" + "=" * 65)
+    print("Task 1 (v68): λ_4D Corrections")
+    print("=" * 65)
+
+    eta1, c_zeta = zeta1_regularisation_factor()
+    c_kk  = kk_mode_normalisation_factor()
+    c_sw  = spin_weighted_harmonic_factor()
+
+    print("\n(a) ζ(1) regularisation (Dirichlet η-function ratio at SSB min):")
+    print(f"    η(1) = ln(2)                   = {eta1:.4f}")
+    print(f"    η(3) = (3/4)ζ(3)               = {(3/4)*ZETA3:.4f}")
+    print(f"    C_ζ = η(1)/η(3)                = {c_zeta:.4f}")
+
+    eta4 = 7.0 * math.pi ** 4 / 720.0
+    eta3 = (3.0 / 4.0) * ZETA3
+    print("\n(b) KK mode normalisation (1/(2n) per mode → η(4)/(2η(3))):")
+    print(f"    η(4) = 7π⁴/720                 = {eta4:.4f}")
+    print(f"    η(3) = (3/4)ζ(3)               = {eta3:.4f}")
+    print(f"    C_KK = η(4)/(2·η(3))           = {c_kk:.4f}")
+
+    print("\n(c) Spin-weighted harmonic correction (s=1, SU(2)_L vector):")
+    print(f"    C_sw = 2s+1 = 3                = {c_sw:.1f}")
+
+    lam_base = results["lambda_4d_full"]
+    lam_sm   = results["lambda_sm"]
+
+    lam_corr = lam_base * c_zeta * c_kk * c_sw
+    ratio_corr = abs(lam_corr) / lam_sm
+    c_total = c_zeta * c_kk * c_sw
+
+    print(f"\n--- Corrected λ_4D ---")
+    print(f"  λ_4D^base            = {lam_base:.6f}  (factor ~{1/results['ratio_full']:.1f} vs λ_SM)" if results['ratio_full'] > 0 else f"  λ_4D^base            = {lam_base:.6f}")
+    print(f"  × C_ζ                = {c_zeta:.4f}")
+    print(f"  × C_KK               = {c_kk:.4f}")
+    print(f"  × C_sw               = {c_sw:.1f}")
+    print(f"  Combined factor      = {c_total:.4f}")
+    print(f"  λ_4D^corrected       = {lam_corr:.6f}")
+    print(f"  λ_SM                 = {lam_sm:.4f}")
+    print(f"  |λ_corr/λ_SM|        = {ratio_corr:.4f}  (factor {1.0/ratio_corr:.2f})")
+    print(f"  Gap improvement:     base factor {1/results['ratio_full']:.1f} → corr factor {1/ratio_corr:.1f}")
+
+    if abs(ratio_corr - 1.0) <= 0.20:
+        print("  STATUS: λ_4D ≈ λ_SM within 20% → Gap H1 Proved [L1] 🎉")
+    elif ratio_corr >= 0.5:
+        print(f"  STATUS: λ_4D within factor {1/ratio_corr:.1f} of λ_SM"
+              " — corrections identified; combined correction ~"
+              f"{c_total:.2f}× (partial); full closure requires R_ψ two-scale"
+              " analysis (Gap G-Rpsi, hosotani_higgs.tex §8) [L1 estimate]")
+    else:
+        print(f"  STATUS: factor {1/ratio_corr:.1f} vs λ_SM — corrections"
+              " identified, gap only partially reduced; see hosotani_higgs.tex §8")
+
+    print("=" * 65)

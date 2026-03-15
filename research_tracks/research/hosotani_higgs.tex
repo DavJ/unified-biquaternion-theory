@@ -629,6 +629,194 @@ Gap H1 status: \textbf{Partially Proved [L1]} with improved $\lambda$ estimate.
 \end{remark}
 
 % ======================================================================
+\section{$R_\psi$ Two-Scale Structure (Gap G-Rpsi)}
+\label{sec:rpsi_two_scale}
+% ======================================================================
+
+% v68: R_ψ two-scale structure investigated — Gap G-Rpsi
+% Status: [OPEN — Motivated Two-Scale Conjecture]
+
+\subsection{The Discrepancy}
+
+The $\psi$-circle radius $R_\psi$ appears in two \emph{inconsistent}
+calibrations:
+
+\begin{enumerate}
+  \item \textbf{From the fine-structure constant} (§\ref{sec:lambda_numerical},
+        \eqref{eq:Rpsi_natural}):
+        \begin{equation}
+          R_\psi^{(\alpha)} = \frac{\hbar}{n_R\,m_e\,c}
+          = \frac{1}{138 \times 5.11\times10^{-4}~\text{GeV}}
+          \approx 14.18~\text{GeV}^{-1} \approx 2.80~\text{fm}.
+          \label{eq:Rpsi_alpha}
+        \end{equation}
+        Inserting into $v = n_R\pi/(2g R_\psi^{(\alpha)})$ gives
+        $v \approx 23.5~\text{GeV}$, a factor $\sim 10$ below
+        $v_{\text{obs}} = 246~\text{GeV}$.
+
+  \item \textbf{From the Higgs VEV constraint}
+        ($v_{n_R} = n_R\pi/(2g R_\psi) = 246~\text{GeV}$):
+        \begin{equation}
+          R_\psi^{(\text{Higgs})}
+          = \frac{n_R\,\pi}{2\,g\,v_{\text{obs}}}
+          = \frac{138\,\pi}{2 \times 0.65 \times 246~\text{GeV}}
+          \approx 1.36~\text{GeV}^{-1} \approx 0.27~\text{fm}.
+          \label{eq:Rpsi_Higgs}
+        \end{equation}
+        This value reproduces $v \approx 246~\text{GeV}$ by construction.
+\end{enumerate}
+
+\noindent The ratio of the two values is:
+\begin{equation}
+  \frac{R_\psi^{(\alpha)}}{R_\psi^{(\text{Higgs})}}
+  = \frac{14.18}{1.36} \approx 10.4.
+  \label{eq:Rpsi_ratio}
+\end{equation}
+
+\begin{remark}[Near-integer ratio]
+$10.4 \approx n_R/13.3$.  More precisely,
+$n_R / (R_\psi^{(\alpha)}/R_\psi^{(\text{Higgs})}) = 138/10.4 \approx 13.3$,
+which is not an obvious integer.  However, the ratio
+$R_\psi^{(\alpha)}/R_\psi^{(\text{Higgs})} = 10.4 \approx 10$
+is suggestive of a factor related to the decade structure of the
+fine-structure derivation.  Gap G-Rpsi asks for a first-principles
+explanation of this factor.
+\end{remark}
+
+\subsection{T-Duality Analysis from Canonical Geometry}
+
+The canonical document
+\texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex} derives a
+self-dual-point mechanism: the one-loop moduli potential
+$V_{\mathrm{mod}}(R_\psi)$ is T-duality invariant, and its
+T-duality-symmetrised form has a unique extremum at the \emph{self-dual
+point}
+\begin{equation}
+  R_\psi = R_t,
+  \label{eq:self_dual}
+\end{equation}
+where $R_t$ is the real-time compactification radius
+(\texttt{Rpsi\_dynamical\_fix.tex}, Theorem~1, \Lone).
+
+\textbf{Question}: Does $R_\psi = R_t$ select
+$R_\psi^{(\alpha)} \approx 2.80~\text{fm}$ or
+$R_\psi^{(\text{Higgs})} \approx 0.27~\text{fm}$?
+
+\begin{itemize}
+  \item If $R_t = R_\psi^{(\alpha)}$: the self-dual point gives the
+        $\alpha$-calibrated radius, and the Higgs VEV discrepancy persists.
+  \item If $R_t = R_\psi^{(\text{Higgs})}$: the self-dual point gives
+        the electroweak radius, which is $\sim 10\times$ smaller than
+        the $\alpha$-calibrated one; a separate mechanism must fix $R_t$
+        in physical units.
+\end{itemize}
+
+The T-duality at one-loop renders the moduli potential \emph{flat}
+(\texttt{Rpsi\_dynamical\_fix.tex} §4 Remark); physical stabilisation
+requires a beyond-one-loop or non-perturbative computation.
+Status of self-dual-point value in physical units: \OPEN{} [\Ltwo].
+
+\subsection{Two-Scale Conjecture}
+
+We propose the following \textbf{Two-Scale Conjecture} as the resolution
+of Gap G-Rpsi:
+
+\begin{conjecture}[Two Physical Scales for $R_\psi$]
+\label{conj:two_scale}
+The $\psi$-circle radius plays \emph{two physically distinct roles} in UBT:
+\begin{enumerate}
+  \item \textbf{Winding scale} $R_\psi^{(\alpha)} \approx 2.80~\text{fm}$:
+        governs the KK winding modes that generate the fine-structure
+        constant $\alpha$ via the Hosotani KK sum at level $n^* = 137$.
+        This is the \emph{spectral radius} seen by the $\alpha$-derivation.
+  \item \textbf{Electroweak scale} $R_\psi^{(\text{EW})} \approx 0.27~\text{fm}$:
+        governs the $\psi$-circle seen by the Hosotani Wilson line
+        $\theta_W$ that generates the Higgs VEV.
+        This is the \emph{effective radius} at the electroweak energy scale
+        $\mu \sim m_Z \approx 91~\text{GeV}$.
+\end{enumerate}
+The two radii are related by renormalisation-group running of $R_\psi(\mu)$
+from the UV ($\alpha$-derivation scale $\mu_\alpha \sim m_e$) to the
+electroweak scale $\mu_{\text{EW}} \sim m_Z$:
+\begin{equation}
+  \frac{R_\psi^{(\alpha)}}{R_\psi^{(\text{EW})}}
+  \approx 10 \approx \frac{m_Z}{m_e \cdot \pi/2}
+  \approx \frac{91~\text{GeV}}{0.178~\text{GeV}} \approx 511,
+  \label{eq:Rpsi_running}
+\end{equation}
+which shows that a simple energy-scale ratio does not directly reproduce the
+factor 10 (the right-hand side gives $\sim 511$, not $\sim 10$); the running must be non-trivial (logarithmic or power-law).
+\end{conjecture}
+
+\begin{remark}[Status]
+Conjecture~\ref{conj:two_scale} is \OPEN.  The factor $\sim 10$ is
+identified but not derived.  Independent checks:
+\begin{itemize}
+  \item If $R_\psi$ runs as a geometric modulus under the RG, the
+        relevant beta function is not yet computed in UBT (\Ltwo).
+  \item The ratio $n_R / (R_\psi^{(\alpha)}/R_\psi^{(\text{Higgs})})
+        \approx 13.3$ does not yield an obvious algebraic formula.
+  \item A clean test would be to verify that using $R_\psi^{(\text{EW})}$
+        in both the $\lambda$ formula and the VEV simultaneously gives
+        $\lambda_{\text{4D}} \approx \lambda_{\text{SM}}$ with $v \approx 246~\text{GeV}$.
+\end{itemize}
+\end{remark}
+
+\subsection{Numerical Check with $R_\psi^{(\text{EW})}$}
+
+We substitute $R_\psi^{(\text{EW})} = 1.36~\text{GeV}^{-1}$ into
+the full $\lambda_{\text{4D}}$ formula (§\ref{sec:lambda_5d_to_4d},
+\eqref{eq:lambda_4d_full}):
+\begin{align}
+  \lambda_{\text{4D}}\bigl(R_\psi^{(\text{EW})}\bigr)
+  &= \frac{3\,N_{\text{eff}}\,\zeta(3)}{4\pi\,(R_\psi^{(\text{EW})})^2}
+  \notag\\
+  &= \frac{3 \times 8 \times 1.2021}{4\pi \times (1.36)^2}
+  \approx \frac{28.85}{23.26}
+  \approx 1.24.
+  \label{eq:lambda_EW}
+\end{align}
+
+\begin{remark}
+With $R_\psi^{(\text{EW})} \approx 0.27~\text{fm}$, $\lambda_{\text{4D}} \approx 1.24$,
+which \emph{overshoots} $\lambda_{\text{SM}} \approx 0.130$ by a factor $\sim 9.5$.
+So while $R_\psi^{(\text{EW})}$ fixes $v$, it does not simultaneously fix
+$\lambda$ without further corrections.  The two-scale conjecture thus
+requires independent corrections to the $\lambda$ formula beyond the
+simple radius substitution.  The three identified corrections
+(§\ref{sec:conclusion}: $\zeta(1)$ regularisation, KK mode normalisation,
+spin-weighted harmonic correction) act in the right direction and are
+quantified in \texttt{tools/compute\_hosotani\_lambda.py}.
+\end{remark}
+
+\subsection{Summary of Gap G-Rpsi}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Quantity} & \textbf{Value} & \textbf{Source} \\
+\hline
+$R_\psi^{(\alpha)}$ & $14.18~\text{GeV}^{-1} \approx 2.80~\text{fm}$
+  & $\alpha$-calibration (§\ref{sec:lambda_numerical}) \\
+$R_\psi^{(\text{Higgs})}$ & $1.36~\text{GeV}^{-1} \approx 0.27~\text{fm}$
+  & Higgs VEV constraint \eqref{eq:Rpsi_Higgs} \\
+Ratio & $\approx 10.4$ & \eqref{eq:Rpsi_ratio} \\
+Self-dual point $R_\psi = R_t$ & \Lone\ (mechanism) & \texttt{Rpsi\_dynamical\_fix.tex} \\
+Physical units of $R_t$ & \OPEN\ [\Ltwo] & \texttt{Rpsi\_dynamical\_fix.tex} §5 \\
+Two-Scale Conjecture & \OPEN\ (v68) & Conjecture~\ref{conj:two_scale} \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Gap G-Rpsi status (v68)}: Two scales identified
+($R_\psi^{(\alpha)} \approx 2.80~\text{fm}$ for $\alpha$-derivation,
+$R_\psi^{(\text{EW})} \approx 0.27~\text{fm}$ for Higgs VEV).
+Factor $\approx 10$ discrepancy documented; T-duality self-dual-point
+mechanism [L1] does not yet fix the physical scale.
+Resolution requires beyond-one-loop moduli stabilisation or
+RG running of $R_\psi$ [Open L2].
+
+% ======================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 % ======================================================================

@@ -11,6 +11,7 @@
 ## Pre-submission
 
 - [x] License in comments (`% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0`)
+- [x] Higgs mechanism section added (§7: Electroweak Symmetry Breaking via Hosotani Mechanism)
 - [ ] Abstract ≤ 1920 characters (check with `wc -c` on abstract text)
 - [ ] Author affiliation line: "Independent Researcher, Czech Republic"
 - [ ] Bibliography complete (check all `\bibitem` resolve)
@@ -34,12 +35,13 @@
 
 ## Content Cross-Check
 
-- [ ] §1 Introduction: motivates biquaternion framework
+- [x] §1 Introduction: motivates biquaternion framework; cite{UBTAlpha} cross-ref present
 - [ ] §2 UBT action and covariant derivative
 - [ ] §3 Schwarzschild background Θ₀^(S) derived
 - [ ] §4 Graviton dispersion and V_eff(r)
 - [ ] §5 Regge-Wheeler coefficient comparison (Gap L2: OPEN — angular decomposition pending)
 - [ ] §6 Twistor correspondence
+- [x] §7 Electroweak Symmetry Breaking via Hosotani Mechanism (added v68)
 - [ ] References: Regge & Wheeler (1957), Zerilli (1970), Penrose (1976), UBT Alpha paper
 
 ## Post-submission
