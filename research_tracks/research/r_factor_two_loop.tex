@@ -168,6 +168,157 @@ contribution has been derived from an explicit two-loop Feynman diagram
 computation in $\mathcal{S}[\Theta]$ on the $\psi$-circle.
 
 % ======================================================================
+\section{Two-Scale Approach (v70): Dead End}
+\label{sec:two_scale}
+% ======================================================================
+
+\subsection{Setup}
+
+The two $\psi$-circle radii established in UBT are:
+\begin{equation}
+  R_\psi^{(\alpha)} = \frac{\hbar}{n_R\,m_e\,c} \approx 2.80\ \text{fm},
+  \qquad
+  R_\psi^{(\mathrm{EW})} = \frac{n_R\,\pi}{2g\,v_{\mathrm{obs}}} \approx 0.27\ \text{fm}.
+  \label{eq:two_scale_radii}
+\end{equation}
+Their ratio is $R_\psi^{(\alpha)}/R_\psi^{(\mathrm{EW})} \approx 10.4$.  The
+question: can this ratio generate $R \approx 1.114$?
+
+\subsection{Key Computation}
+
+Setting $\rho = R_\psi^{(\mathrm{EW})}/R_\psi^{(\alpha)} \approx 0.096$:
+\begin{equation}
+  \rho \approx 0.096 \approx \alpha \cdot N_{\mathrm{eff}}
+  \quad\Longrightarrow\quad
+  \rho \approx \alpha \cdot N_{\mathrm{eff}}.
+\end{equation}
+Attempting $R = 1 + \rho \cdot \alpha \cdot \beta$ requires
+$\beta \approx 163$ — no algebraic value identified.
+Alternatively, $R = \rho^\varepsilon$ gives $\varepsilon \approx 0.046$
+— again no algebraic value.
+
+\subsection{Verdict}
+
+\begin{center}
+\textbf{Dead End} — the ratio $R_\psi^{(\alpha)}/R_\psi^{(\mathrm{EW})}$ does
+not generate $R \approx 1.114$ through any natural algebraic combination.
+\end{center}
+
+% ======================================================================
+\section{Modular Correction Approach (v70): Dead End}
+\label{sec:modular}
+% ======================================================================
+
+\subsection{Setup}
+
+Near the self-dual point $\tau = i$ of the $\psi$-circle modular parameter,
+the partition function $Z(\tau)$ receives corrections from the Eisenstein series
+$E_2(\tau)$.  Setting $\tau = i + \varepsilon$ with $\varepsilon \ll 1$:
+\begin{equation}
+  Z(\tau) \approx Z(i)\!\left[1 + \frac{3\pi\,\varepsilon}{2} + \mathcal{O}(\varepsilon^2)\right].
+\end{equation}
+
+\subsection{Key Computation}
+
+With $\varepsilon = 1/(2\pi \cdot 137)$ (one-loop shift at the fine-structure
+scale):
+\begin{equation}
+  \text{correction} \approx 1 + \frac{3\pi}{2}\cdot\frac{1}{2\pi\cdot 137}
+  \approx 1.0055.
+\end{equation}
+This is a factor $\approx 20$ too small compared to $R - 1 \approx 0.114$.
+No value of $\varepsilon$ derived from UBT parameters reproduces $R$.
+
+\subsection{Verdict}
+
+\begin{center}
+\textbf{Dead End} — modular correction near $\tau = i$ is of order $\alpha \sim 1/137$,
+yielding only $R \approx 1.005$, not $1.114$.
+\end{center}
+
+% ======================================================================
+\section{Heat Kernel on Flat Torus (v70): Dead End}
+\label{sec:heat_kernel}
+% ======================================================================
+
+\subsection{Setup}
+
+The Seeley--DeWitt heat-kernel expansion on the $\psi$-circle (topologically
+$T^1$ or more generally $T^3$ for the three imaginary directions) gives
+subleading corrections to the effective action as a series in the background
+curvature:
+\begin{equation}
+  \mathrm{Tr}\,e^{-t\Delta} \sim \frac{1}{(4\pi t)^{d/2}}
+  \sum_{n=0}^\infty t^n\,c_n[g],
+\end{equation}
+where $c_n[g]$ are the Seeley--DeWitt coefficients.
+
+\subsection{Key Computation}
+
+On the flat torus $T^3$ (constant metric, zero curvature):
+\begin{equation}
+  R_{\mu\nu\rho\sigma} = 0
+  \quad\Longrightarrow\quad
+  c_n[g] = 0 \;\text{ for all } n \geq 1.
+\end{equation}
+Therefore all Seeley--DeWitt subleading corrections vanish identically on the
+flat $\psi$-torus.  No correction of the form $R \approx 1 + c\alpha$ can arise
+from the heat kernel on a flat background.
+
+\subsection{Verdict}
+
+\begin{center}
+\textbf{Dead End} — flat $T^3$ has $c_n = 0$; no heat-kernel correction
+generates $R \approx 1.114$.
+\end{center}
+
+% ======================================================================
+\section{Summary: R Remains Open Hard Problem (v70)}
+\label{sec:v70_summary}
+% ======================================================================
+
+After 25+ approaches across all versions, the $R$ factor remains an
+\textbf{Open Hard Problem}.
+
+\medskip
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Approach (v70)} & \textbf{Result} & \textbf{Status} \\
+\hline
+Two-scale ratio $R_\psi^{(\alpha)}/R_\psi^{(\mathrm{EW})}$
+  & $\beta \approx 163$ (no algebraic value) & Dead End \\
+Modular correction near $\tau=i$
+  & correction $\approx 1.005$ (factor 20 too small) & Dead End \\
+Heat kernel on flat $T^3$
+  & $c_n = 0$ (zero curvature) & Dead End \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Best candidate (unchanged)}: $R = 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)
+\approx 1.1123$, error $0.15\%$.
+\begin{itemize}
+  \item $\pi$: candidate origin — $S^1$ angular integration.
+  \item $1/4$: candidate origin — Weyl spinor (2 DOF / $2\pi^2$ from 4D).
+  \item Neither has been derived from $\mathcal{S}[\Theta]$.
+\end{itemize}
+
+\textbf{Status}: $R$ is a \textbf{Motivated Conjecture (B3)} — numerical
+observation only.  The two-loop beta-function approach has the correct
+qualitative structure $R = 1 + c\alpha$; the coefficient $c$ is not
+algebraically derived.
+
+\textbf{Next step}: Explicit two-loop $\beta$-function coefficient on
+$T^3 \times S^1$ (direct Feynman diagram computation in $\mathcal{S}[\Theta]$).
+
+\medskip
+\textbf{DERIVATION\_INDEX.md update (v70)}: R factor row — three additional
+approaches (Two-Scale, Modular, Heat Kernel) all Dead End; best candidate
+unchanged; status remains \textbf{Open Hard Problem}.
+
+% ======================================================================
 \section{What Would Close the Problem}
 \label{sec:what_would_close}
 % ======================================================================

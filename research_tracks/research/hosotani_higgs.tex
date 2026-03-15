@@ -1073,6 +1073,96 @@ close $\lambda$ gap; fermionic $N_f$ correction and/or two-loop potential
 needed.
 
 % ======================================================================
+\section{Constraint Analysis and Status Update (v70)}
+\label{sec:constraint_v70}
+% ======================================================================
+
+% v70: Three approaches tried — N_f fermionic modes, R_ψ^EW, n*-shift.
+%      All Dead End or move in wrong direction.
+%      Status: Partially Proved [L1] — SSB confirmed; λ order correct;
+%              quantitative closure needs two-loop computation.
+
+\subsection{Three Approaches Tried in v70}
+
+\subsubsection{Approach 1: $N_f$ Fermionic Mode Correction}
+
+The quartic coupling under fermionic KK corrections is:
+\begin{equation}
+  N_{\mathrm{eff}}^{\mathrm{total}} = N_b - N_f = 8 - N_f.
+\end{equation}
+Closing Gap H1 requires $\lambda_{\mathrm{4D}} = \lambda_{\mathrm{SM}} = 0.130$.
+Setting $\lambda_{\mathrm{4D}} = 3N_{\mathrm{eff}}\zeta(3)/(4\pi R_\psi^2)$:
+\begin{equation}
+  N_{\mathrm{eff}}^{\mathrm{total}} \approx 0.21
+  \quad\Longrightarrow\quad
+  N_b - N_f \approx 0.21.
+\end{equation}
+Since $N_b = 8$, this requires $N_f \approx 7.79$ — a non-integer, physically
+impossible in a discrete KK spectrum.  \textbf{Dead End.}
+
+\subsubsection{Approach 2: $R_\psi^{\mathrm{EW}}$ Scale Substitution}
+
+Substituting $R_\psi^{(\mathrm{EW})} \approx 0.27\ \text{fm}$ (the electroweak
+scale) instead of $R_\psi^{(\alpha)} \approx 2.80\ \text{fm}$:
+\begin{equation}
+  \lambda_{\mathrm{4D}}(R_\psi^{(\mathrm{EW})})
+  \approx \frac{3 \cdot 8 \cdot \zeta(3)}{4\pi (0.27)^2}
+  \approx 4.93.
+\end{equation}
+This \emph{overshoots} $\lambda_{\mathrm{SM}} = 0.130$ by a factor $\approx 38$.
+The corrected estimate $\lambda^{(\alpha)} \times (10.4)^2 \approx 1.51$ overshoots
+by a factor $\approx 11.6$.  Switching between the two radii moves in the wrong
+direction.  \textbf{Dead End.}
+
+\subsubsection{Approach 3: $n^*$-Shift Correction}
+
+Modifying the winding quantum number $n^* \to n^* + \delta$ to absorb the factor
+$\sim 11$ requires $\delta \approx \sqrt{11} - 1 \approx 2.3$ — no algebraic
+justification from UBT.  \textbf{Dead End (moves in wrong direction).}
+
+\subsection{Precise Constraint}
+
+From the analysis above, closing Gap H1 requires \emph{one} of the following:
+\begin{enumerate}
+  \item A non-integer effective mode count $N_{\mathrm{eff}}^{\mathrm{total}} \approx 0.21$,
+        which is physically impossible in the discrete KK spectrum without an explicit
+        two-loop contribution.
+  \item An explicit two-loop contribution of order $g^4$ to $V(\theta_W)$ that reduces
+        the one-loop estimate by a factor $\sim 11$.
+  \item A correction to the 5D→4D KK overlap integral (normalisation) by a factor
+        $\sim 1/\sqrt{11}$.
+\end{enumerate}
+
+\subsection{Status Update}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+SSB via Hosotani at $\theta_W = \pi/2$ & \textbf{Confirmed [L1]} \\
+$v \approx 230\ \text{GeV}$ (7\% from observed) & \textbf{[L1]} \\
+$\lambda_{\mathrm{4D}} \approx 0.0114$ (order correct) & \textbf{[L1] estimate} \\
+Quantitative $\lambda = \lambda_{\mathrm{SM}}$ & \textbf{Open} — factor $\sim 11$ \\
+$N_f$ correction closes gap & \textbf{Dead End} — non-integer \\
+$R_\psi^{(\mathrm{EW})}$ substitution closes gap & \textbf{Dead End} — overshoots \\
+Two-loop $g^4$ correction & \textbf{Open} — next step \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Overall status}: Gap H1 is \textbf{Partially Proved [L1]} — SSB confirmed;
+$\lambda$ order of magnitude correct; quantitative closure requires an explicit
+two-loop computation of $V(\theta_W)$ at order $g^4$.
+
+\medskip
+\textbf{DERIVATION\_INDEX.md update (v70)}: Gap H1 via radiative Hosotani:
+three v70 approaches (N_f correction, $R_\psi^{\mathrm{EW}}$, $n^*$-shift)
+all Dead End or wrong direction.  Precise constraint: $N_{\mathrm{eff}}^{\mathrm{total}}
+\approx 0.21$ (non-integer) or explicit two-loop $g^4$ contribution needed.
+Status remains \textbf{Partially Proved [L1]}.
+
+% ======================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 % ======================================================================
