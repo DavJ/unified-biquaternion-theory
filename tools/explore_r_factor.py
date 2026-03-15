@@ -117,6 +117,9 @@ def build_candidates() -> Dict[str, float]:
 
     # Two-loop approach: 1 + alpha * f(N)
     alpha = 1.0 / 137.0
+    B_2 = 1.0 / 6.0          # Second Bernoulli number (Seeley-DeWitt coeff)
+    k_mod = 3.0 / 2.0        # Modular weight of T^3 heat kernel (proved L0)
+    theta_W_min = PI / 2.0   # Hosotani SSB angle (proved L1)
     for fname, fval in [
         ("N_eff",         N),
         ("N_eff+pi",      N + PI),
@@ -126,6 +129,20 @@ def build_candidates() -> Dict[str, float]:
         ("4*pi",          4 * PI),
     ]:
         cands[f"1+alpha×{fname}"] = 1 + alpha * fval
+
+    # v74: Exponential (anomalous-dimension) form e^{c*alpha}
+    cands["exp(alpha×(N_eff+pi+1/4))"] = math.exp(alpha * (N + PI + 0.25))
+    cands["exp(alpha×(N_eff+pi))"]      = math.exp(alpha * (N + PI))
+
+    # v75: Additive form Delta B = N_eff * B_2 * k_mod * theta_W_min = 3pi/2
+    # Convert to multiplicative: R = 1 + DeltaB / B_base = 1 + 3pi/2 / N^{3/2}
+    B_base = N ** 1.5
+    delta_B_bernoulli = N * B_2 * k_mod * theta_W_min   # = 3*pi/2
+    cands["1+N×B2×k_mod×θW/B_base"]    = 1 + delta_B_bernoulli / B_base
+    cands["1+(3pi/2)/B_base"]           = 1 + (3 * PI / 2) / B_base
+    # Simplified clean form: R = 1 + pi/(8*sqrt(N_eff))
+    # (from B_2 * k_mod * theta_W_min = (1/6)*(3/2)*(pi/2) = pi/8)
+    cands["1+pi/(8*sqrt(N))"]           = 1 + PI / (8 * math.sqrt(N))
 
     return cands
 
@@ -199,6 +216,29 @@ def main() -> None:
     print("    6 = N_phases × N_helicity = 3 × 2  (from N_eff factorisation)")
     print("    6 = dim_R(Im(C⊗H)) - 1 = 7 - 1")
     print("  Without a derivation from S[Θ], this is [NUMERICAL OBSERVATION].")
+    print()
+
+    print("─" * 65)
+    print("NOTE ON BERNOULLI-HOSOTANI FORMULA (v75, best candidate):")
+    B_2 = 1.0 / 6.0
+    k_mod = 3.0 / 2.0
+    theta_W = math.pi / 2.0
+    B_base = N ** 1.5
+    R_bern = 1 + N * B_2 * k_mod * theta_W / B_base
+    err_bern = abs(R_bern - R_TARGET) / R_TARGET * 100
+    print(f"  R = 1 + N_eff * B_2 * k_mod * theta_W_min / B_base")
+    print(f"    = 1 + 12 × (1/6) × (3/2) × (π/2) / 12^(3/2)")
+    print(f"    = 1 + (3π/2) / {B_base:.4f}")
+    print(f"    = 1 + π/(8√N_eff)")
+    print(f"    = {R_bern:.8f}")
+    print(f"  Error vs R_target: {err_bern:.3f}%  [BEST MATCH]")
+    print("  Physical ingredients (all independently established):")
+    print(f"    B_2 = 1/6    (second Bernoulli number, heat-kernel coefficient)")
+    print(f"    k_mod = 3/2  (modular weight of T^3, proved L0)")
+    print(f"    θ_W = π/2    (Hosotani SSB minimum, proved L1)")
+    print(f"    N_eff = 12   (effective bosonic modes, proved L0)")
+    print("  Status: [MOTIVATED CONJECTURE] — numerical match; derivation from")
+    print("  S[Θ] via two-loop Feynman diagram needed to promote to [PROVED L1].")
     print()
 
 
