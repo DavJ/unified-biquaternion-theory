@@ -106,10 +106,70 @@ If observed coefficients are damped by factors approximately proportional to $\e
 Equation \eqref{eq:fft2_def} defines the transform map from compensated interaction space to a spectral lattice.
 
 \paragraph{Proven property.}
-$\mathcal{F}_2$ is unitary up to normalization convention; Parseval identities therefore hold modulo that convention.
+$\mathcal{F}_2$ is invertible with norm-conserving properties up to normalization convention; Parseval identities therefore hold modulo that convention.
 
 \paragraph{Expected effect.}
 When compensation aligns with damping structure, spectral mass in $\widetilde{\rho}$ may concentrate toward diagonal coordinates in a chosen ordering, reducing effective cross-coupling.
+
+\section{Forward and Inverse Transform}
+The framework defines an invertible transform pair:
+\begin{equation}
+\widetilde{\rho} = \mathcal{F}_2(W \odot \rho),
+\label{eq:forward_transform}
+\end{equation}
+where $W$ is elementwise invertible (all entries nonzero). The inverse transform recovers $\rho$ from $\widetilde{\rho}$:
+\begin{equation}
+\rho^{(w)} = \mathcal{F}_2^{-1}(\widetilde{\rho}),
+\label{eq:inverse_fft}
+\end{equation}
+\begin{equation}
+\rho = W^{-1} \odot \rho^{(w)},
+\label{eq:inverse_weight}
+\end{equation}
+where $W^{-1}_{nm} := \exp(-\pi\phi(n^2+m^2))$ is the inverse weighting operator. The composition $\mathcal{T} = \mathcal{F}_2 \circ W$ is invertible:
+\begin{equation}
+\mathcal{T}^{-1} = W^{-1} \circ \mathcal{F}_2^{-1}.
+\label{eq:inverse_operator}
+\end{equation}
+Equations \eqref{eq:forward_transform}--\eqref{eq:inverse_operator} define the forward path (lifting $\to$ weight $\to$ FFT) and inverse path (inverse FFT $\to$ inverse weight).
+
+\subsection*{Remark: Exact vs Practical Transform}
+The forward transform defined in \eqref{eq:forward_transform},
+\[
+\widetilde{\rho} = \mathcal{F}_2(W \odot \rho),
+\]
+does not, by itself, constitute a fully orthogonal theta transform in the exact mathematical sense. A mathematically rigorous formulation would require compensating for the weighting operator $W$ via inverse weighting (deconvolution), performed directly in the spectral domain before FFT or after. In the present work, we intentionally defer the inverse weighting to the reconstruction step \eqref{eq:inverse_weight}, treating it as part of the inverse transform pipeline.
+
+This design choice has practical advantages:
+\begin{itemize}
+    \item spectral deconvolution (performing $W^{-1}$ in spectral space before FFT) is numerically ill-conditioned for high-frequency modes,
+    \item deferring inverse weighting to the spatial-domain inverse avoids this instability,
+    \item the invertible structure is preserved: $\mathcal{T}^{-1} = W^{-1} \circ \mathcal{F}_2^{-1}$.
+\end{itemize}
+
+As a result, the presented method should be understood as:
+\begin{quote}
+    \emph{A theta-inspired weighted spectral transform that is invertible and approximately orthogonal under a weighted metric, rather than a strict discrete theta transform in the functional-analytic sense.}
+\end{quote}
+This distinction is important for reviewers and future users: the method trades exact orthogonality for numerical robustness and efficiency.
+
+\section{Weighted Metric and Energy Interpretation}
+The transform is not unitary in the standard Euclidean sense on $\rho$, since $W$ introduces exponential scaling. However, a weighted inner product can be defined:
+\begin{equation}
+\langle \rho_1, \rho_2 \rangle_W := \sum_{n,m} W_{nm}^{-1} \rho_{1,nm} \overline{\rho_{2,nm}},
+\label{eq:weighted_inner}
+\end{equation}
+giving the norm
+\begin{equation}
+\|\rho\|_W^2 := \sum_{n,m} W_{nm}^{-1} |\rho_{nm}|^2.
+\label{eq:weighted_norm}
+\end{equation}
+Under this metric, the forward and inverse transforms approximately preserve energy:
+- The forward transform concentrates energy spectral distribution.
+- The inverse transform recovers magnitude structure (up to regularization and numerical precision).
+
+\paragraph{Interpretation.}
+The weighted metric reflects the geometry induced by damping compensation. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
 
 \section{Diagonal Metric and Approximate Diagonalization Hypothesis}
 Define diagonal and off-diagonal magnitudes directly on $\widetilde{\rho}$:
@@ -157,14 +217,57 @@ off  = sum_{n!=m} |rho_tilde[n,m]|
 R = off / (diag + eps)
 \end{verbatim}
 
+\section{Numerical Stability and Regularized Inverse}
+The inverse weighting step \eqref{eq:inverse_weight} uses $W^{-1}_{nm} = \exp(-\pi\phi(n^2+m^2))$. For large indices and large $\phi$, this exponential decay becomes very small, risking numerical underflow or amplification of rounding errors when rescaling.
+
+\paragraph{Regularization strategy.}
+To stabilize the inverse, we employ a regularized inverse weight:
+\begin{equation}
+W^{(-1)}_{nm}(\lambda) := \frac{\exp(-\pi\phi(n^2+m^2))}{1 + \lambda \exp(-\pi\phi(n^2+m^2))},
+\label{eq:regularized_inverse}
+\end{equation}
+where $\lambda > 0$ is a regularization parameter. This formula achieves several goals:
+\begin{itemize}
+    \item it keeps $W^{(-1)} \le 1$ for all $(n,m)$,
+    \item it suppresses amplification at high indices,
+    \item as $\lambda \to 0$, it recovers the exact inverse $W^{-1}$.
+\end{itemize}
+
+\paragraph{Alternative approaches.}
+Other stabilization methods include:
+\begin{itemize}
+    \item truncation of high-index modes before inversion,
+    \item Wiener-style filtering of $\widetilde{\rho}$ before inverse FFT,
+    \item bounded inverse weighting to cap amplification at a fixed threshold.
+\end{itemize}
+
+\section{Operator Interpretation}
+The full transformation can be written compactly as:
+\begin{equation}
+\widetilde{\rho} = \mathcal{T}(\rho), \quad \text{where} \quad \mathcal{T} := \mathcal{F}_2 \circ W.
+\label{eq:operator}
+\end{equation}
+This separates the action into two independent steps:
+\begin{itemize}
+    \item $W$: geometric transformation (damping compensation, radial scaling),
+    \item $\mathcal{F}_2$: spectral orthogonalization (2D FFT basis change).
+\end{itemize}
+The inverse operator is:
+\begin{equation}
+\mathcal{T}^{-1} := W^{(-1)} \circ \mathcal{F}_2^{-1},
+\label{eq:inverse_decomposition}
+\end{equation}
+recovering the original tensor (up to regularization error).
+
 \section{Interpretation and Discussion}
 In this framework:
 \begin{itemize}
     \item diagonal entries in $\widetilde{\rho}$ are interpreted as dominant spectral energy channels,
     \item off-diagonal entries represent residual interference and phase coupling,
-    \item decrease of $R$ indicates effective decoherence-like suppression of coupling under the chosen lifting and weighting.
+    \item decrease of $R$ indicates effective suppression of coupling under the chosen lifting, weighting, and spectral projection.
+    \item invertibility provides a bridge: the forward transform compresses coupling into spectral channels; the inverse recovers interaction structure.
 \end{itemize}
-The language above is operational: ``decoherence-like'' denotes empirical reduction of cross terms, not a claim of quantum physical decoherence.
+The language above is operational: ``suppression'' denotes empirical reduction of cross terms, not elimination; invertibility ensures the transform is reversible and information is not lost (except through regularization choices).
 
 Relation to established structures:
 \begin{itemize}
@@ -191,6 +294,8 @@ Quadratic index dependence $n^2+m^2$ is compatible with theta-function style str
     \item Performance depends on array ordering conventions and normalization choices.
     \item The rank-one idealization $\rho=a a^{\ast}$ may not hold under noise, truncation, or multi-component superposition.
     \item Spectral concentration can occur away from the main diagonal if indexing is not aligned with dominant modes.
+    \item Inversion stability depends on the choice of regularization parameter $\lambda$ in \eqref{eq:regularized_inverse}; too large $\lambda$ suppresses recovery, too small allows noise amplification.
+    \item The weighted metric \eqref{eq:weighted_norm} is not identical to standard Euclidean norm; energy statements must reference the appropriate metric.
 \end{enumerate}
 
 \appendix
@@ -205,6 +310,6 @@ Different FFT libraries use different normalization factors (forward, inverse, o
 Indices are assumed uniformly sampled on a finite lattice with symmetric truncation $[-K,K]$. Conclusions may change under nonuniform grids or different boundary conventions.
 
 \section{Conclusion}
-We presented a compact framework: tensor lifting $a\mapsto\rho$, damping compensation by radial weighting, and 2D FFT mapping to an efficiently computable spectral domain. The main conceptual contribution is a computational bridge between damped interaction tensors and approximate diagonal representations, quantified by the ratio $R$. This yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems.
+We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, damping compensation by radial weighting, and 2D FFT mapping. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Orthogonality (approximate diagonalization) is provided by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
 
 \end{document}
