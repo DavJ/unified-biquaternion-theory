@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,geometry}
+\geometry{margin=1in}
+
+\title{Damping-Compensated Tensor Lifting and Approximate Diagonalization via 2D FFT}
+\author{Unified Biquaternion Theory Notes}
+\date{April 10, 2026}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalize a computational framework that maps a one-dimensional complex signal into a two-index interaction tensor, applies radial damping compensation, and performs a two-dimensional Fourier transform. The objective is not exact diagonalization but structured spectral concentration and measurable suppression of off-diagonal coupling. The construction is motivated by damped oscillatory systems and by theta-like kernels in UBT-compatible settings. We define a diagonal-dominance ratio as an operational criterion and separate proven algebraic identities from a testable approximate diagonalization hypothesis.
+\end{abstract}
+
+\section{Introduction}
+A recurring problem in damped complex systems is that natural representations are rich in interaction terms but difficult to analyze in an orthogonal spectral basis. Standard one-dimensional Fourier analysis gives exact diagonalization for circulant operators, yet damped two-index interaction objects generally retain nontrivial off-diagonal coupling.
+
+The present note introduces a bridge:
+\begin{enumerate}
+    \item tensor lifting from a mode vector to a two-index interaction tensor,
+    \item radial compensation of damping by an exponential weight,
+    \item two-dimensional FFT as an efficient spectral map.
+\end{enumerate}
+The resulting representation is computationally efficient and structurally aligned with heat-kernel-like damping and theta-like quadratic phase organization. We emphasize from the outset: approximate diagonalization is a hypothesis to test, not a universal theorem.
+
+\section{Tensor Lifting}
+Let
+\[
+a = (a_{-K},\dots,a_{K}) \in \C^{N}, \qquad N=2K+1.
+\]
+Define the lifted tensor
+\begin{equation}
+\rho_{nm} := a_n \overline{a_m}, \qquad n,m\in\{-K,\dots,K\}.
+\label{eq:rho_def}
+\end{equation}
+In matrix form, $\rho = a a^{\ast}$, where $\ast$ denotes conjugate transpose.
+
+\paragraph{Proven property.}
+$\rho$ is Hermitian and positive semidefinite, with rank one in the noiseless single-vector construction.
+
+\paragraph{Interpretation.}
+Diagonal entries $\rho_{nn}=|a_n|^2$ encode mode energy, while off-diagonal entries encode pairwise phase coherence/interference. This is the minimal interaction space where coupling is explicit.
+
+\section{Damping and Radial Weighting}
+Assume damping grows with quadratic index magnitude. Introduce
+\begin{equation}
+W_{nm}(\phi) := \exp\!\big(\pi\phi(n^2+m^2)\big), \qquad \phi\in\R.
+\label{eq:weight_def}
+\end{equation}
+Define the compensated tensor
+\begin{equation}
+\rho^{(w)} := W \odot \rho,
+\label{eq:rho_weighted}
+\end{equation}
+where $\odot$ is elementwise multiplication.
+
+\paragraph{Proven property.}
+$W$ is separable and radially symmetric in index-space radius $r^2=n^2+m^2$.
+
+\paragraph{Role.}
+If observed coefficients are damped by factors approximately proportional to $\exp(-\pi\phi(n^2+m^2))$, then \eqref{eq:weight_def} compensates this envelope before spectral analysis.
+
+\section{2D Fourier Transform}
+Let $\mathcal{F}_2$ denote the 2D discrete Fourier transform on $N\times N$ arrays. Define
+\begin{equation}
+\widetilde{\rho} := \mathcal{F}_2\!\left(\rho^{(w)}\right)=\mathcal{F}_2\!\left(W\odot\rho\right).
+\label{eq:fft2_def}
+\end{equation}
+Using indices $(p,q)$ in the dual lattice,
+\begin{equation}
+\widetilde{\rho}_{pq}=\sum_{n=-K}^{K}\sum_{m=-K}^{K}\rho^{(w)}_{nm}
+\exp\!\left(-2\pi i\frac{pn+qm}{N}\right).
+\label{eq:fft2_index}
+\end{equation}
+
+\paragraph{Proven property.}
+$\mathcal{F}_2$ is unitary up to normalization convention; Parseval identities therefore hold modulo that convention.
+
+\paragraph{Expected effect.}
+When compensation aligns with damping structure, spectral mass in $\widetilde{\rho}$ may concentrate toward diagonal coordinates in a chosen ordering, reducing effective cross-coupling.
+
+\section{Approximate Diagonalization Hypothesis}
+Define the real part
+\[
+M := \operatorname{Re}(\widetilde{\rho}).
+\]
+Let diagonal and off-diagonal energies be
+\begin{equation}
+E_{\mathrm{diag}} := \sum_{j=1}^{N} |M_{jj}|,
+\qquad
+E_{\mathrm{off}} := \sum_{i\neq j}|M_{ij}|.
+\label{eq:energies}
+\end{equation}
+Define the diagonal-dominance ratio
+\begin{equation}
+R := \frac{E_{\mathrm{off}}}{E_{\mathrm{diag}}+\varepsilon}, \qquad \varepsilon>0\text{ small}.
+\label{eq:R_def}
+\end{equation}
+
+\paragraph{Hypothesis H.}
+For classes of damped structured signals and suitable $\phi$, the transformed matrix $M$ satisfies $R\ll 1$ relative to uncompensated baselines.
+
+\paragraph{Status.}
+H is a testable hypothesis. It is not claimed as a universal theorem over all signals and all $\phi$.
+
+\section{Interpretation}
+In this framework:
+\begin{itemize}
+    \item diagonal entries in $M$ are interpreted as dominant spectral energy channels,
+    \item off-diagonal entries represent residual interference and phase coupling,
+    \item decrease of $R$ indicates effective decoherence-like suppression of coupling under the chosen lifting and weighting.
+\end{itemize}
+The language above is operational: ``decoherence-like'' denotes empirical reduction of cross terms, not a claim of quantum physical decoherence.
+
+\section{Relation to Known Structures}
+\paragraph{Circulant diagonalization.}
+Exact Fourier diagonalization of circulant operators is recovered in classical settings without damping-induced anisotropy.
+
+\paragraph{Heat-kernel/Gaussian weighting.}
+The factor in \eqref{eq:weight_def} mirrors radial Gaussian/heat-kernel envelopes in index space, here used as compensation rather than smoothing.
+
+\paragraph{Theta-like organization.}
+Quadratic index dependence $n^2+m^2$ is compatible with theta-function style structures; we use this relation qualitatively to motivate model geometry, not to assert modular identities.
+
+\section{Limitations}
+\begin{enumerate}
+    \item Diagonalization is approximate and signal-class dependent.
+    \item Performance depends on the choice of $\phi$ and array ordering conventions.
+    \item The rank-one idealization $\rho=a a^{\ast}$ may not hold under noise, truncation, or multi-component superposition.
+    \item Spectral concentration can occur away from the main diagonal if indexing is not aligned with dominant modes.
+\end{enumerate}
+
+\section{Conclusion}
+We presented a compact framework: tensor lifting $a\mapsto\rho$, damping compensation by radial weighting, and 2D FFT mapping to an efficiently computable spectral domain. The main conceptual contribution is a computational bridge between damped interaction tensors and approximate diagonal representations, quantified by the ratio $R$. This yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems.
+
+\end{document}
