@@ -13,7 +13,7 @@
 \maketitle
 
 \begin{abstract}
-We present a computational framework that lifts a one-dimensional complex signal into a two-index interaction tensor, applies radial damping compensation, and maps the result through a two-dimensional discrete Fourier transform. The goal is structured spectral concentration rather than exact diagonalization. We provide explicit definitions of signal, lifting, weighting, and transform, and we introduce a diagonal-dominance metric for quantitative testing. We separate definitions, assumptions, and hypothesis-level claims. The framework is compatible with UBT-style quadratic-index structures and is intended as a rigorous, testable construction.
+We present a computational framework that lifts a one-dimensional complex signal into a two-index interaction tensor, applies inverse diffusion weighting, and maps the result through a two-dimensional discrete Fourier transform. The goal is structured spectral concentration rather than exact diagonalization. We provide explicit definitions of signal, lifting, weighting, and transform, and we introduce a diagonal-dominance metric for quantitative testing. We separate definitions, assumptions, and hypothesis-level claims. The framework is compatible with UBT-style quadratic-index structures and is intended as a rigorous, testable construction.
 \end{abstract}
 
 \section*{License}
@@ -26,10 +26,13 @@ A recurring problem in damped complex systems is that natural representations ar
 The present note introduces a bridge:
 \begin{enumerate}
     \item tensor lifting from a mode vector to a two-index interaction tensor,
-    \item radial compensation of damping by an exponential weight,
+    \item inverse diffusion weighting by an exponential weight,
     \item two-dimensional FFT as an efficient spectral map.
 \end{enumerate}
+This weighting corresponds to an inverse heat kernel, compensating pre-existing diffusion in the signal.
 The resulting representation is computationally efficient and structurally aligned with heat-kernel-like damping and theta-like quadratic phase organization. We emphasize from the outset: approximate diagonalization is a hypothesis to test, not a universal theorem.
+
+The transform consists of three stages: (1) quadratic lifting, (2) inverse diffusion weighting, (3) spectral projection with optional regularization.
 
 \paragraph{Motivation for 2D lifting.}
 The 2D lifting exposes pairwise mode interactions that are not accessible in a purely 1D spectral representation. This interaction-space view is the main reason the framework can isolate coherence structure beyond standard mode-energy analysis.
@@ -58,7 +61,7 @@ Define the lifted interaction tensor
 \end{equation}
 Equivalently, $\rho=aa^{\ast}$.
 
-\subsection*{Definition 3 (Radial Damping Compensation)}
+\subsection*{Definition 3 (Inverse Diffusion Weighting)}
 For a real parameter $\phi\in\R$, define
 \begin{equation}
 W_{nm}(\phi):=\exp\!\big(\pi\phi(n^2+m^2)\big),
@@ -87,7 +90,7 @@ In index form,
 Equation \eqref{eq:fft2_index} is the explicit coordinate-level form of the transform in \eqref{eq:fft2_def}.
 
 The exponential factor $\exp(-\pi\phi(n^2+m^2))$ is applied to the transform kernel (basis functions), not directly to the data tensor. For computational efficiency, this is implemented as a pointwise multiplication prior to FFT, which is mathematically equivalent.
-The equivalence between basis weighting and pre-FFT multiplication follows from linearity of the transform and should be interpreted as an implementation shortcut rather than a literal modification of data.
+The equivalence between inverse diffusion weighting (basis-weight implementation) and pre-FFT multiplication follows from linearity of the transform and should be interpreted as an implementation shortcut rather than a literal modification of data.
 
 \subsection*{Assumption A (Envelope-Compensation Match)}
 Observed attenuation is approximately compatible with a quadratic radial envelope in $(n,m)$, so the weight in \eqref{eq:weight_def} partially compensates damping before spectral projection.
@@ -170,6 +173,9 @@ This separation enables independent control of interaction geometry and spectral
 \paragraph{Rotational symmetry in interaction space.}
 The radial factor $\exp(-\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is approximately invariant under discrete rotations preserving $n^2+m^2$. This gives isotropic damping structure in interaction coordinates.
 
+\paragraph{Orthogonality with respect to $t$.}
+All orthogonality statements in this note are understood with respect to integration over the real variable $t$ (the real part of the chronofactor). Since the exponential factor depends only on the mode indices $(n,m)$ and not on $t$, it rescales basis components without destroying their mutual orthogonality in $t$. In general, orthonormality is lost, but orthogonality is preserved.
+
 \section{Limiting Cases}
 The framework has transparent limiting regimes:
 \begin{itemize}
@@ -246,7 +252,7 @@ Under this metric, the forward and inverse transforms approximately preserve ene
 \end{itemize}
 
 \paragraph{Interpretation.}
-The weighted metric reflects the geometry induced by damping compensation. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
+The weighted metric reflects the geometry induced by inverse diffusion weighting. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
 
 \section{Diagonal Metric and Approximate Diagonalization Hypothesis}
 Define diagonal and off-diagonal magnitudes directly on $\widetilde{\rho}$:
@@ -282,7 +288,7 @@ H is a testable hypothesis. It is not claimed as a universal theorem over all si
 The computational pipeline is:
 \begin{enumerate}
     \item Build $\rho$ from $a$ using \eqref{eq:rho_def}.
-    \item Apply basis weighting (implemented via pre-FFT multiplication).
+    \item Apply inverse diffusion weighting (basis-weight implementation).
     \item Compute $\widetilde{\rho}$ using \eqref{eq:fft2_def}.
     \item Optionally compute multiscale aggregation using \eqref{eq:phi_integrated_discrete}.
     \item Apply spectral damping using \eqref{eq:damped_spectrum}.
@@ -294,7 +300,7 @@ The computational pipeline is:
 Input: complex vector a[n], parameter phi
 rho[n,m] = a[n] * conjugate(a[m])
 W[n,m] = exp(pi * phi * (n*n + m*m))
-rho_w = W .* rho   # computational implementation of basis weighting
+rho_w = W .* rho   # inverse diffusion weighting (basis-weight implementation)
 rho_tilde = FFT2(rho_w)
 
 # optional phi integration
@@ -347,7 +353,7 @@ The full transformation can be written compactly as:
 \end{equation}
 This separates the action into two independent steps:
 \begin{itemize}
-    \item basis weighting: geometric transformation (damping compensation, radial scaling),
+    \item inverse diffusion weighting (basis-weight implementation): geometric transformation (radial scaling),
     \item $\mathcal{F}_2$: spectral orthogonalization (2D FFT basis change),
     \item $D$: post-transform spectral regularization.
 \end{itemize}
@@ -409,6 +415,7 @@ Different FFT libraries use different normalization factors (forward, inverse, o
 Indices are assumed uniformly sampled on a finite lattice with symmetric truncation $[-K,K]$. Conclusions may change under nonuniform grids or different boundary conventions.
 
 \section{Conclusion}
-We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, diffusion-controlled basis weighting, 2D FFT mapping, and spectral regularization via $D$. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Orthogonality (approximate diagonalization) is provided by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. A multiscale extension via $\phi$-integration \eqref{eq:phi_integrated_transform}--\eqref{eq:phi_integrated_discrete} further generalizes the method from single-scale Gaussian weighting to radial kernel mixtures. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
+We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, inverse diffusion weighting (basis-weight implementation), 2D FFT mapping, and spectral regularization via $D$. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Approximate diagonalization is governed by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. A multiscale extension via $\phi$-integration \eqref{eq:phi_integrated_transform}--\eqref{eq:phi_integrated_discrete} further generalizes the method from single-scale Gaussian weighting to radial kernel mixtures. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
+In this sense, the transform provides a bridge between interaction-space representations and approximately separable spectral structures, enabling both analysis and controlled reconstruction.
 
 \end{document}
