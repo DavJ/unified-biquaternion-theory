@@ -36,6 +36,7 @@ The 2D lifting exposes pairwise mode interactions that are not accessible in a p
 
 \paragraph{Heat-kernel interpretation.}
 The construction can be interpreted as a discrete heat-kernel transform in interaction space: $\phi$ controls diffusion scale before the spectral map, while $\psi$ controls post-transform spectral regularization.
+The transform maps quadratic interactions into approximately separable spectral components.
 
 \section{Definitions, Assumptions, and Core Objects}
 We fix an odd mode count $N=2K+1$ with indices $n,m\in\{-K,\dots,K\}$.
@@ -86,6 +87,7 @@ In index form,
 Equation \eqref{eq:fft2_index} is the explicit coordinate-level form of the transform in \eqref{eq:fft2_def}.
 
 The exponential factor $\exp(-\pi\phi(n^2+m^2))$ is applied to the transform kernel (basis functions), not directly to the data tensor. For computational efficiency, this is implemented as a pointwise multiplication prior to FFT, which is mathematically equivalent.
+The equivalence between basis weighting and pre-FFT multiplication follows from linearity of the transform and should be interpreted as an implementation shortcut rather than a literal modification of data.
 
 \subsection*{Assumption A (Envelope-Compensation Match)}
 Observed attenuation is approximately compatible with a quadratic radial envelope in $(n,m)$, so the weight in \eqref{eq:weight_def} partially compensates damping before spectral projection.
@@ -110,6 +112,7 @@ $W$ is separable and radially symmetric in index-space radius $r^2=n^2+m^2$.
 
 \paragraph{Role.}
 If observed coefficients are damped by factors approximately proportional to $\exp(-\pi\phi(n^2+m^2))$, then \eqref{eq:weight_def} compensates this envelope before spectral analysis.
+The weighting $W$ corresponds to an inverse heat kernel, compensating pre-existing damping in the signal. While the transform kernel contains $\exp(-\pi\phi(n^2+m^2))$, the implementation uses $\exp(+\pi\phi(n^2+m^2))$ to rebalance attenuated high-index components before projection.
 
 \section{2D Fourier Transform}
 Equation \eqref{eq:fft2_def} defines the transform map from compensated interaction space to a spectral lattice.
@@ -153,6 +156,7 @@ with final spectrum
 \label{eq:damped_spectrum}
 \end{equation}
 This step suppresses high-frequency spectral modes.
+The transform is strictly invertible only when $\psi=0$. For $\psi>0$, spectral damping introduces regularization and the map becomes information-reducing.
 
 \section{Role of $\phi$ and $\psi$}
 The two damping parameters play distinct roles:
@@ -164,7 +168,7 @@ This separation enables independent control of interaction geometry and spectral
 
 \section{Properties}
 \paragraph{Rotational symmetry in interaction space.}
-The radial factor $\exp(-\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is invariant under lattice index rotations that preserve radius. This gives isotropic damping structure in interaction coordinates.
+The radial factor $\exp(-\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is approximately invariant under discrete rotations preserving $n^2+m^2$. This gives isotropic damping structure in interaction coordinates.
 
 \section{Limiting Cases}
 The framework has transparent limiting regimes:
@@ -194,6 +198,8 @@ K(n,m):=\int \mu(\phi)\exp\!\big(-\pi\phi(n^2+m^2)\big)\,d\phi,
 \label{eq:multiscale_kernel}
 \end{equation}
 which generalizes a single-scale Gaussian to a scale-mixture kernel.
+This effectively replaces a single Gaussian kernel with a mixture of Gaussians, leading to heavier tails or sharper cutoffs depending on $\mu(\phi)$.
+Therefore, $\phi$-integration is not equivalent to a constant scaling, but produces a structurally different radial filter.
 
 \subsection*{Special cases of $\phi$-integration}
 \begin{itemize}
@@ -257,6 +263,12 @@ R := \frac{\sum_{i\neq j}|\widetilde{\rho}_{ij}|}{\sum_{j=1}^{N}|\widetilde{\rho
 \label{eq:R_def}
 \end{equation}
 Equation \eqref{eq:R_def} is the operational metric used throughout this note.
+
+A normalized variant can also be used:
+\[
+R' = \frac{E_{\mathrm{off}}}{E_{\mathrm{off}} + E_{\mathrm{diag}}},
+\]
+which ensures boundedness and scale stability.
 
 Interpretation of \eqref{eq:R_def}: $R\ll 1$ indicates near-diagonal structure, while $R\approx 1$ indicates no strong diagonal organization.
 
