@@ -38,7 +38,7 @@ The transform consists of three stages: (1) quadratic lifting, (2) inverse diffu
 The 2D lifting exposes pairwise mode interactions that are not accessible in a purely 1D spectral representation. This interaction-space view is the main reason the framework can isolate coherence structure beyond standard mode-energy analysis.
 
 \paragraph{Heat-kernel interpretation.}
-The construction can be interpreted as a discrete heat-kernel transform in interaction space: $\phi$ controls diffusion scale before the spectral map, while $\psi$ controls post-transform spectral regularization.
+The construction can be interpreted as a discrete heat-kernel transform in interaction space: $\phi$ controls the strength of Gaussian damping in Fourier space.
 The transform maps quadratic interactions into approximately separable spectral components.
 
 \section{Definitions, Assumptions, and Core Objects}
@@ -64,33 +64,35 @@ Equivalently, $\rho=aa^{\ast}$.
 \subsection*{Definition 3 (Inverse Diffusion Weighting)}
 For a real parameter $\phi\in\R$, define
 \begin{equation}
-W_{nm}(\phi):=\exp\!\big(\pi\phi(n^2+m^2)\big),
+W_{nm}(\phi):=\exp\!\big(-2\pi\phi(n^2+m^2)\big),
 \label{eq:weight_def}
 \end{equation}
-and weighted tensor
+as a Fourier-space Gaussian kernel acting on frequency indices $(n,m)$.
+For a signal $X$, let
 \begin{equation}
-\rho^{(w)}:=W\odot\rho,
+\widehat{\Theta_{\phi}[X]}_{nm}:=W_{nm}(\phi)\,\widehat{X}_{nm}.
 \label{eq:rho_weighted}
 \end{equation}
-where $\odot$ is elementwise multiplication.
+This is diagonal mode scaling in Fourier space, not pointwise scaling of input data.
 
 \subsection*{Definition 4 (2D Transform)}
 Let $\mathcal{F}_2$ denote the 2D DFT on $N\times N$ arrays. Define
 \begin{equation}
-\widetilde{\rho}:=\mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho).
+\widehat{X}_{nm}:=\mathcal{F}_2[X]_{nm},
 \label{eq:fft2_def}
 \end{equation}
-In index form,
 \begin{equation}
-\widetilde{\rho}_{pq}=\sum_{n=-K}^{K}\sum_{m=-K}^{K}\rho_{nm}
-\exp\!\left(-2\pi i\frac{pn+qm}{N}\right)
-\exp\!\big(-\pi\phi(n^2+m^2)\big),\qquad p,q\in\{-K,\dots,K\}.
+\widehat{\Theta_{\phi}[X]}_{nm}=\widehat{X}_{nm}\exp\!\big(-2\pi\phi(n^2+m^2)\big),
 \label{eq:fft2_index}
 \end{equation}
-Equation \eqref{eq:fft2_index} is the explicit coordinate-level form of the transform in \eqref{eq:fft2_def}.
+\begin{equation}
+\Theta_{\phi}[X]=\mathcal{F}_2^{-1}\!\left[\widehat{\Theta_{\phi}[X]}\right].
+\label{eq:forward_transform}
+\end{equation}
+Equations \eqref{eq:fft2_def}--\eqref{eq:forward_transform} define the transform as a diagonal operator in Fourier space.
 
-The exponential factor $\exp(-\pi\phi(n^2+m^2))$ is applied to the transform kernel (basis functions), not directly to the data tensor. For computational efficiency, this is implemented as a pointwise multiplication prior to FFT, which is mathematically equivalent.
-The equivalence between inverse diffusion weighting (basis-weight implementation) and pre-FFT multiplication follows from linearity of the transform and should be interpreted as an implementation shortcut rather than a literal modification of data.
+The exponential factor depends on mode indices $(n,m)$ only. It scales Fourier modes (basis components), not input samples.
+A previous formulation incorrectly applied exponential weighting directly to data before FFT. That is not equivalent to the intended theta operator; the correct formulation is diagonal in Fourier space.
 
 \subsection*{Assumption A (Envelope-Compensation Match)}
 Observed attenuation is approximately compatible with a quadratic radial envelope in $(n,m)$, so the weight in \eqref{eq:weight_def} partially compensates damping before spectral projection.
@@ -108,14 +110,13 @@ Hermitian symmetry follows from $\rho_{mn}=a_m\overline{a_n}=\overline{\rho_{nm}
 Diagonal entries $\rho_{nn}=|a_n|^2$ encode mode energy, while off-diagonal entries encode pairwise phase coherence/interference in interaction space.
 
 \section{Damping and Radial Weighting}
-The weighting defined in \eqref{eq:weight_def} and applied in \eqref{eq:rho_weighted} is radially symmetric in $r^2=n^2+m^2$.
+The weighting defined in \eqref{eq:weight_def} and applied in \eqref{eq:rho_weighted} is radially symmetric in $r^2=n^2+m^2$ in frequency space.
 
 \paragraph{Proven property.}
 $W$ is separable and radially symmetric in index-space radius $r^2=n^2+m^2$.
 
 \paragraph{Role.}
-If observed coefficients are damped by factors approximately proportional to $\exp(-\pi\phi(n^2+m^2))$, then \eqref{eq:weight_def} compensates this envelope before spectral analysis.
-The weighting $W$ corresponds to an inverse heat kernel, compensating pre-existing damping in the signal. While the transform kernel contains $\exp(-\pi\phi(n^2+m^2))$, the implementation uses $\exp(+\pi\phi(n^2+m^2))$ to rebalance attenuated high-index components before projection.
+The factor $\exp\!(-2\pi\phi(n^2+m^2))$ is a heat-kernel-like Gaussian damping on Fourier modes. It suppresses high-frequency components in a rotationally symmetric manner.
 
 \section{2D Fourier Transform}
 Equation \eqref{eq:fft2_def} defines the transform map from compensated interaction space to a spectral lattice.
@@ -129,45 +130,34 @@ When compensation aligns with damping structure, spectral mass in $\widetilde{\r
 \section{Forward and Inverse Transform}
 The framework defines an invertible transform pair:
 \begin{equation}
-\widetilde{\rho} = \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho),
-\label{eq:forward_transform}
-\end{equation}
-where $W$ is elementwise invertible (all entries nonzero). The inverse transform recovers $\rho$ from $\widetilde{\rho}$:
-\begin{equation}
-\rho^{(w)} = \mathcal{F}_2^{-1}(\widetilde{\rho}),
+\widehat{\Theta_{\phi}[X]}_{nm}=\widehat{X}_{nm}\exp\!\big(-2\pi\phi(n^2+m^2)\big),
 \label{eq:inverse_fft}
 \end{equation}
+with inverse (for fixed $\phi$ and nonzero kernel values):
 \begin{equation}
-\rho = W^{-1} \odot \rho^{(w)},
+\widehat{X}_{nm}=\widehat{\Theta_{\phi}[X]}_{nm}\exp\!\big(+2\pi\phi(n^2+m^2)\big),
 \label{eq:inverse_weight}
 \end{equation}
-where $W^{-1}_{nm} := \exp(-\pi\phi(n^2+m^2))$ is the inverse weighting operator. The composition $\mathcal{T} = \mathcal{F}_2 \circ W$ is invertible:
 \begin{equation}
-\mathcal{T}^{-1} = W^{-1} \circ \mathcal{F}_2^{-1}.
+X=\mathcal{F}_2^{-1}[\widehat{X}].
 \label{eq:inverse_operator}
 \end{equation}
-Equations \eqref{eq:forward_transform}--\eqref{eq:inverse_operator} define the forward path (lifting $\to$ weight $\to$ FFT) and inverse path (inverse FFT $\to$ inverse weight).
+The transform is therefore diagonal in Fourier coordinates.
 
-After the transform, a spectral damping matrix is applied:
+Averaging over $\phi$ is defined by
 \begin{equation}
-D_{k\ell}:=\exp\!\big(-\pi\psi(k^2+\ell^2)\big),
-\label{eq:spectral_damping}
-\end{equation}
-with final spectrum
-\begin{equation}
-\widetilde{\rho}^{(d)} := D \odot \widetilde{\rho}.
+\Theta_{\mathrm{avg}}[X] := \frac{1}{K}\sum_{k=1}^{K}\Theta_{\phi_k}[X].
 \label{eq:damped_spectrum}
 \end{equation}
-This step suppresses high-frequency spectral modes.
-The transform is strictly invertible only when $\psi=0$. For $\psi>0$, spectral damping introduces regularization and the map becomes information-reducing.
+The auxiliary phase dimension $\phi$ is not transformed via FFT; it is averaged as in \eqref{eq:damped_spectrum}.
 
-\section{Role of $\phi$ and $\psi$}
-The two damping parameters play distinct roles:
+\section{Role of $\phi$ and Averaging}
+The damping parameter and averaging play distinct roles:
 \begin{itemize}
-    \item $\phi$ controls pre-transform diffusion in interaction space (input geometry smoothing),
-    \item $\psi$ controls post-transform damping in spectral space (spectral regularization).
+    \item $\phi$ controls Gaussian damping strength in Fourier space,
+    \item averaging over $\{\phi_k\}$ suppresses non-robust structures and stabilizes the output.
 \end{itemize}
-This separation enables independent control of interaction geometry and spectral stability.
+This separation enables independent control of spectral damping scale and robustness.
 
 \section{Properties}
 \paragraph{Rotational symmetry in interaction space.}
@@ -179,10 +169,10 @@ All orthogonality statements in this note are understood with respect to integra
 \section{Limiting Cases}
 The framework has transparent limiting regimes:
 \begin{itemize}
-    \item $\phi\to 0$: the basis-weighted transform reduces to standard 2D FFT,
-    \item $\phi\to \infty$: only low-index interactions contribute appreciably,
-    \item $\psi\to 0$: no post-transform spectral damping,
-    \item $\psi\to \infty$: only lowest-frequency spectral modes remain.
+    \item $\phi\to 0$: $\Theta_{\phi}$ approaches identity in Fourier-space scaling,
+    \item $\phi\to \infty$: only lowest-frequency modes remain,
+    \item $K=1$: averaging reduces to a fixed-$\phi$ transform,
+    \item large $K$ with broad $\{\phi_k\}$ yields stronger multiscale smoothing.
 \end{itemize}
 
 \section{Integration over $\phi$}
@@ -190,7 +180,7 @@ A multiscale extension is defined by integrating over diffusion scale:
 \begin{equation}
 \widetilde{\rho}^{(\mathrm{int})}_{k\ell} = \int \mu(\phi) \sum_{n,m} \rho_{nm}
 \exp\!\left(-2\pi i\frac{kn+\ell m}{N}\right)
-\exp\!\big(-\pi\phi(n^2+m^2)\big)\, d\phi.
+\exp\!\big(-2\pi\phi(n^2+m^2)\big)\, d\phi.
 \label{eq:phi_integrated_transform}
 \end{equation}
 A practical discrete approximation is
@@ -203,6 +193,7 @@ This induces the multiscale radial kernel
 K(n,m):=\int \mu(\phi)\exp\!\big(-\pi\phi(n^2+m^2)\big)\,d\phi,
 \label{eq:multiscale_kernel}
 \end{equation}
+K(n,m):=\int \mu(\phi)\exp\!\big(-2\pi\phi(n^2+m^2)\big)\,d\phi.
 which generalizes a single-scale Gaussian to a scale-mixture kernel.
 This effectively replaces a single Gaussian kernel with a mixture of Gaussians, leading to heavier tails or sharper cutoffs depending on $\mu(\phi)$.
 Therefore, $\phi$-integration is not equivalent to a constant scaling, but produces a structurally different radial filter.
@@ -217,9 +208,9 @@ Therefore, $\phi$-integration is not equivalent to a constant scaling, but produ
 \subsection*{Remark: Exact vs Practical Transform}
 The forward transform defined in \eqref{eq:forward_transform},
 \[
-\widetilde{\rho} = \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho),
+\widehat{\Theta_{\phi}[X]}_{nm}=\widehat{X}_{nm}\exp\!\big(-2\pi\phi(n^2+m^2)\big),
 \]
-does not, by itself, constitute a fully orthogonal theta transform in the exact mathematical sense. A mathematically rigorous formulation would require compensating for the weighting operator $W$ via inverse weighting (deconvolution), performed directly in the spectral domain before FFT or after. In the present work, we intentionally defer the inverse weighting to the reconstruction step \eqref{eq:inverse_weight}, treating it as part of the inverse transform pipeline.
+is the intended theta-type operator: diagonal in Fourier basis with Gaussian radial damping. A previous variant that multiplies data before Fourier transform is incorrect for this operator definition and should not be used.
 
 This design choice has practical advantages:
 \begin{itemize}
@@ -230,9 +221,9 @@ This design choice has practical advantages:
 
 As a result, the presented method should be understood as:
 \begin{quote}
-    \emph{A theta-inspired weighted spectral transform that is invertible and approximately orthogonal under a weighted metric, rather than a strict discrete theta transform in the functional-analytic sense.}
+    \emph{A discrete realization of theta-type Gaussian propagation, implemented as Fourier-mode damping with optional $\phi$-averaging.}
 \end{quote}
-This distinction is important for reviewers and future users: the method trades exact orthogonality for numerical robustness and efficiency.
+This distinction is important for reviewers and future users: the operator acts on Fourier modes, not directly on input samples.
 
 \section{Weighted Metric and Energy Interpretation}
 The transform is not unitary in the standard Euclidean sense on $\rho$, since $W$ introduces exponential scaling. However, a weighted inner product can be defined:
@@ -288,36 +279,32 @@ H is a testable hypothesis. It is not claimed as a universal theorem over all si
 The computational pipeline is:
 \begin{enumerate}
     \item Build $\rho$ from $a$ using \eqref{eq:rho_def}.
-    \item Apply inverse diffusion weighting (basis-weight implementation).
-    \item Compute $\widetilde{\rho}$ using \eqref{eq:fft2_def}.
+    \item Compute $\widehat{\rho}=\mathcal{F}_2[\rho]$.
+    \item Scale Fourier modes by $\exp\!(-2\pi\phi(n^2+m^2))$.
+    \item Compute $\Theta_{\phi}[\rho]=\mathcal{F}_2^{-1}[\widehat{\Theta_{\phi}[\rho]}]$.
     \item Optionally compute multiscale aggregation using \eqref{eq:phi_integrated_discrete}.
-    \item Apply spectral damping using \eqref{eq:damped_spectrum}.
-    \item Compute $R$ using \eqref{eq:R_def} on the damped spectrum.
+    \item Compute $R$ using \eqref{eq:R_def} on the transformed spectrum.
 \end{enumerate}
 
 \noindent Pseudocode:
 \begin{verbatim}
 Input: complex vector a[n], parameter phi
 rho[n,m] = a[n] * conjugate(a[m])
-W[n,m] = exp(pi * phi * (n*n + m*m))
-rho_w = W .* rho   # inverse diffusion weighting (basis-weight implementation)
-rho_tilde = FFT2(rho_w)
+rho_hat = FFT2(rho)
+rho_tilde = rho_hat .* exp(-2*pi*phi*(n*n + m*m))
+rho_theta = IFFT2(rho_tilde)
 
 # optional phi integration
 rho_tilde_int = 0
 for (phi_j, w_j) in phi_grid:
-    W_j[n,m] = exp(pi * phi_j * (n*n + m*m))
-    rho_tilde_j = FFT2(W_j .* rho)
+    rho_tilde_j = FFT2(rho) .* exp(-2*pi*phi_j*(n*n + m*m))
     rho_tilde_int = rho_tilde_int + w_j * rho_tilde_j
 
 if use_phi_integration:
     rho_tilde = rho_tilde_int
 
-D[k,l] = exp(-pi * psi * (k*k + l*l))
-rho_tilde_d = D .* rho_tilde
-
-diag = sum_n |rho_tilde_d[n,n]|
-off  = sum_{n!=m} |rho_tilde_d[n,m]|
+diag = sum_n |rho_tilde[n,n]|
+off  = sum_{n!=m} |rho_tilde[n,m]|
 R = off / (diag + eps)
 \end{verbatim}
 
