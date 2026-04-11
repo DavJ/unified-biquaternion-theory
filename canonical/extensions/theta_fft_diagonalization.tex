@@ -13,7 +13,7 @@
 \maketitle
 
 \begin{abstract}
-We present a computational framework that lifts a one-dimensional complex signal into a two-index interaction tensor, applies inverse diffusion weighting, and maps the result through a two-dimensional discrete Fourier transform. The goal is structured spectral concentration rather than exact diagonalization. We provide explicit definitions of signal, lifting, weighting, and transform, and we introduce a diagonal-dominance metric for quantitative testing. We separate definitions, assumptions, and hypothesis-level claims. The framework is compatible with UBT-style quadratic-index structures and is intended as a rigorous, testable construction.
+We present a computational framework that lifts a one-dimensional complex signal into a two-index interaction tensor, applies Gaussian damping (heat-kernel weighting), and maps the result through a two-dimensional discrete Fourier transform. The goal is structured spectral concentration rather than exact diagonalization. We provide explicit definitions of signal, lifting, weighting, and transform, and we introduce a diagonal-dominance metric for quantitative testing. We separate definitions, assumptions, and hypothesis-level claims. The framework is compatible with UBT-style quadratic-index structures and is intended as a rigorous, testable construction.
 \end{abstract}
 
 \section*{License}
@@ -26,13 +26,13 @@ A recurring problem in damped complex systems is that natural representations ar
 The present note introduces a bridge:
 \begin{enumerate}
     \item tensor lifting from a mode vector to a two-index interaction tensor,
-    \item inverse diffusion weighting by an exponential weight,
+    \item Gaussian damping via heat-kernel weighting,
     \item two-dimensional FFT as an efficient spectral map.
 \end{enumerate}
-This weighting corresponds to an inverse heat kernel, compensating pre-existing diffusion in the signal.
+This weighting corresponds to a discrete heat kernel acting on Fourier modes.
 The resulting representation is computationally efficient and structurally aligned with heat-kernel-like damping and theta-like quadratic phase organization. We emphasize from the outset: approximate diagonalization is a hypothesis to test, not a universal theorem.
 
-The transform consists of three stages: (1) quadratic lifting, (2) inverse diffusion weighting, (3) spectral projection with optional regularization.
+The transform consists of three stages: (1) quadratic lifting, (2) Gaussian damping, (3) spectral projection with optional regularization.
 
 \paragraph{Motivation for 2D lifting.}
 The 2D lifting exposes pairwise mode interactions that are not accessible in a purely 1D spectral representation. This interaction-space view is the main reason the framework can isolate coherence structure beyond standard mode-energy analysis.
@@ -61,7 +61,7 @@ Define the lifted interaction tensor
 \end{equation}
 Equivalently, $\rho=aa^{\ast}$.
 
-\subsection*{Definition 3 (Inverse Diffusion Weighting)}
+\subsection*{Definition 3 (Gaussian Damping / Heat-Kernel Weighting)}
 For a real parameter $\phi\in\R$, define
 \begin{equation}
 W_{nm}(\phi):=\exp\!\big(-2\pi\phi(n^2+m^2)\big),
@@ -163,6 +163,14 @@ This separation enables independent control of spectral damping scale and robust
 \paragraph{Rotational symmetry in interaction space.}
 The radial factor $\exp(-2\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is approximately invariant under discrete rotations preserving $n^2+m^2$. This gives isotropic damping structure in interaction coordinates.
 
+\paragraph{Semigroup property.}
+The Gaussian kernel satisfies
+\[
+\exp\!\big(-2\pi\phi_1(n^2+m^2)\big)\,\exp\!\big(-2\pi\phi_2(n^2+m^2)\big)
+=\exp\!\big(-2\pi(\phi_1+\phi_2)(n^2+m^2)\big).
+\]
+Therefore, successive applications of the transform correspond to one application with summed parameter $\phi_1+\phi_2$. This is consistent with the discrete heat-kernel interpretation.
+
 \paragraph{Orthogonality with respect to $t$.}
 All orthogonality statements in this note are understood with respect to integration over the real variable $t$ (the real part of the chronofactor). Since the exponential factor depends only on the mode indices $(n,m)$ and not on $t$, it rescales basis components without destroying their mutual orthogonality in $t$. In general, orthonormality is lost, but orthogonality is preserved.
 
@@ -175,7 +183,7 @@ The framework has transparent limiting regimes:
     \item large $K$ with broad $\{\phi_k\}$ yields stronger multiscale smoothing.
 \end{itemize}
 
-\section{Integration over $\phi$}
+\subsection*{Averaging and Kernel Mixture over $\phi$}
 A multiscale extension is defined by integrating over diffusion scale:
 \begin{equation}
 \widetilde{\rho}^{(\mathrm{int})}_{k\ell} = \int \mu(\phi) \sum_{n,m} \rho_{nm}
@@ -237,7 +245,8 @@ Under this metric, the forward and inverse transforms approximately preserve ene
 \end{itemize}
 
 \paragraph{Interpretation.}
-The weighted metric reflects the geometry induced by inverse diffusion weighting. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
+The weighted metric reflects the geometry induced by heat-kernel weighting. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
+The weighted metric reflects the geometry induced by heat-kernel weighting. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
 
 \section{Diagonal Metric and Approximate Diagonalization Hypothesis}
 Define diagonal and off-diagonal magnitudes directly on $\widetilde{\rho}$:
@@ -291,7 +300,7 @@ rho_theta = IFFT2(rho_tilde)
 # optional phi integration
 rho_tilde_int = 0
 for (phi_j, w_j) in phi_grid:
-    rho_tilde_j = FFT2(rho) .* exp(-2*pi*phi_j*(n*n + m*m))
+    rho_tilde_j = rho_hat .* exp(-2*pi*phi_j*(n*n + m*m))
     rho_tilde_int = rho_tilde_int + w_j * rho_tilde_j
 
 if use_phi_integration:
@@ -391,6 +400,7 @@ Indices are assumed uniformly sampled on a finite lattice with symmetric truncat
 
 \section{Conclusion}
 We presented a compact framework in which the transform is a diagonal Gaussian operator in Fourier space. The forward map is: tensor lifting $a\mapsto\rho$, FFT2, mode-wise scaling by $\exp(-2\pi\phi(n^2+m^2))$, and inverse FFT. A multiscale extension via $\phi$-averaging \eqref{eq:damped_spectrum} and \eqref{eq:phi_integrated_discrete} stabilizes the representation without introducing a transform along the $\phi$ dimension. Approximate diagonalization is quantified by $R$, and orthogonality statements are taken with respect to integration in $t$.
+This construction can be interpreted as a heat-kernel operator acting on a lifted interaction tensor (analogous to a density matrix). The Gaussian kernel depends only on the radial quantity $(n^2+m^2)$, which aligns with the structure of Jacobi theta functions. Therefore, the transform represents a discrete theta-type propagation in interaction space rather than a direct 1D theta transform.
 In this sense, the transform provides a bridge between interaction-space representations and approximately separable spectral structures, enabling both analysis and controlled reconstruction.
 
 \end{document}
