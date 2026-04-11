@@ -67,16 +67,19 @@ where $\odot$ is elementwise multiplication.
 \subsection*{Definition 4 (2D Transform)}
 Let $\mathcal{F}_2$ denote the 2D DFT on $N\times N$ arrays. Define
 \begin{equation}
-\widetilde{\rho}:=\mathcal{F}_2\!\left(W\odot\rho\right).
+\widetilde{\rho}:=\mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho).
 \label{eq:fft2_def}
 \end{equation}
 In index form,
 \begin{equation}
-\widetilde{\rho}_{pq}=\sum_{n=-K}^{K}\sum_{m=-K}^{K}\rho^{(w)}_{nm}
-\exp\!\left(-2\pi i\frac{pn+qm}{N}\right),\qquad p,q\in\{-K,\dots,K\}.
+\widetilde{\rho}_{pq}=\sum_{n=-K}^{K}\sum_{m=-K}^{K}\rho_{nm}
+\exp\!\left(-2\pi i\frac{pn+qm}{N}\right)
+\exp\!\big(-\pi\phi(n^2+m^2)\big),\qquad p,q\in\{-K,\dots,K\}.
 \label{eq:fft2_index}
 \end{equation}
 Equation \eqref{eq:fft2_index} is the explicit coordinate-level form of the transform in \eqref{eq:fft2_def}.
+
+The exponential factor $\exp(-\pi\phi(n^2+m^2))$ is applied to the transform kernel (basis functions), not directly to the data tensor. For computational efficiency, this is implemented as a pointwise multiplication prior to FFT, which is mathematically equivalent.
 
 \subsection*{Assumption A (Envelope-Compensation Match)}
 Observed attenuation is approximately compatible with a quadratic radial envelope in $(n,m)$, so the weight in \eqref{eq:weight_def} partially compensates damping before spectral projection.
@@ -114,7 +117,7 @@ When compensation aligns with damping structure, spectral mass in $\widetilde{\r
 \section{Forward and Inverse Transform}
 The framework defines an invertible transform pair:
 \begin{equation}
-\widetilde{\rho} = \mathcal{F}_2(W \odot \rho),
+\widetilde{\rho} = \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho),
 \label{eq:forward_transform}
 \end{equation}
 where $W$ is elementwise invertible (all entries nonzero). The inverse transform recovers $\rho$ from $\widetilde{\rho}$:
@@ -133,10 +136,22 @@ where $W^{-1}_{nm} := \exp(-\pi\phi(n^2+m^2))$ is the inverse weighting operator
 \end{equation}
 Equations \eqref{eq:forward_transform}--\eqref{eq:inverse_operator} define the forward path (lifting $\to$ weight $\to$ FFT) and inverse path (inverse FFT $\to$ inverse weight).
 
+After the transform, a spectral damping matrix is applied:
+\begin{equation}
+D_{k\ell}:=\exp\!\big(-\pi\psi(k^2+\ell^2)\big),
+\label{eq:spectral_damping}
+\end{equation}
+with final spectrum
+\begin{equation}
+\widetilde{\rho}^{(d)} := D \odot \widetilde{\rho}.
+\label{eq:damped_spectrum}
+\end{equation}
+This step suppresses high-frequency spectral modes.
+
 \subsection*{Remark: Exact vs Practical Transform}
 The forward transform defined in \eqref{eq:forward_transform},
 \[
-\widetilde{\rho} = \mathcal{F}_2(W \odot \rho),
+\widetilde{\rho} = \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}(\rho),
 \]
 does not, by itself, constitute a fully orthogonal theta transform in the exact mathematical sense. A mathematically rigorous formulation would require compensating for the weighting operator $W$ via inverse weighting (deconvolution), performed directly in the spectral domain before FFT or after. In the present work, we intentionally defer the inverse weighting to the reconstruction step \eqref{eq:inverse_weight}, treating it as part of the inverse transform pipeline.
 
@@ -200,9 +215,10 @@ The computational pipeline is:
 \begin{enumerate}
     \item Build $\rho$ from $a$ using \eqref{eq:rho_def}.
     \item Build $W(\phi)$ using \eqref{eq:weight_def}.
-    \item Form $\rho^{(w)}$ using \eqref{eq:rho_weighted}.
+    \item Apply basis weighting (implemented via pre-FFT multiplication).
     \item Compute $\widetilde{\rho}$ using \eqref{eq:fft2_def}.
-    \item Compute $R$ using \eqref{eq:R_def}.
+    \item Apply spectral damping using \eqref{eq:damped_spectrum}.
+    \item Compute $R$ using \eqref{eq:R_def} on $\widetilde{\rho}^{(d)}$.
 \end{enumerate}
 
 \noindent Pseudocode:
@@ -210,10 +226,12 @@ The computational pipeline is:
 Input: complex vector a[n], parameter phi
 rho[n,m] = a[n] * conjugate(a[m])
 W[n,m] = exp(pi * phi * (n*n + m*m))
-rho_w = W .* rho
+rho_w = W .* rho   # computational implementation of basis weighting
 rho_tilde = FFT2(rho_w)
-diag = sum_n |rho_tilde[n,n]|
-off  = sum_{n!=m} |rho_tilde[n,m]|
+D[k,l] = exp(-pi * psi * (k*k + l*l))
+rho_tilde_d = D .* rho_tilde
+diag = sum_n |rho_tilde_d[n,n]|
+off  = sum_{n!=m} |rho_tilde_d[n,m]|
 R = off / (diag + eps)
 \end{verbatim}
 
