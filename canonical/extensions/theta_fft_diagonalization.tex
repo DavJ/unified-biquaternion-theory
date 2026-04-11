@@ -161,7 +161,7 @@ This separation enables independent control of spectral damping scale and robust
 
 \section{Properties}
 \paragraph{Rotational symmetry in interaction space.}
-The radial factor $\exp(-\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is approximately invariant under discrete rotations preserving $n^2+m^2$. This gives isotropic damping structure in interaction coordinates.
+The radial factor $\exp(-2\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is approximately invariant under discrete rotations preserving $n^2+m^2$. This gives isotropic damping structure in interaction coordinates.
 
 \paragraph{Orthogonality with respect to $t$.}
 All orthogonality statements in this note are understood with respect to integration over the real variable $t$ (the real part of the chronofactor). Since the exponential factor depends only on the mode indices $(n,m)$ and not on $t$, it rescales basis components without destroying their mutual orthogonality in $t$. In general, orthonormality is lost, but orthogonality is preserved.
@@ -190,10 +190,9 @@ A practical discrete approximation is
 \end{equation}
 This induces the multiscale radial kernel
 \begin{equation}
-K(n,m):=\int \mu(\phi)\exp\!\big(-\pi\phi(n^2+m^2)\big)\,d\phi,
+K(n,m):=\int \mu(\phi)\exp\!\big(-2\pi\phi(n^2+m^2)\big)\,d\phi,
 \label{eq:multiscale_kernel}
 \end{equation}
-K(n,m):=\int \mu(\phi)\exp\!\big(-2\pi\phi(n^2+m^2)\big)\,d\phi.
 which generalizes a single-scale Gaussian to a scale-mixture kernel.
 This effectively replaces a single Gaussian kernel with a mixture of Gaussians, leading to heavier tails or sharper cutoffs depending on $\mu(\phi)$.
 Therefore, $\phi$-integration is not equivalent to a constant scaling, but produces a structurally different radial filter.
@@ -212,12 +211,7 @@ The forward transform defined in \eqref{eq:forward_transform},
 \]
 is the intended theta-type operator: diagonal in Fourier basis with Gaussian radial damping. A previous variant that multiplies data before Fourier transform is incorrect for this operator definition and should not be used.
 
-This design choice has practical advantages:
-\begin{itemize}
-    \item spectral deconvolution (performing $W^{-1}$ in spectral space before FFT) is numerically ill-conditioned for high-frequency modes,
-    \item deferring inverse weighting to the spatial-domain inverse avoids this instability,
-    \item the invertible structure is preserved: $\mathcal{T}^{-1} = W^{-1} \circ \mathcal{F}_2^{-1}$.
-\end{itemize}
+Orthogonality is defined with respect to integration over the real variable $t$. Since mode damping depends only on $(n,m)$ and not on $t$, orthogonality in $t$ is preserved, while orthonormality is generally lost.
 
 As a result, the presented method should be understood as:
 \begin{quote}
@@ -309,47 +303,41 @@ R = off / (diag + eps)
 \end{verbatim}
 
 \section{Numerical Stability and Regularized Inverse}
-The inverse weighting step \eqref{eq:inverse_weight} uses $W^{-1}_{nm} = \exp(-\pi\phi(n^2+m^2))$. For large indices and large $\phi$, this exponential decay becomes very small, risking numerical underflow or amplification of rounding errors when rescaling.
+Numerical stability is controlled in Fourier space. For large indices and large $\phi$, the Gaussian factor in \eqref{eq:weight_def} can approach machine precision.
 
 \paragraph{Regularization strategy.}
-To stabilize the inverse, we employ a regularized inverse weight:
+To stabilize computations, use bounded mode floors and averaging over $\phi$:
 \begin{equation}
-W^{(-1)}_{nm}(\lambda) := \frac{\exp(-\pi\phi(n^2+m^2))}{1 + \lambda \exp(-\pi\phi(n^2+m^2))},
+\widehat{\Theta_{\phi}[X]}_{nm} \leftarrow \max\!\left(\widehat{\Theta_{\phi}[X]}_{nm},\,\varepsilon_{\mathrm{num}}\right),
 \label{eq:regularized_inverse}
 \end{equation}
-where $\lambda > 0$ is a regularization parameter. This formula achieves several goals:
+where $\varepsilon_{\mathrm{num}}>0$ is a numerical floor. This strategy:
 \begin{itemize}
-    \item it keeps $W^{(-1)} \le 1$ for all $(n,m)$,
-    \item it suppresses amplification at high indices,
-    \item as $\lambda \to 0$, it recovers the exact inverse $W^{-1}$.
+    \item prevents underflow-driven instability,
+    \item preserves diagonal Fourier action,
+    \item works naturally with $\phi$-averaging in \eqref{eq:damped_spectrum}.
 \end{itemize}
 
 \paragraph{Alternative approaches.}
 Other stabilization methods include:
 \begin{itemize}
-    \item truncation of high-index modes before inversion,
-    \item Wiener-style filtering of $\widetilde{\rho}$ before inverse FFT,
-    \item bounded inverse weighting to cap amplification at a fixed threshold.
+    \item truncation of high-index modes,
+    \item weighted averaging across $\phi$ grids,
+    \item bounded spectral clipping.
 \end{itemize}
 
 \section{Operator Interpretation}
 The full transformation can be written compactly as:
 \begin{equation}
-\widetilde{\rho} = \mathcal{T}(\rho), \quad \text{where} \quad \mathcal{T} := \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}.
+\widehat{\Theta_{\phi}[X]}_{nm}=\widehat{X}_{nm}\exp\!\big(-2\pi\phi(n^2+m^2)\big), \quad \Theta_{\phi}[X]=\mathcal{F}_2^{-1}[\widehat{\Theta_{\phi}[X]}].
 \label{eq:operator}
 \end{equation}
-This separates the action into two independent steps:
+This is diagonal in Fourier space and corresponds to heat-kernel-like filtering of modes.
+The averaged transform is
 \begin{itemize}
-    \item inverse diffusion weighting (basis-weight implementation): geometric transformation (radial scaling),
-    \item $\mathcal{F}_2$: spectral orthogonalization (2D FFT basis change),
-    \item $D$: post-transform spectral regularization.
+    \item $\Theta_{\mathrm{avg}}[X]=\frac{1}{K}\sum_{k=1}^{K}\Theta_{\phi_k}[X]$,
+    \item no FFT is applied along the $\phi$ dimension.
 \end{itemize}
-The inverse operator is:
-\begin{equation}
-\mathcal{T}^{-1} := W^{(-1)} \circ \mathcal{F}_2^{-1},
-\label{eq:inverse_decomposition}
-\end{equation}
-recovering the original tensor (up to regularization error).
 
 \section{Interpretation and Discussion}
 In this framework:
@@ -402,7 +390,7 @@ Different FFT libraries use different normalization factors (forward, inverse, o
 Indices are assumed uniformly sampled on a finite lattice with symmetric truncation $[-K,K]$. Conclusions may change under nonuniform grids or different boundary conventions.
 
 \section{Conclusion}
-We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, inverse diffusion weighting (basis-weight implementation), 2D FFT mapping, and spectral regularization via $D$. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Approximate diagonalization is governed by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. A multiscale extension via $\phi$-integration \eqref{eq:phi_integrated_transform}--\eqref{eq:phi_integrated_discrete} further generalizes the method from single-scale Gaussian weighting to radial kernel mixtures. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
+We presented a compact framework in which the transform is a diagonal Gaussian operator in Fourier space. The forward map is: tensor lifting $a\mapsto\rho$, FFT2, mode-wise scaling by $\exp(-2\pi\phi(n^2+m^2))$, and inverse FFT. A multiscale extension via $\phi$-averaging \eqref{eq:damped_spectrum} and \eqref{eq:phi_integrated_discrete} stabilizes the representation without introducing a transform along the $\phi$ dimension. Approximate diagonalization is quantified by $R$, and orthogonality statements are taken with respect to integration in $t$.
 In this sense, the transform provides a bridge between interaction-space representations and approximately separable spectral structures, enabling both analysis and controlled reconstruction.
 
 \end{document}
