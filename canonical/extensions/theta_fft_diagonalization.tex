@@ -31,6 +31,12 @@ The present note introduces a bridge:
 \end{enumerate}
 The resulting representation is computationally efficient and structurally aligned with heat-kernel-like damping and theta-like quadratic phase organization. We emphasize from the outset: approximate diagonalization is a hypothesis to test, not a universal theorem.
 
+\paragraph{Motivation for 2D lifting.}
+The 2D lifting exposes pairwise mode interactions that are not accessible in a purely 1D spectral representation. This interaction-space view is the main reason the framework can isolate coherence structure beyond standard mode-energy analysis.
+
+\paragraph{Heat-kernel interpretation.}
+The construction can be interpreted as a discrete heat-kernel transform in interaction space: $\phi$ controls diffusion scale before the spectral map, while $\psi$ controls post-transform spectral regularization.
+
 \section{Definitions, Assumptions, and Core Objects}
 We fix an odd mode count $N=2K+1$ with indices $n,m\in\{-K,\dots,K\}$.
 
@@ -148,6 +154,54 @@ with final spectrum
 \end{equation}
 This step suppresses high-frequency spectral modes.
 
+\section{Role of $\phi$ and $\psi$}
+The two damping parameters play distinct roles:
+\begin{itemize}
+    \item $\phi$ controls pre-transform diffusion in interaction space (input geometry smoothing),
+    \item $\psi$ controls post-transform damping in spectral space (spectral regularization).
+\end{itemize}
+This separation enables independent control of interaction geometry and spectral stability.
+
+\section{Properties}
+\paragraph{Rotational symmetry in interaction space.}
+The radial factor $\exp(-\pi\phi(n^2+m^2))$ depends only on $n^2+m^2$, so the weighting geometry is invariant under lattice index rotations that preserve radius. This gives isotropic damping structure in interaction coordinates.
+
+\section{Limiting Cases}
+The framework has transparent limiting regimes:
+\begin{itemize}
+    \item $\phi\to 0$: the basis-weighted transform reduces to standard 2D FFT,
+    \item $\phi\to \infty$: only low-index interactions contribute appreciably,
+    \item $\psi\to 0$: no post-transform spectral damping,
+    \item $\psi\to \infty$: only lowest-frequency spectral modes remain.
+\end{itemize}
+
+\section{Integration over $\phi$}
+A multiscale extension is defined by integrating over diffusion scale:
+\begin{equation}
+\widetilde{\rho}^{(\mathrm{int})}_{k\ell} = \int \mu(\phi) \sum_{n,m} \rho_{nm}
+\exp\!\left(-2\pi i\frac{kn+\ell m}{N}\right)
+\exp\!\big(-\pi\phi(n^2+m^2)\big)\, d\phi.
+\label{eq:phi_integrated_transform}
+\end{equation}
+A practical discrete approximation is
+\begin{equation}
+\widetilde{\rho}^{(\mathrm{int})} \approx \sum_j w_j\,\widetilde{\rho}^{(\phi_j)}.
+\label{eq:phi_integrated_discrete}
+\end{equation}
+This induces the multiscale radial kernel
+\begin{equation}
+K(n,m):=\int \mu(\phi)\exp\!\big(-\pi\phi(n^2+m^2)\big)\,d\phi,
+\label{eq:multiscale_kernel}
+\end{equation}
+which generalizes a single-scale Gaussian to a scale-mixture kernel.
+
+\subsection*{Special cases of $\phi$-integration}
+\begin{itemize}
+    \item $\mu(\phi)=\delta(\phi-\phi_0)$ recovers the fixed-$\phi$ transform,
+    \item broad $\mu(\phi)$ yields multiscale smoothing,
+    \item normalized $\mu(\phi)$ yields a scale-averaged transform.
+\end{itemize}
+
 \subsection*{Remark: Exact vs Practical Transform}
 The forward transform defined in \eqref{eq:forward_transform},
 \[
@@ -180,8 +234,10 @@ giving the norm
 \label{eq:weighted_norm}
 \end{equation}
 Under this metric, the forward and inverse transforms approximately preserve energy:
-- The forward transform concentrates energy spectral distribution.
-- The inverse transform recovers magnitude structure (up to regularization and numerical precision).
+\begin{itemize}
+    \item The forward transform concentrates energy spectral distribution.
+    \item The inverse transform recovers magnitude structure (up to regularization and numerical precision).
+\end{itemize}
 
 \paragraph{Interpretation.}
 The weighted metric reflects the geometry induced by damping compensation. Entries with large $W$ (high-index pairs) contribute less to the weighted norm; entries with small $W$ (low-index pairs) dominate. This weighting ensures that the inversion step does not amplify high-index noise.
@@ -214,11 +270,11 @@ H is a testable hypothesis. It is not claimed as a universal theorem over all si
 The computational pipeline is:
 \begin{enumerate}
     \item Build $\rho$ from $a$ using \eqref{eq:rho_def}.
-    \item Build $W(\phi)$ using \eqref{eq:weight_def}.
     \item Apply basis weighting (implemented via pre-FFT multiplication).
     \item Compute $\widetilde{\rho}$ using \eqref{eq:fft2_def}.
+    \item Optionally compute multiscale aggregation using \eqref{eq:phi_integrated_discrete}.
     \item Apply spectral damping using \eqref{eq:damped_spectrum}.
-    \item Compute $R$ using \eqref{eq:R_def} on $\widetilde{\rho}^{(d)}$.
+    \item Compute $R$ using \eqref{eq:R_def} on the damped spectrum.
 \end{enumerate}
 
 \noindent Pseudocode:
@@ -228,8 +284,20 @@ rho[n,m] = a[n] * conjugate(a[m])
 W[n,m] = exp(pi * phi * (n*n + m*m))
 rho_w = W .* rho   # computational implementation of basis weighting
 rho_tilde = FFT2(rho_w)
+
+# optional phi integration
+rho_tilde_int = 0
+for (phi_j, w_j) in phi_grid:
+    W_j[n,m] = exp(pi * phi_j * (n*n + m*m))
+    rho_tilde_j = FFT2(W_j .* rho)
+    rho_tilde_int = rho_tilde_int + w_j * rho_tilde_j
+
+if use_phi_integration:
+    rho_tilde = rho_tilde_int
+
 D[k,l] = exp(-pi * psi * (k*k + l*l))
 rho_tilde_d = D .* rho_tilde
+
 diag = sum_n |rho_tilde_d[n,n]|
 off  = sum_{n!=m} |rho_tilde_d[n,m]|
 R = off / (diag + eps)
@@ -262,13 +330,14 @@ Other stabilization methods include:
 \section{Operator Interpretation}
 The full transformation can be written compactly as:
 \begin{equation}
-\widetilde{\rho} = \mathcal{T}(\rho), \quad \text{where} \quad \mathcal{T} := \mathcal{F}_2 \circ W.
+\widetilde{\rho} = \mathcal{T}(\rho), \quad \text{where} \quad \mathcal{T} := \mathcal{F}_{2,\mathrm{basis\mbox{-}weighted}}.
 \label{eq:operator}
 \end{equation}
 This separates the action into two independent steps:
 \begin{itemize}
-    \item $W$: geometric transformation (damping compensation, radial scaling),
-    \item $\mathcal{F}_2$: spectral orthogonalization (2D FFT basis change).
+    \item basis weighting: geometric transformation (damping compensation, radial scaling),
+    \item $\mathcal{F}_2$: spectral orthogonalization (2D FFT basis change),
+    \item $D$: post-transform spectral regularization.
 \end{itemize}
 The inverse operator is:
 \begin{equation}
@@ -328,6 +397,6 @@ Different FFT libraries use different normalization factors (forward, inverse, o
 Indices are assumed uniformly sampled on a finite lattice with symmetric truncation $[-K,K]$. Conclusions may change under nonuniform grids or different boundary conventions.
 
 \section{Conclusion}
-We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, damping compensation by radial weighting, and 2D FFT mapping. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Orthogonality (approximate diagonalization) is provided by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
+We presented a compact framework defining an invertible transform with explicit forward and inverse operators. The forward path is: tensor lifting $a\mapsto\rho$, diffusion-controlled basis weighting, 2D FFT mapping, and spectral regularization via $D$. The inverse path recovers interaction structure via inverse FFT and regularized inverse weighting. Orthogonality (approximate diagonalization) is provided by the spectral properties of the 2D FFT, while the weighted metric \eqref{eq:weighted_norm} defines the geometry of interaction space. The diagonal-dominance ratio $R$ provides a quantitative test of concentration. A multiscale extension via $\phi$-integration \eqref{eq:phi_integrated_transform}--\eqref{eq:phi_integrated_discrete} further generalizes the method from single-scale Gaussian weighting to radial kernel mixtures. This framework yields a rigorous and testable pathway for UBT-aligned analysis of damped structured systems, with invertibility ensuring information preservation and numerical stability guidelines for practical deployment.
 
 \end{document}
