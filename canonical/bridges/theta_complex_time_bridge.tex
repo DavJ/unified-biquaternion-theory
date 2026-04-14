@@ -1,0 +1,203 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Theta Complex-Time Bridge
+% Status: Bridge / non-canonical derivation
+% Purpose: rigorous bridge note connecting a reduced Jacobi-theta complex-time
+% construction to the existing UBT complex-time and operator language.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section{Theta Transform with Complex Time as a Bridge to UBT}
+\label{sec:theta_complex_time_bridge}
+
+\paragraph{Status.}
+Bridge / non-canonical derivation. This note is a mathematically motivated bridge between a reduced Jacobi-theta construction and the canonical UBT framework. It does not replace the canonical definitions of $T_B$ or $\Theta(q,T_B)$.
+
+\subsection{Motivation}
+
+\paragraph{Canonical anchor.}
+Canonical UBT uses biquaternion time
+\begin{equation}
+T_B = t + i\psi + j\chi + k\xi,
+\end{equation}
+with isotropic complex-time limit
+\begin{equation}
+\tau = t + i\psi.
+\end{equation}
+
+\paragraph{Bridge statement.}
+The Jacobi-theta complex-time kernel provides a reduced model in which imaginary time gives Gaussian damping and real time gives quadratic phase evolution. This structure is compatible with heat-kernel, diffusion, and spectral viewpoints already present in UBT.
+
+\paragraph{Conjectural boundary.}
+This note does not derive the full UBT field, metric sector, or Standard Model sector from the theta construction.
+
+\subsection{Jacobi Theta Starting Point}
+
+\paragraph{Bridge statement.}
+We begin from the classical Jacobi theta function
+\begin{equation}
+\theta(z,\tau)
+=
+\sum_{n \in \mathbb{Z}}
+\exp\!\left(
+\pi i \tau n^2 + 2\pi i n z
+\right),
+\qquad \Im(\tau) > 0.
+\end{equation}
+
+Introduce the reduced complex-time parameter
+\begin{equation}
+\tau = t + i\phi.
+\end{equation}
+
+Then the quadratic exponent decomposes as
+\begin{equation}
+\exp(\pi i \tau n^2)
+=
+\exp(-\pi \phi n^2)\,\exp(\pi i t n^2).
+\end{equation}
+
+\paragraph{Interpretation.}
+The factor $\exp(-\pi \phi n^2)$ is heat-kernel-like damping, while $\exp(\pi i t n^2)$ is oscillatory quadratic phase evolution.
+
+\subsection{Reduced Discrete Theta Projection}
+
+\paragraph{Bridge statement.}
+For a reduced discrete mode sequence $a_n^{(s)}$, define
+\begin{equation}
+S_s(t,\phi)
+=
+\sum_{n=0}^{N-1}
+a_n^{(s)}\,\exp(-\pi \phi n^2)\,\exp(\pi i t n^2).
+\end{equation}
+
+\paragraph{Interpretation.}
+The symbol $s$ is an external evolution label for the reduced family of mode sequences. It is distinct from the real kernel time $t$ and distinct from the imaginary damping scale $\phi$.
+
+\subsection{Energy Observable}
+
+\paragraph{Bridge statement.}
+Define the energy-like observable
+\begin{equation}
+\Theta_s(t,\phi) = \left|S_s(t,\phi)\right|^2.
+\end{equation}
+
+Expanding the modulus square gives
+\begin{equation}
+\Theta_s(t,\phi)
+=
+\sum_{n,m}
+a_n^{(s)}\overline{a_m^{(s)}}\,
+\exp\!\left(-\pi \phi (n^2+m^2)\right)\,
+\exp\!\left(\pi i t (n^2-m^2)\right).
+\end{equation}
+
+\paragraph{Interpretation.}
+The double sum makes pairwise mode interference explicit. The single-sum amplitude and double-sum energy forms are equivalent descriptions of the same reduced observable sector.
+
+\subsection{Averaging over Imaginary Time}
+
+\paragraph{Bridge statement.}
+To reduce sensitivity to any single damping scale, define the averaged observable
+\begin{equation}
+\overline{\Theta}_s(t)
+=
+\frac{1}{P}\sum_{j=1}^{P}\Theta_s(t,\phi_j).
+\end{equation}
+
+\paragraph{Interpretation.}
+This averaging plays the role of a scale-stabilized reduced observable over the real kernel time $t$.
+
+\subsection{Alignment with Canonical UBT Notation}
+
+\paragraph{Canonical anchor.}
+In canonical UBT notation, the scalar imaginary component of complex time is $\psi$, not $\phi$, and the isotropic limit is
+\begin{equation}
+\tau = t + i\psi.
+\end{equation}
+
+\paragraph{Bridge statement.}
+The reduced theta notation therefore maps
+\begin{equation}
+\phi \longleftrightarrow \psi
+\end{equation}
+only as a notation bridge inside the isotropic complex-time limit.
+
+The reduced amplitude may then be rewritten in UBT-aligned notation as
+\begin{equation}
+S_s(t,\psi)
+=
+\sum_{n=0}^{N-1}
+a_n^{(s)} e^{-\pi \psi n^2} e^{\pi i t n^2}.
+\end{equation}
+
+\paragraph{Interpretation.}
+This notation change is a compatibility step with canonical UBT. It is not a new canonical definition and does not extend the reduced model to full biquaternion time.
+
+\paragraph{Canonical anchor.}
+The symbol $\Theta$ is already reserved in UBT for the fundamental field $\Theta(q,T_B)$.
+
+\paragraph{Bridge statement.}
+To avoid collision with the canonical field symbol, it is preferable in UBT-facing writing to rename the reduced observable
+\begin{equation}
+\Theta_s(t,\psi)
+\end{equation}
+as
+\begin{equation}
+\mathcal{E}_s(t,\psi) := \left|S_s(t,\psi)\right|^2,
+\qquad
+\overline{\mathcal{E}}_s(t) := \frac{1}{P}\sum_{j=1}^{P}\mathcal{E}_s(t,\psi_j).
+\end{equation}
+
+\paragraph{Interpretation.}
+This is a notation hygiene step only. The reduced mathematics is unchanged.
+
+\subsection{Operator and Spectral Viewpoint}
+
+\paragraph{Canonical anchor.}
+UBT already uses operator language through covariant derivatives, Laplace-type structures, and spectral arguments in the complex-time sector.
+
+\paragraph{Bridge statement.}
+The kernel
+\begin{equation}
+e^{-\pi \psi n^2} e^{\pi i t n^2}
+\end{equation}
+has the form of a discrete complex-time propagator factor: Gaussian damping in imaginary time and oscillatory phase evolution in real time.
+
+\paragraph{Interpretation.}
+This suggests that $S_s(t,\psi)$ may be read as a reduced projected propagator-like amplitude on a compact or discrete mode space, while $\overline{\mathcal{E}}_s(t)$ is a reduced observable derived from it.
+
+\paragraph{Conjectural boundary.}
+The identification of this reduced amplitude with the full UBT field propagator is not proved here.
+
+\subsection{Limits of the Bridge}
+
+\paragraph{Canonical anchor.}
+The canonical field remains $\Theta(q,T_B)$ and the canonical time remains $T_B = t + i\psi + j\chi + k\xi$.
+
+\paragraph{Bridge statement.}
+The theta construction presented here is a reduced model compatible with the isotropic complex-time limit of UBT.
+
+\paragraph{Conjectural boundary.}
+This note does not prove exact recovery of the metric sector, the GR limit, the Standard Model interaction sectors, or the full biquaternion-valued dynamics from the reduced theta model.
+
+\subsection{Next Steps}
+
+\paragraph{Bridge step.}
+Derive an operator form whose matrix elements reproduce $S_s(t,\psi)$ as a reduced amplitude.
+
+\paragraph{Bridge step.}
+Test whether $\overline{\mathcal{E}}_s(t)$ behaves like a reduced propagator observable in mode spaces already natural in UBT.
+
+\paragraph{Bridge step.}
+Compare the reduced theta kernel with existing UBT complex-time and diffusion-like structures.
+
+\paragraph{Conjectural step.}
+Determine whether the quadratic phase factor can be embedded into full biquaternion-valued evolution.
+
+\end{document}
