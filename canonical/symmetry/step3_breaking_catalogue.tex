@@ -1,0 +1,460 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+
+  \title{\textbf{Discrete Symmetry Formalization, Step 3:\\
+                 Symmetry Breaking Catalogue ---\\
+                 Physical vs.\ Effective/Dissipative}}
+  \author{David Jaro\v{s}}
+  \date{2026-04-25}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We provide a complete catalogue of discrete symmetry breaking in the UBT
+  framework, distinguishing two classes:
+  (i) \emph{physical symmetry breaking} --- present in the fundamental action
+  $S[\Theta]$ and with observable consequences;
+  (ii) \emph{effective/dissipative symmetry breaking} --- arising in reduced
+  descriptions of $\Theta$ relevant to AI/cryptographic models,
+  not present as a fundamental violation.
+  For each breaking type we identify the responsible term, state whether it is
+  spontaneous or explicit, and state the UBT status (proved, candidate,
+  gap, open).
+  Open problems in the UBT discrete-symmetry sector are listed.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Classification of Symmetry Breaking}
+\label{sec:cat:classification}
+%──────────────────────────────────────────────────────────────────────────────
+
+Symmetry breaking in the UBT context falls into three structurally distinct
+categories:
+
+\begin{description}
+  \item[Explicit physical breaking]
+    A term in $S[\Theta]$ does not respect the symmetry.  The breaking is
+    present at the level of the fundamental action and has direct observable
+    consequences (e.g., parity violation in weak interactions, CP violation
+    in kaon decays).
+  \item[Spontaneous physical breaking]
+    The action is symmetric, but the ground state (vacuum solution $\Theta_0$)
+    is not.  The symmetry is broken by the choice of vacuum, producing Goldstone
+    bosons or massive gauge bosons (Higgs mechanism).
+  \item[Effective/dissipative breaking]
+    The fundamental action is symmetric, but a reduced or coarse-grained
+    description of $\Theta$ (obtained by integrating out degrees of freedom or
+    restricting to a particular solution sector) breaks the symmetry.
+    This type of breaking is relevant for AI and cryptographic applications
+    of UBT-inspired field equations, where dissipation and entropy production
+    are modelled as field equations, not as fundamental violations.
+\end{description}
+
+\begin{warnbox}
+\textbf{Critical distinction.}
+Effective/dissipative symmetry breaking must \emph{never} be mistaken for a
+prediction of fundamental $CPT$ violation.
+The UBT full action satisfies $CPT$ invariance (as verified in Step~2).
+Any apparent $CPT$ breaking in a specific model or application is an artefact
+of the reduced description, not a prediction of the theory.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Physical Symmetry Breaking in UBT}
+\label{sec:cat:physical}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Parity Violation: $SU(2)_L$ Chiral Coupling}
+\label{subsec:cat:parity}
+
+\begin{definition}[Physical P breaking in UBT]
+\label{def:cat:P_breaking}
+Parity is explicitly broken in the UBT kinetic sector by the chiral structure
+of the $SU(2)_L$ gauge coupling.  The relevant interaction term is:
+\begin{equation}
+  \mathcal{L}_{W} = \mathrm{Tr}\!\bigl[
+    (P_L\Theta)^\dagger \,ig\tau^i W^i_\mu\, \partial^\mu(P_L\Theta)
+  \bigr] + \mathrm{h.c.},
+  \label{eq:cat:L_W}
+\end{equation}
+where $P_L = \tfrac{1}{2}(1 + P_2)$ projects onto the left-handed
+(vector/odd) sector of $\mathcal{B}$ and $W^i_\mu$ are the $SU(2)_L$ gauge
+bosons.
+\end{definition}
+
+\begin{proposition}[P-odd character of $\mathcal{L}_W$]
+Under $P$ (Definition~2 of Step~1), $P_L \leftrightarrow P_R$, so:
+\begin{equation}
+  P[\mathcal{L}_W] = \mathrm{Tr}\!\bigl[
+    (P_R\Theta)^\dagger \,ig\tau^i W^i_\mu\, \partial^\mu(P_R\Theta)
+  \bigr] + \mathrm{h.c.} \neq \mathcal{L}_W.
+\end{equation}
+$\mathcal{L}_W$ is P-violating.  The violation is maximal in the sense that
+there is no corresponding right-handed $W_R$ coupling in the UBT action at the
+same energy scale.
+\end{proposition}
+
+\paragraph{UBT derivation status.}
+The absence of $W_R$ coupling and the left-handed restriction of $W^i$ is
+proved in \texttt{chirality/step3\_gap\_C1\_resolution.tex}: the
+$W^\pm$ vertex in $S[\Theta]$ is $P_\psi$-odd (i.e., odd under $\psi \to -\psi$),
+which implies $P$-odd coupling in the four-dimensional spacetime sense.
+\textbf{Status: PROVED (conditional on algebraic completeness of the
+$SU(2)_L$ derivation).}
+
+\subsection{CP Violation: Complex Yukawa Sector}
+\label{subsec:cat:CP}
+
+\begin{definition}[CP violation in UBT]
+\label{def:cat:CP_breaking}
+CP violation arises from complex phases in the Yukawa coupling matrix $Y$
+in the potential:
+\begin{equation}
+  V_Y = \mathrm{Tr}[\bar\Theta_L Y \Theta_R] + \mathrm{h.c.},
+  \label{eq:cat:V_Yukawa}
+\end{equation}
+where $\Theta_L = P_L\Theta$, $\Theta_R = P_R\Theta$, and
+$Y \in M_n(\mathbb{C})$ is the complex Yukawa matrix.
+CP violation occurs when $\mathrm{Im}(\det Y) \neq 0$, i.e., when the
+phases of $Y$ cannot be absorbed by field redefinitions.
+\end{definition}
+
+\begin{remark}[CKM analogue in UBT]
+In the Standard Model, CP violation in the quark sector is described by the
+CKM matrix with a single non-removable complex phase $\delta$.
+In UBT, the analogous structure is the complex phase content of $Y$ acting
+on the three generations encoded in the $\psi$-mode expansion
+$\Theta = \sum_{n=1,2,3} \Theta_n e^{in\psi/R_\psi}$.
+A complete UBT derivation of the CKM matrix from the $\psi$-sector is an
+open problem (Gap~S3).
+\end{remark}
+
+\begin{gapbox}
+\textbf{Gap S3 --- CKM phases from biquaternion $\psi$-modes:}
+Express the Yukawa matrix $Y$ as a function of the complex time phases
+$e^{in\psi/R_\psi}$ ($n = 1,2,3$) and derive the CKM mixing angles and
+CP-violating phase from the $\Theta$-field dynamics.
+This would constitute a \emph{derivation} of CP violation from first
+principles within UBT, rather than a parametric input.
+\textbf{Priority: HIGH.}
+\end{gapbox}
+
+\subsection{T Violation: $\theta$-Term and Strong CP Problem}
+\label{subsec:cat:T}
+
+\begin{definition}[Topological T breaking]
+\label{def:cat:T_breaking}
+The topological $\theta$-term (if present in the UBT action) breaks $T$:
+\begin{equation}
+  \mathcal{L}_\theta = \frac{\theta}{16\pi^2}\, G^a_{\mu\nu}\tilde{G}^{a\,\mu\nu},
+  \label{eq:cat:L_theta}
+\end{equation}
+where $\tilde{G}^{\mu\nu} = \tfrac{1}{2}\epsilon^{\mu\nu\rho\sigma}G_{\rho\sigma}$
+is the dual of the gluon field strength.
+Under $T_{\mathrm{UBT}}$: $G\tilde{G} \to -G\tilde{G}$, so
+$\mathcal{L}_\theta \to -\mathcal{L}_\theta$: explicit $T$ (and $P$) breaking.
+This is the \emph{strong CP problem}: why is $\theta$ observed to be
+$\lesssim 10^{-10}$ experimentally?
+\end{definition}
+
+\begin{gapbox}
+\textbf{Gap S4 --- Strong CP problem in UBT:}
+Does UBT predict $\theta = 0$ (or $\theta \ll 1$) from first principles, or
+does it require an axion-like mechanism?
+A natural candidate is that the $\psi$-integration in the biquaternionic
+action dynamically averages $\theta$ to zero.
+\textbf{Priority: MEDIUM.}
+\end{gapbox}
+
+\subsection{CPT Invariance: Theorem and Status}
+\label{subsec:cat:CPT}
+
+\begin{theorem}[UBT CPT Invariance]
+\label{thm:cat:CPT}
+The UBT action $S[\Theta]$ in the real sector ($\psi \to 0$ limit) is invariant
+under $CPT = C \circ P \circ T_{\mathrm{UBT}}$:
+\begin{equation}
+  S[CPT[\Theta]] = S[\Theta].
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+From Step~2, Table~\ref{tab:act:symmetries}: every term in
+$\mathcal{L}_{\mathrm{UBT}}$ (including the $P$-violating chiral term and the
+CP-violating complex Yukawa term) is $CPT$-invariant.
+This is consistent with the Wightman--CPT theorem: any local, Lorentz-invariant
+quantum field theory with a Hermitian Hamiltonian is $CPT$-invariant.
+UBT satisfies all these conditions in the real sector.
+\textbf{Status: Argued from general theorem + term-by-term verification
+(Table~\ref{tab:act:symmetries}). Full biquaternionic sector: open (Gap~S2).}
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Spontaneous Symmetry Breaking in UBT}
+\label{sec:cat:spontaneous}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Higgs Mechanism from $\Theta$-Vacuum}
+\label{subsec:cat:higgs}
+
+\begin{definition}[Spontaneous symmetry breaking via $\Theta_0$]
+\label{def:cat:Higgs}
+Let $\Theta_0 \in \mathcal{B}$ be the vacuum (ground state) solution satisfying
+$\delta S[\Theta_0] = 0$ with minimum energy.
+A symmetry $G$ of $S[\Theta]$ is \emph{spontaneously broken} if
+$G \cdot \Theta_0 \neq \Theta_0$.
+
+In UBT, the electroweak symmetry $SU(2)_L \times U(1)_Y$ is broken to
+$U(1)_{\mathrm{em}}$ by a vacuum expectation value:
+\begin{equation}
+  \langle\Theta_0\rangle = v \cdot e_0 + \delta\Theta,
+  \quad v \approx 174\ \mathrm{GeV},
+  \label{eq:cat:vev}
+\end{equation}
+where $e_0 \in \{1\} \subset \mathcal{B}$ is the scalar (parity-even) direction.
+The fluctuation $\delta\Theta$ around $\Theta_0$ gives the massive $W$, $Z$
+bosons and the Higgs boson.
+\end{definition}
+
+\begin{remark}[P and C status after spontaneous breaking]
+After $SU(2)_L \times U(1)_Y \to U(1)_{\mathrm{em}}$:
+\begin{itemize}
+  \item $P$ (spatial parity) is already explicitly broken by the
+    $SU(2)_L$ coupling (Section~\ref{subsec:cat:parity}).
+  \item $C$ is broken by the charged-current structure.
+  \item $CP$: broken by the CKM phase (Section~\ref{subsec:cat:CP}).
+  \item $CPT$: preserved (Theorem~\ref{thm:cat:CPT}).
+\end{itemize}
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Effective and Dissipative Symmetry Breaking}
+\label{sec:cat:effective}
+%──────────────────────────────────────────────────────────────────────────────
+
+In AI-inspired and cryptographic applications of UBT-type field equations,
+the field $\Theta$ is used as a model for complex adaptive systems.
+The fundamental UBT action is replaced by effective equations that describe
+irreversible dynamics, information flow, or computational state evolution.
+These equations generically break the discrete symmetries $C$, $P$, $T$ at
+the \emph{effective level}, without implying any violation of the
+fundamental $CPT$ theorem.
+
+\subsection{Explicit Time Asymmetry}
+\label{subsec:cat:time_asym}
+
+\begin{definition}[Dissipative time evolution]
+\label{def:cat:dissipation}
+An effective dissipative term takes the form:
+\begin{equation}
+  \mathcal{L}_{\mathrm{diss}}
+  = -\kappa_T\,\mathrm{Re}\,\mathrm{Tr}\!\bigl[
+      \Theta^\dagger (\partial_t \Theta)
+    \bigr],
+  \label{eq:cat:L_diss}
+\end{equation}
+with $\kappa_T > 0$ a phenomenological damping coefficient.
+\end{definition}
+
+\begin{proposition}
+$\mathcal{L}_{\mathrm{diss}}$ breaks $T_{\mathrm{UBT}}$: under $t \to -t$,
+$\partial_t \to -\partial_t$, so
+$\mathcal{L}_{\mathrm{diss}} \to +\kappa_T \mathrm{Re}\,\mathrm{Tr}[\Theta^\dagger \partial_t\Theta]
+= -\mathcal{L}_{\mathrm{diss}}$.
+\end{proposition}
+
+\paragraph{Physical interpretation.}
+$\mathcal{L}_{\mathrm{diss}}$ does not appear in the fundamental UBT action.
+It arises when modelling the evolution of the $\Theta$-field in an environment
+(open system), where irreversibility results from integrating out environmental
+degrees of freedom.  This is entirely consistent with $CPT$ invariance at the
+fundamental level: the environment that was integrated out is the ``time-reversed
+universe.''
+
+\subsection{Non-Hermitian Mass Terms}
+\label{subsec:cat:non_herm}
+
+\begin{definition}[Non-Hermitian mass]
+\label{def:cat:non_hermitian}
+An effective non-Hermitian mass term:
+\begin{equation}
+  V_{\mathrm{eff}} = (m^2 + i\gamma)\,\mathrm{Tr}[\Theta^\dagger\Theta],
+  \quad \gamma \in \mathbb{R},
+  \label{eq:cat:V_eff}
+\end{equation}
+with $\gamma \neq 0$ describes amplification ($\gamma < 0$) or damping
+($\gamma > 0$) of the field.
+\end{definition}
+
+\begin{proposition}
+$V_{\mathrm{eff}}$ with $\gamma \neq 0$ breaks $C$ (since complex conjugation
+maps $i\gamma \to -i\gamma$, changing the sign of the imaginary part) and $T$
+(since $T$ is real-time reversal which in an antiunitary formulation would
+also map $i \to -i$).
+$CPT$ is broken if $\gamma \neq 0$ and the field equations are not derived
+from a real action.
+\end{proposition}
+
+\begin{warnbox}
+Non-Hermitian mass terms \eqref{eq:cat:V_eff} are \textbf{not} part of the
+fundamental UBT action $S[\Theta]$.  They are \textbf{effective descriptions}
+of open-system dynamics (e.g., $\mathcal{PT}$-symmetric quantum mechanics,
+gain-loss coupled waveguides, neural network dynamics).
+Their $CPT$-breaking character is an artefact of the effective description,
+not a prediction of UBT.
+\end{warnbox}
+
+\subsection{Entropy/Information Flow Terms}
+\label{subsec:cat:entropy}
+
+In information-theoretic and AI applications, UBT-inspired field equations
+may include entropy-gradient terms:
+\begin{equation}
+  \mathcal{L}_{\mathrm{ent}}
+  = -\beta \int d\psi\;
+    \mathrm{Tr}\!\bigl[\Theta^\dagger \ln(\Theta^\dagger\Theta)\,\Theta\bigr],
+  \label{eq:cat:L_ent}
+\end{equation}
+which models free-energy minimisation in a statistical ensemble.
+
+\begin{proposition}
+$\mathcal{L}_{\mathrm{ent}}$ is:
+\begin{itemize}
+  \item $P$-invariant (scalar under spatial reflection).
+  \item $T_{\mathrm{UBT}}$-\emph{breaking}: entropy increases along the
+    arrow of time, so the effective dynamics is time-asymmetric.
+  \item $CPT$-invariant \emph{at the fundamental level}, but
+    effectively $T$-breaking in the thermodynamic limit.
+\end{itemize}
+\end{proposition}
+
+\paragraph{Separation principle.}
+The arrow of time encoded in \eqref{eq:cat:L_ent} is an \emph{emergent},
+thermodynamic phenomenon: it reflects the specific macroscopic state
+(low-entropy initial condition) rather than a fundamental $T$-violation.
+This is the UBT analogue of the second law of thermodynamics.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison Table: Physical vs.\ Effective Breaking}
+\label{sec:cat:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{table}[h]
+\centering
+\caption{Comparison of physical and effective symmetry breaking in UBT.}
+\label{tab:cat:comparison}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{4cm}p{3cm}p{3cm}p{4.5cm}@{}}
+  \toprule
+  Breaking & Symmetry broken & Type & UBT source \\
+  \midrule
+  $SU(2)_L$ chirality & $P$, $C$, $CP$ & Explicit physical &
+    Chiral $W^\pm$ coupling in $\mathcal{L}_{\mathrm{kin}}$ \\
+  CKM phases & $CP$, $C$ & Explicit physical &
+    Complex Yukawa matrix $Y$ in $V(\Theta)$ \\
+  Electroweak symmetry & $SU(2)_L \times U(1)_Y$ & Spontaneous physical &
+    VEV $\langle\Theta_0\rangle = v\,e_0$ \\
+  Strong CP ($\theta$-term) & $P$, $T$, $CP$ & Explicit physical (if $\theta \neq 0$) &
+    $\mathcal{L}_\theta$ (not in minimal action; Gap S4) \\
+  $\psi$-odd potential & $C$, $T$ (not $CPT$) & Explicit physical &
+    $V_{\mathrm{odd}} = \mu\psi\,\mathrm{Tr}[\Theta^\dagger\Theta]$ \\
+  \midrule
+  Open-system dissipation & $T$ & Effective (open system) &
+    $\mathcal{L}_{\mathrm{diss}} = \kappa_T \Theta^\dagger \partial_t\Theta$ \\
+  Non-Hermitian mass & $C$, $T$ & Effective ($\mathcal{PT}$-sym.\  model) &
+    $V_{\mathrm{eff}} = (m^2+i\gamma)\mathrm{Tr}[\Theta^\dagger\Theta]$ \\
+  Entropy gradient & $T$ & Thermodynamic emergence &
+    $\mathcal{L}_{\mathrm{ent}}$ (entropy minimisation) \\
+  Gauge-choice asymmetry & depends & Gauge artefact &
+    Non-invariant gauge fixing (not fundamental) \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Open Problems in the UBT Discrete Symmetry Sector}
+\label{sec:cat:open}
+%──────────────────────────────────────────────────────────────────────────────
+
+The following open problems are identified in the discrete symmetry sector
+of UBT, ordered by priority:
+
+\begin{enumerate}
+  \item \textbf{Gap S3 (HIGH)}: Derive the CKM matrix and CP-violating phase
+    from the three-generation $\psi$-mode structure of $\Theta$.
+    Expected location: intersection of
+    \texttt{canonical/chirality/} and \texttt{canonical/interactions/}.
+  \item \textbf{Gap S4 (MEDIUM)}: Determine whether UBT predicts
+    $\theta_{\mathrm{QCD}} \approx 0$ from the biquaternionic action
+    (potential resolution of the strong CP problem).
+  \item \textbf{Gap S1 (MEDIUM)}: Resolve whether $T_{\mathrm{UBT}}$ should
+    be antiunitary (composed with $P_1$) or unitary.
+    Requires specifying the canonical sesquilinear form on $\Theta$-space.
+  \item \textbf{Gap S2 (LOW)}: Verify $T_{\mathrm{UBT}}$ invariance of
+    $\mathcal{L}_{\mathrm{grav}}$ in the full biquaternionic sector
+    (including $\psi$-dependence of $\mathcal{G}_{\mu\nu}$).
+  \item \textbf{Gap S5 (LOW)}: Classify all $\psi$-odd interaction terms
+    that can appear in $V(\Theta)$ from symmetry arguments, and determine
+    which are generated at loop level in the UBT effective field theory.
+\end{enumerate}
+
+\begin{resultbox}
+\textbf{Summary of Step 3.}
+\begin{itemize}
+  \item \textbf{Physical $P$ breaking}: explicit, from chiral $SU(2)_L$ coupling
+    (proved, see chirality derivation).
+  \item \textbf{Physical $CP$ breaking}: explicit, from complex Yukawa matrix
+    $Y$ (parametric; derivation from $\psi$-modes is open --- Gap S3).
+  \item \textbf{Physical $T$ breaking}: potential, from $\theta$-term
+    (not in minimal action; Gap S4).
+  \item \textbf{$CPT$ invariance}: holds for all physical terms
+    (consistent with CPT theorem).
+  \item \textbf{Effective $T$ breaking}: arises in dissipative, non-Hermitian,
+    or thermodynamic effective descriptions used in AI/crypto models.
+    This is NOT a fundamental violation; it reflects the open-system or
+    coarse-grained character of those models.
+  \item \textbf{Key separation principle}: any apparent $CPT$ breaking in an
+    effective model must be traced to an approximation (ignored environment,
+    non-Hermitian coupling, truncated mode expansion) and does not falsify UBT.
+\end{itemize}
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
