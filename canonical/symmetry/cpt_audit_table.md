@@ -36,8 +36,8 @@ against the discrete symmetries $C$, $P$, $T_{\rm UBT}$, $CP$, and $CPT$ defined
 | Potential | $-m^2\,\mathrm{Tr}(\Theta^\dagger\Theta)$ | ✓ | ✓ | ✓ | ✓ | ✓ | Proved | Mass term; $P_1 P_2$-invariant |
 | Potential | $-\lambda(\mathrm{Tr}(\Theta^\dagger\Theta))^2$ | ✓ | ✓ | ✓ | ✓ | ✓ | Proved | Quartic; same argument as mass term |
 | Potential | $-\mu^2(\Theta^\dagger\Theta - v^2\mathbf{1})$ | ✓ | ✓ | ✓ | ✓ | ✓ | Proved | SSB: vacuum $\Theta_0$ may break $P$ spontaneously |
-| Weak (chiral) | $\mathrm{Tr}[\Theta_L^\dagger W_\mu \partial^\mu \Theta_L]$ | ✓ | ✗ | ✓ | ✗ | ✓ | Explicit $P$ breaking | Parity violated; $CPT$ preserved; see `chirality_and_parity_breaking.tex` |
-| Weak (chiral) | $\bar\Theta_L \gamma^\mu (\partial_\mu + igW_\mu)\Theta_L$ | ✓ | ✗ | ✓ | ✗ | ✓ | Explicit $P$ breaking | Standard left-chiral fermion coupling |
+| Weak (chiral) | $\mathrm{Tr}[\Theta_L^\dagger W_\mu \partial^\mu \Theta_L]$ | ✗ | ✗ | ✓ | ✗ | ✓ | Explicit $C$ and $P$ breaking | Parity and charge-conjugation violated; $CPT$ compatible (real-time limit); see `chirality_and_parity_breaking.tex` |
+| Weak (chiral) | $\bar\Theta_L \gamma^\mu (\partial_\mu + igW_\mu)\Theta_L$ | ✗ | ✗ | ✓ | ✗ | ✓ | Explicit $C$ and $P$ breaking | Standard left-chiral fermion coupling; $C$ broken by absence of right-handed sector |
 | CP-odd (gauge) | $\theta_{\rm eff}\,F^a_{\mu\nu}\tilde F^{a\,\mu\nu}$ | ✓ | ✗ | ✗ | ✗ | ✓ | Candidate $CP$ and $T$ breaking | $C$-even, $P$-odd, $T$-odd → $CP$-odd; strong-$CP$ problem: why $|\bar\theta|<10^{-10}$? |
 | CP-odd (Yukawa) | $y_{\rm CP}\,\Theta_L^\dagger H \Theta_R + \mathrm{h.c.}$ with $y_{\rm CP}\in\mathbb{C}$ | ~ | ✓ | ~ | ✗ | ✓ | Candidate $CP$ breaking | Complex phase in $y_{\rm CP}$ violates $CP$; $CPT$ preserved by hermiticity |
 | CP-odd ($\psi$ phase) | $\delta_\psi\,\mathrm{Im}\bigl[\mathrm{Tr}(\Theta^\dagger\partial_\psi\Theta)\bigr]$ | ✗ | ✓ | ✓ | ✗ | ✓ | Conjecture | $C$ odd ($\psi\to-\psi$ under $C$); $CP$ odd if $\delta_\psi\neq0$; speculative |
@@ -59,10 +59,13 @@ by the standard CPT theorem.  **Priority: LOW.**
 
 ### N2 — Chiral coupling and CPT
 The left-chiral coupling $\mathcal{L}_{\rm weak}\sim\Theta_L^\dagger W\Theta_L$
-explicitly breaks $P$ and $CP$, but preserves $CPT$ because:
-(a) the overall action $S[\Theta]$ is CPT-invariant (by the standard CPT theorem
-applied to the real sector), and (b) the biquaternionic extension preserves
-this in the $\psi\to0$ limit.  See `chirality_and_parity_breaking.tex`.
+explicitly breaks both $C$ and $P$ (and hence $CP$), but is CPT-compatible by
+construction in the real-time limit: the composition $CPT$ maps $\Theta_L$
+through $T$ (time-reverse) → $P$ (parity, exchanging left/right) → $C$
+(charge-conjugation, restoring the original chirality), reproducing the original
+term.  Full equivalence to the standard CPT theorem remains open pending the
+antiunitary-$T$ inner product in the biquaternionic sector.
+See `chirality_and_parity_breaking.tex`.
 
 ### N3 — $\theta_{\rm eff}$ and CP violation
 The term $\theta_{\rm eff}F\tilde F$ is $C$-**even**, $P$-odd, and $T$-odd,
@@ -95,12 +98,12 @@ CPT violation.**
 | Kinetic | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Gauge (YM) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Potential (symmetric) | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Weak (chiral) | ✓ | **✗** | ✓ | **✗** | ✓ |
+| Weak (chiral) | **✗** | **✗** | ✓ | **✗** | ✓ |
 | $\theta_{\rm eff}F\tilde F$ (if present) | ✓ | **✗** | **✗** | **✗** | ✓ |
 | Complex Yukawa phase | ~ | ✓ | ~ | **✗** | ✓ |
 | Effective diffusion | ✓ | ✓ | **✗** | ✓ | **✗** (effective) |
 
-**Bottom line**: The UBT fundamental action preserves $CPT$. Parity $P$ is
-explicitly broken by left-chiral couplings. $CP$ violation arises only through
-complex phases in Yukawa couplings or vacuum misalignment.
+**Bottom line**: The UBT fundamental action preserves $CPT$ in the real-time limit (full biquaternionic equivalence to the standard CPT theorem remains open).
+Parity $P$ is explicitly broken by left-chiral couplings.
+Both $C$ and $CP$ are broken in the minimal weak chiral sector; $CP$ invariance would require a compensating conjugate sector.
 $T$-asymmetry in the diffusion sector is not fundamental.
