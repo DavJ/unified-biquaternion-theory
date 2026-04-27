@@ -1,0 +1,410 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Discrete Symmetries in Biquaternion Field Theory:\\
+                 Formal Involutions, $C$, $P$, $T$, and $CPT$}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We give a self-contained, reviewer-grade treatment of the discrete symmetries
+  $C$ (charge conjugation), $P$ (spatial parity), $T$ (time reversal), and
+  $CPT$ within the biquaternion algebra $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$
+  and for the fundamental UBT field $\Theta(q,\tau)$ over complex time
+  $\tau = t + i\psi$.
+  In Section~\ref{sec:ds:algebra} we catalogue all canonical involutions
+  of $\mathcal{B}$ — complex conjugation, quaternion conjugation, Hermitian
+  conjugation, reversion, and the grade involution — and identify their physical
+  roles.
+  In Section~\ref{sec:ds:CPT} we give the canonical definitions of $C$, $P$,
+  $T_{\mathrm{UBT}}$, and their composition $CPT$, expressed as algebra
+  involutions acting simultaneously on field values and spacetime arguments.
+  Section~\ref{sec:ds:tables} collects operator and notation tables for
+  reference.
+  Section~\ref{sec:ds:noncomm} discusses noncommutativity constraints.
+  Conventions follow \texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex};
+  earlier detailed derivations are in
+  \texttt{symmetry/step1\_CPT\_definitions.tex}.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Biquaternion Algebra and Its Involutions}
+\label{sec:ds:algebra}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Algebra Setup}
+
+The biquaternion algebra is
+\begin{equation}
+  \mathcal{B} = \mathbb{C} \otimes_{\mathbb{R}} \mathbb{H},
+  \label{eq:ds:B}
+\end{equation}
+an associative, non-commutative $\mathbb{R}$-algebra of dimension $8$.
+A basis element is written $c\,\mathbf{e}$ with $c \in \mathbb{C}$ and
+$\mathbf{e} \in \{1,\mathbf{I},\mathbf{J},\mathbf{K}\}$.
+A general element reads
+\begin{equation}
+  b = b_0 + b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K},
+  \quad b_a \in \mathbb{C}.
+  \label{eq:ds:general}
+\end{equation}
+The \emph{central} imaginary unit $i\in\mathbb{C}$ commutes with all
+$\mathbf{I},\mathbf{J},\mathbf{K}$.  The quaternion units satisfy
+$\mathbf{I}^2=\mathbf{J}^2=\mathbf{K}^2=-1$, $\mathbf{I}\mathbf{J}=\mathbf{K}$,
+$\mathbf{J}\mathbf{K}=\mathbf{I}$, $\mathbf{K}\mathbf{I}=\mathbf{J}$, and are
+non-commutative: $\mathbf{I}\mathbf{J}=-\mathbf{J}\mathbf{I}$.
+
+\subsection{Five Canonical Involutions}
+\label{sec:ds:involutions}
+
+An \emph{involution} on $\mathcal{B}$ is an $\mathbb{R}$-linear map
+$\sigma:\mathcal{B}\to\mathcal{B}$ with $\sigma^2=\mathrm{id}$.
+We list the five physically relevant involutions.
+
+\subsubsection{$P_1$: Complex Conjugation}
+\begin{equation}
+  P_1(b) = \bar{b} := \bar{b}_0 + \bar{b}_1\mathbf{I}
+            + \bar{b}_2\mathbf{J} + \bar{b}_3\mathbf{K},
+  \label{eq:ds:P1}
+\end{equation}
+i.e., $i\mapsto -i$ while $\mathbf{I},\mathbf{J},\mathbf{K}$ are fixed.
+$P_1$ is a \emph{ring anti-automorphism restricted to the $\mathbb{C}$ factor};
+since $i$ is central, it extends to an $\mathbb{R}$-algebra automorphism
+of $\mathcal{B}$.
+\textbf{Physical role}: charge conjugation (flips $\mathbb{C}$ phase; see
+Section~\ref{sec:ds:CPT}).
+
+\subsubsection{$P_2$: Quaternion Conjugation}
+\begin{equation}
+  P_2(b) = \tilde{b} := b_0 - b_1\mathbf{I} - b_2\mathbf{J} - b_3\mathbf{K},
+  \label{eq:ds:P2}
+\end{equation}
+i.e., $\mathbf{I},\mathbf{J},\mathbf{K}\mapsto -\mathbf{I},-\mathbf{J},-\mathbf{K}$
+while $i$ (and hence $b_a$) is fixed.
+$P_2$ is the standard quaternion conjugation, extended $\mathbb{C}$-linearly.
+$P_2$ is a ring anti-automorphism: $P_2(bc)=P_2(c)P_2(b)$.
+\textbf{Physical role}: spatial parity (flips vector part; see
+Section~\ref{sec:ds:CPT}).
+
+\subsubsection{$P_{12}$: Hermitian Conjugation (Full Conjugation)}
+\begin{equation}
+  P_{12}(b) = b^\dagger := P_1(P_2(b)) = P_2(P_1(b))
+  = \bar{b}_0 - \bar{b}_1\mathbf{I} - \bar{b}_2\mathbf{J} - \bar{b}_3\mathbf{K}.
+  \label{eq:ds:P12}
+\end{equation}
+Since $P_1$ and $P_2$ commute ($P_1 P_2 = P_2 P_1$ on $\mathcal{B}$),
+$P_{12} = P_1 \circ P_2$ is itself an involution.
+It is the standard Hermitian adjoint on $\mathcal{B}$ when the latter is
+identified with $M_{2}(\mathbb{C})$ via the standard representation.
+\textbf{Physical role}: $CPT$ at the algebra level; adjoint for inner products.
+
+\subsubsection{$\rho$: Reversion}
+
+Reversion is defined on a product of generators by reversing their order:
+\begin{equation}
+  \rho(\mathbf{e}_{a_1}\cdots\mathbf{e}_{a_k})
+  = \mathbf{e}_{a_k}\cdots\mathbf{e}_{a_1}.
+  \label{eq:ds:reversion}
+\end{equation}
+On single generators: $\rho(\mathbf{I})=\mathbf{I}$, $\rho(i)=i$.
+On degree-2 products: $\rho(\mathbf{I}\mathbf{J}) = \mathbf{J}\mathbf{I} = -\mathbf{K}$.
+For a general element \eqref{eq:ds:general}, reversion fixes $b_0$ and
+the vector part $(b_1,b_2,b_3)$ (since each basis vector is grade-1 and
+$\rho(\mathbf{e})=\mathbf{e}$):
+\begin{equation}
+  \rho(b) = b_0 + b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K} = b.
+  \label{eq:ds:reversion_on_B}
+\end{equation}
+Thus reversion acts as the identity on $\mathcal{B}$
+(the $\mathbb{H}$ part is generated by degree-1 elements and does not
+generate independent degree-2 components in our basis \eqref{eq:ds:general}).
+Reversion becomes non-trivial on tensor products involving Clifford algebra
+$\mathrm{Cl}(n)$ embedded in $\mathcal{B}$; in that setting it distinguishes
+bivector from vector parts.
+\textbf{Physical role}: In extensions of UBT to full Clifford algebras,
+reversion provides a natural CPT-like operator; in the current
+$\mathcal{B}$-only framework it coincides with the identity.
+
+\subsubsection{$\pi$: Grade (Parity) Involution}
+
+The grade involution is the $\mathbb{Z}_2$ grading map:
+\begin{equation}
+  \pi(b) = b_0 - b_1\mathbf{I} - b_2\mathbf{J} - b_3\mathbf{K} = P_2(b).
+  \label{eq:ds:grade}
+\end{equation}
+Grade-even elements (scalars $b_0$) are $\pi$-eigenvectors with eigenvalue $+1$;
+grade-odd elements (vectors $b_1\mathbf{I}+\cdots$) with eigenvalue $-1$.
+In the present $\mathcal{B}$ structure, the grade involution coincides
+with $P_2$.
+\textbf{Physical role}: separates scalar (spin-0) from vector (spin-1) sectors
+of $\Theta$; eigenspaces are the left/right chiral projections
+(see \texttt{chirality\_and\_parity\_breaking.tex}).
+
+\subsection{Involution Summary}
+\label{sec:ds:involution_summary}
+
+\begin{table}[h]
+\centering
+\caption{Canonical involutions of $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$.
+  Notation: $b = b_0 + b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K}$,
+  $b_a\in\mathbb{C}$.}
+\label{tab:ds:involutions}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Involution & Symbol & Action on $b$ & Type & Physical role \\
+\midrule
+Complex conjugation   & $P_1$ & $b_a \mapsto \bar{b}_a$ (all $a$)
+  & $\mathbb{R}$-alg.\ auto & $C$ \\
+Quaternion conjugation & $P_2$ & $\mathbf{e}_i \mapsto -\mathbf{e}_i$ ($i=1,2,3$)
+  & ring anti-auto & $P$, grade \\
+Hermitian conjugation & $P_{12}$ & $b_a \mapsto \bar{b}_a$, $\mathbf{e}_i\mapsto -\mathbf{e}_i$
+  & ring anti-auto & $CP$, adjoint \\
+Reversion             & $\rho$   & $b \mapsto b$ (identity in $\mathcal{B}$)
+  & ring auto & trivial in $\mathcal{B}$ \\
+Grade involution      & $\pi$    & $= P_2$ in $\mathcal{B}$
+  & ring auto & chiral split \\
+Axis-flip ($\mathbf{I}$) & $P_3$ & $\mathbf{J},\mathbf{K}\mapsto -\mathbf{J},-\mathbf{K}$
+  & inner auto & isospin sub-symm. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Commutativity of $P_1, P_2$]
+$P_1$ and $P_2$ commute: $P_1 P_2 = P_2 P_1$.  Proof: both act on different
+factors of the tensor product ($\mathbb{C}$ and $\mathbb{H}$ respectively).
+Thus the group generated by $\{P_1,P_2\}$ is $\mathbb{Z}_2\times\mathbb{Z}_2$,
+with the four elements $\{\mathrm{id}, P_1, P_2, P_1P_2\}$ corresponding
+to $\{1, C, P, CP\}$ at the algebra level.
+\end{remark}
+
+\begin{remark}[Noncommutativity and $C$, $P$]
+$C$ and $P$ commute \emph{as operators on field values} because $P_1 P_2 = P_2 P_1$.
+They do not generally commute when their \emph{coordinate actions} are included,
+but the coordinate actions of $C$ ($\tau\to\tau^*$) and $P$ ($q\to\bar{q}$)
+also commute.  Hence $[C,P]=0$ as operators on the field space.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Canonical Definitions of $C$, $P$, $T$, $CPT$}
+\label{sec:ds:CPT}
+%──────────────────────────────────────────────────────────────────────────────
+
+The fundamental field is $\Theta(q,\tau)\in\mathcal{B}$, with
+$q = q^0 + \mathbf{q} = q^0 + q^1\mathbf{I}+q^2\mathbf{J}+q^3\mathbf{K}\in\mathcal{B}$
+encoding spacetime position and $\tau = t + i\psi\in\mathbb{C}$ the complex
+time ($t\in\mathbb{R}$, $\psi\in\mathbb{R}$ the auxiliary imaginary-time
+coordinate).
+
+\begin{definition}[Charge Conjugation $C$]
+\label{def:ds:C}
+\begin{align}
+  C[\Theta](q,\tau) &:= P_1\!\bigl(\Theta(q,\tau)\bigr), \label{eq:ds:C_field} \\
+  C: \tau &\mapsto \tau^* = t - i\psi. \label{eq:ds:C_tau}
+\end{align}
+$C$ complex-conjugates all biquaternion components while leaving the spacetime
+coordinate $q$ unchanged.
+For gauge fields: $C: A_\mu^a T_a \mapsto -A_\mu^a T_a^*$
+(charge reversal; $U(1)$ charges flip sign).
+\end{definition}
+
+\begin{definition}[Spatial Parity $P$]
+\label{def:ds:P}
+\begin{align}
+  P[\Theta](q,\tau) &:= P_2\!\bigl(\Theta(\bar{q},\tau)\bigr), \label{eq:ds:P_field} \\
+  P: q &\mapsto \bar{q} = q^0 - \mathbf{q}, \label{eq:ds:P_coord} \\
+  P: \tau &\mapsto \tau \quad \text{(parity-even)}. \label{eq:ds:P_tau}
+\end{align}
+Spatial inversion $(t,\mathbf{x})\mapsto(t,-\mathbf{x})$ is encoded in
+$q\mapsto\bar{q}$; the algebra value is simultaneously transformed by $P_2$.
+For gauge fields: $P: A_0(x)\mapsto A_0(\bar{x})$, $P: A_i(x)\mapsto -A_i(\bar{x})$.
+\end{definition}
+
+\begin{definition}[Time Reversal $T_{\mathrm{UBT}}$]
+\label{def:ds:T}
+The canonical UBT time reversal is \emph{full complex time negation}:
+\begin{align}
+  T_{\mathrm{UBT}}[\Theta](q,\tau) &:= \Theta(q,-\tau), \label{eq:ds:T_field} \\
+  T_{\mathrm{UBT}}: \tau &\mapsto -\tau = -t - i\psi. \label{eq:ds:T_tau}
+\end{align}
+No algebra involution is applied to the field value.
+For gauge fields: $T: A_0(t,\mathbf{x})\mapsto A_0(-t,\mathbf{x})$,
+$T: A_i(t,\mathbf{x})\mapsto -A_i(-t,\mathbf{x})$.
+\end{definition}
+
+\begin{remark}[Antiunitary $T$ vs.\ $T_{\mathrm{UBT}}$]
+\label{rem:ds:antiunitary}
+In standard QFT, time reversal is antiunitary: $T_{\rm std}[\Theta]=P_1(\Theta(q,-\tau^*))$,
+i.e., $t\to-t$ combined with complex conjugation of the field.
+The UBT choice $T_{\mathrm{UBT}}$ is \emph{unitary} (no $P_1$) but sends
+$\psi\to-\psi$ as well as $t\to-t$.
+Whether $T_{\mathrm{UBT}}$ should instead be composed with $P_1$ (yielding
+antiunitary $T_3 = P_1 \circ T_{\mathrm{UBT}}$) depends on the canonical
+inner product chosen for $\Theta$ modes.
+\textbf{Open Problem}: fix the canonical sesquilinear form and determine
+the correct antiunitary structure.
+See \texttt{open\_problems.md}, item OP-S1.
+\end{remark}
+
+\begin{definition}[$CPT$ Operator]
+\label{def:ds:CPT}
+\begin{equation}
+  CPT := C \circ P \circ T_{\mathrm{UBT}}.
+  \label{eq:ds:CPT}
+\end{equation}
+Explicitly:
+\begin{equation}
+  CPT[\Theta](q,\tau)
+  = (P_1\circ P_2)\bigl(\Theta(\bar{q},-\tau)\bigr).
+  \label{eq:ds:CPT_explicit}
+\end{equation}
+In the real-time limit $\psi\to0$:
+$(q,\tau)\to(-q^0-\mathbf{q},-t) = $ full four-vector inversion,
+reproducing the standard QFT $CPT$ transformation.
+\end{definition}
+
+\begin{proposition}[$CPT$ reduces to standard QFT in the $\psi\to0$ limit]
+\label{prop:ds:CPT_limit}
+Setting $\psi=0$ (hence $\tau=t$, $\tau^*=t$, $-\tau=-t$):
+\begin{equation}
+  CPT[\Theta]\bigl((q^0,\mathbf{q}),t\bigr)
+  = (P_1\circ P_2)\bigl(\Theta(q^0 - \mathbf{q}, -t)\bigr),
+\end{equation}
+which is the standard $CPT$ operation: inversion of all four spacetime
+coordinates combined with Hermitian conjugation of the internal algebra value.
+\end{proposition}
+\begin{proof}
+At $\psi=0$: $\tau=-\tau$ becomes $t\to-t$; $q\to\bar{q}$ flips spatial
+components; $(P_1\circ P_2)$ conjugates the field value.
+This matches the standard CPT: $(x^\mu)\to(-x^\mu)$ with conjugation.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Operator and Notation Tables}
+\label{sec:ds:tables}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{table}[h]
+\centering
+\caption{Operator table: discrete symmetry operators in UBT.}
+\label{tab:ds:operators}
+\small
+\begin{tabular}{@{}p{2cm}p{4cm}p{4.5cm}p{3.5cm}@{}}
+\toprule
+Operator & Algebraic action on $\Theta$ value & Field argument action & Physical interpretation \\
+\midrule
+$C$ & $P_1$: $b_a \mapsto \bar{b}_a$ & $\tau \mapsto \tau^*$ & Charge conjugation; matter $\leftrightarrow$ antimatter \\
+$P$ & $P_2$: $\mathbf{e}_i \mapsto -\mathbf{e}_i$ & $q \mapsto \bar{q}$ & Spatial parity; mirror reflection \\
+$T_{\mathrm{UBT}}$ & identity & $\tau \mapsto -\tau$ & Full complex time reversal \\
+$CP$ & $P_{12}= P_1 P_2$: both & $q\mapsto\bar{q}$, $\tau\mapsto\tau^*$ & Combined charge+parity \\
+$CPT$ & $P_{12}= P_1 P_2$ & $q\mapsto\bar{q}$, $\tau\mapsto-\tau$ & Full discrete symmetry; reduces to std.\ $CPT$ at $\psi=0$ \\
+$P_\psi$ & identity & $\psi\mapsto-\psi$ & Imaginary-time parity; $n \leftrightarrow -n$ winding modes \\
+$P_3$ & $\mathbf{J},\mathbf{K}\mapsto-\mathbf{J},-\mathbf{K}$ & none & Axis-flip; isospin sub-symmetry \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Transformation of basic fields under $C$, $P$, $T$.
+  Sign $+$ = invariant; sign $-$ = odd; $*$ = complex conjugated.}
+\label{tab:ds:fieldtransf}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Field & $C$ & $P$ & $T_{\mathrm{UBT}}$ & $CPT$ \\
+\midrule
+$\Theta$ (scalar part $b_0$)     & $b_0^*$ & $+$ & $+$ & $b_0^*$ \\
+$\Theta$ (vector part $b_i$)     & $b_i^*$ & $-$ & $+$ & $-b_i^*$ \\
+$A_0$ (gauge, temporal)          & $-A_0$  & $+$ & $+$ & $-A_0$ \\
+$A_i$ (gauge, spatial)           & $-A_i$  & $-$ & $-$ & $+A_i$ (sign from $P$ and $T$) \\
+$F_{0i}$ (electric component)    & $-F_{0i}$ & $-$ & $+$ & $+F_{0i}$ \\
+$F_{ij}$ (magnetic component)    & $-F_{ij}$ & $+$ & $+$ & $-F_{ij}$ \\
+$F_{\mu\nu}F^{\mu\nu}$           & $+$     & $+$ & $+$ & $+$ \\
+$F_{\mu\nu}\tilde{F}^{\mu\nu}$ (dual) & $-$ & $-$ & $+$ & $+$ \\
+$\tau$                           & $\tau^*$ & $+$ & $-\tau$ & $-\tau^*\to-\tau$ at $\psi=0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Noncommutativity Constraints}
+\label{sec:ds:noncomm}
+%──────────────────────────────────────────────────────────────────────────────
+
+The non-commutativity of $\mathcal{B}$ has two relevant consequences for
+discrete symmetries:
+
+\begin{enumerate}
+  \item \textbf{Order matters in products.}
+    When $\Theta$ appears in a Lagrangian term as $\Theta^a \Phi^b$ for
+    non-central $a,b$, applying $P_2$ gives
+    $P_2(\Theta^a\Phi^b) = P_2(\Phi^b)P_2(\Theta^a)$
+    (anti-automorphism), not $P_2(\Theta^a)P_2(\Phi^b)$.
+    Action terms must be constructed as real traces or norms to remain
+    real-valued and well-defined under $P$:
+    $\mathrm{Tr}[\Phi^\dagger\Psi] = \mathrm{Tr}[P_2(\Psi)P_2(\Phi)^\dagger]$.
+
+  \item \textbf{Noncommutativity does not affect $C$.}
+    $P_1$ acts on the complex scalar factor and commutes with quaternion
+    multiplication; thus $P_1(\Theta\Phi)=P_1(\Theta)P_1(\Phi)$
+    (algebra automorphism).  Charge conjugation is \emph{not} sensitive
+    to ordering.
+
+  \item \textbf{Left-vs-right action.}
+    When $\Theta$ transforms under a gauge group $G$ as
+    $\Theta \to U\Theta V^\dagger$ (bimodule), the $P$ and $C$ actions
+    must specify which side receives the algebra involution.
+    The canonical convention is: both $P_2$ and $P_1$ act \emph{simultaneously}
+    on left and right, since they are algebra automorphisms/anti-automorphisms
+    of $\mathcal{B}$ itself.
+\end{enumerate}
+
+\begin{gapbox}
+\textbf{Open: Canonical inner product and antiunitary $T$.}
+The antiunitary structure of $T$ requires specifying the canonical
+sesquilinear form $\langle\cdot,\cdot\rangle$ on the space of $\Theta$ fields.
+Until this is fixed, the canonical status of $T_{\mathrm{UBT}}$ as the unique
+time reversal remains a model choice rather than a theorem.
+See \texttt{open\_problems.md}, item OP-S1.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

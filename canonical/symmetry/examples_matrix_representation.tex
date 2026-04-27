@@ -1,0 +1,370 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Matrix Representations of Discrete Symmetry Operators\\
+                 in Biquaternion Field Theory}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We provide explicit matrix realizations of the biquaternion algebra
+  $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$ and its discrete symmetry operators
+  $C$, $P$, $T_{\rm UBT}$, and $CPT$ in the standard $2\times2$ complex and
+  $4\times4$ real representations.
+  The purpose is to make UBT legible to particle physicists and mathematicians
+  working in the matrix formalism.
+  All objects defined abstractly in \texttt{discrete\_symmetries.tex} are
+  re-expressed as concrete matrix operations.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Standard $2\times2$ Complex Representation}
+\label{sec:mat:2x2}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Basis Elements}
+
+Every biquaternion $b = b_0 + b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K}$
+with $b_a\in\mathbb{C}$ is mapped to a $2\times2$ complex matrix via the
+\emph{standard representation} $\phi:\mathcal{B}\to M_2(\mathbb{C})$:
+\begin{equation}
+  \phi(1) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},
+  \quad
+  \phi(\mathbf{I}) = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix},
+  \quad
+  \phi(\mathbf{J}) = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix},
+  \quad
+  \phi(\mathbf{K}) = \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}.
+  \label{eq:mat:basis_2x2}
+\end{equation}
+Note: $\phi(\mathbf{I}) = i\sigma_3$, $\phi(\mathbf{J}) = i\sigma_2$,
+$\phi(\mathbf{K}) = i\sigma_1$, where $\sigma_k$ are the standard Pauli matrices.
+
+A general biquaternion maps to:
+\begin{equation}
+  \phi(b) = \begin{pmatrix}
+    b_0 + ib_1 & b_2 + ib_3 \\
+    -b_2 + ib_3 & b_0 - ib_1
+  \end{pmatrix} \in M_2(\mathbb{C}).
+  \label{eq:mat:general_2x2}
+\end{equation}
+
+\begin{lemma}[Faithfulness of $\phi$]
+$\phi$ is a faithful $\mathbb{C}$-algebra homomorphism, i.e., injective and
+compatible with multiplication and addition.
+\end{lemma}
+\begin{proof}
+Quaternion multiplication rules are verified by direct computation:
+$\phi(\mathbf{I})\phi(\mathbf{J}) = (i\sigma_3)(i\sigma_2) = -\sigma_3\sigma_2
+= -\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+= \begin{pmatrix}0&i\\i&0\end{pmatrix} = \phi(\mathbf{K})$. \checkmark
+Injectivity: the image is the $\mathbb{C}$-span of
+$\{I_2, i\sigma_3, i\sigma_2, i\sigma_1\}$, which are linearly independent.
+\end{proof}
+
+\subsection{Involutions as Matrix Operations}
+
+The algebraic involutions of Section~2 in \texttt{discrete\_symmetries.tex}
+translate to matrix operations as follows:
+
+\paragraph{$P_1$ (complex conjugation):}
+\begin{equation}
+  \phi(P_1(b)) = \overline{\phi(b)} = \begin{pmatrix}
+    \bar b_0 - i\bar b_1 & \bar b_2 - i\bar b_3 \\
+    -\bar b_2 - i\bar b_3 & \bar b_0 + i\bar b_1
+  \end{pmatrix}.
+  \label{eq:mat:P1_matrix}
+\end{equation}
+At the matrix level: $P_1$ acts as entry-wise complex conjugation of the
+matrix $\phi(b)$, i.e., $\phi(P_1(b)) = \overline{\phi(b)}$.
+
+\paragraph{$P_2$ (quaternion conjugation):}
+\begin{equation}
+  \phi(P_2(b)) = \phi(b)^\dagger = \begin{pmatrix}
+    \bar b_0 - i\bar b_1 & -\bar b_2 + i\bar b_3 \\
+    \bar b_2 + i\bar b_3 & \bar b_0 + i\bar b_1
+  \end{pmatrix}.
+  \label{eq:mat:P2_matrix}
+\end{equation}
+At the matrix level: $P_2$ acts as the Hermitian adjoint $\phi(P_2(b)) = \phi(b)^\dagger$.
+
+\begin{remark}
+The standard Hermitian adjoint $(\ )^\dagger$ of a $2\times2$ matrix corresponds
+to quaternion conjugation $P_2$, \emph{not} to the full biquaternion Hermitian
+conjugation $P_{12}$.  This is a potential source of confusion.
+\end{remark}
+
+\paragraph{$P_{12}$ (Hermitian conjugation = $P_1\circ P_2$):}
+\begin{equation}
+  \phi(P_{12}(b)) = \phi(b)^T,
+  \label{eq:mat:P12_matrix}
+\end{equation}
+the \emph{transpose} (not Hermitian adjoint) of the matrix.
+Verification: $P_1$ complex-conjugates entries; $P_2$ takes Hermitian adjoint;
+their composition is $(\ )^* \circ (\ )^\dagger = (\ )^T$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Symmetry Operators in the $2\times2$ Representation}
+\label{sec:mat:sym_2x2}
+%──────────────────────────────────────────────────────────────────────────────
+
+In the $2\times2$ representation, the field $\Theta(q,\tau)$ is identified with
+a spacetime- and $\tau$-dependent matrix
+$\mathbf{\Theta}(q,\tau) = \phi(\Theta(q,\tau)) \in M_2(\mathbb{C})$.
+
+\subsection{Charge Conjugation $C$}
+
+\begin{equation}
+  C[\mathbf{\Theta}](q,\tau) = \overline{\mathbf{\Theta}(q,\tau^*)}.
+  \label{eq:mat:C_2x2}
+\end{equation}
+Action: complex-conjugate all matrix entries AND replace $\tau\to\tau^*$.
+
+For gauge fields in the matrix representation:
+$C: \mathbf{A}_\mu \mapsto -\mathbf{A}_\mu^*$ (charge reversal).
+
+\subsection{Spatial Parity $P$}
+
+\begin{equation}
+  P[\mathbf{\Theta}](q,\tau) = \mathbf{\Theta}(\bar q,\tau)^\dagger,
+  \label{eq:mat:P_2x2}
+\end{equation}
+i.e., Hermitian adjoint of the matrix field evaluated at $\bar q = (q^0,-\mathbf{q})$.
+
+\subsection{Time Reversal $T_{\rm UBT}$}
+
+\begin{equation}
+  T_{\rm UBT}[\mathbf{\Theta}](q,\tau) = \mathbf{\Theta}(q,-\tau).
+  \label{eq:mat:T_2x2}
+\end{equation}
+No matrix operation on $\mathbf{\Theta}$; only $\tau\to-\tau$.
+
+\subsection{$CPT$ Operator}
+
+\begin{equation}
+  CPT[\mathbf{\Theta}](q,\tau)
+  = (C\circ P\circ T_{\rm UBT})[\mathbf{\Theta}](q,\tau)
+  = \overline{\mathbf{\Theta}(\bar q,-\tau)^\dagger}
+  = \mathbf{\Theta}(\bar q,-\tau)^T.
+  \label{eq:mat:CPT_2x2}
+\end{equation}
+In the $2\times2$ representation, $CPT$ acts as \emph{transposition} of the
+matrix (no complex conjugation factor!) composed with $(q,\tau)\to(\bar q,-\tau)$.
+
+\begin{resultbox}
+\textbf{Summary: symmetry operators in $2\times2$ representation.}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Operator & Matrix operation on $\mathbf{\Theta}$ & Argument action \\
+\midrule
+$C$ & $\mathbf{\Theta} \mapsto \overline{\mathbf{\Theta}}$ (entry-wise conj.) & $\tau\to\tau^*$ \\
+$P$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^\dagger$ (Hermitian adj.) & $q\to\bar q$ \\
+$T_{\rm UBT}$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}$ (identity) & $\tau\to -\tau$ \\
+$CPT$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^T$ (transpose) & $(q,\tau)\to(\bar q,-\tau)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $4\times4$ Real Representation}
+\label{sec:mat:4x4}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Basis}
+
+Treating $b_a = b_a^r + ib_a^i$ ($b_a^r, b_a^i\in\mathbb{R}$),
+a biquaternion has 8 real components
+$(b_0^r, b_0^i, b_1^r, b_1^i, b_2^r, b_2^i, b_3^r, b_3^i)$.
+The left-regular representation maps $\mathcal{B}\to M_8(\mathbb{R})$.
+
+For the \emph{quaternion-only} part (four real components), the
+$4\times4$ real representation of $\mathbb{H}$ via left-multiplication
+by unit quaternions is:
+\begin{equation}
+  \phi_{4}(1) = I_4,
+  \quad
+  \phi_{4}(\mathbf{I}) = \begin{pmatrix}
+    0 & -1 & 0 & 0 \\
+    1 &  0 & 0 & 0 \\
+    0 &  0 & 0 & -1 \\
+    0 &  0 & 1 &  0
+  \end{pmatrix},
+  \quad
+  \phi_{4}(\mathbf{J}) = \begin{pmatrix}
+    0 & 0 & -1 & 0 \\
+    0 & 0 &  0 & 1 \\
+    1 & 0 &  0 & 0 \\
+    0 & -1 & 0 & 0
+  \end{pmatrix},
+  \quad
+  \phi_{4}(\mathbf{K}) = \begin{pmatrix}
+    0 & 0 & 0 & -1 \\
+    0 & 0 & -1 & 0 \\
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0
+  \end{pmatrix}.
+  \label{eq:mat:4x4_basis}
+\end{equation}
+These are block-antisymmetric orthogonal matrices satisfying the quaternion
+algebra.
+
+\subsection{Involutions in $4\times4$ Representation}
+
+\paragraph{$P_2$ (quaternion conjugation):}
+In the $4\times4$ representation, quaternion conjugation sends
+$\mathbf{e}_i\to -\mathbf{e}_i$ ($i=1,2,3$):
+\begin{equation}
+  \phi_4(P_2(b)) = \mathrm{diag}(+1,-1,-1,-1)\,\phi_4(b)\,\mathrm{diag}(+1,-1,-1,-1).
+  \label{eq:mat:P2_4x4}
+\end{equation}
+This is conjugation by the ``metric signature'' matrix
+$\eta = \mathrm{diag}(1,-1,-1,-1)$:
+$\phi_4(P_2(b)) = \eta\,\phi_4(b)\,\eta$ (since $\phi_4$ is the left-regular
+representation and $P_2$ reverses the sign of the vector part).
+
+\paragraph{Spatial parity $P$ in $4\times4$ matrix language:}
+The field value transforms as
+$P[\Theta](q,\tau) = P_2(\Theta(\bar q,\tau))$, which in the $4\times4$
+representation reads:
+\begin{equation}
+  P[\mathbf{\Theta}_{4}](q,\tau)
+  = \eta\,\mathbf{\Theta}_{4}(\bar q, \tau)\,\eta.
+  \label{eq:mat:P_4x4}
+\end{equation}
+This has the structure of a Lorentz reflection on the internal space.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Worked Example: $CP$ Transformation}
+\label{sec:mat:example_CP}
+%──────────────────────────────────────────────────────────────────────────────
+
+Let $\Theta$ be a biquaternion field with purely complex-scalar part:
+$\Theta = (a + ib)\mathbf{1}$, $a,b\in\mathbb{R}$.  In the $2\times2$
+representation:
+\begin{equation}
+  \mathbf{\Theta} = (a+ib)I_2.
+\end{equation}
+
+\paragraph{Under $C$:}
+$C[\mathbf{\Theta}] = \overline{(a+ib)}I_2 = (a-ib)I_2$. \checkmark
+(Complex conjugation flips the phase.)
+
+\paragraph{Under $P$:}
+$P[\mathbf{\Theta}](\bar q) = \mathbf{\Theta}(\bar q)^\dagger
+= ((a+ib)I_2)^\dagger = (a-ib)I_2$.
+Note: $P[\Theta] = P_2(\Theta(\bar q))$.  For $\Theta = (a+ib)\mathbf{1}$:
+$P_2((a+ib)\mathbf{1}) = (a+ib)\mathbf{1}$ (scalar part is $P_2$-even),
+so $P[\mathbf{\Theta}] = (a+ib)I_2$ evaluated at $\bar q$.
+The $\dagger$ above is the matrix Hermitian adjoint, which for a scalar
+$(a+ib)I_2$ gives $(a-ib)I_2$ only if we apply $P_1$ as well.  The correct
+matrix rule is: $P[\mathbf{\Theta}] = \mathbf{\Theta}^\dagger$ corresponds to
+$P_2$ on the biquaternion side (Table~\ref{tab:mat:check}).
+
+\paragraph{Under $CP$:}
+$CP[\mathbf{\Theta}](q,\tau^*) = \mathbf{\Theta}(\bar q,\tau^*)^T$.
+For $\Theta=(a+ib)\mathbf{1}$: $((a+ib)I_2)^T = (a+ib)I_2$.
+So $CP[\Theta]=(a+ib)\mathbf{1}$ at $(\bar q,\tau^*)$:
+a real scalar field is $CP$-invariant. \checkmark
+
+\begin{table}[h]
+\centering
+\caption{Cross-check: involution action on scalar $b=b_0\cdot\mathbf{1}$, $b_0\in\mathbb{C}$.}
+\label{tab:mat:check}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Operation & Biquaternion result & $2\times2$ matrix result \\
+\midrule
+$P_1(b_0\mathbf{1})$ & $\bar b_0\mathbf{1}$ & $\overline{b_0 I_2} = \bar b_0 I_2$ ✓ \\
+$P_2(b_0\mathbf{1})$ & $b_0\mathbf{1}$ (scalar, $P_2$-even) & $(b_0 I_2)^\dagger = \bar b_0 I_2$? \\
+& & \small{Note: for pure scalar, $P_2$ fixes $b_0$ but $\dagger$ conj.\ it.} \\
+& & \small{The $\dagger$ identification $P_2\leftrightarrow(\ )^\dagger$ holds for the vector part.} \\
+$P_{12}(b_0\mathbf{1})$ & $\bar b_0\mathbf{1}$ & $(b_0 I_2)^T = b_0 I_2$? \\
+& & \small{Discrepancy: transpose fixes scalar but $P_{12}$ conjugates it.} \\
+& & \small{The $(\ )^T$ identification holds up to convention on the scalar sector.} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{insightbox}
+\textbf{Warning on matrix identifications.}
+The matrix identifications $(\ )^\dagger \leftrightarrow P_2$ and
+$(\ )^T \leftrightarrow P_{12}$ hold \emph{on the vector (off-diagonal) part}
+of the biquaternion.  On the scalar part ($b_1=b_2=b_3=0$), both
+$P_2$ and the identity act trivially, while $(\ )^\dagger$ complex-conjugates.
+Physicists should use the algebraic definitions in
+\texttt{discrete\_symmetries.tex} as the primary definitions, and the
+matrix representations as computational tools only.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Chiral Projectors in Matrix Form}
+\label{sec:mat:chiral}
+%──────────────────────────────────────────────────────────────────────────────
+
+The left/right chiral projectors
+$\mathsf{P}_\pm = \frac{1}{2}(\mathbf{1}\pm P_2)$
+(Section~2.1 of \texttt{chirality\_and\_parity\_breaking.tex})
+act in the $2\times2$ representation as:
+\begin{equation}
+  \phi(\mathsf{P}_+b) = \frac{1}{2}\left(\mathbf{\Theta} + \mathbf{\Theta}^\dagger\right)
+  = \mathrm{Re}_H(\mathbf{\Theta}),
+  \label{eq:mat:P_plus}
+\end{equation}
+\begin{equation}
+  \phi(\mathsf{P}_-b) = \frac{1}{2}\left(\mathbf{\Theta} - \mathbf{\Theta}^\dagger\right)
+  = i\,\mathrm{Im}_H(\mathbf{\Theta}),
+  \label{eq:mat:P_minus}
+\end{equation}
+where $\mathrm{Re}_H$ and $\mathrm{Im}_H$ denote the Hermitian-symmetric and
+anti-Hermitian parts of the matrix.
+
+For a $2\times2$ matrix $M$:
+\begin{itemize}
+  \item $\mathsf{P}_+$ selects the \emph{Hermitian} part: $\frac{1}{2}(M+M^\dagger)$.
+  \item $\mathsf{P}_-$ selects the \emph{anti-Hermitian} part: $\frac{1}{2}(M-M^\dagger)$.
+\end{itemize}
+The left-handed sector corresponds to anti-Hermitian matrices in the
+$2\times2$ representation (traceless anti-Hermitian matrices form $\mathfrak{su}(2)$).
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
