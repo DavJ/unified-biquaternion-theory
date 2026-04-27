@@ -14,19 +14,19 @@ Purpose: This document introduces a mathematically structured bridge between the
 
 ## Motivation
 
-Canonical: UBT already uses biquaternion time
+Canonical: UBT uses canonical complex time
 
 $$
-T_B = t + i\psi + j\chi + k\xi,
+\tau = t + i\psi,
 $$
 
-with the complex-time limit
+with the earlier biquaternion time extension
 
 $$
-\tau = t + i\psi
+T_B = t + i\psi + j\chi + k\xi
 $$
 
-in the isotropic sector.
+deprecated as a noncanonical/historical formulation.
 
 Bridge: The Jacobi-theta construction provides a compact reduced model in which the real part of complex time generates quadratic phase evolution while the imaginary part generates Gaussian damping. This gives a controlled mathematical bridge between complex time, diffusion-like structure, and reduced propagator-like observables.
 
@@ -111,7 +111,7 @@ $$
 \tau = t + i\psi,
 $$
 
-where $\psi$ is the scalar imaginary time component and the full canonical object is $T_B = t + i\psi + j\chi + k\xi$.
+where $\psi$ is the scalar imaginary time component. The full canonical time is $\tau = t + i\psi$; biquaternion time $T_B = t + i\psi + j\chi + k\xi$ is a deprecated/historical extension.
 
 Bridge: To avoid silently changing symbols, the sprint notation $\phi$ should be read as a reduced-model symbol that maps to the canonical UBT scalar imaginary time $\psi$ only in the isotropic limit. Accordingly,
 
@@ -181,7 +181,7 @@ Conjectural: Embedding this reduced theta amplitude directly into the full biqua
 
 ## Limits of the Current Bridge
 
-Canonical: The canonical field remains $\Theta(q,T_B)$, not $S_s(t,\psi)$.
+Canonical: The canonical field is $\Theta(q,\tau)$, not $S_s(t,\psi)$.
 
 Bridge: The construction here is a reduced model and a bridge formalism.
 
