@@ -2,7 +2,18 @@
 
 **Purpose**: This document establishes the single, authoritative version of all core UBT definitions to resolve conflicts and duplications across the theory.
 
-**Status**: Phase 2 Implementation - Canonical Definitions
+**Status**: Active canonical reference — definitions complete; derivation gaps documented below.
+
+**Confidence labels used in this document:**
+
+| Label | Meaning |
+|-------|---------|
+| **Strong** | Rigorous derivation; zero free parameters |
+| **Strong Partial** | Structural derivation substantially complete; ≤1 open sub-gap |
+| **Candidate** | Proposed mechanism with supporting evidence; ≥1 gap unresolved |
+| **Experimental** | Hypothesis supported by numerical/observational tests; no algebraic proof |
+| **Open** | No complete derivation known; active problem |
+| **Deprecated** | Approach proved to fail or superseded; preserved for reference |
 
 ---
 
@@ -348,19 +359,21 @@ These are **predicted** by UBT:
 - `Λ_QCD` = QCD scale
 
 ### Status of Each
-| Constant | Status | Source |
-|----------|--------|--------|
-| α | **Open (Problem A)** | Bare value derivation gap — see root DERIVATION_INDEX.md |
-| m_e | **Semi-empirical** | From Θ field self-energy (mechanism conjectured) |
-| m_μ | **Supported** | Hecke eigenvalue match at p=139 (0.05% + 1.6%) |
-| m_τ | **Supported** | Hecke eigenvalue match |
-| Λ_QCD | **Semi-empirical** | From SU(3) emergence (≥1 free parameter) |
-| G | **Input** | Newton's constant |
-| θ_W | **Derived (conditional)** | Weak mixing angle |
+| Constant | Confidence | Source |
+|----------|-----------|--------|
+| α | **Open** | B_base gap unresolved — bare value follows from framework given B≈46.3 but B itself not zero-free-parameter; see DERIVATION_INDEX.md |
+| m_e | **Strong Partial** | From Θ field self-energy (mechanism partially derived; Gaps Y1/Y2 open) |
+| m_μ | **Candidate** | Hecke eigenvalue match at p=139 (0.05% + 1.6%); algebraic mechanism not closed |
+| m_τ | **Candidate** | Hecke eigenvalue match; same mechanism as m_μ; instanton approach Dead End |
+| Λ_QCD | **Candidate** | From SU(3) emergence (≥1 free parameter) |
+| G | **Input** | Newton's constant; not predicted |
+| θ_W | **Candidate** | Weak mixing angle structural argument; g/g' ratio not algebraically fixed |
 
 ---
 
-## 9. Electron Mass
+## 9. Electron / Lepton Mass Spectrum
+
+**Confidence: Open**
 
 ### Canonical Derivation Method
 There are **three methods** that must be unified:
@@ -379,9 +392,12 @@ The final single method and formula will be established in `canonical/fields/ele
 ### Resolution of Conflicts
 - ❌ Three different calculation methods exist
 - ❌ Different assumptions (spin vs phase)
-- ❌ Need single final numerical value
+- ❌ Lepton mass ratios m_μ/m_e ≈ 207 and m_τ/m_μ ≈ 16.8 not reproduced from first principles (KK mismatch theorem forbids reproduction from W2 formula — Gap M4)
+- ❌ Hecke eigenvalue match at p=137/139 supports m_μ, m_τ at **Candidate** level but mechanism not algebraically closed
 
-**Action Required**: Consolidate in Phase 3.
+**Status**: All three lepton masses remain **Open** at the level of zero-free-parameter algebraic derivation.  
+Hecke numerical support for m_μ, m_τ is at **Candidate** level.  
+See DERIVATION_INDEX.md (Three Fermion Generations / Lepton Sector) for full detail.
 
 ---
 
@@ -484,10 +500,10 @@ Previous issues:
 
 ## Version Control
 
-**Version**: 1.0  
-**Date**: 2025-11-14  
-**Status**: Phase 1 Complete - Definitions Documented  
-**Next**: Phase 2 - Create canonical .tex files
+**Version**: 2.0  
+**Date**: 2026-04-27  
+**Status**: Active canonical reference — definitions complete; confidence labels added  
+**Next**: Phase 3 — rewrite all appendices using these definitions
 
 ---
 
