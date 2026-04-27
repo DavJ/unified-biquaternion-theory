@@ -33,8 +33,8 @@ core/
 │   ├── QED_limit_bridge.tex    # QED limit, running α, B_base gap
 │   └── gauge_emergence_bridge.tex  # SU(3)×SU(2)_L×U(1)_Y status
 ├── fields/                     # Canonical field definitions
-│   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
-│   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition (canonical)
+│   ├── theta_field.tex         # Θ(q,τ) biquaternion field
+│   ├── biquaternion_time.tex   # τ = t + iψ definition (canonical); T_B deprecated
 │   └── biquaternion_algebra.tex # Mathematical foundations
 ├── geometry/                   # Canonical geometric structures
 │   ├── metric.tex              # g_μν canonical metric
@@ -99,8 +99,8 @@ All symbols follow the dictionary in `CANONICAL_DEFINITIONS.md`:
 - `α` = fine structure constant ONLY
 - `ψ` = scalar imaginary time component ONLY  
 - `χ, ξ` = vector imaginary time components ONLY
-- `T_B` = biquaternion time (canonical)
-- `τ` = complex time (isotropic limit/simplification)
+- `τ` = complex time (canonical)
+- `T_B` = biquaternion time (deprecated/historical extension)
 - `q` = biquaternion coordinate ONLY
 - etc.
 
@@ -117,7 +117,7 @@ When writing new UBT content:
 2. Use `\input{core/fields/theta_field.tex}` in LaTeX
 3. Do NOT redefine canonical symbols
 4. Report conflicts as issues
-5. **Note**: Biquaternion time T_B is canonical; complex time τ is the isotropic limit
+5. **Note**: Complex time τ=t+iψ is canonical; biquaternion time T_B is a deprecated/historical extension.
 
 ### For Consolidation
 When consolidating existing content:
@@ -142,8 +142,8 @@ When reviewing UBT documents:
 - CANONICAL_DEFINITIONS.md audited; speculative claims downgraded or relocated
 
 ### Core Definitions: ✅ Complete
-- Theta field Θ(q,T_B)
-- Biquaternion time T_B = t + iψ + jχ + kξ (canonical)
+- Theta field Θ(q,τ)
+- Complex time τ = t + iψ (canonical)
 - Metric g_μν
 - Connection Γ^λ_μν
 - Stress-energy T_μν
