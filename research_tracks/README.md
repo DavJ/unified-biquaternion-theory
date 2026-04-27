@@ -3,7 +3,7 @@
 # research_tracks/ — UBT Research Tracks Index
 
 This directory contains **active and exploratory research tracks** that are not yet
-part of the canonical UBT formulation.  Material here is working progress: some
+part of the canonical UBT formulation.  Material here is work in progress: some
 tracks are close to promotion, others are purely exploratory.
 
 **Promotion path**: research_tracks → canonical (requires internal consistency,
