@@ -81,20 +81,23 @@ for a generic $\Theta(q,t+i\psi)$ and verify odd/even $n$ selection.
 ## OP-S3 — Dynamical Origin of Chirality Selection
 
 **Priority**: HIGH
-**Status**: Conjecture
+**Status**: Conditional (gap partially addressed; see `step3_gap_C1_resolution.tex`)
 
 **What is known**: The UBT framework provides an algebraic mechanism for
 identifying left-handed modes (Section 3.2 of `chirality_and_parity_breaking.tex`).
-The weak gauge boson $W^\pm$ is assumed to couple only to $\partial_\psi$.
+`step3_gap_C1_resolution.tex` shows that under the no-$W_R$ selection rule,
+$P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$, establishing parity violation
+conditionally.
 
-**What is missing**: A derivation showing that the $W$-boson vertex in the
-UBT action $S[\Theta]$ is necessarily odd under $P_\psi:\psi\to-\psi$.
-This would establish chirality from the dynamics, not merely from the
-algebraic projection.
+**What is still missing**: A derivation showing that the no-$W_R$ selection
+rule is itself a theorem rather than a model axiom.  Without this, the
+statement "the $W$-boson vertex is necessarily $P_\psi$-violating" is
+conditional, not proved.  See OP-S4 for the open problem on $SU(2)_R$ absence.
 
-**Toward resolution**: Expand the full covariant derivative
-$D_\mu = \partial_\mu + \Gamma_\mu + igW_\mu$ in $\psi$-modes and identify
-which vertex contains an odd power of $\partial_\psi$.
+**Toward resolution**: (a) Derive algebraically or via a symmetry argument
+why gauging $SU(2)_R$ is forbidden or decoupled in UBT.  (b) Expand the full
+covariant derivative $D_\mu = \partial_\mu + \Gamma_\mu + igW_\mu$ in
+$\psi$-modes and confirm which vertex contains an odd power of $\partial_\psi$.
 
 ---
 
@@ -110,11 +113,16 @@ $\mathbb{Z}_2^3$ involutions in `canonical/su3_derivation/`.
 **What is missing**:
 - A proof that the UBT gauge group is exactly $SU(3)_c \times SU(2)_L \times U(1)_Y$
   and not a larger group.
-- An explanation of why $SU(2)_R$ is absent or decoupled.
+- A derivation of why $SU(2)_R$ is absent or decoupled.  Currently the
+  absence of $SU(2)_R$ is a **selection rule / model axiom** of the minimal
+  UBT action (see `step3_gap_C1_resolution.tex`, Theorem~2.1).  It is
+  **not** derived from first principles.  The parity-violation result of
+  Step~3 depends critically on this axiom.
 - Anomaly cancellation in the UBT biquaternionic framework.
 
 **Impact**: Without exact SM gauge recovery, UBT cannot be claimed to
-reproduce the Standard Model.
+reproduce the Standard Model.  Without the $SU(2)_R$-absence derivation,
+the chirality argument in `step3_gap_C1_resolution.tex` is conditional.
 
 ---
 
@@ -239,7 +247,7 @@ and verification that it is even under $\tau\to-\tau$.
 |----|-------------|----------|--------|
 | OP-S1 | Antiunitary $T$ | HIGH | Gap |
 | OP-S2 | Grade = $\psi$-mode equivalence | HIGH | Gap |
-| OP-S3 | Dynamical chirality selection | HIGH | Conjecture |
+| OP-S3 | Dynamical chirality selection | HIGH | Conditional |
 | OP-S4 | Exact SM gauge group | CRITICAL | Open |
 | OP-S5 | Strong $CP$ problem | HIGH | Open |
 | OP-S6 | CP phase magnitude | MEDIUM | Conjecture |

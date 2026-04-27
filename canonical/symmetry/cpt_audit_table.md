@@ -65,12 +65,17 @@ applied to the real sector), and (b) the biquaternionic extension preserves
 this in the $\psi\to0$ limit.  See `chirality_and_parity_breaking.tex`.
 
 ### N3 — $\theta_{\rm eff}$ and CP violation
-The term $\theta_{\rm eff}F\tilde F$ is $C$-odd and $P$-odd, hence $CP$-even.
-**Warning**: a non-zero $\theta_{\rm eff}$ (the QCD $\theta$ angle) violates
-$C$ and $P$ individually but preserves $CP$.  If $\theta_{\rm eff}$ is complex
-(arising from a complex Yukawa determinant in the mass matrix), then $CP$ is
-broken.  The strong-CP problem — why $\theta_{\rm eff}\approx0$ experimentally
-— is an open problem in UBT.  See `open_problems.md`, item OP-S5.
+The term $\theta_{\rm eff}F\tilde F$ is $C$-**even**, $P$-odd, and $T$-odd,
+hence $CP$-**odd** (consistent with the table row above: C ✓, P ✗, T ✗, CP ✗,
+CPT ✓).  A non-zero $\theta_{\rm eff}$ (the QCD $\theta$ angle) violates $P$
+and $T$ individually and breaks $CP$.  The strong-CP problem — why
+$\theta_{\rm eff}\approx0$ experimentally — is an open problem in UBT.
+See `open_problems.md`, item OP-S5.
+
+> **Correction from earlier draft**: an earlier version of this note incorrectly
+> stated that $F\tilde F$ is $C$-odd and $P$-odd and hence $CP$-even.
+> The correct classification is $C$-even (see `discrete_symmetries.tex`,
+> field transformation table), $P$-odd, $T$-odd, $CP$-odd.
 
 ### N4 — Effective diffusion sector
 The diffusion equation $\partial_\tau\Theta = D\nabla^2\Theta - V\Theta$ is an

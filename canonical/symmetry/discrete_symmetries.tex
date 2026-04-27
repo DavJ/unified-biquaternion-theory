@@ -174,8 +174,10 @@ grade-odd elements (vectors $b_1\mathbf{I}+\cdots$) with eigenvalue $-1$.
 In the present $\mathcal{B}$ structure, the grade involution coincides
 with $P_2$.
 \textbf{Physical role}: separates scalar (spin-0) from vector (spin-1) sectors
-of $\Theta$; eigenspaces are the left/right chiral projections
-(see \texttt{chirality\_and\_parity\_breaking.tex}).
+of $\Theta$; eigenspaces provide the \emph{UBT chirality analogues} for
+left/right projections (candidate mapping to Weyl chirality; proof via
+spinor/matrix representation required;
+see \texttt{chirality\_and\_parity\_breaking.tex}).
 
 \subsection{Involution Summary}
 \label{sec:ds:involution_summary}
@@ -231,6 +233,31 @@ $q = q^0 + \mathbf{q} = q^0 + q^1\mathbf{I}+q^2\mathbf{J}+q^3\mathbf{K}\in\mathc
 encoding spacetime position and $\tau = t + i\psi\in\mathbb{C}$ the complex
 time ($t\in\mathbb{R}$, $\psi\in\mathbb{R}$ the auxiliary imaginary-time
 coordinate).
+
+\begin{insightbox}
+\textbf{Convention: $q^0$ vs.\ $\tau$ (physical time vs.\ internal scalar coordinate).}
+\begin{itemize}
+  \item $\tau = t + i\psi$ is the \textbf{physical complex time parameter}.
+        Its real part $t\in\mathbb{R}$ is the observable (physical) time.
+        Its imaginary part $\psi\in\mathbb{R}$ is the auxiliary imaginary-time
+        coordinate on the $\psi$-circle.
+  \item $q^0\in\mathbb{R}$ is the \textbf{scalar (temporal) part of the
+        biquaternion coordinate} $q\in\mathcal{B}$.  In the standard
+        identification $q \leftrightarrow x^\mu$, one sets
+        $q^0 = x^0 = ct$, so that $q^0$ coincides with the real-time
+        component.  However, $q^0$ is an \emph{internal} scalar coordinate
+        of the algebra element $q$, not an independent time variable.
+  \item \textbf{Double-counting warning}: if $\tau$ already encodes physical
+        time $t$, one must not simultaneously treat $q^0$ as an independent
+        physical time.  The canonical convention is: $\tau$ is the physical
+        time parameter; $q^0 = t$ is its embedding in $q$ as the scalar
+        component.  They are the same degree of freedom, not two separate times.
+  \item \textbf{Transformation rules}: under $T_{\mathrm{UBT}}$ ($\tau\to-\tau$),
+        both $t\to-t$ and $\psi\to-\psi$.  Consequently $q^0\to-q^0$ as well
+        (since $q^0=t$).  This must be implemented consistently in every CPT
+        analysis.
+\end{itemize}
+\end{insightbox}
 
 \begin{definition}[Charge Conjugation $C$]
 \label{def:ds:C}
