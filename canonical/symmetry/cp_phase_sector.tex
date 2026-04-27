@@ -1,0 +1,360 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{conjecturebox}
+
+  \title{\textbf{CP Violation through the Phase Sector in UBT}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We investigate whether the auxiliary imaginary-time coordinate $\psi$,
+  complex phases in Yukawa-like couplings, or vacuum phase misalignment
+  can generate $CP$ violation in the Unified Biquaternion Theory (UBT).
+  Three candidate mechanisms are identified and classified: (i) the
+  $\theta_{\rm eff}\,F\tilde F$ topological term, (ii) complex Yukawa-like
+  phases in the $\Theta$ potential, and (iii) vacuum phase misalignment in the
+  complex-time vacuum expectation value.
+  All three mechanisms preserve $CPT$; only (ii) and (iii) genuinely violate
+  $CP$.  We separate ``realistic'' (within current UBT framework) from
+  ``speculative'' (requiring extensions) versions.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Overview: Sources of $CP$ Violation}
+\label{sec:cp:overview}
+%──────────────────────────────────────────────────────────────────────────────
+
+In any quantum field theory compatible with the $CPT$ theorem,
+$CP$ violation is equivalent to $T$ violation (since $CPT$ is preserved).
+Three structural sources of $CP$ violation are available in UBT:
+\begin{enumerate}
+  \item \textbf{Topological:} The $\theta_{\rm eff}$ term $F_{\mu\nu}\tilde F^{\mu\nu}$.
+  \item \textbf{Yukawa:} Complex phases in the $\Theta$-coupling potential.
+  \item \textbf{Vacuum:} Phase misalignment of the vacuum configuration $\Theta_0$.
+\end{enumerate}
+A fourth speculative source involving the auxiliary imaginary-time coordinate
+$\psi$ is discussed in Section~\ref{sec:cp:psi}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Topological Term: $\theta_{\rm eff} F\tilde F$}
+\label{sec:cp:theta}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition}
+
+The topological (axial anomaly) term is:
+\begin{equation}
+  \mathcal{L}_\theta
+  = \frac{\theta_{\rm eff}}{16\pi^2}\,G^a_{\mu\nu}\tilde G^{a\,\mu\nu},
+  \label{eq:cp:theta_term}
+\end{equation}
+where $G^a_{\mu\nu}$ is the $SU(3)_c$ (or $SU(N)$) field strength,
+$\tilde G^{a\,\mu\nu} = \frac{1}{2}\epsilon^{\mu\nu\rho\sigma}G^a_{\rho\sigma}$
+is the dual, and $\theta_{\rm eff} = \bar\theta = \theta_{\rm QCD} + \arg\det M_q$
+is the effective $\theta$ angle (including contributions from quark mass phases).
+
+\subsection{Transformation Properties}
+
+\begin{proposition}[$C$, $P$, $T$, $CP$ properties of $\mathcal{L}_\theta$]
+\label{prop:cp:theta_CPT}
+\begin{align}
+  C[\mathcal{L}_\theta] &= +\mathcal{L}_\theta \quad (\text{$C$-even}), \\
+  P[\mathcal{L}_\theta] &= -\mathcal{L}_\theta \quad (\text{$P$-odd}), \\
+  T[\mathcal{L}_\theta] &= -\mathcal{L}_\theta \quad (\text{$T$-odd}), \\
+  CP[\mathcal{L}_\theta] &= -\mathcal{L}_\theta \quad (\text{$CP$-odd}), \\
+  CPT[\mathcal{L}_\theta] &= +\mathcal{L}_\theta \quad (\text{$CPT$-even}).
+\end{align}
+Hence $\theta_{\rm eff}\mathcal{L}_\theta$ violates $P$, $T$, and $CP$,
+but preserves $C$ and $CPT$.
+\end{proposition}
+\begin{proof}
+We work with the equivalent electromagnetic decomposition
+$G^a_{\mu\nu}\tilde G^{a\,\mu\nu} \propto \mathbf{E}^a\cdot\mathbf{B}^a$
+(summed over colour index $a$), where $\mathbf{E}^a$ are the chromo-electric
+and $\mathbf{B}^a$ the chromo-magnetic field components.
+
+\medskip
+\noindent\textit{Under $C$:}
+For $SU(N)$ gauge fields in the adjoint representation,
+$C: G^a_{\mu\nu}\to -G^a_{\mu\nu}$.
+Both $G^a_{\mu\nu}$ and $\tilde G^{a\,\mu\nu}$ change sign, so
+\begin{equation}
+  C[G^a_{\mu\nu}\tilde G^{a\,\mu\nu}]
+  = (-G^a_{\mu\nu})(-\tilde G^{a\,\mu\nu}) = +G^a_{\mu\nu}\tilde G^{a\,\mu\nu}.
+\end{equation}
+Hence $\mathcal{L}_\theta$ is $C$-\emph{even}. \checkmark
+
+\medskip
+\noindent\textit{Under $P$:}
+Parity sends $\mathbf{E}\to-\mathbf{E}$ (polar vector, $P$-odd) and
+$\mathbf{B}\to+\mathbf{B}$ (axial vector, $P$-even), so
+$\mathbf{E}\cdot\mathbf{B}\to-\mathbf{E}\cdot\mathbf{B}$.
+Hence $\mathcal{L}_\theta$ is $P$-\emph{odd}. \checkmark
+
+\medskip
+\noindent\textit{Under $T$:}
+Time reversal sends $\mathbf{E}\to+\mathbf{E}$ ($T$-even: Coulomb field unchanged)
+and $\mathbf{B}\to-\mathbf{B}$ ($T$-odd: magnetic field from moving charges reverses),
+so $\mathbf{E}\cdot\mathbf{B}\to-\mathbf{E}\cdot\mathbf{B}$.
+Hence $\mathcal{L}_\theta$ is $T$-\emph{odd}. \checkmark
+
+\medskip
+\noindent\textit{Under $CP$:}
+$CP$-even $\times$ $P$-odd $=$ $CP$-odd (since $C$ is even, $CP = C\circ P$
+acts with the $P$-odd sign). \checkmark
+
+\medskip
+\noindent\textit{Under $CPT$:}
+$C$-even $\times$ $P$-odd $\times$ $T$-odd $=$ even $\times$ odd $\times$ odd $=$ even.
+Hence $\mathcal{L}_\theta$ is $CPT$-\emph{even}, consistent with the
+$CPT$ theorem. \checkmark
+\end{proof}
+
+\begin{remark}[The strong $CP$ problem]
+The result establishes that $\theta_{\rm eff}\neq0$ violates $CP$ and $T$
+directly, not only $P$.  The experimental bound $|\bar\theta|<10^{-10}$
+(from the neutron electric dipole moment) is therefore a bound on $CP$ and
+$T$ violation in the strong sector.  UBT does not automatically explain this
+suppression: the $\theta_{\rm eff}$ parameter appears as a free parameter in
+the action.  Incorporating a Peccei-Quinn-like mechanism in the biquaternionic
+framework is an open problem.  See \texttt{open\_problems.md}, item OP-S5.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Complex Yukawa-Like Phase}
+\label{sec:cp:yukawa}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Coupling Term}
+
+The UBT potential $V(\Theta)$ may contain off-diagonal terms mixing
+$\Theta_L$ and $\Theta_R$ through a ``Yukawa-like'' coupling with
+a complex coefficient:
+\begin{equation}
+  \mathcal{L}_Y
+  = y\,\mathrm{Tr}\bigl[\Theta_L^\dagger\, H\, \Theta_R\bigr] + \mathrm{h.c.},
+  \qquad y \in \mathbb{C},
+  \label{eq:cp:yukawa}
+\end{equation}
+where $H \in \mathcal{B}$ is a Higgs-like biquaternion field (or a fixed
+internal matrix encoding the vacuum structure), and $y = |y|e^{i\delta_y}$
+is the complex Yukawa coupling with phase $\delta_y$.
+
+\subsection{$CP$ Transformation}
+
+\begin{proposition}[$CP$ violation by complex Yukawa]
+\label{prop:cp:yukawa_CP}
+$\mathcal{L}_Y$ is invariant under $CP$ if and only if $y$ is real
+($\delta_y = 0\text{ or }\pi$).
+For $\delta_y\notin\{0,\pi\}$, $CP$ is explicitly violated.
+\end{proposition}
+
+\begin{proof}
+Under $C$: $\Theta_L\to P_1(\Theta_L)$, $\Theta_R\to P_1(\Theta_R)$, $H\to P_1(H)$,
+and $y\to y^*$ (complex conjugation of the coupling).
+The term becomes:
+\begin{equation}
+  C[\mathcal{L}_Y]
+  = y^*\,\mathrm{Tr}\bigl[P_1(\Theta_L)^\dagger P_1(H) P_1(\Theta_R)\bigr]
+  + \mathrm{h.c.}
+  = y^*\,\mathrm{Tr}\bigl[\Theta_L^\dagger H \Theta_R\bigr]^*
+  + \mathrm{h.c.}
+\end{equation}
+Since the $\mathrm{h.c.}$ already includes the complex conjugate, $C[\mathcal{L}_Y]=\mathcal{L}_Y$.
+Hence $\mathcal{L}_Y$ is $C$-invariant (the phase $\delta_y$ is not changed
+by $C$ alone, because $C$ on both $y$ and the $\mathrm{h.c.}$ swaps them).
+
+Under $P$: $\Theta_L\to -\Theta_R(\bar q)$, $\Theta_R\to -\Theta_L(\bar q)$
+(parity exchanges left/right; see \texttt{chirality\_and\_parity\_breaking.tex}).
+\begin{equation}
+  P[\mathcal{L}_Y]
+  = y\,\mathrm{Tr}\bigl[\Theta_R^\dagger(\bar q)\, H(\bar q)\, \Theta_L(\bar q)\bigr]
+  + \mathrm{h.c.}
+  = y\,\mathrm{Tr}\bigl[\Theta_L^\dagger H \Theta_R\bigr]^{\dagger} + \mathrm{h.c.}
+\end{equation}
+For the Hermitian trace this equals $y^*\mathrm{Tr}(\Theta_L^\dagger H\Theta_R) + \mathrm{h.c.}$
+Thus:
+\begin{equation}
+  CP[\mathcal{L}_Y]
+  = y^*\,\mathrm{Tr}\bigl[\Theta_L^\dagger H \Theta_R\bigr] + \mathrm{h.c.}
+  \label{eq:cp:yukawa_CP}
+\end{equation}
+Comparing with $\mathcal{L}_Y = y\,\mathrm{Tr}[\Theta_L^\dagger H\Theta_R]+\mathrm{h.c.}$:
+$CP[\mathcal{L}_Y]=\mathcal{L}_Y$ iff $y^* = y$, i.e., $y\in\mathbb{R}$.
+For $\mathrm{Im}(y)\neq0$, $CP$ is violated.
+\end{proof}
+
+\begin{remark}[CPT preservation]
+$CPT[\mathcal{L}_Y] = \mathcal{L}_Y$ regardless of the phase $\delta_y$,
+because $T_{\rm UBT}$ does not change the algebra value of $\Theta$,
+and the coupling constant $y$ is a fixed parameter (not a field).
+\end{remark}
+
+\subsection{Realistic vs.\ Speculative Assessment}
+
+\begin{description}
+  \item[Realistic:]
+    Complex Yukawa couplings are the source of $CP$ violation in the
+    Standard Model (CKM matrix).  Including complex $y$ in $\mathcal{L}_Y$
+    is theoretically well-motivated and makes UBT consistent with observed
+    baryon asymmetry phenomenology in principle.
+    \textbf{Status: Candidate (model-dependent)}.
+
+  \item[Speculative:]
+    Deriving the \emph{magnitude} of the $CP$ phase ($\delta_y$) from
+    first principles in UBT (e.g., from $|\tau|$ or from the $\psi$-circle
+    geometry) requires a detailed spectral computation.
+    \textbf{Status: Open Problem OP-S6}.
+\end{description}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Vacuum Phase Misalignment}
+\label{sec:cp:vacuum}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Complex Vacuum Expectation Value}
+
+If the UBT vacuum (ground state of $V(\Theta)$) spontaneously develops a
+complex phase:
+\begin{equation}
+  \langle\Theta\rangle = \Theta_0 = v\, e^{i\delta}\cdot\mathbf{1}_{\mathcal{B}},
+  \qquad v > 0,\quad \delta \in (0,\pi),
+  \label{eq:cp:vev}
+\end{equation}
+then the $CP$ symmetry is spontaneously broken by the vacuum even if the action
+is $CP$-invariant.
+
+\begin{proposition}[Spontaneous $CP$ breaking]
+\label{prop:cp:spont_CP}
+If $\Theta_0 = ve^{i\delta}\mathbf{1}$ with $\delta\neq 0,\pi$,
+then $\Theta_0$ is not invariant under $CP$:
+\begin{equation}
+  CP[\Theta_0] = P_{12}(\Theta_0(\bar q, \tau^*))
+  = ve^{-i\delta}\mathbf{1} \neq \Theta_0.
+\end{equation}
+The vacuum is $CP$-violating for $\delta\neq0,\pi$.
+\end{proposition}
+
+\begin{proof}
+$(P_1\circ P_2)(ve^{i\delta}\mathbf{1}) = P_1(ve^{i\delta}\mathbf{1})
+= ve^{-i\delta}\mathbf{1}$.
+For $\delta\notin\{0,\pi\}$: $e^{-i\delta}\neq e^{i\delta}$. \qed
+\end{proof}
+
+\begin{remark}[Connection to baryogenesis]
+Spontaneous $CP$ breaking through a complex vacuum phase is a mechanism
+for generating a baryon asymmetry (Sakharov conditions).  In UBT,
+the $\psi$-circle vacuum structure may naturally generate such a phase
+through winding-number selection.  \textbf{Status: Conjecture.}
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{$\psi$-Phase as a Source of $CP$ Violation}
+\label{sec:cp:psi}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{$\psi$-Odd Interaction Term}
+
+\begin{conjecturebox}
+\textbf{Conjecture: $\psi$-induced $CP$ violation.}
+Consider a $\psi$-odd coupling:
+\begin{equation}
+  \mathcal{L}_{\psi\rm -CP}
+  = \delta_\psi\,\mathrm{Im}\bigl[\mathrm{Tr}(\Theta^\dagger \partial_\psi\Theta)\bigr],
+  \label{eq:cp:psi_CP}
+\end{equation}
+where $\delta_\psi\in\mathbb{R}$ is a small coupling.
+Under $C$: $\tau\to\tau^*$ sends $\psi\to-\psi$, so
+$\partial_\psi\to -\partial_\psi$, and
+$\mathrm{Im}[\mathrm{Tr}(\Theta^\dagger\partial_\psi\Theta)]\to
+-\mathrm{Im}[\mathrm{Tr}(\Theta^\dagger\partial_\psi\Theta)]$, i.e., $C$-odd.
+Under $P$: $\psi$ is $P$-even, so this term is $P$-even.
+Hence: $C$-odd, $P$-even, so $CP$-odd.
+
+This term preserves $CPT$ (since $T_{\rm UBT}$ sends $\psi\to-\psi$,
+partially cancelling the $C$-odd effect).
+
+\textbf{This is speculative.}  Whether \eqref{eq:cp:psi_CP} is compatible with
+the UBT action symmetries and renormalizability requires further analysis.
+\end{conjecturebox}
+
+\subsection{Estimate of $CP$ Phase from $|\tau|$}
+
+A stretch-goal estimate: if the $CP$-violating phase $\delta_y$ in the Yukawa
+coupling arises from the geometry of complex time, a dimensional argument gives:
+\begin{equation}
+  \delta_y \sim \frac{\psi_0}{|\tau_0|} = \frac{\psi_0}{\sqrt{t_0^2+\psi_0^2}},
+  \label{eq:cp:phase_estimate}
+\end{equation}
+where $\psi_0 = R_\psi$ is the $\psi$-circle radius and $t_0$ is the typical
+timescale.  For $\psi_0 \ll t_0$: $\delta_y \approx \psi_0/t_0 \ll 1$.
+This is consistent with the observed smallness of $CP$ violation in
+kaon and $B$-meson systems, but the identification is speculative.
+\textbf{Status: Stretch goal / Open Problem OP-S7}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:cp:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Classification of CP-violation sources in UBT.}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Mechanism & $CP$ status & $CPT$ status & Assessment \\
+\midrule
+$\theta_{\rm eff}F\tilde F$ & $CP$-\emph{odd} ($C$-even, $P$-odd, $T$-odd) & ✓ & Realistic; magnitude ($\bar\theta<10^{-10}$) is open \\
+Complex Yukawa $y\in\mathbb{C}$ & $CP$-\emph{odd} if $\mathrm{Im}(y)\neq0$ & ✓ & Realistic; magnitude open \\
+Vacuum phase $\Theta_0=ve^{i\delta}$ & Spontaneous $CP$ breaking & ✓ & Candidate; $\delta$ undetermined \\
+$\psi$-odd term \eqref{eq:cp:psi_CP} & $CP$-odd & ✓ & Speculative \\
+Complex $\theta_{\rm eff}$ & $CP$-odd if $\mathrm{Im}(\theta)\neq0$ & ✓ & Speculative \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The fundamental constraint is: \textbf{any mechanism must preserve $CPT$}.
+All mechanisms listed above satisfy this.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

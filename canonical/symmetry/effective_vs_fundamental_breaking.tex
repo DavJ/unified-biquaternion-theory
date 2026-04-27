@@ -1,0 +1,287 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Effective vs.\ Fundamental Symmetry Breaking in UBT:\\
+                 Two-Layer Interpretation of $T$ and $CPT$ Asymmetry}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We establish a precise two-layer interpretation of time-reversal ($T$) and
+  $CPT$ asymmetry in UBT, distinguishing the \emph{microscopic fundamental layer}
+  (unitary, $CPT$-preserving) from the \emph{macroscopic effective layer}
+  (dissipative, entropy-producing, with apparent $T$ breaking).
+  The diffusion-type equation $\partial_\tau\Theta = D\nabla^2\Theta - V\Theta$,
+  sometimes used as an effective description, is shown to be a coarse-grained
+  approximation to the fundamental unitary dynamics, not a modification of it.
+  We state the central theorem clearly: apparent $T$ breaking in the effective
+  sector does \emph{not} imply fundamental $CPT$ violation.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Two Layers}
+\label{sec:eff:layers}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Microscopic/Fundamental Layer]
+\label{def:eff:micro}
+The \textbf{microscopic layer} is described by the full UBT action
+\begin{equation}
+  S[\Theta] = \int_\mathcal{M} d^4x\,\sqrt{-g}\,\mathcal{L}_{\rm UBT}[\Theta, D\Theta],
+  \label{eq:eff:S}
+\end{equation}
+with the Lagrangian defined in \texttt{canonical/THEORY/canonical/canonical\_action.tex}.
+The dynamics at this layer is:
+\begin{itemize}
+  \item \textbf{Unitary}: the field equations derived from \eqref{eq:eff:S}
+    are hyperbolic (wave-type), preserving norm $\|\Theta\|$.
+  \item \textbf{$CPT$-invariant}: established in \texttt{step2\_action\_analysis.tex}
+    for the real sector; gap only in the $\psi$-extended biquaternionic sector.
+  \item \textbf{Reversible}: all solutions of the field equations are time-reversible
+    under $T_{\rm UBT}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Macroscopic/Effective Layer]
+\label{def:eff:macro}
+The \textbf{macroscopic layer} is obtained by:
+(a) integrating out short-scale $\Theta$ modes (e.g., high-frequency $\psi$-modes),
+(b) restricting to a particular solution sector (e.g., thermal equilibrium,
+  or slow mean-field evolution), or
+(c) coupling to a heat bath / environment that is treated classically.
+
+The resulting \emph{effective equation} for the coarse-grained field
+$\bar\Theta(q,t) = \int_0^{2\pi R_\psi} d\psi\;\Theta(q,t+i\psi)/(2\pi R_\psi)$
+generically takes the \emph{dissipative form}:
+\begin{equation}
+  \partial_t \bar\Theta
+  = D\,\nabla^2\bar\Theta - V\,\bar\Theta + \xi(q,t),
+  \label{eq:eff:diffusion}
+\end{equation}
+where $D > 0$ is a diffusion coefficient, $V$ is a potential matrix, and
+$\xi$ is a noise term (from the integrated-out short-scale modes).
+\end{definition}
+
+\begin{warnbox}
+\textbf{Critical warning.}
+The effective equation \eqref{eq:eff:diffusion} is \emph{parabolic} (heat-type)
+and manifestly breaks time-reversal: under $t\to-t$, $\partial_t\bar\Theta\to-\partial_t\bar\Theta$
+but $D\nabla^2\bar\Theta\to+D\nabla^2\bar\Theta$, so the equation is not
+invariant.  This is \emph{not} a fundamental violation of $T$ or $CPT$.
+It is an artefact of coarse-graining.
+\textbf{This effective equation must never be cited as a UBT prediction of
+fundamental $CPT$ violation.}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Derivation of the Effective Equation}
+\label{sec:eff:derivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Mode Decomposition}
+
+Expand $\Theta(q,\tau) = \Theta(q, t+i\psi)$ in modes on the $\psi$-circle:
+\begin{equation}
+  \Theta(q,t+i\psi) = \sum_{n=-\infty}^{\infty}
+  \Theta_n(q,t)\,e^{in\psi/R_\psi}.
+  \label{eq:eff:mode_expansion}
+\end{equation}
+The fundamental field equation $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$
+(see \texttt{canonical/fields/theta\_field.tex}) in the $\psi$-expanded form becomes:
+\begin{equation}
+  \left(\partial_t^2 - \nabla_\mathbf{q}^2 + \frac{n^2}{R_\psi^2}\right)\Theta_n
+  = \kappa\mathcal{T}_n.
+  \label{eq:eff:mode_eq}
+\end{equation}
+Each mode $\Theta_n$ satisfies a Klein-Gordon-type equation with mass
+$m_n = n/R_\psi$.
+
+\subsection{Coarse-Graining over $\psi$-Modes}
+
+Define the coarse-grained field as the zero-mode:
+$\bar\Theta := \Theta_0$.  The $n=0$ equation from \eqref{eq:eff:mode_eq} is:
+\begin{equation}
+  (\partial_t^2 - \nabla^2)\bar\Theta = \kappa\mathcal{T}_0[\bar\Theta, \Theta_{n\neq0}].
+  \label{eq:eff:zero_mode}
+\end{equation}
+The source $\mathcal{T}_0$ contains contributions from all $n\neq0$ modes.
+In a gradient expansion at low energies ($E\ll 1/R_\psi$), retaining the
+leading-order contribution of the $n\neq0$ modes as a \emph{friction} term:
+\begin{equation}
+  \kappa\mathcal{T}_0 \approx -2\Gamma\,\partial_t\bar\Theta - M^2\bar\Theta + \xi,
+  \label{eq:eff:friction}
+\end{equation}
+where $\Gamma > 0$ is a damping coefficient arising from the back-reaction
+of integrated-out $\psi$-modes, $M^2$ is a mass correction, and $\xi$ is
+a stochastic noise satisfying a fluctuation-dissipation relation.
+
+Substituting \eqref{eq:eff:friction} into \eqref{eq:eff:zero_mode} and
+dropping the $\partial_t^2\bar\Theta$ term (long-wavelength, overdamped limit):
+\begin{equation}
+  2\Gamma\,\partial_t\bar\Theta
+  = \nabla^2\bar\Theta - M^2\bar\Theta + \xi.
+  \label{eq:eff:overdamped}
+\end{equation}
+Identifying $D = 1/(2\Gamma)$ and $V = M^2/(2\Gamma)$:
+\begin{equation}
+  \partial_t\bar\Theta = D\nabla^2\bar\Theta - V\bar\Theta + \xi,
+\end{equation}
+which is the effective diffusion equation \eqref{eq:eff:diffusion}.
+
+\begin{proposition}[Emergence of dissipation]
+\label{prop:eff:emergence}
+The effective diffusion equation \eqref{eq:eff:diffusion} for $\bar\Theta$
+is a consequence of:
+(i) the fundamental unitary UBT dynamics \eqref{eq:eff:S},
+(ii) coarse-graining over the $\psi$-modes by taking the zero-mode projection,
+(iii) a gradient/overdamped approximation valid at energies $E\ll 1/R_\psi$.
+The apparent $T$ breaking is not present in the fundamental equation;
+it is a consequence of (ii)-(iii).
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Central Theorem: Apparent $T$ Breaking $\neq$ Fundamental $CPT$ Breaking}
+\label{sec:eff:theorem}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Two-Layer Separation]
+\label{thm:eff:separation}
+Let $S[\Theta]$ be the UBT action, $CPT$-invariant at the microscopic level.
+Let $\bar\Theta$ be the coarse-grained zero-mode field satisfying the effective
+diffusion equation \eqref{eq:eff:diffusion}.
+Then:
+\begin{enumerate}
+  \item The effective equation \eqref{eq:eff:diffusion} is not $T$-invariant.
+  \item The effective equation \eqref{eq:eff:diffusion} is not $CPT$-invariant.
+  \item Items (1) and (2) do not contradict the $CPT$ invariance of $S[\Theta]$,
+    because the coarse-graining procedure selects a preferred time direction
+    (entropy increase) and discards information about $\psi$-modes.
+  \item A $T$-reversed solution of \eqref{eq:eff:diffusion} is the \emph{antidiffusion}
+    equation $\partial_t\bar\Theta = -D\nabla^2\bar\Theta + V\bar\Theta$,
+    which does have solutions — but these correspond to atypical (measure-zero)
+    fine-tuned initial conditions in the full $\Theta$ theory, not to a
+    contradiction with $CPT$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(1) Direct: $t\to-t$ sends $\partial_t\to-\partial_t$ but leaves $D\nabla^2$
+unchanged; the equation changes form.
+(2) Follows from (1): $CPT=C\circ P\circ T$; if $T$ is broken in the equation
+of motion, $CPT$ is also broken (since $C$ and $P$ are preserved by the
+diffusion term).
+(3) The derivation of Section~\ref{sec:eff:derivation} shows that
+\eqref{eq:eff:diffusion} requires choosing $n=0$ and the overdamped limit.
+These choices select a specific time-direction (entropy increase), which is
+not present in $S[\Theta]$.  The $T$-violating sign of the friction term
+$\Gamma\partial_t\bar\Theta$ in \eqref{eq:eff:friction} arises because
+we sum over $n\neq0$ modes \emph{going forward in time} (open system assumption).
+(4) The antidiffusion equation corresponds to backward-propagating modes;
+these exist as solutions of the hyperbolic fundamental equation
+\eqref{eq:eff:mode_eq}.
+\end{proof}
+
+\begin{insightbox}
+\textbf{Physical picture.}
+The UBT microscopic layer is like a closed, unitary quantum system.
+The effective macroscopic layer describes an open subsystem obtained by
+ignoring the $\psi$-modes.  Dissipation and entropy production are consequences
+of this information loss, not fundamental properties of UBT.
+This is fully analogous to how Boltzmann's $H$-theorem derives a
+time-asymmetric $H$-function from time-symmetric microscopic dynamics by
+assuming molecular chaos (the Stosszahlansatz).
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Entropy and the Imaginary-Time Coordinate}
+\label{sec:eff:entropy}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{remark}[Entropy as $\psi$-mode information]
+The entropy associated with coarse-graining over the $\psi$-circle is:
+\begin{equation}
+  S_{\rm eff} = -\sum_{n\neq0} p_n \ln p_n,
+  \qquad p_n \propto |\Theta_n|^2,
+  \label{eq:eff:entropy}
+\end{equation}
+where $p_n$ is the occupation probability of the $n$-th $\psi$-mode.
+The growth of $S_{\rm eff}$ under the effective dynamics \eqref{eq:eff:diffusion}
+(second law of thermodynamics) is entirely consistent with the $CPT$ invariance
+of the fundamental $S[\Theta]$: it arises from the flow of information from
+$\bar\Theta$ (zero mode) to $\Theta_{n\neq0}$ (high modes), which is
+undone when the full $\Theta$ is restored.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:eff:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Two-layer principle.}
+
+\medskip
+\textbf{Microscopic (fundamental) layer:}
+\begin{itemize}
+  \item Dynamics: $S[\Theta]$, unitary wave equation.
+  \item Symmetries: $CPT$ invariant (proved for real sector; gap in $\psi$-sector).
+  \item $T$ invariant: Yes (under $T_{\rm UBT}:\tau\to-\tau$).
+\end{itemize}
+
+\medskip
+\textbf{Macroscopic (effective) layer:}
+\begin{itemize}
+  \item Dynamics: $\partial_t\bar\Theta = D\nabla^2\bar\Theta - V\bar\Theta$.
+  \item Symmetries: $T$ and $CPT$ broken (apparent/effective only).
+  \item Origin: coarse-graining over $\psi$-modes; overdamped approximation.
+  \item Interpretation: entropy production, arrow of time, open-system dissipation.
+\end{itemize}
+
+\medskip
+\textbf{Key statement}:
+\begin{center}
+\fbox{Apparent $T$ breaking in the effective equation $\neq$ fundamental $CPT$ violation.}
+\end{center}
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

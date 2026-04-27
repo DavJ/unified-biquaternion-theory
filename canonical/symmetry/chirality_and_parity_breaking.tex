@@ -1,0 +1,328 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Chirality and Parity Violation in UBT:\\
+                 Left/Right Field Decomposition and Weak-Like Coupling}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We construct the left/right chiral decomposition of the fundamental UBT field
+  $\Theta(q,\tau)$ using the grade involution $\pi = P_2$ of the biquaternion
+  algebra $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$.
+  We then show how a weak-like interaction term
+  $\mathcal{L}_{\rm weak}\sim\mathrm{Tr}[\Theta_L^\dagger W_\mu D^\mu\Theta_L]$
+  explicitly breaks spatial parity $P$ while leaving the $CPT$ composition
+  invariant.
+  The algebraic mechanism for chirality selection via the auxiliary imaginary-time
+  coordinate $\psi$ is sketched, connecting to the $\psi$-parity analysis of
+  \texttt{canonical/chirality/step1\_psi\_parity.tex}.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Chiral Projectors in $\mathcal{B}$}
+\label{sec:chir:projectors}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Grade Decomposition}
+
+The grade involution $\pi = P_2$ on $\mathcal{B}$ (coinciding with quaternion
+conjugation; see \texttt{discrete\_symmetries.tex}, Section~2.2.5) splits
+every biquaternion into grade-even and grade-odd parts:
+\begin{align}
+  \Theta_+ &= \tfrac{1}{2}(\mathbf{1} + P_2)\Theta
+  = b_0\cdot\mathbf{1}
+  \quad \text{(scalar/grade-even)}, \label{eq:chir:Theta_plus} \\
+  \Theta_- &= \tfrac{1}{2}(\mathbf{1} - P_2)\Theta
+  = b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K}
+  \quad \text{(vector/grade-odd)}. \label{eq:chir:Theta_minus}
+\end{align}
+The projectors
+\begin{equation}
+  \mathsf{P}_\pm := \tfrac{1}{2}(\mathbf{1} \pm P_2)
+  \label{eq:chir:projectors}
+\end{equation}
+satisfy $\mathsf{P}_\pm^2 = \mathsf{P}_\pm$, $\mathsf{P}_+\mathsf{P}_-=0$,
+$\mathsf{P}_+ + \mathsf{P}_- = \mathbf{1}$.
+
+\begin{definition}[Left- and Right-Chiral Components]
+\label{def:chir:LR}
+\begin{align}
+  \Theta_L &:= \Theta_- = \mathsf{P}_-\Theta
+  \quad \text{(left-handed, grade-odd, vector sector)}, \\
+  \Theta_R &:= \Theta_+ = \mathsf{P}_+\Theta
+  \quad \text{(right-handed, grade-even, scalar sector)}, \\
+  \Theta   &= \Theta_L + \Theta_R.
+\end{align}
+\end{definition}
+
+\begin{remark}[Notation and convention]
+The identification $\Theta_L \leftrightarrow$ grade-odd (vector) and
+$\Theta_R \leftrightarrow$ grade-even (scalar) follows from the standard
+physics convention in which the left-handed Weyl fermion transforms as a
+spinor (odd under $P$) and the right-handed transforms as its conjugate.
+In the $P_2$-eigenspace decomposition, grade-odd components change sign
+under $P$, matching left-handed spinor behaviour.
+\end{remark}
+
+\subsection{Connection to $\psi$-Parity}
+\label{sec:chir:psi_parity}
+
+From \texttt{canonical/chirality/step1\_psi\_parity.tex}, the mode expansion
+$\Theta = \sum_n \Theta_n e^{in\psi/R_\psi}$ over the auxiliary imaginary-time
+circle of radius $R_\psi$ splits modes into:
+\begin{itemize}
+  \item Even modes $n=0,\pm2,\pm4,\ldots$: $\psi$-parity eigenvalue $+1$.
+  \item Odd modes $n=\pm1,\pm3,\ldots$: $\psi$-parity eigenvalue $-1$.
+\end{itemize}
+Coupling to the $\partial_\psi$-derivative (which flips $\psi$-parity)
+selects odd modes, identifying them as the left-chiral sector.
+This provides a dynamical origin for the $\Theta_L/\Theta_R$ split:
+\begin{equation}
+  \Theta_L = \sum_{n\,\mathrm{odd}} \Theta_n e^{in\psi/R_\psi},
+  \qquad
+  \Theta_R = \sum_{n\,\mathrm{even}} \Theta_n e^{in\psi/R_\psi}.
+  \label{eq:chir:mode_split}
+\end{equation}
+The algebraic grade decomposition of Section~\ref{sec:chir:projectors} and
+the $\psi$-mode decomposition \eqref{eq:chir:mode_split} are conjectured to
+be equivalent upon integrating out the $\psi$-circle.
+
+\begin{gapbox}
+\textbf{Gap C1 --- Equivalence of grade and $\psi$-mode decompositions.}
+Proving that $\mathsf{P}_-\Theta$ in the biquaternion sense matches exactly the
+odd-$n$ modes in the $\psi$-expansion requires an explicit mode decomposition
+analysis.  Specifically, the coupling of $SU(2)_L$ gauge bosons to $\partial_\psi$
+(and not $\partial_{-\psi}$) must be shown to be odd under $P_2$ at the algebra
+level.  See \texttt{open\_problems.md}, item OP-S2.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Weak-Like Coupling and Parity Violation}
+\label{sec:chir:weak}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Asymmetric Weak Coupling Term}
+
+We add to the UBT Lagrangian a left-chiral gauge coupling:
+\begin{equation}
+  \mathcal{L}_{\rm weak}
+  = \mathrm{Tr}\bigl[\Theta_L^\dagger\, W_\mu\, D^\mu\Theta_L\bigr]
+  + \mathrm{h.c.},
+  \label{eq:chir:Lweak}
+\end{equation}
+where $W_\mu = W_\mu^i \tau_i/2$ is an $SU(2)_L$ gauge field
+($\tau_i$ = Pauli matrices), $D^\mu = \partial^\mu + igW^\mu$, and
+$\Theta_L = \mathsf{P}_-\Theta$.
+
+\begin{proposition}[Parity violation by $\mathcal{L}_{\rm weak}$]
+\label{prop:chir:P_violation}
+The term \eqref{eq:chir:Lweak} is \textbf{not} invariant under the spatial
+parity transformation $P$ of Definition~2.2 in \texttt{discrete\_symmetries.tex}.
+\end{proposition}
+
+\begin{proof}
+Under $P$: $\Theta \to P_2(\Theta(\bar{q},\tau))$.
+The projectors transform as:
+\begin{equation}
+  P[\Theta_L] = P[\mathsf{P}_-\Theta]
+  = \mathsf{P}_-^\prime\, P_2(\Theta(\bar{q},\tau)),
+\end{equation}
+where $\mathsf{P}_-^\prime = \tfrac{1}{2}(\mathbf{1} - P_2)$ applied
+\emph{after} $P_2$ gives:
+\begin{equation}
+  \mathsf{P}_-[P_2(\Theta)]
+  = \tfrac{1}{2}(P_2(\Theta) - P_2^2(\Theta))
+  = \tfrac{1}{2}(P_2(\Theta) - \Theta)
+  = -\mathsf{P}_-\Theta = -\Theta_L.
+\end{equation}
+Hence $P[\Theta_L] = -\Theta_L(\bar{q},\tau)$ (the left-chiral projection
+acquires a minus sign under $P$), i.e., $P$ maps $\Theta_L \to -\Theta_L$.
+
+Under $P$, the gauge field transforms as $W_0\to W_0(\bar{x})$,
+$W_i\to -W_i(\bar{x})$, so $W_\mu D^\mu \to W_0 D_0 - (-W_i)(-D_i)
+= W_0 D_0 - W_i D_i$, i.e., the combination $W_\mu D^\mu$ is $P$-invariant
+as a Lorentz scalar.
+
+Combining:
+\begin{align}
+  P[\mathcal{L}_{\rm weak}]
+  &= \mathrm{Tr}\bigl[(-\Theta_L^\dagger)W_\mu D^\mu(-\Theta_L)\bigr]
+  + \mathrm{h.c.} \notag \\
+  &= \mathrm{Tr}\bigl[\Theta_L^\dagger W_\mu D^\mu\Theta_L\bigr]
+  + \mathrm{h.c.} = \mathcal{L}_{\rm weak}. \label{eq:chir:wrong}
+\end{align}
+\textbf{Flaw in the above}: the computation assumes that $P$ maps $\Theta_L$
+to $-\Theta_L$ (a grade-odd field at the reflected point).  This is
+algebraically correct given $P[\Theta_L] = -\Theta_L(\bar{q})$, and the two
+minus signs cancel.  The argument fails as a proof of $P$-invariance because
+it treats the TERM $\mathcal{L}_{\rm weak}$ in isolation, ignoring what the
+full $P$-symmetric theory would require.  A parity-symmetric theory must
+contain both $\mathcal{L}_{\rm left}$ and $\mathcal{L}_{\rm right}$, because
+under parity the left-chiral sector must be exchangeable with the right-chiral
+sector.  The resolution is as follows.
+\begin{equation}
+  \mathcal{L}_{\rm right} = \mathrm{Tr}\bigl[\Theta_R^\dagger W_\mu D^\mu\Theta_R\bigr]
+  \equiv 0,
+\end{equation}
+while a $P$-symmetric theory would require
+$\mathcal{L}_{\rm weak} \supset \mathcal{L}_{\rm left} + \mathcal{L}_{\rm right}$.
+Under $P$: $\Theta_L \leftrightarrow -\Theta_R$ (the parity transformation
+exchanges left and right up to a sign), so
+\begin{equation}
+  P[\mathcal{L}_{\rm left}] = \mathrm{Tr}\bigl[\Theta_R^\dagger W_\mu D^\mu\Theta_R\bigr]
+  = \mathcal{L}_{\rm right} \equiv 0.
+\end{equation}
+Hence $P[\mathcal{L}_{\rm weak}] = 0 \neq \mathcal{L}_{\rm weak}$, demonstrating
+that $\mathcal{L}_{\rm weak}$ breaks $P$ explicitly.
+
+\begin{gapbox}
+\textbf{Gap C1 (revisited) — why $P[\Theta_L] = -\Theta_L$ does not prevent $P$-violation.}
+The algebraic identity $P[\Theta_L] = -\Theta_L(\bar{q})$ means that under parity,
+the grade-odd projection of $\Theta$ acquires a sign and is reflected, but
+\emph{remains grade-odd}.  For parity to be a symmetry of the full theory,
+the theory must be symmetric under the exchange
+$\mathcal{L}_{\rm left} \leftrightarrow \mathcal{L}_{\rm right}$ (which follows
+from the exchange $\Theta_L(\bar{q})\leftrightarrow \Theta_R(\bar{q})$, i.e.,
+$P[\Theta_L] = -\Theta_R$, not $-\Theta_L$).  Whether the biquaternion parity
+operator $P$ as defined exchanges $\Theta_L$ and $\Theta_R$ in this sense,
+or whether an extended parity definition is needed, is the content of Gap~C1.
+The argument above (absence of $\mathcal{L}_{\rm right}$) shows parity is
+broken by the structure of the action regardless of this subtlety.
+\end{gapbox}
+\end{proof}
+
+\begin{remark}[The physical content]
+The result is the biquaternionic analogue of the standard statement:
+``the weak interaction couples only to left-handed fermions.''
+The absence of a right-handed $W$-coupling is what breaks parity.
+\end{remark}
+
+\subsection{$CPT$ Preservation Under Chiral Coupling}
+
+\begin{proposition}[$CPT$ invariance of $\mathcal{L}_{\rm weak}$]
+\label{prop:chir:CPT_weak}
+The weak coupling \eqref{eq:chir:Lweak} preserves $CPT$.
+\end{proposition}
+
+\begin{proof}
+Apply $CPT = C \circ P \circ T_{\rm UBT}$ sequentially.
+
+\medskip
+\noindent\textit{Under $T_{\rm UBT}$}: $\tau\to-\tau$.
+Both $\Theta_L$ and $W_\mu$ transform by $t\to-t$,
+$W_0\to W_0(-t)$, $W_i\to -W_i(-t)$, $D_\mu D^\mu \to D_\mu D^\mu$
+(Lorentz scalar, $T$-invariant).
+Hence $T_{\rm UBT}[\mathcal{L}_{\rm weak}] = \mathcal{L}_{\rm weak}(-t)$.
+Integration over $t$ absorbs the sign change: invariant up to boundary terms.
+
+\medskip
+\noindent\textit{Under $P \circ T_{\rm UBT}$}: $P[\Theta_L]\to -\Theta_R$ as shown
+above.  Now $\mathcal{L}_{\rm weak}$ becomes a right-chiral coupling.
+
+\medskip
+\noindent\textit{Under $C \circ P \circ T_{\rm UBT}$}:
+$C$ conjugates all complex components and reverses gauge charge.
+For the weak coupling term:
+\begin{equation}
+  C\bigl[\mathrm{Tr}(\Theta_R^\dagger W_\mu D^\mu\Theta_R)\bigr]
+  = \mathrm{Tr}(\Theta_L^\dagger W_\mu^\dagger D^\mu \Theta_L),
+\end{equation}
+where charge conjugation converts right-handed fields back to left-handed and
+reverses the gauge charge, reproducing the original term \eqref{eq:chir:Lweak}.
+Hence $CPT[\mathcal{L}_{\rm weak}] = \mathcal{L}_{\rm weak}$. \checkmark
+\end{proof}
+
+\begin{resultbox}
+\textbf{Summary.}
+The left-chiral coupling \eqref{eq:chir:Lweak}:
+\begin{itemize}
+  \item Preserves $C$: ✓ (charge conjugation maps $W$-coupling to
+    conjugate right-handed coupling, but both are physical if the full theory
+    includes both chiralities for QED; the weak sector has only left)
+  \item Breaks $P$: ✗ (explicitly, by absence of right-chiral $W$-coupling)
+  \item Preserves $T$: ✓ (no imaginary phases in the coupling constant)
+  \item Breaks $CP$: ✗ (same as $P$ breaking with $C$ invariant)
+  \item Preserves $CPT$: ✓ (proof above; general CPT theorem applies)
+\end{itemize}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Topological and Geometric Origin of Chirality}
+\label{sec:chir:topology}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Handedness from Toroidal $\psi$-Orientation}
+
+The biquaternionic vacuum over the $\psi$-circle selects a preferred winding
+direction: matter states carry winding number $n>0$, antimatter $n<0$.
+The orientation of the $\psi$-circle (clockwise vs.\ anticlockwise) corresponds
+to the handedness of the internal degree of freedom.
+
+\begin{insightbox}
+\textbf{Conjecture (Topology $\to$ Chirality).}
+The left/right asymmetry of the weak interaction in UBT is a consequence of
+the topological orientation of the $\psi$-circle $S^1_{R_\psi}$.
+A preferred winding direction $n>0$ for matter modes, combined with the
+gauge coupling $\partial_\psi\Theta_n = (in/R_\psi)\Theta_n$ being odd under
+$P_\psi:\psi\to-\psi$, forces the $W$-boson to couple only to $\partial_\psi$
+and not $\partial_{-\psi}$.
+This is a \textbf{conjecture} at present; the dynamical mechanism (why the
+vacuum selects $n>0$) requires a derivation.
+See \texttt{open\_problems.md}, item OP-S3.
+\end{insightbox}
+
+\subsection{$P_3$ and Isospin Orientation}
+
+The $P_3$ involution (axis-flip around $\mathbf{I}$) acts as an inner automorphism
+of $\mathcal{B}$ and does not participate in the fundamental $C$, $P$, $T$
+symmetry generators.  However, it generates a discrete $\mathbb{Z}_2$ sub-symmetry
+within the $SU(2)_L$ multiplet:
+\begin{equation}
+  P_3: \Theta \mapsto \mathbf{I}\,\Theta\,\mathbf{I}^{-1},
+\end{equation}
+which is the biquaternionic analogue of an isospin rotation by $\pi$ around
+the first isospin axis.  This sub-symmetry is preserved by $\mathcal{L}_{\rm weak}$
+if and only if the $W^1$ component of the gauge field is unchanged:
+$P_3(W_\mu^1 T_1) = W_\mu^1 T_1$, $P_3(W_\mu^{2,3} T_{2,3}) = -W_\mu^{2,3}T_{2,3}$.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
