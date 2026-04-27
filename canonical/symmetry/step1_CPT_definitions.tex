@@ -1,0 +1,474 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Discrete Symmetry Formalization, Step 1:\\
+                 Definitions of C, P, T, and CPT\\
+                 in Biquaternion Field Theory}}
+  \author{David Jaro\v{s}}
+  \date{2026-04-25}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We define the discrete symmetry transformations---charge conjugation $C$,
+  spatial parity $P$, time reversal $T$, and their composition $CPT$---within
+  the biquaternion algebra $\mathcal{B} = \mathbb{C} \otimes \mathbb{H}$ and
+  for the fundamental UBT field $\Theta(q,\tau)$ over complex time
+  $\tau = t + i\psi$.
+  Each transformation is expressed as a composition of the three canonical
+  involutions $P_1$ (complex conjugation), $P_2$ (quaternion conjugation), and
+  $P_3$ (axis-flip) already established in the algebra, together with a
+  corresponding action on the spacetime and complex-time arguments.
+  A canonical choice of time-reversal convention $T_{\mathrm{UBT}}$ is stated
+  and motivated.  The relation to $\psi$-parity $P_\psi$ and to the
+  $SU(2)_L$ chirality derivation (\texttt{chirality/step1\_psi\_parity.tex})
+  is clarified.
+  \end{abstract}
+\fi
+
+\section{Discrete Symmetry Transformations: Overview}
+\label{sec:sym:overview}
+
+\subsection{Starting Point: Algebra and Field}
+
+The biquaternion algebra is
+\begin{equation}
+  \mathcal{B} = \mathbb{C} \otimes \mathbb{H},
+  \label{eq:sym:B}
+\end{equation}
+with ordered basis
+$\{1, \mathbf{I}, \mathbf{J}, \mathbf{K}, i, i\mathbf{I}, i\mathbf{J},
+i\mathbf{K}\}$,
+where $i \in \mathbb{C}$ is the central imaginary unit and
+$\mathbf{I}, \mathbf{J}, \mathbf{K} \in \mathbb{H}$ are quaternion units.
+Three commuting $\mathbb{R}$-linear involutions $P_1, P_2, P_3$ on
+$\mathcal{B}$ are defined in
+\texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex}:
+\begin{align}
+  P_1: &\quad i \mapsto -i,\quad \mathbf{I},\mathbf{J},\mathbf{K}
+        \mapsto \mathbf{I},\mathbf{J},\mathbf{K}
+        \quad \text{(complex conjugation)}, \label{eq:sym:P1} \\
+  P_2: &\quad \mathbf{I},\mathbf{J},\mathbf{K} \mapsto
+        -\mathbf{I},-\mathbf{J},-\mathbf{K},\quad i \mapsto i
+        \quad \text{(quaternion conjugation)}, \label{eq:sym:P2} \\
+  P_3: &\quad \mathbf{J},\mathbf{K} \mapsto -\mathbf{J},-\mathbf{K},
+        \quad \mathbf{I},i \mapsto \mathbf{I},i
+        \quad \text{(axis-flip around $\mathbf{I}$)}. \label{eq:sym:P3}
+\end{align}
+
+The fundamental field is $\Theta(q,\tau) \in \mathcal{B}$, where:
+\begin{itemize}
+  \item $q = q^0 + q^1\mathbf{I} + q^2\mathbf{J} + q^3\mathbf{K} \in \mathcal{B}$
+    is the biquaternion coordinate encoding spacetime position;
+  \item $\tau = t + i\psi \in \mathbb{C}$ is the complex time parameter,
+    $t \in \mathbb{R}$ (real time), $\psi \in \mathbb{R}$ (imaginary time phase).
+\end{itemize}
+
+We write the spatial vector part of $q$ as
+$\mathbf{q} := q^1\mathbf{I} + q^2\mathbf{J} + q^3\mathbf{K}$, so that
+$q = q^0 + \mathbf{q}$ and the quaternion conjugate is
+$\bar{q} = q^0 - \mathbf{q}$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Charge Conjugation $C$}
+\label{sec:sym:C}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition}
+
+\begin{definition}[Charge Conjugation $C$]
+\label{def:sym:C}
+Charge conjugation $C$ acts on the field by complex conjugation of all
+biquaternion components:
+\begin{equation}
+  C[\Theta](q,\tau) := P_1\!\bigl(\Theta(q,\tau)\bigr)
+                     = \overline{\Theta(q,\tau)}^{\,\mathbb{C}},
+  \label{eq:sym:C_field}
+\end{equation}
+where $P_1$ is the complex-conjugation involution \eqref{eq:sym:P1}.
+Explicitly, if $\Theta = \sum_a \Theta_a e_a$ with
+$\Theta_a \in \mathbb{C}$ and
+$e_a \in \{1, \mathbf{I}, \mathbf{J}, \mathbf{K}\}$, then
+\begin{equation}
+  C[\Theta] = \sum_a \Theta_a^* e_a.
+  \label{eq:sym:C_explicit}
+\end{equation}
+The complex-time parameter $\tau = t + i\psi$ transforms as
+\begin{equation}
+  C: \tau \mapsto \tau^* = t - i\psi.
+  \label{eq:sym:C_tau}
+\end{equation}
+For gauge fields $A_\mu^a$ (valued in the Lie algebra), $C$ acts as
+\begin{equation}
+  C: A_\mu^a T_a \mapsto -A_\mu^a T_a^*,
+  \label{eq:sym:C_gauge}
+\end{equation}
+which reverses the sign of all U(1) charges and conjugates the
+representation matrices $T_a$.
+\end{definition}
+
+\subsection{Identification with Algebra Involution}
+
+At the level of the algebra value, $C = P_1$.  The transformation of the
+complex-time argument $\tau \to \tau^*$ is a direct consequence of
+$P_1$ acting on the imaginary unit $i \in \mathbb{C}$: since $\tau$ is
+constructed from $i$, charge conjugation maps $\tau \to t - i\psi$.
+
+\begin{remark}[Open question: internal gauge phase]
+\label{rem:sym:C_gauge_phase}
+Whether $C$ is identified purely with $P_1$ (complex conjugation of the
+scalar complex factor) or must additionally include a non-trivial action on
+internal U(1) phases carried by $\Theta$ depends on the detailed
+representation.
+For Abelian U(1), $C$ is uniquely $P_1$ composed with $A_\mu \to -A_\mu$.
+For non-Abelian gauge fields, the action on $T_a$ must be specified by
+the relevant group representation.  The definition above is canonical for
+the U(1) and U(1)$_Y$ sectors.
+\end{remark}
+
+\subsection{Relation to $\psi$-Circle Orientation}
+
+From \texttt{chirality/step1\_psi\_parity.tex}, the $\psi$-parity operator
+$P_\psi: \psi \to -\psi$ sends winding number $n \to -n$, thereby exchanging
+matter ($n > 0$) and antimatter ($n < 0$) sectors.
+Since $C$ maps $\tau \to \tau^* = t - i\psi$, it acts as
+$\psi \to -\psi$ on the imaginary time argument:
+\begin{equation}
+  \boxed{C \supseteq P_\psi
+  \text{ (charge conjugation includes the $\psi$-parity of complex time)}.}
+  \label{eq:sym:C_Ppsi}
+\end{equation}
+This confirms that the $\psi$-circle orientation identified in the chirality
+derivation is a consequence of $C$-symmetry acting on complex time.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Spatial Parity $P$}
+\label{sec:sym:P}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition}
+
+\begin{definition}[Spatial Parity $P$]
+\label{def:sym:P}
+Spatial parity $P$ acts by flipping all spatial directions while
+leaving time unchanged:
+\begin{equation}
+  P[\Theta](q,\tau)
+  := P_2\!\bigl(\Theta(\bar{q},\tau)\bigr),
+  \label{eq:sym:P_field}
+\end{equation}
+where $\bar{q} = q^0 - \mathbf{q}$ is the quaternion conjugate of the
+coordinate (flipping the spatial vector part), and $P_2$ is the quaternion
+conjugation involution \eqref{eq:sym:P2} acting on the algebra value
+of $\Theta$.
+
+In component notation, if
+$q = q^0 + q^i \mathbf{e}_i$ (with $\mathbf{e}_i \in \{\mathbf{I},
+\mathbf{J}, \mathbf{K}\}$) encodes $(t, x^1, x^2, x^3)$, then
+$\bar{q}$ encodes $(t, -x^1, -x^2, -x^3)$, i.e.,
+\begin{equation}
+  P: (t, x^1, x^2, x^3) \mapsto (t, -x^1, -x^2, -x^3).
+  \label{eq:sym:P_spacetime}
+\end{equation}
+The complex-time parameter is parity-even:
+\begin{equation}
+  P: \tau = t + i\psi \mapsto \tau.
+  \label{eq:sym:P_tau}
+\end{equation}
+\end{definition}
+
+\subsection{Action on Gauge Fields}
+
+Under $P$, spatial components of gauge fields (vectors) pick up a sign:
+\begin{equation}
+  P: A_0(x) \mapsto A_0(\bar{x}),
+  \qquad
+  P: A_i(x) \mapsto -A_i(\bar{x}),
+  \label{eq:sym:P_gauge}
+\end{equation}
+while field-strength components transform as:
+\begin{equation}
+  P: F_{0i}(x) \mapsto -F_{0i}(\bar{x}),
+  \qquad
+  P: F_{ij}(x) \mapsto F_{ij}(\bar{x}).
+  \label{eq:sym:P_Fmunu}
+\end{equation}
+Here $\bar{x} = (t, -\mathbf{x})$.
+
+\subsection{Left- and Right-Handed Decomposition}
+
+The involution $P$ separates left-handed and right-handed biquaternionic
+components.  As established in
+\texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex}, the $P_2$-eigenspaces
+are:
+\begin{align}
+  V_+ &= \mathrm{span}_\mathbb{C}\{1\}
+        \quad (P_2\text{-eigenvalue }+1,\text{ scalar/even sector}), \\
+  V_- &= \mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}
+        \quad (P_2\text{-eigenvalue }-1,\text{ vector/odd sector}).
+\end{align}
+The projections
+$\Theta_\pm = \tfrac{1}{2}(1 \pm P_2)\Theta$
+correspond to parity-even ($\Theta_+$, right-handed)
+and parity-odd ($\Theta_-$, left-handed) components.
+This is the origin of chirality asymmetry: the weak interaction couples
+exclusively to $\Theta_-$ (see \texttt{chirality/step1\_psi\_parity.tex}).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Time Reversal $T$}
+\label{sec:sym:T}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Three Candidate Definitions}
+
+In UBT, complex time $\tau = t + i\psi$ introduces an ambiguity in the
+definition of time reversal that does not appear in standard QFT.
+Three candidate transformations of $\tau$ arise naturally:
+
+\begin{definition}[Time Reversal Variants]
+\label{def:sym:T_variants}
+\begin{align}
+  T_1: &\quad \tau \mapsto -t + i\psi
+        \quad \text{(real part reversed, imaginary part preserved)},
+        \label{eq:sym:T1} \\
+  T_2: &\quad \tau \mapsto -\tau = -t - i\psi
+        \quad \text{(full complex negation)},
+        \label{eq:sym:T2} \\
+  T_3: &\quad \tau \mapsto -\tau^* = -t + i\psi
+        \quad \text{(complex conjugate then negate $=$ antiunitary on $\tau$)}.
+        \label{eq:sym:T3}
+\end{align}
+Note that $T_3$ coincides with $T_1$ as a map on $\tau$.
+They differ when acting on the field value: $T_3$ additionally complex-conjugates
+$\Theta$ (antiunitary part), while $T_1$ does not.
+\end{definition}
+
+\begin{remark}
+$T_3$ is the antiunitary time reversal in the sense of Wigner:
+$T_3[\Theta](q,\tau) = P_1(\Theta(q, -\tau^*))$,
+i.e., $t \to -t$ with $\psi$ unchanged, combined with complex conjugation of
+the field value.  This is the standard physics convention for antiunitary $T$.
+\end{remark}
+
+\subsection{Canonical UBT Convention}
+
+\begin{definition}[Canonical Time Reversal $T_{\mathrm{UBT}}$]
+\label{def:sym:T_UBT}
+The canonical UBT time reversal is chosen to be $T_2$:
+\begin{equation}
+  T_{\mathrm{UBT}}[\Theta](q,\tau)
+  := \Theta(q, -\tau)
+  = \Theta(q, -t - i\psi).
+  \label{eq:sym:T_UBT}
+\end{equation}
+This is the \emph{full complex time negation}: both the real time $t$ and the
+imaginary time $\psi$ reverse sign simultaneously.
+\end{definition}
+
+\paragraph{Motivation for $T_2$.}
+\begin{enumerate}
+  \item \textbf{Complex-scalar consistency.}
+    The biquaternion framework treats $\tau \in \mathbb{C}$ as a single
+    complex entity.  The most natural negation on $\mathbb{C}$ that reverses
+    the time direction is $\tau \to -\tau$, preserving the complex-linear
+    structure.
+  \item \textbf{CPT structure.}
+    Under $T_2$, the composition $C \circ P \circ T_2$ acts as:
+    $(q,\tau) \to (\bar{q}, -\tau)$ with
+    $\Theta \to P_1(P_2(\Theta(q, -\tau)))$.
+    This reduces to the standard $CPT$ theorem in the real-time limit
+    $\psi \to 0$ (see Section~\ref{sec:sym:CPT}).
+  \item \textbf{Consistency with three-generation structure.}
+    The mode expansion $\Theta = \sum_n \Theta_n e^{in\psi/R_\psi}$ under
+    $T_2$ maps $e^{in\psi} \to e^{-in\psi}$, i.e., $n \to -n$.
+    Combined with $C$ (which already sends $\psi \to -\psi$), the combined
+    $CT_2$ acts as identity on the $\psi$-winding structure, consistent with
+    the matter/antimatter interpretation.
+\end{enumerate}
+
+\subsection{Action on Gauge Fields under $T_{\mathrm{UBT}}$}
+
+Under real-time reversal $t \to -t$ (part of $T_2$):
+\begin{equation}
+  T_{\mathrm{UBT}}: A_0(t,\mathbf{x}) \mapsto A_0(-t,\mathbf{x}),
+  \quad
+  A_i(t,\mathbf{x}) \mapsto -A_i(-t,\mathbf{x}),
+  \label{eq:sym:T_gauge}
+\end{equation}
+(vector potential is time-odd for spatial components, time-even for the
+temporal component, in order to preserve $F_{\mu\nu}$ invariance).
+The field strength transforms as:
+\begin{equation}
+  T_{\mathrm{UBT}}: F_{0i} \mapsto F_{0i},
+  \qquad
+  F_{ij} \mapsto F_{ij}.
+  \label{eq:sym:T_Fmunu}
+\end{equation}
+
+\begin{gapbox}
+\textbf{Gap S1 --- Antiunitary Structure of $T_{\mathrm{UBT}}$:}
+The canonical choice $T_2$ is defined here as a unitary transformation
+(no complex conjugation of field values).  In standard QFT, the physically
+correct time reversal is antiunitary.  Whether $T_{\mathrm{UBT}}$ should
+be composed with $P_1$ (making it $T_3$ in the biquaternion sense) depends on
+the inner product chosen for the Hilbert space of $\Theta$ modes.
+Resolving this requires specifying the canonical sesquilinear form on the
+space of $\Theta$ fields.  \textbf{Priority: MEDIUM.}
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{CPT Composition}
+\label{sec:sym:CPT}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition}
+
+\begin{definition}[$CPT$ Operator]
+\label{def:sym:CPT}
+The $CPT$ operator is defined as the composition:
+\begin{equation}
+  CPT := C \circ P \circ T_{\mathrm{UBT}}.
+  \label{eq:sym:CPT}
+\end{equation}
+Applied to the field:
+\begin{align}
+  CPT[\Theta](q,\tau)
+  &= C\bigl[P\bigl[T_2[\Theta]\bigr]\bigr](q,\tau) \notag \\
+  &= P_1\Bigl(P_2\bigl(\Theta(\bar{q}, -\tau)\bigr)\Bigr) \notag \\
+  &= \bigl(P_1 \circ P_2\bigr)\bigl(\Theta(\bar{q}, -\tau)\bigr).
+  \label{eq:sym:CPT_explicit}
+\end{align}
+\end{definition}
+
+\begin{lemma}[$CPT$ action on coordinates and algebra]
+\label{lem:sym:CPT_action}
+Under $CPT$:
+\begin{enumerate}
+  \item The spacetime coordinate transforms as $q \to \bar{q}$
+    (spatial inversion: $\mathbf{q} \to -\mathbf{q}$).
+  \item The complex time transforms as $\tau \to -\tau$
+    (full complex time reversal).
+  \item The field value transforms by $P_1 \circ P_2$:
+    \begin{equation}
+      (P_1 \circ P_2)(b) = -b
+      \quad \forall\, b \in \{\mathbf{I},\mathbf{J},\mathbf{K}\},
+      \qquad
+      (P_1 \circ P_2)(i) = -i,
+      \qquad
+      (P_1 \circ P_2)(1) = 1.
+      \label{eq:sym:CPT_algebra}
+    \end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Direct computation from \eqref{eq:sym:P1}--\eqref{eq:sym:P2}:
+$P_1$ sends $i \to -i$, $\mathbf{I},\mathbf{J},\mathbf{K} \to \mathbf{I},\mathbf{J},\mathbf{K}$;
+$P_2$ sends $\mathbf{I},\mathbf{J},\mathbf{K} \to -\mathbf{I},-\mathbf{J},-\mathbf{K}$;
+their composition gives $i \to -i$, $\mathbf{I},\mathbf{J},\mathbf{K} \to -\mathbf{I},-\mathbf{J},-\mathbf{K}$,
+confirming \eqref{eq:sym:CPT_algebra}.
+The coordinate and time transformations follow directly from
+Definitions~\ref{def:sym:P} and \ref{def:sym:T_UBT}.
+\end{proof}
+
+\subsection{Reduction to Standard $CPT$ in the Real Limit}
+
+\begin{proposition}[$CPT$ in the $\psi \to 0$ limit]
+\label{prop:sym:CPT_real_limit}
+In the real-time limit $\psi \to 0$ (i.e., $\tau \to t$),
+the $CPT$ transformation \eqref{eq:sym:CPT_explicit} reduces to:
+\begin{equation}
+  CPT[\Theta]\bigl((t,\mathbf{x}), t\bigr)
+  = (P_1 \circ P_2)\bigl(\Theta((-t,-\mathbf{x}), -t)\bigr),
+  \label{eq:sym:CPT_real}
+\end{equation}
+which corresponds to the standard $CPT$ transformation of QFT:
+inversion of all four spacetime coordinates $(t,\mathbf{x}) \to (-t,-\mathbf{x})$
+combined with charge conjugation (complex conjugation of the field value).
+\end{proposition}
+
+\begin{resultbox}
+\textbf{Summary of Step 1.}
+The three discrete symmetries are defined as:
+\begin{itemize}
+  \item $C = P_1$ on field values + $\tau \to \tau^*$: charge conjugation.
+  \item $P = P_2$ on field values + $q \to \bar{q}$: spatial parity.
+  \item $T_{\mathrm{UBT}}$: field unchanged + $\tau \to -\tau$:
+    full complex time reversal.
+  \item $CPT = (P_1 \circ P_2)$ on field values + $(q,\tau) \to (\bar{q},-\tau)$:
+    full discrete symmetry, reduces to standard $CPT$ when $\psi \to 0$.
+\end{itemize}
+All three transformations are expressed as compositions of the algebraic
+involutions $P_1, P_2$ already present in $\mathcal{B}$, confirming that the
+discrete symmetry structure is intrinsic to the biquaternion algebra.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary Table of Involution Identifications}
+\label{sec:sym:table}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{table}[h]
+\centering
+\caption{Correspondence between discrete symmetries and biquaternion involutions.}
+\label{tab:sym:involutions}
+\begin{tabular}{@{}lllll@{}}
+  \toprule
+  Symmetry & Algebra action & Coord.\ action & Time action & Involution \\
+  \midrule
+  $C$ (charge conj.) & $P_1$: $i \to -i$ & none & $\tau \to \tau^*$ & $P_1$ \\
+  $P$ (parity) & $P_2$: $\mathbf{I},\mathbf{J},\mathbf{K} \to -$ & $q \to \bar{q}$ & $\tau \to \tau$ & $P_2$ \\
+  $T$ (time rev.) & none & none & $\tau \to -\tau$ & (none) \\
+  $CP$ & $P_1 \circ P_2$ & $q \to \bar{q}$ & $\tau \to \tau^*$ & $P_1 \circ P_2$ \\
+  $CPT$ & $P_1 \circ P_2$ & $q \to \bar{q}$ & $\tau \to -\tau$ & $P_1 \circ P_2$ \\
+  $P_\psi$ (parity of $\psi$) & none & none & $\psi \to -\psi$ & (sub-op.\ of $C$) \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{insightbox}
+The involution $P_3$ (axis-flip around $\mathbf{I}$) does not appear as a
+fundamental discrete symmetry $C$, $P$, or $T$ in isolation.
+It acts as an inner automorphism of $\mathcal{B}$ and may represent a discrete
+isospin rotation or a sub-symmetry within the $SU(2)_L$ sector.
+Its role in symmetry breaking is discussed in
+\texttt{symmetry/step3\_breaking\_catalogue.tex}.
+\end{insightbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
