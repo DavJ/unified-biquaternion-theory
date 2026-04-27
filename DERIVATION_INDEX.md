@@ -6,12 +6,21 @@ This index tracks the derivation status of every major theoretical result in UBT
 Labels follow the Layer convention: [L0] = pure biquaternionic geometry, [L1] = one-loop,
 [L2] = higher-loop or non-perturbative.
 
-Status labels:
+**Result-level status labels** (used in individual table rows):
 - **Proven** — rigorous derivation exists; no free parameters
 - **Semi-empirical** — structural derivation with ≥1 unexplained parameter
 - **Conjecture** — proposed but not derived; hypotheses stated explicitly
 - **Open Hard Problem** — no known approach reproduces the result
 - **Dead End** — approach proved to fail; documented for completeness
+
+**Section-level confidence labels** (used in section headings to summarise the whole track):
+- **Strong** — all key results in the section are Proven or very close; no blocking gaps
+- **Strong Partial** — main chain proved; ≤1 significant open sub-gap
+- **Candidate** — supporting evidence and partial derivations; mechanism not fully closed
+- **Experimental** — hypothesis supported by numerical/observational tests; no algebraic proof
+- **Applied Experimental** — applied/computational result with empirical support; not a UBT first-principles prediction
+- **Open** — no zero-parameter derivation known for the central result; active problem
+- **Deprecated** — approach proved to fail or superseded; preserved for reference
 
 File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`):
 - ⭐ **CANONICAL** — single authoritative source; start here
@@ -30,7 +39,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 
 ---
 
-## Fine Structure Constant (α)
+## Fine Structure Constant (α) — **Section confidence: Open**
 
 > ⭐ **Canonical source**: `docs/STATUS_ALPHA.md` — complete derivation chain with explicit gap inventory.  
 > Topic index: `canonical/THEORY/topic_indexes/alpha_index.md`
@@ -55,7 +64,11 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 
 ---
 
-## Standard Model Gauge Group
+## Standard Model Gauge Group — **Section confidence: Strong Partial**
+
+> **SU(2)_L × U(1)_Y emergence: Strong Partial** — algebraically derived from ℂ⊗ℍ automorphisms.  
+> **SU(3)_c emergence: Candidate** — proved via two independent routes (involutions + superposition); confinement gap remains (Clay Millennium Problem).  
+> **Full SM gauge structure: Strong Partial** overall.
 
 > ⭐ **Canonical source for SU(3)**: `canonical/su3_derivation/su3_from_involutions.tex`  
 > Topic index: `canonical/THEORY/topic_indexes/SU3_index.md`
@@ -78,7 +91,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 
 ---
 
-## Three Fermion Generations
+## Three Fermion Generations — **Section confidence: Open** (lepton masses); **Candidate** (generation structure)
 
 > ⭐ **Canonical Hecke sources**: `docs/reports/hecke_lepton/` (numerical) + `research_tracks/hecke_bridge/motivation.tex` (theoretical)  
 > Topic index: `canonical/THEORY/topic_indexes/hecke_index.md`
@@ -125,7 +138,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## Prime Attractor Theorem
+## Prime Attractor Theorem — **Section confidence: Strong Partial**
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -138,7 +151,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## φ-Universe Parameter and h_μν Vacuum
+## φ-Universe Parameter and h_μν Vacuum — **Section confidence: Candidate**
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -154,7 +167,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## UBT–Twistor Bridge
+## UBT–Twistor Bridge — **Section confidence: Candidate**
 
 > ⭐ **Canonical source**: `research_tracks/THEORY_COMPARISONS/penrose_twistor/STATUS.md`
 > Hard rule: UBT is NOT twistor theory. Results below establish a compatible substructure
@@ -175,7 +188,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## Cross-Gap Consistency Checks
+## Cross-Gap Consistency Checks — **Section confidence: Open**
 
 | Check | Status | Notes |
 |-------|--------|-------|
@@ -185,7 +198,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## QM Emergence from Complex Time (Track: CORE)
+## QM Emergence from Complex Time (Track: CORE) — **Section confidence: Strong Partial**
 
 *Added 2026-03-06. Source verification: `canonical/qm_emergence/`*
 
@@ -216,7 +229,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## Fermionic Statistics
+## Fermionic Statistics — **Section confidence: Candidate**
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -225,7 +238,7 @@ Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
 
 ---
 
-## QED Reproducibility at φ = const (Track: CORE)
+## QED Reproducibility at φ = const (Track: CORE) — **Section confidence: Strong Partial**
 
 *Added 2026-03-06. Task: UBT\_v29\_task7\_qed\_phi\_const.*
 *Source: `canonical/qed_phi_const/` Script: `tools/verify_qed_phi_const.py`.*
@@ -264,7 +277,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ---
 
-## Chirality Derivation — SU(2)_L Selection (Track: CORE)
+## Chirality Derivation — SU(2)_L Selection (Track: CORE) — **Section confidence: Candidate**
 
 *Added 2026-03-06. Task: UBT_v29_task2_chirality. Source: `canonical/chirality/`*
 
@@ -285,7 +298,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ---
 
-## 8π Common Origin (Track: CORE)
+## 8π Common Origin (Track: CORE) — **Section confidence: Strong Partial**
 
 *Added 2026-03-06. Task: UBT_v29_task3_8pi. Source: `canonical/8pi_common_origin.tex`. Script: `tools/verify_8pi_connection.py`.*
 
@@ -299,7 +312,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ---
 
-## FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE)
+## FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE) — **Section confidence: Strong**
 
 *Added 2026-03-06. Task: UBT_v29_task1_fpe_equivalence. Source: `canonical/qm_emergence/step4_fpe_equivalence.tex`. Script: `tools/verify_fpe_equivalence.py`.*
 
@@ -319,7 +332,11 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 ---
 
-## GR Recovery Status (v48+, updated 2026-03-11)
+## GR Recovery Status (v48+, updated 2026-03-11) — **Section confidence: Strong Partial**
+
+> **Main chain (Θ→g→Γ→R→Einstein): Strong Partial** — Steps 1–5 proved [L1]; full off-shell closure on compact M⁴ is [Open L2].  
+> **Linearised GR, Schwarzschild, Regge-Wheeler: Strong Partial** — proved [L1].  
+> **Zerilli even-parity, global off-shell rank on compact M⁴: Open**.
 
 > ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `canonical/gr_closure/` chain  
 > Topic index: `canonical/THEORY/topic_indexes/GR_index.md`
@@ -368,7 +385,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Gravitational Physics
+## Gravitational Physics — **Section confidence: Strong Partial**
 
 > ⭐ **Sources**: `research_tracks/research/` — v53-gravity tasks  
 > Status updated 2026-03-14
@@ -398,7 +415,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Mirror Sector (Twin Prime Vacuum)
+## Mirror Sector (Twin Prime Vacuum) — **Section confidence: Candidate**
 
 > ⭐ **Canonical sources**: `research_tracks/mirror_sector/README.md` + `docs/reports/hecke_lepton/mirror_world_139.md`  
 > Topic index: `canonical/THEORY/topic_indexes/mirror_sector_index.md`
@@ -417,7 +434,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms)
+## Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms) — **Section confidence: Candidate**
 
 > ⭐ **Canonical sources**: `docs/reports/hecke_lepton/` + `research_tracks/hecke_bridge/motivation.tex`  
 > Topic index: `canonical/THEORY/topic_indexes/hecke_index.md`
@@ -432,7 +449,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Holography and de Sitter Structure
+## Holography and de Sitter Structure — **Section confidence: Candidate**
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|
@@ -448,7 +465,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Higgs and Yukawa Sector
+## Higgs and Yukawa Sector — **Section confidence: Candidate**
 
 > **Status (v62)**: Gap H1 — Hosotani investigation: gauge holonomy W_ψ^{gauge}=1 (trivial, Dead End for tree-level gauge Hosotani); gravitational holonomy W_ψ^{grav} potentially non-trivial (Motivated Conjecture [L2]); radiative Hosotani V(θ_W) open (N_eff count needed). Interaction term g(Θ†Θ)² allowed by canonical action but g is free parameter. Gap Y1 structure Proved [L1] (C_alg=1 from ℂ⊗ℍ algebra).
 > Source: `research_tracks/research/higgs_yukawa_scan.md`
@@ -469,7 +486,7 @@ and an emergent-metric construction strongly connected to Θ.
 
 ---
 
-## Layer 2 Coding Fingerprints (L2S and L2T)
+## Layer 2 Coding Fingerprints (L2S and L2T) — **L2S confidence: Experimental (Strong); L2T confidence: Experimental; Crypto/Applied coding branch: Applied Experimental**
 
 > ⭐ **Canonical L2S source**: `experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex`  
 > **Research-track L2T source**: `research_tracks/gray_transport_layer/`
@@ -486,3 +503,14 @@ Layer 2 is subdivided into **L2S** (state/storage) and **L2T** (transport/path).
 | L2T: Off-diagonal vs diagonal generator decomposition | **Formalized [Research Track]** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §4` | Off-diagonal generators (λ₁,λ₂,λ₄,λ₅,λ₆,λ₇) are color-changing (d_H=2 between one-hot states) → L2S; diagonal generators (λ₃,λ₈) are phase-preserving → L2T |
 | L2T: CMB path-fingerprint test | **[Research Track] — Proposed Test** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §5`; `experiments/forensic_fingerprint/tools/gray_path_symbol_test.py` | Input: a_lm phase symbols; metric: A_gray; null: shuffle or phase-randomized; output: p-value; p<0.01 = positive detection of L2T |
 | L2T: Gray code does not replace Hamming | **Constraint** | `research_tracks/gray_transport_layer/README.md` | Explicitly stated non-claim; L2S remains canonical; L2T is research-track only |
+
+### Applied Coding Branch (Crypto / Information Probes)
+
+> **Section confidence: Applied Experimental**  
+> These results use classical error-correcting codes and information-theoretic tools as *observational probes* of UBT Layer 2 predictions.  They are not first-principles UBT derivations.
+
+| Result | Confidence | File | Notes |
+|--------|-----------|------|-------|
+| Reed-Solomon RS(255,201) as MDS-optimal probe | **Applied Experimental** | `research_tracks/information_probes/RS_OPTIMAL_LENS.md` | RS(255,201) is MDS-optimal for its parameters; not unique; observable predictions probe-dependent |
+| Channel stability scan (137/139) | **Applied Experimental** | `research_tracks/ubt-channel-lab/` | Statistical scan of channel selection using S1–S4 criteria; falsifiability framework in place; results not yet final |
+| SHA-256 data integrity in CMB analysis | **Applied Experimental** | `experiments/forensic_fingerprint/` | Cryptographic hashes for data provenance; standard scientific practice; not a UBT prediction |

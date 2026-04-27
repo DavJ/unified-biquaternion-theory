@@ -2,6 +2,9 @@
 
 © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 
+**Overall confidence: Strong Partial** — CPT invariance and parity violation are substantially
+derived; CP-violation phase terms and full non-perturbative T-asymmetry remain at Candidate level.
+
 This directory contains the canonical discrete-symmetry formalization of
 Unified Biquaternion Theory (UBT).  It covers charge conjugation $C$, spatial
 parity $P$, time reversal $T$, and their composites $CP$, $CPT$, as well as
@@ -12,18 +15,20 @@ effective symmetry breaking.
 
 ## File Index
 
-| File | Content | Status |
-|------|---------|--------|
-| `discrete_symmetries.tex` | Formal involutions on $\mathcal{B}$; canonical definitions of $C$, $P$, $T$, $CPT$; operator table | Canonical |
-| `cpt_audit_table.md` | Term-by-term $C/P/T/CP/CPT$ audit of the UBT action | Canonical |
-| `chirality_and_parity_breaking.tex` | Left/right field decomposition; parity-violating weak coupling; conditional derivation that $P$ is broken (assuming no-$SU(2)_R$ in $S[\Theta]$) while $CPT$ is preserved | Canonical |
-| `cp_phase_sector.tex` | CP-violating phase terms: $\theta_{\rm eff}F\tilde F$, complex Yukawa, vacuum misalignment | Candidate/Conjecture |
-| `effective_vs_fundamental_breaking.tex` | Diffusion sector as effective coarse-grained dynamics; two-layer microscopic/macroscopic interpretation | Canonical |
+Confidence labels: **Strong** | **Strong Partial** | **Candidate** | **Experimental** | **Open** | **Deprecated**
+
+| File | Content | Confidence |
+|------|---------|-----------|
+| `discrete_symmetries.tex` | Formal involutions on $\mathcal{B}$; canonical definitions of $C$, $P$, $T$, $CPT$; operator table | **Strong** |
+| `cpt_audit_table.md` | Term-by-term $C/P/T/CP/CPT$ audit of the UBT action | **Strong** |
+| `chirality_and_parity_breaking.tex` | Left/right field decomposition; parity-violating weak coupling; conditional derivation that $P$ is broken (assuming no-$SU(2)_R$ in $S[\Theta]$) while $CPT$ is preserved | **Strong Partial** |
+| `cp_phase_sector.tex` | CP-violating phase terms: $\theta_{\rm eff}F\tilde F$, complex Yukawa, vacuum misalignment | **Candidate** |
+| `effective_vs_fundamental_breaking.tex` | Diffusion sector as effective coarse-grained dynamics; two-layer microscopic/macroscopic interpretation | **Strong** |
 | `open_problems.md` | Honest list of unresolved discrete-symmetry problems in UBT | Reference |
-| `examples_matrix_representation.tex` | $2\times2$ complex and $4\times4$ real matrix realizations of $C$, $P$, $T$ operators | Canonical |
-| `step1_CPT_definitions.tex` | Earlier detailed derivation of $C$, $P$, $T_{\rm UBT}$, $CPT$ | Historical/Superseded by `discrete_symmetries.tex` |
-| `step2_action_analysis.tex` | Sector-by-sector $C/P/T$ analysis of the UBT action | Historical/Reference |
-| `step3_breaking_catalogue.tex` | Symmetry breaking catalogue; physical vs.\ effective/dissipative | Historical/Reference |
+| `examples_matrix_representation.tex` | $2\times2$ complex and $4\times4$ real matrix realizations of $C$, $P$, $T$ operators | **Strong** |
+| `step1_CPT_definitions.tex` | Earlier detailed derivation of $C$, $P$, $T_{\rm UBT}$, $CPT$ | **Deprecated** (superseded by `discrete_symmetries.tex`) |
+| `step2_action_analysis.tex` | Sector-by-sector $C/P/T$ analysis of the UBT action | Reference |
+| `step3_breaking_catalogue.tex` | Symmetry breaking catalogue; physical vs.\ effective/dissipative | Reference |
 
 ---
 
