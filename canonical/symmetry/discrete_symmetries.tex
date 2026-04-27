@@ -321,25 +321,38 @@ Explicitly:
   = (P_1\circ P_2)\bigl(\Theta(\bar{q},-\tau)\bigr).
   \label{eq:ds:CPT_explicit}
 \end{equation}
-In the real-time limit $\psi\to0$:
-$(q,\tau)\to(-q^0-\mathbf{q},-t) = $ full four-vector inversion,
-reproducing the standard QFT $CPT$ transformation.
+In the real-time limit $\psi\to0$, with the embedding $q^0 = t$:
+$P$ sends $q\to\bar{q}$, flipping only the spatial part
+($\mathbf{q}\to-\mathbf{q}$, $q^0$ unchanged);
+$T_{\mathrm{UBT}}$ sends $\tau\to-\tau$, which at $\psi=0$ gives $t\to-t$,
+hence $q^0\to-q^0$.
+Together, $CPT$ maps $(q^0,\mathbf{q})\to(-q^0,-\mathbf{q})$: full
+four-vector inversion arising from both $P$ and $T$ acting separately.
+This is CPT-compatible in the real-time limit, pending the antiunitary-$T$
+inner-product resolution.
 \end{definition}
 
 \begin{proposition}[$CPT$ reduces to standard QFT in the $\psi\to0$ limit]
 \label{prop:ds:CPT_limit}
-Setting $\psi=0$ (hence $\tau=t$, $\tau^*=t$, $-\tau=-t$):
+Setting $\psi=0$ (hence $\tau=t$, $\tau^*=t$, $-\tau=-t$), and using
+the real-time embedding $q^0=t$:
 \begin{equation}
   CPT[\Theta]\bigl((q^0,\mathbf{q}),t\bigr)
-  = (P_1\circ P_2)\bigl(\Theta(q^0 - \mathbf{q}, -t)\bigr),
+  = (P_1\circ P_2)\bigl(\Theta(-q^0 - \mathbf{q}, -t)\bigr),
 \end{equation}
-which is the standard $CPT$ operation: inversion of all four spacetime
-coordinates combined with Hermitian conjugation of the internal algebra value.
+where $q^0\to-q^0$ comes from $T_{\mathrm{UBT}}$ (via $\tau\to-\tau$ with $q^0=t$)
+and $\mathbf{q}\to-\mathbf{q}$ comes from $P$ (via $q\to\bar{q}$).
+This is CPT-compatible in the real-time limit; full equivalence to the
+standard QFT CPT theorem is pending the antiunitary-$T$ inner-product
+resolution (Gap S1).
 \end{proposition}
 \begin{proof}
-At $\psi=0$: $\tau=-\tau$ becomes $t\to-t$; $q\to\bar{q}$ flips spatial
-components; $(P_1\circ P_2)$ conjugates the field value.
-This matches the standard CPT: $(x^\mu)\to(-x^\mu)$ with conjugation.
+At $\psi=0$: $\tau\to-\tau$ becomes $t\to-t$, so $q^0=t\to-t=-q^0$;
+$q\to\bar{q}$ flips spatial components $\mathbf{q}\to-\mathbf{q}$;
+$(P_1\circ P_2)$ conjugates the field value.
+The combined coordinate action is $(q^0,\mathbf{q})\to(-q^0,-\mathbf{q})$,
+matching $(x^\mu)\to(-x^\mu)$; note that $q\to\bar{q}$ alone inverts only
+the spatial part, not the time component.
 \end{proof}
 
 %──────────────────────────────────────────────────────────────────────────────
