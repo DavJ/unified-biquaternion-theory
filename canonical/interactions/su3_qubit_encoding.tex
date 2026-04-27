@@ -1,0 +1,488 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% SU(3) Gauge Connection — Three-Qubit Encoding
+% Version: 1.0
+% Date: 2026-04-27
+% Status: Canonical — equivalence proof at representation level
+% Author: Ing. David Jaroš
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{booktabs}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\H}{\mathbb{H}}
+  \newcommand{\Hcolor}{\mathcal{H}_{\mathrm{color}}}
+  \newcommand{\Hthreeq}{\mathcal{H}_{3q}}
+  \newcommand{\Pcolor}{P_{\mathrm{color}}}
+
+  \title{\textbf{SU(3) Gauge Connection: Three-Qubit Encoding}\\
+         \large Equivalence at the Level of Lie Algebra Representation
+         and Covariant Derivative}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-27}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We establish a precise equivalence between the standard UBT SU(3) gauge
+  connection $A_\mu = A_\mu^a \lambda_a$ and a three-qubit encoded gauge
+  connection $A_\mu^{3q} = A_\mu^a G_a$, where $G_a$ are the Gell-Mann
+  generators lifted to the one-hot (color) subspace of
+  $\Hthreeq = \C^2 \otimes \C^2 \otimes \C^2$.
+  The equivalence is representation-level: both descriptions carry the same
+  $\mathfrak{su}(3)$ Lie algebra and the same local gauge covariant derivative on
+  the color subspace $\Hcolor = \mathrm{span}\{|100\rangle, |010\rangle,
+  |001\rangle\}$.  The full three-qubit space contains an orthogonal leakage
+  sector $\Hcolor^\perp$, which must be constrained or interpreted separately.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup and Notation}
+\label{sec:su3qubit:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,
+  title=Status and scope]
+\textbf{Scope}: This file proves equivalence at the Lie algebra representation
+and covariant derivative level.  It does \emph{not} claim physical derivation of
+full QCD dynamics, confinement, anomaly cancellation, or the fermion
+representation content.
+
+\medskip
+\noindent\textbf{Canonical SU(3) source}: Theorems G.A--G.D in
+\texttt{canonical/interactions/sm\_gauge.tex}; the involution derivation
+in \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex}.
+
+\medskip
+\noindent\textbf{Three-qubit source}: Geometric analysis in
+\texttt{research\_tracks/triqubit\_su3\_geometry.md};
+one-hot embedding in
+\texttt{research\_tracks/THEORY\_COMPARISONS/su3\_qubit\_mapping/su3\_qubit\_core/mapping.py}.
+\end{tcolorbox}
+
+\paragraph{Conventions.}
+We follow the standard normalisation $\mathrm{Tr}[\lambda_a \lambda_b] =
+2\delta_{ab}$ for Gell-Mann matrices.  Indices $a,b,c \in \{1,\ldots,8\}$ label
+adjoint generators; $i,j \in \{1,2,3\}$ label the fundamental color triplet.
+The strong coupling is $g$ (or $g_s$ when disambiguation is needed).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Definitions}
+\label{sec:su3qubit:defs}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Three-qubit Hilbert space]
+\label{def:H3q}
+The \emph{three-qubit Hilbert space} is
+\[
+  \Hthreeq = \C^2 \otimes \C^2 \otimes \C^2 \cong \C^8,
+\]
+with computational basis $\{|q_1 q_2 q_3\rangle \mid q_i \in \{0,1\}\}$.
+\end{definition}
+
+\begin{definition}[Color subspace]
+\label{def:Hcolor}
+The \emph{color subspace} (one-hot sector) is
+\[
+  \Hcolor = \mathrm{span}\{|100\rangle,\, |010\rangle,\, |001\rangle\}
+  \subset \Hthreeq.
+\]
+The three basis states are identified with the three quark color charges:
+\begin{align*}
+  |100\rangle &\longleftrightarrow |r\rangle \quad \text{(red)}, \\
+  |010\rangle &\longleftrightarrow |g\rangle \quad \text{(green)}, \\
+  |001\rangle &\longleftrightarrow |b\rangle \quad \text{(blue)}.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Color projector]
+\label{def:Pcolor}
+The orthogonal projector onto $\Hcolor$ is
+\[
+  \Pcolor = |100\rangle\langle 100| + |010\rangle\langle 010|
+            + |001\rangle\langle 001| \;\in\; \mathrm{End}(\C^8).
+\]
+\end{definition}
+
+\begin{definition}[Encoded generators]
+\label{def:Ga}
+For each Gell-Mann matrix $\lambda_a$ ($a = 1,\ldots,8$) acting on $\C^3$, the
+\emph{encoded generator} $G_a \in \mathrm{End}(\C^8)$ is defined by
+\[
+  G_a = P\, \lambda_a\, P^\dagger,
+\]
+where $P: \C^3 \to \C^8$ is the isometric one-hot embedding
+\[
+  P = \begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \\
+                     1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}
+\]
+mapping $|r\rangle \mapsto |100\rangle$, $|g\rangle \mapsto |010\rangle$,
+$|b\rangle \mapsto |001\rangle$.
+
+Equivalently, $G_a$ acts as $\lambda_a$ on $\Hcolor$ and as zero on
+$\Hcolor^\perp$:
+\[
+  G_a\big|_{\Hcolor} = \lambda_a, \qquad
+  G_a\big|_{\Hcolor^\perp} = 0.
+\]
+\end{definition}
+
+\begin{definition}[Encoded gauge connection and covariant derivative]
+\label{def:Amu3q}
+Given real gauge functions $A_\mu^a(x)$, define
+\[
+  A_\mu^{3q}(x) = \sum_{a=1}^{8} A_\mu^a(x)\, G_a
+  \;\in\; \mathrm{End}(\C^8),
+\]
+and the \emph{encoded covariant derivative}
+\[
+  D_\mu^{3q} = \partial_\mu + ig\, A_\mu^{3q}.
+\]
+\end{definition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Basis and Generator Mapping}
+\label{sec:su3qubit:tables}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Color Basis Mapping}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cccc}
+\toprule
+\textbf{QCD color} & \textbf{Standard $\C^3$ basis} &
+\textbf{One-hot qubit state} & \textbf{Qubit basis index} \\
+\midrule
+Red   & $e_1 = (1,0,0)^T$ & $|100\rangle$ & 4 \\
+Green & $e_2 = (0,1,0)^T$ & $|010\rangle$ & 2 \\
+Blue  & $e_3 = (0,0,1)^T$ & $|001\rangle$ & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Basis mapping between standard QCD color space and one-hot three-qubit
+states.  Qubit basis index uses binary encoding $4q_1 + 2q_2 + q_3$ (0-indexed).}
+\label{tab:basis_mapping}
+\end{table}
+
+\subsection{Generator Mapping}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Index $a$} & \textbf{Standard generator $\frac{\lambda_a}{2}$} &
+\textbf{Encoded generator $G_a = P\lambda_a P^\dagger$} \\
+\midrule
+$1$ & $r\leftrightarrow g$ off-diagonal, real    & $\Pcolor(\lambda_1)\Pcolor$, acts on $\{|100\rangle,|010\rangle\}$ \\
+$2$ & $r\leftrightarrow g$ off-diagonal, imaginary & idem, imaginary \\
+$3$ & $r$--$g$ color isospin diagonal             & $\Pcolor\,\mathrm{diag}(1,-1,0)\,\Pcolor$ \\
+$4$ & $r\leftrightarrow b$ off-diagonal, real    & $\Pcolor(\lambda_4)\Pcolor$, acts on $\{|100\rangle,|001\rangle\}$ \\
+$5$ & $r\leftrightarrow b$ off-diagonal, imaginary & idem, imaginary \\
+$6$ & $g\leftrightarrow b$ off-diagonal, real    & $\Pcolor(\lambda_6)\Pcolor$, acts on $\{|010\rangle,|001\rangle\}$ \\
+$7$ & $g\leftrightarrow b$ off-diagonal, imaginary & idem, imaginary \\
+$8$ & color hypercharge diagonal                  & $\Pcolor\,\mathrm{diag}(1,1,-2)/\sqrt{3}\,\Pcolor$ \\
+\bottomrule
+\end{tabular}
+\caption{Generator mapping.  $\Pcolor(\lambda_a)\Pcolor$ denotes the operator
+$P \lambda_a P^\dagger$ on $\C^8$, which acts as $\lambda_a$ on $\Hcolor$ and
+vanishes on $\Hcolor^\perp$.}
+\label{tab:generator_mapping}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proof of Commutation Relations}
+\label{sec:su3qubit:commutators}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Encoded generators satisfy $\mathfrak{su}(3)$ on $\Hcolor$]
+\label{thm:commutators}
+For all $a,b \in \{1,\ldots,8\}$,
+\[
+  [G_a, G_b] = i f_{abc}\, G_c \quad \text{on } \Hcolor,
+\]
+where $f_{abc}$ are the totally antisymmetric $\mathfrak{su}(3)$ structure
+constants.
+\end{theorem}
+
+\begin{proof}
+Let $|v\rangle \in \Hcolor$ be arbitrary.  Write $|v\rangle = P\mathbf{v}$ for
+a unique $\mathbf{v} \in \C^3$.  Since $P^\dagger P = I_3$ (isometry),
+\begin{align*}
+  G_a G_b |v\rangle
+  &= (P\lambda_a P^\dagger)(P\lambda_b P^\dagger) P\mathbf{v} \\
+  &= P\lambda_a (P^\dagger P)\lambda_b \mathbf{v} \\
+  &= P\lambda_a \lambda_b \mathbf{v}.
+\end{align*}
+Therefore
+\[
+  [G_a, G_b]|v\rangle
+  = P[\lambda_a, \lambda_b]\mathbf{v}
+  = P (if_{abc}\lambda_c)\mathbf{v}
+  = if_{abc}\, G_c |v\rangle,
+\]
+using the standard $\mathfrak{su}(3)$ relation $[\lambda_a,\lambda_b] =
+if_{abc}\lambda_c$ in the last step.
+
+For $|v\rangle \in \Hcolor^\perp$: $G_a|v\rangle = P\lambda_a P^\dagger|v\rangle
+= 0$ (since $P^\dagger|v\rangle = 0$), so $[G_a,G_b]|v\rangle = 0 =
+if_{abc}G_c|v\rangle$.  The relation holds on all of $\Hthreeq$.
+\end{proof}
+
+\begin{remark}
+The commutation relations hold on the \emph{entire} $\C^8$ (both
+$\Hcolor$ and its complement), but the action is trivial on $\Hcolor^\perp$.
+The algebra is realised faithfully on $\Hcolor \cong \C^3$.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Gauge Transformation Equivalence}
+\label{sec:su3qubit:gauge_transform}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Gauge transformations are compatible]
+\label{thm:gauge_transform}
+Let $\alpha^a(x)$ be real gauge parameters.  Define
+\[
+  U(x) = \exp\!\bigl(i\alpha^a(x)\tfrac{\lambda_a}{2}\bigr) \in SU(3),
+  \qquad
+  U_{3q}(x) = \exp\!\bigl(i\alpha^a(x)\tfrac{G_a}{2}\bigr) \in U(8).
+\]
+Then:
+\begin{enumerate}
+  \item $U_{3q}(x)\big|_{\Hcolor}$ is unitarily equivalent to $U(x)$ via $P$:
+        \[
+          U_{3q}(x)\, P = P\, U(x).
+        \]
+  \item $U_{3q}(x)\big|_{\Hcolor^\perp} = \mathrm{Id}|_{\Hcolor^\perp}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For part (1): Since $G_a P = P \lambda_a$ (from Definition~\ref{def:Ga}) and
+$\lambda_a$ matrices commute with this embedding, the exponential satisfies
+\[
+  \exp\!\bigl(i\alpha^a \tfrac{G_a}{2}\bigr) P
+  = P \exp\!\bigl(i\alpha^a \tfrac{\lambda_a}{2}\bigr),
+\]
+which follows by expanding the matrix exponential and using $G_a P = P\lambda_a$
+inductively (each power $(G_a)^n P = P(\lambda_a)^n$, verified by applying
+$P^\dagger P = I_3$ at each step).
+
+For part (2): $G_a|_{\Hcolor^\perp} = 0$, so
+$\exp(i\alpha^a G_a/2)|_{\Hcolor^\perp} = e^0 = \mathrm{Id}$.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Covariant Derivative Equivalence}
+\label{sec:su3qubit:cov_deriv}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Covariant derivatives are equivalent on $\Hcolor$]
+\label{thm:cov_deriv}
+Let $\psi(x) \in \Hcolor$ be a color state (a section of the color bundle).
+Write $\psi = P\varphi$ with $\varphi \in \C^3$.  Then
+\[
+  P^\dagger\bigl(D_\mu^{3q}\,\psi\bigr)
+  = D_\mu\,\varphi,
+\]
+where $D_\mu = \partial_\mu + ig A_\mu^a \frac{\lambda_a}{2}$ is the standard
+QCD covariant derivative on $\C^3$.
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+  D_\mu^{3q}\,\psi
+  &= \partial_\mu(P\varphi) + ig A_\mu^a G_a (P\varphi) \\
+  &= P(\partial_\mu\varphi) + ig A_\mu^a P\lambda_a \varphi \\
+  &= P\!\left(\partial_\mu\varphi + ig A_\mu^a \lambda_a \varphi\right)
+   = P(D_\mu\varphi).
+\end{align*}
+Applying $P^\dagger$ to both sides and using $P^\dagger P = I_3$ gives the
+claim.
+\end{proof}
+
+\begin{corollary}[Gauge transformation of $D_\mu^{3q}$]
+Under a local gauge transformation $U_{3q}(x)$, the encoded covariant
+derivative transforms as
+\[
+  D_\mu^{3q} \;\longrightarrow\;
+  U_{3q} D_\mu^{3q} U_{3q}^\dagger
+  \quad\text{on } \Hcolor,
+\]
+consistent with the standard transformation law $D_\mu \to U D_\mu U^\dagger$
+via the equivalence of Theorem~\ref{thm:cov_deriv}.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Main Equivalence Theorem}
+\label{sec:su3qubit:main_theorem}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!60!black,
+  title=Main Theorem: SU(3) Gauge–Qubit Equivalence,fonttitle=\bfseries]
+\begin{theorem}[SU(3) gauge--three-qubit equivalence]
+\label{thm:main_equivalence}
+Let $\Hcolor = \mathrm{span}\{|100\rangle,|010\rangle,|001\rangle\} \subset
+\C^2\!\otimes\!\C^2\!\otimes\!\C^2$.  Then:
+
+\begin{enumerate}
+  \item \textbf{Generator equivalence.}
+        The map $\lambda_a \mapsto G_a = P\lambda_a P^\dagger$ is a faithful
+        representation of $\mathfrak{su}(3)$ on $\Hcolor$, i.e.\
+        $[G_a, G_b] = if_{abc}G_c$ on $\Hcolor$.
+
+  \item \textbf{Gauge field equivalence.}
+        The encoded gauge connection $A_\mu^{3q} = A_\mu^a G_a$ restricted to
+        $\Hcolor$ is isomorphic to the standard connection $A_\mu = A_\mu^a
+        \lambda_a$ via the isometry $P$.
+
+  \item \textbf{Covariant derivative equivalence.}
+        The encoded derivative $D_\mu^{3q}$ restricted to $\Hcolor$ is
+        unitarily equivalent to the standard QCD covariant derivative $D_\mu$:
+        \[
+          P^\dagger D_\mu^{3q} P = D_\mu.
+        \]
+
+  \item \textbf{Gauge transformation equivalence.}
+        Local SU(3) gauge transformations act consistently on both descriptions:
+        $U_{3q}(x)\,P = P\,U(x)$.
+\end{enumerate}
+
+The equivalence is representation-level: it identifies the two descriptions as
+the same $\mathfrak{su}(3)$ gauge structure realized in different but isometric
+carrier spaces.
+\end{theorem}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Leakage Sector Analysis}
+\label{sec:su3qubit:leakage}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Structure of the Leakage Sector}
+
+The orthogonal complement of $\Hcolor$ in $\Hthreeq$ is the five-dimensional
+space
+\[
+  \Hcolor^\perp = \mathrm{span}\{|000\rangle,\, |011\rangle,\, |101\rangle,\,
+  |110\rangle,\, |111\rangle\}.
+\]
+Its physical content is:
+\begin{itemize}
+  \item $|000\rangle$: vacuum (no color excitation);
+  \item $|011\rangle, |101\rangle, |110\rangle$: two-color (di-quark)
+        excitations;
+  \item $|111\rangle$: three-color (fully saturated) excitation.
+\end{itemize}
+
+\subsection{Gauge Action on the Leakage Sector}
+
+All encoded generators $G_a$ vanish on $\Hcolor^\perp$
+(Definition~\ref{def:Ga}), so gauge transformations act as the identity there.
+The leakage sector is gauge-invariant but physically distinct from the color
+subspace.
+
+\subsection{Interpretation and Constraint Options}
+
+Three interpretations are available; they should not be conflated:
+
+\begin{enumerate}
+  \item \textbf{Hard projection (physical constraint):} Impose $\Pcolor|\psi\rangle
+        = |\psi\rangle$ as a superselection rule.  This recovers standard QCD
+        color quantum numbers; the leakage sector is unphysical.
+
+  \item \textbf{Auxiliary UBT degrees of freedom:} In the UBT context, the five
+        leakage states may be reinterpreted as auxiliary biquaternionic degrees
+        of freedom — e.g.\ the vacuum and multi-excitation modes of the $\Theta$
+        field beyond the fundamental color triplet.  This interpretation is
+        \textbf{speculative} and requires additional derivation from the UBT
+        action; it is not established here.
+
+  \item \textbf{Quantum simulation context:} When using the three-qubit space as
+        a quantum-simulation register for SU(3) dynamics, the leakage sector
+        must be actively suppressed (e.g.\ by energy penalty terms or
+        error-correcting constraints) to maintain faithful simulation.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+  title=Warning: limits of the equivalence]
+The equivalence of Theorem~\ref{thm:main_equivalence} holds
+\textbf{strictly on $\Hcolor$}.
+
+\medskip\noindent
+Do \textbf{not} claim:
+\begin{itemize}
+  \item that the full Hilbert space $\Hthreeq = \C^8$ is identical to SU(3) or
+        to any physical color Hilbert space;
+  \item that the three-qubit construction provides a physical derivation of
+        QCD until dynamics (Yang-Mills action), confinement, anomaly
+        cancellation, and fermion representations are addressed;
+  \item that the leakage sector $\Hcolor^\perp$ has a canonical UBT
+        interpretation without further derivation.
+\end{itemize}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Relation to Canonical UBT SU(3) Derivation}
+\label{sec:su3qubit:relation_canonical}
+%──────────────────────────────────────────────────────────────────────────────
+
+The canonical UBT derivation of $\mathrm{SU}(3)_c$ proceeds via the involution
+structure of $\C\otimes\H$:
+\[
+  V_c = \ker(P_2 + \mathbf{1}) \cong \C^3, \qquad
+  \mathrm{SU}(3) = \mathrm{Aut}(V_c, \langle\cdot,\cdot\rangle),
+\]
+(Theorems G.A--G.D; \texttt{canonical/su3\_derivation/}).  The present encoding
+identifies $\Hcolor \cong \C^3$ via a different route (one-hot embedding in
+$\Hthreeq$), but arrives at the same $\mathfrak{su}(3)$ algebra acting on the
+same three-dimensional complex vector space.
+
+The two constructions are therefore \textbf{equivalent representations of the
+same Lie algebra}, realized via isometric embeddings of $\C^3$ into (different)
+ambient eight-dimensional spaces:
+\begin{align*}
+  V_c = \ker(P_2+\mathbf{1}) \subset \C\otimes\H \cong \C^8, \\
+  \Hcolor = \mathrm{range}(P) \subset \C^2\otimes\C^2\otimes\C^2 \cong \C^8.
+\end{align*}
+Both identify the same group $\mathrm{SU}(3)$; neither replaces the canonical
+derivation.  For the algebraic bridge between the two ambient $\C^8$ spaces see
+the bridge document
+\texttt{canonical/bridges/su3\_gauge\_qubit\_equivalence.tex}.
+
+% End of su3_qubit_encoding.tex
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
