@@ -187,6 +187,57 @@ $(8,4,4)$ coding realization. It does not falsify:
 Thus non-detection constrains the model space without collapsing the
 theoretical framework.
 
+\section{Gray-Code Transport Layer (L2T) — Research Track}
+\label{sec:gray_transport}
+
+The Hamming $(8,4,4)$ fingerprint presented above is the \emph{canonical} Layer~2
+statistic (L2S — state layer). A complementary research-track hypothesis is the
+\textbf{Gray-code transport layer} (L2T), which addresses a different question:
+\emph{are sequential phase-symbol transitions path-consistent?}
+
+\paragraph{Core distinction.}
+\begin{itemize}
+\item \textbf{L2S (Hamming):} \emph{state survival} statistic.
+  Observable $P_0$: fraction of 8-symbol blocks satisfying the Hamming parity check.
+\item \textbf{L2T (Gray):} \emph{path transition} statistic.
+  Observable $A_{\mathrm{gray}}$: fraction of consecutive symbol pairs that are
+  Gray-adjacent.
+\end{itemize}
+
+These two statistics are \textbf{independent}. Gray code does not replace Hamming.
+
+\paragraph{Hamming distance and Gray adjacency.}
+Two binary strings $\mathbf{u}, \mathbf{v} \in \{0,1\}^n$ have Hamming distance
+$d_H(\mathbf{u},\mathbf{v}) = |\{i : u_i \neq v_i\}|$. The standard reflected
+binary Gray code $G : \{0,\dots,N{-}1\} \to \{0,1\}^b$ satisfies $d_H(G(n),G(n{+}1)) = 1$
+for all $n$; symbols $s, s'$ are Gray-adjacent if $|G^{-1}(s)-G^{-1}(s')|\equiv 1 \pmod{N}$.
+The Gray adjacency score is:
+\begin{equation}
+A_{\mathrm{gray}} = \frac{1}{m-1}\sum_{i=1}^{m-1}
+  \mathbf{1}\bigl[s_{i+1} \text{ is Gray-adjacent to } s_i\bigr].
+\end{equation}
+For i.i.d.\ uniform null symbols, $\mathbb{E}[A_{\mathrm{gray}}^{\mathrm{null}}] = 2/N$.
+
+\paragraph{Generator decomposition.}
+Gray transport applies specifically to \emph{diagonal} (phase) SU(3) generators
+($\lambda_3$, $\lambda_8$), which preserve one-hot color identity while rotating
+phase. Off-diagonal color-changing generators ($\lambda_1,\dots,\lambda_7$ excluding
+$\lambda_3,\lambda_8$) involve Hamming distance~2 transitions between different
+one-hot states and are governed by L2S.
+
+\paragraph{CMB path-fingerprint test.}
+Input: sequence of discretized phase symbols $s_i$ from $a_{\ell m}$ phases.
+Metric: $A_{\mathrm{gray}}^{\mathrm{obs}}$ vs.\ shuffle or phase-randomized null.
+Output: one-sided $p$-value. Implementation:
+\texttt{experiments/forensic\_fingerprint/tools/gray\_path\_symbol\_test.py}.
+Full derivation: \texttt{research\_tracks/gray\_transport\_layer/gray\_path\_fingerprint.tex}.
+
+\paragraph{What is not claimed.}
+Gray code does not replace Hamming.
+Gray code does not prove QCD or dark matter.
+Not all SU(3) generators are a single SWAP gate.
+L2T is a research-track hypothesis; L2S remains the canonical Layer~2 fingerprint.
+
 \section{Conclusion}
 
 UBT predicts observable statistical fingerprints arising from discrete

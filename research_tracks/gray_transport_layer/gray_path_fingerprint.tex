@@ -1,0 +1,318 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\title{Gray-Code Transport Layer in UBT Layer 2:\\
+Formal Definitions, One-Hot Analysis, and\\
+CMB Path-Fingerprint Test}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-04-27}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalize the Gray-code transport hypothesis (Layer~2 Transport, L2T) as a
+research-track complement to the canonical Hamming $(8,4,4)$ storage fingerprint
+(Layer~2 State, L2S). Hamming coding protects state identity; Gray coding
+minimizes sequential transition cost. The two schemes are complementary and
+address orthogonal questions. We define both layers precisely, analyze
+one-hot triqubit color states under each scheme, distinguish the roles of
+off-diagonal and diagonal SU(3) generators, and propose a falsifiable
+CMB path-fingerprint test based on the \emph{gray\_adjacency\_score}.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% -------------------------------------------------------------------
+\section{Layer 2 Structure: State and Transport Sub-layers}
+
+UBT Layer~2 (Coding and Stability) stabilizes admissible field configurations
+through discrete selection rules. This layer is subdivided:
+
+\begin{itemize}
+\item \textbf{L2S (State Layer):} discrete stabilizer selection rules protecting
+the \emph{identity} of admissible configurations.
+Canonical fingerprint: extended Hamming $(8,4,4)$ code.
+Observable: $P_0$ (syndrome-zero fraction).
+
+\item \textbf{L2T (Transport Layer):} transition-cost rules governing sequential
+phase-symbol evolution along the $\psi$-time direction.
+Research-track hypothesis: Gray-code ordering.
+Observable: $A_{\mathrm{gray}}$ (Gray adjacency score).
+\end{itemize}
+
+\begin{remark}[Complementarity]
+L2S and L2T address orthogonal questions.
+L2S asks: \emph{does this configuration survive?}
+L2T asks: \emph{is this path consistent?}
+They probe distinct statistical properties of the same observable sequence
+and are independently falsifiable.
+Gray code does \textbf{not} replace Hamming.
+\end{remark}
+
+% -------------------------------------------------------------------
+\section{Definitions}
+
+\subsection{Hamming Distance and the Hamming $(8,4,4)$ Code}
+
+\begin{definition}[Hamming distance]
+For two binary strings $\mathbf{u}, \mathbf{v} \in \{0,1\}^n$, the
+\emph{Hamming distance} is
+\[
+  d_H(\mathbf{u},\mathbf{v}) = \bigl|\{i : u_i \neq v_i\}\bigr|.
+\]
+\end{definition}
+
+\begin{definition}[Extended Hamming $(8,4,4)$ code]
+The extended Hamming code $\mathcal{H}(8,4,4)$ is a linear binary code with
+parameters:
+\begin{itemize}
+\item block length $n = 8$,
+\item dimension $k = 4$ (four information bits),
+\item minimum distance $d_{\min} = 4$.
+\end{itemize}
+Its parity-check matrix $H \in \{0,1\}^{4\times 8}$ satisfies $H\mathbf{c}^T = \mathbf{0}$
+for every codeword $\mathbf{c} \in \mathcal{H}$.
+The code detects all errors of weight $\leq 3$ and corrects all errors of weight
+$\leq 1$.
+\end{definition}
+
+\begin{definition}[Hamming syndrome and $P_0$]
+Given an 8-symbol phase block $\mathbf{s}_k = (s_{k,1},\dots,s_{k,8}) \in
+\{0,1\}^8$, the \emph{syndrome} is
+\[
+  \mathbf{r}_k = H \mathbf{s}_k^T \in \{0,1\}^4.
+\]
+The \emph{fingerprint statistic} is
+\[
+  P_0 = \frac{1}{K}\sum_{k=1}^{K} \delta(\mathbf{r}_k, \mathbf{0}),
+\]
+where $\delta$ is the Kronecker delta. A statistically significant excess of
+$P_0$ over a phase-randomized null constitutes a positive detection of L2S.
+\end{definition}
+
+\subsection{Gray Adjacency and the Gray Transport Layer}
+
+\begin{definition}[Standard reflected binary Gray code]
+The \emph{standard reflected binary Gray code} on $N = 2^b$ symbols is the
+sequence $G : \{0,\dots,N{-}1\} \to \{0,1\}^b$ defined recursively by
+$G(0) = 0\cdots0$ and
+\[
+  G(n) = n \oplus \lfloor n/2 \rfloor,
+\]
+where $\oplus$ denotes bitwise XOR. By construction,
+\[
+  d_H\bigl(G(n),\, G(n{+}1)\bigr) = 1 \quad \text{for all } n < N{-}1,
+\]
+and the code is cyclic: $d_H(G(N{-}1), G(0)) = 1$.
+\end{definition}
+
+\begin{definition}[Gray adjacency]
+Two symbols $s, s' \in \{0,\dots,N{-}1\}$ are \emph{Gray-adjacent} if they are
+consecutive in the Gray ordering modulo $N$:
+\[
+  \bigl|G^{-1}(s) - G^{-1}(s')\bigr| \equiv 1 \pmod{N}.
+\]
+Equivalently, $d_H(s_{\mathrm{gray}}, s'_{\mathrm{gray}}) = 1$ where
+$s_{\mathrm{gray}} = G^{-1}(s)$ and $s'_{\mathrm{gray}} = G^{-1}(s')$.
+\end{definition}
+
+\begin{definition}[Gray adjacency score $A_{\mathrm{gray}}$]
+Given a sequence of discrete phase symbols $s_1, s_2, \dots, s_m$, the
+\emph{Gray adjacency score} is
+\[
+  A_{\mathrm{gray}} = \frac{1}{m-1}\sum_{i=1}^{m-1}
+    \mathbf{1}\bigl[s_{i+1} \text{ is Gray-adjacent to } s_i\bigr].
+\]
+For a uniform-random i.i.d.\ sequence over $N$ symbols, the expected score
+under the null is
+\[
+  \mathbb{E}[A_{\mathrm{gray}}^{\mathrm{null}}] = \frac{2}{N}
+\]
+(two Gray-adjacent neighbors out of $N$ symbols for each $s_i$).
+\end{definition}
+
+% -------------------------------------------------------------------
+\section{One-Hot Triqubit Color States and Hamming Weight-1 Protection}
+
+The one-hot triqubit encoding assigns:
+\[
+  |r\rangle \mapsto |100\rangle, \quad
+  |g\rangle \mapsto |010\rangle, \quad
+  |b\rangle \mapsto |001\rangle.
+\]
+Each color state has \emph{Hamming weight exactly 1} in the 3-qubit register.
+
+\begin{proposition}[Single-error detection by Hamming weight-1 stabilizer]
+\label{prop:hamming_weight1}
+Any single bit-flip error on a one-hot state produces a state outside the
+one-hot subspace (either weight 0 or weight $\geq 2$), and is therefore
+detectable.
+\begin{proof}
+A one-hot state $\mathbf{e}_j \in \{0,1\}^3$ (weight 1) can suffer:
+\begin{itemize}
+\item A $0 \to 1$ flip at position $i \neq j$: produces weight-2 state $\mathbf{e}_i +
+\mathbf{e}_j \notin \text{one-hot subspace}$.
+\item A $1 \to 0$ flip at position $j$: produces the zero vector $\mathbf{0}$
+(weight 0, vacuum state) $\notin \text{one-hot subspace}$.
+\end{itemize}
+In both cases the result is outside the one-hot subspace. \qed
+\end{proof}
+\end{proposition}
+
+\begin{remark}
+This is precisely the stabilizer property relevant to L2S: the Hamming
+weight-1 constraint protects color state identity against single-qubit errors.
+It is a special case of the extended Hamming $(8,4,4)$ syndrome test applied
+to a 3-bit sub-block.
+\end{remark}
+
+% -------------------------------------------------------------------
+\section{SU(3) Generator Decomposition: Diagonal vs Off-Diagonal}
+
+SU(3) has 8 generators (Gell-Mann matrices $\lambda_1,\dots,\lambda_8$), which
+split naturally under the one-hot triqubit embedding:
+
+\subsection{Off-Diagonal (Color-Changing) Generators}
+
+$\lambda_1, \lambda_2$ (r$\leftrightarrow$g), $\lambda_4, \lambda_5$
+(r$\leftrightarrow$b), $\lambda_6, \lambda_7$ (g$\leftrightarrow$b):
+
+\begin{itemize}
+\item Each maps one color to a different color: $|r\rangle \leftrightarrow
+|g\rangle$, etc.
+\item The Hamming distance between a source and target one-hot state is 2
+(one $1\to0$, one $0\to1$).
+\item These are \emph{state-changing} transitions governed by L2S.
+\item They are \emph{not} Gray-adjacent in the phase symbol sense.
+\end{itemize}
+
+\subsection{Diagonal (Phase) Generators}
+
+$\lambda_3$ (isospin) and $\lambda_8$ (hypercharge):
+
+\begin{itemize}
+\item Each preserves the one-hot color identity while acting as a phase rotation
+within a color channel.
+\item Sequential phase steps along $\lambda_3$ or $\lambda_8$ are the natural
+domain of Gray transport.
+\item L2T (Gray adjacency) applies to \emph{phase transitions}, not color
+transitions.
+\end{itemize}
+
+\begin{remark}[No overstated claims]
+Gray transport does not apply uniformly to all 8 SU(3) generators.
+The claim is limited: \emph{sequential phase-symbol paths along the diagonal
+generator directions prefer Gray-adjacent transitions}.
+Off-diagonal transitions are color-changes governed by Hamming L2S.
+\end{remark}
+
+% -------------------------------------------------------------------
+\section{Observable Distinction}
+
+\begin{center}
+\begin{tabular}{lllll}
+\hline
+Statistic & Layer & Code & Generator sector & What it tests \\
+\hline
+$P_0$ & L2S & Hamming $(8,4,4)$ & All (8-block parity) & State survival \\
+$A_{\mathrm{gray}}$ & L2T & Gray adjacency & Diagonal ($\lambda_3,\lambda_8$) & Path consistency \\
+\hline
+\end{tabular}
+\end{center}
+
+The two statistics are \textbf{independent}: a sequence can exhibit high $P_0$
+and low $A_{\mathrm{gray}}$, or vice versa.
+
+% -------------------------------------------------------------------
+\section{CMB Path-Fingerprint Test}
+
+\subsection{Input: Discretized Phase Symbols}
+
+Let $a_{\ell m}$ denote complex CMB spherical harmonic coefficients. Define
+discretized phase symbols by:
+\[
+  s_{\ell m} = \left\lfloor \frac{N}{2\pi}\bigl(\arg(a_{\ell m}) + \pi\bigr)
+  \right\rfloor \in \{0,\dots,N{-}1\},
+\]
+with $N = 16$ (4-bit) or $N = 256$ (8-bit). The sequence is formed by
+ordering the $(\ell, m)$ pairs along a fixed path (e.g., row-by-row in $\ell$).
+
+\subsection{Test Procedure}
+
+\begin{enumerate}
+\item Compute $A_{\mathrm{gray}}^{\mathrm{obs}}$ on the observed symbol sequence.
+\item Generate $K \geq 1000$ null sequences by:
+  \begin{itemize}
+  \item \textbf{Shuffle null}: randomly permute $s_1,\dots,s_m$, preserving the
+  marginal distribution but destroying sequential structure.
+  \item \textbf{Phase-randomized null}: replace each $\arg(a_{\ell m})$ with an
+  independent draw from $\mathrm{Uniform}[0, 2\pi)$, then re-symbolize.
+  \end{itemize}
+\item Compute $A_{\mathrm{gray}}^{\mathrm{null},j}$ for each null sequence $j$.
+\item Report the one-sided $p$-value:
+\[
+  p = \frac{|\{j : A_{\mathrm{gray}}^{\mathrm{null},j} \geq A_{\mathrm{gray}}^{\mathrm{obs}}\}|}{K}.
+\]
+\end{enumerate}
+
+\subsection{Interpretation}
+
+\begin{itemize}
+\item $p < 0.01$: positive detection of L2T Gray-transport preference.
+\item $p \geq 0.05$: no evidence for L2T at this sensitivity.
+\item Non-detection of L2T does not affect L2S $P_0$ status.
+\item Detection of L2T does not prove QCD or dark matter; it supports the
+Gray transport hypothesis in the UBT L2T sector.
+\end{itemize}
+
+\subsection{Expected Null Value}
+
+For uniform i.i.d.\ symbols over $N=16$:
+\[
+  \mathbb{E}[A_{\mathrm{gray}}^{\mathrm{null}}] = \frac{2}{16} = 0.125.
+\]
+For $N=256$:
+\[
+  \mathbb{E}[A_{\mathrm{gray}}^{\mathrm{null}}] = \frac{2}{256} \approx 0.0078.
+\]
+A detection requires $A_{\mathrm{gray}}^{\mathrm{obs}}$ significantly above
+these baselines.
+
+% -------------------------------------------------------------------
+\section{Conclusion and Status}
+
+The Gray transport layer (L2T) is formalized here as a research-track hypothesis
+complementary to the canonical Hamming L2S fingerprint. The two layers address
+distinct physical questions (state identity vs.\ path consistency) and are
+independently testable.
+
+\begin{itemize}
+\item \textbf{L2S status}: ⭐ \textsc{canonical}.
+  Observable $P_0$; code: Hamming $(8,4,4)$.
+\item \textbf{L2T status}: \textsc{research track}.
+  Observable $A_{\mathrm{gray}}$; code: reflected binary Gray.
+\item \textbf{No conflict}: one-hot triqubit stabilizer logic is preserved.
+  Gray applies only to diagonal (phase) transitions; Hamming governs the
+  full 8-block state.
+\end{itemize}
+
+The Python implementation of the CMB test is in:\\
+\texttt{experiments/forensic\_fingerprint/tools/gray\_path\_symbol\_test.py}
+
+\end{document}

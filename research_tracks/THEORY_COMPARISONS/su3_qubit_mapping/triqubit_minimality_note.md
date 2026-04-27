@@ -313,7 +313,44 @@ Briefly:
 
 ---
 
-## 6. References
+## 6. Note on Gray-Code Complementarity (L2T Research Track)
+
+The one-hot encoding analyzed here sits within UBT Layer 2 State (L2S), where
+the **Hamming weight-1 stabilizer** protects color identity. A complementary
+research-track hypothesis — the **Gray-code transport layer (L2T)** — addresses
+a distinct question: are sequential phase-symbol transitions path-consistent?
+
+Key points:
+
+- **L2S (Hamming, canonical)**: state survival statistic P₀ measures whether
+  8-symbol phase blocks satisfy the Hamming (8,4,4) parity check. Applies to
+  the whole one-hot sector.
+
+- **L2T (Gray, research track)**: path-transition statistic A_gray measures
+  whether consecutive phase symbols prefer Gray-adjacent transitions (d_H = 1
+  in Gray ordering). Applies specifically to the **diagonal generator sector**
+  (λ₃, λ₈), which preserves one-hot color identity while rotating phase.
+
+- **Off-diagonal (color-changing) generators** (λ₁,λ₂,λ₄,λ₅,λ₆,λ₇) involve
+  transitions between different one-hot states (Hamming distance 2). These are
+  governed by L2S, not L2T.
+
+- **No conflict**: the one-hot triqubit stabilizer logic presented in this note
+  is fully preserved. Gray transport is a research-track transport hypothesis,
+  not a replacement for the one-hot Hamming stabilizer.
+
+- **What is not claimed**: Gray code does not replace Hamming. Not all SU(3)
+  generators are a single SWAP. Gray transport does not prove QCD.
+
+See:
+- `research_tracks/gray_transport_layer/gray_vs_hamming_layer2.md` — full
+  comparison of L2S and L2T, definitions, and observable distinction.
+- `research_tracks/gray_transport_layer/gray_path_fingerprint.tex` — formal
+  derivation and CMB path-fingerprint test proposal.
+
+---
+
+## 7. References
 
 - Nielsen, M.A. & Chuang, I.L. (2000). *Quantum Computation and Quantum
   Information.* Cambridge University Press.

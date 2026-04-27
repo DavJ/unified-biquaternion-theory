@@ -466,3 +466,23 @@ and an emergent-metric construction strongly connected to Θ.
 | Gap H1 via interaction term g(Θ†Θ)² | **Additional input needed** | `research_tracks/research/higgs_yukawa_scan.md §2.5` | v62: Sc[(Θ†Θ)²] is gauge-invariant; g is free parameter not fixed by ℂ⊗ℍ algebra; canonical action allows V(Θ) but does not fix g |
 | Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |
 | Gap G-Rpsi: R_ψ two-scale discrepancy | **Open [L2] — Two-Scale Conjecture (v69)** | `research_tracks/research/hosotani_higgs.tex §8`; `canonical/geometry/Rpsi_dynamical_fix.tex` | v68: Two calibrations: (a) R_ψ^α = ℏ/(n_R·m_e·c) ≈ 2.80 fm → v≈23.5 GeV (wrong); (b) R_ψ^Higgs = n_R·π/(2g·v_obs) ≈ 0.27 fm → v≈246 GeV (correct). Ratio ≈ 10.4. T-duality self-dual-point mechanism [L1] selects R_ψ=R_t but physical units [Open L2]. Two-Scale Conjecture: R_ψ^α governs α-derivation (winding scale), R_ψ^EW governs Higgs VEV (electroweak scale); factor ~10 from RG running not yet derived. v69: factor 10.4 shown algebraically = 2g·v_obs·ℏ/(π·n_R²·m_e·c²) — exact formula derived (eq. ratio_algebraic in §8.4); encodes v_UBT^(α)≈23.5 GeV ≠ 246 GeV discrepancy; simple algebraic combinations (m_Z/m_e, g/√α, n_R/2π) do NOT reproduce factor 10; confirmed OPEN [L2]. |
+
+---
+
+## Layer 2 Coding Fingerprints (L2S and L2T)
+
+> ⭐ **Canonical L2S source**: `experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex`  
+> **Research-track L2T source**: `research_tracks/gray_transport_layer/`
+
+This section tracks the derivation status of Layer 2 (Coding and Stability) fingerprints.
+Layer 2 is subdivided into **L2S** (state/storage) and **L2T** (transport/path).
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| L2S: Hamming (8,4,4) state fingerprint | ⭐ **Canonical fingerprint** | `experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex` | P₀ = syndrome-zero fraction; extended Hamming (8,4,4) parity check on 8-symbol phase blocks; positive detection = evidence for discrete stabilizer selection in Layer 2 |
+| L2S: One-hot triqubit Hamming-weight-1 stabilizer | **Proved [L0] — Mathematical Note** | `research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/triqubit_minimality_note.md §3` | One-hot states {|100⟩,|010⟩,|001⟩} have Hamming weight 1; any single bit-flip produces weight-0 or weight-2 state outside the one-hot subspace; single-error detection proved by counting argument |
+| L2T: Gray transport layer hypothesis | **[Research Track] — Hypothesis** | `research_tracks/gray_transport_layer/` | A_gray = fraction of consecutive phase-symbol pairs that are Gray-adjacent; expected null 2/N; tests sequential path consistency in ψ-time direction; independent of L2S P₀; applies to diagonal SU(3) generators (λ₃,λ₈) only |
+| L2T: Gray vs Hamming complementarity | **Formalized [Research Track]** | `research_tracks/gray_transport_layer/gray_vs_hamming_layer2.md` | L2S (Hamming) = state survival; L2T (Gray) = path transition cost; no conflict; independent falsification criteria |
+| L2T: Off-diagonal vs diagonal generator decomposition | **Formalized [Research Track]** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §4` | Off-diagonal generators (λ₁,λ₂,λ₄,λ₅,λ₆,λ₇) are color-changing (d_H=2 between one-hot states) → L2S; diagonal generators (λ₃,λ₈) are phase-preserving → L2T |
+| L2T: CMB path-fingerprint test | **[Research Track] — Proposed Test** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §5`; `experiments/forensic_fingerprint/tools/gray_path_symbol_test.py` | Input: a_lm phase symbols; metric: A_gray; null: shuffle or phase-randomized; output: p-value; p<0.01 = positive detection of L2T |
+| L2T: Gray code does not replace Hamming | **Constraint** | `research_tracks/gray_transport_layer/README.md` | Explicitly stated non-claim; L2S remains canonical; L2T is research-track only |
