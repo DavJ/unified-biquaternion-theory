@@ -16,7 +16,7 @@ effective symmetry breaking.
 |------|---------|--------|
 | `discrete_symmetries.tex` | Formal involutions on $\mathcal{B}$; canonical definitions of $C$, $P$, $T$, $CPT$; operator table | Canonical |
 | `cpt_audit_table.md` | Term-by-term $C/P/T/CP/CPT$ audit of the UBT action | Canonical |
-| `chirality_and_parity_breaking.tex` | Left/right field decomposition; parity-violating weak coupling; proof that $P$ is broken while $CPT$ is preserved | Canonical |
+| `chirality_and_parity_breaking.tex` | Left/right field decomposition; parity-violating weak coupling; conditional derivation that $P$ is broken (assuming no-$SU(2)_R$ in $S[\Theta]$) while $CPT$ is preserved | Canonical |
 | `cp_phase_sector.tex` | CP-violating phase terms: $\theta_{\rm eff}F\tilde F$, complex Yukawa, vacuum misalignment | Candidate/Conjecture |
 | `effective_vs_fundamental_breaking.tex` | Diffusion sector as effective coarse-grained dynamics; two-layer microscopic/macroscopic interpretation | Canonical |
 | `open_problems.md` | Honest list of unresolved discrete-symmetry problems in UBT | Reference |
@@ -32,8 +32,9 @@ effective symmetry breaking.
 UBT adopts the following baseline:
 
 1. **CPT invariance** is preserved at the microscopic (fundamental action) level.
-2. **Parity violation** is present and desirable: the weak-like sector couples only
-   to left-chiral biquaternionic modes.
+2. **Parity violation** is present and desirable in the minimal UBT action
+   (conditional on the no-$SU(2)_R$ selection rule): the weak-like sector
+   couples only to left-chiral biquaternionic modes under this assumption.
 3. **CP violation** is allowed through identified phase terms (see `cp_phase_sector.tex`).
 4. **T asymmetry** in the diffusion sector is emergent/effective, not fundamental
    (see `effective_vs_fundamental_breaking.tex`).

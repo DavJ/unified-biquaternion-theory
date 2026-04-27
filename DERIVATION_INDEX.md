@@ -74,7 +74,7 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 | SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | **[MATHEMATICAL SANDBOX]** | `research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/` | Valid Lie algebra homomorphism (51 tests pass); separate from mainline UBT derivation; does not derive SU(3) from ℂ⊗ℍ first principles |
 | Color confinement (algebraic) | **[CONJECTURED WITH EXPERIMENTAL SUPPORT L0]** | `ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex`, `ARCHIVE/archive_legacy/consolidation_project/confinement/confinement_verification.py` | H_phys = Im(Π_color) in ℂ²⊗ℂ²⊗ℂ²; free quark algebraically inadmissible (not a colour singlet, ⟨C₂⟩=4/3≠0); all hadrons (baryon, meson, tetraquark, pentaquark) verified to satisfy ⟨C₂⟩=0; distinct from Clay Prize (YM mass gap) — see §5; exotic hadrons at LHCb consistent (§6); needs peer review |
 | Weinberg angle θ_W fixed | **Semi-empirical** | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone. Structural argument (v47): ℂ⊗ℍ automorphism group provides SU(2)_L × U(1)_Y but g/g' ratio is a free parameter of the embedding; no algebraic constraint on sin²θ_W arises from ℂ⊗ℍ geometry. |
-| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Proved [L1]** | `canonical/chirality/step1_psi_parity.tex`, `canonical/chirality/step2_chirality_result.tex`, `canonical/chirality/step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 closed: W± vertex P_ψ-odd because no W_R coupling in S[Θ] (Thm. gap_C1) — see step3 |
+| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Candidate conditional [L0]** | `canonical/chirality/step1_psi_parity.tex`, `canonical/chirality/step2_chirality_result.tex`, `canonical/chirality/step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 conditional: W± vertex P_ψ-odd follows only if no W_R coupling in S[Θ] (assumption, not derived); parity breaking is a **candidate conditional result**: follows if minimal UBT gauges SU(2)_L but not SU(2)_R — see step3 |
 
 ---
 
@@ -275,13 +275,13 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 | ∂_ψ anti-commutes with P_ψ | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §3` | Lem. 2; direct calculation |
 | P_ψ acts as γ⁵ in ψ-sector | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §4` | Prop. 3; [P_ψ, γ^μ∇_μ]=0 and {P_ψ, γ⁵∂_ψ}=0 |
 | Preferred ψ-circle orientation (matter n>0 by CPT) | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §5` | Lem. 4; P_ψ = CP in ψ-sector |
-| SU(2)_L on odd modes ℋ₋ | **Proved [L1]** | `canonical/chirality/step1_psi_parity.tex §6`, `canonical/chirality/step3_gap_C1_resolution.tex` | Thm. 5; Gap C1 closed (no W_R in S[Θ]) — proved from S[Θ] action |
+| SU(2)_L on odd modes ℋ₋ | **Candidate conditional [L0]** | `canonical/chirality/step1_psi_parity.tex §6`, `canonical/chirality/step3_gap_C1_resolution.tex` | Thm. 5; Gap C1 conditional (no W_R in S[Θ] assumed, not derived) — parity breaking follows if minimal UBT gauges SU(2)_L but not SU(2)_R |
 
 ### Open Sub-Tasks (Chirality Gaps)
 
 | Gap | Description | Priority |
 |-----|-------------|----------|
-| C1 | W± vertex P_ψ-odd from S[Θ]: **CLOSED** — no W_R in S[Θ]; see step3_gap_C1_resolution.tex | HIGH |
+| C1 | W± vertex P_ψ-odd from S[Θ]: **CONDITIONAL** — no W_R in S[Θ] is an assumption (not derived from first principles); see step3_gap_C1_resolution.tex | HIGH |
 
 ---
 
