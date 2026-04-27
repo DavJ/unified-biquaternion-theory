@@ -38,7 +38,7 @@ against the discrete symmetries $C$, $P$, $T_{\rm UBT}$, $CP$, and $CPT$ defined
 | Potential | $-\mu^2(\Theta^\dagger\Theta - v^2\mathbf{1})$ | ✓ | ✓ | ✓ | ✓ | ✓ | Proved | SSB: vacuum $\Theta_0$ may break $P$ spontaneously |
 | Weak (chiral) | $\mathrm{Tr}[\Theta_L^\dagger W_\mu \partial^\mu \Theta_L]$ | ✓ | ✗ | ✓ | ✗ | ✓ | Explicit $P$ breaking | Parity violated; $CPT$ preserved; see `chirality_and_parity_breaking.tex` |
 | Weak (chiral) | $\bar\Theta_L \gamma^\mu (\partial_\mu + igW_\mu)\Theta_L$ | ✓ | ✗ | ✓ | ✗ | ✓ | Explicit $P$ breaking | Standard left-chiral fermion coupling |
-| CP-odd (gauge) | $\theta_{\rm eff}\,F^a_{\mu\nu}\tilde F^{a\,\mu\nu}$ | ✗ | ✗ | ✓ | ✓ | ✓ | Candidate $CP$ breaking | Odd under $C$ and $P$ separately; $CP$-even if $\theta=0$; see `cp_phase_sector.tex` |
+| CP-odd (gauge) | $\theta_{\rm eff}\,F^a_{\mu\nu}\tilde F^{a\,\mu\nu}$ | ✓ | ✗ | ✗ | ✗ | ✓ | Candidate $CP$ and $T$ breaking | $C$-even, $P$-odd, $T$-odd → $CP$-odd; strong-$CP$ problem: why $|\bar\theta|<10^{-10}$? |
 | CP-odd (Yukawa) | $y_{\rm CP}\,\Theta_L^\dagger H \Theta_R + \mathrm{h.c.}$ with $y_{\rm CP}\in\mathbb{C}$ | ~ | ✓ | ~ | ✗ | ✓ | Candidate $CP$ breaking | Complex phase in $y_{\rm CP}$ violates $CP$; $CPT$ preserved by hermiticity |
 | CP-odd ($\psi$ phase) | $\delta_\psi\,\mathrm{Im}\bigl[\mathrm{Tr}(\Theta^\dagger\partial_\psi\Theta)\bigr]$ | ✗ | ✓ | ✓ | ✗ | ✓ | Conjecture | $C$ odd ($\psi\to-\psi$ under $C$); $CP$ odd if $\delta_\psi\neq0$; speculative |
 | Vacuum phase | $\Theta_0 = v\,e^{i\delta}$ (VEV with phase $\delta\neq0,\pi$) | (spont.) | (spont.) | (spont.) | (spont.) | ✓ | Spontaneous $CP$ breaking conjecture | Vacuum phase misalignment; $CPT$ of action still preserved |
@@ -91,7 +91,7 @@ CPT violation.**
 | Gauge (YM) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Potential (symmetric) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Weak (chiral) | ✓ | **✗** | ✓ | **✗** | ✓ |
-| $\theta_{\rm eff}F\tilde F$ (if present) | ✗ | ✗ | ✓ | ✓ | ✓ |
+| $\theta_{\rm eff}F\tilde F$ (if present) | ✓ | **✗** | **✗** | **✗** | ✓ |
 | Complex Yukawa phase | ~ | ✓ | ~ | **✗** | ✓ |
 | Effective diffusion | ✓ | ✓ | **✗** | ✓ | **✗** (effective) |
 

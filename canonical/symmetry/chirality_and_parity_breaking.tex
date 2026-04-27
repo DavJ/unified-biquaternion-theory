@@ -188,9 +188,15 @@ Combining:
   &= \mathrm{Tr}\bigl[\Theta_L^\dagger W_\mu D^\mu\Theta_L\bigr]
   + \mathrm{h.c.} = \mathcal{L}_{\rm weak}. \label{eq:chir:wrong}
 \end{align}
-This naive argument gives $P[\mathcal{L}_{\rm weak}]=\mathcal{L}_{\rm weak}$,
-which is not the correct result.  The resolution lies in the fact that the
-\emph{right-handed} coupling is \emph{absent}:
+\textbf{Flaw in the above}: the computation assumes that $P$ maps $\Theta_L$
+to $-\Theta_L$ (a grade-odd field at the reflected point).  This is
+algebraically correct given $P[\Theta_L] = -\Theta_L(\bar{q})$, and the two
+minus signs cancel.  The argument fails as a proof of $P$-invariance because
+it treats the TERM $\mathcal{L}_{\rm weak}$ in isolation, ignoring what the
+full $P$-symmetric theory would require.  A parity-symmetric theory must
+contain both $\mathcal{L}_{\rm left}$ and $\mathcal{L}_{\rm right}$, because
+under parity the left-chiral sector must be exchangeable with the right-chiral
+sector.  The resolution is as follows.
 \begin{equation}
   \mathcal{L}_{\rm right} = \mathrm{Tr}\bigl[\Theta_R^\dagger W_\mu D^\mu\Theta_R\bigr]
   \equiv 0,
@@ -205,6 +211,21 @@ exchanges left and right up to a sign), so
 \end{equation}
 Hence $P[\mathcal{L}_{\rm weak}] = 0 \neq \mathcal{L}_{\rm weak}$, demonstrating
 that $\mathcal{L}_{\rm weak}$ breaks $P$ explicitly.
+
+\begin{gapbox}
+\textbf{Gap C1 (revisited) — why $P[\Theta_L] = -\Theta_L$ does not prevent $P$-violation.}
+The algebraic identity $P[\Theta_L] = -\Theta_L(\bar{q})$ means that under parity,
+the grade-odd projection of $\Theta$ acquires a sign and is reflected, but
+\emph{remains grade-odd}.  For parity to be a symmetry of the full theory,
+the theory must be symmetric under the exchange
+$\mathcal{L}_{\rm left} \leftrightarrow \mathcal{L}_{\rm right}$ (which follows
+from the exchange $\Theta_L(\bar{q})\leftrightarrow \Theta_R(\bar{q})$, i.e.,
+$P[\Theta_L] = -\Theta_R$, not $-\Theta_L$).  Whether the biquaternion parity
+operator $P$ as defined exchanges $\Theta_L$ and $\Theta_R$ in this sense,
+or whether an extended parity definition is needed, is the content of Gap~C1.
+The argument above (absence of $\mathcal{L}_{\rm right}$) shows parity is
+broken by the structure of the action regardless of this subtlety.
+\end{gapbox}
 \end{proof}
 
 \begin{remark}[The physical content]

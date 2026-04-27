@@ -115,29 +115,54 @@ At the matrix level: $P_1$ acts as entry-wise complex conjugation of the
 matrix $\phi(b)$, i.e., $\phi(P_1(b)) = \overline{\phi(b)}$.
 
 \paragraph{$P_2$ (quaternion conjugation):}
+
+Direct computation from \eqref{eq:mat:general_2x2} gives:
 \begin{equation}
-  \phi(P_2(b)) = \phi(b)^\dagger = \begin{pmatrix}
-    \bar b_0 - i\bar b_1 & -\bar b_2 + i\bar b_3 \\
-    \bar b_2 + i\bar b_3 & \bar b_0 + i\bar b_1
-  \end{pmatrix}.
+  \phi(P_2(b))
+  = \begin{pmatrix} b_0 - ib_1 & -b_2 - ib_3 \\ b_2 - ib_3 & b_0 + ib_1 \end{pmatrix}.
   \label{eq:mat:P2_matrix}
 \end{equation}
-At the matrix level: $P_2$ acts as the Hermitian adjoint $\phi(P_2(b)) = \phi(b)^\dagger$.
+Comparing with $\phi(b) = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$
+(where $a = b_0+ib_1$, $b = b_2+ib_3$, $c = -b_2+ib_3$, $d = b_0-ib_1$),
+this is the \emph{reverse} operation on the matrix:
+\begin{equation}
+  \phi(P_2(b)) = \phi(b)^{\rm rev},
+  \qquad
+  M^{\rm rev} := \begin{pmatrix} M_{22} & -M_{12} \\ -M_{21} & M_{11} \end{pmatrix}.
+  \label{eq:mat:P2_rev}
+\end{equation}
+For unit biquaternions ($\det\phi(b) = 1$), $M^{\rm rev} = M^{-1}$.
+For real quaternions with real $b_a\in\mathbb{R}$ (so $\phi(b)\in SU(2)$,
+$\det\phi(b)=1$, and $\phi(b)^\dagger = \phi(b)^{-1}$), $P_2 \leftrightarrow (\ )^\dagger$
+holds.  For general complex biquaternions, one must use
+$P_2 \leftrightarrow (\ )^{\rm rev}$ \eqref{eq:mat:P2_rev}, not $(\ )^\dagger$.
 
-\begin{remark}
-The standard Hermitian adjoint $(\ )^\dagger$ of a $2\times2$ matrix corresponds
-to quaternion conjugation $P_2$, \emph{not} to the full biquaternion Hermitian
-conjugation $P_{12}$.  This is a potential source of confusion.
+\begin{remark}[Why $P_2\neq(\ )^\dagger$ for complex biquaternions]
+$\phi(b)^\dagger = \phi(P_{12}(b))$ (Hermitian adjoint corresponds to $P_{12}$,
+not $P_2$, as shown below).
+Setting $\phi(P_2(b)) = \phi(b)^\dagger$ would require $b_a = \bar b_a$, i.e.,
+real coefficients.  The identification $P_2\leftrightarrow(\ )^\dagger$ is
+therefore valid only for the $\mathbb{R}$-subalgebra $\mathbb{H}\subset\mathcal{B}$.
 \end{remark}
 
 \paragraph{$P_{12}$ (Hermitian conjugation = $P_1\circ P_2$):}
+
+Direct computation:
 \begin{equation}
-  \phi(P_{12}(b)) = \phi(b)^T,
+  \phi(P_{12}(b)) = \phi(\bar b_0 - \bar b_1\mathbf{I}
+                     - \bar b_2\mathbf{J} - \bar b_3\mathbf{K})
+  = \begin{pmatrix}
+    \bar b_0 - i\bar b_1 & -\bar b_2 - i\bar b_3 \\
+    \bar b_2 - i\bar b_3 & \bar b_0 + i\bar b_1
+  \end{pmatrix}
+  = \phi(b)^\dagger.
   \label{eq:mat:P12_matrix}
 \end{equation}
-the \emph{transpose} (not Hermitian adjoint) of the matrix.
-Verification: $P_1$ complex-conjugates entries; $P_2$ takes Hermitian adjoint;
-their composition is $(\ )^* \circ (\ )^\dagger = (\ )^T$.
+Hence the \emph{Hermitian adjoint} $(\ )^\dagger$ corresponds to the full
+Hermitian conjugation $P_{12} = P_1\circ P_2$, not to $P_2$ alone.
+This is the corrected identification: for \emph{general} biquaternions,
+$(\ )^\dagger \leftrightarrow P_{12}$, and
+$(\ )^{\rm rev} \leftrightarrow P_2$.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Symmetry Operators in the $2\times2$ Representation}
@@ -162,10 +187,12 @@ $C: \mathbf{A}_\mu \mapsto -\mathbf{A}_\mu^*$ (charge reversal).
 \subsection{Spatial Parity $P$}
 
 \begin{equation}
-  P[\mathbf{\Theta}](q,\tau) = \mathbf{\Theta}(\bar q,\tau)^\dagger,
+  P[\mathbf{\Theta}](q,\tau) = \mathbf{\Theta}(\bar q,\tau)^{\rm rev},
   \label{eq:mat:P_2x2}
 \end{equation}
-i.e., Hermitian adjoint of the matrix field evaluated at $\bar q = (q^0,-\mathbf{q})$.
+i.e., the \emph{reverse} of the matrix field (Definition~\eqref{eq:mat:P2_rev})
+evaluated at the reflected spacetime point $\bar q = (q^0,-\mathbf{q})$.
+For real quaternions (or unit biquaternions), this equals $\mathbf{\Theta}(\bar q,\tau)^{-1}$.
 
 \subsection{Time Reversal $T_{\rm UBT}$}
 
@@ -180,12 +207,14 @@ No matrix operation on $\mathbf{\Theta}$; only $\tau\to-\tau$.
 \begin{equation}
   CPT[\mathbf{\Theta}](q,\tau)
   = (C\circ P\circ T_{\rm UBT})[\mathbf{\Theta}](q,\tau)
-  = \overline{\mathbf{\Theta}(\bar q,-\tau)^\dagger}
-  = \mathbf{\Theta}(\bar q,-\tau)^T.
+  = \overline{\mathbf{\Theta}(\bar q,-\tau)^{\rm rev}}
+  = \mathbf{\Theta}(\bar q,-\tau)^\dagger.
   \label{eq:mat:CPT_2x2}
 \end{equation}
-In the $2\times2$ representation, $CPT$ acts as \emph{transposition} of the
-matrix (no complex conjugation factor!) composed with $(q,\tau)\to(\bar q,-\tau)$.
+The last equality uses $\overline{M^{\rm rev}} = M^\dagger$ for any $2\times2$
+complex matrix (direct verification from definitions).
+In the $2\times2$ representation, $CPT$ acts as the \emph{Hermitian adjoint}
+$(\ )^\dagger$ combined with $(q,\tau)\to(\bar q,-\tau)$.
 
 \begin{resultbox}
 \textbf{Summary: symmetry operators in $2\times2$ representation.}
@@ -195,12 +224,16 @@ matrix (no complex conjugation factor!) composed with $(q,\tau)\to(\bar q,-\tau)
 Operator & Matrix operation on $\mathbf{\Theta}$ & Argument action \\
 \midrule
 $C$ & $\mathbf{\Theta} \mapsto \overline{\mathbf{\Theta}}$ (entry-wise conj.) & $\tau\to\tau^*$ \\
-$P$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^\dagger$ (Hermitian adj.) & $q\to\bar q$ \\
+$P$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^{\rm rev}$ (reverse, eq.~\eqref{eq:mat:P2_rev}) & $q\to\bar q$ \\
 $T_{\rm UBT}$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}$ (identity) & $\tau\to -\tau$ \\
-$CPT$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^T$ (transpose) & $(q,\tau)\to(\bar q,-\tau)$ \\
+$CPT$ & $\mathbf{\Theta} \mapsto \mathbf{\Theta}^\dagger$ (Hermitian adj.) & $(q,\tau)\to(\bar q,-\tau)$ \\
 \bottomrule
 \end{tabular}
 \end{center}
+Note: $P$ maps $\mathbf{\Theta}\to\mathbf{\Theta}^{\rm rev}$ (not $(\ )^\dagger$) for general
+biquaternions; for real quaternions $(\det\mathbf{\Theta}=1)$ the two coincide.
+The $CPT$ operator corresponds to the Hermitian adjoint $(\ )^\dagger$ because
+$CPT = P_{12}$ at the algebra level ($P_1\circ P_2$, see \eqref{eq:mat:P12_matrix}).
 \end{resultbox}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -288,50 +321,51 @@ $C[\mathbf{\Theta}] = \overline{(a+ib)}I_2 = (a-ib)I_2$. \checkmark
 (Complex conjugation flips the phase.)
 
 \paragraph{Under $P$:}
-$P[\mathbf{\Theta}](\bar q) = \mathbf{\Theta}(\bar q)^\dagger
-= ((a+ib)I_2)^\dagger = (a-ib)I_2$.
-Note: $P[\Theta] = P_2(\Theta(\bar q))$.  For $\Theta = (a+ib)\mathbf{1}$:
-$P_2((a+ib)\mathbf{1}) = (a+ib)\mathbf{1}$ (scalar part is $P_2$-even),
-so $P[\mathbf{\Theta}] = (a+ib)I_2$ evaluated at $\bar q$.
-The $\dagger$ above is the matrix Hermitian adjoint, which for a scalar
-$(a+ib)I_2$ gives $(a-ib)I_2$ only if we apply $P_1$ as well.  The correct
-matrix rule is: $P[\mathbf{\Theta}] = \mathbf{\Theta}^\dagger$ corresponds to
-$P_2$ on the biquaternion side (Table~\ref{tab:mat:check}).
+$P[\mathbf{\Theta}](\bar q) = \mathbf{\Theta}(\bar q)^{\rm rev}$.
+For $\mathbf{\Theta} = (a+ib)I_2$: $M^{\rm rev} = \begin{pmatrix}a+ib & 0\\0 & a+ib\end{pmatrix} = (a+ib)I_2$.
+So $P[\mathbf{\Theta}] = (a+ib)I_2$ at $\bar q$.  A pure-scalar field is $P$-invariant. \checkmark
 
 \paragraph{Under $CP$:}
-$CP[\mathbf{\Theta}](q,\tau^*) = \mathbf{\Theta}(\bar q,\tau^*)^T$.
-For $\Theta=(a+ib)\mathbf{1}$: $((a+ib)I_2)^T = (a+ib)I_2$.
-So $CP[\Theta]=(a+ib)\mathbf{1}$ at $(\bar q,\tau^*)$:
-a real scalar field is $CP$-invariant. \checkmark
+$CP[\mathbf{\Theta}](q,\tau^*) = \mathbf{\Theta}(\bar q,\tau^*)^\dagger$.
+For $\mathbf{\Theta} = (a+ib)I_2$: $((a+ib)I_2)^\dagger = (a-ib)I_2$.
+If $b=0$ (real scalar), $CP[\mathbf{\Theta}] = (a+ib)I_2$: $CP$-invariant. \checkmark
 
 \begin{table}[h]
 \centering
-\caption{Cross-check: involution action on scalar $b=b_0\cdot\mathbf{1}$, $b_0\in\mathbb{C}$.}
+\caption{Involution action: algebra vs.\ $2\times2$ matrix representation.
+  Notation: $M = \phi(b)$; $b = b_0\mathbf{1} + b_1\mathbf{I} + b_2\mathbf{J} + b_3\mathbf{K}$,
+  $b_a\in\mathbb{C}$ general.}
 \label{tab:mat:check}
 \begin{tabular}{@{}lll@{}}
 \toprule
-Operation & Biquaternion result & $2\times2$ matrix result \\
+Involution & Biquaternion result & $2\times2$ matrix identification \\
 \midrule
-$P_1(b_0\mathbf{1})$ & $\bar b_0\mathbf{1}$ & $\overline{b_0 I_2} = \bar b_0 I_2$ ✓ \\
-$P_2(b_0\mathbf{1})$ & $b_0\mathbf{1}$ (scalar, $P_2$-even) & $(b_0 I_2)^\dagger = \bar b_0 I_2$? \\
-& & \small{Note: for pure scalar, $P_2$ fixes $b_0$ but $\dagger$ conj.\ it.} \\
-& & \small{The $\dagger$ identification $P_2\leftrightarrow(\ )^\dagger$ holds for the vector part.} \\
-$P_{12}(b_0\mathbf{1})$ & $\bar b_0\mathbf{1}$ & $(b_0 I_2)^T = b_0 I_2$? \\
-& & \small{Discrepancy: transpose fixes scalar but $P_{12}$ conjugates it.} \\
-& & \small{The $(\ )^T$ identification holds up to convention on the scalar sector.} \\
+$P_1(b)$ & $\bar b_0 + \bar b_1\mathbf{I} + \bar b_2\mathbf{J} + \bar b_3\mathbf{K}$
+  & $\phi(P_1(b)) = \overline{M}$ \quad (exact for all $b$) \\
+$P_2(b)$ & $b_0 - b_1\mathbf{I} - b_2\mathbf{J} - b_3\mathbf{K}$
+  & $\phi(P_2(b)) = M^{\rm rev}$ \quad (exact for all $b$)\\
+  & & \small{where $M^{\rm rev} = \begin{pmatrix}M_{22} & -M_{12}\\-M_{21} & M_{11}\end{pmatrix}$}\\
+  & & \small{Special case: $b_a\in\mathbb{R}$ $\Rightarrow$ $M^{\rm rev} = M^\dagger$} \\
+$P_{12}(b)$ & $\bar b_0 - \bar b_1\mathbf{I} - \bar b_2\mathbf{J} - \bar b_3\mathbf{K}$
+  & $\phi(P_{12}(b)) = M^\dagger$ \quad (exact for all $b$) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{insightbox}
-\textbf{Warning on matrix identifications.}
-The matrix identifications $(\ )^\dagger \leftrightarrow P_2$ and
-$(\ )^T \leftrightarrow P_{12}$ hold \emph{on the vector (off-diagonal) part}
-of the biquaternion.  On the scalar part ($b_1=b_2=b_3=0$), both
-$P_2$ and the identity act trivially, while $(\ )^\dagger$ complex-conjugates.
-Physicists should use the algebraic definitions in
-\texttt{discrete\_symmetries.tex} as the primary definitions, and the
-matrix representations as computational tools only.
+\textbf{Canonical matrix identification.}
+For general biquaternions with complex coefficients $b_a\in\mathbb{C}$:
+\begin{center}
+\begin{tabular}{ll}
+$P_1 \leftrightarrow \overline{M}$ & (entry-wise conjugation) \\
+$P_2 \leftrightarrow M^{\rm rev}$ & (reverse/adjugate-like operation) \\
+$P_{12} \leftrightarrow M^\dagger$ & (Hermitian adjoint) \\
+\end{tabular}
+\end{center}
+The identification $P_2\leftrightarrow(\ )^\dagger$ and
+$P_{12}\leftrightarrow(\ )^T$ that appear in some quaternion-algebra texts
+hold only for \textbf{real quaternions} ($b_a\in\mathbb{R}$).
+For full biquaternions, one must use the assignments above.
 \end{insightbox}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -344,25 +378,24 @@ $\mathsf{P}_\pm = \frac{1}{2}(\mathbf{1}\pm P_2)$
 (Section~2.1 of \texttt{chirality\_and\_parity\_breaking.tex})
 act in the $2\times2$ representation as:
 \begin{equation}
-  \phi(\mathsf{P}_+b) = \frac{1}{2}\left(\mathbf{\Theta} + \mathbf{\Theta}^\dagger\right)
-  = \mathrm{Re}_H(\mathbf{\Theta}),
+  \phi(\mathsf{P}_+b) = \frac{1}{2}\left(M + M^{\rm rev}\right)
+  = \begin{pmatrix} b_0 & 0 \\ 0 & b_0 \end{pmatrix} = b_0 I_2
+  \quad\text{(scalar part)},
   \label{eq:mat:P_plus}
 \end{equation}
 \begin{equation}
-  \phi(\mathsf{P}_-b) = \frac{1}{2}\left(\mathbf{\Theta} - \mathbf{\Theta}^\dagger\right)
-  = i\,\mathrm{Im}_H(\mathbf{\Theta}),
+  \phi(\mathsf{P}_-b) = \frac{1}{2}\left(M - M^{\rm rev}\right)
+  = \begin{pmatrix} ib_1 & b_2+ib_3 \\ -b_2+ib_3 & -ib_1 \end{pmatrix}
+  = ib_1\sigma_3 + ib_3\sigma_2 + ib_2\sigma_1
+  \quad\text{(vector part)}.
   \label{eq:mat:P_minus}
 \end{equation}
-where $\mathrm{Re}_H$ and $\mathrm{Im}_H$ denote the Hermitian-symmetric and
-anti-Hermitian parts of the matrix.
-
-For a $2\times2$ matrix $M$:
-\begin{itemize}
-  \item $\mathsf{P}_+$ selects the \emph{Hermitian} part: $\frac{1}{2}(M+M^\dagger)$.
-  \item $\mathsf{P}_-$ selects the \emph{anti-Hermitian} part: $\frac{1}{2}(M-M^\dagger)$.
-\end{itemize}
-The left-handed sector corresponds to anti-Hermitian matrices in the
-$2\times2$ representation (traceless anti-Hermitian matrices form $\mathfrak{su}(2)$).
+The left-handed sector $\mathsf{P}_-$ selects the \emph{traceless anti-Hermitian}
+part of the matrix (for $b_a\in\mathbb{R}$); for complex $b_a$ it selects
+the off-scalar (non-central) degrees of freedom.
+Traceless anti-Hermitian $2\times2$ matrices form the Lie algebra
+$\mathfrak{su}(2)$, consistent with the identification of $\Theta_L$
+with the $SU(2)_L$ fundamental representation.
 
 \ifdefined\INCLUDEMODE
 \else
