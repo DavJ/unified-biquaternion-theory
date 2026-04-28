@@ -49,7 +49,7 @@ N_helicity   = 2   [fixed by spin-1/2 representations of complexified field]
 N_charge     = 2   [fixed by particle-antiparticle structure of ℂ factor]
 Product      = 12  [no α input]
 ```
-**Counter-test**: Testing N_eff ∈ {4, 8, 12, 24} gives n* ∈ {31, 67, 137, 449}.
+**Counter-test**: Testing N_eff ∈ {4, 8, 12, 24} gives n* ∈ {17, 67, 137, 467}.
 Each gives a different result. The value 12 is NOT chosen to give 137 — it is
 determined by the algebra dimension.  
 **Verdict**: ✅ **PASS** — CLEAN [L0]
