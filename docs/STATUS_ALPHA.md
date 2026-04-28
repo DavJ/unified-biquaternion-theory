@@ -8,22 +8,40 @@
 
 ## 1. Overview and Key Result
 
-The Unified Biquaternion Theory derives the inverse fine structure constant α⁻¹ = 137 from first principles through a logical chain rooted in the compactified complex-time structure of UBT. The derivation is parameter-free at the bare level, with quantum corrections accounting for the remainder to the experimental value.
+> **Status: PARTIAL — NOT SOLVED (v69)**  
+> The derivation chain is blocked at Gap G3-k (Kac-Moody level k = 1 unproved).  
+> α⁻¹_bare = 137 is **CONDITIONAL**; α⁻¹ = 137.036 is **NOT ACHIEVED**.  
+> See `ALPHA_PROGRESS_REPORT.md` and `ALPHA_BEST_ROUTE.tex` for the full status.
 
-| Quantity | Value |
-|---|---|
-| Bare (UBT) | α⁻¹ = 137 |
-| Experimental (CODATA 2022) | α⁻¹ = 137.035999177(21) |
-| Quantum correction | +0.036 |
-| Agreement | 260 ppm (0.026%) |
+The Unified Biquaternion Theory has a derivation chain leading to α⁻¹_bare = 137
+rooted in the compactified complex-time structure of UBT.  Six of seven steps are
+proved with zero free parameters.  The seventh step — proving the Kac-Moody level
+k = 1 — remains open (Gap G3-k).  Until k = 1 is proved, the bare-value claim is
+**conditional**, not first-principles.  The quantum-correction term δ = 0.036 is
+semi-empirical and requires m_e and α as inputs ([CIRC]).
 
-This would constitute the **first geometric derivation of α** from a unified field theory if the B coefficient derivation is completed rigorously (see Section 9).
+| Quantity | Value | Status |
+|---|---|---|
+| Bare (UBT) | α⁻¹ = 137 | **CONDITIONAL** — requires k=1 proof |
+| Quantum correction | +0.036 | **[CIRC]** — uses α and m_e as input |
+| Experimental (CODATA 2022) | α⁻¹ = 137.035999177(21) | Reference value |
+| Overall agreement claim | — | **NOT ACHIEVED** — full first-principles derivation blocked |
 
-**Primary documents:**
-- `emergent_alpha_from_ubt.tex`
-- `emergent_alpha_calculations.tex`
-- `consolidation_project/appendix_ALPHA_one_loop_biquat.tex`
-- `scripts/emergent_alpha_calculator.py`
+This would constitute the first geometric derivation of α from a unified field
+theory **if and only if** Gap G3-k (k = 1) is resolved and the circular correction
+term δ = 0.036 is derived without using α or m_e as input (see Section 9).
+
+**Current documents (v69+):**
+- `ALPHA_BEST_ROUTE.tex` — best-candidate derivation; status banner
+- `ALPHA_PROGRESS_REPORT.md` — full T3_ALPHA progress and exhausted approaches
+- `canonical/alpha/alpha_best_route.tex` — canonical formal derivation (LaTeX)
+- `experiments/alpha_core_repro/alpha_two_loop.py` — two-loop QED correction code
+- `experiments/validation/validate_B_coefficient.py` — B coefficient verification
+
+**Archived (legacy, pre-v0.4):**
+- `ARCHIVE/archive_legacy/tex/emergent_alpha_from_ubt.tex`
+- `ARCHIVE/archive_legacy/tex/emergent_alpha_calculations.tex`
+- `ARCHIVE/archive_legacy/consolidation_project/appendix_ALPHA_one_loop_biquat.tex`
 
 ---
 
