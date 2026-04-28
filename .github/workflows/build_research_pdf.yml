@@ -43,6 +43,11 @@ jobs:
           - UBT_Final_Consolidation_Report.tex
           - FORMAL_INVARIANT_EXTRACTION_LAYER0.tex
           # Papers
+          # T1_GR flagship paper
+          - research_tracks/T1_GR/GR_paper_v1.tex
+          - research_tracks/T1_GR/GR_theorem_result.tex
+          - research_tracks/T1_GR/theorem_chain.tex
+          - research_tracks/T1_GR/theorem_statement.tex
           - docs/papers/appendix_GR_embedding.tex
           - papers/su3_triplet/main.tex
           - papers/su3_triplet/arxiv_version.tex
