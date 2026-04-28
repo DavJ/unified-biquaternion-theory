@@ -1,0 +1,312 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gauge Normalization Route to $\alpha$}\\
+         \large UBT Alpha Derivation — Route A1}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-27}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Objective and Scope}
+\label{sec:gn:objective}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document attempts to derive the fine-structure constant
+\begin{equation}
+  \alpha = \frac{e^2}{4\pi\hbar c} \approx \frac{1}{137.036}
+  \label{eq:gn:alpha_def}
+\end{equation}
+from the canonical normalization of the U(1) gauge connection in the Unified
+Biquaternion Theory (UBT).
+
+\textbf{No free parameter may be chosen to match~\eqref{eq:gn:alpha_def}.}
+Every numerical input must be derivable from another sector of UBT.
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black, title=Route A1 Status]
+\begin{tabular}{ll}
+Overall status & \textbf{CONDITIONAL} \\
+Blocking gap & Gap EW-1 (ratio $g'/g$ not derived) \\
+What is proved & Canonical A-field normalization from kinetic term \\
+What remains & Weinberg angle $\theta_W$ from UBT algebra \\
+\end{tabular}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Explicit Assumptions}
+\label{sec:gn:assumptions}
+%──────────────────────────────────────────────────────────────────────────────
+
+The following assumptions are made in this route.  Each must eventually be derived
+from $S[\Theta]$ to achieve a zero-parameter result.
+
+\begin{enumerate}
+  \item[\textbf{A1}]
+    The UBT kinetic Lagrangian is canonically normalized:
+    \begin{equation}
+      \mathcal{L}_{\mathrm{kin}} = \mathrm{Tr}\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr],
+      \qquad \text{coefficient} = 1.
+      \label{eq:gn:Lkin}
+    \end{equation}
+    \textit{Status}: \textbf{given} (canonical definition,
+    \texttt{canonical/THEORY/canonical/canonical\_action.tex}).
+
+  \item[\textbf{A2}]
+    The gauge group of the full UBT action is
+    $G_{\mathrm{SM}} = SU(3)_c \times SU(2)_L \times U(1)_Y$
+    (\texttt{canonical/interactions/sm\_gauge.tex}).
+    \textit{Status}: \textbf{given} (canonical input from Standard Model embedding).
+
+  \item[\textbf{A3}]
+    Spontaneous symmetry breaking (SSB) proceeds as
+    $SU(2)_L \times U(1)_Y \to U(1)_{\mathrm{EM}}$
+    with the unbroken generator $Q = T_3 + Y/2$.
+    \textit{Status}: \textbf{adopted from Standard Model}; UBT derivation of the
+    breaking pattern from $S[\Theta]$ is an open problem.
+
+  \item[\textbf{A4}]
+    Natural units $\hbar = c = 1$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Canonical U(1) Connection from the Kinetic Term}
+\label{sec:gn:connection}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Covariant derivative in UBT]
+\label{def:gn:Dmu}
+The full covariant derivative acting on $\Theta \in \mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ is:
+\begin{equation}
+  D_\mu = \partial_\mu
+        + i g_s\, T^a_{\mathrm{QCD}}\, G^a_\mu
+        + i g\, \tau^i\, W^i_\mu
+        + i g'\, Y\, B_\mu,
+  \label{eq:gn:Dmu}
+\end{equation}
+where:
+\begin{itemize}
+  \item $g_s$, $g$, $g'$ are the $SU(3)_c$, $SU(2)_L$, $U(1)_Y$ coupling constants;
+  \item $G^a_\mu$, $W^i_\mu$, $B_\mu$ are the respective gauge potentials;
+  \item $T^a_{\mathrm{QCD}}$ are $SU(3)$ generators, $\tau^i = \sigma^i/2$ are $SU(2)$
+        generators, and $Y$ is the hypercharge operator.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Canonical A-field normalization after SSB]
+\label{prop:gn:Anorm}
+After $SU(2)_L \times U(1)_Y \to U(1)_{\mathrm{EM}}$ with mixing angle $\theta_W$,
+the physical photon field is:
+\begin{equation}
+  A_\mu = \sin\theta_W\, W^3_\mu + \cos\theta_W\, B_\mu.
+  \label{eq:gn:Amix}
+\end{equation}
+The electromagnetic coupling in $\mathcal{L}_{\mathrm{kin}}$ takes the form:
+\begin{equation}
+  \mathcal{L}_{\mathrm{kin}} \ni i e\, A_\mu\, J^\mu_{\mathrm{EM}},
+  \qquad
+  e = g \sin\theta_W = g' \cos\theta_W,
+  \label{eq:gn:e_from_mixing}
+\end{equation}
+where the electromagnetic current is
+$J^\mu_{\mathrm{EM}} = \mathrm{Tr}[\Theta^\dagger T_{\mathrm{EM}}\, D^\mu\Theta
+                                   - (D^\mu\Theta)^\dagger T_{\mathrm{EM}}\, \Theta]$
+with $T_{\mathrm{EM}} = Q = T_3 + Y/2$.
+
+\textit{This is canonical electroweak algebra; no new UBT input here.}
+\end{proposition}
+
+\begin{proof}
+Expand $\mathcal{L}_{\mathrm{kin}}$ using~\eqref{eq:gn:Dmu}.  The $W^3_\mu$ and $B_\mu$
+terms are:
+\begin{equation}
+  \mathcal{L} \ni \mathrm{Tr}\bigl[\Theta^\dagger
+    (g\tau^3 W^3_\mu + g' Y B_\mu)
+    D^\mu\Theta\bigr] + \mathrm{h.c.}
+\end{equation}
+Rotating to the mass eigenstate basis via~\eqref{eq:gn:Amix} and the orthogonal
+combination $Z_\mu = \cos\theta_W W^3_\mu - \sin\theta_W B_\mu$, and using
+$T_3 + Y/2 = Q$, yields the photon coupling $e\,A_\mu\,J^\mu_{\mathrm{EM}}$
+with $e$ given by~\eqref{eq:gn:e_from_mixing}.
+$\square$
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{From $e$ to $\alpha$}
+\label{sec:gn:alpha}
+%──────────────────────────────────────────────────────────────────────────────
+
+Given $e$ from~\eqref{eq:gn:e_from_mixing}, the fine-structure constant is:
+\begin{equation}
+  \alpha = \frac{e^2}{4\pi} = \frac{g^2 \sin^2\theta_W}{4\pi}.
+  \label{eq:gn:alpha_from_e}
+\end{equation}
+
+For a zero-parameter derivation of $\alpha$, both $g$ and $\theta_W$ must be
+determined from $S[\Theta]$.
+
+\subsection{Can UBT fix $g$?}
+
+The coupling $g$ enters $\mathcal{L}_{\mathrm{kin}}$ with the normalization
+of the $SU(2)_L$ generators $\tau^i = \sigma^i/2$.  In the canonical trace
+definition:
+\begin{equation}
+  \mathrm{Tr}[(\tau^i)^2] = \frac{1}{2},
+  \qquad
+  \mathrm{Tr}[\tau^i \tau^j] = \frac{1}{2}\delta^{ij}.
+\end{equation}
+The coupling $g$ is a free dimensionless parameter at the level of the bare
+Lagrangian.  Its value at the electroweak scale is $g(m_Z) \approx 0.653$
+(experimental input in the SM).
+
+\begin{gapbox}
+\textbf{Gap EW-1 (Part I)}: Derive $g = g_2$ from the representation theory of
+$\mathbb{C}\otimes\mathbb{H}$ and the canonical trace norm.
+At present, $g$ is a free parameter not fixed by UBT algebra.
+\end{gapbox}
+
+\subsection{Can UBT fix $\theta_W$?}
+
+The Weinberg angle satisfies $\tan\theta_W = g'/g$.  In the Standard Model,
+$\sin^2\theta_W \approx 0.231$ at the $Z$-pole.
+
+\begin{proposition}[Condition for UBT to fix $\theta_W$]
+\label{prop:gn:thetaW}
+The Weinberg angle is fixed if and only if the ratio $g'/g$ is determined
+by the UBT algebra.  This requires:
+\begin{enumerate}
+  \item A relation between the $SU(2)_L$ generator norm $\|\tau^i\|$ and the
+        $U(1)_Y$ generator norm $\|Y\|$ within $\mathcal{B}$.
+  \item This relation must emerge from the trace structure of $\mathcal{B}$
+        and the representation of $Y$ as a biquaternion algebra endomorphism.
+\end{enumerate}
+\end{proposition}
+
+\begin{gapbox}
+\textbf{Gap EW-1 (Part II)}: Derive $\tan\theta_W = g'/g$ from the embedding of
+$SU(2)_L \times U(1)_Y$ into $\mathrm{Aut}(\mathcal{B})$.  No such derivation
+currently exists in the canonical UBT documents.  This is the primary blocking
+gap for Route A1.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Partial Result: What Is Fixed by Gauge Normalization}
+\label{sec:gn:partial}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{What Route A1 establishes (conditionally):}
+\begin{enumerate}
+  \item The photon field $A_\mu$ is canonically normalized in $\mathcal{L}_{\mathrm{kin}}$
+        once the rotation~\eqref{eq:gn:Amix} is performed.
+  \item The electromagnetic coupling satisfies $e = g\sin\theta_W$ with no additional
+        free parameter beyond $g$ and $\theta_W$.
+  \item If $\theta_W$ is derived (Gap EW-1 resolved), then $e$ and hence $\alpha$ follow
+        with no further input.
+\end{enumerate}
+\end{resultbox}
+
+\begin{warnbox}
+\textbf{What Route A1 does NOT establish:}
+The ratio $g'/g$ is not derived from the UBT biquaternion algebra.  All numerical
+values of $\alpha$ computed via~\eqref{eq:gn:alpha_from_e} are \emph{conditional on}
+the resolution of Gap EW-1.  No numerics are reported here to avoid the appearance
+of a derivation.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Failure Modes and Near-Misses}
+\label{sec:gn:failures}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{p{3.5cm} p{7cm} p{3cm}}
+\toprule
+\textbf{Failure mode} & \textbf{Description} & \textbf{Assessment} \\
+\midrule
+Non-unit kinetic coefficient &
+  If $\mathcal{L}_{\mathrm{kin}} = \kappa\,\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
+  with $\kappa \neq 1$, then $e_{\mathrm{physical}} = e/\sqrt{\kappa}$ acquires a
+  factor.  In canonical UBT, $\kappa = 1$ by definition, but a trace-norm
+  issue could alter this. &
+  Low risk; $\kappa=1$ canonical \\
+\midrule
+Non-unique SU(2)$_L$ embedding &
+  The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ admits multiple
+  $\mathfrak{su}(2)$ subalgebras.  If the electroweak $SU(2)_L$ is not the unique
+  embedding, the coupling $g$ is undetermined. &
+  Moderate risk \\
+\midrule
+Free $g'/g$ ratio &
+  Even with a unique $SU(2)_L$, the $U(1)_Y$ hypercharge generator may commute
+  with all $\mathcal{B}$ involutions, making $g'$ entirely free. &
+  Most likely outcome \\
+\midrule
+RG running ambiguity &
+  Even if $\alpha(m_Z)$ is fixed, the low-energy value $\alpha(0) \approx 1/137.036$
+  requires running from $m_Z$ to $q\to0$, introducing $m_e$ as an input. &
+  Known; see STATUS\_ALPHA.md \\
+\bottomrule
+\end{longtable}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:gn:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Result & Status & Gap & Source \\
+\midrule
+Canonical $A_\mu$ normalization & Proved & — & \S\ref{sec:gn:connection} \\
+$e = g\sin\theta_W$ & Proved (algebra) & — & Prop.~\ref{prop:gn:Anorm} \\
+$g$ from UBT algebra & Open & EW-1 Part I & \S\ref{sec:gn:alpha} \\
+$\theta_W$ from UBT algebra & Open & EW-1 Part II & \S\ref{sec:gn:alpha} \\
+$\alpha$ from Route A1 & Conditional & EW-1 & \S\ref{sec:gn:alpha} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Classification}: \textbf{CONDITIONAL} — blocked by Gap EW-1.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

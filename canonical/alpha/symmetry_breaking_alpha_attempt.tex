@@ -1,0 +1,340 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Symmetry-Breaking Projection Route to $\alpha$}\\
+         \large UBT Alpha Derivation — Route A2}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-27}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Objective and Scope}
+\label{sec:sb:objective}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document attempts to derive the fine-structure constant~$\alpha$ from the
+spontaneous symmetry breaking (SSB) of $SU(2)_L \times U(1)_Y \to U(1)_{\mathrm{EM}}$
+within UBT.
+
+The central question is whether the UBT biquaternion field $\Theta$ has a vacuum
+structure that fixes the Weinberg angle $\theta_W$, thereby determining the
+electromagnetic coupling $e = g\sin\theta_W$ without free parameters.
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black, title=Route A2 Status]
+\begin{tabular}{ll}
+Overall status & \textbf{CONDITIONAL} \\
+Blocking gap & Gap EW-1 ($g'/g$ ratio not derived from $\mathcal{B}$) \\
+Gap EW-2 & UBT derivation of the doublet VEV structure \\
+What is proved & Standard electroweak algebra (not UBT-specific) \\
+What remains & Fix $\theta_W$ from $\mathrm{Aut}(\mathcal{B})$ \\
+\end{tabular}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Explicit Assumptions}
+\label{sec:sb:assumptions}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item[\textbf{A1}] The UBT action contains $SU(2)_L \times U(1)_Y$ as a gauge
+    symmetry at high energy.  \textit{Status}: canonical input.
+
+  \item[\textbf{A2}] The Θ-field admits a non-zero vacuum expectation value
+    $\Theta_0 \neq 0$ that is invariant under $U(1)_{\mathrm{EM}}$ but not under
+    $SU(2)_L \times U(1)_Y$.  \textit{Status}: \textbf{assumed} (Gap EW-2).
+
+  \item[\textbf{A3}] The VEV $\Theta_0$ transforms as a doublet of $SU(2)_L$ with
+    hypercharge $Y = 1/2$, analogously to the SM Higgs doublet.
+    \textit{Status}: \textbf{assumed} (not yet derived from $S[\Theta]$).
+
+  \item[\textbf{A4}] The SSB pattern is the standard electroweak one:
+    $SU(2)_L \times U(1)_Y \to U(1)_{\mathrm{EM}}$, with three eaten Goldstone modes
+    giving mass to $W^\pm$, $Z^0$.  \textit{Status}: \textbf{assumed}.
+
+  \item[\textbf{A5}] Natural units $\hbar = c = 1$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Electroweak Symmetry Breaking in UBT}
+\label{sec:sb:ewsb}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The Higgs Analogue in UBT}
+
+In the Standard Model, the Higgs doublet $H$ acquires a VEV
+$\langle H \rangle = (0,\, v/\sqrt{2})^T$, breaking $SU(2)_L \times U(1)_Y$.
+
+In UBT, the candidate for the Higgs role is the lowest $\psi$-mode of $\Theta$:
+\begin{equation}
+  \Theta_0(q) := \Theta(q, \tau)\big|_{\psi=0}
+  \;\in\; \mathbb{C}\otimes\mathbb{H}.
+  \label{eq:sb:Theta0}
+\end{equation}
+If $\Theta_0$ is required to be a singlet under $U(1)_{\mathrm{EM}}$ but a doublet
+under $SU(2)_L$, the SSB occurs when $\Theta_0 \neq 0$.
+
+\begin{gapbox}
+\textbf{Gap EW-2}: Derive from $S[\Theta]$ that the potential $V(\Theta)$ produces
+a non-zero $\Theta_0$ with doublet quantum numbers.  The Mexican-hat structure
+$V(\Theta) = -\mu^2 \mathrm{Tr}[\Theta^\dagger\Theta] + \lambda(\mathrm{Tr}[\Theta^\dagger\Theta])^2$
+gives a VEV $|\Theta_0|^2 = \mu^2/(2\lambda)$, but the representation of $\Theta_0$
+under $SU(2)_L$ must be derived, not assumed.
+\end{gapbox}
+
+\subsection{Unbroken Generator}
+
+The unbroken $U(1)_{\mathrm{EM}}$ generator is:
+\begin{equation}
+  Q = T_3 + \frac{Y}{2},
+  \label{eq:sb:Q}
+\end{equation}
+satisfying $Q\,\Theta_0 = 0$ (the VEV is electrically neutral).
+
+For the doublet $\Theta_0 = (0,\, v/\sqrt{2})^T$:
+\begin{equation}
+  T_3\,\Theta_0 = -\frac{1}{2}\Theta_0,
+  \quad
+  \frac{Y}{2}\,\Theta_0 = +\frac{1}{2}\Theta_0,
+  \quad
+  Q\,\Theta_0 = 0.
+  \label{eq:sb:neutrality}
+\end{equation}
+
+This confirms that the lower component of the doublet is electrically neutral,
+consistent with $U(1)_{\mathrm{EM}}$ being unbroken.
+
+\subsection{Physical Gauge Bosons after SSB}
+
+The three massless Goldstone modes $\pi^{\pm}$, $\pi^0$ are absorbed into
+$W^\pm$, $Z^0$.  The remaining massless gauge boson is the photon:
+\begin{align}
+  W^\pm_\mu &= \frac{1}{\sqrt{2}}(W^1_\mu \mp i W^2_\mu),
+  \label{eq:sb:Wpm} \\
+  A_\mu     &= \sin\theta_W\, W^3_\mu + \cos\theta_W\, B_\mu,
+  \label{eq:sb:Agamma} \\
+  Z_\mu     &= \cos\theta_W\, W^3_\mu - \sin\theta_W\, B_\mu,
+  \label{eq:sb:Z}
+\end{align}
+with the Weinberg angle determined by the coupling ratio:
+\begin{equation}
+  \tan\theta_W = \frac{g'}{g}.
+  \label{eq:sb:tanW}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Key Question: Does UBT Fix $\theta_W$?}
+\label{sec:sb:fixing}
+%──────────────────────────────────────────────────────────────────────────────
+
+Equation~\eqref{eq:sb:tanW} shows that $\theta_W$ is fixed if and only if
+the ratio $g'/g$ is fixed.  This is the crux of Route A2.
+
+\subsection{Algebra Structure of $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$}
+
+The biquaternion algebra has the following relevant substructure:
+\begin{equation}
+  \mathcal{B} \;\cong\; \mathbb{C} \otimes \mathbb{H}
+  \;\cong\; M_2(\mathbb{C}),
+  \label{eq:sb:B_iso}
+\end{equation}
+where $M_2(\mathbb{C})$ is the algebra of $2\times 2$ complex matrices.
+Under this isomorphism:
+\begin{itemize}
+  \item The quaternion imaginary units $\mathbf{i}, \mathbf{j}, \mathbf{k}$ map to
+        $i\sigma_1, i\sigma_2, i\sigma_3$ (with $\sigma_i$ Pauli matrices).
+  \item The $\mathfrak{su}(2)_L$ generators are $\tau^i = \sigma^i/2$.
+  \item The $\mathfrak{u}(1)_Y$ generator $Y$ must be an endomorphism of $M_2(\mathbb{C})$
+        commuting with the $\mathfrak{su}(2)_L$ action.
+\end{itemize}
+
+By Schur's lemma, the only endomorphisms of $M_2(\mathbb{C})$ commuting with
+$\mathfrak{su}(2)_L$ are multiples of the identity.  Therefore $Y \propto \mathbf{1}$
+on each irreducible $SU(2)_L$ representation.
+
+\begin{insightbox}
+\textbf{Structural observation}: The hypercharge $Y$ is proportional to the identity
+on each $SU(2)_L$ representation.  This is consistent with the SM assignment
+$Y = 1/2$ for the Higgs doublet.  It does \emph{not} fix the magnitude of $g'$
+relative to $g$, since the overall normalization of $Y$ is a free parameter.
+\end{insightbox}
+
+\begin{gapbox}
+\textbf{Gap EW-1}: In $\mathcal{B} = M_2(\mathbb{C})$, the ratio of the $U(1)_Y$
+generator norm to the $SU(2)_L$ generator norm is:
+\begin{equation}
+  \frac{\|Y\|}{\|\tau^3\|} = \frac{|y|}{\tfrac{1}{2}}  = 2|y|,
+  \label{eq:sb:normratio}
+\end{equation}
+where $y$ is the hypercharge quantum number.  This ratio depends on the
+hypercharge assignment, which is a free parameter in the UBT Lagrangian as
+currently formulated.
+
+\medskip
+To fix $\theta_W$, one needs a principle from UBT that determines $g'$ relative to $g$.
+No such principle has been identified from $S[\Theta]$ in the literature.
+\end{gapbox}
+
+\subsection{Attempt: Norm-Matching Condition}
+
+One possible approach: demand that the kinetic term produces a unit-normalized
+gauge kinetic term for both $W^i_\mu$ and $B_\mu$:
+\begin{equation}
+  -\frac{1}{4g^2} W^i_{\mu\nu} W^{i\,\mu\nu}
+  - \frac{1}{4{g'}^2} B_{\mu\nu} B^{\mu\nu}
+  \;\longrightarrow\;
+  -\frac{1}{4}F^a_{\mu\nu} F^{a\,\mu\nu},
+\end{equation}
+with $F^a_{\mu\nu}$ in the canonically normalized frame.
+
+If UBT requires the kinetic terms to be normalized identically for all gauge
+bosons in a grand-unified sense, one would demand $g = g'$.  This gives:
+\begin{equation}
+  \theta_W\big|_{g=g'} = 45°,
+  \qquad
+  \sin^2\theta_W = \frac{1}{2},
+  \qquad
+  e = \frac{g}{\sqrt{2}}.
+  \label{eq:sb:unification}
+\end{equation}
+
+\begin{warnbox}
+\textbf{This prediction is incorrect.}
+The observed value is $\sin^2\theta_W \approx 0.231 \neq 0.5$ at the $Z$-pole.
+Therefore, $g = g'$ is not the right UBT constraint.  The norm-matching condition
+does not work without renormalization group running.
+
+If $g = g'$ at some UV unification scale $\Lambda_{\mathrm{GUT}}$, then running
+down to $m_Z$ using SM beta functions gives $\sin^2\theta_W(m_Z) \approx 0.231$.
+But this requires the SM running as additional input, and $\Lambda_{\mathrm{GUT}}$
+is a new free parameter.  \emph{This is not a zero-parameter UBT derivation.}
+\end{warnbox}
+
+\subsection{Grand Unification Route (Possible Future Direction)}
+
+If UBT embeds $SU(3)_c \times SU(2)_L \times U(1)_Y$ into a larger simple group
+$G_{\mathrm{GUT}}$ (e.g., $SU(5)$, $SO(10)$, or an exceptional group) at some scale,
+then the ratio $g'/g$ is fixed at that scale by the Lie algebra structure.
+
+In $SU(5)$: $\sin^2\theta_W^{(0)} = 3/8$ at the GUT scale (algebraic result), which
+runs to $\approx 0.231$ at $m_Z$.
+
+\begin{insightbox}
+\textbf{Possible Route A2 completion}: If UBT forces $G_{\mathrm{GUT}} = SU(5)$ or
+a specific group that contains $SU(3) \times SU(2) \times U(1)$ as a maximal
+subgroup, the relation $\sin^2\theta_W^{(0)} = 3/8$ would be a UBT prediction,
+not a fitted input.  Whether $\mathcal{B}$ enforces this is an open algebraic question.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Partial Result: What Is Fixed by Symmetry Breaking}
+\label{sec:sb:partial}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{What Route A2 establishes (conditionally):}
+\begin{enumerate}
+  \item The unbroken generator $Q = T_3 + Y/2$ and the photon field~\eqref{eq:sb:Agamma}
+        are structurally correct given the standard SSB pattern.
+  \item The norm-matching condition $g = g'$ is \emph{excluded} as a UBT constraint
+        at the electroweak scale.
+  \item A grand-unification completion of UBT within a simple group $G_{\mathrm{GUT}}$
+        would fix $\sin^2\theta_W^{(0)}$ algebraically and, after RGE running,
+        predict $\alpha$ at any scale.
+  \item The VEV structure (Gap EW-2) is a necessary prior step.
+\end{enumerate}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Failure Modes and Near-Misses}
+\label{sec:sb:failures}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{p{3.5cm} p{7cm} p{3cm}}
+\toprule
+\textbf{Failure mode} & \textbf{Description} & \textbf{Assessment} \\
+\midrule
+$g = g'$ at EW scale &
+  Predicts $\sin^2\theta_W = 1/2$, excluded by experiment. &
+  Excluded \\
+\midrule
+No doublet structure &
+  $\Theta_0$ may not transform as a doublet; SSB pattern may differ from SM. &
+  Open question (Gap EW-2) \\
+\midrule
+No grand-unification &
+  $\mathcal{B}$ may not embed into a simple $G_{\mathrm{GUT}}$; the ratio $g'/g$
+  would then be genuinely free. &
+  Most likely outcome \\
+\midrule
+Scale dependence &
+  Even if $\theta_W$ is fixed at one scale, $\alpha$ at another scale requires
+  RGE running, introducing additional inputs ($m_e$, $m_Z$). &
+  Known limitation \\
+\bottomrule
+\end{longtable}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:sb:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Result & Status & Gap & Source \\
+\midrule
+$Q = T_3 + Y/2$ (unbroken generator) & Proved (algebra) & — & \S\ref{sec:sb:ewsb} \\
+Photon field~\eqref{eq:sb:Agamma} & Proved (algebra) & — & \S\ref{sec:sb:ewsb} \\
+$\Theta_0$ as doublet VEV & Open & EW-2 & \S\ref{sec:sb:ewsb} \\
+$g = g'$ at EW scale & \textbf{Excluded} & — & \S\ref{sec:sb:fixing} \\
+$\tan\theta_W = g'/g$ from $\mathcal{B}$ & Open & EW-1 & \S\ref{sec:sb:fixing} \\
+$G_{\mathrm{GUT}}$ completion & Possible future direction & — & \S\ref{sec:sb:fixing} \\
+$\alpha$ from Route A2 & Conditional & EW-1, EW-2 & \S\ref{sec:sb:fixing} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Classification}: \textbf{CONDITIONAL} — blocked by Gaps EW-1 and EW-2.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
