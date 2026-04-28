@@ -6,7 +6,13 @@
 **Purpose**: High-level status of the electroweak mixing problem in UBT.
 Companion to the technical derivation document.  
 **Date**: 2026-04-28  
-**Priority**: CRITICAL  
+**Priority**: CLOSED — DEAD END
+
+> **DEPRECATION NOTICE (2026-04-28)**: This file was written when the Weinberg
+> angle route was considered a live priority.  That route is now classified as a
+> **DEAD END**.  Gap EW-1 is preserved as an honest open problem in the T2_GAUGE
+> paper but is **not** being actively pursued.  
+> **Truth anchor**: `STATUS_OF_UBT.md §Deprecated Claims`  
 **Companion file**: `canonical/alpha/weinberg_angle_derivation.md`  
 **Sources**: `canonical/alpha/alpha_derivation_routes.md`,
 `reports/alpha_no_fit_audit.md`,

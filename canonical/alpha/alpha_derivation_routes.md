@@ -6,7 +6,12 @@
 
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-27  
-**Status**: Research — four active routes catalogued  
+**Status**: SUPERSEDED — see `canonical/alpha/ALPHA_MASTER_STATUS.md`
+
+> **SUPERSEDED NOTICE (2026-04-28)**: This survey (dated 2026-04-27) listed
+> four active routes.  Routes A3 and A4 have since been **definitively killed**.
+> See `canonical/alpha/ALPHA_MASTER_STATUS.md` for current route status.
+> This file is preserved as a historical survey only.  
 **Canonical source**: `docs/STATUS_ALPHA.md`  
 **Companion files**: `gauge_normalization_attempt.tex`, `symmetry_breaking_alpha_attempt.tex`,
 `../../research_tracks/alpha/layer2_coding_alpha_scan.py`,
