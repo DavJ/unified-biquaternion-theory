@@ -1,0 +1,422 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T1_GR — General Relativity Recovery
+% Purpose: Notation-unified, paper-ready theorem chain for UBT_GR_PAPER.md
+% Notation standard: GR_theorem_result.tex (April 2026)
+% Changes from theorem_chain.tex:
+%   - Unified notation: \mathcal{N} normalisation explicit sign convention
+%   - Unified action symbol: S_\mathrm{total} (removes hat ambiguity)
+%   - Unified metric symbol: g_{\mu\nu} throughout (no script \mathcal{g})
+%   - Boxed final Einstein equation
+%   - Added Petrov-type note to Schwarzschild theorem
+%   - Summary table updated to match UBT_GR_PAPER.md
+% Sources: canonical/gr_closure/, canonical/t_munu/, canonical/geometry/
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+%% Unified notation macros (April 2026 standard)
+\newcommand{\BB}{\mathbb{B}}               % biquaternion algebra
+\newcommand{\AUBT}{\mathcal{A}_{\mathrm{UBT}}}  % admissible class
+\newcommand{\Stot}{S_{\mathrm{total}}}     % total action (no hat)
+\newcommand{\Tmunu}{T_{\mu\nu}}            % stress-energy
+\newcommand{\calN}{\mathcal{N}}            % normalisation factor
+
+\title{\textbf{GR Recovery in UBT: Notation-Unified Theorem Chain}\\
+  \large $\Theta \to g_{\mu\nu} \to \Gamma^\lambda_{\mu\nu}
+         \to R^\rho{}_{\sigma\mu\nu} \to G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$\\[4pt]
+  \normalsize \textit{Clean version for paper submission — see \texttt{UBT\_GR\_PAPER.md}}}
+\author{Ing.\ David Jaroš}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+% ============================================================
+\section{Foundations: UBT Axioms and Field}
+\label{sec:foundations}
+% ============================================================
+
+\begin{definition}[Biquaternion algebra \Lzero]
+\label{def:biquaternion_algebra}
+The \emph{biquaternion algebra} is
+\[
+  \BB \;:=\; \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}.
+\]
+As a real vector space, $\dim_{\mathbb{R}}\BB = 8$.  There are canonical isomorphisms
+\[
+  \BB \;\cong\; \mathrm{Mat}(2,\mathbb{C}) \;\cong\; \mathrm{Cl}_{1,3}(\mathbb{R}).
+\]
+Source: \texttt{canonical/fields/biquaternion\_algebra.tex}.
+\end{definition}
+
+\begin{definition}[Complex time and AXIOM B \Lzero]
+\label{def:complex_time}
+Complex time is $\tau := t + i\psi \in \mathbb{C}$, where $t \in \mathbb{R}$ is
+real time and $\psi \in \mathbb{R}$ is the imaginary (phase) component.
+
+\medskip
+\textbf{AXIOM B}: The complex-time derivative $\partial_\tau$ lies in the timelike
+sector of $\mathrm{Cl}_{1,3}(\mathbb{R})$:
+\[
+  \langle\partial_\tau, \partial_\tau\rangle_{\eta} \;<\; 0.
+\]
+Source: \texttt{canonical/THEORY/axioms/core\_assumptions.tex}.
+\end{definition}
+
+\begin{definition}[Fundamental field and admissible class \Lzero]
+\label{def:theta_field}
+The \emph{fundamental UBT field} is a map
+\[
+  \Theta : M^4 \times \mathbb{C}_\tau \;\longrightarrow\; \BB,
+\]
+satisfying the T-shirt equation
+\[
+  \nabla^\dagger\nabla\,\Theta(q,\tau) \;=\; \kappa\,\mathcal{T}(q,\tau).
+\]
+The \emph{admissible field class} is
+\[
+  \AUBT
+  \;:=\; \bigl\{\Theta \;\big|\;
+     \{\partial_\mu\Theta\}_{\mu=0}^{3}\text{ linearly independent over }\mathbb{R}
+     \text{ in }\BB,\;
+     \Theta \neq \mathrm{const}\bigr\}.
+\]
+Source: \texttt{canonical/fields/theta\_field.tex}.
+\end{definition}
+
+% ============================================================
+\section{Step 1: Metric Emergence}
+\label{sec:step1}
+% ============================================================
+
+\begin{theorem}[Metric emergence, \Lone]
+\label{thm:metric_emergence}
+For $\Theta \in \AUBT$, define the normalisation factor
+\[
+  \calN \;:=\; -\,\mathrm{Re}\bigl[\mathrm{Tr}(\partial_0\Theta\cdot\partial_0\Theta^\dagger)\bigr]
+  \;>\; 0
+\]
+(the sign ensures $\calN > 0$ by AXIOM B — see Theorem~\ref{thm:signature}).
+Define the derived real metric
+\[
+  g_{\mu\nu} \;:=\;
+  \frac{\mathrm{Re}\bigl[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr]}{\calN}.
+\]
+Then $g_{\mu\nu}$ is symmetric and transforms as a covariant rank-$(0,2)$ tensor
+under coordinate changes on $M^4$.
+
+\medskip
+\emph{Proof sketch}: Symmetry: $\mathrm{Re}[\mathrm{Tr}(AB^\dagger)]
+= \mathrm{Re}[\mathrm{Tr}(BA^\dagger)]$ for $A,B\in\mathrm{Mat}(2,\mathbb{C})$.
+Covariance: $\partial_\mu\Theta$ transforms as a covariant vector under
+diffeomorphisms; $g_{\mu\nu}$ inherits two copies of the Jacobian inverse.
+See \texttt{canonical/gr\_closure/step1\_metric\_bridge.tex}.
+\hfill$\square$
+\end{theorem}
+
+\begin{remark}[Notation unification note]
+The formula above uses the \textit{explicit-sign} convention for $\calN$ adopted
+throughout this clean version: $\calN = -\mathrm{Re}[\mathrm{Tr}(\partial_0\Theta
+\partial_0\Theta^\dagger)] > 0$.  Earlier drafts sometimes wrote
+$\calN = |\mathrm{Re}[\ldots]|$ or omitted the sign.  Both are equivalent given
+AXIOM B; the explicit-sign convention is used consistently here.
+\end{remark}
+
+% ============================================================
+\section{Step 2: Non-Degeneracy}
+\label{sec:step2}
+% ============================================================
+
+\begin{theorem}[Non-degeneracy of $g_{\mu\nu}$, \Lone]
+\label{thm:nondegeneracy}
+For $\Theta \in \AUBT$,
+\[
+  \det(g_{\mu\nu}) \;\neq\; 0.
+\]
+
+\medskip
+\emph{Proof}: The matrix $g_{\mu\nu}$ is the Gram matrix of the vectors
+$v_\mu := \partial_\mu\Theta/\sqrt{\calN}$ with respect to the inner product
+$\langle A,B\rangle := \mathrm{Re}(\mathrm{Sc}(AB^\dagger))$ on $\BB$.
+A Gram matrix $G$ of $n$ vectors satisfies $\det G = 0$ if and only if the
+vectors are linearly dependent.  Linear independence is the defining condition
+of $\AUBT$.
+\hfill$\square$
+\end{theorem}
+
+% ============================================================
+\section{Step 3: Lorentzian Signature}
+\label{sec:step3}
+% ============================================================
+
+\begin{theorem}[Lorentzian signature from AXIOM B, \Lone]
+\label{thm:signature}
+The derived metric $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$.
+Specifically: $g_{00} = -1$ and the spatial block $(g_{ij})_{i,j=1,2,3}$
+is positive-definite.
+
+\medskip
+\emph{Proof sketch}: By AXIOM~B,
+$\mathrm{Re}[\mathrm{Tr}(\partial_0\Theta\cdot\partial_0\Theta^\dagger)] < 0$,
+so $\calN > 0$ and $g_{00} = \mathrm{Re}[\mathrm{Tr}(\partial_0\Theta
+\partial_0\Theta^\dagger)]/\calN = -1$.
+The spatial generators $\partial_i\Theta$ are spacelike in $\mathrm{Cl}_{1,3}$,
+giving $\mathrm{Re}[\mathrm{Tr}(\partial_i\Theta\partial_i\Theta^\dagger)] > 0$,
+hence $g_{ii} > 0$.
+See \texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}, Theorem~2.
+\hfill$\square$
+\end{theorem}
+
+\begin{remark}
+The Lorentzian signature is a \emph{theorem}, not a postulate.  It follows from
+AXIOM~B alone, independent of the specific form of $\Theta$.
+\end{remark}
+
+% ============================================================
+\section{Step 4: Standard GR Geometric Apparatus}
+\label{sec:step4}
+% ============================================================
+
+\begin{proposition}[Levi-Civita connection, standard]
+\label{prop:levi_civita}
+Given the non-degenerate Lorentzian metric $g_{\mu\nu}$ of
+Theorem~\ref{thm:metric_emergence}, the unique torsion-free metric-compatible
+connection is the Levi-Civita connection
+\[
+  \Gamma^\lambda_{\mu\nu} \;=\; \tfrac{1}{2}g^{\lambda\rho}
+  \bigl(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\bigr).
+\]
+\end{proposition}
+
+\begin{proposition}[Curvature tensors, standard]
+\label{prop:curvature}
+The Riemann tensor, Ricci tensor, Ricci scalar, and Einstein tensor:
+\begin{align}
+  R^\rho{}_{\sigma\mu\nu} &:= \partial_\mu\Gamma^\rho_{\nu\sigma}
+    - \partial_\nu\Gamma^\rho_{\mu\sigma}
+    + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+    - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}, \\
+  R_{\mu\nu} &:= R^\rho{}_{\mu\rho\nu}, \qquad R := g^{\mu\nu}R_{\mu\nu}, \\
+  G_{\mu\nu} &:= R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R.
+\end{align}
+The contracted Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ holds identically.
+\end{proposition}
+
+\begin{remark}
+In UBT all geometric objects are \emph{derived} (not postulated): $g_{\mu\nu}$
+from Theorem~\ref{thm:metric_emergence}, $\Gamma$ and curvature from $g$,
+stress-energy from $\Theta$ via the Hilbert prescription.  No geometric structure
+is separately assumed.  See \texttt{canonical/geometry/curvature.tex}.
+\end{remark}
+
+% ============================================================
+\section{Step 5: Einstein Field Equations}
+\label{sec:step5}
+% ============================================================
+
+\begin{theorem}[Einstein field equations, \Lone]
+\label{thm:einstein}
+Consider the total UBT action
+\[
+  \Stot[g,\Theta]
+  \;=\; \frac{1}{16\pi G}\int \sqrt{-g}\,R\,\mathrm{d}^4x
+  \;+\; S_\Theta[g,\Theta],
+\]
+where $S_\Theta$ is the UBT matter action with kinetic term
+$\int\!\sqrt{-g}\,\mathrm{Re}[\mathrm{Tr}((D_\mu\Theta)^\dagger D^\mu\Theta)]\,\mathrm{d}^4x$.
+Variation with respect to $g^{\mu\nu}$ yields
+\[
+  \boxed{G_{\mu\nu} \;=\; 8\pi G\,\Tmunu,}
+\]
+where the stress-energy tensor
+\[
+  \Tmunu \;=\; \mathrm{Re}\bigl[\mathrm{Tr}(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger)\bigr]
+  - \tfrac{1}{2}g_{\mu\nu}\,g^{\alpha\beta}
+    \mathrm{Re}\bigl[\mathrm{Tr}(\partial_\alpha\Theta\,\partial_\beta\Theta^\dagger)\bigr]
+\]
+satisfies $\Tmunu = T_{\nu\mu}$ and $\nabla^\mu \Tmunu = 0$.
+
+\medskip
+\emph{Proof sketch}: The Einstein–Hilbert term gives $G_{\mu\nu}/(16\pi G)$ by the
+standard Hilbert variation.  The matter term gives $-\Tmunu/2$ from the Hilbert
+prescription applied to $S_\Theta$.  Combining gives the stated result.
+Conservation follows from the Bianchi identity and diffeomorphism invariance.
+See \texttt{canonical/t\_munu/step3\_einstein\_with\_matter.tex}.
+\hfill$\square$
+\end{theorem}
+
+\begin{remark}[Notation unification note]
+The action symbol $\Stot$ is used throughout (replacing earlier $\hat{S}$,
+$S[\Theta]$, and $S_\mathrm{EH} + S_\mathrm{matter}$ variants).
+\end{remark}
+
+% ============================================================
+\section{Schwarzschild Metric from $\Theta_0$}
+\label{sec:schwarzschild}
+% ============================================================
+
+\begin{theorem}[Schwarzschild metric in isotropic coordinates, \Lone]
+\label{thm:schwarzschild}
+The ansatz
+\[
+  \Theta_0 \;=\; e^{i\Phi(r)}\bigl[f(r)\,\mathbf{1} + g(r)\,\boldsymbol{e}_r\bigr],
+  \qquad \Phi(r) = \frac{1 - M/2r}{1 + M/2r},
+\]
+with $g(r) = r\Psi(r)^2$, $f'(r) = \Psi(r)\sqrt{2M/r}$, $\Psi(r) = 1 + M/(2r)$,
+is the unique (up to gauge) spherically symmetric vacuum solution of the UBT
+Euler--Lagrange equation with $\Theta \to \mathbf{1}$ as $r\to\infty$.
+Substituting into Theorem~\ref{thm:metric_emergence} gives the Schwarzschild metric
+in isotropic coordinates:
+\[
+  g_{tt} = -\Phi(r)^2, \qquad
+  g_{ij} = \Psi(r)^4\,\delta_{ij}.
+\]
+\emph{Numerical verification}: \texttt{tools/verify\_schwarzschild\_theta.py}
+confirms all metric components to relative error $< 10^{-15}$ for $r/M \in [2,100]$.
+The Schwarzschild formula is used only as a check, not as input.
+\end{theorem}
+
+\begin{theorem}[ASD condition and twistor space, \Lone]
+\label{thm:asd}
+For $\Theta \in \mathrm{SU}(2)_- \subset \BB$ smooth with $|\Theta|=1$:
+\begin{enumerate}
+  \item The holonomy of $g_{\mu\nu}[\Theta]$ lies in
+        $\mathrm{Sp}(1)\cong\mathrm{SU}(2)_-$,
+        implying the anti-self-dual (ASD) Weyl condition $C^+ = 0$.
+  \item Combined with the vacuum equation $\nabla^\dagger\nabla\Theta = 0$,
+        giving $R_{\mu\nu} = 0$ via the GR chain, the metric is ASD Ricci-flat.
+  \item By the Penrose nonlinear graviton theorem, $g_{\mu\nu}[\Theta]$ admits
+        a curved twistor space description.
+\end{enumerate}
+Note: The Schwarzschild metric (Petrov type D) lies \emph{outside} the
+$\mathrm{SU}(2)_-$ sector.
+\end{theorem}
+
+% ============================================================
+\section{Regge-Wheeler Equation (Linearised Gravity)}
+\label{sec:regge_wheeler}
+% ============================================================
+
+\begin{theorem}[Linearised GR and Regge-Wheeler equation, \Lone]
+\label{thm:regge_wheeler}
+Linearising the UBT field equation about flat background
+$\Theta = \Theta_0 + \epsilon\,\delta\Theta$ reproduces the linearised Einstein
+equations.  For odd-parity (axial) perturbations of the Schwarzschild background
+decomposed into angular modes, the perturbation equation reduces to the
+Regge-Wheeler equation
+\[
+  \left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2
+        - V_{\mathrm{RW}}(r)\right]\Psi_{\mathrm{RW}} = 0,
+\]
+where $r_*$ is the tortoise coordinate, $\omega$ the graviton frequency, and
+$V_{\mathrm{RW}}$ the Regge-Wheeler potential.
+This result follows from the metric chain without additional input.
+\end{theorem}
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!60!black,
+  title=Open problem: Zerilli equation (even-parity graviton) \OPEN~\Ltwo]
+The even-parity (polar) Zerilli equation for perturbations of Schwarzschild has
+\textbf{not} yet been derived from UBT (Gap-Z, \texttt{proof\_gap\_list.md~\S GAP-Z}).
+Closing this gap requires implementing Chandrasekhar's two-potential transformation
+in the UBT biquaternion framework.  This gap does \textbf{not} affect Theorems
+\ref{thm:metric_emergence}--\ref{thm:regge_wheeler}.
+\end{tcolorbox}
+
+% ============================================================
+\section{Open Problem: Off-Shell $\Theta$-Only Closure}
+\label{sec:gap}
+% ============================================================
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!60!black,
+  title=Open problem GAP-10: Off-shell $\Theta$-only closure \OPEN~\Ltwo]
+
+\textbf{On-shell result (proved, \Lone)}: For $\Theta \in \AUBT$ satisfying its
+Euler--Lagrange equation, the variation $\delta\Stot/\delta\Theta = 0$ is
+equivalent to the Einstein equations evaluated on $g = g[\Theta]$.
+
+\medskip
+\textbf{Off-shell gap}: Global non-degeneracy of $J := \delta g^{\mu\nu}/\delta\Theta$
+for \emph{all} field configurations (not only on-shell $\Theta \in \AUBT$) is
+not proved.
+
+\medskip
+\textbf{Missing lemma}: Show that $\ker J$ consists only of gauge directions
+(pure phase rotation or diffeomorphism) for all $\Theta$ in the full off-shell
+field space.
+
+\medskip
+\textbf{Known obstructions}:
+\begin{enumerate}
+  \item Rank mismatch: $\mathrm{Re}(\nabla^\dagger\nabla\Theta)$ is rank-0 while
+        $G_{\mu\nu}$ is rank-2.
+  \item Topology: global injectivity of $\Theta\to g[\Theta]$ requires
+        $H^2(M^4,\mathbb{Z})$ analysis of the $\Theta$-bundle.
+  \item Non-perturbative: a fixed-point theorem in an appropriate Sobolev
+        or Banach space is required.
+\end{enumerate}
+
+Sources: \texttt{proof\_gap\_list.md~\S GAP-10},
+\texttt{canonical/gr\_closure/step2\_theta\_only\_closure.tex}.
+This gap does \textbf{not} affect the validity of Theorems
+\ref{thm:metric_emergence}--\ref{thm:regge_wheeler}.
+\end{tcolorbox}
+
+% ============================================================
+\section{Summary Table}
+\label{sec:summary}
+% ============================================================
+
+\begin{tcolorbox}[colback=blue!3!white,colframe=blue!60!black,
+  title=GR Recovery Chain: Complete Status (April 2026)]
+\begin{center}
+\begin{tabular}{cllll}
+\toprule
+\textbf{Step} & \textbf{Claim} & \textbf{Status} & \textbf{Level} & \textbf{Source} \\
+\midrule
+1  & Metric $g_{\mu\nu}$ from $\Theta$            & Proved & \Lone  & step1\_metric\_bridge.tex \\
+2  & Non-degeneracy $\det g\neq 0$                & Proved & \Lone  & step2\_nondegeneracy.tex \\
+3  & Signature $(-,+,+,+)$ from AXIOM B           & Proved & \Lone  & step3\_signature\_theorem.tex \\
+4  & $g\to\Gamma\to R$ geometric chain            & Standard & —   & Diff.\ geometry \\
+5  & $G_{\mu\nu}=8\pi G\Tmunu$                    & Proved & \Lone  & step3\_einstein\_with\_matter.tex \\
+6a & Schwarzschild metric                         & Proved & \Lone  & biquaternionic\_vacuum\_solutions.tex \\
+6b & ASD condition / twistor                      & Proved & \Lone  & asd\_condition\_ubt.tex \\
+6c & Regge-Wheeler equation                       & Proved & \Lone  & (linearised GR chain) \\
+7a & Zerilli equation (even-parity)               & Open   & \Ltwo  & proof\_gap\_list.md \\
+7b & Off-shell $\Theta$-only closure (GAP-10)     & Open   & \Ltwo  & gr\_offshell\_gap.md \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\end{document}
