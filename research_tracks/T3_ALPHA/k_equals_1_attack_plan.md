@@ -108,7 +108,7 @@ $\hat{Z}(\tau) = |\vartheta_3(\tau)|^6$ (three complex free bosons).
 **Proof requirements**:
 - [ ] Write the Θ field mode expansion on T²: $\Theta = \sum_{m,n} \Theta_{m,n} e^{i(m t + n\psi)/R}$
 - [ ] Compute the Hamiltonian H = L₀ + L̄₀ in terms of mode operators
-- [ ] Show Z(τ) = Tr[e^{2πiτ(L₀ - c/24)}] factorises as ϑ₃³(τ)
+- [ ] Show Z(τ) = Tr[e^{2πiτ(L₀ - c/24)}] factorizes as ϑ₃³(τ)
 - [ ] Verify modular covariance under SL(2,ℤ)
 
 **Status**: PLANNED

@@ -108,9 +108,20 @@ $$\mathrm{Tr}[\text{all reps}]\,(Y^2)
 + 2\left(\tfrac{1}{2}\right)^2 + 1^2 = \tfrac{10}{3}$$
 
 $$\mathrm{Tr}[\text{doublets only}]\,(T_3^2)
-= 3 \times 2 \times \tfrac{1}{4} + 1 \times 2 \times \tfrac{1}{4} = \tfrac{10}{4} \times \tfrac{1}{... }$$
+= 3 \times 2 \times \tfrac{1}{4} + 1 \times 2 \times \tfrac{1}{4} = \tfrac{8}{4} = 2$$
 
-(Full per-generation computation requires specifying all fermion representations.)
+where the first term counts 3 quark-colour copies of the SU(2)_L doublet $Q_L$
+and the second counts the lepton doublet $L_L$, each contributing
+$\mathrm{Tr}(\tau^3\tau^3) = \tfrac{1}{4}$ per component.
+
+The generator ratio then gives:
+$$\frac{g'^2}{g^2} = \frac{\mathrm{Tr}_{\text{doublets}}(T_3^2)}{\mathrm{Tr}_{\text{all reps}}(Y^2)}
+= \frac{2}{10/3} = \frac{3}{5}$$
+
+which is the **SU(5) GUT result**: $g'/g = \sqrt{3/5}$, $\sin^2\theta_W = 3/8$.
+
+This computation assumes the SM fermion representation content; Task EW1.A is to
+derive that same content from the ψ-winding mode decomposition of ℂ⊗ℍ.
 
 **Task EW1.A**:
 - [ ] Derive the fermion representation content of one generation from the ψ-winding
