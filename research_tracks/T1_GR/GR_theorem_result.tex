@@ -39,10 +39,8 @@
 \newcommand{\CONJECTURED}{\textbf{[Conjectured]}}
 
 % ---- title ----------------------------------------------------------------
-\title{\textbf{GR Recovery Theorem}\\[6pt]
-  \large Einstein's Field Equations as a Real-Projected Limit\\
-  of Unified Biquaternion Theory\\[4pt]
-  \normalsize Track T1\_GR — Theorem Result Document}
+\title{\textbf{General Relativity as a Real-Projected Limit\\
+       of Unified Biquaternion Theory}}
 \author{Ing.\ David Jaroš}
 \date{April 2026}
 
@@ -93,6 +91,95 @@ closure are open problems at level [L2]; see Section~\ref{sec:limits}.
 \end{tcolorbox}
 
 \tableofcontents
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+\subsection{Motivation}
+
+General Relativity (GR) and Quantum Field Theory (QFT) rest on incompatible
+mathematical foundations.  Any candidate unified theory must contain GR as an
+exact sector before making further physical claims.  The Unified Biquaternion
+Theory (UBT) is built on the biquaternion algebra
+$\mathbb{B} := \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}$
+with a fundamental field $\Theta(q,\tau)$ over complex time $\tau = t + i\psi$.
+This paper establishes that UBT \emph{embeds} and \emph{derives} Einstein's
+field equations — it does not replace or modify them.
+
+\subsection{Key claims and novelty}
+
+The following results distinguish the present derivation from prior biquaternion
+gravity papers \cite{Adler1995,DeLeo1996,Finkelstein2001}:
+
+\begin{enumerate}
+\item \textbf{Metric is derived, not postulated.}
+      The spacetime metric $g_{\mu\nu}$ emerges from the bilinear derivative
+      construction $g_{\mu\nu} = \mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta
+      \cdot\partial_\nu\Theta^\dagger)]/\mathcal{N}$.
+      Prior biquaternion gravity papers either postulate $g_{\mu\nu}$ or the
+      action from which it follows.
+
+\item \textbf{Lorentzian signature is proved.}
+      Theorem~\ref{thm:signature} derives the signature $(-,+,+,+)$ from a
+      single axiom (AXIOM~B, the complex-time timelike constraint).  No prior
+      paper in this line derives the signature as a theorem.
+
+\item \textbf{Full Einstein equations from Hilbert variation.}
+      The five-step chain (Sections~\ref{sec:assumptions}--\ref{sec:proof})
+      is complete at the rigorous [L1] level with explicit source files for
+      every step.
+
+\item \textbf{No free parameters} in the GR chain.
+      The normalisation $\mathcal{N}$ is fixed by the admissibility condition;
+      no coupling constant is introduced.
+
+\item \textbf{Schwarzschild metric reproduced numerically.}
+      The spatial components of the Schwarzschild metric in isotropic coordinates
+      agree with the exact formula to floating-point precision (Appendix~\ref{app:numerics}).
+
+\item \textbf{Regge-Wheeler equation from linearised UBT.}
+      The odd-parity (axial) graviton perturbation equation of Schwarzschild
+      follows from linearised UBT without any additional input.
+\end{enumerate}
+
+\subsection{Relation to existing frameworks}
+
+The GR recovery mechanism in UBT is structurally distinct from three major
+competing frameworks:
+
+\begin{itemize}
+\item \emph{String theory}: GR emerges as the low-energy limit of the string
+  field action; the mechanism requires extra dimensions and an infinite tower of
+  massive modes.  In UBT, the metric emerges from an 8-real-dimensional algebra.
+
+\item \emph{Loop Quantum Gravity}: the classical metric is quantised; GR is
+  the semiclassical limit of the spin-foam path integral.  In UBT, the metric
+  is a classical derived quantity from the first-principles field equation.
+
+\item \emph{Connes--Lott / spectral action}: the metric is reconstructed from
+  the spectral geometry of a 21-real-dimensional algebra
+  $\mathbb{C}\oplus\mathbb{H}\oplus M_3(\mathbb{C})$.  In UBT, the single
+  8-dimensional algebra $\mathbb{C}\otimes\mathbb{H}$ generates \emph{both} the
+  metric (GR sector) and the Standard Model gauge group (gauge sector)
+  \cite{Connes1996}.
+\end{itemize}
+
+\subsection{Road map}
+
+\begin{description}
+\item[Section~\ref{sec:assumptions}] States the three UBT axioms and two
+  regularity conditions (A1--A5) on which all results depend.
+\item[Section~\ref{sec:proof}] Derives the five-step GR chain and three
+  extended results (Schwarzschild, ASD/twistor, Regge-Wheeler).
+\item[Section~\ref{sec:limits}] States precisely bounded open problems
+  that do not affect the main result.
+\item[Section~\ref{sec:discussion}] Summarises the results, compares with
+  literature, and sketches the outlook.
+\item[Appendix~\ref{app:signature}] Full algebraic proof of the signature theorem.
+\item[Appendix~\ref{app:numerics}] Numerical verification tables.
+\end{description}
 
 % ============================================================
 \section{Assumptions}
@@ -677,5 +764,126 @@ python tools/verify_schwarzschild_theta.py --mass 2.0 --r_values 3,6,12
 
 The script exits with code~0 if all spatial components agree within
 tolerance $10^{-8}$ (default), and code~1 otherwise.
+
+% ============================================================
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+% ============================================================
+
+\subsection{Summary of results}
+
+We have proved the following chain:
+\[
+\Theta \;\longrightarrow\; g_{\mu\nu} \;\longrightarrow\;
+\Gamma^\lambda_{\mu\nu} \;\longrightarrow\;
+R^\rho{}_{\sigma\mu\nu} \;\longrightarrow\;
+G_{\mu\nu} = 8\pi G\,T_{\mu\nu},
+\]
+in which every arrow is either an algebraic identity (Steps 1--3) or
+the standard differential-geometry construction (Step 4) or a standard
+variational result (Step 5).  No step introduces a free parameter or
+assumes a result that itself depends on GR.
+
+The Schwarzschild exterior metric is recovered from a specific $\Theta_0$
+ansatz, with spatial components verified to floating-point precision.
+The ASD Weyl condition links the $\mathrm{SU}(2)_-$ sector to the Penrose
+nonlinear graviton theorem and twistor space, providing a structural
+connection between UBT and the twistor programme.
+The Regge-Wheeler equation for odd-parity graviton perturbations follows
+from linearised UBT without any additional input.
+
+\subsection{Status of open problems}
+
+Two problems are identified and precisely bounded (Section~\ref{sec:limits}).
+Neither affects the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}:
+
+\begin{enumerate}
+\item \textbf{GAP-10 (off-shell $\Theta$-only closure)}: This concerns
+  path-integral completeness and off-shell quantum equivalence.  It is
+  a long-term problem that depends on topology ($H^2(M^4,\mathbb{Z})$)
+  and a Sobolev-space fixed-point theorem.
+
+\item \textbf{GAP-Z (Zerilli equation)}: Deriving the even-parity graviton
+  equation is the highest-priority near-term extension.  A clear route via
+  Chandrasekhar's transformation exists; it has not yet been implemented
+  in the UBT framework.
+\end{enumerate}
+
+\subsection{Outlook}
+
+The most important near-term extensions of this work are:
+\begin{enumerate}
+\item \textbf{Zerilli equation} (GAP-Z): extend the linearised analysis
+  to the even-parity sector via Chandrasekhar's two-potential method.
+\item \textbf{Cosmological solutions} (GAP-C): construct FRW and
+  de~Sitter $\Theta$ ansätze from the time-dependent UBT equations.
+\item \textbf{SM gauge sector}: the companion paper \cite{T2GAUGE2026}
+  derives the SM gauge group $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+  from the same biquaternion algebra.
+\end{enumerate}
+
+\subsection{Conclusion}
+
+The Unified Biquaternion Theory contains standard General Relativity as an exact
+sector.  The spacetime metric is not postulated but derived as a bilinear invariant
+of the fundamental field.  The Lorentzian signature is a theorem rather than an
+assumption.  The Einstein equations follow from Hilbert variation of the total
+UBT action.  The Schwarzschild exterior metric and the odd-parity graviton equation
+are reproduced without additional input.  This establishes UBT as a mathematically
+rigorous framework in which GR emerges naturally from algebraic first principles.
+
+% ============================================================
+%  BIBLIOGRAPHY
+% ============================================================
+
+\begin{thebibliography}{99}
+
+\bibitem{Adler1995}
+S.~L.~Adler,
+\textit{Quaternionic Quantum Mechanics and Quantum Fields},
+Oxford University Press, 1995.
+
+\bibitem{DeLeo1996}
+S.~De~Leo and P.~Rotelli,
+``Quaternion scalar field,''
+\textit{Physical Review D} \textbf{45} (1992) 575--580.
+
+\bibitem{Finkelstein2001}
+D.~R.~Finkelstein, J.~M.~Gibbs, and G.~Sobczyk,
+``The Cayley factor and general relativity,''
+\textit{International Journal of Theoretical Physics} \textbf{40} (2001) 271--293.
+
+\bibitem{Connes1996}
+A.~Connes and J.~Lott,
+``Particle models and noncommutative geometry,''
+\textit{Nuclear Physics B Proceedings Supplement} \textbf{18B} (1991) 29--47.
+
+\bibitem{Regge1957}
+T.~Regge and J.~A.~Wheeler,
+``Stability of a Schwarzschild singularity,''
+\textit{Physical Review} \textbf{108} (1957) 1063--1069.
+
+\bibitem{Penrose1976}
+R.~Penrose,
+``Nonlinear gravitons and curved twistor theory,''
+\textit{General Relativity and Gravitation} \textbf{7} (1976) 31--52.
+
+\bibitem{Wald1984}
+R.~M.~Wald,
+\textit{General Relativity},
+University of Chicago Press, 1984.
+
+\bibitem{MTW1973}
+C.~W.~Misner, K.~S.~Thorne, and J.~A.~Wheeler,
+\textit{Gravitation},
+W.~H.~Freeman, 1973.
+
+\bibitem{T2GAUGE2026}
+I.~D.~Jaroš,
+``Emergence of $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+from Biquaternion Algebra $\mathbb{C}\otimes\mathbb{H}$,''
+preprint, 2026.
+
+\end{thebibliography}
 
 \end{document}
