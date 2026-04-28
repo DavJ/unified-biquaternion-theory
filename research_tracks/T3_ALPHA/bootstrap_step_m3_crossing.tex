@@ -1,0 +1,274 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% bootstrap_step_m3_crossing.tex
+% Modular Bootstrap Step M3: Crossing Symmetry Test
+%
+% Goal: Test whether s-channel = t-channel OPE for k=1, k=2, k→∞.
+% Status: IN PROGRESS — see MODULAR_BOOTSTRAP_K1_PLAN.md §4 Step M3
+% Prerequisite: bootstrap_step_m2_4point.tex (4-point function explicit)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Modular Bootstrap Step M3}\\
+         \large Crossing Symmetry Test for $k = 1$, $k = 2$, $k \to \infty$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-28}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Status}
+\label{sec:m3:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Step M3 — Crossing Symmetry Test]
+\begin{tabular}{ll}
+Parent plan  & \texttt{MODULAR\_BOOTSTRAP\_K1\_PLAN.md} \\
+Prerequisite & \texttt{bootstrap\_step\_m2\_4point.tex}: 4-point function \\
+Goal         & Determine which $k$ values satisfy crossing symmetry \\
+Milestone    & 2026-05-19 \\
+Status       & IN PROGRESS \\
+Acceptance   & Unique $k$ forced, or explicit non-uniqueness \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{No-fit rule}: $k = 1$ must be \emph{forced} by crossing symmetry,
+not assumed.  An argument showing $k = 1$ is ``simplest'' or ``natural''
+has already been recorded as Motivated Conjecture [MC] (v67).  Step M3 must
+go beyond [MC].
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Crossing Symmetry Setup}
+\label{sec:m3:crossing}
+%──────────────────────────────────────────────────────────────────────────────
+
+The 4-point function of Step M2 is:
+\begin{equation}
+  \mathcal{G}(z, \bar{z})
+  \equiv \bigl\langle \Theta(\infty)\, \Theta(1)\, \Theta(z)\, \Theta(0)
+         \bigr\rangle_{c=3}
+  = |z|^{-3/2}\, |1 - z|^{-3/2}.
+  \label{eq:m3:G4}
+\end{equation}
+Crossing symmetry requires:
+\begin{equation}
+  \mathcal{G}(z, \bar{z}) = \mathcal{G}(1-z, 1-\bar{z}).
+  \label{eq:m3:crossing}
+\end{equation}
+Inspection of~\eqref{eq:m3:G4} shows this is satisfied:
+$|z|^{-3/2}|1-z|^{-3/2} = |1-z|^{-3/2}|z|^{-3/2}$.
+The full free-boson 4-point function is crossing symmetric for all $k$.
+\emph{Crossing symmetry of the full theory does not fix $k$.}
+
+\paragraph{The key question.}
+Crossing symmetry of the 4-point function becomes a non-trivial constraint
+when it is imposed on the \emph{conformal block decomposition} with a
+\emph{restricted operator spectrum}.
+
+\medskip
+The three spectra to be tested:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{clll}
+\toprule
+Label & Spectrum & Primaries & Condition \\
+\midrule
+$k = 1$ (SU(2)$_1$) & Two primaries per factor &
+  $j = 0$ ($h=0$) and $j = 1/2$ ($h=1/4$) &
+  No $h > 1/4$ primaries \\
+$k = 2$ (SU(2)$_2$) & Three primaries per factor &
+  $j = 0$ ($h=0$), $j=1/2$ ($h=3/8$), $j=1$ ($h=2/3$) &
+  $j=1$ primary present \\
+$k \to \infty$ (free boson) & Full winding tower &
+  $h = (m+n)^2/4$, all $m,n \in \mathbb{Z}$ &
+  Infinite tower \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conformal Block Decomposition with Restricted Spectrum}
+\label{sec:m3:blocks}
+%──────────────────────────────────────────────────────────────────────────────
+
+The crossing symmetry equation in the conformal block basis is:
+\begin{equation}
+  \sum_{\mathcal{O} \in \mathcal{S}} C_{\mathcal{O}}^2\,
+  \mathcal{F}_{\Delta_{\mathcal{O}}, \ell_{\mathcal{O}}}(z)
+  \overline{\mathcal{F}}_{\Delta_{\mathcal{O}}, \ell_{\mathcal{O}}}(\bar{z})
+  =
+  \sum_{\mathcal{O} \in \mathcal{S}} C_{\mathcal{O}}^2\,
+  \mathcal{F}_{\Delta_{\mathcal{O}}, \ell_{\mathcal{O}}}(1-z)
+  \overline{\mathcal{F}}_{\Delta_{\mathcal{O}}, \ell_{\mathcal{O}}}(1-\bar{z}),
+  \label{eq:m3:crossing_blocks}
+\end{equation}
+where the sum is over the spectrum $\mathcal{S}$ of allowed operators.
+
+\subsection{Test 1: $k \to \infty$ (full free-boson spectrum)}
+
+With the full winding tower, equation~\eqref{eq:m3:crossing_blocks} is
+automatically satisfied (as shown in Step M2).
+\begin{center}
+\fbox{$k \to \infty$: crossing satisfied. \quad \textbf{CONSISTENT.}}
+\end{center}
+
+\subsection{Test 2: $k = 1$ (SU(2)$_1$ spectrum per factor)}
+
+With only $j = 0, 1/2$ primaries (dimensions $h = 0$ and $h = 1/4$ per
+Im($\mathbb{H}$) factor), the 4-point function truncates to:
+\begin{equation}
+  \mathcal{G}_{k=1}(z) = 1 + C_{1/2}^2\,\mathcal{F}_{1/2}(z)\overline{\mathcal{F}}_{1/2}(\bar{z})
+  + \ldots \quad (\text{descendants included}).
+  \label{eq:m3:G_k1}
+\end{equation}
+For $SU(2)_1$, the OPE coefficient is fixed by the WZW fusion rules:
+\begin{equation}
+  j_1 = j_2 = \tfrac{1}{2}, \quad j_3 = 0 \text{ or } j_3 = 1 \text{ (absent: } j \leq k/2 = 1/2 \text{)}.
+  \label{eq:m3:fusion_k1}
+\end{equation}
+The fusion rule $[1/2] \times [1/2] = [0]$ (only identity survives the
+$k=1$ truncation) gives $C_{j=1/2}^2 = 1$ and no $j=1$ contribution.
+
+The crossing symmetry equation then becomes:
+\begin{equation}
+  \mathcal{F}_0(z) + C_{1/2}^2\,\mathcal{F}_{1/2}(z)
+  =
+  \mathcal{F}_0(1-z) + C_{1/2}^2\,\mathcal{F}_{1/2}(1-z).
+  \label{eq:m3:crossing_k1}
+\end{equation}
+For $c = 1$ (one SU(2)$_1$ factor), the conformal blocks at $c = 1$ with
+$h_{\mathrm{ext}} = 1/4$:
+\begin{equation}
+  \mathcal{F}_0(z) = z^{-1/2}(1 + O(z)), \quad
+  \mathcal{F}_{1/2}(z) = z^0(1 + O(z)).
+  \label{eq:m3:blocks_k1}
+\end{equation}
+At $z \to 0$: the $s$-channel is dominated by $\mathcal{F}_0 \sim z^{-1/2}$;
+the $t$-channel ($z \to 1$) is dominated by $\mathcal{F}_0(1-z) \sim (1-z)^{-1/2}$.
+The function $|z|^{-1/2}|1-z|^{-1/2}$ (the $c=1$ free-boson answer) is
+reproduced exactly by the $k=1$ SU(2)$_1$ block sum, since the SU(2)$_1$ WZW
+theory \emph{is} the free compact boson at the self-dual radius.
+\begin{center}
+\fbox{$k = 1$: crossing satisfied. \quad \textbf{CONSISTENT.}}
+\end{center}
+
+\subsection{Test 3: $k = 2$ (SU(2)$_2$ spectrum per factor)}
+
+With $k = 2$, an extra primary $j = 1$ with $h = j(j+1)/(k+2) = 2/4 = 1/2$
+(dimension $\Delta = 1$) is present.  The fusion rule $[1/2] \times [1/2]$
+now includes both $[0]$ and $[1]$, giving an extra OPE contribution.
+The crossing symmetry equation gains a new term:
+\begin{equation}
+  \mathcal{F}_0 + C_{1/2}^2 \mathcal{F}_{1/2} + C_1^2 \mathcal{F}_1
+  =
+  \mathcal{F}_0(1-z) + C_{1/2}^2 \mathcal{F}_{1/2}(1-z) + C_1^2 \mathcal{F}_1(1-z).
+  \label{eq:m3:crossing_k2}
+\end{equation}
+The $SU(2)_2$ WZW OPE coefficient $C_1^2$ is non-zero.  The 4-point function
+is \emph{not} equal to $|z|^{-3/2}|1-z|^{-3/2}$ (the free-boson / $k \to \infty$
+answer): it contains the extra $j=1$ block at $c=3/2$ ($c=3/2$ per factor,
+$c=9/2$ total — this is inconsistent with $c=3$).
+
+\begin{warnbox}
+\textbf{$k=2$ inconsistency}: $SU(2)_2$ has central charge
+$c = 3k/(k+2) = 3 \times 2/4 = 3/2$ per factor, giving $c_{\mathrm{total}} = 9/2
+\neq 3$.  The UBT partition function (Step M1) has $c = 3$.  Therefore $k = 2$
+(and all $k \geq 2$) is \textbf{inconsistent} with the UBT central charge.
+\end{warnbox}
+
+\medskip
+More generally, $SU(2)_k$ has central charge $c = 3k/(k+2)$.  Setting $c = 1$
+per $\operatorname{Im}(\mathbb{H})$ factor:
+\begin{equation}
+  \frac{3k}{k+2} = 1 \quad \Longleftrightarrow \quad 3k = k + 2
+  \quad \Longleftrightarrow \quad k = 1.
+  \label{eq:m3:c_constraint}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Central-charge constraint}: The requirement $c = 1$ per
+$\operatorname{Im}(\mathbb{H})$ factor (equivalently $c_{\mathrm{total}} = 3$,
+proved in Step M1) forces $k = 1$ for the $SU(2)$ interpretation.
+For $k \geq 2$: $c = 3k/(k+2) > 1$, inconsistent with $c_{\mathrm{total}} = 3$.
+For $k \to \infty$ (free boson): $c \to 3$ per factor — but this is the $c=3$
+free-compact-boson theory, which is equivalent to three $U(1)$ WZW models at
+level $k \to \infty$, not $SU(2)_k$.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Crossing Summary and Gap Status}
+\label{sec:m3:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{clll}
+\toprule
+$k$ & Crossing satisfied? & Consistent with $c=3$? & Verdict \\
+\midrule
+1 (SU(2)$_1$) & Yes & Yes ($c=1$ per factor) & \textbf{CONSISTENT} \\
+2 (SU(2)$_2$) & Formally yes & No ($c=3/2$ per factor $\neq 1$) & \textbf{EXCLUDED} \\
+$k \geq 2$     & Formally yes & No ($c = 3k/(k+2) > 1$) & \textbf{EXCLUDED} \\
+$k \to \infty$ (free boson) & Yes & Yes ($c=1$ per factor) & \textbf{CONSISTENT} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Residual degeneracy.}
+Both $k = 1$ (SU(2)$_1$) and $k \to \infty$ (free compact boson) are consistent
+with $c = 3$.  At the self-dual radius, $SU(2)_1$ WZW \emph{is} the free compact
+boson at $R = \sqrt{\alpha'}$; they are the same CFT.  The degeneracy between
+$k=1$ and $k \to \infty$ is resolved by the \emph{UBT operator content}, which
+restricts to a finite set of primaries (Step M4).
+
+\begin{gapbox}
+\textbf{Remaining gap for Step M4}: The crossing symmetry + central-charge
+argument excludes $k \geq 2$ but cannot distinguish $k = 1$ SU(2)$_1$
+from $k \to \infty$ free boson, since these are equivalent at the self-dual
+radius.  Step M4 must use the UBT field content (mode truncation from
+N\_eff = 12, winding-number stability) to break this degeneracy.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

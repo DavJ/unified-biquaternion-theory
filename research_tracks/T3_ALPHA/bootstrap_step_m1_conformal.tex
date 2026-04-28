@@ -1,0 +1,228 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% bootstrap_step_m1_conformal.tex
+% Modular Bootstrap Step M1: Conformal invariance of S[Θ] on T²
+%
+% Goal: Show S[Θ] restricted to T² is a 2D CFT with c = 3.
+% Status: IN PROGRESS — see MODULAR_BOOTSTRAP_K1_PLAN.md §4 Step M1
+% Parent plan: MODULAR_BOOTSTRAP_K1_PLAN.md
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Modular Bootstrap Step M1}\\
+         \large Conformal Invariance of $S[\Theta]$ on $T^2$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-28}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Status}
+\label{sec:m1:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Step M1 — Conformal Invariance of $S[\Theta]$ on $T^2$]
+\begin{tabular}{ll}
+Parent plan      & \texttt{MODULAR\_BOOTSTRAP\_K1\_PLAN.md} \\
+Goal             & Verify $S[\Theta]|_{T^2}$ is a 2D CFT with $c = 3$ \\
+Milestone        & 2026-05-05 \\
+Status           & IN PROGRESS \\
+Acceptance       & $T(z)T(w)$ OPE coefficient reproduces $c = 3$ \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{No-fit rule}: No constant in this document may be chosen to match
+$\alpha$ or reproduce $k = 1$.  Every numerical result must follow from
+UBT axioms or be explicitly marked [MC].
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: UBT Action on the $\psi$-Torus}
+\label{sec:m1:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT fundamental field is $\Theta(q, \tau) \in \mathbb{C} \otimes \mathbb{H}$
+with $\tau = t + i\psi$ and the imaginary-time circle
+$\psi \sim \psi + 2\pi R_\psi$.  Restricting to the imaginary-time torus
+$T^2 = S^1_t \times S^1_\psi$ (compactifying also real time with period
+$\beta = 1/(k_B T_{\mathrm{phys}})$ for the purposes of the CFT analysis):
+
+The action on $T^2$ for the imaginary-part sector $\operatorname{Im}(\mathbb{H})$
+is a free massless Gaussian:
+\begin{equation}
+  S[\Theta]\big|_{T^2}
+  = \frac{1}{4\pi \alpha'} \int_{T^2} \bigl|\partial \Theta_{\mathrm{Im}}\bigr|^2
+    \,d^2 z,
+  \label{eq:m1:action}
+\end{equation}
+where $\Theta_{\mathrm{Im}} = (\Theta^1, \Theta^2, \Theta^3)$ are the three
+$\operatorname{Im}(\mathbb{H})$ components, $z = \sigma + i\tau$ is the
+worldsheet coordinate, and $\alpha' = R_\psi^2$ at the T-duality self-dual
+point $R_\psi = R_t$.
+
+This is the action of \textbf{three free massless compact bosons}
+$X^i \equiv \Theta^i$, $i = 1, 2, 3$, each with target-space radius
+$R = R_\psi$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Stress-Energy Tensor and OPE}
+\label{sec:m1:TT}
+%──────────────────────────────────────────────────────────────────────────────
+
+For a single free compact boson $X$ with action
+$S = \frac{1}{4\pi\alpha'}\int |\partial X|^2 d^2 z$,
+the holomorphic stress-energy tensor is:
+\begin{equation}
+  T(z) = -\frac{1}{\alpha'} :\!(\partial X)^2\!:
+  \label{eq:m1:T_single}
+\end{equation}
+
+The OPE is standard:
+\begin{equation}
+  T(z)\, T(w) = \frac{c/2}{(z-w)^4}
+              + \frac{2\,T(w)}{(z-w)^2}
+              + \frac{\partial T(w)}{z - w}
+              + \text{regular},
+  \label{eq:m1:TT_ope}
+\end{equation}
+with central charge $c = 1$ per free compact boson.
+
+\begin{proposition}[Central charge of $S[\Theta]|_{T^2}$]
+\label{prop:m1:c3}
+The action $S[\Theta]|_{T^2}$ in~\eqref{eq:m1:action} is a 2D CFT with total
+central charge
+\begin{equation}
+  c = \dim_{\mathbb{R}}(\operatorname{Im}\mathbb{H}) \times 1 = 3 \times 1 = 3.
+  \label{eq:m1:c3}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The three components $\Theta^1, \Theta^2, \Theta^3$ are decoupled (the action
+is diagonal in the $\operatorname{Im}(\mathbb{H})$ basis, since the quaternion
+metric on $\operatorname{Im}(\mathbb{H}) \cong \mathbb{R}^3$ is Euclidean).
+Each component $\Theta^i$ contributes $c_i = 1$ independently.
+The total central charge is $c = c_1 + c_2 + c_3 = 3$.
+\end{proof}
+
+\begin{resultbox}
+$S[\Theta]|_{T^2}$ is a 2D CFT with $c = 3$.
+The stress-energy tensor OPE coefficient in~\eqref{eq:m1:TT_ope} equals $c = 3$.
+\textbf{Circularity check}: this result uses only $\dim_{\mathbb{R}}(\operatorname{Im}\mathbb{H}) = 3$
+(a UBT axiom; no $\alpha$, no $m_e$). \quad [L0/L1 CLEAN]
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mode Expansion and Operator Content}
+\label{sec:m1:modes}
+%──────────────────────────────────────────────────────────────────────────────
+
+On $T^2$ with modular parameter $\tau_{\mathrm{mod}}$, each compact boson $X^i$
+has the mode expansion:
+\begin{equation}
+  X^i(z, \bar{z}) = x_0^i
+    + \frac{\alpha'}{2}(p^i_L \ln z + p^i_R \ln \bar{z})
+    + i\sqrt{\frac{\alpha'}{2}} \sum_{n \neq 0} \frac{1}{n}
+      \bigl(\alpha^i_n z^{-n} + \tilde\alpha^i_n \bar{z}^{-n}\bigr),
+  \label{eq:m1:mode_expansion}
+\end{equation}
+where the left/right momenta satisfy the quantisation condition from the
+compactification $X^i \sim X^i + 2\pi R_\psi$:
+\begin{equation}
+  p^i_L = \frac{m^i}{R_\psi} + \frac{n^i R_\psi}{\alpha'},
+  \qquad
+  p^i_R = \frac{m^i}{R_\psi} - \frac{n^i R_\psi}{\alpha'},
+  \label{eq:m1:momenta}
+\end{equation}
+with $m^i \in \mathbb{Z}$ (Kaluza-Klein number) and $n^i \in \mathbb{Z}$
+(winding number).
+
+\paragraph{Self-dual radius.}
+At the T-duality self-dual point $R_\psi = \sqrt{\alpha'}$:
+\begin{equation}
+  p^i_L = m^i + n^i, \quad p^i_R = m^i - n^i.
+  \label{eq:m1:selfdual_momenta}
+\end{equation}
+At this radius, the partition function per boson is exactly $\vartheta_3(\tau_{\mathrm{mod}})$:
+\begin{equation}
+  Z_{\mathrm{boson}}(\tau_{\mathrm{mod}}) = \frac{\vartheta_3(\tau_{\mathrm{mod}})}{|\eta(\tau_{\mathrm{mod}})|^2},
+\end{equation}
+so that the full partition function of $S[\Theta]|_{T^2}$ is:
+\begin{equation}
+  \hat{Z}(\tau_{\mathrm{mod}}) = \frac{\vartheta_3(\tau_{\mathrm{mod}})^3}{|\eta(\tau_{\mathrm{mod}})|^6}.
+  \label{eq:m1:partition_function}
+\end{equation}
+The numerator $\vartheta_3^3$ is the partition function of the zero modes
+(KK + winding); the denominator $|\eta|^6$ is the oscillator contribution.
+This is consistent with the result already established in
+\texttt{canonical/alpha/alpha\_best\_route.tex} Gap G8.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step M1 Result and Handoff to Step M2}
+\label{sec:m1:result}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Step M1 result}: $S[\Theta]|_{T^2}$ is a 2D CFT of three free compact
+bosons at the self-dual radius, with $c = 3$ and partition function
+$\hat{Z}(\tau_{\mathrm{mod}}) = \vartheta_3^3 / |\eta|^6$.
+
+The operator spectrum consists of vertex operators
+$V_{m^i,n^i}(z) = e^{i(p^i_L X^i_L + p^i_R X^i_R)}$
+with dimensions $h = \frac{\alpha'}{4}(p_L^i)^2$,
+$\bar{h} = \frac{\alpha'}{4}(p_R^i)^2$.
+
+\textbf{Step M2} will use this operator content to compute the 4-point
+function $\langle V V V V \rangle$ and set up the crossing symmetry constraint.
+\end{resultbox}
+
+\begin{gapbox}
+\textbf{Open sub-question for Step M2}: Does the UBT gauge-consistency
+constraint (Dirac quantisation on $S^1_\psi$ from
+\texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S1}) restrict which
+$(m^i, n^i)$ sectors are present?  If only $m = 0$ or only $n \neq 0$ sectors
+contribute, the operator spectrum is truncated and may distinguish $k = 1$
+from $k \to \infty$.  This question is addressed in Step M4.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

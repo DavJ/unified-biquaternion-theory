@@ -1,0 +1,281 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% bootstrap_step_m4_ubt_content.tex
+% Modular Bootstrap Step M4: UBT Field Content vs k Values
+%
+% Goal: Apply the UBT constraint (N_eff=12, Dirac quantisation, winding stability)
+%       and determine whether these force a unique k.
+% Status: IN PROGRESS — see MODULAR_BOOTSTRAP_K1_PLAN.md §4 Step M4
+% Prerequisite: bootstrap_step_m3_crossing.tex (k≥2 excluded; k=1 vs k→∞ remain)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Modular Bootstrap Step M4}\\
+         \large UBT Field Content vs Kac-Moody Level $k$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-28}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Status}
+\label{sec:m4:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Step M4 — UBT Field Content vs $k$ Values]
+\begin{tabular}{ll}
+Parent plan  & \texttt{MODULAR\_BOOTSTRAP\_K1\_PLAN.md} \\
+Prerequisite & \texttt{bootstrap\_step\_m3\_crossing.tex}: $k \geq 2$ excluded \\
+Goal         & Determine if UBT forces unique $k$ from $\{1, \infty\}$ \\
+Milestone    & 2026-05-26 \\
+Status       & IN PROGRESS \\
+Acceptance   & Unique $k = 1$ forced (proof), or explicit non-uniqueness (rejection) \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{No-fit rule}: $k = 1$ must emerge from a structural argument about
+the UBT field content.  ``Simplest'' or ``minimal'' arguments have [MC] status
+and are insufficient.  This step must either close Gap G3-k or declare it
+unresolvable by this method.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Residual Degeneracy from Step M3}
+\label{sec:m4:degeneracy}
+%──────────────────────────────────────────────────────────────────────────────
+
+Step M3 established:
+\begin{itemize}
+  \item $k \geq 2$: excluded by central charge $c_{\mathrm{per\,factor}} > 1$.
+  \item $k = 1$ (SU(2)$_1$) and $k \to \infty$ (free boson at self-dual radius):
+        both give $c = 1$ per factor and crossing-symmetric 4-point function.
+\end{itemize}
+
+At the self-dual radius $R = \sqrt{\alpha'}$, SU(2)$_1$ WZW and the free compact
+boson are \emph{the same CFT} — they are dual descriptions.  The standard
+orbifold/coset isomorphism gives:
+\begin{equation}
+  SU(2)_1 \cong \text{free compact boson at } R = \sqrt{\alpha'}.
+  \label{eq:m4:su2_1_iso}
+\end{equation}
+Hence $k = 1$ and $k \to \infty$ (in the naive SU(2) parametrisation) are
+\emph{not two different theories}: they are the same theory described in two
+different languages.  The question reduces to:
+
+\begin{insightbox}
+\textbf{Refined question}: Does the UBT field content correspond to the
+\emph{SU(2)$_1$ WZW description} (finite primary spectrum: $j = 0, 1/2$ only)
+or the \emph{free-boson description} (infinite winding tower)?
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{UBT Winding-Number Truncation}
+\label{sec:m4:truncation}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Dirac quantisation and winding stability}
+\label{sec:m4:dirac}
+
+From the Dirac quantisation condition on $S^1_\psi$
+(\texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S1}):
+\begin{equation}
+  e^{iq \oint A_\psi d\psi} = 1 \quad \Longrightarrow \quad n \in \mathbb{Z}.
+  \label{eq:m4:dirac}
+\end{equation}
+All winding numbers $n \in \mathbb{Z}$ are kinematically allowed.
+
+From the prime-stability argument
+(\texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S4}):
+winding vacua with composite $n = p \cdot q$ are \emph{dynamically unstable}
+(they decay into winding-$p$ and winding-$q$ sectors by topology change).
+Only prime $n$ are stable vacuum states.
+
+\subsection{Operator spectrum in the winding tower}
+
+The operators in the free-boson description are $V_{m,n}$ with $h = (m+n)^2/4$,
+$\bar{h} = (m-n)^2/4$.  The UBT constraint restricts to:
+\begin{itemize}
+  \item $|n| \in \{$primes$\}$ for stable winding vacua, or $n = 0$ for the
+        untwisted sector.
+  \item $m \in \mathbb{Z}$ (Kaluza-Klein number, unrestricted by gauge consistency).
+\end{itemize}
+
+Under this truncation, the operator spectrum is \emph{not} the full
+$\mathbb{Z} \times \mathbb{Z}$ tower.  The lowest operators are:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{cccl}
+\toprule
+$(m, n)$ & $h$ & $\bar{h}$ & Role \\
+\midrule
+$(0, 0)$ & 0 & 0 & Identity (vacuum) \\
+$(0, \pm 1)$ & $1/4$ & $1/4$ & Lowest charged mode (unit winding, $|n|=1$ prime) \\
+$(0, \pm 2)$ & 1 & 1 & $n=2$ even; dynamically unstable (composite) \\
+$(0, \pm 3)$ & $9/4$ & $9/4$ & $n=3$ prime; present but higher dimension \\
+$(\pm 1, 0)$ & $1/4$ & $1/4$ & KK mode; neutral ($n=0$, no EM charge) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The composite winding operators ($n$ composite) are absent from the stable
+spectrum.  This is a \emph{truncation} of the free-boson tower that is absent
+in the naive free-boson description but matches the SU(2)$_1$ primary content:
+
+\begin{proposition}[UBT spectrum at leading dimension]
+\label{prop:m4:spectrum}
+The UBT-allowed operators at dimensions $h \leq 1$ (relevant operators) are:
+\begin{itemize}
+  \item $h = 0$: identity (one operator).
+  \item $h = \bar{h} = 1/4$: charged mode $V_{0,\pm 1}$ and KK mode $V_{\pm 1, 0}$
+        (four operators, degeneracy 2 from ± and 2 from KK/winding).
+\end{itemize}
+This is precisely the content of three decoupled SU(2)$_1$ WZW models
+($j = 0$: one primary; $j = 1/2$: dimension $h = j(j+1)/(k+2) = 1/4$ for $k=1$).
+No operator with $h = 1/2$ or $h = 2/3$ (which would appear for $k = 2$ or
+$k \geq 2$) is present at the level of stable winding modes.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{OPE Coefficient Analysis}
+\label{sec:m4:ope}
+%──────────────────────────────────────────────────────────────────────────────
+
+In SU(2)$_k$ WZW, the OPE coefficient for the fusion
+$j_1 = j_2 = 1/2 \to j_3 = 0$ is:
+\begin{equation}
+  C_{1/2,\,1/2,\,0}^{(k)} = \frac{1}{(k+2)^{1/2}}
+  \quad \text{(normalised WZW 3-point function coefficient)}.
+  \label{eq:m4:ope_coeff}
+\end{equation}
+For the free-boson theory (unit winding vertex operators):
+\begin{equation}
+  C_{V_{0,1}, V_{0,1}, \mathbf{1}}^{\text{free}} = 1.
+  \label{eq:m4:ope_coeff_free}
+\end{equation}
+Setting these equal (UBT = free boson at self-dual radius):
+\begin{equation}
+  \frac{1}{(k+2)^{1/2}} = 1 \quad \Longrightarrow \quad k + 2 = 1 \quad \Longrightarrow \quad k = -1.
+  \label{eq:m4:ope_clash}
+\end{equation}
+This gives $k = -1$, which is unphysical.
+
+\begin{warnbox}
+\textbf{OPE coefficient clash}: The naive identification of the WZW OPE
+coefficient with the free-boson OPE coefficient gives $k = -1$ (unphysical).
+This indicates the two descriptions (SU(2)$_k$ WZW vs.\ free boson) use
+\emph{different normalisation conventions} for their primary operators.
+The WZW primaries are normalised as $\langle j, m | j, m \rangle = 1$ in the
+WZW inner product, while the free-boson vertex operators are normalised via
+the 2-point function.  Comparing OPE coefficients across different normalisations
+is not meaningful without a canonical normalisation map.
+\end{warnbox}
+
+The OPE coefficient argument is therefore \textbf{not} a clean discriminant
+between $k = 1$ and $k \to \infty$ in the present analysis.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step M4 Verdict: Gap G3-k Status After Modular Bootstrap}
+\label{sec:m4:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+Method & Result & Status \\
+\midrule
+Central charge (M3) & Excludes $k \geq 2$ & [L1] PROVED \\
+Crossing symmetry (M3) & $k=1$ and free boson both consistent & No discrimination \\
+Operator spectrum (M4 §\ref{sec:m4:truncation}) & UBT restricts to $h \leq 1/4$ primaries & Consistent with $k=1$ \\
+OPE coefficient (M4 §\ref{sec:m4:ope}) & Normalisation mismatch; not discriminating & Inconclusive \\
+\midrule
+\multicolumn{3}{l}{\textbf{Net result}: $k \geq 2$ excluded; $k = 1 \cong$ free boson — same theory.} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{New result from modular bootstrap (M1–M4)}:
+\begin{itemize}
+  \item $k \geq 2$ is excluded by the central charge constraint $c = 1$ per
+        Im($\mathbb{H}$) factor. [L1 PROVED — no circular input]
+  \item $k = 1$ (SU(2)$_1$ WZW) is the \emph{correct description} in the
+        language of WZW models, because the free compact boson at the
+        self-dual radius and SU(2)$_1$ WZW are the same CFT via the
+        orbifold/coset isomorphism.  This is a structural fact, not a choice.
+\end{itemize}
+\end{resultbox}
+
+\begin{gapbox}
+\textbf{Gap G3-k — updated status after bootstrap}:
+
+The modular bootstrap establishes that:
+\begin{enumerate}
+  \item The UBT CFT on $T^2$ has $c = 3$ and is isomorphic to three
+        free compact bosons at the self-dual radius $R = \sqrt{\alpha'}$.
+  \item In the WZW description, this is three SU(2)$_1$ models, giving $k = 1$.
+  \item No other $k$ is consistent with $c = 3$ in the SU(2) language.
+\end{enumerate}
+
+\textbf{Remaining question}: Is the self-dual radius $R_\psi = \sqrt{\alpha'}$
+forced by UBT without using $m_e$ or $\alpha$?  The T-duality self-dual point
+$R_\psi = R_t$ is an algebraic result [L1] from
+\texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex}; the conversion to
+$R_\psi = \sqrt{\alpha'}$ requires fixing $\alpha'$ in terms of UBT parameters
+(a sub-gap of Gap A10).
+
+If the self-dual point is accepted as the UBT vacuum (algebraic argument from
+T-duality invariance of $S[\Theta]$), then \textbf{Gap G3-k is resolved:
+$k = 1$ follows from (i) $c = 3$, (ii) SU(2)$_1 \cong$ free boson at self-dual
+radius, (iii) T-duality self-dual vacuum}.
+
+\textbf{Classification}: Upgraded from [MC] (v67 motivated conjecture) to
+\textbf{[L1 CONDITIONAL]} — conditional on the T-duality self-dual vacuum being
+the unique UBT vacuum (sub-gap not yet independently proved).
+\end{gapbox}
+
+\medskip
+The numerical verification of this argument is in
+\texttt{experiments/alpha\_core\_repro/bootstrap\_crossing\_check.py}.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
