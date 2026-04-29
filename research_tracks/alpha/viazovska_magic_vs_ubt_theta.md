@@ -11,6 +11,10 @@
 - `research_tracks/research/theta_alpha_connection.md` — UBT modular/theta machinery
 - `research_tracks/research/partition_function_modular.md` — partition function weight k=3/2
 - `canonical/alpha/ALPHA_MASTER_STATUS.md` — primary alpha route status
+- `canonical/alpha/neff_geometric_origin.md` — geometric origin of N_eff = 12
+- `canonical/alpha/chronofactor_projection.md` — chronofactor and 3/2 projection
+- `reports/e8_sphere_packing_relevance.md` — E8 algebraic audit (verdict: FALSE_LEAD)
+- `reports/exponent_3_2_origin_audit.md` — mechanisms for the 3/2 exponent in B_base
 - `canonical/alpha/magic_certificate_function_proposal.md` — UBT certificate proposal (V2)
 - `reports/e8_theta_certificate_feasibility.md` — E8 feasibility audit (V3)
 
@@ -162,6 +166,20 @@ In UBT, modular forms serve three purposes:
 None of these currently constitutes a **certificate function** in the sense of
 Cohn–Elkies — an analytic function satisfying simultaneous sign and Fourier
 positivity conditions that certifies the extremality of n* = 137.
+
+### 2.4 Origin of the 3/2 Exponent in the UBT Theta Layer
+
+The modular weight k = 3/2 of Ẑ(τ) = ϑ₃³ is not accidental.  It was audited in
+`reports/exponent_3_2_origin_audit.md` against four independent mechanisms:
+
+- **Mechanism A (Heat kernel)**: The Im ℍ ≅ ℝ³ Laplacian has heat kernel K(t) ∝ t^{−3/2}.
+  The exponent 3/2 = d/2 for d = dim_ℝ(Im ℍ) = 3.  Status: [L0] for the mechanism.
+- **Mechanism B (Modular weight)**: ϑ₃³ has weight k = 3/2 exactly (computed).  Status: [L0].
+- **Mechanism C (Projection ratio)**: dim_ℝ(Im ℍ)/dim_ℝ(ℂ_τ) = 3/2.  Status: [Conjectural].
+- **Mechanism E (A+C synthesis)**: d/2 = dim(Im ℍ)/dim(ℂ_τ) — both denominators are 2.
+
+All three valid mechanisms root 3/2 in the axiom ℬ = ℂ⊗ℍ (which forces dim_ℝ(Im ℍ) = 3
+and dim_ℝ(ℂ_τ) = 2).  The exponent is not fitted.
 
 ---
 
@@ -316,6 +334,10 @@ Viazovska's construction.  Its existence is plausible but unproved.
 | `research_tracks/research/theta_alpha_connection.md` | Modular theta mechanisms for alpha |
 | `canonical/alpha/ALPHA_MASTER_STATUS.md` | Primary route, Gap G137-B |
 | `canonical/alpha/prime_137_status.md` | Structural roles of prime 137 |
+| `canonical/alpha/neff_geometric_origin.md` | Geometric origin of N_eff and 8D information sector |
+| `canonical/alpha/chronofactor_projection.md` | Chronofactor degrees of freedom, 3/2 projection |
+| `reports/e8_sphere_packing_relevance.md` | E8 algebraic audit: FALSE_LEAD verdict |
+| `reports/exponent_3_2_origin_audit.md` | Mechanisms A–E for the exponent 3/2 |
 | `canonical/alpha/magic_certificate_function_proposal.md` | Concrete certificate proposal (V2) |
 | `reports/e8_theta_certificate_feasibility.md` | E8 relevance audit (V3) |
 | Viazovska (2016) arXiv:1603.04541 | Original E8 magic function proof |
