@@ -193,7 +193,8 @@ B_phenom × π ≈ 46.298 × π ≈ 145.4.
 
 **Result**: L(E₄, 1) ≈ 1.08 ≠ B_phenom × π ≈ 145.4.
 
-This is a **mismatch by factor ~134**. The simple L(E₄, 1) identification does not work.
+This means B_phenom × π is **~134 times larger than L(E₄, 1)**.
+The naive E₄ Hecke identification does not work.
 
 **Revised verdict**: The naive Hecke L-function identification is **disfavored numerically**.
 A more refined construction (e.g., L(f, 1) for a level-137 cusp form, not E₄ itself)
