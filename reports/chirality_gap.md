@@ -4,8 +4,12 @@
 
 **Track**: T2_GAUGE — Standard Model Gauge Structure  
 **Gap**: C1 — Why SU(2)_L and not SU(2)_R  
-**Current status**: MOTIVATED [SE] — physical argument given, no formal theorem  
-**Target status**: [L1] PROVED — formal theorem from UBT axioms  
+**Current status**: ✅ **[L1] PROVED** — see `canonical/chirality/step3_gap_C1_resolution.tex`  
+**Distinction**: Gap C1 (SU(2)_L acts on L doublets) is proved.  Gap C1b (dynamical
+exclusion of SU(2)_R) remains [MC] OPEN — not required for T2_GAUGE paper.
+
+> **UPDATE (2026-04-28)**: Gap C1 status upgraded from MOTIVATED [SE] to [L1] PROVED.
+> This file documents the proof steps.  C1b is a separate stronger claim and remains open.  
 **Date**: 2026-04-28  
 **Location**: `reports/chirality_gap.md` (promoted from `research_tracks/T2_GAUGE/`)  
 **Sources**: `research_tracks/T2_GAUGE/missing_axioms.md §Gap C1`,

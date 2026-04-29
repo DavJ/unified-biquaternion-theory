@@ -65,9 +65,9 @@ theorem, what must be labelled as motivated, and what must be deferred.
 |-------|--------|--------|--------------|
 | SU(2)_L from left norm-preserving action on Mat(2,ℂ) | **[L0]** | `interactions/sm_gauge.tex §SU2` | Theorem §3 |
 | [T^a,T^b] = ε^{abc}T^c commutator algebra | **[L0]** | Standard | Background §3 |
-| SU(2)_L acts on left-chiral doublets | **[L0]** | `interactions/sm_gauge.tex` | State §3 |
+| SU(2)_L acts on left-chiral doublets | **[L1]** | `chirality/step3_gap_C1_resolution.tex` | State §3 |
 | W±, W³ as gauge connections of SU(2)_L | **[L1]** | Gauge principle | §3 |
-| **Chirality: SU(2)_L not SU(2)_R** (Gap C1) | **[MC]** | `chirality/step3_gap_C1_resolution.tex`, `symmetry/chirality_and_parity_breaking.tex` | **Close before submission** (1–2 wk); if not: explicit open statement §3+§6 |
+| **Chirality: SU(2)_L not SU(2)_R** (Gap C1 — **PROVED**) | **[L1]** *(was [MC] — updated 2026-04-28; C1 is proved; C1b = dynamical SU(2)_R exclusion remains [MC])* | `chirality/step3_gap_C1_resolution.tex`, `symmetry/chirality_and_parity_breaking.tex` | State as theorem §3; note C1b [MC] in §6 |
 | W± and Z mass from SSB | **[OPEN]** | `research_tracks/research/higgs_yukawa_scan.md` | Defer to Higgs paper |
 
 ---

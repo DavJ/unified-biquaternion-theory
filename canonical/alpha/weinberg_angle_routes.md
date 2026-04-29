@@ -5,7 +5,12 @@
 **Track**: T3_ALPHA — Weinberg Angle Derivation (converted from direct α derivation)  
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-28  
-**Objective**: Derive $\tan\theta_W = g'/g$ from UBT first principles.  No numerical fitting.  
+**Objective**: ~~Derive $\tan\theta_W = g'/g$ from UBT first principles.~~ **SUPERSEDED — DEAD END.**
+
+> **DEPRECATION NOTICE (2026-04-28)**: The three-workstream attack plan in this
+> file is suspended.  The Weinberg angle route is a **DEAD END**.
+> See `reports/gauge_truth_matrix.md §6` for the no-go argument.  
+> **Truth anchor**: `STATUS_OF_UBT.md §Deprecated Claims`  
 **Strategic context**: The direct B_base/k=1 route to α has been exhausted (27+ approaches).
 This document defines the three-workstream attack plan for the converted target: the
 Weinberg angle $\theta_W$.  If $\theta_W$ is derived, $\alpha = g^2 \sin^2\theta_W/(4\pi)$

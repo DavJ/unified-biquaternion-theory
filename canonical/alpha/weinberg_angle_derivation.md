@@ -6,7 +6,14 @@
 **Track**: T3_ALPHA (converted) — Electroweak Mixing Problem  
 **Goal**: Derive $\tan\theta_W = g'/g$ from first principles in UBT.  No numerical fitting.  
 **Date**: 2026-04-28  
-**Priority**: CRITICAL  
+**Priority**: CLOSED — DEAD END
+
+> **DEPRECATION NOTICE (2026-04-28)**: This file treated the Weinberg angle
+> derivation as a critical priority.  That assessment is superseded.
+> The Weinberg angle route is a **DEAD END**: the biquaternion algebra cannot fix
+> the ratio g'/g (no-go argument in `reports/gauge_truth_matrix.md §6`).
+> This file is preserved as historical record only.  
+> **Truth anchor**: `STATUS_OF_UBT.md §Deprecated Claims`  
 **Sources**: `canonical/interactions/sm_gauge.tex`,
 `canonical/alpha/gauge_normalization_attempt.tex`,
 `canonical/alpha/symmetry_breaking_alpha_attempt.tex`,
