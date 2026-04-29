@@ -6,7 +6,19 @@
 
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-29  
-**Track**: T3_ALPHA — Fine Structure Constant  
+**Track**: T3_ALPHA — Fine Structure Constant
+
+> **SUPERSEDED NOTICE (2026-04-29)**: This file has been superseded by
+> `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`, which is the authoritative
+> portfolio document.  
+> **Critical correction**: Section "A2 — electroweak_weinberg" in this file
+> listed that route as Tier A "ACTIVE — CONDITIONAL".  That is **incorrect**.
+> Per `STATUS_OF_UBT.md §Deprecated Claims` and `canonical/gauge/GAUGE_MASTER_STATUS.md §6`,
+> the Weinberg angle derivation is a **DEAD END**.  The route is PARKED with
+> zero active priority.  
+> This file is preserved as a historical record only.  
+> **Truth anchor**: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`
+
 **Purpose**: Maintain a disciplined small portfolio of competing derivation routes
 for α.  No route receives permanent privilege.  Routes are promoted or killed by
 evidence, not by prior investment.

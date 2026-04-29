@@ -3,11 +3,172 @@
 # WEEKLY_EXECUTION_REVIEW.md — Weekly Execution Review
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-28 (Week 1 of 4-week flagship sprint)  
-**Framework**: Execution-focused governance per problem statement
-(T1_GR 60% / T2_ALPHA 20% / T3_GAUGE 15% / T4_PUBLIC 5%)  
+**Date**: 2026-04-29 *(updated — governance deliverables sprint)*  
+**Framework**: Disciplined research program per governance problem statement  
 **Purpose**: Weekly progress check per track, blockers, resource
 reallocation, and claim-upgrade/downgrade log.
+
+---
+
+## Progress by Track
+
+| Track | Allocation | Progress (%) | Status |
+|-------|-----------|-------------|--------|
+| **T1_GR** — GR Flagship | 60% | **100%** | RC1 created — READY TO SUBMIT |
+| **T2_ALPHA** — Alpha Portfolio | 20% | **75%** | Portfolio master created; Gap G137-B active |
+| **T3_GAUGE** — Gauge Status Matrix | 15% | **100%** | All deliverables complete |
+| **T4_GOVERNANCE** — Repo governance | 5% | **100%** | All Phase 1–8 deliverables complete |
+
+---
+
+## Governance Sprint Deliverables (2026-04-29)
+
+All Phase 1–8 deliverables from the governance problem statement:
+
+| Phase | Deliverable | Status |
+|-------|-------------|--------|
+| Phase 1 | `STATUS_OF_UBT.md` — single source of truth | ✅ DONE (existed; updated 2026-04-29) |
+| Phase 2 | `DERIVATION_STATUS_STANDARD.md` — proof level standard | ✅ DONE — created 2026-04-29 |
+| Phase 2 | `CLAIMS_MATRIX.md` — cross-track claims matrix | ✅ DONE — created 2026-04-29 |
+| Phase 3 | `reports/contradictions_resolved.md` — contradiction audit | ✅ DONE (existed; C1–C5 resolved 2026-04-28) |
+| Phase 4 | `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md` — alpha portfolio | ✅ DONE — created 2026-04-29 |
+| Phase 4 | Root `ALPHA_PORTFOLIO_STATUS.md` superseded notice | ✅ DONE — notice added 2026-04-29 |
+| Phase 5 | `papers/UBT_GR_RC1.tex` — GR release candidate | ✅ DONE — created 2026-04-29 |
+| Phase 5 | `reports/GR_hostile_review.md` | ✅ DONE (existed 2026-04-28) |
+| Phase 5 | `reports/GR_claim_strength_table.md` | ✅ DONE — created 2026-04-29 |
+| Phase 6 | `canonical/gauge/GAUGE_MASTER_STATUS.md` | ✅ DONE (existed 2026-04-28) |
+| Phase 7 | Stale file deprecation notices | ✅ DONE — all 5 stale alpha/Weinberg files notified |
+| Phase 7 | `ALPHA_BREAKTHROUGH_REPORT.md` hype label addressed | ✅ DONE — STATUS NOTE added 2026-04-29 |
+| Phase 8 | `reports/repo_integrity_check.md` | ✅ DONE — created 2026-04-29; all 6 checks PASS |
+| Weekly | `reports/WEEKLY_EXECUTION_REVIEW.md` | ✅ This document |
+
+---
+
+## T1_GR — Progress Detail
+
+### Completed
+
+| Deliverable | Status |
+|-------------|--------|
+| `papers/UBT_GR_Flagship.tex` | ✅ DONE — internal flagship version |
+| `papers/UBT_GR_Submission.tex` | ✅ DONE — submission-ready version |
+| `papers/UBT_GR_RC1.tex` | ✅ DONE — release candidate with G clarification |
+| `papers/UBT_GR_Abstract.md` | ✅ DONE |
+| `reports/GR_hostile_review.md` | ✅ DONE — all attacks answered |
+| `reports/GR_claims_with_evidence_table.md` | ✅ DONE — full audit |
+| `reports/GR_claim_to_proof_matrix.md` | ✅ DONE — traceability matrix |
+| `reports/GR_final_gap_checklist.md` | ✅ DONE — GO verdict |
+| `reports/GR_reviewer_objections_and_answers.md` | ✅ DONE — 9 objections |
+| `reports/GR_reviewer_FAQ.md` | ✅ DONE — external FAQ |
+| `reports/GR_REVIEW_MASTER.md` | ✅ DONE — consolidated review master |
+| `reports/GR_claim_strength_table.md` | ✅ DONE — claim strength assessment |
+
+### RC1 delta from Submission
+
+- Newton's G explicitly stated as free parameter in §3.5 (required fix applied).
+- Scope frozen.  No new additions to RC1 without explicit authorisation.
+
+### Next Action
+
+**Submit `papers/UBT_GR_RC1.tex`** to arXiv (gr-qc or math-ph) and simultaneously
+to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
+
+**Blocker**: None.
+
+---
+
+## T3_ALPHA — Progress Detail
+
+### Portfolio Status
+
+| Route | Tier | Status | Gate |
+|-------|------|--------|------|
+| modular_hecke (A_PRIME) | A | **ACTIVE** | 2026-05-27 |
+| theta_spectral | B | ACTIVE — PARTIAL | No hard gate |
+| gut_rg | B | ACTIVE — RELAY | Unlocks when Tier A delivers |
+| electroweak_weinberg | PARKED | PARKED — EW-1 dead end | n/a |
+| A3, A4 | KILLED | [DEAD] | — |
+
+Master file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`
+
+### Active focus
+
+**Gap G137-B**: Derive B_phenom ≈ 46.298 from the UBT action S[Θ].
+This is the single missing lemma for the integer-137 result.
+4-week time-box: gate at 2026-05-27.
+
+### Active blocker
+
+| Blocker | Gap ID | Resolution path |
+|---------|--------|-----------------|
+| B_phenom not derived from UBT action | G137-B | Modular bootstrap (4-week time-box) |
+
+---
+
+## T3_GAUGE — Progress Detail
+
+All deliverables complete.
+
+| Deliverable | Status |
+|-------------|--------|
+| `canonical/gauge/GAUGE_MASTER_STATUS.md` | ✅ DONE — 85% submit-ready |
+| `reports/gauge_truth_matrix.md` | ✅ DONE |
+| `reports/gauge_status_matrix.md` | ✅ DONE |
+| `reports/chirality_gap.md` | ✅ DONE |
+| `reports/anomaly_gap.md` | ✅ DONE |
+| `reports/higgs_yukawa_dependency.md` | ✅ DONE |
+
+**Next action**: Begin T2_GAUGE paper draft immediately after T1_GR submission.
+
+---
+
+## Blockers
+
+| Blocker | Track | Severity | Path to resolution |
+|---------|-------|----------|-------------------|
+| Gap G137-B: B from UBT action | T3_ALPHA | CRITICAL (blocks α result) | 4-week bootstrap; go/no-go at 2026-05-27 |
+| T2_GAUGE paper not yet written | T3_GAUGE | MEDIUM | Begin after T1_GR submitted |
+| GAP-Z: Zerilli equation | T1_GR | LOW (non-blocking) | Future work |
+
+---
+
+## Claims Upgraded or Downgraded
+
+### This sprint (2026-04-29)
+
+No claim levels changed.  Governance infrastructure created.
+
+### Previous week (2026-04-28)
+
+| Claim | Previous status | New status | Reason |
+|-------|----------------|------------|--------|
+| Chirality: SU(2)_L on left-chiral doublets | Motivated [MC] | Proved [L1] | Gap C1 closed |
+| Weinberg angle sin²θ_W from algebra | Candidate | [DEAD] DEAD END | No-go argument proved |
+| Routes A3, A4 | Active | [DEAD] KILLED | Exhaustive search failed / proved impossible |
+
+---
+
+## Anti-Entropy Status
+
+| Rule | Status |
+|------|--------|
+| No new speculative branches this cycle | ✅ Compliant |
+| No hype labels in active documents | ✅ Compliant — all addressed with notices |
+| No route has 2 statuses | ✅ Compliant — repo_integrity_check PASS |
+| Single source of truth exists | ✅ STATUS_OF_UBT.md governs |
+| Derivation levels standardised | ✅ DERIVATION_STATUS_STANDARD.md in place |
+
+---
+
+## Next 7-Day Priorities
+
+| Priority | Track | Task |
+|----------|-------|------|
+| 1 | T1_GR | Final proofread of RC1 → submit to arXiv and journal |
+| 2 | T3_ALPHA | Begin modular bootstrap on Gap G137-B (Week 1 of 4) |
+| 3 | T3_GAUGE | Begin T2_GAUGE paper §1–§3 (algebra, SU(3), SU(2)_L) |
+| 4 | Governance | Monthly reallocation review at 2026-05-27 |
+
 
 ---
 

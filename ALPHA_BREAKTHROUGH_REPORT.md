@@ -7,7 +7,16 @@
 
 **Author**: Ing. David Jaroš  
 **Mission date**: 2026-04-28  
-**Track**: T3_ALPHA — Alpha Final Offensive  
+**Track**: T3_ALPHA — Alpha Final Offensive
+
+> **STATUS NOTE (2026-04-29)**: The word "BREAKTHROUGH" in this file's title
+> is historical.  Per `DERIVATION_STATUS_STANDARD.md`, hype labels such as
+> "breakthrough" must not be used as proof-status labels.  The current honest
+> assessment is: T3_ALPHA is **CONDITIONAL** — integer-137 result is proved
+> given B = B_phenom; full derivation requires solving Gap G137-B.  
+> For current status, see `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`.  
+> This file is preserved as a historical mission assessment.  
+> **Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`  
 **Companion files**:
 - `canonical/alpha/alpha_best_route.tex` — formal best-candidate derivation
 - `reports/no_fit_proof_audit.md` — no-fit parameter audit
