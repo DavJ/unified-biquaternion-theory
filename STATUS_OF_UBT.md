@@ -3,7 +3,7 @@
 # STATUS_OF_UBT.md — Single Source of Truth
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-28  
+**Date**: 2026-04-29 *(last updated — governance deliverables sprint)*  
 **Purpose**: Authoritative one-file description of the real current state of every
 major UBT track.  All other status files are subordinate to this document.
 When in conflict, this file governs.
@@ -33,7 +33,7 @@ and one blocked result (T3_ALPHA).
 
 **Status**: SUBMIT READY  
 **Confidence**: HIGH — all core chain steps proved at [L1]  
-**Paper file**: `papers/UBT_GR_Submission.tex`
+**Release candidate**: `papers/UBT_GR_RC1.tex` *(supersedes `papers/UBT_GR_Submission.tex`)*
 
 ### Exact Achievements
 
@@ -61,13 +61,13 @@ None that prevent submission.
 | GAP-Z — Zerilli equation (even-parity graviton) | [L2] Open | Does not block; stated in paper |
 | GAP-10 — Off-shell Θ-only closure | [L2] Open | Does not block; stated in paper |
 
-### Pre-Submission Fix Required
+### Pre-Submission Fix
 
-Add one sentence clarifying Newton's G = input parameter (§3.5 of paper).
+✅ Applied in RC1: Newton's G clarified as free parameter (§3.5 of `papers/UBT_GR_RC1.tex`).
 
 ### Next Action
 
-Submit `papers/UBT_GR_Submission.tex` to arXiv (gr-qc or math-ph) and simultaneously
+Submit `papers/UBT_GR_RC1.tex` to arXiv (gr-qc or math-ph) and simultaneously
 to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ---
@@ -176,7 +176,8 @@ Archive: `reports/failed_routes_graveyard.md`
 
 **Do not pursue** A1, A2, A3, A4.  Dead routes receive zero active priority.
 
-Master status file: `canonical/alpha/ALPHA_MASTER_STATUS.md`
+Master portfolio file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`  
+Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`
 
 ---
 
@@ -218,10 +219,16 @@ Master status file: `canonical/alpha/ALPHA_MASTER_STATUS.md`
 | Purpose | File |
 |---------|------|
 | What is proved (complete map) | `WHAT_IS_PROVED.md` |
+| Cross-track claims matrix | `CLAIMS_MATRIX.md` |
+| Derivation level standard | `DERIVATION_STATUS_STANDARD.md` |
 | GR claim-to-proof matrix | `reports/GR_claim_to_proof_matrix.md` |
-| Alpha route ranking | `canonical/alpha/ALPHA_MASTER_STATUS.md` |
+| GR claim strength table | `reports/GR_claim_strength_table.md` |
+| GR consolidated review | `reports/GR_REVIEW_MASTER.md` |
+| GR release candidate | `papers/UBT_GR_RC1.tex` |
+| Alpha portfolio master | `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md` |
+| Alpha route detail | `canonical/alpha/ALPHA_MASTER_STATUS.md` |
 | Gauge sector truth | `canonical/gauge/GAUGE_MASTER_STATUS.md` |
-| GR flagship paper | `papers/UBT_GR_Submission.tex` |
 | Forward plan | `ROADMAP.md` |
 | Contradictions resolved | `reports/contradictions_resolved.md` |
 | File cleanup log | `reports/files_merged_deleted_redirected.md` |
+| Repo integrity check | `reports/repo_integrity_check.md` |
