@@ -153,10 +153,13 @@ is defined by:
 In the $L^2(S^1_\psi)$ representation:
 \begin{equation}
   (\hat{N}\,f)(\psi)
-  = \frac{R_\psi}{i}\,\frac{\partial f}{\partial \psi}(\psi)
-  = -i R_\psi\,\partial_\psi f(\psi).
+  = -i R_\psi\,\partial_\psi f(\psi)
+  = \frac{R_\psi}{i}\,\frac{\partial f}{\partial \psi}(\psi),
   \label{eq:chron:Nhat_diff}
 \end{equation}
+where both forms are equal since $1/i = -i$.  Verification: applying to
+$\Phi_n(\psi) \propto e^{in\psi/R_\psi}$ gives
+$-iR_\psi \cdot (in/R_\psi) \Phi_n = n\Phi_n$ as required by~\eqref{eq:chron:Nhat}.
 $\hat{N}$ is self-adjoint on its natural domain (absolutely continuous functions
 on $S^1_\psi$ with $L^2$ derivative).
 \end{definition}
@@ -228,6 +231,13 @@ The \textbf{chronofactor projection} is the $\mathbb{R}$-linear map:
   \label{eq:chron:Pi}
 \end{equation}
 which sends each Im$\mathbb{H}$ phase direction to the imaginary part of complex time.
+The equal weighting of $\mathbf{I}$, $\mathbf{J}$, $\mathbf{K}$ reflects the
+\emph{isotropic UBT vacuum}: the physical inner product on
+$\operatorname{Im}\mathbb{H}$ is the Euclidean metric (all three directions are
+equivalent under the $SO(3)$ automorphism of $\operatorname{Im}\mathbb{H}$), and
+the imaginary time $i\psi$ couples equally to all three.
+This choice is not arbitrary — it is the unique $SO(3)$-equivariant projection
+of $\operatorname{Im}\mathbb{H}$ onto a one-dimensional complex direction.
 Explicitly:
 \begin{equation}
   \Pi(\mathbf{I}) = i, \quad

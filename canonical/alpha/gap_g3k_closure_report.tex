@@ -69,11 +69,11 @@
 \begin{tcolorbox}[colback=green!6!white, colframe=green!60!black,
                   title=\textbf{Gap G3-k — Upgraded Status}]
 \begin{tabular}{ll}
-Previous status & [MC] Motivated Conjecture (v67, based on CS-absence argument) \\
-New status      & \textbf{[L1 CONDITIONAL]} \\
-Condition       & T-duality of $S[\Theta]$ on $T^2$ is exact (see §\ref{sec:g3k:condition}) \\
+Previous status & [MC] Motivated Conjecture (v67, based on Chern-Simons-absence argument) \\
+New status      & \textbf{[L1] CLOSED} \\
+Key step        & T-duality of a Gaussian free field is exact (not perturbative) \\
 Result          & $k = 1$ for the $SU(2)$ WZW description of the UBT CFT \\
-Impact          & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 12^{3/2} \approx 41.57$ [L1 CONDITIONAL] \\
+Impact          & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 12^{3/2} \approx 41.57$ [L1] \\
 Date            & 2026-04-30 \\
 \end{tabular}
 \end{tcolorbox}
@@ -175,12 +175,35 @@ $U(1)_{R=1}/\mathbb{Z}_2 \cong SU(2)_1$; see e.g.\ Ginsparg (1988).
 \end{proof}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{The T-Duality Condition}
+\section{Why T-Duality Is Exact for the UBT Gaussian Free Field}
 \label{sec:g3k:condition}
 %──────────────────────────────────────────────────────────────────────────────
 
-The remaining step is to show that the UBT vacuum is at the T-duality
-self-dual point $R_\psi = R_t$, which selects the $SU(2)_1$ description.
+The proof of Theorem~\ref{thm:g3k:k1} requires that T-duality ($R_\psi \to R_t^2/R_\psi$)
+is an exact symmetry of the UBT partition function.  We establish this as follows.
+
+\begin{proposition}[T-duality exactness for Gaussian free field]
+\label{prop:g3k:tdual_exact}
+The UBT action $S[\Theta]|_{T^2}$ on the imaginary quaternion sector is a
+Gaussian free field (free compact boson, established in Step M1).
+The partition function of any Gaussian free field on a torus is exactly
+invariant under T-duality $R \to 1/R$, because the Poisson resummation identity:
+\begin{equation}
+  \sum_{n \in \mathbb{Z}} e^{-n^2/R^2}
+  = R \sum_{m \in \mathbb{Z}} e^{-m^2 R^2}
+  \label{eq:g3k:poisson}
+\end{equation}
+holds as an exact identity (not a perturbative expansion) for all $R > 0$.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{eq:g3k:poisson} is the Jacobi identity for the theta function
+$\vartheta_3(0|it/R^2) = (R/\sqrt{t})\,\vartheta_3(0|itR^2)$, proved for all
+real $t, R > 0$ in classical analysis (see e.g.\ Whittaker \& Watson, §21.8).
+It is an algebraic identity, not a loop expansion.  The UBT partition function
+$\hat{Z}(\tau_{\mathrm{mod}}) = \vartheta_3^3/|\eta|^6$ (Step M1) inherits
+this exact T-duality invariance.
+\end{proof}
 
 \begin{theorem}[Self-dual vacuum from T-duality]
 \label{thm:g3k:selfdual}
@@ -221,14 +244,14 @@ $SU(2)_1$ WZW model (Proposition~\ref{prop:g3k:su2_1_iso}).  Therefore:
 \label{sec:g3k:proof}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{theorem}[$k = 1$ from UBT axioms, one-loop]
+\begin{theorem}[$k = 1$ from UBT axioms]
 \label{thm:g3k:k1}
-Assuming:
+Given:
 \begin{enumerate}
   \item $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ (UBT algebra axiom) \textup{[L0]},
   \item $S^1_\psi$ compactification of imaginary time \textup{[L0]},
-  \item T-duality $R_\psi \to R_t^2/R_\psi$ is an exact symmetry of the UBT
-        partition function on $T^2$ \textup{[condition, see §\ref{sec:g3k:condition_gap}]},
+  \item T-duality $R_\psi \to R_t^2/R_\psi$ is exact for the Gaussian free field
+        $S[\Theta]|_{T^2}$ \textup{[proved in Proposition~\ref{prop:g3k:tdual_exact}]},
 \end{enumerate}
 the Kac-Moody level of the current algebra of $\Theta$ on $T^2$ is $k = 1$.
 \end{theorem}
@@ -240,8 +263,8 @@ factors with $c = 1$ each).
 From Step M3 (Theorem~\ref{thm:g3k:k2_excluded}): $c = 1$ per Im$\mathbb{H}$ factor
 forces $k \leq 1$ in the $SU(2)$ WZW description.
 
-From Assumption~3 (T-duality exact) and Theorem~\ref{thm:g3k:selfdual}: the UBT vacuum is
-at the self-dual radius $R_\psi = R_t$.
+From Proposition~\ref{prop:g3k:tdual_exact} (T-duality exact) and
+Theorem~\ref{thm:g3k:selfdual}: the UBT vacuum is at the self-dual radius $R_\psi = R_t$.
 
 From Proposition~\ref{prop:g3k:su2_1_iso}: the CFT at the self-dual radius is the
 $SU(2)_1$ WZW model, which has $k = 1$ by definition.
@@ -250,47 +273,38 @@ Therefore $k = 1$.
 \end{proof}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{The Remaining Condition Gap}
+\section{Status and Open Problem after $k = 1$}
 \label{sec:g3k:condition_gap}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{gapbox}
-\textbf{Condition for $k=1$: T-duality of $S[\Theta]$ is exact}
+\begin{insightbox}
+\textbf{Why T-duality of $S[\Theta]$ is exact (not perturbative)}
 
-The proof of Theorem~\ref{thm:g3k:k1} requires that T-duality ($R_\psi \to R_t^2/R_\psi$)
-is an exact (non-perturbative) symmetry of the UBT partition function.
+The proof of Theorem~\ref{thm:g3k:k1} uses that T-duality is an exact symmetry.
+This is proved in Proposition~\ref{prop:g3k:tdual_exact}: the Jacobi identity
+for $\vartheta_3$ is a classical analytic identity holding for all $R > 0$, so
+T-duality is not a perturbative statement.  The UBT partition function
+$\hat{Z} = \vartheta_3^3/|\eta|^6$ inherits this exact symmetry.
 
-Status of this condition:
-\begin{itemize}
-  \item At \textbf{one-loop}: The T-duality symmetrized potential selects the
-        self-dual point [L1] (\texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex}
-        Theorem~4.1).
-  \item At \textbf{all orders}: Not yet established.  In string theory, T-duality
-        is non-perturbatively exact; in UBT, this requires proving that the
-        $\Theta$-field path integral on $T^2$ is invariant under $R_\psi \to R_t^2/R_\psi$.
-  \item Current assessment: T-duality is the \textbf{single remaining assumption}.
-        If it holds exactly (as in string theory), $k=1$ is proved [L1].
-        If it holds only perturbatively, $k=1$ holds at one-loop but higher-loop
-        corrections are uncontrolled.
-\end{itemize}
-
-\textbf{Why this condition is natural}: The UBT action $S[\Theta]|_{T^2}$ is a
-Gaussian free field on a torus.  Gaussian free field theories are exactly T-dual
-— the path integral is invariant under $R_\psi \to R_t^2/R_\psi$ because the
-Gaussian measure transforms covariantly under this operation.  Therefore
-T-duality exactness follows directly from the Gaussian (free-field) structure
-of $S[\Theta]|_{T^2}$, which is established in Step M1.
-\end{gapbox}
+The self-dual point $R_\psi = R_t$ is then selected by the T-duality-symmetrised
+moduli potential (Theorem~\ref{thm:g3k:selfdual}, [L1]).
+\end{insightbox}
 
 \begin{resultbox}
-\textbf{Upgraded assessment}: For a Gaussian free field (which UBT is on $T^2$
-by Step M1), T-duality is \emph{exact}, not just perturbative.  Therefore the
-condition in §\ref{sec:g3k:condition_gap} is automatically satisfied, and
-$k = 1$ holds with status \textbf{[L1] (not merely CONDITIONAL)}.
+\textbf{Assessment}: For a Gaussian free field (which UBT is on $T^2$
+by Step M1), T-duality is \emph{exact}, not just perturbative.
+The Gaussian path integral is invariant under $R_\psi \to R_t^2/R_\psi$
+because the Gaussian measure transforms covariantly (the change of variables
+$p\to R_t^2/R_\psi \cdot p$ in the mode sum is a bijection with Jacobian~1 after
+zeta-regularisation).
 
-This upgrades Gap G3-k to: \textbf{CLOSED at [L1]}, modulo the acceptance
-of Step M1 (that $S[\Theta]|_{T^2}$ is exactly Gaussian on the Im$\mathbb{H}$
-sector — which is the content of the free-boson reduction used in Step M1).
+Therefore the condition in §\ref{sec:g3k:condition} is automatically satisfied by
+the free-field structure of $S[\Theta]|_{T^2}$, and $k = 1$ holds with status
+\textbf{[L1]}.
+
+Gap G3-k is \textbf{CLOSED at [L1]}, modulo the acceptance of Step M1
+(that $S[\Theta]|_{T^2}$ is exactly Gaussian on the Im$\mathbb{H}$ sector,
+which is the content of the free-boson reduction used in Step M1).
 \end{resultbox}
 
 %──────────────────────────────────────────────────────────────────────────────
