@@ -11,19 +11,23 @@
 
 % ALPHA_BEST_ROUTE.tex — Root-level entry point for the best-candidate α derivation.
 %
-% STATUS: PARTIAL — NOT SOLVED.
-%   α⁻¹_bare = 137 is CONDITIONAL on Gap G3-k (k=1 unproved).
+% STATUS (v70): PARTIAL — NOT SOLVED.
+%   Gap G3-k (k=1): CLOSED [L1] via modular bootstrap M1–M4 + T-duality.
+%   α⁻¹_bare = 127 is PROVED [L1] (prime attractor at B_base = 12^(3/2)).
+%   α⁻¹_bare = 137 is [MC] — requires correction factor R ≈ 1.114 (new primary gap).
 %   α⁻¹_physical = 137.036 is NOT ACHIEVED.
 %   Circular inputs are clearly marked [CIRC] in the body below:
 %     - δ = 0.036  [CIRC] — uses α and m_e as input
 %     - R_ψ in SI units  [SE/CIRC] — uses m_e as input
 %     - Physical α correction  [CIRC] — two-loop QED with m_e-dependent cutoff
+%   E8 route: KILLED [L0] — see canonical/algebra/e8_no_go_proof.tex.
+%   Chronofactor: FORMALIZED [L0/L1] — see canonical/fields/chronofactor_operator.tex.
 %
 % This file is a standalone root-level document.  Content lives canonically in:
 %   canonical/alpha/alpha_best_route.tex
 % which is included via the \INCLUDEMODE mechanism below to avoid duplication.
 %
-% Next step: modular bootstrap attack on k=1 — see MODULAR_BOOTSTRAP_K1_PLAN.md.
+% Next step: derive correction factor R non-circularly.
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper, margin=2.5cm]{geometry}
@@ -51,10 +55,11 @@
 \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
 
 \title{\textbf{Best Route to $\alpha$ from UBT: Prime Attractor on $S^1_\psi$}\\
-       \large Alpha v69 — Formal Best-Candidate Derivation\\[6pt]
-       {\normalsize\color{red}\textbf{STATUS: PARTIAL — NOT SOLVED}}}
+       \large Alpha v70 — Formal Best-Candidate Derivation\\[6pt]
+       {\normalsize\color{orange}\textbf{STATUS: PARTIAL — NOT SOLVED (v70)}\\
+        \small Gap G3-k CLOSED [L1]; E8 KILLED [L0]; new primary gap: correction factor $R$}}
 \author{Ing.\ David Jaro\v{s}}
-\date{2026-04-28}
+\date{2026-04-30}
 
 \begin{document}
 \maketitle
@@ -62,19 +67,26 @@
 %──────────────────────────────────────────────────────────────────────────────
 % Honest-status banner — required by v69 consistency-gap closure protocol.
 %──────────────────────────────────────────────────────────────────────────────
-\begin{tcolorbox}[colback=red!6!white, colframe=red!60!black,
-                  title=\textbf{Alpha Status: PARTIAL --- NOT SOLVED (v69)}]
+\begin{tcolorbox}[colback=orange!8!white, colframe=orange!70!black,
+                  title=\textbf{Alpha Status: PARTIAL --- NOT SOLVED (v70)}]
 \begin{tabular}{ll}
 Overall verdict       & \textbf{PARTIAL — α derivation not yet achieved} \\
-Minimum viable claim  & $\alpha^{-1}_{\mathrm{bare}} = 137$
-                        — \textbf{CONDITIONAL} on Gap G3-k ($k=1$ unproved) \\
+Gap G3-k              & \textbf{CLOSED [L1]} — $k=1$ proved via M1–M4 + T-duality
+                        (see \texttt{canonical/alpha/gap\_g3k\_closure\_report.tex}) \\
+$B_{\mathrm{base}}$   & $= 12^{3/2} \approx 41.57$ \textbf{[L1]} \\
+Prime attractor       & $n^*_{\mathrm{prime}} = 127$ for $B_{\mathrm{base}}$ alone \\
+Minimum viable claim  & $\alpha^{-1}_{\mathrm{bare}} = 127$ — \textbf{PROVED [L1]}
+                        (zero free parameters) \\
+Correction to 137     & $R \approx 1.114$ — \textbf{[MC] OPEN} (new primary gap) \\
 Full claim            & $\alpha^{-1} = 137.036$ — \textbf{NOT ACHIEVED} \\
 Circular inputs       & $\delta = 0.036$\ [CIRC],\quad
                         $R_\psi$ in SI units\ [SE],\quad
                         physical $\alpha$ correction\ [CIRC] \\
-Next step             & Modular bootstrap attack on $k=1$
-                        (see \texttt{MODULAR\_BOOTSTRAP\_K1\_PLAN.md}) \\
-Time-box              & 4 weeks from 2026-04-28 \\
+E8 route              & \textbf{KILLED [L0]}
+                        (see \texttt{canonical/algebra/e8\_no\_go\_proof.tex}) \\
+Chronofactor          & \textbf{FORMALIZED [L0]} as $\hat{N}$, $\hat{T}_\psi$, $\Pi$
+                        (see \texttt{canonical/fields/chronofactor\_operator.tex}) \\
+Next step             & Derive correction factor $R$ from two-loop or WZW null vector \\
 \end{tabular}
 \end{tcolorbox}
 

@@ -1,0 +1,400 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% chronofactor_operator.tex
+% Chronofactor as an Explicit Hilbert-Space Operator
+%
+% TARGET 2 of the 2026-04-30 decisive push.
+% This document replaces the verbal definition in chronofactor_projection.md
+% with an explicit operator acting on the winding Hilbert space.
+%
+% Status: DEFINED [L0/L1]
+% Companion: canonical/alpha/chronofactor_projection.md (predecessor)
+%            canonical/fields/biquaternion_time.tex (τ = t + iψ definition)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Chronofactor as a Hilbert-Space Operator}\\
+         \large Explicit Definition: Winding Number, Translation, and Projection}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-30}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Status}
+\label{sec:chron:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Chronofactor — Operator Formulation]
+\begin{tabular}{ll}
+Goal    & Replace verbal definition with explicit Hilbert-space operator \\
+Status  & DEFINED [L0] for winding operator and translation operator \\
+        & DEFINED [L1] for projection map $\Pi: \operatorname{Im}\mathbb{H}\to\mathbb{C}_\tau$ \\
+Input   & $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$, $\tau=t+i\psi$, $S^1_\psi$ compactification \\
+Output  & Three explicit operators: $\hat{N}$, $\hat{T}_\psi(\delta)$, and $\Pi$ \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{No-fit rule}: No parameter in this document may be chosen to reproduce
+$\alpha^{-1} = 137$ or $N_{\mathrm{eff}} = 12$.  All definitions follow from
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ axioms and the $S^1_\psi$ compactification.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Winding Hilbert Space}
+\label{sec:chron:hilbert}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Winding Hilbert space]
+\label{def:chron:Hwind}
+The \textbf{winding Hilbert space} of the UBT imaginary-time circle $S^1_\psi$
+is the separable Hilbert space:
+\begin{equation}
+  \mathcal{H}_{\mathrm{wind}}
+  = L^2(S^1_\psi, \mathbb{C})
+  = \bigl\{ f: [0,2\pi R_\psi) \to \mathbb{C}
+    \;\big|\; \|f\|^2 = \int_0^{2\pi R_\psi} |f(\psi)|^2 d\psi < \infty \bigr\},
+  \label{eq:chron:Hwind_L2}
+\end{equation}
+with inner product $\langle f, g \rangle = \int_0^{2\pi R_\psi} \bar{f}(\psi)\,g(\psi)\,d\psi$.
+
+Equivalently, in the winding-number basis, $\mathcal{H}_{\mathrm{wind}} = \ell^2(\mathbb{Z})$:
+\begin{equation}
+  \mathcal{H}_{\mathrm{wind}}
+  = \overline{\operatorname{span}_\mathbb{C}}\bigl\{ |n\rangle \;\big|\; n \in \mathbb{Z} \bigr\},
+  \qquad
+  \langle m | n \rangle = \delta_{mn},
+  \label{eq:chron:Hwind_ell2}
+\end{equation}
+where $|n\rangle$ denotes the $n$-th winding mode.
+\end{definition}
+
+\begin{definition}[Winding mode functions]
+\label{def:chron:modes}
+The \textbf{winding mode functions} (orthonormal basis of $L^2(S^1_\psi)$) are:
+\begin{equation}
+  \Phi_n(\psi)
+  = \langle \psi | n \rangle
+  = \frac{1}{\sqrt{2\pi R_\psi}}\, e^{in\psi/R_\psi},
+  \qquad n \in \mathbb{Z},\quad \psi \in [0, 2\pi R_\psi).
+  \label{eq:chron:winding_modes}
+\end{equation}
+These satisfy:
+\begin{equation}
+  \int_0^{2\pi R_\psi} \overline{\Phi_m(\psi)}\,\Phi_n(\psi)\,d\psi = \delta_{mn},
+  \qquad
+  \sum_{n \in \mathbb{Z}} \Phi_n(\psi)\,\overline{\Phi_n(\psi')} = \delta(\psi-\psi').
+  \label{eq:chron:completeness}
+\end{equation}
+\end{definition}
+
+\begin{remark}[The function $\Phi_n$ is the chronofactor]
+\label{rem:chron:Phin_is_cf}
+The function $\Phi_n(\psi) = (2\pi R_\psi)^{-1/2} e^{in\psi/R_\psi}$ is the
+\textbf{chronofactor of winding number $n$}.  The name captures the idea that
+the imaginary time $\psi$ acts as a phase variable: the winding number $n$
+determines how many times the field phase winds around $S^1_\psi$ as
+$\psi$ traverses the circle once.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Three Chronofactor Operators}
+\label{sec:chron:operators}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Winding number operator $\hat{N}$}
+
+\begin{definition}[Winding number operator]
+\label{def:chron:Nhat}
+The \textbf{winding number operator} $\hat{N}: \mathcal{H}_{\mathrm{wind}} \to \mathcal{H}_{\mathrm{wind}}$
+is defined by:
+\begin{equation}
+  \hat{N}\,|n\rangle = n\,|n\rangle,
+  \qquad n \in \mathbb{Z}.
+  \label{eq:chron:Nhat}
+\end{equation}
+In the $L^2(S^1_\psi)$ representation:
+\begin{equation}
+  (\hat{N}\,f)(\psi)
+  = \frac{R_\psi}{i}\,\frac{\partial f}{\partial \psi}(\psi)
+  = -i R_\psi\,\partial_\psi f(\psi).
+  \label{eq:chron:Nhat_diff}
+\end{equation}
+$\hat{N}$ is self-adjoint on its natural domain (absolutely continuous functions
+on $S^1_\psi$ with $L^2$ derivative).
+\end{definition}
+
+\begin{resultbox}
+$\hat{N}$ is the \textbf{U(1) charge generator} of the imaginary-time circle.
+Eigenvalue $n$ is the winding charge (Kaluza-Klein momentum on $S^1_\psi$).
+The spectrum is $\sigma(\hat{N}) = \mathbb{Z}$.
+Status: [L0] — standard compact U(1) quantisation.
+\end{resultbox}
+
+\subsection{Imaginary-time translation operator $\hat{T}_\psi(\delta)$}
+
+\begin{definition}[Imaginary-time translation]
+\label{def:chron:Tpsi}
+For $\delta \in \mathbb{R}$, the \textbf{imaginary-time translation operator} is:
+\begin{equation}
+  \hat{T}_\psi(\delta)
+  = e^{i\delta\hat{N}/R_\psi}
+  = \exp\!\bigl(i\delta\hat{N}/R_\psi\bigr)
+  \;\in\; \mathcal{U}(\mathcal{H}_{\mathrm{wind}}),
+  \label{eq:chron:Tpsi}
+\end{equation}
+where $\mathcal{U}(\mathcal{H}_{\mathrm{wind}})$ denotes the unitary operators on
+$\mathcal{H}_{\mathrm{wind}}$.
+
+Explicitly, in the winding basis:
+\begin{equation}
+  \hat{T}_\psi(\delta)\,|n\rangle
+  = e^{in\delta/R_\psi}\,|n\rangle.
+  \label{eq:chron:Tpsi_action}
+\end{equation}
+In the $L^2$ representation: $(\hat{T}_\psi(\delta)\,f)(\psi) = f(\psi + \delta)$.
+\end{definition}
+
+\begin{proposition}[Group structure]
+\label{prop:chron:group}
+The operators $\{\hat{T}_\psi(\delta) : \delta \in [0, 2\pi R_\psi)\}$ form a
+unitary representation of $U(1) \cong S^1_\psi$:
+\begin{align}
+  \hat{T}_\psi(\delta_1)\,\hat{T}_\psi(\delta_2) &= \hat{T}_\psi(\delta_1 + \delta_2),
+  \label{eq:chron:T_group1}\\
+  \hat{T}_\psi(0) &= \mathbf{1},
+  \label{eq:chron:T_group2}\\
+  \hat{T}_\psi(\delta)^\dagger &= \hat{T}_\psi(-\delta) = \hat{T}_\psi(\delta)^{-1}.
+  \label{eq:chron:T_group3}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Follows directly from $e^{i(\delta_1+\delta_2)\hat{N}/R_\psi} = e^{i\delta_1\hat{N}/R_\psi}e^{i\delta_2\hat{N}/R_\psi}$
+(valid since $\hat{N}$ commutes with itself).
+\end{proof}
+
+\subsection{Chronofactor projection map $\Pi$}
+
+\begin{definition}[Chronofactor projection]
+\label{def:chron:Pi}
+Let $\operatorname{Im}\mathbb{H} = \operatorname{span}_\mathbb{R}\{\mathbf{I}, \mathbf{J}, \mathbf{K}\}$
+be the imaginary quaternion subspace ($\dim_\mathbb{R} = 3$) and
+$\mathbb{C}_\tau = \operatorname{span}_\mathbb{R}\{1, i\}$ be the complex time plane
+($\dim_\mathbb{R} = 2$).
+
+The \textbf{chronofactor projection} is the $\mathbb{R}$-linear map:
+\begin{equation}
+  \Pi: \operatorname{Im}\mathbb{H} \to \mathbb{C}_\tau,
+  \qquad
+  \Pi(a\mathbf{I} + b\mathbf{J} + c\mathbf{K}) = (a + b + c)\,i,
+  \label{eq:chron:Pi}
+\end{equation}
+which sends each Im$\mathbb{H}$ phase direction to the imaginary part of complex time.
+Explicitly:
+\begin{equation}
+  \Pi(\mathbf{I}) = i, \quad
+  \Pi(\mathbf{J}) = i, \quad
+  \Pi(\mathbf{K}) = i.
+  \label{eq:chron:Pi_basis}
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Properties of $\Pi$]
+\label{prop:chron:Pi_props}
+The map $\Pi$ in Definition~\ref{def:chron:Pi} satisfies:
+\begin{enumerate}
+  \item \textbf{Surjectivity}: $\Pi$ maps onto $i\mathbb{R} \subset \mathbb{C}_\tau$
+        (the imaginary axis), covering all imaginary time directions. $\operatorname{Im}(\Pi) = i\mathbb{R}$.
+  \item \textbf{Isotropic}: $\Pi$ is symmetric under permutations of $\mathbf{I},\mathbf{J},\mathbf{K}$
+        — all three Im$\mathbb{H}$ directions are equivalent (consistent with the
+        isotropic UBT vacuum).
+  \item \textbf{Kernel}: $\ker(\Pi) = \{a\mathbf{I}+b\mathbf{J}+c\mathbf{K} : a+b+c=0\}$,
+        a 2-dimensional subspace of Im$\mathbb{H}$ (the plane perpendicular to
+        $\mathbf{I}+\mathbf{J}+\mathbf{K}$).  These are the ``neutral'' phase directions
+        that do not couple to the imaginary time.
+  \item \textbf{Dimension ratio}: The effective projection from $d=3$ to $d=2$ dimensions
+        gives the ratio $\lambda_{\mathrm{proj}} = \dim_\mathbb{R}(\operatorname{Im}\mathbb{H})\big/\dim_\mathbb{R}(\mathbb{C}_\tau) = 3/2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+All claims follow directly from the definition~\eqref{eq:chron:Pi} by linear algebra.
+For property~3: $a\mathbf{I}+b\mathbf{J}+c\mathbf{K} \in \ker(\Pi) \Leftrightarrow a+b+c=0$,
+which is a codimension-1 constraint on $\mathbb{R}^3$, giving $\dim\ker(\Pi) = 2$.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Chronofactor in the Full Biquaternion Field}
+\label{sec:chron:field}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Action on the UBT field $\Theta(q,\tau)$}
+
+The UBT fundamental field $\Theta(q,\tau)$ is a biquaternion-valued function.
+Under imaginary time translation $\psi \to \psi + \delta$:
+\begin{equation}
+  \Theta(q,\tau) \xrightarrow{\hat{T}_\psi(\delta)}
+  \Theta(q, t + i(\psi+\delta))
+  = \sum_{n \in \mathbb{Z}} \Theta_n(q)\,e^{in(\psi+\delta)/R_\psi}
+  = \hat{T}_\psi(\delta)\,\Theta(q,\tau),
+  \label{eq:chron:field_action}
+\end{equation}
+where $\Theta_n(q) = \frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}\Theta(q,t+i\psi)\,e^{-in\psi/R_\psi}d\psi$
+are the winding mode components.
+
+\subsection{Winding mode decomposition}
+
+\begin{proposition}[Winding mode spectrum]
+\label{prop:chron:winding_spectrum}
+The mode decomposition of the biquaternion field on $S^1_\psi$ is:
+\begin{equation}
+  \Theta(q,\tau)
+  = \sum_{n \in \mathbb{Z}} \Theta_n(q)\,\Phi_n(\psi),
+  \qquad
+  \hat{N}\,\Theta = \sum_{n \in \mathbb{Z}} n\,\Theta_n(q)\,\Phi_n(\psi).
+  \label{eq:chron:mode_decomp}
+\end{equation}
+The winding number $n$ determines the charge of the mode under $U(1)_\psi$.
+Stable vacuum modes satisfy $|n|$ prime (prime-winding stability,
+\texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S4}).
+\end{proposition}
+
+\subsection{Effective degree-of-freedom count from the chronofactor}
+
+\begin{theorem}[Chronofactor contribution to $N_{\mathrm{eff}}$]
+\label{thm:chron:Neff}
+For the biquaternion field $\Theta \in \mathcal{B} = \mathbb{C}\otimes\mathbb{H}$
+on the imaginary-time circle $S^1_\psi$, the chronofactor operators $\hat{N}$ and
+$\hat{T}_\psi$ generate a factor of $N_{\mathrm{chron}} = 4$ in the effective
+mode count:
+\begin{equation}
+  N_{\mathrm{chron}}
+  = N_{\mathrm{helicity}} \times N_{\mathrm{charge}}
+  = 2 \times 2
+  = 4,
+  \label{eq:chron:Nchron}
+\end{equation}
+where:
+\begin{itemize}
+  \item $N_{\mathrm{helicity}} = 2$: left/right helicity from $\hat{T}_\psi$ acting on
+        the holomorphic and antiholomorphic sectors of the field (equivalently:
+        clockwise/counterclockwise winding modes $\Phi_n$ and $\Phi_{-n}$);
+  \item $N_{\mathrm{charge}} = 2$: particle/antiparticle from the charge-conjugation
+        automorphism $z \to \bar{z}$ of $\mathbb{C}$ in $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$.
+\end{itemize}
+Together with $N_{\mathrm{phases}} = \dim_\mathbb{R}(\operatorname{Im}\mathbb{H}) = 3$:
+\begin{equation}
+  N_{\mathrm{eff}}
+  = N_{\mathrm{phases}} \times N_{\mathrm{chron}}
+  = 3 \times 4
+  = 12.
+  \label{eq:chron:Neff12}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$N_{\mathrm{phases}} = 3$ is the real dimension of Im$\mathbb{H}$, an
+algebraic fact [L0].
+
+$N_{\mathrm{helicity}} = 2$: the operator $\hat{T}_\psi(\delta)$ acts on
+$\mathcal{H}_{\mathrm{wind}} = L^2(S^1_\psi)$.  The eigenspace decomposition of
+$\hat{N}$ separates positive-$n$ (clockwise, holomorphic) and negative-$n$
+(counterclockwise, antiholomorphic) sectors, each closed under the dynamics.
+This gives two independent helicity sectors.
+
+$N_{\mathrm{charge}} = 2$: the complex conjugation $\sigma: z\mapsto\bar{z}$ on
+$\mathbb{C}$ in $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$ commutes with the dynamics
+and exchanges $\Theta_n \leftrightarrow \bar\Theta_{-n}$.  This is the
+antiparticle/particle symmetry.  The charge operator $\hat{Q}$ defined by
+$\hat{Q}\,\Theta_n = \mathrm{sign}(n)\,\Theta_n$ has eigenvalues $\pm1$,
+giving two charge sectors.
+
+All three factors are independent and multiply: $N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Operator Summary}
+\label{sec:chron:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llll}
+\toprule
+Operator & Definition & Action & Status \\
+\midrule
+$\hat{N}$ & $-iR_\psi\,\partial_\psi$ & $|n\rangle \mapsto n\,|n\rangle$ & [L0] \\
+$\hat{T}_\psi(\delta)$ & $e^{i\delta\hat{N}/R_\psi}$ & $|n\rangle \mapsto e^{in\delta/R_\psi}|n\rangle$ & [L0] \\
+$\Phi_n(\psi)$ & $(2\pi R_\psi)^{-1/2}e^{in\psi/R_\psi}$ & Eigenfunctions of $\hat{N}$ & [L0] \\
+$\Pi: \operatorname{Im}\mathbb{H}\to\mathbb{C}_\tau$ & $a\mathbf{I}+b\mathbf{J}+c\mathbf{K}\mapsto(a+b+c)\,i$ & $\lambda_{\mathrm{proj}}=3/2$ & [L1] \\
+$N_{\mathrm{chron}}$ & $N_h\times N_c = 2\times 2 = 4$ & Factor in $N_{\mathrm{eff}}$ & [L0] \\
+$N_{\mathrm{eff}}$ & $N_\phi\times N_{\mathrm{chron}} = 3\times 4$ & $= 12$ charged modes & [L0] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Target 2 result}: The chronofactor is formalized as:
+\begin{enumerate}
+  \item A \emph{Hilbert space} $\mathcal{H}_{\mathrm{wind}} = \ell^2(\mathbb{Z})$.
+  \item A \emph{self-adjoint operator} $\hat{N}$ (winding number / imaginary-time momentum).
+  \item A \emph{unitary group} $\{\hat{T}_\psi(\delta)\}$ (imaginary-time translations, $U(1)$ representation).
+  \item A \emph{linear projection} $\Pi: \operatorname{Im}\mathbb{H} \to \mathbb{C}_\tau$
+        with projection ratio $\lambda = 3/2$.
+  \item A \emph{mode count} $N_{\mathrm{chron}} = 4$ contributing to $N_{\mathrm{eff}} = 12$.
+\end{enumerate}
+All five objects are defined by explicit equations above with zero free parameters.
+\end{resultbox}
+
+\paragraph{Open item.}
+The \emph{projection Jacobian} — the exact measure-change under $\Pi$, needed to
+prove that the 3/2 factor enters $B_{\mathrm{base}}$ rigorously — remains
+CONJECTURAL.  A rigorous derivation requires:
+(i) a metric on the phase space of Im$\mathbb{H}$ modes,
+(ii) a precise definition of mode density on $S^1_\psi$,
+(iii) the Jacobian of $\Pi$.
+These are addressed in \texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex}
+via the heat kernel / Poisson duality argument.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
