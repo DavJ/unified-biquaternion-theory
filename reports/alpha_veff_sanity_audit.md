@@ -311,7 +311,7 @@ The following errors were identified and corrected in this file:
 
 | Location | Old (incorrect) | Corrected |
 |----------|----------------|-----------|
-| §6 eq:nstar\_raw | `n* = √(B/2)` | `2n* = B·(ln n* + 1)` |
+| §6 `eq:nstar_raw` | `n* = √(B/2)` | `2n* = B·(ln n* + 1)` |
 | Summary table, n\* row | `√(B/2)` | `2n* = B(ln n*+1)` |
 
 **Explanation**: The formula `n* = √(B/2)` is the stationarity condition for
@@ -325,7 +325,7 @@ form.
 
 | Location | Old (incorrect) | Corrected |
 |----------|----------------|-----------|
-| §6 eq:nstar\_raw | `n*_bare ≈ 4.56` | `n*_bare ≈ 120.35` |
+| §6 `eq:nstar_raw` | `n*_bare ≈ 4.56` | `n*_bare ≈ 120.35` |
 | Summary table, n\* row | `≈ 4.56` | `≈ 120` |
 | §6 gapbox | "n* ≈ 4.56 from the bare formula" | "n*_bare ≈ 120 from B_base = 12^(3/2)" |
 
