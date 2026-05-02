@@ -133,16 +133,27 @@ Source: \texttt{canonical/alpha/alpha\_best\_route.tex §2}.
 
 \begin{theorem}[Prime attractor, \PROVED\ \Lone\ (given $B$)]
 \label{thm:prime_attractor}
-The minimum of $V_{\mathrm{eff}}(n)$ satisfies
-\[
-  n^*(B) \;=\; e^{(2-B)/B} \cdot e.
-\]
+The continuous minimum of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ satisfies the
+\textbf{transcendental equation}
+\begin{equation}
+  2n^* = B\,(\ln n^* + 1).
+  \label{eq:nstar_transcendental}
+\end{equation}
+This has no elementary closed form; it is solved numerically.
+Selected values: $n^*(8\pi)\approx 65$; $n^*(41.57)\approx 120$; $n^*(46.28)\approx 137$.
 For the phenomenological value $B = B_{\mathrm{phenom}} \approx 46.298$,
+numerical solution gives $n^*_{\mathrm{continuous}} \approx 137.05$, and the
+prime minimiser is
 \[
-  n^*(B_{\mathrm{phenom}}) \;=\; 137.
+  n^*_{\mathrm{prime}} = 137.
 \]
 This is proved conditional on $B = B_{\mathrm{phenom}}$.
-Source: \texttt{canonical/alpha/alpha\_best\_route.tex §3}.
+Source: \texttt{canonical/alpha/alpha\_best\_route.tex~\S7};
+see also \texttt{canonical/alpha/veff\_corrected\_statement.tex}.
+
+\textbf{Note}: The formula $n^*(B) = e^{(2-B)/B}\cdot e$ previously stated here
+was incorrect (it equals $e^{2/B}\approx 1.04$ for $B=46.3$) and has been
+removed. See \texttt{reports/alpha\_veff\_sanity\_audit.md~\S6}.
 \end{theorem}
 
 \subsection{One-Loop Baseline}
