@@ -75,32 +75,38 @@ only input is the coefficient B.
 
 ---
 
-### 2.4 n* = √(B/2) stationarity condition — [L1] PROVED (given B)
+### 2.4 Stationarity condition for V_eff — [L1] PROVED (given B)
+
+The one-loop effective potential $V_{\mathrm{eff}}(n) = n^2 - B \cdot n \cdot \ln n$
+has its continuous minimum at $n^*$ satisfying the **transcendental equation**:
 
 ```
-∂V_eff/∂n|_{n*} = 0  ⟹  n* = √(B/2)
+∂V_eff/∂n|_{n*} = 0  ⟹  2n* = B·(ln n* + 1)
 ```
 
-With B = B_base = 41.57, n* = √(41.57/2) ≈ √20.785 ≈ 4.56 ... wait, this
-needs the full B including the correction factor R:
+This equation has **no elementary closed form**; it is solved numerically.
+Selected values:
 
-```
-B = B_base · R²  with  B_base ≈ 41.57,  R ≈ 1.114
-B ≈ 41.57 × 1.240 ≈ 51.55
-n* = √(B/2) ≈ √25.77 ≈ 5.08 ... 
-```
+| B | n\*_continuous |
+|---|--------------|
+| 8π ≈ 25.13 | 65.0 |
+| N_eff^{3/2} ≈ 41.57 | 120.4 |
+| 46.284 | 137.000 |
+| 46.298 (B_phenom) | 137.05 |
 
-Correction: the actual formula in `appendix_alpha_geometry.tex §4` uses the
-combined coefficient.  With B_combined ≈ 46.3 (the fitted value), n* ≈ √23.15
-≈ √(α⁻¹/2·scaling).  The key structural fact is:
+**Correction of earlier error**: This section previously stated `n* = √(B/2)`,
+which is the stationarity condition of a *different* potential `V = n² − B·ln n`
+(missing the `n` factor).  For `B = 46.3`, `√(B/2) ≈ 4.8`, which is clearly
+not 137.  The `√(B/2)` formula was a transcription error and is now removed.
 
 ```
 n* = 137  is a prime-stable attractor of V_eff  
-given B_base = N_eff^{3/2} ≈ 41.57 and correction R ≈ 1.114
+given B ≈ 46.284–46.298 (the phenomenological value)
 ```
 
-**Source**: `canonical/appendices/appendix_alpha_geometry.tex §4`  
-**Status**: Proved given B_base (conditional on k=1 conjecture)
+**Source**: `canonical/appendices/appendix_alpha_geometry.tex §4`,
+`canonical/alpha/veff_corrected_statement.tex`  
+**Status**: Proved given B_phenom (phenomenological; conditional on Gap G137-B)
 
 ---
 

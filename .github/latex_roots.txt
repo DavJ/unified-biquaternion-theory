@@ -5,3 +5,4 @@
 
 # Canonical core document (the only automatic build target)
 canonical/UBT_canonical_main.tex
+canonical/alpha/veff_corrected_statement.tex
