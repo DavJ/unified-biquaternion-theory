@@ -288,7 +288,12 @@ the gauge group embedded in $\mathcal{B}$.
 
 \begin{resultbox}
   Source~S4 predicts $N_{\mathrm{eff}} = 12$.
-  Status: CLEAN [L0] — cohomological argument from $G_{\mathrm{SM}}\hookrightarrow\mathcal{B}$.
+  Status: Provisional [MC] — the route identifies the chronofactor zero-mode
+  count with $\dim G_{\mathrm{SM}}$, but counting charged-flat and Cartan
+  generators effectively reproduces the S5 counting rather than providing a
+  genuinely independent cohomological proof.  A rigorous derivation from the
+  $S^1_\psi$ cohomology that does not rely on $\dim G_{\mathrm{SM}}$ directly
+  is still required.
   No reference to $\alpha$ or $B_{\mathrm{required}}$.
 \end{resultbox}
 
@@ -615,24 +620,32 @@ With the independently derived values:
       = 12 \times 2\sqrt{3}
       \approx 41.569.
   }
-  \label{eq:B_final}
+  \label{eq:B_base}
 \end{equation}
 
 This is the one-loop effective potential coefficient $B_{\mathrm{base}}$ entering
 $V_{\mathrm{eff}}(n) = n^2 - B\cdot n\ln n$.
 
 The stationarity condition $\partial V_{\mathrm{eff}}/\partial n = 0$ yields
-the winding-mode attractor:
+the transcendental equation:
 \begin{equation}
-  n^* = \sqrt{B/2} = \sqrt{12^{3/2}/2} = \sqrt{12\sqrt{3}} \approx \sqrt{20.78} \approx 4.56.
+  2n^* = B\,(\ln n^* + 1).
+  \label{eq:stationarity}
+\end{equation}
+This equation has no elementary closed form for $n^*(B)$.  For
+$B_{\mathrm{base}} = 12^{3/2} \approx 41.569$, numerical solution by bisection
+gives:
+\begin{equation}
+  n^*_{\mathrm{bare}} \approx 120.35 \quad [B = 12^{3/2}].
   \label{eq:nstar_raw}
 \end{equation}
 
 \begin{gapbox}
-\textbf{Open gap}: The value $n^* \approx 4.56$ from the bare formula does not
-yet reproduce $\alpha^{-1} \approx 137$.  A correction factor $R$ from the
-renormalisation group evolution and the $S^1_\psi$ radius calibration is still
-required.  These correspond to Assumptions A9, A10, A12 in the assumptions audit
+\textbf{Open gap}: The bare winding-mode attractor $n^*_{\mathrm{bare}} \approx 120$
+obtained from $B_{\mathrm{base}} = 12^{3/2}$ does not yet reproduce
+$\alpha^{-1} \approx 137$.  A correction factor $R$ from the renormalisation
+group evolution and the $S^1_\psi$ radius calibration is still required.
+These correspond to Assumptions A9, A10, A12 in the assumptions audit
 (\texttt{assumptions\_audit.md}).  Resolving these gaps is the subject of the
 $k=1$ attack plan (\texttt{k\_equals\_1\_attack\_plan.md}) and the Layer~2
 fallback (\texttt{fallback\_layer2\_outline.md}).
@@ -660,7 +673,7 @@ $N_{\mathrm{eff}}$ from S3
   & 12 & CLEAN [L0] \\
 $N_{\mathrm{eff}}$ from S4
   & Chronofactor zero-mode / $\dim G_{\mathrm{SM}}$
-  & 12 & CLEAN [L0] \\
+  & 12 & Provisional [MC] \\
 $N_{\mathrm{eff}}$ from S5
   & $8{+}3{+}1$ SM generators
   & 12 & CLEAN [L0] \\
@@ -683,8 +696,8 @@ $B = N_{\mathrm{eff}}^{d_{\mathrm{eff}}/2}$
   & $12^{3/2}\!\approx\!41.57$ & Derived \\
 \midrule
 $n^*$ (bare)
-  & $\sqrt{B/2}$; correction factor $R$ still open
-  & $\approx 4.56$ & Incomplete \\
+  & $2n^* = B(\ln n^*\!+\!1)$; correction factor $R$ still open
+  & $\approx 120$ & Incomplete \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -695,9 +708,10 @@ $N_{\mathrm{eff}} = 12$ and $d_{\mathrm{eff}} = 3$ are independently determined
 from the axiom $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ using six and three
 structurally distinct routes respectively.  Neither value is chosen to fit
 $B_{\mathrm{required}}$, $\alpha^{-1}$, or any experimental input.
-Only after establishing both quantities is $B = 12^{3/2} \approx 41.57$
-computed.  The remaining gap is the $R$-factor and the precise form of
-$n^*\to\alpha^{-1}$ identification.
+Only after establishing both quantities is $B_{\mathrm{base}} = 12^{3/2} \approx 41.57$
+computed.  The bare stationary point $n^*_{\mathrm{bare}} \approx 120$ follows
+from the transcendental equation $2n^* = B(\ln n^*+1)$.  The remaining gap is
+the $R$-factor connecting $n^*_{\mathrm{bare}}$ to $\alpha^{-1} \approx 137$.
 
 \ifdefined\INCLUDEMODE
 \else

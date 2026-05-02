@@ -298,3 +298,66 @@ It must be classified as **OPEN/PHENOMENOLOGICAL** until Gap G137-B is closed.
 | `ALPHA_PROGRESS_REPORT.md §2.4` | Contains n*=√(B/2) error |
 | `reports/alpha_hidden_fit_audit.md` | Prior hidden-fit analysis |
 | `reports/alpha_missing_lemma.md` | Gap G137-B formal statement |
+
+---
+
+## 11. Correction Note — neff_protocol_derivation.tex (2026-05-02)
+
+**Scope**: `research_tracks/T3_ALPHA/neff_protocol_derivation.tex`
+
+The following errors were identified and corrected in this file:
+
+### Error C1 — Wrong stationarity formula (CRITICAL)
+
+| Location | Old (incorrect) | Corrected |
+|----------|----------------|-----------|
+| §6 `eq:nstar_raw` | `n* = √(B/2)` | `2n* = B·(ln n* + 1)` |
+| Summary table, n\* row | `√(B/2)` | `2n* = B(ln n*+1)` |
+
+**Explanation**: The formula `n* = √(B/2)` is the stationarity condition for
+the *wrong* potential `V(n) = n² − B·ln n` (variant V4, without the `n` factor
+in the logarithm term).  For the correct potential `V_eff(n) = n² − B·n·ln n`,
+differentiating gives `dV/dn = 2n − B(ln n + 1)`, which yields the
+transcendental equation `2n* = B(ln n* + 1)`.  This has no elementary closed
+form.
+
+### Error C2 — Wrong bare n* value (CRITICAL)
+
+| Location | Old (incorrect) | Corrected |
+|----------|----------------|-----------|
+| §6 `eq:nstar_raw` | `n*_bare ≈ 4.56` | `n*_bare ≈ 120.35` |
+| Summary table, n\* row | `≈ 4.56` | `≈ 120` |
+| §6 gapbox | "n* ≈ 4.56 from the bare formula" | "n*_bare ≈ 120 from B_base = 12^(3/2)" |
+
+**Explanation**: Solving `2n* = B(ln n* + 1)` numerically for
+`B = 12^(3/2) ≈ 41.569` gives `n*_bare ≈ 120.35`, not 4.56.
+The value 4.56 came from applying the wrong formula `√(B/2) = √(20.78)`.
+
+### Error C3 — B = 12^(3/2) labelled as final/closure value
+
+| Location | Old | Corrected |
+|----------|-----|-----------|
+| §6 equation label | `eq:B_final` | `eq:B_base` |
+| §7 conclusion text | `B = 12^{3/2}` | `B_base = 12^{3/2}` |
+
+**Explanation**: `B = 12^(3/2)` is the *base* coefficient derived from
+`N_eff^{d_eff/2}` before any renormalisation correction.  Labelling it `B_final`
+or presenting it as an alpha-closure value is misleading; the gap from
+`n*_bare ≈ 120` to `α⁻¹ = 137` remains open (Gap G137-B).
+
+### Downgrade C4 — Source S4 status
+
+| Location | Old | Corrected |
+|----------|-----|-----------|
+| §3.4 resultbox | `CLEAN [L0]` | `Provisional [MC]` |
+| Summary table, S4 row | `CLEAN [L0]` | `Provisional [MC]` |
+
+**Explanation**: The S4 chronofactor zero-mode argument counts
+`N_eff^(S4) = dim G_SM = 12` by partitioning generators into off-diagonal and
+Cartan categories, but the final count is equivalent to S5 (`dim G_SM = 8+3+1`).
+A genuinely independent cohomological proof from the `S^1_psi` cohomology that
+does not implicitly rely on `dim G_SM` is not yet given.  Downgraded to
+Provisional [MC] pending a rigorous independent derivation.
+
+Note: D2 was already correctly marked `Conditional [MC]` in the document; no
+change was needed there.
