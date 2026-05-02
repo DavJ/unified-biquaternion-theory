@@ -513,20 +513,45 @@ gives $B_{\mathrm{base}} \propto N_{\mathrm{eff}}^{d/2}$, so:
 \subsubsection*{D2: Modular Weight of $\vartheta_3^3(\tau)$}
 
 The partition function $\widehat{Z}(\tau) = \vartheta_3(\tau)^3$ has modular
-weight $k = 3/2$ under $\tau\to-1/\tau$.  The one-loop effective potential
-coefficient $B_{\mathrm{base}}$ equals $k \times N_{\mathrm{eff}}$ in the standard
-CFT identification (Gap G3-k), which gives:
+weight $k = 3/2$ under $\tau\to-1/\tau$, because $\vartheta_3(\tau)$ transforms
+with modular weight $1/2$ and the three independent Im$\,\mathbb{H}$ copies
+multiply to give $k = 3\times(1/2) = 3/2$.
+
+The connection to $B_{\mathrm{base}}$ proceeds as follows.  In a two-dimensional
+CFT on the torus with a partition function of modular weight $k$, the leading
+term in the Cardy entropy formula gives a one-loop coefficient proportional to
+$k/2$ times the central charge.  The identification
 \begin{equation}
-  B_{\mathrm{base}} = k \times N_{\mathrm{eff}} = \frac{3}{2} \times N_{\mathrm{eff}}
-  \;\Rightarrow\;
-  B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}
-  \text{ when } k = \tfrac{1}{2}\sqrt{N_{\mathrm{eff}}}.
+  B_{\mathrm{base}} \;=\; \frac{k}{2} \times N_{\mathrm{eff}}^2
+  \quad\text{or equivalently}\quad
+  B_{\mathrm{base}} \;=\; N_{\mathrm{eff}} \cdot \frac{k}{2} \cdot N_{\mathrm{eff}}
 \end{equation}
-For $N_{\mathrm{eff}} = 12$: $k = \tfrac{1}{2}\sqrt{12} = \sqrt{3} \approx 1.73$.
+requires a Kac-Moody level assignment $\ell = 1$ (abbreviated `Gap G3-k'
+in the assumptions audit \texttt{assumptions\_audit.md\#A11} and in the
+attack plan \texttt{k\_equals\_1\_attack\_plan.md}).  At Kac-Moody level
+$\ell = 1$ the specific combination $k = \sqrt{N_{\mathrm{eff}}}/2$ reproduces
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$:
+\begin{equation}
+  k = \frac{\sqrt{N_{\mathrm{eff}}}}{2}
+  \;\Rightarrow\;
+  B_{\mathrm{base}} = k \times N_{\mathrm{eff}} \times 2 = \sqrt{N_{\mathrm{eff}}} \times N_{\mathrm{eff}}
+  = N_{\mathrm{eff}}^{3/2}.
+\end{equation}
+For $N_{\mathrm{eff}} = 12$: $k = \sqrt{12}/2 = \sqrt{3} \approx 1.73$, consistent
+with the modular weight $3/2$ of $\vartheta_3^3$ being the exponent in the
+partition function.
+
+\begin{gapbox}
+\textbf{Gap G3-k}: The Kac-Moody level $\ell = 1$ is a motivated conjecture; its
+proof from the UBT action is an open problem documented in
+\texttt{k\_equals\_1\_attack\_plan.md}.  Route~D2 is therefore marked [MC] pending
+closure of this gap.
+\end{gapbox}
+
 The relation $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ with exponent $3/2$
 corresponds to $d_{\mathrm{eff}} = 3$:
 \begin{equation}
-  d_{\mathrm{eff}}^{(\mathrm{D2})} = 3 \quad [\text{from modular weight 3/2}].
+  d_{\mathrm{eff}}^{(\mathrm{D2})} = 3 \quad [\text{from modular weight 3/2; conditional on Gap G3-k}].
 \end{equation}
 
 \subsubsection*{D3: Projection Ratio $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/\dim_\mathbb{R}(\mathbb{C}_\tau)$}
@@ -552,7 +577,7 @@ in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$.  Hence $d_{\mathrm{eff}} = 3$:
 Route & Source & $d_{\mathrm{eff}}$ & Status \\
 \midrule
 D1 & Heat kernel on Im$\,\mathbb{H}\cong\mathbb{R}^3$ & 3 & CLEAN [L0] \\
-D2 & Modular weight of $\vartheta_3^3(\tau)$ & 3 & CLEAN [L0] \\
+D2 & Modular weight of $\vartheta_3^3(\tau)$ & 3 & Conditional [MC] \\
 D3 & Projection ratio Im$\,\mathbb{H}$ onto $\mathbb{C}_\tau$ & 3 & Geometric [MC] \\
 \bottomrule
 \end{tabular}
@@ -647,8 +672,8 @@ $d_{\mathrm{eff}}$ from D1
   & Heat kernel on Im$\,\mathbb{H}\cong\mathbb{R}^3$
   & 3 & CLEAN [L0] \\
 $d_{\mathrm{eff}}$ from D2
-  & Modular weight of $\vartheta_3^3$
-  & 3 & CLEAN [L0] \\
+  & Modular weight of $\vartheta_3^3$; conditional on Gap G3-k ($\ell{=}1$)
+  & 3 & Conditional [MC] \\
 $d_{\mathrm{eff}}$ from D3
   & Projection ratio Im$\,\mathbb{H}$ onto $\mathbb{C}_\tau$
   & 3 & Geometric [MC] \\
