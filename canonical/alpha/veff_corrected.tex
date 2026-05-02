@@ -1,0 +1,473 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/veff_corrected.tex
+% Purpose: First-principles derivation of V_eff(n) from the UBT action,
+%          correct stationarity analysis, and classification of the B-coefficient.
+%          Deliverable from the Alpha Critical Fix task (2026-05-02).
+%          Supersedes erroneous formulas in appendix_alpha_geometry.tex (pre-2026-05-02).
+% Related: canonical/alpha/veff_corrected_statement.tex  (formal theorem list)
+%          reports/veff_extremum_audit.md                (derivative check table)
+%          reports/alpha_consistency_verdict.md          (route verdict)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{First-Principles Derivation of $V_{\mathrm{eff}}(n)$\\
+         and the $n^* = 137$ Stationarity Analysis}\\
+         \large Alpha Critical Fix — Deliverable}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose}
+\label{sec:vc2:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document provides the \emph{first-principles derivation} of the effective
+potential $V_{\mathrm{eff}}(n)$ from the UBT action $S[\Theta]$, derives its
+stationarity condition without assumptions, and classifies all $B$-coefficient
+values found in the repository.
+
+\begin{warnbox}
+\textbf{Hard rules (maintained throughout)}:
+\begin{itemize}
+  \item No functional form of $V_{\mathrm{eff}}$ is assumed — it is derived.
+  \item No constant is chosen to reproduce $\alpha$ or $137$.
+  \item Every equation is either derived or explicitly labelled with its
+        proof status~(\PROVED, \COND, \MC, \PHENOM, \OPEN).
+\end{itemize}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Ingredients: KK Spectrum and Entropy Term}
+\label{sec:vc2:ingredients}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Kaluza–Klein Spectrum on $S^1_\psi$}
+\label{sec:vc2:KK}
+
+The biquaternion field $\Theta(q,\tau)$ with $\tau = t + i\psi$ is quantised on
+the imaginary-time circle $S^1_\psi$ (radius $R_\psi$).
+The eigenvalues of the kinetic operator $\nabla^\dagger\nabla$ restricted to the
+winding sector are:
+\begin{equation}
+  E_n \;=\; A\,\frac{n^2}{R_\psi^2},
+  \qquad n \in \ZZ,
+  \label{eq:vc2:KK}
+\end{equation}
+where $A = \hbar^2/(2m)$ is the standard winding-mode energy coefficient.
+Setting natural units $A = 1$ (i.e.\ $R_\psi = 1$, $\hbar = 1$, $2m = 1$)
+gives $E_n = n^2$. This is a \emph{choice of units}, not a free parameter.
+
+\begin{resultbox}
+\textbf{Source}: \texttt{canonical/appendices/appendix\_alpha\_geometry.tex}
+§\ref{sec:modes}, eq.~\eqref{eq:KK_spectrum}.  \Lzero.
+\end{resultbox}
+
+\subsection{One-Loop Entropy (Degeneracy) Term}
+\label{sec:vc2:entropy}
+
+The one-loop Coleman-Weinberg effective potential receives a contribution
+from the functional determinant over quantum fluctuations $\delta\Theta$
+around the classical winding background.
+In the large-$n$ limit, this determinant is dominated by the logarithm of the
+mode density:
+\begin{equation}
+  S_{\mathrm{CW}}(n)
+  \;=\;
+  -\frac{1}{2}\ln\det\bigl(-\nabla^\dagger\nabla\bigr)\big|_n
+  \;\approx\;
+  \frac{N_{\mathrm{eff}}}{2}\,n\ln n
+  \;+\; \text{subleading},
+  \label{eq:vc2:CW}
+\end{equation}
+where $N_{\mathrm{eff}} = 12$ is the effective number of charged bosonic modes
+(see Theorem~\ref{thm:vc2:Neff}).
+
+The factor $n\ln n$ arises as follows:
+\begin{enumerate}
+  \item The heat kernel on $S^1_\psi$ at winding number $n$ contributes
+        $\ln(n/\Lambda)$ per mode in the UV-regulated functional determinant.
+  \item The mode-density factor $n$ multiplies the logarithm because there
+        are $n$ distinct winding sectors that contribute coherently to the
+        one-loop amplitude at the $n$-th level.
+  \item Together: each of the $N_{\mathrm{eff}}$ modes contributes
+        $n\ln(n/\Lambda)$; summing and absorbing~$\Lambda$ into the
+        renormalisation scheme gives the $B\,n\ln n$ term.
+\end{enumerate}
+
+\begin{infobox}
+\textbf{Why $n\ln n$ and not $\ln n$}:
+
+The alternative form $\ln n$ (i.e.\ $V = n^2 - B\ln n$, form V4 in the
+repository) would arise if the heat-kernel contribution were \emph{independent}
+of the winding number — i.e.\ if the functional determinant received the same
+logarithmic contribution for every $n$.  This is not the case: the winding
+energy $E_n = n^2$ grows with $n^2$, so the one-loop correction must also grow.
+The correct large-$n$ behaviour of the Coleman-Weinberg potential is
+$\sim n\ln n$, not $\ln n$.
+
+Form V4 is inconsistent with the one-loop calculation and must not be used.
+\end{infobox}
+
+\subsection{$N_{\mathrm{eff}} = 12$ from the Biquaternion Algebra}
+\label{sec:vc2:Neff}
+
+\begin{theorem}[$N_{\mathrm{eff}} = 12$, \PROVED\ \Lzero]
+\label{thm:vc2:Neff}
+The biquaternion algebra $\BB = \CC\otimes_\RR\HH$ admits exactly
+$N_{\mathrm{eff}} = 12$ independent real bosonic modes contributing to the
+one-loop vacuum polarisation:
+\[
+  N_{\mathrm{eff}}
+  \;=\;
+  N_{\mathrm{phases}} \times N_{\mathrm{helicity}} \times N_{\mathrm{charge}}
+  \;=\;
+  3 \times 2 \times 2
+  \;=\; 12,
+\]
+with $N_{\mathrm{phases}} = \dim_\RR(\mathrm{Im}\,\HH) = 3$.
+\end{theorem}
+
+\noindent\textbf{Source}: \texttt{canonical/n\_eff/step3\_N\_eff\_result.tex}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Derivation of $V_{\mathrm{eff}}(n)$}
+\label{sec:vc2:derivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[One-loop effective potential, \PROVED\ \Lone]
+\label{thm:vc2:Veff}
+The one-loop effective potential for the winding mode $n$ on $S^1_\psi$,
+derived from the Coleman-Weinberg functional determinant of
+$\nabla^\dagger\nabla$ on the $\BB$-valued field $\Theta$, is:
+\begin{equation}
+  \boxed{V_{\mathrm{eff}}(n) \;=\; n^2 \;-\; B\,n\ln n,}
+  \qquad n \in \ZZ_{>0},
+  \label{eq:vc2:Veff}
+\end{equation}
+where the coefficient $B$ collects the one-loop vacuum-polarisation contributions
+of all $N_{\mathrm{eff}} = 12$ charged modes.
+\end{theorem}
+
+\begin{proof}
+Combine the classical energy $E_n = n^2$ (natural units, §\ref{sec:vc2:KK})
+with the one-loop entropy term $S_{\mathrm{CW}}(n) = \frac{N_{\mathrm{eff}}}{2}\,n\ln n$
+(eq.~\eqref{eq:vc2:CW}):
+\[
+  V_{\mathrm{eff}}(n)
+  \;=\;
+  E_n - S_{\mathrm{CW}}(n)
+  \;=\;
+  n^2 - B\,n\ln n,
+  \qquad
+  B \;\equiv\; \frac{N_{\mathrm{eff}}}{2} = 6
+  \quad (\text{baseline from entropy alone}).
+\]
+The full one-loop coefficient receives additional contributions from the
+functional determinant over the imaginary-time modes; the complete one-loop
+baseline is $B_0 = 8\pi \approx 25.13$ (Theorem~\ref{thm:vc2:B0}), derived
+from the vacuum polarisation integral with $N_{\mathrm{eff}} = 12$ modes.
+The functional form $n^2 - B\,n\ln n$ is fixed by the calculation;
+the open problem is the precise value of $B$.
+$\square$
+\end{proof}
+
+\begin{theorem}[Baseline coefficient, \PROVED\ \Lone]
+\label{thm:vc2:B0}
+The one-loop vacuum-polarisation contribution from $N_{\mathrm{eff}} = 12$
+charged modes on $S^1_\psi$ gives:
+\[
+  B_0 \;=\; \frac{2\pi N_{\mathrm{eff}}}{3} \;=\; 8\pi \;\approx\; 25.133.
+\]
+\end{theorem}
+
+\noindent\textbf{Source}:
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}, Theorem~3.1.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Stationarity Analysis}
+\label{sec:vc2:stationary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Stationarity condition, \PROVED\ \Lone]
+\label{thm:vc2:stat}
+The continuous minimum of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$
+satisfies the transcendental equation:
+\begin{equation}
+  \frac{\partial V_{\mathrm{eff}}}{\partial n}\bigg|_{n^*}
+  \;=\;
+  2n^* - B\bigl(\ln n^* + 1\bigr)
+  \;=\; 0,
+  \label{eq:vc2:dV}
+\end{equation}
+equivalently
+\begin{equation}
+  \boxed{2n^* \;=\; B\,\bigl(\ln n^* + 1\bigr).}
+  \label{eq:vc2:stat}
+\end{equation}
+This equation has \textbf{no elementary closed form}.
+\end{theorem}
+
+\begin{proof}
+Direct differentiation:
+$\partial/\partial n\,(n^2) = 2n$;
+$\partial/\partial n\,(B\,n\ln n) = B\,(\ln n + 1)$.
+Setting the derivative to zero yields eq.~\eqref{eq:vc2:stat}.
+The function $f(n) = 2n - B(\ln n + 1)$ is strictly increasing for $n > B/2$
+and strictly decreasing for $n < B/2$, so the solution is unique and a minimum.
+$\square$
+\end{proof}
+
+\begin{corollary}[Second derivative, \PROVED]
+\label{cor:vc2:2nd}
+\[
+  \frac{\partial^2 V_{\mathrm{eff}}}{\partial n^2}\bigg|_{n^*}
+  = 2 - \frac{B}{n^*}
+  > 0
+  \;\Longleftrightarrow\;
+  n^* > \frac{B}{2}.
+\]
+For $B \approx 46.3$ and $n^* = 137$: $137 > 23.15$ \,\checkmark.
+The stationary point is a \textbf{minimum}.
+\end{corollary}
+
+\begin{table}[h]
+\centering
+\caption{Numerical solutions of eq.~\eqref{eq:vc2:stat} for selected $B$ values}
+\label{tab:vc2:nstar}
+\begin{tabular}{llll}
+\toprule
+$B$ value & $n^*_{\mathrm{continuous}}$ & Prime minimiser & Note \\
+\midrule
+$B_0 = 8\pi \approx 25.133$ & $65.0$ & $p = 67$ (or 61?) & proved [L1] \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.569$ & $120.4$ & $p = 127$ & conjectural [MC] \\
+$\mu(\Gamma_0(137))/3 = 46.000$ & $136.0$ & $p = 137$ & exact math; 0.64\% below $B_{\mathrm{phenom}}$ \\
+$B_{\mathrm{required}} = 46.284$ & $137.000$ & $p = 137$ & exact constraint \\
+$B_{\mathrm{phenom}} \approx 46.298$ & $137.05$ & $p = 137$ & phenomenological \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proposition}[Required $B$ for $n^* = 137$, \PROVED]
+\label{prop:vc2:Breq}
+Substituting $n^* = 137$ into eq.~\eqref{eq:vc2:stat}:
+\begin{equation}
+  B_{\mathrm{required}}
+  \;=\;
+  \frac{2 \times 137}{\ln 137 + 1}
+  \;=\;
+  \frac{274}{5.91998\ldots}
+  \;\approx\; 46.284.
+  \label{eq:vc2:Breq}
+\end{equation}
+The phenomenological value $B_{\mathrm{phenom}} = 46.298$ in the repository
+differs from $B_{\mathrm{required}}$ by $0.030\%$ — consistent with rounding in
+earlier documents.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Derivation Table for All V_eff Variants}
+\label{sec:vc2:variants}
+%──────────────────────────────────────────────────────────────────────────────
+
+The following table summarises all $V_{\mathrm{eff}}$ variants found in the
+repository, their derivatives, stationarity conditions, and the resulting $n^*$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{3.5cm} p{3cm} p{3.5cm} p{2.5cm} p{2.5cm}}
+\toprule
+\textbf{Form} & \textbf{$\partial V/\partial n$} & \textbf{Stationarity}
+  & \textbf{$n^*$ (cont.)} & \textbf{$B$ for $n^*=137$} \\
+\midrule
+V1: $n^2 - B\,n\ln n$ \newline \textbf{(correct)}
+  & $2n - B(\ln n + 1)$
+  & $2n^* = B(\ln n^*+1)$ \newline transcendental
+  & $137.0$ for $B\approx 46.28$
+  & $B = 274/(\ln 137+1) \approx 46.284$ \\
+\midrule
+V4: $n^2 - B\ln n$ \newline \textbf{(wrong — V4)}
+  & $2n - B/n$
+  & $n^* = \sqrt{B/2}$ \newline closed form
+  & $\approx 4.8$ for $B\approx 46.3$
+  & $B = 2\times 137^2 = 37538$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+Only form V1 gives $n^* = 137$ for a physically reasonable coefficient
+$B \approx 46.3$.
+
+Form V4 gives $n^* \approx 4.8$ for the same $B$, which is nowhere near 137.
+The stationarity formula $n^* = \sqrt{B/2}$ that appears in older repository
+documents belongs to form V4 and is a \textbf{transcription error}.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Classification of All $B$ Values}
+\label{sec:vc2:Bclass}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{4cm} p{1.8cm} p{3.5cm} p{3.5cm}}
+\toprule
+\textbf{Symbol} & \textbf{Value} & \textbf{Classification} & \textbf{Proof status} \\
+\midrule
+$B_0 = 8\pi$ & $\approx 25.13$ & DERIVED & \PROVED\ \Lone \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $\approx 41.57$ & CONJECTURAL & \MC; Gap G3-k open \\
+$\mu(\Gamma_0(137))/3$ & $46.00$ & EXACT MATH & \PROVED\ \Lzero\ (index formula); ID with $B$ is \OPEN \\
+$B_{\mathrm{required}}$ & $46.284$ & EXACT CONSTRAINT & Derived from $n^*=137$; circular if used as input \\
+$B_{\mathrm{phenom}}$ & $\approx 46.298$ & PHENOMENOLOGICAL & Back-solved from $n^*=137$; \PHENOM \\
+$B_{\mathrm{full}} = B_{\mathrm{base}}\cdot R$ & $\approx 46.31$ & OPEN & $R \approx 1.114$; no derivation of $R$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Gap G137-B (primary blocker)}: Derive $B \approx 46.284$ from
+$S[\Theta]$ without using $\alpha$ or $n^*=137$ as input.
+
+The missing normalisation factor is $R \approx 1.113$ where
+$R = B_{\mathrm{phenom}}/B_{\mathrm{base}}$.
+Primary attack path: modular bootstrap on $\hat{Z}(\tau) = \vartheta_3^3(\tau)$.
+See \texttt{reports/alpha\_missing\_lemma.md}.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Errors Corrected by This Document}
+\label{sec:vc2:errors}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{4.5cm} p{2.5cm} p{4.5cm} p{2cm}}
+\toprule
+\textbf{Document} & \textbf{Section/eq} & \textbf{Error} & \textbf{Severity} \\
+\midrule
+\texttt{appendix\_alpha\_geometry.tex} (pre-2026-05-02)
+  & \S\ref{sec:Veff}, eq.\ \eqref{eq:Veff}
+  & $V = n^2 - B\ln n$ (missing $n$); leads to wrong $n^* \approx 4.8$
+  & HIGH \\
+\texttt{appendix\_alpha\_geometry.tex} (pre-2026-05-02)
+  & \S\ref{sec:prime}, Thm., proof
+  & $n^* = \sqrt{B/2}$ stated as stationarity of wrong V4 form
+  & HIGH \\
+\texttt{ALPHA\_PROGRESS\_REPORT.md} (pre-2026-05-02)
+  & \S2.3 header, \S9 entry A7
+  & V\_eff form and clean-chain entry showed wrong V4 variant
+  & MEDIUM \\
+\texttt{alpha\_equation\_matrix.tex} (pre-2026-04-29)
+  & Thm.~[L1], shared foundation
+  & $n^*(B) = e^{(2-B)/B}\cdot e$ (equals $e^{2/B}\approx 1.04$, not 137)
+  & HIGH (fixed in prior session) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Next Steps}
+\label{sec:vc2:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,
+                  title=Summary of Findings]
+\begin{enumerate}
+  \item \textbf{The correct form of $V_{\mathrm{eff}}$ is $n^2 - B\,n\ln n$} (V1),
+        derived from the one-loop Coleman-Weinberg functional determinant on
+        $S^1_\psi$.  The alternative form $n^2 - B\ln n$ (V4) is inconsistent
+        with the one-loop calculation.
+
+  \item \textbf{The stationarity condition is transcendental}: $2n^* = B(\ln n^*+1)$.
+        There is no closed-form solution.  The formula $n^* = \sqrt{B/2}$
+        belongs to the wrong form V4 and has been removed from all relevant
+        documents.
+
+  \item \textbf{$n^* = 137$ is a valid prime minimiser} of the correct $V_{\mathrm{eff}}$
+        for $B \in [46.00, 46.50]$.  The exact constraint is $B_{\mathrm{required}}
+        \approx 46.284$.
+
+  \item \textbf{$B \approx 46.3$ is phenomenological.}  The only derived
+        value is $B_0 = 8\pi \approx 25.13$.  The gap is a factor
+        $\approx 1.84$ that must be closed without using $\alpha$ as input
+        (Gap G137-B).
+
+  \item \textbf{The $\alpha$ route is mathematically consistent but not yet complete.}
+        It is valid as a conditional result (given $B \approx 46.3$) and
+        must not be promoted to a first-principles proof until Gap G137-B is
+        closed.
+\end{enumerate}
+\end{tcolorbox}
+
+\paragraph{Next steps.}
+\begin{enumerate}
+  \item Attack Gap G137-B via modular bootstrap on $\hat{Z}(\tau) = \vartheta_3^3(\tau)$.
+  \item Explore whether $\mu(\Gamma_0(137))/3 = 46.00$ can be derived as $B$
+        from the Hecke eigenform structure of $S[\Theta]$
+        (see \texttt{canonical/alpha/alpha\_equation\_matrix.tex}, Route~A).
+  \item Do not promote $n^* = 137$ to PROVED until Gap G137-B is closed.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

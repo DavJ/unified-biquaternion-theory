@@ -64,7 +64,7 @@ the ψ-circle.  The QED limit (N_eff = 1) gives B₀ = 2π/3, verified.
 
 ---
 
-### 2.3 V_eff(n) = n² − B ln n — [L1] PROVED (given B)
+### 2.3 V_eff(n) = n² − B·n·ln n — [L1] PROVED (given B)
 
 The one-loop effective potential for winding mode n on S¹_ψ follows from the
 standard one-loop field theory calculation.  The functional form is clean; the
@@ -319,7 +319,7 @@ CLEAN (proved, zero free parameters, no α or m_e as input):
    A3 (N_eff = 12)  ───────────────────────────────────────────────────►  [L0]
    A4 (B₀ = 8π)  ─────────────────────────────────────────────────────►  [L1]
    A6 (V_eff form)  ───────────────────────────────────────────────────►  [L1] given B
-   A7 (n* = √(B/2))  ─────────────────────────────────────────────────►  [L1] given B
+   A7 (stationarity: 2n* = B·(ln n* + 1))  ──────────────────────────────►  [L1] given B
    A8 (prime stability of 137)  ───────────────────────────────────────►  [L1]
 
 BLOCKED (A5 requires k=1 proof):
