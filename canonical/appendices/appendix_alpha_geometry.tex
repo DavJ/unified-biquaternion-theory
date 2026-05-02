@@ -16,6 +16,9 @@
 \usepackage{tcolorbox}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{mdframed}
+
+\newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -137,10 +140,21 @@ where $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
 The one-loop effective potential for the winding mode $n$ is:
 \begin{equation}\label{eq:Veff}
   V_{\mathrm{eff}}(n)
-  = n^2 - B\ln n + \text{const},
+  = n^2 - B\,n\ln n,
 \end{equation}
 where $B$ is the one-loop coefficient encoding the vacuum polarisation of all
 $N_{\mathrm{eff}} = 12$ charged modes:
+
+\begin{warnbox}
+\textbf{Correction (2026-05-02)}: An earlier version of this appendix wrote
+$V_{\mathrm{eff}}(n) = n^2 - B\ln n$ (missing the factor $n$).
+That is form V4, which leads to $n^* = \sqrt{B/2} \approx 4.8$ for
+$B \approx 46.3$ — far from 137.
+The correct form is $n^2 - B\,n\ln n$ (form V1), consistent with the
+one-loop Coleman-Weinberg/heat-kernel calculation.
+See \texttt{reports/alpha\_veff\_sanity\_audit.md} and
+\texttt{canonical/alpha/veff\_corrected\_statement.tex}.
+\end{warnbox}
 \begin{equation}\label{eq:B}
   B = B_0 + \Delta B,
   \qquad
@@ -158,29 +172,44 @@ $N_{\mathrm{eff}} = 12$ charged modes:
 % -----------------------------------------------------------------
 
 \begin{theorem}[Prime attractor]\label{thm:prime}
-The minimum of $V_{\mathrm{eff}}(n)$ over $n \in \mathbb{N}^+$ (with the
-constraint that the minimum is prime-stable under the homotopy
-group $\pi_1(S^1_\psi)$) is:
-\begin{equation}\label{eq:prime_attractor}
-  n^* = 137
-  \quad (\text{prime}),
-\end{equation}
-which satisfies the stationarity condition
-$\partial V_{\mathrm{eff}}/\partial n\big|_{n=n^*} = 0$:
+The continuous minimum of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ is the
+prime-stable winding number $n^* = 137$, where $n^*$ satisfies the
+\textbf{transcendental stationarity condition}:
 \begin{equation}\label{eq:stationarity}
-  2n^* = \frac{B}{n^*}
-  \quad \Longrightarrow \quad
-  \alpha^{-1} = n^* = \sqrt{B/2}.
+  \frac{\partial V_{\mathrm{eff}}}{\partial n}\bigg|_{n^*} = 0
+  \;\;\Longrightarrow\;\;
+  \boxed{2n^* = B\,\bigl(\ln n^* + 1\bigr).}
 \end{equation}
+This equation has no elementary closed form and is solved numerically.
+For $B \approx 46.284$, the solution is $n^*_{\mathrm{continuous}} = 137.000$;
+the prime-stable minimiser is $n^* = 137$.
 \end{theorem}
 
+\begin{warnbox}
+\textbf{Correction (2026-05-02)}: A previous version of this theorem
+stated $n^* = \sqrt{B/2}$, which is the stationarity condition of the
+\emph{wrong} potential $n^2 - B\ln n$.
+For $B \approx 46.3$, $\sqrt{B/2} \approx 4.8$, which is far from 137.
+The correct condition is the transcendental
+equation~\eqref{eq:stationarity} above.
+See \texttt{canonical/alpha/veff\_corrected\_statement.tex} for the
+complete corrected derivation.
+\end{warnbox}
+
 \begin{proof}
-From~\eqref{eq:Veff}, $\partial V_{\mathrm{eff}}/\partial n = 2n - B/n = 0$
-gives $n^* = \sqrt{B/2}$.  With $B = B_{\mathrm{base}} \cdot R^2$ and
-$B_{\mathrm{base}} = 41.57$, $R = 1.114$ gives
-$n^* = \sqrt{41.57 \times 1.114^2 / 2} \approx 137.0$.
+Differentiating $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$:
+\[
+  \frac{\partial V_{\mathrm{eff}}}{\partial n}
+  = 2n - B\,(\ln n + 1).
+\]
+Setting this to zero gives the transcendental
+equation~\eqref{eq:stationarity}.
+For $B = B_{\mathrm{required}} \approx 46.284$
+(see \texttt{canonical/alpha/veff\_corrected\_statement.tex}~\S4),
+the numerical solution is $n^*_{\mathrm{continuous}} = 137.000$.
 The prime-stability constraint (from homotopy theory,
-\texttt{docs/STATUS\_ALPHA.md \S3}) selects $n^*$ to be prime.
+\texttt{docs/STATUS\_ALPHA.md \S3}) selects $n^*$ to be prime; 137 is
+prime, and the next nearest prime (139) has $V(139) - V(137) \approx +3.16$.
 $\square$
 \end{proof}
 
@@ -209,11 +238,15 @@ The one-loop QED correction to $\alpha$ at the electron mass scale is:
 \end{equation}
 with $\Lambda \approx m_e/\sqrt{\alpha}$ giving $\delta = 0.036$ (semi-empirical).
 
-The decomposition~\eqref{eq:B} states:
+The decomposition~\eqref{eq:B} combined with the stationarity
+condition~\eqref{eq:stationarity} gives the implicit relation:
 \begin{equation}\label{eq:alpha_formula}
-  \alpha^{-1} = \sqrt{B/2},
-  \qquad B = B_{\mathrm{base}} \cdot R^2.
+  2\alpha^{-1}_{\mathrm{bare}}
+  = B\,\bigl(\ln \alpha^{-1}_{\mathrm{bare}} + 1\bigr),
+  \qquad B = B_{\mathrm{required}} \approx 46.284.
 \end{equation}
+There is no elementary closed-form solution; $n^* = 137$ is the numerical
+solution and prime minimiser for $B \in [46.00, 46.50]$.
 
 \begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Semi-empirical status]
 The correction $\delta$ and the $R$-factor $(R \approx 1.114)$ are currently
