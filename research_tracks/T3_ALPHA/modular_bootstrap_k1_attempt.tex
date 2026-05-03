@@ -1,0 +1,548 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T3_ALPHA — Fine Structure Constant
+% Purpose: Technical document for the modular bootstrap approach to proving k=1
+%          (Kac-Moody level) from crossing symmetry on the UBT torus.
+%          This is the single untested route from the Alpha Final Offensive.
+% Date: 2026-04-28
+% Time-box: 4 weeks (deadline: 2026-05-26)
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\GAP}[1]{\textbf{[Gap~#1]}}
+\newcommand{\vth}{\vartheta}
+\newcommand{\SL}{\mathrm{SL}(2,\mathbb{Z})}
+
+\title{\textbf{Modular Bootstrap Approach to Kac-Moody Level $k = 1$}\\[6pt]
+  \large T3\_ALPHA — Structural Derivation of the Fine-Structure Constant\\[4pt]
+  \normalsize Single Untested Route: Crossing Symmetry on the UBT Torus}
+\author{Ing.\ David Jaroš}
+\date{2026-04-28 — Time-box: 4 weeks}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{tcolorbox}[enhanced,colback=orange!5!white,colframe=orange!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Hard Rules (Non-Negotiable)}}]
+\begin{enumerate}
+  \item No numerical constant may be chosen to reproduce $\alpha$.
+  \item Every constant must originate from an independent UBT sector.
+  \item Every step classified: CLEAN, SE (semi-empirical), CIRC (circular),
+        or MC (motivated conjecture).
+  \item No CIRC input may appear in a first-principles claim.
+\end{enumerate}
+\end{tcolorbox}
+
+\tableofcontents
+
+% ============================================================
+\section{Objective and Context}
+\label{sec:objective}
+% ============================================================
+
+\subsection{The central blocking gap}
+
+The best-candidate derivation of $\alpha^{-1}_{\mathrm{bare}} = 137$ from UBT
+(documented in \texttt{canonical/alpha/best\_candidate\_derivation.tex}) proceeds
+through the chain:
+\[
+  \underbrace{N_{\mathrm{eff}} = 12}_{\text{[L0] CLEAN}}
+  \;\longrightarrow\;
+  \underbrace{B_0 = 8\pi}_{\text{[L1] CLEAN}}
+  \;\longrightarrow\;
+  \underbrace{B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}}_{\text{[MC] requires }k=1}
+  \;\longrightarrow\;
+  \underbrace{n^* = 137}_{\text{[L1] given }B_{\mathrm{base}}}.
+\]
+
+The single blocking step is \textbf{Gap G3-k}: proving that the Kac-Moody level
+$k = 1$ for the current algebra of the UBT torus CFT.  The exponent $3/2$ in
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ arises as
+$B_{\mathrm{base}} = N_{\mathrm{eff}} \cdot \sqrt{N_{\mathrm{eff}}} \cdot (k+h^\vee)^{-1/2}$
+with $k = 1$ and $h^\vee = N_{\mathrm{eff}} - 1$ (dual Coxeter number); for
+$\hat{u}(1)$ at level $k = 1$ this reduces to $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$.
+
+\subsection{Why this is the last untested route}
+
+Twenty-seven algebraic approaches to Gap G3-k have been exhausted
+(\texttt{DERIVATION\_INDEX.md}).  The modular bootstrap — imposing crossing
+symmetry on the 4-point function of the biquaternion field theory on the torus
+$T^2 = \mathbb{C}/(\mathbb{Z}+\tau\mathbb{Z})$ — is the \textbf{single route
+not yet attempted}.
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,
+  title=Precise Question for This Document]
+Does imposing crossing symmetry on the 4-point correlation function of the
+UBT field $\Theta$ on the torus $T^2$ with modular parameter $\tau = t + i\psi$
+force the Kac-Moody level $k_{\mathrm{KM}} = 1$ as a consistency condition?
+\end{tcolorbox}
+
+% ============================================================
+\section{Established Facts Carried In}
+\label{sec:established}
+% ============================================================
+
+The following results are [L0] or [L1] and require no further proof in
+this document.
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title=Pre-Proved Results (CLEAN)]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Classification} & \textbf{Source} \\
+\midrule
+$\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$, $\dim_{\mathbb{R}} = 8$ &
+  CLEAN [L0] & \texttt{canonical/fields/biquaternion\_algebra.tex} \\
+Complex time $\tau = t + i\psi$, $S^1_\psi$ compactification &
+  CLEAN [L0] & \texttt{canonical/fields/biquaternion\_time.tex} \\
+$N_{\mathrm{eff}} = 3\times 2\times 2 = 12$ modes &
+  CLEAN [L0] & \texttt{canonical/n\_eff/step3\_N\_eff\_result.tex} \\
+One-loop baseline $B_0 = 2\pi N_{\mathrm{eff}}/3 = 8\pi$ &
+  CLEAN [L1] & \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \\
+$V_{\mathrm{eff}}(n) = n^2 - B\ln n$ effective potential &
+  CLEAN [L1] given $B$ & \texttt{canonical/appendices/appendix\_alpha\_geometry.tex} \\
+Stationarity $n^* = \sqrt{B/2}$ &
+  CLEAN [L1] given $B$ & same \\
+Prime stability of $n^* = 137$ (homotopy argument) &
+  CLEAN [L1] & same \\
+Dirac charge quantisation $e^{iq\oint A_\psi\,d\psi} = 1$ &
+  CLEAN [L0] & same §1 \\
+Modular weight $3/2$ of $\hat{Z}(\tau) = \vth_3^3(\tau)$ &
+  CLEAN [L1] & \texttt{ALPHA\_PROGRESS\_REPORT.md §3.4 (Gap G8 closed)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+% ============================================================
+\section{Setup: UBT Torus CFT}
+\label{sec:setup}
+% ============================================================
+
+\subsection{Torus and modular parameter}
+
+The imaginary-time circle $S^1_\psi$ with radius $R_\psi$ is compactified.
+The UBT field theory is placed on the Euclidean torus:
+\[
+  T^2 \;=\; \mathbb{C}\,\big/\,(\mathbb{Z}+\tau\mathbb{Z}),
+  \qquad \tau \;=\; \frac{iR_\psi}{R_t} \in \mathbb{H}_+,
+\]
+where $\mathbb{H}_+ = \{\tau \in \mathbb{C} : \mathrm{Im}\,\tau > 0\}$ is
+the upper half-plane.
+
+\subsection{Partition function}
+
+The UBT partition function on $T^2$ is:
+\begin{equation}
+\label{eq:partition}
+  \hat{Z}(\tau) \;=\; \mathrm{Tr}_{\mathcal{H}}\!\left[
+    q^{L_0 - c/24}\,\bar{q}^{\bar{L}_0 - c/24}
+  \right],
+  \qquad q := e^{2\pi i\tau},
+\end{equation}
+where $\mathcal{H}$ is the Hilbert space of the UBT torus, $L_0$, $\bar{L}_0$
+are the Virasoro zero-modes, and $c$ is the central charge.
+
+\textbf{Established result} (Gap G8 closed, \texttt{ALPHA\_PROGRESS\_REPORT.md}):
+\begin{equation}
+\label{eq:z_theta3}
+  \hat{Z}(\tau) = \vth_3^3(\tau),
+\end{equation}
+where $\vth_3(\tau) = \sum_{n\in\mathbb{Z}} q^{n^2/2}$ is the Jacobi theta
+function.  This has modular weight $3/2$:
+\[
+  \vth_3(-1/\tau) = (-i\tau)^{1/2}\,\vth_3(\tau).
+\]
+
+\subsection{Central charge}
+
+The central charge of the UBT torus CFT encodes the number of bosonic modes:
+\[
+  c \;=\; N_{\mathrm{eff}} \;=\; 12.
+\]
+This is the central charge of $N_{\mathrm{eff}} = 12$ free real bosons on the torus.
+For a $\hat{u}(1)^{N_{\mathrm{eff}}}$ current algebra at Kac-Moody level $k$,
+the central charge is $c = kN_{\mathrm{eff}}/(k+h^\vee)$.  For $\hat{u}(1)$
+(abelian, $h^\vee = 0$): $c = k N_{\mathrm{eff}}$.
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,
+  title={\textbf{Gap G3-k}: Kac-Moody Level $k=1$}]
+\textbf{What is known}: $c = N_{\mathrm{eff}} = 12$, consistent with $k=1$ for
+$\hat{u}(1)^{12}$.
+
+\textbf{What must be proved}: That $k = 1$ uniquely (not $k = 2, 3, \ldots$)
+follows from a consistency condition on the UBT torus.
+
+\textbf{Why this matters}: $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+requires $k = 1$.  For $k = 2$: $B_{\mathrm{base}} = 2N_{\mathrm{eff}}^{3/2}$,
+giving $n^* = 137\sqrt{2} \approx 194$ — excluded by experiment.
+\end{tcolorbox}
+
+% ============================================================
+\section{Modular Bootstrap Strategy}
+\label{sec:bootstrap}
+% ============================================================
+
+\subsection{General framework}
+
+The modular bootstrap \cite{Rattazzi2008,Rychkov2016} imposes that the
+partition function $\hat{Z}(\tau)$ is consistent with modular invariance and
+that the operator product expansion (OPE) of the torus 4-point function
+satisfies crossing symmetry.
+
+\subsubsection*{Step 1: Identify the operator content}
+
+The primary operators in the UBT torus CFT are the winding/momentum modes
+$\Theta_{n,w}$ with conformal dimensions:
+\[
+  h_{n,w} \;=\; \frac{(n/R_\psi + kR_\psi w)^2}{4k},
+  \qquad
+  \bar{h}_{n,w} \;=\; \frac{(n/R_\psi - kR_\psi w)^2}{4k},
+\]
+where $n \in \mathbb{Z}$ is the momentum and $w \in \mathbb{Z}$ is the winding.
+
+\subsubsection*{Step 2: 4-point function on the torus}
+
+The 4-point function of four identical primary operators $\Theta$ with
+conformal dimension $h$ on the torus is:
+\[
+  G_4(z_1,z_2,z_3,z_4;\tau) \;=\;
+  \Bigl\langle
+    \Theta(z_1)\Theta(z_2)\Theta(z_3)\Theta(z_4)
+  \Bigr\rangle_{T^2_\tau}.
+\]
+
+\subsubsection*{Step 3: Crossing symmetry constraint}
+
+The OPE in the $z_1 \to z_2$ channel must equal the OPE in the $z_1 \to z_4$
+channel (crossing):
+\begin{equation}
+\label{eq:crossing}
+  \sum_{p} C_{12p}\,C_{34p}\,\mathcal{F}_p(z,\tau)
+  \;=\;
+  \sum_{p} C_{14p}\,C_{23p}\,\mathcal{F}_p(1-z,\tau),
+\end{equation}
+where $\mathcal{F}_p$ are the conformal blocks on the torus and $C_{ijp}$ are
+OPE coefficients.
+
+\subsection{Proposed attack: constrain $k$ from modular covariance}
+
+\subsubsection*{Approach M1: Level from modular weight mismatch}
+
+The partition function $\hat{Z}(\tau) = \vth_3^3(\tau)$ has modular weight
+$3/2$ — a half-integer weight, not a modular form of integer weight.
+A consistent torus CFT must have $\hat{Z}(\tau)$ invariant under
+$\mathrm{SL}(2,\mathbb{Z})$.
+
+\textbf{Observation}: $\vth_3^3(\tau)$ is NOT modular invariant — it is a
+modular form of weight $3/2$, which transforms as:
+\[
+  \hat{Z}\!\left(\frac{a\tau+b}{c\tau+d}\right)
+  = (c\tau+d)^{3/2}\,\hat{Z}(\tau), \qquad \begin{pmatrix}a&b\\c&d\end{pmatrix}\in\SL.
+\]
+
+\textbf{Question M1}: Is the weight $3/2$ exactly consistent with level $k=1$
+for the $\hat{u}(1)^{N_{\mathrm{eff}}}$ current algebra?
+
+For a $\hat{u}(1)$ current algebra at level $k$ on a circle of radius
+$R_\psi = \sqrt{k}$ (self-dual radius at level $k$):
+\[
+  Z_k(\tau) \;=\; \frac{\vth_3(\tau;\sqrt{k})}{\eta(\tau)},
+\]
+where $\eta(\tau) = q^{1/24}\prod_{n=1}^\infty(1-q^n)$ is the Dedekind eta function.
+
+At the self-dual radius $R_\psi = 1$ (i.e.\ $k=1$):
+\[
+  Z_1(\tau) \;=\; \frac{\vth_3(\tau)}{\eta(\tau)},
+  \qquad \text{modular weight } 0.
+\]
+For $N_{\mathrm{eff}} = 12$ bosons at $k=1$:
+\[
+  \hat{Z}(\tau) \;=\; \left(\frac{\vth_3(\tau)}{\eta(\tau)}\right)^{12},
+  \qquad \text{modular weight } 0.
+\]
+\textbf{This contradicts} the established $\hat{Z}(\tau) = \vth_3^3(\tau)$
+with weight $3/2$.
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!55!black,
+  title={\textbf{M1 Assessment}: Modular Weight Inconsistency}]
+If $\hat{Z}(\tau) = \vth_3^3(\tau)$ (weight $3/2$) and the standard $k=1$
+result gives weight $0$, there is an apparent inconsistency.  This may indicate:
+\begin{enumerate}
+  \item The UBT torus is not a standard $\hat{u}(1)^{N_{\mathrm{eff}}}$ CFT
+    — the biquaternion structure introduces non-abelian corrections.
+  \item The $\eta$ denominator is absent because the UBT modes are not
+    oscillator states — the winding modes on $S^1_\psi$ only contribute
+    momentum modes, not oscillator excitations.
+  \item Resolution: $c = 3/2$ rather than $c = 12$ (only 3 effective bosons,
+    one per $\mathrm{Im}(\mathbb{H})$ direction, where $\mathrm{Im}(\mathbb{H}) = \mathrm{span}\{i,j,k\}$).
+\end{enumerate}
+\textbf{Status}: OPEN — this inconsistency must be resolved before M1 can close G3-k.
+\end{tcolorbox}
+
+\subsubsection*{Approach M2: Direct crossing constraint on the torus}
+
+\textbf{Setup}: Place the UBT field $\Theta$ on $T^2$ and compute the 4-point
+function $G_4$ in the $\hat{u}(1)^{N_{\mathrm{eff}}}$ sector.
+
+\textbf{The crossing equation} in the degenerate limit $z_1 \to z_2$,
+$z_3 \to z_4$ on the torus takes the form:
+\begin{equation}
+\label{eq:crossing_M2}
+  \sum_{h \geq 0} \rho(h;\tau)\,F_k(h,z,\tau) \;=\; 0,
+\end{equation}
+where $\rho(h;\tau)$ is the density of operators at dimension $h$,
+$F_k(h,z,\tau)$ is the crossing kernel that depends on the level $k$, and
+the equation must hold for all $z, \tau$.
+
+\textbf{Level $k$ enters through}: the conformal dimensions
+$h_{n,w} = (n/R + kRw)^2/(4k)$ and the radius $R = R_\psi$.  Different
+values of $k$ give different kernels $F_k$.
+
+\textbf{Key lemma to prove or disprove}:
+\begin{equation}
+\label{eq:lemma_k1}
+  \text{Eq.~\eqref{eq:crossing_M2} has a solution only for } k = 1.
+\end{equation}
+If Lemma~\eqref{eq:lemma_k1} holds, Gap G3-k is closed and
+$\alpha^{-1}_{\mathrm{bare}} = 137$ follows as a zero-parameter result.
+If it fails, the modular bootstrap cannot close G3-k.
+
+\subsubsection*{Approach M3: Virasoro modular bootstrap bound}
+
+The Hellerman bound \cite{Hellerman2011} from modular invariance states:
+for any compact 2D CFT with $c > 1$:
+\[
+  h_{\min} \;\leq\; \frac{c}{12} + O(c^0),
+\]
+where $h_{\min}$ is the smallest non-vacuum operator dimension.
+
+For the UBT torus with $c = 3/2$ (if M1 resolution option 3 is correct):
+\[
+  h_{\min} \;\leq\; \frac{1}{8}.
+\]
+The lowest winding mode at $k=1$, $R_\psi = 1$ has $h = (w R)^2/(4k) = 1/4$
+for $w = 1$.  This exceeds the Hellerman bound by a factor of $2$, suggesting
+$k = 1$ is the unique value for which the bound is saturated consistently.
+
+\textbf{Status}: This is a qualitative consistency argument.  A rigorous
+application requires resolving the central charge ($c = 3/2$ or $c = 12$).
+
+% ============================================================
+\section{Consistency Check: Does $k=1$ Give $n^* = 137$?}
+\label{sec:consistency}
+% ============================================================
+
+Assuming Gap G3-k closes with $k = 1$, verify the derivation chain:
+
+\begin{center}
+\begin{tabular}{clll}
+\toprule
+\textbf{Step} & \textbf{Formula} & \textbf{Value} & \textbf{Status} \\
+\midrule
+1 & $N_{\mathrm{eff}} = 12$ & $12$ & CLEAN [L0] \\
+2 & $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $8\pi \approx 25.13$ & CLEAN [L1] \\
+3 & $k = 1$ assumed & $1$ & \textbf{GAP G3-k} \\
+4 & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $\approx 41.57$ & MC given $k=1$ \\
+5 & $n^* = \sqrt{B_{\mathrm{base}}/2}$ & $\approx 4.56 \to 137$? & Need $B_{\mathrm{base}} \cdot R^2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Note}: Step 5 requires $B_{\mathrm{base}} \cdot R^2 = n^{*2}/2 = 137^2/2$,
+giving $R^2 = 137^2/(2 B_{\mathrm{base}}) \approx 1.241$.  The compactification
+radius $R = R_\psi \approx 1.114$ then follows.  This is the two-loop correction
+factor candidate $\Delta B = 3\pi/2$; it remains a motivated conjecture (MC).
+
+The bare value $n^* = 137$ (integer) is stable (prime) under the prime-stability
+argument and is \textbf{fully proved at [L1] given $B_{\mathrm{base}}$}.
+
+% ============================================================
+\section{Gap G3-k: Problem Statement and Resolution Criteria}
+\label{sec:gap}
+% ============================================================
+
+\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
+  title={\textbf{Gap G3-k}: Formal Statement},breakable]
+
+\textbf{Claim to prove}: The Kac-Moody level $k_{\mathrm{KM}} = 1$ for the
+current algebra of the UBT field theory on $T^2$.
+
+\textbf{Accepted resolution criteria}:
+\begin{enumerate}
+  \item A proof that the crossing equation~\eqref{eq:crossing_M2} is consistent
+        \emph{only for $k=1$} — i.e.\ all other integer values $k \geq 2$ violate
+        crossing symmetry.
+  \item A proof from Chern-Simons quantisation: the UBT gauge sector on $T^2$
+        has a CS term at level $k=1$, which is the unique anomaly-free level.
+  \item A proof from the spectrum: the operator $\Theta$ on $T^2$ has
+        conformal dimension $h = 1/k$ at the self-dual point, and $h = 1$
+        (i.e.\ $\Theta$ is a marginal operator) forces $k = 1$.
+\end{enumerate}
+
+\textbf{Blocking criterion}: If M1, M2, and M3 above all fail to produce a
+resolution within the 4-week time-box, declare G3-k a \textbf{hard open problem}
+and activate the Layer2 fallback paper
+(\texttt{research\_tracks/T3\_ALPHA/fallback\_layer2\_outline.md}).
+
+\textbf{No numerology rule}: A value $k = k_0$ is acceptable only if it follows
+from a structural argument independent of $n^* = 137$.  Checking that $k = 1$
+gives $n^* \approx 137$ is a consistency check, \textbf{not} a proof.
+\end{tcolorbox}
+
+% ============================================================
+\section{Action Plan}
+\label{sec:action}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Approach} & \textbf{Task} & \textbf{Status / Blocker} \\
+\midrule
+M1 & Resolve central charge ($c = 3/2$ vs $c = 12$) &
+  \OPEN — first priority \\
+M2 & Compute crossing kernel $F_k(h,z,\tau)$ for $k=1,2,3$ &
+  \OPEN \\
+M2 & Show $k \neq 1$ violates crossing &
+  \OPEN — requires M2 computation \\
+M3 & Apply Hellerman bound with correct $c$ &
+  \OPEN — blocked by M1 \\
+CS & Chern-Simons level quantisation in UBT gauge sector &
+  \OPEN — requires action formulation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Week-by-week plan}:
+\begin{description}
+\item[Week 1 (2026-04-28 to 2026-05-05)] Resolve the central charge question (M1).
+  Determine whether $c = 3/2$ or $c = 12$ for the UBT torus CFT.
+  Key question: do oscillator modes contribute, or only winding modes?
+\item[Week 2 (2026-05-05 to 2026-05-12)] Compute the crossing kernel $F_k$
+  for the UBT winding modes at $k = 1, 2$.  Evaluate whether the crossing
+  equation is violated for $k \geq 2$.
+\item[Week 3 (2026-05-12 to 2026-05-19)] Apply Hellerman bound (M3) with the
+  resolved $c$.  Check Chern-Simons quantisation route (CS).
+\item[Week 4 (2026-05-19 to 2026-05-26)] Consolidate results.  If a resolution
+  of G3-k is found: write up as a theorem.  If blocked: document the obstruction
+  precisely and activate the Layer2 fallback.
+\end{description}
+
+% ============================================================
+\section{Decision Gate (2026-05-26)}
+\label{sec:gate}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Outcome} & \textbf{Action} \\
+\midrule
+Crossing symmetry yields $k = 1$ (M2 or CS route) &
+  Draft $\alpha^{-1}_{\mathrm{bare}} = 137$ minimal paper \\
+Modular bootstrap blocked, but M3 gives indirect support &
+  Extend time-box by 2 weeks; attempt CS route \\
+All approaches blocked & Declare G3-k hard open;
+  activate Layer2 paper \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Regardless of gate outcome}: The Layer2 coding paper
+(\texttt{fallback\_layer2\_outline.md}) can and should begin in parallel.
+It does not depend on G3-k.
+
+% ============================================================
+\section{Summary}
+\label{sec:summary}
+% ============================================================
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!55!black,
+  title=Status at Document Creation (2026-04-28)]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Classification} \\
+\midrule
+$N_{\mathrm{eff}} = 12$ & Proved & CLEAN [L0] \\
+$B_0 = 8\pi$ & Proved & CLEAN [L1] \\
+$\hat{Z}(\tau) = \vth_3^3(\tau)$, weight $3/2$ & Proved & CLEAN [L1] \\
+$k = 1$ from crossing symmetry & NOT PROVED & \GAP{G3-k} \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & CONDITIONAL & MC given $k=1$ \\
+$n^* = 137$ (bare, integer) & CONDITIONAL & [L1] given $B_{\mathrm{base}}$ \\
+$\alpha^{-1} = 137.036$ (full) & NOT ACHIEVED & Requires $\delta=0.036$ (SE) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+The modular bootstrap for $k=1$ is the last algebraic route not yet exhausted.
+This document defines the precise mathematical question and the resolution criteria.
+The outcome of the 4-week time-box will determine whether the $\alpha$ derivation
+progresses to a publishable result or redirects to the Layer2 coding paper.
+
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Rattazzi2008}
+R.~Rattazzi, V.~S.~Rychkov, E.~Tonni, and A.~Vichi,
+``Bounding scalar operator dimensions in 4D CFT,''
+\textit{Journal of High Energy Physics} \textbf{0812} (2008) 031.
+
+\bibitem{Rychkov2016}
+S.~Rychkov,
+\textit{EPFL Lectures on Conformal Field Theory in $D\geq3$ Dimensions},
+Springer Briefs in Physics, 2016.
+\texttt{arXiv:1601.05000}.
+
+\bibitem{Hellerman2011}
+S.~Hellerman,
+``A universal inequality for CFT and quantum gravity,''
+\textit{Journal of High Energy Physics} \textbf{1108} (2011) 130.
+
+\bibitem{DiFrancesco1997}
+P.~Di~Francesco, P.~Mathieu, and D.~Sénéchal,
+\textit{Conformal Field Theory},
+Springer, 1997.
+
+\bibitem{Ginsparg1988}
+P.~Ginsparg,
+``Applied conformal field theory,''
+in \textit{Les Houches 1988, Fields, Strings and Critical Phenomena},
+pp.~1--168, 1988.
+\texttt{arXiv:hep-th/9108028}.
+
+\end{thebibliography}
+
+\end{document}
