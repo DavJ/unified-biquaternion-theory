@@ -129,10 +129,10 @@ $N_{\mathrm{eff}} = 3\times 2\times 2 = 12$ modes &
   CLEAN [L0] & \texttt{canonical/n\_eff/step3\_N\_eff\_result.tex} \\
 One-loop baseline $B_0 = 2\pi N_{\mathrm{eff}}/3 = 8\pi$ &
   CLEAN [L1] & \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \\
-$V_{\mathrm{eff}}(n) = n^2 - B\ln n$ effective potential &
+$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ effective potential &
   CLEAN [L1] given $B$ & \texttt{canonical/appendices/appendix\_alpha\_geometry.tex} \\
-Stationarity $n^* = \sqrt{B/2}$ &
-  CLEAN [L1] given $B$ & same \\
+Stationarity $2n^* = B(\ln n^* + 1)$ (transcendental) &
+  CLEAN [L1] given $B$ & same, corrected 2026-05-02 \\
 Prime stability of $n^* = 137$ (homotopy argument) &
   CLEAN [L1] & same \\
 Dirac charge quantisation $e^{iq\oint A_\psi\,d\psi} = 1$ &
@@ -374,18 +374,22 @@ Assuming Gap G3-k closes with $k = 1$, verify the derivation chain:
 2 & $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $8\pi \approx 25.13$ & CLEAN [L1] \\
 3 & $k = 1$ assumed & $1$ & \textbf{GAP G3-k} \\
 4 & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $\approx 41.57$ & MC given $k=1$ \\
-5 & $n^* = \sqrt{B_{\mathrm{base}}/2}$ & $\approx 4.56 \to 137$? & Need $B_{\mathrm{base}} \cdot R^2$ \\
+5 & $B = \mu(\Gamma_0(p))/3\big|_{p=137} = 46$ & $46$ (exact) & Modular route [MC/OPEN] \\
+5b & Prime minimiser: $q = 137$ at $B = 46$ & $137$ & CLEAN [L0] \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\textbf{Note}: Step 5 requires $B_{\mathrm{base}} \cdot R^2 = n^{*2}/2 = 137^2/2$,
-giving $R^2 = 137^2/(2 B_{\mathrm{base}}) \approx 1.241$.  The compactification
-radius $R = R_\psi \approx 1.114$ then follows.  This is the two-loop correction
-factor candidate $\Delta B = 3\pi/2$; it remains a motivated conjecture (MC).
+\textbf{Note}: The correction-factor route (step 5 previously: $n^* = \sqrt{B_{\mathrm{base}}/2}$
+with $B \to B_{\mathrm{base}} \cdot R^2$, $R \approx 1.114$) is
+\textbf{abandoned}.  The modular prime-attractor route replaces it:
+$B = \mu(\Gamma_0(137))/3 = 46$ is an exact arithmetic invariant that places the
+discrete prime minimiser of $V(q;\,B)$ at $q = 137$ ([L0]).
+The identification of $B$ with $\mu(\Gamma_0(p))/3$ from $S[\Theta]$ is Gap G-Bmod
+(\textbf{Open}); see \texttt{canonical/alpha/modular\_prime\_attractor\_theorem.tex}.
 
-The bare value $n^* = 137$ (integer) is stable (prime) under the prime-stability
-argument and is \textbf{fully proved at [L1] given $B_{\mathrm{base}}$}.
+The prime value $n^* = 137$ is stable (prime) under the prime-stability
+argument and is \textbf{fully proved at [L0] given $B = 46$}.
 
 % ============================================================
 \section{Gap G3-k: Problem Statement and Resolution Criteria}
