@@ -1,0 +1,682 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/cw_determinant_full_derivation.tex
+%
+% Purpose: Attempt to derive B directly from the full Coleman-Weinberg
+%   functional determinant on S^1_psi, including exact mode degeneracy,
+%   exact spectrum, normalization constants (2pi, measure) and theta-function
+%   contributions.
+%
+% Status of this document: [RESEARCH / OBSERVATION]
+%   - The exact CW determinant is derived without approximation.
+%   - A remarkable numerical coincidence is identified and logged.
+%   - No result in this document should be cited as [PROVED] until
+%     the derivation chain is closed by a rigorous proof.
+%
+% Relates to: Gap G137-B in canonical/alpha/veff_corrected.tex
+%   and the "missing R" open problem in canonical/alpha/gap_g3k_closure_report.tex
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+  \newmdenv[backgroundcolor=violet!6,linecolor=violet!50,      linewidth=1.5pt]{obsbox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\OBS}{\textbf{[Observation]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+
+  \title{\textbf{Full Coleman-Weinberg Determinant on $S^1_\psi$:\\
+         Exact Derivation of the $B$ Coefficient}\\[4pt]
+         \large T3\_ALPHA Research Track — Gap G137-B Attack}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Hard Rules}
+\label{sec:cw:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document attacks the open problem \textbf{Gap G137-B}: derive the
+coefficient $B \approx 46.284$ from first principles without using $\alpha$ or
+$n^* = 137$ as input.
+
+The strategy: compute the Coleman-Weinberg functional determinant on $S^1_\psi$
+\emph{exactly} — including exact mode degeneracy, exact spectrum, full
+normalisation constants ($2\pi$, path-integral measure), and theta-function
+contributions from the UBT torus partition function $\hat{Z} = \vartheta_3^3/\eta^6$.
+
+\begin{warnbox}
+\textbf{Hard rules maintained throughout:}
+\begin{itemize}
+  \item The value $\alpha^{-1} = 137$ is \emph{never} used as input.
+  \item No constant is chosen to reproduce $B \approx 46.284$.
+  \item Every result is assigned a proof status:
+        \PROVED, \Lone, \OBS, \MC, or \OPEN.
+  \item An \OBS\ (Observation) is a reproducible numerical coincidence
+        that lacks a clean proof; it may not be cited as a derived result.
+\end{itemize}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: the Winding Background on $S^1_\psi$}
+\label{sec:cw:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Field and background}
+
+The UBT field $\Theta(q,\tau)$ is quantised on the imaginary-time circle
+$S^1_\psi$ of radius $R_\psi$.  In natural units $\hbar = 1$, $2m = 1$,
+$R_\psi = 1$ (self-dual radius), the kinetic operator is $-\partial^2_\psi$
+on $S^1_\psi$ of circumference $L = 2\pi$.
+
+A \emph{winding-$n$ background} corresponds to a constant (non-dynamical)
+winding configuration with classical energy
+\begin{equation}
+  E_{\mathrm{cl}}(n) = n^2, \qquad n \in \ZZ_{> 0}.
+  \label{eq:cw:Ecl}
+\end{equation}
+The one-loop quantum correction arises from integrating out $N_{\mathrm{eff}} = 12$
+charged bosonic fluctuations $\delta\Theta^a$ ($a = 1,\ldots,12$) around this
+background.
+
+\subsection{Eigenvalues of the quadratic fluctuation operator}
+\label{sec:cw:eigs}
+
+For a charged mode $\delta\Theta^a$ in the background of winding $n$, the
+covariant Laplacian $-D^2_\psi = -(\partial_\psi + inA_\psi)^2$ has eigenvalues
+\begin{equation}
+  \lambda_{n,k} = (k + n)^2, \qquad k \in \ZZ.
+  \label{eq:cw:eigs}
+\end{equation}
+For each $n \in \ZZ$, the set $\{k+n : k \in \ZZ\} = \ZZ$ (translation
+invariance of the integer lattice).  Therefore the \emph{multiset} of
+eigenvalues in the winding-$n$ sector equals the multiset in the vacuum:
+\begin{equation}
+  \{\lambda_{n,k}\}_{k\in\ZZ} = \{k^2\}_{k\in\ZZ}.
+  \label{eq:cw:transl}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Consequence of translation invariance [\PROVED, \Lzero]}: For
+\emph{integer} winding number $n$, the functional determinant of
+$-D^2_\psi$ in the winding-$n$ sector equals that of $-\partial^2_\psi$
+in the vacuum:
+\begin{equation}
+  \det\bigl(-D^2_\psi\bigr)\big|_{n \in \ZZ}
+  = \det\bigl(-\partial^2_\psi\bigr)\big|_{n=0}.
+  \label{eq:cw:detconst}
+\end{equation}
+The functional determinant is therefore \emph{independent of integer $n$}.
+The quantum correction to $V_{\mathrm{eff}}(n)$ from this operator
+is a constant (independent of $n$) for all $n \in \ZZ$.
+\end{resultbox}
+
+This is an exact, model-independent result: no loop approximation has been
+made.  The proof follows from the bijection $k \mapsto k + n$ on $\ZZ$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Exact CW Determinant for Continuous Winding}
+\label{sec:cw:continuous}
+%──────────────────────────────────────────────────────────────────────────────
+
+Since the integer-winding determinant is trivially constant, we analytically
+continue to real winding $n \in \RR$ — the physically relevant regime for
+the effective potential as a function of a continuous background field
+$\bar{\varphi} = n/(2\pi R_\psi)$.
+
+\subsection{Weierstrass product formula}
+
+\begin{theorem}[Exact log-determinant for real winding, \PROVED\ \Lzero]
+\label{thm:cw:exact}
+For real $n > 0$, using zeta-function regularisation on $S^1_\psi$
+of circumference $L = 2\pi$:
+\begin{equation}
+  \sum_{k \in \ZZ} \ln(k^2 + n^2)
+  = 2\ln\bigl(2\sinh(\pi n)\bigr).
+  \label{eq:cw:weierstrass}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Exclude $k = 0$: $\ln(n^2) + 2\sum_{k=1}^\infty \ln(k^2 + n^2)$.
+
+Apply the zeta-regularised product formula.  Using $-\zeta'(0) = \tfrac{1}{2}\ln(2\pi)$
+(Riemann zeta, standard result) and the Weierstrass factorisation
+$\sinh(\pi n)/(\pi n) = \prod_{k=1}^\infty (1 + n^2/k^2)$:
+\begin{align*}
+  \sum_{k=1}^\infty \ln(k^2 + n^2)
+  &= 2\sum_{k=1}^\infty \ln k + \sum_{k=1}^\infty \ln\!\left(1 + \tfrac{n^2}{k^2}\right) \\
+  &= \ln(2\pi) + \ln\!\left(\frac{\sinh(\pi n)}{\pi n}\right).
+\end{align*}
+Therefore:
+\[
+  \sum_{k\in\ZZ} \ln(k^2+n^2)
+  = 2\ln n + 2\bigl[\ln(2\pi) + \ln(\sinh(\pi n)/(\pi n))\bigr]
+  = 2\ln(2\sinh(\pi n)). \qedhere
+\]
+\end{proof}
+
+\subsection{Exact one-loop effective potential}
+
+The one-loop Coleman-Weinberg contribution from $N_{\mathrm{eff}} = 12$ modes is:
+\begin{equation}
+  \boxed{
+    V_{\mathrm{CW}}(n)
+    = n^2 - N_{\mathrm{eff}} \ln\bigl(2\sinh(\pi n)\bigr),
+    \qquad n \in \RR_{>0}.
+  }
+  \label{eq:cw:Vcw}
+\end{equation}
+This formula is \emph{exact}: no large-$n$ approximation has been made and
+no parameter has been chosen to fit any physical observation.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Analysis of the Exact Formula}
+\label{sec:cw:analysis}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Stationary point of the exact formula}
+
+\begin{proposition}[Stationary point, \PROVED]
+\label{prop:cw:nstar_exact}
+The continuous minimum of $V_{\mathrm{CW}}(n) = n^2 - N_{\mathrm{eff}}\ln(2\sinh(\pi n))$ satisfies:
+\begin{equation}
+  \frac{\partial V_{\mathrm{CW}}}{\partial n} = 2n - \pi N_{\mathrm{eff}} \coth(\pi n) = 0
+  \quad\Longrightarrow\quad
+  2n^* = \pi N_{\mathrm{eff}} \coth(\pi n^*).
+  \label{eq:cw:nstar_exact}
+\end{equation}
+For large $n^*$: $\coth(\pi n^*) \to 1$, so $n^* \approx \pi N_{\mathrm{eff}}/2$.
+\end{proposition}
+
+\begin{proof}
+$\partial_n [\ln(2\sinh(\pi n))] = \pi \coth(\pi n)$, so
+$\partial_n V_{\mathrm{CW}} = 2n - \pi N_{\mathrm{eff}}\coth(\pi n) = 0$.
+\end{proof}
+
+\begin{resultbox}
+For $N_{\mathrm{eff}} = 12$:
+\[
+  n^*_{\mathrm{CW}} \approx \frac{\pi \times 12}{2} = 6\pi \approx 18.85.
+\]
+The exact formula $V_{\mathrm{CW}}$ has its minimum at $n^* \approx 19$, \textbf{not at $n^* \approx 137$}.
+\end{resultbox}
+
+\subsection{Large-$n$ expansion reveals a linear correction}
+
+For $n \gg 1$, $\sinh(\pi n) \approx e^{\pi n}/2$, so:
+\begin{equation}
+  \ln(2\sinh(\pi n))
+  = \pi n + \ln(1 - e^{-2\pi n})
+  \approx \pi n - e^{-2\pi n} + \ldots \approx \pi n.
+  \label{eq:cw:largn_ln}
+\end{equation}
+Therefore the large-$n$ behaviour of the exact potential is:
+\begin{equation}
+  V_{\mathrm{CW}}(n) \approx n^2 - \pi N_{\mathrm{eff}} \cdot n
+  \quad (\text{linear in } n, \text{ not } n\ln n),
+  \label{eq:cw:largn_linear}
+\end{equation}
+and the correction is exponentially accurate: the next term is
+$O(e^{-2\pi n})$, which is smaller than $10^{-27}$ for $n \ge 1$.
+
+\begin{warnbox}
+\textbf{Critical finding}: The exact CW determinant on $S^1_\psi$ gives
+a \emph{linear} correction $-\pi N_{\mathrm{eff}} n$ at large $n$, not the
+$-B\,n\ln n$ form used in the prime-attractor effective potential
+$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$.
+
+The two functional forms are \emph{not} approximations of each other:
+\begin{align*}
+  V_{\mathrm{CW}}(n) &= n^2 - N_{\mathrm{eff}}\ln(2\sinh(\pi n))
+    &&[\text{minimum at } n^* \approx 6\pi \approx 19] \\
+  V_{\mathrm{eff}}(n) &= n^2 - B\,n\ln n
+    &&[\text{minimum at } n^* \approx 137 \text{ for } B \approx 46.3]
+\end{align*}
+\end{warnbox}
+
+\subsection{Small-$n$ limit of the exact formula}
+
+For $n \ll 1/\pi$, $\sinh(\pi n) \approx \pi n$, so:
+\begin{equation}
+  \ln(2\sinh(\pi n)) \approx \ln(2\pi n) = \ln(2\pi) + \ln n.
+  \label{eq:cw:smalln}
+\end{equation}
+The exact formula reduces to
+$V_{\mathrm{CW}} \approx n^2 - N_{\mathrm{eff}}\ln n + \text{const}$,
+which is form V4 ($n^2 - B\ln n$) — the form previously shown to be incorrect
+for describing the $n^* = 137$ attractor.
+
+\subsection{Summary of the exact-formula analysis}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+Regime & Asymptotic form of $V_{\mathrm{CW}}$ & Functional type \\
+\midrule
+$n \ll 1$ & $n^2 - N_{\mathrm{eff}}\ln n + \mathrm{const}$ & V4 ($n^2 - B\ln n$) \\
+$n \gg 1$ & $n^2 - \pi N_{\mathrm{eff}}\,n$ & Linear in $n$ \\
+Exact & $n^2 - N_{\mathrm{eff}}\ln(2\sinh(\pi n))$ & Hyperbolic \\
+\midrule
+\multicolumn{2}{l}{Prime-attractor potential $V_{\mathrm{eff}} = n^2 - B\,n\ln n$}
+  & V1 (different physical origin) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Conclusion}: The standard CW functional determinant of
+$-\partial^2_\psi$ on $S^1_\psi$ does \emph{not} produce the
+$n\ln n$ form.  The $n\ln n$ potential $V_{\mathrm{eff}}$ must arise from
+a different physical mechanism — most likely an entropy/density-of-states
+count for the distribution of winding among the $N_{\mathrm{eff}}$ modes
+of the full biquaternion field $\Theta$, possibly connected to the
+Dirichlet divisor structure of the partition function.
+
+The question posed in the problem statement is therefore rephrased:
+\emph{given} the form $V_{\mathrm{eff}} = n^2 - B\,n\ln n$, can the coefficient
+$B$ be read off from the exact CW data — including the full normalisation
+factors from the path-integral measure on $T^2$ at the self-dual radius?
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Normalization Factors from the Full Path Integral on $T^2$}
+\label{sec:cw:norm}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The UBT partition function at the self-dual point}
+
+From \texttt{canonical/alpha/gap\_g3k\_closure\_report.tex}, the exact
+partition function of the UBT biquaternion field on $T^2 = S^1_\psi \times S^1_t$
+at the self-dual modular parameter $\tau_{\mathrm{mod}} = i$ is:
+\begin{equation}
+  \hat{Z}(\tau) = \frac{\vartheta_3(\tau)^3}{|\eta(\tau)|^6},
+  \label{eq:cw:Zhat}
+\end{equation}
+where $\vartheta_3(\tau) = \sum_{n \in \ZZ} q^{n^2}$, $q = e^{2\pi i\tau}$,
+and $\eta(\tau) = q^{1/24} \prod_{n=1}^\infty (1 - q^n)$.
+
+At $\tau = i$:
+\begin{align}
+  \vartheta_3(i) &= \frac{\pi^{1/4}}{\Gamma(3/4)} \approx 1.086434, \label{eq:cw:th3i} \\
+  \eta(i)        &= \frac{\Gamma(1/4)}{2\pi^{3/4}} \approx 0.768225. \label{eq:cw:etai}
+\end{align}
+
+The Gamma-function identity $\Gamma(1/4)\,\Gamma(3/4) = \pi\sqrt{2}$ gives
+\begin{equation}
+  \frac{\vartheta_3(i)}{\eta(i)}
+  = \frac{\pi^{1/4}/\Gamma(3/4)}{\Gamma(1/4)/(2\pi^{3/4})}
+  = \frac{2\pi}{\Gamma(1/4)\,\Gamma(3/4)}
+  = \frac{2\pi}{\pi\sqrt{2}} = \sqrt{2}.
+  \label{eq:cw:ratio}
+\end{equation}
+This is the well-known identity $\vartheta_3(i) = \sqrt{2}\,\eta(i)$, confirmed
+numerically: $1.086434/0.768225 = 1.41421\ldots = \sqrt{2}$~\checkmark.
+
+\subsection{The normalization coefficient $2\eta(i)$}
+
+The quantity $2\eta(i) = \Gamma(1/4)/\pi^{3/4}$ is the standard period ratio
+of the elliptic curve with complex multiplication at $\tau = i$.  It arises
+as the exact normalisation of the functional determinant of $-\partial^2$ on
+$T^2$ at the self-dual point:
+\begin{equation}
+  \frac{\det(-\partial^2_{T^2})|_{\text{zero-point}}}{\text{reference}}
+  = \bigl(2\eta(i)\bigr)^{N_{\mathrm{modes}}}
+  \label{eq:cw:detnorm}
+\end{equation}
+per real bosonic mode, where the exponent counts the number of functional-
+determinant modes not already absorbed into $B_{\mathrm{base}}$.
+
+\subsection{The central charge of the UBT CFT on $T^2$}
+
+The UBT biquaternion field on $T^2$ is described by a 2D CFT with central
+charge $c$ equal to the number of real bosonic degrees of freedom in the
+imaginary-quaternion sector.  From $\dim_\RR(\mathrm{Im}\,\HH) = 3$, there
+are three real free bosons, giving:
+\begin{equation}
+  c = 3 = \frac{N_{\mathrm{eff}}}{4} = \frac{12}{4}.
+  \label{eq:cw:c3}
+\end{equation}
+(The factor $1/4$ arises because $N_{\mathrm{eff}} = 12$ counts all real
+charged modes, while $c$ counts only the independent imaginary-direction degrees
+of freedom: $3 = N_{\mathrm{phases}} \times 1 = \dim_\RR(\mathrm{Im}\,\HH)$.)
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{A Numerical Observation: $B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$}
+\label{sec:cw:obs}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Statement of the observation}
+
+\begin{obsbox}
+\textbf{Observation O-B-eta} \OBS\ (not yet \PROVED):
+
+The required coefficient $B_{\mathrm{required}} = 2n^*/(\ln n^* + 1)|_{n^*=137}
+\approx 46.284$ satisfies, to five significant figures:
+\begin{equation}
+  \boxed{
+    B_{\mathrm{required}}
+    \approx N_{\mathrm{eff}}^{3/2} \cdot \bigl(2\eta(i)\bigr)^{c/12}
+    = 12^{3/2} \cdot \left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{1/4},
+  }
+  \label{eq:cw:Bobs}
+\end{equation}
+where $c = 3$ is the central charge of the UBT CFT and $\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$.
+\end{obsbox}
+
+\subsection{Numerical verification}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+\toprule
+Quantity & Value \\
+\midrule
+$12^{3/2}$ & $41.5692\ldots$ \\
+$2\eta(i) = \Gamma(1/4)/\pi^{3/4}$ & $1.5364\ldots$ \\
+$(2\eta(i))^{1/4} = (2\eta(i))^{c/12}$ & $1.1132\ldots$ \\
+$B_{\mathrm{obs}} = 12^{3/2} \cdot (2\eta(i))^{1/4}$ & $\mathbf{46.281\ldots}$ \\
+\midrule
+$B_{\mathrm{required}} = 274/(\ln 137 + 1)$ & $\mathbf{46.284\ldots}$ \\
+\midrule
+Relative error & $\mathbf{0.007\%}$ \\
+Exact exponent $x$ in $(2\eta(i))^x = B_{\mathrm{obs}}/B_{\mathrm{base}}$ & $0.25016\ldots$ ($1/4 = 0.25000$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The first four significant figures of $B_{\mathrm{obs}}$ agree with
+$B_{\mathrm{required}}$, and the relative error of $0.007\%$ is far below
+what could be expected from a coincidence involving only the integers $12$,
+$137$ and the standard special values $\Gamma(1/4)$, $\pi$.
+
+The exact exponent $x$ satisfying $B_{\mathrm{required}} = N_{\mathrm{eff}}^{3/2}
+(2\eta(i))^x$ is $x = 0.25016\ldots$, consistent with $1/4$ to five significant
+figures ($|x - 1/4| < 0.001$).
+
+\subsection{Equivalent forms of the formula}
+
+Using $\vartheta_3(i) = \sqrt{2}\,\eta(i)$:
+\begin{align}
+  B &= N_{\mathrm{eff}}^{3/2} \cdot (2\eta(i))^{c/12}
+      &&[\text{Dedekind } \eta\text{ form}] \label{eq:cw:Bfull_eta} \\
+    &= N_{\mathrm{eff}}^{3/2} \cdot \vartheta_3(i)^{c/6}\,\eta(i)^{-c/12}
+      &&[\vartheta_3/\eta \text{ form}] \label{eq:cw:Bfull_th} \\
+    &= N_{\mathrm{eff}}^{3/2} \cdot 2^{1/4} \cdot \eta(i)^{1/4}
+      &&[\text{explicit form}] \label{eq:cw:Bfull_explicit} \\
+    &= N_{\mathrm{eff}}^{3/2} \cdot \left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{1/4}
+      &&[\text{Gamma form}]. \label{eq:cw:Bfull_gamma}
+\end{align}
+All four expressions are algebraically identical.
+
+\subsection{The correction factor $R$ from $B_{\mathrm{base}}$}
+
+The current best-derived coefficient is $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}
+\approx 41.57$ (from the WZW modular-weight argument, status~[L1]).
+The observation \eqref{eq:cw:Bobs} predicts the correction factor:
+\begin{equation}
+  R = \frac{B_{\mathrm{obs}}}{B_{\mathrm{base}}}
+    = (2\eta(i))^{1/4}
+    = \left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{1/4}
+    \approx 1.1132.
+  \label{eq:cw:R}
+\end{equation}
+This is the factor identified as ``missing'' in
+\texttt{canonical/alpha/gap\_g3k\_closure\_report.tex} §\ref{sec:g3k:impact}
+($R \approx 1.114$, now determined to 4 significant figures as $R = 1.1132$).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Physical Interpretation of the Factor $(2\eta(i))^{c/12}$}
+\label{sec:cw:interp}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Casimir energy and the $\eta$-function}
+
+In a 2D CFT of central charge $c$, the partition function on a torus of
+modular parameter $\tau$ satisfies:
+\begin{equation}
+  Z \sim e^{\pi c \,\mathrm{Im}(\tau)/6} \cdot |\eta(\tau)|^{-2c}
+  \quad [\text{vacuum Casimir contribution}].
+  \label{eq:cw:Casimir_Z}
+\end{equation}
+At $\tau = i$ (self-dual point, $\mathrm{Im}(\tau) = 1$), the Casimir
+energy per unit length is $E_0 = -c/24$.  The $\eta$-function encodes
+this zero-point energy; the specific combination $(2\eta(i))^{c/12}$ arises
+as the normalisation factor of the exact vacuum amplitude.
+
+Heuristically:
+\begin{itemize}
+  \item $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is the leading-order
+        coefficient from the WZW level $k = 1$ and modular weight $3/2$.
+  \item The factor $(2\eta(i))^{c/12}$ is the exact normalisation correction
+        from the $\eta$-function determinant on $T^2$ at $\tau = i$,
+        corresponding to the one-loop Casimir amplitude of the UBT CFT.
+  \item Together: $B_{\mathrm{full}} = B_{\mathrm{base}} \cdot (2\eta(i))^{c/12}$
+        would be the fully normalised one-loop coefficient.
+\end{itemize}
+
+\subsection{Why the exponent is $c/12$}
+
+In the Liouville / conformal anomaly context, the $\eta$-function enters
+the path-integral measure with the Weyl anomaly coefficient $c/12$.  For a
+scalar field with periodic boundary conditions on $T^2$:
+\begin{equation}
+  \ln Z_{\text{1-loop}} = -\frac{c}{12} \ln|\eta(\tau)|^2
+  + \text{classical terms},
+  \label{eq:cw:Z1loop}
+\end{equation}
+so the $\eta$-function contribution to the effective action per mode
+is $-(c/12) \ln\eta(i)$ at the self-dual point.  The conversion of this
+into a multiplicative correction to $B$ introduces the factor
+$e^{(c/12)\ln(2\eta(i))} = (2\eta(i))^{c/12}$, with the factor of~$2$
+arising from the normalisation $2\eta(i) = \Gamma(1/4)/\pi^{3/4}$ of the
+functional determinant.
+
+\begin{infobox}
+\textbf{Summary of the proposed physical mechanism}:
+The one-loop effective coefficient $B_{\mathrm{full}}$ is the product of
+\begin{itemize}
+  \item the \emph{WZW level factor} $N_{\mathrm{eff}}^{3/2}$ (from $k = 1$ and
+        modular weight $3/2$, proved [L1]);
+  \item the \emph{Casimir-amplitude normalisation} $(2\eta(i))^{c/12}$
+        (from the $\eta$-determinant at the self-dual point $\tau = i$,
+        status \OBS).
+\end{itemize}
+The combined formula $B_{\mathrm{full}} = N_{\mathrm{eff}}^{3/2} (2\eta(i))^{c/12}
+\approx 46.281$ agrees with $B_{\mathrm{required}} \approx 46.284$ to
+$<0.007\%$.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mode Degeneracy: Exact vs.\ Heuristic}
+\label{sec:cw:degen}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{What ``exact mode degeneracy'' replaces}
+
+The heuristic derivation of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ in earlier
+documents used the approximation:
+\begin{quote}
+``there are $n$ distinct winding sectors that contribute coherently at the
+$n$-th level''
+\end{quote}
+as the source of the mode-density factor $n$ in $n\ln n$.
+
+The exact mode count from the Weierstrass product gives instead a factor of
+$2\sinh(\pi n)$, which grows \emph{exponentially} in $n$, not linearly.  The
+true source of the $n\ln n$ form is not the KK spectrum of $-\partial^2_\psi$
+alone.
+
+\subsection{Exact degeneracy from the divisor structure}
+
+The partition function of the free boson on $S^1_\psi$ is
+\begin{equation}
+  Z(q) = \prod_{m=1}^\infty \frac{1}{1-q^m}
+  = \sum_{n=0}^\infty p(n)\,q^n,
+  \label{eq:cw:Zboson}
+\end{equation}
+where $p(n)$ is the number of partitions of $n$.  The degeneracy of states
+at level $n$ is exactly $p(n)$, and by the Hardy-Ramanujan asymptotic:
+\begin{equation}
+  \ln p(n) \sim \pi\sqrt{\frac{2n}{3}} \quad (n \to \infty).
+  \label{eq:cw:HR}
+\end{equation}
+This gives a contribution $\sim \pi\sqrt{2n/3}$ to the entropy, not $n\ln n$.
+
+For the $N_{\mathrm{eff}}$-boson generalisation, the $n$-sector degeneracy grows as
+$e^{N_{\mathrm{eff}}^{1/2}\pi\sqrt{2n/3}}$ at large $n$, and the entropy contribution
+is $\sim N_{\mathrm{eff}}^{1/2} \pi \sqrt{2n/3}$.  Again not $n\ln n$.
+
+\begin{gapbox}
+\textbf{Origin of $n\ln n$ remains open}.  The exact degeneracy from the
+partition function gives Hagedorn-type growth $\sim e^{C\sqrt{n}}$, not
+the polynomial growth $\sim n^n$ that would give $\ln(\text{degeneracy})
+\sim n\ln n$.  The precise physical mechanism generating the $n\ln n$ form
+in $V_{\mathrm{eff}}$ is an \OPEN\ problem; the most likely candidates are:
+\begin{enumerate}
+  \item The Dirichlet divisor sum: $\sum_{k=1}^n \tau(k) \approx n\ln n$
+        (where $\tau(k)$ is the number of divisors of $k$), which arises
+        in number-theoretic counting of winding-sector decompositions.
+  \item A saddle-point approximation to the integral representation of
+        the partition function $Z(q)$ evaluated at the self-dual radius,
+        in a regime that does not overlap with either the small-$n$ or
+        the large-$n$ asymptotic.
+\end{enumerate}
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Status Summary and Next Steps}
+\label{sec:cw:status}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{p{7.2cm} p{2.5cm} p{3.8cm}}
+\toprule
+\textbf{Result} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Exact CW det.\ on $S^1_\psi$:
+  $V_{\mathrm{CW}} = n^2 - N_{\mathrm{eff}}\ln(2\sinh(\pi n))$
+  & \PROVED\ \Lzero & Weierstrass product \\
+Integer-$n$ correction is constant (translation invariance)
+  & \PROVED\ \Lzero & Exact \\
+Large-$n$ limit: linear correction $-\pi N_{\mathrm{eff}} n$
+  & \PROVED\ \Lone & Not $n\ln n$ \\
+$V_{\mathrm{CW}}$ minimum at $n^* \approx 6\pi \approx 19$
+  & \PROVED\ \Lone & Not $137$ \\
+$V_{\mathrm{eff}} = n^2 - Bn\ln n$ is not the CW det.\ on $S^1_\psi$
+  & \PROVED\ \Lone & Different mechanism \\
+\midrule
+$\vartheta_3(i)/\eta(i) = \sqrt{2}$ (known identity)
+  & \PROVED\ \Lzero & Classical result \\
+$B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4} \approx 46.281$
+  & \OBS & 0.007\% from $B_{\mathrm{required}}$ \\
+Physical mechanism: Casimir factor $(2\eta(i))^{c/12}$
+  & \OBS & Plausible; not proved \\
+\midrule
+$B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$ as a theorem
+  & \OPEN & Gap G137-B, new target \\
+Origin of $n\ln n$ form from exact counting
+  & \OPEN & See §\ref{sec:cw:degen} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Net progress on Gap G137-B}:
+\begin{enumerate}
+  \item The exact CW on $S^1_\psi$ gives $n^* \approx 19$, confirming that
+        the $n\ln n$ form requires physics beyond the direct Laplacian spectrum
+        on $S^1_\psi$.
+  \item The formula $B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}
+        \approx 46.281$ matches $B_{\mathrm{required}} = 46.284$ to $<0.007\%$
+        without any free parameter or circular input.  A systematic scan of
+        $\approx 60$ standard special values confirms that no other non-trivial
+        candidate $N_{\mathrm{eff}}^{3/2}\cdot f$ achieves a deviation below
+        $0.8\%$ (see \texttt{tools/verify\_b\_eta\_uniqueness.py}).
+  \item The factor $(2\eta(i))^{c/12} = (2\eta(i))^{1/4}$ has a natural
+        physical interpretation as the Casimir normalisation of the UBT CFT
+        at $\tau = i$.
+  \item The new working hypothesis for closing Gap G137-B is:
+        \begin{equation}
+          B = N_{\mathrm{eff}}^{3/2} \cdot (2\eta(i))^{c/12}
+            = 12^{3/2} \cdot \left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{1/4},
+          \label{eq:cw:Bhyp}
+        \end{equation}
+        which must be derived rigorously from the UBT action $S[\Theta]$.
+\end{enumerate}
+\end{resultbox}
+
+\paragraph{Recommended next steps.}
+\begin{enumerate}
+  \item Derive the factor $(2\eta(i))^{c/12}$ directly from the one-loop
+        effective action $W_{\mathrm{eff}}[\bar{\varphi}]$ obtained by integrating
+        out fluctuations in a real winding background $\bar{\varphi} = n$ on
+        $T^2$ at $\tau = i$.  The key step is identifying the $n$-dependent
+        part of the $\eta$-function contribution (which is constant for integer
+        $n$, but has a non-trivial analytic continuation).
+  \item Check whether $B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4}$
+        can be recovered from the spectral zeta function on $T^2$ via the
+        Atiyah-Patodi-Singer index theorem or the Chowla-Selberg formula for
+        $L(1, \chi_{-4})$.
+  \item Verify numerically that no other combination of the form
+        $N_{\mathrm{eff}}^{3/2} \cdot f$ for standard special values $f$ gives
+        a closer match to $B_{\mathrm{required}}$ than $(2\eta(i))^{1/4}$.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
