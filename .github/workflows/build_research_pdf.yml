@@ -54,6 +54,10 @@ jobs:
           - papers/su3_triplet/noether_current_paper.tex
           - complex-theta-transform-paper/main.tex
           - papers/generated/ubt_action_and_alpha.tex
+          # T1_GR flagship paper — first main result
+          - research_tracks/T1_GR/ubt_gr_flagship.tex
+          - research_tracks/T1_GR/GR_theorem_result.tex
+          - research_tracks/T1_GR/theorem_chain.tex
           # Original UBT theory documents
           - unified_biquaternion_theory/ubt_main_article.tex
           - unified_biquaternion_theory/ubt_osf_overview_article.tex
