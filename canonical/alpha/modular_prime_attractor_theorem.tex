@@ -1,0 +1,585 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/modular_prime_attractor_theorem.tex
+% Purpose: Formal statement and proof of the Modular Prime-Attractor Theorem.
+%          Replaces the correction-factor route (n*=sqrt(B/2) with R≈1.113)
+%          with the modular-volume route (B(p)=μ(Γ₀(p))/3).
+% Status: 2026-05-03
+% Related: canonical/alpha/veff_corrected_statement.tex
+%          reports/alpha_prime_minimizer_interval.md
+%          reports/alpha_old_formula_cleanup.md
+%          reports/gamma0_137_invariants.md
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\vth}{\vartheta}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{Modular Prime-Attractor Theorem}\\
+         \large Candidate Theorem: $B(p) = \mu(\Gamma_0(p))/3$ and the Discrete
+         Prime Minimiser of $V(q;\,B)$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Scope}
+\label{sec:mpat:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document presents the \textbf{Modular Prime-Attractor Theorem} (MPAT), which
+replaces the correction-factor route $n^* = \sqrt{B/2} \cdot R$ (abandoned; see
+\texttt{reports/alpha\_old\_formula\_cleanup.md}) with a structurally motivated
+identification of the $B$-coefficient via the modular-curve index formula.
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,
+  title=Central Claim of the Modular Prime-Attractor Route]
+\begin{enumerate}
+  \item $\mu(\Gamma_0(p)) = p + 1$ for every prime $p$ \quad\textbf{[L0 — standard modular arithmetic]}
+  \item $B(p) = \mu(\Gamma_0(p))/3$ \quad\textbf{[L1/OPEN — identification with UBT action]}
+  \item With $V(q;\,B) = q^2 - B\,q\ln q$ and $B = B(137) = 46$, the discrete prime
+        minimiser over all primes $q$ is $q = 137$ \quad\textbf{[L0 — computational/discrete proof]}
+  \item $B = 46$ lies in the prime-stability interval $[B_{\mathrm{low}},\,B_{\mathrm{high}}]$
+        \quad\textbf{[L0 — verified numerically]}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{Hard rules (maintained throughout)}:
+\begin{itemize}
+  \item $\alpha$ and 137 are \textbf{not} used to back-solve for $B$.
+  \item The correction factor $1.113$ is \textbf{not} used anywhere in this document.
+  \item $B(p) = (p+1)/3$ is derived from an arithmetic formula for $\mu(\Gamma_0(p))$;
+        the identification of this expression with the UBT coefficient $B$ is
+        classified as \OPEN\ until derived from $S[\Theta]$.
+  \item The final claim $\alpha^{-1} = 137$ is \textbf{not} made here; only the
+        prime-minimiser result is stated.
+\end{itemize}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Modular-Curve Index Formula}
+\label{sec:mpat:index}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Index of $\Gamma_0(p)$ for prime $p$, \PROVED\ \Lzero]
+\label{thm:mpat:index}
+For any prime $p$, the index of $\Gamma_0(p)$ in $\mathrm{SL}(2,\ZZ)$ is
+\begin{equation}
+  \mu(\Gamma_0(p))
+  \;=\;
+  [\mathrm{SL}(2,\ZZ) : \Gamma_0(p)]
+  \;=\;
+  p + 1.
+  \label{eq:mpat:index}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The index formula for $\Gamma_0(N)$ in $\mathrm{SL}(2,\ZZ)$ is (Diamond \&
+Shurman, \emph{A First Course in Modular Forms}, Theorem~3.1.1):
+\[
+  \mu(\Gamma_0(N))
+  \;=\;
+  N \prod_{p \mid N} \!\Bigl(1 + \tfrac{1}{p}\Bigr).
+\]
+For $N = p$ a prime, the product has a single factor:
+\[
+  \mu(\Gamma_0(p))
+  = p\!\Bigl(1 + \tfrac{1}{p}\Bigr)
+  = p + 1.
+\]
+This is a standard result in the arithmetic of congruence subgroups.
+\end{proof}
+
+\begin{corollary}[Modular-curve volume, \PROVED\ \Lzero]
+\label{cor:mpat:vol}
+The hyperbolic area of the modular curve $X_0(p)$ satisfies:
+\begin{equation}
+  \mathrm{vol}\bigl(X_0(p)\bigr)
+  \;=\;
+  \frac{\pi}{3}\,\mu(\Gamma_0(p))
+  \;=\;
+  \frac{\pi(p+1)}{3}.
+  \label{eq:mpat:vol}
+\end{equation}
+In particular, $\mathrm{vol}(X_0(p))/\pi = (p+1)/3$.
+\end{corollary}
+
+At $p = 137$:
+\begin{equation}
+  \mu(\Gamma_0(137)) = 138,
+  \qquad
+  \frac{\mu(\Gamma_0(137))}{3} = 46.
+  \label{eq:mpat:137}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Definition of $B(p)$ and the Modular Identification}
+\label{sec:mpat:Bdef}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[$B(p)$ — modular $B$-coefficient]
+\label{def:mpat:B}
+For a prime $p$, define
+\begin{equation}
+  B(p)
+  \;=\;
+  \frac{\mu(\Gamma_0(p))}{3}
+  \;=\;
+  \frac{p+1}{3}.
+  \label{eq:mpat:Bdef}
+\end{equation}
+\end{definition}
+
+For $p = 137$: $B(137) = 138/3 = \mathbf{46}$ (exact integer).
+
+\begin{gapbox}
+\textbf{Gap G-Bmod — Primary Open Problem}:
+
+Derive $B = \mu(\Gamma_0(p))/3$ from the UBT action $S[\Theta]$ without using
+$p = 137$ or $\alpha$ as input.
+
+\textbf{Proof status}: \OPEN\ (\textbf{L1/OPEN}).
+
+The identification is currently motivated by:
+\begin{itemize}
+  \item The 0.64\% agreement with the phenomenological $B_{\mathrm{phenom}} = 46.298$.
+  \item The geometric interpretation (Section~\ref{sec:mpat:theta3}) that the
+        division by 3 corresponds to the three spatial/$\theta$-dimensions
+        $\vth_3(\tau)^3/\mathrm{Im}(\HH) \cong \RR^3$.
+  \item The exact integer value $B(137) = 46$ being inside the prime-stability
+        interval (Section~\ref{sec:mpat:interval}).
+\end{itemize}
+Until Gap G-Bmod is closed, the claim $n^*(B(137)) = 137$ is \textbf{CONDITIONAL}
+on the identification.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Why Division by 3: Spatial Theta-Dimension}
+\label{sec:mpat:theta3}
+%──────────────────────────────────────────────────────────────────────────────
+
+The factor of 3 in $B(p) = \mu(\Gamma_0(p))/3$ admits the following
+structural interpretation within UBT.
+
+\subsection{Three imaginary quaternion dimensions}
+
+The biquaternion algebra $\BB = \CC \otimes_\RR \HH$ has imaginary part
+$\mathrm{Im}(\HH) = \langle \mathbf{i}, \mathbf{j}, \mathbf{k} \rangle \cong \RR^3$.
+The three imaginary quaternion generators correspond to the three spatial
+dimensions of the physical vacuum.
+
+\subsection{The Jacobi theta function $\vth_3$ and its cube}
+
+The partition function of the UBT field $\Theta(q, \tau)$ on the imaginary-time
+circle $S^1_\psi$ is controlled by the Jacobi theta function
+\begin{equation}
+  \vth_3(\tau)
+  \;=\;
+  \sum_{n \in \ZZ} q^{n^2},
+  \qquad q = e^{i\pi\tau},
+  \label{eq:mpat:theta3}
+\end{equation}
+whose cube $\vth_3(\tau)^3$ counts representations of integers as sums of three
+squares — exactly the mode-counting relevant to the three-dimensional spatial
+sector.
+
+\subsection{Structural identification}
+
+The three spatial imaginary-quaternion dimensions contribute a denominator factor
+of 3 to the normalised modular volume:
+\begin{equation}
+  \frac{\vth_3(\tau)^3}{\mathrm{Im}(\HH)}
+  \;\cong\;
+  \RR^3
+  \quad\Longrightarrow\quad
+  B(p)
+  = \frac{\mu(\Gamma_0(p))}{3}
+  = \frac{\mathrm{vol}(X_0(p))/\pi}{\dim_\RR(\mathrm{Im}\,\HH)}.
+  \label{eq:mpat:theta3_id}
+\end{equation}
+That is, $B(p)$ is the modular volume of $X_0(p)$ measured in units of
+$\pi \cdot \dim(\mathrm{Im}\,\HH)$.
+
+\begin{infobox}
+\textbf{Proof status of the $\theta_3$ identification}:
+
+The symbolic correspondence~\eqref{eq:mpat:theta3_id} is a \textbf{motivated
+structural analogy} (\MC).  A full derivation would require computing the
+one-loop determinant of $\nabla^\dagger\nabla$ on $\BB \otimes S^1_\psi$ and
+showing that its modular properties at level $p$ reproduce the factor
+$\mu(\Gamma_0(p))/3$.  This is part of Gap G-Bmod.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Effective Potential and Corrected Stationarity}
+\label{sec:mpat:Veff}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Effective potential, \PROVED\ \Lone]
+\label{def:mpat:Veff}
+The one-loop effective potential for winding number $q \in \ZZ_{>0}$ on
+$S^1_\psi$ is
+\begin{equation}
+  V(q;\,B) \;=\; q^2 - B\,q\ln q,
+  \label{eq:mpat:Veff}
+\end{equation}
+where $B$ is the one-loop coefficient.  The functional form is derived from the
+Coleman-Weinberg heat-kernel expansion on $S^1_\psi$; see
+\texttt{canonical/alpha/veff\_corrected.tex} for the full derivation.
+\end{definition}
+
+\begin{theorem}[Stationarity condition, \PROVED\ \Lone]
+\label{thm:mpat:stationary}
+The continuous minimum of $V(q;\,B)$ satisfies the \textbf{transcendental equation}:
+\begin{equation}
+  V'(q;\,B)
+  \;=\; 2q - B\,(\ln q + 1) \;=\; 0
+  \;\;\Longleftrightarrow\;\;
+  \boxed{2q^* = B\,\bigl(\ln q^* + 1\bigr).}
+  \label{eq:mpat:stationary}
+\end{equation}
+This equation has \textbf{no elementary closed form}; it is solved numerically.
+\end{theorem}
+
+\begin{warnbox}
+\textbf{Removed formula}:
+The stationarity condition is \textbf{not}
+$q^* = \sqrt{B/2}$, which would be the stationarity condition of the incorrect
+form $V = q^2 - B\ln q$ (missing factor $q$).  For $B \approx 46$,
+$\sqrt{B/2} \approx 4.8$, which is clearly not 137.
+See \texttt{reports/alpha\_old\_formula\_cleanup.md} for all removed occurrences.
+\end{warnbox}
+
+Evaluating at $B = 46$:
+\begin{equation}
+  2q^* = 46\,(\ln q^* + 1)
+  \;\;\Longrightarrow\;\;
+  q^*_{\mathrm{continuous}} \approx 136.0.
+  \label{eq:mpat:stat46}
+\end{equation}
+The nearest prime is $q = 137$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Prime Stability Interval}
+\label{sec:mpat:interval}
+%──────────────────────────────────────────────────────────────────────────────
+
+We determine the exact range of $B$ for which $q = 137$ is the
+\textbf{global prime minimiser} of $V(q;\,B)$ over all primes $q$.
+
+\subsection{Derivation of the interval}
+
+$V(137;\,B) < V(q;\,B)$ for all primes $q \neq 137$ if and only if:
+\begin{equation}
+  137^2 - q^2 < B\,\bigl(137\ln 137 - q\ln q\bigr)
+  \quad\text{for all primes }q \neq 137.
+  \label{eq:mpat:ineq}
+\end{equation}
+
+\noindent\textbf{Case $q < 137$}: $f(x) = x\ln x$ is increasing for $x > e^{-1}$,
+so the denominator $137\ln 137 - q\ln q > 0$, giving a lower bound:
+\[
+  B \;>\; \frac{137^2 - q^2}{137\ln 137 - q\ln q}
+  \;\;=:\;\; B_{\min}(q).
+\]
+
+\noindent\textbf{Case $q > 137$}: The numerator is negative and denominator
+negative, so their ratio is positive, giving an upper bound:
+\[
+  B \;<\; \frac{137^2 - q^2}{137\ln 137 - q\ln q}
+  \;\;=:\;\; B_{\max}(q).
+\]
+
+The stability interval is therefore:
+\begin{equation}
+  B \;\in\;
+  \Bigl[\,
+    \max_{q<137,\,q\text{ prime}} B_{\min}(q),\;\;
+    \min_{q>137,\,q\text{ prime}} B_{\max}(q)
+  \,\Bigr].
+  \label{eq:mpat:interval_def}
+\end{equation}
+
+\subsection{Computed values}
+
+Evaluating~\eqref{eq:mpat:interval_def} numerically (see
+\texttt{reports/alpha\_prime\_minimizer\_interval.md}):
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llll}
+\toprule
+\textbf{Bound} & \textbf{Set by prime} & \textbf{Formula} & \textbf{Value} \\
+\midrule
+$B_{\mathrm{low}}$ & $q = 131$ &
+  $\dfrac{137^2 - 131^2}{137\ln 137 - 131\ln 131}$ & $45.441$ \\[8pt]
+$B_{\mathrm{high}}$ & $q = 139$ &
+  $\dfrac{137^2 - 139^2}{137\ln 137 - 139\ln 139}$ & $46.565$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{theorem}[Prime-stability interval, \PROVED\ \Lzero]
+\label{thm:mpat:interval}
+For all $B \in (45.441,\;46.565)$, the discrete prime minimiser of
+$V(q;\,B) = q^2 - B\,q\ln q$ over all primes $q$ is $q = 137$:
+\begin{equation}
+  V(137;\,B) < V(q;\,B)
+  \quad\text{for all primes }q \neq 137.
+  \label{eq:mpat:prime_min}
+\end{equation}
+Proof: direct numerical verification for all primes $q$ in the relevant range;
+see \texttt{reports/alpha\_prime\_minimizer\_interval.md}.
+\end{theorem}
+
+\begin{corollary}[$B = 46$ is inside the interval]
+\label{cor:mpat:B46}
+$B(137) = \mu(\Gamma_0(137))/3 = 46$ satisfies
+\begin{equation}
+  45.441 \;<\; 46 \;<\; 46.565,
+  \label{eq:mpat:46_inside}
+\end{equation}
+so $B = 46$ lies strictly inside the prime-stability interval.  In particular:
+\begin{equation}
+  V(137;\,46) < V(q;\,46)
+  \quad\text{for all primes }q \neq 137.
+  \label{eq:mpat:46_min}
+\end{equation}
+The margin is $V(139;\,46) - V(137;\,46) \approx +6.69$ and
+$V(131;\,46) - V(137;\,46) \approx +19.78$ (both positive, confirming the minimum).
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Modular Prime-Attractor Theorem — Full Statement}
+\label{sec:mpat:theorem}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title=Modular Prime-Attractor Theorem (MPAT)]
+
+\begin{theorem}[Modular Prime-Attractor Theorem]
+\label{thm:mpat:main}
+Let $p$ be a prime and define:
+\begin{align}
+  B(p) &= \frac{\mu(\Gamma_0(p))}{3} = \frac{p+1}{3},
+  \label{eq:mpat:main_B}\\
+  V(q;\,B) &= q^2 - B\,q\ln q, \quad q \in \ZZ_{>0}.
+  \label{eq:mpat:main_V}
+\end{align}
+Then:
+\begin{enumerate}
+  \item[(i)] \textbf{(Modular volume formula — \Lzero)}
+        $\mu(\Gamma_0(p)) = p + 1$ for every prime $p$.
+
+  \item[(ii)] \textbf{(B-coefficient — L1/\OPEN)}
+        Under the identification $B = B(p)$ from the UBT action $S[\Theta]$,
+        the relevant prime is $p = 137$ and $B(137) = 46$.
+
+  \item[(iii)] \textbf{(Prime minimiser at $B = 46$ — \Lzero)}
+        For $B = 46$, the prime minimiser of $V(q;\,B)$ over all primes $q$ is
+        $q = 137$.
+
+  \item[(iv)] \textbf{(Prime-stability interval — \Lzero)}
+        $B = 46$ lies inside the prime-stability interval
+        $(B_{\mathrm{low}},\,B_{\mathrm{high}}) = (45.441,\,46.565)$.
+\end{enumerate}
+
+\medskip
+\noindent
+\textbf{Overall proof status}: Parts~(i), (iii), (iv) are proved at level \Lzero.
+Part~(ii) (the identification $B = B(p)$ from $S[\Theta]$) is \textbf{\OPEN}
+(Gap G-Bmod).  Until this gap is closed, the full theorem is
+\textbf{CONDITIONAL} on the identification.
+\end{theorem}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proof-Level Classification}
+\label{sec:mpat:levels}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{4.5cm} p{2.2cm} p{6cm}}
+\toprule
+\textbf{Component} & \textbf{Level} & \textbf{Notes} \\
+\midrule
+$V(q;\,B) = q^2 - B\,q\ln q$ functional form
+  & \Lone\ \PROVED
+  & Standard one-loop Coleman-Weinberg/heat-kernel on $S^1_\psi$ \\
+$V'(q;\,B) = 2q - B(\ln q + 1)$ stationarity
+  & \Lone\ \PROVED
+  & Algebraic derivative, exact \\
+Prime minimiser $q = 137$ at $B = 46$
+  & \Lzero\ \PROVED
+  & Direct numerical comparison over all primes \\
+Prime-stability interval $(45.441,\,46.565)$
+  & \Lzero\ \PROVED
+  & Exact threshold formula, verified for all boundary primes \\
+$\mu(\Gamma_0(p)) = p+1$ for prime $p$
+  & \Lzero\ \PROVED
+  & Diamond \& Shurman, Thm 3.1.1; standard modular arithmetic \\
+$B(p) = \mu(\Gamma_0(p))/3$ identification
+  & L1/\OPEN
+  & Gap G-Bmod; motivated but not derived from $S[\Theta]$ \\
+$\vth_3^3/\mathrm{Im}(\HH) \cong \RR^3$ structural analogy
+  & \MC
+  & Motivated structural correspondence; supports the factor of 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison with the Old Correction-Factor Route}
+\label{sec:mpat:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+The modular prime-attractor route replaces the abandoned correction-factor route.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{3.8cm} p{5cm} p{5cm}}
+\toprule
+\textbf{Aspect} & \textbf{Old route (abandoned)} & \textbf{New route (MPAT)} \\
+\midrule
+Stationarity formula
+  & $q^* = \sqrt{B/2}$ \newline (\textbf{wrong}: $\approx 4.8$ for $B=46$)
+  & $2q^* = B(\ln q^* + 1)$ \newline (transcendental, correct) \\
+Reaching $q = 137$
+  & Required correction factor $R \approx 1.113$ (un-derived)
+  & $B = 46$ (exact integer from modular formula) directly places minimiser at $q = 137$ \\
+Proof status
+  & CONDITIONAL on $R$ (motivated conjecture)
+  & \Lzero\ given identification; Gap G-Bmod for derivation from $S[\Theta]$ \\
+$B$ source
+  & $B_{\mathrm{base}} \cdot R^2$, $R$ unfixed
+  & $\mu(\Gamma_0(p))/3$, exact arithmetic invariant \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Open Gap: G-Bmod}
+\label{sec:mpat:gap}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap G-Bmod} (primary blocker for the full theorem):
+
+\medskip
+Derive $B = \mu(\Gamma_0(p))/3 = (p+1)/3$ from the UBT action
+\[
+  S[\Theta] = \int_{M \times \CC_\tau}
+              \bigl(\nabla^\dagger\Theta\bigr) \cdot \bigl(\nabla\Theta\bigr)\,
+              d^4x\,d\tau\,d\bar\tau
+\]
+without using $p = 137$, $\alpha$, or any phenomenological input.
+
+\medskip
+\textbf{Criteria for closure}:
+\begin{enumerate}
+  \item Compute the one-loop effective action for the winding mode $q$ on $S^1_\psi$
+        coupled to the level-$p$ modular structure.
+  \item Show that the coefficient of $q\ln q$ is $(p+1)/3$, where $p$ is
+        the level selected by the modular constraint on $S[\Theta]$.
+  \item Verify that $p = 137$ is the unique prime for which this modular constraint
+        is self-consistently satisfied.
+\end{enumerate}
+
+\medskip
+\textbf{Possible approach}: The modular weight $3/2$ of
+$\hat{Z}(\tau) = \vth_3^3(\tau)$ (proved at \Lone; see \texttt{ALPHA\_PROGRESS\_REPORT.md
+\S3.4}) suggests that the partition function of the 3-dimensional winding sector
+at level $p$ produces a $B$-coefficient proportional to the index $\mu(\Gamma_0(p))$.
+Making this explicit requires a heat-kernel calculation on
+$X_0(p) \times S^1_\psi$ within the UBT functional-integral framework.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:mpat:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item The modular-curve index formula gives $\mu(\Gamma_0(p)) = p + 1$ for
+        prime $p$ (\Lzero, standard mathematics).
+
+  \item The modular $B$-coefficient $B(p) = (p+1)/3$ at $p = 137$ gives the
+        exact integer $B = 46$.
+
+  \item The prime-stability interval for $q = 137$ being the discrete prime
+        minimiser of $V(q;\,B)$ is $(45.441,\,46.565)$.
+
+  \item $B = 46$ lies inside this interval, confirming that the modular value
+        $B(137) = 46$ is structurally consistent with the prime attractor at
+        $q = 137$.
+
+  \item The identification $B = B(p)$ from $S[\Theta]$ is Gap G-Bmod (\OPEN).
+        Until this gap is closed, the MPAT is \textbf{CONDITIONAL}.
+
+  \item The correction-factor route ($n^* = \sqrt{B/2}$, $R \approx 1.113$)
+        is \textbf{abandoned}.  All occurrences have been removed from active
+        derivation files; see \texttt{reports/alpha\_old\_formula\_cleanup.md}.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
