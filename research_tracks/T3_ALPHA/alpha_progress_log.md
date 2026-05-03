@@ -225,3 +225,42 @@ The EW approach has several advantages:
 - `canonical/alpha/weinberg_angle_derivation.md` — EW conversion workstreams
 - `reports/ew_mixing_status.md` — EW mixing status
 - `DERIVATION_INDEX.md §α` — all α-related proof entries
+
+---
+
+## 2026-05-03 — CW Determinant + Chowla–Selberg Update
+
+### New documents added
+
+| File | Description |
+|------|-------------|
+| `cw_determinant_full_derivation.tex` | Exact CW det.\ on $S^1_\psi$; identifies $B_\text{obs} = N_\text{eff}^{3/2}(2\eta(i))^{1/4}$ |
+| `chowla_selberg_b_derivation.tex` | Chowla–Selberg route to $B$; steps S1–S4 proved, S5–S8 open |
+| `tools/verify_b_eta_uniqueness.py` | Numerical scan of ~60 special values; confirms uniqueness |
+
+### Key findings
+
+1. **Exact CW potential on $S^1_\psi$**: $V_\text{CW} = n^2 - N_\text{eff}\ln(2\sinh(\pi n))$, minimum at $n^* \approx 19$. The $n\ln n$ form is NOT the CW determinant on $S^1_\psi$.
+
+2. **Observation** (status: OBS, not PROVED):
+   $$B_\text{obs} = 12^{3/2} \cdot (2\eta(i))^{1/4} = 12^{3/2} \cdot \bigl(\Gamma(1/4)/\pi^{3/4}\bigr)^{1/4} \approx 46.281$$
+   matches $B_\text{required} \approx 46.284$ to **0.007%** (corrected from erroneous 0.003%).
+
+3. **Uniqueness**: Systematic scan of ~60 standard special values confirms $(2\eta(i))^{1/4}$ is the unique match at $<0.01\%$. Next best: $(2\eta(\rho))^{1/4}$ at $0.81\%$.
+
+4. **Chowla–Selberg route**: The Chowla–Selberg theorem for $D=-4$ gives $\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$ exactly. The spectral determinant on $T^2$ at $\tau=i$ equals $(2\pi)^2|\eta(i)|^4$ [proved, L0]. The missing step is identifying effective central charge $c=3$ for the UBT bosonic sector [OPEN, Gap G137-B part 2].
+
+### Gap G137-B — Revised status
+
+| Part | Description | Status |
+|------|-------------|--------|
+| G137-B-1 | Origin of $n\ln n$ form in $V_\text{eff}$ | OPEN |
+| G137-B-2 | Casimir factor $(2\eta(i))^{c/12}$ with $c=3$ from UBT action | OPEN |
+| G137-B-3 | Chowla–Selberg expression $\eta(i)=\Gamma(1/4)/(2\pi^{3/4})$ | PROVED [L0] |
+| G137-B-4 | $N_\text{eff}^{3/2}$ base coefficient | PROVED [L1] |
+
+### Recommended next attack on G137-B-2
+
+Compute $\delta^2 S[\Theta]/\delta\Theta^2$ at the saddle $\bar\Theta = n$ on $T^2$,
+identify the fluctuation operator, and read off the coefficient of $\ln\det'(-\Delta)$
+to determine $c$ rigorously.  See `chowla_selberg_b_derivation.tex` §4.
