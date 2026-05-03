@@ -231,9 +231,12 @@ Let $n = a \cdot b$ with $a,b \geq 2$ (composite).  Then:
 \end{theorem}
 
 \begin{proof}
-(i) follows from the fact that $\pi_1(S^1_\psi) = \ZZ$ contains $a, b$, and $n = ab$
-with no gap: any continuous path from the $n$-winding to the $(a+b)$-winding passes
-through all intermediate integer windings.
+(i) follows from the fact that $\pi_1(S^1_\psi) = \ZZ$ contains $a$, $b$, and $n = ab$
+as elements.  Because $\pi_1(S^1_\psi) = \ZZ$ is connected, a continuous
+$\pi_1$-deformation can interpolate between the $n$-winding configuration and
+the separated $(a,b)$ pair (winding-$a$ together with winding-$b$); both are
+elements of $\ZZ$ and the deformation path passes through intermediate integer
+windings.
 
 (ii): On a $\mathrm{U}(1)$ bundle over $S^1_\psi$, a winding-$n$ section can be
 written locally as $e^{in\psi}$.  Since $n = ab$, one may factor
@@ -357,8 +360,13 @@ of lower-lying spectral modes $\{e^{ik\psi} : 1 \leq k < p\}$ that shares the
 same winding quantum number.  Concretely:
 \begin{equation}
   p \;\neq\; \sum_{k=1}^{p-1} n_k \cdot k
-  \quad \text{for any choice of non-negative integers } n_k
-  \text{ with } \sum n_k < p.
+  \quad \text{for any non-negative integers } n_k
+  \text{ satisfying } \sum_{k=1}^{p-1} n_k \cdot k < p.
+  % The constraint \sum n_k \cdot k < p restricts to linear combinations of
+  % lower modes whose total winding is strictly less than p.  Without it the
+  % claim would be trivially false (e.g.\ p copies of winding 1 sum to p).
+  % The spectral non-overlap asserts that p cannot be reached by any
+  % \emph{sub-p} combination of lower winding modes.
   \label{eq:psp:nooverlap}
 \end{equation}
 In contrast, for composite $n = ab$, one has the identity
@@ -452,13 +460,16 @@ determinant $\det(-\nabla^\dagger\nabla)$ on the $\BB$-valued field decomposes
 over Fourier modes.  The cross-term arises from the bi-linear coupling
 $(\delta\Theta_{j})^\dagger \cdot [\nabla^\dagger\nabla, \Theta_{\mathrm{bg}}] \cdot \delta\Theta_{n-j}$
 in the second variation $\delta^2 S$.
-For this to be non-zero at tree level requires that the commutator
-$[\nabla^\dagger\nabla, e^{in\psi}]$ contains a mode at $|n - 2j|$.
+For this cross-term to be non-zero in the second variation $\delta^2 S$, the
+commutator $[\nabla^\dagger\nabla, e^{in\psi}]$ must contain a mode at $|n - 2j|$.
+(Here ``tree level'' refers to the classical-background level of the second
+variation, which is the input to the one-loop functional determinant; the full
+calculation is one-loop, and these cross-terms are generated at that order.)
 When $n = ab$, the divisors $a,b$ provide non-trivial mode channels at $j = a,b,2a,\ldots$
 that couple into the background through the holonomy.
-For prime $n = p$, the commutator contains no modes at $j = 1, \ldots, p-1$
-(since no factor of $p$ lies in $\{1,\ldots,p-1\}$), so all cross-terms vanish
-at tree level.
+For prime $n = p$, the commutator has no mode support at $j = 1, \ldots, p-1$
+(since $p$ has no proper divisors in $\{1,\ldots,p-1\}$), so all cross-terms
+vanish within the one-loop second-variation analysis.
 \end{proof}
 
 \begin{corollary}[Prime modes are spectral eigenstates, \PROVED\ \Lone]
