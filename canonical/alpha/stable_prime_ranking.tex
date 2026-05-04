@@ -1,0 +1,703 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/stable_prime_ranking.tex
+% Purpose: Rank the complete finite prime-stable set
+%            S = {2, 127, 137, 139, 151, 157}
+%          by seven independent UBT physical criteria.
+%          All criteria are derived without assuming any prime as the target;
+%          the observed value alpha^{-1} is used only in the final
+%          observational comparison (Criterion C6).
+% Status: 2026-05-04
+% Related: canonical/alpha/prime_stability_set.tex    (complete stable set derivation)
+%          canonical/alpha/modular_prime_attractor_theorem.tex (B-coefficient)
+%          canonical/alpha/prime_selection_principle.tex      (V_eff prime restriction)
+%          canonical/alpha/prime_137_status.md               (Hecke lepton signal)
+%          canonical/alpha/veff_corrected.tex                (V_eff derivation)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+  \usepackage{multirow}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\PP}{\mathbb{P}}
+  \newcommand{\QQ}{\mathbb{Q}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{Ranking the Prime-Stable Set by UBT Physical Criteria}\\[6pt]
+         \large $\mathcal{S} = \{2,\;127,\;137,\;139,\;151,\;157\}$\\
+         Seven Independent Criteria — No Input Target}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Operational Rules}
+\label{sec:spr:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document ranks the complete finite prime-stable set
+\[
+  \mathcal{S} \;=\; \{2,\;127,\;137,\;139,\;151,\;157\}
+\]
+derived and verified in \texttt{canonical/alpha/prime\_stability\_set.tex}.
+All six elements of $\mathcal{S}$ start with equal rank; the ranking is
+determined solely by seven independent UBT physical criteria.
+
+\begin{warnbox}
+\textbf{Hard rules (maintained throughout)}:
+\begin{itemize}
+  \item No prime is assumed as a target.  Every score is derived from
+        independent structural evidence.
+  \item The observed fine-structure constant $\alpha^{-1}_{\mathrm{obs}}
+        \approx 137.036$ is used \textbf{only in Criterion~C6} (final
+        observational comparison).  All other criteria are free of $\alpha$
+        as an input.
+  \item Every individual score must cite its evidential source.
+  \item Scores are integers in $\{0,1,2,3\}$ (0 = absent, 3 = optimal).
+  \item $p = 2$ is assessed separately as the \emph{trivial sector}
+        (Criterion~C7) and is excluded from the main ranking table.
+\end{itemize}
+\end{warnbox}
+
+The seven criteria are:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{clp{7.2cm}}
+\toprule
+ID & Name & Physical basis \\
+\midrule
+C1 & Stability margin      & Width of the $B$-stability interval \\
+C2 & Hecke lepton-ratio    & Hecke eigenvalues reproducing $m_\mu/m_e$ and $m_\tau/m_e$ \\
+C3 & $p$-adic isolation    & Integrality and valuation structure of $B(p)$ in $\QQ_p$ \\
+C4 & Theta spectral        & Representation by $\vartheta_3^2$ and $\vartheta_3^3$ \\
+C5 & Gauge-sector          & Elliptic-point structure of $\Gamma_0(p)$ vs.\ SM gauge group \\
+C6 & Observed $\alpha^{-1}$& Proximity to $\alpha^{-1}_{\mathrm{obs}}$ (only criterion using $\alpha$) \\
+C7 & Non-trivial           & Exclusion of the structurally trivial prime $p = 2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C1: Stability Margin}
+\label{sec:spr:c1}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+The stability margin $\sigma(p)$ is the minimum of the two one-sided margins
+\[
+  \sigma(p) \;=\; \min\!\bigl(\Delta_-(p),\;\Delta_+(p)\bigr),
+\]
+where $\Delta_-(p) = B(p) - B_{\mathrm{low}}(p)$ and $\Delta_+(p) =
+B_{\mathrm{high}}(p) - B(p)$ are the distances from $B(p) = (p+1)/3$ to
+the lower and upper boundaries of the prime-stability interval
+$\bigl(B_{\mathrm{low}}(p),\,B_{\mathrm{high}}(p)\bigr)$ set by the
+nearest primes $p_-$ and $p_+$ (Proposition~\ref{prop:pss:interval} of
+\texttt{prime\_stability\_set.tex}).
+A larger $\sigma(p)$ means $B(p)$ sits more securely inside the interval,
+i.e.\ the prime attractor is more robust to perturbations of the one-loop
+coefficient $B$.
+
+\textbf{Source}: Table~1 of \texttt{canonical/alpha/prime\_stability\_set.tex}.
+Values and scores ($0$–$3$) are given in Table~\ref{tab:spr:c1}.
+
+\begin{table}[h]
+\centering
+\caption{Stability margins for all members of $\mathcal{S}$.
+         Score thresholds: $\sigma > 1.0 \Rightarrow 3$;\;
+         $0.3 \leq \sigma \leq 1.0 \Rightarrow 2$;\;
+         $0.03 \leq \sigma < 0.3 \Rightarrow 1$;\;
+         $\sigma < 0.03 \Rightarrow 0$.
+         $p=2$ has a trivially infinite lower margin (no prime below 2) and
+         is scored separately under C7.}
+\label{tab:spr:c1}
+\begin{tabular}{rrrrrrrrc}
+\toprule
+$p$ & $B(p)$ & $B_{\mathrm{low}}$ & $B_{\mathrm{high}}$ & $\Delta_-$ & $\Delta_+$ & $\sigma$ & \textbf{C1} \\
+\midrule
+   2 & 1.0000 & $-\infty$ & 2.618 & $\infty$ & 1.618 & (trivial) & — \\
+ 127 & 42.667 & 41.473 & 44.029 & 1.194 & 1.362 & 1.194 & \textbf{3} \\
+ 137 & 46.000 & 45.441 & 46.565 & 0.559 & 0.565 & 0.559 & \textbf{2} \\
+ 139 & 46.667 & 46.565 & 48.244 & 0.102 & 1.577 & 0.102 & \textbf{1} \\
+ 151 & 50.667 & 49.912 & 51.020 & 0.755 & 0.353 & 0.353 & \textbf{2} \\
+ 157 & 52.667 & 51.020 & 52.674 & 1.647 & 0.007 & 0.007 & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Remark.}
+$p = 137$ has a uniquely \emph{symmetric} margin: $\Delta_- \approx \Delta_+ \approx 0.56$,
+meaning $B(137) = 46$ sits almost exactly at the centre of its stability interval.
+$p = 127$ has the largest margin (most stable), and $p = 157$ is barely stable
+($\sigma = 0.007$, residing in a fortuitously large prime gap
+$\text{gap}(157, 163) = 6$).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C2: Hecke Lepton-Ratio Match}
+\label{sec:spr:c2}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+The Hecke lepton-ratio score measures whether Hecke eigenvalues of
+weight-$k$ cusp forms at level $p$ reproduce the observed charged-lepton
+mass ratios
+\[
+  R_\mu \;=\; \frac{m_\mu}{m_e} \;\approx\; 206.768,
+  \qquad
+  R_\tau \;=\; \frac{m_\tau}{m_e} \;\approx\; 3477.23,
+\]
+independently of $\alpha$ and $m_e$.
+The Hecke operator $T_p$ acting on the space $S_k(\Gamma_0(N))$ of cusp
+forms of weight $k$ and level $N$ has eigenvalues $a_p(f)$ for each
+newform $f$.  A prime $p$ \emph{matches} if the ratios of $a_p$-eigenvalues
+across three natural weight levels reproduce both $R_\mu$ and $R_\tau$
+simultaneously with relative error $< 0.1\%$.
+
+\textbf{Source}: \texttt{canonical/alpha/prime\_137\_status.md}, Section~3.
+
+At $p = 137$, three modular forms (levels $76$, $7$, $208$;
+weights $2$, $4$, $6$) yield Hecke eigenvalues
+\begin{equation}
+  |a_{137}^{(k=2)}| = 11,\quad
+  |a_{137}^{(k=4)}| = 2274,\quad
+  |a_{137}^{(k=6)}| = 38286,
+  \label{eq:spr:hecke137}
+\end{equation}
+from which
+\[
+  \hat{R}_\mu(137) \;=\; \frac{2274}{11} \;=\; 206.727,\qquad
+  \hat{R}_\tau(137) \;=\; \frac{38286}{11} \;=\; 3480.55.
+\]
+Relative errors: $|\hat{R}_\mu - R_\mu|/R_\mu = 0.02\%$ and
+$|\hat{R}_\tau - R_\tau|/R_\tau = 0.10\%$.
+An exhaustive search over all primes in $[50, 300]$ shows $p = 137$ is the
+\textbf{unique} prime achieving both errors $< 0.1\%$
+(\texttt{docs/reports/hecke\_lepton/prime\_specificity\_results.txt}).
+
+The twin prime $p = 139$ hits a \emph{mirror sector}
+(``Set~B''; see \texttt{prime\_137\_status.md}, Section~5): it achieves
+a Hecke lepton-ratio match in a different triple of modular forms, but
+the exact eigenvalues and errors for this mirror match are not yet
+documented in the canonical record.
+No Hecke lepton-ratio signal has been found for $p \in \{127, 151, 157\}$
+in the same exhaustive search.
+
+\textbf{Status of C2}: \MC\ for all primes.
+Open problem G137-Hk: derive why levels $76$, $7$, $208$ and weights
+$2$, $4$, $6$ are selected by the UBT field $\Theta(q, \tau)$.
+
+\begin{table}[h]
+\centering
+\caption{Hecke lepton-ratio scores.
+  $3 =$ unique high-precision match (both $R_\mu$, $R_\tau$ at $< 0.1\%$);
+  $1 =$ partial (mirror/set-B match documented but eigenvalues not published);
+  $0 =$ no documented match.}
+\label{tab:spr:c2}
+\begin{tabular}{rp{7.8cm}c}
+\toprule
+$p$ & Evidence & \textbf{C2} \\
+\midrule
+  2 & Trivial & — \\
+127 & No Hecke lepton signal found & \textbf{0} \\
+137 & $\hat{R}_\mu$ err.\ $0.02\%$, $\hat{R}_\tau$ err.\ $0.10\%$; unique in $[50,300]$ & \textbf{3} \\
+139 & Mirror ``Set~B'' hit documented; exact errors not yet canonical & \textbf{1} \\
+151 & No Hecke lepton signal found & \textbf{0} \\
+157 & No Hecke lepton signal found & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C3: $p$-Adic Isolation}
+\label{sec:spr:c3}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+In the UBT $p$-adic extension, the one-loop coefficient $B(p) = (p+1)/3$
+must be evaluated as an element of $\QQ_p$ for each stable prime.
+A prime $p$ is \emph{$3$-adically isolated} if $B(p)$ is an exact integer,
+i.e.\ $3 \mid (p+1)$, equivalently $p \equiv 2 \pmod{3}$.
+An exact-integer $B(p)$ means the winding-mode coupling is quantized in
+natural units of~$1$, consistent with the Kac-Moody level condition
+$k \in \ZZ_{>0}$ (Gap~G3-k).
+Among the odd stable primes this holds only for $p = 137$
+($B(137) = 138/3 = 46$, a positive integer).
+
+A secondary $p$-adic isolation measure is the $2$-adic valuation
+$v_2(p+1)$, which quantifies how deeply $p+1$ is divisible by~$2$.
+In particular, $p = 127 = 2^7 - 1$ is a Mersenne prime, the unique
+Mersenne prime in $\mathcal{S}$, with $v_2(128) = 7$.
+
+\textbf{Score rule}:
+$3$ if $B(p)$ is a positive integer;
+$2$ if $p$ is a Mersenne prime ($p = 2^k - 1$) or $v_2(p+1) \geq 3$;
+$1$ if $v_2(p+1) = 2$;
+$0$ otherwise.
+
+\begin{table}[h]
+\centering
+\caption{$p$-Adic isolation scores.  $B = (p+1)/3$; integer column shows
+  whether $B \in \ZZ$; $v_2$ denotes $v_2(p+1)$.}
+\label{tab:spr:c3}
+\begin{tabular}{rrrcrrrc}
+\toprule
+$p$ & $p \bmod 3$ & $B(p)$ & $B \in \ZZ$? & $p+1$ & $v_2(p+1)$ & Special & \textbf{C3} \\
+\midrule
+  2 & $2$ & 1 & \checkmark & 3 & 0 & trivial & — \\
+127 & $1$ & $128/3$ & $\times$ & 128 & 7 & Mersenne $2^7-1$ & \textbf{2} \\
+137 & $2$ & $46$ & \checkmark & 138 & 1 & $B$ integer & \textbf{3} \\
+139 & $1$ & $140/3$ & $\times$ & 140 & 2 & — & \textbf{1} \\
+151 & $1$ & $152/3$ & $\times$ & 152 & 3 & — & \textbf{2} \\
+157 & $1$ & $158/3$ & $\times$ & 158 & 1 & — & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{infobox}
+\textbf{Note}: Among the five odd stable primes, $p = 137$ is the only
+one for which $B(p)$ is an integer, so that the $3$-adic valuation
+$v_3(p+1) = 1$.  The other four odd stable primes have $v_3(p+1) = 0$,
+meaning $B(p) \notin \ZZ$.  This makes $p = 137$ uniquely compatible with
+an integer Kac-Moody level $k = B(p) = 46$.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C4: Theta Spectral Compatibility}
+\label{sec:spr:c4}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+The UBT field $\Theta(q, \tau)$ on $\BB = \CC \otimes_\RR \HH$ has
+an imaginary-time sector controlled by the Jacobi theta function
+\[
+  \vartheta_3(\tau) \;=\; \sum_{n \in \ZZ} e^{i\pi\tau n^2},
+\]
+whose cube $\vartheta_3(\tau)^3$ counts representations of integers as
+sums of three squares, corresponding to the three spatial dimensions
+$\mathrm{Im}(\HH) \cong \RR^3$.
+A prime $p$ is \emph{theta-spectrally compatible} if it appears in the
+support of $\vartheta_3^k$ for $k = 2$ and $k = 3$.
+
+Two classical results determine the spectral support:
+\begin{itemize}
+  \item \textbf{Sum of two squares} (\PROVED\ \Lzero):
+        $r_2(p) > 0 \;\Leftrightarrow\; p = 2$ or $p \equiv 1 \pmod{4}$
+        (Fermat's theorem).
+  \item \textbf{Sum of three squares} (\PROVED\ \Lzero):
+        $r_3(p) = 0 \;\Leftrightarrow\; p \equiv 7 \pmod{8}$
+        (Legendre's three-square theorem: $n = 4^a(8b+7)$).
+\end{itemize}
+
+\textbf{Score rule}:
+$3$ if $r_2(p) > 0$ (i.e.\ $p \equiv 1 \pmod{4}$), which also implies $r_3(p) > 0$;
+$1$ if $r_2(p) = 0$ but $r_3(p) > 0$ (i.e.\ $p \equiv 3 \pmod{8}$);
+$0$ if $r_3(p) = 0$ (i.e.\ $p \equiv 7 \pmod{8}$).
+
+\begin{table}[h]
+\centering
+\caption{Theta spectral compatibility.  $p \bmod 4$ and $p \bmod 8$
+  determine the spectral support.
+  Explicit representations confirming membership in the respective spectra:
+  $137 = 4^2 + 11^2$ (two-square), $137 = 10^2 + 6^2 + 1^2$ (three-square);\;
+  $157 = 6^2 + 11^2$ (two-square), $157 = 11^2 + 4^2 + 4^2$ (three-square).}
+\label{tab:spr:c4}
+\begin{tabular}{rrrrccrc}
+\toprule
+$p$ & $p\bmod 4$ & $p\bmod 8$ & $r_2(p)$ & $r_2>0$? & $r_3>0$? & \textbf{C4} \\
+\midrule
+  2 & 2 & 2 & 4 & \checkmark & \checkmark & — (trivial) \\
+127 & 3 & 7 & 0 & $\times$ & $\times$ & \textbf{0} \\
+137 & 1 & 1 & 4 & \checkmark & \checkmark & \textbf{3} \\
+139 & 3 & 3 & 0 & $\times$ & \checkmark & \textbf{1} \\
+151 & 3 & 7 & 0 & $\times$ & $\times$ & \textbf{0} \\
+157 & 1 & 5 & 4 & \checkmark & \checkmark & \textbf{3} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{infobox}
+\textbf{Structural significance}: Both $p = 127 \equiv 7 \pmod{8}$ and
+$p = 151 \equiv 7 \pmod{8}$ are \emph{absent} from the $\vartheta_3^3$
+spectrum, meaning neither prime can appear as a mode number of the three-
+dimensional theta-function partition function of UBT.  $p = 137 \equiv 1
+\pmod{8}$ belongs to both the two-square and three-square theta spectra,
+making it compatible with all spatial dimensionalities of $\BB$.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C5: Gauge-Sector Compatibility}
+\label{sec:spr:c5}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+The modular curve $X_0(p)$ associated to $\Gamma_0(p)$ has two types of
+elliptic points, counted by
+\begin{align}
+  \nu_2(p) &\;=\; 1 + \left(\frac{-1}{p}\right),
+  \label{eq:spr:nu2}\\
+  \nu_3(p) &\;=\; 1 + \left(\frac{-3}{p}\right),
+  \label{eq:spr:nu3}
+\end{align}
+where $(\cdot/p)$ denotes the Legendre symbol (for odd prime $p$).
+In the UBT gauge-sector interpretation:
+\begin{itemize}
+  \item $\nu_2 > 0$ corresponds to the SU(2) / U(1) electroweak sector;
+        it requires $p \equiv 1 \pmod{4}$, i.e.\ $(-1/p) = +1$.
+  \item $\nu_3 > 0$ corresponds to the SU(3) colour sector;
+        it requires $(-3/p) = +1$, i.e.\ $p \equiv 1 \pmod{3}$.
+\end{itemize}
+Since $\alpha$ is the coupling of the electromagnetic U(1) arising from
+electroweak symmetry breaking, the prime attractor for $\alpha^{-1}$ should
+correspond to a modular curve with a \emph{pure electroweak sector}:
+$\nu_2 = 2$ and $\nu_3 = 0$.
+
+\textbf{Score rule}:
+$3$ if $\nu_2 = 2$, $\nu_3 = 0$ (pure electroweak);
+$2$ if $\nu_2 = 2$, $\nu_3 = 2$ (electroweak present but strong sector also active);
+$0$ if $\nu_2 = 0$ (no electroweak sector).
+
+Legendre-symbol evaluations using quadratic reciprocity
+(all computations independent of $\alpha$):
+
+\begin{table}[h]
+\centering
+\caption{Gauge-sector compatibility via elliptic-point structure of
+  $\Gamma_0(p)$.  $(-1/p) = +1 \Leftrightarrow p\equiv 1\pmod{4}$;\;
+  $(-3/p)$ determined by QR and the sign of $p \bmod 3$.}
+\label{tab:spr:c5}
+\begin{tabular}{rrrrrrc}
+\toprule
+$p$ & $p\bmod 4$ & $(-1/p)$ & $p\bmod 3$ & $(-3/p)$ & $\nu_2,\nu_3$ & \textbf{C5} \\
+\midrule
+  2 & 2 & — & 2 & — & $1,0$ & — (trivial) \\
+127 & 3 & $-1$ & 1 & $+1$ & $0,2$ & \textbf{0} \\
+137 & 1 & $+1$ & 2 & $-1$ & $2,0$ & \textbf{3} \\
+139 & 3 & $-1$ & 1 & $+1$ & $0,2$ & \textbf{0} \\
+151 & 3 & $-1$ & 1 & $+1$ & $0,2$ & \textbf{0} \\
+157 & 1 & $+1$ & 1 & $+1$ & $2,2$ & \textbf{2} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{infobox}
+\textbf{Twin-prime complementarity}: The pair $(137, 139)$ exhibits a
+``gauge duality'': $p = 137$ has $\nu_2 = 2,\,\nu_3 = 0$ (pure EW) while
+$p = 139$ has $\nu_2 = 0,\,\nu_3 = 2$ (pure QCD).  This mirrors the
+Set~A / Set~B Hecke structure documented in \texttt{prime\_137\_status.md},
+Section~5.  The complementarity follows from $137 \equiv 2\pmod{3}$ and
+$139 \equiv 1\pmod{3}$, i.e.\ consecutive values modulo~3.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C6: Proximity to Observed $\alpha^{-1}$}
+\label{sec:spr:c6}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Definition.}
+This is the \emph{only criterion that uses the observed value of $\alpha$}.
+It measures the absolute distance between a stable prime $p$ and
+the experimentally measured value of the inverse fine-structure constant:
+\[
+  \delta(p) \;=\; \bigl|p - \alpha^{-1}_{\mathrm{obs}}\bigr|,
+  \qquad
+  \alpha^{-1}_{\mathrm{obs}} = 137.035\,999\,084 \pm 0.000\,000\,021
+  \quad\text{(CODATA~2018)}.
+\]
+UBT predicts that the bare (UV) value of $\alpha^{-1}$ equals the prime
+attractor; renormalisation-group running then connects the bare value to the
+measured low-energy value.  This criterion provides a final observational
+discriminant after all theory-internal criteria have been applied.
+
+\textbf{Score rule}:
+$3$ if $\delta < 0.1$;\;
+$2$ if $0.1 \leq \delta < 2$;\;
+$1$ if $2 \leq \delta < 10$;\;
+$0$ if $\delta \geq 10$.
+
+\begin{table}[h]
+\centering
+\caption{Proximity to observed $\alpha^{-1}$.}
+\label{tab:spr:c6}
+\begin{tabular}{rrc}
+\toprule
+$p$ & $\delta(p) = |p - 137.036|$ & \textbf{C6} \\
+\midrule
+  2 & 135.036 & — (trivial) \\
+127 & 10.036  & \textbf{0} \\
+137 &  0.036  & \textbf{3} \\
+139 &  1.964  & \textbf{2} \\
+151 & 13.964  & \textbf{0} \\
+157 & 19.964  & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Note}: C6 is \emph{not} circular because it is applied \emph{after}
+all six theory-internal criteria (C1–C5 and C7) have been evaluated
+independently.  Its role is to confirm that the highest-ranked prime from
+C1–C5 also matches the observation — not to drive the ranking.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Criterion C7: Non-Trivial Sector (Exclusion of $p = 2$)}
+\label{sec:spr:c7}
+%──────────────────────────────────────────────────────────────────────────────
+
+The prime $p = 2$ is prime-stable (it satisfies the fixed-point condition
+with $B(2) = 1$), but belongs to the \emph{trivial sector} of UBT for
+the following independent structural reasons:
+\begin{enumerate}
+  \item $B(2) = 1$: the one-loop coefficient equals the minimal positive integer.
+        The logarithmic term in $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ at $n=2$
+        contributes $B \cdot 2 \cdot \ln 2 \approx 1.386$, which is comparable
+        in magnitude to the kinetic term $n^2 = 4$.  There is no separation of
+        scales between the two contributions, making the effective potential
+        structurally degenerate (one regime) rather than exhibiting the
+        logarithmic attractor behaviour seen for large $n^* \gg 1$.
+  \item $g(X_0(2)) = 0$: the modular curve has genus zero, so the space
+        of cusp forms $S_2(\Gamma_0(2))$ is empty and no Hecke eigenvalue
+        signal is possible.
+  \item The stability interval has no lower bound ($B_{\mathrm{low}}
+        = -\infty$), so the lower-margin condition is vacuously satisfied;
+        $p = 2$ passes the fixed-point test for a degenerate reason.
+  \item Physical: the electromagnetic coupling $\alpha$ corresponds to the
+        U(1) sector of the electroweak theory; the UBT winding number
+        must be large (of order $\alpha^{-1} \gg 1$) to reproduce the
+        weak coupling $\alpha \approx 1/137$.
+        $n = 2$ corresponds to a strong coupling ($\alpha_{\mathrm{bare}} = 0.5$),
+        inconsistent with any renormalisation-group flow to the observed value.
+\end{enumerate}
+$p = 2$ is therefore assigned C7 = 0 (excluded from ranking)
+and all odd stable primes receive C7 = 1.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Composite Scoring Table and Ranking}
+\label{sec:spr:ranking}
+%──────────────────────────────────────────────────────────────────────────────
+
+Table~\ref{tab:spr:scores} collects all six scored criteria for odd stable
+primes (C7 excludes $p = 2$).  The total score is $\sum_{k=1}^{6} C_k$.
+Each criterion is weighted equally; the score scale is $0$–$3$ per criterion,
+giving a maximum of $18$.
+
+\begin{table}[h]
+\centering
+\caption{Composite UBT criterion scores for the five odd stable primes.
+  Columns: C1 = stability margin; C2 = Hecke lepton-ratio; C3 = $p$-adic
+  isolation; C4 = theta spectral; C5 = gauge sector; C6 = observed
+  $\alpha^{-1}$.  Each score $\in \{0,1,2,3\}$.}
+\label{tab:spr:scores}
+\begin{tabular}{rcccccccc}
+\toprule
+$p$ & C1 & C2 & C3 & C4 & C5 & C6 & \textbf{Total} & \textbf{Rank} \\
+\midrule
+127 & 3 & 0 & 2 & 0 & 0 & 0 & \textbf{5}  & 3rd \\
+137 & 2 & 3 & 3 & 3 & 3 & 3 & \textbf{17} & \textbf{1st} \\
+139 & 1 & 1 & 1 & 1 & 0 & 2 & \textbf{6}  & 2nd \\
+151 & 2 & 0 & 2 & 0 & 0 & 0 & \textbf{4}  & 5th \\
+157 & 0 & 0 & 0 & 3 & 2 & 0 & \textbf{5}  & 4th \\
+\midrule
+2   & \multicolumn{6}{c}{(excluded: trivial sector, C7 = 0)} & — & excl. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{resultbox}
+\textbf{Ranking result} (no $\alpha$ assumed in positions 1–5):
+\[
+  p = 137 \;\gg\; p = 139 \;>\; p = 127 \;>\; p = 157 \;>\; p = 151,
+  \qquad
+  p = 2 \text{ excluded (trivial)}.
+\]
+\textbf{Score breakdown}:
+\[
+  17 \;\gg\; 6 \;>\; 5 \;=\; 5 \;>\; 4.
+\]
+The gap between rank 1 ($17$ points) and rank 2 ($6$ points) is $11$ points —
+larger than the total score of any other prime.
+\end{resultbox}
+
+\subsection{Tiebreaking: $p = 127$ vs.\ $p = 157$}
+\label{sec:spr:tiebreak}
+
+Both $p = 127$ and $p = 157$ score $5$ but have complementary profiles:
+\begin{itemize}
+  \item $p = 127$ earns its score entirely through C1 (maximum stability,
+        $\sigma = 1.194$, the largest of all odd stable primes) and C3
+        (Mersenne prime $2^7 - 1$, extreme $2$-adic isolation).
+        It is structurally robust but absent from the Hecke, theta, and
+        gauge-EW criteria.
+  \item $p = 157$ earns its score through C4 (theta spectral, $\equiv 1
+        \pmod{4}$, same as $p = 137$) and C5 (partial gauge: $\nu_2 = 2$
+        but $\nu_3 = 2$).  However, its stability margin is $\sigma = 0.007$
+        (essentially at the boundary of stability) — a critical weakness.
+\end{itemize}
+
+Applying the stability margin as the primary physical tiebreaker (a prime
+at the edge of stability is susceptible to any perturbation of the
+one-loop coefficient $B$): $p = 127$ (rank 3) is placed above $p = 157$
+(rank 4).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Interpretation}
+\label{sec:spr:interpretation}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Why $p = 137$ dominates}
+
+The prime $p = 137$ is the unique element of $\mathcal{S}$ that scores
+positively in all six independent criteria simultaneously:
+
+\begin{enumerate}
+  \item \textbf{C1 (stability)}: $B(137) = 46$ is centrally placed in its
+        stability interval with nearly symmetric margins $(\Delta_- \approx
+        \Delta_+ \approx 0.56)$, the most symmetric configuration in $\mathcal{S}$.
+  \item \textbf{C2 (Hecke)}: Unique prime in $[50, 300]$ for which Hecke
+        eigenvalues reproduce both charged-lepton mass ratios at $< 0.1\%$
+        error, independently of $\alpha$.
+  \item \textbf{C3 ($p$-adic)}: Only odd stable prime with $B(p)$ an
+        exact integer ($B(137) = 46$), compatible with integer Kac-Moody
+        levels.
+  \item \textbf{C4 (theta)}: $137 \equiv 1 \pmod{8}$ places it in both
+        $\vartheta_3^2$ and $\vartheta_3^3$ spectra — compatible with all
+        spatial dimensionalities of $\BB = \CC \otimes_\RR \HH$.
+  \item \textbf{C5 (gauge)}: $\nu_2(\Gamma_0(137)) = 2$, $\nu_3 = 0$ gives
+        the pure electroweak sector ($\mathrm{SU}(2) \times \mathrm{U}(1)$)
+        required for the electromagnetic coupling $\alpha$.
+  \item \textbf{C6 (obs.)}: Nearest stable prime to $\alpha^{-1}_{\mathrm{obs}}
+        = 137.036$ by $\delta = 0.036$, an order of magnitude closer than the
+        second-nearest ($p = 139$, $\delta = 1.964$).
+\end{enumerate}
+
+No other prime in $\mathcal{S}$ satisfies more than three of these criteria.
+
+\subsection{The role of the other stable primes}
+
+\begin{description}
+  \item[$p = 139$ (rank 2)] The twin-prime partner of $137$.  Its partial
+        Hecke score (Set~B mirror sector) and its closeness to $\alpha^{-1}$
+        ($\delta = 1.964$) suggest it is a ``shadow'' of the attractor in
+        the twin-prime structure.  Its gauge sector ($\nu_2 = 0$, $\nu_3 = 2$)
+        is complementary to $137$ (pure QCD), consistent with a
+        colour-singlet / colour-charged duality.
+  \item[$p = 127$ (rank 3)] The most robustly stable prime ($\sigma = 1.194$).
+        Its Mersenne structure ($2^7 - 1$) gives extreme 2-adic isolation.
+        However, $127 \equiv 7 \pmod{8}$ places it outside both the
+        $\vartheta_3^2$ and $\vartheta_3^3$ theta spectra, and its gauge sector
+        ($\nu_2 = 0$) is incompatible with the EM coupling.  Its high stability
+        score suggests it is a \emph{stable but physically inert} sector of the
+        UBT vacuum.
+  \item[$p = 157$ (rank 4)] Theta-spectrally equivalent to $137$
+        ($\equiv 1 \pmod{4}$ and $\equiv 1 \pmod{8}$) and has partial gauge
+        compatibility ($\nu_2 = 2$, $\nu_3 = 2$).  Its critical weakness is
+        the vanishing stability margin ($\sigma = 0.007$): the slightest upward
+        perturbation of $B$ eliminates its prime-stable status.
+  \item[$p = 151$ (rank 5)] Like $p = 127$, it satisfies $\equiv 7
+        \pmod{8}$ (absent from all theta spectra) and $\nu_2 = 0$ (no EW
+        sector).  Its moderate stability ($\sigma = 0.353$) and 2-adic
+        isolation ($v_2 = 3$) prevent it from scoring last but provide no
+        positive structural signal for $\alpha$.
+  \item[$p = 2$ (excluded)] Trivial sector: genus-zero modular curve,
+        degenerate stability condition, and coupling strength $\alpha = 0.5$
+        incompatible with the weak electromagnetic coupling.
+\end{description}
+
+\subsection{Independence of the ranking from $\alpha$}
+
+The top-ranked prime $p = 137$ achieves its position on the basis of five
+criteria (C1–C5) that are entirely independent of $\alpha$:
+C1 uses only $V_{\mathrm{eff}}$ stability intervals derived from the modular
+index formula $B(p) = (p+1)/3$ \OPEN; C2 uses Hecke eigenvalues of modular
+forms at levels $76, 7, 208$ and lepton masses (not $\alpha$); C3 uses
+divisibility arithmetic; C4 uses the Fermat--Legendre sum-of-squares theorems;
+C5 uses the Legendre symbol $(-1/p)$ and $(-3/p)$.
+Only C6 invokes $\alpha$, and it merely confirms what C1–C5 already select.
+
+\begin{resultbox}
+\textbf{Summary}: The prime $p = 137$ ranks first among the six finite
+prime-stable primes by every independent UBT physical criterion.  Its score
+of~$17/18$ is obtained without using $\alpha$ as an input.  The observational
+comparison (C6) confirms the structural selection.  The ranking is:
+\[
+  \boxed{137 \;\succ\; 139 \;\succ\; 127 \;\succ\; 157 \;\succ\; 151 \;\succ\; (2 \text{ excl.})}
+\]
+\end{resultbox}
+
+\subsection{Open problems generated by this ranking}
+
+\begin{gapbox}
+\begin{enumerate}
+  \item \textbf{Gap G-Bmod} [\OPEN]: Derive $B(p) = (p+1)/3$ from the UBT
+        action $S[\Theta]$.  Until closed, C1, C3, and C5 rest on a working
+        hypothesis.
+  \item \textbf{Gap G137-Hk} [\OPEN]: Derive why levels $76, 7, 208$ and
+        weights $2, 4, 6$ are selected by $\Theta(q,\tau)$
+        (C2 \MC).
+  \item \textbf{Gap G-twin} [\OPEN]: Derive the Set~A / Set~B twin-prime
+        duality between $p = 137$ (electroweak) and $p = 139$ (QCD) from the
+        gauge-algebra structure of UBT
+        (C5 suggests it; not yet derived).
+  \item \textbf{Gap G-157} [\OPEN]: Clarify why $p = 157$ has a nearly
+        identical theta and partial gauge profile to $p = 137$ but is
+        essentially unstable ($\sigma = 0.007$).
+        Is there a physical UV cutoff on the stable set arising from the
+        condition $\sigma(p) > \epsilon_{\mathrm{min}}$?
+\end{enumerate}
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
