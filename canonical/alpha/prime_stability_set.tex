@@ -1,0 +1,522 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/prime_stability_set.tex
+% Purpose: Derive the full structure of prime-stable solutions of
+%            p = argmin_{q prime} V(q; B(p)),  V(q;B) = q^2 - B·q·log q
+%          with  B(p) = (p+1)/3.
+%          Characterises ALL stable primes as a set — without treating any
+%          individual prime as special or as an input target.
+% Status: 2026-05-04
+% Related: canonical/alpha/veff_corrected.tex          (V_eff derivation)
+%          canonical/alpha/modular_prime_attractor_theorem.tex
+%          reports/prime_stability_scan.md              (numerical scan)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\PP}{\mathbb{P}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{Prime-Stable Solutions of $V(q;\,B(p))$:\\
+         Structure of the Full Solution Set}\\
+         \large Structural derivation — no special role for any single prime}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Rules}
+\label{sec:pss:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document characterises all primes $p$ such that
+\[
+  p \;=\; \argmin_{q\,\in\,\PP}\; V(q;\,B(p)),
+  \qquad
+  V(q;\,B) \;=\; q^2 - B\,q\ln q,
+  \qquad
+  B(p) \;=\; \frac{p+1}{3},
+\]
+where $\PP$ denotes the set of positive primes.
+We call such primes \emph{prime-stable} (the potential $V(\cdot;\,B(p))$ achieves
+its minimum over primes at the same prime $p$ that defines the coupling $B(p)$).
+
+\begin{warnbox}
+\textbf{Hard rules (maintained throughout)}:
+\begin{itemize}
+  \item No prime is taken as a target or input.  All conditions are derived and
+        then checked against the full prime set.
+  \item The formula $B(p)=(p+1)/3$ is treated as given from the theory
+        (it equals $\mu(\Gamma_0(p))/3$ for the modular curve $\Gamma_0(p)$
+        when $p+1 \equiv 0\pmod{3}$, but this identification is \OPEN{} and is
+        not used here).
+  \item Every analytical inequality is separately verified numerically.
+\end{itemize}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S1: Fixed-Point Condition}
+\label{sec:pss:s1}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Prime-stable prime]
+\label{def:pss:stable}
+A prime $p$ is \emph{prime-stable} if
+\[
+  V(p;\,B(p)) \;<\; V(q;\,B(p)) \qquad\forall\; q \in \PP,\; q \neq p.
+  \tag{S1}
+\]
+\end{definition}
+
+Expanding the definition gives the raw fixed-point inequality:
+\begin{equation}
+  p^2 - B(p)\,p\ln p \;<\; q^2 - B(p)\,q\ln q,
+  \label{eq:pss:S1-exp}
+\end{equation}
+which rearranges to
+\begin{equation}
+  p^2 - q^2 \;<\; B(p)\bigl(p\ln p - q\ln q\bigr).
+  \label{eq:pss:S1-ineq}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S2: Local Stability Conditions}
+\label{sec:pss:s2}
+%──────────────────────────────────────────────────────────────────────────────
+
+Since $f(x) = x\ln x$ is strictly increasing for $x > e^{-1}$, for any two
+primes $p < q$ we have $p\ln p < q\ln q$.  The inequality \eqref{eq:pss:S1-ineq}
+therefore splits into two cases:
+
+\textbf{Case 1: $q < p$ (lower competition).}
+Both sides of~\eqref{eq:pss:S1-ineq} have opposite sign from the $q > p$ case:
+$p^2 - q^2 > 0$ and $p\ln p - q\ln q > 0$, so the inequality gives a \emph{lower
+bound} on $B(p)$:
+\begin{equation}
+  B(p) \;>\; \frac{p^2 - q^2}{p\ln p - q\ln q}
+  \;=:\; \mathcal{L}(p,q).
+  \label{eq:pss:Lpq}
+\end{equation}
+
+\textbf{Case 2: $q > p$ (upper competition).}
+$p^2 - q^2 < 0$ and $p\ln p - q\ln q < 0$, so dividing flips the inequality:
+\begin{equation}
+  B(p) \;<\; \frac{p^2 - q^2}{p\ln p - q\ln q}
+  \;=\; \frac{q^2 - p^2}{q\ln q - p\ln p}
+  \;=:\; \mathcal{U}(p,q).
+  \label{eq:pss:Upq}
+\end{equation}
+Note $\mathcal{U}(p,q) > 0$ since both numerator and denominator are positive for
+$q > p > 1$.
+
+Combining over all prime competitors:
+
+\begin{proposition}[Stability interval]
+\label{prop:pss:interval}
+A prime $p$ is prime-stable if and only if
+\begin{equation}
+  B_{\mathrm{low}}(p) \;<\; B(p) \;<\; B_{\mathrm{high}}(p),
+  \label{eq:pss:interval}
+\end{equation}
+where
+\begin{align}
+  B_{\mathrm{low}}(p) &\;=\; \max_{\substack{q \in \PP \\ q < p}} \mathcal{L}(p,q),
+  \label{eq:pss:Blow}\\
+  B_{\mathrm{high}}(p) &\;=\; \min_{\substack{q \in \PP \\ q > p}} \mathcal{U}(p,q).
+  \label{eq:pss:Bhigh}
+\end{align}
+\end{proposition}
+
+\begin{lemma}[Nearest-prime dominance]
+\label{lem:pss:nearest}
+For every prime $p \geq 3$, the extrema in~\eqref{eq:pss:Blow}
+and~\eqref{eq:pss:Bhigh} are attained by the nearest primes $p_-$ (the
+largest prime below $p$) and $p_+$ (the smallest prime above $p$):
+\[
+  B_{\mathrm{low}}(p) = \mathcal{L}(p,p_-), \qquad
+  B_{\mathrm{high}}(p) = \mathcal{U}(p,p_+).
+\]
+\end{lemma}
+
+\begin{proof}
+We show $\mathcal{L}(p,q)$ is strictly increasing in $q$ for $q < p$.
+Write $h(q) := \mathcal{L}(p,q) = (p^2-q^2)/(p\ln p - q\ln q)$.
+As $q$ increases toward $p$, both numerator $(p^2-q^2)$ and denominator
+$(p\ln p - q\ln q)$ decrease toward $0$.  By L'Hôpital (or direct evaluation of
+the limit), $h(q)\to 2p/(\ln p+1)$ as $q\to p$.  A computation of $dh/dq$
+shows $h$ is increasing in $q$ (the numerator shrinks faster relative to the
+denominator as $q\to p$), so the maximum over $q < p$ is at the largest such
+prime, namely $p_-$.  An analogous argument (symmetric by swapping $p\leftrightarrow q$)
+applies to $\mathcal{U}(p,q)$ for $q > p$. \Lzero{} (verified numerically
+for all stable primes in Table~\ref{tab:pss:stable}).
+\end{proof}
+
+Hence the stability condition reduces to the two-sided inequality:
+\begin{equation}
+  \mathcal{L}(p,p_-) \;<\; \frac{p+1}{3} \;<\; \mathcal{U}(p,p_+).
+  \tag{S2}
+  \label{eq:pss:S2}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S3: Explicit Condition in Terms of $p$, $\ln p$}
+\label{sec:pss:s3}
+%──────────────────────────────────────────────────────────────────────────────
+
+Let $g_- = p - p_-$ and $g_+ = p_+ - p$ denote the prime gaps immediately below
+and above $p$.  Define the auxiliary function
+\[
+  R(p,g) \;:=\; \frac{(2pg - g^2)}{(p\ln p - (p-g)\ln(p-g))}.
+\]
+Then $\mathcal{L}(p,p_-) = R(p,g_-)$ and
+$\mathcal{U}(p,p_+) = R'(p,g_+)$ where
+\[
+  R'(p,g) \;=\; \frac{(p+g)^2 - p^2}{(p+g)\ln(p+g) - p\ln p}
+            \;=\; \frac{2pg + g^2}{(p+g)\ln(p+g) - p\ln p}.
+\]
+
+For small $g/p$ (true for primes $p \gg 1$), a Taylor expansion gives:
+\[
+  \mathcal{L}(p,p_-) \;\approx\; \frac{2p}{\ln p + 1}
+    - \frac{g_-}{(\ln p+1)^2}(\ln p - 1) + O(g_-^2/p),
+\]
+\[
+  \mathcal{U}(p,p_+) \;\approx\; \frac{2p}{\ln p + 1}
+    + \frac{g_+}{(\ln p+1)^2}(\ln p - 1) + O(g_+^2/p).
+\]
+
+To leading order in $p$, both bounds converge to the \emph{stationarity value}
+\begin{equation}
+  B^*(p) \;:=\; \frac{2p}{\ln p + 1},
+  \label{eq:pss:Bstar}
+\end{equation}
+which is precisely where the continuous function $V(x;B)$ has its minimum
+($\partial V/\partial x = 0$ gives $2x = B(\ln x + 1)$, i.e.\ $B = 2x/(\ln x+1)$).
+
+\textbf{Necessary condition for stability.}
+Substituting $B(p)=(p+1)/3$ and keeping only leading terms, the upper
+condition $B(p) < B^*(p)$ gives:
+\begin{equation}
+  \frac{p+1}{3} \;<\; \frac{2p}{\ln p + 1}
+  \;\;\Longleftrightarrow\;\;
+  (p+1)(\ln p + 1) \;<\; 6p
+  \;\;\Longrightarrow\;\;
+  \ln p \;<\; 5 - \frac{\ln p - 5}{p}
+  \;\;\approx\;\; 5 \text{ for large } p.
+  \label{eq:pss:S3-upper}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Result (S3)}: The leading-order upper stability condition is
+\[
+  \boxed{\ln p \;<\; 5}, \qquad\text{i.e.}\qquad p \;<\; e^5 \;\approx\; 148.4.
+\]
+Primes satisfying $p < e^5 \approx 148$ can potentially be stable.
+Beyond $e^5$, stability requires exceptional (super-average) prime gaps.
+\end{resultbox}
+
+The lower condition $B(p) > B^*(p) - \delta$ is automatically satisfied in the
+same regime once $p < e^5$, since $B(p)$ and $B^*(p)$ are then close and the
+gap correction $\delta$ is positive.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S4: Asymptotic Analysis and Finiteness}
+\label{sec:pss:s4}
+%──────────────────────────────────────────────────────────────────────────────
+
+We now answer whether the set of prime-stable primes is finite or infinite.
+
+\begin{theorem}[Finiteness of the prime-stable set]
+\label{thm:pss:finite}
+There are only finitely many prime-stable primes.  All prime-stable primes
+satisfy $p \leq 157$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+For $p > e^5 \approx 148$, the necessary condition~\eqref{eq:pss:S3-upper}
+fails at leading order.  More precisely, the upper stability condition
+\[
+  \frac{p+1}{3} \;<\; \mathcal{U}(p, p_+) \;\approx\; \frac{2p+g_+}{\ln p + 1 + g_+/p}
+\]
+requires
+\[
+  g_+ \;>\; \frac{p\,(\ln p - 5) + (\ln p + 1)}{2 - (\ln p + 1)/p}
+         \;\approx\; \frac{p(\ln p - 5)}{2}
+         \qquad\text{for large }p.
+\]
+For $p = 200$: $g_+ > 29.8$; for $p = 300$: $g_+ > 105.6$;
+for $p = 1000$: $g_+ > 954$.
+By the Prime Number Theorem, the maximal prime gap near $x$ satisfies
+$\max_{p \leq x} g(p) = O(x^{1/2+\epsilon})$ (conditionally on RH:
+$O(\sqrt{p}\,\ln p)$; Cramér conjecture: $O(\ln^2 p)$).
+For $p \geq 300$, even the Cramér-conjectured gaps ($\sim \ln^2 p \leq 40$)
+are far smaller than the required $g_+ \geq 106$.  Hence no prime $p \geq 300$
+can be prime-stable.  Direct numerical verification (Section~\ref{sec:pss:s5})
+confirms that no prime in $(157, 100{,}000]$ is prime-stable. \Lzero{}
+\end{proof}
+
+\textbf{Why do 151 and 157 survive past $e^5$?}
+These primes lie in the narrow transition zone $[148, 163]$ where $\ln p \approx 5$.
+Their stability is enabled by \emph{fortuitously large local prime gaps}:
+$\text{gap}(151, 157) = 6$ and $\text{gap}(157, 163) = 6$, which are
+slightly larger than the local average ($\ln 157 \approx 5.06$), providing
+a small positive margin.
+
+\textbf{Density of solutions.}  Since the set is finite, the density of
+prime-stable primes in any infinite prime sequence is zero.  There is no
+arithmetic progression, congruence class, or modular pattern that contains
+infinitely many prime-stable primes.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S5: Numerical Verification}
+\label{sec:pss:s5}
+%──────────────────────────────────────────────────────────────────────────────
+
+Table~\ref{tab:pss:stable} lists all prime-stable primes found by exhaustive
+search.  For each candidate prime $p$, the function $V(q;\,B(p))$ was evaluated
+for all primes $q \leq 100{,}000$.
+
+\begin{table}[h]
+\centering
+\caption{All prime-stable primes.  $B(p)=(p+1)/3$;\;
+         $B_{\mathrm{low}}$ and $B_{\mathrm{high}}$ set by nearest primes
+         $p_-$ and $p_+$;\ margins $\Delta_- = B(p)-B_{\mathrm{low}}$,\;
+         $\Delta_+ = B_{\mathrm{high}}-B(p)$.}
+\label{tab:pss:stable}
+\begin{tabular}{rrrrrrrr}
+\toprule
+$p$ & $p_-$ & $p_+$ & $B(p)$ & $B_{\mathrm{low}}$ & $B_{\mathrm{high}}$ & $\Delta_-$ & $\Delta_+$ \\
+\midrule
+  2 & ---   &   3 & 1.0000 & $-\infty$ & 2.6184 & $\infty$ & 1.6184 \\
+127 & 113   & 131 & 42.6667 & 41.4728 & 44.0290 & 1.1939 & 1.3623 \\
+137 & 131   & 139 & 46.0000 & 45.4410 & 46.5646 & 0.5590 & 0.5646 \\
+139 & 137   & 149 & 46.6667 & 46.5646 & 48.2443 & 0.1020 & 1.5777 \\
+151 & 149   & 157 & 50.6667 & 49.9116 & 51.0197 & 0.7551 & 0.3530 \\
+157 & 151   & 163 & 52.6667 & 51.0197 & 52.6739 & 1.6470 & 0.0072 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{resultbox}
+\textbf{Complete prime-stable set} (verified up to $10^5$):
+\[
+  \mathcal{S} \;=\; \{2,\;127,\;137,\;139,\;151,\;157\}.
+\]
+$|\mathcal{S}| = 6$.
+\end{resultbox}
+
+Near-misses (stable on one side only):
+\begin{itemize}
+  \item $p = 131$: $B(131) = 44.000 < B_{\mathrm{low}} = 44.029$ (fails lower by $-0.029$).
+  \item $p = 149$: $B(149) = 50.000 > B_{\mathrm{high}} = 49.912$ (fails upper by $-0.088$).
+  \item $p = 163$: $B(163) = 54.667 > B_{\mathrm{high}} = 54.046$ (fails upper by $-0.621$).
+\end{itemize}
+
+\subsubsection*{V-difference table at $p = 137$}
+
+\begin{center}
+\begin{tabular}{rc}
+\toprule
+$q$ & $V(q;\,46) - V(137;\,46)$ \\
+\midrule
+113 & $+432.76$ \\
+127 & $+65.98$ \\
+131 & $+19.78$ \\
+\textbf{137} & \textbf{0} (minimum) \\
+139 & $+6.69$ \\
+149 & $+140.67$ \\
+151 & $+187.69$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection*{V-difference table at $p = 157$ (smallest margin)}
+
+\begin{center}
+\begin{tabular}{rc}
+\toprule
+$q$ & $V(q;\,52.667) - V(157;\,52.667)$ \\
+\midrule
+149 & $+92.78$ \\
+151 & $+59.66$ \\
+\textbf{157} & \textbf{0} (minimum) \\
+163 & $+0.26$ \quad \textbf{(nearest competitor)} \\
+167 & $+33.95$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S6: Pattern Detection}
+\label{sec:pss:s6}
+%──────────────────────────────────────────────────────────────────────────────
+
+Table~\ref{tab:pss:residues} shows the residues of the stable primes modulo
+small integers.
+
+\begin{table}[h]
+\centering
+\caption{Residues of stable primes modulo small moduli.}
+\label{tab:pss:residues}
+\begin{tabular}{rrrrrrr}
+\toprule
+$p$ & $p \bmod 6$ & $p \bmod 12$ & $p \bmod 24$ & $p \bmod 30$ \\
+\midrule
+2   & 2 & 2  & 2  & 2  \\
+127 & 1 & 7  & 7  & 7  \\
+137 & 5 & 5  & 17 & 17 \\
+139 & 1 & 7  & 19 & 19 \\
+151 & 1 & 7  & 7  & 1  \\
+157 & 1 & 1  & 13 & 7  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{infobox}
+\textbf{Pattern finding (S6)}: No congruence class modulo any $k \leq 30$
+concentrates the stable primes.  Excluding $p = 2$, four of the five odd stable
+primes satisfy $p \equiv 1 \pmod{6}$ (i.e.\ $p \equiv 1 \pmod{6}$), and one
+($p = 137$) satisfies $p \equiv 5 \pmod{6}$.  Since all primes $> 3$ lie in
+$\{1, 5\} \pmod{6}$, this is no constraint.
+
+The cluster $\{127, 137, 139, 151, 157\}$ lies entirely within the window
+$[127, 157]$ of length 30.  This concentration is a consequence of the
+finiteness argument (Section~\ref{sec:pss:s4}): stability requires $\ln p \lesssim 5$,
+focusing all solutions into a 30-unit window near $e^5 \approx 148$.
+
+There is no modular pattern, no quadratic-residue pattern, and no arithmetic
+progression that predicts the stable set.  The set is determined by the
+interplay of the linear growth of $B(p)=(p+1)/3$ and the prime-gap statistics
+in $[100,200]$.
+\end{infobox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step S7: Relation to Modular Structure}
+\label{sec:pss:s7}
+%──────────────────────────────────────────────────────────────────────────────
+
+The index formula for the modular group $\Gamma_0(p)$ gives
+\[
+  \mu(\Gamma_0(p)) \;=\; p + 1 \qquad(p \text{ prime}),
+\]
+so
+\[
+  B(p) \;=\; \frac{p+1}{3} \;=\; \frac{\mu(\Gamma_0(p))}{3}.
+\]
+
+The stability condition~\eqref{eq:pss:S2} with this identification reads:
+\[
+  \mathcal{L}(p,p_-) \;<\; \frac{\mu(\Gamma_0(p))}{3} \;<\; \mathcal{U}(p,p_+).
+  \tag{S7}
+  \label{eq:pss:S7}
+\]
+
+The leading-order form of condition~\eqref{eq:pss:S3-upper} can be written using
+$\mu(\Gamma_0(p)) = p+1$:
+\[
+  \frac{\mu(\Gamma_0(p))}{3} \;<\; \frac{2p}{\ln p + 1}
+  \;\;\Longleftrightarrow\;\;
+  \mu(\Gamma_0(p))\,(\ln p + 1) \;<\; 6p.
+  \label{eq:pss:S7-modular}
+\]
+
+This inequality has a clean interpretation: the modular index $\mu(\Gamma_0(p))$
+weighted by the prime entropy $\ln p + 1$ must remain below $6p$.  Since
+$\mu(\Gamma_0(p)) = p+1 \approx p$ and $\ln p + 1 \approx \ln p$, this is
+equivalent to $p \ln p < 6p$, i.e.\ $\ln p < 6$, which is slightly stronger
+than~\eqref{eq:pss:S3-upper} ($\ln p < 5$) owing to the $+1$ in $p+1$.
+
+\begin{gapbox}
+\textbf{Gap G-Bmod [\OPEN]}: The derivation of $B(p) = \mu(\Gamma_0(p))/3$
+from the UBT action $S[\Theta]$ remains open.  Accepting it as a working
+hypothesis, the stability condition~\eqref{eq:pss:S7-modular} can be stated
+entirely in terms of modular invariants:
+\[
+  \mu(\Gamma_0(p)) \cdot (\ln p + 1) < 6p.
+\]
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:pss:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Main results}:
+\begin{enumerate}
+  \item \textbf{Characterisation}: A prime $p$ is prime-stable iff
+        $B_{\mathrm{low}}(p) < (p+1)/3 < B_{\mathrm{high}}(p)$, where
+        the bounds are set by the nearest primes $p_\pm$.
+  \item \textbf{Analytic condition}: To leading order, stability requires
+        $\ln p < 5$, i.e.\ $p < e^5 \approx 148$.
+  \item \textbf{Complete stable set}: $\mathcal{S} = \{2, 127, 137, 139, 151, 157\}$,
+        verified exhaustively up to $10^5$.
+  \item \textbf{Finiteness}: The stable set is finite.  No prime beyond $157$ is
+        prime-stable.  The required prime gap for stability grows as
+        $g \sim p(\ln p - 5)/2$, far exceeding any plausible gap for $p \geq 300$.
+  \item \textbf{No modular pattern}: The six stable primes lie in a 155-unit window.
+        No congruence class or arithmetic structure selects them.
+  \item \textbf{Modular reformulation}: With $B(p)=\mu(\Gamma_0(p))/3$, stability
+        reads $\mu(\Gamma_0(p))(\ln p+1) < 6p$ — a condition on modular indices
+        weighted by prime entropy.
+\end{enumerate}
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
