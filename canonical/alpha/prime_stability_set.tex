@@ -15,11 +15,11 @@
 %          with  B(p) = (p+1)/3.
 %          Characterises ALL stable primes as a set — without treating any
 %          individual prime as special or as an input target.
-%          Section 9 extends the model by replacing the heuristic entropy
-%          q log q with the exact Gamma-function entropy log Gamma(q+1),
-%          derives the shifted stability threshold (ln p < 6 vs ln p < 5),
-%          and provides the revalidated stable set S_Gamma.
-% Status: 2026-05-04; Gamma extension added 2026-05-04
+%          Section 9 (Gamma-Function Entropy) verifies that the renormalised
+%          entropy S_ren = logGamma(q+1) + q - (1/2)log(2 pi q) ≈ q log q
+%          leaves the canonical stable set unchanged.  Raw logGamma(q+1) is
+%          NOT the canonical entropy; direct replacement is forbidden.
+% Status: 2026-05-04; Gamma consistency check added 2026-05-04
 % Related: canonical/alpha/veff_corrected.tex          (V_eff derivation)
 %          canonical/alpha/modular_prime_attractor_theorem.tex
 %          reports/prime_stability_scan.md              (numerical scan)
@@ -83,7 +83,7 @@
 \fi
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Purpose and Rules}
+\section{Purpose and Rules \textnormal{[Canonical]}}
 \label{sec:pss:purpose}
 %──────────────────────────────────────────────────────────────────────────────
 
@@ -100,6 +100,17 @@ We call such primes \emph{prime-stable} (the potential $V(\cdot;\,B(p))$ achieve
 its minimum over primes at the same prime $p$ that defines the coupling $B(p)$).
 
 \begin{warnbox}
+\textbf{Canonical model — locked}:
+\[
+  V(q;\,B) \;=\; q^2 \;-\; B\,q\ln q, \qquad B(p) \;=\; \frac{p+1}{3}.
+\]
+\textbf{This model is canonical and must not be modified.}
+The entropy term $q\ln q$ defines the physical scaling of the model.
+It is \textbf{not} to be replaced by $\ln\Gamma(q+1)$ or any other entropy
+variant.  Such replacements define different models and must be explicitly
+labelled as non-canonical.
+
+\medskip
 \textbf{Hard rules (maintained throughout)}:
 \begin{itemize}
   \item No prime is taken as a target or input.  All conditions are derived and
@@ -109,6 +120,8 @@ its minimum over primes at the same prime $p$ that defines the coupling $B(p)$).
         when $p+1 \equiv 0\pmod{3}$, but this identification is \OPEN{} and is
         not used here).
   \item Every analytical inequality is separately verified numerically.
+  \item No claims about the Riemann Hypothesis, the fine structure constant, or
+        other deep results are made beyond the prime-stability framework itself.
 \end{itemize}
 \end{warnbox}
 
@@ -495,9 +508,26 @@ entirely in terms of modular invariants:
 \end{gapbox}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Gamma-Function Entropy Formulation}
+\section{Gamma-Function Entropy: Consistency Check \textnormal{[Numerical]}}
 \label{sec:pss:gamma}
 %──────────────────────────────────────────────────────────────────────────────
+
+\begin{infobox}
+\textbf{Purpose of this section}: Verify that the canonical model is stable
+under continuous interpolation via the Gamma function.
+The canonical entropy is $q\ln q$ — this is fixed and not modified here.
+The Gamma function enters only as a tool for \emph{renormalised} continuous
+interpolation; it is \textbf{never} used to replace $q\ln q$ directly.
+
+\medskip
+\textbf{Non-canonical variant (excluded)}: Direct substitution
+$q\ln q \to \ln\Gamma(q+1)$ defines a \emph{different} model with a
+stability threshold near $p \approx e^6 \approx 403$ and a completely
+different stable set $\{2,389,397,401,409,421\}$.
+This variant is \textbf{excluded} from the canonical framework and must
+not be interpreted as a refinement of this model.
+See Remark~\ref{rem:pss:gamma:forbidden} for details.
+\end{infobox}
 
 The entropy term $q\ln q$ in the canonical potential
 $V(q;B) = q^2 - B\,q\ln q$ is the leading term of $\ln\Gamma(q+1) = \ln q!$
@@ -505,13 +535,6 @@ for large $q$.  This section establishes the precise relationship via the
 Stirling expansion, defines the renormalised entropy $S_{\mathrm{ren}}$ that
 matches $q\ln q$ to $O(q^{-1})$, and shows that the stable set is
 \emph{unchanged} when $S_{\mathrm{ren}}$ replaces $q\ln q$ in the potential.
-
-\begin{infobox}
-\textbf{Canonical model is fixed}: The entropy in the canonical stability
-model is $q\ln q$.  The Gamma function is used here only for continuous
-interpolation and derivative computation; it is not used to replace $q\ln q$
-in the stability condition.
-\end{infobox}
 
 \subsection{Stirling Expansion}
 \label{sec:pss:gamma:stirling}
@@ -644,7 +667,7 @@ full prime scan before stability claims are made.
 \end{warnbox}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Summary}
+\section{Summary \textnormal{[Canonical]}}
 \label{sec:pss:summary}
 %──────────────────────────────────────────────────────────────────────────────
 
@@ -666,15 +689,26 @@ full prime scan before stability claims are made.
   \item \textbf{Modular reformulation}: With $B(p)=\mu(\Gamma_0(p))/3$, stability
         reads $\mu(\Gamma_0(p))(\ln p+1) < 6p$ — a condition on modular indices
         weighted by prime entropy.
-  \item \textbf{Gamma-consistency (Section~\ref{sec:pss:gamma})}: The
+  \item \textbf{Gamma-consistency (Section~\ref{sec:pss:gamma}) \textnormal{[Numerical]}}: The
         renormalised entropy $S_{\mathrm{ren}}(p) = \ln\Gamma(p+1) + p
         - \frac{1}{2}\ln(2\pi p) = p\ln p + O(p^{-1})$ leaves the canonical
         stable set unchanged: $\mathcal{S}_{\mathrm{ren}} = \mathcal{S}$
         (\Lzero{}).  Direct replacement of $q\ln q$ by $\ln\Gamma(q+1)$
         (without the $O(q)$ correction) is non-equivalent and is forbidden
-        in the canonical model.
+        in the canonical model.  The unrenormalised variant produces a different
+        stable set $\{2,389,397,401,409,421\}$ near $e^6 \approx 403$; this
+        is a separate non-canonical model and must not be interpreted as a
+        correction or extension of the canonical result.
 \end{enumerate}
 \end{resultbox}
+
+\begin{infobox}
+\textbf{Scope and claims}: No claims about the Riemann Hypothesis, the fine
+structure constant, or other deep results are derived here beyond the
+prime-stability framework itself.  The coincidence of $137 \in \mathcal{S}$
+with the approximate value of $1/\alpha$ is noted as a structural observation
+only.
+\end{infobox}
 
 \ifdefined\INCLUDEMODE
 \else

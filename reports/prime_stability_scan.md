@@ -7,7 +7,8 @@
 **Author**: Ing. David Jaroš  
 **Date**: 2026-05-04  
 **Status**: Computational verification — [L0]; analytic argument — [L1 partial];
-Gamma-consistency check — [L0] (S_ren gives same stable set, see §11)  
+Gamma sanity check — [L0] ($S_{\text{ren}}$ gives same stable set, non-canonical
+~400 cluster excluded; see §11)  
 **Companion files**:
 - `canonical/alpha/prime_stability_set.tex` — formal derivation
 - `canonical/alpha/veff_corrected.tex` — V_eff derivation
@@ -249,7 +250,18 @@ stable = [p for p in primes if p <= 10_000 and is_prime_stable(p, primes)]
 
 ---
 
-## 11. Gamma-Function Entropy Formulation
+> ⚠️ **Warning: ~400 cluster is a non-canonical artefact**
+>
+> Replacing $p\ln p$ directly by $\ln\Gamma(p+1)$ (without renormalisation)
+> produces a different stable set $\{2,\,389,\,397,\,401,\,409,\,421\}$ near
+> $p \approx e^6 \approx 403$.  This cluster is an artefact of the
+> unrenormalised Gamma entropy model.  **It must not be interpreted within the
+> canonical framework** and is not a refinement of the result above.
+> See §11.5 for details.
+
+---
+
+## 11. Gamma Entropy Sanity Check [Numerical]
 
 ### 11.1 Role of the Gamma Function
 
@@ -335,4 +347,23 @@ stable_ren = [p for p in primes if p <= 10_000 and is_prime_stable_ren(p, primes
 > direct substitution $q\ln q \to \ln\Gamma(q+1)$ (without renormalisation) is
 > **not** a consistency check — it defines a different canonical model and is
 > **forbidden** in the UBT prime stability framework.
+
+### 11.6 Non-canonical Gamma Variant (Excluded)
+
+Direct substitution $q\ln q \to \ln\Gamma(q+1)$ without renormalisation shifts
+the stationarity condition from $B^*(p) = 2p/(\ln p + 1)$ to
+$B^*_\Gamma(p) \approx 2p/\ln p$, moving the stability window from
+$\ln p < 5$ ($p \lesssim e^5 \approx 148$) to $\ln p < 6$
+($p \lesssim e^6 \approx 403$).
+
+The resulting stable set is:
+
+$$\mathcal{S}_\Gamma = \{2,\;389,\;397,\;401,\;409,\;421\}$$
+
+This is a **different model** with a shifted entropy scale.  It is **not** a
+refinement of the canonical model.  The original set $\mathcal{S}$ is not
+"non-robust" — it is the unique result of the canonical entropy $q\ln q$.
+
+> **The ~400 cluster must not be interpreted within the canonical framework.**
+> It arises only under the non-renormalised Gamma entropy and is excluded.
 

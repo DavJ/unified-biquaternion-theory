@@ -152,7 +152,76 @@ Any use of $\lambda \neq 0$ must therefore be accompanied by a full prime scan.
 
 ---
 
-## 5. Stability Definition for Gaussian Primes
+## 5. Consistency Issue: Inert Primes [Research]
+
+> **Problem**: The norm-only model is incomplete for inert primes.
+
+Of the six canonical stable primes, three are **inert** ($p \equiv 3 \pmod 4$):
+
+| $p$ | $p \bmod 4$ | Gaussian type | $r_2(p)$ |
+|----:|:-----------:|:-------------:|:--------:|
+| 127 | 3 | inert | 0 |
+| 139 | 3 | inert | 0 |
+| 151 | 3 | inert | 0 |
+
+An inert prime $p \equiv 3 \pmod 4$ is **not representable** as $a^2 + b^2$ in $\mathbb{Z}$,
+so it is not itself a Gaussian prime norm.  A strict norm-only Gaussian stability model
+applied to $\{a^2 + b^2 : (a,b) \in \mathbb{Z}^2\}$ would therefore **exclude** 127, 139,
+and 151 — leaving only $\{2, 137, 157\}$ of the canonical set.
+
+This is the fundamental consistency problem of the 2D extension.
+
+### 5.1 Proposed Resolution: Split/Inert Classification
+
+Define two classes of canonical stable primes:
+
+| Class | Description | Members of $\mathcal{S}$ | Mechanism |
+|-------|-------------|:------------------------:|-----------|
+| **Bulk modes** | Split primes ($p \equiv 1 \pmod 4$); expressible as $a^2+b^2$ | 137, 157 | Gaussian norm stability |
+| **Boundary modes** | Inert primes ($p \equiv 3 \pmod 4$); not norms of Gaussian primes | 127, 139, 151 | 1D rational prime stability |
+| Ramified | $p=2$ | 2 | Both: $N(1+i)=2$ |
+
+This mirrors the split/inert/ramified decomposition of rational primes in $\mathbb{Z}[i]$.
+
+### 5.2 Extended Potential V\_total
+
+To accommodate both classes, define the **total potential**:
+
+$$V_{\text{total}}(p) \;:=\;
+\begin{cases}
+  V_G(p;\,B(p)) & \text{if } p \equiv 1 \pmod 4 \text{ (split — bulk mode)}, \\
+  V_{1D}(p;\,B(p)) & \text{if } p \equiv 3 \pmod 4 \text{ (inert — boundary mode)},
+\end{cases}$$
+
+where $V_G(n;B) = n^2 - B\,n\ln n$ (the 2D norm potential) and
+$V_{1D}(p;B) = p^2 - B\,p\ln p$ (the canonical 1D potential).
+
+For $p = 2$ (ramified), both definitions agree.
+
+**Key property**: Since $V_G(n;B) = V_{1D}(n;B)$ at $n = p$ (both evaluate the same
+function at the same integer), $V_{\text{total}}$ reduces to the canonical 1D model for
+all six primes in $\mathcal{S}$ at $\lambda = 0$.  The distinction becomes relevant only
+when degeneracy weights ($\lambda \neq 0$) or Gaussian neighbours are considered.
+
+### 5.3 Stability Definition with V\_total
+
+A rational prime $p$ is **$V_{\text{total}}$-stable** iff:
+$$V_{\text{total}}(p) \;<\; V_G(n;\,B(p)) \;\text{ for all Gaussian prime norms } n \neq p$$
+$$\text{and} \quad V_{\text{total}}(p) \;<\; V_{1D}(q;\,B(p)) \;\text{ for all rational primes } q \neq p.$$
+
+At $\lambda = 0$ this recovers the canonical 1D stable set exactly.
+
+### 5.4 Open Questions
+
+| Question | Status |
+|----------|--------|
+| Does $V_{\text{total}}$ have a natural algebraic derivation from $\mathbb{Z}[i]$ structure? | **[Open]** |
+| Do inert boundary modes have a distinct physical interpretation in UBT? | **[Speculative]** |
+| Is the split/inert classification preserved under Hecke operators? | **[Open]** |
+
+---
+
+## 6. Stability Definition for Gaussian Primes (revised)
 
 **Definition (norm-stability)**: A rational prime $p$ (that is a Gaussian prime norm)
 is *norm-stable* under $V_G(\cdot;\,B, \lambda)$ iff
@@ -161,32 +230,23 @@ for all Gaussian prime norms $n \neq p$.
 
 At $\lambda = 0$ this coincides exactly with prime-stability in the 1D model.
 
-**Note on inert primes**: For an inert prime $p \equiv 3 \pmod 4$, the "Gaussian
-prime" is $p$ itself (or $ip$, $-p$, $-ip$), all with norm $p^2$.  The norm-stable
-set is defined over *prime* norms; for inert primes the norm $p^2$ is not itself
-prime, so inert primes appear in the norm-stable set via their rational prime value $p$
-(where $p$ happens to also be a Gaussian prime norm only if $p \equiv 1 \pmod 4$ or
-$p = 2$).
-
-> **Consistency check**: 127, 139, 151 are inert ($p \equiv 3 \pmod 4$), meaning
-> $p$ is not itself expressible as $a^2 + b^2$.  They appear in $\mathcal{S}$ as
-> rational primes (not Gaussian prime norms), so they would be **absent** from a
-> strict Gaussian norm-stable set.  The 2D extension must decide whether to
-> restrict to split primes only, or to retain all 1D stable primes via a different
-> mechanism.  This is an **open modelling question** (**[Open]**).
+**Note on inert primes**: Inert primes ($p \equiv 3 \pmod 4$) are not Gaussian prime
+norms; the 2D extension requires $V_{\text{total}}$ (§5.2) to accommodate them.
+See §5 for the resolution via split/inert classification.
 
 ---
 
-## 6. Outputs and Next Steps
+## 7. Outputs and Next Steps
 
-### 6.1 Required outputs from this track
+### 7.1 Required outputs from this track
 
-- [ ] Full norm-stable set computation at $\lambda = 0$ (should match 1D)
-- [ ] Robustness scan: vary $\lambda \in [-1, 1]$ in steps of 0.1
+- [x] $\lambda = 0$ baseline verified: norm-stable set matches 1D canonical set
+- [x] Inert-prime consistency issue identified and proposed resolution (§5)
+- [x] $\lambda$ scan: $\lambda \in [-1,1]$ in steps of 0.1 (see `reports/gaussian_lambda_scan.md`)
 - [ ] Lattice visualisation: plot Gaussian primes $a + bi$ with $N(z) \in [100, 200]$, highlight those with norms in $\mathcal{S}$
 - [ ] Comparison table: 1D stable primes vs split/inert classification
 
-### 6.2 Open questions (not claims)
+### 7.2 Open questions (not claims)
 
 | Question | Status |
 |----------|--------|
@@ -198,7 +258,7 @@ $p = 2$).
 
 ---
 
-## 7. Computation Sketch
+## 8. Computation Sketch
 
 ```python
 import math
@@ -255,7 +315,7 @@ for lam in [-1.0, -0.5, 0.0, 0.5, 1.0]:
 
 ---
 
-## 8. Warnings
+## 9. Warnings
 
 - Stability applies to **norms**, not individual Gaussian integers.  Associates
   ($\pm z$, $\pm iz$) and conjugates of split primes all share the same norm and
