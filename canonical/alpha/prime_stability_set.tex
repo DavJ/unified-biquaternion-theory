@@ -1,0 +1,363 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/prime_stability_set.tex
+% Purpose: Define, lock, and document the canonical prime-stability model,
+%   including the stable prime set S = {2, 127, 137, 139, 151, 157},
+%   the Gamma-entropy classification, and documentation labels.
+% Status: CANONICAL (LOCKED) — 2026-05-04
+% Related: canonical/alpha/prime_selection_principle.tex
+%          canonical/alpha/veff_corrected.tex
+%          reports/prime_stability_scan.md
+%          reports/prime_stability_revalidation.md
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!10, linecolor=orange!70, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=green!8,   linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!6,     linecolor=red!50, linewidth=1.5pt]{excludedbox}
+  \newmdenv[backgroundcolor=blue!5,    linecolor=blue!40, linewidth=1.5pt]{infobox}
+  \newmdenv[backgroundcolor=gray!8,    linecolor=gray!50, linewidth=1pt]{lockbox}
+
+  \newcommand{\CANONICAL}{\textcolor{green!60!black}{\textbf{[Canonical]}}}
+  \newcommand{\DERIVED}{\textcolor{blue!70!black}{\textbf{[Derived]}}}
+  \newcommand{\NUMERICAL}{\textcolor{orange!80!black}{\textbf{[Numerical]}}}
+  \newcommand{\RESEARCH}{\textcolor{gray!70!black}{\textbf{[Research]}}}
+  \newcommand{\EXCLUDED}{\textcolor{red!70!black}{\textbf{[Excluded]}}}
+  \newcommand{\NOTUSED}{\textcolor{red!60}{\textbf{[NOT USED]}}}
+  \newcommand{\Lzero}{$[\mathrm{L0}]$}
+  \newcommand{\Lone}{$[\mathrm{L1}]$}
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+
+  \title{\textbf{Prime-Stability Model — Canonical Definition (Locked)}\\[4pt]
+         \large Stable Set, Gamma Entropy Classification, Gaussian Extension\\
+         Unified Biquaternion Theory}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-04}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Canonical Model (Locked)}
+\label{sec:pss:canonical}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\CANONICAL{}
+
+\begin{lockbox}
+\textbf{CANONICAL MODEL — LOCKED.}
+The following definition is the unique canonical prime-stability model for
+the Unified Biquaternion Theory.  It must not be modified.
+\end{lockbox}
+
+\subsection{Definition}
+\label{ssec:pss:def}
+
+The prime-stability effective potential is:
+\begin{equation}
+  \label{eq:pss:Vcanon}
+  V(p) \;=\; p^2 - B(p)\,p\ln p,
+\end{equation}
+where the self-consistent coupling is:
+\begin{equation}
+  \label{eq:pss:Bcanon}
+  B(p) \;=\; \frac{p+1}{3}.
+\end{equation}
+
+\begin{tcolorbox}[colback=green!4!white, colframe=green!50!black,
+  title=Canonical invariants (all terms must not be altered)]
+\begin{enumerate}
+  \item The entropy factor is $p\ln p$.  No alternative entropy form may
+        replace $p\ln p$ in the canonical model.
+  \item The coupling is $B(p) = (p+1)/3$.  No alternative coefficient may
+        replace this expression.
+  \item The potential has a canonical minimum structure defined by the
+        self-consistency condition (Definition~\ref{def:pss:stable}).
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Stability Definition}
+\label{ssec:pss:stability_def}
+
+\begin{definition}[Stable prime]\label{def:pss:stable}
+Let $n_c(B)$ denote the unique positive solution of
+\begin{equation}
+  2n = B\bigl(\ln n + 1\bigr),
+  \label{eq:pss:ncrit}
+\end{equation}
+i.e., the continuous minimum of $V(n, B) = n^2 - B\,n\ln n$ over $n > 0$.
+For a prime $p \ge 3$, define the prime-gap stability boundaries:
+\begin{align}
+  \ell(p) &= \tfrac{1}{2}\bigl(p_{\mathrm{prev}} + p\bigr), \\
+  u(p)    &= \tfrac{1}{2}\bigl(p + p_{\mathrm{next}}\bigr),
+\end{align}
+where $p_{\mathrm{prev}}$ and $p_{\mathrm{next}}$ are the nearest primes below and above $p$.
+The prime $p$ is \textbf{stable} if:
+\[
+  \ell(p) \;<\; n_c\bigl(B(p)\bigr) \;<\; u(p).
+\]
+The \textbf{stability margin} of $p$ is:
+\begin{equation}
+  \mathrm{margin}(p)
+  \;=\;
+  \min\!\bigl(n_c(B(p)) - \ell(p),\;\; u(p) - n_c(B(p))\bigr).
+  \label{eq:pss:margin}
+\end{equation}
+The prime $p = 2$ is included as a base case: it is the unique prime for
+which $V(2) > 0$ (the potential is positive, signalling a different regime).
+\end{definition}
+
+The physical meaning of this criterion is self-consistency: a prime~$p$ is
+stable if and only if $p$ is its own closest-prime attractor under the
+coupling $B(p)$.  The continuous minimum $n_c(B(p))$ falls within the
+prime-gap around $p$, so no neighbouring prime is a better candidate.
+
+\subsection{Canonical Stable Set}
+\label{ssec:pss:S}
+
+\begin{resultbox}
+\textbf{Canonical stable set (computed, not fitted):}
+\[
+  \boxed{S \;=\; \{2,\; 127,\; 137,\; 139,\; 151,\; 157\}}
+\]
+\end{resultbox}
+
+\NUMERICAL{} The stable set is computed numerically; see
+\texttt{reports/prime\_stability\_revalidation.md} for full tables.  No prime
+outside $S$ satisfies Definition~\ref{def:pss:stable} for $2 \le p \le 10^5$
+(excluding a boundary artefact at $p = 99991$ caused by the finite search limit).
+
+\subsection{Stability Margins}
+\label{ssec:pss:margins}
+
+\begin{table}[h]
+\centering
+\caption{Stability margins for $S = \{2, 127, 137, 139, 151, 157\}$. \NUMERICAL{}}
+\label{tab:pss:margins}
+\begin{tabular}{rrrrrrr}
+\toprule
+$p$ & $B(p)$ & $n_c(B(p))$ & $\ell(p)$ & $u(p)$ & margin & $V(p)$ \\
+\midrule
+2   & 1.000  & --- (special) & ---   & ---   & ---    & $+2.614$ \\
+127 & 42.667 & 124.200       & 120.0 & 129.0 & 4.201  & $-10120.04$ \\
+137 & 46.000 & 135.989       & 134.0 & 138.0 & 1.989  & $-12236.72$ \\
+139 & 46.667 & 138.364       & 138.0 & 144.0 & 0.364  & $-12687.29$ \\
+151 & 50.667 & 152.726       & 150.0 & 154.0 & 1.274  & $-15584.54$ \\
+157 & 52.667 & 159.976       & 154.0 & 160.0 & \textbf{0.024} & $-17159.41$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{warnbox}
+\textbf{Smallest-margin prime}: $p = 157$ has stability margin $0.024$ — the
+smallest in $S$.  Its continuous minimum $n_c \approx 159.976$ lies only
+$0.024$ below the upper stability boundary $u(157) = 160$.  Marginal stability
+means that small perturbations to $B(p)$ could displace 157 from the stable set.
+\end{warnbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Gamma Entropy: Classification and Strict Handling}
+\label{sec:pss:gamma}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\CANONICAL{}
+
+\subsection{Renormalized Stirling Interpolation (Canonical)}
+\label{ssec:pss:Sren}
+
+\DERIVED{} The renormalized entropy is:
+\begin{equation}
+  S_{\mathrm{ren}}(p)
+  \;=\;
+  \ln\Gamma(p+1) + p - \tfrac{1}{2}\ln(2\pi p).
+  \label{eq:pss:Sren}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Role of $S_{\mathrm{ren}}$}: $S_{\mathrm{ren}}$ is a renormalized
+Stirling interpolation of $p\ln p$, \textbf{not} a new entropy model.
+
+By Stirling's formula, $\ln\Gamma(p+1) = p\ln p - p + \tfrac{1}{2}\ln(2\pi p) + O(1/p)$.
+Substituting:
+\[
+  S_{\mathrm{ren}}(p)
+  = \bigl[p\ln p - p + \tfrac{1}{2}\ln(2\pi p)\bigr]
+    + p - \tfrac{1}{2}\ln(2\pi p) + O(1/p)
+  = p\ln p + O(1/p).
+\]
+The sub-leading Stirling corrections cancel exactly, leaving $p\ln p$ as the
+leading term.  $S_{\mathrm{ren}}$ recovers the canonical entropy with
+corrections of order $1/p$.
+\end{resultbox}
+
+The renormalized potential is:
+\begin{equation}
+  V_{\mathrm{ren}}(p) \;=\; p^2 - B(p)\,S_{\mathrm{ren}}(p).
+  \label{eq:pss:Vren}
+\end{equation}
+Numerical agreement with $V(p)$ for all $p \in S$ is confirmed in
+Table~\ref{tab:pss:margins} and \texttt{reports/prime\_stability\_revalidation.md}.
+
+\subsection{Non-Canonical Gamma Variant (Excluded)}
+\label{ssec:pss:gamma_noncanon}
+
+\EXCLUDED{} \NOTUSED{}
+
+\begin{excludedbox}
+\textbf{Non-canonical entropy variant — excluded from canonical model.}
+
+Direct substitution $p\ln p \to \ln\Gamma(p+1)$ (without the Stirling
+renormalization) defines a \emph{different} model:
+\[
+  V_{\Gamma}(p) \;=\; p^2 - B(p)\,\ln\Gamma(p+1).
+\]
+This model has a stability structure centered near $p \approx e^6 \approx 403$,
+not near $p = 137$.  The resulting stable-prime cluster around $p \approx 400$
+is a feature of the non-renormalized Gamma model and does \textbf{not} belong
+to the canonical model.
+
+\textbf{Warning}: Any result derived from $V_\Gamma$ (including primes near 400)
+must not be presented in the canonical theory context.  The cluster at
+$p \approx 400$ arises solely from the non-renormalized Gamma entropy and is
+excluded by construction.
+\end{excludedbox}
+
+The key distinction:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Entropy form & Status & Stable cluster \\
+\midrule
+$p\ln p$ & \CANONICAL{} & $\{2, 127, 137, 139, 151, 157\}$ \\
+$S_{\mathrm{ren}}(p) = \ln\Gamma(p+1) + p - \tfrac{1}{2}\ln(2\pi p)$ & \CANONICAL{} \DERIVED{} & Identical to $p\ln p$ set \\
+$\ln\Gamma(p+1)$ (bare, non-renormalized) & \EXCLUDED{} \NOTUSED{} & $\sim p \approx 403$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Exclusion of the $\sim 400$ Cluster}
+\label{sec:pss:cluster400}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{excludedbox}
+The cluster of primes near $p \approx 400$ arises only from the
+non-renormalized Gamma entropy $\ln\Gamma(p+1)$.  It is \textbf{excluded}
+from the canonical model.
+
+No statement suggesting primes near $p = 400$ belong to the canonical
+prime-stability analysis may appear in any canonical document.  If such
+statements exist in legacy files, they must be marked \NOTUSED{} or corrected
+to refer to the Gamma-excluded variant.
+\end{excludedbox}
+
+Physical origin of the exclusion: the bare Gamma function $\ln\Gamma(p+1) = \ln(p!)$
+grows as $p\ln p - p + O(\ln p)$.  For the potential
+$V_\Gamma(p) = p^2 - B(p)\ln(p!)$, the balance point between $p^2$ and
+$B(p)\ln(p!)$ occurs at $p \approx e^6 \approx 403$, not at 137.
+The renormalization $S_{\mathrm{ren}} = \ln\Gamma(p+1) + p - \tfrac{1}{2}\ln(2\pi p)$
+subtracts the sub-leading terms and restores the canonical $p\ln p$ form,
+which has its minimum structure at 137.
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{Documentation Labels}
+\label{sec:pss:labels}
+%═══════════════════════════════════════════════════════════════════════════════
+
+All results in this document and the related reports are classified as follows:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Label & Meaning \\
+\midrule
+\CANONICAL{} & Definition, locked; may not be modified. \\
+\DERIVED{}   & Algebraically derived from canonical definitions. \\
+\NUMERICAL{} & Numerically computed; no free parameters. \\
+\RESEARCH{}  & Active research; not yet canonical. \\
+\EXCLUDED{}  & Explicitly excluded from the canonical model. \\
+\NOTUSED{}   & Present for completeness; not used in canonical derivations. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+\textbf{Prohibited claims}: No document in this repository may state that
+the prime-stability model ``derives $\alpha$'' or ``explains 137 uniquely.''
+The correct framing is:
+
+\begin{quote}
+  \emph{The canonical prime-stability model defines a stability structure
+  on primes.  The prime $p = 137$ is singled out as the unique prime with
+  $B(p) = (p+1)/3$ equal to an integer and the smallest stability margin
+  in its cluster (among $\{137, 139, 151, 157\}$), not by fitting $\alpha^{-1}$
+  as an input.}
+\end{quote}
+
+Phrases ``derives alpha'', ``explains 137 uniquely'', or ``derives the
+fine-structure constant'' are too strong and must not appear unless the
+full derivation of $B$ from the UBT action $S[\Theta]$ is completed (Gap
+G137-B remains open).
+\end{warnbox}
+
+%═══════════════════════════════════════════════════════════════════════════════
+\section{References}
+\label{sec:pss:refs}
+%═══════════════════════════════════════════════════════════════════════════════
+
+\begin{itemize}
+  \item \texttt{canonical/alpha/prime\_selection\_principle.tex} —
+        physical derivation of the prime selection principle.
+  \item \texttt{canonical/alpha/veff\_corrected.tex} —
+        corrected $V_{\mathrm{eff}}$ statement.
+  \item \texttt{canonical/alpha/veff\_corrected\_statement.tex} —
+        stationarity transcendental equation.
+  \item \texttt{reports/prime\_stability\_scan.md} —
+        Gamma-entropy scan and classification.
+  \item \texttt{reports/prime\_stability\_revalidation.md} —
+        full numerical revalidation table.
+  \item \texttt{reports/gaussian\_lambda\_scan.md} —
+        Gaussian prime extension $\lambda$-experiment.
+  \item \texttt{research\_tracks/gaussian\_prime\_stability/gaussian\_prime\_stability.md} —
+        Gaussian prime stability analysis.
+\end{itemize}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
