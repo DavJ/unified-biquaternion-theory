@@ -744,6 +744,157 @@ $\ln p < 5 \to \ln p < 6$, reflecting the $-q$ Stirling correction absorbed into
 the denominator of the stationarity value.
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Step S9: Continuous Extension and Stationary Points near $1/\alpha$}
+\label{sec:pss:s9}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Model and derivatives}
+
+We extend $V_\Gamma$ from integer primes $q$ to all real $x > 1$:
+\begin{equation}
+  V(x;\,B) \;=\; A\,x^2 \;-\; B\,\ln\Gamma(x+1) \;+\; C,
+  \label{eq:pss:Vcont}
+\end{equation}
+with $A = 1$, $C = 0$ (the additive constant does not affect stationarity).
+The derivatives are
+\begin{align}
+  V'(x;\,B) &\;=\; 2x \;-\; B\,\psi(x+1),
+  \label{eq:pss:Vcont-p}\\
+  V''(x;\,B) &\;=\; 2 \;-\; B\,\psi^{(1)}(x+1),
+  \label{eq:pss:Vcont-pp}
+\end{align}
+where $\psi = (\ln\Gamma)'$ is the digamma function and $\psi^{(1)}$ is the
+trigamma function.
+
+For large $x$ the digamma function satisfies $\psi(x+1) \approx \ln x$, so the
+stationarity condition $V'(x^*;B) = 0$ reduces to
+\begin{equation}
+  B \;=\; \frac{2x^*}{\psi(x^*+1)}, \qquad
+  B \;\approx\; \frac{2x^*}{\ln x^*}
+  \quad \text{for } x^* \gg 1.
+  \label{eq:pss:Bstar-cont}
+\end{equation}
+
+\subsection{Stationary points for $B = B(p)$}
+
+Table~\ref{tab:pss:cont-stat} gives the continuous minimum $x^*$ of $V(\cdot;B)$
+for the coupling $B = B(p) = (p+1)/3$ of each original prime-stable prime.
+
+\begin{table}[h]
+\centering
+\caption{Continuous stationary points $x^*$ under Gamma-entropy potential for
+  $B = B(p) = (p+1)/3$.  The last column gives the prime nearest to $x^*$.}
+\label{tab:pss:cont-stat}
+\begin{tabular}{rrrrrr}
+\toprule
+$p$ & $B(p)$ & $x^*$ & $V'(x^*)$ & $V''(x^*)$ & Nearest prime \\
+\midrule
+127 & 42.667 &  97.900 & $\approx 0$ & 1.566 & 97  \\
+137 & 46.000 & 107.740 & $\approx 0$ & 1.575 & 107 \\
+139 & 46.667 & 109.726 & $\approx 0$ & 1.577 & 109 \\
+151 & 50.667 & 121.755 & $\approx 0$ & 1.586 & 127 \\
+157 & 52.667 & 127.840 & $\approx 0$ & 1.590 & 127 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key observation.}  Under $B = B(p)$, the continuous minimum lies
+\emph{below} $p$ — at roughly $0.77p$–$0.81p$.  The original prime $p$ is
+\emph{not} the continuous minimiser.  The discrete minimiser ($p$ is prime-stable)
+exists because $p$ beats all neighbouring primes despite lying above $x^*$; this
+is a lattice effect that disappears in the continuum.
+
+\subsection{Coupling required to place $x^* = 1/\alpha$}
+
+The fine-structure constant denominator is $1/\alpha \approx 137.036$.
+Setting $V'(137.036;\,B^*) = 0$:
+\begin{equation}
+  B^* \;=\; \frac{2 \times 137.036}{\psi(138.036)} \;=\; \frac{274.072}{4.9239}
+         \;\approx\; 55.662.
+  \label{eq:pss:Balpha}
+\end{equation}
+
+This coupling $B^* \approx 55.662$ does \emph{not} coincide with $B(137) = 46$
+or $B(139) = 46.667$.  The discrepancy is
+\[
+  B^* - B(137) \;=\; 55.662 - 46.000 \;=\; 9.662,
+\]
+reflecting the fact that the Gamma-entropy stationarity value exceeds the
+leading-model stationarity value: $B^*_\Gamma \approx 2p/\ln p$ versus
+$B^* \approx 2p/(\ln p + 1)$.
+
+\subsection{V-difference at $B = B^*$}
+
+Table~\ref{tab:pss:cont-Vdiff} evaluates $V(p;\,B^*) - V(x^*;\,B^*)$ for primes
+near $x^* = 137.036$.
+
+\begin{table}[h]
+\centering
+\caption{$V(p;\,55.662) - V(137.036;\,55.662)$ for primes near $1/\alpha$.
+  The continuous minimum is at $x^* = 137.036$.}
+\label{tab:pss:cont-Vdiff}
+\begin{tabular}{rc}
+\toprule
+$p$ & $V(p;\,55.662) - V(x^*;\,55.662)$ \\
+\midrule
+113 & $+453.35$ \\
+127 & $+79.83$ \\
+131 & $+28.95$ \\
+\textbf{137} & $+0.001$ \quad \textbf{(nearest prime)} \\
+139 & $+3.08$ \\
+149 & $+114.98$ \\
+157 & $+321.55$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $B = B^*$, the prime $p = 137$ achieves $V(137;\,B^*) - V(x^*;\,B^*) = +0.001$
+— essentially zero relative to the scale of the table — making it the discrete
+nearest-prime projection of the continuous minimum $x^* = 137.036$.
+
+The second-nearest prime is $139$, at $+3.08$, more than $3000\times$ further from
+the minimum.
+
+\begin{resultbox}
+\textbf{Result (S9)}: Under the Gamma-entropy potential with coupling
+$B^* = 2/\alpha\cdot[\psi(1/\alpha+1)]^{-1} \approx 55.662$, the continuous
+minimum is at $x^* = 1/\alpha \approx 137.036$.  The nearest-prime projection of
+$x^*$ is $p = \mathbf{137}$.  The prime 139 is the next nearest, at a $V$-gap of
+$+3.08$ versus $+0.001$ for 137.
+
+The coupling $B^* \approx 55.662$ does not equal $B(137) = 46$; the two
+quantities would agree only under the leading-entropy model, where the stationarity
+value is $B^* \approx 2p/(\ln p + 1) \approx 46.28$ at $p = 137$.
+\end{resultbox}
+
+\subsection{Scan of stationary points vs $B$}
+
+Table~\ref{tab:pss:scan-B} lists $x^*$ and the nearest prime for a range of $B$.
+
+\begin{table}[h]
+\centering
+\caption{Continuous minimum $x^*(B)$ and nearest prime for selected couplings.
+  The row marked $\dagger$ is the value $B^* \approx 55.662$ placing $x^*=1/\alpha$.}
+\label{tab:pss:scan-B}
+\begin{tabular}{rrrr}
+\toprule
+$B$ & $x^*(B)$ & Nearest prime $p$ & $|x^*-p|$ \\
+\midrule
+42.667 &  97.900 &  97 & 0.900 \\
+46.000 & 107.740 & 107 & 0.740 \\
+46.667 & 109.726 & 109 & 0.727 \\
+50.667 & 121.755 & 127 & 5.245 \\
+52.667 & 127.840 & 127 & 0.840 \\
+54.000 & 131.922 & 131 & 0.922 \\
+55.000 & 134.996 & 137 & 2.004 \\
+\textbf{55.662}$^\dagger$ & \textbf{137.036} & \textbf{137} & \textbf{0.036} \\
+56.000 & 138.081 & 139 & 0.919 \\
+60.000 & 150.523 & 151 & 0.477 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary}
 \label{sec:pss:summary}
 %──────────────────────────────────────────────────────────────────────────────
@@ -774,6 +925,14 @@ the denominator of the stationarity value.
         The stable set under the exact model is $\{2,389,397,401,409,421\}$.
         The original set $\{2,127,137,139,151,157\}$ is \textbf{not robust}: it is
         an artefact of the leading-order entropy approximation.
+  \item \textbf{Continuous extension} (Section~\ref{sec:pss:s9}): Extending $V_\Gamma$
+        to real $x$, the continuous minimum $x^*(B)$ satisfies
+        $B = 2x^*/\psi(x^*+1)$.  The coupling $B^* \approx 55.662$ places $x^*$
+        exactly at $1/\alpha \approx 137.036$.  The nearest-prime projection of
+        this minimum is $p = \mathbf{137}$; the prime 139 is $3080\times$ further
+        from the minimum in $V$-units.  The value $B^* = 55.662$ does not equal
+        $B(137)=46$; it would agree with $B(137)$ only under the original
+        leading-entropy model.
 \end{enumerate}
 \end{resultbox}
 
