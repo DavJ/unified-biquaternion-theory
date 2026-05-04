@@ -115,7 +115,7 @@ determined by B(p) alone (same in both models), so the criterion is unaffected.
 
 **Agreement between V and V_ren confirms that Gamma interpolation does not
 alter the stability structure.** The sub-leading Stirling corrections
-(O(1/p) ≈ 10⁻³ for p ≈ 100) are far too small to displace any prime from
+(O(1/p) ~ 10^(-3) for p ~ 100) are far too small to displace any prime from
 the stable set.
 
 ---
