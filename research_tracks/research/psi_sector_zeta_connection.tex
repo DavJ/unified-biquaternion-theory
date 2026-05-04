@@ -1,0 +1,482 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% -----------------------------------------------------------------------
+% Macros
+% -----------------------------------------------------------------------
+\newcommand{\Rp}{R_{\psi}}
+\newcommand{\ZH}{\zeta_{H}(s)}
+\newcommand{\xis}{\xi(s)}
+\newcommand{\Gs}{G(s)}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Hp}{H_{\psi}}
+
+\title{\textbf{$\psi$-Sector Spectral Zeta and the Completed Riemann Zeta}\\[4pt]
+\large Derive-Minimal Programme — UBT Research Track}
+\author{Ing.\ David Jaroš}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black, title=Purpose and status]
+This document derives, step by step, the spectral zeta function
+$\zeta_H(s)$ of the $\psi$-sector Hamiltonian
+$H_\psi = -\mathrm{d}^2/\mathrm{d}\psi^2$
+on $S^1_{R_\psi}$, and compares it with the completed Riemann zeta function
+$\xi(s) = \pi^{-s/2}\,\Gam(s/2)\,\zeta(s)$.
+The discrepancy factor $G(s)$ is isolated and classified.
+
+\medskip\noindent
+\textbf{Result}: $\zeta_H(s) = G(s)\cdot\xi(2s)$
+where $G(s) = 2(\pi\Rp^2)^s/\Gam(s)$.
+$G$ is \emph{entire} and \emph{zero-free} on $\mathrm{Re}(s)>0$.
+
+\medskip\noindent
+\textbf{Proof status}: All steps labelled \textbf{[L0]}
+(pure spectral/analytic identities; no UBT-specific assumptions).
+
+\medskip\noindent
+\textbf{Sources}: \texttt{B\_base\_spectral\_determinant.tex} (formula $Z_1=2R_\psi^{2s}\zeta(2s)$, §2.2); \\
+\texttt{partition\_function\_modular.md} ($\psi$-circle Hamiltonian, §2.1); \\
+\texttt{appendix\_RH\_riemann\_zeta\_connection.tex} (completed zeta background).
+\end{tcolorbox}
+
+% ======================================================================
+\section{Setup and Conventions}
+\label{sec:setup}
+% ======================================================================
+
+\begin{definition}[$\psi$-circle and Hamiltonian]\label{def:Hpsi}
+Let $\Rp > 0$.  The \emph{$\psi$-circle} is
+\[
+  S^1_{\Rp} \;=\; \mathbb{R}\,/\,(2\pi\Rp\,\mathbb{Z}),
+\]
+with coordinate $\psi \in [0, 2\pi\Rp)$ and periodic boundary conditions.
+The \emph{$\psi$-sector Hilbert space} is
+$\mathcal{H} = L^2(S^1_{\Rp}, \mathrm{d}\psi)$.
+The \emph{$\psi$-sector Hamiltonian} is the negative second derivative
+\[
+  \Hp \;=\; -\frac{\mathrm{d}^2}{\mathrm{d}\psi^2},
+\]
+on the Sobolev domain $H^2(S^1_{\Rp})$ (periodic $L^2$ functions with
+square-integrable second weak derivative).
+\end{definition}
+
+\begin{remark}
+$\Hp$ is essentially self-adjoint: the deficiency indices are $(0,0)$ since
+the operator is bounded below, the domain is dense, and the boundary conditions
+are periodic.  This is a standard result (Reed–Simon Vol.~II, §X.1).
+\end{remark}
+
+% ======================================================================
+\section{Eigenvalues of $H_\psi$}
+\label{sec:eigenvalues}
+% ======================================================================
+
+\begin{proposition}[Spectrum of $\Hp$]\label{prop:spectrum}
+The spectrum of $\Hp$ is purely discrete.  The normalised eigenfunctions are
+\begin{equation}\label{eq:eigenfunctions}
+  \varphi_n(\psi) \;=\; \frac{1}{\sqrt{2\pi\Rp}}\,
+    e^{i n \psi / \Rp}, \qquad n \in \mathbb{Z},
+\end{equation}
+with corresponding eigenvalues
+\begin{equation}\label{eq:eigenvalues}
+  \lambda_n \;=\; \frac{n^2}{\Rp^2}.
+\end{equation}
+\textbf{Status: [L0]} — direct computation.
+\end{proposition}
+
+\begin{proof}
+By substitution: $\Hp\,\varphi_n = -\partial_\psi^2\,\varphi_n
+= (n/\Rp)^2\,\varphi_n = \lambda_n\,\varphi_n$.
+Orthonormality $\langle\varphi_m,\varphi_n\rangle = \delta_{mn}$
+follows from the standard Fourier integral on $[0,2\pi\Rp)$.
+Completeness of $\{\varphi_n\}_{n\in\mathbb{Z}}$ in $L^2(S^1_{\Rp})$
+is the classical theorem of Fourier series.
+\end{proof}
+
+\medskip
+Key features of the spectrum:
+\begin{itemize}
+  \item $\lambda_0 = 0$ (the \emph{zero mode}, eigenspace = constant functions);
+  \item $\lambda_n = \lambda_{-n} = n^2/\Rp^2$ for $n \geq 1$
+        (each positive eigenvalue has multiplicity 2);
+  \item $\sigma(\Hp) = \{n^2/\Rp^2 : n \in \mathbb{Z}\}
+        = \bigl\{0,\,\Rp^{-2},\,4\Rp^{-2},\,9\Rp^{-2},\,\ldots\bigr\}$.
+\end{itemize}
+
+% ======================================================================
+\section{Heat Trace}
+\label{sec:heat}
+% ======================================================================
+
+\begin{definition}[Heat trace]\label{def:heat}
+For $\beta > 0$, the \emph{heat trace} of $\Hp$ is
+\begin{equation}\label{eq:heat-def}
+  K(\beta) \;:=\; \mathrm{Tr}\bigl[e^{-\beta \Hp}\bigr]
+            \;=\; \sum_{n\in\mathbb{Z}} e^{-\beta\lambda_n}
+            \;=\; \sum_{n\in\mathbb{Z}} e^{-\beta n^2/\Rp^2}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Theta representation]\label{prop:theta}
+Set the dimensionless parameter $t := \beta/\Rp^2$.  Then
+\begin{equation}\label{eq:theta}
+  K(\beta) \;=\; \vartheta_3\!\left(0\,\Big|\,\frac{it}{\pi}\right),
+\end{equation}
+where $\vartheta_3(z|\tau) = \sum_{n\in\mathbb{Z}} e^{i\pi n^2\tau + 2\pi i n z}$
+is the Jacobi theta function.  In particular,
+\begin{equation}\label{eq:theta-plain}
+  K(t) \;=\; \sum_{n\in\mathbb{Z}} e^{-t n^2}
+\end{equation}
+(after rescaling $\psi \to \psi/\Rp$ so that $\Rp=1$
+without loss for the spectral-zeta computation, as $\Rp$ re-enters
+multiplicatively in Theorem~\ref{thm:main}).
+
+\textbf{Status: [L0]} — definition of Jacobi theta function.
+\end{proposition}
+
+\begin{proposition}[Functional equation of $K$]\label{prop:jacobi}
+\begin{equation}\label{eq:jacobi}
+  K(t) \;=\; \sqrt{\frac{\pi}{t}}\; K\!\left(\frac{\pi^2}{t}\right),
+  \qquad t > 0.
+\end{equation}
+\textbf{Status: [L0]} — Jacobi imaginary transformation (Poisson summation
+formula; see Titchmarsh, \emph{The Zeta-Function of Riemann}, §2.6).
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Apply the Poisson summation formula $\sum_n f(n) = \sum_m \hat f(m)$
+with $f(x) = e^{-tx^2}$, whose Fourier transform is
+$\hat f(\xi) = \sqrt{\pi/t}\,e^{-\pi^2\xi^2/t}$.
+Setting $\xi = m$ gives \eqref{eq:jacobi}.
+\end{proof}
+
+\medskip
+The asymptotic behaviour follows immediately:
+\begin{itemize}
+  \item $t \to 0^+$:\quad $K(t) \sim \sqrt{\pi/t}$ (heat kernel singularity;
+        Seeley--DeWitt coefficient $a_0 = \sqrt{\pi}$ for $d=1$);
+  \item $t \to +\infty$:\quad $K(t) \to 1$ (only the zero mode $n=0$
+        survives).
+\end{itemize}
+
+% ======================================================================
+\section{Spectral Zeta Function via Mellin Transform}
+\label{sec:mellin}
+% ======================================================================
+
+The zero mode $\lambda_0 = 0$ is excluded from the spectral zeta to
+avoid a pole.  The standard convention is:
+
+\begin{definition}[Spectral zeta of $\Hp$]\label{def:spec-zeta}
+\begin{equation}\label{eq:spec-zeta-def}
+  \ZH \;:=\; \sum_{n \neq 0} \lambda_n^{-s}
+          \;=\; \sum_{n \neq 0} \left(\frac{n^2}{\Rp^2}\right)^{-s}
+          \;=\; \Rp^{2s}\,\sum_{n \neq 0} n^{-2s}.
+\end{equation}
+This Dirichlet series converges absolutely for $\mathrm{Re}(s) > 1/2$
+and extends by analytic continuation (via the Mellin transform below)
+to a meromorphic function on $\mathbb{C}$.
+\end{definition}
+
+\begin{theorem}[Spectral zeta closed form]\label{thm:main}
+\begin{equation}\label{eq:main}
+  \boxed{\ZH \;=\; 2\,\Rp^{2s}\,\zeta(2s),}
+\end{equation}
+where $\zeta$ is the Riemann zeta function.
+
+\textbf{Status: [L0]} — exact algebraic identity (standard result,
+e.g.\ \texttt{B\_base\_spectral\_determinant.tex} §2.2, eq.~(8)).
+\end{theorem}
+
+\begin{proof}
+From \eqref{eq:spec-zeta-def} and $\lambda_{-n} = \lambda_n$:
+\[
+  \ZH \;=\; \Rp^{2s}\!\!\sum_{n \neq 0} n^{-2s}
+       \;=\; \Rp^{2s}\left(\sum_{n=1}^\infty n^{-2s}
+             + \sum_{n=1}^\infty n^{-2s}\right)
+       \;=\; 2\,\Rp^{2s}\,\zeta(2s).
+\]
+Alternatively, via the Mellin representation: the Gamma-integral identity
+$\Gam(s)\,\lambda^{-s} = \int_0^\infty t^{s-1} e^{-\lambda t}\,\mathrm{d}t$
+gives, for $\mathrm{Re}(s) > 1/2$,
+\begin{align*}
+  \ZH &\;=\; \frac{1}{\Gam(s)}\int_0^\infty t^{s-1}
+             \bigl[K(t/\Rp^2) - 1\bigr]\,\mathrm{d}t \\
+      &\;=\; \frac{1}{\Gam(s)}\sum_{n\neq 0}\int_0^\infty
+             t^{s-1} e^{-n^2 t/\Rp^2}\,\mathrm{d}t \\
+      &\;=\; \frac{1}{\Gam(s)}\sum_{n\neq 0}
+             \left(\frac{\Rp}{n}\right)^{2s}\!\Gam(s)
+      \;=\; 2\,\Rp^{2s}\,\zeta(2s).
+\end{align*}
+(The interchange of sum and integral is justified by absolute convergence
+for $\mathrm{Re}(s) > 1/2$.)
+\end{proof}
+
+% ======================================================================
+\section{Comparison with the Completed Riemann Zeta}
+\label{sec:comparison}
+% ======================================================================
+
+\begin{definition}[Completed Riemann zeta]\label{def:xi}
+The \emph{completed Riemann zeta function} (Riemann's $\xi$-function) is
+\begin{equation}\label{eq:xi}
+  \xi(s) \;:=\; \pi^{-s/2}\,\Gam\!\left(\tfrac{s}{2}\right)\,\zeta(s),
+\end{equation}
+satisfying the functional equation $\xi(s) = \xi(1-s)$.
+\end{definition}
+
+Evaluate $\xi$ at the argument $2s$:
+\begin{equation}\label{eq:xi-2s}
+  \xi(2s) \;=\; \pi^{-s}\,\Gam(s)\,\zeta(2s).
+\end{equation}
+Solving for $\zeta(2s)$ and substituting into Theorem~\ref{thm:main}:
+
+\begin{theorem}[Factorisation]\label{thm:factorisation}
+\begin{equation}\label{eq:factorisation}
+  \boxed{\ZH \;=\; G(s)\cdot\xi(2s),}
+\end{equation}
+where the \emph{discrepancy factor} is
+\begin{equation}\label{eq:G}
+  \boxed{G(s) \;=\; \frac{2\,(\pi\Rp^2)^s}{\Gam(s)}.}
+\end{equation}
+\textbf{Status: [L0]} — immediate from \eqref{eq:main} and \eqref{eq:xi-2s}.
+\end{theorem}
+
+\begin{proof}
+From \eqref{eq:xi-2s}: $\zeta(2s) = \pi^s\,[\Gam(s)]^{-1}\,\xi(2s)$.
+Substituting into $\ZH = 2\Rp^{2s}\zeta(2s)$:
+\[
+  \ZH \;=\; 2\Rp^{2s}\,\pi^s\,\frac{1}{\Gam(s)}\,\xi(2s)
+       \;=\; \frac{2(\pi\Rp^2)^s}{\Gam(s)}\cdot\xi(2s)
+       \;=\; G(s)\cdot\xi(2s). \qedhere
+\]
+\end{proof}
+
+% ======================================================================
+\section{Classification of $G(s)$}
+\label{sec:classification}
+% ======================================================================
+
+\begin{proposition}[Properties of $G$]\label{prop:G}
+Let $G(s) = 2(\pi\Rp^2)^s / \Gam(s)$.
+\begin{enumerate}
+  \item \textbf{Entire.}
+        $G$ is an entire function of $s \in \mathbb{C}$.
+  \item \textbf{Not constant.}
+        $|G(s)|$ grows without bound as $|s| \to \infty$ in any fixed
+        vertical strip.
+  \item \textbf{Simple zeros at non-positive integers.}
+        $G(s) = 0$ if and only if $s \in \{0, -1, -2, -3, \ldots\}$,
+        each a simple zero.
+  \item \textbf{Zero-free on the open right half-plane.}
+        $G(s) \neq 0$ for all $s$ with $\mathrm{Re}(s) > 0$.
+\end{enumerate}
+\textbf{Status: [L0]} — standard properties of $1/\Gam(s)$.
+\end{proposition}
+
+\begin{proof}
+\textit{Factor 1:} $({\pi\Rp^2})^s = e^{s\log(\pi\Rp^2)}$ is entire and
+zero-free.
+
+\textit{Factor 2:} $1/\Gam(s)$ is entire (since $\Gam(s)$ is never zero).
+Its zeros are exactly the poles of $\Gam$, which occur at
+$s = 0, -1, -2, \ldots$, each simple.  On the right half-plane
+$\mathrm{Re}(s)>0$, the function $\Gam(s)$ is analytic and non-zero
+(the poles are all at non-positive integers).
+
+\textit{Combining:} $G = e^{s\log(\pi\Rp^2)} \cdot (1/\Gam(s))$ is the
+product of two entire functions, hence entire.  Its zeros coincide with
+the zeros of $1/\Gam(s)$, i.e.\ $s = 0, -1, -2, \ldots$
+\end{proof}
+
+\begin{corollary}[No spurious zeros in critical region]\label{cor:no-spurious}
+For $\mathrm{Re}(s) > 0$, the zeros of $\zeta_H(s) = G(s)\cdot\xi(2s)$
+are in bijection with the zeros of $\xi(2s)$.
+In particular, $G(s)$ introduces \emph{no spurious zeros} in the
+open right half-plane.
+\end{corollary}
+
+% ======================================================================
+\section{Zero Structure and Functional Equation}
+\label{sec:zeros}
+% ======================================================================
+
+\subsection{Trivial zeros of $\zeta_H$}
+
+Trivial zeros of $\zeta(s)$ are at $s = -2, -4, -6, \ldots$
+Hence trivial zeros of $\zeta(2s)$ are at $2s = -2, -4, \ldots$,
+i.e.\ $s = -1, -2, -3, \ldots$
+
+At these points $G(s)$ also has simple zeros (from $1/\Gam(s)$).
+Thus $\zeta_H$ has \emph{double zeros} at $s = -1, -2, -3, \ldots$
+
+At $s = 0$: $\zeta(0) = -1/2 \neq 0$, so $\xi(0) \neq 0$; but
+$G(0) = 0$ (from $1/\Gam(0)$).  Therefore $\zeta_H$ has a simple zero at
+$s = 0$.
+
+\subsection{Non-trivial zeros of $\zeta_H$}
+
+If $\rho = \sigma + i\gamma$ is a non-trivial zero of $\zeta(s)$
+(with $0 < \sigma < 1$), then $\xi(2s) = 0$ at $s = \rho/2$.
+Since $G(\rho/2) \neq 0$ (as $\mathrm{Re}(\rho/2) = \sigma/2 > 0$),
+the factorisation gives:
+\begin{equation}\label{eq:nontrivial}
+  \zeta_H(s) = 0
+  \;\Longleftrightarrow\;
+  \xi(2s) = 0
+  \;\Longleftrightarrow\;
+  2s \text{ is a zero of } \zeta.
+\end{equation}
+
+Non-trivial zeros of $\zeta_H$ lie at $s = \rho/2$, i.e.\
+\[
+  \mathrm{Re}(s) = \frac{\mathrm{Re}(\rho)}{2} \;\in\; (0,\tfrac{1}{2}).
+\]
+
+\begin{corollary}[Axis shift under RH]\label{cor:axis}
+Assuming the Riemann Hypothesis ($\mathrm{Re}(\rho) = 1/2$ for all
+non-trivial zeros of $\zeta$), the non-trivial zeros of $\zeta_H$ lie on
+the vertical line
+\[
+  \mathrm{Re}(s) \;=\; \tfrac{1}{4}.
+\]
+The critical axis for $\zeta_H$ is $\mathrm{Re}(s) = 1/4$,
+not $1/2$.
+\end{corollary}
+
+\subsection{Functional equation of $\zeta_H$}
+
+From $\xi(2s) = \xi(1-2s)$ (functional equation of $\xi$):
+\begin{equation}\label{eq:func-eq}
+  \frac{\zeta_H(s)}{G(s)}
+  \;=\; \xi(2s) \;=\; \xi(1-2s)
+  \;=\; \frac{\zeta_H(\tfrac{1}{2}-s)}{G(\tfrac{1}{2}-s)}.
+\end{equation}
+This encodes a \emph{reflection symmetry about $\mathrm{Re}(s) = 1/4$}:
+\begin{equation}\label{eq:reflect}
+  \zeta_H(s)\,G\!\left(\tfrac{1}{2}-s\right)
+  \;=\; \zeta_H\!\left(\tfrac{1}{2}-s\right)\,G(s).
+\end{equation}
+
+% ======================================================================
+\section{Summary}
+\label{sec:summary}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!4!white, colframe=green!50!black, title=Main results]
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lll}
+\toprule
+Quantity & Result & Status \\
+\midrule
+Eigenvalues of $\Hp$ & $\lambda_n = n^2/\Rp^2$, $n\in\mathbb{Z}$ & [L0] \\
+Heat trace & $K(\beta) = \sum_{n\in\mathbb{Z}} e^{-\beta n^2/\Rp^2}$
+           $= \vartheta_3(0|i\beta/\pi\Rp^2)$ & [L0] \\
+Functional eq.\ of $K$ & $K(t) = \sqrt{\pi/t}\,K(\pi^2/t)$ & [L0] \\
+Spectral zeta (exact) & $\zeta_H(s) = 2\Rp^{2s}\,\zeta(2s)$ & [L0] \\
+Factorisation & $\zeta_H(s) = G(s)\cdot\xi(2s)$ & [L0] \\
+Discrepancy factor & $G(s) = 2(\pi\Rp^2)^s/\Gam(s)$ & [L0] \\
+$G$ entire? & \textbf{Yes} & [L0] \\
+$G$ constant? & \textbf{No} & [L0] \\
+Zeros of $G$ & Simple zeros at $s=0,-1,-2,\ldots$ only & [L0] \\
+$G$ zero-free for $\mathrm{Re}(s)>0$? & \textbf{Yes} & [L0] \\
+Non-trivial zeros of $\zeta_H$ & At $s=\rho/2$, $\zeta(\rho)=0$ & [L0] \\
+Critical axis of $\zeta_H$ (under RH) & $\mathrm{Re}(s) = 1/4$ & [L0,\,RH] \\
+Symmetry axis & $\mathrm{Re}(s) = 1/4$ (not $1/2$) & [L0] \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+% ======================================================================
+\section{Implications for the UBT--RH Programme}
+\label{sec:implications}
+% ======================================================================
+
+\begin{enumerate}
+
+\item \textbf{$\Hp$ on $S^1$ is not a Hilbert--Pólya operator.}
+      The spectrum $\{n^2/\Rp^2 : n \geq 1\}$ consists of perfect squares,
+      not the imaginary parts $\{\gamma_n\}$ of Riemann zeros.
+      The connection to $\zeta(s)$ is through the Mellin transform
+      (as $\zeta_H(s) = 2\Rp^{2s}\zeta(2s)$), not through eigenvalue
+      identification.
+
+\item \textbf{$G(s)$ is benign in the critical strip.}
+      The factorisation $\zeta_H = G\cdot\xi(2s)$ is clean: $G$ has no
+      zeros for $\mathrm{Re}(s)>0$.  The zeros of $\zeta_H$ in the right
+      half-plane are in exact bijection with the zeros of $\xi(2s)$
+      (Corollary~\ref{cor:no-spurious}).
+
+\item \textbf{The axis shift $1/2 \to 1/4$ is structural.}
+      The eigenvalues $\lambda_n = n^2$ (quadratic in $n$) cause the
+      substitution $s \mapsto 2s$ in the zeta argument, which halves
+      all real parts.  An operator with linear spectrum $\lambda_n = n$
+      would give $\zeta_H(s) = 2\zeta(s)$ directly, with critical axis
+      at $\mathrm{Re}(s)=1/2$; however, no natural differential operator
+      on a compact manifold has purely linear spectrum.
+
+\item \textbf{The adelic route is required to recover $\xi(s)$ itself.}
+      The archimedean ($\psi$-circle) computation yields $\xi(2s)$,
+      not $\xi(s)$.  Recovering the standard argument requires the
+      full adelic Poisson summation over $\mathbb{A}_\mathbb{Q}$
+      (Tate's thesis), where the $p$-adic factors contribute
+      $\prod_p (1-p^{-s})^{-1} = \zeta(s)$ and combine with the
+      archimedean $\Gam(s/2)\pi^{-s/2}$ to give $\xi(s)$.
+      This is \textbf{Gap G-RH-2} in the UBT derivation programme:
+      the $p$-adic sector identification $\prod_p Z_p(s) = \zeta(s)$
+      remains open.
+
+\item \textbf{Connection to prior results.}
+      The formula $Z_1(s) = 2\Rp^{2s}\zeta(2s)$ is the same result used
+      in \texttt{B\_base\_spectral\_determinant.tex} (Proposition~\ref{thm:main},
+      which is eq.~(8) there) to compute
+      $\det(-\Delta_{S^1}) = 2\pi\Rp$.  The current document provides the
+      full derivation chain and its $\xi$-factorisation, which was not
+      the focus of that document.  The modular weight $k=1/2$ of
+      $\vartheta_3(\tau)$ (the single-circle case) is consistent with
+      the $k=3/2$ result of \texttt{partition\_function\_modular.md}
+      (the $T^3$ case, $k = d/2 = 3/2$).
+\end{enumerate}
+
+\begin{remark}[Open gap: G-RH-2]
+The present derivation \emph{closes} the question of what $\zeta_H(s)$
+is and how it relates to $\xi$ (answer: $\zeta_H = G\cdot\xi(2s)$,
+$G$ entire and zero-free on $\mathrm{Re}(s)>0$).
+The \emph{open} question is whether the UBT $p$-adic sectors, taken
+together with the $\psi$-sector, reproduce $\xi(s)$ exactly.
+This requires proving $\prod_p Z_p(s) = \zeta(s)$
+from the UBT Euler product structure — Gap G-RH-2.
+\end{remark}
+
+\end{document}
