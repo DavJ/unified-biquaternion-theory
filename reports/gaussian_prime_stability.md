@@ -55,7 +55,7 @@ For $N < 50{,}000$:
 | Type | Count | Description |
 |------|------:|-------------|
 | Complex GP norms | 2550 | $\{2\} \cup \{p \text{ prime}: p \equiv 1 \pmod{4},\; p < 50000\}$ |
-| Axis GP norms | 26 | $\{p^2: p \equiv 3 \pmod{4},\; p^2 < 50000\}$, i.e.\ $p \leq 223$ |
+| Axis GP norms | 26 | $\{p^2: p \equiv 3 \pmod{4}$ prime$,\; p^2 < 50000\}$, i.e.\ prime $p \leq 223$ |
 | **Total** | **2576** | |
 
 ### 2.2 Thinning effect

@@ -31,8 +31,8 @@ with derivatives
 $$V'(x;\,B) = 2x - B\,\psi(x+1), \qquad V''(x;\,B) = 2 - B\,\psi^{(1)}(x+1),$$
 
 where $\psi = (\ln\Gamma)'$ is the digamma function and $\psi^{(1)}$ is the
-trigamma function.  The parameter $C$ is set to zero (it does not affect
-stationarity).
+trigamma function.  The additive constant $C$ is omitted (it does not affect
+stationarity); the model is equivalently $V(x;B) = x^2 - B\,\ln\Gamma(x+1)$.
 
 The stationarity condition $V'(x^*; B) = 0$ gives
 

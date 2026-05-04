@@ -538,10 +538,12 @@ The three natural truncations define three models:
 \end{align}
 
 \textbf{Note on the $-q$ correction.}
-The dominant sub-leading term is $-q$, which is $O(q)$ — the same order as the
-entropy itself.  This is not a small perturbation: at $q = 137$ the correction
-is $-137$, while $q\ln q \approx 683$.  The ratio $S_{\mathrm{lead}}/S_{\mathrm{ex}}$
-departs noticeably from 1 already at moderate primes (Table~\ref{tab:pss:entropy-compare}).
+The Stirling sub-leading correction is the $-q$ term.  Although $q\ln q$ is
+$O(q\log q)$ and $-q$ is $O(q)$, the $-q$ term is the first sub-leading
+correction in the explicit Stirling expansion, and its absolute value $q$
+is comparable to $q\ln q$ at moderate $q$ (e.g.\ at $q=137$: $q\ln q\approx 683$
+versus $|{-q}|=137$, a ratio of 5:1).  This correction is not negligible and
+drives the stability-window shift described below.
 
 \begin{table}[h]
 \centering
