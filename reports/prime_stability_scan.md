@@ -244,3 +244,80 @@ stable = [p for p in primes if p <= 10_000 and is_prime_stable(p, primes)]
 | Approximate spacing | All in $[127, 157]$, range 30 |
 | Structural pattern | None; set determined by local prime-gap statistics |
 | Modular reformulation | $\mu(\Gamma_0(p))(\ln p + 1) < 6p$ — **[Open]** |
+
+---
+
+## 11. Gamma-Function Entropy Reformulation
+
+See `canonical/alpha/prime_stability_set.tex` §S8–S9 for full derivation.
+
+### 11.1 Entropy definitions
+
+The original entropy $S_\text{lead}(q) = q\ln q$ is only the leading asymptotic of
+$\ln\Gamma(q+1)$.  Three models are compared:
+
+| Model | Entropy $S(q)$ |
+|-------|---------------|
+| Leading (original) | $q \ln q$ |
+| Stirling-truncated | $q\ln q - q + \tfrac{1}{2}\ln(2\pi q)$ |
+| Exact $\Gamma$ | $\ln\Gamma(q+1)$ |
+
+### 11.2 Complete stable sets under each model
+
+Exhaustive search, $p \leq 10{,}000$, $q \leq 100{,}000$:
+
+| Model | Stable set $\mathcal{S}$ |
+|-------|:-------------------------|
+| Leading | $\{2,\;127,\;137,\;139,\;151,\;157\}$ |
+| Stirling-truncated | $\{2,\;389,\;397,\;401,\;409,\;421\}$ |
+| Exact $\Gamma$ | $\{2,\;389,\;397,\;401,\;409,\;421\}$ |
+
+**The original set is not robust.**  Adding the Stirling correction $-q$ shifts the
+stability window from $\ln p < 5$ ($p \lesssim e^5 \approx 148$) to $\ln p < 6$
+($p \lesssim e^6 \approx 403$), relocating the entire stable set.
+
+### 11.3 Why the window shifts
+
+| Model | Stationarity $B^*(p)$ | Crossover |
+|-------|----------------------|-----------|
+| Leading | $2p/(\ln p + 1)$ | $\ln p \approx 5$, $p \approx e^5 \approx 148$ |
+| Exact $\Gamma$ | $2p/\psi(p+1) \approx 2p/\ln p$ | $\ln p \approx 6$, $p \approx e^6 \approx 403$ |
+
+### 11.4 Exact Gamma stability bounds for the original candidates
+
+| $p$ | $B(p)$ | $B_\text{low}^\Gamma$ | $B_\text{high}^\Gamma$ | Stable? |
+|----:|-------:|-----------------------:|-----------------------:|:--------|
+| 2   | 1.000  | $-\infty$              | 4.551 | **Yes** |
+| 127 | 42.667 | 50.093 | 53.047 | **No** ($B < B_\text{low}$ by 7.43) |
+| 137 | 46.000 | 54.677 | 55.974 | **No** ($B < B_\text{low}$ by 8.68) |
+| 139 | 46.667 | 55.974 | 57.912 | **No** ($B < B_\text{low}$ by 9.31) |
+| 151 | 50.667 | 59.833 | 61.110 | **No** ($B < B_\text{low}$ by 9.17) |
+| 157 | 52.667 | 61.110 | 63.014 | **No** ($B < B_\text{low}$ by 8.44) |
+
+---
+
+## 12. Continuous Extension and Stationary Points near $1/\alpha$
+
+See `reports/continuous_gamma_entropy_scan.md` for the full scan.  Summary:
+
+$$V(x;\,B) = x^2 - B\,\ln\Gamma(x+1), \qquad V'(x;\,B) = 2x - B\,\psi(x+1).$$
+
+Setting $V'(1/\alpha;\, B^*) = 0$ at $1/\alpha = 137.036$:
+
+$$B^* = \frac{2 \times 137.036}{\psi(138.036)} \approx 55.662.$$
+
+### 12.1 Nearest-prime projection
+
+| Model / $B$ | $x^*$ | Projects to |
+|-------------|------:|:-----------:|
+| Leading, $B = B(137) = 46$ | 135.99 | **137** |
+| Exact $\Gamma$, $B = B(137) = 46$ | 107.74 | 107 |
+| Exact $\Gamma$, $B = B^* = 55.662$ | 137.036 | **137** |
+
+Under both the original leading model (where $B(137) \approx B^*_\text{lead}$)
+and the exact Gamma model (with the shifted coupling $B^*$), the continuous
+minimum near $1/\alpha$ projects to $p = \mathbf{137}$.
+
+The prime $p = 137$ achieves $V(137;\, B^*) - V(x^*;\, B^*) = +0.001$; the next
+candidate, 139, yields $+3.08$ — a ratio of $\approx 3000$.
+
