@@ -173,7 +173,7 @@ $p = 2$).
 > rational primes (not Gaussian prime norms), so they would be **absent** from a
 > strict Gaussian norm-stable set.  The 2D extension must decide whether to
 > restrict to split primes only, or to retain all 1D stable primes via a different
-> mechanism.  This is an **open modelling question** (\textbf{[Open]}).
+> mechanism.  This is an **open modelling question** (**[Open]**).
 
 ---
 
@@ -194,6 +194,7 @@ $p = 2$).
 | Do inert stable primes (127, 139, 151) survive in a strict Gaussian norm model? | **[Open]** — modelling choice |
 | Is there a natural modular interpretation of the split/inert distinction for $\mathcal{S}$? | **[Open]** |
 | Does the 2D potential have a deeper connection to UBT gauge structure? | **[Speculative]** |
+
 
 ---
 
