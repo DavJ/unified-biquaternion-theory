@@ -350,9 +350,9 @@ $0$ if $r_3(p) = 0$ (i.e.\ $p \equiv 7 \pmod{8}$).
 \centering
 \caption{Theta spectral compatibility.  $p \bmod 4$ and $p \bmod 8$
   determine the spectral support.
-  Explicit representations: $137 = 4^2 + 11^2 = 10^2 + 6^2 + 1^2$;\;
-  $157 = 6^2 + 11^2 = 11^2 + 4^2 + 4^2 + 4^2$ (4 sq.\ only for the
-  direct check; $157 = 6^2 + 11^2$ is already a two-square representation).}
+  Explicit representations confirming membership in the respective spectra:
+  $137 = 4^2 + 11^2$ (two-square), $137 = 10^2 + 6^2 + 1^2$ (three-square);\;
+  $157 = 6^2 + 11^2$ (two-square), $157 = 11^2 + 4^2 + 4^2$ (three-square).}
 \label{tab:spr:c4}
 \begin{tabular}{rrrrccrc}
 \toprule
@@ -499,8 +499,13 @@ The prime $p = 2$ is prime-stable (it satisfies the fixed-point condition
 with $B(2) = 1$), but belongs to the \emph{trivial sector} of UBT for
 the following independent structural reasons:
 \begin{enumerate}
-  \item $B(2) = 1$: the one-loop coefficient equals the minimal integer;
-        no non-trivial logarithmic structure ($2\ln 2 - B \approx 0.386 \neq 0$).
+  \item $B(2) = 1$: the one-loop coefficient equals the minimal positive integer.
+        The logarithmic term in $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ at $n=2$
+        contributes $B \cdot 2 \cdot \ln 2 \approx 1.386$, which is comparable
+        in magnitude to the kinetic term $n^2 = 4$.  There is no separation of
+        scales between the two contributions, making the effective potential
+        structurally degenerate (one regime) rather than exhibiting the
+        logarithmic attractor behaviour seen for large $n^* \gg 1$.
   \item $g(X_0(2)) = 0$: the modular curve has genus zero, so the space
         of cusp forms $S_2(\Gamma_0(2))$ is empty and no Hecke eigenvalue
         signal is possible.
