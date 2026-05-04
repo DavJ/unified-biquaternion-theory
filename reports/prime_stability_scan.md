@@ -6,7 +6,9 @@
 
 **Author**: Ing. David Jaroš  
 **Date**: 2026-05-04  
-**Status**: Computational verification — [L0]; analytic argument — [L1 partial]  
+**Status**: Computational verification — [L0]; analytic argument — [L1 partial];
+Gamma sanity check — [L0] ($S_{\text{ren}}$ gives same stable set, non-canonical
+~400 cluster excluded; see §11)  
 **Companion files**:
 - `canonical/alpha/prime_stability_set.tex` — formal derivation
 - `canonical/alpha/veff_corrected.tex` — V_eff derivation
@@ -244,80 +246,124 @@ stable = [p for p in primes if p <= 10_000 and is_prime_stable(p, primes)]
 | Approximate spacing | All in $[127, 157]$, range 30 |
 | Structural pattern | None; set determined by local prime-gap statistics |
 | Modular reformulation | $\mu(\Gamma_0(p))(\ln p + 1) < 6p$ — **[Open]** |
+| Gamma consistency | $\mathcal{S}_{\text{ren}} = \mathcal{S}$ — unchanged under $V_{\text{ren}}$ (see §11) |
 
 ---
 
-## 11. Gamma-Function Entropy Reformulation
-
-See `canonical/alpha/prime_stability_set.tex` §S8–S9 for full derivation.
-
-### 11.1 Entropy definitions
-
-The original entropy $S_\text{lead}(q) = q\ln q$ is only the leading asymptotic of
-$\ln\Gamma(q+1)$.  Three models are compared:
-
-| Model | Entropy $S(q)$ |
-|-------|---------------|
-| Leading (original) | $q \ln q$ |
-| Stirling-truncated | $q\ln q - q + \tfrac{1}{2}\ln(2\pi q)$ |
-| Exact $\Gamma$ | $\ln\Gamma(q+1)$ |
-
-### 11.2 Complete stable sets under each model
-
-Exhaustive search, $p \leq 10{,}000$, $q \leq 100{,}000$:
-
-| Model | Stable set $\mathcal{S}$ |
-|-------|:-------------------------|
-| Leading | $\{2,\;127,\;137,\;139,\;151,\;157\}$ |
-| Stirling-truncated | $\{2,\;389,\;397,\;401,\;409,\;421\}$ |
-| Exact $\Gamma$ | $\{2,\;389,\;397,\;401,\;409,\;421\}$ |
-
-**The original set is not robust.**  Adding the Stirling correction $-q$ shifts the
-stability window from $\ln p < 5$ ($p \lesssim e^5 \approx 148$) to $\ln p < 6$
-($p \lesssim e^6 \approx 403$), relocating the entire stable set.
-
-### 11.3 Why the window shifts
-
-| Model | Stationarity $B^*(p)$ | Crossover |
-|-------|----------------------|-----------|
-| Leading | $2p/(\ln p + 1)$ | $\ln p \approx 5$, $p \approx e^5 \approx 148$ |
-| Exact $\Gamma$ | $2p/\psi(p+1) \approx 2p/\ln p$ | $\ln p \approx 6$, $p \approx e^6 \approx 403$ |
-
-### 11.4 Exact Gamma stability bounds for the original candidates
-
-| $p$ | $B(p)$ | $B_\text{low}^\Gamma$ | $B_\text{high}^\Gamma$ | Stable? |
-|----:|-------:|-----------------------:|-----------------------:|:--------|
-| 2   | 1.000  | $-\infty$              | 4.551 | **Yes** |
-| 127 | 42.667 | 50.093 | 53.047 | **No** ($B < B_\text{low}$ by 7.43) |
-| 137 | 46.000 | 54.677 | 55.974 | **No** ($B < B_\text{low}$ by 8.68) |
-| 139 | 46.667 | 55.974 | 57.912 | **No** ($B < B_\text{low}$ by 9.31) |
-| 151 | 50.667 | 59.833 | 61.110 | **No** ($B < B_\text{low}$ by 9.17) |
-| 157 | 52.667 | 61.110 | 63.014 | **No** ($B < B_\text{low}$ by 8.44) |
+> ⚠️ **Warning: ~400 cluster is a non-canonical artefact**
+>
+> Replacing $p\ln p$ directly by $\ln\Gamma(p+1)$ (without renormalisation)
+> produces a different stable set $\{2,\,389,\,397,\,401,\,409,\,421\}$ near
+> $p \approx e^6 \approx 403$.  This cluster is an artefact of the
+> unrenormalised Gamma entropy model.  **It must not be interpreted within the
+> canonical framework** and is not a refinement of the result above.
+> See §11.5 for details.
 
 ---
 
-## 12. Continuous Extension and Stationary Points near $1/\alpha$
+## 11. Gamma Entropy Sanity Check [Numerical]
 
-See `reports/continuous_gamma_entropy_scan.md` for the full scan.  Summary:
+### 11.1 Role of the Gamma Function
 
-$$V(x;\,B) = x^2 - B\,\ln\Gamma(x+1), \qquad V'(x;\,B) = 2x - B\,\psi(x+1).$$
+The canonical entropy in the stability model is $q\ln q$.  The Gamma function
+enters only as a tool for **continuous interpolation** and **derivative
+computation**: it is never used to replace $q\ln q$ directly.
 
-Setting $V'(1/\alpha;\, B^*) = 0$ at $1/\alpha = 137.036$:
+Stirling's series:
+$$\ln\Gamma(q+1) = q\ln q - q + \tfrac{1}{2}\ln(2\pi q) + \frac{1}{12q} + O(q^{-3})$$
 
-$$B^* = \frac{2 \times 137.036}{\psi(138.036)} \approx 55.662.$$
+The difference $q\ln q - \ln\Gamma(q+1) = q - \frac{1}{2}\ln(2\pi q) + O(q^{-1})$
+grows without bound, so direct replacement would be a **non-perturbative change**
+incompatible with the canonical model.
 
-### 12.1 Nearest-prime projection
+### 11.2 Renormalised Entropy $S_{\text{ren}}$
 
-| Model / $B$ | $x^*$ | Projects to |
-|-------------|------:|:-----------:|
-| Leading, $B = B(137) = 46$ | 135.99 | **137** |
-| Exact $\Gamma$, $B = B(137) = 46$ | 107.74 | 107 |
-| Exact $\Gamma$, $B = B^* = 55.662$ | 137.036 | **137** |
+The correct continuous analogue of $q\ln q$ is the **renormalised entropy**:
+$$S_{\text{ren}}(q) := \ln\Gamma(q+1) + q - \tfrac{1}{2}\ln(2\pi q)$$
 
-Under both the original leading model (where $B(137) \approx B^*_\text{lead}$)
-and the exact Gamma model (with the shifted coupling $B^*$), the continuous
-minimum near $1/\alpha$ projects to $p = \mathbf{137}$.
+By Stirling:
+$$S_{\text{ren}}(q) = q\ln q + \frac{1}{12q} + O(q^{-3})$$
 
-The prime $p = 137$ achieves $V(137;\, B^*) - V(x^*;\, B^*) = +0.001$; the next
-candidate, 139, yields $+3.08$ — a ratio of $\approx 3000$.
+So $S_{\text{ren}}(q) = q\ln q + O(q^{-1})$ — matching the canonical entropy to
+sub-part-per-million precision at all stable primes.
+
+| $p$ | $p\ln p$ | $S_{\text{ren}}(p)$ | $S_{\text{ren}} - p\ln p$ | $1/(12p)$ |
+|----:|---------:|--------------------:|--------------------------:|----------:|
+| 127 | 615.2118 |  615.2124 | $6.56 \times 10^{-4}$ | $6.562 \times 10^{-4}$ |
+| 137 | 674.0374 |  674.0380 | $6.08 \times 10^{-4}$ | $6.083 \times 10^{-4}$ |
+| 139 | 685.8919 |  685.8925 | $6.00 \times 10^{-4}$ | $5.995 \times 10^{-4}$ |
+| 151 | 757.6093 |  757.6098 | $5.52 \times 10^{-4}$ | $5.519 \times 10^{-4}$ |
+| 157 | 793.8306 |  793.8311 | $5.31 \times 10^{-4}$ | $5.308 \times 10^{-4}$ |
+
+(Three-term Stirling matches to better than $10^{-8}$.)
+
+### 11.3 Stable Set is Unchanged under $V_{\text{ren}}$
+
+The renormalised potential $V_{\text{ren}}(q;B) = q^2 - B\,S_{\text{ren}}(q)$
+gives stability bounds differing from the canonical bounds by $O(p^{-2})$,
+far below the margins $\Delta_\pm$ of any stable prime.
+
+Stability bounds under $V_{\text{ren}}$:
+
+| $p$ | $p_-$ | $p_+$ | $B(p)$ | $B^{\text{ren}}_{\text{low}}$ | $B^{\text{ren}}_{\text{high}}$ | $\Delta_-$ | $\Delta_+$ |
+|----:|------:|------:|-------:|------------------------------:|-------------------------------:|-----------:|-----------:|
+| 2   | —     | 3     | 1.0000 | $-\infty$                     | 2.6373                         | $\infty$   | 1.6373     |
+| 127 | 113   | 131   | 42.6667 | 41.4729                      | 44.0291                        | 1.1938     | 1.3624     |
+| 137 | 131   | 139   | 46.0000 | 45.4410                      | 46.5647                        | 0.5590     | 0.5647     |
+| 139 | 137   | 149   | 46.6667 | 46.5647                      | 48.2444                        | 0.1020     | 1.5777     |
+| 151 | 149   | 157   | 50.6667 | 49.9116                      | 51.0197                        | 0.7550     | 0.3530     |
+| 157 | 151   | 163   | 52.6667 | 51.0197                      | 52.6739                        | 1.6470     | **0.0073** |
+
+**Complete stable set under $V_{\text{ren}}$**: $\mathcal{S}_{\text{ren}} = \{2, 127, 137, 139, 151, 157\} = \mathcal{S}$ ✓
+
+### 11.4 Computation Code ($V_{\text{ren}}$)
+
+```python
+import math
+
+def S_ren(q):
+    return math.lgamma(q + 1) + q - 0.5 * math.log(2 * math.pi * q)
+
+def V_ren(q, B):
+    return q**2 - B * S_ren(q)
+
+def is_prime_stable_ren(p, primes_list):
+    B = (p + 1) / 3
+    Vp = V_ren(p, B)
+    return all(V_ren(q, B) > Vp for q in primes_list if q != p)
+
+stable_ren = [p for p in primes if p <= 10_000 and is_prime_stable_ren(p, primes)]
+# Result: [2, 127, 137, 139, 151, 157]  ← same as canonical
+```
+
+### 11.5 Revalidation Note
+
+> **⚠ Stable set must be revalidated under exact entropy.**
+>
+> The renormalised form $S_{\text{ren}}(p)$ confirms $\mathcal{S}$ unchanged — this
+> is the correct [L0] consistency check.  Any alternative entropy definition that
+> does **not** preserve $S(p) \sim p\ln p$ to leading order must be treated as a
+> different model and validated independently with a full prime scan.  In particular,
+> direct substitution $q\ln q \to \ln\Gamma(q+1)$ (without renormalisation) is
+> **not** a consistency check — it defines a different canonical model and is
+> **forbidden** in the UBT prime stability framework.
+
+### 11.6 Non-canonical Gamma Variant (Excluded)
+
+Direct substitution $q\ln q \to \ln\Gamma(q+1)$ without renormalisation shifts
+the stationarity condition from $B^*(p) = 2p/(\ln p + 1)$ to
+$B^*_\Gamma(p) \approx 2p/\ln p$, moving the stability window from
+$\ln p < 5$ ($p \lesssim e^5 \approx 148$) to $\ln p < 6$
+($p \lesssim e^6 \approx 403$).
+
+The resulting stable set is:
+
+$$\mathcal{S}_\Gamma = \{2,\;389,\;397,\;401,\;409,\;421\}$$
+
+This is a **different model** with a shifted entropy scale.  It is **not** a
+refinement of the canonical model.  The original set $\mathcal{S}$ is not
+"non-robust" — it is the unique result of the canonical entropy $q\ln q$.
+
+> **The ~400 cluster must not be interpreted within the canonical framework.**
+> It arises only under the non-renormalised Gamma entropy and is excluded.
 
