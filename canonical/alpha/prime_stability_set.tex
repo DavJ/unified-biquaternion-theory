@@ -499,17 +499,21 @@ entirely in terms of modular invariants:
 \label{sec:pss:gamma}
 %──────────────────────────────────────────────────────────────────────────────
 
-The entropy term $q\ln q$ used in Sections~\ref{sec:pss:s1}--\ref{sec:pss:s7}
-is the leading term of $\ln\Gamma(q+1)$ for large $q$.
-A mathematically exact formulation replaces $q\ln q$ with
-$\ln\Gamma(q+1) = \ln q!$, yielding the \emph{Gamma-entropy potential}:
-\begin{equation}
-  V_\Gamma(q;\,B) \;:=\; q^2 - B\,\ln\Gamma(q+1).
-  \label{eq:pss:Vgamma}
-\end{equation}
-For every positive integer $q$, $\ln\Gamma(q+1) = \ln q!$ exactly.
+The entropy term $q\ln q$ in the canonical potential
+$V(q;B) = q^2 - B\,q\ln q$ is the leading term of $\ln\Gamma(q+1) = \ln q!$
+for large $q$.  This section establishes the precise relationship via the
+Stirling expansion, defines the renormalised entropy $S_{\mathrm{ren}}$ that
+matches $q\ln q$ to $O(q^{-1})$, and shows that the stable set is
+\emph{unchanged} when $S_{\mathrm{ren}}$ replaces $q\ln q$ in the potential.
 
-\subsection{Stirling Expansion and Comparison with the Original Model}
+\begin{infobox}
+\textbf{Canonical model is fixed}: The entropy in the canonical stability
+model is $q\ln q$.  The Gamma function is used here only for continuous
+interpolation and derivative computation; it is not used to replace $q\ln q$
+in the stability condition.
+\end{infobox}
+
+\subsection{Stirling Expansion}
 \label{sec:pss:gamma:stirling}
 
 Stirling's series gives:
@@ -520,150 +524,123 @@ Stirling's series gives:
 \end{equation}
 Hence
 \begin{equation}
-  q\ln q - \ln\Gamma(q+1) \;=\; q - \tfrac{1}{2}\ln(2\pi q)
-    - \frac{1}{12q} + O(q^{-3}),
+  q\ln q \;-\; \ln\Gamma(q+1) \;=\; q - \tfrac{1}{2}\ln(2\pi q)
+    - \frac{1}{12q} + O(q^{-3}).
   \label{eq:pss:stirling-diff}
 \end{equation}
-a quantity that grows as $q\to\infty$.  The two entropy choices are therefore
-\emph{not} asymptotically equivalent for fixed $B$: the difference in $V$ is
-\[
-  V(q;B) - V_\Gamma(q;B) \;=\; B\bigl(\ln\Gamma(q+1) - q\ln q\bigr)
-    \;\approx\; -B\!\left(q - \tfrac{1}{2}\ln(2\pi q)\right),
-\]
-which is $O(Bq)$ — comparable in magnitude to the gradient term $q^2$ for the
-values of $B$ encountered here (see Table~\ref{tab:pss:stirling}).
+This difference grows as $q\to\infty$ and is $O(q)$, so direct substitution of
+$\ln\Gamma(q+1)$ for $q\ln q$ would be a non-perturbative change: it would
+shift the stability window by $\approx 260$ primes (see
+Remark~\ref{rem:pss:gamma:forbidden} below).
+
+\subsection{Renormalised Entropy and Continuous Interpolation}
+\label{sec:pss:gamma:sren}
+
+The correct way to use the Gamma function for continuous interpolation is to
+define the \emph{renormalised entropy}
+\begin{equation}
+  S_{\mathrm{ren}}(q) \;:=\; \ln\Gamma(q+1) \;+\; q \;-\; \tfrac{1}{2}\ln(2\pi q).
+  \label{eq:pss:Sren}
+\end{equation}
+By \eqref{eq:pss:stirling}, this equals
+\begin{equation}
+  S_{\mathrm{ren}}(q) \;=\; q\ln q \;+\; \frac{1}{12q} \;-\; \frac{1}{360q^3} + O(q^{-5}),
+  \label{eq:pss:Sren-expand}
+\end{equation}
+so $S_{\mathrm{ren}}(q) = q\ln q + O(q^{-1})$ exactly.
+The corresponding \emph{renormalised potential} is
+\begin{equation}
+  V_{\mathrm{ren}}(q;\,B) \;:=\; q^2 - B\,S_{\mathrm{ren}}(q).
+  \label{eq:pss:Vren}
+\end{equation}
+$V_{\mathrm{ren}}$ is smooth on $\mathbb{R}_{>0}$ and equals $V(q;B)$ to relative
+precision $O(q^{-2})$ at each prime.
 
 \begin{table}[h]
 \centering
-\caption{Stirling approximation: $\ln\Gamma(p+1)$ vs.\ $p\ln p$
-         and 2-term Stirling $p\ln p - p + \frac{1}{2}\ln(2\pi p)$ at key primes.
-         The 3-term approximation (adding $+1/(12p)$) agrees to better than
-         $10^{-8}$.}
+\caption{$S_{\mathrm{ren}}(p)$ vs.\ $p\ln p$ at key primes.
+         The difference equals $1/(12p)$ to better than $10^{-8}$.}
 \label{tab:pss:stirling}
 \begin{tabular}{rrrrrr}
 \toprule
-$p$ & $p\ln p$ & $\ln\Gamma(p+1)$ & $p\ln p - \ln\Gamma(p+1)$
-    & $\text{Stirling}_2$ & $|\epsilon_2|$ \\
+$p$ & $p\ln p$ & $S_{\mathrm{ren}}(p)$ & $S_{\mathrm{ren}}-p\ln p$ & $1/(12p)$ & $|\epsilon|$ \\
 \midrule
- 127 &  615.212 &  491.553 & 123.658 &  491.553 & $6.6\times10^{-4}$ \\
- 137 &  674.037 &  540.417 & 133.620 &  540.416 & $6.1\times10^{-4}$ \\
- 389 & 2331.555 & 1934.733 & 396.822 & 1934.733 & $2.1\times10^{-4}$ \\
- 421 & 2537.843 & 2126.889 & 410.954 & 2126.889 & $2.0\times10^{-4}$ \\
+ 100 &  460.5170 &  460.5179 & $8.33\times10^{-4}$ & $8.333\times10^{-4}$ & $< 10^{-9}$ \\
+ 127 &  615.2118 &  615.2124 & $6.56\times10^{-4}$ & $6.562\times10^{-4}$ & $< 10^{-9}$ \\
+ 137 &  674.0374 &  674.0380 & $6.08\times10^{-4}$ & $6.083\times10^{-4}$ & $< 10^{-9}$ \\
+ 139 &  685.8919 &  685.8925 & $5.99\times10^{-4}$ & $5.995\times10^{-4}$ & $< 10^{-9}$ \\
+ 151 &  757.6093 &  757.6098 & $5.52\times10^{-4}$ & $5.519\times10^{-4}$ & $< 10^{-9}$ \\
+ 157 &  793.8306 &  793.8311 & $5.31\times10^{-4}$ & $5.308\times10^{-4}$ & $< 10^{-9}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Stationarity Condition under Gamma Entropy}
-\label{sec:pss:gamma:stationary}
-
-The continuous stationarity condition $\partial V_\Gamma/\partial q = 0$ gives
-\begin{equation}
-  2q \;=\; B\,\psi(q+1),
-  \label{eq:pss:gamma-stat}
-\end{equation}
-where $\psi = \Gamma'/\Gamma$ is the digamma function.  The stationarity value is
-\begin{equation}
-  B^*_\Gamma(p) \;:=\; \frac{2p}{\psi(p+1)}.
-  \label{eq:pss:BstarGamma}
-\end{equation}
-For large $p$, $\psi(p+1) = \ln p + \frac{1}{2p} - \frac{1}{12p^2} + O(p^{-4})$,
-so $B^*_\Gamma(p) \approx 2p/\ln p$, compared to $B^*(p) = 2p/(\ln p+1)$ in the
-original model.  The two stationarity values differ by a factor $1 + 1/\ln p$, which
-is $\approx 20\%$ at $p = 100$ and falls below $5\%$ only for $p > 10^{20}$.
-
-The leading-order upper stability condition $B(p) < B^*_\Gamma(p)$ becomes
-\begin{equation}
-  \frac{p+1}{3} \;<\; \frac{2p}{\ln p}
-  \;\;\Longleftrightarrow\;\;
-  (p+1)\ln p \;<\; 6p
-  \;\;\Longrightarrow\;\;
-  \ln p \;<\; 6 - \frac{\ln p}{p} \;\approx\; 6 \quad\text{for large }p,
-  \label{eq:pss:gamma-threshold}
-\end{equation}
-shifting the stability threshold from $e^5 \approx 148$ to $e^6 \approx 403$.
-
-\subsection{Stable Primes under Gamma Entropy}
+\subsection{Stable Set is Unchanged under $V_{\mathrm{ren}}$}
 \label{sec:pss:gamma:stable}
 
-The nearest-prime stability bounds under $V_\Gamma$ are:
+The stability bounds under $V_{\mathrm{ren}}$ use $S_{\mathrm{ren}}$ in place of
+$q\ln q$:
 \begin{align}
-  B^{\Gamma}_{\mathrm{low}}(p)  &\;=\;
-    \frac{p^2 - p_-^2}{\ln\Gamma(p+1) - \ln\Gamma(p_-+1)},
+  B^{\mathrm{ren}}_{\mathrm{low}}(p)  &\;=\;
+    \frac{p^2 - p_-^2}{S_{\mathrm{ren}}(p) - S_{\mathrm{ren}}(p_-)},
   \label{eq:pss:BlowGamma} \\
-  B^{\Gamma}_{\mathrm{high}}(p) &\;=\;
-    \frac{p_+^2 - p^2}{\ln\Gamma(p_++1) - \ln\Gamma(p+1)}.
+  B^{\mathrm{ren}}_{\mathrm{high}}(p) &\;=\;
+    \frac{p_+^2 - p^2}{S_{\mathrm{ren}}(p_+) - S_{\mathrm{ren}}(p)}.
   \label{eq:pss:BhighGamma}
 \end{align}
-Exhaustive computation (all primes $q \leq 100{,}000$ checked for each candidate
-prime $p \leq 10{,}000$) yields the following complete stable set:
+Because $S_{\mathrm{ren}}(p) = p\ln p + 1/(12p) + O(p^{-3})$, these bounds
+differ from $B_{\mathrm{low}}(p)$ and $B_{\mathrm{high}}(p)$ by $O(p^{-2})$
+— far below the margins $\Delta_\pm$ of the stable primes.
 
 \begin{table}[h]
 \centering
-\caption{All prime-stable primes under $V_\Gamma$.  $B(p)=(p+1)/3$;
-         bounds set by nearest primes $p_\pm$;
-         margins $\Delta_- = B(p)-B^{\Gamma}_{\mathrm{low}}$,\;
-         $\Delta_+ = B^{\Gamma}_{\mathrm{high}}-B(p)$.}
+\caption{Stability bounds under $V_{\mathrm{ren}}$.  Values agree with the
+         canonical bounds in Table~\ref{tab:pss:stable} to better than
+         $10^{-3}$ in all cases.}
 \label{tab:pss:gamma:stable}
 \begin{tabular}{rrrrrrrr}
 \toprule
-$p$ & $p_-$ & $p_+$ & $B(p)$ & $B^{\Gamma}_{\mathrm{low}}$ & $B^{\Gamma}_{\mathrm{high}}$
+$p$ & $p_-$ & $p_+$ & $B(p)$ & $B^{\mathrm{ren}}_{\mathrm{low}}$ & $B^{\mathrm{ren}}_{\mathrm{high}}$
     & $\Delta_-$ & $\Delta_+$ \\
 \midrule
-  2 & ---   &   3 &   1.0000 & $-\infty$ &   4.5512 & $\infty$ & 3.5512 \\
-389 & 383   & 397 & 130.0000 & 129.5928  & 131.5467 & 0.4072   & 1.5467 \\
-397 & 389   & 401 & 132.6667 & 131.5467  & 133.2174 & 1.1200   & 0.5507 \\
-401 & 397   & 409 & 134.0000 & 133.2174  & 134.8852 & 0.7826   & 0.8852 \\
-409 & 401   & 419 & 136.6667 & 134.8852  & 137.3807 & 1.7814   & 0.7140 \\
-421 & 419   & 431 & 140.6667 & 139.0396  & 140.6965 & 1.6271   & \textbf{0.0298} \\
+  2 & ---   &   3 &   1.0000 & $-\infty$ &   2.6373 & $\infty$ & 1.6373 \\
+127 & 113   & 131 &  42.6667 &   41.4729 &   44.0291 & 1.1938   & 1.3624 \\
+137 & 131   & 139 &  46.0000 &   45.4410 &   46.5647 & 0.5590   & 0.5647 \\
+139 & 137   & 149 &  46.6667 &   46.5647 &   48.2444 & 0.1020   & 1.5777 \\
+151 & 149   & 157 &  50.6667 &   49.9116 &   51.0197 & 0.7550   & 0.3530 \\
+157 & 151   & 163 &  52.6667 &   51.0197 &   52.6739 & 1.6470   & \textbf{0.0073} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{resultbox}
-\textbf{Prime-stable set under $V_\Gamma$} (verified up to $10^5$):
+\textbf{Gamma-consistency check} \Lzero{}:
+The prime-stable set under $V_{\mathrm{ren}}$ is
 \[
-  \mathcal{S}_\Gamma \;=\; \{2,\;389,\;397,\;401,\;409,\;421\}.
+  \mathcal{S}_{\mathrm{ren}} \;=\; \{2,\;127,\;137,\;139,\;151,\;157\}
+  \;=\; \mathcal{S}.
 \]
-$|\mathcal{S}_\Gamma| = 6$.  The odd elements of $\mathcal{S}_\Gamma$ are
-completely disjoint from those of $\mathcal{S} = \{127, 137, 139, 151, 157\}$.
+Using the renormalised entropy $S_{\mathrm{ren}}$ — which matches $q\ln q$ to
+$O(q^{-1})$ — leaves the canonical stable set completely unchanged.
 \end{resultbox}
 
-The stability window shifts from $[127,157]$ (original) to $[389,421]$ (Gamma),
-a shift of $\approx 262$.  The last survivor, $p = 421$, has an upper margin of
-only $0.0298$ in $B$-space — the same marginal-survival structure as $p = 157$
-in the original model.
-
-For $p > e^6$, the required gap condition becomes
-\[
-  g_+ \;\gtrsim\; \frac{p(\ln p - 6)}{3}.
-\]
-At $p = 431$ this gives $g_\text{req} \approx 9.5$, while the actual gap to
-$p = 433$ is only $2$.  No prime beyond $421$ is stable under $V_\Gamma$.
-
-\subsubsection*{V-difference spot-check at $p = 421$, $B = 140.6667$}
-
-\begin{center}
-\begin{tabular}{rc}
-\toprule
-$q$ & $V_\Gamma(q;\,140.6667) - V_\Gamma(421;\,140.6667)$ \\
-\midrule
-419 & $+19.66$ \\
-\textbf{421} & \textbf{0} (minimum) \\
-431 & $+1.80$ \quad\textbf{(nearest competitor)} \\
-433 & $+22.23$ \\
-\bottomrule
-\end{tabular}
-\end{center}
+\begin{remark}[Forbidden: direct replacement]
+\label{rem:pss:gamma:forbidden}
+Substituting $\ln\Gamma(q+1)$ directly for $q\ln q$ (without the
+correction terms $+q - \frac{1}{2}\ln 2\pi q$) yields a different potential
+whose stationarity condition reads $(p+1)/3 < 2p/\ln p$, shifting the
+stability threshold from $e^5 \approx 148$ to $e^6 \approx 403$ and producing
+a completely different stable set.  This substitution is \textbf{not permitted}
+in the canonical model: it changes the leading entropy scaling and is not
+equivalent to $V(q;B)$ even asymptotically for fixed $B$.
+\end{remark}
 
 \begin{warnbox}
-\textbf{Revalidation required.}
-The stable sets $\mathcal{S}$ and $\mathcal{S}_\Gamma$ are completely different
-(aside from $p = 2$).  All modular-structure claims (Section~\ref{sec:pss:s7})
-and pattern analysis (Section~\ref{sec:pss:s6}) must be repeated for
-$\mathcal{S}_\Gamma$ before any physical conclusions are drawn from the Gamma
-formulation.  The choice between $q\ln q$ and $\ln\Gamma(q+1)$ is not a
-cosmetic rescaling: it shifts the entire stability window by $\approx 260$ in
-prime-index space.
+\textbf{Stable set must be revalidated under any entropy variant.}
+The renormalised potential $V_{\mathrm{ren}}$ confirms $\mathcal{S}$ unchanged
+(\Lzero{} above).  Any further variant (e.g.\ higher-order Stirling corrections,
+non-standard $S(p)$ definitions) must be independently verified against the
+full prime scan before stability claims are made.
 \end{warnbox}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -689,12 +666,13 @@ prime-index space.
   \item \textbf{Modular reformulation}: With $B(p)=\mu(\Gamma_0(p))/3$, stability
         reads $\mu(\Gamma_0(p))(\ln p+1) < 6p$ — a condition on modular indices
         weighted by prime entropy.
-  \item \textbf{Gamma extension (Section~\ref{sec:pss:gamma})}: Replacing
-        $q\ln q$ with $\ln\Gamma(q+1)$ shifts the stability threshold to
-        $\ln p < 6$ ($p < e^6 \approx 403$) and yields a completely different
-        stable set $\mathcal{S}_\Gamma = \{2, 389, 397, 401, 409, 421\}$.
-        The two formulations are not asymptotically equivalent for fixed $B$;
-        the stable sets must be revalidated independently.
+  \item \textbf{Gamma-consistency (Section~\ref{sec:pss:gamma})}: The
+        renormalised entropy $S_{\mathrm{ren}}(p) = \ln\Gamma(p+1) + p
+        - \frac{1}{2}\ln(2\pi p) = p\ln p + O(p^{-1})$ leaves the canonical
+        stable set unchanged: $\mathcal{S}_{\mathrm{ren}} = \mathcal{S}$
+        (\Lzero{}).  Direct replacement of $q\ln q$ by $\ln\Gamma(q+1)$
+        (without the $O(q)$ correction) is non-equivalent and is forbidden
+        in the canonical model.
 \end{enumerate}
 \end{resultbox}
 
