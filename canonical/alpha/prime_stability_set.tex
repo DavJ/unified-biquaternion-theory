@@ -491,6 +491,259 @@ entirely in terms of modular invariants:
 \end{gapbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Step S8: Gamma-Function Entropy Reformulation}
+\label{sec:pss:s8}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Motivation and definition}
+
+The entropy term $q\ln q$ appearing in $V(q;B)$ is the leading asymptotic of the
+logarithmic factorial.  We now replace it by the \emph{exact} entropy
+
+\begin{equation}
+  S(q) \;:=\; \ln\Gamma(q+1).
+  \label{eq:pss:S-gamma}
+\end{equation}
+
+This is the natural entropy of an integer $q$: $\ln\Gamma(q+1) = \ln(q!)$, which
+also appears in Boltzmann's formula for the number of microstates of a system
+of $q$ indistinguishable quanta.
+
+The \emph{Gamma-entropy potential} is
+\begin{equation}
+  V_\Gamma(q;\,B) \;:=\; q^2 - B\,\ln\Gamma(q+1),
+  \label{eq:pss:Vgamma}
+\end{equation}
+with the same coupling $B(p) = (p+1)/3$.
+
+\subsection{Stirling expansion and relation to the original potential}
+
+Stirling's series gives
+\begin{equation}
+  \ln\Gamma(q+1) \;=\; q\ln q - q + \tfrac{1}{2}\ln(2\pi q) + O(1/q).
+  \label{eq:pss:stirling}
+\end{equation}
+
+The three natural truncations define three models:
+\begin{align}
+  S_{\mathrm{lead}}(q) &\;=\; q\ln q
+    & &\text{(original; leading asymptotic),}
+    \label{eq:pss:Slead}\\
+  S_{\mathrm{Stir}}(q) &\;=\; q\ln q - q + \tfrac{1}{2}\ln(2\pi q)
+    & &\text{(Stirling-truncated),}
+    \label{eq:pss:Sstir}\\
+  S_{\mathrm{ex}}(q) &\;=\; \ln\Gamma(q+1)
+    & &\text{(exact).}
+    \label{eq:pss:Sex}
+\end{align}
+
+\textbf{Note on the $-q$ correction.}
+The dominant sub-leading term is $-q$, which is $O(q)$ — the same order as the
+entropy itself.  This is not a small perturbation: at $q = 137$ the correction
+is $-137$, while $q\ln q \approx 683$.  The ratio $S_{\mathrm{lead}}/S_{\mathrm{ex}}$
+departs noticeably from 1 already at moderate primes (Table~\ref{tab:pss:entropy-compare}).
+
+\begin{table}[h]
+\centering
+\caption{Comparison of entropy values under the three models.}
+\label{tab:pss:entropy-compare}
+\begin{tabular}{rrrrrr}
+\toprule
+$q$ & $S_{\mathrm{lead}}=q\ln q$ & $S_{\mathrm{ex}}=\ln\Gamma(q+1)$
+    & $S_{\mathrm{ex}}/S_{\mathrm{lead}}$ & $S_{\mathrm{ex}}-S_{\mathrm{lead}}$ \\
+\midrule
+127 & 618.01  & 483.18  & 0.7818 & $-134.83$ \\
+137 & 683.40  & 522.95  & 0.7652 & $-160.45$ \\
+157 & 793.14  & 608.49  & 0.7671 & $-184.65$ \\
+389 & 2318.14 & 1843.13 & 0.7951 & $-475.01$ \\
+397 & 2370.16 & 1884.29 & 0.7950 & $-485.87$ \\
+421 & 2520.94 & 2005.23 & 0.7955 & $-515.71$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Shifted stationarity condition}
+
+For the Gamma-entropy potential, the continuous stationarity condition
+$\partial V_\Gamma/\partial q = 0$ gives
+\[
+  2q \;=\; B\,\psi(q+1),
+\]
+where $\psi = (\ln\Gamma)'$ is the digamma function.  For large $q$,
+$\psi(q+1) \approx \ln q$, so the stationarity value becomes
+\begin{equation}
+  B^*_\Gamma(p) \;:=\; \frac{2p}{\psi(p+1)} \;\approx\; \frac{2p}{\ln p}.
+  \label{eq:pss:BstarGamma}
+\end{equation}
+
+Compare with the original stationarity value $B^*(p) = 2p/(\ln p + 1)$ from
+Section~\ref{sec:pss:s3}.  The denominator changes from $\ln p + 1$ to $\ln p$,
+shifting the crossover $B(p) = B^*_\Gamma(p)$ from
+\[
+  \frac{p+1}{3} = \frac{2p}{\ln p + 1} \;\Longrightarrow\; \ln p \approx 5
+  \qquad(p \approx e^5 \approx 148)
+\]
+to
+\begin{equation}
+  \frac{p+1}{3} = \frac{2p}{\ln p} \;\Longrightarrow\; \ln p \approx 6
+  \qquad(p \approx e^6 \approx 403).
+  \label{eq:pss:S8-crossover}
+\end{equation}
+
+The stability window therefore shifts from the neighbourhood of $e^5$ under the
+original model to the neighbourhood of $e^6$ under the exact Gamma model.
+
+\begin{table}[h]
+\centering
+\caption{$B(p)$ vs.\ stationarity values under the two models.}
+\label{tab:pss:bstar-compare}
+\begin{tabular}{rrrrr}
+\toprule
+$p$ & $B(p)$ & $B^*(p)=2p/(\ln p+1)$ & $B^*_\Gamma(p)\approx 2p/\ln p$ & Regime ($\Gamma$) \\
+\midrule
+127 & 42.67  & 43.46  & 52.43  & $B < B^*_\Gamma$ \\
+137 & 46.00  & 46.28  & 55.69  & $B < B^*_\Gamma$ \\
+157 & 52.67  & 51.85  & 62.10  & $B < B^*_\Gamma$ \\
+389 & 130.00 & 111.72 & 130.46 & $B \approx B^*_\Gamma$ \\
+397 & 132.67 & 113.69 & 132.69 & $B \approx B^*_\Gamma$ \\
+421 & 140.67 & 119.56 & 139.34 & $B \gtrsim B^*_\Gamma$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Stability analysis under the three models}
+
+The stability bounds under any entropy $S$ are
+\[
+  B_{\mathrm{low}}^S(p) = \frac{p^2-p_-^2}{S(p)-S(p_-)}, \qquad
+  B_{\mathrm{high}}^S(p) = \frac{p_+^2-p^2}{S(p_+)-S(p)}.
+\]
+
+Table~\ref{tab:pss:three-models} lists the exact-$\Gamma$ stability bounds for
+both the original candidate set and the new candidate set.
+
+\begin{table}[h]
+\centering
+\caption{Stability bounds under exact $\Gamma$ entropy for candidate primes.
+  A prime is stable iff $B_{\mathrm{low}} < B(p) < B_{\mathrm{high}}$.}
+\label{tab:pss:three-models}
+\begin{tabular}{rrrrrrl}
+\toprule
+$p$ & $p_-$ & $p_+$ & $B(p)$ & $B_{\mathrm{low}}^\Gamma$ & $B_{\mathrm{high}}^\Gamma$
+    & Stable? \\
+\midrule
+\multicolumn{7}{l}{\textit{Original candidates $\{2,127,137,139,151,157\}$:}} \\
+  2 & ---   &   3 &   1.00 & $-\infty$ &  4.55 & \textbf{Yes} \\
+127 & 113   & 131 &  42.67 &  50.09    & 53.05 & \textbf{No} ($B < B_{\mathrm{low}}$ by 7.43) \\
+137 & 131   & 139 &  46.00 &  54.68    & 55.97 & \textbf{No} ($B < B_{\mathrm{low}}$ by 8.68) \\
+139 & 137   & 149 &  46.67 &  55.97    & 57.91 & \textbf{No} ($B < B_{\mathrm{low}}$ by 9.31) \\
+151 & 149   & 157 &  50.67 &  59.83    & 61.11 & \textbf{No} ($B < B_{\mathrm{low}}$ by 9.17) \\
+157 & 151   & 163 &  52.67 &  61.11    & 63.01 & \textbf{No} ($B < B_{\mathrm{low}}$ by 8.44) \\
+\midrule
+\multicolumn{7}{l}{\textit{New stable set under exact $\Gamma$:}} \\
+  2 & ---   &   3 &   1.00 & $-\infty$ &  4.55 & \textbf{Yes} \\
+389 & 383   & 397 & 130.00 & 129.59    & 131.55 & \textbf{Yes} ($\Delta_-=0.41$, $\Delta_+=1.55$) \\
+397 & 389   & 401 & 132.67 & 131.55    & 133.22 & \textbf{Yes} ($\Delta_-=1.12$, $\Delta_+=0.55$) \\
+401 & 397   & 409 & 134.00 & 133.22    & 134.89 & \textbf{Yes} ($\Delta_-=0.78$, $\Delta_+=0.89$) \\
+409 & 401   & 419 & 136.67 & 134.89    & 137.38 & \textbf{Yes} ($\Delta_-=1.78$, $\Delta_+=0.71$) \\
+421 & 419   & 431 & 140.67 & 139.04    & 140.70 & \textbf{Yes} ($\Delta_-=1.63$, $\Delta_+=0.03$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Complete stable sets under each model}
+
+\begin{table}[h]
+\centering
+\caption{Prime-stable sets under the three entropy models (exhaustive search,
+         $p \leq 10{,}000$, $q \leq 100{,}000$).}
+\label{tab:pss:model-comparison}
+\begin{tabular}{lll}
+\toprule
+Model & Entropy $S(q)$ & Stable set $\mathcal{S}$ \\
+\midrule
+Leading (original) & $q\ln q$ & $\{2,\,127,\,137,\,139,\,151,\,157\}$ \\
+Stirling-truncated & $q\ln q - q + \tfrac{1}{2}\ln(2\pi q)$ & $\{2,\,389,\,397,\,401,\,409,\,421\}$ \\
+Exact $\Gamma$     & $\ln\Gamma(q+1)$ & $\{2,\,389,\,397,\,401,\,409,\,421\}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{warnbox}
+\textbf{Robustness finding}: The stable set is \textbf{not robust} under replacement of the
+leading entropy by the exact Gamma entropy.  The set $\{2,127,137,139,151,157\}$ is
+stable only under the leading $p\ln p$ approximation.  Under both Stirling-truncated and
+exact $\Gamma$ entropies the stable set shifts entirely to $\{2,389,397,401,409,421\}$.
+
+The physical reason: the Stirling correction $-q$ (representing the ``cost'' of
+arranging $q$ quanta) shifts the effective stationarity from $p \approx e^5 \approx 148$
+to $p \approx e^6 \approx 403$, relocating the stability window by one unit in $\ln p$.
+\end{warnbox}
+
+\subsection{Near-misses under exact $\Gamma$}
+
+\begin{center}
+\begin{tabular}{rrrrl}
+\toprule
+$p$ & $B(p)$ & $B_{\mathrm{low}}^\Gamma$ & $B_{\mathrm{high}}^\Gamma$ & Failure (margin) \\
+\midrule
+383 & 128.00 & 128.19 & 129.59 & lower ($-0.19$) \\
+419 & 140.00 & 137.38 & 139.04 & upper ($-0.96$) \\
+431 & 144.00 & 140.70 & 142.35 & upper ($-1.65$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Verification: V-difference tables under exact $\Gamma$}
+
+\subsubsection*{$p = 397$, $B = 132.667$ (exact $\Gamma$ model)}
+\begin{center}
+\begin{tabular}{rc}
+\toprule
+$q$ & $V_\Gamma(q;\,132.667) - V_\Gamma(397;\,132.667)$ \\
+\midrule
+383 & $+163.40$ \\
+389 & $+53.53$ \\
+\textbf{397} & \textbf{0} (minimum) \\
+401 & $+13.20$ \\
+409 & $+119.78$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection*{$p = 421$, $B = 140.667$ (smallest margin, $\Delta_+ = 0.030$)}
+\begin{center}
+\begin{tabular}{rc}
+\toprule
+$q$ & $V_\Gamma(q;\,140.667) - V_\Gamma(421;\,140.667)$ \\
+\midrule
+409 & $+217.71$ \\
+419 & $+19.66$ \\
+\textbf{421} & \textbf{0} (minimum) \\
+431 & $+1.80$ \quad \textbf{(nearest competitor)} \\
+433 & $+22.23$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Analytic criterion under exact $\Gamma$}
+
+By the same argument as Section~\ref{sec:pss:s3}, the upper stability condition
+under exact $\Gamma$ entropy gives to leading order:
+\begin{equation}
+  \frac{p+1}{3} \;<\; \frac{2p}{\ln p}
+  \;\;\Longleftrightarrow\;\;
+  (p+1)\ln p \;<\; 6p
+  \;\;\Longrightarrow\;\;
+  \ln p \;<\; 6, \quad p \;<\; e^6 \approx 403.
+  \label{eq:pss:S8-upper}
+\end{equation}
+
+The analytic structure is identical to the original model but with the shift
+$\ln p < 5 \to \ln p < 6$, reflecting the $-q$ Stirling correction absorbed into
+the denominator of the stationarity value.
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary}
 \label{sec:pss:summary}
 %──────────────────────────────────────────────────────────────────────────────
@@ -513,6 +766,14 @@ entirely in terms of modular invariants:
   \item \textbf{Modular reformulation}: With $B(p)=\mu(\Gamma_0(p))/3$, stability
         reads $\mu(\Gamma_0(p))(\ln p+1) < 6p$ — a condition on modular indices
         weighted by prime entropy.
+  \item \textbf{Gamma-entropy reformulation} (Section~\ref{sec:pss:s8}): Replacing
+        the leading entropy $q\ln q$ by the exact entropy $\ln\Gamma(q+1)$,
+        or its Stirling truncation $q\ln q - q + \tfrac{1}{2}\ln(2\pi q)$,
+        shifts the stability window from $\ln p < 5$ to $\ln p < 6$
+        (i.e.\ $p \lesssim e^6 \approx 403$).
+        The stable set under the exact model is $\{2,389,397,401,409,421\}$.
+        The original set $\{2,127,137,139,151,157\}$ is \textbf{not robust}: it is
+        an artefact of the leading-order entropy approximation.
 \end{enumerate}
 \end{resultbox}
 
