@@ -91,7 +91,7 @@ def energy(n: int) -> float:
     return float(n * n)
 
 
-def entropy(n: int) -> float:
+def entropy(n: float) -> float:
     """S(n) = n · ln(n)  — statistical entropy of the n-th Fourier mode."""
     if n <= 0:
         raise ValueError(f"entropy requires n > 0, got {n}")
@@ -177,11 +177,9 @@ def error_metrics(
     Compute error metrics between candidate integers and reference set.
 
     Returns a list of (candidate, nearest_reference, absolute_distance).
-    If candidates is empty, returns metrics from each reference to the
-    nearest candidate (reversed direction).
+    If candidates is empty, returns an empty list.
     """
     if not candidates:
-        # No candidates: report distances from reference to empty set
         return []
     metrics = []
     for c in candidates:
