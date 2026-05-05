@@ -233,7 +233,7 @@ The individual factors satisfy:
 
 ```
 θ(t)   =  t^{−1/2} θ(1/t)              (Jacobi)
-ζ(t)   analytically continues to ξ(t)/Γ(t/2)π^{t/2}  (Riemann)
+ζ(t)   has an analytic continuation to ξ(t)/Γ(t/2)π^{t/2}  (Riemann)
 ```
 
 The functional equation of ξ(s) = π^{−s/2} Γ(s/2) ζ(s) is ξ(s) = ξ(1−s).
