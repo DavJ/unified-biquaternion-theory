@@ -41,7 +41,10 @@ is too small for a statistically meaningful comparison.
 - The ΔV spectrum is real, monotone in p (for primes > 2), and shows
   irregular spacing, which is neither clearly Poisson nor Wigner-Dyson.
 - The sample size is insufficient for formal spectral classification.
+  Reliable nearest-neighbour spacing statistics typically require N ≥ 50
+  eigenvalues; the current set of 6 primes yields only 5 spacings.
 - A proto Hilbert–Pólya structure cannot be confirmed or excluded from
   this data alone.
-- Extension to all primes up to ~1000 would be required for a meaningful
-  statistical test.
+- Extension to all primes up to ~1000 (roughly 170 primes) would be
+  required for a statistically meaningful test against Poisson or
+  Wigner-Dyson distributions.

@@ -41,6 +41,9 @@ The expected values and the literal computation diverge significantly because:
        V(q = p₀, p) = p₀² − ((p+1)/3)·p₀·ln(p₀)
    This is linear in p, giving ΔV_alt(p) = ((p₀+1)/3 − (p+1)/3)·p₀·ln(p₀)
    = (p₀ − p)/3 · p₀·ln(p₀), which is proportional to (p₀ − p).
+   No canonical derivation of this formula is present in the current UBT
+   documents; extending the analysis to a formally derived V(q; B(p)) in
+   canonical/fields/ would resolve the ambiguity.
 
 3. **Numerical comparison with the alternative formula** (V at q = p₀, reversed sign):
 
