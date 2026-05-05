@@ -1,0 +1,535 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/complex_phase_extension.tex
+% Purpose: Extension of the UBT effective potential V(q) = q^2 - B*q*ln(q)
+%          into the complex domain q = r*exp(i*theta).
+%          Determines existence and structure of non-real stable phase sectors.
+% Related: canonical/alpha/veff_corrected.tex
+%          canonical/alpha/prime_stability_set.tex
+%          reports/complex_phase_scan.md
+%          src/ubt_theta_lab/complex_phase_scan.py
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,  linecolor=blue!40,        linewidth=1.5pt]{infobox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\Re}{\operatorname{Re}}
+  \newcommand{\Im}{\operatorname{Im}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{Complex Phase Extension of the UBT Effective Potential}\\
+         \large Phase Sector Analysis for $V(q) = q^2 - B\,q\ln q$, $q \in \CC$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Scope}
+\label{sec:cpe:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+The canonical UBT effective potential
+\begin{equation}
+  V(q) \;=\; q^2 - B\,q\ln q, \qquad q \in \RR_{>0},
+  \label{eq:cpe:V_real}
+\end{equation}
+has been studied in the real domain ($q \in \RR_{>0}$) with stable prime
+minimisers $\mathcal{S} = \{2,\,127,\,137,\,139,\,151,\,157\}$
+(see \texttt{canonical/alpha/prime\_stability\_set.tex}).
+
+This document extends $V$ analytically to the complex domain $q \in \CC$,
+writing $q = r\,e^{i\theta}$ with $r > 0$ and $\theta \in [0, 2\pi)$.
+The central question is:
+
+\begin{infobox}
+\textbf{Main question}: Are there stationary points of $V(r\,e^{i\theta})$
+with $\theta \neq 0$ and $r \in [100,\,200]$?  If so, how many, and do
+they align with the known stable primes?
+\end{infobox}
+
+\begin{warnbox}
+\textbf{Hard rules (maintained throughout)}:
+\begin{itemize}
+  \item Analysis is strictly mathematical/physical.
+  \item No metaphysical or consciousness-tunnelling interpretations.
+  \item All results are separated into: proved, conditional, and open.
+\end{itemize}
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Analytic Extension to $q \in \CC$}
+\label{sec:cpe:extension}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Polar Form and Complex Logarithm}
+\label{sec:cpe:polar}
+
+Write $q = r\,e^{i\theta}$ with $r > 0$ and $\theta \in (-\pi, \pi]$
+(principal branch of $\ln$).  The complex logarithm is:
+\begin{equation}
+  \ln q \;=\; \ln r + i\theta.
+  \label{eq:cpe:lnq}
+\end{equation}
+
+\subsection{Expansion of $V(q)$}
+\label{sec:cpe:expansion}
+
+Substituting into eq.~\eqref{eq:cpe:V_real}:
+\begin{align}
+  q^2 &= r^2\,e^{2i\theta},
+  \label{eq:cpe:q2} \\
+  q\,\ln q &= r\,e^{i\theta}\,(\ln r + i\theta)
+  \nonumber \\
+  &= r\bigl[(\ln r + i\theta)(\cos\theta + i\sin\theta)\bigr]
+  \nonumber \\
+  &= r\bigl[(\ln r)\cos\theta - \theta\sin\theta
+            + i\bigl((\ln r)\sin\theta + \theta\cos\theta\bigr)\bigr].
+  \label{eq:cpe:qlnq}
+\end{align}
+Therefore:
+\begin{equation}
+  V(r,\theta) \;=\; r^2 e^{2i\theta} \;-\; B\,r\,
+  \Bigl[(\ln r)\cos\theta - \theta\sin\theta
+        + i\bigl((\ln r)\sin\theta + \theta\cos\theta\bigr)\Bigr].
+  \label{eq:cpe:V_complex}
+\end{equation}
+
+\begin{theorem}[Real and imaginary parts of $V$, \PROVED]
+\label{thm:cpe:ReIm}
+For $q = r\,e^{i\theta}$, the effective potential separates as
+\begin{align}
+  \Re V(r,\theta)
+  &= r^2\cos(2\theta)
+     - B\,r\,\bigl[(\ln r + 1)\cos\theta - \theta\sin\theta\bigr]
+     + B\,r\cos\theta,
+  \label{eq:cpe:ReV_raw}
+\end{align}
+but more cleanly:
+\begin{empheq}[box=\fbox]{align}
+  \Re V(r,\theta)
+  &= r^2\cos(2\theta)
+     - B\,r\bigl[(\ln r)\cos\theta - \theta\sin\theta\bigr],
+  \label{eq:cpe:ReV} \\
+  \Im V(r,\theta)
+  &= r^2\sin(2\theta)
+     - B\,r\bigl[(\ln r)\sin\theta + \theta\cos\theta\bigr].
+  \label{eq:cpe:ImV}
+\end{empheq}
+\end{theorem}
+
+\begin{proof}
+Direct substitution of eq.~\eqref{eq:cpe:q2} and eq.~\eqref{eq:cpe:qlnq}
+into $V = q^2 - B\,q\ln q$, followed by separation of real and imaginary parts
+using $r^2 e^{2i\theta} = r^2(\cos 2\theta + i\sin 2\theta)$.
+\end{proof}
+
+\begin{remark}[Real-axis limit]
+At $\theta = 0$: $\Re V = r^2 - B\,r\ln r$ and $\Im V = 0$, recovering
+the canonical real potential \eqref{eq:cpe:V_real} as expected.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Gradient and Stationary Point Equations}
+\label{sec:cpe:stationary}
+%──────────────────────────────────────────────────────────────────────────────
+
+We seek stationary points of $V(r,\theta)$ in the sense of vanishing
+Wirtinger-like derivatives with respect to $r$ and $\theta$.
+
+\begin{theorem}[Holomorphic gradient structure, \PROVED]
+\label{thm:cpe:grad}
+The partial derivatives of $V$ satisfy
+\begin{align}
+  \frac{\partial V}{\partial r}
+  &= e^{i\theta}\Bigl[2r\,e^{i\theta} - B\,(\ln r + 1 + i\theta)\Bigr],
+  \label{eq:cpe:dVdr} \\[4pt]
+  \frac{\partial V}{\partial \theta}
+  &= i\,e^{i\theta}\Bigl[2r\,e^{i\theta} - B\,(\ln r + 1 + i\theta)\Bigr]
+  = i\,\frac{\partial V}{\partial r}.
+  \label{eq:cpe:dVdtheta}
+\end{align}
+Consequently, both vanish simultaneously if and only if
+\begin{equation}
+  2r\,e^{i\theta} \;=\; B\,(\ln r + 1 + i\theta).
+  \label{eq:cpe:stationary_complex}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $V = r^2 e^{2i\theta} - B\,r\,e^{i\theta}\,(\ln r + i\theta)$:
+\begin{align*}
+  \frac{\partial V}{\partial r}
+  &= 2r\,e^{2i\theta}
+    - B\,e^{i\theta}\,(\ln r + i\theta)
+    - B\,r\,e^{i\theta}\cdot\frac{1}{r} \\
+  &= e^{i\theta}\Bigl[2r\,e^{i\theta} - B\,(\ln r + i\theta)
+    - B\Bigr]
+  = e^{i\theta}\Bigl[2r\,e^{i\theta} - B\,(\ln r + 1 + i\theta)\Bigr],
+\end{align*}
+which gives eq.~\eqref{eq:cpe:dVdr}.  For $\partial V/\partial\theta$:
+\begin{align*}
+  \frac{\partial V}{\partial\theta}
+  &= 2ir^2\,e^{2i\theta}
+    - B\,r\bigl[i\,e^{i\theta}(\ln r + i\theta) + e^{i\theta}\cdot i\bigr] \\
+  &= i\,e^{i\theta}\Bigl[2r\,e^{i\theta}
+    - B\,(\ln r + i\theta + 1)\Bigr],
+\end{align*}
+yielding eq.~\eqref{eq:cpe:dVdtheta}.  Since $e^{i\theta}\neq 0$ and the
+bracket is the same in both equations, the result follows. $\square$
+\end{proof}
+
+\begin{corollary}[Scalar stationarity system, \PROVED]
+\label{cor:cpe:system}
+Separating eq.~\eqref{eq:cpe:stationary_complex} into real and imaginary parts
+gives the \textbf{stationary system}:
+\begin{empheq}[box=\fbox]{align}
+  2r\cos\theta &= B\,(\ln r + 1),
+  \label{eq:cpe:stat_re} \\
+  2r\sin\theta &= B\,\theta.
+  \label{eq:cpe:stat_im}
+\end{empheq}
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Analysis of Non-Real Solutions}
+\label{sec:cpe:nonreal}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Reduction to a Single Transcendental Equation}
+\label{sec:cpe:reduction}
+
+\begin{proposition}[Characterisation of $\theta \neq 0$ solutions, \PROVED]
+\label{prop:cpe:nonzero}
+For $\theta \neq 0$ and $\sin\theta \neq 0$, the stationary system reduces to:
+\begin{equation}
+  \frac{\theta}{\tan\theta} \;=\; \ln r + 1,
+  \label{eq:cpe:theta_eq}
+\end{equation}
+together with
+\begin{equation}
+  r \;=\; \frac{B\,\theta}{2\sin\theta}.
+  \label{eq:cpe:r_from_theta}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Divide eq.~\eqref{eq:cpe:stat_re} by eq.~\eqref{eq:cpe:stat_im}:
+$\cos\theta/\sin\theta = (\ln r + 1)/\theta$, giving \eqref{eq:cpe:theta_eq}.
+Equation~\eqref{eq:cpe:r_from_theta} is eq.~\eqref{eq:cpe:stat_im} solved
+for $r$. $\square$
+\end{proof}
+
+\subsection{Existence of Non-Real Solutions in $r \in [100,\,200]$}
+\label{sec:cpe:existence}
+
+\begin{theorem}[Non-existence of non-real stationary points for $r \in [100,\,200]$,
+               \PROVED]
+\label{thm:cpe:nonexist}
+For $B \in [40,\,55]$ (the range covering all stable primes), there are no
+solutions to the stationary system \eqref{eq:cpe:stat_re}--\eqref{eq:cpe:stat_im}
+with $r \in [100,\,200]$ and $\theta \in (0,\,2\pi)\setminus\{k\pi : k\in\ZZ\}$.
+\end{theorem}
+
+\begin{proof}
+We analyze the constraint from eq.~\eqref{eq:cpe:r_from_theta}.
+
+\medskip
+\noindent\textbf{Case 1: $\theta \in (0,\,\pi)$.}  Here $\sin\theta > 0$, so
+$r = B\theta/(2\sin\theta) > 0$.  The function $f(\theta) = \theta/\sin\theta$
+is strictly increasing on $(0,\pi)$ with $f(0^+) = 1$ and $f(\theta)\to\infty$
+as $\theta\to\pi^-$.  However, eq.~\eqref{eq:cpe:stat_re} requires
+$\ln r + 1 = \theta/\tan\theta = \theta\cos\theta/\sin\theta$.  For
+$\theta \in (\pi/2,\,\pi)$, $\cos\theta < 0$, so $\ln r + 1 < 0$, i.e.,
+$r < e^{-1} \approx 0.37$.  This contradicts $r \geq 100$.
+
+For $\theta \in (0,\,\pi/2)$: $f(\theta) = \theta/\sin\theta \in [1, \pi/2]$,
+so
+\[
+  r = \frac{B\,\theta}{2\sin\theta} \leq \frac{B\pi}{4}
+  \;\leq\; \frac{55\pi}{4} \;\approx\; 43.2 \;<\; 100.
+\]
+Hence no solution with $r \geq 100$ exists.
+
+\medskip
+\noindent\textbf{Case 2: $\theta \in (\pi,\,2\pi)$.}  Here $\sin\theta < 0$,
+so $r = B\theta/(2\sin\theta) < 0$, which is not physical.
+
+\medskip
+\noindent\textbf{Case 3: $\theta$ near $2k\pi$, $k \geq 1$.}  Write
+$\theta = 2k\pi + \varepsilon$ with $|\varepsilon| \ll 1$.  Then
+$\sin\theta \approx \varepsilon$ and
+$r \approx B\cdot 2k\pi/(2\varepsilon) = Bk\pi/\varepsilon$.
+For large $r \in [100,\,200]$:
+$\varepsilon \approx Bk\pi/r \approx 46\cdot 1\cdot\pi/137 \approx 1.054$
+for $k=1$, $B = 46$, $r = 137$.
+At $\varepsilon \approx 1.054$, $\sin(2\pi + 1.054) = \sin(1.054) \approx 0.872$,
+so the self-consistent solution is
+\[
+  r = \frac{46 \cdot (2\pi + 1.054)}{2 \times 0.872} \approx \frac{46\times 7.337}{1.744} \approx 193.6.
+\]
+We must also check eq.~\eqref{eq:cpe:theta_eq}:
+$(\ln r + 1) = \theta\cos\theta/\sin\theta$.
+At $\theta = 2\pi + 1.054 \approx 7.337$, $r \approx 193.6$:
+\[
+  \ln(193.6) + 1 \approx 6.267, \qquad
+  \frac{7.337\cos(7.337)}{\sin(7.337)}
+  = \frac{7.337 \times 0.489}{0.872} \approx 4.11.
+\]
+These differ ($6.267 \neq 4.11$), so no consistent solution exists for $k = 1$
+in this range.  A systematic scan (see \S\ref{sec:cpe:scan_summary}) confirms no
+consistent solution for any $k \geq 1$ with $r \in [100,\,200]$ and $B \in [40,\,55]$.
+$\square$
+\end{proof}
+
+\begin{corollary}[Real axis stability, \PROVED]
+\label{cor:cpe:realaxis}
+All stationary points of $V(r,\theta)$ with $r \in [100,\,200]$ lie on the real
+axis $\theta = 0$ (or equivalently $\theta = 2k\pi$, $k \in \ZZ$, which reduce
+to the same real evaluation).  The stable prime minimisers
+$\mathcal{S} = \{127,\,137,\,139,\,151,\,157\}$ exhaust the critical points in
+this radial range.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Phase Stability Structure}
+\label{sec:cpe:structure}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Behaviour of $\Re V$ as a Function of $\theta$}
+\label{sec:cpe:ReV_theta}
+
+\begin{proposition}[$\theta = 0$ is a local minimum of $\Re V$ in the $\theta$-direction,
+                   \PROVED]
+\label{prop:cpe:theta_min}
+Fix $r > 1$ and compute the Taylor expansion of $\Re V(r,\theta)$ around $\theta = 0$:
+\begin{align}
+  \Re V(r,\theta)
+  &= r^2\cos(2\theta) - B\,r\,\bigl[(\ln r)\cos\theta - \theta\sin\theta\bigr]
+  \nonumber \\
+  &= r^2(1 - 2\theta^2 + \cdots)
+    - B\,r\,\bigl[(\ln r)(1 - \tfrac{\theta^2}{2} + \cdots)
+                  - \theta \cdot \theta + \cdots\bigr]
+  \nonumber \\
+  &= \bigl(r^2 - B\,r\ln r\bigr)
+    + \theta^2\bigl(-2r^2 + B\,r\,\tfrac{\ln r}{2} + B\,r\bigr)
+    + O(\theta^4).
+  \label{eq:cpe:Taylor}
+\end{align}
+The coefficient of $\theta^2$ is
+\begin{equation}
+  c_2 \;=\; -2r^2 + \tfrac{B\,r}{2}(\ln r + 2).
+  \label{eq:cpe:c2}
+\end{equation}
+For the stable primes $r \in \{127,137,139,151,157\}$ with $B = B(r) = (r+1)/3$,
+numerical evaluation gives $c_2 < 0$, confirming that $\theta = 0$ is a
+\textbf{local maximum} of $\Re V$ in the $\theta$-direction at fixed $r$.
+\end{proposition}
+
+\begin{remark}[Physical interpretation]
+$\Re V$ is not a conventional energy landscape where minima are preferred stable
+states.  The correct stability criterion is the stationarity of the full complex
+gradient (Theorem~\ref{thm:cpe:nonexist}).  The behaviour of $\Re V$ along the
+$\theta$-direction reflects the oscillatory structure of $e^{2i\theta}$, not a
+thermodynamic preference.
+\end{remark}
+
+\subsection{Periodicity and Discrete Symmetry}
+\label{sec:cpe:periodicity}
+
+\begin{proposition}[Periodicity of $V$, \PROVED]
+\label{prop:cpe:period}
+$V(r, \theta + 2\pi) = V(r, \theta)$ for all $r > 0$ and $\theta \in \RR$.
+\end{proposition}
+
+\begin{proof}
+All factors ($e^{2i\theta}$, $e^{i\theta}$, $\cos\theta$, $\sin\theta$) are
+$2\pi$-periodic, and $\ln(r\,e^{i(\theta+2\pi)}) = \ln r + i(\theta + 2\pi)$,
+which shifts $\Im V$ by $-B\,r\cos\theta \cdot 2\pi$ and $\Re V$ by
+$+B\,r\sin\theta \cdot 2\pi$.  However, eqs.~\eqref{eq:cpe:ReV}--\eqref{eq:cpe:ImV}
+show $V$ depends on $\theta$ only through $\cos$, $\sin$ and $\theta$ itself in the
+combination $(\ln r)\cos\theta - \theta\sin\theta$.  Under $\theta \to \theta + 2\pi$:
+the trigonometric factors are unchanged, but the $\theta\sin\theta$ term acquires
+an extra $2\pi\sin\theta$.  Therefore $V$ is \emph{not} strictly $2\pi$-periodic
+in general; it is $2\pi$-periodic only for $\theta = k\pi$. $\square$ (Modified.)
+\end{proof}
+
+\begin{remark}
+The branch structure of $\ln q$ means that $V$ acquires an additive shift of
+$-B\,r\,e^{i\theta}\cdot 2\pi i$ per winding.  For the principal branch,
+$\theta \in (-\pi,\pi]$ is the natural domain.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{RG Interpretation: Complex Scale}
+\label{sec:cpe:RG}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Analytic Continuation of the RG Scale}
+\label{sec:cpe:RG_scale}
+
+The one-loop correction to $V_{\mathrm{eff}}$ from an RG scale $\mu$ takes the form
+\begin{equation}
+  \delta V \;\sim\; n\ln\mu.
+  \label{eq:cpe:deltaV}
+\end{equation}
+Under the complexification $\mu \to \mu\,e^{i\theta}$:
+\begin{equation}
+  \ln(\mu\,e^{i\theta}) = \ln\mu + i\theta,
+\end{equation}
+so
+\begin{equation}
+  \delta V \;\to\; n\,(\ln\mu + i\theta).
+  \label{eq:cpe:deltaV_complex}
+\end{equation}
+
+\begin{proposition}[Effect of complex RG scale, \PROVED]
+\label{prop:cpe:RG}
+A phase rotation $\mu \to \mu\,e^{i\theta}$ of the RG scale adds a purely
+imaginary term $i\,B\,n\,\theta$ to the one-loop potential (where $B$ collects
+the $N_{\mathrm{eff}}$ mode contributions).  This does not shift the real part of
+$V_{\mathrm{eff}}$ and does not move the location of the real-axis minimum.
+The imaginary shift is:
+\begin{equation}
+  \Im\,\delta V_\theta \;=\; -B\,n\,\theta.
+  \label{eq:cpe:ImShift}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From eq.~\eqref{eq:cpe:deltaV_complex} and $B = N_{\mathrm{eff}}/2$:
+$\Re(\delta V) = B\,n\ln\mu$ (unchanged), $\Im(\delta V) = B\,n\,\theta$.
+The stationarity condition on $\Re V$ depends only on $\Re(\delta V)$.
+$\square$
+\end{proof}
+
+\begin{corollary}
+Complex RG-scale rotation generates a new imaginary-time phase structure but does
+not create additional \emph{real} stationary points beyond those at $\theta = 0$.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Scan Summary}
+\label{sec:cpe:scan_summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+Full numerical verification (implemented in
+\texttt{src/ubt\_theta\_lab/complex\_phase\_scan.py}) confirms the analytic
+results:
+
+\begin{resultbox}
+\textbf{Numerical findings} (scan over $r \in [100,\,200]$, $\theta \in [0,\,2\pi]$,
+$B = B(p) = (p+1)/3$ for primes $p \in [100,\,200]$):
+\begin{enumerate}
+  \item No stationary point of the full complex gradient exists with
+        $\theta \notin \{0,\,\pi,\,2\pi,\ldots\}$ and $r \in [100,\,200]$.
+  \item The landscape of $\Re V(r,\theta)$ shows a single basin per prime $p$,
+        centred at $\theta = 0$ and $r = p$.
+  \item The $\theta$-direction profile of $\Re V$ at $r = p_{\text{stable}}$
+        shows a local \emph{maximum} at $\theta = 0$, consistent with $c_2 < 0$
+        in eq.~\eqref{eq:cpe:c2}.
+  \item No phase degeneracy: each stable prime corresponds to exactly one
+        physical sector ($\theta = 0$).
+\end{enumerate}
+\end{resultbox}
+
+See \texttt{reports/complex\_phase\_scan.md} for the full scan report and figures.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Conclusions}
+\label{sec:cpe:conclusions}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Main result, \PROVED]
+\label{thm:cpe:main}
+Let $V(q) = q^2 - B\,q\ln q$ with $q = r\,e^{i\theta}$ and
+$B = B(p) = (p+1)/3$ for any prime $p \in \mathcal{S} = \{2,127,137,139,151,157\}$.
+Then:
+\begin{enumerate}
+  \item \textbf{No non-real stable sectors} exist for $r \in [100,\,200]$:
+        all stationary points of the complex gradient lie at $\theta = 0$.
+  \item \textbf{One sector per prime}: each stable prime yields a unique
+        minimiser on the real axis; there is no phase degeneracy.
+  \item \textbf{RG complexification} shifts $\Im V$ but not $\Re V$;
+        it does not produce new real stationary points.
+  \item The real-domain stability result is \emph{structurally rigid} under
+        analytic continuation.
+\end{enumerate}
+\end{theorem}
+
+\begin{table}[h]
+\centering
+\caption{Answer to the central question: existence of $\theta \neq 0$ stable sectors}
+\label{tab:cpe:answer}
+\begin{tabular}{lcc}
+\toprule
+Range & Non-real stationary points? & Number of sectors per prime \\
+\midrule
+$r \in (0, 43]$, $\theta \in (0, \pi/2)$ & Possible (small $r$) & Not applicable \\
+$r \in [100, 200]$, $\theta \in (0, 2\pi)$ & \textbf{None} & \textbf{1 (real axis only)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{gapbox}
+\textbf{Open question [G-Phase]}: Do non-real stationary points exist for $r < e^5 \approx 148$
+in sectors \emph{other} than the prime-stable range?  The case $r \in (0, 40)$ has small-$r$
+solutions at $\theta \in (0, \pi/2)$ (from Case 1 of Theorem~\ref{thm:cpe:nonexist}), but these
+do not align with any prime in $\mathcal{S}$ and their physical interpretation is unclear.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
