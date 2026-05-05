@@ -388,27 +388,36 @@ thermodynamic preference.
 \subsection{Periodicity and Discrete Symmetry}
 \label{sec:cpe:periodicity}
 
-\begin{proposition}[Periodicity of $V$, \PROVED]
+\begin{proposition}[Quasi-periodicity of $V$ under winding, \PROVED]
 \label{prop:cpe:period}
-$V(r, \theta + 2\pi) = V(r, \theta)$ for all $r > 0$ and $\theta \in \RR$.
+$V(r,\theta)$ is \emph{not} $2\pi$-periodic in $\theta$.  Under
+$\theta \to \theta + 2\pi$, the potential acquires an additive shift:
+\begin{equation}
+  V(r, \theta + 2\pi) \;=\; V(r,\theta) - 2\pi i\,B\,r\,e^{i\theta}.
+  \label{eq:cpe:quasiperiod}
+\end{equation}
+The physical domain of $V$ is therefore the principal branch $\theta \in (-\pi,\pi]$.
 \end{proposition}
 
 \begin{proof}
-All factors ($e^{2i\theta}$, $e^{i\theta}$, $\cos\theta$, $\sin\theta$) are
-$2\pi$-periodic, and $\ln(r\,e^{i(\theta+2\pi)}) = \ln r + i(\theta + 2\pi)$,
-which shifts $\Im V$ by $-B\,r\cos\theta \cdot 2\pi$ and $\Re V$ by
-$+B\,r\sin\theta \cdot 2\pi$.  However, eqs.~\eqref{eq:cpe:ReV}--\eqref{eq:cpe:ImV}
-show $V$ depends on $\theta$ only through $\cos$, $\sin$ and $\theta$ itself in the
-combination $(\ln r)\cos\theta - \theta\sin\theta$.  Under $\theta \to \theta + 2\pi$:
-the trigonometric factors are unchanged, but the $\theta\sin\theta$ term acquires
-an extra $2\pi\sin\theta$.  Therefore $V$ is \emph{not} strictly $2\pi$-periodic
-in general; it is $2\pi$-periodic only for $\theta = k\pi$. $\square$ (Modified.)
+Using $\ln(r\,e^{i(\theta+2\pi)}) = \ln r + i(\theta + 2\pi) = \ln q + 2\pi i$
+on the principal branch:
+\begin{align*}
+  V(r, \theta + 2\pi)
+  &= r^2 e^{2i(\theta+2\pi)}
+    - B\,r\,e^{i(\theta+2\pi)}\bigl(\ln r + i(\theta + 2\pi)\bigr) \\
+  &= r^2 e^{2i\theta}
+    - B\,r\,e^{i\theta}\bigl(\ln r + i\theta + 2\pi i\bigr) \\
+  &= V(r,\theta) - 2\pi i\,B\,r\,e^{i\theta}.
+\end{align*}
+The shift $-2\pi i\,B\,r\,e^{i\theta}$ is nonzero for generic $\theta$,
+confirming the absence of strict $2\pi$-periodicity. $\square$
 \end{proof}
 
 \begin{remark}
-The branch structure of $\ln q$ means that $V$ acquires an additive shift of
-$-B\,r\,e^{i\theta}\cdot 2\pi i$ per winding.  For the principal branch,
-$\theta \in (-\pi,\pi]$ is the natural domain.
+The branch-cut structure means $V$ is single-valued on the Riemann surface with
+sheet parameter $k \in \ZZ$ (the winding number of $q$).  On each sheet,
+$\theta \in (-\pi + 2k\pi,\, \pi + 2k\pi]$.  The canonical analysis uses $k = 0$.
 \end{remark}
 
 %──────────────────────────────────────────────────────────────────────────────

@@ -110,6 +110,9 @@ def sieve_primes(limit: int) -> List[int]:
     return [i for i in range(2, limit + 1) if is_prime[i]]
 
 
+COLOR_PERCENTILE_LOW = 2    # lower percentile for Re(V) colour scale
+COLOR_PERCENTILE_HIGH = 98  # upper percentile for Re(V) colour scale
+
 STABLE_PRIMES = [2, 127, 137, 139, 151, 157]
 PRIMES_200 = [p for p in sieve_primes(200) if 100 <= p <= 200]
 
@@ -233,8 +236,8 @@ def make_plots(
     # ── Plot 1: Re(V) heatmap + gradient-norm contour ──────────────────────
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-    vmin_re = float(np.percentile(re_grid, 2))
-    vmax_re = float(np.percentile(re_grid, 98))
+    vmin_re = float(np.percentile(re_grid, COLOR_PERCENTILE_LOW))
+    vmax_re = float(np.percentile(re_grid, COLOR_PERCENTILE_HIGH))
 
     ax = axes[0]
     im = ax.pcolormesh(T, R, re_grid, cmap="viridis",
@@ -297,8 +300,11 @@ def make_plots(
     for p in STABLE_PRIMES:
         if r_vals[0] <= p <= r_vals[-1]:
             ax3.axvline(p, color="gray", linewidth=0.7, linestyle=":")
-            ax3.text(p + 0.3, ax3.get_ylim()[0] if ax3.get_ylim()[0] > -1e5 else 0,
-                     str(p), fontsize=7, color="gray")
+            # Use the current y-axis bottom, falling back to 0 if the axis
+            # has not been drawn yet (get_ylim returns Matplotlib's default of 0,1).
+            y_lo = ax3.get_ylim()[0]
+            y_label_pos = y_lo if abs(y_lo) > 1.0 else 0.0
+            ax3.text(p + 0.3, y_label_pos, str(p), fontsize=7, color="gray")
     ax3.set_xlabel(r"$r$")
     ax3.set_ylabel(r"$V$")
     ax3.set_title(r"$\theta = 0$ slice: $\Re V$ vs real $V$")
