@@ -5,7 +5,7 @@
 # Prime Stability Revalidation: V vs V\_ren [Numerical]
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-04  
+**Date**: 2026-05-05 (updated from 2026-05-04)  
 **Status**: Numerical revalidation — [L0]  
 **Related files**:
 - `canonical/alpha/prime_stability_set.tex` — formal derivation
@@ -24,6 +24,8 @@ is identical under:
 
 The renormalised entropy satisfies $S_{\text{ren}}(q) = q\ln q + O(q^{-1})$,
 so this is a consistency check, not a model change.
+
+**Scope**: Candidates $p \leq 10{,}000$ (potential prime-stable primes are all $\leq 157$, so this range is exhaustive); competition against all primes $q \leq 100{,}000$.
 
 ---
 
@@ -124,3 +126,22 @@ unchanged under the renormalised Gamma entropy $S_{\text{ren}}$.
 This validates the canonical model under continuous interpolation.  The model
 is not sensitive to the sub-leading $O(q^{-1})$ correction introduced by
 $S_{\text{ren}}$.
+
+**The stable sets under $V$ and $V_{\text{ren}}$ are identical** for all
+primes up to $100{,}000$ — confirmed by exhaustive numerical scan.
+
+---
+
+## Gamma Entropy Policy (Canonical vs Non-Canonical)
+
+| Entropy | Status | Stable set near |
+|---------|--------|----------------|
+| $S(q) = q\ln q$ | **Canonical** | $e^5 \approx 148$ |
+| $S_{\text{ren}}(q) = \ln\Gamma(q+1) + q - \tfrac{1}{2}\ln(2\pi q)$ | **Canonical** (equivalent to $q\ln q$ up to $O(q^{-1})$) | $e^5 \approx 148$ |
+| $S(q) = \ln\Gamma(q+1)$ | **Non-canonical — excluded** | $e^6 \approx 403$ |
+
+> **Warning**: The unrenormalised Gamma entropy $\ln\Gamma(q+1)$ removes the $+1$
+> term in the entropy derivative, shifting the stability threshold from
+> $\ln p \approx 5$ to $\ln p \approx 6$.  The resulting cluster near $p \approx 400$
+> is excluded from the canonical formulation.  See
+> `canonical/alpha/prime_stability_set.tex` §Gamma, Non-Canonical Variant.

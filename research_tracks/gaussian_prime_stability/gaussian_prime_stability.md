@@ -152,9 +152,11 @@ Any use of $\lambda \neq 0$ must therefore be accompanied by a full prime scan.
 
 ---
 
-## 5. Consistency Issue: Inert Primes [Research]
+## 5. Inert Primes and Dimensional Consistency
 
-> **Problem**: The norm-only model is incomplete for inert primes.
+> **Problem**: The norm-only 2D model is incomplete for inert primes. Inert primes
+> cannot be represented as $a^2 + b^2$, so they are not Gaussian prime norms.
+> The norm-only model loses them entirely.
 
 Of the six canonical stable primes, three are **inert** ($p \equiv 3 \pmod 4$):
 
@@ -183,20 +185,26 @@ Define two classes of canonical stable primes:
 
 This mirrors the split/inert/ramified decomposition of rational primes in $\mathbb{Z}[i]$.
 
-### 5.2 Extended Potential V\_total
+### 5.2 Extended Potential V\_total (Canonical Fix)
 
 To accommodate both classes, define the **total potential**:
 
 $$V_{\text{total}}(p) \;:=\;
 \begin{cases}
-  V_G(p;\,B(p)) & \text{if } p \equiv 1 \pmod 4 \text{ (split — bulk mode)}, \\
-  V_{1D}(p;\,B(p)) & \text{if } p \equiv 3 \pmod 4 \text{ (inert — boundary mode)},
+  V_G(p;\,B(p)) & \text{if } p \equiv 1 \pmod 4 \text{ (split — Gaussian norm model)}, \\
+  V_{1D}(p;\,B(p)) & \text{if } p \equiv 3 \pmod 4 \text{ (inert — 1D rational prime model)},
 \end{cases}$$
 
 where $V_G(n;B) = n^2 - B\,n\ln n$ (the 2D norm potential) and
 $V_{1D}(p;B) = p^2 - B\,p\ln p$ (the canonical 1D potential).
 
-For $p = 2$ (ramified), both definitions agree.
+> **Rationale**: Inert primes ($p \equiv 3 \pmod 4$) are not representable as
+> $a^2 + b^2$ and hence cannot be Gaussian prime norms.  Applying a strict
+> norm-only Gaussian model to all primes would silently exclude 127, 139, and
+> 151 from the canonical stable set $\mathcal{S}$.  The $V_{\text{total}}$
+> definition resolves this by routing inert primes through the 1D model.
+
+For $p = 2$ (ramified), both branches agree: $V_G(2;B) = V_{1D}(2;B)$.
 
 **Key property**: Since $V_G(n;B) = V_{1D}(n;B)$ at $n = p$ (both evaluate the same
 function at the same integer), $V_{\text{total}}$ reduces to the canonical 1D model for
