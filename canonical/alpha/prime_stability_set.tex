@@ -291,6 +291,56 @@ same regime once $p < e^5$, since $B(p)$ and $B^*(p)$ are then close and the
 gap correction $\delta$ is positive.
 
 %──────────────────────────────────────────────────────────────────────────────
+\subsection{Structural Origin of the Logarithmic Threshold $\ln p \approx 5$}
+\label{sec:pss:s3:origin}
+%──────────────────────────────────────────────────────────────────────────────
+
+The threshold value $5$ that appears in $\ln p < 5$ is not a fitted constant.
+It arises entirely from the algebraic structure of $V(q;\,B)$ and $B(p)$.
+
+\medskip
+\textbf{Derivation.}
+The continuous stationarity condition $V'(q;\,B) = 0$ gives
+\[
+  \frac{\partial V}{\partial q}\bigl(q;\,B\bigr)
+  \;=\; 2q \;-\; B\bigl(\ln q + 1\bigr) \;=\; 0,
+\]
+which at the self-consistency point $q = p$ and $B = B(p) = (p+1)/3$ becomes
+\[
+  2p \;=\; \frac{p+1}{3}\,(\ln p + 1).
+\]
+Asymptotically for large $p$ (so $p+1 \approx p$), this simplifies to
+\[
+  2p \;\approx\; \frac{p}{3}\,(\ln p + 1)
+  \qquad\Longrightarrow\qquad
+  6 \;\approx\; \ln p + 1
+  \qquad\Longrightarrow\qquad
+  \ln p \;\approx\; 5.
+\]
+
+\medskip
+\textbf{Structural decomposition of the constant $5$:}
+\begin{itemize}
+  \item The factor $2$ in the numerator comes from the derivative of the quadratic
+        kinetic term $q^2$.
+  \item The factor $3$ in the denominator comes from the coupling function
+        $B(p) = (p+1)/3$.
+  \item The $+1$ subtracted at the end comes from the derivative of the entropy
+        term: $\tfrac{d}{dq}(q\ln q) = \ln q + 1$, whose constant part $+1$
+        shifts the threshold by exactly one unit.
+\end{itemize}
+
+\begin{resultbox}
+\textbf{Origin of the constant $5$ (structural, not fitted)}:
+\[
+  \ln p \;\approx\; 2 \times 3 \;-\; 1 \;=\; 5.
+\]
+The threshold $\ln p \approx 5$ emerges as $2 \times 3 - 1$:
+twice the inverse of the coupling denominator, minus the entropy derivative
+constant.  No parameter is adjusted to produce this value.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Step S4: Asymptotic Analysis and Finiteness}
 \label{sec:pss:s4}
 %──────────────────────────────────────────────────────────────────────────────
@@ -658,6 +708,27 @@ in the canonical model: it changes the leading entropy scaling and is not
 equivalent to $V(q;B)$ even asymptotically for fixed $B$.
 \end{remark}
 
+\subsection{Non-Canonical Entropy Variant (Excluded)}
+\label{sec:pss:gamma:excluded}
+
+The cluster of primes near $p \approx 400$ arises from the unrenormalised
+potential $\tilde{V}(q;\,B) := q^2 - B\,\ln\Gamma(q+1)$, which omits the
+correction terms $+q - \frac{1}{2}\ln(2\pi q)$ required to match $q\ln q$
+at leading order.  Under $\tilde{V}$, the stability threshold shifts from
+$e^5\approx 148$ to $e^6\approx 403$ (because the derivative of $\ln\Gamma(q+1)$
+is $\ln q$, removing the $+1$ from the entropy derivative and changing the
+structural constant from $6-1=5$ to $6$), and the stable set becomes
+$\{2,\,389,\,397,\,401,\,409,\,421\}$.
+
+\begin{warnbox}
+\textbf{The $p \approx 400$ cluster is excluded from the canonical formulation.}
+It corresponds to the unrenormalised Gamma entropy $S(p) = \ln\Gamma(p+1)$,
+which removes the $+1$ term in the entropy derivative and shifts the stability
+condition from $\ln p \approx 5$ to $\ln p \approx 6$.  This variant is a
+structurally different model and must not be interpreted as an extension,
+correction, or generalisation of the canonical result.
+\end{warnbox}
+
 \begin{warnbox}
 \textbf{Stable set must be revalidated under any entropy variant.}
 The renormalised potential $V_{\mathrm{ren}}$ confirms $\mathcal{S}$ unchanged
@@ -679,8 +750,16 @@ full prime scan before stability claims are made.
         the bounds are set by the nearest primes $p_\pm$.
   \item \textbf{Analytic condition}: To leading order, stability requires
         $\ln p < 5$, i.e.\ $p < e^5 \approx 148$.
-  \item \textbf{Complete stable set}: $\mathcal{S} = \{2, 127, 137, 139, 151, 157\}$,
-        verified exhaustively up to $10^5$.
+  \item \textbf{Origin of the constant $5$} (Section~\ref{sec:pss:s3:origin}):
+        The threshold $\ln p \approx 5$ is not fitted.  It arises structurally
+        from the stationarity equation as $\ln p \approx 2\times 3 - 1 = 5$,
+        where $2$ comes from the kinetic term, $3$ from the coupling denominator
+        $B(p)=(p+1)/3$, and $1$ from the entropy derivative $\tfrac{d}{dp}(p\ln p)=\ln p+1$.
+  \item \textbf{Finite stability structure}: $\mathcal{S} = \{2, 127, 137, 139, 151, 157\}$
+        is a \emph{finite set defined by the model} — verified exhaustively up to $10^5$.
+        This is not a prediction or explanation of any physical constant;
+        it is the complete characterisation of prime-stable solutions of the
+        fixed-point condition.
   \item \textbf{Finiteness}: The stable set is finite.  No prime beyond $157$ is
         prime-stable.  The required prime gap for stability grows as
         $g \sim p(\ln p - 5)/2$, far exceeding any plausible gap for $p \geq 300$.
@@ -695,19 +774,20 @@ full prime scan before stability claims are made.
         stable set unchanged: $\mathcal{S}_{\mathrm{ren}} = \mathcal{S}$
         (\Lzero{}).  Direct replacement of $q\ln q$ by $\ln\Gamma(q+1)$
         (without the $O(q)$ correction) is non-equivalent and is forbidden
-        in the canonical model.  The unrenormalised variant produces a different
-        stable set $\{2,389,397,401,409,421\}$ near $e^6 \approx 403$; this
-        is a separate non-canonical model and must not be interpreted as a
-        correction or extension of the canonical result.
+        in the canonical model.  The unrenormalised variant defines a different
+        stable set near $e^6 \approx 403$ (Section~\ref{sec:pss:gamma:excluded});
+        this is a separate non-canonical model excluded from the canonical
+        framework.
 \end{enumerate}
 \end{resultbox}
 
 \begin{infobox}
-\textbf{Scope and claims}: No claims about the Riemann Hypothesis, the fine
-structure constant, or other deep results are derived here beyond the
-prime-stability framework itself.  The coincidence of $137 \in \mathcal{S}$
-with the approximate value of $1/\alpha$ is noted as a structural observation
-only.
+\textbf{Scope and claims}: This document defines a finite stability structure
+for the model $V(q;B(p)) = q^2 - B(p)\,q\ln q$ with $B(p) = (p+1)/3$.
+The result is the complete characterisation of prime-stable solutions, not a
+derivation of any physical constant.  No claims about the Riemann Hypothesis,
+the fine structure constant $\alpha$, or other deep results are made beyond the
+prime-stability framework itself.
 \end{infobox}
 
 \ifdefined\INCLUDEMODE
