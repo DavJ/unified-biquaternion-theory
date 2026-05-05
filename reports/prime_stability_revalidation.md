@@ -25,7 +25,7 @@ is identical under:
 The renormalised entropy satisfies $S_{\text{ren}}(q) = q\ln q + O(q^{-1})$,
 so this is a consistency check, not a model change.
 
-**Scope**: Candidates $p \leq 10{,}000$; competition against all primes $q \leq 100{,}000$.
+**Scope**: Candidates $p \leq 10{,}000$ (potential prime-stable primes are all $\leq 157$, so this range is exhaustive); competition against all primes $q \leq 100{,}000$.
 
 ---
 

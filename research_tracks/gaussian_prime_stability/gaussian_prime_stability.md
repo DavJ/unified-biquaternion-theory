@@ -154,7 +154,7 @@ Any use of $\lambda \neq 0$ must therefore be accompanied by a full prime scan.
 
 ## 5. Inert Primes and Dimensional Consistency
 
-> **Problem**: The norm-only 2D model is incomplete for inert primes.  Inert primes
+> **Problem**: The norm-only 2D model is incomplete for inert primes. Inert primes
 > cannot be represented as $a^2 + b^2$, so they are not Gaussian prime norms.
 > The norm-only model loses them entirely.
 
