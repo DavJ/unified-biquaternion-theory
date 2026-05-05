@@ -1,0 +1,6 @@
+# Configuration for prime_mod24_resonance experiment
+# All scripts load this file for reproducibility.
+
+N: 100000           # upper bound for prime sieve
+fft_window: hann    # window function applied before FFT
+seed: 42            # global random seed (fixed for reproducibility)

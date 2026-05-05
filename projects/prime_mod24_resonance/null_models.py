@@ -108,12 +108,12 @@ def make_random_quadratic(n: int, p_max: int, rng: np.random.Generator) -> np.nd
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Null models for prime mod-24 resonance")
-    ap.add_argument("--data", default="data/primes_mod24.parquet")
+    ap.add_argument("--data", default="DATA/prime_mod24/primes_mod24.parquet")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--n-reps", type=int, default=50,
                     help="Number of random realisations per null model (default: 50)")
-    ap.add_argument("--out-json", default="reports/null_comparison.json")
-    ap.add_argument("--out-plot", default="plots/null_comparison.png")
+    ap.add_argument("--out-json", default="reports/prime_mod24/null_comparison.json")
+    ap.add_argument("--out-plot", default="reports/prime_mod24/null_comparison.png")
     args = ap.parse_args()
 
     for p in [args.out_json, args.out_plot]:

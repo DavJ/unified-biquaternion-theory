@@ -61,13 +61,13 @@ def chi2_uniformity(counts: np.ndarray) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Statistical analysis of prime mod-24 sequence")
-    ap.add_argument("--data", default="data/primes_mod24.parquet",
-                    help="Input Parquet (default: data/primes_mod24.parquet)")
+    ap.add_argument("--data", default="DATA/prime_mod24/primes_mod24.parquet",
+                    help="Input Parquet (default: DATA/prime_mod24/primes_mod24.parquet)")
     ap.add_argument("--max-lag", type=int, default=200,
                     help="Maximum lag for autocorrelation (default: 200)")
-    ap.add_argument("--out-json", default="reports/stats_summary.json")
-    ap.add_argument("--out-dist", default="plots/k_distribution.png")
-    ap.add_argument("--out-acf", default="plots/k_autocorrelation.png")
+    ap.add_argument("--out-json", default="reports/prime_mod24/stats_summary.json")
+    ap.add_argument("--out-dist", default="reports/prime_mod24/k_distribution.png")
+    ap.add_argument("--out-acf", default="reports/prime_mod24/k_autocorr.png")
     args = ap.parse_args()
 
     for p in [args.out_json, args.out_dist, args.out_acf]:
