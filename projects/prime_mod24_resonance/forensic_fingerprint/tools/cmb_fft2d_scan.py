@@ -260,13 +260,17 @@ def main() -> None:
         # Load temperature map
         m = hp.read_map(args.tt_map, field=0)
         m = hp.ud_grade(m, args.nside_out)
-        # Simple 1D multipole power spectrum as proxy for the radial FFT
+        # Simple 1D multipole power spectrum as proxy for the radial FFT.
+        # anafast returns lmax+1 coefficients (ell=0..lmax); request at most k_max.
         cl = hp.anafast(m, lmax=k_max)
-        k_bins = np.arange(len(cl), dtype=np.int64)
-        power = cl.astype(np.float64)
-        # Restrict to bins 1..k_max
-        k_bins = k_bins[1: k_max + 1]
-        power = power[1: k_max + 1]
+        # Actual number of coefficients may be less than k_max+1 if nside_out is small.
+        actual_lmax = len(cl) - 1  # cl has indices 0..actual_lmax
+        effective_kmax = min(k_max, actual_lmax)
+        k_bins = np.arange(1, effective_kmax + 1, dtype=np.int64)
+        power = cl[1: effective_kmax + 1].astype(np.float64)
+        if effective_kmax < k_max:
+            print(f"  [warn] anafast returned lmax={actual_lmax} < requested kmax={k_max}; "
+                  f"truncating to {effective_kmax} bins.")
         print(f"  Computed C_ell power spectrum, {len(k_bins)} bins.")
 
     # -------------------------------------------------------------------

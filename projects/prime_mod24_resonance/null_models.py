@@ -197,20 +197,15 @@ def main() -> None:
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
     fig.suptitle("Null model distributions (spectral Pearson r)", fontsize=12)
 
-    # Re-run once more for each model to collect distributions for plotting
-    for ax, label, gen_fn in zip(axes, [
-        ("random_primes", lambda: make_random_primes_k(n, p_max, rng)),
-        ("shuffled_k",    lambda: make_shuffled_k(k, rng)),
+    plot_models = [
+        ("random_primes",    lambda: make_random_primes_k(n, p_max, rng)),
+        ("shuffled_k",       lambda: make_shuffled_k(k, rng)),
         ("random_quadratic", lambda: make_random_quadratic(n, p_max, rng)),
-    ], [
-        lambda: make_random_primes_k(n, p_max, rng),
-        lambda: make_shuffled_k(k, rng),
-        lambda: make_random_quadratic(n, p_max, rng),
-    ]):
-        label_str, gen_fn2 = label
+    ]
+    for ax, (label_str, gen_fn) in zip(axes, plot_models):
         rs = []
         for _ in range(args.n_reps):
-            null_k = gen_fn2()
+            null_k = gen_fn()
             _, pw = power_spectrum(null_k)
             r, _ = pearsonr(power_k, pw)
             rs.append(float(r))
