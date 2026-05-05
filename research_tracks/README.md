@@ -47,6 +47,7 @@ mathematical closure, and compatibility with canonical structure).
 | SU(3) qubit / one-hot mapping | `THEORY_COMPARISONS/su3_qubit_mapping/` | **Candidate** | Valid Lie algebra homomorphism; separate from mainline involution derivation |
 | Penrose twistor bridge | `THEORY_COMPARISONS/penrose_twistor/` | **Candidate** | Flat Minkowski sector proved; curved sector and ψ-twistor mapping open |
 | Hecke bridge (modular forms ↔ ℂ⊗ℍ) | `hecke_bridge/` | **Candidate** | Weight/level correspondences are motivated conjectures; derivation open |
+| RH trace formula (ψ-Hamiltonian → ζ) | `rh_trace_formula/` | **Open** | Candidate H_ψ defined; 6 open gaps (G1–G6) before any ζ-connection; NO RH claim |
 | Quantization grid | `quantization_grid/` | **Experimental** | Discretization hypothesis under numerical investigation |
 
 ### Coding and Information (Layer 2)
@@ -105,4 +106,4 @@ A research track may be promoted to `canonical/` when:
 
 ---
 
-**Last Updated**: 2026-04-27
+**Last Updated**: 2026-05-04
