@@ -13,7 +13,7 @@ $$
 \zeta(s) = \operatorname{Tr}\!\bigl(e^{-sH}\bigr) = \sum_{n=1}^{\infty} e^{-s\log n} = \sum_{n=1}^{\infty} n^{-s}, \quad \operatorname{Re}(s) > 1.
 $$
 
-The Hamiltonian `H` is chosen so that its spectrum is
+The Hamiltonian $H$ is chosen so that its spectrum is
 
 $$
 \operatorname{Spec}(H) = \{\log n : n \in \mathbb{N}_{\geq 1}\}.
@@ -244,7 +244,7 @@ convergence.
 ## References
 
 - **B. Riemann** (1859): "Über die Anzahl der Primzahlen unter einer gegebenen Größe."
-- **D. Hilbert / G. Pólya** (independent, ca. 1910–1920): oral conjecture, operator approach to RH.
+- **D. Hilbert / G. Pólya** (independent, ca. 1910–1920): oral conjecture (mathematical folklore; see A. Odlyzko's account in "The 10^{22}-nd zero of the Riemann zeta function", 1992, for historical notes), operator approach to RH.
 - **M.V. Berry & J.P. Keating** (1999): "The Riemann zeros and eigenvalue asymptotics." *SIAM Rev.* 41(2), 236–266.
 - **A. Connes** (1999): "Trace formula in noncommutative geometry and the zeros of the Riemann zeta function." *Selecta Math.* 5, 29–106.
 - **H. Montgomery** (1973): pair correlation of zeros and GUE.  *Proc. Symp. Pure Math.* 24, 181–193.
