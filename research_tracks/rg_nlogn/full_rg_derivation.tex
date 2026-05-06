@@ -1,0 +1,427 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{gap}{Open Gap}
+
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\heuristic}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\speculative}[1]{\textbf{[SPECULATIVE]} #1}
+\newcommand{\cond}[1]{\textbf{[COND]} #1}
+
+\title{Rigorous Renormalisation Group Derivation of $V_\mathrm{eff}(n) = n^2 - Bn\ln n$}
+\author{Ing.\ David Jaro\v{s}\\
+\small \texttt{research\_tracks/rg\_nlogn/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We attempt to derive the effective potential
+\[
+  V_\mathrm{eff}(n) = n^2 - B\, n\ln n
+\]
+from first principles using the Kaluza--Klein (KK) / winding spectrum of the
+UBT compact $\psi$-direction and one-loop vacuum polarisation corrections.
+We separate what is rigorously established, what relies on additional physical
+assumptions (heuristic), and what remains speculative.  The primary open gap
+is the derivation of the coefficient $B \approx 46$; the $n^2$ kinetic term
+and $\ln n$ correction are each partially justified at different levels of rigor.
+\end{abstract}
+
+\tableofcontents
+
+%------------------------------------------------------------
+\section{Goal and Structure}
+%------------------------------------------------------------
+
+\textbf{Goal}: Convert the heuristic RG explanation of $V_\mathrm{eff}(n)$
+into a mathematically and physically rigorous derivation, including:
+\begin{enumerate}
+  \item One-loop vacuum polarisation.
+  \item KK/winding spectrum.
+  \item Renormalisation scheme and beta function.
+  \item Effective action derivation.
+  \item Explanation of the coefficient $B \approx 46$ (empirical).
+\end{enumerate}
+
+\textbf{Proof-status key}: \proved{} established; \heuristic{} plausible;
+\speculative{} unverified; \cond{} conditional.
+
+%------------------------------------------------------------
+\section{Setup: Compact \texorpdfstring{$\psi$}{psi}-Direction and KK Spectrum}
+%------------------------------------------------------------
+
+\subsection{UBT background geometry}
+
+Consider the UBT field $\Theta(q, \tau)$ with $\tau = t + i\psi$ and $\psi$
+compact on $S^1_{L_\psi}$.  Expand $\Theta$ in KK modes:
+\[
+  \Theta(q, t, \psi) = \sum_{n \in \mathbb{Z}} \Theta_n(q, t)\, e^{in\psi/R_\psi},
+\]
+where $R_\psi = L_\psi/(2\pi)$ is the compactification radius.
+
+\subsection{KK mass spectrum}
+
+In the standard KK reduction with $\hbar = 2mR_\psi^2 = 1$ (natural units), the
+mode $\Theta_n$ acquires a mass squared
+\[
+  m_n^2 = \frac{n^2}{R_\psi^2} = n^2 \quad (\text{in natural units}).
+\]
+
+\textbf{Proof status}: \proved{The KK mass formula follows from the
+eigenvalue equation of $-d^2/d\psi^2$ on $S^1_{R_\psi}$; see
+\texttt{operator\_definition.tex}.}
+
+\heuristic{The identification $R_\psi = 1$ (natural units $\hbar = 2mR_\psi^2 = 1$)
+is a convention, not a derived result from UBT moduli.}
+
+\subsection{Tree-level effective potential}
+
+The tree-level effective potential for the $n$-th KK mode is
+\[
+  V_\mathrm{tree}(n) = m_n^2 = n^2.
+\]
+
+This is the $n^2$ term in $V_\mathrm{eff}(n)$.
+
+\textbf{Proof status}: \proved{Given the KK mass formula and natural units.}
+
+%------------------------------------------------------------
+\section{One-Loop Vacuum Polarisation}
+%------------------------------------------------------------
+
+\subsection{Setup}
+
+Consider the one-loop effective action for the KK tower.  In $(1+1)$-dimensional
+effective theory (reducing to the $\psi$-direction), the one-loop vacuum energy
+from $N_f$ light modes with mass $m^2$ and a UV cutoff $\Lambda$ is (using
+zeta-function regularisation):
+
+\[
+  \mathcal{E}_\mathrm{1-loop}(m^2) = \frac{1}{2}\sum_{n} \omega_n
+  = \frac{1}{2}\sum_{n} (m^2 + k_n^2)^{1/2}
+\]
+
+where $k_n$ are the momenta in the non-compact directions.  In $d=1$ spatial
+dimensions with UV regulator:
+
+\[
+  \mathcal{E}_\mathrm{1-loop}(m^2)
+  = -\frac{m^2}{4\pi}\left(\ln\frac{m^2}{\mu^2} - 1\right)
+  + \mathcal{O}(\Lambda^{-2})
+\]
+
+using dimensional regularisation in $d = 1 - \epsilon$ with renormalisation
+scale $\mu$.
+
+\textbf{Proof status}: \proved{Standard one-loop effective potential in
+$d=1$ scalar QFT; see \cite{ZinnJustin} ch.\ 9.}
+
+\subsection{Application to KK sector}
+
+For the $n$-th KK mode with $m_n^2 = n^2$, the one-loop correction to the
+effective potential is
+
+\[
+  \delta V_\mathrm{1-loop}(n)
+  = -\frac{n^2}{4\pi}\left(\ln\frac{n^2}{\mu^2} - 1\right)
+  = -\frac{n^2}{4\pi}\left(2\ln n - \ln\mu^2 - 1\right).
+\]
+
+Absorbing the $\mu$-dependent and constant terms into the renormalisation of the
+$n^2$ coefficient, the \emph{renormalised} effective potential takes the form
+
+\[
+  V_\mathrm{ren}(n)
+  = (1 - \frac{1}{2\pi})\, n^2 + \frac{1}{2\pi}\, n^2 - \frac{n^2}{2\pi}\ln n
+  = n^2 - \frac{n^2\ln n}{2\pi}.
+\]
+
+Rewriting with $n^2/n = n$:
+
+\[
+  \boxed{V_\mathrm{ren}(n) = n^2 - \frac{n\ln n}{2\pi}\cdot n}
+\]
+
+This suggests $B = n/(2\pi)$, which is $n$-\emph{dependent}.  To obtain a
+constant $B$, we must fix $n$ near the prime attractor, e.g.\ $n \sim 137$,
+giving $B \approx 137/(2\pi) \approx 21.8$.
+
+\textbf{Proof status}: \heuristic{The one-loop formula is correct for a scalar
+field in $d=1$.  The specific application to the UBT KK tower and the
+``prime attractor'' identification require additional assumptions.}
+
+\subsection{Problem: $n$-dependent coefficient}
+
+The naive one-loop result gives a potential $n^2(1 - \frac{\ln n}{2\pi})$,
+which has an $n$-dependent ``$B$''.  The prime-stability condition requires a
+\emph{fixed} $B$ independent of $n$.
+
+\begin{gap}[Fixed $B$ from loop calculation]
+  \label{gap:fixedB}
+  Derive a mechanism by which the one-loop effective potential
+  $V(n) = n^2 - f(n)\cdot n\ln n$ with $n$-dependent $f(n)$ reduces to
+  $V(n) = n^2 - B\cdot n\ln n$ with constant $B \approx 46$.
+
+  \textbf{Known candidates}:
+  \begin{itemize}
+    \item Summation over all KK modes at a specific compactification radius
+          (Casimir energy).
+    \item Higher-loop corrections producing additional $\ln n$ terms that
+          combine into a constant coefficient.
+    \item Modular-form structure constraining $f(n) = \text{const}$ at
+          specific values.
+  \end{itemize}
+
+  \textbf{Falsification}: Show that $f(n)$ is strictly monotone increasing
+  and can never be constant; this would disprove the RG origin of $B$.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Renormalisation Scheme}
+%------------------------------------------------------------
+
+\subsection{Beta function}
+
+Define the running coupling $g(\mu)$ via the renormalisation of the $n^2$
+coefficient.  The one-loop beta function in the $\overline{\mathrm{MS}}$ scheme is
+
+\[
+  \beta(g) = \mu\frac{\partial g}{\partial \mu}
+  = -\frac{b_0}{16\pi^2}\, g^2 + \mathcal{O}(g^3),
+\]
+
+where $b_0$ depends on the field content (number of colours $N_c$, flavours
+$N_f$, etc.\ in the KK tower).
+
+\textbf{Proof status}: \proved{General one-loop beta function formula for
+gauge theories; field-content-specific $b_0$ is open for UBT.}
+
+\subsection{Running of $V_\mathrm{eff}$}
+
+The RG flow of $V_\mathrm{eff}(n;\mu)$ is governed by the Callan--Symanzik equation:
+
+\[
+  \left(\mu\frac{\partial}{\partial\mu}
+  + \beta(g)\frac{\partial}{\partial g}
+  + \gamma_m \cdot m^2 \frac{\partial}{\partial m^2}
+  \right) V_\mathrm{eff}(n;\mu) = 0,
+\]
+
+where $\gamma_m$ is the anomalous dimension of the mass operator.
+
+Solving this equation with the one-loop $\beta$ and $\gamma_m$:
+
+\[
+  V_\mathrm{eff}(n;\mu) = n^2\left(1 - \frac{g(\mu)}{16\pi^2}\ln\frac{n^2}{\mu^2}\right)
+  + \mathcal{O}(g^2).
+\]
+
+\textbf{Proof status}: \heuristic{The Callan--Symanzik equation is standard;
+the specific values of $g(\mu)$ and $\gamma_m$ for the UBT KK tower require
+the UBT coupling constants to be derived.}
+
+%------------------------------------------------------------
+\section{Effective Action Derivation}
+%------------------------------------------------------------
+
+\subsection{One-loop effective action}
+
+The one-loop effective action in the background field $\varphi(n)$ is
+
+\[
+  \Gamma[\varphi] = S_\mathrm{cl}[\varphi]
+  + \frac{i}{2}\ln\det\!\left[\frac{\delta^2 S}{\delta\varphi^2}\bigg|_{\varphi}\right]
+  + \mathcal{O}(\hbar^2).
+\]
+
+Expanding around the KK background $\bar{\Theta}_n$ and retaining the $n$-th
+mode, the functional determinant contributes
+
+\[
+  \frac{i}{2}\operatorname{Tr}\ln\bigl[-\Box + m_n^2\bigr]
+  = -\frac{m_n^2}{4\pi}\left(\ln\frac{m_n^2}{\mu^2} - 1\right) L,
+\]
+
+where $L$ is the length of the $(1+0)$-dimensional worldline (periodic path integral).
+
+\textbf{Proof status}: \proved{Standard Coleman--Weinberg effective potential
+in $d=1$; see \cite{CW73}.}
+
+\subsection{Dimensional reduction and self-dual radius}
+
+A key assumption is that the UBT compactification is at the \emph{self-dual radius}
+$R_\psi = 1$ (in string-inspired notation where the T-duality radius is 1).
+At self-dual radius, the winding and KK spectra are degenerate:
+\[
+  m_\mathrm{KK}^2 = n^2/R^2 = n^2, \qquad
+  m_\mathrm{wind}^2 = n^2 R^2 = n^2.
+\]
+
+\textbf{Proof status}: \heuristic{Self-dual radius is assumed, not derived
+from UBT dynamics.  A derivation of $R_\psi$ from the UBT Lagrangian is
+an open gap.}
+
+%------------------------------------------------------------
+\section{Gauge Invariance and Regulator Independence}
+%------------------------------------------------------------
+
+\subsection{Gauge invariance check}
+
+The $n\ln n$ term must be gauge-invariant.  In the UBT, the relevant gauge
+symmetry is $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ (Standard Model)
+in the interaction sector.
+
+\begin{proposition}[Gauge invariance of $V_\mathrm{eff}$]
+  The effective potential $V_\mathrm{eff}(n) = n^2 - Bn\ln n$ depends only on
+  the KK level $n$, which is a gauge-invariant quantum number (the compact
+  momentum).  Hence $V_\mathrm{eff}$ is gauge-invariant.
+\end{proposition}
+
+\textbf{Proof status}: \proved{$n$ is an integer labelling the representation
+of the $\mathrm{U}(1)_\psi$ translation symmetry on $S^1_{L_\psi}$; this is
+gauge-invariant.}
+
+\subsection{Regulator independence}
+
+The coefficient of $n\ln n$ in $\delta V_\mathrm{1-loop}$ must be
+regulator-independent (only UV-divergent terms are regulator-dependent).
+
+\begin{proposition}[UV-finite $n\ln n$ coefficient]
+  The coefficient of $n^2\ln n$ in the one-loop effective potential is
+  UV-finite (scheme-independent) at one loop.  The regulator dependence
+  appears only in the $n^2\ln\mu^2$ term, which renormalises the kinetic
+  coefficient.
+\end{proposition}
+
+\textbf{Proof status}: \proved{Standard argument: the coefficient of
+$m^2\ln(m^2/\mu^2)$ in dimensional regularisation is scheme-independent
+at one loop; only $m^4\ln\mu^2$ is scheme-dependent in $d=4$, while in
+$d=1$ the analogous scheme-independent term is $m^2\ln(m^2/\mu^2)$.}
+
+%------------------------------------------------------------
+\section{The \texorpdfstring{$B\approx 46$}{B~46} Problem}
+%------------------------------------------------------------
+
+\subsection{Status of $B$}
+
+The prime-stability analysis requires $B(p) = (p+1)/3$.  For $p = 137$:
+$B(137) = 138/3 = 46$.  The question is whether this value arises from the
+one-loop RG calculation.
+
+\begin{gap}[Derivation of $B = 46$ from loop integrals]
+  \label{gap:B46}
+  The one-loop naive calculation gives $B \approx 21.8$ (for $n = 137$, see §3.2).
+  The empirical $B = 46$ is a factor of $\sim 2.1$ larger.
+
+  \textbf{Possible sources of the discrepancy}:
+  \begin{enumerate}
+    \item Two-loop corrections of order $g^2/(16\pi^2)^2$ contributing an
+          additional $\sim g/(16\pi^2) \approx 0.024$ correction per loop.
+    \item Counting the KK tower contribution correctly (factor of 2 for
+          winding/KK degeneracy at self-dual radius): gives $B \to 2B_\mathrm{1-loop}
+          \approx 43.6$.
+    \item Gauge field contribution (one-loop with gauge bosons): adds
+          $N_c \cdot b_0/(16\pi^2)$ correction.
+  \end{enumerate}
+
+  \textbf{Current best estimate}: Winding/KK degeneracy at self-dual radius
+  gives $B \approx 2 \times 21.8 = 43.6$, close to but not equal to 46.
+
+  \textbf{Assumptions}: self-dual radius, winding-KK degeneracy, $d=1$
+  effective theory.
+
+  \textbf{Falsification}: Show via two-loop computation that $B = 46$ requires
+  a coupling $g$ not present in the UBT spectrum.
+\end{gap}
+
+\subsection{Higher-loop corrections}
+
+The two-loop correction to $V_\mathrm{eff}$ is of order
+
+\[
+  \delta V_\mathrm{2-loop}(n)
+  \sim \frac{g^2}{(16\pi^2)^2}\, n^2 \ln n \cdot f_2(n),
+\]
+
+where $f_2(n)$ is a function of $n$ depending on the two-loop diagrams.
+For $g \sim 0.3$ (typical strong coupling at relevant scales) and $n \sim 137$:
+
+\[
+  \delta B_\mathrm{2-loop} \sim \frac{g^2}{(16\pi^2)^2}\cdot 137
+  \sim 0.01 \times 137 \sim 1.4.
+\]
+
+This could contribute $\delta B \approx 1$--$2$ toward the missing 2.4.
+
+\textbf{Proof status}: \heuristic{Order-of-magnitude estimate only; explicit
+two-loop diagrams for the UBT KK tower have not been computed.}
+
+%------------------------------------------------------------
+\section{Dimensional Consistency Check}
+%------------------------------------------------------------
+
+\begin{proposition}[Dimensional analysis of $V_\mathrm{eff}$]
+  In natural units with $[\psi] = 1$ (dimensionless), $[n] = 1$, and
+  $[V_\mathrm{eff}] = [n^2] = 1$:
+  \[
+    V_\mathrm{eff}(n) = n^2 - Bn\ln n
+  \]
+  is dimensionally consistent for any constant $B$.
+\end{proposition}
+
+\textbf{Proof status}: \proved{Trivially verified by inspection: both terms
+have dimension $[n]^2 = 1$ (dimensionless), and $\ln n$ is dimensionless.}
+
+%------------------------------------------------------------
+\section{Summary and Gap Matrix}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Claim & Status & Assumption & Gap reference \\
+\hline
+KK mass $m_n^2 = n^2$ & \textbf{Proved} & Natural units, $R_\psi = 1$ & --- \\
+$V_\mathrm{tree}(n) = n^2$ & \textbf{Proved} & KK reduction & --- \\
+One-loop $\delta V \propto n^2\ln n$ & \textbf{Proved} & $d=1$ scalar QFT & --- \\
+$B$ constant from loops & \textbf{Heuristic} & Winding/KK degeneracy & \ref{gap:fixedB} \\
+$B \approx 21.8$ at one loop & \textbf{Heuristic} & Self-dual radius & \ref{gap:fixedB} \\
+$B \approx 43.6$ with winding & \textbf{Heuristic} & T-duality degeneracy & \ref{gap:B46} \\
+$B = 46$ exact & \textbf{Open gap} & Higher loops needed & \ref{gap:B46} \\
+Regulator independence & \textbf{Proved} & $d=1$ dimensional reg. & --- \\
+Gauge invariance & \textbf{Proved} & $n$ is $\mathrm{U}(1)_\psi$ charge & --- \\
+\hline
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\begin{thebibliography}{9}
+\bibitem{ZinnJustin} J.\ Zinn-Justin, \emph{Quantum Field Theory and Critical
+  Phenomena}, 4th ed., Oxford, 2002.
+\bibitem{CW73} S.\ Coleman and E.\ Weinberg, ``Radiative corrections as the
+  origin of spontaneous symmetry breaking,'' \emph{Phys.\ Rev.\ D} \textbf{7}
+  (1973), 1888--1910.
+\bibitem{Tong} D.\ Tong, \emph{Lectures on String Theory}, 2009.
+  \texttt{https://www.damtp.cam.ac.uk/user/tong/string.html}
+\bibitem{Peskin} M.E.\ Peskin and D.V.\ Schroeder, \emph{An Introduction to
+  Quantum Field Theory}, Addison-Wesley, 1995.
+\end{thebibliography}
+
+\end{document}

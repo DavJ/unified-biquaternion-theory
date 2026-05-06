@@ -1,0 +1,326 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{gap}{Open Gap}
+
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\heuristic}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\speculative}[1]{\textbf{[SPECULATIVE]} #1}
+\newcommand{\cond}[1]{\textbf{[COND]} #1}
+
+\title{Self-Adjointness Attempt for the UBT $\psi$-Sector Hamiltonian}
+\author{Ing.\ David Jaro\v{s}\\
+\small \texttt{research\_tracks/rh\_operator/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We attempt to prove or disprove essential self-adjointness of the candidate
+operator
+\[
+  \hat{H}_\psi = -\frac{d^2}{d\psi^2} + V_\mathrm{eff}(\psi)
+\]
+on $\mathscr{H}_\psi = L^2(S^1_{L_\psi})$ with periodic boundary conditions.
+We apply the Kato--Rellich theorem, the deficiency index theory of von Neumann,
+Friedrich's extension theorem, and the Weyl limit-point/limit-circle criterion.
+We identify the precise conditions on $V_\mathrm{eff}$ required for each approach
+and state which conditions are currently satisfied and which remain open gaps.
+\end{abstract}
+
+\tableofcontents
+
+%------------------------------------------------------------
+\section{Setup and Notation}
+%------------------------------------------------------------
+
+Throughout: $\mathscr{H} = L^2(S^1_{2\pi})$ (setting $L_\psi = 2\pi$ for
+concreteness), $D_0 = C^\infty_\mathrm{per}(S^1_{2\pi})$,
+\[
+  A_0 = -\frac{d^2}{d\psi^2}\bigg|_{D_0}, \qquad
+  \hat{H}_\psi = A_0 + V_\mathrm{eff},
+\]
+where $V_\mathrm{eff}: S^1_{2\pi} \to \mathbb{R}$ is a measurable potential.
+
+\textbf{Convention}: The operator $A_0$ on $D_0$ is symmetric but not
+self-adjoint as an operator on $L^2(S^1)$.  Its closure $\bar{A}_0$
+(in $L^2$) is self-adjoint (proved below).  The perturbation $V_\mathrm{eff}$
+must be handled with care.
+
+%------------------------------------------------------------
+\section{Step 1: Self-Adjointness of the Free Hamiltonian}
+%------------------------------------------------------------
+
+\begin{theorem}[Self-adjointness of $A_0$]
+  \label{thm:freeH}
+  The operator $A_0 = -d^2/d\psi^2$ with periodic boundary conditions
+  on $D(A_0) = H^2_\mathrm{per}(S^1_{2\pi})$ (the Sobolev space of
+  $2\pi$-periodic functions with $L^2$ second derivative) is self-adjoint
+  on $\mathscr{H}$.
+\end{theorem}
+
+\begin{proof}
+  \proved{} The Fourier basis $\{e_n = (2\pi)^{-1/2} e^{in\psi}\}_{n\in\mathbb{Z}}$
+  diagonalises $A_0$ with eigenvalues $n^2 \geq 0$.  Since $A_0 \geq 0$ and the
+  eigenbasis is complete in $\mathscr{H}$, $A_0$ is self-adjoint on the domain
+  $D(A_0) = \{f \in \mathscr{H} : \sum_n n^4 |\hat{f}_n|^2 < \infty\}
+  = H^2_\mathrm{per}(S^1_{2\pi})$.  See \cite[Thm.\ VIII.6]{ReedSimon1}.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Step 2: Kato--Rellich Theorem}
+%------------------------------------------------------------
+
+\begin{theorem}[Kato--Rellich]
+  \label{thm:KR}
+  Let $A$ be self-adjoint and $B$ be symmetric with $D(A) \subset D(B)$.
+  Suppose there exist $a \in [0,1)$ and $b \geq 0$ such that
+  \[
+    \|Bf\| \leq a\|Af\| + b\|f\| \qquad \forall f \in D(A).
+  \]
+  Then $A + B$ is self-adjoint on $D(A)$.
+\end{theorem}
+
+\begin{proposition}[KR condition for $V_\mathrm{eff} \in L^\infty$]
+  \label{prop:Linf}
+  If $V_\mathrm{eff} \in L^\infty(S^1_{2\pi})$, then $\hat{H}_\psi = A_0 + V_\mathrm{eff}$
+  is self-adjoint on $H^2_\mathrm{per}(S^1_{2\pi})$.
+\end{proposition}
+
+\begin{proof}
+  \proved{} For $f \in D(A_0)$:
+  \[
+    \|V_\mathrm{eff} f\|^2 = \int |V_\mathrm{eff}(\psi)|^2 |f(\psi)|^2\, d\psi
+    \leq \|V_\mathrm{eff}\|_{L^\infty}^2 \|f\|^2.
+  \]
+  Thus $\|V_\mathrm{eff} f\| \leq \|V_\mathrm{eff}\|_{L^\infty}\|f\|$, which
+  is the KR condition with $a = 0$, $b = \|V_\mathrm{eff}\|_{L^\infty}$.
+  Theorem~\ref{thm:KR} applies.
+\end{proof}
+
+\begin{proposition}[KR condition for $V_\mathrm{eff} \in L^2$]
+  \label{prop:L2}
+  If $V_\mathrm{eff} \in L^2(S^1_{2\pi})$, then $\hat{H}_\psi$ is self-adjoint
+  on $H^2_\mathrm{per}(S^1_{2\pi})$.
+\end{proposition}
+
+\begin{proof}
+  \proved{} On a compact 1-dimensional manifold, $H^2(S^1) \hookrightarrow L^\infty$
+  by the Sobolev embedding theorem.  For $f \in H^2$:
+  \[
+    \|V_\mathrm{eff} f\| \leq \|V_\mathrm{eff}\|_{L^2}\|f\|_{L^\infty}
+    \leq C \|V_\mathrm{eff}\|_{L^2}\|f\|_{H^2}.
+  \]
+  Since $\|f\|_{H^2}^2 \leq \|A_0 f\|^2 + \|f\|^2$, choosing $a < 1$ and $b$
+  large enough, the KR condition holds.  See \cite[Thm.\ X.12]{ReedSimon2}.
+\end{proof}
+
+\begin{gap}[Regularity of the UBT-derived $V_\mathrm{eff}$]
+  \label{gap:Vreg}
+  The UBT-derived potential $V_\mathrm{eff}(\psi) = \kappa\langle\Theta^\dagger\Theta\rangle_q|_\psi$
+  has not been explicitly computed.  Before Propositions~\ref{prop:Linf} or
+  \ref{prop:L2} can be applied, one must:
+  \begin{enumerate}
+    \item Compute $\langle\Theta^\dagger\Theta\rangle_q$ for the UBT background field.
+    \item Verify $V_\mathrm{eff} \in L^2(S^1_{2\pi})$.
+  \end{enumerate}
+  \textbf{Assumptions needed}: UBT background solution exists and $\Theta$ is
+  square-integrable in $q$.\\
+  \textbf{Falsification}: If $V_\mathrm{eff}$ has singularities not removable
+  by regularisation, $\hat{H}_\psi$ may fail to be self-adjoint.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Step 3: Deficiency Index Theory}
+%------------------------------------------------------------
+
+For a general symmetric operator $T$ on $\mathscr{H}$, von Neumann's deficiency
+indices are
+\[
+  n_\pm = \dim\ker(T^* \mp i).
+\]
+$T$ has a self-adjoint extension if and only if $n_+ = n_-$; it is essentially
+self-adjoint if and only if $n_+ = n_- = 0$.
+
+\begin{proposition}[Deficiency indices of $\hat{H}_\psi$ for $V \in L^2$]
+  If $V_\mathrm{eff} \in L^2(S^1_{2\pi})$, then $n_+ = n_- = 0$ and
+  $\hat{H}_\psi$ is essentially self-adjoint on $D_0$.
+\end{proposition}
+
+\begin{proof}
+  \proved{Conditional on $V \in L^2$.}  On the compact manifold $S^1_{2\pi}$,
+  the deficiency elements $\ker(\hat{H}_\psi^* \mp i)$ satisfy
+  $(-d^2/d\psi^2 + V_\mathrm{eff} \pm i)f = 0$ in the distributional sense.
+  For $V \in L^2$, the operator is in the limit-point case at both ends of
+  $[0,2\pi]$ (which are identified), and periodic boundary conditions uniquely
+  determine the self-adjoint extension.  Details: \cite[§X.1]{ReedSimon2}.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Step 4: Friedrich's Extension Theorem}
+%------------------------------------------------------------
+
+If $\hat{H}_\psi$ is not essentially self-adjoint, Friedrich's theorem
+guarantees a canonical self-adjoint extension provided $\hat{H}_\psi$ is
+semibounded.
+
+\begin{proposition}[Friedrich's extension]
+  Suppose $V_\mathrm{eff}$ is bounded below: $V_\mathrm{eff}(\psi) \geq -M$
+  for some $M \geq 0$.  Then $\hat{H}_\psi + M$ is positive and symmetric on
+  $D_0$, and Friedrich's theorem provides a canonical self-adjoint extension
+  $\hat{H}^F_\psi$ with the same lower bound.
+\end{proposition}
+
+\begin{proof}
+  \proved{General Friedrich's extension theorem \cite[Thm.\ X.23]{ReedSimon2}.}
+  Note that the Friedrich extension may differ from the periodic-boundary-condition
+  extension; however, on $S^1$ (compact, no boundary) they coincide for
+  $V \in L^2$.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Step 5: Weyl Criterion}
+%------------------------------------------------------------
+
+For the 1D case $-d^2/d\psi^2 + V_\mathrm{eff}(\psi)$ on $\mathbb{R}$ (before
+compactification), the Weyl limit-point/limit-circle criterion applies:
+
+\begin{itemize}
+  \item \textbf{Limit-point} at $\pm\infty$: exactly one $L^2$ solution of
+        $(-d^2/d\psi^2 + V_\mathrm{eff})f = if$; essential self-adjointness holds
+        without boundary conditions.
+  \item \textbf{Limit-circle}: both solutions are $L^2$; boundary conditions
+        are needed.
+\end{itemize}
+
+On $S^1$ (compact), both endpoints are identified and the Weyl criterion is
+replaced by the periodic-boundary-condition self-adjointness.
+
+\textbf{Proof status}: \proved{On $S^1$ with $V \in L^2$, self-adjointness holds
+for the periodic extension by Proposition~\ref{prop:L2}.}
+
+%------------------------------------------------------------
+\section{Spectral Theorem Applicability}
+%------------------------------------------------------------
+
+\begin{theorem}[Spectral theorem for $\hat{H}_\psi$]
+  If $\hat{H}_\psi$ is self-adjoint on $H^2_\mathrm{per}(S^1_{2\pi})$, then:
+  \begin{enumerate}
+    \item The spectrum $\sigma(\hat{H}_\psi)$ is real.
+    \item $\sigma(\hat{H}_\psi) = \sigma_\mathrm{disc}(\hat{H}_\psi)$ (purely
+          discrete, since $S^1$ is compact).
+    \item The eigenfunctions form a complete orthonormal basis of $\mathscr{H}$.
+    \item The heat semigroup $e^{-t\hat{H}_\psi}$ is trace-class for all $t > 0$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \proved{All points follow from the spectral theorem for self-adjoint operators
+  on a Hilbert space \cite[Thm.\ VIII.6]{ReedSimon1} combined with the
+  compactness of the resolvent (which holds because $H^2 \hookrightarrow L^2$
+  is compact on $S^1$).}
+\end{proof}
+
+\begin{remark}[Trace-class heat semigroup]
+  Point 4 is critical for the heat-kernel programme (Task 4/theta-spectral).
+  For $t > 0$:
+  \[
+    \operatorname{Tr}[e^{-t\hat{H}_\psi}] = \sum_n e^{-t\lambda_n} < \infty
+  \]
+  because the eigenvalues $\lambda_n \to +\infty$.  The trace defines the
+  partition function $Z(t)$ used in the theta/spectral trace formula.
+\end{remark}
+
+%------------------------------------------------------------
+\section{Compactness of Resolvent}
+%------------------------------------------------------------
+
+\begin{proposition}[Compact resolvent]
+  If $\hat{H}_\psi$ is self-adjoint and $V_\mathrm{eff}$ is such that
+  $\lambda_n \to +\infty$, then $(\hat{H}_\psi - z)^{-1}$ is compact
+  for $z \notin \sigma(\hat{H}_\psi)$.
+\end{proposition}
+
+\begin{proof}
+  \proved{The embedding $H^2(S^1) \hookrightarrow L^2(S^1)$ is compact by
+  the Rellich--Kondrachov theorem.  The resolvent maps $L^2 \to H^2$
+  (bounded), followed by $H^2 \hookrightarrow L^2$ (compact).}
+\end{proof}
+
+%------------------------------------------------------------
+\section{Summary: Proof Status Table}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Statement & Status & Condition \\
+\hline
+$A_0$ self-adjoint on $H^2_\mathrm{per}$ & \textbf{Proved} & None \\
+KR: $V \in L^\infty \Rightarrow$ SA & \textbf{Proved} & $V \in L^\infty$ \\
+KR: $V \in L^2 \Rightarrow$ SA & \textbf{Proved} & $V \in L^2$ \\
+Deficiency indices $= (0,0)$ & \textbf{Proved} & $V \in L^2$ \\
+Friedrich extension & \textbf{Proved} & $V$ semibounded \\
+UBT $V_\mathrm{eff} \in L^2$ & \textbf{Open gap} & Requires computation \\
+Spectrum $\sim$ Riemann zeros & \textbf{Speculative} & Requires G1--G6 \\
+\hline
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\section{Remaining Open Gaps}
+%------------------------------------------------------------
+
+\begin{gap}[Explicit computation of $V_\mathrm{eff}$ from UBT]
+  All self-adjointness proofs above are \emph{conditional} on
+  $V_\mathrm{eff} \in L^2(S^1)$ or $V_\mathrm{eff} \in L^\infty$.
+  Until $V_\mathrm{eff}$ is computed from the UBT Lagrangian, self-adjointness
+  of $\hat{H}_\psi$ (as opposed to $A_0$) remains a conditional result.
+
+  \textbf{Assumptions}: UBT background solution $\Theta_0$; weak-field
+  approximation $\langle\Theta^\dagger\Theta\rangle_q$ computable.
+
+  \textbf{Falsification path}: Compute $V_\mathrm{eff}$ numerically;
+  check $\|V_\mathrm{eff}\|_{L^2} < \infty$.
+\end{gap}
+
+\begin{gap}[Uniqueness of self-adjoint extension]
+  Even if $V_\mathrm{eff} \notin L^2$, the Friedrich extension may exist.
+  However, it may not be the ``physically correct'' extension for UBT.
+  A derivation of the correct boundary conditions from the UBT action is needed.
+
+  \textbf{Assumptions}: UBT action principle determines boundary conditions
+  on $\psi$-sector.
+\end{gap}
+
+%------------------------------------------------------------
+\begin{thebibliography}{9}
+\bibitem{ReedSimon1} M.\ Reed and B.\ Simon, \emph{Methods of Modern
+  Mathematical Physics, Vol.\ I: Functional Analysis}, Academic Press, 1972.
+\bibitem{ReedSimon2} M.\ Reed and B.\ Simon, \emph{Methods of Modern
+  Mathematical Physics, Vol.\ II: Fourier Analysis, Self-Adjointness},
+  Academic Press, 1975.
+\bibitem{Teschl} G.\ Teschl, \emph{Mathematical Methods in Quantum Mechanics},
+  AMS, 2009.  \texttt{https://www.mat.univie.ac.at/\textasciitilde gerald/ftp/book-schroe/}
+\bibitem{BK99} M.V.\ Berry and J.P.\ Keating,
+  ``$H = xp$ and the Riemann zeros,'' \emph{Supersymmetry and Trace Formulae}, 1999.
+\end{thebibliography}
+
+\end{document}
