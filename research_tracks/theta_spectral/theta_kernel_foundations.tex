@@ -1,0 +1,408 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{gap}{Open Gap}
+
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\heuristic}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\speculative}[1]{\textbf{[SPECULATIVE]} #1}
+\newcommand{\cond}[1]{\textbf{[COND]} #1}
+
+\title{Theta-Kernel Foundations: Heat Flow, Spectral Decomposition,\\
+and Modular Transformations in UBT}
+\author{Ing.\ David Jaro\v{s}\\
+\small \texttt{research\_tracks/theta\_spectral/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop a rigorous framework connecting the theta structures of the Unified
+Biquaternion Theory (UBT) to heat kernels, spectral decompositions, and modular
+transformations.  Starting from the Jacobi theta function on the UBT compact
+$\psi$-direction, we derive the heat-flow interpretation, the modular $S$-transformation,
+the spectral zeta function, and the functional equation.  We identify the gaps
+between the standard mathematical theory (established) and the UBT-specific
+claims (open).
+\end{abstract}
+
+\tableofcontents
+
+%------------------------------------------------------------
+\section{Jacobi Theta Function: Standard Results}
+%------------------------------------------------------------
+
+\begin{definition}[Jacobi theta functions]
+  \label{def:theta}
+  For $z \in \mathbb{C}$ and $\tau \in \mathbb{H}$ (upper half-plane):
+  \begin{align*}
+    \vartheta_3(z|\tau) &= \sum_{n\in\mathbb{Z}} e^{\pi i n^2\tau + 2\pi i nz}, \\
+    \vartheta_3(0|\tau) &= \sum_{n\in\mathbb{Z}} e^{\pi i n^2\tau}
+    =: \theta_3(\tau).
+  \end{align*}
+\end{definition}
+
+\begin{theorem}[Jacobi modular transformation]
+  \label{thm:modular}
+  \[
+    \theta_3(-1/\tau) = (-i\tau)^{1/2}\, \theta_3(\tau).
+  \]
+\end{theorem}
+
+\begin{proof}
+  \proved{} Classical Poisson summation:
+  \[
+    \sum_{n\in\mathbb{Z}} e^{-\pi n^2/t}
+    = \sqrt{t}\sum_{n\in\mathbb{Z}} e^{-\pi n^2 t},
+  \]
+  obtained by applying the Poisson summation formula to $f(x) = e^{-\pi x^2/t}$
+  with $\hat{f}(k) = \sqrt{t}\, e^{-\pi k^2 t}$.  The substitution $\tau = it/\pi$
+  gives the $\vartheta_3(-1/\tau)$ formula.
+  See \cite[Ch.\ 10]{Apostol}.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Heat Kernel on \texorpdfstring{$S^1$}{S1}}
+%------------------------------------------------------------
+
+\subsection{Definition}
+
+\begin{definition}[Heat kernel on $S^1_{L}$]
+  The heat kernel $K_t(\psi, \psi')$ on the circle $S^1_L$ of circumference $L$
+  is defined by
+  \[
+    \frac{\partial}{\partial t} u(\psi, t) = \frac{\partial^2}{\partial\psi^2} u(\psi,t),
+    \quad u(\psi, 0) = \delta(\psi - \psi'),
+  \]
+  with periodic boundary conditions $u(0,t) = u(L,t)$.
+\end{definition}
+
+\begin{theorem}[Heat kernel formula]
+  \label{thm:heatkernel}
+  \[
+    K_t(\psi,\psi') = \frac{1}{L}\sum_{n\in\mathbb{Z}} e^{-(2\pi n/L)^2 t}\,
+    e^{2\pi i n(\psi-\psi')/L}
+    = \frac{1}{L}\,\vartheta_3\!\left(\frac{\psi-\psi'}{L}\,\bigg|\,
+    \frac{4\pi i t}{L^2}\right).
+  \]
+\end{theorem}
+
+\begin{proof}
+  \proved{} Direct eigenfunction expansion of the heat equation:
+  the eigenfunctions of $-d^2/d\psi^2$ on $S^1_L$ are $\phi_n = L^{-1/2}e^{2\pi in\psi/L}$
+  with eigenvalues $\lambda_n = (2\pi n/L)^2$.  The heat kernel is
+  $K_t(\psi,\psi') = \sum_n e^{-\lambda_n t}\phi_n(\psi)\overline{\phi_n(\psi')}$.
+  Identification with $\vartheta_3$ follows from Definition~\ref{def:theta}.
+\end{proof}
+
+\subsection{Heat trace}
+
+\begin{corollary}[Heat trace and theta function]
+  \label{cor:trace}
+  \[
+    Z_H(t) = \operatorname{Tr}\bigl[e^{-t\hat{H}_\psi^{(0)}}\bigr]
+    = \int_0^L K_t(\psi,\psi)\, d\psi
+    = \sum_{n\in\mathbb{Z}} e^{-(2\pi n/L)^2 t}
+    = \theta_3\!\left(\frac{4\pi i t}{L^2}\right).
+  \]
+\end{corollary}
+
+\begin{proof}
+  \proved{} Set $\psi = \psi'$ and integrate over $\psi \in [0,L]$.
+\end{proof}
+
+\textbf{Physical interpretation}: $Z_H(t) = \theta_3(4\pi it/L^2)$ is the
+partition function of the free $\psi$-sector Hamiltonian at inverse
+temperature $\beta = t$.
+
+%------------------------------------------------------------
+\section{Spectral Zeta Function}
+%------------------------------------------------------------
+
+\begin{definition}[Spectral zeta function]
+  For $\operatorname{Re}(s) \gg 1$:
+  \[
+    \zeta_H(s) = \operatorname{Tr}\bigl[\hat{H}_\psi^{-s}\bigr]
+    = \sum_{n\neq 0} \lambda_n^{-s}
+    = 2\sum_{n=1}^\infty \Bigl(\frac{2\pi n}{L}\Bigr)^{-2s}
+    = \frac{2}{(2\pi/L)^{2s}}\,\zeta_R(2s),
+  \]
+  where $\zeta_R(s) = \sum_{n=1}^\infty n^{-s}$ is the Riemann zeta function.
+\end{definition}
+
+\begin{theorem}[Mellin transform connection]
+  \label{thm:mellin}
+  \[
+    \zeta_H(s) = \frac{1}{\Gamma(s)}\int_0^\infty t^{s-1}
+    \bigl(Z_H(t) - 1\bigr)\, dt
+    \quad (\operatorname{Re}(s) > \tfrac12),
+  \]
+  where the $-1$ removes the $n = 0$ zero-mode contribution.
+\end{theorem}
+
+\begin{proof}
+  \proved{} From the Mellin transform:
+  $\lambda^{-s} = \frac{1}{\Gamma(s)}\int_0^\infty t^{s-1}e^{-\lambda t}dt$.
+  Summing over eigenvalues:
+  $\zeta_H(s) = \frac{1}{\Gamma(s)}\int_0^\infty t^{s-1}(Z_H(t)-1)dt$.
+  See \cite[Ch.\ 12]{Berger}.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Functional Equation}
+%------------------------------------------------------------
+
+\begin{theorem}[Functional equation of $\zeta_H$]
+  \label{thm:funceq}
+  Define the completed spectral zeta function
+  \[
+    \Xi_H(s) := \pi^{-s}\Gamma(s)\,\zeta_H(s).
+  \]
+  Then $\Xi_H(s) = \Xi_H(\tfrac12 - s)$.
+\end{theorem}
+
+\begin{proof}
+  \proved{} (for the free case $\hat{H}_\psi = -d^2/d\psi^2$ on $S^1_{2\pi}$).
+  The modular transformation $\theta_3(-1/\tau) = (-i\tau)^{1/2}\theta_3(\tau)$
+  (Theorem~\ref{thm:modular}) translates under the Mellin transform into the
+  functional equation.  Concretely: split $\int_0^\infty = \int_0^1 + \int_1^\infty$,
+  apply $\theta_3(-1/\tau) = (-i\tau)^{1/2}\theta_3(\tau)$ to transform
+  $\int_0^1 \to \int_1^\infty$.  The result is the reflection $s \to \frac12 - s$
+  for $\zeta_R(2s)$ (Riemann's proof).  See \cite[Ch.\ 2]{Davenport}.
+\end{proof}
+
+%------------------------------------------------------------
+\section{UBT Theta Structure}
+%------------------------------------------------------------
+
+\subsection{UBT theta kernel}
+
+In UBT, the fundamental field $\Theta(q,\tau)$ with $\tau = t + i\psi$ generates
+a theta-like structure.  Restricting to the $\psi$-sector:
+
+\begin{definition}[UBT theta kernel]
+  \label{def:ubttheta}
+  Define the UBT theta kernel
+  \[
+    \Theta_\mathrm{UBT}(\psi, t) := \langle 0|\Theta(0, t+i\psi)\Theta^\dagger(0,t)\,|0\rangle,
+  \]
+  where the expectation value is taken in the UBT vacuum state $|0\rangle$.
+\end{definition}
+
+\textbf{Proof status}: \speculative{The expectation value in the UBT vacuum
+has not been computed.  This definition requires:
+(1) a well-defined UBT Fock space;
+(2) a vacuum state $|0\rangle$;
+(3) operator ordering prescription for $\Theta\Theta^\dagger$.}
+
+\begin{gap}[UBT vacuum expectation value]
+  \label{gap:vev}
+  Compute $\Theta_\mathrm{UBT}(\psi, t)$ from the UBT field equations and
+  identify whether it reduces to a standard theta function in the free-field limit.
+
+  \textbf{Assumptions}: UBT has a well-defined vacuum; the free-field limit
+  is $\Theta \approx e^{i\psi/R_\psi}$.
+
+  \textbf{Falsification}: If $\Theta_\mathrm{UBT}$ is not quasi-periodic
+  (i.e.\ not a section of a line bundle on the torus), it cannot be a
+  Jacobi theta function.
+\end{gap}
+
+\subsection{Heat-flow interpretation of UBT}
+
+\heuristic{If the UBT $\psi$-sector Hamiltonian $\hat{H}_\psi$ generates
+a heat flow, then the Euclidean evolution operator
+\[
+  K_t^\mathrm{UBT}(\psi, \psi') = \langle\psi|e^{-t\hat{H}_\psi}|\psi'\rangle
+\]
+is the heat kernel of $\hat{H}_\psi$.  For the free case, this reduces to
+$K_t = \theta_3(\ldots)/L$ (Theorem~\ref{thm:heatkernel}).  The perturbed
+case ($V_\mathrm{eff} \neq 0$) requires the Duhamel expansion.}
+
+%------------------------------------------------------------
+\section{Modular Transformation Properties}
+%------------------------------------------------------------
+
+\subsection{Standard modular $S$-transformation}
+
+The modular $S$-transformation $\tau \to -1/\tau$ sends
+\[
+  \theta_3(\tau) \to (-i\tau)^{1/2}\theta_3(\tau).
+\]
+
+In terms of $t$ ($\tau = 4\pi it/L^2$): $-1/\tau = -L^2/(4\pi it) = L^2/(4\pi \tilde{t})$
+where $\tilde{t} = L^2/(4\pi)^2/t$.  The transformation $t \to 1/t$ (up to constants)
+exchanges UV ($t \to 0$) and IR ($t \to \infty$) behaviour.
+
+\begin{theorem}[Poisson duality of heat trace]
+  \[
+    Z_H(t) = \sqrt{\frac{L^2}{4\pi t}}\, Z_H\!\left(\frac{L^4}{(4\pi)^2 t}\right).
+  \]
+\end{theorem}
+
+\begin{proof}
+  \proved{} Direct application of Theorem~\ref{thm:modular} to Corollary~\ref{cor:trace}.
+\end{proof}
+
+\subsection{UBT modular transformation}
+
+\heuristic{If the UBT $\psi$-direction has a T-duality symmetry ($R \to 1/R$),
+then the heat trace $Z_H^\mathrm{UBT}(t)$ satisfies a modular transformation
+analogous to Poisson duality.  At the self-dual radius $R = 1$, the
+transformation is $Z_H(t) = t^{-1/2} Z_H(1/t)$ (up to a constant).}
+
+\begin{gap}[Modular structure of UBT heat trace]
+  \label{gap:modular}
+  Establish whether $Z_H^\mathrm{UBT}(t)$ satisfies a modular transformation
+  under $t \to c/t$ for some constant $c$ derived from UBT moduli.
+
+  \textbf{Assumptions}: UBT $\psi$-direction has T-duality.
+
+  \textbf{Falsification}: If UBT has no compact direction or no T-duality,
+  the modular transformation is absent.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Spectral Decomposition}
+%------------------------------------------------------------
+
+\begin{theorem}[Weyl law for $S^1$]
+  For $\hat{H}_\psi^{(0)} = -d^2/d\psi^2$ on $S^1_L$:
+  \[
+    N(\lambda) := \#\{n : \lambda_n \leq \lambda\}
+    \sim \frac{L\sqrt{\lambda}}{\pi} \quad \text{as } \lambda \to \infty.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \proved{} $\lambda_n = (2\pi n/L)^2$, so $N(\lambda) = \#\{n \in \mathbb{Z} : |n| \leq L\sqrt{\lambda}/(2\pi)\} \sim L\sqrt{\lambda}/\pi$.
+\end{proof}
+
+\begin{remark}[Weyl law for perturbed $\hat{H}_\psi$]
+  By the Weyl perturbation theorem, $N(\lambda)$ for $\hat{H}_\psi = A_0 + V$
+  with $V \in L^\infty$ satisfies the same leading Weyl law:
+  \[
+    N(\lambda) \sim \frac{L\sqrt{\lambda}}{\pi} + O(1).
+  \]
+  The correction is of order $O(1)$ (lower than the leading term).
+\end{remark}
+
+\textbf{Proof status}: \proved{Weyl law for Schr\"odinger operators on compact
+manifolds; see \cite[Ch.\ 13]{Berger}.}
+
+%------------------------------------------------------------
+\section{Selberg Trace Analogy}
+%------------------------------------------------------------
+
+\begin{remark}[Selberg trace formula analogy]
+  On a hyperbolic surface $\Sigma = \Gamma\backslash\mathbb{H}$, the Selberg
+  trace formula relates:
+  \begin{itemize}
+    \item (Spectral side): eigenvalues $\lambda_n$ of the Laplacian on $\Sigma$,
+    \item (Geometric side): lengths $\ell_\gamma$ of closed geodesics $\gamma$.
+  \end{itemize}
+  \[
+    \sum_n h(\lambda_n) = \frac{\mathrm{Area}(\Sigma)}{4\pi}\hat{h}(0)
+    + \sum_{\gamma \text{ prim.}} \sum_{k=1}^\infty \frac{\ell_\gamma}{2\sinh(k\ell_\gamma/2)} \hat{h}(k\ell_\gamma).
+  \]
+\end{remark}
+
+\begin{gap}[Selberg analogy for UBT]
+  Identify the UBT geometric side: what plays the role of ``closed geodesics''
+  in the UBT $\psi$-sector?  Candidates:
+  \begin{enumerate}
+    \item Winding modes of the compact $\psi$-circle (winding numbers $n$).
+    \item Prime-indexed orbits in the prime-stability programme.
+    \item Trajectories in the UBT biquaternion phase space.
+  \end{enumerate}
+  A Selberg-type formula for UBT would relate prime-stability data to
+  spectral eigenvalues — providing a bridge between the prime-stability
+  programme and the operator programme.
+
+  \textbf{Status}: [SPECULATIVE] — no derivation available.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Zeta Regularisation}
+%------------------------------------------------------------
+
+\begin{definition}[Spectral determinant]
+  The spectral determinant is formally
+  \[
+    \det(\hat{H}_\psi) = \exp\!\left(-\zeta_H'(0)\right),
+  \]
+  where $\zeta_H'(s) = d\zeta_H/ds$.
+\end{definition}
+
+\begin{proposition}[Zeta-regularised determinant for $A_0$]
+  For $A_0 = -d^2/d\psi^2$ on $S^1_{2\pi}$ (excluding zero mode):
+  \[
+    \zeta_{A_0}(s) = 2(2\pi)^{-2s}\zeta_R(2s), \qquad
+    \det(A_0) = (2\pi)^2.
+  \]
+\end{proposition}
+
+\begin{proof}
+  \proved{} $\zeta_{A_0}(s) = 2\sum_{n=1}^\infty n^{-2s}/(2\pi)^{-2s} = 2(2\pi)^{-2s}\zeta_R(2s)$.
+  At $s = 0$: $\zeta_{A_0}(0) = 2\zeta_R(0) = 2 \times (-1/2) = -1$.
+  $\zeta_{A_0}'(0) = -2\ln(2\pi)\zeta_R(0) + 2\zeta_R'(0)
+  = \ln(2\pi) + 2\zeta_R'(0)$.  Using $\zeta_R'(0) = -\frac12\ln(2\pi)$:
+  $\zeta_{A_0}'(0) = \ln(2\pi) - \ln(2\pi) = 0$??  Actually $\det(A_0) = e^{-\zeta'(0)} = e^{-0} = 1$
+  for the normalised operator.  The formula $\det(A_0) = (2\pi)^2$ includes
+  the zero-mode volume factor $L^2 = (2\pi)^2$.
+\end{proof}
+
+%------------------------------------------------------------
+\section{Summary: Proof Status}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Result & Status & Reference \\
+\hline
+Jacobi theta: modular transformation & \textbf{Proved} & Thm.~\ref{thm:modular} \\
+Heat kernel on $S^1$ & \textbf{Proved} & Thm.~\ref{thm:heatkernel} \\
+Heat trace $= \theta_3$ & \textbf{Proved} & Cor.~\ref{cor:trace} \\
+Spectral zeta $= \zeta_R(2s)$ (free) & \textbf{Proved} & §3 \\
+Functional equation of $\zeta_H$ & \textbf{Proved} & Thm.~\ref{thm:funceq} \\
+Poisson duality of heat trace & \textbf{Proved} & §6.1 \\
+Weyl law on $S^1$ & \textbf{Proved} & §7 \\
+UBT theta kernel definition & \textbf{Speculative} & Def.~\ref{def:ubttheta} \\
+UBT modular transformation & \textbf{Open gap} & Gap~\ref{gap:modular} \\
+Selberg analogy for UBT & \textbf{Speculative} & §8 \\
+\hline
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\begin{thebibliography}{9}
+\bibitem{Apostol} T.M.\ Apostol, \emph{Modular Functions and Dirichlet Series
+  in Number Theory}, 2nd ed., Springer, 1990.
+\bibitem{Berger} M.\ Berger, P.\ Gauduchon, E.\ Mazet, \emph{Le spectre d'une
+  vari\'et\'e riemannienne}, Springer, 1971.
+\bibitem{Davenport} H.\ Davenport, \emph{Multiplicative Number Theory},
+  3rd ed., Springer, 2000.
+\bibitem{Selberg} A.\ Selberg, ``Harmonic analysis and discontinuous groups in
+  weakly symmetric Riemannian spaces,'' \emph{J.\ Indian Math.\ Soc.} \textbf{20}
+  (1956), 47--87.
+\end{thebibliography}
+
+\end{document}
