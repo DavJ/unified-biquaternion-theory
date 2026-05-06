@@ -4,56 +4,52 @@
 **Author:** Ing. David Jaroš  
 **License:** MIT (code), CC BY-NC-ND 4.0 (theoretical content)
 
+> **This is an experimental project. No physical interpretation is assumed.**
+
 ---
 
 ## Hypothesis
 
-For every prime $p > 3$, the identity
+For every prime $p > 3$, the congruence
 
-$$k = \frac{p^2 - 1}{24} \in \mathbb{N}$$
+$$p^2 \equiv 1 \pmod{24}$$
 
 holds exactly (since $p \equiv 1$ or $5 \pmod{6}$ implies $p^2 \equiv 1 \pmod{24}$).
 
-This experiment investigates whether the **sequence of these $k$ values** carries
-non-random structure detectable via:
+The **k-sequence** is defined as:
 
-- Statistical analysis (mod-base residues, autocorrelation, correlations)
-- FFT spectral analysis (dominant frequencies, stability)
-- Comparison with Riemann zeta zero imaginary parts
-- Quadratic phase signal comparison
-- CMB radial power spectrum alignment
+$$k = \frac{p^2 - 1}{24} \in \mathbb{N}$$
+
+This experiment investigates whether this sequence carries non-random structure
+detectable via statistics, spectral analysis, and comparison with Riemann zeta zeros.
 
 ---
 
-## Pipeline (run in order)
+## Scripts
+
+| Script | Description |
+|--------|-------------|
+| `prime_sequence.py` | Generates all primes up to N using a sieve, filters p > 3, computes k = (p²−1)//24, and saves a Parquet dataset with columns p, p_sq, k, log_p, gap_to_next. |
+| `stats_analysis.py` | Loads the dataset and computes: k histogram, residues k mod {2,3,5,7,11,13} with chi² uniformity tests, autocorrelation of k, and Pearson correlations of k vs log(p) and k vs index. |
+| `spectrum_analysis.py` | Z-scores and Hann-windows the k sequence, computes the FFT power spectrum, detects dominant peaks, and tests stability under 50%/25% subsampling and half-window. |
+| `compare_zeta.py` | Loads the first n Riemann zeta zeros (via mpmath), compares FFT power spectra of k and the zeta imaginary parts, and computes cross-correlation with a shuffled null z-score. |
+| `null_models.py` | Generates three null baselines (random primes-form, shuffled k, random quadratic) and compares their spectral statistics to the real k sequence across 50 realisations each. |
+
+---
+
+## How to Run
 
 ```bash
 cd projects/prime_mod24_resonance
 
-# 1. Generate data
-python prime_sequence.py --n 1e6
-
-# 2. Statistical analysis
+python prime_sequence.py
 python stats_analysis.py
-
-# 3. FFT spectral analysis
 python spectrum_analysis.py
-
-# 4. Compare with Riemann zeta zeros
-python compare_zeta.py --n-zeros 500
-
-# 5. Quadratic structure test
-python quadratic_test.py --n 5000
-
-# 6. CMB prime-mod24 probe (synthetic CMB)
-python forensic_fingerprint/tools/cmb_fft2d_scan.py \
-    --prime-mod24-probe --synthetic --n-primes 500 \
-    --probe-report-csv reports/cmb_prime_mod24_hits.csv \
-    --probe-plot plots/cmb_prime_overlay.png
-
-# 7. Null models
-python null_models.py --seed 42
+python compare_zeta.py
+python null_models.py
 ```
+
+All scripts read from `config.yaml` for defaults (N=100000, seed=42, fft_window=hann).
 
 ---
 
@@ -61,21 +57,16 @@ python null_models.py --seed 42
 
 | Path | Description |
 |------|-------------|
-| `data/primes_mod24.parquet` | Prime sequence dataset |
-| `reports/stats_summary.json` | Descriptive stats, mod-base chi², autocorrelation |
-| `reports/fft_peaks.json` | FFT peaks and stability |
-| `reports/zeta_correlation.json` | Zeta-zero cross-correlation results |
-| `reports/quadratic_similarity.json` | Quadratic signal comparison metrics |
-| `reports/cmb_prime_mod24_hits.csv` | Per-bin CMB hit density |
-| `reports/null_comparison.json` | Null model baselines |
-| `plots/k_distribution.png` | k distribution and mod-base histograms |
-| `plots/k_autocorrelation.png` | k autocorrelation function |
-| `plots/fft_spectrum.png` | FFT power spectra (full + subsamples) |
-| `plots/zeta_vs_k_fft.png` | k vs zeta-zero spectral comparison |
-| `plots/quadratic_overlay.png` | k vs synthetic quadratic signals |
-| `plots/cmb_prime_overlay.png` | CMB probe results |
-| `plots/null_comparison.png` | Null model distributions |
-| `report.md` | Final consolidated report (fill in after run) |
+| `DATA/prime_mod24/primes_mod24.parquet` | Prime sequence dataset |
+| `reports/prime_mod24/stats_summary.json` | Descriptive stats, mod-base chi², autocorrelation |
+| `reports/prime_mod24/k_distribution.png` | k distribution and mod-base histograms |
+| `reports/prime_mod24/k_autocorr.png` | k autocorrelation function |
+| `reports/prime_mod24/fft_peaks.json` | FFT peaks and stability |
+| `reports/prime_mod24/fft_spectrum.png` | FFT power spectra (full + subsamples) |
+| `reports/prime_mod24/zeta_correlation.json` | Zeta-zero cross-correlation results |
+| `reports/prime_mod24/zeta_fft_compare.png` | k vs zeta-zero spectral comparison |
+| `reports/prime_mod24/null_comparison.json` | Null model baselines |
+| `reports/prime_mod24/null_comparison.png` | Null model distributions |
 
 ---
 
@@ -88,10 +79,9 @@ pandas
 pyarrow
 mpmath
 matplotlib
-sympy    # optional, used for prime checking
 ```
 
-Install with:  `pip install numpy scipy pandas pyarrow mpmath matplotlib sympy`
+Install with: `pip install numpy scipy pandas pyarrow mpmath matplotlib`
 
 ---
 

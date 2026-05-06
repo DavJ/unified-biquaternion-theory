@@ -74,9 +74,9 @@ def top_peaks(freqs: np.ndarray, power: np.ndarray, n: int = 10) -> list[dict]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="FFT spectral analysis of k sequence")
-    ap.add_argument("--data", default="data/primes_mod24.parquet")
-    ap.add_argument("--out-plot", default="plots/fft_spectrum.png")
-    ap.add_argument("--out-json", default="reports/fft_peaks.json")
+    ap.add_argument("--data", default="DATA/prime_mod24/primes_mod24.parquet")
+    ap.add_argument("--out-plot", default="reports/prime_mod24/fft_spectrum.png")
+    ap.add_argument("--out-json", default="reports/prime_mod24/fft_peaks.json")
     ap.add_argument("--n-peaks", type=int, default=10, help="Number of top peaks to report")
     args = ap.parse_args()
 

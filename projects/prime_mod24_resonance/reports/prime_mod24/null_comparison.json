@@ -1,0 +1,55 @@
+{
+  "real_k_n": 9590,
+  "null_models": {
+    "random_primes": {
+      "n_reps": 50,
+      "spectral_pearson_r": {
+        "mean": 0.9986558289071281,
+        "std": 0.0003402661784305021,
+        "max": 0.999407465091458
+      },
+      "spectral_overlap_top10": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "phase_coherence_lag0": {
+        "mean": 0.9991311383704232,
+        "std": 0.00021183890335206364
+      }
+    },
+    "shuffled_k": {
+      "n_reps": 50,
+      "spectral_pearson_r": {
+        "mean": -0.004520174108649479,
+        "std": 0.013670999729797165,
+        "max": 0.05246565204807769
+      },
+      "spectral_overlap_top10": {
+        "mean": 0.01,
+        "std": 0.06999999999999999
+      },
+      "phase_coherence_lag0": {
+        "mean": -0.0002974699407308986,
+        "std": 0.007696322346239136
+      }
+    },
+    "random_quadratic": {
+      "n_reps": 50,
+      "spectral_pearson_r": {
+        "mean": -0.004798110377492156,
+        "std": 0.011744440201048444,
+        "max": 0.022982839791465683
+      },
+      "spectral_overlap_top10": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "phase_coherence_lag0": {
+        "mean": -0.0015413216452398364,
+        "std": 0.009991033470651528
+      }
+    }
+  },
+  "seed": 42,
+  "note": "These null models establish baselines for spectral and correlation metrics. Any signal in the real k sequence must exceed the null distributions to be considered non-random."
+}
