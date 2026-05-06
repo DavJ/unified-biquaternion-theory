@@ -71,7 +71,7 @@ manifold ℂ ⊗ ℍ × ℂ_τ, derive:
 
 **Known partial results:**
 
-- The UBT spatial sector on T^d gives −Δ by standard Kaluza-Klein (KK) reduction (well-known).
+- The UBT spatial sector on T^d gives −Δ by standard KK reduction (well-known).
 - The identification of prime-indexed modes with N_p is motivated by the
   prime stability analysis in `research_tracks/rh_trace_formula/`, but the
   weighting by log(p) has not been derived from the UBT Lagrangian.
@@ -79,7 +79,7 @@ manifold ℂ ⊗ ℍ × ℂ_τ, derive:
 **What is missing:**
 
 - An explicit derivation of log(p) as the energy weight from the UBT
-  field equations (plausible from Kaluza-Klein (KK) mass formula m_p ~ log p / L_ψ but
+  field equations (plausible from KK mass formula m_p ~ log p / L_ψ but
   not proved).
 - Proof that only prime-indexed modes appear in the Fock space (rather than
   all positive integers, which would give a trivially different operator).
@@ -88,7 +88,7 @@ manifold ℂ ⊗ ℍ × ℂ_τ, derive:
 
 1. Write Θ(x, ψ) = Σ_n a_n(x) exp(2πi n ψ/L_ψ) and compute the UBT
    action in terms of mode coefficients a_n.
-2. Show the quadratic part gives H = Σ_n E_n N_n with E_n ∝ n² (Kaluza-Klein),
+2. Show the quadratic part gives H = Σ_n E_n N_n with E_n ∝ n² (KK),
    or alternatively E_n = log n via a different UBT energy scaling.
 3. Argue (or derive) why the composite modes n = p₁^{k₁} ··· p_r^{k_r}
    factor into independent prime sectors.
