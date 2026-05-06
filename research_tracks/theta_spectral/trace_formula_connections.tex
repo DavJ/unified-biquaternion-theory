@@ -1,0 +1,293 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{gap}{Open Gap}
+
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\heuristic}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\speculative}[1]{\textbf{[SPECULATIVE]} #1}
+\newcommand{\cond}[1]{\textbf{[COND]} #1}
+
+\title{Trace Formula Connections: UBT, Selberg, and Riemann--Weil}
+\author{Ing.\ David Jaro\v{s}\\
+\small \texttt{research\_tracks/theta\_spectral/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We examine the structural connections between:
+(1) the Selberg trace formula for hyperbolic surfaces;
+(2) the Riemann--Weil explicit formula;
+(3) the Atiyah--Bott Lefschetz formula;
+(4) potential UBT spectral determinant formulations.
+We clearly separate what is mathematically established, what is
+conjectural for UBT, and what would constitute a proof of the
+Riemann Hypothesis (and is therefore not claimed).
+\end{abstract}
+
+\tableofcontents
+
+%------------------------------------------------------------
+\section{The Selberg Trace Formula}
+%------------------------------------------------------------
+
+\subsection{Setup}
+
+Let $\Sigma = \Gamma\backslash\mathbb{H}$ be a compact hyperbolic surface
+($\mathbb{H}$ = upper half-plane, $\Gamma < \mathrm{PSL}(2,\mathbb{R})$ cocompact).
+The Laplace--Beltrami operator $\Delta_\Sigma$ has discrete spectrum
+$0 = \lambda_0 < \lambda_1 \leq \lambda_2 \leq \cdots$
+
+\begin{theorem}[Selberg trace formula]
+  \label{thm:Selberg}
+  For any even smooth rapidly decaying function $h:\mathbb{R}\to\mathbb{C}$:
+  \[
+    \sum_{n=0}^\infty h(r_n)
+    = \frac{\mathrm{Area}(\Sigma)}{4\pi}\hat{h}(0)
+    + \sum_{\{\gamma\}_\mathrm{prim}} \sum_{k=1}^\infty
+      \frac{\ell(\gamma)}{2\sinh(k\ell(\gamma)/2)}\, \hat{h}(k\ell(\gamma)),
+  \]
+  where $\lambda_n = \frac14 + r_n^2$, $\ell(\gamma)$ is the length of the
+  primitive closed geodesic $\gamma$, and $\hat{h}$ is the Fourier transform.
+\end{theorem}
+
+\begin{proof}
+  \proved{} Classical; see \cite{Hejhal,McKean}.  The proof uses the
+  heat kernel on $\mathbb{H}$, automorphic lifting, and the hyperbolic
+  conjugacy class decomposition of $\Gamma$.
+\end{proof}
+
+\subsection{Structure}
+
+The Selberg formula has two sides:
+\begin{itemize}
+  \item \textbf{Spectral side}: $\sum_n h(r_n)$ — eigenvalues of $\Delta_\Sigma$.
+  \item \textbf{Geometric side}: sum over prime closed geodesics — encodes the
+    metric geometry via lengths $\ell(\gamma)$.
+\end{itemize}
+
+The formula is exact (not approximate), holds for all test functions $h$,
+and is the prototype for other trace formulas.
+
+%------------------------------------------------------------
+\section{The Riemann--Weil Explicit Formula}
+%------------------------------------------------------------
+
+\begin{theorem}[Riemann--Weil explicit formula]
+  \label{thm:RW}
+  For $h$ even, entire, and of sufficient decay:
+  \[
+    \sum_\rho h(\rho - \tfrac12)
+    = \hat{h}(0)\ln\pi^{1/2}
+    - \frac12 \int_{-\infty}^\infty h(r)\frac{d}{dr}\ln\Gamma(\tfrac14+\tfrac{ir}{2})\,dr
+    - \sum_p \sum_{k=1}^\infty \frac{\ln p}{p^{k/2}}\hat{h}(k\ln p),
+  \]
+  where the sum on the left is over non-trivial zeros $\rho$ of $\zeta(s)$.
+\end{theorem}
+
+\begin{proof}
+  \proved{} Classical; see \cite[Ch.\ 5]{Davenport}.  Derived from the
+  log-derivative of the completed zeta function $\xi(s) = \frac12 s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$.
+\end{proof}
+
+\subsection{Comparison with Selberg}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Selberg & Riemann--Weil & UBT (candidate) \\
+\hline
+$\lambda_n$ of $\Delta_\Sigma$ & $\rho_n - \frac12$ of $\zeta(s)$ & $\lambda_n$ of $\hat{H}_\psi$ \\
+$\ell(\gamma)$ geodesics & $\ln p$ primes & ? \\
+$\mathrm{Area}(\Sigma)$ & $\ln\pi^{1/2}$ & ? \\
+Hyperbolic surface & Riemann surface & UBT moduli \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{gap}[UBT geometric side of trace formula]
+  What plays the role of ``closed geodesics with length $\ell_\gamma$'' in
+  a UBT trace formula?  Candidates:
+  \begin{enumerate}
+    \item Winding modes around the $S^1_\psi$: lengths $\ell_n = nL_\psi$.
+    \item Prime-indexed orbits: $\ell_p = \ln p$ (mimicking Riemann--Weil).
+    \item Biquaternion null-geodesics in the complex-time plane.
+  \end{enumerate}
+
+  \textbf{If} the UBT geometric side involves $\ln p$ for primes $p$,
+  then the spectral side would involve the Riemann zeros — establishing a
+  trace-formula connection.  But this must be \emph{derived}, not assumed.
+
+  \textbf{Assumptions}: UBT has a hyperbolic-geometry sector.
+
+  \textbf{Falsification}: Show that UBT geometry is elliptic/flat, ruling out
+  a Selberg-type formula.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Atiyah--Bott Lefschetz Formula}
+%------------------------------------------------------------
+
+\begin{theorem}[Atiyah--Bott Lefschetz fixed-point theorem]
+  Let $M$ be a compact manifold, $f: M \to M$ a smooth map with isolated
+  non-degenerate fixed points.  For an elliptic complex $(\mathcal{E}, D)$:
+  \[
+    L(f,D) = \sum_{x: f(x)=x} \nu(x,f,D),
+  \]
+  where $L(f,D)$ is the Lefschetz number and $\nu(x)$ is a local contribution.
+\end{theorem}
+
+\begin{proof}
+  \proved{} See \cite{AtiyahBott}.
+\end{proof}
+
+\subsection{Application to UBT}
+
+\heuristic{In UBT, the biquaternion field $\Theta(q,\tau)$ defines a section
+of a bundle over the moduli space.  If the UBT action has a symmetry
+$f: \mathrm{Mod} \to \mathrm{Mod}$ (e.g.\ a T-duality or modular transformation),
+the Atiyah--Bott formula could compute the trace of $f$ acting on the
+UBT Hilbert space.}
+
+\begin{gap}[Atiyah--Bott for UBT]
+  Identify the relevant elliptic complex in UBT and apply Atiyah--Bott.
+  This would give a fixed-point interpretation of the spectral partition
+  function.
+
+  \textbf{Assumptions}: UBT has a smooth moduli space with discrete symmetries.
+
+  \textbf{Status}: [SPECULATIVE — no elliptic complex has been defined in UBT.]
+\end{gap}
+
+%------------------------------------------------------------
+\section{Spectral Determinant Formulation}
+%------------------------------------------------------------
+
+\begin{definition}[Spectral determinant]
+  \[
+    \det(\hat{H}_\psi) := \exp\!\left(-\frac{d}{ds}\zeta_H(s)\big|_{s=0}\right).
+  \]
+\end{definition}
+
+\begin{proposition}[Hadamard product form]
+  If $\hat{H}_\psi$ has discrete spectrum $\lambda_n > 0$:
+  \[
+    \det(\hat{H}_\psi - \lambda) = \det(\hat{H}_\psi) \prod_n \left(1 - \frac{\lambda}{\lambda_n}\right).
+  \]
+\end{proposition}
+
+\textbf{Proof status}: \proved{Hadamard factorisation for entire functions of
+finite order; see \cite{Levin}.}
+
+\subsection{Connection to Selberg zeta}
+
+The Selberg zeta function is
+\[
+  Z_\Gamma(s) = \prod_{\gamma \text{ prim.}} \prod_{k=0}^\infty (1 - e^{-(s+k)\ell(\gamma)}),
+\]
+and satisfies $Z_\Gamma(s) = \det(\Delta_\Sigma - s(1-s))$ (spectral determinant
+interpretation).
+
+\heuristic{A UBT analogue:
+\[
+  Z_\mathrm{UBT}(s) = \prod_p \prod_{k=0}^\infty (1 - p^{-(s+k)}) = ?
+\]
+If the UBT ``prime orbits'' are the rational primes with lengths $\ln p$,
+this product would equal the Euler product of $\zeta(s)^{-1}$.}
+
+\begin{gap}[UBT prime orbits]
+  Derive the ``prime orbit'' structure from the UBT geometry, and compute the
+  corresponding Euler product.  If the product equals $\zeta(s)$, the connection
+  to the Riemann explicit formula is established.
+
+  \textbf{Critical warning}: Any such derivation must not assume the Euler
+  product of $\zeta(s)$ as input; it must be derived from UBT geometry.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Heat Kernel Expansion and Spectral Density}
+%------------------------------------------------------------
+
+\begin{theorem}[Heat kernel short-time expansion]
+  As $t \to 0^+$, for $\hat{H}_\psi = -d^2/d\psi^2 + V$ on $S^1_L$:
+  \[
+    Z_H(t) = \frac{L}{\sqrt{4\pi t}} + c_0 + O(\sqrt{t}),
+  \]
+  where $c_0 = \frac{1}{2}\int_0^L V(\psi)\, d\psi + O(t^0)$.
+\end{theorem}
+
+\begin{proof}
+  \proved{Weyl's law for the heat kernel; $c_0$ involves the integral of $V$.
+  See \cite[Thm.\ 4.2]{Gilkey}.}
+\end{proof}
+
+\subsection{Spectral density}
+
+The spectral density is
+\[
+  \rho(\lambda) = \sum_n \delta(\lambda - \lambda_n)
+  = \frac{d}{d\lambda}N(\lambda) \sim \frac{L}{2\pi\sqrt{\lambda}} \quad (\lambda \to \infty).
+\]
+
+\heuristic{For the UBT prime-stability programme, the spectral density at
+$\lambda = n^2$ gives the ``density of states'' at KK level $n$.  The
+prime-stable primes $\{127, 137, 139, 151, 157\}$ correspond to KK levels
+where the effective potential has local minima — peaks in the density of
+states at those levels.}
+
+%------------------------------------------------------------
+\section{Summary: Proof Status}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Result & Status & Reference \\
+\hline
+Selberg trace formula & \textbf{Proved} & Thm.~\ref{thm:Selberg} \\
+Riemann--Weil explicit formula & \textbf{Proved} & Thm.~\ref{thm:RW} \\
+Atiyah--Bott fixed-point theorem & \textbf{Proved} & §3 \\
+Heat kernel expansion (short-time) & \textbf{Proved} & §5 \\
+UBT geometric side of trace formula & \textbf{Open gap} & §2.2 \\
+UBT spectral determinant vs.\ $\zeta$ & \textbf{Speculative} & §4 \\
+UBT Selberg zeta = $\zeta(s)^{-1}$ & \textbf{Speculative} & §4 \\
+Proof of RH via UBT & \textbf{Prohibited claim} & --- \\
+\hline
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\begin{thebibliography}{9}
+\bibitem{Hejhal} D.A.\ Hejhal, \emph{The Selberg Trace Formula for $\mathrm{PSL}(2,\mathbb{R})$},
+  Vol.\ I, Springer, 1976.
+\bibitem{McKean} H.P.\ McKean, ``Selberg's trace formula as applied to a compact
+  Riemann surface,'' \emph{Comm.\ Pure Appl.\ Math.} \textbf{25} (1972), 225--246.
+\bibitem{Davenport} H.\ Davenport, \emph{Multiplicative Number Theory},
+  3rd ed., Springer, 2000.
+\bibitem{AtiyahBott} M.F.\ Atiyah and R.\ Bott, ``A Lefschetz fixed point formula
+  for elliptic complexes, I,'' \emph{Ann.\ Math.} \textbf{86} (1967), 374--407.
+\bibitem{Gilkey} P.B.\ Gilkey, \emph{Invariance Theory, the Heat Equation, and
+  the Atiyah--Singer Index Theorem}, 2nd ed., CRC Press, 1995.
+\bibitem{Levin} B.Ya.\ Levin, \emph{Distribution of Zeros of Entire Functions},
+  AMS, 1964.
+\end{thebibliography}
+
+\end{document}

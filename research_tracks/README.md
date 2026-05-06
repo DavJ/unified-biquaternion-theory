@@ -48,6 +48,7 @@ mathematical closure, and compatibility with canonical structure).
 | Penrose twistor bridge | `THEORY_COMPARISONS/penrose_twistor/` | **Candidate** | Flat Minkowski sector proved; curved sector and ψ-twistor mapping open |
 | Hecke bridge (modular forms ↔ ℂ⊗ℍ) | `hecke_bridge/` | **Candidate** | Weight/level correspondences are motivated conjectures; derivation open |
 | RH trace formula (ψ-Hamiltonian → ζ) | `rh_trace_formula/` | **Open** | Candidate H_ψ defined; 6 open gaps (G1–G6) before any ζ-connection; NO RH claim |
+| Prime Fock operator (Fock-space H_prime, partition fn = ζ) | `prime_fock_operator/` | **Open** | Tr(e^{−sH_prime})=ζ(s) established; UBT embedding and analytic continuation open; NO RH claim |
 | Quantization grid | `quantization_grid/` | **Experimental** | Discretization hypothesis under numerical investigation |
 
 ### Coding and Information (Layer 2)

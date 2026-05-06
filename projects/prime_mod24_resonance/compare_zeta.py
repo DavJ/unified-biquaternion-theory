@@ -75,11 +75,11 @@ def cross_correlation(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Compare k FFT vs Riemann zeta zeros")
-    ap.add_argument("--data", default="data/primes_mod24.parquet")
+    ap.add_argument("--data", default="DATA/prime_mod24/primes_mod24.parquet")
     ap.add_argument("--n-zeros", type=int, default=500,
                     help="Number of Riemann zeta zeros to use (default: 500)")
-    ap.add_argument("--out-json", default="reports/zeta_correlation.json")
-    ap.add_argument("--out-plot", default="plots/zeta_vs_k_fft.png")
+    ap.add_argument("--out-json", default="reports/prime_mod24/zeta_correlation.json")
+    ap.add_argument("--out-plot", default="reports/prime_mod24/zeta_fft_compare.png")
     args = ap.parse_args()
 
     for p in [args.out_json, args.out_plot]:
