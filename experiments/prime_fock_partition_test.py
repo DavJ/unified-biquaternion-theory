@@ -295,7 +295,7 @@ def test_convergence_at_multiple_s(
     when P = p_max_final.
 
     Also verifies that convergence is monotonically faster for larger s
-    (rel_err decreases as s increases), which is the physically expected behaviour
+    (rel_err decreases as s increases), which is the mathematically expected behavior
     since ζ(s) → 1 as s → ∞ and each Euler factor p^{-s} → 0 faster.
 
     Note: convergence is slow near s = 1; tol applies only to s >= 2.0.
