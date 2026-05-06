@@ -252,7 +252,7 @@ Within the Unified Biquaternion Theory, the proposed correspondence is:
 | Mathematical object | UBT interpretation |
 |--------------------|--------------------|
 | T^d | Compact real spatial directions of the biquaternion coordinate q |
-| F = ⊗_p l²(ℕ₀) | Prime-indexed KK modes in the compact ψ-direction |
+| F = ⊗_p l²(ℕ₀) | Prime-indexed Kaluza-Klein (KK) modes in the compact ψ-direction |
 | H_inf = −Δ_{T^d} | UBT spatial kinetic operator projected to real sector |
 | H_prime = Σ_p log(p) N_p | UBT ψ-mode number operator weighted by prime energies |
 | H_total | Combined UBT Hamiltonian in flat limit |
