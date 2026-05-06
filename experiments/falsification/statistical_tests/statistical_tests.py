@@ -254,17 +254,33 @@ def test_spectral_spacing(max_n: int = 200) -> Dict:
 
 def test_reproducibility(seeds: List[int] = None) -> Dict:
     """
-    Run null model 1 with different seeds.  Check that results are consistent
-    (not seed-dependent).  This tests reproducibility.
+    Run null model 1 (random B) with different seeds.  Check that results are
+    consistent (not seed-dependent).  This tests reproducibility.
+
+    The null model logic is inlined here to avoid cross-module import complexity.
     """
     if seeds is None:
         seeds = [42, 123, 999, 2026, 31415]
 
-    from null_models import null_model_1_random_B  # type: ignore
+    def _null_model_1(n_trials: int, seed: int) -> Dict:
+        """Inline null model 1: random B, compute stable set size and P(137)."""
+        rng = random.Random(seed)
+        sizes = []
+        contains_137 = 0
+        for _ in range(n_trials):
+            B_rand = rng.uniform(1.0, 100.0)
+            stable = [p for p in CANDIDATES if is_prime_stable(p, COMPARISON, B_rand)]
+            sizes.append(len(stable))
+            if 137 in stable:
+                contains_137 += 1
+        return {
+            "mean_stable_set_size": statistics.mean(sizes),
+            "P(137 in S)": contains_137 / n_trials,
+        }
 
     results_by_seed = {}
     for s in seeds:
-        r = null_model_1_random_B(n_trials=1_000, seed=s)
+        r = _null_model_1(n_trials=1_000, seed=s)
         results_by_seed[s] = {
             "mean_size": r["mean_stable_set_size"],
             "P(137)": r["P(137 in S)"],

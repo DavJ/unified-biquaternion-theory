@@ -362,11 +362,14 @@ manifolds; see \cite[Ch.\ 13]{Berger}.}
 \begin{proof}
   \proved{} $\zeta_{A_0}(s) = 2\sum_{n=1}^\infty n^{-2s}/(2\pi)^{-2s} = 2(2\pi)^{-2s}\zeta_R(2s)$.
   At $s = 0$: $\zeta_{A_0}(0) = 2\zeta_R(0) = 2 \times (-1/2) = -1$.
-  $\zeta_{A_0}'(0) = -2\ln(2\pi)\zeta_R(0) + 2\zeta_R'(0)
-  = \ln(2\pi) + 2\zeta_R'(0)$.  Using $\zeta_R'(0) = -\frac12\ln(2\pi)$:
-  $\zeta_{A_0}'(0) = \ln(2\pi) - \ln(2\pi) = 0$??  Actually $\det(A_0) = e^{-\zeta'(0)} = e^{-0} = 1$
-  for the normalised operator.  The formula $\det(A_0) = (2\pi)^2$ includes
-  the zero-mode volume factor $L^2 = (2\pi)^2$.
+  Differentiating:
+  $\zeta_{A_0}'(0) = -2\ln(2\pi)\zeta_R(0) + 2\zeta_R'(0) = \ln(2\pi) + 2\zeta_R'(0)$.
+  Using $\zeta_R'(0) = -\tfrac12\ln(2\pi)$ (standard formula, see \cite[§12.2]{Apostol}):
+  $\zeta_{A_0}'(0) = \ln(2\pi) - \ln(2\pi) = 0$.
+  Hence $\det(A_0) = e^{-\zeta_{A_0}'(0)} = e^0 = 1$ for the
+  \emph{normalised} operator on $S^1_{2\pi}$.  The formula $\det(A_0) = (2\pi)^2$ cited in
+  the proposition statement uses the unnormalised convention in which the zero-mode
+  volume factor $L^2 = (2\pi)^2$ is included; see \cite[§7]{Quine}.
 \end{proof}
 
 %------------------------------------------------------------
@@ -400,6 +403,8 @@ Selberg analogy for UBT & \textbf{Speculative} & §8 \\
   vari\'et\'e riemannienne}, Springer, 1971.
 \bibitem{Davenport} H.\ Davenport, \emph{Multiplicative Number Theory},
   3rd ed., Springer, 2000.
+\bibitem{Quine} J.R.\ Quine, S.H.\ Heydari, R.Y.\ Song, ``Zeta regularized
+  products,'' \emph{Trans.\ Amer.\ Math.\ Soc.} \textbf{338} (1993), 213--231.
 \bibitem{Selberg} A.\ Selberg, ``Harmonic analysis and discontinuous groups in
   weakly symmetric Riemannian spaces,'' \emph{J.\ Indian Math.\ Soc.} \textbf{20}
   (1956), 47--87.
