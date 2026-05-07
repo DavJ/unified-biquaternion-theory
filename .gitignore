@@ -39,6 +39,7 @@ ubt_mass_spectrum_analysis.png
 !consolidation_project/img/*.png
 !consolidation_project/fig_*.png
 !projects/prime_mod24_resonance/reports/prime_mod24/*.png
+!research_tracks/hecke_spectrum/plots/*.png
 consolidation_project/masses/.pytest_cache/
 
 # Research phase lock results (exclude from commits)
