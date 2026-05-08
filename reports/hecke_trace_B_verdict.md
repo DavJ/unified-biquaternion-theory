@@ -4,9 +4,9 @@
 
 # Hecke Trace B Verdict
 
-**Task**: derive_or_reject_modular_B_from_action  
-**Date**: 2026-05-08  
-**Gap ID**: G137-B  
+**Task**: derive_or_reject_modular_B_from_action
+**Date**: 2026-05-08
+**Gap ID**: G137-B
 **Companion file**: `research_tracks/alpha_spectral/hecke_trace_B_derivation_attempt.tex`
 
 ---
@@ -26,14 +26,14 @@
 
 ## What is established
 
-1. **Coset enumeration is exact**  
+1. **Coset enumeration is exact**
    For prime \(p\),
    \[
    \mu(\Gamma_0(p))=[\mathrm{SL}(2,\mathbb{Z}):\Gamma_0(p)]=p+1
    \]
    and the cosets are in bijection with \(\mathbb{P}^1(\mathbb{F}_p)\).
 
-2. **The denominator \(3\) is exact geometrically**  
+2. **The denominator \(3\) is exact geometrically**
    \[
    \operatorname{vol}(X_0(p))=\frac{\pi}{3}\mu(\Gamma_0(p)),
    \qquad
@@ -42,7 +42,7 @@
    So the factor \(1/3\) is explained by the normalised hyperbolic area of the
    modular fundamental domain.
 
-3. **The modular route is structurally meaningful**  
+3. **The modular route is structurally meaningful**
    The quantity \((p+1)/3\) is gauge-invariant and regulator-independent as a
    modular invariant.
 
@@ -50,15 +50,15 @@
 
 ## What is **not** established
 
-1. **No Hecke-trace derivation from the action**  
+1. **No Hecke-trace derivation from the action**
    There is no explicit UBT operator or one-loop determinant whose trace is
    proved to equal \(\mathrm{Tr}(T_p)=p+1\) in the required sense.
 
-2. **No winding-sector path integral with \(p+1\) equal saddles**  
+2. **No winding-sector path integral with \(p+1\) equal saddles**
    The idea that the level-\(p\) winding sector splits into
    \(\mu(\Gamma_0(p))=p+1\) equal-weight vacua is plausible, but not derived.
 
-3. **No action-level origin of the division by 3 from \(\mathrm{Im}(\mathbb{H})\)**  
+3. **No action-level origin of the division by 3 from \(\mathrm{Im}(\mathbb{H})\)**
    The “three imaginary quaternion directions / theta-dimension” explanation is
    currently heuristic only.  The only exact explanation of the denominator is
    the modular-area normalisation.
