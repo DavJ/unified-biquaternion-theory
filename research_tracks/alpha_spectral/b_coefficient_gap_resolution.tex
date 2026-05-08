@@ -1,0 +1,619 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex
+%
+% Task: close_or_kill_B_coefficient_gap
+% Priority: CRITICAL
+% Gap ID: G137-B
+%
+% Purpose: Determine whether B(p) = (p+1)/3 can be derived from the UBT
+%   action S[Theta] or must remain a phenomenological/modular ansatz.
+%   Synthesises all existing analysis (RG, KK+winding, modular index,
+%   Chowla-Selberg, fixed-point bootstrap) and issues a definitive verdict.
+%
+% Hard rules:
+%   - No use of observed alpha as input
+%   - No fitting B to 137
+%   - If B cannot be derived, state CONDITIONAL clearly
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{gap}{Open Gap}[section]
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!15, linecolor=orange!80, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!10, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!8,   linecolor=red!55,   linewidth=1.5pt]{warnbox}
+\newmdenv[backgroundcolor=blue!6,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+\newmdenv[backgroundcolor=gray!8,  linecolor=gray!50,  linewidth=1.0pt]{infobox}
+
+\newcommand{\proved}{\textcolor{green!55!black}{\textbf{[PROVED]}}}
+\newcommand{\heur}{\textcolor{orange!80!black}{\textbf{[HEURISTIC]}}}
+\newcommand{\cond}{\textcolor{blue!70!black}{\textbf{[COND]}}}
+\newcommand{\openp}{\textcolor{red!70!black}{\textbf{[OPEN]}}}
+\newcommand{\obs}{\textcolor{blue!50!black}{\textbf{[OBS]}}}
+
+\title{\textbf{B-Coefficient Gap Resolution}\\[4pt]
+       \large Can $B(p)=(p+1)/3$ Be Derived from the UBT Action $S[\Theta]$?\\[2pt]
+       \normalsize Gap G137-B --- Final Analysis}
+\author{Ing.\ David Jaro\v{s}\\
+  \small \texttt{research\_tracks/alpha\_spectral/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the coefficient $B(p) = (p+1)/3$ appearing in the UBT
+effective potential $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ --- a coefficient
+required to place the prime attractor at $n^* = p$ --- can be derived
+from the UBT action $S[\Theta]$ without using experimental inputs.
+Four routes are examined: (1) one-loop renormalisation group (RG) from the
+Kaluza--Klein and winding spectrum; (2) the KK+winding estimate yielding
+$B \approx 43.6$; (3) the modular-index route $B = \mu(\Gamma_0(p))/3$; and
+(4) a fixed-point bootstrap self-consistency argument.
+We assess gauge invariance and regulator dependence of each candidate.
+\textbf{Verdict}: Routes (1) and (2) are incomplete by a factor
+$\approx 1.054$; route (3) produces the correct numerical value but cannot
+currently be derived from $S[\Theta]$; route (4) confirms self-consistency
+but does not constitute a derivation.
+\textbf{The result $B(p)=(p+1)/3$ must remain a \emph{CONDITIONAL} modular ansatz
+until the missing mechanism is identified.}
+No experimental value of $\alpha$ was used in any step.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Setup and Notation}
+\label{sec:setup}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{The effective potential and the role of $B$}
+
+The UBT winding-mode effective potential on the compact imaginary-time circle
+$S^1_\psi$ of radius $R_\psi$ is
+\begin{equation}
+  V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n,
+  \qquad n \in \mathbb{Z}_{>0}.
+  \label{eq:veff}
+\end{equation}
+The minimum of~\eqref{eq:veff} occurs at $n^* = n^*(B)$ satisfying the
+fixed-point equation
+\begin{equation}
+  2n^* = B\bigl(\ln n^* + 1\bigr).
+  \label{eq:fixedpoint}
+\end{equation}
+For the prime attractor to coincide with the prime $p = 137$, we need
+\begin{equation}
+  B_{\mathrm{phenom}}
+  = \frac{2 \times 137}{\ln 137 + 1}
+  = \frac{274}{4.9189 + 1}
+  \approx 46.298.
+  \label{eq:Bphenom}
+\end{equation}
+
+\subsection{The phenomenological formula}
+
+The prime-stability analysis (see \texttt{canonical/alpha/prime\_stability\_set.tex})
+shows that stable primes (prime attractors of $V_{\mathrm{eff}}$) arise when
+\begin{equation}
+  B(p) = \frac{p+1}{3}.
+  \label{eq:Bformula}
+\end{equation}
+At $p = 137$: $B(137) = 138/3 = 46$.  The value~\eqref{eq:Bformula} at
+$p = 137$ agrees with $B_{\mathrm{phenom}}$~\eqref{eq:Bphenom} to within 0.64\%
+(discrepancy $\Delta B \approx 0.298$).
+
+\begin{warnbox}
+\textbf{Hard rule}: Equation~\eqref{eq:Bformula} is an ansatz to be examined,
+not an axiom.  No experimental value of $\alpha$ or any observed physical
+constant enters any step.
+\end{warnbox}
+
+\subsection{Known proved steps}
+
+The following steps are established at level [L0] or [L1] and are not
+re-examined here:
+
+\begin{enumerate}
+  \item $N_{\mathrm{eff}} = 12$ from the real dimension of $\mathbb{C}\otimes\mathbb{H}$ [L0].
+  \item KK mass spectrum $m_n^2 = n^2$ in natural units [L0].
+  \item One-loop $\delta V \propto n^2\ln n$ in $d=1$ [L1].
+  \item Gauge invariance of $V_{\mathrm{eff}}$ ($n$ is a $\mathrm{U}(1)_\psi$ charge) [proved].
+  \item Regulator independence of the $n\ln n$ coefficient [proved].
+  \item $n^*(B_{\mathrm{phenom}}) = 137$ (given $B = B_{\mathrm{phenom}}$) [proved numerically].
+\end{enumerate}
+
+\noindent The single remaining gap is the derivation of $B = B_{\mathrm{phenom}}$
+from $S[\Theta]$ (Gap G137-B, see \texttt{reports/alpha\_missing\_lemma.md}).
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Route 1: One-Loop RG from KK Spectrum}
+\label{sec:rg}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{One-loop calculation}
+
+The one-loop Coleman--Weinberg effective potential in $d=1$ for a scalar with
+mass $m_n^2 = n^2$ is (dimensional regularisation, $\overline{\mathrm{MS}}$):
+\begin{equation}
+  \delta V_{\mathrm{1-loop}}(n)
+  = -\frac{n^2}{4\pi}\!\left(\ln\frac{n^2}{\mu^2} - 1\right)
+  = -\frac{n^2}{2\pi}\ln n + \text{($\mu$-dep.\ and const.\ terms)}.
+  \label{eq:dV1loop}
+\end{equation}
+After absorbing the $\mu$-dependent term into the renormalisation of the $n^2$
+coefficient:
+\begin{equation}
+  V_{\mathrm{ren}}(n) = n^2 - \frac{n}{2\pi}\cdot n\ln n,
+  \label{eq:Vren1loop}
+\end{equation}
+which corresponds to $B_{\mathrm{1-loop}}(n) = n/(2\pi)$ --- an $n$-dependent
+quantity.  At $n = 137$: $B_{\mathrm{1-loop}}(137) \approx 137/(2\pi) \approx 21.8$.
+
+\begin{gapbox}
+\textbf{Gap 1a (n-dependent B)}: The naive one-loop result yields an
+$n$-dependent coefficient $B(n) = n/(2\pi)$, not a constant.  A constant
+$B$ requires either (i) evaluating at a fixed $n = n^*$, introducing a
+self-reference, or (ii) an additional physical mechanism.
+\end{gapbox}
+
+\subsection{RG consistency check}
+
+The Callan--Symanzik equation for $V_{\mathrm{eff}}(n;\mu)$ is satisfied at
+one loop by~\eqref{eq:dV1loop} with the standard $d=1$ beta function.
+The $\ln n$ coefficient is indeed scheme-independent (proved in
+\texttt{research\_tracks/rg\_nlogn/full\_rg\_derivation.tex}), confirming
+that the $n\ln n$ structure is physically meaningful.
+
+\paragraph{Regulator independence.}
+\proved\ The coefficient of $n^2\ln(n^2/\mu^2)$ in dimensional regularisation
+is UV-finite and scheme-independent at one loop.  Regulator dependence appears
+only in the $n^2\ln\mu^2$ term, which is absorbed into the $n^2$ renormalisation.
+
+\paragraph{Gauge invariance.}
+\proved\ The effective potential~\eqref{eq:veff} depends only on the integer KK
+level $n$, which is the charge under the compact translation symmetry
+$\mathrm{U}(1)_\psi$ on $S^1_{L_\psi}$.  This is gauge-invariant under the
+$\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ interaction sector.
+
+\subsection{Conclusion of Route 1}
+
+\begin{resultbox}
+Route 1 gives: $B_{\mathrm{1-loop}} \approx 21.8$ for $n = 137$.
+Status: \heur\ (correct structure, wrong magnitude by factor $\approx 2.1$).
+The $n^2\ln n$ shape is rigorous; the coefficient $B = 46$ is not reproduced.
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Route 2: KK+Winding Estimate at Self-Dual Radius}
+\label{sec:kk_winding}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{T-duality degeneracy}
+
+At the self-dual radius $R_\psi = 1$ (T-duality fixed point), the winding-mode
+masses $m_{\mathrm{wind}}^2 = n^2 R_\psi^2 = n^2$ coincide with the KK masses
+$m_{\mathrm{KK}}^2 = n^2/R_\psi^2 = n^2$.  The combined one-loop vacuum energy
+receives a factor of 2 from the KK/winding degeneracy:
+\begin{equation}
+  B_{\mathrm{KK+wind}} = 2 \times B_{\mathrm{1-loop}} = 2 \times 21.8 = 43.6.
+  \label{eq:Bkkwind}
+\end{equation}
+
+\heur\ The factor of 2 from T-duality degeneracy requires:
+\begin{enumerate}
+  \item The self-dual radius $R_\psi = 1$ is not derived from UBT moduli; it
+        is assumed.
+  \item The two contributions (KK and winding) must add coherently (not cancel);
+        this follows from the sign of the one-loop vacuum energy in $d=1$ but has
+        not been verified for the full UBT field content.
+\end{enumerate}
+
+\subsection{The missing gap: $43.6 \to 46$}
+
+\begin{gapbox}
+\textbf{Gap 2 ($43.6 \to 46$ discrepancy)}: The KK+winding estimate gives
+$B \approx 43.6$, which is $\Delta B \approx 2.4$ below the required value
+$B_{\mathrm{phenom}} \approx 46.298$.  The relative discrepancy is
+\[
+  \frac{B_{\mathrm{phenom}} - B_{\mathrm{KK+wind}}}{B_{\mathrm{phenom}}}
+  \approx \frac{2.7}{46.298} \approx 5.8\%.
+\]
+
+\textbf{Candidate sources of $\Delta B \approx 2.4$}:
+\begin{enumerate}
+  \item \textit{Two-loop corrections}: The two-loop contribution is of order
+        $g^2/(16\pi^2)^2 \cdot n \sim 0.01 \times 137 \approx 1.4$ for
+        $g \sim 0.3$.  This accounts for roughly half the gap but has not been
+        computed explicitly.
+  \item \textit{Gauge-boson loops}: One-loop contributions from $\mathrm{SU}(2)$
+        gauge bosons in the KK tower add $N_c b_0/(16\pi^2)$ corrections.
+        Numerical estimate: $\delta B_\mathrm{gauge} \lesssim 1$.
+  \item \textit{Non-perturbative threshold corrections}: At the
+        compactification scale, non-perturbative contributions from Euclidean
+        D-brane instantons (or analogous UBT objects) could provide a
+        multiplicative factor $\approx 1.054$.
+  \item \textit{Modular correction}: The modular index route (Section~\ref{sec:modular})
+        gives the correct $B$ value but requires a non-perturbative input.
+\end{enumerate}
+\end{gapbox}
+
+\subsection{Conclusion of Route 2}
+
+\begin{resultbox}
+Route 2 gives: $B_{\mathrm{KK+wind}} \approx 43.6$.
+Status: \heur\ (closest perturbative estimate; short by factor 1.054).
+Self-dual radius is assumed, not derived.  The gap $43.6 \to 46$ remains open.
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Route 3: Modular Index $\mu(\Gamma_0(p))/3$}
+\label{sec:modular}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{The modular invariant}
+
+For a prime $p$, the index of the congruence subgroup $\Gamma_0(p)$ in
+$\mathrm{SL}(2,\mathbb{Z})$ is (Diamond \& Shurman, Theorem 3.1.1):
+\begin{equation}
+  \mu(\Gamma_0(p)) = p + 1.
+  \label{eq:modindex}
+\end{equation}
+This equals $|\mathbb{P}^1(\mathbb{F}_p)|$, the projective line over the finite
+field $\mathbb{F}_p$.  The hyperbolic volume of the modular curve $X_0(p)$ is
+\begin{equation}
+  \mathrm{vol}(X_0(p)) = \frac{\pi}{3}\,\mu(\Gamma_0(p)) = \frac{\pi(p+1)}{3}.
+  \label{eq:volX0}
+\end{equation}
+Dividing by $\pi$, the normalised hyperbolic area is
+\begin{equation}
+  \frac{\mathrm{vol}(X_0(p))}{\pi} = \frac{p+1}{3} = B(p),
+  \label{eq:BmodIndex}
+\end{equation}
+which is precisely the phenomenological formula~\eqref{eq:Bformula}.
+
+At $p = 137$:
+\begin{equation}
+  \frac{\mu(\Gamma_0(137))}{3} = \frac{138}{3} = 46.
+  \label{eq:B137modular}
+\end{equation}
+The comparison with $B_{\mathrm{phenom}} = 46.298$ gives an error of $0.64\%$.
+With the elliptic correction $\nu_2/4 = 0.5$ (from the two order-2 elliptic
+points of $\Gamma_0(137)$, since $137 \equiv 1 \pmod{4}$):
+\begin{equation}
+  B_{\mathrm{mod+ell}} = \frac{\mu(\Gamma_0(p))}{3} + \frac{\nu_2}{4}
+  = 46 + 0.5 = 46.5,
+  \label{eq:BmodEll}
+\end{equation}
+reducing the error to $0.44\%$.
+
+\subsection{Why $\mu(\Gamma_0(p))/3$ is structurally non-trivial}
+
+The expression~\eqref{eq:BmodIndex} is:
+\begin{itemize}
+  \item A purely arithmetic invariant of $p$, computable without any physical input.
+  \item Related to the normalised hyperbolic area of $X_0(p)$ by the formula
+        $\mathrm{vol}(X_0(p))/(\pi/3) = \mu(\Gamma_0(p)) = p+1$.
+  \item Equal to the degree of the modular polynomial $\Phi_p(X, Y)$ minus 1.
+  \item Consistent with the projective geometry of $\mathbb{P}^1(\mathbb{F}_p)$:
+        the cosets of $\Gamma_0(p) \backslash \mathrm{SL}(2,\mathbb{Z})$ biject with
+        $\mathbb{P}^1(\mathbb{F}_p)$.
+\end{itemize}
+
+\subsection{Can $\mu(\Gamma_0(p))/3$ enter the effective action?}
+
+\begin{gapbox}
+\textbf{Gap 3 (modular index in $S[\Theta]$)}: The key open question is whether
+the modular index $\mu(\Gamma_0(p)) = p+1$ can arise as a coefficient in the
+one-loop effective action $\Gamma[\bar\Theta]$ evaluated on the winding-mode
+background with level $n = p$.
+
+\textbf{Mechanism candidates}:
+\begin{enumerate}
+  \item \textit{Hecke operator trace}: The one-loop effective action on the UBT
+        torus $\Theta(q,\tau)$ can be written as a sum over Hecke orbits,
+        $\mathrm{Tr}(T_p) = p + 1$ for the Hecke operator $T_p$ acting on the
+        space of functions on $\mathbb{P}^1(\mathbb{F}_p)$.  If the UBT path
+        integral measure weights the Hecke orbits uniformly, a factor $p+1$
+        emerges naturally.
+  \item \textit{Winding sector degeneracy}: In the winding sector at level $n$,
+        the number of distinct coset representatives of $\Gamma_0(n)$ in
+        $\mathrm{SL}(2,\mathbb{Z})$ is $\mu(\Gamma_0(n)) = n+1$ (for prime $n$).
+        If this enumerates the winding vacua contributing to the loop sum,
+        the effective coupling receives a factor $n+1$.
+  \item \textit{Spectral geometry at $\tau = i$}: The Epstein zeta function for
+        the square lattice $\mathbb{Z}[i]$ at the CM point $\tau = i$ couples
+        the Hecke structure to the spectral determinant of the Laplacian (see
+        \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_b\_derivation.tex}).
+        The Chowla--Selberg formula gives $B_{\mathrm{CS}} \approx 46.28$ close
+        to the modular index value, but identifying the precise origin of $p+1$
+        in this context remains an open calculation.
+\end{enumerate}
+
+\textbf{What is missing}: A first-principles computation of the UBT path
+integral $\int \mathcal{D}\Theta\, e^{iS[\Theta]}$ in the winding sector at
+level $n = p$ that returns a loop coefficient proportional to $\mu(\Gamma_0(p))$.
+This requires either:
+\begin{itemize}
+  \item An exact calculation using the modular symmetry of $S[\Theta]$ (the
+        action is invariant under $\mathrm{SL}(2,\mathbb{Z})$ transformations
+        of $\tau$), or
+  \item A non-perturbative saddle-point expansion that enumerates the
+        $\mu(\Gamma_0(p))$ coset representatives explicitly.
+\end{itemize}
+\end{gapbox}
+
+\subsection{Gauge invariance of the modular route}
+
+\begin{proposition}[Gauge invariance of $\mu(\Gamma_0(p))/3$]
+  The modular index $\mu(\Gamma_0(p)) = p + 1$ is invariant under the SM gauge
+  group $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$: it is an
+  arithmetic invariant of the prime $p$ and does not depend on any gauge field
+  configuration.
+\end{proposition}
+
+\begin{proof}
+  The index $\mu(\Gamma_0(p))$ counts cosets in $\mathrm{SL}(2,\mathbb{Z})$ and
+  is determined solely by $p$.  The modular group $\mathrm{SL}(2,\mathbb{Z})$
+  acts on the complex-time torus $\tau = t + i\psi$; it commutes with the SM
+  gauge transformations acting on the biquaternion field components.  Hence
+  $\mu(\Gamma_0(p))$ is SM-gauge-invariant. \qed
+\end{proof}
+
+\subsection{Regulator independence of the modular route}
+
+The modular index is a topological (arithmetic) invariant, independent of any
+UV regulator.  The Hecke degeneracy $p+1$ of the winding sector is an exact
+result of the discrete geometry of $\mathbb{P}^1(\mathbb{F}_p)$ and is not
+affected by renormalisation scheme choices.
+
+\subsection{Conclusion of Route 3}
+
+\begin{resultbox}
+Route 3 gives: $B_{\mathrm{mod}} = (p+1)/3 = 46$ at $p = 137$ (error 0.64\%).
+Status: \obs\ (strongly motivated coincidence; not yet derived from $S[\Theta]$).
+The modular index is gauge-invariant and regulator-independent.  The missing
+step is a derivation showing that $\mu(\Gamma_0(n^*))$ enters the one-loop
+effective action coefficient.
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Route 4: Fixed-Point Bootstrap Self-Consistency}
+\label{sec:bootstrap}
+%────────────────────────────────────────────────────────────────────────────
+
+\subsection{The bootstrap system}
+
+Combining the prime-attractor condition~\eqref{eq:fixedpoint} with the
+modular-index ansatz~\eqref{eq:Bformula} gives the system:
+\begin{align}
+  2n &= B\bigl(\ln n + 1\bigr), \label{eq:bs1} \\
+  B  &= \frac{n+1}{3}.           \label{eq:bs2}
+\end{align}
+Substituting~\eqref{eq:bs2} into~\eqref{eq:bs1}:
+\begin{equation}
+  6n = (n+1)(\ln n + 1).
+  \label{eq:bootstrap}
+\end{equation}
+
+\subsection{Numerical verification}
+
+Define $f(n) = (n+1)(\ln n + 1) - 6n$.  Then:
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$n$ & $f(n)$ & Sign & Nearest prime \\
+\midrule
+100 & $(101)(5.605) - 600 = 566.1 - 600 = -33.9$ & $-$ & --- \\
+130 & $(131)(5.567) - 780 = 729.3 - 780 = -50.7$ & $-$ & --- \\
+137 & $(138)(5.919) - 822 = 816.8 - 822 = -5.2$ & $-$ & $\mathbf{137}$ \\
+138 & $(139)(5.927) - 828 = 823.8 - 828 = -4.2$ & $-$ & 139 \\
+139 & $(140)(5.934) - 834 = 830.8 - 834 = -3.2$ & $-$ & $\mathbf{139}$ \\
+150 & $(151)(6.008) - 900 = 907.2 - 900 = +7.2$ & $+$ & 151 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The root of $f(n) = 0$ lies in $[139, 150]$; the nearest prime is
+$n = 139$ on one side and $n = 137$ on the other.  The exact solution
+$n_{\mathrm{root}} \approx 141$ is not prime.
+
+\begin{insightbox}
+\textbf{Interpretation}: The bootstrap system~\eqref{eq:bs1}--\eqref{eq:bs2}
+does not have an exact prime solution.  The prime $n = 137$ is the largest
+prime for which $f(p) < 0$, i.e.\ the modular formula slightly undershoots the
+prime-attractor condition (by 0.64\%).  The prime $n = 139$ also satisfies the
+system approximately ($f(139) \approx -3.2$, error 0.39\%).  Neither prime is
+an exact solution; both are approximate fixed points.
+
+This is consistent with the modular interpretation: the exact solution requires
+the elliptic correction $\varepsilon = \nu_2/4 \approx 0.5$ to match
+$B_{\mathrm{phenom}} \approx 46.298$ to better accuracy.
+\end{insightbox}
+
+\subsection{Bootstrap as a self-consistency check, not a derivation}
+
+The bootstrap~\eqref{eq:bootstrap} confirms that the system~\eqref{eq:Bformula} is
+\emph{approximately self-consistent} near $n = 137$ and $n = 139$.  However,
+it \emph{does not} derive~\eqref{eq:Bformula} from $S[\Theta]$: it assumes
+$B = (n+1)/3$ and verifies consistency.  A derivation must produce
+$B = (n+1)/3$ as an output of $S[\Theta]$, not as an input.
+
+\begin{resultbox}
+Route 4 gives: Self-consistency confirmed near $n = 137$.
+Status: \cond\ (the ansatz is self-consistent; it is not a derivation).
+No new information about the origin of $B(p) = (p+1)/3$ is provided.
+\end{resultbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Summary of All Routes}
+\label{sec:summary}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{p{3.5cm}p{2.5cm}p{3.5cm}p{4cm}}
+\toprule
+\textbf{Route} & \textbf{$B$ estimate} & \textbf{Status} & \textbf{Key assumption/gap} \\
+\midrule
+One-loop KK ($d=1$) & 21.8 & \heur & Self-dual radius; $n$-dependent \\
+KK + winding & 43.6 & \heur & T-duality at $R=1$ (not derived) \\
+Two-loop correction & $+1$--$2$ & \heur & Diagrams not computed \\
+\textbf{KK+wind+2-loop} & $\approx 44$--$46$ & \heur & Factor 1.054 unexplained \\
+Modular index / $\Gamma_0(p)$ & 46.0 & \obs & $\mu(\Gamma_0(p))$ not in $S[\Theta]$ \\
+Mod.\ + elliptic correction & 46.5 & \obs & Same; $\varepsilon$ origin open \\
+Fixed-point bootstrap & self-consistent & \cond & Ansatz, not derivation \\
+\midrule
+\textbf{Target} & \textbf{46.298} & --- & --- \\
+\bottomrule
+\caption{Summary of $B$ estimates from all routes.}
+\label{tab:summary}
+\end{longtable}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Gap Matrix}
+\label{sec:gapmatrix}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{4.5cm}lp{5.5cm}}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Gap / remark} \\
+\midrule
+$n^2$ term from KK & \proved & --- \\
+$n^2 \ln n$ shape from one-loop & \proved & --- \\
+Regulator independence & \proved & Standard $d=1$ dim.\ reg. \\
+Gauge invariance of $V_{\mathrm{eff}}$ & \proved & $n$ is $\mathrm{U}(1)_\psi$ charge \\
+$B$ constant (not $n$-dependent) & \heur & Requires fixing $n = n^*$ \\
+$B \approx 21.8$ (one-loop) & \heur & Self-dual radius assumed \\
+$B \approx 43.6$ (KK+winding) & \heur & T-duality factor 2 \\
+$B = 46$ (modular) & \obs & $\mu(\Gamma_0(p))$ not in $S[\Theta]$ \\
+Elliptic correction $\varepsilon = 0.5$ & \obs & $\nu_2/4$ numerics only \\
+$B(p) = (p+1)/3$ derived & \openp & \textbf{Gap G137-B: OPEN} \\
+Bootstrap self-consistency & \cond & Verified, not derived \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Verdict}
+\label{sec:verdict}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=red!5!white, colframe=red!65!black, title=\textbf{Verdict on Gap G137-B}]
+\textbf{$B(p) = (p+1)/3$ CANNOT currently be derived from the UBT action
+$S[\Theta]$.}
+
+\medskip
+
+The formula must remain a \textbf{CONDITIONAL modular ansatz} until one of the
+following is achieved:
+\begin{enumerate}
+  \item A computation of the UBT path integral in the winding sector at level
+        $n = p$ that returns the Hecke-degeneracy factor $\mu(\Gamma_0(p)) = p+1$
+        as the effective coupling.
+  \item An explicit two-loop + non-perturbative calculation that closes the
+        $43.6 \to 46$ gap without modular input.
+  \item A proof that the modular symmetry of $S[\Theta]$ forces the one-loop
+        coefficient to equal $\mathrm{vol}(X_0(n^*))/\pi$.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Current best estimate}: $B \approx 43.6$--$44$ from the
+RG/KK+winding route.  The modular route gives $B = 46$ exactly at $p = 137$
+but is not derived from $S[\Theta]$.
+
+\medskip
+\noindent\textbf{Experimental input}: None.  The value $\alpha = 1/137$ was
+not used in any step.
+\end{tcolorbox}
+
+\subsection{Priority recommendation}
+
+Given the difficulty of the remaining gap (27+ failed approaches, see
+\texttt{reports/alpha\_missing\_lemma.md}) and the time-box constraint, the
+recommended path is:
+
+\begin{enumerate}
+  \item \textbf{Time-box 4 weeks}: Attempt the Hecke-trace route (Section~\ref{sec:modular},
+        Gap 3, candidate mechanism 1).  This is the most structurally motivated
+        attack.
+  \item \textbf{If unsuccessful}: Publish the integer-137 result as
+        \textbf{CONDITIONAL} on Gap G137-B, with $B(p) = (p+1)/3$ stated
+        explicitly as a modular ansatz supported by three coincidences
+        (modular index, fixed-point consistency, and the Chowla--Selberg
+        numerical match).
+  \item \textbf{Refocus resources} on T1\_GR (general relativity sector) and
+        T2\_GAUGE (gauge sector), where closure is closer.
+\end{enumerate}
+
+%────────────────────────────────────────────────────────────────────────────
+\section{Falsification Conditions}
+\label{sec:falsification}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{6cm}p{7.5cm}}
+\toprule
+\textbf{Condition} & \textbf{What it falsifies} \\
+\midrule
+Two-loop calculation gives $B_\mathrm{2-loop} < 44$ & RG+perturbative origin of $B = 46$ \\
+$R_\psi \neq 1$ from UBT moduli derivation & Self-dual radius assumption \\
+$B(p)$ not monotone in $p$ & Prime-stability formula $B = (p+1)/3$ \\
+Modular symmetry of $S[\Theta]$ is broken & Hecke-trace mechanism \\
+$n^*(B_\mathrm{phenom}) \neq 137$ at higher order & Entire prime-attractor programme \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%────────────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{9}
+\bibitem{DSh05} F.\ Diamond and J.\ Shurman, \emph{A First Course in Modular
+  Forms}, Springer, 2005.
+\bibitem{ZinnJustin} J.\ Zinn-Justin, \emph{Quantum Field Theory and Critical
+  Phenomena}, 4th ed., Oxford, 2002.
+\bibitem{CW73} S.\ Coleman and E.\ Weinberg, ``Radiative corrections as the
+  origin of spontaneous symmetry breaking,'' \emph{Phys.\ Rev.\ D}
+  \textbf{7} (1973) 1888.
+\bibitem{CS49} S.\ Chowla and A.\ Selberg, ``On Epstein's zeta function,''
+  \emph{J.\ reine angew.\ Math.} \textbf{227} (1967) 86.
+\bibitem{Tong} D.\ Tong, \emph{Lectures on String Theory}, Cambridge, 2009.
+\bibitem{rg_nlogn} Ing.\ D.\ Jaro\v{s},
+  \texttt{research\_tracks/rg\_nlogn/full\_rg\_derivation.tex}, 2026.
+\bibitem{gamma0} Ing.\ D.\ Jaro\v{s},
+  \texttt{reports/gamma0\_137\_invariants.md}, 2026.
+\bibitem{cs_route} Ing.\ D.\ Jaro\v{s},
+  \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_b\_derivation.tex}, 2026.
+\bibitem{missing} Ing.\ D.\ Jaro\v{s},
+  \texttt{reports/alpha\_missing\_lemma.md}, 2026.
+\end{thebibliography}
+
+\end{document}
