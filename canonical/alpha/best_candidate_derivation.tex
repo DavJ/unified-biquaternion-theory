@@ -325,18 +325,18 @@ correct given $k$; the value $k = 1$ is a motivated conjecture.}\\
 The one-loop effective potential for winding mode $n \in \mathbb{Z}$ of the
 charged biquaternion field on $S^1_\psi$ is:
 \begin{equation}
-  V_{\mathrm{eff}}(n) = n^2 - B\ln n + \mathrm{const},
+  V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n + \mathrm{const},
   \qquad B = B_{\mathrm{base}},
   \label{eq:bc:Veff}
 \end{equation}
-where the $n^2$ term is the classical winding energy and $-B\ln n$ is the
+where the $n^2$ term is the classical winding energy and $-B\,n\ln n$ is the
 one-loop correction from vacuum polarisation of the $N_{\mathrm{eff}}$ charged modes.
 \end{theorem}
 
 \begin{proof}
 The kinetic energy of a winding mode $n$ on $S^1_\psi$ of radius $R_\psi$ is
 $E_n = n^2/R_\psi^2$ in units where $R_\psi = 1$.  The one-loop vacuum
-polarisation contribution shifts this energy by $-B\ln n$, where $B$ is
+polarisation contribution shifts this energy by $-B\,n\ln n$, where $B$ is
 the coefficient from Theorem~\ref{thm:bc:B0} (full one-loop including all
 $N_{\mathrm{eff}}$ modes).  The functional form follows from standard one-loop
 field theory; only the coefficient $B$ depends on UBT-specific inputs.
@@ -462,7 +462,7 @@ Step & Result & Status & Circular? & Source \\
 3 & $N_{\mathrm{eff}} = 12$ & CLEAN [L0] & No & \S\ref{sec:bc:neff} \\
 4 & $B_0 = 8\pi$ & CLEAN [L1] & No & \S\ref{sec:bc:B0} \\
 5 & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & \textbf{MC} (need $k=1$) & No & \S\ref{sec:bc:Bbase} \\
-6 & $V_{\mathrm{eff}}(n) = n^2 - B\ln n$ & CLEAN [L1] given $B$ & No & \S\ref{sec:bc:Veff} \\
+6 & $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ & CLEAN [L1] given $B$ & No & \S\ref{sec:bc:Veff} \\
 7 & $n^* = 137$ (prime attractor) & CONDITIONAL [L1] on Step 5 & No & \S\ref{sec:bc:nstar} \\
 8 & $\alpha^{-1}_{\mathrm{bare}} = 137$ & CONDITIONAL on Steps 5, 7 & No & \S\ref{sec:bc:identification} \\
 \bottomrule
