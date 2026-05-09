@@ -1,0 +1,76 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,booktabs,geometry,hyperref}
+\geometry{margin=2.5cm}
+\title{Symmetry Analysis for the Candidate UBT\,$\to$\,Condensate Reduction}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section*{Scope}
+Established symmetry facts from condensate theory are listed first; speculative UBT-correction channels are separated.
+
+\section{Baseline Symmetries (Established)}
+\begin{itemize}
+\item Global $U(1)$ phase symmetry (broken in condensate phase).
+\item Spatial translation/rotation symmetry in homogeneous cavity geometry.
+\item Explicit time-translation breaking under driven pumping.
+\end{itemize}
+
+\section{Candidate Reduced Generator}
+Linearized around homogeneous $\psi_0$:
+\begin{equation}
+\partial_t\delta\psi_k=\Lambda(k)\,\delta\psi_k,
+\end{equation}
+with growth rate $\Re\Lambda(k)$ controlling finite-$k$ instability.
+
+\subsection{Emergent Effective Mass}
+Near $k=0$, dispersion $E(k)=E_0+\frac{\hbar^2k^2}{2m_*}+\mathcal O(k^4)$ defines $m_*$. This is standard once a low branch is selected.
+
+\subsection{Nonlinear Self-Interaction}
+Cubic term $g|\psi|^2\psi$ preserves global $U(1)$ and sets interaction-shifted chemical potential.
+
+\subsection{Finite-$k$ Instability Criterion}
+A minimal criterion is
+\begin{equation}
+\Re\Lambda(k_c)=0,\qquad \partial_k\Re\Lambda|_{k_c}=0,\qquad k_c\neq0.
+\end{equation}
+Equivalent weakly nonlinear form uses $\alpha_2<0$, $\alpha_4>0$ in $\alpha_2k^2+\alpha_4k^4$.
+
+\subsection{Phase Locking}
+Under coherent forcing $F e^{-i\omega_d t}$ the relative phase obeys an Adler-type reduction:
+\begin{equation}
+\dot\varphi=\Delta\omega-K\sin\varphi,
+\end{equation}
+with locking region $|\Delta\omega|<|K|$.
+
+\subsection{Coherence Stabilization}
+For first-order coherence $g^{(1)}(r)$, a practical stability condition is positive effective phase stiffness and non-positive long-wave growth: $\Re\Lambda(k\to0)\le0$.
+
+\section{SPECULATIVE UBT Symmetry Corrections}
+Candidate terms $\eta_\tau\partial_t^2\psi$ and $\lambda_k\nabla^4\psi$ may:
+\begin{enumerate}
+\item shift $k_c$ and stripe wavelength,
+\item modify locking bandwidth,
+\item change asymptotic coherence decay exponent.
+\end{enumerate}
+None of these effects is yet derived from a closed canonical UBT reduction.
+
+\section{Mathematical Gaps}
+\begin{enumerate}
+\item No proof of how biquaternionic internal symmetry reduces to the observed order-parameter symmetry class.
+\item No derived relation between complex-time parameter and measured dephasing channels.
+\item No controlled nonlinear stability theorem for the proposed correction sector.
+\end{enumerate}
+
+\end{document}

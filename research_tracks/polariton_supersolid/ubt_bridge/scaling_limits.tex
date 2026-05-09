@@ -1,0 +1,67 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,booktabs,geometry,hyperref}
+\geometry{margin=2.5cm}
+\title{Scaling Limits for a Candidate UBT\,$\to$\,ddGP Reduction}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section*{Scope}
+This file states scaling regimes where the reduced equation reproduces established condensate physics and where speculative UBT terms could become testable.
+
+\section{Dimensionless Form}
+Let $\mathbf r=L_0\tilde{\mathbf r}$, $t=T_0\tilde t$, $\psi=\Psi_0\tilde\psi$. Then
+\begin{equation}
+i\partial_{\tilde t}\tilde\psi=\left[-\tilde\nabla^2+\tilde V+u|\tilde\psi|^2+i(\tilde P-\tilde\Gamma)-i\tilde\zeta|\tilde\psi|^2\right]\tilde\psi+\tilde\eta\,\partial_{\tilde t}^2\tilde\psi+\tilde\lambda\,\tilde\nabla^4\tilde\psi+\cdots.
+\end{equation}
+
+\section{Established Limit (Condensed-Matter Baseline)}
+If
+\begin{equation}
+|\tilde\eta|\ll1,\qquad |\tilde\lambda|\ll1,
+\end{equation}
+the dynamics reduces to standard ddGP/CGL classes used in polariton modeling.
+
+\section{Candidate UBT-Correction Window (SPECULATIVE)}
+Potentially resolvable corrections require simultaneously:
+\begin{equation}
+|\tilde\eta|\omega_{\mathrm{obs}}\gtrsim \epsilon_{\mathrm{det}},
+\qquad
+|\tilde\lambda|k_{\mathrm{obs}}^2\gtrsim \epsilon_{\mathrm{det}},
+\end{equation}
+where $\epsilon_{\mathrm{det}}$ is the experimental fractional precision.
+
+\section{Scaling for Requested Phenomena}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Phenomenon & Baseline scale & Candidate correction channel \\
+\midrule
+Effective mass & $E\sim k^2/2m_*$ & $m_*\to m_*+\delta m_{\mathrm{UBT}}$ \\
+Self-interaction & $u|\psi|^2$ & $u\to u+\delta u_{\mathrm{UBT}}$ \\
+Finite-$k$ instability & $k_c^2\sim -\alpha_2/(2\alpha_4)$ & $\delta\alpha_2,\delta\alpha_4$ from $\tilde\lambda$ \\
+Phase locking & $|\Delta\omega|<|K|$ & $K\to K+\delta K_{\mathrm{UBT}}$ \\
+Coherence stabilization & $\Re\Lambda(k\to0)\le0$ & corrected phase diffusion constant \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Mathematical Gaps}
+\begin{enumerate}
+\item No derived UV-to-IR matching for $(\tilde\eta,\tilde\lambda)$.
+\item No error-controlled truncation bound for omitted higher operators.
+\item No full identifiability analysis separating UBT corrections from ordinary cavity/model uncertainty.
+\end{enumerate}
+
+\end{document}

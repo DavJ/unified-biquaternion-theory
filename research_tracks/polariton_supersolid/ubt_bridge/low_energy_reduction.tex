@@ -1,0 +1,79 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,geometry,hyperref}
+\geometry{margin=2.5cm}
+\title{Low-Energy Reduction: $\Theta(q,\tau)\to\psi(\mathbf r,t)$}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section*{Scope}
+This note gives a controlled \emph{candidate} reduction chain and explicitly marks open assumptions. Standard driven-dissipative condensate theory is treated as established baseline; UBT additions are speculative.
+
+\section{Reduction Steps}
+\textbf{Step 1: Sector split.}
+\begin{equation}
+q=(\mathbf r,\xi),\qquad \tau=t+i\psi_\tau,
+\end{equation}
+with $\mathbf r$ slow and $\xi$ fast/internal.
+
+\textbf{Step 2: Mode expansion.}
+\begin{equation}
+\Theta(q,\tau)=\sum_n\chi_n(\xi)\Phi_n(\mathbf r,\tau),\qquad \int d\xi\,\chi_m^*\chi_n=\delta_{mn}.
+\end{equation}
+
+\textbf{Step 3: Gap assumption.}
+Assume a spectral gap $\Delta_{10}$ so $n\ge1$ modes can be adiabatically eliminated for $\hbar\omega\ll \Delta_{10}$.
+
+\textbf{Step 4: Envelope definition.}
+\begin{equation}
+\Phi_0(\mathbf r,\tau)=e^{-i\omega_0 t}\psi(\mathbf r,t),
+\end{equation}
+which defines the candidate condensate field.
+
+\textbf{Step 5: Markov/open limit.}
+Integrating out reservoir-like fast modes yields effective gain/loss terms at leading order:
+\begin{equation}
+i\hbar\partial_t\psi=\left[-\frac{\hbar^2\nabla^2}{2m_*}+V+g|\psi|^2+\frac{i\hbar}{2}(P-\Gamma)-i\hbar\zeta|\psi|^2\right]\psi+\delta\mathcal N_{\mathrm{UBT}}.
+\label{eq:reduced}
+\end{equation}
+
+\section{Interpreting Required Features}
+From Eq.~\eqref{eq:reduced}:
+\begin{itemize}
+\item \textbf{Emergent effective mass:} $m_*$ from projected quadratic dispersion near low mode.
+\item \textbf{Nonlinear self-interaction:} $g|\psi|^2\psi$ from projected quartic terms.
+\item \textbf{Finite-$k$ instability:} requires sign-changing effective stiffness, e.g. $E(k)=\alpha_2 k^2+\alpha_4 k^4$ with $\alpha_2<0$, $\alpha_4>0$.
+\item \textbf{Phase locking:} requires coherent drive/coupling term $F e^{-i\omega_d t}$ or Josephson-like coupling.
+\item \textbf{Coherence stabilization:} balance between $P-\Gamma$, nonlinear loss $\zeta$, and diffusion/kinetic smoothing.
+\end{itemize}
+
+\section{SPECULATIVE UBT Remainder}
+\begin{equation}
+\delta\mathcal N_{\mathrm{UBT}}=\left[\eta_\tau\partial_t^2+\lambda_k\nabla^4+\chi\,\nabla\cdot(|\psi|^2\nabla)\right]\psi+\cdots
+\end{equation}
+Potential outcomes:
+\begin{enumerate}
+\item shift of instability threshold $k_c$,
+\item modified phase-locking Arnold tongues,
+\item altered long-range coherence length scaling.
+\end{enumerate}
+
+\section{Mathematical Gaps}
+\begin{enumerate}
+\item Adiabatic elimination from full UBT dynamics is not proven.
+\item Open-system coarse-graining is assumed, not derived from first principles.
+\item Coefficients $(\eta_\tau,\lambda_k,\chi)$ are currently uncalibrated.
+\end{enumerate}
+
+\end{document}
