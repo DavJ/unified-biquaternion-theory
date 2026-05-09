@@ -476,6 +476,88 @@ No new information about the origin of $B(p) = (p+1)/3$ is provided.
 \end{resultbox}
 
 %────────────────────────────────────────────────────────────────────────────
+\section{Route 5: Hecke-Equivariant Path Integral (Attempted; No-Go)}
+\label{sec:hecke}
+%────────────────────────────────────────────────────────────────────────────
+
+\textit{Note: This section records the results of the Hecke-equivariant
+path-integral construction attempt completed 2026-05-09
+(task: \texttt{construct\_or\_kill\_hecke\_equivariant\_winding\_path\_integral}).
+Full proofs and obstruction statements are in
+\texttt{research\_tracks/alpha\_spectral/hecke\_equivariant\_path\_integral.tex}
+and \texttt{reports/hecke\_path\_integral\_no\_go\_or\_success.md}.}
+
+\subsection{Arithmetic layer (exact, unconditional)}
+
+The following arithmetic facts were established unconditionally:
+
+\begin{enumerate}
+  \item The Hilbert space of winding states $\mathcal{H}_p = \overline{\mathrm{span}}\{\Theta_n \mid p \mid n\}$
+        is arithmetically closed under $\Gamma_0(p)$ (exact: $c \equiv 0 \pmod{p}$
+        preserves the sublattice $p\mathbb{Z} \subset \mathbb{Z}$).
+  \item The coset space $\Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})$ bijects
+        with $\mathbb{P}^1(\mathbb{F}_p)$, giving exactly $p+1$ coset representatives.
+        \proved
+  \item $\mathrm{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H}) = \pi/3$
+        is a classical hyperbolic-geometry result.  \proved
+  \item $B(p) = \mathrm{vol}(X_0(p))/\pi = (p+1)/3$ as an exact geometric identity.
+        \proved (arithmetic)
+\end{enumerate}
+
+\subsection{Physics layer: three obstructions}
+
+The construction of a UBT path integral in which the $p+1$ coset representatives
+enumerate equal-action saddles is blocked by three obstructions:
+
+\begin{gap}[O1 — Modular invariance of $S[\Theta]$]
+  The UBT action $S[\Theta]$ has \textbf{not} been proved invariant under
+  $\mathrm{SL}(2,\mathbb{Z})$ transformations of the complex-time modulus
+  $\tau \to (a\tau + b)/(c\tau + d)$.  Without this symmetry, the $p+1$
+  saddle configurations $\bar\Theta_a = \bar\Theta(\gamma_a\cdot\tau)$ are not
+  guaranteed to be solutions of the equations of motion, and equal-action cannot
+  be established.
+  \textbf{Severity: Critical.}
+\end{gap}
+
+\begin{gap}[O2 — $\mathrm{SL}(2,\mathbb{Z})$ action on winding modes]
+  The action of $\mathrm{SL}(2,\mathbb{Z})$ on the winding modes $\Theta_n$
+  has \textbf{not been derived} from the UBT equations of motion.  The action
+  $n \mapsto cn + d$ (or the analogous $\tau$-pullback on the lattice) is a
+  natural candidate but has not been shown to arise from $S[\Theta]$.
+  Without this derivation, the identification of $\mathcal{H}_p$ as a
+  $\Gamma_0(p)$-module of winding states is purely arithmetic.
+  \textbf{Severity: Critical.}
+\end{gap}
+
+\begin{gap}[O3 — Equal action of $p+1$ candidate saddles]
+  Even granting O1 and O2, the $p+1$ saddle configurations must have equal
+  classical action $S[\bar\Theta_a]$ for all $a \in \mathbb{P}^1(\mathbb{F}_p)$.
+  Equal action follows from $\mathrm{SL}(2,\mathbb{Z})$ invariance of $S[\Theta]$
+  (Obstruction O1); without O1, individual actions may differ, and the loop
+  coefficient would not be $p+1$.
+  \textbf{Severity: Blocking (depends on O1).}
+\end{gap}
+
+\subsection{Summary of the Hecke route attempt}
+
+\begin{warnbox}
+\textbf{Verdict: CONSTRUCTION INCOMPLETE --- NO-GO AT CURRENT LEVEL.}
+
+The Hecke-equivariant path integral cannot be completed from the current
+UBT action $S[\Theta]$.  Obstructions O1--O3 block the derivation.
+The most critical is O1: if $S[\Theta]$ is not $\mathrm{SL}(2,\mathbb{Z})$-invariant,
+the Hecke mechanism cannot produce $p+1$ equal-action saddles.
+
+\medskip
+\textbf{Required next lemma}: Prove that the biquaternionic Dirac--Laplace
+operator $\nabla^\dagger\nabla$ on the complex-time torus
+$\mathbb{C}/(\mathbb{Z}+\mathbb{Z}\tau)$ is modular-covariant of definite
+weight, with the measure $d^4x\,d\psi$ transforming covariantly under
+$\tau \to (a\tau+b)/(c\tau+d)$.  An $\eta$-function regularisation analogous
+to Polchinski Ch.~7 may resolve O1.
+\end{warnbox}
+
+%────────────────────────────────────────────────────────────────────────────
 \section{Summary of All Routes}
 \label{sec:summary}
 %────────────────────────────────────────────────────────────────────────────
@@ -491,10 +573,12 @@ Two-loop correction & $+1$--$2$ & \heur & Diagrams not computed \\
 Modular index / $\Gamma_0(p)$ & 46.0 & \obs & $\mu(\Gamma_0(p))$ not in $S[\Theta]$ \\
 Mod.\ + elliptic correction & 46.5 & \obs & Same; $\varepsilon$ origin open \\
 Fixed-point bootstrap & self-consistent & \cond & Ansatz, not derivation \\
+Hecke path integral & --- & \openp & \textbf{NO-GO}: Obstructions O1--O3 \\
 \midrule
 \textbf{Target} & \textbf{46.298} & --- & --- \\
 \bottomrule
-\caption{Summary of $B$ estimates from all routes.}
+\caption{Summary of $B$ estimates from all routes.  Route 5 was attempted
+2026-05-09 and produced a NO-GO; see Section~\ref{sec:hecke}.}
 \label{tab:summary}
 \end{longtable}
 
@@ -512,12 +596,19 @@ $n^2$ term from KK & \proved & --- \\
 $n^2 \ln n$ shape from one-loop & \proved & --- \\
 Regulator independence & \proved & Standard $d=1$ dim.\ reg. \\
 Gauge invariance of $V_{\mathrm{eff}}$ & \proved & $n$ is $\mathrm{U}(1)_\psi$ charge \\
+$|\Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})| = p+1$ & \proved & Arithmetic; Diamond \& Shurman \\
+$\mathrm{vol}(X_0(p))/\pi = (p+1)/3$ & \proved & Arithmetic; hyperbolic geometry \\
+$\mathcal{H}_p$ closed under $\Gamma_0(p)$ & \proved & Arithmetic \\
 $B$ constant (not $n$-dependent) & \heur & Requires fixing $n = n^*$ \\
 $B \approx 21.8$ (one-loop) & \heur & Self-dual radius assumed \\
 $B \approx 43.6$ (KK+winding) & \heur & T-duality factor 2 \\
 $B = 46$ (modular) & \obs & $\mu(\Gamma_0(p))$ not in $S[\Theta]$ \\
 Elliptic correction $\varepsilon = 0.5$ & \obs & $\nu_2/4$ numerics only \\
-$B(p) = (p+1)/3$ derived & \openp & \textbf{Gap G137-B: OPEN} \\
+$S[\Theta]$ modular under $\mathrm{SL}(2,\mathbb{Z})$ & \openp & Obstruction O1 (Critical) \\
+$\mathrm{SL}(2,\mathbb{Z})$ acts on winding modes & \openp & Obstruction O2 (Critical) \\
+$p+1$ equal-action saddles & \openp & Obstruction O3 (Blocking; needs O1) \\
+$B(p) = (p+1)/3$ via Hecke route & \openp & \textbf{NO-GO}: O1--O3 unresolved \\
+$B(p) = (p+1)/3$ derived from $S[\Theta]$ & \openp & \textbf{Gap G137-B: OPEN} \\
 Bootstrap self-consistency & \cond & Verified, not derived \\
 \bottomrule
 \end{tabular}
@@ -558,21 +649,27 @@ not used in any step.
 
 \subsection{Priority recommendation}
 
-Given the difficulty of the remaining gap (27+ failed approaches, see
-\texttt{reports/alpha\_missing\_lemma.md}) and the time-box constraint, the
-recommended path is:
+Given the Hecke-trace route NO-GO result (Section~\ref{sec:hecke},
+completed 2026-05-09) and the structural difficulty of Gap G137-B,
+the recommended path is:
 
 \begin{enumerate}
-  \item \textbf{Time-box 4 weeks}: Attempt the Hecke-trace route (Section~\ref{sec:modular},
-        Gap 3, candidate mechanism 1).  This is the most structurally motivated
-        attack.
-  \item \textbf{If unsuccessful}: Publish the integer-137 result as
-        \textbf{CONDITIONAL} on Gap G137-B, with $B(p) = (p+1)/3$ stated
-        explicitly as a modular ansatz supported by three coincidences
-        (modular index, fixed-point consistency, and the Chowla--Selberg
-        numerical match).
-  \item \textbf{Refocus resources} on T1\_GR (general relativity sector) and
-        T2\_GAUGE (gauge sector), where closure is closer.
+  \item \textbf{Resolve Obstruction O1} (4--8 week time-box):  Attempt to
+        prove $\mathrm{SL}(2,\mathbb{Z})$ invariance of $S[\Theta]$ using
+        $\eta$-function or heat-kernel methods on the complex-time torus.
+        A successful resolution of O1 would allow O2 and O3 to follow
+        consequentially and unlock the Hecke path-integral route.
+  \item \textbf{Numerical equal-action check at small $p$}:  For $p = 2, 3, 5$
+        compute the classical action $S[\bar\Theta_a]$ for each of the $p+1$
+        coset representatives and verify or falsify equal action at leading order.
+        A counter-example would rule out the saddle-degeneracy mechanism entirely
+        without requiring the full modular proof.
+  \item \textbf{If O1 is not resolved}:  Publish the prime-stability and
+        integer-137 results as \textbf{CONDITIONAL} on Gap G137-B.  State
+        $B(p) = (p+1)/3$ explicitly as a conditional modular ansatz supported
+        by three coincidences (modular index, Chowla--Selberg match, bootstrap
+        consistency).  Redirect resources to T1\_GR and T2\_GAUGE tracks,
+        where closure is closer.
 \end{enumerate}
 
 %────────────────────────────────────────────────────────────────────────────
@@ -614,6 +711,11 @@ $n^*(B_\mathrm{phenom}) \neq 137$ at higher order & Entire prime-attractor progr
   \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_b\_derivation.tex}, 2026.
 \bibitem{missing} Ing.\ D.\ Jaro\v{s},
   \texttt{reports/alpha\_missing\_lemma.md}, 2026.
+\bibitem{hecke_tex} Ing.\ D.\ Jaro\v{s},
+  \texttt{research\_tracks/alpha\_spectral/hecke\_equivariant\_path\_integral.tex},
+  2026.
+\bibitem{hecke_md} Ing.\ D.\ Jaro\v{s},
+  \texttt{reports/hecke\_path\_integral\_no\_go\_or\_success.md}, 2026.
 \end{thebibliography}
 
 \end{document}
