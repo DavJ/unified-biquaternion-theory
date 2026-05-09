@@ -379,7 +379,7 @@ $\mu(\Gamma_0(137))/3$ & $46.00$ & EXACT MATH & \PROVED\ \Lzero\ (index formula)
 $B_{\mathrm{required}}$ & $46.284$ & EXACT CONSTRAINT & Derived from $n^*=137$; circular if used as input \\
 $B_{\mathrm{phenom}}$ & $\approx 46.298$ & PHENOMENOLOGICAL & Back-solved from $n^*=137$; \PHENOM \\
 $B_{\mathrm{full}} = B_{\mathrm{base}}\cdot R$ & $\approx 46.31$ & OPEN & $R \approx 1.114$; no derivation of $R$ \\
-$B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$ & $\approx 46.281$ & OBSERVATION & $0.007\%$ from $B_{\mathrm{required}}$; \OBS\ pending proof \\
+$B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$ & $\approx 46.281$ & HISTORICAL OBSERVATION & Numerical proximity only; rejected as first-principles $B$-modifier \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -388,18 +388,15 @@ $B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$ & $\approx 46.281$ 
 \textbf{Gap G137-B (primary blocker)}: Derive $B \approx 46.284$ from
 $S[\Theta]$ without using $\alpha$ or $n^*=137$ as input.
 
-The missing normalisation factor is now identified as
-$R = (2\eta(i))^{c/12} = (2\eta(i))^{1/4} = (\Gamma(1/4)/\pi^{3/4})^{1/4}
-\approx 1.1132$, where $c = 3$ is the central charge of the UBT CFT and
-$\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$ is the Dedekind eta at the self-dual point
-$\tau = i$.
+\textbf{Status update (2026-05-09)}: the $\eta(i)$ insertion route is
+\emph{rejected as a first-principles modifier} of the $n\ln n$ coefficient $B$.
+Any expression of the form
+$B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12} \approx 46.281$
+is retained only as a historical numerical observation / partition-normalization
+clue and does \textbf{not} close Gap G137-B.
 
-Formula: $B_{\mathrm{obs}} = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12} \approx 46.281$
-matches $B_{\mathrm{required}} = 46.284$ to $0.007\%$ with no free parameters.
-Proof of this identification is required to close Gap G137-B.
-
-See \texttt{research\_tracks/T3\_ALPHA/cw\_determinant\_full\_derivation.tex}
-for the full derivation and evidence.
+See \texttt{reports/alpha\_eta\_i\_rejection.md} for the canonical rejection
+verdict and guardrails.
 \end{gapbox}
 
 %──────────────────────────────────────────────────────────────────────────────
