@@ -41,9 +41,22 @@ Full derivation (137.036) requires solving Gap G137-B first.
 
 - Prime-stability set: **derived**
 - B-gap: **open**
-- eta(i) route: **best candidate, research/proposal only**
+- eta(i) route: **rejected as first-principles B-modifier**; allowed only as numerical observation / partition-normalization clue
 - Hecke path-integral route: **current no-go** (until O1–O3 or determinant-to-B insertion is solved)
 - Canonical wording source: `reports/alpha_current_verdict.md`
+
+### Self-dual torus sync (2026-05-09)
+
+- `tau=i` / `R_t=R_psi`: **CONDITIONAL** only
+- Shape stationary point: yes
+- Local shape stability: yes (under stated assumptions)
+- Scale modulus fixed: **no** (remains open)
+
+### Deprecated / rejected claim register (2026-05-09)
+
+- Rejected as derived first-principles n log n coefficient:
+  `B = 12^(3/2)*(2 eta(i))^(1/4)`.
+- This expression may be cited only as numerical observation / partition-normalization clue.
 
 ---
 
@@ -198,6 +211,7 @@ scheme — neither determined by coding constraints.
 | Weinberg angle derivation | DEAD END — algebra cannot fix g'/g |
 | Route A3 (modular direct) | KILLED — exhaustive search failed |
 | Route A4 (coding) | KILLED — proved impossible |
+| eta(i) insertion as derived B-modifier | REJECTED — not first-principles derivation of n log n coefficient |
 | δ = 0.036 correction without α | CIRCULAR — uses α as input |
 | R_ψ calibration from m_e | SEMI-EMPIRICAL — breaks unit-free derivation |
 | New speculative routes | FORBIDDEN — no new branches in cleanup window |
