@@ -2,6 +2,9 @@
 
 # T3_ALPHA — Progress Log: Fine Structure Constant Derivation
 
+> **Historical research note (superseded):** This file is retained for record only and is superseded by `reports/alpha_eta_i_rejection.md`.  
+> The eta(i) route is rejected as a first-principles \(B\)-modifier and does not close the alpha \(B\)-gap.
+
 **Track**: T3_ALPHA — Fine Structure Constant  
 **Date**: 2026-04-28  
 **Purpose**: Chronological record of the derivation state, exhausted approaches,

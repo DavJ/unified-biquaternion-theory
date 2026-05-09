@@ -62,19 +62,19 @@ Full derivation (137.036) requires solving Gap G137-B first.
 
 ## Route Ranking
 
-### PRIMARY — A_PRIME: V_eff Prime Attractor
+### PRIMARY — A_PRIME: V_eff Prime Attractor (Conditional)
 
 **Claim**: α⁻¹_bare = 137 (integer) from winding-mode spectrum V_eff minimum  
-**Score**: 14/15  
-**Status**: **PRIMARY ROUTE**
+**Score**: 10/15  
+**Status**: **PRIMARY BUT CONDITIONAL**
 
 | Criterion | Score | Notes |
 |-----------|-------|-------|
 | Foundation depth | 3/3 | N_eff = 12 is [L0]; V_eff structure forced by algebra |
-| Independence from α | 3/3 | No α input; B derived from action (Gap G137-B pending) |
-| Gap clarity | 3/3 | One gap: G137-B — derive B = B_phenom from S[Θ] |
+| Independence from α | 2/3 | No α input; $B=(p+1)/3$ used only as a conditional modular ansatz |
+| Gap clarity | 2/3 | Gap G137-B remains open; no first-principles derivation of B from S[Θ] |
 | Corroborations | 3/3 | V_eff attractor + modular μ(Γ₀(137))/3 + Hecke lepton masses |
-| Path to completion | 2/3 | Modular bootstrap; 4-week time-box |
+| Path to completion | 0/3 | eta(i) and Hecke path-integral first-principles routes rejected/no-go |
 
 **What is proved** (no fitting, zero free parameters):
 
@@ -90,6 +90,7 @@ Full derivation (137.036) requires solving Gap G137-B first.
 - Derive B_phenom ≈ 46.298 from UBT action S[Θ] without using α as input.
 - B₀ = 8π (proved, one-loop) gives n* ≈ 65, not 137.
 - Missing factor ≈ 1.84 = Kac-Moody correction or higher-loop term.
+- The relation $B=(p+1)/3$ is currently a conditional modular ansatz, not a first-principles derivation.
 - Source: `reports/alpha_missing_lemma.md`
 
 **Corroborations** (not proofs, supporting evidence):
@@ -167,7 +168,7 @@ scheme — neither determined by coding constraints.
 
 | Rank | Route | Score | Status | Claim |
 |------|-------|-------|--------|-------|
-| 1 | **A_PRIME**: V_eff prime attractor | **14/15** | **PRIMARY** | α⁻¹_bare = 137 (integer), conditional on G137-B |
+| 1 | **A_PRIME**: V_eff prime attractor | **10/15** | **PRIMARY BUT CONDITIONAL** | α⁻¹_bare = 137 (integer), conditional on G137-B |
 | 2 | A5: One-loop running | 8/15 | SUPPORTING (not bare-α) | α(μ₂) from α(μ₁) |
 | 3 | A1: Gauge normalization | 7/15 | PARKED (EW-1 dead end) | α after θ_W fixed |
 | 4 | A2: Symmetry-breaking projection | 7/15 | PARKED (EW-1+EW-2) | α after SSB |
