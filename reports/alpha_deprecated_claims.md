@@ -11,8 +11,8 @@
 
 | Deprecated claim | Status | Replacement |
 |---|---|---|
-| `V_eff = n^2 - B log n` | **RETIRED** | `V_eff = n^2 - B n log n` |
-| `n* = sqrt(B/2)` as active stationarity for alpha route | **RETIRED** | `2n* = B(\log n* + 1)` |
+| `V_eff(n) = n² − B·ln n` | **RETIRED** | `V_eff(n) = n² − B·n·ln n` |
+| `n* = sqrt(B/2)` as active stationarity for alpha route | **RETIRED** | `2n* = B(ln n* + 1)` |
 | alpha derivation is complete/closed | **RETIRED** | alpha not derived; B-gap open |
 | Hecke path-integral route is successful/closing B-gap | **RETIRED** | Hecke path-integral route is current no-go |
 

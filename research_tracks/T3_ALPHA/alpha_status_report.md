@@ -2,6 +2,8 @@
 
 # T3_ALPHA — alpha_status_report.md (DEPRECATED)
 
+## Deprecation notice
+
 **Status**: Deprecated (2026-05-09)  
 **Reason**: This file contained legacy alpha-route statements and is no longer the source of truth.
 
