@@ -1,0 +1,264 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/self_dual_torus_derivation.tex
+% Task: derive_or_reject_self_dual_torus_condition
+% Priority: CRITICAL
+% Date: 2026-05-09
+%
+% Hard rules:
+%   - no fitting
+%   - no assuming tau=i
+%   - do not use alpha, p=137, eta(i), or B_required
+%   - verdict must be PROVED / CONDITIONAL / NO-GO
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!8, linecolor=green!50!black, linewidth=1.2pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!12,linecolor=orange!80!black,linewidth=1.2pt]{gapbox}
+\newmdenv[backgroundcolor=red!7,   linecolor=red!55!black,   linewidth=1.2pt]{warnbox}
+
+\newcommand{\PROVED}{\textcolor{green!50!black}{\textbf{[PROVED]}}}
+\newcommand{\COND}{\textcolor{blue!70!black}{\textbf{[CONDITIONAL]}}}
+\newcommand{\NOGO}{\textcolor{red!80!black}{\textbf{[NO-GO]}}}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\Real}{\mathrm{Re}}
+
+\title{\textbf{Self-Dual Torus Condition from the UBT Action}\[4pt]
+\large Derive or Reject $R_t=R_\psi$ Without Input Fitting}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We test whether the UBT action $S[\Theta]$ dynamically selects the square
+complex-time torus, i.e.\ $R_t=R_\psi$ (equivalently $\tau=i$ after
+normalisation and zero tilt). Starting from the canonical kinetic term,
+we compactify Euclidean time $t_E\sim t_E+2\pi R_t$ and imaginary time
+$\psi\sim\psi+2\pi R_\psi$, isolate the $(t_E,\psi)$ kinetic sector, and derive
+the one-loop effective free energy $F(R_t,R_\psi)$ for independent radii.
+Result: the shape mode has a stationary point at $R_t=R_\psi$ and the square
+point is locally stable under explicit spectral assumptions, but the action
+does not fix the overall size modulus. Therefore the full statement
+``UBT selects $R_t=R_\psi$ from first principles'' is conditional.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Starting point: UBT action and Euclidean torus}
+
+The canonical biquaternionic action is
+\begin{equation}
+S[\Theta]
+=\int \dd^4x\,\dd\psi\;\Real\,\Tr\!\left[
+\bigl(\nabla^\dagger\Theta\bigr)^*\bigl(\nabla^\dagger\Theta\bigr)-V(\Theta)
+\right].
+\label{eq:action}
+\end{equation}
+To define a genuine two-cycle torus we perform the Euclidean rotation
+$t\to i t_E$ and compactify both directions:
+\begin{equation}
+t_E\sim t_E+2\pi R_t,
+\qquad
+\psi\sim\psi+2\pi R_\psi.
+\end{equation}
+No relation between $R_t$ and $R_\psi$ is assumed.
+
+\subsection{Isolated $(t_E,\psi)$ kinetic sector}
+
+Keeping only terms relevant to radius selection,
+\begin{equation}
+S_{t\psi}^{(2)}
+=\int_{T^2}\dd t_E\,\dd\psi\int \dd^3x\;
+\Tr\!\left[
+K_t\,\partial_{t_E}\Theta\,\partial_{t_E}\Theta^\dagger
++K_\psi\,\partial_\psi\Theta\,\partial_\psi\Theta^\dagger
++M^2\Theta\Theta^\dagger
+\right],
+\label{eq:kinetic-sector}
+\end{equation}
+with positive kinetic coefficients $K_t,K_\psi>0$ and effective mass parameter
+$M^2\ge 0$ (from background and potential terms).
+
+\begin{remark}
+If the canonical UBT normalization is isotropic in the two compact cycles, one
+has $K_t=K_\psi$.  We keep both coefficients explicit and only impose
+$K_t=K_\psi$ when testing the self-dual condition.
+\end{remark}
+
+\section{Mode expansion with independent radii}
+
+Expand on the rectangular torus:
+\begin{equation}
+\Theta(x,t_E,\psi)
+=\sum_{m,n\in\mathbb Z}\Theta_{m,n}(x)
+\exp\!\left(i\frac{m t_E}{R_t}+i\frac{n\psi}{R_\psi}\right).
+\label{eq:mode-expansion}
+\end{equation}
+Then each mode has quadratic eigenvalue
+\begin{equation}
+\lambda_{m,n}(R_t,R_\psi)
+=K_t\frac{m^2}{R_t^2}+K_\psi\frac{n^2}{R_\psi^2}+M^2.
+\label{eq:eigenvalue}
+\end{equation}
+
+The one-loop free energy (up to $R$-independent constants and standard
+regularisation subtraction) is
+\begin{equation}
+F(R_t,R_\psi)
+=\frac{N_\Theta}{2}\sum_{(m,n)\neq(0,0)}
+\log\lambda_{m,n}(R_t,R_\psi),
+\label{eq:F-main}
+\end{equation}
+where $N_\Theta$ is the number of dynamical $\Theta$ components retained in the
+sector.
+
+\section{Stationary conditions in shape and scale variables}
+
+Define
+\begin{equation}
+R_t=s\sqrt{\rho},\qquad R_\psi=\frac{s}{\sqrt{\rho}},
+\qquad s>0,\;\rho>0,
+\end{equation}
+so $\rho=R_t/R_\psi$ (shape) and $s=\sqrt{R_tR_\psi}$ (overall scale).
+For isotropic kinetic normalization $K_t=K_\psi=:K$,
+\begin{equation}
+\lambda_{m,n}(s,\rho)=\frac{K}{s^2}\left(m^2\rho^{-1}+n^2\rho\right)+M^2.
+\label{eq:lambda-s-rho}
+\end{equation}
+
+\subsection{Shape equation}
+
+\begin{proposition}[Stationarity at square torus]
+\label{prop:shape-stationary}
+Assume $K_t=K_\psi$ and the mode set is symmetric under $(m,n)\leftrightarrow(n,m)$.
+Then
+\begin{equation}
+\left.\frac{\partial F}{\partial \rho}\right|_{\rho=1}=0,
+\end{equation}
+so $R_t=R_\psi$ is a stationary point of the shape free energy.
+\end{proposition}
+
+\begin{proof}
+Under $\rho\mapsto\rho^{-1}$ and index swap $(m,n)\leftrightarrow(n,m)$,
+\eqref{eq:lambda-s-rho} is unchanged, hence $F(\rho)=F(\rho^{-1})$.
+In variable $y=\ln\rho$, this is $F(y)=F(-y)$, so $F'(0)=0$, i.e.
+$\partial_\rho F|_{\rho=1}=0$.
+\end{proof}
+
+\subsection{Local stability of the square point}
+
+\begin{proposition}[Positive second variation in the shape mode]
+\label{prop:shape-stable}
+With assumptions of Proposition~\ref{prop:shape-stationary},
+\begin{equation}
+\left.\frac{\partial^2 F}{\partial y^2}\right|_{y=0}
+=\frac{N_\Theta}{2}\sum_{(m,n)\neq(0,0)}
+\frac{4K^2m^2n^2+KM^2(m^2+n^2)}{\left(K(m^2+n^2)+M^2\right)^2}
+\ge 0,
+\label{eq:second-variation}
+\end{equation}
+where $y=\ln\rho$. For any nontrivial contributing mode pair the inequality is
+strict, so the square torus is a local minimum in the shape direction.
+\end{proposition}
+
+\begin{proof}
+Differentiate $\log\lambda_{m,n}(y)$ twice at $y=0$ using
+$\lambda_{m,n}(y)=Ks^{-2}(m^2e^{-y}+n^2e^{y})+M^2$.
+Direct algebra gives the numerator in \eqref{eq:second-variation}; every term is
+nonnegative for $K>0$, $M^2\ge0$.
+\end{proof}
+
+\subsection{Scale equation}
+
+The scale derivative is
+\begin{equation}
+\frac{\partial F}{\partial s}
+=-\frac{N_\Theta K}{s^3}
+\sum_{(m,n)\neq(0,0)}
+\frac{m^2\rho^{-1}+n^2\rho}{\lambda_{m,n}(s,\rho)}.
+\label{eq:scale-derivative}
+\end{equation}
+For the pure kinetic+mass sector in \eqref{eq:F-main}, this does not generally
+produce an isolated finite critical scale $s_*$ without extra physics
+(counterterms, additional potentials, fixed-area constraint, or boundary data).
+
+\begin{gapbox}
+\textbf{Key obstruction.}
+The current UBT action sector used here constrains the \emph{shape} mode but does
+not by itself fix the \emph{scale} modulus $s=\sqrt{R_tR_\psi}$. Therefore
+``$R_t=R_\psi$ is selected dynamically'' is not an unconditional consequence of
+$S[\Theta]$ alone.
+\end{gapbox}
+
+\section{Interpretation of $\tau=i$}
+
+For rectangular torus with zero tilt, the complex modulus is
+\begin{equation}
+\tau=i\frac{R_\psi}{R_t}=i\rho^{-1}.
+\end{equation}
+Thus $R_t=R_\psi$ is equivalent to $\tau=i$ in this sector.
+From Propositions~\ref{prop:shape-stationary} and~\ref{prop:shape-stable}:
+
+\begin{itemize}
+\item Shape stationarity at $\tau=i$ is derived (not assumed).
+\item Local stability at $\tau=i$ is derived under explicit spectral assumptions.
+\item Full dynamical selection needs one additional ingredient fixing the area
+$A_{T^2}=(2\pi)^2R_tR_\psi$ (or equivalent scale condition).
+\end{itemize}
+
+\section{Final verdict class}
+
+\begin{resultbox}
+\textbf{Verdict: \COND}
+
+From the current UBT kinetic action and spectral one-loop free energy:
+\begin{enumerate}
+\item The square torus condition $R_t=R_\psi$ (equivalently $\tau=i$ for zero
+tilt) is a derived \emph{shape stationary point}.\ \PROVED
+\item The square point is locally stable in the shape mode under the explicit
+assumptions stated above.\ \PROVED
+\item The full pair $(R_t,R_\psi)$ is \emph{not uniquely selected} by this sector,
+because no independent equation fixes the overall scale modulus.\ \NOGO
+\end{enumerate}
+Hence the complete claim ``UBT field equations/selective free energy force
+$R_t=R_\psi$'' is currently \textbf{conditional} on an additional scale-fixing
+principle.
+\end{resultbox}
+
+\begin{warnbox}
+\textbf{Hard-rule compliance.}
+No fitting used. No assumption $\tau=i$ used. No use of $\alpha$, $p=137$,
+$\eta(i)$, or $B_{\mathrm{required}}$. Verdict class is in
+\{PROVED, CONDITIONAL, NO-GO\}.
+\end{warnbox}
+
+\end{document}
