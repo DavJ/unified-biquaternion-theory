@@ -63,7 +63,7 @@ follows from the proved prime-attractor chain.
 | N_eff = 12 from ℂ⊗ℍ | [L0] | `canonical/n_eff/step3_N_eff_result.tex` |
 | B₀ = 8π (one-loop) | [L1] | `canonical/n_eff/step2_vacuum_polarization.tex` |
 | Ẑ(τ) = ϑ₃³(τ), modular weight 3/2 | [L0] | `research_tracks/T3_ALPHA/`, gap G8 computed |
-| V_eff(n) = n² − B ln n structure | [L1] given B | `canonical/appendices/appendix_alpha_geometry.tex §3` |
+| V_eff(n) = n² − B·n·ln n structure | [L1] given B | `canonical/alpha/veff_corrected.tex` |
 | n* = 137 is prime-stable attractor | [L1] given B_phenom | `canonical/appendices/appendix_alpha_geometry.tex §4` |
 | μ(Γ₀(137))/3 ≈ 46.00 (independent signal) | Structural | `canonical/alpha/prime_137_status.md` |
 
@@ -261,8 +261,8 @@ These results are locked-in and are the foundation all Tier A/B routes build on.
 |--------|--------|--------|
 | N_eff = 12 from ℂ⊗ℍ | **PROVED [L0]** | `canonical/n_eff/` |
 | B₀ = 8π one-loop | **PROVED [L1]** | `canonical/n_eff/step2_vacuum_polarization.tex` |
-| V_eff(n) = n² − B ln n | **PROVED [L1] given B** | `canonical/appendices/appendix_alpha_geometry.tex §3` |
-| n* = √(B/2) stationarity | **PROVED [L1] given B** | Same §4 |
+| V_eff(n) = n² − B·n·ln n | **PROVED [L1] given B** | `canonical/alpha/veff_corrected.tex` |
+| 2n* = B(ln n* + 1) stationarity | **PROVED [L1] given B** | `canonical/alpha/veff_corrected_statement.tex` |
 | Prime stability of n* = 137 | **PROVED [L1]** | Same §4 |
 | Dirac charge quantisation | **PROVED [L0]** | Same §1 |
 | Modular weight of Ẑ(τ) = 3/2 | **COMPUTED [L0]** | T3_ALPHA gap G8 |

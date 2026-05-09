@@ -20,7 +20,7 @@ current status, and next recommended actions.
 | α⁻¹_bare = 137 [L1] given B_base | B_base = N_eff^{3/2} = 41.57 (k=1 Kac-Moody level) | R_ψ in physical units from S[Θ] |
 | N_eff = 12 from ℂ⊗ℍ [L0] | | δ = 0.036 without α,m_e as inputs |
 | B₀ = 8π one-loop [L1] | | |
-| V_eff(n) = n² − B ln n form [L1] | | |
+| V_eff(n) = n² − B·n·ln n form [L1] | | |
 | Prime stability of n* = 137 [L1] | | |
 | Dirac charge quantisation [L0] | | |
 | Toroidal compactification [L0] | | |
@@ -44,8 +44,8 @@ See `canonical/alpha/weinberg_angle_derivation.md` and `reports/ew_mixing_status
 |------|-------------|--------|--------|
 | 2025-Q3 | N_eff = 12 derived from ℂ⊗ℍ mode counting | [L0] PROVED | `canonical/n_eff/step1_mode_decomposition.tex` |
 | 2025-Q3 | B₀ = 8π from one-loop vacuum polarisation | [L1] PROVED | `canonical/n_eff/step2_vacuum_polarization.tex` |
-| 2025-Q3 | V_eff(n) = n² − B ln n effective potential | [L1] PROVED | `canonical/appendices/appendix_alpha_geometry.tex §3` |
-| 2025-Q4 | n* = √(B/2) stationarity condition | [L1] PROVED | `canonical/appendices/appendix_alpha_geometry.tex §4` |
+| 2025-Q3 | V_eff(n) = n² − B·n·ln n effective potential | [L1] PROVED | `canonical/alpha/veff_corrected.tex` |
+| 2025-Q4 | 2n* = B(ln n* + 1) stationarity condition | [L1] PROVED | `canonical/alpha/veff_corrected_statement.tex` |
 | 2025-Q4 | Prime stability: n* = 137 (given B_base) | [L1] PROVED | `canonical/appendices/appendix_alpha_geometry.tex §4` |
 | 2025-Q4 | Toroidal compactification and Dirac quantisation | [L0] PROVED | `canonical/appendices/appendix_alpha_geometry.tex §1` |
 | 2025-Q4 | T-duality self-dual point (algebraic part) | [L0] PROVED | `canonical/geometry/Rpsi_dynamical_fix.tex` |
@@ -125,8 +125,8 @@ One-loop vacuum polarisation of N_eff = 12 charged modes on S¹_ψ.
 
 If B_base = 41.57 (i.e., R² = B_base / B₀ ≈ 1.241, R ≈ 1.114), then:
 ```
-V_eff(n) = n² − B ln n  (B = B_base · R²)
-n* = √(B/2) ≈ 137
+V_eff(n) = n² − B·n·ln n
+2n* = B(ln n* + 1)
 ```
 α⁻¹_bare = n* = 137.  
 **Source**: `canonical/appendices/appendix_alpha_geometry.tex §4`

@@ -90,11 +90,11 @@ would be clean.
 
 ---
 
-### A6: V_eff(n) = n² − B ln n
+### A6: V_eff(n) = n² − B·n·ln n
 
 **Used for**: Prime attractor at n* = 137  
 **Derivation**: One-loop effective potential for winding mode n on S¹_ψ,
-combining kinetic term n² and one-loop log term B ln n.  
+combining kinetic term n² and one-loop degeneracy term B·n·ln n.  
 **Classification**: CLEAN given B — the functional form follows from
 one-loop field theory  
 **Circularity check**: ✓ No reference to α or m_e  
@@ -103,11 +103,11 @@ one-loop field theory
 
 ---
 
-### A7: Stationarity condition n* = √(B/2) identifies α⁻¹_bare
+### A7: Stationarity condition 2n* = B(ln n* + 1) identifies α⁻¹_bare (conditional)
 
 **Used for**: α⁻¹_bare = n* = 137  
-**Derivation**: `∂V_eff/∂n|_{n*} = 0 ⟹ n* = √(B/2)`.  With B = B_base,
-n* ≈ 137.  Identification α⁻¹_bare = n*.  
+**Derivation**: `∂V_eff/∂n|_{n*} = 0 ⟹ 2n* = B(ln n* + 1)`.  For phenomenological
+B ≈ 46.3, the numeric minimiser is near 137.  Identification α⁻¹_bare = n* remains conditional on deriving B from S[Θ].  
 **Classification**: CLEAN given B_base [L1]  
 **Circularity check**: ✓ No reference to α or m_e  
 **Source**: `canonical/appendices/appendix_alpha_geometry.tex §4`
@@ -221,8 +221,8 @@ A5/A11 is proved, and is scientifically significant.
 
 1. N_eff = 12 from ℂ⊗ℍ — CLEAN [L0]
 2. B₀ = 8π from one-loop vacuum polarisation — CLEAN [L1]
-3. V_eff(n) = n² − B ln n — CLEAN given B [L1]
-4. n* = √(B/2) stationarity — CLEAN given B [L1]
+3. V_eff(n) = n² − B·n·ln n — CLEAN given B [L1]
+4. 2n* = B(ln n* + 1) stationarity — CLEAN given B [L1]
 5. Prime stability n* = 137 — CLEAN [L1]
 6. ψ-circle compactification and Dirac quantisation — CLEAN [L0]
 7. T-duality self-dual point (algebraic part) — CLEAN [L0]

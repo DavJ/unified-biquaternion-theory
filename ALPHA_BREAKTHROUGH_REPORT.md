@@ -112,13 +112,13 @@ on S¹_ψ. The QED limit (N_eff = 1) gives B₀ = 2π/3, verified.
 ### 2.5 [L1] Effective potential form
 
 ```
-V_eff(n) = n² − B ln n + const    (given B = B_base)
-∂V_eff/∂n = 0  ⟹  n* = √(B/2)
+V_eff(n) = n² − B·n·ln n + const
+∂V_eff/∂n = 0  ⟹  2n* = B(ln n* + 1)
 ```
 
-**Status**: CLEAN [L1] given B_base — functional form is standard one-loop; only
-coefficient B tracks Gap G3-k.  
-**Source**: `canonical/appendices/appendix_alpha_geometry.tex §3-4`
+**Status**: CLEAN [L1] given B — functional form is standard one-loop; only
+coefficient B tracks Gap G137-B.  
+**Source**: `canonical/alpha/veff_corrected.tex`, `canonical/alpha/veff_corrected_statement.tex`
 
 ---
 

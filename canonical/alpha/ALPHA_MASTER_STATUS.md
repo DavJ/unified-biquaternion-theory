@@ -30,12 +30,20 @@ Full derivation (137.036) requires solving Gap G137-B first.
 
 | Item | Verdict |
 |------|---------|
-| α derivation: overall | **CONDITIONAL** — integer-137 result proved given B = B_phenom |
-| α⁻¹_bare = 137 (integer) | **ACHIEVABLE** — if Gap G137-B is solved (20–30% in 4-week time-box) |
+| α derivation: overall | **NOT DERIVED** — B-gap open |
+| α⁻¹_bare = 137 (integer) | **CONDITIONAL ONLY** — no first-principles closure |
 | α⁻¹ = 137.036 (full precision) | **NOT ACHIEVED** — requires Gap G137-B resolution |
 | Active routes | 1 (A_PRIME) |
 | Parked routes | 2 (A1, A2 — conditional on dead-end Weinberg angle) |
 | Killed routes | 2 (A3, A4 — definitively failed) |
+
+### Status sync (2026-05-09)
+
+- Prime-stability set: **derived**
+- B-gap: **open**
+- eta(i) route: **best candidate, research/proposal only**
+- Hecke path-integral route: **current no-go** (until O1–O3 or determinant-to-B insertion is solved)
+- Canonical wording source: `reports/alpha_current_verdict.md`
 
 ---
 

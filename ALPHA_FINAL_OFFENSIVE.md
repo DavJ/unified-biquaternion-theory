@@ -36,8 +36,8 @@ These results carry into this offensive as established [L0]/[L1] facts:
 | Complex time compactification | τ = t+iψ, S¹_ψ | CLEAN [L0] | `canonical/fields/biquaternion_time.tex` |
 | N_eff = 12 modes | 3 × 2 × 2 from dim_ℝ(Im ℍ) | CLEAN [L0] | `canonical/n_eff/step3_N_eff_result.tex` |
 | One-loop baseline | B₀ = 2πN_eff/3 = 8π | CLEAN [L1] | `canonical/n_eff/step2_vacuum_polarization.tex` |
-| Effective potential form | V_eff(n) = n² − B ln n | CLEAN [L1] given B | `canonical/appendices/appendix_alpha_geometry.tex §3` |
-| Stationarity condition | n* = √(B/2) | CLEAN [L1] given B | `canonical/appendices/appendix_alpha_geometry.tex §4` |
+| Effective potential form | V_eff(n) = n² − B·n·ln n | CLEAN [L1] given B | `canonical/alpha/veff_corrected.tex` |
+| Stationarity condition | 2n* = B(ln n* + 1) | CLEAN [L1] given B | `canonical/alpha/veff_corrected_statement.tex` |
 | Prime stability of n* = 137 | Homotopy argument | CLEAN [L1] | `canonical/appendices/appendix_alpha_geometry.tex §4` |
 | Dirac charge quantisation | e^{iq∮A_ψdψ} = 1 | CLEAN [L0] | `canonical/appendices/appendix_alpha_geometry.tex §1` |
 
