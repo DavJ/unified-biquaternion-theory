@@ -4,12 +4,14 @@
 
 # B_gap_final_verdict.md — B(p) = (p+1)/3: Derivation or Ansatz?
 
-**Task**: close_or_kill_B_coefficient_gap  
+**Task**: close_or_kill_B_coefficient_gap / construct_or_kill_hecke_equivariant_winding_path_integral  
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-08  
+**Date**: 2026-05-09 (updated from 2026-05-08; incorporates Hecke path-integral no-go result)  
 **Priority**: CRITICAL  
 **Gap ID**: G137-B  
-**Companion LaTeX**: `research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex`  
+**Companion LaTeX**: `research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex`,
+`research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex`  
+**Hecke route report**: `reports/hecke_path_integral_no_go_or_success.md`  
 **Hard rules**: No use of observed α; no fitting B to 137.
 
 ---
@@ -147,7 +149,13 @@ confirms consistency but does not constitute a derivation of $B(p) = (p+1)/3$.
 | $B \approx 21.8$ one-loop | **HEURISTIC** | self-dual radius assumed |
 | $B \approx 43.6$ KK+winding | **HEURISTIC** | T-duality assumed |
 | $B = 46$ exact | **OPEN** | Gap G137-B |
-| $B(p) = (p+1)/3$ from $S[\Theta]$ | **OPEN** | Gap G137-B |
+| $|\Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})| = p+1$ (arithmetic) | **PROVED** | Diamond & Shurman Thm 3.1.1 |
+| $\mathrm{vol}(X_0(p))/\pi = (p+1)/3$ (arithmetic) | **PROVED** | `hecke_equivariant_path_integral.tex` Cor. 2.3 |
+| $\mathcal{H}_p$ arithmetically closed under $\Gamma_0(p)$ | **PROVED** (arithmetic) | same, Lem. 6.1 |
+| $S[\Theta]$ modular-invariant under $\mathrm{SL}(2,\mathbb{Z})$ | **OPEN** (Obstruction O1) | same, Prop. 5.1 |
+| $\mathrm{SL}(2,\mathbb{Z})$ action on winding modes derived | **OPEN** (Obstruction O2) | same, Prop. 6.2 |
+| $p+1$ equal-action saddles from $Z_p$ | **OPEN** (Obstruction O3) | same, Prop. 7.2 |
+| $B(p) = (p+1)/3$ derived from $S[\Theta]$ via Hecke route | **CONDITIONAL — NO-GO** (O1–O3 unresolved) | `hecke_path_integral_no_go_or_success.md` |
 | Modular coincidence $\mu(\Gamma_0(p))/3$ | **OBSERVATION** | `reports/gamma0_137_invariants.md` |
 | Self-consistency bootstrap | **COND** | sec. 4 of companion LaTeX |
 
@@ -184,17 +192,92 @@ It is **not** supported by:
 
 ---
 
-## 6. Recommended Next Steps
+## 6. Hecke Path-Integral Route: No-Go Result
 
-**Priority action (4-week time-box)**:  
-Attempt the Hecke-trace mechanism: show that the UBT path integral over the
-winding sector at level $n=p$ weights the $\mu(\Gamma_0(p)) = p+1$ Hecke orbits
-uniformly, producing the factor $(p+1)/3$ in the effective coupling.
+The priority Hecke-trace attempt (task
+`construct_or_kill_hecke_equivariant_winding_path_integral`, 2026-05-09)
+has been completed.  Full details are in
+`reports/hecke_path_integral_no_go_or_success.md` and the companion LaTeX
+`research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex`.
 
-**If unsuccessful after 4 weeks**:  
-- Publish the integer-137 result as **CONDITIONAL** on Gap G137-B
-- State $B(p) = (p+1)/3$ explicitly as a modular ansatz with supporting evidence
-- Redirect resources to T1\_GR and T2\_GAUGE tracks
+**Verdict: CONSTRUCTION INCOMPLETE — NO-GO at current level.**
+
+Three obstructions block the derivation:
+
+| Label | Obstruction | Severity |
+|-------|-------------|----------|
+| O1 | $S[\Theta]$ not proved modular-invariant under $\mathrm{SL}(2,\mathbb{Z})$ | **Critical** |
+| O2 | $\mathrm{SL}(2,\mathbb{Z})$ action on winding modes $\Theta_n$ not derived | **Critical** |
+| O3 | Equal-action of $p+1$ candidate saddles cannot be established (depends on O1) | **Blocking** |
+
+What is exact (arithmetic, unconditional):
+
+- $|\Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})| = p+1$
+- Bijection with $\mathbb{P}^1(\mathbb{F}_p)$
+- $\mathrm{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H}) = \pi/3$
+- $B(p) = \mathrm{vol}(X_0(p))/\pi = (p+1)/3$ as an exact geometric identity
+  (given $\mathrm{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H})=\pi/3$, which is a classical result of hyperbolic geometry)
+
+What is NOT derived:
+
+- Any physics mechanism connecting $S[\Theta]$ to the coset count $p+1$
+- Equal-action of the $p+1$ candidate saddles
+- Multiplication of the $n\ln n$ coefficient by $p+1$
+
+**Impact on Gap G137-B**: Gap is not closed.  The Hecke route is
+the most promising known route and it fails at O1.
+
+**Required next lemma**: Prove that the biquaternionic Dirac–Laplace
+operator $\nabla^\dagger\nabla$ on the complex-time torus
+$\mathbb{C}/(\mathbb{Z}+\mathbb{Z}\tau)$ is a modular-covariant operator
+of definite weight, with the measure $d^4x\,d\psi$ (four real spacetime
+directions plus the imaginary-time circle $S^1_\psi$) transforming
+covariantly under $\tau \to (a\tau+b)/(c\tau+d)$.  An $\eta$-function
+regularisation argument (analogous to Polchinski Ch. 7) might resolve O1.
+
+---
+
+## 7. UBT Prime-Stability Framework — Status Statement
+
+> **UBT has a finite prime-stability framework containing alpha-relevant
+> primes.**
+> The prime-stability analysis with $B(p) = (p+1)/3$ yields the stable
+> prime set $S = \{2, 127, 137, 139, 151, 157\}$; the prime 137 is
+> stable within this set.
+>
+> **The remaining gap is deriving $B(p) = (p+1)/3$ from $S[\Theta]$.**
+>
+> The Hecke-equivariant path-integral route, the most structured known
+> approach, is blocked by Obstruction O1 (modular invariance of
+> $S[\Theta]$).  **The modular coefficient remains a conditional ansatz.**
+>
+> Alpha is not solved.  The integer-137 result is structurally motivated
+> and internally consistent, but its derivation is incomplete pending
+> resolution of Gap G137-B.
+
+---
+
+## 8. Recommended Next Steps
+
+The Hecke-trace mechanism has been attempted and produced a NO-GO.
+The recommended programme is:
+
+1. **Resolve O1** (4–8 week time-box): Attempt to prove $\mathrm{SL}(2,\mathbb{Z})$
+   invariance of $S[\Theta]$ using $\eta$-function or heat-kernel methods on
+   the complex-time torus.  If successful, O2 and O3 resolve consequentially.
+
+2. **If O1 is not resolved**:
+   - Publish the prime-stability and integer-137 results as
+     **CONDITIONAL** on Gap G137-B.
+   - State $B(p) = (p+1)/3$ explicitly as a conditional modular ansatz
+     with full supporting evidence.
+   - Redirect resources to T1\_GR and T2\_GAUGE tracks.
+
+3. **Check equal action numerically for small $p$**:
+   For $p = 2, 3, 5$ compute the classical action $S[\bar\Theta_a]$ for
+   each of the $p+1$ coset representatives and verify or falsify equal
+   action at leading order.  A counter-example would rule out the route
+   without requiring the full modular proof.
 
 **Falsification conditions**:
 
@@ -203,11 +286,12 @@ uniformly, producing the factor $(p+1)/3$ in the effective coupling.
 | Two-loop: $B_\mathrm{2-loop} < 44$ | RG perturbative origin |
 | $R_\psi \neq 1$ from moduli | Self-dual radius assumption |
 | $B(p)$ non-monotone in $p$ | The formula $B=(p+1)/3$ |
-| $S[\Theta]$ modular symmetry broken | Hecke-trace mechanism |
+| $S[\Theta]$ modular symmetry proved absent | Entire Hecke route |
+| Equal action fails at $p=2$ (numerical check) | Saddle-degeneracy mechanism |
 
 ---
 
-## 7. References
+## 9. References
 
 | Document | Role |
 |----------|------|
@@ -217,4 +301,6 @@ uniformly, producing the factor $(p+1)/3$ in the effective coupling.
 | `reports/gamma0_137_invariants.md` | Modular curve $X_0(137)$ analysis |
 | `reports/alpha_missing_lemma.md` | Precise statement of Gap G137-B |
 | `canonical/alpha/best_candidate_derivation.tex` | Derivation chain for $\alpha^{-1}=137$ |
-| `research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex` | Full LaTeX analysis (this report's companion) |
+| `research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex` | Synthesis of all B-coefficient routes |
+| `research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex` | Hecke route full proofs and obstructions |
+| `reports/hecke_path_integral_no_go_or_success.md` | Hecke route verdict (NO-GO) |
