@@ -1,6 +1,6 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# T3_ALPHA — alpha_status_report.md (DEPRECATED)
+# T3_ALPHA — alpha_status_report.md (DEPRECATED 2026-05-09)
 
 ## Deprecation notice
 

@@ -11,7 +11,7 @@
 ## Canonical potential (fixed)
 
 \[
-V_{\mathrm{eff}}(n)=n^2-B\,n\ln n
+V_{\mathrm{eff}}(n)=n^2-B\cdot n\ln n
 \]
 
 Legacy forms without the multiplicative `n` are deprecated and not valid for active claims.
