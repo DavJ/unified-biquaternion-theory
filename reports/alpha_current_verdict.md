@@ -44,9 +44,9 @@ Legacy forms without the multiplicative `n` are deprecated and not valid for act
 
 ## Self-dual torus synchronization note
 
-- `tau=i` / `R_t=R_psi` remains **CONDITIONAL**.
+- `tau=i` / `R_t=R_ψ` remains **CONDITIONAL**.
 - Shape mode is stationary and locally stable (under explicit assumptions).
-- Scale modulus `sqrt(R_t R_psi)` remains unfixed.
+- Scale modulus `sqrt(R_t R_ψ)` remains unfixed.
 - Therefore this does not provide unconditional alpha closure.
 
 ---
