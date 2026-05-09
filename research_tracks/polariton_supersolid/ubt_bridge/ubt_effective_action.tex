@@ -1,0 +1,83 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref,booktabs}
+\geometry{margin=2.5cm}
+\title{UBT Effective Action Toward a Polariton-Like Low-Energy Sector}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section*{Scope and Status}
+This document proposes a \emph{candidate} low-energy action bridge from the UBT field $\Theta(q,\tau)$ to an open condensate field $\psi(\mathbf r,t)$. The established condensed-matter equations are used as baseline constraints. UBT-dependent terms are explicitly labeled \textbf{SPECULATIVE}. No claim is made that UBT currently predicts existing polariton experiments.
+
+\section{Baseline UBT Action Ansatz}
+Take a schematic UBT-sector action
+\begin{equation}
+S_{\Theta}=\int d\tau\,d\mu(q)\left[\langle D_\tau\Theta,D_\tau\Theta\rangle-c_\Theta^2\langle\nabla_q\Theta,\nabla_q\Theta\rangle-U_\Theta(\Theta)-\kappa\,\Theta\mathcal T\right].
+\end{equation}
+We assume a mode decomposition
+\begin{equation}
+\Theta(q,\tau)=\sum_n \chi_n(\xi)\,\Phi_n(\mathbf r,\tau),\qquad q=(\mathbf r,\xi),
+\end{equation}
+where $\xi$ denotes fast/internal coordinates and $\mathbf r\in\mathbb R^d$ is the slow laboratory coordinate.
+
+\section{Projection to Candidate Condensate Mode}
+Retain one dominant low mode $n=0$:
+\begin{equation}
+\Theta(q,\tau)\approx \chi_0(\xi)\,\Phi(\mathbf r,\tau),\qquad \tau=t+i\psi_\tau.
+\end{equation}
+With weak-dispersion and near-resonant assumptions, define
+\begin{equation}
+\Phi(\mathbf r,\tau)=e^{-i\omega_0 t}\,\psi(\mathbf r,t),
+\end{equation}
+which gives the candidate mapping $\Theta(q,\tau)\to\psi(\mathbf r,t)$ after adiabatic elimination of fast modes.
+
+\section{Resulting Effective Action Structure}
+The reduced action is arranged as
+\begin{equation}
+S_{\mathrm{eff}}=S_{\mathrm{ddGP,base}}+\Delta S_{\mathrm{UBT}},
+\end{equation}
+with baseline open-condensate part
+\begin{equation}
+S_{\mathrm{ddGP,base}}=\int dt\,d^dr\left[i\hbar\psi^*\partial_t\psi-\frac{\hbar^2}{2m_*}|\nabla\psi|^2-\frac{g}{2}|\psi|^4-V|\psi|^2\right]+S_{\mathrm{gain/loss}}.
+\end{equation}
+Here $m_*$ and $g$ are effective low-energy coefficients from projection integrals over $\chi_0$.
+
+\paragraph{SPECULATIVE correction sector.}
+\begin{equation}
+\Delta S_{\mathrm{UBT}}=\int dt\,d^dr\left[\delta_2|\nabla^2\psi|^2+\eta_\tau\,\psi^*\partial_t^2\psi+\lambda_k\,|\nabla\psi|^2|\psi|^2+\cdots\right].
+\end{equation}
+These terms are candidate remnants of biquaternionic structure and complex-time reduction; none is yet derived from a closed canonical calculation.
+
+\section{Coefficient Dictionary (Candidate)}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Coefficient & Interpretation \\
+\midrule
+$m_*^{-1}$ & projected curvature of low UBT mode in $\mathbf r$ sector \\
+$g$ & cubic self-interaction from projected $U_\Theta$ \\
+$\eta_\tau$ & memory/non-Markov correction from complex-time reduction (SPECULATIVE) \\
+$\lambda_k$ & momentum-dependent nonlinearity controlling finite-$k$ tendency (SPECULATIVE) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Mathematical Gaps}
+\begin{enumerate}
+\item No rigorous derivation of Lindblad/Keldysh open-system terms from $S_\Theta$.
+\item No closed proof that $\Delta S_{\mathrm{UBT}}$ survives renormalization at laboratory scales.
+\item No quantitative mapping from canonical UBT parameters to measured polariton rates.
+\end{enumerate}
+
+\end{document}

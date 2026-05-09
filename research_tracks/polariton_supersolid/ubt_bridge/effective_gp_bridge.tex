@@ -1,0 +1,77 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,booktabs,geometry,hyperref}
+\geometry{margin=2.5cm}
+\title{Effective GP Bridge: UBT Reduction vs GP/ddGP/CGL}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section*{Scope}
+This comparison separates established equations from speculative UBT-correction terms.
+
+\section{Reference Equations (Established)}
+\paragraph{Conservative GP}
+\begin{equation}
+i\hbar\partial_t\psi=\left[-\frac{\hbar^2\nabla^2}{2m}+V+g|\psi|^2\right]\psi.
+\end{equation}
+
+\paragraph{Driven-dissipative GP (ddGP)}
+\begin{equation}
+i\hbar\partial_t\psi=\left[-\frac{\hbar^2\nabla^2}{2m_*}+V+g|\psi|^2+\frac{i\hbar}{2}(R n_R-\Gamma_C)\right]\psi.
+\end{equation}
+
+\paragraph{Complex Ginzburg--Landau (CGL) form}
+\begin{equation}
+\partial_t\psi=(\mu+i\omega_0)\psi-(\beta+i\beta')|\psi|^2\psi+(D_r+iD_i)\nabla^2\psi.
+\end{equation}
+
+\section{Candidate UBT-Reduced Equation}
+\begin{equation}
+i\hbar\partial_t\psi=\left[-\frac{\hbar^2\nabla^2}{2m_*}+V+g|\psi|^2+\frac{i\hbar}{2}(P-\Gamma)-i\hbar\zeta|\psi|^2\right]\psi+\delta\mathcal N_{\mathrm{UBT}}.
+\end{equation}
+with
+\begin{equation}
+\delta\mathcal N_{\mathrm{UBT}}=\left[\eta_\tau\partial_t^2+\lambda_k\nabla^4+\sigma\,\nabla\cdot(|\psi|^2\nabla)\right]\psi.
+\end{equation}
+
+\section{Mapping Table}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Feature & Standard identification & UBT bridge status \\
+\midrule
+Kinetic term & $m_*$ in GP/ddGP & Candidate projection from low $\Theta$ mode \\
+Cubic nonlinearity & $g|\psi|^2\psi$ & Candidate from reduced $U_\Theta$ \\
+Gain/loss & $(P-\Gamma)$ or $(Rn_R-\Gamma_C)$ & Assumed via coarse-grained bath \\
+Finite-$k$ selector & $\nabla^4$ in CGL-like extensions & SPECULATIVE ($\lambda_k$) \\
+Phase memory & higher-order time derivatives in extended models & SPECULATIVE ($\eta_\tau$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Interpretive Boundaries}
+\begin{itemize}
+\item The GP/ddGP/CGL equations are established condensed-matter tools.
+\item The UBT bridge is currently a reduction hypothesis, not a validated derivation.
+\item No claim is made that UBT already outperforms standard polariton modeling.
+\end{itemize}
+
+\section{Open Mathematical Tasks}
+\begin{enumerate}
+\item Derive all reduced coefficients from one controlled expansion scheme.
+\item Prove consistency of open-system limit with UBT complex-time dynamics.
+\item Establish renormalization-group relevance/irrelevance of $\delta\mathcal N_{\mathrm{UBT}}$.
+\end{enumerate}
+
+\end{document}
