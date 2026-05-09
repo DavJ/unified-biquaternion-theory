@@ -72,6 +72,12 @@ mathematical closure, and compatibility with canonical structure).
 | Insensitivity analysis | `insensitivity/` | **Experimental** | Robustness/insensitivity tests for key UBT predictions |
 | CERN / p-universes | `p_universes/` | **Experimental** | p-adic universe branching; speculative extension of mirror sector |
 
+### Condensed-Matter Analogues
+
+| Track | Directory | Confidence | Notes |
+|-------|-----------|-----------|-------|
+| Polariton supersolid | `polariton_supersolid/` | **Candidate** | ddGP baseline + candidate UBT bridge hypotheses; standard physics separated from speculative extensions; no consciousness claims |
+
 ### Comparisons and Legacy
 
 | Track | Directory | Confidence | Notes |
