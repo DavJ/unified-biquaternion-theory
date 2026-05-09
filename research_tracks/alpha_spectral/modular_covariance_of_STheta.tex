@@ -1,0 +1,201 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/modular_covariance_of_STheta.tex
+% Task: prove_or_kill_modular_covariance_of_ubt_action
+% Priority: CRITICAL
+% Date: 2026-05-09
+%
+% Hard rules:
+%   - no alpha input
+%   - no p=137 input
+%   - no eta(i) fitting
+%   - verdict must be PROVED / CONDITIONAL / NO-GO
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{mdframed}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{remark}[proposition]{Remark}
+
+\newmdenv[backgroundcolor=green!10,linecolor=green!50!black,linewidth=1.2pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!12,linecolor=orange!80!black,linewidth=1.2pt]{gapbox}
+\newmdenv[backgroundcolor=red!8,linecolor=red!55!black,linewidth=1.2pt]{warnbox}
+
+\newcommand{\PROVED}{\textcolor{green!50!black}{\textbf{[PROVED]}}}
+\newcommand{\COND}{\textcolor{blue!70!black}{\textbf{[CONDITIONAL]}}}
+\newcommand{\NOGO}{\textcolor{red!80!black}{\textbf{[NO-GO]}}}
+
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\HH}{\mathfrak{H}}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{\textbf{Modular Covariance Audit of the UBT Action $S[\Theta]$}\\[3pt]
+\large Complex-Time Torus, $\SL(2,\ZZ)$ Action, Mode Mapping, and Hecke Saddle Test}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We test whether the current UBT action $S[\Theta]$ is modular-covariant on the
+complex-time torus, with explicit checks of: (i) the modulus definition
+$\tau=t+i\psi$, (ii) the $\SL(2,\ZZ)$ action on $\tau$, (iii) induced
+transformation of Fourier modes, (iv) covariance of $\nabla^\dagger\nabla$,
+(v) transformation of the measure $\dd^4x\,\dd\psi$, and (vi) existence of
+equal-action Hecke saddles. No $\alpha$ input, no fixed-prime input, and no
+$\eta(i)$ fitting are used.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Setup}
+
+\begin{definition}[Complex-time modulus]
+We take
+\begin{equation}
+  \tau = \frac{t+i\psi}{\beta} \in \HH,\qquad \Im\tau>0,
+\end{equation}
+with compact imaginary-time direction $\psi\sim\psi+2\pi R_\psi$.
+\end{definition}
+
+\begin{definition}[Candidate action]
+The currently used action-level structure in this track is
+\begin{equation}
+  S[\Theta]
+  = \int_{\mathcal M_4\times S^1_\psi}\dd^4x\,\dd\psi\;
+    \mathcal L\!\left(\Theta,\nabla^\dagger\nabla\Theta\right),
+  \label{eq:action}
+\end{equation}
+with kinetic core governed by $\nabla^\dagger\nabla$.
+\end{definition}
+
+\section{$\SL(2,\ZZ)$ action on the modulus}
+
+For $\gamma=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}\in\SL(2,\ZZ)$:
+\begin{equation}
+  \tau\mapsto\gamma\cdot\tau=\frac{a\tau+b}{c\tau+d},
+  \qquad
+  \Im(\gamma\cdot\tau)=\frac{\Im\tau}{|c\tau+d|^2}.
+  \label{eq:im-transform}
+\end{equation}
+
+\begin{proposition}[Jacobian seen by the compact direction]
+If $\psi$ is tied to $\Im\tau$ at fixed real-time scale, then under
+\eqref{eq:im-transform} one gets
+\begin{equation}
+  \dd\psi \mapsto \dd\psi' = |c\tau+d|^{-2}\dd\psi.
+  \label{eq:dpsi-transform}
+\end{equation}
+\end{proposition}
+
+\section{Induced transformation of $\Theta$ modes}
+
+Write the torus-mode expansion in cycle coordinates $(u,v)\in\mathbb T^2$:
+\begin{equation}
+  \Theta(x;u,v)=\sum_{(m,n)\in\ZZ^2}\Theta_{m,n}(x)\,
+  e^{2\pi i(mu+nv)}.
+\end{equation}
+Under cycle change by $\gamma$, integer labels transform contragrediently:
+\begin{equation}
+  (m,n)\mapsto(m,n)\gamma^{-1},
+  \qquad
+  \Theta'_{m,n}(x)=\Theta_{(m,n)\gamma^{-1}}(x).
+  \label{eq:mode-relabel}
+\end{equation}
+So modular action gives a relabelling/permutation of lattice modes unless extra
+field weight is postulated.
+
+\section{Covariance test for $\nabla^\dagger\nabla$}
+
+\begin{proposition}[What would be required]
+For modular covariance of the kinetic part of \eqref{eq:action}, one needs
+\begin{equation}
+  (\nabla^\dagger\nabla)_\tau
+  \;\mapsto\;
+  |c\tau+d|^{w}\,U_\gamma^{-1}(\nabla^\dagger\nabla)_\tau U_\gamma
+\end{equation}
+for some definite weight $w$ and induced mode map $U_\gamma$ compatible with
+\eqref{eq:mode-relabel}.
+\end{proposition}
+
+\begin{gapbox}
+\textbf{Observed status in repository derivations.}
+No explicit derivation is present that proves a definite modular weight for
+$\nabla^\dagger\nabla$ in the current UBT action framework. Existing analyses
+already flag this as the critical obstruction (O1).
+\end{gapbox}
+
+\section{Measure test}
+
+Using \eqref{eq:dpsi-transform},
+\begin{equation}
+  \dd^4x\,\dd\psi \mapsto |c\tau+d|^{-2}\dd^4x\,\dd\psi.
+\end{equation}
+Therefore strict invariance of the full integrand in \eqref{eq:action}
+requires compensating modular weight from the kinetic/potential density and
+the functional measure. That cancellation has not been derived.
+
+\section{Hecke equal-action saddle consequence}
+
+Let $\bar\Theta_\gamma$ denote saddle candidates generated by modular images.
+Equal-action Hecke saddles require
+\begin{equation}
+  S[\bar\Theta_\gamma]=S[\bar\Theta],\quad\forall\gamma.
+  \label{eq:equal-action}
+\end{equation}
+Without proved modular covariance of both operator and measure, \eqref{eq:equal-action}
+cannot be established from \eqref{eq:action}.
+
+\begin{proposition}[Current-state implication]
+At the current derivation level, equal-action Hecke saddle degeneracy is not
+derivable from $S[\Theta]$.
+\end{proposition}
+
+\section{Deliverable verdict}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.58\linewidth}p{0.30\linewidth}@{}}
+\toprule
+Check & Result \\
+\midrule
+$\tau=t+i\psi$ as torus modulus & \PROVED\ (formal definition) \\
+$\SL(2,\ZZ)$ action on $\tau$ & \PROVED\ (standard Möbius action) \\
+Mode transformation law & \PROVED\ (lattice relabelling) \\
+Covariance of $\nabla^\dagger\nabla$ from $S[\Theta]$ & \NOGO\ (not derived) \\
+Covariant cancellation of $\dd^4x\,\dd\psi$ Jacobian & \NOGO\ (not derived) \\
+Equal-action Hecke saddles from $S[\Theta]$ & \NOGO \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+\textbf{Final verdict: \NOGO}
+
+For the \emph{current} UBT action realisation in this repository, full
+$\SL(2,\ZZ)$ modular covariance of $S[\Theta]$ is not established, and the
+missing operator/measure covariance blocks a derivation of equal-action Hecke
+saddles.
+\end{warnbox}
+
+\end{document}
