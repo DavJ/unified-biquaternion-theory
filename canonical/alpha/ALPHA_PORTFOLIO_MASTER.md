@@ -216,7 +216,7 @@ These results are locked-in and form the foundation all Tier A/B routes build on
 | N_eff = 12 from ℂ⊗ℍ | **[L0]** | `canonical/n_eff/` |
 | B₀ = 8π one-loop | **[L1]** | `canonical/n_eff/step2_vacuum_polarization.tex` |
 | V_eff(n) = n² − B·n·ln n | **[L1] given B** | `canonical/appendices/appendix_alpha_geometry.tex §3` |
-| n* = √(B/2) stationarity | **[L1] given B** | Same §4 |
+| 2n* = B(ln n* + 1) stationarity | **[L1] given B** | `canonical/alpha/veff_corrected_statement.tex` |
 | Prime stability of n* = 137 | **[L1]** | Same §4 |
 | Dirac charge quantisation | **[L0]** | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
 

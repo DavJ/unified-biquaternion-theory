@@ -213,8 +213,8 @@ biquaternion representation — confirming that Gap EW-2 is a genuine structural
 |--------|----------------|--------|
 | N_eff = 12 from ℂ⊗ℍ | CLEAN [L0] | `canonical/n_eff/` |
 | B₀ = 8π one-loop baseline | CLEAN [L1] | `canonical/n_eff/step2_vacuum_polarization.tex` |
-| V_eff(n) = n² − B ln n | CLEAN [L1] given B | `canonical/appendices/appendix_alpha_geometry.tex §3` |
-| n* = √(B/2) stationarity | CLEAN [L1] given B | `canonical/appendices/appendix_alpha_geometry.tex §4` |
+| V_eff(n) = n² − B·n·ln n | CLEAN [L1] given B | `canonical/alpha/veff_corrected.tex` |
+| 2n* = B(ln n* + 1) stationarity | CLEAN [L1] given B | `canonical/alpha/veff_corrected_statement.tex` |
 | Prime stability of n* = 137 | CLEAN [L1] | `canonical/appendices/appendix_alpha_geometry.tex §4` |
 | α⁻¹_bare = 137 (given k=1) | CONDITIONAL [L1] — k=1 open | Above chain |
 | Dirac charge quantisation | CLEAN [L0] | `canonical/appendices/appendix_alpha_geometry.tex §1` |

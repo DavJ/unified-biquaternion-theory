@@ -105,14 +105,14 @@ coincidence between the quaternion algebra and the theta function, not a fit.
 
 ---
 
-### 1.5 V_eff(n) = n² − B ln n (functional form)
+### 1.5 V_eff(n) = n² − B·n·ln n (functional form)
 
 **Value**: functional form only  
 **Claimed source**: Standard one-loop field theory on S¹  
 **Independence test**:  
 ```
 Kinetic energy of winding mode n: E_kin = n²/R_ψ² (in units R_ψ = 1) → n² term
-One-loop vacuum polarisation shift: −B ln n → logarithmic term
+One-loop Coleman-Weinberg shift: −B·n·ln n → logarithmic winding degeneracy term
 These are standard results in compact-dimension field theory.
 ```
 **Verdict**: ✅ **PASS** — CLEAN [L1] given B (coefficient only tracks Gap G3-k)
