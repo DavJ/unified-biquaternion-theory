@@ -22,7 +22,7 @@ import csv
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List
+from typing import Iterable, List, Optional, Tuple
 
 
 @dataclass(frozen=True)
@@ -104,10 +104,10 @@ def minimizer_windows(
     b_min: float,
     b_max: float,
     b_step: float,
-) -> List[tuple[float, float, int]]:
-    windows: List[tuple[float, float, int]] = []
-    current_prime: int | None = None
-    start_b: float | None = None
+) -> List[Tuple[float, float, int]]:
+    windows: List[Tuple[float, float, int]] = []
+    current_prime: Optional[int] = None
+    start_b: Optional[float] = None
 
     k = 0
     while True:
@@ -134,9 +134,9 @@ def minimizer_windows(
 def write_markdown(
     output_path: Path,
     stationary_rows: Iterable[StationaryRow],
-    b_required_rows: Iterable[tuple[int, float]],
+    b_required_rows: Iterable[Tuple[int, float]],
     prime_rows: Iterable[PrimeMinRow],
-    windows: Iterable[tuple[float, float, int]],
+    windows: Iterable[Tuple[float, float, int]],
 ) -> None:
     lines: List[str] = []
     lines.append("<!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->")
@@ -187,9 +187,9 @@ def write_markdown(
 def write_csv(
     output_path: Path,
     stationary_rows: Iterable[StationaryRow],
-    b_required_rows: Iterable[tuple[int, float]],
+    b_required_rows: Iterable[Tuple[int, float]],
     prime_rows: Iterable[PrimeMinRow],
-    windows: Iterable[tuple[float, float, int]],
+    windows: Iterable[Tuple[float, float, int]],
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8") as handle:
