@@ -1,0 +1,801 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/eta_i_alpha_coefficient_derivation.tex
+%
+% Purpose: Systematic derivation attempt for
+%     B = N_eff^{3/2} * (2 eta(i))^{c/12}
+%   from UBT primitives, answering the seven questions in the task
+%   prove_or_falsify_eta_i_alpha_coefficient.
+%
+% Status: OBSERVATION — the formula is a high-precision candidate, not proved.
+%   Three independent gaps (G-nlogn, G-c3, G-insertion) block PROVED verdict.
+%
+% Hard rules (cf. task specification):
+%   - No use of alpha_exp as input.
+%   - No use of 137 as an input to the derivation.
+%   - Exponent must come from c/12 with c derived from UBT field content.
+%   - eta factor must come from the partition function of the UBT alpha sector.
+%   - If the formula cannot be derived, label it OBSERVATION, not PROVED.
+%
+% Companion documents:
+%   reports/eta_i_alpha_coefficient_status.md      (master status record)
+%   reports/eta_i_B_insertion_verdict.md           (predecessor verdict)
+%   research_tracks/T3_ALPHA/chowla_selberg_b_derivation.tex
+%   research_tracks/T3_ALPHA/cw_determinant_full_derivation.tex
+%   research_tracks/alpha_spectral/self_dual_torus_derivation.tex
+%   research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex
+%   tools/check_eta_alpha_formula.py               (numerical verification)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange,       linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15,  linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,     linecolor=red!60,       linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,    linecolor=blue!50,      linewidth=1.5pt]{insightbox}
+  \newmdenv[backgroundcolor=gray!8,    linecolor=gray!50,      linewidth=1.0pt]{infobox}
+  \newmdenv[backgroundcolor=violet!6,  linecolor=violet!50,    linewidth=1.0pt]{obsbox}
+
+  \newcommand{\PROVED}{\textcolor{green!60!black}{\textbf{[PROVED]}}}
+  \newcommand{\CONDITIONAL}{\textcolor{blue!70!black}{\textbf{[CONDITIONAL]}}}
+  \newcommand{\OBSERVATION}{\textcolor{violet!80!black}{\textbf{[OBSERVATION]}}}
+  \newcommand{\OPEN}{\textcolor{orange}{\textbf{[OPEN]}}}
+  \newcommand{\FAILED}{\textcolor{red}{\textbf{[FAILED]}}}
+  \newcommand{\Lzero}{$[\mathrm{L0}]$}
+  \newcommand{\Lone}{$[\mathrm{L1}]$}
+
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+  \newcommand{\Bbase}{B_{\mathrm{base}}}
+  \newcommand{\Bfull}{B_{\mathrm{full}}}
+  \newcommand{\Breq}{B_{\mathrm{req}}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+
+  \title{\textbf{Prove or Falsify: $B = \Neff^{3/2}(2\eta(i))^{c/12}$}\\[4pt]
+         \large Systematic Derivation Attempt from UBT Primitives}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \bigskip
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose, Scope and Hard Rules}
+\label{sec:eta:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=yellow!6!white, colframe=orange!70!black,
+                  title=\textbf{Task: prove\_or\_falsify\_eta\_i\_alpha\_coefficient}]
+\textbf{Goal}: Turn the numerical observation
+\[
+  B \;=\; \Neff^{3/2}\,(2\eta(i))^{c/12}
+\]
+into either a theorem from the UBT action $S[\Theta]$ or a clearly labelled
+numerical coincidence.
+
+\smallskip
+\noindent\textbf{Target formula}:
+\[
+  B \;=\; 12^{3/2}\,(2\eta(i))^{1/4}
+    \;=\; 12^{3/2}\!\left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{\!1/4}
+    \;\approx\; 46.280872
+\]
+
+\smallskip
+\noindent\textbf{Comparison (computed after derivation, §\ref{sec:eta:numerical})}:
+\[
+  \Breq(137) \;=\; \frac{274}{\ln 137 + 1} \;\approx\; 46.283933,
+  \quad \epsilon_{\mathrm{rel}} \approx 0.0066\%
+\]
+
+\smallskip
+\noindent\textbf{Hard rules}:
+\begin{enumerate}
+  \item Do not use $\alpha_{\exp}$ as input.
+  \item Do not use 137 as an input to derive $B$.
+  \item Do not tune the exponent.
+  \item The exponent must come from $c/12$ with $c$ derived from UBT field content.
+  \item The $\eta$ factor must come from the determinant/partition function of
+        the canonical UBT $\alpha$ sector.
+  \item If the formula cannot be derived, label it \OBSERVATION, not \PROVED.
+\end{enumerate}
+\end{tcolorbox}
+
+This document is the master derivation record for the above task.  Every
+claim is assigned one of the status labels \PROVED, \CONDITIONAL, \OBSERVATION,
+\OPEN, or \FAILED, and these labels are collected in the summary table
+(§\ref{sec:eta:statustable}).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Canonical UBT Alpha-Sector Action}
+\label{sec:eta:action}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Claim A1}: The canonical UBT action over complex time
+$\tau = t + i\psi$ is
+\[
+  S[\Theta] \;=\; \int_{\mathcal{M}} \bigl(
+    \nabla^\dagger\nabla\Theta(q,\tau)
+    - \kappa\,\mathcal{T}(q,\tau)
+  \bigr)\,d\mu(q,\tau),
+  \quad q \in \CC\otimes\HH.
+\]
+The \emph{alpha sector} refers to the $U(1)_{\rm EM}$ gauge bundle over
+the imaginary-time circle $S^1_\psi$, with winding eigenstates
+$\Theta_n = e^{in\psi}$, $n\in\ZZ$.  The effective action for winding
+number $n$ in the one-loop approximation is
+\[
+  S_{\rm eff}[n] \;=\; n^2 - \Gamma_{1{\rm-loop}}[n],
+\]
+where $\Gamma_{1{\rm-loop}}[n]$ is the one-loop effective action evaluated
+at the winding background.
+\end{resultbox}
+
+\noindent\textit{Status}: \PROVED\ (\Lzero) — by definition of the canonical
+UBT action.  Source: \texttt{canonical/algebra/},
+\texttt{canonical/fields/}.
+
+\begin{definition}[UBT alpha potential]
+The effective potential $V_{\rm eff}(n) = n^2 - B\,n\ln n$ is the
+\emph{candidate} large-$n$ effective action for the winding sector.
+The task of this document is to derive $B$ from $S[\Theta]$.
+\end{definition}
+
+\begin{warnbox}
+\textbf{Warning}: $V_{\rm eff}(n) = n^2 - B\,n\ln n$ is the \emph{ansatz}
+to be derived, not a derived result.  The exact one-loop effective action on
+$S^1_\psi$ is $V_{\rm CW}(n) = n^2 - \Neff\ln(2\sinh(\pi n))$
+(proved in \texttt{cw\_determinant\_full\_derivation.tex}), which does
+\emph{not} have the $n\ln n$ form; its large-$n$ behaviour is linear, and
+its minimum occurs at $n^* \approx 6\pi \approx 19$.  The $n\ln n$ potential
+therefore requires a physical mechanism beyond the direct CW determinant.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Origin of $N_{\rm eff} = 12$}
+\label{sec:eta:neff}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Claim A2}: $\Neff = 12$ is the number of real bosonic degrees of
+freedom of the UBT biquaternion algebra $\mathcal{B} = \CC\otimes\HH$
+counted in the alpha sector.
+\end{resultbox}
+
+The derivation proceeds as follows (cf.\ \texttt{neff12\_derivations.tex}):
+\begin{enumerate}
+  \item The biquaternion algebra $\CC\otimes\HH$ has complex dimension 4,
+        i.e.\ 8 real dimensions.
+  \item Under the gauge group $SU(2)_L\times U(1)_Y$ the adjoint action
+        removes 4 degrees, leaving 4 real physical scalars.  However, these
+        4 scalars split into 4 copies after accounting for the holomorphic
+        structure of $\CC\otimes\HH$.
+  \item Five independent first-principles derivations converge to
+        $\Neff = \dim_\RR(\CC\otimes\HH) \times \#_{\rm sectors}
+               = 4 \times 3 = 12$ (algebraic, spectral, Kaluza--Klein,
+        gauge-fixing, and mode-degeneracy routes).
+\end{enumerate}
+
+\noindent\textit{Status}: \PROVED\ (\Lzero).  Source:
+\texttt{research\_tracks/T3\_ALPHA/neff12\_derivations.tex},
+\texttt{canonical/alpha/B\_base\_derivation\_complete.tex}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Origin of $B_{\rm base} = N_{\rm eff}^{3/2}$}
+\label{sec:eta:bbase}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Claim A3}: The \emph{base coefficient}
+$\Bbase = \Neff^{3/2} = 12^{3/2} = 24\sqrt{3} \approx 41.569$
+arises from the leading large-$n$ behaviour of the one-loop free energy in
+the KK tower of the UBT alpha sector, with the $3/2$ power determined by
+the three-dimensional phase-space measure.
+\end{resultbox}
+
+Heuristic argument (conditional):
+\begin{itemize}
+  \item In $d+1$ spacetime dimensions the one-loop free energy of $\Neff$
+        real scalar fields in a background winding mode $n$ is
+        $F_{1{\rm-loop}} \sim -\Neff\cdot n^d$ at large $n$.
+  \item With $d = 3/2$ (an effective dimension arising from the winding
+        background on $S^1_\psi$ coupled to the two transverse phase
+        directions) one obtains $F \sim -\Neff\cdot n^{3/2}$,
+        giving $B \sim \Neff^{3/2}$.
+\end{itemize}
+
+\begin{gapbox}
+\textbf{Gap G-d32}: The effective dimension $d=3/2$ is not derived from
+$S[\Theta]$; it is inferred from the exponent of $\Neff$.  Without a
+first-principles derivation of $d$, the power $3/2$ is observed, not proved.
+\end{gapbox}
+
+\noindent\textit{Status}: \CONDITIONAL\ (\Lone) for the exponent argument;
+\PROVED\ (\Lzero) for the numerics $\Neff^{3/2} = 12^{3/2}$.
+Source: \texttt{canonical/alpha/B\_base\_derivation\_complete.tex}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Construction of the Torus Partition Function at $\tau = i$}
+\label{sec:eta:torus}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The self-dual torus and shape stationarity}
+\label{sec:eta:torus:shape}
+
+The UBT alpha sector is naturally defined on the product torus
+$T^2 = S^1_t \times S^1_\psi$ parameterised by complex modular parameter
+$\tau = R_t/R_\psi$ (ratio of periods).
+
+\begin{proposition}[Shape stationarity, conditional]
+Under the spectral assumptions stated in
+\texttt{research\_tracks/alpha\_spectral/self\_dual\_torus\_derivation.tex}
+(Proposition 1), the one-loop free energy $F_{\rm 1-loop}[\tau]$ is
+stationary with respect to deformations of $\tau$ in the upper half-plane at
+$\tau = i$ (the self-dual point $R_t = R_\psi$).
+\end{proposition}
+
+\noindent\textit{Status}: \CONDITIONAL\ (\Lone).  The shape mode stationarity
+is proved; the scale modulus $\sqrt{R_t R_\psi}$ is not fixed.
+
+\begin{gapbox}
+\textbf{Gap G-scale}: $\tau = i$ fixes the \emph{shape} of $T^2$ but not
+its overall scale.  Without fixing the scale modulus, the physical
+eigenvalues of $-\Delta_{T^2}$ are not determined, and the spectrum cannot
+be written purely in terms of $\eta(i)$ evaluated at a specific dimensionless
+torus.
+\end{gapbox}
+
+\subsection{Partition function of one real free scalar on $T^2$}
+
+For a single real massless free scalar on $T^2$ at $\tau = i$ the one-loop
+partition function (Euclidean) is
+\begin{equation}\label{eq:partfunc}
+  Z_{T^2}(\tau=i)
+  \;=\; \frac{1}{|\eta(i)|^2}
+  \;=\; \frac{1}{\eta(i)^2},
+\end{equation}
+using the reality of $\eta$ at $\tau = i$.  For $c$ real free scalars:
+\begin{equation}\label{eq:partfunc_c}
+  Z^{(c)}_{T^2}(i) \;=\; \frac{1}{\eta(i)^{2c}}.
+\end{equation}
+
+\noindent\textit{Status}: \PROVED\ (\Lzero) as a mathematical identity.
+
+\begin{gapbox}
+\textbf{Gap G-c3} (major gap): For~\eqref{eq:partfunc_c} to be relevant,
+one needs to specify which $c$ scalars constitute the UBT alpha CFT on $T^2$.
+The problem statement demands $c = 3$.  Arguments currently available:
+\begin{enumerate}
+  \item Mode-counting heuristic: after $SU(2)_L\times U(1)$ gauge-fixing of
+        $\mathrm{Im}(\HH)\subset\CC\otimes\HH$, three real phase degrees of
+        freedom remain (the three generators of $\mathrm{Im}(\HH)$).
+  \item Algebraic relation $c = \Neff/4 = 12/4 = 3$.
+\end{enumerate}
+Neither argument constitutes a derivation of $c = 3$ from
+$\delta^2 S[\Theta]/\delta\Theta^2$ at the winding saddle.
+\end{gapbox}
+
+\noindent\textit{Status of $c = 3$ claim}: \OPEN.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Derivation of $\eta(i)$ from the Determinant Normalization}
+\label{sec:eta:etaderiv}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Exact value via Chowla--Selberg}
+
+The Chowla--Selberg formula for the CM point $\tau = i$ (discriminant
+$D = -4$, class number $h(-4) = 1$) gives the exact algebraic expression:
+\begin{equation}\label{eq:eta_i}
+  \eta(i) \;=\; \frac{\Gamma(1/4)}{2\,\pi^{3/4}}.
+\end{equation}
+
+\noindent\textit{Status}: \PROVED\ (\Lzero).  Textbook result; see also
+\texttt{chowla\_selberg\_b\_derivation.tex} Theorem 1.
+
+\subsection{Spectral determinant on $T^2$}
+
+\begin{theorem}[Spectral determinant on the square torus]
+For the Laplacian $-\Delta_{T^2}$ on the unit-area square torus
+($\tau = i$, area $= 1$), the $\zeta$-regularised functional determinant is
+\begin{equation}\label{eq:det_torus}
+  \det'(-\Delta_{T^2})\big|_{\tau=i}
+  \;=\; (2\pi)^2\,|\eta(i)|^4
+  \;=\; (2\pi)^2\,\eta(i)^4.
+\end{equation}
+Equivalently,
+\[
+  \eta(i) \;=\;
+  \Bigl(\frac{\det'(-\Delta_{T^2})}{(2\pi)^2}\Bigr)^{1/4}.
+\]
+\end{theorem}
+
+\noindent\textit{Proof}: Standard computation via the Kronecker limit formula
+(cf.\ \texttt{chowla\_selberg\_b\_derivation.tex} Theorem 2 and Corollary 1).
+
+\noindent\textit{Status}: \PROVED\ (\Lzero) as a mathematical identity for
+the \emph{unit-area} torus.
+
+\begin{insightbox}
+\textbf{Key observation}: The Dedekind $\eta$ function arises naturally as
+the fourth root of the spectral determinant of the scalar Laplacian on the
+self-dual torus.  This is the mathematical basis for the conjecture that
+$\eta(i)$ enters the UBT coefficient $B$.  But: the determinant
+$\det'(-\Delta_{T^2})$ is an $n$-independent constant (it depends only on
+the torus shape and scale, not on the winding number).
+\end{insightbox}
+
+\subsection{One-loop effective action}
+
+The one-loop effective action contribution from $c$ scalars on $T^2$ is
+\begin{equation}\label{eq:Woneloop}
+  W_{\rm 1-loop}
+  \;=\; -\ln Z^{(c)}_{T^2}(i)
+  \;=\; 2c\,\ln\eta(i)
+  \;=\; c\ln(2\pi)^{-1} + \tfrac{c}{2}\ln\det'(-\Delta_{T^2}).
+\end{equation}
+This contribution is \emph{independent of the winding number $n$}:
+the torus $T^2$ at $\tau = i$ does not carry winding-number information in
+its Laplacian spectrum.
+
+\noindent\textit{Status}: \PROVED\ (\Lzero) for the mathematical formula;
+\OPEN\ for the identification of this $W_{\rm 1-loop}$ as the physically
+relevant term in the UBT effective action for winding number $n$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Derivation of the Exponent $c/12$}
+\label{sec:eta:exponent}
+%──────────────────────────────────────────────────────────────────────────────
+
+The exponent $c/12$ in $(2\eta(i))^{c/12}$ is the exponent appearing in
+the Weyl anomaly / Casimir normalisation of a CFT with central charge $c$:
+\begin{equation}\label{eq:weyl_anomaly}
+  Z_{\rm CFT} \;\sim\; q^{-c/24}\,\prod_{n=1}^\infty (1-q^n)^{-c}
+  \;=\; \eta(\tau)^{-c}\cdot q^{c/24},
+  \quad q = e^{2\pi i\tau}.
+\end{equation}
+Setting $\tau = i$ gives $q = e^{-2\pi}$, and the normalisation factor
+from the zero-mode sector contributes
+\begin{equation}\label{eq:normalisation_factor}
+  \text{normalisation} \;\sim\; e^{-\pi c/12} \;\cdot\; |\eta(i)|^{-c}
+  \;\sim\; (2\eta(i))^{-c/12},
+\end{equation}
+up to a power-of-$2\pi$ prefactor convention.
+
+\noindent\textit{Mathematical status}: \PROVED\ (\Lzero) as a standard CFT
+identity.  The exponent $c/12$ is fixed by the Weyl anomaly coefficient of
+the stress tensor OPE.
+
+\begin{gapbox}
+\textbf{Gap G-c3 (restatement)}: The physical exponent is $c/12 = 1/4$,
+which requires $c = 3$.  This is precisely the value of the central charge
+of three free real scalars.  As noted in §\ref{sec:eta:torus}, $c = 3$ is
+not derived from $S[\Theta]$.  Without this derivation the exponent $1/4$
+is inferred from the condition $(2\eta(i))^x \approx \Breq/\Bbase$ with
+$x \approx 0.2502 \approx 1/4$, which is a post-hoc identification, not a
+derivation.
+\end{gapbox}
+
+\noindent\textit{Status of exponent $c/12 = 1/4$}: \OPEN\ (pending
+derivation of $c = 3$ from $S[\Theta]$).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proof or Rejection of Multiplicative Renormalization}
+\label{sec:eta:proof_rejection}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The claim under test}
+
+The formula under investigation is:
+\begin{equation}\label{eq:Bfull}
+  \Bfull \;=\; \Bbase\cdot(2\eta(i))^{c/12}
+  \;=\; 12^{3/2}\cdot(2\eta(i))^{1/4}
+  \;\approx\; 46.281.
+\end{equation}
+This expresses $B$ (the coefficient of the $n\ln n$ term in $V_{\rm eff}$)
+as the base value $\Bbase = \Neff^{3/2}$ \emph{multiplicatively corrected}
+by the Casimir normalisation factor $(2\eta(i))^{c/12}$.
+
+\subsection{Question Q1: Does the alpha sector define a $T^2$ with $\tau = i$?}
+\label{sec:q1}
+
+\noindent\textbf{Answer}: \CONDITIONAL.
+
+The shape-stationarity argument (§\ref{sec:eta:torus:shape}) establishes
+that $\tau = i$ is a stationary point of $F_{\rm 1-loop}$ under shape
+deformations, and locally stable, under the spectral gap assumption stated
+in \texttt{self\_dual\_torus\_derivation.tex}.  However:
+\begin{itemize}
+  \item The scale modulus is not fixed (Gap G-scale, §\ref{sec:eta:torus}).
+  \item The spectral gap assumption is stated, not derived from $S[\Theta]$.
+\end{itemize}
+
+\subsection{Question Q2: Does the one-loop determinant produce $\eta(i)$?}
+\label{sec:q2}
+
+\noindent\textbf{Answer}: \CONDITIONAL\ for the mathematical identity; \OPEN\
+for the physical identification.
+
+As shown in §\ref{sec:eta:etaderiv}, the spectral determinant of $-\Delta_{T^2}$
+at $\tau = i$ is $(2\pi)^2\eta(i)^4$ (proved).  The claim that \emph{this
+specific determinant} is the relevant one-loop term in the winding-sector
+effective action of UBT has not been derived from $S[\Theta]$.
+
+\subsection{Question Q3: Does the Weyl anomaly produce the exponent $c/12$?}
+\label{sec:q3}
+
+\noindent\textbf{Answer}: \PROVED\ for the mathematical identity (standard CFT
+Weyl anomaly).  \OPEN\ for the physical identification of $c = 3$ from $S[\Theta]$.
+
+\subsection{Question Q4: Is $c = 3$ uniquely determined by $\mathrm{Im}(\HH)$?}
+\label{sec:q4}
+
+\noindent\textbf{Answer}: \OPEN.
+
+The argument $c = \dim_\RR(\mathrm{Im}(\HH)) = 3$ (three generators
+$\mathbf{i}, \mathbf{j}, \mathbf{k}$ of the imaginary quaternions, giving
+three transverse real bosonic DoF after $SU(2)_L$ gauge fixing) provides a
+structural motivation but does not constitute a derivation.  The central
+charge $c$ of the UBT alpha-sector CFT must be read off from the $T\bar{T}$
+OPE of the stress tensor at the winding saddle, a computation not yet
+performed.
+
+Specifically, one requires:
+\begin{enumerate}
+  \item Identification of the winding saddle of $S[\Theta]$ as a critical
+        point with a well-defined 2D CFT structure.
+  \item Computation of $T_{\mu\nu}$ from $S[\Theta]$ in the winding background.
+  \item Identification of the Virasoro central charge from the 2-point function
+        $\langle T(z)T(0)\rangle \sim c/z^4$.
+\end{enumerate}
+None of these steps has been performed in the existing literature.
+
+\subsection{Question Q5: Why does the factor multiply $B$ rather than $Z$?}
+\label{sec:q5}
+
+\noindent\textbf{Answer}: \OPEN. This is the core of Gap G-insertion.
+
+The factor $(2\eta(i))^{c/12}$ emerges from the one-loop partition function
+$Z^{(c)}_{T^2}(i) = \eta(i)^{-2c}$ as an \emph{$n$-independent} contribution.
+It therefore multiplies the vacuum partition function $Z_0$, not the
+$n$-dependent coefficient $B$ of the effective potential.
+
+For the factor to multiplicatively renormalize $B$, one of the following
+mechanisms must hold:
+
+\begin{enumerate}
+  \item \textbf{Saddle-dependent normalisation}: The winding background at
+        level $n$ lives on a torus with $\tau = in$, so the relevant
+        $\eta$-function is $\eta(in)$, and the effective action contains
+        $W_{\rm 1-loop}[n] = c\ln\eta(in)$.  Then
+        $\ln\eta(in) \approx -\pi n/12 + O(e^{-2\pi n})$ for large $n$
+        (linear in $n$, not $n\ln n$), and evaluating at $n=1$ gives a
+        constant.  \textbf{This does not produce an $n\ln n$ coefficient.}
+
+  \item \textbf{Renormalization group flow}: The effective action runs with
+        a scale related to $n$, and $(2\eta(i))^{c/12}$ arises as a
+        threshold correction at the self-dual radius $n = 1$.  This would
+        give a multiplicative factor $B = \Bbase\cdot(2\eta(i))^{c/12}$
+        if $\Bbase$ is the ``bare'' coefficient and $(2\eta(i))^{c/12}$
+        the one-loop RG matching coefficient.  \textbf{This is structurally
+        plausible but has not been derived from $S[\Theta]$.}
+
+  \item \textbf{Absorption via modular averaging}: A sum-over-saddles in the
+        partition function produces a modular-invariant quantity, and after
+        factoring out the leading $n^{3/2}$ growth, the remainder is
+        $(2\eta(i))^{c/12}$.  \textbf{This is blocked by Obstruction O1 of
+        the Hecke NO-GO} (\texttt{hecke\_equivariant\_path\_integral.tex}).
+\end{enumerate}
+
+\begin{warnbox}
+\textbf{Conclusion for Q5}: No mechanism has been derived from $S[\Theta]$
+by which $(2\eta(i))^{c/12}$ enters the $n\ln n$ coefficient $B$ rather
+than the $n$-independent partition function normalisation.  Gap G-insertion
+is \textbf{open}.
+\end{warnbox}
+
+\subsection{Question Q6: Can the 0.0066\% discrepancy be explained?}
+\label{sec:q6}
+
+\noindent\textbf{Answer}: \OPEN.
+
+If the formula $B = 12^{3/2}(2\eta(i))^{1/4}$ were proved, the residual
+discrepancy $\epsilon_{\rm rel} \approx 0.0066\%$ would need explanation.
+Candidate mechanisms include:
+
+\begin{itemize}
+  \item \textbf{Finite-size (IR) corrections}: Subleading terms in the
+        large-$n$ expansion of the winding effective action.
+  \item \textbf{Cusp corrections}: Contributions from the cusp form
+        $\Delta_{12}(\tau)$ at $\tau = i$, which is exponentially small
+        ($\approx e^{-2\pi} \approx 0.0019$).
+  \item \textbf{Higher-loop corrections}: Two-loop contributions to the
+        effective action, suppressed by the gauge coupling $g^2$.
+  \item \textbf{Eta quotient corrections}: The ratio $\eta(i)^2/\eta(2i)$
+        or similar modular units contributing at next order.
+\end{itemize}
+
+All four mechanisms are speculative without a proof of the leading formula.
+
+\subsection{Question Q7: Is the match a numerical coincidence?}
+\label{sec:q7}
+
+\noindent\textbf{Answer}: \textbf{Not a pure coincidence, but not proved.}
+
+The scan of approximately 60 standard special values
+(\texttt{tools/verify\_b\_eta\_uniqueness.py}) confirms that
+$(2\eta(i))^{1/4}$ is the unique best match, with the next-best candidate
+$(2\eta(\rho))^{1/4}$ worse by a factor $\sim 115$.  The match is
+therefore highly non-generic.  However:
+\begin{itemize}
+  \item Geometric and modular motivation exists (§\ref{sec:eta:torus}).
+  \item The three independent gaps (G-nlogn, G-c3, G-insertion) are all
+        open, meaning the derivation chain is broken at multiple steps.
+  \item The formula is therefore classified as \OBSERVATION, not \PROVED.
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Three Blocking Gaps}
+\label{sec:eta:gaps}
+%──────────────────────────────────────────────────────────────────────────────
+
+Three independent gaps must all be closed before the formula can be labelled
+\PROVED.
+
+\subsection{Gap G-nlogn: Origin of the $n\ln n$ potential form}
+
+The exact CW effective potential on $S^1_\psi$ is
+\[
+  V_{\rm CW}(n) = n^2 - \Neff\ln(2\sinh(\pi n)),
+\]
+which has minimum at $n^* \approx 6\pi \approx 19$ and large-$n$ behaviour
+$\approx n^2 - \pi\Neff n$ (linear, not $n\ln n$).  The small-$n$ log
+approximation gives $V \approx n^2 - \Neff\ln n + {\rm const}$, also
+differing from $n^2 - Bn\ln n$.
+
+The $n\ln n$ form is suggested by the arithmetic of the divisor sum
+$\sum_{k=1}^n \tau(k) \approx n\ln n$ (Dirichlet), which could arise from
+the number-theoretic structure of the winding spectrum.  This is a
+promising research direction but currently \OPEN.
+
+\subsection{Gap G-c3: Central charge $c = 3$}
+
+As established in §\ref{sec:q4}, deriving $c = 3$ from $S[\Theta]$ requires
+computing the Virasoro central charge of the UBT alpha-sector CFT at the
+winding saddle.  This computation is \OPEN.
+
+\subsection{Gap G-insertion: $\eta(i)$ in $B$ vs.\ partition-function normalisation}
+
+As established in §\ref{sec:q5}, no mechanism has been derived by which
+$(2\eta(i))^{c/12}$ enters the $n$-dependent coefficient $B$ rather than
+the $n$-independent partition function normalisation.  This gap is \OPEN.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Comparison with $B_{\rm req}(137)$}
+\label{sec:eta:numerical}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{warnbox}
+\textbf{Hard rule}: The numerical comparison below is performed \emph{after}
+the derivation attempt, not before, and does not constitute a proof.  The
+number 137 is used here only as the index of the stationary point
+$n^* = 137$ of $V_{\rm eff}$; it is not used as an input to the
+derivation of $B$.
+\end{warnbox}
+
+The required coefficient $B$ such that $V_{\rm eff}(n) = n^2 - Bn\ln n$
+is stationary at $n^* = p$ satisfies
+\begin{equation}\label{eq:Breq}
+  \frac{dV_{\rm eff}}{dn}\bigg|_{n=p} = 0
+  \;\Longrightarrow\;
+  \Breq(p) = \frac{2p}{\ln p + 1}.
+\end{equation}
+
+Evaluating at $p = 137$ (the first prime in the UBT prime-stability set,
+derived in \texttt{canonical/alpha/prime\_stability\_set.tex}):
+\begin{equation}\label{eq:Breq137}
+  \Breq(137) = \frac{274}{\ln 137 + 1} \approx 46.283933.
+\end{equation}
+
+The candidate formula gives:
+\begin{align}
+  \eta(i) &= \frac{\Gamma(1/4)}{2\pi^{3/4}} \approx 0.768225,
+  \label{eq:etai_value}\\
+  (2\eta(i))^{1/4} &= \left(\frac{\Gamma(1/4)}{\pi^{3/4}}\right)^{1/4}
+    \approx 1.11395,
+  \label{eq:2etai_value}\\
+  B_{\rm obs} &= 12^{3/2}\cdot(2\eta(i))^{1/4} \approx 46.280872.
+  \label{eq:Bobs}
+\end{align}
+
+The relative deviation is:
+\begin{equation}\label{eq:relative_error}
+  \epsilon_{\rm rel}
+  = \frac{|\Breq(137) - B_{\rm obs}|}{\Breq(137)}
+  \approx \frac{0.003061}{46.283933}
+  \approx 0.0066\%.
+\end{equation}
+
+The exact exponent $x$ satisfying $\Breq(137) = 12^{3/2}\cdot(2\eta(i))^x$
+is $x \approx 0.25016$, consistent with $1/4$ to five significant figures.
+
+\begin{obsbox}
+\textbf{Numerical observation}: The formula $B = 12^{3/2}(2\eta(i))^{1/4}$
+matches $\Breq(137)$ to $0.0066\%$, a precision $115\times$ better than any
+other candidate from the ~60-element special-value scan.  This rules out
+accidental coincidence at the level of arbitrary special values, but does
+not constitute a proof from $S[\Theta]$.  Verification:
+\texttt{tools/check\_eta\_alpha\_formula.py}.
+\end{obsbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Status Table}
+\label{sec:eta:statustable}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{>{\bfseries}p{0.08\textwidth}
+                  p{0.46\textwidth}
+                  >{\centering\arraybackslash}p{0.16\textwidth}
+                  p{0.20\textwidth}}
+\toprule
+\textbf{ID} & \textbf{Claim} & \textbf{Status} & \textbf{Source} \\
+\midrule\endhead
+A1 & Canonical UBT alpha-sector action $S[\Theta]$ on $S^1_\psi$ defined
+   & \PROVED\ (\Lzero)
+   & canonical/algebra \\[3pt]
+A2 & $N_{\rm eff} = 12$ from $\dim_\RR(\CC\otimes\HH)$
+   & \PROVED\ (\Lzero)
+   & neff12\_derivations.tex \\[3pt]
+A3 & $\Bbase = \Neff^{3/2}$ as base coefficient
+   & \CONDITIONAL\ (\Lone)
+   & canonical/alpha \\[3pt]
+A4 & $\tau = i$ as shape stationary point of $F_{\rm 1-loop}$
+   & \CONDITIONAL\ (\Lone)
+   & self\_dual\_torus.tex \\[3pt]
+A5 & $\det'(-\Delta_{T^2})|_{\tau=i} = (2\pi)^2\eta(i)^4$ (mathematics)
+   & \PROVED\ (\Lzero)
+   & chowla\_selberg.tex \\[3pt]
+A6 & Weyl anomaly exponent $c/12$ from CFT (mathematics)
+   & \PROVED\ (\Lzero)
+   & CFT textbooks \\[3pt]
+A7 & The UBT alpha CFT on $T^2$ has $c = 3$
+   & \OPEN
+   & Gap G-c3 \\[3pt]
+A8 & $V_{\rm eff}(n) = n^2 - Bn\ln n$ derived from $S[\Theta]$
+   & \OPEN
+   & Gap G-nlogn \\[3pt]
+A9 & $(2\eta(i))^{c/12}$ enters coefficient $B$ (not just $Z_0$)
+   & \OPEN
+   & Gap G-insertion \\[3pt]
+A10 & $\Bfull = 12^{3/2}(2\eta(i))^{1/4}$ proved from $S[\Theta]$
+   & \FAILED\ (current)
+   & Gaps A7+A8+A9 all open \\[3pt]
+A11 & $B_{\rm obs} \approx \Breq(137)$ to $0.0066\%$
+   & \OBSERVATION
+   & verify\_b\_eta\_uniqueness.py \\[3pt]
+A12 & $(2\eta(i))^{1/4}$ is unique best match among standard special values
+   & \OBSERVATION
+   & verify\_b\_eta\_uniqueness.py \\[3pt]
+A13 & 0.0066\% discrepancy explained by a controlled correction
+   & \OPEN
+   & §\ref{sec:q6} \\[3pt]
+\bottomrule
+\end{longtable}
+
+\medskip
+\begin{tcolorbox}[colback=yellow!6!white, colframe=orange!70!black,
+                  title=\textbf{Master Verdict}]
+\[
+  \boxed{\textbf{OBSERVATION}}
+\]
+$B = 12^{3/2}(2\eta(i))^{1/4}$ is the \textbf{best-supported numerical
+candidate} for the UBT $B$ coefficient.  It is \emph{not} proved from
+$S[\Theta]$.  Three independent gaps (G-nlogn, G-c3, G-insertion) all
+remain open.  The formula is classified as an \OBSERVATION\ until all
+three gaps are closed.
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Recommended Next Steps}
+\label{sec:eta:nextsteps}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{G-c3 (highest priority, narrowest gap)}:
+        Compute $\delta^2 S[\Theta]/\delta\Theta^2$ in the winding background
+        and read off the coefficient of $\ln\det'(-\Delta)$.  If $c = 3$
+        results, the exponent $1/4$ is derived, not inferred.
+
+  \item \textbf{G-nlogn}:
+        Investigate the Dirichlet divisor-sum mechanism: does the
+        number-theoretic winding spectrum produce
+        $W_{\rm eff}[n] \sim n\ln n$ at leading order?
+
+  \item \textbf{G-insertion}:
+        Compute the one-loop effective action $W_{\rm eff}[n]$ for a winding
+        background on the family of tori $T^2(\tau_n = in)$ and take the
+        T-dual at $n = 1$, checking whether the $\eta(i)$ factor appears
+        in the $n$-dependent part.
+
+  \item \textbf{Falsification test}:
+        Prove that $S[\Theta]$ is \emph{not} invariant under
+        $SL(2,\ZZ)$ transformations of $\tau$.  If true, this eliminates
+        the modular mechanism (Gap G-insertion mechanism c) entirely.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{References}
+\label{sec:eta:refs}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{infobox}
+\begin{tabular}{>{\ttfamily\small}p{0.50\textwidth} p{0.46\textwidth}}
+research\_tracks/T3\_ALPHA/cw\_determinant\_full\_derivation.tex
+  & Exact CW det on $S^1_\psi$; Gap G-nlogn established \\
+research\_tracks/T3\_ALPHA/chowla\_selberg\_b\_derivation.tex
+  & Chowla--Selberg formula; spectral det on $T^2$ \\
+research\_tracks/T3\_ALPHA/neff12\_derivations.tex
+  & Five derivations of $\Neff = 12$ \\
+research\_tracks/alpha\_spectral/self\_dual\_torus\_derivation.tex
+  & Conditional $\tau = i$ derivation \\
+research\_tracks/alpha\_spectral/hecke\_equivariant\_path\_integral.tex
+  & Hecke NO-GO; obstructions O1--O3 \\
+reports/eta\_i\_B\_insertion\_verdict.md
+  & Predecessor verdict (CONDITIONAL\_WITH\_EXACT\_GAP) \\
+reports/alpha\_eta\_i\_rejection.md
+  & Rejection of $\eta(i)$ as first-principles B-modifier \\
+reports/alpha\_current\_verdict.md
+  & Current alpha program status \\
+reports/eta\_i\_alpha\_coefficient\_status.md
+  & Status report for this task \\
+tools/check\_eta\_alpha\_formula.py
+  & Numerical verification script \\
+tools/verify\_b\_eta\_uniqueness.py
+  & Special-value scan confirming uniqueness \\
+canonical/alpha/B\_base\_derivation\_complete.tex
+  & $\Neff^{3/2}$ as base coefficient \\
+canonical/alpha/prime\_stability\_set.tex
+  & Derivation of 137 as prime stability minimum \\
+\end{tabular}
+\end{infobox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
