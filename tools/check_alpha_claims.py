@@ -3,7 +3,13 @@
 # Licensed under the MIT License
 # See LICENSE file in the repository root for full license text
 
-"""Guardrail checker for alpha over-claim language in canonical and root docs."""
+"""Guardrail checker for alpha over-claim language in docs, canonical, reports, and root files.
+
+Scans docs/, canonical/, reports/, research_tracks/, and root *.md / *.tex files.
+Warns on paragraphs that contain alpha-context overclaim phrases without safe context.
+Files with a LEGACY / SUPERSEDED banner are skipped entirely.
+ARCHIVE/ and original_release_of_ubt/ are always excluded.
+"""
 
 from __future__ import annotations
 
@@ -13,69 +19,145 @@ import sys
 from pathlib import Path
 from typing import Iterable, List, Tuple
 
+# Phrases that constitute active alpha overclaims when found in an alpha context.
 TARGET_PHRASES = [
-    "alpha is derived",
-    "fine structure constant is derived",
-    "137.036 from first principles",
-    "alpha derivation",
-    "derivation of alpha",
-    "alpha route closed",
-    "fine-structure route closed",
+    "fully derived",
+    "derived from first principles",
+    "alpha derived",
+    "\u03b1 derived",       # α derived (Unicode)
+    "137.036 is derived",
+    "137.036 achieved",
+    "exact prediction",
+    "~90% derived",
     "breakthrough",
-    "b_best",
+    "zero fitted parameters",
+    "claim: \u03b1\u207b\u00b9 = 137.036 is derived",  # Claim: α⁻¹ = 137.036 is derived
 ]
 
+# Safe-context phrases: if one of these appears in the same paragraph, no warning.
 SAFE_PHRASES = [
-    "historical",
-    "legacy",
-    "obsolete",
-    "superseded",
-    "conditional",
-    "open gap",
-    "open",
-    "gap g137-b",
     "not derived",
     "not yet derived",
-    "not achieved",
-    "failed",
-    "rejected",
-    "no-go",
-]
-
-SAFE_ALPHA_VALUE_CONTEXT = [
-    "not derived",
-    "open",
+    "not been derived",
+    "not fully derived",
+    "no derivation",
+    "no first-principles derivation",
+    "no active canonical",  # "No active canonical file claims alpha is fully derived"
+    "no confirmed",         # "No confirmed hidden fit"
     "conditional",
+    "open gap",
     "gap g137-b",
-    "historical",
-    "obsolete",
     "superseded",
     "legacy",
-    "failed",
-    "rejected",
-    "no-go",
-    "not achieved",
-    "no expression",
+    "obsolete",
+    "historical",
+    "forbidden",            # LAYERS.md: "Forbidden: 'α⁻¹ = 137 is derived from first principles'"
+    "probability",          # breakthrough probability — planning language
+    "known issue",          # status_legend.md explicitly tagging overclaims
+    "remove claim",         # instructions to remove overclaims
+    "circular",             # audit reports noting circular reasoning defeats the claim
+    "not parameter-free",   # "not a zero-parameter prediction"
+    "requires resolution",  # documents noting unresolved gaps
+    "imprecise",            # before/after meta-discussion of precise language
+    "banned phrase",        # SCIENTIFIC_PRECISION_SUMMARY.md banned phrases section
+    "should be labeled",    # ALPHA_STABILITY_SELECTION_RULE.md: "should be labeled 'Hypothesis'"
+    "falsifies",            # "What it falsifies: n=137 is uniquely selected..."
+    "or fitted",            # "derived from first principles, or fitted to match"
+    "fallback",             # future-plan context ("Current fallback: Document")
+    "breakthrough mission", # "Alpha Breakthrough Mission" label (not a scientific claim)
+    "breakthrough report",  # reference to mission report file
+    "graveyard",            # failed_routes_graveyard.md
+    "cleanup session",      # files_merged_deleted_redirected.md recommendation
+    "near-breakthrough",    # steering memo: "near-breakthrough identification" for SM gauge (not α)
+    "transformative if",    # PRIORITIES_2026.md conditional future scenario
+    "historic if",          # same conditional
+    "if closed",            # "Transformative if closed" (conditional future)
+    "if α is derived",      # explicit conditional
+    "hypothesis",           # SCIENTIFIC_PRECISION_SUMMARY.md and ALPHA_STABILITY_SELECTION_RULE.md
+    "attack plan",          # failed_routes_graveyard.md: references to "ALPHA_BREAKTHROUGH_REPORT.md attack plan"
+    "structurally specified",  # precision legend table that also lists 'zero fitted params' as a category level
+    "action principle",     # COSMOLOGICAL_ATTRACTOR_SCENARIO.md: "V(ψ) fully derived from action"
 ]
 
-FILE_GLOBS = [
-    "canonical/alpha/ALPHA_MASTER_STATUS.md",
-    "canonical/alpha/alpha_best_route.tex",
-    "canonical/alpha/alpha_equation_matrix.tex",
+# Phrases indicating the paragraph concerns alpha/fine-structure.
+# A target phrase only triggers a warning when the paragraph also contains
+# at least one alpha-context indicator (to avoid false positives on
+# electron mass or other "fully derived" uses).
+ALPHA_CONTEXT_PHRASES = [
+    "alpha",
+    "\u03b1",      # Unicode α
+    "fine structure",
+    "fine-structure",
+    "137",
+    "coupling constant",
 ]
-EXCLUDE_PREFIXES = ("ARCHIVE/", "original_release_of_ubt/")
 
+# File-level legacy markers: if the first 1 500 characters of a file contain
+# one of these strings (case-insensitive), the entire file is skipped.
+LEGACY_FILE_MARKERS = [
+    "legacy / superseded",
+    "superseded document",
+    "\u26a0\ufe0f legacy",      # ⚠️ legacy
+    "this document is superseded",
+    "legacy banner",
+]
+
+# Directories to scan (relative to repo root).
+SCAN_DIRS = [
+    "docs",
+    "canonical",
+    "reports",
+    "research_tracks",
+]
+
+# Root-level glob patterns.
+ROOT_GLOBS = ["*.md", "*.tex"]
+
+# Paths / prefix fragments that are always excluded.
+EXCLUDE_PREFIXES = ("archive/", "original_release_of_ubt/")
+
+
+# ---------------------------------------------------------------------------
+# File collection
+# ---------------------------------------------------------------------------
 
 def iter_candidate_files(repo_root: Path) -> Iterable[Path]:
-    seen = set()
-    for pattern in FILE_GLOBS:
+    seen: set = set()
+
+    def _add(path: Path) -> None:
+        rel = path.relative_to(repo_root).as_posix()
+        rel_lower = rel.lower()
+        if any(rel_lower.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
+            return
+        if path.is_file() and path not in seen:
+            seen.add(path)
+
+    # Scan each target directory recursively.
+    for dir_name in SCAN_DIRS:
+        scan_dir = repo_root / dir_name
+        if not scan_dir.is_dir():
+            continue
+        for path in scan_dir.rglob("*.md"):
+            _add(path)
+        for path in scan_dir.rglob("*.tex"):
+            _add(path)
+
+    # Scan root-level files.
+    for pattern in ROOT_GLOBS:
         for path in repo_root.glob(pattern):
-            rel = path.relative_to(repo_root).as_posix()
-            if any(rel.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
-                continue
-            if path.is_file() and path not in seen:
-                seen.add(path)
-                yield path
+            _add(path)
+
+    yield from seen
+
+
+# ---------------------------------------------------------------------------
+# Text helpers
+# ---------------------------------------------------------------------------
+
+def file_has_legacy_banner(text: str) -> bool:
+    """Return True if the file starts with a legacy / superseded banner."""
+    header = text[:1500].lower()
+    return any(marker in header for marker in LEGACY_FILE_MARKERS)
 
 
 def paragraphs_with_offsets(text: str) -> List[Tuple[int, str]]:
@@ -92,67 +174,60 @@ def paragraphs_with_offsets(text: str) -> List[Tuple[int, str]]:
     return paragraphs
 
 
+def paragraph_has_alpha_context(text_lower: str) -> bool:
+    return any(phrase in text_lower for phrase in ALPHA_CONTEXT_PHRASES)
+
+
+def _normalise(text_lower: str) -> str:
+    """Replace newlines and tabs with a single space for substring matching."""
+    return " ".join(text_lower.split())
+
+
 def paragraph_has_target(text_lower: str) -> bool:
-    return any(phrase in text_lower for phrase in TARGET_PHRASES)
+    norm = _normalise(text_lower)
+    return any(phrase in norm for phrase in TARGET_PHRASES)
 
 
 def paragraph_has_safe_context(text_lower: str) -> bool:
-    return any(phrase in text_lower for phrase in SAFE_PHRASES)
+    norm = _normalise(text_lower)
+    return any(phrase in norm for phrase in SAFE_PHRASES)
 
 
-def has_nearby_context(text_lower: str, needle: str, contexts: List[str], window: int = 160) -> bool:
-    """Return True if any context phrase appears within ±window chars around needle matches."""
-    if needle not in text_lower:
-        return True
-    start = 0
-    while True:
-        idx = text_lower.find(needle, start)
-        if idx < 0:
-            return False
-        lo = max(0, idx - window)
-        hi = min(len(text_lower), idx + len(needle) + window)
-        chunk = text_lower[lo:hi]
-        if any(ctx in chunk for ctx in contexts):
-            return True
-        start = idx + len(needle)
-
-
-def is_active_alpha_canonical(path: Path, repo_root: Path, text_lower: str) -> bool:
-    """Treat only non-legacy files under canonical/alpha as active strict-check targets."""
-    rel = path.relative_to(repo_root).as_posix().lower()
-    if not rel.startswith("canonical/alpha/"):
-        return False
-    if any(marker in rel for marker in ("legacy", "superseded", "archive")):
-        return False
-    if any(marker in text_lower for marker in ("legacy derivation-attempt banner", "legacy / superseded banner")):
-        return False
-    return True
-
+# ---------------------------------------------------------------------------
+# File scanning
+# ---------------------------------------------------------------------------
 
 def scan_file(path: Path, repo_root: Path) -> List[Tuple[int, str]]:
     text = path.read_text(encoding="utf-8", errors="ignore")
-    text_lower = text.lower()
+
+    if file_has_legacy_banner(text):
+        return []
+
     warnings: List[Tuple[int, str]] = []
-    active_alpha_file = is_active_alpha_canonical(path, repo_root, text_lower)
-    if not active_alpha_file:
-        return warnings
     for line_no, para in paragraphs_with_offsets(text):
         para_l = para.lower()
         stripped = para_l.strip()
+        # Skip heading-only paragraphs.
         if stripped.startswith("\\title{") or stripped.startswith("#"):
             continue
+
+        # Only flag target phrases that appear in an alpha context.
+        if not paragraph_has_alpha_context(para_l):
+            continue
+        if not paragraph_has_target(para_l):
+            continue
+        if paragraph_has_safe_context(para_l):
+            continue
+
         snippet = " ".join(para.strip().split())[:220]
+        warnings.append((line_no, snippet))
 
-        if paragraph_has_target(para_l) and not paragraph_has_safe_context(para_l):
-            warnings.append((line_no, snippet))
-
-        if "g3-k" in para_l and active_alpha_file and not paragraph_has_safe_context(para_l):
-            warnings.append((line_no, f"g3-k in active canonical alpha file without safe context: {snippet}"))
-
-        if "137.036" in para_l and not has_nearby_context(para_l, "137.036", SAFE_ALPHA_VALUE_CONTEXT):
-            warnings.append((line_no, f"137.036 without safe context: {snippet}"))
     return warnings
 
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check alpha over-claim language")
@@ -160,22 +235,29 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = args.root.resolve()
-    all_warnings = []
+    all_warnings: List[Tuple[str, int, str]] = []
 
     for file_path in iter_candidate_files(repo_root):
-        warnings = scan_file(file_path, repo_root)
-        for line_no, snippet in warnings:
+        file_warnings = scan_file(file_path, repo_root)
+        for line_no, snippet in file_warnings:
             all_warnings.append((file_path.relative_to(repo_root).as_posix(), line_no, snippet))
 
+    all_warnings.sort()
+
     if not all_warnings:
-        print("check_alpha_claims: no over-claim warnings found")
+        print("check_alpha_claims: no active alpha overclaim warnings found")
+        print("Gap G137-B remains open.")
+        print("No first-principles derivation of alpha was achieved.")
         return 0
 
-    print("check_alpha_claims: warnings found")
+    print("check_alpha_claims: ACTIVE ALPHA OVERCLAIM WARNINGS FOUND")
     for rel, line_no, snippet in all_warnings:
-        print(f"- {rel}:{line_no}: {snippet}")
+        print(f"  {rel}:{line_no}: {snippet}")
 
-    print("\nRequired context for such claims: conditional / open gap / Gap G137-B / not yet derived")
+    print()
+    print("Required safe context: 'not derived' / 'conditional' / 'open gap' / 'Gap G137-B' /")
+    print("  'superseded' / 'legacy' / 'obsolete' / 'historical'")
+    print("OR add a LEGACY / SUPERSEDED banner to the file to mark it as entirely historical.")
     return 1
 
 

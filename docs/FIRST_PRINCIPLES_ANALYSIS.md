@@ -1,4 +1,12 @@
-# Analysis: Can UBT Derive Alpha and Lepton Masses from First Principles?
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This analysis is from November 2025 and contains
+> alpha derivation claims that are superseded by current canonical status.
+> Alpha is **NOT DERIVED**; the claim that R_UBT = 1 "rigorously derived" (Appendix CT)
+> does not resolve Gap G137-B (B not derived from S[Θ]).
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
+# Analysis: Can UBT Derive Alpha and Lepton Masses from First Principles? *(Historical)*
 
 **Date:** 2025-11-09  
 **Author:** Analysis in response to critical issue about hardcoded values  

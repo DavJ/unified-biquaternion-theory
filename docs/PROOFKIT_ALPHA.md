@@ -2,8 +2,13 @@
 
 # PROOFKIT: Fine Structure Constant α
 
-> **Status**: Layer B — Semi-empirical (bare derivation complete; B coefficient ~90% derived)  
-> **Claim**: α⁻¹ = 137.036 is derived from the compactified imaginary-time structure of UBT plus two-loop QED vacuum polarisation.
+> ⚠️ **NOT A PROOFKIT YET — conditional route only.**
+> Current canonical status: α is **NOT DERIVED**; α⁻¹_bare = 137 is **CONDITIONAL ONLY**
+> (blocked by Gap G137-B — B≈46.3 not derived from first principles);
+> α⁻¹ = 137.036 is **NOT ACHIEVED** (quantum correction is circular, uses α as input).
+> This document describes a historical route and open problems.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md)
+> for the authoritative canonical position.
 
 ---
 
@@ -197,7 +202,7 @@ Expected output:
 | Parameter | Symbol | Value | Status | Origin |
 |---|---|---|---|---|
 | Kinetic coefficient | A | 1.0 (normalised) | Derived | Gauge kinetic energy normalisation |
-| One-loop B baseline | B₀ | ≈ 25.1 | **Fully derived** | B₀ = 2π·N_eff/3 (standard one-loop) |
+| One-loop B baseline | B₀ | ≈ 25.1 | Derived (gives n\*≈65, **not** 137 — not α) | B₀ = 2π·N_eff/3 (standard one-loop) |
 | B base (N_eff^{3/2}) | B_base | ≈ 41.57 | **OPEN PROBLEM A** | No geometric derivation; phenomenological |
 | Correction factor | R | ≈ 1.114 | **OPEN PROBLEM B** | Geometric origin unknown |
 | Full B coefficient | B | ≈ 46.3 | Semi-empirical | B = B_base × R; requires A and B resolution |
