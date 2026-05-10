@@ -367,6 +367,48 @@ correction ν₂/4 at p = 137 (= 2/4 = 0.5) reduces the residual to 0.44%.
 
 ---
 
+## 5.5 Self-Consistency Fixed-Point Scan (2026-05-10)
+
+**Source**: `research_tracks/T3_ALPHA/self_consistency_fixed_point.tex`,
+`tools/self_consistency_scan.py`
+
+**Method**: Scan primes $p \in [50, 500]$ for the fixed-point condition
+$n^*(B_\mathrm{mod}(p)) = p$, where $B_\mathrm{mod}(p) = (p+1)/3$ is the
+normalised modular volume of $X_0(p)$.
+
+**Exact algebraic condition**: $(5p-1)/(p+1) = \ln p$
+
+**Key numerical results**:
+
+| $p$ | $B_\mathrm{mod}$ | $n^*(B_\mathrm{mod})$ | $\delta = n^* - p$ | $|\delta|$ |
+|-----|------|---------|-------|--------|
+| 139 | 46.667 | 138.364 | −0.636 | 0.636 |
+| **137** | **46.000** | **135.989** | **−1.011** | **1.011** |
+| 149 | 50.000 | 150.319 | +1.319 | 1.319 |
+| 151 | 50.667 | 152.726 | +1.726 | 1.726 |
+
+With refined $B_\mathrm{ref}(p) = (p+1)/3 + \nu_2(p)/4$:
+
+| $p$ | $\nu_2$ | $B_\mathrm{ref}$ | $n^*(B_\mathrm{ref})$ | $\delta_r$ |
+|-----|------|---------|-------|--------|
+| 139 | 0 | 46.667 | 138.364 | −0.636 |
+| **137** | **2** | **46.500** | **137.770** | **+0.770** |
+
+**Verdict**:
+
+- $p=137$ is approximately a self-consistent fixed point with $|\delta|/p = 0.74\%$
+  (basic) or $0.56\%$ (refined).  Both pass the 1% kill condition.
+- $p=139$ has a smaller gap ($|\delta|=0.636$) for the basic formula.
+- The exact algebraic equation $(5p-1)/(p+1)=\ln p$ crosses between $p=137$ and
+  $p=139$ (at $p_0 \approx 138.5$); neither prime is an exact root.
+- The self-consistency condition selects a **twin-prime window** $\{137, 139\}$,
+  not $p=137$ uniquely.
+
+**Classification**: [MC] — $p=137$ approximately satisfies the self-consistency
+condition, but the condition alone does not uniquely distinguish 137 from 139.
+
+---
+
 ## 6. Open Problems Registered
 
 | ID | Description | Priority |
