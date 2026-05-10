@@ -37,13 +37,20 @@ Full derivation (137.036) requires solving Gap G137-B first.
 | Parked routes | 2 (A1, A2 — conditional on dead-end Weinberg angle) |
 | Killed routes | 2 (A3, A4 — definitively failed) |
 
-### Status sync (2026-05-09)
+### Status sync (2026-05-10 — winding NO-GO update)
 
 - Prime-stability set: **derived**
-- B-gap: **open**
+- B-gap: **open** (fully open after winding NO-GO)
+- **Constant winding correction ΔB_wind ≈ 18.5: NO-GO**
+  - Derived expression: ΔB_wind(n) = N_eff·n/(12π²) (n-dependent)
+  - Produces n²·ln n term in V_eff, not a constant B shift
+  - B_best ≈ 43.6 is **OBSOLETE HEURISTIC** — retracted
+- Current strongest safe coefficient: **B₀ = 8π ≈ 25.133** (CONDITIONAL on KK matching)
 - eta(i) route: **rejected as first-principles B-modifier**; allowed only as numerical observation / partition-normalization clue
 - Hecke path-integral route: **current no-go** (until O1–O3 or determinant-to-B insertion is solved)
+- Alpha: **not derived**
 - Canonical wording source: `reports/alpha_current_verdict.md`
+- B-gap summary: `reports/alpha_B_gap_after_winding_no_go.md`
 
 ### Self-dual torus sync (2026-05-09)
 
@@ -52,11 +59,14 @@ Full derivation (137.036) requires solving Gap G137-B first.
 - Local shape stability: yes (under stated assumptions)
 - Scale modulus fixed: **no** (remains open)
 
-### Deprecated / rejected claim register (2026-05-09)
+### Deprecated / rejected claim register (2026-05-10, updated)
 
 - Rejected as derived first-principles n log n coefficient:
   `B = 12^(3/2)*(2 eta(i))^(1/4)`.
 - This expression may be cited only as numerical observation / partition-normalization clue.
+- **Constant winding correction ΔB_wind ≈ 18.5: NO-GO.**
+  The derived winding term is ΔB_wind(n) = N_eff·n/(12π²) (n-dependent; produces n²·ln n).
+- **B_best ≈ 43.6: OBSOLETE HEURISTIC.** Do not cite as an estimate. Route withdrawn.
 
 ---
 
@@ -85,13 +95,18 @@ Full derivation (137.036) requires solving Gap G137-B first.
 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
 | 137 is prime — consistent with V_eff stability | [L0]+[STD] | Number theory |
 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
+| ΔB_wind ≈ 18.5 (constant) | **NO-GO** | `reports/t_dual_winding_verdict.md` |
+| B_best ≈ 43.6 | **OBSOLETE HEURISTIC** | Withdrawn after winding NO-GO |
 
-**What is open** (Gap G137-B):  
+**What is open** (Gap G137-B, updated after winding NO-GO):  
 - Derive B_phenom ≈ 46.298 from UBT action S[Θ] without using α as input.
 - B₀ = 8π (proved, one-loop) gives n* ≈ 65, not 137.
-- Missing factor ≈ 1.84 = Kac-Moody correction or higher-loop term.
+- The constant winding correction ΔB_wind ≈ 18.5 is **NO-GO** (correction is n-dependent).
+- B_best ≈ 43.6 is **OBSOLETE HEURISTIC**: do not use.
+- The strongest safe coefficient is B₀ = 8π (CONDITIONAL on KK matching).
+- Missing mechanism: must bridge B₀ = 8π → B ≈ 46 without fitting.
 - The relation $B=(p+1)/3$ is currently a conditional modular ansatz, not a first-principles derivation.
-- Source: `reports/alpha_missing_lemma.md`
+- Source: `reports/alpha_missing_lemma.md`, `reports/alpha_B_gap_after_winding_no_go.md`
 
 **Corroborations** (not proofs, supporting evidence):
 
@@ -215,6 +230,7 @@ scheme — neither determined by coding constraints.
 | eta(i) insertion as derived B-modifier | REJECTED — not first-principles derivation of n log n coefficient |
 | δ = 0.036 correction without α | CIRCULAR — uses α as input |
 | R_ψ calibration from m_e | SEMI-EMPIRICAL — breaks unit-free derivation |
+| Constant winding correction ΔB_wind ≈ 18.5 | **NO-GO** — derived correction is n-dependent; B_best ≈ 43.6 is OBSOLETE HEURISTIC |
 | New speculative routes | FORBIDDEN — no new branches in cleanup window |
 
 ---
