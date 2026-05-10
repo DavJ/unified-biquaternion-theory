@@ -1,0 +1,91 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+
+\title{QED Sector from \texorpdfstring{$S[\Theta]$}{S[Theta]} in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\section{Starting point: canonical UBT action}
+The canonical action is
+\begin{equation}
+S[\Theta]=\int d^4x\,\sqrt{-g}\left[
+\mathrm{Tr}\big((D_\mu\Theta)^\dagger(D^\mu\Theta)\big)
+-\frac14\,W^i_{\mu\nu}W^{i\mu\nu}
+-\frac14\,B_{\mu\nu}B^{\mu\nu}
++\cdots\right],
+\end{equation}
+with
+\begin{equation}
+D_\mu=\partial_\mu+ig\,\tau^iW^i_\mu+ig'YB_\mu+\cdots.
+\end{equation}
+This is the unique canonical entry point for the electromagnetic sector.
+
+\section{Identification of the U(1) sector from \texorpdfstring{$\Theta$}{Theta}}
+In UBT, the right phase action
+\begin{equation}
+\Theta(x)\mapsto \Theta(x)e^{i\chi(x)}
+\end{equation}
+defines the abelian connection sector. At electroweak projection,
+\begin{equation}
+A_\mu=\sin\theta_W\,W^3_\mu+\cos\theta_W\,B_\mu,
+\qquad
+e=g\sin\theta_W=g'\cos\theta_W,
+\end{equation}
+and the unbroken generator is $Q=T_3+Y/2$.
+Therefore the low-energy covariant derivative is
+\begin{equation}
+D^{\mathrm{EM}}_\mu=\partial_\mu+i e\,Q\,A_\mu.
+\end{equation}
+
+\section{Low-energy QED-like action}
+After integrating out heavy modes and keeping the photon plus light charged modes,
+\begin{equation}
+S_{\mathrm{eff}}=\int d^4x\,\sqrt{-g}\left[
+\sum_r \big|\big(\nabla_\mu+i e q_r A_\mu\big)\psi_r\big|^2
+-\frac14 F_{\mu\nu}F^{\mu\nu}
++\cdots\right],
+\end{equation}
+with $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$.
+Thus UBT does generate the QED gauge kinetic structure in the infrared.
+
+\section{Isolation of the \texorpdfstring{$(1/4e^2)F^2$}{(1/4e^2)F^2} form}
+Define a charge-normalized connection
+\begin{equation}
+\mathcal{A}_\mu:=eA_\mu,
+\qquad
+\mathcal{F}_{\mu\nu}=\partial_\mu\mathcal{A}_\nu-\partial_\nu\mathcal{A}_\mu=eF_{\mu\nu}.
+\end{equation}
+Then
+\begin{equation}
+D^{\mathrm{EM}}_\mu=\partial_\mu+i q_r\mathcal{A}_\mu,
+\qquad
+-\frac14 F_{\mu\nu}F^{\mu\nu}=-\frac{1}{4e^2}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu}.
+\end{equation}
+Hence the coefficient required by the task is present as a normalization-equivalent form
+of the canonical gauge kinetic term.
+
+\begin{remark}[Current status]
+What is fixed by current UBT documents is the existence of the abelian gauge sector and
+its canonical kinetic form. What is not yet fixed from first principles is the absolute
+normalization value of $e$ itself.
+\end{remark}
+
+\end{document}
