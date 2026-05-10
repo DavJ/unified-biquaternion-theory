@@ -1,4 +1,11 @@
-# Remaining Challenges: Detailed Status and Roadmap
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This status document is from November 2025.
+> All alpha-related claims (including "derived from first principles" for the modified gravity
+> coefficient α_UBT) are historical. The fine-structure constant α is **NOT DERIVED**.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
+# Remaining Challenges: Detailed Status and Roadmap *(Historical)*
 
 **Date:** November 2, 2025  
 **Purpose:** Comprehensive assessment of remaining theoretical challenges with concrete action plans  

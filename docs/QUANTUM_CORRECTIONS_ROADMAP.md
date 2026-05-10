@@ -1,4 +1,12 @@
-# Roadmap for Calculating Quantum Corrections to Alpha from First Principles
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This roadmap was written in November 2025 when
+> alpha was believed to be nearly derived. It is superseded by current canonical status.
+> Alpha is **NOT DERIVED**; the "groundbreaking" and "breakthrough" characterisations below
+> are historical only. Gap G137-B remains open.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
+# Roadmap for Calculating Quantum Corrections to Alpha from First Principles *(Historical)*
 
 **Date**: 2025-11-13  
 **Priority**: CRITICAL - Required to complete fit-free alpha prediction  

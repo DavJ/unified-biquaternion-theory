@@ -18,16 +18,15 @@
 **Current Scientific Rating:** 6.2/10 ⬆️ (Upgraded from 5.5 following fit-free baseline achievement)
 
 **Major Achievements:**
-- 🌟 **Fine-structure constant baseline - FULLY DERIVED**: **α⁻¹ = 137.000 (0.026% error)** - Zero fitted parameters
-- ⚠️ **Fine-structure constant with corrections - ~90% DERIVED**: **α⁻¹ ≈ 137.036 (~0.00003% error)** - Structural corrections calculated
-- 🌟 **Electron mass baseline - FULLY DERIVED**: **m_e = 0.509856 MeV (0.22% error)** - From Hopfion topology
-- ⚠️ **Electron mass with corrections - ~60% DERIVED**: **m_e ≈ 0.510 MeV (~0.2% error)** - Parameters fitted for validation
+- ⚠️ **Fine-structure constant — NOT DERIVED** (historical claim superseded): α⁻¹_bare = 137 is CONDITIONAL ONLY; α⁻¹ = 137.036 is NOT ACHIEVED; Gap G137-B open. See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+- 🌟 **Electron mass baseline derived**: **m_e = 0.509856 MeV (0.22% error)** - From Hopfion topology
+- ⚠️ **Electron mass with corrections - ~60% derived**: **m_e ≈ 0.510 MeV (~0.2% error)** - Parameters fitted for validation
 - ✅ **SM gauge group SU(3)×SU(2)×U(1)** rigorously derived from biquaternionic geometry
 - ✅ **GR equivalence** in real limit proven (Appendix R)
 - ✅ **Quantum gravity unification** framework established
 
 **Current Progress & Remaining Work:**
-1. **Alpha prediction** - ✅ **Baseline DERIVED**: α⁻¹=137.000 (0.026%, zero fitted); ⚠️ **Corrections ~90% derived**: α⁻¹≈137.036 (~12% gap)
+1. **Alpha prediction** — **NOT DERIVED** (Gap G137-B open; α⁻¹_bare = 137 CONDITIONAL ONLY; α⁻¹ = 137.036 NOT ACHIEVED). See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
 2. **Mathematical foundations** - ✅ Core complete; ⏳ Advanced topics (p-adic, holographic) in progress
 3. **Biquaternionic time hierarchy** - ✅ **CLARIFIED**: T_B fundamental, τ valid approximation
 4. **Testable predictions** - ✅ CMB protocol complete; ⏳ Planck reanalysis Q4 2026
@@ -45,55 +44,18 @@ Can UBT predict masses and fundamental constants precisely enough from first pri
 
 ### What UBT Has Achieved ✅
 
-#### 1.1 Fine-Structure Constant - High Precision Baseline with Corrections
+#### 1.1 Fine-Structure Constant α — Current Status
 
-**BASELINE ACHIEVED (FULLY DERIVED):** α⁻¹ = 137.000 (0.026% error) 🌟
-**WITH CORRECTIONS (~90% DERIVED):** α⁻¹ ≈ 137.036 (~0.00003% error) ⚠️
+> ⚠️ **NOT DERIVED — Gap G137-B open.**
+> All earlier claims in this document ("FULLY DERIVED", "~90% DERIVED", "zero fitted parameters",
+> "exact prediction") are historical and superseded.
+> Current canonical position: α⁻¹_bare = 137 is **CONDITIONAL ONLY**; α⁻¹ = 137.036 is **NOT ACHIEVED**.
+>
+> **Authoritative status**: [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md)
 
-**Multiple Independent Approaches:**
-
-| Approach | Method | α⁻¹ | Error | Status |
-|----------|--------|-----|-------|--------|
-| Geo-β | Toroidal curvature | 137.000 | 0.026% | ✅ Fully derived baseline |
-| M⁴×T² | Dedekind η(i) functional | 137.032 | 0.003% | ⚠️ Validation mode |
-| CxH | Biquaternionic spacetime | 136.973 | 0.046% | ⚠️ Bare value |
-| Two-loop | Geometric β-functions | 137.107 | ~0.05% | ⚠️ Framework |
-| **With corrections** | **CxH + 4 structural** | **≈137.036** | **~0.00003%** | **⚠️ ~90% derived** |
-
-**Geometric Baseline:** α⁻¹ = 137.000 ✅
-- Derived from topological prime selection (energy minimization)
-- **ZERO experimental input** - pure geometry and topology
-- **ZERO fitted parameters** - truly first-principles
-- **Precision: 0.026%** vs experimental α⁻¹ = 137.035999084
-
-**With Structural Corrections:** α⁻¹ ≈ 137.036 ⚠️
-- **Starting point**: CxH bare value = 136.973
-- **Add 4 UBT structural corrections** (calculated, not fitted):
-  1. Non-commutative anticommutator: δN_anti ≈ 0.01
-  2. Geometric RG flow on M⁴×T²: Δ_RG ≈ 0.040
-  3. CxH gravitational dressing: Δ_grav ≈ 0.015
-  4. Mirror sector asymmetry: Δ_asym ≈ 0.01
-- **Result**: 136.973 + 0.063 ≈ **137.036**
-- **Precision: ~0.00003%** - very close agreement
-- **Status**: ⚠️ **~90% derived** per FITTED_PARAMETERS.md (~12% renormalization gap)
-
-**Framework Documentation:**
-- Full parameter transparency: `FITTED_PARAMETERS.md`
-- Structural corrections: `NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md`
-- Complete framework: `docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md`
-- Implementation: `alpha_core_repro/two_loop_core.py`
-- Theory: `consolidation_project/alpha_two_loop/`
-
-**Key Features:**
-- ✅ **Baseline fully derived** - α⁻¹ = 137.000, zero fitted parameters
-- ⚠️ **Corrections ~90% derived** - calculated from UBT structure, ~12% gap remains
-- ✅ **Not fitted to experiment** - corrections are structural calculations
-- ✅ **Guard tests + CI** track parameter derivation status
-
-**Status:** 
-- ✅ **BASELINE FULLY DERIVED** (α⁻¹ = 137.000, 0.026% error)
-- ⚠️ **CORRECTIONS ~90% DERIVED** (α⁻¹ ≈ 137.036, ~0.00003% error, ~12% gap)
-- **Timeline**: Renormalization gap closure - Priority 1, 6 months
+Key open problem: Gap G137-B — the effective coupling B ≈ 46.3 is not derived from the UBT
+action S[Θ]. Until B is derived, the bare integer claim is conditional, not first-principles.
+The quantum correction from 137 to 137.036 uses α as input and is circular.
 
 #### 1.2 Electron Mass - Topological Baseline with Correction Roadmap
 
@@ -175,34 +137,19 @@ Can UBT predict masses and fundamental constants precisely enough from first pri
 
 ## 2. Current Challenges
 
-### 2.1 Achievement: Alpha Exact Prediction - COMPLETE ✅
+### 2.1 Alpha Status — NOT DERIVED (Gap G137-B open)
 
-**Status:** ✅ **ACHIEVED** - Exact prediction α⁻¹ = 137.036 (0.00003% error!)
+> ⚠️ **Historical claim superseded.** Earlier versions of this section claimed
+> "Alpha Exact Prediction - COMPLETE" and "α⁻¹ = 137.036 achieved". Those claims
+> are historical / superseded and do not reflect current canonical status.
 
-**What Was Achieved:**
-1. ✅ Geometric baseline: α⁻¹ = 137.000 from topology (fit-free)
-2. ✅ Multiple independent approaches: 136.973 - 137.107 (all converging on α⁻¹ ≈ 137)
-3. ✅ Renormalized prediction: α⁻¹ = 137.036 from CxH + 4 UBT structural corrections
-4. ✅ **NO experimental input** - pure geometry + structure
-
-**Four Structural Corrections (NO fitting):**
-1. Non-commutative anticommutator sector: δN_anti ≈ 0.01
-2. Geometric RG flow on M⁴×T²: Δ_RG ≈ 0.040
-3. CxH gravitational dressing: Δ_grav ≈ 0.015
-4. Mirror sector asymmetry: Δ_asym ≈ 0.01
-
-**Result:** 136.973 (CxH bare) + 0.063 (corrections) = **137.036** ✨
-
-**Documentation:**
-- `NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md` - Complete derivation
-- `docs/archive/alpha_work/COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md` - All approaches
-
-**Impact:** First theory to achieve exact α prediction from pure geometry + structural corrections without experimental input
-
-**Precision Achieved:**
-- ✅ **0.00003%** - EXACT match to CODATA 2018 (137.035999084)
-- Far exceeds initial targets (<0.001% exceptional, <0.01% excellent)
-- Among the few theories achieving this precision from first principles
+**Current canonical status** (see [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md)):
+- α is **NOT DERIVED**
+- α⁻¹_bare = 137 is **CONDITIONAL ONLY** — requires proof of Gap G137-B
+- α⁻¹ = 137.036 is **NOT ACHIEVED**
+- Gap G137-B (B ≈ 46.3 not derived from S[Θ]) is **open**
+- Constant winding correction ΔB ≈ 18.5: **NO-GO** (derived expression is n-dependent)
+- B_best ≈ 43.6: **OBSOLETE HEURISTIC** — retracted
 
 ### 2.2 Challenge: Mathematical Foundations
 
@@ -408,12 +355,11 @@ Delta_alpha_1L = 0.001549  # Calculated from UBT
 # Goal: Calculate Delta_alpha_2L from first principles
 ```
 
-**Phase 4: Full Prediction** ✅ **ACHIEVED**
+**Phase 4: Full Prediction** ⚠️ **NOT ACHIEVED** *(historical claim superseded)*
 ```python
-# Achieved:
-alpha_renormalized = 1/137.036  # From CxH + 4 UBT corrections
-# Precision: 0.00003% (exact match to experiment!)
-# NO experimental input - pure geometry + structure
+# Historical claim (superseded):
+# alpha_renormalized = 1/137.036  # Gap G137-B is open; this was not derived.
+# See canonical/alpha/ALPHA_MASTER_STATUS.md for current status.
 ```
 
 ### 4.2 Mass Derivation - Computational Pipeline
@@ -445,13 +391,13 @@ m_e_refined = m_e_baseline + corrections
 ### 4.3 Numerical Precision
 
 **Current Precision:**
-- Alpha baseline: Exact (137.000 from integer)
-- Alpha renormalized: 0.00003% error (137.036 exact match to experiment!)
+- Alpha baseline: 137.000 from integer winding attractor (conditional on Gap G137-B)
+- Alpha renormalized: **NOT ACHIEVED** — historical claim (137.036) is superseded; see [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md)
 - Electron mass baseline: 0.22% error
 - Electron mass with refinements: ~0.2% error
 
 **Target Precision:**
-- Alpha from UBT: ✅ **ACHIEVED** - 0.00003% (137.036 exact!)
+- Alpha from UBT: ⚠️ **NOT ACHIEVED** — Gap G137-B open (historical "ACHIEVED" claim is superseded)
 - Electron mass: < 0.01% (< 50 eV) - in progress with biquaternionic corrections
 
 **Validation:**
@@ -530,14 +476,16 @@ m_e_refined = m_e_baseline + corrections
 - ✅ Honest assessment of limitations
 
 **What Needs Work:**
-- ✅ Alpha quantum corrections - **ACHIEVED**: α⁻¹ = 137.036 (exact, 0.00003% error!)
+- ⚠️ **Alpha** — NOT DERIVED; Gap G137-B open (historical "ACHIEVED" claim is superseded; see [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md))
 - ⏳ Mass precision improvements - Current: ~0.2%, Target: <0.01% (biquaternionic & higher-order corrections in progress)
 - ✅ Mathematical rigor - Core structures complete, some advanced gaps remain (p-adic, holographic)
 - ✅ Experimental predictions - CMB protocol complete and documented, ready for Planck reanalysis
 - ✅ Causality analysis - Biquaternionic time fundamental, complex time valid approximation (hierarchy documented)
 
 **Overall Status:**
-UBT is a **serious research framework** with **exceptional achievements** (exact α⁻¹ = 137.036 prediction with NO fit, plus fit-free baseline for m_e) and **honest limitations** (electron mass refinements in progress). It has made **breakthrough progress** from initial ideas to **exact quantitative predictions** for the fine-structure constant. With continued development, it has potential to mature into a competitive unified theory framework within **3-10 years**.
+UBT is a **serious research framework** with important achievements (fit-free electron mass baseline from Hopfion topology, rigorously derived SM gauge group SU(3)×SU(2)×U(1)) and **honest limitations** (alpha NOT derived — Gap G137-B open; electron mass refinements in progress). With continued development, it has potential to mature into a competitive unified theory framework within **3-10 years**.
+
+*Note: Earlier versions of this document contained alpha overclaims ("exact α⁻¹=137.036 prediction with NO fit", "breakthrough"). Those claims are historical / superseded. Gap G137-B remains open. No first-principles derivation of alpha was achieved.*
 
 **Scientific Rating: 6.2/10** - Early-stage framework with exemplary transparency
 

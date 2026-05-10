@@ -150,8 +150,8 @@ Running baryon density and CMB acoustic peak positions receive calculable UBT co
 ```
 Layer 0/1  Geometry + Biquaternion Dynamics (FROZEN axioms)
     ↓      Emergent metric, gauge group, field equations
-Layer B    Semi-empirical observables (α, m_e, Ω_b)
-    ↓      Require quantum corrections; ~90% derived
+Layer B    Semi-empirical observables (α [NOT DERIVED — Gap G137-B open], m_e, Ω_b)
+    ↓      Require quantum corrections; α is conditional only (historical "~90% derived" claim superseded)
 Layer C    Research fronts (Hubble tension, CMB, neutrino masses)
     ↓      Testable hypotheses under active investigation
 ```

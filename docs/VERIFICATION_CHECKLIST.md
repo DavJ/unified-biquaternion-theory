@@ -1,4 +1,12 @@
-# Implementation Verification Checklist
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This checklist was created in November 2025 and
+> contains historical alpha derivation claims that are superseded by current canonical status.
+> Alpha is **NOT DERIVED**; α⁻¹ = 137.036 is **NOT ACHIEVED**; Gap G137-B remains open.
+> All checked items claiming alpha derivation below are historical only.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
+# Implementation Verification Checklist *(Historical Record)*
 
 ## Core Deliverables ✓
 

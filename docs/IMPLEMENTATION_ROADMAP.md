@@ -148,8 +148,8 @@ def alpha_from_geometric_B(B, p=137):
 - `consolidation_project/alpha_two_loop/FIT_FREE_ALPHA_README.md`
 
 **Changes:**
-- ✅ "Fully derived from first principles" (when complete)
-- ✅ "No fitted parameters"
+- ⚠️ "Fully derived from first principles" *(aspired goal — NOT achieved for alpha; Gap G137-B open)*
+- ⚠️ "No fitted parameters" *(aspired goal — not achieved)*
 - ✅ "Experimental match as validation"
 
 ## Phase 2: Determine Electron Mass Scale (4-8 months)

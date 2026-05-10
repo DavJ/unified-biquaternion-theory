@@ -1,4 +1,11 @@
-# UBT Challenges: Status Update November 2025
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This status update is from November 2, 2025.
+> Alpha claims herein (including "derived from first principles" for modified gravity
+> coefficient and other items) are historical. The alpha section is fully superseded.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
+# UBT Challenges: Status Update November 2025 *(Historical)*
 
 **Date:** November 2, 2025  
 **Purpose:** Update status of 5 critical challenges following mathematical formalization  
