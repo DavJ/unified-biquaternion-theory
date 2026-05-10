@@ -37,7 +37,7 @@
   \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
 
   \title{\textbf{Best Route to $\alpha$ from UBT: Prime Attractor on $S^1_\psi$}\\
-         \large Alpha Breakthrough Mission — Formal Derivation}
+         \large Alpha Route Status Review — Formal Derivation}
   \author{Ing.\ David Jaro\v{s}}
   \date{2026-04-28}
 
@@ -50,9 +50,19 @@
 \label{sec:ar:purpose}
 %──────────────────────────────────────────────────────────────────────────────
 
-This document presents the \textbf{best available route} to deriving the
-fine-structure constant~$\alpha \approx 1/137.036$ from the Unified Biquaternion
-Theory (UBT), following the Alpha Breakthrough Mission (2026-04-28).
+This document presents the \textbf{conditional structural route to
+$\alpha^{-1}_{\mathrm{bare}} = 137$}, blocked by Gap G137-B.
+No first-principles derivation of the physical value
+$\alpha^{-1} = 137.036$ is claimed here.
+
+\begin{warnbox}
+\textbf{Canonical status sync (2026-05-10)}:
+alpha is \textbf{NOT derived};
+$\alpha^{-1}_{\mathrm{bare}} = 137$ is \textbf{CONDITIONAL ONLY};
+Gap \textbf{G137-B} remains open.
+Legacy references in this file to older G137-B framing are historical and
+do not override \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.
+\end{warnbox}
 
 \begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
                   title=Mission Classification]
@@ -60,9 +70,9 @@ Theory (UBT), following the Alpha Breakthrough Mission (2026-04-28).
 Route name & Prime Attractor on $S^1_\psi$ \\
 Target & $\alpha^{-1}_{\mathrm{bare}} = 137$ (bare, UV value) \\
 Proved steps & 6/7 (Steps 1--4, 6, and prime-stability part of Step 7) \\
-Conditional step & Step 5: Kac-Moody level $k = 1$ (Gap G3-k) \\
+Conditional step & Derive $B$ from $S[\Theta]$ without circular inputs (Gap G137-B) \\
 Circular inputs & Zero (in bare-value claim only) \\
-Overall status & \textbf{CONDITIONAL on Gap G3-k} \\
+Overall status & \textbf{CONDITIONAL on Gap G137-B} \\
 Hard rule & No constant chosen to match $\alpha$ \\
 \end{tabular}
 \end{tcolorbox}
@@ -86,8 +96,8 @@ The derivation proceeds in seven steps:
   \underbrace{N_{\mathrm{eff}}=12}_{\text{[L0]}}
   \;\to\;
   \underbrace{B_0=8\pi}_{\text{[L1]}}
-  \;\xrightarrow{\text{Gap G3-k}}\;
-  \underbrace{B_{\mathrm{base}}=N_{\mathrm{eff}}^{3/2}}_{\text{[MC]}}
+  \;\xrightarrow{\text{Gap G137-B}}\;
+  \underbrace{B\approx 46.298\ \text{from}\ S[\Theta]}_{\text{[OPEN]}}
   \;\to\;
   \underbrace{V_{\mathrm{eff}}(n)}_{\text{[L1]}}
   \;\to\;
@@ -230,7 +240,7 @@ Source: \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}
 This is the \textbf{only conditional step} in the chain.
 
 \begin{gapbox}
-\textbf{Gap G3-k (the unique blocking gap)}: Prove that the Kac-Moody level of
+\textbf{Gap G137-B (the unique blocking gap)}: Prove that the Kac-Moody level of
 the WZW-type current algebra describing the biquaternion field on the
 $\psi$-torus is $k = 1$.
 \end{gapbox}
@@ -261,7 +271,7 @@ $3/2$ under $SL(2,\mathbb{Z})$ (Gap G8, closed).  The weight $3/2$ equals
 the exponent in $N_{\mathrm{eff}}^{3/2}$, suggesting a common algebraic origin
 in the three independent imaginary quaternion directions.
 
-\textbf{(ii) New analysis (Alpha Breakthrough Mission 2026-04-28)}:
+\textbf{(ii) New analysis (Alpha route review 2026-04-28)}:
 $\vartheta_3^3(\tau)$ is the partition function of three compact free bosons
 at the self-dual radius, which is \emph{also} the three-fold product of
 $SU(2)_1$ WZW partition functions (these coincide at the self-dual point).
@@ -278,7 +288,7 @@ In 2D CFT, this is consistent with the minimal level $k = 1$ (free-field fixed
 point with no topological term).
 
 \medskip
-\textbf{Status of Gap G3-k}: All 27+ approaches exhausted except the modular
+\textbf{Status of Gap G137-B}: All 27+ approaches exhausted except the modular
 bootstrap.  The modular bootstrap (crossing symmetry on the 4-point function
 on $T^2$) is the one remaining untested route.  Time-box: 4 weeks from 2026-04-28.
 \end{insightbox}
@@ -308,7 +318,7 @@ one-loop correction from $N_{\mathrm{eff}}$ charged modes.
 
 \begin{resultbox}
 Status: CLEAN [L1] given $B_{\mathrm{base}}$.  Functional form is standard
-one-loop; only coefficient tracks Gap G3-k.\\
+one-loop; only coefficient tracks Gap G137-B.\\
 Source: \texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S3}
 \end{resultbox}
 
@@ -400,7 +410,7 @@ $\alpha = e^2/(4\pi) = 1/n^*$.
         both currently circular (Gap A9).
   \item The physical value of $R_\psi$ in SI units: requires $m_e$ as input
         (Gap A10 — semi-empirical).
-  \item The value $k = 1$: Gap G3-k remains unproved.
+  \item The value $k = 1$: Gap G137-B remains unproved.
 \end{enumerate}
 \end{warnbox}
 
@@ -474,10 +484,10 @@ Step & Result & Status & Circular? & Gap & Source \\
 2 & $S^1_\psi$, Dirac quantisation & CLEAN [L0] & No & — & \S\ref{sec:ar:compactification} \\
 3 & $N_{\mathrm{eff}} = 12$ & CLEAN [L0] & No & — & \S\ref{sec:ar:Neff} \\
 4 & $B_0 = 8\pi$ & CLEAN [L1] & No & — & \S\ref{sec:ar:B0} \\
-5 & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & [MC] & No & \textbf{G3-k} & \S\ref{sec:ar:Bbase} \\
+5 & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & [MC] & No & \textbf{G137-B} & \S\ref{sec:ar:Bbase} \\
 6 & $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ & CLEAN [L1] given $B$ & No & — & \S\ref{sec:ar:Veff} \\
 7 & $n^* = 137$ (prime attractor) & [L1] conditional & No & via Step~5 & \S\ref{sec:ar:nstar} \\
-8 & $\alpha^{-1}_{\mathrm{bare}} = 137$ & CONDITIONAL & No & G3-k & \S\ref{sec:ar:identification} \\
+8 & $\alpha^{-1}_{\mathrm{bare}} = 137$ & CONDITIONAL & No & G137-B & \S\ref{sec:ar:identification} \\
 \midrule
 \multicolumn{6}{l}{\emph{Not in clean chain (circular inputs):}} \\
 9 & $\delta = 0.036$ (two-loop QED) & [CIRC] & Yes & A9 & — \\
@@ -489,18 +499,18 @@ Step & Result & Status & Circular? & Gap & Source \\
 
 \begin{resultbox}
 \textbf{Summary}: Steps 1--4 and the prime-stability part of Step 7 are proved
-with zero free parameters.  Step 5 (Gap G3-k: $k=1$) is the unique remaining gap.
-No circular input appears in Steps 1--8.  If Gap G3-k is resolved,
+with zero free parameters.  Step 5 (Gap G137-B: $k=1$) is the unique remaining gap.
+No circular input appears in Steps 1--8.  If Gap G137-B is resolved,
 $\alpha^{-1}_{\mathrm{bare}} = 137$ is a zero-parameter result from UBT axioms.
 \end{resultbox}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Gap G3-k: Modular Bootstrap Attack}
+\section{Gap G137-B: Modular Bootstrap Attack}
 \label{sec:ar:bootstrap}
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{gapbox}
-\textbf{Gap G3-k}: Prove $k = 1$ (Kac-Moody level) from the UBT CFT on $T^2$.
+\textbf{Gap G137-B}: Prove $k = 1$ (Kac-Moody level) from the UBT CFT on $T^2$.
 \end{gapbox}
 
 \subsection{Why the Modular Bootstrap Is the Right Tool}

@@ -43,6 +43,11 @@ File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`)
 
 > ⭐ **Canonical source**: `docs/STATUS_ALPHA.md` — complete derivation chain with explicit gap inventory.  
 > Topic index: `canonical/THEORY/topic_indexes/alpha_index.md`
+>
+> **Legacy-route correction (2026-05-10)**: Older `B_base = 41.57` and `G3-k`
+> closure narratives are historical/legacy attempts and do **not** supersede the
+> current canonical verdict in `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+> Use Gap **G137-B** as the active blocker framing.
 
 | Result | Status | File | Notes |
 |--------|--------|------|-------|

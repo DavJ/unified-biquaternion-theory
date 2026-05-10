@@ -2,6 +2,12 @@
 
 # ALPHA_PROGRESS_REPORT.md — P4: Fine Structure Constant Closure Program
 
+> **LEGACY / SUPERSEDED BANNER (2026-05-10)**  
+> This root-level progress snapshot is historical and superseded.  
+> Canonical alpha truth is only `canonical/alpha/ALPHA_MASTER_STATUS.md`.  
+> Current verdict: alpha is **NOT derived**; `alpha_bare^{-1}=137` is **CONDITIONAL ONLY**;  
+> physical `alpha^{-1}=137.036` is **NOT derived**; **Gap G137-B remains open**.
+
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-28  
 **Track**: T3_ALPHA — Fine Structure Constant Derivation  
