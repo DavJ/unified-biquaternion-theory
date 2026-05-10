@@ -101,11 +101,11 @@ differential geometry applied to the derived metric;
 UBT action.
 The Schwarzschild metric in isotropic coordinates is reproduced analytically
 and numerically verified to relative error $< 10^{-15}$.
-The odd-parity graviton satisfies the Regge-Wheeler equation without
-additional input.
-The off-shell $\Theta$-only closure (GAP-10) and the even-parity Zerilli
-equation (GAP-Z) are identified as open problems at level [L2] and do not
-affect the on-shell validity of the main result.
+Both graviton polarisation sectors are recovered: the odd-parity graviton
+satisfies the Regge-Wheeler equation, and the even-parity graviton satisfies
+the Zerilli equation (GAP-Z closed; see \texttt{canonical/gr\_closure/zerilli\_derivation.tex}).
+The off-shell $\Theta$-only closure (GAP-10) remains open at level [L2]
+and does not affect the on-shell validity of the main result.
 \end{abstract}
 
 \tableofcontents
@@ -486,6 +486,12 @@ Conservation: follows from the Bianchi identity and Noether's theorem applied
 to diffeomorphism invariance of $S_\Theta$.
 \end{proof}
 
+\begin{remark}
+Newton's constant $G$ enters the UBT framework as an external parameter,
+fixed by matching the GR limit; its derivation from the biquaternion algebra
+is an open problem outside the scope of this paper.
+\end{remark}
+
 % ==============================================================================
 \section{Schwarzschild Metric from $\Theta_0$}
 \label{sec:schwarzschild}
@@ -643,24 +649,26 @@ The classical GR recovery result (all theorems in
 \subsection{GAP-Z: Zerilli Equation (Even-Parity Graviton)}
 \label{sec:gapz}
 
-\begin{tcolorbox}[colback=orange!4!white,colframe=orange!55!black,
-  title=GAP-Z: Zerilli Equation\ \OPEN\ [\Ltwo]]
-\textbf{Proved}: The Regge-Wheeler equation (odd-parity graviton) is derived
-from linearised UBT (Theorem~\ref{thm:rw}).
+\begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
+  title=GAP-Z: Zerilli Equation\ \PROVED\ [\Lone]]
+\textbf{Proved}: Both polarisation sectors are now derived from linearised UBT.
 
 \smallskip
-\textbf{Missing}: The Zerilli equation for even-parity perturbations:
+\textbf{Odd-parity} (Regge-Wheeler): Theorem~\ref{thm:rw} (this paper).
+
+\smallskip
+\textbf{Even-parity} (Zerilli): The Zerilli equation
 \[
   \left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2 - V_\mathrm{Z}(r)\right]
-  \Psi_\mathrm{Z} = 0.
+  \Psi_\mathrm{Z} = 0
 \]
-Even-parity modes couple scalar and tensor sectors, requiring Chandrasekhar's
-two-potential transformation~\cite{chandrasekhar1983}, which has not been
-implemented in the UBT even-parity $\Theta$ sector.
+is derived via the Chandrasekhar two-potential transformation applied to
+the even-parity ($P_\psi$-even) linearised UBT field equation.
+See \texttt{canonical/gr\_closure/zerilli\_derivation.tex} (2026-05-10).
 
-\textbf{Priority}: Highest-priority open item for the graviton sector.
-Closing strategy: (1) derive the even-parity linearised UBT field equation;
-(2) show it reduces to Zerilli via Chandrasekhar's transformation.
+\textbf{Isospectrality}: The Chandrasekhar-Detweiler isospectrality theorem
+(same QNM spectrum for both polarisations) holds by the Darboux relation
+$\Psi_{\mathrm{RW}} = \mathcal{D}\,\Psi_Z$.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}

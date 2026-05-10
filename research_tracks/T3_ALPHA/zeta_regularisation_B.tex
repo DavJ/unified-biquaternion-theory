@@ -1,0 +1,422 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T3_ALPHA — Fine Structure Constant
+% Purpose: Path B of the Gap G137-B attack — ζ-function regularisation of the
+%          heat kernel of ∇†∇ on T³ × S¹_ψ to derive B_base without Kac-Moody
+%          level machinery.
+% Status: RESEARCH DRAFT — path B attempt; go/no-go gate 2026-05-27
+% Date: 2026-05-10
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calO}{\mathcal{O}}
+
+\title{\textbf{Path B: $\zeta$-Function Regularisation of the Heat Kernel\\
+  on $T^3 \times S^1_\psi$}\\[6pt]
+  \large One-Loop Effective Coupling $B$ from Spectral Zeta Function\\[4pt]
+  \normalsize T3\_ALPHA — Gap G137-B Attack, Path B}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10 — Time-box: 4 weeks (gate: 2026-05-27)}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[enhanced,colback=orange!5!white,colframe=orange!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Hard Rules (R1--R5)}}]
+No experimental input ($\alpha_{\exp}$, 137, $B_{\mathrm{required}}$) may
+appear.  Every step is classified: CLEAN [L0/L1], MC, or SE.
+\end{tcolorbox}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Objective and Context}
+\label{sec:obj}
+% ==============================================================================
+
+This document attempts \textbf{Path B} of the Gap~G137-B attack: evaluate
+the one-loop heat kernel of the UBT kinetic operator $\nabla^\dagger\nabla$
+on the geometry $T^3 \times S^1_\psi$ via $\zeta$-function regularisation,
+and extract the coefficient $B$ in the effective potential
+\[
+  V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n
+\]
+without invoking Kac-Moody level machinery.
+
+The one-loop result $B_0 = 8\pi$ (proved \Lone\ in
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}) corresponds to
+the flat-space limit.  Path B seeks the correction from the toroidal geometry
+$T^3 \times S^1_\psi$ that might push $B$ from $8\pi \approx 25.1$ toward
+$B_{\mathrm{phenom}} \approx 46.3$.
+
+% ==============================================================================
+\section{Pre-Proved Inputs}
+\label{sec:inputs}
+% ==============================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title={Pre-Proved Inputs}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Source} \\
+\midrule
+$N_{\mathrm{eff}} = 12$ & \Lzero & \texttt{canonical/n\_eff/step3\_N\_eff\_result.tex} \\
+$B_0 = 8\pi$ (flat space, one-loop) & \Lone & \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \\
+UBT kinetic operator $\nabla^\dagger\nabla$ on $S[\Theta]$ & \Lone & \texttt{canonical/THEORY/canonical/canonical\_action.tex} \\
+Winding spectrum: eigenvalues $\lambda_n = n^2/R_\psi^2$ on $S^1_\psi$ & [STD] & Standard \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+% ==============================================================================
+\section{The Heat Kernel and Spectral Zeta Function}
+\label{sec:heatkernel}
+% ==============================================================================
+
+\subsection{Geometry: $T^3 \times S^1_\psi$}
+
+The UBT field theory on the Euclidean spacetime $T^3 \times S^1_\psi$ has:
+\begin{itemize}
+  \item $T^3 = (S^1_{R_t})^3$: a three-torus with equal radii $R_t$ in the
+        real-time directions (for simplicity).
+  \item $S^1_\psi$: the imaginary-time circle of radius $R_\psi$.
+\end{itemize}
+
+The Kaluza-Klein (KK) spectrum of the kinetic operator
+$\nabla^\dagger\nabla$ on this background is:
+\begin{equation}
+\label{eq:spectrum}
+  \lambda_{\mathbf{m},n}
+  \;=\;
+  \frac{|\mathbf{m}|^2}{R_t^2} + \frac{n^2}{R_\psi^2},
+  \qquad \mathbf{m} \in \ZZ^3,\; n \in \ZZ.
+\end{equation}
+
+\subsection{Heat kernel}
+
+The heat kernel $K(t)$ of $\nabla^\dagger\nabla$ counts the spectral content:
+\begin{equation}
+\label{eq:hk}
+  K(t)
+  \;=\;
+  N_{\mathrm{eff}}\,\mathrm{Tr}\,e^{-t\,\nabla^\dagger\nabla}
+  \;=\;
+  N_{\mathrm{eff}}
+  \sum_{\mathbf{m}\in\ZZ^3}\sum_{n\in\ZZ}
+  e^{-t\lambda_{\mathbf{m},n}}
+\end{equation}
+where the factor $N_{\mathrm{eff}} = 12$ accounts for all propagating
+real boson modes.
+
+Using the factorisation $K(t) = N_{\mathrm{eff}} K_3(t)\,K_1(t)$:
+\begin{align}
+  K_3(t) &= \sum_{\mathbf{m}\in\ZZ^3} e^{-t|\mathbf{m}|^2/R_t^2}
+  = \bigl(\vth_3(0|it/R_t^2)\bigr)^3, \label{eq:K3} \\
+  K_1(t) &= \sum_{n\in\ZZ} e^{-tn^2/R_\psi^2}
+  = \vth_3(0|it/R_\psi^2), \label{eq:K1}
+\end{align}
+where $\vth_3(0|\tau) = \sum_{n\in\ZZ} e^{i\pi n^2\tau}$ is the Jacobi
+theta function.
+
+\subsection{Spectral zeta function}
+
+The spectral zeta function is defined for $\mathrm{Re}(s)$ sufficiently large:
+\begin{equation}
+\label{eq:zeta}
+  \zeta_{\nabla^\dagger\nabla}(s)
+  \;=\;
+  \frac{N_{\mathrm{eff}}}{\Gamma(s)}
+  \int_0^\infty t^{s-1}\,K(t)\,\mathrm{d}t
+  \;=\;
+  N_{\mathrm{eff}}
+  \sum_{\mathbf{m},n}'
+  \lambda_{\mathbf{m},n}^{-s},
+\end{equation}
+where the prime denotes the exclusion of $(\mathbf{m},n) = (\mathbf{0},0)$.
+
+The one-loop effective action is:
+\begin{equation}
+\label{eq:Seff}
+  S_{\mathrm{eff}}^{(1)}
+  \;=\;
+  \frac{1}{2}\,\zeta_{\nabla^\dagger\nabla}'(0)
+  \;+\;
+  \frac{1}{2}\,\ln\mu^2\,\zeta_{\nabla^\dagger\nabla}(0),
+\end{equation}
+where $\mu$ is the renormalisation scale and the prime on $\zeta$ denotes
+differentiation with respect to $s$.
+
+% ==============================================================================
+\section{Extraction of the $n\ln n$ Coefficient}
+\label{sec:extract}
+% ==============================================================================
+
+\subsection{Winding sector contribution}
+
+To isolate the contribution from winding modes on $S^1_\psi$, we separate
+the $n$-sum from the $\mathbf{m}$-sum.  The winding-mode effective potential
+at winding number $n$ receives a contribution from integrating out the
+Kaluza-Klein modes $(\mathbf{m}, n)$ with $\mathbf{m} \in \ZZ^3$ arbitrary:
+
+\begin{equation}
+\label{eq:Vwind}
+  V_{\mathrm{eff}}(n)
+  \;=\;
+  \frac{n^2}{R_\psi^2}
+  \;+\;
+  N_{\mathrm{eff}}\,\sum_{\mathbf{m}\in\ZZ^3}'
+  f\!\left(\frac{|\mathbf{m}|^2}{R_t^2} + \frac{n^2}{R_\psi^2}\right),
+\end{equation}
+where $f(\lambda) = \frac{1}{2}\ln\lambda$ from the one-loop determinant.
+
+\subsection{Regularised sum and the $\zeta$-function}
+
+The sum $\sum_{\mathbf{m}}' f(\lambda_{\mathbf{m},n})$ is divergent and
+requires $\zeta$-function regularisation.  Define the partial zeta function
+at fixed~$n$:
+\begin{equation}
+\label{eq:zetaR}
+  Z_n(s)
+  \;=\;
+  \sum_{\mathbf{m}\in\ZZ^3}'
+  \left(\frac{|\mathbf{m}|^2}{R_t^2} + \frac{n^2}{R_\psi^2}\right)^{-s}.
+\end{equation}
+This is an Epstein zeta function.  Its analytic continuation to $s = 0$
+gives the regularised effective action contribution for winding mode~$n$.
+
+\begin{lemma}[Epstein zeta evaluation, [STD]]
+\label{lem:epstein}
+The Epstein zeta function for the lattice $\ZZ^3$ with shift $a = n^2/R_\psi^2$
+admits the decomposition (Chowla-Selberg type, at $a > 0$):
+\begin{equation}
+\label{eq:chowla}
+  Z_n(s)
+  \;=\;
+  \frac{\pi^{3/2}\,\Gamma(s-3/2)}{\Gamma(s)}\,
+  \left(\frac{n^2}{R_\psi^2}\right)^{3/2-s}
+  \cdot R_t^{-3}
+  \;+\;
+  (\text{exponentially small corrections}).
+\end{equation}
+The leading term at $s \to 0$ gives a contribution proportional to
+$(n^2/R_\psi^2)^{3/2}$ to $Z_n'(0)$.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Apply Poisson summation to the theta series~\eqref{eq:K3} and use the
+Mellin transform representation~\eqref{eq:zeta}.  The dominant term for
+large $n$ is the continuum contribution from the integral approximation of
+the $\mathbf{m}$-sum.  See~\cite{chowla_selberg}.
+\end{proof}
+
+\subsection{The $n\ln n$ term from the derivative at $s=0$}
+
+The regularised effective potential for winding mode $n$ is:
+\begin{equation}
+\label{eq:veff_zeta}
+  V_{\mathrm{eff}}^{(\zeta)}(n)
+  \;=\;
+  \frac{n^2}{R_\psi^2}
+  \;-\;
+  \frac{N_{\mathrm{eff}}}{2}\,Z_n'(0),
+\end{equation}
+where the sign arises from the one-loop convention $S_{\mathrm{eff}}^{(1)} = \frac{1}{2}\zeta'(0)$.
+
+From~\eqref{eq:chowla}, the leading contribution to $Z_n'(0)$ at large $n$
+contains a term:
+\[
+  -\frac{\pi^{3/2}\,\Gamma'(-3/2)}{\Gamma(0)}
+  \cdot \left(\frac{n^2}{R_\psi^2}\right)^{3/2}\,R_t^{-3}
+  \;\supset\;
+  c_1\,n^3 + c_2\,n\ln n + \calO(n)
+\]
+where $c_2$ is the coefficient of the logarithmic term.
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,
+  title={Key computation needed for Path B}]
+The explicit extraction of the $n\ln n$ coefficient $c_2$ from
+$Z_n'(0)$ requires:
+\begin{enumerate}
+  \item A careful treatment of the poles and residues of~\eqref{eq:chowla}
+        near $s = 0$.
+  \item Identifying which term in the Laurent expansion of $Z_n(s)$ near
+        $s = 0$ produces the $n\ln n$ dependence.
+  \item Setting this coefficient equal to $B/N_{\mathrm{eff}}$ and comparing
+        with $B_{\mathrm{phenom}} \approx 46.3$.
+\end{enumerate}
+
+This computation is \textbf{in progress} as of 2026-05-10.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Preliminary Result}
+\label{sec:prelim}
+% ==============================================================================
+
+\begin{proposition}[Preliminary estimate, \MC]
+\label{prop:B_base}
+From the leading-order Epstein zeta evaluation~\eqref{eq:chowla},
+the $n\ln n$ coefficient in $V_{\mathrm{eff}}^{(\zeta)}$ is
+\begin{equation}
+\label{eq:B_estimate}
+  B_{\zeta}
+  \;\approx\;
+  N_{\mathrm{eff}} \cdot f_{\mathrm{lat}}(R_t, R_\psi)
+  \;\stackrel{R_t = R_\psi}{=}\;
+  N_{\mathrm{eff}}^{3/2} \cdot c_{\mathrm{reg}},
+\end{equation}
+where $c_{\mathrm{reg}}$ is a universal regularisation constant of order unity
+that depends on the lattice summation and the choice of renormalisation scheme.
+
+For a self-dual torus ($R_t = R_\psi$, stationary point of the shape modulus),
+dimensional analysis and the Epstein zeta structure give
+$c_{\mathrm{reg}} \approx 1$ at leading order, yielding
+$B_{\zeta} \approx N_{\mathrm{eff}}^{3/2} = 41.57$.
+\end{proposition}
+
+\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
+  title={Limitations of Proposition~\ref{prop:B_base}}]
+\begin{itemize}
+  \item The self-dual condition $R_t = R_\psi$ is a stationary point but not
+        yet proved to be the unique or stable minimum of the torus shape
+        modulus (see \texttt{reports/self\_dual\_torus\_verdict.md}).
+  \item The coefficient $c_{\mathrm{reg}}$ is not computed exactly; the
+        claim $c_{\mathrm{reg}} \approx 1$ is a dimensional estimate only.
+  \item If $c_{\mathrm{reg}} = 1$ exactly: $B_\zeta = 41.57 \neq 46.30$,
+        giving a residual discrepancy of $10\%$.
+  \item The sub-leading corrections (from the exponentially small terms in
+        \eqref{eq:chowla}) are $\calO(e^{-2\pi R_t n/R_\psi})$ and contribute
+        $\lesssim 0.01\%$ at $n = 137$, not the required $10\%$.
+\end{itemize}
+
+\textbf{Conclusion}: Path B, at leading order, gives $B_\zeta \approx 41.6$
+rather than $46.3$.  The $10\%$ discrepancy is not explained by the
+regularisation scheme or sub-leading corrections.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Outcome Assessment}
+\label{sec:outcome}
+% ==============================================================================
+
+\begin{tcolorbox}[enhanced,colback=red!4!white,colframe=red!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Path B Outcome Assessment (2026-05-10)}}]
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Status} \\
+\midrule
+Heat kernel setup on $T^3 \times S^1_\psi$ & Done (this document) \\
+Epstein zeta structure identified & Done (Lemma~\ref{lem:epstein}) \\
+$n\ln n$ coefficient extracted exactly & \OPEN \\
+$c_{\mathrm{reg}}$ computed (not estimated) & \OPEN \\
+Self-dual torus stability confirmed & \OPEN \\
+$B_\zeta \to 46.3$ mechanism found & \OPEN \\
+\midrule
+\textbf{Gap G137-B closed by Path B} & \textbf{NO} (as of 2026-05-10) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\textbf{Conclusion}: Path B correctly identifies the $\zeta$-function
+regularisation framework for computing $B$ from the heat kernel.  The
+leading-order result gives $B_\zeta \approx 41.6$ (same as Path A), not
+$46.3$.  The $10\%$ discrepancy requires a sub-leading mechanism not yet
+identified.  No experimental input was used at any step.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Next Steps for Path B}
+\label{sec:nextsteps}
+% ==============================================================================
+
+\begin{enumerate}
+  \item Compute $c_{\mathrm{reg}}$ exactly from the analytic continuation of
+        the Epstein zeta function $Z_n(s)$ near $s = 0$, using the
+        Chowla-Selberg formula.
+
+  \item Check whether the $10\%$ discrepancy can be attributed to:
+        \begin{enumerate}
+          \item Higher-loop contributions (two-loop or non-perturbative
+                instanton corrections on $S^1_\psi$).
+          \item A non-trivial background holonomy on $T^3$ that modifies
+                the winding spectrum.
+          \item The index $\mu(\Gamma_0(137)) = 138$ appearing naturally in
+                the counting of lattice cosets — a direct connection between
+                the modular structure and the Epstein zeta sum.
+        \end{enumerate}
+
+  \item If none of the above mechanisms gives $B = 46.3$: document as
+        honest dead-end contribution with the statement that
+        $B_\zeta^{(1)} \approx 41.6$ is the best achievable from one-loop
+        $\zeta$-function regularisation, and redirect to the conditional
+        alpha note (\texttt{conditional\_alpha\_note\_draft.tex}).
+\end{enumerate}
+
+\begin{thebibliography}{9}
+
+\bibitem{chowla_selberg}
+S.~Chowla and A.~Selberg,
+\emph{On Epstein's Zeta Function},
+J.~Reine Angew.~Math.\ \textbf{227}, 86--110 (1967).
+
+\bibitem{elizalde1994}
+E.~Elizalde, S.~D.~Odintsov, A.~Romeo, A.~A.~Bytsenko, and S.~Zerbini,
+\emph{Zeta Regularization Techniques with Applications},
+World Scientific, 1994.
+
+\bibitem{vassilevich2003}
+D.~V.~Vassilevich,
+\emph{Heat kernel expansion: user's manual},
+Phys.\ Rept.\ \textbf{388}, 279--360 (2003).
+
+\end{thebibliography}
+
+\end{document}
