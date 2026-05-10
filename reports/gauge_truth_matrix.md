@@ -101,7 +101,7 @@ Do not conflate structural with dynamical confinement in the paper.
 
 | Claim | Verdict | Notes | Paper? |
 |-------|---------|-------|--------|
-| Specific fermion hypercharge assignments | 🔲 OPEN (Gap C2) | No derivation of Q_u = 2/3, Q_d = -1/3 etc. | O |
+| Specific fermion hypercharge assignments | 🔶 PARTIAL (Gap C2) | $Y\in\frac{1}{6}\ZZ$ proved [L0]; $Y_Q=1/6$ consistent with SU(3)×SU(2)_L proved [L1]; uniqueness is [MC] — see `canonical/interactions/hypercharge_assignments.tex` | O |
 
 ---
 

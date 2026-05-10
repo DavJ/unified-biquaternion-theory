@@ -23,7 +23,7 @@ Based on current proof status; no aspirational items without a clear path.
 
 | Task | Owner | Status |
 |------|-------|--------|
-| Fix Newton's G clarification in §3.5 of UBT_GR_Submission.tex | DJ | Required pre-submission |
+| Fix Newton's G clarification in §3.5 of UBT_GR_Submission.tex | DJ | ✅ Done (2026-05-10) |
 | Include canonical files as arXiv ancillary material | DJ | Prepare on submission |
 | Submit T1_GR to arXiv (gr-qc or math-ph) | DJ | Target: end of week 1 |
 | Submit T1_GR to Classical and Quantum Gravity or JMP | DJ | Simultaneous with arXiv |

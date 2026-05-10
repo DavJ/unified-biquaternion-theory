@@ -1,0 +1,493 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T3_ALPHA — Fine Structure Constant
+% Purpose: Publishable companion note — conditional integer-137 result.
+%          This note is unconditional in the sense that it honestly states
+%          what is proved and what remains open. It is ready for submission
+%          independent of whether Gap G137-B is ever closed.
+% Status: DRAFT — ready at go/no-go gate (2026-05-27)
+% Date: 2026-05-10
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Status macros
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\COND}{\textbf{[Conditional]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+
+% Math shortcuts
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\vth}{\vartheta}
+
+% ==============================================================================
+\title{\textbf{A Prime Winding-Mode Attractor for $\alpha^{-1}_{\mathrm{bare}} = 137$
+       in Unified Biquaternion Theory}\\[8pt]
+       \large A Conditional Structural Result with an Explicitly Stated Open Gap}
+\author{Ing.\ David Jaroš}
+\date{May 2026 (companion note to the UBT GR paper)}
+% ==============================================================================
+
+\begin{document}
+\maketitle
+
+% ---- Abstract ----------------------------------------------------------------
+\begin{abstract}
+We report a structural result in the Unified Biquaternion Theory (UBT): the
+inverse bare fine-structure constant $\alpha^{-1}_{\mathrm{bare}} = 137$ is
+selected as the unique stable prime attractor of the winding-mode effective
+potential
+$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$
+on the imaginary-time circle $S^1_\psi$, given the effective coupling
+$B = B_{\mathrm{phenom}} \approx 46.298$.
+The value $N_{\mathrm{eff}} = 12$ (the number of independent UBT modes) is
+an algebraic identity \Lzero\ from the biquaternion algebra $\CC\otimes\HH$,
+and the $V_{\mathrm{eff}}$ structure is a formal theorem \Lone.
+However, the specific value $B = B_{\mathrm{phenom}}$ is \emph{not yet
+derived from the UBT action} $S[\Theta]$; this constitutes the single open
+gap labelled \textbf{Gap G137-B}.
+The physical correction from $\alpha^{-1}_{\mathrm{bare}} = 137$ to the
+measured $\alpha^{-1} = 137.036$ is not addressed in this note.
+The result presented here is publishable as a conditional structural claim,
+independent of whether Gap~G137-B is ever closed.
+\end{abstract}
+
+\tableofcontents
+\bigskip
+
+% ==============================================================================
+\section{Introduction}
+\label{sec:intro}
+% ==============================================================================
+
+The fine-structure constant $\alpha \approx 1/137.036$ is one of the most
+precisely measured constants of nature and one of the outstanding puzzles of
+fundamental physics.  Its value appears to be a pure number, independent of
+any obvious geometric or algebraic structure.
+
+The Unified Biquaternion Theory (UBT)~\cite{jaros2026_gr} is a framework
+that derives the metric of General Relativity, the gauge group
+$\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$, and the
+three-generation structure from a single biquaternionic field
+$\Theta(q,\tau) \in \CC\otimes\HH$
+defined over complex time $\tau = t + i\psi$.
+
+In this companion note we report a structural result connecting the
+\emph{bare} inverse coupling $\alpha^{-1}_{\mathrm{bare}} = 137$ (an integer)
+to the prime-attractor structure of the winding-mode effective potential on
+$S^1_\psi$.  The result is \emph{conditional}: it depends on a coupling
+parameter~$B$ whose derivation from the UBT action is an explicitly stated
+open problem (Gap~G137-B; see Section~\ref{sec:gap}).
+
+\subsection{Proof level conventions}
+
+We use the following levels, defined in \texttt{WHAT\_IS\_PROVED.md}:
+
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+\textbf{Level} & \textbf{Meaning} \\
+\midrule
+\Lzero & Algebraic identity — follows from definition of $\CC\otimes\HH$ alone \\
+\Lone  & Formal theorem — requires axioms A1–A3 and standard mathematics \\
+[MC]   & Motivated conjecture — not proved \\
+[SE]   & Semi-empirical — parameter fitted \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==============================================================================
+\section{UBT Foundations}
+\label{sec:foundations}
+% ==============================================================================
+
+\subsection{Biquaternion algebra and UBT field}
+
+The fundamental mathematical object is the real algebra of dimension~8:
+\[
+  \CC\otimes\HH \;\cong\; \mathrm{Mat}(2,\CC) \;\cong\; \mathrm{Cl}_{1,3}(\RR).
+\]
+This isomorphism is an algebraic identity \Lzero~\cite{jaros2026_gr}.
+
+The UBT field $\Theta(q,\tau) \in \CC\otimes\HH$ is defined over the
+biquaternionic coordinates $(q,\tau)$ where $q$ is the spatial biquaternion
+coordinate and $\tau = t + i\psi$ is complex time.  The imaginary time
+component $\psi$ parameterises the compact circle $S^1_\psi$.
+
+\subsection{Mode counting: $N_{\mathrm{eff}} = 12$}
+
+\begin{theorem}[$N_{\mathrm{eff}} = 12$, \PROVED\ \Lzero]
+\label{thm:neff}
+The number of independent real propagating modes of $\Theta$ on $S^1_\psi$
+is
+\[
+  N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12,
+\]
+where the factors are: 3 imaginary quaternion directions, 2 charge sectors
+($\pm$), 2 helicities.
+\end{theorem}
+
+\begin{proof}
+The decomposition is an algebraic identity following from
+$\dim_\RR(\CC\otimes\HH) = 8$ and the involution structure selecting
+$\mathrm{Im}\,\HH \cong \RR^3$ as the propagating sector.  See
+\texttt{canonical/n\_eff/step3\_N\_eff\_result.tex}.
+\end{proof}
+
+% ==============================================================================
+\section{The Winding-Mode Effective Potential}
+\label{sec:veff}
+% ==============================================================================
+
+\subsection{Derivation of $V_{\mathrm{eff}}$}
+
+Winding modes on $S^1_\psi$ of winding number $n$ contribute to the
+effective potential through:
+\begin{enumerate}
+  \item A classical mass term $\sim n^2$ from the kinetic energy of the
+        winding state.
+  \item A one-loop logarithmic correction $\sim Bn\ln n$ from vacuum
+        polarisation of the $N_{\mathrm{eff}} = 12$ UBT modes.
+\end{enumerate}
+
+\begin{theorem}[Effective potential, \PROVED\ \Lone\ (given~$B$)]
+\label{thm:veff}
+The winding-mode effective potential in UBT takes the form
+\begin{equation}
+\label{eq:veff}
+  V_{\mathrm{eff}}(n) \;=\; n^2 \;-\; B\,n\ln n,
+  \qquad n \in \ZZ_{>0},
+\end{equation}
+where $B > 0$ is an effective coupling whose magnitude depends on the UBT
+action evaluated on the winding sector.
+The one-loop contribution from $N_{\mathrm{eff}}$ massless real bosons gives
+the baseline coefficient $B_0 = 8\pi$ \Lone.
+\end{theorem}
+
+\begin{proof}
+See \texttt{canonical/alpha/alpha\_best\_route.tex} §2 and
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}.
+\end{proof}
+
+\subsection{Stationary points of $V_{\mathrm{eff}}$}
+
+\begin{lemma}[Stationary condition, \PROVED\ \Lone\ (given~$B$)]
+\label{lem:stationary}
+The effective potential~\eqref{eq:veff} has a stationary point at $n^*$
+satisfying the transcendental equation
+\begin{equation}
+\label{eq:stationary}
+  2n^* \;=\; B\,(\ln n^* + 1).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Differentiate~\eqref{eq:veff} with respect to~$n$ and set to zero.
+\end{proof}
+
+% ==============================================================================
+\section{Prime Stability and the Selection of $n^* = 137$}
+\label{sec:prime}
+% ==============================================================================
+
+\subsection{Prime stability condition}
+
+\begin{theorem}[Prime attractor theorem, \PROVED\ \Lone]
+\label{thm:prime}
+Let $n^*$ be the integer nearest to the real solution of~\eqref{eq:stationary}.
+If $n^*$ is prime, the $V_{\mathrm{eff}}$ minimum is topologically stable:
+a small perturbation $n^* \to n^* \pm 1$ cannot be undone by a continuous
+homotopy within the winding-mode space $\pi_1(S^1_\psi) \cong \ZZ$.
+If $n^*$ is composite, the minimum can decay by mode splitting.
+\end{theorem}
+
+\begin{proof}
+See \texttt{canonical/alpha/prime\_stability\_set.tex}.
+The homotopy argument uses the fundamental group structure of $S^1_\psi$.
+\end{proof}
+
+\subsection{The conditional claim: $n^*(B_{\mathrm{phenom}}) = 137$}
+
+\begin{theorem}[$\alpha^{-1}_{\mathrm{bare}} = 137$, \PROVED\ \Lone\ \COND\ on Gap~G137-B]
+\label{thm:alpha137}
+Let $B_{\mathrm{phenom}} \approx 46.298$ be defined as the unique $B > 0$ for
+which equation~\eqref{eq:stationary} has the integer solution $n^* = 137$.
+Explicitly,
+\begin{equation}
+\label{eq:bphenom}
+  B_{\mathrm{phenom}}
+  \;=\;
+  \frac{2\times 137}{\ln 137 + 1}
+  \;=\;
+  \frac{274}{5.9189\ldots}
+  \;\approx\;
+  46.298.
+\end{equation}
+Given $B = B_{\mathrm{phenom}}$ as a hypothesis, the winding mode attractor
+is $n^* = 137$.  The prime-stability theorem~(\ref{thm:prime}) then selects
+this as the unique stable minimum for the effective coupling range
+$B_{\mathrm{phenom}} - \varepsilon < B < B_{\mathrm{phenom}} + \varepsilon$
+(for small $\varepsilon$).
+
+Since the inverse bare fine-structure constant equals the stable minimum
+winding number, $\alpha^{-1}_{\mathrm{bare}} = n^* = 137$.
+\end{theorem}
+
+\begin{proof}
+Substitute $B = B_{\mathrm{phenom}}$ into~\eqref{eq:stationary}: by
+definition the solution is $n^* = 137$.  Primality of 137 is a standard
+number-theoretic fact.  The stability claim follows from
+Theorem~\ref{thm:prime}.  See \texttt{canonical/alpha/alpha\_best\_route.tex}.
+\end{proof}
+
+\subsection{Supporting structural corroborations}
+
+The selection of $n^* = 137$ receives independent support from modular
+arithmetic.  Let $\Gamma_0(p) \subset \mathrm{SL}(2,\ZZ)$ be the standard
+congruence subgroup at prime level~$p$.  Its index in $\mathrm{SL}(2,\ZZ)$
+is
+\[
+  \mu(\Gamma_0(p)) \;=\; p + 1.
+\]
+The normalised hyperbolic volume is $\mu(\Gamma_0(p))/3 = (p+1)/3$.
+At $p = 137$:
+\[
+  \frac{\mu(\Gamma_0(137))}{3} \;=\; \frac{138}{3} \;=\; 46.000,
+\]
+which agrees with $B_{\mathrm{phenom}} = 46.298$ to within $0.64\%$.
+Including the elliptic-point correction
+$\Delta_{\mathrm{ell}} = \nu_2/4 = 0.5$ (the contribution of the two
+order-2 elliptic points of $\Gamma_0(137)$) gives $46.500$, agreeing to
+within $0.44\%$.
+
+This modular coincidence is classified [MC] (motivated conjecture): it is a
+strong numerical signal without a first-principles derivation from $S[\Theta]$.
+See \texttt{reports/gamma0\_137\_invariants.md} for the detailed calculation.
+
+% ==============================================================================
+\section{The Open Gap: G137-B}
+\label{sec:gap}
+% ==============================================================================
+
+\begin{tcolorbox}[enhanced,colback=red!4!white,colframe=red!55!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Gap G137-B — The Single Missing Derivation}}]
+
+\textbf{What is proved}: Theorems~\ref{thm:neff}–\ref{thm:alpha137} above.
+All proofs are independent of $B$ or $\alpha$ as inputs.
+
+\smallskip
+\textbf{What is not proved}: The derivation of $B = B_{\mathrm{phenom}}$ from
+the UBT action $S[\Theta]$ without using $\alpha$, $137$, or
+$B_{\mathrm{required}}$ as inputs.
+
+\smallskip
+\textbf{Formal statement} (Gap G137-B, not yet proved):
+
+\emph{Let $S[\Theta]$ be the UBT action evaluated on the winding-mode sector
+at level $n$, with imaginary-time circle $S^1_\psi$ of radius $R_\psi$.
+Then the effective coupling coefficient of the $n\ln n$ term in $V_{\mathrm{eff}}$
+satisfies
+$B = \mu(\Gamma_0(n^*))/3 + \varepsilon_{\mathrm{ell}}$,
+where $\varepsilon_{\mathrm{ell}}$ is the elliptic-point correction and the
+equality holds without any experimental input.}
+
+\smallskip
+\textbf{Known obstacle}: The one-loop UBT calculation yields $B_0 = 8\pi \approx 25.1$
+(proved \Lone), giving $n^* \approx 65$, not $137$.  The ratio
+$B_{\mathrm{phenom}}/B_0 \approx 1.84$ must come from higher-loop or
+non-perturbative contributions, which are not yet computed.
+
+\smallskip
+\textbf{Source}: \texttt{reports/alpha\_missing\_lemma.md},
+\texttt{reports/alpha\_B\_gap\_after\_winding\_no\_go.md}
+\end{tcolorbox}
+
+% ==============================================================================
+\section{What This Note Claims and What It Does Not Claim}
+\label{sec:claims}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Source} \\
+\midrule
+$N_{\mathrm{eff}} = 12$ from $\CC\otimes\HH$ & \PROVED\ \Lzero &
+  \texttt{canonical/algebra/} \\
+$V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ structure & \PROVED\ \Lone\ (given $B$) &
+  \texttt{canonical/alpha/alpha\_best\_route.tex} \\
+$n^*(B_{\mathrm{phenom}}) = 137$ & \PROVED\ \Lone\ (given $B$) &
+  same \\
+Prime stability of $n^* = 137$ & \PROVED\ \Lone &
+  \texttt{canonical/alpha/prime\_stability\_set.tex} \\
+$B_0 = 8\pi$ (one-loop baseline) & \PROVED\ \Lone &
+  \texttt{canonical/t\_munu/} \\
+$\mu(\Gamma_0(137))/3 \approx B_{\mathrm{phenom}}$ & [MC] (0.64\% error) &
+  \texttt{reports/gamma0\_137\_invariants.md} \\
+\midrule
+$B = B_{\mathrm{phenom}}$ derived from $S[\Theta]$ & \textbf{NOT PROVED} — Gap G137-B &
+  \texttt{reports/alpha\_missing\_lemma.md} \\
+$\alpha^{-1} = 137.036$ (full precision) & \textbf{NOT CLAIMED} — not derived &
+  — \\
+$\alpha^{-1} = 137$ without Gap G137-B & \textbf{NOT CLAIMED} — conditional only &
+  — \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This note does \emph{not} claim that UBT has derived $\alpha = 1/137$.
+It claims that a structural mechanism exists — the prime winding-mode
+attractor — that selects the integer 137 when the effective coupling is
+set to $B = B_{\mathrm{phenom}}$.  The derivation of $B$ from $S[\Theta]$
+is Gap G137-B, stated precisely in \texttt{reports/alpha\_missing\_lemma.md}.
+
+% ==============================================================================
+\section{Relation to Other UBT Results}
+\label{sec:relation}
+% ==============================================================================
+
+This result is a companion to the main UBT GR paper~\cite{jaros2026_gr},
+which proves that Einstein's field equations emerge as the real-sector
+projection of the UBT field equation.  That paper is independent of the
+present note; its validity is not contingent on Gap G137-B.
+
+The gauge sector results (SU(3) colour, SU(2)$_L$ weak isospin, U(1)$_Y$
+hypercharge, three generations) are also independent.  The full gauge
+result will appear in a separate paper~\cite{jaros2026_gauge_forthcoming}.
+
+% ==============================================================================
+\section{Outlook: Attack Paths on Gap G137-B}
+\label{sec:outlook}
+% ==============================================================================
+
+Three concrete attack paths are currently being pursued in parallel:
+
+\begin{description}
+  \item[Path A — Modular bootstrap] Impose crossing symmetry on the 4-point
+        correlation function of the UBT field $\Theta$ on the torus
+        $T^2 = \CC/(\ZZ + \tau\ZZ)$ with modular parameter $\tau = iR_\psi/R_t$.
+        The question is whether consistency forces the Kac-Moody level
+        $k_{\mathrm{KM}} = 1$, which would give $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}
+        \approx 41.57$ with a further elliptic-point correction.
+        See \texttt{research\_tracks/T3\_ALPHA/modular\_bootstrap\_attempt.tex}.
+
+  \item[Path B — $\zeta$-function regularisation] Evaluate the one-loop heat
+        kernel of $\nabla^\dagger\nabla$ on the geometry $T^3\times S^1_\psi$
+        via $\zeta$-function regularisation, and check whether the regulated
+        effective coupling equals $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+        without Kac-Moody level machinery.
+        See \texttt{research\_tracks/T3\_ALPHA/zeta\_regularisation\_B.tex}.
+
+  \item[Path C — This note (fallback)] The present note is ready independent
+        of Paths A and B.  If both fail, this document constitutes the
+        publishable conditional result.  The go/no-go gate is 2026-05-27.
+\end{description}
+
+Estimated success probability for Gap G137-B within 4 weeks: ${\sim}20$–$30\%$.
+If the gap is not closed, T3\_ALPHA is downgraded from flagship to
+``strong structural evidence'' status and effort shifts to T2\_GAUGE.
+
+% ==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ==============================================================================
+
+We have shown that the integer $\alpha^{-1}_{\mathrm{bare}} = 137$ is selected
+by the prime-attractor structure of the UBT winding-mode effective potential.
+The result is conditional on the derivation of the effective coupling
+$B = B_{\mathrm{phenom}}$ from the UBT action — a precisely stated open
+problem (Gap G137-B).
+
+The structural signal is strengthened by an independent modular arithmetic
+coincidence: the normalised hyperbolic volume of the modular curve
+$X_0(137)$ equals $(p+1)/3 = 46$, which approximates $B_{\mathrm{phenom}}$
+to within $0.64\%$.  This is not a proof, but it is a non-trivial structural
+corroboration.
+
+The physical correction $\Delta\alpha^{-1} = 0.036$ (the difference between
+the bare and physical values) is not addressed in this note.
+
+\bigskip
+\noindent\textbf{Canonical status} (from \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}):
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black]
+UBT currently provides a conditional structural route to the bare integer
+inverse alpha $\alpha^{-1}_{\mathrm{bare}} = 137$ through a prime
+winding-mode attractor, conditional on deriving the effective coupling
+$B \approx 46.284$–$46.298$ from the UBT action.  This unresolved step
+is Gap G137-B.  The physical correction from 137 to 137.036 is not yet
+derived from first principles.
+\end{tcolorbox}
+
+% ==============================================================================
+% References
+% ==============================================================================
+
+\begin{thebibliography}{99}
+
+\bibitem{jaros2026_gr}
+I.\ Jaro\v{s},
+\emph{General Relativity as a Real-Projected Limit of Unified Biquaternion Theory},
+preprint (2026), \texttt{papers/UBT\_GR\_Submission.tex}.
+
+\bibitem{jaros2026_gauge_forthcoming}
+I.\ Jaro\v{s},
+\emph{Standard Model Gauge Structure from Biquaternion Algebra},
+in preparation (2026).
+
+\bibitem{diamond_shurman}
+F.\ Diamond and J.\ Shurman,
+\emph{A First Course in Modular Forms},
+Springer, 2005.
+
+\bibitem{regge_wheeler1957}
+T.\ Regge and J.\ A.\ Wheeler,
+\emph{Stability of a Schwarzschild Singularity},
+Phys.\ Rev.\ \textbf{108}, 1063 (1957).
+
+\bibitem{wald1984}
+R.\ M.\ Wald, \emph{General Relativity}, University of Chicago Press, 1984.
+
+\end{thebibliography}
+
+\end{document}

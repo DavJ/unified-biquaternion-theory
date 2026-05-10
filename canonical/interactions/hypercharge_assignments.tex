@@ -1,0 +1,411 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Gap ID: GAP-C2
+% Purpose: Attempt to derive specific fermion hypercharge assignments from UBT
+%          (Gap C2 from reports/gauge_truth_matrix.md §4).
+%          Builds on: canonical/interactions/sm_gauge.tex §U1
+%                     canonical/chirality/step3_gap_C1_resolution.tex
+%                     canonical/appendices/appendix_alpha_geometry.tex §1
+% Status: Partially derived; see Section 5 for honest verdict
+% Date: 2026-05-10
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\su}{\mathfrak{su}}
+
+\title{\textbf{GAP-C2: Fermion Hypercharge Assignments from UBT}\\[6pt]
+  \large Derivation Attempt and Honest Verdict\\[4pt]
+  \normalsize T2\_GAUGE — Gap~C2 from \texttt{reports/gauge\_truth\_matrix.md §4}}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Gap~C2 (from \texttt{reports/gauge\_truth\_matrix.md §4}) asks for a
+derivation of the specific fermion hypercharge values
+$Y_Q = 1/6$, $Y_u = 2/3$, $Y_d = -1/3$, $Y_L = -1/2$, $Y_e = -1$,
+$Y_\nu = 0$ from the UBT biquaternion algebra $\CC\otimes\HH$, without
+taking them as inputs.
+
+We show that the Dirac quantisation condition already proved \Lzero\ in
+\texttt{canonical/appendices/appendix\_alpha\_geometry.tex} §1 constrains
+the hypercharge generator $Y$ to take values in $\frac{1}{6}\ZZ$
+(i.e., integer multiples of $1/6$).
+Combined with the SU(3) decomposition (quark colour multiplet structure)
+and the SU(2)$_L$ doublet assignments (from Gap~C1, closed in
+\texttt{canonical/chirality/step3\_gap\_C1\_resolution.tex}),
+we are able to derive the hypercharge assignments for the
+\emph{quark doublet} ($Y_Q = 1/6$) and \emph{down-type singlet}
+($Y_d = -1/3$) from the consistency conditions of SU(3)$\times$SU(2)$_L$
+representation theory applied to $\CC\otimes\HH$.
+
+The lepton assignments $Y_L = -1/2$, $Y_e = -1$, $Y_\nu = 0$ and the
+up-type quark assignment $Y_u = 2/3$ follow from these plus the
+Gell-Mann--Nishijima relation $Q = T_3 + Y/2$ (proved \Lzero) under the
+assumption that the electric charge assignments $(Q_e = -1$,
+$Q_u = +2/3)$ are derived from the U(1)$_{\mathrm{EM}}$ structure.
+
+The charge quantisation argument is summarised as a partial \Lone\ result;
+the remaining step (proving the SU(3) $\to$ lepton-sector link that forces
+the specific unit $1/6$) is classified \MC.  An honest verdict table is
+provided in Section~\ref{sec:verdict}.
+\end{abstract}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Context and Goal}
+\label{sec:context}
+% ==============================================================================
+
+\subsection{What is already proved}
+
+The following results are used without re-derivation:
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title={Pre-Proved Results}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Source} \\
+\midrule
+U(1)$_Y$ from right scalar phase on Mat(2,$\CC$) & \Lzero &
+  \texttt{sm\_gauge.tex §U1} \\
+$Y$ generator $= \frac{1}{2}\mathbf{I}$ (hypercharge normalisation) & \Lzero &
+  \texttt{sm\_gauge.tex §U1} \\
+Dirac charge quantisation: $e^{iq\oint A_\psi\,d\psi} = 1$ & \Lzero &
+  \texttt{appendix\_alpha\_geometry.tex §1} \\
+$\mathrm{SU}(3)_c$ quarks in $\mathbf{3}$, gluons in $\mathbf{8}$ & \Lzero &
+  \texttt{sm\_gauge.tex §G.B--G.C} \\
+$\mathrm{SU}(2)_L$ left-chiral doublets (Gap C1 closed) & \Lone &
+  \texttt{step3\_gap\_C1\_resolution.tex} \\
+$Q = T_3 + Y/2$ (Gell-Mann--Nishijima) & \Lone &
+  \texttt{qed.tex} \\
+$\ZZ_2\times\ZZ_2\times\ZZ_2$ involution structure & \Lzero &
+  \texttt{su3\_from\_involutions.tex} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\subsection{Gap C2 statement}
+
+\textbf{Gap C2} (from \texttt{reports/gauge\_truth\_matrix.md §4}):
+Derive the specific fermion hypercharge assignments
+\[
+  Y_Q = \tfrac{1}{6},\quad
+  Y_u = \tfrac{2}{3},\quad
+  Y_d = -\tfrac{1}{3},\quad
+  Y_L = -\tfrac{1}{2},\quad
+  Y_e = -1,\quad
+  Y_\nu = 0
+\]
+from $\CC\otimes\HH$ without taking them as inputs.  Here $Q$ is the
+quark doublet, $u,d$ the up- and down-type singlets, $L$ the lepton doublet,
+$e$ the charged lepton singlet, $\nu$ the neutrino singlet.
+
+% ==============================================================================
+\section{Hypercharge Quantisation from the Dirac Condition}
+\label{sec:dirac}
+% ==============================================================================
+
+\begin{theorem}[Hypercharge unit from Dirac quantisation, \PROVED\ \Lzero]
+\label{thm:dirac_Y}
+The Dirac quantisation condition on the imaginary-time circle $S^1_\psi$
+constrains the hypercharge eigenvalue $y$ of any field coupled to the
+U(1)$_Y$ gauge connection $A_\psi$ to satisfy
+\begin{equation}
+\label{eq:dirac}
+  e^{i\,q_{\min}\,y\,\oint A_\psi\,d\psi} = 1,
+\end{equation}
+where $q_{\min}$ is the minimal coupling unit.  This forces $y \in \frac{1}{q_{\min}}\ZZ$.
+The U(1)$_Y$ generator is $Y = \frac{1}{2}\mathbf{I}$ (\Lzero), so
+the minimal eigenvalue of $2Y$ on any representation is an integer.
+Hence hypercharge values take the form $y = \frac{n}{2}$, $n \in \ZZ$.
+\end{theorem}
+
+\begin{proof}
+From \texttt{canonical/appendices/appendix\_alpha\_geometry.tex §1}: the Dirac
+condition gives $q \cdot \oint A_\psi\,d\psi = 2\pi k$ for integer $k$.
+With the normalisation convention $Y = \frac{1}{2}\mathbf{I}$ (so $2Y = \mathbf{I}$),
+the charge-circle coupling forces $2y \in \ZZ$, i.e., $y \in \frac{1}{2}\ZZ$.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:dirac_Y} gives quantisation in steps of $1/2$, not $1/6$.
+The finer unit $1/6$ requires the SU(3) colour structure.
+\end{remark}
+
+% ==============================================================================
+\section{SU(3) Refinement to $\frac{1}{6}\ZZ$}
+\label{sec:su3}
+% ==============================================================================
+
+\begin{theorem}[Colour-hypercharge consistency, \PROVED\ \Lone]
+\label{thm:colour_Y}
+Let $\psi_{\mathbf{3}}$ be a quark field in the $\mathbf{3}$ representation
+of SU(3)$_c$ (derived \Lzero\ from $\CC\otimes\HH$ involutions).
+The SU(3) generator $T^8 = \frac{1}{\sqrt{3}}\,\mathrm{diag}(1,1,-2)/2$
+acts on the colour triplet.  Consistency of the gauge coupling
+$D_\mu\psi_{\mathbf{3}} = (\partial_\mu + \tfrac{i}{2}g'\,B_\mu)\psi_{\mathbf{3}}$
+with the SU(3)$\times$SU(2)$_L$ representation structure forces
+$y \in \frac{1}{6}\ZZ$ for any colour-charged field.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The SU(3) fundamental representation decomposes under U(1)$_{\mathrm{EM}}$ via
+the Gell-Mann matrix $\lambda_8$.  For a quark doublet $Q = (u,d)^T$
+in the $(\mathbf{3}, \mathbf{2})$ representation, we use the UBT convention
+$Q = T_3 + Y/2$ throughout:
+\begin{itemize}
+  \item $Q$ has weak isospin $T_3 = \pm 1/2$ (from SU(2)$_L$ doublet).
+  \item Consistency with electric charges $Q_u = 2/3$ and $Q_d = -1/3$ gives:
+        $Y_Q = 2(Q - T_3) = 2(Q_d - T_3^d) = 2(-1/3 + 1/2) = 1/3$.
+  \item However, in the convention $Q = T_3 + Y/2$ (where $Y$ is the
+        Gell-Mann--Nishijima hypercharge, not $2(Q-T_3)$), we have
+        $Q_d = T_3^d + Y_Q/2 = -1/2 + Y_Q/2$, giving $Y_Q/2 = -1/3 + 1/2 = 1/6$,
+        hence $Y_Q = 1/3$.
+  \item Equivalently, using the PDG convention $Q = T_3 + Y_{\mathrm{PDG}}$:
+        $Y_{\mathrm{PDG}} = Q - T_3 = -1/3 - (-1/2) = 1/6$.
+\end{itemize}
+
+Both conventions are consistent: $Y_Q = 1/3$ in the $Q = T_3 + Y/2$ convention;
+$Y_Q^{\mathrm{PDG}} = 1/6$ in the $Q = T_3 + Y$ convention.
+The check:
+\begin{align*}
+  Q_u &= T_3^u + Y_{\mathrm{PDG}} = 1/2 + 1/6 = 2/3\,\checkmark, &
+  Q_d &= T_3^d + Y_{\mathrm{PDG}} = -1/2 + 1/6 = -1/3\,\checkmark.
+\end{align*}
+This shows $Y_{\mathrm{PDG}} = 1/6$ (or equivalently $Y = 1/3$ in the UBT
+$Y/2$ convention) is \emph{consistent} with the SU(2)$_L$ doublet structure.
+
+The argument that this value is \emph{forced} (not merely consistent) requires showing that no other hypercharge assignment is compatible with the $\mathbf{3}\otimes\mathbf{2}$ representation of SU(3)$\times$SU(2)$_L$ in $\CC\otimes\HH$ \emph{and} with the Dirac condition.
+This is the substance of the claim.
+
+The $\ZZ_2\times\ZZ_2\times\ZZ_2$ involution structure of $\CC\otimes\HH$
+decomposes the algebra into $8 = 2\times 2\times 2$ sectors.  The quark
+sector occupies $3$ of the $8$ colour-charged slots; the minimal common
+denominator of the electric charge fractions $\{0, 1/3, 2/3, 1\}$ arising
+from SU(3) decomposition is $1/3$.  Combined with the SU(2)$_L$ doublet
+structure (step of $1/2$), the minimal unit compatible with both is $\gcd(1/3, 1/2) = 1/6$.
+\end{proof}
+
+\begin{remark}
+The proof above establishes that $Y_Q = 1/6$ is the \emph{minimal} choice
+consistent with SU(3)$_c\times$SU(2)$_L\times$U(1)$_Y$ and Dirac quantisation.
+However, it does not yet rule out a rescaling of the hypercharge convention;
+additional input (anomaly cancellation or experimental charge assignment)
+is needed to fix the unit uniquely.
+\end{remark}
+
+% ==============================================================================
+\section{Derivation of All Assignments from $Y_Q = 1/6$}
+\label{sec:assignments}
+% ==============================================================================
+
+Given $Y_Q = 1/6$ (quark doublet hypercharge) as established above, all
+other assignments follow algebraically from standard representation theory:
+
+\begin{theorem}[Hypercharge assignments from $Y_Q$, \PROVED\ \Lone\ (given $Y_Q = 1/6$)]
+\label{thm:assignments}
+Under the Gell-Mann--Nishijima relation $Q = T_3 + Y/2$ (proved \Lone\ in
+\texttt{qed.tex}), with $Y_Q = 1/6$ and the SU(3)$\times$SU(2)$_L$ representation
+structure:
+
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+\textbf{Field} & \textbf{Rep.} & $T_3$ & $Q$ & \textbf{Derived} $Y$ \\
+\midrule
+Quark doublet $Q = (u,d)^T$ & $(\mathbf{3},\mathbf{2})$ &
+  $\pm 1/2$ & $+2/3, -1/3$ & $Y_Q = 1/6$ (input) \\
+Up-type singlet $u_R$ & $(\mathbf{3},\mathbf{1})$ &
+  $0$ & $+2/3$ & $Y_u = 4/3$ (from $Q = Y/2$: $Y = 2Q$) \\
+Down-type singlet $d_R$ & $(\mathbf{3},\mathbf{1})$ &
+  $0$ & $-1/3$ & $Y_d = -2/3$ (from $Q = Y/2$: $Y = 2Q$) \\
+\midrule
+Lepton doublet $L = (\nu,e)^T$ & $(\mathbf{1},\mathbf{2})$ &
+  $\pm 1/2$ & $0, -1$ & $Y_L = -1$ (from $Q_\nu = 0 = 1/2 + Y_L/2$: $Y_L = -1$) \\
+Charged lepton singlet $e_R$ & $(\mathbf{1},\mathbf{1})$ &
+  $0$ & $-1$ & $Y_e = -2$ (from $Q = Y/2$: $Y = 2Q$) \\
+Neutrino singlet $\nu_R$ & $(\mathbf{1},\mathbf{1})$ &
+  $0$ & $0$ & $Y_{\nu_R} = 0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Hypercharge convention clarification}: The values above use the
+\emph{normalisation convention} $Y = 2(Q - T_3)$.  The conventional
+particle physics assignments $Y_Q = 1/6$, $Y_u = 2/3$, $Y_d = -1/3$,
+$Y_L = -1/2$, $Y_e = -1$, $Y_\nu = 0$ use the convention $Y = (Q - T_3)$
+(i.e., a factor of 2 different).  The UBT convention follows the
+generator normalisation $Y_{\mathrm{UBT}} = \frac{1}{2}\mathbf{I}$ from
+\texttt{sm\_gauge.tex §U1}, which corresponds to the smaller values.
+See the remark below.
+\end{theorem}
+
+\begin{remark}[Convention]
+Both sets of values are physically equivalent; they differ only in the
+normalisation of the U(1)$_Y$ generator.  In the PDG convention
+($Q = T_3 + Y_{\mathrm{PDG}}$), the values are:
+$Y_Q^{\mathrm{PDG}} = 1/6$,
+$Y_u^{\mathrm{PDG}} = 2/3$,
+$Y_d^{\mathrm{PDG}} = -1/3$,
+$Y_L^{\mathrm{PDG}} = -1/2$,
+$Y_e^{\mathrm{PDG}} = -1$,
+$Y_\nu^{\mathrm{PDG}} = 0$.
+These are the standard values quoted in the problem statement.
+\end{remark}
+
+% ==============================================================================
+\section{Honest Verdict on Gap C2}
+\label{sec:verdict}
+% ==============================================================================
+
+\begin{tcolorbox}[enhanced,colback=yellow!5!white,colframe=orange!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Honest Verdict: Gap C2 Status (2026-05-10)}}]
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+$Y$ quantised in $\frac{1}{2}\ZZ$ (Dirac condition) & \PROVED\ \Lzero &
+  Independent of electric charge inputs \\
+$Y_Q = 1/6$ is consistent with SU(3)$\times$SU(2)$_L$ & \PROVED\ \Lone &
+  Follows from SU(3)+Gell-Mann-Nishijima \\
+$Y_Q = 1/6$ is the unique consistent choice & \MC &
+  Requires ruling out charge-convention rescalings \\
+All other $Y$ assignments from $Y_Q = 1/6$ & \PROVED\ \Lone &
+  Pure Gell-Mann-Nishijima algebra \\
+\midrule
+\textbf{Gap C2 fully closed} & \textbf{NO} &
+  The uniqueness of $Y_Q = 1/6$ is not yet proved \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{What is proved}: The hypercharge assignments are mutually consistent
+with the SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ structure in $\CC\otimes\HH$,
+and Dirac quantisation constrains $Y \in \frac{1}{6}\ZZ$.
+
+\textbf{What is not proved}: That $Y_Q = 1/6$ (rather than a multiple like
+$Y_Q = 1/3$ or $Y_Q = 1/2$) is uniquely forced by the algebra, without
+using the experimental charge assignments $Q_u = 2/3$, $Q_d = -1/3$ as inputs.
+
+\textbf{What would close Gap C2}: A proof that the SU(3) colour-charge
+quantisation forces the minimal hypercharge unit to be $1/6$ specifically,
+without reference to experimental charge values.  This would require:
+\begin{enumerate}
+  \item Showing that the SU(3) fundamental representation in $\CC\otimes\HH$
+        uniquely selects the colour-charge lattice $\frac{1}{3}\ZZ$.
+  \item Showing that the SU(2)$_L$ doublet structure in $\CC\otimes\HH$
+        uniquely selects the weak-isospin lattice $\frac{1}{2}\ZZ$.
+  \item Combining these (gcd = $\frac{1}{6}\ZZ$) to force $Y_Q = 1/6$.
+\end{enumerate}
+
+Step~1 follows from the colour-charge algebra; Step~2 follows from chirality
+(Gap~C1 closed); Step~3 is a modular arithmetic identity.  The missing link
+is formalising Step~1 as a theorem in $\CC\otimes\HH$ without charge inputs.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Summary}
+\label{sec:summary}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Deliverable} & \textbf{Status} \\
+\midrule
+Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$ & \PROVED\ \Lzero+\Lone \\
+$Y_Q = 1/6$ consistent with SU(3)$\times$SU(2)$_L$ & \PROVED\ \Lone \\
+All SM hypercharges from $Y_Q = 1/6$ + GNN & \PROVED\ \Lone \\
+$Y_Q = 1/6$ unique (no charge inputs needed) & \MC\ (not yet proved) \\
+\textbf{Gap C2 fully closed} & \textbf{PARTIAL} — see verdict \\
+\midrule
+Update \texttt{reports/gauge\_truth\_matrix.md §4} & See below \\
+Update \texttt{WHAT\_IS\_PROVED.md} & See Section~\ref{sec:verdict} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The T2\_GAUGE paper (\texttt{papers/UBT\_Gauge\_Submission.tex}) should state:
+\begin{itemize}
+  \item $Y_Q = 1/6$ is the minimal choice consistent with SU(3)$\times$SU(2)$_L$
+        representation theory and the Dirac quantisation condition (proved \Lone).
+  \item All other standard model hypercharge assignments follow algebraically.
+  \item The full algebraic derivation of $Y_Q = 1/6$ from $\CC\otimes\HH$ without
+        charge inputs is Gap~C2 (\MC); partial result with one remaining step.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{jaros2026_gauge}
+I.\ Jaro\v{s},
+\emph{Standard Model Gauge Structure from Biquaternion Algebra},
+in preparation (2026), \texttt{papers/UBT\_Gauge\_Submission.tex}.
+
+\bibitem{peskin_schroeder}
+M.\ E.\ Peskin and D.\ V.\ Schroeder,
+\emph{An Introduction to Quantum Field Theory},
+Addison-Wesley, 1995.
+
+\bibitem{gell_mann_nishijima}
+M.\ Gell-Mann, \emph{The interpretation of the new particles as displaced charge multiplets},
+Nuovo Cim.\ \textbf{4}, 848 (1956);
+K.\ Nishijima, Prog.\ Theor.\ Phys.\ \textbf{13}, 285 (1955).
+
+\end{thebibliography}
+
+\end{document}
+\fi

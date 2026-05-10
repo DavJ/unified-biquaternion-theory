@@ -14,7 +14,7 @@
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission.tex` | **SUBMIT READY** |
-| **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | Draft needed | Submit after T1_GR |
+| **T2_GAUGE** — Gauge Sector | 🔶 NEAR SUBMISSION | `papers/UBT_Gauge_Submission.tex` | Draft complete (2026-05-10) |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
 | **Repo public face** | ✅ DONE | This file, README, ROADMAP | Live |
 
@@ -36,11 +36,11 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 | T_μν symmetric, ∇^μT_μν = 0 | ✅ Proved [L1] |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | ✅ Proved + verified |
 | Regge-Wheeler equation (odd-parity graviton) | ✅ Proved [L1] |
-| Zerilli equation (even-parity graviton) | ⚪ Open [L2] — GAP-Z; stated in paper |
+| Zerilli equation (even-parity graviton) | ✅ Proved [L1] — GAP-Z closed (2026-05-10) |
 | Off-shell Θ-only closure | ⚪ Open [L2] — GAP-10; stated in paper |
 
 **Submission file**: `papers/UBT_GR_Submission.tex`  
-**Pre-submission fix required**: Add 1 sentence clarifying Newton's G = input parameter (§3.5)  
+**Pre-submission fix**: ✅ Done — Newton's G clarification added as Remark in §3.5 (2026-05-10)  
 **Estimated arXiv**: within 2 weeks
 
 ---
@@ -68,7 +68,8 @@ Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
 | Fermion masses | ⚪ Deferred |
 | Dynamical confinement | ⚪ Clay Millennium Problem |
 
-**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 6–8 weeks.
+**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 6–8 weeks.  
+**Paper draft**: ✅ `papers/UBT_Gauge_Submission.tex` created (2026-05-10)
 
 ---
 
@@ -106,7 +107,7 @@ If fails: publish conditional integer-137 result as companion note.
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Hard open problems | 2 ([L2]: GAP-10, GAP-Z) |
+| Hard open problems | 1 ([L2]: GAP-10; GAP-Z closed 2026-05-10) |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg angle) |
 | Tracks ready for submission | 1 (T1_GR) |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |

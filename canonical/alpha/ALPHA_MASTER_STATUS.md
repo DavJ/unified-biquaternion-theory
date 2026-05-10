@@ -200,7 +200,30 @@ scheme — neither determined by coding constraints.
 
 ---
 
-## Next 30-Day Attack Plan
+## Next 30-Day Attack Plan (Updated 2026-05-10)
+
+### Deliverables created (2026-05-10)
+
+All three deliverables for the go/no-go gate are now ready:
+
+| File | Path | Status |
+|------|------|--------|
+| Path A: modular bootstrap attempt | `research_tracks/T3_ALPHA/modular_bootstrap_attempt.tex` | ✅ Created |
+| Path B: ζ-function regularisation | `research_tracks/T3_ALPHA/zeta_regularisation_B.tex` | ✅ Created |
+| Path C: conditional companion note | `research_tracks/T3_ALPHA/conditional_alpha_note_draft.tex` | ✅ Created |
+
+### Current gap status (2026-05-10)
+
+**Path A result**: Crossing symmetry on T² is set up; the Virasoro block
+decomposition is the next step.  Even if k_KM = 1 is confirmed, the result
+gives B_base ≈ 41.6, not 46.3.  A further mechanism is needed (open).
+
+**Path B result**: ζ-function regularisation on T³ × S¹_ψ gives B_ζ ≈ 41.6
+at leading order — same as Path A.  The 10% discrepancy to B_phenom ≈ 46.3
+has no identified mechanism from one-loop zeta regularisation.
+
+**Path C**: Conditional companion note is ready for submission at go/no-go
+gate (2026-05-27) regardless of Paths A and B outcome.
 
 ### Week 1–4: Modular Bootstrap on Gap G137-B
 
@@ -219,12 +242,13 @@ scheme — neither determined by coding constraints.
 - `canonical/alpha/alpha_best_route.tex` — V_eff derivation chain
 - `reports/prime_137_structural_audit.md` — corroborations
 
-**Go/no-go at Week 4**:
+**Go/no-go at Week 4 (2026-05-27)**:
 - **If solved** → write T3_ALPHA paper; claim α⁻¹_bare = 137 at [L1]; submit as
   companion note to T1_GR.
 - **If not solved** (70–80% probability) → publish conditional integer-137 note
-  with Gap G137-B explicitly stated; downgrade T3_ALPHA from flagship to
-  STRUCTURAL EVIDENCE status; redirect effort fully to T2_GAUGE.
+  (`research_tracks/T3_ALPHA/conditional_alpha_note_draft.tex`) with Gap G137-B
+  explicitly stated; downgrade T3_ALPHA from flagship to STRUCTURAL EVIDENCE
+  status; redirect effort fully to T2_GAUGE.
 
 ---
 

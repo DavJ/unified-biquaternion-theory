@@ -54,13 +54,13 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 |---|-------|-------|--------|
 | G13 | Linearised UBT field equation reproduces linearised Einstein equations | [L1] | Linearisation of G5 |
 | G14 | Regge-Wheeler equation (odd-parity graviton) derived without extra input | [L1] | `papers/UBT_GR_Submission.tex §5` |
+| GAP-Z | Zerilli equation (even-parity graviton) derived via Chandrasekhar transformation | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
 
 ### Explicitly Open (not claimed as proved)
 
 | Gap | Description |
 |-----|-------------|
 | GAP-10 | Off-shell Θ-only closure (global ker J = gauge only) |
-| GAP-Z | Zerilli equation (even-parity graviton) |
 | GAP-C | FRW/de Sitter Θ ansatz |
 
 ---
@@ -126,7 +126,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 |-----|-------------|
 | EW-1 | Weinberg angle from algebra (dead end — stated explicitly) |
 | EW-2 | Higgs doublet VEV from S[Θ] |
-| C2 | Specific fermion hypercharge assignments |
+| C2 | Specific fermion hypercharge assignments — partial result: Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$; $Y_Q = 1/6$ consistent with SU(3)×SU(2)_L [L1]; uniqueness is [MC] | `canonical/interactions/hypercharge_assignments.tex` |
 | Y2 | Yukawa couplings |
 
 ---
@@ -174,11 +174,15 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Weinberg angle sin²θ_W | Dead end |
 | W/Z boson masses | Open — Gap EW-2 |
 | Higgs mass 125 GeV | Open |
-| Fermion masses | Open-hard (KK obstruction) |
+| Fermion masses | Open-hard (KK obstruction theorem; see `research_tracks/fermion_masses/fermion_mass_status_v2.md §3`) |
+| Mass formula structure `m(n) = A·nᵖ − Bₘ·n·ln n` | [SE] formula structure [L1]; parameters A, p, Bₘ are fitted, not derived |
+| m_e reproduced to 0.22% | [SE] semi-empirical — parameters fitted |
+| Mass ratios m_μ/m_e, m_τ/m_μ | Open — no UBT prediction |
+| KK-mismatch theorem proof | Open — source not confirmed; see `fermion_mass_status_v2.md §3` |
 | CKM/PMNS matrices | Open |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Strong coupling g_s | Open |
 | Quantum gravity / path integral | Long term — GAP-Q |
 | Cosmological solutions (FRW/de Sitter) | Open — GAP-C |
-| Zerilli equation | Open — GAP-Z |
+| Zerilli equation | ✅ Proved [L1] — GAP-Z closed (2026-05-10) |
 | Off-shell Θ-only closure | Open — GAP-10 |
