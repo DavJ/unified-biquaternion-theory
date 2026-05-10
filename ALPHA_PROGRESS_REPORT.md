@@ -15,6 +15,10 @@ strategic decision gate is.
 `DERIVATION_INDEX.md §Fine Structure Constant (α)`,
 `MILESTONE_REVIEW.md §4`, `PRIORITIES_2026.md §4`
 
+> **Historical status (2026-05-10)**: This progress snapshot is retained for
+> provenance and is superseded for active alpha claims by
+> `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+
 ---
 
 ## 1. Executive Summary

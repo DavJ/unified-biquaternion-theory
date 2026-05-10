@@ -13,6 +13,10 @@
 - `research_tracks/T3_ALPHA/neff12_derivations.tex` (E2)
 - `accepted_vs_rejected_routes.md` (E4)
 
+> **Historical status (2026-05-10)**: This document captures exploratory
+> structural analysis and is superseded for active alpha claims by
+> `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+
 ---
 
 ## Executive Summary

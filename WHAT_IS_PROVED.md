@@ -148,7 +148,7 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 
 | Gap | Description |
 |-----|-------------|
-| G137-B | B_phenom from S[Θ] (the only missing lemma for integer-137 result) |
+| G137-B | Derive B ≈ 46.284–46.298 from S[Θ] without α/137/B_required input; alpha status is STRUCTURAL / CONDITIONAL / OPEN GAP |
 
 ---
 

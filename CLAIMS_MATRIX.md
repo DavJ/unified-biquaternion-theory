@@ -109,13 +109,13 @@ by the cited source file.
 ## Track T3_ALPHA — Fine Structure Constant
 
 **Paper**: None yet; conditional on Gap G137-B resolution  
-**Overall verdict**: CONDITIONAL — integer-137 proved given B_phenom; gap open
+**Overall verdict**: STRUCTURAL / CONDITIONAL / OPEN GAP (G137-B)
 
 | # | Claim | Level | Exact? | Canonical source | Status |
 |---|-------|-------|--------|-----------------|--------|
 | P1 | N_eff = 12 from ℂ⊗ℍ algebra alone | [L0] | Yes | `canonical/algebra/`, `canonical/n_eff/` | PROVED |
 | P2 | V_eff(n) = n² − B·n·ln n structure forced by winding-mode spectrum | [L1] | Yes, given B | `canonical/alpha/alpha_best_route.tex` | PROVED (given B) |
-| P3 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1][COND: G137-B] | Yes, given B | `canonical/alpha/alpha_best_route.tex` | PROVED conditional |
+| P3 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1][COND: G137-B] | Yes, given B | `canonical/alpha/alpha_best_route.tex` | CONDITIONAL (not standalone proof of α) |
 | P4 | 137 is prime — consistent with V_eff prime stability | [L0]+[STD] | Yes | Number theory | PROVED |
 | P5 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | Yes | `canonical/t_munu/`, `canonical/n_eff/step2_vacuum_polarization.tex` | PROVED |
 | P6 | μ(Γ₀(137))/3 ≈ 46.00 — independent structural signal | [L2] | No | `canonical/alpha/prime_137_status.md` | STRUCTURAL CORROBORATION |

@@ -31,6 +31,14 @@ Legacy forms without the multiplicative `n` are deprecated and not valid for act
 | B_best ≈ 43.6 | **OBSOLETE HEURISTIC** — based on NO-GO winding step |
 | Current strongest safe coefficient | **B₀ = 8π** (conditional on KK matching) |
 
+### Canonical wording lock
+
+UBT currently provides a conditional structural route to the bare integer alpha
+inverse alpha_bare^{-1} = 137 through a prime winding-mode attractor,
+conditional on deriving the effective coupling B ≈ 46.284–46.298 from the UBT
+action. This unresolved step is Gap G137-B. The physical correction from 137
+to 137.036 is not yet derived from first principles.
+
 ---
 
 ## Route policy constraints

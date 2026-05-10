@@ -7,9 +7,10 @@
 **Track**: T3_ALPHA — Fine Structure Constant  
 **Purpose**: Single authoritative file governing the alpha program as a
 disciplined competing-route portfolio.  
-**Supersedes**: Root-level `ALPHA_PORTFOLIO_STATUS.md` (2026-04-29),
-`canonical/alpha/ALPHA_MASTER_STATUS.md` (use this file for portfolio decisions;
-the master status remains for detailed route audit).  
+**Status-note (2026-05-10)**: Portfolio planning artifact only.
+The single authoritative alpha status file is
+`canonical/alpha/ALPHA_MASTER_STATUS.md`.  
+**Supersedes**: Root-level `ALPHA_PORTFOLIO_STATUS.md` (2026-04-29).  
 **Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`
 
 > **Governance rule**: No route may be listed as ACTIVE in any document
