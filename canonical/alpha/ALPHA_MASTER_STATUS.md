@@ -291,3 +291,67 @@ gate (2026-05-27) regardless of Paths A and B outcome.
 | V_eff derivation chain | `canonical/alpha/alpha_best_route.tex` |
 | No-fit audit | `reports/alpha_no_fit_audit.md` |
 | No-fit progress | `reports/alpha_no_fit_progress.md` |
+
+---
+
+## Nová strategie po revizi 2026-05-10
+
+### Identifikovaný kořenový problém
+
+$V_\mathrm{eff}(n) = n^2 - B \cdot n \ln n$ selektuje $n^*=137$ pouze pro
+$B \approx 46.28$.  $B$ není odvozeno → selekce je quasi-arbitrary (volný parametr).
+
+Přesněji:
+- $V_\mathrm{CW}(n) = n^2 - N_\mathrm{eff}\ln(2\sinh(\pi n))$ bez volného $B$
+  dává minimum u $n^*\approx 19$ pro $N_\mathrm{eff}=12$.
+- Pro $n^*=137$ by bylo potřeba $N_\mathrm{eff}\approx 87.2$ (gap faktor $7.27$).
+- Kombinace $V_\mathrm{CW} + V_\mathrm{modulární}$ s přirozeným $C$ nestačí.
+
+### Tři nové přístupy (seřazeno dle priority)
+
+| Přístup | Soubor | Stav | Výsledek |
+|---------|--------|------|---------|
+| A: Self-konzistentní pevný bod | `research_tracks/T3_ALPHA/self_consistency_fixed_point.tex` | HOTOVO [MC] | $n^*(B(p))=p$: $p=137$ přibližně ($0.56\%$); není unikátní (twin-prime okno $\{137,139\}$) |
+| B: Hecke eigenvalue → α | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex` | HOTOVO [OPEN] | $a_{137}=\mathrm{genus}=11$: numericky pravdivé; strukturalita závisí na LMFDB datech pro $p=131,139$ |
+| C: Exaktní $V_\mathrm{CW}$ bez $B$ | `research_tracks/T3_ALPHA/vcw_exact_minimum.tex` | HOTOVO [L1/OPEN] | Minimum u $n^*=19$ ($N_\mathrm{eff}=12$); faktor $7.27$ zbývá; žádná přirozená kombinace nedá $n^*=137$ |
+
+### Podrobné výsledky
+
+**Přístup A — self-konzistence**:
+- Nejbližší fixed point (základní $B_\mathrm{mod}$): $p=139$, $|\delta|=0.636$.
+- $p=137$: $|\delta|=1.011$ (základní), $|\delta_r|=0.770$ (refinovaná s $\nu_2/4$).
+- Algebraická podmínka $(5p-1)/(p+1)=\ln p$ se kříží mezi $p=137$ a $p=139$ ($p_0\approx 138.5$).
+- Selekce twin-prime okna $\{137,139\}$ — ne unikátně $p=137$.
+- Potřeba doplňujícího mechanismu (Hecke nebo odvození $B$ z $S[\Theta]$).
+
+**Přístup B — Hecke**:
+- $|a_{137}(N=76, k=2)| = 11 = g(X_0(137))$: numericky pravdivé.
+- Primes s $g=11$ v $[50,300]$: $\{131, 137, 139\}$ — shoda není zřejmě unikátní.
+- Lepton mass ratios: $R_\mu=206.727$ (err $0.020\%$), $R_\tau=3480.55$ (err $0.095\%$) — silný [MC] signál.
+- Struktura Hecke $\to \alpha$ path-integral: no-go status (viz `reports/hecke_path_integral_no_go_or_success.md`).
+
+**Přístup C — $V_\mathrm{CW}$**:
+- $V_\mathrm{CW}$ minimum ($N_\mathrm{eff}=12$): $n^*=19$ (prvočíslo). [L1]
+- $N_\mathrm{eff}$ potřebné pro $n^*=137$: $87.2$ (gap $7.27$). [L0]
+- Modulární korekce $C$ potřebná: $354.9$ (přirozené $C_\mathrm{nat}\approx 12.6$; poměr $28\times$). [L0]
+- $V_\mathrm{combined}$ minimum s $C=354.9$: $n^*=79$ — nedosáhne $137$.
+- Přístup C sám nedokáže uzavřít gap.
+
+### Aktuální nejpřesnější predikce α
+
+Predikce $\alpha^{-1}=137$ zůstává podmíněná: Route A\_PRIME je živá ale [CONDITIONAL-WEAK].
+Žádný z přístupů A, B, C sám neuzavírá gap G137-B.
+Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál — ale bez UBT derivace forem.
+
+### Kill conditions (aktualizováno 2026-05-10)
+
+- **Přístup A je zabit pokud**: přesná podmínka $(5p-1)/(p+1)=\ln p$ nemá žádné blízké prvočíselné řešení — **NEVZNIKÁ**, podmínka je blízko pro $\{137,139\}$.
+- **Přístup A je degradován pokud**: twin-prime degenerace $\{137,139\}$ nelze prolomit dalšími UBT mechanismy.
+- **Přístup B je zabit pokud**: $a_{131}(N=76,k=2) = -11$ nebo $a_{139}(N=76,k=2)=-11$ (shoda pak není specifická pro $p=137$). Vyžaduje LMFDB ověření.
+- **Přístup C je zabit**: Přístup C nemůže dát $n^*=137$ s přirozenými konstantami. **KILL CONDITIONS SPLNĚNY** pro přístup C jako samostatnou cestu.
+
+### Doporučená priorita (po 2026-05-10)
+
+1. LMFDB ověření: $a_{131}(N=76,k=2)$ a $a_{139}(N=76,k=2)$ — rozhodne o přístupu B.
+2. Derivace $B_\mathrm{mod}(p)=(p+1)/3$ z $S[\Theta]$ — uzavření gap G137-B pro přístup A.
+3. Kac-Moody level $k\approx 7$ hypotéza — mohla by dát $N_\mathrm{eff}^\mathrm{eff}\approx 84$ pro přístup C.
