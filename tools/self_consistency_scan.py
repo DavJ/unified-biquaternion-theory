@@ -211,8 +211,7 @@ def run_scan():
 
     alg_r_results.sort()
     for abs_g, p, n2, B, val, gap in alg_r_results[:20]:
-        marker = " <-- top-20" if True else ""
-        print(f"{p:>5}  {n2:>4}  {B:>8.4f}  {val:>13.4f}  {gap:>10.4f}  {abs_g:>9.4f}{marker}")
+        print(f"{p:>5}  {n2:>4}  {B:>8.4f}  {val:>13.4f}  {gap:>10.4f}  {abs_g:>9.4f}")
 
     print()
     # --- special focus on p=137
