@@ -24,7 +24,7 @@ TARGET_PHRASES = [
     "fully derived",
     "derived from first principles",
     "alpha derived",
-    "\u03b1 derived",       # α derived (Unicode)
+    "\u03b1 derived",                              # α derived (Unicode Greek alpha)
     "137.036 is derived",
     "137.036 achieved",
     "exact prediction",
@@ -97,7 +97,8 @@ ALPHA_CONTEXT_PHRASES = [
 LEGACY_FILE_MARKERS = [
     "legacy / superseded",
     "superseded document",
-    "\u26a0\ufe0f legacy",      # ⚠️ legacy
+    "\u26a0 legacy",        # ⚠ legacy (without variation selector)
+    "\u26a0\ufe0f legacy",  # ⚠️ legacy (with variation selector)
     "this document is superseded",
     "legacy banner",
 ]
@@ -122,7 +123,7 @@ EXCLUDE_PREFIXES = ("archive/", "original_release_of_ubt/")
 # ---------------------------------------------------------------------------
 
 def iter_candidate_files(repo_root: Path) -> Iterable[Path]:
-    seen: set = set()
+    seen: set[Path] = set()
 
     def _add(path: Path) -> None:
         rel = path.relative_to(repo_root).as_posix()
