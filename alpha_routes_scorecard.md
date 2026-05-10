@@ -11,6 +11,10 @@
 **Hard rule**: No parameter may be chosen to fit α.  
 Every constant must come from an independent UBT sector.
 
+> **Historical status (2026-05-10)**: This scorecard is preserved as a prior
+> route-evaluation artifact and is superseded for active alpha claims by
+> `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+
 ---
 
 ## Classification Key

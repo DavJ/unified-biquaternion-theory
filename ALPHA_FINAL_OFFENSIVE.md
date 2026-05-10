@@ -12,6 +12,10 @@
 derive the fine-structure constant α from UBT structure alone, with zero parameters
 fitted to match α.
 
+> **Historical status (2026-05-10)**: This document is retained as historical
+> planning context and is superseded for active alpha claims by
+> `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+
 ---
 
 ## Hard Rules (Non-Negotiable)

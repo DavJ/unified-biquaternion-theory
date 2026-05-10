@@ -19,6 +19,14 @@ Supersedes and summarises: `reports/alpha_routes_ranked.md`, `reports/alpha_no_f
 Derive α⁻¹_bare = 137 (integer) from UBT without fitting any parameter.  
 Full derivation (137.036) requires solving Gap G137-B first.
 
+## Canonical alpha position (authoritative wording)
+
+UBT currently provides a conditional structural route to the bare integer alpha
+inverse alpha_bare^{-1} = 137 through a prime winding-mode attractor,
+conditional on deriving the effective coupling B ≈ 46.284–46.298 from the UBT
+action. This unresolved step is Gap G137-B. The physical correction from 137
+to 137.036 is not yet derived from first principles.
+
 **Acceptance criteria**:
 1. No number is fitted to reproduce α or 137.
 2. Every numerical input is derived from another UBT sector or from S[Θ].

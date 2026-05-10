@@ -29,6 +29,9 @@ python tools/verify_schwarzschild_theta.py
 python tools/verify_su3_superposition.py
 python tools/verify_su3_from_biquaternion.py
 python experiments/validation/validate_B_coefficient.py
+
+# 4. Run alpha-claim guardrail check
+python tools/check_alpha_claims.py --root .
 ```
 
 ---
