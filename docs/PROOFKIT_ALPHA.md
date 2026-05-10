@@ -97,7 +97,7 @@ B = B_base × R ≈ 41.57 × 1.114 ≈ 46.3
 ```
 
 The correction factor R ≈ 1.114 accounts for radiative corrections
-(not yet fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B — residual free parameter).
+(historical claim; canonical derivation remains conditional and blocked by Gap G137-B — residual free parameter).
 
 ### Step 6 — Bare result
 

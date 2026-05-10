@@ -53,8 +53,6 @@ SAFE_PHRASES = [
     "roadmap",
     "graveyard",
     "probability",
-    "if ",
-    "would ",
     "imprecise",
     "falsifies",
     "without circular reasoning",
@@ -67,6 +65,10 @@ SAFE_PHRASES = [
     "mission",
     "explicitly labeled",
     "attack plan",
+    "smaller-scope paper",
+    "theta_w",
+    "could contribute",
+    "success would",
 ]
 
 ALPHA_SCOPE_HINTS = [
@@ -188,7 +190,11 @@ def main() -> int:
     for rel, line_no, snippet in sorted(all_warnings):
         print(f"- {rel}:{line_no}: {snippet}")
 
-    print("\nRequired context in same paragraph: not derived / conditional / open gap / Gap G137-B / superseded / legacy / obsolete / historical")
+    print(
+        "\nRequired context in same paragraph includes: "
+        "not derived / conditional / open gap / Gap G137-B / superseded / legacy / obsolete / historical "
+        "(non-exhaustive; checker uses an expanded safe-context list)."
+    )
     return 1
 
 

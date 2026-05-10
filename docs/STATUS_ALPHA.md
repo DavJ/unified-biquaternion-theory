@@ -666,7 +666,7 @@ python3 alpha_core_repro/alpha_two_loop.py
 | 1916 | Sommerfeld measures α ≈ 1/137 |
 | 1929 | Eddington attempts to derive 137 from numerology; fails |
 | 1948 | QED fully developed; α remains an unexplained input parameter |
-| 2024 | UBT derives α⁻¹ = 137 from first principles (B discrepancy pending) |
+| 2024 | Historical/superseded claim of α⁻¹ = 137 route (current canonical status: conditional, Gap G137-B open) |
 
 ---
 
@@ -677,7 +677,7 @@ python3 alpha_core_repro/alpha_two_loop.py
 | Scenario | UBT Scientific Merit |
 |---|---|
 | B = 46.3 remains phenomenological | 4.5 / 10 |
-| B fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B | 7.5 / 10 (+66%) |
+| B derivation completed in future work (currently conditional; Gap G137-B open) | 7.5 / 10 (+66%) |
 
 A complete symbolic derivation of B = 46.3 from the biquaternionic geometry alone—without reference to the required output value—would constitute a **historic result**: the first geometric, parameter-free derivation of the fine structure constant α from a unified field theory.
 

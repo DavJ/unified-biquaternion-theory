@@ -153,8 +153,8 @@ def alpha_from_geometric_B(B, p=137):
 - `consolidation_project/alpha_two_loop/FIT_FREE_ALPHA_README.md`
 
 **Changes:**
-- ✅ "Fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B" (when complete)
-- ✅ "historical / superseded no-fit claim; current canonical status is conditional and blocked by Gap G137-B"
+- ✅ "Historical claim only; canonical alpha status remains conditional with Gap G137-B open" (for legacy wording cleanup)
+- ✅ "No first-principles alpha derivation yet" in place of no-fit overclaims
 - ✅ "Experimental match as validation"
 
 ## Phase 2: Determine Electron Mass Scale (4-8 months)

@@ -42,7 +42,7 @@ See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 - Scientific Rating: **6.2/10** (upgraded from 5.5/10)
 - Geometric baselines: α⁻¹ framework, m_e = 0.509856 MeV (0.22%)
 - SM gauge group SU(3)×SU(2)×U(1) rigorously derived from geometry
-- **Corrections historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B for α, ~60% derived for m_e** (see FITTED_PARAMETERS.md)
+- **Alpha corrections**: historical/superseded claim (canonical status is conditional; Gap G137-B open). **Electron-mass corrections**: ~60% derived (see FITTED_PARAMETERS.md).
 - **Layer separation**: n=137 is Layer 2 (channel selection), NOT Layer 1 (stability max)
 - **Stability scan**: n=137 ranks 53/99; better candidates exist (199, 197, 193, etc.)
 - CMB test feasible within 1-2 years
@@ -293,7 +293,7 @@ Which reduces to the core equation in coordinate form.
 
 ### ⚠️ Partially Explained
 
-6. **Fermion Mass Spectrum**: Not yet historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B - requires Yukawa/vev structure in ℍ_ℂ
+6. **Fermion Mass Spectrum**: Not yet complete; requires Yukawa/vev structure in ℍ_ℂ
 7. **Yukawa Couplings**: Framework established, derivation from geometric constraints in progress
 8. **Dark Matter**: p-adic framework, specific properties pending
 
@@ -306,7 +306,7 @@ Which reduces to the core equation in coordinate form.
 
 ---
 
-## Recent Breakthrough: Fit-Free Alpha Baseline (November 2025)
+## Legacy note: prior alpha-baseline milestone wording (superseded)
 
 ### What Changed
 
@@ -352,7 +352,7 @@ This achievement transitions UBT from a **phenomenological model** to a **predic
 
 1. **Methodology Upgrade:**
    - From: "Parameter fitted to match experiment"
-   - To: "Parameter historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B under stated assumptions"
+   - To: "Historical claim only; canonical alpha status remains conditional with Gap G137-B open"
 
 2. **Testability Improvement:**
    - Assumptions are explicit and falsifiable

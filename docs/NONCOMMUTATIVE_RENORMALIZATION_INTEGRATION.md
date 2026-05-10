@@ -225,7 +225,7 @@ The master branch document `ubt_alpha_noncommutative_renormalization.tex`:
 
 ✅ **Builds directly on our Appendix A2 work**  
 ✅ **Completes the alpha derivation** (geometric → renormalized)  
-✅ **historical / superseded no-fit claim; current canonical status is conditional and blocked by Gap G137-B** (all from UBT structure)  
+✅ **Historical no-fit claim (superseded; canonical alpha status remains conditional with Gap G137-B open)**  
 ✅ **Achieves exact experimental value** (137.036)  
 
 **Recommendation**: Acknowledge this complementarity in our PR documentation while keeping our focus on the geometric foundation that makes the renormalization possible.

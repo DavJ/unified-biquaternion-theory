@@ -37,7 +37,7 @@ Each claim is rated 1–5 on five dimensions:
 | Dimension | Score | Comment |
 |---|---|---|
 | Novelty | 5/5 | No other theory derives α from first principles without assuming it |
-| Math Robustness | 3/5 | Bare n=137 semi-empirical; B coefficient historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B; R factor unfixed |
+| Math Robustness | 3/5 | Bare n=137 semi-empirical; B coefficient route superseded/conditional (Gap G137-B open); R factor unfixed |
 | Param Freedom | 3/5 | 1 unfixed parameter (R ≈ 1.114 for B coefficient) |
 | Experimental Impact | 5/5 | α is the most precisely measured fundamental constant |
 | Falsifiability | 5/5 | Any deviation from 137.036 (to ppm) is a falsification |
@@ -49,7 +49,7 @@ Each claim is rated 1–5 on five dimensions:
 - [`STATUS_ALPHA.md`](../STATUS_ALPHA.md)  
 - [`unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex`](../unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex)
 
-**Priority assessment**: **HIGHEST PRIORITY** — if the B coefficient is fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B, this becomes the first-ever parameter-free derivation of a fundamental coupling constant. This would be a landmark result regardless of broader unification claims.
+**Priority assessment**: **HIGHEST PRIORITY** — if the B coefficient is derived in future work, this would become a first parameter-free derivation candidate; current canonical status remains conditional with Gap G137-B open.
 
 **Bottleneck**: The R ≈ 1.114 correction factor needs a rigorous derivation from the biquaternionic renormalisation group flow.
 
