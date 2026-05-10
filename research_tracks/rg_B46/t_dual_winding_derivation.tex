@@ -1,0 +1,206 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{obstruction}{Obstruction}
+
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\cond}[1]{\textbf{[CONDITIONAL]} #1}
+\newcommand{\heur}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\nogo}[1]{\textbf{[NO-GO]} #1}
+
+\title{T-Dual Winding Correction Audit for the $B$-Coefficient}
+\author{Ing.\ David Jaro\v{s}\\
+\small \texttt{research\_tracks/rg\_B46/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We test whether the winding correction often written numerically as
+$\Delta B_{\mathrm{wind}}\approx 18.5$ is derivable from the UBT action, or must be
+formally downgraded. We enforce hard constraints: no fitted inputs, no fixed
+special integer input, and no target-driven tuning. The result is: (i) the
+self-dual normalization $R_{\psi}=1$ is not derived unconditionally from the
+current UBT moduli sector, (ii) T-duality of the compact $\psi$ spectrum is
+exact at one-loop Gaussian level when momentum and winding sectors are both
+included, (iii) the winding correction is $n$-dependent in all explicit
+non-fitted formulas, and (iv) it does not supply a universal constant shift of
+the coefficient of $n\log n$.
+\end{abstract}
+
+\tableofcontents
+
+\section{Setup and target statement}
+
+The baseline potential form used in this track is
+\begin{equation}
+V_{\mathrm{eff}}(n)=n^2-B\,n\log n.
+\end{equation}
+The target claim under audit is a radius/self-duality based winding correction
+\begin{equation}
+\Delta B_{\mathrm{wind}}\stackrel{?}{=}\text{constant}.
+\end{equation}
+
+We test five items:
+\begin{enumerate}
+\item derive $R_{\psi}=1$ from UBT moduli,
+\item prove T-duality symmetry of compact $\psi$ sector,
+\item compute winding contribution without fixed special integer input,
+\item decide constant vs $n$-dependent structure,
+\item decide whether winding modifies $B$ (coefficient of $n\log n$) or adds a separate term.
+\end{enumerate}
+
+\section{Radius selection from the UBT moduli sector}
+
+From the compact $(t_E,\psi)$ quadratic sector used in the prior self-dual
+torus derivation, one has
+shape and scale variables
+\begin{equation}
+\rho=\frac{R_t}{R_{\psi}},\qquad s=\sqrt{R_tR_{\psi}},
+\end{equation}
+and one-loop free energy stationarity at $\rho=1$ under isotropic assumptions.
+
+\begin{proposition}[What is actually derived]
+In the current compact-cycle analysis, square-shape stationarity
+$R_t=R_{\psi}$ is conditional, while the overall scale $s$ is not fixed by the
+kinetic-plus-mass sector alone.
+\end{proposition}
+
+\begin{proof}
+The cited derivation gives $\partial_{\rho}F|_{\rho=1}=0$ and local shape
+stability, but explicitly leaves $\partial_sF=0$ without an isolated finite
+solution unless extra physics is added.
+\end{proof}
+
+\begin{obstruction}
+Without an independent scale-fixing equation, one cannot promote
+$R_t=R_{\psi}$ to an unconditional prediction $R_{\psi}=1$.
+\end{obstruction}
+
+\cond{Radius-normalization statement: one may set $R_{\psi}=1$ by unit choice, but
+this is normalization, not a derived modulus-fixing theorem.}
+
+\section{T-duality test in compact $\psi$ sector}
+
+For a compact bosonic direction with momentum index $k\in\mathbb Z$ and winding
+index $w\in\mathbb Z$, the Gaussian one-loop lattice sum is
+\begin{equation}
+Z(R_{\psi};t)=\sum_{k,w\in\mathbb Z}
+\exp\!\left[-\pi t\left(\frac{k^2}{R_{\psi}^2}+w^2R_{\psi}^2\right)\right].
+\end{equation}
+Under
+\begin{equation}
+R_{\psi}\mapsto \frac{1}{R_{\psi}},\qquad k\leftrightarrow w,
+\end{equation}
+$Z$ is invariant (Poisson resummation / lattice relabelling).
+
+\begin{proposition}[Spectral T-duality]
+At one-loop Gaussian level, with both momentum and winding sectors retained, the
+compact-spectrum partition sum is invariant under $R_{\psi}\leftrightarrow 1/R_{\psi}$.
+\end{proposition}
+
+\begin{remark}
+This is a spectral statement. Extending it to full UBT action covariance needs
+modular-weight and measure-compensation inputs that remain open in the modular
+covariance audit.
+\end{remark}
+
+\cond{T-duality status for this task: valid in the compact Gaussian sector;
+not yet a full-action theorem.}
+
+\section{Winding contribution without fixed special integer input}
+
+Using the one-loop KK threshold structure already used in this track,
+\begin{equation}
+B_{\mathrm{mom}}(n)=\frac{N_{\mathrm{eff}}}{12\pi^2}\,n,
+\end{equation}
+with $N_{\mathrm{eff}}=12$ from field-content audit. If T-dual symmetry is imposed
+at the level of equal momentum/winding weighting, then
+\begin{equation}
+B_{\mathrm{mom+wind}}(n)=2B_{\mathrm{mom}}(n)
+=\frac{N_{\mathrm{eff}}}{6\pi^2}\,n,
+\end{equation}
+and therefore
+\begin{equation}
+\Delta B_{\mathrm{wind}}(n)=B_{\mathrm{mom+wind}}(n)-B_{\mathrm{mom}}(n)
+=\frac{N_{\mathrm{eff}}}{12\pi^2}\,n.
+\label{eq:deltaBwind_general}
+\end{equation}
+
+Equation \eqref{eq:deltaBwind_general} uses no fixed special integer input and
+contains no fit parameter.
+
+\section{Constant vs $n$-dependent classification}
+
+\begin{proposition}
+The winding correction derived from the compact momentum/winding tower is
+$n$-dependent, not a universal constant.
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:deltaBwind_general} is linear in $n$ for fixed
+$N_{\mathrm{eff}}$. Hence $\Delta B_{\mathrm{wind}}$ varies across KK levels and
+cannot define one universal number independent of $n$.
+\end{proof}
+
+\nogo{Any standalone constant claim $\Delta B_{\mathrm{wind}}\equiv\text{const}$ is not
+obtained from the explicit non-fitted tower calculation.}
+
+\section{Does winding modify $B$ of $n\log n$ or add a separate term?}
+
+If one inserts $B(n)=B_0+\Delta B_{\mathrm{wind}}(n)$ into
+$V_{\mathrm{eff}}=n^2-B(n)n\log n$, one gets
+\begin{equation}
+V_{\mathrm{eff}}(n)
+=n^2-B_0n\log n
+-\frac{N_{\mathrm{eff}}}{12\pi^2}n^2\log n.
+\end{equation}
+Thus the winding piece has $n^2\log n$ scaling and is not a universal shift of a
+constant coefficient multiplying $n\log n$.
+
+\begin{proposition}
+In the explicit tower derivation, winding enters as an additional
+$n$-dependent structure. It does not provide a universal constant renormalization
+of the $n\log n$ coefficient.
+\end{proposition}
+
+\section{Verdict}
+
+\begin{center}
+\begin{tabular}{p{0.56\linewidth}p{0.32\linewidth}}
+\toprule
+Requirement & Outcome \\
+\midrule
+Derive $R_{\psi}=1$ from UBT moduli & \textbf{CONDITIONAL} (shape yes, scale not fixed) \\
+Prove T-duality of compact $\psi$ sector & \textbf{CONDITIONAL} (spectral Gaussian level) \\
+Compute winding term without fixed special integer & \textbf{PROVED}: Eq.\ \eqref{eq:deltaBwind_general} \\
+Constant vs $n$-dependent & \textbf{PROVED}: $n$-dependent \\
+Shift of constant $B$ for $n\log n$ & \textbf{NO-GO}: induces separate $n^2\log n$ structure \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent\textbf{Final class for the claim ``constant winding correction is derived''}:\
+\begin{equation}
+\boxed{\textbf{NO-GO}}.
+\end{equation}
+
+\noindent The previous constant-number usage is therefore downgraded to
+\textbf{HEURISTIC bookkeeping at a chosen evaluation level}, not a derived UBT
+constant.
+
+\end{document}
