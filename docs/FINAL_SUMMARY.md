@@ -1,13 +1,17 @@
-# Fine Structure Constant Derivation - Complete Summary
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This document contains historical alpha
+> derivation claims from November 2025 that are superseded by current canonical status.
+> Alpha is **NOT DERIVED**; α⁻¹_bare = 137 is **CONDITIONAL ONLY**;
+> α⁻¹ = 137.036 is **NOT ACHIEVED**; Gap G137-B remains open.
+> All "derivation" claims below are historical and do not reflect the current canonical
+> position. See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
 
-> [!WARNING]
-> **LEGACY / SUPERSEDED ALPHA CONTENT**
-> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+---
 
+# Fine Structure Constant Derivation - Complete Summary *(Historical Record)*
 
-## Legacy snapshot (superseded)
+## Mission Accomplished ✓ *(historical claim — superseded)*
 
-Historical / superseded claim: this file previously presented alpha as derived. Current canonical status is conditional and blocked by Gap G137-B.
+Successfully derived the fine structure constant α from core UBT principles and extended the framework to p-adic number theory, revealing a multiverse structure based on prime numbers.
 
 ## What Was Requested
 

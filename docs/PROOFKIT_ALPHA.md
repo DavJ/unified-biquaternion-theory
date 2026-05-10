@@ -2,13 +2,13 @@
 
 # PROOFKIT: Fine Structure Constant α
 
-> [!WARNING]
-> **LEGACY / SUPERSEDED ALPHA CONTENT**
-> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
-
-
-> **Status**: NOT A PROOFKIT YET — conditional route only
-> **Claim**: historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B.
+> ⚠️ **NOT A PROOFKIT YET — conditional route only.**
+> Current canonical status: α is **NOT DERIVED**; α⁻¹_bare = 137 is **CONDITIONAL ONLY**
+> (blocked by Gap G137-B — B≈46.3 not derived from first principles);
+> α⁻¹ = 137.036 is **NOT ACHIEVED** (quantum correction is circular, uses α as input).
+> This document describes a historical route and open problems.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md)
+> for the authoritative canonical position.
 
 ---
 
@@ -97,7 +97,7 @@ B = B_base × R ≈ 41.57 × 1.114 ≈ 46.3
 ```
 
 The correction factor R ≈ 1.114 accounts for radiative corrections
-(historical claim; canonical derivation remains conditional and blocked by Gap G137-B — residual free parameter).
+(not yet fully derived from first principles — residual free parameter).
 
 ### Step 6 — Bare result
 
@@ -202,7 +202,7 @@ Expected output:
 | Parameter | Symbol | Value | Status | Origin |
 |---|---|---|---|---|
 | Kinetic coefficient | A | 1.0 (normalised) | Derived | Gauge kinetic energy normalisation |
-| One-loop B baseline | B₀ | ≈ 25.1 | **Fully derived** | B₀ = 2π·N_eff/3 (standard one-loop) |
+| One-loop B baseline | B₀ | ≈ 25.1 | Derived (gives n\*≈65, **not** 137 — not α) | B₀ = 2π·N_eff/3 (standard one-loop) |
 | B base (N_eff^{3/2}) | B_base | ≈ 41.57 | **OPEN PROBLEM A** | No geometric derivation; phenomenological |
 | Correction factor | R | ≈ 1.114 | **OPEN PROBLEM B** | Geometric origin unknown |
 | Full B coefficient | B | ≈ 46.3 | Semi-empirical | B = B_base × R; requires A and B resolution |

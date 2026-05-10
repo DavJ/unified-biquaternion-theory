@@ -2,11 +2,6 @@
 
 # UBT Nobel Priority Analysis
 
-> [!WARNING]
-> **LEGACY / SUPERSEDED ALPHA CONTENT**
-> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
-
-
 > **Author**: Ing. David Jaroš  
 > **Purpose**: Evaluate the research fronts of UBT by novelty, mathematical robustness, parameter freedom, experimental impact, and falsifiability.
 
@@ -32,12 +27,16 @@ Each claim is rated 1–5 on five dimensions:
 
 ## Research Front 1: Fine Structure Constant α
 
-**Claim**: historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B.
+> ⚠️ **Correction (2026):** The claim below is historical / superseded. Current canonical
+> status: α is **NOT DERIVED**; α⁻¹ = 137.036 is **NOT ACHIEVED**; Gap G137-B open.
+> See [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+**Historical claim** *(superseded)*: α⁻¹ = 137.036 derived from complex-time compactification + two-loop QED correction.
 
 | Dimension | Score | Comment |
 |---|---|---|
 | Novelty | 5/5 | No other theory derives α from first principles without assuming it |
-| Math Robustness | 3/5 | Bare n=137 semi-empirical; B coefficient route superseded/conditional (Gap G137-B open); R factor unfixed |
+| Math Robustness | 3/5 | Bare n=137 semi-empirical; B coefficient NOT DERIVED (Gap G137-B open); R factor unfixed |
 | Param Freedom | 3/5 | 1 unfixed parameter (R ≈ 1.114 for B coefficient) |
 | Experimental Impact | 5/5 | α is the most precisely measured fundamental constant |
 | Falsifiability | 5/5 | Any deviation from 137.036 (to ppm) is a falsification |
@@ -49,7 +48,7 @@ Each claim is rated 1–5 on five dimensions:
 - [`STATUS_ALPHA.md`](../STATUS_ALPHA.md)  
 - [`unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex`](../unified_biquaternion_theory/solution_P4_fine_structure_constant/alpha_constant_derivation_precise.tex)
 
-**Priority assessment**: **HIGHEST PRIORITY** — if the B coefficient is derived in future work, this would become a first parameter-free derivation candidate; current canonical status remains conditional with Gap G137-B open.
+**Priority assessment**: **HIGHEST PRIORITY** — the B coefficient is **not yet derived from first principles** (Gap G137-B open). If that gap is closed, this could become the first-ever parameter-free derivation of a fundamental coupling constant. Until then, the alpha result remains conditional.
 
 **Bottleneck**: The R ≈ 1.114 correction factor needs a rigorous derivation from the biquaternionic renormalisation group flow.
 
@@ -87,7 +86,7 @@ Each claim is rated 1–5 on five dimensions:
 | Dimension | Score | Comment |
 |---|---|---|
 | Novelty | 4/5 | Metric latency as Hubble tension cause is not in mainstream literature |
-| Math Robustness | 2/5 | F=256, N=16 derivation is heuristic; parameters remain incomplete |
+| Math Robustness | 2/5 | F=256, N=16 derivation is heuristic; parameters not fully derived |
 | Param Freedom | 2/5 | Several parameters estimated (b, k, η, N); only F=256 from UBT structure |
 | Experimental Impact | 5/5 | Hubble tension is one of the highest-profile open problems in cosmology |
 | Falsifiability | 4/5 | Predicts δ constant in z; testable with next-generation distance ladder surveys |

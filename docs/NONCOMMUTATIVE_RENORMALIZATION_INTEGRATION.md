@@ -1,3 +1,12 @@
+> ⚠️ **LEGACY / SUPERSEDED DOCUMENT** — This integration report was written in early 2025/2026
+> and contains alpha derivation claims that are superseded by current canonical status.
+> Alpha is **NOT DERIVED**; the "complete alpha derivation" and "no fitted parameters"
+> claims below are historical only and do not reflect current canonical position.
+> Gap G137-B remains open. See
+> [`canonical/alpha/ALPHA_MASTER_STATUS.md`](../canonical/alpha/ALPHA_MASTER_STATUS.md).
+
+---
+
 <!--
 Copyright (c) 2024 David Jaroš (UBT Framework)
 SPDX-License-Identifier: CC-BY-4.0
