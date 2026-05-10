@@ -1,0 +1,344 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+\newcommand{\GSM}{G_{\mathrm{SM}}}
+
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+  arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+\title{$N_{\mathrm{eff}}$ Reconciliation: Two Quantities or One?\\
+       \large Resolving the Tension between Route~R2 and the Loop Audit}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Two independent analyses of UBT give superficially conflicting values of
+$N_{\mathrm{eff}}$: Route~R2 (\texttt{neff12\_derivations.tex}) gives
+$\Neff(\mathrm{R2})=\dim G_{\mathrm{SM}}=12$, while the loop audit
+(\texttt{step2\_AUDIT.tex}) gives $\Neff(\mathrm{loop})=3$.
+This document resolves the tension by showing that these two quantities
+measure \emph{different physical objects}.
+$\Neff(\mathrm{R2})=12$ is an algebraic count of gauge generators in
+$\mathbb{C}\otimes\mathbb{H}$; $\Neff(\mathrm{loop})=3$ is the number
+of charged complex scalar fields contributing to the one-loop
+$U(1)_{\mathrm{EM}}$ vacuum polarisation from the minimal scalar kinetic
+action $S_{\mathrm{kin}}[\Theta]$.  They are not in contradiction, but they
+also cannot be equated without an additional physical mechanism.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Central Question}
+\label{sec:question}
+%──────────────────────────────────────────────────────────────────────────────
+
+Route R2 in \texttt{research\_tracks/T3\_ALPHA/neff12\_derivations.tex}
+(Theorem~2.2) states:
+\begin{equation}
+  \Neff(\mathrm{R2}) \;=\; \dim G_{\mathrm{SM}}
+  \;=\; \underbrace{8}_{SU(3)_c}
+       +\underbrace{3}_{SU(2)_L}
+       +\underbrace{1}_{U(1)_Y}
+  \;=\; 12.
+  \label{eq:R2}
+\end{equation}
+The loop audit in \texttt{canonical/n\_eff/step2\_AUDIT.tex} concludes:
+\begin{equation}
+  \Neff(\mathrm{loop}) \;=\; N_{\mathrm{phases}} \;=\; 3
+  \quad\Rightarrow\quad B_0 \;=\; 2\pi.
+  \label{eq:audit}
+\end{equation}
+Are these two $\Neff$ values the same quantity measured differently,
+or different quantities altogether?
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 1 — Precise Definitions}
+\label{sec:definitions}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{$\Neff(\mathrm{R2})$: algebraic generator count}
+
+\begin{definition}[$\Neff(\mathrm{R2})$]
+$\Neff(\mathrm{R2}) \;=\; \dim G_{\mathrm{SM}}$ is the total number of
+independent generators of the Standard Model gauge group
+$G_{\mathrm{SM}} = SU(3)_c\times SU(2)_L\times U(1)_Y$ that are embedded
+in $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+This is a pure algebraic fact, independent of any loop calculation or
+field-equation dynamics.
+\end{definition}
+
+\subsection{$\Neff(\mathrm{loop})$: one-loop photon polarisation count}
+
+\begin{definition}[$\Neff(\mathrm{loop})$]
+$\Neff(\mathrm{loop})$ is the number of independent charged complex scalar
+fields $\Phi_k$ that contribute to the one-loop photon vacuum polarisation
+tensor $\Pi^{\mu\nu}(k)$ with a positive coefficient of
+$e^2 \ln(\Lambda^2/m^2)$ in the Euclidean cut-off scheme, starting from
+the minimal kinetic action
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta]
+  \;=\; \int d^4x\,d\psi\;
+  \mathrm{Sc}\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr].
+  \label{eq:S_kin}
+\end{equation}
+\end{definition}
+
+From the mode decomposition in \texttt{step1\_mode\_decomposition.tex}
+(Theorem~3.1), after integrating over $\psi$, the action reduces to
+\begin{equation}
+  S_{\mathrm{eff}} \;=\; \sum_{k=1}^{3}
+  \int d^4x\;\bigl|({\partial}_\mu + ieA_\mu)\Phi_k\bigr|^2,
+  \qquad \Phi_k = \Theta_k,\; k=1,2,3.
+  \label{eq:S_eff}
+\end{equation}
+Therefore $\Neff(\mathrm{loop}) = 3$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 2 — Do All SM Generators Contribute to U(1)$_{\mathrm{EM}}$
+         Vacuum Polarisation?}
+\label{sec:contributions}
+%──────────────────────────────────────────────────────────────────────────────
+
+The core assumption in Route~R2 is: "each generator corresponds to one
+independent gauge-charged mode contributing to the $U(1)_{\mathrm{EM}}$
+vacuum polarisation."  This step is examined critically below.
+
+\subsection{SU(3)$_c$ sector (8 generators)}
+
+Gluons are electrically neutral; they carry $\mathrm{SU}(3)_c$ colour but
+zero $U(1)_{\mathrm{EM}}$ charge.  In standard QED, gluons do not appear
+in the one-loop photon self-energy at all (they do in QCD corrections to
+$\alpha_s$, but not to the photon propagator at one loop).
+
+At the compactification scale where UBT lives, the SU(3) gauge sector
+is associated with the $\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$
+involution subgroup of $\mathcal{B}$ (see
+\texttt{canonical/su3\_derivation/su3\_from\_involutions.tex}).  These
+involutions act on $\mathrm{Im}\,\mathbb{H}$ and are EM-neutral under the
+diagonal $U(1)_{\mathrm{EM}}$ phase.
+
+\begin{proposition}[SU(3) generators do not contribute to photon loop]
+\label{prop:SU3}
+None of the 8 SU(3)$_c$ generators embedded in $\mathcal{B}$ contribute
+to the one-loop $U(1)_{\mathrm{EM}}$ vacuum polarisation from
+$S_{\mathrm{kin}}[\Theta]$.
+\end{proposition}
+
+\begin{proof}
+The SU(3) sector acts on the colour-triplet sub-space of the internal
+$\mathbb{Z}_2^3$ structure.  In the minimal $U(1)_{\mathrm{EM}}$
+covariant derivative $D_\mu = \partial_\mu + ieA_\mu$, the gauge field
+$A_\mu$ couples only to the overall phase of $\Theta$.  The SU(3)
+generators commute with this phase and hence with the minimal coupling.
+Their virtual loop contributions to $\Pi^{\mu\nu}_{\mathrm{EM}}$ are zero
+at leading order.
+\end{proof}
+
+\subsection{SU(2)$_L$ sector (3 generators)}
+
+The $W^{\pm}$ bosons are EM-charged with $Q = \pm 1$.  However, they are
+\emph{spin-1 vector fields}, not scalars.  In standard QFT, a charged
+massive vector boson contributes to the photon $\beta$-function with the
+opposite sign to a scalar:
+\begin{equation}
+  \Delta B_0^{W^\pm} = -\frac{11}{6}\,\frac{2\pi}{3}
+  \quad\text{per massive }W^\pm\text{ (vector boson)}.
+  \label{eq:W_contribution}
+\end{equation}
+The $Z^0$ boson is EM-neutral and does not contribute.
+
+In the UBT action $S_{\mathrm{kin}}[\Theta]$ as written, the field $\Theta$
+is treated as a complex scalar (not a vector field) coupling to
+$U(1)_{\mathrm{EM}}$ via minimal coupling.  The $SU(2)_L$ gauge bosons
+from $\mathbb{C}\otimes\mathbb{H}$ are \emph{not} included as independent
+propagating fields in $S_{\mathrm{kin}}$ in the one-loop photon
+vacuum polarisation computation.
+
+\begin{remark}
+If $W^\pm$ degrees of freedom were included as propagating charged scalars
+(rather than vectors), they would contribute $+2 \times (2\pi/3)$ to $B_0$.
+But their correct vector-boson contribution is $-2 \times (11/6)(2\pi/3)$,
+which is negative and would \emph{decrease} $B_0$.  Neither scenario is
+implemented in the audited scalar $S_{\mathrm{kin}}[\Theta]$.
+\end{remark}
+
+\subsection{U(1)$_Y$ sector (1 generator)}
+
+The $B$-boson (hypercharge gauge boson) is EM-neutral at the level of
+$U(1)_Y$ (before electroweak symmetry breaking, $U(1)_Y \neq U(1)_{\mathrm{EM}}$).
+It does not contribute to the photon self-energy as an independent
+propagating loop particle in the minimal coupling scheme.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 3 — The Central Lemma}
+\label{sec:lemma}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Two different $\Neff$, not one]
+\label{lem:two_Neff}
+$\Neff(\mathrm{R2}) = 12$ and $\Neff(\mathrm{loop}) = 3$ are not the same
+quantity:
+
+\begin{enumerate}
+  \item $\Neff(\mathrm{R2}) = 12$ counts \emph{algebraic generators of
+        $G_{\mathrm{SM}}$ embedded in $\mathcal{B}$}.  It is an
+        \textbf{[L0]} algebraic identity.  It does not require any
+        assumption about which fields propagate in the photon loop.
+  \item $\Neff(\mathrm{loop}) = 3$ counts \emph{charged complex scalar
+        fields from $S_{\mathrm{kin}}[\Theta]$} that contribute to the
+        one-loop $U(1)_{\mathrm{EM}}$ photon self-energy with the standard
+        scalar-QED coefficient $e^2/(6\pi^2)$.  It is derived from
+        \texttt{step1\_mode\_decomposition.tex} Theorem~3.1.
+\end{enumerate}
+
+The identification $\Neff(\mathrm{R2}) = \Neff(\mathrm{loop})$ requires
+a separate mechanism showing that \emph{all} 12 generators contribute to
+the photon loop via charged scalar-type excitations.  This mechanism is
+\textbf{not proved} from $S_{\mathrm{kin}}[\Theta]$ in the current canonical
+files.
+\end{lemma}
+
+\begin{proof}
+From Section~\ref{sec:contributions}: SU(3) generators are EM-neutral
+(Proposition~\ref{prop:SU3}); $W^\pm$ are vector bosons (negative
+contribution); $Z^0$ and $B^0$ are EM-neutral.  No loop in
+$S_{\mathrm{kin}}[\Theta]$ produces $\Neff = 12$ scalars.  The minimal
+scalar action yields only the three $\Phi_k$ modes, giving
+$\Neff(\mathrm{loop}) = 3$.  Therefore the two $\Neff$ values are not
+equal.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 4 — Which $\Neff$ Enters $B_0$?}
+\label{sec:which}
+%──────────────────────────────────────────────────────────────────────────────
+
+The quantity $B_0$ in
+\begin{equation}
+  \frac{1}{\alpha(\mu)}
+  = \frac{1}{\alpha(\mu_0)}
+  + \frac{B_0}{2\pi}\ln\frac{\mu}{\mu_0}
+  \label{eq:running}
+\end{equation}
+is determined by which fields actually propagate in the one-loop photon
+self-energy.
+
+From $S_{\mathrm{kin}}[\Theta]$ alone:
+\begin{equation}
+  \boxed{
+  \Neff(\mathrm{loop}) = 3
+  \quad\Rightarrow\quad
+  B_0 = \frac{2\pi}{3}\times 3 = 2\pi \approx 6.28.
+  }
+  \label{eq:B0_audit}
+\end{equation}
+
+If a future derivation shows that the full SM particle content
+(quarks, leptons, $W^\pm$, etc.) emerges from $S[\Theta]$ with
+the correct statistics and charges, then the effective $\Neff$ entering
+$B_0$ at the EW scale would be the standard running-coupling answer
+from the SM spectrum.  But that is a future problem, not the current one.
+
+\begin{remark}[Impact on $n^*$]
+With $B_0 = 2\pi$ and the stationarity equation $B = 2n_*/({\ln n_*+1})$:
+\begin{equation}
+  n_*(B_0 = 2\pi) \approx 10.54,
+\end{equation}
+which is not 137.  The alpha track T3\_ALPHA therefore remains
+\textbf{CONDITIONAL-WEAK} until the mechanism connecting the full SM
+particle content to $B$ is derived.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Consistency Check: Route R2 Is Internally Correct}
+\label{sec:R2_correct}
+%──────────────────────────────────────────────────────────────────────────────
+
+Route R2 (\texttt{neff12\_derivations.tex} §R2) is \emph{internally} correct
+as an algebraic statement: $\dim G_{\mathrm{SM}} = 12$ is a group-theory fact,
+and the embedding of $G_{\mathrm{SM}}$ in $\mathcal{B}$ is proved at [L0].
+
+The error is in the \emph{physical application}: the claim that each of the
+12 generators "contributes to the $U(1)_{\mathrm{EM}}$ vacuum polarisation via
+one independent gauge-charged mode" conflates the algebraic count with the
+loop count.  These are different counting problems.
+
+The coincidence $8 + 3 + 1 = 12 = 3\times 2\times 2$ is a genuine algebraic
+coincidence explained in Remark~2.1 of \texttt{neff12\_derivations.tex}:
+it follows from $\dim\,\mathrm{SU}(3) + \dim\,\mathrm{SU}(2) + \dim\,\mathrm{U}(1)
+= N_{\mathrm{phases}}\times(N_{\mathrm{helicity}}\times N_{\mathrm{charge}})
+= 3\times 4 = 12$.
+This is a structural consistency, not a physical mechanism.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Impact on WHAT\_IS\_PROVED.md}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+Quantity & Value & What it counts & Proof level & Status \\
+\midrule
+$\Neff(\mathrm{R2})$ & 12 & $\dim G_{\mathrm{SM}}$ in $\mathcal{B}$ & [L0] & ✓ proved \\
+$\Neff(\mathrm{loop})$ & 3 & Charged $\Phi_k$ from $S_{\mathrm{kin}}[\Theta]$ & [L1] & ✓ proved \\
+$B_0$ from loop & $2\pi$ & Running from $\Neff(\mathrm{loop})$ & [L1] & ✓ proved \\
+$\Neff(\mathrm{R2}) = \Neff(\mathrm{loop})$? & NOT EQUAL & — & [MC] OPEN & 
+  identification unproved \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent
+Updates to \texttt{WHAT\_IS\_PROVED.md}:
+\begin{itemize}
+  \item Row $\alpha$1b: $N_{\mathrm{eff}} = 12 = 3\times 2\times 2$:
+    status remains \textbf{OPEN / [MC]} (loop identification unproved).
+  \item Row $\alpha$1: $N_{\mathrm{phases}} = 3$ from $\mathrm{Im}\,\mathbb{H}$:
+    status \textbf{[L0]} ✓ (not affected).
+  \item New row: $\Neff(\mathrm{loop}) = 3$ from $S_{\mathrm{kin}}[\Theta]$:
+    status \textbf{[L1]} ✓.
+  \item New row: $B_0^{\mathrm{loop}} = 2\pi$: status \textbf{[L1]} ✓.
+\end{itemize}
+
+\begin{statusbox}
+Výsledek: Two distinct $\Neff$ quantities — they are NOT the same.
+$\Neff(\mathrm{R2}) = 12$ [L0] (algebraic); $\Neff(\mathrm{loop}) = 3$ [L1]
+(from $S_{\mathrm{kin}}[\Theta]$).\\
+Klasifikace: $\Neff(\mathrm{R2})$: [L0]; $\Neff(\mathrm{loop})$: [L1];
+identification: [MC] OPEN.\\
+Dopad na alpha track: $B_0 = 2\pi$ from the minimal scalar loop; $n^*\approx 10.54$.
+T3\_ALPHA remains CONDITIONAL-WEAK until an extended loop derivation
+produces $\Neff > 3$ from the full field content of $\mathcal{B}$.
+\end{statusbox}
+
+\end{document}
