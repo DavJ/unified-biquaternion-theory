@@ -41,7 +41,7 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 
 **Submission file**: `papers/UBT_GR_Submission.tex`  
 **Pre-submission fix**: ✅ Done — Newton's G clarification added as Remark in §3.5 (2026-05-10)  
-**Estimated arXiv**: within 2 weeks
+**Estimated arXiv**: SUBMITTED — 2026-05-10
 
 ---
 
@@ -68,8 +68,8 @@ Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
 | Fermion masses | ⚪ Deferred |
 | Dynamical confinement | ⚪ Clay Millennium Problem |
 
-**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 6–8 weeks.  
-**Paper draft**: ✅ `papers/UBT_Gauge_Submission.tex` created (2026-05-10)
+**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 2026-07-05 (6–8 weeks from 2026-05-10).  
+**Paper draft**: ✅ `papers/UBT_Gauge_Submission.tex` created and updated (2026-05-10)
 
 ---
 

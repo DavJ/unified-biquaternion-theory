@@ -1,0 +1,323 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+\newcommand{\Nhelicity}{N_{\mathrm{helicity}}}
+\newcommand{\Ncharge}{N_{\mathrm{charge}}}
+
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+  arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+\title{Derivation Audit of $N_{\mathrm{helicity}} = 2$\\
+       \large Three Paths and Their Outcomes from $S_{\mathrm{kin}}[\Theta]$}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The factor $\Nhelicity = 2$ appears in Route~R1 and Route~R4 of
+\texttt{neff12\_derivations.tex} as part of the $N_{\mathrm{eff}} = 12$
+decomposition.  This document examines three candidate derivations
+of this factor from $S_{\mathrm{kin}}[\Theta]$ and determines whether
+any of them constitutes a genuine loop-count multiplier.
+\textbf{Verdict}: none of the three paths derives $\Nhelicity = 2$ as an
+additional independent multiplier from the minimal scalar action.
+The loop-safe value is $\Nhelicity = 1$ from $S_{\mathrm{kin}}[\Theta]$,
+giving $\Neff(\mathrm{loop}) = 3$ and $B_0 = 2\pi$.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup and Conventions}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+The audited kinetic action is (\texttt{canonical/n\_eff/step2\_AUDIT.tex}, §A):
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta]
+  = \int d^4x\,d\psi\;
+  \mathrm{Sc}\!\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr],
+  \label{eq:S_kin}
+\end{equation}
+which reduces after $\psi$-integration to
+\begin{equation}
+  S_{\mathrm{eff}} = \sum_{k=1}^{3}
+  \int d^4x\;\bigl|({\partial}_\mu + ieA_\mu)\Phi_k\bigr|^2,
+  \qquad \Phi_k = \Theta_k \in \mathbb{C}.
+  \label{eq:S_eff}
+\end{equation}
+This is \emph{three copies of scalar QED} for a charged complex scalar.
+
+The reference coefficient for one complex scalar (Peskin \& Schroeder,
+scalar QED, Eq.~(7.90) adapted):
+\begin{equation}
+  B_0^{(1\text{ complex scalar})} = \frac{2\pi}{3}.
+  \label{eq:baseline}
+\end{equation}
+In the convention of \eqref{eq:S_kin}:
+$1/\alpha(\mu) = 1/\alpha(\mu_0) + (B_0/2\pi)\ln(\mu/\mu_0)$.
+
+The question is whether any derivation path adds an extra factor of $\Nhelicity = 2$
+on top of this baseline.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Path A — Fermionic Dirac Trace}
+\label{sec:pathA}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Statement of Path A}
+
+Route~R1 (\texttt{neff12\_derivations.tex} §R1 step 2) states: "The
+complexification $\mathbb{C}\otimes$ provides a complex structure on $\mathbb{H}$,
+splitting each quaternion field component into left and right Weyl helicity
+sectors.  Thus $\Nhelicity = 2$."
+
+\texttt{step2\_vacuum\_polarization.tex} §3.3 claims: "The standard
+Passarino-Veltman reduction gives a factor $\Nhelicity = 2$ relative to a
+scalar loop without polarization sum."
+
+\subsection{Analysis}
+
+The factor of 2 in a fermion loop (relative to a complex scalar loop)
+comes from the Dirac trace:
+\begin{equation}
+  \mathrm{Tr}\!\left[\slashed{p}\,\gamma^\mu\,(\slashed{p}+\slashed{k})\,\gamma^\nu\right]
+  = 4\!\left[p^\mu(p+k)^\nu + p^\nu(p+k)^\mu - g^{\mu\nu}p\cdot(p+k)\right].
+  \label{eq:Dirac_trace}
+\end{equation}
+The factor of 4 from the Dirac trace (versus 1 for a complex scalar) accounts
+for the spin-1/2 degrees of freedom.  For a Weyl fermion the trace gives a
+factor of 2 instead of 4.
+
+Passarino-Veltman reduction is a tensor-reduction technique that expresses
+loop integrals with Lorentz tensor structure in terms of scalar integrals
+$B_0, B_1, \ldots$.  It does \emph{not} introduce helicity multiplicities.
+Helicity multiplicities arise \emph{before} PV reduction, from the trace over
+spin indices in the numerator of the loop integrand.
+
+\subsection{Does Path A apply to $S_{\mathrm{kin}}[\Theta]$?}
+
+The action \eqref{eq:S_eff} is a \emph{scalar} kinetic term.  There is no
+Dirac matrix $\gamma^\mu$ in the numerator of the $\Phi_k$ propagator.
+The loop integrand is
+\begin{align}
+  \Pi^{\mu\nu}(k) &\propto \int \frac{d^4p}{(2\pi)^4}
+  \frac{(2p+k)^\mu(2p+k)^\nu}{[p^2-m^2][(p+k)^2-m^2]},
+  \label{eq:scalar_loop}
+\end{align}
+and there is no trace over spinor indices.  The resulting scalar-QED loop
+coefficient is exactly the baseline \eqref{eq:baseline}; no additional
+factor of 2 appears.
+
+\begin{proposition}[Path A does not apply]
+\label{prop:pathA}
+Path A is inapplicable to $S_{\mathrm{kin}}[\Theta]$ as written.  The
+minimal action is a scalar action with no Dirac fermion term.  Therefore
+$\Nhelicity = 2$ cannot be derived from a Dirac trace argument for this action.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Path B — Off-Diagonal $\mathrm{Mat}(2,\mathbb{C})$ Components}
+\label{sec:pathB}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Statement of Path B}
+
+Route~R4 (\texttt{neff12\_derivations.tex} §R4) uses the isomorphism
+$\mathbb{C}\otimes\mathbb{H} \cong M_2(\mathbb{C})$ and counts:
+\begin{equation}
+  \Neff = \underbrace{2}_{\text{off-diag}}
+         \times
+         \underbrace{3}_{N_{\mathrm{phases}}}
+         \times
+         \underbrace{2}_{\Nhelicity}
+  = 12.
+  \label{eq:R4}
+\end{equation}
+The "two Weyl helicity components from the $\mathbb{C}$ tensor factor"
+are supposed to give $\Nhelicity = 2$.
+
+\subsection{Analysis}
+
+In $M_2(\mathbb{C})$, the two off-diagonal entries $\theta_{12}$ and
+$\theta_{21}$ are charged under $U(1)_{\mathrm{EM}}$ with charges $+q$
+and $-q$ respectively.  The two diagonal entries $\theta_{11}$ and
+$\theta_{22}$ are neutral.
+
+Under the minimal coupling $D_\mu = \partial_\mu + ieA_\mu$ acting on
+the whole matrix $\Theta$, the kinetic term
+\begin{equation}
+  \mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]
+  \label{eq:Tr_kin}
+\end{equation}
+splits into contributions from all four components.  The charged
+off-diagonal entries each contribute:
+\begin{equation}
+  \bigl|({\partial}_\mu + ieA_\mu)\theta_{12}\bigr|^2
+  + \bigl|({\partial}_\mu - ieA_\mu)\theta_{21}\bigr|^2.
+  \label{eq:offdiag}
+\end{equation}
+This is two independent complex scalars with charges $\pm e$.
+
+\begin{proposition}[Path B gives $N_{\mathrm{charge}} = 2$, not $\Nhelicity = 2$]
+\label{prop:pathB}
+The factor of 2 from the two off-diagonal entries in Path~B accounts for
+the charge-conjugate pair $(\theta_{12}, \theta_{21})$.
+This is the particle/antiparticle doubling already incorporated in the
+standard complex-scalar QED coefficient $e^2/(6\pi^2)$
+(see \texttt{step2\_vacuum\_polarization.tex} §3.4).
+It is $N_{\mathrm{charge}} = 2$, not $\Nhelicity = 2$.
+Adding it as an independent factor on top of the standard complex-scalar
+formula is double counting.
+\end{proposition}
+
+\begin{remark}
+The "two Weyl helicity components from the $\mathbb{C}$ tensor factor"
+in Route~R4 cannot be identified with left/right helicity states without
+a separate kinetic term coupling $\Theta$ as a Weyl spinor (e.g.,
+$\bar\Theta\, i\sigma^\mu D_\mu \Theta$ for a left-Weyl field).
+The minimal scalar action \eqref{eq:S_kin} does not contain such a term.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Path C — Weyl Decomposition from $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:pathC}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Statement of Path C}
+
+The complexification $\mathbb{C}\otimes\mathbb{H}$ provides a natural Weyl
+decomposition because $\mathbb{H}$ contains the quaternionic anti-involution
+$\Theta \mapsto -\mathbf{k}\Theta\mathbf{k}$ which (in the Mat$(2,\mathbb{C})$
+representation) corresponds to charge conjugation.  One could argue that each
+quaternionic $\Phi_k$ is a Weyl spinor with two helicity components $\phi_k^L$
+and $\phi_k^R$, contributing a factor of $\Nhelicity = 2$.
+
+\subsection{Analysis}
+
+For this argument to give a loop multiplicity of 2, the fields $\phi_k^L$ and
+$\phi_k^R$ must appear as \emph{independent} loop propagators in the Feynman
+diagram for $\Pi^{\mu\nu}$.  This requires a kinetic term of the form:
+\begin{equation}
+  \mathcal{L}_{\mathrm{Weyl}}
+  = i\phi_k^{L\dagger}\bar\sigma^\mu({\partial}_\mu + ieA_\mu)\phi_k^L
+  + i\phi_k^{R\dagger}\sigma^\mu({\partial}_\mu + ieA_\mu)\phi_k^R.
+  \label{eq:Weyl_kinetic}
+\end{equation}
+Such a term is \emph{not present} in $S_{\mathrm{kin}}[\Theta]$ as written.
+Deriving \eqref{eq:Weyl_kinetic} from \eqref{eq:S_kin} would require:
+\begin{enumerate}
+  \item An identification of the Weyl components $\phi_k^{L/R}$ within $\Phi_k$
+        as independent propagating fields (not just algebraic components).
+  \item A proof that the kinetic operator of $\Phi_k$ in the winding background
+        reproduces \eqref{eq:Weyl_kinetic}, not the scalar kinetic term
+        $|({\partial}_\mu + ieA_\mu)\Phi_k|^2$.
+\end{enumerate}
+
+Neither of these steps is carried out in the current canonical derivation chain.
+
+\begin{proposition}[Path C requires additional derivation]
+\label{prop:pathC}
+The Weyl-decomposition argument for $\Nhelicity = 2$ from $\mathbb{C}\otimes\mathbb{H}$
+is physically motivated by the algebraic structure but is not derived from
+$S_{\mathrm{kin}}[\Theta]$.  A separate fermionic effective action must be derived
+from $S[\Theta]$ (e.g.\ via a Dirac operator from the biquaternionic structure)
+before $\Nhelicity = 2$ can be upgraded to proved status.  This is a future
+derivation task, not a current result.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Loop-Safe Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$\Nhelicity = 1$ is the loop-safe value from $S_{\mathrm{kin}}[\Theta]$]
+\label{thm:nhelicity}
+For the minimal UBT kinetic action $S_{\mathrm{kin}}[\Theta]$, the one-loop
+vacuum polarisation of the photon is computed from three copies of scalar QED
+for the complex fields $\Phi_k$ ($k = 1, 2, 3$).  No independent helicity
+multiplicity factor arises from this action.  The loop-safe value is:
+\begin{equation}
+  \boxed{
+  \Nhelicity^{\mathrm{loop}} = 1
+  \quad\Rightarrow\quad
+  \Neff(\mathrm{loop}) = N_{\mathrm{phases}} \times \Nhelicity^{\mathrm{loop}}
+  = 3 \times 1 = 3
+  \quad\Rightarrow\quad
+  B_0 = \frac{2\pi}{3}\times 3 = 2\pi.
+  }
+  \label{eq:verdict}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Path A: inapplicable — no Dirac trace (Proposition~\ref{prop:pathA}).\\
+Path B: gives $\Ncharge = 2$, already included in the standard complex-scalar
+coefficient; adding it again is double counting (Proposition~\ref{prop:pathB}).\\
+Path C: requires a separate fermionic effective action not present in
+$S_{\mathrm{kin}}[\Theta]$ (Proposition~\ref{prop:pathC}).
+
+In the absence of a valid derivation of $\Nhelicity = 2$ from
+$S_{\mathrm{kin}}[\Theta]$, the loop calculation produces exactly
+$3 \times B_0^{(1)} = 3 \times (2\pi/3) = 2\pi$.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Update to step2\_AUDIT.tex §Step B Verdict}
+\label{sec:update_audit}
+%──────────────────────────────────────────────────────────────────────────────
+
+The verdict in \texttt{step2\_AUDIT.tex} §Step~B should be read as:
+
+\begin{itemize}
+  \item $\Nhelicity = 2$ is \textbf{not proved} as an independent loop multiplier
+        from $S_{\mathrm{kin}}[\Theta]$.
+  \item Three candidate derivation paths (A, B, C) have been examined.  None
+        produces $\Nhelicity = 2$ as an independent multiplier:
+        \begin{itemize}
+          \item Path A (Dirac trace): requires fermionic kinetic term not in $S_{\mathrm{kin}}$.
+          \item Path B (matrix structure): produces $\Ncharge = 2$, not $\Nhelicity = 2$.
+          \item Path C (Weyl decomp.): requires derivation of fermionic effective action.
+        \end{itemize}
+  \item The loop-safe value $\Nhelicity = 1$ gives $\Neff = 3$, $B_0 = 2\pi$.
+  \item Status: \textbf{OPEN / [MC]} — not closed without a derived fermionic
+        action from $S[\Theta]$.
+\end{itemize}
+
+\begin{statusbox}
+Výsledek: $\Nhelicity = 1$ (loop-safe from $S_{\mathrm{kin}}[\Theta]$);
+$\Nhelicity = 2$ is unproved as an independent multiplier.\\
+Klasifikace: [MC] OPEN for $\Nhelicity = 2$; [L1] proved for $\Nhelicity = 1$
+  from scalar action.\\
+Dopad na alpha track: $\Neff(\mathrm{loop}) = 3$, $B_0 = 2\pi$, $n^*\approx 10.54$.
+Upgrading $\Nhelicity$ to 2 requires a new derivation of the fermionic
+sector from $S[\Theta]$ (future task).
+\end{statusbox}
+
+\end{document}

@@ -80,10 +80,22 @@ V_CW(n) = n² − N_eff log(2 sinh(πn))
 - Large-n behaviour: ~n² − π N_eff n (linear, not n log n)  
 - Small-n limit: ~n² − N_eff log n + const (not n log n either)
 
-The n log n form cannot come from the direct CW determinant.  A separate
-physical mechanism is required.  Candidate: the Dirichlet divisor sum
-∑_{k=1}^n τ(k) ≈ n log n from the number-theoretic winding spectrum.
-**Status: OPEN**.
+The n log n form cannot come from the direct CW determinant on S¹_ψ.  A
+concrete mathematical mechanism has now been identified:
+
+**Divisor-sum mechanism** (see `research_tracks/T3_ALPHA/nlogn_mechanism.tex`):  
+Summing one-loop determinants over winding modes (p,q) with p·q = n on
+T² = S¹_ψ × S¹_χ (symmetric torus in UBT's T³ = Im(ℍ)) gives:
+```
+W_eff[n] ≈ τ(n) × c₀   (equal-mass-threshold approximation)
+∑_{k=1}^n W_eff[k] ≈ c₀ · ∑_{k=1}^n τ(k) ≈ c₀ · n ln n
+```
+The T² structure is present in UBT (three compact Im(ℍ) directions).
+
+**Remaining gap**: the coefficient c₀ = w(m₀²) depends on the compactification
+mass threshold m₀ and is not fixed without additional derivation.  Rules R1–R5
+prohibit using B_req or 137 to fix m₀.  
+**Status: CONDITIONAL [MC]** (mechanism identified; B not yet derived).
 
 ### Gap G-c3: Central charge c = 3 not derived
 
@@ -91,8 +103,18 @@ The exponent 1/4 = c/12 requires c = 3.  Arguments available:
 - 3 real phase DoF in Im(ℍ) after SU(2)_L gauge fixing  
 - Algebraic relation c = N_eff/4 = 12/4 = 3
 
-Neither derives c from δ²S[Θ]/δΘ² at the winding saddle.
-**Status: OPEN**.
+The second functional derivative δ²S[Θ]/δΘ² at the winding saddle has now
+been computed (see `research_tracks/T3_ALPHA/central_charge_derivation.tex`):
+
+- Fluctuation operator at winding saddle: K_n = −∂² + m_n² (massive scalar).  
+- Physical d.o.f. after gauge-fixing SU(2)_L × U(1)_Y (4 parameters from 8):  
+  N_phys = 4; winding-sector contribution: 3 real d.o.f. from Im(ℍ).  
+- Mode-counting gives c = 3.
+
+**Remaining gap**: gauge-fixing count is not fully rigorous (which SU(2)
+generators are broken at the winding saddle?); CFT identification requires
+RG-flow or decoupling argument; OPE computation not done.  
+**Status: CONDITIONAL [MC]** (narrowed from OPEN; mode-counting from δ²S).
 
 ### Gap G-insertion: η(i) in B vs. partition-function normalisation
 

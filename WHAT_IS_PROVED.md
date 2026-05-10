@@ -139,6 +139,9 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 |---|-------|-------|--------|
 | α1 | N_phases = 3 from Im(ℍ) | [L0] | `canonical/n_eff/step2_AUDIT.tex` |
 | α1b | N_eff = 12 = 3×2×2 | OPEN / [MC] (under critical audit) | `canonical/n_eff/step2_AUDIT.tex` |
+| α1c | N_eff(loop) = 3 from S_kin[Θ] (charged complex scalars) | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
+| α1d | B₀(loop) = 2π from S_kin[Θ] (one-loop scalar QED, N_eff=3) | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
+| α1e | N_eff(R2)=12 and N_eff(loop)=3 are different quantities; identification is unproved | [MC] OPEN | `canonical/n_eff/neff_reconciliation.tex` |
 | α2 | Charge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
 | α3 | V_eff winding-mode potential: $V_\mathrm{eff}(n) = n^2 - Bn\ln n$ | [L1] | `canonical/alpha/alpha_best_route.tex` |
 | α4 | $n^*(B_\mathrm{phenom}) = 137$ | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |

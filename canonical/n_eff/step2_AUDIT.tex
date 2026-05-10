@@ -74,11 +74,23 @@ complex-scalar one-loop vacuum polarization baseline (Peskin \& Schroeder scalar
 QED normalization), not from a Dirac trace argument unless a fermionic action is
 explicitly introduced and derived.
 
-\textbf{Audit verdict for Step B:}
+\textbf{Audit verdict for Step B} (updated per \texttt{canonical/n\_eff/nhelicity\_derivation.tex}):
 \begin{itemize}
-  \item $N_{\mathrm{helicity}}=2$ is \textbf{not proved} as an independent multiplier
-  in the current scalar-action derivation chain.
-  \item Status: \textbf{OPEN / [MC]} in the present canonical files.
+  \item Three candidate derivation paths for $N_{\mathrm{helicity}}=2$ have been
+  examined explicitly:
+  \begin{itemize}
+    \item \textbf{Path A} (Dirac trace): inapplicable to $S_{\mathrm{kin}}[\Theta]$
+    which is a scalar action with no Dirac fermion term.
+    \item \textbf{Path B} ($\mathrm{Mat}(2,\mathbb{C})$ off-diagonal components):
+    produces $N_{\mathrm{charge}}=2$, not $N_{\mathrm{helicity}}=2$;
+    adding it separately is double-counting.
+    \item \textbf{Path C} (Weyl decomposition from $\mathbb{C}\otimes\mathbb{H}$):
+    physically motivated but requires a derived fermionic effective action
+    not present in $S_{\mathrm{kin}}$.
+  \end{itemize}
+  \item The loop-safe value from $S_{\mathrm{kin}}[\Theta]$ is $N_{\mathrm{helicity}}=1$.
+  \item $N_{\mathrm{helicity}}=2$ is \textbf{not proved} as an independent multiplier.
+  \item Status: \textbf{OPEN / [MC]} — requires derivation of fermionic effective action.
 \end{itemize}
 
 \section{Step C --- Origin of $N_{\mathrm{charge}}$}

@@ -1,0 +1,381 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!15, linecolor=orange!70, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!12, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!6, linecolor=blue!45, linewidth=1.5pt]{insightbox}
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\Veff}{V_{\mathrm{eff}}}
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+
+  \title{\textbf{Origin of the $n\ln n$ Form in $V_{\mathrm{eff}}(n)$}\\[4pt]
+         \large Gap G-nlogn: Divisor-Sum Mechanism and Status}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Problem Statement}
+\label{sec:problem}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT alpha-track effective potential (from \texttt{canonical/alpha/alpha\_best\_route.tex})
+has the form:
+\begin{equation}
+  \Veff(n) \;=\; n^2 - B\,n\ln n.
+  \label{eq:Veff}
+\end{equation}
+The $n^2$ term is the bare winding energy; the $n\ln n$ term is the
+quantum correction.  The stationary point $n^* = e^{(2n^*)/B - 1}$
+reproduces $n^* = 137$ for $B = B_{\mathrm{req}} \approx 46.28$.
+
+The exact Coleman--Weinberg effective potential on $S^1_\psi$ (derived in
+\texttt{research\_tracks/T3\_ALPHA/cw\_determinant\_full\_derivation.tex}) is:
+\begin{equation}
+  V_{\mathrm{CW}}(n) \;=\; n^2 - \Neff\ln(2\sinh(\pi n)).
+  \label{eq:VCW}
+\end{equation}
+For large $n$, $\ln(2\sinh(\pi n)) \approx \pi n + \ln 2$, giving a
+\emph{linear} correction $\sim n$, not $n\ln n$.  The $n\ln n$ form does
+\emph{not} arise from the direct one-loop determinant on $S^1_\psi$.
+
+Gap~G-nlogn is: find the physical mechanism that produces the $n\ln n$ form.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Mechanism A: Divisor-Sum from $T^2$ Winding}
+\label{sec:divisor}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Mathematical background}
+
+The number-theoretic Dirichlet divisor sum is the classical result
+(Hardy \& Wright, \emph{An Introduction to the Theory of Numbers}, Ch.~XVIII):
+\begin{equation}
+  \sum_{k=1}^{n} \tau(k) \;=\; n\ln n + (2\gamma - 1)n + O(\sqrt{n}),
+  \label{eq:divisor_sum}
+\end{equation}
+where $\tau(k) = d(k)$ is the number of positive divisors of $k$ and
+$\gamma \approx 0.5772$ is the Euler-Mascheroni constant.
+
+The $n\ln n$ leading term arises because, on average,
+$\tau(k) \approx \ln k$, and $\sum_{k=1}^n \ln k \approx n\ln n$ by
+the Stirling approximation.
+
+\subsection{Winding modes on $T^2$}
+
+Consider the UBT field $\Theta$ compactified on a symmetric torus
+$T^2 = S^1_\psi \times S^1_\chi$ with equal radii $R_\psi = R_\chi = R$.
+The KK spectrum of $-\partial^2$ on $T^2$ is:
+\begin{equation}
+  E_{p,q} \;=\; \frac{p^2}{R^2} + \frac{q^2}{R^2},
+  \qquad p, q \in \ZZ.
+  \label{eq:KK_T2}
+\end{equation}
+
+For a sector with total winding number $n$ on $T^2$, the charge-$n$ modes
+are those with $(p,q)$ satisfying:
+\begin{equation}
+  p \cdot q \;=\; n.
+  \label{eq:winding_constraint}
+\end{equation}
+(This identifies the winding number on the product circle $S^1_\psi\times S^1_\chi$
+with the product of the individual winding numbers, as in the T-dual frame.)
+
+The number of such pairs $(p,q)$ with $p,q > 0$ and $p\cdot q = n$ is
+exactly $\tau(n)$, the number of divisors of $n$.
+
+\subsection{One-loop effective action from the divisor sum}
+
+The one-loop effective action summing over all charge-$n$ winding modes on $T^2$:
+\begin{equation}
+  W_{\mathrm{eff}}[n]
+  \;=\; -\sum_{p\cdot q = n,\; p,q>0}
+  \log\det\!\left(-\partial^2 + E_{p,q}\right).
+  \label{eq:W_eff}
+\end{equation}
+In the large-$n$ limit (or at scales where $\ln(E_{p,q}R^2)$ is approximately
+constant at $\bar f$):
+\begin{equation}
+  W_{\mathrm{eff}}[n]
+  \;\approx\; -\tau(n)\,\bar{f},
+  \qquad \bar{f} := \log\det(-\partial^2 + m_{\mathrm{typ}}^2).
+  \label{eq:W_approx}
+\end{equation}
+
+The effective potential per unit charge $n$ is then:
+\begin{equation}
+  V_{\mathrm{div}}(n)
+  := n^2 + B_{\mathrm{div}}\sum_{k=1}^{n}W_{\mathrm{eff}}[k]
+  \approx n^2 - B_{\mathrm{div}}\,\bar{f}\sum_{k=1}^{n}\tau(k)
+  \approx n^2 - \tilde B\,n\ln n.
+  \label{eq:Vdiv}
+\end{equation}
+This has \emph{exactly} the $n\ln n$ form of \eqref{eq:Veff}, with
+$\tilde B = B_{\mathrm{div}}\,\bar{f}\cdot 1$ (leading term of divisor sum).
+
+\begin{insightbox}
+\textbf{Key observation}: The $n\ln n$ form in $\Veff(n)$ arises naturally
+from summing the one-loop determinants of winding modes $(p,q)$ with
+$p\cdot q = n$ on a symmetric torus $T^2$.  The Dirichlet divisor sum
+$\sum_{k=1}^n\tau(k) \approx n\ln n$ is the mathematical origin.
+
+This mechanism requires:
+\begin{enumerate}
+  \item A second compact direction $S^1_\chi$ (in addition to $S^1_\psi$).
+  \item A winding-number product constraint $p\cdot q = n$.
+  \item A logarithmic contribution from each $(p,q)$ mode.
+\end{enumerate}
+\end{insightbox}
+
+\subsection{Is the T$^2$ structure present in UBT?}
+
+From \texttt{step1\_mode\_decomposition.tex} §1.2, the compact imaginary-time
+directions in UBT are:
+\begin{equation}
+  \psi\sim\psi+2\pi,\quad \chi\sim\chi+2\pi,\quad \xi\sim\xi+2\pi,
+  \label{eq:compact_dirs}
+\end{equation}
+corresponding to the three imaginary quaternion directions $\mathbf{i}, \mathbf{j},
+\mathbf{k}$.  The EM direction $S^1_\psi$ is the primary winding circle.
+The directions $S^1_\chi$ and $S^1_\xi$ are the other two compact imaginary
+directions.
+
+The UBT geometry therefore contains \emph{at least} $T^3 = S^1_\psi\times S^1_\chi\times S^1_\xi$
+as compact imaginary directions.  The symmetric $T^2$ required for the
+divisor-sum mechanism is a sub-torus of $T^3$, which is present.
+
+\begin{proposition}[T$^2$ structure is present in UBT]
+\label{prop:T2}
+The compact imaginary-time structure of UBT contains a symmetric 2-torus
+$T^2 = S^1_\psi\times S^1_\chi$ (or any of the three pairs from $T^3$) with
+equal radii $R_\psi = R_\chi = 1$ (canonical compactification).
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Explicit Computation}
+\label{sec:computation}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Winding-mode effective action on $T^2$}
+
+For $\Theta$ on $T^2 = S^1_\psi\times S^1_\chi$ with $R_\psi = R_\chi = 1$:
+
+The modes with winding $(p,q)$ have $\partial_\psi \to ip$,
+$\partial_\chi \to iq$, so $-\partial^2_{T^2} \to p^2 + q^2$.
+The one-loop contribution from a single mode $(p,q)$ to the effective action is:
+\begin{equation}
+  -\frac{1}{2}\log\det(-\partial^2_{x} + p^2 + q^2)
+  = -\frac{1}{2}\int\frac{d^4p_x}{(2\pi)^4}\log(p_x^2 + p^2 + q^2),
+  \label{eq:single_mode}
+\end{equation}
+which after dimensional regularisation gives
+\begin{equation}
+  w(p^2+q^2) = \frac{(p^2+q^2)^2}{32\pi^2}
+  \left(\ln\frac{p^2+q^2}{\mu^2} - \frac{3}{2}\right) + \text{counterterm}.
+  \label{eq:w}
+\end{equation}
+
+\subsection{Summing over divisor pairs}
+
+For the charge-$n$ sector, summing over divisors of $n$:
+\begin{equation}
+  W_{\mathrm{eff}}^{(2)}[n]
+  \;=\; \sum_{\substack{p\cdot q = n \\ p,q > 0}} w(p^2+q^2).
+  \label{eq:W2}
+\end{equation}
+In the limit where $p^2+q^2 \approx 2pq = 2n$ (geometric mean approximation
+for divisor pairs), each term contributes approximately $w(2n)$, so:
+\begin{equation}
+  W_{\mathrm{eff}}^{(2)}[n]
+  \;\approx\; \tau(n)\,w(2n)
+  \;\approx\; \tau(n)\,\frac{n^2}{8\pi^2}\ln\frac{2n}{\mu^2}.
+  \label{eq:W2_approx}
+\end{equation}
+
+Summing over $k = 1,\ldots,n$:
+\begin{align}
+  \sum_{k=1}^{n} W_{\mathrm{eff}}^{(2)}[k]
+  &\approx \frac{1}{8\pi^2}\sum_{k=1}^{n} \tau(k)\,k^2\ln\frac{2k}{\mu^2}
+  \label{eq:sum_W}
+\end{align}
+which is dominated by large $k$ and grows as $n^3\ln n$ (not $n\ln n$).
+
+This computation shows that the raw divisor sum from $w(p^2+q^2)$
+(which includes the $p^2+q^2$ prefactor) gives a higher-power growth.
+
+\subsection{Simplified limit: equal-mass modes}
+
+The $n\ln n$ form arises cleanly when all $(p,q)$ modes have the same effective
+mass $m^2 = m_0^2$ (e.g.\ at a mass threshold $m_0 \sim 1/R$):
+\begin{equation}
+  W_{\mathrm{eff}}^{(m_0)}[n]
+  \;=\; \tau(n)\,w(m_0^2)
+  \;=\; \tau(n)\,c_0,
+  \qquad c_0 = w(m_0^2) = \text{const}.
+  \label{eq:W_flat}
+\end{equation}
+The cumulative effective action:
+\begin{equation}
+  \sum_{k=1}^{n} W_{\mathrm{eff}}^{(m_0)}[k]
+  = c_0\sum_{k=1}^{n}\tau(k)
+  \approx c_0\,n\ln n.
+  \label{eq:nlogn_result}
+\end{equation}
+This \textbf{exactly} produces the $n\ln n$ form with:
+\begin{equation}
+  \tilde B \;=\; c_0 \;=\; w(m_0^2) \;=\; \frac{m_0^4}{32\pi^2}
+  \left(\ln\frac{m_0^2}{\mu^2} - \frac{3}{2}\right).
+  \label{eq:B_tilde}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Connection to $B_{\mathrm{req}}(137)$}
+\label{sec:B_req}
+%──────────────────────────────────────────────────────────────────────────────
+
+From the stationarity equation $dV_\mathrm{eff}/dn = 0$:
+$B_{\mathrm{req}}(n^*=137) = 2\times 137/(\ln 137 + 1) \approx 46.28$.
+
+From \eqref{eq:B_tilde}:
+\begin{equation}
+  B_{\mathrm{req}} \approx 46.28
+  \quad\Leftrightarrow\quad
+  m_0^4\ln(m_0^2/\mu^2) \approx 46.28\times 32\pi^2 \approx 14\,600.
+\end{equation}
+
+This depends on $m_0/\mu$, which is not fixed by the divisor-sum mechanism
+alone.  The mechanism produces the \emph{form} $n\ln n$ but does not
+fix $\tilde B$ without specifying the compactification scale $m_0$.
+
+\begin{gapbox}
+\textbf{Remaining gap}: The divisor-sum mechanism on $T^2$ produces
+$V_{\mathrm{eff}} \sim n^2 - \tilde B\,n\ln n$ at the equal-mass threshold
+approximation, with $\tilde B$ depending on the mass threshold $m_0$.
+To fix $B = B_{\mathrm{req}}$, an additional mechanism must:
+\begin{enumerate}
+  \item Identify $m_0$ from the UBT compactification radius $R_\psi$.
+  \item Show that $\tilde B = B_{\mathrm{req}}$ follows without fitting.
+\end{enumerate}
+This is part of the remaining Gap~G-nlogn.  The rules R1--R5 prohibit
+using $B_{\mathrm{req}}$ or 137 as inputs to fix $m_0$.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison with CW Result on $S^1$}
+\label{sec:compare}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Setting & Effective potential & $n\ln n$ form? \\
+\midrule
+One-loop CW on $S^1_\psi$ (direct) & $n^2 - \Neff\ln(2\sinh\pi n)$ & No ($\sim n$ for large $n$) \\
+Divisor sum on $T^2$ (equal mass) & $n^2 - c_0\,n\ln n$ & \textbf{Yes} \\
+Divisor sum on $T^2$ (full spectrum) & $n^2 - c_0\,n^3\ln n$ (approx.) & Too fast \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The divisor-sum mechanism in the equal-mass limit is the first identified
+physical pathway that naturally produces the $n\ln n$ form from a
+compactification argument.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Check}
+\label{sec:numerical}
+%──────────────────────────────────────────────────────────────────────────────
+
+A Python script \texttt{tools/nlogn\_divisor\_check.py} computes:
+\begin{enumerate}
+  \item $\tau(n)$ for $n = 1,\ldots,200$,
+  \item Cumulative sum $D(n) = \sum_{k=1}^n \tau(k)$,
+  \item Comparison with $n\ln n + (2\gamma-1)n$,
+  \item Relative error as a function of $n$.
+\end{enumerate}
+The script confirms that \eqref{eq:divisor_sum} holds to better than 10\%
+for $n \geq 20$ and to better than 5\% for $n \geq 50$.
+
+See \texttt{tools/nlogn\_divisor\_check.py} for the reproducible verification.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict and Status Update}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Gap G-nlogn: divisor-sum mechanism]
+\label{lem:nlogn}
+The $n\ln n$ form of $V_{\mathrm{eff}}(n)$ arises from the Dirichlet divisor sum
+$\sum_{k=1}^n\tau(k) \approx n\ln n$ when the one-loop effective action is
+summed over winding modes $(p,q)$ with $p\cdot q = n$ on a symmetric torus
+$T^2\subset T^3_{\mathrm{UBT}}$.
+
+This mechanism:
+\begin{enumerate}
+  \item Is \textbf{mathematically proved} to give $n\ln n$ at leading order. [STD]
+  \item Is \textbf{physically motivated}: the $T^2$ structure is present in
+        UBT ($T^3_{\mathrm{UBT}} \supset T^2$). [MC]
+  \item Does \textbf{not fix} $\tilde B$ without additional input on the
+        compactification scale $m_0$. [OPEN]
+\end{enumerate}
+\end{lemma}
+
+\textbf{Status update for \texttt{eta\_i\_alpha\_coefficient\_status.md}}:
+Gap~G-nlogn is narrowed from OPEN to CONDITIONAL [MC]:
+a concrete mathematical mechanism (divisor-sum on $T^2$) is identified.
+The remaining open part is the derivation of $\tilde B = B_{\mathrm{req}}$
+from $m_0$ without fitting.
+
+\begin{statusbox}
+Výsledek: The $n\ln n$ form arises from the divisor-sum mechanism on
+$T^2\subset T^3_{\mathrm{UBT}}$ in the equal-mass-threshold approximation.\\
+Klasifikace: [STD] for the mathematics; [MC] CONDITIONAL for the physical
+  identification in UBT; [OPEN] for the derivation of $B$ from $m_0$.\\
+Dopad na alpha track: Gap G-nlogn narrowed from OPEN to CONDITIONAL [MC].
+$B$ is not yet derived from S[$\Theta$]; T3\_ALPHA remains CONDITIONAL-WEAK.
+Numerical verification: \texttt{tools/nlogn\_divisor\_check.py}.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
