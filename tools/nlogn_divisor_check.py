@@ -48,7 +48,16 @@ def divisor_sum(n: int) -> list[int]:
 
 
 def asymptotic_approximation(n: int) -> float:
-    """Leading asymptotic: n*ln(n) + (2*gamma - 1)*n."""
+    """Leading asymptotic: n*ln(n) + (2*gamma - 1)*n.
+
+    Valid for n >= 1. Returns 0.0 for n <= 0 (not a useful value).
+    For n = 1: ln(1) = 0, so the result is (2*gamma - 1)*1 ≈ 0.155.
+    """
+    if n <= 0:
+        return 0.0
+    if n == 1:
+        # ln(1) = 0; asymptotic gives (2*gamma - 1) * 1 ≈ 0.155
+        return (2 * EULER_MASCHERONI - 1) * n
     return n * math.log(n) + (2 * EULER_MASCHERONI - 1) * n
 
 
