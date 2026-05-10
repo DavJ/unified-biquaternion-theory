@@ -1,0 +1,104 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \newtheorem{conjecture}{Conjecture}[section]
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \title{Self-Consistency Residuum vs One-Loop QED Correction}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Numerical inputs and outputs}
+
+Using
+\begin{equation}
+f(p)=\frac{5p-1}{p+1}-\ln p,
+\end{equation}
+we get
+\begin{equation}
+f(137)=0.036541.
+\end{equation}
+
+Observed offset (used only as post-check, not as derivation input):
+\begin{equation}
+\Delta\alpha^{-1}_{\mathrm{exp}}=137.035999-137=0.035999,
+\end{equation}
+with ratio
+\begin{equation}
+\frac{f(137)}{\Delta\alpha^{-1}_{\mathrm{exp}}}=1.0151
+\quad(\text{difference }1.505\%).
+\end{equation}
+
+\section{One-loop leptonic QED estimate at $\Lambda=M_{\mathrm{Pl}}$}
+
+Using
+\begin{equation}
+\Delta_{\mathrm{QED},\ell}=\frac{\alpha}{3\pi}\ln\!\left(\frac{\Lambda}{m_\ell}\right),
+\end{equation}
+with $\alpha=1/137.036$ and $\Lambda=M_{\mathrm{Pl}}=1.22\times10^{19}\,$GeV,
+\begin{align}
+\Delta_e &= 0.045245,\\
+\Delta_\mu &= 0.035768,\\
+\Delta_\tau &= 0.033583,\\
+\sum\Delta_{\mathrm{QED}} &= 0.114595.
+\end{align}
+Hence
+\begin{equation}
+\frac{f(137)}{\sum\Delta_{\mathrm{QED}}}=0.3189,
+\end{equation}
+so mismatch is $68.11\%$.
+
+Therefore the identification
+$\varepsilon_{\mathrm{UBT}}\equiv f(137)=\varepsilon_{\mathrm{QED}}$
+in this one-loop leptonic implementation is \textbf{not supported}; classification [NC].
+
+\section{UV scale solving}
+
+Solving $\Delta_{\mathrm{QED}}(\Lambda)=f(137)$:
+\begin{itemize}
+  \item electron-only formula gives
+  $\Lambda\approx1.58\times 10^{14}\,$GeV ($\Lambda/M_{\mathrm{Pl}}\approx1.30\times10^{-5}$),
+  \item three-lepton summed formula gives
+  $\Lambda\approx3.10\times10^{4}\,$GeV ($\Lambda/M_{\mathrm{Pl}}\approx2.54\times10^{-15}$).
+\end{itemize}
+Neither equals the Planck scale in this setup.
+
+\begin{conjecture}[Residual link remains open]
+The close numerical proximity $f(137)\approx\Delta\alpha^{-1}_{\mathrm{exp}}$
+may indicate a structural relation, but the present one-loop leptonic
+$\Delta_{\mathrm{QED}}$ model with $\Lambda=M_{\mathrm{Pl}}$ does not reproduce
+$f(137)$ and cannot be used as proof.
+\end{conjecture}
+
+\begin{statusbox}
+$f(137)=0.036541$\\
+$\Delta\alpha^{-1}_{\mathrm{exp}}=0.035999$\\
+Shoda (vs observed offset): 98.495\% (ratio 1.0151)\\
+$\sum\Delta_{\mathrm{QED}}$ (lepton loops, $\Lambda=M_{\mathrm{Pl}}$): 0.114595\\
+Interpretace: NC (mismatch 68.11\% against one-loop leptonic $\sum\Delta_{\mathrm{QED}}$)\\
+UV škála $\Lambda$ pro přesnou shodu: $1.58\times10^{14}$ GeV (electron-only) / $3.10\times10^4$ GeV (three-lepton sum), not Planck\\
+Klasifikace: NC / OPEN for deeper mechanism
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

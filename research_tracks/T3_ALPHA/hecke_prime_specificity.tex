@@ -1,0 +1,85 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \newtheorem{proposition}{Proposition}[section]
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \title{Hecke Prime Specificity Check for $a_{137}(N=76,k=2)=-11$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Problem statement}
+
+Known datum from previous scans:
+\begin{equation}
+a_{137}(f)=-11,\qquad f\in S_2(\Gamma_0(76)).
+\end{equation}
+Question: for the \emph{same} form $f$, what are $a_{131}(f)$ and $a_{139}(f)$?
+
+\section{Analytic constraints}
+
+For good primes $p\nmid 76$, Deligne/Weil bound gives
+\begin{equation}
+|a_p(f)|\le 2\sqrt{p}.
+\end{equation}
+Numerically:
+\begin{align}
+|a_{131}| &\le 22.9,\\
+|a_{137}| &\le 23.4,\\
+|a_{139}| &\le 23.6.
+\end{align}
+This does not determine exact values, only admissible range [L0].
+
+\section{Data-access attempt and failure point}
+
+Planned source was LMFDB endpoint
+\texttt{https://www.lmfdb.org/ModularForm/GL2/Q/holomorphic/76/2/}.
+In this environment DNS resolution for \texttt{www.lmfdb.org} failed, and
+Sage/PARI executables are not installed; therefore direct coefficient
+extraction for $a_{131},a_{139}$ could not be completed.
+
+Failure location: missing external coefficient source for the fixed newform label.
+Classification of the unresolved step: [OPEN].
+
+\begin{proposition}[Prime specificity of $a_{137}$]
+Let $f$ be the newform of level $N=76$, weight $k=2$ with $a_{137}(f)=-11$.
+
+Case 1 (if $a_{131}(f)\ne\pm11$ and $a_{139}(f)\ne\pm11$):
+$|a_{137}(f)|=g(X_0(137))=11$ is PRIME-SPECIFIC to $p=137$; classification [MC] strong.
+
+Case 2 (if $a_{131}(f)=\pm11$ or $a_{139}(f)=\pm11$):
+coincidence is form-level, not $p=137$-specific; classification [NC].
+
+Current run cannot decide between Case 1 and Case 2 due missing $a_{131},a_{139}$ data.
+\end{proposition}
+
+\begin{statusbox}
+$a_{131}(N=76,k=2)$ = UNKNOWN\\
+$a_{139}(N=76,k=2)$ = UNKNOWN\\
+Je $|a_{137}|=g=11$ prime-specifické?: UNKNOWN\\
+Zdroj dat: analytické hranice + failed LMFDB access (DNS), no Sage/PARI runtime\\
+Klasifikace: UNKNOWN / OPEN
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

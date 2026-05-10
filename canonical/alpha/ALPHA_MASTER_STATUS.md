@@ -355,3 +355,36 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
 1. LMFDB ověření: $a_{131}(N=76,k=2)$ a $a_{139}(N=76,k=2)$ — rozhodne o přístupu B.
 2. Derivace $B_\mathrm{mod}(p)=(p+1)/3$ z $S[\Theta]$ — uzavření gap G137-B pro přístup A.
 3. Kac-Moody level $k\approx 7$ hypotéza — mohla by dát $N_\mathrm{eff}^\mathrm{eff}\approx 84$ pro přístup C.
+
+---
+
+## Selekční kritéria p=137 (aktualizace 2026-05-10, Copilot Instrukce v5)
+
+Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
+
+1. **Kronecker filtr**: $\nu_2(p)>0 \Leftrightarrow p\equiv1\pmod4$.
+   - Arithmeticky [L0], v klastru $g=11$ vybírá jednoznačně $p=137$.
+   - Fyzikální most $C\leftrightarrow w_p$ (charge-conjugation $\to$ Atkin-Lehner)
+     zatím [OPEN].
+
+2. **Self-konzistence**: $f(p)=\frac{5p-1}{p+1}-\ln p$.
+   - $f(137)=+0.036541$, $f(139)=+0.022669$.
+   - Obě hodnoty jsou kladné, proto znaménkový test sám o sobě
+     137 od 139 neodděluje (selection FAIL pro tuto verzi testu).
+
+3. **Residuum vs QED**:
+   - Pozorování: $f(137)\approx\Delta\alpha^{-1}_{\mathrm{exp}}$ (1.5% rozdíl; post-check).
+   - Jednosmyčkový leptonic model s $\Lambda=M_{\mathrm{Pl}}$ dává
+     $\sum\Delta_{\mathrm{QED}}=0.114595$, což je od $f(137)$ vzdálené
+     o 68.1% $\Rightarrow$ [NC] pro tuto identifikaci.
+
+4. **Hecke prime-specificity**:
+   - $a_{137}(N=76,k=2)=-11$ je známé.
+   - $a_{131}$ a $a_{139}$ pro stejnou formu zůstávají v tomto běhu UNKNOWN
+     (LMFDB DNS nedostupné, bez Sage/PARI runtime) $\Rightarrow$ [OPEN].
+
+**Aktuální souhrn**:
+- Jediné striktně selekční kritérium v tomto kroku je arithmetický filtr
+  $(g=11)\wedge(p\equiv1\pmod4)$.
+- Celkově: selekce $p=137$ je **MC slabý / OPEN** do uzavření
+  fyzikálního mostu a Hecke koeficientů $a_{131},a_{139}$.
