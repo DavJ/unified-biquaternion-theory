@@ -202,32 +202,31 @@ $y \in \frac{1}{6}\ZZ$ for any colour-charged field.
 \begin{proof}[Proof sketch]
 The SU(3) fundamental representation decomposes under U(1)$_{\mathrm{EM}}$ via
 the Gell-Mann matrix $\lambda_8$.  For a quark doublet $Q = (u,d)^T$
-in the $(\mathbf{3}, \mathbf{2})$ representation:
+in the $(\mathbf{3}, \mathbf{2})$ representation, we use the UBT convention
+$Q = T_3 + Y/2$ throughout:
 \begin{itemize}
   \item $Q$ has weak isospin $T_3 = \pm 1/2$ (from SU(2)$_L$ doublet).
-  \item The electric charges are $Q_u = 2/3$ and $Q_d = -1/3$ (observed).
-  \item From $Q = T_3 + Y/2$: the quark doublet has $Y_Q = 2Q - 2T_3$
-        evaluated at $Q_d = -1/3$, $T_3 = -1/2$:
-        $Y_Q = 2(-1/3) - 2(-1/2) = -2/3 + 1 = 1/3$. \emph{(This gives $Y = 1/3$, not $1/6$.)}
+  \item Consistency with electric charges $Q_u = 2/3$ and $Q_d = -1/3$ gives:
+        $Y_Q = 2(Q - T_3) = 2(Q_d - T_3^d) = 2(-1/3 + 1/2) = 1/3$.
+  \item However, in the convention $Q = T_3 + Y/2$ (where $Y$ is the
+        Gell-Mann--Nishijima hypercharge, not $2(Q-T_3)$), we have
+        $Q_d = T_3^d + Y_Q/2 = -1/2 + Y_Q/2$, giving $Y_Q/2 = -1/3 + 1/2 = 1/6$,
+        hence $Y_Q = 1/3$.
+  \item Equivalently, using the PDG convention $Q = T_3 + Y_{\mathrm{PDG}}$:
+        $Y_{\mathrm{PDG}} = Q - T_3 = -1/3 - (-1/2) = 1/6$.
 \end{itemize}
 
-\textbf{Clarification of convention}: The above uses the convention
-$Q = T_3 + Y$ (not $T_3 + Y/2$).  With the UBT convention
-$Q = T_3 + Y/2$ and $Y_Q = 1/6$:
-$Q_d = -1/2 + (1/6)/2 \cdot 2 = -1/2 + 1/6 \neq -1/3$.
-
-\emph{Correction}: In the convention $Q = T_3 + Y/2$ (used in UBT):
+Both conventions are consistent: $Y_Q = 1/3$ in the $Q = T_3 + Y/2$ convention;
+$Y_Q^{\mathrm{PDG}} = 1/6$ in the $Q = T_3 + Y$ convention.
+The check:
 \begin{align*}
-  Y_Q &= 1/6: & Q_u &= T_3^u + Y_Q = 1/2 + 1/6 = 2/3\,\checkmark, &
-               Q_d &= -1/2 + 1/6 = -1/3\,\checkmark.
+  Q_u &= T_3^u + Y_{\mathrm{PDG}} = 1/2 + 1/6 = 2/3\,\checkmark, &
+  Q_d &= T_3^d + Y_{\mathrm{PDG}} = -1/2 + 1/6 = -1/3\,\checkmark.
 \end{align*}
-This shows $Y_Q = 1/6$ is \emph{consistent} with the SU(2)$_L$ doublet
-structure and the electric charge values $Q_u = 2/3$, $Q_d = -1/3$.
+This shows $Y_{\mathrm{PDG}} = 1/6$ (or equivalently $Y = 1/3$ in the UBT
+$Y/2$ convention) is \emph{consistent} with the SU(2)$_L$ doublet structure.
 
-The argument that $Y_Q = 1/6$ is \emph{forced} (not merely consistent)
-requires showing that no other hypercharge assignment is compatible with
-the $\mathbf{3}\otimes\mathbf{2}$ representation of SU(3)$\times$SU(2)$_L$
-in $\CC\otimes\HH$ \emph{and} with the Dirac condition.
+The argument that this value is \emph{forced} (not merely consistent) requires showing that no other hypercharge assignment is compatible with the $\mathbf{3}\otimes\mathbf{2}$ representation of SU(3)$\times$SU(2)$_L$ in $\CC\otimes\HH$ \emph{and} with the Dirac condition.
 This is the substance of the claim.
 
 The $\ZZ_2\times\ZZ_2\times\ZZ_2$ involution structure of $\CC\otimes\HH$

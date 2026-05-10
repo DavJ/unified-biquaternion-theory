@@ -59,6 +59,15 @@ where:
 `B_phenom ≈ 46.298` (α-sector, dimensionless).  They arise from different
 sectors of the theory and should not be confused.
 
+**Sign note**: `B_m < 0` (negative) because the logarithmic correction term
+`−B_m·n·ln n` adds a *positive* mass contribution when `n > 1` (since
+`−B_m > 0`).  This is consistent with the effective potential structure
+in which the logarithmic term in V_eff acts as a stabilising correction.
+In contrast, `B_phenom > 0` (positive) is a dimensionless coupling that
+determines the effective potential for the winding modes in the α-sector.
+The opposite sign conventions reflect the different physical roles of the
+two parameters.
+
 ---
 
 ## 3. The KK-Mismatch Theorem
