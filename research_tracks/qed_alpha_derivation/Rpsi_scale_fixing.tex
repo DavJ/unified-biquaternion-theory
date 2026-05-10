@@ -1,0 +1,201 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{lemma}[proposition]{Lemma}
+
+\title{Compact Chronofactor $R_\psi$ Scale Fixing in UBT\\
+\large Target 2 — fix\_or\_reject\_U1\_coupling\_normalization}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze whether the compact imaginary-time radius $R_\psi$ of the
+$S^1_\psi$ chronofactor is fixed by UBT dynamics.  We start from the
+compactified action, derive the dimensional-reduction relation
+$e_4^2=e_5^2/(2\pi R_\psi)$, and inspect all candidate fixing mechanisms
+(T-duality, self-dual radius, modular covariance, spectral free energy,
+heat-kernel stability).  We also distinguish the shape modulus
+$R_t/R_\psi$ from the scale modulus $\sqrt{R_t R_\psi}$.
+Verdict: \textbf{NO-GO} for absolute scale.
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{Compactified UBT action and the coupling relation}
+% ----------------------------------------------------------------
+
+Starting from the higher-dimensional kinetic term on $\mathcal{M}_4\times
+S^1_\psi$ with circumference $L_\psi=2\pi R_\psi$, the five-dimensional
+gauge kinetic sector is
+\begin{equation}
+  S_5 \supset -\frac{1}{4e_5^2}\int d^4x\int_0^{2\pi R_\psi}d\psi\;
+  \mathcal{F}_{MN}\mathcal{F}^{MN}.
+\end{equation}
+Retaining only the zero mode $A_\mu^{(0)}(x)$ and integrating over $\psi$:
+\begin{equation}
+  S_5\big|_{\text{zero mode}}
+  \supset -\frac{2\pi R_\psi}{4e_5^2}\int d^4x\;
+  \mathcal{F}_{\mu\nu}^{(0)}\mathcal{F}^{(0)\mu\nu},
+\end{equation}
+which matches the standard 4D form $-1/(4e_4^2)\int F^2$ if
+\begin{equation}
+  \boxed{
+    \frac{1}{e_4^2}=\frac{2\pi R_\psi}{e_5^2}
+    \qquad\Longleftrightarrow\qquad
+    e_4^2=\frac{e_5^2}{2\pi R_\psi}.
+  }
+  \label{eq:coupling-relation}
+\end{equation}
+This is the standard Kaluza-Klein dimensional reduction identity.
+
+% ----------------------------------------------------------------
+\section{Candidate mechanisms for fixing $R_\psi$}
+% ----------------------------------------------------------------
+
+\subsection{Self-dual radius / T-duality}
+
+The spectral free energy on a torus $T^2=(S^1_t\times S^1_\psi)$ with radii
+$(R_t,R_\psi)$ is invariant under T-duality $R_\psi\leftrightarrow \ell_s^2/R_\psi$
+(with string length $\ell_s$).  The self-dual point $R_\psi=\ell_s$ is a
+T-duality fixed point.
+
+\textbf{Status: CONDITIONAL.}
+T-duality selects $R_\psi=\ell_s$ only if $\ell_s$ is itself fixed. In the
+current UBT, the string length $\ell_s$ (or any analogous fundamental length
+scale) is not derived from $S[\Theta]$ alone; it enters as an external input.
+
+\subsection{Shape vs.\ scale modulus from spectral free energy}
+
+From the self-dual torus verdict (companion report), the one-loop spectral free
+energy
+\begin{equation}
+  F(R_t,R_\psi)=\sum_{m,n}\ln\!\left(
+    \frac{m^2}{R_t^2}+\frac{n^2}{R_\psi^2}
+  \right)
+\end{equation}
+has a stationary point in the shape variable $\rho=R_t/R_\psi$ at $\rho=1$
+under isotropic normalization assumptions.
+
+\begin{lemma}[Shape vs.\ scale decomposition]
+Write $R_t=s\,e^u$ and $R_\psi=s\,e^{-u}$ where $s=\sqrt{R_t R_\psi}$
+(scale modulus) and $u=\tfrac12\ln(R_t/R_\psi)$ (shape modulus).
+The stationarity condition $\partial F/\partial u=0$ fixes $u=0$, i.e.\
+$R_t=R_\psi$.  The stationarity condition $\partial F/\partial s=0$ yields
+\begin{equation}
+  \frac{\partial F}{\partial s}
+  =-\frac{2}{s}\sum_{m,n}\frac{(m^2/R_t^2)+(n^2/R_\psi^2)}{(m^2/R_t^2)+(n^2/R_\psi^2)}
+  =-\frac{2N_{\mathrm{modes}}}{s},
+\end{equation}
+which is strictly negative for all $s>0$ and does not vanish.  Therefore
+$F$ has \emph{no} stationary point in $s$; the scale modulus is a flat direction.
+\end{lemma}
+
+\textbf{Status: NO-GO (scale modulus).}
+
+\subsection{Modular covariance}
+
+The partition function on $T^2$ with modular parameter $\tau=iR_t/R_\psi$ is
+covariant under the modular group $\mathrm{SL}(2,\mathbb{Z})$.  Modular
+covariance constrains the spectrum but does not fix the overall volume $s^2$.
+
+\textbf{Status: NO-GO (does not fix scale).}
+
+\subsection{Heat-kernel / theta heat-kernel stability}
+
+The heat kernel
+\begin{equation}
+  K(t_s;R_\psi)=\sum_{n\in\mathbb{Z}}e^{-t_s n^2/R_\psi^2}
+  =\frac{R_\psi}{\sqrt{t_s}}\sum_{n\in\mathbb{Z}}e^{-\pi^2 R_\psi^2 n^2/t_s}
+  \quad (t_s\to 0)
+\end{equation}
+exhibits a Poisson resummation symmetry, relating small-$R_\psi$ to large-$R_\psi$
+behavior.  Stability analysis of the heat-kernel expansion yields an extremum in
+the shape mode but again leaves the overall scale $s$ undetermined.
+
+\textbf{Status: NO-GO (does not fix absolute scale).}
+
+\subsection{Chronofactor normalization from S[Theta]}
+
+In the canonical UBT action
+\begin{equation}
+  S[\Theta]=\int d^4x\,d\psi\;\sqrt{-g}\left[
+    \mathrm{Tr}(D_M\Theta)^\dagger(D^M\Theta)+\cdots
+  \right],
+\end{equation}
+the integration over $\psi$ runs from $0$ to $2\pi R_\psi$.  The action is
+invariant under simultaneous rescalings $\psi\to\lambda\psi$,
+$R_\psi\to\lambda R_\psi$, and $A_\psi\to A_\psi/\lambda$ (the last being
+required for covariance of the covariant derivative).  This is a moduli
+symmetry: the action does not fix $R_\psi$ but only constrains the
+combinations in which it appears together with $e_5$.
+
+\textbf{Status: NO-GO (moduli symmetry prevents fixing).}
+
+% ----------------------------------------------------------------
+\section{Summary of shape vs.\ scale}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Modulus & Variable & Status & Method \\
+\midrule
+Shape & $R_t/R_\psi$ & CONDITIONAL & Spectral stationarity at $\rho=1$ \\
+Scale & $\sqrt{R_t R_\psi}$ & NO-GO & No equation from $S[\Theta]$ alone \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The shape modulus is fixed (conditionally) by the spectral free energy, giving
+$R_t=R_\psi$.  This matches the self-dual torus result.  However, the common
+value $R_t=R_\psi=R$ is not fixed: $R$ remains a free parameter.
+
+% ----------------------------------------------------------------
+\section{Consequence for the coupling $e_4$}
+% ----------------------------------------------------------------
+
+From Eq.~\eqref{eq:coupling-relation}, even if $R_t=R_\psi=R$ is established,
+we have
+\begin{equation}
+  e_4^2 = \frac{e_5^2}{2\pi R}.
+\end{equation}
+Two free parameters remain: $e_5$ (parent coupling) and $R$ (common radius).
+Neither is fixed from $S[\Theta]$ at the current level of development.
+
+% ----------------------------------------------------------------
+\section{Verdict}
+% ----------------------------------------------------------------
+
+\paragraph{Overall verdict.}
+\textbf{NO-GO.}
+The absolute value of $R_\psi$ is not fixed by any currently available mechanism
+in UBT (T-duality requires a fixed reference length; spectral free energy fixes
+only the shape; modular covariance and heat-kernel analysis do not fix the
+volume).  The only result is \textbf{CONDITIONAL}: $R_t/R_\psi=1$ is a
+stationary shape point, but the absolute scale $\sqrt{R_t R_\psi}$ is a flat
+direction in all examined potentials.
+
+\begin{remark}[Remaining route]
+A possible path to fixing the scale modulus would be a potential term in
+$S[\Theta]$ that breaks the $R_\psi\to\lambda R_\psi$ moduli symmetry.
+No such term is present in the current canonical action.
+\end{remark}
+
+\end{document}
