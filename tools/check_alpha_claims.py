@@ -42,7 +42,7 @@ SAFE_PHRASES = [
     "no-go",
 ]
 
-SAFE_137036_CONTEXT = [
+SAFE_ALPHA_VALUE_CONTEXT = [
     "not derived",
     "open",
     "conditional",
@@ -100,7 +100,23 @@ def paragraph_has_safe_context(text_lower: str) -> bool:
     return any(phrase in text_lower for phrase in SAFE_PHRASES)
 
 
+def has_nearby_context(text_lower: str, needle: str, contexts: List[str], window: int = 160) -> bool:
+    """Return True if any context phrase appears within ±window chars around needle matches."""
+    start = 0
+    while True:
+        idx = text_lower.find(needle, start)
+        if idx < 0:
+            return False
+        lo = max(0, idx - window)
+        hi = min(len(text_lower), idx + len(needle) + window)
+        chunk = text_lower[lo:hi]
+        if any(ctx in chunk for ctx in contexts):
+            return True
+        start = idx + len(needle)
+
+
 def is_active_alpha_canonical(path: Path, repo_root: Path, text_lower: str) -> bool:
+    """Treat only non-legacy files under canonical/alpha as active strict-check targets."""
     rel = path.relative_to(repo_root).as_posix().lower()
     if not rel.startswith("canonical/alpha/"):
         return False
@@ -129,9 +145,9 @@ def scan_file(path: Path, repo_root: Path) -> List[Tuple[int, str]]:
             warnings.append((line_no, snippet))
 
         if "g3-k" in para_l and active_alpha_file and not paragraph_has_safe_context(para_l):
-            warnings.append((line_no, f"G3-k in active canonical alpha file without safe context: {snippet}"))
+            warnings.append((line_no, f"g3-k in active canonical alpha file without safe context: {snippet}"))
 
-        if "137.036" in para_l and not any(ctx in para_l for ctx in SAFE_137036_CONTEXT):
+        if "137.036" in para_l and not has_nearby_context(para_l, "137.036", SAFE_ALPHA_VALUE_CONTEXT):
             warnings.append((line_no, f"137.036 without safe context: {snippet}"))
     return warnings
 
