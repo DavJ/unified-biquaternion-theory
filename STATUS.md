@@ -14,7 +14,7 @@
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission.tex` | **SUBMIT READY** |
-| **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | Draft needed | Submit after T1_GR |
+| **T2_GAUGE** — Gauge Sector | 🔶 NEAR SUBMISSION | `papers/UBT_Gauge_Submission.tex` | Draft complete (2026-05-10) |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
 | **Repo public face** | ✅ DONE | This file, README, ROADMAP | Live |
 
@@ -68,7 +68,8 @@ Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
 | Fermion masses | ⚪ Deferred |
 | Dynamical confinement | ⚪ Clay Millennium Problem |
 
-**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 6–8 weeks.
+**Submission plan**: Draft LaTeX paper after T1_GR submission.  Target: 6–8 weeks.  
+**Paper draft**: ✅ `papers/UBT_Gauge_Submission.tex` created (2026-05-10)
 
 ---
 

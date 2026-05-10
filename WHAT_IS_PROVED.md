@@ -174,7 +174,11 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Weinberg angle sin²θ_W | Dead end |
 | W/Z boson masses | Open — Gap EW-2 |
 | Higgs mass 125 GeV | Open |
-| Fermion masses | Open-hard (KK obstruction) |
+| Fermion masses | Open-hard (KK obstruction theorem; see `research_tracks/fermion_masses/fermion_mass_status_v2.md §3`) |
+| Mass formula structure `m(n) = A·nᵖ − Bₘ·n·ln n` | [SE] formula structure [L1]; parameters A, p, Bₘ are fitted, not derived |
+| m_e reproduced to 0.22% | [SE] semi-empirical — parameters fitted |
+| Mass ratios m_μ/m_e, m_τ/m_μ | Open — no UBT prediction |
+| KK-mismatch theorem proof | Open — source not confirmed; see `fermion_mass_status_v2.md §3` |
 | CKM/PMNS matrices | Open |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Strong coupling g_s | Open |
