@@ -18,6 +18,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0
 
 # Non-Commutative Renormalization Integration Report
 
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
 ## Document Overview
 
 **File**: `consolidation_project/ubt_alpha_noncommutative_renormalization.tex` (from master branch)  
@@ -229,7 +234,7 @@ The master branch document `ubt_alpha_noncommutative_renormalization.tex`:
 
 ✅ **Builds directly on our Appendix A2 work**  
 ✅ **Completes the alpha derivation** (geometric → renormalized)  
-✅ **No fitted parameters** (all from UBT structure)  
+✅ **Historical no-fit claim (superseded; canonical alpha status remains conditional with Gap G137-B open)**  
 ✅ **Achieves exact experimental value** (137.036)  
 
 **Recommendation**: Acknowledge this complementarity in our PR documentation while keeping our focus on the geometric foundation that makes the renormalization possible.
