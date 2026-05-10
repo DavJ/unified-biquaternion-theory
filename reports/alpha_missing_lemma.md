@@ -2,6 +2,13 @@
 
 # alpha_missing_lemma.md — Exact Statement of the Missing Lemma
 
+> **Status correction (2026-05-10)**: This report is retained, but active alpha
+> claim status is governed only by `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+> The active blocker is **Gap G137-B**: derive \(B\) from \(S[\Theta]\) without
+> using `alpha_exp`, `137`, or `B_required` as inputs.  
+> Constant winding correction \(\Delta B_{\mathrm{wind}}\approx 18.5\) is **NO-GO**,
+> and `B_best ≈ 43.6` is **OBSOLETE HEURISTIC**.
+
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-28  
 **Track**: T3_ALPHA — Fine Structure Constant  

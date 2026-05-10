@@ -5,6 +5,12 @@
 # ALPHA BREAKTHROUGH REPORT
 ## First-Principles Derivation of the Fine-Structure Constant α — Mission Assessment
 
+> **LEGACY / SUPERSEDED BANNER (2026-05-10)**  
+> This root-level file is historical and superseded.  
+> Canonical alpha truth is only `canonical/alpha/ALPHA_MASTER_STATUS.md`.  
+> Current verdict: alpha is **NOT derived**; `alpha_bare^{-1}=137` is **CONDITIONAL ONLY**;  
+> physical `alpha^{-1}=137.036` is **NOT derived**; **Gap G137-B remains open**.
+
 **Author**: Ing. David Jaroš  
 **Mission date**: 2026-04-28  
 **Track**: T3_ALPHA — Alpha Final Offensive

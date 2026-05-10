@@ -4,6 +4,12 @@
 
 # ALPHA_STRUCTURAL_ORIGINS — First-Principles Origins of the α Ingredients
 
+> **LEGACY / SUPERSEDED BANNER (2026-05-10)**  
+> This root-level structural note is historical and superseded for alpha verdicts.  
+> Canonical alpha truth is only `canonical/alpha/ALPHA_MASTER_STATUS.md`.  
+> Current verdict: alpha is **NOT derived**; `alpha_bare^{-1}=137` is **CONDITIONAL ONLY**;  
+> physical `alpha^{-1}=137.036` is **NOT derived**; **Gap G137-B remains open**.
+
 **Author**: Ing. David Jaroš  
 **Date**: 2026-04-28  
 **Status**: Research document — consolidation of tracks E1–E4  
