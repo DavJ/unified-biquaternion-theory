@@ -1,0 +1,154 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+
+\title{$N_{\mathrm{eff}}$ Audit (Critical)\\\large Step 2 Audit of Vacuum-Polarization Counting}
+\author{Ing. David Jaro\v{s}}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This audit resolves the convention conflict in
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}.
+Verdict: only $N_{\mathrm{phases}}=3$ is currently proved from the minimal scalar
+UBT kinetic action; $N_{\mathrm{helicity}}=2$ and an extra explicit
+$N_{\mathrm{charge}}=2$ are not currently justified as independent multipliers in
+that same one-loop scalar-QED normalization.
+\end{abstract}
+
+\tableofcontents
+
+\section{Scope and hard rule}
+The audited target is the one-loop coefficient entering
+\begin{equation}
+\frac{1}{\alpha(\mu)}=\frac{1}{\alpha(\mu_0)}+\frac{B}{2\pi}\ln\frac{\mu}{\mu_0}.
+\end{equation}
+Every multiplicity factor must be tied either to an explicit loop trace/diagram
+or to a non-redundant algebraic counting statement.
+
+\section{Step A --- Nature of the $\Theta$ field in the audited loop}
+The minimal canonical action used in the audited chain is
+\begin{equation}
+S_{\mathrm{kin}}[\Theta]=\int d^4x\,d\psi\;\mathrm{Sc}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right],
+\end{equation}
+and its reduced mode action is of scalar-QED form
+$\sum_k |D_\mu\Phi_k|^2$.
+No explicit fermionic kinetic term $\bar\Psi i\gamma^\mu D_\mu\Psi$ appears in the
+audited derivation path.
+
+\begin{remark}
+Therefore the directly audited loop normalization is the complex-scalar loop
+normalization, not a Dirac-fermion trace normalization.
+\end{remark}
+
+\section{Step B --- Origin of $N_{\mathrm{helicity}}$}
+In standard perturbation theory, Passarino--Veltman reduction reduces tensor
+integrals to scalar integrals; it does not itself generate a fermionic spinor
+multiplicity. Spin multiplicity in a fermion loop comes from explicit Dirac
+traces.
+
+For this audited scalar action, the loop coefficient must be taken from the
+complex-scalar one-loop vacuum polarization baseline (Peskin \& Schroeder scalar
+QED normalization), not from a Dirac trace argument unless a fermionic action is
+explicitly introduced and derived.
+
+\textbf{Audit verdict for Step B:}
+\begin{itemize}
+  \item $N_{\mathrm{helicity}}=2$ is \textbf{not proved} as an independent multiplier
+  in the current scalar-action derivation chain.
+  \item Status: \textbf{OPEN / [MC]} in the present canonical files.
+\end{itemize}
+
+\section{Step C --- Origin of $N_{\mathrm{charge}}$}
+For one \emph{complex} scalar field, particle/antiparticle content is already
+encoded in the standard complex-field loop normalization. Adding a separate
+$\times 2$ charge factor on top of that same normalization is double counting
+unless a distinct non-overlapping degree of freedom is demonstrated.
+
+\textbf{Audit verdict for Step C:}
+\begin{itemize}
+  \item An extra explicit $N_{\mathrm{charge}}=2$ is \textbf{not justified} in the
+  currently audited one-loop normalization.
+  \item Status: \textbf{not accepted as an independent multiplier} in Step 2.
+\end{itemize}
+
+\section{Step D --- QED-limit normalization}
+Using the normalization employed across the current alpha track,
+\begin{equation}
+B_0=\frac{2\pi}{3}\,N_{\mathrm{eff}}.
+\end{equation}
+With one complex scalar baseline this gives $B_0^{(1)}=2\pi/3$.
+
+Under the audited minimal-scalar interpretation:
+\begin{equation}
+N_{\mathrm{eff}}^{\mathrm{loop}}=N_{\mathrm{phases}}=3
+\quad\Rightarrow\quad
+B_0^{\mathrm{audit}}=2\pi.
+\end{equation}
+For the stationarity equation used in the alpha track,
+\begin{equation}
+B=\frac{2n_*}{\ln n_*+1},
+\end{equation}
+this yields
+\begin{equation}
+n_*(B_0=2\pi)\approx 10.54,
+\end{equation}
+which is not 137.
+
+\section{Consistency check for Task 3 (Mat$(2,\mathbb{C})$, SU(2) left action, chirality)}
+The algebraic isomorphism $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$
+and left SU(2) matrix action are internally consistent with the gauge-sector
+chirality chain (including the conditional structure in
+\texttt{canonical/chirality/step3\_gap\_C1\_resolution.tex}).
+
+\begin{remark}
+However, \emph{left matrix action} and \emph{physical chiral fermion loop counting}
+are not automatically equivalent in the audited scalar loop. A separate derived
+fermionic effective action is required to upgrade $N_{\mathrm{helicity}}$ from
+[MC]/open to proved.
+\end{remark}
+
+\section{Final verdict table}
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Factor & Value (audit) & Justification & Status \\
+\midrule
+$N_{\mathrm{phases}}$ & 3 & $\dim_{\mathbb{R}}\mathrm{Im}(\mathbb{H})=3$ & [L0] $\checkmark$ \\
+$N_{\mathrm{helicity}}$ & 2 (claimed) & No explicit Dirac-loop derivation in audited path & OPEN / [MC] \\
+$N_{\mathrm{charge}}$ & 2 (claimed) & Extra factor double-counts complex-field baseline unless redefined & OPEN / rejected as independent factor \\
+$N_{\mathrm{eff}}$ & 3 (loop-safe) & Minimal scalar-action one-loop interpretation & AUDIT RESULT \\
+$B_0$ & $2\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}$ with $N_{\mathrm{eff}}=3$ & AUDIT RESULT \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Impact on alpha track}
+This audit does \textbf{not} derive $B\approx 46.3$ from $S[\Theta]$.
+It weakens the prior $N_{\mathrm{eff}}=12\Rightarrow B_0=8\pi$ claim by moving the
+multipliers $N_{\mathrm{helicity}}$ and explicit $N_{\mathrm{charge}}$ out of proved
+status in the currently audited loop derivation.
+
+\end{document}

@@ -137,7 +137,8 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
-| α1 | N_eff = 12 from ℂ⊗ℍ algebra alone | [L0] | `canonical/algebra/` |
+| α1 | N_phases = 3 from Im(ℍ) | [L0] | `canonical/n_eff/step2_AUDIT.tex` |
+| α1b | N_eff = 12 = 3×2×2 | OPEN / [MC] (under critical audit) | `canonical/n_eff/step2_AUDIT.tex` |
 | α2 | Charge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
 | α3 | V_eff winding-mode potential: $V_\mathrm{eff}(n) = n^2 - Bn\ln n$ | [L1] | `canonical/alpha/alpha_best_route.tex` |
 | α4 | $n^*(B_\mathrm{phenom}) = 137$ | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
@@ -156,7 +157,7 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
-| M1 | N_eff = 12 from ℂ⊗ℍ (confirmed above) | [L0] | — |
+| M1 | N_eff = 12 from ℂ⊗ℍ (full 3×2×2 factorization) | OPEN / [MC] (critical audit pending) | `canonical/n_eff/step2_AUDIT.tex` |
 | M2 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
 | M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
