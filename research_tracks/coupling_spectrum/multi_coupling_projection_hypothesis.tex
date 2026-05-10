@@ -1,0 +1,360 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/coupling_spectrum/multi_coupling_projection_hypothesis.tex
+%
+% Task: map_stable_prime_sectors_to_coupling_constants — Target 4
+% Priority: CRITICAL
+% Mode: hypothesis_test_no_numerology
+%
+% Purpose: Investigate whether different stable primes could correspond to
+%   different projections of one UBT master coupling — i.e. whether the full
+%   set S = {2, 127, 137, 139, 151, 157} can be understood as encoding
+%   multiple effective inverse couplings via distinct projection channels.
+%
+% Hard rules:
+%   - No prime assumed to correspond to a known coupling.
+%   - No fitting primes to constants.
+%   - No claim of derivation.
+%   - All matches are hypotheses.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{mdframed}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{hypothesis}[proposition]{Hypothesis}
+\newtheorem{question}[proposition]{Open Question}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\newmdenv[backgroundcolor=yellow!12, linecolor=orange!70, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!8,  linecolor=green!55!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!7,    linecolor=red!55,   linewidth=1.5pt]{warnbox}
+\newmdenv[backgroundcolor=blue!5,   linecolor=blue!45,  linewidth=1.5pt]{obsbox}
+
+\newcommand{\cond}{\textcolor{blue!65!black}{\textbf{[COND]}}}
+\newcommand{\obs}{\textcolor{blue!45!black}{\textbf{[OBS-CONSISTENCY]}}}
+\newcommand{\noev}{\textcolor{red!65!black}{\textbf{[NO-EVIDENCE]}}}
+\newcommand{\hyp}{\textcolor{orange!75!black}{\textbf{[HYPOTHESIS]}}}
+\newcommand{\der}{\textcolor{green!55!black}{\textbf{[DERIVED]}}}
+\newcommand{\spec}{\textcolor{purple!60!black}{\textbf{[SPECULATIVE]}}}
+
+\title{\textbf{Multi-Coupling Projection Hypothesis}\\[4pt]
+       \large Can Different Stable Primes Encode Different Effective Couplings\\
+       via Projection from a UBT Master Coupling?\\[2pt]
+       \normalsize Task: \texttt{map\_stable\_prime\_sectors\_to\_coupling\_constants} — Target 4}
+\author{Ing.\ David Jaro\v{s}\\
+  \small \texttt{research\_tracks/coupling\_spectrum/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the stable-prime set
+$\mathcal{S} = \{2, 127, 137, 139, 151, 157\}$ can be understood as encoding
+multiple effective coupling inverses via distinct projection channels from a
+single UBT master coupling associated with the field $\Theta(q, \tau)$.
+A generic projection framework is defined: $\alpha_i^{-1} = F_i(S[\Theta], p)$,
+where $F_i$ encodes generator normalisation, representation trace, compactification
+radius, or spectral density.  The data needed to test this framework are
+identified.  The p-dependence of $F_i$ is analysed through four candidate
+mechanisms: Hecke sector, trace over representation, modular index, and
+spectral density.
+\textbf{Verdict}: The multi-coupling projection framework is mathematically
+definable but currently speculative.  No projection mechanism is known that
+maps $\{139, 151, 157\}$ to any physical coupling.  The hypothesis remains
+open and requires derivation of $F_i$ from $S[\Theta]$.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+% -----------------------------------------------------------------------
+\section{Motivation and Hard Rules}
+
+\begin{warnbox}
+\textbf{Hard rules (enforced throughout)}:
+\begin{itemize}
+\item Stable primes are not assumed to correspond to any specific coupling.
+\item No prime is fitted to a coupling constant.
+\item No coupling constant is derived from a prime value.
+\item All associations proposed below are explicitly flagged as
+      \hyp\ or \spec.
+\end{itemize}
+\end{warnbox}
+
+The stable-prime set $\mathcal{S}$ contains six elements spanning the range
+$[2, 157]$.  From the coupling comparison
+(see \texttt{reports/stable\_prime\_coupling\_comparison.md}), only two elements
+(127 and 137) are close to known coupling inverses ($\alpha_{\rm em}^{-1}$
+at different scales), while three (139, 151, 157) have no identified physical
+counterpart.
+
+A natural question: are 139, 151, 157 meaningless numerically, or do they
+encode couplings not yet identified in the low-energy projection of UBT?
+This document explores the latter hypothesis without assuming the answer.
+
+% -----------------------------------------------------------------------
+\section{Generic Projection Framework}
+
+\subsection{Definition of projection}
+
+\begin{definition}[Master coupling and projection]
+Let $S[\Theta]$ denote the UBT action evaluated on the field $\Theta(q,\tau)$.
+A \emph{coupling projection} is a functional
+\begin{equation}
+  \alpha_i^{-1} \;=\; F_i\!\bigl(S[\Theta],\, p\bigr)
+  \label{eq:projection_generic}
+\end{equation}
+where $p \in \mathcal{S}$ is a stable prime and $F_i$ is a channel-dependent
+functional that may depend on:
+\begin{enumerate}
+\item Generator normalisation $\mathcal{N}_i$ of the gauge group $G_i$.
+\item Compactification radius $R_\psi$ of the imaginary-time direction.
+\item Trace normalisation $\mathrm{Tr}_{\mathbf{r}_i}$ over the representation $\mathbf{r}_i$.
+\item Spectral density $\rho_i(\lambda)$ of the Laplacian on the relevant sector.
+\end{enumerate}
+\end{definition}
+
+\textbf{Rationale}: Different gauge groups $G_i$ in UBT are accessed by different
+projections of the master biquaternion field $\Theta$.  The effective coupling
+constant in channel $i$ could depend on how $\Theta$ is projected onto the
+representation $\mathbf{r}_i$ of $G_i$, and on the spectral density of the
+relevant operator in that sector.
+
+\subsection{Data requirements}
+
+To evaluate $F_i$ concretely, the following inputs are needed:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Input & Status & Source \\
+\midrule
+$S[\Theta]$ evaluated on stable-prime modes & \cond & UBT action, mode expansion \\
+Generator normalisation $\mathcal{N}_i$ for $G_i$ & \cond & Group theory \\
+Compactification radius $R_\psi$ & \cond & UBT moduli stabilisation \\
+Trace $\mathrm{Tr}_{\mathbf{r}_i}[T_a T_b]$ & Available & Standard SM group theory \\
+Spectral density $\rho_i(\lambda)$ & \spec & Requires full UBT spectrum \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Without $S[\Theta]$ explicitly evaluated and the spectral density known, the
+projection $F_i$ cannot be computed.  The framework is structurally well-defined
+but its content is currently empty.
+
+% -----------------------------------------------------------------------
+\section{Candidate p-Dependence Mechanisms}
+
+We identify four mechanisms through which the prime $p$ might enter the
+projection $F_i(S[\Theta], p)$:
+
+\subsection{Mechanism 1: Hecke sector}
+
+In modular arithmetic, the Hecke operator $T_p$ acts on modular forms by
+averaging over $p$-isogenies.  If $S[\Theta]$ is related to a modular form
+(as suggested by the modular index interpretation $B(p) = \mu(\Gamma_0(p))/3$),
+then the projection onto the Hecke eigenvalue sector for prime $p$ could
+produce a $p$-dependent effective coupling:
+\begin{equation}
+  \alpha_i^{-1}(p) = \mathrm{ev}_p\!\bigl(S[\Theta]\bigr)
+  \label{eq:hecke_projection}
+\end{equation}
+where $\mathrm{ev}_p$ extracts the Hecke eigenvalue at prime $p$.
+
+\begin{gapbox}
+\textbf{Gap H-HECKE}: The Hecke eigenvalue spectrum of $S[\Theta]$ is not
+currently derived.  Whether $\mathrm{ev}_p$ produces values near $\{127, 137,
+139, 151, 157\}$ is unknown.  This requires:
+\begin{itemize}
+\item Identification of the modular form associated with $\Theta$.
+\item Computation of Hecke eigenvalues at $p \in \mathcal{S}$.
+\item Comparison with physical coupling inverses.
+\end{itemize}
+Status: \spec
+\end{gapbox}
+
+\subsection{Mechanism 2: Trace over representation}
+
+The gauge coupling $\alpha_i$ is related to the quadratic Casimir $C_2(\mathbf{r}_i)$
+of the representation $\mathbf{r}_i$ via the Dynkin index $\ell(\mathbf{r}_i)$:
+\begin{equation}
+  \alpha_i = \frac{g^2}{4\pi}, \qquad
+  \mathrm{Tr}_{\mathbf{r}_i}[T_a T_b] = \ell(\mathbf{r}_i)\,\delta_{ab}.
+\end{equation}
+If the UBT master coupling $g^2$ is universal and the different gauge groups
+are embedded in the biquaternion algebra at different levels, the inverse
+couplings would be:
+\begin{equation}
+  \alpha_i^{-1} = \frac{4\pi}{g^2} \cdot \frac{\ell(\mathbf{r}_i)}{\mathcal{N}_i}.
+  \label{eq:trace_projection}
+\end{equation}
+The $p$-dependence could enter through $\mathcal{N}_i$ if the normalisation is
+set by the dimension of the representation at prime $p$:
+\begin{equation}
+  \mathcal{N}_i(p) \sim \dim(\mathbf{r}_i(p)).
+\end{equation}
+
+\begin{gapbox}
+\textbf{Gap H-TRACE}: The representation of the SM gauge groups within the
+UBT biquaternion algebra is not fully specified.  Whether $\dim(\mathbf{r}_i(p))$
+for $p \in \mathcal{S}$ produces values corresponding to the observed couplings
+is not currently knowable.
+Status: \spec
+\end{gapbox}
+
+\subsection{Mechanism 3: Modular index}
+
+The modular index of $\Gamma_0(p)$ is $\mu(\Gamma_0(p)) = p + 1$ for prime
+$p$.  The UBT B-coefficient is $B(p) = \mu(\Gamma_0(p))/3$.  A similar
+modular index formula might produce effective coupling inverses:
+\begin{equation}
+  \alpha_i^{-1}(p) = c_i \cdot \mu(\Gamma_0(p)) = c_i(p+1)
+  \label{eq:modular_index}
+\end{equation}
+for some channel-dependent rational coefficient $c_i$.
+
+Testing this against the known data:
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Prime $p$ & $\mu(\Gamma_0(p)) = p+1$ & $c_i$ needed for 137.036 & $c_i$ needed for 127.9 \\
+\midrule
+127 & 128 & 137.036/128 = 1.0706 & 127.9/128 = 0.9992 \\
+137 & 138 & 137.036/138 = 0.9930 & 127.9/138 = 0.9268 \\
+139 & 140 & — & — \\
+151 & 152 & — & — \\
+157 & 158 & — & — \\
+\bottomrule
+\end{tabular}
+\end{center}
+Note: $c_i = 127.9/128 \approx 0.999$ for $p = 127$ means
+$\alpha_{\rm em}^{-1}(M_Z) \approx \mu(\Gamma_0(127))$ to 0.08\%.
+Similarly, $c_i = 137.036/138 \approx 0.993$ for $p = 137$ means
+$\alpha_{\rm em}^{-1}(0) \approx 0.993 \cdot \mu(\Gamma_0(137))$.
+These are \emph{approximate} modular index relations.
+
+\begin{obsbox}
+\obs\ For $p \in \{127, 137\}$, the known coupling inverses are close to
+$\mu(\Gamma_0(p))$ with a correction factor $c \approx 0.993$–$0.999$.
+This is a pattern, not a derivation.
+\end{obsbox}
+
+For $p \in \{139, 151, 157\}$, the modular index $\mu(\Gamma_0(p)) = p+1$
+gives $\{140, 152, 158\}$.  No physical coupling is known near these values.
+
+\begin{gapbox}
+\textbf{Gap H-MOD}: The modular index mechanism does not produce known coupling
+inverses for $p \in \{139, 151, 157\}$.  Whether these could correspond to
+couplings in extensions of the SM (hidden sectors, KK modes) is not currently
+known.  Status: \spec
+\end{gapbox}
+
+\subsection{Mechanism 4: Spectral density}
+
+If the UBT spectrum has a density of states $\rho(\lambda)$ for the Laplacian
+on the relevant sector, the effective coupling could be expressed via a spectral
+sum:
+\begin{equation}
+  \alpha_i^{-1}(p) = \int \rho_i(\lambda)\, K_i(\lambda, p)\, d\lambda
+\end{equation}
+where $K_i$ is a kernel function that selects the contribution from the
+$p$-th mode.  If the spectrum is discrete and the $p$-th eigenvalue is near $p^2$
+(as suggested by the KK spectrum $m_n^2 = n^2$), then this could produce coupling
+inverses in the range of $\mathcal{S}$.
+
+\textbf{Status}: This mechanism is purely schematic.  The spectral density
+$\rho_i(\lambda)$ is not computed.  Status: \spec
+
+% -----------------------------------------------------------------------
+\section{Feasibility Assessment}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Mechanism & Mathematical status & Physical status \\
+\midrule
+Hecke sector & Definable; eigenvalues not computed & \spec \\
+Trace/representation & Formulae exist; normalisation unknown & \spec \\
+Modular index & Pattern observed for 127, 137 & \obs\ (not derived) \\
+Spectral density & Schematic only & \spec \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Summary}: All four mechanisms are either schematic or pattern-level.
+None constitutes a derivation.  The multi-coupling projection framework is
+mathematically definable but currently empty.
+
+% -----------------------------------------------------------------------
+\section{What Would Constitute a Derivation?}
+
+For the multi-coupling projection hypothesis to become a derivation, the
+following would need to be established:
+
+\begin{enumerate}
+\item \textbf{Identify $S[\Theta]$} explicitly and compute its modular or
+      spectral properties.
+\item \textbf{Define $F_i$} from first principles of the UBT gauge embedding,
+      not from comparison with known coupling values.
+\item \textbf{Predict} values $\alpha_i^{-1}$ for all six stable primes and
+      compare with experiment — or with computable quantities in extended UBT.
+\item \textbf{Distinguish} the prediction for $p = 139$ from that for $p = 137$:
+      the values are close ($\Delta = 2$) but the couplings are very different
+      ($\alpha_{\rm em}^{-1}(0) = 137.036$, no coupling at 139).
+\end{enumerate}
+
+\begin{gapbox}
+\textbf{Current status of the derivation}: Not started.  The hypothesis is
+structurally coherent but lacks any computed prediction from $S[\Theta]$.
+\end{gapbox}
+
+% -----------------------------------------------------------------------
+\section{Verdict}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Claim & Status \\
+\midrule
+Multiple effective couplings can in principle arise from UBT projections & \cond \\
+127 and 137 have a modular index pattern $\alpha_i^{-1} \approx \mu(\Gamma_0(p))$ & \obs \\
+139, 151, 157 encode additional SM or beyond-SM couplings & \noev \\
+The Hecke sector produces coupling values near $\mathcal{S}$ & \spec \\
+Multi-coupling projection from $S[\Theta]$ is derived & Not established \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Verdict}: The multi-coupling projection hypothesis is mathematically
+well-posed but speculative.  No derivation of $F_i(S[\Theta], p)$ exists.
+The modular index pattern for $p = 127$ and $p = 137$ is an observed
+consistency; it does not extend to the remaining stable primes.
+
+\textbf{Mandatory final sentence}:\\
+Stable primes do not currently map to Standard Model couplings beyond
+alpha-like coincidences.
+\end{resultbox}
+
+\end{document}

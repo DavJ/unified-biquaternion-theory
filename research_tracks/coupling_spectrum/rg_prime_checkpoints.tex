@@ -1,0 +1,357 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/coupling_spectrum/rg_prime_checkpoints.tex
+%
+% Task: map_stable_prime_sectors_to_coupling_constants — Target 3
+% Priority: CRITICAL
+% Mode: hypothesis_test_no_numerology
+%
+% Purpose: Test whether stable primes 127 and 137 can be understood as RG
+%   checkpoints of the electromagnetic coupling, and whether the remaining
+%   stable primes {139, 151, 157} align with any coarse-grained RG structure.
+%
+% Hard rules:
+%   - Do NOT use any prime to derive the coupling.
+%   - Do NOT claim derivation.
+%   - Matches are hypotheses; flag all as OBSERVED CONSISTENCY.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{mdframed}
+
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{hypothesis}[proposition]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\newmdenv[backgroundcolor=yellow!12, linecolor=orange!70, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!8,  linecolor=green!55!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!7,    linecolor=red!55,   linewidth=1.5pt]{warnbox}
+\newmdenv[backgroundcolor=blue!5,   linecolor=blue!45,  linewidth=1.5pt]{obsbox}
+
+\newcommand{\cond}{\textcolor{blue!65!black}{\textbf{[COND]}}}
+\newcommand{\obs}{\textcolor{blue!45!black}{\textbf{[OBS-CONSISTENCY]}}}
+\newcommand{\noev}{\textcolor{red!65!black}{\textbf{[NO-EVIDENCE]}}}
+\newcommand{\hyp}{\textcolor{orange!75!black}{\textbf{[HYPOTHESIS]}}}
+\newcommand{\der}{\textcolor{green!55!black}{\textbf{[DERIVED]}}}
+
+\title{\textbf{RG Prime Checkpoints}\\[4pt]
+       \large Stable Primes as Checkpoints on the Electromagnetic RG Trajectory\\[2pt]
+       \normalsize Task: \texttt{map\_stable\_prime\_sectors\_to\_coupling\_constants} — Target 3}
+\author{Ing.\ David Jaro\v{s}\\
+  \small \texttt{research\_tracks/coupling\_spectrum/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We test whether the stable-prime set $\mathcal{S} = \{2, 127, 137, 139, 151, 157\}$
+can be interpreted as coarse-grained checkpoints on the electromagnetic RG
+trajectory.
+First, the QED/SM running of $\alpha_{\rm em}^{-1}$ is derived from the
+one-loop beta function without using any prime as input.
+The resulting trajectory is then compared to the stable-prime set.
+Two primes (127 and 137) fall within the physical running range of
+$\alpha_{\rm em}^{-1}$.
+The RG trajectory passes continuously from $\alpha_{\rm em}^{-1}(0) \approx 137.036$
+to $\alpha_{\rm em}^{-1}(M_Z) \approx 127.9$ over approximately 11 orders of
+magnitude in energy, and this flow is consistent with — but does not derive —
+the presence of 127 and 137 in $\mathcal{S}$.
+Primes 139, 151, and 157 do not align with any known RG checkpoint.
+\textbf{Verdict}: OBSERVED\_CONSISTENCY for the 127/137 pair;
+NO\_EVIDENCE for the remaining primes.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+% -----------------------------------------------------------------------
+\section{Setup and Hard Rules}
+
+\begin{warnbox}
+\textbf{Hard rules (enforced throughout)}:
+\begin{itemize}
+\item No stable prime is used to derive any coupling constant.
+\item No coupling constant is adjusted to match any prime.
+\item All proximity observations are classified as hypotheses or observed consistency,
+      not derivations.
+\item The phrase ``alpha = 1/137 because 137 is a stable prime'' is explicitly prohibited.
+\end{itemize}
+\end{warnbox}
+
+The stable-prime set from the UBT potential $V(q; B(p)) = q^2 - B(p)\,q\ln q$
+with $B(p) = (p+1)/3$ is:
+\[
+  \mathcal{S} = \{2,\; 127,\; 137,\; 139,\; 151,\; 157\}.
+\]
+This set is derived purely from the mathematical structure of $V$ and contains
+no physical input.
+
+% -----------------------------------------------------------------------
+\section{One-Loop RG Equation for the Electromagnetic Coupling}
+
+\subsection{Beta function}
+
+In QED with $N_f$ Dirac fermions of charges $Q_r$ in units of $e$, the
+one-loop beta function for $\alpha_{\rm em} = e^2/(4\pi)$ is:
+\begin{equation}
+  \mu \frac{d\alpha_{\rm em}}{d\mu}
+  = \frac{b_{\rm em}}{2\pi}\,\alpha_{\rm em}^2 + O(\alpha_{\rm em}^3),
+  \label{eq:beta_alpha}
+\end{equation}
+where
+\begin{equation}
+  b_{\rm em} = \frac{4}{3}\sum_{\text{Dirac}} Q_r^2
+             + \frac{1}{3}\sum_{\text{scalar}} Q_r^2.
+  \label{eq:bem}
+\end{equation}
+Rewriting in terms of the inverse coupling:
+\begin{equation}
+  \frac{d\alpha_{\rm em}^{-1}}{d\ln\mu} = -\frac{b_{\rm em}}{2\pi}.
+  \label{eq:beta_inv}
+\end{equation}
+Since $b_{\rm em} > 0$ for any non-trivial charged matter content,
+$\alpha_{\rm em}^{-1}$ \emph{decreases} monotonically with increasing $\mu$.
+
+\begin{resultbox}
+\der\ The sign of the running is fixed: $\alpha_{\rm em}^{-1}$ is a
+decreasing function of the energy scale $\mu$.  This holds for any positively
+charged matter field and requires no experimental input.
+\end{resultbox}
+
+\subsection{Integrated RG trajectory}
+
+Integrating \eqref{eq:beta_inv} from reference scale $\mu_0$ to $\mu$:
+\begin{equation}
+  \alpha_{\rm em}^{-1}(\mu)
+  = \alpha_{\rm em}^{-1}(\mu_0)
+  - \frac{b_{\rm em}}{2\pi}\,\ln\frac{\mu}{\mu_0}
+  + O(\alpha_{\rm em}).
+  \label{eq:rg_solution}
+\end{equation}
+In the full SM, $b_{\rm em}$ varies with the energy scale as successive
+particle thresholds are crossed.  Below each threshold $m_f$, the
+corresponding fermion decouples and its contribution to $b_{\rm em}$ switches
+off.
+
+\subsection{Effective beta coefficient in the SM}
+
+The SM particle content (active at scale $\mu$) contributes to
+$b_{\rm em}$ as follows:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Particle & $Q_r$ & Contribution to $b_{\rm em}$ \\
+\midrule
+Electron $e$ & $-1$ & $4/3$ \\
+Muon $\mu$ & $-1$ & $4/3$ (above $m_\mu$) \\
+Tau $\tau$ & $-1$ & $4/3$ (above $m_\tau$) \\
+$u,c,t$ quarks (3 colours) & $+2/3$ & $3 \times (4/3)(4/9) = 16/9$ each \\
+$d,s,b$ quarks (3 colours) & $-1/3$ & $3 \times (4/3)(1/9) = 4/9$ each \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Total at $\mu \gg m_t$ (all SM fermions active):
+\[
+  b_{\rm em}^{\rm SM}
+  = \underbrace{3\cdot\tfrac{4}{3}}_{\text{leptons}}
+  + \underbrace{3\cdot\tfrac{16}{9}}_{\text{up quarks}}
+  + \underbrace{3\cdot\tfrac{4}{9}}_{\text{down quarks}}
+  = 4 + \tfrac{48}{9} + \tfrac{12}{9}
+  = 4 + \tfrac{20}{3}
+  = \tfrac{32}{3} \approx 10.67.
+\]
+
+% -----------------------------------------------------------------------
+\section{Trajectory Values and Comparison with Stable Primes}
+
+\subsection{Trajectory from first principles (qualitative)}
+
+Using \eqref{eq:rg_solution} with $\mu_0 = m_e$ and the one-electron
+approximation $b_{\rm em} = 4/3$:
+\[
+  \alpha_{\rm em}^{-1}(M_Z)
+  \approx \alpha_{\rm em}^{-1}(m_e)
+  - \frac{4/3}{2\pi}\,\ln\frac{91\,200}{0.511}
+  \approx 137.036 - \frac{4/3}{2\pi} \times 12.09
+  \approx 137.036 - 2.57
+  \approx 134.5.
+\]
+This underestimates the full SM running because only the electron is included.
+The full SM value (including all thresholds and hadronic contributions) gives:
+\[
+  \alpha_{\rm em}^{-1}(M_Z) \approx 127.9.
+\]
+The difference (137.036 − 127.9 = 9.14) is accounted for by muon, tau,
+quark, and hadronic threshold contributions.
+
+\subsection{RG trajectory table}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Scale $\mu$ & $\alpha_{\rm em}^{-1}(\mu)$ & Stable prime in $\mathcal{S}$? & Distance \\
+\midrule
+$0$ (Thomson) & $137.036$ & $137 \in \mathcal{S}$ & $0.036$ \\
+$m_e = 0.511$ MeV & $137.036$ & $137 \in \mathcal{S}$ & $0.036$ \\
+$m_\mu = 105.66$ MeV & $\approx 136.0$ & none & — \\
+$m_\tau = 1.777$ GeV & $\approx 133.5$ & none & — \\
+$M_Z = 91.19$ GeV & $127.9$ & $127 \in \mathcal{S}$ & $0.9$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{obsbox}
+\obs\ The RG trajectory of $\alpha_{\rm em}^{-1}$ passes through the numerical
+neighbourhood of $p = 137$ at low energy and $p = 127$ at the $Z$ mass.
+Neither value is reached exactly; the distances are 0.036 and 0.9 respectively.
+\end{obsbox}
+
+\subsection{Can 127 and 137 be RG checkpoints?}
+
+\begin{hypothesis}[127–137 as RG checkpoints]
+The primes 127 and 137 in $\mathcal{S}$ correspond to approximate checkpoints
+on the electromagnetic running:
+\begin{itemize}
+\item $p = 137$: $\alpha_{\rm em}^{-1} \approx 137$ at $\mu \lesssim m_e$ (0.026\% error).
+\item $p = 127$: $\alpha_{\rm em}^{-1} \approx 128$ at $\mu = M_Z$ (0.70\% error).
+\end{itemize}
+\end{hypothesis}
+
+\textbf{Assessment}:
+\begin{itemize}
+\item The trajectory \emph{is} continuous and \emph{does} pass from $\approx 137$ to
+      $\approx 128$ over the known energy range.
+\item The stable primes 127 and 137 are consecutive integers separated by 10,
+      closely bracketing the physical running window of $9.14$ units.
+\item However, the precise physical values are $\alpha_{\rm em}^{-1}(0) = 137.036$
+      (not $137$) and $\alpha_{\rm em}^{-1}(M_Z) = 127.9$ (not $127$).
+\item These offsets (0.036 and 0.9 respectively) are non-zero and cannot be
+      accounted for by prime-stability alone.
+\item There is no known UBT mechanism that selects integer-valued $\alpha^{-1}$ at
+      specific scales.
+\end{itemize}
+
+\textbf{Conclusion for this pair}: The electromagnetic coupling trajectory
+passes through the neighbourhood of stable primes 127 and 137, giving
+OBSERVED\_CONSISTENCY.  This is not derivation; it is a proximity observation.
+
+% -----------------------------------------------------------------------
+\section{Non-Matching Stable Primes}
+
+\subsection{Prime p = 139}
+
+The value $\alpha_{\rm em}^{-1}$ at no standard energy scale equals 139.
+The trajectory passes through $\alpha_{\rm em}^{-1} = 139$ at some scale
+below the electron mass (in the deep infrared, effectively at $\mu \to 0$
+where $\alpha_{\rm em}$ is constant).  The Thomson-limit value is 137.036,
+not 139.
+
+Distance to nearest coupling: 1.964 from $\alpha_{\rm em}^{-1}(0)$ (1.43\%).
+This exceeds experimental precision by a factor $\sim 10^4$ (the value
+137.036 is known to ppm precision).
+
+\noev\ No physical RG checkpoint at $\alpha_{\rm em}^{-1} = 139$.
+
+\subsection{Prime p = 151}
+
+$\alpha_{\rm em}^{-1} = 151$ would correspond to a scale below the electron
+mass in the direction of negative $\mu$ or equivalently below the Landau pole
+of QED — unphysical territory.  No SM coupling has $\alpha^{-1} \approx 151$
+at any accessible energy scale.
+
+\noev\ No physical RG checkpoint at $\alpha_{\rm em}^{-1} = 151$ or equivalent.
+
+\subsection{Prime p = 157}
+
+Similarly, no SM coupling inverse is near 157 at any physical scale.
+
+\noev\ No physical RG checkpoint at $\alpha_{\rm em}^{-1} = 157$ or equivalent.
+
+% -----------------------------------------------------------------------
+\section{Coarse-Grained RG Plateaus: Can the Whole Set Be Interpreted?}
+
+A stronger interpretation would be that the full set $\mathcal{S}$ corresponds
+to coarse-grained plateaus or resonance windows in a \emph{generalised} RG
+flow — perhaps in a UBT multi-sector extension with running couplings in
+additional gauge groups or Kaluza--Klein towers.
+
+Requirements for this interpretation:
+\begin{enumerate}
+\item A UBT mechanism that produces multiple effective $\alpha_i^{-1}$ values
+      in the range 127–157.
+\item A selection rule identifying which values in that range are stable
+      (analogous to the prime stability condition in the UBT potential).
+\item An energy scale assignment for each element of $\mathcal{S}$.
+\end{enumerate}
+
+\textbf{Current status}:
+\begin{itemize}
+\item No UBT mechanism is currently known that produces effective
+      $\alpha_i^{-1} \in \{139, 151, 157\}$.
+\item The weak SU(2) and hypercharge U(1) couplings at $M_Z$ give
+      $\alpha_2^{-1} \approx 29.6$ and $\alpha_1^{-1} \approx 58.7$,
+      which are far from $\{139, 151, 157\}$.
+\item The strong coupling $\alpha_3^{-1}(M_Z) \approx 8.47$ is also not near
+      any of these primes.
+\end{itemize}
+
+\begin{gapbox}
+\textbf{Open gap}: The stable primes 139, 151, 157 have no identified
+correspondence in the Standard Model coupling spectrum or in the UBT
+multi-sector extension.  Whether they can be connected to couplings in
+compactified sectors, Hecke towers, or Kaluza--Klein spectra is an open
+question requiring further derivation.
+\end{gapbox}
+
+% -----------------------------------------------------------------------
+\section{Verdict}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Prime & Physical coupling & Classification \\
+\midrule
+$p = 2$ & None (structural) & STRUCTURAL ELEMENT \\
+$p = 127$ & $\alpha_{\rm em}^{-1}(M_Z) \approx 127.9$ & OBS-CONSISTENCY \\
+$p = 137$ & $\alpha_{\rm em}^{-1}(0) \approx 137.036$ & OBS-CONSISTENCY \\
+$p = 139$ & None at any SM scale & NO-EVIDENCE \\
+$p = 151$ & None at any SM scale & NO-EVIDENCE \\
+$p = 157$ & None at any SM scale & NO-EVIDENCE \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Combined RG verdict}:
+The electromagnetic coupling runs continuously from $\sim 137$ to $\sim 128$
+over the energy range $[m_e, M_Z]$.  The stable-prime set contains both
+endpoints (approximately).  This is OBSERVED\_CONSISTENCY, not a derivation.
+The remaining three primes (139, 151, 157) are currently unmapped.
+
+\begin{resultbox}
+\textbf{Mandatory final sentence}:\\
+Stable primes do not currently map to Standard Model couplings beyond
+alpha-like coincidences.
+\end{resultbox}
+
+\end{document}
