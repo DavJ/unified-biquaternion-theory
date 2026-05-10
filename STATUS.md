@@ -15,7 +15,7 @@
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission.tex` | **SUBMIT READY** |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR SUBMISSION | `papers/UBT_Gauge_Submission.tex` | Draft complete (2026-05-10) |
-| **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
+| **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL-WEAK | No paper yet | Blocked on Gap G137-B + N_eff audit gap |
 | **Repo public face** | ✅ DONE | This file, README, ROADMAP | Live |
 
 ---
@@ -79,8 +79,8 @@ Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
 
 | Item | Status |
 |------|--------|
-| N_eff = 12 from ℂ⊗ℍ | ✅ Proved [L0] |
-| α⁻¹_bare = 137 given B = B_phenom | ✅ Proved [L1] (conditional) |
+| N_eff = 12 from ℂ⊗ℍ | ⚠ Under critical audit (not promoted) |
+| α⁻¹_bare = 137 given B = B_phenom | ⚠ CONDITIONAL-WEAK (depends on unresolved N_eff and B-bridge audits) |
 | 137 is structurally selected (prime attractor) | ✅ Structural [L1] |
 | B_phenom ≈ 46.298 from UBT action | 🔴 OPEN — Gap G137-B |
 | All competing alpha routes | 🔴 KILLED or conditional (see `reports/alpha_routes_ranked.md`) |

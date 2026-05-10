@@ -60,6 +60,18 @@ to 137.036 is not yet derived from first principles.
 - Canonical wording source: `reports/alpha_current_verdict.md`
 - B-gap summary: `reports/alpha_B_gap_after_winding_no_go.md`
 
+### N_eff audit sync (2026-05-10)
+
+- New critical audit: `canonical/n_eff/step2_AUDIT.tex`
+- Current audited position:
+  - `N_phases = 3` is proved
+  - `N_helicity = 2` and explicit `N_charge = 2` are not yet proved as
+    independent one-loop multipliers in the audited scalar-action path
+  - loop-safe audited value: `N_eff = 3` (provisional audit result)
+- Consequence: T3 alpha route is downgraded to **CONDITIONAL-WEAK** until
+  the multiplicity audit and `B0 -> B` bridge are formally closed.
+- Bridge file added: `canonical/alpha/B_identification_proof.tex`
+
 ### Self-dual torus sync (2026-05-09)
 
 - `tau=i` / `R_t=R_psi`: **CONDITIONAL** only
@@ -84,7 +96,7 @@ to 137.036 is not yet derived from first principles.
 
 **Claim**: α⁻¹_bare = 137 (integer) from winding-mode spectrum V_eff minimum  
 **Score**: 10/15  
-**Status**: **PRIMARY BUT CONDITIONAL**
+**Status**: **PRIMARY BUT CONDITIONAL-WEAK**
 
 | Criterion | Score | Notes |
 |-----------|-------|-------|
@@ -98,7 +110,7 @@ to 137.036 is not yet derived from first principles.
 
 | Claim | Level | Source |
 |-------|-------|--------|
-| N_eff = 12 from ℂ⊗ℍ algebra alone | [L0] | `canonical/algebra/` |
+| N_eff = 12 from ℂ⊗ℍ algebra alone | OPEN / [MC] (under critical audit) | `canonical/n_eff/step2_AUDIT.tex` |
 | V_eff(n) = n² − B·n·ln n structure | [L1] | `canonical/alpha/alpha_best_route.tex` |
 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
 | 137 is prime — consistent with V_eff stability | [L0]+[STD] | Number theory |
@@ -124,8 +136,8 @@ to 137.036 is not yet derived from first principles.
 | Hecke eigenvalue → lepton mass ratios | 0.02–0.1% accuracy | Independent of V_eff |
 | P¹(𝔽₁₃₇) cardinality = μ(Γ₀(137)) | Exact identity | Number-theoretic self-consistency |
 
-**Kill condition**: A_PRIME would be killed only if N_eff = 12 fails (extremely
-unlikely — this is an [L0] algebraic identity).
+**Kill condition**: A_PRIME is killed if audited multiplicity closure cannot recover
+a first-principles path compatible with the alpha objective.
 
 ---
 
