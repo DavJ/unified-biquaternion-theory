@@ -102,6 +102,8 @@ def paragraph_has_safe_context(text_lower: str) -> bool:
 
 def has_nearby_context(text_lower: str, needle: str, contexts: List[str], window: int = 160) -> bool:
     """Return True if any context phrase appears within ±window chars around needle matches."""
+    if needle not in text_lower:
+        return True
     start = 0
     while True:
         idx = text_lower.find(needle, start)
