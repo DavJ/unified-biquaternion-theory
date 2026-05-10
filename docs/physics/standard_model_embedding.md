@@ -1,6 +1,11 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 # UBT Standard Model Embedding
 
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
 **Status:** Partial derivation — see status table below  
 **Version:** v27 (UBT Nobel Alignment)  
 **Cross-references:**

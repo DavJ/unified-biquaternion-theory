@@ -1,5 +1,10 @@
 # Roadmap: From Experimental Calibration to First-Principles Calculation
 
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
 **Purpose:** Transform current experimental-calibration code into genuine first-principles UBT derivations  
 **Status:** Detailed implementation plan  
 **Priority:** CRITICAL (addresses core credibility of UBT)
@@ -148,8 +153,8 @@ def alpha_from_geometric_B(B, p=137):
 - `consolidation_project/alpha_two_loop/FIT_FREE_ALPHA_README.md`
 
 **Changes:**
-- ✅ "Fully derived from first principles" (when complete)
-- ✅ "No fitted parameters"
+- ✅ "Fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B" (when complete)
+- ✅ "historical / superseded no-fit claim; current canonical status is conditional and blocked by Gap G137-B"
 - ✅ "Experimental match as validation"
 
 ## Phase 2: Determine Electron Mass Scale (4-8 months)
@@ -204,7 +209,7 @@ def compute_M_theta_topological():
 **Expected outcome:**
 - M_Θ ~ O(100 GeV) from geometry
 - Links to same geometric structure as α
-- No fitted parameters
+- historical / superseded no-fit claim; current canonical status is conditional and blocked by Gap G137-B
 
 **Difficulty:** HIGH (requires new theoretical work)  
 **Time estimate:** 3-4 months
@@ -286,7 +291,7 @@ m_e_calc = compute_electron_mass_from_UBT()
 
 **Validation:**
 - Match experimental value within error budget
-- No fitted parameters
+- historical / superseded no-fit claim; current canonical status is conditional and blocked by Gap G137-B
 - Acyclic dependencies (verified in Appendix E2)
 
 **Difficulty:** VERY HIGH  

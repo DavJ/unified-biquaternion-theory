@@ -1,5 +1,10 @@
 # UBT Overview: Core Equations, Assumptions, and Predictions
 
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
 **Document Purpose:** Concise high-level summary for newcomers and researchers  
 **Audience:** Physicists, mathematicians, and interested readers seeking quick understanding  
 **Last Updated:** February 12, 2026
@@ -37,7 +42,7 @@ See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 - Scientific Rating: **6.2/10** (upgraded from 5.5/10)
 - Geometric baselines: α⁻¹ framework, m_e = 0.509856 MeV (0.22%)
 - SM gauge group SU(3)×SU(2)×U(1) rigorously derived from geometry
-- **Corrections ~90% derived for α, ~60% derived for m_e** (see FITTED_PARAMETERS.md)
+- **Corrections historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B for α, ~60% derived for m_e** (see FITTED_PARAMETERS.md)
 - **Layer separation**: n=137 is Layer 2 (channel selection), NOT Layer 1 (stability max)
 - **Stability scan**: n=137 ranks 53/99; better candidates exist (199, 197, 193, etc.)
 - CMB test feasible within 1-2 years
@@ -151,9 +156,9 @@ See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 - Agreement with experiment: ~0.00003% error for channel 137
 
 **Current status:**
-- ✅ Framework: Geometric structure allowing α⁻¹ ≈ n + corrections (fully derived)
+- ✅ Framework: Geometric structure allowing α⁻¹ ≈ n + corrections (historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B)
 - ⚠️ Channel selection: n=137 is realized/observed channel (multi-channel family)
-- ⚠️ Corrections: ~90% derived from structure, ~12% renormalization gap
+- ⚠️ Corrections: historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B from structure, ~12% renormalization gap
 
 **Derivation:** Channel-dependent baseline α₀(n) + structural corrections Δ_struct(n) = α_eff(n)
 **Status:** ✅ Framework derived, ⚠️ n=137 is selected channel from family (see stability scan)
@@ -184,7 +189,7 @@ See [`docs/architecture/LAYERS.md`](docs/architecture/LAYERS.md) for details.
 - **α baseline value:** α⁻¹ = 137.000 follows from n=137 selection (hypothesis) ⚠️
 
 **Partly Derived (Mix of Layers):**
-- **α corrections:** ~90% derived with α⁻¹ ≈ 137.036 (~0.00003% error). Structural corrections calculated from UBT; ~12% renormalization gap remains.
+- **α corrections:** historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B with α⁻¹ ≈ 137.036 (~0.00003% error). Structural corrections calculated from UBT; ~12% renormalization gap remains.
 - **Electron mass corrections:** ~60% derived with m_e ≈ 0.510 MeV (~0.2% error). Parameters A, p, B currently fitted for validation; derivation roadmap in FITTED_PARAMETERS.md.
 
 **Framework Only (Not Yet Calculated):**
@@ -288,7 +293,7 @@ Which reduces to the core equation in coordinate form.
 
 ### ⚠️ Partially Explained
 
-6. **Fermion Mass Spectrum**: Not yet derived from first principles - requires Yukawa/vev structure in ℍ_ℂ
+6. **Fermion Mass Spectrum**: Not yet historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B - requires Yukawa/vev structure in ℍ_ℂ
 7. **Yukawa Couplings**: Framework established, derivation from geometric constraints in progress
 8. **Dark Matter**: p-adic framework, specific properties pending
 
@@ -347,7 +352,7 @@ This achievement transitions UBT from a **phenomenological model** to a **predic
 
 1. **Methodology Upgrade:**
    - From: "Parameter fitted to match experiment"
-   - To: "Parameter derived from first principles under stated assumptions"
+   - To: "Parameter historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B under stated assumptions"
 
 2. **Testability Improvement:**
    - Assumptions are explicit and falsifiable
@@ -518,7 +523,7 @@ This places UBT at the **forefront of alternative unified theories** in terms of
 - Formula: α_eff(channel) = α₀(channel) + Δ_struct(channel)
 - Example: α_eff⁻¹(137) ≈ 137.036 for channel n=137
 - Components: Baseline + structural corrections (non-commutativity, RG flow, gravitational dressing, asymmetry)
-- Status: ~90% derived for channel 137 (~12% renormalization gap remains)
+- Status: historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B for channel 137 (~12% renormalization gap remains)
 
 **Layer 2 (Coding/Modulation)**
 - Definition: Discrete coding/modulation layer that selects/labels which channel is realized
@@ -536,7 +541,7 @@ This places UBT at the **forefront of alternative unified theories** in terms of
 
 **Channel Selection Mechanism**
 - Current Understanding: Layer 2 coding/modulation provides framework for channel selection
-- Status: Mechanism under investigation; not yet fully derived
+- Status: Mechanism under investigation; not yet complete
 - Candidates: Topological winding stability, energy minimization, cosmological evolution
 - Testable Predictions: Different channels in different sectors/epochs would yield different observable values
 

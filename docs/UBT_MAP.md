@@ -2,6 +2,11 @@
 
 # Unified Biquaternion Theory — One-Page Map
 
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
 > **Purpose**: Allow a physicist to understand the entire theory in under 2 minutes and jump directly to any proof.
 
 ---
@@ -151,7 +156,7 @@ Running baryon density and CMB acoustic peak positions receive calculable UBT co
 Layer 0/1  Geometry + Biquaternion Dynamics (FROZEN axioms)
     ↓      Emergent metric, gauge group, field equations
 Layer B    Semi-empirical observables (α, m_e, Ω_b)
-    ↓      Require quantum corrections; ~90% derived
+    ↓      Require quantum corrections; historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B
 Layer C    Research fronts (Hubble tension, CMB, neutrino masses)
     ↓      Testable hypotheses under active investigation
 ```

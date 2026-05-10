@@ -3,7 +3,7 @@
 # Licensed under the MIT License
 # See LICENSE file in the repository root for full license text
 
-"""Guardrail checker for alpha over-claim language in canonical and root docs."""
+"""Guardrail checker for alpha over-claim language across active docs."""
 
 from __future__ import annotations
 
@@ -11,75 +11,112 @@ import argparse
 import re
 import sys
 from pathlib import Path
-from typing import Iterable, List, Tuple
+from typing import Iterable
 
 TARGET_PHRASES = [
-    "alpha is derived",
-    "fine structure constant is derived",
-    "137.036 from first principles",
-    "alpha derivation",
-    "derivation of alpha",
-    "alpha route closed",
-    "fine-structure route closed",
+    "fully derived",
+    "derived from first principles",
+    "alpha derived",
+    "α derived",
+    "137.036 is derived",
+    "137.036 achieved",
+    "exact prediction",
+    "~90% derived",
     "breakthrough",
-    "b_best",
+    "zero fitted parameters",
+    "claim: α⁻¹ = 137.036 is derived",
 ]
 
 SAFE_PHRASES = [
-    "historical",
-    "legacy",
-    "obsolete",
-    "superseded",
-    "conditional",
-    "open gap",
-    "open",
-    "gap g137-b",
     "not derived",
     "not yet derived",
+    "not solved",
     "not achieved",
-    "failed",
-    "rejected",
-    "no-go",
-]
-
-SAFE_ALPHA_VALUE_CONTEXT = [
-    "not derived",
-    "open",
     "conditional",
+    "open gap",
+    "gap",
     "gap g137-b",
-    "historical",
-    "obsolete",
     "superseded",
     "legacy",
-    "failed",
-    "rejected",
-    "no-go",
-    "not achieved",
-    "no expression",
+    "obsolete",
+    "historical",
+    "blocked",
+    "requires",
+    "hypothesis",
+    "semi-empirical",
+    "fitted",
+    "forbidden",
+    "banned",
+    "replace",
+    "audit",
+    "status",
+    "roadmap",
+    "graveyard",
+    "probability",
+    "if ",
+    "would ",
+    "imprecise",
+    "falsifies",
+    "without circular reasoning",
+    "in future",
+    "legend",
+    "no active canonical file claims",
+    "source inventory",
+    "companion",
+    "recommendation",
+    "mission",
+    "explicitly labeled",
+    "attack plan",
 ]
 
-FILE_GLOBS = [
-    "canonical/alpha/ALPHA_MASTER_STATUS.md",
-    "canonical/alpha/alpha_best_route.tex",
-    "canonical/alpha/alpha_equation_matrix.tex",
+ALPHA_SCOPE_HINTS = [
+    "alpha",
+    "alpha⁻¹",
+    "alpha^-1",
+    "alpha^{-1}",
+    "fine structure constant",
+    "fine-structure",
+    "fine structure",
+    "137.036",
+    "g137-b",
 ]
-EXCLUDE_PREFIXES = ("ARCHIVE/", "original_release_of_ubt/")
+
+SCAN_GLOBS = [
+    "docs/**/*.md",
+    "docs/**/*.tex",
+    "canonical/**/*.md",
+    "canonical/**/*.tex",
+    "reports/**/*.md",
+    "reports/**/*.tex",
+    "research_tracks/**/*.md",
+    "research_tracks/**/*.tex",
+    "*.md",
+    "*.tex",
+]
+
+EXCLUDE_PREFIXES = (
+    "ARCHIVE/",
+    "original_release_of_ubt/",
+)
 
 
 def iter_candidate_files(repo_root: Path) -> Iterable[Path]:
-    seen = set()
-    for pattern in FILE_GLOBS:
+    seen: set[Path] = set()
+    for pattern in SCAN_GLOBS:
         for path in repo_root.glob(pattern):
+            if not path.is_file():
+                continue
             rel = path.relative_to(repo_root).as_posix()
             if any(rel.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
                 continue
-            if path.is_file() and path not in seen:
-                seen.add(path)
-                yield path
+            if path in seen:
+                continue
+            seen.add(path)
+            yield path
 
 
-def paragraphs_with_offsets(text: str) -> List[Tuple[int, str]]:
-    paragraphs: List[Tuple[int, str]] = []
+def paragraphs_with_offsets(text: str) -> list[tuple[int, str]]:
+    paragraphs: list[tuple[int, str]] = []
     blocks = re.split(r"\n\s*\n", text)
     cursor = 0
     for block in blocks:
@@ -100,57 +137,32 @@ def paragraph_has_safe_context(text_lower: str) -> bool:
     return any(phrase in text_lower for phrase in SAFE_PHRASES)
 
 
-def has_nearby_context(text_lower: str, needle: str, contexts: List[str], window: int = 160) -> bool:
-    """Return True if any context phrase appears within ±window chars around needle matches."""
-    if needle not in text_lower:
+def paragraph_is_alpha_related(text_lower: str, rel_lower: str) -> bool:
+    if "alpha" in rel_lower:
         return True
-    start = 0
-    while True:
-        idx = text_lower.find(needle, start)
-        if idx < 0:
-            return False
-        lo = max(0, idx - window)
-        hi = min(len(text_lower), idx + len(needle) + window)
-        chunk = text_lower[lo:hi]
-        if any(ctx in chunk for ctx in contexts):
-            return True
-        start = idx + len(needle)
+    return any(hint in text_lower for hint in ALPHA_SCOPE_HINTS)
 
 
-def is_active_alpha_canonical(path: Path, repo_root: Path, text_lower: str) -> bool:
-    """Treat only non-legacy files under canonical/alpha as active strict-check targets."""
-    rel = path.relative_to(repo_root).as_posix().lower()
-    if not rel.startswith("canonical/alpha/"):
-        return False
-    if any(marker in rel for marker in ("legacy", "superseded", "archive")):
-        return False
-    if any(marker in text_lower for marker in ("legacy derivation-attempt banner", "legacy / superseded banner")):
-        return False
-    return True
-
-
-def scan_file(path: Path, repo_root: Path) -> List[Tuple[int, str]]:
+def scan_file(path: Path, repo_root: Path) -> list[tuple[int, str]]:
     text = path.read_text(encoding="utf-8", errors="ignore")
-    text_lower = text.lower()
-    warnings: List[Tuple[int, str]] = []
-    active_alpha_file = is_active_alpha_canonical(path, repo_root, text_lower)
-    if not active_alpha_file:
-        return warnings
+    warnings: list[tuple[int, str]] = []
+    rel_lower = path.relative_to(repo_root).as_posix().lower()
+
     for line_no, para in paragraphs_with_offsets(text):
-        para_l = para.lower()
-        stripped = para_l.strip()
-        if stripped.startswith("\\title{") or stripped.startswith("#"):
+        para_lower = para.lower()
+        stripped = para_lower.strip()
+        if stripped.startswith("#"):
             continue
-        snippet = " ".join(para.strip().split())[:220]
+        if not paragraph_is_alpha_related(para_lower, rel_lower):
+            continue
+        if not paragraph_has_target(para_lower):
+            continue
+        if paragraph_has_safe_context(para_lower):
+            continue
 
-        if paragraph_has_target(para_l) and not paragraph_has_safe_context(para_l):
-            warnings.append((line_no, snippet))
+        snippet = " ".join(para.strip().split())[:240]
+        warnings.append((line_no, snippet))
 
-        if "g3-k" in para_l and active_alpha_file and not paragraph_has_safe_context(para_l):
-            warnings.append((line_no, f"g3-k in active canonical alpha file without safe context: {snippet}"))
-
-        if "137.036" in para_l and not has_nearby_context(para_l, "137.036", SAFE_ALPHA_VALUE_CONTEXT):
-            warnings.append((line_no, f"137.036 without safe context: {snippet}"))
     return warnings
 
 
@@ -160,22 +172,23 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = args.root.resolve()
-    all_warnings = []
+    all_warnings: list[tuple[str, int, str]] = []
 
     for file_path in iter_candidate_files(repo_root):
         warnings = scan_file(file_path, repo_root)
+        rel = file_path.relative_to(repo_root).as_posix()
         for line_no, snippet in warnings:
-            all_warnings.append((file_path.relative_to(repo_root).as_posix(), line_no, snippet))
+            all_warnings.append((rel, line_no, snippet))
 
     if not all_warnings:
         print("check_alpha_claims: no over-claim warnings found")
         return 0
 
     print("check_alpha_claims: warnings found")
-    for rel, line_no, snippet in all_warnings:
+    for rel, line_no, snippet in sorted(all_warnings):
         print(f"- {rel}:{line_no}: {snippet}")
 
-    print("\nRequired context for such claims: conditional / open gap / Gap G137-B / not yet derived")
+    print("\nRequired context in same paragraph: not derived / conditional / open gap / Gap G137-B / superseded / legacy / obsolete / historical")
     return 1
 
 

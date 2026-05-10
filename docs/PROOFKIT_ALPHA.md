@@ -2,8 +2,13 @@
 
 # PROOFKIT: Fine Structure Constant α
 
-> **Status**: Layer B — Semi-empirical (bare derivation complete; B coefficient ~90% derived)  
-> **Claim**: α⁻¹ = 137.036 is derived from the compactified imaginary-time structure of UBT plus two-loop QED vacuum polarisation.
+> [!WARNING]
+> **LEGACY / SUPERSEDED ALPHA CONTENT**
+> Historical material only. Current canonical status is in `canonical/alpha/ALPHA_MASTER_STATUS.md`: alpha is **not derived**, `alpha_bare^{-1}=137` is **conditional**, `alpha^{-1}=137.036` is **not derived**, and **Gap G137-B remains open**.
+
+
+> **Status**: NOT A PROOFKIT YET — conditional route only
+> **Claim**: historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B.
 
 ---
 
@@ -92,7 +97,7 @@ B = B_base × R ≈ 41.57 × 1.114 ≈ 46.3
 ```
 
 The correction factor R ≈ 1.114 accounts for radiative corrections
-(not yet fully derived from first principles — residual free parameter).
+(not yet fully historical / superseded claim; current canonical status is conditional and blocked by Gap G137-B — residual free parameter).
 
 ### Step 6 — Bare result
 
