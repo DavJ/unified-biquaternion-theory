@@ -14,17 +14,20 @@
 
 ## 1. Status of the RG/Mode-Counting Route
 
-From `B46_RG_decision_report.md`:
+From `B46_RG_decision_report.md` (updated after winding NO-GO):
 
-- Best perturbative estimate: $B_\mathrm{best} \approx 43.6$ (KK+winding, heuristic)
+- **Winding correction NO-GO**: The constant $\Delta B_\mathrm{wind} \approx 18.5$ is not derivable
+  from current UBT structure.  The derived expression $\Delta B_\mathrm{wind}(n) = N_\mathrm{eff}n/(12\pi^2)$
+  is $n$-dependent and produces an $n^2\ln n$ term, not a constant $B$ shift.
+- Former best estimate $B_\mathrm{best} \approx 43.6$: **OBSOLETE HEURISTIC** (retracted).
+- Current safe coefficient: $B_0 = 8\pi \approx 25.133$ (CONDITIONAL on KK matching)
 - Phenomenological target: $B \approx 46$
-- Unaccounted gap: $\Delta B \approx 2.4$ (5.2%)
-- Two-loop, ghost, curvature, zero-mode: all negligible or zero
-- **Verdict**: NUMERICALLY_PLAUSIBLE but not PROVED
+- Fully open gap: $\Delta B \approx 20.9$ from $B_0$ to target
+- **Verdict**: B≈46 is OPEN; constant winding correction is NO-GO; alpha is not derived.
 
-The gap is small but persistent.  No perturbative correction within the
-current framework accounts for it without fitting.  This document states
-the **recommended non-fitted replacement path** if the gap remains.
+The gap is now larger and more fundamental than previously estimated.
+No perturbative correction within the current framework reaches $B \approx 46$.
+This document states the **recommended non-fitted replacement path**.
 
 ---
 
@@ -32,13 +35,20 @@ the **recommended non-fitted replacement path** if the gap remains.
 
 The fundamental obstruction is that the one-loop RG formula
 $$B_\mathrm{1-loop} = \frac{N_\mathrm{eff}\,n}{12\pi^2}$$
-is $n$-dependent.  The only way to obtain a constant $B$ is:
+is $n$-dependent.  This is confirmed by the winding NO-GO result:
+the winding correction $\Delta B_\mathrm{wind}(n) = N_\mathrm{eff}n/(12\pi^2)$
+has the same $n$-dependence.  Attempting to interpret it as a constant by
+fixing $n$ is circular if $n^* = 137$ is used as input.
+
+The only way to obtain a constant $B$ is:
 1. Fix $n$ to a specific value (prime attractor) — circular if $n^* = 137$ is used.
 2. Evaluate the formula at a reference scale where the result is $n$-independent — not achieved.
 
 Furthermore, the formula $B(p) = (p+1)/3$ has a modular-arithmetic structure
 (coset count $|\Gamma_0(p) \backslash \mathrm{SL}(2,\mathbb{Z})| = p+1$) that the
 RG beta function does not naturally produce.
+
+**No perturbative RG mechanism currently closes the gap $B_0 = 8\pi \to B \approx 46$.**
 
 ---
 
@@ -177,16 +187,19 @@ to verify or falsify equal-action conjecture before investing in analytic work.
 If none of the four routes succeed:
 
 1. **Publish the partial results** as CONDITIONAL:
-   - $B_\mathrm{KK+wind} \approx 43.6$ (heuristic, $5.2\%$ error from 46).
+   - $B_0 = 8\pi \approx 25.133$ (one-loop, CONDITIONAL on KK matching) — the safe result.
    - $B(p) = (p+1)/3$ as a **conditional modular ansatz** (strongly motivated,
      not derived from $S[\Theta]$).
+   - **Do not cite $B_\mathrm{best} \approx 43.6$** — this is OBSOLETE HEURISTIC.
 
 2. **State the gap explicitly** in any publication:
    > "The coefficient $B \approx 46$ is currently not derivable from the
-   > perturbative RG framework of UBT.  The best perturbative estimate is
-   > $B_\mathrm{best} \approx 43.6$.  The gap $\Delta B \approx 2.4$ (5.2\%)
-   > remains open.  The modular ansatz $B(p) = (p+1)/3$ is supported by strong
-   > arithmetic evidence but blocked at Obstruction O1."
+   > perturbative RG framework of UBT.  The constant winding correction
+   > $\Delta B_\mathrm{wind} \approx 18.5$ is NO-GO: the derived expression
+   > $\Delta B_\mathrm{wind}(n) = N_\mathrm{eff}n/(12\pi^2)$ is $n$-dependent.
+   > The only safe one-loop result is $B_0 = 8\pi \approx 25.133$ (conditional).
+   > The modular ansatz $B(p) = (p+1)/3$ is supported by strong arithmetic evidence
+   > but blocked at Obstruction O1."
 
 3. **Redirect resources**: T1\_GR (GR equivalence) and T2\_GAUGE (gauge structure)
    have stronger derivations and are closer to publication-ready.

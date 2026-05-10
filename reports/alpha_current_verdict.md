@@ -24,9 +24,12 @@ Legacy forms without the multiplicative `n` are deprecated and not valid for act
 |---|---|
 | alpha derived from first principles | **NO** |
 | prime-stability set derived | **YES** |
-| B-gap status | **OPEN** |
+| B-gap status | **OPEN** (fully open after winding NO-GO) |
 | eta(i) route | **REJECTED** as first-principles B-modifier; allowed only as numerical observation / partition-normalization clue |
 | Hecke path-integral route | **NO-GO at current level** |
+| Constant winding correction ΔB_wind ≈ 18.5 | **NO-GO** — derived correction is n-dependent: ΔB_wind(n) = N_eff·n/(12π²); produces n²·ln n term, not constant B shift |
+| B_best ≈ 43.6 | **OBSOLETE HEURISTIC** — based on NO-GO winding step |
+| Current strongest safe coefficient | **B₀ = 8π** (conditional on KK matching) |
 
 ---
 
@@ -39,6 +42,11 @@ Legacy forms without the multiplicative `n` are deprecated and not valid for act
    - a partition-function normalization clue.
 4. Hecke path-integral remains classified as no-go under current proof state.
 5. No claim is permitted that eta(i) derives alpha or that alpha is solved.
+6. **Constant winding correction ΔB_wind ≈ 18.5 is NO-GO.** The derived winding term
+   is n-dependent: ΔB_wind(n) = N_eff·n/(12π²). It cannot be cited as a constant B shift.
+7. **B_best ≈ 43.6 is OBSOLETE HEURISTIC.** No claim may reference it as an estimate.
+8. The current strongest safe coefficient is **B₀ = 8π** (CONDITIONAL on KK matching).
+   It may be cited as such.
 
 ---
 
@@ -62,4 +70,6 @@ Legacy forms without the multiplicative `n` are deprecated and not valid for act
 
 - `reports/hecke_path_integral_no_go_or_success.md`
 - `reports/hecke_trace_B_verdict.md`
+- `reports/t_dual_winding_verdict.md`
+- `reports/alpha_B_gap_after_winding_no_go.md`
 - `canonical/alpha/ALPHA_MASTER_STATUS.md`
