@@ -1,0 +1,207 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{lemma}[proposition]{Lemma}
+
+\title{Parent Coupling $e_5$ Audit in UBT\\
+\large Target 3 — fix\_or\_reject\_U1\_coupling\_normalization}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We audit whether the higher-dimensional electromagnetic coupling $e_5$,
+appearing in the 5D covariant derivative $D_M=\partial_M+ie_5 A_M$, is fixed
+by the canonical UBT action $S[\Theta]$.  We check field-rescaling freedom,
+canonical normalization, curvature and trace normalization constraints,
+topological quantization, and Chern-class winding conditions.
+Verdict: \textbf{NO-GO}.
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{Where $e_5$ enters the UBT action}
+% ----------------------------------------------------------------
+
+The five-dimensional sector of $S[\Theta]$ relevant to the electromagnetic
+coupling is
+\begin{equation}
+  S[\Theta]\supset
+  \int d^5x\;\mathrm{Tr}\!\left[(D_M\Theta)^\dagger(D^M\Theta)\right]
+  -\frac{1}{4e_5^2}\int d^5x\;F_{MN}F^{MN},
+\end{equation}
+where $M=(\mu,\psi)$ runs over all five dimensions,
+\begin{equation}
+  D_M\Theta = \partial_M\Theta + ie_5 A_M\Theta,
+\end{equation}
+and $F_{MN}=\partial_M A_N - \partial_N A_M$.
+
+The coupling $e_5$ has mass dimension $[e_5]=[\text{mass}]^{-1/2}$ in 5D
+(mass dimension analysis: $[A_M]=[\text{mass}]^{3/2}$,
+$[D_M\Theta]=[D_M][\Theta]$, $[e_5][\Theta][A_M]=[\partial_M][\Theta]$).
+
+% ----------------------------------------------------------------
+\section{Field-rescaling freedom}
+% ----------------------------------------------------------------
+
+\begin{lemma}[Absorption of $e_5$ by field rescaling]
+The coupling $e_5$ can always be absorbed into a redefinition of $A_M$:
+\begin{equation}
+  \mathcal{A}_M := e_5 A_M,
+  \qquad
+  D_M = \partial_M + i\mathcal{A}_M.
+\end{equation}
+In terms of $\mathcal{A}_M$, the matter kinetic term is $e_5$-free:
+\begin{equation}
+  \mathrm{Tr}[(D_M\Theta)^\dagger(D^M\Theta)]
+  =\mathrm{Tr}\!\left[(\partial_M\Theta+i\mathcal{A}_M\Theta)^\dagger
+    (\partial^M\Theta+i\mathcal{A}^M\Theta)\right].
+\end{equation}
+The gauge kinetic term becomes
+\begin{equation}
+  -\frac{1}{4e_5^2}F_{MN}F^{MN}
+  =-\frac{1}{4}\mathcal{F}_{MN}\mathcal{F}^{MN},
+\end{equation}
+with $\mathcal{F}_{MN}=\partial_M\mathcal{A}_N-\partial_N\mathcal{A}_M$.
+\end{lemma}
+
+In the rescaled basis, the entire action is independent of $e_5$.  Therefore,
+$e_5$ is a pure normalization convention in the absence of external constraints.
+
+\textbf{Status: NO-GO (field-rescaling removes $e_5$).}
+
+% ----------------------------------------------------------------
+\section{Canonical normalization of $\Theta$}
+% ----------------------------------------------------------------
+
+Canonical normalization of the kinetic term requires the matter part of the
+action to take the form
+\begin{equation}
+  S_\Theta = \int d^5x\;\mathrm{Tr}\!\left[(\partial_M\Theta)^\dagger(\partial^M\Theta)\right]
+  + \text{interaction terms}.
+\end{equation}
+This fixes the normalization of $\Theta$ relative to $\partial_M$, but places
+no constraint on the relative coupling between $\Theta$ and $A_M$ beyond what
+gauge invariance requires.  The coupling constant $e_5$ remains a free
+multiplicative factor in the interaction vertex.
+
+\textbf{Status: NO-GO (canonical normalization of $\Theta$ does not fix $e_5$).}
+
+% ----------------------------------------------------------------
+\section{Curvature and trace normalization}
+% ----------------------------------------------------------------
+
+The Dirac quantization condition for a U(1) gauge theory on a manifold with
+boundary requires the first Chern class to satisfy
+\begin{equation}
+  c_1 = \frac{1}{2\pi}\int_\Sigma F_{MN}dS^{MN} \in \mathbb{Z}.
+\end{equation}
+This is a topological condition on the \emph{integrated} flux and constrains
+the product $e_5\cdot\Phi$, not $e_5$ alone.  If the magnetic flux $\Phi$ is
+unconstrained, $e_5$ remains free.
+
+\begin{remark}[Trace normalization in the gauge sector]
+The gauge kinetic term in the non-abelian sector uses
+$\mathrm{Tr}(T^aT^b)=\tfrac{1}{2}\delta^{ab}$.  For the U(1) factor, the
+normalization is $\mathrm{Tr}(T_{\mathrm{EM}}^2)=1/2$ (derived in Target 1).
+This fixes the \emph{relative} normalization between the U(1) and SU(2) kinetic
+terms, but not the overall coefficient $1/e_5^2$ in front of the gauge kinetic
+action.
+\end{remark}
+
+\textbf{Status: NO-GO (Chern class fixes integer flux, not $e_5$; trace
+normalization fixes relative coefficient, not absolute coupling).}
+
+% ----------------------------------------------------------------
+\section{Topological quantization and Chern-class winding}
+% ----------------------------------------------------------------
+
+On the compactification circle $S^1_\psi$, the holonomy
+\begin{equation}
+  \mathcal{W}=\exp\!\left(ie_5\oint_{S^1_\psi}A_\psi\,d\psi\right)
+\end{equation}
+must equal $\pm 1$ (or more generally an element of the stabilizer group of the
+vacuum) for single-valuedness of $\Theta$.  This gives
+\begin{equation}
+  e_5\oint A_\psi\,d\psi = 2\pi n,\qquad n\in\mathbb{Z}.
+\end{equation}
+The integer $n$ is the winding number.  For the minimal case $n=1$,
+\begin{equation}
+  e_5 = \frac{2\pi}{\oint A_\psi\,d\psi}.
+\end{equation}
+This fixes $e_5$ only if the flux $\oint A_\psi\,d\psi$ is independently
+fixed.  In the abelian gauge theory on $S^1_\psi$, the flux is a modulus
+(Wilson line modulus) that is not constrained by the action.
+
+\textbf{Status: NO-GO (winding quantization relates $e_5$ to an unconstrained
+flux modulus).}
+
+% ----------------------------------------------------------------
+\section{Flux quantization}
+% ----------------------------------------------------------------
+
+In a magnetic compactification, flux quantization on a two-cycle $\Sigma_2$
+gives
+\begin{equation}
+  \frac{e_5}{2\pi}\int_{\Sigma_2} F = n \in \mathbb{Z}.
+\end{equation}
+On the torus $T^2=S^1_t\times S^1_\psi$, this fixes
+$e_5 \cdot B \cdot (2\pi R_t)(2\pi R_\psi) \in 2\pi\mathbb{Z}$.  Again,
+the product $e_5 B R_t R_\psi$ is quantized, not $e_5$ individually.
+
+\textbf{Status: NO-GO (flux quantization relates $e_5$ to unconstrained flux
+density and radii).}
+
+% ----------------------------------------------------------------
+\section{Summary and verdict}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Check & Outcome & Reason \\
+\midrule
+Field rescaling $\mathcal{A}_M=e_5 A_M$ & NO-GO & $e_5$ absorbed, action $e_5$-free \\
+Canonical $\Theta$ normalization & NO-GO & Does not constrain coupling \\
+Chern class quantization & NO-GO & Quantizes $e_5\cdot\Phi$, not $e_5$ \\
+Trace normalization in gauge sector & NO-GO & Fixes relative, not absolute \\
+Holonomy / winding on $S^1_\psi$ & NO-GO & Relates $e_5$ to Wilson line modulus \\
+Flux quantization on $T^2$ & NO-GO & Fixes $e_5 B R^2$ product only \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Overall verdict.}
+\textbf{NO-GO.}
+The coupling $e_5$ is a free parameter in the current UBT formulation.  No
+mechanism in $S[\Theta]$, topological quantization conditions, or trace
+normalization requirements uniquely fixes the value of $e_5$.  Field rescaling
+shows that $e_5$ can always be removed from the action by a redefinition of
+$A_M$, confirming it is a pure normalization convention.
+
+\begin{remark}[Possible route to fixing $e_5$]
+A non-perturbative constraint relating the gauge sector normalization to the
+gravitational sector (e.g., through a Planck-scale relation
+$e_5^2\sim G_5\cdot\ell_s^{-3}$) could in principle fix $e_5$.  This would
+require a unification condition linking the gravitational and electromagnetic
+sectors of $S[\Theta]$, which is not present in the current canonical
+formulation.
+\end{remark}
+
+\end{document}
