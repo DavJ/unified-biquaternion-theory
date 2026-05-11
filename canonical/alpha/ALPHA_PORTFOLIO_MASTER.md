@@ -96,7 +96,7 @@ without fitting any parameter.
 
 | Result | Level | Source |
 |--------|-------|--------|
-| N_eff = 12 from ℂ⊗ℍ | [L0] | `canonical/algebra/`, `canonical/n_eff/` |
+| N_eff = 12 candidate (mode counting) | OPEN/[MC] | `canonical/n_eff/step2_AUDIT.tex` |
 | B₀ = 8π (one-loop) | [L1] | `canonical/n_eff/step2_vacuum_polarization.tex` |
 | V_eff(n) = n² − B·n·ln n structure | [L1] given B | `canonical/alpha/alpha_best_route.tex` |
 | n* = 137 for B_phenom ≈ 46.298 | [L1][COND: G137-B] | `canonical/alpha/alpha_best_route.tex` |
@@ -105,6 +105,8 @@ without fitting any parameter.
 
 **Single blocking gap**: G137-B — derive B_phenom ≈ 46.298 from S[Θ] without
 using α as input.  B₀ = 8π (proved) gives n* ≈ 65; missing factor ≈ 1.84.
+`B_Ram` is **OBS only, not derived from S[Theta]**. `lambda_exact` and
+`lambda_frac` are **OBS only, no derivation currently known**.
 
 **Attack path**:
 1. Apply modular bootstrap crossing symmetry to the 4-point function on T².
@@ -214,7 +216,7 @@ These results are locked-in and form the foundation all Tier A/B routes build on
 
 | Result | Level | Source |
 |--------|-------|--------|
-| N_eff = 12 from ℂ⊗ℍ | **[L0]** | `canonical/n_eff/` |
+| N_eff = 12 candidate (mode counting) | **OPEN/[MC]** | `canonical/n_eff/step2_AUDIT.tex` |
 | B₀ = 8π one-loop | **[L1]** | `canonical/n_eff/step2_vacuum_polarization.tex` |
 | V_eff(n) = n² − B·n·ln n | **[L1] given B** | `canonical/appendices/appendix_alpha_geometry.tex §3` |
 | 2n* = B(ln n* + 1) stationarity | **[L1] given B** | `canonical/alpha/veff_corrected_statement.tex` |
@@ -289,3 +291,6 @@ They must not be inflated to proof-level claims.
 | Date | Change |
 |------|--------|
 | 2026-04-29 | Created — supersedes `ALPHA_PORTFOLIO_STATUS.md` at root; corrects Weinberg status from ACTIVE to PARKED |
+
+
+Cross-references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.

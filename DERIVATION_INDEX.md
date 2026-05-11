@@ -2,6 +2,10 @@
 
 # DERIVATION_INDEX.md — UBT Derivation Status Index
 
+> **DEPRECATED / SUPERSEDED STATUS: This document contains pre-audit alpha claims. Current alpha status is given by STATUS_OF_UBT.md and canonical/alpha/ALPHA_MASTER_STATUS.md.**
+> Audit references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.
+
+
 This index tracks the derivation status of every major theoretical result in UBT.
 Labels follow the Layer convention: [L0] = pure biquaternionic geometry, [L1] = one-loop,
 [L2] = higher-loop or non-perturbative.
