@@ -363,14 +363,18 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
 
 ---
 
-## Selekční kritéria p=137 (aktualizace 2026-05-10, Copilot Instrukce v5)
+## Selekční kritéria p=137 (aktualizace 2026-05-11, Copilot Instrukce v6)
 
 Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
 
 1. **Kronecker filtr**: $\nu_2(p)>0 \Leftrightarrow p\equiv1\pmod4$.
    - Arithmeticky [L0], v klastru $g=11$ vybírá jednoznačně $p=137$.
-   - Fyzikální most $C\leftrightarrow w_p$ (charge-conjugation $\to$ Atkin-Lehner)
-     zatím [OPEN].
+   - Fyzikální most $C\leftrightarrow w_p$ (charge-conjugation $\to$ Atkin-Lehner):
+     prověřen v `research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex`.
+     **Verdikt C (NO-GO pro přímou derivaci)**: přímá identifikace $\tau_C = w_p$
+     selhává (fixed-point count je konstantní, nezávisí na $p$).
+     Modularní cesta (přes Eulerovu charakteristiku $X_0(p)$) je [OPEN],
+     závisí na uzavření Gap G137-B.
 
 2. **Self-konzistence**: $f(p)=\frac{5p-1}{p+1}-\ln p$.
    - $f(137)=+0.036541$, $f(139)=+0.022669$.
@@ -388,8 +392,7 @@ Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
    - $a_{131}=-9$, $a_{139}=-3$: přímý výpočet [L0] z Weierstrassova modelu $[0,-1,0,-21,-31]$.
    - $|a_{137}|=g=11$ je unikátní v $\{131,137,139\}$ $\Rightarrow$ **[MC/confirmed]**.
 
-**Aktuální souhrn**:
-- Jediné striktně selekční kritérium v tomto kroku je arithmetický filtr
-  $(g=11)\wedge(p\equiv1\pmod4)$.
-- Celkově: selekce $p=137$ je **MC slabý / OPEN** do uzavření
-  fyzikálního mostu a Hecke koeficientů $a_{131},a_{139}$.
+**Aktuální souhrn (2026-05-11)**:
+- Hecke prime-specificity: **[MC/confirmed]** — kill condition nesplněna ($a_{139}=-3 \neq \pm11$).
+- Kronecker filtr: arithmeticky [L0]; fyzikální most [NO-GO pro přímou cestu], [OPEN] pro modularní.
+- Selekce $p=137$ celkově: **[MC] — strengthened po Hecke ověření**, fyzikální základ [OPEN].

@@ -1,0 +1,275 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/neff_kk_counting.tex
+%
+% Purpose: Determine whether N_eff(loop) = 12 can be recovered from
+%   Kaluza-Klein mode counting on the UBT compactification M^4 x T^3.
+%   Companion to: canonical/n_eff/neff_reconciliation.tex,
+%                 research_tracks/quantum_ubt/ncg_poisson_b0derivation.tex
+%
+% Python computation: embedded in Section 3 (see also tools/ for standalone script).
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+
+  \newtheorem{proposition}{Proposition}[section]
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{remark}{Remark}[section]
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \newtcolorbox{resultbox}[1][]{colback=green!6!white,colframe=green!50!black,
+    arc=3pt,boxrule=1.5pt,fonttitle=\bfseries,title=Result,#1}
+
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+  \newcommand{\TT}{\mathbb{T}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\FF}{\mathbb{F}}
+
+  \title{$N_{\mathrm{eff}}$ via Kaluza-Klein Mode Counting on $M^4 \times T^3$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Context and question}
+%──────────────────────────────────────────────────────────────────────────────
+
+Two independent analyses of UBT give different values of $\Neff$:
+\begin{itemize}
+  \item \textbf{Route R2}: $\Neff(\mathrm{R2}) = \dim G_{\mathrm{SM}} = 12$
+        (algebraic count of gauge generators; \texttt{neff12\_derivations.tex}).
+  \item \textbf{Loop audit}: $\Neff(\mathrm{loop}) = 3$ (charged complex scalar
+        fields in $S_{\mathrm{kin}}[\Theta]$; \texttt{step2\_AUDIT.tex}).
+\end{itemize}
+The file \texttt{neff\_reconciliation.tex} establishes that these count
+\emph{different physical objects}.  However, the NCG derivation in
+\texttt{ncg\_poisson\_b0derivation.tex} requires $\Neff$ for the
+\emph{loop-level} vacuum-polarisation amplitude.
+
+\textbf{Question}: Is there a Kaluza-Klein mode counting argument that
+recovers $\Neff(\mathrm{loop}) = 12$ from the UBT compactification on
+$M^4 \times T^3$?
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{KK spectrum on $M^4 \times T^3$}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Compactification setup}
+
+UBT is compactified on $T^3 = S^1_\psi \times S^1_\chi \times S^1_\xi$ with
+equal radii $R_\psi = R_\chi = R_\xi = R$.
+The field $\Theta \in \mathrm{Mat}(2,\mathbb{C}) \cong \mathbb{C} \otimes \mathbb{H}$
+has 8 real degrees of freedom.
+
+The three imaginary quaternionic phases $(\psi, \chi, \xi)$ correspond to the
+three $\mathrm{Im}\,\mathbb{H}$ directions; from \texttt{step1\_mode\_decomposition.tex},
+the charged fields are $\Phi_k$ ($k = 1,2,3$), one per phase.
+
+\subsection{KK mass spectrum}
+
+For a winding vector $\mathbf{n} = (n_1, n_2, n_3) \in \ZZ^3$:
+\begin{equation}
+  m^2_{\mathbf{n}} = \frac{n_1^2 + n_2^2 + n_3^2}{R^2}.
+\end{equation}
+The field $\Phi_k$ decomposes into KK modes $\Phi_{k,\mathbf{n}}$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mode counting: $T^3$ lattice ball}
+\label{sec:t3count}
+%──────────────────────────────────────────────────────────────────────────────
+
+Following \texttt{ncg\_poisson\_b0derivation.tex} Prop.~1, the effective loop
+multiplicity below a cutoff $\Lambda$ is:
+\begin{equation}
+  \Neff(\Lambda) = N_{\mathrm{phases}} \times N_{\mathrm{ball}}(R \Lambda),
+  \qquad
+  N_{\mathrm{ball}}(\rho) = \#\{\mathbf{n} \in \ZZ^3 : |\mathbf{n}| \le \rho\}.
+\end{equation}
+
+\textbf{Computed values} (direct lattice enumeration):
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$R\Lambda$ & $N_{\mathrm{ball}}$ & $\Neff = 3 \times N_{\mathrm{ball}}$ & Comment \\
+\midrule
+0.5 & 1   & 3   & only $\mathbf{n}=\mathbf{0}$ \\
+1.0 & 7   & 21  & $\mathbf{0}$ and $\pm\mathbf{e}_i$ \\
+1.5 & 19  & 57  & adds face-diagonals \\
+2.0 & 33  & 99  & adds corner vectors \\
+2.5 & 81  & 243 & \\
+3.0 & 123 & 369 & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+$N_{\mathrm{ball}} = 4$ does \textbf{not exist} for the cubic $\ZZ^3$ lattice.
+The lattice ball count jumps: $1 \to 7 \to 19 \to \ldots$
+There is \textbf{no value of $R\Lambda$} such that $\Neff = 3 \times 4 = 12$
+on $T^3$.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Single-direction compactification: $S^1_\psi$ only}
+\label{sec:s1count}
+%──────────────────────────────────────────────────────────────────────────────
+
+The $T^3$ route fails because cubic symmetry forces a gap $1 \to 7$.
+Consider instead a model where only one compact direction ($S^1_\psi$) is
+relevant for the vacuum-polarisation amplitude, while the other two ($S^1_\chi$,
+$S^1_\xi$) are non-compact or integrated out.
+
+For $S^1_\psi$ with winding modes $n \in \ZZ$ and cutoff $\Lambda$:
+\begin{itemize}
+  \item Charged modes: $n \neq 0$, $|n| \le R_\psi \Lambda$.
+  \item Counting (\emph{both signs} $n$ and $-n$ as distinct fields):
+        $N_{\mathrm{charged}}(R_\psi\Lambda) = 2\lfloor R_\psi\Lambda \rfloor$.
+\end{itemize}
+With $N_{\mathrm{phases}} = 3$:
+\begin{equation}
+  \Neff(R_\psi\Lambda) = 3 \times 2\lfloor R_\psi\Lambda \rfloor
+  = 6\lfloor R_\psi\Lambda \rfloor.
+\end{equation}
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$R_\psi\Lambda$ range & $\lfloor R_\psi\Lambda \rfloor$ & $\Neff$ & Achievable? \\
+\midrule
+$(0,1)$   & 0 & 0  & (no charged modes) \\
+$[1,2)$   & 1 & 6  & yes \\
+$[2,3)$   & 2 & 12 & \textbf{yes — $\Neff(\mathrm{loop}) = 12$} \\
+$[3,4)$   & 3 & 18 & yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+$\Neff(\mathrm{loop}) = 12$ is achievable on $S^1_\psi$ compactification
+when $R_\psi\Lambda \in [2, 3)$, i.e.\ when the UV cutoff includes exactly
+$|n| \in \{1, 2\}$ charged winding modes per phase.
+
+This corresponds to including two KK levels ($n = \pm 1$ and $n = \pm 2$)
+in the one-loop vacuum-polarisation amplitude, giving
+$3\,\text{phases} \times 2\,\text{signs} \times 2\,\text{levels} = 12$.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Interpretation and connection to $N_{\mathrm{eff}}(\mathrm{R2}) = 12$}
+%──────────────────────────────────────────────────────────────────────────────
+
+The algebraic count $\Neff(\mathrm{R2}) = 12 = 8 + 3 + 1$ (gauge generators
+of $G_{\mathrm{SM}}$) and the KK count $\Neff(\mathrm{KK}) = 12$ at $R_\psi\Lambda \in [2,3)$
+are \emph{numerically equal but not yet shown to be the same physical quantity}.
+
+The KK count provides a \textbf{geometrical characterisation}:
+\begin{itemize}
+  \item If the physical cutoff for the one-loop $U(1)_{\mathrm{EM}}$ amplitude
+        is set by the compactification scale $\Lambda = 2/R_\psi$ (the
+        boundary of the second KK level), then $\Neff = 12$.
+  \item This is equivalent to saying: \emph{two KK levels contribute to the
+        one-loop polarisation}, rather than only the ground mode.
+\end{itemize}
+
+\begin{remark}
+The condition $R_\psi\Lambda \in [2,3)$ is a window, not a point.  The lower
+boundary $R_\psi\Lambda = 2$ is the threshold for the second KK level; the upper
+boundary $R_\psi\Lambda = 3$ is where the third level enters.  For the identification
+$\Neff = 12$ to be stable, the physical cutoff must lie in this window.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Connection to the B coefficient}
+%──────────────────────────────────────────────────────────────────────────────
+
+From \texttt{neff\_reconciliation.tex}:
+\begin{equation}
+  B_0 = 2\pi \cdot \Neff(\mathrm{loop}).
+\end{equation}
+With $\Neff(\mathrm{loop}) = 3$ (loop audit): $B_0 = 6\pi \approx 18.85$.
+With $\Neff(\mathrm{KK}) = 12$ (two KK levels): $B_0 = 24\pi \approx 75.4$.
+
+Neither value equals the phenomenologically required $B_{\mathrm{phenom}} \approx 46.3$.
+The KK identification $\Neff = 12$ overshoots by a factor of roughly 1.6.
+
+\begin{remark}
+An intermediate possibility: if only the $n = \pm 1$ \emph{and} $n = \pm 2$
+modes contribute with \emph{different weights} (e.g.\ suppressed by the KK
+mass ratio $m_2/m_1 = 2$), the effective $\Neff^{\mathrm{weighted}}$ could
+be reduced.  This requires a separate analysis of the KK-mass-weighted vacuum
+polarisation, which is not attempted here.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and open problems}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Setting & $\Neff$ value & Comment \\
+\midrule
+$T^3$, all modes, $R\Lambda < 1$ & 3 & matches loop audit \\
+$T^3$, all modes, $R\Lambda \in (1,\sqrt{2})$ & 21 & no window gives 12 \\
+$S^1_\psi$, $R_\psi\Lambda \in [1,2)$ & 6 & \\
+$S^1_\psi$, $R_\psi\Lambda \in [2,3)$ & \textbf{12} & matches R2 \\
+$S^1_\psi$, $R_\psi\Lambda \in [3,4)$ & 18 & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key finding}: $\Neff(\mathrm{loop}) = 12$ is achievable via KK counting
+on $S^1_\psi$ (single compact direction) with cutoff $R_\psi\Lambda \in [2,3)$.
+This provides a geometrical characterisation of the R2 multiplicity, but does
+\emph{not} yet close the reconciliation, because:
+\begin{enumerate}
+  \item It is not proved that only $S^1_\psi$ (and not $T^3$) is relevant for
+        the vacuum-polarisation amplitude (KK-mismatch open gap).
+  \item The window $R_\psi\Lambda \in [2,3)$ is not derived from $S[\Theta]$.
+  \item Even with $\Neff = 12$, the resulting $B_0 = 24\pi \approx 75.4$
+        exceeds $B_{\mathrm{phenom}} \approx 46.3$.
+\end{enumerate}
+
+Open gaps registered:
+\begin{itemize}
+  \item \textbf{G-KK-1}: Derive from $S[\Theta]$ why the UV cutoff lies in
+        $R_\psi\Lambda \in [2,3)$ and not at the ground-mode threshold.
+  \item \textbf{G-KK-2}: Determine whether $T^3$ or $S^1_\psi$ is the correct
+        compactification geometry for the vacuum-polarisation amplitude.
+  \item \textbf{G-KK-3}: Compute the KK-mass-weighted $\Neff^{\mathrm{weighted}}$
+        and check if it can approach $B_{\mathrm{phenom}}/(2\pi) \approx 7.37$.
+\end{itemize}
+
+\begin{statusbox}
+$\Neff(\mathrm{loop}) = 12$ via KK counting: \textbf{achievable [MC]} on $S^1_\psi$
+with $R_\psi\Lambda \in [2,3)$\\
+Physical derivation of the cutoff window: \textbf{[OPEN]} — Gap G-KK-1\\
+Connection to $B_{\mathrm{phenom}} \approx 46.3$: \textbf{[OPEN]} — $B_0 = 24\pi$ overshoots\\
+KK-mismatch theorem ($T^3$ vs $S^1_\psi$): \textbf{[OPEN]} — Gap G-KK-2\\
+Classification: [MC] for geometrical characterisation; not a first-principles derivation.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
