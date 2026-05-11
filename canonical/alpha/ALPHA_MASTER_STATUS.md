@@ -89,6 +89,18 @@ to 137.036 is not yet derived from first principles.
   The derived winding term is ΔB_wind(n) = N_eff·n/(12π²) (n-dependent; produces n²·ln n).
 - **B_best ≈ 43.6: OBSOLETE HEURISTIC.** Do not cite as an estimate. Route withdrawn.
 
+### Prime-factorization entropy note (2026-05-11)
+
+The n log n term now has a candidate interpretation as the leading Stirling term of
+prime-factorization information entropy (total log-information content of integers
+1..n under the prime alphabet), but this does **not** close G137-B.  The exact
+identity log(n!) = Σ_{p^m ≤ n} ⌊n/p^m⌋ log p (Legendre's formula) is [STD/L0].
+A refined potential candidate V_eff^Γ(n) = n² − B·(log Γ(n+1) + n) preserves the
+original stationary condition B ≈ 2n/(log n + 1) at leading order while embedding
+the entropy structure; this is labeled [DERIVATION CANDIDATE].  See
+`canonical/alpha/prime_factorization_entropy_potential.tex` and
+`tools/compare_alpha_potentials.py`.  Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
+
 ---
 
 ## Route Ranking
