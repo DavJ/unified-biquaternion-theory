@@ -1,0 +1,282 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+%
+% Priority 3 — B₀=B Bridge via Seeley-DeWitt a₄ Coefficient
+% Concrete mechanism: spectral action on M⁴×S¹ at self-dual point
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{openq}[theorem]{Open Question}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\OBS}{\textbf{[OBS]}}
+
+\title{\textbf{$B_0 = B$ Bridge via Seeley-DeWitt $a_4$ Coefficient}\\
+{\large A Concrete Mechanism for Gap G137-B Closure}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We describe a concrete new mechanism for closing Gap G137-B: the computation of
+the Seeley-DeWitt coefficient $a_4$ of the spectral action functional
+$S_{\mathrm{spec}}[D] = \mathrm{Tr}[f(D/\Lambda)]$ for the UBT Dirac operator $D$
+on $M^4\times S^1_\psi$, evaluated at the self-dual point $R_\psi\cdot\Lambda=1$.
+The conjecture is that $a_4$ evaluated at this point produces the winding
+partition function $Z_{\mathrm{wind}}(\tau=i) = \vartheta_3(0|i)$ as a natural
+normalisation factor.  If confirmed, the quarter-power
+$Z_{\mathrm{wind}}(1)^{1/4}$ enters the effective coupling $B$ in
+$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$, closing Gap G137-B without any
+fitted parameter.
+The algebraic decomposition
+$B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4}$
+(from \texttt{rogers\_ramanujan\_c3\_connection.tex}) provides the target
+formula against which the $a_4$ computation must be verified.
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Background and Motivation}
+\label{sec:background}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The gap}
+
+The current alpha chain gives $n^*(B_0) \approx 65$ with $B_0 = 8\pi$ (proved,
+\Lone).  The phenomenological value $B_{\mathrm{phenom}} \approx 46.3$ that
+selects $n^* = 137$ must come from $S[\Theta]$ without any fitted input.
+
+The Rogers-Ramanujan analysis
+(\texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex})
+identifies the candidate formula:
+\begin{equation}
+  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4},
+  \label{eq:B_candidate}
+\end{equation}
+where $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$ is the winding partition function
+at the self-dual radius.  The factors $N_{\mathrm{eff}}^{3/2}$ (algebraic, \Lzero)
+and $2^{1/8}$ (from $\vartheta_3/\eta = \sqrt{2}$, \STD) are already identified;
+the missing piece is why $Z_{\mathrm{wind}}(1)^{1/4}$ enters $V_{\mathrm{eff}}$.
+
+\subsection{The spectral action approach}
+
+The UBT field equation is derived from an action $S[\Theta]$.
+The spectral action formalism of Connes-Chamseddine provides a systematic way
+to compute one-loop corrections to any action from the associated Dirac operator.
+The Seeley-DeWitt expansion gives:
+\begin{equation}
+  \mathrm{Tr}\!\left[f\!\left(\frac{D}{\Lambda}\right)\right]
+  \sim a_0\Lambda^4 + a_2\Lambda^2 + a_4\ln\Lambda + \cdots
+  \label{eq:spectral_expansion}
+\end{equation}
+where $a_k$ are the Seeley-DeWitt coefficients determined entirely by the
+geometry of the manifold and the Dirac operator $D$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Geometry: $M^4\times S^1_\psi$}
+\label{sec:geometry}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+
+UBT defines complex time $\tau = t + i\psi$ with the imaginary component $\psi$
+compactified on a circle $S^1_\psi$ of radius $R_\psi$:
+\begin{equation}
+  \psi \sim \psi + 2\pi R_\psi.
+\end{equation}
+The total manifold is $\mathcal{M} = M^4\times S^1_\psi$.
+
+The UBT Dirac operator in this geometry is:
+\begin{equation}
+  D = D_{M^4} + i\frac{\partial}{\partial\psi}\otimes\gamma_5,
+  \label{eq:D_ubt}
+\end{equation}
+where $D_{M^4}$ is the standard Dirac operator on the four-dimensional
+Riemannian manifold $M^4$.
+
+\subsection{Winding spectrum}
+
+The eigenvalues of $i\partial_\psi$ on $S^1_\psi$ are:
+\begin{equation}
+  \lambda_n = \frac{n}{R_\psi}, \qquad n\in\mathbb{Z}.
+\end{equation}
+The trace over the $S^1_\psi$ spectrum:
+\begin{equation}
+  \mathrm{Tr}_{S^1_\psi}\!\left[f\!\left(\frac{\lambda_n}{\Lambda}\right)\right]
+  = \sum_{n\in\mathbb{Z}} f\!\left(\frac{n}{R_\psi\Lambda}\right).
+  \label{eq:trace_S1}
+\end{equation}
+
+\subsection{The self-dual point}
+
+At $R_\psi\cdot\Lambda = 1$ (i.e.\ the T-duality self-dual point), the
+Poisson resummation of~\eqref{eq:trace_S1} gives:
+\begin{equation}
+  \sum_{n\in\mathbb{Z}} f\!\left(\frac{n}{\Lambda R_\psi}\right)
+  \xrightarrow{R_\psi\Lambda\,=\,1}
+  \sum_{n\in\mathbb{Z}} f(n).
+  \label{eq:poisson_self_dual}
+\end{equation}
+For a Gaussian test function $f(x) = e^{-\pi x^2}$, the Poisson summation
+gives a theta function:
+\begin{equation}
+  \sum_{n\in\mathbb{Z}} e^{-\pi n^2} = \vartheta_3(0|i).
+  \label{eq:theta3_from_poisson}
+\end{equation}
+This is the winding partition function at $\tau = i$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $a_4$ Coefficient Conjecture}
+\label{sec:conjecture}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Standard Seeley-DeWitt $a_4$}
+
+For a generalised Laplacian $P = -(g^{\mu\nu}\nabla_\mu\nabla_\nu + E)$
+on a $d$-dimensional manifold, the Seeley-DeWitt coefficient $a_4(P)$ is:
+\begin{equation}
+  a_4(P) = \frac{1}{16\pi^2}\int_{\mathcal{M}}
+  \mathrm{tr}\!\left[\frac{1}{6}R^2 - \frac{1}{6}R_{\mu\nu}R^{\mu\nu}
+  + \frac{1}{30}R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
+  + \frac{1}{2}E^2 - \frac{1}{6}RE + \frac{1}{12}\Omega_{\mu\nu}\Omega^{\mu\nu}
+  \right]\sqrt{g}\,d^dx,
+  \label{eq:a4_standard}
+\end{equation}
+where $\Omega_{\mu\nu}$ is the curvature of the connection associated to $P$.
+
+\subsection{$a_4$ on $M^4\times S^1_\psi$ for the UBT Dirac operator}
+
+For the product geometry $M^4\times S^1_\psi$, the $a_4$ coefficient factorises
+into contributions from $M^4$ and $S^1_\psi$. The $S^1_\psi$ factor at the
+self-dual point $R_\psi\Lambda=1$ contributes:
+\begin{equation}
+  a_4^{(S^1)}\big|_{R_\psi\Lambda=1}
+  \;\propto\; \sum_{n\in\mathbb{Z}} e^{-\pi n^2/(\Lambda R_\psi)^2}
+  \;\xrightarrow{R_\psi\Lambda\,=\,1}\;
+  \vartheta_3(0|i).
+  \label{eq:a4_S1_contribution}
+\end{equation}
+
+\begin{conjecture}[Self-dual normalisation of $a_4$]
+\label{conj:a4_theta3}
+The Seeley-DeWitt coefficient $a_4$ of the UBT spectral action evaluated at
+the self-dual point $R_\psi\cdot\Lambda = 1$ contains a factor:
+\begin{equation}
+  a_4\big|_{\mathrm{self\text{-}dual}}
+  = C\cdot\vartheta_3(0|i),
+\end{equation}
+where $C$ is determined by the $M^4$ geometry and the UBT Dirac operator
+structure.  This produces $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$ as the
+natural normalisation constant in the spectral action.
+\end{conjecture}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Bridge to $V_{\mathrm{eff}}$ and Gap G137-B}
+\label{sec:bridge}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Mechanism}
+
+If Conjecture~\ref{conj:a4_theta3} holds, then the one-loop effective potential
+derived from the spectral action on $M^4\times S^1_\psi$ at the self-dual point
+contains a factor:
+\begin{equation}
+  V_{\mathrm{eff}} \supset
+  N_{\mathrm{eff}}^{3/2}\cdot a_4^{(S^1)}\big|_{\mathrm{self\text{-}dual}}
+  \cdot n\ln n
+  = N_{\mathrm{eff}}^{3/2}\cdot\vartheta_3(0|i)^{1/4}\cdot 2^{1/8}\cdot n\ln n.
+\end{equation}
+This would directly produce the candidate formula~\eqref{eq:B_candidate} from
+the spectral action, closing Gap G137-B.
+
+\subsection{Three-step proof strategy}
+
+To close Gap G137-B via this mechanism, three steps are needed:
+
+\begin{enumerate}
+  \item \textbf{Compute $a_2$ for $D_{\mathrm{UBT}}$ on $M^4\times S^1_\psi$}:
+    show $a_2$ reproduces the Einstein-Hilbert action.  This is a consistency
+    check confirming the UBT Dirac operator is correctly specified.
+    See also \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_coefficients.tex}.
+
+  \item \textbf{Compute $a_4$ at the self-dual point}:
+    evaluate equation~\eqref{eq:a4_S1_contribution} explicitly and show
+    $a_4|_{\mathrm{self-dual}} \propto \vartheta_3(0|i)$.
+
+  \item \textbf{Extract $B$ from the $n\ln n$ term}:
+    derive the Coleman-Weinberg effective potential from the one-loop
+    contribution of the spectral action and identify the coefficient of
+    $n\ln n$ as $B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Falsification Conditions}
+\label{sec:falsification}
+%──────────────────────────────────────────────────────────────────────────────
+
+This mechanism is falsified if any of the following holds:
+
+\begin{itemize}
+  \item $a_4$ at the self-dual point does not contain a factor of $\vartheta_3(0|i)$
+    (i.e.\ the product geometry $M^4\times S^1_\psi$ does not produce
+    theta-function normalisation).
+
+  \item The $n\ln n$ term in $V_{\mathrm{eff}}$ comes from $M^4$ only, with no
+    $S^1_\psi$ contribution to the coefficient.
+
+  \item The $a_4$ coefficient from the UBT Dirac operator gives a value of $B$
+    inconsistent with $B_{\mathrm{phenom}}\approx 46.298$ by more than $0.1\%$.
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Next Steps}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=green!4!white, colframe=green!55!black,
+  title={Result summary}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Note} \\
+\midrule
+$Z_{\mathrm{wind}}(\tau=i) = \vartheta_3(0|i)$ & \STD & winding partition function \\
+$a_4^{(S^1)}|_{\mathrm{self-dual}} \propto \vartheta_3(0|i)$ &
+  \MC/\OPEN\ (Conjecture~\ref{conj:a4_theta3}) & needs explicit computation \\
+$a_2$ reproduces Einstein-Hilbert & consistency check (\OPEN) &
+  see \texttt{seeley\_dewitt\_coefficients.tex} \\
+$a_4 \to B = N^{3/2}\cdot 2^{1/8}\cdot\vartheta_3^{1/4}$ &
+  \OPEN\ (Gap G137-B) & main target \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\paragraph{Immediate next step.}
+Compute $a_4(D_{\mathrm{UBT}})$ on $M^4\times S^1_\psi$ explicitly using
+the standard heat-kernel formula~\eqref{eq:a4_standard}.
+The $S^1_\psi$ factor at $R_\psi\Lambda=1$ must be evaluated as a theta sum
+and compared with $\vartheta_3(0|i)$.
+A positive result would be the first first-principles derivation of
+$B$ from $S[\Theta]$, closing Gap G137-B.
+
+\end{document}
