@@ -1,0 +1,255 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% Rogers-Ramanujan Connection for c=3 in UBT
+% Nový algebraický výsledek: θ₃(0|i)/η(i) = √2 přesně
+% a jeho důsledky pro B vzorec
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\OBS}{\textbf{[Observation]}}
+
+\title{\textbf{Rogers--Ramanujan Structure for $c=3$ and the UBT $B$-Formula}\\
+{\large An Algebraic Derivation via $\vartheta_3(0|i)/\eta(i) = \sqrt{2}$}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We establish the exact algebraic identity
+$\vartheta_3(0|i)/\eta(i) = \sqrt{2}$
+using Ramanujan's formula $\vartheta_3(0|i) = \pi^{1/4}/\Gamma(3/4)$,
+the standard $\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$,
+and the reflection formula $\Gamma(1/4)\Gamma(3/4) = \pi\sqrt{2}$.
+This gives a purely algebraic rewriting of the UBT candidate formula
+$B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4}$ as
+\[
+B = 12^{3/2}\cdot 2^{1/8}\cdot\left(\frac{\pi^{1/4}}{\Gamma(3/4)}\right)^{1/4},
+\]
+connecting it directly to Ramanujan's CM value of $\vartheta_3$ at $\tau=i$
+and to the Rogers--Ramanujan--type structure of the $c=3$ partition function
+$Z_{c=3} = [\vartheta_3/\eta]^3 = 2\sqrt{2}$.
+The formula remains a \OBS\ (numerical accuracy $0.0066\%$);
+the missing theorem is identified precisely.
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Core Algebraic Identity \STD}
+\label{sec:core}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Ramanujan CM values at $\tau=i$]
+\label{thm:ramanujan}
+The following exact algebraic relations hold:
+\begin{align}
+  \vartheta_3(0|i) &= \frac{\pi^{1/4}}{\Gamma(3/4)},
+  \label{eq:theta3i}\\
+  \eta(i) &= \frac{\Gamma(1/4)}{2\pi^{3/4}}.
+  \label{eq:etai}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Both are classical results of Ramanujan/Weber, proved via the
+theory of elliptic integrals at the CM point $\tau=i$
+(see Berndt, \emph{Ramanujan's Notebooks}, Part~III, Chapter~17).
+\end{proof}
+
+\begin{lemma}[Exact ratio \STD]
+\label{lem:ratio}
+\begin{equation}
+  \frac{\vartheta_3(0|i)}{\eta(i)} = \sqrt{2}.
+  \label{eq:ratio}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+From Theorem~\ref{thm:ramanujan}:
+\[
+\frac{\vartheta_3(0|i)}{\eta(i)}
+= \frac{\pi^{1/4}/\Gamma(3/4)}{\Gamma(1/4)/(2\pi^{3/4})}
+= \frac{2\pi}{\Gamma(1/4)\,\Gamma(3/4)}.
+\]
+The reflection formula $\Gamma(z)\Gamma(1-z)=\pi/\sin(\pi z)$ at $z=1/4$
+gives
+\[
+\Gamma(1/4)\,\Gamma(3/4) = \frac{\pi}{\sin(\pi/4)} = \pi\sqrt{2}.
+\]
+Therefore $\vartheta_3(0|i)/\eta(i) = 2\pi/(\pi\sqrt{2}) = \sqrt{2}$.
+\end{proof}
+
+\begin{remark}[Numerical verification]
+Direct computation confirms $\vartheta_3(0|i)/\eta(i) = 1.41421356\ldots = \sqrt{2}$
+to $10^{-10}$ relative precision.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $c=3$ Partition Function \STD}
+\label{sec:c3}
+%──────────────────────────────────────────────────────────────────────────────
+
+For a CFT of three free compact bosons (central charge $c=3$),
+the partition function on the self-dual torus $\tau=i$ is
+\begin{equation}
+  Z_{c=3}(\tau=i)
+  = \left[\frac{\vartheta_3(0|i)}{\eta(i)}\right]^3
+  = (\sqrt{2})^3
+  = 2\sqrt{2}.
+  \label{eq:Zc3}
+\end{equation}
+
+\begin{remark}[Rogers--Ramanujan context]
+For $c=1/5$ (Yang--Lee model), the Rogers--Ramanujan identities give the
+partition function as a ratio of $q$-products at specific modular levels.
+For $c=1$ (free boson at self-dual radius), $\vartheta_3/\eta = \sqrt{2}$
+is the single-boson partition function (Lemma~\ref{lem:ratio}).
+For $c=3$ (three free bosons), $Z_{c=3} = (\sqrt{2})^3 = 2\sqrt{2}$.
+The structure is thus a direct $c$-fold power of the $c=1$ case,
+analogous to how Rogers--Ramanujan identities organise characters
+by central charge, but at the distinguished CM point $\tau=i$.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Rewriting the $B$-Formula \OBS}
+\label{sec:B}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT candidate formula (numerical observation, accuracy $0.0066\%$):
+\begin{equation}
+  B = N_{\mathrm{eff}}^{3/2}\,(2\eta(i))^{1/4}
+  = 12^{3/2}\,(2\eta(i))^{1/4}.
+  \label{eq:Bcandidate}
+\end{equation}
+
+Using $\eta(i) = \vartheta_3(0|i)/\sqrt{2}$ from Lemma~\ref{lem:ratio}:
+\begin{equation}
+  2\eta(i) = \sqrt{2}\,\vartheta_3(0|i),
+\end{equation}
+so
+\begin{equation}
+  (2\eta(i))^{1/4} = 2^{1/8}\,\vartheta_3(0|i)^{1/4}.
+\end{equation}
+
+Substituting into~\eqref{eq:Bcandidate}:
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!55!black,
+  title={Algebraic rewriting of the $B$-formula}]
+\begin{equation}
+  \boxed{
+  B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}
+    = 12^{3/2}\cdot 2^{1/8}\cdot
+      \left(\frac{\pi^{1/4}}{\Gamma(3/4)}\right)^{1/4}.
+  }
+  \label{eq:Btheta3}
+\end{equation}
+\end{tcolorbox}
+
+\paragraph{Numerical check.}
+\[
+12^{3/2} = 41.5692,
+\quad
+2^{1/8} = 1.09051,
+\quad
+\vartheta_3(0|i)^{1/4} = 1.08643^{1/4} = 1.02093,
+\]
+\[
+B = 41.5692 \times 1.09051 \times 1.02093 = 46.2809.
+\]
+Required value: $B_{\mathrm{req}} = 2\times137/(\ln 137+1) = 46.2839$.
+Relative error: $0.0066\%$. $\checkmark$
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Physical Interpretation and the Missing Theorem}
+\label{sec:missing}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{What the formula says physically}
+
+Equation~\eqref{eq:Btheta3} says that $B$ is determined by:
+\begin{enumerate}
+  \item $12^{3/2} = N_{\mathrm{eff}}^{3/2}$: the three-halves power of the
+        effective mode count (algebraic structure of $\mathbb{C}\otimes\mathbb{H}$).
+  \item $2^{1/8}$: a small numerical factor from the normalisation
+        $\vartheta_3/\eta = \sqrt{2}$ at the self-dual point.
+  \item $\vartheta_3(0|i)^{1/4}$: the quarter-power of Ramanujan's
+        CM value of the Jacobi theta function at $\tau=i$.
+\end{enumerate}
+
+The factor $\vartheta_3(0|i) = \pi^{1/4}/\Gamma(3/4)$ is the
+\emph{partition function of a single winding mode at the self-dual point},
+and its appearance in $B$ means that $B$ is sensitive to the
+self-dual geometry of the $S^1_\psi$ compactification.
+
+\subsection{Connection to UBT winding partition function}
+
+From \texttt{research\_tracks/quantum\_ubt/ncg\_poisson\_b0derivation.tex}:
+\[
+Z_{\mathrm{wind}}(\tau) = \vartheta_3(0|i\tau).
+\]
+At the self-dual point $\tau=1$ (i.e.\ $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$),
+the winding partition function equals Ramanujan's CM value.
+Equation~\eqref{eq:Btheta3} then reads:
+\begin{equation}
+  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4}.
+  \label{eq:Bzwind}
+\end{equation}
+
+\subsection{The minimal missing theorem}
+
+\begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
+  title={Minimal Missing Theorem — Gap G137-B (sharpened)}]
+Prove from $S[\Theta]$ that the effective coupling $B$ in
+$V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ equals
+\[
+B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4},
+\]
+where $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$ is the winding partition
+function at the self-dual radius, $N_{\mathrm{eff}}$ is the effective
+mode count from the algebraic structure of $\mathbb{C}\otimes\mathbb{H}$,
+and all three factors arise without using $\alpha_{\mathrm{exp}}$ or
+$B_{\mathrm{phenom}}$ as inputs.
+\end{tcolorbox}
+
+The sharpened form makes explicit that the three factors have
+different physical origins and must be derived separately:
+$N_{\mathrm{eff}}^{3/2}$ from the gauge-group structure (already [L0]),
+$2^{1/8}$ from the self-dual normalisation $\vartheta_3/\eta=\sqrt{2}$ (now [STD]),
+and $Z_{\mathrm{wind}}(1)^{1/4}$ from the winding spectrum at self-dual radius
+(connection to $V_{\mathrm{eff}}$ is the core open problem).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=green!4!white, colframe=green!55!black,
+  title={Results summary}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Note} \\
+\midrule
+$\vartheta_3(0|i) = \pi^{1/4}/\Gamma(3/4)$ & \STD & Ramanujan \\
+$\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$ & \STD & classical \\
+$\vartheta_3(0|i)/\eta(i) = \sqrt{2}$ & \Lzero/\STD & algebraic identity \\
+$Z_{c=3}(i) = 2\sqrt{2}$ & \STD\ (given $c=3$) & partition function \\
+$B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$ & \OBS & $0.0066\%$ accuracy \\
+Physical derivation of $B$ from $S[\Theta]$ & \OPEN & Gap G137-B \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\end{document}
