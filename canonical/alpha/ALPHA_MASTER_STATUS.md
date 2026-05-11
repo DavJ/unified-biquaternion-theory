@@ -10,7 +10,8 @@ Supersedes and summarises: `reports/alpha_routes_ranked.md`, `reports/alpha_no_f
 `reports/alpha_missing_lemma.md`, `canonical/alpha/prime_137_status.md`,
 `reports/ew_mixing_status.md` (alpha perspective), `canonical/alpha/ew_mixing_gap_map.md`
 (alpha routes only).  
-**Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`
+**Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`  
+**Single canonical reference for chain status**: `canonical/alpha/alpha_gap_closure_matrix.tex`
 
 ---
 

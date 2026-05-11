@@ -155,6 +155,12 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 |-----|-------------|
 | G137-B | Derive B ≈ 46.284–46.298 from S[Θ] without α/137/B_required input; alpha status is STRUCTURAL / CONDITIONAL / OPEN GAP |
 
+**Single canonical reference for T3_ALPHA chain status**: `canonical/alpha/alpha_gap_closure_matrix.tex`
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| alpha_matrix | Gap closure matrix for T3_ALPHA | [canonical] | `canonical/alpha/alpha_gap_closure_matrix.tex` |
+
 ---
 
 ## Miscellaneous Proved Results

@@ -1,0 +1,204 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/alpha_gap_closure_matrix.tex
+% Purpose: Single canonical record of the T3_ALPHA chain status.
+%          Identifies the minimal missing theorem (Gap G137-B).
+%
+% Status: 2026-05-11
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+
+  \newcommand{\PROVED}{\textbf{PROVED}}
+  \newcommand{\MC}{\textbf{MC}}
+
+  \title{\textbf{Alpha Gap Closure Matrix}\\
+         \large Single Canonical Record of the T3\_ALPHA Chain Status}
+  \author{Ing. David Jaro\v{s}}
+  \date{2026-05-11}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────
+\section{Purpose}
+%──────────────────────────────────────────────────────────────
+
+This document is the single canonical record of the alpha program chain
+status, connecting all partial mechanisms and identifying the minimal
+missing theorem.
+
+%──────────────────────────────────────────────────────────────
+\section{The Candidate Chain}
+%──────────────────────────────────────────────────────────────
+
+The full candidate derivation chain is:
+\[
+S[\Theta]
+\;\to\; T^2\ \text{winding}
+\;\to\; n\ln n
+\;\to\; N_{\rm eff}
+\;\to\; c{=}3
+\;\to\; \eta(i)
+\;\to\; B \approx 46.28
+\;\to\; n^*{=}137
+\;\to\; \alpha^{-1}\approx 137.
+\]
+
+\begin{center}
+\begin{longtable}{p{3.5cm} p{5cm} p{2cm} p{3cm}}
+\toprule
+\textbf{Chain step} & \textbf{Claim} & \textbf{Status} & \textbf{Source} \\
+\midrule
+$S[\Theta]$ defined & UBT action with $\mathcal{L}_{kin}+\mathcal{L}_{grav}+\mathcal{L}_{gauge}$
+  & \PROVED\ [L1] & \texttt{canonical\_action.tex} \\[4pt]
+$T^3$ compactification & Three compact Im$(\mathbb{H})$ circles
+  & \PROVED\ [L0] & \texttt{step1\_mode\_decomp.} \\[4pt]
+$N_{\rm phases}=3$ & From $\dim_\mathbb{R}\,\mathrm{Im}\,\mathbb{H}$
+  & \PROVED\ [L0] & \texttt{step2\_AUDIT.tex} \\[4pt]
+$N_{\rm eff}^{\rm loop}=3$ & Minimal scalar loop from $S_{\rm kin}[\Theta]$
+  & \PROVED\ [L1] & \texttt{neff\_reconciliation.tex} \\[4pt]
+$N_{\rm eff}^{\rm loop}=12$ & KK on $T^3$: jumps $1\to7\to19$, not 12
+  & \textbf{FAILED} & \texttt{neff\_kk\_counting.tex} \\[4pt]
+$N_{\rm eff}=12$ (algebraic) & $\dim G_{\rm SM}=8+3+1=12$ from $\mathbb{C}\otimes\mathbb{H}$
+  & \PROVED\ [L0] & \texttt{neff12\_derivations.tex} \\[4pt]
+$n\ln n$ form of $V_{\rm eff}$ & Divisor sum on $T^2\subset T^3$, equal mass
+  & \MC\ (math [STD]) & \texttt{nlogn\_mechanism.tex} \\[4pt]
+$c=3$ CFT central charge & Mode-count from $\delta^2 S[\Theta]/\delta\Theta^2$
+  & \MC & \texttt{central\_charge\_deriv.tex} \\[4pt]
+$B=N_{\rm eff}^{3/2}(2\eta(i))^{c/12}$ & $=46.281$; error $0.0066\%$ vs $B_{\rm req}$
+  & \textbf{OBSERVATION} & \texttt{eta\_i\_status.md} \\[4pt]
+$B_0^{\rm vac.pol.}=B^{V_{\rm eff}}$ & Bridge between two distinct $B$'s
+  & \textbf{OPEN} & \texttt{B\_identification\_proof.tex} \\[4pt]
+$n^*(B_{\rm phenom})=137$ & From stationarity of $V_{\rm eff}$, given $B$
+  & \PROVED\ [L1 given $B$] & \texttt{alpha\_best\_route.tex} \\[4pt]
+$g=11$, $137\equiv1\pmod4$ unique & Direct point count $a_{131}=-9$, $a_{139}=-3$
+  & \PROVED\ [L0] & \texttt{hecke\_twin\_prime\_test.md} \\[4pt]
+$C\leftrightarrow w_p$ physical & Direct route failed; modular route open
+  & \textbf{NO-GO/OPEN} & \texttt{charge\_conj\_wp\_bridge.tex} \\[4pt]
+$f(137)\approx\Delta\alpha^{-1}_{\rm exp}$ & $0.036541$ vs $0.035999$, ratio $1.015$
+  & \MC\ (not [NC]) & \texttt{alpha\_residuum\_analysis.tex} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+%──────────────────────────────────────────────────────────────
+\section{Gap Analysis}
+%──────────────────────────────────────────────────────────────
+
+\textbf{Gap G137-B (primární)}: $B$ z vakuové polarizace a $B$ ve $V_{\rm eff}$
+jsou odvozeny dvěma zcela odlišnými výpočty --- jedna z fotonového 2-pointu
+(running coupling), druhá z efektivní winding akce.
+Žádný teorém v kanonických souborech netvrdí že jsou si rovny.
+Dokud tento most neexistuje, celý řetěz závisí na $B = B_{\rm phenom}$ jako
+externím vstupu.
+
+\medskip
+\textbf{Gap G-Neff (sekundární)}: $N_{\rm eff}^{\rm loop} = 12$ nevychází
+z $T^3$ KK (numericky vyloučeno). $S^1$ s $R\cdot\Lambda\in[2,3)$ dává [MC]
+ale fyzikální škála není odvozena. Algebraické $N_{\rm eff}=12=\dim(G_{\rm SM})$
+je jiná veličina.
+
+\medskip
+\textbf{Gap G-c3 (terciární)}: $c=3$ z mode-counting [MC] --- CFT identifikace
+a RG-flow argument chybí pro povýšení na [L1].
+
+\medskip
+\textbf{Gap G-eta (kvartální)}: Odkud pochází exponent $1/4 = c/12$?
+Propojení $Z_{\rm wind}=\theta_3$ je [L1] (viz \texttt{ncg\_poisson\_b0derivation.tex}),
+ale identifikace konkrétní normalizační konstanty $\eta(i)$ jako fyzikálně nucené
+hodnoty je [OPEN].
+
+%──────────────────────────────────────────────────────────────
+\section{The Minimal Missing Theorem}
+%──────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
+  title={Minimal Missing Theorem (Gap G137-B)}]
+\textbf{Statement needed}:
+There exists a mechanism in $S[\Theta]$ that identifies the coefficient $B$
+in the winding-mode effective potential
+\[
+V_{\rm eff}(n) = n^2 - B\,n\ln n
+\]
+with the ultraviolet coupling coefficient from the one-loop photon
+self-energy, and gives
+\[
+B = N_{\rm eff}^{3/2}\,(2\eta(i))^{c/12} \approx 46.281
+\]
+from first principles, without using $\alpha_{\rm exp}$, $137$,
+or $B_{\rm phenom}$ as inputs (Rules R1--R5).
+
+\medskip
+\textbf{Current status}: OPEN.
+\textbf{Why this is the minimum}: all other steps in the chain are either
+proved, proved given $B$, or are secondary gaps that collapse into G137-B.
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────
+\section{What Would Constitute a Proof}
+%──────────────────────────────────────────────────────────────
+
+Three acceptable routes:
+
+\begin{enumerate}
+
+\item \textbf{Spectral action route}: Show that the Seeley--DeWitt coefficient
+$a_4$ from the UBT Dirac operator $D$ on $M^4\times S^1$ gives precisely
+$B = N_{\rm eff}^{3/2}\cdot(2\eta(i))^{1/4}$ as the normalisation of the
+logarithmic term, where $N_{\rm eff}$ and the exponent $1/4$ arise from the
+algebra $\mathbb{C}\otimes\mathbb{H}$.
+
+\item \textbf{WZW route}: Establish the existence of a WZW term in $S[\Theta]$
+with level $k$ derived from the gauge anomaly, and show via the Verlinde formula
+that $B = \mu(\Gamma_0(p^*))/3 = (p^*+1)/3$.
+
+\item \textbf{Partition function route}: Show that $Z_{\rm wind}(\tau)=\theta_3(0|i\tau)$
+evaluated at the physical modular point $\tau^*$ (not necessarily $\tau=i$)
+gives the normalisation of the effective action consistent with $B\approx 46.28$.
+
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────
+\section{What Would Kill the Route}
+%──────────────────────────────────────────────────────────────
+
+If any of the following is established, the entire alpha route is terminated:
+
+\begin{itemize}
+  \item \textbf{K1}: Prokáže se že $B_0^{\rm vac.pol.}$ a $B^{V_{\rm eff}}$
+        nemohou být sjednoceny v rámci $S[\Theta]$ (hard no-go theorem).
+  \item \textbf{K2}: Prokáže se že $N_{\rm eff}=12$ nemůže vyjít z žádného
+        přirozeného KK schématu na $T^3$ (zahrnuje výsledek z
+        \texttt{neff\_kk\_counting.tex}: $T^3$ jump je $1\to7\to19$).
+  \item \textbf{K3}: Prokáže se že $V_{\rm eff}(n)=n^2-Bn\ln n$ má jiný
+        tvar pro konkrétní $S[\Theta]$ (např. $n^2-N_{\rm eff}\ln(2\sinh\pi n)$
+        jako $V_{\rm CW}$ bez $n\ln n$ forma).
+  \item \textbf{K4}: $|a_{137}(k=4)|=2274$ nebo $|a_{137}(k=6)|=38286$
+        se prokáže jako chybná hodnota --- lepton mass signal kolabuje.
+\end{itemize}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
