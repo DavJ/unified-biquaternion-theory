@@ -1,0 +1,98 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \newtheorem{lemma}{Lemma}[section]
+  \newtheorem{proposition}[lemma]{Proposition}
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \title{Prime Selection Criterion for $p=137$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Arithmetic part: Kronecker criterion}
+
+For odd prime $p$:
+\begin{align}
+\nu_2(p)
+&= 1 + \left(\frac{-4}{p}\right)
+ = 1 + \left(\frac{-1}{p}\right)\left(\frac{4}{p}\right)
+ = 1 + (-1)^{(p-1)/2}.
+\end{align}
+Hence
+\begin{equation}
+\nu_2(p)=2 \iff p\equiv 1\pmod 4,\qquad
+\nu_2(p)=0 \iff p\equiv 3\pmod 4.
+\end{equation}
+This step is purely arithmetic [L0].
+
+\begin{lemma}[Congruence filter on genus-11 prime cluster]
+Among primes with $g(X_0(p))=11$, namely $p\in\{131,137,139\}$:
+\begin{itemize}
+  \item $131\equiv 3\pmod 4 \Rightarrow \nu_2=0$,
+  \item $137\equiv 1\pmod 4 \Rightarrow \nu_2=2$,
+  \item $139\equiv 3\pmod 4 \Rightarrow \nu_2=0$.
+\end{itemize}
+Therefore the condition $g(X_0(p))=11$ together with $\nu_2(p)>0$
+selects $p=137$ uniquely in this cluster.
+\end{lemma}
+
+\section{UBT $U(1)_{EM}$ lift: verification and failure point}
+
+\textbf{Step 1 (required source: \texttt{canonical/interactions/qed.tex}).}
+The canonical QED file defines gauge transformations and running
+(\texttt{qed.tex}, Sec. ``Gauge Symmetry'' and ``Renormalization''),
+but it does not define an explicit map
+$C: \Theta\mapsto \Theta^*$ on winding sectors, nor a fixed-point condition
+for compactification modes.
+
+\textbf{Step 2.} The modular equivalence
+``fixed points of Atkin--Lehner $w_p$ on $X_0(p)$ $\Leftrightarrow \nu_2(p)>0$''
+is standard arithmetic geometry [L0], but the bridge
+``UBT charge conjugation $C$ $\leftrightarrow$ $w_p$'' is not derived from
+$S[\Theta]$ in the cited canonical QED file.
+
+\textbf{Failure location.}
+The derivation fails at the physical identification
+\begin{equation}
+C\text{-fixed winding sector} \Rightarrow w_p\text{-fixed points on }X_0(p)
+\end{equation}
+because this map is not yet proved in canonical UBT files.
+Classification of this bridge: [OPEN].
+
+\begin{proposition}[Conditional physical lift]
+If a first-principles UBT derivation establishes
+$C\leftrightarrow w_p$ and requires $C$-fixed sectors,
+then $\nu_2(p)>0$ follows and therefore $p\equiv 1\pmod 4$.
+Under that extra assumption, $p=137$ is selected over $p=139$.
+\end{proposition}
+
+\begin{statusbox}
+Argument: charge-conjugation selects $p \equiv 1 \pmod 4$\\
+Výsledek: OPEN (arithmetic part proved, physical bridge unresolved)\\
+$p=137$ je jediné prvočíslo s genus=11 a $p\equiv1\pmod4$ v rozsahu [50,500]: ANO\\
+Klasifikace: arithmetic filter [L0], UBT physical lift [OPEN]\\
+Dopad: selekce $p=137$ je algebraicky nucena pouze po doplnění otevřeného mostu $C\leftrightarrow w_p$
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

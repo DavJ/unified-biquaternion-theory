@@ -1,0 +1,79 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb}
+  \usepackage{tcolorbox}
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \title{Synthesis: Why $p=137$ and not $p=139$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Why $p=137$ and not $p=139$}
+
+Among primes with $g(X_0(p))=11$, i.e. $p\in\{131,137,139\}$:
+
+\begin{enumerate}
+\item \textbf{Congruence condition (Kronecker symbol).}
+$\nu_2(p)>0 \iff p\equiv1\pmod4$ is proved arithmetically [L0].
+This keeps only $p=137$ inside the genus-11 cluster.
+Physical lift from UBT charge-conjugation $C$ to Atkin--Lehner fixed points
+remains [OPEN].
+
+\item \textbf{Self-consistency sign condition.}
+For
+$f(p)=\frac{5p-1}{p+1}-\ln p$,
+\begin{equation}
+f(137)=+0.036541,\qquad f(139)=+0.022669.
+\end{equation}
+Both are positive, so the sign test does \emph{not} separate 137 from 139.
+Status: FAILED as selection criterion [L0 numerical check].
+
+\item \textbf{QED residuum identification.}
+$f(137)$ is close to observed $\Delta\alpha^{-1}$, but one-loop leptonic
+$\sum\Delta_{\mathrm{QED}}(\Lambda=M_{\mathrm{Pl}})=0.114595$ is far from $f(137)$.
+Status: [NC] in current implementation.
+
+\item \textbf{Hecke prime specificity.}
+$a_{137}(N=76,k=2)=-11$ is known, but $a_{131},a_{139}$ for the same form are
+currently unavailable in this environment (LMFDB DNS blocked, no Sage/PARI).
+Status: [OPEN]/UNKNOWN.
+\end{enumerate}
+
+Criteria that currently yield $p=137$ uniquely:
+\begin{itemize}
+  \item Arithmetic congruence filter ($g=11$ and $p\equiv1\pmod4$),
+  \item with physical UBT justification of the $C\leftrightarrow w_p$ bridge still open.
+\end{itemize}
+
+\begin{statusbox}
+Počet algebraických kritérií selektujících $p=137$: 1 z 4 (strictly proved selection),
+plus 1 conditional bridge [OPEN]\\
+Nejsilnější: Kronecker congruence filter $\nu_2>0 \iff p\equiv1\pmod4$ within genus-11 cluster\\
+Celková klasifikace selekce $p=137$: MC slabý / OPEN (unique arithmetic filter, incomplete physical closure)\\
+Predikce $\alpha^{-1}$:\\
+\quad Bare: 137 (z $V_{\mathrm{eff}}$, podmíněně)\\
+\quad S residuem: $137+f(137)=137.036541$ [MC]\\
+\quad Experiment: 137.035999\\
+\quad Přesnost (residual offset): 99.9996\% (difference $5.42\times10^{-4}$)
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
