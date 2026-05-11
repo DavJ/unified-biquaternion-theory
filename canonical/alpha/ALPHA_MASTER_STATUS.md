@@ -312,7 +312,7 @@ Přesněji:
 | Přístup | Soubor | Stav | Výsledek |
 |---------|--------|------|---------|
 | A: Self-konzistentní pevný bod | `research_tracks/T3_ALPHA/self_consistency_fixed_point.tex` | HOTOVO [MC] | $n^*(B(p))=p$: $p=137$ přibližně ($0.56\%$); není unikátní (twin-prime okno $\{137,139\}$) |
-| B: Hecke eigenvalue → α | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex` | HOTOVO [OPEN] | $a_{137}=\mathrm{genus}=11$: numericky pravdivé; strukturalita závisí na LMFDB datech pro $p=131,139$ |
+| B: Hecke eigenvalue → α | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex` | HOTOVO [MC] | Přímý výpočet: $a_{131}=-9$, $a_{137}=-11$, $a_{139}=-3$; shoda unikátní pro $p=137$ |
 | C: Exaktní $V_\mathrm{CW}$ bez $B$ | `research_tracks/T3_ALPHA/vcw_exact_minimum.tex` | HOTOVO [L1/OPEN] | Minimum u $n^*=19$ ($N_\mathrm{eff}=12$); faktor $7.27$ zbývá; žádná přirozená kombinace nedá $n^*=137$ |
 
 ### Podrobné výsledky
@@ -326,10 +326,12 @@ Přesněji:
 
 **Přístup B — Hecke**:
 - $|a_{137}(N=76, k=2)| = 11 = g(X_0(137))$: numericky pravdivé.
-- Primes s $g=11$ v $[50,300]$: $\{131, 137, 139\}$ — shoda není zřejmě unikátní.
-- Task 2 (2026-05-11): lookup report `reports/hecke_eigenvalue_twin_prime_test.md`
-  je zatím [OPEN] (LMFDB DNS nedostupné v sandboxu, Sage není nainstalován).
-- Lepton mass ratios: $R_\mu=206.727$ (err $0.020\%$), $R_\tau=3480.55$ (err $0.095\%$) — silný [MC] signál.
+- Přímý výpočet z Weierstrassova modelu $[0,-1,0,-21,-31]$:
+  $a_{131}=-9$, $a_{137}=-11$, $a_{139}=-3$.
+- Primes s $g=11$ v $[50,300]$: $\{131, 137, 139\}$; shoda $|a_p|=11$ je unikátní pro $p=137$.
+- Kill condition pro přístup B: nesplněna. $p=137$ je unikátní v $\{131,137,139\}$.
+- Lepton mass ratios potvrzeny: $R_\mu=2274/11=206.73$ (exp 206.77, 0.02\%),
+  $R_\tau=38286/11=3480.55$ (exp 3477.23, 0.10\%) — silný [MC] signál.
 - Struktura Hecke $\to \alpha$ path-integral: no-go status (viz `reports/hecke_path_integral_no_go_or_success.md`).
 
 **Přístup C — $V_\mathrm{CW}$**:

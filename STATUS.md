@@ -13,7 +13,7 @@
 
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
-| **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission.tex` | **SUBMITTED (2026-05-10)** |
+| **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission_v2.tex` | **SUBMIT READY (arXiv upload pending)** |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR SUBMISSION | `papers/UBT_Gauge_Submission.tex` | Draft complete (2026-05-10) |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL-WEAK | No paper yet | Blocked on Gap G137-B + N_eff audit gap |
 | **Repo public face** | ✅ DONE | This file, README, ROADMAP | Live |
@@ -39,9 +39,10 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 | Zerilli equation (even-parity graviton) | ✅ Proved [L1] — GAP-Z closed (2026-05-10) |
 | Off-shell Θ-only closure | ⚪ Open [L2] — GAP-10; stated in paper |
 
-**Submission file**: `papers/UBT_GR_Submission.tex`  
+**Submission file**: `papers/UBT_GR_Submission_v2.tex`  
 **Pre-submission fix**: ✅ Done — Newton's G clarification added as Remark in §3.5 (2026-05-10)  
-**Estimated arXiv**: SUBMITTED — 2026-05-10
+**arXiv upload**: Ready — checklist prepared  
+**arXiv ID**: Pending assignment
 
 ---
 

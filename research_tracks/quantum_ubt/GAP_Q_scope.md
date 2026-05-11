@@ -272,6 +272,7 @@ over the full quantum-UBT programme.**
 - [x] GAP-Q scoped: see §2 for requirements, §3 for classification
 - [x] Parallel lessons documented: §4
 - [x] Tractable near-term quantum calculations identified: §5
+- [x] Canonical graviton-quantisation sections 1–3 promoted from "hard open" to "tractable [STD]" in `graviton_quantisation.tex`
 - [ ] Full quantum-UBT programme: deferred to long-term (ROADMAP.md Phase 4)
 
 ---

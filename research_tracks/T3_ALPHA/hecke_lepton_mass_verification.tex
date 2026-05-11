@@ -1,0 +1,68 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb}
+  \usepackage{booktabs}
+  \usepackage{mdframed}
+  \newmdenv[backgroundcolor=green!12, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \title{\textbf{Hecke Lepton-Mass Verification at $p=137$}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Input values and source anchors}
+
+For $p=137$, the working values used in the alpha track are:
+\[
+|a_{137}(N=76,k=2)|=11,\quad
+|a_{137}(N=7,k=4)|=2274,\quad
+|a_{137}(N=208,k=6)|=38286.
+\]
+The values are consistent with in-repository alpha-track sources
+(\texttt{research\_tracks/T3\_ALPHA/hecke\_alpha\_connection.tex} and
+\texttt{reports/gamma0\_137\_invariants.md}).
+
+\section{Weil bounds check}
+
+With $p=137$:
+\begin{align}
+|a_{137}(k=4)| &\le 2\cdot 137^{3/2} \approx 3207.09,\\
+|a_{137}(k=6)| &\le 2\cdot 137^{5/2} \approx 439371.03.
+\end{align}
+Both candidate values (2274 and 38286) satisfy the bounds.
+
+\section{Lepton mass-ratio reconstruction}
+
+\begin{align}
+R_\mu &= \frac{|a_{137}(k=4)|}{|a_{137}(k=2)|}
+= \frac{2274}{11} = 206.727,\\
+R_\tau &= \frac{|a_{137}(k=6)|}{|a_{137}(k=2)|}
+= \frac{38286}{11} = 3480.55.
+\end{align}
+Compared with PDG reference ratios:
+\[
+m_\mu/m_e = 206.768 \quad(\text{err }0.02\%),\qquad
+m_\tau/m_e = 3477.23 \quad(\text{err }0.10\%).
+\]
+
+\begin{resultbox}
+Current classification: \textbf{[MC]} strong numerical signal.
+External re-pull from LMFDB in this sandbox is unavailable, but internal
+source consistency and Weil-bound checks are satisfied.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
+
