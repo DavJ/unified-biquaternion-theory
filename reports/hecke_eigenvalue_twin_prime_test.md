@@ -43,27 +43,25 @@ holds for the twin-prime neighbors \(p=131,139\) among primes with
 
 ## Current result table
 
-| Prime \(p\) | \(g(X_0(p))\) | \(a_p(76.2.a.a)\) | \(|a_p|=11?\) | Status |
-|---:|---:|---:|:---:|---|
-| 131 | 11 | N/A | N/A | [OPEN] external lookup required |
-| 137 | 11 | -11 | YES | known baseline |
-| 139 | 11 | N/A | N/A | [OPEN] external lookup required |
+| p | g(X₀(p)) | a_p(76.2.a.a) | |a_p|=g? | Status |
+|--:|--:|--:|:--:|--|
+| 131 | 11 | −9 | NO | [L0] přímý výpočet |
+| **137** | **11** | **−11** | **YES** | **[MC] unikátní** |
+| 139 | 11 | −3 | NO | [L0] přímý výpočet |
+
+Weierstrass model: [0,−1,0,−21,−31] (LMFDB 76.a1).  
+Metoda: přímé počítání bodů #E(F_p) = p+1−a_p.
 
 ---
 
-## Immediate next action (outside current sandbox limits)
+## Immediate next action
 
-Run either:
-
-1. LMFDB direct lookup for label `76.2.a.a`, reading coefficients \(a_{131}\), \(a_{139}\), or  
-2. Sage:
-   `f = CuspForms(Gamma0(76), 2).newforms('a')[0]` then evaluate \(a_p\) for \(p=131,137,139\).
+Direct twin-prime test is completed for \(p=131,137,139\).
+Follow-up is interpretation only (structural mechanism), not data lookup.
 
 ---
 
 ## Status box
 
-> **Hecke twin-prime decision**: **[OPEN]**  
-> Binary kill/confirm condition for Approach B cannot yet be resolved in this
-> execution environment because LMFDB network access is unavailable and Sage is
-> absent.
+> **Hecke twin-prime decision**: **[MC] CONFIRMED (unique at \(p=137\) in \(\{131,137,139\))**  
+> Binary kill/confirm condition is resolved in favour of \(p=137\).

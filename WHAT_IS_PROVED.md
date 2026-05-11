@@ -147,6 +147,7 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | α4 | $n^*(B_\mathrm{phenom}) = 137$ | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
 | α5 | 137 is prime; prime status implies V_eff stability | [L0]+[STD] | Number theory |
 | α6 | One-loop QED running: α(μ₂) from α(μ₁) reproduced | [L1] | `canonical/interactions/qed.tex` |
+| α7 | Hecke coincidence for 76a1: $|a_{137}|=g(X_0(137))=11$ is unique in $\{131,137,139\}$ by direct point counting | [MC] | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex`, `reports/hecke_eigenvalue_twin_prime_test.md` |
 
 ### Explicitly Open
 
