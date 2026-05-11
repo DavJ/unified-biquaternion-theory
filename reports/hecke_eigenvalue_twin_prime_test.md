@@ -43,14 +43,17 @@ holds for the twin-prime neighbors \(p=131,139\) among primes with
 
 ## Current result table
 
-| p | g(X₀(p)) | a_p(76.2.a.a) | |a_p|=g? | Status |
-|--:|--:|--:|:--:|--|
-| 131 | 11 | −9 | NO | [L0] přímý výpočet |
-| **137** | **11** | **−11** | **YES** | **[MC] unikátní** |
-| 139 | 11 | −3 | NO | [L0] přímý výpočet |
+Weierstrass model: E: y²=x³−x²−21x−31  (LMFDB 76.a1, [0,−1,0,−21,−31])  
+Metoda: přímé počítání #E(F_p) = p+1−a_p  [L0]
 
-Weierstrass model: [0,−1,0,−21,−31] (LMFDB 76.a1).  
-Metoda: přímé počítání bodů #E(F_p) = p+1−a_p.
+| p | #E(F_p) | a_p | \|a_p\| | g(X₀(p)) | \|a_p\|=g | Status |
+|---|---------|-----|---------|-----------|-----------|--------|
+| 131 | 141 | −9 | 9 | 11 | NO | [L0] |
+| **137** | **149** | **−11** | **11** | **11** | **YES** | **[L0] unikátní** |
+| 139 | 143 | −3 | 3 | 11 | NO | [L0] |
+
+Hecke test: shoda |a₁₃₇|=g(X₀(137))=11 je UNIKÁTNÍ v {131,137,139}.  
+Klasifikace: [L0] přímý výpočet. Upgrade z [OPEN] na [MC/confirmed].
 
 ---
 

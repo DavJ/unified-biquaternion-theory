@@ -139,6 +139,19 @@ the theoretical motivation (why these levels and weights?) is the open gap.
 **Classification**: [MC] STRONG NUMERICAL SIGNAL — prime specificity
 established; derivation from UBT first principles not yet complete.
 
+**Update (2026-05-10, T3\_ALPHA Task 3)**:
+
+- Target check: for the same level-$76$, weight-$2$ form with $a_{137}=-11$,
+  determine $a_{131}$ and $a_{139}$ to test whether $|a_{137}|=11$ is
+  prime-specific.
+- Analytic result: only Weil bounds are available without external coefficient data:
+  $|a_{131}| \le 22.9$, $|a_{139}| \le 23.6$.
+- Data-access status in this run:
+  - LMFDB endpoint `www.lmfdb.org` was unreachable in the sandbox (DNS failure).
+  - Sage/PARI runtime was not available locally.
+- Therefore $a_{131}$ and $a_{139}$ remain **UNKNOWN** in this run, and
+  prime-specificity of the coincidence $|a_{137}|=g(X_0(137))=11$ remains **OPEN**.
+
 ---
 
 ### 1.4 FINITE-FIELD: P¹(𝔽₁₃₇) has 138 Points
@@ -438,6 +451,10 @@ Interpretation:
 
 **Classification update (G137-twin)**: [MC] strengthened for the
 ``$\nu_2$-vs-$\nu_3$ modular split'' mechanism; uniqueness of $p=137$ remains [OPEN].
+Physical derivation of the $\nu_2(p)/4$ correction from UBT dynamics:
+see `research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex` —
+Verdict C (NO-GO for direct $\tau_C \leftrightarrow w_p$ identification;
+OPEN for the modular path-integral route).
 
 ---
 

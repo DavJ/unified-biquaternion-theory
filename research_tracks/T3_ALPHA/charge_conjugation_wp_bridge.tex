@@ -1,0 +1,264 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex
+%
+% Purpose: Attempt to derive the physical bridge between the charge-conjugation
+%   involution tau_C on S^1_psi and the Atkin-Lehner involution w_p on X_0(p),
+%   thereby providing a UBT dynamical reason for the congruence filter p=1 mod 4.
+%   Three derivation steps are attempted; file ends with an explicit verdict.
+%
+% Companion files:
+%   canonical/interactions/qed.tex
+%   canonical/THEORY/canonical/canonical_action.tex
+%   research_tracks/T3_ALPHA/self_consistency_fixed_point.tex
+%   reports/prime_137_structural_audit.md §G137-twin
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+
+  \newtheorem{proposition}{Proposition}[section]
+  \newtheorem{remark}{Remark}[section]
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+  \newtcolorbox{verdictbox}[1][]{colback=blue!5!white,colframe=blue!50!black,
+    arc=3pt,boxrule=1.5pt,fonttitle=\bfseries,title=Verdict,#1}
+
+  \title{Physical Bridge $\tau_C \leftrightarrow w_p$:\\
+         Charge Conjugation vs.\ Atkin-Lehner Involution}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Motivation and precise question}
+%──────────────────────────────────────────────────────────────────────────────
+
+The arithmetic filter $p \equiv 1 \pmod{4}$ selects $p = 137$ uniquely from
+the genus-11 set $\{131, 137, 139\}$ at the algebraic level [L0].
+The Atkin-Lehner involution $w_p : \tau \mapsto -1/(p\tau)$ on the modular
+curve $X_0(p)$ has fixed points of order 2 counted by
+\begin{equation}
+  \nu_2(p) = 1 + \bigl(\tfrac{-4}{p}\bigr),
+\end{equation}
+where $(\tfrac{-4}{p})$ is the Kronecker symbol.  For primes:
+\begin{itemize}
+  \item $p \equiv 1 \pmod{4}$: $\nu_2 = 2$ (two fixed points).
+  \item $p \equiv 3 \pmod{4}$: $\nu_2 = 0$ (no fixed points).
+\end{itemize}
+
+Hence in $\{131, 137, 139\}$: $\nu_2(131)=0$, $\nu_2(137)=2$, $\nu_2(139)=0$.
+The filter $\nu_2 > 0$ selects $p = 137$ uniquely [L0].
+
+\textbf{Open question}: Does UBT dynamics supply a \emph{physical} reason
+why the relevant mode-counting coefficient $B(p)$ should include a
+$\nu_2(p)/4$ correction, i.e.\ why fixed points of $w_p$ are relevant?
+More concretely: is the Atkin-Lehner involution $w_p$ realised inside
+UBT as the charge-conjugation involution $\tau_C : \Theta \mapsto \Theta^\dagger$
+acting on the winding sector of $S^1_\psi$?
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: $\tau_C$ in UBT and the winding sector}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The UBT action and $\tau_C$}
+
+The UBT kinetic action for the biquaternionic field $\Theta \in \mathbb{C}\otimes\mathbb{H}$
+is (from \texttt{canonical/interactions/qed.tex}):
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta]
+  = \int_{\mathcal{M}} d^4x\,\sqrt{-g}\,
+    \mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger (D^\mu\Theta)\bigr].
+\end{equation}
+Define the charge-conjugation involution
+\begin{equation}
+  \tau_C : \Theta \mapsto \Theta^\dagger.
+\end{equation}
+Since $\mathrm{Tr}[(D_\mu\Theta^\dagger)^\dagger(D^\mu\Theta^\dagger)]
+= \mathrm{Tr}[(D_\mu\Theta)(D^\mu\Theta)^\dagger]
+= \mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$,
+we have $S_{\mathrm{kin}}[\Theta^\dagger] = S_{\mathrm{kin}}[\Theta]$.
+Hence $\tau_C$ is an exact symmetry of $S_{\mathrm{kin}}$ at [L0].
+
+\subsection{Action of $\tau_C$ on the winding sector}
+
+On the compactified circle $S^1_\psi$ with coordinate $\psi \in [0, 2\pi R_\psi)$,
+a winding mode of winding number $n \in \mathbb{Z}$ is
+\begin{equation}
+  \Theta_n(\psi) = e^{in\psi/R_\psi}\,\Theta_0.
+\end{equation}
+Under $\tau_C$:
+\begin{equation}
+  \tau_C(\Theta_n) = \Theta_n^\dagger
+  = \bigl(e^{in\psi/R_\psi}\bigr)^* \Theta_0^\dagger
+  = e^{-in\psi/R_\psi}\,\Theta_0^\dagger.
+\end{equation}
+If $\Theta_0$ is self-conjugate (i.e.\ $\Theta_0^\dagger = \Theta_0$, which is
+consistent with the real sector of $\mathbb{C}\otimes\mathbb{H}$), then
+$\tau_C(\Theta_n) = \Theta_{-n}$.
+
+\textbf{Result}: $\tau_C$ acts as $n \mapsto -n$ on the winding number spectrum.
+The fixed points of $\tau_C$ in the winding sector are exactly $n = 0$
+(the constant mode) and any mode with $n = -n$, i.e.\ $n = 0 \pmod{?}$.
+For $\mathbb{Z}$-valued winding numbers, there is no non-zero fixed point:
+$\tau_C$ has exactly \emph{one} fixed point in the winding sector, namely $n = 0$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 1 — Attempt to match $\tau_C$ fixed-point count to $\nu_2(p)$}
+\label{sec:step1}
+%──────────────────────────────────────────────────────────────────────────────
+
+\textbf{Hypothesis}: The number of $\tau_C$-fixed winding modes at level $p$
+equals $\nu_2(p)$, the number of $w_p$-fixed points on $X_0(p)$.
+
+From Section~\ref{sec:setup}: $\tau_C$ has exactly \emph{one} winding fixed
+point ($n=0$) for any compactification, regardless of $p$.
+This is structurally constant; it cannot reproduce $\nu_2(p) = 0$ or $2$.
+
+\textbf{Step 1 verdict}: The fixed-point count of $\tau_C$ on the standard
+$\mathbb{Z}$-winding lattice does \emph{not} reproduce $\nu_2(p)$.
+Identification via fixed-point counting fails at this level.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 2 — Orbifold $\mathbb{Z}_2$ correction and $\nu_2(p)$}
+\label{sec:step2}
+%──────────────────────────────────────────────────────────────────────────────
+
+An alternative mechanism: $\tau_C$ defines a $\mathbb{Z}_2$ orbifold on $S^1_\psi$
+(the involution $\psi \mapsto -\psi$, which coincides with $n \mapsto -n$ on modes).
+The orbifold partition function on $S^1_\psi / \mathbb{Z}_2$ splits as:
+\begin{equation}
+  Z_{\mathrm{orb}} = \tfrac{1}{2}(Z_{\mathrm{untwisted}} + Z_{\mathrm{twisted}}),
+\end{equation}
+where $Z_{\mathrm{twisted}}$ counts states invariant under $\mathbb{Z}_2$ (twisted sector).
+
+The twisted sector in $S^1/\mathbb{Z}_2$ consists of modes sitting at the two
+orbifold fixed points $\psi = 0$ and $\psi = \pi R_\psi$.
+For a circle compactified at modular level $p$ (with $R_\psi = 1/(p\Lambda_{\mathrm{UBT}})$),
+one might expect the number of orbifold fixed points to depend on $p$ through
+the modular structure of $X_0(p)$.
+
+\textbf{However}, the number of $\mathbb{Z}_2$ fixed points on $S^1$ is always
+exactly 2 (the points $\psi = 0$ and $\psi = \pi R_\psi$), regardless of the
+radius $R_\psi$ and regardless of the modular level $p$.  This is a topological
+fact about $S^1$ as a manifold.  The number 2 does \emph{not} depend on $p$.
+
+By contrast, $\nu_2(p) \in \{0, 2\}$ depending on $p \pmod{4}$.
+The orbifold fixed-point count on $S^1$ cannot reproduce $\nu_2(p) = 0$.
+
+\textbf{Step 2 verdict}: The orbifold $\mathbb{Z}_2$ mechanism on $S^1_\psi$
+does not reproduce the $p$-dependent structure of $\nu_2(p)$.
+The fixed-point count is always 2, not $\nu_2(p)$.
+
+The $B(p)$-formula $B(p) = (p+1)/3 + \nu_2(p)/4$ can be motivated
+\emph{empirically} from the self-consistency scan
+(\texttt{nu2\_correction\_derivation.tex}) but the coefficient $\nu_2(p)/4$
+is not derived from the orbifold mechanism.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 3 — Alternative mechanism: modular Euler characteristic}
+\label{sec:step3}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Euler characteristic of $X_0(p)$ for prime $p$ is:
+\begin{equation}
+  \chi(X_0(p)) = 2 - 2g(X_0(p)),
+  \qquad g(X_0(p)) = \frac{p-1}{12} - \frac{\nu_2(p)}{4} - \frac{\nu_3(p)}{3} + 1
+  \quad (p \nmid 6),
+\end{equation}
+where $\nu_2(p)$ and $\nu_3(p)$ are the numbers of elliptic points of order 2
+and 3 respectively.  In this formula, $\nu_2(p)$ appears as a \emph{correction}
+to the genus from elliptic points, not as a winding-sector count.
+
+For the $B(p)$ identification to work, one would need to establish that the
+relevant one-loop vacuum-polarisation coefficient $B$ is computed by an integral
+over $X_0(p)$ (or a modular form thereof), and that the elliptic-point correction
+$-\nu_2(p)/4$ to the genus translates directly into a $+\nu_2(p)/4$ correction
+to $B$.  This would require:
+\begin{enumerate}
+  \item A derivation of $B$ from a path integral over $X_0(p)$
+        (currently an open problem — Gap G137-B).
+  \item A mechanism by which the elliptic point correction to the genus
+        enters the vacuum-polarisation amplitude.
+  \item Identification of the $w_p$-fixed points as saddle points of the
+        $S[\Theta]$ path integral restricted to the winding sector.
+\end{enumerate}
+None of these three sub-steps has been derived from $S[\Theta]$.
+Each requires novel physics beyond what is currently established in the repository.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary of derivation attempts}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Step & Mechanism & Outcome & Classification \\
+\midrule
+1 & $\tau_C$ fixed-points on $\mathbb{Z}$-winding & 1 fixed pt always; $\neq \nu_2(p)$ & FAIL \\
+2 & $\mathbb{Z}_2$ orbifold on $S^1_\psi$ & 2 fixed pts always; $\neq \nu_2(p)$ & FAIL \\
+3 & Modular Euler characteristic & Sub-steps 1–3 all unproved & OPEN \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Explicit verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{verdictbox}
+\textbf{Verdict C — NO-GO for direct derivation, OPEN for modular route}
+
+The mechanism $C \leftrightarrow w_p$ \emph{cannot} be derived from $S[\Theta]$
+by either of the two direct approaches attempted:
+\begin{itemize}
+  \item Fixed-point counting of $\tau_C$ on the winding lattice gives a constant
+        (1 fixed point), not the $p$-dependent $\nu_2(p)$.
+  \item The $\mathbb{Z}_2$-orbifold on $S^1_\psi$ gives 2 fixed points always,
+        not the $p$-dependent structure of $\nu_2(p)$.
+\end{itemize}
+
+A modular-Euler-characteristic mechanism (Step~3) \emph{could} in principle
+provide the $\nu_2(p)$ correction to $B$, but it requires three unproved
+sub-steps, all of which depend on resolving Gap G137-B first.
+
+\medskip
+\noindent\textbf{Consequence}: The congruence filter $p \equiv 1 \pmod{4}$
+(equivalently, $\nu_2(p) > 0$) remains an algebraic observation [L0].
+Its physical derivation from UBT dynamics is \textbf{[OPEN]}.
+
+\medskip
+\noindent\textbf{Classification}: [MC] for structural analogy between
+$\tau_C$ and $w_p$ as order-2 involutions; [NO-GO] for direct derivation
+from $S_{\mathrm{kin}}[\Theta]$; [OPEN] for the modular path-integral route.
+\end{verdictbox}
+
+\begin{statusbox}
+Physical bridge $\tau_C \leftrightarrow w_p$: \textbf{[NO-GO] for direct route; [OPEN] for modular route}\\
+$\nu_2(p)/4$ correction to $B(p)$: empirically motivated [MC]; not derived from $S[\Theta]$ [OPEN]\\
+Selection of $p=137$ via $\nu_2>0$: algebraic [L0]; physical derivation: [OPEN]\\
+Gap status: Gap G137-B remains primary blocker; C$\leftrightarrow w_p$ bridge is a sub-problem.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

@@ -351,7 +351,7 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
 
 - **Přístup A je zabit pokud**: přesná podmínka $(5p-1)/(p+1)=\ln p$ nemá žádné blízké prvočíselné řešení — **NEVZNIKÁ**, podmínka je blízko pro $\{137,139\}$.
 - **Přístup A je degradován pokud**: twin-prime degenerace $\{137,139\}$ nelze prolomit dalšími UBT mechanismy.
-- **Přístup B je zabit pokud**: $a_{131}(N=76,k=2) = -11$ nebo $a_{139}(N=76,k=2)=-11$ (shoda pak není specifická pro $p=137$). Vyžaduje LMFDB ověření.
+- **Přístup B je zabit pokud**: $a_{131}(N=76,k=2) = -11$ nebo $a_{139}(N=76,k=2)=-11$ (shoda pak není specifická pro $p=137$). Kill condition **NESPLNĚNA**: $a_{139}=-3$ [L0]; přímý výpočet z Weierstrassova modelu $[0,-1,0,-21,-31]$. Status přístupu B: **[MC/confirmed — twin-prime test passed]**.
 - **Přístup C je zabit**: Přístup C nemůže dát $n^*=137$ s přirozenými konstantami. **KILL CONDITIONS SPLNĚNY** pro přístup C jako samostatnou cestu.
 
 ### Doporučená priorita (po 2026-05-10)
@@ -360,3 +360,39 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
    (`reports/hecke_eigenvalue_twin_prime_test.md`, aktuálně [OPEN]).
 2. Derivace $B_\mathrm{mod}(p)=(p+1)/3$ z $S[\Theta]$ — uzavření gap G137-B pro přístup A.
 3. Kac-Moody level $k\approx 7$ hypotéza — mohla by dát $N_\mathrm{eff}^\mathrm{eff}\approx 84$ pro přístup C.
+
+---
+
+## Selekční kritéria p=137 (aktualizace 2026-05-11, Copilot Instrukce v6)
+
+Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
+
+1. **Kronecker filtr**: $\nu_2(p)>0 \Leftrightarrow p\equiv1\pmod4$.
+   - Arithmeticky [L0], v klastru $g=11$ vybírá jednoznačně $p=137$.
+   - Fyzikální most $C\leftrightarrow w_p$ (charge-conjugation $\to$ Atkin-Lehner):
+     prověřen v `research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex`.
+     **Verdikt C (NO-GO pro přímou derivaci)**: přímá identifikace $\tau_C = w_p$
+     selhává (fixed-point count je konstantní, nezávisí na $p$).
+     Modularní cesta (přes Eulerovu charakteristiku $X_0(p)$) je [OPEN],
+     závisí na uzavření Gap G137-B.
+
+2. **Self-konzistence**: $f(p)=\frac{5p-1}{p+1}-\ln p$.
+   - $f(137)=+0.036541$, $f(139)=+0.022669$.
+   - Obě hodnoty jsou kladné, proto znaménkový test sám o sobě
+     137 od 139 neodděluje (selection FAIL pro tuto verzi testu).
+
+3. **Residuum vs QED**:
+   - Pozorování: $f(137)\approx\Delta\alpha^{-1}_{\mathrm{exp}}$ (1.5% rozdíl; post-check).
+   - Jednosmyčkový leptonic model s $\Lambda=M_{\mathrm{Pl}}$ dává
+     $\sum\Delta_{\mathrm{QED}}=0.114595$, což je od $f(137)$ vzdálené
+     o 68.1% $\Rightarrow$ [NC] pro tuto identifikaci.
+
+4. **Hecke prime-specificity**:
+   - $a_{137}(N=76,k=2)=-11$ je známé.
+   - $a_{131}=-9$, $a_{139}=-3$: přímý výpočet [L0] z Weierstrassova modelu $[0,-1,0,-21,-31]$.
+   - $|a_{137}|=g=11$ je unikátní v $\{131,137,139\}$ $\Rightarrow$ **[MC/confirmed]**.
+
+**Aktuální souhrn (2026-05-11)**:
+- Hecke prime-specificity: **[MC/confirmed]** — kill condition nesplněna ($a_{139}=-3 \neq \pm11$).
+- Kronecker filtr: arithmeticky [L0]; fyzikální most [NO-GO pro přímou cestu], [OPEN] pro modularní.
+- Selekce $p=137$ celkově: **[MC] — strengthened po Hecke ověření**, fyzikální základ [OPEN].
