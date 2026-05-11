@@ -89,6 +89,29 @@ to 137.036 is not yet derived from first principles.
   The derived winding term is ΔB_wind(n) = N_eff·n/(12π²) (n-dependent; produces n²·ln n).
 - **B_best ≈ 43.6: OBSOLETE HEURISTIC.** Do not cite as an estimate. Route withdrawn.
 
+### Prime-factorization entropy note (2026-05-11)
+
+The n log n term now has a candidate interpretation as the leading Stirling term of
+prime-factorization information entropy (total log-information content of integers
+1..n under the prime alphabet), but this does **not** close G137-B.  The exact
+identity log(n!) = Σ_{p^m ≤ n} ⌊n/p^m⌋ log p (Legendre's formula) is [STD/L0].
+A refined potential candidate V_eff^Γ(n) = n² − B·(log Γ(n+1) + n) preserves the
+original stationary condition B ≈ 2n/(log n + 1) at leading order while embedding
+the entropy structure; this is labeled [DERIVATION CANDIDATE].  See
+`canonical/alpha/prime_factorization_entropy_potential.tex` and
+`tools/compare_alpha_potentials.py`.  Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
+
+### Gamma/prime-factorization entropy interpolation note (2026-05-11)
+
+Gamma/prime-factorization entropy refinement brackets the measured alpha inverse:
+n1(V1) = 136.989099... < α⁻¹_exp = 137.035999... < n3(V3) = 137.090521...  (all at B_Ram [OBS]).
+The interpolation position is λ_fit ≈ 0.4622 (exact stationary) or 0.4624 (linear fractional),
+but no derivation of λ or B_Ram from S[Θ] is currently known.
+Closest candidate constant: 37/80 = 0.4625 (0.06% — NUMERIC_ONLY, no UBT interpretation).
+See `reports/gamma_entropy_alpha_interpolation_audit.md` and
+`canonical/alpha/gamma_entropy_alpha_refinement_status.tex`.
+Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
+
 ---
 
 ## Route Ranking
