@@ -407,6 +407,38 @@ With refined $B_\mathrm{ref}(p) = (p+1)/3 + \nu_2(p)/4$:
 **Classification**: [MC] — $p=137$ approximately satisfies the self-consistency
 condition, but the condition alone does not uniquely distinguish 137 from 139.
 
+### 5.3 Twin-prime selectivity scan update (2026-05-11)
+
+Independent numerical scan (`tools/twin_prime_selectivity_scan.py`) over all
+primes in $[50,500]$ was run with three coefficient models:
+
+- $B_{\mathrm{mod}}(p) = (p+1)/3$
+- $B_{\nu_2}(p) = (p+1)/3 + \nu_2(p)/4$
+- $B_{\mathrm{full}}(p) = (p+1)/3 + \nu_2(p)/4 + \nu_3(p)/3$
+
+Twin-prime comparison:
+
+| Model | $p$ | $\nu_2$ | $\nu_3$ | $B$ | $n^*(B)$ | $\delta=n^*-p$ | $|\delta|/p$ |
+|------|---:|---:|---:|---:|---:|---:|---:|
+| $B_{\mathrm{mod}}$ | 137 | 2 | 0 | 46.000 | 135.989 | -1.011 | 0.738% |
+| $B_{\mathrm{mod}}$ | 139 | 0 | 2 | 46.667 | 138.364 | -0.636 | 0.458% |
+| $B_{\nu_2}$ | 137 | 2 | 0 | 46.500 | 137.770 | +0.770 | 0.562% |
+| $B_{\nu_2}$ | 139 | 0 | 2 | 46.667 | 138.364 | -0.636 | 0.458% |
+| $B_{\mathrm{full}}$ | 137 | 2 | 0 | 46.500 | 137.770 | +0.770 | 0.562% |
+| $B_{\mathrm{full}}$ | 139 | 0 | 2 | 47.333 | 140.744 | +1.744 | 1.255% |
+
+Interpretation:
+
+- With $B_{\nu_2}$, 137 improves substantially relative to $B_{\mathrm{mod}}$,
+  but 139 remains marginally closer in absolute gap.
+- With full elliptic correction ($\nu_2/4+\nu_3/3$), 137 beats 139 clearly.
+- Global caveat: in the full-correction scan, the best prime by $|\delta|$ is
+  $p=127$ ($|\delta|/p \approx 0.357\%$), so 137 is not globally unique from this
+  criterion alone.
+
+**Classification update (G137-twin)**: [MC] strengthened for the
+``$\nu_2$-vs-$\nu_3$ modular split'' mechanism; uniqueness of $p=137$ remains [OPEN].
+
 ---
 
 ## 6. Open Problems Registered

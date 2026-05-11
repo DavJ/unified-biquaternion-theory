@@ -327,6 +327,8 @@ Přesněji:
 **Přístup B — Hecke**:
 - $|a_{137}(N=76, k=2)| = 11 = g(X_0(137))$: numericky pravdivé.
 - Primes s $g=11$ v $[50,300]$: $\{131, 137, 139\}$ — shoda není zřejmě unikátní.
+- Task 2 (2026-05-11): lookup report `reports/hecke_eigenvalue_twin_prime_test.md`
+  je zatím [OPEN] (LMFDB DNS nedostupné v sandboxu, Sage není nainstalován).
 - Lepton mass ratios: $R_\mu=206.727$ (err $0.020\%$), $R_\tau=3480.55$ (err $0.095\%$) — silný [MC] signál.
 - Struktura Hecke $\to \alpha$ path-integral: no-go status (viz `reports/hecke_path_integral_no_go_or_success.md`).
 
@@ -352,6 +354,7 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
 
 ### Doporučená priorita (po 2026-05-10)
 
-1. LMFDB ověření: $a_{131}(N=76,k=2)$ a $a_{139}(N=76,k=2)$ — rozhodne o přístupu B.
+1. LMFDB/Sage ověření: $a_{131}(N=76,k=2)$ a $a_{139}(N=76,k=2)$ — rozhodne o přístupu B
+   (`reports/hecke_eigenvalue_twin_prime_test.md`, aktuálně [OPEN]).
 2. Derivace $B_\mathrm{mod}(p)=(p+1)/3$ z $S[\Theta]$ — uzavření gap G137-B pro přístup A.
 3. Kac-Moody level $k\approx 7$ hypotéza — mohla by dát $N_\mathrm{eff}^\mathrm{eff}\approx 84$ pro přístup C.
