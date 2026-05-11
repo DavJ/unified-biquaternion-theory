@@ -136,8 +136,10 @@ Full derivation (137.036) requires solving Gap G137-B first.
 | **A_PRIME: V_eff Prime Attractor** | **PRIMARY** | HIGH (conditional) | Gap G137-B | YES — 4-week time-box |
 
 **What is proved in A_PRIME**:
-- N_eff = 12 from ℂ⊗ℍ algebra alone [L0]
-- V_eff(n) = n² − B·n·ln n structure forced by winding-mode spectrum [L1]
+- N_eff = 12 — OPEN/[MC]: critical audit revealed that multiplicity factors in
+  the scalar-action loop remain unproved (see `canonical/n_eff/step2_AUDIT.tex`)
+- V_eff structure has a motivated prime/winding/entropy route, but the full
+  derivation from S[Θ] remains conditional.
 - n*(B_phenom) = 137 for B_phenom ≈ 46.298 [L1] (conditional on B)
 - Prime stability of n* is a structural property [L0]
 
@@ -145,6 +147,36 @@ Full derivation (137.036) requires solving Gap G137-B first.
 - Derive B_phenom ≈ 46.298 from S[Θ] without using α as input.
 - B₀ = 8π (one-loop, proved) gives n* ≈ 65, not 137.
 - The missing factor ≈ 1.84 corresponds to a Kac-Moody level or higher-loop correction.
+
+### Gamma Entropy Audit Results (2026-05-11)
+
+The Gamma/prime-factorization entropy interpolation audit produced the following
+high-precision numerical results (all at B_Ram **[OBS]**, not derived from S[Θ]):
+
+| Quantity | Value | Status |
+|----------|-------|--------|
+| n1 (V1 stationary point) | 136.9890996341 | [L1] given B_Ram |
+| α⁻¹_exp (CODATA 2018) | 137.035999084 | [PHENOM] |
+| n3 (V3 stationary point) | 137.0905214131 | [DERIVATION CANDIDATE] given B_Ram |
+| λ_exact (exact stationarity) | 0.4622175427 | **[OBS]** |
+| λ_frac (linear fractional) | 0.4624199099 | **[OBS]** |
+
+**Bracket property** [OBS]: n1 < α⁻¹_exp < n3.
+The measured fine-structure constant inverse lies strictly between the V1 and V3
+stationary points — a structurally suggestive observation that does **not** close
+G137-B.
+
+**B_Ram** = 12^(3/2) · 2^(1/8) · θ₃(0|i)^(1/4) ≈ 46.2809 — **[OBS] only**.
+Not derived from S[Θ].
+
+**λ** — fit parameter — **[OBS] only**. No derivation from S[Θ] is known.
+Nearest candidate constant: 37/80 = 0.4625 (0.06% deviation from λ_exact — NUMERIC_ONLY, no UBT meaning).
+
+**G137-B remains OPEN. Alpha is NOT DERIVED.**
+
+Cross-references:
+- `canonical/alpha/gamma_entropy_alpha_refinement_status.tex` — LaTeX status document
+- `reports/gamma_entropy_alpha_interpolation_audit.md` — full numerical audit
 
 ### Parked Routes
 
@@ -177,7 +209,9 @@ Archive: `reports/failed_routes_graveyard.md`
 **Do not pursue** A1, A2, A3, A4.  Dead routes receive zero active priority.
 
 Master portfolio file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`  
-Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`
+Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`  
+Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`,
+`reports/gamma_entropy_alpha_interpolation_audit.md`
 
 ---
 
@@ -211,6 +245,7 @@ Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`
 | "Four active α routes" | `canonical/alpha/alpha_derivation_routes.md` (dated 2026-04-27) | Routes A3 and A4 are definitively killed (exhaustive scan + proved impossibility) | One primary route (A_PRIME), two parked, two killed |
 | Chirality Gap C1 as merely MOTIVATED [SE] | `reports/gauge_status_matrix.md` (line 70), `reports/chirality_gap.md` | Formal proof exists: `canonical/chirality/step3_gap_C1_resolution.tex` | C1 is [L1] PROVED — SU(2)_L acts on left-chiral doublets |
 | α⁻¹ = 137.036 claimed derivable via B_base/k=1 Kac-Moody route | Multiple early α documents | 27+ approaches exhausted; k=1 has not been proved; this specific number is not the claim | Claim is α⁻¹_bare = 137 (integer), conditional on Gap G137-B |
+| N_eff = 12 stated as [L0] PROVED; V_eff structure "forced [L1]" | `STATUS_OF_UBT.md` (prior version), `ALPHA_PROGRESS_REPORT.md`, `ALPHA_BREAKTHROUGH_REPORT.md`, `ALPHA_STRUCTURAL_ORIGINS.md`, and related alpha files | Critical audit (`canonical/n_eff/step2_AUDIT.tex`) moved N_eff multiplicity factors to OPEN/[MC]; winding-mode derivation of V_eff structure remains conditional | N_eff=12 is OPEN/[MC]; V_eff structure is a motivated conditional route. **Earlier N_eff=12 and B-route statements are superseded by `canonical/alpha/ALPHA_MASTER_STATUS.md`.** |
 
 ---
 
