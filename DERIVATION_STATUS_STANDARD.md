@@ -91,7 +91,7 @@ Dead end                 → [DEAD]                → state as dead end explici
 | Lorentzian signature from AXIOM-B | [L1] | Requires complex-time axiom |
 | Schwarzschild metric to 10⁻¹⁵ error | [L1]+[NUM] | Proved analytically, confirmed numerically |
 | α⁻¹_bare = 137 (integer) given B_phenom | [L1][COND: G137-B] | Proved given B; B not yet derived |
-| N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see canonical/n_eff/step2_AUDIT.tex. | OPEN/[MC] | Under critical audit in `canonical/n_eff/step2_AUDIT.tex` |
+| N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC]. | OPEN/[MC] | `canonical/n_eff/step2_AUDIT.tex` |
 | Weinberg angle sin²θ_W from UBT | [DEAD] | No-go argument: algebra cannot fix g'/g |
 | Fermion mass hierarchy | [OPEN] | Hard; known obstruction (KK mismatch) |
 | Zerilli equation (GAP-Z) | [OPEN] | Open problem; does not block submission |

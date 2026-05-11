@@ -14,7 +14,7 @@ Alpha is NOT derived; current status is conditional/observational. The current a
 
 | Layer | Result | Status |
 |-------|--------|--------|
-| B₀ = 8π | One-loop baseline | CONDITIONAL/AUDITED (alpha not derived) |
+| B₀ = 8π | One-loop baseline | [L1] baseline (alpha still conditional/observational) |
 | B_base = N_eff^{3/2} = 41.57 | Effective coupling strength | **MOTIVATED CONJECTURE** — exponent 3/2 not derived |
 | R ≈ 1.114 | Loop correction factor | **OPEN HARD PROBLEM** |
 | α⁻¹ = 137 (bare) | Conditional on unresolved B gap | CONDITIONAL |

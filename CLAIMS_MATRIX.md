@@ -113,8 +113,8 @@ by the cited source file.
 
 | # | Claim | Level | Exact? | Canonical source | Status |
 |---|-------|-------|--------|-----------------|--------|
-| P1 | N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see canonical/n_eff/step2_AUDIT.tex. | OPEN/[MC] | No | `canonical/n_eff/step2_AUDIT.tex` | OPEN/[MC] |
-| P2 | V_eff structure has a motivated winding / prime-entropy route, but the full derivation from S[Theta] remains conditional. | [L1][COND] | Yes, given B | `canonical/alpha/alpha_best_route.tex`, `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md` | CONDITIONAL |
+| P1 | N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit. | OPEN/[MC] | No | `canonical/n_eff/step2_AUDIT.tex` | OPEN/[MC] |
+| P2 | V_eff structure has a motivated winding / prime-entropy route, but the full derivation from S[Theta] remains conditional. | [L1][COND] | Yes, given B | `canonical/alpha/ALPHA_MASTER_STATUS.md` | CONDITIONAL |
 | P3 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1][COND: G137-B] | Yes, given B | `canonical/alpha/alpha_best_route.tex` | CONDITIONAL (not standalone proof of α) |
 | P4 | 137 is prime — consistent with V_eff prime stability | [L0]+[STD] | Yes | Number theory | PROVED |
 | P5 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | Yes | `canonical/t_munu/`, `canonical/n_eff/step2_vacuum_polarization.tex` | PROVED |
