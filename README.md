@@ -54,11 +54,14 @@ Everything else — spacetime metric, curvature, gauge interactions — is deriv
 
 | Result | Level |
 |--------|-------|
-| N_eff = 12 from ℂ⊗ℍ (zero free parameters) | [L0] |
+| N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see canonical/n_eff/step2_AUDIT.tex. | OPEN/[MC] |
 | α⁻¹_bare = 137 (integer) conditional on Gap G137-B | [L1] (conditional) |
 
 → **Status**: Conditional result. One gap open (Gap G137-B: derive effective
-coupling B from UBT action). See `canonical/alpha/PRIMARY_ROUTE.md`.
+coupling B from UBT action). See `canonical/alpha/PRIMARY_ROUTE.md`, `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, and `reports/gamma_entropy_alpha_interpolation_audit.md`.
+
+→ **Audit note**: `B_Ram` is **OBS only, not derived from S[Theta]**. `lambda_exact`
+and `lambda_frac` are **OBS only, no derivation currently known**.
 
 ---
 

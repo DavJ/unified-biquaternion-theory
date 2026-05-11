@@ -4,6 +4,10 @@
 
 # ALPHA_FINAL_OFFENSIVE.md — Launch: No-Fit Structural Derivation of α
 
+> **DEPRECATED / SUPERSEDED STATUS: This document contains pre-audit alpha claims. Current alpha status is given by STATUS_OF_UBT.md and canonical/alpha/ALPHA_MASTER_STATUS.md.**
+> Audit references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.
+
+
 > **LEGACY / SUPERSEDED BANNER (2026-05-10)**  
 > This root-level planning file is historical and superseded.  
 > Canonical alpha truth is only `canonical/alpha/ALPHA_MASTER_STATUS.md`.  

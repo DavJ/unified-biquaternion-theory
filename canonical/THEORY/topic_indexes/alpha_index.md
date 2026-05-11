@@ -2,23 +2,23 @@
 
 # Fine Structure Constant (α) — Topic Index
 
-**Status**: **PARTIALLY DERIVED** — structural framework proved; two key quantities remain open  
+**Status**: **alpha is NOT derived; current status is conditional/observational.**  
 **Last updated**: 2026-03-10  
-**Canonical source**: `docs/STATUS_ALPHA.md`
+**Canonical source**: `STATUS_OF_UBT.md`, `canonical/alpha/ALPHA_MASTER_STATUS.md`
 
 ---
 
 ## Quick Answer
 
-The fine structure constant α ≈ 1/137.036 emerges from UBT in three layers:
+Alpha is NOT derived; current status is conditional/observational. The current audited alpha context is:
 
 | Layer | Result | Status |
 |-------|--------|--------|
-| B₀ = 2π·N_eff/3 = 8π ≈ 25.13 | One-loop baseline | **PROVED [L1]** — zero free parameters |
+| B₀ loop baseline remains under critical audit context | One-loop baseline | CONDITIONAL/AUDITED |
 | B_base = N_eff^{3/2} = 41.57 | Effective coupling strength | **MOTIVATED CONJECTURE** — exponent 3/2 not derived |
 | R ≈ 1.114 | Loop correction factor | **OPEN HARD PROBLEM** |
-| α⁻¹ = 137 (bare) | Follows from B = 46.3 | **SEMI-EMPIRICAL** |
-| α⁻¹ = 137.036 (full) | + two-loop QED correction | **SEMI-EMPIRICAL** |
+| α⁻¹ = 137 (bare) | Conditional on unresolved B gap | CONDITIONAL |
+| α⁻¹ = 137.036 (full) | + two-loop QED correction | alpha is NOT derived; current status is conditional/observational. |
 
 The theory locates n* = 137 as the unique prime minimum of V_eff(n) (**PROVED [L1]**),
 and independently reproduces the two-loop QED running (**PROVED**). The missing piece
@@ -36,7 +36,7 @@ is a rigorous first-principles derivation of B_base and R.
 - §2 Complex time compactification and Dirac quantisation
 - §3 Prime stability constraint and V_eff(n) minimum
 - §4 Effective potential one-loop structure
-- §5 N_eff = 12 derivation and B₀ = 8π
+- §5 N_eff = 12 candidate status OPEN/[MC] under critical audit
 - §9 B_base landscape of 22 approaches with explicit gap statements
 
 ---
@@ -47,9 +47,9 @@ is a rigorous first-principles derivation of B_base and R.
 
 | Document | Label | Content |
 |----------|-------|---------|
-| `canonical/n_eff/step1_mode_decomposition.tex` | **supporting** | N_eff = 12 (Theorem 1.4) |
+| `canonical/n_eff/step1_mode_decomposition.tex` | **supporting** | N_eff mode-counting context (see audit) |
 | `canonical/n_eff/step2_vacuum_polarization.tex` | **supporting** | B₀ = 8π (Theorem 3.1) |
-| `canonical/n_eff/step3_N_eff_result.tex` | **supporting** | N_eff = 12 result compilation |
+| `canonical/n_eff/step3_N_eff_result.tex` | **supporting** | Legacy N_eff compilation (superseded by audit) |
 | `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/verify_N_eff.py` | **supporting** | Numerical verification |
 | `ARCHIVE/archive_legacy/consolidation_project/appendix_ALPHA_one_loop_biquat.tex` | **supporting** | One-loop alpha derivation (§B.3 for B_base) |
 
@@ -138,3 +138,6 @@ Main entries in `DERIVATION_INDEX.md`, Fine Structure Constant section:
    and `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_kac_moody_level.tex` (Approach H2)
 4. For numerical verification, run `experiments/validation/validate_B_coefficient.py`
 5. Do not use `emergent_alpha_*.tex` files as primary sources — they are superseded by `docs/STATUS_ALPHA.md`
+
+
+Cross-references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.
