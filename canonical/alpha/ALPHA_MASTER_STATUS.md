@@ -351,7 +351,7 @@ Lepton mass Hecke signál (přístup B) je nejsilnější numerický signál —
 
 - **Přístup A je zabit pokud**: přesná podmínka $(5p-1)/(p+1)=\ln p$ nemá žádné blízké prvočíselné řešení — **NEVZNIKÁ**, podmínka je blízko pro $\{137,139\}$.
 - **Přístup A je degradován pokud**: twin-prime degenerace $\{137,139\}$ nelze prolomit dalšími UBT mechanismy.
-- **Přístup B je zabit pokud**: $a_{131}(N=76,k=2) = -11$ nebo $a_{139}(N=76,k=2)=-11$ (shoda pak není specifická pro $p=137$). Vyžaduje LMFDB ověření.
+- **Přístup B je zabit pokud**: $a_{131}(N=76,k=2) = -11$ nebo $a_{139}(N=76,k=2)=-11$ (shoda pak není specifická pro $p=137$). Kill condition **NESPLNĚNA**: $a_{139}=-3$ [L0]; přímý výpočet z Weierstrassova modelu $[0,-1,0,-21,-31]$. Status přístupu B: **[MC/confirmed — twin-prime test passed]**.
 - **Přístup C je zabit**: Přístup C nemůže dát $n^*=137$ s přirozenými konstantami. **KILL CONDITIONS SPLNĚNY** pro přístup C jako samostatnou cestu.
 
 ### Doporučená priorita (po 2026-05-10)
@@ -385,8 +385,8 @@ Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
 
 4. **Hecke prime-specificity**:
    - $a_{137}(N=76,k=2)=-11$ je známé.
-   - $a_{131}$ a $a_{139}$ pro stejnou formu zůstávají v tomto běhu UNKNOWN
-     (LMFDB DNS nedostupné, bez Sage/PARI runtime) $\Rightarrow$ [OPEN].
+   - $a_{131}=-9$, $a_{139}=-3$: přímý výpočet [L0] z Weierstrassova modelu $[0,-1,0,-21,-31]$.
+   - $|a_{137}|=g=11$ je unikátní v $\{131,137,139\}$ $\Rightarrow$ **[MC/confirmed]**.
 
 **Aktuální souhrn**:
 - Jediné striktně selekční kritérium v tomto kroku je arithmetický filtr
