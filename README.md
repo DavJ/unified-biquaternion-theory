@@ -60,7 +60,7 @@ Everything else — spacetime metric, curvature, gauge interactions — is deriv
 → **Status**: Conditional result. One gap open (Gap G137-B: derive effective
 coupling B from UBT action). See `canonical/alpha/PRIMARY_ROUTE.md`, `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, and `reports/gamma_entropy_alpha_interpolation_audit.md`.
 
-→ **Audit note**: `B_Ram` is **OBS only, not derived from S[Theta]**. `lambda_exact`
+→ **Audit note**: `B_Ram` is **OBS only, not derived from S[Theta]** (`S[Theta]` = UBT action functional). `lambda_exact`
 and `lambda_frac` are **OBS only, no derivation currently known**.
 
 ---
