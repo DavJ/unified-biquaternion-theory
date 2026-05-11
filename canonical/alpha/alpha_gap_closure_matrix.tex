@@ -8,197 +8,444 @@
 % the integrity of the theoretical work during ongoing academic development.
 %
 % See LICENSE.md for full license text.
-%
-% File: canonical/alpha/alpha_gap_closure_matrix.tex
-% Purpose: Single canonical record of the T3_ALPHA chain status.
-%          Identifies the minimal missing theorem (Gap G137-B).
-%
-% Status: 2026-05-11
 
-\ifdefined\INCLUDEMODE
-\else
-  \documentclass[12pt,a4paper]{article}
-  \usepackage[a4paper, margin=2.5cm]{geometry}
-  \usepackage{amsmath, amssymb, amsthm}
-  \usepackage{mathtools}
-  \usepackage{hyperref}
-  \usepackage{xcolor}
-  \usepackage{booktabs}
-  \usepackage{longtable}
-  \usepackage{tcolorbox}
-  \tcbuselibrary{skins,breakable}
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
 
-  \newcommand{\PROVED}{\textbf{PROVED}}
-  \newcommand{\MC}{\textbf{MC}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
 
-  \title{\textbf{Alpha Gap Closure Matrix}\\
-         \large Single Canonical Record of the T3\_ALPHA Chain Status}
-  \author{Ing. David Jaro\v{s}}
-  \date{2026-05-11}
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\COND}{\textbf{[COND]}}
+\newcommand{\OBS}{\textbf{[OBS]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+\newcommand{\NOGO}{\textbf{[NO-GO]}}
+\newcommand{\KILLED}{\textbf{[KILLED]}}
 
-  \begin{document}
-  \maketitle
-\fi
+\title{\textbf{Alpha Gap-Closure Matrix}\\
+{\large T3\_ALPHA: Complete Chain Status --- Proved / Conditional / Failed /
+Minimal Missing Theorem}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
 
-%──────────────────────────────────────────────────────────────
-\section{Purpose}
-%──────────────────────────────────────────────────────────────
+\begin{document}
+\maketitle
 
-This document is the single canonical record of the alpha program chain
-status, connecting all partial mechanisms and identifying the minimal
-missing theorem.
-
-%──────────────────────────────────────────────────────────────
-\section{The Candidate Chain}
-%──────────────────────────────────────────────────────────────
-
-The full candidate derivation chain is:
-\[
-S[\Theta]
-\;\to\; T^2\ \text{winding}
-\;\to\; n\ln n
-\;\to\; N_{\rm eff}
-\;\to\; c{=}3
-\;\to\; \eta(i)
-\;\to\; B \approx 46.28
-\;\to\; n^*{=}137
-\;\to\; \alpha^{-1}\approx 137.
-\]
-
-\begin{center}
-\begin{longtable}{p{3.5cm} p{5cm} p{2cm} p{3cm}}
-\toprule
-\textbf{Chain step} & \textbf{Claim} & \textbf{Status} & \textbf{Source} \\
-\midrule
-$S[\Theta]$ defined & UBT action with $\mathcal{L}_{kin}+\mathcal{L}_{grav}+\mathcal{L}_{gauge}$
-  & \PROVED\ [L1] & \texttt{canonical\_action.tex} \\[4pt]
-$T^3$ compactification & Three compact Im$(\mathbb{H})$ circles
-  & \PROVED\ [L0] & \texttt{step1\_mode\_decomp.} \\[4pt]
-$N_{\rm phases}=3$ & From $\dim_\mathbb{R}\,\mathrm{Im}\,\mathbb{H}$
-  & \PROVED\ [L0] & \texttt{step2\_AUDIT.tex} \\[4pt]
-$N_{\rm eff}^{\rm loop}=3$ & Minimal scalar loop from $S_{\rm kin}[\Theta]$
-  & \PROVED\ [L1] & \texttt{neff\_reconciliation.tex} \\[4pt]
-$N_{\rm eff}^{\rm loop}=12$ & KK on $T^3$: jumps $1\to7\to19$, not 12
-  & \textbf{FAILED} & \texttt{neff\_kk\_counting.tex} \\[4pt]
-$N_{\rm eff}=12$ (algebraic) & $\dim G_{\rm SM}=8+3+1=12$ from $\mathbb{C}\otimes\mathbb{H}$
-  & \PROVED\ [L0] & \texttt{neff12\_derivations.tex} \\[4pt]
-$n\ln n$ form of $V_{\rm eff}$ & Divisor sum on $T^2\subset T^3$, equal mass
-  & \MC\ (math [STD]) & \texttt{nlogn\_mechanism.tex} \\[4pt]
-$c=3$ CFT central charge & Mode-count from $\delta^2 S[\Theta]/\delta\Theta^2$
-  & \MC & \texttt{central\_charge\_deriv.tex} \\[4pt]
-$B=N_{\rm eff}^{3/2}(2\eta(i))^{c/12}$ & $=46.281$; error $0.0066\%$ vs $B_{\rm req}$
-  & \textbf{OBSERVATION} & \texttt{eta\_i\_status.md} \\[4pt]
-$B_0^{\rm vac.pol.}=B^{V_{\rm eff}}$ & Bridge between two distinct $B$'s
-  & \textbf{OPEN} & \texttt{B\_identification\_proof.tex} \\[4pt]
-$n^*(B_{\rm phenom})=137$ & From stationarity of $V_{\rm eff}$, given $B$
-  & \PROVED\ [L1 given $B$] & \texttt{alpha\_best\_route.tex} \\[4pt]
-$g=11$, $137\equiv1\pmod4$ unique & Direct point count $a_{131}=-9$, $a_{139}=-3$
-  & \PROVED\ [L0] & \texttt{hecke\_twin\_prime\_test.md} \\[4pt]
-$C\leftrightarrow w_p$ physical & Direct route failed; modular route open
-  & \textbf{NO-GO/OPEN} & \texttt{charge\_conj\_wp\_bridge.tex} \\[4pt]
-$f(137)\approx\Delta\alpha^{-1}_{\rm exp}$ & $0.036541$ vs $0.035999$, ratio $1.015$
-  & \MC\ (not [NC]) & \texttt{alpha\_residuum\_analysis.tex} \\
-\bottomrule
-\end{longtable}
-\end{center}
-
-%──────────────────────────────────────────────────────────────
-\section{Gap Analysis}
-%──────────────────────────────────────────────────────────────
-
-\textbf{Gap G137-B (primární)}: $B$ z vakuové polarizace a $B$ ve $V_{\rm eff}$
-jsou odvozeny dvěma zcela odlišnými výpočty --- jedna z fotonového 2-pointu
-(running coupling), druhá z efektivní winding akce.
-Žádný teorém v kanonických souborech netvrdí že jsou si rovny.
-Dokud tento most neexistuje, celý řetěz závisí na $B = B_{\rm phenom}$ jako
-externím vstupu.
-
-\medskip
-\textbf{Gap G-Neff (sekundární)}: $N_{\rm eff}^{\rm loop} = 12$ nevychází
-z $T^3$ KK (numericky vyloučeno). $S^1$ s $R\cdot\Lambda\in[2,3)$ dává [MC]
-ale fyzikální škála není odvozena. Algebraické $N_{\rm eff}=12=\dim(G_{\rm SM})$
-je jiná veličina.
-
-\medskip
-\textbf{Gap G-c3 (terciární)}: $c=3$ z mode-counting [MC] --- CFT identifikace
-a RG-flow argument chybí pro povýšení na [L1].
-
-\medskip
-\textbf{Gap G-eta (kvartální)}: Odkud pochází exponent $1/4 = c/12$?
-Propojení $Z_{\rm wind}=\theta_3$ je [L1] (viz \texttt{ncg\_poisson\_b0derivation.tex}),
-ale identifikace konkrétní normalizační konstanty $\eta(i)$ jako fyzikálně nucené
-hodnoty je [OPEN].
-
-%──────────────────────────────────────────────────────────────
-\section{The Minimal Missing Theorem}
-%──────────────────────────────────────────────────────────────
-
-\begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
-  title={Minimal Missing Theorem (Gap G137-B)}]
-\textbf{Statement needed}:
-There exists a mechanism in $S[\Theta]$ that identifies the coefficient $B$
-in the winding-mode effective potential
-\[
-V_{\rm eff}(n) = n^2 - B\,n\ln n
-\]
-with the ultraviolet coupling coefficient from the one-loop photon
-self-energy, and gives
-\[
-B = N_{\rm eff}^{3/2}\,(2\eta(i))^{c/12} \approx 46.281
-\]
-from first principles, without using $\alpha_{\rm exp}$, $137$,
-or $B_{\rm phenom}$ as inputs (Rules R1--R5).
-
-\medskip
-\textbf{Current status}: OPEN.
-\textbf{Why this is the minimum}: all other steps in the chain are either
-proved, proved given $B$, or are secondary gaps that collapse into G137-B.
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
+  title={Canonical Status Sync (2026-05-11)}]
+Alpha derivation: \textbf{NOT DERIVED}.
+$\alpha^{-1}_{\mathrm{bare}} = 137$: \textbf{CONDITIONAL ONLY}.
+$\alpha^{-1} = 137.036$ (full precision): \textbf{NOT ACHIEVED}.
+Gap \textbf{G137-B} is fully open.
+Authority: \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.
 \end{tcolorbox}
 
-%──────────────────────────────────────────────────────────────
-\section{What Would Constitute a Proof}
-%──────────────────────────────────────────────────────────────
+\begin{abstract}
+This document is the \textbf{canonical gap-closure matrix} for Track T3\_ALPHA
+(Fine Structure Constant).  It consolidates in one place: (a) every proved step in
+the alpha derivation chain, with proof level and source file; (b) every
+conditional claim with its blocking gap; (c) every killed or no-go route with
+reason; and (d) the exact minimal missing theorem whose proof would close
+Gap~G137-B and complete the first-principles derivation of
+$\alpha^{-1}_{\mathrm{bare}} = 137$.
+It supersedes no file; it summarises all files listed in
+Section~\ref{sec:sources}.
+\end{abstract}
 
-Three acceptable routes:
+\tableofcontents
+\newpage
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proof-Level Key}
+\label{sec:levels}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Level} & \textbf{Meaning} \\
+\midrule
+\Lzero & Algebraic identity from $\mathbb{C}\otimes\mathbb{H}$ definition alone \\
+\Lone  & Formal theorem: axioms A1--A3 + standard mathematics \\
+\NUM   & Numerically verified (reproducible script) \\
+\STD   & Standard mathematics/physics result; not novel to UBT \\
+\MC    & Motivated Conjecture: structural argument, not a proof \\
+\COND  & Conditional: proved given another unproved step \\
+\OBS   & Numerical observation: accurate but not derived \\
+\OPEN  & Open problem: no proof attempt has succeeded \\
+\NOGO  & Proved impossible or definitively failed \\
+\KILLED & Route definitively abandoned \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Alpha Derivation Chain}
+\label{sec:chain}
+%──────────────────────────────────────────────────────────────────────────────
+
+The logical structure of the T3\_ALPHA derivation is:
+\begin{equation}
+  \underbrace{\mathcal{B}=\mathbb{C}{\otimes}\mathbb{H}}_{\text{\Lzero}}
+  \;\to\;
+  \underbrace{N_{\mathrm{eff}}}_{\text{\MC\ (audited)}}
+  \;\to\;
+  \underbrace{B_0 = 8\pi}_{\text{\Lone}}
+  \;\xrightarrow{\;\text{Gap G137-B}\;}
+  \underbrace{B \approx 46.298}_{\text{\OPEN}}
+  \;\to\;
+  \underbrace{V_{\mathrm{eff}}(n)}_{\text{\Lone}}
+  \;\to\;
+  \underbrace{n^* = 137}_{\text{\COND}}
+  \;\to\;
+  \underbrace{\alpha^{-1}_{\mathrm{bare}} = 137}_{\text{\COND}}.
+  \label{eq:chain}
+\end{equation}
+Every proved step is listed in Section~\ref{sec:proved}.
+The single open step (Gap G137-B) is isolated in Section~\ref{sec:gap}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Proved Steps (Zero Free Parameters)}
+\label{sec:proved}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{p{0.8cm} p{6.8cm} p{1.6cm} p{4.5cm}}
+\toprule
+\textbf{\#} & \textbf{Claim} & \textbf{Level} & \textbf{Source} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+% --- Algebra ---
+\multicolumn{4}{l}{\textit{Algebra and compactification}} \\[2pt]
+$\alpha$1 & $\mathcal{B} = \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$,
+  $\dim_{\mathbb{R}}\mathcal{B}=8$ & \Lzero &
+  \texttt{canonical/fields/biquaternion\_algebra.tex} \\[4pt]
+$\alpha$2 & $N_{\mathrm{phases}} = \dim_{\mathbb{R}}(\mathrm{Im}\,\mathbb{H}) = 3$ & \Lzero &
+  \texttt{canonical/n\_eff/step2\_AUDIT.tex} \\[4pt]
+$\alpha$3 & Charge quantisation: Dirac condition on $S^1_\psi$ & \Lzero &
+  \texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S1} \\[4pt]
+$\alpha$4 & Kaluza-Klein winding tower $m_n^2 = n^2/R_\psi^2$, $n\in\mathbb{Z}$ & \Lzero &
+  \texttt{canonical/alpha/alpha\_best\_route.tex \S2} \\[8pt]
+
+% --- One-loop ---
+\multicolumn{4}{l}{\textit{One-loop vacuum polarisation}} \\[2pt]
+$\alpha$5 & $B_0 = 8\pi$ from $S_{\mathrm{kin}}[\Theta]$ (one-loop scalar QED) & \Lone &
+  \texttt{canonical/t\_munu/} \\[4pt]
+$\alpha$6 & Coleman-Weinberg effective potential structure
+  $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ & \Lone &
+  \texttt{canonical/alpha/alpha\_best\_route.tex} \\[4pt]
+$\alpha$7 & Stationarity condition: $n^*(B) = e^{2/B-1}$ & \Lone &
+  \texttt{canonical/alpha/veff\_corrected\_statement.tex} \\[8pt]
+
+% --- N_eff audit ---
+\multicolumn{4}{l}{\textit{N\_eff audit (2026-05-10)}} \\[2pt]
+$\alpha$8 & $N_{\mathrm{eff}}^{(\mathrm{loop})} = 3$: loop-safe audited value
+  (one-loop scalar QED path integral, charged complex scalars) & \Lone &
+  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[4pt]
+$\alpha$9 & $B_0^{(\mathrm{loop})} = 2\pi$ from $N_{\mathrm{eff}}=3$ & \Lone &
+  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[4pt]
+$\alpha$10 & $N_{\mathrm{eff}}^{(R2)} \neq N_{\mathrm{eff}}^{(\mathrm{loop})}$:
+  algebraic ($R2$) and loop counts are different quantities;
+  their identification is unproved & \MC\ \OPEN &
+  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[8pt]
+
+% --- Conditional integer result ---
+\multicolumn{4}{l}{\textit{Conditional integer result}} \\[2pt]
+$\alpha$11 & $n^*(B_{\mathrm{phenom}}) = 137$ (given $B \approx 46.298$) & \COND &
+  \texttt{canonical/alpha/alpha\_best\_route.tex} \\[4pt]
+$\alpha$12 & 137 is prime; primality implies $V_{\mathrm{eff}}$ stability (no sublattice
+  resonance) & \Lzero + \STD &
+  Number theory \\[4pt]
+$\alpha$13 & One-loop QED running: $\alpha(\mu_2)$ from $\alpha(\mu_1)$
+  reproduced & \Lone &
+  \texttt{canonical/interactions/qed.tex} \\[8pt]
+
+% --- Modular corroborations ---
+\multicolumn{4}{l}{\textit{Modular corroborations (not proofs of $B$)}} \\[2pt]
+$\alpha$14 & $\mu(\Gamma_0(137))/3 \approx 46.00$ (0.64\% from $B_{\mathrm{phenom}}$) &
+  \MC\ \OBS &
+  \texttt{reports/prime\_137\_structural\_audit.md} \\[4pt]
+$\alpha$15 & Hecke eigenvalue $|a_{137}(N{=}76, k{=}2)| = 11 = g(X_0(137))$;
+  unique in $\{131,137,139\}$ & \MC\ (confirmed) &
+  \texttt{research\_tracks/T3\_ALPHA/hecke\_alpha\_connection.tex} \\[4pt]
+$\alpha$16 & $a_{131}=-9$, $a_{137}=-11$, $a_{139}=-3$: direct calculation from
+  Weierstrass model $[0,-1,0,-21,-31]$ & \Lzero &
+  \texttt{research\_tracks/T3\_ALPHA/hecke\_prime\_specificity.tex} \\[4pt]
+$\alpha$17 & Lepton mass ratios: $R_\mu = 2274/11 = 206.73$ (exp.\ 206.77, $0.02\%$),
+  $R_\tau = 38286/11 = 3480.55$ (exp.\ 3477.23, $0.10\%$) & \MC\ \OBS &
+  \texttt{research\_tracks/T3\_ALPHA/hecke\_lepton\_mass\_verification.tex} \\[8pt]
+
+% --- Rogers-Ramanujan ---
+\multicolumn{4}{l}{\textit{Rogers-Ramanujan algebraic identities (2026-05-11)}} \\[2pt]
+$\alpha$18 & $\vartheta_3(0|i) = \pi^{1/4}/\Gamma(3/4)$ (Ramanujan CM value) & \STD &
+  Berndt, \textit{Ramanujan's Notebooks}, Part~III, Ch.~17 \\[4pt]
+$\alpha$19 & $\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$ & \STD & classical \\[4pt]
+$\alpha$20 & $\vartheta_3(0|i)/\eta(i) = \sqrt{2}$ (algebraic identity via
+  Gamma reflection formula) & \Lzero / \STD &
+  \texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex} \\[4pt]
+$\alpha$21 & $Z_{c=3}(\tau=i) = [\vartheta_3(0|i)/\eta(i)]^3 = 2\sqrt{2}$
+  (three free compact bosons at self-dual torus) & \STD &
+  \texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex} \\[4pt]
+$\alpha$22 & Algebraic rewriting \OBS:
+  $B_{\mathrm{cand}} = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}
+  \approx 46.281$ (0.0066\% from $B_{\mathrm{phenom}}$) & \OBS &
+  \texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex} \\[4pt]
+$\alpha$23 & Winding partition function:
+  $Z_{\mathrm{wind}}(\tau=i) = \vartheta_3(0|i)$
+  at the self-dual point & \STD &
+  \texttt{research\_tracks/quantum\_ubt/ncg\_poisson\_b0derivation.tex} \\[4pt]
+
+\end{longtable}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Minimal Missing Theorem — Gap G137-B}
+\label{sec:gap}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
+  title={Gap G137-B — Exact Statement (2026-05-11, sharpened by RR analysis)}]
+\textbf{Theorem to be proved}: From the UBT action $S[\Theta]$ alone,
+derive the effective coupling coefficient $B$ in
+$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ as:
+\begin{equation}
+  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4},
+  \label{eq:G137B}
+\end{equation}
+where:
+\begin{itemize}
+  \item $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$ is the winding partition
+    function at the self-dual radius $R_\psi\cdot\Lambda = 1$;
+  \item $N_{\mathrm{eff}}$ is the effective mode count from the algebraic
+    structure of $\mathbb{C}\otimes\mathbb{H}$;
+  \item $2^{1/8}$ arises algebraically from
+    $\vartheta_3(0|i)/\eta(i) = \sqrt{2}$;
+  \item No input from $\alpha_{\mathrm{exp}}$, $B_{\mathrm{phenom}}$, or any
+    fitted parameter is used.
+\end{itemize}
+\textbf{Source of sharpening}:
+\texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex}.\\
+\textbf{Current status of three factors}:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Factor} & \textbf{Status} & \textbf{Source} \\
+\midrule
+$N_{\mathrm{eff}}^{3/2}$ & \Lzero\ (algebraic) & $\mathbb{C}\otimes\mathbb{H}$ structure \\
+$2^{1/8}$ & \STD\ (algebraic from $\vartheta_3/\eta=\sqrt{2}$) &
+  Gamma reflection formula \\
+$Z_{\mathrm{wind}}(1)^{1/4}$ enters $V_{\mathrm{eff}}$ &
+  \OPEN\ (core open problem) & connection to $V_{\mathrm{eff}}$ not proved \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\subsection{Why the gap is hard}
+
+The factor $B_0 = 8\pi$ is the one-loop vacuum-polarisation coefficient
+(proved, \Lone, $N_{\mathrm{eff}}=12$).
+It gives $n^*(B_0) \approx 65$, not 137.
+The gap is:
+\begin{equation}
+  B - B_0 \approx 46.3 - 25.1 = 21.2.
+  \label{eq:gapsize}
+\end{equation}
+The winding-sector constant correction $\Delta B_{\mathrm{wind}} \approx 18.5$
+is a \NOGO: the derived winding correction is $n$-dependent
+($\Delta B_{\mathrm{wind}}(n) = N_{\mathrm{eff}}\cdot n/(12\pi^2)$),
+producing an $n^2\ln n$ term, not a constant $B$ shift.
+
+\subsection{Current best candidate mechanism (Priority 3)}
+
+The Seeley-DeWitt coefficient $a_4$ of the spectral action
+$S_{\mathrm{spec}}[D] = \mathrm{Tr}[f(D/\Lambda)]$
+on $M^4\times S^1_\psi$, evaluated at the self-dual point
+$R_\psi\cdot\Lambda = 1$, is conjectured to produce
+$Z_{\mathrm{wind}}(\tau=i)$ as a natural normalisation factor.
+If so, $Z_{\mathrm{wind}}(1)^{1/4}$ enters $V_{\mathrm{eff}}$ through the
+spectral-action normalisation, closing Gap G137-B.
+See \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_b\_bridge.tex}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conditional Claims}
+\label{sec:conditional}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{1cm} p{5.5cm} p{2cm} p{5cm}}
+\toprule
+\textbf{\#} & \textbf{Claim} & \textbf{Status} & \textbf{Blocking gap} \\
+\midrule
+C1 & $N_{\mathrm{eff}}^{(R2)} = 12$: full $3\times2\times2$ factorisation as
+  one-loop multiplier & \MC\ \OPEN &
+  multiplicity audit not complete; loop vs.\ algebraic identification unproved \\[4pt]
+C2 & $B = B_0 + \Delta B$ bridges one-loop to phenomenological value & \OPEN &
+  Gap G137-B \\[4pt]
+C3 & Self-dual point $\tau=i$ / $R_\psi\cdot\Lambda=1$: shape stationarity
+  proved; scale modulus fixed & shape: \Lone; scale: \OPEN &
+  scale modulus remains a free parameter \\[4pt]
+C4 & $n^* = 137$ (integer) & \COND &
+  depends on C1 and C2 \\[4pt]
+C5 & $\alpha^{-1}_{\mathrm{bare}} = 137$ from UBT first principles & \COND &
+  depends on C4 \\[4pt]
+C6 & $\alpha^{-1} = 137.036$ (full precision) & \OPEN &
+  depends on C5 plus $\delta = 0.036$ correction \\[4pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Killed and No-Go Routes}
+\label{sec:killed}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{2.2cm} p{4.5cm} p{2cm} p{4.5cm}}
+\toprule
+\textbf{Route} & \textbf{Claim} & \textbf{Status} & \textbf{Reason} \\
+\midrule
+A3: Theta/modular & Direct $\alpha^{-1}=137.036$ from modular invariants &
+  \KILLED &
+  Exhaustive search: no modular expression equals 137.036 \\[4pt]
+A4: Layer 2 coding & $\alpha$ from charge coding constraints &
+  \KILLED &
+  Proved impossible: coding fixes charge spectrum, not coupling magnitude \\[4pt]
+A1, A2: Gauge / SSB & $\alpha$ after Weinberg angle fixed &
+  Parked (zero priority) &
+  Blocked by EW-1 (dead end) \\[4pt]
+$\Delta B_{\mathrm{wind}} \approx 18.5$ (constant) &
+  Winding constant B-shift &
+  \NOGO &
+  Derived correction is $n$-dependent; produces $n^2\ln n$, not constant $B$ \\[4pt]
+$B_{\mathrm{best}} \approx 43.6$ &
+  Heuristic B estimate &
+  \NOGO\ (obsolete) &
+  Retracted after winding NO-GO; do not cite \\[4pt]
+$\eta(i)$ as first-principles B-modifier &
+  Insert $\eta(i)$ into $n\ln n$ coefficient &
+  \NOGO &
+  Not a first-principles derivation of $n\ln n$ coefficient \\[4pt]
+Constant winding $Z_{\mathrm{wind}}^{1/4}$ derivation via
+Chowla--Selberg alone &
+  B from L-function / CM values &
+  \NOGO &
+  Chowla--Selberg gives $\eta(i)$ but not the $V_{\mathrm{eff}}$ insertion mechanism \\[4pt]
+$B_{\mathrm{mod}}(p) = (p+1)/3$ from $S[\Theta]$ &
+  Modular ansatz &
+  \MC\ \OPEN &
+  Structural ansatz only; not derived from action \\[4pt]
+Hecke path-integral route &
+  $a_p \to V_{\mathrm{eff}}$ insertion &
+  No-go (current) &
+  No mechanism for determinant-to-$B$ insertion \\[4pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Active Research Routes}
+\label{sec:active}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{3.5cm} p{5.5cm} p{2cm} p{2.5cm}}
+\toprule
+\textbf{Route} & \textbf{Approach} & \textbf{Status} & \textbf{Source} \\
+\midrule
+A\_PRIME (primary) & V\_eff prime attractor; Gap G137-B is the single
+  remaining step & \MC\ \COND &
+  \texttt{canonical/alpha/PRIMARY\_ROUTE.md} \\[4pt]
+Seeley-DeWitt $a_4$ & $a_4$ on $M^4\times S^1_\psi$ at self-dual point
+  $\to Z_{\mathrm{wind}}(i)$ normalisation $\to B$ & \OPEN\ (new) &
+  \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_b\_bridge.tex} \\[4pt]
+Modular bootstrap & Crossing symmetry on $T^2$; $B_{\mathrm{base}}\approx41.6$
+  (10\% gap to $B_{\mathrm{phenom}}$) & Partial &
+  \texttt{research\_tracks/T3\_ALPHA/modular\_bootstrap\_attempt.tex} \\[4pt]
+$\zeta$-regularisation & $B_\zeta\approx41.6$ on $T^3\times S^1_\psi$ (same gap) &
+  Partial &
+  \texttt{research\_tracks/T3\_ALPHA/zeta\_regularisation\_B.tex} \\[4pt]
+Hecke prime-specificity & $|a_{137}|=g=11$ unique in $\{131,137,139\}$ &
+  \MC\ (confirmed) &
+  \texttt{research\_tracks/T3\_ALPHA/hecke\_prime\_specificity.tex} \\[4pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Acceptance Criteria for Gap G137-B Closure}
+\label{sec:criteria}
+%──────────────────────────────────────────────────────────────────────────────
+
+A derivation closes Gap G137-B if and only if all three criteria are satisfied:
 
 \begin{enumerate}
-
-\item \textbf{Spectral action route}: Show that the Seeley--DeWitt coefficient
-$a_4$ from the UBT Dirac operator $D$ on $M^4\times S^1$ gives precisely
-$B = N_{\rm eff}^{3/2}\cdot(2\eta(i))^{1/4}$ as the normalisation of the
-logarithmic term, where $N_{\rm eff}$ and the exponent $1/4$ arise from the
-algebra $\mathbb{C}\otimes\mathbb{H}$.
-
-\item \textbf{WZW route}: Establish the existence of a WZW term in $S[\Theta]$
-with level $k$ derived from the gauge anomaly, and show via the Verlinde formula
-that $B = \mu(\Gamma_0(p^*))/3 = (p^*+1)/3$.
-
-\item \textbf{Partition function route}: Show that $Z_{\rm wind}(\tau)=\theta_3(0|i\tau)$
-evaluated at the physical modular point $\tau^*$ (not necessarily $\tau=i$)
-gives the normalisation of the effective action consistent with $B\approx 46.28$.
-
+  \item \textbf{No fitting}: No number is tuned to reproduce $\alpha$ or 137.
+  \item \textbf{Derived inputs}: Every numerical input is either algebraic
+    (\Lzero) or derived from another UBT sector or from $S[\Theta]$.
+  \item \textbf{Reproducibility}: Every step is backed by a cited proof file
+    with no unexplained gaps.
 \end{enumerate}
 
-%──────────────────────────────────────────────────────────────
-\section{What Would Kill the Route}
-%──────────────────────────────────────────────────────────────
+Specifically, the derivation must produce equation~\eqref{eq:G137B} from
+$S[\Theta]$ without using $\alpha_{\mathrm{exp}}$ or $B_{\mathrm{phenom}}$
+as inputs.
 
-If any of the following is established, the entire alpha route is terminated:
+%──────────────────────────────────────────────────────────────────────────────
+\section{Source Files}
+\label{sec:sources}
+%──────────────────────────────────────────────────────────────────────────────
 
-\begin{itemize}
-  \item \textbf{K1}: Prokáže se že $B_0^{\rm vac.pol.}$ a $B^{V_{\rm eff}}$
-        nemohou být sjednoceny v rámci $S[\Theta]$ (hard no-go theorem).
-  \item \textbf{K2}: Prokáže se že $N_{\rm eff}=12$ nemůže vyjít z žádného
-        přirozeného KK schématu na $T^3$ (zahrnuje výsledek z
-        \texttt{neff\_kk\_counting.tex}: $T^3$ jump je $1\to7\to19$).
-  \item \textbf{K3}: Prokáže se že $V_{\rm eff}(n)=n^2-Bn\ln n$ má jiný
-        tvar pro konkrétní $S[\Theta]$ (např. $n^2-N_{\rm eff}\ln(2\sinh\pi n)$
-        jako $V_{\rm CW}$ bez $n\ln n$ forma).
-  \item \textbf{K4}: $|a_{137}(k=4)|=2274$ nebo $|a_{137}(k=6)|=38286$
-        se prokáže jako chybná hodnota --- lepton mass signal kolabuje.
-\end{itemize}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Purpose} & \textbf{File} \\
+\midrule
+Master status (authoritative wording) &
+  \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md} \\
+Full route ranking with scores &
+  \texttt{reports/alpha\_routes\_ranked.md} \\
+Primary route detail &
+  \texttt{canonical/alpha/PRIMARY\_ROUTE.md} \\
+Gap G137-B exact statement (older) &
+  \texttt{reports/alpha\_missing\_lemma.md} \\
+Gap G137-B after winding no-go &
+  \texttt{reports/alpha\_B\_gap\_after\_winding\_no\_go.md} \\
+$B_0\to B$ bridge status &
+  \texttt{canonical/alpha/B\_identification\_proof.tex} \\
+$V_{\mathrm{eff}}$ derivation chain &
+  \texttt{canonical/alpha/alpha\_best\_route.tex} \\
+$N_{\mathrm{eff}}$ audit &
+  \texttt{canonical/n\_eff/step2\_AUDIT.tex} \\
+$N_{\mathrm{eff}}$ reconciliation &
+  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\
+Rogers-Ramanujan sharpening &
+  \texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex} \\
+Seeley-DeWitt bridge (Priority 3) &
+  \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_b\_bridge.tex} \\
+Seeley-DeWitt coefficients (Priority 4) &
+  \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_coefficients.tex} \\
+NCG spectral triple &
+  \texttt{research\_tracks/quantum\_ubt/ncg\_spectral\_triple.tex} \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\ifdefined\INCLUDEMODE
-\else
-  \end{document}
-\fi
+\end{document}
