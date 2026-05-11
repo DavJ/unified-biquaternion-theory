@@ -141,6 +141,24 @@ Whether $a_{131}$ or $a_{139}$ (of the same form) also equal $\pm 11$ is an
 open question requiring direct computation from the LMFDB database or
 Sage/Magma.
 
+\subsection{Twin-prime lookup status (Task 2 update)}
+
+The dedicated lookup note
+\texttt{reports/hecke\_eigenvalue\_twin\_prime\_test.md} records the latest
+attempt (2026-05-11) to determine $a_{131}(76.2.a.a)$ and $a_{139}(76.2.a.a)$.
+
+Current state:
+\begin{itemize}
+  \item $a_{137} = -11$ is known and confirmed from previous runs.
+  \item $a_{131}$ and $a_{139}$ remain unresolved in this sandbox because:
+    (i) LMFDB network access is unavailable (DNS failure), and
+    (ii) SageMath is not installed locally.
+\end{itemize}
+
+Therefore the binary test
+``$|a_{131}|=11$ or $|a_{139}|=11$?'' is still \textbf{[OPEN]} and the
+classification of the $|a_{137}|=g=11$ signal remains provisional.
+
 \subsection{Structural vs.\ coincidental assessment}
 
 \begin{insightbox}

@@ -1,0 +1,93 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/nu2_correction_derivation.tex
+%
+% Purpose: Track the derivation attempt of the modular elliptic correction
+%   +nu2(p)/4 in B(p) from the UBT action S[Theta] via Z2-twisted sectors.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+  \title{\textbf{Derivation Attempt of the \(\nu_2(p)/4\) Correction from \(S[\Theta]\)}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Target statement}
+
+The target is to derive, from UBT action data (without $\alpha$ input),
+\begin{equation}
+  B(p) = \frac{p+1}{3} + \frac{\nu_2(p)}{4},
+  \qquad
+  \nu_2(p) = 1 + \left(\frac{-4}{p}\right),
+\end{equation}
+with $\nu_2(p)=2$ for $p\equiv 1 \!\!\pmod 4$ and $\nu_2(p)=0$ for
+$p\equiv 3 \!\!\pmod 4$.
+
+\section{Working mechanism under evaluation}
+
+We evaluate the hypothesis that the involution
+\(\tau:\Theta\mapsto\Theta^\dagger\) defines a physically active
+\(\mathbb{Z}_2\)-twisted sector in the winding background \(\Theta_n\), and that
+the one-loop determinant on the \(\tau\)-fixed fluctuation submanifold
+\(\delta\Theta=\delta\Theta^\dagger\) contributes an orbifold term matching the
+Riemann--Hurwitz elliptic correction scale \(1/4\).
+
+\section{Current technical state}
+
+\begin{itemize}
+  \item Arithmetic side (\(\nu_2\) formula, modular interpretation): established.
+  \item UBT side (explicit determinant factorisation into untwisted/twisted
+    sectors with coefficient fixed to \(+\nu_2/4\)): not yet completed.
+  \item Non-circularity check R1--R5: currently satisfied at formulation level
+    (no \(\alpha_{\mathrm{exp}}\), no fixed \(p=137\) input in the derivation ansatz).
+\end{itemize}
+
+\section{Immediate bridge conditions}
+
+To promote from conjectural structure to derivation, the following must be shown:
+\begin{enumerate}
+  \item Explicit decomposition of one-loop operator
+    \(\Delta_\Theta = \Delta_{\mathrm{untw}} \oplus \Delta_{\mathrm{tw}}\)
+    induced by \(\tau\).
+  \item Modular counting of twisted fixed classes matched to
+    \(\nu_2(p)\) in the \(\Gamma_0(p)\) sector.
+  \item Normalisation of the twisted contribution to \(B\) yielding exactly
+    \(+\nu_2/4\), not a free prefactor.
+\end{enumerate}
+
+\begin{statusbox}
+\textbf{Claim ``\(+\nu_2(p)/4\) is derived from \(S[\Theta]\)''}: \textbf{[OPEN]}.
+
+\textbf{What is currently established}: modular arithmetic identity and physically
+motivated \(\mathbb{Z}_2\)-twist mapping [MC].
+
+\textbf{Blocking gap}: first-principles determinant normalisation in UBT action
+language is still missing.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

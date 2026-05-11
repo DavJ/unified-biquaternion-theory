@@ -1,0 +1,91 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/bmod_from_action.tex
+%
+% Purpose: Track the derivation attempt of B_mod(p) = (p+1)/3 from S[Theta]
+%   via winding-sector modular geometry.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+  \title{\textbf{Derivation Attempt of \(B_{\mathrm{mod}}(p)=\frac{p+1}{3}\) from \(S[\Theta]\)}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Target statement}
+
+The open Gap G137-B requires deriving
+\begin{equation}
+  B_{\mathrm{mod}}(p) = \frac{p+1}{3}
+\end{equation}
+from UBT dynamics, not as an external modular ansatz.
+
+\section{Current structural bridge}
+
+The arithmetic identity
+\begin{equation}
+  \frac{\mathrm{vol}(X_0(p))}{\pi}=\frac{\mu(\Gamma_0(p))}{3}=\frac{p+1}{3}
+\end{equation}
+is exact. The unresolved point is the physics map:
+\[
+S[\Theta]\ \Longrightarrow\ Z_{\mathrm{wind}}(p)\ \Longrightarrow\ B(p)
+\]
+with no fitted constants.
+
+\section{Working UBT hypothesis}
+
+For prime winding number \(n=p\), the winding Hilbert sector is expected to
+organise over modular classes equivalent to \(\mathbb{P}^1(\mathbb{F}_p)\),
+with cardinality \(p+1\). If the effective coefficient is the normalised class
+count, then
+\begin{equation}
+  B = \frac{|\mathbb{P}^1(\mathbb{F}_p)|}{3} = \frac{p+1}{3}.
+\end{equation}
+The denominator 3 is interpreted as the existing UBT phase normalisation.
+
+\section{Open technical obligations}
+
+\begin{enumerate}
+  \item Derive the \(\Gamma_0(p)\) (or equivalent) class action on the physical
+    winding sector directly from \(S[\Theta]\).
+  \item Show that the path-integral saddle sum yields a coefficient proportional
+    to class count \(p+1\), not another weighting.
+  \item Derive the exact \(1/3\) normalisation from the action measure and
+    compactification conventions, with no adjustable prefactor.
+\end{enumerate}
+
+\begin{statusbox}
+\textbf{Claim ``\(B_{\mathrm{mod}}(p)=\frac{p+1}{3}\) is derived from \(S[\Theta]\)''}:
+\textbf{[OPEN]}.
+
+\textbf{Arithmetic identity}: exact [L1 arithmetic layer].  
+\textbf{UBT action-to-coefficient bridge}: unresolved [OPEN], currently usable only
+as [MC] ansatz in self-consistency studies.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi
