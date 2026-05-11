@@ -451,6 +451,10 @@ Interpretation:
 
 **Classification update (G137-twin)**: [MC] strengthened for the
 ``$\nu_2$-vs-$\nu_3$ modular split'' mechanism; uniqueness of $p=137$ remains [OPEN].
+Physical derivation of the $\nu_2(p)/4$ correction from UBT dynamics:
+see `research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex` —
+Verdict C (NO-GO for direct $\tau_C \leftrightarrow w_p$ identification;
+OPEN for the modular path-integral route).
 
 ---
 

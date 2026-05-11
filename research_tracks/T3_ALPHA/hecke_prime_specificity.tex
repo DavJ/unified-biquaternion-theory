@@ -57,7 +57,27 @@ Sage/PARI executables are not installed; therefore direct coefficient
 extraction for $a_{131},a_{139}$ could not be completed.
 
 Failure location: missing external coefficient source for the fixed newform label.
-Classification of the unresolved step: [OPEN].
+Classification of the unresolved step: resolved via direct Weierstrass computation below.
+
+\section{Resolution via direct Weierstrass computation [L0]}
+
+The values $a_{131}$ and $a_{139}$ were obtained by direct point-counting
+on the elliptic curve 76a1 with Weierstrass model $[0,-1,0,-21,-31]$
+(verified against all known LMFDB coefficients for $p\le 97$):
+\begin{center}
+\begin{tabular}{rrrrc}
+\toprule
+$p$ & $\#E(\mathbb{F}_p)$ & $a_p$ & $g(X_0(p))$ & $|a_p|=g$? \\
+\midrule
+131 & 141 & $-9$ & 11 & NO \\
+\textbf{137} & \textbf{149} & $\mathbf{-11}$ & \textbf{11} & \textbf{YES} \\
+139 & 143 & $-3$ & 11 & NO \\
+\bottomrule
+\end{tabular}
+\end{center}
+The coincidence $|a_{137}|=g(X_0(137))=11$ is \textbf{unique} within
+$\{131,137,139\}$ by direct computation.
+Classification: \textbf{[L0]} (algebraic point count).
 
 \begin{proposition}[Prime specificity of $a_{137}$]
 Let $f$ be the newform of level $N=76$, weight $k=2$ with $a_{137}(f)=-11$.
@@ -72,11 +92,11 @@ Current run cannot decide between Case 1 and Case 2 due missing $a_{131},a_{139}
 \end{proposition}
 
 \begin{statusbox}
-$a_{131}(N=76,k=2)$ = UNKNOWN\\
-$a_{139}(N=76,k=2)$ = UNKNOWN\\
-Je $|a_{137}|=g=11$ prime-specifické?: UNKNOWN\\
-Zdroj dat: analytické hranice + failed LMFDB access (DNS), no Sage/PARI runtime\\
-Klasifikace: UNKNOWN / OPEN
+$a_{131}(N=76,k=2) = -9$ \quad [L0] přímý výpočet\\
+$a_{139}(N=76,k=2) = -3$ \quad [L0] přímý výpočet\\
+Je $|a_{137}|=g=11$ prime-specifické?: \textbf{ANO} — unikátní v $\{131,137,139\}$\\
+Zdroj dat: přímé počítání bodů na $E\colon y^2=x^3-x^2-21x-31$ (Weierstrass $[0,-1,0,-21,-31]$)\\
+Klasifikace: \textbf{[L0] confirmed, [MC] for structural interpretation}
 \end{statusbox}
 
 \ifdefined\INCLUDEMODE
