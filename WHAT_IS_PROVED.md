@@ -171,6 +171,12 @@ be derived from $S[\Theta]$ separately.
 |-----|-------------|
 | G137-B | Derive $B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4}$ from $S[\Theta]$ without α/137/B_required input; all three factors must be derived; alpha status is STRUCTURAL / CONDITIONAL / OPEN GAP. Sharpened statement: `canonical/alpha/alpha_gap_closure_matrix.tex` |
 
+**Single canonical reference for T3_ALPHA chain status**: `canonical/alpha/alpha_gap_closure_matrix.tex`
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| alpha_matrix | Gap closure matrix for T3_ALPHA | [canonical] | `canonical/alpha/alpha_gap_closure_matrix.tex` |
+
 ---
 
 ## Miscellaneous Proved Results
