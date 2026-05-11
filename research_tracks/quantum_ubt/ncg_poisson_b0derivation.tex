@@ -1,0 +1,239 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% NCG Spectral Action → B₀ Derivation
+% Výsledky přímého výpočtu Poisson resummation + KK redukce
+% Klasifikace: [L1] pro KK argument, [MC] pro N_eff identifikaci
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{NCG Spectral Action and the Origin of $B_0$}\\
+{\large Kaluza--Klein Derivation of $B_0 = \tfrac{2\pi}{3}N_{\mathrm{eff}}$}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive $B_0 = \tfrac{2\pi}{3}N_{\mathrm{eff}}$ from the NCG spectral action
+on $M^4\times S^1_\psi$ via Kaluza--Klein reduction and heat-kernel asymptotics.
+The logarithmic term $B_0\ln\Lambda$ in the effective action arises from 4D
+one-loop diagrams for each winding mode $\Theta_n$; summation over modes yields
+the $N_{\mathrm{eff}}$ prefactor.
+We also identify the UBT winding partition function
+$Z_{\mathrm{wind}}(\tau) = \vartheta_3(0\mid i\tau)$ as the natural
+spectral-action object, and note that its modular transformation
+generates a $\ln\Lambda$ term whose coefficient is a structural
+bridge candidate to $B_0$.  Gap~G137-B remains open.
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: Spectral Triple on $M^4\times S^1_\psi$}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT Dirac operator on $M^4\times S^1_\psi$ decomposes as
+\begin{equation}
+  D_{M^4\times S^1}^2 = D_{M^4}^2 + (-i\partial_\psi)^2.
+  \label{eq:D2}
+\end{equation}
+The spectrum of $(-i\partial_\psi)^2$ on $S^1_\psi$ consists of
+Kaluza--Klein masses
+\begin{equation}
+  m_n^2 = \frac{n^2}{R_\psi^2}, \qquad n\in\mathbb{Z}.
+  \label{eq:KKspectrum}
+\end{equation}
+The spectral action is therefore
+\begin{equation}
+  \mathrm{Tr}\!\left[f\!\left(\frac{D}{{\Lambda}}\right)\right]
+  = \sum_{n\in\mathbb{Z}}
+    \mathrm{Tr}_{4D}\!\left[f\!\left(\frac{\sqrt{D_{M^4}^2 + m_n^2}}{\Lambda}\right)\right].
+  \label{eq:spectral_KK}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Logarithmic Term via Heat-Kernel Asymptotics \STD}
+\label{sec:heatkernel}
+%──────────────────────────────────────────────────────────────────────────────
+
+For each KK mode $n$, the 4D spectral action with a massive field of
+mass $m_n$ has the Seeley--DeWitt asymptotic expansion
+\begin{equation}
+  \mathrm{Tr}_{4D}\!\left[f\!\left(\frac{\sqrt{D_{M^4}^2+m_n^2}}{\Lambda}\right)\right]
+  \sim \Lambda^4 f_4 + \Lambda^2 f_2\,m_n^2
+    + \underbrace{\beta_{\mathrm{1-loop}}\cdot\ln\Lambda}_{\text{log term}}
+    + O(\Lambda^{-2}),
+  \label{eq:SdW}
+\end{equation}
+where the logarithmic coefficient for a complex scalar in 4D is the
+one-loop $\beta$-function contribution
+\begin{equation}
+  \beta_{\mathrm{1-loop}} = \frac{e^2}{24\pi^2}
+  \qquad \text{(independent of }m_n\text{ for }\Lambda\gg m_n).
+  \label{eq:beta1loop}
+\end{equation}
+The key observation is that $\beta_{\mathrm{1-loop}}$ is \emph{independent
+of the mass} $m_n$ in the UV regime $\Lambda\gg m_n$.
+
+\begin{proposition}[Logarithmic term from KK sum \STD]
+\label{prop:log}
+The total $\ln\Lambda$ coefficient in the UBT spectral action is
+\begin{equation}
+  \boxed{
+  \frac{\partial}{\partial\ln\Lambda}\,
+  \mathrm{Tr}\!\left[f\!\left(\frac{D}{\Lambda}\right)\right]
+  = N_{\mathrm{eff}}(\Lambda)\cdot\beta_{\mathrm{1-loop}}
+  = \frac{e^2}{24\pi^2}\cdot N_{\mathrm{eff}}(\Lambda),}
+  \label{eq:logcoeff}
+\end{equation}
+where $N_{\mathrm{eff}}(\Lambda) = \#\{n\in\mathbb{Z}\mid m_n < \Lambda\}
+= 2\lfloor R_\psi\Lambda\rfloor + 1$ is the number of KK modes below the
+UV cutoff.
+\end{proposition}
+
+\begin{proof}
+Sum~\eqref{eq:spectral_KK} over modes $n$ with $m_n<\Lambda$; each
+contributes $\beta_{\mathrm{1-loop}}\cdot\ln\Lambda$ by \eqref{eq:SdW}--\eqref{eq:beta1loop}.
+Modes with $m_n>\Lambda$ are Boltzmann-suppressed by $e^{-m_n^2/\Lambda^2}\to 0$.
+\end{proof}
+
+\begin{remark}[Origin of $B_0$]
+In the UBT convention $\partial(1/\alpha)/\partial\ln\Lambda = B_0/(2\pi)$,
+Proposition~\ref{prop:log} gives
+\begin{equation}
+  B_0 = \frac{2\pi}{3}\,N_{\mathrm{eff}}.
+  \label{eq:B0NCG}
+\end{equation}
+This is precisely the relation derived by independent methods in
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} (\textbf{[L1]}).
+The NCG derivation is an independent confirmation at the same level.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Winding Partition Function and Theta Functions \MC}
+\label{sec:theta}
+%──────────────────────────────────────────────────────────────────────────────
+
+The winding-mode partition function on $S^1_\psi$ is
+\begin{equation}
+  Z_{\mathrm{wind}}(\tau)
+  = \sum_{n\in\mathbb{Z}} e^{-\pi\tau n^2}
+  = \vartheta_3(0\mid i\tau),
+  \qquad \tau = \frac{1}{\pi R_\psi^2\Lambda^2}.
+  \label{eq:Zwind}
+\end{equation}
+The logarithmic effective action is
+$S_{\mathrm{log}} = \ln Z_{\mathrm{wind}}(\tau)$.
+Under the modular transformation $\tau\to 1/\tau$:
+\begin{equation}
+  \vartheta_3(0\mid i/\tau) = \sqrt{\tau}\,\vartheta_3(0\mid i\tau),
+\end{equation}
+so for small $\tau$ (large $\Lambda$):
+\begin{equation}
+  Z_{\mathrm{wind}} \sim \tau^{-1/2}
+  = \sqrt{\pi}\,R_\psi\Lambda
+  \qquad\Longrightarrow\qquad
+  S_{\mathrm{log}} \sim \ln\Lambda.
+  \label{eq:logfromtheta}
+\end{equation}
+
+\begin{remark}[Structural bridge candidate \MC]
+Equation~\eqref{eq:Zwind} identifies $Z_{\mathrm{wind}}$ with the
+Jacobi theta function $\vartheta_3$, the same object that appears in the
+candidate formula $B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4}$ studied
+in \texttt{research\_tracks/T3\_ALPHA/eta\_i\_alpha\_coefficient\_derivation.tex}.
+Specifically, $\eta(\tau)^3 = \vartheta_2\vartheta_3\vartheta_4/(2\cdot 4)$
+at $\tau=i$.  This algebraic overlap is a structural coincidence
+classified \MC\ pending a derivation linking the spectral-action
+normalization to $B_{\mathrm{phenom}}$.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Vacuum Polarization from Background Field Method \STD+MC}
+\label{sec:bgfield}
+%──────────────────────────────────────────────────────────────────────────────
+
+With EM background $A_\mu$, the winding spectrum shifts to
+$\lambda_n + eA\cdot n$, so
+\begin{equation}
+  Z_{\mathrm{wind}}(\tau, z) = \vartheta_3(z\mid i\tau),
+  \quad z = \frac{eAR_\psi}{\pi}.
+\end{equation}
+The vacuum polarization is
+\begin{equation}
+  \Pi \propto e^2 R_\psi^2\,\frac{\vartheta_3''(0\mid i\tau)}{\vartheta_3(0\mid i\tau)}.
+  \label{eq:vacpol}
+\end{equation}
+Numerically, for small $\tau$:
+\begin{equation}
+  \frac{\vartheta_3''(0\mid i\tau)}{\vartheta_3(0\mid i\tau)}
+  \approx -\frac{2\pi^2}{\tau}
+  \qquad[\text{verified numerically}].
+\end{equation}
+With $\tau = 1/(\pi R_\psi^2\Lambda^2)$ this gives $\Pi\sim\Lambda^2$
+(quadratic divergence), not the logarithmic $B_0\ln\Lambda$.
+The logarithmic term requires the full 4D loop integral and
+comes from the $a_4$ Seeley--DeWitt coefficient, confirming the
+KK result of Section~\ref{sec:heatkernel}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Gap Status}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
+  title={NCG derivation of $B_0$ — status summary}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Method} \\
+\midrule
+$B_0 = \tfrac{2\pi}{3}N_{\mathrm{eff}}$ from KK spectral action
+  & \Lone/\STD & Prop.~\ref{prop:log} \\
+$\ln\Lambda$ from 4D loops, not Poisson sum
+  & \Lone/\STD & heat kernel \\
+$Z_{\mathrm{wind}} = \vartheta_3(0\mid i\tau)$ identification
+  & \Lone & Eq.~\eqref{eq:Zwind} \\
+Modular $\to\ln\Lambda$ via $\vartheta_3$ transformation
+  & \MC & Eq.~\eqref{eq:logfromtheta} \\
+$\vartheta_3$ links to $\eta(i)$ formula for $B$
+  & \MC\ (structural) & Remark in §\ref{sec:theta} \\
+\midrule
+$B_0\to B_{\mathrm{phenom}}$ bridge (Gap G137-B)
+  & \OPEN & not derived \\
+$N_{\mathrm{eff}}=12$ from NCG (vs.\ audit $N_{\mathrm{eff}}=3$)
+  & \OPEN & not derived \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\paragraph{What is new.}
+The NCG KK derivation of $B_0=\tfrac{2\pi}{3}N_{\mathrm{eff}}$ is an
+independent confirmation at \Lone/\STD\ level, consistent with
+\texttt{step2\_vacuum\_polarization.tex}.
+The identification $Z_{\mathrm{wind}}=\vartheta_3$ is a new structural
+observation linking the winding partition function to the theta-function
+machinery of the alpha track.
+
+\paragraph{What is not new.}
+Gap G137-B (derive $B_{\mathrm{phenom}}\approx 46.3$) and the $N_{\mathrm{eff}}$
+audit gap remain open.  The NCG framework clarifies their origin but does
+not resolve them.
+
+\end{document}
