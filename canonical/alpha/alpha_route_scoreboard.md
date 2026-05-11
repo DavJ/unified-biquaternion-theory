@@ -51,7 +51,7 @@ Updated every cycle. Determines route priority and kill decisions.
 
 | Criterion | Score | Evidence |
 |-----------|-------|---------|
-| Foundation depth | 3 | N_eff = 12 is OPEN/[MC] under critical audit; V_eff structure has a motivated winding / prime-entropy route, but the full derivation from S[Theta] remains conditional; B₀ = 8π remains under audit context |
+| Foundation depth | 3 | N_eff=12 is OPEN/[MC] (critical audit); V_eff route is conditional from S[Theta]; B₀=8π remains audit-context only |
 | α-independence | 3 | No α input; all ingredients from biquaternion algebra |
 | Gap clarity | 3 | Gap G137-B exactly stated: derive B = B_phenom ≈ 46.298; missing factor ≈ 1.84 quantified |
 | Corroborations | 3 | μ(Γ₀(137))/3 + Hecke lepton masses + P¹(𝔽₁₃₇) cardinality |

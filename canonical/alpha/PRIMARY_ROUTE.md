@@ -58,7 +58,7 @@ B₀ = 8π gives n* ≈ 65, not 137; the gap is the factor ≈ 1.84 between them
 
 ## Why This Route Is Primary
 
-1. **Deepest foundation**: N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see canonical/n_eff/step2_AUDIT.tex.
+1. **Deepest foundation**: N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see `canonical/n_eff/step2_AUDIT.tex`.
    V_eff structure has a motivated winding / prime-entropy route, but the full derivation from S[Theta] remains conditional.
    The prime-attractor argument is structural, not ad hoc.
 
