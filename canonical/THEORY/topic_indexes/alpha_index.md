@@ -14,11 +14,11 @@ Alpha is NOT derived; current status is conditional/observational. The current a
 
 | Layer | Result | Status |
 |-------|--------|--------|
-| B₀ loop baseline remains under critical audit context | One-loop baseline | CONDITIONAL/AUDITED |
+| B₀ = 8π | One-loop baseline | CONDITIONAL/AUDITED (alpha not derived) |
 | B_base = N_eff^{3/2} = 41.57 | Effective coupling strength | **MOTIVATED CONJECTURE** — exponent 3/2 not derived |
 | R ≈ 1.114 | Loop correction factor | **OPEN HARD PROBLEM** |
 | α⁻¹ = 137 (bare) | Conditional on unresolved B gap | CONDITIONAL |
-| α⁻¹ = 137.036 (full) | + two-loop QED correction | alpha is NOT derived; current status is conditional/observational. |
+| α⁻¹ = 137.036 (full) | + two-loop QED correction | CONDITIONAL/OBS (alpha not derived) |
 
 The theory locates n* = 137 as the unique prime minimum of V_eff(n) (**PROVED [L1]**),
 and independently reproduces the two-loop QED running (**PROVED**). The missing piece
