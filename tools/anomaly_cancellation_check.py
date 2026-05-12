@@ -32,7 +32,7 @@ def main() -> None:
 
     print("=== U(1) anomaly checks (one generation) ===")
     for name, q, mult in fields:
-        print(f"{name:6} : q={q:>5}, multiplicity={mult}")
+        print(f"{name:6} : q={str(q):>5}, multiplicity={mult}")
     print()
     print(f"Σ q   = {sum_q}   ({float(sum_q):.6f})")
     print(f"Σ q^3 = {sum_q3}   ({float(sum_q3):.6f})")
