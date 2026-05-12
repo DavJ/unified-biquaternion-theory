@@ -148,6 +148,10 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | α5 | 137 is prime; prime status implies V_eff stability | [L0]+[STD] | Number theory |
 | α6 | One-loop QED running: α(μ₂) from α(μ₁) reproduced | [L1] | `canonical/interactions/qed.tex` |
 | α7 | Hecke coincidence for 76a1: $|a_{137}|=g(X_0(137))=11$ is unique in $\{131,137,139\}$ by direct point counting; a₁₃₁=−9, a₁₃₉=−3 [L0] přímý výpočet | [MC] | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex`, `reports/hecke_eigenvalue_twin_prime_test.md` |
+| α8 | $\vartheta_3(0\|i)/\eta(i) = \sqrt{2}$ [Ramanujan + $\Gamma$-doplňkový vzorec] | [STD] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α9 | $B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0\|i)^{1/4} = 46.281$, err $0.0066\%$ | [OBS] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α10 | $a_2(D_{\mathrm{UBT}})$ reprodukuje Einstein-Hilbertovu akci | [Prop.] | `research_tracks/T3_ALPHA/seeley_dewitt_coefficients.tex` |
+| α11 | $a_4 \propto \vartheta_3(0\|i)$ conjecture | [MC/OPEN] | `research_tracks/T3_ALPHA/seeley_dewitt_b_bridge.tex` |
 
 ### Rogers-Ramanujan Algebraic Identities (2026-05-11)
 
@@ -187,6 +191,7 @@ be derived from $S[\Theta]$ separately.
 | M2 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
 | M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
+| Q1 | Kanonická kvantizace gravitonů (Zerilli+RW módy) | [STD] | `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 
 ---
 

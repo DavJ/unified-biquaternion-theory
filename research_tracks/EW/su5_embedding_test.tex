@@ -1,0 +1,62 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\title{EW2.A Test: SU(5) Embedding and Conditional Weinberg-Angle Route}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+\begin{document}
+\maketitle
+
+\section*{EW2.A dimensional test}
+\[
+\dim_{\mathbb R}(\mathfrak{su}(5))=24,
+\quad
+\dim_{\mathbb R}(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1))=12,
+\quad
+\dim_{\mathbb R}(\mathbb C\otimes\mathbb H)=8.
+\]
+Full $\mathfrak{su}(5)$ embedding into $\mathbb C\otimes\mathbb H$ fails by dimension count.
+
+\section*{Complexification check}
+\[
+\mathbb C\otimes_{\mathbb R}(\mathbb C\otimes\mathbb H)
+\cong \mathrm{Mat}(2,\mathbb C)\oplus \mathrm{Mat}(2,\mathbb C)
+\]
+Real dimension $16<24$; full SU(5) embedding remains impossible.
+
+\section*{EW1 generator-norm route (conditional)}
+For one SM generation:
+\[
+\sum Y^2=\frac{10}{3},\qquad \sum T_3^2=2,
+\qquad \frac{g'^2}{g^2}=\frac{2}{10/3}=\frac35,
+\qquad \sin^2\theta_W(\mathrm{GUT})=\frac38.
+\]
+Running (one-loop SM) yields the standard estimate
+\[
+\sin^2\theta_W(M_Z)\approx 0.231
+\]
+given $\sin^2\theta_W(\mathrm{GUT})=3/8$.
+
+\section*{Verdict}
+\begin{statusbox}
+\textbf{Hlavní výsledek}: Plné SU(5) embedding v $\mathbb C\otimes\mathbb H$ je dimenzionálně nemožné; EW1+RG dává standardní 3/8 $\to$ 0.231 jen podmíněně.\\
+\textbf{Klasifikace}: SU(5) full embedding [NO-GO], EW1+RG [STD/CONDITIONAL].\\
+\textbf{Dopad na teorii}: Weinbergův úhel není uzavřen; dead-end platí pro čistě algebraickou cestu, conditional route zůstává otevřená dle statusu $Y_i$.\\
+\textbf{Příští krok}: Uzavřít (nebo vyvrátit) plný first-principles status fermion hypercharge sady $Y_i$.\\
+\textbf{Alpha je odvozena}: NE (unconditional)
+\end{statusbox}
+
+\end{document}
