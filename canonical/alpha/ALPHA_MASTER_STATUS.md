@@ -3,7 +3,7 @@
 # ALPHA_MASTER_STATUS.md — T3_ALPHA Canonical Master Status
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-28  
+**Date**: 2026-05-13  
 **Track**: T3_ALPHA — Fine Structure Constant  
 **Purpose**: Single authoritative file consolidating all alpha-program status.
 Supersedes and summarises: `reports/alpha_routes_ranked.md`, `reports/alpha_no_fit_progress.md`,

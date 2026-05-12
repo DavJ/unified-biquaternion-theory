@@ -1,0 +1,30 @@
+{
+  "title": "Unified Biquaternion Theory: Fit-Free Alpha Baseline",
+  "publication_date": "2026-05-13",
+  "version": "v10.1.0",
+  "description": "Unified Biquaternion Theory (UBT) repository release with synchronized status documents, CI/pipeline cleanup, and reproducible derivation assets.",
+  "creators": [
+    {
+      "name": "Jaroš, David",
+      "affiliation": "Independent Researcher",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "license": "cc-by-nc-nd-4.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "unified biquaternion theory",
+    "theoretical physics",
+    "gauge structure",
+    "general relativity",
+    "fine-structure constant"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/UBT-Institute/unified-biquaternion-theory",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

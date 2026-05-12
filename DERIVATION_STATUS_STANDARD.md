@@ -3,7 +3,7 @@
 # DERIVATION_STATUS_STANDARD.md — Canonical Proof Level System
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-29  
+**Date**: 2026-05-13  
 **Purpose**: Single authoritative definition of every proof / evidence label
 used in UBT documents.  Every claim in every active file must carry exactly
 one label from this system.  

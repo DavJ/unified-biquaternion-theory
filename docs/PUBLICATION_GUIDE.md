@@ -56,9 +56,9 @@ Use the following metadata consistently across all platforms:
 
 ### Týden / Week 1: GitHub Release
 
-1. Go to https://github.com/DavJ/unified-biquaternion-theory → **Releases** → **Draft new release**
-2. Tag version: `v10.0`
-3. Title: `Unified Biquaternion Theory v10.0`
+1. Go to https://github.com/UBT-Institute/unified-biquaternion-theory → **Releases** → **Draft new release**
+2. Tag version: `v10.1.0`
+3. Title: `Unified Biquaternion Theory v10.1.0`
 4. Description: see GitHub Release template in Section 4 below
 5. Publish release
 
@@ -66,7 +66,7 @@ Use the following metadata consistently across all platforms:
 
 1. Go to https://zenodo.org/ → log in (or sign up via GitHub/ORCID)
 2. Settings → GitHub → Connect (authorize)
-3. Activate repository `DavJ/unified-biquaternion-theory`
+3. Activate repository `UBT-Institute/unified-biquaternion-theory`
 4. Trigger from the GitHub release created in Week 1
 5. Zenodo auto-creates record → add metadata (see Section 4) → publish → get DOI
 
@@ -92,14 +92,14 @@ Use the following metadata consistently across all platforms:
 - **Registration:** https://zenodo.org/ → Sign up (or login via GitHub/ORCID)
 - **Krok / Step 1:** Create account
 - **Krok / Step 2:** Connect GitHub: Settings → GitHub → Connect → authorize Zenodo
-- **Krok / Step 3:** Activate the repository `DavJ/unified-biquaternion-theory` in the GitHub integration panel
+- **Krok / Step 3:** Activate the repository `UBT-Institute/unified-biquaternion-theory` in the GitHub integration panel
 
 ### GitHub Release Template
 
 When creating the GitHub release (Week 1), use the following description:
 
 ```
-# Unified Biquaternion Theory v10.0 (November 2025)
+# Unified Biquaternion Theory v10.1.0 (May 2026)
 
 ## Major Updates
 - Fermion masses derived from first principles with experimental validation
@@ -142,7 +142,7 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
   - **License:** CC Attribution 4.0 International
   - **Keywords:** (use the keyword list from Section 2)
   - **Subject:** Physics and Astronomy; sub-categories: Theoretical Physics, Mathematical Physics, Quantum Field Theory, General Relativity
-  - **Related identifiers:** link to GitHub repository (`https://github.com/DavJ/unified-biquaternion-theory`)
+  - **Related identifiers:** link to GitHub repository (`https://github.com/UBT-Institute/unified-biquaternion-theory`)
 
 - **Krok / Step 7:** Preview and publish → record receives a permanent DOI
 - **Krok / Step 8:** After publication, update `README.md` with the Zenodo DOI badge (see Section 6)
@@ -170,7 +170,7 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 ### Option B: OSF Project (For Comprehensive Management)
 
 1. Go to https://osf.io/ → **Create Project** → name: "Unified Biquaternion Theory"
-2. Connect GitHub repository (`DavJ/unified-biquaternion-theory`)
+2. Connect GitHub repository (`UBT-Institute/unified-biquaternion-theory`)
 3. Upload documentation files
 4. Create preprint from project
 

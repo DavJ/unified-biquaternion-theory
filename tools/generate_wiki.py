@@ -45,7 +45,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DERIVATION_INDEX = os.path.join(REPO_ROOT, "DERIVATION_INDEX.md")
 WIKI_DIR = os.path.join(REPO_ROOT, "wiki")
 
-REPO_URL = "https://github.com/DavJ/unified-biquaternion-theory"
+REPO_URL = "https://github.com/UBT-Institute/unified-biquaternion-theory"
 BLOB_BASE = f"{REPO_URL}/blob/master"
 
 # Maximum characters for a gap description shown inline in the wiki table

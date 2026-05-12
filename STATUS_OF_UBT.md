@@ -3,7 +3,7 @@
 # STATUS_OF_UBT.md — Single Source of Truth
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-29 *(last updated — governance deliverables sprint)*  
+**Date**: 2026-05-13 *(last updated — governance + CI/metadata cleanup)*  
 **Purpose**: Authoritative one-file description of the real current state of every
 major UBT track.  All other status files are subordinate to this document.
 When in conflict, this file governs.

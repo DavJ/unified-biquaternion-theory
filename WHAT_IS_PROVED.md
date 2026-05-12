@@ -3,7 +3,7 @@
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-28  
+**Date**: 2026-05-13  
 **Purpose**: Authoritative list of what UBT has proved, at what level,
 and where the proof lives.  Every claim here is backed by a source file.
 If it is not on this list, it is not claimed as proved.

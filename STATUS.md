@@ -3,7 +3,7 @@
 # STATUS.md — Current Theory Status Dashboard
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-11  
+**Date**: 2026-05-13  
 **Update frequency**: Per milestone  
 **Purpose**: Single-glance status of every major track.
 

@@ -3,7 +3,7 @@
 # SM_CLOSURE_MATRIX.md — P3: Standard Model Closure Status Matrix
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-28  
+**Date**: 2026-05-13  
 **Purpose**: Single-table reference for the complete status of every Standard Model
 element in UBT — what is proved, what is open, what is a dead end, and what action
 is needed.  Used to drive gap-closure work before the T2_GAUGE paper submission.  

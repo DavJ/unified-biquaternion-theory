@@ -3,7 +3,7 @@
 # CLAIMS_MATRIX.md — Cross-Track Flagship Claims Matrix
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-29  
+**Date**: 2026-05-13  
 **Purpose**: Single-table map of every flagship claim in UBT across all
 active tracks, with derivation level, source file, and paper location.
 No claim is allowed to carry a higher level here than what is supported

@@ -3,7 +3,7 @@
 # GAUGE_MASTER_STATUS.md — T2_GAUGE Canonical Master Status
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-29 (updated)  
+**Date**: 2026-05-13 (updated)  
 **Track**: T2_GAUGE — Standard Model Gauge Structure  
 **Purpose**: Single authoritative file consolidating the gauge sector status.
 Supersedes and summarises: `reports/gauge_status_matrix.md`, `reports/gauge_truth_matrix.md`,

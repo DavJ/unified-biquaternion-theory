@@ -2,16 +2,16 @@ cff-version: 1.2.0
 message: "If you use this software or theory, please cite it as below."
 type: software
 title: "Unified Biquaternion Theory: Fit-Free Alpha Baseline"
-version: v0.3.0
-date-released: 2025-11-08
+version: v10.1.0
+date-released: 2026-05-13
 authors:
   - family-names: "Jaroš"
     given-names: "David"
     affiliation: "Independent Researcher"
     orcid: "https://orcid.org/0000-0000-0000-0000"
   - name: "UBT Team"
-repository-code: "https://github.com/DavJ/unified-biquaternion-theory"
-url: "https://github.com/DavJ/unified-biquaternion-theory"
+repository-code: "https://github.com/UBT-Institute/unified-biquaternion-theory"
+url: "https://github.com/UBT-Institute/unified-biquaternion-theory"
 abstract: >
   The Unified Biquaternion Theory (UBT) provides a geometric framework for 
   fundamental physics based on complex time and biquaternionic field structure.
@@ -29,8 +29,8 @@ keywords:
   - complex time
   - renormalization
   - unified theory
-license: CC-BY-4.0
-license-url: "https://creativecommons.org/licenses/by/4.0/"
+license: CC-BY-NC-ND-4.0
+license-url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
 references:
   - type: article
     title: "Unified Biquaternion Theory 2.0 (Consolidated)"

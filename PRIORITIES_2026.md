@@ -641,7 +641,7 @@ not had impact is that it has not been submitted to a journal.
 
 ---
 
-*Last updated: 2026-04-27*  
+*Last updated: 2026-05-13*  
 *Compiled from: DERIVATION_INDEX.md, canonical/README.md, canonical/AXIOMS.md,  
 canonical/CANONICAL_DEFINITIONS.md, research_tracks/README.md, docs/RESEARCH_PRIORITIES.md,  
 docs/STATUS_ALPHA.md, canonical/geometry/**, canonical/interactions/**, canonical/su3_derivation/**,  

@@ -3,7 +3,7 @@
 # ALPHA_PORTFOLIO_MASTER.md — T3_ALPHA Alpha Program Portfolio Master
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-04-29  
+**Date**: 2026-05-13  
 **Track**: T3_ALPHA — Fine Structure Constant  
 **Purpose**: Single authoritative file governing the alpha program as a
 disciplined competing-route portfolio.  
