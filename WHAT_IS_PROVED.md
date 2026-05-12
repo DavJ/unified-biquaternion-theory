@@ -112,6 +112,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 |---|-------|-------|--------|
 | T1 | N_gen = 3 from dim_ℝ(Im ℍ) = 3 | [L0] | `DERIVATION_INDEX.md §ψ-modes` |
 | T2 | Three ψ-winding modes carry identical gauge quantum numbers | [L0] | `su3_proof_status.md §Three generations` |
+| T2b | Higher ψ-modes \(n\ge 4\) are currently best interpreted as heavy KK excitations above the compactification scale; a first-principles proof that only three light generations remain is still OPEN/[MC] | OPEN / [MC] | `research_tracks/EW/higher_harmonics_analysis.tex` |
 
 ### QED Sector
 
