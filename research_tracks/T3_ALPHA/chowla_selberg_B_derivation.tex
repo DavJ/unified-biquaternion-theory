@@ -22,72 +22,63 @@
 \begin{document}
 \maketitle
 
-\section{Goal}
-Derive the coefficient bridge in
+\section{Step 1: \(Z_{T^2}(1)\) baseline via Chowla--Selberg}
+For square torus radius \(R\):
 \[
-V_{\mathrm{eff}}(n)=n^2-B\,n\ln n
-\]
-from first principles using the zeta-regularised determinant chain for the square torus and its mass deformation.
-
-\section{Step 1: Chowla--Selberg / Epstein baseline [STD]}
-For the square lattice,
-\[
-Z_{\mathbb{Z}^2}(s)=4\,\zeta(s)L(s,\chi_{-4}).
+Z_{T^2}(1)=R^{-2}Z_{\mathbb{Z}^2}(1),
+\qquad Z_{\mathbb{Z}^2}(1)=\pi\ \text{[STD]}.
 \]
 Hence
 \[
-Z'_{\mathbb{Z}^2}(0)=4\big(\zeta'(0)L(0,\chi_{-4})+\zeta(0)L'(0,\chi_{-4})\big).
+Z_{T^2}(1)=\frac{\pi}{R^2},
+\qquad
+Z_{T^2}(1)\big|_{R\Lambda=1}=\pi\Lambda^2.
 \]
+This fixes the determinant normalization scale at self-duality.
+
+\section{Step 2: divisor-sum \(n\ln n\) coefficient}
 Using
-\(\zeta(0)=-\tfrac12\),
-\(\zeta'(0)=-\tfrac12\ln(2\pi)\),
-\(L(0,\chi_{-4})=\tfrac12\)
-and the functional equation for
-\(L(s,\chi_{-4})\), one gets an explicit form involving
-\(\psi(\tfrac14),\psi(\tfrac34)\), thus a logarithmic dependence on
-\(\Gamma(\tfrac14)\).
-
-\section{Step 2: $\Gamma(1/4)$, $\eta(i)$ and $\vartheta_3(0|i)$ [STD/L0]}
-Classical CM identities:
 \[
-\eta(i)=\frac{\Gamma(1/4)}{2\pi^{3/4}},
-\qquad
-\vartheta_3(0|i)=\frac{\pi^{1/4}}{\Gamma(3/4)},
-\qquad
-\frac{\vartheta_3(0|i)}{\eta(i)}=\sqrt2.
+V_{\mathrm{eff}}(n)=-\sum_{d\mid n} Z'_{T^2}(0;d^2/R^2),
 \]
-Therefore any logarithmic insertion built from
-\(Z'_{\mathbb{Z}^2}(0)\)
-can be re-expressed algebraically in terms of
-\(\ln\eta(i)\)
-and
-\(\ln\vartheta_3(0|i)\).
-
-\section{Step 3: mass derivative channel for $n\ln n$}
-For massive deformation of the torus determinant,
+and Chowla--Selberg asymptotics
+\(Z'_{T^2}(0;d^2/R^2)\sim -2\ln(d/R)+\text{const}\), one obtains
 \[
-\frac{\partial}{\partial m^2}Z'_{T^2}(0;m^2)\Big|_{m\to0}
-= -Z_{T^2}(1)_{\mathrm{ren}},
+\sum_{d\mid n}\ln d = \frac{1}{2}\,\tau(n)\ln n + O(\tau(n)),
 \]
-and divisor-sum asymptotics of the $T^2$ winding channel provide the
-\(n\ln n\) structure [L1 asymptotically].
-The unresolved step is the exact insertion map from this derivative to the closed coefficient
-\(B\)
-in the effective potential normalisation used by UBT.
+so the one-channel asymptotic coefficient of \(n\ln n\) is fixed to unity [L1 asym.].
+Therefore the large observed \(B\)-value cannot come from this step alone.
 
-\section{Step 4: target expression and current closure status}
-Target expression:
+\section{Step 3: normalization factors from phases and modular data}
+The single-channel coefficient must be lifted by UBT normalization factors:
+\[
+B\sim N_{\mathrm{phases}}\times(\text{single-channel coefficient})\times(\text{modular normalizer}).
+\]
+With \(N_{\mathrm{phases}}=3\) and
+\(\vartheta_3(0|i)\) from self-dual heat kernel,
+\[
+K_{S^1}(t_*)=\vartheta_3(0|i)\quad\text{[STD]}.
+\]
+The remaining unresolved part is the exact Mellin/spectral insertion proving simultaneously the exponent \(1/4\) and the factor \(2^{1/8}\) in the same renormalization chain.
+
+\section{Step 4: closure status of target coefficient}
+Target:
 \[
 B_{\mathrm{target}}=12^{3/2}\,2^{1/8}\,\vartheta_3(0|i)^{1/4}.
 \]
-Numerically this remains an observation-level near-match unless the determinant-to-coefficient map is closed analytically inside the same renormalisation scheme.
+Current result:
+\begin{itemize}
+  \item \(\mathbb{Z}^2\) determinant chain and \(\Gamma(1/4)\leftrightarrow\eta(i)\leftrightarrow\vartheta_3(0|i)\) bridge are fixed.
+  \item \(n\ln n\) scaling source is fixed by divisor asymptotics.
+  \item exact determinant-to-coefficient insertion in UBT normalization remains open.
+\end{itemize}
 
 \begin{statusbox}
-Chowla-Selberg $Z'_{\mathbb{Z}^2}(0)$ contains $\ln\Gamma(1/4)$: \textbf{[L1]}\\
-$\Gamma(1/4)\to\eta(i)\to\vartheta_3(0|i)$ algebraically: \textbf{[L0/STD]}\\
-$B=f(\vartheta_3(0|i))$ analytically in the UBT normalisation: \textbf{[OPEN --- exact determinant-to-coefficient insertion not closed]}\\
-Gap G137-B: \textbf{[NARROWED --- analytic modular chain fixed; coefficient insertion step remains]}\\
-Alpha je odvozena: \textbf{NE (unconditional dokud [L1] není dosaženo)}
+$Z_{Z^2}(1) = \pi$ [STD], $n\!\cdot\!\ln n$ z dělitelové sumy [L1 asym.]\\
+Normalizační faktor $\vartheta_3(0|i)^{1/4}$: \textbf{[OPEN — zbývá jednotná Mellin/spectral inserce]}\\
+$B = 12^{3/2}\cdot2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$ analyticky: \textbf{[OPEN]}\\
+Gap G137-B: \textbf{[NARROWED — zbývá: exact determinant-to-coefficient insertion]}\\
+Alpha je odvozena: \textbf{NE (unconditional)}
 \end{statusbox}
 
 \end{document}

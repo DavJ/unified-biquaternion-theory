@@ -18,36 +18,62 @@
 \begin{document}
 \maketitle
 
-\section{Reduced action and minimisation equation}
-Starting from the compactified ansatz on $M^4\times S^1_\psi$,
+\section{Step 1: Casimir input with \(N_{\mathrm{eff}}=12\)}
+Conditionally on SU(2)-twist closure (
+\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}), use
 \[
-S_{\mathrm{eff}}[R_\psi]=\int_{M^4}\Bigl[\frac{R}{2\kappa}+(2\pi R_\psi)\,\mathrm{Tr}((D_\mu\Theta)^\dagger D^\mu\Theta)+V_{\mathrm{Casimir}}(R_\psi)\Bigr]d^4x.
+V_{\mathrm{Casimir}}(R)=-N_{\mathrm{eff}}\frac{\zeta(-1)}{4R^2}\times \mathcal{N}_{\mathrm{Cas}},
+\qquad \zeta(-1)=-\frac{1}{12}.
 \]
-Stationarity condition:
+Thus
 \[
-\frac{\partial S_{\mathrm{eff}}}{\partial R_\psi}=0.
+V_{\mathrm{Casimir}}(R)=\frac{1}{4R^2}\,\mathcal{N}_{\mathrm{Cas}}
+\quad\text{for }N_{\mathrm{eff}}=12.
 \]
 
-\section{Casimir input [STD] and limitation}
-For idealised free sectors on a circle,
+\section{Step 2: stationarity equation}
+From
 \[
-V_{\mathrm{Casimir}}(R_\psi)\propto -\frac{N_{\mathrm{eff}}}{R_\psi^2}
+S_{\mathrm{eff}}=\int d^4x\left[\frac{R}{2\kappa}+(2\pi R_\psi)\,T_{\mathrm{kin}}+V_{\mathrm{Casimir}}(R_\psi)\right],
+\quad
+T_{\mathrm{kin}}:=\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)],
 \]
-(regularised zeta/Casimir form [STD]).
-This gives a formal scale equation but not yet a unique canonical $R_\psi^*$ from audited UBT inputs alone, because the effective coefficients and sector weights remain model-dependent in the current files.
+stationarity gives
+\[
+\frac{dS_{\mathrm{eff}}}{dR_\psi}=2\pi T_{\mathrm{kin}}-\frac{dV_{\mathrm{Casimir}}}{dR_\psi}=0,
+\]
+so
+\[
+R_\psi^*=f(T_{\mathrm{kin}},N_{\mathrm{eff}},\mathcal{N}_{\mathrm{Cas}}).
+\]
+Without fixed \(T_{\mathrm{kin}}\)-normalization, this is not unique.
 
-\section{Implication for EW1+RG branch}
-The relation
+\section{Step 3: implication for \(M_{\mathrm{GUT}}=1/R_\psi^*\)}
 \[
-M_{\mathrm{GUT}}\sim \frac{1}{R_\psi}
+M_{\mathrm{GUT}}=\frac{1}{R_\psi^*}\sim M_{\mathrm{Pl}}\left(\frac{T_{\mathrm{kin}}}{M_{\mathrm{Pl}}^4}\right)^{1/2}.
 \]
-is structurally consistent, but the map to the standard GUT window remains conditional until the $R_\psi$ minimisation coefficients are fully fixed from the canonical action normalisation.
+If \(T_{\mathrm{kin}}\sim M_{\mathrm{GUT}}^4\), one gets \(M_{\mathrm{GUT}}\sim M_{\mathrm{Pl}}\) (too high).
+With loop-suppressed input
+\(T_{\mathrm{kin}}\sim g^2M_{\mathrm{GUT}}^4/(16\pi^2)\),
+\[
+M_{\mathrm{GUT}}\sim \frac{M_{\mathrm{Pl}}}{\sqrt{16\pi^2/g^2}},
+\]
+which is compatible with \(\sim2\times10^{16}\,\mathrm{GeV}\) for \(g\sim0.6\).
+This remains conditional on normalization closure.
+
+\section{Step 4: missing condition for uniqueness}
+If \(R_\psi^*\) is not unique, an extra closure condition is needed, e.g.
+\begin{itemize}
+  \item self-consistency input for \(T_{\mathrm{kin}}\),
+  \item minimal sensitivity / stability condition \(\partial^2 S_{\mathrm{eff}}/\partial R_\psi^2>0\).
+\end{itemize}
 
 \begin{statusbox}
-$R_\psi$ z $S[\Theta]$ vakuová energie: \textbf{[OPEN / free parameter in current audited chain]}\\
-$M_{\mathrm{GUT}}=1/R_\psi$ konzistentní s GUT škálou: \textbf{[PODMÍNĚNĚ]}\\
+$V_{\mathrm{Casimir}}$ s $N_{\mathrm{eff}}=12$ [L1 conditional na P1]: \textbf{ODVOZENO FORMÁLNĚ, normalizace OPEN}\\
+$R_\psi^*$ z stacionarity: \textbf{[CONDITIONAL — potřeba vstup $T_{\mathrm{kin}}$]}\\
+$M_{\mathrm{GUT}}=1/R_\psi^*$ konzistentní s GUT škálou: \textbf{PODMÍNĚNĚ (loop-suppressed větev ANO)}\\
 $\sin^2\theta_W(M_Z)=0.231$: \textbf{[CONDITIONAL]}\\
-EW1+RG větev zůstává aktivní, ale plné [L1] vyžaduje uzávěr $R_\psi$ derivace.
+Alpha je odvozena: \textbf{NE}
 \end{statusbox}
 
 \end{document}

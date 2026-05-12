@@ -1,0 +1,109 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}[lemma]{Theorem}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{SU(2) Scherk--Schwarz Twist and \(N_{\mathrm{eff}}=12\) in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Twisted boundary condition on \(S^1_\psi\)}
+Define
+\[
+\Theta(\psi+2\pi R_\psi)=\sigma_3\,\Theta(\psi)\,\sigma_3,
+\qquad
+\sigma_3=\mathrm{diag}(+1,-1).
+\]
+This SU(2) twist replaces the earlier \(\tau\)-twist route.
+
+\section{Symmetry of the kinetic action}
+\begin{lemma}[Twist invariance of \(S_{\mathrm{kin}}\)]
+For
+\[
+S_{\mathrm{kin}}=\int d^4x\;\mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right],
+\]
+and electromagnetic-covariant derivative satisfying
+\(D_\mu(\sigma_3\Theta\sigma_3)=\sigma_3(D_\mu\Theta)\sigma_3\),
+one has \(S_{\mathrm{kin}}\) invariant under
+\(\Theta\mapsto\sigma_3\Theta\sigma_3\).
+\end{lemma}
+
+\begin{proof}
+\[
+\begin{aligned}
+\mathrm{Tr}\!\left[(\sigma_3 D_\mu\Theta\sigma_3)^\dagger(\sigma_3 D^\mu\Theta\sigma_3)\right]
+&=\mathrm{Tr}\!\left[\sigma_3(D_\mu\Theta)^\dagger\sigma_3\sigma_3(D^\mu\Theta)\sigma_3\right]\\
+&=\mathrm{Tr}\!\left[\sigma_3(D_\mu\Theta)^\dagger(D^\mu\Theta)\sigma_3\right]\\
+&=\mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right],
+\end{aligned}
+\]
+using \(\sigma_3^2=1\) and cyclic invariance of trace.
+\end{proof}
+
+\section{KK spectrum under the SU(2) twist}
+Write
+\[
+\Theta=\begin{pmatrix}a & b\\ c & d\end{pmatrix}.
+\]
+From
+\(\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta(\psi)\sigma_3\),
+\[
+\begin{pmatrix}
+a(\psi+2\pi R) & b(\psi+2\pi R)\\
+c(\psi+2\pi R) & d(\psi+2\pi R)
+\end{pmatrix}
+=
+\begin{pmatrix}
+a(\psi) & -b(\psi)\\
+-c(\psi) & d(\psi)
+\end{pmatrix}.
+\]
+Hence
+\[
+a,d:\ \text{periodic}\Rightarrow m_n=\frac{n}{R_\psi},
+\qquad
+b,c:\ \text{anti-periodic}\Rightarrow m_n=\frac{n+1/2}{R_\psi}.
+\]
+The charged off-diagonal fields are \(b,c\); diagonal \(a,d\) are neutral.
+
+\section{Half-integer tower and fermionic effective weight}
+For anti-periodic KK tower \((n+1/2)/R\), the partition-function sector is
+\(\vartheta_2\) and the standard Scherk--Schwarz result gives Weyl-fermion-equivalent one-loop weight [STD].
+Thus each charged complex field \(b\) and \(c\) contributes as one Weyl fermion in the effective photon vacuum polarization counting.
+
+\section{Main counting theorem}
+\begin{theorem}[\(N_{\mathrm{eff}}=12\) from SU(2) twist]
+With three compact phase directions \((\psi,\chi,\xi)\), two charged off-diagonal fields \((b,c)\), and two Weyl helicity weights from the half-integer tower,
+\[
+N_{\mathrm{eff}}=N_{\mathrm{phases}}\times N_{\mathrm{charged}}\times N_{\mathrm{helicity}}
+=3\times2\times2=12.
+\]
+Therefore
+\[
+B_0=\frac{2\pi}{3}N_{\mathrm{eff}}=\frac{2\pi}{3}\cdot12=8\pi.
+\]
+\end{theorem}
+
+\begin{statusbox}
+SU(2) twist symetrie \(S[\Theta]\): \textbf{[L0]}\\
+Anti-per. BC pro \(b,c\): \textbf{[L1]}\\
+Half-integer KK = Weyl fermion příspěvek: \textbf{[STD]}\\
+\(N_{\mathrm{eff}} = 3\times2\times2 = 12\): \textbf{[L1]}\\
+\(B_0 = 8\pi\): \textbf{[L1]}\\
+Alpha je odvozena: \textbf{NE}
+\end{statusbox}
+
+\end{document}
