@@ -1,7 +1,7 @@
 {
   "title": "Unified Biquaternion Theory: Fit-Free Alpha Baseline",
   "publication_date": "2026-05-13",
-  "version": "v10.1.0",
+  "version": "v10.1.2",
   "description": "Unified Biquaternion Theory (UBT) repository release with synchronized status documents, CI/pipeline cleanup, and reproducible derivation assets.",
   "creators": [
     {

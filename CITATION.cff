@@ -2,8 +2,9 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "Unified Biquaternion Theory: Fit-Free Alpha Baseline"
-version: "v10.1.1"
+version: "v10.1.2"
 date-released: 2026-05-13
+doi: "10.5281/zenodo.20148904"
 authors:
   - family-names: "Jaroš"
     given-names: "David"
