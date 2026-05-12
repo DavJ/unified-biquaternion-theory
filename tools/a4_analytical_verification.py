@@ -70,6 +70,8 @@ def main() -> None:
         target_b = float(sp.N(b_from_theta, 25))
     else:
         print("sympy not installed; using numeric fallback only.")
+        # Ramanujan/theta3 bridge:
+        # B = 12^(3/2) * 2^(1/8) * (pi^(1/4)/Gamma(3/4))^(1/4)
         target_b = 12**1.5 * 2**0.125 * (math.pi**0.25 / math.gamma(0.75)) ** 0.25
         print(f"B_target fallback = {target_b:.12f}")
         print()
