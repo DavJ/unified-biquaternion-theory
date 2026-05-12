@@ -23,6 +23,7 @@ and one blocked result (T3_ALPHA).
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | Draft needed | Submit 6–8 weeks after T1_GR |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
+| **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
 **No speculative tracks are active.**  Consciousness/CTC content is frozen in
 `speculative_extensions/`.  No new branches are being opened during the cleanup window.
@@ -48,6 +49,7 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | T_μν symmetric, ∇^μT_μν = 0 | [L1] | `canonical/geometry/stress_energy.tex` |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | [L1]+[NUM] | `tools/verify_schwarzschild_theta.py` |
 | Regge-Wheeler equation (odd-parity graviton) | [L1] | Paper §5 |
+| Zerilli equation (even-parity) and canonical graviton quantisation notes | [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
 Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
@@ -64,6 +66,8 @@ None that prevent submission.
 ### Pre-Submission Fix
 
 ✅ Applied in RC1: Newton's G clarified as free parameter (§3.5 of `papers/UBT_GR_RC1.tex`).
+⚠️ RC1 compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean RC1 build
+must be confirmed in a LaTeX-enabled runner/CI.
 
 ### Next Action
 
@@ -142,6 +146,10 @@ Full derivation (137.036) requires solving Gap G137-B first.
   derivation from S[Θ] remains conditional.
 - n*(B_phenom) = 137 for B_phenom ≈ 46.298 [L1] (conditional on B)
 - Prime stability of n* is a structural property [L0]
+- $\vartheta_3(0|i)/\eta(i)=\sqrt{2}$ [STD], Ramanujan form
+  $B=12^{3/2}\cdot2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$ [OBS]
+- Seeley-DeWitt consistency checkpoint: $a_2$ Einstein-Hilbert reproduction
+  [Prop.], $a_4\propto\vartheta_3(0|i)$ remains [MC]/OPEN
 
 **What remains open in A_PRIME** (Gap G137-B):
 - Derive B_phenom ≈ 46.298 from S[Θ] without using α as input.

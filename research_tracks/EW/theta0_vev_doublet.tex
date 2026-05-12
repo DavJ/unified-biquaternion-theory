@@ -1,0 +1,44 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\title{Gap EW-2: $\Theta_0$ VEV as SU(2)$_L$ doublet}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+\begin{document}
+\maketitle
+
+From the canonical action of SU(2)$_L$ on $\Theta\in\mathrm{Mat}(2,\mathbb C)$,
+a pure identity ansatz $\Theta_0\propto\mathbf 1_2$ transforms as singlet, not as
+an EW Higgs-like doublet.
+
+A column-projection ansatz
+\[
+\Theta_0 = (\phi,0),\qquad \phi\in\mathbb C^2,
+\]
+can realise a doublet-like transformation pattern, but closure to a fully derived
+SSB theorem from $S[\Theta]$ is not yet established in canonical files.
+
+Mass relations remain conditional:
+\[
+M_W = \frac{gv}{2},\qquad M_Z = \frac{M_W}{\cos\theta_W},
+\]
+with $g,v$ not first-principles derived here.
+
+\begin{statusbox}
+\textbf{Hlavní výsledek}: Identitní VEV je singlet; doubletová projekce je kandidát, nikoli uzavřený důkaz z $S[\Theta]$.\\
+\textbf{Klasifikace}: $\Theta_0$ jako dublet [MC/OPEN]; W/Z hmoty [CONDITIONAL].\\
+\textbf{Dopad na teorii}: Gap EW-2 zůstává otevřený, ale je zúžen na konkrétní reprezentační/projekční problém.\\
+\textbf{Příští krok}: Odvodit přesnou transformaci a potenciálový minimizační argument pro dubletový sektor přímo ze spektrální/UBT akce.\\
+\textbf{Alpha je odvozena}: NE (unconditional)
+\end{statusbox}
+
+\end{document}

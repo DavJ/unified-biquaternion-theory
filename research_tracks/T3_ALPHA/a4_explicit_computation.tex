@@ -1,0 +1,54 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox,booktabs}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\title{Gap G137-B: explicit $a_4(D_{\mathrm{UBT}})$ computation roadmap on $M^4\times S^1$}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+\begin{document}
+\maketitle
+
+\section*{Setup}
+\[
+D_{\mathrm{UBT}} = D_{M^4} + i\partial_\psi\otimes\gamma_5,
+\qquad
+P=D_{\mathrm{UBT}}^2.
+\]
+Use standard heat-kernel form for $a_4(P)$ with $E,\Omega_{\mu\nu}$ terms.
+
+\section*{Self-dual $S^1$ factor}
+At self-dual point $R_\psi\Lambda=1$, the Gaussian sum gives
+\[
+K_{S^1}(t_*)=\sum_{n\in\mathbb Z}e^{-\pi n^2}=\vartheta_3(0|i).
+\]
+Hence the target structural factor is
+\[
+a_4\big|_{\mathrm{SD}}\propto \vartheta_3(0|i)\times (M^4\ \text{factor}).
+\]
+
+\section*{B extraction target}
+Desired closure structure:
+\[
+B = N_{\mathrm{eff}}^{3/2}\,g\!\left(\vartheta_3(0|i)\right),
+\quad g(x)=2^{1/8}x^{1/4} \ \text{(target)}.
+\]
+Current status: insertion mechanism from $a_4$ to the exact $n\ln n$ coefficient
+remains open.
+
+\begin{statusbox}
+\textbf{Hlavní výsledek}: Explicitní testovací řetězec pro $a_4$ byl formalizován; self-dual theta faktor je identifikován jako nutná podmínka.\\
+\textbf{Klasifikace}: [MC/OPEN].\\
+\textbf{Dopad na teorii}: Gap G137-B je zúžen na přesnou derivaci mapy $a_4\mapsto B$ (ne jen numerickou shodu).\\
+\textbf{Příští krok}: Dokončit plný koeficientní výpočet $a_4$ včetně normalizace a ověřit/případně vyvrátit faktor $2^{1/8}\vartheta_3^{1/4}$.\\
+\textbf{Alpha je odvozena}: NE (unconditional)
+\end{statusbox}
+
+\end{document}

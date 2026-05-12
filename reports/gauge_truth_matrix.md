@@ -121,6 +121,7 @@ Do not conflate structural with dynamical confinement in the paper.
 |-------|---------|-------|--------|
 | e = g sin θ_W identity | ✅ PROVED [L1] | Standard EW algebra | T (background) |
 | **Weinberg angle sin²θ_W ≈ 0.231 from UBT** | 🔴 **DEAD END** | Algebra alone cannot fix g/g'; see below | **O (explicit dead-end §6)** |
+| EW1+RG conditional route (generator norms + one-loop running) | ⚠️ CONDITIONAL | Gives $\sin^2\theta_W(\mathrm{GUT})=3/8$ and $\sin^2\theta_W(M_Z)\approx0.231$ only if full $Y_i$ set is first-principles closed [L1] | O |
 | SSB pattern SU(2)_L × U(1)_Y → U(1)_EM | ⚠️ CONDITIONAL [MC] | Pattern is motivated; not derived | M |
 | Higgs doublet from S[Θ] (Gap EW-2) | 🔲 OPEN | Θ₀ VEV as doublet unproved | O |
 
