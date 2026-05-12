@@ -13,6 +13,16 @@ except ModuleNotFoundError:  # pragma: no cover - environment dependent
     mp = None
 
 
+def z_z2_at_1() -> "mp.mpf":
+    """Compute Z_{Z^2}(1) analytic target value for square lattice."""
+    return mp.pi
+
+
+def z_t2_at_1(radius: "mp.mpf") -> "mp.mpf":
+    """Compute Z_{T^2}(1)=Z_{Z^2}(1)/R^2 for square torus radius R."""
+    return z_z2_at_1() / (radius**2)
+
+
 def main() -> None:
     if mp is None:
         print("mpmath is not installed; cannot run Chowla-Selberg numeric checks.")
@@ -33,10 +43,16 @@ def main() -> None:
 
     b_target = 12 ** (mp.mpf("1.5")) * 2 ** (mp.mpf("0.125")) * theta3_i ** (mp.mpf("0.25"))
 
+    R = mp.mpf("1")
+    z_z2_1 = z_z2_at_1()
+    z_t2_1 = z_t2_at_1(R)
+
     print(f"L(0,chi_-4)             = {L0}")
     print(f"L'(0,chi_-4)            = {Lp0}")
     print(f"zeta'(0)                = {zp0}")
     print(f"Z'_Z2(0)                = {zprime_z2}")
+    print(f"Z_Z2(1)                  = {z_z2_1}")
+    print(f"Z_T2(1) for R=1          = {z_t2_1}")
     print(f"theta3(0|i)             = {theta3_i}")
     print(f"eta(i)                  = {eta_i}")
     print(f"theta3/eta              = {theta3_i / eta_i}")

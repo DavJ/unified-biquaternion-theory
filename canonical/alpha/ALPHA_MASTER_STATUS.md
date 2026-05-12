@@ -69,6 +69,15 @@ to 137.036 is not yet derived from first principles.
 - Gap G137-B: **NARROWED but OPEN**
 - Alpha: **NOT DERIVED**
 
+
+### SU(2) twist sync (2026-05-12)
+
+- New derivation file: `research_tracks/quantum_ubt/su2_twist_neff12.tex`
+- Updated verdict: `N_eff = 12 [L1]` via SU(2) Scherk-Schwarz twist (`3×2×2`)
+- Consequence in that route: `B0 = 8π [L1]`
+- Gap G137-B: **still OPEN**
+- Alpha: **NOT DERIVED**
+
 ### N_eff audit sync (2026-05-10)
 
 - New critical audit: `canonical/n_eff/step2_AUDIT.tex`

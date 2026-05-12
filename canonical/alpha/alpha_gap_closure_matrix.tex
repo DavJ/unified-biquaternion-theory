@@ -52,7 +52,7 @@ Minimal Missing Theorem}}
 Alpha derivation: \textbf{NOT DERIVED}.
 $\alpha^{-1}_{\mathrm{bare}} = 137$: \textbf{CONDITIONAL ONLY}.
 $\alpha^{-1} = 137.036$ (full precision): \textbf{NOT ACHIEVED}.
-Gap \textbf{G137-B} is fully open.
+Gap \textbf{G137-B} is narrowed but open (determinant-to-coefficient insertion pending).
 Authority: \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.
 \end{tcolorbox}
 
@@ -104,7 +104,7 @@ The logical structure of the T3\_ALPHA derivation is:
 \begin{equation}
   \underbrace{\mathcal{B}=\mathbb{C}{\otimes}\mathbb{H}}_{\text{\Lzero}}
   \;\to\;
-  \underbrace{N_{\mathrm{eff}}}_{\text{\MC\ (audited)}}
+  \underbrace{N_{\mathrm{eff}}}_{\text{\Lone\ (SU(2) twist)}}
   \;\to\;
   \underbrace{B_0 = 8\pi}_{\text{\Lone}}
   \;\xrightarrow{\;\text{Gap G137-B}\;}
@@ -156,16 +156,15 @@ $\alpha$7 & Stationarity condition: $n^*(B) = e^{2/B-1}$ & \Lone &
   \texttt{canonical/alpha/veff\_corrected\_statement.tex} \\[8pt]
 
 % --- N_eff audit ---
-\multicolumn{4}{l}{\textit{N\_eff audit (2026-05-10)}} \\[2pt]
-$\alpha$8 & $N_{\mathrm{eff}}^{(\mathrm{loop})} = 3$: loop-safe audited value
-  (one-loop scalar QED path integral, charged complex scalars) & \Lone &
-  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[4pt]
-$\alpha$9 & $B_0^{(\mathrm{loop})} = 2\pi$ from $N_{\mathrm{eff}}=3$ & \Lone &
-  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[4pt]
-$\alpha$10 & $N_{\mathrm{eff}}^{(R2)} \neq N_{\mathrm{eff}}^{(\mathrm{loop})}$:
-  algebraic ($R2$) and loop counts are different quantities;
-  their identification is unproved & \MC\ \OPEN &
-  \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\[8pt]
+\multicolumn{4}{l}{\textit{N\_eff update (2026-05-12, SU(2) twist)}} \\[2pt]
+$\alpha$8 & $N_{\mathrm{eff}} = 12$: SU(2)-twisted Scherk--Schwarz count
+  $3\times2\times2$ for charged off-diagonal sector & \Lone &
+  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\[4pt]
+$\alpha$9 & $B_0 = 8\pi$ from $N_{\mathrm{eff}}=12$ in SU(2)-twisted route & \Lone &
+  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\[4pt]
+$\alpha$10 & SU(2) twist route fixes anti-periodic charged sector and
+  identifies the effective one-loop multiplicity used for $B_0$ & \Lone + \STD &
+  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\[8pt]
 
 % --- Conditional integer result ---
 \multicolumn{4}{l}{\textit{Conditional integer result}} \\[2pt]
@@ -309,9 +308,9 @@ closed map from determinant data to the target \(B\)-coefficient.
 \toprule
 \textbf{\#} & \textbf{Claim} & \textbf{Status} & \textbf{Blocking gap} \\
 \midrule
-C1 & $N_{\mathrm{eff}}^{(R2)} = 12$: full $3\times2\times2$ factorisation as
-  one-loop multiplier & \MC\ \OPEN &
-  multiplicity audit not complete; loop vs.\ algebraic identification unproved \\[4pt]
+C1 & $N_{\mathrm{eff}} = 12$: full $3\times2\times2$ factorisation via SU(2) twist
+  as one-loop multiplier & \Lone &
+  closed in \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\[4pt]
 C2 & $B = B_0 + \Delta B$ bridges one-loop to phenomenological value & \OPEN &
   Gap G137-B \\[4pt]
 C3 & Self-dual point $\tau=i$ / $R_\psi\cdot\Lambda=1$: shape stationarity
@@ -448,8 +447,8 @@ $B_0\to B$ bridge status &
   \texttt{canonical/alpha/B\_identification\_proof.tex} \\
 $V_{\mathrm{eff}}$ derivation chain &
   \texttt{canonical/alpha/alpha\_best\_route.tex} \\
-$N_{\mathrm{eff}}$ audit &
-  \texttt{canonical/n\_eff/step2\_AUDIT.tex} \\
+$N_{\mathrm{eff}}$ SU(2) twist derivation &
+  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\
 $N_{\mathrm{eff}}$ reconciliation &
   \texttt{canonical/n\_eff/neff\_reconciliation.tex} \\
 Rogers-Ramanujan sharpening &
