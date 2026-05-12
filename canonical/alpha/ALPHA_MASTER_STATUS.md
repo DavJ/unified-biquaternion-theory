@@ -70,6 +70,23 @@ to 137.036 is not yet derived from first principles.
 - Alpha: **NOT DERIVED**
 
 
+### NS/SU(2)-twist sync (2026-05-12)
+
+- Extended: `research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex §5–6`
+- Physical origin of exponent `1/4` and factor `2η(i)` investigated:
+  - Field `b` with half-integer BC (NS sector, from SU(2) Scherk–Schwarz twist) on `S¹_ψ`
+  - **CORRECTED**: `θ₂(0|i)/η(i) ≈ 1.189` (numerically verified — NOT √2)
+  - **CORRECT** Ramanujan CM identity: `θ₃(0|i) = √2·η(i)` [STD, α20] (winding sector)
+  - `Z_NS(i) = θ₂(0|i)/η(i) ≈ 1.189`, NOT √2
+  - `Z_1real = 2η(i)` proposed as NS normalization candidate [OPEN/MC, not L1]
+- Numerical confirmation: `B = 12^(3/2)·(2η(i))^(1/4) ≈ 46.28` [OBS]
+- Remaining open steps: (a) derive Z_1real = 2η(i) from NS sector first principles; (b) volumetric factorization `W_eff = N_eff^(3/2)·f(Z_b)` via Mellin transform
+- New numeric verification: `tools/chowla_selberg_numerical.py::check_theta2_ns_identity()`
+- New matrix entry: `canonical/alpha/alpha_gap_closure_matrix.tex α26`
+- Gap G137-B: **NARROWED — N_eff and Z_1real candidate identified; NS→Z_1real OPEN/MC; factorization OPEN**
+- Alpha: **NOT DERIVED**
+
+
 ### SU(2) twist sync (2026-05-12)
 
 - New derivation file: `research_tracks/quantum_ubt/su2_twist_neff12.tex`

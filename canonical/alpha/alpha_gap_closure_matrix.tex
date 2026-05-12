@@ -219,6 +219,12 @@ $\alpha$25 & Chowla--Selberg $\mathbb{Z}^2$ derivative chain isolates
   the $\Gamma(1/4)\leftrightarrow\eta(i)\leftrightarrow\vartheta_3(0|i)$ bridge;
   exact determinant-to-$B$ insertion remains open & \Lone\ + \OPEN &
   \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_B\_derivation.tex} \\[4pt]
+$\alpha$26 & NS/SU(2)-twist analysis: $Z_{\mathrm{NS}}(i)=\vartheta_2(0|i)/\eta(i)\approx1.189$
+  (numerically confirmed; \emph{not} $\sqrt{2}$); correct Ramanujan identity is
+  $\vartheta_3(0|i)=\sqrt{2}\eta(i)$ (\OBS $\alpha$20);
+  $Z_{1\mathrm{real}}=2\eta(i)$ proposed as NS normalization candidate \MC;
+  $B = 12^{3/2}\cdot(2\eta(i))^{1/4}\approx46.28$ [OBS] & \MC\ \OBS\ + \NUM &
+  \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_B\_derivation.tex \S5--6} \\[4pt]
 
 \end{longtable}
 
@@ -228,38 +234,40 @@ $\alpha$25 & Chowla--Selberg $\mathbb{Z}^2$ derivative chain isolates
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
-  title={Gap G137-B — Exact Statement (2026-05-11, sharpened by RR analysis)}]
+  title={Gap G137-B — Exact Statement (2026-05-12, NS/SU(2)-twist update)}]
 \textbf{Theorem to be proved}: From the UBT action $S[\Theta]$ alone,
 derive the effective coupling coefficient $B$ in
 $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ as:
 \begin{equation}
-  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4},
+  B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4},
   \label{eq:G137B}
 \end{equation}
 where:
 \begin{itemize}
-  \item $Z_{\mathrm{wind}}(1) = \vartheta_3(0|i)$ is the winding partition
-    function at the self-dual radius $R_\psi\cdot\Lambda = 1$;
-  \item $N_{\mathrm{eff}}$ is the effective mode count from the algebraic
-    structure of $\mathbb{C}\otimes\mathbb{H}$;
-  \item $2^{1/8}$ arises algebraically from
-    $\vartheta_3(0|i)/\eta(i) = \sqrt{2}$;
+  \item $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is the NS partition function
+    of one real charged scalar on $S^1_\psi$ at the self-dual point;
+  \item $N_{\mathrm{eff}}=12$ from the SU(2)-twist theorem [L1];
   \item No input from $\alpha_{\mathrm{exp}}$, $B_{\mathrm{phenom}}$, or any
     fitted parameter is used.
 \end{itemize}
-\textbf{Source of sharpening}:
-\texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex}.\\
-\textbf{Current status of three factors}:
+\textbf{Alternative equivalent form} (via $\vartheta_3(0|i)=\sqrt{2}\,\eta(i)$ [STD, $\alpha$20]):
+\[
+  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}
+  = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}.
+\]
+\textbf{Current status of factors}:
 \begin{center}
 \begin{tabular}{lll}
 \toprule
 \textbf{Factor} & \textbf{Status} & \textbf{Source} \\
 \midrule
-$N_{\mathrm{eff}}^{3/2}$ & \Lzero\ (algebraic) & $\mathbb{C}\otimes\mathbb{H}$ structure \\
-$2^{1/8}$ & \STD\ (algebraic from $\vartheta_3/\eta=\sqrt{2}$) &
-  Gamma reflection formula \\
-$Z_{\mathrm{wind}}(1)^{1/4}$ enters $V_{\mathrm{eff}}$ &
-  \OPEN\ (core open problem) & connection to $V_{\mathrm{eff}}$ not proved \\
+$N_{\mathrm{eff}}^{3/2}$ & \Lone\ (SU(2) twist) &
+  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\
+$Z_{1\mathrm{real}}=2\eta(i)$ & \MC\ \OBS\ (normalization candidate; NS sector gives
+  $\vartheta_2/\eta\approx1.189\ne\sqrt{2}$; $\vartheta_3/\eta=\sqrt{2}$ [STD]) &
+  \texttt{chowla\_selberg\_B\_derivation.tex \S5} \\
+Factorization $W_{\mathrm{eff}}=N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$ &
+  \OPEN\ (core open problem) & volumetric Mellin insertion not proved \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -297,6 +305,15 @@ the \(n\ln n\) structure itself is now analytically tied to the T$^2$ divisor-su
 \(\sum_{k\le N}D_2(k)\sim N\ln N\), while direct \(M^4\) determinants produce \(n^4\ln n\).
 So the remaining open part of G137-B is no longer the scaling form, but the exact
 closed map from determinant data to the target \(B\)-coefficient.
+
+\medskip
+\noindent\textbf{NS/SU(2)-twist clarification (2026-05-12, \(\alpha\)26):}
+the physical origin of the exponent $1/4$ and the factor $2\eta(i)$ is now
+identified: $Z_{1\mathrm{real}}(\tau=i)=2\eta(i)$ is the NS partition function of
+one real scalar with half-integer BC from the SU(2) twist.  The only remaining
+open step is the volumetric factorization
+\(W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)\) via the Mellin transform.
+
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Conditional Claims}

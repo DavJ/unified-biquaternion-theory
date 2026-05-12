@@ -68,11 +68,80 @@ If \(R_\psi^*\) is not unique, an extra closure condition is needed, e.g.
   \item minimal sensitivity / stability condition \(\partial^2 S_{\mathrm{eff}}/\partial R_\psi^2>0\).
 \end{itemize}
 
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 5: self-consistent system for \(R_\psi^*\), \(M_{\mathrm{GUT}}\), \(T_{\mathrm{kin}}\)}
+\label{sec:self_consistent}
+%──────────────────────────────────────────────────────────────────────────────
+
+The three-equation self-consistent system is:
+\begin{align}
+R_\psi^* &= \sqrt{\frac{N_{\mathrm{eff}}}{48\pi\,T_{\mathrm{kin}}}},
+  \label{eq:sc1}\\
+M_{\mathrm{GUT}} &= \frac{1}{R_\psi^*},
+  \label{eq:sc2}\\
+T_{\mathrm{kin}} &= \frac{g^2\,M_{\mathrm{GUT}}^4}{16\pi^2},
+  \label{eq:sc3}
+\end{align}
+with $N_{\mathrm{eff}}=12$ [L1] and $g\approx0.6$ (gauge coupling at GUT scale,
+[STD]).  Equation~\eqref{eq:sc1} follows from \(\partial S_{\mathrm{eff}}/\partial
+R_\psi=0\) with $V_{\mathrm{Casimir}}=-N_{\mathrm{eff}}/(48\pi R^2)$
+(zeta-regularised Casimir energy, \(\zeta(-1)=-1/12\)).
+
+\subsection*{Analytic solution}
+
+Substituting \eqref{eq:sc2}--\eqref{eq:sc3} into \eqref{eq:sc1}:
+\[
+R_\psi^* = \sqrt{\frac{N_{\mathrm{eff}}}{48\pi}\cdot\frac{16\pi^2}{g^2 (1/R_\psi^*)^4}}
+= \sqrt{\frac{N_{\mathrm{eff}}\cdot 16\pi^2}{48\pi\,g^2}}\;(R_\psi^*)^2.
+\]
+Solving for $R_\psi^*$:
+\[
+(R_\psi^*)^{-1} = \sqrt{\frac{N_{\mathrm{eff}}\cdot 16\pi^2}{48\pi\,g^2}}
+= \sqrt{\frac{N_{\mathrm{eff}}\pi}{3g^2}},
+\]
+so
+\begin{equation}
+  M_{\mathrm{GUT}} = \frac{1}{R_\psi^*} = M_{\mathrm{Pl}}\sqrt{\frac{N_{\mathrm{eff}}\pi}{3g^2}},
+  \label{eq:mgut_analytic}
+\end{equation}
+in Planck units ($M_{\mathrm{Pl}}=1$). For $N_{\mathrm{eff}}=12$, $g=0.6$:
+\[
+M_{\mathrm{GUT}} = M_{\mathrm{Pl}}\sqrt{\frac{12\pi}{3\times0.36}} = M_{\mathrm{Pl}}\sqrt{\frac{12\pi}{1.08}} = M_{\mathrm{Pl}}\sqrt{34.91}\approx 5.91\,M_{\mathrm{Pl}}.
+\]
+This is super-Planckian: \(M_{\mathrm{GUT}}\approx5.91\,M_{\mathrm{Pl}}\gg 2\times10^{16}\,\mathrm{GeV}\).
+
+\subsection*{Numerical check (see \texttt{tools/rpsi\_self\_consistent.py})}
+
+The numerical solver confirms the analytic result:
+\[
+R_\psi^* \approx 0.169\,l_{\mathrm{Pl}},
+\quad
+M_{\mathrm{GUT}} \approx 5.91\,M_{\mathrm{Pl}} \approx 7.2\times10^{19}\,\mathrm{GeV}.
+\]
+This exceeds the standard GUT window $\sim2\times10^{16}\,\mathrm{GeV}$ by a
+factor of $\approx3600$.
+
+\subsection*{Diagnosis}
+
+The self-consistent system does \emph{not} yield a GUT-compatible scale with
+the naive loop-suppressed ansatz \eqref{eq:sc3}.  The discrepancy is a factor
+$\sqrt{N_{\mathrm{eff}}\pi/(3g^2)}\approx5.9$ in $M_{\mathrm{Pl}}$ units.
+Possible resolutions:
+\begin{enumerate}
+  \item A different normalization of $V_{\mathrm{Casimir}}$ (sub-leading
+    Casimir structure, brane tensions, or further loop suppression).
+  \item An additional suppression in $T_{\mathrm{kin}}$ by a factor
+    $\sim(2\times10^{16}/7.2\times10^{19})^2\approx10^{-7}$.
+  \item The GUT scale is not $1/R_\psi^*$ but $1/R_\psi^*$ renormalized by
+    the winding-mode spectrum.
+\end{enumerate}
+
 \begin{statusbox}
 $V_{\mathrm{Casimir}}$ s $N_{\mathrm{eff}}=12$ [L1 conditional na P1]: \textbf{ODVOZENO FORMÁLNĚ, normalizace OPEN}\\
 $R_\psi^*$ z stacionarity: \textbf{[CONDITIONAL — potřeba vstup $T_{\mathrm{kin}}$]}\\
-$M_{\mathrm{GUT}}=1/R_\psi^*$ konzistentní s GUT škálou: \textbf{PODMÍNĚNĚ (loop-suppressed větev ANO)}\\
-$\sin^2\theta_W(M_Z)=0.231$: \textbf{[CONDITIONAL]}\\
+Samokonzistentní soustava $\{R_\psi^*, M_{\mathrm{GUT}}, T_{\mathrm{kin}}\}$: \textbf{[L1 analyticky řešena]}\\
+$M_{\mathrm{GUT}}$ konzistentní s GUT škálou $2\times10^{16}$\,GeV: \textbf{NE (výsledek: $\approx5.91\,M_{\mathrm{Pl}}\approx7.2\times10^{19}$\,GeV --- faktor $\approx3600$ příliš velký)}\\
+$\sin^2\theta_W(M_Z)=0.231$: \textbf{[CONDITIONAL — závisí na uzavření scale modulus]}\\
 Alpha je odvozena: \textbf{NE}
 \end{statusbox}
 
