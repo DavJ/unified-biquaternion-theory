@@ -44,7 +44,11 @@ def check_theta2_ns_identity() -> None:
 
     theta2_i = mp.jtheta(2, 0, q_nome)
     theta3_i = mp.jtheta(3, 0, q_nome)
-    eta_i = mp.re(mp.eta(mp.mpc(0, 1)))   # η(i) is real-valued
+    eta_i_complex = mp.eta(mp.mpc(0, 1))
+    assert float(mp.im(eta_i_complex)) < 1e-40, (
+        f"Unexpected imaginary part in η(i): {mp.im(eta_i_complex)}"
+    )
+    eta_i = mp.re(eta_i_complex)   # η(i) is real-valued
 
     sqrt2_eta_i = mp.sqrt(2) * eta_i
 
