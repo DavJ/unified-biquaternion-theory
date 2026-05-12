@@ -1,0 +1,53 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{$R_\psi$ from $S[\Theta]$: EW1+RG scale closure audit}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Reduced action and minimisation equation}
+Starting from the compactified ansatz on $M^4\times S^1_\psi$,
+\[
+S_{\mathrm{eff}}[R_\psi]=\int_{M^4}\Bigl[\frac{R}{2\kappa}+(2\pi R_\psi)\,\mathrm{Tr}((D_\mu\Theta)^\dagger D^\mu\Theta)+V_{\mathrm{Casimir}}(R_\psi)\Bigr]d^4x.
+\]
+Stationarity condition:
+\[
+\frac{\partial S_{\mathrm{eff}}}{\partial R_\psi}=0.
+\]
+
+\section{Casimir input [STD] and limitation}
+For idealised free sectors on a circle,
+\[
+V_{\mathrm{Casimir}}(R_\psi)\propto -\frac{N_{\mathrm{eff}}}{R_\psi^2}
+\]
+(regularised zeta/Casimir form [STD]).
+This gives a formal scale equation but not yet a unique canonical $R_\psi^*$ from audited UBT inputs alone, because the effective coefficients and sector weights remain model-dependent in the current files.
+
+\section{Implication for EW1+RG branch}
+The relation
+\[
+M_{\mathrm{GUT}}\sim \frac{1}{R_\psi}
+\]
+is structurally consistent, but the map to the standard GUT window remains conditional until the $R_\psi$ minimisation coefficients are fully fixed from the canonical action normalisation.
+
+\begin{statusbox}
+$R_\psi$ z $S[\Theta]$ vakuová energie: \textbf{[OPEN / free parameter in current audited chain]}\\
+$M_{\mathrm{GUT}}=1/R_\psi$ konzistentní s GUT škálou: \textbf{[PODMÍNĚNĚ]}\\
+$\sin^2\theta_W(M_Z)=0.231$: \textbf{[CONDITIONAL]}\\
+EW1+RG větev zůstává aktivní, ale plné [L1] vyžaduje uzávěr $R_\psi$ derivace.
+\end{statusbox}
+
+\end{document}

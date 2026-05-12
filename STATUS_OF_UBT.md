@@ -103,7 +103,7 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Gap | Description | Priority |
 |-----|-------------|----------|
 | EW-1 | Weinberg angle sin²θ_W — **DEAD END for pure algebra** (algebra cannot fix g'/g) | Keep dead-end statement for algebra-only route |
-| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2 Step 1 closure; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` |
+| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2 Step 1 closure and on deriving $R_\psi$ from $S[\Theta]$; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` and `research_tracks/EW/rpsi_from_action.tex` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
 | C2 | Specific fermion hypercharge assignments | Open |
 | Y2 | Yukawa couplings | Open |

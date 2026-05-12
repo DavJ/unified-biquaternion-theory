@@ -17,3 +17,9 @@
 - RC1 compile command executed in sandbox, but `pdflatex` is not installed (`command not found`).
 - Gauge submission compile command executed in sandbox, but `pdflatex` is not installed (`command not found`).
 - Action required: run both compile pipelines on CI/LaTeX-enabled runner and then mark upload-ready.
+
+
+## Gauge paper companion status (2026-05-12)
+- Target output: `papers/UBT_Gauge_Submission_v3.pdf`
+- Local compile in sandbox is currently blocked (`pdflatex: command not found`).
+- Action required: run CI/LaTeX-enabled runner to produce final PDF artifact.

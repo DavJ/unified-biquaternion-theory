@@ -1,0 +1,93 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Gap G137-B: Chowla--Selberg coefficient $B$ on $\mathbb{Z}^2$}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+Derive the coefficient bridge in
+\[
+V_{\mathrm{eff}}(n)=n^2-B\,n\ln n
+\]
+from first principles using the zeta-regularised determinant chain for the square torus and its mass deformation.
+
+\section{Step 1: Chowla--Selberg / Epstein baseline [STD]}
+For the square lattice,
+\[
+Z_{\mathbb{Z}^2}(s)=4\,\zeta(s)L(s,\chi_{-4}).
+\]
+Hence
+\[
+Z'_{\mathbb{Z}^2}(0)=4\big(\zeta'(0)L(0,\chi_{-4})+\zeta(0)L'(0,\chi_{-4})\big).
+\]
+Using
+\(\zeta(0)=-\tfrac12\),
+\(\zeta'(0)=-\tfrac12\ln(2\pi)\),
+\(L(0,\chi_{-4})=\tfrac12\)
+and the functional equation for
+\(L(s,\chi_{-4})\), one gets an explicit form involving
+\(\psi(\tfrac14),\psi(\tfrac34)\), thus a logarithmic dependence on
+\(\Gamma(\tfrac14)\).
+
+\section{Step 2: $\Gamma(1/4)$, $\eta(i)$ and $\vartheta_3(0|i)$ [STD/L0]}
+Classical CM identities:
+\[
+\eta(i)=\frac{\Gamma(1/4)}{2\pi^{3/4}},
+\qquad
+\vartheta_3(0|i)=\frac{\pi^{1/4}}{\Gamma(3/4)},
+\qquad
+\frac{\vartheta_3(0|i)}{\eta(i)}=\sqrt2.
+\]
+Therefore any logarithmic insertion built from
+\(Z'_{\mathbb{Z}^2}(0)\)
+can be re-expressed algebraically in terms of
+\(\ln\eta(i)\)
+and
+\(\ln\vartheta_3(0|i)\).
+
+\section{Step 3: mass derivative channel for $n\ln n$}
+For massive deformation of the torus determinant,
+\[
+\frac{\partial}{\partial m^2}Z'_{T^2}(0;m^2)\Big|_{m\to0}
+= -Z_{T^2}(1)_{\mathrm{ren}},
+\]
+and divisor-sum asymptotics of the $T^2$ winding channel provide the
+\(n\ln n\) structure [L1 asymptotically].
+The unresolved step is the exact insertion map from this derivative to the closed coefficient
+\(B\)
+in the effective potential normalisation used by UBT.
+
+\section{Step 4: target expression and current closure status}
+Target expression:
+\[
+B_{\mathrm{target}}=12^{3/2}\,2^{1/8}\,\vartheta_3(0|i)^{1/4}.
+\]
+Numerically this remains an observation-level near-match unless the determinant-to-coefficient map is closed analytically inside the same renormalisation scheme.
+
+\begin{statusbox}
+Chowla-Selberg $Z'_{\mathbb{Z}^2}(0)$ contains $\ln\Gamma(1/4)$: \textbf{[L1]}\\
+$\Gamma(1/4)\to\eta(i)\to\vartheta_3(0|i)$ algebraically: \textbf{[L0/STD]}\\
+$B=f(\vartheta_3(0|i))$ analytically in the UBT normalisation: \textbf{[OPEN --- exact determinant-to-coefficient insertion not closed]}\\
+Gap G137-B: \textbf{[NARROWED --- analytic modular chain fixed; coefficient insertion step remains]}\\
+Alpha je odvozena: \textbf{NE (unconditional dokud [L1] není dosaženo)}
+\end{statusbox}
+
+\end{document}

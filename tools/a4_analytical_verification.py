@@ -38,6 +38,36 @@ def veff_t2(n: int, b: float, r: float = 1.0) -> float:
     return n**2 - b * n * math.log(n / r)
 
 
+
+
+def chowla_selberg_numeric_check() -> None:
+    """Numerically check Z'_Z2(0) and theta/eta identities (mpmath path)."""
+    try:
+        import mpmath as mp
+    except ModuleNotFoundError:
+        print("mpmath not installed; skipping Chowla-Selberg numeric check.")
+        return
+
+    mp.mp.dps = 60
+    L0 = mp.dirichlet(0, [0, 1, 0, -1])
+    z0 = mp.zeta(0)
+    zp0 = mp.diff(mp.zeta, 0)
+    Lp0 = mp.diff(lambda s: mp.dirichlet(s, [0, 1, 0, -1]), 0)
+    zprime_z2 = 4 * (zp0 * L0 + z0 * Lp0)
+
+    theta3 = mp.jtheta(3, 0, mp.e ** (-mp.pi))
+    eta_i = mp.qp(mp.e ** (-2 * mp.pi), mp.e ** (-2 * mp.pi)) * mp.e ** (mp.pi / 12)
+
+    print("=== Chowla-Selberg numeric check ===")
+    print(f"L(0,chi_-4)      = {L0}")
+    print(f"L'(0,chi_-4)     = {Lp0}")
+    print(f"Z'_Z2(0)         = {zprime_z2}")
+    print(f"theta3(0|i)      = {theta3}")
+    print(f"eta(i)           = {eta_i}")
+    print(f"theta3/eta       = {theta3/eta_i}")
+    print(f"ln(theta3)       = {mp.log(theta3)}")
+    print()
+
 def main() -> None:
     target_b: Optional[float] = None
 
@@ -93,6 +123,9 @@ def main() -> None:
 
     for n in [10, 50, 137, 200]:
         print(f"Veff_T2(n={n}) = {veff_t2(n, target_b):.8f}")
+
+    print()
+    chowla_selberg_numeric_check()
 
 
 if __name__ == "__main__":
