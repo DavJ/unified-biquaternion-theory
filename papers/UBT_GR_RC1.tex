@@ -34,6 +34,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{microtype}
+\microtypesetup{expansion=false}
 
 % ---- hyperref setup ----------------------------------------------------------
 \hypersetup{
@@ -535,7 +536,7 @@ error $< 10^{-15}$ via \texttt{tools/verify\_schwarzschild\_theta.py}
 \end{theorem}
 
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!50!black,
-  title=Limitation --- temporal component (expected, not an error)]
+  title={Limitation --- temporal component (expected, not an error)}]
 The static real-quaternion ansatz has $\partial_t\Theta_0 = 0$, so the metric
 formula gives $g_{tt} = 0$ from the spatial construction alone.
 The Lorentzian $g_{tt} = -\Phi^2$ is recovered only when the full
@@ -619,7 +620,7 @@ The following problems are explicitly bounded.
 Theorems~\ref{thm:metric}--\ref{thm:rw}.}
 
 \begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
-  title=GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo],breakable]
+  title={GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo]},breakable]
 
 \textbf{On-shell result (proved)}: For $\Theta \in \calA_{\mathrm{UBT}}$
 satisfying its own Euler--Lagrange equation under a gauge-reduced local rank
