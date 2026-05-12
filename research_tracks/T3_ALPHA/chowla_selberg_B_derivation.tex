@@ -75,7 +75,121 @@ Current result:
   \item exact determinant-to-coefficient insertion in UBT normalization remains open.
 \end{itemize}
 
+%──────────────────────────────────────────────────────────────────────────────
+\section{NS/SU(2)-twist derivation of $B$ (update 2026-05-12)}
+\label{sec:ns_twist}
+%──────────────────────────────────────────────────────────────────────────────
+
+This section formalizes the physical interpretation of the exponent $1/4$ and
+the factor $2\eta(i)$ in the candidate formula
+\(B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4}\).
+
+\begin{theorem}[B from SU(2)-twist NS partition function — candidate]
+\label{thm:B_ns_twist}
+The effective coupling $B$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$
+is a candidate for
+\[
+B = N_{\mathrm{eff}}^{3/2} \cdot Z_{1\mathrm{real}}(\tau=i)^{1/4}
+\]
+where $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is a normalization factor
+associated to one real scalar at the self-dual point $\tau=i$, and
+$N_{\mathrm{eff}}=12$ from the SU(2)-twist theorem
+\textup{[su2\_twist\_neff12.tex, L1]}.
+The identification $Z_{1\mathrm{real}}=2\eta(i)$ from the NS sector is
+\textup{[OPEN/MC]}; the numerical match is \textup{[OBS]}.
+\end{theorem}
+
+\subsection*{Step 5: \(Z_{1\mathrm{real}}\) from the NS sector and correct Ramanujan identity}
+
+For the charged off-diagonal field $b$ subject to the SU(2) Scherk--Schwarz
+twist \(\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta\sigma_3\), the boundary
+condition on $S^1_\psi$ is half-integer (Neveu-Schwarz), so the
+Kaluza-Klein modes carry momenta \(p_n = (n+\tfrac12)/R_\psi\),
+\(n\in\mathbb{Z}\) [L1, su2\_twist\_neff12.tex \S3].
+
+The one-dimensional NS partition function is
+\[
+Z_{\mathrm{NS}}(\tau) = \frac{\vartheta_2(0|\tau)}{\eta(\tau)}
+\quad\text{[STD — string theory NS sector]},
+\]
+where \(\vartheta_2(0|\tau) = 2q^{1/8}\prod_{n=1}^\infty(1-q^{2n})(1+q^{2n})^2\),
+\(q = e^{2\pi i\tau}\).
+
+At the self-dual point $\tau = i$ ($q = e^{-\pi}$ for the nome
+$q=e^{2\pi i\tau}$):
+
+\noindent\textbf{Numerically verified}:
+\[
+Z_{\mathrm{NS}}(i) = \frac{\vartheta_2(0|i)}{\eta(i)} \approx 1.189
+\quad\text{[NUM, see \texttt{tools/chowla\_selberg\_numerical.py}]}.
+\]
+This is \emph{not} equal to $\sqrt{2}$.
+
+\noindent\textbf{Correct Ramanujan CM identity [STD] (already $\alpha$20 in
+Section~\ref{sec:chain})}:
+\[
+\vartheta_3(0|i) = \sqrt{2}\,\eta(i).
+\]
+Numerically: $\vartheta_3(0|i)\approx1.0864$, $\sqrt{2}\,\eta(i)\approx1.0864$ [NUM].
+The winding partition function is $Z_{\mathrm{wind}}(\tau=i)=\vartheta_3(0|i)$
+(entry $\alpha$23), not $\vartheta_2(0|i)$.
+
+\noindent\textbf{NS normalization}: The candidate $Z_{1\mathrm{real}}=2\eta(i)$
+appears as a normalization factor in the literature on compact scalar fields
+at the self-dual point.  It is set by hand in the problem statement rather
+than derived from the NS sector calculation above.  This step is therefore
+\textbf{[OPEN/MC]}, not [L1].
+
+Numerically: $2\eta(i) \approx 1.5365$,
+$(2\eta(i))^{1/4} \approx 1.1133$,
+$12^{3/2}\cdot(2\eta(i))^{1/4} \approx 46.28$ [NUM, OBS].
+
+\subsection*{Step 6: $B$-coefficient from the determinant sum}
+
+From Step~2 (divisor-sum asymptotics) the single-channel coefficient of
+$n\ln n$ in $V_{\mathrm{eff}}$ is unity [L1 asym.].
+The physical $B$-value is obtained by lifting with UBT normalization:
+\[
+B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4}
+  = 12^{3/2}\cdot (2\eta(i))^{1/4}
+  \approx 41.57\times 1.1133 \approx 46.28.
+\]
+
+\noindent\textbf{Factorization of $W_{\mathrm{eff}}$} [OPEN — see status below]:
+The claim is that the one-loop effective action on
+$T^3_\psi\times S^1_\chi$ at the self-dual point factorizes as
+\[
+W_{\mathrm{eff}} = -N_{\mathrm{eff}}\,\mathrm{Tr}[\ln P_b] \times N_{\mathrm{eff}}^{1/2},
+\]
+where $P_b$ is the propagator for one charged field $b$.
+This volumetric factorization would give
+$B = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$.
+The factor $N_{\mathrm{eff}}^{1/2}$ arises from the $T^3$ volume prefactor
+at self-duality; the formal Mellin transform then yields $Z_b^{1/4}$.
+
+\noindent\textbf{Consistency check}: Replacing $N_{\mathrm{phases}}=3$ (instead of
+$N_{\mathrm{eff}}=12$) gives
+$3^{3/2}\cdot(2\eta(i))^{1/4}\approx 5.196\times 1.113\approx 5.79$,
+which is far from $B_{\mathrm{phenom}}\approx 46.3$.
+Hence the full $N_{\mathrm{eff}}=12$ (not $N_{\mathrm{phases}}^{3/2}$) is
+required, consistent with the SU(2)-twist count [L1].
+
 \begin{statusbox}
+Korrektní Ramanujanovo CM CM: $\vartheta_3(0|i)=\sqrt{2}\,\eta(i)$ [$\alpha$20, STD]; \textbf{nikoliv} $\vartheta_2(0|i)=\sqrt{2}\eta(i)$\\
+$Z_{\mathrm{NS}}(i) = \vartheta_2(0|i)/\eta(i) \approx 1.189$ (numericky ověřeno): \textbf{[NUM]}\\
+$Z_{1\mathrm{real}} = 2\eta(i)$ z NS BC (normalizace nastavena ad hoc, ne odvozena): \textbf{[OPEN/MC]}\\
+$n\ln n$ koeficient z dělitelové sumy: \textbf{[L1 asym.]}\\
+$N_{\mathrm{eff}}=12$ z SU(2)-twist: \textbf{[L1]}\\
+Faktorizace $W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$:
+  \textbf{[OPEN — volumetrická faktorizace Mellin/spectral inserce neprokázána]}\\
+$B = 12^{3/2}\cdot(2\eta(i))^{1/4} \approx 46.28$ numericky: \textbf{[OBS]}\\
+$B = 12^{3/2}\cdot(2\eta(i))^{1/4}$ analyticky: \textbf{[OPEN — Z\_1real identifikace + faktorizace]}\\
+Gap G137-B: \textbf{[NARROWED — fyzikální kandidát identifikován; NS $\to$ Z\_1real OPEN/MC; faktorizace OPEN]}\\
+Alpha je odvozena: \textbf{NE (unconditional)}
+\end{statusbox}
+
+\begin{statusbox}
+\textbf{(Original Steps 1--4 status)}\\
 $Z_{Z^2}(1) = \pi$ [STD], $n\!\cdot\!\ln n$ z dělitelové sumy [L1 asym.]\\
 Normalizační faktor $\vartheta_3(0|i)^{1/4}$: \textbf{[OPEN — zbývá jednotná Mellin/spectral inserce]}\\
 $B = 12^{3/2}\cdot2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$ analyticky: \textbf{[OPEN]}\\

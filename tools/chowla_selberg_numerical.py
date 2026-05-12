@@ -23,6 +23,59 @@ def z_t2_at_1(radius: "mp.mpf") -> "mp.mpf":
     return z_z2_at_1() / (radius**2)
 
 
+def check_theta2_ns_identity() -> None:
+    """Verify Ramanujan CM identities and NS sector values at tau=i.
+
+    Checks:
+    1. Correct Ramanujan CM identity: theta3(0|i) = sqrt(2)*eta(i)  [STD, alpha20]
+    2. NS sector value: Z_NS(i) = theta2(0|i)/eta(i) ≈ 1.189 (NOT sqrt(2))
+    3. Z_1real = 2*eta(i) as normalization candidate [OBS]
+    4. B = 12^(3/2)*(2*eta(i))^(1/4) numerically [OBS]
+
+    See chowla_selberg_B_derivation.tex §5 for the LaTeX discussion.
+    """
+    if mp is None:
+        print("mpmath is not installed; cannot run NS identity check.")
+        return
+
+    mp.mp.dps = 50
+    # nome q = e^{i*pi*tau}; for tau=i: q = e^{-pi}
+    q_nome = mp.exp(-mp.pi)
+
+    theta2_i = mp.jtheta(2, 0, q_nome)
+    theta3_i = mp.jtheta(3, 0, q_nome)
+    eta_i = mp.re(mp.eta(mp.mpc(0, 1)))   # η(i) is real-valued
+
+    sqrt2_eta_i = mp.sqrt(2) * eta_i
+
+    # Correct Ramanujan CM identity: theta3 = sqrt(2)*eta
+    theta3_matches = abs(float(theta3_i) - float(sqrt2_eta_i)) < 1e-10
+    # Z_NS = theta2/eta (NS sector formula)
+    z_ns_i = float(theta2_i) / float(eta_i)
+
+    z_1real_i = 2 * float(eta_i)              # Z_1real = 2*eta(i) [OBS candidate]
+    b_ns = 12 ** 1.5 * z_1real_i ** 0.25
+
+    print("=== Ramanujan CM identity and NS sector check (chowla_selberg_B_derivation.tex §5) ===")
+    print(f"theta2(0|i)              = {float(theta2_i):.15f}")
+    print(f"theta3(0|i)              = {float(theta3_i):.15f}")
+    print(f"eta(i)                   = {float(eta_i):.15f}")
+    print(f"sqrt(2)*eta(i)           = {float(sqrt2_eta_i):.15f}")
+    print()
+    print(f"CORRECT identity: theta3(0|i) = sqrt(2)*eta(i)?  {theta3_matches}  [STD, alpha20]")
+    print(f"WRONG claim:      theta2(0|i) = sqrt(2)*eta(i)?  "
+          f"{abs(float(theta2_i) - float(sqrt2_eta_i)) < 1e-10}  [CORRECTED in tex]")
+    print()
+    print(f"Z_NS(i) = theta2(0|i)/eta(i) = {z_ns_i:.15f}  (expected ~1.189, NOT sqrt(2))")
+    print(f"sqrt(2)                      = {float(mp.sqrt(2)):.15f}")
+    print()
+    print(f"Z_1real = 2*eta(i)       = {z_1real_i:.15f}  [OBS candidate, not derived]")
+    print(f"(Z_1real)^(1/4)          = {z_1real_i ** 0.25:.15f}")
+    print(f"B = 12^(3/2)*(2*eta(i))^(1/4) = {b_ns:.15f}  [OBS]")
+    print(f"B_phenom                 ≈ 46.298")
+    print(f"Deviation from B_phenom  ≈ {abs(b_ns - 46.298):.4f}")
+
+
 def main() -> None:
     if mp is None:
         print("mpmath is not installed; cannot run Chowla-Selberg numeric checks.")
@@ -58,6 +111,8 @@ def main() -> None:
     print(f"theta3/eta              = {theta3_i / eta_i}")
     print(f"ln(theta3)              = {mp.log(theta3_i)}")
     print(f"B_target(theta3)        = {b_target}")
+    print()
+    check_theta2_ns_identity()
 
 
 if __name__ == "__main__":

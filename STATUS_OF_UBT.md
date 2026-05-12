@@ -21,7 +21,7 @@ and one blocked result (T3_ALPHA).
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
-| **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | Draft needed | Submit 6–8 weeks after T1_GR |
+| **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | `papers/UBT_Gauge_Submission.tex` | Target submission: 2026-06-08 |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
@@ -34,7 +34,7 @@ and one blocked result (T3_ALPHA).
 
 **Status**: SUBMIT READY  
 **Confidence**: HIGH — all core chain steps proved at [L1]  
-**Release candidate**: `papers/UBT_GR_RC1.tex` *(supersedes `papers/UBT_GR_Submission.tex`)*
+**Release candidate**: `papers/UBT_GR_RC2.tex` *(RC2 supersedes RC1; RC2 has tcolorbox title fixes, corrected table, and expanded §1.1 readability improvements — use RC2 for arXiv upload)*
 
 ### Exact Achievements
 
