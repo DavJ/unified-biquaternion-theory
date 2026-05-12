@@ -1,0 +1,87 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Fermionic Sector Derivation Audit from $S[\Theta]$}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Question}
+Can the current canonical kinetic action
+\[
+S_{\mathrm{kin}}[\Theta]
+=\int d^4x\,d\psi\;\mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]
+\]
+produce an emergent fermionic kinetic term that forces
+$N_{\mathrm{helicity}}=2$?
+
+\section{Algebraic input}
+\begin{itemize}
+  \item $\CC\otimes\HH \cong \mathrm{Mat}(2,\CC) \cong \mathrm{Cl}_{1,3}(\RR)$ is [L0].
+  \item The audited loop action in canonical files is scalar-QED type.
+\end{itemize}
+
+\section{Direct expansion check}
+Component-wise,
+\[
+\mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]
+=\sum_{\alpha,\beta}
+(D_\mu\Theta)^\dagger_{\alpha\beta}(D^\mu\Theta)_{\alpha\beta},
+\]
+which is a sum of second-order bosonic kinetic terms.
+No first-order Dirac structure
+\[
+\bar\Theta\,\gamma^\mu D_\mu\Theta
+\]
+appears in the current canonical action.
+
+\begin{proposition}[Current canonical action remains bosonic]
+With the present $S_{\mathrm{kin}}[\Theta]$, the loop-safe helicity multiplier is
+$N_{\mathrm{helicity}}=1$.
+Any upgrade to $N_{\mathrm{helicity}}=2$ requires an independently derived
+fermionic effective action from $S[\Theta]$.
+\end{proposition}
+
+\section{Clifford interpretation and blocker}
+The isomorphism to $\mathrm{Cl}_{1,3}(\RR)$ provides a \emph{candidate}
+spinorial interpretation, but this is not yet equivalent to a derived fermionic
+kinetic term in the canonical action.
+
+\begin{remark}
+Therefore the statement
+\[
+N_{\mathrm{helicity}}=2\ \Longrightarrow\ N_{\mathrm{eff}}=12\ \Longrightarrow\ B_0=8\pi
+\]
+is not currently closed at [L1] in the active scalar-action chain.
+\end{remark}
+
+\begin{statusbox}
+$\Theta\in \mathrm{Cl}_{1,3}(\RR)$ algebraically: \textbf{[L0]}\\
+$S_{\mathrm{kin}}$ gives fermionic vs scalar loop action: \textbf{scalar in current canonical form}\\
+$N_{\mathrm{helicity}}=2$ from current action: \textbf{[NO-GO for current derivation path]}\\
+$N_{\mathrm{eff}}(\mathrm{loop})=12$: \textbf{[OPEN]}\\
+Dopad: loop-safe path remains $N_{\mathrm{eff}}=3$, $B_0=2\pi$.
+\end{statusbox}
+
+\end{document}

@@ -7,48 +7,111 @@
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,tcolorbox,booktabs}
+\usepackage{amsmath,amssymb,amsthm,tcolorbox}
 \tcbuselibrary{skins,breakable}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
 \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
-\title{Gap G137-B: explicit $a_4(D_{\mathrm{UBT}})$ computation roadmap on $M^4\times S^1$}
+\title{Gap G137-B: explicit analytic $a_4(D_{\mathrm{UBT}})$ chain on $M^4\times S^1$}
 \author{Ing.\ David Jaroš}
 \date{2026-05-12}
 \begin{document}
 \maketitle
 
-\section*{Setup}
+\section{Setup}
 \[
 D_{\mathrm{UBT}} = D_{M^4} + i\partial_\psi\otimes\gamma_5,
 \qquad
 P=D_{\mathrm{UBT}}^2.
 \]
-Use standard heat-kernel form for $a_4(P)$ with $E,\Omega_{\mu\nu}$ terms.
-
-\section*{Self-dual $S^1$ factor}
-At self-dual point $R_\psi\Lambda=1$, the Gaussian sum gives
+Using the Lichnerowicz-type decomposition (\textbf{[STD]}):
 \[
-K_{S^1}(t_*)=\sum_{n\in\mathbb Z}e^{-\pi n^2}=\vartheta_3(0|i).
+P = -\left(g^{\mu\nu}\nabla_\mu\nabla_\nu\otimes 1 + 1\otimes\partial_\psi^2\right)+E,
 \]
-Hence the target structural factor is
+with endomorphism $E$ and bundle curvature $\Omega_{\mu\nu}$ as in
+\texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_coefficients.tex}.
+
+\section{Step 1: Seeley--DeWitt $a_4$ structure on $M^4\times S^1$}
+The standard coefficient is
 \[
-a_4\big|_{\mathrm{SD}}\propto \vartheta_3(0|i)\times (M^4\ \text{factor}).
+a_4(P)=\frac{1}{16\pi^2}\int \mathrm{tr}\!\left[
+\frac{1}{180}\!\left(5R^2-2R_{\mu\nu}^2+2R_{\mu\nu\rho\sigma}^2\right)
+-\frac{1}{6}RE+\frac12E^2+\frac1{12}\Omega_{\mu\nu}^2
+\right]\sqrt{g}\,d^5x.
+\]
+For a product background and factorisable operator data,
+\[
+a_4(P)|_{M^4\times S^1}
+=a_4(D_{M^4}^2)L_{S^1}
++a_2(D_{M^4}^2)a_2(D_{S^1}^2)
++\mathrm{Vol}(M^4)a_4(D_{S^1}^2).
 \]
 
-\section*{B extraction target}
-Desired closure structure:
+\section{Step 2: Self-dual $S^1$ heat kernel}
+For $P_{S^1}=-\partial_\psi^2$ with radius $R_\psi$:
 \[
-B = N_{\mathrm{eff}}^{3/2}\,g\!\left(\vartheta_3(0|i)\right),
-\quad g(x)=2^{1/8}x^{1/4} \ \text{(target)}.
+K_{S^1}(t)=\sum_{n\in\mathbb Z}e^{-tn^2/R_\psi^2}
+=\vartheta_3\!\left(0\,\middle|\,i\frac{t}{\pi R_\psi^2}\right).
 \]
-Current status: insertion mechanism from $a_4$ to the exact $n\ln n$ coefficient
-remains open.
+At the self-dual point $R_\psi\Lambda=1$ with $t_*=R_\psi^2$,
+\[
+K_{S^1}(t_*)=\vartheta_3(0|i).
+\]
+Ramanujan's CM value:
+\[
+\vartheta_3(0|i)=\pi^{1/4}/\Gamma(3/4)\qquad\text{\textbf{[STD]}}.
+\]
 
-\begin{statusbox}
-\textbf{Hlavní výsledek}: Explicitní testovací řetězec pro $a_4$ byl formalizován; self-dual theta faktor je identifikován jako nutná podmínka.\\
-\textbf{Klasifikace}: [MC/OPEN].\\
-\textbf{Dopad na teorii}: Gap G137-B je zúžen na přesnou derivaci mapy $a_4\mapsto B$ (ne jen numerickou shodu).\\
-\textbf{Příští krok}: Dokončit plný koeficientní výpočet $a_4$ včetně normalizace a ověřit/případně vyvrátit faktor $2^{1/8}\vartheta_3^{1/4}$.\\
-\textbf{Alpha je odvozena}: NE (unconditional)
+\section{Step 3: determinant route to the $n\ln n$ term}
+Define
+\[
+A_n=-\partial_x^2+\frac{n^2}{R_\psi^2},
+\qquad
+V_{\mathrm{eff}}(n)=-\zeta'_{A_n}(0).
+\]
+Using Mellin transform and zeta regularisation,
+\[
+\zeta_{A_n}(s)=\frac{1}{\Gamma(s)}\int_0^\infty t^{s-1}
+\mathrm{Tr}\!\left(e^{-tA_n}\right)\,dt.
+\]
+The key open extraction is the exact coefficient of $n\ln n$ in
+$-\zeta'_{A_n}(0)$ as a closed function of $\vartheta_3(0|i)$.
+
+\begin{proposition}[Current analytic frontier]
+The chain
+\[
+a_4\big|_{\mathrm{SD}}\ \Longrightarrow\ K_{S^1}(t_*)=\vartheta_3(0|i)
+\]
+is explicit, but the map
+\[
+\zeta'_{A_n}(0)\ \Longrightarrow\
+\text{coefficient}(n\ln n)
+=12^{3/2}2^{1/8}\vartheta_3(0|i)^{1/4}
+\]
+is open.
+\end{proposition}
+
+\begin{remark}
+The missing step is not numerical fitting. It is an analytic insertion theorem
+from the spectral-action density to the renormalised determinant coefficient.
+\end{remark}
+
+\section{Target formula and status}
+\[
+B_{\mathrm{target}}
+=12^{3/2}\cdot 2^{1/8}\cdot \vartheta_3(0|i)^{1/4}.
+\]
+The algebraic/numerical identity is reproducible (see
+\texttt{tools/a4\_analytical\_verification.py}), but this is not yet a
+first-principles derivation from $S[\Theta]$.
+
+\begin{statusbox}[title={Gap G137-B — Analytický verdikt}]
+$K_{S^1}(\mathrm{self\text{-}dual})=\vartheta_3(0|i)$: \textbf{[PROVED L0/STD]}\\
+$a_4|_{\mathrm{SD}}$ factorisation through product geometry: \textbf{[STD]}\\
+$\zeta'_{A_n}(0)$ coefficient $n\ln n=f(\vartheta_3)$: \textbf{[OPEN]}\\
+$B=12^{3/2}\cdot2^{1/8}\cdot\vartheta_3^{1/4}$ analytically from $S[\Theta]$: \textbf{[OPEN]}\\
+Gap G137-B: \textbf{[NARROWED — missing determinant-to-coefficient insertion theorem]}\\
+Alpha je odvozena: \textbf{NE (unconditional)}
 \end{statusbox}
 
 \end{document}

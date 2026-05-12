@@ -310,7 +310,7 @@ These are the standard values quoted in the problem statement.
 % ==============================================================================
 
 \begin{tcolorbox}[enhanced,colback=yellow!5!white,colframe=orange!60!black,
-  arc=3pt,boxrule=1.2pt,title={\textbf{Honest Verdict: Gap C2 Status (2026-05-10)}}]
+  arc=3pt,boxrule=1.2pt,title={\textbf{Honest Verdict: Gap C2 Status (2026-05-12)}}]
 
 \begin{center}
 \begin{tabular}{lll}
@@ -319,27 +319,30 @@ These are the standard values quoted in the problem statement.
 \midrule
 $Y$ quantised in $\frac{1}{2}\ZZ$ (Dirac condition) & \PROVED\ \Lzero &
   Independent of electric charge inputs \\
-$Y_Q = 1/6$ is consistent with SU(3)$\times$SU(2)$_L$ & \PROVED\ \Lone &
-  Follows from SU(3)+Gell-Mann-Nishijima \\
-$Y_Q = 1/6$ is the unique consistent choice & \MC &
-  Requires ruling out charge-convention rescalings \\
+Step 1: SU(3) colour lattice $\Rightarrow Y\in\frac{1}{3}\ZZ$ & \OPEN &
+  \texttt{colour\_charge\_lattice.tex}: missing singlet-integrality theorem \\
+Step 2: SU(2)$_L$ lattice $\Rightarrow Y\in\frac{1}{2}\ZZ$ & \PROVED\ \Lone &
+  Gap C1 closed \\
+Step 3: gcd$(1/3,1/2)=1/6$ & \PROVED\ \Lzero &
+  Modular arithmetic identity \\
 All other $Y$ assignments from $Y_Q = 1/6$ & \PROVED\ \Lone &
   Pure Gell-Mann-Nishijima algebra \\
 \midrule
 \textbf{Gap C2 fully closed} & \textbf{NO} &
-  The uniqueness of $Y_Q = 1/6$ is not yet proved \\
+  Status is \textbf{CONDITIONAL}: Step 1 remains open \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \medskip
 \textbf{What is proved}: The hypercharge assignments are mutually consistent
-with the SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ structure in $\CC\otimes\HH$,
-and Dirac quantisation constrains $Y \in \frac{1}{6}\ZZ$.
+with the SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ structure in $\CC\otimes\HH$.
+Step~2 (SU(2) lattice) and Step~3 (gcd arithmetic) are closed.
 
-\textbf{What is not proved}: That $Y_Q = 1/6$ (rather than a multiple like
-$Y_Q = 1/3$ or $Y_Q = 1/2$) is uniquely forced by the algebra, without
-using the experimental charge assignments $Q_u = 2/3$, $Q_d = -1/3$ as inputs.
+\textbf{What is not proved}: Step~1 theorem
+SU(3)$\rightarrow Y\in\frac{1}{3}\ZZ$ is not yet closed without adding a
+separate theorem that colour-singlet triplet combinations carry integer EM charge
+purely from $\CC\otimes\HH$ and $S[\Theta]$.
 
 \textbf{What would close Gap C2}: A proof that the SU(3) colour-charge
 quantisation forces the minimal hypercharge unit to be $1/6$ specifically,
@@ -352,9 +355,9 @@ without reference to experimental charge values.  This would require:
   \item Combining these (gcd = $\frac{1}{6}\ZZ$) to force $Y_Q = 1/6$.
 \end{enumerate}
 
-Step~1 follows from the colour-charge algebra; Step~2 follows from chirality
-(Gap~C1 closed); Step~3 is a modular arithmetic identity.  The missing link
-is formalising Step~1 as a theorem in $\CC\otimes\HH$ without charge inputs.
+Step~1 status is now isolated in
+\texttt{canonical/interactions/colour\_charge\_lattice.tex} and remains open.
+Step~2 follows from chirality (Gap~C1 closed); Step~3 is modular arithmetic.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -367,11 +370,12 @@ is formalising Step~1 as a theorem in $\CC\otimes\HH$ without charge inputs.
 \toprule
 \textbf{Deliverable} & \textbf{Status} \\
 \midrule
-Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$ & \PROVED\ \Lzero+\Lone \\
-$Y_Q = 1/6$ consistent with SU(3)$\times$SU(2)$_L$ & \PROVED\ \Lone \\
+Dirac quantisation forces $Y \in \frac{1}{2}\ZZ$ & \PROVED\ \Lzero \\
+Step~1 (SU(3) colour lattice $\to \frac{1}{3}\ZZ$) & \OPEN\ (see new file) \\
+Step~2+3 (SU(2) + gcd $\to \frac{1}{6}\ZZ$) & \PROVED\ \Lone+\Lzero \\
 All SM hypercharges from $Y_Q = 1/6$ + GNN & \PROVED\ \Lone \\
 $Y_Q = 1/6$ unique (no charge inputs needed) & \MC\ (not yet proved) \\
-\textbf{Gap C2 fully closed} & \textbf{PARTIAL} — see verdict \\
+\textbf{Gap C2 fully closed} & \textbf{CONDITIONAL / OPEN STEP 1} \\
 \midrule
 Update \texttt{reports/gauge\_truth\_matrix.md §4} & See below \\
 Update \texttt{WHAT\_IS\_PROVED.md} & See Section~\ref{sec:verdict} \\

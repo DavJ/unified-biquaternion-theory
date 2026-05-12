@@ -1,0 +1,105 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+
+\title{EW1+RG Route for the Weinberg Angle in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Status precondition from Gap C2}
+This note follows the hard dependency:
+\[
+\text{Gap C2 Step 1 closed} \Longrightarrow \text{full }Y_i\text{ set [L1]}.
+\]
+Current status from
+\texttt{canonical/interactions/colour\_charge\_lattice.tex} is:
+\[
+\text{Step 1 is OPEN}.
+\]
+Therefore all EW1+RG claims below are \textbf{conditional}.
+
+\section{Generator-norm computation (formal algebra)}
+For one generation with the standard assignment set
+\[
+Y_Q=\tfrac16,\quad Y_u=\tfrac23,\quad Y_d=-\tfrac13,\quad
+Y_L=-\tfrac12,\quad Y_e=-1,\quad Y_\nu=0,
+\]
+the U(1) and SU(2) norm sums are
+\begin{align}
+\sum Y_i^2 \dim(r_i)
+&= 3\cdot 2\cdot\Bigl(\tfrac16\Bigr)^2
+ +3\cdot\Bigl(\tfrac23\Bigr)^2
+ +3\cdot\Bigl(\tfrac13\Bigr)^2
+ +2\cdot\Bigl(\tfrac12\Bigr)^2
+ +1^2
+= \frac{10}{3},\\
+\sum T_{3,i}^2 \dim(r_i)
+&= 3\cdot 2\cdot\tfrac14 + 2\cdot\tfrac14 = 2.
+\end{align}
+
+\begin{proposition}[EW1 norm ratio]
+If the above $Y_i$ values are first-principles [L1], then
+\[
+\frac{g'^2}{g^2}
+= \frac{\sum T_3^2}{\sum Y^2}
+= \frac{2}{10/3}
+= \frac35,
+\qquad
+\sin^2\theta_W^{\mathrm{GUT}}=\frac{3}{8}.
+\]
+\end{proposition}
+
+\section{RG running to $M_Z$}
+At one loop in the Standard Model,
+\[
+\sin^2\theta_W(M_Z)
+=
+\sin^2\theta_W(\mathrm{GUT})\,[1+\delta_{\mathrm{RG}}]^{-1},
+\]
+with $\delta_{\mathrm{RG}}$ fixed by SM $\beta$-coefficients and
+$M_{\mathrm{GUT}}$.
+For the standard GUT-scale window,
+\[
+\sin^2\theta_W(M_Z)\approx 0.231
+\quad\text{[STD | conditional on } \sin^2\theta_W(\mathrm{GUT})=3/8\text{]}.
+\]
+
+\section{UBT-specific scale question}
+Candidate relation:
+\[
+M_{\mathrm{GUT}}\sim \frac{1}{R_\psi}.
+\]
+Two cases must be separated:
+\begin{itemize}
+  \item If $R_\psi$ is derived from $S[\Theta]$: this step can be [L1].
+  \item If $R_\psi$ is free: RG output remains conditional/semi-empirical.
+\end{itemize}
+
+\begin{tcolorbox}[title={Weinberg angle — Verdikt}]
+$\sin^2\theta_W(\mathrm{GUT})=3/8$: \textbf{[L1 conditional on full $Y_i$ [L1]]}\\
+$M_{\mathrm{GUT}}=1/R_\psi$: \textbf{[L1 if $R_\psi$ derived], else [free parameter]}\\
+$\sin^2\theta_W(M_Z)\approx0.231$: \textbf{[CONDITIONAL]}\\
+Weinbergův úhel není slepá ulička pro EW1+RG větev: \textbf{[CONDITIONAL on Gap C2 Step 1]}.
+\end{tcolorbox}
+
+\end{document}
