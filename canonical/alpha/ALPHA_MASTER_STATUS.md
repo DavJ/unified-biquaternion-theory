@@ -10,7 +10,8 @@ Supersedes and summarises: `reports/alpha_routes_ranked.md`, `reports/alpha_no_f
 `reports/alpha_missing_lemma.md`, `canonical/alpha/prime_137_status.md`,
 `reports/ew_mixing_status.md` (alpha perspective), `canonical/alpha/ew_mixing_gap_map.md`
 (alpha routes only).  
-**Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`
+**Truth anchor**: `STATUS_OF_UBT.md §T3_ALPHA`  
+**Single canonical reference for chain status**: `canonical/alpha/alpha_gap_closure_matrix.tex`
 
 ---
 
@@ -60,6 +61,40 @@ to 137.036 is not yet derived from first principles.
 - Canonical wording source: `reports/alpha_current_verdict.md`
 - B-gap summary: `reports/alpha_B_gap_after_winding_no_go.md`
 
+### Chowla-Selberg sync (2026-05-12)
+
+- New derivation note: `research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex`
+- New numeric check: `tools/chowla_selberg_numerical.py`
+- Result: modular/Gamma chain sharpened; exact determinant-to-coefficient insertion for `B` remains open
+- Gap G137-B: **NARROWED but OPEN**
+- Alpha: **NOT DERIVED**
+
+
+### NS/SU(2)-twist sync (2026-05-12)
+
+- Extended: `research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex §5–6`
+- Physical origin of exponent `1/4` and factor `2η(i)` investigated:
+  - Field `b` with half-integer BC (NS sector, from SU(2) Scherk–Schwarz twist) on `S¹_ψ`
+  - **CORRECTED**: `θ₂(0|i)/η(i) ≈ 1.189` (numerically verified — NOT √2)
+  - **CORRECT** Ramanujan CM identity: `θ₃(0|i) = √2·η(i)` [STD, α20] (winding sector)
+  - `Z_NS(i) = θ₂(0|i)/η(i) ≈ 1.189`, NOT √2
+  - `Z_1real = 2η(i)` proposed as NS normalization candidate [OPEN/MC, not L1]
+- Numerical confirmation: `B = 12^(3/2)·(2η(i))^(1/4) ≈ 46.28` [OBS]
+- Remaining open steps: (a) derive Z_1real = 2η(i) from NS sector first principles; (b) volumetric factorization `W_eff = N_eff^(3/2)·f(Z_b)` via Mellin transform
+- New numeric verification: `tools/chowla_selberg_numerical.py::check_theta2_ns_identity()`
+- New matrix entry: `canonical/alpha/alpha_gap_closure_matrix.tex α26`
+- Gap G137-B: **NARROWED — N_eff and Z_1real candidate identified; NS→Z_1real OPEN/MC; factorization OPEN**
+- Alpha: **NOT DERIVED**
+
+
+### SU(2) twist sync (2026-05-12)
+
+- New derivation file: `research_tracks/quantum_ubt/su2_twist_neff12.tex`
+- Updated verdict: `N_eff = 12 [L1]` via SU(2) Scherk-Schwarz twist (`3×2×2`)
+- Consequence in that route: `B0 = 8π [L1]`
+- Gap G137-B: **still OPEN**
+- Alpha: **NOT DERIVED**
+
 ### N_eff audit sync (2026-05-10)
 
 - New critical audit: `canonical/n_eff/step2_AUDIT.tex`
@@ -87,6 +122,29 @@ to 137.036 is not yet derived from first principles.
 - **Constant winding correction ΔB_wind ≈ 18.5: NO-GO.**
   The derived winding term is ΔB_wind(n) = N_eff·n/(12π²) (n-dependent; produces n²·ln n).
 - **B_best ≈ 43.6: OBSOLETE HEURISTIC.** Do not cite as an estimate. Route withdrawn.
+
+### Prime-factorization entropy note (2026-05-11)
+
+The n log n term now has a candidate interpretation as the leading Stirling term of
+prime-factorization information entropy (total log-information content of integers
+1..n under the prime alphabet), but this does **not** close G137-B.  The exact
+identity log(n!) = Σ_{p^m ≤ n} ⌊n/p^m⌋ log p (Legendre's formula) is [STD/L0].
+A refined potential candidate V_eff^Γ(n) = n² − B·(log Γ(n+1) + n) preserves the
+original stationary condition B ≈ 2n/(log n + 1) at leading order while embedding
+the entropy structure; this is labeled [DERIVATION CANDIDATE].  See
+`canonical/alpha/prime_factorization_entropy_potential.tex` and
+`tools/compare_alpha_potentials.py`.  Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
+
+### Gamma/prime-factorization entropy interpolation note (2026-05-11)
+
+Gamma/prime-factorization entropy refinement brackets the measured alpha inverse:
+n1(V1) = 136.989099... < α⁻¹_exp = 137.035999... < n3(V3) = 137.090521...  (all at B_Ram [OBS]).
+The interpolation position is λ_fit ≈ 0.4622 (exact stationary) or 0.4624 (linear fractional),
+but no derivation of λ or B_Ram from S[Θ] is currently known.
+Closest candidate constant: 37/80 = 0.4625 (0.06% — NUMERIC_ONLY, no UBT interpretation).
+See `reports/gamma_entropy_alpha_interpolation_audit.md` and
+`canonical/alpha/gamma_entropy_alpha_refinement_status.tex`.
+Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
 
 ---
 

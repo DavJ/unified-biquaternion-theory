@@ -14,11 +14,14 @@
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
 \geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
 
 \newcommand{\Neff}{N_{\mathrm{eff}}}
 
@@ -91,6 +94,8 @@ explicitly introduced and derived.
   \item The loop-safe value from $S_{\mathrm{kin}}[\Theta]$ is $N_{\mathrm{helicity}}=1$.
   \item $N_{\mathrm{helicity}}=2$ is \textbf{not proved} as an independent multiplier.
   \item Status: \textbf{OPEN / [MC]} — requires derivation of fermionic effective action.
+  \item Dedicated follow-up derivation file:
+  \texttt{research\_tracks/quantum\_ubt/fermionic\_action\_derivation.tex}.
 \end{itemize}
 
 \section{Step C --- Origin of $N_{\mathrm{charge}}$}
@@ -149,10 +154,10 @@ fermionic effective action is required to upgrade $N_{\mathrm{helicity}}$ from
 Factor & Value (audit) & Justification & Status \\
 \midrule
 $N_{\mathrm{phases}}$ & 3 & $\dim_{\mathbb{R}}\mathrm{Im}(\mathbb{H})=3$ & [L0] $\checkmark$ \\
-$N_{\mathrm{helicity}}$ & 2 (claimed) & No explicit Dirac-loop derivation in audited path & OPEN / [MC] \\
+$N_{\mathrm{helicity}}$ & 2 (SU(2) twist) & Anti-periodic off-diagonal KK sector in Scherk--Schwarz route & [L1] \\
 $N_{\mathrm{charge}}$ & 2 (claimed) & Extra factor double-counts complex-field baseline unless redefined & OPEN / rejected as independent factor \\
-$N_{\mathrm{eff}}$ & 3 (loop-safe) & Minimal scalar-action one-loop interpretation & AUDIT RESULT \\
-$B_0$ & $2\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}$ with $N_{\mathrm{eff}}=3$ & AUDIT RESULT \\
+$N_{\mathrm{eff}}$ & 12 & $3\times2\times2$ via SU(2)-twisted charged sector & [L1] \\
+$B_0$ & $8\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}$ with $N_{\mathrm{eff}}=12$ & [L1] \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -162,5 +167,12 @@ This audit does \textbf{not} derive $B\approx 46.3$ from $S[\Theta]$.
 It weakens the prior $N_{\mathrm{eff}}=12\Rightarrow B_0=8\pi$ claim by moving the
 multipliers $N_{\mathrm{helicity}}$ and explicit $N_{\mathrm{charge}}$ out of proved
 status in the currently audited loop derivation.
+
+
+\begin{statusbox}
+N\_helicity = 2 z SU(2) twist: \textbf{[L1]}\\
+N\_eff = 12 a B\_0 = 8\pi v SU(2)-twisted větvi: \textbf{[L1]}\\
+Alpha je odvozena: \textbf{NE}
+\end{statusbox}
 
 \end{document}

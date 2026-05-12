@@ -51,14 +51,14 @@ Updated every cycle. Determines route priority and kill decisions.
 
 | Criterion | Score | Evidence |
 |-----------|-------|---------|
-| Foundation depth | 3 | N_eff = 12 is [L0]; V_eff structure forced by algebra; B₀ = 8π proved [L1] |
+| Foundation depth | 3 | N_eff=12 is OPEN/[MC] (critical audit); V_eff route is conditional from S[Theta]; B₀=8π remains audit-context only |
 | α-independence | 3 | No α input; all ingredients from biquaternion algebra |
 | Gap clarity | 3 | Gap G137-B exactly stated: derive B = B_phenom ≈ 46.298; missing factor ≈ 1.84 quantified |
 | Corroborations | 3 | μ(Γ₀(137))/3 + Hecke lepton masses + P¹(𝔽₁₃₇) cardinality |
 | Path to completion | 2 | Two-loop heat kernel + Kac-Moody correction — plausible; higher-loop may be needed |
 
 **Status**: PRIMARY — maximum priority; 4-week modular bootstrap attack  
-**Kill condition**: If N_eff = 12 fails (extremely unlikely — [L0] algebraic identity)  
+**Kill condition**: If N_eff = 12 candidate fails critical audit (OPEN/[MC])  
 **Promotion condition**: Gap G137-B closed ⟹ write T3_ALPHA paper; claim α⁻¹_bare = 137 at [L1]
 
 ---
@@ -133,3 +133,6 @@ Updated every cycle. Determines route priority and kill decisions.
 - `canonical/alpha/ALPHA_MASTER_STATUS.md` — master status document
 - `reports/alpha_missing_lemma.md` — Gap G137-B exact formulation
 - `reports/alpha_hidden_fit_audit.md` — hidden-fit audit
+
+
+Cross-references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.

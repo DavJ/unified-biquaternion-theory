@@ -1,0 +1,42 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox,booktabs}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\title{Hecke higher-weight check at $p=137$: $k=4,6$}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+\begin{document}
+\maketitle
+
+Existing repository values under check:
+\[
+a_{137}(k=4)=2274,\qquad a_{137}(k=6)=38286.
+\]
+Derived ratios used by current signal:
+\[
+R_\mu=\frac{2274}{11}=206.73,\qquad
+R_\tau=\frac{38286}{11}=3480.5.
+\]
+Both satisfy Weil bounds in their weights.
+
+At this stage, this note consolidates the verification protocol and records
+that direct independent recomputation (LMFDB/Sage) is still pending in this
+sandbox session.
+
+\begin{statusbox}
+\textbf{Hlavní výsledek}: Kontrolní rámec pro $k=4,6$ je sjednocen; stávající hodnoty jsou interně konzistentní a Weilově přípustné.\\
+\textbf{Klasifikace}: [MC] (independent external recomputation pending).\\
+\textbf{Dopad na teorii}: Lepton-mass signal zůstává silný kandidát, ale bez nového externího výpočtu není povýšen na uzavřený důkaz.\\
+\textbf{Příští krok}: Provest nezávislý výpočet $a_{137}$ pro příslušné newforms (Sage/LMFDB export) a porovnat bitově.\\
+\textbf{Alpha je odvozena}: NE (unconditional)
+\end{statusbox}
+
+\end{document}

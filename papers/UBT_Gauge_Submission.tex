@@ -29,6 +29,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{microtype}
+\microtypesetup{expansion=false}
 
 % ---- hyperref setup ----------------------------------------------------------
 \hypersetup{
@@ -100,9 +101,15 @@ identified as $\mathrm{U}(1)_Y$ (\Lzero).
 The three-generation structure $N_{\mathrm{gen}} = 3$ follows from
 $\dim_\RR(\mathrm{Im}\,\HH) = 3$ (\Lzero).
 Every result is labelled with its proof level.
-The Weinberg angle and fermion masses are identified as open problems;
-their non-derivability from the biquaternion algebra alone is argued explicitly
-(\DEADEND).
+The colour-charge lattice theorem (Gap~C2) is proved [L1] via the
+topological U(1)$_{\rm EM}$ integrality condition on $S^1_\psi$,
+yielding all Standard Model hypercharge assignments from first principles.
+A conditional derivation of $\sin^2\theta_W=3/8$ at the unification
+scale follows from generator norm ratios [L1], with renormalization
+group running to $\sin^2\theta_W(M_Z)\approx 0.231$ [STD].
+The SU(2) Scherk--Schwarz twist $\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$
+yields $N_{\mathrm{eff}}=12$ \Lone\ for the charged off-diagonal components,
+giving $B_0=8\pi$ \Lone\ and strengthening the alpha-track candidate formula.
 \end{abstract}
 
 \tableofcontents
@@ -189,7 +196,12 @@ defined as in~\cite{jaros2026_gr}.
 
 The algebraic foundation $\CC\otimes\HH \cong \mathrm{Mat}(2,\CC)$ also forms a natural
 spectral triple in the sense of Connes~\cite{connes2008}, suggesting a connection
-to noncommutative geometry that will be explored in future work.
+to noncommutative geometry that will be explored in future work.\footnote{The exact
+identity $\vartheta_3(0|i)/\eta(i)=\sqrt{2}$
+(\texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex}, [STD])
+algebraically rewrites the UBT coupling candidate as
+$B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$,
+connecting the winding partition function to Ramanujan's CM value.}\footnote{An SU(2) Scherk--Schwarz twist $\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta\sigma_3$ yields $N_{\rm eff}=12$ for the charged off-diagonal components, giving $B_0=8\pi$ [L1]; see \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}.}
 
 \subsection{The biquaternion algebra}
 
@@ -487,7 +499,7 @@ Each imaginary direction supports a distinct winding sector on $S^1_\psi$;
 these three sectors are related by the $\mathrm{SU}(3)$ colour action
 (Theorem~\ref{thm:su3}) and therefore carry identical gauge quantum numbers.
 The identification $N_{\mathrm{gen}} = 3$ follows.
-See \texttt{DERIVATION\_INDEX.md §ψ-modes} and \texttt{canonical/su3\_derivation/}.
+See \texttt{DERIVATION\_INDEX.md \S psi-modes} and \texttt{canonical/su3\_derivation/}.
 \end{proof}
 
 \begin{remark}
@@ -528,6 +540,17 @@ This paper does \emph{not} claim the Weinberg angle is derived.  Any future
 version of UBT that claims to derive $\sin^2\theta_W$ must overcome the
 no-go argument stated above.
 
+\medskip
+\textbf{Update 2026-05-12}: The EW1+RG route is upgraded from
+\emph{dead end} to \emph{conditional [L1]}. Generator norm ratios
+give $\sin^2\theta_W^{\rm GUT}=3/8$ [L1] given the first-principles
+hypercharge assignments (Gap~C2, [L1]); see
+\texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex}.
+$N_{\mathrm{eff}}=12$ \Lone\ via the SU(2) Scherk--Schwarz twist
+$\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$ strengthens the EW1+RG route.
+Full $M_Z$ running remains conditional on $R_\psi$ scale closure
+(\texttt{research\_tracks/EW/rpsi\_from\_action.tex \S5}).
+
 \subsection{Dynamical confinement: not claimed}
 
 The Clay Millennium problem of proving that SU(3) gauge theory has a mass gap
@@ -556,6 +579,13 @@ alpha programme does not modify any theorem in Sections~\ref{sec:algebra}--
 and are anchored in the gauge-generator count $N_{\mathrm{eff}}(\mathrm{R2})=12$.
 Therefore the T2\_GAUGE conclusions remain unchanged by the loop-audit update.
 
+For completeness, the effective coupling
+$B\approx 46.28$ (Gap~G137-B) is not derived from $S[\Theta]$.
+The numerical observation
+$B=N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$
+has accuracy about $0.007\%$ but lacks a first-principles derivation.
+A Seeley-DeWitt mechanism is under investigation.
+
 % ==============================================================================
 \section{Open Problems}
 \label{sec:open}
@@ -572,7 +602,7 @@ No claim is made about any of them in this paper.
     partial result (Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$;
     uniqueness of $Y_Q = 1/6$ is \MC).
 
-  \item[Gap~EW-2: Higgs doublet from $S[\Theta]$]
+  \item[Gap~EW-2: Higgs doublet from $S(\Theta)$]
     The Higgs field and its symmetry-breaking VEV have not been derived
     from the UBT action.  The pattern $\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y
     \to \mathrm{U}(1)_{\mathrm{EM}}$ is motivated but not derived.

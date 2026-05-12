@@ -41,9 +41,9 @@ The minimum of V_eff selects a preferred winding number n* satisfying:
 
 | Claim | Status | Source |
 |-------|--------|--------|
-| Three winding modes (N_eff = 12 from ℂ⊗ℍ) | **[L0] Proved** | `canonical/algebra/` |
+| Three winding modes (N_eff = 12 candidate) | **OPEN/[MC] under critical audit** | `canonical/n_eff/step2_AUDIT.tex` |
 | The prime status of n* is a stability condition for V_eff | **[L1] Proved** | `canonical/alpha/alpha_best_route.tex` |
-| n*(B_phenom) = 137 for B_phenom ≈ 46.298 | **[L1] Proved** (given B) | `canonical/alpha/alpha_best_route.tex` |
+| n*(B_phenom) = 137 for B_phenom ≈ 46.298 | **[L1] Conditional** (given B) | `canonical/alpha/alpha_best_route.tex` |
 | 137 is prime — consistent with stability | **[L0]** (number theory) | Standard |
 | B₀ = 8π (one-loop UBT effective coupling) | **[L1] Proved** | `canonical/t_munu/` |
 | **B_phenom ≈ 46.298 from UBT axioms** | **[L2] OPEN (Gap G137-B)** | `canonical/alpha/prime_137_status.md` |
@@ -51,13 +51,15 @@ The minimum of V_eff selects a preferred winding number n* satisfying:
 **Bottom line**: The route is internally consistent and produces n* = 137 when
 B = B_phenom.  The gap is deriving B_phenom from UBT first principles.
 B₀ = 8π gives n* ≈ 65, not 137; the gap is the factor ≈ 1.84 between them.
+`B_Ram` is **OBS only, not derived from S[Theta]**. `lambda_exact` and
+`lambda_frac` are **OBS only, no derivation currently known**.
 
 ---
 
 ## Why This Route Is Primary
 
-1. **Deepest foundation**: N_eff = 12 is derived [L0] from ℂ⊗ℍ alone.
-   The V_eff structure is forced by the winding-mode spectrum.
+1. **Deepest foundation**: N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see `canonical/n_eff/step2_AUDIT.tex`.
+   V_eff structure has a motivated winding / prime-entropy route, but the full derivation from S[Theta] remains conditional.
    The prime-attractor argument is structural, not ad hoc.
 
 2. **Integer result is already publishable**: The claim "α⁻¹_bare = 137 (integer)
@@ -118,7 +120,7 @@ charge) but cannot fix the magnitude of the unit charge.
 |----------|-----------|---------|
 | Gap G137-B solved in 4-week modular bootstrap | 20–30% | Route becomes [L1]; paper claims α⁻¹_bare = 137 proved |
 | Gap G137-B not solved | 70–80% | Route publishes as conditional: "integer 137 from structural argument, B gap explicit" |
-| Route A_PRIME independently falsified | < 5% | N_eff = 12 would need to be wrong (this is [L0] proved) |
+| Route A_PRIME independently falsified | < 5% | N_eff = 12 candidate would need to fail critical audit (currently OPEN/[MC]) |
 
 **Expected state in 4 weeks**: conditional claim at ~85% probability.
 Definitive proof at ~25% probability.
@@ -149,3 +151,6 @@ impression that the α claim is in the same completion state as the GR result.
 - `reports/alpha_routes_ranked.md` — ranked comparison of all routes
 - `reports/alpha_missing_lemma.md` — exact statement of Gap G137-B
 - `FLAGSHIP_SELECTION.md` — context for why T3_ALPHA is not primary flagship
+
+
+Cross-references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.

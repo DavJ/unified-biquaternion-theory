@@ -6,12 +6,12 @@
 **Track**: T3_ALPHA (converted) — Electroweak Mixing Problem  
 **Goal**: Derive $\tan\theta_W = g'/g$ from first principles in UBT.  No numerical fitting.  
 **Date**: 2026-04-28  
-**Priority**: CLOSED — DEAD END
+**Priority**: CONDITIONAL RE-OPEN (EW2.A check added 2026-05-12)
 
-> **DEPRECATION NOTICE (2026-04-28)**: This file treated the Weinberg angle
-> derivation as a critical priority.  That assessment is superseded.
-> The Weinberg angle route is a **DEAD END**: the biquaternion algebra cannot fix
-> the ratio g'/g (no-go argument in `reports/gauge_truth_matrix.md §6`).
+> **STATUS NOTICE (updated 2026-05-12)**: Purely algebraic derivation of the
+> Weinberg angle remains a **DEAD END** (the biquaternion algebra alone cannot
+> fix $g'/g$).  The EW1+RG generator-norm branch is now tracked as
+> **CONDITIONAL [L1] pending Gap C2 Step 1**.
 > This file is preserved as historical record only.  
 > **Truth anchor**: `STATUS_OF_UBT.md §Deprecated Claims`  
 **Sources**: `canonical/interactions/sm_gauge.tex`,
@@ -306,3 +306,58 @@ kinetic normalisation), the electromagnetic coupling follows immediately.
 - `canonical/interactions/sm_gauge.tex` — canonical SM gauge structure
 - `research_tracks/T3_ALPHA/alpha_progress_log.md` — full T3 history and EW pivot rationale
 - `DERIVATION_INDEX.md §EW` — derivation inventory entry point
+## EW2.A Update (2026-05-12): SU(5) embedding test and conditional reopening
+
+Using the dimensional checks requested in the EW2 path:
+
+- $\dim_{\mathbb R}\mathfrak{su}(5)=24$
+- $\dim_{\mathbb R}(\mathbb C\otimes\mathbb H)=8$
+- $\dim_{\mathbb R}\big(\mathbb C\otimes_{\mathbb R}(\mathbb C\otimes\mathbb H)\big)=16$
+
+Therefore a full $\mathfrak{su}(5)$ embedding into $\mathbb C\otimes\mathbb H$ is
+impossible by dimension count.
+
+However, the generator-norm route remains conditionally viable:
+\[
+\frac{g'^2}{g^2}
+= \frac{\sum T_3^2}{\sum Y^2}
+= \frac{2}{10/3}
+= \frac35
+\quad\Longrightarrow\quad
+\sin^2\theta_W(\mathrm{GUT})=\frac38.
+\]
+
+With standard one-loop running from $M_{\mathrm{GUT}}\sim2\times10^{16}\,\mathrm{GeV}$:
+\[
+\sin^2\theta_W(M_Z)\approx0.231 \quad [\mathrm{STD}\mid \sin^2\theta_W(\mathrm{GUT})=3/8].
+\]
+
+The remaining blocker is derivational status of the full fermion hypercharge set
+$Y_i$. Current status in
+`canonical/interactions/hypercharge_assignments.tex` is partial/conditional, not
+fully closed [L1] for the complete list.
+
+### EW2.A verdict box
+
+```latex
+\begin{statusbox}
+EW2.A: SU(5) plné embedding: [IMPOSSIBLE — dim 24 > dim ℂ⊗ℍ = 8]
+EW1 přístup (gen. normy): sin²θ_W(GUT) = 3/8 if Y_i [L1]
+Y_i status: [PARTIAL / CONDITIONAL]
+sin²θ_W(M_Z) via RG: 0.231 [STD given 3/8 GUT]
+Celkový verdikt: [CONDITIONAL ON Y_i]
+Weinbergův úhel: není uzavřen; dead-end platí pro čistě algebraický přístup.
+\end{statusbox}
+```
+
+Canonical computational note:
+`research_tracks/EW/su5_embedding_test.tex`.
+
+### 2026-05-12 addendum (EW1+RG file split)
+
+Dedicated derivation note:
+`research_tracks/EW/weinberg_angle_ew1_rg.tex`.
+
+Current canonical wording:
+- Pure algebraic route: **DEAD END**
+- EW1+RG route: **CONDITIONAL [L1] pending Gap C2 Step 1**

@@ -3,6 +3,10 @@
      See LICENSE.md for full license text. -->
 
 # ALPHA BREAKTHROUGH REPORT
+
+> **DEPRECATED / SUPERSEDED STATUS: This document contains pre-audit alpha claims. Current alpha status is given by STATUS_OF_UBT.md and canonical/alpha/ALPHA_MASTER_STATUS.md.**
+> Audit references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.
+
 ## First-Principles Derivation of the Fine-Structure Constant α — Mission Assessment
 
 > **LEGACY / SUPERSEDED BANNER (2026-05-10)**  

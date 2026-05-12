@@ -101,6 +101,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E3 | W±, W³ as gauge connections of SU(2)_L | [L1] | Gauge principle |
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
+| E5b | SU(3) colour-lattice Step 1 ($\mathbf{3}\to Y\in\frac{1}{3}\mathbb{Z}$) isolated as formal target theorem | OPEN / [MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
 | E8 | Photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ | [L1] | Standard EW |
@@ -124,9 +125,10 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 
 | Gap | Description |
 |-----|-------------|
-| EW-1 | Weinberg angle from algebra (dead end — stated explicitly) |
+| EW-1 | Weinberg angle from pure algebra (dead end — stated explicitly) |
+| EW-1b | EW1+RG conditional branch ($3/8 \to 0.231$) pending full first-principles $Y_i$ closure from Gap C2 Step 1 |
 | EW-2 | Higgs doublet VEV from S[Θ] |
-| C2 | Specific fermion hypercharge assignments — partial result: Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$; $Y_Q = 1/6$ consistent with SU(3)×SU(2)_L [L1]; uniqueness is [MC] | `canonical/interactions/hypercharge_assignments.tex` |
+| C2 | Specific fermion hypercharge assignments — conditional: Step 1 (SU(3) colour lattice) OPEN; Step 2 [L1], Step 3 [L0]; uniqueness remains [MC] | `canonical/interactions/hypercharge_assignments.tex`, `canonical/interactions/colour_charge_lattice.tex` |
 | Y2 | Yukawa couplings |
 
 ---
@@ -148,12 +150,38 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | α5 | 137 is prime; prime status implies V_eff stability | [L0]+[STD] | Number theory |
 | α6 | One-loop QED running: α(μ₂) from α(μ₁) reproduced | [L1] | `canonical/interactions/qed.tex` |
 | α7 | Hecke coincidence for 76a1: $|a_{137}|=g(X_0(137))=11$ is unique in $\{131,137,139\}$ by direct point counting; a₁₃₁=−9, a₁₃₉=−3 [L0] přímý výpočet | [MC] | `research_tracks/T3_ALPHA/hecke_alpha_connection.tex`, `reports/hecke_eigenvalue_twin_prime_test.md` |
+| α8 | $\vartheta_3(0\|i)/\eta(i) = \sqrt{2}$ [Ramanujan + $\Gamma$-doplňkový vzorec] | [STD] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α9 | $B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0\|i)^{1/4} = 46.281$, err $0.0066\%$ | [OBS] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α10 | $a_2(D_{\mathrm{UBT}})$ reprodukuje Einstein-Hilbertovu akci | [Prop.] | `research_tracks/T3_ALPHA/seeley_dewitt_coefficients.tex` |
+| α11 | $a_4 \propto \vartheta_3(0\|i)$ conjecture | [MC/OPEN] | `research_tracks/T3_ALPHA/seeley_dewitt_b_bridge.tex` |
+
+### Rogers-Ramanujan Algebraic Identities (2026-05-11)
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| α18 | $\vartheta_3(0\|i) = \pi^{1/4}/\Gamma(3/4)$ (Ramanujan CM value at $\tau=i$) | [STD] | Berndt, *Ramanujan's Notebooks*, Part III, Ch. 17 |
+| α19 | $\eta(i) = \Gamma(1/4)/(2\pi^{3/4})$ | [STD] | classical |
+| α20 | $\vartheta_3(0\|i)/\eta(i) = \sqrt{2}$ — exact algebraic identity via Gamma reflection formula $\Gamma(1/4)\Gamma(3/4)=\pi\sqrt{2}$ | [L0]/[STD] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α21 | $Z_{c=3}(\tau=i) = [\vartheta_3(0\|i)/\eta(i)]^3 = 2\sqrt{2}$ — three free compact bosons at self-dual torus | [STD] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α22 | Algebraic rewriting [OBS]: $B_{\mathrm{cand}} = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0\|i)^{1/4} \approx 46.281$ — numerical accuracy $0.0066\%$; **not a first-principles derivation** | [OBS] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
+| α23 | $Z_{\mathrm{wind}}(\tau=i) = \vartheta_3(0\|i)$ — winding partition function at self-dual point | [STD] | `research_tracks/quantum_ubt/ncg_poisson_b0derivation.tex` |
+
+The algebraic rewriting sharpens Gap G137-B: it makes explicit that the three
+factors in the candidate $B$-formula have different physical origins (algebraic
+structure, self-dual normalisation, winding partition function) and must each
+be derived from $S[\Theta]$ separately.
 
 ### Explicitly Open
 
 | Gap | Description |
 |-----|-------------|
-| G137-B | Derive B ≈ 46.284–46.298 from S[Θ] without α/137/B_required input; alpha status is STRUCTURAL / CONDITIONAL / OPEN GAP |
+| G137-B | Derive $B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4}$ from $S[\Theta]$ without α/137/B_required input; all three factors must be derived; alpha status is STRUCTURAL / CONDITIONAL / OPEN GAP. Sharpened statement: `canonical/alpha/alpha_gap_closure_matrix.tex` |
+
+**Single canonical reference for T3_ALPHA chain status**: `canonical/alpha/alpha_gap_closure_matrix.tex`
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| alpha_matrix | Gap closure matrix for T3_ALPHA | [canonical] | `canonical/alpha/alpha_gap_closure_matrix.tex` |
 
 ---
 
@@ -165,6 +193,7 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | M2 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
 | M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
+| Q1 | Kanonická kvantizace gravitonů (Zerilli+RW módy) | [STD] | `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 
 ---
 

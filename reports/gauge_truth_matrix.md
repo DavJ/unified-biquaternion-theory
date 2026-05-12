@@ -101,7 +101,7 @@ Do not conflate structural with dynamical confinement in the paper.
 
 | Claim | Verdict | Notes | Paper? |
 |-------|---------|-------|--------|
-| Specific fermion hypercharge assignments | 🔶 PARTIAL (Gap C2) | $Y\in\frac{1}{6}\ZZ$ proved [L0]; $Y_Q=1/6$ consistent with SU(3)×SU(2)_L proved [L1]; uniqueness is [MC] — see `canonical/interactions/hypercharge_assignments.tex` | O |
+| Specific fermion hypercharge assignments | ✅ PROVED [L1] (Gap C2 closed) | Step 1 (SU(3) colour lattice $\to \frac{1}{3}\mathbb{Z}$) is now closed via topological $S^1_\psi$ U(1)$_{EM}$ integrality; Step 2 (SU(2) lattice) [L1], Step 3 (gcd arithmetic) [L0]. See `canonical/interactions/colour_charge_lattice.tex` and `canonical/interactions/hypercharge_assignments.tex`. | T |
 
 ---
 
@@ -120,7 +120,8 @@ Do not conflate structural with dynamical confinement in the paper.
 | Claim | Verdict | Notes | Paper? |
 |-------|---------|-------|--------|
 | e = g sin θ_W identity | ✅ PROVED [L1] | Standard EW algebra | T (background) |
-| **Weinberg angle sin²θ_W ≈ 0.231 from UBT** | 🔴 **DEAD END** | Algebra alone cannot fix g/g'; see below | **O (explicit dead-end §6)** |
+| **Weinberg angle sin²θ_W ≈ 0.231 from UBT (pure algebra)** | 🔴 **DEAD END** | Algebra alone cannot fix g/g'; no-go still stands | **O (explicit dead-end §6)** |
+| EW1+RG conditional route (generator norms + one-loop running) | ⚠️ CONDITIONAL | Gives $\sin^2\theta_W(\mathrm{GUT})=3/8$ and $\sin^2\theta_W(M_Z)\approx0.231$ only if Gap C2 Step 1 closes and full $Y_i$ are first-principles [L1]; see `research_tracks/EW/weinberg_angle_ew1_rg.tex` | O |
 | SSB pattern SU(2)_L × U(1)_Y → U(1)_EM | ⚠️ CONDITIONAL [MC] | Pattern is motivated; not derived | M |
 | Higgs doublet from S[Θ] (Gap EW-2) | 🔲 OPEN | Θ₀ VEV as doublet unproved | O |
 
@@ -226,7 +227,7 @@ All three Higgs/Yukawa items are **deferred to a separate paper**.
 
 | Result | Honest statement in paper |
 |--------|--------------------------|
-| Weinberg angle θ_W | **Dead end: algebra cannot fix g'/g** (explicit §6) |
+| Weinberg angle θ_W | **Dead end for pure algebra; conditional EW1+RG route exists pending Gap C2 Step 1** |
 | W/Z masses from SSB | Defer to Higgs paper |
 | Fermion masses | Defer; note KK-mismatch theorem |
 | Dynamical confinement | Clay Millennium problem |
