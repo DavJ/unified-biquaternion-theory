@@ -1,0 +1,50 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Higgs mass from $a_4(D_{\mathrm{UBT}})$: conditional bridge note}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Objective}
+Track the spectral-action chain
+\[
+a_4(D_{\mathrm{UBT}})\Rightarrow \lambda_H\Rightarrow m_H
+\]
+with explicit conditional status labels.
+
+\section{$a_4$ quartic channel}
+Using the existing UBT $a_4$ files,
+\[
+a_4 \supset \frac{1}{16\pi^2}\int \lambda_H\,|\Theta_{\mathrm{VEV}}|^4\,d^4x,
+\]
+so the quartic coupling is in principle read from the trace coefficient of the quartic sector.
+At present this extraction is not yet closed with a unique audited trace normalisation across all sectors.
+
+\section{Mass relation}
+Given a quartic coupling,
+\[
+m_H^2 = 8\lambda_H v^2 = 8\lambda_H\frac{M_W^2}{g^2}.
+\]
+Hence any numerical $m_H$ value is conditional on the $\lambda_H$ extraction and the electroweak input normalisation used.
+
+\begin{statusbox}
+$\lambda_H$ z $a_4(D_{\mathrm{UBT}})$: \textbf{[L1 conditional]}\\
+$m_H^2 = 8\lambda_H v^2$: \textbf{[STD relation]}\\
+Konzistence s $125\,\mathrm{GeV}$: \textbf{[PODMÍNĚNĚ]}\\
+Plné [L1] vyžaduje uzavřít stopový výpočet $\lambda_H$ v jednotné normalizaci.
+\end{statusbox}
+
+\end{document}

@@ -1,0 +1,50 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Scherk--Schwarz twist route for emergent fermionic sector in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Twisted boundary condition setup}
+Candidate twist on $S^1_\psi$:
+\[
+\Theta(\psi+2\pi R_\psi)=e^{i\alpha M}\Theta(\psi),
+\]
+with anti-periodic limit represented by half-integer KK modes.
+
+\section{KK spectrum [STD given twist]}
+If anti-periodic boundary conditions hold,
+\[
+m_n^{\mathrm{twisted}}=\frac{n+1/2}{R_\psi},\qquad n\in\mathbb{Z},
+\]
+and
+\[
+K_{S^1}^{\mathrm{twist}}(t)=\sum_n e^{-t(n+1/2)^2/R_\psi^2}=\vartheta_2\!
+\left(0\middle|i\frac{t}{\pi R_\psi^2}\right).
+\]
+
+\section{Current obstruction}
+The missing [L1] step is not the standard KK formula itself, but proving that the involution used for twist is a symmetry of the canonical audited action and yields a fermionic first-order sector (rather than only modified bosonic spectrum) in the same derivation path.
+
+\begin{statusbox}
+Twisted BC $\tau: \Theta\mapsto-\Theta^\dagger$ konzistentní s $S[\Theta]$: \textbf{[OPEN]}\\
+Half-integer KK spektrum $\Rightarrow$ fermionický charakter: \textbf{[STD given twist]}\\
+$N_{\mathrm{helicity}}=2$ z twisted sektoru: \textbf{[OPEN]}\\
+$N_{\mathrm{eff}}=12$ z kombinace sektorů: \textbf{[OPEN]}\\
+$B_0=8\pi$: \textbf{[OPEN]}, loop-safe audited hodnota zůstává $B_0=2\pi$ [L1].
+\end{statusbox}
+
+\end{document}

@@ -61,6 +61,14 @@ to 137.036 is not yet derived from first principles.
 - Canonical wording source: `reports/alpha_current_verdict.md`
 - B-gap summary: `reports/alpha_B_gap_after_winding_no_go.md`
 
+### Chowla-Selberg sync (2026-05-12)
+
+- New derivation note: `research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex`
+- New numeric check: `tools/chowla_selberg_numerical.py`
+- Result: modular/Gamma chain sharpened; exact determinant-to-coefficient insertion for `B` remains open
+- Gap G137-B: **NARROWED but OPEN**
+- Alpha: **NOT DERIVED**
+
 ### N_eff audit sync (2026-05-10)
 
 - New critical audit: `canonical/n_eff/step2_AUDIT.tex`
