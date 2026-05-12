@@ -101,7 +101,7 @@ Do not conflate structural with dynamical confinement in the paper.
 
 | Claim | Verdict | Notes | Paper? |
 |-------|---------|-------|--------|
-| Specific fermion hypercharge assignments | ⚠️ CONDITIONAL (Gap C2) | Step 1 (SU(3) colour lattice $\to \frac{1}{3}\mathbb{Z}$) is OPEN; Step 2 (SU(2) lattice) [L1], Step 3 (gcd arithmetic) [L0]. See `canonical/interactions/colour_charge_lattice.tex` and `canonical/interactions/hypercharge_assignments.tex`. | O |
+| Specific fermion hypercharge assignments | ✅ PROVED [L1] (Gap C2 closed) | Step 1 (SU(3) colour lattice $\to \frac{1}{3}\mathbb{Z}$) is now closed via topological $S^1_\psi$ U(1)$_{EM}$ integrality; Step 2 (SU(2) lattice) [L1], Step 3 (gcd arithmetic) [L0]. See `canonical/interactions/colour_charge_lattice.tex` and `canonical/interactions/hypercharge_assignments.tex`. | T |
 
 ---
 

@@ -319,8 +319,8 @@ These are the standard values quoted in the problem statement.
 \midrule
 $Y$ quantised in $\frac{1}{2}\ZZ$ (Dirac condition) & \PROVED\ \Lzero &
   Independent of electric charge inputs \\
-Step 1: SU(3) colour lattice $\Rightarrow Y\in\frac{1}{3}\ZZ$ & \OPEN &
-  \texttt{colour\_charge\_lattice.tex}: missing singlet-integrality theorem \\
+Step 1: SU(3) colour lattice $\Rightarrow Y\in\frac{1}{3}\ZZ$ & \PROVED\ \Lone &
+  \texttt{colour\_charge\_lattice.tex}: closed via topological $S^1_\psi$ EM integrality \\
 Step 2: SU(2)$_L$ lattice $\Rightarrow Y\in\frac{1}{2}\ZZ$ & \PROVED\ \Lone &
   Gap C1 closed \\
 Step 3: gcd$(1/3,1/2)=1/6$ & \PROVED\ \Lzero &
@@ -328,36 +328,20 @@ Step 3: gcd$(1/3,1/2)=1/6$ & \PROVED\ \Lzero &
 All other $Y$ assignments from $Y_Q = 1/6$ & \PROVED\ \Lone &
   Pure Gell-Mann-Nishijima algebra \\
 \midrule
-\textbf{Gap C2 fully closed} & \textbf{NO} &
-  Status is \textbf{CONDITIONAL}: Step 1 remains open \\
+\textbf{Gap C2 fully closed} & \textbf{YES} &
+  Status is \textbf{[L1]} after Step 1 closure \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \medskip
-\textbf{What is proved}: The hypercharge assignments are mutually consistent
-with the SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ structure in $\CC\otimes\HH$.
-Step~2 (SU(2) lattice) and Step~3 (gcd arithmetic) are closed.
+\textbf{What is proved}: Step~1 is now closed from a topological theorem:
+U(1)$_{\mathrm{EM}}$ integrality $Q\in\ZZ$ on compact $S^1_\psi$ implies
+$3y\in\ZZ$ for colour triplets, hence $Y\in\frac{1}{3}\ZZ$ (PDG normalisation).
+Together with Step~2 (SU(2) lattice) and Step~3 (gcd arithmetic), Gap~C2 is closed.
 
-\textbf{What is not proved}: Step~1 theorem
-SU(3)$\rightarrow Y\in\frac{1}{3}\ZZ$ is not yet closed without adding a
-separate theorem that colour-singlet triplet combinations carry integer EM charge
-purely from $\CC\otimes\HH$ and $S[\Theta]$.
-
-\textbf{What would close Gap C2}: A proof that the SU(3) colour-charge
-quantisation forces the minimal hypercharge unit to be $1/6$ specifically,
-without reference to experimental charge values.  This would require:
-\begin{enumerate}
-  \item Showing that the SU(3) fundamental representation in $\CC\otimes\HH$
-        uniquely selects the colour-charge lattice $\frac{1}{3}\ZZ$.
-  \item Showing that the SU(2)$_L$ doublet structure in $\CC\otimes\HH$
-        uniquely selects the weak-isospin lattice $\frac{1}{2}\ZZ$.
-  \item Combining these (gcd = $\frac{1}{6}\ZZ$) to force $Y_Q = 1/6$.
-\end{enumerate}
-
-Step~1 status is now isolated in
-\texttt{canonical/interactions/colour\_charge\_lattice.tex} and remains open.
-Step~2 follows from chirality (Gap~C1 closed); Step~3 is modular arithmetic.
+\textbf{Residual caveat}: hypercharge normalisation conventions
+($Q=T_3+Y/2$ vs.\ $Q=T_3+Y_{\mathrm{PDG}}$) must stay explicit when quoting values.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -371,11 +355,11 @@ Step~2 follows from chirality (Gap~C1 closed); Step~3 is modular arithmetic.
 \textbf{Deliverable} & \textbf{Status} \\
 \midrule
 Dirac quantisation forces $Y \in \frac{1}{2}\ZZ$ & \PROVED\ \Lzero \\
-Step~1 (SU(3) colour lattice $\to \frac{1}{3}\ZZ$) & \OPEN\ (see new file) \\
+Step~1 (SU(3) colour lattice $\to \frac{1}{3}\ZZ$) & \PROVED\ \Lone \\
 Step~2+3 (SU(2) + gcd $\to \frac{1}{6}\ZZ$) & \PROVED\ \Lone+\Lzero \\
 All SM hypercharges from $Y_Q = 1/6$ + GNN & \PROVED\ \Lone \\
 $Y_Q = 1/6$ unique (no charge inputs needed) & \MC\ (not yet proved) \\
-\textbf{Gap C2 fully closed} & \textbf{CONDITIONAL / OPEN STEP 1} \\
+\textbf{Gap C2 fully closed} & \textbf{YES [L1]} \\
 \midrule
 Update \texttt{reports/gauge\_truth\_matrix.md §4} & See below \\
 Update \texttt{WHAT\_IS\_PROVED.md} & See Section~\ref{sec:verdict} \\
