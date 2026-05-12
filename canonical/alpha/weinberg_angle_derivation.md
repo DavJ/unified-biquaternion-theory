@@ -8,10 +8,10 @@
 **Date**: 2026-04-28  
 **Priority**: CONDITIONAL RE-OPEN (EW2.A check added 2026-05-12)
 
-> **DEPRECATION NOTICE (2026-04-28)**: This file treated the Weinberg angle
-> derivation as a critical priority.  That assessment is superseded.
-> The Weinberg angle route is a **DEAD END**: the biquaternion algebra cannot fix
-> the ratio g'/g (no-go argument in `reports/gauge_truth_matrix.md §6`).
+> **STATUS NOTICE (updated 2026-05-12)**: Purely algebraic derivation of the
+> Weinberg angle remains a **DEAD END** (the biquaternion algebra alone cannot
+> fix $g'/g$).  The EW1+RG generator-norm branch is now tracked as
+> **CONDITIONAL [L1] pending Gap C2 Step 1**.
 > This file is preserved as historical record only.  
 > **Truth anchor**: `STATUS_OF_UBT.md §Deprecated Claims`  
 **Sources**: `canonical/interactions/sm_gauge.tex`,
@@ -352,3 +352,12 @@ Weinbergův úhel: není uzavřen; dead-end platí pro čistě algebraický př�
 
 Canonical computational note:
 `research_tracks/EW/su5_embedding_test.tex`.
+
+### 2026-05-12 addendum (EW1+RG file split)
+
+Dedicated derivation note:
+`research_tracks/EW/weinberg_angle_ew1_rg.tex`.
+
+Current canonical wording:
+- Pure algebraic route: **DEAD END**
+- EW1+RG route: **CONDITIONAL [L1] pending Gap C2 Step 1**

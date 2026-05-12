@@ -101,6 +101,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E3 | W±, W³ as gauge connections of SU(2)_L | [L1] | Gauge principle |
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
+| E5b | SU(3) colour-lattice Step 1 ($\mathbf{3}\to Y\in\frac{1}{3}\mathbb{Z}$) isolated as formal target theorem | OPEN / [MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
 | E8 | Photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ | [L1] | Standard EW |
@@ -124,9 +125,10 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 
 | Gap | Description |
 |-----|-------------|
-| EW-1 | Weinberg angle from algebra (dead end — stated explicitly) |
+| EW-1 | Weinberg angle from pure algebra (dead end — stated explicitly) |
+| EW-1b | EW1+RG conditional branch ($3/8 \to 0.231$) pending full first-principles $Y_i$ closure from Gap C2 Step 1 |
 | EW-2 | Higgs doublet VEV from S[Θ] |
-| C2 | Specific fermion hypercharge assignments — partial result: Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$; $Y_Q = 1/6$ consistent with SU(3)×SU(2)_L [L1]; uniqueness is [MC] | `canonical/interactions/hypercharge_assignments.tex` |
+| C2 | Specific fermion hypercharge assignments — conditional: Step 1 (SU(3) colour lattice) OPEN; Step 2 [L1], Step 3 [L0]; uniqueness remains [MC] | `canonical/interactions/hypercharge_assignments.tex`, `canonical/interactions/colour_charge_lattice.tex` |
 | Y2 | Yukawa couplings |
 
 ---

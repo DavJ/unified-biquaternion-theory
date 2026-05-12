@@ -1,0 +1,94 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\title{\textbf{Gap C2 Step 1: SU(3) Colour-Charge Lattice Attempt}\\
+\large Colour triplet structure and the target constraint $Y\in \frac{1}{3}\ZZ$}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section*{Scope}
+This note isolates \textbf{Step 1} of Gap C2:
+\[
+\mathrm{SU}(3)_c\ \text{fundamental representation}
+\ \Longrightarrow\
+Y\in \tfrac{1}{3}\ZZ.
+\]
+Only algebraic and representation-theoretic inputs from active canonical files are used.
+
+\section{Inputs used}
+\begin{itemize}
+  \item \textbf{[L0]} $\mathrm{SU}(3)_c$ acts on quarks in the fundamental representation $\mathbf{3}$ with basis $(e_1,e_2,e_3)$ and generators $\lambda_a/2$; see \texttt{canonical/interactions/sm\_gauge.tex §G.B}.
+  \item \textbf{[L0]} $\ZZ_2\times \ZZ_2\times \ZZ_2$ involution structure yielding three colour sectors; see \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex}.
+  \item \textbf{[L1]} Gell-Mann--Nishijima relation $Q=T_3+Y/2$; see \texttt{canonical/interactions/qed.tex}.
+\end{itemize}
+
+\section{Triplet-sum integrality proposition}
+\begin{proposition}[Colour-triplet sum rule under singlet integrality hypothesis]
+\label{prop:triplet_sum}
+Let $\Phi_{\mathrm{color}}=(\Phi_r,\Phi_g,\Phi_b)$ be a colour-triplet field with common hypercharge eigenvalue $y$.
+If the colour-antisymmetric singlet built from three triplet components has integer electromagnetic charge, then
+\[
+3y\in\ZZ,
+\qquad\text{hence}\qquad
+y\in\tfrac{1}{3}\ZZ.
+\]
+\end{proposition}
+
+\begin{proof}
+For a colour triplet with colour-independent hypercharge eigenvalue $y$, the hypercharge contribution to the three-colour singlet sum is $y+y+y=3y$.
+If the colour-singlet electromagnetic charge is required to be integer and all non-hypercharge terms in $Q=T_3+Y/2$ contribute integer/half-integer values that cancel in the singlet channel, then the remaining hypercharge contribution must satisfy $3y\in\ZZ$.
+Therefore $y\in \frac{1}{3}\ZZ$.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:triplet_sum} is a formal implication once the singlet-integrality hypothesis is available from UBT as a theorem.
+The unresolved point is deriving that hypothesis purely from $\CC\otimes\HH$ and $S[\Theta]$ without importing empirical hadron charge assignments.
+\end{remark}
+
+\section{Target theorem status}
+\begin{theorem}[SU(3) colour lattice forcing $Y\in\frac{1}{3}\ZZ$]
+\label{thm:colour_lattice}
+The requirement that the $\mathrm{SU}(3)_c$ colour gauge group in $\CC\otimes\HH$ acts consistently on the quark fundamental representation $\mathbf{3}$ forces hypercharge eigenvalues of colour-triplet fields to lie in $\frac{1}{3}\ZZ$.
+\end{theorem}
+
+\begin{proof}[Honest status]
+The proof is \textbf{OPEN}: current files establish the triplet structure and Proposition~\ref{prop:triplet_sum}, but the crucial singlet-integrality premise is not yet closed as a standalone theorem from $\CC\otimes\HH$ alone.
+Therefore Theorem~\ref{thm:colour_lattice} is currently conditional, not closed at unconditional [L1].
+\end{proof}
+
+\begin{tcolorbox}[title={Gap C2 Step 1 — Final verdict}]
+Krok 1: SU(3) $\rightarrow Y\in\frac{1}{3}\ZZ$: \textbf{[OPEN — blocker: singlet-integrality theorem from $\CC\otimes\HH$ is missing]}\\
+Krok 2: SU(2)$_L \rightarrow Y\in\frac{1}{2}\ZZ$: \textbf{[PROVED L1]} (Gap C1)\\
+Krok 3: gcd$(1/3,1/2)=1/6 \rightarrow Y_Q=1/6$: \textbf{[PROVED L0]} (modular arithmetic)\\
+Gap C2 celkem: \textbf{[CONDITIONAL]}.
+\end{tcolorbox}
+
+\end{document}

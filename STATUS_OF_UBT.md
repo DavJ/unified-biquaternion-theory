@@ -102,7 +102,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 
 | Gap | Description | Priority |
 |-----|-------------|----------|
-| EW-1 | Weinberg angle sin²θ_W — **DEAD END** (algebra cannot fix g'/g) | Do not pursue; state as dead end in paper |
+| EW-1 | Weinberg angle sin²θ_W — **DEAD END for pure algebra** (algebra cannot fix g'/g) | Keep dead-end statement for algebra-only route |
+| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2 Step 1 closure; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
 | C2 | Specific fermion hypercharge assignments | Open |
 | Y2 | Yukawa couplings | Open |
@@ -112,10 +113,10 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 
 **Overall**: 85% submit-ready now; 90% after verifying anomaly cancellation.
 
-**Honest dead end to state in paper**: The Weinberg angle sin²θ_W ≈ 0.231 cannot
-be derived from algebra alone.  The ratio g'/g is a free parameter in the SU(2)_L × U(1)_Y
-kinetic term and cannot be fixed by any continuous deformation of the algebra.
-It is a semi-empirical input in UBT.
+**Honest statement to use in paper**: The Weinberg angle sin²θ_W ≈ 0.231 cannot
+be derived from algebra alone (dead-end no-go for pure algebraic fixing of g'/g).
+An EW1+RG route exists only conditionally, pending first-principles closure of
+Gap C2 Step 1 for fermion hypercharge assignments.
 
 ### Next Action
 
