@@ -265,10 +265,12 @@ involution structure — not as an automorphism group.
 
 **Rebuttal**:
 
-The paper makes no claim about the Weinberg angle.  The angle is explicitly
-identified as a semi-empirical limitation: "sin²θ_W requires fermion hypercharge
-assignments that are not fixed by the abstract algebra ℂ⊗ℍ alone" (Dead End OHP-3,
-PRIORITIES_2026.md §4; `research_tracks/T2_GAUGE/missing_axioms.md §Gap C2`).
+The paper makes no claim about a pure-algebra derivation of the Weinberg angle.
+The angle is explicitly identified as a limitation of the algebra-only route:
+"sin²θ_W requires fermion hypercharge assignments that are not fixed by the
+abstract algebra ℂ⊗ℍ alone" (OHP-3, `PRIORITIES_2026.md`; `research_tracks/T2_GAUGE/missing_axioms.md §Gap C2`).
+A conditional EW-1b (EW1+RG) branch is tracked separately and should be labeled
+conditional rather than proved.
 
 No currently published algebraic unification framework derives sin²θ_W from a
 single algebra without imposing additional representations or fixing the GUT
@@ -276,10 +278,9 @@ embedding.  This limitation is common to all algebraic derivations in the
 literature.  Reviewers from well-known non-commutative geometry work (e.g.,
 Connes-Lott, Chamseddine-Connes) face the same constraint.
 
-**Preemptive action**: Section 6 of the paper states sin²θ_W as a declared dead
-end with the precise reason (g/g' ratio not fixed by Aut(ℂ⊗ℍ) alone) and a
-forward-looking note about what additional input (Higgs sector representation
-theory) would be needed.
+**Preemptive action**: Section 6 of the paper states sin²θ_W as a pure-algebra
+dead end with the precise reason (g/g' ratio not fixed by Aut(ℂ⊗ℍ) alone), and
+separately labels EW-1b (EW1+RG) as conditional pending first-principles closure.
 
 ---
 
@@ -355,7 +356,7 @@ The comparison should be included.  Key distinguishing points:
 | Gauge groups derived | SU(3)×SU(2)_L×U(1)_Y | SU(3)×SU(2)×U(1) |
 | Free parameters at gauge level | Zero | Zero (structure fixed) |
 | Chirality | Gap C1 (motivated) | Built into Hilbert space chirality |
-| Weinberg angle | Semi-empirical (dead end) | Predicted at GUT scale (requires RG) |
+| Weinberg angle | Semi-empirical (pure-algebra dead end; EW-1b conditional) | Predicted at GUT scale (requires RG) |
 | Metric derivation | From Θ field (UBT novel) | Spectral action (different mechanism) |
 
 The paper should note that UBT uses a strictly smaller algebra (8 real vs 21 real

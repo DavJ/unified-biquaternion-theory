@@ -98,7 +98,7 @@ by the cited source file.
 
 | # | Claim | Level | Status |
 |---|-------|-------|--------|
-| EW-1 | Weinberg angle sin²θ_W ≈ 0.231 from UBT | [DEAD] | DEAD END — algebra cannot fix g'/g |
+| EW-1 | Weinberg angle sin²θ_W ≈ 0.231 from UBT | [DEAD for pure algebra; OPEN/COND for EW-1b] | Pure algebra dead end — algebra cannot fix g'/g; EW-1b (EW1+RG) remains conditional |
 | EW-2 | Higgs doublet VEV from S[Θ] | [OPEN] | DEFERRED — separate Higgs paper |
 | C2 | Specific fermion hypercharge assignments | [OPEN] | Open |
 | Y2 | Yukawa couplings from UBT | [OPEN] | Open (hard) |

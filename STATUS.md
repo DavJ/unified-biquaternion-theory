@@ -51,7 +51,8 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 **Status**: NEAR READY (85% — needs write-up, not new proofs)
 
 Algebraic SU(3) × SU(2)_L × U(1)_Y emergence from ℂ⊗ℍ is proved at [L0].
-Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
+Chirality gap (C1) is resolved.  Weinberg angle is a dead end for pure algebra,
+with a conditional EW-1b (EW1+RG) branch still tracked.
 
 | Item | Status |
 |------|--------|
@@ -64,7 +65,7 @@ Chirality gap (C1) is resolved.  Weinberg angle is an honest dead end.
 | Three generations from ψ-winding | ✅ Proved [L0] |
 | Chirality: SU(2)_L not SU(2)_R (Gap C1 closed) | ✅ Proved [L1] |
 | Hypercharge quantisation | ✅ Proved [L0] |
-| Weinberg angle sin²θ_W ≈ 0.231 | 🔴 DEAD END — algebra cannot fix g'/g |
+| Weinberg angle sin²θ_W ≈ 0.231 | 🟠 CONDITIONAL OPEN — pure algebra is dead end; EW-1b (EW1+RG) remains conditional |
 | W/Z masses from SSB | ⚪ Deferred to Higgs paper |
 | Fermion masses | ⚪ Deferred |
 | Dynamical confinement | ⚪ Clay Millennium Problem |
@@ -109,7 +110,7 @@ If fails: publish conditional integer-137 result as companion note.
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
 | Hard open problems | 1 ([L2]: GAP-10; GAP-Z closed 2026-05-10) |
-| Dead-end routes | 3 (A3, A4 alpha; Weinberg angle) |
+| Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 1 (T1_GR) |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |
 | Tracks blocked on critical gap | 1 (T3_ALPHA) |

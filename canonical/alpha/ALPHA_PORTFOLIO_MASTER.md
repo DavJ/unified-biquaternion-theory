@@ -59,9 +59,9 @@ Derive α⁻¹_bare = 137 (integer) from UBT without fitting any parameter.
 > **Note on electroweak_weinberg**: This route was previously listed as Tier A
 > ACTIVE in root-level `ALPHA_PORTFOLIO_STATUS.md`.  That listing is superseded.
 > Per `STATUS_OF_UBT.md §Deprecated Claims` and `canonical/gauge/GAUGE_MASTER_STATUS.md §6`,
-> the Weinberg angle derivation is a **DEAD END**: the biquaternion algebra cannot
-> fix the ratio g'/g.  The route is PARKED pending a GUT embedding that could
-> unblock EW-1.  Active priority: ZERO.
+> the Weinberg angle derivation is a **pure-algebra DEAD END**: the biquaternion algebra cannot
+> fix the ratio g'/g.  The route is PARKED; EW-1b (EW1+RG) remains conditional,
+> pending first-principles closure in T2_GAUGE.  Active priority: ZERO.
 
 ---
 
@@ -193,8 +193,8 @@ verifies that RGE running is consistent with observed α(0).
 
 | Route | Blocker | Revival condition |
 |-------|--------|-------------------|
-| electroweak_weinberg | [DEAD]: algebra cannot fix g'/g (EW-1 dead end) | Only if EW-1 is unblocked via GUT embedding in T2_GAUGE |
-| gauge_normalization (A1) | Conditional on EW-1 (dead end) | Same |
+| electroweak_weinberg | [DEAD for pure algebra; OPEN/COND for EW-1b]: algebra cannot fix g'/g in pure algebra | Only if EW-1b is unblocked via GUT/RG closure in T2_GAUGE |
+| gauge_normalization (A1) | Conditional on EW-1 pure-algebra dead end; EW-1b conditional | Same |
 | symmetry_breaking_projection (A2) | Conditional on EW-1 + EW-2 | Same |
 
 ---
@@ -229,7 +229,7 @@ These results are locked-in and form the foundation all Tier A/B routes build on
 
 | Route | Reason | Level |
 |-------|--------|-------|
-| Weinberg angle sin²θ_W from algebra | [DEAD] — algebra cannot fix g'/g | DEAD END |
+| Weinberg angle sin²θ_W from algebra | [DEAD for pure algebra; OPEN/COND for EW-1b] — algebra cannot fix g'/g in pure algebra | Pure-algebra DEAD END; EW-1b conditional |
 | Route A3 (modular direct) | [DEAD] — exhaustive search failed | DEAD END |
 | Route A4 (coding constraint) | [DEAD] — proved impossible | DEAD END |
 | δ = 0.036 correction without α | [COND] — uses α as input (circular) | CIRCULAR |

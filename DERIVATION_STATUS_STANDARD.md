@@ -92,9 +92,9 @@ Dead end                 → [DEAD]                → state as dead end explici
 | Schwarzschild metric to 10⁻¹⁵ error | [L1]+[NUM] | Proved analytically, confirmed numerically |
 | α⁻¹_bare = 137 (integer) given B_phenom | [L1][COND: G137-B] | Proved given B; B not yet derived |
 | N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC]. | OPEN/[MC] | `canonical/n_eff/step2_AUDIT.tex` |
-| Weinberg angle sin²θ_W from UBT | [DEAD] | No-go argument: algebra cannot fix g'/g |
+| Weinberg angle sin²θ_W from UBT | [DEAD for pure algebra; OPEN/COND for EW-1b] | No-go for pure algebra: algebra cannot fix g'/g; EW-1b branch remains conditional |
 | Fermion mass hierarchy | [OPEN] | Hard; known obstruction (KK mismatch) |
-| Zerilli equation (GAP-Z) | [OPEN] | Open problem; does not block submission |
+| Zerilli equation (GAP-Z) | ✅ Closed [L1] | Closed on 2026-05-10; does not block submission |
 | Dark sector p-adic extension | [L3] | Route identified; not attempted |
 | Consciousness / psychons | [L4] | Speculative; frozen in speculative_extensions/ |
 

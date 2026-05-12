@@ -206,7 +206,7 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Topic | Status |
 |-------|--------|
 | α⁻¹ = 137.036 (exact, including one-loop correction) | Open — Gap G137-B |
-| Weinberg angle sin²θ_W | Dead end |
+| Weinberg angle sin²θ_W | Conditional open — pure-algebra route is dead end; EW-1b (EW1+RG) remains conditional |
 | W/Z boson masses | Open — Gap EW-2 |
 | Higgs mass 125 GeV | Open |
 | Fermion masses | Open-hard (KK obstruction theorem; see `research_tracks/fermion_masses/fermion_mass_status_v2.md §3`) |

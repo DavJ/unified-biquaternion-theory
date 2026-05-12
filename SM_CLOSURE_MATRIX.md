@@ -96,7 +96,7 @@ is needed.  Used to drive gap-closure work before the T2_GAUGE paper submission.
 | SM Element | UBT Derivation | Status | Source | Paper action |
 |------------|----------------|--------|--------|--------------|
 | SU(2)_L × U(1)_Y → U(1)_EM symmetry breaking pattern | Candidate: radiative Hosotani mechanism | **[CANDIDATE]** | `research_tracks/research/higgs_yukawa_scan.md` | Defer |
-| Weinberg angle sin²θ_W ≈ 0.23122 | Cannot be derived from ℂ⊗ℍ alone (g/g' ratio unconstrained by algebra) | **[DEAD END]** | `research_tracks/T2_GAUGE/missing_axioms.md §Gap C2`, `PRIORITIES_2026.md OHP-3` | Explicit dead-end statement in §6 |
+| Weinberg angle sin²θ_W ≈ 0.23122 | Cannot be derived from ℂ⊗ℍ alone (g/g' ratio unconstrained by algebra) | **[DEAD for pure algebra; OPEN/COND for EW-1b]** | `research_tracks/T2_GAUGE/missing_axioms.md §Gap C2`, `PRIORITIES_2026.md OHP-3` | Explicit pure-algebra dead-end statement in §6 + conditional EW-1b note |
 | Higgs field as SU(2)_L doublet from S[Θ] | 1⊕3⊕3̄⊕1 decomposition lacks j=1/2 doublet; new input needed | **[OPEN]** (Gap EW-2) | `reports/alpha_no_fit_audit.md §Route A4` | Defer to Higgs paper |
 | Higgs VEV ⟨H⟩ = v = 246 GeV | Not derived | **[OPEN]** | `research_tracks/T2_GAUGE/missing_axioms.md §Gap C3` | Defer |
 | W± mass m_W ≈ 80.4 GeV | Not derived | **[OPEN]** | — | Defer |
@@ -145,7 +145,7 @@ is needed.  Used to drive gap-closure work before the T2_GAUGE paper submission.
 
 | Gap | Paper strategy |
 |-----|---------------|
-| C2 — Weinberg angle | Declare dead end; explain why algebra alone is insufficient |
+| C2 — Weinberg angle | Declare pure-algebra dead end; note EW-1b as conditional branch |
 | C3 — Higgs/λ ×11 | Defer to separate Higgs paper |
 | Y1 — Fermion masses | Defer; state KK obstruction |
 | Y2 — Yukawa couplings | Defer |
@@ -200,7 +200,7 @@ via K-theory class).
 | U(1)_Y from right action | High (algebraic identity) | Low |
 | Three generations | High (dim Im ℍ = 3) | Low |
 | Chirality (C1) | Medium (motivated, not proved) | Medium — close before submission |
-| Weinberg angle | Declared dead end | Low (if stated clearly) |
+| Weinberg angle | Pure-algebra dead end; EW-1b conditional | Low (if stated clearly) |
 | Higgs/masses | Open | Low (if deferred explicitly) |
 
 **Overall T2_GAUGE readiness**: **75–80%** given Gap C1 is the only medium-risk

@@ -474,8 +474,8 @@ diluting the core program.
 
 ### OHP-3: Weinberg angle sin²θ_W
 
-**Status**: Dead End (ℂ⊗ℍ alone)  
-**Assessment**: The mixing ratio g/g' between SU(2)_L and U(1)_Y is not fixed by the algebra; it requires additional dynamical input.  This is likely a permanent limitation: UBT derives the gauge *group* but not the *coupling ratios*.  This should be stated explicitly in all papers.
+**Status**: Pure-algebra Dead End (ℂ⊗ℍ alone); EW-1b (EW1+RG) remains conditional  
+**Assessment**: The mixing ratio g/g' between SU(2)_L and U(1)_Y is not fixed by pure algebra; it requires additional dynamical input. UBT derives the gauge *group* but not the *coupling ratios* from pure algebra alone. A conditional EW-1b (EW1+RG) branch is still tracked and should be labeled conditional in all papers.
 
 ### OHP-4: Renormalization / scale behavior beyond one loop
 

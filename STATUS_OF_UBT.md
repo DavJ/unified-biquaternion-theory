@@ -60,18 +60,18 @@ None that prevent submission.
 
 | Gap | Level | Impact |
 |-----|-------|--------|
-| GAP-Z — Zerilli equation (even-parity graviton) | [L2] Open | Does not block; stated in paper |
+| GAP-Z — Zerilli equation (even-parity graviton) | ✅ Closed [L1] (2026-05-10) | Closed; no blocker |
 | GAP-10 — Off-shell Θ-only closure | [L2] Open | Does not block; stated in paper |
 
 ### Pre-Submission Fix
 
-✅ Applied in RC1: Newton's G clarified as free parameter (§3.5 of `papers/UBT_GR_RC1.tex`).
-⚠️ RC1 compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean RC1 build
+✅ Applied in RC2: Newton's G clarification retained and formatting fixes integrated (`papers/UBT_GR_RC2.tex`).
+⚠️ RC2 compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean RC2 build
 must be confirmed in a LaTeX-enabled runner/CI.
 
 ### Next Action
 
-Submit `papers/UBT_GR_RC1.tex` to arXiv (gr-qc or math-ph) and simultaneously
+Submit `papers/UBT_GR_RC2.tex` to arXiv (gr-qc or math-ph) and simultaneously
 to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ---
@@ -191,7 +191,7 @@ Cross-references:
 
 | Route | Reason | Revival condition |
 |-------|--------|-------------------|
-| A1: Gauge Normalization | Conditional on Gap EW-1 (Weinberg angle — DEAD END) | Only if EW-1 is somehow solved in T2_GAUGE |
+| A1: Gauge Normalization | Conditional on Gap EW-1 (pure-algebra Weinberg route is dead end; EW-1b conditional) | Only if EW-1b is closed in T2_GAUGE |
 | A2: Symmetry-Breaking Projection | Same blocker as A1 (EW-1 + EW-2) | Same |
 
 ### Dead-End Routes
@@ -250,7 +250,7 @@ Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`
 
 | Old Claim | Where It Appeared | Why Deprecated | Replacement |
 |-----------|-------------------|----------------|-------------|
-| Weinberg angle derivation is a CRITICAL PRIORITY | `canonical/alpha/weinberg_angle_derivation.md`, `reports/ew_mixing_status.md` | No-go argument proves the algebra cannot fix g'/g; continuous deformations of the SU(2)_L × U(1)_Y embedding change tan θ_W continuously | State as DEAD END in T2_GAUGE paper §6 |
+| Weinberg angle derivation is a CRITICAL PRIORITY | `canonical/alpha/weinberg_angle_derivation.md`, `reports/ew_mixing_status.md` | No-go argument proves pure algebra cannot fix g'/g; continuous deformations of the SU(2)_L × U(1)_Y embedding change tan θ_W continuously | State pure-algebra DEAD END + EW-1b conditional branch in T2_GAUGE paper §6 |
 | "Four active α routes" | `canonical/alpha/alpha_derivation_routes.md` (dated 2026-04-27) | Routes A3 and A4 are definitively killed (exhaustive scan + proved impossibility) | One primary route (A_PRIME), two parked, two killed |
 | Chirality Gap C1 as merely MOTIVATED [SE] | `reports/gauge_status_matrix.md` (line 70), `reports/chirality_gap.md` | Formal proof exists: `canonical/chirality/step3_gap_C1_resolution.tex` | C1 is [L1] PROVED — SU(2)_L acts on left-chiral doublets |
 | α⁻¹ = 137.036 claimed derivable via B_base/k=1 Kac-Moody route | Multiple early α documents | 27+ approaches exhausted; k=1 has not been proved; this specific number is not the claim | Claim is α⁻¹_bare = 137 (integer), conditional on Gap G137-B |

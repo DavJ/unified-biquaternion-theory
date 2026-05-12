@@ -22,7 +22,8 @@ Supersedes and summarises: `reports/gauge_status_matrix.md`, `reports/gauge_trut
 ## Overall Verdict
 
 **Status**: NEAR READY — algebraic results proved; paper write-up needed (6–8 weeks).
-No changes to proved results. Weinberg angle dead end confirmed; not to be reopened.
+No changes to proved results. Weinberg angle pure-algebra dead end confirmed;
+EW-1b (EW1+RG) remains a conditional branch.
 
 | Sector | Status | Summary |
 |--------|--------|---------|
@@ -32,7 +33,7 @@ No changes to proved results. Weinberg angle dead end confirmed; not to be reope
 | U(1)_Y | ✅ PROVED [L0] | Right phase action |
 | U(1)_EM | ✅ PROVED [L0]+[L1] | ψ-cycle phase + Gell-Mann–Nishijima |
 | Three generations | ✅ PROVED [L0] | ψ-winding modes |
-| Weinberg angle sin²θ_W | 🔴 DEAD END | Algebra cannot fix g'/g |
+| Weinberg angle sin²θ_W | 🟠 CONDITIONAL OPEN | Pure algebra is dead end (cannot fix g'/g); EW-1b (EW1+RG) remains conditional |
 | W/Z masses from SSB | 🔵 DEFERRED | Separate Higgs paper |
 | Fermion masses | 🔵 DEFERRED | KK-mismatch theorem; hard |
 | Dynamical confinement | 🔵 OUT OF SCOPE | Clay Millennium Problem |
@@ -123,14 +124,15 @@ No changes to proved results. Weinberg angle dead end confirmed; not to be reope
 
 ---
 
-## 6. Electroweak Mixing — DEAD END
+## 6. Electroweak Mixing — Pure-Algebra Dead End + Conditional Branch
 
-**Verdict**: DEAD END.  State explicitly as a dead end in T2_GAUGE paper §6.
+**Verdict**: Pure algebra route is DEAD END; EW-1b (EW1+RG) remains
+CONDITIONAL and must be stated as conditional in T2_GAUGE paper §6.
 
 | Claim | Status |
 |-------|--------|
 | e = g sin θ_W identity | [L1] PROVED (standard EW) |
-| **Weinberg angle sin²θ_W ≈ 0.231 from UBT** | 🔴 **DEAD END** |
+| **Weinberg angle sin²θ_W ≈ 0.231 from UBT** | 🟠 **CONDITIONAL OPEN** (pure algebra dead end; EW-1b conditional) |
 | SSB pattern SU(2)_L × U(1)_Y → U(1)_EM | [MC] CONDITIONAL |
 | Higgs doublet from S[Θ] (Gap EW-2) | OPEN |
 
@@ -198,7 +200,7 @@ No changes to proved results. Weinberg angle dead end confirmed; not to be reope
 
 | Result | Honest statement |
 |--------|-----------------|
-| Weinberg angle θ_W | **Dead end: algebra cannot fix g'/g** (§6) |
+| Weinberg angle θ_W | **Pure-algebra dead end; EW-1b conditional** (§6) |
 | W/Z masses from SSB | Defer to Higgs paper |
 | Fermion masses | Defer; note KK-mismatch theorem |
 | Dynamical confinement | Clay Millennium Problem |

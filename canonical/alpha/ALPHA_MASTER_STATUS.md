@@ -43,7 +43,7 @@ to 137.036 is not yet derived from first principles.
 | α⁻¹_bare = 137 (integer) | **CONDITIONAL ONLY** — no first-principles closure |
 | α⁻¹ = 137.036 (full precision) | **NOT ACHIEVED** — requires Gap G137-B resolution |
 | Active routes | 1 (A_PRIME) |
-| Parked routes | 2 (A1, A2 — conditional on dead-end Weinberg angle) |
+| Parked routes | 2 (A1, A2 — conditional on EW-1 pure-algebra dead end; EW-1b remains conditional) |
 | Killed routes | 2 (A3, A4 — definitively failed) |
 
 ### Status sync (2026-05-10 — winding NO-GO update)
@@ -201,10 +201,10 @@ a first-principles path compatible with the alpha objective.
 
 ### PARKED — A1: Gauge Normalization
 
-**Status**: PARKED — conditional on Gap EW-1 (Weinberg angle — **DEAD END**)  
+**Status**: PARKED — conditional on Gap EW-1 (pure-algebra route is **DEAD END**; EW-1b is conditional)  
 **Score**: 7/15
 
-**Blocker**: Requires sin²θ_W from algebra (Gap EW-1).  Gap EW-1 = DEAD END.  
+**Blocker**: Requires sin²θ_W from algebra (Gap EW-1).  Pure algebra is dead end; EW-1b remains conditional.  
 **Revival condition**: Only if Gap EW-1 is somehow closed in T2_GAUGE track.  
 **Active priority**: ZERO.
 
@@ -215,7 +215,7 @@ a first-principles path compatible with the alpha objective.
 **Status**: PARKED — same blocker as A1 (EW-1 + EW-2)  
 **Score**: 7/15
 
-**Blocker**: EW-1 (DEAD END) and EW-2 (OPEN).  
+**Blocker**: EW-1 pure-algebra dead end (EW-1b conditional) and EW-2 (OPEN).  
 **Active priority**: ZERO.
 
 ---
@@ -263,7 +263,7 @@ scheme — neither determined by coding constraints.
 |------|-------|-------|--------|-------|
 | 1 | **A_PRIME**: V_eff prime attractor | **10/15** | **PRIMARY BUT CONDITIONAL** | α⁻¹_bare = 137 (integer), conditional on G137-B |
 | 2 | A5: One-loop running | 8/15 | SUPPORTING (not bare-α) | α(μ₂) from α(μ₁) |
-| 3 | A1: Gauge normalization | 7/15 | PARKED (EW-1 dead end) | α after θ_W fixed |
+| 3 | A1: Gauge normalization | 7/15 | PARKED (EW-1 pure-algebra dead end; EW-1b conditional) | α after θ_W fixed |
 | 4 | A2: Symmetry-breaking projection | 7/15 | PARKED (EW-1+EW-2) | α after SSB |
 | 5 | A3: Theta/modular | 3/15 | **KILLED** | Failed |
 | 6 | A4: Layer 2 coding | 2/15 | **KILLED** | Failed (proved impossible) |
@@ -326,7 +326,7 @@ gate (2026-05-27) regardless of Paths A and B outcome.
 
 | Route | Reason |
 |-------|--------|
-| Weinberg angle derivation | DEAD END — algebra cannot fix g'/g |
+| Weinberg angle derivation | Pure-algebra DEAD END — algebra cannot fix g'/g; EW-1b branch is conditional |
 | Route A3 (modular direct) | KILLED — exhaustive search failed |
 | Route A4 (coding) | KILLED — proved impossible |
 | eta(i) insertion as derived B-modifier | REJECTED — not first-principles derivation of n log n coefficient |

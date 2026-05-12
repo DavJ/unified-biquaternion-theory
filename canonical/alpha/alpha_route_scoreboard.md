@@ -99,7 +99,7 @@ Updated every cycle. Determines route priority and kill decisions.
 |-------|--------------|--------|
 | A3 (Theta/Modular direct) | 3/15 | Exhaustive search: no modular invariant = 137.036 |
 | A4 (Layer 2 coding) | 2/15 | Proved impossible: coding fixes spectrum, not coupling magnitude |
-| A1 (Gauge normalization) | 7/15 | Parked: requires Gap EW-1 (Weinberg angle — DEAD END) |
+| A1 (Gauge normalization) | 7/15 | Parked: EW-1 pure-algebra route is dead end; EW-1b remains conditional |
 | A2 (Symmetry breaking) | 7/15 | Parked: requires Gaps EW-1 + EW-2 (both blocked) |
 
 ---

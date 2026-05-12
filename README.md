@@ -92,14 +92,14 @@ UBT is honest about its limits.
 
 | Topic | Status |
 |-------|--------|
-| Weinberg angle sin²θ_W | **Dead end** — algebra cannot fix g'/g |
+| Weinberg angle sin²θ_W | **Conditional open** — pure-algebra route is dead end; EW-1b (EW1+RG) is tracked conditionally |
 | W/Z boson masses | Open (Higgs mechanism deferred) |
 | Fermion mass spectrum | Open-hard |
 | Zerilli equation (even-parity graviton) | Open GAP-Z |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Full α = 1/137.036 (not just integer 137) | Open — Gap G137-B |
 
-Full list: [`WHAT_IS_PROVED.md`](WHAT_IS_PROVED.md)
+Full list: [`WHAT_IS_PROVED.md` ("What Is NOT Claimed as Proved")](WHAT_IS_PROVED.md#what-is-not-claimed-as-proved)
 
 ---
 
