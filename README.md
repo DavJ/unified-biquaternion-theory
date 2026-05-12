@@ -13,10 +13,31 @@
 
 UBT derives General Relativity, Standard Model gauge structure, and three
 particle generations from one algebraic object: the biquaternion algebra
-**ℂ⊗ℍ** (complex quaternions), extended to complex time **τ = t + iψ**.
+**ℂ⊗ℍ** (complex quaternions), extended to complex time **τ = t + iψ**, where **ψ** is a compact internal phase coordinate rather than a second observable time.
 
 The fundamental field **Θ(q,τ)** satisfies a single field equation.
 Everything else — spacetime metric, curvature, gauge interactions — is derived.
+
+---
+
+## UBT in Plain Language
+
+UBT starts from one mathematical object: the biquaternion.
+A biquaternion is like a quaternion used for 3D rotations, but with complex coefficients; equivalently, it can be represented as a 2×2 complex matrix.
+UBT says that spacetime, matter, and forces are all encoded in one field, called **Θ**.
+That field depends on position and carries the full physical content of the theory.
+Instead of postulating gravity, particles, and gauge forces separately, UBT treats them as different aspects of the same underlying structure.
+Its main equation is **∇†∇Θ = κ𝒯**.
+The left-hand side says how the Θ field propagates and bends.
+The right-hand side says what sources it through matter and energy.
+From this single equation, UBT claims to recover Einstein’s equations of general relativity.
+It also claims to recover the gauge symmetries behind the strong, weak, and electromagnetic interactions.
+It further claims a derivation of the existence of three fermion generations.
+The Weinberg angle is only conditional at present, not fully closed.
+The fine-structure constant **α** remains an open problem rather than a finished derivation.
+So the basic idea is simple even though the details are technical: one algebra, one field, one master equation, many physical sectors.
+
+*For the technical details, see the sections below.*
 
 ---
 
