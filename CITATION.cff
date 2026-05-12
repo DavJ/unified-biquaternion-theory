@@ -8,6 +8,7 @@ authors:
   - family-names: "Jaroš"
     given-names: "David"
     affiliation: "Independent Researcher"
+    orcid: "https://orcid.org/0009-0002-3204-9215"
 repository-code: "https://github.com/UBT-Institute/unified-biquaternion-theory"
 url: "https://github.com/UBT-Institute/unified-biquaternion-theory"
 license: "CC-BY-NC-ND-4.0"
