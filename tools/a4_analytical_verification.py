@@ -12,7 +12,25 @@ This script verifies algebraic identities used in the Gap G137-B a4 note:
 
 from __future__ import annotations
 
+import math
 import sympy as sp
+
+
+def D2(n: int) -> int:
+    """Number of positive divisor pairs (a,b) with a*b = n."""
+    count = 0
+    for a in range(1, int(math.sqrt(n)) + 1):
+        if n % a == 0:
+            b = n // a
+            count += 1 if a == b else 2
+    return count
+
+
+def veff_t2(n: int, b: float, r: float = 1.0) -> float:
+    """Asymptotic T²-motivated model: V_eff(n)=n²-B*n*ln(n/R)."""
+    if n <= 0:
+        raise ValueError("n must be positive")
+    return n**2 - b * n * math.log(n / r)
 
 
 def main() -> None:
@@ -39,6 +57,26 @@ def main() -> None:
     print("B difference (symbolic):", diff_b)
     print("B difference (numeric):", sp.N(diff_b, 50))
     print("B value (numeric):", sp.N(b_from_theta, 30))
+    print()
+
+    target_b = float(sp.N(b_from_theta, 25))
+    print("=== T² divisor-sum asymptotic checks ===")
+    print(f"B_target (numeric): {target_b:.8f}")
+    print()
+
+    vals = [10, 50, 100, 200, 500]
+    for N in vals:
+        total = sum(k * D2(k) for k in range(1, N + 1))
+        expected = N**2 * math.log(N) / 2.0
+        ratio = total / expected if expected != 0 else float("nan")
+        print(
+            f"N={N:>3}: Σ[k·D2(k)]={total:>12.4f}, "
+            f"N²lnN/2={expected:>12.4f}, ratio={ratio:.6f}"
+        )
+    print()
+
+    for n in [10, 50, 137, 200]:
+        print(f"Veff_T2(n={n}) = {veff_t2(n, target_b):.8f}")
 
 
 if __name__ == "__main__":

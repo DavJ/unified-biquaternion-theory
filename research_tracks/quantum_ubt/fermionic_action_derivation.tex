@@ -42,46 +42,77 @@ $N_{\mathrm{helicity}}=2$?
   \item The audited loop action in canonical files is scalar-QED type.
 \end{itemize}
 
-\section{Direct expansion check}
+\section{Step 1: Clifford-gradient rewriting (\textbf{[L0]} algebraic identity)}
+Define \(\slashed{D}:=\gamma^\mu D_\mu\).  Using a Clifford-compatible basis with
+\(
+\gamma^{\mu\dagger}\gamma^\nu \to g^{\mu\nu}\mathbf{1}
+\)
+after contraction in the trace channel, one gets:
+\[
+\Tr[(\slashed{D}\Theta)^\dagger(\slashed{D}\Theta)]
+=
+\Tr[(D_\mu\Theta)^\dagger D^\mu\Theta].
+\]
+Hence \(S_{\mathrm{kin}}\) can be written in the equivalent quadratic form
+\(
+\Tr[(\slashed{D}\Theta)^\dagger(\slashed{D}\Theta)]
+\),
+but this remains a positive-definite second-order bosonic kinetic density.
+
+\section{Step 2: Factorisation test to first-order Dirac action}
 Component-wise,
 \[
 \mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]
 =\sum_{\alpha,\beta}
 (D_\mu\Theta)^\dagger_{\alpha\beta}(D^\mu\Theta)_{\alpha\beta},
 \]
-which is a sum of second-order bosonic kinetic terms.
-No first-order Dirac structure
+which is quadratic in derivatives and bosonic in statistics.
+The first-order Dirac/Weyl structure
 \[
-\bar\Theta\,\gamma^\mu D_\mu\Theta
+\bar\Psi\,\gamma^\mu D_\mu\Psi
 \]
-appears in the current canonical action.
+is not present as a term in the canonical action functional.
 
-\begin{proposition}[Current canonical action remains bosonic]
-With the present $S_{\mathrm{kin}}[\Theta]$, the loop-safe helicity multiplier is
-$N_{\mathrm{helicity}}=1$.
-Any upgrade to $N_{\mathrm{helicity}}=2$ requires an independently derived
-fermionic effective action from $S[\Theta]$.
+\begin{proposition}[Precise NO-GO boundary]
+For commuting \(\Theta\)-fields with canonical
+\(
+S_{\mathrm{kin}}=\int\Tr[(D_\mu\Theta)^\dagger D^\mu\Theta]
+\),
+there is no exact factorisation
+\[
+S_{\mathrm{kin}}[\Theta]\equiv
+\int \bar\Psi\,\gamma^\mu D_\mu\Psi
+\]
+by field redefinition alone.
+The obstruction is structural: derivative order (second vs first), positivity/Hermiticity form,
+and commuting vs Grassmann variational calculus are inequivalent.
 \end{proposition}
 
-\section{Clifford interpretation and blocker}
-The isomorphism to $\mathrm{Cl}_{1,3}(\RR)$ provides a \emph{candidate}
-spinorial interpretation, but this is not yet equivalent to a derived fermionic
-kinetic term in the canonical action.
+\section{Step 3: effective-action route (KK/twist) [MC]}
+A fermionic first-order sector may still appear only after additional structure
+beyond the current bare \(S_{\mathrm{kin}}\):
+\begin{itemize}
+  \item KK reduction with nontrivial spin structure / Scherk--Schwarz twist on compact directions;
+  \item integrating out heavy modes to generate effective first-order operators.
+\end{itemize}
+This is a model-construction route [MC], not yet an [L1] derivation in active canonical files.
 
-\begin{remark}
-Therefore the statement
+\section{Impact on helicity and \(B_0\)}
+With the current canonical action, the loop-safe branch remains scalar:
 \[
-N_{\mathrm{helicity}}=2\ \Longrightarrow\ N_{\mathrm{eff}}=12\ \Longrightarrow\ B_0=8\pi
+N_{\mathrm{helicity}}=1,\qquad N_{\mathrm{eff}}^{(\mathrm{loop})}=3,\qquad B_0=2\pi\ \text{[L1]}.
 \]
-is not currently closed at [L1] in the active scalar-action chain.
-\end{remark}
+The chain
+\(
+N_{\mathrm{helicity}}=2\Rightarrow N_{\mathrm{eff}}=12\Rightarrow B_0=8\pi
+\)
+stays open unless a genuine fermionic action is derived independently.
 
 \begin{statusbox}
-$\Theta\in \mathrm{Cl}_{1,3}(\RR)$ algebraically: \textbf{[L0]}\\
-$S_{\mathrm{kin}}$ gives fermionic vs scalar loop action: \textbf{scalar in current canonical form}\\
-$N_{\mathrm{helicity}}=2$ from current action: \textbf{[NO-GO for current derivation path]}\\
-$N_{\mathrm{eff}}(\mathrm{loop})=12$: \textbf{[OPEN]}\\
-Dopad: loop-safe path remains $N_{\mathrm{eff}}=3$, $B_0=2\pi$.
+$S_{\mathrm{kin}} = \mathrm{Tr}[\slashed{D}\Theta^\dagger\slashed{D}\Theta]$ algebraicky: \textbf{[L0 — ale stále bosonická]}\\
+Faktorizace $S_{\mathrm{kin}}\rightarrow S_{\mathrm{Dirac}}$: \textbf{[NO-GO]}\\
+$N_{\mathrm{helicity}}=2$ z derivovaného fermiónického členu: \textbf{[OPEN]}\\
+Dopad: $B_0=8\pi$ \textbf{[OPEN]}, loop-safe $B_0=2\pi$ zůstává \textbf{[L1]}.
 \end{statusbox}
 
 \end{document}
