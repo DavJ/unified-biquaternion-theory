@@ -54,7 +54,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 |---|-------|-------|--------|
 | G13 | Linearised UBT field equation reproduces linearised Einstein equations | [L1] | Linearisation of G5 |
 | G14 | Regge-Wheeler equation (odd-parity graviton) derived without extra input | [L1] | `papers/UBT_GR_Submission.tex §5` |
-| GAP-Z | Zerilli equation (even-parity graviton) derived via Chandrasekhar transformation | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
+| GAP-Z | Zerilli equation (even-parity graviton) | OPEN / FOLLOW-UP [L2] | `canonical/gr_closure/zerilli_derivation.tex` |
 
 ### Explicitly Open (not claimed as proved)
 
@@ -219,5 +219,5 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Strong coupling g_s | Open |
 | Quantum gravity / path integral | Long term — GAP-Q |
 | Cosmological solutions (FRW/de Sitter) | Open — GAP-C |
-| Zerilli equation | ✅ Proved [L1] — GAP-Z closed (2026-05-10) |
+| Zerilli equation | OPEN / FOLLOW-UP [L2] |
 | Off-shell Θ-only closure | Open — GAP-10 |

@@ -49,7 +49,7 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | T_μν symmetric, ∇^μT_μν = 0 | [L1] | `canonical/geometry/stress_energy.tex` |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | [L1]+[NUM] | `tools/verify_schwarzschild_theta.py` |
 | Regge-Wheeler equation (odd-parity graviton) | [L1] | Paper §5 |
-| Zerilli equation (even-parity) and canonical graviton quantisation notes | [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
+| Zerilli equation (even-parity) and canonical graviton quantisation notes | OPEN / FOLLOW-UP [L2]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
 Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
@@ -60,7 +60,7 @@ None that prevent submission.
 
 | Gap | Level | Impact |
 |-----|-------|--------|
-| GAP-Z — Zerilli equation (even-parity graviton) | ✅ Closed [L1] (2026-05-10) | Closed; no blocker |
+| GAP-Z — Zerilli equation (even-parity graviton) | OPEN / FOLLOW-UP [L2] | Follow-up item; non-blocking for current submission readiness |
 | GAP-10 — Off-shell Θ-only closure | [L2] Open | Does not block; stated in paper |
 
 ### Pre-Submission Fix

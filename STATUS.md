@@ -13,7 +13,7 @@
 
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
-| **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission_v2.tex` | **SUBMIT READY (arXiv upload pending)** |
+| **T1_GR** — GR Recovery | ✅ COMPLETE | `papers/UBT_GR_Submission.tex` | **SUBMIT READY (arXiv upload pending; canonical current manuscript)** |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR SUBMISSION | `papers/UBT_Gauge_Submission.tex` | Draft complete (2026-05-10) |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL-WEAK | No paper yet | Blocked on Gap G137-B + N_eff audit gap |
 | **Repo public face** | ✅ DONE | This file, README, ROADMAP | Live |
@@ -36,10 +36,10 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 | T_μν symmetric, ∇^μT_μν = 0 | ✅ Proved [L1] |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | ✅ Proved + verified |
 | Regge-Wheeler equation (odd-parity graviton) | ✅ Proved [L1] |
-| Zerilli equation (even-parity graviton) | ✅ Proved [L1] — GAP-Z closed (2026-05-10) |
+| Zerilli equation (even-parity graviton) | ⚪ OPEN / FOLLOW-UP [L2] — tracked as non-blocking follow-up |
 | Off-shell Θ-only closure | ⚪ Open [L2] — GAP-10; stated in paper |
 
-**Submission file**: `papers/UBT_GR_Submission_v2.tex`  
+**Submission file (canonical current)**: `papers/UBT_GR_Submission.tex`  
 **Pre-submission fix**: ✅ Done — Newton's G clarification added as Remark in §3.5 (2026-05-10)  
 **arXiv upload**: Ready — checklist prepared  
 **arXiv ID**: Pending assignment
@@ -109,7 +109,7 @@ If fails: publish conditional integer-137 result as companion note.
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Hard open problems | 1 ([L2]: GAP-10; GAP-Z closed 2026-05-10) |
+| Hard open problems | 2 ([L2]: GAP-10; GAP-Z OPEN / FOLLOW-UP) |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 1 (T1_GR) |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |
