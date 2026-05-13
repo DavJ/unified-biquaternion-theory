@@ -136,13 +136,72 @@ Possible resolutions:
     the winding-mode spectrum.
 \end{enumerate}
 
+\subsection*{Candidate audit for the required $10^{-7}$ suppression}
+
+\paragraph{Candidate 1 (winding-mode renormalization of $R_\psi$).}
+Assume
+\[
+M_{\mathrm{GUT}}=M_0\cdot \vartheta_3(0|i)^{-n},
+\quad
+M_0=7.2\times10^{19}\,\mathrm{GeV},
+\quad
+\vartheta_3(0|i)\approx1.086.
+\]
+Solving
+\(
+7.2\times10^{19}\cdot1.086^{-n}=2\times10^{16}
+\)
+gives
+\[
+n=\frac{\ln(2\times10^{16}/7.2\times10^{19})}{\ln(1/1.086)}\approx 99.3.
+\]
+This requires an unrealistically high effective modular power, so this route is
+\textbf{[NO-GO]}.
+
+\paragraph{Candidate 2 (sub-leading Casimir/brane-tension term).}
+Take a minimal deformation
+\[
+V_{\mathrm{Casimir}}(R)=-\frac{A}{R^2}-\frac{c}{R^4},\qquad c>0,
+\]
+with $A=N_{\mathrm{eff}}/(48\pi)$ and the same kinetic closure
+\(
+T_{\mathrm{kin}}=g^2M_{\mathrm{GUT}}^4/(16\pi^2)
+\).
+The stationarity condition gives
+\[
+2AR^2-\frac{g^2}{8\pi}R+4c=0.
+\]
+Imposing $M_{\mathrm{GUT}}=2\times10^{16}\,\mathrm{GeV}$ from the baseline
+$M_0=7.2\times10^{19}\,\mathrm{GeV}$ implies
+\(
+R_{\mathrm{target}}/R_0\approx3600
+\),
+which requires
+\[
+c\approx-4.18\times10^3
+\quad(\text{Planck units}),
+\]
+i.e. \emph{negative} and many orders beyond the positive-discriminant
+window ($c_{\max}\sim8.1\times10^{-5}$).  Therefore this minimal
+$-c/R^4$ realization with $c>0$ is \textbf{[NO-GO]}.
+
+\paragraph{Candidate 3 (moduli stabilization: Casimir + gauge condensate).}
+For
+\(
+V_{\mathrm{eff}}(R)=V_{\mathrm{Casimir}}(R)+V_{\mathrm{gauge}}(R)
+\),
+a viable minimum can exist if a nonperturbative gauge term generates an
+exponential hierarchy relative to the Casimir branch.  In this file we do not
+yet have a closed microscopic $V_{\mathrm{gauge}}(R)$ from $\Theta$-sector data,
+so the mechanism is currently \textbf{[MC/OPEN]} (promising, not derived).
+
 \begin{statusbox}
-$V_{\mathrm{Casimir}}$ s $N_{\mathrm{eff}}=12$ [L1 conditional na P1]: \textbf{ODVOZENO FORMÁLNĚ, normalizace OPEN}\\
-$R_\psi^*$ z stacionarity: \textbf{[CONDITIONAL — potřeba vstup $T_{\mathrm{kin}}$]}\\
-Samokonzistentní soustava $\{R_\psi^*, M_{\mathrm{GUT}}, T_{\mathrm{kin}}\}$: \textbf{[L1 analyticky řešena]}\\
-$M_{\mathrm{GUT}}$ konzistentní s GUT škálou $2\times10^{16}$\,GeV: \textbf{NE (výsledek: $\approx5.91\,M_{\mathrm{Pl}}\approx7.2\times10^{19}$\,GeV --- faktor $\approx3600$ příliš velký)}\\
-$\sin^2\theta_W(M_Z)=0.231$: \textbf{[CONDITIONAL — závisí na uzavření scale modulus]}\\
-Alpha je odvozena: \textbf{NE}
+Kandidát 1 (winding renorm.): \textbf{[NO-GO]} (nutné $n\approx99.3$ pro $\vartheta_3(0|i)^{-n}$)\\
+Kandidát 2 (sub-leading Casimir): \textbf{[NO-GO]} (v minimálním modelu vychází $c\approx-4.18\times10^3$, požadováno $c>0$)\\
+Kandidát 3 (moduli stabilisation): \textbf{[MC/OPEN]}\\
+$M_{\mathrm{GUT}} = 2\times10^{16}\,\mathrm{GeV}$: \textbf{[OPEN/CONDITIONAL]}\\
+$\sin^2\theta_W(M_Z) = 0.231$: \textbf{[CONDITIONAL]}\\
+Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
 \end{document}
