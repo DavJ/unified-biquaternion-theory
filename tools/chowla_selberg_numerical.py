@@ -23,6 +23,15 @@ def z_t2_at_1(radius: "mp.mpf") -> "mp.mpf":
     return z_z2_at_1() / (radius**2)
 
 
+def eta_at_i_real() -> "mp.mpf":
+    """Return the real Dedekind eta value at tau=i with consistency check."""
+    eta_i_complex = mp.eta(mp.mpc(0, 1))
+    assert float(mp.im(eta_i_complex)) < 1e-40, (
+        f"Unexpected imaginary part in eta(i): {mp.im(eta_i_complex)}"
+    )
+    return mp.re(eta_i_complex)
+
+
 def check_theta2_ns_identity() -> None:
     """Verify Ramanujan CM identities and NS sector values at tau=i.
 
@@ -44,11 +53,7 @@ def check_theta2_ns_identity() -> None:
 
     theta2_i = mp.jtheta(2, 0, q_nome)
     theta3_i = mp.jtheta(3, 0, q_nome)
-    eta_i_complex = mp.eta(mp.mpc(0, 1))
-    assert float(mp.im(eta_i_complex)) < 1e-40, (
-        f"Unexpected imaginary part in η(i): {mp.im(eta_i_complex)}"
-    )
-    eta_i = mp.re(eta_i_complex)   # η(i) is real-valued
+    eta_i = eta_at_i_real()   # eta(i) is real-valued
 
     sqrt2_eta_i = mp.sqrt(2) * eta_i
 
@@ -95,7 +100,7 @@ def main() -> None:
 
     zprime_z2 = 4 * (zp0 * L0 + z0 * Lp0)
 
-    eta_i = mp.qp(mp.e ** (-2 * mp.pi), mp.e ** (-2 * mp.pi)) * mp.e ** (mp.pi / 12)
+    eta_i = eta_at_i_real()
     theta3_i = mp.jtheta(3, 0, mp.e ** (-mp.pi))
 
     b_target = 12 ** (mp.mpf("1.5")) * 2 ** (mp.mpf("0.125")) * theta3_i ** (mp.mpf("0.25"))

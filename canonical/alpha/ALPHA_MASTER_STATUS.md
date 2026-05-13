@@ -158,7 +158,7 @@ Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
 
 | Criterion | Score | Notes |
 |-----------|-------|-------|
-| Foundation depth | 3/3 | N_eff = 12 is [L0]; V_eff structure forced by algebra |
+| Foundation depth | 3/3 | N_eff = 12 is [L1] in the SU(2)-twist route; algebra-only closure remains OPEN/[MC] |
 | Independence from α | 2/3 | No α input; $B=(p+1)/3$ used only as a conditional modular ansatz |
 | Gap clarity | 2/3 | Gap G137-B remains open; no first-principles derivation of B from S[Θ] |
 | Corroborations | 3/3 | V_eff attractor + modular μ(Γ₀(137))/3 + Hecke lepton masses |
@@ -168,6 +168,7 @@ Gap G137-B remains **OPEN**.  Alpha is **NOT DERIVED**.
 
 | Claim | Level | Source |
 |-------|-------|--------|
+| N_eff = 12 in SU(2)-twist route (3×2×2) | [L1] | `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
 | N_eff = 12 from ℂ⊗ℍ algebra alone | OPEN / [MC] (under critical audit) | `canonical/n_eff/step2_AUDIT.tex` |
 | V_eff(n) = n² − B·n·ln n structure | [L1] | `canonical/alpha/alpha_best_route.tex` |
 | n*(B_phenom) = 137 for B_phenom ≈ 46.298 | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
