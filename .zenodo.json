@@ -1,8 +1,7 @@
 {
-  "title": "Unified Biquaternion Theory: Fit-Free Alpha Baseline",
-  "publication_date": "2026-05-13",
-  "version": "v10.1.2",
-  "description": "Unified Biquaternion Theory (UBT) repository release with synchronized status documents, CI/pipeline cleanup, and reproducible derivation assets.",
+  "title": "Unified Biquaternion Theory: Emergent Lorentzian Geometry and GR Recovery",
+  "version": "v10.1.3",
+  "description": "Unified Biquaternion Theory (UBT) release focused on emergent Lorentzian geometry, GR recovery status synchronization, and reproducible core derivation assets.",
   "creators": [
     {
       "name": "Jaroš, David",

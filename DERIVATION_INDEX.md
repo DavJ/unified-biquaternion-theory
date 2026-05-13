@@ -346,7 +346,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 > **Main chain (Θ→g→Γ→R→Einstein): Strong Partial** — Steps 1–5 proved [L1]; full off-shell closure on compact M⁴ is [Open L2].  
 > **Linearised GR, Schwarzschild, Regge-Wheeler: Strong Partial** — proved [L1].  
-> **Zerilli even-parity, global off-shell rank on compact M⁴: Open**.
+> **Zerilli even-parity, global off-shell rank on compact M⁴: OPEN / FOLLOW-UP**.
 
 > ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `canonical/gr_closure/` chain  
 > Topic index: `canonical/THEORY/topic_indexes/GR_index.md`

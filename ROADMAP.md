@@ -94,7 +94,7 @@ These are not active targets in the 21-day window.
 
 | Problem | Why deferred | Priority |
 |---------|-------------|----------|
-| Zerilli equation (GAP-Z) | 2–4 weeks effort; not critical for T1_GR submission | Medium |
+| Zerilli equation (GAP-Z) | OPEN / FOLLOW-UP; not critical for current T1_GR submission | Medium |
 | Chirality C1b (dynamical SU(2)_R exclusion) | Enhances T2_GAUGE but not required | Medium |
 | Fermion masses | KK-mismatch theorem — needs new approach | Low |
 | Higgs mechanism / W-Z masses | Separate paper | Low |

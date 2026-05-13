@@ -56,7 +56,7 @@ So the basic idea is simple even though the details are technical: one algebra, 
 | Schwarzschild metric recovered, spatial components verified < 10⁻¹⁵ | [L1]+[NUM] |
 | Regge-Wheeler equation (odd-parity graviton) derived | [L1] |
 
-→ **Paper**: `papers/UBT_GR_Submission.tex` (submit-ready)
+→ **Paper**: `papers/UBT_GR_Submission.tex` (**current canonical GR manuscript**, submit-ready)
 
 ### Standard Model Gauge Structure (Track T2_GAUGE)
 
@@ -95,7 +95,7 @@ UBT is honest about its limits.
 | Weinberg angle sin²θ_W | **Conditional open** — pure-algebra route is dead end; EW-1b (EW1+RG) is tracked conditionally |
 | W/Z boson masses | Open (Higgs mechanism deferred) |
 | Fermion mass spectrum | Open-hard |
-| Zerilli equation (even-parity graviton) | Claimed closed [L1] (see `canonical/gr_closure/zerilli_derivation.tex`) |
+| Zerilli equation (even-parity graviton) | OPEN / FOLLOW-UP — derivation tracked separately; not counted as a closed blocker in the current GR manuscript |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Full α = 1/137.036 (not just integer 137) | Open — Gap G137-B |
 
