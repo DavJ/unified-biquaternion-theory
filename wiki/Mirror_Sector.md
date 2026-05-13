@@ -26,16 +26,7 @@ only via gravity and is a viable dark matter candidate.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: mirror_status -->
-| Result | Status | File |
-|--------|--------|------|
-| V_eff(137) < V_eff(139) for same B | ⚡ **Supported** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/mirror_sector/vacuum_stability.tex) |
-| n=139 is NOT a discrete local min of V_{B_137} | ✅ **Proved** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/mirror_sector/vacuum_stability.tex) |
-| n*=139 is global min of branch B'=B_139 | 💭 **Conj.** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/mirror_sector/vacuum_stability.tex) |
-| Mirror sector is fully stable | 💭 **Conj.** | [`vacuum_stability.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/mirror_sector/vacuum_stability.tex) |
-| Set A and Set B algebraically independent | ⚡ **Supported** | [`hecke_lepton`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/docs/reports/hecke_lepton) |
-| Mirror sector α⁻¹ = 139 | ⚡ **Supported** | [`mirror_world_139.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/reports/hecke_lepton/mirror_world_139.md) |
-| Mirror sector is habitable | ✅ **Proved** |  |
-| Mirror matter as dark matter candidate | 💭 **Conjecture** | [`README.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/mirror_sector/README.md) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: mirror_status -->
 
 ---
