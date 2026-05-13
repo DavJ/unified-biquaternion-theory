@@ -36,7 +36,7 @@ is complete at proof level [L1].  All known reviewer attacks are preempted.
 | T_μν symmetric, ∇^μT_μν = 0 | ✅ Proved [L1] |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | ✅ Proved + verified |
 | Regge-Wheeler equation (odd-parity graviton) | ✅ Proved [L1] |
-| Zerilli equation (even-parity graviton) | ⚪ OPEN / FOLLOW-UP [L2] — tracked as non-blocking follow-up |
+| Zerilli equation (even-parity graviton) | ✅ Proved [L1] — see `canonical/gr_closure/zerilli_derivation.tex` |
 | Off-shell Θ-only closure | ⚪ Open [L2] — GAP-10; stated in paper |
 
 **Submission file (canonical current)**: `papers/UBT_GR_Submission.tex`  
@@ -103,13 +103,13 @@ If fails: publish conditional integer-137 result as companion note.
 
 ---
 
-## Key Numbers (as of 2026-04-28)
+## Key Numbers (as of 2026-05-13)
 
 | Metric | Value |
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Hard open problems | 2 ([L2]: GAP-10; GAP-Z OPEN / FOLLOW-UP) |
+| Hard open problems | 1 ([L2]: GAP-10) |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 1 (T1_GR) |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |

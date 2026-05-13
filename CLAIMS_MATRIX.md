@@ -51,7 +51,7 @@ by the cited source file.
 | G12 | ASD Weyl condition C⁺ = 0 for SU(2)₋ sector | [L1] | Yes | `canonical/geometry/asd_condition_ubt.tex §5` | App. | PROVED |
 | G13 | Newton's G is a free parameter (semi-empirical input) | [AX] | — | Paper §3.5 | §3.5 | ASSUMPTION |
 | GAP-10 | Off-shell Θ-only closure (global ker J = gauge only) | [OPEN] | — | — | §6 | OPEN — does not block |
-| GAP-Z | Zerilli equation (even-parity graviton) | [L2] | No | `canonical/gr_closure/zerilli_derivation.tex` | §6 | OPEN / FOLLOW-UP |
+| G14 | Zerilli equation (even-parity graviton) | [L1] | Yes | `canonical/gr_closure/zerilli_derivation.tex` | §6 | PROVED |
 
 ---
 
@@ -151,11 +151,11 @@ by the cited source file.
 | Level | T1_GR | T2_GAUGE | T3_ALPHA | Total |
 |-------|-------|---------|---------|-------|
 | [L0] PROVED | 1 | 13 | 2 | 16 |
-| [L1] PROVED | 11 | 2 | 2 | 15 |
+| [L1] PROVED | 12 | 2 | 2 | 16 |
 | [L1]+[NUM] | 1 | 0 | 0 | 1 |
 | [L1][COND] | 0 | 0 | 1 | 1 |
 | [L2] structural | 0 | 0 | 1 | 1 |
-| [OPEN] | 2 | 5 | 1 | 8 |
+| [OPEN] | 1 | 5 | 1 | 7 |
 | [DEAD] | 0 | 1 | 0 | 1 |
 | [AX] | 3 | 0 | 0 | 3 |
 | [STD] | 1 | 0 | 0 | 1 |
