@@ -424,6 +424,11 @@ def _gr_entries(all_sections: dict) -> list[dict]:
 
 def gen_status_summary(sections: dict) -> str:
     """Home page: overall counts table."""
+    def _norm_section_title(title: str) -> str:
+        # DERIVATION_INDEX headings often append confidence metadata,
+        # e.g. "... — **Section confidence: Strong**".
+        return re.sub(r"\s+—\s+\*\*Section confidence:.*$", "", title).strip()
+
     area_map = {
         "Standard Model Gauge Group":                  "Gauge Structure",
         "Fine Structure Constant (α)":                 "Fine Structure Constant",
@@ -449,7 +454,7 @@ def gen_status_summary(sections: dict) -> str:
     totals: dict[str, dict[str, int]] = {a: {} for a in area_order}
 
     for sec_title, entries in sections.items():
-        area = area_map.get(sec_title)
+        area = area_map.get(_norm_section_title(sec_title))
         if area is None:
             continue
         c = _count_statuses(entries)

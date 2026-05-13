@@ -38,14 +38,14 @@ This section tracks the derivation status of all major UBT results.
 <!-- BEGIN GENERATED: derivation_summary -->
 | Area | ✅ Proved | ⚡ Supported | ⚠️ Semi-emp. | 💭 Conjecture | ❌ Open/Dead-end |
 |------|----------|------------|------------|-------------|----------------|
-| Gauge Structure | 20 | 1 | 1 | 0 | 3 |
+| Gauge Structure | 17 | 1 | 1 | 0 | 3 |
 | Fine Structure Constant | 10 | 0 | 3 | 1 | 4 |
 | Three Generations | 5 | 2 | 5 | 5 | 8 |
 | Gravity / φ-Universe | 18 | 0 | 0 | 1 | 1 |
 | Mirror Sector | 2 | 3 | 0 | 3 | 0 |
 | Algebra | 21 | 0 | 0 | 0 | 3 |
-| **Total** | **76** | **6** | **9** | **10** | **19** |
-*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
+| **Total** | **73** | **6** | **9** | **10** | **19** |
+*Auto-generated from [`DERIVATION_INDEX.md`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/master/DERIVATION_INDEX.md). Dead Ends are counted in Open/Dead-end.*
 <!-- END GENERATED: derivation_summary -->
 
 ---
