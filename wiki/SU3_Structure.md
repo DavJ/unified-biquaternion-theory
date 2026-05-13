@@ -20,13 +20,7 @@ Color confinement: **Conjectured with experimental support**
 ## Derivation Status (from DERIVATION_INDEX.md)
 
 <!-- BEGIN GENERATED: su3_status -->
-| Result | Status | File |
-|--------|--------|------|
-| SU(3)_c from involutions on ℂ⊗ℍ | ✅ **Proved** | [`su3_from_involutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/su3_from_involutions.tex) |
-| SU(3)_c from quantum superposition over {I,J,K} | ✅ **Proved** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/step1_superposition_approach.tex) |
-| SU(3)_c via i,j,k → r,g,b axis mapping | 🔶 **Heuristic** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
-| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | 🔬 **Sandbox** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
-| Color confinement (algebraic) | ⚡ **Supported** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: su3_status -->
 
 ---

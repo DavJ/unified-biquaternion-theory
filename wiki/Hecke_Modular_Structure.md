@@ -30,13 +30,7 @@ pair in [50, 300] that gives distinct sector solutions.
 ## Status of Claims
 
 <!-- BEGIN GENERATED: hecke_status -->
-| Result | Status | File |
-|--------|--------|------|
-| Weights k=2,4,6 from n-th ψ-mode | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/hecke_bridge/motivation.tex) |
-| Level N=7, μ(Γ₀(7))=8 = dim_ℝ(ℂ⊗ℍ) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/hecke_bridge/motivation.tex) |
-| Trivial character χ=1 from ℤ-rationality | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/hecke_bridge/motivation.tex) |
-| Three forms (not one, not five) | 💭 **Conj.** | [`motivation.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/research_tracks/hecke_bridge/motivation.tex) |
-| Derivation of specific forms from ℂ⊗ℍ | ❌ **Open** |  |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: hecke_status -->
 
 ---
