@@ -34,7 +34,7 @@ and one blocked result (T3_ALPHA).
 
 **Status**: SUBMIT READY  
 **Confidence**: HIGH — all core chain steps proved at [L1]  
-**Release candidate**: `papers/UBT_GR_RC2.tex` *(RC2 supersedes RC1; RC2 has tcolorbox title fixes, corrected table, and expanded §1.1 readability improvements — use RC2 for arXiv upload)*
+**Canonical manuscript**: `papers/UBT_GR_Submission.tex` *(release snapshots are archived in `papers/old_releases/` for provenance and external deposit traceability)*
 
 ### Exact Achievements
 
@@ -65,13 +65,13 @@ None that prevent submission.
 
 ### Pre-Submission Fix
 
-✅ Applied in RC2: Newton's G clarification retained and formatting fixes integrated (`papers/UBT_GR_RC2.tex`).
-⚠️ RC2 compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean RC2 build
+✅ Pre-submission fixes are integrated in the canonical manuscript (`papers/UBT_GR_Submission.tex`).
+⚠️ Compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean build
 must be confirmed in a LaTeX-enabled runner/CI.
 
 ### Next Action
 
-Submit `papers/UBT_GR_RC2.tex` to arXiv (gr-qc or math-ph) and simultaneously
+Submit `papers/UBT_GR_Submission.tex` to arXiv (gr-qc or math-ph) and simultaneously
 to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ---
@@ -268,7 +268,7 @@ Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`
 | GR claim-to-proof matrix | `reports/GR_claim_to_proof_matrix.md` |
 | GR claim strength table | `reports/GR_claim_strength_table.md` |
 | GR consolidated review | `reports/GR_REVIEW_MASTER.md` |
-| GR release candidate | `papers/UBT_GR_RC1.tex` |
+| GR canonical manuscript | `papers/UBT_GR_Submission.tex` |
 | Alpha portfolio master | `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md` |
 | Alpha route detail | `canonical/alpha/ALPHA_MASTER_STATUS.md` |
 | Gauge sector truth | `canonical/gauge/GAUGE_MASTER_STATUS.md` |

@@ -32,7 +32,7 @@ by the cited source file.
 
 ## Track T1_GR — General Relativity Recovery
 
-**Paper**: `papers/UBT_GR_RC1.tex` (Release Candidate 1)  
+**Paper**: `papers/UBT_GR_Submission.tex` (Canonical submission manuscript)  
 **Overall verdict**: SUBMIT READY
 
 | # | Claim | Level | Exact? | Canonical source | Paper | Status |
@@ -47,11 +47,11 @@ by the cited source file.
 | G8 | Schwarzschild metric from spherically symmetric Θ₀ ansatz | [L1] | Yes | `canonical/geometry/biquaternionic_vacuum_solutions.tex §3` | §4 | PROVED |
 | G9 | Spatial components g_ij = Ψ⁴δ_ij verified to < 10⁻¹⁵ relative error | [L1]+[NUM] | Yes | `tools/verify_schwarzschild_theta.py` | §4 | PROVED |
 | G10 | g_tt = −Φ² from complex-time ψ-structure | [L1] | Yes | Paper §4 | §4 | PROVED |
-| G11 | Regge-Wheeler equation (odd-parity graviton) without extra input | [L1] | Yes | `papers/UBT_GR_RC1.tex §5` | §5 | PROVED |
+| G11 | Regge-Wheeler equation (odd-parity graviton) without extra input | [L1] | Yes | `papers/UBT_GR_Submission.tex §5` | §5 | PROVED |
 | G12 | ASD Weyl condition C⁺ = 0 for SU(2)₋ sector | [L1] | Yes | `canonical/geometry/asd_condition_ubt.tex §5` | App. | PROVED |
 | G13 | Newton's G is a free parameter (semi-empirical input) | [AX] | — | Paper §3.5 | §3.5 | ASSUMPTION |
 | GAP-10 | Off-shell Θ-only closure (global ker J = gauge only) | [OPEN] | — | — | §6 | OPEN — does not block |
-| GAP-Z | Zerilli equation (even-parity graviton) | [OPEN] | — | — | §6 | OPEN — does not block |
+| GAP-Z | Zerilli equation (even-parity graviton) | [L1] | Yes | `canonical/gr_closure/zerilli_derivation.tex` | §6 | PROVED |
 
 ---
 

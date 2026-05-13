@@ -95,7 +95,7 @@ UBT is honest about its limits.
 | Weinberg angle sin²θ_W | **Conditional open** — pure-algebra route is dead end; EW-1b (EW1+RG) is tracked conditionally |
 | W/Z boson masses | Open (Higgs mechanism deferred) |
 | Fermion mass spectrum | Open-hard |
-| Zerilli equation (even-parity graviton) | Open GAP-Z |
+| Zerilli equation (even-parity graviton) | Claimed closed [L1] (see `canonical/gr_closure/zerilli_derivation.tex`) |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Full α = 1/137.036 (not just integer 137) | Open — Gap G137-B |
 
