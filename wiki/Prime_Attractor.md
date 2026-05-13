@@ -26,14 +26,7 @@ theory, independently of the coupling type.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: prime_attractor_status -->
-| Result | Status | File |
-|--------|--------|------|
-| Prime selection by V_eff(n) minimum | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
-| Coupling type from ∇†∇Θ = κ𝒯 | ✅ **Proved** | [`Appendix_H_Theta_Phase_Emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex) |
-| Multiplicative coupling k·m=n | ❌ **Dead End** | [`Appendix_H_Theta_Phase_Emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex) |
-| Topological winding interaction | 💭 **Conjecture** | [`Appendix_H_Theta_Phase_Emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex) |
-| Prime attractor (mode coupling) | ❌ **Dead End** | [`Appendix_H_Theta_Phase_Emergence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex) |
-| Prime selection (V_eff minimum) | ✅ **Proved** | [`STATUS_ALPHA.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/STATUS_ALPHA.md) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: prime_attractor_status -->
 
 ---

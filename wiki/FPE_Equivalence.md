@@ -28,17 +28,7 @@ Numerical verification: ALL CHECKS PASSED — see `tools/verify_fpe_equivalence.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: fpe_status -->
-| Result | Status | File |
-|--------|--------|------|
-| FPE ↔ E-L equivalence (scalar, free field) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| FPE ↔ E-L equivalence (U(1) gauge sector) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| FPE ↔ E-L equivalence (SU(2) gauge sector) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| FPE ↔ E-L equivalence (SU(3) gauge sector) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| Norm conservation from FPE | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| Projection A: Re sector → GR/KG | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| Projection B: Im sector → QM/Schrödinger | 🔶 **Sketch** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| Projection C: Full FPE → statistical mechanics | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
-| FPE ↔ E-L (full biquaternionic) | ✅ **Proved** | [`step4_fpe_equivalence.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/qm_emergence/step4_fpe_equivalence.tex) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: fpe_status -->
 
 ---

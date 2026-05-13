@@ -14,21 +14,7 @@ at the structural level.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: gauge_status -->
-| Result | Status | File |
-|--------|--------|------|
-| B = ℂ⊗ₐℍ ≅ Mat(2,ℂ) | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| Aut(B) ≅ /ℤ₂ | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| SU(2)_L from left action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| = ε^{abc}T^c | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| U(1)_Y from right action | ✅ **Proved** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| U(1)_EM from ψ-cycle phase | ✅ **Proved** | [`qed.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/interactions/qed.tex) |
-| SU(3)_c from involutions on ℂ⊗ℍ | ✅ **Proved** | [`su3_from_involutions.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/su3_from_involutions.tex) |
-| SU(3)_c from quantum superposition over {I,J,K} | ✅ **Proved** | [`step1_superposition_approach.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/su3_derivation/step1_superposition_approach.tex) |
-| SU(3)_c via i,j,k → r,g,b axis mapping | 🔶 **Heuristic** | [`Appendix_G_Emergent_SU3.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex) |
-| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | 🔬 **Sandbox** | [`su3_qubit_mapping`](https://github.com/DavJ/unified-biquaternion-theory/tree/master/research_tracks/THEORY_COMPARISONS/su3_qubit_mapping) |
-| Color confinement (algebraic) | ⚡ **Supported** | [`algebraic_confinement.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex) |
-| Weinberg angle θ_W fixed | ⚠️ **Semi-empirical** | [`appendix_E2_SM_geometry.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex) |
-| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | ✅ **Proved** | [🌐 `step1_psi_parity.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/chirality/step1_psi_parity.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/chirality/step1_psi_parity.tex) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: gauge_status -->
 
 ---

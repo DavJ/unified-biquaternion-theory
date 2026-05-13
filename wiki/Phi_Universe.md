@@ -25,17 +25,7 @@ and the metric has a non-trivial imaginary component h_μν.
 ## Derivation Status
 
 <!-- BEGIN GENERATED: phi_universe_status -->
-| Result | Status | File |
-|--------|--------|------|
-| φ-projection theorem (P_φ satisfies GR) | ✅ **Proved** | [`phase_projection.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/phase_projection.tex) |
-| ∂α/∂φ = 2ρr·α(0) formula | ✅ **Proved** | [`phi_gauge_vs_physical.tex`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/phi_gauge_vs_physical.tex) |
-| h_μν = 0 for single-mode winding vacuum | ✅ **Proved** | [🌐 `biquaternionic_vacuum_solutions.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/geometry/biquaternionic_vacuum_solutions.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/biquaternionic_vacuum_solutions.tex) |
-| h_μν ≠ 0 two-mode winding vacuum | ✅ **Proved** | [🌐 `biquaternionic_vacuum_solutions.tex`](https://davj.github.io/unified-biquaternion-theory/canonical/geometry/biquaternionic_vacuum_solutions.html) · [pdf](https://davj.github.io/unified-biquaternion-theory/UBT_canonical_main.pdf) · [tex](https://github.com/DavJ/unified-biquaternion-theory/blob/master/canonical/geometry/biquaternionic_vacuum_solutions.tex) |
-| r ≈ 4.66 for canonical two-mode vacuum | ✅ **Proved** | [`compute_h_munu_vacuum.py`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/tools/compute_h_munu_vacuum.py) |
-| φ is physical (not pure gauge) for two-mode vacuum | ✅ **Proved** | [`PHI_UNIVERSE_PARAMETER.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PHI_UNIVERSE_PARAMETER.md) |
-| ψ↔φ are distinct operations (not equivalent) | ✅ **Proved** | [`PHI_UNIVERSE_PARAMETER.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PHI_UNIVERSE_PARAMETER.md) |
-| dim(ℳ_UBT) ≥ 1 (U(1) moduli) | ✅ **Proved** | [`PHI_UNIVERSE_PARAMETER.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PHI_UNIVERSE_PARAMETER.md) |
-| dim(ℳ_UBT) = 4 (U(1)×Sp(1)) | 💭 **Conjecture** | [`PHI_UNIVERSE_PARAMETER.md`](https://github.com/DavJ/unified-biquaternion-theory/blob/master/docs/PHI_UNIVERSE_PARAMETER.md) |
+_No entries found in DERIVATION_INDEX.md for this section._
 <!-- END GENERATED: phi_universe_status -->
 
 ---
