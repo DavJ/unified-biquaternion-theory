@@ -238,4 +238,95 @@ $\sin^2\theta_W(M_Z) = 0.231$: \textbf{[CONDITIONAL]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 6: $\lambda$ from the SU(2)$_L$ Gauge Coupling}
+\label{sec:lambda_su2}
+%──────────────────────────────────────────────────────────────────────────────
+
+This section tests whether the gauge condensate coupling $\lambda$ in
+Candidate~3 can be identified with $g^2$ of the $\mathrm{SU}(2)_L$ gauge
+sector, and whether this identification reproduces the GUT scale.
+
+\subsection{Gauge coupling from UBT}
+
+From \texttt{canonical/interactions/sm\_gauge.tex}: the $\mathrm{SU}(2)_L$
+coupling $g$ is related to the electromagnetic coupling $e$ and
+$\sin^2\theta_W$ by
+\[
+g^2 = \frac{e^2}{\sin^2\theta_W}.
+\]
+At the GUT scale, the algebraic derivation gives
+$\sin^2\theta_W\big|_{\mathrm{GUT}} = 3/8$ [L1, see
+\texttt{canonical/interactions/colour\_charge\_lattice.tex}].
+With $e^2 = 4\pi\alpha$ and $\alpha = 1/137$ (bare):
+\[
+g^2_{\mathrm{GUT}}
+= \frac{4\pi/137}{3/8}
+= \frac{32\pi}{3\times137}
+\approx 0.2446.
+\]
+Thus $\lambda := g^2_{\mathrm{GUT}} \approx 0.245$ is the
+physically motivated candidate.
+
+\subsection{Numerical test: $R^*$ for $\lambda = g^2 \approx 0.245$}
+
+Using $V_{\mathrm{eff}}(R) = -N_{\mathrm{eff}}/(48\pi R^2) + T_{\mathrm{kin}}R
+- \lambda e^{-\pi/R}$ with $N_{\mathrm{eff}}=12$, $T_{\mathrm{kin}}=10^{-6}$
+(Planck units), bounded minimization over $R\in[10^{-5},10^6]$
+(script: \texttt{tools/rpsi\_condensate.py}):
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+$\lambda$ & $R^*$ & $M_{\mathrm{GUT}}/M_{\mathrm{Pl}}$ &
+  Ratio to target\\
+\midrule
+$0.119$ (fitted) & $\approx 6.10\times10^2$ & $\approx 1.640\times10^{-3}$
+  & $\approx1.00$ \\
+$g^2=0.245$ ($\sin^2\theta_W=3/8$) & $\approx8.75\times10^2$ &
+  $\approx1.143\times10^{-3}$ & $\approx0.697$ \\
+$g^2=0.423$ ($g=0.65$) & $\approx1.15\times10^3$ &
+  $\approx8.69\times10^{-4}$ & $\approx0.530$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+\textbf{Result}: $\lambda = g^2 \approx 0.245$ gives $M_{\mathrm{GUT}}$ below
+the target $2\times10^{16}\,\mathrm{GeV}$ by a factor $\approx 1.43$.
+
+\subsection{Target $\lambda$ and physical interpretation}
+
+Numerically, the required coupling is $\lambda_{\mathrm{target}} \approx 0.119$
+(confirmed by the existing fit in \S5).
+The ratio $\lambda_{\mathrm{target}}/g^2_{\mathrm{GUT}} \approx 0.49$.
+
+Two physical mechanisms could account for this factor-2 discrepancy:
+\begin{enumerate}
+\item \textbf{Loop suppression}: The condensate $\langle b^\dagger b\rangle$
+  receives a one-loop suppression
+  $\lambda_{\mathrm{eff}} = g^2/(16\pi^2)\cdot\xi$ for some order-1
+  factor $\xi$.  For $\xi = 16\pi^2\times 0.119/g^2 \approx 7.6$,
+  this is consistent but not derived.
+\item \textbf{Scherk--Schwarz projection}: The SU(2)-twist boundary condition
+  projects out half the modes, giving $\lambda_{\mathrm{eff}} = g^2/2 \approx 0.122$
+  (very close to $\lambda_{\mathrm{target}} \approx 0.119$).  This would
+  provide a natural physical origin for the required coupling.
+\end{enumerate}
+
+\begin{statusbox}
+$\lambda = g^2$ z $\mathrm{SU}(2)_L$ couplingu při $\sin^2\theta_W=3/8$:
+  $\lambda\approx0.245$ \textbf{[MC/L1]}\\
+$R^*$ pro $\lambda=g^2=0.245$, $T_{\mathrm{kin}}=10^{-6}$:
+  $R^*\approx 875\,l_{\mathrm{Pl}}$ \textbf{[NUM]}\\
+$M_{\mathrm{GUT}}/M_{\mathrm{Pl}}\approx 1.14\times10^{-3}$ pro $\lambda=g^2$:
+  \textbf{[NUM]} (faktor $1.43\times$ pod cílem)\\
+SS projekce $\lambda_{\mathrm{eff}}=g^2/2\approx0.122\approx\lambda_{\mathrm{target}}$:
+  \textbf{[MC]} (fyzikální interpretace, neodvozeno)\\
+$M_{\mathrm{GUT}} = 2\times10^{16}\,\mathrm{GeV}$:
+  \textbf{[CONDITIONAL]} pro $\lambda=g^2/2$ z SS projekce\\
+$\sin^2\theta_W(M_Z) = 0.231$: \textbf{[CONDITIONAL]}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
 \end{document}

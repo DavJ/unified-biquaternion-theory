@@ -12,3 +12,12 @@
 ## arXiv kategorie: gr-qc
 ## Primární MSC: 83C05, 83E05
 ## Sekundární: 81T13
+
+## Status (2026-05-14)
+
+- Zerilli equation (even-parity graviton): **Proved [L1]** in `canonical/gr_closure/zerilli_derivation.tex` (2026-05-10).
+  Abstract updated; §5 sentence added; §6.1 GAP-Z box updated to PROVED; Proof Status table row 7a updated.
+- GAP-10 (off-shell Θ-only closure): **Open [L2]** — does not block submission.
+- arXiv ZIP prepared: `/tmp/ubt_gr_final.zip` (main.tex + UBT_GR_Flagship.bib)
+- **PDF compiled**: 12 pages, 305 KB, 0 fatal errors (pre-existing tcolorbox pgfkeys warning is non-fatal).
+- Awaiting endorsement for gr-qc submission.

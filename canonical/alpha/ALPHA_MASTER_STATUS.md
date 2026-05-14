@@ -101,6 +101,21 @@ to 137.036 is not yet derived from first principles.
 - Gap G137-B: **NARROWED but OPEN**
 - Alpha: **NOT DERIVED**
 
+### Mellin insertion sync (2026-05-14)
+
+- New note: `research_tracks/T3_ALPHA/mellin_insertion_B.tex` (Priority 1 output)
+- New matrix entry: `canonical/alpha/alpha_gap_closure_matrix.tex α28`
+- Epstein zeta chain:
+  - `Z'_{T²}(0; d²) = −2 ln R + Z'_{ℤ²}(0; d²)` [STD]
+  - Chowla–Selberg: `Z'_{ℤ²}(0; d²) = −4 ln|Γ(¼)| + 2 ln d + C₀` [STD]
+  - `n·ln n` from Dirichlet divisor sum asymptotic [L1 asym.]
+  - Volumetric factorization `W_eff = N_eff^(3/2)·f(Z_b)` via Mellin transform: [OPEN]
+  - `Z_1real = 2η(i)` identification from UBT action: [OPEN/MC]
+  - `B = 12^(3/2)·(2η(i))^(1/4) ≈ 46.28`: [NUM/MC] (numerical match only)
+- Exact gap statement: Mellin/spectral insertion proving volumetric prefactor `N_eff^(1/2)` and `Z_1real = 2η(i)`
+- Gap G137-B: **NARROWED — exact Mellin/spectral insertion is the sole remaining open step**
+- Alpha: **NOT DERIVED**
+
 
 ### SU(2) twist sync (2026-05-12)
 
