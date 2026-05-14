@@ -85,6 +85,44 @@ def check_theta2_ns_identity() -> None:
     print(f"Deviation from B_phenom  ≈ {abs(b_ns - 46.298):.4f}")
 
 
+def check_z2_orbifold_candidate() -> None:
+    """Check the Z2-orbifold candidate factor used in Gap G137-B discussions."""
+    if mp is None:
+        print("mpmath is not installed; cannot run Z2-orbifold check.")
+        return
+
+    mp.mp.dps = 50
+    q_nome = mp.exp(-mp.pi)
+
+    theta3_i = mp.jtheta(3, 0, q_nome)
+    theta4_i = mp.jtheta(4, 0, q_nome)
+    eta_i = eta_at_i_real()
+
+    z_orb = (theta3_i + theta4_i) / (2 * eta_i)
+    sqrt2 = mp.sqrt(2)
+
+    b_orb = 12 ** 1.5 * float(z_orb) ** 0.25
+    b_req = 2 * 137 / (mp.log(137) + 1)
+    b_orb_theta3 = 12 ** 1.5 * float(z_orb * theta3_i) ** 0.25
+    b_2eta = 12 ** 1.5 * float(2 * eta_i) ** 0.25
+
+    print()
+    print("=== Z2-orbifold candidate check (Gap G137-B) ===")
+    print(f"theta3(0|i)                = {float(theta3_i):.15f}")
+    print(f"theta4(0|i)                = {float(theta4_i):.15f}")
+    print(f"eta(i)                     = {float(eta_i):.15f}")
+    print(f"Z_orb = (theta3+theta4)/(2eta) = {float(z_orb):.15f}")
+    print(f"sqrt(2)                    = {float(sqrt2):.15f}")
+    print(f"Match sqrt(2)?             = {abs(float(z_orb) - float(sqrt2)) < 1e-10}")
+    print()
+    print(f"B_orb = 12^(3/2)*Z_orb^(1/4)          = {float(b_orb):.15f}")
+    print(f"B_req = 2*137/(ln(137)+1)             = {float(b_req):.15f}")
+    print(f"Relative error (%)                    = "
+          f"{abs(float(b_orb) - float(b_req)) / float(b_req) * 100:.6f}")
+    print(f"B_orb_theta3 = 12^(3/2)*(Z_orb*theta3)^(1/4) = {float(b_orb_theta3):.15f}")
+    print(f"B_2eta       = 12^(3/2)*(2eta)^(1/4)         = {float(b_2eta):.15f}")
+
+
 def main() -> None:
     if mp is None:
         print("mpmath is not installed; cannot run Chowla-Selberg numeric checks.")
@@ -122,6 +160,7 @@ def main() -> None:
     print(f"B_target(theta3)        = {b_target}")
     print()
     check_theta2_ns_identity()
+    check_z2_orbifold_candidate()
 
 
 if __name__ == "__main__":

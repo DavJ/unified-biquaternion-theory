@@ -48,11 +48,12 @@ Minimal Missing Theorem}}
 \maketitle
 
 \begin{tcolorbox}[colback=gray!5!white, colframe=gray!60!black,
-  title={Canonical Status Sync (2026-05-11)}]
+  title={Canonical Status Sync (2026-05-14)}]
 Alpha derivation: \textbf{NOT DERIVED}.
 $\alpha^{-1}_{\mathrm{bare}} = 137$: \textbf{CONDITIONAL ONLY}.
 $\alpha^{-1} = 137.036$ (full precision): \textbf{NOT ACHIEVED}.
-Gap \textbf{G137-B} is narrowed but open (determinant-to-coefficient insertion pending).
+Gap \textbf{G137-B} is narrowed but open (direct $Z_{\mathrm{orb}}$ insertion gives
+$B\approx 44.40$, so determinant-to-coefficient insertion is still pending).
 Authority: \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.
 \end{tcolorbox}
 
@@ -225,6 +226,12 @@ $\alpha$26 & NS/SU(2)-twist analysis: $Z_{\mathrm{NS}}(i)=\vartheta_2(0|i)/\eta(
   $Z_{1\mathrm{real}}=2\eta(i)$ proposed as NS normalization candidate \MC;
   $B = 12^{3/2}\cdot(2\eta(i))^{1/4}\approx46.28$ [OBS] & \MC\ \OBS\ + \NUM &
   \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_B\_derivation.tex \S5--6} \\[4pt]
+$\alpha$27 & $Z_2$-orbifold check:
+  $Z_{\mathrm{orb}}(i)=\frac{\vartheta_3(0|i)+\vartheta_4(0|i)}{2\eta(i)}\approx1.3017\neq\sqrt{2}$ [NUM];
+  direct insertion $B_{\mathrm{orb}}=12^{3/2}Z_{\mathrm{orb}}^{1/4}\approx44.40$ [NUM], so extra insertion remains open &
+  \NUM\ + \OPEN &
+  \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_B\_derivation.tex \S7},
+  \texttt{tools/chowla\_selberg\_numerical.py} \\[4pt]
 
 \end{longtable}
 
@@ -234,7 +241,7 @@ $\alpha$26 & NS/SU(2)-twist analysis: $Z_{\mathrm{NS}}(i)=\vartheta_2(0|i)/\eta(
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
-  title={Gap G137-B — Exact Statement (2026-05-12, NS/SU(2)-twist update)}]
+  title={Gap G137-B — Exact Statement (2026-05-14, NS/SU(2)-twist + orbifold update)}]
 \textbf{Theorem to be proved}: From the UBT action $S[\Theta]$ alone,
 derive the effective coupling coefficient $B$ in
 $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ as:
@@ -244,8 +251,8 @@ $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ as:
 \end{equation}
 where:
 \begin{itemize}
-  \item $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is the NS partition function
-    of one real charged scalar on $S^1_\psi$ at the self-dual point;
+  \item $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is the current normalization
+    candidate (not yet first-principles derived) at the self-dual point;
   \item $N_{\mathrm{eff}}=12$ from the SU(2)-twist theorem [L1];
   \item No input from $\alpha_{\mathrm{exp}}$, $B_{\mathrm{phenom}}$, or any
     fitted parameter is used.
@@ -307,11 +314,11 @@ So the remaining open part of G137-B is no longer the scaling form, but the exac
 closed map from determinant data to the target \(B\)-coefficient.
 
 \medskip
-\noindent\textbf{NS/SU(2)-twist clarification (2026-05-12, \(\alpha\)26):}
-the physical origin of the exponent $1/4$ and the factor $2\eta(i)$ is now
-identified: $Z_{1\mathrm{real}}(\tau=i)=2\eta(i)$ is the NS partition function of
-one real scalar with half-integer BC from the SU(2) twist.  The only remaining
-open step is the volumetric factorization
+\noindent\textbf{NS/SU(2)-twist + orbifold clarification (2026-05-14, \(\alpha\)26--27):}
+$Z_{\mathrm{NS}}(i)=\vartheta_2(0|i)/\eta(i)\approx1.189$ [NUM] and
+$Z_{\mathrm{orb}}(i)\approx1.3017$ [NUM], so neither direct NS nor direct
+orbifold insertion closes $B$. The candidate $Z_{1\mathrm{real}}=2\eta(i)$
+remains \MC/\OPEN. The remaining open step is the volumetric factorization
 \(W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)\) via the Mellin transform.
 
 

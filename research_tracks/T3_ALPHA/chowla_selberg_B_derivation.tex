@@ -14,6 +14,8 @@
 \usepackage{amsmath,amssymb,amsthm,booktabs,tcolorbox}
 \tcbuselibrary{skins,breakable}
 \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
 
 \title{Gap G137-B: Chowla--Selberg coefficient $B$ on $\mathbb{Z}^2$}
 \author{Ing.\ David Jaroš}
@@ -174,12 +176,44 @@ which is far from $B_{\mathrm{phenom}}\approx 46.3$.
 Hence the full $N_{\mathrm{eff}}=12$ (not $N_{\mathrm{phases}}^{3/2}$) is
 required, consistent with the SU(2)-twist count [L1].
 
+\subsection*{Step 7: $Z_2$-orbifold check and insertion status (update 2026-05-14)}
+
+Define the orbifold candidate
+\[
+Z_{\mathrm{orb}}(\tau)=\frac{\vartheta_3(0|\tau)+\vartheta_4(0|\tau)}{2\eta(\tau)}.
+\]
+
+\begin{lemma}[$Z_2$-orbifold numerical value at $\tau=i$]
+At $\tau=i$,
+\[
+Z_{\mathrm{orb}}(i)=\frac{\vartheta_3(0|i)+\vartheta_4(0|i)}{2\eta(i)}
+\approx 1.3017103387 \neq \sqrt{2}.
+\]
+So the direct identification $Z_{\mathrm{orb}}(i)=\sqrt{2}$ is not supported by
+the current reproducible numerics \textup{[NUM]}.
+\end{lemma}
+
+\begin{proposition}[Direct orbifold insertion does not close $B$]
+With $N_{\mathrm{eff}}=12$ [L1], the direct insertion
+\[
+B_{\mathrm{orb}}=12^{3/2}\,Z_{\mathrm{orb}}(i)^{1/4}
+\]
+gives
+\[
+B_{\mathrm{orb}}\approx 44.40,
+\]
+which differs from the required \(B\approx 46.28\) by about \(4.07\%\) [NUM].
+Hence the orbifold factor alone does not close Gap G137-B; an additional
+determinant-to-coefficient insertion remains necessary.
+\end{proposition}
+
 \begin{statusbox}
-Numerics at $\tau=i$: $\vartheta_2(0|i)/\eta(i)=1.189$ [NUM], $\vartheta_4(0|i)\approx0.91358$ [NUM], $(\vartheta_3(0|i)+\vartheta_4(0|i))/(2\eta(i))\approx1.3017$ [NUM]\\
+Numerics at $\tau=i$: $\vartheta_2(0|i)/\eta(i)=1.189$ [NUM], $\vartheta_4(0|i)\approx0.91358$ [NUM], $(\vartheta_3(0|i)+\vartheta_4(0|i))/(2\eta(i))\approx1.3017\neq\sqrt{2}$ [NUM]\\
 $Z_{\mathrm{NS}}(i)=\vartheta_2(0|i)/\eta(i)=1.189$: \textbf{[NUM]} --- \textbf{NENÍ} $Z_{1\mathrm{real}}$\\
 $Z_R(i)=\vartheta_3(0|i)/\eta(i)=\sqrt{2}$: \textbf{[STD]}\\
+$B_{\mathrm{orb}}=12^{3/2}\cdot Z_{\mathrm{orb}}^{1/4}\approx44.40$: \textbf{[NUM], not sufficient}\\
 $B=12^{3/2}\cdot(Z_R\eta)^{1/4}=12^{3/2}\cdot\vartheta_3(0|i)^{1/4}$: \textbf{[MC]}\\
-Fyzikální původ $B$: periodický sektor (a,d) místo NS (b,c): \textbf{[MC]}\\
+Fyzikální původ $B$: kombinace sektorů (orbifold + další inserce): \textbf{[OPEN/MC]}\\
 Gap G137-B: \textbf{[NARROWED]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}

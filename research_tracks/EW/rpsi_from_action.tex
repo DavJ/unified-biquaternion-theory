@@ -199,11 +199,41 @@ exponential hierarchy relative to the Casimir branch.  In this file we do not
 yet have a closed microscopic $V_{\mathrm{gauge}}(R)$ from $\Theta$-sector data,
 so the mechanism is currently \textbf{[MC/OPEN]} (promising, not derived).
 
+\subsection*{Candidate 3 numerical expansion (update 2026-05-14)}
+
+We test the condensate ansatz
+\[
+\langle b^\dagger b\rangle(R)\sim e^{-\pi/(2R)},
+\qquad
+V_{\mathrm{gauge}}(R)=-\lambda\,\langle b^\dagger b\rangle^2
+\sim -\lambda e^{-\pi/R},
+\]
+with
+\[
+V_{\mathrm{eff}}(R)= -\frac{N_{\mathrm{eff}}}{48\pi R^2}+T_{\mathrm{kin}}R-\lambda e^{-\pi/R}.
+\]
+Using \(N_{\mathrm{eff}}=12\), \(T_{\mathrm{kin}}=10^{-6}\) (Planck units), and
+bounded minimization over \(R\in[10^{-6},10^6]\) (script:
+\texttt{tools/rpsi\_condensate.py}):
+\begin{itemize}
+  \item Target ratio: \(M_{\mathrm{GUT}}/M_{\mathrm{Pl}}\approx 1.639\times10^{-3}\).
+  \item Fit (numerical): \(\lambda\approx 1.191\times10^{-1}\) gives the target.
+  \item For \(\lambda=g^2\) with \(g\approx0.65\), \(\lambda\approx0.4225\):
+  \[
+  R_\psi^*\approx1.150\times10^3,\qquad
+  M_{\mathrm{GUT}}/M_{\mathrm{Pl}}\approx8.69\times10^{-4},
+  \]
+  i.e. below the target by a factor \(\approx1.89\).
+\end{itemize}
+So Candidate 3 remains viable as a \textbf{numerical mechanism} [MC], but
+\(\lambda\) is not yet derived from \(S[\Theta]\) [OPEN].
+
 \begin{statusbox}
 Kandidát 1 (winding renorm.): \textbf{[NO-GO]} (nutné $n\approx99.3$ pro $\vartheta_3(0|i)^{-n}$)\\
 Kandidát 2 (sub-leading Casimir): \textbf{[NO-GO]} (v minimálním modelu vychází $c\approx-4.18\times10^3$, požadováno $c>0$)\\
-Kandidát 3 (moduli stabilisation): \textbf{[MC/OPEN]}\\
-$M_{\mathrm{GUT}} = 2\times10^{16}\,\mathrm{GeV}$: \textbf{[OPEN/CONDITIONAL]}\\
+Kandidát 3 (moduli stabilisation + gauge condensate): \textbf{[MC]} (numericky realizovatelné pro $\lambda\approx0.119$ při $T_{\mathrm{kin}}=10^{-6}$)\\
+$M_{\mathrm{GUT}} = 2\times10^{16}\,\mathrm{GeV}$: \textbf{[CONDITIONAL]} (vyžaduje vhodnou hodnotu $\lambda$)\\
+$\lambda \sim g^2$ z $S[\Theta]$: \textbf{[OPEN]} (pro $g\approx0.65$ vychází $M_{\mathrm{GUT}}$ níže než cíl)\\
 $\sin^2\theta_W(M_Z) = 0.231$: \textbf{[CONDITIONAL]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
