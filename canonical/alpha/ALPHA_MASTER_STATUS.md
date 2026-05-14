@@ -3,7 +3,7 @@
 # ALPHA_MASTER_STATUS.md — T3_ALPHA Canonical Master Status
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-13  
+**Date**: 2026-05-14  
 **Track**: T3_ALPHA — Fine Structure Constant  
 **Purpose**: Single authoritative file consolidating all alpha-program status.
 Supersedes and summarises: `reports/alpha_routes_ranked.md`, `reports/alpha_no_fit_progress.md`,
@@ -84,6 +84,21 @@ to 137.036 is not yet derived from first principles.
 - New numeric verification: `tools/chowla_selberg_numerical.py::check_theta2_ns_identity()`
 - New matrix entry: `canonical/alpha/alpha_gap_closure_matrix.tex α26`
 - Gap G137-B: **NARROWED — N_eff and Z_1real candidate identified; NS→Z_1real OPEN/MC; factorization OPEN**
+- Alpha: **NOT DERIVED**
+
+### Z₂ orbifold sync (2026-05-14)
+
+- Extended check: `research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex §7`
+- Script update: `tools/chowla_selberg_numerical.py::check_z2_orbifold_candidate()`
+- Numerical result:
+  - `Z_orb(i) = (θ₃(0|i)+θ₄(0|i))/(2η(i)) ≈ 1.3017103387`
+  - `Z_orb(i) ≠ √2` (difference ≈ `0.1125`)
+  - Direct insertion `B_orb = 12^(3/2)·Z_orb(i)^(1/4) ≈ 44.40` (about `4.07%` below `B_req`)
+- Interpretation:
+  - Direct orbifold insertion is **not sufficient** to close G137-B.
+  - Candidate normalization `Z_1real = 2η(i)` remains **OPEN/MC**.
+  - Determinant-to-coefficient insertion remains the core open step.
+- Gap G137-B: **NARROWED but OPEN**
 - Alpha: **NOT DERIVED**
 
 
