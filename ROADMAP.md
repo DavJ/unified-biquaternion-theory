@@ -3,7 +3,7 @@
 # ROADMAP.md — UBT Development Roadmap
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-13  
+**Date**: 2026-05-14  
 **Purpose**: Forward-looking plan for the next 21 days and beyond.
 Based on current proof status; no aspirational items without a clear path.
 
@@ -15,6 +15,35 @@ Based on current proof status; no aspirational items without a clear path.
 - GAP-Z (Zerilli, even-parity graviton) is closed at [L1] via `canonical/gr_closure/zerilli_derivation.tex`
 - T2_GAUGE theorems are proved; paper not yet written
 - T3_ALPHA integer-137 result is conditional on Gap G137-B
+
+---
+
+## Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)
+
+This section operationalizes the current top 10 priorities/gaps from the
+authoritative status set:
+`STATUS_OF_UBT.md`, `canonical/gauge/GAUGE_MASTER_STATUS.md`,
+`canonical/alpha/ALPHA_MASTER_STATUS.md`.
+
+**Execution order (locked):** **1 → 2 → (3,4 in parallel) → 5/6/7/8/9 → 10**
+
+| # | Priority / Gap | Implementation instruction | Exit criterion |
+|---|----------------|----------------------------|----------------|
+| 1 | Publish T1_GR (submit-ready) | Finalize arXiv + journal submission package from `papers/UBT_GR_Submission.tex`; include canonical proof references; keep GAP-10 explicitly labeled open/non-blocking. | Submission confirmation IDs recorded; GAP-10 statement present in manuscript. |
+| 2 | Complete and submit T2_GAUGE paper | Consolidate proved algebraic claims into one canonical manuscript; include explicit no-go statement that pure algebra cannot fix g'/g (Weinberg dead-end statement). | T2_GAUGE manuscript submitted with dead-end wording retained. |
+| 3 | Close G137-B (alpha blocker) | Run one focused first-principles route only (modular bootstrap / equivalent strict path) to derive \(B_{\mathrm{phenom}}\) from \(S[\Theta]\) without alpha input; enforce hard go/no-go gate. | Either [L1] closure of G137-B or formal no-go/conditional downgrade memo. |
+| 4 | Resolve N_eff audit gap (OPEN/[MC]) | Close multiplicity-factor audit in canonical alpha chain; remove unresolved counting assumptions or explicitly prove them. | `N_eff` status upgraded from OPEN/[MC] to proved, or frozen as explicitly unresolved with blocker proof note. |
+| 5 | Close C2 hypercharge-assignment gap | Derive specific fermion hypercharge assignments from UBT structure, including uniqueness conditions and admissible-class boundaries. | C2 moved from OPEN to proved/conditional with full theorem assumptions stated. |
+| 6 | Upgrade EW-1b (or kill) | Complete first-principles EW+RG closure including \(R_\psi\) origin from \(S[\Theta]\); if closure fails, formally downgrade/kill EW-1b route. | EW-1b reclassified to PROVED or KILLED (no ambiguous middle state). |
+| 7 | Address EW-2 Higgs-VEV gap | Open Higgs-focused derivation track/paper; derive Higgs doublet VEV from \(S[\Theta]\) with assumptions isolated from gauge theorem claims. | EW-2 status moved from deferred/open to explicit proved/conditional theorem statement. |
+| 8 | Address Y2 Yukawa/fermion-mass gap | Build first-principles fermion mass/coupling program while keeping KK-mismatch constraints explicit and non-negotiable. | Y2 status moved from OPEN to formally scoped theorem program with closed sub-lemmas or explicit impossibility statements. |
+| 9 | Close anomaly first-principles gap | Derive anomaly cancellation from UBT-first principles (not assumed SM assignments), or mark exactly which anomalies remain conditional. | Anomaly section upgraded from conditional to proved or fully partitioned open items with blockers. |
+| 10 | Produce one unique falsifiable prediction beyond ΛCDM+SM | Prioritize one parameter-controlled, discriminative observable (e.g., mirror-sector quantitative signature or robust cosmology discriminator) and define falsification protocol up front. | Public pre-registered prediction sheet with parameter bounds and fail/pass criterion. |
+
+**Governance constraints**
+- No speculative track expansion while items 1–4 are unresolved.
+- No new alpha routes outside the active portfolio gate process.
+- Every status change above must be mirrored same-day in `STATUS_OF_UBT.md`.
 
 ---
 
