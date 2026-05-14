@@ -3,7 +3,7 @@
 # STATUS_OF_UBT.md — Single Source of Truth
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-13 *(last updated — governance + CI/metadata cleanup)*  
+**Date**: 2026-05-14 *(last updated — top-10 execution program linkage)*  
 **Purpose**: Authoritative one-file description of the real current state of every
 major UBT track.  All other status files are subordinate to this document.
 When in conflict, this file governs.
@@ -27,6 +27,10 @@ and one blocked result (T3_ALPHA).
 
 **No speculative tracks are active.**  Consciousness/CTC content is frozen in
 `speculative_extensions/`.  No new branches are being opened during the cleanup window.
+
+**Execution control**: Top-10 priority/gap implementation instructions and locked
+sequencing are maintained in `ROADMAP.md` under
+`Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
 ---
 
