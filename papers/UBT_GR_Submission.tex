@@ -106,7 +106,8 @@ satisfies the Regge-Wheeler equation, and the even-parity graviton satisfies
 the Zerilli equation (GAP-Z closed; see \texttt{canonical/gr\_closure/zerilli\_derivation.tex}).
 The off-shell $\Theta$-only closure (GAP-10) remains open at level [L2]
 and does not affect the on-shell validity of the main result.
-The even-parity (Zerilli) equation has been derived subsequently in a companion file and will appear in a follow-up note.
+The even-parity (Zerilli) equation is documented in the companion derivation
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex} (2026-05-10).
 \end{abstract}
 
 \tableofcontents
@@ -594,14 +595,14 @@ is the Regge-Wheeler potential for spin-2 gravitational perturbations.
 No additional input from UBT beyond the metric chain is required.
 \end{theorem}
 
-\begin{tcolorbox}[colback=orange!4!white,colframe=orange!55!black,
-  title=Open: Zerilli equation (even-parity graviton) \OPEN\ [\Ltwo]]
+\begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
+  title=Zerilli equation (even-parity graviton) \PROVED\ [\Lone]]
 The even-parity (polar) perturbation equation of Schwarzschild
 --- the Zerilli equation~\cite{zerilli1970} ---
-has not yet been derived from UBT.
-This is GAP-Z (\S\ref{sec:gapz}); it does not affect the main GR recovery result.
-Closing it requires extending the even-parity $\Theta$ sector analysis
-using Chandrasekhar's transformation~\cite{chandrasekhar1983}.
+is derived from linearised UBT in
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
+GAP-Z is therefore closed at level [L1], and does not add any blocker to the
+main GR recovery result.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -763,8 +764,8 @@ Several prior approaches derive aspects of GR from algebraic structures:
 This paper establishes the \emph{classical GR sector} of UBT.
 It makes no claim about the quantum gravity sector (GAP-Q),
 cosmological solutions (GAP-C), or gauge unification (T2\_GAUGE track).
-The two [L2] open problems (GAP-10 and GAP-Z) are precisely bounded in
-\S\ref{sec:gaps} and do not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
+The remaining [L2] open problem (GAP-10) is precisely bounded in
+\S\ref{sec:gaps} and does not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
 
 \subsection{Conclusion}
 
@@ -806,7 +807,7 @@ researchers familiar with biquaternion algebra and standard GR.
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
 6b & ASD condition / twistor & Proved \Lone & asd\_condition\_ubt.tex \\
 6c & Regge-Wheeler equation & Proved \Lone & linearised GR chain \\
-7a & Zerilli equation (even-parity) & Open \Ltwo & GAP-Z, \S\ref{sec:gapz} \\
+7a & Zerilli equation (even-parity) & Proved \Lone & GAP-Z, \S\ref{sec:gapz} \\
 7b & Off-shell $\Theta$-only closure & Open \Ltwo & GAP-10, \S\ref{sec:gaps} \\
 \bottomrule
 \end{tabular}

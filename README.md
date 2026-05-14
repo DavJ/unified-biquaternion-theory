@@ -5,7 +5,7 @@
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 **Author**: Ing. David Jaroš  
-**Status**: First external release preparation (2026-04-28)
+**Status**: First external release preparation (2026-05-13)
 
 ---
 
@@ -41,7 +41,7 @@ So the basic idea is simple even though the details are technical: one algebra, 
 
 ---
 
-## What Has Been Proved (as of 2026-04-28)
+## What Has Been Proved (as of 2026-05-13)
 
 **Complete proofs.** No hand-waving.
 
@@ -55,6 +55,7 @@ So the basic idea is simple even though the details are technical: one algebra, 
 | Einstein equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ from Hilbert variation | [L1] |
 | Schwarzschild metric recovered, spatial components verified < 10⁻¹⁵ | [L1]+[NUM] |
 | Regge-Wheeler equation (odd-parity graviton) derived | [L1] |
+| Zerilli equation (even-parity graviton) derived | [L1] |
 
 → **Paper**: `papers/UBT_GR_Submission.tex` (**current canonical GR manuscript**, submit-ready)
 
@@ -95,7 +96,6 @@ UBT is honest about its limits.
 | Weinberg angle sin²θ_W | **Conditional open** — pure-algebra route is dead end; EW-1b (EW1+RG) is tracked conditionally |
 | W/Z boson masses | Open (Higgs mechanism deferred) |
 | Fermion mass spectrum | Open-hard |
-| Zerilli equation (even-parity graviton) | OPEN / FOLLOW-UP — derivation tracked separately; not counted as a closed blocker in the current GR manuscript |
 | Dynamical colour confinement | Clay Millennium Problem |
 | Full α = 1/137.036 (not just integer 137) | Open — Gap G137-B |
 
