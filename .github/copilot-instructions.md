@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretical physics framework that unifies General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over complex time τ = t + iψ. The repository also includes the **Complex Consciousness Theory (CCT)**, which applies UBT principles to model consciousness as a physical phenomenon.
+This repository contains the **Unified Biquaternion Theory (UBT)**, a theoretical physics framework that unifies General Relativity, Quantum Field Theory, and Standard Model symmetries within a biquaternionic field defined over complex time τ = t + iψ. Speculative consciousness-related material, if present, is separated from the core theory and is not part of the GR-sector release claim.
 
 **Author**: David Jaroš  
 **Primary Content**: LaTeX research documents, mathematical derivations, and computational scripts

@@ -594,14 +594,13 @@ is the Regge-Wheeler potential for spin-2 gravitational perturbations.
 No additional input from UBT beyond the metric chain is required.
 \end{theorem}
 
-\begin{tcolorbox}[colback=orange!4!white,colframe=orange!55!black,
-  title={Open: Zerilli equation (even-parity graviton) \OPEN\ [\Ltwo]}]
-The even-parity (polar) perturbation equation of Schwarzschild
---- the Zerilli equation~\cite{zerilli1970} ---
-has not yet been derived from UBT.
-This is GAP-Z (\S\ref{sec:gapz}); it does not affect the main GR recovery result.
-Closing it requires extending the even-parity $\Theta$ sector analysis
-using Chandrasekhar's transformation~\cite{chandrasekhar1983}.
+\begin{tcolorbox}[colback=green!4!white,colframe=green!45!black,
+  title={Zerilli equation (even-parity graviton): CLOSED [L1/STD]}]
+Zerilli/even-parity perturbations are closed at [L1/STD] for vacuum
+Schwarzschild modes with $\ell \ge 2$, using
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
+The closure relies on standard Chandrasekhar/RWZ perturbation theory
+after the UBT metric-chain reduction.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -650,24 +649,23 @@ The classical GR recovery result (all theorems in
 \subsection{GAP-Z: Zerilli Equation (Even-Parity Graviton)}
 \label{sec:gapz}
 
-\begin{tcolorbox}[colback=orange!4!white,colframe=orange!55!black,
-  title=GAP-Z: Zerilli Equation\ \OPEN\ [\Ltwo]]
+\begin{tcolorbox}[colback=green!4!white,colframe=green!45!black,
+  title=GAP-Z: Zerilli Equation\ CLOSED\ [L1/STD]]
 \textbf{Proved}: The Regge-Wheeler equation (odd-parity graviton) is derived
 from linearised UBT (Theorem~\ref{thm:rw}).
 
 \smallskip
-\textbf{Missing}: The Zerilli equation for even-parity perturbations:
+\textbf{Closed at [L1/STD]}: The Zerilli equation for even-parity perturbations:
 \[
   \left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2 - V_\mathrm{Z}(r)\right]
   \Psi_\mathrm{Z} = 0.
 \]
-Even-parity modes couple scalar and tensor sectors, requiring Chandrasekhar's
-two-potential transformation~\cite{chandrasekhar1983}, which has not been
-implemented in the UBT even-parity $\Theta$ sector.
+is obtained for vacuum Schwarzschild modes with $\ell \ge 2$ by
+standard Chandrasekhar/RWZ machinery after the UBT metric-chain reduction;
+see \texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
 
-\textbf{Priority}: Highest-priority open item for the graviton sector.
-Closing strategy: (1) derive the even-parity linearised UBT field equation;
-(2) show it reduces to Zerilli via Chandrasekhar's transformation.
+\textbf{Scope note}: this closure is standard-theory [STD] after reduction;
+it does not claim a non-standard even-parity mechanism beyond RWZ.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}

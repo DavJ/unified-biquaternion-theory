@@ -11,12 +11,15 @@
 
 ## What Is UBT?
 
-UBT derives General Relativity, Standard Model gauge structure, and three
-particle generations from one algebraic object: the biquaternion algebra
-**ℂ⊗ℍ** (complex quaternions), extended to complex time **τ = t + iψ**, where **ψ** is a compact internal phase coordinate rather than a second observable time.
+UBT is a biquaternionic field framework that aims to recover
+general-relativistic geometry and explore possible links to gauge structure
+and particle-generation structure from the algebra **ℂ⊗ℍ**, extended by
+complex time **τ = t + iψ**.
 
-The fundamental field **Θ(q,τ)** satisfies a single field equation.
-Everything else — spacetime metric, curvature, gauge interactions — is derived.
+The present release focuses on the GR-sector claim: emergent Lorentzian metric
+geometry and real-sector recovery of the classical general-relativistic chain
+from the field **Θ(q,τ)**. Gauge, alpha, consciousness, CTC, and other
+speculative extensions are not part of the core claim of this release.
 
 ---
 
@@ -43,7 +46,7 @@ So the basic idea is simple even though the details are technical: one algebra, 
 
 ## What Has Been Proved (as of 2026-05-13)
 
-**Complete proofs.** No hand-waving.
+The current proof status is tracked explicitly below using proof levels.
 
 ### General Relativity (Track T1_GR)
 
