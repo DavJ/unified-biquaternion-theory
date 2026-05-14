@@ -239,9 +239,9 @@ See appendix_R_GR_equivalence.tex for detailed derivation.
 ### Novel Concepts
 - **Biquaternions**: Mathematical framework combining quaternions with complex coefficients
 - **Complex Time**: Extension of real time to complex plane
-- **Psychons**: Quantum excitations of consciousness fields
-- **Closed Timelike Curves (CTCs)**: Time-travel solutions in UBT metric
-- **Theta Resonator**: Proposed experimental device for consciousness detection
+- **Psychons**: Speculative consciousness-related concept; belongs only under speculative_extensions/ or archived historical material
+- **Closed Timelike Curves (CTCs)**: Speculative concept; belongs only under speculative_extensions/ or archived historical material
+- **Theta Resonator**: Speculative concept; belongs only under speculative_extensions/ or archived historical material
 
 ### Mathematical Rigor
 - Maintain consistency with established physics notation
@@ -341,11 +341,12 @@ See appendix_R_GR_equivalence.tex for detailed derivation.
 Refer to `RESEARCH_PRIORITIES.md` for current focus areas:
 1. Formal consolidation of UBT core equations
 2. Padic extensions and dark sector physics
-3. Psychon dynamics in complex time
-4. Closed Timelike Curve (CTC) solutions
-5. Electromagnetism in curved space
-6. Experimental design: Theta Resonator
-7. Complex Consciousness Theory integration
+3. Electromagnetism in curved space
+4. Complex Consciousness Theory integration
+
+**Note**: Speculative consciousness, psychon, CTC, and Theta Resonator material is outside
+the core GR-sector release claim and belongs only under speculative_extensions/
+or archived historical material.
 
 ### Academic Integrity
 - This is original research by David Jaroš
@@ -409,8 +410,8 @@ This repository contains the **Unified Biquaternion Theory (UBT)**, a unified ph
 - **CCT**: Complex Consciousness Theory - simplified application of UBT for consciousness modeling
 - **Complex time**: τ = t + iψ where ψ is the imaginary time component
 - **Biquaternions**: Mathematical foundation combining quaternions with complex coefficients
-- **Psychons**: Quantum excitations of consciousness within complex-time phase space
-- **CTCs**: Closed Timelike Curves - geometric solutions for time-travel
+- **Psychons**: Speculative consciousness-related concept; outside core GR-sector release claim
+- **CTCs**: Closed Timelike Curves — speculative concept; outside core GR-sector release claim
 - **p-adic extensions**: Mathematical framework for dark matter and dark energy
 
 ## Build and Compilation
