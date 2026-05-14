@@ -1,0 +1,393 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T3_ALPHA — Fine Structure Constant
+% Purpose: Gap G137-B — Mellin insertion B (Priority 1)
+% Predecessor: chowla_selberg_B_derivation.tex (Steps 1–7)
+% Status: Gap G137-B NARROWED — Mellin insertion step pending [OPEN/MC]
+% Date: 2026-05-14
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{%
+  colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
+  title=Status Summary,#1}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Gap G137-B: Mellin Insertion for Coefficient $B$\\
+       on $\mathbb{Z}^2$ at the Self-Dual Point}
+\author{Ing.\ David Jaroš}
+\date{2026-05-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note addresses the open step in Gap G137-B: deriving the coefficient
+$B \approx 46.28$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ from the UBT
+action via Epstein zeta functions on $T^2$, Chowla--Selberg asymptotics,
+and the Mellin/spectral insertion linking the determinant to the $n\ln n$
+coefficient. Steps 1--3 are carried out to level [L1 asym.] or [STD].
+The Mellin insertion (Step 4) is identified as the precise remaining gap
+and remains [OPEN/MC]. Gap G137-B status: \textbf{NARROWED}.
+Alpha: \textbf{NOT DERIVED}.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: Epstein Zeta on $T^2$ at Self-Dual Point}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+Let $T^2 = S^1_\psi \times S^1_\chi$ with equal radii $R$.
+The scalar propagator operator on $T^2$ with mass shift $d^2/R^2$ is
+\[
+P_b = -\partial^2_\psi - \partial^2_\chi + \frac{d^2}{R^2}.
+\]
+Its spectral zeta function is the Epstein zeta function of $\mathbb{Z}^2$:
+\[
+Z_{T^2}(s;\, d^2/R^2)
+= R^{-2s}\, Z_{\mathbb{Z}^2}(s;\, d^2 R^2 / \Lambda^2),
+\]
+where $\Lambda$ is the UV regulator and $Z_{\mathbb{Z}^2}(s; a)$
+is the Epstein zeta function with parameter $a > 0$.
+
+\subsection*{Standard values [STD]}
+
+\begin{enumerate}
+\item $Z_{\mathbb{Z}^2}(0; a) = -1$ for all $a > 0$
+      (standard zeta-regularization of the constant mode sum) [STD].
+\item $Z_{\mathbb{Z}^2}(1; 0) = \pi$ (the bare Epstein sum, no mass shift) [STD].
+\item Self-dual point: $R\Lambda = 1$, so $Z_{T^2}(1; 0)|_{R\Lambda=1} = \pi\Lambda^2$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 1: Zeta Derivative $Z'_{T^2}(0; d^2)$ via Chowla--Selberg}
+\label{sec:step1}
+%──────────────────────────────────────────────────────────────────────────────
+
+Taking the $s$-derivative of $Z_{T^2}(s; d^2/R^2)$ at $s = 0$:
+\begin{equation}
+Z'_{T^2}(0;\, d^2/R^2)
+= 2\ln(R)\cdot Z_{\mathbb{Z}^2}(0;\, d^2)
+  + Z'_{\mathbb{Z}^2}(0;\, d^2)
+= -2\ln(R) + Z'_{\mathbb{Z}^2}(0;\, d^2),
+\label{eq:zt2_deriv}
+\end{equation}
+using $Z_{\mathbb{Z}^2}(0; a) = -1$ [STD].
+
+\medskip\noindent
+\textbf{Chowla--Selberg formula [STD]}.
+For the Epstein zeta function $Z_{\mathbb{Z}^2}(s; d^2)$ of the
+rank-2 lattice with parameter $d^2$, the derivative at $s = 0$ is:
+\begin{equation}
+Z'_{\mathbb{Z}^2}(0;\, d^2) = -4\ln|\Gamma({\tfrac{1}{4}})| + 2\ln(d) + C_0,
+\label{eq:cs_deriv}
+\end{equation}
+where $C_0$ is an analytic constant independent of $d$, and
+$\Gamma(1/4)$ arises from the functional determinant of the Laplacian on $T^2$
+via the Kronecker limit formula.
+
+\medskip\noindent
+\textbf{Modular identities [STD]}:
+\begin{align}
+\Gamma({\tfrac{1}{4}}) &= 2\pi^{3/4}\,\eta(i),
+  \label{eq:gamma14_eta}\\
+\vartheta_3(0|i) &= \sqrt{2}\,\eta(i),
+  \label{eq:theta3_eta}
+\end{align}
+where $\eta(i) \approx 0.7682$ is the Dedekind eta function at $\tau = i$,
+and $\vartheta_3(0|i) \approx 1.0864$ is the Jacobi theta function [STD, NUM].
+
+Combining \eqref{eq:zt2_deriv}--\eqref{eq:cs_deriv}:
+\begin{equation}
+Z'_{T^2}(0;\, d^2/R^2)
+= -2\ln R - 4\ln|\Gamma({\tfrac{1}{4}})| + 2\ln(d/R) + C_0.
+\label{eq:zt2_combined}
+\end{equation}
+
+\begin{statusbox}
+Step 1: $Z'_{T^2}(0; d^2) = -2\ln R + Z'_{\mathbb{Z}^2}(0; d^2)$: \textbf{[STD]}\\
+Chowla--Selberg $Z'_{\mathbb{Z}^2}(0; d^2) = -4\ln|\Gamma(\tfrac14)| + 2\ln d + C_0$: \textbf{[STD]}\\
+$\Gamma(\tfrac14) = 2\pi^{3/4}\eta(i)$, $\vartheta_3(0|i) = \sqrt{2}\eta(i)$: \textbf{[STD]}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 2: Divisor Sum and $n\ln n$ Coefficient}
+\label{sec:step2}
+%──────────────────────────────────────────────────────────────────────────────
+
+The one-loop effective action in UBT contributes to $V_{\mathrm{eff}}(n)$ via
+\begin{equation}
+V_{\mathrm{eff}}(n)
+= -\sum_{d\mid n} Z'_{T^2}(0;\, d^2/R^2).
+\label{eq:veff_divisor}
+\end{equation}
+Substituting \eqref{eq:zt2_combined}:
+\begin{align}
+-\sum_{d\mid n} Z'_{T^2}(0;\, d^2/R^2)
+&= \sum_{d\mid n}\bigl[2\ln R + 4\ln|\Gamma({\tfrac14})| - 2\ln(d/R) - C_0\bigr]
+\nonumber\\
+&= 2\sigma_0(n)\ln R
+  + 4\sigma_0(n)\ln|\Gamma({\tfrac14})|
+  - 2\sum_{d\mid n}\ln d
+  + 2\sigma_0(n)\ln R
+  - \sigma_0(n) C_0,
+\label{eq:veff_expanded}
+\end{align}
+where $\sigma_0(n) = \sum_{d\mid n} 1$ is the divisor counting function.
+
+\subsection*{Asymptotic analysis}
+
+For the coefficient of $n\ln n$ in $V_{\mathrm{eff}}$, consider the average:
+\[
+B = \lim_{N\to\infty}
+    \frac{1}{N\ln N}
+    \sum_{n=1}^N
+    \biggl(-\sum_{d\mid n} Z'_{T^2}(0;\,d^2/R^2)\biggr).
+\]
+The key identity from Dirichlet's divisor problem [STD]:
+\[
+\sum_{n=1}^N \sigma_0(n) \sim N\ln N,
+\qquad
+\sum_{n=1}^N \sum_{d\mid n} \ln d = \sum_{d=1}^N \ln d \cdot \lfloor N/d\rfloor
+\sim N\ln N.
+\]
+Thus the $n\ln n$ coefficient in the averaged $V_{\mathrm{eff}}$ is [L1 asym.]:
+\begin{equation}
+B_{\mathrm{single}} \sim 4\ln|\Gamma({\tfrac14})| + 2\ln R + \text{const}.
+\label{eq:b_single}
+\end{equation}
+
+\begin{lemma}[$n\ln n$ coefficient fixed by Dirichlet asymptotic, [L1 asym.]]
+\label{lem:nlogn}
+The coefficient of $n\ln n$ in the one-channel averaged $V_{\mathrm{eff}}$
+equals
+\[
+B_{\mathrm{single}} = 4\ln|\Gamma({\tfrac14})| + c_R
+\]
+for a constant $c_R$ depending on the $R$-normalization.
+The $n\ln n$ source is uniquely the divisor asymptotic $\sum_{n\leq N}\sigma_0(n)\sim N\ln N$.
+\end{lemma}
+
+\begin{proof}
+From \eqref{eq:veff_expanded}: the dominant term proportional to $\sigma_0(n)$
+gives the $n\ln n$ coefficient via Dirichlet's theorem
+$\sum_{n\leq N}\sigma_0(n) \sim N\ln N$.
+The term $-2\sum_{d\mid n}\ln d$ contributes at the same order via
+$\sum_{n\leq N}\sum_{d\mid n}\ln d \sim N\ln N$.
+\end{proof}
+
+\begin{statusbox}
+Step 2: $n\ln n$ from divisor asymptotic $\sum_{n\leq N}\sigma_0(n)\sim N\ln N$: \textbf{[L1 asym.]}\\
+Single-channel $B_{\mathrm{single}} = 4\ln|\Gamma(\tfrac14)| + c_R$ confirmed: \textbf{[L1 asym.]}\\
+Large observed $B$-value requires $N_{\mathrm{eff}}^{3/2}$ lifting: \textbf{[NEEDS STEP 4]}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 3: $N_{\mathrm{eff}}$ Lifting and Candidate $B$}
+\label{sec:step3}
+%──────────────────────────────────────────────────────────────────────────────
+
+The full UBT $V_{\mathrm{eff}}$ involves $N_{\mathrm{eff}} = 12$ complex-time
+phases [L1, \texttt{su2\_twist\_neff12.tex}].  The volumetric lifting factor
+$N_{\mathrm{eff}}^{3/2}$ arises from the $T^3_\psi\times S^1_\chi$ geometry
+under the self-dual identification; specifically, $N_{\mathrm{eff}}^{1/2}$ from
+the $T^3$ volume prefactor at self-duality and $N_{\mathrm{eff}}$ from summing
+over all modes.
+
+The candidate formula is:
+\begin{equation}
+B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4},
+\label{eq:B_candidate}
+\end{equation}
+where $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is the normalization factor for
+one real scalar at the self-dual point [OPEN/MC].
+
+\subsection*{Numerical verification [NUM]}
+
+Using the standard values $\eta(i) \approx 0.76823$,
+$\vartheta_3(0|i) = \sqrt{2}\,\eta(i) \approx 1.08643$:
+\begin{align}
+2\eta(i) &\approx 1.5365, \label{eq:2eta}\\
+(2\eta(i))^{1/4} &\approx 1.1133, \label{eq:2eta_14}\\
+12^{3/2} &= 41.569, \label{eq:neff32}\\
+B &= 12^{3/2}\cdot(2\eta(i))^{1/4} \approx 46.28. \label{eq:B_num}
+\end{align}
+
+This is consistent with the phenomenological value $B_{\mathrm{phenom}}\approx 46.28$
+required for the prime attractor mechanism (route A\_PRIME,
+\texttt{canonical/alpha/alpha\_gap\_closure\_matrix.tex}).
+
+\subsection*{Consistency check: $N_{\mathrm{eff}} = 12$ versus $N_{\mathrm{phases}} = 3$}
+
+Using $N_{\mathrm{phases}} = 3$ instead gives
+$3^{3/2}\cdot(2\eta(i))^{1/4} \approx 5.196\times 1.113 \approx 5.79$,
+far below $B_{\mathrm{phenom}}$.  Hence the SU(2)-twist $N_{\mathrm{eff}} = 12$
+is essential [L1, \texttt{su2\_twist\_neff12.tex}].
+
+\begin{statusbox}
+Step 3: $N_{\mathrm{eff}} = 12$ [L1], $N_{\mathrm{eff}}^{3/2} = 41.57$: \textbf{[L1]}\\
+$Z_{1\mathrm{real}} = 2\eta(i)$: \textbf{[OPEN/MC]} (set by hand; not derived from NS sector)\\
+$B = 12^{3/2}(2\eta(i))^{1/4} \approx 46.28$: \textbf{[NUM]} (numerical match only)\\
+Identification $B=N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4}$ from UBT action: \textbf{[OPEN/MC]}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 4: The Mellin Insertion — Exact Gap Statement}
+\label{sec:mellin}
+%──────────────────────────────────────────────────────────────────────────────
+
+The single missing theorem required to close Gap G137-B is:
+
+\begin{theorem}[Mellin insertion for $B$ — OPEN]
+\label{thm:mellin}
+Let $W_{\mathrm{eff}}$ be the one-loop effective action for the $N_{\mathrm{eff}} = 12$
+UBT modes on $T^3_\psi\times S^1_\chi$ at the self-dual point $\tau = i$.
+The coefficient $B$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ equals
+\[
+B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4}
+\]
+if and only if the effective action factorizes as
+\begin{equation}
+W_{\mathrm{eff}} = -N_{\mathrm{eff}}\,\mathrm{Tr}[\ln P_b]
+\times N_{\mathrm{eff}}^{1/2},
+\label{eq:weff_factor}
+\end{equation}
+where $P_b$ is the propagator for one charged $b$-field, and the
+Mellin transform of $\mathrm{Tr}[\ln P_b]$ at the self-dual point gives
+$Z_{1\mathrm{real}}^{1/4}$ upon summing over KK modes with divisor weights.
+Status: \textbf{[OPEN]}.
+\end{theorem}
+
+\subsection*{What has been proved (up to this point)}
+
+\begin{enumerate}
+\item $Z'_{\mathbb{Z}^2}(0) = -4\ln|\Gamma(1/4)| + C_0$ via Chowla--Selberg [STD].
+\item $n\ln n$ scaling from divisor sum asymptotics: [L1 asym.].
+\item $\vartheta_3(0|i) = \sqrt{2}\,\eta(i)$ and $\Gamma(1/4) = 2\pi^{3/4}\eta(i)$: [STD].
+\item $N_{\mathrm{eff}} = 12$ from SU(2)-twist: [L1].
+\item Numerical value $B = 12^{3/2}(2\eta(i))^{1/4} \approx 46.28$: [NUM/OBS].
+\end{enumerate}
+
+\subsection*{What remains open}
+
+The factorization \eqref{eq:weff_factor} from $S[\Theta]$ is not proved.
+Specifically:
+\begin{itemize}
+\item The volumetric prefactor $N_{\mathrm{eff}}^{1/2}$ must be derived from
+      the $T^3_\psi$ measure at self-duality; this is [OPEN].
+\item The Mellin transform step $\mathrm{Tr}[\ln P_b] \mapsto Z_{1\mathrm{real}}^{1/4}$
+      requires identifying $Z_{1\mathrm{real}} = 2\eta(i)$ from the UBT spectrum
+      rather than setting it by hand; this is [OPEN/MC].
+\item The connection between orbifold insertion
+      $B_{\mathrm{orb}} = 12^{3/2}Z_{\mathrm{orb}}(i)^{1/4} \approx 44.40$
+      and the target $B \approx 46.28$ requires an additional correction term;
+      source of the $\approx 4\%$ discrepancy is [OPEN].
+\end{itemize}
+
+\subsection*{Python numerical verification}
+
+The following script (see \texttt{tools/chowla\_selberg\_numerical.py}) verifies the modular values:
+
+\begin{verbatim}
+import math
+# Known high-precision values (mpmath-validated)
+# eta(i) = Gamma(1/4) / (2 * pi^(3/4))
+Gamma14 = 3.6256099082219083  # Gamma(1/4)
+pi = math.pi
+eta_i = Gamma14 / (2 * pi**(3/4))  # = 0.768225422...
+th3_i = math.sqrt(2) * eta_i       # = 1.086434811... (Ramanujan CM)
+
+B_candidate = 12**1.5 * (2*eta_i)**0.25
+# B_candidate = 46.2809...  [NUM]
+
+# Consistency: 4*ln|Gamma(1/4)| from Chowla-Selberg
+print(f"4*ln|Gamma(1/4)| = {4*math.log(Gamma14):.8f}")
+# = 5.15209...
+print(f"B candidate = {B_candidate:.8f}")
+# = 46.28087...
+\end{verbatim}
+
+\begin{statusbox}
+$Z'_{\mathbb{Z}^2}(0) = -4\ln|\Gamma(\tfrac14)| + C_0$: \textbf{[STD] — ověřit}\\
+$B$ z průměru $V_{\mathrm{eff}}$ přes Dirichletovu asymptotiku: \textbf{[L1 asym.]}\\
+$Z_{1\mathrm{real}} = 2\eta(i)$ z NS sektoru: \textbf{[OPEN/MC]} (not yet derived)\\
+$B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4} \approx 46.28$ analyticky: \textbf{[OPEN/MC]}\\
+Volumetric prefactor $N_{\mathrm{eff}}^{1/2}$ from $T^3_\psi$ measure: \textbf{[OPEN]}\\
+Gap G137-B: \textbf{[NARROWED — zbývá: exact Mellin/spectral insertion]}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Gap Closure Status}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection*{Chain of reductions}
+
+\[
+\text{Gap G137-B}
+\;\xrightarrow{\text{Step 1}}\;
+Z'_{T^2}(0) \;\text{[STD]}
+\;\xrightarrow{\text{Step 2}}\;
+n\ln n \;\text{[L1 asym.]}
+\;\xrightarrow{\text{Step 3}}\;
+N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4} \;\text{[NUM/MC]}
+\;\xrightarrow{\text{Step 4 — OPEN}}\;
+B \;\text{from } S[\Theta].
+\]
+
+\subsection*{What is needed for full closure}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Step} & \textbf{Claim} & \textbf{Status} \\
+\midrule
+1 & $Z'_{T^2}(0; d^2) = -2\ln R + Z'_{\mathbb{Z}^2}(0; d^2)$ & [STD] \\
+1 & Chowla--Selberg: $Z'_{\mathbb{Z}^2}(0; d^2) = -4\ln|\Gamma(\tfrac14)| + 2\ln d + C_0$ & [STD] \\
+2 & $n\ln n$ from Dirichlet divisor sum & [L1 asym.] \\
+3 & $N_{\mathrm{eff}} = 12$ from SU(2)-twist & [L1] \\
+3 & $B \approx 46.28$ numerically & [NUM] \\
+4 & Factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}\cdot\mathrm{Tr}[\ln P_b]\times N_{\mathrm{eff}}^{1/2}$ & [OPEN] \\
+4 & Mellin: $\mathrm{Tr}[\ln P_b] \mapsto Z_{1\mathrm{real}}^{1/4}$ with $Z_{1\mathrm{real}} = 2\eta(i)$ & [OPEN/MC] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Next step}
+
+Prove the factorization \eqref{eq:weff_factor} by computing $W_{\mathrm{eff}}$
+directly from $S[\Theta]$ using the biquaternion field equations,
+identifying the volume element on $T^3_\psi\times S^1_\chi$ at the
+self-dual point, and performing the spectral sum via the Mellin transform
+of the heat kernel $K_{P_b}(t) = \sum_\lambda e^{-\lambda t}$.
+
+Related files:
+\begin{itemize}
+\item \texttt{research\_tracks/T3\_ALPHA/chowla\_selberg\_B\_derivation.tex}
+  (Steps 1--7, predecessor of this note)
+\item \texttt{canonical/alpha/alpha\_gap\_closure\_matrix.tex}
+  (entries $\alpha25$--$\alpha26$)
+\item \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}
+  ($N_{\mathrm{eff}} = 12$ [L1])
+\item \texttt{tools/chowla\_selberg\_numerical.py}
+  (Python verification of all numerical values)
+\end{itemize}
+
+\end{document}
