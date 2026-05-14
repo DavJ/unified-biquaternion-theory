@@ -1,0 +1,24 @@
+# Python dependencies for UBT computational scripts
+# Install with: pip install -r requirements.txt
+
+# Core scientific computing
+numpy>=1.20.0
+mpmath>=1.2.0
+
+# Additional packages for CMB stress tests
+scipy>=1.7.0  # Used by stress tests for statistics
+matplotlib>=3.3.0  # Used for plotting in stress tests
+
+# Testing framework
+pytest>=7.0.0
+
+# Optional: Phase-comb test (CMB spherical harmonics analysis)
+healpy>=1.15.0  # Uncomment to enable phase-comb test
+
+# Optional: Additional packages used by some scripts
+sympy>=1.9    # Used by symbolic calculations
+
+astropy>=5
+healpy>=1.16
+matplotlib
+

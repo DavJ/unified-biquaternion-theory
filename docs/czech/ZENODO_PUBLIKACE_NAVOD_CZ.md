@@ -49,22 +49,22 @@ Připravte si tyto informace:
 1. Po přihlášení jděte do Settings → GitHub
 2. Klikněte na "Connect"
 3. Autorizujte Zenodo přístup k vašim GitHub repozitářům
-4. Najděte repozitář `DavJ/unified-biquaternion-theory`
+4. Najděte repozitář `UBT-Institute/unified-biquaternion-theory`
 5. Aktivujte přepínač pro automatickou archivaci
 
 ### Krok 3: Vytvoření release na GitHubu
-1. Jděte na https://github.com/DavJ/unified-biquaternion-theory
+1. Jděte na https://github.com/UBT-Institute/unified-biquaternion-theory
 2. Klikněte na "Releases" → "Draft a new release"
 3. Vyplňte:
-   - **Tag version**: v10.0
-   - **Release title**: Unified Biquaternion Theory v10.0
+   - **Tag version**: v10.1.0
+   - **Release title**: Unified Biquaternion Theory v10.1.0
    - **Description**: (viz níže)
 4. Klikněte na "Publish release"
 
 #### Doporučený text pro GitHub Release:
 
 ```markdown
-# Unified Biquaternion Theory v10.0 (November 2025)
+# Unified Biquaternion Theory v10.1.0 (May 2026)
 
 ## Major Updates
 - Fermion masses derived from first principles with experimental validation
@@ -157,7 +157,7 @@ Přidejte jedno po druhém:
 - **Version**: v10.0
 - **Language**: English
 - **Related identifiers**: 
-  - GitHub: https://github.com/DavJ/unified-biquaternion-theory
+   - GitHub: https://github.com/UBT-Institute/unified-biquaternion-theory
   - (později můžete přidat OSF odkaz)
 
 ### Krok 7: Kontrola a publikace
@@ -191,7 +191,7 @@ V sekci na konci dokumentu:
 ### 3. Citace
 Doporučený citační formát:
 ```
-Jaroš, D. (2025). Unified Biquaternion Theory v10.0. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Jaroš, D. (2026). Unified Biquaternion Theory v10.1.0. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
 ```
 
 ## Další kroky po publikaci

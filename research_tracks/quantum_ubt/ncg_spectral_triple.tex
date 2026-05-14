@@ -1,0 +1,106 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+%
+% Classification: sections 1-2 [STD+MC], sections 3-4 [MC/SPECULATIVE].
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\title{\textbf{NCG spektrální trojice pro UBT}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
+
+\begin{document}
+\maketitle
+
+\section{Definice spektrální trojice z UBT \,[STD+MC]}
+
+Navrhujeme Connesovu spektrální trojici $(A,H,D)$:
+\begin{align}
+A &= \mathbb C\otimes\mathbb H \cong \mathrm{Mat}(2,\mathbb C),\\
+H &= L^2(M,S\otimes(\mathbb C\otimes\mathbb H)),\\
+D &= \text{Diracův operátor na }M\text{ s hodnotami v }\mathbb C\otimes\mathbb H.
+\end{align}
+Tento zápis je přímou NCG formulací algebraického základu UBT.
+
+\section{Porovnání s Connes--Chamseddine \,[STD+MC]}
+
+Connes--Chamseddine používá produktovou algebru
+$C^\infty(M)\otimes(\mathbb C\oplus\mathbb H\oplus M_3(\mathbb C))$.
+UBT naopak používá jednoduchou algebru
+$\mathbb C\otimes\mathbb H\cong \mathrm{Mat}(2,\mathbb C)$.
+
+Pracovní strukturální teze:
+\begin{itemize}
+  \item CC model: Standard Model je zaveden přes produktovou interní algebru.
+  \item UBT: jednotný algebraický objekt dává gravitační i gauge sektor v jedné
+  kostře.
+\end{itemize}
+Zda je tento popis fakticky jednodušší i predikčně silnější, zůstává test
+pro další práci.
+
+\section{Spektrální akce \,[MC/SPECULATIVE]}
+
+Použijeme standardní tvar
+\[
+S_{\mathrm{spec}}[D]=\mathrm{Tr}\!\left[f\!\left(\frac{D}{\Lambda}\right)\right]
+\sim a_0\Lambda^4+a_2\Lambda^2+a_4\ln\Lambda+\cdots.
+\]
+Klíčový otevřený úkol: porovnat Seeley--DeWittovy koeficienty $a_k$ s
+koeficienty v UBT akci $S[\Theta]$ (gravitační a gauge část).
+
+\section{Winding spektrum a link na $B_0$ \,[MC/SPECULATIVE]}
+
+Pro imaginární časový kruh $S^1_\psi$ s poloměrem $R_\psi$:
+\[
+\lambda_n=\frac{n}{R_\psi},\qquad n\in\mathbb Z,
+\]
+a
+\[
+\mathrm{Tr}\!\left[f\!\left(\frac{D}{\Lambda}\right)\right]
+\supset \sum_{n\in\mathbb Z} f\!\left(\frac{n}{R_\psi\Lambda}\right).
+\]
+Poissonovo přesčítání může generovat logaritmický člen, kandidáta na vazbu
+ke koeficientu $B_0$ v alpha tracku. Otevřený test:
+\[
+\sum_n f\!\left(\frac{n}{R_\psi\Lambda}\right)\stackrel{?}{\longrightarrow}B_0\ln\Lambda.
+\]
+Pokud se potvrdí, vznikne přímý most mezi NCG spektrální akcí a
+vacuum-polarizačním koeficientem v T3\_ALPHA.
+
+\subsection{Algebraická identita na self-dual bodě \,[STD]}
+
+Na self-dual bodě $R_\psi\cdot\Lambda=1$ (tj.\ $\tau=i$) je winding
+partiční funkce
+\[
+Z_{\mathrm{wind}}(\tau=i) = \vartheta_3(0|i).
+\]
+Z Ramanujanovy CM hodnoty a Dedekindovy $\eta$ funkce platí přesná
+algebraická identita
+\[
+\frac{\vartheta_3(0|i)}{\eta(i)} = \sqrt{2},
+\]
+dokázaná přes reflexní formuli pro $\Gamma(1/4)\,\Gamma(3/4)=\pi\sqrt{2}$.
+Pro tři volné kompaktní bosony ($c=3$) je
+$Z_{c=3}(\tau=i) = (\sqrt{2})^3 = 2\sqrt{2}$ [STD].
+
+Tato identita je základem kandidátského vzorce pro koeficient $B$
+v $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$:
+\[
+B \stackrel{?}{=}
+  N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot Z_{\mathrm{wind}}(1)^{1/4}.
+\]
+Vzorec je numerické pozorování s přesností $0{,}0066\%$; algebraický
+původ faktoru $Z_{\mathrm{wind}}(1)^{1/4}$ v $V_{\mathrm{eff}}$ zůstává
+otevřenou otázkou (Gap G137-B).
+
+Viz: \texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex}
+a \texttt{research\_tracks/T3\_ALPHA/seeley\_dewitt\_b\_bridge.tex}.
+
+\end{document}
+

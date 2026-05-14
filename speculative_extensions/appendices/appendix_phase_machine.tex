@@ -1,0 +1,140 @@
+%% ================================================
+%% SPECULATIVE / WIP — Not part of CORE claims.
+%% VERSION: v1.0 — SPECULATIVE APPENDIX
+%% ================================================
+% Phase Machine (Invisibility Machine) Appendix
+% Date: 2026-03-03
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+\appendix
+\section{Appendix: The Phase Machine (SPECULATIVE)}
+\label{app:phase_machine}
+
+\vspace{1em}
+\noindent\fbox{\begin{minipage}{0.95\textwidth}
+\textbf{WARNING: SPECULATIVE THEORETICAL PROPOSAL}
+
+\textbf{SPECULATIVE CONTENT — NOT VALIDATED SCIENCE}
+
+This appendix introduces the \emph{phase machine} as a theoretical device that maintains a
+localized constant phase $\varphi_0$ inside a compact spacetime region $\Omega$.
+\textbf{Readers must understand:}
+\begin{itemize}
+  \item This is a \textbf{speculative extrapolation} of the canonical phase projection formalism
+        (Section~\ref{sec:canonical:phase_projection}) to engineering-like scenarios.
+  \item No experimental evidence for such a device exists.
+  \item The invisibility condition relies on phase values that remain to be determined.
+  \item All claims below are \textbf{mathematical consequences of UBT assumptions}, not
+        established physics.
+  \item This content is separated from the canonical core and belongs to
+        \texttt{speculative\_extensions/}.
+\end{itemize}
+\end{minipage}}
+\vspace{1em}
+
+\subsection{Definition of the Phase Machine (SPECULATIVE)}
+
+A \textbf{phase machine} is a \emph{localized source of the $\Theta$-field} that maintains a
+spatially uniform, time-independent phase value $\varphi = \varphi_0$ inside a bounded
+three-dimensional region $\Omega \subset \mathcal{M}$:
+
+\begin{equation}
+\label{eq:pm_interior_phase}
+\left.\varphi\right|_{\mathrm{int}(\Omega)} = \varphi_0 = \mathrm{const}.
+\end{equation}
+
+Outside $\Omega$ the phase relaxes to the \textbf{vacuum phase} $\varphi_\mathrm{vac}$,
+which is itself a constant determined by the ambient attractor solution of the drift-diffusion
+equation (Appendix~H):
+
+\begin{equation}
+\label{eq:pm_exterior_phase}
+\left.\varphi\right|_{\mathcal{M}\setminus\overline{\Omega}} = \varphi_\mathrm{vac} = \mathrm{const}.
+\end{equation}
+
+Because both interior and exterior phases are constant, the GR limit theorem
+(Section~\ref{sec:canonical:gr_as_limit}) guarantees that \textbf{standard General Relativity
+holds both inside and outside $\Omega$} independently — the phase machine does not break GR.
+
+\subsection{Boundary Gradient and Energy Density (SPECULATIVE)}
+
+At the boundary $\partial\Omega$ the phase transitions smoothly between $\varphi_0$ and
+$\varphi_\mathrm{vac}$, producing a non-zero gradient $\nabla\varphi \neq 0$.  This gradient
+stores elastic energy in the $\Theta$-field.  The boundary energy density is
+
+\begin{equation}
+\label{eq:pm_boundary_energy}
+E_{\partial\Omega} = \int_{\partial\Omega} |\nabla\varphi|^2\,\sqrt{g}\;d^3x,
+\end{equation}
+
+where $g = \det(g_{ij})$ is the induced spatial metric on $\partial\Omega$ and $\nabla\varphi$
+is the three-gradient of $\varphi$ in the transition layer.  This quantity is finite whenever
+$\varphi$ is a smooth function with compact support of $\nabla\varphi$ near $\partial\Omega$.
+
+\textbf{Note (SPECULATIVE):}  The energy $E_{\partial\Omega}$ must be supplied by the phase
+machine and sets a lower bound on its power requirement.  Minimizing $E_{\partial\Omega}$ for
+fixed $|\varphi_0 - \varphi_\mathrm{vac}|$ is an open variational problem.
+
+\subsection{Invisibility Condition (SPECULATIVE)}
+
+A \textbf{standard observer} uses the gauge $\varphi_\mathrm{obs} = 0$, i.e.\ they measure the
+metric $g_{\mu\nu}^{(0)} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$ (Axiom C,
+\texttt{core/AXIOMS.md}).  The projected metric inside $\Omega$ as seen by this observer is
+
+\begin{equation}
+\label{eq:pm_obs_metric}
+\left.g_{\mu\nu}^{(0)}\right|_\Omega
+= P_0\!\left[P_{\varphi_0}^{-1}\!\left[g_{\mu\nu}^{(\varphi_0)}\right]\right]
+= \mathrm{Re}(\mathcal{G}_{\mu\nu})\Big|_\Omega.
+\end{equation}
+
+The \textbf{invisibility condition} requires that the standard observer sees flat (Minkowski)
+spacetime inside $\Omega$:
+
+\begin{equation}
+\label{eq:pm_invisibility}
+\left.g_{\mu\nu}^{(0)}\right|_\Omega \approx \eta_{\mu\nu}.
+\end{equation}
+
+Using $g_{\mu\nu}^{(0)} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$ and the decomposition
+$\mathcal{G}_{\mu\nu} = g_{\mu\nu}^{(\varphi_0)} e^{i\varphi_0} + \text{(Im sector)}$, the
+condition Eq.~\eqref{eq:pm_invisibility} is satisfied when $\varphi_0$ is chosen such that
+$P_{\varphi_0}$ maps the matter contribution $\mathcal{G}_{\mu\nu}^\mathrm{matter}$ into the
+imaginary sector of the biquaternionic algebra:
+
+\begin{equation}
+\label{eq:pm_invisibility_cond}
+\mathrm{Re}\!\left(e^{i\varphi_0}\,\mathcal{G}_{\mu\nu}^\mathrm{matter}\right) = 0.
+\end{equation}
+
+This is a constraint on $\varphi_0$ depending on the matter distribution inside $\Omega$.
+
+\subsection{Open Question: Which Prime $p$ Gives the Invisibility Phase? (SPECULATIVE)}
+
+From Section~\ref{subsec:kk_ultrametric}, stable values of $\varphi$ are indexed by prime KK
+mode numbers $p \in \mathcal{P}$.  An open question is:
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title=Open Question (SPECULATIVE)]
+\textbf{Which prime $p$ gives $P_{\varphi_p}[\mathcal{G}_{\mu\nu}] \approx \eta_{\mu\nu}$
+inside a matter-filled region $\Omega$?}
+
+In other words: which prime-indexed phase frame maps ordinary matter into the imaginary sector,
+rendering it invisible to the standard ($\varphi = 0$) observer?
+
+The candidate $p = 137$ (the prime near $\alpha^{-1}$) is particularly interesting because the
+fine structure constant governs electromagnetic matter, and EM fields are the dominant contribution
+to $\mathcal{G}_{\mu\nu}^\mathrm{matter}$ for ordinary objects.
+\end{tcolorbox}
+
+Resolving this question requires:
+\begin{enumerate}
+  \item An explicit form of $\mathcal{G}_{\mu\nu}^\mathrm{matter}$ for a generic matter distribution.
+  \item A numerical solution of Eq.~\eqref{eq:pm_invisibility_cond} for $\varphi_0 = 2\pi/p$.
+  \item Verification that such $\varphi_0$ is a stable attractor of the drift-diffusion equation.
+\end{enumerate}
+
+This is left as a speculative research direction.  See also the p-adic analysis in
+\texttt{consolidation\_project/appendix\_ALPHA\_padic\_derivation.tex}.
+
+%% End of Phase Machine appendix (SPECULATIVE)

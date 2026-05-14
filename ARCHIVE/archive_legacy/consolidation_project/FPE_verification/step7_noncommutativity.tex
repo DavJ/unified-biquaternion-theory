@@ -1,0 +1,191 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Step 7: Non-Commutativity in the Full Biquaternionic FPE}\\
+         \large Gap G3: Does $[\partial_T, \nabla_Q^2]$ Vanish in $\mathbb{C}\otimes\mathbb{H}$?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The FPE equivalence (Step~4) was proved in the scalar sector.
+  Gap~G3 asks whether non-commutativity in the full biquaternionic FPE
+  generates new terms or cancels by the algebraic structure of $\mathbb{C}\otimes\mathbb{H}$.
+  We show that since $\mathbb{C}\otimes\mathbb{H}$ is associative
+  (proved), the FPE remains form-invariant under the natural ordering
+  prescription, but a residual operator-ordering ambiguity remains for
+  the drift term $A(Q)\Theta$ when $A$ and $\Theta$ are non-commuting
+  biquaternions.  Gap G3 is reduced but not closed.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Context: The Biquaternionic FPE}
+\label{sec:context}
+%──────────────────────────────────────────────────────────────────────────────
+
+The biquaternionic Fokker-Planck equation (Step~4) is:
+\begin{equation}
+  \partial_T\Theta \;=\; -\nabla_Q\cdot\bigl[A(Q)\Theta\bigr]
+                         + D\,\nabla_Q^2\Theta,
+  \label{eq:FPE}
+\end{equation}
+where $T \in \mathbb{C}$ (complex time), $Q \in \mathbb{H}$ (quaternionic
+position), $A(Q) \in \mathbb{C}\otimes\mathbb{H}$ (drift), and
+$D \in \mathbb{R}^+$ (diffusion).
+
+In the scalar sector (where $A$ is real and $\Theta$ commutes with $A$),
+the FPE is proved to be the Euler-Lagrange equation of $S[\Theta]$
+(Step~4, Theorem~1).  The question is whether this holds in the full
+biquaternionic case.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Non-Commutativity Analysis}
+\label{sec:noncomm}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Left and Right FPE conventions]
+In $\mathbb{C}\otimes\mathbb{H}$, the product $A\Theta \neq \Theta A$ in general.
+Two natural conventions:
+\begin{align}
+  \text{Left FPE:}   &\quad \partial_T\Theta = -\nabla_Q\cdot[A\cdot\Theta] + D\nabla_Q^2\Theta, \\
+  \text{Right FPE:}  &\quad \partial_T\Theta = -\nabla_Q\cdot[\Theta\cdot A] + D\nabla_Q^2\Theta.
+\end{align}
+\end{definition}
+
+\begin{lemma}[Commutator $[\partial_T, \nabla_Q^2]$ in $\mathbb{C}\otimes\mathbb{H}$]
+\label{lem:commutator}
+Since $\partial_T$ acts on the complex-time component and $\nabla_Q^2$
+acts on the quaternionic-position component, and since
+$\mathbb{C}\otimes\mathbb{H}$ is an algebra over $\mathbb{R}$:
+\begin{equation}
+  [\partial_T, \nabla_Q^2]\,\Theta \;=\; 0
+  \quad\text{(form-invariant)}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\partial_T = \partial_{t} + i\partial_\psi$ acts on the
+$\mathbb{C}$-factor of $\mathbb{C}\otimes\mathbb{H}$.
+$\nabla_Q^2 = \partial_{Q_0}^2 + \partial_{Q_1}^2 + \partial_{Q_2}^2 + \partial_{Q_3}^2$
+acts on the $\mathbb{H}$-factor.
+Since $T$ and $Q$ are independent coordinates:
+\begin{equation}
+  \partial_T\bigl(\nabla_Q^2\Theta\bigr)
+  \;=\; \nabla_Q^2\bigl(\partial_T\Theta\bigr),
+\end{equation}
+i.e., $[\partial_T, \nabla_Q^2] = 0$ on smooth $\Theta$.
+\end{proof}
+
+\begin{insightbox}
+\textbf{Conclusion from Lemma~\ref{lem:commutator}:}
+The kinetic (diffusion) part of the FPE is \emph{form-invariant} under
+the full biquaternionic structure.  The non-commutativity does not
+generate new terms in the $D\nabla_Q^2\Theta$ part.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Residual Ambiguity: Drift Term Ordering}
+\label{sec:drift}
+%──────────────────────────────────────────────────────────────────────────────
+
+The issue in Gap~G3 is the drift term $-\nabla_Q\cdot[A(Q)\Theta]$ when
+$A, \Theta \in \mathbb{C}\otimes\mathbb{H}$ and $[A, \Theta] \neq 0$.
+
+The Euler-Lagrange equation derived from $S[\Theta]$ (with drift
+$A = -\nabla_Q\mathbb{H}$) gives:
+\begin{equation}
+  \frac{\delta S[\Theta]}{\delta\bar{\Theta}}
+  \;=\; \partial_T\Theta + \nabla_Q\cdot[(\nabla_Q\mathbb{H})\Theta] - D\nabla_Q^2\Theta
+  \;=\; 0.
+\end{equation}
+In the biquaternionic case, the product $(\nabla_Q\mathbb{H})\Theta$ uses
+\emph{left} multiplication.  This selects the Left FPE convention.
+
+\begin{proposition}[G3 partial resolution: Left FPE from $S[\Theta]$]
+\label{prop:G3}
+The Euler-Lagrange equations of $S[\Theta]$ give the \textbf{left} FPE
+convention.  The right FPE is not an Euler-Lagrange equation of any action
+of the same form.  Therefore the ordering is fixed: left multiplication for the drift.
+\end{proposition}
+
+\begin{proof}
+The action $S[\Theta] = \int \langle D_T\Theta, D_T\Theta\rangle\,dT\,dQ$
+with $D_T = \partial_T + A(Q)$ uses the \emph{left} covariant derivative
+$A(Q)\Theta$.  Varying $\delta S/\delta\bar{\Theta} = 0$ gives the
+left FPE.  A right-convention action would require $\Theta\cdot A(Q)$
+in the covariant derivative, which breaks the gauge structure of $S[\Theta]$
+(since gauge fields act from the left in the UBT covariant derivative).
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Remaining Issue}
+\label{sec:remaining}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap G3: Partially resolved.}
+
+\textbf{Resolved:} $[\partial_T, \nabla_Q^2] = 0$ (Lemma~\ref{lem:commutator}).
+The diffusion term is form-invariant.
+
+\textbf{Resolved:} Ordering is fixed as left FPE (Prop.~\ref{prop:G3}).
+
+\textbf{Remaining:}
+In the Hamiltonian sector $A = -\nabla_Q\mathbb{H}$, the biquaternionic
+gradient $\nabla_Q\mathbb{H}$ may itself have ordering ambiguity when
+$\mathbb{H}$ (the Hamiltonian, not the quaternions) is a biquaternionic-valued
+function.  Specifically: $\nabla_Q(\mathbb{H}\Theta)$ vs $(\nabla_Q\mathbb{H})\Theta
++ \mathbb{H}(\nabla_Q\Theta)$ --- the product rule must be checked for
+non-commuting $\mathbb{H}$ and $\Theta$.
+
+By the Leibniz rule in $\mathbb{C}\otimes\mathbb{H}$ (which is a differentiable
+algebra), this product rule holds for left multiplication.
+Therefore the remaining ordering issue reduces to:
+is $\mathbb{H}$ always left-multiplying $\Theta$?
+In UBT: yes, because $\mathbb{H}$ is the Hamiltonian (a scalar-valued
+energy) and $\Theta$ is the biquaternionic field.
+
+\textbf{Conclusion:} Gap G3 is effectively closed for the physically
+relevant case where $\mathbb{H}$ is a scalar (or diagonal in $\mathbb{H}$).
+Full closure requires checking the vector potential case ($A_\mu \in
+\mathfrak{su}(2) \subset \mathbb{H}$) separately.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

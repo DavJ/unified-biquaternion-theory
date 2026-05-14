@@ -1,0 +1,187 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Electron Mass --- Step 1: Hecke Conditional Framework}\\
+         \large If the Hecke Conjecture Holds, All Lepton Masses\\
+         Reduce to One Free Parameter}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We analyse the structure of the lepton mass problem in UBT conditional
+  on the Hecke eigenvalue conjecture.  If Hecke holds, the muon and tau
+  masses are determined by Hecke eigenvalue \emph{ratios}, reducing the
+  three independent Yukawa couplings of the Standard Model to a single
+  free parameter: the electron mass scale $m_e$.
+  This is already a major improvement over the SM (3 free $\to$ 1 free).
+  The remaining question --- whether $m_e$ itself can be derived from
+  first principles --- is the subject of Steps~2 and~3 of this series.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Lepton Mass Problem in UBT}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Standard Model lepton masses are:
+\begin{align}
+  m_e &= 0.510999\;\mathrm{MeV}, \\
+  m_\mu &= 105.658\;\mathrm{MeV}, \\
+  m_\tau &= 1776.86\;\mathrm{MeV}.
+\end{align}
+The ratios:
+\begin{equation}
+  \frac{m_\mu}{m_e} = 206.768, \qquad
+  \frac{m_\tau}{m_e} = 3477.23.
+\end{equation}
+
+In the SM these require three independent Yukawa couplings $y_e, y_\mu, y_\tau$.
+In UBT, the three generations are identified with $\psi$-winding modes
+$n = 1, 2, 3$ (or the corresponding Hecke forms), but the mass
+\emph{ratios} are not yet derived from first principles.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Hecke Conjecture}
+\label{sec:hecke}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{conjecture}[Hecke Eigenvalue Conjecture, Step~6]
+\label{conj:hecke}
+Let $f_1, f_2, f_3$ be the weight-$(2, 4, 6)$ Hecke newforms associated
+with the three lepton generations, at a prime attractor level.  Then:
+\begin{equation}
+  \frac{m_\mu}{m_e} \;=\; \frac{a_{p^*}(f_2)}{a_{p^*}(f_1)}, \qquad
+  \frac{m_\tau}{m_e} \;=\; \frac{a_{p^*}(f_3)}{a_{p^*}(f_1)},
+\end{equation}
+where $p^* \in \{137, 139\}$ is the prime attractor.
+\end{conjecture}
+
+\textbf{Numerical support} (from \texttt{step6\_hecke\_matches.tex}):
+\begin{center}
+\begin{tabular}{lccc}
+  \toprule
+  Prime & $m_\mu/m_e$ error & $m_\tau/m_e$ error & Status \\
+  \midrule
+  $p^* = 137$ & $0.37\%$ & $3.06\%$ & Numerical support \\
+  $p^* = 139$ & $0.05\%$ & $1.63\%$ & Numerical support \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Reduction to One Free Parameter}
+\label{sec:reduction}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Conditional: 3 free $\to$ 1 free]
+\label{prop:reduction}
+Assume Conjecture~\ref{conj:hecke}.  Then:
+\begin{equation}
+  m_e, \; m_\mu, \; m_\tau
+  \quad\text{are determined by}\quad
+  m_e \;\text{alone.}
+\end{equation}
+Specifically:
+\begin{equation}
+  m_\mu = m_e \times r_{\mu/e}^{\mathrm{Hecke}}, \qquad
+  m_\tau = m_e \times r_{\tau/e}^{\mathrm{Hecke}},
+\end{equation}
+where $r_{\mu/e}^{\mathrm{Hecke}}$ and $r_{\tau/e}^{\mathrm{Hecke}}$
+are determined by Hecke eigenvalue ratios (no free parameters once the
+LMFDB labels are fixed).
+\end{proposition}
+
+\begin{insightbox}
+\textbf{Significance:}
+The SM has 3 free Yukawa couplings for charged leptons.
+Under Conjecture~\ref{conj:hecke}, UBT has 1 free parameter ($m_e$).
+This is a reduction from 3 to 1 free parameter --- a major structural
+improvement, even before $m_e$ itself is derived.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Electron Mass: Gaps Y1 and Y2}
+\label{sec:gaps}
+%──────────────────────────────────────────────────────────────────────────────
+
+The electron mass arises from the Higgs mechanism: $m_e = y_e \cdot v$
+where $y_e$ is the Yukawa coupling and $v = 246\;\mathrm{GeV}$ is the
+Higgs VEV.  In UBT:
+
+\begin{description}
+  \item[Gap Y1] Derive $y_e$ from $S[\Theta]$.
+  \item[Gap Y2] Derive $v$ from the effective potential $V_{\mathrm{eff}}(\theta_0)$
+                on the $\psi$-circle without $m_e$ as input.
+\end{description}
+
+Both gaps are currently open.  Steps~2 and~3 of this series explore two
+independent approaches.
+
+\begin{remark}[Dimensional analysis]
+$m_e \sim \hbar/(c\,R_\psi)$ where $R_\psi$ is the $\psi$-circle radius.
+The current calibration is $R_\psi = \hbar/(m_e c)$, which is circular.
+A non-circular derivation requires fixing $R_\psi$ from a different
+condition (see Step~2).
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Conditional result (LABEL: conditional on Hecke):}
+\begin{itemize}
+  \item IF Conjecture~\ref{conj:hecke} is proved:
+        all lepton masses are determined by $m_e$ alone.
+        UBT has 1 free parameter in the lepton sector vs.\ 3 in SM.
+  \item The Hecke conjecture currently has numerical support at $0.05\%$--$3.06\%$
+        level but is not proved.
+  \item The absolute scale $m_e$ requires independent derivation (Gaps Y1, Y2).
+\end{itemize}
+
+\textbf{Status of Y1, Y2:} Open.  See
+\texttt{step2\_geometric\_R\_psi.tex} and
+\texttt{step3\_modular\_period.tex} for approaches.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

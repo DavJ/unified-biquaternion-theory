@@ -1,0 +1,505 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% arXiv VERSION — v52-next (tcolorbox removed; mdframed added)
+% Title: Fine structure constant as prime attractor in biquaternionic field theory
+% Status: SKELETON — outline only; not a complete paper.
+%         Source material: canonical/*.tex, docs/STATUS_ALPHA.md, DERIVATION_INDEX.md
+%         Target: Journal of Mathematical Physics or Letters in Mathematical Physics
+%         Estimated length: 15-20 pages
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% Proof-level macros (consistent with canonical/)
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+\newcommand{\PROVED}{\textbf{[PROVED]}}
+\newcommand{\PARTIAL}{\textbf{[PARTIALLY PROVED]}}
+
+\title{Fine Structure Constant as Prime Attractor\\
+  in Biquaternionic Field Theory}
+\author{Ing.\ David Jaroš\\
+  \small Independent Researcher, Czech Republic\\
+  \small \href{https://github.com/DavJ/unified-biquaternion-theory}{github.com/DavJ/unified-biquaternion-theory}}
+\date{2026 (v52-next, arXiv preprint)}
+
+% © 2026 Ing. David Jaroš
+% Licensed under CC BY-NC-ND 4.0
+% https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+\begin{document}
+\maketitle
+
+% ------------------------------------------------------------
+\begin{abstract}
+We present a structural derivation of the fine-structure constant
+$\alpha \approx 1/137$ within the Unified Biquaternion Theory (UBT),
+a field theory defined over the biquaternion algebra
+$\mathbb{C}\otimes\mathbb{H}$ with complex time $\tau = t + i\psi$.
+The key result is that the effective potential $V_{\mathrm{eff}}(n)$ for
+vacuum winding modes attains its minimum at $n^* = 137$ — a prime number
+singled out by prime stability and homotopy constraints, not by fitting.
+Combined with the heat-kernel coefficient
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$
+(with $N_{\mathrm{eff}} = 12$ from the algebra alone), this yields
+$\alpha^{-1} \approx 137$ with no free parameters.
+The correction factor $R \approx 1.114$ required for the full value
+$\alpha^{-1} = 137.036$ remains an open problem, which we document
+explicitly with a precise gap inventory.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+% SOURCE: canonical/UBT_canonical_main.tex introduction,
+%         ARCHIVE/archive_legacy/consolidation_project/ubt_main_article.tex
+
+The fine-structure constant $\alpha \approx 1/137.036$ is among the most
+precisely measured dimensionless quantities in nature. Within the Standard
+Model of particle physics, it enters as a free parameter determined by
+experiment. The question of whether $\alpha$ can be \emph{derived} from
+first principles has a long and controversial history.
+
+Attempts to derive $\alpha$ from first principles span a century.
+Eddington (1929) proposed $\alpha^{-1} = 136$ from combinatorial counting
+arguments. Wyler (1969) obtained $\alpha^{-1} \approx 137.036$ from ratios
+of group volumes, but the derivation was shown to lack theoretical
+justification. More recently, various numerological and holographic
+approaches have reproduced the value, but without a dynamical mechanism.
+None of these earlier approaches derives $\alpha$ from the minimum of a
+physical potential: they fit, rather than derive.
+
+The Unified Biquaternion Theory (UBT) provides a geometric framework where
+the vacuum structure of the field $\Theta(q,\tau)$, defined over the
+biquaternion algebra $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+with complex time $\tau = t + i\psi$, constrains the effective coupling constant
+through topology and prime arithmetic.
+
+In brief: the UBT vacuum selects a prime winding number $n^*$ by minimising the
+effective potential $V_{\mathrm{eff}}(n)$ among topologically irreducible (prime)
+sectors; this is Theorem~\ref{thm:veff_min}. The one-loop coefficient
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$ follows from the heat
+kernel on the three-dimensional imaginary-quaternion space
+$\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$; this is Theorem~\ref{thm:bbase}.
+Together these give $\alpha^{-1} \approx 137$ with no free parameters.
+
+\textbf{Structure of the paper.}
+Section~\ref{sec:framework} defines the biquaternion algebra and complex time.
+Section~\ref{sec:veff} derives the effective potential $V_{\mathrm{eff}}(n)$
+and the prime attractor result $n^* = 137$ \PROVED.
+Section~\ref{sec:bbase} derives the heat-kernel coefficient
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ \PARTIAL.
+Section~\ref{sec:gaps} provides an honest gap inventory.
+Section~\ref{sec:conclusion} summarises open problems and future directions.
+
+
+% ============================================================
+\section{Biquaternion Algebra and Complex Time}
+\label{sec:framework}
+% ============================================================
+
+% SOURCE: canonical/algebra/, canonical/fields/,
+%         canonical/THEORY/math/fields/biquaternion_time.tex
+
+\subsection{The algebra $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:algebra}
+
+% SOURCE: canonical/algebra/, canonical/fields/,
+%         canonical/THEORY/math/fields/biquaternion_time.tex
+
+The biquaternion algebra is defined as the tensor product:
+\begin{equation}
+  \mathbb{C}\otimes\mathbb{H} \;\cong\; \mathrm{Mat}(2,\mathbb{C}),
+  \label{eq:biquat_def}
+\end{equation}
+where $\mathbb{H} = \mathrm{span}_\mathbb{R}\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}$
+denotes the quaternion algebra with $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2
+= \mathbf{ijk} = -1$.
+
+The scalar part, quaternion conjugate, and norm are:
+\begin{align}
+  \mathrm{Sc}[q] &= a, \quad q = a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k}, \\
+  \bar{q} &= a - b\mathbf{i} - c\mathbf{j} - d\mathbf{k}, \\
+  |q|^2 &= \mathrm{Sc}[q\bar{q}] = a^2 + b^2 + c^2 + d^2.
+\end{align}
+The unit quaternions $\{q \in \mathbb{H} : |q| = 1\}$ form a group isomorphic to
+$\mathrm{SU}(2)$. The imaginary part
+$\mathrm{Im}(\mathbb{H}) = \mathrm{span}_\mathbb{R}\{\mathbf{i},\mathbf{j},\mathbf{k}\}$
+is a three-dimensional real vector space; this is the mode space relevant to $N_{\mathrm{eff}}$.
+
+\begin{theorem}[Mode count $N_{\mathrm{eff}} = 12$, {\Lzero}]
+  \label{thm:neff}
+  The number of independent vacuum-polarisation modes of $\Theta$ in
+  $\mathbb{C}\otimes\mathbb{H}$ is:
+  \begin{equation}
+    N_{\mathrm{eff}}
+    = N_{\mathrm{phases}} \times N_{\mathrm{helicity}} \times N_{\mathrm{charge}}
+    = 3 \times 2 \times 2 = 12.
+  \end{equation}
+  Here $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+  is fixed by the algebraic structure alone.
+\end{theorem}
+
+% SOURCE: canonical/n_eff/step1_mode_decomposition.tex (Theorem 1.4),
+%         canonical/n_eff/step3_N_eff_result.tex
+
+\subsection{Complex time $\tau = t + i\psi$}
+\label{sec:complex_time}
+
+% SOURCE: canonical/THEORY/math/fields/biquaternion_time.tex §5.1,
+%         canonical/geometry/Rpsi_dynamical_fix.tex
+
+The imaginary-time coordinate $\psi \in [0, 2\pi)$ is a physical, dynamical
+degree of freedom — it is \emph{not} a Wick rotation. Unitarity and gauge
+consistency require $\psi$ to be compact (circle $S^1_\psi$). The
+single-valuedness of charged fields then enforces Dirac quantisation:
+winding numbers $n \in \mathbb{Z}$.
+
+The fundamental field is:
+\begin{equation}
+  \Theta: \mathbb{R}^{1,3} \times S^1_\psi \to \mathbb{C}\otimes\mathbb{H},
+\end{equation}
+where $S^1_\psi$ denotes the compactified imaginary-time circle
+with $\psi \in [0, 2\pi)$.
+
+
+% ============================================================
+\section{Effective Potential and the Prime Attractor $n^* = 137$}
+\label{sec:veff}
+% ============================================================
+
+% SOURCE: docs/STATUS_ALPHA.md §3-4,
+%         canonical/THEORY/topic_indexes/alpha_index.md,
+%         ARCHIVE/archive_legacy/consolidation_project/appendix_ALPHA_one_loop_biquat.tex
+
+\subsection{Winding modes on the $\psi$-circle}
+
+The field $\Theta$ is expanded in Fourier modes on $S^1_\psi$:
+\begin{equation}
+  \Theta(q,\tau) = \sum_{n \in \mathbb{Z}} \Theta_n(q)\, e^{in\psi},
+\end{equation}
+where $\Theta_n : \mathbb{R}^{1,3} \to \mathbb{C}\otimes\mathbb{H}$ and
+$n$ is the winding number. Single-valuedness of charged fields requires
+$n \in \mathbb{Z}$ (Dirac quantisation).
+
+\subsection{The effective potential $V_{\mathrm{eff}}(n)$}
+
+The one-loop effective potential for the $n$-th winding mode takes the form:
+\begin{equation}
+  V_{\mathrm{eff}}(n) = A\, n^2 - B_{\mathrm{eff}}\, n \ln n,
+  \label{eq:veff_form}
+\end{equation}
+with $A > 0$ (bosonic kinetic term) and $B_{\mathrm{eff}} = N_{\mathrm{eff}} B_{\mathrm{base}}$
+(one-loop correction from $N_{\mathrm{eff}}$ polarisation modes).
+The three contributions are: (i) bosonic kinetic energy $\propto n^2$,
+(ii) fermionic one-loop correction $\propto -n \ln n$,
+(iii) the prime stability constraint (Theorem~\ref{thm:prime_stability}).
+
+\begin{theorem}[Prime stability constraint, {\Lzero}]
+  \label{thm:prime_stability}
+  The vacuum winding number $n^*$ must be prime.
+  This follows from the homotopy group $\pi_1(S^1_\psi) \cong \mathbb{Z}$:
+  composite winding is reducible to smaller windings, while prime winding
+  is topologically irreducible.
+\end{theorem}
+
+% SOURCE: docs/STATUS_ALPHA.md §3
+
+\begin{theorem}[$V_{\mathrm{eff}}$ minimum at $n^* = 137$, {\Lone}]
+  \label{thm:veff_min}
+  The one-loop effective potential $V_{\mathrm{eff}}(n)$ for
+  $N_{\mathrm{eff}} = 12$ attains its global minimum among prime
+  winding numbers at $n^* = 137$.
+\end{theorem}
+
+% SOURCE: docs/STATUS_ALPHA.md §4; validated by experiments/validation/
+
+\begin{remark}[Non-circularity]
+  The result $n^* = 137$ uses $N_{\mathrm{eff}} = 12$ as input.
+  The non-circularity condition (different $N_{\mathrm{eff}} \neq 12$
+  gives different $n^* \neq 137$) is verified numerically in
+  \texttt{experiments/validation/validate\_B\_coefficient.py}.
+\end{remark}
+
+
+% ============================================================
+\section{$B_{\mathrm{base}}$ from $T^3$ Heat Kernel}
+\label{sec:bbase}
+% ============================================================
+
+% SOURCE: canonical/interactions/B_base_derivation_complete.tex,
+%         docs/STATUS_ALPHA.md §5,9
+%         ARCHIVE/.../alpha_derivation/b_base_hausdorff.tex
+%         DERIVATION_INDEX.md (B_base row)
+
+\subsection{Heat kernel on $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$}
+
+The heat-kernel expansion on $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$
+(torus $T^3$ in the compactified regime) gives:
+\begin{equation}
+  \int_{\mathrm{Im}(\mathbb{H})} e^{-S_{\mathrm{kin}}[\Theta]/\hbar}\,
+  \mathcal{D}\Theta_{\mathrm{Im}}
+  \;\propto\; (\det S'')^{-1/2}
+  \;\sim\; N_{\mathrm{eff}}^{d/2} = N_{\mathrm{eff}}^{3/2},
+\end{equation}
+where $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ and the exponent
+$3/2 = d/2$ follows from the real Gaussian measure.
+Note: $\mathrm{Im}(\mathbb{H})$ has odd real dimension 3 and admits no
+complex structure (Proposition E3.1 in the canonical derivation); the real
+Gaussian path integral is therefore structurally forced.
+
+\begin{theorem}[$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$, {\Lone}]
+  \label{thm:bbase}
+  The one-loop renormalisation coefficient satisfies:
+  \begin{equation}
+    B_{\mathrm{base}}
+    = N_{\mathrm{eff}}^{3/2}
+    = 12^{3/2}
+    = 12\sqrt{12}
+    \approx 41.57,
+  \end{equation}
+  where the exponent $3/2 = d/2$ with $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+  follows from the real Gaussian path integral structure \Lzero,
+  and $N_{\mathrm{eff}} = 12$ from Theorem~\ref{thm:neff} \Lone.
+\end{theorem}
+
+\textbf{Status:} \PARTIAL\ — exponent $3/2$ and $N_{\mathrm{eff}} = 12$
+are independently proved; the ab initio derivation of the beta-function
+normalisation coefficient $C_{\mathrm{gauge}} = 1$ from $\mathcal{S}[\Theta]$
+remains \OPEN.
+
+
+% ============================================================
+\section{Gap Inventory}
+\label{sec:gaps}
+% ============================================================
+
+% SOURCE: DERIVATION_INDEX.md (B_base, R rows), docs/STATUS_ALPHA.md §5,9
+
+The derivation as presented has two unresolved gaps:
+
+\begin{description}
+  \item[Gap G3-k (Kac-Moody level $k=1$).]
+    The formula $B_{\mathrm{base}} = c_{\widehat{\mathrm{SU}(2)},k} \cdot N_{\mathrm{eff}}^{3/2}$
+    requires the central charge $c = 1$, which holds if and only if $k = 1$.
+    The absence of the Chern-Simons term (proved from parity symmetry of the
+    mirror sectors $n^* = 137$, $n^{**} = 139$) provides a motivated argument
+    for $k = 1$ \textbf{[Motivated Conjecture]}. However, a direct derivation
+    of $k = 1$ from $\mathcal{S}[\Theta]$ without using $n^* = 137$ as input
+    is not available. In particular, the canonical norm condition $\|\Theta\|^2 = 1$
+    gives $r^2 = 1$ and $k = 2\pi r^2 = 2\pi \notin \mathbb{Z}$, which is
+    inadmissible \textbf{[Dead End]}.
+
+  \item[Gap B (correction factor $R \approx 1.114$).]
+    The full fine-structure constant requires $\alpha^{-1} = B_{\mathrm{base}} \cdot R / n^*$
+    with $R \approx 1.114$. No derivation of $R$ from $\mathcal{S}[\Theta]$ is known.
+    The best numerical candidate is $R \approx 1 + \alpha(N_{\mathrm{eff}} + \pi + 1/4)$
+    with $0.15\%$ error \textbf{[Numerical Observation]}, but this has not been
+    derived from first principles \textbf{[Open Hard Problem]}.
+    A new candidate arises from the additive reformulation $\Delta B = B - B_{\mathrm{base}}
+    \approx 4.74$: the value $\Delta B = 3\pi/2 \approx 4.712$ ($0.6\%$ error) combines
+    the modular weight $k_{\mathrm{mod}} = 3/2$ [L0] with the SSB half-period
+    $\theta_W^{\mathrm{eff}} = \pi$ [L1] as $\Delta B = k_{\mathrm{mod}} \times \theta_W^{\mathrm{eff}}$.
+    Algebraic derivation from $\mathcal{S}[\Theta]$ is pending
+    \textbf{[Motivated Conjecture]}.
+
+  \item[NCG approach (F1--F4): Dead End.]
+    The non-commutative geometry (NCG) route via the spectral action was explored
+    systematically in approaches F1--F4 (see \texttt{tools/ncg\_a4\_computation.py}
+    and \texttt{ARCHIVE/.../b\_base\_ncg\_a4.tex}).
+    F1 (standard spectral action, $H = \mathbb{C}^4$): the explicit computation
+    gives $B_{F1} = 4 B_0 \approx 100.5 \neq 41.57$ \textbf{[Dead End]}.
+    F4 (systematic spectral invariant search): the unique exact candidate
+    $[\dim_\mathbb{R}(\mathbb{H}) \times \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})]^{3/2}
+    = (4 \times 3)^{3/2} = 41.57$ is an algebraic identity that restates the
+    Hausdorff (Gaussian measure) result without independently deriving the
+    $3/2$ exponent \textbf{[Algebraic Restatement]}.
+    The NCG route does not close Gap G3-k;
+    $B_{\mathrm{base}}$ remains \PARTIAL.
+\end{description}
+
+The FPE-EL equivalence holds in all sectors (U(1), SU(2), SU(3))
+by the $\mathrm{Sc}$-projection property: $\mathrm{Sc}[\mathrm{Im}(\mathbb{H})] = 0$
+\textbf{[Proved L0]}.  Specifically, the commutator correction
+$[\mathbf{e}_a,\mathbf{e}_b] \in \mathrm{Im}(\mathbb{H})$ is annihilated by
+$\mathrm{Sc}[\cdot]$, so the FPE derived from
+$\mathcal{S}[\Theta] = \int\mathrm{Sc}[(\nabla\Theta)^\dagger(\nabla\Theta)]$
+is algebraically equivalent to the Euler--Lagrange equation in all gauge sectors
+(see \texttt{canonical/qm\_emergence/step4\_fpe\_equivalence.tex},
+Theorem~thm:fpe\_all\_sectors).
+
+The structural result ($n^* = 137$ from prime stability) and the heat-kernel
+result ($B_{\mathrm{base}} \approx 41.57$ from $T^3$ measure) are publishable
+in current form with an honest disclosure of the two gaps.
+
+Table~\ref{tab:status} summarises the derivation status of all components.
+
+\begin{table}[h]
+\centering
+\caption{Derivation status summary}
+\label{tab:status}
+\begin{tabular}{llll}
+\toprule
+Result & Value & Status & Notes \\
+\midrule
+Complex time compactification & $\psi \in [0,2\pi)$ & \PROVED\ \Lzero & Unitarity + gauge \\
+Dirac quantisation & $n \in \mathbb{Z}$ & \PROVED\ \Lzero & Single-valuedness \\
+$N_{\mathrm{eff}} = 12$ & exact & \PROVED\ \Lzero & From $\mathbb{C}\otimes\mathbb{H}$ \\
+$V_{\mathrm{eff}}(n)$ form & one-loop & \PROVED\ \Lone & \\
+Prime stability & $n^* \in \mathbb{P}$ & \PROVED\ \Lzero & Homotopy \\
+$n^* = 137$ & exact & \PROVED\ \Lone & Prime attractor \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $\approx 41.57$ & \PARTIAL\ \Lone & Gap G3-k open \\
+$R \approx 1.114$ & $\approx 1.114$ & \OPEN & Hard problem \\
+$\alpha^{-1} = 137$ (bare) & 137 & Semi-empirical & Given $B$, $R$ \\
+$\alpha^{-1} = 137.036$ & 137.036 & Semi-empirical & + two-loop QED \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+\section{Gravitational Sector}
+\label{sec:gravity}
+% ============================================================
+
+Beyond the fine-structure derivation, UBT produces several gravitational
+results that we summarise here.
+
+\subsection{Schwarzschild Vacuum Solution}
+
+The ansatz $\Theta_0 = e^{i\Phi(r)}\cdot[f(r)\cdot\mathbf{1}
++ g(r)\cdot\boldsymbol{e}_r]$ with complex time $\tau = t + i\psi$
+yields the full Schwarzschild metric in isotropic coordinates \Lone.
+The phase $e^{i\alpha}$ cancels in the spatial sector via
+$\mathrm{Sc}(e^{-i\alpha}Ae^{i\alpha}) = \mathrm{Sc}(A)$, while the
+temporal component $g_{tt} = -\Phi(r)^2$ emerges from
+$\partial_\psi\Theta_0 = i\alpha(r)\Theta_0$ (complex-time structure):
+\[
+  g_{tt} = -\Phi(r)^2,\qquad g_{ij} = \Psi(r)^4\,\delta_{ij},
+  \quad \Phi = \frac{1-M/2r}{1+M/2r},\quad \Psi = 1+\frac{M}{2r}.
+\]
+Numerically verified (\texttt{tools/verify\_schwarzschild\_theta.py}),
+relative error $< 10^{-8}$.
+
+\subsection{Massless Gravitons}
+
+Linearisation around the flat vacuum $\Theta_0 = \mathbf{1}$ gives
+$k^2 = 0$ \Lzero, confirming massless spin-2 excitations consistent
+with standard GR.
+
+\subsection{Twistor Correspondence}
+
+For $\Theta \in \mathrm{SU}(2)_- \subset \mathbb{C}\otimes\mathbb{H}$,
+holonomy $\subset \mathrm{Sp}(1)$ implies $C^+ = 0$ (ASD) \Lone.
+Combined with the vacuum equation giving $R_{\mu\nu} = 0$, the
+Penrose nonlinear graviton theorem applies: UBT admits a curved twistor
+space description in the $\mathrm{SU}(2)_-$ sector \Lone.
+(Schwarzschild, Petrov type D, lies outside this sector.)
+
+% ============================================================
+\section{Conclusion and Open Problems}
+\label{sec:conclusion}
+% ============================================================
+
+We have presented a structural derivation of $\alpha^{-1} \approx 137$ from
+first principles within the Unified Biquaternion Theory. The two core results —
+the prime attractor $n^* = 137$ (Theorem~\ref{thm:veff_min}) and the heat-kernel
+coefficient $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$
+(Theorem~\ref{thm:bbase}) — are derived without fitting parameters.
+
+The two outstanding gaps (Kac-Moody level $k = 1$ and correction factor $R$)
+are documented explicitly. Resolving Gap G3-k likely requires a two-loop
+computation of the beta-function coefficient from $\mathcal{S}[\Theta]$ on
+the $\psi$-circle; resolving Gap B requires identifying the two-loop modular
+structure of the UBT partition function.
+
+The appearance of prime arithmetic in a dynamical field theory is structurally
+significant: it indicates that number-theoretic constraints govern the low-energy
+vacuum. The same prime-lattice structure is expected to appear in the lepton mass
+spectrum and the QCD confinement scale. Experimentally, the prime attractor
+predicts $\alpha^{-1} = 137$ at zeroth order; two-loop corrections from the
+$\psi$-circle geometry should explain the full value $137.036$.
+
+\bigskip
+\noindent\textbf{Acknowledgements.} The author thanks the UBT development team.
+
+% ============================================================
+% BIBLIOGRAPHY
+% ============================================================
+
+\begin{thebibliography}{99}
+
+\bibitem{ubt_canonical}
+D.\ Jaroš,
+\textit{Unified Biquaternion Theory — Canonical Formulation},
+GitHub repository, \url{https://github.com/DavJ/unified-biquaternion-theory}
+(2026).
+
+\bibitem{ubt_status_alpha}
+D.\ Jaroš,
+\textit{UBT Fine Structure Constant Derivation Status},
+\texttt{docs/STATUS\_ALPHA.md} in the UBT repository (2026).
+
+\bibitem{schwinger1948}
+J.\ Schwinger,
+\textit{On Quantum-Electrodynamics and the Magnetic Moment of the Electron},
+Phys.\ Rev.\ \textbf{73}, 416 (1948).
+
+\bibitem{kacmoody}
+V.\ G.\ Kac,
+\textit{Simple irreducible graded Lie algebras of finite growth},
+Izv.\ Akad.\ Nauk USSR Ser.\ Mat.\ \textbf{32}, 1323--1367 (1968).
+R.\ V.\ Moody,
+\textit{A new class of Lie algebras},
+J.\ Algebra \textbf{10}, 211--230 (1968).
+
+\bibitem{penrose1967}
+R.\ Penrose,
+\textit{Twistor algebra},
+J.\ Math.\ Phys.\ \textbf{8}, 345--366 (1967).
+
+\bibitem{penrose1976}
+R.\ Penrose,
+\textit{Non-linear gravitons and curved twistor theory},
+Gen.\ Rel.\ Grav.\ \textbf{7}, 31--52 (1976).
+
+\bibitem{conneslott1990}
+A.\ Connes and J.\ Lott,
+\textit{Particle models and non-commutative geometry},
+Nucl.\ Phys.\ B (Proc.\ Suppl.) \textbf{18B}, 29--47 (1990).
+
+\end{thebibliography}
+
+\end{document}

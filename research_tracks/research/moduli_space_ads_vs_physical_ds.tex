@@ -1,0 +1,245 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{warning}{Warning}
+
+\title{AdS vs.\ dS: Moduli Space Geometry vs.\ Physical Spacetime\\
+\large Clarification of Two Distinct Geometric Structures in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Unified Biquaternion Theory (UBT) involves two geometrically distinct structures
+that superficially resemble each other: (1) the \emph{physical} spacetime with
+de~Sitter (dS)-like cosmological expansion, and (2) the \emph{moduli space} of the
+complex time parameter $\tau$, which carries the hyperbolic geometry of the upper
+half-plane $\mathbb{H}$ (negative curvature, AdS-like). This document formalises
+the distinction, explains why the compact $\psi$-circle does \emph{not} generate
+an AdS factor in physical spacetime, and discusses the implications for holography.
+All claims are labelled with their proof status.
+\end{abstract}
+
+% ======================================================================
+\section{Two Separate Geometric Structures}
+\label{sec:two_structures}
+% ======================================================================
+
+\begin{warning}[Potential Confusion]
+The upper half-plane $\mathbb{H}$ carrying the modular parameter $\tau$ has
+constant negative (hyperbolic) curvature. This is \emph{mathematically similar}
+to Anti-de~Sitter (AdS) space. However, $\mathbb{H}$ is the \emph{moduli space}
+of the compact imaginary direction — it is a parameter space, not a physical
+spacetime slice. The two must not be conflated.
+\end{warning}
+
+The UBT geometry separates into two layers:
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Structure} & \textbf{Nature} & \textbf{Geometry} & \textbf{Curvature sign} \\
+\hline
+Physical spacetime $M^4$ & Real sector of biquaternion metric & de~Sitter / Lorentzian & $+\Lambda$ (positive, dS-like) \\
+$\psi$-circle $S^1(R_\psi)$ & Compact imaginary direction & Flat circle & zero \\
+Moduli space $\mathbb{H}$ & Parameter space of $\tau_{\rm mod}$ & Hyperbolic (Poincaré metric) & $-1$ (AdS-like) \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Real Sector: Physical Spacetime and de~Sitter}
+\label{sec:real_sector}
+% ======================================================================
+
+\begin{definition}[Real sector of UBT]
+The physical spacetime metric is:
+\begin{equation}
+  g_{\mu\nu}(x) \;=\; \mathrm{Re}\!\left(\mathcal{G}_{\mu\nu}[\Theta]\right),
+\end{equation}
+where $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric tensor derived from the
+Θ-field. Source: \texttt{THEORY/canonical/canonical\_axioms.tex}, Axiom A4.
+\end{definition}
+
+The real projection of the UBT metric yields a Lorentzian spacetime $(M^4, g_{\mu\nu})$
+satisfying the Einstein field equations (Steps~1--5 of the GR chain, proved [L1];
+see \texttt{canonical/bridges/GR\_chain\_bridge.tex}).
+
+Cosmological observations suggest $\Lambda > 0$ (positive cosmological constant),
+placing the physical Universe in a de~Sitter-like expansion phase. This is consistent
+with UBT: the real-sector equations admit de~Sitter solutions exactly as in standard
+GR.
+
+\begin{proposition}[dS solutions in UBT]\label{prop:dS}
+De~Sitter space with metric $\mathrm{d}s^2 = -\mathrm{d}t^2 + e^{2Ht}\mathrm{d}\vec{x}^2$
+and Hubble parameter $H = \sqrt{\Lambda/3}$ is a solution of the real-sector
+UBT field equations for any constant phase $\phi$ of the Θ-field.
+
+\noindent\textbf{Status:} \textbf{[L1]} — follows directly from GR recovery
+(Theorem in \texttt{canonical/geometry/gr\_as\_limit.tex}).
+\end{proposition}
+
+% ======================================================================
+\section{The $\psi$-Circle and Why It Does Not Generate AdS}
+\label{sec:psi_circle}
+% ======================================================================
+
+\begin{proposition}[Flat geometry of $S^1_\psi$]\label{prop:flat_circle}
+The compact imaginary direction $\psi \sim \psi + 2\pi R_\psi$ carries the flat
+metric of a circle $S^1(R_\psi)$. Its curvature is identically zero.
+
+\noindent\textbf{Status:} \textbf{[L0]} — the circle $S^1(R)$ has zero intrinsic
+curvature for all $R > 0$ (standard differential geometry).
+\end{proposition}
+
+\begin{remark}[Why S$^1$ does not generate AdS]
+An AdS spacetime $\mathrm{AdS}_{d+1}$ requires a $(d+1)$-dimensional space with
+constant negative sectional curvature. A single compact circle has:
+\begin{enumerate}
+  \item Dimension 1 (the minimal non-trivial example for AdS requires $\geq 2$ dimensions).
+  \item Zero curvature (not negative curvature).
+\end{enumerate}
+Therefore, $S^1_\psi \times M^4$ is topologically a cylinder and metrically
+$(\text{flat circle}) \times (\text{4D Lorentzian})$. No AdS factor is generated.
+
+The imaginary sector of UBT contributes to phase curvature (encoded in
+$\mathrm{Im}(\mathcal{G}_{\mu\nu})$), but this is the \emph{imaginary part} of
+the biquaternionic metric, not a separate anti-de~Sitter spacetime.
+\end{remark}
+
+% ======================================================================
+\section{Moduli Space: Hyperbolic Geometry of $\mathbb{H}$}
+\label{sec:moduli_hyperbolic}
+% ======================================================================
+
+The moduli space of the torus $T^2(\tau) = \mathbb{C}/(\mathbb{Z}+\tau\mathbb{Z})$
+is parametrised by $\tau \in \mathbb{H}$ (the upper half-plane). The natural
+$\mathrm{SL}(2,\mathbb{Z})$-invariant metric on $\mathbb{H}$ is the Poincaré metric:
+\begin{equation}
+  \mathrm{d}s^2_{\mathbb{H}} \;=\; \frac{\mathrm{d}(\mathrm{Re}\,\tau)^2 + \mathrm{d}(\mathrm{Im}\,\tau)^2}{(\mathrm{Im}\,\tau)^2}.
+\end{equation}
+This metric has constant negative sectional curvature $K = -1$. The modular
+quotient $\mathbb{H}/\mathrm{SL}(2,\mathbb{Z})$ is the moduli space of the torus.
+
+\begin{proposition}[Hyperbolic moduli space]\label{prop:hyp_moduli}
+The moduli space of the UBT torus $T^2(\tau)$ is the Poincaré upper half-plane
+$(\mathbb{H}, \mathrm{d}s^2_{\mathbb{H}})$ with curvature $K = -1$.
+This is mathematically analogous to $\mathrm{AdS}_2$ (2D anti-de~Sitter space),
+but it is a \emph{parameter space}, not a physical spacetime.
+
+\noindent\textbf{Status:} \textbf{[L0]} — standard result from the theory of
+modular curves (see, e.g., Diamond \& Shurman, \emph{A First Course in Modular Forms},
+Springer 2005).
+\end{proposition}
+
+\begin{remark}[Physical interpretation of the hyperbolic moduli space]
+The hyperbolic geometry of $\mathbb{H}$ has implications for the UBT modular program:
+\begin{itemize}
+  \item Geodesics in $\mathbb{H}$ are semicircles and vertical lines.
+  \item The imaginary axis $\{\tau = iy : y > 0\}$ is a geodesic in $\mathbb{H}$.
+  \item The UBT parameter $\tau_{\rm mod} = iR_\psi/R_t$ lives on this geodesic.
+  \item Modular symmetries ($\mathrm{SL}(2,\mathbb{Z})$ transformations) are
+    isometries of $(\mathbb{H}, \mathrm{d}s^2_{\mathbb{H}})$.
+\end{itemize}
+These geometric facts constrain which values of $\tau$ are modularly equivalent
+and hence \emph{physically distinct} in any modular-invariant formulation.
+\end{remark}
+
+% ======================================================================
+\section{Holography Implications}
+\label{sec:holography}
+% ======================================================================
+
+The AdS/CFT correspondence (Maldacena 1997) relates a theory on $\mathrm{AdS}_{d+1}$
+to a conformal field theory on its $d$-dimensional boundary. Superficially, the
+hyperbolic moduli space $\mathbb{H}$ might suggest an AdS/CFT-type duality for UBT.
+This subsection assesses the status of such a connection.
+
+\begin{itemize}
+  \item \textbf{What is present:} The moduli space $\mathbb{H}$ has the correct
+    geometry ($K = -1$, boundary at $\mathrm{Im}(\tau) = 0$) to admit a holographic
+    interpretation in the modular-form sense: modular forms on $\mathbb{H}$ with
+    specified boundary behaviour encode spectral information about the torus.
+  
+  \item \textbf{What is absent:} A dynamical gravity theory on $\mathbb{H}$ as a
+    physical spacetime. The Poincaré metric here is a parameter-space metric, not
+    a physical metric. There is no UBT claim of a genuine bulk gravity theory in
+    moduli space.
+  
+  \item \textbf{Speculative connection:} The Hecke eigenvalues of the UBT theta
+    functions could, in principle, be related to spectrum data of a ``boundary CFT''
+    on $\partial\mathbb{H}$ (the real line). This is a mathematically coherent idea
+    in the framework of $p$-adic AdS/CFT (Gubser et al.\ 2017), where primes $p$
+    play the role of the AdS radius. The relationship to $p = 137$ and $p = 139$
+    in the UBT Hecke program is noted as a \textbf{[MC]} (motivated conjecture)
+    requiring further development.
+\end{itemize}
+
+\begin{remark}[Summary of holography status]
+The moduli space of UBT complex time has the geometric structure compatible with
+holographic methods, but no AdS/CFT duality has been established within UBT.
+The connection is a research direction, not a result.
+
+\noindent\textbf{Status:} \textbf{[O]} — open research direction.
+\end{remark}
+
+% ======================================================================
+\section{Summary and Distinctions}
+\label{sec:summary}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Property} & \textbf{Physical spacetime $M^4$} & \textbf{Moduli space $\mathbb{H}$} \\
+\hline
+Nature & Physical (observable) & Parameter space (mathematical) \\
+Metric & $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$ & $\mathrm{d}s^2 = (\mathrm{d}\tau_1^2 + \mathrm{d}\tau_2^2)/\tau_2^2$ \\
+Curvature sign & Positive $\Lambda$ (dS) & Negative $K=-1$ (AdS-like) \\
+Dimensionality & 4D Lorentzian & 2D Euclidean \\
+Symmetry & Diffeomorphism group & $\mathrm{SL}(2,\mathbb{Z})$ (discrete) \\
+Observables live here? & \textbf{Yes} & No \\
+GR equations hold here? & \textbf{Yes} [L1] & No (not physical spacetime) \\
+AdS/CFT applicable? & No (de~Sitter, not AdS) & Potentially [MC] — open research \\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\noindent\textbf{Key statement:} The compact $\psi$-circle is a flat internal
+direction; the hyperbolic structure of $\mathbb{H}$ is a property of the
+\emph{moduli space} of $\tau$. Neither generates AdS in physical spacetime.
+Physical spacetime in UBT is de~Sitter (positive $\Lambda$), fully consistent
+with cosmological observations.
+
+\bigskip
+
+\noindent\textbf{Related documents:}
+\begin{itemize}
+  \item \texttt{research/theta\_modular\_geometry.tex} — torus and $\mathbb{H}$ formalization
+  \item \texttt{AUDITS/complex\_time\_modular\_audit.md} — full modular audit
+  \item \texttt{canonical/geometry/gr\_as\_limit.tex} — GR and dS solutions
+  \item \texttt{canonical/bridges/GR\_chain\_bridge.tex} — GR recovery chain
+  \item \texttt{research/theta\_alpha\_connection.md} — modular alpha candidates
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,167 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\title{Canonical Metric Definition\\
+\large Unified Biquaternion Theory — Canonical Theory Series}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document gives the canonical definition of the metric tensor in UBT.
+The key point is that the classical spacetime metric $g_{\mu\nu}$ is
+\emph{derived} from the biquaternionic field $\Theta$, not postulated.
+Two equivalent derivations are given and their equivalence is proved.
+\end{abstract}
+
+\section{The Biquaternionic Metric}
+
+\begin{definition}[Biquaternionic Metric Tensor]\label{def:biqmetric}
+The biquaternionic metric tensor is:
+\begin{equation}\label{eq:biqmetric}
+  \mathcal{G}_{\mu\nu}[\Theta]
+  \;\in\; \mathbb{H}\otimes_\mathbb{R}\mathbb{C},
+\end{equation}
+constructed from $\Theta$ as the quadratic form:
+\begin{equation}\label{eq:Gfromtheta}
+  \mathcal{G}_{\mu\nu}
+  \;=\;
+  \mathrm{Tr}\bigl(\partial_\mu\Theta\cdot(\partial_\nu\Theta)^\dagger\bigr).
+\end{equation}
+It encodes the full biquaternionic geometry including real and imaginary parts.
+\end{definition}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/biquaternion\_metric.tex}, \S1--\S2.
+
+\bigskip
+The biquaternionic metric decomposes as:
+\begin{equation}
+  \mathcal{G}_{\mu\nu}
+  \;=\;
+  \underbrace{g_{\mu\nu}}_{\text{real (GR)}}
+  \;+\;
+  i\,\underbrace{h_{\mu\nu}}_{\text{phase curvature}}
+  \;+\;
+  \underbrace{\mathbf{k}_{\mu\nu}}_{\text{quaternionic}},
+\end{equation}
+where $\mathbf{k}_{\mu\nu}$ contains the quaternionic (non-abelian) components.
+
+\section{Classical Metric: Real Projection}
+
+\begin{definition}[Physical Spacetime Metric]\label{def:metric}
+The classical spacetime metric is the real part of the biquaternionic metric:
+\begin{equation}\label{eq:gRe}
+  g_{\mu\nu}(x)
+  \;:=\;
+  \mathrm{Re}\bigl(\mathcal{G}_{\mu\nu}[\Theta]\bigr)
+  \;=\;
+  \mathrm{Re}\,\mathrm{Tr}\bigl(\partial_\mu\Theta\cdot(\partial_\nu\Theta)^\dagger\bigr).
+\end{equation}
+\textbf{Forbidden}: $g_{\mu\nu}$ must not be introduced without explicit reference
+to the parent $\mathcal{G}_{\mu\nu}$.
+\end{definition}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/metric.tex}, \S2; Rule M1.
+
+\section{Equivalent Tetrad-Based Definition}
+
+\begin{definition}[Tetrad Form]\label{def:tetrad}
+Equivalently, introducing tetrads $E_\mu := \partial_\mu\Theta$:
+\begin{equation}\label{eq:gtetrad}
+  g_{\mu\nu}
+  \;=\;
+  \mathrm{Re}\,\mathrm{Sc}\bigl(E_\mu\,E_\nu^\dagger\bigr),
+\end{equation}
+where $\mathrm{Sc}(\cdot)$ denotes the scalar (real quaternion) part.
+\end{definition}
+
+\begin{theorem}[Equivalence of Metric Definitions]
+Definitions~\ref{def:metric} and \ref{def:tetrad} are equivalent:
+\begin{equation}
+  \mathrm{Re}\,\mathrm{Tr}\bigl(\partial_\mu\Theta\cdot(\partial_\nu\Theta)^\dagger\bigr)
+  \;=\;
+  \mathrm{Re}\,\mathrm{Sc}\bigl(\partial_\mu\Theta\cdot(\partial_\nu\Theta)^\dagger\bigr),
+\end{equation}
+with $E_\mu = \partial_\mu\Theta$.
+\end{theorem}
+
+\begin{proof}
+Under the identification $E_\mu = \partial_\mu\Theta$, both definitions yield
+$\mathrm{Re}(E_\mu E_\nu^\dagger)$; the trace and scalar-part operations coincide
+on the real component. Proved in detail in
+\texttt{consolidation\_project/GR\_closure/step1\_metric\_bridge.tex}.
+\end{proof}
+
+\noindent\textbf{Status}: PROVED [L0].
+
+\section{Signature and Non-Degeneracy}
+
+\begin{proposition}[Lorentzian Signature]
+The projected metric $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$
+(or equivalently $(+,-,-,-)$ in the opposite convention) for physically
+admissible configurations of $\Theta$.
+\end{proposition}
+
+\noindent\textbf{Status}: PROVED [L0].\\
+\noindent\textbf{Source}: \texttt{consolidation\_project/GR\_closure/step3\_signature\_theorem.tex}.
+
+\begin{proposition}[Non-Degeneracy]
+For all non-trivial field configurations $\Theta \not\equiv 0$,
+the projected metric $g_{\mu\nu}$ is non-degenerate: $\det(g_{\mu\nu}) \neq 0$.
+\end{proposition}
+
+\noindent\textbf{Status}: PROVED [L0].\\
+\noindent\textbf{Source}: \texttt{consolidation\_project/GR\_closure/step2\_nondegeneracy.tex}.
+
+\section{Phase Projection Generalization}
+
+For a general constant phase $\varphi$, the projected metric is:
+\begin{equation}
+  g_{\mu\nu}^{(\varphi)}
+  \;=\;
+  \mathrm{Re}\bigl(e^{-i\varphi}\,\mathcal{G}_{\mu\nu}\bigr).
+\end{equation}
+The choice $\varphi = 0$ is a gauge choice (phase frame), not a physical
+restriction. Different phase frames are related by U(1) transformations
+(phase frame bundle).
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/phase\_projection.tex}, \S2.
+
+\section{Connection to GR}
+
+The metric defined by eq.\ \eqref{eq:gRe} satisfies:
+\begin{enumerate}
+  \item Symmetry: $g_{\mu\nu} = g_{\nu\mu}$ (follows from definition).
+  \item Lorentzian signature: $\mathrm{sign}(g) = (-,+,+,+)$ (Proved [L0]).
+  \item Non-degeneracy: $\det(g)\neq 0$ (Proved [L0]).
+  \item Einstein equations: $G_{\mu\nu} = \kappa T_{\mu\nu}$ upon variation of
+        the action (Proved [L1]; see \texttt{canonical/bridges/GR\_chain\_bridge.tex}).
+\end{enumerate}
+
+\section{Cross-References}
+
+\begin{itemize}
+  \item Full biquaternionic metric: \texttt{canonical/geometry/biquaternion\_metric.tex}
+  \item Phase projection: \texttt{canonical/geometry/phase\_projection.tex}
+  \item Metric equivalence proof: \texttt{consolidation\_project/GR\_closure/step1\_metric\_bridge.tex}
+  \item Non-degeneracy: \texttt{consolidation\_project/GR\_closure/step2\_nondegeneracy.tex}
+  \item Signature: \texttt{consolidation\_project/GR\_closure/step3\_signature\_theorem.tex}
+  \item GR chain: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
+\end{itemize}
+
+\end{document}

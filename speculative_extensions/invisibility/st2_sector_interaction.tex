@@ -1,0 +1,418 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{ST-2: Interaction Between Real and Imaginary Sectors in UBT\\
+Cross-Terms in the Action and Energy-Momentum\\[0.5em]
+\large\textsc{Speculative Extension — Invisibility Track}}
+\author{David Jaroš}
+\date{2026-03-03}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework.  It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-2 from the Invisibility / Imaginary Sector
+investigation track.  This is the \emph{key} sub-task: if cross-terms in
+$S[\Theta_\mathrm{real} + \Theta_\mathrm{imag}]$ vanish identically, the
+sectors are fully decoupled; otherwise partial (gravitational) invisibility
+is possible.  See also:
+\texttt{st1\_imaginary\_object\_definition.tex},
+\texttt{st3\_stability.tex},
+\texttt{st4\_ctc\_invisibility\_connection.tex},
+\texttt{st5\_falsifiability.md}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We compute the cross-terms in the UBT action
+$S[\Theta_\mathrm{real} + \Theta_\mathrm{imag}]$ at leading order.
+Two cases are distinguished: (A) a metric bilinear in $\Theta$,
+for which cross-terms generically do \emph{not} vanish, leading to
+\emph{partial invisibility} (gravitationally detectable but
+electromagnetically invisible); and (B) special configurations
+where cross-terms cancel, yielding exact sector decoupling.
+The energy-momentum tensor $T_{\mu\nu}[\Theta_\mathrm{imag}]$ is
+evaluated and shown to be real (under mild assumptions), implying
+that imaginary-sector objects can bend light.  The phenomenology
+is analogous to gravitationally interacting dark matter.
+All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Setup: Total Field and Action Decomposition}
+%----------------------------------------------------------------------
+
+We split the total $\Theta$-field as
+\begin{equation}
+  \Theta \;=\; \Theta_R + \Theta_I,
+  \label{eq:field_split}
+\end{equation}
+where $\Theta_R$ (real-sector) and $\Theta_I$ (imaginary-sector)
+are defined via
+\begin{equation}
+  \Theta_R \;:=\; \operatorname{Re}(\Theta_0)\,\mathbf{1}
+            + \sum_{k=1}^{3}\operatorname{Re}(\Theta_k)\,\mathbf{e}_k,
+  \qquad
+  \Theta_I \;:=\; i\operatorname{Im}(\Theta_0)\,\mathbf{1}
+            + \sum_{k=1}^{3}i\operatorname{Im}(\Theta_k)\,\mathbf{e}_k,
+\end{equation}
+with $\{\mathbf{1}, \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}$ the
+standard quaternion basis.  By construction,
+$\Theta_R^* = \Theta_R$ (no complex phase) and
+$\Theta_I = i\,\widetilde\Theta_I$ for some purely real biquaternion
+$\widetilde\Theta_I$.
+
+The UBT action (schematically) reads
+\begin{equation}
+  S[\Theta, \mathcal{G}]
+  \;=\; \int d^4x\sqrt{-g}\left[
+    \tfrac{1}{2\kappa}R
+    - \partial_\mu\Theta^\dagger \partial^\mu\Theta
+    - V(\Theta^\dagger\Theta)
+  \right],
+  \label{eq:action_gen}
+\end{equation}
+where $g = \det(g_{\mu\nu})$, $R$ is the Ricci scalar of $g_{\mu\nu}$,
+and indices are raised with $g^{\mu\nu}$.
+
+%----------------------------------------------------------------------
+\section{Cross-Terms in the Kinetic Sector}
+%----------------------------------------------------------------------
+
+Inserting $\Theta = \Theta_R + \Theta_I$ into the kinetic term:
+\begin{align}
+  \partial_\mu\Theta^\dagger \partial^\mu\Theta
+  &\;=\; \partial_\mu(\Theta_R + \Theta_I)^\dagger
+         \partial^\mu(\Theta_R + \Theta_I) \nonumber\\
+  &\;=\; \partial_\mu\Theta_R^\dagger \partial^\mu\Theta_R
+       + \partial_\mu\Theta_I^\dagger \partial^\mu\Theta_I
+       + \underbrace{\partial_\mu\Theta_R^\dagger \partial^\mu\Theta_I
+       + \partial_\mu\Theta_I^\dagger \partial^\mu\Theta_R}_{
+         \text{cross-terms } \mathcal{X}_\mathrm{kin}}.
+  \label{eq:kinetic_expand}
+\end{align}
+
+\paragraph{Evaluation of $\mathcal{X}_\mathrm{kin}$.}
+Let $\Theta_I = i\,\widetilde\Theta_I$ with $\widetilde\Theta_I$
+real (meaning all quaternion components are real-valued).  Then:
+\begin{align}
+  \partial_\mu\Theta_R^\dagger \partial^\mu\Theta_I
+  &\;=\; \partial_\mu\Theta_R^\dagger \,(i\,\partial^\mu\widetilde\Theta_I)
+  \;=\; i\,\partial_\mu\Theta_R^\dagger \,\partial^\mu\widetilde\Theta_I, \\
+  \partial_\mu\Theta_I^\dagger \partial^\mu\Theta_R
+  &\;=\; (-i)\,\partial_\mu\widetilde\Theta_I^\dagger\,\partial^\mu\Theta_R.
+\end{align}
+The sum is
+\begin{equation}
+  \mathcal{X}_\mathrm{kin}
+  \;=\; i\,\partial_\mu\Theta_R^\dagger \partial^\mu\widetilde\Theta_I
+       - i\,\partial_\mu\widetilde\Theta_I^\dagger \partial^\mu\Theta_R
+  \;=\; 2i\,\operatorname{Im}\!\left(
+        \partial_\mu\Theta_R^\dagger \partial^\mu\widetilde\Theta_I
+        \right).
+  \label{eq:cross_kin_result}
+\end{equation}
+This is \emph{purely imaginary} (as a complex number).  When the
+action integral is taken over real spacetime, $\operatorname{Re}(S)$
+receives no contribution from $\mathcal{X}_\mathrm{kin}$ at this order.
+
+\begin{proposition}[Kinetic cross-term is purely imaginary]
+\label{prop:kin_cross}
+At the level of the kinetic action \eqref{eq:kinetic_expand}, the
+cross-term $\mathcal{X}_\mathrm{kin}$ is purely imaginary and does
+not contribute to $\operatorname{Re}(S)$.  Consequently, the real
+part of the action decouples at kinetic order:
+\begin{equation}
+  \operatorname{Re}(S_\mathrm{kin})
+  \;=\; \operatorname{Re}(S_\mathrm{kin}[\Theta_R])
+       + \operatorname{Re}(S_\mathrm{kin}[\Theta_I]).
+\end{equation}
+\end{proposition}
+
+%----------------------------------------------------------------------
+\section{Cross-Terms in the Potential Sector}
+%----------------------------------------------------------------------
+
+The potential $V(\Theta^\dagger\Theta)$ expanded around
+$\Theta = \Theta_R + \Theta_I$:
+\begin{equation}
+  V((\Theta_R+\Theta_I)^\dagger(\Theta_R+\Theta_I))
+  \;=\; V(\Theta_R^\dagger\Theta_R
+         + \Theta_R^\dagger\Theta_I
+         + \Theta_I^\dagger\Theta_R
+         + \Theta_I^\dagger\Theta_I).
+\end{equation}
+The cross terms in the argument are:
+\begin{align}
+  \Theta_R^\dagger\Theta_I + \Theta_I^\dagger\Theta_R
+  &\;=\; \Theta_R^\dagger(i\widetilde\Theta_I)
+        + (-i\widetilde\Theta_I^\dagger)\Theta_R \nonumber\\
+  &\;=\; i(\Theta_R^\dagger\widetilde\Theta_I
+          - \widetilde\Theta_I^\dagger\Theta_R)
+  \;=\; 2i\,\operatorname{Im}(\Theta_R^\dagger\widetilde\Theta_I).
+  \label{eq:pot_cross_arg}
+\end{align}
+The argument of $V$ acquires a purely imaginary additive term.
+Taylor-expanding $V$ to first order in this imaginary shift:
+\begin{equation}
+  V(\Theta_R^\dagger\Theta_R + 2i\,\delta)
+  \;\approx\; V(\Theta_R^\dagger\Theta_R)
+             + 2i\,\delta\,V'(\Theta_R^\dagger\Theta_R)
+             + O(\delta^2),
+\end{equation}
+where $\delta = \operatorname{Im}(\Theta_R^\dagger\widetilde\Theta_I)$
+is a real quantity.  This first-order correction is purely imaginary
+and therefore does not contribute to $\operatorname{Re}(S)$.
+The second-order term $V'' \delta^2$ is \emph{real} and couples
+the sectors.
+
+\begin{proposition}[Potential cross-terms at second order]
+\label{prop:pot_cross}
+Cross-terms between $\Theta_R$ and $\Theta_I$ in the potential
+$V(\Theta^\dagger\Theta)$ first appear at second order in $\Theta_I$:
+\begin{equation}
+  \delta_\mathrm{cross}V
+  \;\sim\; -2\,\left[
+    \operatorname{Im}(\Theta_R^\dagger\widetilde\Theta_I)
+  \right]^2 V''(\Theta_R^\dagger\Theta_R)
+  + O(\Theta_I^3).
+\end{equation}
+This term is real and contributes to the equations of motion at
+order $|\Theta_I|^2$.
+\end{proposition}
+
+%----------------------------------------------------------------------
+\section{Effect on the Effective Einstein Equations}
+%----------------------------------------------------------------------
+
+The effective stress-energy sourcing the real Einstein equations is
+\begin{equation}
+  T_{\mu\nu}^{\mathrm{eff}}
+  \;=\; \operatorname{Re}\!\left(\mathcal{T}_{\mu\nu}[\Theta,\mathcal{G}]\right)
+  \;=\; T_{\mu\nu}[\Theta_R]
+       + T_{\mu\nu}[\Theta_I]
+       + T_{\mu\nu}^{\mathrm{cross}}[\Theta_R,\Theta_I].
+\end{equation}
+
+\paragraph{Individual contributions.}
+From the kinetic piece:
+\begin{align}
+  T_{\mu\nu}[\Theta_R]
+  &\;=\; \partial_\mu\Theta_R^\dagger\partial_\nu\Theta_R
+        - \tfrac{1}{2}g_{\mu\nu}(\partial\Theta_R)^2
+        - \tfrac{1}{2}g_{\mu\nu}V(\Theta_R^\dagger\Theta_R),\\
+  T_{\mu\nu}[\Theta_I]
+  &\;=\; \partial_\mu\Theta_I^\dagger\partial_\nu\Theta_I
+        - \tfrac{1}{2}g_{\mu\nu}(\partial\Theta_I)^2
+        - \tfrac{1}{2}g_{\mu\nu}V(\Theta_I^\dagger\Theta_I).
+\end{align}
+
+\paragraph{Reality of $T_{\mu\nu}[\Theta_I]$.}
+With $\Theta_I = i\,\widetilde\Theta_I$:
+\begin{equation}
+  \partial_\mu\Theta_I^\dagger\partial_\nu\Theta_I
+  \;=\; (-i)\,\partial_\mu\widetilde\Theta_I^\dagger
+        \cdot (i)\,\partial_\nu\widetilde\Theta_I
+  \;=\; \partial_\mu\widetilde\Theta_I^\dagger\,\partial_\nu\widetilde\Theta_I,
+\end{equation}
+which is \emph{real} (since $\widetilde\Theta_I$ is real-valued).
+Similarly $(\partial\Theta_I)^2 = (\partial\widetilde\Theta_I)^2$
+and $V(\Theta_I^\dagger\Theta_I) = V(\widetilde\Theta_I^\dagger\widetilde\Theta_I)$
+are real.  Therefore:
+
+\begin{theorem}[Reality of imaginary-sector energy-momentum]
+\label{thm:tmunu_real}
+The energy-momentum tensor of an imaginary-sector object
+$\Theta_I = i\,\widetilde\Theta_I$ (with $\widetilde\Theta_I$
+a real-valued biquaternion field) is \emph{real}:
+\begin{equation}
+  T_{\mu\nu}[\Theta_I] \;\in\; \mathbb{R}.
+\end{equation}
+It acts as a genuine real source in the effective Einstein equations
+$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}^{\mathrm{eff}}$ and can, in
+principle, curve the real metric $g_{\mu\nu}$.
+\end{theorem}
+
+\begin{remark}[Gravitational lensing without direct detection]
+Since $T_{\mu\nu}[\Theta_I]$ is real, an imaginary-sector object
+\emph{does} produce gravitational effects on real-sector photons.
+At the same time, $\Theta_I$ does not couple directly to the
+electromagnetic field (which resides in the real sector), so the
+imaginary-sector object is electromagnetically invisible.
+
+This is precisely the phenomenological signature of cold dark matter:
+gravitationally interacting but electromagnetically silent.
+\end{remark}
+
+\paragraph{Cross-term $T_{\mu\nu}^{\mathrm{cross}}$.}
+From Propositions~\ref{prop:kin_cross} and \ref{prop:pot_cross},
+the first non-vanishing real cross-term in $T_{\mu\nu}$ appears at
+order $|\Theta_R||\Theta_I|^2$ (from the second-order potential
+correction) and $|\partial\Theta_R||\partial\Theta_I|^2$ (from
+fourth-order kinetic corrections).  At leading order in $\Theta_I$,
+the sectors are gravitationally \emph{independent}:
+\begin{equation}
+  T_{\mu\nu}^{\mathrm{eff}}
+  \;\approx\; T_{\mu\nu}[\Theta_R] + T_{\mu\nu}[\Theta_I]
+  + O(|\Theta_I|^2).
+\end{equation}
+
+%----------------------------------------------------------------------
+\section{Sector Coupling via the Metric Back-Reaction}
+%----------------------------------------------------------------------
+
+Even when $T_{\mu\nu}^{\mathrm{cross}} = 0$ at leading order,
+the two sectors are coupled \emph{gravitationally}: $T_{\mu\nu}[\Theta_I]$
+sources $g_{\mu\nu}$, and $g_{\mu\nu}$ in turn governs the
+dynamics of $\Theta_R$ through the covariant derivative.
+
+This indirect coupling means:
+\begin{itemize}
+  \item Real-sector objects are deflected by the curvature generated
+    by the imaginary sector (gravitational lensing).
+  \item There is no direct production or annihilation of imaginary-sector
+    quanta in real-sector collisions (to leading order in $\Theta_I$).
+  \item The imaginary sector is \emph{dark}: it does not emit, absorb,
+    or scatter electromagnetic radiation.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{No-Go Result: Complete Sector Decoupling}
+%----------------------------------------------------------------------
+
+\begin{proposition}[No complete decoupling from gravity]
+\label{prop:no_decoupling}
+An imaginary-sector object $\Theta_I$ with non-zero $\widetilde\Theta_I$
+always generates a real, non-zero $T_{\mu\nu}[\Theta_I]$ (by
+Theorem~\ref{thm:tmunu_real}) and therefore always sources the
+real gravitational field.  Complete decoupling from the real sector
+would require $T_{\mu\nu}[\Theta_I] = 0$ everywhere, which (for a
+non-trivial $\widetilde\Theta_I$) would demand $V'' = 0$ and all
+kinetic terms vanish — a fine-tuned and physically trivial configuration.
+\end{proposition}
+
+This is the key result of ST-2: imaginary-sector objects cannot be
+completely dark.  They inevitably interact gravitationally with the
+real sector.  The two scenarios are:
+\begin{enumerate}
+  \item \textbf{Partial invisibility (generic case)}: $\Theta_I$
+    is electromagnetically invisible but gravitationally detectable
+    via lensing, frame dragging, and large-scale structure formation.
+  \item \textbf{Complete invisibility (fine-tuned)}: $T_{\mu\nu}[\Theta_I] = 0$
+    requires a vanishing or specially tuned potential and kinetic term,
+    leaving $\Theta_I$ with no observable effect at all —
+    a physically trivial and undetectable configuration.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Dark Matter Analogy}
+%----------------------------------------------------------------------
+
+The partial-invisibility scenario (case 1 above) reproduces the
+key phenomenological properties of cold dark matter (CDM):
+\begin{itemize}
+  \item Non-luminous: no electromagnetic coupling at leading order.
+  \item Gravitationally active: sources Einstein equations through
+    $T_{\mu\nu}[\Theta_I]$.
+  \item Non-relativistic (in principle): the imaginary-sector potential
+    $V(\widetilde\Theta_I^\dagger\widetilde\Theta_I)$ can support
+    stable bound configurations analogous to CDM halos.
+\end{itemize}
+
+This suggests that UBT may provide a \emph{geometric origin} for
+dark matter: the imaginary sector of the biquaternionic field is
+naturally dark (electromagnetically) yet gravitationally active,
+without requiring the introduction of a new particle species.
+
+\begin{conjecture}[Imaginary sector as geometric dark matter]
+\label{conj:dark_matter}
+The imaginary-sector component of the UBT $\Theta$-field provides a
+natural dark-matter candidate with the following properties:
+(i) no electromagnetic coupling at leading order,
+(ii) real energy-momentum tensor sourcing GR curvature,
+(iii) stability governed by the imaginary-sector potential
+     (see \texttt{st3\_stability.tex}).
+The relic abundance and mass spectrum would be determined by the
+UBT potential $V$ and initial conditions in the biquaternionic field.
+\end{conjecture}
+
+Conjecture~\ref{conj:dark_matter} is highly speculative and would
+require: (a) identification of the imaginary-sector mass scale,
+(b) derivation of the equation of state for $\Theta_I$,
+(c) consistency with Big Bang nucleosynthesis and CMB constraints.
+
+%----------------------------------------------------------------------
+\section{Summary}
+%----------------------------------------------------------------------
+\begin{enumerate}
+  \item Cross-terms between $\Theta_R$ and $\Theta_I$ in the kinetic
+    action are purely imaginary at first order and do not contribute
+    to $\operatorname{Re}(S)$.  They appear at second order in $\Theta_I$
+    through the potential.
+  \item The energy-momentum tensor $T_{\mu\nu}[\Theta_I]$ is real
+    (Theorem~\ref{thm:tmunu_real}), so imaginary-sector objects
+    gravitate and can produce lensing signatures.
+  \item Complete sector decoupling requires fine-tuning that removes
+    all dynamical content from $\Theta_I$ — physically trivial.
+  \item The generic case is \emph{partial invisibility}:
+    $\Theta_I$ is electromagnetically invisible but gravitationally
+    detectable, analogous to CDM.  This is the key result.
+  \item UBT may provide a geometric origin for dark matter via the
+    imaginary sector.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.
+No claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{ST1}
+  D.~Jaroš,
+  \emph{ST-1: Imaginary Sector Objects in UBT — Formal Definition},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st1\_imaginary\_object\_definition.tex}
+  (2026).
+\bibitem{Bertone2005}
+  G.~Bertone, D.~Hooper and J.~Silk,
+  \emph{Particle dark matter: Evidence, candidates and constraints},
+  Phys.\ Rep.\ \textbf{405}, 279--390 (2005).
+\bibitem{CTC_conditions}
+  D.~Jaroš,
+  \emph{ST-3: Closed Timelike Curve Conditions in the Biquaternionic Metric},
+  Repository document \texttt{speculative\_extensions/causality/ctc\_conditions.tex}
+  (2026).
+\end{thebibliography}
+
+\end{document}

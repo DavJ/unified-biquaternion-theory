@@ -1,0 +1,526 @@
+<!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
+
+# DERIVATION_INDEX.md — UBT Derivation Status Index
+
+> **DEPRECATED / SUPERSEDED STATUS: This document contains pre-audit alpha claims. Current alpha status is given by STATUS_OF_UBT.md and canonical/alpha/ALPHA_MASTER_STATUS.md.**
+> Audit references: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, `reports/gamma_entropy_alpha_interpolation_audit.md`.
+
+
+This index tracks the derivation status of every major theoretical result in UBT.
+Labels follow the Layer convention: [L0] = pure biquaternionic geometry, [L1] = one-loop,
+[L2] = higher-loop or non-perturbative.
+
+**Result-level status labels** (used in individual table rows):
+- **Proven** — rigorous derivation exists; no free parameters
+- **Semi-empirical** — structural derivation with ≥1 unexplained parameter
+- **Conjecture** — proposed but not derived; hypotheses stated explicitly
+- **Open Hard Problem** — no known approach reproduces the result
+- **Dead End** — approach proved to fail; documented for completeness
+
+**Section-level confidence labels** (used in section headings to summarise the whole track):
+- **Strong** — all key results in the section are Proven or very close; no blocking gaps
+- **Strong Partial** — main chain proved; ≤1 significant open sub-gap
+- **Candidate** — supporting evidence and partial derivations; mechanism not fully closed
+- **Experimental** — hypothesis supported by numerical/observational tests; no algebraic proof
+- **Applied Experimental** — applied/computational result with empirical support; not a UBT first-principles prediction
+- **Open** — no zero-parameter derivation known for the central result; active problem
+- **Deprecated** — approach proved to fail or superseded; preserved for reference
+
+File role labels (see `docs/AUDITS/repo_overlap_and_canonicalization_report.md`):
+- ⭐ **CANONICAL** — single authoritative source; start here
+- **supporting** — valid derivation referenced by canonical source
+- **heuristic** — intuitive sketch; not a proof
+- **sandbox** — exploratory; outputs captured elsewhere
+- **speculative** — extrapolates beyond current evidence
+- **historical** — superseded; preserved for reference
+
+**Topic index files** (one canonical entry point per topic):
+- Fine structure constant: `canonical/THEORY/topic_indexes/alpha_index.md`
+- SU(3) color symmetry: `canonical/THEORY/topic_indexes/SU3_index.md`
+- GR recovery: `canonical/THEORY/topic_indexes/GR_index.md`
+- Hecke / 137–139: `canonical/THEORY/topic_indexes/hecke_index.md`
+- Mirror sector: `canonical/THEORY/topic_indexes/mirror_sector_index.md`
+
+---
+
+## Fine Structure Constant (α) — **Section confidence: Open**
+
+> ⭐ **Canonical source**: `docs/STATUS_ALPHA.md` — complete derivation chain with explicit gap inventory.  
+> Topic index: `canonical/THEORY/topic_indexes/alpha_index.md`
+>
+> **Legacy-route correction (2026-05-10)**: Older `B_base = 41.57` and `G3-k`
+> closure narratives are historical/legacy attempts and do **not** supersede the
+> current canonical verdict in `canonical/alpha/ALPHA_MASTER_STATUS.md`.
+> Use Gap **G137-B** as the active blocker framing.
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Complex time compactification | **Proven** [L0] | `docs/STATUS_ALPHA.md §2` | From unitarity + gauge consistency |
+| Dirac quantisation condition | **Proven** [L0] | `docs/STATUS_ALPHA.md §2` | Single-valuedness of charged fields |
+| Effective potential V_eff(n) form | **Proven** [L1] | `docs/STATUS_ALPHA.md §4` | One-loop structure |
+| Prime stability constraint | **Proven** [L0] | `docs/STATUS_ALPHA.md §3` | Homotopy theory |
+| N_eff = 12 from ℂ⊗ℍ algebra (N_phases = dim Im(ℍ) = 3) | **Proven** [L0] | `docs/STATUS_ALPHA.md §5`, `canonical/n_eff/step1_mode_decomposition.tex` (Theorem 1.4), `canonical/n_eff/step3_N_eff_result.tex` | 3×2×2 = N_phases × N_helicity × N_charge; N_phases = 3 from dim Im(ℍ) = 3 (not from SU(3)); zero free parameters; derived from ℂ⊗ℍ algebra alone — see N_eff_derivation/ chain |
+| B₀ = 25.1 (one-loop baseline) | **Proven** [L1] | `docs/STATUS_ALPHA.md §5`, `canonical/n_eff/step2_vacuum_polarization.tex` (Theorem 3.1), `ARCHIVE/archive_legacy/consolidation_project/N_eff_derivation/verify_N_eff.py` | B₀ = 2π·N_eff/3 = 8π ≈ 25.133; zero-free-parameter result from S_kin[Θ]; QED limit N_eff=1 → B₀=2π/3 verified |
+| B_base = N_eff^{3/2} = 41.57 | **Partially Proved [L1]** — exponent 3/2 from T³ heat kernel [L0]; N_eff=12 [L1]; C_gauge=1 [L1]; ab initio beta-fn coefficient: **[Open]** | `canonical/interactions/B_base_derivation_complete.tex`, `docs/STATUS_ALPHA.md §9`, `ARCHIVE/archive_legacy/consolidation_project/appendix_ALPHA_one_loop_biquat.tex §B.3`, `tools/compute_B_KK_sum.py`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_spinor_approach.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_hausdorff.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_delta_d.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_nonpert.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_new_directions.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_ncg_a4.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_g_approaches.tex`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/b_base_kac_moody_level.tex`, `tools/explore_b_exponent.py`, `tools/compute_B_effective_dimension.py` | v48: **Scientific Task 1 — r²_vac = 1/(2π) from canonical norm: [CONFIRMED DEAD END].** Specific question: can ||Θ||²=1 on ψ-circle fix r²_vac=1/(2π) independently of n*? Answer: No — three reasons. (1) The canonical norm Sc[Θ†Θ]=1 directly gives r²=1, not 1/(2π); k=2π·1=2π∉ℤ (non-integer KM level — algebraically inadmissible). (2) No other natural normalisation from ℂ⊗ℍ algebra selects r²=1/(2π): the only dimensionless scale in ℂ⊗ℍ is 1 (unit algebra); 1/(2π) has no origin in the algebraic structure. (3) The only route to r²_vac=1/(2π) proceeds through V_eff minimum at n*=137 (circular). Conclusion: k=1 cannot be derived from canonical norm alone. Status of Gap G3-k: **[CONFIRMED DEAD END — canonical norm route]**; k=1 remains [MOTIVATED CONJECTURE (H2)] but not derived. B_base remains **Partially Proved [L1]** — no upgrade. v67: **Approaches H1/H2/H3 (b_base_kac_moody_level.tex) — Gap G3-k:** Direct computation of Kac-Moody level k from S[Θ]. H1 (WZW normalization): k=2π·r²_vac derived exactly; via V_eff minimum → circular (r²_vac=f(n*)=f(137)); via canonical norm r²=1 → k=2π∉ℤ → [DEAD END (both routes)]. H2 (absence of CS term): CS term proved absent (parity symmetry of mirror sectors n*=137/n**=139 + trivial holonomy); k from free kinetic action alone; minimality principle → k=1 is the unique level of the free-boson/WZW fixed point → [MOTIVATED CONJECTURE: k=1]. H3 (Dynkin index): adjoint rep (natural) → k=3×2=6, c=9/4, B≈93.5≠41.57 [DEAD END]; fundamental rep → k=3×½=3/2, c=9/7≈1.286, B≈53.4≠41.57 [DEAD END]; no natural assignment from ℂ⊗ℍ gives k=1 [DEAD END]. Status upgrade: Gap (G3-k) remains [OPEN] but k=1 is now [MOTIVATED CONJECTURE (H2)], stronger than [PARTIAL] in v65. Formula k=2π·r²_vac proved; CS absence proved; k=1 requires r²_vac=1/(2π) from an independent argument that avoids n*. v65: **Approaches G3/G2/G4/G7/F (b_base_g_approaches.tex):** G3 (Kac-Moody modular anomaly, k=1) → [PARTIAL]: c_{SU(2),1}=1; B = c·N_eff^{3/2} = 41.57 exact; k=1 motivated by free-boson / minimal-coupling but not uniquely forced by UBT axioms; k=N_eff gives c=18/7≈2.571, requires unnatural coeff≈1.35 → [DEAD END]. G2 (Weyl anomaly coefficient) → [DEAD END]: c̃=1/15 rational; required exponent p≈2.65 unnatural. G4 (Fueter mode count) → [DEAD END]: cumulative count 650 or single-degree 36/49; neither equals 41.57. G7 (QK index, ℂ⊗ℍ adjoint over ℍ) → [DEAD END]: ind=4 (flat); dimension-controlled, N_eff-independent. F (non-isotropic D_int=diag(0,1,1,1)) → [DEAD END]: tr(M⁴)=3; no natural combination equals 41.57, confirming prior expectation. New Gap (G3-k): compute Kac-Moody level k from quantisation of S[Θ] on ψ-circle. New Gap (G8): identify modular weight of UBT partition function Ẑ(τ). Overall: 22 approaches tested; A2 [MOTIVATED CONJECTURE] and G3 k=1 [PARTIAL] remain the only positive results. v64: **Approaches F1–F4 (b_base_ncg_a4.tex):** Key correction vs E4: UBT ≠ standard Connes–Lott SM; A = ℂ⊗ℍ ≅ Mat(2,ℂ) alone (not ℂ⊕ℍ⊕Mat(3,ℂ)); H_F = ℂ⁴ (left-regular / adjoint rep), not ℂ^96. F1 (UBT spectral triple, H=ℂ⁴) → [PARTIAL]: a₄^{gauge} = (1/3)tr(F²) for adjoint rep; ratio [a₄]_{ℂ⁴}/[a₄]_{ℂ²} = 4; sign positive (IR-free, consistent with UBT); B_F1 ≈ 4B₀ ≈ 100 ≠ 41.57; next step: non-isotropic D_int. F2 (product spacetime × ℂ⊗ℍ) → [PARTIAL]: a₀^{int}=4 multiplies gauge coupling; N_eff^{(F2)} = 8 ≠ 12; curvature-mass cross-term vanishes on flat spacetime; spectral-action product formula alone insufficient to recover N_eff=12. F3 (Wodzicki residue) → [DEAD END]: Res(D^{-2}) ∝ dim(H_F)=4 on flat space; reduces to same a₄ computation; no new invariant. F4 (spectral invariant search, systematic) → [PARTIAL]: unique exact candidate [dim_ℝ(ℍ)×dim_ℝ(Im ℍ)]^{3/2} = (4×3)^{3/2} = 41.57; algebraic identity only (restatement of N_eff=12 + 3/2 exponent from Gaussian measure); no purely algebraic formula derives the 3/2 exponent. Gap (a) [det(S'')] OPEN. Gap (b) [3/2 exponent protection] PARTIAL from E3. New Gap (F) [non-isotropic D_int]: next concrete step. v52 explicit computation (tools/ncg_a4_computation.py): F1 standard spectral action: B_F1 = 4·B₀ ≈ 100.5 ≠ 41.57 [DEAD END]. F4 algebraic identity [dim_ℝ(ℍ)×dim_ℝ(Im ℍ)]^{3/2} = 41.57 exact but restatement of Hausdorff approach — no new derivation of 3/2 exponent. NCG route does not close Gap G3-k. B_base remains Partially Proved [L1]. v61: **Approaches E1–E4 (b_base_new_directions.tex):** E1 (instantons on SU(2)) → [DEAD END]: B_base/B₀ = 1.6540 > 1 requires S_inst = -ln(1.654) ≈ -0.503 < 0; negative instanton action is physically impossible; E2 (index theorem / anomaly on Im(ℍ)) → [DEAD END]: ind(𝒟_{S³}) = 0 (odd-dimensional manifold); chiral anomaly requires non-integer N_f = 4√3 ≈ 6.93 for √N_eff; E3 (holomorphic factorisation) → [DEAD END as new path, STRUCTURAL CONFIRMATION]: Im(ℍ) has odd real dimension 3, admits no complex structure (Prop. E3.1); holomorphic integration over complexification ℂ³ gives exponent d_ℂ = 3 → B = N_eff³ = 1728 (wrong by factor 41.57); confirms real Gaussian (Hausdorff approach) is structurally forced; provides structural argument for Gap (b): 1/2 factor protected by real structure of Im(ℍ) — algebraic fact, not quantum correction; E4 (NCG spectral triple) → [PARTIAL]: N_gen = N_phases = 3 = dim_ℝ(Im ℍ) (same algebraic origin); a₄ ~ N_gen² = 9 from Yukawa; B_base/N_gen² = 4.619 ≈ 3π/2 = 4.712 (2% error) [NUMERICAL OBSERVATION]; explicit a₄ computation for ℂ⊗ℍ spectral triple not yet done. Gap (a) remains OPEN. Gap (b) has PARTIAL PROGRESS from E3. Next direction: explicit a₄ computation in NCG (Gap E4 in b_base_new_directions.tex §6). v60: **Approaches D1–D3 (b_base_nonpert.tex):** D1 (unitarity constraint on Im(ℍ)) → [DEAD END]: constraint reduces N_eff 12→8, moves B in wrong direction; target effective mode count < 1 is algebraically impossible; D2 (dimensional transmutation on Im(ℍ)) → [DEAD END]: requires R_ψ as free parameter (calibrated, not algebraically fixed); D3 (Cartan–Killing metric on su(2)) → [DEAD END]: normalised Killing form = Euclidean (no correction); unnormalised gives B/2 or 2.4×B_base depending on convention. Gap (a) remains OPEN after 8 dead ends. v59: A4 (effective dimension) added: d_eff(B₀) ≈ 2.595 (non-integer, from proved B₀); d_eff(B_base) = 3.000 exactly (= dim_ℝ(Im ℍ)); Gap (a) = explain Δd = 0.405. **Approach C (b_base_delta_d.tex):** C1 (Seeley–DeWitt curvature on Im(ℍ)) → [DEAD END]: correction ∝ Λ⁻² → 0 in UV; C2 (mode pair interference) → [DEAD END]: algebraic identity restatement. Gap (a) remains OPEN. N* = 4π²/9 ≈ 4.39 is N_eff for which d_eff(B₀) = 3 exactly; for N_eff = 12 (UBT) Δd = 0.405 is a derived consequence. v58: A2 (Hausdorff): Lemma (mode space Im(ℍ), d=3, PROVED), Proposition (Gaussian det^{-1/2}, identity), Conjecture (exponent = d/2 = 3/2, MOTIVATED CONJECTURE), Gap §4 ((a) det(S'') not computed; (b) higher-loop protection — both OPEN). Factor 3 = dim_ℝ(Im ℍ); factor 2 = Gaussian. Dead ends: KK sum, zeta, gauge orbit volume. A3 (numerical: x = log(46.284)/log(12) = 1.543, nearest fraction 17/11, deviation from 3/2 explained by R ≠ 1) |
+| R ≈ 1.114 (correction factor) | **Open Hard Problem** | `docs/PROOFKIT_ALPHA.md §5`, `ARCHIVE/archive_legacy/consolidation_project/alpha_derivation/r_factor_geometry.tex`, `tools/explore_r_factor.py`, `research_tracks/research/r_factor_two_loop.tex` | v56 results: B1 volume ratios → [DEAD END]; B2 algebraic search: best candidate 1+α(N_eff+π+1/4) ≈ 1.1123, err 0.15% [NUMERICAL OBSERVATION]; 2^(1/6) ≈ 1.1225, err 0.76% [CLOSE]; B3 two-loop on ψ-circle: correct qualitative structure, coefficient c not derived — OPEN PROBLEM B persists. v57: r_factor_two_loop.tex documents two-loop structure; c=N_eff+π+1/4 remains Numerical Observation; no algebraic derivation found. v70: Three additional approaches — (1) Two-Scale ratio R_ψ^α/R_ψ^EW≈0.096≈α·N_eff: requires β≈163 (no algebraic value) [DEAD END]; (2) Modular correction near τ=i: correction≈1.005 (factor 20 too small) [DEAD END]; (3) Heat kernel on flat T³: c_n=0 (zero curvature, no subleading correction) [DEAD END]. Best candidate unchanged: R=1+α(N_eff+π+1/4)≈1.1123. Status: Open Hard Problem — 25+ approaches, none successful. v71: Explicit two-loop β-function coefficient on T³×S¹ computed (r_factor_two_loop.tex §8): scalar c≈1.91; SU(2) c≈7.33; SU(2)+N_f fermions c=22/3-(2/3)N_f<7.33 (all below target); all-mode N_eff=12 gauge c=44 (overshoots); no natural particle content reproduces c≈15.39 → **B3 confirmed Dead End**. Status: Open Hard Problem — 26+ approaches exhausted. v72: Additive reformulation (r_factor_two_loop.tex §9): ΔB = B − B_base ≈ 4.74; best candidate ΔB = 3π/2 ≈ 4.712 (0.6% error); physical interpretation ΔB = k_mod × θ_W^min = (3/2)π where k_mod=3/2 [L0] and θ_W^min=π [L1]; B enters V_eff linearly (additive formulation natural); algebraic derivation from S[Θ] required to close gap; status: Open Hard Problem — 27+ approaches. v73: Attempted algebraic derivation (r_factor_two_loop.tex §10): partition split Z = Z_T³ × Z_S¹ documented; B_base from Z_T³ confirmed [L1]; candidate two-loop formula ΔB = k_mod × θ_W^eff = (3/2)×π = 3π/2 derived schematically from heat kernel modular weight [L0] and SSB half-period [L1]; three gaps identified: D1 (factorisation at 2-loop), D2 (explicit Feynman-diagram coefficient), D3 (dimensional consistency); status remains Open Hard Problem — Motivated Conjecture. |
+| α⁻¹ = 137 (bare value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | Follows from framework given B=46.3 |
+| α⁻¹ = 137.036 (full value) | **Semi-empirical** | `docs/STATUS_ALPHA.md` | + two-loop QED correction |
+| Non-circularity test | **Verified** | `experiments/validation/validate_B_coefficient.py` | Different N_eff → different n* |
+| Gap G8: Modular weight of Ẑ(τ) | **Computed [L0]** | `research_tracks/research/partition_function_modular.md` | v57: Ẑ_T³(τ) = ϑ₃³(τ) transforms as modular form of weight k=3/2 under τ→-1/τ (Jacobi identity). k=d/2=3/2 where d=3=dim_ℝ(Im ℍ). Does not close Gap G3-k (k≠1). Consistent with B_base exponent 3/2. v59: Ẑ_T³(τ) = ϑ₃³(τ) transforms as modular form weight k=3/2 under τ→-1/τ (Jacobi identity: ϑ₃(-1/τ) = (-iτ)^{1/2} ϑ₃(τ)). k = d/2 = 3/2 where d=3=dim_ℝ(Im ℍ) — same algebraic origin as B_base exponent 3/2. Does NOT close Gap G3-k (k≠1). |
+| Gap G-RH-1: ψ-sector spectral zeta vs completed Riemann zeta | **Computed [L0]** | `research_tracks/research/psi_sector_zeta_connection.tex` | Eigenvalues λ_n = n²/R_ψ². Heat trace K(β) = ϑ₃(0\|iβ/πR_ψ²). Mellin transform → ζ_H(s) = 2R_ψ^{2s} ζ(2s) [exact, L0]. Factorisation: ζ_H(s) = G(s)·ξ(2s), G(s) = 2(πR_ψ²)^s/Γ(s). G is entire, not constant, zero-free on Re(s)>0 (simple zeros only at s=0,−1,−2,…). Non-trivial zeros of ζ_H lie at s=ρ/2; critical axis = Re(s)=1/4 (not 1/2). G introduces no spurious zeros in right half-plane. Open: Gap G-RH-2 — prove ∏_p Z_p(s) = ζ(s) from UBT p-adic sectors (adelic completion, Tate's thesis route). |
+| Self-consistency equation n\*·α + g(α) = 1 | **Dead End** [L2] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.8`, `tools/alpha_selfconsistency.py` | No natural UBT cutoff independent of m_e gives <1% error; best geometric cutoff (Λ = m_e/√α) gives 0.83%; pair-threshold (Λ = 2m_e) gives 0.22% but uses m_e as input — [HYPOTHESIS] pending independent derivation of Λ ≈ 1.90·m_e |
+| m_0 from torus geometry (U_geom = −C/(R_t·R_ψ)) | **Semi-empirical** [L1] | `ARCHIVE/archive_legacy/tex/appendix_E_m0_derivation_strict.tex §E.4`, `tools/m0_from_torus.py` | α_predicted = C/(2A) derived from stationarity without α as input [SKETCH]; m_0 trivially zero for n=1; requires C computed from ℒ_geom |
+| R_ψ independent topological fixation | **Mechanism [L1]** — T-duality selects self-dual point R_psi = R_t [L1]; physical units require beyond-one-loop: **[Open L2]** | `canonical/geometry/Rpsi_dynamical_fix.tex`, `canonical/geometry/biquaternionic_vacuum_solutions.tex §2`, `docs/ALPHA_FROM_ME_ANALYSIS.md §6.2` | T-duality mechanism [L1]: self-dual point R_psi = R_t is the unique T-duality-invariant extremum of the moduli potential. Physical value in GeV: R_ψ = ℏ/(m_e·c) is [CALIBRATED] — beyond-one-loop derivation needed to fix R_t in physical units [Open L2]. |
+
+---
+
+## Standard Model Gauge Group — **Section confidence: Strong Partial**
+
+> **SU(2)_L × U(1)_Y emergence: Strong Partial** — algebraically derived from ℂ⊗ℍ automorphisms.  
+> **SU(3)_c emergence: Candidate** — proved via two independent routes (involutions + superposition); confinement gap remains (Clay Millennium Problem).  
+> **Full SM gauge structure: Strong Partial** overall.
+
+> ⭐ **Canonical source for SU(3)**: `canonical/su3_derivation/su3_from_involutions.tex`  
+> Topic index: `canonical/THEORY/topic_indexes/SU3_index.md`
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| B = ℂ⊗ₐℍ ≅ Mat(2,ℂ) | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §1` | Standard algebra isomorphism |
+| Aut(B) ≅ [GL(2,ℂ)×GL(2,ℂ)]/ℤ₂ | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §1` | Standard result |
+| SU(2)_L from left action | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Generators T^a: M → (iσ^a/2)M |
+| [T^a, T^b] = ε^{abc}T^c | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Direct computation |
+| U(1)_Y from right action | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Θ → e^{-iθ}Θ |
+| U(1)_EM from ψ-cycle phase | **Proven** [L0] | `canonical/interactions/qed.tex` | Phase of Θ on ψ-circle |
+| SU(3)_c from involutions on ℂ⊗ℍ | **Proved [L0]** ⭐ **CANONICAL** | `canonical/su3_derivation/su3_from_involutions.tex`, `canonical/su3_derivation/step1_involution_summary.tex` | Theorems G.A–G.D: Lie algebra 𝔰𝔲(3), fundamental rep (quarks), adjoint rep (gluons), EW decoupling — all proved; confinement gap remains (Clay Millennium Problem) |
+| SU(3)_c from quantum superposition over {I,J,K} | **Proved [L0]** | `canonical/su3_derivation/step1_superposition_approach.tex`, `tools/verify_su3_superposition.py` | Complementary to involution approach (v46); Θ_color = α·I+β·J+γ·K ∈ ℂ³; U(3) symmetry → SU(3) after U(1)_Y; involutions P_I,P_J,P_K give ℤ₂×ℤ₂ skeleton; all 8 Gell-Mann generators verified numerically; dim(Im ℍ)=3 forces SU(3) with zero free parameters |
+| SU(3)_c via i,j,k → r,g,b axis mapping | **[HEURISTIC / MOTIVATING SKETCH]** | `ARCHIVE/archive_legacy/tex/Appendix_G_Emergent_SU3.tex` | Intuitive correspondence only; NOT an algebraic proof; see disclaimer at top of that file; canonical derivation is involution approach above |
+| SU(3) via one-hot qubit embedding φ: su(3)→End(ℂ⁸) | **[MATHEMATICAL SANDBOX]** | `research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/` | Valid Lie algebra homomorphism (51 tests pass); separate from mainline UBT derivation; does not derive SU(3) from ℂ⊗ℍ first principles |
+| Color confinement (algebraic) | **[CONJECTURED WITH EXPERIMENTAL SUPPORT L0]** | `ARCHIVE/archive_legacy/consolidation_project/confinement/algebraic_confinement.tex`, `ARCHIVE/archive_legacy/consolidation_project/confinement/confinement_verification.py` | H_phys = Im(Π_color) in ℂ²⊗ℂ²⊗ℂ²; free quark algebraically inadmissible (not a colour singlet, ⟨C₂⟩=4/3≠0); all hadrons (baryon, meson, tetraquark, pentaquark) verified to satisfy ⟨C₂⟩=0; distinct from Clay Prize (YM mass gap) — see §5; exotic hadrons at LHCb consistent (§6); needs peer review |
+| Weinberg angle θ_W fixed | **Semi-empirical** | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §6` | Cannot be fixed by ℂ⊗ℍ alone. Structural argument (v47): ℂ⊗ℍ automorphism group provides SU(2)_L × U(1)_Y but g/g' ratio is a free parameter of the embedding; no algebraic constraint on sin²θ_W arises from ℂ⊗ℍ geometry. |
+| SU(2)_L chirality (not SU(2)_L×SU(2)_R) | **Candidate conditional [L0]** | `canonical/chirality/step1_psi_parity.tex`, `canonical/chirality/step2_chirality_result.tex`, `canonical/chirality/step3_gap_C1_resolution.tex` | ψ-parity P_ψ acts as γ⁵ (Proved); odd winding n>0 = left-handed (Proved); Gap C1 conditional: W± vertex P_ψ-odd follows only if no W_R coupling in S[Θ] (assumption, not derived); parity breaking is a **candidate conditional result**: follows if minimal UBT gauges SU(2)_L but not SU(2)_R — see step3 |
+
+---
+
+## Three Fermion Generations — **Section confidence: Open** (lepton masses); **Candidate** (generation structure)
+
+> ⭐ **Canonical Hecke sources**: `docs/reports/hecke_lepton/` (numerical) + `research_tracks/hecke_bridge/motivation.tex` (theoretical)  
+> Topic index: `canonical/THEORY/topic_indexes/hecke_index.md`
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| ψ-modes as independent B-fields | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §3` | From power-series structure |
+| Modes carry same SU(3) quantum numbers | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §3` | SU(3) commutes with ψ |
+| ψ-parity forbids even↔odd mixing | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §4` | Symmetry argument |
+| Quaternionic origin of three families: {i,j,k} ↔ three fermion families | **Algebraic [L1]** | `research_tracks/research/generation_structure.tex Prop. 2` | Three imaginary quaternion units = three non-scalar irreducible Θ-components; Higgs=scalar discarded; natural algebraic correspondence (complementary to ψ-winding mechanism; whether same physical mechanism is [Open L2]) |
+| KK mismatch (ratio 1:2 vs 207:3477) | **Proven** [L0] | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | [DERIVED — mismatch is a theorem] |
+| Option A (linear mixing) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Max ratio ~461, far below 3477 |
+| Option B (linear Yukawa) reproduces ratios | **Dead End** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Ratio 1:2:3 only |
+| Option C (ψ-instantons) reproduces ratios | **Open Hard Problem** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §7` | Calibrated to muon; tau off by factor ~6. v47 scan: ±20% variation of S_inst is a Dead End — S_inst required for muon (5.332) and for tau (4.424) differ by 17%; no single S_inst in [4.266, 6.398] simultaneously fits both within 1%. Simple modification of the dilute-gas S_inst is insufficient; non-perturbative resummation or modified instanton action required. |
+| Identification Θ₀/Θ₁/Θ₂ ↔ e/μ/τ | **Conjecture** | `experiments/research_tracks/three_generations/st3_complex_time_generations.tex §5` | Mass ratios not reproduced |
+| Mass ratio script (Options A/B/C) | Documented | `tools/reproduce_lepton_ratios.py` | Exit code 1 = no mechanism works |
+| Hecke conjecture p=137 | **STRONG NUMERICAL SUPPORT** | `docs/reports/hecke_lepton/` | Set A (76.2, 7.4, 208.6): unique global hit p=137 in 50–300; mu_err=0.02%, tau_err=0.10%; 47 other primes far off |
+| Hecke twin prime p=139 (mirror sector) | **NUMERICAL OBSERVATION** | `docs/reports/hecke_lepton/mirror_world_139.md` | Set B (195.2, 50.4, 54.6): unique global hit p=139 in 50–300; Sets A and B mutually exclusive on twin primes (137, 139) |
+| CM k=6 forms at any level | **Dead End** | `experiments/research_tracks/three_generations/step5_hecke_search_results.tex §5.2`, `experiments/research_tracks/three_generations/step6_nonCM_search.tex` | \|a_137\| ~ 439371 ≫ 81400; structural impossibility |
+| Non-CM k=6 forms, N≤4 | **Dead End** | `experiments/research_tracks/three_generations/step5_hecke_search_results.tex` | No non-CM forms exist at these levels |
+| Non-CM k=6 forms, N∈[50,500] | **Partially Searched — Open** | `experiments/research_tracks/three_generations/step6_nonCM_search.tex`, `experiments/research_tracks/three_generations/nonCM_search_results.json` | Structurally possible (Sato-Tate); ~0.84 matches expected; unsearched pending LMFDB/SageMath access |
+
+### Lepton Sector Parameter Audit
+
+The following table classifies every parameter appearing in the two lepton-mass
+formulas by whether it is **Structural** (fixed by algebra/topology, no fit) or
+**Semi-empirical** (requires ≥1 calibration to experiment).
+Full justification: `docs/reports/lepton_audit/publication_readiness.md`.
+
+| Parameter / Result | Label | File | Notes |
+|--------------------|-------|------|-------|
+| KK eigenvalue formula form E_{n,m} = (1/R)√[(n+δ)²+m²] | **Structural** | `ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex` | Form of Dirac operator on T² with Hosotani shift; no fit |
+| Hosotani shift δ = ½ | **Structural** | `ARCHIVE/archive_legacy/consolidation_project/appendix_W2_lepton_spectrum.tex §W.4` | Fixed by Q=−1, θ_H=π; derived from U(1)_EM coupling |
+| R = 1/m_e (torus radius) | **Semi-empirical** | `docs/reports/lepton_audit/canonical_derivation.md` | One calibration to set overall mass scale |
+| KK mismatch (E_{0,2}/E_{0,1} ≈ 1.844 ≠ 207) | **Structural** | `docs/reports/lepton_audit/status_summary.md` | Theorem: ratio ≤ 2 for any real modulus; not a failure but an honest gap |
+| Hopfion formula form m(n) = A·n^p − B_m·n·ln(n) | **Structural** | `ARCHIVE/archive_legacy/historical_versions/status/STATUS_FERMIONS.md §4`, `docs/reports/lepton_audit/equations.md` | Functional form motivated by one-loop effective potential; no free parameters in the form |
+| A (hopfion mass scale) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to m_e; Gap M1: derive from soliton tension |
+| p (topological winding exponent) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M2: derive from soliton stability |
+| B_m (log correction in mass formula) | **Semi-empirical** | `docs/reports/lepton_audit/parameter_table.csv` | Fitted to (m_μ, m_τ); Gap M3: derive from loop corrections. **Note:** B_m (fermion masses, ≈ −14.099 MeV, dimensionful) is distinct from B_base (α derivation, ≈ 41.57, dimensionless) — different objects, different physics. |
+| m_e prediction at 0.22% | **Semi-empirical** | `docs/reports/lepton_audit/reproduction.md` | Post-fit cross-check, not a zero-parameter prediction |
+| m_μ/m_e ≈ 207, m_τ/m_μ ≈ 16.8 | **Not reproduced** | `docs/reports/lepton_audit/status_summary.md` | KK mismatch theorem forbids reproduction from W2 formula; Gap M4 |
+
+---
+
+---
+
+## Prime Attractor Theorem — **Section confidence: Strong Partial**
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Prime selection by V_eff(n) minimum | **Proven** [L1] | `docs/STATUS_ALPHA.md §4`, `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Robust regardless of coupling type |
+| Coupling type from ∇†∇Θ = κ𝒯 | **Derived** [L1] | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Substitution gives ADDITIVE coupling j+m-k=n (three-index constraint) |
+| Multiplicative coupling k·m=n | **Dead End** (standard QFT) | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a` | Not from ∇†∇Θ with standard self-interaction |
+| Topological winding interaction | **Conjecture** | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a §H.7a.2` | Could give multiplicative coupling; no derivation |
+| Prime attractor (mode coupling) | **Dead End** (additive coupling) | `ARCHIVE/archive_legacy/tex/Appendix_H_Theta_Phase_Emergence.tex §H.7a`, `tests/test_prime_attractor_stability.py` | Additive coupling gives no prime preference |
+| Prime selection (V_eff minimum) | **Proven** | `docs/STATUS_ALPHA.md §4` | Independent of coupling type; robust claim |
+
+---
+
+## φ-Universe Parameter and h_μν Vacuum — **Section confidence: Candidate**
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| φ-projection theorem (P_φ[𝒢_μν] satisfies GR) | **Proven** [L1] | `canonical/geometry/phase_projection.tex` | U(1) automorphism of ℂ⊗ℍ |
+| ∂α/∂φ = 2ρr·α(0) formula | **Proven** [L1] | `canonical/geometry/phi_gauge_vs_physical.tex` | Analytic derivation; result depends on vacuum |
+| h_μν = 0 for single-mode winding vacuum | **Proven** [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.2` | Proved [L1]. Earlier approaches were dead ends; current result from biquaternionic_vacuum_solutions.tex §1.2 |
+| h_μν ≠ 0 two-mode winding vacuum | **Proven** [L1] | `canonical/geometry/biquaternionic_vacuum_solutions.tex §1.3` | h_ψψ = (2/R_ψ²)sin(ψ/R_ψ)·Im[Sc(Θ₀Θ₁†)] |
+| r ≈ 4.66 for canonical two-mode vacuum | **Proven** [L1] | `tools/compute_h_munu_vacuum.py` | Numerical; gauge potential formula is SKETCH |
+| φ is physical (not pure gauge) for two-mode vacuum | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §4a` | r ≠ 0 → φ is physical |
+| ψ↔φ are distinct operations (not equivalent) | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §5a` | Both indexed by primes; different geometric mechanisms |
+| dim(ℳ_UBT) ≥ 1 (U(1) moduli) | **Proven** [L1] | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Scalar phase rotation |
+| dim(ℳ_UBT) = 4 (U(1)×Sp(1)) | **Conjecture** | `docs/PHI_UNIVERSE_PARAMETER.md §5b` | Quaternionic extension; gauge vs. physical TBD |
+
+---
+
+## UBT–Twistor Bridge — **Section confidence: Candidate**
+
+> ⭐ **Canonical source**: `research_tracks/THEORY_COMPARISONS/penrose_twistor/STATUS.md`
+> Hard rule: UBT is NOT twistor theory. Results below establish a compatible substructure
+> over flat Minkowski space only.
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| σ_μ matrices derived from ℂ⊗ℍ biquaternion basis | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/ubt_generators.py` | 15 tests pass; no external Pauli import needed |
+| det(X) = Minkowski interval for X = x^μ σ_μ | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/minkowski_spinor.py` | Symbolic verification |
+| Bijection x ↔ X^{AA'} well-defined and invertible | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/minkowski_spinor.py` | Roundtrip tests pass |
+| Null vectors ↔ rank-1 Hermitian matrices | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/tests/test_light_cone.py` | det X = 0 iff s² = 0 |
+| Incidence relation ω^A = iX^{AA'}π_{A'} (flat Minkowski) | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/twistor.py` | Flat space only; ψ not carried through |
+| SU(2,2) Hermitian form and group action | **Proved [L0]** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/su22.py` | Signature (2,2) verified |
+| Conformal (Möbius) action on X-space | **Computationally verified** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/conformal.py` | Numerical; analytic proof pending |
+| UBT generator closure → 15D Lie algebra | **Computationally verified** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/twistor_core/lie_audit.py` | Killing form (8,7,0); semisimple |
+| X^{AA'}(Θ) in curved UBT sector | **Open** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/curved_bridge_todo.md` | Requires nonlinear graviton extension |
+| ψ (imaginary time) ↔ twistor geometry | **Open** | `research_tracks/THEORY_COMPARISONS/penrose_twistor/tau_phase_mapping.md` | No candidate mapping found |
+
+---
+
+## Cross-Gap Consistency Checks — **Section confidence: Open**
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| CC1: R_ψ = ℏ/(m_e·c) used consistently | To verify | Gap 1, Gap 4, Gap 6 must use same value |
+| CC2: B coefficient layer discipline | OPEN | B needs [L1] derivation; currently uses N_eff from SM (Gap 5) |
+| CC3: Prime chain V(ψ) → prime attractor → φ_p | **Partially verified** | ψ_p = φ_p = 2π/p share index structure; distinct geometric mechanisms (see §5a) |
+
+---
+
+## QM Emergence from Complex Time (Track: CORE) — **Section confidence: Strong Partial**
+
+*Added 2026-03-06. Source verification: `canonical/qm_emergence/`*
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| ℂ⊗ℍ ≅ Mat(2,ℂ) algebra isomorphism | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §2` | Standard algebra; generators map to Pauli matrices |
+| Pauli matrices σᵢ from quaternion generators | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §3` | Direct from isomorphism; not postulated |
+| Dirac γ^μ from ℂ⊗ℍ ⊗ ℂ⊗ℍ tensor product | **Proven** [L0] | `canonical/qm_emergence/step3_dirac_emergence.tex §4` | γ^μ in Weyl rep. = σ₁⊗𝟙, iσ₂⊗σᵢ; Clifford relation verified |
+| Dirac-like operator 𝒟 = iγ^μ∇_μ uniquely determined | **Proven** [L0] | `research_tracks/legacy_theory_variants/ubt/operators/dirac_like_operator.tex Thm. 2.1` | Unique up to gauge equivalence from bundle structure |
+| Schrödinger structure from Im(∂_τΘ = □Θ) | **Sketch** [L0] | `canonical/qm_emergence/step2_schrodinger_emergence.tex §5` | ∂_ψΦ = −2i∇²Φ follows analytically; diffusion coeff. 𝒟=ℏ/(2m) is assumed (Gap S1) |
+| UBT ψ is physical — NOT a Wick rotation | **Proven** [L0] | `canonical/THEORY/math/fields/biquaternion_time.tex §5.1` | ψ∈ℝ is dynamical; Wick rotation is formal analytic continuation only |
+| Biquaternionic FPE with Θ = Σ exp[πB(n)·H(T)] | **Sketch** [L0] | `canonical/qm_emergence/step1_fpe_check.tex` | Scalar sector numerically verified (see tools/verify_fpe.py); three gaps remain: G1 (A(Q) assumed), G2 (consistency condition on H), G3 (non-commutativity) |
+| Massless Dirac equation from 𝒟Θ = 0 (spinorial sector) | **Proved [L1]** | `canonical/qm_emergence/step3_dirac_emergence.tex §6`, `canonical/qm_emergence/step6_spinorial_subspace.tex` | Algebraic structure proved; Gap D1 (spinorial subspace) closed by step6: Θ₁ (n=1 ψ-mode) transforms as Dirac spinor via winding + SL(2,ℂ) double cover (Thm. D1); massless case has zero free parameters |
+| Born rule: Θ†Θ is probability density | **Proved [L0]** | `canonical/qm_emergence/step7_born_rule.tex` | Sc[Θ†Θ] is conserved by FPE (∂_T∫P dQ=0); Born rule follows without postulate; see step7 |
+| QM unification via drift-diffusion | **Sketch** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_FORMAL_qm_gr_unification.tex` | Madelung equations reproduced; specific parameter choices needed (see Step 2) |
+| FPE ↔ Euler–Lagrange equivalence (scalar sector) | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex` | Algebraic identity under conditions C1 (∇²H=0) and C2 (∇H⊥∇Θ); script tools/verify_fpe_equivalence.py — ALL CHECKS PASSED |
+| Three projections: GR, QM, statistical mechanics | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) → GR/KG; Im(∂_ψΘ=□Θ) → QM/Schrödinger; full FPE → stat.mech. Definitionally equivalent projections of one field equation, not emergent |
+
+### Open Sub-Tasks (QM Emergence Gaps)
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| G1 | Derive drift A(Q) = −∇H from S[Θ] via Euler-Lagrange | HIGH |
+| G2 | Prove consistency condition on H for general biquaternionic case | HIGH |
+| G3 | Non-commutative FPE ordering: **CLOSED [L0] ⭐** — v70: Sc annihilates Im(ℍ); [e_a,e_b]=2ε_{abc}e_c ∈ Im(ℍ); correction Sc[(∇Θ)†[e_a,e_b](∇Θ)]=0 identically in all sectors (U(1), SU(2), SU(3)). See step4_fpe_equivalence.tex Thm thm:fpe_all_sectors. | CLOSED |
+| S1 | Derive diffusion coefficient 𝒟_eff = ℏ/(2m) from S[Θ] | HIGH |
+| D1 | Spinorial subspace: **CLOSED** — Θ₁ (n=1 mode) transforms as Dirac spinor via winding + SL(2,C) spinor rep; see step6_spinorial_subspace.tex | HIGH |
+
+---
+
+## Fermionic Statistics — **Section confidence: Candidate**
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Grassmannian path-integral measure for odd-winding KK modes | **Proved [L1]** | `canonical/bridges/fermionic_statistics_bridge.tex` | Exchange-phase calculation yields −1 for odd-n modes; Berezin measure required |
+| Spin from Noether angular-momentum operator (KK soliton) | **[Open L2]** | `canonical/bridges/fermionic_statistics_bridge.tex §Gap` | Grassmannian measure proved [L1]; spin eigenvalue computation pending |
+
+---
+
+## QED Reproducibility at φ = const (Track: CORE) — **Section confidence: Strong Partial**
+
+*Added 2026-03-06. Task: UBT\_v29\_task7\_qed\_phi\_const.*
+*Source: `canonical/qed_phi_const/` Script: `tools/verify_qed_phi_const.py`.*
+
+This section tracks the stronger QED constraint: UBT must reproduce standard QED not
+only at φ=0 (vacuum limit, previously verified) but for any constant scalar background
+φ = const ≠ 0 (cosmological background, Higgs-vev analog).
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| U(1)\_EM unbroken at φ=const | **Proven** [L0] | `canonical/qed_phi_const/step1_u1_protection.tex` | q\_φ=0 (neutral scalar); m²\_γ=0 exact; no Higgs mechanism for EM |
+| Electron mass m\_e=y·v at φ=const | **Sketch** [L1] | `canonical/qed_phi_const/step2_electron_mass.tex` | Structural: identical to SM Higgs; Gaps Y1 (derive y) and Y2 (derive v) open |
+| δB(φ)=0 at one loop — α(μ) running unchanged | **Proven** [L1] | `canonical/qed_phi_const/step3_beta_function.tex` | Outcome A: UV divergence mass-independent; φ-loop absent (q\_φ=0); standard QED running exact |
+| Schwinger term a\_e=α/(2π) at φ=const | **Proven** [L1] | `canonical/qed_phi_const/step4_schwinger_term.tex` | Massless photon (Step 1) + Dirac vertex (Step 2) → identical 1-loop diagram; φ-correction ~10⁻¹⁶ (unobservable) |
+| Lamb shift 1057.8 MHz at φ=const | **Sketch** [L1] | `canonical/qed_phi_const/step5_lamb_shift.tex` | Structural: reduction to Steps 1–4 complete; explicit UBT path-integral computation lacking (Gap L1) |
+| QED reproducibility summary | **Substantially Proved** [L1] | `canonical/qed_phi_const/step6_qed_summary.tex` | 3 proved + 2 sketch; minimum criterion (U(1)\_EM unbroken) met; script passes all checks |
+
+### Open Sub-Tasks (QED φ=const Gaps)
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| Y1 | Derive Yukawa coupling y from S[Θ] | HIGH |
+| Y2 | Derive VEV v from V\_eff(θ₀) on ψ-circle | HIGH |
+| L1 | Explicit UBT path-integral Lamb-shift computation at φ=const | MEDIUM |
+
+### UBT Predictions from φ-Background
+
+| Prediction | Value | Observable | Notes |
+|------------|-------|-----------|-------|
+| P-QED-1 | δα/α ~ 10⁻²¹ at 2-loop | α running | Spatial variation of α in cosmological φ-background |
+| P-QED-2 | δa\_e ~ 10⁻¹⁶ | electron g-2 | Below current sensitivity ~10⁻¹³ |
+
+---
+
+*Last updated: 2026-03-06. See STATUS_ALPHA.md, docs/PROOFKIT_ALPHA.md for details.*
+
+---
+
+## Chirality Derivation — SU(2)_L Selection (Track: CORE) — **Section confidence: Candidate**
+
+*Added 2026-03-06. Task: UBT_v29_task2_chirality. Source: `canonical/chirality/`*
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| ℍ gives SU(2)_L × SU(2)_R from left/right actions | **Proven** [L0] | `ARCHIVE/archive_legacy/consolidation_project/appendix_E2_SM_geometry.tex §5` | Inn(ℍ)_L × Inn(ℍ)_R ≅ Spin(4); selection mechanism needed |
+| P_ψ maps modes n → -n (ψ-parity) | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §2` | Def. 1; exact algebraic statement |
+| ∂_ψ anti-commutes with P_ψ | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §3` | Lem. 2; direct calculation |
+| P_ψ acts as γ⁵ in ψ-sector | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §4` | Prop. 3; [P_ψ, γ^μ∇_μ]=0 and {P_ψ, γ⁵∂_ψ}=0 |
+| Preferred ψ-circle orientation (matter n>0 by CPT) | **Proven** [L0] | `canonical/chirality/step1_psi_parity.tex §5` | Lem. 4; P_ψ = CP in ψ-sector |
+| SU(2)_L on odd modes ℋ₋ | **Candidate conditional [L0]** | `canonical/chirality/step1_psi_parity.tex §6`, `canonical/chirality/step3_gap_C1_resolution.tex` | Thm. 5; Gap C1 conditional (no W_R in S[Θ] assumed, not derived) — parity breaking follows if minimal UBT gauges SU(2)_L but not SU(2)_R |
+
+### Open Sub-Tasks (Chirality Gaps)
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| C1 | W± vertex P_ψ-odd from S[Θ]: **CONDITIONAL** — no W_R in S[Θ] is an assumption (not derived from first principles); see step3_gap_C1_resolution.tex | HIGH |
+
+---
+
+## 8π Common Origin (Track: CORE) — **Section confidence: Strong Partial**
+
+*Added 2026-03-06. Task: UBT_v29_task3_8pi. Source: `canonical/8pi_common_origin.tex`. Script: `tools/verify_8pi_connection.py`.*
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| 8π in G_μν = 8πG T_μν from dim(ℍ) | **Structural** [L0] | `canonical/8pi_common_origin.tex §2` | 16πG = dim_ℝ(ℍ) × vol(S²) × G = 4 × 4π × G; structural not coincidental |
+| B₀ = 8π from dim_ℂ(ℂ⊗ℍ) = 4 | **Proven** [L1] | `canonical/8pi_common_origin.tex §3`, `canonical/n_eff/step2_vacuum_polarization.tex` | B₀ = 2π × dim_ℂ(ℂ⊗ℍ) = 8π; script verify_8pi_connection.py ALL PASS |
+| Common algebraic ancestor: dim 4 | **Structural** [L0] | `canonical/8pi_common_origin.tex §4` | dim_ℝ(ℍ) = dim_ℂ(Mat(2,ℂ)) = 4; both 8π's share this factor |
+| N_phases = 3 and spin-trace = 1/3: algebraically independent | **Proven** [L0] | `canonical/8pi_common_origin.tex §3 Thm. 3` | Numerical equality in d=4 is coincidental; cancellation gives dim_ℂ(ℂ⊗ℍ) = 4 |
+| Unified theorem: single origin for both 8π's | **Motivated Conjecture [Open L2]** — v62 attempted proof: 16π in 1/(16πG) reproduced structurally (N_eff=12=4×3; factor 4=dim_ℝ(ℍ)); G is free parameter (requires UV cutoff λ_UV not fixed by ℂ⊗ℍ alone); 8π structure algebraically inevitable, numerical G requires [Open L2] | `canonical/8pi_common_origin.tex §6` | v62 §6.4 "Attempted Proof": common algebraic ancestor dim_ℝ(ℍ)=4 confirmed; G not fixed by algebra alone; Unified Theorem remains Motivated Conjecture [Open L2]; see also `wiki/EightPi_Origin.md` |
+
+---
+
+## FPE Equivalence — QM/GR/Stat-Mech Unification (Track: CORE) — **Section confidence: Strong**
+
+*Added 2026-03-06. Task: UBT_v29_task1_fpe_equivalence. Source: `canonical/qm_emergence/step4_fpe_equivalence.tex`. Script: `tools/verify_fpe_equivalence.py`.*
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| FPE ↔ E-L equivalence (scalar, free field) | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex Thm. 1` | Algebraic identity: both reduce to ∂_TΘ = D∇²Θ under C1,C2 |
+| FPE ↔ E-L equivalence (U(1) gauge sector) | **Proved [L0]** ⭐ | `canonical/qm_emergence/step4_fpe_equivalence.tex Thm. thm:fpe_all_sectors` | Gap G3 Closed [L0]: Sc annihilates Im(ℍ); correction term vanishes identically; all sectors |
+| FPE ↔ E-L equivalence (SU(2) gauge sector) | **Proved [L0]** ⭐ | `canonical/qm_emergence/step4_fpe_equivalence.tex Thm. thm:fpe_all_sectors` | Gap G3 Closed [L0]: Sc[(∇Θ)†[e_a,e_b](∇Θ)]=0; all sectors |
+| FPE ↔ E-L equivalence (SU(3) gauge sector) | **Proved [L0]** ⭐ | `canonical/qm_emergence/step4_fpe_equivalence.tex Thm. thm:fpe_all_sectors` | Gap G3 Closed [L0]: correction zero in SU(3) color sector; all sectors |
+| Norm conservation from FPE | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex Prop. 2` | d/dT ∫\|Θ\|² dQ = 0; Born rule consistent without extra postulate |
+| Projection A: Re sector → GR/KG | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Re(∂_tΘ=□Θ) = GR sector; confirmed numerically |
+| Projection B: Im sector → QM/Schrödinger | **Sketch** | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | Im(∂_ψΘ=□Θ) → QM; Gap S1 (D=ℏ/2m) PARTIALLY CLOSED via dimensional analysis (step2_schrodinger_emergence.tex §2.5) |
+| Projection C: Full FPE → statistical mechanics | **Proven** [L0] | `canonical/qm_emergence/step4_fpe_equivalence.tex §4` | FPE IS stat.mech. by construction |
+| FPE ↔ E-L (full biquaternionic) | **Proved [L0]** ⭐ | `canonical/qm_emergence/step4_fpe_equivalence.tex §6,§7, Thm thm:fpe_all_sectors`, `ARCHIVE/archive_legacy/consolidation_project/FPE_verification/step5_noncommutativity.tex` | v70: **Gap G3 CLOSED**. Proof: commutator [e_a,e_b] = 2ε_{abc}e_c ∈ Im(ℍ); Sc annihilates Im(ℍ) (Sc(X)=0 for all X ∈ Im(ℍ)); action S[Θ] = ∫ Sc[(∇Θ)†(∇Θ)] → correction Sc[(∇Θ)†[e_a,e_b](∇Θ)] = 0 identically in all sectors (U(1), SU(2), SU(3)). See step4_fpe_equivalence.tex Thm thm:fpe_all_sectors. v62: U(1) Gap G3 closed; SU(2)/SU(3) correction terms identified explicitly. v69: Cartan sector proved; physical vacuum sector partially proved. v70: off-diagonal sector closed by Sc-projection argument. v71: Summary table in step4_fpe_equivalence.tex and step7_born_rule.tex updated to reflect all-sector proof; Gap G3 status row in Gaps table updated to CLOSED [L0] ⭐. |
+
+**Strongest unification result**: QM, GR, and statistical mechanics are definitionally equivalent projections of ∂_TΘ = D∇²Θ — not emergent from a deeper layer.
+
+---
+
+## GR Recovery Status (v48+, updated 2026-03-11) — **Section confidence: Strong Partial**
+
+> **Main chain (Θ→g→Γ→R→Einstein): Strong Partial** — Steps 1–5 proved [L1]; full off-shell closure on compact M⁴ is [Open L2].  
+> **Linearised GR, Schwarzschild, Regge-Wheeler: Strong Partial** — proved [L1].  
+> **Zerilli even-parity, global off-shell rank on compact M⁴: OPEN / FOLLOW-UP**.
+
+> ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `canonical/gr_closure/` chain  
+> Topic index: `canonical/THEORY/topic_indexes/GR_index.md`
+
+*Updated 2026-03-11 to align language with the UBT-vs-GR clarification.
+**There is no contradiction between UBT and GR.** UBT reproduces GR on the admissible
+sector A_UBT (Level 2 = constrained_sector_recovery) while admitting additional non-GR
+degrees of freedom.  The combined variational condition E_Θ + J*E_g = 0 is fundamental;
+termwise separation is not automatic.  See `docs/reports/gr_recovery_levels.md` for the
+three-level taxonomy and `canonical/gr_closure/theta_vs_metric_variation_note.tex`
+for the variational analysis.*
+
+```
+GR RECOVERY STATUS (v48+):
+"UBT admits an exact variational GR sector (metric+Θ formulation)
+and an emergent-metric construction strongly connected to Θ.
+```
+
+### Proved
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| G_μν = 8πG T_μν from δS_total[g,Θ]/δg^μν = 0 | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | Hilbert variation; standard variational GR sector |
+| T_μν from Hilbert prescription | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | δS_matter/δg^μν = -(√-g/2)T_μν |
+| ∇^μ T_μν = 0 from Bianchi identity | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | Contracted Bianchi; no free parameters |
+| Lorentzian signature (-,+,+,+) from AXIOM B | **Proven** [L0] | `canonical/gr_closure/step3_signature_theorem.tex §Lorentzian Signature from AXIOM B` | Complex time τ=t+iψ → Cl_{1,3}(ℝ) → e₀²=-1 → g₀₀<0; signature is theorem not choice |
+| Metric non-degeneracy for A_UBT class | **Proven** [L0] | `canonical/gr_closure/step2_nondegeneracy.tex` | Linear independence of ∂_μΘ ↔ det(g)≠0; degenerate configs explicitly identified |
+| Derivative-based ≡ tetrad-based metric formula | **Proven** [L0] | `canonical/gr_closure/step1_metric_bridge.tex` | Under E_μ = ∂_μΘ; single canonical metric definition |
+| GR chain summary (Θ→g→Γ→R→Einstein) | **Proved [L1]** | `canonical/gr_closure/GR_chain_summary.tex` | Steps 1-5 proved; Step 6 off-shell open [L2]; see summary doc |
+| N is scale-fixing, not signature-fixing | **Proved [L0]** | `canonical/gr_closure/step3_signature_theorem.tex` | Explicitly documented in step1_metric_bridge.tex remark |
+| UBT vs sigma model distinction | **Documented** | `canonical/gr_closure/step1_metric_bridge.tex` | Three key differences stated |
+
+### Conditional (under assumptions A1–A3)
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| GR equivalence via tetrad pipeline | **Conditional** | `ARCHIVE/archive_legacy/consolidation_project/appendix_R_GR_equivalence.tex` | Requires Hermitian tetrad (A1), torsion-free (A2), invertible tetrad (A3) |
+| Θ-only closure (on-shell) | **GR-compatible sector recovered (Level 2)** | `canonical/gr_closure/step2_theta_only_closure.tex` | Equivalent to Einstein eq. at Θ satisfying E-L; rank condition (non-degeneracy of δg/δΘ on admissible sector) proved for A_UBT class (§1.5); off-shell requires global rank argument [L2 OPEN; GAP-01, GAP-10] |
+
+### Not Yet Proved
+
+| Result | Status | Notes |
+|--------|--------|-------|
+| Pure Θ-only closure (g[Θ] substitution before variation, off-shell) | **Proved [L1] (non-degenerate sector)** — kernel of J = U(2) gauge dirs (U(1)⊕SU(2)); global non-degenerate sector on ℝ¹˒³ proved; degenerate configurations and compact M⁴: **[Open L2]** | v54: `research_tracks/research/gr_offshell_rank_proof.tex` proves kernel J[Θ]\|_{non-degen} = 𝔲(2)-rotations of ∂_μΘ, decomposing as 𝔲(1)⊕𝔰𝔲(2). Local gauge symmetry extends globally on ℝ¹˒³ without obstruction. Degenerate sector and compact M⁴: Open [L2]. |
+| Metric uniqueness beyond A_UBT | **Open** | No proof that g[Θ] is unique outside admissible class |
+
+---
+
+## Gravitational Physics — **Section confidence: Strong Partial**
+
+> ⭐ **Sources**: `research_tracks/research/` — v53-gravity tasks  
+> Status updated 2026-03-14
+
+### Proved
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Linearised GR recovery (perturbative) | **Proved [L1]** | `canonical/geometry/gr_completion_attempt.tex` | δE_μν = κ δT_μν at O(ε); Θ = Θ₀ + εΘ₁; constant background |
+| Off-shell global rank of J = δg/δΘ (non-degenerate sector) | **Proved [L1]** | `research_tracks/research/gr_offshell_rank_proof.tex` | ker J = U(2) gauge directions (U(1)⊕SU(2)) for non-degenerate Θ on ℝ¹˒³; degenerate sector open |
+| Schwarzschild spatial metric from explicit Θ₀ | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex` | g(r)=r·Ψ²; f'(r)=Ψ·√(2M/r); g_ij=Ψ⁴·δ_ij verified numerically; temporal component (g_tt) open. Numerically verified by tools/verify_schwarzschild_theta.py at r/M = 2, 5, 10, 50, 100; relative error < 1e-8 |
+| Graviton dispersion relation k²=0 | **Proved [L0]** | `research_tracks/research/graviton_from_perturbation.tex`, `canonical/geometry/gr_completion_attempt.tex` | Linearised UBT vacuum eq. → k²θ=0 for constant background; transversality [L1] from Bianchi identity; theorem added to canonical gr_completion_attempt.tex |
+| Full Schwarzschild metric from explicit Θ₀ (spatial + temporal) | **Proved [L1]** | `research_tracks/research/schwarzschild_from_theta.tex §5`; **canonical**: `canonical/geometry/biquaternionic_vacuum_solutions.tex §3` | Extended ansatz Θ₀=e^{iα(r)}·[f·1+g·e_r] with α(r)=Φ(r); complex time τ=t+iψ gives g_tt=-Φ²; phase cancels in spatial sector; first complete GR vacuum solution from UBT; promoted to canonical in v57 |
+| ASD condition for SU(2)₋ perturbations (linearised) | **Proved [L1]** | `research_tracks/research/asd_condition_ubt.tex` | C⁺=0 for right-SU(2) sector at linearised level |
+| ASD condition for SU(2)₋ sector (non-perturbative) | **Proved [L1]** | `research_tracks/research/asd_condition_ubt.tex §5` | Holonomy ⊂ SU(2)₋ ≅ Sp(1) → C⁺=0 algebraically; instanton sector; Schwarzschild (Petrov D) excluded |
+
+### Open
+
+| Result | Status | Notes |
+|--------|--------|-------|
+| Schwarzschild metric from explicit Θ₀ (temporal component g_tt) | **Proved [L1]** | Complex time ansatz Θ₀=e^{iΦ(r)}·[f·1+g·e_r]; g_tt=-Φ² from ψ-winding; see schwarzschild_from_theta.tex §5 |
+| Graviton dispersion in Schwarzschild background | **Derived [L1]** — v59: k²+V_eff(r)=0 derived; v60: coord transform explicit; v63: centrifugal term ℓ(ℓ+1)/r² recovered from scalar-harmonic decomposition [L1]; v66: odd-parity ℓ=2 Regge-Wheeler match **[L1]** (parity separation + spin-weight correction); v69: promoted to canonical; even-parity Zerilli structural obstruction identified [Open L2] | `research_tracks/research/graviton_schwarzschild.tex §5,§6,§7`; **canonical: `canonical/geometry/gr_completion_attempt.tex` Thm. thm:regge_wheeler (v69)**; `docs/publication/ubt_gravity_paper.tex §4 thm:regge_wheeler` | v63 §5.4: Θ₁=Σ R_ℓ(r)Y_ℓm(θ,φ); centrifugal term ℓ(ℓ+1)/r² matches Regge-Wheeler. v66 §6: parity decomposition Θ₁=Θ₁^odd+Θ₁^even; odd-parity biquaternion polarisation e_r×e_θ gives spin-weight correction V_spin=-6M/r³; V_UBT^odd(r,ℓ=2)=(1-2M/r)[6/r²-6M/r³]=V_RW exactly (Theorem 6.4.1). v69: theorem promoted to canonical/geometry/gr_completion_attempt.tex; even-parity Zerilli rational denominator (2r+3M)² identified as obstruction [Open L2] (§7). v72: Two-component Ansatz Θ₁^even identified; 3×3 ODE system set up; Zerilli gauge K constraint written; master variable Z(r) defined structurally; explicit coefficient extraction pending [Open L2]. v73: Explicit Zerilli reduction (graviton_schwarzschild.tex §8.2): K constraint from Bianchi identity written in full (eq. K_bianchi_full); 2×2 system obtained; diagonal V₀₀, V₂₂ computed at leading order; off-diagonal V₀₁ identified as missing piece (+20M/r³ gap); master variable Z(r) differentiated; V_Z^UBT vs V_Z comparison: leading 6/r² matches, M/r³ coefficient requires off-diagonal coupling; status: Open [L2] — off-diagonal spin-connection computation needed. |
+| ASD condition (non-perturbative, full Weyl tensor) | **Proved [L1] (SU(2)₋ sector)** | Holonomy ⊂ Sp(1) → C⁺=0 for Θ∈SU(2)₋; proved in asd_condition_ubt.tex §5; Schwarzschild sector (Petrov D) is not ASD |
+| Curved twistor space from UBT | **Proved [L1] (SU(2)₋ sector)** | Penrose nonlinear graviton applies to SU(2)₋ vacuum solutions (C⁺=0 + Ricci-flat); see asd_condition_ubt.tex §5 Thm 5.4 |
+| Off-shell global rank: degenerate configurations | **Open [L2]** | ∂_μΘ=0 on open set → kernel may be larger than U(2) |
+| Off-shell global rank: topologically non-trivial M⁴ | **Open [L2]** | Non-trivial U(2) bundles over compact M⁴ require topology analysis |
+
+---
+
+## Mirror Sector (Twin Prime Vacuum) — **Section confidence: Candidate**
+
+> ⭐ **Canonical sources**: `research_tracks/mirror_sector/README.md` + `docs/reports/hecke_lepton/mirror_world_139.md`  
+> Topic index: `canonical/THEORY/topic_indexes/mirror_sector_index.md`
+
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| V_eff(137) < V_eff(139) for same B | **NUMERICAL OBSERVATION** | `research_tracks/mirror_sector/vacuum_stability.tex` | Calibrated to our sector |
+| n=139 is NOT a discrete local min of V_{B_137} | **PROVED NUMERICALLY** | `research_tracks/mirror_sector/vacuum_stability.tex` | V(138) < V(139); ascending branch |
+| n*=139 is global min of branch B'=B_139 | **MOTIVATED CONJECTURE** | `research_tracks/mirror_sector/vacuum_stability.tex` | ΔB/B=1.21%; two independent sectors |
+| Mirror sector is fully stable | **FOLLOWS FROM CONJECTURE** | `research_tracks/mirror_sector/vacuum_stability.tex` | No false vacuum; no Coleman tunnelling |
+| Set A and Set B algebraically independent | **NUMERICAL OBSERVATION** | `docs/reports/hecke_lepton/` | Different levels/weights/eigenvalues |
+| Mirror sector α⁻¹ = 139 | **NUMERICAL OBSERVATION** | `docs/reports/hecke_lepton/mirror_world_139.md` | Set B globally unique at p=139 |
+| Mirror sector is habitable | **DERIVED** | — | α⁻¹=139 within anthropic bounds (95-195) |
+| Mirror matter as dark matter candidate | **CONJECTURE** | `research_tracks/mirror_sector/README.md` | Gravitational coupling only; Foot-Volkas precedent |
+
+---
+
+## Hecke Bridge (ℂ⊗ℍ ↔ Modular Forms) — **Section confidence: Candidate**
+
+> ⭐ **Canonical sources**: `docs/reports/hecke_lepton/` + `research_tracks/hecke_bridge/motivation.tex`  
+> Topic index: `canonical/THEORY/topic_indexes/hecke_index.md`
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Weights k=2,4,6 from n-th ψ-mode | **MOTIVATED CONJECTURE** | `research_tracks/hecke_bridge/motivation.tex §2` | k=2n for n-th generation; kinetic/quartic/sextic terms in S[Θ] |
+| Level N=7, μ(Γ₀(7))=8 = dim_ℝ(ℂ⊗ℍ) | **MOTIVATED CONJECTURE** | `research_tracks/hecke_bridge/motivation.tex §3` | Index coincidence suggestive; not proved |
+| Trivial character χ=1 from ℤ-rationality | **MOTIVATED CONJECTURE** | `research_tracks/hecke_bridge/motivation.tex §4` | ℂ⊗ℍ over ℤ → ℚ-rational forms |
+| Three forms (not one, not five) | **MOTIVATED CONJECTURE** | `research_tracks/hecke_bridge/motivation.tex §5` | Three ψ-modes; algebraic derivation OPEN |
+| Derivation of specific forms from ℂ⊗ℍ | **OPEN** | — | Requires identifying L-function of ℂ⊗ℍ/ℤ |
+
+---
+
+## Holography and de Sitter Structure — **Section confidence: Candidate**
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Physical M⁴ is de Sitter (Λ>0) | **Proved [L1]** | `canonical/gr_limit/GR_limit_of_UBT.tex` | Follows from GR recovery + observational Λ>0 |
+| ψ-circle S¹(R_ψ) is flat (zero curvature) | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §3` | Standard diff.geom.; no AdS factor |
+| Moduli space ℍ has hyperbolic geometry K=−1 | **Proved [L0]** | `research_tracks/research/moduli_space_ads_vs_physical_ds.tex §4` | Parameter space, not physical spacetime |
+| AdS/CFT-like informational encoding analogy | **[O] Open Research** | `research_tracks/THEORY_COMPARISONS/ads_cft_like_encoding_in_ubt.md` | Structural analogy only; not a duality |
+| Λ_eff from V_eff(Θ) direct identification | **Dead End [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | v47 numerical check: V_eff(n*=137) = A·137²−B·137·ln(137) ≈ −12428 (dimensionless winding-sector potential). Direct identification V_eff(n*) = Λ_eff gives wrong units and magnitude (≠ 10⁻¹²² in Planck units by many orders of magnitude). Dead End for direct identification. |
+| Λ_eff via UV cut-off bridge from V_eff | **Open [L2]** | `ARCHIVE/archive_legacy/consolidation_project/new_alpha_derivations/ubt_alpha_minimizer.py` | A unit-conversion bridge from the winding potential to vacuum energy density via an independent UV cut-off argument is not yet present in the framework; route is open. |
+| Verlinde / dS holographic principle | **[S] Speculative** | `ARCHIVE/archive_legacy/consolidation_project/appendix_N_holographic_verlinde_desitter.tex` | General connections; no quantitative derivation |
+
+
+
+---
+
+## Higgs and Yukawa Sector — **Section confidence: Candidate**
+
+> **Status (v62)**: Gap H1 — Hosotani investigation: gauge holonomy W_ψ^{gauge}=1 (trivial, Dead End for tree-level gauge Hosotani); gravitational holonomy W_ψ^{grav} potentially non-trivial (Motivated Conjecture [L2]); radiative Hosotani V(θ_W) open (N_eff count needed). Interaction term g(Θ†Θ)² allowed by canonical action but g is free parameter. Gap Y1 structure Proved [L1] (C_alg=1 from ℂ⊗ℍ algebra).
+> Source: `research_tracks/research/higgs_yukawa_scan.md`
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| Higgs potential V(\|Θ\|²) = λ(\|Θ\|²−v²)² from S[Θ] | **Motivated Conjecture** | `research_tracks/research/higgs_yukawa_scan.md §2` | V(\|Θ\|²) is the leading polynomial in the ψ-circle effective potential; Mexican-hat form motivated by Z₂ symmetry of mirror sectors; explicit λ, v from S[Θ] not yet derived (Gaps H1, H2) |
+| Yukawa coupling y = C_alg/√(2πR_ψ) — STRUCTURE | **Proved [L1]** | `research_tracks/research/higgs_yukawa_scan.md §3` | C_alg=1 derived from ℂ⊗ℍ algebra (v62: Sc[1·e_L·e_R]=1 for diagonal embedding); mode matching n_R=n_H+n_L proved from chirality; Gap Y1 structure closed |
+| Yukawa coupling y magnitude | **Semi-empirical** | `research_tracks/research/higgs_yukawa_scan.md §3.3` | y=1/√(2πR_ψ) with R_ψ calibrated from m_e; circular until Gap G-Rpsi resolved |
+| sin²θ_W from ℂ⊗ℍ alone | **Dead End** | `research_tracks/research/higgs_yukawa_scan.md §4` | Weinberg angle requires U(1)_Y ↔ SU(2)_L mixing ratio; ℂ⊗ℍ fixes gauge structure but not the mixing angle; confirmed Dead End |
+| Gap H1: derive λ from S[Θ] — free kinetic | **Dead End (free kinetic action)** | `research_tracks/research/higgs_yukawa_scan.md §2.3`; `research_tracks/research/hosotani_higgs.tex` | v60: tree-level a₄=0; one-loop Casimir=const. Free kinetic action Dead End confirmed |
+| Gap H1 via gauge Hosotani: W_ψ^{gauge} | **Dead End (tree level)** | `research_tracks/research/higgs_yukawa_scan.md §2.4` | v62: CS term absent → W_ψ^{gauge}=1 (trivial gauge holonomy); Z₂ mirror symmetry forces θ=0. Tree-level gauge Hosotani Dead End |
+| Gap H1 via gravitational Hosotani: W_ψ^{grav} | **Motivated Conjecture [L2]** | `research_tracks/research/higgs_yukawa_scan.md §2.4` | v62: Schwarzschild phase Φ(r) winds around ψ-circle → W_ψ^{grav} potentially non-trivial; explicit computation pending |
+| Gap H1 via radiative Hosotani: V(θ_W) one-loop | **Partially Proved [L1]** — v67: N_eff=8 at n_R=138 [L1]; SSB at θ_W=π/2 [L1]; λ_4D full 5D→4D reduction: λ_4D≈0.0114, factor ~11 from λ_SM=0.13 [L1 estimate, correct order]; canonical statement added; v69: λ_4D(R_ψ^EW)≈1.51 (factor ~11 above λ_SM) — Two-Scale R_ψ substitution does not close λ gap; fermionic N_f correction and/or two-loop potential needed; v70: Three approaches tried — (1) N_f correction: requires N_eff^total≈0.21 (non-integer, Dead End); (2) R_ψ^EW substitution: overshoots by factor ~38 (Dead End); (3) n*-shift: no algebraic justification (Dead End). Precise constraint: N_eff^total≈0.21 or explicit two-loop g^4 contribution needed. Status: Partially Proved [L1] — no upgrade | `research_tracks/research/hosotani_higgs.tex §3.3,§6,§7,§9,§10`; `tools/compute_hosotani_lambda.py`; `canonical/interactions/sm_gauge.tex §Hosotani`; `research_tracks/research/higgs_yukawa_scan.md §2.4` | v67: Full 5D→4D reduction: λ_4D = 3·N_eff·ζ(3)/(4π·R_ψ²) ≈ 0.0114 (dimensionless); discrepancy factor ~11 from λ_SM; corrections: ζ(1) regularisation, KK mode normalisation, spin-weighted harmonic correction; see hosotani_higgs.tex §7 and tools/compute_hosotani_lambda.py; canonical theorem added to canonical/interactions/sm_gauge.tex. v66 §3.3: KK parity rule: even n→bosonic; n_R=138 (even)→N_b=8, N_f=0; N_eff=8>0 [L1]; SSB confirmed [L1]; λ_5D≈-6.8×10⁻⁷ GeV³ (before reduction). v69 §9: λ_4D ∝ 1/R_ψ² — using R_ψ^EW=1.36 GeV⁻¹ gives λ≈4.93 (38× above λ_SM); corrected λ^(α)×(10.4)²≈1.51 (11× above); no single R_ψ gives both v=246 GeV and λ=0.13; requires N_f correction or two-loop potential. v70 §10: three v70 approaches all Dead End; closing Gap H1 requires explicit two-loop g^4 computation or non-integer N_eff^total≈0.21 |
+| Gap H1 via interaction term g(Θ†Θ)² | **Additional input needed** | `research_tracks/research/higgs_yukawa_scan.md §2.5` | v62: Sc[(Θ†Θ)²] is gauge-invariant; g is free parameter not fixed by ℂ⊗ℍ algebra; canonical action allows V(Θ) but does not fix g |
+| Gap H2: derive VEV v from V_eff minimum | **Open** | — | Same as Gap Y2 in QED section; V_eff(Θ) minimum on ψ-circle; not yet computed |
+| Gap G-Rpsi: R_ψ two-scale discrepancy | **Open [L2] — Two-Scale Conjecture (v69)** | `research_tracks/research/hosotani_higgs.tex §8`; `canonical/geometry/Rpsi_dynamical_fix.tex` | v68: Two calibrations: (a) R_ψ^α = ℏ/(n_R·m_e·c) ≈ 2.80 fm → v≈23.5 GeV (wrong); (b) R_ψ^Higgs = n_R·π/(2g·v_obs) ≈ 0.27 fm → v≈246 GeV (correct). Ratio ≈ 10.4. T-duality self-dual-point mechanism [L1] selects R_ψ=R_t but physical units [Open L2]. Two-Scale Conjecture: R_ψ^α governs α-derivation (winding scale), R_ψ^EW governs Higgs VEV (electroweak scale); factor ~10 from RG running not yet derived. v69: factor 10.4 shown algebraically = 2g·v_obs·ℏ/(π·n_R²·m_e·c²) — exact formula derived (eq. ratio_algebraic in §8.4); encodes v_UBT^(α)≈23.5 GeV ≠ 246 GeV discrepancy; simple algebraic combinations (m_Z/m_e, g/√α, n_R/2π) do NOT reproduce factor 10; confirmed OPEN [L2]. |
+
+---
+
+## Layer 2 Coding Fingerprints (L2S and L2T) — **L2S confidence: Experimental (Strong); L2T confidence: Experimental; Crypto/Applied coding branch: Applied Experimental**
+
+> ⭐ **Canonical L2S source**: `experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex`  
+> **Research-track L2T source**: `research_tracks/gray_transport_layer/`
+
+This section tracks the derivation status of Layer 2 (Coding and Stability) fingerprints.
+Layer 2 is subdivided into **L2S** (state/storage) and **L2T** (transport/path).
+
+| Result | Status | File | Notes |
+|--------|--------|------|-------|
+| L2S: Hamming (8,4,4) state fingerprint | ⭐ **Canonical fingerprint** | `experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex` | P₀ = syndrome-zero fraction; extended Hamming (8,4,4) parity check on 8-symbol phase blocks; positive detection = evidence for discrete stabilizer selection in Layer 2 |
+| L2S: One-hot triqubit Hamming-weight-1 stabilizer | **Proved [L0] — Mathematical Note** | `research_tracks/THEORY_COMPARISONS/su3_qubit_mapping/triqubit_minimality_note.md §3` | One-hot states {|100⟩,|010⟩,|001⟩} have Hamming weight 1; any single bit-flip produces weight-0 or weight-2 state outside the one-hot subspace; single-error detection proved by counting argument |
+| L2T: Gray transport layer hypothesis | **[Research Track] — Hypothesis** | `research_tracks/gray_transport_layer/` | A_gray = fraction of consecutive phase-symbol pairs that are Gray-adjacent; expected null 2/N; tests sequential path consistency in ψ-time direction; independent of L2S P₀; applies to diagonal SU(3) generators (λ₃,λ₈) only |
+| L2T: Gray vs Hamming complementarity | **Formalized [Research Track]** | `research_tracks/gray_transport_layer/gray_vs_hamming_layer2.md` | L2S (Hamming) = state survival; L2T (Gray) = path transition cost; no conflict; independent falsification criteria |
+| L2T: Off-diagonal vs diagonal generator decomposition | **Formalized [Research Track]** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §4` | Off-diagonal generators (λ₁,λ₂,λ₄,λ₅,λ₆,λ₇) are color-changing (d_H=2 between one-hot states) → L2S; diagonal generators (λ₃,λ₈) are phase-preserving → L2T |
+| L2T: CMB path-fingerprint test | **[Research Track] — Proposed Test** | `research_tracks/gray_transport_layer/gray_path_fingerprint.tex §5`; `experiments/forensic_fingerprint/tools/gray_path_symbol_test.py` | Input: a_lm phase symbols; metric: A_gray; null: shuffle or phase-randomized; output: p-value; p<0.01 = positive detection of L2T |
+| L2T: Gray code does not replace Hamming | **Constraint** | `research_tracks/gray_transport_layer/README.md` | Explicitly stated non-claim; L2S remains canonical; L2T is research-track only |
+
+### Applied Coding Branch (Crypto / Information Probes)
+
+> **Section confidence: Applied Experimental**  
+> These results use classical error-correcting codes and information-theoretic tools as *observational probes* of UBT Layer 2 predictions.  They are not first-principles UBT derivations.
+
+| Result | Confidence | File | Notes |
+|--------|-----------|------|-------|
+| Reed-Solomon RS(255,201) as MDS-optimal probe | **Applied Experimental** | `research_tracks/information_probes/RS_OPTIMAL_LENS.md` | RS(255,201) is MDS-optimal for its parameters; not unique; observable predictions probe-dependent |
+| Channel stability scan (137/139) | **Applied Experimental** | `research_tracks/ubt-channel-lab/` | Statistical scan of channel selection using S1–S4 criteria; falsifiability framework in place; results not yet final |
+| SHA-256 data integrity in CMB analysis | **Applied Experimental** | `experiments/forensic_fingerprint/` | Cryptographic hashes for data provenance; standard scientific practice; not a UBT prediction |

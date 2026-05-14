@@ -1,0 +1,861 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex
+%
+% Task: construct_or_kill_hecke_equivariant_winding_path_integral
+% Priority: CRITICAL
+% Date: 2026-05-09
+%
+% Purpose:
+%   Determine whether the UBT winding sector at prime level p admits a
+%   Hecke-equivariant path-integral decomposition whose saddle count equals
+%   mu(Gamma_0(p)) = p+1.  Constructs each required ingredient in turn and
+%   identifies the precise obstruction when construction fails.
+%
+% Hard rules:
+%   - No observed alpha as input anywhere.
+%   - No fitting to 137.
+%   - No speculative consciousness or dark-sector interpretation.
+%   - If construction fails, state the exact obstruction.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{array}
+\usepackage{enumitem}
+
+%──────────────────────────────── theorem environments ─────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction Attempt}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%──────────────────────────────── coloured boxes ────────────────────────────────
+\newmdenv[backgroundcolor=green!8, linecolor=green!50!black, linewidth=1.2pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!12,linecolor=orange!80!black,linewidth=1.2pt]{gapbox}
+\newmdenv[backgroundcolor=red!7,   linecolor=red!55!black,   linewidth=1.2pt]{warnbox}
+\newmdenv[backgroundcolor=blue!6,  linecolor=blue!55!black,  linewidth=1.2pt]{insightbox}
+
+\newcommand{\PROVED}{\textcolor{green!50!black}{\textbf{[PROVED]}}}
+\newcommand{\OPEN}  {\textcolor{red!70!black}  {\textbf{[OPEN]}}}
+\newcommand{\COND}  {\textcolor{blue!70!black} {\textbf{[CONDITIONAL]}}}
+\newcommand{\NOGO}  {\textcolor{red!80!black}  {\textbf{[NO-GO]}}}
+\newcommand{\OBS}   {\textcolor{orange!85!black}{\textbf{[OBSTRUCTION]}}}
+
+%──────────────────────────────── macros ────────────────────────────────────────
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\HH}{\mathbb{H}}       % quaternion algebra
+\newcommand{\bH}{\mathfrak{H}}     % upper half-plane
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\bTheta}{\bar{\Theta}}
+\newcommand{\Hp}{\mathcal{H}_p}
+\newcommand{\Zp}{Z_p}
+
+%──────────────────────────────────────────────────────────────────────────────
+\title{\textbf{Hecke-Equivariant Path-Integral Decomposition\\
+       of the UBT Winding Sector at Prime Level $p$}\\[4pt]
+       \large Construction Attempt and No-Go Analysis}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We carry out a systematic construction of the Hecke-equivariant
+path-integral decomposition of the Unified Biquaternion Theory (UBT)
+winding sector at prime level $p$.  The required ingredients are:
+a Hilbert space of winding states $\Hp$; an action of $\SL(2,\ZZ)$ or
+Hecke correspondences on $\Hp$; a quotient identification
+$\Gam_0(p)\backslash\SL(2,\ZZ)\cong\PP^1(\FF_p)$; a candidate saddle set
+indexed by $\PP^1(\FF_p)$; one-loop weights for each saddle; and a
+derivation of the normalisation by
+$\vol(\SL(2,\ZZ)\backslash\bH)=\pi/3$.
+Each step is carried to the point at which it either succeeds or hits an
+obstruction.  Result: the arithmetic layer (coset count $p+1$, modular
+area, normalisation by $\pi/3$) is exact.  The physics layer (modular
+$\tau$ variable from $S[\Theta]$, $\Gam_0(p)$ equivariance of the
+measure, equal-action saddles) encounters three sharp obstructions that
+prevent a first-principles derivation.  The construction is
+\textbf{incomplete}: no go at the level of the current UBT action, with
+exact obstruction statements.
+\end{abstract}
+
+\begin{warnbox}
+\textbf{Hard constraint.} No observed value of $\alpha$ is used at any
+point.  No fitting to 137.  No consciousness or dark-sector
+interpretation.  If construction fails, the exact obstruction is
+recorded.
+\end{warnbox}
+
+\tableofcontents
+\newpage
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Problem statement and notation}
+\label{sec:problem}
+%──────────────────────────────────────────────────────────────────────────────
+
+The effective potential used in the T3\_ALPHA route is
+\begin{equation}
+  V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n, \qquad n\in\ZZ_{>0}.
+  \label{eq:veff}
+\end{equation}
+The stationary condition $\partial V_{\mathrm{eff}}/\partial n=0$ at
+$n^*=p$ (a prime) gives
+\begin{equation}
+  2p = B(\ln p + 1).
+  \label{eq:stat}
+\end{equation}
+The modular ansatz proposes
+\begin{equation}
+  B(p) = \frac{\mu(\Gam_0(p))}{3} = \frac{p+1}{3},
+  \label{eq:Bansatz}
+\end{equation}
+where $\mu(\Gam_0(p))=[\SL(2,\ZZ):\Gam_0(p)]$ is the index of the
+congruence subgroup
+\[
+  \Gam_0(p) = \left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\SL(2,\ZZ)
+              \;\middle|\; c\equiv 0\pmod{p}\right\}.
+\]
+The goal is to determine whether~\eqref{eq:Bansatz} can be derived from
+the UBT action $S[\Theta]$ via a Hecke-equivariant path-integral
+decomposition, or whether a precise obstruction prevents this.
+
+\paragraph{Questions to be answered.}
+\begin{enumerate}[label=Q\arabic*.]
+  \item Does $S[\Theta]$ naturally define a modular $\tau$ variable?
+  \item Does the $p$-winding sector transform under $\Gam_0(p)$?
+  \item Are there exactly $p+1$ inequivalent saddles?
+  \item Are they equal-action?
+  \item Does their contribution multiply the $n\ln n$ coefficient?
+  \item Does the division by $3$ enter through modular area normalisation?
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Arithmetic layer: exact results}
+\label{sec:arithmetic}
+%──────────────────────────────────────────────────────────────────────────────
+
+Before any physics enters, the following identities are exact and
+unconditional.
+
+\subsection{Coset count}
+
+\begin{lemma}[Index of $\Gam_0(p)$]
+\label{lem:index}
+For prime $p$,
+\[
+  \mu(\Gam_0(p)) = [\SL(2,\ZZ):\Gam_0(p)] = p+1.
+\]
+\end{lemma}
+
+\begin{proof}
+By the index formula for congruence subgroups,
+$\mu(\Gam_0(N))=N\prod_{q|N}(1+q^{-1})$.  For $N=p$ prime this gives
+$p(1+1/p)=p+1$.
+\end{proof}
+
+\begin{lemma}[Coset representatives via $\PP^1(\FF_p)$]
+\label{lem:cosets}
+There is a bijection
+\[
+  \Gam_0(p)\backslash\SL(2,\ZZ)
+  \;\longleftrightarrow\;
+  \PP^1(\FF_p) = \{[0:1],[1:0],[1:1],\ldots,[p-1:1]\},
+\]
+so the right-coset space has cardinality $p+1$.
+\end{lemma}
+
+\begin{proof}
+Map $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$ to
+$[c:d]\in\PP^1(\FF_p)$.  This is well-defined and $\Gam_0(p)$-equivariant
+on the left.  The map is surjective with trivial kernel in the quotient.
+\end{proof}
+
+\subsection{Modular area normalisation}
+
+\begin{lemma}[Fundamental-domain volume]
+\label{lem:fundvol}
+\[
+  \vol\!\bigl(\SL(2,\ZZ)\backslash\bH\bigr) = \frac{\pi}{3}.
+\]
+\end{lemma}
+
+\begin{proof}
+The standard fundamental domain $\mathcal{F}$ for $\SL(2,\ZZ)$ on the
+upper half-plane $\bH$ has hyperbolic area $\pi/3$ (see, e.g.,
+\cite{Serre:1973}).
+\end{proof}
+
+\begin{corollary}[Area of $X_0(p)$]
+\label{cor:area}
+\[
+  \vol(X_0(p)) = \frac{\pi}{3}\,\mu(\Gam_0(p)) = \frac{\pi(p+1)}{3},
+  \qquad
+  \frac{\vol(X_0(p))}{\pi} = \frac{p+1}{3} = B(p).
+\]
+\end{corollary}
+
+\begin{resultbox}
+\textbf{Arithmetic summary.}  The count $p+1$ is exact (Lemma~\ref{lem:index}).
+The bijection with $\PP^1(\FF_p)$ is exact (Lemma~\ref{lem:cosets}).
+The normalisation to $(p+1)/3$ via modular area is exact
+(Corollary~\ref{cor:area}).  These results hold independently of any
+physics.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Physics layer: constructing $\mathcal{H}_p$}
+\label{sec:hilbert}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{UBT action and complex time}
+
+The UBT action on a background $g_{\mu\nu}$ and complex time
+$\tau = t + i\psi$ is taken to be
+\begin{equation}
+  S[\Theta] = \int_{\mathcal{M}}
+  \bigl(\nabla^\dagger\Theta\bigr)^\dagger
+  \bigl(\nabla^\dagger\Theta\bigr)\,
+  \sqrt{-g}\,d^4x\,d\psi,
+  \label{eq:action}
+\end{equation}
+where $\Theta(q,\tau)\in\CC\otimes\HH$ is the fundamental biquaternion
+field and $\nabla^\dagger$ is the biquaternionic Dirac--Laplace operator.
+
+\subsection{Winding modes in the $\psi$-direction}
+
+The imaginary-time direction $\psi$ is treated as compact with period
+$\beta$; the Fourier expansion is
+\begin{equation}
+  \Theta(x,t,\psi) = \sum_{n\in\ZZ} \Theta_n(x,t)\,e^{2\pi i n\psi/\beta}.
+  \label{eq:winding}
+\end{equation}
+The mode $\Theta_n$ carries \emph{winding number} $n$ (Kaluza--Klein
+charge in the $\psi$-direction).
+
+\begin{definition}[Winding-sector Hilbert space $\Hp$]
+\label{def:Hp}
+The \emph{level-$p$ winding sector} at prime $p$ is
+\[
+  \Hp = \overline{\mathrm{span}}\,\{\Theta_n \mid n\equiv 0\pmod{p}\},
+\]
+the $L^2$ closure of the subspace of winding modes whose winding number
+is divisible by $p$.
+\end{definition}
+
+\begin{remark}
+$\Hp$ is a natural subspace because modes with $n\equiv 0\pmod{p}$ close
+under the quadratic part of $S[\Theta]$: the kinetic term does not mix
+$n\equiv 0$ and $n\not\equiv 0$ modes on a symmetric background.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Construction attempt 1: $\SL(2,\ZZ)$ action on $\Hp$}
+\label{sec:sl2z}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Candidate action}
+
+The upper half-plane variable is identified with the complex-time torus
+modulus
+\begin{equation}
+  \tau = \frac{t + i\psi}{\beta} \in \bH.
+  \label{eq:tau}
+\end{equation}
+The group $\SL(2,\ZZ)$ acts on $\tau$ by Möbius transformations
+$\gamma\colon\tau\mapsto(a\tau+b)/(c\tau+d)$ for
+$\gamma=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$.
+
+A candidate representation of $\SL(2,\ZZ)$ on $\Hp$ is defined by
+requiring that the path-integral measure $\mathcal{D}\Theta_n$ transforms
+as a weight-$(-\tfrac{1}{2})$ modular form in each mode, so that the
+partition function
+\[
+  Z(\tau) = \int_{\Hp} \mathcal{D}\Theta_p\,e^{-S[\Theta]}
+\]
+is modular invariant (weight 0) under $\SL(2,\ZZ)$.
+
+\subsection{Obstruction 1: modular invariance of $S[\Theta]$}
+
+\begin{proposition}[Obstruction O1]
+\label{prop:O1}
+The UBT action~\eqref{eq:action} is \textbf{not} demonstrated to be
+modular invariant under $\SL(2,\ZZ)$ acting by $\tau\mapsto(a\tau+b)/(c\tau+d)$.
+\end{proposition}
+
+\begin{proof}
+The action $S[\Theta]$ is an integral over a fixed spacetime manifold
+$\mathcal{M}$ with the complex-time $\psi$ direction treated as a compact
+extra dimension.  Under $\tau\to(a\tau+b)/(c\tau+d)$ the ratio
+$t/\beta$ and $\psi/\beta$ mix.  For this to be a symmetry of
+$S[\Theta]$, the kinetic operator $\nabla^\dagger\nabla$ would need to
+transform covariantly under reparametrisations of the complex-time torus,
+i.e., $\nabla^\dagger\nabla$ would need to be a modular covariant operator
+of definite weight.
+
+The current derivations (see \texttt{canonical/fields/}) establish the
+form of $\nabla^\dagger\nabla$ in a fixed background metric but do not
+show that it transforms as a modular form under $\SL(2,\ZZ)$.  In
+particular, the integration measure $d^4x\,d\psi$ picks up a Jacobian
+$|c\tau+d|^{-2}$ under $\tau\to(a\tau+b)/(c\tau+d)$, which is not
+cancelled by the transformation of the kinetic term unless additional
+modular-weight cancellations are proved.  No such proof exists in the
+repository.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Obstruction O1.} The action $S[\Theta]$ does not define a modular
+$\tau$ variable in the sense of being $\SL(2,\ZZ)$-invariant.  Proving
+$\SL(2,\ZZ)$ symmetry would require showing that
+$\nabla^\dagger\nabla$ on the complex-time torus is a modular covariant
+operator, which is currently unestablished.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Construction attempt 2: $\Gam_0(p)$ equivariance of $\Hp$}
+\label{sec:gamma0}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Arithmetic compatibility}
+
+Suppose, conditionally on O1 being resolved, that $S[\Theta]$ is
+$\SL(2,\ZZ)$-invariant.  Then one can ask whether the subspace $\Hp$
+(modes with $n\equiv 0\pmod p$) is preserved by $\Gam_0(p)$.
+
+\begin{lemma}[Arithmetic compatibility]
+\label{lem:arith}
+Conditional on $\SL(2,\ZZ)$ acting on winding modes, the subspace $\Hp$
+of modes with $n\equiv 0\pmod{p}$ is preserved by $\Gam_0(p)$.
+\end{lemma}
+
+\begin{proof}
+Under a torus reparametrisation by
+$\gamma=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)
+\in\Gam_0(p)$, the new winding number of a mode originally at $n$ is
+$n'=cn+d\cdot(\text{topological term})$; schematically the sublattice
+$p\ZZ\subset\ZZ$ is preserved under the action of $\Gam_0(p)$ because
+$c\equiv 0\pmod{p}$ implies $cn\equiv 0\pmod{p}$.  Hence $\Hp$ is
+closed under $\Gam_0(p)$.
+\end{proof}
+
+\subsection{Obstruction 2: the $\SL(2,\ZZ)$-action on winding numbers
+is not derived}
+
+\begin{proposition}[Obstruction O2]
+\label{prop:O2}
+No derivation from $S[\Theta]$ establishes that $\SL(2,\ZZ)$ acts on
+winding modes $\Theta_n$ by a transformation that maps the winding-number
+label $n$ according to a group homomorphism $\SL(2,\ZZ)\to\mathrm{Aut}(\ZZ)$.
+\end{proposition}
+
+\begin{proof}
+The winding number $n$ enters $S[\Theta]$ through the kinetic term
+$\sim n^2/\beta^2$ for each mode $\Theta_n$.  A Möbius transformation
+$\tau\to(a\tau+b)/(c\tau+d)$ rescales the modulus $\beta\to|c\tau+d|\beta$
+and mixes real and imaginary components of $\tau$.  For the winding label
+$n$ to transform simply (e.g., $n\to cn+d$, or $n\to n/(c\tau+d)$ in some
+sense), the Fourier expansion~\eqref{eq:winding} must be reformulated in
+terms of the new period.  But the canonical Fourier expansion depends on
+the period $\beta$, and rewriting in terms of the transformed period
+reshuffles all modes.  There is no derivation showing that this reshuffling
+has a well-defined, finite-dimensional action on the subspace $\Hp$.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Obstruction O2.} Even if $S[\Theta]$ is $\SL(2,\ZZ)$-invariant,
+the induced action on winding modes has not been computed.  Lemma~\ref{lem:arith}
+holds purely arithmetically, but connecting it to a physical action of
+$\Gam_0(p)$ on $\Hp$ requires the missing derivation.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Construction attempt 3: saddle set indexed by $\PP^1(\FF_p)$}
+\label{sec:saddles}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Candidate saddle configurations}
+
+Suppose conditionally that $\Gam_0(p)\backslash\SL(2,\ZZ)$ labels
+inequivalent boundary conditions for the path integral over $\Hp$.
+For each coset representative
+$\gamma_a = \left(\begin{smallmatrix}1&a\\0&1\end{smallmatrix}\right)$
+($a=0,1,\ldots,p-1$) and
+$\gamma_\infty = \left(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\right)$,
+define the \emph{$a$-th saddle configuration} as the classical solution
+$\bar\Theta_a$ of the equations of motion of $S[\Theta]$ with the torus
+modulus shifted to $\gamma_a\cdot\tau$.
+
+\begin{definition}[Candidate saddle set]
+\label{def:saddles}
+The candidate set of $p+1$ saddles is
+\[
+  \mathcal{S} = \bigl\{\bar\Theta_a \;\big|\; [a]\in\PP^1(\FF_p)\bigr\},
+\]
+where each $\bar\Theta_a$ is the classical field at the modular image
+$\gamma_a\cdot\tau$ of the reference saddle $\bar\Theta_0$.
+\end{definition}
+
+\subsection{One-loop weights}
+
+The one-loop partition function around each saddle is
+\begin{equation}
+  Z_a^{(1)} = e^{-S[\bar\Theta_a]}
+              \Bigl(\det'\nabla^\dagger\nabla\Big|_{\bar\Theta_a}\Bigr)^{-1/2}.
+  \label{eq:1loop}
+\end{equation}
+If $\bar\Theta_a = \gamma_a^*\bar\Theta_0$ (pull-back under the modular
+transformation), then the classical action satisfies
+$S[\bar\Theta_a]=S[\bar\Theta_0]$ if and only if $S[\Theta]$ is
+$\SL(2,\ZZ)$-invariant.  Similarly, the functional determinant satisfies
+$\det'\nabla^\dagger\nabla|_{\bar\Theta_a}=\det'\nabla^\dagger\nabla|_{\bar\Theta_0}$
+under the same assumption.
+
+\subsection{Condition for equal weighting}
+
+\begin{proposition}[Equal-action condition]
+\label{prop:equal}
+All $p+1$ candidate saddles carry equal classical action and equal one-loop
+determinant if and only if $S[\Theta]$ is invariant under the full group
+$\SL(2,\ZZ)$ acting by $\tau$-reparametrisations.
+\end{proposition}
+
+\begin{proof}
+By definition, the saddles $\bar\Theta_a$ are related by modular
+transformations $\gamma_a\in\SL(2,\ZZ)$.  Equal action requires
+$S[\gamma_a^*\Theta]=S[\Theta]$ for all $\gamma_a$, i.e., $\SL(2,\ZZ)$
+invariance of $S$.  Equal one-loop weights require the spectrum of
+$\nabla^\dagger\nabla$ to be invariant, which likewise requires $\SL(2,\ZZ)$
+equivariance of the operator.
+\end{proof}
+
+\subsection{Obstruction 3: equal-action cannot be established}
+
+\begin{proposition}[Obstruction O3]
+\label{prop:O3}
+The claim that all $p+1$ candidate saddles~\eqref{def:saddles} are
+equal-action cannot be derived from the current UBT framework.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:equal}, equal action requires $\SL(2,\ZZ)$
+invariance of $S[\Theta]$.  By Obstruction O1
+(Proposition~\ref{prop:O1}), this invariance has not been proved.
+Therefore equal weighting cannot be established.  Conversely, without
+equal weighting the saddle sum
+\[
+  \Zp = \sum_{a\in\PP^1(\FF_p)} Z_a^{(1)}
+\]
+does not factor as $(p+1)\cdot e^{-S_*}\cdot(\text{1-loop})$, and the
+degeneracy factor $p+1$ does not emerge.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Obstruction O3.} The equal-action property of the $p+1$ candidate
+saddles cannot be deduced without first proving $\SL(2,\ZZ)$ invariance
+of $S[\Theta]$, which is Obstruction O1.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Construction attempt 4: from saddle sum to the $n\ln n$ coefficient}
+\label{sec:nlogn}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Required connection}
+
+Suppose, conditionally, that equal-action holds and that
+$\Zp = (p+1)e^{-S_*}\cdot C_{\mathrm{1-loop}}$.
+To obtain $V_{\mathrm{eff}}(n)=n^2-B\,n\ln n$, one would need:
+
+\begin{enumerate}
+  \item The free energy $F_p = -\ln\Zp$ to contribute a term
+        $-(p+1)\ln(e^{-S_*}\cdot C_{\mathrm{1-loop}})$ to the effective action
+        at winding number $n=p$.
+  \item This contribution to reproduce the structure $-B\,n\ln n$ in~\eqref{eq:veff},
+        meaning $C_{\mathrm{1-loop}}$ must produce a $\ln p$ term, consistent
+        with a one-loop KK determinant $\sim n^{-c}$ on a torus of radius $\beta$.
+  \item The coefficient to be exactly $B=(p+1)/3$ after dividing by the modular
+        normalisation.
+\end{enumerate}
+
+\begin{proposition}[Conditional $n\ln n$ coefficient]
+\label{prop:nlogn}
+Conditional on O1, O2, and O3 being resolved:
+if $C_{\mathrm{1-loop}}=(\pi^2/\beta^2)^{\lambda}$ for some exponent $\lambda$,
+then $\ln\Zp$ contributes a term of the form $\const\cdot(p+1)\ln(p/\beta)$,
+which matches the structure $B\cdot n\ln n$ for $n=p$ with
+$B\propto p+1$ up to a numerical factor depending on $\lambda$.
+The prefactor becomes $B=(p+1)/3$ only after the area normalisation of
+Section~\ref{sec:modular_norm}.
+\end{proposition}
+
+\begin{proof}
+The one-loop determinant of $\nabla^\dagger\nabla$ on the level-$p$
+winding sector at modulus $\tau$ is schematically
+$(\det'\nabla^\dagger\nabla)^{-1/2}\sim e^{c\,\mathrm{Im}(\tau)\cdot p^2/\beta^2}
+ \prod_{n\neq 0}(1-e^{2\pi i n\tau})^{-1}$.
+In the large-$p$ limit at fixed $\mathrm{Im}(\tau)$, the leading-log
+contribution to $-\ln\det'$ is $\sim p^2\cdot(\text{area})$, plus a
+$\ln p$ term from the zero-mode counting.  Multiplying by the saddle
+degeneracy $(p+1)$ gives the $\sim(p+1)\ln p$ structure.  Setting
+$n=p$ reproduces $B\cdot p\ln p$ if $B=p+1$ up to normalisation.  The
+normalisation to $(p+1)/3$ is carried out in the next section.
+\end{proof}
+
+\begin{insightbox}
+The $n\ln n$ structure is consistent with the expected one-loop determinant
+on a torus: this aspect is arithmetically coherent.  The barrier is not
+the $\ln n$ term itself but the unproved $\SL(2,\ZZ)$ invariance that
+would justify the degeneracy factor $p+1$.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Normalisation by $\vol(\SL(2,\ZZ)\backslash\bH)=\pi/3$}
+\label{sec:modular_norm}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Why division by $3$ enters through modular area}
+
+If the path integral is normalised over the modular fundamental domain
+$\mathcal{F}=\SL(2,\ZZ)\backslash\bH$ with the hyperbolic measure
+$d\mu=d(\mathrm{Re}\,\tau)\,d(\mathrm{Im}\,\tau)/(\mathrm{Im}\,\tau)^2$,
+then the total volume is $\vol(\mathcal{F})=\pi/3$ (Lemma~\ref{lem:fundvol}).
+The physically natural normalisation of the partition function is then
+\begin{equation}
+  \hat{Z}(\tau) = \frac{Z(\tau)}{\vol(\mathcal{F})} = \frac{Z(\tau)}{\pi/3} = \frac{3}{\pi}\,Z(\tau).
+  \label{eq:normZ}
+\end{equation}
+Applied to the saddle sum, if $\Zp=(p+1)e^{-S_*}\cdot C$, the
+normalised partition function per unit modular area is
+\begin{equation}
+  \frac{\Zp}{\pi} = \frac{(p+1)\,e^{-S_*}\,C}{\pi}
+  = \frac{p+1}{3}\cdot\frac{3\,e^{-S_*}\,C}{\pi}.
+  \label{eq:normsaddle}
+\end{equation}
+The factor $(p+1)/3$ appears as a ratio of modular areas:
+\begin{equation}
+  \frac{p+1}{3}
+  = \frac{\mu(\Gam_0(p))\,\vol(\mathcal{F})}{\pi}
+  = \frac{\vol(X_0(p))}{\pi}.
+  \label{eq:ratio}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Exact result.}  The division by $3$ in $B(p)=(p+1)/3$ is
+exactly explained as the ratio of the level-$p$ modular curve area to
+$\pi$, i.e., the modular-area normalisation of
+$\vol(\SL(2,\ZZ)\backslash\bH)=\pi/3$.  This is an unconditional
+arithmetic fact (Corollary~\ref{cor:area}).  It does \emph{not} require
+any UBT-specific assumption.
+\end{resultbox}
+
+\subsection{Alternative: $\mathrm{Im}(\HH)$ / theta-dimension origin}
+
+Internal notes have suggested that the denominator $3$ could alternatively
+arise from the three-dimensional imaginary quaternion subspace
+$\mathrm{Im}(\HH)\cong\RR^3$.  This would give the mnemonic
+\[
+  B(p) = \frac{p+1}{\dim_\RR\mathrm{Im}(\HH)}.
+\]
+However, no one-loop determinant or mode-counting computation in the
+current repository derives this identification from $S[\Theta]$.  It is
+noted as a structural analogy only.
+
+\begin{proposition}
+\label{prop:im3}
+The identification of the denominator $3$ with
+$\dim_\RR\mathrm{Im}(\HH)=3$ is a heuristic mnemonic.  It is not
+stronger than the modular-area derivation.
+\end{proposition}
+
+\begin{proof}
+The modular-area derivation (Corollary~\ref{cor:area}) is exact and
+requires only the definition of $\Gam_0(p)$ and the volume of the
+$\SL(2,\ZZ)$ fundamental domain.  The $\mathrm{Im}(\HH)$ identification
+would require showing that the one-loop determinant of
+$\nabla^\dagger\nabla$ restricted to the imaginary quaternion sector
+produces exactly the factor $3$ in the denominator.  No such calculation
+exists.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Answers to the must-answer questions}
+\label{sec:answers}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}[label=Q\arabic*.]
+
+\item \textbf{Does $S[\Theta]$ naturally define a modular $\tau$ variable?}
+
+  \textbf{Answer: Partially, with obstruction.}
+  Complex time $\tau=t+i\psi$ is formally a complex variable residing in
+  (a subset of) $\CC$.  If the imaginary-time direction is compactified
+  with period $\beta$, the ratio $\tau/\beta$ can be treated as a
+  complex-torus modulus in $\bH$.  However, $S[\Theta]$ is
+  \emph{not} demonstrated to be invariant under $\SL(2,\ZZ)$ acting on
+  this modulus (Obstruction O1).  The kinetic operator $\nabla^\dagger\nabla$
+  has not been shown to transform as a modular covariant operator of
+  definite weight.  Therefore the modular $\tau$ variable is
+  \emph{formally available} but \emph{not physically justified}.
+  \hfill\COND
+
+\item \textbf{Does the $p$-winding sector transform under $\Gam_0(p)$?}
+
+  \textbf{Answer: Arithmetically yes; physically unproved.}
+  Definition~\ref{def:Hp} identifies $\Hp$ as the subspace of winding
+  modes with $n\equiv 0\pmod{p}$.  By Lemma~\ref{lem:arith}, this
+  subspace is closed under $\Gam_0(p)$ if $\SL(2,\ZZ)$ acts on winding
+  modes.  But the physical action of $\SL(2,\ZZ)$ on winding modes
+  has not been derived (Obstruction O2).  The arithmetic compatibility
+  is exact; the physics derivation is missing.
+  \hfill\COND
+
+\item \textbf{Are there exactly $p+1$ inequivalent saddles?}
+
+  \textbf{Answer: Arithmetically yes; physically unproved.}
+  Lemma~\ref{lem:cosets} gives $|\Gam_0(p)\backslash\SL(2,\ZZ)|=p+1$
+  exactly.  If each coset labels an inequivalent boundary condition for
+  the path integral, then there are exactly $p+1$ candidate saddles.
+  But their inequivalence in the UBT path integral (i.e., that no two
+  saddles are gauge-related) has not been proved.
+  \hfill\COND
+
+\item \textbf{Are they equal-action?}
+
+  \textbf{Answer: No — not derivable without resolving O1.}
+  By Proposition~\ref{prop:equal}, equal action requires $\SL(2,\ZZ)$
+  invariance of $S[\Theta]$, which is Obstruction O1.  Without O1,
+  the $p+1$ saddles can have different classical actions and different
+  one-loop determinants, and the degeneracy factor $p+1$ does not emerge.
+  \hfill\NOGO
+
+\item \textbf{Does their contribution multiply the $n\ln n$ coefficient?}
+
+  \textbf{Answer: Conditionally yes.}
+  Proposition~\ref{prop:nlogn} shows that, conditional on equal weighting
+  (which requires O1--O3 to be resolved), the saddle sum $\Zp=(p+1)\cdot(\ldots)$
+  contributes a factor $p+1$ to the one-loop free energy, which after
+  taking $\ln$ produces a term $\sim(p+1)\ln p$ at $n=p$.  This matches
+  the $B\cdot n\ln n$ structure in $V_{\mathrm{eff}}$ with $B=p+1$ before
+  normalisation.  The normalisation then gives $B=(p+1)/3$.
+  \hfill\COND
+
+\item \textbf{Does the division by $3$ enter through modular area normalisation?}
+
+  \textbf{Answer: Yes — this is an exact, unconditional statement.}
+  Corollary~\ref{cor:area} and equation~\eqref{eq:ratio} establish that
+  $B(p)=(p+1)/3=\vol(X_0(p))/\pi$, which is precisely the ratio of the
+  level-$p$ modular curve area to $\pi$.  This follows from the exact
+  identity $\vol(\SL(2,\ZZ)\backslash\bH)=\pi/3$ and is independent of
+  all physics.  The physical question is only whether the path-integral
+  normalisation over modular space is the correct one; this is reasonable
+  but not derived from $S[\Theta]$.
+  \hfill\PROVED\ (arithmetic); \COND\ (physics normalisation)
+
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary of obstructions}
+\label{sec:obstructions}
+%──────────────────────────────────────────────────────────────────────────────
+
+The construction fails at three successive levels.  Each obstruction is
+sharp and precisely located.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{0.08\linewidth}p{0.36\linewidth}p{0.46\linewidth}@{}}
+\toprule
+Label & Obstruction & What would resolve it \\
+\midrule
+O1 & $S[\Theta]$ is not proved modular-invariant under $\SL(2,\ZZ)$ &
+  Prove that $\nabla^\dagger\nabla$ on the complex-time torus is a
+  modular-covariant operator of definite weight, and that the measure
+  transforms covariantly. \\
+\addlinespace
+O2 & The $\SL(2,\ZZ)$-action on winding modes $\Theta_n$ has not been
+  derived & Compute the action of a Möbius transformation on the Fourier
+  expansion~\eqref{eq:winding} and show it maps $\Hp$ to itself
+  (building on Lemma~\ref{lem:arith}). \\
+\addlinespace
+O3 & Equal-action of the $p+1$ saddles cannot be established without O1 &
+  Resolve O1; then Proposition~\ref{prop:equal} gives equal action
+  automatically. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+\textbf{Dependency.}  O3 depends on O1.  O2 is partially independent
+and could in principle be resolved analytically without resolving O1.
+Resolution of O1 and O2 together would collapse O3 and complete the
+construction.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Synthesis table}
+\label{sec:synthesis}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{0.44\linewidth}p{0.18\linewidth}p{0.28\linewidth}@{}}
+\toprule
+Claim & Status & Basis \\
+\midrule
+$|\Gam_0(p)\backslash\SL(2,\ZZ)|=p+1$ &
+  \PROVED &
+  Lemma~\ref{lem:index}--\ref{lem:cosets} \\
+\addlinespace
+$\vol(\SL(2,\ZZ)\backslash\bH)=\pi/3$ &
+  \PROVED &
+  Classical (Lemma~\ref{lem:fundvol}) \\
+\addlinespace
+$B(p)=\vol(X_0(p))/\pi=(p+1)/3$ (arithmetic identity) &
+  \PROVED &
+  Corollary~\ref{cor:area} \\
+\addlinespace
+$S[\Theta]$ defines a modular $\tau$ &
+  \COND &
+  O1 unresolved \\
+\addlinespace
+$\Hp$ transforms under $\Gam_0(p)$ &
+  \COND &
+  O2 unresolved \\
+\addlinespace
+$p+1$ inequivalent, equal-action saddles &
+  \COND &
+  O1, O2, O3 unresolved \\
+\addlinespace
+Saddle sum multiplies $n\ln n$ by $p+1$ &
+  \COND &
+  Conditional on all saddles equal-action \\
+\addlinespace
+Division by $3$ from modular area &
+  \PROVED\ (arith.) \COND\ (physics) &
+  Corollary~\ref{cor:area};  path-integral normalisation unproved \\
+\addlinespace
+$B(p)=(p+1)/3$ derived from $S[\Theta]$ &
+  \NOGO (current) &
+  O1--O3 block the derivation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{warnbox}
+\textbf{Construction verdict: INCOMPLETE / NO-GO at current level.}
+
+The arithmetic foundation is exact: the coset count is $p+1$, the
+modular-area ratio gives $(p+1)/3$, and $\PP^1(\FF_p)$ provides the
+correct index set for the saddles.
+
+The physics construction fails at Obstruction O1: the action $S[\Theta]$
+is not demonstrated to be invariant under $\SL(2,\ZZ)$ acting on the
+complex-time modulus.  Without this invariance, the $p+1$ candidate
+saddles cannot be shown to be equal-action, and the degeneracy factor
+$p+1$ does not follow from the path integral.
+
+Therefore $B(p)=(p+1)/3$ \textbf{remains a conditional modular ansatz}.
+It is structurally coherent and arithmetically exact, but it is not a
+consequence of $S[\Theta]$ until O1 and O2 are resolved.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Directions for resolution}
+\label{sec:resolution}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+
+\item \textbf{Prove modular invariance of $S[\Theta]$ on the torus.}
+  The strategy would be to show that the biquaternionic Dirac--Laplace
+  operator $\nabla^\dagger\nabla$ restricted to the complex-time torus
+  $\CC/(\ZZ+\ZZ\tau)$ is a holomorphic family of operators parametrised by
+  $\tau\in\bH$ and that its determinant transforms as a modular form of
+  weight zero.  This is analogous to the modular properties of the
+  string-theory one-loop amplitude and may admit a similar proof using
+  $\eta$-function regularisation.
+
+\item \textbf{Compute $\SL(2,\ZZ)$ action on winding modes.}
+  Expand $\Theta(x,\tau)=\sum_n\Theta_n(x)\,e^{2\pi in\tau}$ in the new
+  Fourier basis after $\tau\to\gamma\tau$.  Verify that the transformation
+  matrices are block-diagonal on $\Hp$, so that $\Hp$ is $\Gam_0(p)$-stable.
+
+\item \textbf{Check equal action numerically for small $p$.}
+  For $p=2,3,5$, compute $S[\bar\Theta_a]$ explicitly for each of the
+  $p+1$ coset representatives and check whether equality holds to leading
+  order in a semi-classical expansion.  Failure would give a
+  counter-example to the whole program.
+
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section*{Internal references}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item \texttt{research\_tracks/alpha\_spectral/hecke\_trace\_B\_derivation\_attempt.tex}
+        — predecessor note; identifies Gaps H1--H3.
+  \item \texttt{research\_tracks/alpha\_spectral/b\_coefficient\_gap\_resolution.tex}
+        — synthesis of all routes to $B(p)$.
+  \item \texttt{reports/hecke\_trace\_B\_verdict.md} — verdict on G137-B.
+  \item \texttt{canonical/alpha/modular\_prime\_attractor\_theorem.tex}
+        — formal statement of the prime-attractor theorem.
+  \item \texttt{reports/hecke\_path\_integral\_no\_go\_or\_success.md}
+        — companion report (this task's second deliverable).
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{Serre:1973}
+J.-P.\ Serre, \textit{A Course in Arithmetic}, Springer, 1973.
+
+\bibitem{Diamond:2005}
+F.\ Diamond and J.\ Shurman, \textit{A First Course in Modular Forms},
+Springer GTM 228, 2005.
+
+\bibitem{Shimura:1971}
+G.\ Shimura, \textit{Introduction to the Arithmetic Theory of Automorphic
+Functions}, Princeton University Press, 1971.
+
+\bibitem{Polchinski:1998}
+J.\ Polchinski, \textit{String Theory, Vol.~1}, Cambridge University
+Press, 1998.  (Modular invariance of the one-loop amplitude, Ch.~7.)
+\end{thebibliography}
+
+\end{document}

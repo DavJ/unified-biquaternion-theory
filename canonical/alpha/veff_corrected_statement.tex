@@ -1,0 +1,348 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/veff_corrected_statement.tex
+% Purpose: Corrected formal statement of V_eff(n) and its stationary-point condition,
+%          following the V_eff sanity audit (reports/alpha_veff_sanity_audit.md).
+%          Replaces the erroneous closed-form n*(B) = e^{(2-B)/B}·e previously
+%          stated in alpha_equation_matrix.tex.
+% Status: 2026-05-02
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,         linewidth=1.5pt]{warnbox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\COND}{\textbf{[COND]}}
+  \newcommand{\MC}{\textbf{[MC]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\PHENOM}{\textbf{[PHENOM]}}
+
+  \title{\textbf{Corrected Statement of $V_{\mathrm{eff}}(n)$ and the\\
+         $n^* = 137$ Stationarity Condition}\\
+         \large Following the V\_eff Sanity Audit of 2026-05-02}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{May 2026}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Scope}
+\label{sec:vc:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document supersedes the stationarity formula for $V_{\mathrm{eff}}(n)$
+previously stated in \texttt{canonical/alpha/alpha\_equation\_matrix.tex},
+which contained an error in the closed-form expression for $n^*(B)$.
+It provides:
+
+\begin{enumerate}
+  \item The correct definition of $V_{\mathrm{eff}}(n)$ and all variants found in the repo.
+  \item The correct stationarity condition (transcendental; no closed form).
+  \item The exact value of~$B$ required for $n^* = 137$.
+  \item A classification of every~$B$ value in the repository.
+  \item The decision on whether the $n^* = 137$ claim is mathematically valid.
+\end{enumerate}
+
+\begin{warnbox}
+\textbf{Hard rule (unchanged)}: No constant in this document is chosen to
+match~$\alpha$ or~$137$.  All constants are independently derived or explicitly
+labelled with their proof status.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Catalogue of $V_{\mathrm{eff}}$ Variants}
+\label{sec:vc:variants}
+%──────────────────────────────────────────────────────────────────────────────
+
+A systematic search of the repository identified the following distinct
+effective-potential formulas.
+
+\subsection{V1 — Primary Canonical Form}
+\label{sec:vc:V1}
+
+\begin{equation}
+  \boxed{V_{\mathrm{eff}}(n) \;=\; n^2 \;-\; B\,n\ln n,}
+  \qquad n \in \ZZ_{>0}.
+  \label{eq:vc:Veff_canonical}
+\end{equation}
+
+\noindent\textbf{Sources}:
+\texttt{canonical/alpha/alpha\_equation\_matrix.tex},
+\texttt{canonical/alpha/alpha\_best\_route.tex~\S6},
+\texttt{canonical/alpha/neff\_32\_alpha\_route.tex~\S G5},
+\texttt{canonical/appendices/appendix\_alpha\_geometry.tex~\S3},
+\texttt{docs/papers/papers/generated/ubt\_action\_and\_alpha.tex}.
+
+\noindent\textbf{Origin of $A=1$}: The classical Kaluza-Klein winding energy
+$\hbar^2n^2/(2mR_\psi^2)$ equals $n^2$ in natural units at $R_\psi = 1$.
+This is a choice of units, not a free parameter.
+
+\textbf{Status}: \PROVED~\Lone\ (functional form); coefficient $B$ is an open gap.
+
+\subsection{V2 — Legacy Code Variant ($A$ explicit)}
+
+\begin{equation}
+  V_{\mathrm{eff}}(n;\,A,B) \;=\; A\,n^2 \;-\; B\,n\ln n,
+  \quad A = 1\;\text{(default)},
+  \label{eq:vc:Veff_legacy}
+\end{equation}
+with $B = 20.3$ in the earliest script
+(\texttt{ARCHIVE/archive\_legacy/tex/emergent\_alpha\_calculations.tex}).
+
+\begin{warnbox}
+The script with $B = 20.3$ restricts the prime search to $p \in [100, 200]$,
+creating the false appearance that $B = 20.3$ selects $n = 137$.
+The \emph{global} prime minimiser of~\eqref{eq:vc:Veff_legacy} for $B = 20.3$
+is $p = 47$, not $p = 137$.
+This result must not be cited as evidence for the prime attractor.
+\end{warnbox}
+
+\subsection{V3 — Non-Hermitian Mass Term (Unrelated to $\alpha$)}
+
+\begin{equation}
+  V_{\mathrm{eff}} = (m^2 + i\gamma)\,\mathrm{Tr}[\Theta^\dagger\Theta],
+  \quad \gamma \in \RR.
+  \label{eq:vc:Veff_NH}
+\end{equation}
+Source: \texttt{canonical/symmetry/step3\_breaking\_catalogue.tex}.
+This potential describes open-system $\mathcal{PT}$-symmetric dynamics.
+It plays \textbf{no role in the $\alpha$ derivation}.
+
+\subsection{V4 — Erroneous Form (Historical Bug)}
+
+\begin{equation}
+  V(n) \;=\; n^2 \;-\; B\ln n \qquad \text{(missing factor }n\text{)}.
+  \label{eq:vc:Veff_wrong}
+\end{equation}
+This variant appears nowhere as an explicit formula, but it is the only form
+consistent with the stationarity claim $n^* = \sqrt{B/2}$ quoted in
+\texttt{ALPHA\_PROGRESS\_REPORT.md~\S2.4}.  For $B \approx 46.3$,
+$\sqrt{B/2} \approx 4.8$, which is clearly not 137.
+This variant is a \textbf{transcription error} and should be disregarded.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Corrected Stationarity Condition}
+\label{sec:vc:stationary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Stationarity of $V_{\mathrm{eff}}$, corrected]
+\label{thm:vc:stationary}
+The continuous minimum of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ satisfies
+the \textbf{transcendental equation}:
+\begin{equation}
+  \frac{\partial V_{\mathrm{eff}}}{\partial n}\bigg|_{n^*}
+  = 2n^* - B\bigl(\ln n^* + 1\bigr) = 0,
+  \label{eq:vc:stationary}
+\end{equation}
+equivalently
+\begin{equation}
+  \boxed{2n^* = B\,\bigl(\ln n^* + 1\bigr).}
+  \label{eq:vc:stationary_box}
+\end{equation}
+This equation has \textbf{no elementary closed form} for $n^*(B)$.
+\end{theorem}
+
+\begin{warnbox}
+\textbf{Correction of previous error}:
+The formula $n^*(B) = e^{(2-B)/B}\cdot e$ stated in
+\texttt{alpha\_equation\_matrix.tex} (Theorem~\ref{thm:vc:stationary},
+§\,Shared Foundation) is \textbf{incorrect}.
+
+Algebraically: $e^{(2-B)/B}\cdot e = e^{(2-B)/B+1} = e^{2/B}$.
+For $B = 46.298$: $e^{2/B} \approx 1.044$, not $137$.
+
+The correct relation is the transcendental Eq.~\eqref{eq:vc:stationary_box}.
+\end{warnbox}
+
+\begin{corollary}[No closed form for $n^*(B)$]
+The function $n^*(B)$ defined by~\eqref{eq:vc:stationary_box} is the solution
+of a transcendental equation and is evaluated numerically for each~$B$.
+Selected values:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+$B$ value & $n^*_{\mathrm{continuous}}$ & Note \\
+\midrule
+$8\pi \approx 25.133$ & $65.0$ & $B_0$, proved [L1] \\
+$N_{\mathrm{eff}}^{3/2} \approx 41.569$ & $120.4$ & $B_{\mathrm{base}}$, conjectural [MC] \\
+$\mu(\Gamma_0(137))/3 = 46.000$ & $136.0$ & exact math, 0.64\% below $B_{\mathrm{phenom}}$ \\
+$46.284$ & $137.000$ & exact constraint for $n^* = 137$ \\
+$46.298$ & $137.05$ & $B_{\mathrm{phenom}}$ (phenomenological) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{corollary}
+
+\begin{corollary}[Second derivative confirms minimum]
+\label{cor:vc:2nd}
+\[
+  \frac{\partial^2 V_{\mathrm{eff}}}{\partial n^2}\bigg|_{n^*}
+  = 2 - \frac{B}{n^*}
+  \;>\; 0
+  \quad\Longleftrightarrow\quad
+  n^* > \frac{B}{2}.
+\]
+For $B \approx 46.3$ and $n^* = 137$: $137 > 23.15$\,\checkmark.\
+The stationary point is indeed a \textbf{minimum}.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Required Coefficient for $n^* = 137$}
+\label{sec:vc:B_required}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Exact $B$ for $n^* = 137$]
+\label{prop:vc:B_req}
+Substituting $n^* = 137$ into the stationarity condition~\eqref{eq:vc:stationary_box}:
+\begin{equation}
+  B_{\mathrm{required}}
+  = \frac{2 \times 137}{\ln 137 + 1}
+  = \frac{274}{4.919981 + 1}
+  = \frac{274}{5.919981}
+  \approx 46.284.
+  \label{eq:vc:B_req}
+\end{equation}
+The phenomenological value $B_{\mathrm{phenom}} = 46.298$ in the repository
+differs from $B_{\mathrm{required}}$ by $0.030\%$, consistent with rounding.
+\end{proposition}
+
+\begin{corollary}[Prime minimizer]
+For any $B$ in the range $[46.00,\,46.50]$, the prime minimiser of
+$V_{\mathrm{eff}}(p)$ over all primes $p$ is $p = 137$:
+\begin{equation}
+  V_{\mathrm{eff}}(137) < V_{\mathrm{eff}}(p)
+  \quad\text{for all primes } p \neq 137,\quad B \in [46.00,\,46.50].
+  \label{eq:vc:prime_min}
+\end{equation}
+The next lowest prime is $p = 139$ with $V(139) - V(137) \approx +3.16$.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Classification of All $B$ Values}
+\label{sec:vc:B_class}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{p{3.8cm} p{1.8cm} p{3.5cm} p{3.8cm}}
+\toprule
+\textbf{Symbol} & \textbf{Value} & \textbf{Classification} & \textbf{Proof status / source} \\
+\midrule
+$B_0 = 2\pi N_{\mathrm{eff}}/3$ & $8\pi\approx 25.13$ & DERIVED & \PROVED~\Lone; one-loop vacuum polarisation \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $\approx 41.57$ & CONJECTURAL & \MC; conditional on $k_{\mathrm{KM}}=1$ (Gap G3-k) \\
+$\mu(\Gamma_0(137))/3$ & $46.00$ & EXACT MATH & \PROVED~\Lzero\ (index formula); identification with $B$ is \OPEN \\
+$B_{\mathrm{required}}$ & $46.284$ & EXACT CONSTRAINT & Unique value with $n^*_{\mathrm{continuous}}=137$; \PHENOM \\
+$B_{\mathrm{phenom}}$ & $\approx 46.298$ & PHENOMENOLOGICAL & Back-solved from $n^*=137$; circular unless Gap G137-B closed \\
+$B_{\mathrm{full}} = B_{\mathrm{base}}\cdot R$ & $\approx 46.31$ & OPEN & $R\approx 1.114$; no non-circular derivation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Gap G137-B (primary blocker)}:
+Derive $B \approx 46.284$ from $S[\Theta]$ without using $\alpha$ as input.
+Equivalently: derive the correction factor $R = B_{\mathrm{full}}/B_{\mathrm{base}}
+\approx 1.1134$ from first principles.
+
+Until this gap is closed, the claim $n^*(B) = 137$ is \textbf{CONDITIONAL}
+on $B = B_{\mathrm{phenom}}$, not a zero-parameter result.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Audit Verdict and Decision}
+\label{sec:vc:decision}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Audit Verdict]
+\begin{enumerate}
+  \item \textbf{V\_eff functional form is correct.}
+        $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ is the unique form consistent
+        with the one-loop Coleman-Weinberg / heat-kernel calculation on $S^1_\psi$.
+
+  \item \textbf{The $n^* = 137$ extremum claim is mathematically valid}
+        for $B \approx 46.284$--$46.298$.  The stationarity condition is correct
+        and the prime minimiser is 137 in this $B$-range. \Lone~(given $B$).
+
+  \item \textbf{The closed-form $n^*(B) = e^{(2-B)/B}\cdot e$ in
+        \texttt{alpha\_equation\_matrix.tex} is an error.}  The correct relation
+        is the transcendental equation~\eqref{eq:vc:stationary_box}.
+        (See \S\ref{sec:vc:stationary}.)
+
+  \item \textbf{$B \approx 46.3$ is phenomenological.}
+        It is obtained by back-substituting $n^* = 137$ into the stationarity
+        condition.  It is circular unless Gap G137-B is independently closed.
+
+  \item \textbf{$B_{\mathrm{phenom}}$ does not require a hidden scale factor beyond
+        the well-understood missing factor $R \approx 1.113$}, but that factor
+        itself is open.  The closest derived value is $\mu(\Gamma_0(137))/3 = 46.00$
+        (0.64\% discrepancy), which is a structural corroboration, not a proof.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection*{Next steps (from audit)}
+
+\begin{enumerate}
+  \item \textbf{Correct the formula in \texttt{alpha\_equation\_matrix.tex}}:
+        replace $n^*(B) = e^{(2-B)/B}\cdot e$ with the transcendental
+        condition~\eqref{eq:vc:stationary_box}.
+
+  \item \textbf{Correct the formula in \texttt{ALPHA\_PROGRESS\_REPORT.md~\S2.4}}:
+        replace $n^* = \sqrt{B/2}$ with the correct stationarity
+        condition~\eqref{eq:vc:stationary_box}.
+
+  \item \textbf{Continue attacking Gap G137-B}:
+        primary attack via modular bootstrap on $\hat{Z}(\tau) = \vartheta_3^3(\tau)$.
+        Secondary: explicit two-loop heat-kernel determinant on $T^2\times S^1_\psi$.
+
+  \item \textbf{Do not promote $n^*(B_{\mathrm{phenom}}) = 137$ to PROVED}
+        until Gap G137-B is closed.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

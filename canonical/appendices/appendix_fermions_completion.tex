@@ -1,0 +1,283 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{slashed}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Fermion Sector Derivations}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose]
+This appendix consolidates and strengthens the fermion sector derivations in UBT:
+spinor representation from $\mathbb{C}\otimes\mathbb{H}$, the Dirac equation,
+and the gauge coupling structure.
+
+\medskip
+\textbf{Primary sources}:
+\texttt{canonical/qm\_emergence/step3\_dirac\_emergence.tex},
+\texttt{canonical/qm\_emergence/step6\_spinorial\_subspace.tex},
+\texttt{canonical/chirality/},
+\texttt{canonical/interactions/qed.tex}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Derivation & Status & Section \\
+\hline
+Pauli matrices from $\mathbb{C}\otimes\mathbb{H}$ & \textbf{Proved} & \S\ref{sec:pauli} \\
+Dirac gamma matrices & \textbf{Proved} & \S\ref{sec:gamma} \\
+Spinor representation & \textbf{Proved} & \S\ref{sec:spinor} \\
+Dirac equation & \textbf{Sketch} & \S\ref{sec:dirac} \\
+Gauge coupling & \textbf{Proved} & \S\ref{sec:coupling} \\
+Three generations & \textbf{Algebraic} & \S\ref{sec:generations} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Pauli Matrices from $\mathbb{C}\otimes\mathbb{H}$}\label{sec:pauli}
+% -----------------------------------------------------------------
+
+\begin{theorem}[Pauli matrices from quaternion generators]\label{thm:pauli}
+The algebra isomorphism $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+maps the quaternion imaginary units $(I,J,K)$ to the Pauli matrices:
+\begin{equation}\label{eq:pauli_map}
+  I \;\mapsto\; i\sigma_1,
+  \qquad
+  J \;\mapsto\; i\sigma_2,
+  \qquad
+  K \;\mapsto\; i\sigma_3,
+\end{equation}
+where
+\begin{equation}
+  \sigma_1 = \begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  \sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+  \sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The standard isomorphism sends $1 \mapsto \mathbf{1}_2$,
+$i \mapsto i\mathbf{1}_2$ (complex unit), $I \mapsto i\sigma_1$, etc.
+The commutation relations $[I,J]=2K$, $[J,K]=2I$, $[K,I]=2J$ of $\mathbb{H}$
+map exactly to $[i\sigma_a, i\sigma_b] = -[\sigma_a,\sigma_b]
+= -2i\epsilon_{abc}\sigma_c = 2(i\epsilon_{abc})(i\sigma_c)/(i)
+= 2\epsilon_{abc}(i\sigma_c)$, reproducing quaternion relations.
+$\square$
+\end{proof}
+
+\noindent\textbf{Source}: \texttt{canonical/qm\_emergence/step3\_dirac\_emergence.tex \S2--\S3}.
+
+% -----------------------------------------------------------------
+\section{Dirac Gamma Matrices}\label{sec:gamma}
+% -----------------------------------------------------------------
+
+\begin{theorem}[Gamma matrices from $\mathbb{B}\otimes\mathbb{B}$]\label{thm:gamma}
+The Dirac gamma matrices in the Weyl (chiral) representation emerge from
+the tensor product $(\mathbb{C}\otimes\mathbb{H}) \otimes (\mathbb{C}\otimes\mathbb{H})$:
+\begin{equation}\label{eq:gamma_weyl}
+  \gamma^0 = \sigma_1 \otimes \mathbf{1}_2,
+  \qquad
+  \gamma^i = i\sigma_2 \otimes \sigma_i,\quad i=1,2,3.
+\end{equation}
+These satisfy the Clifford algebra:
+\begin{equation}\label{eq:clifford}
+  \{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}\mathbf{1}_4,
+\end{equation}
+with $\eta^{\mu\nu} = \mathrm{diag}(+1,-1,-1,-1)$.
+\end{theorem}
+
+\begin{proof}
+Direct computation: $(\gamma^0)^2 = (\sigma_1)^2 \otimes \mathbf{1}_2 = \mathbf{1}_4$,
+$(\gamma^i)^2 = -(\sigma_2)^2 \otimes (\sigma_i)^2 = -\mathbf{1}_4$ for $i=1,2,3$,
+$\{\gamma^0,\gamma^i\} = \sigma_1(i\sigma_2)\otimes\sigma_i + (i\sigma_2)\sigma_1\otimes\sigma_i
+= i(\sigma_1\sigma_2+\sigma_2\sigma_1)\otimes\sigma_i = 0$
+(since $\{\sigma_a,\sigma_b\}=2\delta_{ab}$ gives $\sigma_1\sigma_2+\sigma_2\sigma_1=0$).
+Clifford relation~\eqref{eq:clifford} is verified. $\square$
+\end{proof}
+
+\noindent\textbf{Source}: \texttt{canonical/qm\_emergence/step3\_dirac\_emergence.tex \S4}.
+
+The chiral (Weyl) projectors are:
+\begin{equation}
+  P_L = \tfrac12(\mathbf{1}-\gamma^5), \qquad
+  P_R = \tfrac12(\mathbf{1}+\gamma^5), \qquad
+  \gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3.
+\end{equation}
+
+% -----------------------------------------------------------------
+\section{Spinor Representation}\label{sec:spinor}
+% -----------------------------------------------------------------
+
+\begin{definition}[Spinorial subspace]
+The spinorial subspace of $\Theta$ is the projection onto the two-component
+sub-algebra corresponding to each chirality sector:
+\begin{equation}
+  \xi := P_L\,\Theta_s \in \mathbb{C}^2
+  \quad (\text{left-handed Weyl spinor}),
+\end{equation}
+where $\Theta_s$ is the spinorial sector of $\Theta$ identified via the
+isomorphism $\mathrm{Mat}(2,\mathbb{C}) \cong \mathbb{C}\otimes\mathbb{H}$.
+\end{definition}
+
+\noindent\textbf{Source}: \texttt{canonical/qm\_emergence/step6\_spinorial\_subspace.tex}.
+
+\begin{proposition}[Dirac spinor from $\Theta$]\label{prop:dirac_spinor}
+A Dirac spinor $\Psi = \begin{pmatrix}\xi_L \\ \xi_R\end{pmatrix}$
+arises as the $(2\oplus 2)$-decomposition of the spinorial component of $\Theta$
+under the chirality projectors $P_{L,R}$.
+\end{proposition}
+
+% -----------------------------------------------------------------
+\section{Dirac Equation}\label{sec:dirac}
+% -----------------------------------------------------------------
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Current status: Sketch]
+The massive Dirac equation from $S[\Theta]$ is currently a sketch.
+The structural derivation is complete; the identification of mass and the
+full Euler-Lagrange variational argument require further work.
+\end{tcolorbox}
+
+The free Dirac operator is:
+\begin{equation}\label{eq:Dirac_op}
+  \mathcal{D} = i\gamma^\mu\nabla_\mu,
+\end{equation}
+which is uniquely determined (up to gauge equivalence) from the bundle structure
+of $\Theta$ over spacetime.
+(\texttt{research\_tracks/legacy\_theory\_variants/ubt/operators/dirac\_like\_operator.tex Thm.~2.1}).
+
+The free Dirac equation $\mathcal{D}\Psi = m\Psi$ in UBT context arises from the
+free-field limit of the master equation $\nabla^\dagger\nabla\Theta = 0$ upon
+restricting to the spinorial sector and applying a first-order factorisation:
+\begin{equation}\label{eq:dirac_factorisation}
+  \nabla^\dagger\nabla = (\mathcal{D} - m)(\mathcal{D} + m) + O(R),
+\end{equation}
+where $O(R)$ denotes curvature corrections.
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Open gap: mass identification]
+\textbf{Gap D1}: The mass $m$ in~\eqref{eq:dirac_factorisation} must be derived
+from $V(\Theta)$ or from topological winding (soliton interpretation).
+A sketch is in \texttt{canonical/qm\_emergence/step3\_dirac\_emergence.tex \S6}.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Gauge Coupling Structure}\label{sec:coupling}
+% -----------------------------------------------------------------
+
+The gauged Dirac equation follows from replacing $\nabla_\mu \to D_\mu$
+in~\eqref{eq:Dirac_op}:
+\begin{equation}\label{eq:Dirac_gauged}
+  (i\gamma^\mu D_\mu - m)\Psi = 0,
+\end{equation}
+with $D_\mu = \partial_\mu + \Gamma_\mu + igA_\mu + ig_s G^a_\mu T^a$.
+
+\begin{proposition}[Gauge coupling from $D_\mu$ in $S[\Theta]$]
+\label{prop:coupling}
+The gauge-covariant derivative $D_\mu$ acting on the spinorial sector of $\Theta$
+is exactly the coupling appearing in the gauged Dirac equation~\eqref{eq:Dirac_gauged}.
+The electromagnetic, weak, and color couplings $e$, $g_W$, $g_s$ are the
+eigenvalues of the respective gauge generators on the spinorial subspace.
+\end{proposition}
+
+\begin{proof}
+The kinetic term $\mathrm{Tr}[(D_\mu\Theta)^\dagger D^\mu\Theta]$ restricted to
+the spinorial sector gives $\bar{\Psi}\gamma^\mu D_\mu\Psi$.  The coupling
+constants appear as the embedding eigenvalues of the internal symmetry generators
+($Q$, $T^a$, $\lambda^a$) in the respective representations. $\square$
+\end{proof}
+
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex \S2--\S3}.
+
+% -----------------------------------------------------------------
+\section{Three Generations}\label{sec:generations}
+% -----------------------------------------------------------------
+
+UBT offers two complementary algebraic origins for the three fermion generations:
+
+\paragraph{Origin 1: Quaternionic imaginary units $\{I,J,K\}$.}
+The three non-scalar irreducible components of $\Theta \in \mathbb{H}$
+correspond to three families:
+$\Theta = \Theta_0 + \Theta_I\,I + \Theta_J\,J + \Theta_K\,K$,
+where $\Theta_0$ (scalar) = Higgs sector,
+$\Theta_I, \Theta_J, \Theta_K$ = three fermion generations.
+(\texttt{research\_tracks/research/generation\_structure.tex Prop.~2})
+
+\paragraph{Origin 2: $\psi$-winding modes.}
+Independent $\psi$-winding modes carry the same $\mathrm{SU}(3)$ quantum numbers
+(since $\mathrm{SU}(3)$ commutes with $\psi$) and ψ-parity forbids
+odd$\leftrightarrow$even mixing, providing a structural separation of generations.
+(\texttt{experiments/research\_tracks/three\_generations/st3\_complex\_time\_generations.tex \S3--\S4})
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!60!black,title=Open: mass spectrum]
+\textbf{Open Hard Problem}: Reproducing the lepton mass ratios
+$m_\mu/m_e \approx 207$ and $m_\tau/m_\mu \approx 16.8$ remains unsolved.
+The KK mismatch theorem (ratio $\leq 2$ for any real modulus) proves that the
+KK mechanism alone cannot reproduce the ratios.
+See \texttt{DERIVATION\_INDEX.md \S fermions}.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Summary}\label{sec:summary_fermions}
+% -----------------------------------------------------------------
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Result & Status & Layer & Source \\
+\midrule
+$\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$ & Proved & L0 &
+  \texttt{step3\_dirac\_emergence.tex \S2} \\
+Pauli matrices $\sigma^a$ from $\mathbb{H}$ & Proved & L0 &
+  Thm.~\ref{thm:pauli} \\
+Dirac $\gamma^\mu$ from $\mathbb{B}\otimes\mathbb{B}$ & Proved & L0 &
+  Thm.~\ref{thm:gamma} \\
+Clifford algebra $\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}$ & Proved & L0 &
+  Thm.~\ref{thm:gamma} \\
+Dirac operator $\mathcal{D}$ (unique) & Proved & L0 &
+  \texttt{dirac\_like\_operator.tex} \\
+Spinorial subspace of $\Theta$ & Defined & L0 &
+  \texttt{step6\_spinorial\_subspace.tex} \\
+Gauge coupling from $D_\mu$ & Proved & L0 &
+  Prop.~\ref{prop:coupling} \\
+Massive Dirac eq.\ from $S[\Theta]$ & Sketch & L1 &
+  \S\ref{sec:dirac} \\
+Mass identification (Gap D1) & Open & L1 & — \\
+Three generations (algebraic) & Algebraic & L1 &
+  \S\ref{sec:generations} \\
+Mass ratios $m_\mu/m_e$, $m_\tau/m_\mu$ & Open Hard Problem & L2 &
+  \texttt{DERIVATION\_INDEX.md} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}

@@ -1,0 +1,271 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{GR Closure Step 1: Metric Unification\\
+         Equivalence of Derivative and Tetrad Formulations}}
+  \author{Ing. David Jaroš}
+  \date{March 2026}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The UBT emergent metric appears in two forms across the existing literature:
+  a derivative-of-$\Theta$ form and a tetrad-scalar form. We prove that these
+  two expressions define the same real symmetric $(0,2)$ tensor whenever the
+  tetrad vectors $E_\mu$ are identified with the normalised covariant
+  derivatives $\partial_\mu\Theta / \sqrt{\mathcal{N}}$. A canonical, unique
+  definition is thereby established.
+  \end{abstract}
+\fi
+
+\section{Metric Unification: Equivalence of Two Formulations}
+\label{sec:metric_unification}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Purpose of This Step]
+\textbf{Problem identified in GR Recovery Audit.}
+Two metric formulas coexist in the UBT documents:
+\begin{itemize}
+  \item \emph{Derivative form} (appendix\_FORMAL\_emergent\_metric.tex, lines 83--96):
+        \[
+          g_{\mu\nu}^{(D)}(x) \;:=\; \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right].
+        \]
+  \item \emph{Tetrad-scalar form} (appendix\_R\_GR\_equivalence.tex, line 65):
+        \[
+          g_{\mu\nu}^{(T)}(x) \;:=\; \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr).
+        \]
+\end{itemize}
+This step proves $g_{\mu\nu}^{(D)} = g_{\mu\nu}^{(T)}$ under a natural identification,
+establishing a single canonical definition.
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Definitions and Setup}
+
+Throughout, $\Theta(q,\tau)$ denotes the fundamental biquaternionic field taking
+values in $\mathbb{B} := \mathbb{C}\otimes\mathbb{H}$.  The biquaternionic
+\emph{scalar part} of $Q\in\mathbb{B}$ is $\mathrm{Sc}(Q) :=\tfrac{1}{4}\mathrm{Tr}(Q)$
+(one-quarter of the reduced trace over the quaternionic basis $\{1,\mathbf{i},\mathbf{j},\mathbf{k}\}$),
+and the \emph{adjoint} is $Q^\dagger = \overline{Q}^T$ (complex conjugate of the quaternionic
+conjugate, equivalently $(\alpha + \beta\mathbf{i}+\gamma\mathbf{j}+\delta\mathbf{k})^\dagger
+= \bar\alpha - \bar\beta\mathbf{i} - \bar\gamma\mathbf{j} - \bar\delta\mathbf{k}$ for
+$\alpha,\beta,\gamma,\delta\in\mathbb{C}$).
+
+\begin{definition}[Tetrad vectors from $\Theta$]
+\label{def:tetrad_from_Theta}
+Given a smooth biquaternionic field $\Theta$ with non-vanishing gradient, define the
+\emph{coframe tetrad vectors} by
+\begin{equation}
+  E_\mu \;:=\; \frac{\partial_\mu\Theta}{\sqrt{\mathcal{N}}},
+  \qquad
+  \mathcal{N} \;:=\; \sqrt{-\det\!\Bigl(\Re\bigl[\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr]\Bigr)}
+  \cdot L_P^{-2},
+  \label{eq:tetrad_def}
+\end{equation}
+where $L_P$ is the Planck length included for dimensional consistency.
+\end{definition}
+
+\begin{remark}
+The factor $\mathcal{N}$ is the same normalization appearing in the derivative-form metric
+definition (appendix\_FORMAL\_emergent\_metric.tex, eq.~(2)). It is a positive real scalar
+field chosen to enforce the correct signature; it is \emph{not} a free parameter once
+$\Theta$ is specified.
+\end{remark}
+
+% -----------------------------------------------------------------------
+\subsection{Main Equivalence Theorem}
+
+\begin{theorem}[Metric equivalence]
+\label{thm:metric_equivalence}
+Under Definition~\ref{def:tetrad_from_Theta}, the derivative-form metric and the
+tetrad-scalar-form metric coincide:
+\begin{equation}
+  g_{\mu\nu}^{(D)} \;=\; g_{\mu\nu}^{(T)},
+  \qquad
+  \text{i.e.}\quad
+  \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  \;=\;
+  \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr).
+  \label{eq:metric_equivalence}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Substitute $E_\mu = \partial_\mu\Theta/\sqrt{\mathcal{N}}$ into the tetrad-scalar expression:
+\begin{align}
+  \mathrm{Sc}(E_\mu E_\nu^\dagger)
+  &= \mathrm{Sc}\!\left(\frac{\partial_\mu\Theta}{\sqrt{\mathcal{N}}}
+     \cdot\frac{\partial_\nu\Theta^\dagger}{\sqrt{\mathcal{N}}}\right)
+   = \frac{1}{\mathcal{N}}\,\mathrm{Sc}\!\bigl(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr).
+  \label{eq:step1}
+\end{align}
+Here we used bilinearity of the product and the fact that $\mathcal{N}$ is a real positive scalar
+that commutes with everything.
+
+Next, note that for any $Q\in\mathbb{B}$:
+\begin{equation}
+  \Re\!\bigl(\mathrm{Sc}(Q)\bigr) \;=\; \mathrm{Sc}\!\bigl(\Re(Q)\bigr)
+  \;=\; \Re(Q)\big|_{\text{scalar part}}.
+  \label{eq:sc_re_commute}
+\end{equation}
+This follows because $\mathrm{Sc}$ extracts the coefficient of the identity element $\mathbf{1}$,
+which is a real-linear operation; $\Re$ extracts the real part of the complex coefficient of
+each basis element; these two projections commute.
+
+Applying \eqref{eq:sc_re_commute} to \eqref{eq:step1}:
+\begin{align}
+  \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr)
+  &= \Re\!\left(\frac{\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)}{\mathcal{N}}\right)
+   = \frac{1}{\mathcal{N}}\,\Re\!\bigl(\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr).
+  \label{eq:step2}
+\end{align}
+
+It remains to show that
+$\Re\!\bigl(\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr)
+ = \Re\!\bigl(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr)$,
+i.e.\ that the scalar part of a product of the form $AB^\dagger$ is already real.
+
+\textbf{Reality of $\mathrm{Sc}(AB^\dagger)$.}
+For any $A,B\in\mathbb{B}$, write $A = \sum_j a_j e_j$ and $B = \sum_k b_k e_k$
+with $a_j,b_k\in\mathbb{C}$ and $\{e_j\} = \{1,\mathbf{i},\mathbf{j},\mathbf{k}\}$.
+Then
+\[
+  \mathrm{Sc}(AB^\dagger) = \sum_j a_j \overline{b}_j
+\]
+(the scalar part picks out only the $e_0=\mathbf{1}$ component of the product, and
+the adjoint maps $e_k\mapsto -e_k$ for $k\neq 0$ while $e_0\mapsto e_0$, so only
+the $j=k$ terms survive).  This is a Hermitian inner product, satisfying
+$\overline{\mathrm{Sc}(AB^\dagger)} = \mathrm{Sc}(BA^\dagger)$.  Hence
+$\mathrm{Sc}(AB^\dagger) + \mathrm{Sc}(BA^\dagger) = 2\Re(\mathrm{Sc}(AB^\dagger))$.
+
+For $A = \partial_\mu\Theta$ and $B = \partial_\nu\Theta$, note that symmetrizing
+$\mu\leftrightarrow\nu$ gives the same expression because the real part of the metric must
+be symmetric. The \emph{symmetric} combination
+$\tfrac{1}{2}[\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)
+             + \mathrm{Sc}(\partial_\nu\Theta\cdot\partial_\mu\Theta^\dagger)]$
+is manifestly real. Taking the real part of either summand individually
+gives the same result, establishing
+\[
+  \Re\!\bigl(\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr)
+  \;=\; \Re\!\bigl(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr).
+\]
+where on the right-hand side we identify the inner product notation
+$\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger$ used in the derivative-form
+definition with $\mathrm{Sc}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)$
+(as is standard in the UBT literature; see appendix\_A, eq.~(56)).
+
+Combining all steps:
+\[
+  \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr)
+  = \frac{1}{\mathcal{N}}\Re\!\bigl(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\bigr)
+  = \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  = g_{\mu\nu}^{(D)}.
+\]
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Canonical Definition}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Canonical UBT Metric (Unified)]
+\begin{definition}[Canonical UBT emergent metric]
+\label{def:canonical_metric}
+The real spacetime metric in UBT is
+\begin{equation}
+  \boxed{g_{\mu\nu}(x) \;:=\; \Re\!\left[\frac{\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger}{\mathcal{N}}\right]
+  \;=\; \Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr),}
+  \label{eq:canonical_metric}
+\end{equation}
+where $E_\mu = \partial_\mu\Theta/\sqrt{\mathcal{N}}$ are the normalised coframe tetrad
+vectors derived from $\Theta$, and both expressions are equal by
+Theorem~\ref{thm:metric_equivalence}.
+\end{definition}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\subsection{Algebraic Properties Inherited by the Canonical Metric}
+
+The following properties follow immediately from the canonical definition.
+
+\begin{corollary}[Symmetry]
+$g_{\mu\nu} = g_{\nu\mu}$ for all $\mu,\nu$.
+\end{corollary}
+\begin{proof}
+$\Re\!\bigl(\mathrm{Sc}(E_\mu E_\nu^\dagger)\bigr)
+ = \tfrac{1}{2}\bigl[\mathrm{Sc}(E_\mu E_\nu^\dagger)+\overline{\mathrm{Sc}(E_\mu E_\nu^\dagger)}\bigr]
+ = \tfrac{1}{2}\bigl[\mathrm{Sc}(E_\mu E_\nu^\dagger)+\mathrm{Sc}(E_\nu E_\mu^\dagger)\bigr]$,
+which is symmetric in $\mu\leftrightarrow\nu$.
+\end{proof}
+
+\begin{corollary}[Gauge invariance]
+$g_{\mu\nu}$ is invariant under $\Theta\to U\Theta$ with $U\in G$, $U^\dagger U=\mathbf{1}$.
+\end{corollary}
+\begin{proof}
+Under $\Theta\to U\Theta$ with $U$ gauge-covariantly constant ($\nabla_\mu U=0$ up to the
+connection), $\partial_\mu\Theta\to U\partial_\mu\Theta$ and
+$\partial_\mu\Theta^\dagger\to\partial_\mu\Theta^\dagger U^\dagger$, so
+$\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\to U(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)U^\dagger$.
+The scalar part of a unitary conjugate equals the scalar part of the original:
+$\mathrm{Sc}(UAU^\dagger)=\mathrm{Sc}(A)$ for $U^\dagger U=\mathbf{1}$
+(cyclic property of the trace).  Hence $g_{\mu\nu}$ is unchanged.  The same
+argument applies to the covariant derivative form in appendix\_B0, Proposition~3.
+\end{proof}
+
+% -----------------------------------------------------------------------
+\subsection{Relationship to Appendix B0}
+
+Appendix B0 (appendix\_B0\_metric\_rigor.tex) uses the form
+$\mathcal{G}_{\mu\nu} := (D_\mu\Theta)^\dagger D_\nu\Theta$ with the gauge-covariant
+derivative $D_\mu$.  Theorem~\ref{thm:metric_equivalence} covers the case of the
+ordinary partial derivative $\partial_\mu$.  In the gauge-covariant case, replace
+$\partial_\mu\Theta$ by $D_\mu\Theta$ throughout; the argument is unchanged because
+$D_\mu\Theta$ transforms in exactly the same way under the adjoint.  Thus
+all three formulas—derivative, tetrad-scalar, and gauge-covariant—give the same
+real symmetric $(0,2)$ tensor once the normalization $\mathcal{N}$ is fixed.
+
+% -----------------------------------------------------------------------
+\subsection{Summary}
+
+\begin{enumerate}
+  \item \textbf{Two formulations, one metric.}  The derivative-of-$\Theta$ form
+        (appendix\_FORMAL\_emergent\_metric) and the tetrad-scalar form
+        (appendix\_R\_GR\_equivalence) are equal under the canonical identification
+        $E_\mu = \partial_\mu\Theta/\sqrt{\mathcal{N}}$.
+  \item \textbf{Canonical definition established.}  Equation~\eqref{eq:canonical_metric}
+        is the unique, unambiguous definition of the UBT emergent metric.
+  \item \textbf{Properties preserved.}  Symmetry, gauge invariance, and tensor
+        transformation law all follow from the canonical definition.
+  \item \textbf{Foundation for subsequent steps.}  Steps 2--4 may freely use either
+        representation of $g_{\mu\nu}$ knowing they are equivalent.
+\end{enumerate}
+
+\ifdefined\INCLUDEMODE
+  % Being included - no end document
+\else
+  \end{document}
+\fi

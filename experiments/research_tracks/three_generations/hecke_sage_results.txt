@@ -1,0 +1,11 @@
+p=137 MATCH: k2=N38(a=-9) k4=N56(a=-1854) k6=N50(a=-32253)
+  mu=206.000 err=0.37%  tau=3583.67 err=3.06%
+
+p=139 MATCH #1: k2=N200(a=9) k4=N51(a=1864) k6=N10(a=30860)
+  mu=207.111 err=0.17%  tau=3428.89 err=1.39%
+
+p=139 MATCH #2: k2=N195(a=15) k4=N50(a=3100) k6=N54(a=53009)
+  mu=206.667 err=0.05%  tau=3533.93 err=1.63%
+
+Ramanujan bounds: all satisfied.
+Date: 2026-03-06

@@ -1,0 +1,101 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \title{\textbf{B-Identification Proof Status}\\
+         \large Bridge Between Vacuum-Polarization $B_0$ and $V_{\mathrm{eff}}(n)$ Coefficient $B$}
+  \author{Ing. David Jaro\v{s}}
+  \date{2026-05-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Goal}
+We test whether the one-loop running coefficient $B_0$ from vacuum polarization
+is rigorously identical to the coefficient $B$ in
+\begin{equation}
+V_{\mathrm{eff}}(n)=n^2-B\,n\ln n.
+\end{equation}
+
+\section{Starting point from canonical action}
+From
+\texttt{canonical/THEORY/canonical/canonical\_action.tex}, the kinetic sector is
+\begin{equation}
+\mathcal{L}_{\mathrm{kin}}=\mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right].
+\end{equation}
+With winding expansion along the compact phase direction,
+\begin{equation}
+\Theta(x,\psi)=\sum_{n\in\mathbb{Z}}\Theta_n(x)e^{in\psi},
+\end{equation}
+one obtains mode masses $m_n^2\sim n^2/R_\psi^2$ and one-loop determinants of
+Coleman--Weinberg type:
+\begin{equation}
+\Delta W_{\mathrm{1loop}}\sim \frac{1}{2}\sum_n\int\frac{d^4p}{(2\pi)^4}\ln\left(p^2+m_n^2\right).
+\end{equation}
+
+\section{What is proved vs. not proved}
+\begin{itemize}
+  \item \textbf{Proved:} $B_0$ controls logarithmic running in
+  $1/\alpha(\mu)$ through vacuum polarization.
+  \item \textbf{Not proved:} that the same coefficient must appear as the
+  multiplier of the $n\ln n$ term in $V_{\mathrm{eff}}(n)$.
+\end{itemize}
+
+Existing canonical/research derivations already indicate that direct
+one-loop determinants naturally produce different $n$-dependence unless an
+additional mechanism is supplied; therefore the equality $B=B_0$ is currently
+an \textbf{open identification problem}, not a theorem.
+
+\section{Lemma status}
+\begin{lemma}[Current bridge status]
+The identity
+\begin{equation}
+B\stackrel{?}{=}B_0
+\end{equation}
+is currently \textbf{not proved} from $S[\Theta]$ in the canonical alpha chain.
+\end{lemma}
+
+\begin{proof}
+$B_0$ comes from the photon two-point function (running-coupling sector), while
+$B$ in $V_{\mathrm{eff}}(n)$ comes from winding-mode effective action terms.
+A derivation equating these coefficients requires an explicit theorem mapping
+those two sectors. No such theorem currently exists in the audited canonical
+files; therefore the identification remains open.
+\end{proof}
+
+\section{Consequence for current alpha program}
+\begin{itemize}
+  \item If one uses the audited minimal-scalar loop count
+  ($N_{\mathrm{eff}}=3$ in \texttt{canonical/n\_eff/step2\_AUDIT.tex}), then
+  $B_0=2\pi$ and $n_*\approx 10.54$ in the currently used stationarity equation.
+  \item Therefore the route to $n_*=137$ is \textbf{conditional-weak} until both
+  (i) multiplicity audit gaps and (ii) $B_0\to B$ bridge gap are closed.
+\end{itemize}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

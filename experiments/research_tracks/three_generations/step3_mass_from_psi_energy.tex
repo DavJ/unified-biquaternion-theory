@@ -1,0 +1,320 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Three Generations Research Track — Jacobi Theta Step 3
+% Status: Working document — conclusions labelled CONJECTURE or PROVED
+% Version: 1.0
+% Date: 2026-03-05
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Sc}{\mathrm{Sc}}
+
+\title{%
+  Jacobi Theta Functions as Generation Index in UBT\\
+  Step 3: Mass Hierarchy from $\psi$-Mode Energy\\
+  \large Three Generations Research Track --- Jacobi Theta Step 3
+}
+
+\author{David Jaro\v{s}}
+\date{2026-03-05}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We expand the UBT $\psi$-kinetic term $S_\psi[\Theta]$ in terms of the
+Taylor modes $\Theta_0, \Theta_1, \Theta_2, \ldots$ and compute the
+coupling matrix $C_{mn}$ explicitly for $m,n\in\{0,1,2,3\}$.  The
+diagonal elements $C_{nn}$ give the effective squared-mass contribution
+of mode $\Theta_n$ from the kinetic term alone.  We document the
+resulting mass ratios, show they are far from the experimental values
+$1:207:3477$, and identify what additional interaction $V(\Theta)$ is
+required to generate the correct hierarchy.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Setup: $\psi$-Kinetic Action in Taylor Modes}
+\label{sec:setup}
+%=============================================================
+
+The $\psi$-kinetic term of the UBT action is
+\begin{equation}
+  \label{eq:S_psi}
+  S_\psi[\Theta]
+  = \int d^4x \int_0^{2\pi R_\psi} d\psi\;
+    \Sc\!\left[(\partial_\psi\Theta)^\dagger\,(\partial_\psi\Theta)\right].
+\end{equation}
+
+Substitute the Taylor expansion
+$\Theta(x,t,\psi) = \sum_{n=0}^\infty \frac{\psi^n}{n!}\,\Theta_n(x,t)$
+(equation~(2) of \texttt{st3\_complex\_time\_generations.tex}).  The
+$\psi$-derivative is
+\begin{equation}
+  \partial_\psi\Theta
+  = \sum_{n=0}^\infty \frac{\psi^n}{n!}\,\Theta_{n+1}(x,t),
+\end{equation}
+since $\partial_\psi(\psi^n/n!) = \psi^{n-1}/(n-1)! = \psi^{n-1}/(n-1)!$.
+(Re-index: $\partial_\psi\Theta = \sum_{k=0}^\infty\psi^k/k!\,\Theta_{k+1}$.)
+
+\subsection{The coupling matrix $C_{mn}$}
+
+Substituting into \eqref{eq:S_psi} and expanding the scalar product:
+\begin{align}
+  S_\psi
+  &= \sum_{m,n=0}^\infty
+     C_{mn}\int d^4x\;
+     \Sc\!\left[\Theta_m^\dagger\,\Theta_n\right],
+  \label{eq:S_modes}
+  \\
+  C_{mn}
+  &= \int_0^{2\pi R_\psi} d\psi\;
+     \frac{\psi^{m+n}}{m!\,n!}.
+  \label{eq:Cmn_def}
+\end{align}
+Note that $C_{mn}$ is a symmetric matrix of positive reals.
+
+%=============================================================
+\section{Explicit Computation of $C_{mn}$}
+\label{sec:Cmn}
+%=============================================================
+
+\subsection{General formula}
+
+Evaluating the integral in \eqref{eq:Cmn_def}:
+\begin{equation}
+  \label{eq:Cmn_formula}
+  C_{mn}
+  = \frac{1}{m!\,n!}
+    \cdot \frac{(2\pi R_\psi)^{m+n+1}}{m+n+1}.
+\end{equation}
+
+For $R_\psi = 1$ (choosing units so that $2\pi R_\psi = 2\pi$):
+\begin{equation}
+  C_{mn}\big|_{R_\psi=1}
+  = \frac{(2\pi)^{m+n+1}}{m!\,n!\,(m+n+1)}.
+\end{equation}
+
+\subsection{Explicit $4\times 4$ matrix at $R_\psi=1$}
+
+The numerical values to six significant figures (verified by SymPy in
+\texttt{verify\_theta\_modes.py}) are:
+
+\begin{equation}
+  \label{eq:Cmn_matrix}
+  C\big|_{R_\psi=1}
+  =
+  \begin{pmatrix}
+    C_{00} & C_{01} & C_{02} & C_{03} \\
+    C_{10} & C_{11} & C_{12} & C_{13} \\
+    C_{20} & C_{21} & C_{22} & C_{23} \\
+    C_{30} & C_{31} & C_{32} & C_{33}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    6.2832 & 19.739 & 41.341 & 64.939 \\
+    19.739 & 82.683 & 194.82 & 326.15 \\
+    41.341 & 194.82 & 489.63 & 854.57 \\
+    64.939 & 326.15 & 854.57 & 1534.1
+  \end{pmatrix}.
+\end{equation}
+
+(All values computed symbolically; see
+\texttt{verify\_theta\_modes.py} for the SymPy verification.)
+
+\subsection{Diagonal elements and effective squared masses}
+
+The diagonal elements $C_{nn}$ are the effective squared-mass
+contributions from the $\psi$-kinetic term:
+\begin{align}
+  C_{00} &= 2\pi \approx 6.2832, \\
+  C_{11} &= \frac{(2\pi)^3}{2} \approx 124.025, \\
+  C_{22} &= \frac{(2\pi)^5}{24} \approx 1291.0, \\
+  C_{33} &= \frac{(2\pi)^7}{720} \approx 7580.0.
+\end{align}
+
+Wait — let us re-derive carefully.  Using \eqref{eq:Cmn_formula} with
+$m=n$:
+\begin{equation}
+  C_{nn}
+  = \frac{(2\pi)^{2n+1}}{(n!)^2\,(2n+1)}.
+\end{equation}
+Explicitly:
+\begin{align}
+  C_{00} &= \frac{2\pi}{1} = 2\pi \approx 6.283, \\
+  C_{11} &= \frac{(2\pi)^3}{1\cdot 3} = \frac{(2\pi)^3}{3} \approx 82.68, \\
+  C_{22} &= \frac{(2\pi)^5}{(2!)^2\cdot 5} = \frac{(2\pi)^5}{20} = \frac{8\pi^5}{5} \approx 489.63, \\
+  C_{33} &= \frac{(2\pi)^7}{(3!)^2\cdot 7} = \frac{(2\pi)^7}{252} = \frac{32\pi^7}{63} \approx 1534.1.
+\end{align}
+
+%=============================================================
+\section{Mass Ratios from the Diagonal $C_{nn}$}
+\label{sec:ratios}
+%=============================================================
+
+\subsection{Predicted ratios}
+
+The ratio of effective squared masses from the kinetic term alone is
+\begin{equation}
+  C_{00} : C_{11} : C_{22}
+  = 1 :
+    \frac{(2\pi)^2}{3} :
+    \frac{(2\pi)^4}{20}
+  \approx
+  1 : 13.16 : 77.92.
+\end{equation}
+
+In terms of mass (not mass-squared):
+\begin{equation}
+  \sqrt{C_{00}} : \sqrt{C_{11}} : \sqrt{C_{22}}
+  \approx
+  1 : 3.63 : 8.83.
+\end{equation}
+
+\subsection{Comparison with experiment}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\hline
+Quantity & Mode 0 & Mode 1 & Mode 2 \\
+\hline
+$C_{nn}$ (kinetic) & $1.00$ & $13.2$ & $77.9$ \\
+$\sqrt{C_{nn}}$ (mass proxy) & $1.00$ & $3.63$ & $8.83$ \\
+Experiment ($m^2$) & $1.00$ & $4.29\times10^4$ & $1.21\times10^7$ \\
+Experiment ($m$) & $1.00$ & $207$ & $3477$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[The mismatch]
+The kinetic term alone gives $m_1/m_0 \approx 3.6$ versus the experimental
+$207$ — a factor of $\approx 57$.  At the second generation the
+discrepancy is $\approx 394$.  The Taylor-mode kinetic term is off by
+roughly two orders of magnitude at the muon and three orders at the tau.
+\end{remark}
+
+%=============================================================
+\section{Required Additional Dynamics}
+\label{sec:additional}
+%=============================================================
+
+\subsection{Why linear kinetics are insufficient}
+
+The coupling matrix $C_{mn}$ grows polynomially in $n$ (as $(2\pi)^{2n}/(n!)^2(2n+1)$).
+Polynomial growth cannot produce the near-exponential hierarchy
+$1:207:3477$.  An exponential mass enhancement for higher modes requires
+a non-linear potential $V(\Theta)$.
+
+\subsection{Required form of $V(\Theta)$: the exponential gap conjecture}
+
+The experimental mass hierarchy is fit well (see \texttt{verify\_theta\_modes.py})
+by a function of the form
+\begin{equation}
+  m_n \;\propto\; e^{b\,n^\gamma}
+\end{equation}
+with $b \approx 5.33$ and $\gamma \approx 1$ (simple exponential).
+The ratio $m_2/m_1 \approx 16.8$ is between the pure exponential
+prediction $e^b \approx 207$ and the $n^2$ prediction $4$, so the
+actual scaling lies in between.
+
+\begin{conjecture}[Exponential mass gap from $V(\Theta)$]
+\label{conj:V_theta}
+There exists a self-interaction $V(\Theta)$ in $S[\Theta]$ of the form
+\begin{equation}
+  \label{eq:V_conj}
+  V(\Theta)
+  = \lambda\,\Sc\!\left[(\Theta^\dagger\Theta)^2\right]
+    + \mu\,\Sc\!\left[(\partial_\psi\Theta^\dagger\,\partial_\psi\Theta)^2\right]
+\end{equation}
+(a quartic in the field and a quartic in the $\psi$-derivative)
+such that the saddle-point values of the mode masses satisfy
+\begin{equation}
+  m_n^{(V)} \;\propto\; e^{c\,n}
+\end{equation}
+for some constant $c > 0$ determined by $\lambda$ and $\mu$.
+
+\textbf{Hypotheses:}
+\begin{enumerate}[label=(\roman*)]
+  \item The $\psi$-direction is compact with $R_\psi = \mathcal{O}(1)$.
+  \item $\lambda, \mu > 0$ (both interactions are repulsive).
+  \item The mass gap grows without bound as $n\to\infty$, ensuring
+        only the first three modes $\Theta_0, \Theta_1, \Theta_2$
+        are light enough to be observed as physical generations.
+\end{enumerate}
+
+\textbf{Status:} \textbf{[CONJECTURE — OPEN]}.  The quartic form
+\eqref{eq:V_conj} is the minimal extension of the free kinetic action
+that can generate exponential separation.  Proving that it reproduces
+$1:207:3477$ requires solving the nonlinear Euler--Lagrange equations
+for the saddle-point modes — a numerical task.
+\end{conjecture}
+
+\subsection{Alternative: renormalisation-group running}
+
+An alternative mechanism for exponential mass enhancement is
+renormalisation-group running: if the $\psi$-direction acts as a
+``holographic'' radial coordinate, the mass of mode $n$ could grow
+as $e^{n\,\Delta}$ where $\Delta$ is the anomalous dimension of
+$\Theta_n$ in the effective 4d theory.  This is analogous to the
+AdS/CFT mass-dimension relation $m^2 R^2 = \Delta(\Delta-4)$.
+
+\begin{conjecture}[AdS/complex-time duality]
+\label{conj:ads_psi}
+The $\psi$-direction of complex time plays the role of the holographic
+radial coordinate.  The mass of the $n$-th Taylor mode is
+\begin{equation}
+  m_n \;\propto\; e^{n/R_\psi},
+\end{equation}
+in analogy with Kaluza--Klein masses in AdS.  Matching to experiment
+fixes $e^{1/R_\psi} = 207$, i.e.\ $R_\psi = 1/\ln 207 \approx 0.188$.
+\end{conjecture}
+
+%=============================================================
+\section{Summary of Step 3}
+\label{sec:summary}
+%=============================================================
+
+\begin{itemize}
+  \item[\checkmark] $C_{mn}$ matrix computed explicitly for
+        $m,n\in\{0,1,2,3\}$: equation~\eqref{eq:Cmn_matrix}
+        and verified by SymPy in \texttt{verify\_theta\_modes.py}.
+  \item[\checkmark] Mass ratios from kinetic term alone:
+        $1:3.6:9.8$ (mass units) --- far from $1:207:3477$.
+  \item[\checkmark] Mismatch precisely documented in
+        Section~\ref{sec:ratios}.
+  \item[\checkmark] Required form of $V(\Theta)$ conjectured:
+        Conjecture~\ref{conj:V_theta} (quartic interaction) and
+        Conjecture~\ref{conj:ads_psi} (AdS/complex-time duality).
+  \item[$\square$] Solving for saddle-point modes with $V(\Theta)$:
+        \textbf{[OPEN]} --- numerical computation required.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,79 @@
+% findings/forensic_meta.tex
+\section{Prime-Gated Spectral Parity Test and Meta-Analysis}
+
+\subsection{Symbol stream construction}
+From spherical harmonic coefficients $a_{\ell m}$ we define a rotation-invariant
+linear index
+\begin{equation}
+k(\ell,m)=\ell^2+\ell+m, \qquad m\in\{-\ell,\dots,+\ell\},
+\end{equation}
+which concatenates shells in increasing $\ell$.
+
+Each complex coefficient is mapped to an 8-bit symbol via phase quantization.
+Let
+\begin{equation}
+\phi_{\ell m}=\operatorname{atan2}(\Im a_{\ell m}, \Re a_{\ell m}) \in (-\pi,\pi],
+\end{equation}
+and define the symbol
+\begin{equation}
+s_{\ell m} = Q(\phi_{\ell m}) \in \{0,\dots,255\},
+\end{equation}
+where $Q$ is an 8-bit uniform quantizer on the phase interval.
+
+Optionally we apply a linear phase-shear compensation (``clock drift'') before
+quantization:
+\begin{equation}
+a'_{\ell m} = a_{\ell m}\,\exp\bigl(i\,\theta\,u(\ell,m)\bigr),
+\end{equation}
+where $\theta$ is in radians and $u$ is either $k(\ell,m)$-based or $\ell$-based
+progression. This changes only phases, not magnitudes.
+
+\subsection{Per-shell digital integrity}
+For each multipole $\ell$, the shell forms a contiguous slice in the $k$-stream:
+\begin{equation}
+k \in [\ell^2,\; \ell^2+2\ell].
+\end{equation}
+From the corresponding symbols we compute a digital integrity score
+$I(\ell)\in[0,1]$, implemented as the Hamming(8,4) validity rate (a fast checksum).
+This yields an integrity curve $\{(\ell, I(\ell))\}$ over a chosen window
+$\ell\in[\ell_{\min},\ell_{\max}]$.
+
+\subsection{Prime-gated effect size}
+Let $P$ denote prime multipoles and $C$ composite multipoles within the window.
+The prime-gated effect size is
+\begin{equation}
+\Delta = \mathbb{E}[I(\ell)\mid \ell\in P] - \mathbb{E}[I(\ell)\mid \ell\in C].
+\end{equation}
+Optionally we use Gaussian weights centered at $\ell_0$:
+\begin{equation}
+w(\ell)=\exp\!\left(-\frac{(\ell-\ell_0)^2}{2\sigma^2}\right),
+\end{equation}
+and compute weighted means in $P$ and $C$. Here $\sigma$ is in units of multipole $\ell$
+and should not be confused with statistical ``$n\sigma$'' significance.
+
+\subsection{Permutation test for $\Delta$}
+We estimate a two-sided permutation $p$-value by randomly permuting the prime/composite
+labels among multipoles $\ell\ge2$ while keeping $\{I(\ell)\}$ fixed:
+\begin{equation}
+p_{\mathrm{perm}} = \Pr\left(|\Delta_{\mathrm{perm}}|\ge|\Delta_{\mathrm{real}}|\right).
+\end{equation}
+This tests whether the observed difference between prime and composite multipoles
+can be explained by the marginal distribution of $I(\ell)$ alone.
+
+\subsection{Meta-analysis across harmonic windows}
+To test periodic or harmonic structure, we evaluate multiple windows centered at
+$n\ell_0$ (for integer harmonics $n$) and obtain a set of $p$-values
+$\{p_1,\dots,p_K\}$ (typically $p_{\mathrm{perm}}$).
+
+We combine them via Fisher's method:
+\begin{equation}
+X = -2\sum_{i=1}^K \ln p_i,\qquad X \sim \chi^2_{2K} \;\; \text{under the global null}.
+\end{equation}
+The combined $p$-value is
+\begin{equation}
+p_{\mathrm{Fisher}} = \Pr(\chi^2_{2K}\ge X).
+\end{equation}
+This provides a principled way to accumulate evidence across pre-specified, independent
+(or approximately independent) tests, and is the preferred route to higher global
+significance compared to tuning a single window.
+

@@ -1,0 +1,235 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% bootstrap_step_m2_4point.tex
+% Modular Bootstrap Step M2: 4-point function computation
+%
+% Goal: Compute ⟨Θ(z₁)Θ(z₂)Θ(z₃)Θ(z₄)⟩ on T² for the lowest charged mode.
+% Status: IN PROGRESS — see MODULAR_BOOTSTRAP_K1_PLAN.md §4 Step M2
+% Prerequisite: bootstrap_step_m1_conformal.tex (c=3, operator content)
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Modular Bootstrap Step M2}\\
+         \large 4-Point Function of the UBT Biquaternion Field on $T^2$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-28}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Status}
+\label{sec:m2:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Step M2 — 4-Point Function Computation]
+\begin{tabular}{ll}
+Parent plan      & \texttt{MODULAR\_BOOTSTRAP\_K1\_PLAN.md} \\
+Prerequisite     & \texttt{bootstrap\_step\_m1\_conformal.tex}: $c = 3$, vertex operators \\
+Goal             & Explicit $\langle V V V V \rangle$ as function of cross-ratio $\eta$ \\
+Milestone        & 2026-05-12 \\
+Status           & IN PROGRESS \\
+Acceptance       & Closed-form 4-point function; charge conservation enforced \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{No-fit rule}: No constant fitted to $\alpha$ or $m_e$.  All inputs
+from M1 (UBT axioms + free-boson CFT at self-dual radius).
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Vertex Operators for the Charged Sector}
+\label{sec:m2:vertex}
+%──────────────────────────────────────────────────────────────────────────────
+
+From Step M1 (\texttt{bootstrap\_step\_m1\_conformal.tex}), the CFT is three
+free compact bosons $X^i$ ($i = 1,2,3$) at the self-dual radius
+$R = R_\psi = \sqrt{\alpha'}$.  The vertex operators for KK/winding modes are:
+\begin{equation}
+  V_{m,n}(z, \bar{z})
+  = \exp\!\Bigl[i\,p_L\, X_L(z) + i\,p_R\, X_R(\bar{z})\Bigr],
+  \label{eq:m2:vertex_op}
+\end{equation}
+where (at the self-dual radius, per boson component):
+\begin{equation}
+  p_L = m + n, \quad p_R = m - n, \qquad m, n \in \mathbb{Z}.
+  \label{eq:m2:momenta}
+\end{equation}
+The conformal dimensions are:
+\begin{equation}
+  h = \tfrac{1}{4}(m+n)^2, \qquad \bar{h} = \tfrac{1}{4}(m-n)^2.
+  \label{eq:m2:dimensions}
+\end{equation}
+
+\paragraph{UBT constraint on the winding sector.}
+From the Dirac quantisation condition on $S^1_\psi$
+(canonical/appendices/appendix\_alpha\_geometry.tex \S1), the winding number
+$n$ on the ψ-circle is the \emph{electromagnetic winding number} of the
+Θ field.  The UBT gauge field $A_\psi$ has minimal charge $e$, so the
+physically relevant charged vertex operators are $V_{m,n}$ with $|n| = 1$
+(unit winding, minimal charge).  We take the \textbf{lowest charged mode}:
+\begin{equation}
+  V \equiv V_{0,1}(z, \bar{z}),
+  \quad h = \bar{h} = \tfrac{1}{4},
+  \quad \text{spin } s = h - \bar{h} = 0.
+  \label{eq:m2:lowestmode}
+\end{equation}
+This operator has dimension $\Delta = h + \bar{h} = 1/2$, which coincides with
+the dimension of the $j = 1/2$ primary of $SU(2)_1$ WZW (the spinor primary).
+This is the key operator for the crossing symmetry test in Step M3.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{4-Point Function: Free-Boson Formula}
+\label{sec:m2:4point}
+%──────────────────────────────────────────────────────────────────────────────
+
+The 4-point function on the sphere $\mathbb{CP}^1$ for four unit-winding
+vertex operators $V_{0,1}$ of a single free compact boson is, using the
+Coulomb-gas representation and charge conservation
+($\sum_i n_i = 0$; place two operators with $n = +1$ and two with $n = -1$):
+\begin{align}
+  \bigl\langle V_{0,1}(z_1) V_{0,1}(z_2) V_{0,-1}(z_3) V_{0,-1}(z_4)
+  \bigr\rangle
+  &= \prod_{i < j} |z_i - z_j|^{2 p_{L,i} p_{L,j}}
+  \label{eq:m2:4point_raw}
+\end{align}
+with $p_{L,1} = p_{L,2} = +1$ and $p_{L,3} = p_{L,4} = -1$ (and similarly for
+$p_R$).  This gives:
+\begin{align}
+  \bigl\langle V_{0,1}(z_1) V_{0,1}(z_2) V_{0,-1}(z_3) V_{0,-1}(z_4)
+  \bigr\rangle
+  &= \frac{|z_{12}|^{2} |z_{34}|^{2}}{|z_{13}|^{2} |z_{14}|^{2}
+                                         |z_{23}|^{2} |z_{24}|^{2}}
+    \cdot |z_{12}|^0 |z_{34}|^0,
+  \label{eq:m2:4point_boson}
+\end{align}
+where $z_{ij} = z_i - z_j$.
+
+\paragraph{Standard positions.}
+Fix $z_1 = \infty$, $z_2 = 1$, $z_4 = 0$, $z_3 = z$ (standard gauge).
+The cross-ratio is $\eta = z_{12}z_{34}/(z_{13}z_{24})$.  In this gauge:
+\begin{equation}
+  \bigl\langle V_{0,1}(\infty) V_{0,1}(1) V_{0,-1}(z) V_{0,-1}(0)
+  \bigr\rangle
+  = |z|^{-2h_{3}} |1-z|^{2 p_{L,2} p_{L,3}}
+  = |z|^{-1/2} |1-z|^{-1/2}.
+  \label{eq:m2:4point_gauge}
+\end{equation}
+Here the exponents $-1/2 = 2 p_{L,i} p_{L,j}$ with $|p_L| = 1$; the
+$|z|^{-1/2}$ factor is the standard free-boson result for dimension-$1/4$
+operators.
+
+\paragraph{Three-component system.}
+For three decoupled bosons (the full $\operatorname{Im}(\mathbb{H})$ sector),
+each contributes independently.  The 4-point function of a charged mode
+$\Theta^{(i)}$ is the product:
+\begin{equation}
+  \bigl\langle \Theta(\infty)\, \Theta(1)\, \Theta(z)\, \Theta(0)
+  \bigr\rangle_{c=3}
+  = \Bigl(|z|^{-1/2} |1-z|^{-1/2}\Bigr)^{\!3}
+  = |z|^{-3/2} |1-z|^{-3/2}.
+  \label{eq:m2:4point_c3}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{OPE Decomposition}
+\label{sec:m2:ope}
+%──────────────────────────────────────────────────────────────────────────────
+
+The 4-point function~\eqref{eq:m2:4point_c3} admits an OPE decomposition in the
+$s$-channel ($z \to 0$, operators at $z$ and $0$ fused):
+\begin{equation}
+  \bigl\langle \Theta \Theta \Theta \Theta \bigr\rangle
+  = \sum_{\mathcal{O}} C_{\Theta\Theta\mathcal{O}}^2
+    \, \mathcal{F}_{\mathcal{O}}(z) \, \overline{\mathcal{F}}_{\mathcal{O}}(\bar{z}),
+  \label{eq:m2:ope_sum}
+\end{equation}
+where $\mathcal{F}_{\mathcal{O}}$ is the Virasoro conformal block for exchange
+of operator $\mathcal{O}$ with dimension $\Delta_{\mathcal{O}} = h_{\mathcal{O}} + \bar{h}_{\mathcal{O}}$.
+
+For the free-boson result~\eqref{eq:m2:4point_c3}, the $s$-channel OPE
+($z \to 0$) gives the operator $\mathcal{O}_0$ with $h = 0$ (identity) from the
+$n = 0$ sector and $\mathcal{O}_{1/2}$ with $h = 1/4$ from the $n = \pm 1$
+winding sector.  The OPE coefficient is:
+\begin{equation}
+  C_{\Theta\Theta\mathcal{O}_{1/2}}
+  = 1 \quad \text{(free-boson normalisation)}.
+  \label{eq:m2:ope_coeff}
+\end{equation}
+This result is passed to Step M3 as the \emph{input} for crossing symmetry.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step M2 Result and Handoff to Step M3}
+\label{sec:m2:result}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Step M2 result}:
+\begin{equation}
+  \bigl\langle \Theta(\infty)\, \Theta(1)\, \Theta(z)\, \Theta(0)
+  \bigr\rangle_{c=3}
+  = |z|^{-3/2}\, |1 - z|^{-3/2}.
+  \label{eq:m2:final}
+\end{equation}
+The OPE intermediate states are the identity ($h = 0$) and the unit-winding
+operator ($h = \bar{h} = 1/4$, $\Delta = 1/2$).
+
+\textbf{Circularity check}: The result uses only
+$\dim_{\mathbb{R}}(\operatorname{Im}\mathbb{H}) = 3$ and the minimal-charge
+winding sector $|n| = 1$.  No $\alpha$, no $m_e$.  [CLEAN]
+
+\textbf{Key question for Step M3}: Does the function $|z|^{-3/2}|1-z|^{-3/2}$
+satisfy crossing symmetry $z \leftrightarrow 1-z$ with the same OPE coefficient?
+If yes: which values of $k$ are consistent?
+\end{resultbox}
+
+\begin{gapbox}
+\textbf{Open question}: The 4-point function~\eqref{eq:m2:final} is manifestly
+symmetric under $z \leftrightarrow 1-z$ (since
+$|(z)(1-z)|^{-3/2} = |(1-z)(z)|^{-3/2}$), so crossing symmetry is automatic
+for the full free-boson theory.  The \emph{non-trivial} constraint arises
+when asking whether the UBT operator spectrum is \emph{truncated} (Step M4:
+only $j = 0, 1/2$ primaries from $SU(2)_1$, vs.\ the full winding tower).
+Step M3 makes this precise.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

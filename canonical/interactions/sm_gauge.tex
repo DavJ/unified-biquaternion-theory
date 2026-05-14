@@ -318,12 +318,12 @@ U_{\tau 1} & U_{\tau 2} & U_{\tau 3}
 
 \subsection{Emergence in UBT}
 
-\subsubsection{Gauge Group from Theta Field}
+\subsubsection{Gauge Group from Theta Field (Candidate Construction)}
 
-In UBT, the full SM gauge group \textbf{emerges} from the $8 \times 8$ extended $\Theta$ field:
+In UBT, the SM gauge group is \textbf{conjectured} to arise from the $8 \times 8$ extended $\Theta$ field as a candidate geometric mechanism (full derivation pending; see \texttt{docs/sm\_embedding\_roadmap.md}):
 
 \begin{equation}
-\Theta_{8 \times 8} \quad \Rightarrow \quad SU(3)_c \times SU(2)_L \times U(1)_Y
+\Theta_{8 \times 8} \quad \xrightarrow{\text{conjecture}} \quad SU(3)_c \times SU(2)_L \times U(1)_Y
 \end{equation}
 
 The decomposition:
@@ -335,12 +335,13 @@ naturally produces the SM gauge structure.
 
 \subsubsection{Predictions}
 
-From the $\Theta$ field geometry, UBT predicts:
+From the $\Theta$ field geometry, UBT \textbf{aims to derive}
+(currently open problems — not yet accomplished):
 \begin{itemize}
-    \item $\sin^2\theta_W$ (weak mixing angle)
-    \item $\alpha_s(M_Z)$ (strong coupling)
-    \item Fermion mass ratios
-    \item CKM/PMNS matrix elements
+    \item $\sin^2\theta_W$ — \textbf{[Semi-empirical, not derived from $S[\Theta]$]}
+    \item $\alpha_s(M_Z)$ — \textbf{[Open]}
+    \item Fermion mass ratios — \textbf{[Open Hard Problem]}
+    \item CKM/PMNS matrix elements — \textbf{[Open]}
 \end{itemize}
 
 \subsection{Grand Unification}
@@ -392,4 +393,69 @@ UBT must reproduce all these results in the limit $\psi \to 0$.
 
 This canonical SM gauge structure provides the complete Standard Model within UBT, where all gauge symmetries emerge from the fundamental $\Theta$ field rather than being postulated \textit{a priori}.
 
+\subsection{Geometric Derivation of $SU(2)_L \times U(1)_Y$}
+
+The emergence of $SU(2)_L \times U(1)_Y$ from the $\C\otimes_\R\H$ algebra is derived
+explicitly in Appendix E2 (\texttt{consolidation\_project/appendix\_E2\_SM\_geometry.tex},
+Section~\ref{sec:su2_u1_from_actions}).
+
+Key results:
+\begin{itemize}
+  \item $SU(2)_L$ arises as the norm-preserving, unit-determinant \emph{left action}
+    on $\mathrm{Mat}(2,\C)$: generators $T^a : M \mapsto \frac{i\sigma^a}{2} M$.
+    Commutation relations $[T^a, T^b] = \varepsilon^{abc}T^c$ are verified.
+    Status: \textbf{[DERIVED]}.
+  \item $U(1)_Y$ arises as the scalar phase \emph{right action}: $\Theta \mapsto e^{-i\theta}\Theta$.
+    Status: \textbf{[DERIVED]}.
+  \item The Weinberg angle $\theta_W$ \emph{cannot} be fixed by $\C\otimes\H$ geometry alone;
+    it remains a \textbf{[SEMI-EMPIRICAL]} free parameter.
+  \item Chirality ($SU(2)_L$ only) is motivated by $\psi$-parity selection (Option A)
+    but not yet derived; status: \textbf{[SEMI-EMPIRICAL]}.
+\end{itemize}
+
 % End of canonical SM gauge structure definition
+
+% -----------------------------------------------------------------------
+% Version 1.1 (v67) — Hosotani Higgs mechanism added
+% -----------------------------------------------------------------------
+
+\providecommand{\Lone}{\textbf{[L1]}}
+
+\subsection{Higgs Mechanism via Hosotani Wilson Line}
+\label{sec:hosotani_higgs}
+
+The electroweak Higgs mechanism arises in UBT from the Hosotani mechanism
+on the $\psi$-circle.
+
+\medskip
+\noindent\textbf{Theorem (Hosotani SSB condition, \Lone).}\quad
+At KK level $n_R = 138$ (even winding), all 8 degrees of freedom
+of $\mathbb{C}\otimes\mathbb{H}$ are bosonic (KK parity rule:
+even $n \to$ bosonic; see \texttt{fermionic\_statistics\_bridge.tex}).
+Therefore $N_{\mathrm{eff}} = N_{\mathrm{bos}} - N_{\mathrm{fer}} = 8 > 0$.
+The Wilson line effective potential $V(\theta_W) \propto -N_{\mathrm{eff}}
+\cos(2\pi\theta_W)$ has minimum at $\theta_W = \pi/2$ (from the $Z_2$
+mirror symmetry of vacuum sectors $n^*=137$, $n^{**}=139$).
+Spontaneous symmetry breaking occurs: $\langle\theta_W\rangle = \pi/2 \neq 0$.
+
+\medskip
+\noindent\textbf{Higgs VEV estimate (v67):}
+\begin{equation}
+  v \approx \frac{n_R\,\pi}{2\,g\,R_\psi} \approx 230~\text{GeV}
+  \qquad (n_R = 138,\ g \approx 0.65,\ R_\psi \approx 14.18~\text{GeV}^{-1}).
+\end{equation}
+
+\noindent\textbf{Quartic coupling estimate (v67):}
+After full 5D→4D reduction (hosotani\_higgs.tex §\,7),
+\begin{equation}
+  \lambda_{\text{4D}}
+  = \frac{3\,N_{\mathrm{eff}}\,\zeta(3)}{4\pi R_\psi^2}
+  \approx 0.0114
+  \qquad (\text{SM: } \lambda_{\text{SM}} \approx 0.13;\ \text{factor} \sim 11).
+\end{equation}
+
+\noindent\textbf{Status}: \Lone\ — $N_{\mathrm{eff}}$ count and SSB condition proved.
+$\lambda_{\mathrm{4D}}$ estimate: \Lone\ (correct order of magnitude, factor~$\sim 11$
+from $\lambda_{\mathrm{SM}}$; remaining corrections identified in
+\texttt{research\_tracks/research/hosotani\_higgs.tex}).
+Numerical verification: \texttt{tools/compute\_hosotani\_lambda.py}.

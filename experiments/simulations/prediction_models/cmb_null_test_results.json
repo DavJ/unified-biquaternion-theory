@@ -1,0 +1,19 @@
+{
+  "model": "UBT_Variant_C_CMB_comb",
+  "prediction": {
+    "delta_l": 137,
+    "delta_l_source": "DERIVED from winding number quantization",
+    "A_comb": 0.02,
+    "A_comb_source": "EMPIRICAL: amplitude not derived from UBT"
+  },
+  "null_test": {
+    "n_realizations": 100,
+    "p95_noise_threshold": 936.691452,
+    "estimated_A_comb_upper_limit": 0.167978,
+    "actual_planck_result": "p = 0.919 (NULL)",
+    "null_result": true,
+    "interpretation": "NULL confirmed: Planck PR3 found p=0.919. Upper limit on comb amplitude: A_comb < 1.68e-01 (approx.)."
+  },
+  "conclusion": "CMB TT comb NOT confirmed (consistent with Planck PR3 p=0.919)",
+  "reference": "FINGERPRINTS/null_results/combined_verdict.md"
+}

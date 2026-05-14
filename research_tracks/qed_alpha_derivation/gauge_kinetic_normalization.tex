@@ -1,0 +1,78 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Gauge Kinetic Normalization in the UBT-to-QED Reduction}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\section{Objective}
+We track normalization factors entering
+\begin{equation}
+S_{\mathrm{eff}}\supset -\frac{1}{4e^2}\int d^4x\,\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu},
+\end{equation}
+starting from the canonical UBT gauge terms.
+
+\section{Canonical normalization basis}
+The electroweak gauge terms in canonical form are
+\begin{equation}
+\mathcal{L}_{\mathrm{gauge}}=-\frac14 W^i_{\mu\nu}W^{i\mu\nu}-\frac14 B_{\mu\nu}B^{\mu\nu}.
+\end{equation}
+For non-abelian sectors, generator traces are normalized as
+\begin{equation}
+\mathrm{Tr}(T^aT^b)=\frac12\delta^{ab},\qquad
+\mathrm{Tr}(\tau^i\tau^j)=\frac12\delta^{ij},
+\end{equation}
+which fixes relative normalization conventions but does not by itself fix the absolute
+abelian coupling normalization.
+
+\section{Factor bookkeeping}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Source & Factor & Role \\
+\midrule
+Gauge kinetic definition & $1/4$ & Antisymmetric tensor normalization \\
+Electromagnetic conversion & $\mathcal{A}_\mu=eA_\mu$ & Moves $e$ from matter vertex to kinetic prefactor \\
+Fine-structure definition & $4\pi$ & $\alpha=e^2/(4\pi)$ in Heaviside-Lorentz units \\
+Compact phase volume & $2\pi R_\psi$ & Appears after $\psi$ integration of higher-dimensional action \\
+Zero-mode normalization & $(2\pi R_\psi)^{-1/2}$ & Cancels volume in canonically normalized 4D fields \\
+EW mixing & $(\sin\theta_W,\cos\theta_W)$ & Orthogonal rotation, no extra Jacobian \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Compactification and coupling normalization}
+If one starts from a higher-dimensional kinetic term on
+$\mathcal{M}_4\times S^1_\psi$ with circumference $2\pi R_\psi$, dimensional reduction
+typically gives
+\begin{equation}
+\frac{1}{e_4^2}=\frac{2\pi R_\psi}{e_5^2}
+\qquad\Longleftrightarrow\qquad
+e_4^2=\frac{e_5^2}{2\pi R_\psi}.
+\end{equation}
+So compactification fixes the 4D coupling only if the parent coupling and radius are
+already fixed by an independent principle in $S[\Theta]$.
+
+\section{Decision on \texorpdfstring{$e^2$}{e2} status}
+\textbf{Result:} At current proof state, UBT fixes the form of the U(1) kinetic operator,
+but the absolute value of $e^2$ remains a normalization parameter.
+
+\textbf{Therefore:} QED sector emergence is established, while full no-fit derivation of
+$e^2$ from normalization alone is still open.
+
+\end{document}

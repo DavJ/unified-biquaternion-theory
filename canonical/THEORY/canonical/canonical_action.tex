@@ -1,0 +1,164 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{Canonical Action Principle\\
+\large Unified Biquaternion Theory — Canonical Theory Series}
+\author{Ing.\ David Jaroš}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document presents the canonical form of the UBT action principle.
+It does not contain new derivations; it collects and cross-references
+the action-principle statements already present in the repository.
+The UBT action generalizes the Einstein--Hilbert action with Standard Model
+matter content by embedding all fields in a single biquaternionic field $\Theta$.
+\end{abstract}
+
+\section{The UBT Action}
+
+The action of Unified Biquaternion Theory is:
+\begin{equation}\label{eq:S}
+  S[\Theta]
+  \;=\;
+  \int_{\mathcal{M}} \mathrm{d}^4x\,\sqrt{-g}\,\mathcal{L}_{\mathrm{UBT}}[\Theta,\partial\Theta],
+\end{equation}
+where $\mathcal{M}$ is the real spacetime manifold, $g = \det(g_{\mu\nu})$,
+and the Lagrangian density $\mathcal{L}_{\mathrm{UBT}}$ decomposes as:
+\begin{equation}\label{eq:Ltotal}
+  \mathcal{L}_{\mathrm{UBT}}
+  \;=\;
+  \underbrace{\frac{1}{2\kappa}\,R}_{\mathcal{L}_{\mathrm{grav}}}
+  \;+\;
+  \underbrace{\mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr]}_{\mathcal{L}_{\mathrm{kin}}}
+  \;-\;
+  \underbrace{\frac{1}{4}\,F_{\mu\nu}^a F^{a\,\mu\nu}}_{\mathcal{L}_{\mathrm{gauge}}}
+  \;-\;
+  \underbrace{V(\Theta)}_{\mathcal{L}_{\mathrm{pot}}},
+\end{equation}
+with:
+\begin{itemize}
+  \item $R = R[g]$ — Ricci scalar derived from the projected metric
+        $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta])$
+  \item $\kappa = 8\pi G/c^4$ — gravitational coupling constant
+  \item $D_\mu = \partial_\mu + \Gamma_\mu + igA_\mu^a T_a$ — full covariant derivative
+        (Levi-Civita $\Gamma$ plus gauge connection $A$)
+  \item $F_{\mu\nu}^a$ — field-strength tensor for each gauge group generator $T_a$
+  \item $V(\Theta)$ — potential encoding mass terms and symmetry breaking
+\end{itemize}
+
+\noindent\textbf{Primary source}:
+\texttt{unified\_biquaternion\_theory/ubt\_appendix\_1\_biquaternion\_gravity.tex}, \S1;
+\texttt{canonical/interactions/qed.tex}, eq.\ (1);
+\texttt{canonical/geometry/gr\_as\_limit.tex}, \S3.
+
+\section{Variational Principle and Field Equations}
+
+The equations of motion follow from requiring stationarity:
+\begin{equation}
+  \delta S[\Theta] = 0
+  \quad \text{for all compactly supported variations } \delta\Theta.
+\end{equation}
+
+\subsection{Gravitational Sector}
+
+Varying \eqref{eq:S} with respect to the metric $g^{\mu\nu}$ (equivalently,
+with respect to the real part of $\Theta$ entering $\mathcal{G}_{\mu\nu}$)
+yields the Einstein field equations:
+\begin{equation}
+  G_{\mu\nu} \;=\; R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R \;=\; \kappa\,T_{\mu\nu},
+\end{equation}
+where $T_{\mu\nu}$ is the stress-energy tensor derived from the matter
+and gauge sectors. \textbf{Status: PROVED [L1].}
+
+\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_as\_limit.tex}, \S3--\S4;
+\texttt{canonical/geometry/stress\_energy.tex};
+\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex}, Step 5.
+
+\subsection{Matter/Gauge Sector}
+
+Varying with respect to $\Theta^\dagger$ yields the matter field equations:
+\begin{equation}
+  D_\mu D^\mu\,\Theta \;=\; \frac{\partial V}{\partial \Theta^\dagger},
+\end{equation}
+which reduces to the Dirac equation in the appropriate limit.
+
+Varying with respect to $A_\mu^a$ yields the Yang--Mills equations:
+\begin{equation}
+  D_\mu F^{a\,\mu\nu} \;=\; j^{a\,\nu},
+\end{equation}
+with gauge current $j^{a\,\nu}$.
+In the U(1) abelian limit this becomes $\partial_\mu F^{\mu\nu} = j^\nu$ —
+the inhomogeneous Maxwell equations.
+\textbf{Status: Maxwell sector PROVED [L1]. Full Yang--Mills sector PARTIAL [L2].}
+
+\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S3;
+\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex};
+\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}.
+
+\section{Biquaternionic Form of the Action}
+
+Before projection to real fields, the action can be written in fully
+biquaternionic form:
+\begin{equation}
+  S[\Theta]
+  \;=\;
+  \int \mathrm{d}^4x\,\mathrm{d}\psi\;\mathrm{Re}\,\mathrm{Tr}\Bigl[
+    \bigl(\nabla^\dagger\Theta\bigr)^*\bigl(\nabla^\dagger\Theta\bigr)
+    \;-\;
+    V(\Theta)
+  \Bigr],
+\end{equation}
+where integration over $\psi$ (imaginary time) is over the compact fiber
+$[0, 2\pi R_\psi]$ and $\nabla^\dagger$ is the biquaternionic conjugate gradient.
+This form makes the master equation
+$\nabla^\dagger\nabla\,\Theta = \kappa\,\mathcal{T}$ manifest.
+
+\noindent\textbf{Source}: \texttt{canonical/fields/theta\_field.tex}, \S3.
+
+\section{Reduction to Known Theories}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Limit} & \textbf{Result} & \textbf{Status} \\
+\hline
+$\psi \to 0$, real projection & Einstein--Hilbert action + SM & PROVED [L1] \\
+U(1) gauge sector, flat spacetime & QED Lagrangian & PROVED [L1] \\
+U(1) + constant phase, flat & Maxwell Lagrangian & PROVED [L1] \\
+SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ & Standard Model action & PROVED [L1] \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent For detailed derivation chains see:
+\texttt{canonical/bridges/GR\_chain\_bridge.tex},
+\texttt{canonical/bridges/QED\_limit\_bridge.tex},
+\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex},
+\texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
+
+\section{Cross-References}
+
+\begin{itemize}
+  \item Axioms: \texttt{THEORY/canonical/canonical\_axioms.tex}
+  \item Metric: \texttt{THEORY/canonical/canonical\_metric\_definition.tex}
+  \item Field equations: \texttt{THEORY/canonical/canonical\_field\_equations.tex}
+  \item Projection rules: \texttt{THEORY/canonical/canonical\_projection\_rules.tex}
+\end{itemize}
+
+\end{document}

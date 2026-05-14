@@ -1,0 +1,339 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Chirality Derivation, Step 3: Gap~C1 Conditional Resolution}\\
+         \large $W^\pm$ Vertex is Not $P_\psi$-Invariant Because\\
+         Minimal $S[\Theta]$ Contains No $W_R$ Coupling (Selection Rule)}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We partially close Gap~C1: the $W^\pm$ vertex in the UBT action $S[\Theta]$ is
+  not $P_\psi$-invariant, implying parity violation.  The argument is structural:
+  $S[\Theta]$ contains $SU(2)_L$ acting by left multiplication and $U(1)_Y$
+  acting by right multiplication (proved in \texttt{appendix\_E2\_SM\_geometry.tex}).
+  There is \textbf{no} $W_R$ (right-handed $SU(2)$) coupling in the
+  \emph{minimal} $S[\Theta]$; this is a \textbf{selection rule / model axiom},
+  not yet derived from first principles.
+  Under this axiom, the $W^\pm$ covariant derivative term is exclusively
+  left-handed and $P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$.
+  Parity violation in weak interactions follows from the $\psi$-circle
+  orientation \emph{conditional on the no-$W_R$ axiom}.
+  See \texttt{open\_problems.md}, items OP-S3 and OP-S4.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup and Prior Results}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+From \texttt{step1\_psi\_parity.tex} (Steps~1--5 of this chain):
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Statement} & \textbf{Status} & \textbf{Reference} \\
+  \midrule
+  $P_\psi:\psi\to-\psi$ maps $n\to-n$ & Proved & Def.~1, Step~1 \\
+  $\partial_\psi$ anti-commutes with $P_\psi$ & Proved & Lem.~2, Step~1 \\
+  $P_\psi$ acts as $\gamma^5$ in $\psi$-sector & Proved & Prop.~3, Step~1 \\
+  Preferred orientation: $n>0$ for matter & Proved & Lem.~4, Step~1 \\
+  $SU(2)_L$ from left action on $\mathcal{B} = \mathbb{C}\otimes_a\mathbb{H}$ & Proved & App.~E2, §6 \\
+  $U(1)_Y$ from right action on $\mathcal{B}$ & Proved & App.~E2, §6 \\
+  \textbf{Gap C1}: $W^\pm$ vertex $P_\psi$-odd from $S[\Theta]$ & \textbf{Conditional (this step)} & Below \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Gauge Structure of $S[\Theta]$}
+\label{sec:gauge_structure}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Left and Right Actions on $\mathcal{B} = \mathbb{C}\otimes_a\mathbb{H}$}
+\label{subsec:LR_actions}
+
+The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes_a\mathbb{H}
+\cong \mathrm{Mat}(2,\mathbb{C})$ admits left and right multiplication
+by elements of $\mathcal{B}^*$:
+\begin{equation}
+  L_q: M \mapsto q\cdot M, \qquad
+  R_q: M \mapsto M\cdot q.
+\end{equation}
+The automorphism group decomposes as:
+\begin{equation}
+  \mathrm{Aut}(\mathcal{B})
+  \;\cong\;
+  \bigl[\mathrm{GL}(2,\mathbb{C}) \times \mathrm{GL}(2,\mathbb{C})\bigr]\big/\mathbb{Z}_2,
+\end{equation}
+giving rise to $\mathrm{Inn}(\mathbb{H})_L \times \mathrm{Inn}(\mathbb{H})_R
+\cong SU(2)_L \times SU(2)_R$ (see \texttt{appendix\_E2\_SM\_geometry.tex~§5}).
+
+\subsection{UBT Gauge Content}
+\label{subsec:UBT_gauge}
+
+The UBT kinetic action is:
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta]
+  \;=\; \frac{1}{2}\int_{\mathcal{M}\times\mathbb{T}_\psi}
+         \bigl\langle D_\mu\Theta,\, D^\mu\Theta \bigr\rangle\,d^4x\,d\psi,
+\end{equation}
+where the covariant derivative incorporates:
+\begin{enumerate}
+  \item $SU(2)_L$ gauge field $W^a_\mu$ via \textbf{left} multiplication:
+        \begin{equation}
+          D_\mu\Theta \;\supset\; -i\,g_2\,W^a_\mu\,T^a\,\Theta,
+          \quad T^a = \frac{i\sigma^a}{2}\mathbf{1}_R.
+          \label{eq:SU2L_covariant}
+        \end{equation}
+  \item $U(1)_Y$ gauge field $B_\mu$ via \textbf{right} multiplication:
+        \begin{equation}
+          D_\mu\Theta \;\supset\; -i\,g_1\,B_\mu\,Y\,\Theta,
+          \quad Y = -i\,\mathbf{1}_L.
+          \label{eq:U1Y_covariant}
+        \end{equation}
+\end{enumerate}
+
+\begin{theorem}[Minimal UBT action: $SU(2)_L$ and $U(1)_Y$ only]
+\label{thm:no_WR}
+The \emph{minimal} UBT action $S[\Theta]$ gauges $SU(2)_L$ (left action)
+and $U(1)_Y$ (right scalar phase action).  No $SU(2)_R$ gauge field
+$W^a_{R,\mu}$ is introduced.  The absence of $SU(2)_R$ is a
+\textbf{selection rule / model axiom} of the minimal theory; it is not
+yet derived from first principles.
+\end{theorem}
+
+\begin{proof}
+The right action of $\mathrm{Inn}(\mathbb{H})_R \cong SU(2)_R$ on
+$\mathcal{B}$ would require gauging the map $\Theta \mapsto \Theta\cdot q$
+for $q\in SU(2)_R$.  From \texttt{appendix\_E2\_SM\_geometry.tex~§6}
+(Theorem~6.1 and Theorem~6.3):
+\begin{itemize}
+  \item The \emph{left} $SU(2)$ generators are $T^a: M\mapsto (i\sigma^a/2)M$;
+        their commutator $[T^a, T^b] = \varepsilon^{abc}T^c$ is proved.
+        These are gauged with coupling $g_2$.
+  \item The \emph{right} action in the minimal theory is restricted to the
+        \emph{scalar phase} $\Theta \mapsto e^{-i\theta}\Theta$,
+        giving $U(1)_Y$ with coupling $g_1$.
+  \item No $SU(2)_R$ generators are introduced in the covariant derivative.
+\end{itemize}
+While $\mathcal{B} \cong \mathrm{Mat}(2,\mathbb{C})$ admits a non-scalar
+right $SU(2)$ action in principle, this action is not gauged in the
+minimal UBT construction.  The reason why gauging $SU(2)_R$ is excluded
+--- whether by algebraic obstruction, phenomenological constraint, or
+a deeper symmetry-breaking mechanism --- is an open problem.
+See \texttt{open\_problems.md}, item OP-S4.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Open: derivation of $SU(2)_R$ absence.}
+The claim that $S[\Theta]$ contains no $SU(2)_R$ coupling is a
+\emph{selection rule of the minimal action}, not an algebraic theorem.
+A full derivation showing why $SU(2)_R$ cannot be gauged, or why it
+decouples, is required before this can be promoted to a proved result.
+Until then, the parity-violation argument of this section is
+\textbf{conditional} on this axiom.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Gap C1: $W^\pm$ Vertex is $P_\psi$-Odd}
+\label{sec:gap_C1}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Gap~C1 Conditional Result: $W^\pm$ vertex breaks $P_\psi$]
+\label{thm:gap_C1}
+Under the no-$W_R$ selection rule (Theorem~\ref{thm:no_WR}), the
+$W^\pm$ interaction vertex in $S[\Theta]$ is not $P_\psi$-invariant:
+\begin{equation}
+  P_\psi \bigl(W^a_\mu\,T^a\,\Theta\bigr)
+  \;\notin\; S[\Theta].
+\end{equation}
+Consequently $P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$ and parity is
+explicitly broken in the $W^\pm$ sector.
+\end{theorem}
+
+\begin{proof}
+We follow the three-step argument outlined in the problem statement.
+
+\textbf{Step~1.} The $W^\pm$ interaction term is:
+\begin{equation}
+  \mathcal{L}_{W} \;=\; g_2\,W^a_\mu\,J^{\mu,a}_L,
+  \quad
+  J^{\mu,a}_L \;=\; \bar{\Theta}_L\,\gamma^\mu\,T^a\,\Theta_L,
+\end{equation}
+where $\Theta_L$ is the left-handed (odd-winding) sector defined in
+Step~1.  The coupling is \emph{exclusively} to $\Theta_L$; there is
+no $\Theta_R$ coupling (Theorem~\ref{thm:no_WR}).
+
+\textbf{Step~2.} Under $P_\psi$: winding number $n \mapsto -n$,
+so $\Theta_L$ (odd $n$) maps to $\Theta_R$ (odd $n$ with sign change),
+i.e., to the right-handed sector.  More precisely (Lemma~2, Step~1):
+\begin{equation}
+  P_\psi\,\Theta_L \;=\; \Theta_R, \qquad
+  P_\psi\,\Theta_R \;=\; \Theta_L.
+\end{equation}
+
+\textbf{Step~3.} Under $P_\psi$, the current transforms as:
+\begin{equation}
+  P_\psi\bigl(\bar{\Theta}_L\,\gamma^\mu\,T^a\,\Theta_L\bigr)
+  \;=\; \bar{\Theta}_R\,\gamma^\mu\,T^a\,\Theta_R.
+\end{equation}
+But $T^a$ acts on the \emph{left-handed} subspace $\mathcal{H}_-$
+(the $n > 0$ sector).  Acting on $\mathcal{H}_+ = P_\psi(\mathcal{H}_-)$
+(the right-handed sector) gives zero, because $T^a = 0$ on $\mathcal{H}_+$
+(by Theorem~\ref{thm:no_WR}: there is no $SU(2)_R$ gauge coupling).
+Therefore:
+\begin{equation}
+  P_\psi\bigl(J^{\mu,a}_L\bigr)
+  \;=\; \bar{\Theta}_R\,\gamma^\mu\,T^a\,\Theta_R.
+\end{equation}
+This right-handed current does \emph{not} appear in $S[\Theta]$ because
+no $SU(2)_R$ coupling is introduced in the minimal UBT action
+(Theorem~\ref{thm:no_WR}).  Hence:
+\begin{equation}
+  P_\psi(\mathcal{L}_W) \;\neq\; \mathcal{L}_W.
+\end{equation}
+Parity is therefore \textbf{explicitly broken}: the $P_\psi$-transformed
+action contains a term absent from the original action.
+
+\begin{gapbox}
+\textbf{Note on eigenvalue language.}
+We do \emph{not} claim $P_\psi(\mathcal{L}_W) = -\mathcal{L}_W$ (a
+$(-1)$-eigenvalue statement).  A term that maps to zero under a symmetry
+operator is \emph{not} thereby in the $(-1)$-eigenspace: zero lies in
+every eigenspace.  The correct statement is simply that
+$P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$, which is sufficient to
+establish that $P_\psi$ is not a symmetry of the action.
+\end{gapbox}
+\end{proof}
+
+\begin{remark}
+The key logical chain is:
+\begin{center}
+\textit{No $W_R$ in $S[\Theta]$ (selection rule)}
+$\Longrightarrow$
+\textit{$T^a = 0$ on $\mathcal{H}_+$}
+$\Longrightarrow$
+\textit{$P_\psi(\mathcal{L}_W) = $ right-handed coupling $\notin S[\Theta]$}
+$\Longrightarrow$
+\textit{$P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$: parity explicitly broken.}
+\end{center}
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Consequence: Parity Violation from $\psi$-Circle Orientation}
+\label{sec:consequence}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{corollary}[Parity violation from UBT geometry --- conditional]
+\label{cor:parity}
+Under the no-$W_R$ selection rule, parity violation in weak interactions
+(the $V-A$ structure) follows from the $\psi$-circle orientation in UBT.
+This is a \textbf{candidate result}, not a theorem, until the no-$W_R$
+axiom is derived from first principles.
+\end{corollary}
+
+\begin{proof}
+By Lemma~4 of Step~1: the preferred orientation $n > 0$ for matter is
+fixed by CPT and the arrow of time.  This is an algebraic consequence of
+the $\psi$-circle structure.
+
+By Theorem~\ref{thm:gap_C1} (conditional on no-$W_R$): the $W^\pm$ vertex
+couples exclusively to odd-winding modes ($n > 0 = $ left-handed), and
+$P_\psi(\mathcal{L}_W) \neq \mathcal{L}_W$.  Therefore parity is broken
+in the $W^\pm$ sector by the geometry of the $\psi$-circle.
+
+The $V - A$ current $\bar{\psi}\gamma^\mu(1-\gamma^5)\psi/2$ arises
+directly: $1 - \gamma^5 \leftrightarrow 1 - P_\psi$ (projection onto
+odd-winding modes), which is the UBT left-projector.
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Status Update}
+\label{sec:status}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Gap~C1: CONDITIONALLY RESOLVED.}
+
+\textbf{Conditional result:} ``The $W^\pm$ vertex is $P_\psi$-odd because
+$S[\Theta]$ contains no $W_R$ coupling --- $U(1)_Y$ is the only right-handed
+gauge interaction in the \emph{minimal} UBT action.  Therefore $SU(2)_L$
+chirality follows from $\psi$-circle orientation, \emph{conditional on the
+no-$W_R$ selection rule}.''
+
+\medskip
+\textbf{Complete chirality derivation chain (with status):}
+\begin{enumerate}
+  \item $\mathbb{H}$ gives $SU(2)_L\times SU(2)_R$ from left/right actions
+        --- Proved (App.~E2, §5).
+  \item $P_\psi$ acts as $\gamma^5$ in $\psi$-sector --- Proved (Step~1).
+  \item Preferred orientation $n>0$ by CPT --- Proved (Step~1, Lem.~4).
+  \item $T^a = 0$ on $\mathcal{H}_+$ (no $W_R$ in minimal action)
+        --- \textbf{Model axiom / selection rule} (Thm.~\ref{thm:no_WR}).
+        Derivation open (OP-S4).
+  \item $W^\pm$ vertex causes $P_\psi(\mathcal{L}_W)\neq\mathcal{L}_W$
+        --- \textbf{Candidate} (conditional on item~4).
+  \item Parity violation from $\psi$-circle --- \textbf{Candidate}
+        (Cor.~\ref{cor:parity}; conditional on items~4--5).
+\end{enumerate}
+
+\medskip
+\textbf{Conditions on which the above depends:}
+\begin{itemize}
+  \item No $SU(2)_R$ gauging in the minimal action (selection rule, not yet derived).
+  \item Grade/psi-mode equivalence (Gap C1 in \texttt{open\_problems.md}, OP-S2).
+  \item Antiunitary structure of $T$ (OP-S1).
+\end{itemize}
+
+\medskip
+\textbf{Consequence (conditional):} The weak interaction is parity-violating
+because the $\psi$-circle has a preferred orientation and $SU(2)$ acts only
+from the left in the minimal action.
+
+\textbf{Update DERIVATION\_INDEX.md:} ``$SU(2)_L$ chirality (not $SU(2)_L\times
+SU(2)_R$)'' $\to$ \textbf{Candidate [L0]} (conditional on no-$W_R$ axiom)
+--- see this file.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

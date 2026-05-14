@@ -1,0 +1,227 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{theorem}[proposition]{Theorem}
+
+\title{Alpha Reconstruction Chain in UBT\\
+\large Target 5 — fix\_or\_reject\_U1\_coupling\_normalization}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We assemble the full derivation chain
+$S[\Theta]\to\text{U(1) generator}\to e_5\to R_\psi\to e_4\to\alpha$,
+propagating the proof status of each step.  We find that two steps are
+NO-GO (fixing $e_5$ and fixing $R_\psi$), which forces the final verdict to
+\textbf{FREE\_NORMALIZATION}.  At the end, we compare the resulting
+qualitative prediction with observed values $\alpha^{-1}\approx137$ (IR) and
+$\approx127$ (EW scale), purely as a consistency check.
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{The full derivation chain}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}clll@{}}
+\toprule
+Step & Element & Status & Source \\
+\midrule
+0 & Canonical action $S[\Theta]$ & DERIVED & UBT axioms \\
+1 & U(1) identification in $\mathcal{B}$ & DERIVED & Target 1 \\
+2 & Generator normalization $\mathrm{Tr}(T^2)=1/2$ & DERIVED & Target 1 \\
+3 & Unit charge $q_\Theta=1$ & DERIVED & Target 1 \\
+4 & Integer charge quantization & CONDITIONAL & Target 4 (flux convention) \\
+5 & Parent coupling $e_5$ & NO-GO & Target 3 \\
+6 & Compact radius $R_\psi$ & NO-GO & Target 2 \\
+7 & 4D coupling $e_4^2=e_5^2/(2\pi R_\psi)$ & CONDITIONAL & Follows if steps 5,6 fixed \\
+8 & Fine structure $\alpha=e_4^2/(4\pi)$ & NO-GO & Steps 5,6 are NO-GO \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ----------------------------------------------------------------
+\section{Step-by-step derivation}
+% ----------------------------------------------------------------
+
+\subsection{Step 0: Canonical action $S[\Theta]$}
+
+\textbf{DERIVED.}
+The starting point is the canonical UBT action
+\begin{equation}
+  S[\Theta]=\int d^5x\;\sqrt{-g}\left[
+    \mathrm{Tr}\!\big((D_M\Theta)^\dagger(D^M\Theta)\big)
+    -\frac{1}{4e_5^2}F_{MN}F^{MN}+\cdots
+  \right],
+\end{equation}
+which is the accepted canonical formulation.
+
+\subsection{Step 1--3: U(1) generator and unit charge}
+
+\textbf{DERIVED.}
+From the biquaternion automorphism group
+$[\mathrm{GL}(2,\mathbb{C})\times\mathrm{GL}(2,\mathbb{C})]/\mathbb{Z}_2$,
+the U(1)$_\mathrm{EM}$ is identified as the right-phase action with generator
+$T_\mathrm{EM}=\tfrac{1}{2}I_2$, giving
+\begin{equation}
+  \mathrm{Tr}(T_\mathrm{EM}^2)=\frac{1}{2},\qquad q_\Theta=1.
+\end{equation}
+These are algebraic consequences, no external input required (see Target 1).
+
+\subsection{Step 4: Integer charge quantization}
+
+\textbf{CONDITIONAL.}
+Single-valuedness of $\Theta$ on $S^1_\psi$ forces integer-valued charges in
+units of $q_\Theta=1$, provided the flux normalization convention $\Phi_0=2\pi$
+is adopted (see Target 4).  Fractional quark charges require additional
+hypercharge input.
+
+\subsection{Step 5: Parent coupling $e_5$}
+
+\textbf{NO-GO.}
+From Target 3: the coupling $e_5$ can always be absorbed by field rescaling
+$\mathcal{A}_M=e_5 A_M$, making the action independent of $e_5$.  No
+topological, spectral, or normalization condition in the current $S[\Theta]$
+fixes $e_5$ independently.
+
+\subsection{Step 6: Compact radius $R_\psi$}
+
+\textbf{NO-GO.}
+From Target 2: the spectral free energy fixes the shape modulus $R_t/R_\psi=1$
+(CONDITIONAL on isotropic normalization), but the scale modulus
+$\sqrt{R_t R_\psi}$ is a flat direction.  No mechanism in the current
+$S[\Theta]$ fixes the absolute value of $R_\psi$.
+
+\subsection{Step 7: Dimensional reduction $e_4$}
+
+\textbf{CONDITIONAL.}
+Even if Steps 5 and 6 were resolved, the 4D coupling would be
+\begin{equation}
+  e_4^2 = \frac{e_5^2}{2\pi R_\psi}.
+\end{equation}
+Since both $e_5$ and $R_\psi$ are currently NO-GO, this step is CONDITIONAL
+at best.
+
+\subsection{Step 8: Fine structure constant $\alpha$}
+
+\textbf{NO-GO (current state).}
+\begin{equation}
+  \alpha = \frac{e_4^2}{4\pi}
+  = \frac{e_5^2}{8\pi^2 R_\psi}.
+\end{equation}
+Both $e_5$ and $R_\psi$ are free parameters, so $\alpha$ is a free
+normalization in the current UBT formulation.
+
+% ----------------------------------------------------------------
+\section{Free parameters remaining}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Parameter & Status \\
+\midrule
+$e_5$ (5D parent coupling) & Free (field-rescaling removes it) \\
+$R_\psi$ (compact radius) & Free (scale modulus is flat) \\
+$\theta_W$ (Weinberg angle) & Free (not fixed by $\mathcal{B}$) \\
+$Y$ (hypercharge assignments) & Free (SM input) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Minimum free parameters required to fix $\alpha$: at least one of $(e_5, R_\psi)$
+plus the combination $e_5^2/(2\pi R_\psi)$ (equivalently, $e_4$ directly).
+
+% ----------------------------------------------------------------
+\section{Failed assumptions and closed routes}
+% ----------------------------------------------------------------
+
+\begin{enumerate}
+\item \textbf{T-duality self-dual point} fixes $R_\psi$ only relative to a
+  free string length $\ell_s$. \emph{(CONDITIONAL, not DERIVED)}
+
+\item \textbf{Spectral free energy extremum} fixes shape $R_t/R_\psi$ but not
+  absolute scale. \emph{(CONDITIONAL, not NO-GO for shape; NO-GO for scale)}
+
+\item \textbf{Holonomy / winding quantization} relates $e_5$ to an unconstrained
+  flux modulus. \emph{(NO-GO)}
+
+\item \textbf{Flux quantization (Chern class)} quantizes $e_5\cdot\Phi$, not
+  $e_5$ alone. \emph{(NO-GO)}
+
+\item \textbf{Trace normalization} fixes relative coupling in the gauge sector
+  but not the absolute value of $1/e_5^2$. \emph{(NO-GO for absolute value)}
+\end{enumerate}
+
+% ----------------------------------------------------------------
+\section{Post-derivation comparison with measured values}
+% ----------------------------------------------------------------
+
+This section is provided only as an after-the-fact consistency check.
+No measured value is used as derivation input.
+
+The RG trajectory (derived in Target 6 companion report) gives:
+\begin{equation}
+  \alpha^{-1}(\mu)=\alpha^{-1}(\mu_0)
+  -\frac{b_\mathrm{em}}{2\pi}\ln\frac{\mu}{\mu_0},
+  \qquad b_\mathrm{em}>0.
+\end{equation}
+Qualitatively: $\alpha^{-1}$ decreases with increasing $\mu$.
+
+Known checkpoints (for comparison only):
+\begin{align}
+  \alpha^{-1}(m_e)&\approx 137.036,\\
+  \alpha^{-1}(M_Z)&\approx 127.9.
+\end{align}
+These are consistent with a monotone decreasing $\alpha^{-1}(\mu)$.
+They are \emph{not} derived from UBT at the current level; they are
+observational benchmarks.
+
+% ----------------------------------------------------------------
+\section{Verdict}
+% ----------------------------------------------------------------
+
+\begin{theorem}[Alpha reconstruction chain verdict]
+In the current UBT formulation, the derivation chain
+$S[\Theta]\to T_\mathrm{EM}\to e_5\to R_\psi\to e_4\to\alpha$
+is broken at two independent steps (fixing $e_5$ and fixing $R_\psi$).
+Therefore:
+
+\[\boxed{\text{Alpha remains a free normalization in the current UBT formulation.}}\]
+\end{theorem}
+
+\paragraph{What is established:}
+\begin{itemize}
+  \item QED sector structure: DERIVED.
+  \item U(1) generator normalization $\mathrm{Tr}(T^2)=1/2$: DERIVED.
+  \item Integer charge quantization (unit flux convention): CONDITIONAL.
+  \item RG running direction (decreasing $\alpha^{-1}$ with $\mu$): DERIVED.
+  \item Qualitative consistency with checkpoints 137 and 127: OBSERVED CONSISTENCY.
+\end{itemize}
+
+\paragraph{What is not established:}
+\begin{itemize}
+  \item Absolute value of $e_5$: NO-GO.
+  \item Absolute value of $R_\psi$: NO-GO.
+  \item Numerical value of $\alpha$: NO-GO (follows from above).
+\end{itemize}
+
+\end{document}

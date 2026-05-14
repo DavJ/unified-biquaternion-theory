@@ -1,0 +1,232 @@
+{
+  "root": "/home/runner/work/unified-biquaternion-theory/unified-biquaternion-theory",
+  "failures": [],
+  "warnings": [
+    "Precise constants found in 36 non-core (WARN) file(s).",
+    "Missing data/leptons.csv (lepton table may not render)."
+  ],
+  "fatal_hits": [],
+  "warn_hits_count": 36,
+  "warn_hits_sample": [
+    {
+      "file": "experiments/validate_alpha_renormalization.py",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "s\"),         (91187.6, \"Z boson mass\"),     ]          experimental_alpha_inv = 137.035999084  # CODATA 2018 at low energy          for mu, description in scales:         tr"
+    },
+    {
+      "file": "experiments/validation/validate_alpha_renormalization.py",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "s\"),         (91187.6, \"Z boson mass\"),     ]          experimental_alpha_inv = 137.035999084  # CODATA 2018 at low energy          for mu, description in scales:         tr"
+    },
+    {
+      "file": "README.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "------| | **Fine-structure constant (baseline)** | **\u03b1\u2080\u207b\u00b9 = 137.000** | n=137 | 137.035999084 | \u00b10.000000021 | **0.026%** | Channel-dependent baseline (n=137 selected) | | F"
+    },
+    {
+      "file": "README.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "selected) | | Fine-structure constant (effective) | \u03b1_eff\u207b\u00b9 \u2248 137.036 | n=137 | 137.035999084 | \u00b10.000000021 | ~0.00003% | \u03b1\u2080(137) + structural corrections (mostly derived) "
+    },
+    {
+      "file": "README.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "----|-------| | **Fine structure constant (n=137 framework)** | \u03b1\u207b\u00b9 = 137.000 | 137.035999084 \u00b1 0.000000021 | **Hypothesis** (channel n=137 selection) | **0.026%** | | **Fin"
+    },
+    {
+      "file": "README.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "**0.026%** | | **Fine structure constant (with corrections)** | \u03b1\u207b\u00b9 \u2248 137.036 | 137.035999084 \u00b1 0.000000021 | **Partly derived** (~90%) | **~0.00003%** | | **Electron mass ("
+    },
+    {
+      "file": "README.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": "ns (mostly derived) | | **Electron mass (baseline)** | **m_e = 0.509856 MeV** | 0.51099895000 MeV | \u00b10.00000015 MeV | **0.22%** | **Derived (fit-free)** from Hopfion topolog"
+    },
+    {
+      "file": "README.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": " from Hopfion topology | | Electron mass (with corrections) | m_e \u2248 0.510 MeV | 0.51099895000 MeV | \u00b10.00000015 MeV | ~0.2% | Structurally specified (parameters A,p,B fitted"
+    },
+    {
+      "file": "tests/test_no_hardcoded_constants.py",
+      "what": "m_mu precise",
+      "match": "105.658375",
+      "context": "09989\\d{2,}\\b\",   # m_e ~ 0.51099895...     r\"\\b105\\.6583\\d{2,}\\b\",    # m_mu ~ 105.658375...     r\"\\b1776\\.8\\d{2,}\\b\",      # m_tau ~ 1776.86... ]  # Files that are allo"
+    },
+    {
+      "file": "CURRENT_STATUS.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "meters** - truly first-principles - **Precision: 0.026%** vs experimental \u03b1\u207b\u00b9 = 137.035999084  **With Structural Corrections:** \u03b1\u207b\u00b9 \u2248 137.036 \u26a0\ufe0f - **Starting point**: CxH ba"
+    },
+    {
+      "file": "CURRENT_STATUS.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "l input  **Precision Achieved:** - \u2705 **0.00003%** - EXACT match to CODATA 2018 (137.035999084) - Far exceeds initial targets (<0.001% exceptional, <0.01% excellent) - Among "
+    },
+    {
+      "file": "CURRENT_STATUS.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": "iton configuration in biquaternionic \u0398-field - **Error: 0.22%** from PDG value (0.51099895000 MeV) - **ZERO experimental input** - pure geometric calculation - **ZERO fitted"
+    },
+    {
+      "file": "docs/GLOSSARY_OF_SYMBOLS.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "pling | SU(2) | Electroweak theory | | \u03b1 | Fine-structure constant | U(1) | \u2248 1/137.035999084 | | \u03b1(\u03bc) | Running \u03b1 at scale \u03bc | U(1) | Energy-dependent | | \u03b1_s | Strong coup"
+    },
+    {
+      "file": "docs/GLOSSARY_OF_SYMBOLS.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "------|-------------|-------|---------------| | \u03b1 | Fine-structure constant | 1/137.035999084 | **Empirical input (CODATA 2018)** | | B or B_\u03b1 | Vacuum polarization coeffici"
+    },
+    {
+      "file": "docs/UBT_COPILOT_INSTRUCTIONS.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "^{-1} \\approx 137.036.$$  Experiment\u00e1ln\u00ed hodnota:  $$\\alpha_{\\text{exp}}^{-1} = 137.035999084.$$  Shoda je na \u00farovni $< 10^{-4}\\%$.  ## 6. Hmotnost elektronu  Stejn\u00e1 renorma"
+    },
+    {
+      "file": "docs/DATA_PROVENANCE.md",
+      "what": "m_e precise",
+      "match": "0.510998950000",
+      "context": "e,symbol,msbar_mass_mev,pole_mass_mev,mu_mev,alpha_mu electron,e,0.509812604741,0.510998950000,0.509812604741,7.293583579613e-03 muon,mu,NOT_IMPLEMENTED,NOT_IMPLEMENTED,NOT_I"
+    },
+    {
+      "file": "docs/DATA_PROVENANCE.md",
+      "what": "m_e precise",
+      "match": "0.510998950000",
+      "context": "MENTED,NOT_IMPLEMENTED,NOT_IMPLEMENTED,NOT_IMPLEMENTED ```  **Note**: Pole mass 0.510998950000 is PDG 2024 experimental value (placeholder).  **Generation**: ```bash python -"
+    },
+    {
+      "file": "docs/CSV_AND_DOCUMENTATION_POLICY.md",
+      "what": "m_e precise",
+      "match": "0.510998950000",
+      "context": "es | \u2705 Two-loop running | | m_e (pole) | `data/leptons.csv` | `pole_mass_mev` | 0.510998950000 | \u274c Experimental (PDG placeholder) | | m_e (MSbar) | `data/leptons.csv` | `msba"
+    },
+    {
+      "file": "docs/UBT_VS_OTHER_THEORIES_COMPARISON.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": " 3.2 Quantitative Comparison  **Electron Mass Prediction:** - **Experimental**: 0.51099895000(15) MeV (CODATA 2018) - **UBT Predicted**: 0.5099 MeV (not fitted, derived from"
+    },
+    {
+      "file": "docs/INTEGRATION_SUMMARY_LEPTON_QUARK_ISSUES.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": "RMION_MASS_COMPLETE_REPORT.md (minor updates) **Changes:** - Fixed formatting: \"0.51099895000 MeV\" \u2192 \"0.51099895 MeV\" - Updated source: \"CODATA 2018\" \u2192 \"PDG 2024\"  **Impact:"
+    },
+    {
+      "file": "docs/REVIEW_COMPLETE_ADDRESS_LEPTON_QUARK_ISSUES.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": "ATES (INTEGRATED)  #### 8. FERMION_MASS_COMPLETE_REPORT.md \u2705 - Formatting fix: \"0.51099895000 MeV\" \u2192 \"0.51099895 MeV\" - Updated reference: \"CODATA 2018\" \u2192 \"PDG 2024\"  **Impa"
+    },
+    {
+      "file": "docs/TESTABILITY_AND_FALSIFICATION.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "d:** Calculate \u03b1\u207b\u00b9(\u03bc) at multiple energy scales with error bars: ``` \u03b1\u207b\u00b9(m_e) = 137.035999084 \u00b1 0.000000021 (CODATA 2018) \u03b1\u207b\u00b9(M_Z) = 127.95 \u00b1 [UBT uncertainty] \u03b1\u207b\u00b9(M_Planck)"
+    },
+    {
+      "file": "docs/TESTABILITY_AND_FALSIFICATION.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "Prediction:** \u03b1\u207b\u00b9 = 137 (integer from topology)   **Experimental Value:** \u03b1\u207b\u00b9 = 137.035999084(21)   **Agreement:** 0.026% error  **Derivation Summary:** - Winding number N o"
+    },
+    {
+      "file": "docs/TESTABILITY_AND_FALSIFICATION.md",
+      "what": "m_e precise",
+      "match": "0.51099895000",
+      "context": "n:** m_e = 0.509856 MeV (from hopfion topology)   **Experimental Value:** m_e = 0.51099895000(15) MeV   **Agreement:** 0.22% error  **Derivation Summary:** - Hopfion soliton"
+    },
+    {
+      "file": "docs/TESTABILITY_AND_FALSIFICATION.md",
+      "what": "m_mu precise",
+      "match": "105.6583755",
+      "context": ". Calculate m_\u03bc, m_\u03c4 from formula with n=2, n=3 3. Compare to PDG values: m_\u03bc = 105.6583755(23) MeV, m_\u03c4 = 1776.86(12) MeV 4. Calculate fractional errors: |m_pred - m_exp|"
+    },
+    {
+      "file": "docs/UBT_VERIFICATION_REPORT.tex",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "\\text{UBT}}^{-1}$ & $137.036000$ \\\\ Experimental: $\\alpha_{\\text{exp}}^{-1}$ & $137.035999084$ \\\\ \\midrule Absolute difference & $9.16 \\times 10^{-7}$ \\\\ Relative error & $6"
+    },
+    {
+      "file": "docs/FINAL_SUMMARY.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "rediction: \u03b1^(-1) = 137.036 (with quantum corrections) - Experimental: \u03b1^(-1) = 137.035999084 - Difference: 0.0000009 (essentially perfect)  ### 2. P-adic Extensions and Alt"
+    },
+    {
+      "file": "docs/FINAL_SUMMARY.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "rimental Agreement \u2713  - UBT prediction: \u03b1^(-1) = 137.036 - Experiment: \u03b1^(-1) = 137.035999084 - Agreement: Better than 0.001% (essentially perfect)  ## Usage Examples  ### C"
+    },
+    {
+      "file": "docs/verification_checklist.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "SED \u2713\u2713\u2713 ```  ### Experimental Agreement - UBT: \u03b1^(-1) = 137.036 - Exp: \u03b1^(-1) = 137.035999084 - Error: < 0.001%  ## Predictions \u2713  ### Testable - [x] Dark matter mass spectr"
+    },
+    {
+      "file": "docs/NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "Experiment:** - UBT (channel 137): \u03b1_eff\u207b\u00b9(137) = 137.0359 - CODATA 2018: \u03b1\u207b\u00b9 = 137.035999084 - Agreement: ~0.00003%  **Multi-Channel Framework:** - This prediction is for t"
+    },
+    {
+      "file": "docs/NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
+      "what": "alpha^{-1} precise",
+      "match": "137.035999084",
+      "context": "t confirms n=137 is the realized channel in our sector  **Experimental**: \u03b1\u207b\u00b9 = 137.035999084 (CODATA 2018)  **Agreement**: Exact to 4 decimal places!  ---  ## Key Achieveme"
+    },
+    {
+      "file": "DATA/ubt_fermion_masses_results.txt",
+      "what": "m_mu precise",
+      "match": "105.658376",
+      "context": "electron              0.510999          0.510999    0.0000% muon                105.658376        105.658376    0.0000% tau                1776.860000       1776.860000  "
+    },
+    {
+      "file": "DATA/ubt_fermion_masses_results.txt",
+      "what": "m_mu precise",
+      "match": "105.658376",
+      "context": "    0.510999          0.510999    0.0000% muon                105.658376        105.658376    0.0000% tau                1776.860000       1776.860000    0.0000%  --- NEU"
+    },
+    {
+      "file": "DATA/ubt_fermion_masses_results.txt",
+      "what": "m_tau precise",
+      "match": "1776.860000",
+      "context": " muon                105.658376        105.658376    0.0000% tau                1776.860000       1776.860000    0.0000%  --- NEUTRINOS (Upper Limits) --- Particle     Pre"
+    },
+    {
+      "file": "DATA/ubt_fermion_masses_results.txt",
+      "what": "m_tau precise",
+      "match": "1776.860000",
+      "context": "   105.658376        105.658376    0.0000% tau                1776.860000       1776.860000    0.0000%  --- NEUTRINOS (Upper Limits) --- Particle     Predicted (MeV)    Ex"
+    },
+    {
+      "file": "tools/reproduce_lepton_ratios.py",
+      "what": "m_mu precise",
+      "match": "105.6583755",
+      "context": " sys   # PDG 2022 experimental values (MeV/c^2) M_E_MEV = 0.51099895 M_MU_MEV = 105.6583755 M_TAU_MEV = 1776.86  # Experimental ratios  (m_e = 1 unit) EXP_RATIO_MU_E = M_M"
+    }
+  ],
+  "csv_presence": {
+    "alpha_csv": true,
+    "leptons_csv": false
+  }
+}

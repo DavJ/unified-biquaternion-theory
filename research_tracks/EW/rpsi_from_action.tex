@@ -1,0 +1,211 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{$R_\psi$ from $S[\Theta]$: EW1+RG scale closure audit}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Step 1: Casimir input with \(N_{\mathrm{eff}}=12\)}
+Conditionally on SU(2)-twist closure (
+\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}), use
+\[
+V_{\mathrm{Casimir}}(R)=-N_{\mathrm{eff}}\frac{\zeta(-1)}{4R^2}\times \mathcal{N}_{\mathrm{Cas}},
+\qquad \zeta(-1)=-\frac{1}{12}.
+\]
+Thus
+\[
+V_{\mathrm{Casimir}}(R)=\frac{1}{4R^2}\,\mathcal{N}_{\mathrm{Cas}}
+\quad\text{for }N_{\mathrm{eff}}=12.
+\]
+
+\section{Step 2: stationarity equation}
+From
+\[
+S_{\mathrm{eff}}=\int d^4x\left[\frac{R}{2\kappa}+(2\pi R_\psi)\,T_{\mathrm{kin}}+V_{\mathrm{Casimir}}(R_\psi)\right],
+\quad
+T_{\mathrm{kin}}:=\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)],
+\]
+stationarity gives
+\[
+\frac{dS_{\mathrm{eff}}}{dR_\psi}=2\pi T_{\mathrm{kin}}-\frac{dV_{\mathrm{Casimir}}}{dR_\psi}=0,
+\]
+so
+\[
+R_\psi^*=f(T_{\mathrm{kin}},N_{\mathrm{eff}},\mathcal{N}_{\mathrm{Cas}}).
+\]
+Without fixed \(T_{\mathrm{kin}}\)-normalization, this is not unique.
+
+\section{Step 3: implication for \(M_{\mathrm{GUT}}=1/R_\psi^*\)}
+\[
+M_{\mathrm{GUT}}=\frac{1}{R_\psi^*}\sim M_{\mathrm{Pl}}\left(\frac{T_{\mathrm{kin}}}{M_{\mathrm{Pl}}^4}\right)^{1/2}.
+\]
+If \(T_{\mathrm{kin}}\sim M_{\mathrm{GUT}}^4\), one gets \(M_{\mathrm{GUT}}\sim M_{\mathrm{Pl}}\) (too high).
+With loop-suppressed input
+\(T_{\mathrm{kin}}\sim g^2M_{\mathrm{GUT}}^4/(16\pi^2)\),
+\[
+M_{\mathrm{GUT}}\sim \frac{M_{\mathrm{Pl}}}{\sqrt{16\pi^2/g^2}},
+\]
+which is compatible with \(\sim2\times10^{16}\,\mathrm{GeV}\) for \(g\sim0.6\).
+This remains conditional on normalization closure.
+
+\section{Step 4: missing condition for uniqueness}
+If \(R_\psi^*\) is not unique, an extra closure condition is needed, e.g.
+\begin{itemize}
+  \item self-consistency input for \(T_{\mathrm{kin}}\),
+  \item minimal sensitivity / stability condition \(\partial^2 S_{\mathrm{eff}}/\partial R_\psi^2>0\).
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 5: self-consistent system for \(R_\psi^*\), \(M_{\mathrm{GUT}}\), \(T_{\mathrm{kin}}\)}
+\label{sec:self_consistent}
+%──────────────────────────────────────────────────────────────────────────────
+
+The three-equation self-consistent system is:
+\begin{align}
+R_\psi^* &= \sqrt{\frac{N_{\mathrm{eff}}}{48\pi\,T_{\mathrm{kin}}}},
+  \label{eq:sc1}\\
+M_{\mathrm{GUT}} &= \frac{1}{R_\psi^*},
+  \label{eq:sc2}\\
+T_{\mathrm{kin}} &= \frac{g^2\,M_{\mathrm{GUT}}^4}{16\pi^2},
+  \label{eq:sc3}
+\end{align}
+with $N_{\mathrm{eff}}=12$ [L1] and $g\approx0.6$ (gauge coupling at GUT scale,
+[STD]).  Equation~\eqref{eq:sc1} follows from \(\partial S_{\mathrm{eff}}/\partial
+R_\psi=0\) with $V_{\mathrm{Casimir}}=-N_{\mathrm{eff}}/(48\pi R^2)$
+(zeta-regularised Casimir energy, \(\zeta(-1)=-1/12\)).
+
+\subsection*{Analytic solution}
+
+Substituting \eqref{eq:sc2}--\eqref{eq:sc3} into \eqref{eq:sc1}:
+\[
+R_\psi^* = \sqrt{\frac{N_{\mathrm{eff}}}{48\pi}\cdot\frac{16\pi^2}{g^2 (1/R_\psi^*)^4}}
+= \sqrt{\frac{N_{\mathrm{eff}}\cdot 16\pi^2}{48\pi\,g^2}}\;(R_\psi^*)^2.
+\]
+Solving for $R_\psi^*$:
+\[
+(R_\psi^*)^{-1} = \sqrt{\frac{N_{\mathrm{eff}}\cdot 16\pi^2}{48\pi\,g^2}}
+= \sqrt{\frac{N_{\mathrm{eff}}\pi}{3g^2}},
+\]
+so
+\begin{equation}
+  M_{\mathrm{GUT}} = \frac{1}{R_\psi^*} = M_{\mathrm{Pl}}\sqrt{\frac{N_{\mathrm{eff}}\pi}{3g^2}},
+  \label{eq:mgut_analytic}
+\end{equation}
+in Planck units ($M_{\mathrm{Pl}}=1$). For $N_{\mathrm{eff}}=12$, $g=0.6$:
+\[
+M_{\mathrm{GUT}} = M_{\mathrm{Pl}}\sqrt{\frac{12\pi}{3\times0.36}} = M_{\mathrm{Pl}}\sqrt{\frac{12\pi}{1.08}} = M_{\mathrm{Pl}}\sqrt{34.91}\approx 5.91\,M_{\mathrm{Pl}}.
+\]
+This is super-Planckian: \(M_{\mathrm{GUT}}\approx5.91\,M_{\mathrm{Pl}}\gg 2\times10^{16}\,\mathrm{GeV}\).
+
+\subsection*{Numerical check (see \texttt{tools/rpsi\_self\_consistent.py})}
+
+The numerical solver confirms the analytic result:
+\[
+R_\psi^* \approx 0.169\,l_{\mathrm{Pl}},
+\quad
+M_{\mathrm{GUT}} \approx 5.91\,M_{\mathrm{Pl}} \approx 7.2\times10^{19}\,\mathrm{GeV}.
+\]
+This exceeds the standard GUT window $\sim2\times10^{16}\,\mathrm{GeV}$ by a
+factor of $\approx3600$.
+
+\subsection*{Diagnosis}
+
+The self-consistent system does \emph{not} yield a GUT-compatible scale with
+the naive loop-suppressed ansatz \eqref{eq:sc3}.  The discrepancy is a factor
+$\sqrt{N_{\mathrm{eff}}\pi/(3g^2)}\approx5.9$ in $M_{\mathrm{Pl}}$ units.
+Possible resolutions:
+\begin{enumerate}
+  \item A different normalization of $V_{\mathrm{Casimir}}$ (sub-leading
+    Casimir structure, brane tensions, or further loop suppression).
+  \item An additional suppression in $T_{\mathrm{kin}}$ by a factor
+    $\sim(2\times10^{16}/7.2\times10^{19})^2\approx10^{-7}$.
+  \item The GUT scale is not $1/R_\psi^*$ but $1/R_\psi^*$ renormalized by
+    the winding-mode spectrum.
+\end{enumerate}
+
+\subsection*{Candidate audit for the required $10^{-7}$ suppression}
+
+\paragraph{Candidate 1 (winding-mode renormalization of $R_\psi$).}
+Assume
+\[
+M_{\mathrm{GUT}}=M_0\cdot \vartheta_3(0|i)^{-n},
+\quad
+M_0=7.2\times10^{19}\,\mathrm{GeV},
+\quad
+\vartheta_3(0|i)\approx1.086.
+\]
+Solving
+\(
+7.2\times10^{19}\cdot1.086^{-n}=2\times10^{16}
+\)
+gives
+\[
+\ln(7.2\times10^{19})-n\ln(1.086)=\ln(2\times10^{16}),
+\]
+so
+\[
+n=\frac{\ln\!\left((7.2\times10^{19})/(2\times10^{16})\right)}{\ln(1.086)}\approx 99.3.
+\]
+This requires an unrealistically high effective modular power, so this route is
+\textbf{[NO-GO]}.
+
+\paragraph{Candidate 2 (sub-leading Casimir/brane-tension term).}
+Take a minimal deformation
+\[
+V_{\mathrm{Casimir}}(R)=-\frac{A}{R^2}-\frac{c}{R^4},\qquad c>0,
+\]
+with $A=N_{\mathrm{eff}}/(48\pi)$ and the same kinetic closure
+\(
+T_{\mathrm{kin}}=g^2M_{\mathrm{GUT}}^4/(16\pi^2)
+\).
+The stationarity condition gives
+\[
+2AR^2-\frac{g^2}{8\pi}R+4c=0.
+\]
+Imposing $M_{\mathrm{GUT}}=2\times10^{16}\,\mathrm{GeV}$ from the baseline
+$M_0=7.2\times10^{19}\,\mathrm{GeV}$ implies
+\(
+R_{\mathrm{target}}/R_0\approx3600
+\),
+which requires
+\[
+c\approx-4.18\times10^3
+\quad(\text{Planck units}),
+\]
+i.e. \emph{negative} and many orders beyond the positive-discriminant
+window ($c_{\max}\sim8.1\times10^{-5}$).  Therefore this minimal
+$-c/R^4$ realization with $c>0$ is \textbf{[NO-GO]}.
+
+\paragraph{Candidate 3 (moduli stabilization: Casimir + gauge condensate).}
+For
+\(
+V_{\mathrm{eff}}(R)=V_{\mathrm{Casimir}}(R)+V_{\mathrm{gauge}}(R)
+\),
+a viable minimum can exist if a nonperturbative gauge term generates an
+exponential hierarchy relative to the Casimir branch.  In this file we do not
+yet have a closed microscopic $V_{\mathrm{gauge}}(R)$ from $\Theta$-sector data,
+so the mechanism is currently \textbf{[MC/OPEN]} (promising, not derived).
+
+\begin{statusbox}
+Kandidát 1 (winding renorm.): \textbf{[NO-GO]} (nutné $n\approx99.3$ pro $\vartheta_3(0|i)^{-n}$)\\
+Kandidát 2 (sub-leading Casimir): \textbf{[NO-GO]} (v minimálním modelu vychází $c\approx-4.18\times10^3$, požadováno $c>0$)\\
+Kandidát 3 (moduli stabilisation): \textbf{[MC/OPEN]}\\
+$M_{\mathrm{GUT}} = 2\times10^{16}\,\mathrm{GeV}$: \textbf{[OPEN/CONDITIONAL]}\\
+$\sin^2\theta_W(M_Z) = 0.231$: \textbf{[CONDITIONAL]}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+\end{document}

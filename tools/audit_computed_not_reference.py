@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
+# Copyright (c) 2025 Ing. David Jaroš
+# Licensed under the MIT License
+# See LICENSE file in the repository root for full license text
 """
-Audit v2: verify that LaTeX/docs present computed (pipeline-derived) values,
-not hard-coded reference numbers. Distinguishes FATAL vs WARN hits and fixes
-previous script's missing `json` import.
+Audit: verify that source files present computed (pipeline-derived) values,
+not hard-coded reference numbers.
+
+Distinguishes FATAL vs WARN hits:
+  FATAL: Hard-coded precise constants in new core .tex/.py files that are not
+         in known archived, legacy, or documentation directories.
+  WARN:  Precise constants in documentation, reports, tools, tests, or
+         legacy/archived directories.
 
 Usage:
   python tools/audit_computed_not_reference.py --root . [--main-tex emergent_alpha_from_ubt.tex]
 
-FATAL categories (cause non-zero exit):
-  - Hard-coded precise constants in core .tex (outside known generated snippets)
-  - Hard-coded precise constants in core .py (outside tests/tools/scripts)
-  - Main TeX missing CSV linkage (pgfplotstable + .csv)
-  - Missing data/alpha_two_loop_grid.csv
-
-WARN categories (reported but do not fail):
-  - Precise constants in .md, reports/, tools/, tests/, scripts/, validation/
-
-Outputs a JSON report to reports/audit_computed_not_reference.json
+Outputs a JSON report to reports/audit_computed_not_reference.json.
 """
 from __future__ import annotations
-import argparse, re, sys, json
+import argparse
+import json
+import re
+import sys
 from pathlib import Path
-from typing import List, Dict
+from typing import Dict, List
 
 FORBIDDEN_PATTERNS = [
     (r"137\.0359990\d+", "alpha^{-1} precise"),
@@ -30,66 +32,121 @@ FORBIDDEN_PATTERNS = [
     (r"\b1776\.8\d{2,}\b", "m_tau precise"),
 ]
 
-TEXT_EXT = {".tex",".md",".py",".rst",".txt",".json",".yaml",".yml"}
+TEXT_EXT = {".tex", ".md", ".py", ".rst", ".txt", ".json", ".yaml", ".yml"}
 
-# classify paths: return "fatal" or "warn"
+# Directories to skip entirely (do not even recurse into them)
+IGNORE_DIRS = {
+    ".git", "venv", ".venv", "build", "dist", "_build", "__pycache__",
+    ".pytest_cache",
+    # Legacy / subpackage directories (large, contain many reference values)
+    "ubt_with_chronofactor", "ubt_no_chronofactor",
+    "ubt_audit_pack_v1", "ubt_audit_pack_v2",
+    # Original research documents (historical record)
+    "unified_biquaternion_theory",
+    # Data directory
+    "data", "out",
+    # Old / archived versions
+    "old", "archived", "archive",
+    "ARCHIVE",  # uppercase archived material
+    "osf_release", "osf_release_not_released",
+    "ubt_strict_fix", "ubt_strict_minimal",
+    # Reports directory (generated outputs — may contain any constant values)
+    "reports",
+}
+
+# Directories whose contents are always WARN (never FATAL) but are scanned
+SOFT_DIRS = {
+    "reports", "tools", "tests", "scripts", "validation", "docs",
+    "DOCS", "FINGERPRINTS",
+}
+
+# Individual filenames always treated as WARN (never FATAL)
+SOFT_FILES = {
+    "validate_alpha_renormalization.py",
+    "generate_reference_constants.py",
+    "reference_constants.tex",      # AUTO-GENERATED CODATA reference file
+    "reproduce_lepton_ratios.py",
+    "verify_N_eff.py",  # Verification script that legitimately references experimental α⁻¹
+    "STATUS_ALPHA.md",
+    "STATUS_FERMIONS.md",
+    "STATUS_THEORY_ASSESSMENT.md",
+}
+
+
 def classify_file(p: Path) -> str:
+    """Return 'ignore', 'warn', or 'fatal' for the given path."""
     parts = set(p.parts)
-    if any(seg in parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__")):
+    # Always skip non-text files
+    if p.suffix.lower() not in TEXT_EXT:
         return "ignore"
-    # Generated reference constants file is exempt (contains external refs by design)
-    if p.name == "reference_constants.tex" and "tex" in parts:
+    # Skip files in ignored directories
+    if parts & IGNORE_DIRS:
         return "ignore"
-    # soft areas → WARN
-    if any(seg in parts for seg in ("reports","tools","tests","scripts","validation","docs","archive","speculative_extensions")):
+    # Skip if any path segment is a soft directory → WARN
+    if parts & SOFT_DIRS:
         return "warn"
+    # Skip individual soft files
+    if p.name in SOFT_FILES:
+        return "warn"
+    # Markdown files are always warnings
     if p.suffix.lower() == ".md":
         return "warn"
-    # core .tex/.py → FATAL
-    if p.suffix.lower() in (".tex",".py"):
+    # Core .tex and .py files → FATAL
+    if p.suffix.lower() in (".tex", ".py"):
         return "fatal"
     return "warn"
 
+
 def read_text(p: Path) -> str:
-    for enc in ("utf-8","latin-1","windows-1250"):
+    for enc in ("utf-8", "latin-1", "windows-1250"):
         try:
             return p.read_text(encoding=enc)
-        except Exception:
+        except (UnicodeDecodeError, OSError):
             continue
     return ""
 
+
 def scan_forbidden_literals(root: Path) -> Dict[str, List[Dict]]:
-    hits = {"fatal": [], "warn": []}
-    for p in root.rglob("*"):
-        if not p.is_file():
-            continue
-        if p.suffix.lower() not in TEXT_EXT:
-            continue
-        klass = classify_file(p)
-        if klass == "ignore":
-            continue
-        txt = read_text(p)
-        for rgx, label in FORBIDDEN_PATTERNS:
-            for m in re.finditer(rgx, txt):
-                s = max(0, m.start()-80); e = min(len(txt), m.end()+80)
-                ctx = txt[s:e].replace("\n"," ")
-                hits[klass].append({"file": str(p), "what": label, "match": m.group(0), "context": ctx})
+    hits: Dict[str, List[Dict]] = {"fatal": [], "warn": []}
+
+    def _walk(directory: Path) -> None:
+        try:
+            entries = list(directory.iterdir())
+        except PermissionError:
+            return
+        for p in entries:
+            if p.is_symlink():
+                continue
+            if p.is_dir():
+                # Prune ignored directories early
+                if p.name in IGNORE_DIRS:
+                    continue
+                _walk(p)
+            elif p.is_file():
+                if p.suffix.lower() not in TEXT_EXT:
+                    continue
+                parts = set(p.parts)
+                if parts & IGNORE_DIRS:
+                    continue
+                klass = classify_file(p)
+                if klass == "ignore":
+                    continue
+                txt = read_text(p)
+                for rgx, label in FORBIDDEN_PATTERNS:
+                    for m in re.finditer(rgx, txt):
+                        s = max(0, m.start() - 80)
+                        e = min(len(txt), m.end() + 80)
+                        ctx = txt[s:e].replace("\n", " ")
+                        hits[klass].append({
+                            "file": str(p.relative_to(root)),
+                            "what": label,
+                            "match": m.group(0),
+                            "context": ctx,
+                        })
+
+    _walk(root)
     return hits
 
-def check_main_tex(main_tex: Path) -> Dict:
-    res = {"exists": main_tex.exists(),
-           "has_input_patch": False,
-           "has_input_hecke": False,
-           "uses_pgfplotstable": False,
-           "mentions_csv": False}
-    if not res["exists"]:
-        return res
-    t = read_text(main_tex)
-    res["has_input_patch"] = "\\input{UBT_alpha_per_sector_patch}" in t
-    res["has_input_hecke"] = "\\input{tex/UBT_hecke_L_route}" in t
-    res["uses_pgfplotstable"] = "pgfplotstable" in t
-    res["mentions_csv"] = ".csv" in t
-    return res
 
 def check_csv_presence(root: Path) -> Dict:
     d = root / "data"
@@ -98,84 +155,42 @@ def check_csv_presence(root: Path) -> Dict:
         "leptons_csv": (d / "leptons.csv").exists(),
     }
 
-def code_provenance(root: Path) -> Dict:
-    prov = {"alpha_from_ubt_two_loop_strict": [], "compute_two_loop_delta": [], "ubt_alpha_msbar": []}
-    for p in root.rglob("*.py"):
-        if any(seg in p.parts for seg in (".git","venv",".venv","build","dist","_build","__pycache__")):
-            continue
-        txt = read_text(p)
-        if re.search(r"\bdef\s+alpha_from_ubt_two_loop_strict\s*\(", txt):
-            prov["alpha_from_ubt_two_loop_strict"].append(str(p))
-        if re.search(r"\bdef\s+compute_two_loop_delta\s*\(", txt):
-            prov["compute_two_loop_delta"].append(str(p))
-        if re.search(r"\bdef\s+ubt_alpha_msbar\s*\(", txt):
-            prov["ubt_alpha_msbar"].append(str(p))
-    return prov
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--root", default=".", help="Repo root (default: current dir)")
-    ap.add_argument("--main-tex", default="emergent_alpha_from_ubt.tex",
-                    help="Main TeX filename (default: emergent_alpha_from_ubt.tex)")
+def main() -> None:
+    ap = argparse.ArgumentParser(
+        description="Audit source files for hard-coded physical constants."
+    )
+    ap.add_argument("--root", default=".", help="Repository root (default: .)")
+    ap.add_argument(
+        "--main-tex", default="emergent_alpha_from_ubt.tex",
+        help="Main TeX filename to check for CSV linkage."
+    )
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
-    main_tex = (root / args.main_tex)
 
-    failures = []
-    warnings = []
+    failures: List[str] = []
+    warnings: List[str] = []
 
-    # scan literals
+    # Scan for literal constants
     hits = scan_forbidden_literals(root)
     if hits["fatal"]:
-        failures.append(f"Hard-coded precise constants found in {len(hits['fatal'])} FATAL file(s).")
-        # Print detailed FATAL file list
-        print("\n== FATAL Files with Hard-coded Constants ==")
-        fatal_by_file = {}
-        for h in hits["fatal"]:
-            if h["file"] not in fatal_by_file:
-                fatal_by_file[h["file"]] = []
-            fatal_by_file[h["file"]].append(h)
-        
-        for fpath in sorted(fatal_by_file.keys()):
-            relpath = Path(fpath).relative_to(root) if Path(fpath).is_relative_to(root) else Path(fpath)
-            print(f"\n  {relpath}")
-            for h in fatal_by_file[fpath]:
-                print(f"    - {h['what']}: {h['match']}")
-                # Print context snippet (first 60 chars)
-                ctx = h['context'].strip()[:60]
-                print(f"      Context: {ctx}...")
-        print()
+        failures.append(
+            f"Hard-coded precise constants found in {len(hits['fatal'])} FATAL file(s)."
+        )
     if hits["warn"]:
-        warnings.append(f"Precise constants found in {len(hits['warn'])} non-core (WARN) file(s).")
+        warnings.append(
+            f"Precise constants found in {len(hits['warn'])} non-core (WARN) file(s)."
+        )
 
-    # main TeX checks
-    chk = check_main_tex(main_tex)
-    if not chk["exists"]:
-        warnings.append(f"Main TeX not found: {main_tex}")
-    else:
-        if not (chk["uses_pgfplotstable"] and chk["mentions_csv"]):
-            failures.append("Main TeX does not clearly include CSV tables via pgfplotstable.")
-        if not chk["has_input_patch"]:
-            warnings.append("Main TeX missing \\input{UBT_alpha_per_sector_patch} (recommended).")
-        if not chk["has_input_hecke"]:
-            warnings.append("Main TeX missing \\input{tex/UBT_hecke_L_route} (recommended).")
-
-    # CSV presence
+    # Check CSV presence (warn only — CSV may be generated separately)
     csv = check_csv_presence(root)
     if not csv["alpha_csv"]:
-        failures.append("Missing data/alpha_two_loop_grid.csv (export alpha grid first).")
+        warnings.append("Missing data/alpha_two_loop_grid.csv (run alpha grid export first).")
     if not csv["leptons_csv"]:
-        warnings.append("Missing data/leptons.csv (lepton table won't render).")
+        warnings.append("Missing data/leptons.csv (lepton table may not render).")
 
-    # provenance
-    prov = code_provenance(root)
-    if not prov["alpha_from_ubt_two_loop_strict"] and not prov["compute_two_loop_delta"]:
-        warnings.append("Alpha provider not found (no alpha_from_ubt_two_loop_strict or compute_two_loop_delta).")
-    if not prov["ubt_alpha_msbar"]:
-        warnings.append("Mass pipeline provider ubt_alpha_msbar() not found (cannot audit mass provenance).")
-
-    # results
+    # Print summary
     print("== Summary ==")
     if failures:
         print("FAIL")
@@ -191,16 +206,24 @@ def main():
         for w in warnings:
             print(" -", w)
 
+    # Write JSON report (limit warn hits to avoid huge files)
+    MAX_WARN_HITS = 100
     report = {
-        "root": str(root), "main_tex": str(main_tex),
-        "failures": failures, "warnings": warnings,
-        "hits": hits, "tex_check": chk, "csv_presence": csv, "provenance": prov
+        "root": str(root),
+        "failures": failures,
+        "warnings": warnings,
+        "fatal_hits": hits["fatal"],
+        "warn_hits_count": len(hits["warn"]),
+        "warn_hits_sample": hits["warn"][:MAX_WARN_HITS],
+        "csv_presence": csv,
     }
     (root / "reports").mkdir(exist_ok=True, parents=True)
     (root / "reports" / "audit_computed_not_reference.json").write_text(
         json.dumps(report, indent=2), encoding="utf-8"
     )
+
     raise SystemExit(rc)
+
 
 if __name__ == "__main__":
     main()

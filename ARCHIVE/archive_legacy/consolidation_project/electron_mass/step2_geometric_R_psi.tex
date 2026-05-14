@@ -1,0 +1,159 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Electron Mass --- Step 2: Geometric $R_\psi$ Approach}\\
+         \large Can the Zero-Mode Energy of $S[\Theta]$ Fix $m_e$?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We investigate whether the $\psi$-circle radius $R_\psi$ can be fixed
+  non-circularly from the kinetic action $S[\Theta]$.  Three candidates
+  for fixing $R_\psi$ (self-duality, winding consistency, modularity) have
+  previously been shown to fail (\texttt{docs/ALPHA\_FROM\_ME\_ANALYSIS.md}).
+  We revisit the zero-mode energy approach:
+  $E_0 = \hbar/(2R_\psi) = m_e c^2$ gives $R_\psi = \hbar/(2m_e c)$,
+  differing from the standard calibration $R_\psi = \hbar/(m_e c)$
+  by a factor of~2.  We test whether this factor-of-2 variant is
+  consistent with other UBT constraints.  The approach is a dead end:
+  $R_\psi$ cannot be fixed independently of $m_e$ within current UBT.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Zero-Mode Energy Approach}
+\label{sec:zero_mode}
+%──────────────────────────────────────────────────────────────────────────────
+
+On a circle of radius $R$, the quantum zero-point energy of a scalar
+field is (standard quantum mechanics):
+\begin{equation}
+  E_0 \;=\; \frac{\hbar}{2R_\psi}
+  \label{eq:zero_mode}
+\end{equation}
+in natural units.  If we identify this with the electron rest-mass energy:
+\begin{equation}
+  \frac{\hbar}{2R_\psi} \;=\; m_e c^2
+  \quad\Longrightarrow\quad
+  R_\psi \;=\; \frac{\hbar}{2 m_e c} \;=\; \frac{\bar\lambda_e}{2},
+\end{equation}
+where $\bar\lambda_e = \hbar/(m_e c)$ is the reduced Compton wavelength.
+The current UBT calibration uses $R_\psi = \bar\lambda_e$ (without the
+factor of~2).
+
+\subsection{Comparison with Current Calibration}
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  Formula & $R_\psi$ \\
+  \midrule
+  Zero-mode energy $E_0 = m_e c^2$ & $\hbar/(2m_e c) = \bar\lambda_e/2$ \\
+  Current UBT calibration & $\hbar/(m_e c) = \bar\lambda_e$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The factor-of-2 difference changes the KK mode spectrum:
+$M_n = n/(2R_\psi) = n m_e c/\hbar$ vs $M_n = n m_e c/\hbar$ (no factor).
+This affects the KK tower in the vacuum polarisation but \emph{not}
+the one-loop $\beta$-function coefficient $B_0 = 8\pi$ (which is
+independent of $R_\psi$ at one loop).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Consistency Test}
+\label{sec:consistency}
+%──────────────────────────────────────────────────────────────────────────────
+
+If $R_\psi = \hbar/(2m_e c)$, the winding-number excitation energies are:
+\begin{equation}
+  E_n \;=\; \frac{n^2\hbar^2}{2M_\Theta R_\psi^2}
+       \;=\; \frac{n^2\hbar^2}{2M_\Theta} \times \frac{4m_e^2 c^2}{\hbar^2}
+       \;=\; 2n^2 M_\Theta m_e^2 c^4 / \hbar^2.
+\end{equation}
+For $M_\Theta = m_e$: $E_n = 2n^2 m_e c^2$.  For $n=1$: $E_1 = 2m_e c^2$,
+twice the electron rest mass.  This would identify the $n=1$ mode with a
+particle of mass $m_{\Theta,1} = \sqrt{2}\,m_e$, not $m_e$.
+
+This is inconsistent with the identification $\Theta_1 \leftrightarrow$
+electron (generation 1) at the electron mass scale.
+
+\subsection{Previous Dead Ends}
+From \texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex~§2}
+and \texttt{docs/ALPHA\_FROM\_ME\_ANALYSIS.md~§6.2}:
+\begin{itemize}
+  \item \textbf{Self-duality condition}: $R_\psi = \ell_P$ (Planck length)
+        --- gives $m_e \sim m_P$, wrong by 22 orders of magnitude.
+  \item \textbf{Winding consistency}: $R_\psi = n^*/(\Lambda_{\mathrm{UV}})$
+        --- circular (depends on $n^* = 137$).
+  \item \textbf{Modularity condition}: no modular invariant condition
+        fixes $R_\psi$ at $\bar\lambda_e$ from first principles.
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{deadendbox}
+\textbf{Dead end (geometric $R_\psi$ approach):}
+
+None of the geometric conditions tested fixes $R_\psi = \hbar/(m_e c)$
+or $R_\psi = \hbar/(2m_e c)$ from first principles:
+\begin{itemize}
+  \item The zero-mode energy gives $R_\psi = \hbar/(2m_e c)$, which is
+        \emph{inconsistent} with the electron-mass identification.
+  \item The standard calibration $R_\psi = \hbar/(m_e c)$ is circular:
+        it uses $m_e$ as input to define $R_\psi$.
+  \item Three prior attempts (self-duality, winding, modularity) failed
+        (documented in \texttt{docs/ALPHA\_FROM\_ME\_ANALYSIS.md}).
+\end{itemize}
+
+\textbf{Honest statement:}
+Gap~Y2 (derive $v$ independently of $m_e$) is not closeable by the
+geometric $R_\psi$ approach within current UBT.  $R_\psi$ remains a
+\emph{calibrated} parameter.
+
+\textbf{Next step:} Approach the problem from modular forms
+(Step~3 of this series).
+\end{deadendbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

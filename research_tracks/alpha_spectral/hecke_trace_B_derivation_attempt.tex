@@ -1,0 +1,359 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/hecke_trace_B_derivation_attempt.tex
+%
+% Task: derive_or_reject_modular_B_from_action
+% Gap ID: G137-B
+% Purpose: Test whether the modular coefficient B(p)=mu(Gamma_0(p))/3=(p+1)/3
+% can be derived from the UBT action S[Theta] through a Hecke-trace or winding
+% sector path-integral mechanism, or must remain a conditional ansatz.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{mdframed}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\newmdenv[backgroundcolor=green!10,linecolor=green!50!black,linewidth=1.2pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!12,linecolor=orange!80!black,linewidth=1.2pt]{gapbox}
+\newmdenv[backgroundcolor=red!8,linecolor=red!55!black,linewidth=1.2pt]{warnbox}
+\newmdenv[backgroundcolor=blue!6,linecolor=blue!55!black,linewidth=1.2pt]{insightbox}
+
+\newcommand{\PROVED}{\textcolor{green!50!black}{\textbf{[PROVED]}}}
+\newcommand{\OPEN}{\textcolor{red!70!black}{\textbf{[OPEN]}}}
+\newcommand{\COND}{\textcolor{blue!70!black}{\textbf{[CONDITIONAL]}}}
+\newcommand{\OBS}{\textcolor{orange!80!black}{\textbf{[OBS]}}}
+
+\title{\textbf{Hecke-Trace Attempt for the Modular $B$-Coefficient}\\[3pt]
+\large Can $B(p)=\mu(\Gamma_0(p))/3=(p+1)/3$ Be Derived from $S[\Theta]$?}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-08}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note tests the strongest currently available route for deriving the modular
+coefficient
+\[
+  B(p)=\frac{\mu(\Gamma_0(p))}{3}=\frac{p+1}{3}
+\]
+from the UBT action $S[\Theta]$, with focus on a Hecke-trace interpretation of
+the winding-sector path integral.  We isolate three questions: (i) can the
+factor $p+1$ arise as a true degeneracy from coset enumeration or Hecke traces,
+(ii) can the division by $3$ be obtained from the geometry of
+$\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H}$ or from the three-dimensional
+imaginary quaternion sector, and (iii) can both statements be deduced from the
+action without using observed $\alpha$ or fitting to $137$.  Result: the factor
+$p+1$ is an exact arithmetic invariant of $\Gamma_0(p)$ and a plausible
+candidate degeneracy, but no path-integral derivation from $S[\Theta]$ is known;
+the division by $3$ is explained geometrically as the normalisation
+$\operatorname{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H})=\pi/3$, while
+the alternative ``$\mathrm{Im}(\mathbb{H})$ / theta-dimension'' explanation
+remains heuristic.  Therefore $B(p)=(p+1)/3$ remains a \COND\ ansatz.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Problem statement}
+
+The winding-sector effective potential used in the T3\_ALPHA route is
+\begin{equation}
+  V_{\mathrm{eff}}(n)=n^2-B\,n\ln n,
+  \qquad n\in \mathbb{Z}_{>0}.
+  \label{eq:veff}
+\end{equation}
+To place the minimum at a prime $n^*=p$, one requires
+\begin{equation}
+  2p = B(\ln p + 1).
+  \label{eq:stationary}
+\end{equation}
+The modular ansatz proposes
+\begin{equation}
+  B(p)=\frac{\mu(\Gamma_0(p))}{3}=\frac{p+1}{3},
+  \label{eq:bmod}
+\end{equation}
+which for $p=137$ gives $B(137)=46$.
+
+\begin{warnbox}
+\textbf{Hard rule.}  No observed value of $\alpha$ is used anywhere in this
+note.  The question is only whether~\eqref{eq:bmod} follows from the UBT action
+$S[\Theta]$.
+\end{warnbox}
+
+\section{What is exact before physics enters}
+
+\subsection{Coset count and modular volume}
+
+For prime level $p$, the standard congruence-subgroup formula gives
+\begin{equation}
+  \mu(\Gamma_0(p)) = [\mathrm{SL}(2,\mathbb{Z}):\Gamma_0(p)] = p+1.
+  \label{eq:index}
+\end{equation}
+Equivalently, the right cosets are in bijection with the projective line
+$\mathbb{P}^1(\mathbb{F}_p)$, so
+\begin{equation}
+  |\Gamma_0(p)\backslash \mathrm{SL}(2,\mathbb{Z})|
+  = |\mathbb{P}^1(\mathbb{F}_p)|
+  = p+1.
+  \label{eq:p1}
+\end{equation}
+The hyperbolic area of $X_0(p)$ is then
+\begin{equation}
+  \operatorname{vol}(X_0(p))
+  = \frac{\pi}{3}\,\mu(\Gamma_0(p))
+  = \frac{\pi(p+1)}{3},
+  \label{eq:vol}
+\end{equation}
+and therefore
+\begin{equation}
+  \frac{\operatorname{vol}(X_0(p))}{\pi} = \frac{p+1}{3}.
+  \label{eq:volnorm}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Exact arithmetic content.}  The factor $p+1$ is exact.  The division by
+$3$ is exact.  But these are modular-curve identities, not yet consequences of
+$S[\Theta]$.
+\end{resultbox}
+
+\subsection{What the Hecke-trace idea would need}
+
+The candidate mechanism is to rewrite the one-loop determinant on the
+complex-time torus in a basis adapted to Hecke correspondences, schematically
+\begin{equation}
+  \Gamma_{\mathrm{1-loop}}[\bar{\Theta}]
+  \stackrel{?}{=}
+  -\frac{1}{2}\log\det{}'(\nabla^\dagger\nabla)_{\bar{\Theta}}
+  \stackrel{?}{=}
+  \sum_{p} c_p \,\mathrm{Tr}(T_p) + \cdots,
+  \label{eq:hecke-schematic}
+\end{equation}
+with $\mathrm{Tr}(T_p)$ producing a factor proportional to $p+1$ on a suitable
+space of winding states.  A second possible route is that the path integral over
+the level-$p$ winding sector decomposes into $p+1$ equal-weight saddles labelled
+by cosets of $\Gamma_0(p)$.
+
+\begin{insightbox}
+The current evidence supports the \emph{possibility} that $p+1$ is a degeneracy
+factor, but there is no explicit UBT calculation establishing the required
+operator, measure, or saddle decomposition.
+\end{insightbox}
+
+\section{Attempt 1: derive $p+1$ from a Hecke trace}
+
+\subsection{Minimal mechanism}
+
+To obtain~\eqref{eq:bmod} from~\eqref{eq:hecke-schematic}, the following chain
+would be required:
+\begin{enumerate}
+  \item The complex-time sector of $S[\Theta]$ must define a modularly covariant
+        one-loop operator on $\tau\in\mathbb{H}$.
+  \item The spectrum of that operator must decompose into Hecke orbits at prime
+        level $p$.
+  \item The weighted trace must reduce to a uniform orbit count,
+        $\mathrm{Tr}(T_p)\propto p+1$.
+  \item The overall normalisation must be exactly $1/3$.
+\end{enumerate}
+
+\subsection{Where the attempt stops}
+
+\begin{proposition}
+From the current repository derivations, one cannot deduce the existence of an
+operator on the UBT winding sector whose trace is exactly $\mu(\Gamma_0(p))$.
+\end{proposition}
+
+\begin{proof}
+The existing UBT derivations prove the shape $V_{\mathrm{eff}}(n)=n^2-Bn\ln n$
+and prove the modular identity $\mu(\Gamma_0(p))=p+1$.  They do \emph{not}
+construct:
+\begin{itemize}
+  \item a Hecke-equivariant Hilbert space of winding states,
+  \item a UBT path-integral measure reduced to a finite set of $p+1$ equal
+        saddle classes, or
+  \item a determinant formula whose coefficient is the trace of $T_p$.
+\end{itemize}
+Hence the passage from arithmetic identity to action-level coefficient is
+missing.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Gap H1.}  The Hecke-trace mechanism is a candidate only.  No explicit
+trace formula of the form
+\[
+  B(p)=\frac{1}{3}\,\mathrm{Tr}(T_p)
+\]
+has been derived from $S[\Theta]$.
+\end{gapbox}
+
+\section{Attempt 2: derive $p+1$ from winding-sector degeneracy}
+
+\subsection{Best possible statement}
+
+If the winding-level-$p$ sector split into $\mu(\Gamma_0(p))=p+1$ inequivalent,
+equal-action saddles, then the one-loop contribution could schematically take
+the form
+\begin{equation}
+  Z_p
+  \stackrel{?}{=}
+  \sum_{a\in \Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})}
+  e^{-S_{\mathrm{eff}}[\Theta_a]}
+  = (p+1)e^{-S_*}
+  \label{eq:degeneracy}
+\end{equation}
+and therefore yield a multiplicity factor $p+1$ in the effective coupling.
+
+\subsection{Why this is not yet a derivation}
+
+Equation~\eqref{eq:degeneracy} requires two non-trivial ingredients that are not
+presently proved:
+\begin{enumerate}
+  \item \textbf{Enumeration}: the relevant UBT winding vacua must truly be
+        indexed by $\Gamma_0(p)\backslash\mathrm{SL}(2,\mathbb{Z})$.
+  \item \textbf{Uniform weight}: all such vacua must contribute with the same
+        one-loop action.
+\end{enumerate}
+Neither statement follows from the current action-level analysis.  The existing
+one-loop and KK+winding calculations produce the correct $n\ln n$ structure but
+not the coset multiplicity.
+
+\begin{gapbox}
+\textbf{Gap H2.}  The factor $p+1$ can be \emph{interpreted} as a possible
+degeneracy, but no winding-sector path integral has been evaluated that proves
+this interpretation.
+\end{gapbox}
+
+\section{Attempt 3: explain the division by $3$}
+
+\subsection{Robust explanation: modular-area normalisation}
+
+The exact source of the denominator in~\eqref{eq:bmod} is the fundamental-domain
+volume
+\begin{equation}
+  \operatorname{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H})=\frac{\pi}{3}.
+  \label{eq:fundvol}
+\end{equation}
+Thus
+\begin{equation}
+  \frac{\mu(\Gamma_0(p))}{3}
+  =
+  \frac{\operatorname{vol}(X_0(p))}{\pi}.
+  \label{eq:three-volume}
+\end{equation}
+This is a clean geometric normalisation and does not require any extra physical
+assumption.
+
+\subsection{Heuristic explanation: $\mathrm{Im}(\mathbb{H})$ / theta dimension}
+
+Several internal notes suggest a structural analogy in which the denominator $3$
+is associated with the three-dimensional imaginary quaternion sector
+$\mathrm{Im}(\mathbb{H})\cong\mathbb{R}^3$, or with $\vartheta_3(\tau)^3$ mode
+counting.  This may be suggestive, but it does not currently follow from an
+action computation.
+
+\begin{proposition}
+The division by $3$ is presently derived only as a modular-volume normalisation,
+not from the UBT theta-dimension or directly from $\mathrm{Im}(\mathbb{H})$.
+\end{proposition}
+
+\begin{proof}
+The modular identity~\eqref{eq:three-volume} is exact.  By contrast, the
+identification
+\[
+  \frac{\mu(\Gamma_0(p))}{3}
+  \stackrel{?}{=}
+  \frac{\operatorname{vol}(X_0(p))/\pi}{\dim_{\mathbb{R}}\mathrm{Im}(\mathbb{H})}
+\]
+is stated in current notes only as a structural analogy; no one-loop determinant
+of $\nabla^\dagger\nabla$ has been computed that outputs this factor from the
+quaternionic sector itself.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Gap H3.}  The denominator $3$ is mathematically understood, but its UBT
+action-level origin remains open.  The $\mathrm{Im}(\mathbb{H})$ explanation is
+not yet stronger than a heuristic mnemonic.
+\end{gapbox}
+
+\section{Synthesis}
+
+\begin{center}
+\begin{tabular}{@{}p{0.33\linewidth}p{0.22\linewidth}p{0.33\linewidth}@{}}
+\toprule
+Question & Status & Reason \\
+\midrule
+Does coset enumeration give $p+1$ exactly? & \PROVED\ arithmetically & Yes, as
+$[\mathrm{SL}(2,\mathbb{Z}):\Gamma_0(p)]=p+1$ \\
+\addlinespace
+Does $p+1$ appear as a UBT path-integral degeneracy? & \OPEN & No explicit
+winding-sector path integral or saddle count exists \\
+\addlinespace
+Can a Hecke trace produce $p+1$? & \OPEN & Plausible candidate, but no
+Hecke-equivariant UBT operator has been derived \\
+\addlinespace
+Is the division by $3$ exact? & \PROVED\ geometrically & It is the modular-area
+normalisation $\operatorname{vol}(\mathrm{SL}(2,\mathbb{Z})\backslash\mathbb{H})=\pi/3$ \\
+\addlinespace
+Is the division by $3$ derived from $\mathrm{Im}(\mathbb{H})$ or theta dimension? & \OPEN & Existing argument is heuristic only \\
+\addlinespace
+Can $B(p)=(p+1)/3$ be claimed as derived from $S[\Theta]$? & \textbf{\OPEN} &
+The bridge from arithmetic invariant to action coefficient is missing \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Final verdict}
+
+\begin{resultbox}
+\textbf{Verdict.}  The modular coefficient
+\[
+  B(p)=\frac{\mu(\Gamma_0(p))}{3}=\frac{p+1}{3}
+\]
+\emph{cannot currently be derived from the UBT action $S[\Theta]$}.  The factor
+$p+1$ is an exact arithmetic invariant and a viable candidate degeneracy from
+either Hecke traces or winding-sector cosets, but neither mechanism has been
+realised in a first-principles path-integral computation.  The denominator $3$
+is exactly explained by modular-area normalisation, while the
+``$\mathrm{Im}(\mathbb{H})$ / theta-dimension'' explanation remains heuristic.
+Therefore $B(p)$ must remain a \COND\ modular ansatz.
+\end{resultbox}
+
+\section{Implication for Gap G137-B}
+
+Gap G137-B is \emph{not closed} by the present analysis.  The honest statement
+for the T3\_ALPHA route is:
+\begin{quote}
+The formula $B(p)=(p+1)/3$ is structurally motivated by modular geometry and is
+compatible with the prime-attractor framework, but it is not derived from
+$S[\Theta]$ and therefore remains conditional.
+\end{quote}
+
+\section*{Internal references}
+
+\begin{itemize}
+  \item \texttt{research\_tracks/alpha\_spectral/b\_coefficient\_gap\_resolution.tex}
+  \item \texttt{reports/B\_gap\_final\_verdict.md}
+  \item \texttt{reports/gamma0\_137\_invariants.md}
+  \item \texttt{canonical/alpha/modular\_prime\_attractor\_theorem.tex}
+  \item \texttt{reports/f137\_projective\_geometry\_check.md}
+\end{itemize}
+
+\end{document}

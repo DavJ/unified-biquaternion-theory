@@ -1,0 +1,170 @@
+% Generalized Phase Projection Operator P_phi
+% Version: 1.0
+% Date: 2026-03-03
+% Status: Canonical - GEOMETRY
+% Author: Ing. David Jaroš
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+
+\section{Generalized Phase Projection $P_\varphi$}
+\label{sec:canonical:phase_projection}
+
+\subsection{Definition}
+
+Let $\mathcal{G}_{\mu\nu} \in \mathbb{C} \otimes \mathbb{H}$ be the fundamental biquaternionic metric
+(Axiom C, \texttt{core/AXIOMS.md}).  For any constant phase angle $\varphi \in \mathbb{R}$ we define
+the \textbf{generalized real projection}
+
+\begin{equation}
+\label{eq:phase_projection_def}
+\boxed{P_\varphi[\mathcal{G}_{\mu\nu}] \;:=\; \mathrm{Re}\!\left(e^{-i\varphi}\,\mathcal{G}_{\mu\nu}\right).}
+\end{equation}
+
+Because $\mathcal{G}_{\mu\nu}$ takes values in the complex–quaternionic algebra $\mathbb{C}\otimes\mathbb{H}$,
+the factor $e^{-i\varphi}$ acts by the standard complex scalar multiplication, and $\mathrm{Re}(\cdot)$
+extracts the real part of each complex coefficient in the biquaternionic expansion.
+
+The result $P_\varphi[\mathcal{G}_{\mu\nu}]$ is a real-valued, symmetric $4\times 4$ tensor and therefore
+a valid Lorentzian metric tensor on the same underlying manifold.
+
+\subsection{Recovery of the Standard Observer Metric ($\varphi = 0$)}
+
+Setting $\varphi = 0$:
+\begin{equation}
+\label{eq:phase_proj_phi0}
+P_0[\mathcal{G}_{\mu\nu}] = \mathrm{Re}\!\left(e^{0}\,\mathcal{G}_{\mu\nu}\right) = \mathrm{Re}(\mathcal{G}_{\mu\nu}) = g_{\mu\nu}.
+\end{equation}
+
+This is precisely the unique emergent metric of Axiom C.  Hence $\varphi = 0$ is the
+\textbf{standard observer (gauge) choice}, not a theoretical requirement.  The general
+framework uses $P_\varphi$ for any constant $\varphi$.
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Note on Axiom C]
+The formula $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu})$ stated in Axiom C is the \emph{special case}
+$\varphi = 0$ of the general operator $P_\varphi$.  Axiom C is unchanged; the present section
+formalizes the full one-parameter family of which that definition is a member.
+\end{tcolorbox}
+
+\subsection{Linearity}
+
+$P_\varphi$ is a $\mathbb{R}$-linear operator on $\mathbb{C}\otimes\mathbb{H}$-valued tensors:
+\begin{equation}
+P_\varphi[\alpha\,\mathcal{A}_{\mu\nu} + \beta\,\mathcal{B}_{\mu\nu}]
+= \alpha\,P_\varphi[\mathcal{A}_{\mu\nu}] + \beta\,P_\varphi[\mathcal{B}_{\mu\nu}],
+\qquad \alpha,\beta\in\mathbb{R}.
+\end{equation}
+
+\subsection{Commutativity with Partial Derivatives ($\varphi = \mathrm{const}$)}
+
+When $\varphi$ is constant across spacetime,
+
+\begin{equation}
+\label{eq:proj_commutes_partial}
+\partial_\mu P_\varphi[\mathcal{G}_{\nu\rho}]
+= P_\varphi[\partial_\mu \mathcal{G}_{\nu\rho}],
+\end{equation}
+
+because $e^{-i\varphi}$ is a constant scalar and $\partial_\mu$ commutes with $\mathrm{Re}(\cdot)$ for
+smooth fields.  This commutativity extends to the gauge-covariant derivative $D_\mu$ when $\varphi$ is
+covariantly constant ($\nabla_\mu\varphi = 0$), a property used in
+Section~\ref{sec:canonical:gr_as_limit}.
+
+\subsection{Preservation of Tensor Dimensionality}
+
+The map $P_\varphi$ acts coefficient-by-coefficient on the $4\times 4$ index structure of
+$\mathcal{G}_{\mu\nu}$; it does not mix spacetime indices.  Therefore
+$P_\varphi[\mathcal{G}_{\mu\nu}]$ is a $(0,2)$-tensor of the same rank and dimensionality as the
+classical metric $g_{\mu\nu}$ for every value of $\varphi$.
+
+\subsection{Phase Frame Bundle}
+
+The collection of all phase observers is parametrized by $\varphi \in \mathrm{U}(1) \subset \mathbb{C}$.
+We define the \textbf{phase frame bundle}
+
+\begin{equation}
+\mathcal{F} \;=\; \mathcal{M} \times_{\varphi} \mathrm{U}(1),
+\end{equation}
+
+where $\mathcal{M}$ is the four-dimensional spacetime manifold.  Each fiber $\{(\varphi)\}_{\varphi\in\mathrm{U}(1)}$
+labels a \emph{phase frame}, and the section $\varphi = \mathrm{const}$ defines a \emph{constant phase
+observer}.  The standard observer uses the section $\varphi = 0$.
+
+The projection $P_\varphi$ is the canonical projection map from the total space of $\mathcal{F}$ to the
+space of real Lorentzian metrics.
+
+\subsection{KK Mode Expansion and the Ultrametric Structure of Phase States}
+\label{subsec:kk_ultrametric}
+
+\subsubsection{Kaluza--Klein Mode Expansion}
+
+Decompose the $\Theta$-field in the imaginary-time direction $\psi$ (Axiom B):
+
+\begin{equation}
+\label{eq:kk_expansion}
+\Theta(x, \psi) = \sum_{n=-\infty}^{\infty} a_n(x)\,e^{in\psi},
+\end{equation}
+
+where $a_n(x) \in \mathbb{C}\otimes\mathbb{H}$ are biquaternionic mode amplitudes and $n \in \mathbb{Z}$
+is the KK mode number.
+
+\subsubsection{Prime-Indexed Stable Modes}
+
+The drift-diffusion equation governing phase dynamics (Appendix~H,
+\texttt{Appendix\_H\_Theta\_Phase\_Emergence.tex}) admits attractor solutions at mode numbers
+corresponding to \textbf{prime integers}:
+
+\begin{equation}
+n \in \mathcal{P} = \{2, 3, 5, 7, 11, \ldots\},
+\end{equation}
+
+because prime-mode perturbations are maximally isolated from resonant coupling — no proper
+divisors other than $1$ and $n$ itself contribute to mixing terms in the nonlinear attractor equation.
+All other modes are driven to zero amplitude in the long-time limit.
+
+\subsubsection{P-adic Metric on Phase States}
+
+For each prime $p$, the \textbf{$p$-adic absolute value} $|\cdot|_p$ on $\mathbb{Q}$ satisfies the
+ultrametric inequality $|x + y|_p \leq \max(|x|_p, |y|_p)$.  We define the
+\textbf{$p$-adic distance} on the phase-state space by
+
+\begin{equation}
+\label{eq:padic_distance}
+d_p(\varphi_1, \varphi_2) \;:=\; |\varphi_1 - \varphi_2|_p.
+\end{equation}
+
+This distance satisfies the \textbf{ultrametric inequality}:
+\begin{equation}
+d_p(\varphi_1, \varphi_3) \leq \max\!\bigl(d_p(\varphi_1, \varphi_2),\, d_p(\varphi_2, \varphi_3)\bigr).
+\end{equation}
+
+For a rigorous treatment of $p$-adic analysis applied to physics see the existing p-adic
+material in \texttt{consolidation\_project/appendix\_ALPHA\_padic\_derivation.tex}.
+
+\subsubsection{Orthogonality of Prime-Indexed Modes}
+
+Under the $p$-adic metric, prime-indexed modes $e^{in\psi}$ and $e^{im\psi}$ with distinct primes
+$n \neq m$ satisfy
+\begin{equation}
+d_n(n, m) = |n - m|_n = 1,\quad d_m(n, m) = |n - m|_m = 1.
+\end{equation}
+Since no prime divides another, the two modes live in $p$-adically non-overlapping
+balls, making them \textbf{orthogonal in the $p$-adic sense}: they cannot be continuously
+deformed into each other without passing through all intermediate integers.
+
+\subsubsection{Ultrametric Space of Stable Phase States}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Theorem: Ultrametric Phase Space]
+\textbf{The set of stable phase states of UBT forms an ultrametric space under the $p$-adic metric.}
+
+More precisely: the stable $\varphi$ values are indexed by prime KK mode numbers
+$\{p \in \mathcal{P}\}$, and the $p$-adic distance $d_p(\varphi_i, \varphi_j)$ endows this
+set with an ultrametric topology distinct from the standard Archimedean metric on $\mathbb{R}$.
+\end{tcolorbox}
+
+\subsubsection{Connection to the Fine Structure Constant}
+
+The prime $p = 137$ is a candidate stable mode because $\alpha \approx 1/137$ and $137$ is prime.
+In the KK expansion, the mode $n = 137$ sits at the boundary of the non-perturbative regime
+($n \sim \alpha^{-1}$), making it a natural attractor of the phase dynamics.  A detailed derivation
+is given in \texttt{consolidation\_project/appendix\_ALPHA\_padic\_derivation.tex}.
+
+% End of generalized phase projection

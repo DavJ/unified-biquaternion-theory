@@ -14,6 +14,7 @@ but instead test:
 import pytest
 import json
 import csv
+import numpy as np
 from pathlib import Path
 import tempfile
 import sys

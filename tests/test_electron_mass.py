@@ -122,10 +122,10 @@ def test_electron_msbar_mass_computed():
     """
     Test that MSbar mass is computed without errors (legacy validation mode).
     
-    This test uses derived_mode=False to validate against PDG reference.
+    This test uses mode="legacy" to validate against PDG reference.
     For theory-derived tests, see test_me_alpha_no_pdg.py
     """
-    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
+    mbar = compute_lepton_msbar_mass("e", mu=None, mode="legacy")
     
     # Basic sanity checks
     assert mbar > 0, "MSbar mass must be positive"
@@ -138,7 +138,7 @@ def test_electron_mass_precision():
     """
     Main precision test: electron pole mass must match experiment within tolerance.
     
-    This test uses derived_mode=False to validate against PDG reference.
+    This test uses mode="legacy" to validate against PDG reference.
     For theory-derived tests, see test_me_alpha_no_pdg.py
     
     Current target: relative error < 10⁻⁴
@@ -146,7 +146,7 @@ def test_electron_mass_precision():
     """
     # Compute MSbar mass at μ = m̄_e (self-consistent choice)
     # Use legacy mode for PDG validation
-    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
+    mbar = compute_lepton_msbar_mass("e", mu=None, mode="legacy")
     
     # Get α at this scale
     alpha_mu = ubt_alpha_msbar(mbar)
@@ -180,7 +180,7 @@ def test_electron_mass_precision_target_10minus5():
     pytest.skip("TODO: Implement 2-loop QED self-energy correction")
     
     # Same calculation as test_electron_mass_precision
-    mbar = compute_lepton_msbar_mass("e", mu=None, derived_mode=False)
+    mbar = compute_lepton_msbar_mass("e", mu=None, mode="legacy")
     alpha_mu = ubt_alpha_msbar(mbar)
     m_pole = pole_from_msbar_lepton(mbar, mu=mbar, alpha_mu=alpha_mu)
     
@@ -203,12 +203,12 @@ def test_fixed_point_convergence():
     initial_guess = 0.510  # MeV
     
     mbar_fixed = solve_msbar_fixed_point(
-        initial_guess, lepton="e", derived_mode=False, tol=1e-10
+        initial_guess, lepton="e", mode="legacy", tol=1e-10
     )
     
     # Verify it's a fixed point: μ = m̄(μ)
     alpha_mu = ubt_alpha_msbar(mbar_fixed)
-    mbar_check = compute_lepton_msbar_mass("e", mu=mbar_fixed, derived_mode=False)
+    mbar_check = compute_lepton_msbar_mass("e", mu=mbar_fixed, mode="legacy")
     
     rel_diff = abs(mbar_check - mbar_fixed) / mbar_fixed
     assert rel_diff < 1e-9, (

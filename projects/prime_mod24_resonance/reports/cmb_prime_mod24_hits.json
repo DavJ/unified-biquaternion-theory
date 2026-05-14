@@ -1,0 +1,12 @@
+{
+  "n_bins": 2000,
+  "n_primes_used": 500,
+  "tolerance": 1.0,
+  "observed_hits": 131,
+  "observed_density": 0.0655,
+  "null_mean_density": 0.044459,
+  "null_std_density": 0.004498979773237484,
+  "z_score": 4.676838095713859,
+  "expected_density_analytic": 0.045,
+  "interpretation": "z > 2 suggests non-random alignment; z < 2 is consistent with chance."
+}

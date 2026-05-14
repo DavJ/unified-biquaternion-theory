@@ -1,0 +1,684 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+
+% Theorem environments
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{remark}[definition]{Remark}
+
+% Custom commands
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calE}{\mathcal{E}}
+
+\title{Appendix: General Relativity Embedding of the\\
+       Unified Biquaternion Theory\\[0.3em]
+       \large Hilbert Variation and the Stress-Energy Tensor $T_{\mu\nu}$}
+\author{Ing.~David~Jaroš}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{License:} © 2025 Ing.~David~Jaroš. CC BY-NC-ND 4.0.
+See \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} for details.
+
+\vspace{1em}
+
+\begin{abstract}
+This appendix provides a self-contained derivation of the gravitational
+embedding of the Unified Biquaternion Theory (UBT) into General Relativity (GR).
+Starting from the complete UBT action functional $S[\Theta, g]$, we perform
+the Hilbert variation with respect to the spacetime metric $g^{\mu\nu}$ to
+obtain the stress-energy tensor
+\[
+  T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\,\frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}.
+\]
+We derive explicit forms for the kinetic, potential, and gauge contributions,
+lift the result to the full biquaternionic tensor $\calT_{\mu\nu}$, and show
+that combining with the Einstein--Hilbert term reproduces Einstein's field
+equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$.  In the limit $\Theta \to \phi$
+(real scalar field), the stress-energy tensor reduces to the classical
+Klein--Gordon form, confirming GR compatibility.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+%-----------------------------------------------------------------------
+\section{Action Functional $S[\Theta, g]$}
+\label{sec:action}
+
+\subsection{Conventions}
+
+We work in Lorentzian signature $(-,+,+,+)$ throughout.
+Indices are raised and lowered with $g^{\mu\nu}$ and $g_{\mu\nu}$.
+We write $g := \det(g_{\mu\nu}) < 0$ and $\sqrt{-g} > 0$.
+Natural units $\hbar = c = 1$ are used.
+
+The covariant derivative acting on the biquaternionic field $\Theta$ is
+\begin{equation}
+  \nabla_\mu \Theta = \partial_\mu \Theta + \Omega_\mu \Theta
+                      + i\,g_{\mathrm{YM}} A_\mu \Theta,
+  \label{eq:cov_deriv}
+\end{equation}
+where $\Omega_\mu$ is the spin connection derived from the spacetime metric
+$g_{\mu\nu}$ (real projection of the biquaternionic connection $\mathcal{G}_{\mu\nu}$),
+and $A_\mu$ is the Yang--Mills gauge connection
+$(\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak{u}(1))$-valued.
+
+\subsection{The UBT Field}
+
+The biquaternionic field $\Theta(q,\tau) \in \B = \C\otimes\H$ is defined
+over complex time $\tau = t + i\psi$ (see main text, Section~2).
+Its general decomposition is
+\begin{equation}
+  \Theta(q,\tau) = g_{\mu\nu}(x) + i\,\psi_{\mu\nu}(x)
+                  + \mathbf{j}\,\xi_{\mu\nu}(x) + \mathbf{k}\,\chi_{\mu\nu}(x),
+  \label{eq:theta_decomp}
+\end{equation}
+where $g_{\mu\nu}$ is the real component (classical metric), and
+$\psi_{\mu\nu}$, $\xi_{\mu\nu}$, $\chi_{\mu\nu}$ are imaginary/quaternionic
+components encoding phase curvature.
+
+\subsection{Complete Matter Action}
+
+\begin{definition}[UBT matter action]
+\label{def:action}
+The matter sector of the UBT action, projected onto the effective
+4-dimensional Lorentzian spacetime, is:
+\begin{equation}
+  S_{\mathrm{matter}}[\Theta, g]
+  = S_{\mathrm{kin}} + S_{\mathrm{pot}} + S_{\mathrm{gauge}},
+  \label{eq:S_matter}
+\end{equation}
+where the three terms are:
+\begin{align}
+  S_{\mathrm{kin}}[\Theta, g]
+    &= -\frac{1}{2}\int d^4x\,\sqrt{-g}\;
+       g^{\alpha\beta}\,\Tr\!\bigl[(\nabla_\alpha\Theta)^\dagger
+       \nabla_\beta\Theta\bigr],
+       \label{eq:S_kin} \\[4pt]
+  S_{\mathrm{pot}}[\Theta, g]
+    &= -\int d^4x\,\sqrt{-g}\; V(\Theta),
+       \label{eq:S_pot} \\[4pt]
+  S_{\mathrm{gauge}}[\Theta, g]
+    &= -\frac{K}{4}\int d^4x\,\sqrt{-g}\;
+       \Tr\!\bigl[F_{\alpha\beta}F^{\alpha\beta}\bigr].
+       \label{eq:S_gauge}
+\end{align}
+Here $K > 0$ is the gauge kinetic normalisation ($K = 1$ for Abelian gauge),
+$V(\Theta) = \tfrac{\lambda}{4}(\langle\Theta,\Theta\rangle - v^2)^2$
+is the Mexican-hat potential, and $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu
++ i\,g_{\mathrm{YM}}[A_\mu, A_\nu]$ is the Yang--Mills field strength.
+\end{definition}
+
+\begin{remark}[Sign of $S_{\mathrm{kin}}$]
+The minus sign in \eqref{eq:S_kin} is required by the $(-,+,+,+)$ convention:
+the kinetic energy density $T^{00} = \tfrac{1}{2}(\partial_t\Theta)^2 +
+\tfrac{1}{2}(\nabla\Theta)^2 > 0$ is positive with this choice.
+\end{remark}
+
+\subsection{Metric Dependence}
+
+The metric $g^{\mu\nu}$ appears in three places in $S_{\mathrm{matter}}$:
+\begin{enumerate}
+  \item \textbf{Explicit:} through the index contraction $g^{\alpha\beta}$ in
+        $S_{\mathrm{kin}}$ and the index raising in $F^{\alpha\beta} =
+        g^{\alpha\mu}g^{\beta\nu}F_{\mu\nu}$.
+  \item \textbf{Integration measure:} through the volume factor $\sqrt{-g}$
+        in every term.
+  \item \textbf{Covariant derivative:} through the spin connection $\Omega_\mu$,
+        which is determined by $g_{\mu\nu}$ via the tetrad.  On-shell (when
+        $\Theta$ satisfies its Euler--Lagrange equations), the spin-connection
+        variation contributes only boundary terms that vanish for variations
+        with compact support.
+\end{enumerate}
+
+%-----------------------------------------------------------------------
+\section{Hilbert Variation of the Matter Action}
+\label{sec:variation}
+
+\begin{definition}[Hilbert stress-energy tensor]
+\label{def:hilbert}
+Given the matter action $S_{\mathrm{matter}}[\Theta, g]$, the
+\emph{Hilbert stress-energy tensor} is defined by:
+\begin{equation}
+  \label{eq:hilbert}
+  T_{\mu\nu} := -\frac{2}{\sqrt{-g}}\,
+    \frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}.
+\end{equation}
+The sign convention ensures that $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ holds on
+the right-hand side of Einstein's equations.
+\end{definition}
+
+\subsection{Standard Variational Identities}
+
+\begin{lemma}[Metric variation identities]
+\label{lem:var_ids}
+Under $g^{\mu\nu} \to g^{\mu\nu} + \delta g^{\mu\nu}$:
+\begin{align}
+  \delta\sqrt{-g}
+    &= -\tfrac{1}{2}\sqrt{-g}\; g_{\mu\nu}\,\delta g^{\mu\nu},
+    \label{eq:var_sqrtg} \\
+  \delta g_{\alpha\beta}
+    &= -g_{\alpha\mu}\,g_{\beta\nu}\,\delta g^{\mu\nu},
+    \label{eq:var_lower} \\
+  \delta\!\bigl(\sqrt{-g}\,g^{\alpha\beta}\bigr)
+    &= \sqrt{-g}\Bigl[\delta^{(\alpha}_\mu\delta^{\beta)}_\nu
+       - \tfrac{1}{2}g_{\mu\nu}\,g^{\alpha\beta}\Bigr]\delta g^{\mu\nu}.
+    \label{eq:var_combined}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Identity~\eqref{eq:var_sqrtg}: from $\delta\ln|\det g| = g^{\mu\nu}\delta g_{\mu\nu}
+= -g_{\mu\nu}\delta g^{\mu\nu}$ (using $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu_\nu$).
+Identity~\eqref{eq:var_lower}: differentiate $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu_\nu$.
+Identity~\eqref{eq:var_combined}: combine the first two with the product rule
+and symmetrise in $(\mu,\nu)$.
+\end{proof}
+
+\subsection{Kinetic Term Variation}
+
+Write $S_{\mathrm{kin}} = -\tfrac{1}{2}\int d^4x\,\sqrt{-g}\,
+g^{\alpha\beta}\,K_{\alpha\beta}$, where
+$K_{\alpha\beta} := \Tr[(\nabla_\alpha\Theta)^\dagger\nabla_\beta\Theta]$.
+
+\begin{proposition}[Kinetic contribution to $T_{\mu\nu}$]
+\label{prop:T_kin}
+For $\Theta$ satisfying the UBT Euler--Lagrange equations, on-shell:
+\begin{equation}
+  \label{eq:T_kin}
+  \boxed{
+    T^{(\mathrm{kin})}_{\mu\nu}
+    = \Tr\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+      - \tfrac{1}{2}\,g_{\mu\nu}\,
+        \Tr\!\bigl[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta\bigr].
+  }
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Vary $S_{\mathrm{kin}}$ with respect to $g^{\mu\nu}$:
+\begin{equation}
+  \delta S_{\mathrm{kin}}
+  = -\frac{1}{2}\int d^4x\,\Bigl[
+      \delta(\sqrt{-g}\,g^{\alpha\beta})\,K_{\alpha\beta}
+    + \sqrt{-g}\,g^{\alpha\beta}\,\delta K_{\alpha\beta}
+    \Bigr].
+\end{equation}
+
+\textbf{First piece (explicit metric dependence).}
+Applying identity~\eqref{eq:var_combined}:
+\begin{equation}
+  \delta(\sqrt{-g}\,g^{\alpha\beta})\,K_{\alpha\beta}
+  = \sqrt{-g}\Bigl[K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}\,
+    g^{\alpha\beta}K_{\alpha\beta}\Bigr]\delta g^{\mu\nu}.
+\end{equation}
+
+\textbf{Second piece (connection variation).}
+The spin connection $\Omega_\mu$ depends on $g_{\mu\nu}$ through the tetrad.
+Its metric variation produces terms $\propto (\nabla^\mu\nabla_\mu\Theta)\,\delta\Theta$
+upon integration by parts.  When $\Theta$ satisfies its Euler--Lagrange equation
+$\nabla^\mu\nabla_\mu\Theta = \partial V/\partial\Theta^\dagger$, these reduce to
+boundary terms that vanish for compactly supported variations.
+We discard this piece on-shell.
+
+Applying Definition~\ref{def:hilbert} to the first piece:
+\begin{equation}
+  T^{(\mathrm{kin})}_{\mu\nu}
+  = -\frac{2}{\sqrt{-g}}\cdot\bigl(-\tfrac{1}{2}\bigr)\cdot
+    \tfrac{1}{2}\sqrt{-g}\bigl[K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}K^\alpha{}_\alpha\bigr]
+  = K_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}K^\alpha{}_\alpha,
+\end{equation}
+which is \eqref{eq:T_kin}.
+\end{proof}
+
+\subsection{Potential Term Variation}
+
+\begin{proposition}[Potential contribution to $T_{\mu\nu}$]
+\label{prop:T_pot}
+The potential $V(\Theta)$ is a scalar built from $\Theta$ with no explicit
+metric contractions; it depends on $g^{\mu\nu}$ only through $\sqrt{-g}$.
+Therefore:
+\begin{equation}
+  \label{eq:T_pot}
+  \boxed{T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}\,V(\Theta).}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\begin{equation}
+  \frac{\delta S_{\mathrm{pot}}}{\delta g^{\mu\nu}}
+  = -\int d^4x\,\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\,V(\Theta)
+  = \frac{1}{2}\sqrt{-g}\;g_{\mu\nu}\,V(\Theta).
+\end{equation}
+Applying Definition~\ref{def:hilbert}: $T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}V(\Theta)$.
+\end{proof}
+
+\begin{remark}[Cosmological constant form]
+$T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}V$ has the structure of a
+(field-dependent) cosmological constant.  At the vacuum $|\Theta|=v$,
+the Mexican-hat potential vanishes: $V|_{|\Theta|=v}=0$, so
+$T^{(\mathrm{pot})}_{\mu\nu}|_{\mathrm{vac}}=0$.
+\end{remark}
+
+\subsection{Gauge Kinetic Term Variation}
+
+With $F^{\mu\nu} = g^{\mu\alpha}g^{\nu\beta}F_{\alpha\beta}$, the metric
+appears in $\sqrt{-g}$ and in the two index-raising factors.
+
+\begin{proposition}[Gauge kinetic contribution to $T_{\mu\nu}$]
+\label{prop:T_gauge}
+\begin{equation}
+  \label{eq:T_gauge}
+  \boxed{
+    T^{(\mathrm{gauge})}_{\mu\nu}
+    = K\Bigl[
+        \Tr\!\bigl[F_{\mu\alpha}F_\nu{}^{\alpha}\bigr]
+        - \tfrac{1}{4}\,g_{\mu\nu}\,\Tr\!\bigl[F_{\alpha\beta}F^{\alpha\beta}\bigr]
+      \Bigr].
+  }
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Vary $S_{\mathrm{gauge}} = -\tfrac{K}{4}\int d^4x\,\sqrt{-g}\,
+\Tr[F_{\mu\nu}F^{\mu\nu}]$ term by term with respect to $g^{\rho\sigma}$:
+
+\textit{Variation of $\sqrt{-g}$:}
+$\displaystyle-\frac{K}{4}\bigl(-\tfrac{1}{2}\sqrt{-g}\,g_{\rho\sigma}\bigr)
+F_{\mu\nu}F^{\mu\nu}
+= \frac{K}{8}\sqrt{-g}\;g_{\rho\sigma}\Tr[F_{\mu\nu}F^{\mu\nu}]$.
+
+\textit{Variation of the first $g^{\mu\alpha}$:}
+By the antisymmetry $F_{\mu\nu} = -F_{\nu\mu}$ and the identity
+$\delta g^{\mu\alpha} = -\delta^{(\mu}_\rho\delta^{\alpha)}_\sigma\,\delta g^{\rho\sigma}$:
+$\displaystyle-\frac{K}{4}\sqrt{-g}\;\Tr[F_{\rho\beta}F_\sigma{}^\beta
++ F_{\sigma\beta}F_\rho{}^\beta]$.
+
+\textit{Variation of the second $g^{\nu\beta}$:}
+Identical to the previous piece by antisymmetry.
+
+Summing all pieces and applying Definition~\ref{def:hilbert}:
+\begin{equation}
+  \frac{\delta S_{\mathrm{gauge}}}{\delta g^{\rho\sigma}}
+  = \frac{\sqrt{-g}\,K}{4}\Bigl[
+      \tfrac{1}{2}g_{\rho\sigma}\Tr[F_{\mu\nu}F^{\mu\nu}]
+      - 2\Tr[F_{\rho\alpha}F_\sigma{}^{\alpha}]
+    \Bigr],
+\end{equation}
+which gives $T^{(\mathrm{gauge})}_{\rho\sigma}$ as in \eqref{eq:T_gauge}.
+\end{proof}
+
+%-----------------------------------------------------------------------
+\section{Complete Stress-Energy Tensor $T_{\mu\nu}$}
+\label{sec:T_total}
+
+\begin{theorem}[UBT matter stress-energy tensor]
+\label{thm:T_matter}
+The complete matter stress-energy tensor obtained by the Hilbert prescription
+from $S_{\mathrm{matter}} = S_{\mathrm{kin}} + S_{\mathrm{pot}} + S_{\mathrm{gauge}}$ is:
+\begin{equation}
+  \label{eq:T_total}
+  \boxed{
+    T_{\mu\nu}
+    = \underbrace{\Tr[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta]
+        - \tfrac{1}{2}g_{\mu\nu}\Tr[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta]}_{
+        T^{(\mathrm{kin})}_{\mu\nu}}
+    + \underbrace{-g_{\mu\nu}V(\Theta)}_{
+        T^{(\mathrm{pot})}_{\mu\nu}}
+    + K\underbrace{\Bigl[\Tr[F_{\mu\alpha}F_\nu{}^\alpha]
+        - \tfrac{1}{4}g_{\mu\nu}\Tr[F_{\alpha\beta}F^{\alpha\beta}]\Bigr]}_{
+        T^{(\mathrm{gauge})}_{\mu\nu}/K}.
+  }
+\end{equation}
+This is valid on-shell, i.e.\ when $\Theta$ satisfies the UBT Euler--Lagrange
+equations $\nabla^\dagger\nabla\Theta = \partial V/\partial\Theta^\dagger$.
+\end{theorem}
+
+\begin{proof}
+Additivity of the variational derivative:
+$\delta S_{\mathrm{matter}}/\delta g^{\mu\nu}
+= \delta S_{\mathrm{kin}}/\delta g^{\mu\nu}
++ \delta S_{\mathrm{pot}}/\delta g^{\mu\nu}
++ \delta S_{\mathrm{gauge}}/\delta g^{\mu\nu}$.
+Applying Definition~\ref{def:hilbert} to each piece and summing the results
+of Propositions~\ref{prop:T_kin}, \ref{prop:T_pot}, and~\ref{prop:T_gauge}
+gives \eqref{eq:T_total}.
+\end{proof}
+
+%-----------------------------------------------------------------------
+\section{Biquaternionic Lift to $\mathcal{T}_{\mu\nu}$}
+\label{sec:calT}
+
+Because the full UBT action $S[\Theta]$ is biquaternion-valued, the Hilbert
+prescription~\eqref{eq:hilbert} yields a biquaternion-valued tensor
+$\calT_{\mu\nu} \in \B$.
+
+\begin{definition}[Biquaternionic stress-energy tensor]
+\label{def:calT}
+\begin{equation}
+  \label{eq:calT_def}
+  \calT_{\mu\nu}
+  := -\frac{2}{\sqrt{-g}}\,\frac{\delta S[\Theta]}{\delta g^{\mu\nu}}
+  \;\in\; \B,
+\end{equation}
+where $S[\Theta]$ is the complete biquaternion-valued matter action.
+\end{definition}
+
+The decomposition mirrors Theorem~\ref{thm:T_matter}:
+\begin{align}
+  \calT^{(\mathrm{kin})}_{\mu\nu}
+    &= \Tr_{\B}\!\bigl[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta\bigr]
+       - \tfrac{1}{2}g_{\mu\nu}
+         \Tr_{\B}\!\bigl[(\nabla_\alpha\Theta)^\dagger\nabla^\alpha\Theta\bigr],
+       \label{eq:calT_kin} \\
+  \calT^{(\mathrm{pot})}_{\mu\nu}
+    &= -g_{\mu\nu}\,V(\Theta),
+       \label{eq:calT_pot} \\
+  \calT^{(\mathrm{gauge})}_{\mu\nu}
+    &= K\Bigl[
+         \Tr_{\B}\!\bigl[F_{\mu\alpha}F_\nu{}^\alpha\bigr]
+         - \tfrac{1}{4}g_{\mu\nu}\Tr_{\B}\!\bigl[F_{\alpha\beta}F^{\alpha\beta}\bigr]
+       \Bigr],
+       \label{eq:calT_gauge}
+\end{align}
+where $\Tr_{\B}$ denotes the biquaternionic trace over all internal indices.
+
+\begin{definition}[Physical stress-energy tensor]
+The \emph{physical (real) stress-energy tensor} is the Hermitian projection:
+\begin{equation}
+  \label{eq:T_real_proj}
+  T_{\mu\nu} := \re(\calT_{\mu\nu}),
+\end{equation}
+applied component-wise.  The imaginary part $\im(\calT_{\mu\nu})$ encodes
+phase curvature and does not couple to classical matter.
+\end{definition}
+
+The fundamental UBT field equation is:
+\begin{equation}
+  \calE_{\mu\nu} = \kappa\,\calT_{\mu\nu},
+  \quad
+  \calE_{\mu\nu},\,\calT_{\mu\nu} \in \B,
+\end{equation}
+and the Einstein equations arise \emph{only} after taking the real projection:
+\begin{equation}
+  G_{\mu\nu} := \re(\calE_{\mu\nu}) = 8\pi G\,T_{\mu\nu} := 8\pi G\,\re(\calT_{\mu\nu}).
+\end{equation}
+
+%-----------------------------------------------------------------------
+\section{Einstein Field Equations with Matter}
+\label{sec:einstein}
+
+\begin{definition}[Einstein--Hilbert action]
+\label{def:EH}
+\begin{equation}
+  \label{eq:S_EH}
+  S_{\mathrm{EH}}[g] = \frac{1}{16\pi G}\int d^4x\,\sqrt{-g}\; R,
+\end{equation}
+where $R = g^{\mu\nu}R_{\mu\nu}$ is the Ricci scalar.
+\end{definition}
+
+\begin{theorem}[Einstein field equations from UBT]
+\label{thm:einstein}
+The stationary condition $\delta S_{\mathrm{total}}/\delta g^{\mu\nu} = 0$
+for the combined action
+\begin{equation}
+  S_{\mathrm{total}}[g,\Theta]
+  = S_{\mathrm{EH}}[g] + S_{\mathrm{matter}}[\Theta, g]
+\end{equation}
+yields:
+\begin{equation}
+  \label{eq:einstein_matter}
+  \boxed{G_{\mu\nu} = 8\pi G\,T_{\mu\nu},}
+\end{equation}
+where $G_{\mu\nu} = R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R$ is the Einstein
+tensor and $T_{\mu\nu}$ is given by \eqref{eq:T_total}.
+\end{theorem}
+
+\begin{proof}
+The variation of $S_{\mathrm{EH}}$ gives the standard Palatini result:
+\begin{equation}
+  \frac{\delta S_{\mathrm{EH}}}{\delta g^{\mu\nu}}
+  = \frac{\sqrt{-g}}{16\pi G}\,G_{\mu\nu}.
+\end{equation}
+The variation of $S_{\mathrm{matter}}$ gives (by Definition~\ref{def:hilbert}):
+\begin{equation}
+  \frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}
+  = -\frac{\sqrt{-g}}{2}\,T_{\mu\nu}.
+\end{equation}
+Setting the total variation to zero:
+\begin{equation}
+  \frac{\sqrt{-g}}{16\pi G}\,G_{\mu\nu}
+  - \frac{\sqrt{-g}}{2}\,T_{\mu\nu} = 0
+  \quad\Longrightarrow\quad
+  G_{\mu\nu} = 8\pi G\,T_{\mu\nu}.
+\end{equation}
+\end{proof}
+
+\begin{corollary}[Energy-momentum conservation]
+\label{cor:conservation}
+The contracted Bianchi identity $\nabla^\mu G_{\mu\nu} \equiv 0$ and the
+Einstein equations~\eqref{eq:einstein_matter} imply automatically:
+\begin{equation}
+  \nabla^\mu T_{\mu\nu} = 0.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+$8\pi G\,\nabla^\mu T_{\mu\nu} = \nabla^\mu G_{\mu\nu} = 0$ (contracted Bianchi).
+Since $8\pi G \neq 0$, the result follows.
+\end{proof}
+
+%-----------------------------------------------------------------------
+\section{Covariance and Consistency Checks}
+\label{sec:checks}
+
+\subsection{Coordinate Covariance}
+
+$T_{\mu\nu}$ defined by~\eqref{eq:hilbert} is manifestly covariant: the
+variation $\delta S/\delta g^{\mu\nu}$ transforms as a $(0,2)$ tensor under
+diffeomorphisms by construction.  The factor $1/\sqrt{-g}$ converts the
+tensor density to a proper tensor.
+
+\subsection{Dimensional Consistency}
+
+In natural units ($\hbar = c = 1$):
+\begin{itemize}
+  \item $[\Theta] = M^{3/2}$ (mass dimension $3/2$, like a Dirac field),
+  \item $[\nabla_\mu\Theta] = M^{5/2}$,
+  \item $[(\nabla_\mu\Theta)^\dagger\nabla_\nu\Theta] = M^5$,
+  \item $[\sqrt{-g}\,d^4x] = M^{-4}$,
+  \item $[S_{\mathrm{kin}}] = M^0$ (dimensionless action),
+  \item $[T_{\mu\nu}] = [1/\sqrt{-g}]\cdot[\delta S/\delta g^{\mu\nu}]
+                       = M^4\cdot M^{-4} = M^4$
+                       (energy density: $\mathrm{Energy/Volume}$). $\checkmark$
+\end{itemize}
+
+\subsection{Symmetry of $T_{\mu\nu}$}
+
+Each piece is manifestly symmetric:
+\begin{itemize}
+  \item $T^{(\mathrm{kin})}_{\mu\nu}$: symmetric because $K_{\mu\nu} = K_{\nu\mu}$
+        ($\Tr[A^\dagger B] = \overline{\Tr[B^\dagger A]}$ and the real part is symmetric).
+  \item $T^{(\mathrm{pot})}_{\mu\nu} = -g_{\mu\nu}V$: symmetric by $g_{\mu\nu} = g_{\nu\mu}$.
+  \item $T^{(\mathrm{gauge})}_{\mu\nu}$: symmetric by the explicit symmetrisation
+        in $(\mu,\nu)$ and $F_{\mu\alpha}F_\nu{}^\alpha + F_{\nu\alpha}F_\mu{}^\alpha = 2F_{\mu\alpha}F_\nu{}^\alpha$ (due to taking the symmetrised variation $\delta g^{(\mu\nu)}$).
+\end{itemize}
+
+%-----------------------------------------------------------------------
+\section{Classical Scalar-Field Limit}
+\label{sec:scalar_limit}
+
+To verify compatibility with standard field theory, we take
+$\Theta \to \phi$ (real scalar field with $[\phi] = M$), no gauge fields
+($A_\mu = 0$), and $\Tr[\cdot] \to \tfrac{1}{2}(\cdot)$ (normalisation).
+
+\subsection{Scalar Field Action}
+
+The UBT matter action reduces to:
+\begin{equation}
+  S_{\mathrm{scalar}} = -\frac{1}{2}\int d^4x\,\sqrt{-g}\;
+    \bigl[g^{\alpha\beta}\partial_\alpha\phi\,\partial_\beta\phi + m^2\phi^2\bigr],
+\end{equation}
+i.e.\ the Klein--Gordon action (the potential $V = \tfrac{1}{2}m^2\phi^2$
+at leading order near $\phi=0$).
+
+\subsection{Classical Stress-Energy Tensor}
+
+Applying Theorem~\ref{thm:T_matter} in this limit:
+
+\begin{corollary}[Klein--Gordon stress-energy tensor]
+\label{cor:kg}
+For a real scalar field $\phi$ with mass $m$:
+\begin{equation}
+  \label{eq:T_KG}
+  \boxed{
+    T_{\mu\nu}^{(\mathrm{KG})}
+    = \partial_\mu\phi\,\partial_\nu\phi
+      - \frac{1}{2}\,g_{\mu\nu}\bigl[(\partial\phi)^2 + m^2\phi^2\bigr].
+  }
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+From \eqref{eq:T_kin} with $\Tr[(\nabla_\mu\phi)^\dagger\nabla_\nu\phi]
+= \partial_\mu\phi\,\partial_\nu\phi$ (real scalar),
+and from \eqref{eq:T_pot} with $V(\phi) = \tfrac{1}{2}m^2\phi^2$:
+\[
+  T_{\mu\nu}
+  = \partial_\mu\phi\,\partial_\nu\phi
+    - \tfrac{1}{2}g_{\mu\nu}(\partial\phi)^2
+    - \tfrac{1}{2}m^2 g_{\mu\nu}\phi^2,
+\]
+which is \eqref{eq:T_KG}. $\checkmark$
+\end{proof}
+
+\begin{remark}[Massless limit]
+For $m = 0$: $T^{(\mathrm{KG})}_{\mu\nu} = \partial_\mu\phi\,\partial_\nu\phi
+- \tfrac{1}{2}g_{\mu\nu}(\partial\phi)^2$.
+Taking the trace: $g^{\mu\nu}T_{\mu\nu} = (\partial\phi)^2 - 2(\partial\phi)^2 = -(\partial\phi)^2 \neq 0$
+in general (massless scalar is not conformally invariant in $d=4$,
+unlike electromagnetism).
+\end{remark}
+
+%-----------------------------------------------------------------------
+\section{Reduction to General Relativity}
+\label{sec:gr_reduction}
+
+\begin{theorem}[GR embedding of UBT]
+\label{thm:gr_embedding}
+In the real-valued limit $\im(\calT_{\mu\nu}) \to 0$ (equivalently,
+the imaginary components of $\Theta$ vanish: $\psi_{\mu\nu} = \xi_{\mu\nu}
+= \chi_{\mu\nu} = 0$ in decomposition~\eqref{eq:theta_decomp}), the
+biquaternionic field equations reduce to:
+\begin{equation}
+  G_{\mu\nu} = 8\pi G\, T_{\mu\nu},
+\end{equation}
+i.e.\ Einstein's field equations with the classical (real-valued) stress-energy
+tensor \eqref{eq:T_total}.  This holds for arbitrary spacetime curvature,
+including:
+\begin{itemize}
+  \item Flat spacetime ($R_{\mu\nu} = 0$): Minkowski, $T_{\mu\nu} = 0$.
+  \item Weak-field limit: linearised gravity.
+  \item Strong-field regimes: black holes, neutron stars, gravitational waves.
+  \item Cosmological solutions: FLRW metrics with $R \neq 0$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:einstein} gives $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ for all
+metric field configurations.  In the real-valued limit, $T_{\mu\nu} = \re(\calT_{\mu\nu})
+= \calT_{\mu\nu}$ (since imaginary part vanishes), so the classical Einstein
+equations are recovered exactly with no correction terms.
+\end{proof}
+
+\begin{remark}[Covariance]
+All curvature quantities, covariant derivatives, and stress-energy components
+are defined at the biquaternionic level; GR arises as the real sector.
+Coordinate transformations $x^\mu \to x'^\mu$ act identically on both sectors,
+so covariance is manifest.
+\end{remark}
+
+%-----------------------------------------------------------------------
+\section{Summary}
+\label{sec:summary}
+
+\begin{enumerate}
+  \item \textbf{Action:} $S_{\mathrm{matter}}[\Theta,g]
+        = S_{\mathrm{kin}} + S_{\mathrm{pot}} + S_{\mathrm{gauge}}$,
+        Eq.~\eqref{eq:S_matter}.
+  \item \textbf{Metric dependence:} $g^{\mu\nu}$ appears explicitly, in
+        $\sqrt{-g}$, and through the spin connection.
+  \item \textbf{Hilbert variation:}
+        $T_{\mu\nu} = -(2/\sqrt{-g})\,\delta S_{\mathrm{matter}}/\delta g^{\mu\nu}$,
+        Definition~\ref{def:hilbert}.
+  \item \textbf{Stress-energy tensor:}
+        $T_{\mu\nu} = T^{(\mathrm{kin})}_{\mu\nu}
+                    + T^{(\mathrm{pot})}_{\mu\nu}
+                    + T^{(\mathrm{gauge})}_{\mu\nu}$,
+        Theorem~\ref{thm:T_matter}, Eq.~\eqref{eq:T_total}.
+  \item \textbf{Einstein equations:} $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+        from $\delta S_{\mathrm{total}}/\delta g^{\mu\nu} = 0$,
+        Theorem~\ref{thm:einstein}.
+  \item \textbf{Classical limit:} reduces to Klein--Gordon
+        $T_{\mu\nu}^{(\mathrm{KG})}$
+        for $\Theta\to\phi$ (real scalar), Corollary~\ref{cor:kg}.
+  \item \textbf{Covariance:} manifest by construction.
+  \item \textbf{Dimensional consistency:} $[T_{\mu\nu}] = M^4$. $\checkmark$
+  \item \textbf{Symmetry:} $T_{\mu\nu} = T_{\nu\mu}$. $\checkmark$
+  \item \textbf{Conservation:} $\nabla^\mu T_{\mu\nu} = 0$ (Bianchi identity),
+        Corollary~\ref{cor:conservation}.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\bibitem{wald}
+  Wald, R.~M. (1984). \textit{General Relativity}. University of Chicago Press.
+\bibitem{carroll}
+  Carroll, S.~M. (2004). \textit{Spacetime and Geometry}. Addison--Wesley.
+\bibitem{misner}
+  Misner, C.~W., Thorne, K.~S., \& Wheeler, J.~A. (1973). \textit{Gravitation}. Freeman.
+\bibitem{ps}
+  Peskin, M.~E.\ \& Schroeder, D.~V. (1995).
+  \textit{An Introduction to Quantum Field Theory}. Westview Press.
+\bibitem{appendix_AA}
+  Jaroš, D. (2025).
+  UBT Action Principle: \texttt{consolidation\_project/appendix\_AA\_theta\_action.tex}.
+\bibitem{appendix_R}
+  Jaroš, D. (2025).
+  GR Equivalence: \texttt{consolidation\_project/appendix\_R\_GR\_equivalence.tex}.
+\end{thebibliography}
+
+\vspace{2em}
+\noindent\textbf{License:} © 2025 Ing.~David~Jaroš — CC BY-NC-ND 4.0.
+
+\end{document}

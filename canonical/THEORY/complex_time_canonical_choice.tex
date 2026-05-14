@@ -1,0 +1,137 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Canonical Choice for Complex Time in UBT}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{The Two Formulations}
+
+\textbf{Version A (with chronofactor).}  In the chronofactor formulation the
+fundamental field is written as $\Theta(q,\tau)$ with
+\(
+\tau = t + i\psi
+\).
+The archival derivation
+\texttt{ARCHIVE/archive\_legacy/ARCHIVE/legacy\_variants/ubt\_compare/DERIVATION\_P2\_complex\_chronofactor\_spectrum.md}
+treats $\tau$ as an explicit complex evolution parameter and studies the
+spectral consequences of complex-time flow
+\(
+\partial_\tau\Theta = G\Theta
+\).
+Physically this makes the phase variable $\psi$ explicit: winding, holonomy,
+and phase--entropy mixing are described by an auxiliary circle $S^1_\psi$.
+Mathematically this produces an explicit KK/winding tower and permits direct
+mode decompositions in \(\psi\).
+
+\medskip
+
+\textbf{Version B (without chronofactor).}  In the chronofactor-free archival
+variant the field is written as $\Theta(q)$ only, with all phase data absorbed
+into the internal $8$ real degrees of freedom of the biquaternion
+\(
+\Theta(q)\in\mathbb{H}\otimes\mathbb{C}\cong\mathbb{C}^4
+\).
+Its README states explicitly that there is no external $\tau$ and that all
+phase information is intrinsic to the field.  Physically this removes any
+separate imaginary-time fiber; phase observables such as holonomy are treated as
+internal channels of $\Theta(q)$.  Mathematically this simplifies the base
+manifold to ordinary spacetime but also removes the direct KK interpretation of
+winding sectors.
+
+\section{Physical Consequences}
+
+The two formulations differ in four important ways.
+
+\begin{enumerate}
+  \item \textbf{Interpretation of $\psi$.}
+  Version~A keeps $\psi$ explicit and therefore supports winding-number,
+  holonomy, and compact-fiber language.  Version~B treats phase as internal data
+  of $\Theta$ and has no separate $\psi$ coordinate.
+
+  \item \textbf{Spectrum.}
+  Version~A naturally yields KK towers on $S^1_\psi$, including integer or
+  half-integer spectra depending on the boundary condition.  Version~B does not
+  provide such a tower directly; three generations must then be justified only
+  by internal algebraic structure.
+
+  \item \textbf{Action principle.}
+  The canonical action
+  \(
+  S[\Theta]=\int_{\mathcal{M}} d^4x\,\sqrt{-g}\,\mathcal{L}_{\mathrm{UBT}}
+  \)
+  is defined on real spacetime \(\mathcal{M}\), so UBT is not written as a
+  naive five-dimensional second-time theory.  However, its fully biquaternionic
+  form contains
+  \(
+  \int d^4x\,d\psi
+  \)
+  with \(\psi\in[0,2\pi R_\psi]\), which means that the canonical formalism
+  keeps an explicit compact \(\psi\)-fiber.
+
+  \item \textbf{Canonical bookkeeping of charges and generations.}
+  Hypercharge quantisation on the $\psi$-circle and the winding-mode language
+  used for generations rely on Version~A notation.  Version~B is conceptually
+  cleaner as a four-dimensional field theory, but it weakens the direct
+  derivational link to the compact-circle sector used elsewhere in the
+  repository.
+\end{enumerate}
+
+Therefore the canonical action answers the key interpretive question as follows:
+\[
+\psi \text{ is best treated as a compact internal fiber coordinate }S^1_\psi,
+\]
+so the canonical choice is \textbf{not} ``an extra macroscopic second time'' and
+\textbf{not} ``purely intrinsic with no coordinate meaning at all.''  It is a
+compact KK-like phase coordinate written in the shorthand \(\tau=t+i\psi\).
+
+\section{Canonical Choice}
+
+The canonical formulation is \textbf{Version A}, but with a narrowed
+interpretation:
+\[
+\Theta=\Theta(q,\tau),\qquad \tau=t+i\psi,
+\]
+where \(\psi\) is a \emph{compact internal phase coordinate} rather than a
+second observable time direction.
+
+This verdict follows from the active canonical files:
+\begin{itemize}
+  \item \texttt{canonical/THEORY/canonical/canonical\_field\_equations.tex}
+  writes the master equation in the form \(\Theta(q,\tau)\).
+  \item \texttt{canonical/THEORY/canonical/canonical\_action.tex} defines the
+  physical action on real spacetime but also gives the biquaternionic form with
+  explicit \(\int d\psi\) over the compact fiber.
+  \item \texttt{canonical/fields/chronofactor\_operator.tex} defines the winding
+  Hilbert space \(L^2(S^1_\psi,\mathbb{C})\), the winding operator, and
+  imaginary-time translations, making the \(S^1_\psi\) interpretation explicit.
+\end{itemize}
+
+The chronofactor-free version remains valuable as a historical simplification:
+it shows how much phase structure can be internalised into \(\Theta\).  But it
+is not the active canonical choice because it does not match the audited action
+and winding-sector machinery currently used for charge quantisation and
+generation bookkeeping.
+
+\begin{statusbox}
+Kanonická formulace: \textbf{A --- \(\Theta(q,\tau)\) s \(\tau=t+i\psi\)}\\
+Fyzikální zdůvodnění: \textbf{\(\psi\) je kompaktní interní fázová souřadnice \(S^1_\psi\), nikoli druhý makroskopický čas; právě tato kružnice nese winding sektory, holonomii a KK spektrum.}\\
+Matematická konzistence: \textbf{[L1]} --- kanonická akce obsahuje explicitní \(\int d\psi\) přes kompaktní fiber a chronofactor operator formalizuje odpovídající Hilbertův prostor.\\
+Dopad na GR odvození: \textbf{GR zůstává 4D reálným limitem \(\psi\to0\) / real projection; explicitní \(\psi\)-fiber nerozbíjí Einsteinovo odvození, ale jen rozšiřuje nad ním vnitřní sektor.}\\
+Dopad na generace: \textbf{Tři generace se zapisují jako první winding sektory na \(S^1_\psi\); vyšší módy nejsou algebraicky zakázány a musí být interpretovány jako vyšší KK harmonické.}
+\end{statusbox}
+
+\end{document}

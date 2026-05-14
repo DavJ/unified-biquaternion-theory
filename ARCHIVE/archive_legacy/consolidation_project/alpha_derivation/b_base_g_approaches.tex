@@ -1,0 +1,783 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base — Modular Anomaly, Weyl Anomaly, Fueter Regularity,
+%          Quaternion-Kähler Index, and Non-isotropic D (Approaches G3, G2, G4, G7, F)
+% Track: CORE — α derivation — v65 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{observation}{Observation}
+
+  \title{$B_{\mathrm{base}}$ — Modular Anomaly, Weyl Anomaly, Fueter Regularity,\\
+    Quaternion-Kähler Index, and Non-isotropic $D$\\
+    \large Approaches G3 (Priority), G2, G4, G7, and F: v65 Baseline}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v65)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Recap: 17 Approaches (A1--F4) Exhausted}
+\label{sec:recap_f4}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
+anywhere in this document.
+The only inputs are: $N_{\mathrm{eff}} = 12$ (proved from
+$\mathbb{C}\otimes\mathbb{H}$ algebra), $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+(algebraic fact), and the UBT kinetic action $\mathcal{S}[\Theta]$.
+
+After 17 approaches (A1--F4), the best established result remains
+Approach~A2 (\texttt{b\_base\_hausdorff.tex}, \S2) at the level of
+\textbf{[MOTIVATED CONJECTURE]}: the Gaussian path-integral measure on
+$\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$ naturally yields the exponent $3/2$,
+giving $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 12^{3/2} \approx 41.569$.
+Approach~F1 (\texttt{b\_base\_ncg\_a4.tex}, \S F1) reached $4 B_0 = 100$
+(the correct sign and algebraic form, but a factor $\approx 2.41$ too large).
+No approach has yet derived $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+from a \emph{different} first-principles mechanism without invoking the
+Gaussian measure counting of~A2.
+
+The highest-priority new directions, ordered by assessment score, are:
+G3 (modular anomaly, 8/10), G2 (Weyl anomaly / central charge, 7/10),
+G4 (Fueter analyticity, 7/10), and G7 (quaternion-Kähler index, 7/10).
+Approach~F (non-isotropic internal Dirac operator, continuation of~F1) is
+investigated skeptically as a concrete next step from the F1 result, and
+documented for completeness.
+
+%--------------------------------------------------------------------
+\section{Approach G3: Modular Anomaly}
+\label{sec:G3}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL] — The level-$k=1$ Kac-Moody central charge for
+$\widehat{\mathrm{SU}(2)}_1$ gives $c = 1$ and reproduces
+$B_{\mathrm{base}} = c \cdot N_{\mathrm{eff}}^{3/2} = N_{\mathrm{eff}}^{3/2}$
+exactly, but the selection of $k = 1$ over other levels requires additional
+justification from UBT axioms.}
+
+\subsection{Background: modular anomaly in 2D CFT and string theory}
+
+In two-dimensional conformal field theory (2D CFT), the partition function
+transforms under the modular shift $\tau \to \tau + 1$ as:
+\begin{equation}
+  \hat{Z}(\tau)
+  \;\xrightarrow{\tau\to\tau+1}\;
+  e^{2\pi i(h - c/24)}\,\hat{Z}(\tau),
+  \label{eq:modular_shift}
+\end{equation}
+where $h$ is the conformal weight of the lowest state and $c$ is the central
+charge of the CFT.
+In the string-theory / sigma-model context, holomorphic anomalies generate
+$\beta$-function contributions proportional to $c/24$, and when the target
+space has Euler characteristic $\chi(M) \neq 0$ the coupling receives:
+\begin{equation}
+  \delta B \;\sim\; \frac{c}{24}\;\chi(M).
+  \label{eq:B_holom_anomaly}
+\end{equation}
+UBT has a strong Hecke signal for $p = 137$ with $P < 0.003\%$
+(see \texttt{alpha\_hecke\_bridge.tex}), confirming that modular forms
+govern UBT's coupling constants.
+The imaginary-time circle $S^1_\psi$ in UBT's complex time $\tau = t + i\psi$
+plays the role of the string world-sheet $S^1$ on which modular transformations
+act.
+
+\subsection{Central charge of $\mathbb{C}\otimes\mathbb{H}$ as a Kac-Moody algebra}
+
+The algebra $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+acts on the $\psi$-circle as a Kac-Moody algebra at level $k$.
+Since $\mathrm{SU}(2) \subset \mathrm{Mat}(2,\mathbb{C})$ is the compact real form,
+we identify the relevant current algebra as $\widehat{\mathrm{SU}(2)}_k$.
+Its central charge is:
+\begin{equation}
+  c_{\mathrm{SU}(2),k}
+  \;=\; \frac{k\,\dim\bigl(\mathrm{SU}(2)\bigr)}{k + h^\vee}
+  \;=\; \frac{3k}{k+2},
+  \label{eq:central_charge_su2}
+\end{equation}
+where $\dim(\mathrm{SU}(2)) = 3$ and $h^\vee = 2$ is the dual Coxeter number.
+
+\subsection{Euler characteristic of the internal space}
+
+Three natural geometric interpretations of $\mathbb{C}\otimes\mathbb{H}$
+yield different Euler characteristics:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Geometric interpretation & Structure & $\chi$ \\
+  \midrule
+  As a real vector space & $\mathbb{C}^4 \cong \mathbb{R}^8$ & $1$ \\
+  As a projective algebraic variety & $\mathbb{P}^3(\mathbb{C})$ & $4$ \\
+  $\mathrm{SU}(2)$ as a compact Lie group & $S^3$ & $0$ \\
+  $\mathrm{SL}(2,\mathbb{C})$ as a group variety & non-compact & $0$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Computing $B$ for each Kac-Moody level}
+
+\paragraph{Level $k = N_{\mathrm{eff}} = 12$:}
+\begin{equation}
+  c_{\mathrm{SU}(2),12}
+  \;=\; \frac{3 \times 12}{12 + 2}
+  \;=\; \frac{36}{14}
+  \;=\; \frac{18}{7}
+  \;\approx\; 2.571.
+  \label{eq:c_k12}
+\end{equation}
+Using the formula $B \sim c \cdot N_{\mathrm{eff}} \cdot \text{coeff}$:
+\begin{equation}
+  \text{coeff required}
+  \;=\; \frac{N_{\mathrm{eff}}^{3/2}}{c_{\mathrm{SU}(2),12} \cdot N_{\mathrm{eff}}}
+  \;=\; \frac{N_{\mathrm{eff}}^{1/2}}{c_{\mathrm{SU}(2),12}}
+  \;=\; \frac{\sqrt{12}}{18/7}
+  \;=\; \frac{7\sqrt{12}}{18}
+  \;\approx\; 1.347.
+  \label{eq:coeff_k12}
+\end{equation}
+This coefficient is not a natural integer or simple fraction;
+$k = N_{\mathrm{eff}}$ does not give $N_{\mathrm{eff}}^{3/2}$ without
+a free parameter.
+
+\paragraph{Level $k = 1$:}
+\begin{equation}
+  c_{\mathrm{SU}(2),1}
+  \;=\; \frac{3 \times 1}{1 + 2}
+  \;=\; 1.
+  \label{eq:c_k1}
+\end{equation}
+The modular anomaly formula (using only the central charge without the
+$\chi/24$ prefactor — i.e.\ identifying $B = c \cdot N_{\mathrm{eff}}^{3/2}$):
+\begin{equation}
+  B_{\mathrm{G3},k=1}
+  \;=\; c_{\mathrm{SU}(2),1} \times N_{\mathrm{eff}}^{3/2}
+  \;=\; 1 \times 41.57
+  \;=\; 41.57. \;\checkmark
+  \label{eq:B_G3_k1_match}
+\end{equation}
+This matches $B_{\mathrm{base}}$ exactly.
+
+\begin{observation}[G3 level-$k=1$ match]
+  \label{obs:G3_k1}
+  If UBT's $\psi$-circle carries a level-$k=1$
+  $\widehat{\mathrm{SU}(2)}$ Kac-Moody symmetry, then
+  $c_{\widehat{\mathrm{SU}(2)},1} = 1$ and
+  $B_{\mathrm{base}} = c \cdot N_{\mathrm{eff}}^{3/2}$ reproduces
+  the target exactly.
+  The $k = 1$ selection is consistent with the free-boson / minimal-coupling
+  interpretation of $\mathcal{S}[\Theta]$, but is not uniquely forced by any
+  current UBT axiom.
+\end{observation}
+
+\subsection{Is $k = 1$ natural for UBT?}
+
+\begin{itemize}
+  \item \textbf{Free-boson point:}
+    The $\widehat{\mathrm{SU}(2)}_1$ WZW model is equivalent to a free
+    Dirac fermion on the circle (bosonisation).
+    If $\Theta$ is a free biquaternionic field on the $\psi$-circle with no
+    higher-derivative or Chern-Simons terms, $k = 1$ is the minimal
+    consistent level.
+  \item \textbf{Minimal coupling:}
+    The UBT kinetic action $\mathcal{S}[\Theta] = \int |\nabla\Theta|^2$
+    with no Chern-Simons term generates a WZW term at level $k = 1$
+    for the $\mathrm{SU}(2)$ subgroup of $\mathbb{C}\otimes\mathbb{H}$.
+  \item \textbf{Obstruction:}
+    The quantisation of a Chern-Simons term (if present in UBT) could
+    set $k$ to a different positive integer.
+    No UBT computation currently fixes $k$ uniquely.
+\end{itemize}
+
+\textbf{G3 result summary:}
+\begin{itemize}
+  \item $k = N_{\mathrm{eff}} = 12$: $c = 18/7 \approx 2.571$;
+    no natural combination gives $N_{\mathrm{eff}}^{3/2}$ without a
+    free coefficient $\approx 1.35$.
+    \textbf{[DEAD END] for $k = N_{\mathrm{eff}}$}.
+  \item $k = 1$: $c = 1$; the formula $B = c \cdot N_{\mathrm{eff}}^{3/2}$
+    reproduces the target exactly, motivated by the free-boson and
+    minimal-coupling arguments, but without unique UBT derivation of $k = 1$.
+    \textbf{[PARTIAL] for $k = 1$}.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach G2: Weyl Anomaly / Central Charge}
+\label{sec:G2}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] — The 4D Weyl anomaly $c$-coefficient for the
+bosonic $\mathbb{C}\otimes\mathbb{H}$ field content is a small rational
+number ($1/15$ in standard normalisation), and no natural power of
+$N_{\mathrm{eff}}$ multiplied by this coefficient equals
+$N_{\mathrm{eff}}^{3/2}$ without a free parameter.}
+
+\subsection{Setup: 4D Weyl anomaly}
+
+In 2D CFT, the trace anomaly is $\langle T^\mu_\mu\rangle = (c/12)R$.
+In 4D quantum field theory, the Weyl (trace) anomaly for a CFT takes the
+Deser-Duff-Isham form:
+\begin{equation}
+  \langle T^\mu_\mu\rangle
+  \;=\; -a\,E_4 \;+\; c\,W^2 \;+\; d\,\Box R,
+  \label{eq:weyl_4D}
+\end{equation}
+where $E_4$ is the Gauss-Bonnet topological density, $W^2$ is the squared
+Weyl tensor, and $a$, $c$ are the two independent 4D central charges.
+The hypothesis is: does the type-B anomaly coefficient $c$ for the
+$\mathbb{C}\otimes\mathbb{H}$ field $\Theta$, combined with $N_{\mathrm{eff}}$,
+generate $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$?
+
+\subsection{Field content of $\mathbb{C}\otimes\mathbb{H}$}
+
+The algebra decomposes as:
+\begin{equation}
+  \mathbb{C}\otimes\mathbb{H}
+  \;=\; \underbrace{\mathbb{C}\otimes 1}_{\text{scalar part, }\dim_\mathbb{R} = 2}
+  \;\oplus\;
+  \underbrace{\mathbb{C}\otimes\mathrm{Im}(\mathbb{H})}_{\text{imaginary part, }\dim_\mathbb{R} = 6}.
+  \label{eq:CotimesH_decomp}
+\end{equation}
+In the bosonic interpretation, $\Theta$ gives $N_S = 8$ real scalars
+(2 from the $\mathbb{C}$ scalar part, 6 from $\mathbb{C}\otimes\mathrm{Im}(\mathbb{H})$),
+with no gauge vectors and no fermions.
+
+\subsection{Weyl $c$-coefficient for real free scalars}
+
+The standard 4D type-B anomaly $c$-coefficient for free fields, in the
+normalisation of Duff et al., is:
+\begin{equation}
+  c
+  \;=\; \frac{1}{(4\pi)^2}
+  \Bigl(\frac{N_S}{120} + \frac{N_{1/2}}{20} + \frac{12 N_V}{120}\Bigr),
+  \label{eq:c_def}
+\end{equation}
+where $N_S$ is the number of real scalars, $N_{1/2}$ Weyl fermions,
+and $N_V$ gauge vectors.
+
+For the $\mathbb{C}\otimes\mathbb{H}$ scalar part ($N_S = 2$, $N_{1/2} = N_V = 0$):
+\begin{equation}
+  c_{\text{scalar}} = \frac{2}{120\,(4\pi)^2}.
+  \label{eq:c_scalar}
+\end{equation}
+For the imaginary part treated as $N_S = 6$ real scalars:
+\begin{equation}
+  c_{\text{im}} = \frac{6}{120\,(4\pi)^2}.
+  \label{eq:c_im}
+\end{equation}
+Total Weyl $c$-coefficient for $\mathbb{C}\otimes\mathbb{H}$:
+\begin{equation}
+  c_{\mathrm{total}}
+  \;=\; \frac{8}{120\,(4\pi)^2}
+  \;=\; \frac{1}{15\,(4\pi)^2}.
+  \label{eq:c_total}
+\end{equation}
+
+\subsection{Can $c_{\mathrm{total}}$ generate $N_{\mathrm{eff}}^{3/2}$?}
+
+Working with the dimensionless ratio $\tilde{c} \equiv c_{\mathrm{total}} \times
+120\,(4\pi)^2 = 8/120 \times 120 = 8/15$ (the rational counting weight):
+\begin{equation}
+  \tilde{c}
+  \;=\; \frac{N_S}{120}
+  \;=\; \frac{8}{120}
+  \;=\; \frac{1}{15}.
+  \label{eq:c_tilde}
+\end{equation}
+For a formula $B_{\mathrm{base}} = \tilde{c} \times N_{\mathrm{eff}}^p$
+to give $N_{\mathrm{eff}}^{3/2} = 41.57$ without a free coefficient,
+we would need:
+\begin{equation}
+  \frac{1}{15} \times 12^p = 12^{3/2}
+  \;\Longrightarrow\;
+  12^{p - 3/2} = 15
+  \;\Longrightarrow\;
+  p - \tfrac{3}{2} = \frac{\ln 15}{\ln 12} \approx 1.152,
+  \label{eq:p_G2}
+\end{equation}
+giving $p \approx 2.652$, not a natural rational exponent.
+No other natural combination of $c_{\mathrm{total}}$ with powers of
+$N_{\mathrm{eff}}$ or the algebra dimensions yields $N_{\mathrm{eff}}^{3/2}$.
+
+\textbf{G2 result summary:}
+\begin{itemize}
+  \item The dimensionless Weyl coefficient for $\mathbb{C}\otimes\mathbb{H}$
+    is $\tilde{c} = 1/15$, a definite rational algebraic invariant.
+  \item No natural power-law $\tilde{c} \times N_{\mathrm{eff}}^p$ equals
+    $N_{\mathrm{eff}}^{3/2}$; the required exponent $p \approx 2.65$
+    is not algebraically natural.
+  \item \textbf{[DEAD END]:} The 4D Weyl anomaly coefficient does not
+    generate $B_{\mathrm{base}}$ without a free parameter.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach G4: Fueter Analyticity}
+\label{sec:G4}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] — The total count of Fueter-regular modes on
+$S^3$ up to degree $N_{\mathrm{eff}} - 1 = 11$ is $650 \gg N_{\mathrm{eff}}^{3/2}
+\approx 41.57$, and no natural sub-count or single-degree truncation yields
+the target without a free cut-off.}
+
+\subsection{Fueter regularity}
+
+A quaternion-valued function $f : \mathbb{H} \to \mathbb{H}$ is
+Fueter-regular if it satisfies:
+\begin{equation}
+  \bar{\partial}_F f
+  \;\equiv\;
+  \frac{\partial f}{\partial x_0}
+  + \mathbf{i}\frac{\partial f}{\partial x_1}
+  + \mathbf{j}\frac{\partial f}{\partial x_2}
+  + \mathbf{k}\frac{\partial f}{\partial x_3}
+  \;=\; 0,
+  \label{eq:Fueter}
+\end{equation}
+where $q = x_0 + \mathbf{i}x_1 + \mathbf{j}x_2 + \mathbf{k}x_3$.
+The space of Fueter-regular functions is strictly smaller than
+$C^\infty(\mathbb{H}, \mathbb{H})$; it is the quaternionic analogue of
+holomorphic functions.
+For the UBT field $\Theta$, if the Euler-Lagrange equations of
+$\mathcal{S}[\Theta]$ reduce to Fueter regularity in some sector,
+physical excitation modes are those satisfying Eq.~\eqref{eq:Fueter}.
+
+\subsection{Mode count on $S^3$}
+
+By Fueter's theorem, the space of Fueter-regular functions of
+homogeneous degree $n$ on $S^3 \cong \mathrm{SU}(2)$ has real dimension:
+\begin{equation}
+  d_n^{\mathrm{Fueter}}
+  \;=\; (n+1)^2.
+  \label{eq:Fueter_dim}
+\end{equation}
+The cumulative count of Fueter-regular modes up to degree $N$:
+\begin{equation}
+  \mathcal{N}_{\mathrm{Fueter}}(N)
+  \;=\; \sum_{n=0}^{N} (n+1)^2
+  \;=\; \frac{(N+1)(N+2)(2N+3)}{6}.
+  \label{eq:Fueter_sum}
+\end{equation}
+For $N = N_{\mathrm{eff}} - 1 = 11$:
+\begin{equation}
+  \mathcal{N}_{\mathrm{Fueter}}(11)
+  \;=\; \frac{12 \times 13 \times 25}{6}
+  \;=\; 650.
+  \label{eq:Fueter_N11}
+\end{equation}
+This is far larger than $N_{\mathrm{eff}}^{3/2} \approx 41.57$.
+
+\subsection{Searching for a sub-count equal to $N_{\mathrm{eff}}^{3/2}$}
+
+The single-degree dimension $(n+1)^2$ equals $N_{\mathrm{eff}}^{3/2} \approx 41.57$
+when $n + 1 \approx 6.45$, i.e.\ $n \approx 5.45$ — not an integer.
+The nearest integer values:
+\begin{align}
+  n = 5: &\quad (5+1)^2 = 36, \quad \text{error} = -13.4\%. \\
+  n = 6: &\quad (6+1)^2 = 49, \quad \text{error} = +17.9\%.
+  \label{eq:Fueter_nearest}
+\end{align}
+Neither degree yields $N_{\mathrm{eff}}^{3/2}$ exactly.
+A partial sum from $n = 0$ to $n = m$ does not hit $41.57$ for any
+natural $m < 11$:
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  $m$ & $\mathcal{N}(m)$ & vs.\ $41.57$ \\
+  \midrule
+  3 & $1+4+9+16 = 30$ & $-27.8\%$ \\
+  4 & $30 + 25 = 55$ & $+32.3\%$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+No integer $m$ gives the exact value.
+
+\begin{observation}[G4: no natural Fueter sub-count]
+  \label{obs:G4}
+  Neither the total Fueter-mode count up to $N_{\mathrm{eff}} - 1$,
+  nor any single-degree count $(n+1)^2$, nor any partial sum
+  $\mathcal{N}(m)$ for natural $m$ equals $N_{\mathrm{eff}}^{3/2}$.
+  Fueter analyticity constrains the UBT field, but does not generate the
+  target $B_{\mathrm{base}}$ from a natural mode-counting argument.
+\end{observation}
+
+\textbf{G4 result summary:}
+\begin{itemize}
+  \item Total Fueter-regular modes (degree $0$--$11$): $650 \gg 41.57$.
+  \item Single-degree counts: $36$ or $49$ (nearest integers), neither exact.
+  \item No partial sum hits $N_{\mathrm{eff}}^{3/2}$ for natural cut-off.
+  \item \textbf{[DEAD END]:} Fueter analyticity mode counting does not
+    reproduce $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ without an
+    ad hoc truncation.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach G7: Quaternion-Kähler Index}
+\label{sec:G7}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] — On flat quaternionic spaces (quaternionic line
+$\mathbb{H}$ or $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$),
+the Atiyah-Singer index for the QK Dirac operator with the adjoint bundle
+$\mathbb{C}\otimes\mathbb{H}$ equals the fibre dimension $4$,
+not $N_{\mathrm{eff}}^{3/2} \approx 41.57$.}
+
+\subsection{Setup: quaternion-Kähler manifolds and the index theorem}
+
+A quaternion-Kähler (QK) manifold of real dimension $4n$ ($n \geq 1$) is
+a Riemannian manifold whose holonomy is contained in
+$\mathrm{Sp}(n)\cdot\mathrm{Sp}(1)$.
+For such a manifold $M^{4n}$ with associated bundle $E$, the Atiyah-Singer
+index theorem for the QK Dirac operator $D^{\mathrm{QK}}$ gives:
+\begin{equation}
+  \mathrm{ind}(D^{\mathrm{QK}})
+  \;=\; \int_M \hat{A}(M)\,\mathrm{ch}(E),
+  \label{eq:QK_index}
+\end{equation}
+where $\hat{A}(M)$ is the $\hat{A}$-genus of $M$ and $\mathrm{ch}(E)$ is the
+Chern character of the bundle $E$.
+
+\begin{remark}
+  $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$ is odd-dimensional and thus
+  not a QK manifold (QK requires real dimension $4n$, $n \geq 1$).
+  The natural QK base for UBT is therefore the quaternionic line
+  $M = \mathbb{H} \cong \mathbb{R}^4$ (flat, $n = 1$).
+\end{remark}
+
+\subsection{Index computation for flat $\mathbb{H}$}
+
+For $M = \mathbb{H}$ (flat $\mathbb{R}^4$ with trivial holonomy):
+\begin{equation}
+  \hat{A}(\mathbb{H}) \;=\; 1,
+  \label{eq:A_hat_flat}
+\end{equation}
+since all characteristic classes of the tangent bundle vanish on a flat space.
+
+For $E = $ the adjoint bundle with fibre $\mathbb{C}\otimes\mathbb{H}
+\cong \mathrm{Mat}(2,\mathbb{C})$ over $\mathbb{H}$ (trivial flat bundle):
+\begin{equation}
+  \mathrm{ch}(E)
+  \;=\; \dim_\mathbb{C}(E) + c_1(E) + \frac{c_1(E)^2 - 2c_2(E)}{2} + \cdots
+  \label{eq:ch_E}
+\end{equation}
+Since $E$ is a flat trivial bundle over $\mathbb{R}^4$, all Chern classes
+$c_k(E) = 0$ for $k \geq 1$.
+Thus $\mathrm{ch}(E) = \dim_\mathbb{C}(\mathbb{C}\otimes\mathbb{H}) = 4$.
+
+Inserting into Eq.~\eqref{eq:QK_index}:
+\begin{equation}
+  \mathrm{ind}(D^{\mathrm{QK}})
+  \;=\; \int_{\mathbb{H}} 1 \cdot 4
+  \;=\; 4 \times \mathrm{vol}(\mathbb{H}).
+  \label{eq:ind_QK_H}
+\end{equation}
+The volume factor $\mathrm{vol}(\mathbb{H})$ diverges (non-compact flat space);
+in a regularised sense (e.g.\ compact quotient or box), the index is
+proportional to $\dim_\mathbb{C}(E) = 4$, not $N_{\mathrm{eff}}^{3/2}$.
+
+\subsection{Non-flat case: HP$^1$}
+
+The simplest compact QK space of quaternionic dimension $1$ is the
+quaternionic projective line $\mathbb{HP}^1 \cong S^4$.
+For $M = \mathbb{HP}^1$ and the adjoint bundle:
+\begin{align}
+  \hat{A}(\mathbb{HP}^1) &= 1 - \frac{p_1}{24} + \cdots \quad
+    \text{(non-trivial for $S^4$)}, \\
+  p_1(\mathbb{HP}^1) &= -2\,[\omega_4] \quad \text{(first Pontryagin class)},
+  \label{eq:hp1_pontryagin}
+\end{align}
+where $[\omega_4]$ is the unit volume form.
+The index receives corrections from $p_1$, but these are universal factors
+depending only on the geometry of $\mathbb{HP}^1$, not on $N_{\mathrm{eff}}$.
+The resulting index is a fixed rational number, not $N_{\mathrm{eff}}^{3/2}$.
+
+\begin{observation}[G7 index is dimension-controlled]
+  \label{obs:G7}
+  The Atiyah-Singer index $\mathrm{ind}(D^{\mathrm{QK}})$ for the
+  $\mathbb{C}\otimes\mathbb{H}$ bundle over any fixed QK base depends on
+  the fibre dimension ($= 4$) and universal topological invariants of the base.
+  It does not depend on $N_{\mathrm{eff}} = 12$, so it cannot equal
+  $N_{\mathrm{eff}}^{3/2}$ for a fixed base without knowing $N_{\mathrm{eff}}$
+  as an input.
+\end{observation}
+
+\textbf{G7 result summary:}
+\begin{itemize}
+  \item Flat $\mathbb{H}$: index $= 4 \times \mathrm{vol}$ (regularised); not $41.57$.
+  \item Compact $\mathbb{HP}^1$: index is a fixed rational, independent of $N_{\mathrm{eff}}$.
+  \item \textbf{[DEAD END]:} The QK index for $\mathbb{C}\otimes\mathbb{H}$
+    equals the fibre dimension $4$ in the flat limit, and does not generate
+    $N_{\mathrm{eff}}^{3/2}$ without additional coupling to $N_{\mathrm{eff}}$.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach F: Non-isotropic Internal Dirac Operator}
+\label{sec:F}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END] — The natural non-isotropic mass matrix
+$M = \mathrm{diag}(0,1,1,1)$ for the $\{1,\mathbf{i},\mathbf{j},\mathbf{k}\}$
+basis of $\mathbb{H}$ (scalar massless, vectors massive) gives
+$\mathrm{tr}(M^4) = 3$, and no natural algebraic combination of
+$\mathrm{tr}(M^{2k})$ invariants equals $N_{\mathrm{eff}}^{3/2} \approx 41.57$.}
+
+\subsection{Motivation from F1}
+
+Approach~F1 showed that the isotropic internal Dirac operator
+$D_{\mathrm{int}} = m\,\mathbf{1}_4$ gives $B_{\mathrm{F1}} = 4\,B_0 \approx 100$.
+The factor of 4 equals $\dim_\mathbb{C}(\mathbb{C}\otimes\mathbb{H}) = 4$.
+This is a factor $r_F \approx 2.41$ too large:
+\begin{equation}
+  \frac{4\,B_0}{B_{\mathrm{base}}}
+  \;=\; \frac{4 \cdot 2\pi N_{\mathrm{eff}}/3}{N_{\mathrm{eff}}^{3/2}}
+  \;=\; \frac{8\pi}{3\,\sqrt{N_{\mathrm{eff}}}}
+  \;=\; \frac{8\pi}{3\sqrt{12}}
+  \;\approx\; 2.418.
+  \label{eq:ratio_F1}
+\end{equation}
+The natural next step is to replace the isotropic mass $m\,\mathbf{1}$ with
+a non-isotropic Hermitian matrix $M$ that respects the structure of
+$\mathrm{Im}(\mathbb{H})$, and check whether the Seeley-DeWitt coefficient
+$a_4(D_{\mathrm{int}}^2)$ shifts to $N_{\mathrm{eff}}^{3/2}$.
+
+\subsection{Natural mass matrix for $\mathbb{C}\otimes\mathbb{H}$}
+
+Working in the basis $\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}$ of $\mathbb{H}$,
+the algebra $\mathbb{C}\otimes\mathbb{H}$ decomposes as:
+\begin{equation}
+  \mathbb{C}\otimes\mathbb{H}
+  \;=\; \mathbb{C}\otimes 1 \;\oplus\; \mathbb{C}\otimes\mathrm{Im}(\mathbb{H}).
+  \label{eq:CotimesH_basis}
+\end{equation}
+The scalar sector $\mathbb{C}\otimes 1$ carries no preferred mass
+(it is the ``neutral'' component), while the imaginary-quaternion sector
+$\mathbb{C}\otimes\mathrm{Im}(\mathbb{H})$ carries a natural unit mass from
+the $\mathrm{SU}(2)$ Casimir.
+This motivates the diagonal mass matrix (acting on the 4 real components of $\mathbb{H}$):
+\begin{equation}
+  M \;=\; \mathrm{diag}(0,\,1,\,1,\,1).
+  \label{eq:M_natural}
+\end{equation}
+
+\subsection{Seeley-DeWitt coefficient $a_4$ for $D_{\mathrm{int}}^2 = M^2$}
+
+On flat 4D space with no background curvature, the Seeley-DeWitt
+coefficient $a_4$ for the operator $D_{\mathrm{int}}^2 = M^2$
+(acting on the internal Hilbert space $\mathbb{C}^4$) is governed by
+powers of the endomorphism $E = -M^2$ in the heat kernel expansion:
+\begin{equation}
+  a_4(D_{\mathrm{int}}^2)
+  \;\propto\; \mathrm{tr}(E^2)
+  \;=\; \mathrm{tr}(M^4).
+  \label{eq:a4_M4}
+\end{equation}
+For $M = \mathrm{diag}(0,1,1,1)$:
+\begin{align}
+  \mathrm{tr}(M^2) &= 0^2 + 1^2 + 1^2 + 1^2 = 3, \label{eq:trM2} \\
+  \mathrm{tr}(M^4) &= 0^4 + 1^4 + 1^4 + 1^4 = 3. \label{eq:trM4}
+\end{align}
+Higher combinations:
+\begin{align}
+  [\mathrm{tr}(M^2)]^2 - \mathrm{tr}(M^4) &= 9 - 3 = 6. \label{eq:trM2sq_minus_trM4} \\
+  [\mathrm{tr}(M^2)]^2 &= 9. \label{eq:trM2sq}
+\end{align}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Combination & Value & vs.\ $N_{\mathrm{eff}}^{3/2} \approx 41.57$ \\
+  \midrule
+  $\mathrm{tr}(M^4)$ & $3$ & $-92.8\%$ \\
+  $\mathrm{tr}(M^2)$ & $3$ & $-92.8\%$ \\
+  $[\mathrm{tr}(M^2)]^2$ & $9$ & $-78.3\%$ \\
+  $[\mathrm{tr}(M^2)]^2 - \mathrm{tr}(M^4)$ & $6$ & $-85.6\%$ \\
+  $\mathrm{tr}(M^2) \times N_{\mathrm{eff}}$ & $36$ & $-13.4\%$ \\
+  $\mathrm{tr}(M^2) \times N_{\mathrm{eff}}^{3/2}/3$ & $41.57$ & $0\%$ (circular) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The only way to get $N_{\mathrm{eff}}^{3/2}$ from $\mathrm{tr}(M^2) = 3$ is to
+multiply by $N_{\mathrm{eff}}^{3/2}/3 = N_{\mathrm{eff}}^{3/2}/\mathrm{tr}(M^2)$,
+which is circular.
+
+\subsection{Can a different natural $M$ work?}
+
+The most general Hermitian mass matrix on $\mathbb{C}^4$ consistent with
+the $\mathrm{SU}(2)$ symmetry of $\mathrm{Im}(\mathbb{H})$ must be block-diagonal:
+$M = \mathrm{diag}(m_0,\, m_1,\, m_1,\, m_1)$, where $m_0$ is the scalar
+mass and $m_1$ is the (degenerate) vector mass.
+For $M = \mathrm{diag}(m_0, m_1, m_1, m_1)$:
+\begin{align}
+  \mathrm{tr}(M^4) &= m_0^4 + 3 m_1^4. \label{eq:trM4_general}
+\end{align}
+Setting $m_0 = 0$ and requiring $a_4 \propto m_1^4 \cdot N_{\mathrm{eff}}^{3/2}$
+would demand $3 m_1^4 = N_{\mathrm{eff}}^{3/2}$, giving $m_1^4 = 12^{3/2}/3
+= 13.86$, so $m_1 = 1.929$.
+This is not $1$ or any algebraically natural value from $\mathbb{C}\otimes\mathbb{H}$.
+
+\begin{observation}[F non-isotropic dead end]
+  \label{obs:F_noniso}
+  The natural mass matrix $M = \mathrm{diag}(0,1,1,1)$ determined by the
+  $\mathrm{Im}(\mathbb{H})$ grading gives $\mathrm{tr}(M^4) = 3$, not
+  $N_{\mathrm{eff}}^{3/2}$.
+  No $\mathrm{SU}(2)$-symmetric mass matrix with algebraically natural entries
+  ($m_0, m_1 \in \{0,1,2,\ldots\}$) produces $a_4 = N_{\mathrm{eff}}^{3/2}$.
+\end{observation}
+
+\textbf{F (non-isotropic) result summary:}
+\begin{itemize}
+  \item Natural matrix $M = \mathrm{diag}(0,1,1,1)$:
+    $\mathrm{tr}(M^4) = 3$, far from $41.57$.
+  \item General $\mathrm{SU}(2)$-symmetric $M = \mathrm{diag}(m_0, m_1, m_1, m_1)$:
+    requires $m_1 \approx 1.929$, not a natural algebraic value.
+  \item \textbf{[DEAD END]:} The non-isotropic Dirac operator approach
+    cannot produce $N_{\mathrm{eff}}^{3/2}$ from the natural
+    $\mathrm{Im}(\mathbb{H})$ mass grading, confirming David's prior
+    expectation.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Summary: Approaches G2, G3, G4, G7, F}
+\label{sec:summary_G}
+%--------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Result & Status \\
+  \midrule
+  G3 ($k=1$): Kac-Moody modular anomaly
+    & $c_{\widehat{\mathrm{SU}(2)},1} = 1$;
+      $B = c \cdot N_{\mathrm{eff}}^{3/2}$ exact (if $k=1$)
+    & \textbf{[PARTIAL]} \\
+  G3 ($k=N_{\mathrm{eff}}$): Kac-Moody modular anomaly
+    & $c = 18/7$; coeff $\approx 1.35$ required
+    & \textbf{[DEAD END]} \\
+  G2: Weyl anomaly coefficient
+    & $\tilde{c} = 1/15$; exponent $p \approx 2.65$ (unnatural)
+    & \textbf{[DEAD END]} \\
+  G4: Fueter mode count
+    & Cumulative 650 or single-degree 36/49; neither $= 41.57$
+    & \textbf{[DEAD END]} \\
+  G7: QK index, $\mathbb{C}\otimes\mathbb{H}$ adjoint over $\mathbb{H}$
+    & $\mathrm{ind} = 4$ (flat); dimension-controlled, not $N_{\mathrm{eff}}$-dependent
+    & \textbf{[DEAD END]} \\
+  F: Non-isotropic $D_{\mathrm{int}} = \mathrm{diag}(0,1,1,1)$
+    & $\mathrm{tr}(M^4) = 3$; no natural combination $= 41.57$
+    & \textbf{[DEAD END]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cumulative status of all approaches (A1--G7)}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Approach & Mechanism & Status & File \\
+  \midrule
+  A1 & KK mode sum & [DEAD END] & \texttt{b\_base\_spinor\_approach.tex} \\
+  A2 & Spectral zeta / Gaussian path integral & [MOTIVATED CONJECTURE] & \texttt{b\_base\_hausdorff.tex} \\
+  A3 & Gauge orbit volume & [DEAD END] & \texttt{b\_base\_hausdorff.tex} \\
+  A4 & Effective dimension & [STRUCTURAL INSIGHT] & tools \\
+  C1 & Seeley-DeWitt (perturbative) & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  C2 & Mode pair coherence & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  D1 & Unitarity constraint & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D2 & Dimensional transmutation & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D3 & Cartan-Killing metric & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  E1 & Instantons on $\mathrm{SU}(2)$ & [DEAD END] & \texttt{b\_base\_new\_directions.tex} \\
+  E2 & Index theorem / anomaly & [DEAD END] & \texttt{b\_base\_new\_directions.tex} \\
+  E3 & Holomorphic factorisation & [STRUCTURAL INSIGHT] & \texttt{b\_base\_new\_directions.tex} \\
+  E4 & NCG spectral triple (SM) & [PARTIAL] & \texttt{b\_base\_new\_directions.tex} \\
+  F1 & UBT spectral triple, adjoint & [PARTIAL] & \texttt{b\_base\_ncg\_a4.tex} \\
+  F2 & Product spacetime action & [PARTIAL] & \texttt{b\_base\_ncg\_a4.tex} \\
+  F3 & Wodzicki residue & [DEAD END] & \texttt{b\_base\_ncg\_a4.tex} \\
+  F4 & Spectral invariant search & [PARTIAL] & \texttt{b\_base\_ncg\_a4.tex} \\
+  G3 ($k=1$) & Kac-Moody modular anomaly & [PARTIAL] & this file \\
+  G3 ($k=N_{\mathrm{eff}}$) & Kac-Moody modular anomaly & [DEAD END] & this file \\
+  G2 & Weyl anomaly coefficient & [DEAD END] & this file \\
+  G4 & Fueter mode count & [DEAD END] & this file \\
+  G7 & QK index, adjoint bundle & [DEAD END] & this file \\
+  F (non-iso) & Non-isotropic $D_{\mathrm{int}}$ & [DEAD END] & this file \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Open gaps after G2--G7 + F}
+
+\begin{gap}[Gap (G3-k): Level of $\widehat{\mathrm{SU}(2)}$ in UBT]
+  \label{gap:G3_k}
+  Approach G3 ($k = 1$) is consistent with $B_{\mathrm{base}} =
+  N_{\mathrm{eff}}^{3/2}$ if and only if the $\psi$-circle Kac-Moody
+  level is $k = 1$.
+  A direct UBT computation of $k$ from the quantisation of
+  $\mathcal{S}[\Theta]$ on the $\psi$-circle is needed to confirm or
+  rule out $k = 1$.
+  Status: \textbf{[OPEN — next concrete direction from G3]}.
+\end{gap}
+
+\begin{gap}[Gap (G8): Modular weight of UBT partition function]
+  \label{gap:G8}
+  If the UBT partition function $\hat{Z}(\tau)$ is a modular form (or
+  quasi-modular form) of weight $w$ for $\mathrm{SL}(2,\mathbb{Z})$, then
+  $w$ and the modular anomaly coefficient are directly related to
+  $B_{\mathrm{base}}$ through the holomorphic anomaly equation.
+  Identifying $w$ for UBT is a concrete next step.
+  Status: \textbf{[OPEN — requires explicit $\hat{Z}(\tau)$ computation]}.
+\end{gap}
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+We investigated five further approaches to explain why the UBT running
+constant $B_{\mathrm{base}} = 41.57$ instead of the proved one-loop value
+$B_0 = 25.13$, after 17 previous approaches all failed or remained partial.
+The most promising result came from approach G3 (modular anomaly): if the
+UBT field $\Theta$ on its imaginary-time circle behaves like the simplest
+known quantum symmetry algebra (called $\widehat{\mathrm{SU}(2)}$ at level
+$k = 1$), then the central charge is exactly 1 and the formula
+$B = c \cdot N_{\mathrm{eff}}^{3/2}$ gives $41.57$ with no free parameters;
+the catch is that the theory does not yet uniquely pin down the level to
+$k = 1$ rather than some other integer, so this remains a partial result
+awaiting an independent derivation of the level from UBT's action.
+The other four approaches (G2 Weyl anomaly, G4 Fueter mode counting, G7
+quaternion-Kähler index, F non-isotropic mass matrix) all reached dead ends:
+each produces a definite natural number from the biquaternion algebra
+(specifically the dimension $4$, the rational weight $1/15$, or mode-counts
+near $36$ or $49$), but none of these equals $41.57$, and no algebraically
+natural correction rescales them to the target without reintroducing a free
+parameter.
+The overall status after 22 investigated approaches is:
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is strongly supported by the
+Gaussian path-integral argument (A2, [MOTIVATED CONJECTURE]) and
+consistent with G3 ($k=1$, [PARTIAL]), but an independent
+derivation that does not rely on the measure counting of A2 remains open.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

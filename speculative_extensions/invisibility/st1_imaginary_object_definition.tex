@@ -1,0 +1,351 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{ST-1: Imaginary Sector Objects in UBT\\
+Formal Definition and Field-Theoretic Status\\[0.5em]
+\large\textsc{Speculative Extension — Invisibility Track}}
+\author{David Jaroš}
+\date{2026-03-03}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework.  It is an exploratory investigation
+into the possibility of field configurations that reside entirely
+in the imaginary sector of the biquaternionic metric, and has not
+been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-1 from the Invisibility / Imaginary Sector
+investigation track.  See also:
+\texttt{st2\_sector\_interaction.tex},
+\texttt{st3\_stability.tex},
+\texttt{st4\_ctc\_invisibility\_connection.tex},
+\texttt{st5\_falsifiability.md},
+and the CTC files in \texttt{speculative\_extensions/causality/}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+The UBT biquaternionic metric $\mathcal{G}_{\mu\nu} = g_{\mu\nu}
++ i\,h_{\mu\nu} + j\,a_{\mu\nu} + k\,b_{\mu\nu}$ admits
+a natural decomposition into a \emph{real sector} ($g_{\mu\nu}$)
+and an \emph{imaginary sector} ($h_{\mu\nu}$, $a_{\mu\nu}$,
+$b_{\mu\nu}$).  We formally define an \emph{imaginary sector object}
+as a field configuration $\Theta_\mathrm{imag}$ for which
+$\operatorname{Re}(\mathcal{G}_{\mu\nu}[\Theta_\mathrm{imag}]) = 0$
+while $\operatorname{Im}(\mathcal{G}_{\mu\nu}[\Theta_\mathrm{imag}]) \neq 0$.
+Three foundational questions are addressed: (i) consistency of
+the configuration $\Theta_\mathrm{imag} = i\,\Theta_\mathrm{real}$
+with AXIOM A, (ii) well-definedness of the UBT action on this
+configuration, and (iii) satisfaction of the UBT field equations.
+All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Background: UBT Field and Metric Structure}
+%----------------------------------------------------------------------
+
+The canonical UBT $\Theta$-field takes values in the biquaternion
+algebra $\mathcal{B} = \mathbb{C} \otimes \mathbb{H}$:
+\begin{equation}
+  \Theta(q,\tau) \;=\;
+  \Theta_0 + \Theta_1 \mathbf{i} + \Theta_2 \mathbf{j} + \Theta_3 \mathbf{k},
+  \qquad \Theta_n \in \mathbb{C},
+  \label{eq:theta_field}
+\end{equation}
+where $\mathbf{i}, \mathbf{j}, \mathbf{k}$ are the quaternion
+imaginary units and $q \in \mathbb{H}$, $\tau = t + i\psi \in
+\mathbb{C}$ denote the biquaternionic spacetime coordinate and
+complex time respectively.
+
+The induced biquaternionic metric is
+\begin{equation}
+  \mathcal{G}_{\mu\nu}
+  \;=\; g_{\mu\nu} + i\,h_{\mu\nu} + j\,a_{\mu\nu} + k\,b_{\mu\nu},
+  \qquad g_{\mu\nu} = \operatorname{Re}(\mathcal{G}_{\mu\nu}),
+  \label{eq:biquat_metric}
+\end{equation}
+and the UBT field equation is
+\begin{equation}
+  \mathcal{E}_{\mu\nu}[\Theta,\mathcal{G}]
+  \;=\; \kappa\,\mathcal{T}_{\mu\nu}[\Theta,\mathcal{G}].
+  \label{eq:ubt_field_eq}
+\end{equation}
+Standard GR is recovered by taking the real projection of
+\eqref{eq:ubt_field_eq}, which yields the Einstein equations with
+an effective stress-energy $T_{\mu\nu}^{\mathrm{eff}} =
+\operatorname{Re}(\mathcal{T}_{\mu\nu})$.
+
+%----------------------------------------------------------------------
+\section{Definitions}
+%----------------------------------------------------------------------
+
+\begin{definition}[Real-sector object]
+A field configuration $\Theta_\mathrm{real}$ is a
+\emph{real-sector object} if the induced biquaternionic metric
+satisfies
+\begin{equation}
+  \operatorname{Re}\!\left(\mathcal{G}_{\mu\nu}[\Theta_\mathrm{real}]\right)
+  \;\neq\; 0
+  \quad \text{on a non-empty open set of spacetime}.
+\end{equation}
+Such an object contributes to the physical metric $g_{\mu\nu}$
+and is, in principle, directly detectable by real-sector observers.
+\end{definition}
+
+\begin{definition}[Imaginary-sector object]
+\label{def:imag_obj}
+A field configuration $\Theta_\mathrm{imag}$ is an
+\emph{imaginary-sector object} if
+\begin{align}
+  \operatorname{Re}\!\left(\mathcal{G}_{\mu\nu}[\Theta_\mathrm{imag}]\right)
+  &\;=\; 0
+  \quad \text{everywhere (or asymptotically flat to zero),}
+  \label{eq:imag_cond1}\\
+  \operatorname{Im}\!\left(\mathcal{G}_{\mu\nu}[\Theta_\mathrm{imag}]\right)
+  &\;\neq\; 0
+  \quad \text{on a non-empty open set.}
+  \label{eq:imag_cond2}
+\end{align}
+Such an object contributes \emph{only} to the imaginary metric
+components $\{h_{\mu\nu}, a_{\mu\nu}, b_{\mu\nu}\}$ and is
+\emph{a priori} invisible to observers whose apparatus couples
+solely to $g_{\mu\nu}$.
+\end{definition}
+
+\begin{remark}
+Definition~\ref{def:imag_obj} is a \emph{formal} definition.
+Whether a physically consistent realisation exists is the subject
+of the questions below.  The word ``invisible'' here means
+invisible to the real-sector metric; imaginary-sector objects
+may still be detectable through the back-reaction mechanism
+discussed in \texttt{st2\_sector\_interaction.tex}.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Question 1: Is $\Theta_\mathrm{imag} = i\,\Theta_\mathrm{real}$
+Valid Under AXIOM A?}
+%----------------------------------------------------------------------
+
+AXIOM A of UBT (following the notation of the canonical core document)
+states that the $\Theta$-field is a smooth section of the biquaternion
+bundle $\mathcal{B}$ over the spacetime manifold, subject to the
+condition that the induced real metric $g_{\mu\nu}$ has Lorentzian
+signature $(-,+,+,+)$.
+
+\paragraph{The $i$-rotation map.}
+Consider the map $\Theta \mapsto i\,\Theta$ where $i$ is the
+complex unit in $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+This maps $\Theta_\mathrm{real} \mapsto i\,\Theta_\mathrm{real}$.
+
+Since $\mathcal{B}$ is a unital $\mathbb{C}$-algebra, $i\,\Theta$
+is a valid element of $\mathcal{B}$ for any $\Theta \in \mathcal{B}$.
+The map is smooth and bijective on $\mathcal{B}$.
+
+\paragraph{Effect on the metric.}
+The biquaternionic metric is bilinear in $\Theta$ (schematically):
+\begin{equation}
+  \mathcal{G}_{\mu\nu}[\Theta]
+  \;\sim\; \partial_\mu\Theta^\dagger \partial_\nu\Theta + \cdots
+\end{equation}
+Under $\Theta \to i\,\Theta$:
+\begin{equation}
+  \mathcal{G}_{\mu\nu}[i\,\Theta]
+  \;\sim\; (i\,\partial_\mu\Theta)^\dagger (i\,\partial_\nu\Theta)
+  \;=\; (i^*)\,(\partial_\mu\Theta^\dagger)\,(i)\,(\partial_\nu\Theta)
+  \;=\; (-i)(i)\,\partial_\mu\Theta^\dagger \partial_\nu\Theta
+  \;=\; \mathcal{G}_{\mu\nu}[\Theta].
+\end{equation}
+Here we used the Hermitian conjugation rule $(i\,A)^\dagger = A^\dagger(-i)$
+for $i \in \mathbb{C}$.  Consequently, if the metric depends on $\Theta$
+only through the combination $\partial\Theta^\dagger \partial\Theta$, then
+$\mathcal{G}_{\mu\nu}[i\,\Theta] = \mathcal{G}_{\mu\nu}[\Theta]$ and the
+imaginary rotation does \emph{not} produce a new configuration — it leaves
+the metric unchanged.
+
+\paragraph{Non-bilinear metric contributions.}
+If the metric contains terms linear in $\Theta$ (or in $\partial\Theta$
+without the Hermitian conjugate), the $i$-rotation maps real parts to
+imaginary parts:
+\begin{equation}
+  \mathcal{G}_{\mu\nu}[i\,\Theta]
+  \;\ni\; i\,(\text{linear terms in }\Theta)
+  \;\Rightarrow\;
+  \operatorname{Re}(\mathcal{G}_{\mu\nu}[i\,\Theta])
+  \;\ni\; -\operatorname{Im}(\text{linear terms in }\Theta).
+\end{equation}
+In this case, starting from a $\Theta_\mathrm{real}$ with
+$\operatorname{Im}(\partial\Theta_\mathrm{real}) = 0$, the rotated
+field $i\,\Theta_\mathrm{real}$ could have
+$\operatorname{Re}(\mathcal{G}_{\mu\nu}) = 0$.
+
+\begin{conjecture}[AXIOM A consistency]
+\label{conj:axiom_a}
+The configuration $\Theta_\mathrm{imag} = i\,\Theta_\mathrm{real}$ is
+consistent with AXIOM A (smoothness and biquaternion membership) but
+may violate the subsidiary condition that $g_{\mu\nu}$ has Lorentzian
+signature, because condition \eqref{eq:imag_cond1} forces $g_{\mu\nu} = 0$,
+which is degenerate.  Whether the axiom system permits degenerate metrics
+in an intermediate formal sense (before projection to physical observables)
+is an open question.
+\end{conjecture}
+
+%----------------------------------------------------------------------
+\section{Question 2: Is the UBT Action Well-Defined on
+$\Theta_\mathrm{imag}$?}
+%----------------------------------------------------------------------
+
+The UBT action takes the form (schematically)
+\begin{equation}
+  S[\Theta, \mathcal{G}]
+  \;=\; \int_{\mathcal{M}} \mathcal{L}(\Theta, \partial\Theta, \mathcal{G})
+  \,\sqrt{-\det(\operatorname{Re}\,\mathcal{G})}\;d^4x\,d\psi,
+  \label{eq:action}
+\end{equation}
+where the volume element $\sqrt{-\det g}$ involves the \emph{real}
+metric determinant.
+
+\paragraph{Degeneracy of the volume element.}
+For an imaginary-sector object satisfying \eqref{eq:imag_cond1},
+$g_{\mu\nu} = 0$ everywhere, so $\det g = 0$ and the volume element
+$\sqrt{-\det g} = 0$.  The action \eqref{eq:action} is then
+identically zero.
+
+\paragraph{Alternative: action over complex volume.}
+One could formally define a complexified action
+\begin{equation}
+  S_\mathbb{C}[\Theta, \mathcal{G}]
+  \;=\; \int_{\mathcal{M}} \mathcal{L}(\Theta, \partial\Theta, \mathcal{G})
+  \,\sqrt{-\det(\mathcal{G})}\;d^4x\,d\psi,
+\end{equation}
+where $\det(\mathcal{G})$ is the determinant of the full biquaternionic
+metric.  This is mathematically well-defined when
+$\operatorname{Im}(\mathcal{G}_{\mu\nu}) \neq 0$, even if
+$\operatorname{Re}(\mathcal{G}_{\mu\nu}) = 0$.
+
+\begin{remark}
+Using $S_\mathbb{C}$ requires extending the variational principle to
+complex field variations, which is non-standard.  The resulting
+field equations may not be real, raising questions about the physical
+interpretation of the imaginary parts of the equations of motion.
+This extension is not part of the canonical UBT framework.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Question 3: Do Imaginary-Sector Objects Satisfy the
+Field Equations?}
+%----------------------------------------------------------------------
+
+The real projection of the UBT field equation \eqref{eq:ubt_field_eq}
+yields
+\begin{equation}
+  R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R
+  \;=\; 8\pi G\,T_{\mu\nu}^{\mathrm{eff}},
+\end{equation}
+where $T_{\mu\nu}^{\mathrm{eff}} = \operatorname{Re}(\mathcal{T}_{\mu\nu})$.
+The imaginary projection yields a separate set of equations for the
+imaginary metric components.
+
+For $\Theta_\mathrm{imag}$ with $g_{\mu\nu} = 0$:
+\begin{itemize}
+  \item The Einstein tensor $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R$
+    is formally zero (as $g_{\mu\nu}$ and all its derivatives vanish), but
+    the Christoffel symbols $\Gamma^\lambda_{\mu\nu} \propto g^{\lambda\sigma}
+    \partial g_{\sigma\mu}/\partial x^\nu$ are ill-defined when $g_{\mu\nu} = 0$
+    because the inverse $g^{\mu\nu}$ diverges.
+  \item The matter field equation $\nabla^2\Theta - \partial V/\partial\Theta^\dagger = 0$
+    involves the covariant d'Alembertian $\nabla^2 = g^{\mu\nu}\nabla_\mu\nabla_\nu$,
+    which is also ill-defined when $g_{\mu\nu} = 0$.
+\end{itemize}
+
+\begin{proposition}[Field equation obstruction]
+\label{prop:obstruction}
+A globally imaginary-sector object satisfying $g_{\mu\nu} \equiv 0$
+everywhere cannot satisfy the canonical UBT field equations
+\eqref{eq:ubt_field_eq} in the real-projection form, because the
+real metric sector is degenerate and the associated differential
+operators are ill-defined.
+\end{proposition}
+
+\paragraph{Localised near-imaginary objects.}
+Proposition~\ref{prop:obstruction} does not exclude configurations
+that are ``almost imaginary'' — i.e., have $g_{\mu\nu} = \epsilon\,
+\bar{g}_{\mu\nu}$ with $\epsilon \ll 1$, so that the metric is
+nearly degenerate but the field equations remain well-defined.  In
+the limit $\epsilon \to 0$ one approaches the imaginary sector.
+
+Such \emph{near-imaginary} configurations may provide a physically
+meaningful approximation to the ideal imaginary-sector object,
+and their interaction with the real sector is discussed in
+\texttt{st2\_sector\_interaction.tex}.
+
+%----------------------------------------------------------------------
+\section{Summary}
+%----------------------------------------------------------------------
+\begin{enumerate}
+  \item The $i$-rotation $\Theta \to i\,\Theta$ is algebraically
+    valid in $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$, but for
+    a metric that is Hermitian-bilinear in $\Theta$ the rotation
+    leaves $\mathcal{G}_{\mu\nu}$ unchanged.  A non-trivial
+    imaginary-sector object requires a metric with linear or
+    non-Hermitian dependence on $\Theta$.
+  \item The standard UBT action is ill-defined on a configuration
+    with $g_{\mu\nu} = 0$ because the volume element vanishes.
+    A complexified action is formally well-defined but non-standard
+    and outside the canonical UBT framework.
+  \item The canonical field equations cannot be satisfied globally
+    on an imaginary-sector configuration because the covariant
+    differential operators require a non-degenerate $g_{\mu\nu}$.
+  \item The physically relevant generalisation is a
+    \emph{near-imaginary} configuration with $|g_{\mu\nu}| \ll
+    |h_{\mu\nu}|$, which is tractable in perturbation theory and
+    examined in \texttt{st2\_sector\_interaction.tex}.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.
+No claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{CTC_causal}
+  D.~Jaroš,
+  \emph{ST-1: Causal Structure of Complex Time in UBT},
+  Repository document \texttt{speculative\_extensions/causality/complex\_time\_causal\_structure.tex}
+  (2026).
+\bibitem{CTC_conditions}
+  D.~Jaroš,
+  \emph{ST-3: Closed Timelike Curve Conditions in the Biquaternionic Metric},
+  Repository document \texttt{speculative\_extensions/causality/ctc\_conditions.tex}
+  (2026).
+\end{thebibliography}
+
+\end{document}

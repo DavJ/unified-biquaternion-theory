@@ -1,0 +1,176 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\title{\textbf{Step 7: Theoretical Motivation for $k = 2n$}\\
+       \large Why Modular Weight Matches Generation Number in UBT}
+\author{David Jaro\v{s}}
+\date{2026-03-06}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Weight-Generation Correspondence}
+\label{sec:wg_correspondence}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Hecke eigenvalue conjecture (Step~6) found matching modular forms
+at weights $k = 2, 4, 6$ for the three lepton generations (electron, muon, tau).
+This weight pattern $k = 2, 4, 6$ corresponds to generation numbers $n = 1, 2, 3$
+via:
+\begin{equation}
+  k \;=\; 2n, \qquad n = 1, 2, 3.
+\end{equation}
+
+\begin{gapbox}
+\textbf{Open question:} Is the weight-generation correspondence $k = 2n$ a
+\emph{theorem} derivable from UBT, or an empirical observation?
+
+If it is a theorem, it would turn the Hecke conjecture from a lucky
+numerical match into a \emph{prediction} of UBT.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{UBT Origin of the $k = 2n$ Pattern}
+\label{sec:origin}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Winding Numbers and Modular Weight}
+
+In UBT, the three generations are the $\psi$-winding modes $n = 1, 2, 3$
+of $\Theta(x, \psi) = \sum_n \Theta_n(x)\,e^{in\psi/R_\psi}$.
+The modular weight $k$ of a cusp form $f$ is the exponent appearing in:
+\begin{equation}
+  f\!\left(\frac{a\tau + b}{c\tau + d}\right)
+  \;=\; (c\tau + d)^k\,f(\tau).
+\end{equation}
+
+The complex time $\tau = t + i\psi$ is the modular parameter of the
+torus $T^2$ (with $\psi$-circle and $t$-circle, see Approach~A3 notes).
+Under the modular transformation $\tau \to \tau + 1$ (Dehn twist of
+the $\psi$-circle): $e^{in\psi/R_\psi} \to e^{in(\psi + 2\pi R_\psi)/R_\psi}
+= e^{in\psi/R_\psi}$ (invariant).  Under $\tau \to -1/\tau$ (S-transform):
+$e^{in\psi/R_\psi} \to e^{in/\tau \cdot \psi/R_\psi}$.
+
+\begin{insightbox}
+\textbf{Key argument:}
+The $n$-th winding mode $\Theta_n(x)$ has a natural modular weight
+assignment from its transformation under $\mathrm{SL}(2,\mathbb{Z})$
+acting on $\tau = t + i\psi$.
+
+Under $\tau \to -1/\tau$: the kinetic energy of the $n$-th mode scales as
+$E_n \sim n^2/R_\psi^2 \to n^2\,|\tau|^2/R_\psi^2$.
+The modular weight captures this $|\tau|^2$ factor: a weight-$k$ form
+transforms as $(c\tau+d)^k$, which scales as $|\tau|^k$ for large $\tau$.
+
+For the $n$-th generation: $E_n \sim |\tau|^2 \cdot n^2$ suggests $k = 2$.
+But the \emph{$n$-th generation} contributes a $k$-th \emph{tensor power}
+of the weight-2 form.  The product of $n$ weight-2 forms has weight $2n$.
+\end{insightbox}
+
+\begin{theorem}[Weight-generation: $k = 2n$ from UBT]
+\label{thm:weight_gen}
+If the mass of the $n$-th lepton generation is given by the $n$-th
+power of the electron-generation Hecke form $f_1$, then the weight of
+the corresponding form is $k = 2n$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1:} The UBT kinetic action for the $n$-th winding mode is:
+\begin{equation}
+  S_n \;=\; \int |\partial_\tau\Theta_n|^2\,d^2\tau.
+\end{equation}
+Under $\tau \to \gamma(\tau) = (a\tau+b)/(c\tau+d)$, the measure
+$d^2\tau \to d^2\tau/|c\tau+d|^4$ and $|\partial_\tau\Theta_n|^2 \to
+|c\tau+d|^4\,|\partial_\tau\Theta_n|^2$, so $S_n$ is invariant.
+This is the weight-0 condition on $|\partial_\tau\Theta_n|^2$.
+
+\textbf{Step 2:} The mode $\Theta_n$ itself transforms as weight $(n,0)$
+under $\mathrm{SL}(2,\mathbb{Z})$ if its $\psi$-expansion is
+$\sum_{m} c_m\,e^{i(m+n)\psi}$.  The Hecke operator $T(p)$ acts on
+the Fourier coefficients $c_m$ as $T(p)\,c_m = c_{pm} + p^{k-1}\,c_{m/p}$.
+For this to reproduce the three-generation spectrum, the weight $k$ must
+satisfy $k = 2 \times (\text{number of modes combined}) = 2n$.
+
+\textbf{Step 3:} More concisely --- the $n$-th generation mass is
+proportional to $m_e^{(n)} \sim f_1(\tau)^n$ (the $n$-th power of the
+electron form).  The $n$-th power of a weight-2 form has weight $2n$.
+This is the weight-generation correspondence.
+\end{proof}
+
+\begin{remark}[Caveats]
+\label{rem:caveats}
+Step 2 of the proof uses a heuristic argument.  A rigorous proof would
+require:
+\begin{itemize}
+  \item Showing the $n$-th winding mode $\Theta_n$ is in the tensor
+        product of $n$ copies of $\Theta_1$ (not just a single mode).
+  \item Computing the Hecke operator action on this tensor product.
+  \item Verifying that the Hecke eigenvalues of $\Theta_n$ match those
+        of a weight-$2n$ form.
+\end{itemize}
+The current status is: \textbf{theoretical motivation, not a rigorous proof}.
+The pattern $k = 2n$ is well-motivated and consistent with all known
+UBT structure; a complete algebraic proof requires additional work.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Consequence: Theoretical Prediction}
+\label{sec:consequence}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{If Theorem~\ref{thm:weight_gen} is proved:}
+\begin{itemize}
+  \item The weight pattern $(2, 4, 6)$ for $(e, \mu, \tau)$ is
+        a \emph{prediction} of UBT, not an observation.
+  \item There are exactly three lepton generations because:
+        $\psi$-winding modes $n = 1, 2, 3$ (corresponding to
+        $k = 2, 4, 6$) are the lowest non-trivial winding numbers,
+        and $n = 0$ is the Higgs (VEV sector), not a fermion.
+  \item Higher modes $n \geq 4$ ($k \geq 8$) would be very massive
+        (exponentially suppressed by the Hecke factor), explaining
+        why no fourth generation is observed.
+\end{itemize}
+
+\textbf{Status:} Motivated conjecture.  Requires:
+\begin{enumerate}
+  \item Rigorous tensor-product argument for winding modes.
+  \item Verification with SageMath: do $k=8$ forms at levels $N \leq 50$
+        give a ``fourth-generation'' mass too heavy to observe?
+  \item See \texttt{search\_k8\_forms.py} for the numerical test.
+\end{enumerate}
+\end{resultbox}
+
+\end{document}

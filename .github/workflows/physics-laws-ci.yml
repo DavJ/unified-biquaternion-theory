@@ -1,0 +1,202 @@
+name: Physics Laws CI
+
+# Verifies that physical laws (Lorentz invariance, quaternion algebra,
+# Clifford algebra, GR limit) hold at every commit.
+# This is the recommended CI pipeline from the UBT audit (2026-05).
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# Minimal read-only permissions for all jobs
+permissions:
+  contents: read
+
+jobs:
+  # -----------------------------------------------------------------------
+  # 1. Algebraic invariants
+  # -----------------------------------------------------------------------
+  algebra-invariants:
+    name: Algebraic Invariants
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy sympy pytest hypothesis
+
+      - name: Quaternion norm multiplicativity (smoke test)
+        run: |
+          python -c "
+          from tools.biquaternion import Biquaternion
+          q1 = Biquaternion.from_real_quat(1,2,3,4)
+          q2 = Biquaternion.from_real_quat(5,-1,0,2)
+          lhs = abs((q1 * q2).norm_squared())
+          rhs = abs(q1.norm_squared()) * abs(q2.norm_squared())
+          assert abs(lhs - rhs) < 1e-10, f'Norm multiplicativity FAILED: {lhs} vs {rhs}'
+          print('✓ Quaternion norm multiplicativity')
+          "
+
+      - name: Lightlike element handled gracefully
+        run: |
+          python -c "
+          import numpy as np
+          from tools.biquaternion import Biquaternion, LightlikeElement
+          null_q = Biquaternion(np.array([1, 1j, 0, 0], dtype=complex))
+          result = null_q.inverse()
+          assert isinstance(result, LightlikeElement), f'Expected LightlikeElement, got {type(result)}'
+          print('✓ Lightlike inverse returns sentinel (no exception)')
+          "
+
+  # -----------------------------------------------------------------------
+  # 2. Clifford algebra / Dirac gamma matrices
+  # -----------------------------------------------------------------------
+  dirac-algebra:
+    name: Dirac Algebra from ℂ⊗ℍ
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy
+
+      - name: Verify Clifford algebra {γ^μ, γ^ν} = 2η^{μν}
+        run: |
+          python tools/dirac_from_biquaternion.py
+
+  # -----------------------------------------------------------------------
+  # 3. GR limit verification
+  # -----------------------------------------------------------------------
+  gr-limit:
+    name: GR Limit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy
+
+      - name: Minkowski metric from UBT tetrad
+        run: |
+          python -c "
+          import numpy as np
+          from tools.biquaternion_geometry import BiquaternionTetrad, verify_gr_limit
+          tetrad = BiquaternionTetrad.minkowski()
+          eta = np.diag([-1.0, 1.0, 1.0, 1.0])
+          result = verify_gr_limit(tetrad, eta, label='Minkowski')
+          assert result['passed'], f'GR limit FAILED: max_rel_error={result[\"max_rel_error\"]}'
+          print('✓ Minkowski metric recovered from biquaternionic tetrad')
+          "
+
+      - name: Schwarzschild spatial metric from UBT ansatz
+        run: |
+          python tools/verify_schwarzschild_theta.py --tolerance 1e-8
+
+  # -----------------------------------------------------------------------
+  # 4. Symbolic verification (SymPy)
+  # -----------------------------------------------------------------------
+  symbolic-verification:
+    name: Symbolic Verification (SymPy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install sympy numpy
+
+      - name: Maxwell equations from biquaternions
+        run: |
+          python tools/sympy_verify_maxwell.py --verbose
+
+      - name: Lorentz invariance (symbolic)
+        run: |
+          python tools/sympy_verify_lorentz_norm.py --verbose
+
+  # -----------------------------------------------------------------------
+  # 5. Property-based tests (Hypothesis)
+  # -----------------------------------------------------------------------
+  property-tests:
+    name: Property-Based Tests (Hypothesis)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy hypothesis pytest
+
+      - name: Run property-based physics tests
+        run: |
+          pytest tests/test_physics_properties.py -v --hypothesis-seed=0
+
+  # -----------------------------------------------------------------------
+  # 6. Full unit test suite for new algebra/geometry/Dirac modules
+  # -----------------------------------------------------------------------
+  unit-tests:
+    name: Unit Tests (new modules)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy pytest sympy hypothesis
+
+      - name: Run unit tests for biquaternion algebra, geometry, Dirac
+        run: |
+          pytest tests/test_biquaternion.py -v
+
+  # -----------------------------------------------------------------------
+  # 7. QM limit tests (existing)
+  # -----------------------------------------------------------------------
+  qm-limit:
+    name: QM Limit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install numpy pytest
+
+      - name: QED continuity ψ → 0
+        run: pytest tests/test_qed_limit.py -v
+
+      - name: Ward identity Z1 = Z2
+        run: pytest tests/test_ward_id.py -v

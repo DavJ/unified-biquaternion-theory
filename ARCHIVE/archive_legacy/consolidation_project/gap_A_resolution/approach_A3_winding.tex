@@ -1,0 +1,262 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A3: Winding on $T^2(\tau)$}\\
+         \large One-Loop Effective Action with Both $R_t$ and $R_\psi$ Nonzero}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We investigate whether the effective loop coefficient
+  $B_{\mathrm{eff}}(R_t, R_\psi)$ computed on the two-dimensional torus
+  $T^2(\tau)$ with both radii $R_t$ and $R_\psi$ nonzero can reproduce
+  $B_{\mathrm{phenom}} \approx 46.3$.  The approach links Open Problem~A
+  (the $B$ coefficient) to Open Problem~B (the correction factor
+  $R \approx 1.114$), and tests whether the two-torus geometry with a
+  natural ratio $R_t/R_\psi = \sqrt{137}$ or $\sqrt{139}$ provides the
+  required enhancement over $B_0 = 8\pi$.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: Two-Dimensional Torus}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+Complex time $\tau = t + i\psi$ lives on a two-torus $T^2$ with radii
+$R_t$ (real-time circle) and $R_\psi$ ($\psi$-circle).  The current UBT
+derivation of $B_0 = 8\pi$ sets $R_t \to \infty$ (non-compact real time)
+and keeps only the $\psi$-circle.
+
+When both circles are compact:
+\begin{equation}
+  \tau \;\sim\; \tau + 2\pi R_t, \qquad
+  \tau \;\sim\; \tau + 2\pi i R_\psi.
+\end{equation}
+The modular parameter of $T^2$ is $\rho = i\,R_\psi/R_t$, which lies in
+the upper half-plane.
+
+The kinetic action on $T^2$ is:
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta]
+  \;=\; \frac{1}{2}\int_{T^2} \Bigl[
+      \frac{1}{R_t^2}|\partial_t\Theta|^2
+    + \frac{1}{R_\psi^2}|\partial_\psi\Theta|^2
+  \Bigr]\,dt\,d\psi.
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Winding Mode Spectrum on $T^2$}
+\label{sec:spectrum}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Fourier decomposition on $T^2$:
+\begin{equation}
+  \Theta(t,\psi)
+  \;=\; \sum_{m,n\in\mathbb{Z}} \Theta_{m,n}\,
+        e^{i m t / R_t}\,e^{i n \psi / R_\psi}.
+\end{equation}
+The mode $(m,n)$ has mass squared
+\begin{equation}
+  M_{m,n}^2 \;=\; \frac{m^2}{R_t^2} + \frac{n^2}{R_\psi^2}.
+\end{equation}
+
+The one-loop vacuum polarisation is (schematically):
+\begin{equation}
+  \Pi(q^2)
+  \;\sim\; \sum_{m,n} \int \frac{d^4k}{(2\pi)^4}\,
+           \frac{1}{(k^2 + M_{m,n}^2)^2}
+\end{equation}
+in Euclidean space.  The sum over the KK tower $(m,n)$ gives an effective
+$B$ coefficient that depends on $R_t$ and $R_\psi$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Effective $B$ Coefficient on $T^2$}
+\label{sec:effective_B}
+%──────────────────────────────────────────────────────────────────────────────
+
+Retaining only the zero-mode in real time ($m = 0$, same as flat-space
+limit in the $t$ direction) but summing over all $\psi$-modes:
+\begin{equation}
+  B_{\mathrm{eff}}(R_\psi) \;=\; B_0 \;\times\; f(R_\psi M_{\mathrm{UV}}),
+\end{equation}
+where $f$ is a form factor from the KK sum (shown in
+\texttt{tools/compute\_B\_KK\_sum.py} to fail for a single circle).
+
+When \emph{both} circles are compact, new contributions arise from modes
+with $m \neq 0$.  Under Poisson summation (see
+\texttt{ubt\_with\_chronofactor/scripts/spectral/poisson\_duality\_demo.py}):
+\begin{equation}
+  \sum_{m,n\in\mathbb{Z}} e^{-\pi\alpha(m^2 R_t^{-2} + n^2 R_\psi^{-2})}
+  \;=\; \frac{R_t R_\psi}{\alpha}
+    \sum_{m,n\in\mathbb{Z}} e^{-\pi(m^2 R_t^2 + n^2 R_\psi^2)/\alpha}.
+\end{equation}
+This is the Poisson duality $W(\tau) = \tau^{d/2} S(\tau)$ for $d=2$.
+
+The one-loop effective action on $T^2$ receives a \emph{Poisson-dual}
+contribution proportional to $R_t R_\psi$.  Normalising by the flat-space
+result gives:
+\begin{equation}
+  \frac{B_{\mathrm{eff}}(R_t, R_\psi)}{B_0}
+  \;\approx\; 1 + \frac{R_t R_\psi}{\lambda_{\mathrm{UV}}^2}
+              \times (\text{modular correction}),
+\end{equation}
+where $\lambda_{\mathrm{UV}}$ is the UV cutoff.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Natural Ratios from Prime Geometry}
+\label{sec:natural_ratios}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT prime attractor theorem selects $p \in \{137, 139\}$.  Two natural
+radius ratios arise:
+\begin{equation}
+  \frac{R_t}{R_\psi} \;=\; \sqrt{137}
+  \quad\text{or}\quad
+  \frac{R_t}{R_\psi} \;=\; \sqrt{139}.
+\end{equation}
+
+Under Poisson duality the winding-to-momentum mode ratio is:
+\begin{equation}
+  \frac{R_t}{R_\psi} \;=\; \sqrt{p^*}
+  \quad\Longrightarrow\quad
+  \rho \;=\; \frac{R_\psi}{R_t} \;=\; \frac{1}{\sqrt{p^*}}.
+\end{equation}
+
+The modular $j$-function at $\rho = i/\sqrt{p^*}$:
+\begin{align}
+  j(i/\sqrt{137}) &\approx -744 + 196884\,e^{-2\pi/\sqrt{137}} + \cdots\\
+                  &\approx -744 + 196884 \times e^{-1.695} \approx -744 + 35540 \approx 34796.
+\end{align}
+This large number is not directly related to $B_{\mathrm{phenom}}$.
+
+\begin{insightbox}
+\textbf{Key computation:}
+If $R_t/R_\psi = \sqrt{p^*}$ is the natural ratio, the Poisson-dual
+correction to $B_0$ at one loop is:
+\begin{equation}
+  \delta B \;=\; B_0 \times 2\,K_0\!\Bigl(2\pi\sqrt{p^*}\Bigr)\,\sqrt{p^*},
+\end{equation}
+where $K_0$ is the modified Bessel function of the second kind.
+For $p^* = 137$:
+$K_0(2\pi\sqrt{137}) \approx K_0(73.5) \approx 10^{-32}$ ---
+exponentially suppressed.
+
+This confirms that the Poisson-dual winding contribution is negligible
+when $R_t/R_\psi = \sqrt{p^*} \gg 1$.
+\end{insightbox}
+
+\begin{deadendbox}
+\textbf{Dead end (large $R_t/R_\psi$ ratio):}
+For $R_t/R_\psi = \sqrt{137}$, the Poisson-dual KK contribution to
+$\delta B$ is exponentially suppressed ($\sim e^{-73}$).
+This does not produce the required $B_{\mathrm{eff}} = 46.3$.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Small-Ratio Case: $R_t = R_\psi$}
+\label{sec:small_ratio}
+%──────────────────────────────────────────────────────────────────────────────
+
+For the self-dual torus $R_t = R_\psi = R$, the two-loop effective action
+is invariant under $T$-duality $R \to \alpha'/R$.  The effective $B$
+coefficient at a self-dual radius:
+\begin{equation}
+  B_{\mathrm{eff}}(R = 1) \;=\; B_0 \times Z_T,
+\end{equation}
+where $Z_T$ is the torus partition function.  For a single real boson on a
+self-dual circle:
+\begin{equation}
+  Z_T(R=1) \;=\; \sum_{m,n} q^{(m+n)^2/4}\,\bar{q}^{(m-n)^2/4}
+\end{equation}
+at $q = e^{2\pi i \tau}$ with $\tau = i$ (self-dual point).  This sums to
+$Z_T(R=1) = 1$ in the appropriate normalisation (standard string theory
+result).
+
+Thus $B_{\mathrm{eff}}(R_t = R_\psi) = B_0$ --- no enhancement.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Connection to Open Problem B: $R \approx 1.114$}
+\label{sec:openproblemB}
+%──────────────────────────────────────────────────────────────────────────────
+
+Open Problem B is the correction factor $R \approx 1.114$ in the UBT
+fine-structure derivation.  If $B_{\mathrm{phenom}} = B_0 \times R$, then:
+\begin{equation}
+  R \;=\; \frac{B_{\mathrm{phenom}}}{B_0}
+    \;=\; \frac{46.3}{8\pi}
+    \;\approx\; 1.842.
+\end{equation}
+But $R \approx 1.114$ is a \emph{different} correction (documented in
+\texttt{docs/PROOFKIT\_ALPHA.md~§5}).
+
+Approach~A3 cannot close Gap~A via the torus geometry alone; it would
+require $B_{\mathrm{eff}}/B_0 \approx 1.842$, not 1.114.  The two
+correction factors appear to be independent.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{deadendbox}
+\textbf{Dead end (Approach A3, torus winding):}
+The one-loop effective action for $\Theta$ on $T^2(R_t, R_\psi)$ does not
+produce $B_{\mathrm{eff}} = 46.3$ for any natural ratio $R_t/R_\psi$.
+
+\begin{itemize}
+  \item $R_t/R_\psi = \sqrt{p^*}$: Poisson-dual correction $\sim e^{-73}$,
+        negligible.
+  \item Self-dual $R_t = R_\psi$: $B_{\mathrm{eff}} = B_0 = 8\pi$.
+  \item $R_t \to \infty$ (current UBT): $B_{\mathrm{eff}} = B_0 = 8\pi$.
+\end{itemize}
+
+\textbf{Conclusion:} The winding correction on $T^2$ cannot bridge the
+gap from $B_0 = 8\pi$ to $B_{\mathrm{phenom}} = 46.3$.
+Approach~A3 is a \textbf{complete dead end}.
+
+\textbf{Honest statement:} We have tested all three natural radius ratios.
+None reproduces $B_{\mathrm{phenom}}$.  The torus winding approach is
+definitively ruled out at one loop.
+\end{deadendbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

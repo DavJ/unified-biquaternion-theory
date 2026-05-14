@@ -1,0 +1,271 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Conjecture environment
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{ST-1: Causal Structure of Complex Time $\tau = t + i\psi$ in\\
+Unified Biquaternion Theory\\[0.5em]
+\large\textsc{Speculative Extension}}
+\author{David Jaroš}
+\date{2026-03-01}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework. It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-1 from the CTC/Causal-Structure investigation track.
+See also: \texttt{rotation\_complex\_time.tex}, \texttt{ctc\_conditions.tex},
+\texttt{chronology\_protection\_ubt.tex}, \texttt{ctc\_methodology.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We define the causal structure of Unified Biquaternion Theory (UBT) with
+complex time $\tau = t + i\psi$.  Three candidate interpretations of the
+imaginary component $\psi$ are examined: (i) second independent time
+direction, (ii) internal phase coordinate, and (iii) auxiliary degree of
+freedom.  A causal partial order on the complex time plane is proposed and
+the physical consequences of each interpretation are explored.
+All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Motivation and Setup}
+%----------------------------------------------------------------------
+UBT introduces complex time
+\begin{equation}
+  \tau \;=\; t + i\psi , \qquad t,\,\psi \in \mathbb{R},
+  \label{eq:complex_time}
+\end{equation}
+where $t$ is the familiar Lorentzian (real) time coordinate and $\psi$ is
+a phase coordinate that appears in the imaginary sector of the biquaternionic
+metric
+\begin{equation}
+  \mathcal{G}_{\mu\nu} \;=\; g_{\mu\nu} + i\,h_{\mu\nu}
+                                + j\,a_{\mu\nu} + k\,b_{\mu\nu}, \qquad
+  g_{\mu\nu} := \operatorname{Re}(\mathcal{G}_{\mu\nu}).
+  \label{eq:biquat_metric}
+\end{equation}
+Standard GR operates entirely on the real sector $g_{\mu\nu}$.  Any causal
+structure in UBT must reduce to standard Lorentzian causality when
+$\psi \to 0$.
+
+%----------------------------------------------------------------------
+\section{Candidate Interpretations of $\psi$}
+%----------------------------------------------------------------------
+\subsection{Interpretation A: Second Independent Time Direction}
+
+If $\psi$ is treated as a genuinely independent time coordinate alongside
+$t$, the spacetime acquires an effective $(1+1,3)$ signature — two time-like
+and three spatial dimensions.  This is the most radical reading.
+
+\paragraph{Physical consequences.}
+\begin{itemize}
+  \item The causal cone splits into two orthogonal temporal axes: ordinary
+    Lorentzian light-cones (driven by $t$) and a new family of
+    $\psi$-directed cones.
+  \item Closed paths in the $(t,\psi)$ plane can wrap around the $\psi$
+    axis and return to their starting point even if $t$ advances
+    monotonically — a potential CTC mechanism.
+  \item Standard chronology-protection arguments (Hawking \cite{Hawking1992})
+    would need to be re-derived in this extended signature.
+  \item The unitarity of the $\psi$-direction evolution is not guaranteed
+    by the real-sector field equations and must be imposed as a separate
+    constraint.
+\end{itemize}
+
+\subsection{Interpretation B: Internal Phase Coordinate (Preferred)}
+
+Under this interpretation $\psi$ parametrises an internal phase degree of
+freedom, analogous to a compact extra dimension with period $2\pi R_\psi$.
+Real-time $t$ remains the sole causal variable.
+
+\paragraph{Physical consequences.}
+\begin{itemize}
+  \item Causal order is determined exclusively by the real metric $g_{\mu\nu}$
+    (as in standard GR), so no new causal pathologies appear at leading order.
+  \item The imaginary sector $h_{\mu\nu},a_{\mu\nu},b_{\mu\nu}$ contributes
+    to the stress-energy through the biquaternionic field equation
+    $\mathcal{E}_{\mu\nu} = \kappa\,\mathcal{T}_{\mu\nu}$ and can
+    deform light cones only through back-reaction on $g_{\mu\nu}$.
+  \item A Wick rotation $t \to -i\psi$ is a formal mathematical tool and
+    does not carry physical time-reversal significance.
+  \item This interpretation is most consistent with the canonical UBT
+    programme.
+\end{itemize}
+
+\subsection{Interpretation C: Auxiliary Degree of Freedom}
+
+$\psi$ could be purely auxiliary — a Lagrange multiplier or a gauge
+degree of freedom eliminated by a constraint.  In this case $\psi$ carries
+no dynamical or causal content at all.
+
+\paragraph{Physical consequences.}
+\begin{itemize}
+  \item All causal structure collapses to standard GR causality.
+  \item No new CTC mechanisms arise from $\psi$ alone.
+  \item The imaginary-sector equations become constraint equations rather
+    than evolution equations.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Proposed Causal Order on the Complex Time Plane}
+%----------------------------------------------------------------------
+\begin{definition}[Complex-time causal order]
+Let $\tau_1 = t_1 + i\psi_1$ and $\tau_2 = t_2 + i\psi_2$.  Under
+Interpretation B, the \emph{causal order} on $\mathbb{C}_\tau$ is
+\begin{equation}
+  \tau_1 \preceq \tau_2 \quad\Longleftrightarrow\quad
+  t_1 \leq t_2 \quad\text{and}\quad |\psi_2 - \psi_1| \leq \Lambda_\psi(t_2-t_1),
+\end{equation}
+where $\Lambda_\psi > 0$ is a characteristic rate that bounds how quickly
+the phase coordinate can vary relative to real time.  The relation
+$\preceq$ is reflexive and transitive.
+\end{definition}
+
+\begin{remark}
+If $\Lambda_\psi \to \infty$, the $\psi$ coordinate is unconstrained and
+the order reduces to $t_1 \leq t_2$ — standard temporal ordering.  If
+$\Lambda_\psi = 0$, then $\psi$ must remain constant along any causal curve,
+effectively decoupling it.
+\end{remark}
+
+\begin{definition}[Causal curve in complex time]
+A smooth path $\gamma: [0,1] \to \mathbb{R}^4 \times \mathbb{C}_\tau$,
+$\gamma(s) = (x^\mu(s), \tau(s))$, is \emph{causal} if
+\begin{enumerate}
+  \item $g_{\mu\nu}\,\dot{x}^\mu \dot{x}^\nu \leq 0$ (non-spacelike in the
+    real metric), and
+  \item $\operatorname{Re}(\dot\tau) \geq 0$ (non-decreasing real time
+    component).
+\end{enumerate}
+\end{definition}
+
+%----------------------------------------------------------------------
+\section{Null, Timelike, and Spacelike Separation with Complex $\tau$}
+%----------------------------------------------------------------------
+The UBT proper-distance element generalises the Lorentzian interval.
+In the complex-time sector we write
+\begin{equation}
+  d\mathbf{s}^2 \;=\;
+  g_{\mu\nu}\,dx^\mu dx^\nu
+  + \lambda_\tau\,|d\tau|^2,
+\end{equation}
+where $\lambda_\tau \in \mathbb{C}$ encodes the coupling of complex time to
+the real geometry.  Separating real and imaginary parts:
+\begin{equation}
+  d\mathbf{s}^2 \;=\;
+  \underbrace{g_{\mu\nu}\,dx^\mu dx^\nu
+  + \operatorname{Re}(\lambda_\tau)(dt^2 - d\psi^2)}_{\text{real part}}
+  + i\;\underbrace{[\cdots]}_{\text{imaginary part}}.
+\end{equation}
+
+\begin{definition}[Extended null condition]
+An infinitesimal displacement $(dx^\mu, d\tau)$ is \emph{null in the
+extended sense} if
+\begin{equation}
+  \operatorname{Re}(d\mathbf{s}^2) = 0
+  \quad\text{and}\quad
+  \operatorname{Im}(d\mathbf{s}^2) = 0.
+\end{equation}
+\end{definition}
+
+Under Interpretation B (phase coordinate), the imaginary part vanishes
+identically for real-sector observers, and the null condition reduces to
+the standard Lorentzian condition $g_{\mu\nu}\,dx^\mu dx^\nu = 0$.
+
+%----------------------------------------------------------------------
+\section{Physical Consequences of Each Interpretation}
+%----------------------------------------------------------------------
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|p{4.2cm}|p{4.2cm}|p{4.2cm}|}
+\hline
+ & \textbf{A: Second time} & \textbf{B: Phase coord.} & \textbf{C: Auxiliary}\\
+\hline
+Causal dimension & $(1+1)+3 = 5$-dim & $1+3$ (standard) & $1+3$ (standard)\\
+Arrow of time & Two independent arrows & Single real-$t$ arrow & Single real-$t$ arrow\\
+CTC potential & High (wrapping in $(t,\psi)$) & Indirect (via $g_{\mu\nu}$ deformation) & None\\
+Unitarity & Requires extra constraint & Automatic in real sector & Automatic\\
+GR recovery ($\psi\to 0$) & Non-trivial & Smooth & Trivial\\
+\hline
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------
+\section{Conjecture on Causal Consistency}
+%----------------------------------------------------------------------
+\begin{conjecture}[Causal consistency under Interpretation B]
+\label{conj:causal_consistency}
+Under Interpretation B (internal phase), the canonical UBT field equation
+$\mathcal{E}_{\mu\nu} = \kappa\,\mathcal{T}_{\mu\nu}$ does not generate
+causal paradoxes in the real sector: the real projection $g_{\mu\nu}$ of
+any solution satisfies the standard Lorentzian causality conditions.
+The imaginary sectors $h_{\mu\nu}$, $a_{\mu\nu}$, $b_{\mu\nu}$ modify
+the causal structure only through their contribution to $T_{\mu\nu} :=
+\operatorname{Re}(\mathcal{T}_{\mu\nu})$, which acts as an effective
+stress-energy source inside the standard Einstein equations.
+\end{conjecture}
+
+\begin{remark}
+Conjecture~\ref{conj:causal_consistency} may not hold under
+Interpretation A.  Whether Interpretation A is physically admissible
+within UBT remains an open question requiring analysis of the full
+biquaternionic field equations; see \texttt{ctc\_conditions.tex} and
+\texttt{chronology\_protection\_ubt.tex}.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Summary}
+%----------------------------------------------------------------------
+Three interpretations of the imaginary time component $\psi$ have been
+examined.  Interpretation B (internal phase coordinate) is the most
+conservative and is consistent with the canonical UBT programme: it
+preserves the single real-time causal arrow and reduces smoothly to GR
+in the $\psi \to 0$ limit.  Interpretations A and C represent more
+extreme positions and carry correspondingly larger theoretical risks.
+
+A causal partial order has been proposed for the complex time plane under
+Interpretation B, and the notions of null, timelike, and spacelike
+separation have been extended to complex $\tau$.
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.  No
+claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{Hawking1992}
+  S.~W.~Hawking,
+  \emph{Chronology protection conjecture},
+  Phys.\ Rev.\ D \textbf{46}, 603 (1992).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\end{thebibliography}
+
+\end{document}

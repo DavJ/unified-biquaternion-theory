@@ -1,0 +1,308 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Experimental Predictions of UBT}\\
+\large Unified Biquaternion Theory — Canonical Appendices Series}
+\author{Ing.\ David Jaroš}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Purpose]
+This appendix extracts concrete predictions from UBT that are in principle
+measurable or that distinguish UBT from Standard Model / GR.
+It classifies predictions by their derivation status and identifies the
+most promising observational tests.
+
+\medskip
+\textbf{Sources}:
+\texttt{canonical/qed\_phi\_const/},
+\texttt{canonical/qm\_emergence/},
+\texttt{docs/reports/hecke\_lepton/},
+\texttt{DERIVATION\_INDEX.md}
+
+\medskip
+\begin{tabular}{lll}
+\hline
+Category & Prediction count & Section \\
+\hline
+Electrodynamics & 4 & \S\ref{sec:qed} \\
+Fine structure constant & 3 & \S\ref{sec:alpha_pred} \\
+Particle spectrum & 4 & \S\ref{sec:spectrum} \\
+Cosmological & 3 & \S\ref{sec:cosmo} \\
+Imaginary-sector deviations & 3 & \S\ref{sec:imaginary} \\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,title=Prediction classification]
+Predictions are labelled:
+\begin{itemize}
+  \item \textbf{[DERIVED]} — follows from UBT without free parameters at current layer
+  \item \textbf{[SEMI-EMP]} — structural derivation with $\geq 1$ calibrated parameter
+  \item \textbf{[CONJECTURE]} — proposed; not yet derived
+  \item \textbf{[CONSISTENT]} — same as SM/GR; UBT does not modify this observable
+\end{itemize}
+\end{tcolorbox}
+
+% -----------------------------------------------------------------
+\section{Electrodynamics Predictions}\label{sec:qed}
+% -----------------------------------------------------------------
+
+\subsection{No Photon Mass}
+
+\begin{theorem}[$\mathrm{U}(1)_{\mathrm{EM}}$ protection]\label{thm:no_mass}
+The action $S[\Theta]$ preserves exact $\mathrm{U}(1)_{\mathrm{EM}}$ symmetry
+at all loop orders.  Therefore, the photon mass $m_\gamma = 0$ exactly.
+\end{theorem}
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} [L0] \\
+\noindent\textbf{Source}: \texttt{canonical/qed\_phi\_const/step1\_u1\_protection.tex} \\
+\noindent\textbf{Experimental bound}: $m_\gamma < 10^{-18}$ eV (consistent).
+
+\subsection{Schwinger Anomalous Magnetic Moment}
+
+\begin{proposition}[Schwinger term at $\varphi = \mathrm{const}$]
+\label{prop:schwinger}
+In the QED limit ($\varphi = \mathrm{const}$, real sector), the anomalous
+magnetic moment of the electron is:
+\begin{equation}\label{eq:schwinger}
+  a_e = \frac{\alpha}{2\pi} + O(\alpha^2)
+  \approx 1.161 \times 10^{-3}.
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} [L1] (Schwinger term proved) \\
+\noindent\textbf{Source}: \texttt{canonical/qed\_phi\_const/step4\_schwinger\_term.tex} \\
+\noindent\textbf{Experiment}: $a_e^{\mathrm{exp}} = 1.15965\ldots \times 10^{-3}$ (consistent).
+
+\subsection{QED Running Coupling ($\beta$-function)}
+
+\begin{proposition}[$\beta$-function at one loop]
+\label{prop:beta}
+The one-loop $\beta$-function for the electromagnetic coupling is:
+\begin{equation}\label{eq:beta}
+  \mu\frac{\mathrm{d}\alpha}{\mathrm{d}\mu}
+  = \frac{2\alpha^2}{3\pi} + O(\alpha^3).
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} [L1] \\
+\noindent\textbf{Source}: \texttt{canonical/qed\_phi\_const/step3\_beta\_function.tex} \\
+\noindent\textbf{Experiment}: Standard one-loop QED $\beta$-function verified to $< 0.1\%$.
+
+\subsection{Lamb Shift}
+
+The Lamb shift in hydrogen ($2S_{1/2} - 2P_{1/2}$ splitting) receives a
+leading contribution from vacuum polarisation at one loop:
+\begin{equation}
+  \Delta E_{\mathrm{Lamb}} \approx 1058\;\mathrm{MHz}
+  \quad (\text{QED prediction}).
+\end{equation}
+
+\noindent\textbf{Status}: \textbf{[CONSISTENT]} (UBT QED limit reproduces standard QED) \\
+\noindent\textbf{Source}: \texttt{canonical/qed\_phi\_const/step5\_lamb\_shift.tex} (sketch).
+
+% -----------------------------------------------------------------
+\section{Fine Structure Constant Predictions}\label{sec:alpha_pred}
+% -----------------------------------------------------------------
+
+\subsection{Bare Value $\alpha^{-1} = 137$}
+
+\begin{proposition}
+From the prime attractor of $V_{\mathrm{eff}}(n)$:
+\begin{equation}
+  \alpha^{-1}_{\mathrm{bare}} = n^* = 137 \quad (\text{prime}).
+\end{equation}
+\end{proposition}
+
+\noindent\textbf{Status}: \textbf{[SEMI-EMP]} (B-coefficient partially derived) \\
+\noindent\textbf{Source}: \texttt{docs/STATUS\_ALPHA.md}, \texttt{appendix\_alpha\_geometry.tex}.
+
+\subsection{Full Value $\alpha^{-1} = 137.036$}
+
+The full inverse fine-structure constant including one-loop QED correction:
+\begin{equation}
+  \alpha^{-1} = 137 + \delta, \qquad \delta \approx 0.036.
+\end{equation}
+
+\noindent\textbf{Status}: \textbf{[SEMI-EMP]} (correction $\delta$ from QED running; $R$-factor open) \\
+\noindent\textbf{Source}: \texttt{docs/STATUS\_ALPHA.md \S6}.
+
+\subsection{Non-circularity Test}
+
+Different values of $N_{\mathrm{eff}}$ (i.e., different SM particle content)
+give different prime attractors $n^*$:
+\begin{equation}
+  N_{\mathrm{eff}} = 1 \;\Rightarrow\; n^* \neq 137.
+\end{equation}
+This test verifies that the result is not circular.
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} \\
+\noindent\textbf{Source}: \texttt{experiments/validation/validate\_B\_coefficient.py}.
+
+% -----------------------------------------------------------------
+\section{Particle Spectrum Relations}\label{sec:spectrum}
+% -----------------------------------------------------------------
+
+\subsection{SU(3) Color Sector: Confinement}
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!50!black,title=Algebraic prediction]
+Free quarks (colour non-singlets) are algebraically inadmissible in UBT:
+$\mathcal{H}_{\mathrm{phys}} = \mathrm{Im}(\Pi_{\mathrm{color}})$ in
+$\mathbb{C}^2\otimes\mathbb{C}^2\otimes\mathbb{C}^2$.
+All verified hadrons (baryons, mesons, tetraquarks, pentaquarks) satisfy
+$\langle C_2 \rangle = 0$.
+\end{tcolorbox}
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} (algebraic confinement) / Clay Millennium (mass gap) \\
+\noindent\textbf{Source}: \texttt{ARCHIVE/archive\_legacy/consolidation\_project/confinement/}.
+
+\subsection{Lepton Mass Ratios}
+
+The Hecke structure at prime $p = 137$ gives strong numerical support for:
+\begin{equation}
+  \frac{m_\mu}{m_e} \approx 207,
+  \qquad
+  \frac{m_\tau}{m_\mu} \approx 16.8.
+\end{equation}
+
+\noindent\textbf{Status}: \textbf{[CONJECTURE]} (numerical support, no analytic derivation) \\
+\noindent\textbf{Source}: \texttt{docs/reports/hecke\_lepton/}.
+
+\subsection{Mirror Sector at $p^{**} = 139$}
+
+The twin prime $p^{**} = 139$ gives a mirror-sector prediction for a second set
+of mass ratios (Set B):
+$(m_1/m_e, m_2/m_e, m_3/m_e) \approx (195.2, 50.4, 54.6)$.
+
+\noindent\textbf{Status}: \textbf{[CONJECTURE]} (numerical observation; distinct from SM) \\
+\noindent\textbf{Source}: \texttt{docs/reports/hecke\_lepton/mirror\_world\_139.md}.
+
+\subsection{Three Generations from Quaternionic Structure}
+
+The three imaginary quaternion units $\{I,J,K\}$ of $\mathbb{H}$ correspond to
+exactly three fermion families (no more, no fewer).
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} (algebraic [L1]); \\
+\noindent\textbf{Source}: \texttt{research\_tracks/research/generation\_structure.tex}.
+
+% -----------------------------------------------------------------
+\section{Cosmological Predictions}\label{sec:cosmo}
+% -----------------------------------------------------------------
+
+\subsection{Hubble Tension (Metric Latency)}
+
+The imaginary sector $h_{\mu\nu} = \mathrm{Im}(\mathcal{G}_{\mu\nu})$ introduces
+a \emph{metric latency}: the effective Hubble constant inferred from late-time
+observations differs from the early-universe value by a correction
+$\delta H / H \sim |h_{\mu\nu}|/|g_{\mu\nu}|$.
+
+\noindent\textbf{Status}: \textbf{[CONJECTURE]} (speculative; qualitatively consistent with $H_0$ tension) \\
+\noindent\textbf{Source}: \texttt{speculative\_extensions/appendices/appendix\_HT\_hubble\_tension\_metric\_latency.tex}.
+
+\subsection{Dark Sector from $p$-adic Extensions}
+
+$p$-adic extensions of the $\psi$-winding structure give stable, non-interacting
+modes that do not couple to $\mathrm{U}(1)_{\mathrm{EM}}$ — a candidate for
+dark matter.
+
+\noindent\textbf{Status}: \textbf{[CONJECTURE]} (speculative) \\
+\noindent\textbf{Source}: \texttt{research\_tracks/p\_universes/}.
+
+\subsection{Cosmological GR Limit}
+
+All standard cosmological solutions of GR (FRW metric, Schwarzschild metric,
+gravitational waves) are exactly reproduced on the admissible sector
+$\mathcal{A}_{\mathrm{UBT}}$.
+
+\noindent\textbf{Status}: \textbf{[CONSISTENT]} [L1] \\
+\noindent\textbf{Source}: \texttt{canonical/gr\_limit/GR\_limit\_of\_UBT.tex}.
+
+% -----------------------------------------------------------------
+\section{Imaginary-Sector Deviations}\label{sec:imaginary}
+% -----------------------------------------------------------------
+
+These are novel UBT predictions beyond Standard Model + GR, arising from the
+imaginary sector $h_{\mu\nu}$ and the phase curvature.
+
+\subsection{Phase Curvature Signatures}
+
+Corrections of order $|h_{\mu\nu}/g_{\mu\nu}| \sim |\psi|^2/R_\psi^2$ to
+gravitational wave phase shifts and light-bending angles.
+
+\noindent\textbf{Status}: \textbf{[CONJECTURE]} (order of magnitude estimate only) \\
+\noindent\textbf{Source}: \texttt{canonical/geometry/biquaternion\_metric.tex}.
+
+\subsection{$\phi$-Universe Parameter}
+
+The scalar phase $\phi$ of $\Theta$ is physical (not pure gauge) for two-mode
+winding vacua, introducing a moduli parameter $\phi \in [0,2\pi)$ that could
+in principle be measured through interference experiments.
+
+\noindent\textbf{Status}: \textbf{[DERIVED]} (existence of physical $\phi$ proved) \\
+\noindent\textbf{Source}: \texttt{docs/PHI\_UNIVERSE\_PARAMETER.md \S4a}.
+
+\subsection{Closed Timelike Curves (Speculative)}
+
+Certain non-generic solutions of the master equation may admit closed timelike
+curves; this is a speculative extension separated from canonical UBT.
+
+\noindent\textbf{Status}: \textbf{[SPECULATIVE]} \\
+\noindent\textbf{Source}: \texttt{speculative\_extensions/appendices/appendix\_J\_rotating\_spacetime\_ctc.tex}.
+
+% -----------------------------------------------------------------
+\section{Priority Predictions Summary}\label{sec:priority}
+% -----------------------------------------------------------------
+
+The following predictions are most likely to distinguish UBT from the
+Standard Model in near-term experiments:
+
+\begin{center}
+\begin{longtable}{llll}
+\toprule
+Prediction & Value & Status & Distinguishes UBT? \\
+\midrule
+No photon mass & $m_\gamma = 0$ & DERIVED & No (consistent) \\
+Schwinger term & $a_e = \alpha/(2\pi)$ & DERIVED & No (consistent) \\
+$\beta$-function at 1-loop & standard QED & DERIVED & No (consistent) \\
+$\alpha^{-1}_{\mathrm{bare}} = 137$ & 137 & SEMI-EMP & Partially (origin) \\
+Three generations & 3 families & DERIVED & Partially \\
+Algebraic confinement & no free quarks & DERIVED & No (consistent) \\
+Mirror sector at $p=139$ & mass spectrum B & CONJECTURE & \textbf{Yes} \\
+$\phi$-parameter physical & $\phi \neq$ pure gauge & DERIVED & \textbf{Yes} \\
+Phase curvature & $\delta\phi_{\mathrm{grav}}\sim h/g$ & CONJECTURE & \textbf{Yes} \\
+Hubble tension correction & $\delta H/H \sim h/g$ & CONJECTURE & \textbf{Yes} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\end{document}

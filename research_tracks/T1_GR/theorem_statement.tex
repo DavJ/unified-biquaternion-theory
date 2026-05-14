@@ -1,0 +1,146 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T1_GR — General Relativity Recovery
+% Purpose: Standalone Main Theorem statement — can be \input into any document
+%          or compiled independently.
+% Full proof chain: GR_theorem_result.tex
+% Generated: 2026-04-28
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper,margin=2.5cm]{geometry}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{enumitem}
+
+  \newtheorem{theorem}{Theorem}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{\textbf{Main Theorem: GR Recovery in UBT}\\[4pt]
+    \large Standalone Theorem Statement\\
+    \normalsize Track T1\_GR}
+  \author{Ing.\ David Jaroš}
+  \date{April 2026}
+
+  \begin{document}
+  \maketitle
+\fi
+
+% ============================================================
+%  MAIN THEOREM — GR Recovery
+% ============================================================
+
+\begin{tcolorbox}[enhanced,colback=blue!4!white,colframe=blue!55!black,
+  arc=3pt,boxrule=1.2pt,
+  title={\textbf{\large Main Theorem — GR Recovery (T1\_GR)}}]
+
+\textbf{Setup.}
+Let $\mathbb{B} := \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+be the biquaternion algebra.
+Let $\Theta : M^4 \times \mathbb{C}_\tau \to \mathbb{B}$ be a field in the
+admissible class
+\[
+  \mathcal{A}_{\mathrm{UBT}} := \bigl\{
+    \Theta \;\big|\; \{\partial_\mu\Theta\}_{\mu=0}^3
+    \text{ linearly independent over } \mathbb{R} \text{ in } \mathbb{B},\;
+    \Theta \neq \mathrm{const}
+  \bigr\},
+\]
+satisfying the three UBT axioms:
+\begin{itemize}[leftmargin=*,noitemsep]
+  \item \textbf{AXIOM-A}: algebra $\mathbb{B} \cong \mathrm{Cl}_{1,3}(\mathbb{R})$;
+  \item \textbf{AXIOM-B}: complex time $\tau = t + i\psi$; derivative $\partial_\tau$
+        lies in the timelike sector $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$;
+  \item \textbf{AXIOM-F}: field equation
+        $\nabla^\dagger\nabla\,\Theta(q,\tau) = \kappa\,\mathcal{T}(q,\tau)$.
+\end{itemize}
+
+\medskip
+\textbf{Conclusion.}  The following hold:
+
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+
+  \item \textbf{Derived metric.}  There exists a unique real symmetric
+        non-degenerate tensor on $M^4$:
+        \[
+          g_{\mu\nu} \;=\;
+          \dfrac{\mathrm{Re}\!\bigl[\mathrm{Tr}(\partial_\mu\Theta
+            \cdot\partial_\nu\Theta^\dagger)\bigr]}{\mathcal{N}},
+          \qquad \mathcal{N} > 0.
+        \]
+        The tensor $g_{\mu\nu}$ transforms as a covariant $(0,2)$ tensor under
+        diffeomorphisms.
+
+  \item \textbf{Non-degeneracy.}  $\det(g_{\mu\nu}) \neq 0$ at every point of $M^4$.
+
+  \item \textbf{Lorentzian signature.}  The signature of $g_{\mu\nu}$ is
+        $(-,+,+,+)$ as a theorem from AXIOM-B — not a postulate.
+
+  \item \textbf{Einstein field equations.}  The total UBT action
+        \[
+          S_{\mathrm{total}}[g,\Theta]
+          = \frac{1}{16\pi G}\int\!\!\sqrt{-g}\,R\,\mathrm{d}^4x
+          + S_\Theta[g,\Theta]
+        \]
+        under Hilbert variation $\delta S_{\mathrm{total}}/\delta g^{\mu\nu} = 0$ gives
+        \[
+          G_{\mu\nu} \;=\; 8\pi G\,T_{\mu\nu},
+        \]
+        where $T_{\mu\nu}$ is symmetric and satisfies $\nabla^\mu T_{\mu\nu} = 0$.
+
+  \item \textbf{Schwarzschild solution.}  The ansatz
+        $\Theta_0 = e^{i\Phi(r)}[f(r)\,\mathbf{1} + g(r)\,\boldsymbol{e}_r]$
+        (unique spherically symmetric vacuum solution) reproduces the Schwarzschild
+        metric in isotropic coordinates:
+        \[
+          g_{tt} = -\Phi(r)^2, \quad
+          g_{ij} = \Psi(r)^4\,\delta_{ij}, \quad
+          \Psi(r) = 1 + \tfrac{M}{2r},
+        \]
+        verified numerically to floating-point precision.
+
+  \item \textbf{Linearised gravity.}  Linearisation around flat background
+        reproduces the linearised Einstein equations; the odd-parity graviton
+        satisfies the Regge-Wheeler equation without additional input.
+
+\end{enumerate}
+
+\smallskip
+\textbf{Open problems} (do not affect claims (1)--(6)):
+The even-parity (Zerilli) graviton equation and the off-shell $\Theta$-only
+closure are open at level [L2].  See \texttt{proof\_gap\_list.md}.
+
+\end{tcolorbox}
+
+\bigskip
+\begin{remark}[Proof status]
+Claims (1)--(6) are proved at level [L1].  Full proofs are in
+\texttt{GR\_theorem\_result.tex} (Section~2) with supporting files in
+\texttt{canonical/gr\_closure/}.
+\end{remark}
+
+\begin{remark}[What is new]
+Unlike prior biquaternion gravity approaches, UBT derives the metric (claim~(1)),
+the non-degeneracy (claim~(2)), and the Lorentzian signature (claim~(3)) as
+theorems.  No free parameters appear in claims (1)--(4).
+\end{remark}
+
+\ifdefined\INCLUDEMODE
+  % Being included — no end document
+\else
+  \end{document}
+\fi

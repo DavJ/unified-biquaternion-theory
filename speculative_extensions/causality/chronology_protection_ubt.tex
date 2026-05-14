@@ -1,0 +1,266 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{ST-4: Chronology Protection in\\
+Unified Biquaternion Theory\\[0.5em]
+\large\textsc{Speculative Extension}}
+\author{David Jaroš}
+\date{2026-03-01}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework. It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-4 from the CTC/Causal-Structure investigation track.
+See also: \texttt{complex\_time\_causal\_structure.tex},
+\texttt{rotation\_complex\_time.tex},
+\texttt{ctc\_conditions.tex}, \texttt{ctc\_methodology.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+Hawking's chronology protection conjecture \cite{Hawking1992} relies on
+QFT assumptions that may not hold in Unified Biquaternion Theory (UBT)
+with complex time $\tau = t + i\psi$.  We examine whether (a) the UBT
+imaginary sector $\psi$ acts as a natural regulator that enforces
+chronology protection more strongly, or (b) it circumvents the
+standard QFT argument.  All results are stated as conjectures with
+explicit assumptions; no claim constitutes a proof.
+All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Hawking's Chronology Protection Conjecture (Standard GR)}
+%----------------------------------------------------------------------
+Hawking \cite{Hawking1992} proposed that the laws of physics prevent
+the formation of closed timelike curves.  The central physical mechanism
+is the divergence of the renormalised stress-energy tensor
+$\langle T_{\mu\nu}\rangle_{\mathrm{ren}}$ on the Cauchy horizon that
+would be needed to create a CTC.  As the horizon forms, quantum fields
+in the background geometry contribute an infinite back-reaction that
+destroys the Cauchy horizon before CTCs can form.
+
+\paragraph{Key QFT assumptions of the standard conjecture.}
+\begin{enumerate}
+  \item Spacetime is globally hyperbolic before the CTC formation epoch.
+  \item Quantum fields propagate on a fixed classical background metric
+    $g_{\mu\nu}$ (semiclassical gravity).
+  \item The renormalised vacuum stress-energy is well-defined and its
+    divergence on the compactly generated Cauchy horizon signals a
+    breakdown of the semiclassical approximation.
+  \item The energy conditions (or their quantum equivalents) hold in the
+    bulk away from the horizon.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Do These Assumptions Hold in UBT?}
+%----------------------------------------------------------------------
+\subsection{Assumption 1: Global Hyperbolicity}
+In UBT the spacetime manifold carries complex time $\tau = t + i\psi$.
+If $\psi$ is treated as an internal phase (Interpretation B of
+\texttt{complex\_time\_causal\_structure.tex}), then the real
+$3+1$-dimensional slice of spacetime inherits the standard causal
+structure and global hyperbolicity is preserved.
+
+Under Interpretation A ($\psi$ as second time direction), the spacetime
+acquires an effectively higher-dimensional structure and global
+hyperbolicity in the standard sense no longer applies.
+
+\textit{Verdict:} Under Interpretation B, Assumption 1 holds.  Under
+Interpretation A, it does not.
+
+\subsection{Assumption 2: Semiclassical Gravity}
+UBT is an attempt to unify GR and QFT at the level of the field
+$\Theta$.  In UBT, the metric is not a fixed classical background but
+a dynamical biquaternionic object $\mathcal{G}_{\mu\nu}$.  The
+semiclassical approximation — quantum fields on a classical background —
+is replaced by a fully coupled biquaternionic field equation.
+
+\textit{Verdict:} Assumption 2 does \emph{not} hold directly in UBT.
+The standard QFT-on-curved-spacetime framework must be generalised to
+QFT on a biquaternionic background before the divergence argument
+can be evaluated.
+
+\subsection{Assumption 3: Divergence of Renormalised Stress-Energy}
+In standard QFT the divergence of $\langle T_{\mu\nu}\rangle_{\mathrm{ren}}$
+on the Cauchy horizon arises from high-frequency modes of quantum fields
+propagating on the CTC-enabling background.  In UBT, the imaginary
+sector $\psi$ introduces a natural scale $R_\psi$ (the compactification
+radius of $\psi$).  High-frequency modes with wave-vector components
+$k_\psi \gg R_\psi^{-1}$ are effectively regulated by the compact $\psi$
+topology.
+
+\textit{Verdict:} Assumption 3 may be modified in UBT: the $\psi$-sector
+provides a UV regulator for modes in the imaginary-time direction, which
+could soften the divergence of $\langle T_{\mu\nu}\rangle_{\mathrm{ren}}$.
+
+\subsection{Assumption 4: Energy Conditions in the Bulk}
+As established in \texttt{ctc\_conditions.tex}
+(Conjecture~2), the imaginary sector $h_{\mu\nu}$ can contribute
+negative effective energy density to $T_{\mu\nu}^{\mathrm{eff}}$.  This
+means the weak energy condition (WEC) can be violated in UBT without
+introducing exotic matter by hand.
+
+\textit{Verdict:} Assumption 4 does \emph{not} automatically hold in UBT.
+Local WEC violation is possible through the imaginary metric sector.
+
+%----------------------------------------------------------------------
+\section{Possible Outcomes for Chronology Protection in UBT}
+%----------------------------------------------------------------------
+Given the analysis above, two scenarios are possible:
+
+\subsection{Scenario A: Enhanced Chronology Protection}
+If the imaginary sector $\psi$ provides a UV regulator (Assumption 3
+modified) and the energy conditions hold on average (Assumption 4
+replaced by an averaged energy condition), then the standard divergence
+argument might be \emph{strengthened} in UBT: the $\psi$-regulator
+smears out the Cauchy-horizon divergence in the imaginary direction but
+does not remove it, and back-reaction still destroys the horizon before
+CTCs form.
+
+\begin{conjecture}[Enhanced chronology protection]
+\label{conj:enhanced_cp}
+\textbf{Assumptions:}
+(a) $\psi$ is an internal phase coordinate (Interpretation B);
+(b) the $\psi$-compactification radius $R_\psi$ is finite;
+(c) the averaged null energy condition holds in the real sector;
+(d) UBT reduces to semiclassical GR at length scales $\gg R_\psi$.
+
+\textbf{Conjecture:} Under these assumptions, the UBT field equations
+enforce chronology protection at least as strongly as in standard GR.
+The Cauchy-horizon divergence is UV-regulated by the $\psi$ sector but
+remains non-integrable, destroying the horizon before CTC formation.
+\end{conjecture}
+
+\subsection{Scenario B: Circumvention of Chronology Protection}
+If the imaginary sector $\psi$ acts as a \emph{channel} that allows
+energy conditions to be violated locally (Assumption 4 fails) while the
+Cauchy-horizon stress-energy remains finite (Assumption 3 modified),
+then the standard back-reaction argument fails and CTCs may form.
+
+\begin{conjecture}[Chronology protection circumvention]
+\label{conj:circumvention}
+\textbf{Assumptions:}
+(a) $\psi$ is a second independent time direction (Interpretation A);
+(b) the imaginary metric sector $h_{\mu\nu}$ provides negative energy
+density at the Cauchy horizon;
+(c) the $\psi$-sector regulates the divergence of
+$\langle T_{\mu\nu}\rangle_{\mathrm{ren}}$ to a finite value;
+(d) back-reaction of this finite stress-energy is insufficient to
+destroy the horizon.
+
+\textbf{Conjecture:} Under these assumptions, the UBT field equations
+do \emph{not} enforce chronology protection in the imaginary sector,
+and closed timelike curves in the $(t,\psi)$ plane are not forbidden.
+\end{conjecture}
+
+\begin{remark}
+Conjectures~\ref{conj:enhanced_cp} and \ref{conj:circumvention} are
+mutually exclusive: they correspond to different interpretations of $\psi$
+(Interpretation B versus A, respectively).  Determining which interpretation
+is physically realised requires solving the full biquaternionic field
+equations in a CTC-enabling background, which remains an open problem.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Role of the $\psi$-Sector as Regulator}
+%----------------------------------------------------------------------
+The compact $\psi$ direction with radius $R_\psi$ introduces a
+Kaluza–Klein-like tower of modes with masses
+\begin{equation}
+  m_n^{(\psi)} \;=\; \frac{n}{R_\psi}, \qquad n \in \mathbb{Z}.
+  \label{eq:kk_masses}
+\end{equation}
+These massive modes suppress quantum fluctuations in the imaginary direction
+at energies below $R_\psi^{-1}$.  The renormalised stress-energy on the
+Cauchy horizon receives contributions from all KK modes; whether these
+sum to a divergence or remain finite depends on the spectral properties
+of the UBT propagator in the biquaternionic background.
+
+A key open question is whether the KK sum
+\begin{equation}
+  \langle T_{\mu\nu}\rangle_{\mathrm{ren}}^{\psi} \;=\;
+  \sum_{n=-\infty}^{\infty}
+  \langle T_{\mu\nu}\rangle_n^{\mathrm{Cauchy}}
+  \label{eq:kk_sum}
+\end{equation}
+converges or diverges.  If convergent, the back-reaction is finite and
+Scenario~B (circumvention) is plausible.  If divergent, the back-reaction
+is enhanced and Scenario~A (strengthened chronology protection) applies.
+
+%----------------------------------------------------------------------
+\section{Summary and Open Questions}
+%----------------------------------------------------------------------
+\begin{itemize}
+  \item The standard QFT assumptions underlying Hawking's chronology
+    protection conjecture are \emph{not all satisfied} in UBT.
+  \item Under Interpretation B ($\psi$ = internal phase), chronology
+    protection is at least as strong as in GR (Conjecture~\ref{conj:enhanced_cp}).
+  \item Under Interpretation A ($\psi$ = second time direction),
+    chronology protection may be circumvented if the imaginary sector
+    provides a finite regulator for the Cauchy-horizon stress-energy
+    (Conjecture~\ref{conj:circumvention}).
+  \item The key open question is whether the KK sum \eqref{eq:kk_sum}
+    converges in the UBT propagator.  This requires explicit calculation
+    in a biquaternionic CTC background.
+\end{itemize}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.  No
+claim constitutes an established result of the canonical UBT framework.
+The conjectures above are contingent on listed assumptions and must not
+be promoted to theorems without independent proof.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{Hawking1992}
+  S.~W.~Hawking,
+  \emph{Chronology protection conjecture},
+  Phys.\ Rev.\ D \textbf{46}, 603 (1992).
+\bibitem{Kay1997}
+  B.~S.~Kay, M.~J.~Radzikowski and R.~M.~Wald,
+  \emph{Quantum field theory on spacetimes with a compactly generated
+  Cauchy horizon},
+  Commun.\ Math.\ Phys.\ \textbf{183}, 533 (1997).
+\bibitem{Visser1995}
+  M.~Visser,
+  \emph{Lorentzian Wormholes: from Einstein to Hawking},
+  AIP Press (1995).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{CTC_ST3}
+  D.~Jaroš,
+  \emph{ST-3: CTC Conditions in the Biquaternionic Metric},
+  Repository document
+  \texttt{speculative\_extensions/causality/ctc\_conditions.tex} (2026).
+\end{thebibliography}
+
+\end{document}

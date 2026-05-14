@@ -1,0 +1,95 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Related Work: Literature positioning for the SU(3) triplet paper.
+% Included by papers/su3_triplet/main.tex via \input{related_work}.
+% Status: Draft
+% Version: 1.0
+% Date: 2026-03-01
+
+\subsection{Classical result: $\mathrm{Aut}(\mathbb{H}) \cong \mathrm{SO}(3)$}
+
+It is well known \cite{Porteous1995} that the automorphism group of the
+quaternion algebra $\mathbb{H}$ over $\mathbb{R}$ is the rotation group:
+\[
+  \mathrm{Aut}_\mathbb{R}(\mathbb{H}) \cong \mathrm{SO}(3).
+\]
+Every automorphism of $\mathbb{H}$ is an inner automorphism of the form
+$h\mapsto qhq^{-1}$ for some unit quaternion $q\in\mathbb{H}$, $|q|=1$.
+
+Our construction is \textbf{not} an automorphism of $\mathbb{H}$ or of
+$\mathcal{B}$.  The group $\mathrm{SU}(3)_{V_c}$ acts on the three-dimensional
+complex subspace $V_c=\mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}$,
+not on the full algebra.  This is therefore \emph{complementary to}, not a
+contradiction of, the classical $\mathrm{SO}(3)$ result.
+
+\subsection{$\mathrm{GL}(2,\mathbb{C})$ rank obstruction}
+
+Because $\mathcal{B}\cong M_2(\mathbb{C})$ as complex algebras, the
+$\mathbb{R}$-algebra automorphism group is
+\[
+  \mathrm{Aut}_\mathbb{R}(\mathcal{B})
+  \cong \bigl[\mathrm{GL}(2,\mathbb{C})\times\mathrm{GL}(2,\mathbb{C})\bigr]/\mathbb{Z}_2.
+\]
+The maximal compact subgroup of $\mathrm{Aut}_\mathbb{R}(\mathcal{B})$ is
+$[\mathrm{U}(2)\times\mathrm{U}(2)]/\mathbb{Z}_2$, which does not contain
+$\mathrm{SU}(3)$ as a subgroup (the rank of $\mathrm{SU}(3)$ is $2$, while
+the rank of $\mathrm{U}(2)$ is $2$, but their embedding structure is
+incompatible).  This obstruction is verified computationally in
+\texttt{reports/associative\_su3\_scan.md}.
+
+Our $\mathrm{SU}(3)_{V_c}$ avoids this obstruction by \emph{not} being an
+automorphism of $\mathcal{B}$; it is only a symmetry group of the subspace
+$V_c$ equipped with its Hermitian form.
+
+\subsection{Comparison with Dixon and Furey}
+
+Dixon \cite{Dixon1994} constructs Standard Model gauge groups from the tensor
+product of division algebras $\mathbb{R}\otimes\mathbb{C}\otimes\mathbb{H}
+\otimes\mathbb{O}$, where $\mathbb{O}$ denotes the octonions.  The
+$\mathrm{SU}(3)$ factor in Dixon's construction requires the non-associative
+octonion algebra.
+
+Furey \cite{Furey2016} similarly uses the complex octonions $\mathbb{C}
+\otimes\mathbb{O}$ to generate Standard Model multiplets, with $\mathrm{SU}(3)$
+arising from $G_2$-invariant structure of $\mathbb{O}$.
+
+\textbf{Our construction differs in a fundamental way}: we work entirely within
+the \emph{associative} algebra $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$, with
+no octonions.  The $\mathrm{SU}(3)$ action we identify is on the $P_2=-1$
+eigenspace of a quaternion conjugation involution, not on a minimal left ideal
+of an octonion algebra.
+
+\medskip
+\begin{center}
+\begin{tabular}{lccc}
+  \hline
+  Reference & Algebra & Octonion-free & SU(3) as Aut? \\
+  \hline
+  Dixon \cite{Dixon1994} & $\mathbb{R}\otimes\mathbb{C}\otimes\mathbb{H}\otimes\mathbb{O}$ & No & Partially \\
+  Furey \cite{Furey2016} & $\mathbb{C}\otimes\mathbb{O}$ & No & Via $G_2$ \\
+  Connes \cite{Connes1994} & Spectral triple & No & Via standard model input \\
+  \textbf{This work} & $\mathbb{C}\otimes\mathbb{H}$ & \textbf{Yes} & No (acts on $V_c$) \\
+  \hline
+\end{tabular}
+\end{center}
+
+\subsection{Non-contradiction with classical results}
+
+Our Theorem~\ref{thm:su3_action} does not contradict any classical theorem
+because:
+\begin{enumerate}
+  \item $\mathrm{SU}(3)_{V_c}$ is not claimed to be a subgroup of
+    $\mathrm{Aut}_\mathbb{R}(\mathcal{B})$.
+  \item The classical $\mathrm{SO}(3)\cong\mathrm{Aut}(\mathbb{H})$ result
+    concerns the quaternion algebra alone; our $V_c$ is a complex subspace of
+    $\mathcal{B}$, not a sub-algebra of $\mathbb{H}$.
+  \item The $\mathrm{GL}(2,\mathbb{C})$ rank obstruction applies to algebra
+    automorphisms; our symmetry is a \emph{unitary group acting on a module},
+    not an algebra automorphism.
+\end{enumerate}
+
+The result is therefore a new structural observation about $\mathcal{B}$, not
+in tension with any known classical theorem.

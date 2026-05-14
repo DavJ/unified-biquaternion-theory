@@ -1,0 +1,258 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Modular Dynamics in Unified Biquaternion Theory\\
+\large Torus Construction, Modular Invariants, and Fixing \texorpdfstring{$\mathrm{Im}(\tau)$}{Im(tau)}}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We continue the analysis of modular structures connecting the complex time
+$\tau$, the torus geometry $\mathbb{C}/(\mathbb{Z}+\tau\mathbb{Z})$, theta
+functions, and Hecke operators.  Building on the torus construction of
+\texttt{research/theta\_modular\_geometry.tex} and the moduli-space analysis
+of \texttt{research/moduli\_space\_ads\_vs\_physical\_ds.tex}, we examine
+candidate mechanisms for fixing $\mathrm{Im}(\tau) = R_\psi/R_t$ from the
+UBT field dynamics.  All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Setup: The Modular Parameter \texorpdfstring{$\tau$}{tau} in UBT}
+\label{sec:tau}
+% ======================================================================
+
+\subsection{Recap of the torus construction}
+
+Following \texttt{research/theta\_modular\_geometry.tex} §1--2, the complex
+time $\tau = t + i\psi$ with $\psi \sim \psi + 2\pi R_\psi$ defines a
+modular parameter:
+\begin{equation}
+  \tau_{\mathrm{mod}} = i\frac{R_\psi}{R_t} \in \mathbb{H},
+\end{equation}
+lying on the imaginary axis of the upper half-plane $\mathbb{H}$.  The
+associated torus is:
+\begin{equation}
+  \mathbb{T}_\tau = \mathbb{C}/(\mathbb{Z} + \tau_{\mathrm{mod}}\mathbb{Z}).
+\end{equation}
+
+\begin{remark}[Status of the construction]
+  The torus construction is a proved consequence of the axioms (Status:
+  \textbf{[L1]}).  The identification $\tau_{\mathrm{mod}} = iR_\psi/R_t$
+  places $\tau_{\mathrm{mod}}$ on the imaginary axis, which is a special
+  locus in the moduli space.  See
+  \texttt{AUDITS/complex\_time\_modular\_audit.md}.
+\end{remark}
+
+% ======================================================================
+\section{Modular Invariants}
+\label{sec:modular_inv}
+% ======================================================================
+
+\subsection{Physical quantities and modular invariance}
+
+Observable quantities (particle masses, coupling constants) must be
+modular invariants (or covariant under the relevant subgroup of
+$\mathrm{SL}(2,\mathbb{Z})$).
+
+The modular $j$-invariant:
+\begin{equation}
+\label{eq:j_inv}
+  j(\tau) = 1728\, \frac{g_2(\tau)^3}{\Delta(\tau)},
+\end{equation}
+where $g_2, \Delta$ are the Eisenstein series and discriminant, is the
+prototypical invariant.
+
+\begin{remark}[Status of modular invariance in UBT]
+  The UBT action $S[\Theta]$ has not been shown to be fully modular invariant.
+  The kinetic term is invariant under the continuous scaling $R_\psi \to \lambda R_\psi$
+  (Weyl symmetry), but invariance under the full $\mathrm{SL}(2,\mathbb{Z})$
+  transformation $\tau \to (a\tau+b)/(c\tau+d)$ has not been checked.
+
+  Status: \textbf{[O]} — open problem.  Establishing modular invariance
+  would be a major structural result for UBT.
+\end{remark}
+
+% ======================================================================
+\section{Candidate Mechanisms for Fixing \texorpdfstring{$\mathrm{Im}(\tau)$}{Im(tau)}}
+\label{sec:fix_tau}
+% ======================================================================
+
+\subsection{Mechanism M1: Moduli potential from the Θ-field action}
+
+A moduli potential $V_{\mathrm{mod}}(\tau)$ can arise from the one-loop
+determinant of the Θ-field:
+\begin{equation}
+\label{eq:moduli_potential}
+  V_{\mathrm{mod}}(\tau)
+  = -\ln\det(-\Delta_{T^3}(\tau))
+  = -\ln\prod_{n\in\mathbb{Z}^3\setminus\{0\}}
+    \frac{|\mathbf{n}|^2}{R_\psi^2(\tau)}.
+\end{equation}
+
+This potential extremises at special values of $\tau$.  For a product torus,
+the minimum of $V_{\mathrm{mod}}$ is at the self-dual point $R_\psi = R_t$,
+i.e., $\tau_{\mathrm{mod}} = i$.
+
+\begin{remark}[Status]
+  The existence of a non-trivial moduli potential from the one-loop $\Theta$
+  determinant is a standard result in string theory and Kaluza--Klein
+  compactifications.  Applied to UBT, it predicts $R_\psi \sim R_t$
+  (no hierarchy between real and imaginary time scales) unless additional
+  contributions shift the minimum.  Status: \textbf{[L2]} — motivated by
+  analogy, not computed for UBT.
+\end{remark}
+
+\subsection{Mechanism M2: Eisenstein series and enhanced symmetry points}
+
+The modular $j$-function has special values at:
+\begin{equation}
+  j(i) = 1728, \quad j(e^{2\pi i/3}) = 0.
+\end{equation}
+
+These correspond to tori with automorphism groups $\mathbb{Z}_4$ and
+$\mathbb{Z}_6$ respectively.  If the UBT partition function is invariant
+under the automorphism group of the torus, then $\tau_{\mathrm{mod}}$
+may be stabilised at these special points.
+
+\begin{conjecture}[Stabilisation at $j = 1728$]\label{conj:j1728}
+  The modular potential $V_{\mathrm{mod}}$ has a minimum at $\tau_{\mathrm{mod}} = i$,
+  corresponding to $R_\psi = R_t$ and $j = 1728$.  This fixes
+  $\mathrm{Im}(\tau_{\mathrm{mod}}) = 1$.
+
+  \textbf{Status: [L2]}.  The conjecture is motivated by the enhanced
+  $\mathbb{Z}_4$ automorphism at $\tau = i$, but no computation of
+  $V_{\mathrm{mod}}$ from the UBT action has been performed.
+\end{conjecture}
+
+\subsection{Mechanism M3: Theta function zeros and spectral gaps}
+
+The torus theta function $\vartheta_3(0|\tau_{\mathrm{mod}})$ has a zero
+at $\tau_{\mathrm{mod}} = (1 + i)/2$ (boundary of the fundamental domain).
+A spectral gap opens when $\vartheta_3$ passes through zero, which could
+stabilise $\tau_{\mathrm{mod}}$ near this value.
+
+\begin{remark}[Status]
+  This mechanism is speculative.  Status: \textbf{[L2]}.
+\end{remark}
+
+% ======================================================================
+\section{Modular Forms and Their Connection to UBT}
+\label{sec:mf}
+% ======================================================================
+
+\subsection{Theta series from KK spectrum}
+
+The partition function of the KK tower on $T^3$ is:
+\begin{equation}
+\label{eq:kk_partition}
+  Z_{\mathrm{KK}}(\tau)
+  = \sum_{\mathbf{n}\in\mathbb{Z}^3}
+    q^{|\mathbf{n}|^2},
+  \quad q = e^{2\pi i\tau_{\mathrm{mod}}},
+\end{equation}
+which is the level-1 theta series $\vartheta_3^3(\tau)$.
+
+\begin{remark}[Modular transformation]
+  Under $\tau \to \tau + 1$: $q \to e^{2\pi i}q = q$, so
+  $Z_{\mathrm{KK}}$ is invariant.
+  
+  Under $\tau \to -1/\tau$: Poisson duality (see
+  \texttt{research/B\_base\_spectral\_determinant.tex} §4) gives
+  $Z_{\mathrm{KK}}(-1/\tau) = |\tau|^{3/2} Z_{\mathrm{KK}}(\tau)$.
+
+  The $\tau \to -1/\tau$ transformation is \emph{not} a symmetry of
+  $Z_{\mathrm{KK}}$; it changes it by the factor $|\tau|^{3/2}$.
+  Full modular invariance would require a specific combination of
+  winding and momentum modes, as in string theory.
+  Status: \textbf{[L0]}.
+\end{remark}
+
+% ======================================================================
+\section{Connection to the \texorpdfstring{$B_{\mathrm{base}}$}{B\_base} Programme}
+\label{sec:bbase}
+% ======================================================================
+
+If the modular potential fixes $\tau_{\mathrm{mod}} = i$ (Conjecture~\ref{conj:j1728}),
+then $R_\psi = R_t$ and the $N_{\mathrm{eff}}$ parameter becomes:
+\begin{equation}
+  N_{\mathrm{eff}} = [\det(-\Delta_{T^3}(i))]^{1/3}.
+\end{equation}
+
+At $\tau_{\mathrm{mod}} = i$, the Epstein zeta function takes the value:
+\begin{equation}
+  Z_3(s)|_{\tau=i} = 6\,\zeta(2s)\,\beta(2s-1),
+\end{equation}
+where $\beta$ is the Dirichlet $\beta$-function.  This gives a definite
+numerical value for $N_{\mathrm{eff}}$, potentially connecting to
+$B_{\mathrm{base}} = 41.57$.
+
+\begin{remark}[Status of the connection]
+  Computing $N_{\mathrm{eff}}$ from $Z_3(s)|_{\tau=i}$ and checking
+  whether $N_{\mathrm{eff}}^{3/2} = 41.57$ is a concrete numerical task
+  that has not yet been performed.  Status: \textbf{[O]}.
+  This is a high-priority next step in the $B_{\mathrm{base}}$ programme.
+\end{remark}
+
+% ======================================================================
+\section{Open Problems}
+\label{sec:open}
+% ======================================================================
+
+\begin{enumerate}
+  \item \textbf{[O] Compute $V_{\mathrm{mod}}(\tau)$}: Evaluate the one-loop
+    moduli potential from the Θ-field determinant and find its extrema.
+
+  \item \textbf{[O] Modular invariance of the UBT action}: Check whether
+    $S[\Theta]$ is invariant under $\tau \to (a\tau+b)/(c\tau+d)$.
+
+  \item \textbf{[O] $N_{\mathrm{eff}}$ at $\tau = i$}: Compute
+    $N_{\mathrm{eff}} = [\det(-\Delta_{T^3}(i))]^{1/3}$ numerically.
+
+  \item \textbf{[O] Hecke operators and generation structure}: Connect
+    the Hecke eigenvalues discussed in
+    \texttt{research/hecke\_generation\_structure.tex} to the modular
+    structure of the Θ-field partition function.
+\end{enumerate}
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+Torus construction & \texttt{research/theta\_modular\_geometry.tex} \\
+Moduli space geometry & \texttt{research/moduli\_space\_ads\_vs\_physical\_ds.tex} \\
+Modular audit & \texttt{AUDITS/complex\_time\_modular\_audit.md} \\
+Poisson duality & \texttt{research/B\_base\_spectral\_determinant.tex} §4 \\
+Heat kernel & \texttt{research/B\_base\_heat\_kernel.tex} \\
+Hecke structure & \texttt{research/hecke\_generation\_structure.tex} \\
+\hline
+\end{tabular}
+
+\end{document}

@@ -1,0 +1,175 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Step 5: Lamb Shift at $\varphi = \mathrm{const}$}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We assess the reproducibility of the Lamb shift (the $2S_{1/2}$--$2P_{1/2}$ splitting
+  in hydrogen, $\Delta E_\mathrm{Lamb}\approx 1057.8\,\mathrm{MHz}$) in UBT with a
+  constant scalar background $\varphi = \mathrm{const}$.
+  Assuming Steps~1--4 hold, the three dominant contributions to the Lamb shift
+  (electron self-energy, vacuum polarisation, and vertex correction) are structurally
+  identical to standard QED.
+  \textbf{Verdict: SKETCH — structural argument complete; explicit UV-finite combination
+  not computed within UBT (open task L1).}
+  \end{abstract}
+\fi
+
+\section{Step 5: Lamb Shift at $\varphi = \mathrm{const}$}
+\label{sec:lamb_shift}
+
+\textbf{Task reference:} UBT\_v29\_task7, step5\_lamb\_shift.
+\textbf{Date:} 2026-03-06.
+\textbf{Verdict: SKETCH.}
+
+\subsection{Physical Origin of the Lamb Shift}
+
+The Lamb shift in hydrogen arises at order $\alpha^5 m_e$ (in natural units with
+$\hbar = c = 1$) from three one-loop QED corrections to the Coulomb potential:
+\begin{enumerate}
+  \item \textbf{Electron self-energy} $\Sigma(p)$: the electron emits and reabsorbs a
+        virtual photon.
+  \item \textbf{Vacuum polarisation} $\Pi_{\mu\nu}(k)$: a virtual $e^+e^-$ pair
+        screens the Coulomb field.
+  \item \textbf{Vertex correction} $\Lambda^\mu(p',p)$: the electron--photon interaction
+        is renormalised.
+\end{enumerate}
+
+In standard QED the combination gives
+\begin{equation}
+  \Delta E_{2S_{1/2}-2P_{1/2}}
+  = \frac{\alpha^5 m_e}{6\pi}
+    \left(\ln\frac{m_e}{\bar{E}_{2S}} - \frac{5}{8} - \frac{1}{5}\right)
+  \approx 1057.8\,\mathrm{MHz},
+\end{equation}
+where $\bar{E}_{2S}$ is the Bethe mean excitation energy.
+
+\subsection{UBT Contributions at $\varphi = \mathrm{const}$}
+
+Given the results of Steps~1--4:
+
+\begin{enumerate}
+  \item \textbf{Photon massless} (Step~1): the Coulomb potential is the standard
+        $V(r) = -\alpha/r$.  No Yukawa-type screening from photon mass.
+
+  \item \textbf{Electron mass} $m_e = yv$ (Step~2): the electron self-energy
+        $\Sigma(p)$ is computed with the same infrared structure as standard QED
+        (massive electron, massless photon).
+
+  \item \textbf{Vacuum polarisation} (Step~3, $\delta B = 0$): the photon self-energy
+        receives the standard electron-loop contribution; the $\varphi$-loop is absent
+        because $q_\varphi = 0$.
+
+  \item \textbf{Vertex correction} (Step~4): the vertex function $\Lambda^\mu$ at
+        $\varphi = \mathrm{const}$ is the standard QED expression.
+\end{enumerate}
+
+Since all three loop functions $(\Sigma, \Pi, \Lambda)$ are structurally identical to
+standard QED in the $\varphi = \mathrm{const}$ background, the Lamb shift calculation
+proceeds identically, and the combination yields the standard $1057.8\,\mathrm{MHz}$
+at leading order.
+
+\begin{theorem}[Lamb shift at $\varphi = \mathrm{const}$ — structural]
+  If Steps~1--4 hold, then the Lamb shift $\Delta E_{2S_{1/2}-2P_{1/2}}$ in hydrogen
+  is reproduced by UBT at $\varphi = \mathrm{const}$ to leading order in $\alpha$.
+\end{theorem}
+
+\begin{proof}
+  (Sketch.)\ The Lamb shift is a UV-finite combination of the three loop functions.
+  Since each loop function is individually identical to the standard QED form in the
+  $\varphi = v$ background (Steps~1--4), their combination is also identical.  Therefore
+  the Bethe-Salpeter computation goes through unchanged, yielding the standard result.
+\end{proof}
+
+\subsection{Open Gap}
+
+The argument above is structural (proof by reduction to Steps~1--4).  An explicit
+calculation within UBT — computing $\Sigma$, $\Pi$, $\Lambda$ from the UBT path integral
+and verifying their finite combination — has not been done.
+
+\begin{gapbox}
+\textbf{Gap L1 (open):}
+Explicit computation of the UV-finite Lamb-shift combination from the UBT path integral
+at $\varphi = \mathrm{const}$ is lacking.  The structural argument (reduction to Steps~1--4)
+is convincing but does not constitute a rigorous derivation within UBT.  Resolving Gap~L1
+requires:
+\begin{enumerate}
+  \item Computing $\Sigma(p)$ from the UBT propagator in the $\varphi = v$ background;
+  \item Verifying the UV/IR cancellations in the full Lamb-shift combination;
+  \item Comparing the Bethe logarithm against the standard value.
+\end{enumerate}
+This is an important but not blocking gap: if any of Steps~1--4 were to fail, the Lamb
+shift would provide an immediate test.
+\end{gapbox}
+
+\subsection{$\varphi$-Corrections to the Lamb Shift}
+
+New contributions at $\varphi \neq 0$ arise from diagrams involving internal $\varphi$
+propagators.  These are suppressed relative to the standard Lamb shift by
+\begin{equation}
+  \frac{\delta(\Delta E)_\varphi}{\Delta E_\mathrm{Lamb}}
+  \sim \frac{y_e^2}{16\pi^2} \approx 10^{-14},
+\end{equation}
+using $y_e \approx 3\times10^{-6}$ (SM electron Yukawa).  This is below current experimental
+sensitivity ($\delta(\Delta E)_\mathrm{exp}/\Delta E \sim 10^{-10}$).
+
+\subsection{Summary}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Claim & Lamb shift $1057.8\,\mathrm{MHz}$ reproduced at $\varphi = \mathrm{const}$ \\
+Status & \textbf{SKETCH} \\
+Structural argument & Reduction to Steps~1--4 (complete) \\
+Gap L1 & Explicit UBT path-integral computation lacking \\
+$\varphi$-correction & $\sim 10^{-14}$ relative (unobservable) \\
+Layer & [L1] \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Conclusion (Step 5, SKETCH):}
+The Lamb shift is structurally reproduced in UBT at $\varphi = \mathrm{const}$, following
+directly from Steps~1--4.  The explicit UBT path-integral computation is an open task
+(Gap~L1) but is not expected to yield surprises given the structural agreement.
+$\varphi$-corrections are of order $10^{-14}$ relative to the Lamb shift and are
+unobservable at current precision.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+  \end{document}
+\fi

@@ -1,0 +1,246 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B Coefficient from Loop Expansion in UBT — Candidate 2: Non-Commutative Correction
+% Track: CORE — α derivation
+% Date: 2026-03-04
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{lemma}{Lemma}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Candidate 2: Non-Commutative Correction from
+    \texorpdfstring{$[D_\mu, D_\nu] \neq 0$}{[D,D] != 0}\\
+    \large B Coefficient from Loop Expansion — Biquaternionic Curvature Analysis}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-04}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Candidate 2: Non-Commutative Correction from
+  \texorpdfstring{$[D_\mu,D_\nu]\neq 0$}{[D,D] != 0}}
+\label{sec:candidate2_noncommutative}
+
+\subsection{Physical Motivation}
+
+In standard QED on flat Minkowski space, the covariant derivatives satisfy:
+\begin{equation}
+  [D_\mu, D_\nu] = i e F_{\mu\nu},
+  \label{eq:QED_commutator}
+\end{equation}
+where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ is the electromagnetic field
+strength. This is the \emph{only} contribution: the base space is flat and commutative.
+
+In UBT on $\mathbb{C} \otimes \mathbb{H}$, the biquaternionic structure introduces an additional
+curvature contribution:
+\begin{equation}
+  [D_\mu, D_\nu] = i e F_{\mu\nu} + \Omega_{\mu\nu},
+  \label{eq:UBT_commutator}
+\end{equation}
+where $\Omega_{\mu\nu}$ encodes the biquaternionic curvature absent in QED. In the QED limit
+($\psi \to 0$, imaginary sector collapses), $\Omega_{\mu\nu} \to 0$ and standard QED is recovered.
+
+\subsection{Biquaternionic Covariant Derivative in UBT}
+
+The UBT covariant derivative on $\mathbb{C} \otimes \mathbb{H}$ is:
+\begin{equation}
+  D_\mu = \partial_\mu + i e A_\mu + \Gamma_\mu^{\mathbb{H}},
+  \label{eq:UBT_D}
+\end{equation}
+where $\Gamma_\mu^{\mathbb{H}}$ is the biquaternionic connection arising from the non-trivial
+imaginary metric $h_{\mu\nu} = \mathrm{Im}[\mathcal{G}_{\mu\nu}]$.
+
+For the two-mode winding vacuum ansatz
+(canonical/geometry/biquaternionic\_vacuum\_solutions.tex \S1.3):
+\begin{equation}
+  \Theta(\psi) = \Theta_0\,e^{i\psi/R_\psi} + \Theta_1\,e^{2i\psi/R_\psi},
+  \label{eq:two_mode_ansatz}
+\end{equation}
+the imaginary metric component is (see canonical/geometry/biquaternionic\_vacuum\_solutions.tex \S1.3):
+\begin{equation}
+  h_{\psi\psi}(\psi) = \frac{2}{R_\psi^2}\,\sin\!\Bigl(\frac{\psi}{R_\psi}\Bigr)\cdot
+    \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0 \Theta_1^\dagger)\bigr].
+  \label{eq:h_psi_psi}
+\end{equation}
+For the canonical example ($\mathrm{Im}[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)] = 1$,
+$R_\psi = 1$): $h_{\psi\psi}(\psi) = 2\sin\psi$.
+
+\subsection{Computation of \texorpdfstring{$\Omega_{\mu\nu}$}{Omega\_munu}}
+
+The biquaternionic curvature two-form $\Omega_{\mu\nu}$ arises from the non-commutativity of
+the internal $\mathbb{H}$ algebra. For the gauge-singlet sector (electromagnetic $\mathrm{U}(1)$),
+the relevant contribution is the Riemann curvature from the imaginary metric $h_{\mu\nu}$:
+\begin{equation}
+  \Omega_{\mu\nu} = R^\psi{}_{\mu\nu\psi}(h)\,d\psi,
+  \label{eq:Omega_def}
+\end{equation}
+where $R^\psi{}_{\mu\nu\psi}(h)$ is the Riemann tensor computed from $h_{\mu\nu}$ as a
+perturbation of flat Minkowski space.
+
+\textbf{Step 1: Compute $\Omega_{\mu\nu}$ in the UBT vacuum.}
+
+For the imaginary metric component~\eqref{eq:h_psi_psi}, the only non-trivial component in
+the $(\mu,\nu) = (\psi,\psi)$ sector is:
+\begin{equation}
+  \partial_\psi^2 h_{\psi\psi} = -\frac{2}{R_\psi^4}\,\sin\!\Bigl(\frac{\psi}{R_\psi}\Bigr)
+    \cdot \mathrm{Im}\bigl[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)\bigr].
+  \label{eq:d2h}
+\end{equation}
+
+The effective curvature in the 4D sector comes from integrating over $\psi$ (Kaluza--Klein
+dimensional reduction):
+\begin{equation}
+  \bar{\Omega}_{\mu\nu}^{\mathrm{eff}} = \frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}
+    \Omega_{\mu\nu}(\psi)\,d\psi.
+  \label{eq:Omega_effective}
+\end{equation}
+For the sinusoidal $h_{\psi\psi}$, the average $\langle \Omega_{\mu\nu} \rangle = 0$
+(zero mode vanishes by symmetry: $\int_0^{2\pi} \sin\psi\,d\psi = 0$).
+
+This means: \emph{the zero-mode contribution to $\Omega_{\mu\nu}^{\mathrm{eff}}$ vanishes.}
+
+\textbf{Step 2: UV-divergent coefficient $\delta B_{\mathrm{NC}}$.}
+
+The non-commutative correction to the vacuum polarisation has the form:
+\begin{equation}
+  \delta \Pi_{\mathrm{NC}}(k^2) = C_{\mathrm{NC}} \cdot
+    \frac{\mathrm{Tr}\bigl([\Omega_{\mu\nu}]^2\bigr)}{k^2},
+  \label{eq:delta_Pi_NC}
+\end{equation}
+where the trace runs over biquaternionic indices and the loop momentum.
+
+The UV-divergent piece of $\delta\Pi_{\mathrm{NC}}$ determines $\delta B_{\mathrm{NC}}$:
+\begin{equation}
+  \delta B_{\mathrm{NC}} = \lim_{\epsilon\to 0} \Bigl[
+    \frac{\delta\Pi_{\mathrm{NC}}(k^2)}{k^2}\Bigr]_{\mathrm{UV}}.
+  \label{eq:delta_B_NC}
+\end{equation}
+
+\textbf{Step 3: Evaluate $\mathrm{Tr}(\Omega_{\mu\nu}^2)$.}
+
+In the $\psi$-direction sector, the relevant trace is:
+\begin{equation}
+  \mathrm{Tr}\bigl(\Omega_{\psi\psi}^2\bigr) = \int_0^{2\pi R_\psi}
+    [h_{\psi\psi}(\psi)]^2\,\frac{d\psi}{2\pi R_\psi}
+  = \bigl[\mathrm{Im}(\mathrm{Sc}(\Theta_0\Theta_1^\dagger))\bigr]^2 \cdot
+    \frac{4}{R_\psi^4} \cdot \frac{1}{2},
+  \label{eq:Tr_Omega_sq}
+\end{equation}
+since $\frac{1}{2\pi}\int_0^{2\pi}\sin^2\psi\,d\psi = 1/2$.
+
+For the canonical vacuum ($\mathrm{Im}[\mathrm{Sc}(\Theta_0\Theta_1^\dagger)] = 1$, $R_\psi = 1$):
+\begin{equation}
+  \mathrm{Tr}\bigl(\Omega_{\psi\psi}^2\bigr) = 2.
+  \label{eq:Tr_Omega_sq_canonical}
+\end{equation}
+
+The UV cutoff in UBT is set geometrically by $\Lambda = 1/R_\psi$. The contribution to the
+vacuum polarisation from $\Omega$ at scale $\Lambda$ is:
+\begin{equation}
+  \delta \Pi_{\mathrm{NC}} \sim C_{\mathrm{NC}} \cdot
+    \frac{\mathrm{Tr}(\Omega_{\psi\psi}^2)}{(1/R_\psi)^2}
+  = C_{\mathrm{NC}} \cdot 2 \cdot R_\psi^2 = C_{\mathrm{NC}} \cdot 2
+  \quad (R_\psi = 1),
+  \label{eq:delta_Pi_NC_cutoff}
+\end{equation}
+giving
+\begin{equation}
+  \delta B_{\mathrm{NC}} = C_{\mathrm{NC}} \cdot 2 \cdot B_0.
+  \label{eq:delta_B_NC_result}
+\end{equation}
+
+\subsection{Checking Against the Required Value}
+
+For $B_0 + \delta B_{\mathrm{NC}} = 46.3$:
+\begin{equation}
+  B_0(1 + 2 C_{\mathrm{NC}}) = 46.3
+  \implies 2 C_{\mathrm{NC}} = \frac{46.3}{B_0} - 1 = 1.844 - 1 = 0.844
+  \implies C_{\mathrm{NC}} = 0.422.
+  \label{eq:C_NC_required}
+\end{equation}
+A coefficient $C_{\mathrm{NC}} \approx 0.42$ is geometrically natural if it arises from a
+loop integral over the biquaternionic algebra. For comparison, the standard QED two-loop
+coefficient in the Schwinger-Dyson expansion is $O(1)$.
+
+\subsection{Explicit Derivation Requirement}
+
+The coefficient $C_{\mathrm{NC}}$ must be computed from the one-loop integral with the
+non-commutative propagator. The relevant Feynman diagram has the structure:
+\begin{equation}
+  C_{\mathrm{NC}} = \frac{1}{(4\pi)^2}\int_0^1 dx\,2x(1-x)\,
+    \mathrm{Tr}_{\mathbb{H}}\bigl[\gamma^\mu\Gamma_\mu^{\mathbb{H}}\bigr]
+    + \text{(biquaternionic index contractions)},
+  \label{eq:C_NC_integral}
+\end{equation}
+where $\mathrm{Tr}_{\mathbb{H}}$ denotes the trace over quaternionic indices.
+
+Computing $\mathrm{Tr}_{\mathbb{H}}[\gamma^\mu \Gamma_\mu^{\mathbb{H}}]$ requires:
+\begin{enumerate}
+  \item Writing $\Gamma_\mu^{\mathbb{H}}$ explicitly from the two-mode vacuum
+    connection formula (canonical/geometry, \S2).
+  \item Evaluating the trace using the biquaternionic inner product.
+  \item Extracting the UV-divergent piece via dimensional regularisation.
+\end{enumerate}
+This computation is not yet completed in the present document.
+
+\subsection{QED Limit Verification}
+
+In the QED limit ($\psi \to 0$):
+\begin{itemize}
+  \item $\Theta_0, \Theta_1 \to$ real-valued quaternions.
+  \item $\mathrm{Im}[\mathrm{Sc}(\Theta_0 \Theta_1^\dagger)] \to 0$.
+  \item $h_{\psi\psi} \to 0$.
+  \item $\Omega_{\mu\nu} \to 0$.
+  \item $\delta B_{\mathrm{NC}} \to 0$.
+\end{itemize}
+Therefore:
+\begin{equation}
+  B\bigl(N_{\mathrm{eff}} = 1, \delta_{\mathrm{NC}} = 0\bigr)
+  = B_0\bigl(N_{\mathrm{eff}} = 1\bigr) = \frac{2\pi}{3}.
+  \label{eq:qed_limit_C2}
+\end{equation}
+The QED anchor is satisfied. \checkmark
+
+\subsection{Status Assessment}
+
+\begin{proposition}[NC correction: status]
+\label{prop:NC_status}
+The non-commutative correction $\delta B_{\mathrm{NC}}$ from $[D_\mu, D_\nu] \neq 0$ satisfies:
+\begin{enumerate}
+  \item The zero-mode contribution vanishes ($\langle \Omega_{\mu\nu} \rangle = 0$).
+  \item The quadratic contribution $\mathrm{Tr}(\Omega^2) = 2$ (canonical vacuum, $R_\psi = 1$).
+  \item The required $C_{\mathrm{NC}} = 0.422$ is geometrically plausible but \emph{not yet derived}
+    from the biquaternionic loop integral.
+  \item The formula $\delta B_{\mathrm{NC}} = C_{\mathrm{NC}} \cdot \mathrm{Tr}(\Omega^2) \cdot B_0$
+    vanishes in the QED limit.
+\end{enumerate}
+\end{proposition}
+
+\textbf{Conclusion.} Candidate 2 is \textbf{not ruled out}. The non-commutative correction
+could in principle close the gap if $C_{\mathrm{NC}} \approx 0.422$. However, this requires an
+explicit computation of the biquaternionic loop integral \eqref{eq:C_NC_integral} with
+connection $\Gamma_\mu^{\mathbb{H}}$ from the two-mode vacuum. This computation is deferred
+to a dedicated calculation.
+
+\begin{center}
+\textbf{Candidate 2 (NC correction): STATUS — REQUIRES EXPLICIT LOOP INTEGRAL}
+
+$C_{\mathrm{NC}} = 0.422$ required. Geometrically plausible. Not yet derived.
+\end{center}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

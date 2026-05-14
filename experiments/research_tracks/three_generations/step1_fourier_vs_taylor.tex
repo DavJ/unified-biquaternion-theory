@@ -1,0 +1,295 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Three Generations Research Track — Jacobi Theta Step 1
+% Status: Working document — conclusions labelled CONJECTURE or PROVED
+% Version: 1.0
+% Date: 2026-03-05
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Sc}{\mathrm{Sc}}
+\newcommand{\varthree}{\vartheta_3}
+
+\title{%
+  Jacobi Theta Functions as Generation Index in UBT\\
+  Step 1: Fourier vs.\ Taylor Mode Expansion\\
+  \large Three Generations Research Track --- Jacobi Theta Step 1
+}
+
+\author{David Jaro\v{s}}
+\date{2026-03-05}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The UBT field $\Theta(x,\tau)$ with $\tau = t + i\psi$ and $\psi$ compact
+($\psi \sim \psi + 2\pi R_\psi$) admits two natural mode expansions: a
+Taylor series in $\psi$ and a Fourier series in $\psi$.  We derive the
+precise relation between the Taylor modes $\Theta_n$ (used in
+\texttt{st3\_complex\_time\_generations.tex}) and the Fourier modes
+$\hat{\Theta}_n$ (the natural basis for a compact direction), and explain
+why the Fourier basis is more natural geometrically.  We then compare the
+$n^2$ Jacobi theta spectrum with the experimental lepton-mass ratios and
+document the mismatch precisely, which specifies what additional dynamics
+are needed.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Setup: Compact Imaginary Time and Two Mode Expansions}
+\label{sec:setup}
+%=============================================================
+
+Throughout this document we adopt the conventions of
+\texttt{st3\_complex\_time\_generations.tex}: complex time is
+$\tau = t + i\psi$, and $\psi$ is compact with period $2\pi R_\psi$:
+\begin{equation}
+  \psi \sim \psi + 2\pi R_\psi .
+\end{equation}
+The field $\Theta(x,\tau)$ is valued in $\C\otimes\H$ (biquaternions)
+and is smooth in $\psi$.
+
+\subsection{Taylor expansion (used in ST-3)}
+
+Since $\Theta$ is smooth in $\psi$ we may write
+\begin{equation}
+  \label{eq:taylor}
+  \Theta(x,t,\psi)
+  = \sum_{n=0}^{\infty} \frac{\psi^n}{n!}\,\Theta_n(x,t),
+  \qquad
+  \Theta_n(x,t) \;=\; \left.\frac{\partial^n\Theta}{\partial\psi^n}
+                       \right|_{\psi=0}.
+\end{equation}
+This is the expansion used in ST-3 to define the
+\emph{Taylor modes} $\Theta_n$.
+
+\subsection{Fourier expansion (natural for compact $\psi$)}
+
+Because $\psi$ is compact the more natural decomposition is the Fourier
+series
+\begin{equation}
+  \label{eq:fourier}
+  \Theta(x,t,\psi)
+  = \sum_{n=-\infty}^{\infty}
+    \hat{\Theta}_n(x,t)\,e^{in\psi/R_\psi},
+\end{equation}
+with inverse
+\begin{equation}
+  \label{eq:fourier_inv}
+  \hat{\Theta}_n(x,t)
+  = \frac{1}{2\pi R_\psi}
+    \int_0^{2\pi R_\psi} \Theta(x,t,\psi)\,e^{-in\psi/R_\psi}\,d\psi.
+\end{equation}
+
+%=============================================================
+\section{Relation Between Taylor and Fourier Modes}
+\label{sec:relation}
+%=============================================================
+
+\begin{proposition}[Taylor--Fourier relation]
+\label{prop:tf_relation}
+Denote the Fourier mode vector as $\hat\Theta_n$ and the Taylor mode
+as $\Theta_n = \partial_\psi^n\Theta|_{\psi=0}$.  Then
+\begin{equation}
+  \label{eq:tf_relation}
+  \Theta_n(x,t)
+  = \sum_{k=-\infty}^{\infty}
+    \left(\frac{ik}{R_\psi}\right)^n \hat\Theta_k(x,t).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Differentiate the Fourier series \eqref{eq:fourier} $n$ times with
+respect to $\psi$:
+\[
+  \frac{\partial^n\Theta}{\partial\psi^n}
+  = \sum_k \hat\Theta_k(x,t)
+    \left(\frac{ik}{R_\psi}\right)^n e^{ik\psi/R_\psi}.
+\]
+Setting $\psi=0$ gives \eqref{eq:tf_relation}.
+\end{proof}
+
+\begin{remark}
+The formula \eqref{eq:tf_relation} shows that every Taylor mode
+$\Theta_n$ is an infinite sum of \emph{all} Fourier modes.  Conversely,
+a single Fourier mode $\hat\Theta_k$ contributes to every Taylor mode.
+The two bases are \emph{not} in one-to-one correspondence unless $\Theta$
+contains only a single Fourier harmonic.
+\end{remark}
+
+\subsection{Which basis is more natural?}
+
+For a \textbf{compact} direction $\psi$, the Fourier basis is more natural
+for the following reasons:
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Completeness and unitarity:}  The functions
+        $\{e^{in\psi/R_\psi}\}_{n\in\Z}$ form an orthonormal basis of
+        $L^2([0,2\pi R_\psi])$.  The Taylor polynomials $\psi^n/n!$ do not
+        form a basis of the same space.
+  \item \textbf{Eigenmode structure:}  Each Fourier mode $\hat\Theta_n$ is
+        an eigenfunction of the $\psi$-Laplacian $\partial_\psi^2$ with
+        eigenvalue $-(n/R_\psi)^2$.  Taylor modes are not eigenfunctions.
+  \item \textbf{Kaluza--Klein analogy:}  In standard Kaluza--Klein
+        dimensional reduction the physical spectrum is labelled by the
+        Fourier mode number $n$, not by the order of a Taylor coefficient.
+  \item \textbf{Periodicity:}  Taylor modes in general do not respect the
+        compactness condition $\Theta(\psi+2\pi R_\psi)=\Theta(\psi)$;
+        Fourier modes do by construction.
+\end{enumerate}
+
+\begin{remark}[Taylor modes as a practical tool]
+Despite the geometric superiority of the Fourier basis, the Taylor modes
+are a useful truncation tool near $\psi=0$.  The results of ST-3
+(independence, same SU(3) quantum numbers, $\psi$-parity) hold in both
+bases, since they follow from the algebraic structure of $\C\otimes\H$
+and the symmetry $\psi\to-\psi$, not from the specific expansion basis.
+\end{remark}
+
+%=============================================================
+\section{Jacobi Theta Structure and the $n^2$ Spectrum}
+\label{sec:jacobi}
+%=============================================================
+
+\subsection{The Jacobi theta function}
+
+The Jacobi theta function of the third kind is
+\begin{equation}
+  \label{eq:jacobi_theta3}
+  \varthree(z,\tau)
+  = \sum_{n=-\infty}^{\infty} q^{n^2}\,e^{2\pi inz},
+  \qquad q = e^{i\pi\tau}.
+\end{equation}
+With $\tau = t + i\psi$ and $q = e^{i\pi(t+i\psi)} = e^{i\pi t-\pi\psi}$
+the Fourier coefficients are
+\begin{equation}
+  \label{eq:jacobi_coeff}
+  c_n(\tau) = q^{n^2} = e^{i\pi n^2 t}\,e^{-\pi n^2\psi}.
+\end{equation}
+
+\subsection{Comparison with the UBT Fourier expansion}
+
+In the UBT Fourier expansion \eqref{eq:fourier} the Fourier coefficient
+of mode $n$ is $\hat\Theta_n(x,t)$ — an arbitrary $\C\otimes\H$-valued
+function.  For the expansion to coincide \emph{structurally} with
+\eqref{eq:jacobi_theta3}, the coefficient envelope must satisfy
+\begin{equation}
+  \label{eq:jacobi_constraint}
+  |\hat\Theta_n| \;\propto\; q^{n^2}
+  \quad\Longleftrightarrow\quad
+  |\hat\Theta_n| \;\propto\; e^{-\pi n^2\psi_0}
+\end{equation}
+for some reference value $\psi_0 > 0$.
+
+\textbf{Open question:}  Does the UBT action $S[\Theta]$ select a
+saddle-point configuration in which the envelope of the Fourier
+coefficients satisfies \eqref{eq:jacobi_constraint}?
+
+A partial answer is given in Appendix~H (\texttt{Appendix\_H\_Theta\_Phase\_Emergence.tex}): the drift-diffusion steady-state
+solutions are Jacobi theta functions.  This supports the claim but a
+rigorous derivation from $S[\Theta]$ remains \textbf{[OPEN]}.
+
+%=============================================================
+\section{Mass Hierarchy from the $n^2$ Spectrum}
+\label{sec:mass_n2}
+%=============================================================
+
+If the Fourier coefficients follow $|\hat\Theta_n|\propto e^{-\pi n^2\psi_0}$
+then the effective squared mass of mode $n$ relative to mode $0$ is
+controlled by the ratio of norms, giving a spectrum
+\begin{equation}
+  \label{eq:n2_spectrum}
+  m_n^2 \;\propto\; n^2
+  \quad\text{(from the Jacobi $n^2$ exponent)}.
+\end{equation}
+
+\subsection{Comparison with experiment}
+
+The three charged lepton masses are (PDG values, $\text{MeV}/c^2$):
+\begin{align}
+  m_e    &\approx 0.511  &\text{(electron, generation 0)}, \\
+  m_\mu  &\approx 105.7  &\text{(muon, generation 1)}, \\
+  m_\tau &\approx 1776.9 &\text{(tau, generation 2)}.
+\end{align}
+The ratios are
+\begin{equation}
+  m_e : m_\mu : m_\tau
+  \;\approx\; 1 : 207 : 3477.
+\end{equation}
+
+The $n^2$ Jacobi spectrum predicts (with $m_0\equiv 1$):
+\begin{equation}
+  m_0 : m_1 : m_2
+  \;=\; 0^2 : 1^2 : 2^2
+  \;=\; 0 : 1 : 4.
+\end{equation}
+
+\subsection{The mismatch}
+
+\begin{enumerate}[label=(\roman*)]
+  \item The $n^2$ spectrum predicts $m_1/m_0 = 1$ and $m_2/m_0 = 4$.
+        Experiment gives $207$ and $3477$.  The mismatch is a factor of
+        $\approx 207$ at the muon level and $\approx 870$ at the tau level.
+  \item The \emph{ratio} $m_2/m_1$ is particularly constraining:
+        the $n^2$ spectrum predicts $4/1=4$, while the experiment gives
+        $3477/207 \approx 16.8$.
+  \item The experimental ratio $m_2/m_1 \approx 16.8 \approx 4^{2.03}$
+        is suggestive of a \emph{quartic} (rather than quadratic) scaling
+        in the mode number, but this is only a rough guide.
+  \item An exponential fit $m_n \propto e^{bn}$ with $b=\ln 207\approx
+        5.33$ gives $m_0:m_1:m_2 = 1:207:42849$, which overshoots
+        $m_\tau$ by a factor $\approx 12.3$.
+\end{enumerate}
+
+\begin{remark}[Documenting the mismatch]
+The $n^2$ Jacobi spectrum is geometrically natural (it arises directly
+from the modular parameter $q^{n^2}$) but is inconsistent with the
+experimental mass ratios by more than two orders of magnitude.  This
+mismatch is not a failure of the approach; it tells us precisely what
+\emph{additional} dynamics are required beyond the free Fourier structure.
+Section~3 of \texttt{step3\_mass\_from\_psi\_energy.tex} characterises
+the required interaction $V(\Theta)$.
+\end{remark}
+
+\subsection{Summary of Step 1}
+
+\begin{itemize}
+  \item[\checkmark] Precise relation between Taylor and Fourier modes:
+        equation~\eqref{eq:tf_relation} --- \textbf{PROVED}.
+  \item[\checkmark] Fourier modes are the natural basis for compact
+        $\psi$ --- \textbf{ARGUED} (four reasons, Section~\ref{sec:relation}).
+  \item[\checkmark] $n^2$ Jacobi spectrum vs.\ experimental ratios:
+        mismatch precisely documented --- see Section~\ref{sec:mass_n2}.
+  \item[$\square$] Whether $S[\Theta]$ selects $q^{n^2}$ coefficients:
+        \textbf{[OPEN]} --- partial evidence from Appendix~H.
+\end{itemize}
+
+\end{document}

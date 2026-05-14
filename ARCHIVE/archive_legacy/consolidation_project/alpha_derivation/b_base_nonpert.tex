@@ -1,0 +1,512 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base non-perturbative approaches D1–D3
+% Track: CORE — α derivation — v60 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{$B_{\mathrm{base}}$ — Non-perturbative Approaches D1--D3\\
+    \large Unitarity Constraint, Dimensional Transmutation,\\
+    \large and Cartan--Killing Metric on $\mathrm{Im}(\mathbb{H})$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v60)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Recap: Known Results and Dead Ends}
+\label{sec:recap}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs anywhere
+in this document.
+The only inputs are: $N_{\mathrm{eff}} = 12$ (proved from $\mathbb{C}\otimes\mathbb{H}$
+algebra), $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ (algebraic fact), and
+the UBT kinetic action $S[\Theta]$.
+
+\subsection{Established baseline (v60)}
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Quantity & Value & Status \\
+  \hline
+  $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $25.133$ & \textbf{[PROVED]} (one-loop, flat space) \\
+  $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $41.569$ & [CONJECTURED] \\
+  $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$ & $1.6540$ & \textbf{algebraic identity} \\
+  \hline
+\end{tabular}
+\end{center}
+
+The algebraic ratio is an exact identity:
+\begin{equation}
+  \frac{B_{\mathrm{base}}}{B_0}
+    = \frac{N_{\mathrm{eff}}^{3/2}}{2\pi N_{\mathrm{eff}}/3}
+    = \frac{3}{2\pi}\,\sqrt{N_{\mathrm{eff}}}
+    = \frac{3\sqrt{12}}{2\pi}
+    \approx 1.6540.
+  \label{eq:ratio_identity}
+\end{equation}
+
+\subsection{Perturbative dead ends (approaches A1--C2)}
+
+Five perturbative approaches have been exhausted and documented; they must not be
+repeated:
+
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Approach & Dead-end reason & File \\
+  \hline
+  A1: Kaluza--Klein sum & Sum diverges; no natural cutoff & \texttt{b\_base\_spinor\_approach.tex} \\
+  A2: Spectral zeta function & Exponent $\ne 3/2$ without free param & \texttt{b\_base\_hausdorff.tex} \\
+  A3: Gauge orbit volume & Volume factors cancel; no $\sqrt{N}$ & \texttt{b\_base\_hausdorff.tex} \\
+  C1: Seeley--DeWitt curvature & Correction $\propto \Lambda^{-2} \to 0$ & \texttt{b\_base\_delta\_d.tex} \\
+  C2: Mode pair interference & Algebraic identity restatement & \texttt{b\_base\_delta\_d.tex} \\
+  \hline
+\end{tabular}
+\end{center}
+
+The present document investigates three \emph{non-perturbative} candidates
+(D1--D3) that are algebraically independent of all previous attempts.
+
+%--------------------------------------------------------------------
+\section{Approach D1: Unitarity Constraint on $\mathrm{Im}(\mathbb{H})$}
+\label{sec:D1_unitarity}
+%--------------------------------------------------------------------
+
+\textbf{Hypothesis.}
+Not all $N_{\mathrm{eff}} = 12$ modes are independent after imposing the
+unitarity condition $\Theta^\dagger\Theta = \mathbf{1}$ on the imaginary part
+$\mathrm{Im}(\mathbb{H})$.
+The reduced number of independent modes might equal $\sqrt{N_{\mathrm{eff}}} = 2\sqrt{3}$,
+which would explain the factor in~\eqref{eq:ratio_identity}.
+
+\subsection{Step 1: Unitarity condition for $\Theta \in \mathbb{C}\otimes\mathbb{H}$}
+
+A general element of $\mathbb{C}\otimes\mathbb{H}$ can be written as
+$\Theta = \theta_0 + \theta_1\,\mathbf{i} + \theta_2\,\mathbf{j} + \theta_3\,\mathbf{k}$
+with $\theta_\mu \in \mathbb{C}$.
+The unitarity condition $\Theta^\dagger\Theta = 1$ (where $\dagger$ denotes
+quaternionic conjugation followed by complex conjugation) imposes
+\begin{equation}
+  |\theta_0|^2 + |\theta_1|^2 + |\theta_2|^2 + |\theta_3|^2 = 1.
+  \label{eq:unitarity_full}
+\end{equation}
+A general element of $\mathbb{C}\otimes\mathbb{H}$ has $4 \times 2 = 8$ real degrees
+of freedom (real and imaginary parts of each $\theta_\mu$).
+Condition~\eqref{eq:unitarity_full} removes one real degree of freedom, leaving 7.
+The group of such elements is $\mathrm{SU}(2) \times U(1)$, which has dimension 4;
+modding out by the global $U(1)$ phase gives $\mathrm{SU}(2)$, dimension 3.
+
+\subsection{Step 2: Restriction to $\mathrm{Im}(\mathbb{H})$}
+
+On the imaginary part $\mathrm{Im}(\mathbb{H})$, we set $\theta_0 = 0$ and require
+$\Theta = \theta_1\,\mathbf{i} + \theta_2\,\mathbf{j} + \theta_3\,\mathbf{k}$.
+With real coefficients $\theta_a \in \mathbb{R}$ (the physical, non-complexified
+sector of $\mathrm{Im}(\mathbb{H})$), unitarity requires
+\begin{equation}
+  \theta_1^2 + \theta_2^2 + \theta_3^2 = 1,
+  \label{eq:unitarity_Im}
+\end{equation}
+i.e., $\Theta$ lies on the unit 2-sphere $S^2 \subset \mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$.
+The dimension of $S^2$ is 2, while $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+The constraint removes one degree of freedom: $3 \to 2$.
+
+\subsection{Step 3: Independent mode count after constraint}
+
+The $N_{\mathrm{eff}} = 12$ modes arise from the product structure
+$N_{\mathrm{eff}} = N_{\mathrm{phases}} \times N_{\mathrm{helicity}} \times N_{\mathrm{charge}} = 3 \times 2 \times 2$
+(proved in \texttt{step3\_N\_eff\_result.tex}).
+The constraint~\eqref{eq:unitarity_Im} acts on the $N_{\mathrm{phases}} = 3$
+imaginary components.
+After the constraint the independent phase modes span $S^2$, a 2-dimensional manifold.
+The effective mode count becomes:
+\begin{equation}
+  N_{\mathrm{eff}}^{\mathrm{constrained}}
+    = \frac{2}{3}\,N_{\mathrm{eff}}
+    = \frac{2}{3} \times 12
+    = 8.
+  \label{eq:N_constrained}
+\end{equation}
+The corresponding $B$ coefficient would be (using the proved formula $B_0 = 2\pi N/3$):
+\begin{equation}
+  B_0(N=8) = \frac{2\pi \times 8}{3} = \frac{16\pi}{3} \approx 16.76.
+  \label{eq:B_constrained}
+\end{equation}
+This value $\approx 16.76$ is much smaller than $B_{\mathrm{base}} = 41.57$.
+The reduction factor is $2/3$, not $1/\sqrt{N_{\mathrm{eff}}}$.
+
+\subsection{Step 4: Can any constraint give a $\sqrt{N_{\mathrm{eff}}}$ factor?}
+
+The ratio $(3/2\pi)\sqrt{N_{\mathrm{eff}}} = 1.654$ requires that the constraint
+multiplies $B_0$ by $\sqrt{N_{\mathrm{eff}}} \times (3/2\pi) \approx 1.654$.
+This would correspond to the constrained system having an effective mode count of
+\begin{equation}
+  N_{\mathrm{eff}}^{\mathrm{target}} = N_{\mathrm{eff}}^{3/2} \cdot \frac{3}{2\pi N_{\mathrm{eff}}} \cdot \frac{3}{2\pi}
+  = \frac{9 N_{\mathrm{eff}}^{1/2}}{4\pi^2}
+  \approx \frac{9 \times 3.464}{39.48} \approx 0.790.
+  \label{eq:N_target}
+\end{equation}
+A mode count less than 1 has no physical interpretation in a linear space.
+The requirement that a unitarity constraint on a linear space of $N_{\mathrm{eff}}$
+modes produces a ``number of modes'' less than 1 is impossible in the standard sense.
+
+\begin{gap}[Approach D1 — Unitarity constraint]
+\label{gap:D1}
+  \textbf{[DEAD END].}
+  The unitarity constraint $\Theta^\dagger\Theta = 1$ on $\mathrm{Im}(\mathbb{H})$
+  reduces the independent real degrees of freedom from 3 to 2 (constraint on $S^2$),
+  giving $N_{\mathrm{eff}}^{\mathrm{constrained}} = 8$ and $B \approx 16.76$.
+  This is in the wrong direction: the constraint \emph{decreases} $B$ rather
+  than increasing it toward $B_{\mathrm{base}} = 41.57$.
+  Moreover, the target effective mode count $\approx 0.79 < 1$ is algebraically
+  inconsistent with any linear constraint on a space of 12 modes.
+  The analogy with $\mathrm{SU}(2)$ dimension reduction is valid but produces the
+  wrong numerical factor.
+\end{gap}
+
+%--------------------------------------------------------------------
+\section{Approach D2: Dimensional Transmutation on $\mathrm{Im}(\mathbb{H})$}
+\label{sec:D2_dimtrans}
+%--------------------------------------------------------------------
+
+\textbf{Hypothesis.}
+By analogy with QCD dimensional transmutation, an RG equation on
+compact $\mathrm{Im}(\mathbb{H}) \cong \mathfrak{su}(2)$ flows from a UV scale
+$\mu_{\mathrm{UV}}$ (set by $\psi$-compactification) to an IR scale
+$\mu_{\mathrm{IR}}$ (lightest KK mode on $\mathrm{Im}(\mathbb{H})$).
+The ratio $(\mu_{\mathrm{UV}}/\mu_{\mathrm{IR}})^\beta$ might equal
+$\sqrt{N_{\mathrm{eff}}} \cdot (3/2\pi) = 1.6540$, requiring
+$\beta \cdot \ln(\mu_{\mathrm{UV}}/\mu_{\mathrm{IR}}) = \ln(1.6540) = 0.5032$.
+
+\subsection{Step 1: RG equation for $B(\mu)$ on $\mathrm{Im}(\mathbb{H})$}
+
+The one-loop running of the $B$ coefficient under rescaling $\mu \to \mu e^t$ is
+governed by the beta function of the quadratic coupling in $S[\Theta]$.
+At one loop in the kinetic sector:
+\begin{equation}
+  \mu \frac{d B}{d\mu} = \beta_B \cdot B,
+  \qquad
+  \beta_B = \frac{N_{\mathrm{eff}}}{3} \cdot \frac{g^2}{(4\pi)^2},
+  \label{eq:RG_B}
+\end{equation}
+where $g$ is the coupling constant of $S[\Theta]$ evaluated on $\mathrm{Im}(\mathbb{H})$.
+Integrating from $\mu_{\mathrm{IR}}$ to $\mu_{\mathrm{UV}}$:
+\begin{equation}
+  B(\mu_{\mathrm{UV}}) = B(\mu_{\mathrm{IR}}) \cdot \exp\!\left(\beta_B
+    \ln\frac{\mu_{\mathrm{UV}}}{\mu_{\mathrm{IR}}}\right)
+  = B_0 \cdot \left(\frac{\mu_{\mathrm{UV}}}{\mu_{\mathrm{IR}}}\right)^{\!\beta_B}.
+  \label{eq:B_running}
+\end{equation}
+
+\subsection{Step 2: Natural UV and IR scales from $\mathbb{C}\otimes\mathbb{H}$}
+
+\textbf{UV scale.}
+The $\psi$-compactification radius is $R_\psi$ (proved to set the UV cutoff).
+The UV scale is therefore
+\begin{equation}
+  \mu_{\mathrm{UV}} = \frac{1}{R_\psi}.
+  \label{eq:mu_UV}
+\end{equation}
+
+\textbf{IR scale.}
+$\mathrm{Im}(\mathbb{H})$ is a 3-dimensional real vector space.
+As a flat vector space $\mathbb{R}^3$, it has no compact geometry and no
+natural IR scale independent of $R_\psi$.
+When we exponentiate to obtain $\mathrm{SU}(2) \cong S^3$, the lightest mode
+is the identity; the lightest \emph{non-trivial} mode has energy $1/R_{\mathfrak{su}(2)}$
+where $R_{\mathfrak{su}(2)}$ is the curvature radius of $S^3$.
+
+For the bi-invariant metric inherited from the quaternion inner product
+$\langle \mathbf{i}, \mathbf{i}\rangle = 1$, the unit 3-sphere has
+$R_{\mathfrak{su}(2)} = 1$ in natural quaternion units.
+Thus:
+\begin{equation}
+  \mu_{\mathrm{IR}} = \frac{1}{R_{\mathfrak{su}(2)}} = 1.
+  \label{eq:mu_IR}
+\end{equation}
+
+The ratio therefore satisfies:
+\begin{equation}
+  \frac{\mu_{\mathrm{UV}}}{\mu_{\mathrm{IR}}} = \frac{1}{R_\psi}.
+  \label{eq:ratio_scales}
+\end{equation}
+
+\subsection{Step 3: Extracting $\beta_B$ from the condition}
+
+The condition for dimensional transmutation to give the correct $B_{\mathrm{base}}$ is:
+\begin{equation}
+  \beta_B \cdot \ln\!\left(\frac{1}{R_\psi}\right) = \ln(1.6540) = 0.5032.
+  \label{eq:beta_condition}
+\end{equation}
+This requires knowing $R_\psi$ in natural units.
+In UBT, $R_\psi$ is set by calibration to $m_e$ (it is not derived from algebra
+alone — see DERIVATION\_INDEX, row $R_\psi$).
+Therefore $\ln(1/R_\psi)$ is a free parameter; no value of $\beta_B$ derived purely
+from $S[\Theta]$ and $N_{\mathrm{eff}} = 12$ can simultaneously fix~\eqref{eq:beta_condition}
+without using $R_\psi$ as calibrated input.
+
+\subsection{Step 4: Intrinsic IR scale from algebra}
+
+Could $\mathrm{Im}(\mathbb{H})$ itself supply an intrinsic IR scale
+without reference to $R_\psi$?
+
+As a Lie algebra, $\mathfrak{su}(2)$ carries the Killing form
+$\kappa(X,Y) = -8\,\mathrm{Tr}(XY)$ for the standard normalisation
+$\mathrm{Tr}(T_a T_b) = \delta_{ab}/2$.
+The Killing form defines lengths but not a volume-scale independently
+of the overall normalisation convention.
+There is no canonical ``radius'' of $\mathfrak{su}(2)$ as an algebra;
+only the associated \emph{group} $\mathrm{SU}(2) \cong S^3$ has a geometric radius,
+and that radius depends on the metric normalisation choice (free parameter).
+
+\begin{gap}[Approach D2 — Dimensional transmutation]
+\label{gap:D2}
+  \textbf{[DEAD END].}
+  The RG flow of $B(\mu)$ on $\mathrm{Im}(\mathbb{H})$ requires two scales:
+  $\mu_{\mathrm{UV}} = 1/R_\psi$ and $\mu_{\mathrm{IR}} = 1/R_{\mathfrak{su}(2)}$.
+  \begin{enumerate}
+    \item[(i)] $R_\psi$ is not algebraically fixed; it is currently calibrated to $m_e$
+      and is therefore a free parameter.
+    \item[(ii)] $R_{\mathfrak{su}(2)}$ depends on the overall normalisation of the
+      $\mathrm{SU}(2)$ metric, which is itself a free parameter (only ratios within
+      the algebra are fixed).
+    \item[(iii)] Consequently, $\ln(\mu_{\mathrm{UV}}/\mu_{\mathrm{IR}})$ involves at
+      least one free parameter, and the condition~\eqref{eq:beta_condition}
+      can always be satisfied trivially by tuning.
+      No parameter-free derivation of $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+      follows from this route.
+  \end{enumerate}
+  If an independent topological fixation of $R_\psi$ were found (see DERIVATION\_INDEX),
+  then revisiting D2 would be meaningful, but the free-parameter obstruction would
+  need to be resolved first.
+\end{gap}
+
+%--------------------------------------------------------------------
+\section{Approach D3: Cartan--Killing Metric on $\mathfrak{su}(2)$}
+\label{sec:D3_cartan_killing}
+%--------------------------------------------------------------------
+
+\textbf{Hypothesis.}
+The mode-space $\mathrm{Im}(\mathbb{H}) \cong \mathfrak{su}(2)$ carries a natural metric
+different from the standard Euclidean metric on $\mathbb{R}^3$: the Cartan--Killing
+form $\kappa(X,Y) = \mathrm{Tr}(\mathrm{ad}_X \circ \mathrm{ad}_Y)$.
+Using this metric in the vacuum polarisation integral $\Pi_{\mu\nu}$ might change the
+$B$ coefficient from $B_0$ (Euclidean) to $B_{\mathrm{base}}$ (target).
+
+\subsection{Step 1: Cartan--Killing form for $\mathfrak{su}(2)$}
+
+The adjoint representation of $\mathfrak{su}(2)$ with generators
+$T_a = -i\sigma_a/2$ ($\sigma_a$ = Pauli matrices) satisfies
+$[T_a, T_b] = \varepsilon_{abc}\,T_c$.
+The adjoint representation acts by $(\mathrm{ad}_{T_a})_{bc} = \varepsilon_{abc}$.
+
+The Killing form is:
+\begin{equation}
+  \kappa_{ab}
+    = \mathrm{Tr}(\mathrm{ad}_{T_a}\circ\mathrm{ad}_{T_b})
+    = \sum_{c,d} (\varepsilon_{acd})(\varepsilon_{bcd})
+    = \sum_{c,d} \varepsilon_{acd}\,\varepsilon_{bcd}.
+  \label{eq:killing_form}
+\end{equation}
+Using the $\varepsilon$-contraction identity
+$\sum_{c,d}\varepsilon_{acd}\,\varepsilon_{bcd} = 2\delta_{ab}$:
+\begin{equation}
+  \kappa_{ab} = 2\,\delta_{ab}.
+  \label{eq:killing_result}
+\end{equation}
+(This matches the standard result $\kappa = -2\,\delta$ for the compact form with
+the convention $[T_a,T_b]=\varepsilon_{abc}T_c$; the sign depends on convention.
+For the purposes of metric determinant computation the sign is irrelevant.)
+
+\subsection{Step 2: Effect on vacuum polarisation integral}
+
+The one-loop vacuum polarisation in $d$ spatial dimensions with metric $g_{\mu\nu}$
+on the mode space is
+\begin{equation}
+  \Pi \;\propto\; \int \frac{d^d k}{(2\pi)^d}\,
+    \frac{\mathrm{Tr}[g^{-1}]}{(k^2 + m^2)^2}.
+  \label{eq:Pi_general}
+\end{equation}
+The Killing form $\kappa_{ab} = 2\delta_{ab}$ differs from the Euclidean metric
+$\delta_{ab}$ only by an overall factor of 2:
+\begin{equation}
+  \kappa^{-1}_{ab} = \tfrac{1}{2}\,\delta^{ab},
+  \qquad
+  \mathrm{Tr}[\kappa^{-1}] = \tfrac{d}{2} = \tfrac{3}{2}.
+  \label{eq:killing_inverse}
+\end{equation}
+
+The contribution of the Killing metric relative to the Euclidean metric
+therefore introduces a factor of $1/2$ in $\Pi$ and hence in $B$:
+\begin{equation}
+  B_{\mathrm{Killing}} = \frac{1}{2}\,B_0 = \frac{\pi N_{\mathrm{eff}}}{3}
+    = \frac{\pi \times 12}{3} = 4\pi \approx 12.57.
+  \label{eq:B_killing}
+\end{equation}
+
+This value $B_{\mathrm{Killing}} \approx 12.57$ is \emph{smaller} than $B_0 \approx 25.13$
+and much smaller than $B_{\mathrm{base}} \approx 41.57$.
+
+\subsection{Step 3: Mixed metric (Euclidean for momentum, Killing for mode structure)}
+
+A physically more careful formulation considers the Euclidean metric for the
+loop momentum $k$ (which propagates in the physical space $\mathrm{Im}(\mathbb{H})$)
+and the Killing form only for the internal gauge-group factor in the trace.
+
+For $\mathfrak{su}(2)$ with $N_c = 2$ colours, the standard one-loop gauge
+contribution to $B$ from $N_{\mathrm{eff}}$ modes is
+\begin{equation}
+  B_{\mathrm{gauge}} = C_2(G)\,\frac{N_{\mathrm{eff}}}{3} \cdot (4\pi),
+  \label{eq:B_gauge}
+\end{equation}
+where $C_2(G)$ is the quadratic Casimir of the adjoint representation.
+For $\mathfrak{su}(2)$: $C_2(\mathrm{adj}) = 2$ (from $\mathrm{Tr}[T_a^{\mathrm{adj}}
+T_b^{\mathrm{adj}}] = 2\delta_{ab}$ in the adjoint, consistent with
+Eq.~\eqref{eq:killing_result}).
+
+Substituting:
+\begin{equation}
+  B_{\mathrm{gauge}} = 2 \times \frac{12}{3} \times 4\pi = 8 \times 4\pi \approx 100.5.
+  \label{eq:B_gauge_numerical}
+\end{equation}
+This is too large by a factor of $\approx 2.4$ compared to $B_{\mathrm{base}}$.
+
+\subsection{Step 4: Check whether $\kappa_{ab}$ naturally replaces $\delta_{ab}$ in $B_0$}
+
+The one-loop formula $B_0 = 2\pi N_{\mathrm{eff}}/3$ was derived using the
+standard Euclidean metric $\delta_{ab}$ on $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$.
+Replacing $\delta_{ab} \to \kappa_{ab}/2$ (normalising Killing to unit at the root
+length of $\mathfrak{su}(2)$) introduces a factor:
+\begin{equation}
+  \frac{\det(\kappa_{ab}/2)^{1/2}}{\det(\delta_{ab})^{1/2}}
+  = \left(\frac{2}{2}\right)^{d/2}
+  = 1^{3/2} = 1.
+  \label{eq:det_ratio}
+\end{equation}
+No net factor: the normalised Killing form equals the Euclidean metric
+when both are normalised so that the fundamental root has unit length.
+The ratio $B_{\mathrm{Killing,norm}}/B_0 = 1$, which produces no correction at all.
+
+\begin{gap}[Approach D3 — Cartan--Killing metric]
+\label{gap:D3}
+  \textbf{[DEAD END].}
+  Three independent calculations show that the Cartan--Killing metric does not
+  produce $B_{\mathrm{base}}$:
+  \begin{enumerate}
+    \item[(i)] Replacing $\delta_{ab}$ by $\kappa_{ab} = 2\delta_{ab}$ in $\Pi_{\mu\nu}$
+      gives $B_{\mathrm{Killing}} = B_0/2 \approx 12.57$, moving in the
+      \emph{wrong direction} (smaller, not larger).
+    \item[(ii)] Using the $\mathfrak{su}(2)$ quadratic Casimir $C_2(\mathrm{adj})=2$
+      in the standard gauge-group formula gives $B_{\mathrm{gauge}} \approx 100.5$,
+      too large by a factor $\approx 2.4$.
+    \item[(iii)] When both metrics are normalised to unit root length (canonical
+      normalisation), the Killing form equals the Euclidean metric:
+      $\kappa_{ab}^{\mathrm{norm}} = \delta_{ab}$, so the correction factor is exactly 1.
+  \end{enumerate}
+  In all three interpretations, the Cartan--Killing metric either decreases $B$
+  or introduces a new free parameter (the normalisation of $\kappa$).
+  No parameter-free derivation of $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ arises.
+\end{gap}
+
+%--------------------------------------------------------------------
+\section{Conclusion: Results Table}
+\label{sec:conclusion}
+%--------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{llll}
+  \hline
+  Approach & Result & Status & Direction \\
+  \hline
+  D1: Unitarity constraint on Im($\mathbb{H}$)
+    & $B \to B_0 \times (2/3) \approx 16.8$
+    & \textbf{[DEAD END]}
+    & Wrong direction \\
+  D2: Dimensional transmutation
+    & $\beta_B \cdot \ln(\mu_{\mathrm{UV}}/\mu_{\mathrm{IR}}) = 0.503$?
+    & \textbf{[DEAD END]}
+    & Free parameter ($R_\psi$) \\
+  D3: Cartan--Killing metric
+    & $B_{\mathrm{Killing}} \approx 12.6$ or $100.5$
+    & \textbf{[DEAD END]}
+    & Wrong direction or too large \\
+  \hline
+\end{tabular}
+\end{center}
+
+\medskip\noindent\textbf{What was learned:}
+\begin{itemize}
+  \item \textbf{D1:} A unitarity constraint on $\mathrm{Im}(\mathbb{H})$
+    decreases the effective mode count (from 12 to 8, not to $\sqrt{12} \approx 3.46$)
+    and moves $B$ in the wrong direction.
+    The target effective mode count $\approx 0.79$ implied by $B_{\mathrm{base}}$ is
+    sub-unity and inconsistent with any real linear constraint.
+  \item \textbf{D2:} Dimensional transmutation requires at least one free scale
+    ($R_\psi$), so it cannot produce a parameter-free derivation of $B_{\mathrm{base}}$.
+    If $R_\psi$ is fixed independently in the future, D2 should be revisited.
+  \item \textbf{D3:} The Cartan--Killing metric on $\mathfrak{su}(2)$ is proportional
+    to the Euclidean metric; its normalised form gives no correction.
+    Unnormalised choices either halve or multiply $B$, neither matching $B_{\mathrm{base}}$.
+  \item \textbf{Overall:} The gap $B_0 \to B_{\mathrm{base}}$ (equivalently,
+    $\Delta d = 0.405$) does not arise from standard perturbative or semi-perturbative
+    mechanisms derived from $N_{\mathrm{eff}} = 12$ and $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+    alone. A genuinely new structural input appears to be required.
+\end{itemize}
+
+\textbf{Remaining open directions} (not yet explored):
+\begin{itemize}
+  \item Instanton contributions on $\mathrm{SU}(2)$
+    (exponentially small in weak coupling, but non-perturbative).
+  \item Index theorem or anomaly constraints on the mode space.
+  \item Holomorphic factorisation in $\mathbb{C}\otimes\mathbb{H}$ reducing the
+    \emph{complex} mode count.
+  \item Non-commutative geometry approach to the spectral triple of $\mathbb{C}\otimes\mathbb{H}$.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+Three non-perturbative routes were explored to explain why the $B$ coefficient
+jumps from the proved value $B_0 \approx 25.13$ to the conjectured value
+$B_{\mathrm{base}} \approx 41.57$.
+The unitarity-constraint approach (D1) was ruled out because imposing a constraint
+on the biquaternion modes actually makes $B$ smaller, not larger.
+The dimensional-transmutation approach (D2), inspired by QCD, was blocked by the
+absence of an algebraically-fixed UV/IR scale ratio — the $\psi$-radius $R_\psi$
+remains a calibrated rather than derived parameter.
+The Cartan--Killing-metric approach (D3) was ruled out because the natural
+$\mathfrak{su}(2)$ metric is proportional to the ordinary Euclidean metric and
+produces either a decrease or an overshoot in $B$, depending on normalisation.
+The gap $B_0 \to B_{\mathrm{base}}$ therefore remains open after eight independent
+dead ends; any successful approach will likely require a structural input beyond
+mode counting and standard perturbative geometry.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

@@ -1,0 +1,54 @@
+{
+  "n_elements": 5000,
+  "metrics": [
+    {
+      "signal": "n2_mod24",
+      "spectral_pearson_r": -0.001446056587536415,
+      "spectral_pearson_p": 0.9423781466461211,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": -7.237750610303984e-05
+    },
+    {
+      "signal": "n2_mod60",
+      "spectral_pearson_r": -0.0019693720923910133,
+      "spectral_pearson_p": 0.9215835836254798,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": 0.0006280389096978444
+    },
+    {
+      "signal": "n2_mod120",
+      "spectral_pearson_r": -0.002898164874044172,
+      "spectral_pearson_p": 0.8848174052781111,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": -0.0003065034018469662
+    },
+    {
+      "signal": "n2_mod240",
+      "spectral_pearson_r": -0.003780909334223068,
+      "spectral_pearson_p": 0.8501011075001987,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": 0.00011670475098863857
+    },
+    {
+      "signal": "n2_mod2310",
+      "spectral_pearson_r": -0.013329040623525877,
+      "spectral_pearson_p": 0.5052310806334365,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": -0.006537292844908045
+    },
+    {
+      "signal": "chirp",
+      "spectral_pearson_r": -0.025161808439293047,
+      "spectral_pearson_p": 0.20842354883663777,
+      "spectral_overlap_top10": 0.0,
+      "phase_coherence_lag0": -0.0010765178814754648
+    },
+    {
+      "signal": "n2_div24",
+      "spectral_pearson_r": 0.9984077717486083,
+      "spectral_pearson_p": 0.0,
+      "spectral_overlap_top10": 1.0,
+      "phase_coherence_lag0": 0.998986496171936
+    }
+  ]
+}

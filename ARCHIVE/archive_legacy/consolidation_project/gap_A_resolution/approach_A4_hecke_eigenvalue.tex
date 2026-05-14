@@ -1,0 +1,282 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A4: Hecke Eigenvalues and $L$-functions}\\
+         \large The Same Modular Forms that Encode Lepton Masses\\
+         May Also Encode $B_{\mathrm{phenom}}$}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We propose and test the hypothesis that the phenomenological coefficient
+  $B_{\mathrm{phenom}} \approx 46.3$ is related to the $L$-function values
+  of the Hecke newforms that encode lepton mass ratios.  The SageMath Hecke
+  search (Step~6) found matching triples at $p = 137$ with $a_{137} = -9$
+  and at $p = 139$ with $a_{139} = 9$.  We test whether $B_{\mathrm{phenom}}
+  = \pi\,L(1,f)$, $L(2,f)$, or combinations thereof for any of these forms.
+  This is the most novel approach to Gap~A and is directly motivated by
+  today's Hecke results.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Motivation: Hecke Eigenvalues and the Structure of $\alpha$}
+\label{sec:motivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+The central result of the Hecke search (see
+\texttt{research\_tracks/three\_generations/step6\_hecke\_matches.tex})
+is:
+
+\begin{center}
+\colorbox{green!12}{\parbox{0.85\linewidth}{%
+  For $p = 137$: newform triple $(k=2, k=4, k=6)$ at levels $(38, *, *)$
+  gives lepton mass ratios $m_\mu/m_e$ and $m_\tau/m_e$ to $0.37\%$ and $3.06\%$.\\
+  For $p = 139$: newform triple at levels $(200, *, *)$
+  gives ratios to $0.05\%$ and $1.63\%$.
+}}
+\end{center}
+
+\begin{insightbox}
+\textbf{New question (Approach~A4):}
+The Hecke $L$-function $L(s,f) = \sum_n a_n\,n^{-s}$ encodes all the
+arithmetic information of the form $f$.  If lepton masses are Hecke
+eigenvalues, could $B_{\mathrm{phenom}}$ be a special value $L(s_0, f)$
+for some $s_0$ and some form in the same family?
+
+This would be the most elegant result in UBT: the same modular forms
+that predict lepton masses also predict the fine-structure constant.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Hecke Eigenvalues at $p = 137$ and $p = 139$}
+\label{sec:hecke_eigenvalues}
+%──────────────────────────────────────────────────────────────────────────────
+
+From the SageMath output in \texttt{hecke\_sage\_results.txt}:
+
+\begin{center}
+\begin{tabular}{lccccc}
+  \toprule
+  Form & Level $N$ & Weight $k$ & $a_{137}$ & $a_{139}$ & Generation \\
+  \midrule
+  $f_1$ & 38 & 2 & $-9$ & --- & electron \\
+  $f_2$ & (TBD) & 4 & (TBD) & --- & muon \\
+  $f_3$ & (TBD) & 6 & (TBD) & --- & tau \\
+  $g_1$ & 200 & 2 & --- & $9$ & electron \\
+  $g_2$ & (TBD) & 4 & --- & (TBD) & muon \\
+  $g_3$ & (TBD) & 6 & --- & (TBD) & tau \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The target lepton ratios are:
+\begin{align}
+  \frac{m_\mu}{m_e} &= 206.768, \\
+  \frac{m_\tau}{m_e} &= 3477.23.
+\end{align}
+Under the Hecke conjecture: $m_\mu/m_e = a_{p^*}(f_2)/a_{p^*}(f_1)$,
+so $a_{p^*}(f_2) = 206.768 \times (-9) \approx -1861$ (for $p = 137$)
+or $206.768 \times 9 \approx 1861$ (for $p = 139$).
+
+Similarly $a_{p^*}(f_3) = 3477.23 \times (\pm 9) \approx \pm 31295$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Tests: Is $B_{\mathrm{phenom}}$ an $L$-value?}
+\label{sec:tests}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Test A4.1: $B_{\mathrm{phenom}} = \pi \cdot L(1, f_1)$}
+
+For the weight-2 form $f_1$ at level $N = 38$, the period integral gives
+$L(1, f_1)$.  We need $L(1, f_1) = B_{\mathrm{phenom}}/\pi \approx 14.74$.
+
+Typical weight-2 forms at small levels have $L(1,f) \in [0.5, 3.0]$.
+Level $N = 38$ is small; $L(1, f_1) \approx 14.74$ would be unusually
+large and would require verification by explicit SageMath computation.
+
+\begin{gapbox}
+\textbf{Status:} Unknown.  Requires SageMath: \texttt{L = f1.lseries();
+print(L(1))}.  Cannot be evaluated without the exact LMFDB label for $f_1$.
+\end{gapbox}
+
+\subsection{Test A4.2: $B_{\mathrm{phenom}} = L(2, f_1)$ (no $\pi$)}
+
+For $k = 2$, the completed $L$-function at $s = 2$ satisfies:
+\begin{equation}
+  \Lambda(2, f) = \left(\frac{N}{4\pi^2}\right)^{s/2} \Gamma(s)\,L(s,f).
+\end{equation}
+For level $N = 38$, $s = 2$:
+$\Lambda(2, f_1) \approx (38/(4\pi^2)) \times 1 \times L(2,f_1)$.
+The normalised value $L(2, f_1) \approx \pi^2/N \times (\text{arithmetic})$.
+Rough estimate: $L(2, f_1) \sim \pi^2/38 \times C \approx 0.26\,C$ where
+$C \sim O(10)$ gives $L(2, f_1) \sim 2.6$.  Not 46.3.
+
+\subsection{Test A4.3: $B_{\mathrm{phenom}} = a_{p^*}(f_2)/\pi$}
+
+From the muon generation form: $|a_{137}(f_2)| \approx 1861$.
+$1861/\pi \approx 592$ --- far too large.
+
+\subsection{Test A4.4: $B_{\mathrm{phenom}} = a_{p^*}(f_1)^2/\pi$}
+
+$a_{137}(f_1) = -9$, so $a_{137}^2/\pi = 81/\pi \approx 25.78$.
+This is close to $B_0 = 8\pi \approx 25.13$!
+
+\begin{resultbox}
+\textbf{Near-coincidence A4.4:}
+\[
+  \frac{a_{137}(f_1)^2}{\pi} \;=\; \frac{81}{\pi} \;\approx\; 25.78
+  \;\approx\; B_0 = 8\pi \approx 25.13 \qquad (2.5\%\text{ error}).
+\]
+This is a $2.5\%$ match between the Hecke eigenvalue $a_{137}(f_1) = -9$
+and the proved result $B_0 = 8\pi$.
+
+It suggests: $8\pi \approx a_{137}^2/\pi$, or $a_{137}^2 \approx 8\pi^2 = 78.96$.
+Indeed $9^2 = 81$ and $8\pi^2 \approx 78.96$.  Discrepancy $\approx 2.6\%$.
+
+This is \emph{not} $B_{\mathrm{phenom}}$ but is an independent near-coincidence
+connecting Hecke eigenvalues to $B_0$.
+\end{resultbox}
+
+\subsection{Test A4.5: $B_{\mathrm{phenom}} = a_{p^*}(f_1)^2 / \pi \times R$}
+
+If $B_{\mathrm{phenom}} = (81/\pi) \times R$ with correction factor:
+\[
+  R = \frac{B_{\mathrm{phenom}}}{81/\pi}
+    = \frac{46.3 \times \pi}{81}
+    \approx \frac{145.4}{81}
+    \approx 1.795.
+\]
+This is close to $B_{\mathrm{phenom}}/B_0 \approx 1.842$ and to Open
+Problem~B correction $R \approx 1.114$.  But it is not equal to either.
+
+\subsection{Test A4.6: $B_{\mathrm{phenom}}$ from Hecke $L$-function at $s = k/2$}
+
+For a weight-$k$ newform, the central $L$-value is $L(k/2, f)$.  The
+Gamma factors in the functional equation for weight $k = 4$ form $f_2$:
+\begin{equation}
+  L(2, f_2) \;=\; \frac{(2\pi)^2}{N^2\,\Gamma(2)} \times (\text{arithmetic}).
+\end{equation}
+For the specific form encoding the muon: the Hecke eigenvalue
+$a_{137}(f_2) \approx 1861$ suggests a large arithmetic contribution.
+A rough bound: $L(2, f_2) \lesssim 2\,|a_{137}|\,137^{-2} \times (\text{sum})$
+--- this is too large.
+
+\begin{gapbox}
+\textbf{Status of Approach A4:}
+\begin{itemize}
+  \item Tests A4.1--A4.3 and A4.5--A4.6 are either numerically
+        inconsistent or require LMFDB/SageMath data not yet available.
+  \item \textbf{Test A4.4} reveals a novel coincidence:
+        $a_{137}(f_1)^2/\pi \approx B_0 = 8\pi$ to $2.5\%$.
+        This connects the Hecke eigenvalue to the \emph{proved}
+        result $B_0 = 8\pi$, suggesting the two results share
+        a common algebraic origin.
+  \item To test whether this extends to $B_{\mathrm{phenom}}$:
+        compute $L(1, f_1)$ and $L(2, f_2)$ from SageMath
+        (requires LMFDB labels from \texttt{identify\_lmfdb\_labels.py}).
+\end{itemize}
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Theoretical Motivation for the $a_{p^*}^2/\pi$ Connection}
+\label{sec:theoretical}
+%──────────────────────────────────────────────────────────────────────────────
+
+The connection $a_{137}^2/\pi \approx B_0$ has a tentative explanation.
+In UBT:
+\begin{itemize}
+  \item $B_0 = 8\pi$ arises from the one-loop vacuum polarisation over
+        $N_{\mathrm{eff}} = 12$ modes (proved).
+  \item $a_{137}(f_1) = -9$ is the Hecke eigenvalue at $p = 137$ for the
+        electron-generation form.
+  \item $N_{\mathrm{eff}} = 12$ and $a_{137} = -9$ are both related to
+        the integer 3: $12 = 4 \times 3$ and $9 = 3^2$.
+\end{itemize}
+
+More precisely: $8\pi = 2\pi \times N_{\mathrm{eff}}/3 = 2\pi \times 4$,
+and $81/\pi = 9^2/\pi$.  The ratio $81/(8\pi^2) = 81/78.96 \approx 1.026$
+is close to 1, suggesting:
+\begin{equation}
+  a_{p^*}(f_1)^2 \;\approx\; 8\pi^2 \;=\; B_0 \times \pi.
+\end{equation}
+This would follow if $a_{p^*}(f_1) = \pm\,2\pi\sqrt{2}$ (giving
+$a_{p^*}^2 = 8\pi^2$), but $2\pi\sqrt{2} \approx 8.89 \neq 9$.
+
+The integer mismatch ($9$ vs $8.89$) is $\approx 1.2\%$ and may reflect
+the fact that Hecke eigenvalues are integers while the UBT formula gives
+an irrational number.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion and Required Steps}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Status: Partial progress.  Gap A not closed.}
+
+Findings:
+\begin{enumerate}
+  \item Test A4.4: $a_{137}^2/\pi \approx B_0$ to $2.5\%$.
+        This is a \emph{new} connection between Hecke eigenvalues and the
+        proved $B_0 = 8\pi$, not a derivation of $B_{\mathrm{phenom}}$.
+  \item All other tests are either inconsistent or pending SageMath data.
+\end{enumerate}
+
+\textbf{Priority next steps} (for David to run locally):
+\begin{enumerate}
+  \item Identify LMFDB labels for the $k=2,4,6$ forms at $p=137$ and $p=139$
+        using \texttt{identify\_lmfdb\_labels.py}.
+  \item Compute $L(1, f_1)$ and $L(2, f_2)$ in SageMath.
+  \item Test: $\pi\,L(1,f_1) \approx 46.3$?
+  \item Test: $L(2,f_2) \approx 46.3$?
+\end{enumerate}
+
+\textbf{Honest dead ends in Approach~A4:}
+Tests A4.2 and A4.3 are definitively ruled out by order-of-magnitude
+estimates.  Tests A4.1, A4.5, A4.6 remain open pending SageMath.
+
+The most promising single result in all four Approach~A investigations
+remains \textbf{Approach A2}: $(p+1)/3 = 46$ to $0.65\%$.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

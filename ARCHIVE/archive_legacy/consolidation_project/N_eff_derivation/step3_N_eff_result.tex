@@ -1,0 +1,284 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\definecolor{provengreen}{rgb}{0.0,0.50,0.0}
+\definecolor{openred}{rgb}{0.70,0.0,0.0}
+\definecolor{semiblue}{rgb}{0.0,0.0,0.65}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\title{%
+  $N_\mathrm{eff}$ Derivation, Step 3: Final Result and Derivation Status\\
+  \large $N_{\mathrm{eff}}$ from UBT Action $S[\Theta]$ --- $\alpha$/B-coefficient Track}
+\author{David Jaroš}
+\date{2026-03-05}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document states the final result of the $\Neff$ derivation chain
+(Steps~1--3) and updates the derivation status for $\Neff = 12$ and
+$B_0 = 8\pi$ in the UBT $\alpha$ derivation.
+The key finding is \textbf{Result A}: $\Neff = 12$ is proved from
+$\C \otimes \H$ algebra alone; $B_0 = 8\pi \approx 25.13$ is a
+zero-free-parameter one-loop result.
+The discrepancy with the phenomenologically required $B \approx 46.3$
+is precisely characterised as Open Problem A, \emph{unchanged} by this derivation.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary of Steps 1--2}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  \textbf{Step} & \textbf{File} & \textbf{Result} & \textbf{Status} \\
+  \midrule
+  1 & \texttt{step1\_mode\_decomposition.tex}
+    & $N_\mathrm{phases} = 3$ from $\H$; $\Neff = 12 = 3 \times 2 \times 2$
+    & \textcolor{provengreen}{\textbf{Proved}} \\
+  2 & \texttt{step2\_vacuum\_polarization.tex}
+    & $B_0 = 2\pi\Neff/3 = 8\pi \approx 25.13$ from $S_\mathrm{kin}[\Theta]$
+    & \textcolor{provengreen}{\textbf{Proved}} \\
+  3 & This document
+    & Result classification; DERIVATION\_INDEX update
+    & \textcolor{provengreen}{\textbf{Complete}} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The Three Possible Results}
+\label{sec:results}
+%──────────────────────────────────────────────────────────────────────────────
+
+From the problem statement (Track CORE, $\alpha$/B-coefficient, 2026-03-05),
+the three possible outcomes were:
+
+\begin{enumerate}
+  \item[\textbf{A.}] $\Neff = 12$ proved from $\C \otimes \H$ algebra alone.
+    $\Rightarrow$ $B_0 = 25.1$ is a zero-free-parameter result.
+    Update DERIVATION\_INDEX.
+  \item[\textbf{B.}] $\Neff = 4$ from $\C \otimes \H$ (EW only),
+    $\Neff = 12$ needs SU(3).
+    $\Rightarrow$ Document precisely: ``$B_0 = 8.9$ from $\C \otimes \H$ alone;
+    full $B_0 = 25.1$ requires SU(3) completion (Track B).''
+  \item[\textbf{C.}] $\Neff = $ other value.
+    $\Rightarrow$ Document with full calculation.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Result A: $\Neff = 12$ from $\C \otimes \H$ Alone}
+\label{sec:result_A}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+  \colorbox{provengreen!15}{%
+    \parbox{0.88\textwidth}{%
+      \large\textbf{Result A confirmed:}
+      $\Neff = 12$ is proved from $\C \otimes \H$ algebra alone.\\[4pt]
+      $B_0 = 2\pi\Neff/3 = 8\pi \approx 25.133$ is a zero-free-parameter
+      one-loop result.\\[4pt]
+      SU(3)/octonions are \emph{not} required for this count.}}
+\end{center}
+
+\subsection{The key algebraic argument}
+
+The factor $N_\mathrm{phases} = 3$ comes from the \emph{three imaginary
+directions of $\H$} (units $\mathbf{i}, \mathbf{j}, \mathbf{k}$), which
+compactify to three independent circles.  This is a property of the
+quaternion algebra $\H$, present already in $\C \otimes \H$, long before
+any octonionic extension.
+
+\begin{theorem}[Main result]
+\label{thm:main}
+Let $\Theta \in \C \otimes_\R \H \cong \mathrm{Mat}(2,\C)$ be the UBT field
+with kinetic action $S_\mathrm{kin}[\Theta] = \int d^4x\,d\psi\;
+\mathrm{Sc}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$.
+Under canonical compactification $\psi,\chi,\xi \sim 2\pi$ and the
+$U(1)_\mathrm{EM}$ gauge symmetry, the number of independent complex charged
+degrees of freedom contributing to the one-loop vacuum polarization is
+\begin{equation}
+  \Neff = N_\mathrm{phases} \times N_\mathrm{helicity} \times N_\mathrm{charge}
+  = 3 \times 2 \times 2 = 12,
+  \label{eq:Neff_main}
+\end{equation}
+and the one-loop $\beta$-function coefficient is
+\begin{equation}
+  B_0 = \frac{2\pi\Neff}{3} = 8\pi \approx 25.133.
+  \label{eq:B0_main}
+\end{equation}
+Both values follow from the algebra of $\C \otimes \H$ alone, with zero
+free parameters.
+\end{theorem}
+
+\begin{proof}
+  See \texttt{step1\_mode\_decomposition.tex} (Theorem~1.4 for $\Neff = 12$)
+  and \texttt{step2\_vacuum\_polarization.tex} (Theorem~3.1 for $B_0$).
+\end{proof}
+
+\subsection{Why not Result B?}
+
+Result B would apply if the factor of 3 required SU(3) (colour).
+But $N_\mathrm{phases} = 3$ comes from $\dim_\R \mathrm{Im}(\H) = 3$,
+not from the number of colours.  The factor $3 = \dim(\mathrm{Im}(\H))$
+is a property of the quaternion algebra alone.
+
+Coincidentally, $N_\mathrm{colours} = 3$ (from SU(3)$_c$) has the same
+numerical value, which is a structural feature of UBT: the three compact
+quaternionic time directions \emph{mirror} the three quark colours without
+being identified with them.  The derivation does not use SU(3).
+
+\subsection{Implications for $B_0 = 25.1$}
+
+The value $B_0 = 8\pi \approx 25.133$ is now a \textbf{proved} quantity:
+\begin{itemize}
+  \item No free parameters.
+  \item QED limit: $\Neff = 1$ gives $B_0 = 2\pi/3 \approx 2.09$. $\checkmark$
+  \item SM interpretation: $\Neff = 12$ corresponds to 12 SM gauge bosons
+    ($8 + 3 + 1$), but this identification is a \emph{consistency check},
+    not a required input.
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Open Problem A: $B_\mathrm{phenom} \approx 46.3 \neq B_0$}
+\label{sec:open_problem}
+%──────────────────────────────────────────────────────────────────────────────
+
+The derivation of $\Neff = 12$ and $B_0 = 8\pi$ does \emph{not} resolve
+the discrepancy with the phenomenologically required value.
+
+\begin{center}
+  \colorbox{openred!15}{%
+    \parbox{0.88\textwidth}{%
+      \textbf{Open Problem A (unchanged):}\\
+      $B_0 = 8\pi \approx 25.13$ (derived, this work).\\
+      $B_\mathrm{phenom} \approx 46.3$ (required for $n^* = 137$,
+      from effective potential analysis).\\[4pt]
+      Ratio: $B_\mathrm{phenom}/B_0 \approx 1.844$.\\[4pt]
+      This ratio is \emph{not} a two-loop QED correction
+      (which is $O(\alpha/\pi) \approx 0.002$).\\
+      The discrepancy remains an open problem.
+      See \texttt{STATUS\_ALPHA.md §9} and
+      \texttt{appendix\_ALPHA\_one\_loop\_biquat.tex §B.3}.}}
+\end{center}
+
+The precise statement is:
+\begin{itemize}
+  \item $B_0 = 2\pi\Neff/3 = 8\pi$ is the \textbf{one-loop photon vacuum
+    polarization} coefficient, derived rigorously from $S_\mathrm{kin}[\Theta]$.
+  \item The coefficient $B \approx 46.3$ appears in the effective potential
+    $V_\mathrm{eff}(n) = An^2 - Bn\ln n$ governing the topological prime
+    selection.  This $B$ involves a \emph{different} mechanism (geometric
+    compactification enhancement, or higher-loop effects) not captured by
+    the one-loop photon self-energy alone.
+  \item Until this gap is resolved, the relation
+    $B_0 \approx 25.13$ is proved; $B \approx 46.3$ remains semi-empirical.
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{DERIVATION\_INDEX Update}
+\label{sec:index_update}
+%──────────────────────────────────────────────────────────────────────────────
+
+The following changes to \texttt{DERIVATION\_INDEX.md} are mandated by
+this derivation chain:
+
+\begin{center}
+\begin{tabular}{p{4.5cm}p{3.5cm}p{4cm}p{2.5cm}}
+  \toprule
+  \textbf{Entry} & \textbf{Old status} & \textbf{New status} & \textbf{Reference} \\
+  \midrule
+  $\Neff = 12$ from SM gauge group
+  & Semi-empirical [L0]
+  & \textcolor{provengreen}{\textbf{Proved [L0]}}
+  & Step~1 (this chain) \\[4pt]
+  $B_0 = 25.1$ (one-loop baseline)
+  & Proved [L1]
+  & \textcolor{provengreen}{\textbf{Proved [L1]}} (unchanged)
+  & Step~2 (this chain) \\[4pt]
+  $B_\mathrm{phenom} \approx 46.3$ required for $n^*=137$
+  & (implicit)
+  & \textcolor{openred}{\textbf{Open Hard Problem}}
+  & STATUS\_ALPHA.md §9 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The key change: the entry ``$\Neff = 12$ from SM gauge group''
+is upgraded from \textbf{Semi-empirical} to \textbf{Proved [L0]},
+with the derivation chain
+\texttt{N\_eff\_derivation/step1\_mode\_decomposition.tex} $\to$
+\texttt{step2\_vacuum\_polarization.tex} $\to$
+\texttt{step3\_N\_eff\_result.tex}
+as the canonical reference.
+
+\paragraph{Precise statement for DERIVATION\_INDEX.}
+\begin{quote}
+\textit{$\Neff = 12$ is proved from $\C \otimes \H$ algebra alone as
+$3 \times 2 \times 2$ (three imaginary quaternion phases $\times$ two
+helicities $\times$ particle/antiparticle).  The factor 3 comes from
+$\dim \mathrm{Im}(\H) = 3$, not from SU(3).
+Reference: \texttt{consolidation\_project/N\_eff\_derivation/step1\_mode\_decomposition.tex},
+Theorem~1.4.}
+\end{quote}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Complete Result Table}
+\label{sec:full_table}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lllp{4cm}}
+  \toprule
+  \textbf{Quantity} & \textbf{Value} & \textbf{Status} & \textbf{Notes} \\
+  \midrule
+  $N_\mathrm{phases}$ & 3 & \textcolor{provengreen}{Proved} & $\dim\mathrm{Im}(\H)=3$ \\
+  $N_\mathrm{helicity}$ & 2 & \textcolor{provengreen}{Proved} & Transverse photon polarizations \\
+  $N_\mathrm{charge}$ & 2 & \textcolor{provengreen}{Proved} & CPT / particle+antiparticle \\
+  $\Neff$ & 12 & \textcolor{provengreen}{\textbf{Proved [L0]}} & $3 \times 2 \times 2$, zero free params \\
+  $B_0 = 2\pi\Neff/3$ & $8\pi \approx 25.13$ & \textcolor{provengreen}{\textbf{Proved [L1]}} & One-loop, zero free params \\
+  $B_\mathrm{phenom}$ & $\approx 46.3$ & \textcolor{openred}{Open Problem A} & Needed for $n^*=137$ \\
+  $B_\mathrm{base} = \Neff^{3/2}$ & $12^{3/2} \approx 41.57$ & \textcolor{openred}{Motivated Conjecture [gap]} & Exponent $= \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/2$; gaps (a)(b) open \\
+  \midrule
+  QED check: $\Neff=1$ & $B_0 = 2\pi/3$ & \textcolor{provengreen}{Verified} & $\checkmark$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

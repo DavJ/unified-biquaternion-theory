@@ -1,0 +1,38 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\title{Vacuum graviton energy in UBT and cosmological constant scope note}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+\begin{document}
+\maketitle
+
+Using the graviton mode framework from
+\texttt{research\_tracks/quantum\_ubt/graviton\_quantisation.tex}, define
+\[
+E_{\mathrm{vac}}^\zeta = \mu^{2s}\,\frac12\,\zeta_D\!\left(s-\frac12\right)\Big|_{s=0},
+\qquad
+\zeta_D(s)=\sum_{\ell=2}^{\infty}(2\ell+1)\,\omega_\ell^{-2s}.
+\]
+A simple asymptotic model $\omega_\ell\sim (\ell+\tfrac12)/r_s$ gives the standard
+large vacuum-energy hierarchy (Planck-scale mismatch), i.e. no automatic
+120-order suppression from this first pass.
+
+\begin{statusbox}
+\textbf{Hlavní výsledek}: Formální $\zeta$-regularizační rámec je definován; první-pass odhad reprodukuje standardní kosmologický problém vakuové energie.\\
+\textbf{Klasifikace}: [STD framework + OPEN mechanism].\\
+\textbf{Dopad na teorii}: V této fázi není identifikován nový UBT supresní mechanismus kosmologické konstanty.\\
+\textbf{Příští krok}: Nahradit asymptotické $\omega_\ell$ numerickým spektrem z RW/Zerilli a otestovat, zda UBT struktura mění UV asymptotiku.\\
+\textbf{Alpha je odvozena}: NE (unconditional)
+\end{statusbox}
+
+\end{document}

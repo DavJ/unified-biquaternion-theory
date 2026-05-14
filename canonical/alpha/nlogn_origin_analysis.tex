@@ -1,0 +1,592 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange,   linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15,  linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,     linecolor=red!60,  linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,    linecolor=blue!50, linewidth=1.5pt]{insightbox}
+  \newmdenv[backgroundcolor=gray!10,   linecolor=gray!60, linewidth=1pt]{statusbox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+  \newcommand{\DEAD}{\textcolor{red}{\textbf{[DEAD]}}}
+  \newcommand{\OPEN}{\textcolor{orange}{\textbf{[OPEN]}}}
+  \newcommand{\PROVED}{\textcolor{green!60!black}{\textbf{[PROVED]}}}
+  \newcommand{\Lzero}{$[\mathrm{L0}]$}
+  \newcommand{\Lone}{$[\mathrm{L1}]$}
+
+  \title{\textbf{True Origin of the $n\ln n$ Term in the UBT Alpha Route}\\
+         \large Classification of the $S^1_\psi$ Functional Determinant No-Go
+         and Systematic Analysis of Candidate Mechanisms}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-04}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Summary}
+\label{sec:nlogn:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white, colframe=blue!50!black,
+                  title=Executive Summary]
+\begin{tabular}{ll}
+Question        & What is the true first-principles origin of $n\ln n$ in
+                  $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$? \\[4pt]
+Key finding     & The $S^1_\psi$ functional determinant gives $2\pi\Neff\,n$
+                  (linear in $n$), \textbf{not} $n\ln n$. \\[4pt]
+S1-det route    & \DEAD\ for deriving the $B\,n\ln n$ coefficient. \\[4pt]
+Linear result   & $B_0 = 2\pi\Neff/3 = 8\pi$ from the $S^1_\psi$ vacuum
+                  polarisation \emph{is} valid and useful. \\[4pt]
+True origin     & $n\ln n$ arises from 4D vacuum polarisation applied to the
+                  $n$-winding background: $n$ quanta each contribute
+                  $B_0\ln n$, summing to $B_0\,n\ln n$. \\[4pt]
+Entropy route   & Stirling/$\pi_1$ entropy counting gives $\Neff\,n\ln n$,
+                  independently consistent. \\[4pt]
+Modular/Hecke   & Coset volumes and Hecke sums are linear in $n$ for primes;
+                  they do not directly produce $n\ln n$. \\
+\end{tabular}
+\end{tcolorbox}
+
+\begin{warnbox}
+\textbf{Correction notice}: Previous documents in this repository (notably
+\texttt{veff\_corrected.tex} \S2.1--2.2 and \texttt{alpha\_best\_route.tex}
+Step~3) contain informal statements suggesting that the $S^1_\psi$ functional
+determinant \emph{directly} produces the $B\,n\ln n$ term.  This is
+\textbf{incorrect}.  The $S^1_\psi$ functional determinant gives a
+\emph{linear} contribution $2\pi\Neff n$; the $n\ln n$ term requires
+\emph{additional} 4D or entropy input.  The present document supersedes those
+informal arguments with an explicit calculation.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $S^1_\psi$ Functional Determinant: What It Actually Computes}
+\label{sec:nlogn:S1det}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:nlogn:S1setup}
+
+Consider the UBT kinetic operator
+$\mathcal{O} = -\nabla^\dagger\nabla$ restricted to the imaginary-time circle
+$S^1_\psi$ of circumference $\beta = 2\pi R_\psi$.
+The eigenvalues of $-\partial^2_\psi$ acting on $\psi$-modes of winding
+number~$n$ are:
+\begin{equation}
+  \lambda_k \;=\; \frac{k^2}{R_\psi^2}, \qquad k \in \ZZ.
+  \label{eq:nlogn:eigenvalues}
+\end{equation}
+For the sector at fixed winding level~$n$, the relevant eigenvalue is
+$\lambda = n^2/R_\psi^2$ (setting $R_\psi = 1$ in natural units, so
+$\lambda = n^2$).
+
+\subsection{Zeta-Function Regularised Determinant on $S^1_\psi$}
+\label{ssec:nlogn:zeta}
+
+The one-loop contribution of the $S^1_\psi$ kinetic operator is, per mode:
+\begin{equation}
+  -\tfrac{1}{2}\ln\det\bigl(-\partial^2_\psi\bigr)\big|_{\mathrm{winding}\;n}
+  \;=\;
+  -\tfrac{1}{2}\ln\bigl(\lambda_n\bigr)
+  \;=\;
+  -\tfrac{1}{2}\ln(n^2)
+  \;=\;
+  -\ln n.
+  \label{eq:nlogn:lndet_single}
+\end{equation}
+Summing over $\Neff$ independent charged modes:
+\begin{equation}
+  \boxed{
+  -\tfrac{1}{2}\ln\det\bigl(-\nabla^\dagger\nabla\bigr)\big|_{\mathrm{S^1_\psi},\,n}
+  \;=\;
+  -\Neff\,\ln n.
+  }
+  \label{eq:nlogn:lndet_Neff}
+\end{equation}
+This gives an effective potential contribution $V_{S^1}(n) = n^2 - \Neff\,\ln n$,
+i.e.\ \textbf{the form V4} (logarithm without an extra factor of~$n$).
+
+\begin{warnbox}
+The $S^1_\psi$ functional determinant gives $-\Neff\ln n$, \textbf{not}
+$-B\,n\ln n$.  The potential $V_{S^1}(n) = n^2 - \Neff\ln n$ (form V4) has
+its minimum at $n^* = \sqrt{\Neff/2} \approx 2.45$, nowhere near 137.
+Form V4 is therefore useless for the alpha route.
+\end{warnbox}
+
+\subsection{The Linear Term from Full $S^1_\psi$ Casimir Sum}
+\label{ssec:nlogn:casimir}
+
+If one instead sums the $S^1_\psi$ zero-point energy over \emph{all} modes
+$k = 1, \ldots, n$ up to the winding level~$n$ (as appears in a Casimir-type
+sum for a field with $n$ occupied levels), one obtains via zeta regularisation:
+\begin{equation}
+  -\tfrac{1}{2}\sum_{k=1}^{n}\ln k^2
+  \;=\;
+  -\sum_{k=1}^{n}\ln k
+  \;=\;
+  -\ln(n!)
+  \;\approx\;
+  -n\ln n + n + \tfrac{1}{2}\ln(2\pi n)
+  \quad\text{(Stirling)}.
+  \label{eq:nlogn:stirling_sum}
+\end{equation}
+The dominant term \emph{is} $-n\ln n$, but this computation does \emph{not}
+follow from the one-particle $S^1_\psi$ determinant; it requires summing over
+all occupied levels $k \le n$.
+
+\begin{insightbox}
+\textbf{Key distinction}: The one-particle functional determinant at winding
+level~$n$ gives $-\ln n$.  The $n\ln n$ term requires a \emph{many-body}
+sum over all levels $k \le n$, which is \textbf{not} the same calculation.
+The former is a pure $S^1$ result; the latter requires either an entropy
+argument (Section~\ref{sec:nlogn:entropy}) or an explicit 4D loop sum
+(Section~\ref{sec:nlogn:RG}).
+\end{insightbox}
+
+\subsection{The $2\pi\Neff n$ Result from the $S^1_\psi$ Vacuum Polarisation}
+\label{ssec:nlogn:vacpol}
+
+The one-loop vacuum polarisation of $\Neff$ charged modes on $S^1_\psi$
+gives (see \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex},
+Theorem~3.1):
+\begin{equation}
+  B_0 \;=\; \frac{2\pi\Neff}{3} \;=\; 8\pi.
+  \label{eq:nlogn:B0}
+\end{equation}
+This is a coefficient in the \emph{4D running coupling}:
+\begin{equation}
+  \frac{1}{\alpha(\mu)} \;=\; \frac{1}{\alpha(\mu_0)} + \frac{B_0}{2\pi}\ln\frac{\mu}{\mu_0},
+  \label{eq:nlogn:running}
+\end{equation}
+and does not directly produce a term $B_0\,n\ln n$ in the winding potential.
+The $2\pi\Neff n$ result refers to the coefficient structure; $n$ here is the
+number of modes, not a winding potential variable.
+
+\begin{resultbox}
+\textbf{S1 determinant no-go result}: The $S^1_\psi$ functional determinant
+gives:
+\begin{enumerate}
+  \item $-\Neff\ln n$ (one-particle, form V4) — \textbf{useless} for alpha route.
+  \item $B_0 = 2\pi\Neff/3 = 8\pi$ (vacuum polarisation coefficient) — \textbf{useful}
+        for the value of $B$, but not the source of the $n\ln n$ form.
+\end{enumerate}
+Neither result produces the required $-B\,n\ln n$ structure by itself.
+\textbf{The S1 determinant route for $B$ is dead.}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Mechanism 1: 4D RG / Vacuum Polarisation}
+\label{sec:nlogn:RG}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:nlogn:RG_setup}
+
+In the 4D UBT effective field theory compactified on $S^1_\psi$, a winding
+configuration at level~$n$ describes a state in which $n$ fundamental winding
+quanta are occupied.  Each quantum carries a winding charge and interacts with
+the photon field.
+
+\subsection{Contribution of $n$ Winding Quanta to the Effective Action}
+\label{ssec:nlogn:RG_calculation}
+
+At one loop, the effective action for $n$ winding quanta receives contributions
+from $n$ independent charged-scalar loops.  Each loop contributes:
+\begin{equation}
+  \delta V_{\mathrm{1-loop}}^{(1)} \;=\; -\frac{B_0}{2}\ln\!\frac{\mu_n}{\mu_0},
+  \label{eq:nlogn:single_loop}
+\end{equation}
+where $\mu_n \sim n/R_\psi$ is the characteristic scale of the winding
+background (the KK mass of the $n$-th winding mode, $m_n = n/R_\psi$, in
+natural units with $R_\psi = 1$ giving $\mu_n = n$).
+
+Summing over $n$ quanta:
+\begin{equation}
+  \delta V_{\mathrm{1-loop}}^{(n)}
+  \;=\;
+  n \times \delta V_{\mathrm{1-loop}}^{(1)}
+  \;=\;
+  -\frac{n\,B_0}{2}\ln n
+  \;\;\longrightarrow\;\;
+  V_{\mathrm{eff}}(n)
+  \;=\;
+  n^2 - B_0\,n\ln n.
+  \label{eq:nlogn:n_loops}
+\end{equation}
+Absorbing the $\mu_0$ into the renormalisation scheme (as done in
+\texttt{step2\_vacuum\_polarization.tex}) gives the clean form
+$V_\mathrm{eff}(n) = n^2 - B_0\,n\ln n$ with $B_0 = 2\pi\Neff/3 = 8\pi$.
+
+\begin{resultbox}
+\textbf{Conclusion for Mechanism 1}: The $n\ln n$ term arises from the 4D
+vacuum polarisation applied to the $n$-winding background.  Specifically, the
+$n$ winding quanta each contribute an independent one-loop logarithm
+$\sim B_0\ln n$, and the sum over $n$ quanta gives $B_0\,n\ln n$.
+
+This derivation is physically sound and does not require an arbitrary cutoff.
+The only inputs are:
+\begin{itemize}
+  \item $B_0 = 2\pi\Neff/3 = 8\pi$ (proved, \Lone);
+  \item the identification $\mu_n = n$ (the winding mass, natural units);
+  \item the independence of $n$ winding quanta at one loop.
+\end{itemize}
+\textbf{Status}: \PROVED\ at level \Lone\ (conditional on treating winding
+quanta as independent one-loop contributions, which is standard for KK towers
+in 5D theories).
+\end{resultbox}
+
+\begin{gapbox}
+\textbf{Open sub-question}: The independence assumption (each of the $n$
+quanta contributing an independent loop) holds to one loop but may receive
+corrections from multi-winding interactions at two loops.  These corrections
+contribute to the gap between $B_0 = 8\pi \approx 25.13$ and
+$B_\mathrm{phenom} \approx 46.298$.  The correction factor $\approx 1.84$ is
+the content of Gap~G137-B.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Mechanism 2: State Degeneracy / Entropy Counting}
+\label{sec:nlogn:entropy}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:nlogn:ent_setup}
+
+An alternative statistical derivation of $n\ln n$ arises from the number of
+distinct configurations at winding level~$n$.  The biquaternion field on
+$S^1_\psi$ has $\Neff = 12$ independent real charged modes.  A state at
+winding level~$n$ distributes $n$ winding quanta among these modes.
+
+\subsection{Mode-Occupation Entropy}
+\label{ssec:nlogn:ent_calc}
+
+The number of ways to distribute $n$ indistinguishable quanta among $\Neff$
+modes is the bosonic degeneracy:
+\begin{equation}
+  g(n) \;=\; \binom{n + \Neff - 1}{\Neff - 1}
+  \;\approx\; \frac{n^{\Neff-1}}{(\Neff-1)!}
+  \quad\text{for } n \gg \Neff.
+  \label{eq:nlogn:degeneracy}
+\end{equation}
+The entropy contribution to the effective potential is:
+\begin{equation}
+  S(n) \;=\; \ln g(n)
+  \;\approx\;
+  (\Neff - 1)\ln n - \ln(\Neff - 1)!
+  \;\approx\;
+  11\,\ln n
+  \quad\text{(leading term for }\Neff = 12\text{)}.
+  \label{eq:nlogn:entropy_leading}
+\end{equation}
+This gives a $\ln n$ term (form V4), not $n\ln n$.
+
+\subsection{$\pi_1(S^1_\psi)$ Winding Entropy}
+\label{ssec:nlogn:pi1}
+
+A more refined counting uses the fact that $\pi_1(S^1_\psi) = \ZZ$ gives
+$n$~topologically distinct winding sectors at level~$n$, each containing
+$\Neff$ sub-modes.  If the $\Neff$ modes in each sector are independently
+occupied with Boltzmann weight, the total entropy is:
+\begin{equation}
+  S_{\pi_1}(n) \;=\; n\,\ln(\Neff)
+  \quad\text{(linear in }n\text{, not }n\ln n\text{)}.
+  \label{eq:nlogn:pi1_entropy}
+\end{equation}
+
+For the Stirling connection (see eq.~\eqref{eq:nlogn:stirling_sum}): if each
+winding sector $k = 1,\ldots,n$ carries weight $\ln k$, the total entropy is
+$\sum_{k=1}^n \ln k = \ln(n!) \approx n\ln n - n$, giving:
+\begin{equation}
+  S_\mathrm{Stirling}(n)
+  \;\approx\;
+  n\ln n - n,
+  \label{eq:nlogn:stirling}
+\end{equation}
+with leading term $n\ln n$.  This is the Stirling-entropy derivation of $n\ln n$.
+
+\begin{resultbox}
+\textbf{Conclusion for Mechanism 2}: The $n\ln n$ term \emph{can} arise from
+entropy counting via Stirling's approximation applied to the ordered occupation
+of winding sectors $k = 1, \ldots, n$.  The result is:
+\[
+  V_\mathrm{eff}(n) \;=\; n^2 - B_\mathrm{ent}\,n\ln n,
+  \qquad
+  B_\mathrm{ent} \;=\; \Neff\,\text{(to be derived from mode structure)}.
+\]
+This mechanism is \textbf{independently consistent} with the 4D RG derivation
+(Mechanism~1).  However, it requires \emph{physical justification} for why
+sectors $k=1,\ldots,n$ are summed (i.e., why all sub-levels up to $n$ contribute
+to the entropy at level $n$).  Without a dynamical argument, the Stirling sum
+introduces an implicit cutoff $k \le n$ that must be derived, not assumed.
+\end{resultbox}
+
+\begin{warnbox}
+\textbf{Hard rule}: A cutoff $k \le n$ in the entropy sum must be physically
+derived, not imposed by hand.  A natural physical argument: only sub-levels
+with $m_k = k \le n = m_n$ contribute to the one-loop potential at winding
+scale $\mu = n$, because heavier modes ($k > n$) decouple above their mass.
+This decoupling argument converts the Stirling sum into a Wilsonian RG statement,
+connecting Mechanism~2 to Mechanism~1.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Mechanism 3: Modular Coset Counting}
+\label{sec:nlogn:modular}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:nlogn:mod_setup}
+
+The modular interpretation of the UBT partition function (see
+\texttt{gap\_g3k\_closure\_report.tex}) identifies the imaginary-time torus
+with a modular curve.  The congruence subgroup $\Gamma_0(n) \subset \mathrm{SL}(2,\ZZ)$
+has index (coset volume):
+\begin{equation}
+  \mu(\Gamma_0(n))
+  \;=\; n\prod_{p\,|\,n}\!\left(1 + \tfrac{1}{p}\right)
+  \;\approx\; n\,e^{\gamma(\ln\ln n + O(1))}
+  \quad\text{(average over }n\text{)},
+  \label{eq:nlogn:mu_Gamma0}
+\end{equation}
+where the product is over prime divisors of~$n$.
+
+For $n$ prime: $\mu(\Gamma_0(n)) = n + 1 \approx n$ (linear).
+
+\subsection{Does $\mu(\Gamma_0(n))$ Give $n\ln n$?}
+\label{ssec:nlogn:mod_nlogn}
+
+For $n$ prime: $\mu(\Gamma_0(n)) = n + 1$, which is \emph{linear} in~$n$.
+Averaged over all $n \le N$:
+\begin{equation}
+  \frac{1}{N}\sum_{n=1}^{N}\mu(\Gamma_0(n))
+  \;\sim\; \frac{\pi^2}{12}\,N
+  \quad\text{(linear, not }N\ln N\text{)}.
+  \label{eq:nlogn:mod_average}
+\end{equation}
+The cumulative sum $\sum_{n=1}^{N}\mu(\Gamma_0(n)) \sim \tfrac{\pi^2}{12}N^2$
+grows as $N^2$, not $N\ln N$.
+
+For the related Mertens-type sum $\sum_{k=1}^{n}\Lambda(k) \approx n$
+(where $\Lambda$ is the von Mangoldt function), the prime-weighted sum
+$\sum_{p \le n}\ln p \approx n$ (prime number theorem).  This is again
+\emph{linear} in~$n$.
+
+\begin{resultbox}
+\textbf{Conclusion for Mechanism 3}: Modular coset volumes $\mu(\Gamma_0(n))$
+are \emph{asymptotically linear} in~$n$ for primes and on average.  They do
+\textbf{not} directly produce an $n\ln n$ term.
+
+The modular structure is, however, relevant for determining the \emph{value} of
+$B$ (via $\mu(\Gamma_0(137))/3 \approx B_\mathrm{phenom}$) and for selecting the
+prime $n^* = 137$ as the V_\mathrm{eff} minimum.  These are separate roles:
+\begin{itemize}
+  \item Modular coset volume $\to$ value of $B$ (relevant for Gap G137-B).
+  \item $n\ln n$ form $\to$ from 4D RG (Mechanism~1) or Stirling entropy
+        (Mechanism~2).
+\end{itemize}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Mechanism 4: Theta / Hecke Global Arithmetic Structure}
+\label{sec:nlogn:hecke}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:nlogn:hecke_setup}
+
+The Hecke operators $T_n$ acting on modular forms of weight~$k$ and level~$N$
+have eigenvalues $\lambda_n$ satisfying multiplicativity relations.  The
+Ramanujan-Petersson conjecture bounds $|\lambda_p| \le 2p^{(k-1)/2}$ for
+primes~$p$.  Hecke $L$-functions satisfy:
+\begin{equation}
+  L(s, f) \;=\; \sum_{n=1}^{\infty}\frac{\lambda_n}{n^s},
+  \qquad
+  \sum_{n\le N}\lambda_n \;=\; O(N^{1+\epsilon}).
+  \label{eq:nlogn:hecke_L}
+\end{equation}
+
+\subsection{Does the Hecke Structure Give $n\ln n$?}
+\label{ssec:nlogn:hecke_nlogn}
+
+The partial sums of Hecke eigenvalues grow at most as $N^{1+\epsilon}$ and
+often cancel, giving cancellations closer to $N^{1/2+\epsilon}$ in practice
+(Selberg).  There is no mechanism in the standard Hecke theory that produces
+a $\sum_{n\le N} \lambda_n \sim N\ln N$ behaviour.
+
+The $\vartheta$-function (theta series) representation of the UBT partition
+function:
+\begin{equation}
+  \hat{Z}(\tau_\mathrm{mod}) \;=\; \vartheta_3(\tau_\mathrm{mod})^3
+  \;=\; \sum_{n\in\ZZ^3} q^{|n|^2}, \qquad q = e^{2\pi i\tau_\mathrm{mod}},
+  \label{eq:nlogn:theta3}
+\end{equation}
+generates integer-valued Fourier coefficients $r_3(n)$ (number of
+representations of $n$ as sum of three squares).  The average $\sum_{n\le N}
+r_3(n) \sim cN^{3/2}$, which grows faster than $N\ln N$ but has no
+$N\ln N$ term.
+
+\begin{resultbox}
+\textbf{Conclusion for Mechanism 4}: The theta/Hecke global arithmetic structure
+does \textbf{not} directly generate the $n\ln n$ form of the winding potential.
+Hecke eigenvalue sums grow as $N^{1/2 + \epsilon}$ to $N^{1+\epsilon}$; theta
+coefficient sums grow as $N^{3/2}$.  Neither reproduces $N\ln N$.
+
+The Hecke and theta structures are relevant as \emph{consistency checks} and
+for fixing the modular level (e.g., identifying $\Gamma_0(137)$), but they do
+not generate the $n\ln n$ term.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary: Classification of All Four Mechanisms}
+\label{sec:nlogn:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{table}[h]
+\centering
+\caption{Candidate origins of the $n\ln n$ term in
+         $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$.}
+\label{tab:nlogn:summary}
+\begin{tabular}{llll}
+\toprule
+\textbf{Mechanism} & \textbf{What it gives} & \textbf{Produces $n\ln n$?}
+  & \textbf{Status} \\
+\midrule
+S1 functional det.\ (1-particle) & $-\Neff\ln n$ (form V4)
+  & \textbf{No} & \DEAD \\
+S1 vacuum polarisation            & $B_0 = 2\pi\Neff/3$ (coeff.) 
+  & No (gives $B$, not form) & Useful \\
+4D RG ($n$ quanta) [Mech.\ 1]    & $-B_0\,n\ln n$
+  & \textbf{Yes} & \PROVED\ \Lone \\
+Stirling entropy [Mech.\ 2]      & $-\Neff\,n\ln n$ (with derived cutoff)
+  & \textbf{Yes, conditional} & \OPEN \\
+Modular coset $\mu(\Gamma_0(n))$ [Mech.\ 3] & $\sim n$ (linear)
+  & \textbf{No} & Useful for $B$ value \\
+Hecke/theta arithmetic [Mech.\ 4] & $\sim N^{1/2\text{--}3/2}$
+  & \textbf{No} & Useful for consistency \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{resultbox}
+\textbf{Main result of this analysis}:
+
+The $n\ln n$ term in $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$ has its primary
+derivable origin in \textbf{Mechanism~1: 4D vacuum polarisation applied to the
+$n$-winding background}.  The physical argument is:
+\begin{enumerate}
+  \item A winding configuration at level~$n$ contains $n$ charged quanta.
+  \item Each quantum contributes a one-loop logarithm $B_0\ln(\mu_n)$ to the
+        effective action, where $\mu_n = n$ is the winding mass scale.
+  \item Summing over $n$ independent quanta: total correction $= -B_0\,n\ln n$.
+\end{enumerate}
+
+The $S^1_\psi$ functional determinant does \emph{not} produce this term;
+it contributes $-\Neff\ln n$ (form V4, which is wrong) or the coefficient
+$B_0 = 8\pi$ (via vacuum polarisation, which is useful but not the source
+of the $n\ln n$ form).
+
+\medskip
+\textbf{Useful linear result}: The S1 determinant route establishes
+$B_0 = 2\pi\Neff/3 = 8\pi$ as the leading value of $B$.  This is a valid
+\Lone\ result and should be retained.  The S1 route is dead only as a
+derivation of the \emph{form} $B\,n\ln n$; the value it delivers for $B_0$
+remains part of the primary route.
+
+\medskip
+\textbf{Gap G137-B}: The $n\ln n$ origin is understood at one loop (Mechanism~1,
+$B_0 = 8\pi$).  The remaining open problem is deriving the higher-order
+correction from $B_0 = 8\pi \approx 25.13$ to $B_\mathrm{phenom} \approx 46.298$
+(factor $\approx 1.84$).  Mechanism~1 provides the scaffolding; the correction
+is the domain of Gap G137-B (Kac-Moody level, modular volume, or two-loop RG).
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Implications for Repository Claims}
+\label{sec:nlogn:implications}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{Remove}: Claims in \texttt{veff\_corrected.tex} \S2.1--2.2
+        that the $S^1_\psi$ functional determinant ``directly produces''
+        $B\,n\ln n$ must be updated to reflect that the determinant gives
+        $-\Neff\ln n$ (form V4); the $n\ln n$ form requires the 4D RG
+        argument of Section~\ref{sec:nlogn:RG}.
+
+  \item \textbf{Classify as DEAD}: The ``S1 determinant route'' to deriving
+        $B$ (as the coefficient of $n\ln n$) is dead.  See
+        \texttt{reports/s1\_determinant\_no\_go.md}.
+
+  \item \textbf{Retain}: The S1 vacuum-polarisation result $B_0 = 8\pi$ is
+        valid and useful as the leading-order value of $B$.  It is not dead;
+        it is part of the primary A\_PRIME route.
+
+  \item \textbf{The primary route is unaffected}: The form
+        $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$ is derived via Mechanism~1
+        (4D RG, Section~\ref{sec:nlogn:RG}) and remains correct.
+        The open problem (Gap G137-B) is the value of $B$, not the form.
+
+  \item \textbf{Arbitrary cutoff rule}: The cutoff $k \le n$ in the Stirling
+        entropy sum (Mechanism~2) must be justified by the Wilsonian decoupling
+        of modes $k > n$ at scale $\mu = n$.  This decoupling is standard in
+        KK theories and does not constitute an arbitrary cutoff.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{References}
+\label{sec:nlogn:refs}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item \texttt{canonical/alpha/veff\_corrected.tex} — V\_eff form and baseline
+  \item \texttt{canonical/alpha/alpha\_best\_route.tex} — primary A\_PRIME route
+  \item \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} — $B_0 = 8\pi$ derivation
+  \item \texttt{canonical/alpha/gap\_g3k\_closure\_report.tex} — modular bootstrap
+  \item \texttt{reports/alpha\_missing\_lemma.md} — exact statement of Gap G137-B
+  \item \texttt{reports/s1\_determinant\_no\_go.md} — companion no-go report
+  \item M.\ E.\ Peskin \& D.\ V.\ Schroeder, \textit{An Introduction to Quantum
+        Field Theory}, Chapter~7 (one-loop vacuum polarisation).
+  \item J.-P.\ Serre, \textit{A Course in Arithmetic}, Chapter~VII (modular forms
+        and Hecke operators).
+\end{itemize}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

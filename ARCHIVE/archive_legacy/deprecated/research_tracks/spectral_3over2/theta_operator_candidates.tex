@@ -1,0 +1,340 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Spectral 3/2 Program — Step 2: Θ-Operator Candidates
+% Track: SPECTRAL — independent of Hecke/twin-prime route
+% Date: 2026-03-10
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Θ-Operator Candidates for the Spectral 3/2 Program\\
+    \large Identifying the Natural Laplace Operator on the Θ-Field Configuration Space}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+% ======================================================================
+\section{Introduction and Scope}
+\label{sec:intro}
+% ======================================================================
+
+\textbf{Program context.}
+This document is Step~2 of the Spectral 3/2 Program, which investigates
+whether the exponent $3/2$ in
+\begin{equation}
+  B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57
+  \label{eq:B_conj}
+\end{equation}
+arises from the spectral geometry of the Θ-field in UBT.
+The exponent $3/2$ is currently a \textbf{[MOTIVATED CONJECTURE]};
+see \texttt{consolidation\_project/alpha\_derivation/b\_base\_hausdorff.tex}.
+
+\textbf{Independence statement.}
+This track does not use $\alpha^{-1} = 137$ as an input.
+The only inputs are: $N_{\mathrm{eff}} = 12$ (\textbf{[PROVED]}),
+$\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ (\textbf{[PROVED]}),
+and the UBT action $\mathcal{S}[\Theta]$.
+
+\textbf{Goal of this document.}
+Identify the most natural Laplace-type or Hamiltonian operator associated
+with the Θ-field, and determine whether it factorises into independent
+spacetime and internal parts.
+
+% ======================================================================
+\section{The UBT Action and Kinetic Term}
+\label{sec:action}
+% ======================================================================
+
+The UBT action functional is (see \texttt{THETA\_FIELD\_DEFINITION.md §5.1}):
+\begin{equation}
+  \mathcal{S}[\Theta]
+  \;=\; \int_{\mathcal{M}} d^4q\, d^2\tau\, \sqrt{|\!\det G|}
+    \Bigl[
+      \tfrac{1}{2}\bigl\langle \nabla_\mu \Theta,\, \nabla^\mu \Theta \bigr\rangle
+      - V(\Theta)
+    \Bigr],
+  \label{eq:S_full}
+\end{equation}
+where the integration domain is $\mathcal{M} = \mathbb{R}^4 \times S^1_\psi$
+($S^1_\psi$: the compact imaginary-time circle of radius $R_\psi$ with
+periodicity $\psi \sim \psi + 2\pi$).
+
+Expanding around a background $\Theta_0 + \delta\Theta$, the quadratic
+fluctuation action is:
+\begin{equation}
+  \mathcal{S}^{(2)}[\delta\Theta]
+  \;=\; \tfrac{1}{2} \int d^4q\, d^2\tau
+    \bigl\langle \delta\Theta,\, \hat{\mathcal{O}}\,\delta\Theta \bigr\rangle,
+  \label{eq:S_quad}
+\end{equation}
+where the \emph{fluctuation operator} is:
+\begin{equation}
+  \hat{\mathcal{O}} \;:=\; -\nabla^\dagger \nabla + \mathcal{V}''(\Theta_0),
+  \label{eq:O_def}
+\end{equation}
+with $\mathcal{V}''(\Theta_0)$ denoting the second variation of the potential.
+In the free-field or vacuum-polarisation limit, $\mathcal{V}'' \approx m^2$
+(mass term), so $\hat{\mathcal{O}} \approx -\nabla^\dagger\nabla + m^2$.
+
+\begin{definition}[Θ-Laplacian]
+\label{def:Delta_Theta}
+  The \emph{Θ-Laplacian} is the principal part of $\hat{\mathcal{O}}$:
+  \begin{equation}
+    \Delta_\Theta \;:=\; \nabla^\dagger\nabla
+      \;=\; G^{\mu\nu} \nabla_\mu \nabla_\nu,
+    \label{eq:Delta_Theta}
+  \end{equation}
+  acting on sections of the field bundle
+  $\mathcal{E} = \mathcal{E}_{\mathrm{biquat}} \otimes \mathcal{E}_{\mathrm{spinor}}
+   \otimes \mathcal{E}_{\mathrm{gauge}}$.
+  The fluctuation operator is $\hat{\mathcal{O}} = -\Delta_\Theta + m^2$.
+\end{definition}
+
+% ======================================================================
+\section{Decomposition of the Domain}
+\label{sec:domain}
+% ======================================================================
+
+The domain of $\Delta_\Theta$ decomposes as:
+\begin{equation}
+  \mathcal{M} \;=\; \underbrace{\mathbb{R}^4}_{\text{spacetime}}
+    \;\times\; \underbrace{S^1_\psi}_{\text{compact }\psi}
+  \label{eq:M_decomp}
+\end{equation}
+and the field bundle decomposes along the quaternion structure as:
+\begin{equation}
+  \delta\Theta \;=\; \underbrace{\delta\Theta_S}_{\in\,\mathbb{R}}
+    \;\oplus\; \underbrace{\delta\Theta_V}_{\in\,\mathrm{Im}(\mathbb{H})}
+  \label{eq:field_decomp}
+\end{equation}
+where $\mathrm{Im}(\mathbb{H}) = \mathrm{span}_\mathbb{R}\{I, J, K\}$ is the
+pure-imaginary quaternion subspace (dimension 3, \textbf{[PROVED]}).
+
+By gauge invariance the vacuum polarisation tensor is transverse,
+$\Pi_{\mu\nu} \propto (g_{\mu\nu} - k_\mu k_\nu/k^2)$, and
+$\delta\Theta_S$ (the scalar part) is a singlet under the gauge group and
+decouples from $\Pi_{\mu\nu}$.
+\textbf{Only $\delta\Theta_V$ contributes to the gauge coupling running.}
+(Proved; see \texttt{b\_base\_hausdorff.tex} Lemma~1.)
+
+% ======================================================================
+\section{Three Candidate Operators}
+\label{sec:candidates}
+% ======================================================================
+
+\subsection{Candidate 1: Full Spacetime Laplacian $\Delta^{(4+1)}$}
+\label{sec:cand1}
+
+The most na\"ive choice is the Laplacian on the full domain
+$\mathbb{R}^4 \times S^1_\psi$:
+\begin{equation}
+  \Delta^{(4+1)} \;=\; \partial_t^2 + \partial_{x_1}^2 + \partial_{x_2}^2
+    + \partial_{x_3}^2 + \partial_\psi^2.
+  \label{eq:Delta_41}
+\end{equation}
+This operator has effective spectral dimension $d_{\mathrm{eff}} = 4$
+on $\mathbb{R}^4$ (or $d_{\mathrm{eff}} = 5$ on the full product space
+including $S^1_\psi$).
+
+\textbf{Heat kernel:} $K^{(4+1)}(t) \sim (4\pi t)^{-5/2}$ for small $t$
+on $\mathbb{R}^4 \times S^1_\psi$, giving the Weyl count
+$N^{(4+1)}(\lambda) \sim C\,\lambda^{5/2}$.
+
+\textbf{Assessment for B\_base:} The exponent $5/2 \neq 3/2$.
+This candidate does not produce the correct scaling.
+
+\subsection{Candidate 2: Compact-$\psi$ Laplacian $\Delta^{(S^1)}$}
+\label{sec:cand2}
+
+If one integrates over the non-compact $\mathbb{R}^4$ directions and retains
+only the compact $\psi$-Kaluza–Klein tower, the relevant operator is:
+\begin{equation}
+  \Delta^{(S^1)} \;=\; -\partial_\psi^2,
+  \qquad \psi \sim \psi + 2\pi,
+  \label{eq:Delta_S1}
+\end{equation}
+with eigenvalues $\lambda_n = n^2/R_\psi^2$ ($n \in \mathbb{Z}$).
+
+\textbf{Heat kernel:} $K^{(S^1)}(t) \sim (4\pi t)^{-1/2}$ (1-dimensional),
+giving $N^{(S^1)}(\lambda) \sim C\,\lambda^{1/2}$.
+
+\textbf{Assessment for B\_base:} The exponent $1/2 \neq 3/2$.
+This candidate also fails.
+Moreover, the Kaluza–Klein sum approach (approach A1) was already found to
+diverge without a natural cutoff; see
+\texttt{consolidation\_project/alpha\_derivation/b\_base\_spinor\_approach.tex}.
+
+\subsection{Candidate 3: Internal Im($\mathbb{H}$) Laplacian $\Delta^{(3)}$}
+\label{sec:cand3}
+
+After the scalar decoupling ($\delta\Theta_S$ irrelevant) and
+restricting to the vacuum-polarisation sector, the relevant fluctuations
+$\delta\Theta_V$ live in the \emph{internal} space
+$\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$.
+
+If one treats $\mathrm{Im}(\mathbb{H})$ as carrying the effective
+mode-counting dimension, the natural operator is the Laplacian on
+a 3-dimensional mode space:
+\begin{equation}
+  \Delta^{(3)}_{\mathrm{Im}\,\mathbb{H}}
+  \;=\; \partial_{I}^2 + \partial_{J}^2 + \partial_{K}^2,
+  \label{eq:Delta_3}
+\end{equation}
+where $\partial_I, \partial_J, \partial_K$ are derivatives in the
+$I, J, K$ quaternion-imaginary directions.
+
+\textbf{Heat kernel:} $K^{(3)}(t) \sim (4\pi t)^{-3/2}$,
+giving $N^{(3)}(\lambda) \sim C\,\lambda^{3/2}$.
+
+\textbf{Assessment for B\_base:} The exponent $3/2$ is \emph{exactly}
+what is needed.
+\textbf{This is the primary candidate for the spectral 3/2 mechanism.}
+
+% ======================================================================
+\section{Factorisation Test}
+\label{sec:factorisation}
+% ======================================================================
+
+The full Θ-Laplacian on $\mathbb{R}^4 \times S^1_\psi$ acts on
+both spacetime and internal indices.
+We test whether it factorises as:
+\begin{equation}
+  \Delta_\Theta \;=\; \Delta_{\mathbb{R}^4} \,\otimes\, \mathbf{1}_{\mathrm{int}}
+    \;+\; \mathbf{1}_{\mathbb{R}^4} \,\otimes\, \Delta_{\mathrm{int}}
+  \label{eq:factorisation}
+\end{equation}
+where $\Delta_{\mathrm{int}}$ acts on the internal (gauge/quaternion) indices.
+
+\begin{proposition}[Factorisation in flat space — CANDIDATE]
+\label{prop:factorise}
+  In flat Minkowski space $\mathbb{R}^{3,1}$ with no background field
+  ($\Theta_0 = \mathrm{const}$, $V'' = m^2$), the fluctuation operator
+  factorises as:
+  \begin{equation}
+    \hat{\mathcal{O}}
+    \;=\; \bigl(-\partial_\mu\partial^\mu + m^2\bigr)
+      \,\otimes\,
+      \mathbf{1}_{\mathrm{Im}\,\mathbb{H}},
+    \label{eq:O_flat}
+  \end{equation}
+  so that each of the three $\mathrm{Im}(\mathbb{H})$-components obeys
+  the same scalar Klein–Gordon equation.
+
+  \begin{proof}[Proof sketch]
+    In flat space, $G^{\mu\nu} = \eta^{\mu\nu}$, and
+    $\nabla_\mu = \partial_\mu$ (no connection).
+    The potential $V(\Theta) = (m^2/2)|\Theta_V|^2$ is diagonal in the
+    $\{I,J,K\}$ basis by the $\mathrm{SO}(3)$ symmetry of $\mathrm{Im}(\mathbb{H})$.
+    Hence $\hat{\mathcal{O}}$ is proportional to the identity on
+    $\mathrm{Im}(\mathbb{H})$.
+    The spectrum of each component is that of a scalar field on $\mathbb{R}^4$;
+    the multiplicity from $\mathrm{Im}(\mathbb{H})$ is exactly 3.
+  \end{proof}
+\end{proposition}
+
+\begin{remark}[Status of factorisation]
+  The factorisation~\eqref{eq:O_flat} holds in flat space and is
+  \textbf{[PROVED AS A FLAT-SPACE IDENTITY]}.
+  In curved space (non-trivial $G_{\mu\nu}$), mixing between spacetime and
+  internal directions may arise from spin connections; this case is not
+  treated here.
+\end{remark}
+
+% ======================================================================
+\section{Role of the Compact $\psi$-Direction}
+\label{sec:compact_psi}
+% ======================================================================
+
+The compact imaginary-time direction $\psi \sim \psi + 2\pi$ contributes
+a Kaluza–Klein tower to the spectrum.
+Its contribution to the heat kernel is:
+\begin{equation}
+  K^{(S^1)}(t) \;=\; \sum_{n \in \mathbb{Z}} e^{-t\,n^2/R_\psi^2}
+  \;\sim\; \frac{\sqrt{\pi}\,R_\psi}{\sqrt{t}}, \quad t \to 0^+,
+  \label{eq:K_S1}
+\end{equation}
+by the Poisson summation formula (see also
+\texttt{ubt\_with\_chronofactor/scripts/spectral/poisson\_duality\_demo.py}).
+
+If the full domain includes the $S^1_\psi$ factor, the combined small-$t$
+asymptotics of $\Delta^{(4+1)}$ give $K \sim t^{-5/2}$ (5 effective
+dimensions), \emph{not} $t^{-3/2}$.
+
+\textbf{Conclusion for this section:}
+The $\psi$-direction does not produce the desired $t^{-3/2}$ on its own.
+For the spectral $3/2$ mechanism, the relevant manifold must be 3-dimensional,
+not 1-dimensional.
+This supports Candidate~3 (Section~\ref{sec:cand3}) as the operative one,
+provided the mode counting is governed by the internal $\mathrm{Im}(\mathbb{H})$
+structure and not by the $\psi$-compactification.
+
+% ======================================================================
+\section{Summary Table and Status}
+\label{sec:summary}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{lllll}
+  \toprule
+  Candidate & Domain & $d_{\mathrm{eff}}$ & $N(\lambda)$ & Status \\
+  \midrule
+  1: $\Delta^{(4+1)}$ & $\mathbb{R}^4 \times S^1$ & 5 & $\lambda^{5/2}$ & [WRONG exponent] \\
+  2: $\Delta^{(S^1)}$ & $S^1_\psi$ & 1 & $\lambda^{1/2}$ & [WRONG exponent] \\
+  3: $\Delta^{(3)}_{\mathrm{Im}\,\mathbb{H}}$ & $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$ & 3 & $\lambda^{3/2}$ & [CORRECT exponent — CANDIDATE] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\textbf{Key gap for Candidate 3:}
+
+\begin{gap}[Spectral role of $\mathrm{Im}(\mathbb{H})$]
+\label{gap:spectral_role}
+  $\mathrm{Im}(\mathbb{H})$ is a 3-dimensional \emph{linear space} [PROVED].
+  However, the statement that mode counting in UBT is governed by a
+  Laplacian on $\mathrm{Im}(\mathbb{H})$ as a \emph{spectral manifold}
+  is not yet proved.
+  Specifically: the UBT vacuum polarisation is a spacetime integral
+  (over $\mathbb{R}^4 \times S^1_\psi$), and the three factors of
+  $\mathrm{Im}(\mathbb{H})$ enter as \emph{multiplicity factors},
+  not as directions of a spectral manifold.
+  The exponent $3/2$ in $N(\lambda) \sim \lambda^{3/2}$ requires
+  $\mathrm{Im}(\mathbb{H})$ to contribute to $d_{\mathrm{eff}}$
+  multiplicatively (as multiplicity = 3) \emph{and} with the correct
+  normalisation to give the exponent $3/2 = 3 \times \frac{1}{2}$
+  from the Gaussian path-integral identity.
+  This identification must be made explicit.
+\end{gap}
+
+\bigskip
+
+\textbf{Recommended forward path:}
+Treat Candidate~3 as the working hypothesis in
+\texttt{heat\_kernel\_theta.tex} (Step~3) and
+\texttt{weyl\_counting\_theta.tex} (Step~4),
+while being explicit about where the gap in Gap~\ref{gap:spectral_role}
+enters.
+
+\ifdefined\INCLUDEMODE\else\end{document}\fi

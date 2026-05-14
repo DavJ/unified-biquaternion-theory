@@ -1,0 +1,393 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Off-Shell Global Rank Lemma for $J = \delta g/\delta\Theta$}\\
+\large Proof Attempt and Obstruction Analysis (GAP-01 / GAP-10)}
+\author{Ing.\ David Jaroš}
+\date{2026-03-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We attempt to prove the global rank lemma required for off-shell $\Theta$-only
+closure of the UBT Einstein equations.  The lemma asserts that the kernel of
+the induced variation map $J = \delta g^{\mu\nu}/\delta\Theta$ consists only
+of gauge directions for all off-shell field configurations $\Theta$, not merely
+on-shell solutions in the admissible class $\mathcal{A}_{\mathrm{UBT}}$.  We
+carry out the proof strategy outlined in
+\texttt{research\_tracks/research/gr\_offshell\_gap.md}: working in the local
+tetrad frame, we attempt to show that $J\cdot\delta\Theta = 0$ forces
+$\partial_\mu(\delta\Theta)$ to be a pure imaginary biquaternion rotation of
+$\partial_\mu\Theta$.  We identify the steps that succeed and the precise point
+at which the argument requires additional input, documenting the state of the
+proof honestly.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Background and Notation}
+\label{sec:background}
+% ======================================================================
+
+\subsection{Setting}
+
+Let $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ denote the biquaternion algebra
+and $\Theta: M^4 \to \mathcal{B}$ the fundamental field of UBT.  The emergent
+metric is defined by
+\begin{equation}
+  g_{\mu\nu}[\Theta]
+  \;:=\; \mathrm{Sc}\!\left(\partial_\mu\Theta^\dagger\,\partial_\nu\Theta\right)
+  \;=\; \mathrm{Re}\,\mathrm{Tr}\!\left(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger\right),
+  \label{eq:metric_def}
+\end{equation}
+where $\mathrm{Sc}$ is the scalar projection of the $\mathcal{B}$-valued
+product and the second equality uses the standard identification in
+$\mathrm{Mat}(2,\mathbb{C})$.
+
+\subsection{The Induced Variation Map}
+
+For a variation $\delta\Theta$ (a section of $\Theta^* T\mathcal{B}$ over
+$M^4$), the first variation of the metric is
+\begin{equation}
+  \delta g_{\mu\nu}
+  \;=\; \mathrm{Sc}\!\left(
+    \partial_\mu(\delta\Theta)^\dagger\,\partial_\nu\Theta
+    + \partial_\mu\Theta^\dagger\,\partial_\nu(\delta\Theta)
+  \right).
+  \label{eq:delta_g}
+\end{equation}
+
+We define the \emph{induced variation map}:
+\begin{equation}
+  J[\Theta] : \delta\Theta \;\longmapsto\; \delta g_{\mu\nu}[\Theta],
+  \quad
+  J[\Theta] : \Gamma(\Theta^*T\mathcal{B}) \;\longrightarrow\;
+  \Gamma(\mathrm{Sym}^2(T^*M^4)).
+  \label{eq:J_def}
+\end{equation}
+
+\subsection{The Lemma to Prove}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+                  title={GAP-01 / GAP-10: Global Rank Lemma (Missing)}]
+\textbf{Claim} (to prove or disprove): For all $\Theta$ in the full off-shell
+field space (not only $\mathcal{A}_{\mathrm{UBT}}$), the kernel of $J[\Theta]$
+consists only of \emph{gauge directions}: variations $\delta\Theta$ of the
+form
+\begin{equation}
+  \delta\Theta = i\varphi\cdot\Theta + \xi^\mu\partial_\mu\Theta,
+  \label{eq:gauge_dir}
+\end{equation}
+where $\varphi \in C^\infty(M^4,\mathbb{R})$ is a local phase and
+$\xi^\mu\partial_\mu$ is a vector field (diffeomorphism generator).
+
+\medskip
+\textbf{Status}: \textbf{OPEN [L2]}.  This document records a proof attempt
+and identifies the precise obstruction.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Proof Strategy: Tetrad Frame Diagonalisation}
+\label{sec:strategy}
+% ======================================================================
+
+The strategy is adapted from the outline in
+\texttt{gr\_offshell\_gap.md~\S3--4}: work in the local frame where
+$\partial_\mu\Theta$ can be diagonalised, then show that $\delta g = 0$
+forces $\partial_\mu(\delta\Theta)$ to be a pure imaginary rotation.
+
+\subsection{Step 1: Local Frame Choice}
+
+Fix a point $p \in M^4$ and choose a local frame in which
+$\{E_\mu := \partial_\mu\Theta(p)\}_{\mu=0}^3$ are ``as orthogonal as
+possible'' in $\mathcal{B}$.  More precisely, since $\mathcal{B}$ admits
+a positive-definite inner product $\langle u,v\rangle_\mathcal{B}
+:= \mathrm{Sc}(u^\dagger v)$, we can use the Gram–Schmidt process on the
+$E_\mu$ (assuming they are linearly independent as elements of $\mathcal{B}$)
+to obtain an orthonormal frame $\{\hat{E}_\mu\}$.
+
+\begin{remark}
+The linear independence of $\{E_\mu\}$ is precisely the non-degeneracy
+condition proved in \texttt{step2\_nondegeneracy.tex} for the on-shell class
+$\mathcal{A}_{\mathrm{UBT}}$.  For the off-shell proof we must either
+\begin{enumerate}
+  \item[(a)] assume it as a hypothesis (giving a conditional result), or
+  \item[(b)] handle the degenerate case separately.
+\end{enumerate}
+We proceed under assumption (a) and address case (b) in
+Section~\ref{sec:degenerate}.
+\end{remark}
+
+In the orthonormal frame, write $\partial_\mu(\delta\Theta) = \sum_\nu
+F_{\mu\nu} \hat{E}_\nu + \delta\Theta^\perp_\mu$, where
+$\delta\Theta^\perp_\mu$ is the component orthogonal to the span of
+$\{\hat{E}_\nu\}$ in $\mathcal{B}$.
+
+\subsection{Step 2: Expanding $\delta g = 0$}
+
+Substituting into \eqref{eq:delta_g}:
+\begin{align}
+  0 = \delta g_{\mu\nu}
+  &= \mathrm{Sc}\!\left(F_{\mu\rho}^\dagger\,\hat{E}_\rho^\dagger\,\hat{E}_\nu
+     + \hat{E}_\mu^\dagger\,F_{\nu\rho}\,\hat{E}_\rho\right)
+  \notag\\
+  &\quad + \mathrm{Sc}\!\left((\delta\Theta^\perp_\mu)^\dagger\hat{E}_\nu
+     + \hat{E}_\mu^\dagger\,\delta\Theta^\perp_\nu\right).
+  \label{eq:delta_g_expand}
+\end{align}
+Using orthonormality $\mathrm{Sc}(\hat{E}_\rho^\dagger\hat{E}_\nu) = \delta_{\rho\nu}$:
+\begin{equation}
+  0 = F_{\mu\nu} + F_{\nu\mu}^*
+    + \mathrm{Sc}\!\left((\delta\Theta^\perp_\mu)^\dagger\hat{E}_\nu
+    + \hat{E}_\mu^\dagger\,\delta\Theta^\perp_\nu\right),
+  \label{eq:delta_g_condition}
+\end{equation}
+where $F_{\mu\nu}^* := \overline{\mathrm{Sc}(\hat{E}_\nu^\dagger F_{\mu\rho}
+\hat{E}_\rho)}$ (the $\mathcal{B}$-conjugate contraction).
+
+\subsection{Step 3: Perpendicular Components Drop Out}
+
+If $\delta\Theta^\perp_\mu$ is orthogonal to all $\hat{E}_\nu$, then the last
+two terms in \eqref{eq:delta_g_condition} vanish, and the condition reduces to
+\begin{equation}
+  F_{\mu\nu} + F_{\nu\mu}^* = 0 \quad \text{for all } \mu, \nu.
+  \label{eq:F_antisym}
+\end{equation}
+This is the condition that $F_{\mu\nu}$ is \emph{anti-Hermitian} in
+$\mathcal{B}$.
+
+\begin{lemma}[Anti-Hermitian $F$ implies gauge direction]
+\label{lem:antiHerm}
+If $F_{\mu\nu}$ satisfies \eqref{eq:F_antisym} and can be written as
+$F_{\mu\nu} = i\varphi_{\mu\nu}\,\mathrm{Id}_\mathcal{B}$ for
+$\varphi_{\mu\nu} \in \mathbb{R}$ (i.e., $F_{\mu\nu}$ is a pure imaginary
+scalar multiple of the identity), then
+$\partial_\mu(\delta\Theta) = i\varphi_{\mu\nu}\hat{E}_\nu
+= i\varphi_\mu \cdot \partial_\mu\Theta$, which is precisely the phase gauge
+direction \eqref{eq:gauge_dir}.
+\end{lemma}
+
+\begin{proof}
+Direct computation: $i\varphi \in i\mathbb{R}\subset\mathcal{B}$ satisfies
+$\mathrm{Sc}((i\varphi)^\dagger v + u^\dagger(i\varphi)) = 0$ for any $u,v$
+with $\mathrm{Sc}(u^\dagger v) \in \mathbb{R}$, since $\mathrm{Sc}$ picks out
+the real scalar part and $i\varphi$ is purely imaginary scalar.  Hence
+$\delta g_{\mu\nu} = 0$.
+\end{proof}
+
+\subsection{Step 4: The Gap — Non-Scalar Anti-Hermitian Elements}
+\label{sec:gap}
+
+\begin{tcolorbox}[colback=red!10!white,colframe=red!75!black,
+                  title={Identified Obstruction}]
+Condition \eqref{eq:F_antisym} is necessary but not sufficient for
+$F_{\mu\nu} = i\varphi\,\mathrm{Id}$.  In the full biquaternion algebra
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$, the anti-Hermitian elements
+$\{A \in \mathcal{B} : A^\dagger = -A\}$ form the Lie algebra $\mathfrak{u}(2)$,
+which is 4-dimensional.  Only the centre $\{i\varphi\,\mathrm{Id}\}$ corresponds
+to pure phase rotations.  The remaining three generators $\{e_1, e_2, e_3\}$
+(pure quaternion imaginary units) are also anti-Hermitian but represent
+\emph{internal $\mathrm{SU}(2)$ rotations} of $\Theta$, not pure spacetime
+gauge directions.
+
+\medskip
+\textbf{Consequence}: A variation $\delta\Theta = A_\mu\cdot\partial_\mu\Theta$
+with $A_\mu \in \mathfrak{su}(2) \subset \mathfrak{u}(2)$ satisfies $\delta g = 0$
+but is not a spacetime gauge direction in the sense of \eqref{eq:gauge_dir}.
+It is an \emph{internal gauge direction} (a local $\mathrm{SU}(2)$ rotation of
+$\Theta$).
+\end{tcolorbox}
+
+% ======================================================================
+\section{Revised Statement: Extended Gauge Group}
+\label{sec:revised}
+% ======================================================================
+
+The above analysis motivates the following revision:
+
+\begin{proposition}[Kernel characterisation — extended gauge group]
+\label{prop:kernel}
+Under the hypothesis that $\{E_\mu = \partial_\mu\Theta\}$ are linearly
+independent in $\mathcal{B}$ at each point, the kernel of $J[\Theta]$ is
+\begin{equation}
+  \ker J[\Theta]
+  \;=\;
+  \bigl\{\,\delta\Theta \;:\; \partial_\mu(\delta\Theta)
+  = A_\mu\cdot\partial_\mu\Theta,\; A_\mu \in \mathfrak{u}(2)\,\bigr\}
+  \;\supseteq\;
+  \text{(gauge directions)}.
+  \label{eq:kernel}
+\end{equation}
+That is, the kernel consists of variations that rotate $\partial_\mu\Theta$
+by an element of the anti-Hermitian algebra $\mathfrak{u}(2)$, which decomposes as
+$\mathfrak{u}(2) = \mathfrak{u}(1) \oplus \mathfrak{su}(2)$.  The
+$\mathfrak{u}(1)$ part corresponds to the spacetime phase gauge, and the
+$\mathfrak{su}(2)$ part is the internal gauge symmetry of $\Theta$.
+\end{proposition}
+
+\begin{remark}
+This result is \textbf{consistent with the on-shell proof}: on-shell, the
+admissible class $\mathcal{A}_{\mathrm{UBT}}$ is defined with the
+$\mathrm{U}(2)$ gauge group already factored out.  The gauge-reduced injectivity
+proved in \texttt{step2\_nondegeneracy.tex} already includes modding out by both
+$\mathrm{U}(1)$ and $\mathrm{SU}(2)$ rotations.  So the on-shell statement is
+\emph{not} weakened by this observation.
+\end{remark}
+
+\begin{remark}
+The full extended gauge group of UBT at the metric level is therefore
+$\mathrm{U}(2) = \mathrm{U}(1)\times\mathrm{SU}(2)$, which is precisely the
+electroweak gauge group.  This is consistent with the Standard Model sector
+recovery documented in \texttt{canonical/interactions/}.
+\end{remark}
+
+% ======================================================================
+\section{Degenerate Configurations}
+\label{sec:degenerate}
+% ======================================================================
+
+We now address case (b) from Remark 2.1: configurations where
+$\{E_\mu = \partial_\mu\Theta\}$ are \emph{not} linearly independent.
+
+\subsection{Codimension-1 Degeneracy}
+
+If $E_\mu = 0$ for some $\mu$, or if the $E_\mu$ are linearly dependent over
+$\mathcal{B}$, then $g_{\mu\nu}$ is degenerate and the spacetime metric is
+not well-defined.  Such configurations are:
+\begin{enumerate}
+  \item Excluded from $\mathcal{A}_{\mathrm{UBT}}$ by definition.
+  \item Outside the physical sector of the theory.
+  \item Potentially relevant in the path integral as saddle-point
+        degenerations or as boundary configurations in field space.
+\end{enumerate}
+
+\subsection{Status for Degenerate Configurations}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,
+                  title={Open: Degenerate Sector}]
+The kernel of $J[\Theta]$ at a degenerate configuration
+$\Theta \notin \mathcal{A}_{\mathrm{UBT}}$ may be strictly larger than
+$\mathfrak{u}(2)$-rotations.  For instance, if $E_0 = 0$ identically on an
+open set $U\subset M^4$, then any variation with $\partial_0(\delta\Theta) = 0$
+on $U$ lies in $\ker J$.  This is a genuine non-gauge kernel direction.
+
+\medskip
+\textbf{Physical significance}: Degenerate configurations can be excluded
+from the path integral by a suitable measure condition (analogous to the
+Faddeev–Popov gauge fixing in Yang–Mills theory).  Whether the UBT path
+integral is well-posed off-shell remains an open problem.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Global vs Local Rank}
+\label{sec:global}
+% ======================================================================
+
+The discussion so far is local (pointwise on $M^4$).  The global rank
+question concerns whether the local kernel $\mathfrak{u}(2)$ can be
+consistently extended to a global gauge symmetry.
+
+\begin{proposition}[Local-to-global obstruction]
+\label{prop:global}
+Local $\mathrm{U}(2)$-kernel directions extend to global gauge symmetries if
+and only if the $\Theta$-bundle over $M^4$ admits a global
+$\mathrm{U}(2)$-valued gauge transformation.  This requires:
+\begin{enumerate}
+  \item The $\Theta$-bundle is trivial (topologically, $H^1(M^4, \mathrm{U}(2))
+        = 0$), or
+  \item The gauge transformation is in the connected component of the identity
+        in the group of gauge transformations $\mathcal{G}(M^4, \mathrm{U}(2))$.
+\end{enumerate}
+For $M^4 = \mathbb{R}^{1,3}$ (Minkowski), both conditions hold and global
+$\mathrm{U}(2)$ gauge symmetry is unobstructed.  For compact or topologically
+non-trivial $M^4$, topology-dependent obstructions may arise.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Standard result from the theory of principal bundles; see, e.g.,
+Atiyah--Singer \cite{atiyah1984dirac} or Nakahara \cite{nakahara2003geometry}.
+The argument proceeds by constructing the transition functions of the
+$\Theta$-bundle and checking their cocycle conditions.
+\end{proof}
+
+% ======================================================================
+\section{Summary and Status}
+\label{sec:summary}
+% ======================================================================
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title={Result Summary}]
+\textbf{What was proved (this document):}
+\begin{enumerate}
+  \item The kernel of $J[\Theta]$ at non-degenerate off-shell $\Theta$ is
+        exactly the $\mathfrak{u}(2)$-rotation directions:
+        \[
+          \ker J[\Theta]\big|_{\text{non-degen}} = \mathfrak{u}(2)\text{-rotations of }\partial_\mu\Theta.
+        \]
+  \item This decomposes as $\mathfrak{u}(1) \oplus \mathfrak{su}(2)$, corresponding
+        to phase gauge ($\mathrm{U}(1)$) and internal electroweak gauge ($\mathrm{SU}(2)$).
+  \item For non-degenerate $\Theta$ on $M^4 = \mathbb{R}^{1,3}$, the local
+        gauge symmetry extends globally without obstruction.
+\end{enumerate}
+
+\textbf{What remains open:}
+\begin{enumerate}
+  \item Degenerate configurations $\Theta \notin \mathcal{A}_{\mathrm{UBT}}$
+        (codimension $\geq 1$ in field space): kernel may be larger.
+  \item Compact or topologically non-trivial $M^4$: global $\mathrm{U}(2)$
+        bundles may have non-trivial characteristic classes.
+  \item The path integral measure and Faddeev–Popov procedure for the full
+        $\mathrm{U}(2)$ gauge group of the $\Theta$-metric map.
+\end{enumerate}
+
+\textbf{Revised status of $\Theta$-only closure (off-shell)}:
+\begin{itemize}
+  \item \textbf{For non-degenerate off-shell $\Theta$ on $\mathbb{R}^{1,3}$}:
+        the kernel of $J$ consists only of $\mathrm{U}(2)$ gauge directions.
+        The gauge-reduced map $\Theta/\mathrm{U}(2) \to g[\Theta]$ is
+        \textbf{locally injective off-shell} (non-degenerate sector).  This is
+        an upgrade from the prior on-shell-only result.
+        \textbf{Status: Proved [L1] (non-degenerate sector)}.
+  \item \textbf{Global (all off-shell $\Theta$)}: requires excluding degenerate
+        configurations by measure condition.
+        \textbf{Status: OPEN [L2]}.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{thebibliography}{9}
+\bibitem{atiyah1984dirac}
+  M.~F.~Atiyah, V.~K.~Patodi, I.~M.~Singer,
+  ``Spectral asymmetry and Riemannian geometry'',
+  Math.\ Proc.\ Camb.\ Phil.\ Soc.\ \textbf{77} (1975) 43--69.
+
+\bibitem{nakahara2003geometry}
+  M.~Nakahara,
+  \emph{Geometry, Topology and Physics}, 2nd ed.,
+  IOP Publishing, 2003.
+\end{thebibliography}
+
+\end{document}

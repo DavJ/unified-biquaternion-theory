@@ -1,0 +1,215 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{definition}[proposition]{Definition}
+
+\title{U(1) Generator Normalization in UBT\\
+\large Target 1 — fix\_or\_reject\_U1\_coupling\_normalization}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We determine whether the electromagnetic U(1) generator is fixed by the
+biquaternion algebra $\mathcal{B}=\mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}$,
+compute its trace normalization, compare it with standard conventions, and
+assess whether the unit charge $q=1$ and charge quantization are derived or
+assumed.  Verdict: \textbf{CONDITIONAL}.
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{Identification of the U(1) generator in the UBT algebra}
+% ----------------------------------------------------------------
+
+\subsection{Biquaternion algebra and its automorphism group}
+
+The canonical UBT algebra is
+\begin{equation}
+  \mathcal{B}=\mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}
+  \;\cong\;\mathrm{Mat}(2,\mathbb{C}).
+\end{equation}
+Its real automorphism group is
+\begin{equation}
+  \mathrm{Aut}_{\mathbb{R}}(\mathcal{B})
+  \;\cong\;\bigl[\mathrm{GL}(2,\mathbb{C})\times\mathrm{GL}(2,\mathbb{C})\bigr]/\mathbb{Z}_2.
+\end{equation}
+Restricting to the unitary subgroup:
+\begin{equation}
+  \mathrm{Aut}_{\mathbb{R}}(\mathcal{B})\big|_{\mathrm{unitary}}
+  \;\supset\;\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y
+  \quad(\text{left factor})
+  \;\oplus\;\mathrm{U}(1)_{\mathrm{EM}}\quad(\text{right factor}).
+\end{equation}
+
+\subsection{The electromagnetic U(1) as the right-phase action}
+
+The right-multiplication map
+\begin{equation}
+  \Theta(x)\;\longmapsto\;\Theta(x)\,e^{i\chi(x)},
+  \qquad \chi(x)\in\mathbb{R},
+\end{equation}
+generates a U(1) subgroup of the right $\mathrm{GL}(2,\mathbb{C})$ factor.
+In the $\mathrm{Mat}(2,\mathbb{C})$ representation this corresponds to
+right-multiplication by the scalar phase $e^{i\chi}I_2$, i.e.\ the generator
+is proportional to the $2\times 2$ identity:
+\begin{equation}
+  T_{\mathrm{EM}} = \frac{1}{2}I_2.
+\end{equation}
+The normalization factor $1/2$ is fixed by the requirement that
+$\exp(2\pi i T_{\mathrm{EM}})=I_2$ (period $2\pi$ in $\chi$).
+
+\subsection{Centre of the algebra}
+
+The centre of $\mathcal{B}$ is $Z(\mathcal{B})=\mathbb{C}\cdot 1$, i.e.\
+the complex scalars.  The electromagnetic U(1) is precisely the unitary part
+of the centre:
+\begin{equation}
+  \mathrm{U}(1)_{\mathrm{EM}}\;=\;\bigl\{e^{i\chi}\cdot I_2\;\bigr|\;\chi\in[0,2\pi)\bigr\}
+  \;\subset\; Z(\mathcal{B}).
+\end{equation}
+
+% ----------------------------------------------------------------
+\section{Trace normalization computation}
+% ----------------------------------------------------------------
+
+\begin{definition}[Generator trace normalization]
+For a generator $T$ in a representation $\mathcal{R}$, define
+$T(\mathcal{R}) := \mathrm{Tr}_{\mathcal{R}}(T^2)$.
+\end{definition}
+
+\subsection{In the Mat(2,C) (fundamental) representation}
+
+With $T_{\mathrm{EM}}=\tfrac{1}{2}I_2$:
+\begin{equation}
+  \mathrm{Tr}\!\left(T_{\mathrm{EM}}^2\right)
+  =\mathrm{Tr}\!\left(\tfrac{1}{4}I_2\right)
+  =\frac{2}{4}=\frac{1}{2}.
+\end{equation}
+
+\subsection{Comparison table}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Convention & Generator & $\mathrm{Tr}(T^2)$ & Basis \\
+\midrule
+QED ($e$ absorbed into $\mathcal{A}_\mu$)
+  & $q_r$ (charge ratio) & — & extrinsic \\
+Standard Model hypercharge $U(1)_Y$
+  & $Y/2$ with $\mathrm{Tr}(Y^2/4)=1/2$
+  & $1/2$ & GUT input \\
+GUT normalization $U(1)$ inside SU(5)
+  & $T_{\mathrm{GUT}}=\sqrt{3/5}\,Y/2$
+  & $3/10$ & rescaled \\
+UBT right-phase $U(1)_{\mathrm{EM}}$
+  & $\tfrac{1}{2}I_2$
+  & $\mathbf{1/2}$ & algebraic \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key finding:} The UBT algebra alone yields
+$\mathrm{Tr}(T_{\mathrm{EM}}^2)=1/2$, which matches the standard hypercharge
+normalization.  The GUT normalization differs by a factor of $3/5$ and requires
+an embedding choice that is external to $\mathcal{B}$.
+
+% ----------------------------------------------------------------
+\section{Is the unit charge $q=1$ derived or assumed?}
+% ----------------------------------------------------------------
+
+The charge operator in UBT is $Q=T_3+Y/2$ after electroweak symmetry breaking.
+With the conventions above, the minimum charge is set by the condition that
+$\Theta$ carries one unit of U(1) charge under the right-phase action:
+\begin{equation}
+  \Theta\;\longmapsto\; e^{i\chi}\Theta
+  \quad\Rightarrow\quad q_\Theta = 1.
+\end{equation}
+This means the unit charge is the charge of the fundamental field $\Theta$.
+However, the \emph{physical} unit of electric charge (the electron charge $e$)
+is then related by
+\begin{equation}
+  e = g\sin\theta_W,
+\end{equation}
+which introduces the electroweak mixing angle $\theta_W$.
+The Weinberg angle is not fixed by the biquaternion algebra alone: it requires
+the ratio of SU(2)$_L$ and U(1)$_Y$ couplings, which are separate parameters.
+
+\begin{remark}[CONDITIONAL status of charge unit]
+The biquaternion algebra fixes the \emph{generator normalization}
+$\mathrm{Tr}(T_{\mathrm{EM}}^2)=1/2$ and the charge of the fundamental field
+$q_\Theta=1$.  The physical electron charge $e=g\sin\theta_W$ is derived from
+$\mathcal{B}$ only if the Weinberg angle is also derived, which is an additional
+open problem.
+\end{remark}
+
+% ----------------------------------------------------------------
+\section{Charge quantization from topology}
+% ----------------------------------------------------------------
+
+On the compact imaginary-time circle $S^1_\psi$ of circumference $2\pi R_\psi$,
+single-valuedness of $\Theta(x,\psi+2\pi R_\psi)=\Theta(x,\psi)$ under a
+holonomy $\exp(iq\oint A_\psi\,d\psi)=1$ forces
+\begin{equation}
+  q\,\Phi_\psi = 2\pi n,\qquad n\in\mathbb{Z},
+\end{equation}
+where $\Phi_\psi$ is the total flux through the compact cycle.
+If the minimal flux is normalized to $\Phi_\psi=2\pi$ (unit flux quantum),
+then $q=n\in\mathbb{Z}$: charge quantization in integer units follows from the
+winding condition.  Fractional charges (quarks, $q=1/3$) require either
+a GUT-type embedding with a larger gauge group or an additional argument about
+multi-valuedness in a covering space.
+
+\begin{remark}[CONDITIONAL status of fractional charges]
+Integer charge quantization is a topological consequence of the
+$S^1_\psi$ compactification.  Fractional quark charges are not derived
+from this topology alone.
+\end{remark}
+
+% ----------------------------------------------------------------
+\section{Summary and verdict}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Item & Status & Notes \\
+\midrule
+U(1) identification in $\mathcal{B}$ & DERIVED & Right-phase of $\mathrm{Mat}(2,\mathbb{C})$ \\
+$\mathrm{Tr}(T_{\mathrm{EM}}^2)=1/2$ & DERIVED & Algebraic, no external input \\
+QED normalization match & DERIVED & Agrees with SM hypercharge convention \\
+GUT normalization match & CONDITIONAL & Requires SU(5) embedding choice \\
+Unit charge $q_\Theta=1$ & DERIVED & From right-phase period \\
+Electron charge $e=g\sin\theta_W$ & CONDITIONAL & Requires $\theta_W$ input \\
+Integer charge quantization & CONDITIONAL & Follows from $S^1_\psi$ winding if scale fixed \\
+Quark fractional charges & CONDITIONAL & Requires GUT or additional embedding \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Overall verdict.}
+\textbf{CONDITIONAL.}
+The U(1) generator is identified unambiguously within $\mathcal{B}$, its trace
+normalization is fixed algebraically to $1/2$, and the fundamental field
+$\Theta$ carries charge $q=1$ by construction.  However, the physical electron
+charge $e=g\sin\theta_W$ is conditional on the Weinberg angle, and fractional
+quark charges require additional embedding assumptions.  Therefore, generator
+normalization is derived, but the physical charge unit remains conditional.
+
+\end{document}

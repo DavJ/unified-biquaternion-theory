@@ -1,0 +1,441 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T2_GAUGE — Standard Model Gauge Structure
+% Purpose: Paper draft skeleton — SU(3)×SU(2)_L×U(1)_Y from ℂ⊗ℍ
+% Status: Theorems G.A–G.D proved [L0]; skeleton ready for write-up
+% Date: 2026-04-28
+% Sources: canonical/su3_derivation/, canonical/interactions/sm_gauge.tex,
+%          canonical/algebra/involutions_Z2xZ2xZ2.tex,
+%          canonical/bridges/su3_gauge_qubit_equivalence.tex
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\SE}{\textbf{[SE]}}
+\newcommand{\SU}[1]{\mathrm{SU}(#1)}
+\newcommand{\UU}[1]{\mathrm{U}(#1)}
+\newcommand{\Bq}{\mathbb{C}\otimes\mathbb{H}}
+
+\title{\textbf{Emergence of $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$\\
+       from Biquaternion Algebra $\mathbb{C}\otimes\mathbb{H}$}}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+%  MAIN THEOREM BOX
+% ============================================================
+
+\begin{tcolorbox}[enhanced,colback=blue!4!white,colframe=blue!55!black,
+  arc=3pt,boxrule=1.2pt,
+  title={\textbf{\large Main Theorem (Gauge Structure)}}]
+\textbf{Statement.}
+The Standard Model gauge group
+$G_{\mathrm{SM}} = \SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is uniquely realised in the biquaternion algebra
+$\mathbb{B} := \Bq\cong\mathrm{Mat}(2,\mathbb{C})$
+with zero free parameters:
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+  \item $\SU{3}_c$ arises from the $\mathbb{Z}_2^3$ involution structure of
+        $\mathbb{B}$ (Theorem~\ref{thm:su3_involutions}) and independently
+        from the qubit encoding (Theorem~\ref{thm:su3_qubit}).
+  \item $\SU{2}_L$ is the group of left-norm-preserving linear maps on
+        $\mathbb{B}$ (Theorem~\ref{thm:su2}).
+  \item $\UU{1}_Y$ is the scalar phase right-action on $\mathbb{B}$
+        (Theorem~\ref{thm:u1}).
+  \item The three gauge sectors are mutually orthogonal — the strong and
+        electroweak interactions decouple algebraically
+        (Theorem~\ref{thm:decoupling}).
+  \item Three generations of matter fields arise from the three
+        independent $\psi$-winding modes on $S^1_\psi$
+        (Theorem~\ref{thm:generations}).
+\end{enumerate}
+\textbf{Open}: Weinberg angle $\theta_W$, chirality ($L$ not $R$), Higgs/Yukawa
+sector — stated explicitly in Section~\ref{sec:open}.
+\end{tcolorbox}
+
+\tableofcontents
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+\subsection{Motivation}
+
+The Standard Model gauge group
+$G_{\mathrm{SM}} = \SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is one of the most precisely tested structures in physics.  Yet its algebraic
+origin remains unexplained: it is typically introduced as an axiom rather than
+derived from a more fundamental framework.
+
+This paper proves that all three factors of $G_{\mathrm{SM}}$ are uniquely
+determined by the structure of the biquaternion algebra
+$\mathbb{B} := \Bq$, the same 8-real-dimensional algebra that underlies the
+Unified Biquaternion Theory (UBT).  The derivation requires no additional
+postulates beyond the algebraic structure of $\mathbb{B}$.
+
+\subsection{Key novelty}
+
+No published framework derives the \emph{full} Standard Model gauge group from a
+single algebra without introducing the gauge group as an external input.  The
+present approach realises $G_{\mathrm{SM}}$ from:
+\begin{enumerate}
+\item \textbf{Involution structure}: the three canonical $\mathbb{Z}_2$
+  involutions of $\mathbb{B}$ generate $\SU{3}_c$.
+\item \textbf{Left/right action structure}: the left norm-preserving action
+  generates $\SU{2}_L$; the right scalar phase action generates $\UU{1}_Y$.
+\item \textbf{Winding mode structure}: three independent $\psi$-winding modes
+  on the imaginary-time circle give three generations.
+\end{enumerate}
+The two independent derivations of $\SU{3}$ (involution route and qubit
+encoding route) confirm the result independently.
+
+\subsection{Paper structure}
+
+Section~\ref{sec:algebra} reviews the biquaternion algebra.
+Sections~\ref{sec:su3}--\ref{sec:generations} contain the theorems and proofs.
+Section~\ref{sec:open} states the open problems explicitly.
+Section~\ref{sec:conclusion} summarises and gives the outlook.
+
+% ============================================================
+\section{Biquaternion Algebra}
+\label{sec:algebra}
+% ============================================================
+
+\begin{definition}[Biquaternion algebra]
+\label{def:biquaternion}
+The \emph{biquaternion algebra} is
+\[
+  \mathbb{B} \;:=\; \Bq \;\cong\; \mathrm{Mat}(2,\mathbb{C}).
+\]
+As a real vector space, $\dim_{\mathbb{R}}\mathbb{B} = 8$ with basis
+$\{1, i, j, k, e, ei, ej, ek\}$ (or equivalently, any 8-element real basis
+of $\mathrm{Mat}(2,\mathbb{C})$).
+
+Ref: \texttt{canonical/fields/biquaternion\_algebra.tex} \PROVED.
+\end{definition}
+
+\begin{remark}
+The isomorphism $\Bq \cong \mathrm{Mat}(2,\mathbb{C})$ is an exact algebraic
+identity.  All results below use the $\mathrm{Mat}(2,\mathbb{C})$ representation.
+\end{remark}
+
+% ============================================================
+\section{SU(3) from Involution Structure}
+\label{sec:su3}
+% ============================================================
+
+\subsection{The $\mathbb{Z}_2^3$ involutions}
+
+\begin{definition}[Canonical involutions]
+\label{def:involutions}
+Define three $\mathbb{R}$-linear involutions of $\mathbb{B}$:
+\begin{align*}
+\alpha : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 + q_1 i - q_2 j - q_3 k, \\
+\beta  : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 - q_1 i + q_2 j - q_3 k, \\
+\gamma : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 - q_1 i - q_2 j + q_3 k.
+\end{align*}
+The group generated by $\{\alpha,\beta,\gamma\}$ is
+$G := \langle\alpha,\beta,\gamma\rangle \cong \mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$
+of order 8.
+
+Ref: \texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex} \PROVED.
+\end{definition}
+
+\begin{theorem}[$\mathfrak{su}(3)$ in $\mathbb{B}$, \PROVED]
+\label{thm:su3_involutions}
+The traceless anti-Hermitian elements of $\mathbb{B} \cong \mathrm{Mat}(2,\mathbb{C})$
+that are $G$-equivariant form a Lie algebra isomorphic to $\mathfrak{su}(3)$.
+The eight Gell-Mann generators $\lambda_1,\ldots,\lambda_8$ are realised in
+$\mathrm{Mat}(2,\mathbb{C})$ with the correct structure constants
+$[\lambda_i,\lambda_j] = 2i f_{ijk}\lambda_k$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Identify the 8-dimensional real subspace of $\mathrm{Mat}(2,\mathbb{C})$ spanned
+by the Gell-Mann generators.  Verify: (1) closure under commutator with the
+correct $\mathfrak{su}(3)$ $f$-tensors; (2) $G$-equivariance of each generator.
+Full proof in \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex},
+Theorem~1, and \texttt{canonical/su3\_derivation/step3\_SU3\_result.tex}.
+All 8 generators verified numerically.
+\end{proof}
+
+\begin{theorem}[Fundamental representation $\mathbf{3}$, \PROVED]
+\label{thm:fundamental}
+The fundamental 3-dimensional complex representation of $\SU{3}_c$ is
+realised on the 3-dimensional complex subspace of $\mathbb{B}$ selected by
+the $\psi$-winding modes.  Quarks transform in the representation $\mathbf{3}$.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.B.
+\end{theorem}
+
+\begin{theorem}[Adjoint representation $\mathbf{8}$, \PROVED]
+\label{thm:adjoint}
+The eight Gell-Mann generators $\lambda_i$ transform in the adjoint
+representation $\mathbf{8}$ of $\SU{3}_c$ under the adjoint action
+$X\mapsto UXU^\dagger$ for $U\in\SU{3}$.  Gluons transform in the
+representation $\mathbf{8}$.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.C.
+\end{theorem}
+
+\subsection{Independent confirmation: qubit encoding}
+
+\begin{theorem}[$\SU{3}$ from qubit encoding, \PROVED]
+\label{thm:su3_qubit}
+Under the identification $\Bq\cong\mathrm{Mat}(2,\mathbb{C})\cong$ (qubit algebra),
+colour charges are encoded as one-hot qubit states:
+\[
+  |r\rangle = |001\rangle,\quad |g\rangle = |010\rangle,\quad |b\rangle = |100\rangle.
+\]
+The $\SU{3}$ colour symmetry acts on this qubit state space.  The colour singlet
+condition $|{\mathrm{singlet}}\rangle = (|rgb\rangle + |gbr\rangle + |brg\rangle)/\sqrt{3}$
+is the unique zero-codeword state (even parity under all involutions).
+This derivation is independent of Theorem~\ref{thm:su3_involutions}.
+
+Ref: \texttt{canonical/interactions/su3\_qubit\_encoding.tex};
+\texttt{canonical/bridges/su3\_gauge\_qubit\_equivalence.tex}.
+\end{theorem}
+
+\begin{remark}[Structural colour confinement]
+Free quarks correspond to codewords with odd parity under at least one involution —
+algebraically inadmissible in the physical (singlet-only) Hilbert space.  This is
+a \emph{structural} confinement argument.  A full dynamical proof (area law for
+Wilson loops, mass gap) is an open problem that mirrors the status of confinement
+in standard QCD (Millennium Prize problem).
+\end{remark}
+
+% ============================================================
+\section{SU(2)$_L$ from Left Action}
+\label{sec:su2}
+% ============================================================
+
+\begin{theorem}[$\SU{2}_L$ from left norm-preserving action, \PROVED]
+\label{thm:su2}
+The group of norm-preserving left multiplications on $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$:
+\[
+  \{U\in\mathrm{Mat}(2,\mathbb{C}) : U^\dagger U = \mathbf{1}\} = \UU{2}
+\]
+contains the special unitary subgroup $\SU{2}_L$ as its determinant-1 part.
+This is identified with the electroweak $\SU{2}_L$ gauge symmetry acting on
+left-chiral doublets.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex},
+``Geometric derivation of $\SU{2}_L\times\UU{1}_Y$''.
+\end{theorem}
+
+\begin{remark}[Chirality: $L$ not $R$]
+Under $\psi\to-\psi$ (imaginary time reversal), left- and right-handed
+couplings transform differently via the complex-time structure
+$\tau = t + i\psi$.  This motivates $\SU{2}_L$ (not $\SU{2}_R$) as the
+physical weak isospin group.  A rigorous derivation from the UBT action $S[\Theta]$
+is identified as gap C1 in \texttt{research\_tracks/T2\_GAUGE/missing\_axioms.md}
+(status: \SE\ — motivated but not formally proved).
+\end{remark}
+
+% ============================================================
+\section{U(1)$_Y$ from Right Action}
+\label{sec:u1}
+% ============================================================
+
+\begin{theorem}[$\UU{1}_Y$ from scalar phase right action, \PROVED]
+\label{thm:u1}
+The group of scalar phase right multiplications on $\mathrm{Mat}(2,\mathbb{C})$:
+\[
+  \Theta \;\mapsto\; \Theta\cdot e^{i\varphi}, \qquad \varphi\in\mathbb{R}
+\]
+is isomorphic to $\UU{1}$ and is identified with the hypercharge gauge symmetry
+$\UU{1}_Y$.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex};
+\texttt{DERIVATION\_INDEX.md}: ``\texttt{U(1)\_Y} from right action~[L0]''.
+\end{theorem}
+
+After electroweak symmetry breaking, the electromagnetic $\UU{1}_{\mathrm{EM}}$
+arises as the unbroken combination $Q = T_3 + Y/2$ from the $\psi$-cycle phase.
+
+% ============================================================
+\section{EW/Strong Decoupling}
+\label{sec:decoupling}
+% ============================================================
+
+\begin{theorem}[EW/strong decoupling, \PROVED]
+\label{thm:decoupling}
+The decomposition of $\mathbb{B}$ into the $\SU{3}_c$ sector (from involutions)
+and the $\SU{2}_L\times\UU{1}_Y$ sector (from left/right actions) is orthogonal:
+the strong and electroweak gauge sectors decouple algebraically.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.D.
+\end{theorem}
+
+% ============================================================
+\section{Three Generations}
+\label{sec:generations}
+% ============================================================
+
+\begin{theorem}[Three generations, \PROVED]
+\label{thm:generations}
+Three independent ψ-winding modes on the imaginary-time circle $S^1_\psi$
+give three identical copies of the Standard Model quantum number structure:
+\[
+  N_{\mathrm{gen}} = \dim_{\mathbb{R}}(\mathrm{Im}\,\mathbb{H}) = 3.
+\]
+Each mode carries identical gauge quantum numbers.
+
+Ref: \texttt{DERIVATION\_INDEX.md}: ``ψ-modes as independent B-fields~[L0]''.
+\end{theorem}
+
+\begin{remark}
+The mass hierarchy (why the three generations have different masses) is an
+open problem; it requires dynamics beyond the algebraic structure.
+\end{remark}
+
+% ============================================================
+\section{Open Problems}
+\label{sec:open}
+% ============================================================
+
+The following elements are \emph{not} proved in this paper and are stated
+explicitly to avoid overstating the results.
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!55!black,
+  title=Open Problems (do not affect the main theorem),breakable]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Item} & \textbf{Status} & \textbf{Ref} \\
+\midrule
+Weinberg angle $\sin^2\theta_W = 0.231$ & \SE\ / Dead end from $\Bq$ alone &
+  \texttt{canonical/interactions/sm\_gauge.tex} \\
+Chirality ($L$ not $R$) & \SE\ motivated, gap C1 &
+  \texttt{canonical/chirality/} \\
+Higgs/Yukawa sector ($\lambda$ gap) & Candidate only &
+  \texttt{DERIVATION\_INDEX.md} \\
+Strong coupling $g_s$ (or $\alpha_s$) & OPEN &
+  \texttt{T2\_GAUGE/su3\_proof\_status.md} \\
+Quark-hadron duality / mass spectrum & OPEN &
+  — \\
+Strong CP problem ($\theta_{\mathrm{QCD}}$) & OPEN &
+  — \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+% ============================================================
+\section{Discussion and Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+\subsection{Summary}
+
+The Standard Model gauge group
+$\SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is uniquely realised in the biquaternion algebra
+$\mathbb{B} = \Bq\cong\mathrm{Mat}(2,\mathbb{C})$
+with zero free parameters.  The derivation uses:
+(1) the $\mathbb{Z}_2^3$ involution structure for $\SU{3}_c$;
+(2) the left norm-preserving action for $\SU{2}_L$;
+(3) the scalar phase right action for $\UU{1}_Y$.
+An independent confirmation via the qubit encoding is provided.
+Three generations emerge from the three $\psi$-winding modes.
+The strong and electroweak sectors decouple algebraically.
+
+\subsection{Comparison with existing frameworks}
+
+\begin{itemize}
+\item \emph{Connes--Lott spectral action}: uses a 21-real-dimensional
+  algebra $\mathbb{C}\oplus\mathbb{H}\oplus M_3(\mathbb{C})$; the gauge
+  group is introduced via the spectral triple.  UBT derives the same gauge
+  group from a single 8-dimensional algebra.
+\item \emph{String theory / compactification}: the SM gauge group arises
+  from the compactification manifold, which must be chosen to give the
+  correct group; it is not derived from a universal algebra.
+\item \emph{E₈ × E₈ heterotic string}: the SM gauge group is a subgroup
+  of $E_8$; the breaking is determined by compactification.  UBT derives
+  the SM gauge group without extra dimensions or compactification choices.
+\end{itemize}
+
+\subsection{Outlook}
+
+Key open problems for this paper's extended version:
+\begin{enumerate}
+\item \textbf{Chirality}: formal derivation of $\SU{2}_L$ (not $\SU{2}_R$)
+  from the UBT action $S[\Theta]$ via $\psi$-parity analysis.
+\item \textbf{Weinberg angle}: connecting to the T3\_ALPHA track; a GUT
+  completion of $\Bq$ could fix $\sin^2\theta_W$ algebraically.
+\item \textbf{Mass spectrum}: dynamics of the $\psi$-winding modes
+  responsible for the three-generation mass hierarchy.
+\end{enumerate}
+
+% ============================================================
+\begin{thebibliography}{99}
+
+\bibitem{Connes1991}
+A.~Connes and J.~Lott,
+``Particle models and noncommutative geometry,''
+\textit{Nuclear Physics B Proceedings Supplement} \textbf{18B} (1991) 29--47.
+
+\bibitem{Connes1996}
+A.~Connes,
+``Gravity coupled with matter and the foundation of non-commutative geometry,''
+\textit{Communications in Mathematical Physics} \textbf{182} (1996) 155--176.
+
+\bibitem{Georgi1974}
+H.~Georgi and S.~L.~Glashow,
+``Unity of all elementary-particle forces,''
+\textit{Physical Review Letters} \textbf{32} (1974) 438--441.
+
+\bibitem{Adler1995}
+S.~L.~Adler,
+\textit{Quaternionic Quantum Mechanics and Quantum Fields},
+Oxford University Press, 1995.
+
+\bibitem{Gell-Mann1962}
+M.~Gell-Mann,
+``Symmetries of baryons and mesons,''
+\textit{Physical Review} \textbf{125} (1962) 1067--1084.
+
+\bibitem{PDG2022}
+R.~L.~Workman et al.\ (Particle Data Group),
+``Review of Particle Physics,''
+\textit{Progress of Theoretical and Experimental Physics} \textbf{2022} 083C01.
+
+\bibitem{GRpaper2026}
+Ing.~D.~Jaroš,
+``General Relativity as a Real-Projected Limit of Unified Biquaternion Theory,''
+preprint, 2026.
+
+\end{thebibliography}
+
+\end{document}

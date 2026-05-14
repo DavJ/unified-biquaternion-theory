@@ -1,0 +1,267 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{slashed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \title{\textbf{Step 3: Dirac Structure from the Biquaternion Algebra $\mathbb{C}\otimes\mathbb{H}$}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We verify the claim that the Dirac gamma matrices and the Dirac equation emerge from
+  the biquaternion algebra $\mathbb{B} = \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$.
+  \textbf{Verdict: SKETCH.}
+  The algebra isomorphism $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$ and the
+  identification of Pauli matrices with quaternion generators is a \emph{proved} algebraic fact.
+  The construction of Dirac gamma matrices via the tensor product $\mathbb{B}\otimes\mathbb{B}$
+  is structurally complete.  However, the derivation of the massive Dirac equation from the
+  Euler--Lagrange equations of $S[\Theta]$ contains a gap: the mass term requires
+  constraining $\Theta$ to the spinorial subspace plus an identification of the mass parameter,
+  neither of which is derived from $S[\Theta]$ without additional assumptions.
+  \end{abstract}
+\fi
+
+\section{Step 3: Dirac Structure from $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:dirac_emergence}
+
+\subsection{The Algebra Isomorphism}
+
+\begin{theorem}[Standard Algebra Isomorphism]
+\label{thm:biquat_iso}
+As algebras over $\mathbb{R}$:
+\[
+  \mathbb{B} \;=\; \mathbb{C}\otimes_\mathbb{R}\mathbb{H} \;\cong\; \mathrm{Mat}(2,\mathbb{C}).
+\]
+\end{theorem}
+
+\begin{proof}[Proof (standard; included for completeness)]
+The quaternion basis $\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}$ admits the $2\times 2$
+complex matrix representation:
+\begin{equation}
+  1 \mapsto \begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
+  \mathbf{i} \mapsto \begin{pmatrix}i&0\\0&-i\end{pmatrix},\quad
+  \mathbf{j} \mapsto \begin{pmatrix}0&1\\-1&0\end{pmatrix},\quad
+  \mathbf{k} \mapsto \begin{pmatrix}0&i\\i&0\end{pmatrix}.
+  \label{eq:quat_to_mat}
+\end{equation}
+These satisfy $\mathbf{i}^2=\mathbf{j}^2=\mathbf{k}^2=\mathbf{ijk}=-1$ and generate
+$\mathrm{Mat}(2,\mathbb{C})$ (dimension $4$ over $\mathbb{C}$, or $8$ over $\mathbb{R}$).
+Since $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$ also has dimension $8$ over $\mathbb{R}$
+and is a simple algebra, the map is an isomorphism.
+\end{proof}
+
+\begin{resultbox}
+\textbf{Established (proved)}: $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$,
+with generators mapping to $i\sigma_1, i\sigma_2, i\sigma_3$ (up to signs), where $\sigma_a$
+are the Pauli matrices.
+\end{resultbox}
+
+\subsection{Pauli Matrices from Biquaternion Generators}
+
+Under the map \eqref{eq:quat_to_mat}, the imaginary-unit quaternion generators satisfy:
+\begin{align}
+  \mathbf{i}\mapsto i\sigma_3,\quad
+  \mathbf{j}\mapsto i\sigma_2,\quad
+  \mathbf{k}\mapsto i\sigma_1,
+\end{align}
+where
+\begin{equation}
+  \sigma_1 = \begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  \sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+  \sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+
+\begin{resultbox}
+\textbf{Established (proved)}: Pauli matrices $\sigma_1,\sigma_2,\sigma_3$ are the generators
+of the biquaternion algebra $\mathbb{B}$ under the isomorphism of Theorem~\ref{thm:biquat_iso}.
+They are \emph{not postulated}; they arise from the quaternion multiplication rules.
+\end{resultbox}
+
+\subsection{Dirac Matrices from $\mathbb{B}\otimes\mathbb{B}$}
+
+The Dirac algebra requires a $4\times 4$ representation (Clifford algebra $\mathrm{Cl}_{1,3}$).
+This arises from the tensor product:
+\begin{equation}
+  \mathrm{Mat}(2,\mathbb{C})\otimes\mathrm{Mat}(2,\mathbb{C}) \;\cong\; \mathrm{Mat}(4,\mathbb{C}).
+  \label{eq:tensor_product}
+\end{equation}
+
+The standard Weyl representation of the Dirac matrices is:
+\begin{equation}
+  \gamma^0 = \begin{pmatrix}0 & \mathbb{1}_2\\\mathbb{1}_2 & 0\end{pmatrix},\qquad
+  \gamma^i = \begin{pmatrix}0 & \sigma_i\\-\sigma_i & 0\end{pmatrix},\quad i=1,2,3.
+  \label{eq:weyl_gamma}
+\end{equation}
+
+These are tensor products of Pauli matrices:
+\begin{equation}
+  \gamma^0 = \sigma_1\otimes\mathbb{1}_2,\qquad
+  \gamma^i = i\sigma_2\otimes\sigma_i,\quad i=1,2,3.
+  \label{eq:gamma_tensor}
+\end{equation}
+
+\begin{proposition}[Gamma Matrices from Biquaternion Algebra]
+The Dirac gamma matrices in the Weyl representation are tensor products of the generators
+of $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$.  Explicitly, via \eqref{eq:gamma_tensor},
+each $\gamma^\mu$ lies in $\mathbb{B}\otimes\mathbb{B}\cong\mathrm{Mat}(4,\mathbb{C})$.
+\end{proposition}
+
+\begin{proof}
+Direct computation using \eqref{eq:tensor_product}.  The Clifford relation
+$\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}\mathbb{1}_4$ is verified by the identity
+$\{\sigma_i,\sigma_j\}=2\delta_{ij}$ and the anticommutation of Pauli matrices.
+\end{proof}
+
+\begin{resultbox}
+\textbf{Established (proved)}: The Dirac gamma matrices in Weyl representation arise from
+the tensor product of two copies of the biquaternion algebra.  No additional structure is
+needed beyond $\mathbb{C}\otimes\mathbb{H}$.
+\end{resultbox}
+
+\subsection{The Dirac-like Operator in UBT}
+
+From \texttt{ubt/operators/dirac\_like\_operator.tex} (Theorem~2.1 in that document):
+
+\begin{theorem}[UBT Dirac Operator; from \texttt{dirac\_like\_operator.tex}]
+The operator
+\[
+  \mathcal{D}\Theta = i\gamma^\mu\nabla_\mu\Theta
+\]
+acting on the biquaternionic bundle $\mathcal{E} = P\times_{G_{\rm tot}}(\mathbb{B}\otimes S\otimes V_G)$
+is uniquely determined (up to gauge/unitary equivalence) by requiring:
+\begin{enumerate}
+  \item Clifford algebra structure: symbol $\sigma(\mathcal{D})=\gamma^\mu\xi_\mu$,
+  \item Gauge covariance: $[\mathcal{D}, U]=0$ for $U\in G_{\rm gauge}$,
+  \item Metric compatibility.
+\end{enumerate}
+\end{theorem}
+
+The proof in \texttt{dirac\_like\_operator.tex} is complete and uses only properties of
+the Levi-Civita theorem plus gauge theory.
+
+\subsection{Does the Dirac Equation Follow from $S[\Theta]$?}
+
+The Dirac equation $(i\gamma^\mu\partial_\mu - m)\psi = 0$ follows from varying the
+Dirac action:
+\begin{equation}
+  S_{\rm Dirac} = \int\bar\psi(i\gamma^\mu\partial_\mu - m)\psi\,d^4x.
+\end{equation}
+
+\begin{gapbox}
+\textbf{Gap D1 — Spinorial Subspace Constraint Not Derived}:
+In the UBT action $S[\Theta]$, the field $\Theta$ takes values in the full biquaternionic
+bundle $\mathbb{B}\otimes S\otimes V_G$.  The Dirac equation acts on the spinor subspace $S$.
+
+Appendix~FORMAL (Proposition 2) states: ``when $\Theta$ is constrained to the spinorial
+subspace\ldots the linearized field equation becomes the Dirac equation.''
+
+This constraint is \emph{not derived} from $S[\Theta]$.  It must be imposed by hand.
+Without it, the Euler-Lagrange equations of $S[\Theta]$ give a more general equation.
+
+\textbf{Status}: OPEN sub-task.
+\end{gapbox}
+
+\begin{gapbox}
+\textbf{Gap D2 — Mass Term Origin}:
+The mass term $m\bar\psi\psi$ in the Dirac action requires an explicit source.
+In UBT, the mass of the electron/fermion is a separate derivation problem
+(addressed in \texttt{appendix\_E\_m0\_derivation\_strict.tex}).
+
+The Dirac \emph{equation} (massless) $i\gamma^\mu\partial_\mu\psi=0$ follows naturally
+from $\mathcal{D}\Theta = 0$ in the spinorial sector.  The massive case requires identifying
+a UBT-derived mass parameter.
+
+\textbf{Status}: OPEN sub-task (linked to fermion mass problem).
+\end{gapbox}
+
+\subsection{Summary of What Is Established}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Status} & \textbf{Source} \\
+\hline
+$\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$ (algebra iso.)
+  & \textbf{Proved} & Standard algebra \\
+Pauli matrices $\sigma_i$ from quaternion generators
+  & \textbf{Proved} & Theorem~\ref{thm:biquat_iso} \\
+$\gamma^\mu$ from $\mathbb{B}\otimes\mathbb{B}$ tensor products
+  & \textbf{Proved} & \eqref{eq:gamma_tensor} \\
+$\mathcal{D} = i\gamma^\mu\nabla_\mu$ uniquely determined
+  & \textbf{Proved} & \texttt{dirac\_like\_operator.tex} Thm.~2.1 \\
+Massless Dirac eq.\ from $\mathcal{D}\Theta=0$ in spinorial sector
+  & \textbf{Sketch} & Gap D1 (constraint not derived) \\
+Massive Dirac eq.\ from $S[\Theta]$
+  & \textbf{Sketch} & Gap D2 (mass term) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Verdict}
+
+\begin{center}
+\large\textbf{VERDICT: SKETCH}
+\end{center}
+
+The \emph{algebraic} emergence of Dirac structure from $\mathbb{C}\otimes\mathbb{H}$ is
+\textbf{fully proved}:
+\begin{itemize}
+  \item $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$ (standard algebra),
+  \item Pauli matrices arise from quaternion generators,
+  \item Dirac $\gamma^\mu$ arise from $\mathbb{B}\otimes\mathbb{B}$,
+  \item The Dirac-like operator $\mathcal{D}$ is uniquely determined.
+\end{itemize}
+
+The \emph{dynamical} emergence of the Dirac \emph{equation} from $S[\Theta]$ is a
+\textbf{Sketch}, blocked by:
+\begin{enumerate}
+  \item Deriving the spinorial subspace constraint from $S[\Theta]$ (Gap D1),
+  \item Providing a UBT-derived mass term (Gap D2).
+\end{enumerate}
+
+\noindent\textbf{Source files checked}:
+\begin{itemize}
+  \item \texttt{ubt/operators/dirac\_like\_operator.tex}
+  \item \texttt{consolidation\_project/appendix\_FORMAL\_qm\_gr\_unification.tex}
+\end{itemize}
+\noindent\textbf{Date}: 2026-03-06\\
+\textbf{Author}: David Jaroš
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

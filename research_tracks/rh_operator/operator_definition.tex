@@ -1,0 +1,325 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{gap}{Open Gap}
+
+% Proof-status commands
+\newcommand{\proved}[1]{\textbf{[PROVED]} #1}
+\newcommand{\heuristic}[1]{\textbf{[HEURISTIC]} #1}
+\newcommand{\speculative}[1]{\textbf{[SPECULATIVE]} #1}
+
+\title{Candidate Self-Adjoint Operator for the UBT Hilbert--P\'olya Programme:\\
+Operator Definition and Hilbert Space Framework}
+\author{Ing.\ David Jaro\v{s}\\
+\small Unified Biquaternion Theory Research\\
+\small \texttt{research\_tracks/rh\_operator/}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We construct an explicit candidate self-adjoint operator $\hat{H}_\psi$ arising
+from the $\psi$-sector of the Unified Biquaternion Theory (UBT), to be compared
+against the spectrum of the Riemann zeta function within the Hilbert--P\'olya
+programme.  We define the Hilbert space, domain, and boundary conditions,
+state a candidate effective potential, and summarise the open gaps that must be
+closed before any connection to the Riemann Hypothesis (RH) can be claimed.
+
+\medskip
+\noindent\textbf{Proof-status key:} \proved{} established rigorously;
+\heuristic{} plausible but not proved; \speculative{} conjectural.
+\end{abstract}
+
+\tableofcontents
+
+\bigskip
+\noindent\textbf{Critical warning.}  This document \emph{does not} claim or
+imply a proof of the Riemann Hypothesis.  Any construction that takes the
+non-trivial zeros $\tfrac12+i\gamma_n$ as input is circular.  All claims are
+explicitly labelled by proof status.
+
+%------------------------------------------------------------
+\section{Background: The Hilbert--P\'olya Programme}
+%------------------------------------------------------------
+
+\subsection{Conjecture}
+
+The Hilbert--P\'olya conjecture asserts the existence of a self-adjoint operator
+$T$ on a Hilbert space $\mathscr{H}$ such that
+\[
+  \operatorname{spec}(T) = \bigl\{\,\gamma_n \in \mathbb{R} :
+  \zeta(\tfrac12 + i\gamma_n) = 0,\; \gamma_n > 0\,\bigr\}.
+\]
+Under RH the zeros lie on the critical line, so the spectrum is real, which is
+automatic for a self-adjoint operator.
+
+\subsection{Known candidate operators}
+
+\begin{enumerate}
+\item \textbf{Berry--Keating} \cite{BK99}: semiclassical $H = xp$ on the
+      half-line.  The classical periodic orbits produce a prime-counting
+      contribution, but the quantisation is not fully defined.
+\item \textbf{Connes} \cite{C99}: adelic trace formula; cokernel of a
+      multiplication operator on $L^2(\mathbb{A}_\mathbb{Q}/\mathbb{Q}^*)$.
+\item \textbf{Bost--Connes} \cite{BC95}: $C^*$-algebraic system whose
+      partition function is $\zeta(s)$ at inverse temperature $\beta = s$.
+\item \textbf{Schr\"odinger--zeta operators} (various): $-d^2/dx^2 + V(x)$
+      with $V$ chosen to mimic zero spacings.
+\end{enumerate}
+
+%------------------------------------------------------------
+\section{UBT \texorpdfstring{$\psi$}{psi}-Sector Framework}
+%------------------------------------------------------------
+
+\subsection{Fundamental field}
+
+The UBT fundamental field is
+\[
+  \Theta(q,\tau), \qquad q \in \mathbb{C}\otimes\mathbb{H}, \quad
+  \tau = t + i\psi \in \mathbb{C}.
+\]
+The imaginary time component $\psi$ parameterises a compact direction of
+circumference $L_\psi$ (to be determined from the UBT moduli).  Integrating the
+UBT Lagrangian over all spatial biquaternion directions $q$ yields an effective
+1-dimensional theory in the $\psi$ variable.
+
+\subsection{Hilbert space}
+\label{sec:hilbert}
+
+\begin{definition}[Hilbert space]
+  \label{def:hilbert}
+  \[
+    \mathscr{H}_\psi := L^2\bigl(S^1_{L_\psi},\, d\psi\bigr)
+  \]
+  where $S^1_{L_\psi} = \mathbb{R}/(L_\psi\mathbb{Z})$ is the circle of
+  circumference $L_\psi$.  The inner product is
+  \[
+    \langle f, g \rangle
+    = \int_0^{L_\psi} \overline{f(\psi)}\, g(\psi)\, d\psi.
+  \]
+\end{definition}
+
+\textbf{Proof status}: \proved{The space $L^2(S^1_{L_\psi})$ is a standard
+separable Hilbert space by the theory of square-integrable functions on a
+compact Riemannian manifold.}  The identification $L_\psi = 2\pi$ is
+\heuristic{motivated by dimensional analysis; an independent derivation from
+UBT moduli is an open gap (Gap~\ref{gap:Lpsi}).}
+
+%------------------------------------------------------------
+\section{Candidate Operator}
+%------------------------------------------------------------
+
+\subsection{Formal definition}
+
+\begin{definition}[Candidate UBT $\psi$-operator]
+  \label{def:operator}
+  Let $D_0 = C^\infty_\mathrm{per}(S^1_{L_\psi})$ be the space of smooth
+  $L_\psi$-periodic functions.  Define
+  \[
+    \hat{H}_\psi := -\frac{d^2}{d\psi^2} + V_\mathrm{eff}(\psi)
+  \]
+  on the domain $D_0 \subset \mathscr{H}_\psi$, with periodic boundary
+  conditions
+  \[
+    f(0) = f(L_\psi), \qquad f'(0) = f'(L_\psi).
+  \]
+\end{definition}
+
+\subsection{Candidate effective potential}
+\label{sec:Veff}
+
+From the UBT curvature of the $\psi$-direction, the effective potential is
+expected to take the form
+\[
+  V_\mathrm{eff}(\psi) = V_0 + \kappa\,\langle\Theta^\dagger\Theta\rangle_q
+  \big|_\psi,
+\]
+where the angle brackets denote integration over the spatial biquaternion
+directions and $\kappa$ is the UBT coupling constant.  In the prime-stability
+context (cf.\ canonical/alpha/) the discrete analogue is
+\[
+  V_\mathrm{eff}(n) = n^2 - B\, n\ln n, \qquad
+  B \approx 46 \text{ (empirically)}.
+\]
+
+\textbf{Proof status}: The form $n^2 - Bn\ln n$ is
+\heuristic{motivated by a one-loop renormalisation group argument (see
+\texttt{rg\_nlogn/} track); a full derivation of $V_\mathrm{eff}(\psi)$
+from the UBT Lagrangian is an open gap (Gap~\ref{gap:Veff}).}
+
+\subsection{Free ($V_\mathrm{eff}=0$) case}
+
+\begin{proposition}[Free spectrum]
+  When $V_\mathrm{eff} = 0$, the operator $\hat{H}_\psi = -d^2/d\psi^2$
+  with periodic boundary conditions on $S^1_{L_\psi}$ is essentially
+  self-adjoint on $D_0$ and has spectrum
+  \[
+    \operatorname{spec}(\hat{H}_\psi^{(0)})
+    = \Bigl\{\, \lambda_n = \Bigl(\frac{2\pi n}{L_\psi}\Bigr)^2 :
+    n \in \mathbb{Z} \,\Bigr\}.
+  \]
+\end{proposition}
+
+\textbf{Proof}: \proved{Standard Fourier analysis on $L^2(S^1_{L_\psi})$.
+The eigenfunctions are $e_n(\psi) = L_\psi^{-1/2} e^{2\pi i n\psi/L_\psi}$,
+which form a complete orthonormal basis.}
+
+%------------------------------------------------------------
+\section{Sturm--Liouville Form}
+%------------------------------------------------------------
+
+The operator $\hat{H}_\psi = -d^2/d\psi^2 + V_\mathrm{eff}(\psi)$ is in
+standard Sturm--Liouville form
+\[
+  \mathcal{L}f = -\frac{d}{d\psi}\!\left[p(\psi)\frac{df}{d\psi}\right]
+  + q(\psi)f = \lambda w(\psi) f
+\]
+with $p = w = 1$ and $q = V_\mathrm{eff}$.  The periodic boundary conditions
+are symmetric (Lagrange identity vanishes), so $\hat{H}_\psi$ is a symmetric
+operator for any real, measurable $V_\mathrm{eff}$.
+
+\textbf{Proof status}: \proved{Symmetry of $\hat{H}_\psi$ on $D_0$ for any
+real $V_\mathrm{eff} \in L^2(S^1_{L_\psi})$.  Self-adjointness requires
+additional work (see selfadjointness\_attempt.tex).}
+
+%------------------------------------------------------------
+\section{Pseudo-Differential and Theta-Kernel Variants}
+%------------------------------------------------------------
+
+\subsection{Fractional Laplacian variant}
+\label{sec:pseudodiff}
+
+An alternative candidate (motivated by the Berry--Keating $H = xp$ analogy)
+is the pseudo-differential operator
+\[
+  \hat{H}^{(s)}_\psi = (-d^2/d\psi^2)^s
+\]
+for some $s \in (0,1)$.  Its spectrum is $\lambda_n^{(s)} = |2\pi n/L_\psi|^{2s}$,
+which gives a different spectral density.
+
+\textbf{Proof status}: \speculative{No derivation of $s \neq 1$ from UBT;
+this is a phenomenological alternative.}
+
+\subsection{Theta-kernel operator}
+
+A trace-class candidate is the theta-kernel operator
+\[
+  K_t f(\psi)
+  = \int_0^{L_\psi} \Theta_3\!\left(\frac{\psi-\psi'}{L_\psi}, it\right)
+    f(\psi')\, d\psi',
+\]
+where $\Theta_3(z,\tau) = \sum_{n\in\mathbb{Z}} e^{\pi i n^2 \tau + 2\pi i nz}$
+is the Jacobi theta function.  The operator $K_t$ is the heat semigroup
+$e^{-t\hat{H}_\psi^{(0)}}$ for the free Hamiltonian.
+
+\textbf{Proof status}: \proved{For the free case; the perturbed semigroup
+$e^{-t\hat{H}_\psi}$ requires the Duhamel expansion and gap closure on
+$V_\mathrm{eff}$ (Gap~\ref{gap:Veff}).}
+
+%------------------------------------------------------------
+\section{Open Gaps}
+%------------------------------------------------------------
+
+\begin{gap}[$L_\psi$ from UBT moduli]
+  \label{gap:Lpsi}
+  Derive the circumference $L_\psi$ of the compact $\psi$-direction from the
+  UBT field equations and moduli space.  Currently $L_\psi = 2\pi$ is a
+  conventional normalisation, not a derived quantity.
+
+  \textbf{Assumptions required}: UBT Lagrangian fully specified including
+  boundary conditions; moduli stabilisation mechanism.
+
+  \textbf{Falsification}: If the UBT moduli space has no compact $\psi$-sector,
+  the entire $\hat{H}_\psi$ programme collapses.
+\end{gap}
+
+\begin{gap}[Explicit $V_\mathrm{eff}$ derivation]
+  \label{gap:Veff}
+  Derive $V_\mathrm{eff}(\psi)$ explicitly from the UBT Lagrangian by
+  integrating over spatial biquaternion directions.  Show that
+  $V_\mathrm{eff} \in L^2(S^1_{L_\psi})$ or $V_\mathrm{eff} \in L^\infty$.
+
+  \textbf{Assumptions required}: UBT field equations; background field
+  approximation for $\langle\Theta^\dagger\Theta\rangle_q$.
+
+  \textbf{Falsification}: If $V_\mathrm{eff}$ diverges or is not in
+  $L^p$ for any $p \geq 2$, the Kato--Rellich approach fails.
+\end{gap}
+
+\begin{gap}[Connection to prime-stability $V(n)$]
+  \label{gap:discrete_continuous}
+  Establish the precise relation between the discrete effective potential
+  $V(n) = n^2 - Bn\ln n$ (on $n \in \mathbb{N}$) and the continuous
+  $V_\mathrm{eff}(\psi)$ (on $S^1_{L_\psi}$).  Is there a ``semi-classical''
+  limit $\psi \leftrightarrow n$?
+
+  \textbf{Assumptions required}: KK tower interpretation; natural units.
+
+  \textbf{Falsification}: If the discrete and continuous spectra are structurally
+  incompatible (e.g.\ different spectral dimensions), the analogy breaks.
+\end{gap}
+
+%------------------------------------------------------------
+\section{Assumptions and Falsification Summary}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Claim & Status & Assumption & Falsification path \\
+\hline
+$\mathscr{H}_\psi = L^2(S^1)$ & \textbf{Proved} & UBT has compact $\psi$ & $\psi$ non-compact \\
+Free spectrum $\lambda_n = (2\pi n)^2$ & \textbf{Proved} & $V_\mathrm{eff}=0$ & --- \\
+$L_\psi = 2\pi$ & \textbf{Heuristic} & Conventional normalisation & Moduli derivation \\
+$V_\mathrm{eff}$ from UBT & \textbf{Open gap} & Background field approx. & Divergent potential \\
+Spectrum $\sim$ Riemann zeros & \textbf{Speculative} & G1--G6 all closed & Numerical mismatch \\
+\hline
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\section{Next Steps}
+%------------------------------------------------------------
+
+\begin{enumerate}
+\item Close Gap~\ref{gap:Lpsi}: derive $L_\psi$ from UBT moduli.
+\item Close Gap~\ref{gap:Veff}: compute $V_\mathrm{eff}(\psi)$ from the
+      Lagrangian.
+\item Verify $V_\mathrm{eff} \in L^\infty$ or $L^2$ (Kato--Rellich check).
+\item Proceed to \texttt{selfadjointness\_attempt.tex}.
+\item Compute the perturbed spectrum numerically for comparison against
+      known Riemann zeros (see \texttt{spectral\_statistics.md}).
+\end{enumerate}
+
+%------------------------------------------------------------
+\begin{thebibliography}{9}
+\bibitem{BK99} M.V.\ Berry and J.P.\ Keating,
+  ``$H = xp$ and the Riemann zeros,''
+  \emph{Supersymmetry and Trace Formulae}, 1999.
+\bibitem{C99} A.\ Connes, ``Trace formula in noncommutative geometry and
+  the zeros of the Riemann zeta function,''
+  \emph{Selecta Mathematica} \textbf{5} (1999), 29--106.
+\bibitem{BC95} J.-B.\ Bost and A.\ Connes, ``Hecke algebras, type III
+  factors and phase transitions with spontaneous symmetry breaking,''
+  \emph{Selecta Mathematica} \textbf{1} (1995), 411--457.
+\bibitem{ReedSimon2} M.\ Reed and B.\ Simon, \emph{Methods of Modern
+  Mathematical Physics, Vol.\ II: Fourier Analysis, Self-Adjointness},
+  Academic Press, 1975.
+\end{thebibliography}
+
+\end{document}

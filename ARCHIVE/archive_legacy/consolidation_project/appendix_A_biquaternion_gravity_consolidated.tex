@@ -1,0 +1,142 @@
+% VERSION: v17 Stable Release
+
+\section{Biquaternion Gravity}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Biquaternionic Geometry Lock-In]
+\textbf{Gravitational field in UBT is fundamentally biquaternionic.}
+
+The fundamental objects are:
+\begin{itemize}
+\item \textbf{Metric}: $\mathcal{G}_{\mu\nu}(x) \in \mathbb{B}$, classical metric is $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$
+\item \textbf{Connection}: $\Omega_\mu(x) \in \mathbb{B}$, Christoffel symbols are $\Gamma^\lambda_{\mu\nu} := \text{Re}(\Omega^\lambda_{\mu\nu})$
+\item \textbf{Curvature}: $\mathcal{R}_{\mu\nu} \in \mathbb{B}$, Ricci tensor is $R_{\mu\nu} := \text{Re}(\mathcal{R}_{\mu\nu})$
+\item \textbf{Stress-energy}: $\mathcal{T}_{\mu\nu} \in \mathbb{B}$, classical stress-energy is $T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})$
+\end{itemize}
+
+Field equation: $\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}$ (biquaternionic). Einstein equations arise only after $\text{Re}(\cdot)$ projection.
+\end{tcolorbox}
+
+This appendix presents the gravitational sector of the Unified Biquaternion Theory (UBT).
+It combines the core theoretical framework from the original Biquaternion Gravity appendix
+with the detailed analysis from the Quantum Gravity solution files, reformulated for
+clarity and coherence.
+
+\subsection{Introduction}
+
+The gravitational field in UBT emerges naturally from the covariant formulation of the
+biquaternionic tensor-spinor field equations. UBT generalizes Einstein's General Relativity (GR) 
+by embedding the metric tensor in a biquaternionic field $\Theta(q,\tau)$ defined over 
+complex time $\tau = t + i\psi$. 
+
+\textbf{Note on canonical complex time}: For the gravitational sector, canonical complex time $\tau = t + i\psi$ (AXIOM B) is the standard formulation in UBT. Gravity is effectively an Abelian field in this formulation, satisfying $[\Theta_i, \Theta_j] \approx 0$, consistent with the canonical complex time framework. Extended biquaternionic time formalism (with quaternionic vector components) represents a theoretical exploration for specialized contexts such as extreme rotating spacetimes or coupled non-Abelian gauge-gravity systems.
+
+The real part of this field corresponds to the classical 
+metric tensor, ensuring that \textbf{GR is fully contained within UBT as a special case}.
+
+In the real-valued limit (or equivalently, when the imaginary time component $\psi \to 0$), 
+the biquaternionic field equations reduce exactly to Einstein's field equations, including 
+all cases where the scalar curvature $R \neq 0$. The extended biquaternionic structure 
+introduces additional degrees of freedom that represent phase-like and nonlocal components 
+of spacetime, which have no signature in classical observations but may be relevant for 
+dark sector physics and quantum gravitational effects.
+
+In this formulation, spacetime is represented by a projection from a higher-dimensional
+complex manifold, and curvature is encoded in the covariant derivatives of the
+biquaternion field $\Theta(q,\tau)$. The gravitational interaction is therefore not an
+independent postulate, but a manifestation of the underlying field geometry.
+
+\subsection{Core Equations}
+
+The classical line element (real projection):
+\begin{equation}
+  ds^2 = g_{\mu\nu} \, dx^\mu dx^\nu ,
+\end{equation}
+where the metric tensor $g_{\mu\nu}$ is obtained as the real projection of the biquaternionic metric:
+\begin{equation}
+  g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}) = \Re\left[ \frac{\partial_\mu \Theta \cdot \partial_\nu \Theta^\dagger}{\mathcal{N}} \right],
+\end{equation}
+with $\mathcal{N}$ a normalisation factor ensuring the correct signature.
+
+The classical Einstein tensor (real projection of biquaternionic Einstein tensor):
+\begin{equation}
+  G_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}) = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R ,
+\end{equation}
+where curvature tensors $R_{\mu\nu}$ and $R$ propose from the biquaternionic connection
+coefficients via real projection: $\Gamma^\rho_{\mu\nu} := \text{Re}(\Omega^\rho_{\mu\nu})$.
+
+The gravitational field equations (GR limit after real projection):
+\begin{equation}
+  G_{\mu\nu} = 8\pi G \, T_{\mu\nu}[\Theta] .
+\end{equation}
+where $T_{\mu\nu} := \text{Re}(\mathcal{T}_{\mu\nu})$ is the real projection of the biquaternionic stress-energy tensor.
+
+\subsection{analysis Summary}
+
+The original analysis proceeds by first defining the biquaternionic connection
+compatible with the metric propose from $\Theta(q,\tau)$. The connection coefficients
+are computed as:
+\begin{equation}
+  \Gamma^\rho_{\mu\nu} =
+  \frac{1}{2} g^{\rho\sigma} \left( \partial_\mu g_{\nu\sigma}
+  + \partial_\nu g_{\mu\sigma}
+  - \partial_\sigma g_{\mu\nu} \right),
+\end{equation}
+where $g_{\mu\nu}$ is substituted from the field definition above.
+
+The curvature tensor $R^\rho_{\ \sigma\mu\nu}$ is then obtained from:
+\begin{equation}
+  R^\rho_{\ \sigma\mu\nu} =
+  \partial_\mu \Gamma^\rho_{\nu\sigma} -
+  \partial_\nu \Gamma^\rho_{\mu\sigma} +
+  \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} -
+  \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma} .
+\end{equation}
+
+Contracting appropriately yields $R_{\mu\nu}$ and the scalar curvature $R$.
+
+\paragraph{Phase Curvature and Invisibility.}
+The biquaternionic field $\Theta(q,\tau)$ has both real and imaginary components. While the 
+real part $g_{\mu\nu} = \Re[\Theta_{\mu\nu}]$ corresponds to the classical metric tensor that 
+couples to ordinary matter and radiation, the imaginary components $\Im[\Theta_{\mu\nu}]$ represent 
+what we call \textbf{phase curvature}.
+
+These phase curvature components satisfy their own field equations within the biquaternionic 
+algebra and can carry energy-momentum in configurations where:
+\begin{equation}
+\Re[G_{\mu\nu}] = 0, \quad \text{but} \quad \Im[G_{\mu\nu}] \neq 0.
+\end{equation}
+
+Such configurations are mathematically consistent solutions but remain \textbf{invisible} to 
+classical observations because ordinary matter and electromagnetic radiation couple only to the 
+real-valued metric $g_{\mu\nu}$. They have no real-valued curvature signature ($\Re[R_{\mu\nu}] = 0$) 
+yet possess nonlocal energy structure in the imaginary components. This invisibility is a 
+mathematical property arising from the complex structure of the biquaternionic algebra, not a 
+contradiction with General Relativity.
+
+In the quantum gravity extension, fluctuations of the field $\Theta$ are quantised,
+leading to corrections to the classical curvature in the form of effective stress-energy
+terms arising from vacuum polarisation effects. The semiclassical approximation shows that
+these corrections become significant near the Planck scale, modifying the black hole
+horizon structure and potentially allowing for stable micro-horizon configurations.
+
+\subsection{Summary}
+
+Biquaternion Gravity generalizes Einstein's General Relativity by embedding it within a
+richer biquaternionic algebraic framework. In the real-valued limit, UBT reproduces 
+Einstein's field equations exactly, ensuring full compatibility with all experimental 
+confirmations of GR—from the perihelion precession of Mercury to gravitational wave 
+detection. The extended structure unifies gravity with other interactions at the
+geometric level and introduces additional degrees of freedom corresponding to phase 
+curvature and nonlocal energy configurations.
+
+These imaginary components of the biquaternionic metric may represent dark sector 
+phenomena or quantum gravitational corrections, but they remain invisible to classical 
+matter and electromagnetic radiation that couple only to the real metric $g_{\mu\nu}$. 
+The connection to Quantum Gravity arises from treating $\Theta$ as a quantum field, 
+where gravitational effects emerge from its covariant structure. 
+
+This approach may suggest possible deviations from classical GR at very small scales 
+(near the Planck scale), while reducing exactly to Einstein's equations in all 
+macroscopic regimes where GR has been tested. UBT does not contradict or replace 
+General Relativity; it extends and embeds it within a broader mathematical framework. 
+For detailed derivations of the GR recovery, see Appendix~R.

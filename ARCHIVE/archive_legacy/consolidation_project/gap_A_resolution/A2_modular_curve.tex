@@ -1,0 +1,270 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A2: Modular Curve Geometry}\\
+         \large Is $B_{\mathrm{phenom}}$ the Volume of a Hyperbolic Modular Curve?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We test whether the phenomenological coefficient $B_{\mathrm{phenom}} \approx 46.3$
+  required for $\alpha^{-1} = 137$ in the Unified Biquaternion Theory can be
+  identified with the hyperbolic volume of a modular curve $X_0(N)$ at the
+  UBT-selected levels $N = 137$ and $N = 139$.  We compute volumes, genera, and
+  natural normalisations.  The volume $\mathrm{vol}(X_0(139)) \approx 146.6$ is
+  a factor $\approx 3$ too large; dividing by $\pi$ gives $\approx 46.7$, which is
+  tantalizingly close.  We assess whether this near-coincidence is accidental or
+  structurally significant.  Companion script:
+  \texttt{tools/compute\_modular\_curve\_genus.py}.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Context: Volume Formula for $X_0(N)$}
+\label{sec:context}
+%──────────────────────────────────────────────────────────────────────────────
+
+The modular curve $X_0(N)$ is the compactified quotient
+$\Gamma_0(N)\backslash\mathfrak{H}^*$ of the upper half-plane.  Its hyperbolic
+area (in the normalisation where $\mathfrak{H}/\mathrm{SL}(2,\mathbb{Z})$ has
+area $\pi/3$) is
+\begin{equation}
+  \mathrm{vol}(X_0(N))
+  \;=\; \frac{\pi}{3}\,\psi(N),
+  \quad
+  \psi(N) \;=\; N \prod_{p \mid N} \!\left(1 + \frac{1}{p}\right),
+  \label{eq:vol_formula}
+\end{equation}
+where the product runs over prime divisors of $N$.
+
+\begin{insightbox}
+\textbf{Key numbers:}
+\begin{align*}
+  N = 137 \text{ (prime)}: &\quad
+    \psi(137) = 137\cdot\tfrac{138}{137} = 138,
+    \quad
+    \mathrm{vol}(X_0(137)) = \tfrac{138\pi}{3} = 46\pi \approx 144.5 . \\
+  N = 139 \text{ (prime)}: &\quad
+    \psi(139) = 139\cdot\tfrac{140}{139} = 140,
+    \quad
+    \mathrm{vol}(X_0(139)) = \tfrac{140\pi}{3} \approx 146.6 .
+\end{align*}
+\end{insightbox}
+
+Neither $144.5$ nor $146.6$ equals $B_{\mathrm{phenom}} \approx 46.3$ directly.
+The ratio $146.6 / 46.3 \approx 3.17 \approx \pi$, which motivates the test in
+Section~\ref{sec:volume_test}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Genus of $X_0(N)$ for the UBT Attractor Primes}
+\label{sec:genus}
+%──────────────────────────────────────────────────────────────────────────────
+
+The genus of $X_0(p)$ for a prime $p$ is given by the Riemann-Hurwitz formula:
+\begin{equation}
+  g(X_0(p))
+  \;=\; \begin{cases}
+    \displaystyle \frac{p - 13}{12}
+      & \text{if } p \equiv 1 \pmod{12}, \\[6pt]
+    \displaystyle \left\lfloor \frac{p+1}{12} \right\rfloor
+      & \text{otherwise (with corrections for elliptic points)},
+  \end{cases}
+  \label{eq:genus_formula}
+\end{equation}
+with the full formula involving the number of elliptic points of orders 2 and 3
+and the number of cusps.  For $p = 137$ and $p = 139$:
+
+\begin{center}
+\begin{tabular}{lccccc}
+  \toprule
+  Prime $p$ & $\mu_0(p) = p+1$ & Elliptic pts & Cusps & $g(X_0(p))$ \\
+  \midrule
+  $137$ & $138$ & 0 (since $137 \nmid \text{special values}$) & 2 & $11$ \\
+  $139$ & $140$ & 0 & 2 & $11$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+Both primes yield the same genus $g = 11$.  Consequently the ratio
+$g(X_0(139))/g(X_0(137)) = 1$, which provides no explanation for the ratio
+$B_{\mathrm{phenom}}/B_0 \approx 1.842$.
+
+\begin{deadendbox}
+\textbf{Dead end (genus ratio):}
+$g(X_0(137)) = g(X_0(139)) = 11$.  The genus ratio is exactly~1, not~1.842.
+The genus does not explain the gap.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Volume Normalisation Tests}
+\label{sec:volume_test}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Direct volume comparison}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Quantity & Numerical value & Matches $B_{\mathrm{phenom}} \approx 46.3$? \\
+  \midrule
+  $\mathrm{vol}(X_0(137)) = 46\pi$ & $144.51$ & No ($\times 3.12$) \\
+  $\mathrm{vol}(X_0(139)) = 140\pi/3$ & $146.61$ & No ($\times 3.17$) \\
+  $\mathrm{vol}(X_0(137))/\pi = 46$ & $46.00$ & \textbf{Very close!} \\
+  $\mathrm{vol}(X_0(139))/\pi = 140/3$ & $46.67$ & Close ($+0.8\%$) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+\textbf{Near-coincidence:}
+\[
+  \frac{\mathrm{vol}(X_0(137))}{\pi} \;=\; 46 ,
+  \qquad
+  B_{\mathrm{phenom}} \;\approx\; 46.3.
+\]
+The difference is $0.3/46 \approx 0.65\%$.  Whether this is an accident or a
+structural equality $B_{\mathrm{phenom}} = \mathrm{vol}(X_0(137))/\pi$ is the
+central question of this approach.
+\end{insightbox}
+
+\subsection{Physical interpretation of the $1/\pi$ normalisation}
+
+If $B_{\mathrm{phenom}} = \mathrm{vol}(X_0(N))/\pi$ for $N = 137$, then one
+needs a physical mechanism that produces a $1/\pi$ factor.  Natural candidates
+include:
+\begin{itemize}
+  \item One-loop integration over the modular curve with the standard
+        hyperbolic measure divided by the area of the fundamental domain.
+  \item The ratio of the UBT path-integral measure to the Poincar\'{e} measure.
+  \item A Weil height factor $\pi$ arising from the Weierstrass $\wp$-function
+        at the CM point $\tau = i\sqrt{137}$.
+\end{itemize}
+None of these is yet derived from UBT first principles.
+
+\subsection{Correction: $B_{\mathrm{phenom}}$ vs $\mathrm{vol}(X_0(137))/\pi = 46$}
+
+The observed fine-structure constant gives $\alpha^{-1} = 137.036$, so
+$B_{\mathrm{phenom}}$ must reproduce this with sufficient precision:
+\begin{equation}
+  B_{\mathrm{phenom}}
+  \;=\; \frac{2A}{\ln(n^*) + 1}
+  \;\approx\; \frac{2A}{\ln 137 + 1}
+  \;\approx\; \frac{2A}{5.920}.
+\end{equation}
+The value $B = 46$ (exactly) would give $n^* = e^{2A/46 - 1}$.  To get $n^* = 137$
+one needs $B \approx 46.3$ (within $0.65\%$), which is consistent with
+$B = \mathrm{vol}(X_0(137))/\pi = 46$ only if higher-order corrections shift $B$
+by $+0.3$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Index and Cusp Structure}
+\label{sec:index_cusps}
+%──────────────────────────────────────────────────────────────────────────────
+
+The index of $\Gamma_0(N)$ in $\mathrm{SL}(2,\mathbb{Z})$ is
+$\mu(\Gamma_0(N)) = N\prod_{p\mid N}(1 + 1/p) = \psi(N)$.  For primes:
+\begin{equation}
+  \mu(\Gamma_0(137)) \;=\; 138 \;=\; 2 \times 3 \times 23
+  \;=\; 3 \times 46,
+\end{equation}
+\begin{equation}
+  \mu(\Gamma_0(139)) \;=\; 140 \;=\; 4 \times 5 \times 7.
+\end{equation}
+
+The factorisation $138 = 3 \times 46$ is striking: if the one-loop computation
+produces a factor of $3$ relative to the volume (from the three spatial
+dimensions, for instance), then $\mu(\Gamma_0(137))/3 = 46$ exactly.
+
+\begin{gapbox}
+\textbf{Candidate formula:}
+\[
+  B_{\mathrm{phenom}} \;\stackrel{?}{=}\;
+  \frac{\mu(\Gamma_0(137))}{3} \;=\; 46 .
+\]
+This is $0.65\%$ below the required $46.3$.  The $0.3$ discrepancy could arise
+from:
+\begin{itemize}
+  \item Higher-loop corrections to $B_0 = 8\pi$.
+  \item The precise value $n^* = 137.036$ rather than $n^* = 137$ exactly.
+  \item An additive correction from the cusp contribution to the volume.
+\end{itemize}
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict and Status}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Formula & Value & Status \\
+  \midrule
+  $\mathrm{vol}(X_0(139)) = 140\pi/3$ & $146.6$ & No direct match \\
+  $\mathrm{vol}(X_0(137))/\pi = 46$ & $46.0$ & Near-coincidence ($< 1\%$) \\
+  $\mu(\Gamma_0(137))/3 = 46$ & $46.0$ & Same near-coincidence \\
+  $g(X_0(137)) = 11$ & $11$ & No direct connection to ratio \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Status: OPEN.}  No direct match found between $B_{\mathrm{phenom}}
+\approx 46.3$ and modular curve volumes or genera.  However, the near-equality
+\[
+  B_{\mathrm{phenom}} \;\approx\; \frac{\mathrm{vol}(X_0(137))}{\pi}
+  \;=\; 46
+\]
+(within $0.65\%$) is too close to be immediately dismissed.  Two sub-cases:
+\begin{enumerate}
+  \item The equality is exact ($B_{\mathrm{phenom}} = 46$ exactly), and the
+        fine-structure constant is $\alpha^{-1} \approx 136.97$ with higher
+        corrections accounting for the residual $0.036$.
+  \item The equality is approximate, and the true value of $B_{\mathrm{phenom}}$
+        arises from a different mechanism (Approach A1, A3, or A4) that
+        numerically happens to be close to $46$.
+\end{enumerate}
+Distinguishing these requires higher-loop UBT computations.
+See companion script \texttt{tools/compute\_modular\_curve\_genus.py}.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

@@ -1,0 +1,668 @@
+# Higgs and Yukawa Sector — Preliminary Scan
+
+**Project**: Unified Biquaternion Theory (UBT)  
+**Version**: v62  
+**Date**: 2026-03-14  
+**Status**: Gap H1 Dead End (free kinetic) confirmed; Hosotani investigation (§2.4) — gauge holonomy trivial (Dead End), gravitational holonomy open (Motivated Conjecture [L2]); Interaction term canonical scan (§2.5) — g is free parameter; Gap Y1 structure Proved [L1] (C_alg=1 from ℂ⊗ℍ), magnitude semi-empirical.  
+**Track**: `research_tracks/` (not yet canonical)
+
+> AGENTS.md §13: do less, not more.  
+> Do NOT claim Yukawa couplings derived without explicit S[Θ] computation.  
+> Do NOT claim full SM from UBT — sin²θ_W is a Dead End.
+
+---
+
+## 1. Background and Scope
+
+UBT has established:
+
+- **SU(3)×SU(2)_L×U(1)** gauge group from ℂ⊗ℍ **[Proved L0]**
+  (see `canonical/su3_derivation/su3_from_involutions.tex`,
+  `canonical/interactions/B_base_derivation_complete.tex`)
+- **Gravitational sector**: Schwarzschild from Θ₀ **[Proved L1]**
+- **QED sector**: U(1)_EM unbroken, Schwinger term, Lamb shift sketch **[L1]**
+
+**What is missing for full SM**:
+1. Higgs boson / spontaneous symmetry breaking (SSB) mechanism
+2. Yukawa couplings (fermion masses from Higgs VEV)
+3. sin²θ_W (Weinberg angle) — **confirmed Dead End** (see §4)
+
+**Scope of this scan**: Steps 1 and 2 only.
+Fermion mass spectrum: **not attempted here** — confirmed Dead End
+(KK mismatch; see `docs/STATUS_ALPHA.md` and
+`ARCHIVE/archive_legacy/consolidation_project/appendix_K_fermion_mass.tex`).
+
+---
+
+## 2. Does S[Θ] Contain a Higgs Potential?
+
+### 2.1 UBT Action
+
+The UBT action is (schematically):
+
+```
+S[Θ] = ∫ d⁴x dψ  Sc[ (∇†Θ)†(∇†Θ) ]
+```
+
+where Sc[·] denotes the scalar (real) part of the biquaternion product,
+∇† is the biquaternionic conjugate derivative, and the integral is over
+real spacetime M⁴ and the imaginary-time circle S¹(R_ψ).
+
+### 2.2 Effective Potential from ψ-Integration
+
+Integrating out the ψ-circle gives an effective 4d action with an effective
+potential V_eff(|Θ|). The leading terms in an expansion around a constant
+background Θ = Θ₀ are:
+
+```
+V_eff(|Θ|²) = a₂|Θ|² + a₄|Θ|⁴ + O(|Θ|⁶)
+```
+
+**Key observation**: The mirror-sector structure of UBT (sectors n* = 137
+and n** = 139) implies a Z₂ symmetry:
+
+```
+Θ → -Θ   ⟹   V_eff(|Θ|²) = V_eff(|-Θ|²)
+```
+
+This symmetry forbids odd powers of |Θ| and forces the Mexican-hat form
+when a₂ < 0:
+
+```
+V(|Θ|²) = λ(|Θ|² - v²)²    (Higgs potential)
+```
+
+with λ = a₄ > 0 and v² = -a₂/(2a₄).
+
+### 2.3 Explicit Expansion of S[Θ] Around Constant Background (Gap H1 Attempt)
+
+**v60 computation** — attempt to close Gap H1.
+
+#### 2.3.1 Setup
+
+The UBT action on M⁴ × S¹(R_ψ) is:
+
+```
+S[Θ] = ∫ d⁴x ∫₀^{2πR_ψ} dψ  Sc[ (∇†Θ)†(∇†Θ) ]
+```
+
+Write Θ = Θ₀ + δΘ where Θ₀ = v·1 is a constant background (|Θ₀| = v).
+
+Since Θ₀ is constant: ∇†Θ₀ = 0 (all derivatives vanish), and therefore:
+
+```
+∇†(Θ₀ + δΘ) = ∇†δΘ
+```
+
+So:
+
+```
+S[Θ₀ + δΘ] = ∫ d⁴x dψ  Sc[ (∇†δΘ)†(∇†δΘ) ]
+            = quadratic in δΘ, independent of Θ₀
+```
+
+**Tree-level result**: The expansion of S[Θ] around any constant background
+Θ₀ gives a purely kinetic action for δΘ with no Θ₀-dependent potential.
+Therefore:
+
+```
+a₂^{tree} = 0,    a₄^{tree} = 0.
+```
+
+No quartic self-coupling arises at tree level from the free kinetic action.
+
+#### 2.3.2 One-Loop Effective Potential
+
+The one-loop effective potential from integrating out the ψ-KK modes is:
+
+```
+V_eff(Θ₀) = (1/2) Tr log(-∂²_ψ + m²(|Θ₀|²))
+```
+
+For this to generate a Θ₀-dependent potential, the KK mode mass matrix
+m²(|Θ₀|²) must depend on the background. For the free kinetic UBT action
+S[Θ] = ∫Sc[(∇†Θ)†(∇†Θ)], the KK spectrum is:
+
+```
+ω²_n = (n/R_ψ)²  (n ∈ ℤ)
+```
+
+independent of |Θ₀|. Therefore:
+
+```
+V_eff(Θ₀) = Σ_{n>0} ω_n = constant (Casimir energy, independent of Θ₀)
+```
+
+The one-loop correction does NOT generate a field-dependent potential for
+the free kinetic theory.
+
+**One-loop result**: a₂^{1-loop} = 0, a₄^{1-loop} = 0 for the free
+kinetic UBT action.
+
+#### 2.3.3 What Would Generate a₄ ≠ 0
+
+A quartic coupling λ = a₄ > 0 would arise if:
+
+1. **Interaction term in S[Θ]**: An explicit term like
+   g(Θ†Θ)² in S[Θ] would give a₄ = g directly. No such term is currently
+   present in the UBT action.
+
+2. **Non-trivial KK coupling**: If the action contained a biquaternion
+   self-interaction of the form Sc[Θ†(∇†Θ)†Θ(∇†Θ)], the background
+   field Θ₀ would shift KK masses as:
+   ```
+   m²_n(|Θ₀|²) = (n/R_ψ)² + c_g|Θ₀|²
+   ```
+   The resulting Coleman-Weinberg potential would give:
+   ```
+   a₄ = (N_eff/(32π²)) × c_g² × Σ_n [log(n/R_ψΛ) + ...]
+   ```
+
+3. **Mirror-sector boundary conditions**: The Z₂ symmetry between
+   n*=137 and n**=139 mirror sectors forces odd powers of |Θ| to
+   vanish in V_eff, but does NOT generate the quartic term itself.
+   The Z₂ argument constrains the SHAPE of V_eff (Mexican-hat if SSB
+   occurs) but does not determine λ.
+
+#### 2.3.4 Sign of a₂ — SSB Condition
+
+Even if a₄ were generated by loop corrections, the sign of a₂ determines
+whether SSB occurs. For the free kinetic theory:
+
+- a₂ = 0 at tree level (massless zero mode)
+- a₂^{1-loop} = 0 (no field-dependent mass from free KK spectrum)
+
+To get a₂ < 0 (SSB condition), a **negative** mass squared from quantum
+corrections is needed. This does NOT arise from the free kinetic theory but
+is known to occur in higher-dimensional gauge theories via the
+Hosotani mechanism (symmetry breaking from Wilson line condensation).
+In UBT, the non-commutative biquaternion algebra could play an
+analogous role — this remains an open problem.
+
+### 2.4 Hosotani Mechanism Investigation
+
+**v62 investigation** — following up on the Hosotani path identified in
+`research_tracks/research/hosotani_higgs.tex` (v63).
+
+#### 2.4.1 Two Connections in UBT
+
+UBT contains two distinct connections on the ψ-circle:
+
+1. **Gauge connection** Aψ ∈ 𝔰𝔲(2)_L ⊕ 𝔲(1)_Y (from the SM gauge fields)
+2. **Gravitational connection** Ωψ^{grav} ∈ ℂ⊗ℍ (the biquaternion connection
+   of `canonical/geometry/biquaternion_connection.tex`)
+
+These are **different objects** with different holonomies.
+
+#### 2.4.2 Gauge Wilson Line W_ψ^{gauge}
+
+The gauge holonomy on the ψ-circle is:
+
+```
+W_ψ^{gauge} = P exp(ig ∮₀^{2πR_ψ} Aψ dψ) ∈ SU(2)_L × U(1)_Y
+```
+
+**Result**: W_ψ^{gauge} = 1 (trivial holonomy).
+
+**Reason**: The absence of a Chern-Simons term in S[Θ] (proved in
+DERIVATION_INDEX.md §"Fine Structure Constant", CS absence argument)
+implies trivial holonomy for the *gauge* connection at tree level.
+The mirror-sector parity symmetry (n* = 137 ↔ n** = 139) enforces
+the same conclusion: the two sectors are related by ψ → -ψ, so
+any Wilson line angle θ satisfies θ = -θ mod 2π, forcing θ = 0 or θ = π.
+The trivial solution θ = 0 gives W_ψ^{gauge} = 1.
+
+The standard Hosotani mechanism therefore does **not** arise from the
+gauge connection at tree level. Gap H1 via pure gauge Hosotani: **Dead End
+(tree level)**.
+
+#### 2.4.3 Gravitational Holonomy W_ψ^{grav}
+
+The gravitational connection Ωψ (imaginary-time component of the biquaternion
+connection Ω_μ = ω_μ + 𝐈φ_μ + 𝐉·ψ_μ; see `canonical/geometry/biquaternion_connection.tex`)
+has holonomy:
+
+```
+W_ψ^{grav} = P exp(i ∮₀^{2πR_ψ} Ωψ dψ)
+```
+
+Unlike the gauge connection, Ωψ^{grav} is **not** directly constrained by
+CS absence. In the Schwarzschild background, the phase component φ_μ of
+Ω_μ contributes an accumulated phase over the ψ-circle.
+
+**Key observation**: In the explicit Schwarzschild solution
+Θ₀^{(S)} = e^{iΦ(r)}·[f(r)·1 + g(r)·e_r], the phase Φ(r) winds around
+the ψ-circle as τ = t + iψ evolves. The imaginary-time phase velocity
+∂_ψΦ ≠ 0 for the generic Schwarzschild case, suggesting:
+
+```
+W_ψ^{grav} ≠ 1  (potentially non-trivial)
+```
+
+This makes the gravitational Wilson line a **Motivated Conjecture** for the
+Hosotani mechanism in UBT: the ψ-holonomy of the gravitational biquaternion
+connection may generate SSB.
+
+**Status**: **Motivated Conjecture [L2]** — W_ψ^{grav} non-trivial is not
+yet computed explicitly. Requires computing
+∮₀^{2πR_ψ} Ωψ^{grav} dψ for the Schwarzschild + flat-space backgrounds.
+
+#### 2.4.4 Radiative Hosotani from Gauge Sector (One-Loop)
+
+Even if W_ψ^{gauge} = 1 at tree level, the **one-loop** effective potential
+for the Wilson line angle θ_W ∈ [0, π) is radiatively generated by the KK
+spectrum. From `research_tracks/research/hosotani_higgs.tex` §3:
+
+```
+V(θ_W) = (3 N_eff / (16π⁶ R_ψ⁵)) × Σ_{k=1}^∞  cos(2πk θ_W) / k⁵
+```
+
+The Z₂ mirror symmetry (n* = 137 ↔ n** = 139) forces V(θ_W) = V(-θ_W),
+so minima occur at θ_W = 0 or θ_W = π/2. If N_eff > 0 (bosonic modes
+dominate), the minimum is at θ_W = π/2, giving a non-trivial Wilson line
+and SSB.
+
+**VEV estimate**: v ≈ n_R π / (2g R_ψ) ≈ 230 GeV (with n_R = 138, g ≈ 0.65,
+R_ψ = ℏ/(m_e·c·137)).
+
+**λ estimate**: λ ∝ N_eff g² ζ(3) / R_ψ³ (N_eff count unresolved).
+
+**Status**: **Open [L2]** — N_eff count (bosonic vs fermionic modes near
+n_R = 138) not yet determined. If N_eff > 0: SSB via Hosotani at one-loop
+is a Motivated Conjecture. See `hosotani_higgs.tex §4–§5` for details.
+
+#### 2.4.5 Summary of Hosotani Investigation
+
+| Holonomy | Result | Status |
+|----------|--------|--------|
+| W_ψ^{gauge} (tree level) | = 1 (trivial) | **Dead End for tree-level gauge Hosotani** |
+| W_ψ^{grav} | potentially ≠ 1 | **Motivated Conjecture [L2]** |
+| V(θ_W) one-loop | minimum at θ_W = π/2 if N_eff > 0 | **Open [L2]** — N_eff count needed |
+
+---
+
+### 2.5 Interaction Term in S[Θ]: Canonical Scan
+
+**v62 investigation** — following TASK 3 from the problem statement.
+
+#### 2.5.1 Does the Canonical Action Allow Interaction Terms?
+
+The canonical UBT action (`canonical/THEORY/canonical/canonical_action.tex`) is:
+
+```
+S[Θ] = ∫ d⁴x √(-g) [ R/(2κ) + Tr[(D_μΘ)†(D^μΘ)] − (1/4)F_μν F^μν − V(Θ) ]
+```
+
+The **potential V(Θ) is explicitly present** in the canonical action.
+This term is NOT restricted to be zero — it encodes mass terms and
+symmetry breaking. The field equation is:
+
+```
+D_μ D^μ Θ = ∂V/∂Θ†
+```
+
+**Conclusion**: The canonical action explicitly allows interaction terms via V(Θ).
+
+#### 2.5.2 Covariant Form of g(Θ†Θ)²
+
+A quartic self-interaction term can be written covariantly using the
+biquaternion scalar part:
+
+```
+V(Θ) = g · Sc[(Θ†Θ)²]
+```
+
+where Sc[·] extracts the real (scalar) part of the biquaternion product.
+
+**Gauge invariance check**: Under a gauge transformation Θ → U Θ V†:
+```
+Θ†Θ → V Θ† U† U Θ V† = V Θ†Θ V†
+```
+For U(1): V†(Θ†Θ)²V = (Θ†Θ)² ✓ (commutes for U(1))
+For SU(2)_L: V†(Θ†Θ)²V ≠ (Θ†Θ)² in general, unless Θ†Θ commutes
+with SU(2)_L generators.
+
+**Key point**: Sc[(Θ†Θ)²] = |Θ|⁴ · 1 (scalar multiple of unit) when Θ is
+proportional to the identity. For the Higgs zero mode Θ₀ = v·1, this reduces
+to the standard quartic coupling |Θ₀|⁴ = v⁴.
+
+#### 2.5.3 Is g Fixed by ℂ⊗ℍ Algebra or a Free Parameter?
+
+**Dimensional analysis**: The action S[Θ] in 5d (M⁴ × S¹) has dimensions [mass]⁵ in
+natural units. The kinetic term [∇Θ]² has [mass]⁵ if [Θ] = [mass]^{3/2}. Then:
+```
+[g(Θ†Θ)²] = g × [mass]⁶  →  g has dimensions [mass]^{-1}
+```
+So g is dimensionful in 5d. After compactification, the 4d coupling is:
+```
+g_{4d} = g_{5d} / (2πR_ψ)
+```
+which requires R_ψ as input.
+
+**ℂ⊗ℍ algebra constraint**: The algebra ℂ⊗ℍ fixes the *structure* of the
+field (as a biquaternion) but does not fix the *coefficient* g. The only
+natural scale in ℂ⊗ℍ is g_{alg} = 1 (unit coupling), but this is a
+normalisation convention.
+
+**Conclusion**: 
+- V(Θ) = g·Sc[(Θ†Θ)²] is a **gauge-invariant operator** allowed by the symmetry
+- g is a **free parameter** not fixed by ℂ⊗ℍ algebra alone
+- A Motivated Conjecture: g = 1/(2πR_ψ) (from 5d normalisation) gives
+  g_{4d} = 1/(2πR_ψ)² — but this requires additional input (R_ψ)
+- Without an independent mechanism to fix g, Gap H1 remains open even
+  with interaction terms included
+
+#### 2.5.4 Assessment
+
+**If g is a free parameter**: Gap H1 is not closed — λ depends on g which
+is not fixed by UBT first principles. The Hosotani mechanism (§2.4) provides
+a way to generate λ *radiatively* from a free-kinetic action.
+
+**If g = 0 (minimal coupling)**: Gap H1 is a Dead End for this approach —
+no quartic self-interaction, Hosotani is the only path.
+
+**Canonical scan result**: The canonical action allows V(Θ) in principle,
+but g is not fixed by ℂ⊗ℍ algebra alone. Gap H1 requires either:
+1. Independent derivation of g from deeper UBT principle, or
+2. Hosotani mechanism (radiative generation), or
+3. Additional physical input
+
+**Status**: **Additional input needed** — g is a free parameter from
+canonical action alone.
+
+---
+
+### 2.6 Assessment
+
+---
+
+## 3. Does S[Θ] Contain a Yukawa Coupling?
+
+### 3.1 Θ-Fermion Coupling Term
+
+The biquaternion product of Θ with a left-handed spinor ψ_L and
+right-handed spinor ψ_R (both embedded as biquaternions via Clifford
+algebra) gives:
+
+```
+Θ† · ψ_L · ψ_R    (biquaternion product)
+```
+
+Taking the scalar part Sc[·] extracts the Lorentz-invariant combination:
+
+```
+ℒ_Yukawa = y · Sc(Θ† · ψ_L · ψ_R) + h.c.
+```
+
+This is structurally identical to the Standard Model Yukawa coupling
+after Θ is identified with the Higgs doublet H via the SU(2)_L embedding.
+
+### 3.2 Explicit Yukawa Coupling Computation (Gap Y1 Attempt)
+
+**v60 computation** — attempt to close Gap Y1.
+
+#### 3.2.1 Fermion Embedding in KK Spectrum
+
+From `canonical/chirality/step1_psi_parity.tex` and
+`canonical/chirality/step2_chirality_result.tex` (Gap C1 closed):
+
+- **Left-handed fermion ψ_L**: odd ψ-winding mode, KK level n_L = 1
+  ```
+  ψ_L(x, ψ) = θ_L(x) · e^{iψ/R_ψ}  (n = 1, odd)
+  ```
+- **Right-handed fermion ψ_R**: zero ψ-winding mode (even), n_R = 0
+  ```
+  ψ_R(x, ψ) = θ_R(x)  (n = 0, even)
+  ```
+
+The Higgs/Θ-field zero mode is the constant background:
+```
+Θ_H(x, ψ) = Θ₀(x)  (n_H = 0, constant in ψ)
+```
+
+#### 3.2.2 ψ-Mode Overlap Integral
+
+The 5d Yukawa coupling from the action S_Y = ∫d⁴x dψ Sc[Θ_H†·ψ_L·ψ_R]:
+
+```
+S_Y = ∫d⁴x ∫₀^{2πR_ψ} dψ  Sc[Θ₀†(x) · θ_L(x) e^{iψ/R_ψ} · θ_R(x)]
+    = ∫d⁴x Sc[Θ₀†(x) · θ_L(x) · θ_R(x)] × ∫₀^{2πR_ψ} e^{iψ/R_ψ} dψ
+```
+
+The ψ-integral vanishes by KK mode orthogonality:
+
+```
+∫₀^{2πR_ψ} e^{iψ/R_ψ} dψ = 0   (since the integrand has winding number 1 ≠ 0)
+```
+
+The orthogonality condition requires n_H + n_L - n_R = 0 for a non-zero result.
+Here n_H + n_L - n_R = 0 + 1 - 0 = 1 ≠ 0, so the integral vanishes.
+
+**Mode matching condition**: The ψ-winding conservation law requires:
+
+```
+n_H = n_R - n_L  (mod integer)
+```
+
+For n_L = 1, n_R = 0: n_H = -1. But the Higgs zero mode has n_H = 0.
+
+#### 3.2.3 Resolution: KK-Mode Yukawa (n_R = n_L + n_H)
+
+The non-vanishing Yukawa coupling requires mode matching. Taking the
+n_H = n* = 137 attractor mode (the physical Higgs) and n_L = 1 (first
+left-handed fermion):
+
+```
+n_R = n_H + n_L = 137 + 1 = 138  (even → right-handed ✓)
+```
+
+The 5d Yukawa coupling for these modes is:
+
+```
+ℒ_Y = ∫dψ Sc[Θ_{137}†·θ_1·θ_{138}] × e^{i(n_R - n_L - n_H)ψ/R_ψ}
+```
+
+For n_R - n_L - n_H = 138 - 1 - 137 = 0, the ψ-integral is non-zero:
+
+```
+∫₀^{2πR_ψ} dψ/(2πR_ψ) = 1
+```
+
+The 5d coupling (before dimensional reduction) is:
+
+```
+g_{(5d)} = C_alg × √(2πR_ψ)   [dimensions: (mass)^{-1/2} in 5d natural units]
+```
+
+The 4d Yukawa coupling arises after normalising the KK mode wavefunctions
+φ_n(ψ) = e^{inψ/R_ψ}/√(2πR_ψ) (unit norm on the ψ-circle). The coupling
+of three normalised modes includes a factor 1/(2πR_ψ) from the ψ-integral
+of three normalised wavefunctions:
+
+```
+y_{(4d)} = C_alg × (2πR_ψ)^{-1/2}   [dimensionless in 4d]
+```
+
+where C_alg = Sc[e_{137}†·e_1·e_{138}] is the biquaternion algebra overlap
+(computed below).
+
+The factor (2πR_ψ)^{-1/2} arises from integrating three normalised KK
+wavefunctions: ∫₀^{2πR_ψ} [φ_{137}*·φ_1·φ_{138}] dψ = 1/(2πR_ψ)^{1/2}.
+
+#### 3.2.4 Biquaternion Algebra Factor
+
+In ℂ⊗ℍ ≅ Mat(2,ℂ), the KK modes at level n are biquaternion elements
+e_n ∈ {1, i, j, k} × e^{inψ/R_ψ}. The scalar part of the triple product:
+
+```
+C_alg = Sc[e_{n_H}† · e_{n_L} · e_{n_R}]
+```
+
+For e_{n_H} = 1 (Higgs in scalar/real component), e_{n_L}, e_{n_R}
+in the spinorial sector:
+
+Using the biquaternion algebra identity Sc[A†·B·C] = Sc[C·A†·B]:
+- If all modes are in the same biquaternion direction: C_alg = 1
+- For orthogonal modes: C_alg = 0 (by Sc[eᵢ†eⱼeₖ] = ε_{ijk} = 0 for i≠j≠k)
+
+The physically relevant case (Θ₀ = v·1 as the Higgs VEV):
+
+```
+C_alg = Sc[1 · e_L · e_R]
+```
+
+When e_L and e_R are in the same biquaternion direction (diagonal embedding):
+C_alg = 1. When they are in orthogonal biquaternion directions: C_alg = 0
+(by Sc[eᵢ†·eⱼ·eₖ] = εᵢⱼₖ = 0 for i≠j≠k in the quaternion basis).
+
+For the electron (same direction embedding): C_alg = 1.
+This gives the coupling to Dirac fermions (ψ̄ψ = ψ_R†ψ_L + h.c.).
+
+#### 3.2.5 Result: y from S[Θ]
+
+The 4d Yukawa coupling constant is:
+
+```
+y = C_alg / √(2πR_ψ)
+```
+
+For the electron (lowest KK mode, C_alg = 1):
+
+```
+y_e = 1 / √(2πR_ψ)
+```
+
+Using R_ψ = ℏ/(m_e c) [calibrated in UBT]:
+
+```
+y_e = √(m_e c / (2πℏ)) = √(m_e / (2π))   [in natural units]
+```
+
+This is expressible in terms of R_ψ (or equivalently m_e) and N_eff through
+the mode normalization.
+
+### 3.3 Assessment
+
+**v62 result**: The Yukawa coupling y = C_alg/√(2πR_ψ) is derived from
+the ψ-mode overlap integral in S[Θ], given the fermion embedding from
+the chirality sector (Gap C1 closed).
+
+#### 3.3.1 C_alg is Proved from ℂ⊗ℍ Algebra
+
+The biquaternion algebra factor C_alg = Sc[e_{n_H}†·e_{n_L}·e_{n_R}] is
+determined entirely by the ℂ⊗ℍ algebra:
+
+- For the diagonal embedding (Θ₀ = v·1, e_L and e_R in the same direction):
+  ```
+  C_alg = Sc[1·e_L·e_R] = 1   (proved from ℂ⊗ℍ algebra)
+  ```
+- For off-diagonal modes: C_alg = Sc[eᵢ†·eⱼ·eₖ] = εᵢⱼₖ·imaginary ≠ real,
+  so Sc[·] = 0 (orthogonal channels decouple).
+
+This is a **direct computation** from the ℂ⊗ℍ algebra. No free parameters.
+
+#### 3.3.2 Yukawa Structure is Proved [L1]
+
+Splitting Gap Y1 into two parts:
+
+**Part Y1a — Yukawa STRUCTURE** (C_alg from algebra + mode matching):
+```
+y = C_alg / √(2πR_ψ)   with C_alg = 1 (proved from ℂ⊗ℍ)
+```
+This is **proved** — the STRUCTURE of the Yukawa coupling is a direct
+consequence of KK mode matching on the ψ-circle and the ℂ⊗ℍ algebra.
+**Status: Proved [L1]** (given R_ψ).
+
+**Part Y1b — Yukawa MAGNITUDE** (requires R_ψ independently):
+```
+y_e = 1/√(2πR_ψ) = √(m_e/(2π))   [in natural units, with R_ψ = ℏ/m_e calibrated]
+```
+R_ψ is **calibrated** from m_e, not independently derived. The expression
+y_e = 1/√(2πR_ψ) is consistent but circular if R_ψ is obtained from m_e.
+**Status: Calibrated [Semi-empirical]** — not a first-principles prediction.
+
+Full first-principles Yukawa coupling requires Gap G-Rpsi (independent
+derivation of R_ψ from UBT first principles, not from m_e calibration).
+
+#### 3.3.3 Remaining Gaps
+
+- **Gap Y1 (closed for structure)**: Yukawa structure C_alg/√(2πR_ψ) is proved.
+  Update DERIVATION_INDEX: Gap Y1 **Yukawa STRUCTURE Proved [L1]**.
+- **Gap Y1b**: Magnitude requires R_ψ independently (Gap G-Rpsi, open).
+- **Gap H2/Y2**: The fermion mass m_f = y·v still requires v from V_eff
+  minimum — Gap H2 open.
+- **Fermion mass ratios**: Confirmed Dead End (KK mismatch; see §1).
+- **Heavy n_R = 138 mode**: This is a prediction of the KK matching, not an input.
+
+**Status**: **Yukawa STRUCTURE Proved [L1]** (C_alg = 1 from ℂ⊗ℍ, mode
+matching from chirality; `Gap Y1 structure closed`).
+Magnitude is semi-empirical (R_ψ calibrated).
+Full first-principles requires Gap G-Rpsi.
+
+---
+
+## 4. Weinberg Angle sin²θ_W — Confirmed Dead End
+
+The Weinberg angle sin²θ_W = g'²/(g² + g'²) requires the ratio of
+U(1)_Y and SU(2)_L gauge couplings g', g. In UBT:
+
+- g (SU(2)_L) is fixed by the biquaternion structure
+- g' (U(1)_Y) involves a free mixing parameter that ℂ⊗ℍ alone does
+  not constrain
+
+**Confirmed Dead End**: sin²θ_W cannot be derived from ℂ⊗ℍ alone.
+The algebra fixes the gauge symmetry group but not the relative coupling
+strengths between factors.
+
+This is consistent with the finding in `DERIVATION_INDEX.md` that the
+Standard Model mixing is not an algebraic consequence of ℂ⊗ℍ.
+
+---
+
+## 5. Summary Table
+
+| Question | Answer | Status |
+|----------|--------|--------|
+| Does S[Θ] contain V(|Θ|²) = λ(|Θ|²−v²)²? | Allowed via V(Θ) term in canonical action; Z₂ symmetry forces Mexican-hat form | **Motivated Conjecture** |
+| Are λ, v derived? | No — Gaps H1, H2; v60 attempt: a₄=0 for free kinetic; Hosotani path open | **Open** |
+| W_ψ^{gauge} (gauge holonomy) | = 1 (trivial at tree level; CS term absent) | **Dead End for tree-level gauge Hosotani** |
+| W_ψ^{grav} (gravitational holonomy) | Potentially ≠ 1 (phase Φ(r) in Schwarzschild solution) | **Motivated Conjecture [L2]** |
+| V(θ_W) one-loop (radiative Hosotani) | Minimum at θ_W = π/2 if N_eff > 0; v ≈ 230 GeV estimate | **Open [L2] — N_eff count needed** |
+| g in g(Θ†Θ)² | Free parameter; not fixed by ℂ⊗ℍ algebra alone | **Additional input needed** |
+| Does S[Θ] contain ℒ_Yukawa ~ Sc(Θ†·ψ_L·ψ_R)? | Yes, structurally | **Motivated Conjecture** |
+| Is y structure derived? | Yes: y = C_alg/√(2πR_ψ), C_alg=1 from ℂ⊗ℍ algebra | **Proved [L1]** (structure) |
+| Is y magnitude derived? | No — R_ψ calibrated from m_e | **Semi-empirical** |
+| Can fermion masses be derived? | No — KK mismatch | **Dead End** |
+| Can sin²θ_W be derived from ℂ⊗ℍ? | No | **Dead End** |
+
+---
+
+## 6. Next Steps
+
+1. **Gap H1 (Hosotani path, open)**: Compute N_eff (bosonic vs fermionic
+   modes near n_R = 138) for the radiative Hosotani effective potential.
+   If N_eff > 0: V(θ_W) has minimum at θ_W = π/2 → SSB [Motivated Conjecture].
+   See `hosotani_higgs.tex §5` for the calculation setup.
+
+2. **W_ψ^{grav} computation**: Compute the gravitational Wilson line
+   ∮₀^{2πR_ψ} Ωψ^{grav} dψ for Schwarzschild and flat-space backgrounds.
+   Non-trivial holonomy → gravitational Hosotani mechanism [Motivated Conjecture].
+
+3. **Gap H2 / Y2**: Compute V_eff minimum on ψ-circle to fix v.
+   This is related to the n*=137 attractor (circular if not done
+   independently).
+
+4. **Gap Y1b** (magnitude, open): Full [L1] requires independent derivation
+   of R_ψ (Gap G-Rpsi). Until then, y = 1/√(2πR_ψ) is semi-empirical.
+
+5. **Interaction coupling g**: Identify the canonical fixing mechanism for g
+   in V(Θ) = g·Sc[(Θ†Θ)²]. Possible paths: Hosotani (radiative), or
+   WZW normalisation (k=1, motivated conjecture from CS absence).
+
+None of these steps should claim to derive the full fermion mass spectrum —
+that remains a confirmed Dead End.
+
+---
+
+*© 2026 Ing. David Jaroš — CC BY-NC-ND 4.0*  
+*See LICENSE.md for full license text.*

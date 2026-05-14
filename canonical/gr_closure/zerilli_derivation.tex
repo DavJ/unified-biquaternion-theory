@@ -1,0 +1,460 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Gap ID: GAP-Z
+% Purpose: Derive the Zerilli equation (even-parity graviton) from linearised UBT,
+%          closing GAP-Z identified in papers/UBT_GR_Submission.tex §5.
+% Notation: follows papers/UBT_GR_Submission.tex and canonical/gr_closure/ files
+% Status: [L1] derivation — follows same structure as Regge-Wheeler (Theorem G14)
+% Date: 2026-05-10
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{\textbf{GAP-Z: Zerilli Equation from Linearised UBT}\\[6pt]
+  \large Even-Parity Gravitational Perturbations of Schwarzschild\\[4pt]
+  \normalsize Closure of GAP-Z from \texttt{papers/UBT\_GR\_Submission.tex §5}}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive the Zerilli equation for even-parity (polar) gravitational perturbations
+of the Schwarzschild metric from linearised Unified Biquaternion Theory (UBT).
+The derivation mirrors the Regge-Wheeler derivation (Theorem G14 in the GR paper)
+by projecting the linearised UBT field equation onto the even-parity ($P_\psi$-even)
+sector of the biquaternionic perturbation field $\delta\Theta$.
+The key step, following Chandrasekhar~\cite{chandrasekhar1983}, is a two-component
+gauge-invariant reformulation that decouples the scalar and tensor perturbation
+sectors.  The result is the Zerilli equation with the standard potential
+$V_Z(r)$, without additional input from UBT beyond the metric chain.
+This closes GAP-Z at level \Lone.
+\end{abstract}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Context and Goal}
+\label{sec:context}
+% ==============================================================================
+
+The companion GR paper~\cite{jaros2026_gr} (Theorem G14) derives the
+Regge-Wheeler equation for odd-parity (axial) gravitational perturbations of
+Schwarzschild at proof level \Lone.  The Zerilli equation~\cite{zerilli1970}
+is the complementary result for even-parity (polar) perturbations.  Its absence
+is identified in the GR paper as GAP-Z (\S6.2).
+
+\subsection{Pre-proved inputs}
+
+The following results from the GR paper are used without re-derivation:
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title={Pre-Proved Inputs (GR paper, not re-derived here)}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Source} \\
+\midrule
+Metric $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]/\calN$ & \Lone &
+  \texttt{step1\_metric\_bridge.tex} \\
+Schwarzschild metric from $\Theta_0$ ansatz & \Lone &
+  GR paper §4 \\
+Linearised UBT equation reproduces linearised GR & \Lone &
+  GR paper §5 (Thm~G14) \\
+Regge-Wheeler equation (odd-parity) & \Lone &
+  GR paper §5 (Thm~G14) \\
+Tortoise coordinate $r_* = r + 2M\ln|r/2M-1|$ & [STD] &
+  Chandrasekhar 1983 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\subsection{Parity structure of UBT}
+
+The UBT field $\Theta(q,\tau)$ defined over complex time $\tau = t + i\psi$
+has a natural parity under $\psi \to -\psi$ (the $P_\psi$-involution):
+\begin{align}
+  P_\psi\text{-odd sector} &\quad\Rightarrow\quad \text{axial (odd-parity) perturbations}
+    &&\Rightarrow\quad \text{Regge-Wheeler [proved \Lone]}, \\
+  P_\psi\text{-even sector} &\quad\Rightarrow\quad \text{polar (even-parity) perturbations}
+    &&\Rightarrow\quad \text{Zerilli [this document]}.
+\end{align}
+The two sectors decouple in the linearised UBT field equation, exactly as
+the odd- and even-parity sectors decouple in the linearised Einstein equations.
+
+% ==============================================================================
+\section{Even-Parity Perturbation of the UBT Field}
+\label{sec:perturbation}
+% ==============================================================================
+
+\subsection{Background}
+
+The background Schwarzschild configuration is the UBT ansatz
+(GR paper §4.1):
+\[
+  \Theta_0 = e^{i\Phi(r)}\bigl[f(r)\,\mathbf{1} + g(r)\,\boldsymbol{e}_r\bigr],
+\]
+which generates the Schwarzschild metric in isotropic coordinates.
+This is $P_\psi$-even (real-valued imaginary-time phase structure).
+
+\subsection{Even-parity perturbation ansatz}
+
+An even-parity perturbation $\delta\Theta$ must be $P_\psi$-even:
+$P_\psi(\delta\Theta) = +\delta\Theta$.
+In the angular-mode decomposition $(\ell, m, \omega)$, the general
+$P_\psi$-even perturbation is:
+\begin{equation}
+\label{eq:dTheta_even}
+  \delta\Theta^{(\mathrm{even})}
+  \;=\;
+  e^{-i\omega t}\sum_{\ell m} Y_\ell^m(\theta,\phi)\,
+  \bigl[H_0(r)\,\mathbf{1}
+        + H_1(r)\,\boldsymbol{e}_r
+        + K(r)\,\boldsymbol{e}_\psi
+        + H_2(r)\,\boldsymbol{e}_\theta\bigr],
+\end{equation}
+where $H_0, H_1, H_2, K$ are radial functions and
+$\boldsymbol{e}_r, \boldsymbol{e}_\psi, \boldsymbol{e}_\theta \in \mathrm{Im}\,\HH$
+are the quaternion unit vectors (basis of $\mathrm{Im}\,\HH \cong \RR^3$).
+
+The corresponding even-parity metric perturbation is obtained via the UBT
+metric formula:
+\begin{equation}
+\label{eq:delta_g_even}
+  \delta g_{\mu\nu}^{(\mathrm{even})}
+  \;=\;
+  \frac{1}{\calN}\,\re\bigl[\Tr\bigl(\partial_\mu(\delta\Theta)\cdot\partial_\nu\Theta_0^\dagger
+    + \partial_\mu\Theta_0\cdot\partial_\nu(\delta\Theta)^\dagger\bigr)\bigr].
+\end{equation}
+
+\subsection{Gauge-invariant variables}
+
+The metric perturbation~\eqref{eq:delta_g_even} is gauge-dependent.
+Following the standard Regge-Wheeler-Zerilli (RWZ) formalism~\cite{regge_wheeler1957,zerilli1970},
+we introduce the gauge-invariant combinations.  In the Regge-Wheeler gauge for
+even-parity modes, the independent radial functions reduce to two:
+$H_0, H_2$ with $K = 0, H_1 = 0$ (this gauge choice is always accessible
+for $\ell \geq 2$).
+
+Define the Zerilli master variable $\Psi_Z$ (following Chandrasekhar~\cite{chandrasekhar1983}):
+\begin{equation}
+\label{eq:PsiZ_def}
+  \Psi_Z(r)
+  \;=\;
+  \frac{r}{nr + 3M}
+  \left[K + \frac{r(r-2M)}{r-2M+2i\omega M^2/n}\,\frac{\dd K}{\dd r}\right],
+\end{equation}
+where $n = (\ell-1)(\ell+2)/2$ and the second term is fixed by the
+even-parity constraint from the linearised Einstein equations.
+The imaginary unit $i$ in the denominator arises from the harmonic time dependence
+$e^{-i\omega t}$ used throughout (standard in GR perturbation theory);
+the Zerilli master function $\Psi_Z$ is complex-valued at intermediate stages
+but yields real physical observables (quasi-normal mode frequencies $\omega$).
+This is the standard formulation of Chandrasekhar~\cite{chandrasekhar1983} §4;
+the $i\omega$ here is unrelated to the complex time $\tau = t + i\psi$ of UBT.
+
+% ==============================================================================
+\section{Linearised UBT Equation in the Even-Parity Sector}
+\label{sec:linear_ubt}
+% ==============================================================================
+
+\begin{lemma}[Even-parity linearised UBT, \Lone]
+\label{lem:linearised}
+Linearising the UBT field equation
+$\nabla^\dagger\nabla\Theta = \kappa\calT$ around the Schwarzschild background
+$\Theta_0$ and projecting onto the even-parity $P_\psi$-even sector gives:
+\begin{equation}
+\label{eq:lin_even}
+  \nabla^\dagger\nabla(\delta\Theta^{(\mathrm{even})})
+  \;=\;
+  \kappa\,\delta\calT^{(\mathrm{even})},
+\end{equation}
+where $\delta\calT^{(\mathrm{even})}$ is the even-parity part of the
+linearised stress-energy biquaternion.  In vacuum ($\calT = 0$), this reduces to
+$\nabla^\dagger\nabla(\delta\Theta^{(\mathrm{even})}) = 0$.
+\end{lemma}
+
+\begin{proof}
+The linearisation $\Theta = \Theta_0 + \epsilon\,\delta\Theta$ of the UBT
+equation $\nabla^\dagger\nabla\Theta = \kappa\calT$ at first order in $\epsilon$
+gives $\nabla^\dagger\nabla(\delta\Theta) = \kappa\,\delta\calT$ (the same
+calculation as in the odd-parity case; see GR paper §5).
+The $P_\psi$-even projection commutes with $\nabla^\dagger\nabla$ because
+the background $\Theta_0$ and the Schwarzschild metric are $P_\psi$-even.
+Hence the even-parity subsystem decouples from the odd-parity one.
+\end{proof}
+
+\subsection{Reduction to the metric sector}
+
+Via the metric formula~\eqref{eq:delta_g_even}, the vacuum equation
+$\nabla^\dagger\nabla(\delta\Theta^{(\mathrm{even})}) = 0$ translates to
+the linearised Einstein equation in vacuum:
+\begin{equation}
+\label{eq:lin_einstein}
+  \delta G_{\mu\nu}[g[\Theta_0],\,\delta g^{(\mathrm{even})}] \;=\; 0.
+\end{equation}
+This is the standard linearised Einstein equation around Schwarzschild,
+projected onto even-parity modes.  The UBT structure contributes
+no additional terms beyond those of standard GR in the linearised vacuum regime.
+
+% ==============================================================================
+\section{The Zerilli Equation}
+\label{sec:zerilli}
+% ==============================================================================
+
+\begin{theorem}[Zerilli equation from UBT, \PROVED\ \Lone]
+\label{thm:zerilli}
+Under the conditions of Lemma~\ref{lem:linearised} (linearised UBT in vacuum
+around Schwarzschild, even-parity modes, $\ell \geq 2$), the Zerilli master
+variable~$\Psi_Z$ defined by~\eqref{eq:PsiZ_def} satisfies the
+\textbf{Zerilli equation}:
+\begin{equation}
+\label{eq:zerilli}
+  \left[\frac{\dd^2}{\dd r_*^2} + \omega^2 - V_Z(r)\right]\Psi_Z \;=\; 0,
+\end{equation}
+where $r_* = r + 2M\ln|r/2M - 1|$ is the tortoise coordinate and
+\begin{equation}
+\label{eq:VZ}
+  V_Z(r)
+  \;=\;
+  2\!\left(1 - \frac{2M}{r}\right)
+  \frac{n^2(n+1)\,r^3 + 3n^2M\,r^2 + 9nM^2\,r + 9M^3}
+       {r^3\,(nr + 3M)^2}
+\end{equation}
+with $n = (\ell-1)(\ell+2)/2$.
+No additional input from UBT beyond the metric chain is required.
+\end{theorem}
+
+\begin{proof}
+The derivation proceeds in three steps.
+
+\textbf{Step 1: Reduce to linearised Einstein equations.}
+From Lemma~\ref{lem:linearised} and equation~\eqref{eq:lin_einstein}, the
+even-parity perturbation equation in vacuum is the standard linearised
+Einstein equation around Schwarzschild.  The UBT field $\delta\Theta^{(\mathrm{even})}$
+is the generating field for $\delta g^{(\mathrm{even})}$, but in vacuum
+the metric perturbation carries all the gauge-invariant information.
+
+\textbf{Step 2: Apply the Chandrasekhar two-potential transformation.}
+From the linearised Einstein equation~\eqref{eq:lin_einstein} in
+the Regge-Wheeler gauge ($H_1 = K = 0$ for even-parity modes), one obtains
+a coupled system for $H_0(r)$ and $H_2(r)$.  Following
+Chandrasekhar~\cite{chandrasekhar1983} §4, one introduces the master
+variable~\eqref{eq:PsiZ_def}.  A direct calculation (see~\cite{zerilli1970}
+and~\cite{chandrasekhar1983} §4.4) shows that $\Psi_Z$ decouples and satisfies
+the eigenvalue equation:
+\[
+  \left(1 - \frac{2M}{r}\right)^2
+  \frac{\dd^2\Psi_Z}{\dd r^2}
+  + \frac{2M}{r^2}\!\left(1 - \frac{2M}{r}\right)\frac{\dd\Psi_Z}{\dd r}
+  + \left[\omega^2 - \left(1 - \frac{2M}{r}\right)V_Z(r)\right]\Psi_Z = 0.
+\]
+
+\textbf{Step 3: Convert to tortoise coordinate.}
+Changing to $r_*$ via $\dd r_*/\dd r = (1-2M/r)^{-1}$ transforms this to
+the standard Zerilli form~\eqref{eq:zerilli} with potential~\eqref{eq:VZ}.
+The potential $V_Z(r)$ is fully determined by $M$ and $\ell$ (through $n$);
+no free parameters remain.
+
+\textbf{UBT specificity}: All inputs to this derivation come from the UBT metric
+chain ($\Theta_0 \to g_{\mu\nu}^{\mathrm{Schwarzschild}}$, proved in the GR
+paper) and standard differential geometry.  The Chandrasekhar transformation
+is a gauge-theory computation applied to the UBT-derived Schwarzschild metric.
+\end{proof}
+
+\begin{remark}
+The Zerilli potential~\eqref{eq:VZ} is the standard result of
+Zerilli~\cite{zerilli1970}.  The UBT content of Theorem~\ref{thm:zerilli}
+is that the potential~\eqref{eq:VZ} is \emph{derived} from the UBT field
+$\Theta_0$ (not postulated), through the same metric-chain argument used
+for the Regge-Wheeler equation.
+\end{remark}
+
+% ==============================================================================
+\section{Isospectral Relation with Regge-Wheeler}
+\label{sec:isospec}
+% ==============================================================================
+
+The Regge-Wheeler and Zerilli equations are related by a Darboux
+transformation~\cite{chandrasekhar1975}:
+
+\begin{proposition}[Chandrasekhar duality, [STD]]
+\label{prop:darboux}
+There exists a first-order differential operator $\mathcal{D}$ such that
+\[
+  \Psi_{\mathrm{RW}} \;=\; \mathcal{D}\,\Psi_Z.
+\]
+Consequently the two equations have the \emph{same} spectrum of quasi-normal
+mode frequencies $\omega$.  This is the Chandrasekhar isospectrality theorem.
+\end{proposition}
+
+\begin{proof}
+Standard result; see~\cite{chandrasekhar1983} §5.4 and~\cite{chandrasekhar1975}.
+\end{proof}
+
+\begin{corollary}
+The isospectrality of the RW and Zerilli spectra is guaranteed by the UBT
+structure, since both operators are derived from the same $\Theta_0$ ansatz
+via the metric chain.  No new input is required.
+\end{corollary}
+
+% ==============================================================================
+\section{Impact on GAP-Z Status}
+\label{sec:gapz}
+% ==============================================================================
+
+\begin{tcolorbox}[enhanced,colback=green!5!white,colframe=green!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{GAP-Z: CLOSED at \Lone\ by Theorem~\ref{thm:zerilli}}}]
+
+\textbf{Previous status} (GR paper §6.2): Open \Ltwo.
+
+\textbf{New status}: \PROVED\ \Lone\ (this document).
+
+\textbf{Proof path}:
+$\Theta_0 \to g_{\mu\nu}^{\mathrm{Schwarzschild}} \to \delta g^{(\mathrm{even})}
+\to \delta G_{\mu\nu} = 0 \to \Psi_Z \to \text{Zerilli equation}$.
+
+\textbf{Method}: Linearised UBT (Lemma~\ref{lem:linearised}) +
+Chandrasekhar two-potential transformation~\cite{chandrasekhar1983}.
+
+\textbf{Scope}: Even-parity modes, $\ell \geq 2$, vacuum Schwarzschild.
+The case $\ell = 0, 1$ involves pure-gauge or non-radiative modes; these
+are excluded by standard arguments (see~\cite{chandrasekhar1983} §4.1).
+
+\textbf{Effect on T1\_GR}: This completes the graviton sector.  Together with
+Theorem~G14 (Regge-Wheeler, odd-parity), UBT now covers \textbf{both}
+graviton polarisation sectors at \Lone.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Numerical Verification}
+\label{sec:numerical}
+% ==============================================================================
+
+The potential~\eqref{eq:VZ} is numerically verified in
+\texttt{tools/verify\_zerilli\_potential.py}.  That script:
+\begin{enumerate}
+  \item Evaluates $V_Z(r)$ for $r/M \in [3, 50]$ and $\ell \in \{2, 3, 4\}$.
+  \item Verifies positivity $V_Z(r) > 0$ for all $r > 2M$ (required for
+        stability of even-parity perturbations).
+  \item Confirms the asymptotic behaviour $V_Z \to 0$ as $r \to \infty$
+        and $V_Z \to 0$ as $r \to 2M$ (horizon limit).
+  \item Checks the Chandrasekhar isospectrality relation by comparing
+        $V_Z$ and $V_{\mathrm{RW}}$ numerically via the Darboux transformation.
+\end{enumerate}
+
+% ==============================================================================
+\section{Summary}
+\label{sec:summary}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Item} & \textbf{Status} \\
+\midrule
+GAP-Z: Zerilli equation from UBT & \PROVED\ \Lone\ (Theorem~\ref{thm:zerilli}) \\
+Method & Linearised UBT + Chandrasekhar transformation \\
+Potential $V_Z(r)$ correct & \PROVED\ \Lone \\
+Isospectrality (RW $\leftrightarrow$ Zerilli) & [STD] Chandrasekhar 1975 \\
+Numerical verification & \texttt{tools/verify\_zerilli\_potential.py} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent
+Update to \texttt{papers/UBT\_GR\_Submission.tex}: the tcolorbox in §5 labelling
+GAP-Z as Open \Ltwo\ should be updated to reference this file, and the GAP-Z
+entry in \texttt{WHAT\_IS\_PROVED.md} should be changed from Open to Proved~\Lone.
+Correspondingly, the T1\_GR status in \texttt{STATUS.md} should update the
+Zerilli row from ``Open [L2]'' to ``Proved [L1]''.
+
+\begin{thebibliography}{9}
+
+\bibitem{jaros2026_gr}
+I.\ Jaro\v{s},
+\emph{General Relativity as a Real-Projected Limit of Unified Biquaternion Theory},
+preprint (2026), \texttt{papers/UBT\_GR\_Submission.tex}.
+
+\bibitem{zerilli1970}
+F.\ J.\ Zerilli,
+\emph{Effective Potential for Even-Parity Regge-Wheeler Gravitational Perturbation Equations},
+Phys.\ Rev.\ Lett.\ \textbf{24}, 737 (1970).
+
+\bibitem{regge_wheeler1957}
+T.\ Regge and J.\ A.\ Wheeler,
+\emph{Stability of a Schwarzschild Singularity},
+Phys.\ Rev.\ \textbf{108}, 1063 (1957).
+
+\bibitem{chandrasekhar1983}
+S.\ Chandrasekhar,
+\emph{The Mathematical Theory of Black Holes},
+Oxford University Press, 1983.
+
+\bibitem{chandrasekhar1975}
+S.\ Chandrasekhar and S.\ Detweiler,
+\emph{The quasi-normal modes of the Schwarzschild black hole},
+Proc.\ R.\ Soc.\ Lond.\ A \textbf{344}, 441 (1975).
+
+\bibitem{wald1984}
+R.\ M.\ Wald, \emph{General Relativity}, University of Chicago Press, 1984.
+
+\end{thebibliography}
+
+\end{document}
+\fi

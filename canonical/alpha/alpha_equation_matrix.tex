@@ -1,0 +1,455 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/alpha_equation_matrix.tex
+% Purpose: Complete equation chain for all three active alpha routes.
+%   Route A (modular_hecke_route): derive B from Hecke/modular structure
+%   Route B (theta_spectral_v_eff_route): V_eff prime attractor (PRIMARY)
+%   Route C (electroweak_or_gut_bridge): GUT bridge sin^2theta_W(GUT)=3/8
+%
+% Status: 2026-04-29
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+  \newcommand{\re}{\mathrm{Re}}
+
+  \newcommand{\PROVED}{\textbf{[Proved]}}
+  \newcommand{\OPEN}{\textbf{[Open]}}
+  \newcommand{\BLOCKED}{\textbf{[Blocked]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\Ltwo}{\textbf{[L2]}}
+
+  \title{\textbf{Alpha Derivation: Equation Matrix for Three Active Routes}}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{April 2026}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Active Routes}
+\label{sec:alpha_eq_purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document presents the complete equation chain for three historical
+alpha-route formulations, with explicit identification of
+proved steps, open gaps, and hard blockers.
+All three routes share the same proved foundation and diverge at the
+point of determining the effective potential coefficient~$B$.
+
+\begin{tcolorbox}[colback=red!4!white,colframe=red!65!black,
+title=Canonical status overlay (2026-05-10)]
+\textbf{Authoritative source}: \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}.\\
+\textbf{Overall}: alpha is \textbf{NOT DERIVED}. Gap \textbf{G137-B} is \textbf{OPEN}.\\
+\textbf{Route labels (canonical verdict)}:
+\begin{itemize}
+  \item Route A (Modular-Hecke): \textbf{OBSOLETE} as an active alpha-derivation route; legacy heuristic support only.
+  \item Route B (V\(_{\mathrm{eff}}\) spectral): \textbf{CONDITIONAL} route to $\alpha^{-1}_{\mathrm{bare}}=137$, blocked by \textbf{OPEN} Gap G137-B.
+  \item Route C (EW/GUT bridge): \textbf{OBSOLETE} as an alpha-derivation route in this track.
+\end{itemize}
+\textbf{Status terms used in this file}: \textbf{PROVED / CONDITIONAL / HEURISTIC / OBSOLETE / OPEN}.\\
+\textbf{Deprecated claims}: constant $\Delta B_{\mathrm{wind}}\approx 18.5$ is \textbf{OBSOLETE/NO-GO};
+$B_{\mathrm{best}}\approx 43.6$ is \textbf{OBSOLETE HEURISTIC}.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white,colframe=blue!50!black,title=Active Routes]
+\begin{tabular}{lll}
+\toprule
+\textbf{Route} & \textbf{Name} & \textbf{Target} \\
+\midrule
+A & Modular-Hecke & Derive $B$ from $\mu(\Gamma_0(n^*))/3$ via $S[\Theta]$ \\
+B & V$_{\mathrm{eff}}$ spectral (PRIMARY) & $n^*(B_{\mathrm{phenom}}) = 137$; attack Gap G137-B \\
+C & EW/GUT bridge & $\sin^2\theta_W(\mathrm{GUT}) = 3/8$ via SU(5) embedding \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\textbf{Kill condition} (applies to all routes): a route is killed if it requires
+a free parameter fitted to reproduce $\alpha$ or 137.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Shared Foundation (All Routes)}
+\label{sec:alpha_foundation}
+%──────────────────────────────────────────────────────────────────────────────
+
+All three routes build on the following proved results.
+These are not inputs to be questioned in this document --- they are
+the starting platform.
+
+\subsection{N$_{\mathrm{eff}}$ = 12 from Algebra}
+
+\begin{theorem}[Mode count, \PROVED\ \Lzero]
+\label{thm:neff}
+The biquaternion algebra $\BB = \CC\otimes_\RR\HH$ admits exactly
+$N_{\mathrm{eff}} = 12$ independent real bosonic modes in its kinetic term:
+\[
+  N_{\mathrm{eff}}
+  \;=\;
+  \underbrace{8}_{\dim_\RR\BB}
+  \;+\;
+  \underbrace{3}_{\dim_\RR(\mathrm{Im}\,\HH)}
+  \;+\;
+  \underbrace{1}_{\mathrm{phase}}
+  \;=\; 12.
+\]
+This count is reproduced by five independent derivation routes;
+see \texttt{canonical/n\_eff/}.
+\end{theorem}
+
+\subsection{V$_{\mathrm{eff}}$ Structure}
+
+\begin{theorem}[Effective potential, \PROVED\ \Lone]
+\label{thm:veff}
+The one-loop effective potential for winding modes on $S^1_\psi$ takes the form
+\[
+  V_{\mathrm{eff}}(n)
+  \;=\;
+  n^2 - B \cdot n \cdot \ln n,
+  \qquad n \in \ZZ_{>0},
+\]
+where $B$ is a positive real coefficient determined by the one-loop integral
+of $S[\Theta]$ around the $\psi$-circle.
+Source: \texttt{canonical/alpha/alpha\_best\_route.tex §2}.
+\end{theorem}
+
+\subsection{V$_{\mathrm{eff}}$ Minimum}
+
+\begin{theorem}[Prime attractor, \PROVED\ \Lone\ (given $B$)]
+\label{thm:prime_attractor}
+The continuous minimum of $V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ satisfies the
+\textbf{transcendental equation}
+\begin{equation}
+  2n^* = B\,(\ln n^* + 1).
+  \label{eq:nstar_transcendental}
+\end{equation}
+This has no elementary closed form; it is solved numerically.
+Selected values: $n^*(8\pi)\approx 65$; $n^*(41.57)\approx 120$; $n^*(46.28)\approx 137$.
+For the phenomenological value $B = B_{\mathrm{phenom}} \approx 46.298$,
+numerical solution gives $n^*_{\mathrm{continuous}} \approx 137.05$, and the
+prime minimiser is
+\[
+  n^*_{\mathrm{prime}} = 137.
+\]
+This is proved conditional on $B = B_{\mathrm{phenom}}$.
+Source: \texttt{canonical/alpha/alpha\_best\_route.tex~\S7};
+see also \texttt{canonical/alpha/veff\_corrected\_statement.tex}.
+
+\textbf{Note}: The formula $n^*(B) = e^{(2-B)/B}\cdot e$ previously stated here
+was incorrect (it equals $e^{2/B}\approx 1.04$ for $B=46.3$) and has been
+removed. See \texttt{reports/alpha\_veff\_sanity\_audit.md~\S6}.
+\end{theorem}
+
+\subsection{One-Loop Baseline}
+
+\begin{theorem}[Baseline coefficient, \PROVED\ \Lone]
+\label{thm:b0}
+The one-loop contribution from the kinetic sector $S_{\mathrm{kin}}[\Theta]$
+on $S^1_\psi$ gives the baseline coefficient:
+\[
+  B_0 \;=\; 8\pi \;\approx\; 25.13.
+\]
+With $B = B_0$, the prime attractor gives $n^*(B_0) \approx 65$, not 137.
+The gap is a factor $B_{\mathrm{phenom}}/B_0 \approx 1.84$.
+Source: \texttt{canonical/t\_munu/}.
+\end{theorem}
+
+\medskip
+\textbf{Gap G137-B} (shared by routes A and B):
+Derive $B = B_{\mathrm{phenom}} \approx 46.298$ from $S[\Theta]$
+without using $\alpha$ as input.
+The missing factor is approximately $1.84 = B_{\mathrm{phenom}} / B_0$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Route A: Modular-Hecke Route}
+\label{sec:route_a}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Central Claim}
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!60!black,
+  title=Route A Target]
+Derive the B-coefficient from the modular structure of $S[\Theta]$:
+\[
+  B \;=\; \frac{\mu(\Gamma_0(137))}{3}
+        \;\approx\; \frac{138.00}{3}
+        \;=\; 46.00
+        \;\approx\; B_{\mathrm{phenom}} \quad (0.64\%\text{ discrepancy}).
+\]
+Here $\mu(\Gamma_0(n))$ is the index of $\Gamma_0(n)$ in $\mathrm{SL}_2(\ZZ)$,
+which equals $n\prod_{p|n}(1+p^{-1})$.
+\end{tcolorbox}
+
+\subsection{Equation Chain}
+
+\paragraph{Step A1: Identify $S[\Theta]$ as a modular object.}
+The action $S[\Theta]$ on the torus $T^2 = S^1_t \times S^1_\psi$,
+evaluated for winding modes $\Theta_n(t,\psi) = e^{2\pi i n\psi/R_\psi} \otimes \theta_n(t)$,
+takes the form:
+\[
+  S_n[\Theta]
+  \;=\;
+  \int_0^{2\pi R_t}\!\mathrm{d}t
+  \int_0^{2\pi R_\psi}\!\mathrm{d}\psi\;
+  \re\bigl[\Tr\bigl(\nabla^\dagger\nabla\Theta_n\bigr)\bigr]
+  \;=\;
+  \frac{4\pi^2 n^2}{R_\psi^2}\cdot\mathcal{F}(R_t,R_\psi).
+\]
+
+\paragraph{Step A2: Evaluate the one-loop determinant.}
+The one-loop path integral over fluctuations $\delta\Theta$ around $\Theta_n$
+gives a functional determinant involving the heat kernel on $S^1_\psi$.
+The heat kernel trace is:
+\[
+  K(t_E;R_\psi)
+  \;=\;
+  \sum_{n=-\infty}^{+\infty} e^{-n^2 t_E / R_\psi^2}
+  \;=\;
+  \vartheta_3\!\left(0\,\big|\,\frac{it_E}{\pi R_\psi^2}\right).
+\]
+
+\paragraph{Step A3: Extract B from the Kac-Moody level.}
+The WZW boundary term in $S[\Theta]$ on $S^1_\psi$ introduces a Kac-Moody level
+$k$ modifying the heat kernel coefficient.
+\begin{mdframed}[backgroundcolor=yellow!15]
+\textbf{Gap A-1} \OPEN: Compute the Kac-Moody level $k$ from the boundary
+structure of $S[\Theta]$ on $\partial(S^1_\psi \times M^4)$.\\
+\textit{Expected}: $k = 1$ from the linear $\psi$-coupling in $\nabla^\dagger$.\\
+\textit{Impact}: If $k = 1$, the one-loop $B$-correction becomes
+$B = B_0 + \Delta B_{\mathrm{KM}}(k)$.
+\end{mdframed}
+
+\paragraph{Step A4: Identify with $\mu(\Gamma_0(137))/3$.}
+If $B$ evaluated at $n^* = 137$ matches $\mu(\Gamma_0(137))/3 = 46.00$,
+this provides a second derivation route independent of the V$_{\mathrm{eff}}$
+minimum.
+Note: the match at 0.64\% is suggestive but not yet a theorem.
+\begin{mdframed}[backgroundcolor=yellow!15]
+\textbf{Gap A-2} \OPEN: Show that the Hecke eigenvalue structure of the
+$\Theta$-partition function $Z[\Theta]$ on $\Gamma_0(137)$ determines $B$.\\
+\textit{Approach}: Compute the $L$-function $L(s, f_{137})$ for a Hecke
+eigenform $f_{137}$ of weight 2 on $\Gamma_0(137)$ and compare special
+values $L(1, f_{137})$ to $B_{\mathrm{phenom}} \cdot \pi^{-1}$.
+\end{mdframed}
+
+\subsection{Current Status}
+
+| Step | Status |
+|------|--------|
+| A1: Winding-mode action form | \PROVED\ \Lone |
+| A2: Heat kernel trace | \PROVED\ \Lone |
+| A3: Kac-Moody level $k$ | Gap A-1 \OPEN |
+| A4: Hecke connection | Gap A-2 \OPEN |
+
+\textbf{Blocker}: Both gaps are open. Route A is on \textbf{4-week time-box}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Route B: V$_{\mathrm{eff}}$ Spectral Route (PRIMARY)}
+\label{sec:route_b}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Central Claim}
+
+\begin{tcolorbox}[colback=green!4!white,colframe=green!60!black,
+  title=Route B Target (PRIMARY ROUTE)]
+Close Gap G137-B: derive $B_{\mathrm{phenom}} \approx 46.298$ from $S[\Theta]$.
+Given the proved chain (Theorems~\ref{thm:neff}--\ref{thm:b0}),
+this immediately promotes $n^*(B) = 137$ from CONDITIONAL to PROVED.
+\end{tcolorbox}
+
+\subsection{Equation Chain}
+
+\paragraph{Step B1: Full one-loop $B$ as heat-kernel sum.}
+Beyond the baseline $B_0 = 8\pi$, the full one-loop coefficient is:
+\[
+  B \;=\; B_0 + \sum_{k=1}^{\infty} c_k \cdot a_k,
+\]
+where $a_k$ are Seeley-DeWitt heat-kernel coefficients for the operator
+$\nabla^\dagger\nabla$ on $S^1_\psi \times M^4$, and $c_k$ are
+combinatorial factors from the $N_{\mathrm{eff}} = 12$ mode count.
+
+\paragraph{Step B2: Higher-loop correction.}
+The two-loop contribution on $S^1_\psi$ is:
+\[
+  \Delta B^{(2)}
+  \;=\;
+  \frac{N_{\mathrm{eff}}}{4\pi}\cdot
+  \int_0^\infty \frac{\mathrm{d}t}{t}\,e^{-m^2 t}\,K_2(t;R_\psi),
+\]
+where $K_2(t)$ is the two-loop heat kernel and $m$ is the winding-mode mass.
+\begin{mdframed}[backgroundcolor=yellow!15]
+\textbf{Gap G137-B (main blocker)} \OPEN: Evaluate $\Delta B^{(2)}$ and
+show $B_0 + \Delta B^{(2)} = B_{\mathrm{phenom}} \approx 46.298$, or
+equivalently $\Delta B^{(2)} \approx 21.16$.\\
+\textit{Known}: $\Delta B^{(2)} > 0$ (positive loop correction).\\
+\textit{Unknown}: Whether two-loop alone is sufficient, or whether
+higher-loop / non-perturbative contributions are needed.
+\end{mdframed}
+
+\paragraph{Step B3: Modular bootstrap alternative.}
+An alternative to loop expansion: identify $B$ with a modular-form special value.
+The corroboration $\mu(\Gamma_0(137))/3 \approx B_{\mathrm{phenom}}$
+(0.64\% match) suggests:
+\[
+  B \;\stackrel{?}{=}\; \frac{\mu(\Gamma_0(137))}{3}
+    \;=\; \frac{138}{3} = 46.
+\]
+\begin{mdframed}[backgroundcolor=yellow!15]
+\textbf{Gap G137-B-mod} \OPEN: Prove (or disprove) that the modular
+measure $\mu(\Gamma_0(n^*))$ coincides with $3B$ evaluated at the prime
+attractor $n^*$, using only $S[\Theta]$ as input.
+\end{mdframed}
+
+\subsection{Current Status}
+
+| Step | Status |
+|------|--------|
+| B1: Shared foundation | \PROVED\ \Lone |
+| B2: Two-loop evaluation | Gap G137-B \OPEN |
+| B3: Modular bootstrap | Gap G137-B-mod \OPEN |
+
+\textbf{Blocker}: Gap G137-B. Route B is PRIMARY; 4-week modular bootstrap attack.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Route C: EW/GUT Bridge}
+\label{sec:route_c}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Central Claim}
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!60!black,
+  title=Route C Target]
+If $\CC\otimes\HH$ embeds into a GUT group fixing $\sin^2\theta_W(\mathrm{GUT}) = 3/8$
+(e.g.\ via SU(5) or SO(10) embedding), then renormalization-group running gives:
+\[
+  \sin^2\theta_W(M_Z) \;\approx\; 0.231
+  \quad\Longrightarrow\quad
+  \alpha^{-1}(M_Z) \;\approx\; 128.
+\]
+Running further to low energies gives $\alpha^{-1}(0) \approx 137.036$,
+but this route remains \textbf{OPEN} and this value is \textbf{not derived} from
+UBT first principles in the current canonical verdict.
+\end{tcolorbox}
+
+\subsection{Equation Chain}
+
+\paragraph{Step C1: Identify the GUT embedding.}
+The biquaternion algebra $\BB \cong \mathrm{Mat}(2,\CC)$ has
+$\mathrm{Aut}(\BB) \cong [\mathrm{GL}(2,\CC)\times\mathrm{GL}(2,\CC)]/\ZZ_2$.
+Does this automorphism group embed into SU(5) or SO(10)?
+\begin{mdframed}[backgroundcolor=yellow!15]
+\textbf{Gap C-1} \OPEN: Determine whether $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y
+\subset \mathrm{Aut}(\BB)$ admits an extension to $\mathrm{SU}(5)$ in which the
+fundamental representation $\mathbf{5}$ of SU(5) restricts to the correct SM
+representation content.
+\end{mdframed}
+
+\paragraph{Step C2: Fix $\sin^2\theta_W(\mathrm{GUT}) = 3/8$.}
+In SU(5), the GUT prediction is:
+\[
+  \sin^2\theta_W(M_{\mathrm{GUT}}) \;=\; \frac{3}{8}.
+\]
+This follows from the normalization of the hypercharge generator
+$Y = \mathrm{diag}(-2/3,-2/3,-2/3,1,1)$ in the $\mathbf{5}$ of SU(5).
+
+\paragraph{Step C3: RG running to $M_Z$.}
+With three SM generations and the SM $\beta$-functions:
+\[
+  \sin^2\theta_W(M_Z)
+  \;=\;
+  \frac{\sin^2\theta_W(M_{\mathrm{GUT}})}{1 + \delta_{\mathrm{RG}}}
+  \;\approx\; 0.231,
+\]
+where $\delta_{\mathrm{RG}}$ is the one-loop RG correction from
+$M_{\mathrm{GUT}}$ to $M_Z$.
+This is a \textbf{standard SM calculation} conditioned on the GUT embedding.
+
+\paragraph{Step C4: Extract $\alpha$.}
+With $\sin^2\theta_W(M_Z) = 0.231$ and the SM relation
+$e = g\sin\theta_W$:
+\[
+  \alpha(M_Z) \;=\; \frac{g^2\sin^2\theta_W}{4\pi}
+             \;\approx\; \frac{1}{128},
+\]
+and running to $q^2 = 0$ via QED gives $\alpha^{-1}(0) \approx 137.036$,
+which remains \textbf{not derived} as a UBT first-principles result and
+stays \textbf{OPEN} under Gap G137-B framing.
+
+\subsection{Current Status}
+
+| Step | Status |
+|------|--------|
+| C1: GUT embedding of ℂ⊗ℍ | Gap C-1 \OPEN |
+| C2: GUT prediction $\sin^2\theta_W = 3/8$ | \PROVED\ (standard SU(5)) |
+| C3: RG running | \PROVED\ [STD] |
+| C4: α extraction | \PROVED\ [STD] |
+
+\textbf{Blocker}: Gap C-1 — GUT embedding not yet shown.
+\textbf{Note}: Route C uses $g$ as an input from gauge sector; $\alpha$
+derivation is complete only if $g$ is also determined by UBT.
+This requires Gap G-strong (strong coupling from algebra) to be resolved first.
+
+---
+
+\textbf{Status}: Route C is the weakest of the three.
+It is ACTIVE but CONDITIONAL on two separate gaps (C-1 and G-strong).
+If neither closes in 4 weeks, Route C will be \textbf{parked}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison Table}
+\label{sec:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+\textbf{Route} & \textbf{Proved steps} & \textbf{Open gaps} & \textbf{Gap difficulty} & \textbf{Independence} & \textbf{Priority} \\
+\midrule
+A (Modular-Hecke) & 2/4 & A-1, A-2 & Medium & Full (no α input) & 4-week box \\
+B (V$_{\mathrm{eff}}$) PRIMARY & 3/3 + gap & G137-B & Medium-High & Full (no α input) & PRIMARY \\
+C (EW/GUT) & 3/4 & C-1, G-strong & High & Conditional (needs g) & CONDITIONAL \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Recommendation}: Routes A and B are the strongest paths.
+Route B is PRIMARY.
+Route A is the best attack on Gap G137-B via modular bootstrap.
+Routes A and B are \textbf{complementary}: both target Gap G137-B from different angles.
+Route C is retained as a contingency but has the most blockers.
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

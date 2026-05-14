@@ -1,0 +1,288 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+
+\subsection{Full Entropic Construction from the Complex Field $\Theta$}
+\label{sec:entropic_full_derivation}
+
+This section provides a complete algebraic derivation of the entropic formulation in UBT, establishing the relationship between the complex biquaternionic field $\Theta(q,\tau)$ and gravitational thermodynamics. We clearly distinguish between derived mathematical identities and physical interpretations that remain as hypotheses requiring empirical validation.
+
+\subsubsection{Definition: Complex Entropic Functional}
+
+\paragraph{Definition 1 (Complex entropic functional).}
+Let $\Theta(q,\tau) \in \mathbb{C}^{4\times4}$ be the fundamental UBT field over complex time $\tau = t + i\psi$. We define the complex entropic functional as:
+\begin{equation}
+\mathcal{S}(q) := k_B \operatorname{Tr}(\log \Theta(q)).
+\label{eq:complex_entropy_functional}
+\end{equation}
+
+Using the fundamental logarithm-determinant identity $\det \Theta = e^{\operatorname{Tr}(\log \Theta)}$, we equivalently write:
+\begin{equation}
+\mathcal{S}(q) = k_B \log \det \Theta(q).
+\label{eq:entropy_determinant_form}
+\end{equation}
+
+\paragraph{Mathematical Status.} 
+Equations~\eqref{eq:complex_entropy_functional} and~\eqref{eq:entropy_determinant_form} are \textbf{derived identities} from matrix algebra, valid for any invertible complex matrix $\Theta$.
+
+\subsubsection{Relation to Determinant Form}
+
+\paragraph{Proposition 1 (Relation to the determinant form).}
+For the Hermitian positive-definite product $\Theta^\dagger \Theta > 0$, the real entropic scalar is related to the complex functional by:
+\begin{equation}
+S(q) := k_B \log \det(\Theta^\dagger \Theta) = 2\,\mathrm{Re}(\mathcal{S}(q)).
+\label{eq:real_entropy_relation}
+\end{equation}
+
+\paragraph{Proof.}
+Starting from the logarithm-determinant identity for products:
+\begin{align}
+\log \det(\Theta^\dagger \Theta) 
+&= \operatorname{Tr}(\log(\Theta^\dagger \Theta)) \\
+&= \operatorname{Tr}(\log \Theta^\dagger + \log \Theta) \\
+&= \operatorname{Tr}(\log \Theta^\dagger) + \operatorname{Tr}(\log \Theta) \\
+&= \operatorname{Tr}((\log \Theta)^\dagger) + \operatorname{Tr}(\log \Theta).
+\end{align}
+
+For any complex matrix $A$, we have $\operatorname{Tr}(A^\dagger) = \overline{\operatorname{Tr}(A)}$. Therefore:
+\begin{equation}
+\log \det(\Theta^\dagger \Theta) = \overline{\operatorname{Tr}(\log \Theta)} + \operatorname{Tr}(\log \Theta) = 2\,\mathrm{Re}(\operatorname{Tr}(\log \Theta)).
+\end{equation}
+
+Substituting equation~\eqref{eq:complex_entropy_functional}:
+\begin{equation}
+\log \det(\Theta^\dagger \Theta) = 2\,\mathrm{Re}(\mathcal{S}(q)/k_B).
+\end{equation}
+
+Multiplying by $k_B$ yields:
+\begin{equation}
+S(q) = k_B \log \det(\Theta^\dagger \Theta) = 2\,\mathrm{Re}(\mathcal{S}(q)).
+\end{equation}
+
+Alternatively, using $|\det \Theta|^2 = \det(\Theta^\dagger \Theta)$:
+\begin{equation}
+S(q) = 2k_B \log |\det \Theta|.
+\label{eq:entropy_modulus}
+\end{equation}
+\qed
+
+\paragraph{Mathematical Status.} 
+Proposition 1 and equation~\eqref{eq:real_entropy_relation} are \textbf{derived identities} from matrix algebra and complex analysis.
+
+\subsubsection{Physical Interpretation}
+
+\paragraph{Interpretation (Real vs Imaginary Sectors).}
+The physical entropic scalar $S(q)$ is determined entirely by the real sector:
+\begin{equation}
+S(q) = 2\,\mathrm{Re}(\mathcal{S}(q)) = 2k_B \log |\det \Theta|.
+\end{equation}
+
+The imaginary sector defines an internal phase structure:
+\begin{equation}
+\mathrm{Im}(\mathcal{S}) = k_B \,\mathrm{Im}(\log \det \Theta) = k_B \arg(\det \Theta).
+\label{eq:phase_entropy}
+\end{equation}
+
+This phase component represents the internal angular structure of the determinant in the complex plane. While $\mathrm{Im}(\mathcal{S})$ does not contribute to the thermodynamic entropy $S$, it encodes phase coherence information relevant to quantum correlations.
+
+\paragraph{Physical Status.} 
+The interpretation of $S(q)$ as a gravitational entropy is a \textbf{hypothesis} linking the algebraic structure to thermodynamic observables. The role of the phase component in equation~\eqref{eq:phase_entropy} requires experimental validation.
+
+\subsubsection{Justification for Real Part Projection in 4D Metric}
+
+\paragraph{Projection Principle.}
+In UBT, the physical 4D metric tensor is obtained from the real part of the biquaternionic field:
+\begin{equation}
+g_{\mu\nu}(q,t) = \mathrm{Re}[\Theta_{\mu\nu}(q,\tau)].
+\label{eq:metric_projection}
+\end{equation}
+
+This projection ensures:
+\begin{enumerate}
+\item \textbf{Reality:} The metric $g_{\mu\nu}$ is real-valued, as required for measurable spacetime intervals.
+\item \textbf{Hermiticity:} For Hermitian $\Theta_{\mu\nu} = \Theta_{\mu\nu}^\dagger$, the real part is automatically real.
+\item \textbf{Observable coupling:} Ordinary matter couples only to real metric components $g_{\mu\nu}$.
+\item \textbf{GR compatibility:} In the limit $\mathrm{Im}(\Theta_{\mu\nu}) \to 0$, we exactly recover Einstein's General Relativity.
+\end{enumerate}
+
+Similarly, the entropic scalar $S(q)$ must be real-valued for thermodynamic consistency:
+\begin{equation}
+S(q) = 2\,\mathrm{Re}(\mathcal{S}(q)) \in \mathbb{R}.
+\end{equation}
+
+\paragraph{Mathematical Status.}
+The projection principle~\eqref{eq:metric_projection} is an \textbf{axiomatic choice} ensuring observational consistency. The real-part requirement for entropy is a \textbf{derived necessity} from thermodynamic principles.
+
+\subsubsection{Limit Analysis I: $\det \Theta \to 0$ (Degeneracy)}
+
+\paragraph{Algebraic Structure.}
+If $\det \Theta \to 0$, then from equation~\eqref{eq:entropy_modulus}:
+\begin{equation}
+S(q) = 2k_B \log |\det \Theta| \to -\infty.
+\label{eq:entropy_divergence}
+\end{equation}
+
+This corresponds to algebraic degeneracy: the matrix $\Theta$ loses rank, indicating that one or more eigenvalues vanish. Geometrically, the internal volume element defined by $\det \Theta$ collapses to zero.
+
+\paragraph{Physical Interpretation (Hypothesis).}
+We interpret $\det \Theta \to 0$ as defining a causal boundary structure analogous to a horizon:
+\begin{itemize}
+\item \textbf{Maximal algebraic order:} $S \to -\infty$ indicates minimal internal volume, not thermodynamic chaos.
+\item \textbf{Horizon analogy:} Similar to black hole horizons where $g_{tt} \to 0$, the vanishing determinant defines a boundary in the biquaternionic field space.
+\item \textbf{No curvature singularity:} The divergence occurs at the algebraic level, not necessarily implying divergent curvature scalars.
+\end{itemize}
+
+\paragraph{Status.} 
+Equation~\eqref{eq:entropy_divergence} is a \textbf{derived result}. The physical interpretation as a horizon-like structure is a \textbf{hypothesis} requiring:
+\begin{enumerate}
+\item Calculation of curvature invariants near $\det \Theta = 0$
+\item Analysis of causal structure and light cone behavior
+\item Comparison with known horizon geometries
+\end{enumerate}
+
+\subsubsection{Limit Analysis II: $\det \Theta = 1$ (Unimodular Vacuum)}
+
+\paragraph{Algebraic Structure.}
+If $|\det \Theta| = 1$, then from equation~\eqref{eq:entropy_modulus}:
+\begin{equation}
+S(q) = 2k_B \log(1) = 0.
+\label{eq:unimodular_entropy}
+\end{equation}
+
+This defines a \textbf{unimodular state}: the biquaternionic field preserves volume while potentially rotating in internal space. A pure phase determinant:
+\begin{equation}
+\det \Theta = e^{i\alpha}, \quad \alpha \in \mathbb{R},
+\end{equation}
+satisfies $|\det \Theta| = 1$, hence $S = 0$, while retaining nontrivial phase structure $\mathrm{Im}(\mathcal{S}) = k_B \alpha$.
+
+\paragraph{Physical Interpretation.}
+The unimodular condition $S = 0$ defines a vacuum equilibrium state:
+\begin{itemize}
+\item \textbf{Zero entropy:} The system has maximal internal order (minimum thermodynamic entropy).
+\item \textbf{Volume preservation:} The determinant constraint $|\det \Theta| = 1$ is analogous to unimodular gravity formulations.
+\item \textbf{Phase freedom:} The argument $\alpha = \arg(\det \Theta)$ represents internal gauge freedom.
+\end{itemize}
+
+\paragraph{Status.}
+Equation~\eqref{eq:unimodular_entropy} is a \textbf{derived result}. The interpretation as vacuum equilibrium is a \textbf{theoretical framework} consistent with unimodular gravity approaches.
+
+\subsubsection{Exponential Metric Mapping}
+
+\paragraph{Motivation: Stability and Regularity.}
+A naive linear weak-field expansion:
+\begin{equation}
+g_{tt} \approx -(1 + 2\phi/c^2), \quad \phi \propto S,
+\end{equation}
+becomes problematic as $S \to -\infty$:
+\begin{equation}
+g_{tt} \approx -(1 + 2S/S_0) \to +\infty \quad \text{(wrong sign!)}.
+\end{equation}
+
+This would produce a metric with incorrect signature and unphysical behavior near degeneracy points.
+
+\paragraph{Exponential Mapping.}
+A structurally consistent mapping is the exponential form:
+\begin{equation}
+g_{tt} = -\exp(2\lambda S), \quad \lambda > 0,
+\label{eq:exponential_metric}
+\end{equation}
+where $\lambda$ is a dimensional coupling constant. This ensures:
+\begin{enumerate}
+\item \textbf{Sign preservation:} $g_{tt} < 0$ for all $S \in \mathbb{R}$ (timelike signature).
+\item \textbf{Regular limits:} As $S \to -\infty$, we have $g_{tt} \to 0$ (horizon-like).
+\item \textbf{Vacuum normalization:} At $S = 0$, we obtain $g_{tt} = -1$ (Minkowski).
+\item \textbf{Positive scaling:} For $S > 0$, we have $g_{tt} < -1$ (modified vacuum).
+\end{enumerate}
+
+\paragraph{Limit Behavior.}
+Under the exponential mapping~\eqref{eq:exponential_metric}:
+\begin{equation}
+\det \Theta \to 0 \Rightarrow S \to -\infty \Rightarrow g_{tt} \to 0,
+\end{equation}
+which is geometrically analogous to approaching a horizon ($g_{tt} = 0$ defines null surfaces) without producing curvature singularities at the algebraic level.
+
+\paragraph{Status.}
+The exponential mapping~\eqref{eq:exponential_metric} is a \textbf{theoretical proposal} ensuring mathematical consistency. The specific form and coupling $\lambda$ require:
+\begin{enumerate}
+\item Derivation from UBT field equations
+\item Consistency with observational constraints
+\item Analysis of higher-order corrections
+\end{enumerate}
+
+\subsubsection{Chronofactor and Two-Level Time Structure}
+
+\paragraph{Complex Time Decomposition.}
+In UBT, time has the structure $\tau = t + i\psi$, where:
+\begin{itemize}
+\item $t$ is the real (observable) time coordinate
+\item $\psi$ is the imaginary (phase) time component
+\end{itemize}
+
+This leads to a two-level temporal structure:
+\begin{enumerate}
+\item \textbf{Global chronofactor:} Governs the overall evolution of the $\Theta$ field through complex time $\tau$.
+\item \textbf{Local 4D metric:} Arises from the real projection $g_{\mu\nu} = \mathrm{Re}[\Theta_{\mu\nu}]$, depending only on real time $t$.
+\end{enumerate}
+
+\paragraph{Role of the Phase Sector.}
+The imaginary time component $\psi$ influences:
+\begin{itemize}
+\item The complex evolution equation: $\frac{\partial \Theta}{\partial \tau}$ couples $t$ and $\psi$ dynamics.
+\item Internal phase structure: Through equation~\eqref{eq:phase_entropy}, $\psi$ contributes to $\mathrm{Im}(\mathcal{S})$.
+\item Quantum correlations: Phase coherence encoded in $\arg(\det \Theta)$.
+\end{itemize}
+
+However, the phase sector does \textbf{not directly enter} the projected metric $g_{\mu\nu}$, remaining invisible to classical observations. This preserves compatibility with General Relativity.
+
+\paragraph{Chronofactor Interpretation.}
+The global chronofactor can be understood as:
+\begin{equation}
+\Theta(q,\tau) = \Theta_0(q) \cdot \mathcal{C}(\tau), \quad \mathcal{C}(\tau) = e^{i\omega\tau},
+\end{equation}
+where $\mathcal{C}(\tau)$ represents a universal phase rotation in complex time. While $\mathcal{C}(\tau)$ governs the background scaling, the physical 4D geometry emerges from:
+\begin{equation}
+g_{\mu\nu}(q,t) = \mathrm{Re}[\Theta_{\mu\nu}(q,t+i\psi)] \big|_{\psi=\psi_0},
+\end{equation}
+evaluated at a fixed phase time $\psi_0$.
+
+\paragraph{Status.}
+The two-level time structure is a \textbf{fundamental feature} of UBT. The specific role of the chronofactor and its coupling to observable dynamics is a \textbf{theoretical framework} requiring:
+\begin{enumerate}
+\item Analysis of $\Theta$ field evolution equations
+\item Study of phase-dependent corrections
+\item Experimental signatures in quantum gravity regimes
+\end{enumerate}
+
+\subsubsection{Summary: Derived Results vs Hypotheses}
+
+\paragraph{Derived Results (Algebraic Identities).}
+The following are \textbf{mathematically derived} from the structure of $\Theta(q,\tau)$:
+\begin{itemize}
+\item Complex entropic functional: $\mathcal{S}(q) = k_B \log \det \Theta(q)$
+\item Real entropy relation: $S(q) = 2\,\mathrm{Re}(\mathcal{S}(q)) = 2k_B \log |\det \Theta|$
+\item Phase structure: $\mathrm{Im}(\mathcal{S}) = k_B \arg(\det \Theta)$
+\item Limit behavior: $\det \Theta \to 0 \Rightarrow S \to -\infty$; $|\det \Theta| = 1 \Rightarrow S = 0$
+\end{itemize}
+
+\paragraph{Physical Interpretations (Hypotheses to be Tested).}
+The following require empirical validation:
+\begin{itemize}
+\item $S(q)$ represents gravitational entropy (links algebra to thermodynamics)
+\item $\det \Theta \to 0$ defines horizon-like causal boundaries
+\item $|\det \Theta| = 1$ corresponds to vacuum equilibrium
+\item Exponential metric mapping $g_{tt} = -\exp(2\lambda S)$ is physically realized
+\item Phase sector $\mathrm{Im}(\mathcal{S})$ encodes quantum correlations
+\item Chronofactor governs background evolution distinct from local metric
+\end{itemize}
+
+\paragraph{Research Program.}
+To elevate these hypotheses to validated predictions:
+\begin{enumerate}
+\item Derive explicit field equations for $\Theta(q,\tau)$
+\item Calculate curvature invariants near limiting cases
+\item Compare predictions with observational data (gravitational waves, black holes)
+\item Develop experimental signatures for phase sector effects
+\end{enumerate}
+
+This derivation establishes the mathematical foundations for entropic thermodynamics in UBT while clearly delineating what is algebraically proven versus what remains theoretically proposed.

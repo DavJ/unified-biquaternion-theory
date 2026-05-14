@@ -1,0 +1,116 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Fermionic Sector from Gauge-Consistency Constraints}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+This note addresses the alternate route to fermions:
+derive constraints from gauge consistency/anomaly cancellation, rather than
+factorizing the bosonic kinetic action.
+
+\section{Step 1: anomaly constraints from gauge consistency}
+For a chiral gauge theory, consistency requires vanishing anomaly polynomials.
+For a U(1) charge assignment \(q_f\), the cubic and linear conditions are
+\[
+\sum_f q_f^3=0,\qquad \sum_f q_f=0.
+\]
+In the electroweak sector this is applied to hypercharge assignments of
+left-handed Weyl fields (including conjugate right-handed singlets).
+
+\begin{proposition}[UBT-consistent SM-like hypercharge set is anomaly-free]
+Using one-generation chiral content
+\[
+Q_L,\ u_R^c,\ d_R^c,\ L_L,\ e_R^c
+\]
+with
+\[
+Y=\Bigl(\tfrac16,\ -\tfrac23,\ \tfrac13,\ -\tfrac12,\ 1\Bigr),
+\]
+including colour/SU(2) multiplicities, both
+\(
+\sum_f Y_f^3
+\)
+and
+\(
+\sum_f Y_f
+\)
+vanish.
+\end{proposition}
+
+\begin{proof}
+Multiplicity-weighted sums per generation:
+\[
+\sum_f Y_f
+=6\!\cdot\!\tfrac16 + 3\!\cdot\!\Bigl(-\tfrac23\Bigr) + 3\!\cdot\!\tfrac13
++2\!\cdot\!\Bigl(-\tfrac12\Bigr) + 1\!\cdot\!1 = 0,
+\]
+\[
+\sum_f Y_f^3
+=6\!\cdot\!\Bigl(\tfrac16\Bigr)^3
++3\!\cdot\!\Bigl(-\tfrac23\Bigr)^3
++3\!\cdot\!\Bigl(\tfrac13\Bigr)^3
++2\!\cdot\!\Bigl(-\tfrac12\Bigr)^3
++1^3 = 0.
+\]
+\end{proof}
+
+\section{Step 2: mixed gravitational/electroweak check}
+For the mixed \([\mathrm{SU}(2)_L]^2U(1)_Y\) condition:
+\[
+\sum_{\text{SU(2) doublets}} T(r_f)\,Y_f = 0,
+\quad T(\mathbf{2})=\tfrac12.
+\]
+With three coloured quark doublets and one lepton doublet:
+\[
+3\cdot \tfrac12\cdot \tfrac16 + 1\cdot \tfrac12\cdot\Bigl(-\tfrac12\Bigr)=0.
+\]
+So the mixed condition is satisfied for the same chiral set.
+
+\section{Step 3: WZW interpretation status}
+The WZW counterterm route is a candidate mechanism for encoding anomaly
+matching in an effective bosonic action. In current UBT files, this remains
+model-construction level [MC]: existence of a fully derived
+\(
+S_{\mathrm{WZW}}[\Theta]
+\)
+compatible with \(\CC\otimes\HH\) is not yet closed at [L1].
+
+\begin{remark}
+This route derives \emph{consistency constraints} on fermionic content.
+It does not yet provide a full first-principles derivation of the fermionic
+kinetic term from canonical \(S[\Theta]\).
+\end{remark}
+
+\begin{statusbox}
+Gauge anomaly-cancellation in UBT: \textbf{[satisfied for SM-like chiral content; L1 check]}\\
+Fermionic content from anomaly-cancellation: \textbf{[partially derived as a consistency requirement]}\\
+WZW člen v $S[\Theta]$: \textbf{[OPEN/MC]}\\
+$N_{\mathrm{helicity}}=2$ z gaugeové konzistence: \textbf{[MC]}\\
+Dopad: $N_{\mathrm{eff}}=12$ a $B_0=8\pi$ \textbf{[zůstává OPEN]}.
+\end{statusbox}
+
+\end{document}

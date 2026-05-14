@@ -1,0 +1,135 @@
+name: Repo Integrity Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  repo-grounding-check:
+    name: "Check Repo Grounding"
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Fetch PR body
+        id: pr_body
+        env:
+          BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "$BODY" > /tmp/pr_body.txt
+          echo "PR body saved."
+
+      - name: Verify Repo Grounding section exists
+        run: |
+          if ! grep -qi "## Repo Grounding" /tmp/pr_body.txt; then
+            echo "::error::PR is missing the '## Repo Grounding' section. Add at least 2 path:line citations."
+            exit 1
+          fi
+          echo "Repo Grounding section found."
+
+      - name: Verify at least 2 path:line citations
+        run: |
+          # Match lines like: - `some/path:123` or - some/path:123
+          COUNT=$(grep -cE '`?[a-zA-Z0-9_./-]+(\.[a-zA-Z0-9]+)?:[0-9]+`?' /tmp/pr_body.txt || true)
+          echo "Found $COUNT path:line citation(s)."
+          if [ "$COUNT" -lt 2 ]; then
+            echo "::error::Repo Grounding requires at least 2 path:line citations (found $COUNT)."
+            exit 1
+          fi
+
+  protected-paths-check:
+    name: "Check Protected Paths"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes to protected paths
+        env:
+          LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+        run: |
+          PROTECTED_PATHS="original_release_of_ubt canonical core unified_biquaternion_theory"
+
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" 2>/dev/null || \
+                    { echo "::warning::Could not diff against base SHA; falling back to HEAD~1"; \
+                      git diff --name-only HEAD~1 HEAD 2>/dev/null || true; })
+
+          echo "Changed files:"
+          echo "$CHANGED"
+
+          TOUCHED_PROTECTED=""
+          for path in $PROTECTED_PATHS; do
+            if echo "$CHANGED" | grep -q "^${path}/"; then
+              TOUCHED_PROTECTED="$TOUCHED_PROTECTED $path"
+            fi
+          done
+
+          if [ -n "$TOUCHED_PROTECTED" ]; then
+            echo "Protected paths touched:$TOUCHED_PROTECTED"
+            # Check for allow-core-change label
+            if echo "$LABELS" | grep -q "allow-core-change"; then
+              echo "Label 'allow-core-change' is present. Proceeding."
+            else
+              echo "::error::This PR modifies protected path(s) [$TOUCHED_PROTECTED] but is missing the 'allow-core-change' label."
+              exit 1
+            fi
+          else
+            echo "No protected paths modified."
+          fi
+
+  experiment-script-check:
+    name: "Check Experiment Scripts"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect experiment scripts added/modified in this PR
+        id: detect
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch origin "$BASE_SHA" --depth=1 2>/dev/null || true
+          CHANGED=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" 2>/dev/null || \
+                    { echo "::warning::Could not diff against base SHA; falling back to HEAD~1"; \
+                      git diff --name-only HEAD~1 HEAD 2>/dev/null || true; })
+          SCRIPTS=$(echo "$CHANGED" | grep -E '^experiments/.*\.py$' || true)
+          echo "Experiment scripts changed:"
+          echo "$SCRIPTS"
+          echo "scripts<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$SCRIPTS" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.detect.outputs.scripts != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.detect.outputs.scripts != ''
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Run experiment scripts
+        if: steps.detect.outputs.scripts != ''
+        run: |
+          FAILED=0
+          while IFS= read -r script; do
+            [ -z "$script" ] && continue
+            echo "Running: python $script"
+            if ! python "$script"; then
+              echo "::error::Experiment script '$script' failed. Fix errors before merging."
+              FAILED=1
+            fi
+          done <<< "${{ steps.detect.outputs.scripts }}"
+          exit $FAILED

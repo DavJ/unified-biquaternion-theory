@@ -1,0 +1,222 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{lemma}[proposition]{Lemma}
+
+\title{Charge Quantization and Topology in UBT\\
+\large Target 4 — fix\_or\_reject\_U1\_coupling\_normalization}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We analyze whether UBT topology forces electric charge quantization.  We examine
+winding number quantization on $S^1_\psi$, holonomy conditions, allowed charges
+from single-valuedness of $\Theta$, quark fractional charges, and the role of
+the Weinberg angle.  Verdict: \textbf{CONDITIONAL} — integer charge
+quantization follows from topology; fractional charges remain conditional.
+\end{abstract}
+
+% ----------------------------------------------------------------
+\section{Winding number quantization on $S^1_\psi$}
+% ----------------------------------------------------------------
+
+The imaginary-time coordinate $\psi$ is compactified on a circle
+$S^1_\psi$ of circumference $2\pi R_\psi$.  The fundamental field $\Theta$
+must satisfy
+\begin{equation}
+  \Theta(x,\psi+2\pi R_\psi)=\Theta(x,\psi).
+\end{equation}
+Under a U(1) gauge transformation with parameter $\chi(\psi)$, the field
+transforms as
+\begin{equation}
+  \Theta\;\longmapsto\; e^{i\chi(\psi)}\Theta.
+\end{equation}
+For $\Theta$ to be single-valued after one full circuit of $S^1_\psi$,
+\begin{equation}
+  \chi(2\pi R_\psi)-\chi(0) = 2\pi n,\qquad n\in\mathbb{Z}.
+\end{equation}
+This is the winding number condition.
+
+% ----------------------------------------------------------------
+\section{Holonomy and allowed charges}
+% ----------------------------------------------------------------
+
+The holonomy of the gauge connection around $S^1_\psi$ is
+\begin{equation}
+  \mathcal{W}=\exp\!\left(iq\oint_{S^1_\psi}A_\psi\,d\psi\right),
+\end{equation}
+where $q$ is the charge of the field under U(1).  Single-valuedness of $\Theta$
+under parallel transport requires
+\begin{equation}
+  \mathcal{W} = 1,\qquad\text{i.e.,}\qquad
+  q\oint_{S^1_\psi}A_\psi\,d\psi = 2\pi n,\qquad n\in\mathbb{Z}.
+\end{equation}
+
+\begin{proposition}[Charge quantization in integer units]
+\label{prop:charge-quant}
+If the minimal gauge flux through $S^1_\psi$ is normalized to the unit flux
+quantum
+\begin{equation}
+  \Phi_0 := \oint_{S^1_\psi}A_\psi^{(1)}\,d\psi = 2\pi
+  \quad\text{(unit flux quantum)},
+\end{equation}
+then the allowed charges of $\Theta$ are
+\begin{equation}
+  q = n \in \mathbb{Z}.
+\end{equation}
+\end{proposition}
+
+\begin{remark}[CONDITIONAL status]
+Proposition \ref{prop:charge-quant} requires that the unit flux quantum
+$\Phi_0=2\pi$ is the minimal allowed flux.  This is the standard Dirac
+quantization condition and holds if the gauge field is defined on a
+simply-connected space.  On $S^1_\psi$, the flux is a Wilson line modulus and
+is not a priori constrained to $2\pi$; the normalization $\Phi_0=2\pi$ is an
+additional convention choice (equivalent to choosing $e_5=1$).
+\end{remark}
+
+% ----------------------------------------------------------------
+\section{Derivation of allowed charges from single-valuedness}
+% ----------------------------------------------------------------
+
+For a field $\Theta$ with U(1) charge $q$ under the right-phase action
+$\Theta\to e^{iq\chi}\Theta$, single-valuedness on $S^1_\psi$ with a
+background holonomy $\mathcal{W}=e^{i\phi}$ requires
+\begin{equation}
+  e^{iq\phi}=1 \quad\Rightarrow\quad q\phi = 2\pi m,\quad m\in\mathbb{Z}.
+\end{equation}
+If only integer holonomies are allowed (which follows from Proposition
+\ref{prop:charge-quant} above), then $\phi=2\pi$ and $q=m\in\mathbb{Z}$.
+
+The fundamental biquaternion field $\Theta$ has charge $q_\Theta=1$ (derived in
+Target 1).  Therefore:
+\begin{itemize}
+  \item $\Theta$: $q=1$ (electron-like, integer charge).
+  \item $\Theta^n$: $q=n$ (integer multiples).
+  \item Composites of $\Theta$ fields carry integer charges.
+\end{itemize}
+
+% ----------------------------------------------------------------
+\section{Quark fractional charges and their origin}
+% ----------------------------------------------------------------
+
+Quarks carry charges $q=+2/3$ (up-type) and $q=-1/3$ (down-type), which are
+not integers in units of the electron charge.
+
+\subsection{Route via electroweak embedding}
+
+The physical electric charge is $Q=T_3+Y/2$, where $T_3$ is the third component
+of weak isospin and $Y$ is weak hypercharge.  The fractional charges of quarks
+arise from their non-trivial hypercharge assignments:
+\begin{equation}
+  Y_q=\frac{1}{3}\quad\text{(quark doublets)},
+  \qquad
+  Y_u=\frac{4}{3},\quad Y_d=-\frac{2}{3}\quad\text{(quark singlets)}.
+\end{equation}
+These are rational numbers, not derived from the U(1)$_\psi$ topology alone.
+They represent the embedding of quarks in the Standard Model gauge group
+$\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$.
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Field & $T_3$ & $Y/2$ & $Q=T_3+Y/2$ & Origin in UBT \\
+\midrule
+Electron $e^-$ & $-1/2$ & $-1/2$ & $-1$ & CONDITIONAL \\
+Up quark $u$ & $+1/2$ & $+1/6$ & $+2/3$ & CONDITIONAL \\
+Down quark $d$ & $-1/2$ & $+1/6$ & $-1/3$ & CONDITIONAL \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Route via GUT embedding}
+
+In a GUT-style embedding $\mathrm{SU}(5)\supset\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$,
+fractional charges $1/3$ arise from the GUT generator normalization.  This
+requires a specific GUT group choice that is not currently derived from
+$\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$.
+
+The biquaternion algebra $\mathcal{B}\cong\mathrm{Mat}(2,\mathbb{C})$ gives
+$\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ from the left factor automorphisms and
+$\mathrm{SU}(3)_c$ from the involution structure.  The combination required for
+$\mathrm{SU}(5)$ is not manifest.
+
+\textbf{Status: CONDITIONAL (fractional charges require hypercharge assignments
+imported from Standard Model or GUT).}
+
+% ----------------------------------------------------------------
+\section{Weinberg angle and U(1)$_Y$ to U(1)$_{\rm EM}$ mixing}
+% ----------------------------------------------------------------
+
+The physical photon is
+\begin{equation}
+  A_\mu=\sin\theta_W W^3_\mu+\cos\theta_W B_\mu,
+\end{equation}
+where $\theta_W$ is the Weinberg angle.  The electromagnetic coupling is
+\begin{equation}
+  e=g\sin\theta_W=g'\cos\theta_W.
+\end{equation}
+The Weinberg angle is related to the ratio of gauge couplings:
+\begin{equation}
+  \tan\theta_W=\frac{g'}{g}.
+\end{equation}
+This ratio is not fixed by the biquaternion algebra alone; it requires an
+additional input (e.g., coupling unification at a GUT scale).
+
+\textbf{Status: CONDITIONAL (Weinberg angle not derived from $\mathcal{B}$
+alone).}
+
+% ----------------------------------------------------------------
+\section{Summary and verdict}
+% ----------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Item & Status & Notes \\
+\midrule
+Single-valuedness on $S^1_\psi$ & DERIVED & Topological requirement \\
+Integer charge quantization (unit flux) & CONDITIONAL & Requires $\Phi_0=2\pi$ convention \\
+$q_\Theta=1$ from right-phase action & DERIVED & Algebraic, Target 1 \\
+Integer charges for composites & DERIVED & From $q_\Theta=1$ \\
+Quark charge $2/3$ & CONDITIONAL & Requires SM hypercharge assignment \\
+Quark charge $-1/3$ & CONDITIONAL & Requires SM hypercharge assignment \\
+Weinberg angle & CONDITIONAL & Ratio $g'/g$ not fixed by $\mathcal{B}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Overall verdict.}
+\textbf{CONDITIONAL.}
+Integer charge quantization follows from the single-valuedness of $\Theta$ on
+$S^1_\psi$, given the standard flux normalization convention.  The electron
+carries unit charge by construction ($q_\Theta=1$).  Quark fractional charges
+require Standard Model hypercharge assignments that are not derived from the
+biquaternion algebra alone.  The Weinberg angle mixing remains an open parameter.
+
+\begin{remark}[Potential path to fractional charges]
+If a full $\mathrm{SU}(5)$ or $\mathrm{SO}(10)$ GUT structure were derived
+from $\mathcal{B}$, fractional charges would follow automatically.  The
+involution structure giving $\mathrm{SU}(3)_c$ is a promising starting point,
+but the extension to full GUT has not been established.
+\end{remark}
+
+\end{document}

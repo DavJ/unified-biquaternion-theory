@@ -1,0 +1,106 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% ALPHA_BEST_ROUTE.tex — Root-level entry point for the best-candidate alpha route.
+% LEGACY / SUPERSEDED BANNER (2026-05-10):
+%   This root-level file is retained for provenance and is NOT authoritative for
+%   active alpha status. Canonical source: canonical/alpha/ALPHA_MASTER_STATUS.md.
+%
+% CURRENT CANONICAL VERDICT:
+%   alpha is NOT derived.
+%   alpha_bare^{-1}=137 is CONDITIONAL ONLY.
+%   alpha^{-1}=137.036 is NOT derived.
+%   Gap G137-B is open.
+%   B_best ≈ 43.6 and constant Delta B_wind ≈ 18.5 are obsolete/no-go.
+%
+% NOTE:
+%   Any older G3-k / B_base framing below is historical and superseded.
+%   Circular inputs are clearly marked [CIRC] in the body below:
+%     - δ = 0.036  [CIRC] — uses α and m_e as input
+%     - R_ψ in SI units  [SE/CIRC] — uses m_e as input
+%     - Physical α correction  [CIRC] — two-loop QED with m_e-dependent cutoff
+%   E8 route: DISPROVED [L0] — see canonical/algebra/e8_no_go_proof.tex.
+%   Chronofactor: FORMALIZED [L0/L1] — see canonical/fields/chronofactor_operator.tex.
+%
+% This file is a standalone root-level document.  Content lives canonically in:
+%   canonical/alpha/alpha_best_route.tex
+% which is included via the \INCLUDEMODE mechanism below to avoid duplication.
+%
+% Next step: derive correction factor R non-circularly.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tcolorbox}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\title{\textbf{Best Route to $\alpha$ from UBT: Prime Attractor on $S^1_\psi$}\\
+       \large Alpha v70 — Formal Best-Candidate Derivation\\[6pt]
+       {\normalsize\color{orange}\textbf{STATUS: PARTIAL — NOT SOLVED (v70)}\\
+        \small Gap G3-k CLOSED [L1]; E8 KILLED [L0]; new primary gap: correction factor $R$}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-04-30}
+
+\begin{document}
+\maketitle
+
+%──────────────────────────────────────────────────────────────────────────────
+% Honest-status banner — required by v69 consistency-gap closure protocol.
+%──────────────────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[colback=orange!8!white, colframe=orange!70!black,
+                  title=\textbf{Alpha Status: PARTIAL --- NOT SOLVED (v70)}]
+\begin{tabular}{ll}
+Overall verdict       & \textbf{PARTIAL — α derivation not yet achieved} \\
+Gap G3-k              & \textbf{CLOSED [L1]} — $k=1$ proved via M1–M4 + T-duality
+                        (see \texttt{canonical/alpha/gap\_g3k\_closure\_report.tex}) \\
+$B_{\mathrm{base}}$   & $= 12^{3/2} \approx 41.57$ \textbf{[L1]} \\
+Prime attractor       & $n^*_{\mathrm{prime}} = 127$ for $B_{\mathrm{base}}$ alone \\
+Minimum viable claim  & $\alpha^{-1}_{\mathrm{bare}} = 127$ — \textbf{PROVED [L1]}
+                        (zero free parameters) \\
+Correction to 137     & $R \approx 1.114$ — \textbf{[MC] OPEN} (new primary gap) \\
+Full claim            & $\alpha^{-1} = 137.036$ — \textbf{NOT ACHIEVED} \\
+Circular inputs       & $\delta = 0.036$\ [CIRC],\quad
+                        $R_\psi$ in SI units\ [SE],\quad
+                        physical $\alpha$ correction\ [CIRC] \\
+E8 route              & \textbf{DISPROVED [L0]}
+                        (see \texttt{canonical/algebra/e8\_no\_go\_proof.tex}) \\
+Chronofactor          & \textbf{FORMALIZED [L0]} as $\hat{N}$, $\hat{T}_\psi$, $\Pi$
+                        (see \texttt{canonical/fields/chronofactor\_operator.tex}) \\
+Next step             & Derive correction factor $R$ from two-loop or WZW null vector \\
+\end{tabular}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+% Include the canonical derivation (all circular inputs are marked [CIRC] there).
+%──────────────────────────────────────────────────────────────────────────────
+\def\INCLUDEMODE{}
+\input{canonical/alpha/alpha_best_route}
+
+\end{document}

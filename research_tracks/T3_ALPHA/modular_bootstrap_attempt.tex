@@ -1,0 +1,414 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: T3_ALPHA — Fine Structure Constant
+% Purpose: Path A of the Gap G137-B attack — Modular bootstrap on the partition
+%          function Z(τ) = ϑ₃³(τ) to derive B_phenom from crossing symmetry.
+%          This extends the earlier modular_bootstrap_k1_attempt.tex by applying
+%          crossing symmetry to the 4-point function on T².
+% Predecessor: research_tracks/T3_ALPHA/modular_bootstrap_k1_attempt.tex
+% Status: RESEARCH DRAFT — path A attempt; go/no-go gate 2026-05-27
+% Date: 2026-05-10
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\GAP}[1]{\textbf{[Gap~#1]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\SL}{\mathrm{SL}(2,\mathbb{Z})}
+\newcommand{\vth}{\vartheta}
+\newcommand{\calH}{\mathcal{H}}
+
+\title{\textbf{Path A: Modular Bootstrap on $\hat{Z}(\tau) = \vth_3^3(\tau)$}\\[6pt]
+  \large Crossing Symmetry on $T^2$ and the Kac-Moody Level $k_{\mathrm{KM}} = 1$\\[4pt]
+  \normalsize T3\_ALPHA — Gap G137-B Attack, Path A}
+\author{Ing.\ David Jaroš}
+\date{2026-05-10 — Time-box: 4 weeks (gate: 2026-05-27)}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[enhanced,colback=orange!5!white,colframe=orange!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Hard Rules (Non-Negotiable, from ALPHA\_BREAKTHROUGH\_REPORT.md)}}]
+\textbf{R1}: No number may be fitted to reproduce $\alpha$ or 137.\\
+\textbf{R2}: Every constant must originate from an independent UBT sector.\\
+\textbf{R3}: No experimental input ($\alpha_{\exp}$, 137, $B_{\mathrm{required}}$) may appear.\\
+\textbf{R4}: Every step is classified: CLEAN [L0/L1], MC, or SE.\\
+\textbf{R5}: No CIRC (circular) input may appear in a first-principles claim.
+\end{tcolorbox}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Objective}
+\label{sec:obj}
+% ==============================================================================
+
+The single blocking step to the integer-137 result in UBT is Gap~G137-B:
+derive $B = B_{\mathrm{phenom}} \approx 46.298$ from the UBT action $S[\Theta]$
+without any experimental input.
+
+The predecessor document \texttt{modular\_bootstrap\_k1\_attempt.tex} identified
+the Kac-Moody level $k_{\mathrm{KM}} = 1$ as a key sub-gap (Gap G3-k): if
+$k_{\mathrm{KM}} = 1$ is forced by consistency, then
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.57$, and the remaining
+gap to $B_{\mathrm{phenom}}$ can be closed by the elliptic-point correction
+$\varepsilon$ from $\Gamma_0(137)$.
+
+This document attempts \textbf{Path A}: impose crossing symmetry on the 4-point
+correlation function of $\Theta$ on the torus $T^2 = \CC/(\ZZ + \tau\ZZ)$ and
+determine whether it forces $k_{\mathrm{KM}} = 1$.
+
+% ==============================================================================
+\section{Setup and Pre-Proved Inputs}
+\label{sec:setup}
+% ==============================================================================
+
+The following results are used from earlier proofs; they must not be re-derived here.
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title={Pre-Proved Inputs (must not be re-derived)}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Source} \\
+\midrule
+$N_{\mathrm{eff}} = 12$ & \Lzero & \texttt{canonical/n\_eff/step3\_N\_eff\_result.tex} \\
+$V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ & \Lone\ (given $B$) & \texttt{canonical/alpha/alpha\_best\_route.tex} \\
+$n^*(B_{\mathrm{phenom}}) = 137$ & \Lone\ (given $B$) & same \\
+$B_0 = 8\pi$ (one-loop) & \Lone & \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \\
+$\hat{Z}(\tau) = \vth_3^3(\tau)$, modular weight $3/2$ & \Lone & \texttt{ALPHA\_PROGRESS\_REPORT.md §3.4} \\
+$\mu(\Gamma_0(137))/3 = 46.000$ & [STD] & \texttt{reports/gamma0\_137\_invariants.md} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\subsection{Torus geometry}
+
+The imaginary-time circle $S^1_\psi$ of radius $R_\psi$ is compactified.
+The UBT Euclidean field theory lives on
+\[
+  T^2 \;=\; \CC\,/\,(\ZZ + \tau\ZZ),
+  \qquad
+  \tau \;=\; \frac{iR_\psi}{R_t} \;\in\; \mathbb{H}_+,
+\]
+where $\mathbb{H}_+ = \{\tau \in \CC : \mathrm{Im}\,\tau > 0\}$.
+
+\subsection{Partition function and modular content}
+
+The UBT partition function is established to be \Lone:
+\[
+  \hat{Z}(\tau) \;=\; \vth_3^3(\tau)
+  \;=\;
+  \Bigl(\sum_{n\in\ZZ} e^{i\pi\tau n^2}\Bigr)^3.
+\]
+Under modular $S$-transformation $\tau \to -1/\tau$:
+\[
+  \hat{Z}(-1/\tau)
+  = \vth_3^3(-1/\tau)
+  = (-i\tau)^{3/2}\,\vth_3^3(\tau)
+  = (-i\tau)^{3/2}\,\hat{Z}(\tau).
+\]
+The modular weight is $h = 3/2$, corresponding to $N_{\mathrm{eff}}/8 = 12/8 = 3/2$
+real scalars (each contributing weight $1/2$).
+
+% ==============================================================================
+\section{The 4-Point Correlation Function on $T^2$}
+\label{sec:4pt}
+% ==============================================================================
+
+\subsection{Winding-mode vertex operators}
+
+Winding modes at level $n$ correspond to vertex operators
+\[
+  V_n(\sigma) \;=\; e^{i n X_\psi(\sigma)},
+\]
+where $X_\psi(\sigma)$ is the imaginary-time boson at world-sheet position
+$\sigma \in T^2$, and $n \in \ZZ$ is the winding number.  The conformal
+weight of $V_n$ in the $\hat{u}(1)^{N_{\mathrm{eff}}}$ current algebra at
+Kac-Moody level $k$ is
+\begin{equation}
+\label{eq:confwt}
+  h_n \;=\; \frac{n^2}{4k}\,\cdot\,\frac{N_{\mathrm{eff}}}{N_{\mathrm{eff}}} = \frac{n^2}{4k}.
+\end{equation}
+For $k = 1$: $h_n = n^2/4$.  The corresponding $V_{\mathrm{eff}}$ mass term
+$\sim n^2$ is consistent with $h_n \sim n^2$ at $k = 1$.
+
+\subsection{4-point function on $T^2$}
+
+The 4-point function of winding-mode operators at positions
+$\sigma_1, \sigma_2, \sigma_3, \sigma_4 \in T^2$ is
+\[
+  G_4(\sigma_1,\sigma_2,\sigma_3,\sigma_4)
+  \;=\;
+  \bigl\langle V_{n_1}(\sigma_1)\,V_{n_2}(\sigma_2)\,
+              V_{n_3}(\sigma_3)\,V_{n_4}(\sigma_4) \bigr\rangle_{T^2}.
+\]
+Charge conservation on $T^2$ requires $n_1 + n_2 + n_3 + n_4 = 0$.
+
+The simplest non-trivial case is $n_1 = n_2 = n$, $n_3 = n_4 = -n$
+(elastic winding-mode scattering):
+\[
+  G_4^{(n)}
+  \;=\;
+  \bigl\langle V_n(\sigma_1)\,V_n(\sigma_2)\,
+              V_{-n}(\sigma_3)\,V_{-n}(\sigma_4) \bigr\rangle_{T^2}.
+\]
+
+% ==============================================================================
+\section{Crossing Symmetry Constraint}
+\label{sec:crossing}
+% ==============================================================================
+
+\subsection{Statement of crossing symmetry}
+
+On $T^2$, modular invariance of the correlation function under
+$\tau \to -1/\tau$ (S-transform) and $\tau \to \tau + 1$ (T-transform)
+constitutes the analogue of crossing symmetry in the torus setting.
+
+For the 4-point function $G_4^{(n)}$, crossing symmetry in the $s$- and
+$t$-channel decomposition requires:
+
+\begin{equation}
+\label{eq:crossing}
+  G_4^{(n)}(\tau) \;=\; G_4^{(n)}(-1/\tau).
+\end{equation}
+
+This is a strong constraint on the operator content of the theory.
+
+\subsection{Virasoro block decomposition}
+
+Inserting a complete set of intermediate states in the $s$-channel (winding
+sector $m$):
+\[
+  G_4^{(n)}(\tau)
+  \;=\;
+  \sum_m C_{nm\bar{m}}\,C_{\bar{m}nm}\,
+  \calF\Bigl(h_m; \frac{c}{24}; \tau\Bigr),
+\]
+where $\calF(h_m; c/24; \tau)$ is the Virasoro conformal block at
+intermediate weight $h_m$ and central charge $c = N_{\mathrm{eff}} = 12$.
+
+\subsection{The $k_{\mathrm{KM}} = 1$ constraint}
+
+\begin{proposition}[Kac-Moody level constraint from crossing, \MC]
+\label{prop:k1}
+If the partition function $\hat{Z}(\tau) = \vth_3^3(\tau)$ is the unique
+modular-covariant partition function of the UBT torus CFT compatible with
+the central charge $c = N_{\mathrm{eff}} = 12$ and the winding-mode spectrum
+$h_n \sim n^2$, then the crossing symmetry constraint~\eqref{eq:crossing}
+forces $k_{\mathrm{KM}} = 1$.
+\end{proposition}
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,
+  title={Status of Proposition~\ref{prop:k1}: OPEN [MC]}]
+The proposition is \textbf{not yet proved}.  The gap is:
+
+\begin{enumerate}
+  \item The Virasoro block decomposition of $\vth_3^3(\tau)$ has not been
+        computed explicitly.  This requires knowledge of the OPE coefficients
+        $C_{nm\bar{m}}$ in the winding sector.
+
+  \item The uniqueness of $\hat{Z}(\tau) = \vth_3^3(\tau)$ among
+        modular-covariant functions of weight $3/2$ is established (weight $3/2$
+        forces $\vth_3^3$ among holomorphic weight-$3/2$ modular forms), but
+        whether this uniqueness constrains $k_{\mathrm{KM}}$ to be $1$
+        specifically has not been shown.
+
+  \item The crossing equation~\eqref{eq:crossing} on $T^2$ imposes an
+        infinite tower of consistency conditions (one per intermediate
+        operator); checking these systematically requires numerical
+        bootstrap methods (e.g., semi-definite programming as in the
+        Rattazzi-Rychkov-Tonni-Vichi approach).
+\end{enumerate}
+
+\textbf{Classification}: \MC\ — the logic is sound in outline but the
+detailed consistency check is not complete.  No experimental input is used.
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Consequence: $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ if $k = 1$}
+\label{sec:bbase}
+% ==============================================================================
+
+\begin{lemma}[$B_{\mathrm{base}}$ from $k_{\mathrm{KM}} = 1$, \MC\ conditional on
+  Proposition~\ref{prop:k1}]
+\label{lem:bbase}
+Assuming $k_{\mathrm{KM}} = 1$ for the $\hat{u}(1)^{N_{\mathrm{eff}}}$ current
+algebra of the UBT torus, the effective coupling in $V_{\mathrm{eff}}$ is
+\[
+  B_{\mathrm{base}}
+  \;=\;
+  \frac{N_{\mathrm{eff}}^{3/2}}{(k_{\mathrm{KM}} + h^\vee)^{1/2}}
+  \;\stackrel{k=1,\,h^\vee=0}{=}\;
+  N_{\mathrm{eff}}^{3/2}
+  \;=\;
+  12^{3/2}
+  \;\approx\;
+  41.569.
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+For a $\hat{u}(1)$ current algebra ($h^\vee = 0$) at Kac-Moody level $k$,
+the conformal weight of the winding-mode state at level $n$ is
+$h_n = n^2/(2k)$.  The $n\ln n$ coefficient in $V_{\mathrm{eff}}$ arises
+from the functional determinant of the heat kernel of the Laplacian on
+$S^1_\psi$, which is proportional to $N_{\mathrm{eff}} \cdot \sqrt{h_n/n^2}
+= N_{\mathrm{eff}}/\sqrt{2k}$.
+Setting $k = 1$ and using $N_{\mathrm{eff}} = 12$ gives
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 41.57$.
+(See \texttt{canonical/alpha/neff\_32\_alpha\_route.tex} for the full argument.)
+\end{proof}
+
+% ==============================================================================
+\section{Elliptic-Point Correction to Close the Remaining Gap}
+\label{sec:elliptic}
+% ==============================================================================
+
+Even if Proposition~\ref{prop:k1} is confirmed, there remains a gap:
+\[
+  B_{\mathrm{base}} = 41.569 \;\neq\; B_{\mathrm{phenom}} = 46.298.
+\]
+The ratio is $B_{\mathrm{phenom}}/B_{\mathrm{base}} \approx 1.114$.
+
+From \texttt{reports/gamma0\_137\_invariants.md}:
+\[
+  \frac{\mu(\Gamma_0(137))}{3} \;=\; 46.000,
+  \qquad
+  \frac{\mu(\Gamma_0(137))}{3} + \frac{\nu_2}{4} \;=\; 46.500,
+\]
+where $\nu_2 = 2$ is the number of order-2 elliptic points of $\Gamma_0(137)$.
+
+\begin{remark}[Residual gap]
+The modular bootstrap sets $B_{\mathrm{base}} \approx 41.6$ (if $k=1$ is
+confirmed), while $B_{\mathrm{phenom}} \approx 46.3$.  The remaining gap is
+$(46.3 - 41.6)/41.6 \approx 11\%$.  The elliptic-point correction from
+$\Gamma_0(137)$ contributes $\nu_2/4 = 0.5$, closing the gap only from $0.64\%$
+to $0.44\%$ \emph{at} $B = (p+1)/3$, not from $10\%$ at $B = N_{\mathrm{eff}}^{3/2}$.
+
+This means that confirming $k_{\mathrm{KM}} = 1$ via crossing symmetry gives
+$B_{\mathrm{base}} \approx 41.6$, not $46.3$.  A further mechanism is required
+to bridge from $41.6$ to $46.3$.  The elliptic correction alone is insufficient.
+\end{remark}
+
+% ==============================================================================
+\section{Outcome Assessment}
+\label{sec:outcome}
+% ==============================================================================
+
+\begin{tcolorbox}[enhanced,colback=red!4!white,colframe=red!60!black,
+  arc=3pt,boxrule=1.2pt,title={\textbf{Path A Outcome Assessment (2026-05-10)}}]
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Status} \\
+\midrule
+Partition function $\hat{Z} = \vth_3^3(\tau)$ established & \PROVED\ \Lone \\
+$c = N_{\mathrm{eff}} = 12$ consistent with $k=1$ & consistent [not forced] \\
+Crossing symmetry constraint \eqref{eq:crossing} stated & Yes (this document) \\
+Virasoro block decomposition completed & \OPEN \\
+$k_{\mathrm{KM}} = 1$ forced by crossing (Prop.~\ref{prop:k1}) & \OPEN\ [MC] \\
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} \approx 41.6$ (if $k=1$) & \MC\ conditional \\
+Bridge from 41.6 to 46.3 & \OPEN\ [no mechanism found] \\
+\midrule
+\textbf{Gap G137-B closed by Path A} & \textbf{NO} (as of 2026-05-10) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\textbf{Conclusion}: Path A clarifies the structure of the crossing constraint
+and identifies $k_{\mathrm{KM}} = 1$ as a necessary (but not sufficient)
+sub-goal.  Even if $k = 1$ is confirmed, an additional mechanism is required
+to bridge $B_{\mathrm{base}} \approx 41.6$ to $B_{\mathrm{phenom}} \approx 46.3$.
+No experimental input was used.
+
+\textbf{Recommendation}: Continue numerical bootstrap methods (semi-definite
+programming) to check the crossing constraint systematically.  Simultaneously
+pursue Path B ($\zeta$-function regularisation).
+\end{tcolorbox}
+
+% ==============================================================================
+\section{Next Steps for Path A}
+\label{sec:nextsteps}
+% ==============================================================================
+
+To complete the crossing symmetry argument:
+
+\begin{enumerate}
+  \item Compute the OPE coefficients $C_{n_1 n_2 m}$ in the winding-mode
+        sector from the $\vth_3^3(\tau)$ structure.
+
+  \item Expand $G_4^{(n)}$ in Virasoro conformal blocks and impose the
+        $s \leftrightarrow t$ crossing equation using the numerical bootstrap
+        approach of~\cite{rattazzi2008}.
+
+  \item Check whether the system is consistent only for $k_{\mathrm{KM}} = 1$
+        (ruling out $k = 2, 3, \ldots$) within the constraints forced by
+        $c = 12$ and the winding spectrum.
+
+  \item If $k = 1$ is forced and a correction mechanism from $41.6$ to $46.3$
+        is found, promote the result to \Lone\ and open a PR to
+        \texttt{canonical/alpha/}.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+
+\bibitem{rattazzi2008}
+R.~Rattazzi, V.~S.~Rychkov, E.~Tonni, and A.~Vichi,
+\emph{Bounding scalar operator dimensions in 4D CFT},
+JHEP \textbf{12}, 031 (2008).
+
+\bibitem{diamond_shurman}
+F.~Diamond and J.~Shurman,
+\emph{A First Course in Modular Forms}, Springer, 2005.
+
+\bibitem{ginsparg1988}
+P.~Ginsparg, \emph{Applied Conformal Field Theory},
+Les Houches Lectures 1988, hep-th/9108028.
+
+\end{thebibliography}
+
+\end{document}

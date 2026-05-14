@@ -1,0 +1,125 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+
+\title{EW1+RG Route for the Weinberg Angle in UBT}
+\author{Ing.\ David Jaroš}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Status precondition from Gap C2}
+This note follows the hard dependency:
+\[
+\text{Gap C2 Step 1 closed} \Longrightarrow \text{full }Y_i\text{ set [L1]}.
+\]
+Current status from
+\texttt{canonical/interactions/colour\_charge\_lattice.tex} is:
+\[
+\text{Step 1 is CLOSED [L1]}.
+\]
+Therefore the generator-norm step below is \textbf{[L1]}.
+
+\section{Generator-norm computation (formal algebra)}
+For one generation with the standard assignment set
+\[
+Y_Q=\tfrac16,\quad Y_u=\tfrac23,\quad Y_d=-\tfrac13,\quad
+Y_L=-\tfrac12,\quad Y_e=-1,\quad Y_\nu=0,
+\]
+the U(1) and SU(2) norm sums are
+\begin{align}
+\sum Y_i^2 \dim(r_i)
+&= 3\cdot 2\cdot\Bigl(\tfrac16\Bigr)^2
+ +3\cdot\Bigl(\tfrac23\Bigr)^2
+ +3\cdot\Bigl(\tfrac13\Bigr)^2
+ +2\cdot\Bigl(\tfrac12\Bigr)^2
+ +1^2
+= \frac{10}{3},\\
+\sum T_{3,i}^2 \dim(r_i)
+&= 3\cdot 2\cdot\tfrac14 + 2\cdot\tfrac14 = 2.
+\end{align}
+
+\begin{proposition}[EW1 norm ratio]
+If the above $Y_i$ values are first-principles [L1], then
+\[
+\frac{g'^2}{g^2}
+= \frac{\sum T_3^2}{\sum Y^2}
+= \frac{2}{10/3}
+= \frac35,
+\qquad
+\sin^2\theta_W^{\mathrm{GUT}}=\frac{3}{8}.
+\]
+\end{proposition}
+
+\section{RG running to $M_Z$}
+At one loop in the Standard Model,
+\[
+\sin^2\theta_W(M_Z)
+=
+\sin^2\theta_W(\mathrm{GUT})\,[1+\delta_{\mathrm{RG}}]^{-1},
+\]
+with $\delta_{\mathrm{RG}}$ fixed by SM $\beta$-coefficients and
+$M_{\mathrm{GUT}}$.
+For the standard GUT-scale window,
+\[
+\sin^2\theta_W(M_Z)\approx 0.231
+\quad\text{[STD | conditional on } \sin^2\theta_W(\mathrm{GUT})=3/8\text{]}.
+\]
+
+\section{UBT-specific scale question}
+Candidate relation:
+\[
+M_{\mathrm{GUT}}\sim \frac{1}{R_\psi}.
+\]
+Updated audit in \texttt{research\_tracks/EW/rpsi\_from\_action.tex} gives:
+\begin{itemize}
+  \item Casimir branch with $N_{\mathrm{eff}}=12$ is available conditionally on the SU(2)-twist closure.
+  \item Stationarity fixes $R_\psi^*$ only after fixing kinetic normalization input $T_{\mathrm{kin}}$.
+  \item Loop-suppressed $T_{\mathrm{kin}}\sim g^2 M_{\mathrm{GUT}}^4/(16\pi^2)$ is compatible with the standard GUT window.
+\end{itemize}
+Hence EW1+RG is no longer treated as dead end; the GUT-norm step is [L1], while RG-to-$M_Z$ remains conditional on scale closure.
+
+\section{Self-consistent scale closure (update 2026-05-12)}
+\label{sec:sc}
+
+The three-equation self-consistent system is solved analytically in
+\texttt{research\_tracks/EW/rpsi\_from\_action.tex \S5}
+(see also \texttt{tools/rpsi\_self\_consistent.py}).
+The analytic result in Planck units is:
+\[
+M_{\mathrm{GUT}}^{\mathrm{SC}} = M_{\mathrm{Pl}}\sqrt{\frac{N_{\mathrm{eff}}\pi}{3g^2}}
+\approx 5.91\,M_{\mathrm{Pl}}\approx 7.2\times10^{19}\,\mathrm{GeV}.
+\]
+This \emph{exceeds} the standard GUT window $\sim2\times10^{16}\,\mathrm{GeV}$
+by a factor of $\approx3600$.
+The loop-suppressed $T_{\mathrm{kin}}$ ansatz alone does \textbf{not} fix
+$M_{\mathrm{GUT}}$ at the GUT scale.
+Additional suppression $\Delta\sim10^{-7}$ in $T_{\mathrm{kin}}$ is required.
+
+\begin{tcolorbox}[title={Weinberg angle — Verdikt}]
+$\sin^2\theta_W(\mathrm{GUT})=3/8$: \textbf{[L1]}\\
+$M_{\mathrm{GUT}}=1/R_\psi$: \textbf{[L1 if $R_\psi$ derived], else [OPEN/free parameter]}\\
+Samokonzistentní $M_{\mathrm{GUT}}$ z loop-$T_{\mathrm{kin}}$ ansatz: \textbf{[NE — výsledek $\approx7.2\times10^{19}$\,GeV, faktor $\approx3600\times$ příliš velký]}\\
+$\sin^2\theta_W(M_Z)\approx0.231$: \textbf{[CONDITIONAL — závisí na doplňující supresi $T_{\mathrm{kin}}$]}\\
+Weinbergův úhel není slepá ulička pro EW1+RG větev: \textbf{[L1 at GUT norm step; RG-to-$M_Z$ remains conditional]}.
+\end{tcolorbox}
+
+\end{document}

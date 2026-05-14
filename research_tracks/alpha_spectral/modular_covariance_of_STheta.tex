@@ -1,0 +1,724 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/alpha_spectral/modular_covariance_of_STheta.tex
+% Task: prove_or_kill_modular_covariance_of_ubt_action
+% Priority: CRITICAL
+% Date: 2026-05-09
+%
+% Hard rules:
+%   - no alpha input
+%   - no p=137 input
+%   - no eta(i) fitting
+%   - verdict must be PROVED / CONDITIONAL / NO-GO
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{array}
+\usepackage{enumitem}
+
+%────────────────────────── theorem environments ─────────────────────────────
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction Attempt}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%────────────────────────── coloured frames ──────────────────────────────────
+\newmdenv[backgroundcolor=green!8, linecolor=green!50!black, linewidth=1.2pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!12,linecolor=orange!80!black,linewidth=1.2pt]{gapbox}
+\newmdenv[backgroundcolor=red!7,   linecolor=red!55!black,   linewidth=1.2pt]{warnbox}
+\newmdenv[backgroundcolor=blue!6,  linecolor=blue!55!black,  linewidth=1.2pt]{insightbox}
+
+%────────────────────────── verdict macros ───────────────────────────────────
+\newcommand{\PROVED}{\textcolor{green!50!black}{\textbf{[PROVED]}}}
+\newcommand{\COND}{\textcolor{blue!70!black}{\textbf{[CONDITIONAL]}}}
+\newcommand{\NOGO}{\textcolor{red!80!black}{\textbf{[NO-GO]}}}
+\newcommand{\PARTIAL}{\textcolor{orange!80!black}{\textbf{[PARTIAL]}}}
+
+%────────────────────────── notation shorthands ──────────────────────────────
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\HH}{\mathfrak{H}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\Real}{\mathrm{Re}}
+
+\title{\textbf{Modular Covariance Audit of the UBT Action $S[\Theta]$}\\[6pt]
+\large Complex-Time Torus, $\SL(2,\ZZ)$ Action,\\
+Mode Mapping, Operator and Measure Tests, Hecke Saddle Analysis}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We carry out a complete modular covariance audit of the Unified Biquaternion
+Theory action $S[\Theta]$ on the complex-time torus $T^2_\tau$.  Six
+requirements are checked in full mathematical detail: (i) identification of
+$\tau=t+i\psi$ as a genuine torus modulus, (ii) the $\SL(2,\ZZ)$ Möbius
+action on $\tau$ and its physical interpretation, (iii) the induced lattice
+relabelling of $\Theta$-modes and the conditions for field-weight consistency,
+(iv) transformation of the operator $\nabla^\dagger\nabla$ under modular
+reparametrisations and the precise weight obstruction, (v) the Jacobian of the
+measure $\dd^4x\,\dd\psi$ and whether compensating factors can cancel,
+(vi) the necessary and sufficient condition for equal-action Hecke saddles and
+why that condition is currently unmet.
+
+No $\alpha$ input, no fixed-prime input, and no $\eta(i)$ fitting are used.
+The verdict class is chosen from the mandatory set
+$\{\text{PROVED},\text{CONDITIONAL},\text{NO-GO}\}$.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Setup and notation}
+\label{sec:setup}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{The fundamental field}
+
+The fundamental field of UBT is the biquaternion-valued field
+\begin{equation}
+  \Theta(q,\tau)\in\mathbb{H}\otimes\CC,
+\end{equation}
+with $q\in\RR^4$ a spatial biquaternion coordinate and $\tau$ the complex-time
+parameter.  The four components $\Theta_a\in\CC$ ($a=0,1,2,3$) encode
+geometry and all Standard Model fields.
+
+\subsection{Complex time and the torus lattice}
+\label{sec:setup:tau}
+
+\begin{definition}[Complex-time parameter]
+\label{def:tau}
+Let $t\in\RR$ be the real (Minkowski) time and $\psi\in[0,2\pi R_\psi)$ the
+compact imaginary-time coordinate with period $2\pi R_\psi$.  Define
+\begin{equation}
+  \tau \;:=\; \frac{t + i\psi}{\beta},
+  \qquad \beta > 0 \text{ (normalization scale)},
+  \label{eq:tau-def}
+\end{equation}
+so that $\Im\tau = \psi/\beta > 0$ for $\psi\in(0,2\pi R_\psi)$.
+\end{definition}
+
+\begin{remark}
+For $\tau$ to parametrise the upper half-plane $\HH$ as a genuine modular
+parameter one needs, in addition, a real-time direction that is also periodic,
+$t\sim t+2\pi R_t$.  In UBT with a Minkowski real axis this periodicity is
+formal; we work in the Euclidean rotation $t\to i t_E$ where both
+$t_E\sim t_E+2\pi R_t$ and $\psi\sim\psi+2\pi R_\psi$ are compact and the
+torus lattice
+\begin{equation}
+  \Lambda_\tau = \ZZ + \tau\ZZ \subset\CC
+  \label{eq:lattice}
+\end{equation}
+is well-defined.  The analysis below is carried out in this Euclidean
+framework; Lorentzian analytic continuation is commented on in
+Section~\ref{sec:continuation}.
+\end{remark}
+
+\begin{definition}[Canonical action on the extended spacetime]
+\label{def:action}
+In Euclidean signature the UBT action reads
+\begin{equation}
+  S[\Theta]
+  \;=\;
+  \int_{\mathcal M_4\times S^1_\psi}
+    \dd^4x_E\,\dd\psi\;
+    \Real\,\Tr\!\Bigl[
+      \bigl(\nabla^\dagger\Theta\bigr)^\ast\bigl(\nabla^\dagger\Theta\bigr)
+      \;-\;
+      V(\Theta)
+    \Bigr],
+  \label{eq:action}
+\end{equation}
+where $\nabla^\dagger$ is the full covariant biquaternionic gradient (including
+Levi-Civita and SM gauge connections), and $V(\Theta)$ encodes mass terms.
+The measure $\dd^4x_E\,\dd\psi$ integrates over $\mathcal M_4\times S^1_\psi$.
+
+\medskip\noindent
+\textbf{Source}: \texttt{canonical/THEORY/canonical/canonical\_action.tex},
+\texttt{canonical/fields/theta\_field.tex \S3}.
+\end{definition}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{$\SL(2,\ZZ)$ action on the modulus $\tau$}
+\label{sec:SL2Z}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition of the modular group action}
+
+\begin{definition}[$\SL(2,\ZZ)$ Möbius action]
+\label{def:SL2Z}
+For $\gamma=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}\in\SL(2,\ZZ)$
+(integers $a,b,c,d$ with $ad-bc=1$), the Möbius transformation is
+\begin{equation}
+  \gamma\cdot\tau \;:=\; \frac{a\tau+b}{c\tau+d},
+  \qquad \tau\in\HH.
+  \label{eq:mobius}
+\end{equation}
+One verifies: $\Im(\gamma\cdot\tau)=\Im\tau\,|c\tau+d|^{-2}>0$, so
+$\HH$ is stable.  The group law $(\gamma_1\gamma_2)\cdot\tau=\gamma_1\cdot(\gamma_2\cdot\tau)$
+holds.
+\end{definition}
+
+\subsection{Physical interpretation}
+
+The Möbius transformation \eqref{eq:mobius} is a reparametrisation of the
+torus lattice \eqref{eq:lattice}: it maps the basis $(1,\tau)$ of $\Lambda_\tau$
+to the equivalent basis $(c\tau+d,\,a\tau+b)=(c\tau+d)\cdot(1,\gamma\cdot\tau)$,
+i.e.\ a rescaling by $(c\tau+d)$ composed with a basis change.  Physically,
+for a field theory on the torus $T^2=\CC/\Lambda_\tau$, two values of $\tau$
+related by $\SL(2,\ZZ)$ describe the \emph{same} torus with different choices
+of cycle labelling.
+
+\subsection{Generators and fundamental domain}
+
+$\SL(2,\ZZ)$ is generated by
+\begin{equation}
+  T = \begin{pmatrix}1&1\\0&1\end{pmatrix},
+  \quad T\cdot\tau = \tau+1,
+  \qquad
+  S = \begin{pmatrix}0&-1\\1&0\end{pmatrix},
+  \quad S\cdot\tau = -1/\tau.
+  \label{eq:generators}
+\end{equation}
+The $T$-generator shifts $\psi$ at fixed $t$ (thermal periodicity), while
+$S$ inverts the modulus and exchanges the two torus cycles.
+The fundamental domain is
+$\mathcal F=\{\tau\in\HH:|\Real\tau|\le\tfrac12,\,|\tau|\ge1\}$.
+
+\begin{resultbox}
+\textbf{Requirement 1 (\PROVED)}: $\tau=t+i\psi$ (divided by $\beta$) is a
+well-defined element of $\HH$ whenever $\psi>0$, and $\SL(2,\ZZ)$ acts on
+$\HH$ by Möbius transformations~\eqref{eq:mobius}.  The group law and
+$\HH$-stability are standard and hold unconditionally.
+
+\medskip\noindent
+\textbf{Requirement 2 (\PROVED)}: The $\SL(2,\ZZ)$ action on the torus
+modulus $\tau$ is the standard Möbius action, generated by $T$ and $S$ as
+in~\eqref{eq:generators}.
+\end{resultbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Induced transformation of $\Theta$ modes}
+\label{sec:modes}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Mode expansion on the torus}
+
+Write the field in terms of torus cycle coordinates $(u,v)\in[0,1)^2$
+defined by $z = u + \tau v$ (so the lattice points are $m + n\tau$,
+$m,n\in\ZZ$):
+\begin{equation}
+  \Theta(x;\,u,v)
+  \;=\;
+  \sum_{(m,n)\in\ZZ^2}
+  \Theta_{m,n}(x)\;
+  e^{2\pi i(mu+nv)},
+  \label{eq:mode-expansion}
+\end{equation}
+where $x\in\mathcal M_4$ and $\Theta_{m,n}(x)\in\mathbb{H}\otimes\CC$.
+Translating back to $(t_E,\psi)$ via $u=t_E/(2\pi R_t)$,
+$v=\psi/(2\pi R_\psi)$, the modes are Fourier coefficients:
+\begin{equation}
+  \Theta_{m,n}(x)
+  = \frac{1}{(2\pi)^2 R_t R_\psi}
+    \int_0^{2\pi R_t}\!\dd t_E
+    \int_0^{2\pi R_\psi}\!\dd\psi\;
+    \Theta(x;t_E,\psi)\;
+    e^{-im t_E/R_t - in\psi/R_\psi}.
+\end{equation}
+
+\subsection{Lattice relabelling under $\SL(2,\ZZ)$}
+
+Under $\gamma\in\SL(2,\ZZ)$, the torus cycle basis changes as
+$(1,\tau)\mapsto(c\tau+d,\,a\tau+b)$, or equivalently
+$(u,v)\mapsto(u',v')$ where
+\begin{equation}
+  \begin{pmatrix}u'\\v'\end{pmatrix}
+  = \gamma^{-T}\begin{pmatrix}u\\v\end{pmatrix}
+  = \begin{pmatrix}d&-b\\-c&a\end{pmatrix}\begin{pmatrix}u\\v\end{pmatrix},
+  \qquad \gamma^{-T}=(\gamma^{-1})^T.
+\end{equation}
+Since $e^{2\pi i(mu+nv)}=e^{2\pi i\,(m,n)\cdot(u,v)}$ and the exponent must
+equal $e^{2\pi i\,(m',n')\cdot(u',v')}$, one obtains
+\begin{equation}
+  (m',n') = (m,n)\,\gamma^{-T\,-1} = (m,n)\,\gamma.
+\end{equation}
+Equivalently, the mode coefficients transform as
+\begin{equation}
+  \boxed{
+    \Theta'_{m,n}(x) = \Theta_{\,(m,n)\gamma^{-1}}(x),
+  }
+  \label{eq:mode-relabel}
+\end{equation}
+i.e.\ $\gamma$ acts by a lattice relabelling (index permutation) on the
+Fourier coefficients.
+
+\begin{lemma}[Mode relabelling is a unitary permutation on $\ell^2(\ZZ^2)$]
+\label{lem:unitary}
+The map $U_\gamma:\Theta_{m,n}\mapsto\Theta_{(m,n)\gamma^{-1}}$ extends to a
+unitary operator on the $\ell^2(\ZZ^2)$-completion of the mode space.
+\end{lemma}
+\begin{proof}
+The map $(m,n)\mapsto(m,n)\gamma^{-1}$ is a bijection $\ZZ^2\to\ZZ^2$
+(since $\gamma\in\SL(2,\ZZ)$ has integer inverse), and preserves the counting
+measure on $\ZZ^2$.  Hence the induced pullback $U_\gamma$ is unitary.
+\qedhere
+\end{proof}
+
+\subsection{Field-weight condition}
+
+For the field to transform as a modular \emph{form} of weight $(k,\bar k)$
+rather than just a scalar, one would need an additional phase factor:
+\begin{equation}
+  \Theta'_{m,n}(x) \stackrel{?}{=}
+  (c\tau+d)^{-k}\,(\overline{c\tau+d})^{-\bar k}\;
+  \Theta_{(m,n)\gamma^{-1}}(x).
+  \label{eq:weight-cond}
+\end{equation}
+The UBT canonical formulation does not postulate any modular weight for
+$\Theta$.  If $k=\bar k=0$, the relabelling~\eqref{eq:mode-relabel} is the
+complete transformation law.
+
+\begin{resultbox}
+\textbf{Requirement 3 (\PROVED)}: The induced transformation of $\Theta$ modes
+under $\SL(2,\ZZ)$ is the lattice relabelling~\eqref{eq:mode-relabel},
+proved in Lemma~\ref{lem:unitary}.  This is an exact, unconditional
+statement.  The mode map $U_\gamma$ is unitary.  No hidden weight factor
+exists unless one is separately postulated for $\Theta$ — which the current
+canonical axioms do not do.
+\end{resultbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Covariance test for $\nabla^\dagger\nabla$}
+\label{sec:operator}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Structure of the operator}
+
+In Euclidean signature with coordinates $(x^\mu,\psi)$ ($\mu=0,1,2,3$),
+the kinetic operator splits as
+\begin{equation}
+  \nabla^\dagger\nabla
+  \;=\;
+  g^{\mu\nu}\,\partial_\mu\partial_\nu
+  \;+\;
+  \frac{1}{R_\psi^2}\,\partial_\psi^2
+  \;+\;
+  \text{(connection terms)},
+  \label{eq:operator-split}
+\end{equation}
+where the first term is the four-dimensional Laplace–Beltrami operator and
+the second is the $\psi$-circle Laplacian.  On a flat background
+$g^{\mu\nu}=\delta^{\mu\nu}$, the eigenvalues on the torus are
+\begin{equation}
+  \lambda_{m,n,\mathbf k}
+  = \frac{m^2}{R_t^2} + \frac{n^2}{R_\psi^2} + |\mathbf k|^2,
+  \qquad m,n\in\ZZ,\;\mathbf k\in\ZZ^3.
+  \label{eq:eigenvalues}
+\end{equation}
+
+\subsection{Transformation requirement}
+
+For $S[\Theta]$ to be $\SL(2,\ZZ)$-invariant one needs the full action
+integrand to transform with net weight zero.  Since the measure acquires
+weight $-2$ (Section~\ref{sec:measure}), the Lagrangian density
+$\mathcal L(\Theta,\nabla^\dagger\nabla\Theta)$ must transform with
+weight $+2$:
+\begin{equation}
+  \mathcal L \;\xrightarrow{\gamma}\; |c\tau+d|^{+2}\,\mathcal L.
+  \label{eq:Lag-weight-required}
+\end{equation}
+The kinetic density $\Real\,\Tr[(\nabla^\dagger\Theta)^\ast\nabla^\dagger\Theta]$
+acquires weight from $\nabla^\dagger\nabla$ itself.
+
+\begin{proposition}[Operator weight under $T$-generator]
+\label{prop:T-covariance}
+Under the shift $T:\tau\mapsto\tau+1$ (i.e.\ $t_E\mapsto t_E+\beta$), the
+torus spectrum~\eqref{eq:eigenvalues} is invariant because $m,n\in\ZZ$ and
+the shift $t_E\to t_E+\beta$ corresponds to $u\to u+1$, which simply cycles
+the integer labels. Hence
+\begin{equation}
+  (\nabla^\dagger\nabla)_{\tau+1} = (\nabla^\dagger\nabla)_\tau
+  \quad\text{(on flat background).}
+\end{equation}
+$T$-invariance of the operator holds on flat background. \PROVED.
+\end{proposition}
+
+\begin{proposition}[Operator transformation under $S$-generator — obstruction]
+\label{prop:S-obstruction}
+Under $S:\tau\mapsto-1/\tau$, the cycle exchange
+$(R_t,R_\psi)\mapsto(R_\psi,R_t)$ maps
+\begin{equation}
+  \frac{m^2}{R_t^2}+\frac{n^2}{R_\psi^2}
+  \;\xmapsto{S}\;
+  \frac{m^2}{R_\psi^2}+\frac{n^2}{R_t^2}.
+  \label{eq:S-spectrum}
+\end{equation}
+After mode relabelling $(m,n)\mapsto(n,-m)$ (the $S$ action on the lattice),
+the spectrum becomes
+\begin{equation}
+  \frac{n^2}{R_t^2}+\frac{m^2}{R_\psi^2},
+\end{equation}
+which equals the original spectrum on the \emph{square} torus $R_t=R_\psi$.
+For $R_t\ne R_\psi$ the $S$-transformed operator differs from a rescaled
+original by a factor that is \emph{not} a pure power of $|c\tau+d|$.
+\end{proposition}
+
+\begin{gapbox}
+\textbf{Obstruction O1 (operator weight).}
+On a generic background with $R_t\ne R_\psi$, the kinetic operator
+$\nabla^\dagger\nabla$ does \emph{not} acquire a definite modular weight
+under $S$.  There is no function $w(\tau)$ such that
+\begin{equation}
+  (\nabla^\dagger\nabla)_{-1/\tau}
+  = |c\tau+d|^w\;U_S^{-1}\,(\nabla^\dagger\nabla)_\tau\,U_S.
+\end{equation}
+This obstruction is absent only on the square torus $R_t=R_\psi$ or
+equivalently for self-dual $\tau=i$.
+
+\medskip
+\noindent\textbf{What would resolve O1}: Impose the constraint $R_t=R_\psi$
+(self-dual torus) as a dynamical condition derived from the UBT field equations,
+or promote the field weight to $(k,\bar k)=(-1,-1)$ and show the Lagrangian
+density then has weight $+2$.  Neither has been derived from $S[\Theta]$
+in the current repository.
+\end{gapbox}
+
+\subsection{Curved-background complications}
+
+On a curved background, $\nabla^\dagger\nabla$ includes the Riemann curvature
+scalar $R$ and curvature couplings (Weitzenböck decomposition):
+\begin{equation}
+  \nabla^\dagger\nabla
+  = \Box_g + \frac{1}{4}R_g + \text{(gauge curvature terms)}.
+\end{equation}
+The Ricci scalar $R_g$ depends on the metric $g_{\mu\nu}=\Real(\mathcal G_{\mu\nu}[\Theta])$.
+If the metric itself has modular weight (which would follow from $\Theta$ having
+a field weight), the curvature terms would also acquire weight.  This chain of
+implications requires a consistent weight assignment for the entire $\Theta$
+field hierarchy, which is absent from the current canonical axioms.
+
+\begin{resultbox}
+\textbf{Requirement 4 (\NOGO)}: On a flat background, $T$-covariance of
+$\nabla^\dagger\nabla$ holds (Proposition~\ref{prop:T-covariance}).
+$S$-covariance fails generically (Proposition~\ref{prop:S-obstruction}),
+unless the self-dual condition $R_t=R_\psi$ is imposed — which is not derived
+from the current $S[\Theta]$.  No definite modular weight for
+$\nabla^\dagger\nabla$ has been proved.
+\end{resultbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Transformation of the measure $\dd^4x\,\dd\psi$}
+\label{sec:measure}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Jacobian computation}
+
+We work in the Euclidean setting with $(t_E,\mathbf x,\psi)$.
+Modular transformation $\gamma\cdot\tau=(a\tau+b)/(c\tau+d)$ at fixed
+$\mathbf x$ gives a map on the $(t_E,\psi)$ torus.  Writing
+$\tau\to\tau'$ and $t_E+i\psi = \beta\tau$, the rescaling is:
+\begin{align}
+  \beta\tau'
+  &= \beta\,\frac{a\tau+b}{c\tau+d}
+  = \frac{1}{c\tau+d}\,\bigl(a(\beta\tau)+b\beta\bigr).
+\end{align}
+The $(t_E,\psi)$-plane undergoes a real linear transformation
+(from the real and imaginary parts of $\beta\tau\to\beta\tau'$) with
+complex multiplier $1/(c\tau+d)$.  As a real linear map on $\RR^2$ this
+has Jacobian determinant
+\begin{equation}
+  \det_\RR\!\left(\frac{\partial(t_E',\psi')}{\partial(t_E,\psi)}\right)
+  = \left|\frac{\dd\tau'}{\dd\tau}\right|^2
+  = |c\tau+d|^{-4}.
+  \label{eq:jacobian-2d}
+\end{equation}
+(Each complex derivative contributes $|c\tau+d|^{-2}$; the real determinant
+is the square.)
+
+\begin{proposition}[Measure Jacobian]
+\label{prop:jacobian}
+If $\psi$ is tied to $\Im\tau$ (i.e.\ only $\dd\psi$ transforms, not
+$\dd^4 x_E$), then one integrates over $\psi$ at fixed $\mathbf x$ and
+fixed Euclidean time $t_E$.  In that case the relevant Jacobian is the
+one-dimensional factor
+\begin{equation}
+  \dd\psi \;\mapsto\; |c\tau+d|^{-2}\,\dd\psi.
+  \label{eq:dpsi-transform}
+\end{equation}
+If instead one performs a joint real-time + imaginary-time modular
+transformation (genuine $T^2$-reparametrisation), the full two-dimensional
+Jacobian~\eqref{eq:jacobian-2d} applies and
+\begin{equation}
+  \dd t_E\,\dd\psi \;\mapsto\; |c\tau+d|^{-4}\,\dd t_E\,\dd\psi.
+  \label{eq:full-2d-jacobian}
+\end{equation}
+\end{proposition}
+
+\subsection{What cancellation would be needed}
+
+For full $\SL(2,\ZZ)$ invariance of the action integral~\eqref{eq:action}:
+
+\medskip
+\noindent\textbf{Case A} (only $\psi$ transforms): Measure acquires factor
+$|c\tau+d|^{-2}$.  The Lagrangian density $\mathcal L$ must transform with
+weight $+2$ to cancel.
+
+\medskip
+\noindent\textbf{Case B} (full $(t_E,\psi)$ reparametrisation): Measure
+acquires factor $|c\tau+d|^{-4}$.  The Lagrangian density must transform
+with weight $+4$.
+
+\medskip
+For a scalar field kinetic term on a 2-torus, the heat-kernel argument
+(cf.\ Polchinski, \emph{String Theory} Vol.~I, \S7.3) shows that with
+proper regularisation the path-integral measure $\mathcal D\Theta$ transforms
+with additional modular weight from the functional determinant $(\det'\nabla^\dagger\nabla)^{-1/2}$.
+In string theory this weight is exactly cancelled by the ghost determinant
+combined with $(\Im\tau)^{-1}$ factors from zero-mode integrations.
+In UBT, no analogous ghost or compensator sector is defined.
+
+\begin{gapbox}
+\textbf{Obstruction O2 (measure cancellation).}
+The measure $\dd^4x\,\dd\psi$ acquires a non-trivial Jacobian under
+$\SL(2,\ZZ)$, of the form $|c\tau+d|^{-2}$ (Case A) or $|c\tau+d|^{-4}$
+(Case B).  For the action to be modular-invariant, the Lagrangian density
+must carry compensating weight.  No such compensation mechanism is derived
+from the current UBT action or its functional-measure definition.
+
+\medskip\noindent
+\textbf{What would resolve O2}: Either (a) assign a definite modular weight
+to $\Theta$ and verify that $\Real\,\Tr[(\nabla^\dagger\Theta)^\ast\nabla^\dagger\Theta]$
+carries weight $+2$ or $+4$ respectively, or (b) identify a modular anomaly
+cancellation between the bosonic and fermionic sectors of $\Theta$ (analogous
+to the superstring).  Both are currently absent.
+\end{gapbox}
+
+\begin{resultbox}
+\textbf{Requirement 5 (\NOGO)}: The Jacobian of the measure $\dd^4x\,\dd\psi$
+under $\SL(2,\ZZ)$ is computed explicitly in
+Proposition~\ref{prop:jacobian}: it is $|c\tau+d|^{-2}$ (if only $\psi$
+transforms) or $|c\tau+d|^{-4}$ (if the full $(t_E,\psi)$ torus is reparametrised).
+The compensating weight from the Lagrangian density has not been derived.
+Obstruction O2 blocks a proof of measure-covariance cancellation.
+\end{resultbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Equal-action Hecke saddles}
+\label{sec:hecke}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Hecke saddle setup}
+
+Fix a classical saddle $\bar\Theta$ of $S[\Theta]$.  For each
+$\gamma\in\SL(2,\ZZ)$, define the modular image saddle
+\begin{equation}
+  \bar\Theta_\gamma(x;\tau) := U_\gamma\,\bar\Theta(x;\gamma^{-1}\cdot\tau),
+\end{equation}
+where $U_\gamma$ is the mode relabelling of Lemma~\ref{lem:unitary}.
+By definition $\bar\Theta_\gamma$ satisfies the field equations at modulus
+$\gamma^{-1}\cdot\tau$.
+
+\subsection{Necessary and sufficient condition for equal action}
+
+\begin{proposition}[Equal-action iff modular invariance of $S$]
+\label{prop:equal-action-condition}
+$S[\bar\Theta_\gamma]=S[\bar\Theta]$ for all $\gamma\in\SL(2,\ZZ)$ and all
+saddles $\bar\Theta$ if and only if $S$ is $\SL(2,\ZZ)$-invariant, i.e.
+\begin{equation}
+  S[U_\gamma\,\Theta(\cdot;\gamma^{-1}\cdot\tau)]
+  = S[\Theta(\cdot;\tau)],\quad\forall\gamma,\,\forall\Theta.
+  \label{eq:modular-invariance}
+\end{equation}
+\end{proposition}
+\begin{proof}
+\emph{Sufficiency}: If \eqref{eq:modular-invariance} holds, evaluating at
+$\Theta=\bar\Theta$ gives $S[\bar\Theta_\gamma]=S[\bar\Theta]$ immediately.
+
+\emph{Necessity}: Suppose equal action holds for all saddles.  By varying
+the classical data continuously, the equal-action condition extends (by
+density of saddle configurations in the functional space, under appropriate
+regularity) to all field configurations, which is~\eqref{eq:modular-invariance}.
+\qedhere
+\end{proof}
+
+\subsection{Hecke operators and the $p$-winding sector}
+
+At prime level $p$, the Hecke operator $T_p$ acts on modular forms by
+summing over the $p+1$ coset representatives of $\Gamma_0(p)\backslash\SL(2,\ZZ)$.
+For the saddle count to be $p+1$, one requires the $p+1$ modular images to
+be inequivalent \emph{and} equal-action.
+
+The coset cardinality $|\Gamma_0(p)\backslash\SL(2,\ZZ)|=p+1$ is an
+exact arithmetic fact (index formula for congruence subgroups).  Physical
+inequivalence requires that no residual symmetry maps one saddle to another.
+Equal action requires Proposition~\ref{prop:equal-action-condition}, which
+requires \eqref{eq:modular-invariance} — which requires Obstructions O1 and
+O2 to be resolved.
+
+\begin{gapbox}
+\textbf{Obstruction O3 (equal-action Hecke saddles).}
+Equal-action Hecke saddles exist if and only if $S[\Theta]$ is
+$\SL(2,\ZZ)$-invariant (Proposition~\ref{prop:equal-action-condition}).
+That invariance is blocked by O1 (operator weight) and O2 (measure
+cancellation).  O3 resolves automatically once O1 and O2 are resolved.
+\end{gapbox}
+
+\begin{resultbox}
+\textbf{Requirement 6 (\NOGO)}: Equal-action Hecke saddle degeneracy is
+not derivable from the current $S[\Theta]$.  The necessary and sufficient
+condition (Proposition~\ref{prop:equal-action-condition}) requires
+$\SL(2,\ZZ)$ invariance of $S[\Theta]$, which is blocked by O1 and O2.
+The saddle count $p+1=|\Gamma_0(p)\backslash\SL(2,\ZZ)|$ is
+arithmetically exact and unconditional, but whether the $p+1$ saddles
+carry equal weight in the path integral is undetermined.
+\end{resultbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Lorentzian analytic continuation}
+\label{sec:continuation}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The analysis above is in Euclidean signature.  In Minkowski signature, the
+real-time direction $t$ is non-compact and $\tau=t+i\psi$ is not in $\HH$
+for $\psi=0$.  Three comments:
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Thermal interpretation}: If $\psi$ plays the role of
+  inverse temperature $\beta$, a \emph{purely imaginary} modular parameter
+  $\tau=i\beta/\beta_0$ lies on the imaginary axis, and $T$-periodicity in
+  $t_E$ gives the thermal KMS condition.  The $\SL(2,\ZZ)$ analysis applies
+  directly in that Euclidean thermal setting.
+
+\item \textbf{Lorentzian non-compactness}: For a genuinely Minkowskian spacetime
+  with non-compact $t$, the $S^1_{t_E}$ factor is absent and $\tau$ is not
+  a modular parameter in the standard sense.  Modular covariance then
+  requires an additional physical input (e.g.\ conformal symmetry in 2d,
+  or a compactification of the time direction).
+
+\item \textbf{UBT choice}: In the UBT canonical framework, the real-time
+  direction is treated as Lorentzian, with $\psi$ as the compact imaginary
+  auxiliary.  For the modular analysis to apply non-trivially in Minkowski,
+  either a Wick rotation must be invoked or a separate justification for
+  $t$-periodicity must be supplied.  This is an additional assumption beyond
+  the current canonical axioms.
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{What would upgrade the verdict}
+\label{sec:upgrade}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The verdict is currently NO-GO for full modular covariance.  Three specific
+constructions could change this:
+
+\begin{description}[leftmargin=2.2cm, style=nextline]
+\item[Path A — Self-dual constraint]
+  Show that the UBT field equations on the complex-time torus imply the
+  self-dual condition $R_t=R_\psi$.  On the square torus, Obstruction O1
+  is absent by Proposition~\ref{prop:S-obstruction}.  One would then need
+  to show O2 also resolves (i.e.\ the Lagrangian density carries weight
+  $+2$ at self-duality). If both resolve, verdict $\to$ \COND.
+
+\item[Path B — Weight assignment for $\Theta$]
+  Postulate (or derive) a modular weight $(k,\bar k)$ for $\Theta$ such
+  that $\Real\,\Tr[(\nabla^\dagger\Theta)^\ast\nabla^\dagger\Theta]$ transforms
+  with weight $+2$ (or $+4$, matching the measure).  Verify this is
+  consistent with the canonical axioms and the GR/SM limits.  If consistent,
+  verdict $\to$ \COND\ (pending verification of the limits).
+
+\item[Path C — Anomaly cancellation]
+  Identify fermionic and bosonic sectors in $\Theta$ such that their
+  combined functional-measure modular anomaly cancels (analogous to the
+  superstring).  Requires counting of bosonic and fermionic degrees of
+  freedom in $\Theta$ and computing their one-loop modular weights.
+  If the anomaly vanishes, verdict $\to$ \COND\ or \PROVED.
+\end{description}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Summary and verdict}
+\label{sec:verdict}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{longtable}{@{}p{0.56\linewidth}p{0.10\linewidth}p{0.24\linewidth}@{}}
+\toprule
+Requirement & Result & Obstruction/Source \\
+\midrule
+$\tau=t+i\psi$ as torus modulus
+  & \PROVED & Def.~\ref{def:tau} \\
+$\SL(2,\ZZ)$ Möbius action on $\tau$
+  & \PROVED & Def.~\ref{def:SL2Z} \\
+Mode transformation law for $\Theta$
+  & \PROVED & Lem.~\ref{lem:unitary}, Eq.~\eqref{eq:mode-relabel} \\
+$T$-covariance of $\nabla^\dagger\nabla$ (flat bg.)
+  & \PROVED & Prop.~\ref{prop:T-covariance} \\
+$S$-covariance of $\nabla^\dagger\nabla$ (flat bg.)
+  & \NOGO & O1; Prop.~\ref{prop:S-obstruction} \\
+Definite modular weight for $\nabla^\dagger\nabla$ (curved bg.)
+  & \NOGO & O1; no weight derived \\
+Jacobian of $\dd\psi$ under $\SL(2,\ZZ)$
+  & \PROVED & Prop.~\ref{prop:jacobian} \\
+Compensation of Jacobian by $\mathcal L$ (weight $+2$)
+  & \NOGO & O2; not derived \\
+Equal-action Hecke saddles
+  & \NOGO & O3 = O1 + O2 \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\begin{warnbox}
+\textbf{Final verdict: \NOGO}
+
+\medskip
+Full $\SL(2,\ZZ)$ modular covariance of the current UBT action $S[\Theta]$
+is \emph{not established}.  The precisely located obstructions are:
+
+\begin{itemize}
+\item \textbf{O1} — $\nabla^\dagger\nabla$ does not have a proved definite
+  modular weight under $S:\tau\mapsto -1/\tau$ on a generic torus.
+  $T$-covariance holds but $S$-covariance fails for $R_t\ne R_\psi$.
+\item \textbf{O2} — The measure $\dd^4x\,\dd\psi$ transforms with Jacobian
+  $|c\tau+d|^{-2}$ (or $-4$), and the Lagrangian density has not been
+  shown to carry compensating weight $+2$ (or $+4$).
+\item \textbf{O3} — Equal-action Hecke saddle degeneracy, as a corollary of
+  $\SL(2,\ZZ)$ invariance, is also not established (blocked by O1+O2).
+\end{itemize}
+
+\medskip
+Three upgrade paths are identified (Section~\ref{sec:upgrade}).  None can
+be completed without additional input or derivation from the $S[\Theta]$
+field equations.
+\end{warnbox}
+
+\end{document}

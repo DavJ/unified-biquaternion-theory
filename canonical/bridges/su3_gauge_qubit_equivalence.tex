@@ -1,0 +1,236 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% SU(3) Gauge A-Field — Three-Qubit Encoding Bridge
+% Version: 1.0
+% Date: 2026-04-27
+% Status: Canonical bridge — cross-references only; no new derivations
+% Author: Ing. David Jaroš
+%
+% PURPOSE: Navigation guide and status summary for the equivalence between
+% the UBT SU(3) gauge connection and the three-qubit encoded connection.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{booktabs}
+
+  \newcommand{\C}{\mathbb{C}}
+  \newcommand{\H}{\mathbb{H}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\OPEN}{\textbf{[OPEN]}}
+  \newcommand{\SE}{\textbf{[SE]}}
+
+  \begin{document}
+\fi
+
+\section{SU(3) Gauge–Qubit Equivalence Bridge}
+\label{sec:bridges:su3_gauge_qubit}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title=Equivalence Status Summary]
+\textbf{PROVED \Lzero:} Generator equivalence —
+  $[G_a, G_b] = if_{abc}G_c$ on $\mathcal{H}_{\mathrm{color}}$ \\
+\textbf{PROVED \Lzero:} Covariant derivative equivalence —
+  $P^\dagger D_\mu^{3q} P = D_\mu$ on $\mathcal{H}_{\mathrm{color}}$ \\
+\textbf{PROVED \Lzero:} Gauge transformation compatibility —
+  $U_{3q}(x)\,P = P\,U(x)$ \\
+\textbf{REPRESENTATION-LEVEL:} Equivalence holds on the color subspace only \\
+\textbf{OPEN:} Physical interpretation of the leakage sector $\mathcal{H}_{\mathrm{color}}^\perp$ \\
+\textbf{OPEN:} Algebraic bridge between $\ker(P_2+1) \subset \C\otimes\H$ and
+  $\mathrm{range}(P) \subset (\C^2)^{\otimes 3}$
+\end{tcolorbox}
+
+\subsection{Scope and Purpose}
+\label{sec:bridges:su3_gauge_qubit:scope}
+
+This bridge document establishes that the three-qubit construction of SU(3)
+color symmetry (developed in the research tracks) is not discarded; instead it
+is a valid \emph{quantum-information representation} of the UBT SU(3) gauge
+connection $A_\mu = A_\mu^a \lambda_a$.
+
+The equivalence is \textbf{representation-level}: both the standard formulation
+and the three-qubit encoded formulation carry the same $\mathfrak{su}(3)$ Lie
+algebra, the same local gauge structure, and the same covariant derivative
+on the three-dimensional color subspace
+$\mathcal{H}_{\mathrm{color}} = \mathrm{span}\{|100\rangle, |010\rangle,
+|001\rangle\}$.
+
+\subsection{Main Claim}
+\label{sec:bridges:su3_gauge_qubit:main_claim}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,
+  title=Main equivalence claim]
+\textbf{Claim:} The SU(3) gauge connection $A_\mu^a \lambda_a$ and the
+three-qubit encoded connection $A_\mu^a G_a$ (where $G_a = P\lambda_a P^\dagger$
+are the lifted Gell-Mann generators) are equivalent representations of the same
+local $\mathrm{SU}(3)$ gauge structure on the color subspace.
+
+\medskip\noindent Precisely:
+\[
+  P^\dagger \bigl(\partial_\mu + ig A_\mu^a G_a\bigr) P
+  = \partial_\mu + ig A_\mu^a \lambda_a.
+\]
+
+\medskip\noindent\textbf{Status}: \Lzero\ — proved in
+\texttt{canonical/interactions/su3\_qubit\_encoding.tex},
+Theorem~4 (covariant derivative equivalence).
+\end{tcolorbox}
+
+\subsection{Generator Equivalence (PROVED \Lzero)}
+\label{sec:bridges:su3_gauge_qubit:generators}
+
+\textbf{Claim:} The lifted generators $G_a = P\lambda_a P^\dagger$ satisfy the
+$\mathfrak{su}(3)$ commutation relations $[G_a, G_b] = if_{abc} G_c$ on
+$\mathcal{H}_{\mathrm{color}}$.
+
+\textbf{Location:}
+\texttt{canonical/interactions/su3\_qubit\_encoding.tex},
+Theorem~1 (encoded generators satisfy $\mathfrak{su}(3)$ on $\mathcal{H}_{\mathrm{color}}$).
+
+\textbf{Method:} The proof uses the isometry $P^\dagger P = I_3$ to reduce
+$[G_a, G_b]$ to $P[\lambda_a, \lambda_b]P^\dagger = if_{abc} G_c$.
+No approximation is needed; the relation is algebraically exact on
+$\mathcal{H}_{\mathrm{color}}$ and trivially true (as $0 = 0$) on
+$\mathcal{H}_{\mathrm{color}}^\perp$.
+
+\textbf{Numerical verification:}
+\texttt{research\_tracks/THEORY\_COMPARISONS/su3\_qubit\_mapping/su3\_qubit\_core/mapping.py}
+— 51 commutator tests pass with max error $< 10^{-12}$.
+
+\subsection{Gauge Transformation Compatibility (PROVED \Lzero)}
+\label{sec:bridges:su3_gauge_qubit:gauge_transform}
+
+\textbf{Claim:} The local gauge transformation
+$U(x) = \exp(i\alpha^a(x)\lambda_a/2) \in SU(3)$
+maps to $U_{3q}(x) = \exp(i\alpha^a(x)G_a/2)$ satisfying
+$U_{3q}(x) P = P U(x)$.  The transformation acts as the identity on
+$\mathcal{H}_{\mathrm{color}}^\perp$.
+
+\textbf{Location:}
+\texttt{canonical/interactions/su3\_qubit\_encoding.tex},
+Theorem~2 (gauge transformations are compatible).
+
+\subsection{Covariant Derivative Equivalence (PROVED \Lzero)}
+\label{sec:bridges:su3_gauge_qubit:cov_deriv}
+
+\textbf{Claim:} For any color state $\psi = P\varphi \in \mathcal{H}_{\mathrm{color}}$,
+\[
+  P^\dagger D_\mu^{3q} \psi = D_\mu \varphi,
+  \qquad
+  D_\mu^{3q} = \partial_\mu + ig A_\mu^a G_a,
+  \quad
+  D_\mu = \partial_\mu + ig A_\mu^a \tfrac{\lambda_a}{2}.
+\]
+
+\textbf{Location:}
+\texttt{canonical/interactions/su3\_qubit\_encoding.tex},
+Theorem~3 (covariant derivatives are equivalent on $\mathcal{H}_{\mathrm{color}}$).
+
+\subsection{Leakage Sector (OPEN: physical interpretation)}
+\label{sec:bridges:su3_gauge_qubit:leakage}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+  title=Open problem: leakage sector]
+The orthogonal complement
+$\mathcal{H}_{\mathrm{color}}^\perp = \mathrm{span}\{|000\rangle, |011\rangle,
+|101\rangle, |110\rangle, |111\rangle\} \subset \C^8$
+is five-dimensional and gauge-inert under $G_a$.
+
+\medskip
+Three options exist (detailed in
+\texttt{canonical/interactions/su3\_qubit\_encoding.tex}, \S7):
+\begin{enumerate}
+  \item Hard projection: physical superselection rule; standard QCD.
+  \item Auxiliary UBT degrees of freedom: \textbf{speculative}, requires
+        derivation from the UBT action $S[\Theta]$.
+  \item Quantum simulation: suppress by energy penalty.
+\end{enumerate}
+
+Status of option (2): \OPEN\ — no derivation exists in the repository.
+Do \textbf{not} assert a canonical UBT interpretation without completing it.
+\end{tcolorbox}
+
+\subsection{Algebraic Bridge Between Ambient $\C^8$ Spaces (OPEN)}
+\label{sec:bridges:su3_gauge_qubit:ambient_bridge}
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+  title=Open problem: bridge between the two $\C^8$ spaces]
+The canonical UBT color space is $V_c = \ker(P_2+1) \subset \C\otimes\H \cong
+\C^8$; the qubit color space is $\mathcal{H}_{\mathrm{color}} = \mathrm{range}(P)
+\subset (\C^2)^{\otimes 3} \cong \C^8$.
+
+Both contain an isometric copy of $\C^3$ and carry the same $\mathfrak{su}(3)$,
+but they live in two physically distinct ambient eight-dimensional spaces.  The
+explicit unitary (or algebraic isomorphism) mapping the full canonical $\C\otimes\H$
+onto $(\C^2)^{\otimes 3}$ in a way that sends $V_c$ to $\mathcal{H}_{\mathrm{color}}$
+is an \textbf{open research problem}.
+
+Status: \OPEN\ — documented as open in
+\texttt{research\_tracks/triqubit\_su3\_geometry.md}, \S7.3.
+\end{tcolorbox}
+
+\subsection{Warnings}
+\label{sec:bridges:su3_gauge_qubit:warnings}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!40!black,title=Warnings]
+\begin{enumerate}
+  \item The equivalence is \textbf{representation-level}, not a physical
+        identification of the three-qubit Hilbert space with SU(3).  The full
+        $\C^8$ triqubit space is \textbf{not} equal to SU(3) or its
+        representation space.
+  \item The three-qubit encoding does \textbf{not} provide a physical derivation
+        of QCD until dynamics (Yang-Mills action), confinement mechanism, anomaly
+        cancellation, and fermion representation content are addressed.
+  \item The leakage sector $\mathcal{H}_{\mathrm{color}}^\perp$ does
+        \textbf{not} have a canonical UBT interpretation — do not conflate it
+        with physical states without further derivation.
+  \item Clearly separate: (a) the canonical gauge formulation in
+        $V_c \subset \C\otimes\H$; (b) the quantum-simulation encoding in
+        $\mathcal{H}_{\mathrm{color}} \subset (\C^2)^{\otimes 3}$.
+        They are compatible but not identical.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Further Reading}
+\label{sec:bridges:su3_gauge_qubit:references}
+
+\begin{itemize}
+  \item \texttt{canonical/interactions/su3\_qubit\_encoding.tex} —
+        full proof with theorem box, tables, and leakage analysis (this bridge's
+        primary source)
+  \item \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex} —
+        canonical SU(3) derivation via involutions on $\C\otimes\H$
+  \item \texttt{canonical/interactions/qcd.tex} —
+        canonical QCD Lagrangian in UBT
+  \item \texttt{canonical/bridges/gauge\_emergence\_bridge.tex} —
+        gauge group emergence status summary
+  \item \texttt{research\_tracks/triqubit\_su3\_geometry.md} —
+        geometric analysis of the one-hot sector and Hopf fibration
+  \item \texttt{research\_tracks/THEORY\_COMPARISONS/su3\_qubit\_mapping/README.md} —
+        one-hot homomorphism construction and numerical verification
+  \item \texttt{research\_tracks/su3\_qubit\_mapping/README.md} —
+        research track index for the equivalence proof
+\end{itemize}
+
+% End of su3_gauge_qubit_equivalence.tex
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

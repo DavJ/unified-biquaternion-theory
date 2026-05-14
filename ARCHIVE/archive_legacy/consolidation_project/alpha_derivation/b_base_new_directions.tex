@@ -1,0 +1,794 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base — Four New Directions E1–E4
+% Track: CORE — α derivation — v61 baseline
+% Date: 2026-03-08
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{observation}{Observation}
+
+  \title{$B_{\mathrm{base}}$ — Four New Directions E1--E4\\
+    \large Instantons, Index Theorem, Holomorphic Factorisation,\\
+    \large and NCG Spectral Triple for $\mathbb{C}\otimes\mathbb{H}$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-08 (v61)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Recap: After Eight Dead Ends}
+\label{sec:recap}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
+anywhere in this document.
+The only inputs are: $N_{\mathrm{eff}} = 12$ (proved from
+$\mathbb{C}\otimes\mathbb{H}$ algebra), $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+(algebraic fact), and the UBT kinetic action $\mathcal{S}[\Theta]$.
+
+\subsection{Established baseline (v61)}
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Quantity & Value & Status \\
+  \midrule
+  $B_0 = 2\pi N_{\mathrm{eff}}/3$ & $25.133$ & \textbf{[PROVED]} \\
+  $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ & $41.569$ & [CONJECTURED] \\
+  $B_{\mathrm{base}}/B_0 = (3/2\pi)\sqrt{N_{\mathrm{eff}}}$ & $1.6540$ & algebraic identity \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The goal is to derive $B_{\mathrm{base}}/B_0 = 1.6540$ without free parameters
+and without using $\alpha^{-1} = 137$ as an input.
+
+\subsection{All dead ends to date (A1--D3)}
+
+Eight approaches have been exhausted and must not be repeated:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Dead-end reason & File \\
+  \midrule
+  A1: Kaluza--Klein sum & Diverges; no natural cutoff
+    & \texttt{b\_base\_spinor\_approach.tex} \\
+  A2: Spectral zeta & Exponent $\ne 3/2$ without free param
+    & \texttt{b\_base\_hausdorff.tex} \\
+  A3: Gauge orbit volume & Volume factors cancel
+    & \texttt{b\_base\_hausdorff.tex} \\
+  C1: Seeley--DeWitt (perturbative) & Correction $\propto \Lambda^{-2} \to 0$
+    & \texttt{b\_base\_delta\_d.tex} \\
+  C2: Mode pair interference & Algebraic identity only
+    & \texttt{b\_base\_delta\_d.tex} \\
+  D1: Unitarity constraint & Reduces $B$, wrong direction
+    & \texttt{b\_base\_nonpert.tex} \\
+  D2: Dimensional transmutation & Requires $R_\psi$ as free param
+    & \texttt{b\_base\_nonpert.tex} \\
+  D3: Cartan--Killing metric & Normalised form $=$ Euclidean
+    & \texttt{b\_base\_nonpert.tex} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The present document investigates four new directions (E1--E4) that are
+algebraically independent of all previous attempts.
+
+%--------------------------------------------------------------------
+\section{Approach E1: Instanton Contributions on $\mathrm{SU}(2)$}
+\label{sec:E1_instantons}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END].}
+
+\subsection{Motivation}
+
+$\mathrm{Im}(\mathbb{H}) \cong \mathfrak{su}(2)$, and the associated group
+$\mathrm{SU}(2) \cong S^3$ admits non-perturbative instanton solutions in
+Euclidean Yang--Mills theory.
+The hypothesis is that instanton contributions to the UBT effective action
+might account for the ratio $B_{\mathrm{base}}/B_0 = 1.6540$.
+
+\subsection{Instanton action for SU(2) Yang--Mills}
+
+For SU(2) pure Yang--Mills theory in four Euclidean dimensions, a self-dual
+solution with integer winding (topological charge) $k \in \mathbb{Z}$ has
+action
+\begin{equation}
+  S_{\mathrm{inst}}(k) \;=\; \frac{8\pi^2 |k|}{g^2}.
+  \label{eq:instanton_action}
+\end{equation}
+Each instanton contributes to the path integral with weight
+$\exp(-S_{\mathrm{inst}}) = \exp(-8\pi^2|k|/g^2)$.
+
+\subsection{Required action — numerical check}
+
+For the instanton sum to reproduce the ratio $B_{\mathrm{base}}/B_0$ we would need
+\begin{equation}
+  \exp(-S_{\mathrm{inst}}) \;=\; \frac{B_{\mathrm{base}}}{B_0}
+    \;=\; \frac{3\sqrt{N_{\mathrm{eff}}}}{2\pi}
+    \;=\; \frac{3\sqrt{12}}{2\pi}
+    \;\approx\; 1.6540.
+  \label{eq:instanton_ratio_needed}
+\end{equation}
+Taking the logarithm of both sides:
+\begin{equation}
+  S_{\mathrm{inst}} \;=\; -\ln(1.6540) \;\approx\; -0.503.
+  \label{eq:instanton_S_negative}
+\end{equation}
+This requires a \emph{negative} instanton action.
+
+\subsection{Why negative instanton action is physically impossible}
+
+For well-defined Euclidean path integrals, the instanton action must satisfy
+$S_{\mathrm{inst}} \geq 0$, because it equals the integral of $\mathrm{Tr}(F_{\mu\nu}F^{\mu\nu}) \geq 0$.
+A negative value of $S_{\mathrm{inst}}$ would violate this fundamental positivity
+condition and would render the Euclidean path integral ill-defined.
+
+\subsection{Alternative: instanton correction as additive perturbation}
+
+Could an instanton correct $B_0$ upward by an additive term rather than a multiplicative one?
+In the dilute instanton gas approximation,
+\begin{equation}
+  B = B_0 \;+\; \delta B_{\mathrm{inst}},
+  \qquad
+  \delta B_{\mathrm{inst}} \;\sim\; C\,e^{-S_{\mathrm{inst}}},
+  \label{eq:instanton_additive}
+\end{equation}
+where $C$ is a pre-exponential factor of order unity (up to loop corrections).
+The target shift is
+\begin{equation}
+  \delta B = B_{\mathrm{base}} - B_0
+    = N_{\mathrm{eff}}^{3/2} - \frac{2\pi N_{\mathrm{eff}}}{3}
+    = 41.569 - 25.133
+    = 16.436.
+  \label{eq:instanton_shift}
+\end{equation}
+For $C = \mathcal{O}(1)$ this requires $e^{-S_{\mathrm{inst}}} \approx 16.4$, hence
+$S_{\mathrm{inst}} \approx -2.8 < 0$ — again negative.
+Even allowing $C \gg 1$ (the BPS pre-factor in 4D Yang--Mills is known to
+be large but finite), the requirement $e^{-S_{\mathrm{inst}}} \geq 16$ is incompatible
+with any positive $S_{\mathrm{inst}}$.
+
+\subsection{Decomposition check: ln$(B_{\mathrm{base}}/B_0)$}
+
+A useful consistency check uses the algebraic decomposition:
+\begin{align}
+  \ln(B_{\mathrm{base}}/B_0)
+    &= \ln\!\left(\tfrac{3}{2\pi}\sqrt{N_{\mathrm{eff}}}\right) \notag \\
+    &= \tfrac{1}{2}\ln N_{\mathrm{eff}} + \ln\!\tfrac{3}{2\pi} \notag \\
+    &= \tfrac{1}{2}\ln 12 + \ln(0.4775) \notag \\
+    &\approx 0.6212 - 0.7393 \;=\; -0.1181.
+  \label{eq:log_ratio_decomp}
+\end{align}
+The logarithm is \emph{negative} ($-0.1181$), which confirms that the ratio
+$B_{\mathrm{base}}/B_0 = 1.6540$ is \emph{not} of the form $e^{+f}$ with $f > 0$.
+Writing it as $e^{-S}$ gives $S = -\ln(B_{\mathrm{base}}/B_0) = -\ln(1.6540) \approx -0.503 < 0$,
+which is negative and therefore physically impossible as an instanton action.
+
+\subsection{Conclusion for E1}
+
+\textbf{[DEAD END].}
+The ratio $B_{\mathrm{base}}/B_0 = 1.6540 > 1$ requires an instanton action
+$S_{\mathrm{inst}} = -\ln(1.6540) \approx -0.503 < 0$.
+Negative instanton action contradicts the positivity of the Yang--Mills action
+$S = \int \mathrm{Tr}(F \wedge *F) \geq 0$.
+No variant of the instanton mechanism (multiplicative or additive) can produce
+an upward correction of $\approx 65\%$ to $B_0$ without either negative action
+or an order-of-magnitude pre-factor that has no algebraic origin in
+$\mathbb{C}\otimes\mathbb{H}$.
+
+%--------------------------------------------------------------------
+\section{Approach E2: Index Theorem and Anomaly on $\mathrm{Im}(\mathbb{H})$}
+\label{sec:E2_index}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END].}
+
+\subsection{Motivation}
+
+The Atiyah--Singer index theorem connects the analytical index of a Dirac
+operator $\mathcal{D}$ to topological invariants of the underlying space.
+For $\mathrm{Im}(\mathbb{H}) \cong \mathfrak{su}(2)$, the associated group manifold
+is $\mathrm{SU}(2) \cong S^3$.
+The hypothesis is that $\mathrm{ind}(\mathcal{D})$ on $S^3$, or the chiral anomaly
+coefficient, might naturally produce $\sqrt{N_{\mathrm{eff}}} = 2\sqrt{3}$
+without free parameters.
+
+\subsection{Atiyah--Singer index on $S^3$}
+
+The Atiyah--Singer index theorem applies to \emph{even}-dimensional compact
+Riemannian manifolds.
+For a spin manifold $M^{2n}$, the index of the Dirac operator $\mathcal{D}$
+is given by the $\hat{A}$-genus:
+\begin{equation}
+  \mathrm{ind}(\mathcal{D}) \;=\; \int_{M^{2n}} \hat{A}(TM).
+  \label{eq:AS_index}
+\end{equation}
+$S^3$ is \emph{odd}-dimensional ($\dim = 3$).
+For an odd-dimensional manifold, the standard Atiyah--Singer theorem
+does not yield a non-trivial Fredholm index; instead, $\mathrm{ind}(\mathcal{D}) = 0$
+by symmetry, because the Dirac operator on an odd-dimensional sphere
+anti-commutes with a real structure that interchanges positive and negative
+eigenvalues.
+
+\begin{proposition}
+  On $S^3$ with its standard round metric and spin structure,
+  the Fredholm index of the Dirac operator $\mathcal{D}$ vanishes:
+  $\mathrm{ind}(\mathcal{D}_{S^3}) = 0$.
+  \begin{proof}
+    The Atiyah--Singer index theorem requires even dimension.
+    For $\dim M = 3$ (odd), the $\hat{A}$-genus integral vanishes identically
+    because $\hat{A}(TM)$ is a polynomial in the Pontryagin classes $p_k \in H^{4k}(M;\mathbb{R})$,
+    and $H^{4k}(S^3;\mathbb{R}) = 0$ for all $k \geq 1$.
+    Alternatively: $S^3$ carries a time-reversal symmetry that maps
+    $\ker\mathcal{D}^+ \to \ker\mathcal{D}^-$ isomorphically, so
+    $\dim\ker\mathcal{D}^+ = \dim\ker\mathcal{D}^-$ and the index is zero.
+  \end{proof}
+\end{proposition}
+
+\subsection{Atiyah--Patodi--Singer index on a 4-manifold with boundary $S^3$}
+
+A more relevant theorem for Yang--Mills instantons is the Atiyah--Patodi--Singer
+(APS) index theorem on the 4-ball $B^4$ with $\partial B^4 = S^3$:
+\begin{equation}
+  \mathrm{ind}_{APS}(\mathcal{D}_{B^4}) \;=\; \int_{B^4} \hat{A}(TB^4) - \tfrac{\eta(S^3) + h}{2},
+  \label{eq:APS_index}
+\end{equation}
+where $\eta(S^3)$ is the Atiyah--Patodi--Singer $\eta$-invariant and $h = \dim\ker\mathcal{D}_{S^3}$.
+For the standard spin structure on $S^3$:
+\begin{itemize}
+  \item $\hat{A}(B^4) = 0$ (the 4-ball is contractible, hence flat).
+  \item $\eta(S^3) = 0$ (by symmetry: $S^3$ carries an orientation-reversing isometry).
+  \item $h = 0$ (no harmonic spinors on $S^3$ with its round metric for the
+    trivial $\mathrm{SU}(2)$ bundle; for a bundle with instanton number $k$,
+    $h = 2|k|$ for $k < 0$).
+\end{itemize}
+For winding number $k = 1$: $\mathrm{ind}_{APS} = 0 - 0 = 0$.
+For a general instanton with $k > 0$: $\mathrm{ind}_{APS} = 2k$ (counting
+zero modes in the fundamental representation of $\mathrm{SU}(2)$, dimension 2).
+
+To obtain $\mathrm{ind} = \sqrt{N_{\mathrm{eff}}} = 2\sqrt{3} \approx 3.46$ we would need
+$k = 1.73\ldots$, which is not an integer.
+No natural instanton number gives $\sqrt{N_{\mathrm{eff}}}$.
+
+\subsection{Chiral anomaly coefficient}
+
+The $\mathrm{SU}(2)$ chiral anomaly for $N_f$ Weyl fermions in representation
+$\mathbf{R}$ is
+\begin{equation}
+  \partial_\mu j^\mu_5 \;=\; N_f\,T(\mathbf{R})\;\frac{1}{16\pi^2}\,F^{\mu\nu}\tilde{F}_{\mu\nu},
+  \label{eq:chiral_anomaly}
+\end{equation}
+where $T(\mathbf{R})$ is the Dynkin index of the representation
+($T(\mathbf{fund}) = 1/2$ for $\mathrm{SU}(2)$).
+For the anomaly coefficient to equal $\sqrt{N_{\mathrm{eff}}} = 2\sqrt{3}$:
+\begin{equation}
+  N_f \cdot T(\mathbf{fund}) \;=\; \sqrt{N_{\mathrm{eff}}}
+  \quad\Rightarrow\quad
+  N_f \;=\; 2\sqrt{N_{\mathrm{eff}}} = 4\sqrt{3} \;\approx\; 6.93.
+  \label{eq:anomaly_Nf}
+\end{equation}
+This requires $N_f \approx 6.93$, which is not an integer.
+No physical (integer) fermion content gives the required anomaly coefficient.
+
+\subsection{Higher representations}
+
+For the adjoint representation ($T(\mathbf{adj}) = 2$ for $\mathrm{SU}(2)$):
+\begin{equation}
+  N_f^{\mathrm{adj}} \;=\; \frac{\sqrt{N_{\mathrm{eff}}}}{T(\mathbf{adj})}
+  \;=\; \frac{2\sqrt{3}}{2} \;=\; \sqrt{3} \;\approx\; 1.73.
+\end{equation}
+Still not an integer.
+For dimension-$j$ representations, $T = j(j+1)(2j+1)/3$; no integer $j$ gives
+an integer $N_f$ satisfying~\eqref{eq:anomaly_Nf}.
+
+\subsection{Conclusion for E2}
+
+\textbf{[DEAD END].}
+The Atiyah--Singer index theorem on $S^3 = \mathrm{Im}(\mathbb{H})$ gives zero index
+(odd-dimensional manifold), and the APS index on a 4-manifold with $S^3$ boundary
+gives only integer values $2|k|$ for integer winding number $k$,
+none of which equals $\sqrt{N_{\mathrm{eff}}} = 2\sqrt{3} \approx 3.46$.
+The chiral anomaly coefficient likewise requires non-integer fermion content
+to produce $\sqrt{N_{\mathrm{eff}}}$.
+Neither the index theorem nor the anomaly mechanism generates
+$\sqrt{N_{\mathrm{eff}}}$ without free parameters.
+
+%--------------------------------------------------------------------
+\section{Approach E3: Holomorphic Factorisation in $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:E3_holomorphic}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END as new derivation path].
+Structural consequence: [CONFIRMATION of real-integration approach].}
+
+This approach was identified as the highest priority (see problem statement).
+It is treated with special care because it reveals a structural reason why the
+real-integration formula (the basis of the Hausdorff approach in
+\texttt{b\_base\_hausdorff.tex}) is not merely conventional but forced by
+the algebra.
+
+\subsection{Setup: real vs.\ complex dimensions of $\mathrm{Im}(\mathbb{H})$}
+
+The algebra $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$ has
+$\dim_\mathbb{R} = 8$ and $\dim_\mathbb{C} = 4$.
+
+The imaginary quaternions $\mathrm{Im}(\mathbb{H}) = \mathrm{span}_\mathbb{R}\{i,j,k\}$
+map into $\mathrm{Mat}(2,\mathbb{C})$ via the standard embedding:
+\begin{equation}
+  i \;\mapsto\; i\sigma_3,
+  \qquad
+  j \;\mapsto\; i\sigma_2,
+  \qquad
+  k \;\mapsto\; i\sigma_1.
+  \label{eq:ImH_embedding}
+\end{equation}
+As a \emph{real} subspace: $\mathrm{span}_\mathbb{R}\{i\sigma_3, i\sigma_2, i\sigma_1\}$
+has $\dim_\mathbb{R} = 3$.
+As a \emph{complex} ($\mathbb{C}$-linear) hull: $\mathrm{span}_\mathbb{C}\{i\sigma_3, i\sigma_2, i\sigma_1\}
+= \mathrm{span}_\mathbb{C}\{\sigma_1,\sigma_2,\sigma_3\}$ has $\dim_\mathbb{C} = 3$
+(and $\dim_\mathbb{R} = 6$), since $\sigma_1,\sigma_2,\sigma_3$ are linearly
+independent over $\mathbb{C}$ in $\mathrm{Mat}(2,\mathbb{C})$.
+
+\begin{center}
+\begin{tabular}{lccc}
+  \toprule
+  Space & $\dim_\mathbb{R}$ & $\dim_\mathbb{C}$ & Admits complex structure? \\
+  \midrule
+  Full $\mathbb{C}\otimes\mathbb{H}$         & 8 & 4 & Yes ($\dim_\mathbb{R}$ even) \\
+  $\mathrm{Im}(\mathbb{H})$ (real subspace) & 3 & — & \textbf{No} ($\dim_\mathbb{R}$ odd) \\
+  $\mathrm{span}_\mathbb{C}(\mathrm{Im}(\mathbb{H}))$ & 6 & 3 & Yes \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Key structural fact: Im$(\mathbb{H})$ has no complex structure}
+
+\begin{proposition}[No complex structure on $\mathrm{Im}(\mathbb{H})$]
+\label{prop:no_complex_structure}
+  The real vector space $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$ does not
+  admit any complex structure.
+  \begin{proof}
+    A complex structure on a real vector space $V$ requires a linear map
+    $J: V \to V$ with $J^2 = -\mathrm{id}_V$.
+    Such a $J$ makes $V$ into a $\mathbb{C}$-module, which requires
+    $\dim_\mathbb{R}(V)$ to be even ($\dim_\mathbb{R}(V) = 2\dim_\mathbb{C}(V)$).
+    Since $\dim_\mathbb{R}(\mathrm{Im}(\mathbb{H})) = 3$ is odd,
+    no such $J$ can exist.
+  \end{proof}
+\end{proposition}
+
+\subsection{Gaussian integration: real vs.\ holomorphic}
+
+For real Gaussian integration over $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$:
+\begin{equation}
+  \int_{\mathbb{R}^3}
+    \exp\!\bigl(-\tfrac{1}{2}\,\Theta^T A\,\Theta\bigr)\,d^3\Theta
+  \;=\; \frac{(2\pi)^{3/2}}{\sqrt{\det A}}
+  \;=\; (2\pi)^{3/2}\,(\det A)^{-1/2}.
+  \label{eq:gaussian_real}
+\end{equation}
+The $B$ coefficient receives a contribution $\sim d_\mathbb{R}/2 = 3/2$
+from the Gaussian exponent, giving:
+\begin{equation}
+  B_{\mathrm{base}}^{\mathrm{real}} \;=\; N_{\mathrm{eff}}^{d_\mathbb{R}/2}
+  \;=\; N_{\mathrm{eff}}^{3/2} \;=\; 41.57. \qquad \checkmark
+  \label{eq:B_real_result}
+\end{equation}
+
+For holomorphic integration, one must pass to the complexification
+$\mathrm{span}_\mathbb{C}(\mathrm{Im}(\mathbb{H})) \cong \mathbb{C}^3$
+(since $\mathrm{Im}(\mathbb{H})$ itself has no complex structure):
+\begin{equation}
+  \int_{\mathbb{C}^3}
+    \exp\!\bigl(-z^\dagger A z\bigr)\,d^3z\,d^3\bar{z}
+  \;=\; \frac{\pi^3}{\det A}
+  \;=\; \pi^3\,(\det A)^{-1}.
+  \label{eq:gaussian_holomorphic}
+\end{equation}
+Here the exponent on $\det A$ is $-1$ (not $-1/2$), because each complex
+dimension contributes with weight $1$ (not $1/2$).
+The corresponding $B$ coefficient would be:
+\begin{equation}
+  B_{\mathrm{base}}^{\mathrm{complex}} \;=\; N_{\mathrm{eff}}^{d_\mathbb{C}}
+  \;=\; N_{\mathrm{eff}}^{3}
+  \;=\; 12^3 = 1728.
+  \qquad \times \text{ (factor of 41.57 too large)}
+  \label{eq:B_complex_result}
+\end{equation}
+
+\subsection{Why the real calculation is not a gauge choice}
+
+One might ask: is the choice of real vs.\ complex integration merely a
+coordinate convention? Proposition~\ref{prop:no_complex_structure} answers
+\emph{no}: because $\mathrm{Im}(\mathbb{H})$ has odd real dimension ($d_\mathbb{R} = 3$),
+it \emph{cannot} be regarded as a complex vector space.
+Any holomorphic calculation must include the complexification
+$\mathrm{Im}(\mathbb{H}) \hookrightarrow \mathrm{Im}(\mathbb{H})_\mathbb{C} \cong \mathbb{C}^3$,
+which doubles the real dimension ($d_\mathbb{R} = 3 \to 6$) and gives the wrong
+exponent.
+
+The physical content is:
+\begin{itemize}
+  \item The gauge degrees of freedom in $\mathrm{Im}(\mathbb{H}) \cong \mathfrak{su}(2)$
+    are \emph{real} — they are the three real generators $\{i, j, k\}$ of $\mathrm{SU}(2)$.
+  \item The quantum fluctuations $\delta\Theta_V \in \mathrm{Im}(\mathbb{H})$ are
+    real fluctuations about the vacuum.
+  \item The Gaussian measure $d^3\Theta$ is the Lebesgue measure on $\mathbb{R}^3$,
+    not a holomorphic measure on $\mathbb{C}^3$.
+  \item The factor $1/2$ in the Gaussian exponent (which gives $d_\mathbb{R}/2 = 3/2$)
+    is not a free parameter but is the universal property of real Gaussian integration,
+    forced by the real structure of $\mathrm{Im}(\mathbb{H})$.
+\end{itemize}
+
+\subsection{Structural consequence for existing gaps}
+
+\begin{observation}[Structural confirmation of Hausdorff approach]
+\label{obs:E3_confirmation}
+  Approach E3 does not provide a new derivation path but \emph{confirms}
+  that the real Gaussian integration approach (\texttt{b\_base\_hausdorff.tex},
+  Section~2) is the unique physically consistent formulation.
+  The factor $1/2$ in the exponent $d/2 = 3/2$ is structurally forced
+  by the odd real dimension of $\mathrm{Im}(\mathbb{H})$: any attempt to replace
+  it with a holomorphic integral would require doubling the integration domain
+  ($d_\mathbb{R}: 3 \to 6$) and would give the wrong answer ($N_{\mathrm{eff}}^3$
+  instead of $N_{\mathrm{eff}}^{3/2}$).
+
+  In terms of the open Gap~(b) (\textit{protection of the exponent $d/2$ at
+  higher loops}): this observation provides a structural argument that the
+  factor $1/2$ is protected not by a non-renormalisation theorem but by
+  the algebraic impossibility of complexifying the integration domain.
+  The real structure of $\mathrm{Im}(\mathbb{H})$ is preserved order by order
+  in perturbation theory (it is an algebraic fact, not a quantum effect),
+  so the factor $1/2$ cannot be modified by radiative corrections.
+\end{observation}
+
+\subsection{Conclusion for E3}
+
+\textbf{[DEAD END as new derivation path.]}
+Holomorphic factorisation of the vacuum polarisation integral in $\mathbb{C}\otimes\mathbb{H}$
+does not provide a new route to $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$:
+replacing the real Gaussian over $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$
+by a holomorphic Gaussian over the complexification $\mathbb{C}^3$ changes the
+exponent from $3/2$ to $3$, giving $B_{\mathrm{base}} = N_{\mathrm{eff}}^3 = 1728$,
+a factor of 41.57 too large.
+
+\textbf{[STRUCTURAL CONFIRMATION of \texttt{b\_base\_hausdorff.tex}]:}
+The odd real dimension $d_\mathbb{R} = 3$ of $\mathrm{Im}(\mathbb{H})$ is
+precisely why holomorphic factorisation fails and why the real integration
+formula with its $1/2$ factor is the only consistent choice.
+This provides a structural argument supporting Gap~(b)
+(protection of the $3/2$ exponent) in \texttt{b\_base\_hausdorff.tex}.
+
+%--------------------------------------------------------------------
+\section{Approach E4: Spectral Triple NCG for $\mathbb{C}\otimes\mathbb{H}$}
+\label{sec:E4_NCG}
+%--------------------------------------------------------------------
+
+\textbf{Status: [PARTIAL — framework consistent, B\_base not yet derived].}
+
+\subsection{Motivation}
+
+Connes' noncommutative geometry (NCG) associates a \emph{spectral triple}
+$(A, \mathcal{H}, D)$ to an algebra $A$, a Hilbert space $\mathcal{H}$, and a
+Dirac operator $D$.
+For $A = \mathbb{C}\otimes\mathbb{H}$, the Connes--Lott approach naturally
+generates the Standard Model gauge structure.
+The question is whether the \emph{spectral action}
+$\mathrm{Tr}\,f(D/\Lambda)$ for this algebra produces
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ via the heat kernel coefficients.
+
+\subsection{Spectral triple for $\mathbb{C}\otimes\mathbb{H}$}
+
+The algebra $A = \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+has the following canonical spectral triple data:
+\begin{itemize}
+  \item \textbf{Algebra:} $A = \mathrm{Mat}(2,\mathbb{C})$.
+  \item \textbf{Hilbert space:} $\mathcal{H} = \mathbb{C}^2$ (fundamental representation),
+    carrying $N_{\mathrm{rep}} = 2$ complex dimensions.
+  \item \textbf{Dirac operator:} $D \in \mathrm{Herm}(\mathcal{H})$
+    (Hermitian $2\times2$ matrix), representing the internal mass terms.
+    In the Connes--Lott model for the electroweak sector:
+    $D = \bigl(\begin{smallmatrix} 0 & m \\ m^* & 0 \end{smallmatrix}\bigr)$
+    (off-diagonal Yukawa coupling).
+\end{itemize}
+For the \emph{full} Standard Model spectral triple
+$A_F = \mathbb{C} \oplus \mathbb{H} \oplus \mathrm{Mat}(3,\mathbb{C})$
+with $N_{\mathrm{gen}} = 3$ generations:
+$\mathcal{H}_F = \mathbb{C}^{96}$ (accounting for all fermion generations, chiralities, and colours).
+
+\subsection{Heat kernel expansion and spectral action}
+
+The spectral action is
+\begin{equation}
+  \mathcal{S}_{\mathrm{spec}} = \mathrm{Tr}\,f(D/\Lambda)
+  \;=\; f_4\Lambda^4\,a_0 - f_2\Lambda^2\,a_2 + f_0\,a_4 + \mathcal{O}(\Lambda^{-2}),
+  \label{eq:spectral_action}
+\end{equation}
+where $a_{2k}$ are the Seeley--DeWitt (heat kernel) coefficients of $D^2$,
+and $f_k = \int_0^\infty f(u)u^{k-1}du$ are moments of the cut-off function.
+
+For a finite spectral triple (purely internal, no continuous spacetime):
+\begin{align}
+  a_0 &= \mathrm{Tr}_{\mathcal{H}}(\mathbf{1}) = \dim(\mathcal{H}), \label{eq:a0}\\
+  a_2 &= \mathrm{Tr}_{\mathcal{H}}(E), \label{eq:a2}\\
+  a_4 &= \tfrac{1}{2}\,\mathrm{Tr}_{\mathcal{H}}(E^2) + \tfrac{1}{12}\,\mathrm{Tr}_{\mathcal{H}}(\Omega_{\mu\nu}^2), \label{eq:a4}
+\end{align}
+where $E$ is the endomorphism term and $\Omega_{\mu\nu}$ is the curvature of the
+connection.
+
+\subsection{$a_4$ for the $\mathbb{C}\otimes\mathbb{H}$ spectral triple}
+
+For the minimal $\mathrm{SU}(2)$ spectral triple with $\mathcal{H} = \mathbb{C}^2$
+and a connection with gauge curvature $F_{\mu\nu}$ in the fundamental representation:
+\begin{equation}
+  a_4(D^2) \;\supset\; -\frac{1}{12}\,\mathrm{Tr}_\mathcal{H}(\Omega^2)
+  \;=\; -\frac{1}{12}\,\mathrm{Tr}_{\mathbf{2}}(F^2)
+  \;=\; -\frac{1}{12} \times T(\mathbf{fund}) \times \mathrm{Tr}_{\mathrm{adj}}(F^2)
+  \;=\; -\frac{1}{12} \times \tfrac{1}{2} \times \mathrm{Tr}(F^2).
+\end{equation}
+The coefficient of the gauge kinetic term from $a_4$ is $\propto 1/g^2$ in
+the spectral action, so the gauge coupling is fixed by
+\begin{equation}
+  \frac{1}{g^2} \;\propto\; \frac{f_0\,T(\mathbf{fund})}{12}
+  \;=\; \frac{f_0}{24}.
+  \label{eq:gauge_coupling_NCG}
+\end{equation}
+The $\beta$-function coefficient for $\mathrm{SU}(2)$ running (from the
+spectral action to one loop) is:
+\begin{equation}
+  B_{\mathrm{SU}(2)}^{\mathrm{NCG}}
+  \;=\; -\frac{22}{3}C_2(\mathrm{adj}) + \frac{4}{3}\,N_f\,T(\mathbf{fund})
+  \;=\; -\frac{22}{3}\times 2 + \frac{4}{3}\,N_f\,\tfrac{1}{2},
+  \label{eq:beta_SU2_NCG}
+\end{equation}
+where $N_f$ is the number of fundamental Weyl fermion representations
+(in the SM: $N_f = 2N_{\mathrm{gen}} = 6$).
+Substituting $N_f = 6$:
+\begin{equation}
+  B_{\mathrm{SU}(2)}^{\mathrm{NCG}} \;=\; -\frac{44}{3} + \frac{4}{3} \times 3 = -\frac{44}{3} + 4 = -\frac{32}{3} \approx -10.67.
+  \label{eq:beta_SU2_numerical}
+\end{equation}
+This is negative (asymptotic freedom) and has value $\approx -10.67$,
+far from $B_{\mathrm{base}} = +41.57$.
+
+\subsection{Numerical comparison with $N_{\mathrm{eff}}^{3/2}$}
+
+The Connes--Lott model predicts that the $a_4$ coefficient scales as
+$N_{\mathrm{gen}}^2$ (from the Yukawa coupling matrix $M$ with
+$\mathrm{Tr}(M^\dagger M) \propto N_{\mathrm{gen}}^2$):
+\begin{equation}
+  a_4^{\mathrm{Yukawa}} \;\propto\; N_{\mathrm{gen}}^2 = 9.
+  \label{eq:a4_Yukawa}
+\end{equation}
+Compare with the target:
+\begin{equation}
+  \frac{B_{\mathrm{base}}}{N_{\mathrm{gen}}^2}
+  = \frac{N_{\mathrm{eff}}^{3/2}}{N_{\mathrm{gen}}^2}
+  = \frac{41.57}{9}
+  = 4.619.
+  \label{eq:ratio_Ngen_Neff}
+\end{equation}
+Is $4.619$ a natural combination from the spectral triple?
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Candidate & Value & Error from $4.619$ \\
+  \midrule
+  $3\pi/2$ & $4.712$ & $+2.0\%$ \\
+  $3/2 \times \pi$ & $4.712$ & $+2.0\%$ \\
+  $T(\mathbf{adj}) \times C_2(\mathbf{fund}) = 2 \times 3/4$ & $1.50$ & $-68\%$ \\
+  $(d_\mathbb{R}/2) \times N_{\mathrm{rep}}^{1/2}$ & $3/2 \times \sqrt{2} \approx 2.12$ & $-54\%$ \\
+  $\dim(\mathcal{H}_F)/N_{\mathrm{gen}}^2 = 96/9$ & $10.67$ & $+131\%$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+None of these is an exact natural combination.
+The closest candidate ($3\pi/2$, error $2\%$) has no clear algebraic
+origin in the spectral triple for $\mathbb{C}\otimes\mathbb{H}$.
+
+\subsection{Observation: $N_{\mathrm{gen}} = N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$}
+
+An important structural coincidence is that $N_{\mathrm{gen}} = 3 = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$.
+In UBT, both the number of SM fermion generations and the number of phases in
+$N_{\mathrm{eff}} = N_{\mathrm{phases}} \times N_{\mathrm{helicity}} \times N_{\mathrm{charge}}$
+equal 3, for the same algebraic reason: $\mathrm{Im}(\mathbb{H})$ has exactly 3
+real dimensions.
+
+The spectral triple approach therefore inherits the same $d = 3$ counting,
+but expresses it differently: as $N_{\mathrm{gen}} = 3$ rather than
+$\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+This suggests that the NCG and UBT approaches to the factor of 3 are two
+sides of the same algebraic fact, not independent confirmations.
+
+\subsection{Summary of E4}
+
+\begin{observation}[NCG partial result]
+  The Connes--Lott spectral triple for $\mathbb{C}\otimes\mathbb{H}$ naturally
+  generates the $\mathrm{SU}(2)$ gauge structure and running of the gauge
+  coupling.
+  The $N_{\mathrm{gen}}^2 = 9$ scaling of $a_4$ (from Yukawa terms) is
+  structurally related to the $d = 3$ factor in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$,
+  since $N_{\mathrm{gen}} = 3 = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})$.
+  However, deriving the precise value $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+  from the heat kernel coefficients of the $\mathbb{C}\otimes\mathbb{H}$ spectral
+  triple requires an explicit computation of $a_4$ including both gauge and Yukawa
+  contributions, which has not been carried out.
+  The $2\%$ proximity of $B_{\mathrm{base}}/N_{\mathrm{gen}}^2 = 4.619 \approx 3\pi/2 = 4.712$
+  is noted but not derived.
+\end{observation}
+
+\textbf{[PARTIAL].}
+The NCG spectral triple for $\mathbb{C}\otimes\mathbb{H}$ provides a framework
+in which $B_{\mathrm{base}}$ could in principle be computed from first principles
+(as a combination of $a_4$ heat kernel coefficients and the spectral dimension).
+The structural connection $N_{\mathrm{gen}} = N_{\mathrm{phases}} = 3$ confirms that
+the NCG and UBT descriptions share the same algebraic origin for the factor 3
+in the exponent.
+But the explicit computation of $a_4$ for the $\mathbb{C}\otimes\mathbb{H}$
+spectral triple, and its connection to $N_{\mathrm{eff}}^{3/2}$, remains open.
+
+%--------------------------------------------------------------------
+\section{Summary Table: All Approaches E1--E4}
+\label{sec:summary}
+%--------------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Approach & Result & Status \\
+  \midrule
+  E1: Instantons on $\mathrm{SU}(2)$
+    & Requires $S_{\mathrm{inst}} < 0$; impossible
+    & \textbf{[DEAD END]} \\
+  E2: Index / anomaly on $\mathrm{Im}(\mathbb{H})$
+    & $\mathrm{ind}(\mathcal{D}_{S^3}) = 0$; non-integer $N_f$ for $\sqrt{N_{\mathrm{eff}}}$
+    & \textbf{[DEAD END]} \\
+  E3: Holomorphic factorisation
+    & $d_\mathbb{C} = 3$ gives $N_{\mathrm{eff}}^3$; confirms real approach
+    & \textbf{[DEAD END/CONFIRM]} \\
+  E4: NCG spectral triple
+    & $N_{\mathrm{gen}} = 3$ structurally linked; $a_4$ not computed
+    & \textbf{[PARTIAL]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cumulative status of all approaches (A1--E4)}
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Approach & Mechanism & Status & File \\
+  \midrule
+  A1 & KK mode sum & [DEAD END] & \texttt{b\_base\_spinor\_approach.tex} \\
+  A2 & Spectral zeta / Hausdorff & [MOTIVATED CONJECTURE] & \texttt{b\_base\_hausdorff.tex} \\
+  A3 & Gauge orbit volume & [DEAD END] & \texttt{b\_base\_hausdorff.tex} \\
+  A4 & Effective dimension & [STRUCTURAL INSIGHT] & tools \\
+  C1 & Seeley--DeWitt (pert.) & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  C2 & Mode pair coherence & [DEAD END] & \texttt{b\_base\_delta\_d.tex} \\
+  D1 & Unitarity constraint & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D2 & Dimensional transmutation & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  D3 & Cartan--Killing metric & [DEAD END] & \texttt{b\_base\_nonpert.tex} \\
+  E1 & Instantons on $\mathrm{SU}(2)$ & [DEAD END] & this file \\
+  E2 & Index theorem / anomaly & [DEAD END] & this file \\
+  E3 & Holomorphic factorisation & [DEAD END/CONFIRM] & this file \\
+  E4 & NCG spectral triple & [PARTIAL] & this file \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Remaining gaps}
+
+After investigating all 12 approaches (A1--A3, C1--C2, D1--D3, E1--E4;
+approach A4 is a structural insight tool, not a derivation attempt):
+\begin{description}
+  \item[Gap (a)] \textit{Explicit computation of $\det(\mathcal{S}'')$.}
+    The functional determinant of the second variation of the UBT action on
+    $\mathrm{Im}(\mathbb{H})$ has not been explicitly computed.
+    Status: \textbf{[OPEN]} — no new progress in E1--E4.
+
+  \item[Gap (b)] \textit{Protection of the $3/2$ exponent.}
+    \textbf{[PARTIAL PROGRESS from E3]:}
+    Approach E3 provides a structural argument that the factor $1/2$ in the exponent
+    $d/2 = 3/2$ is forced by the real structure of $\mathrm{Im}(\mathbb{H})$
+    (odd real dimension forbids holomorphic complexification without changing the
+    exponent). This is not a full non-renormalisation theorem but is a structural
+    constraint that any loop correction must respect the real integration domain.
+
+  \item[Gap (E4)] \textit{Explicit $a_4$ computation in NCG.}
+    The heat kernel coefficient $a_4$ for the $\mathbb{C}\otimes\mathbb{H}$
+    spectral triple has not been computed, and its relation to $N_{\mathrm{eff}}^{3/2}$
+    has not been established.
+    Status: \textbf{[OPEN — next natural direction]}.
+\end{description}
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+We tried four new approaches to explain why $B_{\mathrm{base}} = 41.57$ instead of
+the one-loop value $B_0 = 25.13$ (a factor of 1.65 larger).
+
+\textbf{E1 (Instantons):} In field theory, quantum tunnelling effects
+called instantons can shift calculated quantities.
+We checked whether instanton effects on the quaternionic gauge group $\mathrm{SU}(2)$
+could explain the factor of 1.65.
+The answer is no: instantons always \emph{suppress} contributions
+(they are weighted by $e^{-S}$ with $S > 0$, which is a number less than 1),
+whereas we need a factor \emph{greater} than 1.
+A factor of 1.65 from instantons would require a negative action ($S \approx -0.5$),
+which is physically impossible.
+
+\textbf{E2 (Index theorem):}
+The Atiyah--Singer index theorem counts certain solutions of the Dirac equation,
+and we asked whether this count naturally gives the number $\sqrt{12} = 2\sqrt{3} \approx 3.46$.
+The answer is no: on a three-dimensional sphere (which is the shape of Im$(\mathbb{H})$),
+the index is always zero because the sphere is odd-dimensional.
+For four-dimensional instanton configurations, the index is always an integer,
+but $2\sqrt{3}$ is irrational.
+
+\textbf{E3 (Holomorphic factorisation):}
+The biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$ is a \emph{complex} algebra,
+and one might think the relevant quantum calculation runs over complex
+(holomorphic) degrees of freedom.
+We showed this is impossible: the gauge part Im$(\mathbb{H})$ has exactly
+\emph{three real dimensions}, and three is an odd number — odd-dimensional
+real spaces cannot have complex structures.
+If we forced a complex calculation, we would get $12^3 = 1728$ instead of $12^{3/2} = 41.57$,
+which is 41.57 times too large.
+This is actually good news: it confirms that the real three-dimensional
+Gaussian integration is the only consistent choice, and the factor of $1/2$
+in the exponent $3/2$ is not arbitrary but is forced by the odd dimensionality of Im$(\mathbb{H})$.
+
+\textbf{E4 (NCG spectral triple):}
+Alain Connes' noncommutative geometry gives a systematic way to derive
+gauge theories from algebras.
+For the algebra $\mathbb{C}\otimes\mathbb{H}$, this method naturally generates
+the weak nuclear force gauge symmetry $\mathrm{SU}(2)$ and its running coupling.
+Interestingly, the same number 3 that appears as
+$\dim_\mathbb{R}(\mathrm{Im}(\mathbb{H})) = 3$ also appears as the number of
+Standard Model fermion generations ($N_{\mathrm{gen}} = 3$) in Connes' approach,
+confirming they have the same algebraic origin.
+However, the explicit calculation of the $B$ coefficient from the spectral
+triple heat kernel has not been completed, so the connection to
+$B_{\mathrm{base}} = 41.57$ is not yet established.
+This is the most promising remaining direction.
+
+\textbf{Overall:}
+E1 and E2 are closed (dead ends).
+E3 is a dead end as a new derivation but structurally confirms the
+existing approach.
+E4 is open and remains the most natural next direction.
+The explicit computation of the heat kernel coefficient $a_4$ for the
+$\mathbb{C}\otimes\mathbb{H}$ spectral triple (Gap E4) is the concrete
+next step.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

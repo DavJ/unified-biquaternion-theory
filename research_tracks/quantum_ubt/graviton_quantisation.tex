@@ -1,0 +1,94 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+%
+% Classification: [STD] sections 1-3, [MC] section 4, [MC/SPECULATIVE] section 5.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\title{\textbf{Kanonická kvantizace gravitonových módů v UBT}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-11}
+
+\begin{document}
+\maketitle
+
+\section{Linearizace $S[\Theta]$ okolo Schwarzschildova pozadí \,[STD]}
+
+Vycházíme z kanonické akce
+\[
+S[\Theta]=\int d^4x\sqrt{-g}\left[\frac{R}{2\kappa}+\mathrm{Tr}\!\left((D_\mu\Theta)^\dagger(D^\mu\Theta)\right)-V(\Theta)\right].
+\]
+Položíme
+\[
+\Theta=\Theta_{\mathrm{Schw}}+\delta\Theta
+\]
+a rozvoj do druhého řádu dává kvadratickou akci $S_2[\delta\Theta]$, která
+popisuje gravitonové fluktuace nad Schwarzschildovým pozadím.
+
+\section{Identifikace módů \,[STD]}
+
+Použijeme uzávěr z
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex}:
+\begin{itemize}
+  \item sudá parita $\delta\Theta_{\mathrm{even}} \to V_Z(r)$ (Zerilli),
+  \item lichá parita $\delta\Theta_{\mathrm{odd}} \to V_{RW}(r)$ (Regge--Wheeler).
+\end{itemize}
+Po rozkladu do sférických harmonik zavádíme kanonické souřadnice
+$Q_{\ell m}(t)$ a momenta $P_{\ell m}=\dot Q_{\ell m}$.
+
+\section{Kanonická kvantizace \,[STD]}
+
+Postulujeme komutační relace
+\[
+[Q_{\ell m}(t),P_{\ell' m'}(t)]=i\hbar\,\delta_{\ell\ell'}\delta_{mm'}.
+\]
+Pro každý mód:
+\[
+H_{\ell m}=\frac12\!\left(P_{\ell m}^2+\omega_{\ell m}^2Q_{\ell m}^2\right),
+\]
+kde $\omega_{\ell m}$ je určeno potenciálem $V_Z$ nebo $V_{RW}$.
+Výsledkem je Fockova báze $|n_{\ell m}\rangle$, vakuum $|0\rangle$ a nulový
+příspěvek $\frac12\hbar\omega_{\ell m}$ na mód.
+
+\section{UBT specifika: společné pole $\Theta$ \,[MC]}
+
+V UBT gravitační i gaugeové excitace vznikají ze stejného pole $\Theta$,
+tedy
+\[
+\mathcal H_{\mathrm{grav}}\subset \mathcal H_\Theta.
+\]
+Pracovní podmínka pro další odvození:
+\begin{itemize}
+  \item generátory $\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ působí na interní
+  algebraickou část stavů,
+  \item gravitonové módy působí na geometrickou (paritní/sférickou) část,
+  \item přirozené super-výběrové sektory mohou vznikat z dekompozice
+  algebry $\mathbb C\otimes\mathbb H$.
+\end{itemize}
+Explicitní komutační algebra mezi těmito sektory zůstává otevřená.
+
+\section{Vakuová energie a kosmologická konstanta \,[MC/SPECULATIVE]}
+
+Formální vakuová energie:
+\[
+E_{\mathrm{vac}}=\sum_{\ell,m}\frac12\hbar\omega_{\ell m},
+\]
+což je UV divergentní suma. Konzistentní kandidát regularizace je
+$\zeta$-funkce, v návaznosti na postupy použité v alpha tracku
+(\texttt{step2\_vacuum\_polarization.tex}).
+
+Otevřený test:
+\begin{itemize}
+  \item zda $\zeta$-regularizovaná hodnota dává nenulový efektivní příspěvek
+  do kosmologické konstanty v UBT,
+  \item jak tento příspěvek souvisí s běžnou renormalizací gravitačního sektoru.
+\end{itemize}
+
+\end{document}
+

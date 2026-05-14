@@ -82,7 +82,14 @@ Alternatively, computed from Christoffel symbols (which are themselves derived):
 R^\rho{}_{\sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}
 \end{equation}
 
-\textbf{Note:} This classical formula is valid because the real projection commutes with derivatives and products.
+\textbf{Note:} This classical formula is valid because the real projection commutes with
+\emph{real} derivatives ($\text{Re}(\partial_\mu f) = \partial_\mu \text{Re}(f)$ for
+real $\partial_\mu$) and is \emph{linear}: $\text{Re}(A + B) = \text{Re}(A) + \text{Re}(B)$.
+\textbf{Caution}: $\text{Re}$ does \emph{not} commute with general biquaternionic
+products: $\text{Re}(AB) \neq \text{Re}(A)\,\text{Re}(B)$ in general.
+The above formula is valid specifically because the Christoffel symbols are derived from
+the real metric $g_{\mu\nu}$ using only real arithmetic once the real projection has
+been applied; the formula does not generalise to arbitrary biquaternionic products.
 
 Alternatively, via the commutator of covariant derivatives:
 \begin{equation}
@@ -162,10 +169,11 @@ The classical Einstein tensor is the real projection of the biquaternionic Einst
 
 \begin{equation}
 \label{eq:canonical:einstein_tensor_projection}
-G_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})
+G_{\mu\nu} = \text{Re}(\mathcal{E}_{\mu\nu})
 \end{equation}
 
-where $\mathcal{G}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor.
+where $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor
+and $\mathcal{G}_{\mu\nu}$ is the biquaternionic \textbf{metric} (distinct symbols).
 
 Alternatively, constructed from classical curvature:
 
@@ -203,7 +211,7 @@ G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G \, T_{\mu\nu}
 This is obtained by taking $\text{Re}(\cdot)$ of the fundamental equation:
 
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \Rightarrow \quad \text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
+\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \Rightarrow \quad \text{Re}(\mathcal{E}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
 \end{equation}
 
 where:
@@ -216,7 +224,7 @@ where:
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Einstein's Equations as Real Projection]
 \textbf{The fundamental UBT field equation is:}
 \begin{equation}
-\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic)}
+\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \quad \text{(biquaternionic)}
 \end{equation}
 
 \textbf{Einstein's field equations emerge as the real projection:}
@@ -367,8 +375,8 @@ In the limit where all imaginary components vanish ($\text{Im}(\mathcal{G}_{\mu\
     \item Biquaternionic metric $\mathcal{G}_{\mu\nu} \to g_{\mu\nu}$ (classical metric)
     \item Biquaternionic connection $\Omega_\mu \to \omega_\mu$ (Christoffel symbols)
     \item Biquaternionic curvature $\mathcal{R}^\rho{}_{\sigma\mu\nu} \to R^\rho{}_{\sigma\mu\nu}$ (Riemann tensor)
-    \item Einstein tensor $\mathcal{G}_{\mu\nu} \to G_{\mu\nu}$ (classical Einstein tensor)
-    \item Field equation $\mathcal{G}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \to G_{\mu\nu} = 8\pi G T_{\mu\nu}$ (Einstein's equations)
+    \item Einstein tensor $\mathcal{E}_{\mu\nu} \to G_{\mu\nu}$ (classical Einstein tensor)
+    \item Field equation $\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu} \to G_{\mu\nu} = 8\pi G T_{\mu\nu}$ (Einstein's equations)
 \end{enumerate}
 
 \textbf{All GR predictions are exactly recovered:}

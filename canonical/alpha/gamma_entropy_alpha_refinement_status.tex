@@ -1,0 +1,369 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/gamma_entropy_alpha_refinement_status.tex
+% Purpose: Status document for the Gamma/prime-factorization entropy interpolation
+%          audit of the alpha effective potential. Records numerical findings,
+%          mathematical identities, and the bracket property of V1 and V3
+%          relative to the measured fine-structure constant.
+% Date: 2026-05-11
+% Related: canonical/alpha/prime_factorization_entropy_potential.tex
+%          canonical/alpha/ALPHA_MASTER_STATUS.md
+%          tools/scan_gamma_entropy_lambda.py
+%          reports/gamma_entropy_alpha_interpolation_audit.md
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange,          linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15,  linecolor=green!60!black,  linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,     linecolor=red!60,          linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,    linecolor=blue!40,         linewidth=1.5pt]{infobox}
+  \newmdenv[backgroundcolor=gray!8,    linecolor=gray!60,         linewidth=1pt  ]{statusbox}
+  \newmdenv[backgroundcolor=orange!10, linecolor=orange!70,       linewidth=1pt  ]{obsbox}
+
+  % Status labels
+  \newcommand{\STDLZ}{\textcolor{gray!70!black}{\textbf{[STD/L0]}}}
+  \newcommand{\INTERP}{\textcolor{blue!60!black}{\textbf{[INTERP]}}}
+  \newcommand{\OBS}{\textcolor{orange!70!black}{\textbf{[OBS]}}}
+  \newcommand{\DERIVCAND}{\textcolor{orange!80!black}{\textbf{[DERIVATION CANDIDATE]}}}
+  \newcommand{\OPEN}{\textcolor{orange}{\textbf{[OPEN]}}}
+  \newcommand{\PROVED}{\textcolor{green!60!black}{\textbf{[PROVED]}}}
+  \newcommand{\PHENOM}{\textcolor{purple!70!black}{\textbf{[PHENOM]}}}
+  \newcommand{\NUMONLY}{\textcolor{red!50!black}{\textbf{[NUMERIC\_ONLY]}}}
+  \newcommand{\COND}{\textcolor{blue}{\textbf{[COND]}}}
+  \newcommand{\Lone}{\textbf{[L1]}}
+  \newcommand{\Lzero}{\textbf{[L0]}}
+
+  \newcommand{\BRam}{B_{\mathrm{Ram}}}
+  \newcommand{\Veff}{V_{\mathrm{eff}}}
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+
+  \title{\textbf{Gamma/Prime-Factorization Entropy Refinement:\\
+         Alpha Potential Interpolation Status}\\
+         \large Audit of the $V_\lambda$ Bracket Property and $\lambda_{\mathrm{fit}}$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Status Discipline}
+\label{sec:status}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{warnbox}
+\textbf{Mandatory status declarations:}
+\begin{itemize}
+  \item Alpha ($\alpha$) is \textbf{NOT DERIVED}.
+  \item $\BRam$ is \OBS{} — a numerical observation, not derived from $S[\Theta]$.
+  \item Gap G137-B is \OPEN{} and is not closed by this analysis.
+  \item $\lambda_{\mathrm{fit}}$ is a fit parameter; it is \OBS{} unless derived.
+  \item All identities from standard mathematics are labeled \STDLZ{}.
+  \item The prime-factorization entropy interpretation is labeled \INTERP{}.
+\end{itemize}
+\end{warnbox}
+
+This document records the status of the Gamma/prime-factorization entropy
+interpolation audit for the UBT alpha potential.  It does not claim any new
+derivation of $\alpha$ or of $B$.  All numerical results come from
+\texttt{tools/scan\_gamma\_entropy\_lambda.py} (mpmath, 80 decimal places).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Potential Definitions}
+\label{sec:potentials}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{V1 — Original potential}
+
+\begin{equation}
+  V_1(n) = n^2 - B \cdot n\log n,
+  \qquad
+  V_1'(n) = 2n - B(\log n + 1) = 0.
+  \tag{V1, \Lone}
+\end{equation}
+
+\subsection{V3 — Gamma-refined potential}
+
+\begin{equation}
+  V_3(n) = n^2 - B\cdot\bigl(\log\Gamma(n+1) + n\bigr),
+  \qquad
+  V_3'(n) = 2n - B(\psi(n+1) + 1) = 0,
+  \tag{V3, \DERIVCAND}
+\end{equation}
+where $\psi = \psi^{(0)}$ is the digamma function.
+
+\subsection{V\_lambda — Interpolated potential}
+
+\begin{equation}
+  E_\lambda(n) = (1-\lambda)\cdot n\log n + \lambda\cdot(\log\Gamma(n+1) + n),
+  \label{eq:Elambda}
+\end{equation}
+\begin{equation}
+  V_\lambda(n) = n^2 - \BRam \cdot E_\lambda(n).
+  \label{eq:Vlambda}
+\end{equation}
+
+The stationarity condition $V_\lambda'(n) = 0$ is:
+\begin{equation}
+  2n = \BRam\,\bigl[(1-\lambda)(\log n + 1) + \lambda(\psi(n+1) + 1)\bigr].
+  \label{eq:stat_lambda}
+\end{equation}
+
+\subsection{Reference value $\BRam$ \OBS}
+
+\begin{obsbox}
+$\BRam = 12^{3/2} \cdot 2^{1/8} \cdot \vartheta_3(0\mid i)^{1/4}$
+\quad \OBS{} — not derived from $S[\Theta]$.
+\end{obsbox}
+
+Numerically (80 decimal places):
+\begin{equation}
+  \BRam = 46.280872383180703498930750708\ldots
+  \label{eq:BRam_value}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mathematical Identities}
+\label{sec:identities}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Identity 1} \STDLZ{}.  For every $n \in \mathbb{N}$:
+\begin{equation}
+  \log\Gamma(n+1) = \log(n!).
+\end{equation}
+
+\textbf{Identity 2 — Legendre's formula} \STDLZ{}.  For every $n \in \mathbb{N}$:
+\begin{equation}
+  \log(n!) = \sum_{\substack{p \text{ prime},\, m \geq 1 \\ p^m \leq n}}
+             \left\lfloor \frac{n}{p^m} \right\rfloor \log p.
+  \label{eq:legendre}
+\end{equation}
+
+\textbf{Identity 3 — Stirling expansion} \STDLZ{}.
+\begin{equation}
+  \log\Gamma(n+1) + n = n\log n + \tfrac{1}{2}\log(2\pi n) + \tfrac{1}{12n} + O(n^{-3}).
+  \label{eq:stirling_refined}
+\end{equation}
+
+\textbf{Identity 4 — Digamma derivative} \STDLZ{}.
+\begin{equation}
+  \frac{d}{dn}\bigl[\log\Gamma(n+1) + n\bigr] = \psi(n+1) + 1,
+  \qquad
+  \psi(n+1) = \log n + \tfrac{1}{2n} - \tfrac{1}{12n^2} + O(n^{-4}).
+  \label{eq:digamma_asymp}
+\end{equation}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{High-Precision Numerical Results}
+\label{sec:numerics}
+%──────────────────────────────────────────────────────────────────────────────
+
+All values computed at \texttt{mpmath.mp.dps = 80}.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Quantity & Value & Status \\
+\midrule
+$\vartheta_3(0\mid i)$ & $1.08643481121330801457531612151\ldots$ & \STDLZ \\
+$|\eta(i)|$ & $0.768225422326056659002594179576\ldots$ & \STDLZ \\
+$\BRam$ & $46.280872383180703498930750708\ldots$ & \OBS \\
+$n_1$ (V1 stationary) & $136.9890996341081484047897\ldots$ & \Lone \\
+$n_3$ (V3 stationary) & $137.0905214130678236021181\ldots$ & \DERIVCAND \\
+$n_3 - n_1$ & $0.10142177895967520232826\ldots$ & computed \\
+$\alpha_{\mathrm{exp}}^{-1}$ (CODATA 2018) & $137.035999084$ & \PHENOM \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Bracket property}
+
+\begin{resultbox}
+\textbf{Bracket property} (numeric, \OBS{} since depends on $\BRam$):
+\begin{equation}
+  n_1 < \alpha_{\mathrm{exp}}^{-1} < n_3,
+  \qquad
+  n_1 = 136.989\ldots,\quad
+  \alpha_{\mathrm{exp}}^{-1} = 137.036\ldots,\quad
+  n_3 = 137.091\ldots
+  \label{eq:bracket}
+\end{equation}
+The measured fine-structure constant inverse lies between the V1 and V3
+stationary points.  The physical $\alpha^{-1}$ lies approximately
+\textbf{46\% of the way} from $n_1$ to $n_3$.
+\end{resultbox}
+
+\subsection{Lambda fit values}
+
+Two definitions of $\lambda_{\mathrm{fit}}$ are used; they differ by $\approx 0.0002$
+due to the nonlinearity of $n^*(\lambda)$:
+
+\paragraph{Definition A (exact stationarity).}
+The unique $\lambda$ such that $V_\lambda'(n) = 0$ at $n = \alpha_{\mathrm{exp}}^{-1}$:
+\begin{equation}
+  \lambda_{\mathrm{fit}}^{\mathrm{exact}} =
+    \frac{2\alpha_{\mathrm{exp}}^{-1}/\BRam - (\log\alpha_{\mathrm{exp}}^{-1}+1)}
+         {(\psi(\alpha_{\mathrm{exp}}^{-1}+1)+1) - (\log\alpha_{\mathrm{exp}}^{-1}+1)}
+  = 0.46221754271946\ldots
+  \quad \OBS
+  \label{eq:lambda_exact}
+\end{equation}
+
+\paragraph{Definition B (linear fractional position).}
+\begin{equation}
+  \lambda_{\mathrm{fit}}^{\mathrm{frac}} =
+    \frac{\alpha_{\mathrm{exp}}^{-1} - n_1}{n_3 - n_1}
+  = 0.46241990993372\ldots
+  \quad \OBS
+  \label{eq:lambda_frac}
+\end{equation}
+
+Both values are \OBS{} and have no derivation from $S[\Theta]$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Information-Theoretic Interpretation \INTERP}
+\label{sec:interp}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{infobox}
+\textbf{Entropy interpretation} \INTERP{}.  By Legendre's formula
+(equation~\eqref{eq:legendre}), $\log(n!) = \log\Gamma(n+1)$ is the
+\emph{total logarithmic information content} of integers $1,\ldots,n$ when each
+integer is encoded as a composite symbol over the prime alphabet with weights
+$w_p = \log p$.
+
+The Stirling leading term $n\log n$ (identity~\eqref{eq:stirling_refined})
+is the leading approximation to this entropy.  The interpolation $E_\lambda(n)$
+therefore interpolates between:
+\begin{itemize}
+  \item $\lambda = 0$: the Stirling leading-term approximation $n\log n$,
+  \item $\lambda = 1$: the exact prime-factorization entropy $\log(n!) + n$.
+\end{itemize}
+The measured $\alpha^{-1}$ lies at $\lambda \approx 0.462$ of the way between
+these two structural limits.  The sub-percent difference between $n_1$ and $n_3$
+(and hence between the two entropy models) is produced by the Stirling subleading
+term $\tfrac{1}{2}\log(2\pi n) \approx 3.38$ at $n = 137.036$.
+\end{infobox}
+
+This interpretation is \INTERP{} only: it does not derive $B$, $\lambda$, or
+$\alpha$ from $S[\Theta]$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Candidate Constant Comparison}
+\label{sec:candidates}
+%──────────────────────────────────────────────────────────────────────────────
+
+The table below compares $\lambda_{\mathrm{fit}}^{\mathrm{exact}} = 0.46221754\ldots$
+against candidate constants.  Status ``\NUMONLY'' means: numerically close but
+no UBT derivation known.
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Constant & Value & $|\text{err}|$ & rel.\% & Status \\
+\midrule
+$37/80$ & $0.46250$ & $2.8\times10^{-4}$ & $0.061\%$ & \NUMONLY \\
+$6/13$ & $0.46154$ & $6.8\times10^{-4}$ & $0.147\%$ & \NUMONLY \\
+$\tfrac{1}{2} - \tfrac{1}{12\pi}$ & $0.47347$ & $1.1\times10^{-2}$ & $2.4\%$ & \NUMONLY \\
+$3/(2\pi)$ & $0.47746$ & $1.5\times10^{-2}$ & $3.3\%$ & \NUMONLY \\
+$1/2$ & $0.50000$ & $3.8\times10^{-2}$ & $8.2\%$ & \NUMONLY \\
+$\sqrt{2}-1$ & $0.41421$ & $4.8\times10^{-2}$ & $10.4\%$ & \NUMONLY \\
+$1/e$ & $0.36788$ & $9.4\times10^{-2}$ & $20.4\%$ & \NUMONLY \\
+(all modular) & $\eta(i), \vartheta_3,\ldots$ & $>0.15$ & $>30\%$ & \NUMONLY \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}
+\textbf{Key finding}: No candidate constant has a derivation from UBT.
+The closest match, $37/80 = 0.4625$, is within $0.06\%$ of
+$\lambda_{\mathrm{fit}}^{\mathrm{exact}}$, but this coincidence has no
+structural interpretation and must be classified \NUMONLY{}.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Gap G137-B Status}
+\label{sec:gap}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap G137-B} \OPEN{}.
+
+The following remain unresolved:
+\begin{enumerate}
+  \item Derivation of $\BRam \approx 46.28$ from $S[\Theta]$ without using $\alpha$.
+  \item Derivation of the interpolation parameter $\lambda_{\mathrm{fit}} \approx 0.462$
+        from any UBT mechanism (RG, Stirling, modular form, determinant regularization).
+  \item Identification of the physical mechanism selecting the observed $\alpha^{-1}$
+        within the bracket $[n_1, n_3]$.
+\end{enumerate}
+
+The bracket property~\eqref{eq:bracket} is a \OBS{} numerical finding, not a proof.
+The physical fine-structure constant lying between the asymptotic entropy model
+($\lambda = 0$) and the Gamma-refined entropy model ($\lambda = 1$) is structurally
+suggestive but does not close G137-B.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{statusbox}
+\textbf{Overall verdict}: \textbf{PLAUSIBLE\_OBS}
+
+The physical alpha inverse lies between the stationary points of the asymptotic
+entropy potential (V1, $\lambda=0$) and the exact Gamma-entropy potential
+(V3, $\lambda=1$), with:
+\[
+  n_1 = 136.989099\ldots < \alpha_{\mathrm{exp}}^{-1} = 137.035999\ldots < n_3 = 137.090521\ldots
+\]
+The Stirling identities and Legendre formula provide exact mathematical grounding
+for this structure (\STDLZ).  The entropy interpretation (\INTERP) explains why
+$n\log n$ is a natural quantity.  Neither $\BRam$ nor $\lambda_{\mathrm{fit}}$ is
+derived from $S[\Theta]$.
+
+\textbf{Alpha is NOT DERIVED.  Gap G137-B is OPEN.}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

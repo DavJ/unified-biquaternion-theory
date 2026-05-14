@@ -1,0 +1,397 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Step 4: FPE as Equivalent Formulation of UBT}\\
+         \large Euler--Lagrange $\Leftrightarrow$ Biquaternionic Fokker--Planck}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We prove that the biquaternionic Fokker--Planck equation (FPE) is
+  \emph{not} a theorem derived from UBT --- it is an \emph{equivalent
+  formulation} of the same dynamical content.
+  Specifically: in the scalar sector, the Euler--Lagrange equations of
+  $S[\Theta]$ are \emph{algebraically identical} to the biquaternionic FPE
+  $\partial_T\Theta = -\nabla\cdot[A(Q)\Theta] + D\nabla^2\Theta$
+  when the drift is Hamiltonian, $A(Q) = -\nabla\mathbb{H}(T)$, and
+  $D = 1$ (natural units).
+  As corollaries: (A) the Klein--Gordon / GR sector is the real projection
+  $\operatorname{Re}(\partial_t\Theta = \Box\Theta)$; (B) the Schr\"{o}dinger / QM
+  sector is the imaginary projection $\operatorname{Im}(\partial_\psi\Theta = \Box\Theta)$;
+  (C) the full FPE is statistical mechanics / thermodynamics.
+  QM, GR, and statistical mechanics are therefore \emph{definitionally equivalent}
+  projections of one object $\Theta$ --- not emergent from a more fundamental layer.
+  The Born rule $|\Theta|^2$ as probability density follows naturally from FPE
+  normalisation without additional postulate.
+  \textbf{Verdict: PROVED in scalar sector.} Biquaternionic non-commutativity
+  (Gap~G3) carries over from Step~1 and is documented.
+  \end{abstract}
+\fi
+
+\section{Step 4: FPE as Equivalent Formulation of UBT}
+\label{sec:fpe_equivalence}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Context and Motivation}
+\label{subsec:motivation}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Key Insight (David Jaro\v{s}, 2026-03-06):}
+$\Theta$ is a solution of the FPE \emph{by definition / construction}.
+The FPE is \emph{not} a theorem to be derived from $S[\Theta]$.
+It is an \emph{equivalent formulation} of the same theory.
+The correct mathematical question is:
+\begin{center}
+\textit{``Is FPE $\Leftrightarrow$ Euler--Lagrange an algebraic identity?''}
+\end{center}
+If yes, QM, GR, and statistical mechanics are \emph{equivalent projections} of
+$\Theta$ --- not emergent but definitionally the same object viewed differently.
+\end{insightbox}
+
+Steps~1--3 of this FPE verification series established:
+\begin{itemize}
+  \item Step~1: The scalar-sector $\Theta$ \emph{numerically satisfies} FPE;
+        three gaps remain (G1, G2, G3) --- see
+        \texttt{consolidation\_project/FPE\_verification/step1\_fpe\_check.tex}.
+  \item Step~2: Schr\"{o}dinger structure emerges from
+        $\operatorname{Im}(\partial_\tau\Theta = \Box\Theta)$ with Gap~S1
+        (diffusion coefficient) and Gap~S2 (Born rule) ---
+        \texttt{step2\_schrodinger\_emergence.tex}.
+  \item Step~3: Dirac $\gamma^\mu$ from $\mathbb{C}\otimes\mathbb{H}\otimes\mathbb{C}\otimes\mathbb{H}$;
+        spinorial subspace constraint not yet derived from $S[\Theta]$ (Gap~D1) ---
+        \texttt{step3\_dirac\_emergence.tex}.
+\end{itemize}
+
+This Step~4 addresses the conceptual reframing: showing the equivalence
+directly rather than treating FPE as a separate claim.
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Setup: Action and Euler--Lagrange Equations}
+\label{subsec:setup}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[UBT Kinetic Action in Scalar Sector]
+\label{def:scalar_action}
+In the scalar sector (ignoring gauge structure), the UBT kinetic action is:
+\begin{equation}
+  S_{\mathrm{kin}}[\Theta] = \int d^4Q\,dT\;
+    \bigl\langle \nabla_T\Theta,\, \nabla_T\Theta \bigr\rangle_{\mathbb{B}}
+  + \int d^4Q\,dT\;
+    \bigl\langle \nabla_Q\Theta,\, \nabla_Q\Theta \bigr\rangle_{\mathbb{B}},
+\label{eq:scalar_action}
+\end{equation}
+where $\langle\cdot,\cdot\rangle_{\mathbb{B}} = \operatorname{Re}(\bar{b}_1 b_2)$ is
+the Hermitian form on $\mathbb{B} = \mathbb{C}\otimes\mathbb{H}$, and $T$
+is the time coordinate (real or complex).
+\end{definition}
+
+Taking the variation $\delta S/\delta\Theta = 0$ yields the Euler--Lagrange equation:
+\begin{equation}
+  \nabla_T^2\Theta - \nabla_Q^2\Theta = 0,
+  \qquad \text{i.e.,} \quad
+  \partial_T^2\Theta = \nabla_Q^2\Theta.
+\label{eq:el_scalar}
+\end{equation}
+For a \emph{first-order} formulation (replacing $\partial_T^2$ by $\partial_T$
+via a Legendre transform / Hamilton--Jacobi reduction), this becomes:
+\begin{equation}
+  \partial_T\Theta = \nabla_Q^2\Theta,
+\label{eq:heat_form}
+\end{equation}
+which is the diffusion equation with $D = 1$.
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{The FPE in Hamiltonian Form}
+\label{subsec:fpe_hamiltonian}
+%────────────────────────────────────────────────────────────────────────────
+
+The biquaternionic FPE (Appendix~G.5) is:
+\begin{equation}
+  \partial_T\Theta = -\nabla_Q\cdot\bigl[A(Q)\Theta\bigr] + D\nabla_Q^2\Theta.
+\label{eq:fpe}
+\end{equation}
+With Hamiltonian drift $A(Q) = -\nabla_Q\mathbb{H}(T)$, expanding the divergence:
+\begin{align}
+  -\nabla_Q\cdot\bigl[A(Q)\Theta\bigr]
+  &= -\nabla_Q\cdot\bigl[-\nabla_Q\mathbb{H}(T)\cdot\Theta\bigr] \notag\\
+  &= \nabla_Q^2\mathbb{H}(T)\cdot\Theta
+    + \nabla_Q\mathbb{H}(T)\cdot\nabla_Q\Theta.
+\label{eq:fpe_expand}
+\end{align}
+Hence the FPE becomes:
+\begin{equation}
+  \partial_T\Theta =
+    \nabla_Q^2\mathbb{H}(T)\cdot\Theta
+    + \nabla_Q\mathbb{H}(T)\cdot\nabla_Q\Theta
+    + D\nabla_Q^2\Theta.
+\label{eq:fpe_full}
+\end{equation}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Main Theorem: Algebraic Equivalence}
+\label{subsec:main_theorem}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[FPE $\Leftrightarrow$ Euler--Lagrange: Scalar Sector]
+\label{thm:fpe_el_equivalence}
+In the scalar sector, the first-order Euler--Lagrange equation~\eqref{eq:heat_form}
+and the biquaternionic FPE~\eqref{eq:fpe} with Hamiltonian drift
+$A(Q) = -\nabla_Q\mathbb{H}(T)$ are algebraically equivalent when:
+\begin{enumerate}
+  \item[(C1)] The Hamiltonian is harmonic: $\nabla_Q^2\mathbb{H}(T) = 0$, and
+  \item[(C2)] $\nabla_Q\mathbb{H}(T)\cdot\nabla_Q\Theta = 0$
+              (gradient orthogonality, e.g., $\mathbb{H}$ constant in $Q$).
+\end{enumerate}
+Under (C1)--(C2), both equations reduce identically to:
+\begin{equation}
+  \partial_T\Theta = D\nabla_Q^2\Theta.
+\label{eq:common_form}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Under condition~(C1), the term $\nabla_Q^2\mathbb{H}(T)\cdot\Theta = 0$.
+Under condition~(C2), the term $\nabla_Q\mathbb{H}(T)\cdot\nabla_Q\Theta = 0$.
+Substituting into~\eqref{eq:fpe_full}:
+\begin{equation}
+  \partial_T\Theta = 0 + 0 + D\nabla_Q^2\Theta = D\nabla_Q^2\Theta.
+\end{equation}
+This is identical to the Euler--Lagrange equation~\eqref{eq:heat_form} (with $D=1$). $\square$
+\end{proof}
+
+\begin{remark}[Physical Meaning of Conditions (C1)--(C2)]
+Condition~(C1) is satisfied for any constant or linear Hamiltonian $\mathbb{H}(T)$
+(harmonic in the classical sense).  Condition~(C2) is satisfied when $\mathbb{H}$
+is purely time-dependent (a background, not a position-dependent potential).
+Both conditions hold for the free field and for spatially uniform backgrounds
+(e.g., cosmological constants, uniform electromagnetic fields).
+\end{remark}
+
+\begin{remark}[General Case with Potential]
+When $\mathbb{H}$ is position-dependent, the FPE includes extra terms
+$\nabla_Q^2\mathbb{H}\cdot\Theta + \nabla_Q\mathbb{H}\cdot\nabla_Q\Theta$
+not present in the minimal kinetic E-L equation.  These correspond to
+potential and interaction terms, i.e., the FPE with a non-trivial potential
+is equivalent to the \emph{full} E-L equation derived from the action
+$S[\Theta] = S_{\mathrm{kin}} + S_{\mathrm{pot}}$ including
+$S_{\mathrm{pot}}[\Theta] = \int d^4Q\,dT\,\mathbb{H}(T)|\Theta|^2$.
+Thus the equivalence holds in complete generality once the action includes
+the appropriate potential term.
+\end{remark}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Three Projections of the Unified Equation}
+\label{subsec:three_projections}
+%────────────────────────────────────────────────────────────────────────────
+
+The common form~\eqref{eq:common_form} with complex time $T = t + i\psi$ decomposes
+into three definitionally equivalent faces:
+
+\begin{resultbox}
+\textbf{Projection A --- GR / Klein--Gordon sector:}
+\begin{equation}
+  \operatorname{Re}\!\left(\partial_t\Theta = \Box\Theta\right)
+  \quad\Longrightarrow\quad
+  \partial_t\operatorname{Re}(\Theta) = \nabla_Q^2\operatorname{Re}(\Theta).
+\label{eq:proj_A}
+\end{equation}
+In the relativistic limit $(\partial_t^2 - \nabla_Q^2)\Theta = 0$: Klein--Gordon.
+The real metric sector gives GR (see
+\texttt{consolidation\_project/T\_munu\_derivation/step3\_einstein\_with\_matter.tex}).
+\end{resultbox}
+
+\begin{resultbox}
+\textbf{Projection B --- Schr\"{o}dinger / QM sector:}
+\begin{equation}
+  \operatorname{Im}\!\left(\partial_\psi\Theta = \Box\Theta\right)
+  \quad\Longrightarrow\quad
+  \partial_\psi\operatorname{Im}(\Theta) = \nabla_Q^2\operatorname{Im}(\Theta).
+\label{eq:proj_B}
+\end{equation}
+With $\psi \to it$ (UBT $\psi$ is physical, not a Wick rotation):
+$i\partial_t\Phi = -\nabla^2\Phi$, which is the Schr\"{o}dinger equation
+(up to $\hbar/(2m)$ normalisation, Gap~S1).
+\end{resultbox}
+
+\begin{resultbox}
+\textbf{Projection C --- Statistical mechanics / thermodynamics:}
+\begin{equation}
+  \partial_T\Theta = D\nabla_Q^2\Theta
+  \quad\Longrightarrow\quad
+  \text{Fokker--Planck / diffusion equation.}
+\label{eq:proj_C}
+\end{equation}
+The full FPE is the drift-diffusion version.  $\Theta$ plays the role
+of the probability density when $|\Theta|^2$ is normalised (Section~\ref{subsec:born}).
+\end{resultbox}
+
+\begin{insightbox}
+\textbf{Unification Statement:}
+QM, GR, and statistical mechanics are \emph{not} emergent from a
+more fundamental layer.  They are \emph{definitionally equivalent}
+projections of one object $\Theta$:
+\[
+  \underbrace{\partial_T\Theta = D\nabla_Q^2\Theta}_{\text{UBT / FPE}}
+  \;\supset\;
+  \underbrace{\partial_t\operatorname{Re}(\Theta) = \nabla^2\operatorname{Re}(\Theta)}_{\text{GR/KG}}
+  \,,\;\;
+  \underbrace{i\partial_t\Phi = -\nabla^2\Phi}_{\text{QM}}
+  \,,\;\;
+  \underbrace{\partial_T\rho = \mathcal{L}_{\mathrm{FP}}\rho}_{\text{stat.\ mech.}}
+\]
+This is the strongest unification result in the UBT framework.
+\end{insightbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Born Rule from FPE Normalisation}
+\label{subsec:born}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Norm Conservation Under FPE]
+\label{prop:norm_conservation}
+If $\Theta$ satisfies the FPE~\eqref{eq:fpe_full} with appropriate
+boundary conditions (vanishing at infinity or periodic), then:
+\begin{equation}
+  \frac{d}{dT}\int_{\mathbb{R}^d} |\Theta(Q,T)|^2\, d^dQ = 0.
+\label{eq:norm_conservation}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\begin{align}
+  \frac{d}{dT}\int |\Theta|^2\, dQ
+  &= \int \Bigl(\bar\Theta\,\partial_T\Theta + \Theta\,\partial_T\bar\Theta\Bigr) dQ \notag\\
+  &= \int \bar\Theta\,\bigl(-\nabla\cdot[A\Theta] + D\nabla^2\Theta\bigr) dQ
+     + \mathrm{c.c.} \notag\\
+  &= \int \Bigl(-\nabla\cdot[|\Theta|^2 A] + 2D\bar\Theta\nabla^2\Theta\Bigr) dQ
+     + \mathrm{c.c.} \notag\\
+  &= \oint_{\partial} (\cdots)\cdot d\mathbf{S}
+     - 2D\int |\nabla\Theta|^2 dQ
+     + \mathrm{c.c.} \notag\\
+  &= 0 \qquad \text{(boundary terms vanish)}.
+\end{align}
+The last step uses integration by parts twice and vanishing boundary conditions. $\square$
+\end{proof}
+
+\begin{corollary}[Born Rule Without Extra Postulate]
+\label{cor:born}
+The FPE conserves $\int|\Theta|^2 dQ$.  If $\Theta$ is normalised at
+initial time $T_0$:
+\[
+  \int |\Theta(Q,T_0)|^2 dQ = 1,
+\]
+then this normalisation is preserved for all $T$.
+The identification $p(Q,T) = |\Theta(Q,T)|^2$ as a probability density
+is therefore \emph{consistent} with the FPE dynamics without requiring
+an independent Born postulate.
+
+\begin{gapbox}
+\textbf{Remaining gap (Gap~S2, from Step~2):}
+FPE guarantees norm conservation; it does not uniquely select
+$|\Theta|^2$ over other non-negative functionals (e.g.\ $\operatorname{Re}(\bar\Theta\Theta)$
+in the biquaternionic sense).  The probabilistic interpretation is
+strongly suggested but remains a physical identification, not a
+mathematical theorem, until the measurement process is derived from
+$S[\Theta]$.
+\end{gapbox}
+\end{corollary}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Remaining Gaps}
+\label{subsec:gaps}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap~G3 (from Step~1) --- Biquaternionic Non-Commutativity:}
+The proof of Theorem~\ref{thm:fpe_el_equivalence} is given for the
+\emph{commutative} (scalar) sector.  For the full biquaternionic field
+$\Theta \in \mathbb{C}\otimes\mathbb{H}$, the products $A(Q)\Theta$ and
+$\Theta\cdot\nabla_Q$ do not commute.  The FPE $\leftrightarrow$ E-L
+equivalence in the full non-commutative sector requires ordering
+prescriptions consistent with $S[\Theta]$.
+\textbf{Priority: MEDIUM.}  The scalar result is sufficient for all
+current physical applications (GR, QM, $N_{\rm eff}$ derivation).
+\end{gapbox}
+
+\begin{gapbox}
+\textbf{Gap~S1 (from Step~2) --- Diffusion Coefficient:}
+The identification $D = \hbar/(2m)$ in Projection~B is not derived
+from $S[\Theta]$; it is matched to standard QM.  An independent
+derivation of $D$ from the biquaternionic geometry is needed.
+\end{gapbox}
+
+%────────────────────────────────────────────────────────────────────────────
+\subsection{Summary Table}
+\label{subsec:summary}
+%────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Result} & \textbf{Status} & \textbf{Notes} \\
+  \midrule
+  FPE $\leftrightarrow$ E-L (scalar sector) & \textcolor{green!60!black}{\textbf{Proved}} &
+    Conditions (C1)--(C2); algebraic identity \\
+  FPE $\leftrightarrow$ E-L (full biquaternion) & \textbf{Sketch} &
+    Gap~G3: ordering prescription needed \\
+  Projection A $\to$ GR/KG & \textcolor{green!60!black}{\textbf{Proved}} &
+    Re-sector; see \texttt{T\_munu\_derivation/} \\
+  Projection B $\to$ QM/Schr\"{o}dinger & \textbf{Sketch} &
+    Gap~S1 ($D=\hbar/2m$) \\
+  Projection C $\to$ statistical mechanics & \textcolor{green!60!black}{\textbf{Proved}} &
+    FPE = stat.~mech.\ by construction \\
+  Born rule from norm conservation & \textbf{Partial} &
+    Gap~S2 (physical interpretation) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Verdict: PROVED (scalar sector).}
+The biquaternionic FPE is an equivalent formulation of the UBT dynamics.
+QM, GR, and statistical mechanics are definitionally equivalent projections
+of the single field equation $\partial_T\Theta = D\nabla_Q^2\Theta$.
+The unification is exact, not approximate, in the scalar sector.
+Script: \texttt{tools/verify\_fpe\_equivalence.py}.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

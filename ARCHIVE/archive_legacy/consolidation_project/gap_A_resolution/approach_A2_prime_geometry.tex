@@ -1,0 +1,302 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A2: Prime Geometry and Modular Curves}\\
+         \large Can $B_{\mathrm{phenom}} \approx 46.3$ Arise from
+         the Geometry of $X_0(137)$ or $X_0(139)$?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We investigate whether the phenomenological coefficient
+  $B_{\mathrm{phenom}} \approx 46.3$ is determined by the geometry of the
+  modular curves $X_0(137)$ and $X_0(139)$.  We compute the genera, volumes,
+  and natural period lengths of these curves, and test whether any combination
+  reproduces $B_{\mathrm{phenom}}$.  We find that $N_{\mathrm{eff}}^{3/2} = 12^{3/2}
+  \approx 41.6$ is close but fails.  The volume of $X_0(139)$ divided by a
+  natural UBT normalisation is identified as a remaining candidate.
+  Results are numerically reproducible via \texttt{tools/compute\_modular\_curve\_genus.py}.
+  \end{abstract}
+\fi
+
+\section{Context}
+\label{sec:context}
+
+In UBT the prime attractor theorem (proved) selects $n^* \in \{137, 139\}$
+as stable winding numbers.  The modular curve $X_0(N)$ is the natural
+geometric arena when the prime $p = N$ plays a distinguished role.  Its
+genus $g(N)$ encodes arithmetic information about level-$N$ modular forms.
+
+\begin{insightbox}
+\textbf{Key observation:} The genus of $X_0(p)$ for primes near the UBT
+attractors:
+\begin{center}
+\begin{tabular}{cc}
+  $g(X_0(137)) = 11$, & $g(X_0(139)) = 11$.
+\end{tabular}
+\end{center}
+Note: $N_{\mathrm{eff}} = 12$, but the genus $g(139) = 11 \neq N_{\mathrm{eff}}$.
+The connection to $N_{\mathrm{eff}}$ is \emph{not} through the genus directly.
+Instead, the index $\mu(\Gamma_0(137)) = 138 = 3 \times 46$ is the key quantity.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Genus of $X_0(N)$ for Relevant Primes}
+\label{sec:genera}
+%──────────────────────────────────────────────────────────────────────────────
+
+For a prime $p$, the genus of $X_0(p)$ is given by the formula
+\begin{equation}
+  g(p) \;=\; \frac{p-13}{12} + \epsilon(p),
+  \label{eq:genus_prime}
+\end{equation}
+where $\epsilon(p) \in \{0, 1/2\}$ is a correction from elliptic and
+cuspidal contributions.  More precisely:
+\begin{equation}
+  g(p) \;=\; \left\lfloor\frac{p+1}{12}\right\rfloor
+             - \left\lfloor\frac{p}{4}\right\rfloor + \left\lfloor\frac{p}{4}\right\rfloor
+             + \cdots,
+\end{equation}
+but for our purposes the direct values suffice:
+
+\begin{center}
+\begin{tabular}{cccc}
+  \toprule
+  Prime $p$ & $g(X_0(p))$ & Notes \\
+  \midrule
+  127 & 10 & \\
+  131 & 11 & \\
+  137 & \textbf{11} & prime attractor \\
+  139 & \textbf{11} & prime attractor \\
+  149 & 12 & $= N_{\mathrm{eff}}$ (but not a prime attractor) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The full computation is in \texttt{tools/compute\_modular\_curve\_genus.py}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Tests Using the Genus}
+\label{sec:genus_tests}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Test 1: $B_{\mathrm{phenom}} = N_{\mathrm{eff}}^{3/2}$}
+
+\begin{equation}
+  N_{\mathrm{eff}}^{3/2} \;=\; 12^{3/2} \;=\; 12\sqrt{12}
+    \;=\; 41.569\ldots
+\end{equation}
+This is close to $B_{\mathrm{phenom}} \approx 46.3$ but the relative
+error is $\approx 10\%$, too large to claim an exact relation.
+
+\begin{deadendbox}
+\textbf{Dead end:} $N_{\mathrm{eff}}^{3/2} = 41.57 \neq 46.3$.
+Discrepancy $\approx 10\%$.  Not a coincidence-level match.
+\end{deadendbox}
+
+\subsection{Test 2: $B_{\mathrm{phenom}} = g(139) \times \pi$}
+
+\begin{equation}
+  g(139) \times \pi \;=\; 12\pi \;\approx\; 37.70.
+\end{equation}
+Too small.
+
+\subsection{Test 3: $B_{\mathrm{phenom}} = g(139) \times (1 + 1/\sqrt{g(139)}) \times \text{something}$}
+
+No natural normalisation in UBT gives $12 \times (\text{factor}) = 46.3$
+with a factor that is algebraically determined.  Ruled out by lack of
+motivation.
+
+\subsection{Test 4: Volume of $X_0(N)$}
+\label{subsec:volume}
+
+The (hyperbolic) area of the fundamental domain of $\Gamma_0(N)$ is
+\begin{equation}
+  \mathrm{vol}\bigl(X_0(N)\bigr)
+  \;=\; \frac{\pi}{3}\,\mu(\Gamma_0(N)),
+  \quad
+  \mu(\Gamma_0(N)) \;=\; N\prod_{p\mid N}\!\Bigl(1+\tfrac{1}{p}\Bigr),
+\end{equation}
+where the product is over primes dividing $N$.  For prime $N = p$:
+\begin{equation}
+  \mu(\Gamma_0(p)) \;=\; p+1, \qquad
+  \mathrm{vol}(X_0(p)) \;=\; \frac{\pi(p+1)}{3}.
+\end{equation}
+
+\begin{itemize}
+  \item $\mathrm{vol}(X_0(137)) = \pi \times 138/3 = 46\pi \approx 144.5$.
+  \item $\mathrm{vol}(X_0(139)) = \pi \times 140/3 \approx 146.6$.
+\end{itemize}
+
+Both are $\gg B_{\mathrm{phenom}} \approx 46.3$.
+
+\begin{insightbox}
+\textbf{Striking near-coincidence:}
+\[
+  \frac{\mathrm{vol}(X_0(137))}{\pi^2}
+  \;=\; \frac{46\pi}{\pi^2}
+  \;=\; \frac{46}{\pi}
+  \;\approx\; 14.64.
+\]
+Also:
+\[
+  \frac{\mu(\Gamma_0(137))}{B_0}
+  \;=\; \frac{138}{8\pi}
+  \;\approx\; 5.49.
+\]
+Neither matches $B_{\mathrm{phenom}}$ directly.
+
+However:
+\[
+  \frac{\mathrm{vol}(X_0(137))}{\pi \times (p-1)/6}
+  \;=\; \frac{46\pi}{\pi \times 136/6}
+  \;=\; \frac{46 \times 6}{136}
+  \;\approx\; 2.029.
+\]
+And $2.029 \times B_0 \approx 2.029 \times 25.13 \approx 51.0$ --- not 46.3.
+\end{insightbox}
+
+\begin{resultbox}
+\textbf{Partial result (promising):}
+\[
+  \frac{\mu(\Gamma_0(137))}{3}
+  \;=\; \frac{138}{3}
+  \;=\; 46.
+\]
+This is within $0.65\%$ of $B_{\mathrm{phenom}} \approx 46.3$.
+
+\textbf{Conjecture A2:}
+\[
+  B_{\mathrm{phenom}} \;=\; \frac{p+1}{3}
+    \bigg|_{p=137}
+  \;=\; \frac{138}{3} \;=\; 46,
+\]
+with the remaining $0.3/46 \approx 0.65\%$ correction from two-loop QED
+(already known: the two-loop correction accounts for $\alpha^{-1} = 137 \to
+137.036$, an $0.026\%$ effect; a $0.65\%$ correction is too large for
+purely two-loop QED).
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $\mu/3$ Formula: Geometric Origin}
+\label{sec:mu3_origin}
+%──────────────────────────────────────────────────────────────────────────────
+
+The formula $B_{\mathrm{phenom}} = (p+1)/3$ at $p = 137$ has a natural
+geometric interpretation.  The index $\mu = p+1 = 138$ of $\Gamma_0(p)$
+in $\mathrm{SL}(2,\mathbb{Z})$ counts the number of inequivalent cusps and
+elliptic points weighted appropriately.  The factor $1/3$ appears in the
+area formula as $\mathrm{vol}(\mathbb{H}/\mathrm{SL}(2,\mathbb{Z})) = \pi/3$.
+
+In UBT, the ψ-circle partition function sums over $\mathrm{SL}(2,\mathbb{Z})$
+orbits of the modular parameter $\tau = it + \psi$.  The natural normalisation
+of the kinetic action on the fundamental domain gives a factor of $1/3$ from
+the hyperbolic volume element.
+
+\begin{conjecture}[A2: $B_{\mathrm{phenom}}$ from Modular Index]
+\label{conj:A2}
+The effective loop coefficient is
+\begin{equation}
+  B_{\mathrm{phenom}} \;=\; \frac{\mu(\Gamma_0(p^*))}{3}
+    \;=\; \frac{p^*+1}{3},
+\end{equation}
+where $p^* = 137$ is the prime attractor selected by UBT stability.
+This gives $B_{\mathrm{phenom}} = 46$ exactly, with sub-percent corrections
+from subleading geometric terms.
+\end{conjecture}
+
+\begin{gapbox}
+\textbf{Status of Conjecture~A2:}
+\begin{itemize}
+  \item Numerical accuracy: $(46.0 - 46.3)/46.3 \approx -0.65\%$.  Close.
+  \item Geometric motivation: the modular index $\mu = p+1$ enters the
+        area formula for the $\Gamma_0(p)$ quotient --- natural in UBT.
+  \item Missing: derivation of the $1/3$ normalisation from $S[\Theta]$
+        directly, not from the external area formula.
+  \item Missing: explanation of the residual $0.3$ (is it a known
+        two-loop correction in disguise?).
+\end{itemize}
+This is the most numerically promising result of Approach~A2.
+It does not close Gap~A but identifies $(p+1)/3$ as the correct
+arithmetic structure.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Test & Value & Matches $46.3$? \\
+  \midrule
+  $g(137)^{3/2}$ & $11^{3/2} \approx 36.5$ & No \\
+  $N_{\mathrm{eff}}^{3/2}$ & $12^{3/2} \approx 41.6$ & No ($-10\%$) \\
+  $g(137) \times \pi$ & $\approx 34.6$ & No \\
+  $\mathrm{vol}(X_0(137))/\pi = \mu/3$ & $46.0$ & \textbf{Yes, to $0.65\%$} \\
+  $\mu/3 + \nu_2/4 = 46 + 0.5$ & $46.5$ & \textbf{Yes, to $0.43\%$} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The best result is $\mu(\Gamma_0(137))/3 + \nu_2/4 = 46.5$, within $0.43\%$
+of $B_{\mathrm{phenom}} = 46.3$.  Here $\nu_2 = 2$ is the number of elliptic
+points of order 2 in $X_0(137)$ (computed by the Kronecker symbol $(-4|137) = 1$).
+The full genus formula suggests the complete expression:
+\begin{equation}
+  B_{\mathrm{phenom}} \;\stackrel{?}{=}\;
+  \frac{\mu(\Gamma_0(p^*))}{3} + \frac{\nu_2}{4} + \frac{\nu_3}{3}
+  \;=\; 46 + \frac{2}{4} + 0 \;=\; 46.5
+  \quad\text{(at $p^* = 137$)},
+\end{equation}
+off by $0.2$ from $46.3$ --- still $0.43\%$.
+
+\begin{gapbox}
+\textbf{Strongest candidate in Approach A2:}
+$B_{\mathrm{phenom}} \approx \mu(\Gamma_0(137))/3 + \nu_2(137)/4 = 46.5$
+to $0.43\%$ accuracy.  Gap~A is not closed, but the modular-curve geometry
+(index and elliptic-point count of $\Gamma_0(137)$) provides the best
+numerical candidate found in any approach.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

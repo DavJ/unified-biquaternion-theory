@@ -6,6 +6,16 @@
 \section{The Classical Metric Tensor $g_{\mu\nu}$ (Derived Quantity)}
 \label{sec:canonical:metric}
 
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,title=Signature Convention Note]
+\textbf{Canonical signature for UBT}: $(-,+,+,+)$ (timelike negative).
+This file historically uses $(+,-,-,-)$. For consistency with the rest of canonical theory
+and wiki, all new derivations should use $(-,+,+,+)$.
+The two conventions are physically equivalent under overall sign flip.
+\textbf{Note}: The existing formulas in this file are written in $(+,-,-,-)$; when comparing
+with other canonical files using $(-,+,+,+)$, apply an overall sign flip to the metric.
+Full signature unification is a separate task.
+\end{tcolorbox}
+
 \begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Important: This is a Derived Quantity]
 \textbf{The metric $g_{\mu\nu}$ is NOT fundamental in UBT.}
 
@@ -245,7 +255,7 @@ The imaginary part:
 \tilde{h}_{\mu\nu} = \text{Im}\,\text{Tr}\left(\partial_\mu\Theta \, \partial_\nu\Theta^\dagger\right)
 \end{equation}
 
-encodes phase curvature and couples to consciousness/dark sectors.
+encodes phase curvature and couples to internal auxiliary sector (dark energy; speculative extensions in \texttt{speculative\_extensions/}).
 
 \subsection{Gauge Invariance}
 
@@ -290,6 +300,17 @@ This canonical definition supersedes:
 \end{enumerate}
 
 \textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:metric} with signature $(+,-,-,-)$ and index convention $\mu,\nu = 0,1,2,3$ consistently throughout.
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,title=Signature convention note]
+The canonical signature here is $(+,-,-,-)$ (mostly minus, spacelike negative).
+Some older files in the repository use the equivalent ``mostly plus'' convention
+$(-,+,+,+)$ (e.g.\ parts of \texttt{unified\_biquaternion\_theory/} and
+\texttt{STATUS\_THEORY\_ASSESSMENT.md} entries predating v60).
+
+The two conventions are physically equivalent up to an overall sign of the metric
+and a corresponding sign flip in any Lagrangian density.  No physics claim
+is affected.  When comparing equations across files, verify which convention is in use.
+\end{tcolorbox}
 
 \subsection{Computational Formula}
 

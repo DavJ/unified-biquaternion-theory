@@ -1,0 +1,266 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A3: One-Loop $B_{\mathrm{eff}}$ on $T^2(R_t, R_\psi)$}\\
+         \large Two-Circle Kaluza-Klein Computation}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We extend the one-loop Kaluza-Klein (KK) computation of the effective
+  coefficient $B_{\mathrm{eff}}$ from the single $\psi$-circle $S^1(R_\psi)$
+  to the full complex-time torus $T^2(R_t, R_\psi)$.  On the full torus the
+  KK sum depends on both winding numbers $(m, n)$ and on the modular parameter
+  $\tau = i R_\psi / R_t$.  We compute $B_{\mathrm{eff}}$ as a function of the
+  radius ratio $r = R_t/R_\psi$ and test whether $B_{\mathrm{eff}} = 46.3$ is
+  achieved for $r = \sqrt{137}$ or $r = \sqrt{139}$.  The analysis shows
+  that for $r \gg 1$ the correction is exponentially small
+  ($\sim e^{-2\pi r}$), giving $B_{\mathrm{eff}} \approx B_0 = 8\pi$.
+  The only regime that produces $B_{\mathrm{eff}} = 46.3$ requires $r \sim 1$,
+  which implies both circles are compact at the same scale --- a scenario that
+  conflicts with Lorentz invariance at accessible energies.  This approach is
+  a dead end.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup: Complex Time on $T^2(R_t, R_\psi)$}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+In UBT complex time is $\tau = t + i\psi$ with $t$ real and $\psi$
+imaginary.  In the minimal setting $\psi$ is compactified on $S^1(R_\psi)$
+with circumference $2\pi R_\psi$.  In the extended two-circle setting,
+$t$ is also compactified on $S^1(R_t)$, so that
+\begin{equation}
+  \tau \;\in\; T^2(R_t, R_\psi)
+  \;:=\; \mathbb{R}/(2\pi R_t\mathbb{Z}) \times \mathbb{R}/(2\pi R_\psi\mathbb{Z}).
+  \label{eq:torus}
+\end{equation}
+This torus has the modular parameter
+\begin{equation}
+  \hat\tau \;=\; i\,\frac{R_\psi}{R_t}.
+  \label{eq:modparam}
+\end{equation}
+The case $R_t \to \infty$ (decompactified real time) recovers the single
+$\psi$-circle $S^1(R_\psi)$.
+
+\subsection{KK spectrum on $T^2$}
+
+A field $\Phi(\tau)$ with the double-periodicity of $T^2$ has the Fourier
+expansion
+\begin{equation}
+  \Phi(\tau) \;=\; \sum_{m,n \in \mathbb{Z}} \Phi_{m,n}\,
+  \exp\!\left(\frac{imt}{R_t} + \frac{in\psi}{R_\psi}\right),
+  \label{eq:KK_modes}
+\end{equation}
+with KK masses
+\begin{equation}
+  M_{m,n}^2 \;=\; \frac{m^2}{R_t^2} + \frac{n^2}{R_\psi^2}.
+  \label{eq:KK_mass}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{One-Loop $B_{\mathrm{eff}}$ on $T^2$}
+\label{sec:one_loop}
+%──────────────────────────────────────────────────────────────────────────────
+
+The one-loop effective coefficient $B_{\mathrm{eff}}$ is obtained by summing
+the KK contribution over all winding modes.  Schematically,
+\begin{equation}
+  B_{\mathrm{eff}}(R_t, R_\psi)
+  \;=\; B_0 \;\times\;
+  \sum_{m,n \in \mathbb{Z}} \mathcal{F}(m, n;\, R_t, R_\psi),
+  \label{eq:Beff_sum}
+\end{equation}
+where $\mathcal{F}$ is a dimensionless function encoding the contribution of
+the $(m,n)$ mode.  In the limit $R_t \to \infty$, only $m = 0$ modes survive
+and $\mathcal{F}(0,n;\infty, R_\psi) = \delta_{n,\pm 1}$, giving
+\begin{equation}
+  B_{\mathrm{eff}} \;\xrightarrow{R_t \to \infty}\;
+  B_0 \;=\; 8\pi,
+  \label{eq:Beff_limit}
+\end{equation}
+which is the proved one-circle result.
+
+\subsection{Theta-function representation}
+
+Using the Poisson resummation formula, the sum \eqref{eq:Beff_sum} can be
+written in terms of the Jacobi theta function $\vartheta_3$:
+\begin{equation}
+  \sum_{m \in \mathbb{Z}} e^{-\pi m^2 R_t^2 / R_\psi^2}
+  \;=\; \vartheta_3\!\left(0,\, e^{-\pi R_t^2/R_\psi^2}\right)
+  \;=\; \sqrt{\frac{R_\psi}{R_t}}\;\vartheta_3\!\left(0,\, e^{-\pi R_\psi^2/R_t^2}\right).
+  \label{eq:theta_resum}
+\end{equation}
+For the ratio $r := R_t / R_\psi \gg 1$ this gives
+\begin{equation}
+  B_{\mathrm{eff}}(r)
+  \;=\; B_0 \left(1 + 2\,e^{-2\pi r} + O(e^{-4\pi r})\right),
+  \label{eq:Beff_expansion}
+\end{equation}
+showing that the correction to $B_0$ is \emph{exponentially small} for large $r$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Test at $r = \sqrt{137}$ and $r = \sqrt{139}$}
+\label{sec:test_r}
+%──────────────────────────────────────────────────────────────────────────────
+
+The UBT prime attractors suggest testing the special radii
+$R_t / R_\psi = \sqrt{137}$ and $R_t / R_\psi = \sqrt{139}$.
+
+\paragraph{$r = \sqrt{137} \approx 11.70$.}
+From \eqref{eq:Beff_expansion}:
+\begin{equation}
+  B_{\mathrm{eff}}(\sqrt{137})
+  \;=\; 8\pi\left(1 + 2\,e^{-2\pi\sqrt{137}} + \ldots\right).
+\end{equation}
+The correction is $2\,e^{-2\pi\times 11.70} \approx 2\,e^{-73.5}$, which is
+$\approx 10^{-32}$ --- completely negligible.
+
+\paragraph{$r = \sqrt{139} \approx 11.79$.}
+Similarly, the correction is $\approx 2\,e^{-74.1} \approx 10^{-32}$.
+
+\begin{deadendbox}
+\textbf{Dead end (large-ratio limit):}
+At $r = \sqrt{137}$ or $r = \sqrt{139}$, the two-circle correction to
+$B_0 = 8\pi$ is $< 10^{-32}$.  The torus geometry with large $r$ reproduces
+only $B_0 = 8\pi \approx 25.13$, not $B_{\mathrm{phenom}} \approx 46.3$.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{What Radius Ratio Would Give $B_{\mathrm{eff}} = 46.3$?}
+\label{sec:required_r}
+%──────────────────────────────────────────────────────────────────────────────
+
+To achieve $B_{\mathrm{eff}} = 46.3 = 1.842 \times B_0$, one needs the full
+KK sum to contribute an extra factor of $0.842$.  From the theta-function
+representation \eqref{eq:theta_resum}, the ratio $B_{\mathrm{eff}}/B_0 = 1.842$
+requires
+\begin{equation}
+  \vartheta_3\!\left(0, e^{-\pi/r^2}\right) \;=\; 1.842 \times \vartheta_3(0, 0) = 1.842,
+  \label{eq:theta_condition}
+\end{equation}
+which, by the asymptotic expansion of $\vartheta_3$, gives
+\begin{equation}
+  1 + 2\,e^{-\pi/r^2} + 2\,e^{-4\pi/r^2} + \cdots \;\approx\; 1.842.
+\end{equation}
+Keeping only the leading exponential term:
+$2\,e^{-\pi/r^2} \approx 0.842$, so $e^{-\pi/r^2} \approx 0.421$, giving
+$\pi/r^2 \approx 0.866$ and therefore
+\begin{equation}
+  r \;=\; R_t / R_\psi \;\approx\; \sqrt{\pi / 0.866} \;\approx\; 1.90.
+  \label{eq:r_required}
+\end{equation}
+
+A radius ratio $r \approx 1.9$ means that $R_t$ and $R_\psi$ are comparable
+in magnitude.  This would imply that real time $t$ is compact at the scale
+\begin{equation}
+  2\pi R_t \;\sim\; 2\pi \times 1.9\,R_\psi.
+\end{equation}
+For $R_\psi$ of order the Planck length, $R_t$ would also be Planck-scale ---
+rendering real time compact at the Planck scale.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Lorentz Invariance Obstruction}
+\label{sec:lorentz}
+%──────────────────────────────────────────────────────────────────────────────
+
+A compact real-time direction at radius $R_t$ would produce a spectrum of
+KK states with masses $M_m = m/R_t$ for integers $m$.  For $m = 1$:
+\begin{equation}
+  M_1 \;=\; \frac{1}{R_t} \;\sim\; \frac{1}{1.9\,R_\psi}
+         \;\sim\; \frac{M_\mathrm{Pl}}{1.9},
+\end{equation}
+where $M_\mathrm{Pl} \approx 1.22 \times 10^{19}$~GeV is the Planck mass.
+These KK copies of Standard Model fields would have been observed at energies
+well below $M_\mathrm{Pl}$ if $R_t \sim R_\psi$.  No such states are observed.
+
+Furthermore, compactifying real time at any finite radius introduces
+closed timelike curves (CTCs) at the classical level, which conflicts with
+causality in the Standard Model sector.
+
+\begin{deadendbox}
+\textbf{Dead end (two-circle regime $r \sim 1$):}
+Achieving $B_{\mathrm{eff}} \approx 46.3$ via the two-circle KK sum requires
+$R_t/R_\psi \approx 1.9$, implying:
+\begin{enumerate}
+  \item Compact real time at the Planck scale, contradicting standard cosmology.
+  \item KK partners of SM fields at $M \sim M_\mathrm{Pl}/1.9$, not observed.
+  \item Closed timelike curves in the classical geometry.
+\end{enumerate}
+This scenario is physically inadmissible.  Approach~A3 is a dead end for
+standard KK summation on $T^2$.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary and Lesson}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Regime & $B_{\mathrm{eff}}$ & Assessment \\
+  \midrule
+  $r = R_t/R_\psi \to \infty$ & $8\pi \approx 25.1$ (proved) & Physical; gives $B_0$ only \\
+  $r = \sqrt{137} \approx 11.7$ & $8\pi + O(10^{-32})$ & Exponentially close to $B_0$ \\
+  $r = \sqrt{139} \approx 11.8$ & $8\pi + O(10^{-32})$ & Exponentially close to $B_0$ \\
+  $r \approx 1.9$ & $\approx 46.3$ & Physically inadmissible \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Verdict: DEAD END.}
+The two-circle Kaluza-Klein sum on $T^2(R_t, R_\psi)$ cannot bridge the gap
+between $B_0 = 8\pi$ and $B_{\mathrm{phenom}} \approx 46.3$ without
+compactifying real time at the Planck scale, which is inconsistent with known
+physics.  Approach~A3 is closed.
+
+\textbf{Lesson:} The factor $1.842 = B_{\mathrm{phenom}}/B_0$ cannot arise
+from a standard KK winding sum.  It must arise from a discrete arithmetic
+structure (modular forms, $L$-values --- Approach A1/A4) or from the geometry
+of a single quotient space (Approach A2).
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

@@ -1,0 +1,247 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{$B_{\mathrm{base}}$ from Entropy and Spectral Counting\\
+\large Attempt E-1: Is the Exponent $\tfrac{3}{2}$ Entropic?}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the exponent $\tfrac{3}{2}$ in the UBT formula
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ arises from entropy or spectral
+counting of $\Theta$-modes.  Three candidate mechanisms are explored:
+(1) the thermal partition function on the torus; (2) the counting exponent
+from the density of states of the KK tower; and (3) the information entropy
+of the KK mode distribution.  All approaches reach well-defined conclusions
+about their status.  This is attempt E-1 in the $B_{\mathrm{base}}$ programme;
+the full list is in \texttt{research/alpha\_derivation\_status.md}.
+All claims are labelled with their proof status.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Setup: The $B_{\mathrm{base}}$ Problem}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{The formula}
+
+Following \texttt{research/alpha\_derivation\_status.md} and
+\texttt{canonical/interactions/qed.tex} §4--5, the UBT fine-structure constant
+formula is:
+\begin{equation}
+\label{eq:alpha_formula}
+  \alpha = \frac{B_0}{B_{\mathrm{base}} + B_\alpha},
+  \quad B_0 = 8\pi, \quad B_\alpha \approx 46.3,
+  \quad B_{\mathrm{base}} \approx 41.57 \approx N_{\mathrm{eff}}^{3/2},
+\end{equation}
+where $N_{\mathrm{eff}} \approx 11.53$ is motivated by BRST cohomology
+(Assumptions A1--A3, \texttt{THEORY/axioms/core\_assumptions.tex}).
+
+\textbf{Open problem:} Why is the exponent exactly $\tfrac{3}{2}$?
+
+% ======================================================================
+\section{Entropy Approach: Thermal Partition Function on the Torus}
+\label{sec:thermal}
+% ======================================================================
+
+\subsection{Setup}
+
+Consider the $\Theta$-field at finite temperature $T = 1/\beta$ on the
+spacetime torus $\mathbb{T}^3 \times S^1_\beta$.  The thermal partition
+function is:
+\begin{equation}
+\label{eq:Z_thermal}
+  Z(\beta) = \mathrm{Tr}\, e^{-\beta H}
+  = \prod_{n \in \mathbb{Z}} \frac{1}{1 - e^{-\beta m_n}},
+\end{equation}
+where $m_n = |n|/R_\psi$ are the KK masses.
+
+\subsection{High-temperature expansion}
+
+In the high-temperature limit $\beta m_1 = \beta/R_\psi \ll 1$, the
+partition function is dominated by the entropy $S = \beta^2 \partial_\beta \ln Z$:
+\begin{equation}
+\label{eq:entropy_ht}
+  S \;\sim\; \frac{\pi^2}{3}\, \frac{N_{\mathrm{dof}}}{\beta/R_\psi},
+\end{equation}
+where $N_{\mathrm{dof}}$ is the number of light degrees of freedom.
+
+\begin{remark}[Does this give $N^{3/2}$?]
+  The high-temperature entropy \eqref{eq:entropy_ht} scales as
+  $S \sim N_{\mathrm{dof}} (T R_\psi)$, which is linear in $N_{\mathrm{dof}}$,
+  not $N_{\mathrm{dof}}^{3/2}$.  The thermal approach in this simple form
+  does \emph{not} produce the $\tfrac{3}{2}$ exponent.
+
+  Status: \textbf{[Dead end E1-a]}.
+\end{remark}
+
+% ======================================================================
+\section{Density-of-States Approach}
+\label{sec:dos}
+% ======================================================================
+
+\subsection{Spectral counting}
+
+For a field on a $d$-dimensional torus of volume $V_d$, the number of modes
+with frequency below $\omega$ is (Weyl's law):
+\begin{equation}
+\label{eq:weyl}
+  N(\omega) = \frac{V_d\,\omega^d}{(2\pi)^d\,\Gamma(d/2+1)}.
+\end{equation}
+
+For $d = 3$ compact dimensions:
+\begin{equation}
+  N(\omega) = \frac{V_3\,\omega^3}{6\pi^2}.
+\end{equation}
+
+\subsection{Free energy scaling}
+
+The free energy of the mode sum scales as:
+\begin{equation}
+\label{eq:F_dos}
+  F \;\sim\; -\int_0^\Lambda d\omega\; N(\omega)\, \omega
+  \;\sim\; -V_3 \Lambda^4 / (8\pi^2).
+\end{equation}
+
+\begin{remark}[Does this give $N^{3/2}$?]
+  The free energy in \eqref{eq:F_dos} scales as $\Lambda^4$, not $N^{3/2}$.
+  To obtain $N^{3/2}$ from a density-of-states argument, one would need
+  a two-dimensional compact space ($d=2$) with an additional half-power
+  from a Casimir-like contribution.  This possibility is not excluded but
+  requires a specific geometric setup that has not been identified.
+
+  Status: \textbf{[Inconclusive E1-b]}.
+\end{remark}
+
+% ======================================================================
+\section{Information Entropy of the KK Distribution}
+\label{sec:info}
+% ======================================================================
+
+\subsection{Von Neumann entropy of the mode density matrix}
+
+Define the normalised KK mode density:
+\begin{equation}
+  p_n = \frac{e^{-\beta m_n}}{Z(\beta)}, \quad n \in \mathbb{Z}.
+\end{equation}
+
+The von Neumann entropy is:
+\begin{equation}
+\label{eq:vn_entropy}
+  S_{\mathrm{vN}} = -\sum_{n} p_n \ln p_n.
+\end{equation}
+
+\begin{proposition}[Scaling of KK entropy]\label{prop:kk_entropy}
+  For $N_{\mathrm{modes}}$ modes with equal weights $p_n = 1/N_{\mathrm{modes}}$:
+  \begin{equation}
+    S_{\mathrm{vN}} = \ln N_{\mathrm{modes}}.
+  \end{equation}
+  This grows as $\ln N$, not $N^{3/2}$.
+\end{proposition}
+
+\begin{remark}[Does this give $N^{3/2}$?]
+  The von Neumann entropy scales logarithmically in $N$, not as $N^{3/2}$.
+  One could attempt to identify $B_{\mathrm{base}} = e^{S_{\mathrm{vN}}}$
+  (exponential of entropy), which gives $B_{\mathrm{base}} = N$, not $N^{3/2}$.
+  To obtain $N^{3/2}$, one would need a \emph{Rényi entropy} of order
+  $\alpha_R = -1/2$, which has no clear physical motivation.
+
+  Status: \textbf{[Dead end E1-c]}.
+\end{remark}
+
+% ======================================================================
+\section{Partial Positive Result: Boltzmann Counting on $S^2$}
+\label{sec:s2}
+% ======================================================================
+
+\subsection{Mode counting on a two-sphere}
+
+If the compact imaginary-time directions $(\psi, \chi, \xi)$ form a two-sphere
+$S^2$ (rather than three independent circles), then the spherical harmonic
+spectrum has degeneracy $2\ell+1$ at level $\ell$, and the total mode count
+up to level $L$ is:
+\begin{equation}
+  N_{\leq L} = \sum_{\ell=0}^L (2\ell+1) = (L+1)^2.
+\end{equation}
+
+The partition function at temperature $T$ on $S^2$ (radius $R$) is:
+\begin{equation}
+  Z_{S^2}(T) = \prod_{\ell=0}^{\infty} \prod_{m=-\ell}^{\ell}
+  \frac{1}{1 - e^{-m_{\ell}/T}}, \quad
+  m_\ell = \sqrt{\ell(\ell+1)}/R.
+\end{equation}
+
+At high temperature, this produces:
+\begin{equation}
+  \ln Z_{S^2} \;\sim\; (TR)^2 \cdot \zeta(3),
+\end{equation}
+and the free energy scales as $F \sim -T^3 R^2$, giving
+$B \sim (N_{\mathrm{eff}} \cdot R^2)^{3/2}$ schematically.
+
+\begin{remark}[Partial success: geometry-dependent]
+  The $S^2$ mode counting produces a term with the correct $N^{3/2}$ scaling
+  \emph{if} $N_{\mathrm{eff}} \propto (TR)^2$.  However:
+  \begin{enumerate}
+    \item The compact imaginary directions in UBT are three circles
+          $S^1 \times S^1 \times S^1$, not $S^2$;
+    \item The specific numerical coefficient does not match $B_{\mathrm{base}} = 41.57$;
+    \item The temperature scale is undetermined.
+  \end{enumerate}
+  Status: \textbf{[L2]} — a partial structural observation, not a derivation.
+\end{remark}
+
+% ======================================================================
+\section{Conclusions and Next Steps}
+\label{sec:conclusions}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Approach & Outcome & Next \\
+\hline
+Thermal entropy (torus) & Linear in $N$ — dead end & E1-a \\
+Weyl density of states & $\Lambda^4$ scaling — inconclusive & E1-b \\
+Von Neumann entropy & $\ln N$ scaling — dead end & E1-c \\
+Boltzmann counting on $S^2$ & $N^{3/2}$ structurally possible & E1-d (open) \\
+\hline
+\end{tabular}
+\end{center}
+
+The most promising direction from this investigation is the $S^2$ geometry
+scenario (§\ref{sec:s2}).  The next step is to determine whether the UBT
+compact imaginary-time manifold can be globally $S^2$ (rather than
+$S^1 \times S^1 \times S^1$) under some dynamical constraint, and whether
+this produces the correct numerical coefficient.
+
+This investigation is continued in:
+\begin{itemize}
+  \item \texttt{research/B\_base\_spectral\_determinant.tex} — spectral
+    determinant approach;
+  \item \texttt{research/B\_base\_heat\_kernel.tex} — heat kernel analysis.
+\end{itemize}
+
+\end{document}

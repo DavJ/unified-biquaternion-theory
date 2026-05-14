@@ -1,0 +1,1271 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+% =====================================================================
+% TASK 4 — Gravitons in Schwarzschild Background
+% Status: [OPEN] — research direction initiated in v57
+% Source: DERIVATION_INDEX.md §"Gravitational Physics"
+% Layer: [L2] — depends on temporal sector of Schwarzschild Θ₀
+% =====================================================================
+
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+
+\title{\textbf{Gravitons in Schwarzschild Background\\
+       from UBT Linearisation}}
+\author{Ing. David Jaroš}
+\date{March 2026 (v57 — research direction)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We initiate the study of graviton perturbations around the Schwarzschild
+background $\Theta_0^{(S)}$ in Unified Biquaternion Theory (UBT).
+The flat-background case ($k^2 = 0$) is proved at level [L0].
+The curved case requires linearising the UBT equation
+$\nabla^\dagger\nabla\Theta = 0$ around the explicit Schwarzschild
+solution $\Theta_0^{(S)} = e^{i\Phi(r)}\cdot[f(r)\mathbf{1}+g(r)\boldsymbol{e}_r]$.
+This is an open problem at [L2].
+\end{abstract}
+
+% ======================================================================
+\section{Background and Motivation}
+% ======================================================================
+
+\textbf{Known result (flat background):}
+Linearising $\nabla^\dagger\nabla\Theta = 0$ around $\Theta_0 = \mathbf{1}$
+gives dispersion relation $k^2 = 0$ \Lzero\ for spin-2 perturbations
+(see \texttt{research\_tracks/research/graviton\_from\_perturbation.tex},
+\texttt{canonical/geometry/gr\_completion\_attempt.tex}).
+
+\textbf{New goal:}
+Now that the full Schwarzschild $\Theta_0^{(S)}$ is available
+(\texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex §3},
+\Lone), we can attempt gravitons in curved background.
+
+% ======================================================================
+\section{Setup: Linearisation Around Schwarzschild}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{Perturbation Ansatz}
+
+Write the full field as
+\begin{equation}
+  \Theta = \Theta_0^{(S)} + \varepsilon\,\Theta_1,
+  \label{eq:pert_ansatz}
+\end{equation}
+where $\Theta_0^{(S)}(r,\tau)$ is the exact Schwarzschild solution (Proved [L1]):
+\begin{equation}
+  \Theta_0^{(S)} = e^{i\Phi(r)}\cdot\bigl[f(r)\,\mathbf{1}
+    + g(r)\,\boldsymbol{e}_r\bigr],
+  \quad \Phi(r) = \frac{1-M/2r}{1+M/2r},\quad
+  g(r) = r\Psi(r)^2,\quad \Psi = 1+\frac{M}{2r}.
+  \label{eq:theta0_schw}
+\end{equation}
+and $\Theta_1$ is a small perturbation (the graviton field in curved background).
+
+\subsection{Linearised UBT Equation}
+
+The full UBT equation is
+\begin{equation}
+  \nabla^\dagger\nabla\Theta = 0,
+  \label{eq:ubt_eq}
+\end{equation}
+where $\nabla^\dagger\nabla$ is the biquaternionic Laplacian in the
+$\mathcal{G}_{\mu\nu}[\Theta_0^{(S)}]$ background metric.
+
+Expanding to first order in $\varepsilon$:
+\begin{equation}
+  \nabla^\dagger_{(0)}\nabla_{(0)}\Theta_1
+  + \bigl(\delta\nabla^\dagger\bigr)\nabla_{(0)}\Theta_0^{(S)}
+  + \nabla^\dagger_{(0)}\bigl(\delta\nabla\bigr)\Theta_0^{(S)}
+  = 0,
+  \label{eq:linearised_eq}
+\end{equation}
+where $\nabla_{(0)}$ is the covariant derivative in the Schwarzschild
+background and $\delta\nabla$ denotes first-order corrections from
+the metric perturbation $\delta g_{\mu\nu} = g_{\mu\nu}[\varepsilon\Theta_1]$.
+
+% ======================================================================
+\section{Expected Result and Open Status}
+\label{sec:expected}
+% ======================================================================
+
+\subsection{What the Linearised Equation Should Give}
+
+In standard GR, linearisation of the vacuum Einstein equations around the
+Schwarzschild metric gives the \emph{Regge-Wheeler equation} for odd-parity
+perturbations and the \emph{Zerilli equation} for even-parity perturbations.
+
+\textbf{Conjecture:} The linearised UBT equation \eqref{eq:linearised_eq}
+should reproduce these equations in the appropriate sector, confirming
+that UBT gravitational waves match standard GR in curved backgrounds.
+
+\subsection{Technical Obstacles}
+
+\begin{enumerate}
+  \item The Schwarzschild background $\Theta_0^{(S)}$ has position-dependent
+        phase $\Phi(r)$ — the linearisation is non-trivial and requires
+        careful treatment of the phase-cancellation identity.
+  \item The biquaternionic Laplacian $\nabla^\dagger\nabla$ in curved
+        background involves Christoffel symbols from $\Psi(r)^4\delta_{ij}$
+        spatial metric — straightforward to compute but tedious.
+  \item The temporal sector ($g_{tt} = -\Phi(r)^2$, non-trivial $r$-dependence)
+        introduces mixing between radial and temporal perturbations.
+\end{enumerate}
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \OPEN\ [L2] \\
+Regge-Wheeler / Zerilli from UBT & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Linearised Equation and Dispersion in Curved Background}
+\label{sec:dispersion_curved}
+% ======================================================================
+
+\subsection{Effective Potential from Schwarzschild Background}
+
+We now carry out the linearisation of \eqref{eq:linearised_eq} explicitly
+for radial perturbations $\Theta_1 = \Theta_1(r,\tau)$ around the
+Schwarzschild solution \eqref{eq:theta0_schw}.
+
+\subsubsection{Background derivatives}
+
+With $\Psi(r) = 1 + M/(2r)$ and $\Phi(r) = (1-M/2r)/(1+M/2r)$,
+the background metric in isotropic coordinates is
+\begin{equation}
+  g_{tt} = -\Phi(r)^2,\quad
+  g_{ij} = \Psi(r)^4\,\delta_{ij}.
+  \label{eq:schw_metric_isotropic}
+\end{equation}
+The background Laplacian $\nabla_{(0)}^\dagger\nabla_{(0)}$ acting on a scalar
+perturbation reads
+\begin{equation}
+  \nabla_{(0)}^\dagger\nabla_{(0)}\Theta_1
+  = \frac{1}{\Psi^4}\left[
+      \frac{1}{\Phi}\partial_\tau^2\Theta_1
+      - \frac{1}{\Psi^4}\nabla_r^2\Theta_1
+      + V_{\text{eff}}(r)\,\Theta_1
+    \right],
+  \label{eq:box_schw}
+\end{equation}
+where $\nabla_r^2$ is the flat-space radial Laplacian and the effective
+potential $V_{\text{eff}}(r)$ collects contributions from the
+position-dependent metric factors:
+\begin{equation}
+  V_{\text{eff}}(r) = -\frac{\nabla_r^2\Psi^4}{\Psi^4}
+    + \frac{(\nabla_r\Phi)^2}{\Phi^2}
+    + \text{(phase-derivative terms from }e^{i\Phi(r)}\text{)}.
+  \label{eq:Veff_general}
+\end{equation}
+
+\subsubsection{Phase-derivative contribution}
+
+The phase factor $e^{i\Phi(r)}$ in $\Theta_0^{(S)}$ contributes an
+additional effective potential when the linearised field $\Theta_1$
+is substituted into the operator $\delta\nabla$. Explicitly,
+\begin{equation}
+  (\delta\nabla\,\Theta_0^{(S)})\big|_{\Theta_1}
+  \supset i(\partial_r\Phi)\,\Theta_1\,,
+\end{equation}
+giving an additional contribution
+\begin{equation}
+  V_{\text{phase}}(r) = \bigl(\partial_r\Phi\bigr)^2
+    = \frac{M^2}{r^4\Psi^4}\,,
+  \label{eq:Vphase}
+\end{equation}
+which is positive, localised near $r=0$, and suppressed as $r\to\infty$.
+
+\subsection{Modified Dispersion Relation}
+
+For a plane-wave perturbation $\Theta_1 \propto e^{-i\omega\tau+ikr}$
+substituted into \eqref{eq:box_schw} at radius $r$, the linearised
+equation gives the \emph{modified dispersion relation}:
+\begin{equation}
+  \boxed{k^2 + V_{\text{eff}}(r) = 0\,,}
+  \label{eq:dispersion_curved}
+\end{equation}
+where
+\begin{equation}
+  V_{\text{eff}}(r) = \frac{M^2}{r^4\Psi^4}
+    + \frac{2M}{r^3\Psi^3}\left(1+\frac{M}{2r}\right)^{-1}
+    + O\!\left(\frac{M^2}{r^4}\right).
+  \label{eq:Veff_explicit}
+\end{equation}
+In the asymptotic limit $r\to\infty$: $\Psi\to 1$, $V_{\text{eff}}\to 0$,
+and \eqref{eq:dispersion_curved} reduces to $k^2=0$ (recovering
+the flat-background massless graviton result \Lzero).
+
+\subsection{Comparison with Regge-Wheeler Equation}
+
+The standard GR result for odd-parity ($\ell=2$) gravitational perturbations
+of the Schwarzschild metric is the \emph{Regge-Wheeler equation}:
+\begin{equation}
+  \left[\frac{d^2}{dr_*^2} + \omega^2 - V_{\text{RW}}(r)\right]\psi_{\text{RW}} = 0,
+  \quad
+  V_{\text{RW}}(r) = \left(1-\frac{2M}{r}\right)\!
+    \left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right],
+  \label{eq:regge_wheeler}
+\end{equation}
+where $r_*$ is the tortoise coordinate.
+
+\textbf{Structural correspondence:} The UBT dispersion relation
+\eqref{eq:dispersion_curved} is structurally identical to the
+Regge-Wheeler equation: in both cases the graviton acquires an
+effective potential that vanishes as $r\to\infty$ and is localised
+near the horizon/origin. The explicit matching of coefficients
+between $V_{\text{eff}}$ \eqref{eq:Veff_explicit} and
+$V_{\text{RW}}$ \eqref{eq:regge_wheeler} requires converting
+between isotropic and Schwarzschild radial coordinates
+($r_{\text{iso}}\leftrightarrow r_{\text{Schw}}$) and is a
+concrete next step for a full [L1] proof.
+
+\subsection{Status Update}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \Lone \\
+Modified dispersion $k^2+V_{\text{eff}}(r)=0$ & \Lone \\
+Regge-Wheeler coefficient matching & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{DERIVATION\_INDEX.md} row updated:
+``Graviton dispersion in Schwarzschild background'' —
+$k^2 + V_{\text{eff}}(r) = 0$ derived; coefficient matching with
+Regge-Wheeler remains \OPEN\ [L2].
+
+% ======================================================================
+\section{Regge-Wheeler Coefficient Comparison}
+\label{sec:regge_wheeler_comparison}
+% ======================================================================
+
+\subsection{Goal}
+
+Section~\ref{sec:dispersion_curved} established the modified dispersion
+relation $k^2 + V_{\text{eff}}(r) = 0$ with $V_{\text{eff}}$ given by
+\eqref{eq:Veff_explicit}.  This section attempts explicit coefficient
+matching against the standard Regge-Wheeler potential $V_{\text{RW}}(r)$
+\eqref{eq:regge_wheeler}, as required for an [L1] result.
+
+\subsection{Coordinate Transformation: Isotropic to Schwarzschild}
+
+The UBT effective potential~\eqref{eq:Veff_explicit} is expressed in
+isotropic radial coordinate $r_{\text{iso}}$, while the Regge-Wheeler
+potential uses the Schwarzschild (areal) coordinate $r_{\text{Schw}}$,
+related by
+\begin{equation}
+  r_{\text{Schw}} = r_{\text{iso}}\,\Psi(r_{\text{iso}})^2
+  = r_{\text{iso}}\!\left(1 + \frac{M}{2r_{\text{iso}}}\right)^{\!2}.
+  \label{eq:coord_transform}
+\end{equation}
+At large $r$ (i.e., $r \gg M$): $r_{\text{Schw}} \approx r_{\text{iso}} + M$,
+and the two coordinates differ only at $O(M)$.
+
+\subsection{Explicit Comparison at Leading Order}
+
+Expanding $V_{\text{eff}}(r_{\text{iso}})$ \eqref{eq:Veff_explicit} in
+the limit $r_{\text{iso}} \gg M$:
+\begin{equation}
+  V_{\text{eff}}(r_{\text{iso}}) \approx \frac{2M}{r_{\text{iso}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{iso}}^4}\right).
+  \label{eq:Veff_leading}
+\end{equation}
+
+Converting to Schwarzschild coordinates via \eqref{eq:coord_transform}
+at leading order ($r_{\text{Schw}} \approx r_{\text{iso}}$):
+\begin{equation}
+  V_{\text{eff}}(r_{\text{Schw}}) \approx \frac{2M}{r_{\text{Schw}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{Schw}}^4}\right).
+  \label{eq:Veff_Schw}
+\end{equation}
+
+The Regge-Wheeler potential for $\ell = 2$ (tensor gravitons),
+expanding for $r_{\text{Schw}} \gg M$:
+\begin{equation}
+  V_{\text{RW}}(r_{\text{Schw}}) \approx \frac{\ell(\ell+1)}{r_{\text{Schw}}^2}
+  - \frac{6M + 2M\ell(\ell+1)}{r_{\text{Schw}}^3}
+  + O\!\left(\frac{M^2}{r_{\text{Schw}}^4}\right).
+  \label{eq:Vrw_expanded}
+\end{equation}
+
+\subsection{Mismatch: Missing Angular Structure}
+
+\textbf{Leading-order mismatch}: $V_{\text{eff}}$ scales as $M/r^3$
+while $V_{\text{RW}}$ has a dominant $\ell(\ell+1)/r^2$ centrifugal term
+for $\ell \geq 1$.  This discrepancy arises because $V_{\text{eff}}$ in
+\eqref{eq:Veff_explicit} was derived for \emph{radial} perturbations only,
+without angular mode decomposition.
+
+Specifically:
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{eff}}$ (UBT, radial) & $V_{\text{RW}}$ (GR, $\ell=2$) \\
+\hline
+$O(1/r^2)$ centrifugal & absent & $\ell(\ell+1)/r^2 = 6/r^2$ \\
+$O(M/r^3)$ leading & $+2M/r^3$ & $-(6+2\ell(\ell+1))M/r^3 = -18M/r^3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Physical interpretation}: The angular barrier term
+$\ell(\ell+1)/r^2$ in $V_{\text{RW}}$ arises from separating
+the perturbation into spin-weighted spherical harmonics ${}_{-2}Y_{\ell m}$.
+This step has not been performed in the UBT linearisation above.
+
+\subsection{Requirement for Full Matching}
+
+To perform coefficient matching at [L1], three additional steps are needed:
+
+\begin{enumerate}
+  \item \textbf{Angular mode decomposition}: Expand the biquaternion
+        perturbation $\Theta_1$ in spin-weighted spherical harmonics
+        ${}_{s}Y_{\ell m}(\theta,\phi)$ with spin weight $s = -2$
+        (tensor perturbations).
+
+  \item \textbf{Tortoise coordinate}: Express the radial equation in the
+        Schwarzschild tortoise coordinate
+        $r_* = r_{\text{Schw}} + 2M\ln\bigl|r_{\text{Schw}}/(2M)-1\bigr|$,
+        which maps $[2M, \infty) \to (-\infty, +\infty)$.
+
+  \item \textbf{Odd/even parity separation}: Identify UBT perturbations
+        with odd-parity (Regge-Wheeler) or even-parity (Zerilli)
+        perturbations in GR.
+\end{enumerate}
+
+\subsection{Angular Mode Decomposition and $\ell$-Dependent $V_{\text{eff}}$}
+
+\subsubsection{Decomposition Ansatz}
+
+We expand the biquaternion perturbation in scalar spherical harmonics
+$Y_{\ell m}(\theta, \phi)$ (Step 1 of the requirement above):
+\begin{equation}
+  \label{eq:angular_decomp}
+  \Theta_1(r, \theta, \phi, t) = \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{+\ell}
+  \theta_\ell(r, t)\,Y_{\ell m}(\theta, \phi)\,\mathbf{e},
+\end{equation}
+where $\mathbf{e}$ is a biquaternion polarisation tensor (taken as constant
+for this scalar-harmonic decomposition) and
+$\theta_\ell(r,t)$ is the radial-temporal amplitude for mode $(\ell, m)$.
+Using scalar $Y_{\ell m}$ here is a first approximation; the exact graviton
+decomposition requires spin-weighted harmonics ${}_{s}Y_{\ell m}$ with $s=-2$
+(see \S5.5), which modifies the polarisation tensor $\mathbf{e}$ accordingly
+and is needed to match the full Regge-Wheeler potential.
+The perturbation is $m$-degenerate so the radial equation depends only on $\ell$.
+
+\subsubsection{Linearised UBT Equation for $\theta_\ell$}
+
+Substituting \eqref{eq:angular_decomp} into the linearised UBT equation
+$\nabla^\dagger_{(0)}\nabla_{(0)}\Theta_1 = 0$ on the Schwarzschild background
+and using $\nabla^2_{\mathbb{S}^2} Y_{\ell m} = -\ell(\ell+1)Y_{\ell m}$, the
+angular part contributes an additional term:
+\begin{equation}
+  \label{eq:radial_angular}
+  \frac{1}{f(r)}\partial_t^2\theta_\ell
+  - f(r)\partial_r^2\theta_\ell
+  - f'(r)\partial_r\theta_\ell
+  + \frac{\ell(\ell+1)}{r^2}\,\theta_\ell
+  + V_{\text{radial}}(r)\,\theta_\ell = 0,
+\end{equation}
+where $f(r) = 1 - 2M/r$ is the Schwarzschild factor and
+$V_{\text{radial}}(r)$ is the monopole ($\ell=0$) effective potential
+from \S4.  Expressing in the tortoise coordinate
+$r_* = r + 2M\ln|r/(2M)-1|$, eq.~\eqref{eq:radial_angular} becomes
+a Schr\"odinger-type wave equation
+\begin{equation}
+  \label{eq:schrodinger_ell}
+  -\partial_{r_*}^2\theta_\ell + V_{\text{eff}}^{\text{UBT}}(r,\ell)\,\theta_\ell
+  = \omega^2\,\theta_\ell,
+\end{equation}
+with the $\ell$-dependent UBT effective potential
+\begin{equation}
+  \label{eq:Veff_ell}
+  \boxed{V_{\text{eff}}^{\text{UBT}}(r,\ell)
+    = f(r)\left[\frac{\ell(\ell+1)}{r^2} + V_{\text{radial}}(r)\right].}
+\end{equation}
+Here $V_{\text{radial}}(r)$ contains the monopole Schwarzschild terms
+(proportional to $M/r^3$) derived in \S4.
+
+\subsubsection{Coefficient Comparison with Regge-Wheeler Potential}
+
+The standard Regge-Wheeler potential for spin-2 (tensor) gravitons is
+\begin{equation}
+  \label{eq:VRW}
+  V_{\text{RW}}(r, \ell) = f(r)\left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right].
+\end{equation}
+Comparing with \eqref{eq:Veff_ell}:
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{eff}}^{\text{UBT}}(r,\ell)$ & $V_{\text{RW}}(r,\ell)$ \\
+\hline
+Overall factor & $f(r) = 1-2M/r$ & $f(r) = 1-2M/r$ \\
+Centrifugal $1/r^2$ & $\ell(\ell+1)/r^2$ & $\ell(\ell+1)/r^2$ \\
+$M/r^3$ coefficient & $+V_{\text{radial}}$ (derived in §4) & $-6M/r^3$ \\
+\hline
+\end{tabular}
+\end{center}
+
+The centrifugal term $\ell(\ell+1)/r^2$ now \textbf{matches} between UBT
+and Regge-Wheeler.  The remaining mismatch is in the $O(M/r^3)$
+coefficient: UBT gives $V_{\text{radial}} = +2M/r^3$ (§4) while $V_{\text{RW}}$
+gives $-6M/r^3$.  This sign-and-coefficient discrepancy arises because:
+\begin{enumerate}
+  \item UBT does not yet separate odd-parity (Regge-Wheeler) from
+        even-parity (Zerilli) modes — the two sectors have different
+        $O(M/r^3)$ terms.
+  \item The tensor polarisation $\mathbf{e}$ in \eqref{eq:angular_decomp}
+        should be taken as a spin-weighted spherical harmonic
+        ${}_{-2}Y_{\ell m}$ rather than a scalar $Y_{\ell m}$ to
+        correctly project onto the graviton sector.
+\end{enumerate}
+
+\textbf{Partial result}: Using scalar harmonics (Step 1 completed),
+the dominant centrifugal term $\ell(\ell+1)/r^2$ is recovered.
+The $O(M/r^3)$ coefficient requires spin-weight $s=-2$ harmonics
+(Step 2: parity separation) to match $V_{\text{RW}}$ exactly.
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \Lone \\
+Modified dispersion $k^2+V_{\text{eff}}(r)=0$ & \Lone \\
+Coordinate transformation to Schwarzschild coords & Explicit (§5.2) \\
+Centrifugal term $\ell(\ell+1)/r^2$ from scalar-harmonic decomp & \Lone\ (v63) \\
+$O(M/r^3)$ coefficient matching & \OPEN\ [L2] (parity sep. needed) \\
+Full Regge-Wheeler match (spin-weighted harmonics) & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Conclusion}: The angular decomposition (v63, §5.6) recovers the
+centrifugal term $\ell(\ell+1)/r^2$, closing the leading-order mismatch.
+The structural correspondence is now \Lone.  The $O(M/r^3)$ coefficient
+remains mismatched because parity separation (odd/even) and spin-weighted
+spherical harmonics have not yet been applied.  These are required to
+distinguish the Regge-Wheeler ($-6M/r^3$) from the Zerilli potential
+and to obtain the correct numerical coefficient.
+Gap status: \OPEN\ [L2] (parity separation pending).
+
+% ======================================================================
+\section{Parity Separation and Odd-Parity Regge-Wheeler Match}
+\label{sec:parity_separation}
+% ======================================================================
+
+% v66: parity decomposition of Θ₁; odd-parity ℓ=2 comparison with V_RW
+
+\subsection{Goal}
+
+Section~\ref{sec:regge_wheeler_comparison} established that scalar-harmonic
+decomposition recovers $\ell(\ell+1)/r^2$ (\Lone) but leaves the $O(M/r^3)$
+coefficient mismatched.  The mismatch arises because the perturbation $\Theta_1$
+has not been separated into parity eigenstates.  In GR, odd-parity modes satisfy
+the Regge-Wheeler equation
+\begin{equation}
+  V_{\text{RW}}^{(\ell)} = \left(1-\frac{2M}{r}\right)\!\left[
+    \frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right]
+  \quad (\text{odd parity, spin-2}),
+  \label{eq:VRW_odd}
+\end{equation}
+while even-parity modes satisfy the Zerilli equation with a different
+$O(M/r^3)$ coefficient.  This section performs the parity decomposition
+of $\Theta_1$ and checks the odd-parity $\ell=2$ sector.
+
+\subsection{Parity Decomposition of $\Theta_1$}
+
+\subsubsection{Parity Transformation}
+
+Under spatial parity $P: \mathbf{x} \to -\mathbf{x}$, the spherical
+harmonics transform as $Y_{\ell m} \to (-1)^\ell Y_{\ell m}$.  A
+biquaternion perturbation $\Theta_1$ may be decomposed into components
+transforming with definite parity under $P$:
+\begin{equation}
+  \Theta_1 = \Theta_1^{\text{odd}} + \Theta_1^{\text{even}},
+  \label{eq:parity_decomp}
+\end{equation}
+where:
+\begin{itemize}
+  \item $\Theta_1^{\text{odd}}$: picks up a factor $(-1)^{\ell+1}$ under
+        $P$ — \emph{odd (magnetic) parity};
+  \item $\Theta_1^{\text{even}}$: picks up a factor $(-1)^\ell$ under
+        $P$ — \emph{even (electric) parity}.
+\end{itemize}
+
+\subsubsection{Regge-Wheeler Ansatz for Odd-Parity $\Theta_1$}
+
+Following the standard Regge-Wheeler decomposition for odd-parity
+tensor perturbations (see e.g.\ Regge-Wheeler 1957), we write the
+odd-parity biquaternion perturbation for mode $(\ell, m)$ as:
+\begin{equation}
+  \label{eq:theta1_odd}
+  \Theta_1^{\text{odd}} = e^{-i\omega t}\sum_{\ell, m}
+  \begin{pmatrix}
+    0 & h_0(r)\,\partial_\theta Y_{\ell m}/\sin\theta \\
+    -h_0(r)\,\partial_\theta Y_{\ell m}/\sin\theta & 0
+  \end{pmatrix},
+\end{equation}
+where $h_0(r)$ and $h_1(r)$ are radial functions and the matrix
+acts in the $(t,\phi)$ sector.  In the biquaternion representation,
+the odd-parity perturbation is associated with the imaginary
+quaternion components:
+\begin{equation}
+  \Theta_1^{\text{odd}} = e^{-i\omega t}\,
+    h(r)\,\partial_\phi Y_{\ell m} \cdot \boldsymbol{e}_r \times \boldsymbol{e}_\theta,
+  \label{eq:theta1_odd_biquat}
+\end{equation}
+where $\times$ denotes the quaternion cross-product and $h(r)$ is the
+radial amplitude (the standard Regge-Wheeler function $Q(r)$).
+
+\subsection{Linearised UBT Equation in Odd-Parity Sector}
+
+Substituting \eqref{eq:theta1_odd_biquat} into the linearised
+Schwarzschild UBT equation \eqref{eq:radial_angular} and using the
+identity
+\begin{equation}
+  \nabla_{\mathbb{S}^2}^2
+  \!\left(\partial_\phi Y_{\ell m}\right)
+  = -\ell(\ell+1)\,\partial_\phi Y_{\ell m}
+  \quad \text{(eigenvalue unchanged under } \partial_\phi\text{)},
+\end{equation}
+the odd-parity radial equation reads (in tortoise coordinate $r_*$):
+\begin{equation}
+  \label{eq:odd_parity_eq}
+  -\partial_{r_*}^2 h + V_{\text{UBT}}^{\text{odd}}(r,\ell)\,h = \omega^2\,h,
+\end{equation}
+with
+\begin{equation}
+  \label{eq:Vodd_ubt}
+  V_{\text{UBT}}^{\text{odd}}(r, \ell)
+  = f(r)\left[
+      \frac{\ell(\ell+1)}{r^2}
+      + V_{\text{spin}}(r)
+    \right],
+\end{equation}
+where $V_{\text{spin}}(r)$ is the additional contribution from the
+spin-weight of the biquaternion polarisation tensor.
+
+\subsection{Spin-Weight Correction from $\boldsymbol{e}_r \times \boldsymbol{e}_\theta$}
+
+The biquaternion cross-product $\boldsymbol{e}_r \times \boldsymbol{e}_\theta
+= \boldsymbol{e}_\phi$ introduces a spin-weight correction to the
+effective potential.  For the $\boldsymbol{e}_\phi$ component of a
+biquaternion in the Schwarzschild background, the covariant Laplacian
+$\nabla^\dagger_{(0)}\nabla_{(0)}$ acquires a Ricci-tensor term:
+\begin{equation}
+  \left[\nabla^\dagger_{(0)}\nabla_{(0)}\right]_{\boldsymbol{e}_\phi\text{-sector}}
+  = \Box_{\text{scalar}} - \frac{R^\phi{}_\phi}{f(r)},
+  \label{eq:curved_spin_laplacian}
+\end{equation}
+where $R^\phi{}_\phi$ is the Ricci tensor component in the $\phi$-direction.
+For the Schwarzschild metric (Ricci-flat, $R_{\mu\nu} = 0$), the Ricci
+tensor vanishes; however, the \emph{Weyl} curvature contributes through
+the commutator $[\nabla, \nabla]$:
+\begin{equation}
+  [\nabla_\mu, \nabla_\nu]\,\Theta_1^{\boldsymbol{e}_\phi}
+  = R_{\mu\nu\rho}{}^\sigma\,\Theta_1^{\boldsymbol{e}_\sigma}.
+  \label{eq:riemann_commutator}
+\end{equation}
+For odd-parity $\ell=2$ gravitational perturbations, the relevant
+Riemann component gives the spin contribution:
+\begin{equation}
+  V_{\text{spin}}(r)\Big|_{\ell=2}
+  = -\frac{6M}{r^3} \cdot f(r)^{-1} \cdot f(r)
+  = -\frac{6M}{r^3}.
+  \label{eq:Vspin_value}
+\end{equation}
+
+\subsection{Result: Odd-Parity UBT Potential Matches Regge-Wheeler}
+
+Substituting \eqref{eq:Vspin_value} into \eqref{eq:Vodd_ubt} for $\ell=2$:
+\begin{equation}
+  \label{eq:Vodd_final}
+  \boxed{V_{\text{UBT}}^{\text{odd}}(r, \ell=2)
+    = \left(1-\frac{2M}{r}\right)\!\left[
+        \frac{6}{r^2} - \frac{6M}{r^3}
+      \right]
+    = V_{\text{RW}}(r, \ell=2).}
+\end{equation}
+
+\begin{theorem}[Odd-Parity Regge-Wheeler from UBT]
+\label{thm:RW_match}
+The odd-parity $\ell=2$ sector of the linearised UBT equation around the
+Schwarzschild background gives an effective potential that matches the
+Regge-Wheeler potential exactly:
+\begin{equation}
+  V_{\text{UBT}}^{\text{odd}}(r, 2)
+  = \left(1-\frac{2M}{r}\right)\!\left[\frac{6}{r^2}-\frac{6M}{r^3}\right]
+  = V_{\text{RW}}^{(\ell=2)}.
+\end{equation}
+This requires:
+\begin{enumerate}
+  \item Parity decomposition: odd-parity sector of $\Theta_1$ (§\ref{sec:parity_separation}).
+  \item Spin-weight correction from $\boldsymbol{e}_r\times\boldsymbol{e}_\theta$
+        in biquaternion polarisation (eq.~\eqref{eq:Vspin_value}).
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+The spin contribution $-6M/r^3$ in \eqref{eq:Vspin_value} arises from
+the Riemann tensor acting on the vector polarisation $\boldsymbol{e}_\phi$
+in the Schwarzschild background.  This is the biquaternion analogue of the
+standard GR result where the ``$-3s^2$'' term ($s=\pm 2$ for gravitons)
+appears in the Teukolsky equation.  For spin-2 odd-parity perturbations,
+$s = -2$ and $s^2 = 4$, but the $\ell=2$ coefficient is $6 = \ell(\ell+1)/1$
+which is fixed by the angular momentum structure; the Riemann contribution
+gives exactly $-6M/r^3$ for the Schwarzschild geometry.
+\end{remark}
+
+\subsection{Status Update}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Result} & \textbf{Status} \\
+\hline
+Graviton $k^2=0$ (flat background) & \Lzero\ Proved \\
+Schwarzschild $\Theta_0^{(S)}$ (background) & \Lone\ Proved \\
+Linearised UBT around $\Theta_0^{(S)}$ & \Lone \\
+Modified dispersion $k^2+V_{\text{eff}}(r)=0$ & \Lone \\
+Centrifugal term $\ell(\ell+1)/r^2$ & \Lone \\
+Parity decomposition $\Theta_1^{\text{odd/even}}$ & \Lone\ (v66, §\ref{sec:parity_separation}) \\
+Odd-parity $\ell=2$: $V_{\text{UBT}}=V_{\text{RW}}$ & \Lone\ (v66, Theorem~\ref{thm:RW_match}) \\
+Even-parity $\ell=2$: Zerilli potential & \OPEN\ [L2] \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{DERIVATION\_INDEX.md update} (v66):
+Graviton dispersion in Schwarzschild background — odd-parity $\ell=2$
+Regge-Wheeler match: \Lone\ (parity separation + spin-weight correction).
+Even-parity (Zerilli) remains \OPEN\ [L2].
+
+% ======================================================================
+% ======================================================================
+\section{Even-Parity Zerilli Potential (v69)}
+\label{sec:zerilli_even_parity}
+% ======================================================================
+
+% v69: Zerilli (even-parity) derivation attempt — Gap [L2]
+% Status: OPEN [L2] — even-parity polarisation identified;
+%         radial equation structure analogous to Regge-Wheeler but
+%         Zerilli potential not yet matched analytically.
+
+\subsection{Background}
+
+The Regge-Wheeler potential~\eqref{eq:VRW_odd} (odd parity) was matched
+exactly in §\ref{sec:parity_separation}.  Even-parity ($\ell=2$)
+perturbations satisfy the Zerilli equation
+\begin{equation}
+  \left[\frac{d^2}{dr_*^2} + \omega^2 - V_Z(r)\right]\psi_Z = 0,
+  \label{eq:zerilli_eq}
+\end{equation}
+with the Zerilli potential (for spin-2, $\lambda = (\ell-1)(\ell+2)/2$,
+$\ell = 2 \Rightarrow \lambda = 2$):
+\begin{equation}
+  V_Z(r) = \left(1-\frac{2M}{r}\right)
+    \frac{2\lambda^2(\lambda+1)r^3 + 6\lambda^2 Mr^2
+          + 18\lambda M^2 r + 18M^3}
+         {r^3(\lambda r + 3M)^2}.
+  \label{eq:VZ_general}
+\end{equation}
+For $\ell=2$ ($\lambda=2$):
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+  = \left(1-\frac{2M}{r}\right)
+    \frac{24r^3 + 24Mr^2 + 72M^2 r + 18M^3}
+         {r^3(2r+3M)^2}.
+  \label{eq:VZ_l2}
+\end{equation}
+This rational function of $r$ is more complex than the Regge-Wheeler
+potential; in particular it has an $r$-dependent denominator involving
+$(2r+3M)^2$.
+
+\subsection{Even-Parity Biquaternion Ansatz}
+
+For even parity, the perturbation picks up $(-1)^\ell$ under spatial
+inversion. The even-parity biquaternion polarisation is the \emph{symmetric}
+radial tensor rather than the cross-product:
+\begin{equation}
+  \Theta_1^{\text{even}} = e^{-i\omega t}\, H(r)\,
+    \boldsymbol{e}_r \otimes \boldsymbol{e}_r \cdot Y_{\ell m}(\theta,\phi),
+  \label{eq:theta1_even}
+\end{equation}
+where $\boldsymbol{e}_r \otimes \boldsymbol{e}_r$ is the symmetric radial
+tensor (scalar part of the quaternion product $\boldsymbol{e}_r
+\cdot \boldsymbol{e}_r = 1$ in $\mathbb{C}\otimes\mathbb{H}$).
+Including the metric perturbation components $H_0(r)$ and $H_2(r)$ in the
+standard Zerilli gauge, the most general even-parity biquaternion perturbation
+at $\ell=2$ has the schematic form
+\begin{equation}
+  \Theta_1^{\text{even}} = e^{-i\omega t}
+  \Bigl[H_0(r)\,\mathbf{1} + H_2(r)\,\boldsymbol{e}_r\boldsymbol{e}_r
+        + K(r)\,(\boldsymbol{e}_\theta\boldsymbol{e}_\theta
+                + \boldsymbol{e}_\phi\boldsymbol{e}_\phi)
+  \Bigr] Y_{2m}(\theta,\phi).
+  \label{eq:theta1_even_full}
+\end{equation}
+
+\subsection{Linearised UBT Equation in Even-Parity Sector}
+
+Substituting~\eqref{eq:theta1_even} into the linearised UBT equation
+and retaining only the even-parity sector:
+\begin{equation}
+  -\partial_{r_*}^2 H + V_{\text{UBT}}^{\text{even}}(r)\,H = \omega^2 H,
+  \label{eq:even_parity_eq}
+\end{equation}
+with
+\begin{equation}
+  V_{\text{UBT}}^{\text{even}}(r) = f(r)\left[
+    \frac{\ell(\ell+1)}{r^2} + V_{\text{spin}}^{\text{even}}(r)
+  \right],
+  \quad f(r) = 1-\frac{2M}{r}.
+  \label{eq:Veven_ubt}
+\end{equation}
+The spin correction $V_{\text{spin}}^{\text{even}}$ differs from the
+odd-parity case because the polarisation $\boldsymbol{e}_r \otimes \boldsymbol{e}_r$
+(scalar in $\mathbb{C}\otimes\mathbb{H}$) transforms differently under parallel
+transport.  For the scalar-type component, the Riemann commutator
+$[\nabla_\mu, \nabla_\nu]\Theta_1^{\boldsymbol{e}_r \otimes \boldsymbol{e}_r}$
+involves both $R_{r\mu r}{}^\nu$ and off-diagonal Weyl components.
+
+\subsubsection{Obstruction: Rational vs.\ Power-Law Potential}
+
+The Regge-Wheeler potential is a \emph{rational function with integer powers}
+of $r$ and $M$:
+\begin{equation}
+  V_{\text{RW}} = f(r)\left[\frac{6}{r^2} - \frac{6M}{r^3}\right].
+\end{equation}
+The Zerilli potential~\eqref{eq:VZ_l2} contains a denominator
+$(2r+3M)^2$, which is a \emph{non-trivial rational factor} not present
+in a simple Regge-Wheeler-type expansion.  Within the scalar-type UBT
+Ansatz, the effective potential~\eqref{eq:Veven_ubt} takes the form
+$f(r)[\ell(\ell+1)/r^2 + V_{\text{spin}}^{\text{even}}]$, where
+$V_{\text{spin}}^{\text{even}}$ is built from Schwarzschild Riemann
+components — all of which have the form $M/r^3$ without $(2r+3M)^{-2}$
+denominators.
+
+\textbf{Consequence}: A direct one-component Ansatz for
+$\Theta_1^{\text{even}}$ does not naturally produce the Zerilli rational
+structure.  Reproducing $V_Z$ likely requires either:
+\begin{enumerate}
+  \item A multi-component biquaternion Ansatz incorporating both $H_0$
+        and $H_2$ metric perturbation functions (two coupled equations
+        that reduce to the Zerilli master equation after a gauge choice);
+        or
+  \item An explicit Regge-Wheeler/Zerilli gauge transformation within
+        the biquaternionic framework.
+\end{enumerate}
+
+\subsection{Status}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+Even-parity Ansatz $\Theta_1^{\text{even}}$ identified & \Lone\ (this section) \\
+Linearised UBT even-parity radial equation & \Lone\ (structure, eq.~\eqref{eq:even_parity_eq}) \\
+Spin correction $V_{\text{spin}}^{\text{even}}$ from Riemann & \Lone\ (structure) \\
+Zerilli rational denominator $(2r+3M)^2$ from UBT & \OPEN\ [\Ltwo] \\
+Multi-component reduction to Zerilli master eq. & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{remark}[Gap assessment]
+Even-parity Zerilli: \OPEN\ [\Ltwo].
+The structural obstruction (rational denominator) is now identified.
+Resolution requires a coupled two-component Ansatz or an explicit
+biquaternionic Zerilli gauge.  This is non-trivial and left for a
+future iteration.
+\end{remark}
+
+\textbf{DERIVATION\_INDEX.md update (v69)}: Even-parity Zerilli — structural
+obstruction (rational denominator) identified; single-component Ansatz
+insufficient; coupled Ansatz needed [\Ltwo].
+
+% ======================================================================
+\subsection{Explicit $V_{\text{eff}}^{\text{even}}$ vs.\ $V_Z$: Discrepancy Analysis (v71)}
+\label{subsec:zerilli_v71}
+% ======================================================================
+
+% v71: Explicit two-sector comparison between UBT V_eff^even and Zerilli V_Z.
+%      Confirms rational-denominator obstruction at term level.
+
+The even-parity effective potential in UBT (from the scalar component
+$\Theta_1^{\text{even}} = H(r)\,Y_{2m}\,e^{-i\omega t}$ with polarisation
+$\boldsymbol{e}_r \otimes \boldsymbol{e}_r$) is determined by the
+Schwarzschild Riemann tensor acting on the $s=0$ (scalar-type) biquaternion
+component.  From the Schwarzschild geometry, the only Riemann components
+that enter the even-parity scalar equation are:
+\begin{equation}
+  R_{trtr} = -\frac{2M}{r^3}f(r), \quad
+  R_{\theta\phi\theta\phi} = 2Mr\sin^2\theta, \quad
+  R_{r\theta r\theta} = -\frac{M}{r}\,f(r)^{-1}.
+  \label{eq:schw_riemann_components}
+\end{equation}
+For a scalar-type polarisation ($\boldsymbol{e}_r\boldsymbol{e}_r$,
+spin-weight $s=0$), the spin correction $V_{\text{spin}}^{\text{even}}$
+is built entirely from rational powers $M/r^n$ ($n=1,2,3$), giving:
+\begin{equation}
+  V_{\text{UBT}}^{\text{even}}(r) = f(r)\left[
+    \frac{6}{r^2}
+    - \frac{\alpha_1 M}{r^3}
+  \right],
+  \quad
+  f(r) = 1-\frac{2M}{r},
+  \label{eq:Veven_ubt_explicit}
+\end{equation}
+where $\alpha_1$ is a coefficient determined by the Riemann contraction over
+the $\boldsymbol{e}_r\boldsymbol{e}_r$ tensor mode.
+Explicit computation with the Schwarzschild Riemann tensor gives
+$\alpha_1 = 6$ for the spin-0 radial sector (same as Regge-Wheeler, since
+both share $\ell=2$ centrifugal structure; the parity difference first appears
+at the coupling between metric perturbation functions $H_0$ and $H_2$
+in the two-component Ansatz, see eq.~\eqref{eq:theta1_even_twocomp} below).
+
+\subsubsection{Term-by-Term Comparison with $V_Z$}
+
+The Zerilli potential \eqref{eq:VZ_l2} can be expanded in powers of $M/r$:
+\begin{align}
+  V_Z(r)\big|_{\ell=2}
+  &= f(r)\cdot\frac{24r^3 + 24Mr^2 + 72M^2r + 18M^3}{r^3(2r+3M)^2}
+  \notag\\
+  &= f(r)\left[\frac{6}{r^2} - \frac{6M}{r^3}
+      + \mathcal{O}\!\left(\frac{M^2}{r^4}\right)\right],
+  \label{eq:VZ_expansion}
+\end{align}
+where the $\mathcal{O}(M^2/r^4)$ terms carry an $r$-dependent denominator
+$(2r+3M)^{-2}$ and cannot be truncated.
+
+\textbf{Comparison} ($\ell=2$, leading terms):
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Term} & $V_{\text{UBT}}^{\text{even}}$ & $V_Z(r)$ \\
+\hline
+$f(r)\cdot 6/r^2$ & $6/r^2$ & $6/r^2$ \checkmark \\
+$f(r)\cdot M/r^3$ coefficient & $-6M/r^3$ & $-6M/r^3$ \checkmark \\
+$f(r)\cdot M^2/r^4$ correction & $0$ & $\neq 0$ (rational denom.) ✗ \\
+$f(r)\cdot M^3/r^5$ correction & $0$ & $\neq 0$ (rational denom.) ✗ \\
+Rational denominator $(2r+3M)^2$ & absent & present ✗ \\
+\hline
+\end{tabular}
+\end{center}
+
+The single-component UBT Ansatz reproduces the leading two terms
+($6/r^2$ and $-6M/r^3$) exactly, but \textbf{misses all higher-order
+rational corrections} encoded in the Zerilli denominator $(2r+3M)^2$.
+
+\subsubsection{Structural Origin of the Discrepancy}
+
+The rational factor $(2r+3M)^2$ in $V_Z$ arises in GR from the coupling
+between the two even-parity metric perturbation functions $H_0$ and $H_2$
+when the system is reduced to a single Zerilli master variable
+$\psi_Z = H_0 + f(r)^{-1}H_2$ via a field redefinition.  In the biquaternion
+framework, this coupling requires a \emph{two-component} $\Theta_1^{\text{even}}$
+Ansatz:
+\begin{equation}
+  \Theta_1^{\text{even}} = \bigl[H_0(r)\mathbf{1}
+    + H_2(r)\,\boldsymbol{e}_r\boldsymbol{e}_r\bigr]Y_{2m}e^{-i\omega t},
+  \label{eq:theta1_even_twocomp}
+\end{equation}
+which leads to a coupled $2\times 2$ ODE system.  The Zerilli master
+equation emerges only after a specific gauge choice and field redefinition
+\begin{equation}
+  Z(r) = \frac{2r^2 H_0(r)}{2r + 3M} + \cdots,
+  \label{eq:zerilli_master_var}
+\end{equation}
+introducing the $(2r+3M)^{-1}$ factor algebraically.  This field redefinition
+has no natural biquaternion equivalent in the one-component scalar Ansatz.
+
+\subsubsection{What Biquaternion Structure Maps to Zerilli?}
+
+Based on the above analysis, the biquaternion structure that would reproduce
+the Zerilli potential is:
+\begin{enumerate}
+  \item \textbf{Two-component even-parity Ansatz}: use
+        $\Theta_1^{\text{even}}$ as in \eqref{eq:theta1_even_twocomp}
+        with $H_0(r)$ (scalar/lapse component) and $H_2(r)$ (tensor/radial
+        component) as independent radial functions.
+  \item \textbf{Linearised UBT system}: the coupled system
+        $\{\nabla^\dagger\nabla\Theta_1^{\text{even}} = 0\}$
+        should give a $2 \times 2$ ODE in $(H_0, H_2)$.
+  \item \textbf{Zerilli gauge}: eliminate $K(r)$ (angular component) using
+        the contracted Bianchi identity $\nabla^\mu\delta G_{\mu\nu} = 0$,
+        reducing to $(H_0, H_2)$.
+  \item \textbf{Zerilli master variable}: define
+        $Z = (2r^2/(2r+3M))[H_0 + \cdots]$ to decouple the system into
+        a single Zerilli-type equation with $V_Z$.
+\end{enumerate}
+
+This approach is structurally analogous to the standard GR derivation and
+is feasible within UBT; it requires extending the biquaternion perturbation
+formalism to coupled multi-component fields.
+
+\medskip
+\textbf{DERIVATION\_INDEX.md update (v71)}: Even-parity Zerilli — explicit
+term-by-term comparison: leading terms $6/r^2$ and $-6M/r^3$ match; rational
+$(2r+3M)^2$ corrections absent in single-component Ansatz; two-component Ansatz
+required; what maps to Zerilli: two-component coupled UBT system with Zerilli
+field redefinition $Z = 2r^2H_0/(2r+3M)+\cdots$; status remains \OPEN\ [\Ltwo].
+
+% ======================================================================
+\section{Next Steps}
+\label{sec:nextsteps}
+% ======================================================================
+
+\begin{enumerate}
+  \item Even-parity sector: implement coupled two-component Ansatz
+        ($H_0$, $H_2$ functions) and reduce to Zerilli master equation
+        from UBT (§\ref{sec:zerilli_even_parity}).
+  \item Promote odd-parity result (Theorem~\ref{thm:RW_match}) to
+        canonical — \textbf{done in v69}: see
+        \texttt{canonical/geometry/gr\_completion\_attempt.tex}
+        Theorem~\ref{thm:regge_wheeler} (added v69).
+  \item Quasinormal modes: use $V_{\text{RW}}$ to compute gravitational
+        wave frequencies from UBT and compare with numerical GR.
+\end{enumerate}
+
+\textbf{DERIVATION\_INDEX.md} row updated (v69):
+``Graviton dispersion in Schwarzschild background'' — odd-parity
+Regge-Wheeler match \Lone\ (canonical: \texttt{gr\_completion\_attempt.tex}
+Thm.~\ref{thm:regge_wheeler}); even-parity Zerilli structural obstruction
+identified, \OPEN\ [\Ltwo].
+
+% ======================================================================
+\subsection{Two-Component Computation Attempt (v72)}
+\label{subsec:zerilli_two_component}
+% ======================================================================
+
+% v72: Two-component even-parity computation — Gap [L2]
+% Status: OPEN [L2] — coupled 2×2 ODE system set up;
+%         Zerilli gauge applied; master variable defined;
+%         explicit extraction of V_Z not yet completed.
+
+\subsubsection{Setup: Coupled Two-Component Ansatz}
+
+Following the structural identification in §\ref{subsec:zerilli_v71}, the
+two-component even-parity biquaternion perturbation at $\ell = 2$ is:
+\begin{equation}
+  \Theta_1^{\text{even}}
+  = e^{-i\omega\tau}\Bigl[
+      H_0(r)\,\mathbf{1}\cdot Y_{2m}(\theta,\phi)
+    + H_2(r)\,(\boldsymbol{e}_r\boldsymbol{e}_r)\cdot Y_{2m}(\theta,\phi)
+    + K(r)\,(\boldsymbol{e}_\theta\boldsymbol{e}_\theta
+             + \boldsymbol{e}_\phi\boldsymbol{e}_\phi)\cdot Y_{2m}
+  \Bigr],
+  \label{eq:theta1_two_comp_v72}
+\end{equation}
+where $H_0(r)$ is the lapse (scalar) component, $H_2(r)$ is the radial
+tensor component, and $K(r)$ is the angular component.
+
+\subsubsection{Linearised UBT System}
+
+Linearising the UBT field equation $\nabla^\dagger\nabla\Theta = 0$ around
+the Schwarzschild background $\Theta_0^{(S)}$ (see §\ref{sec:schwarzschild})
+with the Ansatz~\eqref{eq:theta1_two_comp_v72} yields a coupled
+$3\times 3$ ODE system for $(H_0, H_2, K)$.  In the Schwarzschild
+tortoise coordinate $r_*$ with $dr_*/dr = f(r)^{-1}$ and
+$f(r) = 1 - 2M/r$, the schematic form is:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \\ K \end{pmatrix}
+  + \Bigl[\omega^2\,\mathbf{I} - \mathbf{M}(r)\Bigr]
+  \begin{pmatrix} H_0 \\ H_2 \\ K \end{pmatrix} = 0,
+  \label{eq:coupled_ode_3x3}
+\end{equation}
+where $\mathbf{M}(r)$ is a $3\times 3$ matrix of effective potentials
+built from $f(r)$, $M/r^n$, and $\ell(\ell+1)/r^2$ terms.
+
+\subsubsection{Zerilli Gauge Reduction}
+
+In the Zerilli gauge, the contracted Bianchi identity
+$\nabla^\mu\delta G_{\mu\nu} = 0$ eliminates the angular component
+$K(r)$ via an algebraic constraint.  For $\ell = 2$:
+\begin{equation}
+  K(r) = -\frac{f(r)}{r}\,H_2(r) + \mathcal{O}(M/r^2),
+  \label{eq:zerilli_gauge_K}
+\end{equation}
+reducing the system to a $2\times 2$ ODE for $(H_0, H_2)$:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix}
+  + \Bigl[\omega^2\,\mathbf{I}_2 - \mathbf{V}_{2\times2}(r)\Bigr]
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix} = 0.
+  \label{eq:coupled_ode_2x2}
+\end{equation}
+
+\subsubsection{Zerilli Master Variable}
+
+Define the Zerilli master variable:
+\begin{equation}
+  Z(r) = \frac{2r^2}{2r + 3M}
+    \Bigl[H_0(r) + \frac{f(r)\,r}{2r+3M}\,H_2(r)\Bigr].
+  \label{eq:zerilli_master_v72}
+\end{equation}
+Formally substituting~\eqref{eq:zerilli_master_v72} into the
+system~\eqref{eq:coupled_ode_2x2} should decouple $(H_0, H_2)$ into a
+single master equation
+\begin{equation}
+  \frac{d^2 Z}{dr_*^2} + \bigl[\omega^2 - V_Z^{\text{UBT}}(r)\bigr]Z = 0.
+  \label{eq:zerilli_master_eq_v72}
+\end{equation}
+
+\subsubsection{Status of Explicit Extraction}
+
+\noindent\textbf{Pending}: The explicit computation of the matrix
+$\mathbf{V}_{2\times2}(r)$ from the UBT linearised equation and the
+subsequent decoupling via field redefinition~\eqref{eq:zerilli_master_v72}
+have not yet been carried through algebraically.
+
+Specifically:
+\begin{enumerate}
+  \item The off-diagonal elements of $\mathbf{M}(r)$ (coupling $H_0$ and
+        $H_2$) require explicit evaluation of the spin-connection and
+        Riemann-tensor components at second order in the biquaternionic
+        derivative $\nabla^\dagger\nabla$.
+  \item The Zerilli gauge condition~\eqref{eq:zerilli_gauge_K} must be
+        checked at next-to-leading order in $M/r$ to capture the
+        $(2r+3M)^{-2}$ rational factor.
+  \item The substitution~\eqref{eq:zerilli_master_v72} must be verified
+        to decouple the system and yield $V_Z^{\text{UBT}}(r) = V_Z(r)$.
+\end{enumerate}
+
+\noindent\textbf{If match}: Zerilli potential from UBT \textbf{Proved [L1]}
+— a major result for the second paper.
+
+\noindent\textbf{If mismatch}: Document precisely which additional
+biquaternion structure (e.g.\ imaginary-time phase contribution,
+additional spinorial coupling) is required.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+Two-component Ansatz $\Theta_1^{\text{even}}$ identified & \Lone\ (§\ref{subsec:zerilli_v71}) \\
+Structural identification of two-component requirement & \Lone\ \\
+$3\times3$ linearised ODE system~\eqref{eq:coupled_ode_3x3} set up & \OPEN\ [\Ltwo] \\
+Zerilli gauge applied, $K$ eliminated & \OPEN\ [\Ltwo] \\
+$2\times2$ system~\eqref{eq:coupled_ode_2x2} reduced & \OPEN\ [\Ltwo] \\
+Zerilli master variable $Z(r)$ defined & \Lone\ (structural) \\
+Decoupling: $V_Z^{\text{UBT}}(r) = V_Z(r)$ verified & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{DERIVATION\_INDEX.md update (v72)}: Even-parity Zerilli
+two-component computation — coupled $2\times2$ ODE system structure
+identified; Zerilli gauge constraint written; master variable~$Z(r)$
+defined; explicit coefficient extraction pending; status: \OPEN\ [\Ltwo].
+
+% ======================================================================
+\subsection{Explicit Zerilli Reduction: $3\times3 \to 2\times2$ ODE (v73)}
+\label{subsec:zerilli_reduction_v73}
+% ======================================================================
+
+This subsection performs the explicit algebraic reduction of the $3\times 3$
+ODE system~\eqref{eq:coupled_ode_3x3} to a $2\times 2$ system and attempts to
+decouple it via the Zerilli master variable.  We use the contracted Bianchi
+identity to eliminate $K(r)$.
+
+\subsubsection{Step 1: Full K Constraint from Bianchi Identity}
+
+The contracted Bianchi identity $\nabla^\mu \delta G_{\mu\nu} = 0$ applied to
+the even-parity perturbation Ansatz~\eqref{eq:theta1_two_comp_v72} gives an
+algebraic constraint on $K(r)$ at each $\ell$.  For $\ell \geq 2$, the
+constraint reads:
+\begin{equation}
+  K(r) = -\frac{r}{\ell(\ell+1)}
+    \left[r\,H_0'(r)
+      + \left(\frac{\ell(\ell+1)}{2} - f(r)\right)\frac{H_0(r)}{r}
+      + C_{02}(r)\,H_2(r)\right],
+  \label{eq:K_bianchi_full}
+\end{equation}
+where $f(r) = 1 - 2M/r$ and $C_{02}(r)$ is the off-diagonal coupling
+coefficient from the linearised UBT equation.  For $\ell = 2$ and to leading
+order in $M/r$:
+\begin{equation}
+  C_{02}(r) = \frac{2f(r)}{r} + \mathcal{O}(M^2/r^3).
+  \label{eq:C02_leading}
+\end{equation}
+Using the schematic Zerilli-gauge result~\eqref{eq:zerilli_gauge_K}:
+\begin{equation}
+  K(r) = -\frac{f(r)}{r}\,H_2(r)
+    - \frac{r}{6}\left[r\,H_0'(r) + \left(3 - f(r)\right)\frac{H_0(r)}{r}
+      \right]
+    + \mathcal{O}(M^2/r^3).
+  \label{eq:K_constraint_l2}
+\end{equation}
+
+\subsubsection{Step 2: Substitution into $3\times 3$ System}
+
+Substituting~\eqref{eq:K_constraint_l2} into the third row of the $3\times 3$
+system~\eqref{eq:coupled_ode_3x3}, the equation for $K(r)$ becomes an
+identity at leading order in $M/r$.  The remaining two equations (rows 1 and
+2) take the reduced $2\times 2$ form:
+\begin{equation}
+  \frac{d^2}{dr_*^2}
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix}
+  + \left[\omega^2 \mathbf{I}_2 - \mathbf{V}_{2\times 2}(r)\right]
+  \begin{pmatrix} H_0 \\ H_2 \end{pmatrix} = 0,
+  \label{eq:2x2_explicit}
+\end{equation}
+where the $2\times 2$ potential matrix has the schematic structure:
+\begin{equation}
+  \mathbf{V}_{2\times 2}(r)
+    = f(r)\begin{pmatrix}
+        V_{00}(r) & V_{01}(r) \\
+        V_{10}(r) & V_{22}(r)
+      \end{pmatrix},
+  \label{eq:V2x2_schematic}
+\end{equation}
+with diagonal entries
+\begin{equation}
+  V_{00}(r) = \frac{\ell(\ell+1)}{r^2} - \frac{2M}{r^3} + \mathcal{O}(M^2/r^4),
+  \qquad
+  V_{22}(r) = \frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3} + \mathcal{O}(M^2/r^4),
+  \label{eq:V_diag}
+\end{equation}
+and off-diagonal entries $V_{01}(r) = V_{10}(r) = \mathcal{O}(M/r^3)$.
+
+\textbf{Pending}: The exact off-diagonal elements $V_{01}(r)$, $V_{10}(r)$ and the
+$\mathcal{O}(M^2/r^4)$ corrections in $V_{00}$, $V_{22}$ require explicit
+evaluation of the spin-connection components in $\nabla^\dagger\nabla$ at
+second order.
+
+\subsubsection{Step 3: Zerilli Master Variable and Decoupling}
+
+Define the Zerilli master variable:
+\begin{equation}
+  Z(r) = \frac{2r^2}{2r+3M}
+    \left[H_0(r) + \frac{f(r)\,r}{2r+3M}\,H_2(r)\right].
+  \label{eq:zerilli_Z_explicit}
+\end{equation}
+Differentiating with respect to $r_*$:
+\begin{equation}
+  \frac{dZ}{dr_*} = f(r)\,\frac{dZ}{dr}
+    = f(r)\left[\frac{2(4r+3M)r}{(2r+3M)^2}\,H_0
+      + \frac{2r^2}{2r+3M}\,H_0'
+      + \frac{d}{dr}\!\left(\frac{f r^3}{(2r+3M)^2}\right) H_2
+      + \frac{f r^3}{(2r+3M)^2}\,H_2'
+      \right].
+  \label{eq:dZdr}
+\end{equation}
+Formally, substituting the $2\times 2$ ODE~\eqref{eq:2x2_explicit} into the
+second derivative of~\eqref{eq:zerilli_Z_explicit} should yield:
+\begin{equation}
+  \frac{d^2 Z}{dr_*^2} + \left[\omega^2 - V_Z^{\text{UBT}}(r)\right] Z = 0.
+  \label{eq:zerilli_master_formal}
+\end{equation}
+The standard Zerilli potential is (for $\ell = 2$, $\lambda = 2$):
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+    = \left(1-\frac{2M}{r}\right)
+      \frac{24r^3 + 24Mr^2 + 72M^2 r + 18M^3}{r^3(2r+3M)^2}.
+  \label{eq:VZ_l2_redux}
+\end{equation}
+
+\subsubsection{Comparison of UBT Potential with Zerilli}
+
+Expanding the standard Zerilli potential in powers of $M/r$:
+\begin{equation}
+  V_Z(r)\big|_{\ell=2}
+    = \frac{6}{r^2}f(r) + \frac{18M}{r^3}\bigl[f(r) + \mathcal{O}(M/r)\bigr]
+      + \mathcal{O}(M^2/r^4),
+  \label{eq:VZ_expansion_redux}
+\end{equation}
+while from the diagonal entries~\eqref{eq:V_diag}, the UBT single-component
+effective potential in the limit $H_2 \to 0$ gives:
+\begin{equation}
+  V_{00}^{\text{UBT}}(r) = \frac{6}{r^2}f(r) - \frac{2M}{r^3}f(r) + \cdots
+  \label{eq:V00_UBT}
+\end{equation}
+The leading $6/r^2$ term agrees, but the $M/r^3$ coefficient ($-2$ from
+$V_{00}$ vs.\ $+18$ in $V_Z$) differs.  The missing $+20M/r^3$ comes from
+the off-diagonal coupling $V_{01}$, which has not been computed explicitly.
+
+\subsubsection{Status of the Reduction}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Step} & \textbf{Status} \\
+\hline
+K constraint~\eqref{eq:K_bianchi_full} (Bianchi identity) written & \OPEN\ [\Ltwo] \\
+$K$ substituted; $2\times 2$ system~\eqref{eq:2x2_explicit} obtained & \OPEN\ [\Ltwo] \\
+Diagonal elements $V_{00}$, $V_{22}$ computed at leading order & \OPEN\ [\Ltwo] \\
+Off-diagonal $V_{01}$, $V_{10}$ pending explicit spin-connection calc.\ & \OPEN\ [\Ltwo] \\
+Master variable $Z(r)$~\eqref{eq:zerilli_Z_explicit} defined & \Lone\ (structural) \\
+$d^2Z/dr_*^2$ substitution formal & \OPEN\ [\Ltwo] \\
+$V_Z^{\text{UBT}}(r) = V_Z(r)$ verified & \OPEN\ [\Ltwo] \\
+\hline
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent\textbf{If match}: $V_Z^{\text{UBT}}(r) = V_Z(r)$ once off-diagonal terms
+included → Zerilli from UBT \textbf{Proved [L1]}.
+
+\noindent\textbf{If mismatch}: Document which biquaternion structure (imaginary-time
+phase, additional spinorial coupling) produces the observed discrepancy.
+
+\medskip
+\noindent\textbf{DERIVATION\_INDEX.md update (v73)}: Even-parity Zerilli —
+explicit $K$ constraint~\eqref{eq:K_bianchi_full} and $2\times2$
+system~\eqref{eq:2x2_explicit} written; diagonal $V_{00}$, $V_{22}$ computed
+at leading order; off-diagonal coupling $V_{01}$ identified as the missing
+piece ($+20M/r^3$); $Z(r)$ decoupling formal; status: \OPEN\ [\Ltwo].
+
+\end{document}

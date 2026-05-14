@@ -151,7 +151,8 @@ class TestPoissonDuality:
             errors.append(rel_diff)
         
         # Errors should generally decrease (allowing some numerical noise)
-        assert errors[-1] < errors[0] * 2, "Error should improve with larger cutoff"
+        # If all errors are already at machine precision (== 0.0), the test passes
+        assert errors[-1] < max(errors[0] * 2, 1e-10), "Error should improve with larger cutoff"
 
 
 class TestSpectralInvariants:

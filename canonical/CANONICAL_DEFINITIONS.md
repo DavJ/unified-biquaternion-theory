@@ -2,25 +2,34 @@
 
 **Purpose**: This document establishes the single, authoritative version of all core UBT definitions to resolve conflicts and duplications across the theory.
 
-**Status**: Phase 2 Implementation - Canonical Definitions
+**Status**: Active canonical reference — definitions complete; derivation gaps documented below.
+
+**Confidence labels used in this document:**
+
+| Label | Meaning |
+|-------|---------|
+| **Strong** | Rigorous derivation; zero free parameters |
+| **Strong Partial** | Structural derivation substantially complete; ≤1 open sub-gap |
+| **Candidate** | Proposed mechanism with supporting evidence; ≥1 gap unresolved |
+| **Experimental** | Hypothesis supported by numerical/observational tests; no algebraic proof |
+| **Open** | No complete derivation known; active problem |
+| **Deprecated** | Approach proved to fail or superseded; preserved for reference |
 
 ---
 
-## 1. Biquaternion Time T_B (Canonical)
+## 1. Complex Time τ (Canonical)
 
 ### Canonical Definition
-The fundamental time coordinate in UBT is **biquaternion time**:
+The canonical UBT time coordinate is **complex time**:
 
 ```
-T_B = t + iψ + jχ + kξ
+τ = t + iψ
 ```
 
 where:
 - `t` ∈ ℝ = real time coordinate (standard physical time)
-- `ψ, χ, ξ` ∈ ℝ = imaginary time components
-- `i, j, k` = quaternion units (i² = j² = k² = ijk = −1)
-
-Equivalently: `T_B = t + i(ψ + v·σ)` where `v = (χ, ξ, 0)` is a vector.
+- `ψ` ∈ ℝ = scalar imaginary time component
+- `i` = imaginary unit
 
 ### Physical Interpretation
 
@@ -31,72 +40,61 @@ Equivalently: `T_B = t + i(ψ + v·σ)` where `v = (χ, ξ, 0)` is a vector.
 
 **Scalar imaginary (ψ)**:
 - Isotropic phase structure of Θ field
-- Consciousness substrate (psychon excitations)
-- Scalar dark energy
+- Scalar dark-sector degree of freedom *(interpretation: speculative/open)*
 - Universal quantum coherence (direction-independent)
 
-**Vector imaginary (χ, ξ)**:
-- Directional phase structures
-- Spacetime torsion and spin effects
-- Anisotropic dark matter distributions
-- Directional consciousness modes
+**Critical**: Both components are **dynamical variables**, not passive parameters.
 
-**Critical**: All imaginary components are **dynamical variables**, not passive parameters.
+### Classical Limit
 
-### Hierarchical Reduction
-
-When vector components are negligible (directional isotropy):
+When the imaginary component vanishes:
 ```
-χ, ξ → 0  ⇒  T_B → τ = t + iψ   (complex time limit)
+ψ → 0  ⇒  τ → t  ⇒  UBT reduces to standard GR/QFT
 ```
-
-When all imaginary components vanish:
-```
-ψ, χ, ξ → 0  ⇒  T_B → t  ⇒  UBT reduces to standard GR/QFT
-```
-
-Structure: **T_B (biquaternion) → τ (complex) → t (classical)**
 
 ### Relation to Standard Physics
 
-In the limit T_B → t:
+In the limit τ → t:
 - ✅ Einstein equations recovered exactly
 - ✅ Standard Model preserved
 - ✅ All experimental tests of GR/QFT satisfied
-
-### Simplification: Complex Time
-
-For spherically symmetric or weakly coupled systems, the **complex time limit** τ = t + iψ is sufficient. This is a **simplification**, not the canonical formulation.
-
-Use τ when:
-- Directional isotropy applies
-- Individual consciousness states
-- Weak-field approximations
-
-Use full T_B when:
-- Torsion effects important
-- Anisotropic dark matter
-- Collective consciousness
-- Strong coupling regimes
 
 ### Resolution of Conflicts
 The theory previously had 3+ conflicting versions:
 1. ❌ Drift-diffusion Fokker-Planck variant
 2. ❌ Toroidal variant with θ-functions  
 3. ❌ Hermitized variant (Appendix F)
-4. ❌ Complex time only (missing directional structure)
+4. ❌ Biquaternion time T_B — exploratory extension, now noncanonical
 
-**Canonical Version**: `T_B = t + iψ + jχ + kξ` where all imaginary components are **dynamical fields** with physical dynamics. Complex time τ is the **limiting/simplified case**.
+**Canonical Version**: `τ = t + iψ` is the single canonical time coordinate of UBT. Earlier biquaternionic time T_B was exploratory and is now noncanonical.
 
 ---
 
-## 2. Theta Field Θ(q,T_B)
+### Historical/Speculative Extension: Biquaternion Time T_B
+
+> **Status**: Deprecated / historical. The biquaternionic time T_B was an earlier exploratory formulation and is **not part of the canonical minimal theory**. It is preserved here for historical reference only.
+
+The earlier biquaternion time extension was:
+
+```
+T_B = t + iψ + jχ + kξ
+```
+
+where `ψ, χ, ξ` ∈ ℝ are imaginary time components and `i, j, k` are quaternion units.
+
+This formulation admitted the hierarchical structure **T_B → τ → t** in isotropic and classical limits respectively. However, the additional degrees of freedom (χ, ξ) lack closed derivations within canonical UBT, and their physical interpretation (torsion, anisotropic dark-sector fields) remains speculative and open. They are therefore not part of the canonical minimal theory.
+
+Any work using T_B should be placed in `research_tracks/` or `speculative_extensions/`.
+
+---
+
+## 2. Theta Field Θ(q,τ)
 
 ### Canonical Definition
 The fundamental field is a **biquaternion**:
 
 ```
-Θ(q, T_B) ∈ B = H ⊗ ℂ
+Θ(q, τ) ∈ B = H ⊗ ℂ
 Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k,    where Θₐ ∈ ℂ
 ```
 
@@ -106,8 +104,8 @@ where:
 - `i, j, k` = quaternion units satisfying i² = j² = k² = ijk = −1
 - `Θₐ` (a = 0,1,2,3) = **complex-valued** components
 - `q` ∈ B = biquaternion coordinate (4 DOF)
-- `T_B = t + iψ + jχ + kξ` = biquaternion time (canonical)
-  - In isotropic limit: τ = t + iψ (complex time simplification)
+- `τ = t + iψ` = complex time (canonical)
+  - Earlier biquaternion time T_B = t+iψ+jχ+kξ is a deprecated/historical extension
 
 ### Matrix Representation
 
@@ -361,19 +359,21 @@ These are **predicted** by UBT:
 - `Λ_QCD` = QCD scale
 
 ### Status of Each
-| Constant | Status | Source |
-|----------|--------|--------|
-| α | **Predicted** | Geometric/topological derivation |
-| m_e | **Predicted** | From Θ field self-energy |
-| m_μ | **Predicted** | From phase structure |
-| m_τ | **Predicted** | From phase structure |
-| Λ_QCD | **Predicted** | From SU(3) emergence |
-| G | **Input** | Newton's constant |
-| θ_W | **Derived** | Weak mixing angle |
+| Constant | Confidence | Source |
+|----------|-----------|--------|
+| α | **Open** | B_base gap unresolved — bare value follows from framework given B≈46.3 but B itself not zero-free-parameter; see DERIVATION_INDEX.md |
+| m_e | **Strong Partial** | From Θ field self-energy (mechanism partially derived; Gaps Y1/Y2 open) |
+| m_μ | **Candidate** | Hecke eigenvalue match at p=139 (0.05% + 1.6%); algebraic mechanism not closed |
+| m_τ | **Candidate** | Hecke eigenvalue match; same mechanism as m_μ; instanton approach Dead End |
+| Λ_QCD | **Candidate** | From SU(3) emergence (≥1 free parameter) |
+| G | **Input** | Newton's constant; not predicted |
+| θ_W | **Candidate** | Weak mixing angle structural argument; g/g' ratio not algebraically fixed |
 
 ---
 
-## 9. Electron Mass
+## 9. Electron / Lepton Mass Spectrum
+
+**Confidence: Open**
 
 ### Canonical Derivation Method
 There are **three methods** that must be unified:
@@ -392,9 +392,12 @@ The final single method and formula will be established in `canonical/fields/ele
 ### Resolution of Conflicts
 - ❌ Three different calculation methods exist
 - ❌ Different assumptions (spin vs phase)
-- ❌ Need single final numerical value
+- ❌ Lepton mass ratios m_μ/m_e ≈ 207 and m_τ/m_μ ≈ 16.8 not reproduced from first principles (KK mismatch theorem forbids reproduction from W2 formula — Gap M4)
+- ❌ Hecke eigenvalue match at p=137/139 supports m_μ, m_τ at **Candidate** level but mechanism not algebraically closed
 
-**Action Required**: Consolidate in Phase 3.
+**Status**: All three lepton masses remain **Open** at the level of zero-free-parameter algebraic derivation.  
+Hecke numerical support for m_μ, m_τ is at **Candidate** level.  
+See DERIVATION_INDEX.md (Three Fermion Generations / Lepton Sector) for full detail.
 
 ---
 
@@ -428,24 +431,15 @@ The final single method and formula will be established in `canonical/fields/ele
 
 ## 11. Psychons and Θ-Resonance
 
-### Canonical Definition
-**Psychons** are quantum excitations of the consciousness field, defined as:
-```
-ψ_psychon: excitations in the imaginary time component ψ
-```
-
-### Lagrangian (to be formalized)
-The psychon Lagrangian must be derived from variation of the action:
-```
-S[Θ,ψ] = ∫ d⁴x √(-g) L[Θ,ψ]
-```
-
-**Action Required**: Formalize in Phase 3 - currently lacks precise mathematical form.
-
-### Θ-Resonator
-Experimental device concept for detecting psychon excitations.
-
-**Status**: Conceptual design exists, mathematical formalization needed.
+> **Note**: Psychon content has been moved out of `canonical/` into
+> `speculative_extensions/consciousness/psychons.tex`.
+> Consciousness is **not** a canonical claim of core UBT.
+>
+> The imaginary time component ψ is a genuine mathematical degree of freedom
+> of complex time τ = t + iψ.  Its possible physical interpretation as a "consciousness
+> substrate" is *speculative / open* and must not be treated as a proved or mainline result.
+>
+> For the speculative consciousness formulation see `speculative_extensions/consciousness/`.
 
 ---
 
@@ -506,10 +500,10 @@ Previous issues:
 
 ## Version Control
 
-**Version**: 1.0  
-**Date**: 2025-11-14  
-**Status**: Phase 1 Complete - Definitions Documented  
-**Next**: Phase 2 - Create canonical .tex files
+**Version**: 2.0  
+**Date**: 2026-04-27  
+**Status**: Active canonical reference — definitions complete; confidence labels added  
+**Next**: Phase 3 — rewrite all appendices using these definitions
 
 ---
 

@@ -63,7 +63,7 @@ def test_find_repo_root():
     assert (root / '.git').exists() or (root / 'pytest.ini').exists()
     
     # Should find repo root from a real nested subdirectory
-    forensic_dir = repo_root / 'forensic_fingerprint'
+    forensic_dir = repo_root / 'tools' / 'forensic_fingerprint'
     if forensic_dir.exists():
         root2 = find_repo_root(forensic_dir)
         assert root2 == root

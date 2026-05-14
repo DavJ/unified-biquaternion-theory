@@ -1,0 +1,225 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Track A: SU(3) Candidate via Z2 x Z2 x Z2 Involutions on B = C tensor H
+% Status: Candidate construction, conservative framing.
+% Version: 1.0
+% Date: 2026-02-28
+
+\section{$\mathbb{Z}_2^3$ Involution Decomposition of $\mathcal{B}$}
+\label{sec:algebra:involutions_z2z2z2}
+
+\subsection{Setup}
+
+Let $\mathcal{B} = \mathbb{C} \otimes \mathbb{H}$ be the biquaternion algebra,
+viewed as an $8$-dimensional real vector space with ordered basis
+\begin{equation}
+  \mathcal{B}_\mathrm{basis} = \{1,\, \mathbf{I},\, \mathbf{J},\, \mathbf{K},\,
+    i,\, i\mathbf{I},\, i\mathbf{J},\, i\mathbf{K}\},
+  \label{eq:inv:basis}
+\end{equation}
+where $i \in \mathbb{C}$ denotes the complex imaginary unit
+($i^2 = -1$, central in $\mathcal{B}$) and
+$\mathbf{I}, \mathbf{J}, \mathbf{K} \in \mathbb{H}$ are the quaternion units
+satisfying $\mathbf{I}^2 = \mathbf{J}^2 = \mathbf{K}^2 = -1$,
+$\mathbf{I}\mathbf{J} = \mathbf{K}$, $\mathbf{J}\mathbf{K} = \mathbf{I}$,
+$\mathbf{K}\mathbf{I} = \mathbf{J}$.
+
+\subsection{Three Commuting Involutions}
+
+We define three $\mathbb{R}$-linear maps $P_1, P_2, P_3 : \mathcal{B} \to \mathcal{B}$:
+
+\begin{itemize}
+  \item \textbf{$P_1$ (complex conjugation):}
+    $P_1(i) = -i$,\; $P_1(\mathbf{I}) = \mathbf{I}$,\;
+    $P_1(\mathbf{J}) = \mathbf{J}$,\; $P_1(\mathbf{K}) = \mathbf{K}$.
+    Extends by $\mathbb{R}$-linearity: $P_1(i\mathbf{X}) = -i\mathbf{X}$
+    for $\mathbf{X} \in \{1, \mathbf{I}, \mathbf{J}, \mathbf{K}\}$.
+
+  \item \textbf{$P_2$ (quaternion conjugation):}
+    $P_2(\mathbf{I}) = -\mathbf{I}$,\;
+    $P_2(\mathbf{J}) = -\mathbf{J}$,\;
+    $P_2(\mathbf{K}) = -\mathbf{K}$,\; $P_2(i) = i$.
+    Extends: $P_2(i\mathbf{X}) = i\cdot P_2(\mathbf{X})$.
+
+  \item \textbf{$P_3$ (axis-flip around $\mathbf{I}$):}
+    $P_3(\mathbf{I}) = \mathbf{I}$,\;
+    $P_3(\mathbf{J}) = -\mathbf{J}$,\;
+    $P_3(\mathbf{K}) = -\mathbf{K}$,\; $P_3(i) = i$.
+    Equivalently $P_3(x) = \mathbf{I}\, x\, \mathbf{I}^{-1}$ (inner automorphism by $\mathbf{I}$).
+\end{itemize}
+
+\begin{lemma}[Involutions]
+  \label{lem:involutions}
+  Each of $P_1, P_2, P_3$ is an $\mathbb{R}$-linear involution: $P_k^2 = \mathrm{id}$.
+\end{lemma}
+
+\begin{proof}
+  On every basis element $b \in \mathcal{B}_\mathrm{basis}$, $P_k$ acts by a
+  scalar eigenvalue $s_k \in \{+1, -1\}$:
+  \[
+    P_k(b) = s_k\, b \;\implies\; P_k^2(b) = P_k(s_k b) = s_k\, P_k(b)
+    = s_k^2\, b = b,
+  \]
+  since $s_k^2 = 1$. By $\mathbb{R}$-linearity, $P_k^2 = \mathrm{id}$ on
+  all of $\mathcal{B}$.
+\end{proof}
+
+\begin{lemma}[Pairwise commutativity]
+  \label{lem:commutativity}
+  $[P_i, P_j] = 0$ for all $1 \le i < j \le 3$.
+\end{lemma}
+
+\begin{proof}
+  For any basis element $b$ with eigenvalues $s_i$ and $s_j$:
+  \[
+    P_i(P_j(b)) = P_i(s_j b) = s_j\, s_i\, b = s_i\, s_j\, b = P_j(P_i(b)).
+  \]
+  By linearity the result extends to all of $\mathcal{B}$.
+\end{proof}
+
+\subsection{Signature Table}
+
+The \emph{signature} of a basis element $b$ is
+$\sigma(b) = (s_1, s_2, s_3) \in \{+1,-1\}^3$ where $P_k(b) = s_k b$.
+
+\begin{table}[h]
+  \centering
+  \caption{Eigenvalue signatures of basis elements under $P_1, P_2, P_3$.}
+  \label{tab:inv:signatures}
+  \begin{tabular}{ccccc}
+    \hline
+    Element & $s_1$ & $s_2$ & $s_3$ & Sector \\
+    \hline
+    $1$         & $+$ & $+$ & $+$ & $(+,+,+)$ \\
+    $\mathbf{I}$ & $+$ & $-$ & $+$ & $(+,-,+)$ \\
+    $\mathbf{J}$ & $+$ & $-$ & $-$ & $(+,-,-)$ \\
+    $\mathbf{K}$ & $+$ & $-$ & $-$ & $(+,-,-)$ \\
+    $i$          & $-$ & $+$ & $+$ & $(-,+,+)$ \\
+    $i\mathbf{I}$ & $-$ & $-$ & $+$ & $(-,-,+)$ \\
+    $i\mathbf{J}$ & $-$ & $-$ & $-$ & $(-,-,-)$ \\
+    $i\mathbf{K}$ & $-$ & $-$ & $-$ & $(-,-,-)$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Projectors and Sector Decomposition}
+
+The projector onto sector $(s_1, s_2, s_3)$ is
+\begin{equation}
+  \Pi_{(s_1 s_2 s_3)} = \frac{1}{8}
+  \prod_{k=1}^{3}\bigl(1 + s_k P_k\bigr).
+  \label{eq:inv:projector}
+\end{equation}
+These satisfy $\Pi^2 = \Pi$ and $\sum \Pi_{(s_1 s_2 s_3)} = \mathrm{id}$.
+
+\subsection{Single-Minus Sectors}
+\label{subsec:inv:single_minus}
+
+The three \emph{single-minus} sectors (exactly one negative eigenvalue) are:
+\begin{align}
+  S_1 &= (-,+,+): & \Pi_{S_1}\mathcal{B} &= \mathrm{span}_\mathbb{R}\{i\},
+    & \dim_\mathbb{R} &= 1. \\
+  S_2 &= (+,-,+): & \Pi_{S_2}\mathcal{B} &= \mathrm{span}_\mathbb{R}\{\mathbf{I}\},
+    & \dim_\mathbb{R} &= 1. \\
+  S_3 &= (+,+,-): & \Pi_{S_3}\mathcal{B} &= \{0\},
+    & \dim_\mathbb{R} &= 0.
+  \label{eq:inv:S3_empty}
+\end{align}
+
+\begin{remark}[Emptiness of $S_3$]
+  The sector $S_3 = (+,+,-)$ is empty.
+  Any element with $P_1 = +1$ (no complex-$i$ factor) and $P_2 = +1$
+  (no quaternion-unit factor) must be a real scalar multiple of $1$.
+  Since $P_3(1) = +1$ for any algebra map fixing the unit, such an element
+  lies in the $(+,+,+)$ sector, not $(+,+,-)$.
+  This is a structural consequence of the definitions of $P_1$ and $P_2$,
+  and is stated here explicitly as part of the conservative candidate framing.
+\end{remark}
+
+\subsection{Candidate 3D Complex Carrier Space}
+\label{subsec:inv:carrier_space}
+
+\begin{definition}[Θ-triplet carrier space]
+  \label{def:inv:Vc}
+  The \emph{candidate triplet carrier space} is the $P_2 = -1$ eigenspace of
+  $P_2$ acting on $\mathcal{B}$:
+  \begin{equation}
+    V_c := \mathrm{span}_\mathbb{C}\{\mathbf{I}, \mathbf{J}, \mathbf{K}\}
+         = \{a\mathbf{I} + b\mathbf{J} + c\mathbf{K} \mid a, b, c \in \mathbb{C}\},
+    \label{eq:inv:Vc}
+  \end{equation}
+  where $\mathbb{C}$ acts by left-multiplication by $i$.
+\end{definition}
+
+\begin{lemma}[$V_c$ is a complex 3-dimensional space]
+  \label{lem:Vc_dim}
+  $\dim_\mathbb{C} V_c = 3$.
+\end{lemma}
+
+\begin{proof}
+  The six real vectors $\{\mathbf{I}, i\mathbf{I}, \mathbf{J}, i\mathbf{J},
+  \mathbf{K}, i\mathbf{K}\}$ are distinct basis elements of
+  $\mathcal{B}_\mathrm{basis}$, hence $\mathbb{R}$-linearly independent.
+  Every element of $V_c$ is of the form $a\mathbf{I} + b\mathbf{J} + c\mathbf{K}$
+  with $a, b, c \in \mathbb{C}$, so $\{\mathbf{I}, \mathbf{J}, \mathbf{K}\}$
+  is a $\mathbb{C}$-basis and $\dim_\mathbb{C} V_c = 3$.
+\end{proof}
+
+The action of $P_3$ on $V_c$ is a $\mathbb{C}$-linear involution with
+eigenspaces $\mathrm{span}_\mathbb{C}\{\mathbf{I}\}$ (eigenvalue $+1$) and
+$\mathrm{span}_\mathbb{C}\{\mathbf{J}, \mathbf{K}\}$ (eigenvalue $-1$).
+The $S_2 = (+,-,+)$ sector corresponds to the real slice of the
+$P_3 = +1$ sub-eigenspace of $V_c$.
+
+\subsection{SU(3) Candidate}
+\label{subsec:inv:su3}
+
+Define the Hermitian inner product on $V_c$ by
+\begin{equation}
+  \langle X, Y \rangle := \tfrac{1}{4}\,\mathrm{Tr}(X^\dagger Y),
+  \quad X, Y \in V_c,
+  \label{eq:inv:inner_product}
+\end{equation}
+where $X^\dagger$ denotes the biquaternionic adjoint (composed $P_1 \circ P_2$)
+and $\mathrm{Tr}$ is the reduced trace.  Under the identification
+$V_c \cong \mathbb{C}^3$ via $\{\mathbf{I}, \mathbf{J}, \mathbf{K}\}
+\leftrightarrow \{e_1, e_2, e_3\}$, this reduces to the standard Hermitian
+inner product on $\mathbb{C}^3$.
+
+\begin{definition}[SU(3) candidate]
+  \label{def:inv:SU3}
+  The \emph{Track-A SU(3) candidate} is
+  \begin{equation}
+    \mathrm{SU}(3)_{V_c} := \bigl\{
+      U \in \mathrm{GL}(V_c)\;\big|\;
+      U\text{ is }\mathbb{C}\text{-linear},\;
+      \langle Ux, Uy\rangle = \langle x, y\rangle
+      \;\forall\, x,y \in V_c,\;
+      \det_\mathbb{C}(U) = 1
+    \bigr\}.
+  \end{equation}
+\end{definition}
+
+This is isomorphic to the standard $\mathrm{SU}(3)$ and acts naturally on
+the Θ-triplet extracted from $\mathcal{B}$ by the $P_2$ involution.
+
+\begin{remark}[Conservative framing]
+  \label{rem:conservative}
+  The group $\mathrm{SU}(3)_{V_c}$ constructed above acts on the subspace
+  $V_c \subset \mathcal{B}$; it is \emph{not} a subgroup of
+  $\mathrm{Aut}(\mathcal{B})$.  The automorphism group
+  $\mathrm{Aut}(\mathbb{C}\otimes\mathbb{H})
+  \cong [\mathrm{GL}(2,\mathbb{C})\times\mathrm{GL}(2,\mathbb{C})]/\mathbb{Z}_2$
+  does not contain $\mathrm{SU}(3)$ (see \texttt{reports/associative\_su3\_scan.md}).
+  The present construction is labelled \emph{Track A, candidate construction},
+  and claims only that a natural $\mathrm{SU}(3)$ symmetry acts on the
+  Θ-triplet subspace $V_c$ extracted from $\mathcal{B}$.
+  No octonions or non-associative structures appear.
+\end{remark}

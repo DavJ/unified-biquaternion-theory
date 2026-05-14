@@ -1,0 +1,800 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Kac-Moody Level k — Approaches Bypassing the Circularity (I2–I5)
+% Track: CORE — α derivation — v68 baseline
+% Date: 2026-03-09
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+  \newtheorem{observation}{Observation}
+
+  \title{Kac-Moody Level $k$ — Approaches Bypassing the Circularity\\
+    \large Approaches I2 (Hosotani Holonomy), I5 (Modular Invariance),\\
+    I4 (Anomaly Cancellation), I3 (Representation Theory): v68 Baseline}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-09 (v68)}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%--------------------------------------------------------------------
+\section{Problem Statement: The Circularity and How to Bypass It}
+\label{sec:intro}
+%--------------------------------------------------------------------
+
+\noindent\textbf{No circular reasoning.}
+$\alpha^{-1} = 137$ and $n^* = 137$ are \emph{never} used as inputs
+anywhere in this document.
+$r^2 = \langle\mathrm{Sc}[\Theta^\dagger\Theta]\rangle_{\mathrm{vac}}$
+obtained from $V_{\mathrm{eff}}$ is also \emph{not used} (that route
+is circular; see below).
+Inputs: $\mathcal{S}[\Theta]$, $\theta_H = \pi$ (proved via Hosotani
+mechanism), $\psi$-parity (proved symmetry of UBT), $N_{\mathrm{phases}} = 3$
+(algebraic fact from $\mathbb{C}\otimes\mathbb{H}$).
+
+\subsection{The fundamental circularity (H-baseline summary)}
+
+The v68 baseline inherits the following established facts and gaps from
+\texttt{b\_base\_kac\_moody\_level.tex} (v67):
+
+\begin{itemize}
+  \item The formula $k = 2\pi r^2$ was derived exactly from the UBT
+    kinetic action. \textbf{[PROVED]}.
+  \item The Chern-Simons term is absent from $\mathcal{S}[\Theta]$
+    (parity + holonomy arguments). \textbf{[PROVED]}.
+  \item $k = 1$ from the minimality principle (free action,
+    no CS term). \textbf{[MOTIVATED CONJECTURE]}.
+  \item All representation-theory routes (H3a: fundamental, H3b: adjoint,
+    H3c: search for $k=1$) yield $k \in \{3/2,\,6\}$ or no match.
+    \textbf{[DEAD END for $k=1$]}.
+\end{itemize}
+
+The \textbf{fundamental circularity} is the chain:
+\[
+  k \;\longrightarrow\; c \;\longrightarrow\; B_{\mathrm{base}}
+  \;\longrightarrow\; V_{\mathrm{eff}}\;\text{minimum}
+  \;\longrightarrow\; n^* \;\longrightarrow\; r^2 \;\longrightarrow\; k.
+\]
+Any route that determines $k$ from $r^2$ or from $V_{\mathrm{eff}}$ traverses
+this circle.  The four approaches investigated here are required to
+determine $k$ from the structure of $\mathcal{S}[\Theta]$, the
+topology of the $\psi$-circle, or the algebraic properties of the
+symmetry algebra — \emph{without} using $r^2$ or $V_{\mathrm{eff}}$
+as intermediaries.
+
+\subsection{Approaches investigated (priority order)}
+
+\begin{itemize}
+  \item \textbf{I2} (priority 8/10): Topological quantisation +
+    Hosotani holonomy $\theta_H = \pi$ (proved) $\to$ winding number
+    $w$ $\to$ WZW level $k$.
+  \item \textbf{I5} (priority 8/10): Modular invariance of partition
+    function + $\psi$-parity symmetry $\to$ uniquely select $k$.
+  \item \textbf{I4} (priority 7/10): Anomaly cancellation on the
+    $\psi$-circle $\to$ solve for $k$.
+  \item \textbf{I3} (priority 7/10): Representation theory of $\Theta$
+    under $\mathrm{SU}(2)$ with the Sc[$\cdot$] selector $\to$ $k$.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach I2: Hosotani Holonomy and Topological Winding Number}
+\label{sec:I2}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END — winding number $w = 0$; Z$_2$ NS argument
+reproduces H2 motivated conjecture but adds no new proof].}
+
+\subsection{Setup: WZW level as a topological invariant}
+
+The WZW level $k$ is a topological invariant for maps
+$g : S^3 \to \mathrm{SU}(2) \cong S^3$:
+\begin{equation}
+  k = \frac{1}{2\pi^2}\int_{S^3}
+    \mathrm{Tr}\bigl[(g^{-1}\mathrm{d}g)^3\bigr] \;\in\; \mathbb{Z}.
+  \label{eq:k_Pontryagin}
+\end{equation}
+This is the Pontryagin winding number (degree of the map).
+In UBT, $g \in \mathrm{SU}(2)$ is the angular part of the polar
+decomposition $\Theta = r\cdot g$ on the $\psi$-circle.
+The proved Hosotani result gives:
+\begin{equation}
+  U \;:=\; \mathrm{P}\exp\!\Bigl(i\oint A_\psi\,\mathrm{d}\psi\Bigr)
+  \;=\; \exp\!\bigl(2\pi i\,\theta_H\, T^3\bigr),
+  \quad \theta_H = \tfrac{\pi}{2\pi} = \tfrac{1}{2}
+  \;\text{(in units of }2\pi),
+\end{equation}
+i.e.\ $\theta_H = \pi$ in absolute units.
+
+\subsection{Computation: winding number of the Hosotani holonomy}
+
+\begin{observation}[Winding number vanishes for constant holonomy]
+  \label{obs:I2_constant}
+  The Hosotani vacuum has $A_\psi = \mathrm{const}$, so the holonomy
+  $U = \exp(i\pi T^3) \in \mathrm{SU}(2)$ is \emph{spatially constant}
+  (independent of 3D position $\mathbf{x}$).
+  For a constant $U$, the three-form $\mathrm{Tr}[(U^{-1}\mathrm{d}U)^3]
+  = 0$ identically (since $\mathrm{d}U = 0$), and the integral
+  in~\eqref{eq:k_Pontryagin} is zero:
+  \begin{equation}
+    w = \frac{1}{2\pi^2}\int_{S^3}
+      \mathrm{Tr}\bigl[(U^{-1}\mathrm{d}U)^3\bigr] = 0.
+    \label{eq:w_zero_constant}
+  \end{equation}
+  Topological non-triviality requires $U(\mathbf{x})$ to vary over 3D
+  space and to map $S^3 \to \mathrm{SU}(2)$ with non-zero degree.
+  In the constant Hosotani vacuum there is no such map.
+\end{observation}
+
+\begin{observation}[Path along $\psi$-circle also gives zero]
+  \label{obs:I2_path}
+  One might instead consider the map $g(\psi)
+  = \exp(i\psi\,\theta_H T^3 / (2\pi))$ for $\psi \in [0,2\pi]$
+  as a path in $\mathrm{SU}(2)$.
+  Computing the integrand along this path:
+  \begin{align}
+    g^{-1}\partial_\psi g
+    &= \frac{i\theta_H}{2\pi}\, T^3,
+    \\
+    \mathrm{Tr}\bigl[(g^{-1}\partial_\psi g)^3\bigr]\,\mathrm{d}\psi^3
+    &= \Bigl(\frac{i\theta_H}{2\pi}\Bigr)^3\,
+      \mathrm{Tr}\bigl[(T^3)^3\bigr]\,\mathrm{d}\psi^3.
+  \end{align}
+  For $T^3 = \sigma^3/2$ (fundamental): $(T^3)^3 = \sigma^3/8$, and
+  $\mathrm{Tr}[\sigma^3/8] = 0$ (the Pauli matrices are traceless).
+  The integrand vanishes identically; $w = 0$ regardless of $\theta_H$.
+
+  Physically: $\pi_1(\mathrm{SU}(2)) = \pi_1(S^3) = 0$ — the
+  fundamental group of $\mathrm{SU}(2)$ is trivial.  Every loop
+  $S^1 \to \mathrm{SU}(2)$ is contractible.  There is no
+  integer-valued topological invariant for such maps.
+\end{observation}
+
+\subsection{Z\texorpdfstring{$_2$}{2} NS-twist interpretation}
+
+Although the direct winding number is zero, the Hosotani holonomy
+$U = \exp(i\pi T^3)$ plays a role as a \emph{Z$_2$ twist} in the
+partition function.
+
+In the fundamental representation:
+\begin{equation}
+  U_{\mathrm{fund}} = \exp\!\bigl(i\tfrac{\pi}{2}\sigma^3\bigr)
+  = \mathrm{diag}(i,\,-i),
+  \label{eq:U_fund}
+\end{equation}
+which has $\det = 1$ (hence $U \in \mathrm{SU}(2)$), $\mathrm{Tr} = 0$,
+and order 4 ($U^4 = I$).  Under $U^2 = \mathrm{diag}(-1,-1) = -I$,
+the field acquires the sign of the $\mathrm{SU}(2)$ center element.
+
+In $\widehat{\mathrm{SU}(2)}_k$ the center element $-I$ acts on the
+spin-$j$ representation as $(-1)^{2j}$:
+\begin{itemize}
+  \item Integer $j$: $(-1)^{2j} = +1$ (Ramond/periodic sector).
+  \item Half-integer $j$: $(-1)^{2j} = -1$ (Neveu-Schwarz/anti-periodic
+    sector = NS sector).
+\end{itemize}
+The NS twist $\delta = 1/2$ (proved: Hosotani branch with $\theta_H = \pi$)
+projects the Hilbert space onto \emph{half-integer} spin primaries.
+For $\widehat{\mathrm{SU}(2)}_k$ the allowed spins are
+$j \in \{0, \tfrac{1}{2}, 1, \ldots, \tfrac{k}{2}\}$:
+the half-integer NS primaries are $j \in \{\tfrac{1}{2}, \tfrac{3}{2},
+\ldots\}$, subject to $j \leq k/2$.
+
+\begin{observation}[NS sector does not uniquely select $k$]
+  \label{obs:I2_NS}
+  The NS sector exists (contains at least the $j = 1/2$ primary) for
+  any $k \geq 1$.  The number of NS primaries is $\lfloor k/2 + 1/2 \rfloor$:
+  \begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    $k$ & NS primaries & Count \\
+    \midrule
+    1 & $j = 1/2$ only & 1 \\
+    2 & $j = 1/2$ only & 1 \\
+    3 & $j = 1/2,\;3/2$ & 2 \\
+    4 & $j = 1/2,\;3/2$ & 2 \\
+    5 & $j = 1/2,\;3/2,\;5/2$ & 3 \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  The Hosotani twist $\theta_H = \pi$ (NS sector) is consistent with any
+  $k \geq 1$.  To uniquely select $k = 1$ from the NS sector alone, one
+  would need an \emph{external} condition such as
+  ``the NS sector contains exactly one primary'' — but this condition
+  is not derived from $\mathcal{S}[\Theta]$.
+\end{observation}
+
+\begin{remark}[I2 reduces to H2]
+  The NS argument gives: $k \geq 1$ (the NS sector is non-empty).
+  Combined with the absence of a Chern-Simons term (proved, H2) and the
+  free kinetic action, the minimum $k = 1$ is recovered — but this is
+  exactly the H2 motivated conjecture.  Approach I2 does not add a new
+  independent constraint; it confirms the H2 lower bound $k \geq 1$.
+\end{remark}
+
+\textbf{I2 result summary:}
+\begin{itemize}
+  \item Topological winding number of constant Hosotani holonomy:
+    $w = 0$ ($\pi_1(\mathrm{SU}(2)) = 0$).  \textbf{[DEAD END]}.
+  \item Path-integral winding along $\psi$-circle: $w = 0$
+    (traceless generators). \textbf{[DEAD END]}.
+  \item Z$_2$ NS-twist interpretation: consistent with any $k \geq 1$;
+    the selection of $k = 1$ requires minimality (= H2).
+    \textbf{[MOTIVATED CONJECTURE — same as H2, no new proof]}.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach I5: Modular Invariance and \texorpdfstring{$\psi$}{psi}-Parity}
+\label{sec:I5}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END — $\psi$-parity is satisfied by
+\emph{all} real modular-invariant partition functions for any $k$].}
+
+\subsection{Setup}
+
+The partition function $Z(\tau)$ of $\widehat{\mathrm{SU}(2)}_k$ on the
+torus must be modular invariant.  The $\psi$-parity
+$\psi \to -\psi$ is a proved symmetry of the UBT action (the
+effective potential $V_{\mathrm{eff}}$ is symmetric under
+$\psi \to -\psi$).  On the complex time $\tau = t + i\psi$, the
+$\psi$-parity acts as:
+\begin{equation}
+  \psi \;\to\; -\psi \;:\quad \tau = t + i\psi \;\to\; t - i\psi = \bar\tau
+  \;\to\; -\bar\tau
+  \quad\text{(with time reversal).}
+  \label{eq:psi_parity_action}
+\end{equation}
+The combined transformation is $\tau \to -\bar\tau$.  The
+$\psi$-parity condition on $Z$ is:
+\begin{equation}
+  Z(\tau) = Z(-\bar\tau).
+  \label{eq:psi_parity_Z}
+\end{equation}
+
+\subsection{Characters and the map \texorpdfstring{$\tau \to -\bar\tau$}{τ→-τ̄}}
+
+The nome variable is $q = e^{2\pi i \tau}$.  Writing $\tau = \tau_1 + i\tau_2$:
+\begin{equation}
+  q = e^{-2\pi\tau_2}\,e^{2\pi i\tau_1},
+  \qquad
+  q_{-\bar\tau} := e^{2\pi i(-\bar\tau)}
+  = e^{-2\pi\tau_2}\,e^{-2\pi i\tau_1}
+  = q^*,
+\end{equation}
+so the map $\tau \to -\bar\tau$ corresponds to $q \to q^*$.
+
+The $\widehat{\mathrm{SU}(2)}_k$ characters are:
+\begin{equation}
+  \chi_j(\tau) = \sum_{r \in \mathbb{Z}} \bigl[
+    q^{(r(k+2)+2j+1)^2/(4(k+2))} - q^{(r(k+2)-2j-1)^2/(4(k+2))}
+  \bigr]
+  \Big/
+  \bigl(q^{1/8} - q^{-1/8}\bigr),
+\end{equation}
+which are convergent series in $q$ with \emph{real} coefficients.
+For any $q$ with $|q| < 1$ (i.e.\ $\tau_2 > 0$):
+\begin{equation}
+  \chi_j(-\bar\tau) = \chi_j(q^*) = \overline{\chi_j(\tau)},
+  \label{eq:chi_conjug}
+\end{equation}
+because the series has real coefficients (complex-conjugation acts only
+on the powers $q^n \to (q^*)^n$).
+
+\subsection{All real modular invariants satisfy the \texorpdfstring{$\psi$}{psi}-parity condition}
+
+The modular-invariant partition functions of $\widehat{\mathrm{SU}(2)}_k$
+are classified (Cappelli–Itzykson–Zuber A–D–E classification):
+\begin{equation}
+  Z(\tau) = \sum_{j,\,j'} M_{jj'}\,\chi_j(\tau)\,\overline{\chi_{j'}(\tau)},
+  \quad M_{jj'} \in \mathbb{Z}_{\geq 0},\quad M_{00} \geq 1.
+  \label{eq:Z_general}
+\end{equation}
+where the $M$ matrix is symmetric, $M = M^T$ (charge conjugation
+invariance).
+
+\begin{proposition}[$\psi$-parity is automatic for all real $Z$]
+  \label{prop:psi_parity_automatic}
+  For any modular-invariant partition function~\eqref{eq:Z_general}
+  with a symmetric $M$-matrix ($M_{jj'} = M_{j'j}$):
+  \begin{equation}
+    Z(-\bar\tau) = Z(\tau).
+  \end{equation}
+  \begin{proof}
+    Using~\eqref{eq:chi_conjug}:
+    \begin{align}
+      Z(-\bar\tau)
+      &= \sum_{j,j'} M_{jj'}\,\chi_j(-\bar\tau)\,\overline{\chi_{j'}(-\bar\tau)}
+       = \sum_{j,j'} M_{jj'}\,\overline{\chi_j(\tau)}\,\chi_{j'}(\tau).
+    \end{align}
+    Swapping the summation indices $j \leftrightarrow j'$ and using
+    $M_{jj'} = M_{j'j}$:
+    \begin{equation}
+      Z(-\bar\tau)
+      = \sum_{j,j'} M_{j'j}\,\overline{\chi_{j'}(\tau)}\,\chi_j(\tau)
+      = \sum_{j,j'} M_{jj'}\,\chi_j(\tau)\,\overline{\chi_{j'}(\tau)}
+      = Z(\tau). \qedhere
+    \end{equation}
+  \end{proof}
+\end{proposition}
+
+\begin{observation}[$\psi$-parity does not select $k$]
+  \label{obs:I5_dead}
+  Proposition~\ref{prop:psi_parity_automatic} shows that the condition
+  $Z(-\bar\tau) = Z(\tau)$ is satisfied by \emph{every} modular-invariant
+  partition function (A-type, D-type, and E-type) for \emph{every}
+  level $k \geq 1$.  It therefore provides no constraint that could
+  single out a specific value of $k$.
+\end{observation}
+
+\begin{remark}[D-type check for $k = 4$]
+  The D-type invariant at $k = 4$:
+  $Z_D = |\chi_0 + \chi_2|^2 + 2|\chi_1|^2$.
+  This has the form~\eqref{eq:Z_general} with
+  $M_{00} = M_{02} = M_{20} = M_{22} = M_{11} = 1$ (symmetric), so
+  Proposition~\ref{prop:psi_parity_automatic} applies and
+  $Z_D(-\bar\tau) = Z_D(\tau)$. ✓
+  Similarly for all A-type and E-type invariants.
+\end{remark}
+
+\textbf{I5 result summary:}
+\begin{itemize}
+  \item $\psi$-parity $Z(-\bar\tau) = Z(\tau)$: satisfied by all real
+    modular-invariant partition functions for any $k$.
+    \textbf{[DEAD END — no constraint on $k$]}.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach I4: Anomaly Cancellation on the \texorpdfstring{$\psi$}{psi}-Circle}
+\label{sec:I4}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END — non-chiral bosonic field has no 2D gauge
+anomaly; matter-content counting reduces to H3].}
+
+\subsection{Setup: 2D chiral anomaly on $S^1_\psi$}
+
+The WZW level $k$ is related to the 2D gauge anomaly:
+in a chiral (2D) gauge theory, the anomaly coefficient equals the
+level $k$ of the surviving current algebra.  The condition of anomaly
+cancellation reads:
+\begin{equation}
+  k_{\mathrm{total}} = \sum_{\text{left}} n_i\,T(\mathbf{r}_i)
+    - \sum_{\text{right}} n_i\,T(\mathbf{r}_i) = 0,
+  \label{eq:anomaly_cancel}
+\end{equation}
+where left/right refer to the chirality of the mode on $S^1_\psi$,
+$n_i$ is the multiplicity, and $T(\mathbf{r}_i)$ is the Dynkin index
+of representation $\mathbf{r}_i$.
+
+\subsection{UBT field \texorpdfstring{$\Theta$}{Theta} is non-chiral}
+
+The UBT field $\Theta \in \mathbb{C}\otimes\mathbb{H}$ is a
+\emph{complex bosonic} field.  Its kinetic action
+$\mathcal{S}_{\mathrm{kin}} = \int \mathrm{Sc}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]\,\mathrm{d}^5x$
+is:
+\begin{enumerate}
+  \item \textbf{Bosonic}: no intrinsic chirality from spin statistics.
+  \item \textbf{Real} (under the biquaternion norm): $\mathcal{S}_{\mathrm{kin}}
+    = \frac{1}{2}\int \mathrm{Tr}_2[(D\Theta)^\dagger(D\Theta)]\,\mathrm{d}^5x$,
+    which treats left- and right-moving modes on $S^1_\psi$ symmetrically.
+  \item \textbf{Non-chiral}: for each KK mode $\Theta_n$ with
+    $\psi$-momentum $p_\psi = n/R$ on $S^1_\psi$, the complex conjugate
+    mode $\Theta_{-n}$ carries momentum $-n/R$.
+    The left-mover (momentum $+|n|/R$) and right-mover (momentum $-|n|/R$)
+    appear in equal numbers with the same $\mathrm{SU}(2)$ representation.
+\end{enumerate}
+
+\begin{proposition}[Anomaly vanishes for $\Theta$]
+  \label{prop:no_anomaly}
+  The 2D $\mathrm{SU}(2)$ gauge anomaly on $S^1_\psi$ vanishes
+  identically for the UBT field $\Theta$:
+  \begin{equation}
+    k_{\mathrm{anom}} =
+    \sum_{\text{left}} n_i\,T(\mathbf{r}_i)
+    - \sum_{\text{right}} n_i\,T(\mathbf{r}_i) = 0.
+  \end{equation}
+  \begin{proof}
+    Each KK mode $\Theta_n$ with representation $\mathbf{r}$ and
+    left-mover contribution $+T(\mathbf{r})$ is accompanied by its
+    conjugate $\Theta_{-n}$ with equal representation $\mathbf{r}$ and
+    right-mover contribution $-T(\mathbf{r})$.  The contributions cancel
+    pairwise.  The $n = 0$ (zero-mode) is non-chiral by construction.
+    Hence $k_{\mathrm{anom}} = 0$ for all representations.
+  \end{proof}
+\end{proposition}
+
+\begin{remark}[NS shift does not restore chirality]
+  The Hosotani NS shift $\delta = 1/2$ changes the KK momenta from
+  $n/R$ to $(n + 1/2)/R$ (half-integer spectrum).  This does not
+  introduce chirality: the shifted mode $(n+1/2)/R$ still has an
+  equal-weight partner $-(n+1/2)/R = -(n+1+1/2)/R$ after the shift.
+  Anomaly cancellation remains trivial.
+\end{remark}
+
+\subsection{Matter-content counting: reduces to H3}
+
+If one ignores chirality and instead asks ``what WZW level is
+generated by the matter content on $S^1_\psi$?'', the answer is
+determined purely by the Dynkin index sum:
+\begin{equation}
+  k = \sum_i n_i\,T(\mathbf{r}_i),
+  \label{eq:k_dynkin_I4}
+\end{equation}
+which is \emph{exactly} the H3 formula.  The results from H3 apply
+directly:
+\begin{itemize}
+  \item $N_{\mathrm{phases}} = 3$ modes in the adjoint ($T = 2$):
+    $k = 3 \times 2 = 6$.  $B \approx 93.5 \neq 41.57$.
+    \textbf{[DEAD END]}.
+  \item $N_{\mathrm{phases}} = 3$ modes in the fundamental ($T = 1/2$):
+    $k = 3 \times 1/2 = 3/2$.  $B \approx 53.4 \neq 41.57$.
+    \textbf{[DEAD END]}.
+\end{itemize}
+No anomaly-cancellation argument changes these counts.
+
+\textbf{I4 result summary:}
+\begin{itemize}
+  \item 2D gauge anomaly of the UBT field $\Theta$: vanishes identically
+    ($k_{\mathrm{anom}} = 0$) for non-chiral bosons.
+    \textbf{[DEAD END — trivial]}.
+  \item Matter-content counting: identical to H3 (adjoint gives $k=6$;
+    fundamental gives $k=3/2$; neither is $k=1$).
+    \textbf{[DEAD END — same as H3]}.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Approach I3: Representation Theory of \texorpdfstring{$\Theta$}{Theta}
+with the Sc\texorpdfstring{$[\cdot]$}{[.]} Selector}
+\label{sec:I3}
+%--------------------------------------------------------------------
+
+\textbf{Status: [DEAD END — Sc$[\cdot]$ does not change the level;
+all natural assignments give $k \in \{2, 6, 3/2\}$, none gives
+$k = 1$].}
+
+\subsection{Role of the scalar selector \texorpdfstring{Sc$[\cdot]$}{Sc[.]}}
+
+The UBT kinetic action uses the \emph{scalar part selector}:
+\begin{equation}
+  \mathrm{Sc}[Q] = \tfrac{1}{2}\mathrm{Tr}_2[Q]
+  \quad \text{for } Q \in \mathrm{Mat}(2,\mathbb{C}),
+\end{equation}
+where $\mathrm{Tr}_2$ is the $2\times 2$ matrix trace.
+Thus:
+\begin{equation}
+  \mathrm{Sc}\bigl[(D\Theta)^\dagger(D\Theta)\bigr]
+  = \tfrac{1}{2}\,\mathrm{Tr}_2\bigl[(D\Theta)^\dagger(D\Theta)\bigr]
+  = \tfrac{1}{2}\sum_{ij}\bigl|(D\Theta)_{ij}\bigr|^2.
+  \label{eq:Sc_as_trace}
+\end{equation}
+This is the Hilbert–Schmidt (Frobenius) norm squared of $D\Theta$,
+summed over all $2\times 2$ matrix entries.  The Sc$[\cdot]$ selector
+does \emph{not} project onto a group-theoretic singlet; it is the
+standard $\mathrm{SU}(2)$-invariant trace norm.
+
+\subsection{SU(2) representations of \texorpdfstring{$\Theta$}{Theta}}
+
+$\Theta \in \mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+has $2\times 2 = 4$ complex components.
+
+\paragraph{I3a: Left-action $g \cdot \Theta = g\Theta$ (SU(2)$_L$).}
+Under $g \to g\Theta$, each \emph{column} of the $2\times 2$ matrix
+$\Theta$ transforms as the fundamental (spin-$\tfrac{1}{2}$)
+representation of $\mathrm{SU}(2)_L$.  There are 2 complex columns,
+each containing 2 complex components:
+\begin{itemize}
+  \item Two complex fundamentals: $n_{\mathrm{fund,}\mathbb{C}} = 2$.
+  \item Per complex fundamental: contribution $T(\mathrm{fund})_\mathbb{C}
+    = 2\,T(\mathrm{fund})_\mathbb{R} = 2\times\tfrac{1}{2} = 1$.
+  \item Total: $k_{I3a} = 2 \times 1 = 2$.
+\end{itemize}
+$c_{k=2} = 3\times 2/(2+2) = 3/2$.
+$B_{\mathrm{base}} = (3/2)\times 12^{3/2} \approx 62.4 \neq 41.57$.
+\textbf{[DEAD END]}.
+
+\paragraph{I3b: Adjoint action $g \cdot \Theta \cdot g^{-1}$
+(SU(2)$_{\mathrm{diag}}$).}
+The decomposition $\mathrm{Mat}(2,\mathbb{C}) = \mathbb{C}\otimes\mathbb{H}
+= \mathrm{span}\{1\} \oplus \mathrm{span}\{\mathbf{i},\mathbf{j},\mathbf{k}\}
+= \mathrm{singlet} \oplus \mathrm{adjoint}$
+under the diagonal $\mathrm{SU}(2)$.
+The imaginary modes $\mathrm{Im}(\mathbb{H}) = \mathrm{span}\{\mathbf{i},
+\mathbf{j},\mathbf{k}\}$ transform as the adjoint (spin-1) with $T(\mathbf{adj}) = 2$.
+\begin{itemize}
+  \item $N_{\mathrm{phases}} = 3$ real adjoint scalars.
+  \item $k_{I3b} = 3 \times T(\mathbf{adj}) = 3 \times 2 = 6$.
+    (Same as H3b.)
+\end{itemize}
+$c_{k=6} = 3\times 6/8 = 9/4$.
+$B_{\mathrm{base}} = (9/4)\times 12^{3/2} \approx 93.5 \neq 41.57$.
+\textbf{[DEAD END — same as H3b]}.
+
+\paragraph{I3c: Can Sc$[\cdot]$ reduce the effective level?}
+One might hope that since Sc$[D\Theta^\dagger D\Theta]
+= \frac{1}{2}\mathrm{Tr}_2[(D\Theta)^\dagger(D\Theta)]$
+selects only the \emph{trace} of the matrix product, the WZW
+current might be effectively smaller.
+
+The $\mathrm{SU}(2)_L$-current on $S^1_\psi$ is:
+\begin{equation}
+  J^a(\psi)
+  = \frac{\delta \mathcal{S}_{\mathrm{kin}}}{\delta A^a_\psi}
+  = \mathrm{Sc}[\Theta^\dagger T^a \partial_\psi \Theta]
+    + \mathrm{h.c.}
+  = \tfrac{1}{2}\,\mathrm{Tr}_2[\Theta^\dagger T^a\partial_\psi\Theta]
+    + \mathrm{h.c.}
+  \label{eq:J_current}
+\end{equation}
+This is exactly the standard $\mathrm{SU}(2)_L$-current for
+$\Theta$ in the 2-column-fundamental representation.
+The OPE $J^a(\psi)J^b(\psi') \sim k\,\delta^{ab}/(2\pi(\psi-\psi')^2)$
+gives $k = k_{I3a} = 2$ (from the two complex fundamental columns),
+or the adjoint counting $k = 6$, depending on which
+$\mathrm{SU}(2)$ action is gauged.
+
+The Sc$[\cdot]$ selector does not reduce $k$:
+it is the standard trace that makes the action $\mathrm{SU}(2)$-invariant,
+not a projection that removes degrees of freedom.
+
+\begin{observation}[Sc$[\cdot]$ cannot give $k=1$]
+  \label{obs:I3_no_k1}
+  The four natural assignments:
+  \begin{center}
+  \begin{tabular}{lllll}
+    \toprule
+    Label & $\mathrm{SU}(2)$ action & Rep & $k$ & $B_{\mathrm{base}}$ \\
+    \midrule
+    I3a & left: $g\Theta$ & 2 complex fund.\ & 2 & 62.4 \\
+    I3b & adjoint: $g\Theta g^{-1}$ & 3 real adj.\ & 6 & 93.5 \\
+    H3a & adjoint on $\mathrm{Im}(\mathbb{H})$ & 3 real fund.\ & 3/2 & 53.4 \\
+    H3b & adjoint on $\mathrm{Im}(\mathbb{H})$ & 3 real adj.\ & 6 & 93.5 \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  None of these gives $k = 1$.
+  For $k = 1$ one would need $\sum_i n_i T(\mathbf{r}_i) = 1$;
+  the only option with small integers is $n = 2$, $T = 1/2$
+  (two real fundamentals), but $\mathbb{C}\otimes\mathbb{H}$ does not
+  naturally provide exactly 2 real fundamental modes (it has 3 imaginary
+  + 1 scalar = 4 quaternionic components).
+\end{observation}
+
+\textbf{I3 result summary:}
+\begin{itemize}
+  \item Left-action (I3a): $k = 2$; $B \approx 62.4 \neq 41.57$.
+    \textbf{[DEAD END]}.
+  \item Adjoint-action (I3b): $k = 6$; $B \approx 93.5 \neq 41.57$.
+    (Identical to H3b.) \textbf{[DEAD END]}.
+  \item Sc$[\cdot]$ selector: does not reduce $k$; it is the standard
+    SU(2)-invariant trace norm.  \textbf{[DEAD END]}.
+  \item Search for $k = 1$: no natural assignment from
+    $\mathbb{C}\otimes\mathbb{H}$ achieves $\sum n_i T_i = 1$.
+    \textbf{[DEAD END]}.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Summary and Cumulative Status A1--I5}
+\label{sec:summary}
+%--------------------------------------------------------------------
+
+\subsection{Approaches I2--I5: results table}
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4.2cm}p{4.5cm}p{3.2cm}}
+  \toprule
+  Approach & Method & Conclusion & Status \\
+  \midrule
+  I2 (topo.) & Pontryagin winding of $U_{\mathrm{Hosotani}}$ &
+    $w = 0$ ($\pi_1(\mathrm{SU}(2)) = 0$; constant holonomy) &
+    \textbf{[DEAD END]} \\[4pt]
+  I2 (Z$_2$) & NS twist: $\theta_H = \pi$ selects half-int.\ sector &
+    $k \geq 1$ consistent; same as H2 minimality &
+    \textbf{[MOTIVATED CONJECTURE (= H2)]} \\[4pt]
+  I5 & $\psi$-parity $Z(-\bar\tau) = Z(\tau)$ &
+    Satisfied by all real invariants for any $k$ &
+    \textbf{[DEAD END]} \\[4pt]
+  I4 (anom.) & Chiral anomaly on $S^1_\psi$ &
+    Vanishes identically for non-chiral boson $\Theta$ &
+    \textbf{[DEAD END — trivial]} \\[4pt]
+  I4 (matter) & Dynkin-index counting (as in H3) &
+    $k = 6$ (adj.) or $k = 3/2$ (fund.); neither $= 1$ &
+    \textbf{[DEAD END (= H3)]} \\[4pt]
+  I3a & Left action $g\Theta$: 2 complex fund.\ &
+    $k = 2$; $B \approx 62.4 \neq 41.57$ &
+    \textbf{[DEAD END]} \\[4pt]
+  I3b & Adjoint $g\Theta g^{-1}$: 3 real adj.\ &
+    $k = 6$; $B \approx 93.5$ (= H3b) &
+    \textbf{[DEAD END (= H3b)]} \\[4pt]
+  I3c & Sc$[\cdot]$ selector: role in level &
+    Sc is standard trace; does not reduce $k$ &
+    \textbf{[DEAD END]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cumulative status A1--I5 (30 approaches)}
+
+\begin{center}
+\begin{tabular}{p{2.0cm}p{5.0cm}p{5.5cm}}
+  \toprule
+  Approach group & Method family & Best status \\
+  \midrule
+  A1--F4 (v65) & Gaussian PI, Weyl anom., Fueter, QK index, holonomy,
+    modular weight, \ldots & \textbf{[DEAD END]} or \textbf{[NUMERICAL OBS]} \\
+  G3 (v65) & Kac-Moody modular anomaly & \textbf{[PARTIAL]: $k = 1$ consistent, $c = 1$} \\
+  G2, G4, G7, F (v65) & Weyl $\tilde c$, Fueter, QK index, non-isotropic $D$ &
+    \textbf{[DEAD END]} \\
+  H1 (v67) & WZW norm.: $k = 2\pi r^2$, $r^2 = f(n^*)$ &
+    \textbf{[DEAD END (circular)]} \\
+  H2 (v67) & No CS + free action + minimality &
+    \textbf{[MOTIVATED CONJECTURE]: $k = 1$} \\
+  H3 (v67) & Dynkin index / rep.\ theory &
+    \textbf{[DEAD END]: $k \in \{3/2,\,6\}$} \\
+  I2 (v68) & Hosotani holonomy winding &
+    \textbf{[DEAD END]} ($w = 0$); Z$_2$ reduces to H2 \\
+  I5 (v68) & Modular inv.\ + $\psi$-parity &
+    \textbf{[DEAD END]}: all real $Z$ satisfy cond.\ \\
+  I4 (v68) & Anomaly cancellation &
+    \textbf{[DEAD END]}: trivial for non-chiral boson \\
+  I3 (v68) & Rep.\ theory + Sc$[\cdot]$ selector &
+    \textbf{[DEAD END]}: $k \in \{2,\,6\}$; none $= 1$ \\
+  \midrule
+  \multicolumn{2}{l}{\textbf{Overall best status (30 approaches total):}} &
+    $k = 1$ is \textbf{[MOTIVATED CONJECTURE]} \\
+  \multicolumn{2}{l}{\textbf{Gap (G3-k) status:}} &
+    \textbf{[OPEN — see updated gap below]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Updated gap status after I2--I5}
+
+\begin{gap}[Gap (G3-k): Level of $\widehat{\mathrm{SU}(2)}$ in UBT —
+Updated after Approaches I2--I5]
+  \label{gap:G3k_I5}
+  After 30 approaches (A1--I5), the situation is unchanged from v67:
+  the formula $k = 2\pi r^2$ is proved; the CS term is absent;
+  $k = 1$ is a motivated conjecture from the minimality principle (H2).
+  
+  Approaches I2--I5 have each been carried through to a conclusion:
+  \begin{itemize}
+    \item I2 (topological winding): $w = 0$ because $\pi_1(\mathrm{SU}(2)) = 0$.
+      The NS-sector interpretation reproduces H2 and does not add a new proof.
+    \item I5 (modular invariance + $\psi$-parity): the ψ-parity condition
+      is satisfied by all real modular-invariant partition functions,
+      providing no constraint on $k$.
+    \item I4 (anomaly cancellation): the 2D anomaly is trivially zero for
+      the non-chiral bosonic field $\Theta$; the matter-content counting
+      reproduces the H3 dead ends.
+    \item I3 (representation theory with Sc$[\cdot]$): the left action
+      on $\mathrm{Mat}(2,\mathbb{C})$ gives $k = 2$; the adjoint gives
+      $k = 6$; the Sc$[\cdot]$ selector is the standard trace and does
+      not reduce $k$.  No natural assignment gives $k = 1$.
+  \end{itemize}
+  \textbf{All four new routes are [DEAD END].}
+  
+  The only path to $k = 1$ that is not a dead end remains H2
+  (minimality: no CS, free action, $k = 1$ as the lowest consistent
+  level).  This is a \textbf{[MOTIVATED CONJECTURE]}, not a proof.
+  
+  The fundamental obstruction is: any non-circular derivation of $k$
+  must either (a)~determine $r^2$ from $\mathcal{S}[\Theta]$ without
+  $V_{\mathrm{eff}}$, or (b)~find a topological or algebraic invariant
+  of $\mathcal{S}[\Theta]$ that is integer-valued and equals 1.
+  Route (a) remains circular; route (b) has not been found despite
+  30 attempts.
+  
+  Status: \textbf{[OPEN — $k=1$ remains [MOTIVATED CONJECTURE];
+  new approaches needed]}.
+\end{gap}
+
+\subsection{What has been gained from I2--I5}
+
+The negative results of I2--I5 are informative:
+\begin{enumerate}
+  \item The simplest topological invariant of the Hosotani configuration
+    ($w = 0$) is trivial, ruling out the topology of $S^1_\psi$ as the
+    source of the quantisation of $k$.
+  \item The ψ-parity condition, while a genuine constraint on the
+    UBT action, does not translate into a constraint on $k$ — it is
+    automatically satisfied by the symmetry of ADE modular invariants.
+  \item The 2D gauge anomaly on $S^1_\psi$ is trivial for bosons;
+    chirality (which would create a non-trivial anomaly) is absent.
+  \item The scalar-part selector Sc$[\cdot]$ in the UBT action is
+    equivalent to the standard $\mathrm{SU}(2)$-invariant trace and
+    does not project the level to a lower value.
+\end{enumerate}
+Taken together, these results sharpen the obstruction: $k$ is not
+determined by the topology, symmetry, anomaly structure, or
+representation content of the free kinetic action alone.
+The only remaining handle is the \emph{normalisation} of the kinetic
+term ($k = 2\pi r^2$), which requires an independent source for
+$r^2$.
+
+%--------------------------------------------------------------------
+\section{In Plain Language}
+\label{sec:plain}
+%--------------------------------------------------------------------
+
+\textbf{In plain language:}
+This document investigated four new approaches to determine the integer
+$k$ (the ``Kac-Moody level'' of the imaginary-time symmetry algebra of
+UBT), all designed to avoid the circularity that blocks the earlier
+approaches.
+
+The first new approach (I2) tried to use the known value of the
+gauge-field phase around the imaginary-time circle (called the
+Hosotani angle, proved to be $\pi$) to extract a ``winding number''
+that would equal $k$.
+The attempt fails because the gauge group $\mathrm{SU}(2)$ is
+topologically a 3-sphere, which has no non-trivial loops:
+every path in $\mathrm{SU}(2)$ that starts and ends at the same point
+can be continuously shrunk to a point.
+Mathematically, $\pi_1(\mathrm{SU}(2)) = 0$.
+The winding number of the Hosotani holonomy is therefore zero,
+not $k = 1$ or any other positive integer.
+A secondary argument — that the Hosotani angle $\pi$ activates the
+``anti-periodic'' (NS) sector of the algebra, which exists only for
+$k \geq 1$ — correctly gives a lower bound $k \geq 1$, but this is
+exactly the same result already obtained by the minimality argument
+(Approach H2).
+
+The second new approach (I5) tested whether the symmetry of the
+partition function under time-reversal (the ``$\psi$-parity'' symmetry
+proved for UBT) could single out a unique level $k$.
+The answer is no: every physically sensible partition function
+(technically: every modular-invariant $Z$ with a symmetric coupling
+matrix) automatically satisfies the time-reversal condition.
+This is a mathematical identity that holds for every value of $k$
+simultaneously, so no value is preferred.
+
+The third approach (I4) asked whether requiring the quantum theory on
+the imaginary-time circle to be free of gauge anomalies fixes $k$.
+For a bosonic field like the UBT field $\Theta$, the gauge anomaly
+is automatically zero (left- and right-moving modes come in pairs
+of equal and opposite charge, cancelling each other).
+When the anomaly is non-trivially extended to a level-counting
+formula, the answer reduces to the same mode-counting that was already
+exhausted in the representation-theory approach H3.
+
+The fourth approach (I3) revisited the representation theory of the
+UBT field under $\mathrm{SU}(2)$, paying special attention to the
+role of the scalar-part selector Sc$[\cdot]$ in the action.
+We found that Sc$[\cdot]$ is algebraically equivalent to the standard
+matrix trace, which is the $\mathrm{SU}(2)$-invariant inner product.
+It does not reduce the effective level: the left-multiplication
+action gives $k = 2$, and the adjoint action gives $k = 6$,
+neither matching the needed $k = 1$.
+
+After 30 approaches, $k = 1$ remains a well-motivated but unproved
+conjecture.
+The precise obstacle is now clearly identified: all routes to $k$
+either require knowing the vacuum amplitude $r^2$
+(which cannot be obtained without the very number $n^* = 137$
+that we are trying to derive), or produce integer values different
+from 1.
+A proof of $k = 1$ will require either a novel algebraic structure
+in $\mathbb{C}\otimes\mathbb{H}$ that is not captured by the standard
+representation theory, or an entirely new strategy.
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

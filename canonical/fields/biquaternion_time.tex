@@ -30,7 +30,7 @@ T_B = t + i(\psi + \mathbf{v} \cdot \boldsymbol{\sigma}) = t + i\psi + j\chi + k
 
 where $\mathbf{v} = (\chi, \xi, 0)$ and $\boldsymbol{\sigma} = (j, k, ij)$ are quaternion vector components.
 
-\textbf{Note}: This is the canonical, most general formulation. Complex time $\tau = t + i\psi$ is a limiting/simplified case valid when directional components are negligible.
+\textbf{Note}: The canonical UBT time coordinate is $\tau = t + i\psi$ (complex time). Biquaternion time $T_B = t + i\psi + j\chi + k\xi$ is a deprecated/historical extension preserved here for reference. It is not part of the canonical minimal theory.
 
 \subsection{Physical Interpretation}
 
@@ -49,7 +49,7 @@ The real part $t$ represents:
 The scalar imaginary part $\psi$ represents:
 \begin{itemize}
     \item \textbf{Isotropic phase structure} of the $\Theta$ field
-    \item \textbf{Consciousness substrate} for psychon excitations
+    \item \textbf{Internal auxiliary sector} (speculative; see \texttt{speculative\_extensions/})
     \item \textbf{Scalar dark energy} contributions
     \item \textbf{Universal quantum coherence} (direction-independent)
 \end{itemize}
@@ -61,7 +61,7 @@ The vector imaginary parts $(\chi, \xi)$ represent:
     \item \textbf{Directional phase structures} in spacetime
     \item \textbf{Torsion effects} and spin-orbit coupling
     \item \textbf{Anisotropic dark matter} distributions
-    \item \textbf{Directional consciousness modes} (collective phenomena)
+    \item \textbf{Directional phase modes} (collective internal sector)
 \end{itemize}
 
 \textbf{Critical}: All components ($\psi, \chi, \xi$) are \textbf{dynamical variables} with physical consequences, not mathematical artifacts.
@@ -84,7 +84,7 @@ The imaginary time components have their own dynamics. The full equations emerge
 \begin{itemize}
     \item $\Box = \partial_\mu\partial^\mu$ is the d'Alembertian operator
     \item $m_\psi, m_v$ are effective mass scales
-    \item $J_\psi, \mathbf{J}_v$ are sources coupling to matter/consciousness
+    \item $J_\psi, \mathbf{J}_v$ are sources coupling to matter/internal sector
     \item $\mathbf{v} = (\chi, \xi, 0)$ is the vector imaginary component
 \end{itemize}
 
@@ -105,7 +105,7 @@ This \textbf{complex time limit} is valid for:
 \begin{itemize}
     \item Spherically symmetric systems
     \item Weakly coupled systems
-    \item Individual consciousness (single psychon modes)
+    \item Weakly-coupled isotropic sector
     \item Isotropic cosmological backgrounds
 \end{itemize}
 
@@ -146,17 +146,16 @@ The imaginary components $(\psi, \chi, \xi)$ are \textbf{not directly observable
 
 \subsubsection{Indirect Detection}
 
-The imaginary time components can be detected through:
+The imaginary time components may in principle leave observable traces through:
 \begin{itemize}
-    \item Psychon excitations (via $\Theta$-resonator)
     \item Quantum entanglement signatures
-    \item Consciousness-correlated phenomena
-    \item Dark sector interactions
-    \item Anisotropic dark matter distributions (vector components)
+    \item Dark-sector interactions (\textit{speculative/open})
+    \item Anisotropic dark-sector contributions via vector components (\textit{speculative/open})
     \item Torsion effects in strong gravity (vector components)
 \end{itemize}
 
-See Section~\ref{sec:canonical:theta_resonator} for experimental protocols.
+\textit{Consciousness/psychon interpretations are speculative and not part of core UBT.
+See \texttt{speculative\_extensions/consciousness/} for that material.}
 
 \subsection{Mathematical Properties}
 
@@ -295,7 +294,7 @@ Energy-momentum conservation in biquaternion time:
 This expands to separate conservation laws for each component:
 \begin{align}
 \frac{\partial T^{\mu\nu}}{\partial t} &= \text{sources from } \psi, \chi, \xi \\
-\frac{\partial T^{\mu\nu}}{\partial \psi} &= \text{consciousness coupling} \\
+\frac{\partial T^{\mu\nu}}{\partial \psi} &= \text{phase sector coupling} \\
 \frac{\partial T^{\mu\nu}}{\partial \chi}, \frac{\partial T^{\mu\nu}}{\partial \xi} &= \text{torsion/anisotropic sources}
 \end{align}
 
@@ -315,7 +314,7 @@ where $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu}(T_B))$ is the real projectio
 \begin{tabular}{ll}
 \textbf{Symbol} & \textbf{Meaning} \\
 \hline
-$T_B$ & Biquaternion time coordinate (canonical) \\
+$T_B$ & Biquaternion time coordinate (deprecated/historical extension) \\
 $\tau$ & Complex time coordinate (isotropic limit) \\
 $t$ & Real time component \\
 $\psi$ & Scalar imaginary time component \\
@@ -345,15 +344,11 @@ All components have dimension of length (or inverse energy).
 
 \subsection{Historical Note}
 
-This canonical definition establishes biquaternion time $T_B = t + i\psi + j\chi + k\xi$ as the \textbf{fundamental, most general time coordinate} in UBT. The imaginary components $(\psi, \chi, \xi)$ are \textbf{dynamical physical fields}, not passive parameters. 
+The canonical UBT time coordinate is complex time $\tau = t + i\psi$. Biquaternion time $T_B = t + i\psi + j\chi + k\xi$ is a deprecated/historical extension. The imaginary component $\psi$ is a dynamical field; extensions $\chi, \xi$ are not part of the canonical minimal theory. 
 
-Complex time $\tau = t + i\psi$ is a \textbf{simplification/limiting case} valid when directional structure is negligible. This hierarchical structure resolves ambiguities in earlier formulations and provides a consistent foundation for:
-\begin{itemize}
-    \item Consciousness physics (psychon excitations)
-    \item Dark sector coupling (scalar dark energy, anisotropic dark matter)
-    \item Spacetime torsion and spin effects
-    \item Directional quantum coherence
-\end{itemize}
+Complex time $\tau = t + i\psi$ is the canonical UBT time coordinate.
+The earlier biquaternion extensions $\chi, \xi$ may appear in exploratory research tracks but are not canonical.
+This document is preserved for reference; any new canonical content should use $\tau$.
 
 \subsection{Simplification: Complex Time Limit}
 
@@ -362,19 +357,14 @@ Complex time $\tau = t + i\psi$ is a \textbf{simplification/limiting case} valid
 \begin{itemize}
     \item Spherically symmetric gravitational systems
     \item Cosmological models with isotropy
-    \item Individual consciousness states (single psychon)
+    \item Individual weakly-coupled sector (isotropic modes)
     \item Weak-field approximations
 \end{itemize}
 
-\textbf{When full biquaternion time is needed}:
-\begin{itemize}
-    \item Strong torsion effects
-    \item Anisotropic dark matter distributions
-    \item Collective consciousness phenomena
-    \item Non-Abelian gauge dynamics beyond SM
-    \item Spin-orbit coupling in strong fields
-\end{itemize}
+\textbf{Biquaternion time $T_B$ (deprecated extension)}: Extensions $\chi, \xi$ have been proposed for
+strong torsion effects, anisotropic dark matter, and non-Abelian dynamics, but these are speculative and
+belong in \texttt{research\_tracks/} or \texttt{speculative\_extensions/}.
 
-The decision to use $\tau$ vs $T_B$ is problem-dependent, but $T_B$ is always the more fundamental, canonical formulation.
+The canonical formulation uses $\tau = t + i\psi$. Biquaternion time $T_B$ is a deprecated extension for research purposes only.
 
 % End of canonical complex time definition

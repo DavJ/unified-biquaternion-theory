@@ -21,7 +21,7 @@ if str(repo_root) not in sys.path:
 
 # Add tools and forensic_fingerprint to path
 tools_path = repo_root / 'tools' / 'data_provenance'
-forensic_path = repo_root / 'forensic_fingerprint'
+forensic_path = repo_root / 'tools' / 'forensic_fingerprint'
 if str(tools_path) not in sys.path:
     sys.path.insert(0, str(tools_path))
 if str(forensic_path) not in sys.path:
@@ -32,7 +32,7 @@ import validate_manifest
 
 # Import the validation function from run_real_data_cmb_comb
 # We need to be careful here since it has dependencies
-sys.path.insert(0, str(repo_root / 'forensic_fingerprint'))
+sys.path.insert(0, str(repo_root / 'tools' / 'forensic_fingerprint'))
 
 
 def test_manifest_contains_exact_files():

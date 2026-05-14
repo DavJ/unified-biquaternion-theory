@@ -1,0 +1,10 @@
+name,formula,value_computed,value_experimental,status
+delta_electron,1/2 (Hosotani shift),0.5,N/A,assumed
+delta_prime,0 (second shift),0.0,N/A,assumed (needs justification)
+E(0_1),"sqrt((0+0.5)^2 + 1^2)",1.118034,N/A,eigenvalue
+E(0_2),"sqrt((0+0.5)^2 + 2^2)",2.061553,N/A,eigenvalue
+E(1_0),"sqrt((1+0.5)^2 + 0^2)",1.500000,N/A,eigenvalue
+E(1_1),"sqrt((1+0.5)^2 + 1^2)",1.802776,N/A,eigenvalue
+m_mu_over_m_e_computed,E(0_2)/E(0_1),1.8439,206.768,MISMATCH (claimed 207.3)
+m_tau_over_m_mu_computed,E(1_0)/E(0_2),0.7276,16.817,MISMATCH (claimed 16.9)
+m_tau_over_m_mu_alt,E(1_1)/E(0_2),0.8745,16.817,MISMATCH (claimed alternative)

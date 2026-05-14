@@ -17,6 +17,7 @@ Covers:
 import sys
 import tempfile
 import numpy as np
+import pytest
 from pathlib import Path
 
 # Ensure imports work
@@ -25,11 +26,11 @@ if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 # Add forensic_fingerprint loaders to path
-loaders_path = repo_root / 'forensic_fingerprint' / 'loaders'
+loaders_path = repo_root / 'tools' / 'forensic_fingerprint' / 'loaders'
 if str(loaders_path) not in sys.path:
     sys.path.insert(0, str(loaders_path))
 
-cmb_comb_path = repo_root / 'forensic_fingerprint' / 'cmb_comb'
+cmb_comb_path = repo_root / 'tools' / 'forensic_fingerprint' / 'cmb_comb'
 if str(cmb_comb_path) not in sys.path:
     sys.path.insert(0, str(cmb_comb_path))
 
@@ -269,6 +270,7 @@ def test_strict_mode_raises_on_mismatch():
     print(f"  Sanity checks passed: {metadata['sanity_checks_passed']}")
 
 
+@pytest.mark.filterwarnings("ignore::UserWarning")
 def test_load_planck_data_with_auto_resolution():
     """
     Test load_planck_data with model file requiring auto-resolution.

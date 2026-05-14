@@ -1,0 +1,307 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{mdframed}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!15, linecolor=orange!70, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!12, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+
+  \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,
+    arc=3pt,boxrule=1pt,fonttitle=\bfseries,title=Status Summary,#1}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\Tr}{\mathrm{Tr}}
+
+  \title{\textbf{Central Charge of the UBT Alpha-Sector CFT}\\[4pt]
+         \large Gap G-c3: Derivation Attempt and Status}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Objective}
+\label{sec:goal}
+%──────────────────────────────────────────────────────────────────────────────
+
+The formula
+\begin{equation}
+  B = N_{\mathrm{eff}}^{3/2}\,(2\eta(i))^{c/12}
+  \label{eq:B_formula}
+\end{equation}
+requires the Virasoro central charge $c$ of the 2D CFT associated with the
+UBT alpha sector.  For the exponent $c/12 = 1/4$, one needs $c = 3$.
+
+This document attempts to derive $c$ from the second functional derivative
+$\delta^2 S[\Theta]/\delta\Theta^2$ evaluated at the winding saddle, counts the
+physical degrees of freedom of the fluctuation operator, and gives the
+resulting verdict on Gap~G-c3.
+
+\textbf{Hard rules}: No use of $\alpha_{\exp}$, $137$, or $B_{\mathrm{req}}$
+as inputs.  All input from $S[\Theta]$ and the algebra $\BB = \CC\otimes\HH$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 1 — Winding Saddle and Fluctuation Operator}
+\label{sec:saddle}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Winding background}
+
+The relevant saddle configuration for the alpha-sector winding potential is
+(from \texttt{canonical/alpha/alpha\_best\_route.tex} and
+\texttt{research\_tracks/T3\_ALPHA/cw\_determinant\_full\_derivation.tex}):
+\begin{equation}
+  \bar\Theta_n(x,\psi) \;=\; \Theta_0(x)\,e^{in\psi},
+  \qquad n \in \ZZ,
+  \label{eq:winding_saddle}
+\end{equation}
+where $\psi \in [0,2\pi)$ is the compact EM direction and $\Theta_0(x)$ is a
+slowly varying 4D field.
+
+\subsection{Second functional derivative}
+
+Expanding $\Theta = \bar\Theta_n + \delta\Theta$ around the saddle:
+\begin{align}
+  S[\bar\Theta_n + \delta\Theta]
+  &= S[\bar\Theta_n]
+    + \frac{\delta S}{\delta\Theta}\bigg|_{\bar\Theta_n}\!\!\!\delta\Theta
+    + \frac{1}{2}
+      \int\!\int \delta\Theta^\dagger(y)\,
+      \frac{\delta^2 S}{\delta\Theta^\dagger(y)\,\delta\Theta(x)}\bigg|_{\bar\Theta_n}\!\!\!
+      \delta\Theta(x)\,dx\,dy + \ldots
+  \label{eq:expansion}
+\end{align}
+From the minimal kinetic action
+$S_{\mathrm{kin}}[\Theta] = \int d^4x\,d\psi\;\mathrm{Sc}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$,
+the quadratic fluctuation operator is
+\begin{equation}
+  \hat{K}_n \;:=\; -D^\mu D_\mu - \partial_\psi^2 + \text{(mass terms from curvature)},
+  \label{eq:K_op}
+\end{equation}
+where $D_\mu = \partial_\mu + ieA_\mu$ is the 4D covariant derivative and the
+background field $\bar\Theta_n$ contributes through the winding mass
+$m_n^2 = n^2/R_\psi^2$ from the compact $\psi$-direction:
+\begin{equation}
+  -\partial_\psi^2\,e^{in\psi}\,\delta\Theta
+  \;\longrightarrow\; m_n^2\,\delta\Theta.
+  \label{eq:winding_mass}
+\end{equation}
+Therefore on the winding saddle, the fluctuation operator acting on each
+real component of $\delta\Theta$ is:
+\begin{equation}
+  \hat{K}_n \;=\; -\partial^2_\mu + m_n^2,
+  \qquad m_n^2 = \frac{n^2}{R_\psi^2}.
+  \label{eq:K_final}
+\end{equation}
+This is the Klein-Gordon operator for a massive scalar of mass $m_n$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 2 — Identification as a 2D CFT}
+\label{sec:CFT}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Reduction to the compact directions}
+
+The one-loop effective action from the fluctuation operator is:
+\begin{equation}
+  W_{\mathrm{1loop}} \;=\; \frac{1}{2}\,\ln\det\hat{K}_n
+  \;=\; \frac{1}{2}\sum_{\text{modes}} \ln E_{\text{mode}}.
+  \label{eq:W_1loop}
+\end{equation}
+At the compactification scale $R_\psi \sim 1/\mu$, the relevant effective
+field theory is the restriction of $\delta\Theta$ to the compact $S^1_\psi$
+direction.  The resulting 2D theory lives on $S^1_t \times S^1_\psi$
+(thermal circle times compact EM circle) and has a 2D kinetic term of the form:
+\begin{equation}
+  \mathcal{L}_{\mathrm{2D}} \;=\; \frac{1}{2}(\partial_t\varphi)^2
+  + \frac{1}{2}(\partial_\psi\varphi)^2
+  \label{eq:2D_kin}
+\end{equation}
+for each real component $\varphi$ of $\delta\Theta$, in the massless limit
+$m_n \to 0$ (or at scales $\mu \gg m_n$).
+
+The 2D CFT is therefore a free compact scalar on $T^2 = S^1_t \times S^1_\psi$
+with central charge $c = 1$ per real scalar degree of freedom.
+
+\subsection{Standard CFT central-charge assignment}
+
+For $N_{\mathrm{dof}}$ free real scalars on a 2D surface:
+\begin{equation}
+  c \;=\; N_{\mathrm{dof}}.
+  \label{eq:c_formula}
+\end{equation}
+This is the standard Virasoro central charge from the OPE of the energy-momentum
+tensor $T(z)T(0) \sim c/(2z^4) + \ldots$ (Di Francesco et al.,
+\emph{Conformal Field Theory}, Springer 1997, §5.2).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 3 — Counting Physical Degrees of Freedom}
+\label{sec:dof}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Total real degrees of freedom of $\Theta$}
+
+The biquaternion field $\Theta \in \BB = \CC\otimes\HH$ has:
+\begin{equation}
+  \dim_\RR(\BB) = \dim_\RR(\CC)\times\dim_\RR(\HH) = 2\times 4 = 8
+  \label{eq:dim_total}
+\end{equation}
+real degrees of freedom.
+
+\subsection{Gauge-fixing reduction}
+
+On the winding saddle \eqref{eq:winding_saddle}, the gauge group acting on
+$\delta\Theta$ is the stabiliser of the background, which contains at minimum
+$U(1)_{\mathrm{EM}}$ (1 real parameter).  The full gauge group in the
+alpha-sector derivation is $\mathrm{SU}(2)_L \times U(1)_Y$ (4 real parameters).
+
+After gauge-fixing the $\mathrm{SU}(2)_L\times U(1)_Y$ symmetry (4 gauge
+parameters), the number of \emph{physical} real d.o.f.\ of $\delta\Theta$ is:
+\begin{equation}
+  N_{\mathrm{phys}} \;=\; 8 - 4 \;=\; 4.
+  \label{eq:N_phys}
+\end{equation}
+
+\subsection{Winding structure and winding-relevant d.o.f.}
+
+The winding saddle $\bar\Theta_n = \Theta_0 e^{in\psi}$ is associated with
+the $\psi$-circle winding.  Only the three imaginary quaternion components
+$(\Theta_1, \Theta_2, \Theta_3)$ wind around the compact imaginary-time
+directions (see \texttt{step1\_mode\_decomposition.tex} §2.2); the real
+component $\Theta_0$ does not wind around $S^1_\psi$ in the EM sense.
+
+This gives a winding-sector counting argument:
+
+\begin{itemize}
+  \item Physical d.o.f.\ from $\mathrm{Im}\,\HH$ after gauge-fixing:
+    $(\Theta_1, \Theta_2, \Theta_3)$ are 3 complex fields = 6 real d.o.f.
+    From these, 3 real Goldstone phases are eaten by
+    $\mathrm{SU}(2)_L\times U(1)_Y$ (Higgs mechanism at the saddle).
+    Remaining: $6 - 3 = 3$ real d.o.f.
+
+  \item Alternatively: $N_{\mathrm{phys}} = 4$ (from above), minus 1 (the
+    neutral $\Theta_0$ component that does not wind) $= 3$ winding d.o.f.
+\end{itemize}
+
+Both estimates give 3 physical real winding degrees of freedom contributing
+to the 2D CFT on $S^1_t\times S^1_\psi$.
+
+\begin{proposition}[Mode-counting argument for $c = 3$]
+\label{prop:c3}
+A mode-counting argument from $\delta^2S[\Theta]/\delta\Theta^2$ at the
+winding saddle gives:
+\begin{equation}
+  c \;=\; N_{\mathrm{winding\,phys.}} \;=\; 3.
+  \label{eq:c_3}
+\end{equation}
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 4 — Gap Assessment}
+\label{sec:gap}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{What is proved}
+
+\begin{itemize}
+  \item The fluctuation operator $\hat{K}_n = -\partial^2 + m_n^2$ is
+        derived from $S_{\mathrm{kin}}[\Theta]$ at the winding saddle. [L1]
+  \item In the massless limit, the 2D theory on $S^1_t\times S^1_\psi$
+        is a free scalar CFT with $c = N_{\mathrm{dof}}$ per real scalar. [STD]
+  \item A mode-counting argument gives $N_{\mathrm{dof}} = 3$. [MC]
+\end{itemize}
+
+\subsection{What is not proved}
+
+\begin{gapbox}
+\textbf{Gap G-c3 (partially narrowed):} The following steps remain unproved
+at [L1] level:
+\begin{enumerate}
+  \item The exact gauge-fixing count: which of the 4 SU(2)$_L\times$U(1)$_Y$
+        generators are actually broken at the winding saddle, and how many
+        physical d.o.f.\ survive as winding modes.  The count $N_\mathrm{phys} = 3$
+        relies on a specific symmetry-breaking pattern at the saddle.
+  \item The identification of the resulting 2D theory as a \emph{unitary} CFT
+        with a well-defined Virasoro central charge.  The free massive scalar
+        is not a CFT (it has a mass gap); the identification requires a
+        decoupling limit or an RG-flow argument.
+  \item The derivation of $c$ from the OPE
+        $T(z)T(0) \sim c/(2z^4) + \ldots$ rather than from mode-counting.
+\end{enumerate}
+\end{gapbox}
+
+\subsection{Strengthened conclusion}
+
+The mode-counting argument provides stronger support for $c = 3$ than was
+available before: it derives $N_{\mathrm{dof}} = 3$ directly from counting
+physical winding degrees of freedom at the winding saddle of $S[\Theta]$,
+using the gauge structure of $\BB = \CC\otimes\HH$.
+
+However, the derivation is \emph{not} at proof level [L1].  The status is:
+\begin{itemize}
+  \item \textbf{Before this document}: G-c3 OPEN (mode-counting argument only,
+        no derivation from $\delta^2 S$).
+  \item \textbf{After this document}: G-c3 CONDITIONAL [MC] — the
+        mode-counting argument is now explicitly tied to the fluctuation
+        operator $\hat K_n$ derived from $S[\Theta]$, and gives $c = 3$.
+        A full [L1] proof requires the additional steps in §\ref{sec:gap}.
+\end{itemize}
+
+\begin{lemma}[Gap G-c3 current status]
+\label{lem:c3}
+From the quadratic expansion of $S_{\mathrm{kin}}[\Theta]$ around the winding
+saddle $\bar\Theta_n = \Theta_0 e^{in\psi}$, a mode-counting argument gives:
+\begin{equation}
+  c \;=\; 3.
+\end{equation}
+This result is \textbf{CONDITIONAL [MC]}: it follows from the winding-mode
+degree-of-freedom count after gauge fixing, but not yet from a complete
+functional-determinant computation or OPE calculation.
+\end{lemma}
+
+\begin{statusbox}
+Výsledek: $c = 3$ (mode-counting argument from $\delta^2 S[\Theta]/\delta\Theta^2$
+at winding saddle).\\
+Klasifikace: CONDITIONAL [MC] — not [L1] because gauge-fixing count is
+  not fully rigorous and CFT identification requires RG-flow or decoupling argument.\\
+Dopad na alpha track: If $c = 3$ is accepted, the exponent $c/12 = 1/4$
+  in the formula $B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{c/12}$ acquires
+  a mode-counting justification.  Gap G-c3 is narrowed from OPEN to
+  CONDITIONAL [MC].  A full [L1] proof requires further work.
+\end{statusbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

@@ -1,0 +1,548 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Three Generations Research Track — Step 4
+% Status: Working document — conclusions labelled CONJECTURE or PROVED
+% Version: 1.0
+% Date: 2026-03-05
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\Sc}{\mathrm{Sc}}
+\newcommand{\lp}{\lambda_p}
+
+\title{%
+  Jacobi Theta Functions as Generation Index in UBT\\
+  Step 4: Modular Forms, Hecke Eigenvalues, and Mass Ratios\\
+  \large Three Generations Research Track --- Step 4
+}
+
+\author{David Jaro\v{s}}
+\date{2026-03-05}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We carry out the four-step programme announced in the problem statement for
+the Hecke-generations conjecture
+(Conjecture~2.1 of \texttt{step2\_modular\_symmetry.tex}).
+Section~1 identifies the modular forms $f_n$ associated to the UBT Fourier
+modes $\hat\Theta_n$, determines their weights~$k_n$ and levels~$N_n$ from
+the T-invariance proof and the S-breaking characterisation of Step~2.
+Section~2 computes the Hecke eigenvalues $\lambda_{137}(f_n)$ for
+the UBT prime $p=137$ via two approaches (Eisenstein and cusp forms) and
+compares the ratios with the experimental lepton mass ratios
+$m_\mu/m_e = 206.768$ and $m_\tau/m_e = 3477.2$.
+Section~3 reports the output of \texttt{verify\_hecke\_masses.py}
+and states the verdict on the conjecture.
+Section~4 formulates the connection to $\alpha$ as a precise conjecture
+about a single Hecke $L$-function.
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Identification of the Modular Forms $f_n$}
+\label{sec:modular_forms}
+%=============================================================
+
+\subsection{Setup}
+
+The UBT field $\Theta(x,\tau)$ with compact imaginary time $\psi\sim\psi+2\pi R_\psi$
+has the Fourier expansion (cf.\ \texttt{step1\_fourier\_vs\_taylor.tex}, eq.~(2)):
+\begin{equation}
+  \label{eq:fourier}
+  \Theta(x,t,\psi)
+  = \sum_{n=-\infty}^{\infty}
+    \hat\Theta_n(x,t)\,e^{in\psi/R_\psi}.
+\end{equation}
+Each coefficient $\hat\Theta_n(x,t)$ is a $\C\otimes\mathbb{H}$-valued function
+that depends on the full complex time $\tau = t+i\psi$ after analytic continuation.
+The UBT vacuum is the two-mode winding ansatz
+\begin{equation}
+  \label{eq:vacuum_ansatz}
+  \Theta_{\mathrm{vac}}(x,\tau)
+  = \Theta_0\,e^{2\pi i\tau} + \Theta_1\,e^{4\pi i\tau} + \Theta_2\,e^{6\pi i\tau},
+\end{equation}
+i.e.\ Fourier modes $n=1,2,3$ with $R_\psi = 1/(2\pi)$ in suitable units.
+
+\subsection{Natural modular forms associated to each mode}
+
+\begin{definition}[Mode modular form]
+\label{def:mode_form}
+The modular form $f_n(\tau)$ associated to the $n$-th Fourier mode
+$\hat\Theta_n$ is the unique (up to normalisation) holomorphic modular form
+of the lowest admissible weight $k_n$ and level $N_n$ whose $q$-expansion
+begins with $q^n$, where $q = e^{2\pi i\tau}$.
+\end{definition}
+
+Concretely, from the vacuum ansatz \eqref{eq:vacuum_ansatz}:
+\begin{align}
+  f_0(\tau) &\sim q^1 = e^{2\pi i\tau}, \label{eq:f0}\\
+  f_1(\tau) &\sim q^2 = e^{4\pi i\tau}, \label{eq:f1}\\
+  f_2(\tau) &\sim q^3 = e^{6\pi i\tau}. \label{eq:f2}
+\end{align}
+
+\subsection{Determination of weights $k_n$}
+
+\paragraph{$T$-invariance constraint.}
+From Proposition~2.1 of \texttt{step2\_modular\_symmetry.tex}, the mode
+$\hat\Theta_n$ transforms under $\tau\mapsto\tau+1$ by the phase
+$e^{i\pi n^2}$.  A holomorphic modular form of weight $k$ transforms
+under $T:\tau\mapsto\tau+1$ as $f(\tau+1) = e^{2\pi i k/24}\cdot f(\tau)$
+(for forms on $\Gamma_0(N)$ with trivial character the $T$-eigenvalue is~$1$
+and the phase counts the multiplier system).
+Matching the UBT phase $e^{i\pi n^2}$ to the weight-$k$ $T$-phase gives
+\begin{equation}
+  \label{eq:weight_condition}
+  e^{i\pi n^2} = e^{2\pi i k_n/24}
+  \quad\Longrightarrow\quad
+  k_n \equiv 12 n^2 \pmod{24}.
+\end{equation}
+The smallest admissible even weight is therefore:
+\begin{align}
+  n=0\colon\quad k_0 &= 12 \cdot 0 = 0 \pmod{24} \Rightarrow k_0 = 0
+    \text{ (constant, trivial)}; \label{eq:k0}\\
+  n=1\colon\quad k_1 &= 12 \cdot 1 = 12 \pmod{24} \Rightarrow k_1 = 12; \label{eq:k1}\\
+  n=2\colon\quad k_2 &= 12 \cdot 4 = 48 \equiv 0 \pmod{24} \Rightarrow k_2 = 0
+    \text{ or } 24. \label{eq:k2}
+\end{align}
+
+\begin{remark}[Weight zero is trivial]
+Weight $k=0$ (and $k=0 \pmod{24}$) corresponds to a constant modular form,
+which has trivial Hecke structure.  This signals that the simple T-phase
+matching is not sufficient; the actual weight must be determined from the
+spin of the field excitation, not only from the T-phase.
+\end{remark}
+
+\paragraph{Spin and weight from the field equation.}
+The UBT field $\Theta\in\C\otimes\mathbb{H}$ is a biquaternion.
+The $n$-th mode $\hat\Theta_n$ propagates with an effective KK mass
+$m_n^{\mathrm{KK}} = n/R_\psi$ and carries angular momentum on the
+internal torus.  The modular weight of the associated automorphic form is
+related to the spin by $k = 2s+1$ in the half-integral weight theory, or
+$k = 2s$ in the integer-weight theory.  For the vacuum biquaternion
+(scalar sector) $s=0$, giving $k=1$ or $k=2$ at the lowest admissible even value.
+
+\begin{definition}[Adopted weights — working hypothesis]
+\label{def:weights}
+The T-phase constraint \eqref{eq:weight_condition} yields $k_0=0$, $k_1=12$,
+$k_2=0\text{ or }24$, which leads to trivial or very high weight forms that are
+arithmetically inaccessible.  The constraint is \emph{necessary but not sufficient}:
+it fixes only the phase of the $T$-transformation, not the full modular behaviour.
+Determining $k_n$ rigorously requires deriving the full functional equation of
+$f_n$ from the UBT field equation — an open problem.
+
+As a \emph{working hypothesis} for the Hecke conjecture test, we adopt the
+\emph{minimal even integer weight} that places the modular forms in the
+arithmetically richest class:
+\begin{equation}
+  \label{eq:weights}
+  k_0 = 2,\quad k_1 = 2,\quad k_2 = 2.
+\end{equation}
+This corresponds to weight-$2$ newforms, which arise naturally from elliptic
+curves (Wiles--Taylor modularity theorem).  The assignment $k_0=k_1=k_2=2$ is
+a starting point; Section~\ref{sec:hecke_computation} shows it does not match
+the experimental ratios and proposes the refined assignment $k=(2,4,4)$ or
+$k=(2,4,6)$ as a \emph{conjecture}.
+\end{definition}
+
+\subsection{Determination of levels $N_n$}
+
+The level $N$ of a modular form on $\Gamma_0(N)$ is related to the
+compactification data.  The natural identification is
+\begin{equation}
+  \label{eq:level}
+  N_n \;\sim\; \frac{1}{R_\psi}\cdot n \;=\; n\,N_0,
+\end{equation}
+where $N_0 = R_\psi^{-1}$ is the base level set by the compactification radius.
+In the UBT Kaluza--Klein spectrum $n/R_\psi$ is the KK momentum of the $n$-th mode,
+so the level is proportional to the mode number.
+Concretely:
+\begin{equation}
+  \label{eq:levels}
+  N_0 = N_0,\quad N_1 = N_0,\quad N_2 = N_0 \text{ (or }2N_0),
+\end{equation}
+with $N_0$ to be fixed by additional physical input (e.g.\ the level structure
+of the elliptic curve whose L-function gives $\alpha$).
+
+\begin{remark}[QED limit check]
+When $N_{\mathrm{eff}}=1$ (single Fourier mode, trivial $\psi$-structure),
+only $f_0$ is present and $f_1,f_2$ are absent.  This is consistent:
+a single modular form has no non-trivial ratios of Hecke eigenvalues,
+so there are no mass ratios — a single generation, as required.
+\checkmark
+\end{remark}
+
+\paragraph{Summary of Section~1.}
+
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Mode $n$ & Form $f_n$ & Leading term & Weight $k_n$ & Level $N_n$\\
+\midrule
+0 & $f_0$ & $q^1 = e^{2\pi i\tau}$ & 2 & $N_0$\\
+1 & $f_1$ & $q^2 = e^{4\pi i\tau}$ & 4 & $N_0$ (or $2N_0$)\\
+2 & $f_2$ & $q^3 = e^{6\pi i\tau}$ & 6 & $N_0$ (or $3N_0$)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================
+\section{Hecke Eigenvalue Computation at $p=137$}
+\label{sec:hecke_computation}
+%=============================================================
+
+\subsection{Hecke operator for integer weight}
+
+For a modular form $f$ of weight $k$ and level $N$, the Hecke operator $T_p$
+(for prime $p\nmid N$) acts as
+\begin{equation}
+  \label{eq:hecke_def}
+  (T_p f)(\tau)
+  = p^{k-1}\,f(p\tau)
+  + p^{-1}\sum_{j=0}^{p-1} f\!\left(\frac{\tau+j}{p}\right).
+\end{equation}
+If $f$ is a Hecke eigenform with eigenvalue $\lambda_p$, then $T_p f = \lambda_p f$.
+
+\subsection{Approach A: Eisenstein series}
+
+For the Eisenstein series $E_k$ of weight $k$ on $\SL(2,\Z)$, the Hecke
+eigenvalues are
+\begin{equation}
+  \label{eq:eisenstein_hecke}
+  \lambda_p(E_k) = 1 + p^{k-1}.
+\end{equation}
+With $p=137$ and $k=2$ for all three modes, one obtains
+\begin{equation}
+  \lambda_{137}(E_2) = 1 + 137 = 138,
+\end{equation}
+so the ratio $\lambda_{137}(f_1)/\lambda_{137}(f_0) = 138/138 = 1$,
+which is far from the experimental value $m_\mu/m_e = 206.77$.
+At different weights $k_0 \neq k_1$ the ratio is
+\begin{equation}
+  \frac{\lambda_{137}(E_{k_1})}{\lambda_{137}(E_{k_0})}
+  = \frac{1+137^{k_1-1}}{1+137^{k_0-1}}
+  \approx 137^{k_1-k_0}
+  \quad(k_1 > k_0),
+\end{equation}
+which takes values $137^2 = 18{,}769$ for $(k_0,k_1)=(2,4)$,
+way above $m_\mu/m_e = 207$.  No combination of even integer weights
+between 2 and 12 gives a ratio of $\approx 207$ or $\approx 3477$.
+
+\paragraph{Conclusion (Approach A).}
+Eisenstein series with integer weights do \emph{not} reproduce the
+experimental lepton mass ratios.  This rules out the simplest possibility
+but does not invalidate the conjecture.
+
+\subsection{Approach B: Cusp forms and the Ramanujan bound}
+
+For a weight-$k$ cusp form (newform) $f$, the Ramanujan--Petersson conjecture
+(proved for $k\geq 1$ by Deligne) gives
+\begin{equation}
+  \label{eq:ramanujan}
+  |\lambda_p(f)| \;\leq\; 2\,p^{(k-1)/2}.
+\end{equation}
+This bound is sharp: for many newforms the eigenvalue is close to the bound.
+At $p=137$ and $k=4$:
+\begin{equation}
+  |\lambda_{137}(f)| \;\leq\; 2 \cdot 137^{3/2} \approx 3207.
+\end{equation}
+This means a weight-4 cusp form can have Hecke eigenvalue as large as
+$\approx 3207$, which \emph{encompasses both target ratios} ($207$ and $3477$).
+Specifically:
+\begin{itemize}
+  \item A weight-4 cusp form with $\lambda_{137} \approx 207$ would give
+        $m_\mu/m_e$ if $\lambda_{137}(f_0)=1$ (possible for a normalised
+        weight-2 form).
+  \item For the tau ratio $m_\tau/m_e \approx 3477$: the weight-4 Ramanujan
+        bound $2\cdot 137^{3/2}\approx 3207 < 3477$ does \emph{not} suffice at
+        $k=4$.  Weight $k=6$ gives $2\cdot 137^{5/2}\approx 4.39\times 10^5$,
+        comfortably containing $3477$.  So $f_2$ requires $k_2=6$.
+\end{itemize}
+Whether such newforms exist at levels $N_0, 2N_0, 3N_0$ is a concrete
+arithmetic question that can be answered using tables of newforms
+(e.g.\ the LMFDB database).
+
+\subsection{Heuristic identification from Ramanujan bound}
+
+Inverting the Ramanujan bound: if we require
+$\lambda_{137}(f_1) \approx m_\mu/m_e \approx 207$ with $\lambda_{137}(f_0) = 1$,
+then
+\begin{equation}
+  \label{eq:invert_ramanujan}
+  207 \leq 2\cdot 137^{(k_1-1)/2}
+  \quad\Longrightarrow\quad
+  k_1 \;\geq\; 1 + \frac{2\ln(207/2)}{\ln 137}
+  \approx 2.88.
+\end{equation}
+So $k_1 = 4$ is the \emph{minimal} weight for a cusp form that could
+produce the muon/electron ratio (bound at $k_1=4$: $\approx 3207 \geq 207$).
+For the tau ratio:
+\begin{equation}
+  \label{eq:invert_ramanujan_tau}
+  3477 \leq 2\cdot 137^{(k_2-1)/2}
+  \quad\Longrightarrow\quad
+  k_2 \;\geq\; 1 + \frac{2\ln(3477/2)}{\ln 137}
+  \approx 3.99.
+\end{equation}
+Since $k_2$ must be an integer and the bound at $k_2=4$ is
+$2\cdot 137^{3/2}\approx 3207 < 3477$, the weight $k_2=4$ is \emph{not}
+sufficient.  The minimal weight that accommodates $m_\tau/m_e=3477$ is
+$k_2=6$ (bound $\approx 4.39\times 10^5 \gg 3477$).  A consistent
+weight assignment that is not immediately ruled out is therefore:
+\begin{equation}
+  \label{eq:weight_assignment_B}
+  k_0 = 2,\quad k_1 = 4,\quad k_2 = 6.
+\end{equation}
+
+\begin{conjecture}[Weight assignment for Hecke generations]
+\label{conj:weight_assignment}
+The modular forms associated to the UBT Fourier modes have weights
+\begin{equation}
+  k_0 = 2,\quad k_1 = 4,\quad k_2 = 6,
+\end{equation}
+corresponding to: $f_0$ a weight-2 newform (associated to an elliptic
+curve of conductor $N_0$), $f_1$ a weight-4 cusp form, and $f_2$ a
+weight-6 cusp form.  Under this assignment the Ramanujan bound
+\emph{permits} the experimental mass ratios for all three leptons.
+\end{conjecture}
+
+\paragraph{Summary of Section~2.}
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & $p=137$ eigenvalue & Ratio to $f_0$ & Experimental\\
+\midrule
+$\lambda_{137}(f_0)$ (Eisenstein, $k_0=2$) & $138$ & $1$ & —\\
+$\lambda_{137}(f_1)$ (Eisenstein, $k_1=2$) & $138$ & $1.00$ & $206.77$\\
+$\lambda_{137}(f_2)$ (Eisenstein, $k_2=2$) & $138$ & $1.00$ & $3477.2$\\
+\midrule
+$\lambda_{137}(f_0)$ (cusp, $k_0=2$) & $\leq 23$ & $1$ & —\\
+$\lambda_{137}(f_1)$ (cusp, $k_1=4$) & $\leq 3207$ & up to $3207$ & $206.77$\\
+$\lambda_{137}(f_2)$ (cusp, $k_2=6$) & $\leq 4.4\times10^5$ & up to $4.4\times10^5$ & $3477.2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================
+\section{Numerical Test: \texttt{verify\_hecke\_masses.py}}
+\label{sec:numerical}
+%=============================================================
+
+The script \texttt{verify\_hecke\_masses.py} (same directory) implements
+the search described in the problem statement.
+
+\subsection{Output summary}
+
+Running the script produces:
+
+\begin{verbatim}
+=== Experimental mass ratios ===
+m_μ/m_e = 206.7683
+m_τ/m_e = 3477.2300
+
+=== Hecke eigenvalues for Eisenstein series E_k at p=137 ===
+  k=2: λ_137(E_2) = 1.38e+02
+  k=4: λ_137(E_4) = 2.57e+06
+  ...
+
+=== Search for (k_0, k_1, k_2) giving experimental ratios ===
+  No exact match within 10% found for Eisenstein series.
+
+=== Ramanujan bound ranges at p=137 ===
+  k=2: |λ_p| ≤ 23.41
+  k=4: |λ_p| ≤ 3207.09
+  ...
+\end{verbatim}
+
+\subsection{Interpretation}
+
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Eisenstein series fail:}
+        No combination of even weights in $\{2,4,6,8,10,12\}$ for $(k_0,k_1,k_2)$
+        produces ratios within $10\%$ of $207$ and $3477$.  This rules out the
+        simplest Eisenstein series scenario.
+  \item \textbf{Cusp forms are not ruled out:}
+        The Ramanujan bound at $k=4$ reaches $\approx 3207$, which contains
+        both target ratios.  A concrete matching would require identifying
+        specific newforms via LMFDB — an open arithmetic problem.
+  \item \textbf{Minimum viable weight:}
+        The minimal weight for a cusp form to accommodate $m_\mu/m_e \approx 207$
+        is $k=4$ (Ramanujan bound $\approx 3207 > 207$).
+        For $m_\tau/m_e \approx 3477$ the weight $k=4$ is \emph{insufficient}
+        (bound $\approx 3207 < 3477$); weight $k=6$ is required
+        (bound $\approx 4.4\times10^5 \gg 3477$).
+\end{enumerate}
+
+\subsection{Verdict on the conjecture}
+
+\begin{theorem}[Status of Conjecture~2.1]
+\label{thm:verdict}
+Under the Eisenstein hypothesis the Hecke-generations conjecture is
+\textbf{false}: no even-integer weight assignment reproduces the
+experimental ratios within $10\%$.
+
+Under the cusp-form hypothesis the conjecture is \textbf{not ruled out}:
+weight-$(2,4,6)$ newforms \emph{can} have Hecke
+eigenvalues consistent with experimental mass ratios, but the existence
+of the specific newforms with eigenvalue $\lambda_{137}\approx 207$ (for
+$f_1$) and $\lambda_{137}\approx 3477$ (for $f_2$) is an open arithmetic question.
+
+The conjecture is therefore in the state: \textbf{[OPEN — cusp-form route]}.
+\end{theorem}
+
+%=============================================================
+\section{Connection to $\alpha$: A Single Hecke $L$-function}
+\label{sec:alpha_connection}
+%=============================================================
+
+\subsection{The UBT prime-sector axiom}
+
+From \texttt{UBT\_HeckeWorlds\_theta\_zeta\_primes\_appendix.tex},
+Axiom~1 (Hecke-Worlds):
+\begin{equation}
+  \label{eq:alpha_axiom}
+  \alpha^{-1} = p + \Delta_{\mathrm{CT}},
+  \quad p = 137.
+\end{equation}
+Here $\Delta_{\mathrm{CT}}$ is the archimedean correction from the
+complex-time sector; the prime $p=137$ is the Hecke-World anchor.
+
+\subsection{Hecke $L$-functions and special values}
+
+For a newform $f$ of weight $k$, level $N$, the Hecke $L$-function is
+\begin{equation}
+  \label{eq:hecke_L}
+  L(s,f) = \sum_{n=1}^{\infty} \frac{a_n(f)}{n^s}
+  = \prod_p \frac{1}{1 - \lambda_p(f)\,p^{-s} + p^{k-1-2s}},
+\end{equation}
+where $a_n(f)$ are the Fourier coefficients of $f$.
+The special values $L(1,f)$, $L(2,f)$, \ldots\ encode deep arithmetic
+information.
+
+\subsection{Unification conjecture}
+
+\begin{conjecture}[Single Hecke $L$-function for $\alpha$ and mass ratios]
+\label{conj:unified_L}
+There exists a single weight-$2$ newform $f_0$ of conductor $N_0$ and
+weight-$4$ cusp forms $f_1,f_2$ such that:
+\begin{enumerate}[label=(\roman*)]
+  \item The fine-structure constant satisfies
+        \begin{equation}
+          \label{eq:alpha_L}
+          \alpha^{-1} = p + \Delta_{\mathrm{CT}},
+          \quad\text{where } p=137 \text{ is the Hecke anchor of } f_0;
+        \end{equation}
+        more precisely, $p=137$ is the unique prime at which $L(s,f_0)$
+        has a prescribed local factor determined by the UBT Ward identity.
+  \item The lepton mass ratios satisfy
+        \begin{equation}
+          \label{eq:mass_L}
+          \frac{m_\mu}{m_e} = \frac{\lambda_{137}(f_1)}{\lambda_{137}(f_0)},
+          \qquad
+          \frac{m_\tau}{m_e} = \frac{\lambda_{137}(f_2)}{\lambda_{137}(f_0)}.
+        \end{equation}
+  \item Consequently:
+        \begin{quote}
+          \emph{The fine-structure constant and the lepton mass ratios are
+          both encoded in the Hecke eigenvalues of automorphic forms on the
+          UBT complex-time torus $T^2=\C/(\Z\oplus\Z\tau_0)$, connected
+          through the same prime $p=137$.}
+        \end{quote}
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}[Hypotheses]
+The explicit hypotheses required for Conjecture~\ref{conj:unified_L} are:
+\begin{enumerate}[label=(H\arabic*)]
+  \item The modular forms $f_0,f_1,f_2$ are genuinely associated to the
+        UBT field via Definition~\ref{def:mode_form} (not just by analogy).
+  \item The prime $p=137$ in the Hecke-Worlds axiom \eqref{eq:alpha_axiom}
+        is the same prime that indexes the Hecke eigenvalues in
+        \eqref{eq:mass_L}.
+  \item The mass ratios are the \emph{ratios} of Hecke eigenvalues at
+        the same prime, not ratios of $L$-function special values at
+        different arguments.
+\end{enumerate}
+If all three hypotheses hold, then $\alpha$ and the lepton mass ratios
+share the same Hecke origin.
+\end{remark}
+
+\begin{remark}[Why this is remarkable]
+Equation~\eqref{eq:alpha_axiom} uses the prime $p=137$ as an arithmetic anchor.
+Equation~\eqref{eq:mass_L} uses $p=137$ as the Hecke index.  If
+Conjecture~\ref{conj:unified_L} holds, then \emph{both} connections come from
+the same modular-arithmetic structure: the Hecke algebra acting on the
+complex-time torus.  This would be the first instance in UBT where two
+apparently unrelated constants ($\alpha$ and lepton masses) are unified by
+a single mathematical object.
+\end{remark}
+
+\subsection{Open questions}
+
+\begin{itemize}
+  \item Identify $f_0$ concretely: which elliptic curve of conductor $N_0$
+        has the property that its Hecke prime $p=137$ matches the UBT axiom?
+        (Possible strategy: search LMFDB for weight-2 newforms with
+        $\lambda_{137}$ related to $\alpha^{-1} - 137 = \Delta_{\mathrm{CT}}$.)
+  \item Find $f_1,f_2$: weight-4 newforms of levels $N_1,N_2$ with
+        $\lambda_{137}(f_1) \approx 207$ and $\lambda_{137}(f_2) \approx 3477$.
+        The Ramanujan bound permits these values at $k=4$.
+  \item Prove (or disprove) Hypotheses (H1)--(H3) from the UBT action principle.
+\end{itemize}
+
+%=============================================================
+\section*{Summary of Deliverables}
+%=============================================================
+
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Deliverable & Status\\
+\midrule
+$f_n$ identified with weights $k_n$ and levels $N_n$ &
+  \checkmark\ (Conjectural: $k=(2,4,6)$)\\
+$\lambda_{137}(f_n)$ computed (Eisenstein) &
+  \checkmark\ (Rules out Eisenstein)\\
+$\lambda_{137}(f_n)$ computed (Ramanujan bound for cusp forms) &
+  \checkmark\ (Cusp-form route open)\\
+\texttt{verify\_hecke\_masses.py} runs and reports results &
+  \checkmark\ (No exact match; cusp-form route not ruled out)\\
+Conjecture confirmed, refined, or ruled out &
+  \checkmark\ (Eisenstein fails, cusp-form $k=(2,4,6)$ open)\\
+Connection to $\alpha$ stated precisely &
+  \checkmark\ (Conjecture~\ref{conj:unified_L})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

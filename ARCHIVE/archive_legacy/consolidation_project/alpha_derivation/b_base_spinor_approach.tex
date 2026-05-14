@@ -1,0 +1,153 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% B_base = N_eff^{3/2} — Approach A1: Spinor Degrees of Freedom
+% Track: CORE — α derivation — v56 baseline
+% Date: 2026-03-07
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Approach A1: $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$\\
+    \large Spinor Degrees of Freedom in $\mathbb{C}\otimes\mathbb{H}$}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-07}
+
+  \begin{document}
+  \maketitle
+\fi
+
+\section{Approach A1: Spinor Degrees of Freedom}
+\label{sec:spinor_approach}
+
+\textbf{Status: [MOTIVATED CONJECTURE]} — algebraically self-consistent;
+not a rigorous proof. No circular use of $\alpha^{-1} = 137$.
+
+\subsection{Starting Point}
+
+The proved one-loop result is
+\begin{equation}
+  B_0 = \frac{2\pi N_{\mathrm{eff}}}{3} \approx 25.13,
+  \qquad N_{\mathrm{eff}} = 12,
+  \label{eq:B0}
+\end{equation}
+while the phenomenologically required value is $B_{\mathrm{req}} \approx 46.3$,
+suggesting a gap factor $B_{\mathrm{req}} / B_0 \approx 1.84$.
+The hypothesis here is that $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ arises
+naturally from the spinor structure of the biquaternionic field.
+
+\subsection{Algebraic Setup}
+
+The biquaternionic field $\Theta$ takes values in $\mathbb{C}\otimes\mathbb{H}
+\cong \mathrm{Mat}(2,\mathbb{C})$.  A single mode $\Theta_k$ is therefore
+a $2\times 2$ complex matrix — i.e.\ it carries $4$ complex, or
+$8$ real, components.  Under the decomposition
+\begin{equation}
+  \Theta_k = \Theta_k^R + i\,\Theta_k^I,
+  \qquad \Theta_k^{R,I} \in \mathbb{H},
+\end{equation}
+each quaternionic part $\Theta_k^{R,I}$ has $4$ real components.
+
+The effective mode count established in UBT is $N_{\mathrm{eff}} = 12$, arising
+from $N_{\mathrm{phases}} \times N_{\mathrm{helicity}} \times N_{\mathrm{charge}}
+= 3 \times 2 \times 2$.  Each mode $\Theta_k$ thus contributes one unit to
+$N_{\mathrm{eff}}$.
+
+\subsection{Vacuum Polarisation Tensor}
+
+The vacuum polarisation tensor $\Pi_{\mu\nu}$ is built from bilinear products of
+$\Theta_k$.  In the biquaternionic sector its entries are $\mathrm{Mat}(2,\mathbb{C})$
+valued, giving a naive count of $N_{\mathrm{eff}}^2 = 144$ independent components.
+
+However, the Ward identity $q^\mu \Pi_{\mu\nu}(q) = 0$ and the Hermiticity
+condition $\Pi_{\mu\nu}^\dagger = \Pi_{\nu\mu}$ impose constraints.  In
+$d=4$ dimensions these reduce the independent transverse degrees of freedom
+by a factor proportional to the square root of the field-space dimension.
+
+\textbf{Heuristic counting:}
+\begin{itemize}
+  \item Mode $\Theta_k$ lives in $\mathrm{Mat}(2,\mathbb{C})$ — a space of
+    (complex) dimension $4 = N_{\mathrm{eff}}/3$ per mode.
+  \item For $N_{\mathrm{eff}}$ modes the vacuum polarisation has
+    $N_{\mathrm{eff}}^2$ naive entries.
+  \item Unitarity of the $S$-matrix imposes the optical theorem on $\Pi_{\mu\nu}$,
+    effectively projecting onto a subspace.  In a theory where the field
+    transforms in the adjoint of a group of rank $r$, the surviving independent
+    components scale as $\sqrt{r}$ times the dimension.
+  \item Here the relevant ``rank'' is provided by the $N_{\mathrm{eff}}$
+    independent spinorial modes: the unitarity constraint selects
+    $\sqrt{N_{\mathrm{eff}}}$ combinations per mode.
+\end{itemize}
+
+Combining:
+\begin{equation}
+  B_{\mathrm{base}} \sim N_{\mathrm{eff}} \times \sqrt{N_{\mathrm{eff}}}
+    = N_{\mathrm{eff}}^{3/2}.
+  \label{eq:B_spinor_heuristic}
+\end{equation}
+For $N_{\mathrm{eff}} = 12$:
+\begin{equation}
+  B_{\mathrm{base}} = 12^{3/2} = \sqrt{1728} \approx 41.57.
+\end{equation}
+
+\subsection{QED Consistency Check}
+
+For a single charged Dirac fermion ($N_{\mathrm{eff}} = 1$):
+\begin{equation}
+  B_{\mathrm{base}}\big|_{N=1} = 1^{3/2} = 1.
+\end{equation}
+The one-loop vacuum polarisation coefficient in QED (Feynman gauge) is
+$\beta_1 = 1/3$, corresponding to $B_0 = 2\pi/3 \approx 2.09$.
+The spinor heuristic gives $B_{\mathrm{base}} = 1$ — a different quantity.
+These are not identical, but $B_{\mathrm{base}}$ here is the
+\emph{mode-counting prefactor} before the $2\pi/3$ normalisation, so there
+is no direct contradiction; rather $B = B_0 \times (B_{\mathrm{base}}/N_{\mathrm{eff}})$
+would need to be verified with $N_{\mathrm{eff}} = 1$.
+
+\textbf{Gap not closed by this argument alone.}
+The argument replaces ``$N_{\mathrm{eff}}^{3/2}$'' as a mysterious input with a
+heuristic counting claim about unitarity projections. It is not a derivation
+from the UBT Lagrangian — it identifies a plausible algebraic \emph{origin}
+for the exponent $3/2$.
+
+\subsection{Conclusion}
+
+\begin{conjecture}[Spinor counting — MOTIVATED CONJECTURE]
+  In the biquaternionic vacuum polarisation, unitarity constraints on
+  $\mathrm{Mat}(2,\mathbb{C})$-valued bilinears reduce $N_{\mathrm{eff}}^2$
+  naive components to $N_{\mathrm{eff}}^{3/2}$ independent transverse degrees
+  of freedom, yielding
+  \begin{equation}
+    B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 12^{3/2} \approx 41.57.
+    \label{eq:B_conjecture_spinor}
+  \end{equation}
+\end{conjecture}
+
+\begin{remark}
+  To promote this to a proof one must:
+  \begin{enumerate}
+    \item Compute $\Pi_{\mu\nu}$ explicitly from $\mathcal{L}[\Theta]$ in
+      the biquaternionic sector.
+    \item Count independent transverse components after Ward identities.
+    \item Show the surviving count is exactly $N_{\mathrm{eff}}^{3/2}$, not
+      an approximation.
+  \end{enumerate}
+  Until steps 1--3 are completed this remains \textbf{[MOTIVATED CONJECTURE]},
+  not \textbf{[PROVED]}.
+\end{remark}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

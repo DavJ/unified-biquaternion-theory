@@ -1,36 +1,100 @@
-# Canonical UBT Directory
+# canonical/ — Canonical UBT Physics
 
-This directory contains the **canonical (authoritative)** versions of all Unified Biquaternion Theory definitions, derivations, and formulations.
+This directory contains the **current-best, internally consistent, low-speculation** version of Unified Biquaternion Theory: what the theory currently treats as correct, preferably proved, reproduced, or clearly established as the canonical mainline.
 
 ## Purpose
 
-The `canonical/` directory serves as the **single source of truth** for UBT to resolve conflicts and duplications found across the repository.
+`canonical/` is the **single reference formulation** of UBT for resolving conflicts and duplications.  
+It is **stricter** than the historical or conceptual scope of the repository:
+
+- Not all historical UBT material belongs here.
+- Conceptual-only, unformalized, or speculative tracks do **not** belong here.
+- Only current-best and sufficiently established material stays.
+- **Speculative extensions** (including consciousness / psychons, universe-as-atom, fingerprint/parity side-tracks) are **not** part of canonical UBT — they live in `speculative_extensions/` and `research_tracks/`.
+
+See `canonical/SCOPE.md` for the full inclusion/exclusion policy.
+
+## Confidence Labels
+
+Results in this directory are classified by the following confidence levels:
+
+| Label | Meaning |
+|-------|---------|
+| **Strong** | Rigorous derivation; zero free parameters |
+| **Strong Partial** | Structural derivation substantially complete; ≤1 open sub-gap |
+| **Candidate** | Proposed mechanism with supporting evidence; ≥1 gap unresolved |
+| **Experimental** | Hypothesis supported by numerical/observational tests; no algebraic proof |
+| **Open** | No complete derivation known; active problem |
+| **Deprecated** | Approach proved to fail or superseded; preserved for reference |
 
 ## Structure
 
 ```
 canonical/
 ├── CANONICAL_DEFINITIONS.md    # Master definitions document
+├── SCOPE.md                    # Inclusion / exclusion policy
+├── README.md                   # This file
+├── AXIOMS.md                   # UBT axioms
+├── UBT_canonical_main.tex      # Main canonical document (start here)
+├── core_assumptions.tex        # Core assumptions
 ├── explanation_of_nabla.tex    # Structure of covariant derivative ∇
-├── fields/                      # Canonical field definitions
-│   ├── theta_field.tex         # Θ(q,T_B) biquaternion field
-│   ├── biquaternion_time.tex   # T_B = t + iψ + jχ + kξ definition (canonical)
-│   ├── biquaternion_algebra.tex # Mathematical foundations
-│   └── electron_mass.tex       # Unified electron mass derivation
-├── geometry/                    # Canonical geometric structures
+├── algebra/                    # Biquaternion algebra foundations
+│   ├── algebra_summary_table.tex
+│   └── involutions_Z2xZ2xZ2.tex
+├── bridges/                    # Navigation bridges (cross-references only)
+│   ├── GR_chain_bridge.tex     # GR recovery chain Θ→g→Γ→R→Einstein
+│   ├── QED_limit_bridge.tex    # QED limit, running α, B_base gap
+│   └── gauge_emergence_bridge.tex  # SU(3)×SU(2)_L×U(1)_Y status
+├── fields/                     # Canonical field definitions
+│   ├── theta_field.tex         # Θ(q,τ) biquaternion field
+│   ├── biquaternion_time.tex   # τ = t + iψ definition (canonical); T_B deprecated
+│   └── biquaternion_algebra.tex # Mathematical foundations
+├── geometry/                   # Canonical geometric structures
 │   ├── metric.tex              # g_μν canonical metric
+│   ├── connection.tex          # Γ^λ_μν Levi-Civita connection
 │   ├── curvature.tex           # Riemann tensor, GR equivalence
+│   ├── gr_as_limit.tex         # GR recovery theorem (constant-phase limit)
 │   └── stress_energy.tex       # T_μν canonical form
-├── interactions/                # Canonical interaction Lagrangians
+├── gr_limit/                   # Full GR recovery derivation
+│   └── GR_limit_of_UBT.tex
+├── interactions/               # Canonical interaction Lagrangians
 │   ├── qed.tex                 # QED complete
 │   ├── qcd.tex                 # QCD complete
 │   └── sm_gauge.tex            # Full SM gauge structure
-├── consciousness/               # Canonical consciousness theory
-│   ├── psychons.tex            # Psychon definition
-│   └── theta_resonator.tex     # Experimental design
-└── appendices/                  # Canonical appendices
-    └── symbol_dictionary.tex    # Symbol standardization
+└── appendices/                 # Canonical appendices
+    └── symbol_dictionary.tex   # Symbol standardization
 ```
+
+## What is NOT in canonical/
+
+The following content has been intentionally moved out:
+
+| Removed from canonical/ | Moved to |
+|---|---|
+| `consciousness/psychons.tex` | `speculative_extensions/consciousness/` |
+| `UBT_coding_fingerprint.tex` | `research_tracks/fingerprints/` |
+| `UBT_spectral_parity_test.tex` | `research_tracks/fingerprints/` |
+| `appendix_universe_as_atom.tex` | `speculative_extensions/cosmology_or_metaphysics/` |
+| `CONSOLIDATION_ROADMAP.md` | `docs/` |
+| `IMPLEMENTATION_CHECKLIST.md` | `docs/` |
+| `NABLA_APPENDIX_VERIFICATION.md` | `docs/` |
+| `PHASE_1_COMPLETE_SUMMARY.md` | `docs/` |
+
+Consciousness claims, dark-matter/dark-energy interpretive assertions beyond proved status, fingerprint/parity side-tracks, universe-as-atom cosmological speculation, and process/governance documents are **not** part of canonical UBT physics.
+
+## Bridges Directory
+
+The `bridges/` subdirectory contains **navigation bridge files** — cross-reference-only documents that help an external reviewer traverse the repository without reading multiple scattered files. They contain no new derivations.
+
+| Bridge file | Purpose |
+|---|---|
+| `GR_chain_bridge.tex` | Locates each step of the GR recovery chain (Θ→g→Γ→R→Einstein) with proof-status labels |
+| `QED_limit_bridge.tex` | Collects QED limit claims, running coupling derivation, and marks the B_base open problem explicitly |
+| `gauge_emergence_bridge.tex` | Lists each gauge group component (SU(3), SU(2)_L, U(1)_Y) with proved / semi-empirical / open labels |
+
+**When to use bridges vs. primary files:**
+- Use **primary canonical files** (geometry/, interactions/, fields/) when you need the actual mathematical definition or derivation.
+- Use **bridge files** when you need to understand which claims are proved, which are open, and where to find the proof.
 
 ## Principles
 
@@ -48,8 +112,8 @@ All symbols follow the dictionary in `CANONICAL_DEFINITIONS.md`:
 - `α` = fine structure constant ONLY
 - `ψ` = scalar imaginary time component ONLY  
 - `χ, ξ` = vector imaginary time components ONLY
-- `T_B` = biquaternion time (canonical)
-- `τ` = complex time (isotropic limit/simplification)
+- `τ` = complex time (canonical)
+- `T_B` = biquaternion time (deprecated/historical extension)
 - `q` = biquaternion coordinate ONLY
 - etc.
 
@@ -66,7 +130,7 @@ When writing new UBT content:
 2. Use `\input{canonical/fields/theta_field.tex}` in LaTeX
 3. Do NOT redefine canonical symbols
 4. Report conflicts as issues
-5. **Note**: Biquaternion time T_B is canonical; complex time τ is the isotropic limit
+5. **Note**: Complex time τ=t+iψ is canonical; biquaternion time T_B is a deprecated/historical extension.
 
 ### For Consolidation
 When consolidating existing content:
@@ -84,62 +148,41 @@ When reviewing UBT documents:
 
 ## Status
 
-### Phase 1: ✅ Complete
-- Directory structure created
-- Master definitions documented
+**Overall confidence: Strong Partial** — core field equations, GR recovery chain, and QED/QCD Lagrangians are substantially proved; fine structure constant derivation and lepton mass sector remain open.
 
-### Phase 2: 🚧 In Progress
-- Creating canonical .tex files:
-  - [x] Theta field Θ(q,T_B)
-  - [x] Biquaternion time T_B = t + iψ + jχ + kξ (canonical)
-  - [x] Metric g_μν
-  - [x] Stress-energy T_μν
-  - [x] QED Lagrangian
-  - [x] QCD Lagrangian
-  - [x] SM gauge structure
-  - [x] Biquaternion algebra foundations
-  - [x] Curvature tensors
-  - [x] Psychon formalization
-  - [ ] Electron mass unification
-  - [ ] Theta-resonator design
+### Canonical Tightening: ✅ Complete
+- `consciousness/` moved to `speculative_extensions/consciousness/`
+- Fingerprint/parity files moved to `research_tracks/fingerprints/`
+- `appendix_universe_as_atom.tex` moved to `speculative_extensions/cosmology_or_metaphysics/`
+- CANONICAL_DEFINITIONS.md audited; speculative claims downgraded or relocated
 
-### Phase 3: ⏳ Planned
-- Consolidate appendices using canonical definitions
-- Remove duplicate versions
-- Update cross-references
+### Core Definitions: ✅ Complete
+- Theta field Θ(q,τ) — **Strong**
+- Complex time τ = t + iψ (canonical) — **Strong**
+- Metric g_μν — **Strong**
+- Connection Γ^λ_μν — **Strong**
+- Stress-energy T_μν — **Strong**
+- QED Lagrangian — **Strong**
+- QCD Lagrangian — **Strong**
+- SM gauge structure (SU(3)×SU(2)_L×U(1)_Y emergence) — **Strong Partial**
+- Biquaternion algebra foundations — **Strong**
+- Curvature tensors — **Strong**
+- GR limit theorem — **Strong Partial**
 
-### Phase 4: ⏳ Planned
-- Global symbol unification
-- Notation consistency enforcement
-- Symbol dictionary validation
-
-### Phase 5: ⏳ Planned
-- Main article assembly
-- 12-section structure
-- Final compilation
-
-## Conflict Tracking
-
-Known conflicts resolved by canonical definitions:
-
-| Conflict | Canonical Resolution | Status |
-|----------|---------------------|---------|
-| Complex time (3 versions) | τ = t + iψ (dynamic ψ) | ✅ Defined |
-| Θ field dimension | C^(4×4) extendable to C^(8×8) | ✅ Defined |
-| Metric g_μν (3 derivations) | Re Tr(∂_μΘ ∂_νΘ†) | ✅ Defined |
-| T_μν (3 definitions) | Field-theoretic form | ✅ Defined |
-| QED (inconsistent) | Canonical Lagrangian | ✅ Defined |
-| QCD (3 versions) | Emergent SU(3) form | ✅ Defined |
-| Electron mass (3 methods) | Unified method | 🚧 To consolidate |
-| α notation (4 meanings) | Coupling constant only | ✅ Defined |
-| ψ notation (4 uses) | Imaginary time only | ✅ Defined |
-| Theta functions (2 normalizations) | Jacobi standard | ✅ Defined |
+### Open
+- Fine structure constant α — **Open** (B_base gap unresolved; see DERIVATION_INDEX.md)
+- Electron / lepton mass spectrum — **Open**
+- Global symbol unification pass
 
 ## Related Documents
 
-- `COPILOT_INSTRUCTIONS_CONSOLIDATION.md` - Master consolidation instructions
-- `consolidation_project/metadata/todos.md` - Consolidation task list
-- `consolidation_project/metadata/consolidation_map.md` - File mapping
+- `canonical/SCOPE.md` - Inclusion / exclusion policy for this directory
+- `canonical/CANONICAL_DEFINITIONS.md` - Master definitions document
+- `DERIVATION_INDEX.md` - Root derivation status map (with confidence labels)
+- `research_tracks/README.md` - Index of all research tracks with confidence labels
+- `speculative_extensions/` - Speculative content (consciousness, cosmological speculation)
+- `research_tracks/` - Side-tracks (fingerprints, parity tests)
+- `docs/REPOSITORY_STRUCTURE.md` - Full repository structure guide
 
 ## Notes
 
@@ -149,18 +192,7 @@ Files in `unified_biquaternion_theory/` are original research documents and shou
 ### Consolidation Source
 Most consolidated content comes from `consolidation_project/` which contains partial consolidations. The `canonical/` directory represents the final, authoritative versions.
 
-### Research Extensions
-Speculative or experimental content (holography, p-adic extensions, etc.) will be organized into `research_extensions/` directory (Phase 6).
-
-## Questions?
-
-For questions about canonical definitions:
-1. Check `CANONICAL_DEFINITIONS.md`
-2. Review `consolidation_project/metadata/consolidation_map.md`
-3. Consult repository maintainers
-
 ---
 
-**Last Updated**: 2025-11-14  
-**Phase**: 1 (Directory Restructuring)  
-**Status**: Active Development
+**Last Updated**: 2026-04-27  
+**Status**: Canonical-tightened — speculative extensions removed; content lives directly in `canonical/`

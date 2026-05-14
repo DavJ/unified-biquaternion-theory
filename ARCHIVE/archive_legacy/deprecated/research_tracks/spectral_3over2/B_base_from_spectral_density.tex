@@ -1,0 +1,252 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Spectral 3/2 Program — Step 5: B_base from Spectral State Density
+% Track: SPECTRAL — independent of Hecke/twin-prime route
+% Date: 2026-03-10
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{$B_{\mathrm{base}}$ from Spectral State Density\\
+    \large Spectral 3/2 Program — Step 5}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+% ======================================================================
+\section{Introduction}
+\label{sec:intro}
+% ======================================================================
+
+\textbf{Goal.}
+Build the bridge between the spectral analysis of Steps~3 and~4
+and the $\alpha$-program.
+Specifically: derive (or sharply localise) the connection
+\begin{equation}
+  B_{\mathrm{base}} \;=\; N_{\mathrm{eff}}^{3/2} \;\approx\; 41.57
+  \label{eq:B_target}
+\end{equation}
+from the spectral density of Θ-modes.
+
+\textbf{Inputs from previous steps.}
+\begin{itemize}
+  \item $N_{\mathrm{eff}} = 12$ [\textbf{PROVED}]
+  \item $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ [\textbf{PROVED}]
+  \item Gaussian exponent: $\Gamma_1 \propto \frac{d}{2} \cdot \mathrm{Tr}\ln\hat{\mathcal{O}}$
+    [\textbf{PROVED}]
+  \item The factor $3/2$ appears in the one-loop effective action coefficient
+    [\textbf{PROVED from Gaussian identity + $d=3$}]
+  \item The power law $N(\lambda) \sim C_3\,\lambda^{3/2}$ holds on
+    any 3D manifold [\textbf{standard Weyl law}]
+\end{itemize}
+
+% ======================================================================
+\section{Existing $V_{\mathrm{eff}}$ Framework}
+\label{sec:Veff}
+% ======================================================================
+
+The UBT effective potential for winding sector $n$ takes the form:
+\begin{equation}
+  V_{\mathrm{eff}}(n) \;=\; A\,n^2 \;-\; B\,n\,\ln n,
+  \label{eq:Veff}
+\end{equation}
+with:
+\begin{itemize}
+  \item $A$ — quadratic term from gauge kinetic energy of the compact $\psi$-mode
+  \item $B$ — logarithmic correction from one-loop vacuum polarisation
+\end{itemize}
+The coefficient $B$ is decomposed as:
+\begin{equation}
+  B \;=\; B_{\mathrm{base}} \cdot R_{\mathrm{UBT}},
+  \quad
+  B_{\mathrm{base}} \;=\; N_{\mathrm{eff}}^{3/2}, \quad
+  R_{\mathrm{UBT}} \;\approx\; 1.114.
+  \label{eq:B_decomp}
+\end{equation}
+The one-loop derivation gives (proved):
+\begin{equation}
+  B_0 \;=\; \frac{2\pi\,N_{\mathrm{eff}}}{3} \;\approx\; 25.13,
+  \label{eq:B0_proved}
+\end{equation}
+leaving the gap:
+\begin{equation}
+  \Delta B \;=\; B_{\mathrm{base}} - B_0 \;=\; 41.57 - 25.13 \;=\; 16.44,
+  \quad
+  \Delta d_{\mathrm{eff}} \;=\; 0.405.
+  \label{eq:gap}
+\end{equation}
+(See \texttt{consolidation\_project/alpha\_derivation/b\_base\_delta\_d.tex}.)
+
+% ======================================================================
+\section{Bridge Formula: Spectral Density to $B$}
+\label{sec:bridge}
+% ======================================================================
+
+The one-loop vacuum polarisation coefficient in UBT arises from the integral:
+\begin{equation}
+  B \;=\; \frac{1}{2\pi}\int_0^{\Lambda} d\lambda\,\rho(\lambda)\,
+    \frac{\partial^2 E(\lambda)}{\partial\lambda^2}\Bigg|_{\lambda=\lambda_*},
+  \label{eq:B_spectral_formal}
+\end{equation}
+where $\rho(\lambda) = dN/d\lambda$ is the spectral density of Θ-modes
+and $E(\lambda)$ is the energy associated with mode $\lambda$.
+This is a formal representation; the precise UBT form is:
+\begin{equation}
+  B \;\propto\; d \cdot \int^\Lambda \frac{d^4k}{(2\pi)^4}
+    \int_0^1 dx\, \ln\!\left(\frac{k^2 + M^2(x)}{\mu^2}\right),
+  \label{eq:B_1loop}
+\end{equation}
+where $M^2(x) = x(1-x)Q^2 + m^2$, $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$,
+and the factor $d$ comes from the $\mathrm{Im}(\mathbb{H})$ multiplicity.
+
+\subsection{Identification with $N_{\mathrm{eff}}^{3/2}$}
+
+From equation~\eqref{eq:B_1loop}, the coefficient $B$ is proportional to
+$d \cdot f(N_{\mathrm{eff}}, \Lambda)$ where $f$ encodes the gauge-group and UV-cutoff dependence.
+
+\textbf{Claim (motivated conjecture):}
+If the integral in~\eqref{eq:B_1loop} is cut off at the geometrically
+natural UV scale $\Lambda = N_{\mathrm{eff}}^{1/2}/R_\psi$
+(a scale set by the torus geometry and the effective degree-of-freedom count),
+then after UV renormalisation:
+\begin{equation}
+  B \;\approx\; \frac{d}{2} \cdot \frac{\Lambda R_\psi}{\pi}
+  \;\approx\; \frac{3}{2} \cdot \frac{N_{\mathrm{eff}}^{1/2}}{\pi} \cdot \text{(geometric factor)}.
+  \label{eq:B_claim}
+\end{equation}
+
+For the geometric factor to equal $N_{\mathrm{eff}} \cdot \pi$, one would obtain
+$B = \frac{3}{2} N_{\mathrm{eff}} \cdot N_{\mathrm{eff}}^{1/2}/\pi \cdot \pi
+= \frac{3}{2} N_{\mathrm{eff}}^{3/2} \cdot \frac{1}{?}$.
+This does not yet give $N_{\mathrm{eff}}^{3/2}$ without additional specification.
+
+\begin{gap}[Linking spectral density to $B_{\mathrm{base}}$]
+\label{gap:B_base_link}
+  The spectral 3/2 program establishes:
+  \begin{enumerate}
+    \item The Gaussian exponent $d/2 = 3/2$ appears in the one-loop effective
+      action as a coefficient [\textbf{PROVED}].
+    \item The one-loop integral~\eqref{eq:B_1loop} is proportional to $d = 3$
+      from $\mathrm{Im}(\mathbb{H})$ [\textbf{PROVED}].
+    \item The standard one-loop calculation gives $B_0 = 2\pi N_{\mathrm{eff}}/3$
+      [\textbf{PROVED}].
+  \end{enumerate}
+  What is \textbf{not yet proved:}
+  \begin{itemize}
+    \item The UV scale is not geometrically fixed at $\Lambda \sim N_{\mathrm{eff}}^{1/2}/R_\psi$
+      from first principles; it requires additional input.
+    \item The transition from $B_0 = 2\pi N_{\mathrm{eff}}/3 = 25.13$ to
+      $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 41.57$ corresponds to
+      a shift $\Delta d_{\mathrm{eff}} = 0.405$.
+      No spectral mechanism has yet been found that produces this shift without
+      introducing a free parameter.
+  \end{itemize}
+\end{gap}
+
+% ======================================================================
+\section{Comparison with Current $V_{\mathrm{eff}}$ Framework}
+\label{sec:comparison}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Framework & Formula for $B$ & Status & File \\
+  \midrule
+  One-loop flat QFT & $B_0 = 2\pi N_{\mathrm{eff}}/3 = 25.1$ & [PROVED] & \texttt{appendix\_ALPHA\_one\_loop.tex} \\
+  Algebraic (A2) & $B_{\mathrm{base}} = N_{\mathrm{eff}}^{d/2}$, $d=3$ & [MOTIVATED CONJECTURE] & \texttt{b\_base\_hausdorff.tex} \\
+  Spectral (this work) & $B = (d/2)\,f(N_{\mathrm{eff}})$ & [PARTIAL — $f$ not fixed] & this document \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The spectral approach provides the \emph{same} algebraic motivation as A2:
+the factor $d/2 = 3/2$ appears because $d = 3$ from Im(ℍ) and
+$1/2$ from the Gaussian integral.
+What it adds is a geometrical interpretation in terms of mode counting,
+but does not close the gap in the identification $f(N_{\mathrm{eff}}) = N_{\mathrm{eff}}$.
+
+% ======================================================================
+\section{Strongest Partial Result from Spectral Approach}
+\label{sec:partial}
+% ======================================================================
+
+\begin{proposition}[Exponent 3/2 from Im(ℍ) + Gaussian — PROVED]
+\label{prop:3half}
+  The one-loop effective action for Θ-fluctuations in Im(ℍ) takes the form:
+  \begin{equation}
+    \Gamma_1[\Theta_0] \;=\; \frac{3}{2}\,\mathrm{Tr}\!\ln\hat{\mathcal{O}}_{\mathrm{flat}},
+    \label{eq:Gamma1_final}
+  \end{equation}
+  where the coefficient $3/2$ is an exact consequence of:
+  \begin{enumerate}
+    \item $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ [\textbf{PROVED algebraically}]
+    \item The Gaussian path-integral identity $(\det A)^{-1/2}$ [\textbf{PROVED mathematically}]
+  \end{enumerate}
+  The exponent 3/2 is therefore not a free parameter.
+  \emph{Neither factor 3 nor factor 2 requires fitting to $\alpha$.}
+\end{proposition}
+
+\begin{gap}[Missing step to close $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$]
+\label{gap:missing}
+  Proposition~\ref{prop:3half} establishes the exponent $3/2$ in
+  $\Gamma_1 = \frac{3}{2}\,\mathrm{Tr}\ln\hat{\mathcal{O}}$.
+  To conclude $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$, one must further show that:
+  \begin{equation}
+    \mathrm{Tr}\ln\hat{\mathcal{O}}_{\mathrm{flat}}
+    \;\ni\; (\text{term proportional to }N_{\mathrm{eff}}\cdot\ln N_{\mathrm{eff}})
+    \;\longrightarrow\;
+    B_{\mathrm{base}} \;=\; \frac{3}{2} \cdot N_{\mathrm{eff}} \cdot 1 \cdot (?)
+    \;=\; N_{\mathrm{eff}}^{3/2}.
+    \label{eq:missing_step}
+  \end{equation}
+  The last equality holds only if $N_{\mathrm{eff}}^{1/2}$ can be extracted from
+  the geometric or algebraic structure of $\hat{\mathcal{O}}$.
+  Specifically: $\mathrm{Tr}\ln\hat{\mathcal{O}} \ni c\,N_{\mathrm{eff}}^{1/2}\,\ln N_{\mathrm{eff}}$
+  would be needed.
+  This has not been derived from first principles.
+  The spectral density alone does not fix the UV normalisation without
+  additional input.
+\end{gap}
+
+% ======================================================================
+\section{Verdict for this Step}
+\label{sec:verdict}
+% ======================================================================
+
+\begin{itemize}
+  \item[$\checkmark$] \textbf{PROVED:} The exponent $3/2$ appears in the
+    one-loop effective action as $d/2 = 3/2$ from $\mathrm{Im}(\mathbb{H})$.
+  \item[$\checkmark$] \textbf{MOTIVATED:} The formula
+    $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ is algebraically consistent
+    with $B = (d/2) \cdot g(N_{\mathrm{eff}})$ if $g(N_{\mathrm{eff}}) = N_{\mathrm{eff}}$.
+  \item[$\times$] \textbf{NOT PROVED:} The specific identification
+    $g(N_{\mathrm{eff}}) = N_{\mathrm{eff}}$ (i.e.\ why $B_{\mathrm{base}}$ is linear in
+    $N_{\mathrm{eff}}$ up to the $3/2$ exponent) has not been derived from
+    the spectral density alone.
+  \item[$\times$] \textbf{NOT PROVED:} A 3D spectral manifold giving
+    $N(\lambda) \sim \lambda^{3/2}$ has not been explicitly identified in UBT.
+\end{itemize}
+
+\ifdefined\INCLUDEMODE\else\end{document}\fi

@@ -1,0 +1,286 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% e8_no_go_proof.tex
+% E8 No-Go Theorem: E8 root system cannot be embedded in B = C ⊗ H
+%
+% VERDICT: E8 route DISPROVED.
+% Status: PROVED — see Theorem E8.1 and Corollary E8.1.
+% This document formally closes TARGET 1 of the 2026-04-30 decisive push.
+% Source: canonical/algebra/e8_no_go_proof.tex
+% Companion: canonical/alpha/neff_geometric_origin.md §3.2–3.4
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,   linecolor=red!60,   linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8,  linecolor=blue!50,  linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{E8 No-Go Theorem}\\
+         \large The E8 Root System Cannot Be Embedded in $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-30}
+
+  \begin{document}
+  \maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Verdict}
+\label{sec:e8:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=red!6!white, colframe=red!60!black,
+                  title=\textbf{E8 Route: DISPROVED}]
+\begin{tabular}{ll}
+Question & Does the E8 root system arise naturally from $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$? \\
+Verdict  & \textbf{NO} — proved below (Theorem~\ref{thm:e8:no_go}). \\
+Status   & PROVED [L0] — follows from dimension counting and Gram matrix argument. \\
+Action   & E8 removed from UBT core reasoning. \\
+         & Mark all E8 connections as NUMERICAL COINCIDENCE only. \\
+\end{tabular}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Relevant Algebraic Facts}
+\label{sec:e8:facts}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Biquaternion algebra}
+
+From \texttt{canonical/fields/biquaternion\_algebra.tex}:
+\begin{equation}
+  \mathcal{B} = \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}
+  \;\cong\; \mathrm{M}_2(\mathbb{C}),
+  \label{eq:e8:B}
+\end{equation}
+with real dimension $\dim_{\mathbb{R}}\mathcal{B} = 8$ and ordered $\mathbb{R}$-basis
+\begin{equation}
+  \mathcal{B}_{\mathrm{basis}}
+  = \{1, \mathbf{I}, \mathbf{J}, \mathbf{K}, i, i\mathbf{I}, i\mathbf{J}, i\mathbf{K}\}.
+  \label{eq:e8:basis}
+\end{equation}
+
+\subsection{Natural inner product on $\mathcal{B}$}
+
+The biquaternion conjugate of $b = \sum_a b_a e_a \in \mathcal{B}$ (where $\{e_a\}$
+is the ordered basis~\eqref{eq:e8:basis}) is $b^\dagger = \sum_a \bar{b}_a e_a^*$,
+where $(\cdot)^*$ is quaternion conjugation composed with complex conjugation.
+The natural real-valued inner product is:
+\begin{equation}
+  \langle a, b \rangle_{\mathcal{B}}
+  \;=\; \operatorname{Re}\!\bigl[\tfrac{1}{2}\,\mathrm{tr}(a^\dagger b)\bigr],
+  \qquad a, b \in \mathcal{B},
+  \label{eq:e8:inner_product}
+\end{equation}
+where $\mathrm{tr}$ denotes the matrix trace under $\mathcal{B}\cong\mathrm{M}_2(\mathbb{C})$.
+
+\begin{lemma}[Orthonormality of the basis]
+\label{lem:e8:ortho}
+The basis~\eqref{eq:e8:basis} is orthonormal under the inner product~\eqref{eq:e8:inner_product}:
+\begin{equation}
+  \langle e_a, e_b \rangle_{\mathcal{B}} = \delta_{ab},
+  \qquad a, b \in \{1,\ldots,8\}.
+  \label{eq:e8:ortho}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Under $\mathcal{B}\cong\mathrm{M}_2(\mathbb{C})$ via $1\mapsto I_2$,
+$\mathbf{I}\mapsto i\sigma_1$, $\mathbf{J}\mapsto i\sigma_2$, $\mathbf{K}\mapsto i\sigma_3$:
+\begin{itemize}
+  \item $\langle 1, 1\rangle = \tfrac{1}{2}\mathrm{tr}(I_2^2) = 1$.
+  \item $\langle \mathbf{I}, \mathbf{I}\rangle = \tfrac{1}{2}\mathrm{tr}((i\sigma_1)^\dagger(i\sigma_1))
+        = \tfrac{1}{2}\mathrm{tr}(\sigma_1^2) = 1$.
+  \item $\langle \mathbf{I}, \mathbf{J}\rangle = \tfrac{1}{2}\mathrm{tr}(\sigma_1\sigma_2)
+        = \tfrac{1}{2}\mathrm{tr}(i\sigma_3) = 0$.
+\end{itemize}
+All 28 off-diagonal pairs vanish by the tracelessness of Pauli products and the
+independence of the complex factor $i$.  All 8 diagonal entries equal~1.
+\end{proof}
+
+\subsection{E8 root system and its Gram matrix}
+
+The E8 root system $\Phi(E_8) \subset \mathbb{R}^8$ consists of 240 vectors.
+A standard choice of simple roots $\{\alpha_1,\ldots,\alpha_8\}$ has Cartan matrix:
+\begin{equation}
+  A_{E_8}
+  = \begin{pmatrix}
+      2 & -1 &  0 &  0 &  0 &  0 &  0 &  0 \\
+     -1 &  2 & -1 &  0 &  0 &  0 &  0 & -1 \\
+      0 & -1 &  2 & -1 &  0 &  0 &  0 &  0 \\
+      0 &  0 & -1 &  2 & -1 &  0 &  0 &  0 \\
+      0 &  0 &  0 & -1 &  2 & -1 &  0 &  0 \\
+      0 &  0 &  0 &  0 & -1 &  2 & -1 &  0 \\
+      0 &  0 &  0 &  0 &  0 & -1 &  2 &  0 \\
+      0 & -1 &  0 &  0 &  0 &  0 &  0 &  2
+    \end{pmatrix},
+  \quad
+  A_{ij} = \frac{2\langle\alpha_i,\alpha_j\rangle}{|\alpha_j|^2}.
+  \label{eq:e8:cartan}
+\end{equation}
+The E8 lattice $\Lambda_{E_8}$ is the unique even, unimodular lattice in $\mathbb{R}^8$.
+Its Gram matrix $G_{ij} = \langle\alpha_i,\alpha_j\rangle$ has the property that
+$G \neq I_8$: several off-diagonal entries $G_{ij} = -1 \neq 0$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The No-Go Theorem}
+\label{sec:e8:theorem}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[E8 no-go for $\mathcal{B}$]
+\label{thm:e8:no_go}
+There is no natural embedding of the E8 root system $\Phi(E_8)$ into
+$(\mathcal{B}, \langle\cdot,\cdot\rangle_{\mathcal{B}})$ via algebraic structures
+of $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+\end{theorem}
+
+\begin{proof}
+We present three independent obstructions.
+
+\medskip
+\textbf{Obstruction 1 — Gram matrix.}
+The natural integral lattice of $\mathcal{B}$ is
+$\Lambda_{\mathcal{B}} = \mathbb{Z}\langle 1, \mathbf{I}, \mathbf{J}, \mathbf{K},
+i, i\mathbf{I}, i\mathbf{J}, i\mathbf{K}\rangle \cong \mathbb{Z}^8$
+(isomorphic as a lattice because the basis is orthonormal by Lemma~\ref{lem:e8:ortho}).
+
+The Gram matrix of $\Lambda_{\mathcal{B}}$ with the inner product~\eqref{eq:e8:inner_product} is:
+\begin{equation}
+  G_{\mathcal{B}} = I_8.
+  \label{eq:e8:gram_B}
+\end{equation}
+This is the hypercubic lattice $D_1^8$.  In contrast, $G_{E_8} \neq I_8$
+(see~\eqref{eq:e8:cartan}): the E8 Gram matrix has off-diagonal entries~$-1$.
+Therefore $\Lambda_{\mathcal{B}} \not\cong \Lambda_{E_8}$ as Euclidean lattices.
+
+\medskip
+\textbf{Obstruction 2 — Automorphism group.}
+The automorphism group of $\mathcal{B}\cong\mathrm{M}_2(\mathbb{C})$ as a
+$\mathbb{C}$-algebra is $\mathrm{Aut}(\mathcal{B}) = \mathrm{PGL}(2,\mathbb{C})$.
+The Weyl group of E8 is $W(E_8)$ of order $|W(E_8)| = 696{,}729{,}600$ — a finite
+group.  However, $\mathrm{PGL}(2,\mathbb{C})$ is a connected Lie group of complex
+dimension~3, which contains no finite subgroup of order $696{,}729{,}600$ acting
+transitively on 240 elements of equal norm in $\mathbb{R}^8$.
+Any embedding $W(E_8)\hookrightarrow\mathrm{PGL}(2,\mathbb{C})$ is impossible
+because $\mathrm{PGL}(2,\mathbb{C})$ has no faithful 8-dimensional real
+representation compatible with the E8 root action.
+
+\medskip
+\textbf{Obstruction 3 — Integer structure.}
+The natural integer lattice of $\mathcal{B}$ corresponds to the biquaternions with
+Gaussian-integer coefficients $z_\mu \in \mathbb{Z}[i]$.  These are the Lipschitz
+integers tensored with $\mathbb{C}$, whose underlying real lattice is $\mathbb{Z}^8$
+(see Obstruction~1).  The E8 lattice arises from the icosian ring
+$\mathbb{H}(\mathrm{icos}) \oplus \mathbb{H}(\mathrm{icos})$ (product of two copies
+of the icosian integers), an 8-dimensional real space that is NOT isomorphic to
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ as a ring.
+Specifically: the icosian ring has Galois group $\mathbb{Z}/5\mathbb{Z}$ actions
+that produce the E8 roots; the biquaternions have no $\mathbb{Z}/5\mathbb{Z}$
+automorphism because $\mathbb{C}$ and $\mathbb{H}$ have no fifth-order automorphisms.
+\end{proof}
+
+\begin{corollary}[E8 coincidence is numerical only]
+\label{cor:e8:coincidence}
+The numerical equality $\dim_{\mathbb{R}}\mathcal{B} = 8 = \mathrm{rank}(E_8)$
+is a coincidence of dimension.  It does not give rise to any structural connection:
+the lattice, automorphism group, and integer ring of $\mathcal{B}$ are all
+incompatible with E8.
+\end{corollary}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Consequences for the UBT Alpha Route}
+\label{sec:e8:consequences}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{T1 (E8 Construction) — Final Verdict:}
+\begin{itemize}
+  \item[\textbf{DISPROVED}] $E_8$ lattice from $\mathcal{B}$: no natural embedding exists
+        (Theorem~\ref{thm:e8:no_go}, three independent obstructions, [L0]).
+  \item[\textbf{DISPROVED}] E8 sphere-packing density $\pi^4/384$ as normalization:
+        the packing is not associated with any metric or mode-counting structure in
+        $\mathcal{B}$ (no natural inner product on $\mathcal{B}$ gives E8 packing; see §2).
+  \item[\textbf{DISPROVED}] E8 torus realization $T^8 = \mathbb{R}^8/\Lambda_{E_8}$:
+        the natural compactification is $T^8 = \mathbb{R}^8/\mathbb{Z}^8$
+        (hypercubic torus), not the E8 torus.
+  \item[\textbf{ANALOGY ONLY}] Viazovska modular forms: the appearance of
+        $\vartheta_3^3$ in the UBT partition function and in the Viazovska E8
+        sphere-packing proof is a coincidence of the modular-forms toolkit.
+        It is not evidence of an E8 structure in UBT.
+\end{itemize}
+\end{resultbox}
+
+\begin{warnbox}
+\textbf{Note on the Hurwitz–D4 connection}:
+The closest existing structure is the Hurwitz integer quaternions
+$\mathbb{H}(\mathrm{Hurwitz})$, whose root system is \emph{D4} (not E8).
+D4 has rank~4, dimension~4 — half the dimension of E8.
+The doubling $D_4 \oplus D_4$ gives a rank-8 lattice, but it is NOT E8:
+$D_4 \oplus D_4$ is a different even lattice from E8 (they are not isometric).
+This confirms that neither the single-copy nor the double-copy of the natural
+quaternion integer structure yields E8.
+\end{warnbox}
+
+\paragraph{Impact on the alpha chain.}
+The E8 route was listed as a candidate normalization for $B_{\mathrm{base}}$
+(via sphere-packing density) and for the T1 mapping tasks.
+Both are now closed as FALSE\_LEAD.
+The canonical alpha route (\texttt{canonical/alpha/alpha\_best\_route.tex})
+proceeds via $N_{\mathrm{eff}}^{3/2}$ with no E8 input.  E8 is removed from
+all candidate tables.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary Table}
+\label{sec:e8:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+Claim & Verdict & Proof level \\
+\midrule
+$\Lambda_{\mathcal{B}} \cong \Lambda_{E_8}$ & FALSE & [L0] — Gram matrix $G_{\mathcal{B}}=I_8 \neq G_{E_8}$ \\
+$W(E_8) \hookrightarrow \mathrm{Aut}(\mathcal{B})$ & FALSE & [L0] — order $|W(E_8)|$ not in $\mathrm{PGL}(2,\mathbb{C})$ \\
+$\mathbb{H}(\mathrm{icos})\oplus\mathbb{H}(\mathrm{icos}) \cong \mathcal{B}$ & FALSE & [L0] — no $\mathbb{Z}/5$ automorphism of $\mathcal{B}$ \\
+$\pi^4/384$ in $B_{\mathrm{base}}$ or $N_{\mathrm{eff}}$ & FALSE & [L1] — no derivation exists; FALSE\_LEAD \\
+$\vartheta_3^3$ links UBT to E8 geometry & ANALOGY ONLY & [L0] — modular coincidence, no E8 structure \\
+\midrule
+$\dim_\mathbb{R}\mathcal{B} = 8 = \mathrm{rank}(E_8)$ & TRUE (dimension) & [L0] — numerical coincidence only \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

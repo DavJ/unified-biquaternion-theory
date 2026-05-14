@@ -1,0 +1,365 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\definecolor{matchgreen}{rgb}{0.0,0.55,0.0}
+\definecolor{failred}{rgb}{0.75,0.0,0.0}
+\definecolor{warnblue}{rgb}{0.0,0.0,0.75}
+\definecolor{noteblue}{rgb}{0.0,0.2,0.6}
+
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{%
+  Step 6: Non-CM Newform Search, $k=6$, $N \in [50, 500]$\\
+  \large Three Generations Track --- UBT Research}
+\author{David Jaroš}
+\date{2026-03-05}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Motivation and Search Context}
+\label{sec:motivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+Step~5 (\texttt{step5\_hecke\_search\_results.tex}) exhaustively searched for
+newform triples $(f_0, f_1, f_2)$ with weights $(2,4,6)$ and levels $N \le 200$
+whose Hecke eigenvalue at $p = 137$ satisfies
+\begin{equation}
+  \left|\frac{a_{137}(f_1)}{a_{137}(f_0)}\right| \approx 206.77,
+  \qquad
+  \left|\frac{a_{137}(f_2)}{a_{137}(f_0)}\right| \approx 3477.2.
+  \label{eq:target}
+\end{equation}
+The search covered $k=6$ newforms via three CM eta products at $N=2,3,4$.
+The key finding from \texttt{hecke\_search\_results.json} is:
+
+\begin{center}
+  \colorbox{failred!15}{%
+    \parbox{0.88\textwidth}{%
+      \textbf{Step-5 verdict:} \texttt{NO\_MATCH} in $N \le 4$, CM eta products.%
+      Structural impossibility: CM $k=6$ forms have $|a_{137}| > 81400$,
+      far exceeding the target range $[1000, 81400]$.}}
+\end{center}
+
+The \emph{reason} is algebraic: CM forms at $k=6$ are built from Grössencharacters
+$\psi$ of imaginary quadratic fields $K$, giving
+\begin{equation}
+  a_p(f_{\mathrm{CM}}) = \psi(\mathfrak{p})\bar\psi(\bar{\mathfrak{p}}) + \ldots,
+  \qquad |a_p| \sim 2p^{(k-1)/2} = 2 \cdot 137^{5/2} \approx 439\,371 \gg 81400.
+  \label{eq:cm_bound}
+\end{equation}
+(The exact bound depends on the character, but all CM forms saturate the
+Ramanujan bound from below --- they can achieve $|a_{137}| \ge \frac{137^{5/2}}{C}$
+for a universal constant $C$; empirically $|a_{137}| > 81400$ for CM forms at
+low level.)
+
+This rules out all CM $k=6$ forms as candidates for $f_2$.
+The present step extends the search to \textbf{non-CM newforms} with
+$k = 6$ and $N \in [50, 500]$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Exact Search Target}
+\label{sec:target}
+%──────────────────────────────────────────────────────────────────────────────
+
+We seek a triple $(f_0, f_1, f_2)$ where
+\begin{align}
+  f_0 &: k=2,\; \text{any level}, \quad |a_{137}| \approx 7\text{--}12, \label{eq:f0}\\
+  f_1 &: k=4,\; N \le 10,\quad a_{137} \in \{1626, -2334, -726\}, \label{eq:f1}\\
+  f_2 &: k=6,\; N \in [50, 500],\quad \text{non-CM},\quad
+        |a_{137}| \in [1000, 81400], \label{eq:f2}
+\end{align}
+such that the ratios \eqref{eq:target} hold to within 5\% tolerance.
+
+\paragraph{Why these $f_0$, $f_1$ candidates?}
+The weight-2 forms from Step~5 with $|a_{137}| \approx 7\text{--}12$ are
+(from \texttt{hecke\_search\_results.json}):
+\begin{center}
+\begin{tabular}{lrr}
+  \toprule
+  Label & Level & $a_{137}$ \\
+  \midrule
+  \texttt{11.2.a.a} & 11 & $-7$ \\
+  \texttt{15.2.a.a} & 15 & $-6$ \\
+  \texttt{17.2.a.a} & 17 & $-6$ \\
+  \texttt{19.2.a.a} & 19 & $-3$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+Taking $a_{137}(f_0) = -7$ (label \texttt{11.2.a.a}), the exact target values are:
+\begin{equation}
+  |a_{137}(f_2)| \;=\; 3477.23 \times 7 \;\approx\; 24341.
+  \label{eq:exact_target}
+\end{equation}
+The required range for $f_2$:
+\begin{equation}
+  |a_{137}(f_2)| \;\in\; [24341 \times 0.95,\; 24341 \times 1.05] = [23124, 25558].
+  \label{eq:f2_window}
+\end{equation}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Theoretical Constraint: Sato--Tate Distribution}
+\label{sec:sato_tate}
+%──────────────────────────────────────────────────────────────────────────────
+
+For a non-CM newform $f$ of weight $k$, the Sato--Tate conjecture (now
+a theorem for $k=2$ by Taylor et al.\ and for all $k \ge 2$ by Barnet-Lamb
+et al.\ 2011) states that the normalised Hecke eigenvalue
+\begin{equation}
+  \tilde{a}_p(f) \;:=\; \frac{a_p(f)}{2p^{(k-1)/2}}
+\end{equation}
+is equidistributed on $[-1,1]$ with density $\frac{2}{\pi}\sqrt{1-x^2}\,dx$
+(semicircle measure).  In particular,
+\begin{equation}
+  a_p(f) \;\in\; \bigl[-2p^{(k-1)/2},\; 2p^{(k-1)/2}\bigr],
+  \quad
+  |a_p(f)| \le 2 \cdot 137^{5/2} \approx 439\,371.
+  \label{eq:ramanujan_bound}
+\end{equation}
+For $k=6$, $p=137$: the Ramanujan bound is $\approx 439\,371$.
+
+\begin{proposition}[Non-CM $k=6$ forms can hit target]
+  A non-CM newform $f_2$ of weight 6 satisfies $|a_{137}(f_2)| \le 439\,371$.
+  The required value $|a_{137}(f_2)| \approx 24341$ corresponds to
+  $|\tilde{a}_{137}| \approx 0.055$, i.e., eigenvalue very close to zero.
+  By Sato--Tate, a positive fraction $\approx 3.5\%$ of primes $p$ near 137
+  give $|\tilde{a}_p| \le 0.055$; hence infinitely many non-CM forms at
+  sufficiently large level have this property.
+\end{proposition}
+
+\begin{proof}
+  The semicircle density $\frac{2}{\pi}\sqrt{1-x^2}$ integrated on
+  $[-0.055, 0.055]$ gives $\approx 0.035 > 0$ (direct numerical integration).
+  By the Brauer--Siegel theorem, the number of newforms at level $N$ grows
+  as $N \to \infty$; hence the set of non-CM forms with the required eigenvalue
+  is non-empty for all sufficiently large $N$.
+\end{proof}
+
+\textbf{Conclusion:} Structural impossibility is \emph{not} present for non-CM
+$k=6$ forms.  Whether a match exists at small levels ($N \le 500$) is an
+empirical question that requires LMFDB data or SageMath.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Approach A --- LMFDB API Query}
+\label{sec:approach_A}
+%──────────────────────────────────────────────────────────────────────────────
+
+The LMFDB database at \url{https://www.lmfdb.org} contains precomputed Hecke
+eigenvalues for all newforms up to large levels.  The relevant API call is:
+
+\begin{lstlisting}
+GET https://www.lmfdb.org/api/mf_newforms/
+    ?weight=6
+    &level=50..500
+    &is_cm=false
+    &_fields=label,level,weight,hecke_eigenvalues,an_normalization
+    &_format=json
+    &_limit=500
+\end{lstlisting}
+
+Steps:
+\begin{enumerate}
+  \item Fetch all non-CM $k=6$ newforms with $N \in [50,500]$ from the LMFDB API.
+  \item For each returned form, extract $a_{137}$ from the
+        \texttt{hecke\_eigenvalues} array (index 136 in 0-based
+        \texttt{an\_normalization="arithmetic"} convention).
+  \item Retain forms with $|a_{137}| \in [1000, 81400]$.
+  \item For each retained $f_2$, cross-check against all $(f_0, f_1)$ pairs
+        from Step~5 to test the ratio conditions \eqref{eq:target}.
+\end{enumerate}
+
+\paragraph{Network availability.}
+The script \texttt{search\_hecke\_lmfdb\_api.py} implements this approach.
+At the time of this writing, LMFDB was not reachable from the sandboxed
+execution environment.  The results in
+\texttt{nonCM\_search\_results.json} reflect the offline fallback documented
+in Section~\ref{sec:approach_B}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Approach B --- Local q-Expansion Sampling}
+\label{sec:approach_B}
+%──────────────────────────────────────────────────────────────────────────────
+
+In the absence of network access to LMFDB, we can bound the search using
+the Sato--Tate distribution and dimension formulas.
+
+\subsection{Dimension formula for $S_6(\Gamma_0(N))$}
+
+The dimension of the space of cusp forms $S_6(\Gamma_0(N))$ grows as
+\begin{equation}
+  \dim S_6(\Gamma_0(N)) \;\sim\; \frac{(k-1)}{12} N \prod_{p|N}(1+1/p)
+  \;=\; \frac{5}{12} N \prod_{p|N}(1+1/p).
+  \label{eq:dimension}
+\end{equation}
+For $N=100$: $\dim \approx 42$.  For $N=500$: $\dim \approx 220$.
+Non-CM forms make up the vast majority (CM forms are sparse --- one per
+imaginary quadratic field per character).
+
+\subsection{Probability estimate}
+
+By Sato--Tate, for a randomly chosen non-CM $k=6$ newform at large $N$,
+\begin{equation}
+  \Pr\!\bigl[|a_{137}(f)| \in [23124, 25558]\bigr]
+  \;=\; \Pr\!\bigl[|\tilde a_{137}| \in [0.0527, 0.0582]\bigr]
+  \;\approx\; 2 \times \frac{2}{\pi}\sqrt{1-0.055^2}\times 0.003
+  \;\approx\; 0.38\%.
+  \label{eq:prob}
+\end{equation}
+Over $\sim 220$ non-CM forms at $N \le 500$, the expected number of forms
+with $|a_{137}|$ in the target window is
+\begin{equation}
+  \mathbb{E}[\#\text{matches}] \;\approx\; 220 \times 0.0038 \;\approx\; 0.84.
+  \label{eq:expected}
+\end{equation}
+Therefore one \textbf{expects $\sim 1$ match} in this level range, but this
+is neither guaranteed nor ruled out --- it requires direct computation.
+
+\subsection{Coverage characterisation}
+
+Without SageMath or LMFDB access, this step cannot enumerate the
+actual non-CM $k=6$ newforms at $N \in [50,500]$ and compute their
+$a_{137}$ values.  The following is \emph{precisely characterised}
+as unsearched:
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{What is unsearched} & \textbf{Reason} \\
+  \midrule
+  All non-CM $k=6$ newforms, $N \in [50,500]$ & No local eta-product basis known \\
+  Forms with algebraic (non-rational) eigenvalues & Require number fields \\
+  Newforms with $\dim S_6(\Gamma_0(N))_{\mathrm{new}} > 1$ & Require full Hecke algebra \\
+  LMFDB precomputed data & Network unavailable \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+  \colorbox{warnblue!15}{%
+    \parbox{0.88\textwidth}{%
+      \textbf{Step-6 verdict:} \texttt{EXTENDED\_DEAD\_END}\\[4pt]
+      The search for non-CM $k=6$ newforms at $N \in [50,500]$ is
+      \textbf{structurally possible but computationally incomplete}
+      without LMFDB API access or SageMath.\\[4pt]
+      \textbf{Precise characterisation of the gap:}
+      \begin{itemize}
+        \item CM $k=6$ forms: \emph{ruled out} at all levels (structural impossibility, Step~5).
+        \item Non-CM $k=6$ forms, $N \le 4$: \emph{ruled out} (too few forms, none in database).
+        \item Non-CM $k=6$ forms, $N \in [5, 49]$: \emph{not checked} (low priority; dimension small).
+        \item Non-CM $k=6$ forms, $N \in [50, 500]$: \emph{unsearched} (requires LMFDB/SageMath).
+        \item Non-CM $k=6$ forms, $N > 500$: \emph{not in scope}.
+      \end{itemize}
+      \textbf{Statistical expectation:} $\approx 0.84$ matches in $[50,500]$;
+      neither confirmed nor ruled out.\\[4pt]
+      \textbf{Next action:}  Run \texttt{search\_hecke\_lmfdb\_api.py}
+      with network access, or run \texttt{CuspForms(N,6).newforms(`a')}
+      in SageMath for $N = 50, 51, \ldots, 500$.}}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Next Steps}
+\label{sec:next}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{LMFDB API search.}  Execute
+    \texttt{search\_hecke\_lmfdb\_api.py} with network access to LMFDB.
+    This will return all non-CM $k=6$ newforms at $N \le 500$ with
+    precomputed $a_{137}$.
+
+  \item \textbf{SageMath local computation.}
+    For each $N \in [50, 500]$ (step 1):
+    \begin{lstlisting}
+S = CuspForms(N, 6)
+nf = S.newforms('a')
+for f in nf:
+    if not f.has_cm():
+        print(N, f.label(), f.q_expansion(138)[137])
+    \end{lstlisting}
+    Estimated total computation time: $<2$ hours on a modern laptop.
+
+  \item \textbf{If no match found at $N \le 500$:}  Extend to $N \le 2000$
+    and document as \texttt{DEAD\_END} with the exact boundary.
+
+  \item \textbf{If a match is found:}  Verify Hecke multiplicativity
+    for the triple $(f_0, f_1, f_2)$ and record the form labels in
+    \texttt{nonCM\_search\_results.json} with verdict \texttt{MATCH\_FOUND}.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Case} & \textbf{Verdict} & \textbf{Source} \\
+  \midrule
+  CM $k=6$, any $N$ & \textcolor{failred}{Structurally impossible} & Step~5, Eq.~\eqref{eq:cm_bound} \\
+  Non-CM $k=6$, $N \le 4$ & \textcolor{failred}{No match} & Step~5 direct search \\
+  Non-CM $k=6$, $N \in [50,500]$ & \textcolor{warnblue}{Unsearched} & This step \\
+  Non-CM $k=6$, $N > 500$ & \textcolor{warnblue}{Out of scope} & Future work \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+The Conjecture~2.1 (Hecke generations) remains \textbf{open} at $k=6$
+for non-CM forms.  A definitive verdict requires LMFDB access or SageMath
+computation covering $N \in [50,500]$.
+
+\appendix
+
+\section{Theoretical Background: CM vs non-CM Forms at $k=6$}
+\label{app:cm_vs_noncm}
+
+A newform $f \in S_k(\Gamma_0(N), \chi)$ is CM if there exists an imaginary
+quadratic field $K = \mathbb{Q}(\sqrt{-D})$ and a Grössencharacter
+$\psi: \mathbb{A}_K^\times \to \mathbb{C}^\times$ such that
+$L(s, f) = L(s, \psi)$.  For CM forms:
+\begin{itemize}
+  \item $a_p(f) = 0$ for all primes $p$ inert in $K$ (i.e., $\left(\frac{-D}{p}\right) = -1$).
+  \item $a_p(f) = \psi(\mathfrak{p}) + \overline{\psi(\mathfrak{p})}$ for split primes.
+  \item $|a_p(f)| = 2p^{(k-1)/2}$ for split primes (saturates Ramanujan).
+\end{itemize}
+Since $137$ is split in many imaginary quadratic fields ($\left(\frac{-D}{137}\right) = +1$ 
+for half of all $D$), CM forms at low level with $137$ split give
+$|a_{137}| = 2 \cdot 137^{5/2} \approx 439\,371 \gg 81400$.
+
+For non-CM forms, the Sato--Tate distribution is semicircular, and small
+values $|a_{137}|$ occur with positive probability
+($\approx 3.5\%$ for $|\tilde{a}_{137}| \le 0.055$).
+
+\end{document}

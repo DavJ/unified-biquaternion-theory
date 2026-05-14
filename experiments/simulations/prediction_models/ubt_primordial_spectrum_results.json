@@ -1,0 +1,134 @@
+{
+  "model": "UBT_primordial_power_spectrum",
+  "description": "P_UBT(k) = P_standard(k) * F_psi(k, R_psi); F_psi encodes \u03c8-compactification IR cutoff and winding resonances",
+  "parameters": {
+    "A_s": 2.1e-09,
+    "n_s": 0.9649,
+    "k_star_mpc_inv": 0.05,
+    "A_winding": 0.02,
+    "A_winding_status": "EMPIRICAL \u2014 not derived from first principles"
+  },
+  "scenarios": {
+    "A_planck_length": {
+      "R_psi_mpc": 5.237925731294997e-58,
+      "description": "R_\u03c8 = l_Planck (standard UBT cutoff at Planck scale)",
+      "observable_effect": "None \u2014 cutoff far beyond CMB window",
+      "k_min_mpc_inv": 1.90915269001488e+57,
+      "sample_k": [
+        7.108394966457336e-05,
+        0.00012640712407275398,
+        0.00022478718602081388,
+        0.00039973442454140247,
+        0.0007108394966457335
+      ],
+      "sample_P_standard": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_P_UBT": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_F_psi": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "B_hubble_scale": {
+      "R_psi_mpc": 4448.652157189273,
+      "description": "R_\u03c8 = c/H_0 (Hubble-scale \u03c8-circle)",
+      "observable_effect": "Suppression at l=2,3 (k ~ H_0/c)",
+      "k_min_mpc_inv": 0.00022478718602081388,
+      "sample_k": [
+        7.108394966457336e-05,
+        0.00012640712407275398,
+        0.00022478718602081388,
+        0.00039973442454140247,
+        0.0007108394966457335
+      ],
+      "sample_P_standard": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_P_UBT": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_F_psi": [
+        0.096468,
+        0.276284,
+        0.649647,
+        0.990801,
+        1.035397
+      ]
+    },
+    "C_free_param": {
+      "R_psi_mpc": 3000.0,
+      "description": "R_\u03c8 = 3000 Mpc (free parameter fit to low-l suppression)",
+      "observable_effect": "Comparable to Scenario B; R_\u03c8 is fitted",
+      "k_min_mpc_inv": 0.0003333333333333333,
+      "sample_k": [
+        7.108394966457336e-05,
+        0.00012640712407275398,
+        0.00022478718602081388,
+        0.00039973442454140247,
+        0.0007108394966457335
+      ],
+      "sample_P_standard": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_P_UBT": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_F_psi": [
+        0.044974,
+        0.135965,
+        0.373268,
+        0.785912,
+        1.024273
+      ]
+    }
+  },
+  "low_l_suppression": {
+    "scenario_A": {
+      "F_l2": 0.0,
+      "F_l3": 0.0,
+      "F_l10": 0.0
+    },
+    "scenario_B": {
+      "F_l2": 0.6496469686218208,
+      "F_l3": 0.9243898367072473,
+      "F_l10": 1.0277263720337158
+    },
+    "scenario_C": {
+      "F_l2": 0.37326826778658856,
+      "F_l3": 0.6584429391023994,
+      "F_l10": 1.0354143038486279
+    }
+  },
+  "status": "CONJECTURE \u2014 F_psi is a phenomenological parametrization; rigorous derivation pending",
+  "reference": "docs/physics/planck_era_ubt.md"
+}

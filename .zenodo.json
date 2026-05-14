@@ -1,0 +1,29 @@
+{
+  "title": "Unified Biquaternion Theory: Emergent Lorentzian Geometry and GR Recovery",
+  "version": "v10.1.3",
+  "description": "Unified Biquaternion Theory (UBT) release focused on emergent Lorentzian geometry, GR recovery status synchronization, and reproducible core derivation assets.",
+  "creators": [
+    {
+      "name": "Jaroš, David",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0002-3204-9215"
+    }
+  ],
+  "license": "cc-by-nc-nd-4.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "unified biquaternion theory",
+    "theoretical physics",
+    "gauge structure",
+    "general relativity",
+    "fine-structure constant"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/UBT-Institute/unified-biquaternion-theory",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

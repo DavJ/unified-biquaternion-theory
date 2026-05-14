@@ -1,0 +1,320 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{ST-3: Stability of Imaginary Sector Configurations in UBT\\[0.5em]
+\large\textsc{Speculative Extension — Invisibility Track}}
+\author{David Jaroš}
+\date{2026-03-03}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework.  It is an exploratory investigation
+into the stability of imaginary-sector field configurations and has not
+been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-3 from the Invisibility / Imaginary Sector
+investigation track.  See also:
+\texttt{st1\_imaginary\_object\_definition.tex},
+\texttt{st2\_sector\_interaction.tex},
+\texttt{st4\_ctc\_invisibility\_connection.tex},
+\texttt{st5\_falsifiability.md}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We analyse whether an imaginary-sector field configuration
+$\Theta_I = i\,\widetilde\Theta_I$ is stable within UBT.
+Three questions are addressed:
+(i) does the UBT Hamiltonian $H[\Theta_I]$ have a lower bound?
+(ii) can $\Theta_I$ decay into $\Theta_R$ via some process?
+(iii) is there a conserved charge that forbids sector mixing?
+We find that: (i) the Hamiltonian density of $\Theta_I$ equals
+that of $\widetilde\Theta_I$ (same sign, same lower bound);
+(ii) sector-mixing transitions are forbidden at leading order
+by the discrete symmetry $\Theta \to i\Theta$; and
+(iii) a candidate conserved charge (the imaginary-sector
+particle number) is identified.  All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Hamiltonian of the Imaginary Sector}
+%----------------------------------------------------------------------
+
+From ST-2, the energy-momentum tensor of $\Theta_I = i\,\widetilde\Theta_I$
+(with $\widetilde\Theta_I$ real-valued) equals that of $\widetilde\Theta_I$:
+\begin{equation}
+  T_{\mu\nu}[\Theta_I]
+  \;=\; T_{\mu\nu}[\widetilde\Theta_I].
+  \label{eq:tmunu_id}
+\end{equation}
+The energy density (Hamiltonian density) in flat space is
+\begin{equation}
+  \mathcal{H}[\Theta_I]
+  \;=\; T_{00}[\Theta_I]
+  \;=\; |\dot{\widetilde\Theta}_I|^2
+       + |\nabla\widetilde\Theta_I|^2
+       + V(\widetilde\Theta_I^\dagger\widetilde\Theta_I).
+  \label{eq:hamiltonian_density}
+\end{equation}
+The first two terms are manifestly non-negative.  The third term
+$V(\widetilde\Theta_I^\dagger\widetilde\Theta_I)$ is bounded below
+if and only if the UBT potential $V$ is bounded below — which is a
+requirement of the canonical UBT framework (stable vacuum).
+
+\begin{proposition}[Lower bound on $H[\Theta_I]$]
+\label{prop:lower_bound}
+Under the assumption that $V \geq V_\mathrm{min} > -\infty$
+(canonical UBT stability condition), the Hamiltonian of the imaginary
+sector is bounded below:
+\begin{equation}
+  H[\Theta_I]
+  \;=\; \int d^3x\,\mathcal{H}[\Theta_I]
+  \;\geq\; V_\mathrm{min} \cdot \mathrm{Vol},
+\end{equation}
+where $\mathrm{Vol}$ is the spatial volume.  The imaginary sector
+does not introduce any new instability: its energy functional has
+the same lower bound as the real sector.
+\end{proposition}
+
+%----------------------------------------------------------------------
+\section{Sector-Mixing Transitions}
+%----------------------------------------------------------------------
+
+A sector-mixing transition would convert an imaginary-sector quantum
+into a real-sector quantum:
+\begin{equation}
+  \Theta_I\text{-quanta} \;\longrightarrow\; \Theta_R\text{-quanta} + \text{(radiation)}.
+\end{equation}
+
+\subsection{Leading-Order Amplitude}
+
+The interaction vertex that couples $\Theta_R$ and $\Theta_I$ comes
+from the cross-term in the action (from ST-2, Proposition~2):
+\begin{equation}
+  S_\mathrm{cross}
+  \;\sim\; \int d^4x\,\sqrt{-g}\,
+  \left[\operatorname{Im}(\Theta_R^\dagger\widetilde\Theta_I)\right]^2
+  V''(\Theta_R^\dagger\Theta_R).
+\end{equation}
+This is a quartic interaction of the form
+$(\Theta_R \cdot \Theta_I)^2$, coupling four field quanta.
+For a process $\Theta_I \to \Theta_R + X$ the amplitude is at
+least second order in the coupling, and the amplitude vanishes unless
+there are at least two imaginary-sector quanta in the initial state.
+
+\subsection{Symmetry Argument}
+
+Consider the global phase transformation
+\begin{equation}
+  \Theta \;\mapsto\; e^{i\theta}\,\Theta, \qquad \theta \in \mathbb{R}.
+  \label{eq:u1_sym}
+\end{equation}
+If the potential $V$ depends only on $|\Theta|^2 = \Theta^\dagger\Theta$,
+this is a $U(1)$ symmetry of the action.  Under this symmetry, the
+imaginary sector and real sector mix under $\theta = \pi/2$:
+\begin{equation}
+  e^{i\pi/2}\,\Theta_R \;=\; i\,\Theta_R \;=\; \Theta_I.
+\end{equation}
+This means $\Theta_R$ and $\Theta_I = i\,\Theta_R$ lie in the
+\emph{same} $U(1)$ orbit.  In a theory with exact $U(1)$ symmetry,
+the distinction between $\Theta_R$ and $\Theta_I$ is a matter of
+phase convention and cannot correspond to distinct sectors with
+different observable properties.
+
+\paragraph{Breaking of $U(1)$ by electromagnetic coupling.}
+Standard model matter couples to $\Theta_R$ (the real sector) via
+gauge fields.  This coupling breaks the $U(1)$ symmetry
+$\Theta \to e^{i\theta}\Theta$ explicitly for $\theta \neq 0, \pi$,
+creating a genuine distinction between $\Theta_R$ and $\Theta_I$.
+After this breaking, the $U(1)$ is reduced to a discrete $\mathbb{Z}_2$:
+\begin{equation}
+  \mathbb{Z}_2:\;\Theta \;\mapsto\; -\Theta.
+  \label{eq:z2}
+\end{equation}
+The imaginary sector $\Theta_I \to i\Theta_R$ is related to the
+real sector by a $\mathbb{Z}_4$ rotation
+$(\Theta \to i\Theta)$, which is broken by the electromagnetic
+coupling.
+
+\begin{conjecture}[Sector mixing rate]
+\label{conj:mixing_rate}
+In a UBT theory where the electromagnetic coupling explicitly breaks
+$U(1) \to \mathbb{Z}_4$ (or lower), sector-mixing transitions
+$\Theta_I \to \Theta_R$ are \emph{allowed but suppressed} by the
+mixing-breaking scale.  The decay rate is estimated as
+\begin{equation}
+  \Gamma(\Theta_I \to \Theta_R)
+  \;\sim\; \frac{g_\mathrm{mix}^2\,m_I^5}{192\pi^3\,m_\mathrm{Pl}^4},
+\end{equation}
+where $g_\mathrm{mix}$ is the sector-mixing coupling constant,
+$m_I$ is the imaginary-sector particle mass, and $m_\mathrm{Pl}$
+is the Planck mass.  For $g_\mathrm{mix} \ll 1$ and $m_I \ll m_\mathrm{Pl}$
+this rate is extremely small and the imaginary sector is
+effectively stable on cosmological timescales.
+\end{conjecture}
+
+%----------------------------------------------------------------------
+\section{Conserved Charge and Stability}
+%----------------------------------------------------------------------
+
+\subsection{Imaginary-Sector Particle Number}
+
+Under the residual $\mathbb{Z}_4$ symmetry $\Theta \to i\Theta$, a
+Noether-like charge can be defined by treating the complex phase of
+$\Theta$ as a $U(1)$ degree of freedom before gauge fixing.  The
+associated Noether current is:
+\begin{equation}
+  J^\mu \;=\; i(\Theta^\dagger\partial^\mu\Theta - \partial^\mu\Theta^\dagger\,\Theta),
+  \label{eq:noether_current}
+\end{equation}
+with conservation $\partial_\mu J^\mu = 0$ following from the $U(1)$
+equations of motion.
+
+\paragraph{Decomposition into real and imaginary sectors.}
+Inserting $\Theta = \Theta_R + \Theta_I$:
+\begin{equation}
+  J^\mu
+  \;=\; J^\mu[\Theta_R] + J^\mu[\Theta_I]
+       + i\!\left(
+           \Theta_R^\dagger\partial^\mu\Theta_I
+         - \partial^\mu\Theta_R^\dagger\,\Theta_I
+         + \mathrm{h.c.}
+         \right).
+\end{equation}
+The cross-term in $J^\mu$ is purely imaginary (by the same argument
+as in ST-2), so the real conserved charge decomposes as
+\begin{equation}
+  Q \;=\; \int d^3x\,J^0
+  \;=\; Q[\Theta_R] + Q[\Theta_I].
+\end{equation}
+The imaginary-sector particle number
+$Q_I = Q[\Theta_I]$ is separately conserved at leading order.
+
+\begin{theorem}[Conservation of imaginary-sector charge]
+\label{thm:charge_conservation}
+If the UBT action respects the global $U(1)$ symmetry \eqref{eq:u1_sym}
+before electromagnetic coupling, then the imaginary-sector particle
+number $Q_I$ is conserved at leading order in the coupling constant.
+Sector-mixing processes that change $Q_I$ are suppressed by powers
+of the electromagnetic coupling.  The imaginary sector is therefore
+\emph{perturbatively stable}.
+\end{theorem}
+
+\subsection{Stability Classification}
+
+Two regimes arise depending on the electromagnetic coupling strength:
+
+\begin{enumerate}
+  \item \textbf{Exact $U(1)$ symmetry} (no electromagnetic coupling,
+    or coupling that respects the full $U(1)$): $Q_I$ is exactly
+    conserved, imaginary-sector objects are absolutely stable.
+    Invisibility is permanent.
+
+  \item \textbf{Broken $U(1)$} (standard model electromagnetic
+    coupling): $Q_I$ is only approximately conserved.
+    Imaginary-sector objects can decay, but the lifetime is
+    $\tau \sim m_\mathrm{Pl}^4 / (g_\mathrm{mix}^2 m_I^5)$, which
+    can be much longer than the age of the universe for
+    $m_I \ll m_\mathrm{Pl}$.  Invisibility is long-lived but transient.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Vacuum Stability and Sector Separation}
+%----------------------------------------------------------------------
+
+A further stability question is whether the imaginary-sector vacuum
+$\langle\Theta_I\rangle \neq 0$ is energetically preferred over the
+real-sector vacuum $\langle\Theta_R\rangle \neq 0$.
+
+In the canonical UBT framework the vacuum is determined by the
+minimum of $V(\Theta^\dagger\Theta)$.  Since $\Theta^\dagger\Theta$
+is the same for $\Theta = \Theta_R$ and $\Theta = i\,\Theta_R =
+\Theta_I$ (because $|i\Theta_R|^2 = |\Theta_R|^2$), the vacuum
+energy is degenerate between the real and imaginary sectors.
+
+\begin{remark}[Degenerate vacuum]
+The UBT potential $V(\Theta^\dagger\Theta)$ has a continuous set
+of degenerate minima related by $\Theta \to e^{i\theta}\Theta$.
+The distinction between the real-sector vacuum and the imaginary-sector
+vacuum is a choice of $U(1)$ phase — a gauge convention, not a
+physical distinction, unless the $U(1)$ is broken by interactions.
+This supports the picture in which invisible (imaginary-sector)
+matter is a valid, degenerate vacuum sector of UBT.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Summary}
+%----------------------------------------------------------------------
+\begin{enumerate}
+  \item The Hamiltonian of the imaginary sector is bounded below
+    (Proposition~\ref{prop:lower_bound}), so imaginary-sector
+    configurations do not introduce new instabilities.
+  \item Sector-mixing transitions are suppressed by the explicit
+    breaking of the $U(1)$ symmetry by electromagnetic coupling.
+    The imaginary sector is perturbatively stable
+    (Theorem~\ref{thm:charge_conservation}).
+  \item A conserved charge $Q_I$ (imaginary-sector particle number)
+    is identified; it forbids sector mixing at leading order.
+  \item The vacuum degeneracy between real and imaginary sectors
+    supports the existence of imaginary-sector matter as a valid
+    physical state of UBT.
+  \item Invisibility is \emph{stable} in the absence of
+    electromagnetic coupling, and \emph{long-lived} (potentially
+    cosmological) when electromagnetic coupling is present.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.
+No claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\bibitem{ST1}
+  D.~Jaroš,
+  \emph{ST-1: Imaginary Sector Objects in UBT},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st1\_imaginary\_object\_definition.tex}
+  (2026).
+\bibitem{ST2}
+  D.~Jaroš,
+  \emph{ST-2: Interaction Between Real and Imaginary Sectors in UBT},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st2\_sector\_interaction.tex}
+  (2026).
+\bibitem{Kolb1990}
+  E.~W.~Kolb and M.~S.~Turner,
+  \emph{The Early Universe},
+  Addison-Wesley (1990).
+\end{thebibliography}
+
+\end{document}

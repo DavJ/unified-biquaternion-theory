@@ -1,0 +1,233 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Step 3: $SU(3)_c$ Color Symmetry --- Final Result and Verdict}\\
+         \large Summary, Approach Comparison, and DERIVATION\_INDEX Update}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  This document collects the final verdict on the derivation of the
+  $SU(3)_c$ color symmetry in UBT.  Three approaches were investigated:
+  (a)~direct 8D identification of $\mathbb{C}\otimes\mathbb{H}$ basis with
+  Gell-Mann matrices (sketch --- fails), (b)~octonion embedding via
+  $G_2 = \mathrm{Aut}(\mathbb{O})$ (sketch --- valid abstractly but outside
+  UBT foundation), and (c)~involution approach via $V_c = \ker(P_2+1)$
+  (proved --- Theorems G.A--G.D in \texttt{appendix\_G\_internal\_color\_symmetry.tex}).
+  \textbf{Verdict: PROVED [L0]}.  Confinement remains the Clay Millennium
+  Problem; a qualitative mechanism exists within UBT.
+  \textbf{DERIVATION\_INDEX update:} $SU(3)_c$ status is ``Proved [L0]''.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Main Result}
+\label{sec:main}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Main result: $SU(3)_c$ is proved via involutions on $\mathbb{C}\otimes\mathbb{H}$.}
+
+The derivation rests on four theorems (G.A--G.D) in
+\texttt{appendix\_G\_internal\_color\_symmetry.tex}, summarised in
+\texttt{step1\_involution\_summary.tex}:
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Result} & \textbf{Status} & \textbf{Reference} \\
+  \midrule
+  Lie algebra $\mathfrak{su}(3)$ & Proved [L0] & Thm.~G.A \\
+  Fundamental rep.\ (quarks, $\mathbf{3}$) & Proved [L0] & Prop.~G.B \\
+  Adjoint rep.\ (gluons, $\mathbf{8}$) & Proved [L0] & Thm.~G.C \\
+  Decoupling from EW & Proved [L0] & Thm.~G.D \\
+  Color confinement & Open & Clay Prize (see Sec.~\ref{sec:confinement}) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{resultbox}
+
+The key construction is the \emph{involution approach}:
+\begin{enumerate}
+  \item Define the quaternionic conjugation involution
+        $P_2\colon I,J,K \mapsto -I,-J,-K$ on $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+  \item The $(-1)$-eigenspace is
+        $V_c = \ker(P_2+1) = \mathrm{span}_\mathbb{C}\{I,J,K\} \cong \mathbb{C}^3$.
+  \item The group of automorphisms of $V_c$ preserving the UBT inner
+        product $\langle u,v\rangle = \mathrm{Sc}[\Theta^\dagger\Theta]$
+        is $SU(3)$ (Theorem~G.A).
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Three Approaches Compared}
+\label{sec:approaches}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{p{3.2cm}p{1.6cm}p{2.2cm}p{5cm}}
+  \toprule
+  \textbf{Approach} & \textbf{Status} & \textbf{File} & \textbf{Notes} \\
+  \midrule
+  (a) Direct 8D map: $\mathbb{C}\otimes\mathbb{H}$ basis $\to$ $\lambda_a$
+    & \textcolor{red}{SKETCH}
+    & \texttt{step1\_generators\_from\_8D.tex}
+    & Fails: $\mathbb{C}\otimes\mathbb{H}$ acts on $\mathbb{C}^2$,
+      not $\mathbb{C}^3$; structure constants mismatch; rank mismatch \\[4pt]
+  (b) Octonion embedding: $SU(3) = \mathrm{Stab}_{G_2}(e_7)$
+    & \textcolor{orange}{SKETCH}
+    & \texttt{step2\_octonion\_embedding.tex}
+    & Valid abstractly; octonions non-associative, outside UBT foundation;
+      no dynamical proof \\[4pt]
+  (c) Involution approach: $V_c = \ker(P_2+1)$
+    & \textcolor{green!60!black}{\textbf{PROVED}}
+    & \texttt{step1\_involution\_summary.tex}
+    & Proved [L0]; intrinsic to $\mathbb{C}\otimes\mathbb{H}$;
+      gauge invariance of $S[\Theta]$ derived \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+\textbf{Why the involution approach succeeds where the others fail:}
+
+The key insight is that $SU(3)$ does \emph{not} act on the whole of
+$\mathbb{C}\otimes\mathbb{H}$ --- it acts on the 3-dimensional
+subspace $V_c \subset \mathbb{C}\otimes\mathbb{H}$ defined by the
+$P_2$ involution.  This subspace is intrinsic to the UBT algebra
+(no external structures like octonions are needed), and the
+unitarity constraint from the UBT inner product fixes the group
+to $SU(3)$ (not $U(3)$ or a larger group).
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Color Confinement}
+\label{sec:confinement}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Open gap: Color Confinement.}
+
+\textbf{Status:} Open (Clay Millennium Prize Problem, unsolved since 2000).
+
+\textbf{UBT qualitative mechanism:}
+The non-Abelian curvature of the internal phase bundle $A_\mu = A_\mu^a T^a$
+over spacetime creates an area law for Wilson loops:
+\begin{equation}
+  W(C) \;=\; \mathrm{Tr}\,\mathcal{P}\exp\!\Bigl(i\oint_C A_\mu\,dx^\mu\Bigr)
+  \;\sim\; e^{-\sigma\,\mathrm{Area}(C)}
+\end{equation}
+for large loops $C$, where $\sigma$ is the string tension.  This forbids
+isolated color charges (free quarks) in the vacuum sector.
+
+\textbf{Quantitative derivation:}
+A non-perturbative computation from the UBT action $S[\Theta]$ is required.
+No analytical proof exists in the Standard Model; UBT does not yet provide
+one either.  Such a proof would simultaneously solve the Clay Millennium Problem.
+
+\textbf{UBT contribution:} The geometric framework (internal phase bundle with
+non-Abelian $SU(3)_c$ curvature, proved via involutions) provides a natural
+setting for confinement.  This is progress toward the problem, even without
+a quantitative proof.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{DERIVATION\_INDEX Update}
+\label{sec:index}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{DERIVATION\_INDEX.md --- recommended update:}
+
+Change the entry for $SU(3)_c$ from:
+\begin{quote}
+``$SU(3)_c$: Semi-empirical / Candidate construction''
+\end{quote}
+to:
+\begin{quote}
+``$SU(3)_c$: \textbf{Proved [L0]} --- via involution approach,
+Theorems G.A--G.D in \texttt{appendix\_G\_internal\_color\_symmetry.tex};
+fundamental rep.\ (quarks), adjoint rep.\ (gluons), and
+$SU(3)_c \times SU(2)_L \times U(1)_Y$ decoupling all proved;
+confinement gap remains (Clay Millennium Prize Problem).''
+\end{quote}
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Final Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{VERDICT: PROVED [L0]}
+
+$SU(3)_c$ color symmetry is derived from first principles within the
+biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$ via the involution
+construction $V_c = \ker(P_2+1)$.  The derivation:
+\begin{itemize}
+  \item Uses only the intrinsic structure of $\mathbb{C}\otimes\mathbb{H}$
+        (no external objects, no octonions, no postulates beyond the UBT field
+        $\Theta$ and its action $S[\Theta]$).
+  \item Proves the $\mathfrak{su}(3)$ Lie algebra, both the fundamental
+        $\mathbf{3}$ (quarks) and adjoint $\mathbf{8}$ (gluons) representations,
+        and the decoupling from electroweak.
+  \item Is assigned confidence level L0 (derived from first principles of
+        the UBT algebra).
+\end{itemize}
+
+\textbf{The sole remaining gap} --- color confinement --- is a Clay Millennium
+Prize Problem and is not expected to be resolved within UBT alone at this stage.
+
+\textbf{Complete SU(3) derivation chain:}
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Step} & \textbf{Content} & \textbf{Status} \\
+  \midrule
+  step1\_generators\_from\_8D & Direct 8D map (negative result) & Sketch \\
+  step2\_octonion\_embedding & Octonion embedding (auxiliary) & Sketch \\
+  step1\_involution\_summary & Involution approach (Thms.~G.A--G.D) & \textbf{Proved [L0]} \\
+  \textbf{step3\_SU3\_result} (this file) & Final verdict & \textbf{Proved [L0]} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

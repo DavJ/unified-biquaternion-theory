@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "task": "Task A — Hecke Search: Non-CM Newforms k=6, N∈[50,500]",
+    "track": "CORE — Three Generations",
+    "date": "2026-03-05",
+    "reference_document": "step6_nonCM_search.tex",
+    "previous_step": "hecke_search_results.json"
+  },
+
+  "search_parameters": {
+    "prime": 137,
+    "weight_k6": 6,
+    "level_range": [50, 500],
+    "is_cm": false,
+    "target_tau_ratio": 3477.23,
+    "target_mu_ratio": 206.768283,
+    "tolerance": 0.05,
+    "f0_candidates": [
+      {"label": "11.2.a.a", "weight": 2, "level": 11, "a_137": -7},
+      {"label": "15.2.a.a", "weight": 2, "level": 15, "a_137": -6},
+      {"label": "17.2.a.a", "weight": 2, "level": 17, "a_137": -6},
+      {"label": "19.2.a.a", "weight": 2, "level": 19, "a_137": -3}
+    ],
+    "f1_candidates": [
+      {"label": "4.4.a.a",  "weight": 4, "level":  4, "a_137": 1626},
+      {"label": "5.4.a.a",  "weight": 4, "level":  5, "a_137": -2334},
+      {"label": "6.4.a.a",  "weight": 4, "level":  6, "a_137": -726}
+    ],
+    "f2_target_window": {
+      "for_f0_a137_minus7": {
+        "exact_target": 24340.61,
+        "window_low": 23123.58,
+        "window_high": 25557.64
+      },
+      "for_f0_a137_minus6": {
+        "exact_target": 20863.38,
+        "window_low": 19820.21,
+        "window_high": 21906.55
+      },
+      "for_f0_a137_minus3": {
+        "exact_target": 10431.69,
+        "window_low":  9910.11,
+        "window_high": 10953.27
+      }
+    }
+  },
+
+  "step5_ruling": {
+    "cm_forms_k6": {
+      "verdict": "STRUCTURALLY_IMPOSSIBLE",
+      "reason": "CM k=6 forms have |a_137| ~ 2*137^(5/2) ≈ 439371 (split primes) or |a_137|=0 (inert primes). Both cases miss the target window [1000, 81400].",
+      "reference": "step5_hecke_search_results.tex §5.2"
+    },
+    "noncm_k6_level_le4": {
+      "verdict": "NO_MATCH",
+      "reason": "Only 3 eta-product newforms exist at N≤4 for k=6; all are CM eta products. No non-CM forms at these levels.",
+      "levels_checked": [2, 3, 4]
+    }
+  },
+
+  "sato_tate_analysis": {
+    "ramanujan_bound_k6_p137": 439371.2,
+    "target_normalised_eigenvalue": 0.0554,
+    "sato_tate_probability": 0.0038,
+    "estimated_noncm_forms_in_range": 220,
+    "expected_matches": 0.84,
+    "interpretation": "Statistically ~1 match expected in N∈[50,500]; neither confirmed nor ruled out without direct computation."
+  },
+
+  "network_status": {
+    "lmfdb_api_available": false,
+    "lmfdb_endpoint": "https://www.lmfdb.org/api/mf_newforms/",
+    "sageMath_available": false,
+    "reason": "Sandboxed environment without external network access or SageMath installation."
+  },
+
+  "coverage": {
+    "noncm_k6_level_50_to_500": {
+      "status": "UNSEARCHED",
+      "reason": "Requires LMFDB API access or SageMath CuspForms(N,6).newforms('a') for each N.",
+      "dimension_estimate": {
+        "N_50":  20,
+        "N_100": 42,
+        "N_200": 87,
+        "N_500": 222,
+        "formula": "dim ~ 5/12 * N * prod_{p|N}(1 + 1/p)",
+        "noncm_fraction": "≈ 0.99 (CM forms are sparse)"
+      }
+    },
+    "noncm_k6_level_5_to_49": {
+      "status": "NOT_CHECKED",
+      "priority": "LOW",
+      "reason": "Dimension very small (<15 forms total); low probability of match."
+    },
+    "noncm_k6_level_gt_500": {
+      "status": "OUT_OF_SCOPE",
+      "reason": "Beyond current search boundary."
+    }
+  },
+
+  "candidates": [],
+
+  "verdict": "EXTENDED_DEAD_END",
+
+  "verdict_note": "The search for non-CM k=6 newforms at N∈[50,500] is structurally possible (Sato-Tate does not forbid it) but computationally incomplete. No match was found or ruled out within the available (offline) computation. The search gap is precisely characterised: all non-CM k=6 newforms at N∈[50,500] remain unsearched. CM forms at all levels are ruled out by structural argument. A definitive verdict requires LMFDB API access or SageMath. Expected ~0.84 matches; neither confirmed nor excluded.",
+
+  "next_actions": [
+    {
+      "priority": 1,
+      "action": "Run search_hecke_lmfdb_api.py with LMFDB network access",
+      "command": "python3 research_tracks/three_generations/search_hecke_lmfdb_api.py",
+      "expected_runtime": "< 5 minutes"
+    },
+    {
+      "priority": 2,
+      "action": "SageMath loop over N=50..500",
+      "code": "for N in range(50, 501):\n    S = CuspForms(N, 6)\n    for f in S.newforms('a'):\n        if not f.has_cm():\n            print(N, f.label(), f.q_expansion(138)[137])",
+      "expected_runtime": "< 2 hours"
+    },
+    {
+      "priority": 3,
+      "action": "If no match at N≤500, extend to N≤2000 and document as DEAD_END"
+    }
+  ]
+}

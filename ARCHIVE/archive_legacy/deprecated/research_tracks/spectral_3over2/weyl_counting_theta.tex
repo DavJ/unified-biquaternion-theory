@@ -1,0 +1,301 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% Spectral 3/2 Program — Step 4: Weyl Counting Law for the Θ-Spectrum
+% Track: SPECTRAL — independent of Hecke/twin-prime route
+% Date: 2026-03-10
+
+\ifdefined\INCLUDEMODE
+  % Being included in another document — skip preamble
+\else
+  \documentclass[11pt,a4paper]{article}
+  \usepackage{amsmath,amssymb,amsthm}
+  \usepackage{hyperref}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{lemma}{Lemma}
+  \newtheorem{proposition}{Proposition}
+  \newtheorem{conjecture}{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}
+  \newtheorem{gap}{Gap}
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}
+
+  \title{Weyl Counting Law for the Θ-Spectrum\\
+    \large Spectral 3/2 Program — Step 4}
+  \author{Ing.\ David Jaroš}
+  \date{2026-03-10}
+
+  \begin{document}
+  \maketitle
+\fi
+
+% ======================================================================
+\section{Introduction}
+\label{sec:intro}
+% ======================================================================
+
+\textbf{Goal.}
+Derive the Weyl counting law for the spectrum of the Θ-fluctuation operator
+$\hat{\mathcal{O}} = -\Delta_\Theta + m^2$ and determine the power law of
+the integrated state density:
+\begin{equation}
+  N(\lambda) \;:=\; \#\bigl\{\text{eigenvalues of }\hat{\mathcal{O}} \leq \lambda\bigr\},
+  \label{eq:N_lambda_def}
+\end{equation}
+focusing on the question: does $N(\lambda) \sim C\,\lambda^{3/2}$?
+
+\textbf{Weyl's law (standard statement).}
+For a second-order elliptic operator on a $d$-dimensional Riemannian manifold,
+\begin{equation}
+  N(\lambda) \;\sim\; C_d\,\mathrm{vol}(\mathcal{M})\,\lambda^{d/2},
+  \quad \lambda \to \infty,
+  \label{eq:Weyl_std}
+\end{equation}
+where $C_d = (4\pi)^{-d/2} / \Gamma(d/2 + 1)$ is the standard Weyl constant.
+
+The exponent $d/2 = 3/2$ requires $d = 3$.
+
+% ======================================================================
+\section{Weyl Count for Each Candidate Operator}
+\label{sec:weyl_each}
+% ======================================================================
+
+\subsection{Candidate 1: Spacetime Laplacian on $\mathbb{R}^4$}
+
+For the free scalar Laplacian on $\mathbb{R}^4$ (IR-regulated in volume $L^4$),
+the Weyl count is:
+\begin{equation}
+  N_{\mathbb{R}^4}(\lambda) \;=\; \frac{\omega_4}{(2\pi)^4}\,L^4\,\lambda^{2}
+  \;=\; C_4\,L^4\,\lambda^{2},
+  \label{eq:N_R4}
+\end{equation}
+where $\omega_4 = \pi^2/2$ is the volume of the unit 4-ball.
+Exponent: $d/2 = 2$.
+\textbf{Does not give $\lambda^{3/2}$.}
+
+\subsection{Candidate 2: Compact $S^1_\psi$ Kaluza–Klein modes}
+
+For the compact $\psi$-circle with KK eigenvalues $\lambda_n = n^2/R_\psi^2$,
+\begin{equation}
+  N_{S^1}(\lambda) \;\sim\; 2\,R_\psi\,\sqrt{\lambda},
+  \label{eq:N_S1}
+\end{equation}
+Exponent: $1/2$.
+\textbf{Does not give $\lambda^{3/2}$.}
+
+\subsection{Candidate 3: Laplacian on $\mathrm{Im}(\mathbb{H}) \cong \mathbb{R}^3$}
+
+If the effective mode-counting space is 3-dimensional,
+the Weyl law on $\mathbb{R}^3$ (IR-regulated in volume $V_3$) gives:
+\begin{equation}
+  N_{\mathbb{R}^3}(\lambda) \;=\; \frac{\omega_3}{(2\pi)^3}\,V_3\,\lambda^{3/2}
+  \;=\; C_3\,V_3\,\lambda^{3/2},
+  \label{eq:N_R3}
+\end{equation}
+where $\omega_3 = 4\pi/3$ and $C_3 = 1/(6\pi^2)$.
+\textbf{Exponent: $d/2 = 3/2$.  This matches the target.}
+
+% ======================================================================
+\section{Weyl Count with $\mathrm{Im}(\mathbb{H})$ Multiplicity}
+\label{sec:weyl_multiplicity}
+% ======================================================================
+
+As established in \texttt{heat\_kernel\_theta.tex} (Section~4),
+the $\mathrm{Im}(\mathbb{H})$ components enter as a \emph{multiplicity factor}
+$d = 3$ in the effective action, not as a spectral manifold dimension.
+
+If the vacuum polarisation integral counts gauge modes weighted by $d = 3$,
+then the relevant state count at energy scale $\lambda$ is:
+\begin{equation}
+  N_{\mathrm{eff}}(\lambda) \;=\; d \cdot N_{\mathrm{spacetime}}(\lambda)
+  \;=\; 3 \cdot N_{\mathbb{R}^4}(\lambda)
+  \;\sim\; 3\,C_4\,L^4\,\lambda^{2}.
+  \label{eq:N_mult}
+\end{equation}
+This still gives exponent 2, not $3/2$.
+The multiplicity approach alone does not shift the power.
+
+\textbf{The exponent $3/2$ from multiplicity appears in the effective action, not in $N(\lambda)$:}
+\begin{equation}
+  \Gamma_1 \;=\; \frac{d}{2}\,\mathrm{Tr}\ln\hat{\mathcal{O}}
+  \;\propto\; \frac{3}{2}\,\int^\Lambda \frac{d^4k}{(2\pi)^4}\,\ln(k^2 + m^2).
+  \label{eq:Gamma1_counting}
+\end{equation}
+
+% ======================================================================
+\section{Reconciliation: Two Routes to the $3/2$ Exponent}
+\label{sec:reconciliation}
+% ======================================================================
+
+There are two distinct mechanisms by which $3/2$ can appear in
+the B-coefficient:
+
+\medskip
+
+\noindent\textbf{Route A — Gaussian exponent (current result, PROVED):}
+\begin{equation}
+  B \;\propto\; \frac{d}{2} \cdot N_{\mathrm{eff}}^{\alpha}
+  \;=\; \frac{3}{2} \cdot N_{\mathrm{eff}}^{\alpha},
+  \label{eq:route_A}
+\end{equation}
+where $\alpha$ remains to be determined.
+The factor $3/2$ is the one-loop exponent.
+If $\alpha = 1$ (linear dependence on $N_{\mathrm{eff}}$),
+then $B = \frac{3}{2} N_{\mathrm{eff}} = 18 \neq 41.57$.
+This does not reproduce $B_{\mathrm{base}}$.
+
+\medskip
+
+\noindent\textbf{Route B — Spectral Weyl count (requires 3D manifold, NOT YET PROVED):}
+If the effective spectral manifold for Θ-modes has $d_{\mathrm{eff}} = 3$
+(e.g., via dimensional reduction of the spacetime integral to 3D),
+then the Weyl law would give:
+\begin{equation}
+  N(\lambda) \;\sim\; C_3\,V_3\,\lambda^{3/2},
+  \label{eq:route_B_weyl}
+\end{equation}
+and the vacuum polarisation coefficient would inherit the power $3/2$
+from the spectral count.
+This is the conceptually cleanest route but requires justifying why
+the effective dimension is $d_{\mathrm{eff}} = 3$.
+
+\medskip
+
+\noindent\textbf{Route C — Combined (candidate mechanism):}
+If the vacuum polarisation runs over KK modes (compact $\psi$) with
+the 3-component multiplicity from $\mathrm{Im}(\mathbb{H})$, one might write:
+\begin{equation}
+  B \;\propto\; \sqrt{N_{\mathrm{eff}}^3}
+  \;=\; N_{\mathrm{eff}}^{3/2},
+  \label{eq:route_C}
+\end{equation}
+where the exponent $3/2$ is interpreted as
+$\lfloor\text{3 quaternion phases}\rfloor \times \lfloor 1/2 \text{ from Gaussian}\rfloor$.
+This is the algebraic motivation in
+\texttt{consolidation\_project/alpha\_derivation/b\_base\_hausdorff.tex},
+and is currently a \textbf{[MOTIVATED CONJECTURE]}.
+
+% ======================================================================
+\section{Attempt to Derive the 3D Weyl Law from UBT}
+\label{sec:derive_3d}
+% ======================================================================
+
+\subsection{Hypothesis: dimensional reduction to 3D mode space}
+\label{sec:dimred}
+
+Consider the vacuum polarisation integral in UBT in $4 = 3 + 1$ dimensions.
+After Wick rotation to Euclidean space, performing the frequency integral
+over $k_0$ (time component), one obtains the dimensionally-reduced
+3-dimensional integral:
+\begin{equation}
+  \Pi(\mathbf{k}^2)
+  \;\propto\; \int \frac{d^3p}{(2\pi)^3}
+    \int_{-\infty}^{\infty} \frac{dp_0}{2\pi}\,
+    \frac{1}{(p^2 + m^2)\bigl((p+k)^2 + m^2\bigr)},
+  \label{eq:Pi_4d}
+\end{equation}
+where $p^2 = p_0^2 + |\mathbf{p}|^2$.
+The $p_0$ integral is finite and evaluates to:
+\begin{equation}
+  \int_{-\infty}^{\infty} \frac{dp_0}{2\pi}\,(\cdots)
+  \;=\; \frac{f(\mathbf{p}, \mathbf{k})}{|\mathbf{p}|},
+  \label{eq:p0_int}
+\end{equation}
+a function that depends only on the 3-momentum $\mathbf{p}$.
+The residual integral over $d^3p$ can be interpreted as a 3-dimensional
+spectral count.
+
+\begin{proposition}[3D residual integral — CANDIDATE]
+\label{prop:3d_residual}
+  After performing the Euclidean time integral, the vacuum polarisation tensor
+  $\Pi(\mathbf{k}^2)$ in UBT reduces to a 3-dimensional integral over spatial
+  momenta $\mathbf{p} \in \mathbb{R}^3$.
+  The mode count in this integral follows the 3D Weyl law:
+  \begin{equation}
+    N_{\mathrm{eff,3D}}(\lambda) \;\sim\; C_3\,\lambda^{3/2}.
+    \label{eq:N_3D}
+  \end{equation}
+  This generates the exponent $3/2$ in $B \propto N_{\mathrm{eff}}^{3/2}$
+  if the coupling runs logarithmically with the 3D mode count.
+
+  \begin{proof}[Proof status: CANDIDATE — key step unverified]
+    The $p_0$ integral from equation~\eqref{eq:p0_int} reduces the
+    dimension from 4 to 3.
+    On $\mathbb{R}^3$, the standard Weyl law (equation~\eqref{eq:N_R3})
+    gives $N \sim \lambda^{3/2}$.
+    \textbf{What is not yet verified:} whether the coupling of the
+    3D mode count to $B$ is proportional to $N_{\mathrm{eff}}$ (the
+    number of gauge degrees of freedom), giving
+    $B \propto N_{\mathrm{eff}} \cdot N_{\mathrm{modes,3D}}^{1/2}
+    = N_{\mathrm{eff}} \cdot N_{\mathrm{eff}}^{1/2} = N_{\mathrm{eff}}^{3/2}$.
+    The last step uses $N_{\mathrm{modes}} \sim N_{\mathrm{eff}}$ (not proved).
+  \end{proof}
+\end{proposition}
+
+\begin{remark}[Relation to existing C1 approach]
+  Approach C1 in \texttt{b\_base\_delta\_d.tex} used the Seeley–DeWitt expansion
+  to add curvature corrections to the heat kernel.
+  That approach was a DEAD END because the corrections vanish as $\Lambda^{-2} \to 0$.
+  The present 3D residual approach is \emph{different}: it identifies a natural
+  3D structure from the $p_0$ integration, independently of curvature corrections.
+  This path has not been explored previously and is \textbf{new}.
+\end{remark}
+
+% ======================================================================
+\section{Numerical Test}
+\label{sec:numerical}
+% ======================================================================
+
+The Python tool \texttt{ubt/spectral/laplacian\_torus.py} provides
+numerical Weyl counting for torus Laplacians.
+Applying it to $d = 3$:
+
+\begin{itemize}
+  \item Mode count $N(\Lambda)$ grows as $\Lambda^{3/2}$ for large $\Lambda$ on $T^3$
+    (verified numerically by the existing \texttt{laplacian\_torus.py} for $d=3$).
+  \item The coefficient is $C_3 = 1/(6\pi^2)$, consistent with equation~\eqref{eq:N_R3}.
+\end{itemize}
+
+\textbf{Status:} The Weyl law $N \sim \lambda^{3/2}$ on a 3-dimensional manifold
+is \textbf{[PROVED as standard mathematics]}.
+The UBT-specific question is whether the vacuum polarisation integral in UBT
+is controlled by such a 3D Weyl count.
+
+% ======================================================================
+\section{Summary: Weyl Counting Results}
+\label{sec:summary}
+% ======================================================================
+
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+  Route & Mechanism & Exponent & Status \\
+  \midrule
+  A & Gaussian exponent $d/2$ from Im(ℍ) & $3/2$ in $\Gamma_1$, not in $N(\lambda)$ & [PROVED in $\Gamma_1$] \\
+  B & Weyl law on 3D manifold & $3/2$ in $N(\lambda)$ & [NOT YET: 3D manifold unidentified] \\
+  C & Combined: 3 phases × $\frac{1}{2}$ Gaussian & $3/2$ in $B$ & [MOTIVATED CONJECTURE] \\
+  C' & 3D residual from $p_0$ integration & $3/2$ from 3D mode count & [NEW CANDIDATE — unverified] \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gap}[Missing 3D manifold]
+\label{gap:3d_manifold}
+  No explicit 3-dimensional manifold has been identified in UBT such that
+  the Θ-spectrum Weyl count gives $N(\lambda) \sim \lambda^{3/2}$ and
+  this count directly determines $B_{\mathrm{base}}$.
+  The dimensional reduction hypothesis (Proposition~\ref{prop:3d_residual},
+  Route C') is new and requires:
+  \begin{enumerate}
+    \item Explicit calculation of the $p_0$ integral in equation~\eqref{eq:p0_int};
+    \item Proof that the residual 3D mode count couples to $B$ as
+      $B \propto N_{\mathrm{eff}} \cdot (\text{3D mode count})^{1/2}$.
+  \end{enumerate}
+\end{gap}
+
+\ifdefined\INCLUDEMODE\else\end{document}\fi

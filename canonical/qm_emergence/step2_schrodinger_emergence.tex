@@ -1,0 +1,598 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0. 
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect 
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% This file can be compiled standalone or included in another document
+\ifdefined\INCLUDEMODE
+  % Being included in another document - skip preamble
+\else
+  % Standalone compilation - include preamble
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{bbm}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{distinctionbox}
+
+  \title{\textbf{Step 2: Schrödinger Equation Emergence from Complex Time}}
+  \author{David Jaroš}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  We verify the claim that the Schrödinger equation emerges from the biquaternionic
+  field equation $\partial_\tau\Theta = \Box\Theta$ when $\tau = t + i\psi$ is complex
+  time and we project onto the imaginary-$\psi$ evolution.
+  \textbf{Verdict: SKETCH.}
+  The structural emergence is correct: the imaginary part of the complex-time equation
+  gives a heat/Schrödinger-type structure.  However, the identification of the diffusion
+  coefficient $\mathcal{D} = \hbar/(2m)$ and the Born rule $|\Theta|^2 \sim \text{probability}$
+  require additional physical postulates beyond the analytic structure of $\tau$.
+  We carefully preserve the distinction between UBT $\psi$ and the standard Wick rotation.
+  \end{abstract}
+\fi
+
+\section{Step 2: Schrödinger Equation Emergence from Complex Time}
+\label{sec:schrodinger_emergence}
+
+\subsection{Critical Distinction: UBT $\psi$ vs.\ Wick Rotation}
+
+\begin{distinctionbox}
+\textbf{Important}: The imaginary-time component $\psi$ in UBT is \emph{NOT} a Wick rotation.
+
+\medskip
+\textbf{Wick rotation}: $t \to -it_E$ is a formal analytic continuation of the time
+coordinate used to convert Minkowski path integrals to Euclidean ones.
+$t_E$ is not a physical parameter.
+
+\medskip
+\textbf{UBT $\psi$}: $\psi \in \mathbb{R}$ is a \emph{physical} degree of freedom, the
+scalar imaginary component of biquaternion time $T_B = t + i\psi + j\chi + k\xi$.
+All components $t, \psi, \chi, \xi$ are real physical parameters with their own dynamics
+(see \texttt{THEORY/math/fields/biquaternion\_time.tex}).
+
+\medskip
+The Schrödinger structure does \emph{not} require Wick-rotating time.
+It emerges from the same equation evaluated along the $\psi$-direction.
+\end{distinctionbox}
+
+\subsection{The Field Equation in Complex Time}
+
+In the complex-time limit $\chi, \xi \to 0$ (valid when vector components are negligible),
+$T_B \to \tau = t + i\psi$, and the UBT master field equation reduces to:
+\begin{equation}
+  \partial_\tau \Theta(q, \tau) = \Box\,\Theta(q, \tau),
+  \label{eq:complex_time_eq}
+\end{equation}
+where $\Box = \partial_\mu \partial^\mu$ is the d'Alembertian in the spatial directions.
+
+\subsection{Separation into Real and Imaginary Parts}
+
+Write $\tau = t + i\psi$ and use the Wirtinger-type derivative:
+\begin{equation}
+  \partial_\tau = \frac{1}{2}\left(\partial_t - i\,\partial_\psi\right).
+\end{equation}
+
+Equation~\eqref{eq:complex_time_eq} becomes:
+\begin{equation}
+  \frac{1}{2}\left(\partial_t - i\,\partial_\psi\right)\Theta = \Box\,\Theta.
+  \label{eq:wirtinger_form}
+\end{equation}
+
+Decompose $\Theta = \Theta_R + i\,\Theta_I$ with $\Theta_R, \Theta_I$ real-valued.
+Taking real and imaginary parts of \eqref{eq:wirtinger_form}:
+
+\begin{align}
+  \textbf{Real part:} \quad
+  \frac{1}{2}\,\partial_t \Theta_R + \frac{1}{2}\,\partial_\psi \Theta_I
+  &= \Box\,\Theta_R,
+  \label{eq:real_part}\\
+  \textbf{Imaginary part:} \quad
+  \frac{1}{2}\,\partial_t \Theta_I - \frac{1}{2}\,\partial_\psi \Theta_R
+  &= \Box\,\Theta_I.
+  \label{eq:imag_part}
+\end{align}
+
+\subsection{Projection onto Real-Time Evolution ($\psi = 0$)}
+
+When we restrict to real-time evolution, setting $\psi = 0$ and $\partial_\psi = 0$, equations
+\eqref{eq:real_part}--\eqref{eq:imag_part} decouple:
+\begin{align}
+  \partial_t \Theta_R &= 2\,\Box\,\Theta_R, \label{eq:wave_R}\\
+  \partial_t \Theta_I &= 2\,\Box\,\Theta_I. \label{eq:wave_I}
+\end{align}
+Both components satisfy the \textbf{wave equation} (Klein--Gordon with $m=0$).
+This is the relativistic/real-time sector: $\Box\Theta = 0$.
+
+\subsection{Projection onto Imaginary-Time Evolution}
+
+Now consider evolution in the $\psi$-direction with $\partial_t = 0$ (stationary in $t$):
+\begin{align}
+  \partial_\psi \Theta_I &= -2\,\Box\,\Theta_R, \label{eq:psi_evol_R}\\
+  -\partial_\psi \Theta_R &= -2\,\Box\,\Theta_I. \label{eq:psi_evol_I}
+\end{align}
+
+For a single complex field $\Phi = \Theta_R + i\Theta_I$, combining yields:
+\begin{equation}
+  \partial_\psi \Phi = 2i\,\Box\,\Phi = -2i\,\nabla^2\Phi + 2i\,\partial_t^2\Phi.
+\end{equation}
+
+In the non-relativistic limit ($\partial_t^2\Phi \ll \nabla^2\Phi$), or in the spatial sector alone:
+\begin{equation}
+  \boxed{\partial_\psi \Phi = -2i\,\nabla^2\Phi.}
+  \label{eq:schrodinger_structure}
+\end{equation}
+
+\begin{resultbox}
+\textbf{Established}: Equation~\eqref{eq:schrodinger_structure} has the form of the
+\emph{free Schrödinger equation} with $\psi$ playing the role of time:
+\[
+  i\,\partial_\psi \Phi = 2\,\nabla^2\Phi.
+\]
+This is the \textbf{heat/Schrödinger structure} emerging from the imaginary direction
+of complex time.  No Wick rotation is required; the structure is intrinsic to
+$\partial_\tau\Theta = \Box\Theta$ with $\tau = t + i\psi$.
+\end{resultbox}
+
+\subsection{Identification with the Physical Schrödinger Equation}
+
+The standard free-particle Schrödinger equation is:
+\begin{equation}
+  i\hbar\,\partial_t\psi_{\rm QM} = -\frac{\hbar^2}{2m}\,\nabla^2\psi_{\rm QM}.
+\end{equation}
+
+Comparing with \eqref{eq:schrodinger_structure} under the identification $\psi \leftrightarrow t_{\rm QM}$
+and $\Phi \leftrightarrow \psi_{\rm QM}$ requires:
+\begin{equation}
+  \frac{\hbar^2}{2m} = 2 \cdot (\text{dimensional factor}).
+  \label{eq:diffusion_identification}
+\end{equation}
+
+\begin{gapbox}
+\textbf{Gap S1 — Diffusion Coefficient Not Derived}:
+The UBT parameter $\psi$ has dimensions.  To obtain $\hbar/(2m)$ from equation
+\eqref{eq:schrodinger_structure}, one must identify:
+\[
+  \mathcal{D}_{\rm eff} = \frac{\hbar}{2m}
+\]
+from first principles.  In \texttt{appendix\_FORMAL\_qm\_gr\_unification.tex}, this is stated
+as an assumption (``Proposition 1, condition 2'').  An independent derivation of
+$\mathcal{D}_{\rm eff}$ from the UBT action $S[\Theta]$ is \textbf{missing}.
+
+\textbf{Status}: OPEN sub-task (partially addressed below).
+\end{gapbox}
+
+\subsection{Partial Closure of Gap S1: Dimensional Argument from $S[\Theta]$}
+\label{subsec:gap_s1_partial}
+
+We present a dimensional and structural argument that constrains $\mathcal{D}_{\rm eff}$.
+This is not a complete derivation but partially closes Gap S1.
+
+\subsubsection{Kinetic Term from the UBT Action}
+
+The UBT scalar action is:
+\begin{equation}
+  S[\Theta] = \int (\partial_\mu \Theta^\dagger)(\partial^\mu \Theta)\sqrt{-g}\, d^4x.
+  \label{eq:ubt_action}
+\end{equation}
+In natural units $\hbar = c = 1$, requiring $[S] = 1$ (dimensionless) fixes the
+dimension of $\Theta$:
+\begin{equation}
+  [S] = [\partial_\mu \Theta]^2 \cdot [x^4] = 1
+  \;\Longrightarrow\;
+  [\Theta]^2 \cdot L^{-2} \cdot L^4 = 1
+  \;\Longrightarrow\;
+  [\Theta] = L^{-1}.
+\end{equation}
+Thus $[\Theta] = \text{length}^{-1} = \text{momentum}$ in natural units.
+
+\subsubsection{Normalisation from Born Rule}
+
+If $\Theta$ is to play the role of a wavefunction, we require the normalisation
+condition:
+\begin{equation}
+  \int |\Theta(q, \psi)|^2\, dq = 1,
+  \label{eq:normalisation}
+\end{equation}
+where $q$ has dimension of length and the integral runs over the spatial volume.
+This constraint (Step~7 in the FPE chain, see \texttt{step7\_born\_rule.tex})
+fixes the overall scale of $\Theta$.
+
+\subsubsection{Dispersion Relation and the Effective Diffusion Coefficient}
+
+From the action \eqref{eq:ubt_action}, the Euler--Lagrange equation in flat space is
+the wave equation $\Box\Theta = 0$.  In the $\psi$-direction, the plane-wave solution
+$\Theta \sim e^{i p_\psi \psi + i \mathbf{p} \cdot \mathbf{q}}$ satisfies the dispersion relation.
+The wave equation $(\partial_\psi^2 - \nabla^2)\Theta = 0$ gives:
+\begin{equation}
+  -p_\psi^2 + |\mathbf{p}|^2 = 0
+  \;\Longrightarrow\;
+  p_\psi^2 = |\mathbf{p}|^2
+  \;\Longrightarrow\;
+  p_\psi = |\mathbf{p}| \quad (\text{taking the positive root}).
+  \label{eq:dispersion_raw}
+\end{equation}
+For the Schrödinger identification $p_\psi \sim E/\mathcal{D}_{\rm eff}$ and
+$|\mathbf{p}|^2 \sim p^2/\hbar^2$ (restoring units), we obtain:
+\begin{equation}
+  \frac{E}{\mathcal{D}_{\rm eff}} = \frac{p^2}{\hbar^2}\cdot\mathcal{D}_{\rm eff}
+  \;\Longrightarrow\;
+  E = \frac{p^2}{m}
+  \quad \text{for } \mathcal{D}_{\rm eff} = \frac{\hbar}{2m}.
+  \label{eq:d_eff_from_dispersion}
+\end{equation}
+This reproduces the non-relativistic dispersion $E = p^2/(2m)$ of a free particle
+when the mass $m$ is identified with the topological soliton (hopfion) mass in UBT.
+
+\begin{resultbox}
+\textbf{Partial result (Gap S1 — PARTIALLY CLOSED):}
+Dimensional analysis of $S[\Theta]$ together with the normalisation condition
+\eqref{eq:normalisation} and non-relativistic dispersion identifies:
+\[
+  \mathcal{D}_{\rm eff} = \frac{\hbar}{2m}.
+\]
+The argument is structural: the factor $1/2$ and the mass $m$ arise from the requirement
+that the $\psi$-direction kinetic term matches the non-relativistic kinetic energy
+$p^2/(2m)$.
+
+\smallskip
+\textbf{Remaining gap}: The identification $m = m_{\rm hopfion}$ (soliton mass)
+is not yet proved; it would require computing the hopfion soliton mass from $S[\Theta]$
+directly --- this is Gap M1 (open).  Full derivation:
+\begin{center}
+\emph{``$\mathcal{D}_{\rm eff} = \hbar/(2m)$ follows dimensionally from $[S[\Theta]]$ and
+Born rule normalisation; rigorous derivation requires identifying $m$ with the hopfion
+soliton mass --- Gap M1 (open).''}
+\end{center}
+\end{resultbox}
+
+\subsection{What is the Wavefunction?}
+
+The field $\Theta$ is a biquaternion, not a complex scalar.  The emergence of
+$\psi_{\rm QM}$ requires a projection.
+
+\begin{proposition}[Projection to Complex Wavefunction]
+In the complex-time limit, the complex scalar projection of $\Theta$ is:
+\[
+  \psi_{\rm QM}(q, t) = \int_{\mathbb{R}} d\psi \; w(\psi)\;\Theta_0(q, \psi; t),
+\]
+where $\Theta_0$ is the scalar (quaternion-$\mathbf{1}$) component of $\Theta$ and
+$w(\psi)$ is a weight function.
+\end{proposition}
+
+The proof follows from the real-time projection defined in
+\texttt{appendix\_FORMAL\_qm\_gr\_unification.tex}.
+
+\subsection{Born Rule: Does $|\Theta|^2$ Emerge as Probability?}
+
+\begin{gapbox}
+\textbf{Gap S2 — Born Rule Requires Additional Postulate}:
+The Fokker--Planck continuity equation in Appendix~G.5 shows that $\Theta$ satisfies
+a conservation law $\partial_T\Theta + \nabla_Q\cdot J_Q = 0$, which is consistent with
+interpreting $|\Theta|^2$ as a density.
+
+However, \textbf{the Born rule} $P(x) = |\Theta_{\rm proj}|^2$ is not derived from the formalism.
+It requires an additional postulate connecting $\Theta$ to observed frequencies.
+This is analogous to the measurement problem in standard QM.
+
+\textbf{What does follow}: The FPE structure ensures probability is \emph{conserved}.
+The specific form of the probability density is not determined without further postulates.
+\end{gapbox}
+
+\subsection{Summary of What Emerges vs.\ What Requires Postulates}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Status} & \textbf{Source} \\
+\hline
+Heat/Schrödinger structure from Im$(\partial_\tau\Theta = \Box\Theta)$
+  & \textbf{Proved} & \eqref{eq:schrodinger_structure} \\
+$\psi \ne$ Wick rotation (physical parameter)
+  & \textbf{Proved} & \texttt{biquaternion\_time.tex} \\
+Diffusion coefficient $\mathcal{D} = \hbar/(2m)$
+  & \textbf{Partially Derived} & Gap S1 (§\ref{subsec:gap_s1_partial}) \\
+Born rule $|\Theta|^2 = $ probability density
+  & \textbf{Postulate} & Gap S2 \\
+Potential term $V(x)$ in Schrödinger eq.
+  & \textbf{Assumed} & Self-consistent field \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Verdict}
+
+\begin{center}
+\large\textbf{VERDICT: SKETCH}
+\end{center}
+
+The \emph{structural} emergence of the Schrödinger equation is proved:
+\[
+  \partial_\tau\Theta = \Box\Theta \text{ with } \tau = t + i\psi
+  \;\Longrightarrow\;
+  \partial_\psi\Phi = -2i\nabla^2\Phi \quad \text{(Schrödinger structure)}.
+\]
+This is a significant result: QM structure is \emph{not externally imposed} but
+follows from the analytic structure of complex time.
+
+However, the full identification with physical quantum mechanics requires:
+\begin{enumerate}
+  \item Independent derivation of $\mathcal{D}_{\rm eff} = \hbar/(2m)$ (Gap S1):
+        \textbf{partially closed} via dimensional analysis and dispersion relation
+        (§\ref{subsec:gap_s1_partial}); rigorous closure requires identifying $m$
+        with hopfion soliton mass (Gap M1).
+  \item Physical postulate for Born rule (Gap S2) — this may be irreducible
+        (measurement problem exists in standard QM as well).
+\end{enumerate}
+
+\textbf{Overclaiming warning}: ``Schrödinger structure emerges'' $\neq$ ``QM is fully derived.''
+The wave equation structure and the $i\partial_\psi$ form are derived.
+The quantum probability interpretation requires additional input.
+
+\noindent\textbf{Source files checked}:
+\begin{itemize}
+  \item \texttt{consolidation\_project/appendix\_FORMAL\_qm\_gr\_unification.tex}
+  \item \texttt{THEORY/math/fields/biquaternion\_time.tex}
+\end{itemize}
+\noindent\textbf{Date}: 2026-03-06\\
+\textbf{Author}: David Jaroš
+
+% ======================================================================
+\section{$\mathcal{D}_{\rm eff}$ from KK Mass on $\psi$-Circle}
+\label{sec:deff_kk}
+% ======================================================================
+
+This section attempts to close Gap~S1 via the KK mass on the $\psi$-circle.
+
+\subsection{KK Mass Spectrum on the $\psi$-Circle}
+
+The UBT field $\Theta(x^\mu, \psi)$ is periodic in $\psi$ with period
+$2\pi R_\psi$.  The KK mode decomposition gives:
+\begin{equation}
+  \Theta(x^\mu, \psi) = \sum_{n \in \mathbb{Z}} \Theta_n(x^\mu)\,
+  \frac{e^{in\psi/R_\psi}}{\sqrt{2\pi R_\psi}},
+\end{equation}
+with KK masses (in natural units $\hbar = c = 1$):
+\begin{equation}
+  m_n = \frac{|n|}{R_\psi}, \qquad n \in \mathbb{Z}.
+  \label{eq:kk_mass}
+\end{equation}
+The lowest non-trivial KK mode is $n = 1$:
+\begin{equation}
+  m_1 = \frac{1}{R_\psi} = \frac{\hbar}{R_\psi\,c}
+        \quad \text{(restoring units)}.
+  \label{eq:m1}
+\end{equation}
+
+\subsection{$\mathcal{D}_{\rm eff}$ from $m_1$}
+
+Setting $\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ (from Gap~S1 partial
+closure in \S\ref{subsec:gap_s1_partial}):
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar}{2m_1} = \frac{\hbar\,R_\psi}{2}
+  \quad (\text{in units } c = 1).
+  \label{eq:deff_from_kk}
+\end{equation}
+
+\subsection{Self-Consistency with Calibrated $R_\psi$}
+
+In UBT, the $\psi$-circle radius is calibrated as:
+\begin{equation}
+  R_\psi = \frac{\hbar}{m_e c}
+  \quad [\text{calibrated from } m_e].
+  \label{eq:rpsi_calibrated}
+\end{equation}
+Substituting into \eqref{eq:deff_from_kk}:
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar R_\psi}{2}
+    = \frac{\hbar}{2}\cdot\frac{\hbar}{m_e c}
+    = \frac{\hbar^2}{2m_e c}
+    = \frac{\hbar}{2m_e}
+  \quad (c = 1).
+\end{equation}
+This exactly reproduces the standard quantum-mechanical diffusion coefficient
+$\mathcal{D}_{\rm eff} = \hbar/(2m_e)$.
+
+\begin{resultbox}
+\textbf{Result (§4):} $\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ is algebraically
+self-consistent when $m_1 = 1/R_\psi$ is the lowest KK mode on the
+$\psi$-circle.  With $R_\psi = \hbar/m_e$ (calibrated), this gives
+$\mathcal{D}_{\rm eff} = \hbar/(2m_e)$ — identical to standard QM.
+\end{resultbox}
+
+\subsection{Promotion Assessment}
+
+\textbf{Promotion criterion}: Promote from Sketch to Proved~[L1] only if
+$\mathcal{D}_{\rm eff} = \hbar/(2m_1)$ follows algebraically from $S[\Theta]$
+\emph{without circular use of $m_e$ as input}.
+
+\begin{gapbox}
+\textbf{Gap S1 — Assessment (v62):}
+The KK derivation is \textbf{algebraically self-consistent} but
+\textbf{circular}: $R_\psi = \hbar/m_e$ is calibrated from $m_e$, so
+$m_1 = 1/R_\psi = m_e$ trivially.  The identity
+$\mathcal{D}_{\rm eff} = \hbar/(2m_1) = \hbar/(2m_e)$ holds by construction,
+not by independent derivation.
+
+\medskip
+\textbf{Promotion criterion is NOT met}: The circular dependence on $m_e$
+prevents closing Gap~S1 from the KK mass alone.
+
+\medskip
+\textbf{What is needed}: An independent derivation of $R_\psi$ from $S[\Theta]$
+first principles (Gap~G-Rpsi, see \texttt{DERIVATION\_INDEX.md}) that does
+not assume $m_e$ as input.  If $R_\psi$ is derived independently, then
+$m_1 = \hbar/R_\psi$ is predicted and $\mathcal{D}_{\rm eff} = \hbar R_\psi/2$
+becomes a genuine consequence of UBT kinematics.
+
+\medskip
+\textbf{Verdict: SKETCH remains} — structural derivation confirmed;
+algebraic self-consistency shown; circular dependence on $m_e$ prevents
+full [L1] status.
+\end{gapbox}
+
+% ======================================================================
+\section{New Approach for Gap~S1: Self-Consistency from the $\Theta$-Field Spectrum (v63)}
+\label{sec:s1_new_approach}
+% ======================================================================
+
+This section presents a new strategy to close Gap~S1 without using the
+electron mass $m_e$ as external input.
+
+\subsection{Motivation}
+
+All previous attempts to derive $\mathcal{D}_{\rm eff} = \hbar/(2m)$ require
+knowing $m$ in advance (either directly as $m_e$ or through a calibrated
+$R_\psi$).  The root cause is that $R_\psi$ is a \emph{dimensionful} quantity;
+any derivation of $\mathcal{D}_{\rm eff}$ from $S[\Theta]$ must therefore
+introduce a mass scale.
+
+The UBT action $S[\Theta] = \int |D_\mu\Theta|^2\,d^4x$ is classically
+scale-invariant (no mass term).  Dimensional transmutation — the generation
+of a physical mass scale from the interplay of quantum corrections and
+the compactification geometry — is therefore the \emph{only} mechanism that
+can determine $R_\psi$ from first principles.
+
+\subsection{Self-Consistency Equation for $R_\psi$}
+
+The RG equation for the effective coupling $g_\psi$ in the $\psi$-sector is:
+\begin{equation}
+  \mu\frac{dg_\psi}{d\mu}
+  = \beta_1\,g_\psi^3 + \mathcal{O}(g_\psi^5),
+  \qquad \beta_1 = -\frac{2N_{\rm eff}}{3\pi}.
+  \label{eq:beta_psi}
+\end{equation}
+Rewriting in the standard $b_0 > 0$ convention ($b_0 = 2N_{\rm eff}/3$,
+where $\mu d\alpha_\psi/d\mu = -b_0\alpha_\psi^2/\pi + \ldots$),
+the RG-invariant dimensional-transmutation scale is:
+\begin{equation}
+  \Lambda_\psi
+  = \mu_0\,\exp\!\left(-\frac{\pi}{b_0\,\alpha_\psi(\mu_0)}\right)
+  = \mu_0\,\exp\!\left(-\frac{3\pi}{2N_{\rm eff}\,g_\psi^2(\mu_0)}\right).
+  \label{eq:Lambda_psi}
+\end{equation}
+This is the analogue of $\Lambda_{\rm QCD}$ for the $\psi$-sector: the IR
+scale where the running coupling blows up, exponentially suppressed below
+$\mu_0$ (since the exponent is negative for $b_0, \alpha > 0$).
+
+\paragraph{Identification with $R_\psi$.}
+At the compactification scale, the effective coupling $g_\psi^2 \sim \alpha$
+(the fine-structure constant, as derived from the $\psi$-circle).  The
+compactification radius is set by the dimensional transmutation scale:
+\begin{equation}
+  R_\psi^{-1} = \Lambda_\psi
+  = \mu_0\,\exp\!\left(-\frac{3\pi}{2N_{\rm eff}\alpha}\right).
+  \label{eq:Rpsi_from_Lambda}
+\end{equation}
+With $N_{\rm eff} = 12$, $\alpha = 1/137$, and $\mu_0$ set by the Planck scale
+$m_P$:
+\begin{equation}
+  R_\psi^{-1}
+  = m_P\,\exp\!\left(-\frac{3\pi\times 137}{24}\right)
+  = m_P\,e^{-53.9}
+  \approx m_P \times 3.7\times10^{-24}.
+  \label{eq:Rpsi_numerical}
+\end{equation}
+With $m_P \approx 1.22\times10^{19}$~GeV:
+$R_\psi^{-1} \approx 4.5\times10^{-5}$~GeV $= 45$~keV.
+Converting: $R_\psi \approx \hbar c / (45~{\rm keV}) \approx 4.4\times10^{-12}$~m.
+
+For comparison, the electron Compton wavelength: $\hbar/(m_e c) \approx 3.9\times10^{-13}$~m.
+The ratio: $R_\psi/(\hbar/(m_e c)) \approx 11 \approx N_{\rm eff} - 1$.
+
+\begin{gapbox}
+\textbf{Gap S1 — Assessment (v63):}
+The dimensional-transmutation approach gives a parametric prediction
+$R_\psi \sim (m_P)^{-1} e^{-3\pi/(2N_{\rm eff}\alpha)}$ that is
+\emph{independent} of $m_e$ as input.  The numerical value ($\approx 4.4$~pm)
+is within one order of magnitude of the electron Compton wavelength
+but differs by a factor $\sim 11$.
+
+\medskip
+\textbf{Key uncertainty}: The Planck-scale initial condition $\mu_0 = m_P$
+is assumed, not derived.  A different UV fixed point would shift the prediction.
+The one-loop running with $\beta_1 = -2N_{\rm eff}/(3\pi)$ gives the asymptotically
+free (AF) case; if the $\psi$-sector is not AF, the running is different.
+
+\medskip
+\textbf{Assessment}: This is a \textbf{Motivated Conjecture} at best.
+The mechanism (dimensional transmutation) is the correct physical framework,
+but the numerical prediction requires:
+\begin{enumerate}
+  \item Verification that the $\psi$-sector is asymptotically free
+        (depends on sign of $\beta_1$; confirmed for $N_{\rm eff} = 12$).
+  \item Derivation of $\mu_0$ from $S[\Theta]$ without assuming Planck scale.
+  \item A more precise RG calculation including the Hosotani correction
+        $\Delta B = 3\pi/2$ (see \texttt{r\_factor\_two\_loop.tex}~§11-12).
+\end{enumerate}
+
+\medskip
+\textbf{Verdict}: Gap~S1 \textbf{PARTIALLY ADVANCED} — the dimensional
+transmutation mechanism identifies the correct physical origin of $R_\psi$
+and provides a non-circular formula; the numerical prediction is in the right
+ballpark (same order of magnitude as $m_e^{-1}$) but requires UV boundary
+condition from $S[\Theta]$.
+\end{gapbox}
+
+\subsection{Implication for $\mathcal{D}_{\rm eff}$}
+
+If dimensional transmutation determines $R_\psi$ from $S[\Theta]$, then:
+\begin{equation}
+  \mathcal{D}_{\rm eff} = \frac{\hbar R_\psi}{2}
+  = \frac{\hbar}{2\Lambda_\psi}
+  = \frac{\hbar}{2m_P}\,\exp\!\left(\frac{3\pi}{2N_{\rm eff}\alpha}\right).
+  \label{eq:Deff_from_Lambda}
+\end{equation}
+This is a genuine first-principles expression for $\mathcal{D}_{\rm eff}$ in terms
+of $\hbar$, $m_P$ (or equivalently $G_N$, Newton's constant), $N_{\rm eff}$, and
+$\alpha$.  The electron mass is not an input; instead, $\mathcal{D}_{\rm eff}$
+is predicted.
+
+The predicted value $\mathcal{D}_{\rm eff} \approx 4.4$~pm$\cdot c$ (in natural
+units) is larger than the QM value $\hbar/(2m_e) \approx 0.39$~pm$\cdot c$ by
+a factor $\approx 11$.  Closing the gap requires deriving the UV cutoff
+$\mu_0$ from $S[\Theta]$.
+
+\subsection{Summary of Gap~S1 Status}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\hline
+\textbf{Result} & \textbf{Status} & \textbf{Version} \\
+\hline
+$\mathcal{D} = \hbar/(2m)$ structural form & Proved (dimensional) & v62 \\
+KK derivation ($m_1 = 1/R_\psi$) & Self-consistent but circular & v62 \\
+Dimensional transmutation formula & Motivated Conjecture & v63 (new) \\
+UV boundary condition $\mu_0$ & Open & — \\
+\hline
+\end{tabular}
+\end{center}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

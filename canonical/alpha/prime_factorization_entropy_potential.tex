@@ -1,0 +1,464 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/alpha/prime_factorization_entropy_potential.tex
+% Purpose: Mathematically precise interpretation of the alpha effective potential
+%          in terms of prime-factorization information entropy.
+%          Provides candidate forms for the entropic term, compares their
+%          stationary conditions, and clearly labels each claim.
+% Date: 2026-05-11
+% Related: canonical/alpha/nlogn_origin_analysis.tex
+%          canonical/alpha/veff_corrected.tex
+%          canonical/alpha/ALPHA_MASTER_STATUS.md
+%          tools/compare_alpha_potentials.py
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{booktabs}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+  \tcbuselibrary{skins,breakable}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange,          linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15,  linecolor=green!60!black,  linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8,     linecolor=red!60,          linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!6,    linecolor=blue!40,         linewidth=1.5pt]{infobox}
+  \newmdenv[backgroundcolor=gray!8,    linecolor=gray!60,         linewidth=1pt  ]{statusbox}
+
+  \newcommand{\BB}{\mathbb{B}}
+  \newcommand{\CC}{\mathbb{C}}
+  \newcommand{\RR}{\mathbb{R}}
+  \newcommand{\HH}{\mathbb{H}}
+  \newcommand{\ZZ}{\mathbb{Z}}
+  \newcommand{\NN}{\mathbb{N}}
+  \newcommand{\Neff}{N_{\mathrm{eff}}}
+  \newcommand{\Veff}{V_{\mathrm{eff}}}
+  \newcommand{\BRam}{B_{\mathrm{Ram}}}
+
+  % Status labels
+  \newcommand{\STDLZ}{\textcolor{gray!70!black}{\textbf{[STD/L0]}}}
+  \newcommand{\INTERP}{\textcolor{blue!60!black}{\textbf{[INTERP]}}}
+  \newcommand{\DERIVCAND}{\textcolor{orange!80!black}{\textbf{[DERIVATION CANDIDATE]}}}
+  \newcommand{\OPEN}{\textcolor{orange}{\textbf{[OPEN]}}}
+  \newcommand{\PROVED}{\textcolor{green!60!black}{\textbf{[PROVED]}}}
+  \newcommand{\COND}{\textcolor{blue}{\textbf{[COND]}}}
+
+  \title{\textbf{Prime-Factorization Information Entropy and the\\
+         Alpha Effective Potential}\\
+         \large Structural Interpretation of the $n\log n$ Term in $V_{\mathrm{eff}}$}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-05-11}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Overview and Status Discipline}
+\label{sec:overview}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{warnbox}
+\textbf{Status discipline (mandatory):}
+\begin{itemize}
+  \item Alpha ($\alpha$) is \textbf{NOT DERIVED}.
+  \item The effective coupling $B \approx 46.28$ is \textbf{NOT DERIVED} from the UBT
+        action $S[\Theta]$. Gap G137-B remains \textbf{OPEN}.
+  \item $B_{\mathrm{Ram}}$ defined below is a \textbf{numerical reference value} only,
+        not a first-principles derivation.
+  \item The prime-factorization entropy interpretation is labeled \INTERP{} throughout.
+  \item Exact number-theoretic identities are labeled \STDLZ{}.
+  \item Replacement of $n\log n$ by $\log\Gamma(n+1)$ is labeled \DERIVCAND{}.
+\end{itemize}
+\end{warnbox}
+
+This document provides a mathematically precise structural interpretation of the
+$n\log n$ term appearing in the UBT alpha-sector effective potential
+$\Veff(n) = n^2 - B\cdot n\log n$.
+The interpretation connects this term to prime-factorization information entropy
+via the Legendre formula for $\log(n!)$ and the Stirling expansion of $\log\Gamma(n+1)$.
+
+\textbf{Goal}: make the potential less \emph{ad hoc} by exhibiting the entropic
+structure of the coefficient $n\log n$, \emph{without} claiming that this closes
+Gap G137-B or derives $\alpha$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Motivation: the Ad Hoc Appearance of $n\log n$}
+\label{sec:motivation}
+%──────────────────────────────────────────────────────────────────────────────
+
+The current best-route potential (see \texttt{canonical/alpha/alpha\_best\_route.tex}) is
+\begin{equation}
+  \Veff(n) = n^2 - B \cdot n\log n,
+  \label{eq:veff_standard}
+\end{equation}
+where $n \in \NN$ is the winding-mode number and $B > 0$ is an effective coupling.
+This form appears structurally motivated at the level of the free-energy counting
+argument (divisor sums, one-loop determinants), but the $n\log n$ combination
+looks like a product of a linear term and a logarithm without further justification.
+
+A more structurally transparent form involves the \emph{log-factorial} or, for
+continuous $n$, the log-Gamma function.  The key observation is:
+\begin{equation}
+  n\log n \approx \log(n!) + n - \tfrac{1}{2}\log(2\pi n) + O(1/n),
+\end{equation}
+by Stirling's formula.  Therefore, up to sub-leading corrections, $n\log n$ is
+the \emph{leading Stirling term of $\log\Gamma(n+1)$}, which in turn admits
+an exact prime-factorization (Legendre) decomposition.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Exact Number-Theoretic Identities}
+\label{sec:identities}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Log-factorial and log-Gamma}
+\label{sec:logfac}
+
+\begin{resultbox}
+\textbf{Identity 1} \STDLZ{}.  For every positive integer $n$,
+\begin{equation}
+  \log\Gamma(n+1) = \log(n!).
+  \label{eq:logGamma_factorial}
+\end{equation}
+\end{resultbox}
+
+This is the standard definition of the Gamma function: $\Gamma(n+1) = n!$
+for $n \in \NN_0$.
+
+\subsection{Legendre's formula (prime-factorization decomposition)}
+\label{sec:legendre}
+
+\begin{resultbox}
+\textbf{Identity 2 — Legendre's formula} \STDLZ{}.  For any positive integer $n$,
+\begin{equation}
+  \log(n!) = \sum_{\substack{p \text{ prime} \\ p^m \leq n \\ m \geq 1}}
+             \left\lfloor \frac{n}{p^m} \right\rfloor \log p,
+  \label{eq:legendre}
+\end{equation}
+where the sum runs over all prime powers $p^m \leq n$.
+\end{resultbox}
+
+\begin{proof}
+The exact power of a prime $p$ in $n!$ is $\sum_{m=1}^{\infty}\lfloor n/p^m \rfloor$
+(Legendre 1808; only finitely many terms are non-zero).  Summing $\log p$ for each
+prime $p$ yields~\eqref{eq:legendre}.
+\end{proof}
+
+\textbf{Remark}: Equation~\eqref{eq:legendre} is a standard result in number theory
+(\STDLZ{}) and does not require any input from UBT.
+
+\subsection{Stirling expansion}
+\label{sec:stirling}
+
+\begin{resultbox}
+\textbf{Identity 3 — Stirling expansion} \STDLZ{}.
+\begin{equation}
+  \log\Gamma(n+1) = n\log n - n + \tfrac{1}{2}\log(2\pi n) + O(1/n),
+  \quad n \to \infty.
+  \label{eq:stirling}
+\end{equation}
+\end{resultbox}
+
+Equivalently, the combination $\log\Gamma(n+1) + n$ has the expansion
+\begin{equation}
+  \log\Gamma(n+1) + n = n\log n + \tfrac{1}{2}\log(2\pi n) + O(1/n).
+  \label{eq:logGammaPlusn}
+\end{equation}
+The \emph{leading term} is $n\log n$ in both cases.
+
+\subsection{Digamma (derivative of log-Gamma)}
+\label{sec:digamma}
+
+\begin{resultbox}
+\textbf{Identity 4} \STDLZ{}.  The derivative of $\log\Gamma(n+1)$ with respect to
+(continuous) $n$ is the digamma function $\psi$:
+\begin{equation}
+  \frac{d}{dn}\log\Gamma(n+1) = \psi(n+1),
+  \label{eq:digamma_def}
+\end{equation}
+with asymptotic expansion
+\begin{equation}
+  \psi(n+1) = \log n + \frac{1}{2n} - \frac{1}{12n^2} + O(n^{-4}),
+  \quad n \to \infty.
+  \label{eq:digamma_asymp}
+\end{equation}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Information-Theoretic Interpretation}
+\label{sec:info_theory}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{infobox}
+\textbf{Interpretation} \INTERP{}.  Consider the \emph{prime alphabet}
+$\mathcal{P} = \{2, 3, 5, 7, 11, \ldots\}$ with symbol weights $w_p = \log p$.
+Each positive integer $k \leq n$ can be encoded as a \emph{composite symbol}
+over this alphabet via its prime factorization $k = \prod_p p^{a_p(k)}$.
+
+Define the \emph{logarithmic information content} of $k$ as
+$H(k) = \log k = \sum_p a_p(k)\log p$.
+
+The total information content of all integers $1, 2, \ldots, n$ is
+\begin{equation}
+  S_{\log}(n)
+  := \sum_{k=1}^{n} H(k)
+   = \sum_{k=1}^{n} \log k
+   = \log(n!).
+\end{equation}
+
+By Identity 2 (Legendre), this equals
+\begin{equation}
+  S_{\log}(n) = \sum_{\substack{p \text{ prime},\, m \geq 1 \\ p^m \leq n}}
+                \left\lfloor \frac{n}{p^m} \right\rfloor \log p,
+  \label{eq:Slog_legendre}
+\end{equation}
+i.e.\ the sum of $\log p$ over all prime-power occurrences in the factorizations
+of integers $1$ through $n$.
+
+\emph{Therefore}: the entropic term $\log(n!) = \log\Gamma(n+1)$ is the total
+logarithmic information content of the integers $1, \ldots, n$ when encoded
+over the weighted prime alphabet $(\mathcal{P},\log)$.  Its leading behaviour
+is $n\log n$ (Stirling).
+\end{infobox}
+
+This interpretation is entirely \INTERP{}: it does not derive $B$ from $S[\Theta]$,
+nor does it provide a UBT mechanism for the entropic term.  It explains \emph{why}
+$n\log n$ is a natural quantity (it is the leading term of a combinatorial/information
+entropy), but the connection to UBT dynamics remains Gap G137-B.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Three Candidate Potential Forms}
+\label{sec:candidates}
+%──────────────────────────────────────────────────────────────────────────────
+
+We compare three forms of the effective potential and their stationary conditions.
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Form V1: Original potential}
+\label{sec:V1}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{equation}
+  V_1(n) = n^2 - B\cdot n\log n.
+  \label{eq:V1}
+\end{equation}
+
+\textbf{Derivative}:
+\begin{equation}
+  V_1'(n) = 2n - B(\log n + 1).
+  \label{eq:V1_deriv}
+\end{equation}
+
+\textbf{Stationary condition} $V_1'(n^*) = 0$:
+\begin{equation}
+  B = \frac{2n^*}{\log n^* + 1}.
+  \label{eq:V1_stat}
+\end{equation}
+
+For $n^* = 137$: $B = 2\times137/(\log 137 + 1) \approx 274/5.920 \approx 46.28$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Form V2: Gamma-refined potential}
+\label{sec:V2}
+%──────────────────────────────────────────────────────────────────────────────
+
+\DERIVCAND{}
+
+\begin{equation}
+  V_2(n) = n^2 - B\cdot\log\Gamma(n+1).
+  \label{eq:V2}
+\end{equation}
+
+\textbf{Motivation}: Replace $n\log n$ by the exact function $\log\Gamma(n+1)$,
+whose prime-factorization decomposition is given by Legendre's formula.
+
+\textbf{Derivative} (using Identity 4):
+\begin{equation}
+  V_2'(n) = 2n - B\cdot\psi(n+1).
+  \label{eq:V2_deriv}
+\end{equation}
+
+\textbf{Stationary condition} $V_2'(n^*) = 0$:
+\begin{equation}
+  B = \frac{2n^*}{\psi(n^*+1)}.
+  \label{eq:V2_stat}
+\end{equation}
+
+Asymptotically, $\psi(n+1) \approx \log n + O(1/n)$ (Identity 4), so
+\begin{equation}
+  B \approx \frac{2n^*}{\log n^*}.
+  \label{eq:V2_stat_asymp}
+\end{equation}
+
+\begin{warnbox}
+\textbf{Caution}: The stationary condition of $V_2$ differs from that of $V_1$.
+$V_1'(n) = 2n - B(\log n + 1)$, whereas $V_2'(n) = 2n - B\cdot\psi(n+1)
+\approx 2n - B\log n$.  This shifts the effective $B$ by a factor of approximately
+$(\log n)/(\log n + 1)$.  For $n^* = 137$: $\log 137 \approx 4.920$, so the ratio
+is $\approx 0.831$ — a $17\%$ shift.  \emph{Replacing $V_1$ by $V_2$ silently
+changes the numerical prediction of $B$ for a given $n^*$.}
+\end{warnbox}
+
+For $n^* = 137$: $B = 2\times137/\psi(138) \approx 274/4.924 \approx 55.64$.
+This differs significantly from the phenomenological $B_{\mathrm{phenom}} \approx 46.28$,
+making $V_2$ alone a \emph{less accurate} candidate if we require $n^* = 137$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Form V3: Recommended refined form}
+\label{sec:V3}
+%──────────────────────────────────────────────────────────────────────────────
+
+\DERIVCAND{}
+
+\begin{equation}
+  V_3(n) = n^2 - B\cdot\bigl(\log\Gamma(n+1) + n\bigr).
+  \label{eq:V3}
+\end{equation}
+
+\textbf{Motivation}: By Identity 3 (equation~\eqref{eq:logGammaPlusn}),
+\begin{equation}
+  \log\Gamma(n+1) + n = n\log n + \tfrac{1}{2}\log(2\pi n) + O(1/n).
+\end{equation}
+This preserves the leading $n\log n$ term while embedding it in the prime-factorization
+entropy structure.
+
+\textbf{Derivative}:
+\begin{equation}
+  V_3'(n) = 2n - B\bigl(\psi(n+1) + 1\bigr).
+  \label{eq:V3_deriv}
+\end{equation}
+
+\textbf{Stationary condition} $V_3'(n^*) = 0$:
+\begin{equation}
+  B = \frac{2n^*}{\psi(n^*+1) + 1}.
+  \label{eq:V3_stat}
+\end{equation}
+
+Asymptotically,
+\begin{equation}
+  B \approx \frac{2n^*}{\log n^* + 1},
+  \label{eq:V3_stat_asymp}
+\end{equation}
+which \emph{matches the stationary condition of $V_1$} to leading order.
+
+For $n^* = 137$:
+\begin{align}
+  \psi(138) &\approx 4.924, \\
+  B &= 2\times137/(4.924 + 1) \approx 274/5.924 \approx 46.25,
+\end{align}
+which closely reproduces the phenomenological value $B_{\mathrm{phenom}} \approx 46.28$.
+
+\begin{resultbox}
+\textbf{Key result}: $V_3$ combines (i) the exact prime-factorization entropy structure
+of $\log\Gamma(n+1)$ with (ii) preservation of the original stationary condition
+$B \approx 2n/(\log n + 1)$ at leading order.  This makes $V_3$ the preferred
+\DERIVCAND{} refinement of the original $V_1$.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary Comparison}
+\label{sec:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+& $V_1 = n^2 - Bn\log n$ & $V_2 = n^2 - B\log\Gamma(n+1)$ & $V_3 = n^2 - B(\log\Gamma(n+1)+n)$ \\
+\midrule
+Derivative & $2n - B(\log n + 1)$ & $2n - B\psi(n+1)$ & $2n - B(\psi(n+1)+1)$ \\
+Stat.\ cond.\ (exact) & $B = \frac{2n}{\log n+1}$ & $B = \frac{2n}{\psi(n+1)}$ & $B = \frac{2n}{\psi(n+1)+1}$ \\
+$B$ at $n^*=137$ & $\approx 46.28$ & $\approx 55.64$ & $\approx 46.25$ \\
+Entropy form & approx.\ Stirling leading & exact log-Gamma & exact log-Gamma$+n$ \\
+Stat.\ cond.\ (asymptotic) & $\frac{2n}{\log n+1}$ & $\frac{2n}{\log n}$ & $\frac{2n}{\log n+1}$ \\
+Match to $B_\mathrm{phenom}$ & exact by def. & $\approx -17\%$ & $< 0.1\%$ \\
+Status & [L1] & \DERIVCAND{} & \DERIVCAND{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Relation to the Alpha Problem and Gap G137-B}
+\label{sec:alpha_gap}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap G137-B} \OPEN{}.  The coupling $B \approx 46.28$ required for
+$n^* = 137$ has not been derived from the UBT action $S[\Theta]$ without using
+$\alpha$ as an input.  This gap is \textbf{not closed} by the prime-factorization
+entropy interpretation.
+
+The present document provides only:
+\begin{enumerate}
+  \item An exact number-theoretic decomposition of the entropic term (\STDLZ{}).
+  \item An information-theoretic \emph{interpretation} of why $n\log n$ is natural
+        (\INTERP{}).
+  \item A candidate potential refinement $V_3$ that preserves the stationary condition
+        while embedding the entropy structure (\DERIVCAND{}).
+\end{enumerate}
+
+None of the above constitutes a derivation of $B$ from $S[\Theta]$, nor a proof
+that $\alpha^{-1} = 137$.  Alpha is \textbf{NOT DERIVED}.
+\end{gapbox}
+
+The prime-factorization entropy interpretation does, however, provide a structural
+explanation for the $n\log n$ form: it is the leading Stirling term of the total
+logarithmic information content of integers $1, \ldots, n$ under the prime alphabet.
+This replaces an apparently ad hoc combination with a well-defined combinatorial
+quantity, strengthening the structural motivation for the potential form without
+overstating the derivation status.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Verification}
+\label{sec:numeric}
+%──────────────────────────────────────────────────────────────────────────────
+
+The script \texttt{tools/compare\_alpha\_potentials.py} computes, for each of $V_1$,
+$V_2$, $V_3$:
+\begin{itemize}
+  \item the stationary-point equation and its numerical solution as a function of $B$;
+  \item the value of $B$ required for $n^* = 137$;
+  \item the relative error in the stationary condition compared to the phenomenological
+        value $B_{\mathrm{phenom}} \approx 46.28$.
+\end{itemize}
+
+The reference value used numerically is
+\begin{equation}
+  \BRam := 12^{3/2} \cdot 2^{1/8} \cdot \vartheta_3(0\mid i)^{1/4},
+  \label{eq:BRam}
+\end{equation}
+which appears as a numerical reference in some UBT computations.
+This expression is a \textbf{numerical observation only}; it has been explicitly
+rejected as a first-principles derivation of the $n\log n$ coefficient
+(see \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md}, deprecated-claim register).
+
+%──────────────────────────────────────────────────────────────────────────────
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

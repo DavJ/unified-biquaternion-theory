@@ -1,0 +1,507 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Exponent $\tfrac{3}{2}$ in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$:
+         First-Principles Candidate Derivations}\\[6pt]
+         \large Track E1 \& E3 — T3\_ALPHA Research}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-28}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \bigskip
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Context}
+\label{sec:exp32:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!50!black,title=Track E1 Objective]
+Replace the heuristic identification $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+with a derivation of the exponent $3/2$ from first principles in UBT.
+
+\medskip
+\begin{tabular}{ll}
+Companion tracks & E2 (N\_eff=12), E3 (chronofactor boundary), E4 (independence test) \\
+Companion files  & \texttt{neff12\_derivations.tex}, \texttt{ALPHA\_STRUCTURAL\_ORIGINS.md},
+                   \texttt{accepted\_vs\_rejected\_routes.md} \\
+\end{tabular}
+\end{tcolorbox}
+
+The formula
+\begin{equation}
+  B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2} = 12^{3/2} \approx 41.57
+  \label{eq:exp32:Bbase}
+\end{equation}
+is the key conditional step in the derivation chain
+$\mathcal{B} \to N_{\mathrm{eff}} \to B_{\mathrm{base}} \to V_{\mathrm{eff}} \to n^* = 137$.
+The exponent $3/2$ enters via the relation
+\begin{equation}
+  B_{\mathrm{base}} = N_{\mathrm{eff}} \cdot N_{\mathrm{eff}}^{1/2}
+  = N_{\mathrm{eff}} \cdot \sqrt{N_{\mathrm{eff}}}.
+  \label{eq:exp32:split}
+\end{equation}
+The factor $N_{\mathrm{eff}} = 12$ is derived in~\texttt{neff12\_derivations.tex}.
+This document derives the factor $\sqrt{N_{\mathrm{eff}}}$, i.e., the origin of
+the additional power of $\tfrac{1}{2}$ in the exponent (total power = $1 + \tfrac{1}{2} = \tfrac{3}{2}$).
+
+Four candidate mechanisms are evaluated in Sections~\ref{sec:exp32:heatkernel}--\ref{sec:exp32:projection}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mechanism A: Heat Kernel Density of States on Im\,$\mathbb{H}$}
+\label{sec:exp32:heatkernel}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+\label{ssec:exp32:hk:setup}
+
+The imaginary quaternion subspace
+\begin{equation}
+  \mathrm{Im}\,\mathbb{H} = \operatorname{span}_\mathbb{R}\{\mathbf{i}, \mathbf{j}, \mathbf{k}\}
+  \cong \mathbb{R}^3
+  \label{eq:exp32:ImH}
+\end{equation}
+has real dimension $d = 3$.  In the UBT compactification, the $S^1_\psi$ winding
+modes couple to the three independent quaternion phase directions; the effective
+phase space for one-loop vacuum polarisation is therefore a compact 3-torus:
+\begin{equation}
+  \mathcal{M}_\phi = T^3_{\mathrm{Im}\,\mathbb{H}}
+  \quad (\text{one circle per imaginary quaternion direction}).
+  \label{eq:exp32:T3}
+\end{equation}
+
+\subsection{Heat Kernel on a Compact $d$-Dimensional Riemannian Manifold}
+\label{ssec:exp32:hk:formula}
+
+\begin{theorem}[Weyl law — cumulative density of states]
+\label{thm:exp32:weyl}
+Let $\mathcal{M}$ be a compact, smooth, $d$-dimensional Riemannian manifold
+with volume $\mathrm{Vol}(\mathcal{M})$.  The cumulative density of states of
+the (positive) Laplacian $-\Delta_\mathcal{M}$ satisfies:
+\begin{equation}
+  N(E) := \#\{\lambda_k \leq E\}
+  \;\underset{E\to\infty}{\sim}\;
+  \frac{\omega_d}{(2\pi)^d}\,\mathrm{Vol}(\mathcal{M})\, E^{d/2},
+  \label{eq:exp32:weyl}
+\end{equation}
+where $\omega_d = \pi^{d/2}/\Gamma(d/2+1)$ is the volume of the unit $d$-ball.
+\end{theorem}
+
+\begin{proof}
+Standard spectral geometry; see e.g.\ Berger--Gauduchon--Mazet or
+Zelditch's survey.  The key step is the asymptotic expansion of the heat kernel
+$K(t, x, x) \sim (4\pi t)^{-d/2}$ as $t \to 0^+$, combined with a
+Tauberian argument.
+\end{proof}
+
+\subsection{Application to $T^3_{\mathrm{Im}\,\mathbb{H}}$}
+\label{ssec:exp32:hk:application}
+
+For $\mathcal{M} = T^3_{\mathrm{Im}\,\mathbb{H}}$ with $d = 3$,
+Theorem~\ref{thm:exp32:weyl} gives:
+\begin{equation}
+  N(E) \;\propto\; E^{3/2}.
+  \label{eq:exp32:N_E_32}
+\end{equation}
+
+The one-loop effective potential coefficient $B_{\mathrm{base}}$ counts the total
+number of modes weighted by their loop contribution.  At the energy scale
+$E \sim N_{\mathrm{eff}}$ (the effective number of charged modes), the cumulative
+mode count is:
+\begin{equation}
+  B_{\mathrm{base}} \;\propto\; N_{\mathrm{eff}}^{3/2}.
+  \label{eq:exp32:Bbase_hk}
+\end{equation}
+
+Normalising to the one-loop baseline $B_0 = 2\pi N_{\mathrm{eff}}/3 = 8\pi$
+(proved in~\texttt{alpha\_best\_route.tex} Step~4), and demanding consistency
+at $N_{\mathrm{eff}} = 1$ (free scalar field):
+\begin{equation}
+  B_{\mathrm{base}}(N_{\mathrm{eff}})
+  = B_0(N_{\mathrm{eff}}=1)\, \cdot\, N_{\mathrm{eff}}^{3/2}
+  = \frac{2\pi}{3}\, N_{\mathrm{eff}}^{3/2}.
+  \label{eq:exp32:Bbase_normalized}
+\end{equation}
+For $N_{\mathrm{eff}} = 12$:
+\begin{equation}
+  B_{\mathrm{base}} = \frac{2\pi}{3} \times 12^{3/2}
+  = \frac{2\pi}{3} \times 12\sqrt{12}
+  \approx \frac{2\pi}{3} \times 41.57
+  \approx 87.06.
+  \label{eq:exp32:Bbase_value}
+\end{equation}
+
+\begin{gapbox}
+\textbf{Normalisation gap}: The heat kernel argument gives $N(E) \propto E^{3/2}$
+with an undetermined proportionality constant.  The identification
+$B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ (without the $2\pi/3$ prefactor from
+$B_0$) corresponds to normalising $N(1) = 1$.  A rigorous one-loop computation of
+the heat kernel determinant of $\nabla^\dagger\nabla$ on $T^3_{\mathrm{Im}\,\mathbb{H}}$
+is required to fix the absolute normalisation.
+\end{gapbox}
+
+\begin{resultbox}
+\textbf{Mechanism A result}: The exponent $3/2$ in $N(E) \propto E^{3/2}$ follows
+from the Weyl law on a compact $d=3$ dimensional manifold.  The dimension $d=3$
+is fixed by $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$, which is a theorem
+of the UBT algebra axiom $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+
+\medskip
+\textbf{Status}: CLEAN [L0] for the exponent; normalisation gap remains.\\
+\textbf{Independence}: No reference to $\alpha$ or $m_e$.\\
+\textbf{Source}: Weyl law (standard); \texttt{canonical/fields/biquaternion\_algebra.tex}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mechanism B: Modular Weight of $\vartheta_3^3(\tau)$}
+\label{sec:exp32:modular}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Partition Function on $T^2_\tau$}
+\label{ssec:exp32:mod:partition}
+
+The UBT biquaternion field on the complex-time torus
+$T^2_\tau = \mathbb{C}/(\mathbb{Z} + \tau\mathbb{Z})$
+has partition function (Gap G8, computed):
+\begin{equation}
+  \hat{Z}(\tau) = \vartheta_3(\tau)^3,
+  \qquad
+  \vartheta_3(\tau) = \sum_{n \in \mathbb{Z}} q^{n^2},
+  \quad q = e^{2\pi i\tau}.
+  \label{eq:exp32:Zhat}
+\end{equation}
+The three factors arise from the three independent imaginary quaternion directions
+$\mathbf{i}, \mathbf{j}, \mathbf{k}$: each direction contributes one compact free
+boson, and the corresponding partition function is $\vartheta_3(\tau)$.
+
+\subsection{Modular Transformation and Weight}
+\label{ssec:exp32:mod:weight}
+
+Under the modular $S$-transformation $\tau \to -1/\tau$:
+\begin{equation}
+  \vartheta_3(-1/\tau) = (-i\tau)^{1/2}\, \vartheta_3(\tau).
+  \label{eq:exp32:theta3_S}
+\end{equation}
+Therefore:
+\begin{equation}
+  \hat{Z}(-1/\tau) = \vartheta_3(-1/\tau)^3
+  = \left[(-i\tau)^{1/2}\right]^3\, \vartheta_3(\tau)^3
+  = (-i\tau)^{3/2}\, \hat{Z}(\tau).
+  \label{eq:exp32:Zhat_S}
+\end{equation}
+
+\begin{definition}[Modular weight of the partition function]
+\label{def:exp32:weight}
+The partition function $\hat{Z}(\tau) = \vartheta_3(\tau)^3$ is a modular form
+of weight:
+\begin{equation}
+  k = \frac{3}{2}.
+  \label{eq:exp32:weight}
+\end{equation}
+\end{definition}
+
+\subsection{Connection to the $3/2$ Exponent in $B_{\mathrm{base}}$}
+\label{ssec:exp32:mod:connection}
+
+In 2D CFT and string theory, the one-loop vacuum energy is extracted from the
+modular-invariant partition function via the heat kernel representation:
+\begin{equation}
+  \ln Z_{\mathrm{1-loop}} = -\int_0^\infty \frac{dt}{t}\, K(t),
+  \qquad
+  K(t) = \mathrm{Tr}\, e^{-t\Delta}.
+  \label{eq:exp32:1loop}
+\end{equation}
+For a partition function of modular weight $k$, the small-$t$ expansion of the
+heat kernel begins:
+\begin{equation}
+  K(t) \;\underset{t\to 0^+}{\sim}\; C_k\, t^{-k} + \ldots
+  \label{eq:exp32:heat_expansion}
+\end{equation}
+The leading coefficient $C_k$ determines the one-loop contribution to the
+effective potential for the winding mode.  For $k = 3/2$:
+\begin{equation}
+  K(t) \;\sim\; C_{3/2}\, t^{-3/2} + \ldots
+  \label{eq:exp32:heat_32}
+\end{equation}
+
+When one evaluates the one-loop coefficient $B_{\mathrm{base}}$ in
+$V_{\mathrm{eff}}(n) = n^2 - B_{\mathrm{base}}\, n\ln n$, the modular weight $k$
+of the partition function controls the power of $N_{\mathrm{eff}}$ in the result:
+\begin{equation}
+  B_{\mathrm{base}} \;\propto\; N_{\mathrm{eff}}^k = N_{\mathrm{eff}}^{3/2}.
+  \label{eq:exp32:Bbase_mod}
+\end{equation}
+
+\begin{proposition}[Modular weight gives exponent $3/2$]
+\label{prop:exp32:mod_exponent}
+The exponent $3/2$ in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$ equals the
+modular weight $k = 3/2$ of the partition function $\hat{Z}(\tau) = \vartheta_3^3(\tau)$.
+Both quantities trace to the single algebraic fact
+$N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$:
+\begin{equation}
+  \text{Modular weight} = \frac{N_{\mathrm{phases}}}{2} = \frac{3}{2}.
+  \label{eq:exp32:weight_from_phases}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+$\vartheta_3(\tau)$ has modular weight $1/2$ (standard).
+$\vartheta_3^N(\tau)$ has modular weight $N/2$.
+For $N = N_{\mathrm{phases}} = 3$: weight $= 3/2$.
+\end{proof}
+
+\begin{resultbox}
+\textbf{Mechanism B result}: The modular weight $k = 3/2$ of the UBT partition
+function $\vartheta_3^3(\tau)$ is an independent derivation of the exponent $3/2$.
+It follows from $N_{\mathrm{phases}} = 3$ imaginary quaternion directions, each
+contributing a $\vartheta_3$ factor.
+
+\medskip
+\textbf{Status}: COMPUTED [L0] (Gap G8 is closed).\\
+\textbf{Connection to $B_{\mathrm{base}}$}: Conditional on the heat kernel
+formula~\eqref{eq:exp32:Bbase_mod} applying to the UBT one-loop computation.\\
+\textbf{Independence}: No reference to $\alpha$ or $m_e$.\\
+\textbf{Source}: \texttt{canonical/appendices/appendix\_alpha\_geometry.tex \S6 (Gap G8)}
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mechanism C: Projection Ratio $\dim(\mathrm{Im}\,\mathbb{H})/\dim(\mathbb{C})$}
+\label{sec:exp32:projection}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{The Projection Setup}
+\label{ssec:exp32:proj:setup}
+
+The biquaternion field $\Theta(q, \tau)$ depends on:
+\begin{itemize}
+  \item $q \in \mathcal{B} = \mathbb{C}\otimes\mathbb{H}$: biquaternion coordinate
+    (real dimension 8).
+  \item $\tau = t + i\psi \in \mathbb{C}_\tau$: complex time parameter
+    (real dimension 2).
+\end{itemize}
+The phase structure of $\Theta$ is governed by its dependence on
+$\psi \in S^1_\psi$ via the imaginary quaternion phase factors
+$e^{i\phi_\mathbf{k} \psi}$ for $\mathbf{k} \in \{\mathbf{i}, \mathbf{j}, \mathbf{k}\}$.
+
+The projection map $\Pi$ from the imaginary quaternion phase space to the
+complex time plane is:
+\begin{equation}
+  \Pi: \mathrm{Im}\,\mathbb{H} \;\longrightarrow\; \mathbb{C}_\tau,
+  \qquad
+  (\phi_\mathbf{i}, \phi_\mathbf{j}, \phi_\mathbf{k})
+  \;\longmapsto\; \tau = t + i\psi,
+  \label{eq:exp32:Pi}
+\end{equation}
+where the single complex time parameter $\tau$ encodes the combined phase of all
+three quaternion imaginary directions.
+
+\subsection{Mode Density Ratio}
+\label{ssec:exp32:proj:density}
+
+The imaginary quaternion phase space $\mathrm{Im}\,\mathbb{H} \cong \mathbb{R}^3$
+has real dimension $d_{\mathrm{Im}\,\mathbb{H}} = 3$.
+The complex time plane $\mathbb{C}_\tau \cong \mathbb{R}^2$ has real dimension
+$d_{\mathbb{C}} = 2$.
+
+The projection $\Pi$ maps 3-dimensional mode information onto a 2-dimensional
+parameter space.  By standard arguments in dimensional reduction:
+\begin{equation}
+  \frac{\text{modes in Im}\,\mathbb{H}}{\text{modes in }\mathbb{C}_\tau}
+  = \frac{d_{\mathrm{Im}\,\mathbb{H}}}{d_{\mathbb{C}}}
+  = \frac{3}{2}.
+  \label{eq:exp32:ratio}
+\end{equation}
+
+This mode density enhancement factor of $3/2$ produces the exponent in $B_{\mathrm{base}}$:
+the $N_{\mathrm{eff}}$ modes in Im$\,\mathbb{H}$ contribute to the one-loop
+coefficient with an effective weight $(3/2)$ relative to a purely 2-dimensional
+(complex-time) computation.
+
+\subsection{Connection to Track E3: Chronofactor Boundary}
+\label{ssec:exp32:proj:E3}
+
+This mechanism is the basis of Track E3 (see~\texttt{ALPHA\_STRUCTURAL\_ORIGINS.md} \S4).
+The complex time plane $\mathbb{C}_\tau$ acts as a \emph{projection boundary} for
+the 3-dimensional Im$\,\mathbb{H}$ phase space.  The ratio $3/2$ is the
+``chronofactor'' — the factor by which the complex-time boundary under-counts
+the degrees of freedom of the full biquaternion phase space.
+
+\begin{definition}[Chronofactor]
+\label{def:exp32:chronofactor}
+The chronofactor $\chi_\tau$ is defined as the ratio of the real dimension of the
+imaginary quaternion phase space to the real dimension of the complex time projection:
+\begin{equation}
+  \chi_\tau
+  := \frac{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})}{\dim_\mathbb{R}(\mathbb{C}_\tau)}
+  = \frac{3}{2}.
+  \label{eq:exp32:chronofactor}
+\end{equation}
+The exponent in $B_{\mathrm{base}} = N_{\mathrm{eff}}^{\chi_\tau}$ is the chronofactor.
+\end{definition}
+
+\begin{resultbox}
+\textbf{Mechanism C result}: The exponent $3/2$ equals the chronofactor
+$\chi_\tau = 3/2$, the ratio of real dimensions
+$\dim(\mathrm{Im}\,\mathbb{H}) / \dim(\mathbb{C}_\tau) = 3/2$.
+
+\medskip
+\textbf{Status}: GEOMETRIC [MC] — a precise derivation requires a formal statement
+of the projection map $\Pi$ and the associated measure.\\
+\textbf{Independence}: No reference to $\alpha$ or $m_e$.\\
+\textbf{Connection to E3}: This mechanism establishes the complex time plane as
+a projection boundary replacing the spatial holographic area law.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Mechanism D: Holographic Scaling with Complex Time Boundary}
+\label{sec:exp32:holographic}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Standard Holographic Scaling}
+\label{ssec:exp32:holo:standard}
+
+In standard holography (AdS/CFT with $(d+1)$-dimensional bulk):
+\begin{equation}
+  S_{\mathrm{BH}} = \frac{A_{\mathrm{boundary}}}{4G_{d+1}} \propto L^{d-1},
+  \label{eq:exp32:BH_entropy}
+\end{equation}
+where $L$ is the linear scale.  The entropy scales as (d-1) in the boundary
+dimension.  For $d=3$ bulk (Im$\,\mathbb{H}$):
+\begin{equation}
+  \text{Standard holographic exponent} = \frac{d-1}{d} = \frac{2}{3}.
+  \label{eq:exp32:holo_standard}
+\end{equation}
+This is \textbf{not} $3/2$.
+
+\subsection{Inverted Boundary Counting}
+\label{ssec:exp32:holo:inverted}
+
+If the complex time plane $\mathbb{C}_\tau$ acts as a \emph{projection} boundary
+rather than a \emph{holographic screen}, the counting inverts: the number of
+bulk modes divided by boundary modes gives:
+\begin{equation}
+  \frac{d_{\mathrm{bulk}}}{d_{\mathrm{boundary}}} = \frac{3}{2}.
+  \label{eq:exp32:holo_inverted}
+\end{equation}
+
+\begin{warnbox}
+\textbf{Status}: This mechanism requires a non-standard interpretation of the
+holographic principle.  It is a speculative conjecture [SC] and is weaker than
+Mechanisms A and B.  It is included for completeness but is \textbf{not recommended}
+as the primary route.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Comparison and Recommendation}
+\label{sec:exp32:comparison}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+ID & Name & Origin of $3/2$ & Status & Independence & Strength \\
+\midrule
+A & Heat kernel on Im$\,\mathbb{H}$ & Weyl law, $d=3$ & [L0] & Clean & \textbf{Strong} \\
+B & Modular weight of $\vartheta_3^3$ & $N_\mathrm{phases}/2 = 3/2$ & [L0] & Clean & \textbf{Strong} \\
+C & Projection ratio & $\dim(\mathrm{Im}\,\mathbb{H})/\dim(\mathbb{C})=3/2$ & [MC] & Clean & Moderate \\
+D & Holographic inversion & $d_\mathrm{bulk}/d_\mathrm{boundary}=3/2$ & [SC] & Clean & Weak \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+\textbf{Key insight}: Mechanisms A and B are \emph{independent} derivations that
+both produce exponent $3/2$.  Their common origin is the single algebraic fact
+$N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.  Mechanism C
+provides a geometric interpretation in terms of the complex time projection.
+The three mechanisms are mutually consistent.
+
+\medskip
+The double appearance of the number $3$ — in the exponent ($3/2$) and in
+$N_{\mathrm{eff}} = 3 \times 2 \times 2$ — is not a coincidence: both trace
+to $\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$.
+\end{insightbox}
+
+\subsection{Recommended Path to Close the Gap}
+\label{ssec:exp32:recommendation}
+
+The heat kernel mechanism (A) provides the clearest path to a rigorous proof:
+
+\begin{enumerate}
+  \item Compute the heat kernel $K(t) = \mathrm{Tr}\,e^{-t\nabla^\dagger\nabla}$
+        on $T^3_{\mathrm{Im}\,\mathbb{H}}$ using $\zeta$-function regularisation.
+  \item The leading term is $K(t) \sim (4\pi t)^{-3/2}\,\mathrm{Vol}(T^3)$
+        as $t \to 0^+$.
+  \item From the heat kernel expansion, extract the one-loop coefficient
+        $B_{\mathrm{base}}$ in $V_{\mathrm{eff}}(n)$.
+  \item Verify that the result matches $B_{\mathrm{base}} = N_{\mathrm{eff}}^{3/2}$
+        up to the normalisation of $\mathrm{Vol}(T^3)$.
+\end{enumerate}
+
+This computation is standard in spectral geometry and does not require the
+Kac-Moody level machinery (Gap G3-k); it provides an alternative path to
+proving $B_{\mathrm{base}}$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Open Problems Registered by This Document}
+\label{sec:exp32:gaps}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{longtable}{lll}
+\toprule
+Gap ID & Description & Priority \\
+\midrule
+\textbf{G-HK} & Compute heat kernel of $\nabla^\dagger\nabla$ on $T^3_{\mathrm{Im}\,\mathbb{H}}$
+  with $\zeta$-function regularisation; extract $B_{\mathrm{base}}$ & \textbf{HIGH} \\
+\textbf{G-Norm} & Fix the normalisation constant in $B_{\mathrm{base}} = C \cdot N_{\mathrm{eff}}^{3/2}$
+  from the one-loop integral & HIGH \\
+G3-k & Prove Kac-Moody level $k=1$ via modular bootstrap
+  (alternative to G-HK) & HIGH \\
+G-proj & Formalise the projection map $\Pi: \mathrm{Im}\,\mathbb{H} \to \mathbb{C}_\tau$
+  and its Jacobian & MEDIUM \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

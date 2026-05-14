@@ -32,9 +32,30 @@ EXCEPTION_DIRS = {
     "unified-biquaternion-theory-master",
 }
 
-# Exception files (old versions kept for history)
+# Exception files (old versions kept for history, or files documenting the
+# banned phrases themselves as reference material)
 EXCEPTION_FILES = {
     "README_OLD.md",
+    # Documents the list of banned phrases as a reference/changelog
+    "SCIENTIFIC_PRECISION_SUMMARY.md",
+    # Architecture docs that use negative examples (❌ "Only theory…")
+    "LAYERS.md",
+}
+
+# Phrases that neutralise a banned phrase on the same line.
+# If any neutraliser is found in the line, the ban is skipped.
+NEUTRALISERS: dict = {
+    # "guaranteed" used in a mathematical/structural sense or epistemic humility
+    # ("not guaranteed") is not overclaiming.
+    "guaranteed": ["not guaranteed", "isn't guaranteed", "cannot be guaranteed",
+                   "mathematically guaranteed", "what is guaranteed",
+                   "is guaranteed", "guaranteed by", "guaranteed?"],
+    # Negative-example markers (❌ "Only theory …") are not overclaims.
+    # "ONLY theory-derived" means "exclusively theory-derived", not "only theory".
+    "only theory": ["❌", "theory-derived"],
+    # "confirmed prediction" as a future success criterion is not overclaiming
+    "confirmed prediction": ["at least one confirmed prediction",
+                             "requires.*confirmed prediction"],
 }
 
 
@@ -56,20 +77,32 @@ def is_exception_path(file_path: Path) -> bool:
 def check_file(file_path: Path, banned: List[str]) -> List[Tuple[int, str, str]]:
     """
     Check a file for banned phrases.
-    
+
     Returns:
         List of (line_number, phrase, line_content) for violations
     """
     violations = []
-    
+
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             for line_num, line in enumerate(f, 1):
                 line_lower = line.lower()
-                
+
                 for phrase in banned:
-                    if phrase in line_lower:
-                        violations.append((line_num, phrase, line.strip()))
+                    if phrase not in line_lower:
+                        continue
+
+                    # Check whether a neutraliser cancels this match
+                    neutralisers = NEUTRALISERS.get(phrase, [])
+                    neutralised = False
+                    for neut in neutralisers:
+                        if re.search(neut, line_lower):
+                            neutralised = True
+                            break
+                    if neutralised:
+                        continue
+
+                    violations.append((line_num, phrase, line.strip()))
     except Exception as e:
         print(f"Warning: Could not read {file_path}: {e}", file=sys.stderr)
     

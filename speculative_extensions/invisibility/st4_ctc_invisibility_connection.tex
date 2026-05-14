@@ -1,0 +1,332 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newtheorem{conjecture}{Conjecture}
+
+\title{ST-4: Connection Between Imaginary-Sector Invisibility\\
+and CTC Causal Structure in UBT\\[0.5em]
+\large\textsc{Speculative Extension — Invisibility Track}}
+\author{David Jaroš}
+\date{2026-03-03}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework.  It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-4 from the Invisibility / Imaginary Sector
+investigation track.  Cross-references:
+\texttt{speculative\_extensions/causality/ctc\_conditions.tex} and
+\texttt{speculative\_extensions/causality/complex\_time\_causal\_structure.tex}.
+See also:
+\texttt{st1\_imaginary\_object\_definition.tex},
+\texttt{st2\_sector\_interaction.tex},
+\texttt{st3\_stability.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We examine whether the imaginary-sector invisibility mechanism
+identified in ST-1–ST-3 is related to the Closed Timelike Curve (CTC)
+causal structure analysed in the CTC investigation track.
+The central question: \emph{Is an object in the imaginary sector
+also outside the causal structure defined for CTCs?}
+We argue that invisibility and CTCs share a common ingredient —
+exit from the real metric sector $g_{\mu\nu}$ — but represent
+\emph{distinct phenomena}: invisibility requires $\Theta_I$-dominated
+energy-momentum with no contribution to $g_{\mu\nu}$, whereas CTCs
+require $g_{\mu\nu}$ itself to admit closed causal curves.
+The two effects can nevertheless coexist in the same UBT solution.
+All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{Summary of the CTC Causal Structure (from CTC Track)}
+%----------------------------------------------------------------------
+
+The CTC investigation (\texttt{ctc\_conditions.tex},
+\texttt{complex\_time\_causal\_structure.tex}) established the following:
+
+\begin{enumerate}
+  \item The causal structure of UBT is determined primarily by the
+    \emph{real} metric $g_{\mu\nu} = \operatorname{Re}(\mathcal{G}_{\mu\nu})$
+    under the preferred Interpretation B (imaginary time as internal
+    phase coordinate).
+
+  \item The imaginary metric sectors $\{h_{\mu\nu}, a_{\mu\nu},
+    b_{\mu\nu}\}$ contribute an effective stress-energy
+    $T_{\mu\nu}^{(h)} = \operatorname{Re}(\partial\mathcal{L}/
+    \partial\mathcal{G}^{\mu\nu})$ that can violate the weak energy
+    condition, providing the mechanism for CTC-compatible geometries
+    (Conjecture~1 in \texttt{ctc\_conditions.tex}).
+
+  \item CTCs arise when the real metric $g_{\mu\nu}$ admits a Killing
+    vector $\xi^\mu$ with compact orbits satisfying
+    $g_{\mu\nu}\xi^\mu\xi^\nu < 0$ (the UBT-CTC condition).
+
+  \item No explicit UBT solution with CTCs has been constructed;
+    the CTC analysis identified mechanisms, not explicit solutions.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Summary of Invisibility (from ST-1--ST-3)}
+%----------------------------------------------------------------------
+
+\begin{enumerate}
+  \item An imaginary-sector object $\Theta_I$ has
+    $\operatorname{Re}(\mathcal{G}_{\mu\nu}[\Theta_I]) = 0$ (or
+    near-zero) — it does not directly contribute to $g_{\mu\nu}$.
+
+  \item Its energy-momentum tensor $T_{\mu\nu}[\Theta_I]$ is real
+    and non-zero, so it gravitates and can generate lensing.
+
+  \item At leading order, $\Theta_I$ does not couple to the
+    electromagnetic field, making it electromagnetically invisible.
+
+  \item Imaginary-sector objects are perturbatively stable, with
+    long-lived or permanent invisibility depending on the strength
+    of $U(1)$ breaking.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Comparison: Common Ingredient and Differences}
+%----------------------------------------------------------------------
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
+\hline
+\textbf{Property} & \textbf{Invisibility ($\Theta_I$)} & \textbf{CTCs}\\
+\hline
+Role of $\operatorname{Im}(\mathcal{G}_{\mu\nu})$ &
+  $\Theta_I$ lives here; no $g_{\mu\nu}$ contribution &
+  $h_{\mu\nu}$ provides negative energy to tilt light cones\\
+\hline
+Effect on $g_{\mu\nu}$ &
+  None directly (invisible to real metric) &
+  Essential: CTCs defined by $g_{\mu\nu}$ admitting closed causal curves\\
+\hline
+Energy condition &
+  $T_{\mu\nu}[\Theta_I]$ real, positive energy (Proposition 1, ST-3) &
+  Negative effective energy density from $h_{\mu\nu}$ required\\
+\hline
+Observable signature &
+  Gravitational lensing without visible source &
+  CTC onset: modified Killing horizon radii\\
+\hline
+Stability &
+  Perturbatively stable ($Q_I$ conserved) &
+  Chronology protection may forbid stable CTCs\\
+\hline
+GR limit $\psi\to 0$ &
+  $\Theta_I$ decouples, dark matter signal vanishes &
+  Standard causal structure recovered\\
+\hline
+\end{tabular}
+\end{center}
+
+The \emph{common ingredient} is the imaginary sector of the biquaternionic
+metric: both invisibility and CTCs arise from $\operatorname{Im}(\mathcal{G}_{\mu\nu})
+\neq 0$.  However, they use this ingredient in opposite ways:
+\begin{itemize}
+  \item \textbf{Invisibility}: The imaginary sector \emph{contains}
+    the matter ($\Theta_I$), which is invisible because it does not
+    source $g_{\mu\nu}$ directly.
+  \item \textbf{CTCs}: The imaginary sector \emph{deforms}
+    $g_{\mu\nu}$ (via the effective stress-energy $T_{\mu\nu}^{(h)}$)
+    to create closed causal curves in the real metric.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Is an Invisible Object Also Outside the CTC Causal Structure?}
+%----------------------------------------------------------------------
+
+In the CTC track, the causal structure is defined by the real metric
+$g_{\mu\nu}$ (Definition 2 in \texttt{complex\_time\_causal\_structure.tex}):
+\begin{equation}
+  \text{causal curve}: \quad g_{\mu\nu}\dot{x}^\mu\dot{x}^\nu \leq 0,
+  \quad \operatorname{Re}(\dot\tau) \geq 0.
+\end{equation}
+
+An imaginary-sector object $\Theta_I$ with $g_{\mu\nu}[\Theta_I] = 0$:
+\begin{itemize}
+  \item Has no well-defined worldline in the real metric sense (the
+    condition $g_{\mu\nu}\dot{x}^\mu\dot{x}^\nu \leq 0$ is trivially
+    satisfied for $g_{\mu\nu} = 0$, but also trivially violated in
+    a degenerate way).
+  \item Is not constrained by the CTC condition, which requires a
+    \emph{non-degenerate} $g_{\mu\nu}$ with compact Killing orbits.
+\end{itemize}
+
+\begin{proposition}[Invisibility and CTC conditions are independent]
+\label{prop:independent}
+In UBT, the invisibility condition ($g_{\mu\nu}[\Theta_I] = 0$)
+and the CTC condition ($g_{\mu\nu}$ admits closed causal curves)
+are logically independent:
+\begin{itemize}
+  \item An invisible object ($g_{\mu\nu} = 0$) is neither inside
+    nor outside the CTC causal cone, because the causal cone is
+    undefined for a degenerate metric.
+  \item A CTC-containing spacetime requires $g_{\mu\nu} \neq 0$
+    with specific topological properties; invisibility
+    ($g_{\mu\nu} = 0$) is incompatible with a CTC-containing
+    geometry sourced by the same object.
+\end{itemize}
+\end{proposition}
+
+%----------------------------------------------------------------------
+\section{Coexistence Scenario: CTC Geometry + Invisible Matter}
+%----------------------------------------------------------------------
+
+Although an invisible object cannot be a CTC source by itself,
+both effects can coexist in a single UBT solution if there are
+\emph{two} components: a real-sector source $\Theta_R$ that creates
+a CTC-compatible geometry, and an imaginary-sector component $\Theta_I$
+that is invisible but gravitates.
+
+In such a solution:
+\begin{itemize}
+  \item $\Theta_R$ sources $g_{\mu\nu}^{\mathrm{CTC}}$ via the real
+    Einstein equations, potentially with CTC-compatible topology.
+  \item $\Theta_I$ contributes an additional
+    $T_{\mu\nu}[\Theta_I]$ that modifies the CTC geometry through
+    back-reaction, possibly expanding or contracting the
+    CTC-onset radius (similar to the Kerr–UBT shift derived in
+    \texttt{ctc\_conditions.tex}).
+  \item Observers in the real sector see: (a) a CTC-compatible
+    curvature structure sourced by $\Theta_R$, and (b) an
+    additional gravitational field from the invisible $\Theta_I$
+    that appears as ``excess curvature'' without a visible source.
+\end{itemize}
+
+\begin{conjecture}[Invisible matter modifies CTC geometry]
+\label{conj:invisible_ctc}
+In a UBT solution with both real and imaginary sector matter,
+the imaginary sector shifts the CTC-onset radius by:
+\begin{equation}
+  r_\mathrm{CTC}^{(\Theta_R + \Theta_I)}
+  \;\approx\; r_\mathrm{CTC}^{(\Theta_R)}\left(
+    1 + \alpha_I\,\frac{M_I}{M_R}
+  \right),
+\end{equation}
+where $M_I$ and $M_R$ are the effective (gravitational) masses of
+the imaginary and real sector components respectively, and $\alpha_I$
+is an $O(1)$ dimensionless factor depending on the geometry.
+\end{conjecture}
+
+%----------------------------------------------------------------------
+\section{Shared Mechanism: Exit from $\operatorname{Re}(\mathcal{G}_{\mu\nu})$}
+%----------------------------------------------------------------------
+
+Despite the formal independence of the two phenomena, there is a
+conceptually important shared mechanism:
+
+\begin{center}
+\begin{tcolorbox}[colback=blue!5, title=Key Insight]
+Both \textbf{invisibility} and \textbf{CTCs} in UBT represent forms of
+``exit from the observable real metric sector.''
+\begin{itemize}
+  \item \textbf{Invisibility}: matter exits $\operatorname{Re}(\mathcal{G}_{\mu\nu})$
+    by living in $\operatorname{Im}(\mathcal{G}_{\mu\nu})$.
+  \item \textbf{CTCs}: causal curves exit the standard causal cone
+    of the real metric by exploiting topology in $g_{\mu\nu}$.
+\end{itemize}
+In both cases, the biquaternionic extension of spacetime provides
+the additional structure that makes the phenomenon possible.
+Neither effect exists in standard GR (which has only the real metric).
+\end{tcolorbox}
+\end{center}
+
+This suggests a unifying principle for exotic UBT phenomena:
+\emph{the imaginary sector of $\mathcal{G}_{\mu\nu}$ is the locus of
+non-standard physics} — dark matter, CTCs, and potentially other
+phenomena that are absent in the real (GR) sector.
+
+%----------------------------------------------------------------------
+\section{Conclusion}
+%----------------------------------------------------------------------
+
+\begin{enumerate}
+  \item An imaginary-sector object is \emph{not} inside or outside
+    the CTC causal structure — it is \emph{outside the domain of
+    definition} of that structure (because the real metric is
+    degenerate for an ideal imaginary-sector object).
+  \item Invisibility and CTCs are logically \emph{independent}
+    phenomena in UBT, using the imaginary sector in complementary ways.
+  \item They \emph{can coexist} in a spacetime containing both
+    real-sector matter (sourcing CTC geometry) and imaginary-sector
+    matter (contributing invisible gravitational fields).
+  \item Both phenomena share the conceptual mechanism of ``exit from
+    the real metric sector'' — a unifying feature of the UBT
+    biquaternionic extension.
+  \item The shared geometric origin suggests that dark matter and
+    CTC-related phenomenology may be correlated observational signals
+    of a non-trivial imaginary metric sector.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.
+No claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{CTC_causal}
+  D.~Jaroš,
+  \emph{ST-1: Causal Structure of Complex Time in UBT},
+  Repository document
+  \texttt{speculative\_extensions/causality/complex\_time\_causal\_structure.tex}
+  (2026).
+\bibitem{CTC_conditions}
+  D.~Jaroš,
+  \emph{ST-3: Closed Timelike Curve Conditions in the Biquaternionic Metric},
+  Repository document \texttt{speculative\_extensions/causality/ctc\_conditions.tex}
+  (2026).
+\bibitem{ST1}
+  D.~Jaroš,
+  \emph{ST-1: Imaginary Sector Objects in UBT},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st1\_imaginary\_object\_definition.tex}
+  (2026).
+\bibitem{ST2}
+  D.~Jaroš,
+  \emph{ST-2: Interaction Between Real and Imaginary Sectors in UBT},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st2\_sector\_interaction.tex}
+  (2026).
+\bibitem{ST3}
+  D.~Jaroš,
+  \emph{ST-3: Stability of Imaginary Sector Configurations in UBT},
+  Repository document
+  \texttt{speculative\_extensions/invisibility/st3\_stability.tex}
+  (2026).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\end{thebibliography}
+
+\end{document}

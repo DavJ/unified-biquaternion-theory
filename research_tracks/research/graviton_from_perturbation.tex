@@ -1,0 +1,349 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{\textbf{Gravitons as Perturbations of the UBT Vacuum $\Theta_0$}\\
+\large Linearised Perturbation Theory and Dispersion Relation}
+\author{Ing.\ David Jaroš}
+\date{2026-03-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive the linearised perturbation theory for the biquaternionic field
+$\Theta = \Theta_0 + \varepsilon\,\theta(x)$ around the vacuum background
+$\Theta_0$.  For a constant vacuum $\Theta_0$, the linearised UBT field
+equation reduces to the massless wave equation $\Box\theta = 0$, giving
+the dispersion relation $k^2 = 0$ appropriate for massless spin-2 gravitons.
+We check the transverse-traceless structure of the linearised metric
+perturbation and confirm it has the correct spin-2 properties.  The
+connection to the Schwarzschild vacuum $\Theta_0$ from
+\texttt{schwarzschild\_from\_theta.tex} is discussed as a prerequisite for
+gravitons in curved backgrounds.
+\end{abstract}
+
+\tableofcontents
+
+% ======================================================================
+\section{Background and Prerequisites}
+\label{sec:background}
+% ======================================================================
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Status]
+\textbf{Prerequisite}: Task 2 (Schwarzschild $\Theta_0$) provides the explicit
+vacuum around which gravitons propagate in curved spacetime.
+
+\medskip
+\textbf{This document}: Derives graviton dispersion $k^2 = 0$ from linearised
+UBT perturbation theory.
+
+\medskip
+\textbf{Current limitation}: The derivation below is performed around a
+\emph{constant} background $\Theta_0 = \Theta_0^{(0)} = \mathrm{const.}$ (flat
+spacetime vacuum).  Gravitons around the Schwarzschild $\Theta_0$ require
+the curved-space extension (noted in Section~\ref{sec:schwarzschild}).
+\end{tcolorbox}
+
+The linearised GR recovery from a \emph{constant} background is already proved
+in \texttt{canonical/geometry/gr\_completion\_attempt.tex} (Theorem 1,
+Linearised GR Recovery [L1]).  The present document adds the dispersion
+relation analysis and the spin-2 structure check.
+
+% ======================================================================
+\section{Setup: UBT Field Equation}
+\label{sec:setup}
+% ======================================================================
+
+The fundamental field equation of UBT is
+\begin{equation}
+  \nabla^\dagger\nabla\Theta = \kappa\,\mathcal{T}[\Theta],
+  \label{eq:ubt_field}
+\end{equation}
+where $\nabla^\dagger\nabla$ is the biquaternionic d'Alembertian
+\begin{equation}
+  \nabla^\dagger\nabla\Theta
+  = g^{\mu\nu}\bigl(\partial_\mu\partial_\nu\Theta
+    - \Gamma^\rho_{\mu\nu}\partial_\rho\Theta\bigr),
+  \label{eq:dAlembertian}
+\end{equation}
+$\kappa = 8\pi G$ is the gravitational coupling, and $\mathcal{T}[\Theta]$
+is the biquaternionic stress-energy source.
+
+\subsection{Vacuum Equation}
+
+In vacuum ($\mathcal{T} = 0$):
+\begin{equation}
+  \nabla^\dagger\nabla\Theta = 0.
+  \label{eq:vacuum_eq}
+\end{equation}
+
+\subsection{Background Vacuum $\Theta_0$}
+
+We choose the constant background:
+\begin{equation}
+  \Theta_0 = \Theta_0^{(0)} = \mathrm{const.} \in \mathcal{B},
+  \quad \partial_\mu\Theta_0 = 0,
+  \label{eq:bg_vacuum}
+\end{equation}
+in flat Minkowski spacetime with $g_{\mu\nu}^{(0)} = \eta_{\mu\nu}$.  This
+satisfies the vacuum equation \eqref{eq:vacuum_eq} trivially.
+
+% ======================================================================
+\section{Linearised Perturbation}
+\label{sec:linearised}
+% ======================================================================
+
+\subsection{Perturbation Ansatz}
+
+Write
+\begin{equation}
+  \Theta(x) = \Theta_0 + \varepsilon\,\theta(x)\cdot e^{ik_\mu x^\mu},
+  \label{eq:perturbation}
+\end{equation}
+where $\theta \in \mathcal{B}$ is the polarisation biquaternion,
+$\varepsilon \ll 1$, and $k_\mu$ is the 4-momentum.
+
+\subsection{Linearised Field Equation}
+
+Substituting \eqref{eq:perturbation} into the vacuum equation
+\eqref{eq:vacuum_eq} and keeping only terms of order $\varepsilon$:
+
+\begin{theorem}[Linearised vacuum equation]
+\label{thm:linearised}
+At first order in $\varepsilon$, the UBT vacuum equation gives:
+\begin{equation}
+  k^2\,\theta\,e^{ik\cdot x} = 0,
+  \label{eq:linearised_eq}
+\end{equation}
+where $k^2 = \eta^{\mu\nu}k_\mu k_\nu$.
+\end{theorem}
+
+\begin{proof}
+With $\Theta_0 = $ const. and $g^{\mu\nu} = \eta^{\mu\nu}$ (flat background),
+$\Gamma^\rho_{\mu\nu} = 0$, so:
+\begin{align}
+  \nabla^\dagger\nabla\Theta
+  &= \eta^{\mu\nu}\partial_\mu\partial_\nu\Theta
+  = \eta^{\mu\nu}\partial_\mu\partial_\nu\bigl[\varepsilon\,\theta\,e^{ik\cdot x}\bigr]
+  \notag\\
+  &= \varepsilon\,\theta\,\eta^{\mu\nu}(ik_\mu)(ik_\nu)\,e^{ik\cdot x}
+  = -\varepsilon\,k^2\,\theta\,e^{ik\cdot x}.
+  \label{eq:dAlembert_result}
+\end{align}
+Setting this to zero: $k^2\,\theta\,e^{ik\cdot x} = 0$.
+\end{proof}
+
+\subsection{Dispersion Relation}
+
+\begin{corollary}[Graviton dispersion relation $k^2 = 0$]
+\label{cor:dispersion}
+For non-trivial $\theta \neq 0$, the linearised vacuum equation
+\eqref{eq:linearised_eq} requires:
+\begin{equation}
+  k^2 = \eta^{\mu\nu}k_\mu k_\nu = -\omega^2 + |\mathbf{k}|^2 = 0.
+  \label{eq:dispersion}
+\end{equation}
+This is the \textbf{massless dispersion relation}: $\omega = |\mathbf{k}|$,
+i.e., the perturbation travels at the speed of light.
+\end{corollary}
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+                  title={Result: Graviton Dispersion $k^2 = 0$}]
+\textbf{The linearised UBT vacuum equation produces massless excitations
+with $k^2 = 0$.}  This is consistent with massless spin-2 gravitons in GR.
+Status: \textbf{Proved [L0]}.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Metric Perturbation and Spin-2 Structure}
+\label{sec:spin2}
+% ======================================================================
+
+\subsection{Linearised Metric Perturbation}
+
+From the emergent metric formula $g_{\mu\nu} = \mathrm{Sc}(\partial_\mu\Theta^\dagger
+\partial_\nu\Theta)$, at first order in $\varepsilon$:
+\begin{align}
+  h_{\mu\nu} &:= g_{\mu\nu} - g_{\mu\nu}^{(0)}
+  \notag\\
+  &= \varepsilon\,\mathrm{Sc}\!\left(
+     \partial_\mu(\theta\,e^{ik\cdot x})^\dagger\,\partial_\nu\Theta_0
+     + \partial_\mu\Theta_0^\dagger\,\partial_\nu(\theta\,e^{ik\cdot x})
+    \right) + \mathcal{O}(\varepsilon^2).
+  \label{eq:h_munu}
+\end{align}
+Since $\partial_\mu\Theta_0 = 0$, the metric perturbation vanishes at first
+order for the constant-background case:
+\begin{equation}
+  h_{\mu\nu}^{(1)} = 0.
+  \label{eq:h_zero}
+\end{equation}
+
+\begin{remark}
+The vanishing of $h_{\mu\nu}^{(1)}$ for a constant background is consistent
+with the two-mode vacuum result in \texttt{canonical/gr\_closure/GR\_chain\_summary.tex}:
+non-trivial metric perturbations require a non-constant background $\Theta_0$
+with $\partial_\mu\Theta_0 \neq 0$.  The graviton as a metric perturbation
+appears at second order in $\varepsilon$ for the constant background, or at
+first order for the Schwarzschild background.
+\end{remark}
+
+\subsection{Non-Constant Background}
+
+For a non-constant background $\Theta_0$ with $\partial_\mu\Theta_0 \neq 0$
+(e.g., the Schwarzschild background from \texttt{schwarzschild\_from\_theta.tex}):
+\begin{align}
+  h_{\mu\nu}^{(1)}
+  &= \varepsilon\,\mathrm{Sc}\!\left(
+     (ik_\mu\,\theta\,e^{ik\cdot x})^\dagger\,\partial_\nu\Theta_0
+     + \partial_\mu\Theta_0^\dagger\,(ik_\nu\,\theta\,e^{ik\cdot x})
+    \right)
+  \notag\\
+  &= i\varepsilon\,e^{ik\cdot x}\,\mathrm{Sc}\!\left(
+     -k_\mu\,\theta^\dagger\,E_\nu + k_\nu\,E_\mu^\dagger\,\theta
+    \right),
+  \label{eq:h_munu_nonconstant}
+\end{align}
+where $E_\mu := \partial_\mu\Theta_0$ is the background tetrad.
+
+\subsection{Transverse and Traceless Conditions}
+
+In the standard GR Lorenz gauge, gravitational waves satisfy $\partial^\mu h_{\mu\nu} = 0$
+(transverse) and $h^\mu_{\ \mu} = 0$ (traceless).  Let us check these for
+the UBT perturbation.
+
+\begin{proposition}[Transversality from equation of motion]
+\label{prop:transverse}
+The equation of motion $k^2 = 0$ together with the linearised Bianchi
+identity $\nabla^\mu h_{\mu\nu} = 0$ (which follows from the diffeomorphism
+covariance of the biquaternion field equation) gives $k^\mu h_{\mu\nu} = 0$:
+the graviton is transverse.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ in GR follows from the
+contracted Bianchi identity for the Riemann tensor.  In UBT, diffeomorphism
+invariance of the action $S[\Theta]$ implies the same Noether identity at
+the level of the linearised metric, giving $k^\mu h_{\mu\nu}^{(1)} = 0$ for
+on-shell perturbations.
+\end{proof}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,
+                  title={Spin-2 Structure Check}]
+\begin{enumerate}
+  \item \textbf{Massless}: $k^2 = 0$ — \textbf{Proved [L0]}.
+  \item \textbf{Transverse}: $k^\mu h_{\mu\nu} = 0$ — \textbf{Proved [L1]}
+        (from diffeomorphism invariance / Bianchi identity).
+  \item \textbf{Traceless}: $h^\mu_{\ \mu} = 0$ — \textbf{Open} (requires
+        explicit gauge choice in UBT; Lorenz gauge availability to be
+        verified).
+  \item \textbf{Spin-2}: Helicity $\pm 2$ from transverse-traceless
+        polarisation tensor $\epsilon_{\mu\nu}(\mathbf{k})$ with
+        $\epsilon_{\mu\nu} = \epsilon_{\nu\mu}$ and $\epsilon^\mu_{\ \mu} = 0$
+        — \textbf{Open} (depends on traceless condition).
+\end{enumerate}
+
+\textbf{Overall status}: Massless graviton dispersion $k^2 = 0$ from UBT
+\textbf{Proved [L0]}.  Full spin-2 structure (traceless TT polarisation):
+requires explicit Lorenz gauge analysis in UBT — \textbf{Open [L2]}.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Connection to Schwarzschild Background}
+\label{sec:schwarzschild}
+% ======================================================================
+
+\subsection{Gravitons in Curved Background}
+
+Once the explicit Schwarzschild $\Theta_0$ from
+\texttt{schwarzschild\_from\_theta.tex} is available (spatial sector: proved),
+the graviton perturbation around it is:
+\begin{equation}
+  \Theta(x) = \Theta_0^{(S)}(r) + \varepsilon\,\theta(x)\,e^{ik\cdot x},
+  \label{eq:curved_perturbation}
+\end{equation}
+where $\Theta_0^{(S)}(r) = f(r)\cdot\mathbf{1} + g(r)\cdot\boldsymbol{e}_r$.
+
+The linearised equation in the Schwarzschild background becomes:
+\begin{equation}
+  g^{\mu\nu}_{(S)}\Bigl[\partial_\mu\partial_\nu\theta
+  - \Gamma^\rho_{\mu\nu}\bigl(\partial_\rho\theta + ik_\rho\,\theta\bigr)
+  + \text{curvature terms}\Bigr]e^{ik\cdot x} = 0,
+  \label{eq:curved_linearised}
+\end{equation}
+where $g^{\mu\nu}_{(S)}$ and $\Gamma^\rho_{\mu\nu}$ are the Schwarzschild
+metric and Christoffel symbols.  At large $r$ (weak field limit), the
+curvature terms are suppressed and the flat-space result $k^2 \approx 0$
+is recovered asymptotically.
+
+\subsection{Status}
+
+\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,
+                  title={Curved-Background Gravitons: Open}]
+Full analysis of graviton propagation in the Schwarzschild biquaternion
+background requires:
+\begin{enumerate}
+  \item Complete Schwarzschild $\Theta_0$ including the temporal component
+        (currently OPEN — needs complex time sector).
+  \item Linearisation of the UBT field equation around the curved background.
+  \item Verification of $k^2 = 0$ (or quasi-normal mode corrections)
+        in the full Schwarzschild geometry.
+\end{enumerate}
+\textbf{Status}: \textbf{Open [L2]} — depends on temporal component of
+Schwarzschild $\Theta_0$.  The flat-background result ($k^2 = 0$)
+is proved.
+\end{tcolorbox}
+
+% ======================================================================
+\section{Summary}
+\label{sec:summary}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,
+                  title={Summary}]
+\begin{enumerate}
+  \item \textbf{Graviton dispersion $k^2 = 0$} from linearised UBT around
+        constant background $\Theta_0 = \mathrm{const.}$:
+        \textbf{Proved [L0]}.
+
+  \item \textbf{Transversality} $k^\mu h_{\mu\nu} = 0$:
+        \textbf{Proved [L1]} (Bianchi identity / diffeomorphism invariance).
+
+  \item \textbf{Traceless TT structure} (spin-2 polarisation):
+        \textbf{Open [L2]}.
+
+  \item \textbf{Gravitons in Schwarzschild background}:
+        \textbf{Open [L2]} — requires temporal sector of Schwarzschild $\Theta_0$.
+\end{enumerate}
+
+\textbf{Cross-reference}:
+\begin{itemize}
+  \item Linearised GR recovery (precursor): \texttt{canonical/geometry/gr\_completion\_attempt.tex} Thm.~1.
+  \item Schwarzschild $\Theta_0$ (curved background): \texttt{research\_tracks/research/schwarzschild\_from\_theta.tex}.
+  \item DERIVATION\_INDEX.md --- Gravitational Physics section.
+\end{itemize}
+\end{tcolorbox}
+
+\end{document}

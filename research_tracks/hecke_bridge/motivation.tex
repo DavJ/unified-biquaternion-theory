@@ -1,0 +1,273 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+% Hecke Bridge: Motivation for the ℂ⊗ℍ ↔ Modular Forms Connection
+% Status: [MOTIVATED CONJECTURE — algebraic connection OPEN]
+% Date: 2026-03-07
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{tcolorbox}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=blue!10, linecolor=blue!60, linewidth=1.5pt]{motivatebox}
+
+  \tcbuselibrary{skins,breakable}
+  \newtcolorbox{statusbox}[1]{
+    colback=yellow!8!white, colframe=orange!60!black,
+    title={\textbf{#1}}, fonttitle=\bfseries, breakable
+  }
+
+  \title{\textbf{Hecke Bridge: Motivation for the $\mathbb{C}\otimes\mathbb{H}
+         \leftrightarrow$ Modular Forms Connection}\\
+         \large A Motivating Sketch (not a Derivation)}
+  \author{David Jaroš}
+  \date{2026-03-07}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  The Hecke conjecture in UBT asserts that the three fermion generations correspond
+  to specific modular forms at prime $p = 137$ (and mirror forms at $p = 139$).
+  This document presents a \emph{motivating sketch} --- not a rigorous derivation ---
+  for why the $\mathbb{C}\otimes\mathbb{H}$ algebraic structure of UBT should select
+  modular forms of specific weights $k = 2, 4, 6$ and levels related to
+  $\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) = 8$.
+  All connections are conjectural; explicit open questions are listed.
+
+  \textbf{Status: [MOTIVATED CONJECTURE --- algebraic connection OPEN]}
+  \end{abstract}
+\fi
+
+\section{Introduction: The Hecke Conjecture}
+\label{sec:intro}
+
+\begin{statusbox}{Status: MOTIVATED CONJECTURE — algebraic connection OPEN}
+This document presents motivating arguments, not proofs.  The connection between
+$\mathbb{C}\otimes\mathbb{H}$ and modular forms is a conjecture motivated by
+numerical observations (unique global hit at $p = 137$ and $p = 139$) and
+algebraic suggestiveness.  No rigorous derivation exists.  All open questions
+are explicitly listed in Section~\ref{sec:open}.
+\end{statusbox}
+
+The Hecke conjecture (see \texttt{reports/hecke\_lepton/}) states that the three
+fermion generation mass ratios $m_e : m_\mu : m_\tau$ are encoded in the Hecke
+eigenvalues $a_p(f)$ of three specific cuspidal newforms:
+\begin{align}
+  f_1 &= \text{76.2.a.a} \quad (k=2,\, N=76,\, a_{137} = -11), \\
+  f_2 &= \text{7.4.a.a}  \quad (k=4,\, N=7,\,  a_{137} = +2274), \\
+  f_3 &= \text{208.6.a.?}\quad (k=6,\, N=208,\, a_{137} = -38286).
+\end{align}
+The question addressed here is: \emph{why these specific modular forms?}
+What property of the $\mathbb{C}\otimes\mathbb{H}$ algebra selects weights
+$k = 2, 4, 6$ and levels $N = 76, 7, 208$?
+
+\section{Motivation 1: Weights $k = 2, 4, 6$ from the Action $S[\Theta]$}
+\label{sec:weights}
+
+\subsection{Kinetic term is quadratic}
+
+The UBT action is:
+\begin{equation}
+  S[\Theta] = \int (\partial_\mu\Theta^\dagger)(\partial^\mu\Theta)\sqrt{-g}\,d^4x.
+\end{equation}
+The kinetic term is \emph{quadratic} in $\Theta$.  In the language of modular forms,
+weight $k$ of a cusp form $f$ corresponds to the degree of the associated $L$-function.
+The identification:
+\begin{itemize}
+  \item $k = 2$: kinetic term (quadratic in $\Theta$) $\to$ first generation,
+  \item $k = 4$: quartic interaction (four-$\Theta$ vertex) $\to$ second generation,
+  \item $k = 6$: sextic term (six-$\Theta$ vertex) $\to$ third generation,
+\end{itemize}
+suggests that the $n$-th generation corresponds to the $n$-th power of $\Theta$ in the
+action, mapped to modular weight $k = 2n$.
+
+\begin{motivatebox}
+\textbf{Motivation}: Weight $k = 2n$ corresponds to the $n$-th $\psi$-mode of $\Theta$.
+The kinetic ($k=2$), quartic ($k=4$), and sextic ($k=6$) terms in $S[\Theta]$ naturally
+select forms of weight 2, 4, 6 as the relevant modular objects associated with the
+three fermion generations.
+\end{motivatebox}
+
+This is a \emph{motivating analogy}, not a theorem.  The precise relation between
+powers of $\Theta$ in the action and modular weights requires establishing a
+dictionary between the $\psi$-mode expansion of $\Theta$ and the Hecke algebra action.
+
+\section{Motivation 2: Level $N = 7$ and $\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})$}
+\label{sec:level}
+
+\subsection{The suggestive coincidence}
+
+The modular curve $\Gamma_0(7)$ has index:
+\begin{equation}
+  \mu(\Gamma_0(7)) = 7\cdot\prod_{p|7}\left(1 + \frac{1}{p}\right) = 7\cdot\frac{8}{7} = 8.
+\end{equation}
+This equals $\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) = 8$.
+
+Additionally, $N = 7$ is the smallest prime for which $S_4(\Gamma_0(N))$ (the space
+of cusp forms of weight 4) is non-trivial:
+\begin{equation}
+  \dim S_4(\Gamma_0(7)) = 1,
+\end{equation}
+giving a unique newform $f_2 = \text{7.4.a.a}$ at $(N,k) = (7,4)$.
+
+\begin{motivatebox}
+\textbf{Motivation}: $N = 7$ is selected for the second generation ($k = 4$)
+because it is the smallest level with a non-trivial $k=4$ cusp form, and its
+modular index equals $\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H}) = 8$.
+This suggests the biquaternionic dimension $8$ controls the minimal level.
+\end{motivatebox}
+
+The connection to the Klein quartic (genus-3 curve $x^3y + y^3z + z^3x = 0$
+with automorphism group $\mathrm{PSL}(2,\mathbb{F}_7)$ of order $168 = 8 \times 21$)
+may be relevant: the genus of $X_0(7)$ is 0, but higher-genus covers of
+$\mathcal{H}/\Gamma_0(7)$ relate to $\mathrm{PSL}(2,\mathbb{F}_7)$.
+
+\subsection{Why Level $N = 7$ for the second generation?}
+
+This is an \textbf{open question}.  The current answer is: ``$N = 7$ is the minimal
+level with a unique non-trivial $k=4$ newform; the modular index matches the
+biquaternionic dimension; this is suggestive but not proved.''
+
+\section{Motivation 3: Trivial Character $\chi = 1$ from $\mathbb{Z}$-Rationality}
+\label{sec:character}
+
+All six Hecke forms (Set A and Set B) have trivial character $\chi = 1$, meaning
+their Fourier coefficients $a_n$ are integers.
+
+The $\mathbb{C}\otimes\mathbb{H}$ algebra is defined over $\mathbb{Z}$
+(as a Clifford algebra: generators $e_1, e_2, e_3, e_4$ with integer structure
+constants).  The natural modular forms associated to such an algebra should have
+integer Fourier coefficients --- i.e., trivial character.
+
+\begin{motivatebox}
+\textbf{Motivation}: $\mathbb{C}\otimes\mathbb{H}$ is defined over $\mathbb{Z}$
+$\Rightarrow$ UBT naturally selects $\mathbb{Q}$-rational modular forms
+(trivial character, integer Hecke eigenvalues).
+All six identified Hecke forms satisfy this constraint.
+\end{motivatebox}
+
+\section{Motivation 4: Three Forms (Not One, Not Five)}
+\label{sec:three}
+
+Why exactly three modular forms (one per generation)?
+
+The number of independent fermion generations in UBT is explained by three independent
+$\psi$-modes $\Theta_0, \Theta_1, \Theta_2$ (see \texttt{research\_tracks/three\_generations/}).
+Each mode has its own characteristic energy scale and interacts with its own
+``generation-specific'' Hecke form.
+
+The triple structure $(k=2, k=4, k=6)$ corresponds to:
+\begin{itemize}
+  \item $\Theta_0$ (mode 0, lightest = electron family): $k = 2$,
+  \item $\Theta_1$ (mode 1, muon family): $k = 4$,
+  \item $\Theta_2$ (mode 2, tau family): $k = 6$.
+\end{itemize}
+The weights $k = 2, 4, 6$ form an arithmetic sequence with step 2, consistent
+with the Kaluza--Klein mode expansion in the $\psi$-direction.
+
+\section{Open Questions}
+\label{sec:open}
+
+The following are the most important open questions for the Hecke bridge:
+
+\begin{enumerate}
+  \item \textbf{How to derive $N = 7$ from $\mathbb{C}\otimes\mathbb{H}$ geometry?}
+    The index $\mu(\Gamma_0(7)) = 8 = \dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})$
+    is suggestive but not proved.  A rigorous connection would require identifying
+    $\Gamma_0(7)$ as the modular symmetry group of the $\psi$-bundle over some
+    arithmetic surface associated to $\mathbb{C}\otimes\mathbb{H}$.
+
+  \item \textbf{Why exactly three forms (not one, not five)?}
+    The triple structure is motivated by three $\psi$-modes, but a derivation
+    from first principles (without appealing to the observed number of generations)
+    is lacking.
+
+  \item \textbf{Shimura lifts between $k = 2$, $k = 4$, $k = 6$ forms}:
+    Are there Shimura lift maps connecting the three Set A forms?
+    Such lifts would provide an algebraic structure linking the three generations.
+
+  \item \textbf{Algebraic derivation of the specific forms}:
+    The forms $76.2.a.a$, $7.4.a.a$, $208.6.a.?$ were found by numerical search.
+    A derivation from $\mathbb{C}\otimes\mathbb{H}$ algebra would require identifying
+    the $L$-function of $\mathbb{C}\otimes\mathbb{H}$ over $\mathbb{Z}$ and matching
+    it to the product $L(f_1, s) \cdot L(f_2, s) \cdot L(f_3, s)$.
+
+  \item \textbf{Mirror sector levels ($N = 195$, $N = 50$, $N = 54$)}:
+    The Set B levels do not share the $\mu(\Gamma_0(N)) = 8$ property.
+    Why are these specific levels selected for the mirror sector?
+
+  \item \textbf{Connection to Klein quartic and $\mathrm{PSL}(2, \mathbb{F}_7)$}:
+    The automorphism group of the Klein quartic has order $168 = 8 \times 21$.
+    Is there a deeper connection between the Klein quartic and the $k=4$, $N=7$ form?
+\end{enumerate}
+
+\section{Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llp{5cm}}
+\toprule
+\textbf{Structural element} & \textbf{Motivation} & \textbf{Status} \\
+\midrule
+Weights $k = 2, 4, 6$ & $n$-th $\psi$-mode $\leftrightarrow$ weight $k=2n$ &
+  [MOTIVATED CONJECTURE] \\
+Level $N = 7$, $\mu(\Gamma_0(7)) = 8$ & $\dim_{\mathbb{R}}(\mathbb{C}\otimes\mathbb{H})=8$ &
+  [MOTIVATED CONJECTURE] \\
+Trivial character $\chi = 1$ & $\mathbb{C}\otimes\mathbb{H}$ over $\mathbb{Z}$ &
+  [MOTIVATED CONJECTURE] \\
+Three forms (not one, not five) & Three $\psi$-modes &
+  [MOTIVATED CONJECTURE] \\
+Derivation of specific forms & — &
+  \textbf{OPEN} \\
+Derivation of specific levels & — &
+  \textbf{OPEN} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Date}: 2026-03-07 \\
+\textbf{Author}: David Jaroš
+
+\begin{thebibliography}{9}
+\bibitem{HeckeLMFDB}
+The LMFDB Collaboration, \textit{The L-functions and Modular Forms Database},
+\texttt{https://www.lmfdb.org}, 2024.
+
+\bibitem{HeckeLepton}
+D.\ Jaroš, \textit{Hecke Conjecture: Lepton Mass Ratios from Modular Forms},
+\texttt{reports/hecke\_lepton/}, 2026.
+
+\bibitem{Shimura}
+G.\ Shimura, \textit{Introduction to the Arithmetic Theory of Automorphic Functions},
+Princeton University Press, 1971.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

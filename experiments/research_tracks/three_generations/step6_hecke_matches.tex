@@ -1,0 +1,409 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\definecolor{matchgreen}{rgb}{0.0,0.55,0.0}
+\definecolor{failred}{rgb}{0.75,0.0,0.0}
+\definecolor{warnblue}{rgb}{0.0,0.0,0.75}
+\definecolor{neutralgray}{rgb}{0.3,0.3,0.3}
+
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{remark}{Remark}
+
+\title{%
+  Step 6: Hecke Eigenvalue Matches from SageMath\\
+  \large Three Generations Track --- UBT Research}
+\author{David Jaroš}
+\date{2026-03-06}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Context and Prior Status}
+%──────────────────────────────────────────────────────────────────────────────
+
+Step~5 (\texttt{step5\_hecke\_search\_results.tex}) established that the
+pure-Python local search (15 weight-2 elliptic curves and 6 eta-product
+newforms at levels $N \le 6$) was insufficient to test Conjecture~2.1.
+The primary bottleneck was coverage of higher-weight non-CM newforms: all
+verified $k=6$ eta products at $N \le 4$ are CM forms with
+$|a_{137}| \gtrsim 277000$, far larger than the required $\lesssim 81400$.
+The recommended next step was a SageMath run with full
+\texttt{CuspForms(N,k).newforms()} enumeration.
+
+David Jaroš ran the SageMath search locally on 2026-03-06 and found
+matching triples at both $p = 137$ and $p = 139$.  The raw output is
+recorded in \texttt{hecke\_sage\_results.txt}.  This document analyses
+and contextualises those results.
+
+\begin{center}
+\colorbox{green!15}{\parbox{0.85\linewidth}{%
+  \textbf{New status: MATCHES FOUND.}\\
+  Conjecture~2.1 now has \emph{numerical support}.
+  This is not a proof: a proof requires identifying exact LMFDB labels,
+  verifying genuine newform status, and showing the match is not
+  coincidental.  See Section~\ref{sec:status} for the precise epistemic
+  classification.
+}}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conjecture Reminder}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{conjecture}[Hecke generations, Conjecture~2.1]
+\label{conj:hecke}
+There exist modular newforms $f_0, f_1, f_2$ with weights $(k_0, k_1, k_2)
+= (2, 4, 6)$, levels $N_0, N_1, N_2$, and a prime $p$ such that
+\begin{equation}
+  \label{eq:conjecture21}
+  \frac{|a_p(f_1)|}{|a_p(f_0)|} = \frac{m_\mu}{m_e} = 206.7682830,
+  \qquad
+  \frac{|a_p(f_2)|}{|a_p(f_0)|} = \frac{m_\tau}{m_e} = 3477.23,
+\end{equation}
+where $p = 137$ is the UBT prime defined by $\alpha^{-1} \approx p +
+\Delta_{\rm CT}$.
+\end{conjecture}
+
+\noindent The experimental targets (CODATA 2022 / PDG 2022) are
+\begin{align}
+  m_\mu / m_e  &= 206.7682830, \label{eq:mu}\\
+  m_\tau / m_e &= 3477.23.     \label{eq:tau}
+\end{align}
+The Ramanujan--Deligne bound gives $|a_p(f)| \le 2p^{(k-1)/2}$.
+At $p = 137$ the bounds per weight are:
+\begin{center}
+\begin{tabular}{rrl}
+\toprule
+$k$ & $|a_p|_{\max}$ & Remark \\
+\midrule
+2 & $\approx 23.4$ & \\
+4 & $\approx 3207$ & \\
+6 & $\approx 439371$ & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{SageMath Results}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Match at \texorpdfstring{$p=137$}{p=137}}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Form & Weight $k$ & Level $N$ & $a_{137}$ \\
+\midrule
+$f_0$ & 2 & 38  & $-9$    \\
+$f_1$ & 4 & 56  & $-1854$ \\
+$f_2$ & 6 & 50  & $-32253$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Ratios:
+\begin{align*}
+  \frac{|a_{137}(f_1)|}{|a_{137}(f_0)|}
+    &= \frac{1854}{9} = 206.000,
+    & \text{target: } 206.768,
+    & \quad \text{error: } 0.37\%, \\[4pt]
+  \frac{|a_{137}(f_2)|}{|a_{137}(f_0)|}
+    &= \frac{32253}{9} = 3583.67,
+    & \text{target: } 3477.23,
+    & \quad \text{error: } 3.06\%.
+\end{align*}
+
+All Ramanujan bounds are satisfied:
+\begin{align*}
+  |a_{137}(f_0)| = 9   &\le 23.4,\\
+  |a_{137}(f_1)| = 1854 &\le 3207,\\
+  |a_{137}(f_2)| = 32253 &\le 439371.
+\end{align*}
+
+\subsection{Matches at \texorpdfstring{$p=139$}{p=139} (twin prime)}
+
+\paragraph{Match \#1 at $p=139$.}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Form & Weight $k$ & Level $N$ & $a_{139}$ \\
+\midrule
+$f_0$ & 2 & 200 & $9$     \\
+$f_1$ & 4 & 51  & $1864$  \\
+$f_2$ & 6 & 10  & $30860$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Ratios:
+\begin{align*}
+  \frac{|a_{139}(f_1)|}{|a_{139}(f_0)|}
+    &= \frac{1864}{9} \approx 207.11,
+    & \text{target: } 206.768,
+    & \quad \text{error: } 0.17\%, \\[4pt]
+  \frac{|a_{139}(f_2)|}{|a_{139}(f_0)|}
+    &= \frac{30860}{9} \approx 3428.89,
+    & \text{target: } 3477.23,
+    & \quad \text{error: } 1.39\%.
+\end{align*}
+
+\paragraph{Match \#2 at $p=139$ — best match overall.}
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Form & Weight $k$ & Level $N$ & $a_{139}$ \\
+\midrule
+$f_0$ & 2 & 195 & $15$    \\
+$f_1$ & 4 & 50  & $3100$  \\
+$f_2$ & 6 & 54  & $53009$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Ratios:
+\begin{align*}
+  \frac{|a_{139}(f_1)|}{|a_{139}(f_0)|}
+    &= \frac{3100}{15} = 206.667,
+    & \text{target: } 206.768,
+    & \quad \text{error: } 0.05\%, \\[4pt]
+  \frac{|a_{139}(f_2)|}{|a_{139}(f_0)|}
+    &= \frac{53009}{15} \approx 3533.93,
+    & \text{target: } 3477.23,
+    & \quad \text{error: } 1.63\%.
+\end{align*}
+
+\noindent\textbf{Match \#2 at $p=139$ is the best match found}: the muon
+ratio error is only $0.05\%$, an order of magnitude better than the
+$p=137$ match.
+
+All Ramanujan bounds at $p=139$ (with $|a_{139}|_{\max}(k=2) \approx 23.6$,
+$(k=4) \approx 3260$, $(k=6) \approx 447085$) are satisfied by all forms
+in both $p=139$ matches.
+
+\subsection{Summary table}
+
+\begin{center}
+\begin{tabular}{llllrrrr}
+\toprule
+$p$ & Match & Levels $(N_0,N_1,N_2)$ & $a_p$ values & $\mu$-err & $\tau$-err \\
+\midrule
+137 & --  & (38, 56, 50)   & $(-9, -1854, -32253)$ & 0.37\% & 3.06\% \\
+139 & \#1 & (200, 51, 10)  & $(9, 1864, 30860)$    & 0.17\% & 1.39\% \\
+139 & \#2 & (195, 50, 54)  & $(15, 3100, 53009)$   & \textbf{0.05\%} & \textbf{1.63\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Level Analysis: Algebraic Relationships}
+%──────────────────────────────────────────────────────────────────────────────
+
+The task requires checking whether the levels $N \in \{38, 56, 50\}$ (for
+$p=137$) and $N \in \{200, 51, 10, 195, 50, 54\}$ (for $p=139$) are
+related to $p=137$ or $p=139$ in any algebraic way.
+
+\subsection{Divisibility and modular arithmetic}
+
+\begin{center}
+\begin{tabular}{rlll}
+\toprule
+Level $N$ & Factorisation & $N \bmod 137$ & $N \bmod 139$ \\
+\midrule
+38  & $2 \times 19$       & 38 & 38  \\
+56  & $2^3 \times 7$      & 56 & 56  \\
+50  & $2 \times 5^2$      & 50 & 50  \\
+195 & $3 \times 5 \times 13$ & 58 & 56  \\
+54  & $2 \times 3^3$      & 54 & 54  \\
+200 & $2^3 \times 5^2$    & 63 & 61  \\
+51  & $3 \times 17$       & 51 & 51  \\
+10  & $2 \times 5$        & 10 & 10  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent No level equals $p$ itself ($137$ or $139$), nor is any level a
+divisor or multiple of $p$.  None of the levels is divisible by $137$
+or $139$ (as expected: if $p \mid N$, then $a_p = 0$ for a newform of
+level $N$, making any ratio zero or undefined).
+
+\paragraph{Observation 1: Shared level $N=50$.}
+The level $N_1 = 50$ appears in both the $p=137$ match ($f_1$, weight 4)
+and the $p=139$ match \#2 ($f_1$, weight 4).  These are different
+newforms at the same level (the weight is the same, but $p=137$ vs
+$p=139$, and the Hecke eigenvalues differ: $-1854$ vs $3100$).  Whether
+they belong to the same eigenspace or Galois orbit at level $N=50$
+requires LMFDB lookup.
+
+\paragraph{Observation 2: $N=195 = 3 \times 5 \times 13$.}
+The factorisation of $195$ has no obvious relation to $137$ or $139$.
+However, $195 \equiv 56 \pmod{139}$.  Level $N=56$ is the level of the
+$k=4$ form in the $p=137$ match.  This numerical coincidence is intriguing
+but may be accidental.
+
+\paragraph{Observation 3: $N = 50$, $54$, $56$ are near each other.}
+The levels $50 = 2 \times 5^2$, $54 = 2 \times 3^3$, $56 = 2^3 \times 7$
+are all of the form $2m$ with $m \in \{25, 27, 28\}$.  This may simply
+reflect that newforms with modest Hecke eigenvalues (which are required
+for the ratio to work) tend to cluster at small-to-medium levels.
+
+\paragraph{Observation 4: $N = 38 = 2 \times 19$, $19 = (137-99)/2$.}
+More speculatively: $137 = 2 \times 19 \times 3 + 23$.  The prime 19
+divides $N=38$.  No clean algebraic relation emerges, but the fact that
+$19 \mid N_0$ at $p=137$ (where $f_0$ at level 38) and that $137 \equiv
+-1 \pmod{19}$ (i.e.\ $19 \nmid 137$ but $137 \equiv 18 \pmod{19}$) is
+noted without further conclusion.
+
+\begin{remark}
+No algebraic relationship between the newform levels and the primes
+$p \in \{137, 139\}$ has been identified.  The levels appear to be
+coincidental outputs of the SageMath search rather than algebraically
+constrained by $p$.  Verifying this would require a full LMFDB cross-check.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The ``UBT Prime'' Question: \texorpdfstring{$p=137$}{p=137} vs
+  \texorpdfstring{$p=139$}{p=139}}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Why \texorpdfstring{$p=137$}{p=137} was the original UBT prime}
+
+The UBT derivation fixes $p = 137$ from the fine-structure constant:
+\[
+  \alpha^{-1} = 137 + \Delta_{\rm CT}, \quad \Delta_{\rm CT} \approx 0.036.
+\]
+The integer part is $p = 137$.  The Conjecture~2.1 was stated with $p=137$.
+
+\subsection{The \texorpdfstring{$p=139$}{p=139} result: better muon match}
+
+The SageMath search at $p=139$ gives a muon ratio error of $0.05\%$
+(Match~\#2), compared to $0.37\%$ at $p=137$.  This is a substantial
+improvement.  However, the tau ratio error is $1.63\%$ (Match~\#2) vs
+$3.06\%$ ($p=137$), both worse than ideal.
+
+\subsection{Twin-prime hypothesis}
+
+The primes $137$ and $139$ form a \emph{twin prime pair} ($|137 - 139| = 2$).
+Twin primes appear naturally in several number-theoretic structures.
+Three possibilities:
+
+\begin{enumerate}
+  \item \textbf{$p = 137$ is the UBT prime; $p = 139$ is a numerical
+    coincidence.}  The UBT derivation uniquely selects $p=137$ from
+    $\alpha^{-1}$.  The $p=139$ match is a near-miss that happens to
+    occur for the neighbouring prime; it does not have independent UBT
+    motivation.
+
+  \item \textbf{$p = 139$ is the true UBT prime.}  If the Conjecture
+    should be interpreted with the closest prime to $\alpha^{-1} -
+    \Delta_{\rm CT}$ for which a \emph{minimal-error match} exists, then
+    $p = 139$ could be preferred.  This would require revising the UBT
+    prime derivation.
+
+  \item \textbf{Both $\{137, 139\}$ play a role (twin-prime structure).}
+    In some modular-form contexts, twin-prime pairs arise from
+    ``neighbouring'' eigenspaces.  If the three generations correspond
+    to an L-function with Euler factors at both $p=137$ and $p=139$
+    (as in a twisted character sum), then both primes could enter.
+    This is speculative and requires a theoretical mechanism.
+\end{enumerate}
+
+\noindent \textbf{Current assessment:}
+The $p = 137$ identification remains the UBT-motivated choice, since it
+follows from $\alpha^{-1}$ independently of the Hecke search.  The
+$p = 139$ match provides useful \emph{cross-check information} and
+suggests that the search space near $p = 137$ is rich in near-matches.
+The twin-prime hypothesis (option~3) is speculative but worth noting in
+the record.  \emph{It should not be elevated to a claim without a
+theoretical derivation.}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Epistemic Status}
+\label{sec:status}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\colorbox{yellow!30}{\parbox{0.85\linewidth}{%
+  \textbf{Classification: Numerical Support (not a proof).}
+
+  \medskip
+  These results constitute \emph{numerical evidence consistent with}
+  Conjecture~2.1.  They are \textbf{not} a proof.  The following
+  conditions must be met before a proof can be claimed:
+
+  \begin{enumerate}
+    \item \textbf{Exact LMFDB labels} must be identified for all matching
+      newforms (e.g.\ the form at $N=38$, $k=2$ that has $a_{137} = -9$).
+    \item \textbf{Genuine newform status} must be verified: the forms must
+      not be oldforms (base-changes or twists of lower-level forms).
+    \item \textbf{Non-coincidence argument}: with thousands of newforms at
+      levels $N \le 200$, some near-matches are expected by chance (given
+      a $5\%$ tolerance window).  A proof requires explaining \emph{why}
+      these specific forms and these specific levels are relevant to UBT,
+      not just that matches exist.
+    \item \textbf{Algebraic relationship} between the UBT prime $p$ and
+      the newform levels $N_i$ would strengthen the evidence significantly.
+  \end{enumerate}
+}}
+\end{center}
+
+\subsection{Comparison with prior verdict}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Prior status (Step~5) & New status (Step~6) \\
+\midrule
+NO MATCH in searched space & \textbf{Matches found at $p=137$ and $p=139$} \\
+Structural impossibility (CM $k=6$) & Resolved (non-CM forms at $N \sim 50$) \\
+Conjecture: Open & \textbf{Conjecture: Numerically Supported} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Summary}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Item & Status \\
+\midrule
+Matches at $p=137$ & \textcolor{matchgreen}{\checkmark} Found (1 match, errors 0.37\%, 3.06\%) \\
+Matches at $p=139$ & \textcolor{matchgreen}{\checkmark} Found (2 matches; best: 0.05\%, 1.63\%) \\
+Ramanujan bounds & \textcolor{matchgreen}{\checkmark} All satisfied \\
+Level--prime algebraic relation & \textcolor{neutralgray}{?} None identified \\
+Twin-prime hypothesis & \textcolor{neutralgray}{?} Speculative; no mechanism \\
+Conjecture~2.1 status & \textbf{Numerically supported (not proved)} \\
+\midrule
+Next: LMFDB label lookup & See \texttt{TASK\_NEXT\_HECKE.md} \\
+Next: Genuine newform verification & See \texttt{TASK\_NEXT\_HECKE.md} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent Raw data: \texttt{hecke\_sage\_results.txt}.\\
+Updated JSON: \texttt{hecke\_search\_results.json}.
+
+\end{document}

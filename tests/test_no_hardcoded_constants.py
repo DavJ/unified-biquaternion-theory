@@ -83,6 +83,8 @@ WHITELIST = {
     "ALPHA_CXH_COMPARISON.md",
     "NONCOMMUTATIVE_RENORMALIZATION_INTEGRATION.md",
     "VERIFICATION_CHECKLIST_TORUS_THETA_ALPHA.md",
+    "VERIFICATION_CHECKLIST.md",    # Docs checklist with experimental comparison values
+    "reference_constants.tex",      # TeX file with CODATA reference constants for comparison
     "COMPLETE_ALPHA_FRAMEWORK_SUMMARY.md",
     "APPENDIX_A2_INTEGRATION_SUMMARY.md",
     "SCRIPT_INTEGRATION_REPORT.md",
@@ -94,12 +96,20 @@ WHITELIST = {
     "CURRENT_STATUS.md",  # Status document with experimental comparison values
     "generate_reference_constants.py",  # Tool that generates reference constants
     "validate_alpha_renormalization.py",  # Validation script with reference values
+    "STATUS_ALPHA.md",  # Status report with experimental comparison values
+    "STATUS_THEORY_ASSESSMENT.md",  # Theory assessment with experimental values
+    "STATUS_FERMIONS.md",  # Fermion status report with PDG comparison values
+    "INTEGRATION_SUMMARY_LEPTON_QUARK_ISSUES.md",  # Integration summary with reference values
+    "REVIEW_COMPLETE_ADDRESS_LEPTON_QUARK_ISSUES.md",  # Review document with reference values
+    "reproduce_lepton_ratios.py",  # Lepton ratio tool (uses reference masses for comparison)
+    "verify_N_eff.py",             # N_eff verification script (uses CODATA α⁻¹ as reference)
 }
 
 # Directory segments to skip
 SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__", 
              ".pytest_cache", "out", "alpha_core_repro/out", "data",
-             "archive",  # Historical documentation
+             "archive",  # Historical documentation (lowercase legacy)
+             "ARCHIVE",  # Historical documentation (uppercase current)
              "archived",  # Historical documentation
              "osf_release",  # Published versions (frozen)
              "osf_release_not_released",  # Draft publications
@@ -109,6 +119,10 @@ SKIP_DIRS = {".venv", "venv", "build", "dist", ".git", "__pycache__",
              "ubt_strict_minimal",  # Minimal strict implementation
              "ubt_audit_pack_v1",  # Audit documentation
              "ubt_audit_pack_v2",  # Audit documentation
+             "ubt_with_chronofactor",  # subpackage / legacy implementation (contains reference values)
+             "reports",  # Generated reports and audit results
+             "FINGERPRINTS",  # Fingerprint results directory
+             "DOCS",  # Documentation directory
 }
 
 

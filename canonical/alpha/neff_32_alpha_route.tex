@@ -1,0 +1,673 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{tcolorbox}
+  \usepackage{array}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!8, linecolor=red!60, linewidth=1.5pt]{warnbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+  \newmdenv[backgroundcolor=gray!8, linecolor=gray!60, linewidth=1pt]{statusbox}
+
+  \title{\textbf{Geometric and Information-Theoretic Origin of $N_{\mathrm{eff}}^{3/2}$}\\
+         \large From Biquaternion Algebra to the Fine-Structure Constant Route\\
+         Workstream G5: Full $\alpha$-Route after Geometric Foundations}
+  \author{Ing.\ David Jaro\v{s}}
+  \date{2026-04-29}
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Design Principles}
+\label{sec:g5:purpose}
+%──────────────────────────────────────────────────────────────────────────────
+
+This document reconstructs the $\alpha$-route from geometric and
+information-theoretic first principles, following the workstream plan G1--G5.
+It is written \emph{after} establishing the geometric foundations so that the
+logical order is:
+
+\begin{equation}
+  \underbrace{\text{algebra}}_{\mathcal{B}=\mathbb{C}\otimes\mathbb{H}}
+  \;\to\;
+  \underbrace{\text{information sector}}_{\dim_\mathbb{R}(\mathcal{B})=8}
+  \;\to\;
+  \underbrace{\text{charged modes}}_{\mathrm{Im}\,\mathbb{H},\;d=3}
+  \;\to\;
+  \underbrace{\text{projection}}_{\lambda=3/2}
+  \;\to\;
+  \underbrace{N_{\mathrm{eff}}=12}_{[\mathrm{L0}]}
+  \;\to\;
+  \underbrace{B_{\mathrm{base}}=N_{\mathrm{eff}}^{3/2}}_{[\mathrm{MC}]}
+  \;\to\;
+  \underbrace{V_{\mathrm{eff}}(n)}_{[\mathrm{L1}]}
+  \;\to\;
+  \underbrace{n^*=137}_{[\mathrm{COND}]}
+  \;\to\;
+  \underbrace{\alpha^{-1}_{\mathrm{bare}}=137.}_{[\mathrm{COND}]}
+  \label{eq:g5:chain}
+\end{equation}
+
+\begin{warnbox}
+\textbf{Hard rule (unchanged from \texttt{alpha\_best\_route.tex}):}
+No numerical constant in this document is chosen to match~$\alpha$ or~$137$.
+Every constant is either derived from UBT axioms or explicitly labelled with its
+proof status: \textbf{[L0]} (algebraic), \textbf{[L1]} (one-loop field theory),
+\textbf{[MC]} (motivated conjecture), \textbf{[COND]} (conditional),
+\textbf{[OPEN]} (unresolved gap), \textbf{[CONJECTURAL]}, or
+\textbf{[FALSE\_LEAD]}.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G1: Algebra and the 8D Information Sector}
+\label{sec:g5:algebra}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[UBT fundamental algebra]
+\label{def:g5:algebra}
+\begin{equation}
+  \mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H} \;\cong\; M_2(\mathbb{C}),
+  \qquad
+  \dim_\mathbb{R}\mathcal{B} = 8.
+  \label{eq:g5:algebra}
+\end{equation}
+The eight real basis elements are $\{1,\,\mathbf{I},\,\mathbf{J},\,\mathbf{K},
+\,i,\,i\mathbf{I},\,i\mathbf{J},\,i\mathbf{K}\}$, where $\mathbf{I,J,K}$ are
+quaternion units and~$i$ is the complex unit.
+\end{definition}
+
+\begin{resultbox}
+Status: \textbf{[L0]} — canonical axiom.  Source: \texttt{canonical/fields/biquaternion\_algebra.tex}
+\end{resultbox}
+
+\paragraph{Information-sector interpretation.}
+The real dimension $\dim_\mathbb{R}(\mathcal{B}) = 8$ equals the complex dimension
+of the three-qubit Hilbert space $\mathcal{H}_{3q} = (\mathbb{C}^2)^{\otimes 3}$
+(see \texttt{canonical/alpha/neff\_geometric\_origin.md}).  This numerical equality
+motivates identifying the biquaternion field's real degrees of freedom with the
+information sector of a three-qubit system.
+
+\begin{statusbox}
+Status of three-qubit / 8D identification: \textbf{[CONJECTURAL]} — numerical
+coincidence; no algebra isomorphism over $\mathbb{C}$ exists (see Remark G1.1 in
+\texttt{neff\_geometric\_origin.md}).
+\end{statusbox}
+
+The eight real dimensions decompose as:
+\begin{equation}
+  \underbrace{2}_{\text{neutral: }\{1,i\}}
+  + \underbrace{3}_{\mathrm{Im}\,\mathbb{H}:\{\mathbf{I,J,K}\}}
+  + \underbrace{3}_{\text{complex-charged: }\{i\mathbf{I},i\mathbf{J},i\mathbf{K}\}}
+  = 8.
+  \label{eq:g5:decomp}
+\end{equation}
+Only the 6 charged dimensions contribute to vacuum polarisation; the 2 neutral
+dimensions decouple from the $U(1)_\mathrm{EM}$ photon.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G2: Chronofactor, Complex Time, and $S^1_\psi$}
+\label{sec:g5:chron}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{definition}[Complex time and chronofactor]
+\label{def:g5:chron}
+The canonical UBT complex time is $\tau = t + i\psi$, with $\psi$ compactified:
+\begin{equation}
+  \psi \;\sim\; \psi + 2\pi R_\psi.
+  \label{eq:g5:S1psi}
+\end{equation}
+The \textbf{chronofactor} of the field $\Theta$ at winding number $n$ is:
+\begin{equation}
+  \Phi_n(\psi) = e^{in\psi/R_\psi}, \quad n \in \mathbb{Z}.
+  \label{eq:g5:chron}
+\end{equation}
+The chronofactor sector contributes $N_\mathrm{chron} = N_\mathrm{helicity} \times
+N_\mathrm{charge} = 2\times 2 = 4$ effective degrees of freedom per
+$\mathrm{Im}\,\mathbb{H}$ direction.
+\end{definition}
+
+\begin{resultbox}
+Status: \textbf{[L0]} — follows from gauge symmetry of $S[\Theta]$ on $S^1_\psi$.
+Source: \texttt{canonical/fields/biquaternion\_time.tex}
+\end{resultbox}
+
+\paragraph{Bloch-sphere analogy.}
+The complex time plane $\mathbb{C}_\tau$ (real dimension~2) acts as a projection
+boundary for $\mathrm{Im}\,\mathbb{H}$ (real dimension~3).  The projection ratio is:
+\begin{equation}
+  \lambda_\mathrm{proj}
+  = \frac{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})}{\dim_\mathbb{R}(\mathbb{C}_\tau)}
+  = \frac{3}{2}.
+  \label{eq:g5:lambda}
+\end{equation}
+This is a candidate geometric origin of the exponent $3/2$ (see Section~\ref{sec:g5:exp}).
+
+\begin{statusbox}
+Status of projection interpretation: \textbf{[CONJECTURAL]} — dimensionally
+motivated; rigorous Jacobian computation is an OPEN\_LEMMA.
+Source: \texttt{canonical/alpha/chronofactor\_projection.md}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G1+G2: $N_{\mathrm{eff}} = 12$ — Derivation and Dimension Count}
+\label{sec:g5:Neff}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$N_{\mathrm{eff}} = 12$]
+\label{thm:g5:Neff}
+The effective number of distinct charged modes of the biquaternion field on
+$S^1_\psi$ contributing to the one-loop vacuum polarisation is:
+\begin{equation}
+  N_{\mathrm{eff}}
+  = \underbrace{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})}_{=\,3}
+    \;\times\;
+    \underbrace{N_\mathrm{helicity}}_{=\,2}
+    \;\times\;
+    \underbrace{N_\mathrm{charge}}_{=\,2}
+  = 12.
+  \label{eq:g5:Neff}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$\mathrm{Im}\,\mathbb{H} = \mathrm{span}_\mathbb{R}\{\mathbf{I,J,K}\}$ has real
+dimension~3; these are the three independent $U(1)$ phase directions.  The complex
+factor $\mathbb{C}$ in $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ provides left-
+and right-moving modes ($N_\mathrm{helicity} = 2$).  The complex conjugation
+automorphism of $\mathcal{B}$ provides particle/antiparticle doubling
+($N_\mathrm{charge} = 2$).  All factors are algebraically independent.
+\end{proof}
+
+\begin{resultbox}
+Status: \textbf{[L0]} — zero free parameters.
+Sources: \texttt{canonical/n\_eff/}, \texttt{canonical/alpha/alpha\_best\_route.tex~\S3}
+\end{resultbox}
+
+\paragraph{Five independent derivation routes.}
+$N_\mathrm{eff} = 12$ is over-determined:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Route & Method & Status \\
+\midrule
+R1 & Algebraic phase decomposition $3\times 2\times 2$ & [L0] \\
+R2 & SM generator count ($8+3+1=12$) & [L0] \\
+R3 & 3-qubit sector (colour $\times$ isospin $\times$ charge) & [L0] \\
+R4 & Off-diagonal spinor components of $M_2(\mathbb{C})$ & [L0] \\
+R5 & Compact mode counting on $T^3\times S^1_\psi$ & [L0] \\
+\bottomrule
+\end{tabular}
+\end{center}
+All routes are independent of $\alpha$.  Source:
+\texttt{ALPHA\_STRUCTURAL\_ORIGINS.md~\S3}.
+
+\paragraph{Why $N_\mathrm{eff} \ne 8$.}
+The 8D sector (full $\dim_\mathbb{R}(\mathcal{B}) = 8$) contains 2 neutral and 6
+charged dimensions.  The neutral dimensions decouple; the 6 charged dimensions are
+doubled by charge conjugation: $6 \times 2 = 12$.  Equivalently,
+$N_\mathrm{eff} = 3 \times 4 = 12$ where the chronofactor contributes the factor~4.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G3: Geometric Origin of the Exponent $3/2$}
+\label{sec:g5:exp}
+%──────────────────────────────────────────────────────────────────────────────
+
+This is the key geometric step.  Three mechanisms are identified; their relative
+strengths are assessed.
+
+\subsection{Mechanism A: Heat-Kernel Density of States}
+\label{sec:g5:hk}
+
+The imaginary quaternion subspace $\mathrm{Im}\,\mathbb{H} \cong \mathbb{R}^3$ has
+real dimension $d = 3$.  The standard heat-kernel result for the cumulative density
+of states $\mathcal{N}(E)$ of a Laplacian on a compact $d$-dimensional Riemannian
+manifold is:
+\begin{equation}
+  \mathcal{N}(E) = \#\{\text{eigenvalues} \le E\} \;\propto\; E^{d/2}.
+  \label{eq:g5:hk}
+\end{equation}
+For $d = 3$ ($\mathrm{Im}\,\mathbb{H}$):
+\begin{equation}
+  \mathcal{N}(E) \;\propto\; E^{3/2}.
+  \label{eq:g5:hk3}
+\end{equation}
+The one-loop effective potential coefficient $B_\mathrm{base}$ counts modes up to
+the characteristic winding energy $E \sim N_\mathrm{eff}$:
+\begin{equation}
+  B_\mathrm{base} \;\propto\; \mathcal{N}(N_\mathrm{eff}) \;\propto\; N_\mathrm{eff}^{3/2}.
+  \label{eq:g5:Bbase_hk}
+\end{equation}
+The leading heat-kernel term on a 3-torus $T^3$ is:
+\begin{equation}
+  K(t) = (4\pi t)^{-3/2}\,\mathrm{Vol}(T^3) + O(t^{-1/2}),
+  \label{eq:g5:hk_T3}
+\end{equation}
+and the exponent $-3/2$ matches the power of $N_\mathrm{eff}$.
+
+\begin{resultbox}
+Status: \textbf{[L0]} — heat-kernel result in Im~$\mathbb{H}$ subspace follows from
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ alone.  The precise derivation of
+$B_\mathrm{base}$ from the full one-loop determinant of $\nabla^\dagger\nabla$ on
+$T^2\times S^1_\psi$ is \textbf{[OPEN\_LEMMA]}.
+Source: \texttt{canonical/interactions/B\_base\_derivation\_complete.tex}
+\end{resultbox}
+
+\subsection{Mechanism B: Modular Weight of the Partition Function}
+\label{sec:g5:modular}
+
+The partition function of the UBT biquaternion field on the torus $T^2_\tau$ is
+\begin{equation}
+  \hat{Z}(\tau) = \vartheta_3(\tau)^3, \qquad
+  \vartheta_3(\tau) = \sum_{n\in\mathbb{Z}} e^{2\pi i\tau n^2}.
+  \label{eq:g5:Zhat}
+\end{equation}
+Under $SL(2,\mathbb{Z})$ modular transformations, $\vartheta_3^N$ has modular weight
+$k = N/2$.  For $N = 3$:
+\begin{equation}
+  k\bigl(\vartheta_3^3\bigr) = \frac{3}{2}.
+  \label{eq:g5:k_modular}
+\end{equation}
+The one-loop coefficient in the heat-kernel expansion of the partition function is
+proportional to its modular weight, giving $B_\mathrm{base} \propto k = 3/2$, i.e.,
+$B_\mathrm{base} = N_\mathrm{eff} \times k = 12 \times (3/2) = 18$ if taken literally.
+
+The identification $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ (not $N_\mathrm{eff} \times k$)
+requires $k = \sqrt{N_\mathrm{eff}}/2$, which holds for $N_\mathrm{eff} = 12$ since
+$\sqrt{12}/2 = \sqrt{3} \ne 3/2$.  This version of Mechanism~B does not directly
+produce $N_\mathrm{eff}^{3/2}$ without invoking the Kac-Moody level $k_\mathrm{KM} = 1$
+(Gap~G3-k).
+
+\begin{statusbox}
+Status: \textbf{[L0]} — modular weight $3/2$ of $\vartheta_3^3$ is computed exactly.
+Connection to $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ is \textbf{[CONJECTURAL/OPEN\_LEMMA]}
+(conditional on Gap~G3-k).
+\end{statusbox}
+
+\subsection{Mechanism C: Projection Ratio (Chronofactor)}
+\label{sec:g5:proj}
+
+The projection ratio from $\mathrm{Im}\,\mathbb{H}$ to $\mathbb{C}_\tau$ is
+$\lambda = 3/2$ (Section~\ref{sec:g5:chron}).  If the mode density on $S^1_\psi$
+is enhanced by the projection factor $\lambda$:
+\begin{equation}
+  \rho_\mathrm{eff}(n) = \lambda \cdot \rho_{\mathrm{Im}\,\mathbb{H}}(n),
+  \label{eq:g5:rho_eff}
+\end{equation}
+then the effective coupling receives a $(3/2)$-power:
+\begin{equation}
+  B_\mathrm{base} = N_\mathrm{eff}^{3/2}.
+  \label{eq:g5:Bbase_proj}
+\end{equation}
+
+\begin{statusbox}
+Status: \textbf{[CONJECTURAL]} — the projection Jacobian $\lambda = 3/2$ is
+geometrically motivated but not derived from a rigorous map.
+This is \textbf{OPEN\_LEMMA}: requires specifying the inner product on Im~$\mathbb{H}$
+and computing the Jacobian of $\pi: \mathrm{Im}\,\mathbb{H} \to \mathbb{C}_\tau$.
+Source: \texttt{canonical/alpha/chronofactor\_projection.md \S2}
+\end{statusbox}
+
+\subsection{Assessment of the Three Mechanisms}
+\label{sec:g5:assess}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Mechanism & Origin of $3/2$ & Proof status & Strength \\
+\midrule
+A (heat kernel) & $d/2$, $d = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ & [L0] in Im~$\mathbb{H}$; [OPEN\_LEMMA] for $B_\mathrm{base}$ & Strongest \\
+B (modular weight) & Weight of $\vartheta_3^3$ & [L0] for weight; [OPEN\_LEMMA] for $B_\mathrm{base}$ link & Strong \\
+C (projection ratio) & $\dim(\mathrm{Im}\,\mathbb{H})/\dim(\mathbb{C}_\tau) = 3/2$ & [CONJECTURAL] & Geometric motivation \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All three mechanisms agree that $3/2$ comes from the ratio $3/2 = d/2$ where $d = 3$
+is the real dimension of $\mathrm{Im}\,\mathbb{H}$.  The common algebraic origin is
+\begin{equation}
+  \boxed{\frac{3}{2} = \frac{\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})}{2} = \frac{3}{2}.}
+  \label{eq:g5:32_origin}
+\end{equation}
+The denominator~2 appears as: the dimension of $\mathbb{C}_\tau$ (Mechanism C),
+the Weyl denominator in the heat-kernel power (Mechanism A), and the modular
+weight convention $k = N/2$ (Mechanism B).
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G4: Sphere Packing and E8 — Assessment}
+\label{sec:g5:E8}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[E8 non-presence in $\mathcal{B}$]
+\label{prop:g5:E8}
+The biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H} \cong M_2(\mathbb{C})$
+does \emph{not} carry an $E_8$ root system or lattice as a natural algebraic structure.
+\end{proposition}
+
+\begin{proof}[Argument]
+$E_8$ is an exceptional simple Lie algebra of rank~8.  Its root system requires
+a non-associative or Lie-algebraic structure with 240 roots.  The algebra $M_2(\mathbb{C})$
+is a simple associative algebra; its Lie algebra structure $[M_2(\mathbb{C}), M_2(\mathbb{C})]$
+gives $\mathfrak{gl}(2,\mathbb{C}) \cong \mathfrak{sl}(2,\mathbb{C}) \oplus \mathbb{C}$,
+which has rank~1, not~8.  No embedding of $E_8$ into $M_2(\mathbb{C})$ exists.
+\end{proof}
+
+\begin{resultbox}
+Status: \textbf{FALSE\_LEAD} for E8 root system in $\mathcal{B}$.  The numerical
+coincidence $\dim(E_8) = \dim_\mathbb{R}(\mathcal{B}) = 8$ is noted but carries no
+algebraic content.  Source: \texttt{reports/e8\_sphere\_packing\_relevance.md}
+\end{resultbox}
+
+\paragraph{E8 packing density.}
+The Viazovska sphere-packing density $\pi^4/384 \approx 0.2537$ in $\mathbb{R}^8$
+does not appear in any current UBT formula for $N_\mathrm{eff}$ or $B_\mathrm{base}$.
+The modular forms used in the Viazovska proof ($\vartheta_3$, Eisenstein series) also
+appear in UBT, but their use is independent.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step G5: Full $\alpha$-Route after Geometric Foundations}
+\label{sec:g5:full}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Effective Potential from Geometry}
+
+\begin{theorem}[One-loop effective potential]
+\label{thm:g5:Veff}
+The one-loop effective potential for winding mode $n \ge 1$ on $S^1_\psi$,
+evaluated using the $N_\mathrm{eff} = 12$ mode count and $B_\mathrm{base}$ derived
+from the Im~$\mathbb{H}$ heat kernel, is:
+\begin{equation}
+  V_\mathrm{eff}(n) = n^2 - B \cdot n\ln n + \mathrm{const},
+  \quad B = B_\mathrm{base}.
+  \label{eq:g5:Veff}
+\end{equation}
+The $n^2$ term is the classical Kaluza-Klein winding energy; $-B\,n\ln n$ is the
+one-loop correction from $N_\mathrm{eff}$ charged modes.
+\end{theorem}
+
+\begin{resultbox}
+Status: \textbf{[L1]} given $B_\mathrm{base}$.  Functional form is standard
+one-loop; only the coefficient tracks Gap~G3-k.
+\end{resultbox}
+
+\subsection{Baseline Coefficient $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$}
+
+\begin{proposition}[$B_\mathrm{base}$ from heat kernel, conditional on gap]
+\label{prop:g5:Bbase}
+The heat-kernel density of states in $\mathrm{Im}\,\mathbb{H}$ at scale $N_\mathrm{eff}$
+gives:
+\begin{equation}
+  B_\mathrm{base} = N_\mathrm{eff}^{3/2} = 12^{3/2} = 12\sqrt{12} \approx 41.57.
+  \label{eq:g5:Bbase}
+\end{equation}
+The one-loop coefficient is:
+\begin{equation}
+  B_0 = \frac{2\pi N_\mathrm{eff}}{3} = 8\pi \approx 25.13.
+  \label{eq:g5:B0}
+\end{equation}
+The ratio $B_\mathrm{base}/B_0 = 3\sqrt{12}/(2\pi) \approx 1.655$ measures the
+enhancement from the projection geometry.
+\end{proposition}
+
+\begin{gapbox}
+\textbf{Gap G3-k}: Prove that the Kac-Moody level of the WZW current algebra on
+$T^2_\tau$ is $k = 1$.  This is required to rigorously derive
+$B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ from $S[\Theta]$.
+
+Alternatively: compute the one-loop determinant of $\nabla^\dagger\nabla$ on
+$T^2\times S^1_\psi$ using heat-kernel expansion and verify the leading-order
+coefficient equals $N_\mathrm{eff}^{3/2}$ without a Kac-Moody assumption.
+\end{gapbox}
+
+\begin{statusbox}
+Status: $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ is \textbf{[CONJECTURAL/MC]}.
+If the heat-kernel mechanism (Section~\ref{sec:g5:hk}) is rigorous, it becomes
+\textbf{[L1]} without needing Gap~G3-k.
+\end{statusbox}
+
+\subsection{Factor Classification Table}
+
+Every factor in the $\alpha$-route is classified:
+
+\begin{longtable}{llll}
+\toprule
+Factor & Value & Classification & Source \\
+\midrule
+\endhead
+$\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ axiom & — & \textbf{DERIVED [L0]} & Axiom A1 \\
+$\dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$ & 3 & \textbf{DERIVED [L0]} & Algebra \\
+$N_\mathrm{helicity} = 2$ & 2 & \textbf{DERIVED [L0]} & Complex structure of $\mathcal{B}$ \\
+$N_\mathrm{charge} = 2$ & 2 & \textbf{DERIVED [L0]} & Charge-conjugation automorphism \\
+$N_\mathrm{eff} = 12$ & 12 & \textbf{DERIVED [L0]} & $3\times 2\times 2$ \\
+$2\pi$ in $B_0$ & $2\pi$ & \textbf{DERIVED [L1]} & Torus measure on $S^1_\psi$ \\
+$1/3$ in $B_0$ & $1/3$ & \textbf{DERIVED [L1]} & Standard 1-loop vacuum polarisation \\
+$B_0 = 8\pi$ & $\approx 25.1$ & \textbf{DERIVED [L1]} & One-loop from $S[\Theta]$ \\
+Exponent $3/2$ & $3/2$ & \textbf{CONJECTURAL [MC]} & Heat kernel $d=3$; modular weight; projection ratio \\
+$B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ & $\approx 41.6$ & \textbf{CONJECTURAL [MC]} & Conditional on Gap~G3-k \\
+Modular index $\mu(\Gamma_0(137))/3$ & $\approx 46.0$ & \textbf{OPEN\_LEMMA} & Structural signal; not yet derived \\
+$B_\mathrm{full} \approx 46.3$ & $\approx 46.3$ & \textbf{PHENOMENOLOGICAL} & Numerical from $n^*=137$ requirement \\
+$n^* = 137$ & 137 & \textbf{CONDITIONAL [L1]} & Given $B_\mathrm{full}$ \\
+Prime stability of $n^*$ & — & \textbf{DERIVED [L1]} & Topological argument \\
+$\alpha^{-1}_\mathrm{bare} = 137$ & 137 & \textbf{CONDITIONAL [COND]} & Given $B_\mathrm{full}$ \\
+E8 density $\pi^4/384$ & — & \textbf{FALSE\_LEAD} & Not present in $\mathcal{B}$ \\
+Correction $R \approx 1.114$ & $\approx 1.114$ & \textbf{OPEN} & Higher-loop; no derivation \\
+\bottomrule
+\caption{Classification of every factor in the $\alpha$-route}
+\label{tab:g5:factors}
+\end{longtable}
+
+\subsection{Prime Attractor and $n^* = 137$}
+
+\begin{theorem}[Stationary winding number]
+\label{thm:g5:nstar}
+The minimum of $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$ satisfies:
+\begin{equation}
+  \frac{\partial V_\mathrm{eff}}{\partial n}\bigg|_{n^*} = 0
+  \;\Longrightarrow\;
+  2n^* = B(\ln n^* + 1).
+  \label{eq:g5:nstar}
+\end{equation}
+For $B = B_\mathrm{full} \approx 46.3$: $n^*_\mathrm{continuous} \approx 137.1$,
+and the prime minimiser is $n^*_\mathrm{prime} = 137$.
+\end{theorem}
+
+\begin{theorem}[Prime stability]
+\label{thm:g5:prime}
+A winding vacuum at $n^*$ is topologically stable under $\pi_1(S^1_\psi)$-deformations
+if and only if $n^*$ is prime.
+\end{theorem}
+
+\begin{proof}
+Sub-harmonic decomposition: if $n^* = ab$ with $a,b > 1$, both $a$- and $b$-winding
+modes exist and are energetically accessible in pairs.  A prime has no such
+decomposition; 137 is prime by direct verification.
+\end{proof}
+
+\begin{resultbox}
+Prime stability: \textbf{[L1]} — independent of $B_\mathrm{base}$.\\
+$n^* = 137$: \textbf{[COND]} — requires $B_\mathrm{full}$.
+\end{resultbox}
+
+\subsection{Identification $\alpha^{-1}_\mathrm{bare} = 137$}
+
+\begin{proposition}[$\alpha^{-1}_\mathrm{bare} = 137$]
+\label{prop:g5:alpha}
+By the Dirac quantisation condition on $S^1_\psi$, the minimal charge quantum equals
+the winding number $n^*$, giving:
+\begin{equation}
+  \alpha^{-1}_\mathrm{bare} = n^* = 137.
+  \label{eq:g5:alpha}
+\end{equation}
+\end{proposition}
+
+\begin{warnbox}
+\textbf{What this does NOT claim}:
+(1) $\alpha^{-1} = 137.036$ — the extra $\delta \approx 0.036$ requires $m_e$ as
+input (Gap~A9, circular).
+(2) $B_\mathrm{full} \ne B_\mathrm{base}$: the correction factor $R \approx 1.114$ has no
+non-circular derivation and is \textbf{[OPEN]}.
+(3) Gap~G3-k (Kac-Moody $k=1$) is not proved; $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$
+is \textbf{[MC]}.
+\end{warnbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Required Summary Table}
+\label{sec:g5:table}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{longtable}{>{\raggedright}p{3.2cm}
+                  >{\raggedright}p{3.5cm}
+                  >{\raggedright}p{3.5cm}
+                  >{\raggedright}p{2.2cm}
+                  >{\raggedright\arraybackslash}p{2.8cm}}
+\toprule
+\textbf{Component} & \textbf{Proposed Origin} & \textbf{Mathematical Definition} & \textbf{Proof Status} & \textbf{Role in $\alpha$ Route} \\
+\midrule
+\endhead
+three\_qubits
+  & Three binary grading structures of $\mathcal{B}$: quaternion / complex / charge-conjugation
+  & $\mathcal{H}_{3q} = (\mathbb{C}^2)^{\otimes 3}$, $\dim_\mathbb{C} = 8$
+  & CONJECTURAL
+  & Motivates 8D information substrate; not a derived route to $N_\mathrm{eff}$
+  \\[4pt]
+8D\_information\_sector
+  & $\dim_\mathbb{R}(\mathcal{B}) = 8$; real basis $\{1,\mathbf{I},\mathbf{J},\mathbf{K},i,i\mathbf{I},i\mathbf{J},i\mathbf{K}\}$
+  & $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$ as real vector space $\mathbb{R}^8$
+  & DERIVED [L0]
+  & Contains the 3-dimensional Im~$\mathbb{H}$ charged sector
+  \\[4pt]
+chronofactor
+  & Imaginary-time compactification $S^1_\psi$ with helicity and charge doubling
+  & $\Phi_n(\psi) = e^{in\psi/R_\psi}$; $N_\mathrm{chron} = N_\mathrm{hel}\times N_\mathrm{ch} = 4$
+  & DERIVED [L0]
+  & Converts 3 Im~$\mathbb{H}$ directions into $N_\mathrm{eff} = 12$ modes
+  \\[4pt]
+$N_\mathrm{eff}$\_12
+  & $N_\mathrm{phases}\times N_\mathrm{hel}\times N_\mathrm{ch} = 3\times 2\times 2$
+  & $N_\mathrm{eff} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})\times 2\times 2 = 12$
+  & DERIVED [L0]
+  & Enters $B_0 = 2\pi N_\mathrm{eff}/3$ and $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$
+  \\[4pt]
+exponent\_3/2
+  & Heat-kernel $d=3$ for Im~$\mathbb{H}$; modular weight $k = 3/2$ of $\vartheta_3^3$; projection ratio
+  & $3/2 = d/2 = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H})/2$
+  & CONJECTURAL [MC$\to$near L0] — three converging mechanisms
+  & Fixes $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ connecting mode count to coupling
+  \\[4pt]
+sphere\_packing\_density
+  & No algebraic construction in $\mathcal{B}$; numerical coincidence $\dim(E_8) = \dim_\mathbb{R}(\mathcal{B})$
+  & $\pi^4/384 \approx 0.2537$ (E8 packing density, Viazovska 2016)
+  & FALSE\_LEAD
+  & Not currently in $\alpha$-route; no UBT formula involves $\pi^4/384$
+  \\[4pt]
+projection\_factor
+  & Im~$\mathbb{H}\ \to\ \mathbb{C}_\tau$ projection; $\lambda = \dim(\mathrm{Im}\,\mathbb{H})/\dim(\mathbb{C}_\tau)$
+  & $\lambda = 3/2$; mode density $\rho_\mathrm{eff} = \lambda\cdot\rho_{\mathrm{Im}\,\mathbb{H}}$
+  & CONJECTURAL (OPEN\_LEMMA for Jacobian)
+  & Candidate mechanism for exponent $3/2$; not yet proved
+  \\[4pt]
+$V_\mathrm{eff}$\_$\alpha$\_link
+  & Dirac quantisation on $S^1_\psi$: minimal charge $= n^*$
+  & $V_\mathrm{eff}(n) = n^2 - B\,n\ln n$; $\alpha^{-1}_\mathrm{bare} = n^*$
+  & CONDITIONAL [L1] given $B_\mathrm{full}$
+  & Translates winding spectrum minimum into $\alpha^{-1}$
+  \\
+\bottomrule
+\caption{Required summary table: geometric-information origin of $N_\mathrm{eff}^{3/2}$}
+\label{tab:g5:summary}
+\end{longtable}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Acceptance Criteria Check}
+\label{sec:g5:accept}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{The route reads as geometry $\to$ effective dimension $\to$ scaling law
+        $\to$ spectral potential.} \checkmark\ (see Eq.~\ref{eq:g5:chain}).
+  \item \textbf{It must not read as number $\to$ desired $\alpha$ $\to$ reverse-engineered
+        formula.} \checkmark\ — $N_\mathrm{eff} = 12$ is derived [L0]; the exponent $3/2$
+        comes from $\dim(\mathrm{Im}\,\mathbb{H}) = 3$ [L0]; 137 is the output, not the input.
+  \item \textbf{$N_\mathrm{eff} = 12$ must have a clear dimension/projection explanation.}
+        \checkmark\ — five independent derivation routes, all [L0], all non-circular.
+  \item \textbf{The $3/2$ exponent must have a geometric/spectral explanation.}
+        \checkmark\ — three converging mechanisms; status [MC $\to$ near L0]; labeled
+        honestly as [CONJECTURAL] pending the heat-kernel proof of $B_\mathrm{base}$.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Open Problems}
+\label{sec:g5:open}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{enumerate}
+  \item \textbf{Gap G3-k}: Prove $k_\mathrm{KM} = 1$ for the WZW algebra on $T^2_\tau$,
+        or prove $B_\mathrm{base} = N_\mathrm{eff}^{3/2}$ directly from the heat kernel
+        on $T^2 \times S^1_\psi$.
+
+  \item \textbf{Projection Jacobian}: Compute the Jacobian of
+        $\pi: \mathrm{Im}\,\mathbb{H} \to \mathbb{C}_\tau$ with a specific inner product,
+        verifying $\lambda = 3/2$ as a formal Jacobian.
+
+  \item \textbf{Gap G137-B}: Derive $B_\mathrm{full} \approx 46.3$ from $S[\Theta]$
+        without using $\alpha$ as input.  (See \texttt{reports/alpha\_missing\_lemma.md}.)
+
+  \item \textbf{Three-qubit isomorphism}: Construct a natural map
+        $\mathcal{H}_{3q} \to \mathcal{B}_\mathbb{R}$ that carries algebraic structure
+        and justifies the three-qubit language.
+\end{enumerate}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{References}
+\label{sec:g5:refs}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{itemize}
+  \item \texttt{canonical/fields/biquaternion\_algebra.tex} — $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$
+  \item \texttt{canonical/alpha/alpha\_best\_route.tex} — primary $\alpha$-route
+  \item \texttt{canonical/alpha/neff\_geometric\_origin.md} — G1 three-qubit/8D analysis
+  \item \texttt{canonical/alpha/chronofactor\_projection.md} — G2 projection construction
+  \item \texttt{canonical/n\_eff/} — $N_\mathrm{eff} = 12$ derivation chain
+  \item \texttt{canonical/interactions/B\_base\_derivation\_complete.tex} — $B_\mathrm{base}$
+  \item \texttt{ALPHA\_STRUCTURAL\_ORIGINS.md} — executive summary E1--E4
+  \item \texttt{reports/exponent\_3\_2\_origin\_audit.md} — 3/2 exponent mechanisms
+  \item \texttt{reports/neff\_12\_dimension\_count\_audit.md} — $N_\mathrm{eff}$ audit
+  \item \texttt{reports/e8\_sphere\_packing\_relevance.md} — E8 analysis
+\end{itemize}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

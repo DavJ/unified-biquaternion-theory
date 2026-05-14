@@ -1,0 +1,144 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Higher Harmonics Above the Three Fermion Generations}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-12}
+
+\begin{document}
+\maketitle
+
+\section{Problem Statement}
+
+UBT uses winding structure on compact phase circles to explain why the observed
+fermions come in three generations.  The immediate consistency question is that
+the winding spectrum on \(S^1\) is infinite:
+\[
+n\in\mathbb{Z}.
+\]
+If the first three light sectors are associated with the observed generations,
+what should be done with the modes \(n\ge 4\)?
+
+The issue becomes sharper in the SU(2)-twist route, where the charged
+off-diagonal fields obey anti-periodic boundary conditions and therefore carry
+the standard half-integer KK spectrum
+\[
+m_n=\frac{n+1/2}{R_\psi},\qquad n=0,1,2,\dots
+\]
+instead of the periodic tower \(m_n=n/R_\psi\).  In that notation the first
+three candidate generation levels are the three lowest states
+\[
+\frac{1}{2R_\psi},\quad \frac{3}{2R_\psi},\quad \frac{5}{2R_\psi},
+\]
+which may be labeled generation \(1,2,3\) even though the underlying KK index is
+\(n=0,1,2\).
+
+\section{Candidate A: Massive KK Excitations}
+
+This is the most natural interpretation of the higher harmonics.
+
+For a periodic compact direction the KK formula is
+\[
+m_n=\frac{|n|}{R_\psi}.
+\]
+For the charged SU(2)-twisted sector used in
+\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}, the correct
+formula is instead
+\[
+m_n^{\mathrm{twist}}=\frac{n+1/2}{R_\psi},
+\]
+because the fields \(b,c\) are anti-periodic while the neutral fields \(a,d\)
+remain periodic.  This part is standard KK/Scherk--Schwarz theory once the
+twisted boundary condition is assumed.
+
+Hence the next charged levels after the first three are
+\[
+\frac{7}{2R_\psi},\ \frac{9}{2R_\psi},\ \frac{11}{2R_\psi},\dots
+\]
+and for \(R_\psi^{-1}\) near a UV scale (GUT or Planck-like), these states are
+far beyond present experimental reach.  For the Planck estimate mentioned in the
+problem statement, even the first omitted level is of order
+\[
+\frac{7}{2}M_{\mathrm{Pl}}\sim 4\times10^{19}\,\mathrm{GeV},
+\]
+so the higher harmonics simply decouple from low-energy phenomenology.
+
+What this candidate \emph{does} explain is why \(n\ge 4\) modes are not seen.
+What it does \emph{not} yet prove is why exactly the first three levels should be
+identified with the observed light generations after all symmetry breaking and
+mass generation effects are included.
+
+\section{Candidate B: Algebraic Selection Rule}
+
+There is currently no convincing algebraic rule in \(\mathbb{C}\otimes\mathbb{H}\)
+that truncates the winding tower at three.
+
+The algebra does contain a distinguished ``three'':
+\[
+\dim_{\mathbb{R}}(\mathrm{Im}\,\mathbb{H})=3.
+\]
+That supports the statement that there are three independent phase directions,
+or three structurally distinguished channels.  But it does \emph{not} imply that
+each compact circle carries only three Fourier modes.  Once a compact circle
+\(S^1_\psi\) is present, the spectrum of winding numbers is automatically
+infinite.
+
+Therefore a purely algebraic cutoff \(n\ge 4\mapsto 0\) is not available from
+the biquaternion algebra alone.  Candidate~B is therefore a \textbf{[NO-GO]} as
+a standalone explanation.
+
+\section{Candidate C: Composite States}
+
+The composite-state interpretation is logically possible but currently
+unsupported.
+
+Mode numbers on a compact circle add under momentum conservation, so one can
+write schematic relations such as \(4=1+3\).  But that by itself does not make
+the \(n=4\) harmonic a bound state of the \(n=1\) and \(n=3\) harmonics.  To
+justify a genuinely composite interpretation one would need:
+\begin{itemize}
+  \item an interaction term in \(S[\Theta]\) that binds lower modes into higher
+  resonances,
+  \item a selection rule separating fundamental and composite towers, and
+  \item a mass/width analysis showing resonance behaviour rather than a single KK
+  eigenstate.
+\end{itemize}
+None of these ingredients has been derived in the active EW documents.  The
+composite interpretation remains \textbf{[OPEN]} and presently weaker than the
+KK explanation.
+
+\section{Verdict}
+
+The best current interpretation is:
+\[
+\boxed{\text{higher harmonics }n\ge 4\text{ are massive KK excitations.}}
+\]
+
+Candidate~A fits the active compact-circle formalism, matches the standard
+twisted KK formula, and explains why no extra generations appear at accessible
+energies.  Candidate~B fails because the algebraic ``three'' counts phase
+directions, not Fourier harmonics.  Candidate~C is not excluded in principle,
+but no derivation supports it.
+
+The remaining open point is not the existence of higher modes; it is the
+low-energy selection problem.  UBT still needs a first-principles derivation of
+why precisely the first three winding sectors become the observed light fermion
+families while the rest stay at the compactification scale.
+
+\begin{statusbox}
+Vyšší harmonické \(n\ge 4\): \textbf{MASSIVE KK}\\
+Klasifikace: \textbf{[MC]} --- KK interpretace je nejlépe podložená aktivními soubory, ale úplná first-principles selekce přesně tří lehkých generací ještě není uzavřena.\\
+Dopad na počet generací: \textbf{Nízká energie stále vidí tři lehké generace, pokud \(R_\psi^{-1}\) leží vysoko; vyšší módy rozšiřují spektrum jen jako těžké excitace, ne jako nové dostupné SM rodiny.}
+\end{statusbox}
+
+\end{document}

@@ -1,0 +1,316 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% Three Generations Research Track — ST-2: Obstruction Theorem
+% Status: Complete proof
+% Version: 1.0
+% Date: 2026-03-03
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{margin=2.5cm}
+
+% Theorem environments (matching papers/su3_triplet/arxiv_version.tex)
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Notation shorthands
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Vc}{V_c}
+
+\title{%
+  Obstruction to Three Isomorphic Subspaces in $\mathbb{C}\otimes\mathbb{H}$\\
+  \large Three Generations Research Track --- ST-2
+}
+
+\author{David Jaro\v{s}}
+
+\date{2026-03-03}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We prove that the biquaternion algebra $\mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H}
+\cong M_2(\mathbb{C})$ does not admit a decomposition into three mutually
+isomorphic subspaces that are simultaneously (a)~preserved by the $\mathbb{Z}_2^3$
+grading of $\mathcal{B}$ and (b)~carry independent faithful representations of
+$\mathrm{SU}(3)_{V_c}$.  Two independent obstructions are established: a
+dimension obstruction for minimal left ideals (Theorem~\ref{thm:ideal_obstruction})
+and a group-order obstruction for $\mathbb{Z}_2^3$-compatible decompositions
+(Theorem~\ref{thm:grading_obstruction}).  Together these show that three
+fermionic generations cannot arise from any purely algebraic decomposition of
+$\mathbb{C}\otimes\mathbb{H}$ alone.  A UBT-specific mechanism via complex time
+(AXIOM~B) is not precluded and is studied separately in ST-3
+(\texttt{st3\_complex\_time\_generations.tex}).
+\end{abstract}
+
+\tableofcontents
+
+%=============================================================
+\section{Background and Statement of the Problem}
+\label{sec:background}
+%=============================================================
+
+Furey~\cite{Furey2016} derives three generations of fermions using the
+octonion-based algebra $\mathbb{C}\otimes\mathbb{O}$, exploiting its
+decomposition into three minimal left ideals each isomorphic to $\mathbb{C}^4$.
+The question addressed here is:
+
+\begin{quote}
+\emph{Does $\mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H} \cong
+M_2(\mathbb{C})$ admit any decomposition into three mutually isomorphic
+subspaces that could serve as the algebraic seat of three fermion generations?}
+\end{quote}
+
+We give a definitive negative answer for all decompositions that must be
+compatible with the established structure of~$\mathcal{B}$
+(Theorems~\ref{thm:ideal_obstruction} and~\ref{thm:grading_obstruction}).
+
+Throughout this document we use the notation and results of the companion
+paper~\cite{su3triplet}: $\mathcal{B}=\mathbb{C}\otimes_\mathbb{R}\mathbb{H}$,
+$\mathcal{B}_{\mathrm{basis}} = \{1,\mathbf{I},\mathbf{J},\mathbf{K},
+i,i\mathbf{I},i\mathbf{J},i\mathbf{K}\}$, and $V_c =
+\mathrm{span}_\mathbb{C}\{\mathbf{I},\mathbf{J},\mathbf{K}\}$ is the canonical
+carrier space of $\mathrm{SU}(3)_{V_c}$.
+
+%=============================================================
+\section{Ideal Decomposition Obstruction}
+\label{sec:ideals}
+%=============================================================
+
+\subsection{Minimal Left Ideals of $M_2(\mathbb{C})$}
+
+\begin{definition}[Minimal left ideal]
+  A left ideal $L \subset M_2(\mathbb{C})$ is \emph{minimal} if it is
+  non-zero and contains no proper non-zero sub-ideal.
+\end{definition}
+
+\begin{lemma}[Structure of minimal left ideals]
+  \label{lem:mli_structure}
+  Every minimal left ideal of $M_2(\mathbb{C})$ is of the form
+  $L_e = M_2(\mathbb{C})\cdot e$ for a primitive idempotent $e$
+  (i.e.\ $e^2 = e$, $\mathrm{rank}(e) = 1$).
+  Any two such ideals are isomorphic as left $M_2(\mathbb{C})$-modules,
+  and each has $\dim_\mathbb{C} L_e = 2$.
+\end{lemma}
+
+\begin{proof}
+  Standard Wedderburn--Artin theory: $M_2(\mathbb{C})$ is a simple
+  $\mathbb{C}$-algebra of rank $2$ over $\mathbb{C}$, with unique simple
+  left module $\mathbb{C}^2$.  Minimal left ideals correspond bijectively to
+  primitive idempotents up to conjugacy; each is isomorphic to $\mathbb{C}^2$.
+  The dimension count gives $\dim_\mathbb{C} L_e = 2$.
+\end{proof}
+
+\begin{theorem}[Ideal decomposition obstruction]
+  \label{thm:ideal_obstruction}
+  $M_2(\mathbb{C})$ cannot be written as a direct sum of three or more
+  minimal left ideals.
+\end{theorem}
+
+\begin{proof}
+  By Lemma~\ref{lem:mli_structure}, each minimal left ideal has
+  $\dim_\mathbb{C} = 2$.  If $M_2(\mathbb{C}) = L_1 \oplus \cdots \oplus L_k$
+  with each $L_j$ a minimal left ideal, then $\dim_\mathbb{C} M_2(\mathbb{C})
+  = 2k$.  Since $\dim_\mathbb{C} M_2(\mathbb{C}) = 4$, we get $k = 2$.
+  The standard decomposition $M_2(\mathbb{C}) = L_{e_1} \oplus L_{e_2}$
+  with $e_1 = \mathrm{diag}(1,0)$, $e_2 = \mathrm{diag}(0,1)$ shows $k=2$
+  is achieved.  Three ideals would require $\dim_\mathbb{C} \geq 6 > 4$,
+  which is impossible.
+\end{proof}
+
+\begin{remark}
+  The two minimal left ideals of $M_2(\mathbb{C})$ correspond to the two
+  ``colour columns'' of the matrix algebra.  Each is 4-dimensional over $\mathbb{R}$.
+  Any basis for three generations would need $3 \times 4 = 12$ real dimensions,
+  which exceeds $\dim_\mathbb{R} \mathcal{B} = 8$.
+\end{remark}
+
+%=============================================================
+\section{Grading-Compatible Decomposition Obstruction}
+\label{sec:grading}
+%=============================================================
+
+\subsection{$\mathbb{Z}_2^3$ Eigenspace Structure}
+
+Following~\cite{su3triplet}, the three commuting involutions $P_1, P_2, P_3$
+on $\mathcal{B}$ produce six non-empty simultaneous eigenspaces:
+
+\begin{center}
+\begin{tabular}{ccccc}
+  \hline
+  Sector $(P_1,P_2,P_3)$ & Basis & $\dim_\mathbb{R}$ \\
+  \hline
+  $(+{,}+{,}+)$ & $\{1\}$ & $1$ \\
+  $(-{,}+{,}+)$ & $\{i\}$ & $1$ \\
+  $(+{,}-{,}+)$ & $\{\mathbf{J},\mathbf{K}\}$ & $2$ \\
+  $(-{,}-{,}+)$ & $\{i\mathbf{J},i\mathbf{K}\}$ & $2$ \\
+  $(+{,}+{,}-)$ & $\{\mathbf{I}\}$ & $1$ \\
+  $(-{,}+{,}-)$ & $\{i\mathbf{I}\}$ & $1$ \\
+  \hline
+\end{tabular}
+\end{center}
+
+The total real dimension is $1+1+2+2+1+1 = 8 = \dim_\mathbb{R}\mathcal{B}$.
+The carrier space of $\mathrm{SU}(3)_{V_c}$ is $V_c = \mathrm{span}_\mathbb{C}
+\{\mathbf{I},\mathbf{J},\mathbf{K}\}$, which is the $P_2 = -1$ eigenspace
+with $\dim_\mathbb{C} V_c = 3$.
+
+\subsection{Obstruction from the Order of $\mathbb{Z}_2^3$}
+
+\begin{lemma}[No $\mathbb{Z}_3$ in $\mathbb{Z}_2^3$]
+  \label{lem:no_z3}
+  The group $\mathbb{Z}_2^3$ contains no subgroup of order $3$.
+\end{lemma}
+
+\begin{proof}
+  Every element of $\mathbb{Z}_2^3$ has order $1$ or $2$;
+  $|\mathbb{Z}_2^3| = 8$ is not divisible by $3$.  By Lagrange's theorem,
+  $\mathbb{Z}_2^3$ has no element or subgroup of order $3$.
+\end{proof}
+
+\begin{theorem}[$\mathbb{Z}_2^3$-grading obstruction]
+  \label{thm:grading_obstruction}
+  There is no decomposition $\mathcal{B} = W_1 \oplus W_2 \oplus W_3$ of
+  $\mathcal{B}$ (as $\mathbb{R}$-vector spaces) into three subspaces $W_j$
+  satisfying:
+  \begin{enumerate}[label=(\alph*)]
+    \item Each $W_j$ is a non-zero direct sum of $\mathbb{Z}_2^3$-eigenspaces.
+    \item The three pieces $W_1, W_2, W_3$ are mutually isomorphic as
+          $\mathbb{R}$-vector spaces (hence must have equal dimension).
+    \item Each $W_j$ carries a faithful action of $\mathrm{SU}(3)_{V_c}$
+          that factors through the standard representation on $V_c$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  We argue in three steps.
+
+  \medskip\noindent\textbf{Step 1 (Dimension constraint).}
+  Condition~(b) requires $\dim_\mathbb{R} W_j = d$ for all $j$ and
+  $3d = \dim_\mathbb{R}\mathcal{B} = 8$.  But $3 \nmid 8$, so no integer $d$
+  solves $3d = 8$.  Hence condition~(b) alone is incompatible with
+  a partition of $\mathcal{B}$ into three equal-dimensional parts.
+
+  \medskip\noindent\textbf{Step 2 ($\mathrm{SU}(3)_{V_c}$ constraint).}
+  The standard (fundamental) representation of $\mathrm{SU}(3)$ on $\mathbb{C}^3$
+  has real dimension $6$.  If each $W_j$ is to carry a faithful copy of this
+  representation, then $\dim_\mathbb{R} W_j \geq 6$.  Three such pieces would
+  require $\dim_\mathbb{R}\mathcal{B} \geq 18 \gg 8$.  This is impossible.
+
+  \medskip\noindent\textbf{Step 3 (Grading compatibility).}
+  By condition~(a), each $W_j$ is a union of $\mathbb{Z}_2^3$-eigenspaces.
+  By Lemma~\ref{lem:no_z3}, there is no $\mathbb{Z}_3$-action on the
+  eigenspace labels compatible with the $\mathbb{Z}_2^3$ grading.  Therefore,
+  any ``rotation'' among three isomorphic pieces cannot be realised as a
+  $\mathbb{Z}_2^3$-graded automorphism of $\mathcal{B}$.
+
+  Steps~1--3 together show no decomposition satisfying (a), (b), (c)
+  can exist.
+\end{proof}
+
+\begin{corollary}[No three-generation mechanism in $\mathcal{B}$ alone]
+  \label{cor:no_three_gen}
+  Any three-generation mechanism in the UBT framework must involve structure
+  beyond the pure algebra $\mathcal{B} = \mathbb{C}\otimes\mathbb{H}$.
+  In particular, it cannot arise from left ideal decomposition, from the
+  $\mathbb{Z}_2^3$ grading, from $\mathrm{Aut}_\mathbb{R}(\mathcal{B})$,
+  or from any finite-group action intrinsic to $\mathcal{B}$.
+\end{corollary}
+
+%=============================================================
+\section{Contrast with Furey's Octonionic Construction}
+\label{sec:furey_contrast}
+%=============================================================
+
+For comparison, we note why the same argument does \emph{not} obstruct
+three generations in Furey's $\mathbb{C}\otimes\mathbb{O}$:
+
+\begin{itemize}
+  \item $\dim_\mathbb{R}(\mathbb{C}\otimes\mathbb{O}) = 16$;
+    $16 / 3$ is not an integer either, so the dimension argument in
+    Step~1 above still applies in principle.
+  \item However, Furey works with the \emph{left action algebra}
+    $\mathbb{C}\ell(\mathbb{C}\otimes\mathbb{O})$, which is not the algebra
+    itself.  The three minimal left ideals arise in the action algebra, which
+    has higher dimension and different module structure.
+  \item $\mathbb{C}\otimes\mathbb{O}$ is non-associative.  Non-associativity
+    allows module structures impossible in the associative case.
+\end{itemize}
+
+These points confirm that the obstructions proved here are genuine features of
+the \emph{associative} algebra $\mathcal{B}$, not universal statements about
+all division-algebra-based constructions.
+
+%=============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%=============================================================
+
+\begin{theorem}[Main obstruction theorem]
+  \label{thm:main}
+  $\mathcal{B} = \mathbb{C}\otimes_\mathbb{R}\mathbb{H} \cong M_2(\mathbb{C})$
+  does not admit a decomposition into three mutually isomorphic subspaces
+  that are (a)~preserved by the $\mathbb{Z}_2^3$ grading and (b)~carry
+  independent $\mathrm{SU}(3)_{V_c}$ representations.
+\end{theorem}
+
+\begin{proof}
+  Immediate from Theorem~\ref{thm:ideal_obstruction} (ideal obstruction)
+  and Theorem~\ref{thm:grading_obstruction} (grading obstruction).
+\end{proof}
+
+\begin{remark}[What is not obstructed]
+  Theorem~\ref{thm:main} does not obstruct three-generation mechanisms that
+  involve structure \emph{external} to the pure algebra $\mathcal{B}$,
+  such as the imaginary-time sector $\psi$ of AXIOM~B
+  ($\tau = t + i\psi$).  The $\psi$-mode mechanism is studied in
+  ST-3 (\texttt{st3\_complex\_time\_generations.tex}) and is not
+  subject to the obstructions proved here.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{su3triplet}
+D.~Jaro\v{s},
+\emph{A Natural $\mathrm{SU}(3)$ Action on a Canonical Subspace of
+$\mathbb{C}\otimes\mathbb{H}$ via $\mathbb{Z}_2^3$ Involutions},
+\texttt{papers/su3\_triplet/arxiv\_version.tex}, 2026.
+
+\bibitem{Furey2016}
+C.~Furey,
+Standard Model Physics from an Algebra?,
+PhD Thesis, U.~Waterloo, 2015; \texttt{arXiv:1611.09182}.
+
+\bibitem{WedArtin}
+E.~Artin,
+\emph{Geometric Algebra}, Interscience, 1957.
+
+\bibitem{Porteous1995}
+I.~R. Porteous,
+\emph{Clifford Algebras and the Classical Groups}, Cambridge U.P., 1995.
+
+\end{thebibliography}
+
+\end{document}

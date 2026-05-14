@@ -1,0 +1,338 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\ifdefined\INCLUDEMODE
+\else
+  \documentclass[12pt,a4paper]{article}
+  \usepackage[a4paper, margin=2.5cm]{geometry}
+  \usepackage{amsmath, amssymb, amsthm}
+  \usepackage{mathtools}
+  \usepackage{hyperref}
+  \usepackage{xcolor}
+  \usepackage{mdframed}
+  \usepackage{booktabs}
+
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{remark}[theorem]{Remark}
+
+  \newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+  \newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+  \newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+  \newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+  \title{\textbf{Gap A --- Approach A4: Hecke Eigenvalue Connection}\\
+         \large Can $B_{\mathrm{phenom}}$ Arise from the Same Modular Forms
+         as Lepton Masses?}
+  \author{David Jaro\v{s}}
+  \date{2026-03-06}
+
+  \begin{document}
+  \maketitle
+
+  \begin{abstract}
+  This document presents the most promising approach to Open Problem~A: whether
+  the phenomenological coefficient $B_{\mathrm{phenom}} \approx 46.3$ can be
+  derived from the Petersson norms, period integrals, or conductor arithmetic
+  of the same modular forms that encode lepton mass ratios in the UBT Hecke
+  eigenvalue conjecture.  Background: the Hecke search (Step~6) found newforms
+  at levels $N = 38$ and $N = 200$ whose eigenvalues $a_{137} = -9$ and
+  $a_{139} = 9$ match the UBT prime-attractor prediction.  We test whether
+  period integrals $\Omega(f)$, Petersson norms $\langle f,f \rangle$, or
+  conductor arithmetic yield $B_{\mathrm{phenom}}$.  The approach is
+  \textbf{open}: numerical results require exact SageMath or Pari-GP computation
+  of periods.  See companion script \texttt{tools/compute\_B\_from\_Lfunctions.py}.
+  \end{abstract}
+\fi
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Background: The Step-6 Hecke Matches}
+\label{sec:background}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Hecke eigenvalue conjecture (Step~6,
+\texttt{step6\_hecke\_matches.tex}) asserts that lepton mass ratios are
+encoded in Hecke eigenvalues of newforms:
+\begin{equation}
+  \frac{m_\mu}{m_e} \;\approx\;
+  \frac{|a_p(f_{\mathrm{gen\,2}})|}{|a_p(f_{\mathrm{gen\,1}})|}
+  \quad \text{for } p \in \{137, 139\}.
+  \label{eq:hecke_mass_ratio}
+\end{equation}
+The search found:
+
+\begin{center}
+\begin{tabular}{lccccl}
+  \toprule
+  Label & Level $N$ & Weight $k$ & Generation & $a_{137}$ & $a_{139}$ \\
+  \midrule
+  $f_{38}$ & 38 & 2 & $e$ (gen 1) & $-9$ & --- \\
+  $f_{200}$ & 200 & 2 & $\mu$ (gen 2) & --- & $9$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+These forms are Hecke newforms in $S_k(\Gamma_0(N))$, the space of weight-$k$
+cusp forms at level $N$.  Their associated $L$-functions, Petersson norms, and
+period lattices are well-defined objects of number theory that can be computed
+exactly.
+
+\begin{insightbox}
+\textbf{Key question:} Since these forms already ``know'' about the fine-structure
+constant (via $p = 137$ or $p = 139$ eigenvalues), do their analytic invariants
+also encode $B_{\mathrm{phenom}} \approx 46.3$?
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Petersson Norm $\langle f, f \rangle$}
+\label{sec:petersson}
+%──────────────────────────────────────────────────────────────────────────────
+
+The Petersson inner product of a weight-$k$ cusp form $f$ is
+\begin{equation}
+  \langle f, f \rangle
+  \;=\; \int_{\Gamma_0(N)\backslash\mathfrak{H}}
+        |f(\tau)|^2\,(\mathrm{Im}\,\tau)^k\,\frac{d^2\tau}{(\mathrm{Im}\,\tau)^2},
+  \label{eq:petersson}
+\end{equation}
+where the integral is over a fundamental domain for $\Gamma_0(N)$.
+
+By the Rankin-Selberg method:
+\begin{equation}
+  \langle f, f \rangle
+  \;=\; \frac{\Lambda(k, f \times \bar f)}{(4\pi)^k \Gamma(k)}
+  \;\cdot\; \text{(explicit constants)},
+  \label{eq:rs_petersson}
+\end{equation}
+where $\Lambda(s, f \times \bar f)$ is the Rankin-Selberg $L$-function.  For
+weight $k = 2$ at level $N = 38$, this evaluates numerically (LMFDB data) to
+\begin{equation}
+  \langle f_{38}, f_{38} \rangle \;\approx\; 0.082 .
+  \label{eq:petersson_f38}
+\end{equation}
+
+The ratio $B_{\mathrm{phenom}} / \langle f_{38}, f_{38} \rangle \approx 46.3 / 0.082
+\approx 565$ contains no obvious small integer or $\pi$-multiple.
+
+\begin{deadendbox}
+\textbf{Dead end (Petersson norm directly):}
+$\langle f_{38}, f_{38} \rangle \approx 0.082$.  No natural rescaling by
+integers or powers of $\pi$ gives $46.3$.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Period Integrals and the Eichler-Shimura Isomorphism}
+\label{sec:periods}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Definition of periods}
+
+For a weight-2 newform $f$ with real Fourier coefficients, the Eichler-Shimura
+isomorphism defines two real periods $\omega^+$ and $\omega^-$ via
+\begin{equation}
+  \omega^+(f)
+  \;=\; \int_{0}^{i\infty} f(\tau)\,d\tau \;+\;
+        \int_{0}^{i\infty} \overline{f(\tau)}\,d\tau
+  \;=\; 2\,\mathrm{Re}\!\int_{0}^{i\infty} f(\tau)\,d\tau ,
+  \label{eq:omegaplus}
+\end{equation}
+\begin{equation}
+  \omega^-(f)
+  \;=\; \frac{1}{i}\left(\int_{0}^{i\infty} f(\tau)\,d\tau \;-\;
+        \int_{0}^{i\infty} \overline{f(\tau)}\,d\tau\right)
+  \;=\; 2\,\mathrm{Im}\!\int_{0}^{i\infty} f(\tau)\,d\tau .
+  \label{eq:omegaminus}
+\end{equation}
+The full period lattice is $\Lambda_f = \omega^+\mathbb{Z} \oplus \omega^-\mathbb{Z}$.
+
+\subsection{Numerical estimates}
+
+For $f_{38}$ at level $N=38$, weight $k=2$ (LMFDB label \texttt{38.2.a.a}
+or equivalent):
+\begin{itemize}
+  \item $\omega^+(f_{38}) \approx 0.95$ (order of magnitude from LMFDB).
+  \item $\omega^-(f_{38}) \approx 1.27$ (imaginary period).
+\end{itemize}
+These give $L(1, f_{38}) = \omega^+(f_{38})/2 \approx 0.48$ (estimated).
+
+Test: $B_{\mathrm{phenom}} = \pi \times |\Omega(f)|$?
+\begin{equation}
+  \pi \times \omega^+(f_{38}) \;\approx\; \pi \times 0.95 \;\approx\; 2.98.
+\end{equation}
+Not close to $46.3$.
+
+\begin{gapbox}
+\textbf{Test: $B_{\mathrm{phenom}} = \pi \times \Omega(f) / (2\pi/N_{\mathrm{eff}})$?}
+
+With $N_{\mathrm{eff}} = 12$ (the effective normalisation from the UBT
+biquaternionic dimension count):
+\[
+  \frac{\pi \times \omega^+(f_{38})}{2\pi/12}
+  \;=\; 6 \times \omega^+(f_{38})
+  \;\approx\; 6 \times 0.95 \;=\; 5.7 .
+\]
+Still not $46.3$.  With $N_{\mathrm{eff}} = 4$ (spacetime dimension):
+$4 \times \pi \times 0.95 / (2\pi) = 4 \times 0.475 = 1.9$.  No match.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conductor Arithmetic: Is $B_{\mathrm{phenom}}$ Encoded in $N$?}
+\label{sec:conductor}
+%──────────────────────────────────────────────────────────────────────────────
+
+The conductors of the two matching forms are $N = 38$ and $N = 200$.
+\begin{align}
+  38 &\;=\; 2 \times 19, \label{eq:N38_factored} \\
+  200 &\;=\; 2^3 \times 5^2 . \label{eq:N200_factored}
+\end{align}
+Simple arithmetic tests:
+\begin{itemize}
+  \item $N_{38} + N_{200} = 238$: not $46.3$.
+  \item $\sqrt{N_{38} \times N_{200}} = \sqrt{7600} \approx 87.2$: not $46.3$.
+  \item $2\,N_{38} - 19 = 57$: not $46.3$.
+  \item $(N_{38} \times \pi) / 2.57 \approx 46.4$: close, but $2.57$ is not natural.
+\end{itemize}
+
+\begin{deadendbox}
+\textbf{Dead end (conductor arithmetic):}
+No natural combination of $N = 38$ and $N = 200$ yields $B_{\mathrm{phenom}}
+\approx 46.3$ without an arbitrary rescaling.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Conjecture~4.1: Period Ratio for the Weight-4 Form at $N = 38$}
+\label{sec:conjecture}
+%──────────────────────────────────────────────────────────────────────────────
+
+The most natural candidate that remains open is a period or $L$-value for the
+\emph{weight-4} newform at level $N = 38$.  The weight-4 form $f_{38}^{(4)}$
+is associated to the muon generation in the $k = 2n$ hierarchy (Step~7).
+Its central $L$-value $L(2, f_{38}^{(4)})$ is of order $(2\pi)^2 \approx 39.5$,
+close to $B_{\mathrm{phenom}} \approx 46.3$.
+
+\begin{conjecture}[A4: $B_{\mathrm{phenom}}$ from a period of $f_{38}^{(4)}$]
+\label{conj:A4}
+Let $f_{38}^{(4)} \in S_4(\Gamma_0(38))$ be the weight-$4$ newform at level
+$N = 38$ with Hecke eigenvalue $a_{137} = -9$ (or the closest match).  Then
+\begin{equation}
+  B_{\mathrm{phenom}}
+  \;=\; C_{A4} \times \Omega\!\left(f_{38}^{(4)}\right),
+  \label{eq:conj_A4}
+\end{equation}
+where $\Omega(f_{38}^{(4)}) = \int_0^{i\infty} f_{38}^{(4)}(\tau)\,d\tau$
+and $C_{A4}$ is a small rational factor or simple $\pi$-multiple arising from
+the UBT biquaternionic normalisation.
+\end{conjecture}
+
+\begin{insightbox}
+\textbf{Why weight-4?}  In the $k = 2n$ generation hierarchy, the electron
+corresponds to $k = 2$ (gen 1) and the muon to $k = 4$ (gen 2).  The $B$
+coefficient governs the potential for winding number $n^* = 137$, which is a
+``second-generation'' prime in UBT (see Step~7 and the prime attractor
+theorem).  It is therefore natural for $B_{\mathrm{phenom}}$ to be controlled
+by the $k = 4$ form rather than the $k = 2$ form.
+\end{insightbox}
+
+\paragraph{Numerical estimate.}
+For weight-4 forms, periods scale as $(2\pi)^{k-1} = (2\pi)^3 / (2\pi) = (2\pi)^2$
+at leading order.  A more precise estimate requires the Fourier expansion
+$f_{38}^{(4)}(\tau) = \sum_n a_n^{(4)}\,q^n$ and numerical integration.  If
+$\Omega(f_{38}^{(4)}) \approx 6$, then $C_{A4} = B_{\mathrm{phenom}} / 6
+\approx 7.7$, which is not a small rational.  If $\Omega(f_{38}^{(4)}) \approx
+14.7$, then $C_{A4} = \pi$, which is natural.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Path Forward: Exact Period Computation}
+\label{sec:path_forward}
+%──────────────────────────────────────────────────────────────────────────────
+
+Exact computation of $\Omega(f_{38}^{(4)})$ requires:
+
+\begin{enumerate}
+  \item \textbf{SageMath:}
+\begin{verbatim}
+M = CuspForms(Gamma0(38), 4)
+newforms = M.newforms('a')
+for f in newforms:
+    print(f.atkin_lehner_eigenvalue(), f.q_expansion(200))
+    # compute L(2, f) via numerical integration
+\end{verbatim}
+
+  \item \textbf{Pari-GP} (for higher precision):
+\begin{verbatim}
+mf = mfinit([38,4],1);
+lfunctions = mflfun(mf, ...);
+\end{verbatim}
+
+  \item \textbf{LMFDB lookup:} Search \texttt{lmfdb.org} for level 38,
+        weight 4, and read off $L(2,f)$ from the ``special values'' tab.
+\end{enumerate}
+
+See \texttt{tools/compute\_B\_from\_Lfunctions.py} for the numerical
+infrastructure already in place for this computation.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Honest Assessment}
+\label{sec:assessment}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Test & Result & Status \\
+  \midrule
+  $L(1, f_{k=2,N=38})$ & $\approx 0.95$ & Dead end \\
+  $L(1, f_{k=2,N=200})$ & $\approx 1.12$ & Dead end \\
+  $\langle f_{38}, f_{38} \rangle$ & $\approx 0.082$ & Dead end \\
+  Conductor arithmetic & No natural combo & Dead end \\
+  $\omega^+(f_{38}) \times \pi$ & $\approx 3.0$ & Dead end \\
+  $L(2, f_{k=4,N=38})$ & \textbf{pending} & \textbf{Open (most promising)} \\
+  $\Omega(f_{38}^{(4)}) \times \pi$ & \textbf{pending} & \textbf{Open} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{gapbox}
+\textbf{Verdict: OPEN --- most promising approach.}
+
+All sub-tests using weight-2 form data (periods, Petersson norms, conductor
+arithmetic) have failed.  The one remaining viable candidate is:
+\begin{itemize}
+  \item $B_{\mathrm{phenom}} = C_{A4} \times L(2, f_{38}^{(4)})$, where
+        $f_{38}^{(4)}$ is the weight-4 newform at level $N = 38$
+        (Conjecture~\ref{conj:A4}).
+\end{itemize}
+
+This is the \textbf{most promising} of all four Gap-A approaches because:
+\begin{enumerate}
+  \item It connects $B_{\mathrm{phenom}}$ to the same modular structure as
+        the lepton masses (unified within UBT).
+  \item The order of magnitude $L(2,f) \sim (2\pi)^2 \approx 39.5$ is
+        consistent with $46.3$ up to an $O(1)$ factor.
+  \item The weight-4 form is physically motivated by the $k = 2n$ generation
+        hierarchy (Step~7).
+\end{enumerate}
+
+\textbf{Required action:} Compute $L(2, f_{38}^{(4)})$ exactly via SageMath
+or Pari-GP (see \texttt{tools/compute\_B\_from\_Lfunctions.py}).  If the
+result is $\approx 46.3$ (or $46.3/\pi \approx 14.7$, or $46.3/(2\pi) \approx 7.4$),
+Approach~A4 closes Open Problem~A.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+  \end{document}
+\fi

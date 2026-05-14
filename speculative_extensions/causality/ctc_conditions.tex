@@ -1,0 +1,293 @@
+% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\geometry{margin=1in}
+
+% Theorem-like environments
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{ST-3: Closed Timelike Curve Conditions\\
+in the Biquaternionic Metric\\[0.5em]
+\large\textsc{Speculative Extension}}
+\author{David Jaroš}
+\date{2026-03-01}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=yellow!10, title=Status]
+\textbf{SPECULATIVE EXTENSION} — This content is not part of
+the canonical UBT framework. It is an exploratory investigation
+and has not been validated against the canonical field equations.
+\end{tcolorbox}
+
+\vspace{1em}
+\noindent\textit{Output of Sub-task ST-3 from the CTC/Causal-Structure investigation track.
+See also: \texttt{complex\_time\_causal\_structure.tex},
+\texttt{rotation\_complex\_time.tex},
+\texttt{chronology\_protection\_ubt.tex}, \texttt{ctc\_methodology.tex}.}
+
+%----------------------------------------------------------------------
+\section*{Abstract}
+%----------------------------------------------------------------------
+We investigate whether the UBT field equation
+$\mathcal{E}_{\mu\nu} = \kappa\,\mathcal{T}_{\mu\nu}$
+admits solutions whose real metric projection $g_{\mu\nu}$ contains a
+CTC-compatible Killing vector.  The role of the imaginary metric sector
+$h_{\mu\nu}$ as a potential source that tilts light cones is examined.
+The possibility of embedding the Gödel and Kerr metrics as special UBT
+solutions is discussed.  All conclusions are \textbf{speculative}.
+
+%----------------------------------------------------------------------
+\section{CTC Criterion in General Relativity}
+%----------------------------------------------------------------------
+In GR, a \emph{closed timelike curve} (CTC) exists if there is a smooth,
+closed curve $\gamma$ in spacetime such that $g_{\mu\nu}\dot\gamma^\mu
+\dot\gamma^\nu < 0$ everywhere along $\gamma$.  A sufficient condition is
+the existence of a Killing vector field $\xi^\mu$ with
+\begin{equation}
+  g_{\mu\nu}\,\xi^\mu\xi^\nu < 0 \quad \text{on an open set},
+  \label{eq:ctc_gr}
+\end{equation}
+and a compact orbits of $\xi^\mu$.  The canonical examples are:
+\begin{itemize}
+  \item \textbf{Gödel metric} \cite{Godel1949}: The rotational symmetry
+    vector becomes timelike beyond a critical radius $r_\mathrm{crit}$,
+    admitting circular CTCs.
+  \item \textbf{Kerr metric} \cite{Kerr1963}: The azimuthal Killing
+    vector $\partial_\phi$ becomes timelike inside the ergosphere,
+    and compact CTCs can be threaded through the ring singularity.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{UBT Field Equation and the Real Projection}
+%----------------------------------------------------------------------
+The canonical UBT field equation in biquaternionic form is
+\begin{equation}
+  \mathcal{E}_{\mu\nu}[\Theta,\mathcal{G}]
+  \;=\; \kappa\,\mathcal{T}_{\mu\nu}[\Theta,\mathcal{G}].
+  \label{eq:ubt_field_eq}
+\end{equation}
+Taking the real projection $\operatorname{Re}(\,\cdot\,)$ yields
+\begin{equation}
+  R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R
+  \;=\; 8\pi G\,T_{\mu\nu}^{\mathrm{eff}},
+  \label{eq:einstein_eff}
+\end{equation}
+where $T_{\mu\nu}^{\mathrm{eff}} := \operatorname{Re}(\mathcal{T}_{\mu\nu})$
+includes contributions from both the real and imaginary sectors of $\Theta$
+and $\mathcal{G}$.  This is the standard Einstein equation with an effective
+stress-energy sourced by the full biquaternionic field.
+
+\begin{remark}
+The imaginary sectors $h_{\mu\nu}$, $a_{\mu\nu}$, $b_{\mu\nu}$ contribute
+to $T_{\mu\nu}^{\mathrm{eff}}$ through the real part of products of
+biquaternionic quantities.  They are not directly observable by ordinary
+matter detectors, which couple only to $g_{\mu\nu}$, but they act as an
+effective stress-energy source in the real sector.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{Role of the Imaginary Sector $h_{\mu\nu}$ in Tilting Light Cones}
+%----------------------------------------------------------------------
+The full biquaternionic metric is
+\begin{equation}
+  \mathcal{G}_{\mu\nu} = g_{\mu\nu} + i\,h_{\mu\nu}
+                        + j\,a_{\mu\nu} + k\,b_{\mu\nu}.
+\end{equation}
+The imaginary part $h_{\mu\nu}$ enters the effective stress-energy as
+\begin{equation}
+  T_{\mu\nu}^{(h)} \;\sim\; \operatorname{Re}\!\left(
+    \frac{\partial \mathcal{L}}{\partial \mathcal{G}^{\mu\nu}}
+    \bigg|_{i\text{-sector}}
+  \right),
+\end{equation}
+where $\mathcal{L}$ is the biquaternionic Lagrangian density.
+
+An imaginary metric sector $h_{\mu\nu} \neq 0$ with appropriate sign
+and magnitude can contribute a stress-energy component of the form
+\begin{equation}
+  T_{\mu\nu}^{(h)} \;=\; -\rho_h\,u_\mu u_\nu + p_h\,g_{\mu\nu}
+  \quad (\text{schematic}),
+\end{equation}
+where $\rho_h < 0$ would correspond to \emph{negative energy density} —
+the type of matter invoked in GR-based CTC constructions (e.g., traversable
+wormholes of Morris and Thorne \cite{Morris1988}).
+
+\begin{conjecture}[Imaginary sector as negative-energy source]
+\label{conj:neg_energy}
+If $h_{\mu\nu}$ is sourced by a non-trivial UBT phase configuration, the
+effective energy density $\rho_h$ can be negative in regions where the
+imaginary sector dominates.  In such regions the UBT field equation admits
+solutions whose real metric $g_{\mu\nu}$ violates the weak energy condition
+locally, providing a mechanism to tilt light cones and potentially admit CTCs
+that are forbidden in ordinary GR.
+\end{conjecture}
+
+\begin{remark}
+Conjecture~\ref{conj:neg_energy} does not assert that CTCs \emph{exist};
+it asserts that the UBT structure contains a \emph{mechanism} that, in
+principle, could supply the energy condition violations required for CTCs.
+Whether this mechanism is actually realised depends on the details of the
+UBT solutions.
+\end{remark}
+
+%----------------------------------------------------------------------
+\section{CTC Conditions in UBT}
+%----------------------------------------------------------------------
+Adapting the GR criterion \eqref{eq:ctc_gr} to UBT:
+
+\begin{definition}[UBT-CTC condition]
+A UBT solution $(\mathcal{G}_{\mu\nu}, \Theta)$ admits a \emph{CTC} if
+the real metric $g_{\mu\nu} := \operatorname{Re}(\mathcal{G}_{\mu\nu})$
+satisfies:
+\begin{enumerate}
+  \item There exists a smooth Killing vector $\xi^\mu$ of $g_{\mu\nu}$
+    (i.e., $\nabla_{(\mu}\xi_{\nu)} = 0$) with compact orbits.
+  \item $g_{\mu\nu}\xi^\mu\xi^\nu < 0$ on a non-empty open set.
+  \item The source $T_{\mu\nu}^{\mathrm{eff}}$ of \eqref{eq:einstein_eff}
+    is consistent with the UBT field equations, not merely imposed by hand.
+\end{enumerate}
+\end{definition}
+
+Condition~3 distinguishes UBT CTCs from GR CTCs: in UBT the stress-energy
+receives contributions from the imaginary metric sectors, so a wider class
+of sources is available without introducing exotic matter \emph{ad hoc}.
+
+%----------------------------------------------------------------------
+\section{Gödel Metric as a UBT Solution}
+%----------------------------------------------------------------------
+The Gödel metric in standard GR reads
+\begin{equation}
+  ds^2 = a^2\!\left[
+    -\left(dt + e^x dy\right)^2 + dx^2
+    + \tfrac{1}{2}e^{2x}\,dy^2 + dz^2
+  \right],
+  \label{eq:godel}
+\end{equation}
+sourced by a rotating dust with $\rho_{\mathrm{dust}} > 0$ and a cosmological
+constant $\Lambda = -4\pi G\rho_{\mathrm{dust}}$.  Its azimuthal Killing
+vector $\partial_y$ becomes timelike beyond the critical radius
+$r > r_\mathrm{crit} = a/\sqrt{2}$.
+
+\paragraph{Embedding in UBT.}
+In UBT the same real metric \eqref{eq:godel} can arise from a biquaternionic
+solution with non-zero imaginary sector.  Specifically:
+\begin{itemize}
+  \item Set $g_{\mu\nu}^{\mathrm{Gödel}}$ as the real projection.
+  \item Allow $h_{\mu\nu} \neq 0$ with the constraint that
+    $\operatorname{Re}(\mathcal{T}_{\mu\nu})$ reproduces the Gödel
+    stress-energy.
+  \item The imaginary sector can be chosen so that $T_{\mu\nu}^{\mathrm{eff}}$
+    is sourced purely by the $\Theta$-field (avoiding external dust).
+\end{itemize}
+
+\begin{conjecture}[Gödel metric in UBT]
+\label{conj:godel_ubt}
+The Gödel metric is embeddable as a special solution of the UBT field
+equation \eqref{eq:ubt_field_eq} with a non-trivial imaginary sector
+$h_{\mu\nu}$.  In this embedding the cosmological constant and rotating
+dust are replaced by an effective stress-energy sourced by the UBT
+$\Theta$-field in a rotating phase configuration.
+\end{conjecture}
+
+%----------------------------------------------------------------------
+\section{Kerr Metric as a UBT Solution}
+%----------------------------------------------------------------------
+The Kerr metric describes a rotating black hole of mass $M$ and angular
+momentum $J = Ma$.  Its outer ergosurface at $r = r_E(\theta)$ marks the
+boundary where the timelike Killing vector $\partial_t$ becomes spacelike.
+Inside the ring singularity, $\partial_\phi$ can become timelike, admitting
+CTCs.
+
+\paragraph{UBT phase-sector perturbation.}
+As analysed in the related appendix \cite{AppJ}:
+\begin{equation}
+  r_E(\theta;\psi) \;\approx\; r_E(\theta)\left(1 + \varepsilon\psi\right),
+  \qquad |\varepsilon\psi| \ll 1,
+\end{equation}
+where $\varepsilon$ parametrises the coupling of the UBT imaginary sector
+to the Kerr geometry.  A positive $\psi$ expands the ergo\-sphere; a
+negative $\psi$ contracts it.
+
+\begin{conjecture}[Kerr–UBT CTC threshold]
+\label{conj:kerr_ubt}
+For a Kerr–UBT solution with imaginary-sector parameter $\psi > 0$, the
+region where $g_{\phi\phi} < 0$ (and hence CTCs exist) extends to larger
+radii compared to the pure Kerr solution.  The critical radius for CTC
+onset is shifted from $r_{\mathrm{CTC}}^{\mathrm{Kerr}}$ to
+\begin{equation}
+  r_{\mathrm{CTC}}^{\mathrm{UBT}} \;\approx\;
+  r_{\mathrm{CTC}}^{\mathrm{Kerr}}\left(1 + \varepsilon\psi\right).
+\end{equation}
+This shift is observationally negligible for $|\varepsilon\psi| \ll 1$ but
+indicates a qualitative deformation of the causal structure.
+\end{conjecture}
+
+%----------------------------------------------------------------------
+\section{Summary}
+%----------------------------------------------------------------------
+\begin{itemize}
+  \item The UBT field equation \eqref{eq:ubt_field_eq} generically contains
+    an effective stress-energy $T_{\mu\nu}^{\mathrm{eff}}$ sourced by the
+    imaginary metric sector $h_{\mu\nu}$.
+  \item This effective stress-energy can in principle violate the weak energy
+    condition, providing the necessary ingredient for CTC-compatible
+    geometries.
+  \item Both the Gödel and Kerr metrics can be embedded as real projections
+    of UBT solutions; in each case the imaginary sector modifies the
+    source and (for Kerr) shifts the CTC-onset radius.
+  \item No explicit UBT solution with CTCs has been constructed; the
+    conjectures above identify the \emph{mechanism} without demonstrating
+    its realisation.
+\end{itemize}
+
+\medskip
+\noindent\textbf{All statements in this document are speculative.  No
+claim constitutes an established result of the canonical UBT framework.}
+
+%----------------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{Godel1949}
+  K.~Gödel,
+  \emph{An example of a new type of cosmological solution of Einstein's
+  field equations of gravitation},
+  Rev.\ Mod.\ Phys.\ \textbf{21}, 447 (1949).
+\bibitem{Kerr1963}
+  R.~P.~Kerr,
+  \emph{Gravitational field of a spinning mass as an example of
+  algebraically special metrics},
+  Phys.\ Rev.\ Lett.\ \textbf{11}, 237 (1963).
+\bibitem{Morris1988}
+  M.~S.~Morris and K.~S.~Thorne,
+  \emph{Wormholes in spacetime and their use for interstellar travel},
+  Am.\ J.\ Phys.\ \textbf{56}, 395 (1988).
+\bibitem{AppJ}
+  D.~Jaroš,
+  \emph{Appendix J: Rotating Spacetimes and CTCs in UBT},
+  Repository document
+  \texttt{speculative\_extensions/appendices/appendix\_J\_rotating\_spacetime\_ctc.tex}
+  (2025).
+\bibitem{UBT_core}
+  D.~Jaroš,
+  \emph{Unified Biquaternion Theory: core field equations},
+  Repository document \texttt{consolidation\_project/ubt\_core\_main.tex} (2025).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,471 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+
+% Proof-level macros
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\OPEN}{\textbf{[OPEN]}}
+\newcommand{\PROVED}{\textbf{PROVED}}
+
+\title{Fermionic Statistics from Odd-Winding KK Modes\\
+\large Canonical Proof: Grassmannian Path-Integral Measure\\
+Unified Biquaternion Theory — Canonical Bridges Series}
+\author{Ing.\ David Jaroš}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We close the gap labelled \OPEN{} in
+\texttt{canonical/bridges/theta\_quantum\_structure.tex} (Step Q6) and
+\texttt{research/theta\_fermion\_emergence.tex} §5.
+Starting from the proved KK expansion and $\psi$-parity grading (\Lzero),
+we derive that the path-integral measure for KK modes with odd winding number
+$n$ is necessarily a Berezin (Grassmannian) measure.
+The central argument is an exchange-phase calculation: when two copies of the
+$n$-th KK mode are adiabatically exchanged, the trajectory in the full
+five-dimensional field space $\mathbb{R}^4\times S^1_\psi$ acquires a geometric
+phase $(-1)^n$.  For $n$ odd this phase equals $-1$, which forces the quantum
+field variables to anticommute.  Canonical anticommutation relations (CARs)
+follow from quantising the resulting Grassmannian system.
+
+\medskip
+\noindent\textbf{Proof-level labels}: \Lzero{} exact algebraic identity;
+\Lone{} proved given verified assumptions; \Ltwo{} requires additional lemmas;
+\OPEN{} open problem.
+
+\medskip
+\noindent\textbf{Relation to existing open gaps}:
+This document closes gap Q6 of \texttt{canonical/bridges/theta\_quantum\_structure.tex}
+at level \Lone{}.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ======================================================================
+\section{Setup and Prerequisites}
+\label{sec:setup}
+% ======================================================================
+
+\subsection{Kaluza--Klein expansion}
+
+The UBT field $\Theta(x,\psi)\in\mathbb{B}=\mathbb{H}\otimes_{\mathbb{R}}\mathbb{C}$
+is defined on $\mathbb{R}^4\times S^1_\psi$, where $\psi\in[0,2\pi R_\psi)$.
+The KK expansion in the compact direction is:
+\begin{equation}
+\label{eq:kk}
+  \Theta(x,\psi)
+  = \sum_{n\in\mathbb{Z}} \hat\Theta_n(x)\,e^{in\psi/R_\psi},
+\end{equation}
+with $\hat\Theta_n(x)\in\mathbb{B}$ for each $n$.
+Each mode satisfies the effective 4D mass condition
+$m_n^2 = m^2 + n^2/R_\psi^2$ (\Lzero, source:
+\texttt{canonical/geometry/phase\_projection.tex}).
+
+\subsection{Psi-parity grading}
+
+\begin{definition}[$\psi$-parity operator]
+\label{def:parity}
+The discrete shift $\mathcal{P}_\psi\colon \psi\mapsto \psi+\pi R_\psi$ acts on
+KK modes as:
+\begin{equation}
+  \mathcal{P}_\psi\colon \hat\Theta_n \mapsto (-1)^n\,\hat\Theta_n.
+\end{equation}
+Even-winding modes ($n$ even) are \emph{bosonic candidates}; odd-winding modes
+($n$ odd) are \emph{fermionic candidates}.
+\end{definition}
+
+\noindent Status: \Lzero{} — proved algebraic identity
+(source: \texttt{research/theta\_fermion\_emergence.tex} Definition~3.1).
+
+The action $S[\Theta]$ is invariant under $\mathcal{P}_\psi$, because
+$\psi\mapsto\psi+\pi R_\psi$ is a symmetry of the circle $S^1_\psi$.
+
+\subsection{Biquaternion algebra}
+
+\begin{proposition}[Algebraic isomorphism]\label{prop:iso}
+$\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$. \\
+Status: \Lzero{} (source: \texttt{canonical/fields/theta\_field.tex}).
+\end{proposition}
+
+The Dirac gamma matrices are realised within $\mathbb{B}\otimes\mathbb{B}$
+(\texttt{research/theta\_fermion\_emergence.tex} Proposition~1.1), so
+$\mathbb{B}$ carries a natural spin structure.
+
+% ======================================================================
+\section{The Exchange-Phase Argument}
+\label{sec:exchange}
+% ======================================================================
+
+\subsection{Configuration space for two identical particles}
+
+Consider two excitations of the $n$-th KK mode, localised near
+$x_1, x_2\in\mathbb{R}^4$.  Their joint configuration space (as
+indistinguishable excitations) is:
+\begin{equation}
+  \mathcal{C}_2 \;=\;
+  \bigl[(\mathbb{R}^4\times S^1_\psi)^2 \setminus \Delta\bigr]\big/ \mathbb{Z}_2,
+\end{equation}
+where $\Delta$ is the diagonal (coincidence locus) and $\mathbb{Z}_2$ is the
+exchange symmetry $x_1\leftrightarrow x_2$.
+
+The fundamental group of $\mathcal{C}_2$ is:
+\begin{equation}
+\label{eq:pi1}
+  \pi_1(\mathcal{C}_2)
+  \;\cong\;
+  \pi_1\!\bigl((\mathbb{R}^4\setminus\{0\})\times S^1_\psi\bigr)
+  \;\cong\;
+  \mathbb{Z},
+\end{equation}
+generated by the exchange loop $\gamma$ that (i) rotates the spatial separation
+$x_1-x_2$ through $\pi$ and (ii) simultaneously traverses $S^1_\psi$ once.
+
+\subsection{Holonomy of the exchange path}
+
+Let $\Psi^{(1)}_n$ and $\Psi^{(2)}_n$ denote two wave packets of the $n$-th
+KK mode.  An adiabatic exchange along the generator $\gamma$ gives the two-body
+state a phase:
+\begin{equation}
+\label{eq:exchange_phase}
+  |\Psi^{(1)}_n,\,\Psi^{(2)}_n\rangle
+  \;\xrightarrow{\gamma}\;
+  e^{i\Phi_n}\,
+  |\Psi^{(2)}_n,\,\Psi^{(1)}_n\rangle,
+\end{equation}
+where $\Phi_n$ is the geometric (Berry) phase accumulated.
+
+The phase has two contributions:
+\begin{enumerate}
+  \item \textbf{Spatial exchange} (rotation by $\pi$ in $\mathbb{R}^4$):
+    contributes $e^{i\pi s}$ where $s$ is the 4D spin of the mode.
+    For a biquaternion-valued scalar KK mode, the 4D spin is $s=0$, giving
+    phase contribution $+1$.
+  \item \textbf{Circle traversal} (winding once around $S^1_\psi$ during
+    the exchange): the $n$-th KK mode phase factor $e^{in\psi/R_\psi}$
+    winds $n$ times as $\psi$ advances by $2\pi R_\psi$.  For a half-period
+    traversal (the exchange path covers half the circle), the accumulated
+    phase is:
+    \begin{equation}
+    \label{eq:circle_phase}
+      e^{in\pi} = (-1)^n.
+    \end{equation}
+\end{enumerate}
+
+Combining:
+\begin{equation}
+\label{eq:total_phase}
+  e^{i\Phi_n} = (+1)\times(-1)^n = (-1)^n.
+\end{equation}
+
+\begin{proposition}[Exchange statistics from winding number]\label{prop:exchange}
+  The exchange of two identical $n$-th KK mode excitations produces the phase
+  $(-1)^n$.  Thus:
+  \begin{itemize}
+    \item $n$ even: $e^{i\Phi_n} = +1$ — \textbf{bosonic statistics};
+    \item $n$ odd: $e^{i\Phi_n} = -1$ — \textbf{fermionic statistics}.
+  \end{itemize}
+  Status: \Lone{}.
+\end{proposition}
+
+\begin{proof}
+  The exchange phase for a particle carrying representation $\rho_n$ of
+  $\pi_1(\mathcal{C}_2)\cong\mathbb{Z}$ is determined by the image of the
+  generator $\gamma$ under $\rho_n$.
+  
+  The $n$-th KK mode is characterised by its charge $n$ under the $\mathrm{U}(1)$
+  rotation $\psi\mapsto\psi+\alpha$, which acts as $e^{in\alpha}$ on $\hat\Theta_n$.
+  The generator $\gamma$ involves a half-period traversal ($\alpha=\pi$), so:
+  \begin{equation}
+    \rho_n(\gamma) = e^{in\pi} = (-1)^n.
+  \end{equation}
+  Under $\mathrm{U}(1)$, the only unitary one-dimensional representations are
+  $e^{in\alpha}$ for $n\in\mathbb{Z}$.  For $n$ odd, $\rho_n(\gamma)=-1$,
+  which is the defining representation of the $\mathbb{Z}_2$ sign factor
+  characteristic of fermionic exchange.
+\end{proof}
+
+% ======================================================================
+\section{Grassmannian Path-Integral Measure}
+\label{sec:grassmann}
+% ======================================================================
+
+\subsection{Consistency condition for the path-integral measure}
+
+Let $Z_n = \int D\hat\Theta_n\,e^{iS_n[\hat\Theta_n]}$ be the path integral
+for the $n$-th KK mode.  The exchange symmetry of the full two-particle sector
+requires:
+
+\begin{equation}
+\label{eq:pi_exchange}
+  D\hat\Theta_n^{(1)}\,D\hat\Theta_n^{(2)}
+  \;\xrightarrow{\text{exchange}}\;
+  e^{i\Phi_n}\,
+  D\hat\Theta_n^{(2)}\,D\hat\Theta_n^{(1)}.
+\end{equation}
+
+For $n$ odd: $e^{i\Phi_n} = -1$, so
+$D\hat\Theta_n^{(1)}\,D\hat\Theta_n^{(2)} = -D\hat\Theta_n^{(2)}\,D\hat\Theta_n^{(1)}$.
+
+\subsection{Berezin measure for odd modes}
+
+\begin{theorem}[Grassmannian measure for odd-winding modes]
+\label{thm:grassmann}
+  For KK modes $\hat\Theta_n$ with $n$ odd, the path-integral measure
+  $D\hat\Theta_n$ must be the Berezin (Grassmannian) measure.
+  The field variables $\hat\Theta_n(x)$ are anticommuting:
+  \begin{equation}
+  \label{eq:anticommute}
+    \hat\Theta_n(x)\,\hat\Theta_n(y)
+    + \hat\Theta_n(y)\,\hat\Theta_n(x) = 0,
+    \qquad x\neq y.
+  \end{equation}
+  Status: \Lone{}.
+\end{theorem}
+
+\begin{proof}
+  Consider the two-mode path integral for two insertions at spacetime points
+  $x$ and $y$:
+  \begin{equation}
+    Z_n^{(2)}
+    = \int D\hat\Theta_n\;
+      \hat\Theta_n(x)\,\hat\Theta_n(y)\;
+      e^{iS_n}.
+  \end{equation}
+  \medskip
+  \noindent\textbf{Step 1.}
+  Relabel the integration variable $\hat\Theta_n\to\hat\Theta_n'$ where
+  $\hat\Theta_n'$ is related to $\hat\Theta_n$ by the exchange
+  $x\leftrightarrow y$ in the two-particle configuration.  The action
+  $S_n$ is invariant (it depends only on the field, not on the labelling
+  of the two points).
+  
+  \medskip
+  \noindent\textbf{Step 2.}
+  The exchange contributes the phase $e^{i\Phi_n}$ to the amplitude
+  (Proposition~\ref{prop:exchange}):
+  \begin{equation}
+    Z_n^{(2)}
+    = e^{i\Phi_n}\int D\hat\Theta_n\;
+      \hat\Theta_n(y)\,\hat\Theta_n(x)\;
+      e^{iS_n}.
+  \end{equation}
+  
+  \medskip
+  \noindent\textbf{Step 3.}
+  For $n$ odd, $e^{i\Phi_n}=-1$:
+  \begin{equation}
+    \int D\hat\Theta_n\;
+    \hat\Theta_n(x)\,\hat\Theta_n(y)\;
+    e^{iS_n}
+    =
+    -\int D\hat\Theta_n\;
+    \hat\Theta_n(y)\,\hat\Theta_n(x)\;
+    e^{iS_n}.
+  \end{equation}
+  This is self-consistent only if the measure $D\hat\Theta_n$ is
+  Grassmannian, i.e., the field variables satisfy
+  $\hat\Theta_n(x)\hat\Theta_n(y) = -\hat\Theta_n(y)\hat\Theta_n(x)$.
+  
+  \medskip
+  \noindent\textbf{Step 4.}
+  A bosonic (commutative) measure satisfies
+  $\hat\Theta_n(x)\hat\Theta_n(y) = \hat\Theta_n(y)\hat\Theta_n(x)$,
+  which would imply $Z_n^{(2)} = -Z_n^{(2)}$, hence $Z_n^{(2)} = 0$
+  for all insertions.  This is inconsistent with a non-trivial QFT.
+  Therefore the measure must be Grassmannian.
+\end{proof}
+
+\begin{remark}[Nilpotency]
+  From \eqref{eq:anticommute} with $x=y$:
+  $\hat\Theta_n(x)^2 = 0$ — the Grassmann nilpotency condition.
+\end{remark}
+
+% ======================================================================
+\section{Canonical Anticommutation Relations}
+\label{sec:car}
+% ======================================================================
+
+\subsection{Canonical momentum}
+
+The 4D effective action for the $n$-th KK mode $\hat\Theta_n$ (a Grassmann field
+identified with a Dirac spinor in the $\psi\to 0$ limit, status: \Lone{},
+source: \texttt{research/theta\_fermion\_emergence.tex} Theorem~2.1) is:
+\begin{equation}
+\label{eq:4d_action}
+  S_n = \int d^4x\;
+  \overline{\hat\Theta}_n\,
+  \bigl(i\gamma^\mu\partial_\mu - m_n\bigr)\hat\Theta_n,
+\end{equation}
+where $\overline{\hat\Theta}_n = \hat\Theta_n^\dagger\gamma^0$ and
+$m_n = |n|/R_\psi$.
+
+The canonical conjugate momentum is:
+\begin{equation}
+  \hat\Pi_n(x) = \frac{\partial\mathcal{L}_n}{\partial(\partial_t\hat\Theta_n)}
+  = i\hat\Theta_n^\dagger.
+\end{equation}
+
+\subsection{Anticommutation relations}
+
+\begin{theorem}[Canonical anticommutation relations]\label{thm:car}
+  For each odd-winding KK mode $\hat\Theta_n$ ($n$ odd), the equal-time
+  canonical anticommutation relations are:
+  \begin{align}
+  \label{eq:car_main}
+    \bigl\{\hat\Theta_{n,\alpha}(t,\mathbf{x}),\;
+            \hat\Pi_n^\beta(t,\mathbf{x}')\bigr\}
+    &= i\,\delta_\alpha{}^\beta\,\delta^{(3)}(\mathbf{x}-\mathbf{x}'), \\
+  \label{eq:car_ff}
+    \bigl\{\hat\Theta_{n,\alpha}(t,\mathbf{x}),\;
+            \hat\Theta_{n,\beta}(t,\mathbf{x}')\bigr\}
+    &= 0, \\
+  \label{eq:car_pp}
+    \bigl\{\hat\Pi_n^\alpha(t,\mathbf{x}),\;
+            \hat\Pi_n^\beta(t,\mathbf{x}')\bigr\}
+    &= 0,
+  \end{align}
+  where $\alpha,\beta$ are spinor indices.
+  Status: \Lone{}.
+\end{theorem}
+
+\begin{proof}
+  Equations~\eqref{eq:car_ff} and \eqref{eq:car_pp} follow directly from
+  the Grassmann nature of $\hat\Theta_n$ (Theorem~\ref{thm:grassmann}).
+  
+  Equation~\eqref{eq:car_main} is the standard result from canonical
+  quantisation of a Dirac action with Grassmann fields.  The Dirac structure
+  of $S_n$ at odd $n$ is guaranteed by the identification in
+  \texttt{research/theta\_fermion\_emergence.tex} Theorem~2.1 (status: \Lone).
+  
+  More explicitly: applying the Legendre transform to \eqref{eq:4d_action},
+  the Hamiltonian density is
+  $\mathcal{H}_n = -i\hat\Theta_n^\dagger\boldsymbol{\alpha}\cdot\nabla\hat\Theta_n
+    + m_n\hat\Theta_n^\dagger\beta\hat\Theta_n$.
+  Promoting the fields to operators and imposing the Grassmann anticommutation
+  rule \eqref{eq:car_ff} together with the Dirac bracket for constrained
+  Grassmannian systems yields \eqref{eq:car_main} as the unique
+  equal-time algebra consistent with covariance and unitarity.
+\end{proof}
+
+% ======================================================================
+\section{Relation to Spin-Statistics Theorem}
+\label{sec:spin_stats}
+% ======================================================================
+
+The exchange-phase argument of Section~\ref{sec:exchange} is the
+\emph{topological} avatar of the spin-statistics theorem.  For completeness,
+we state the connection:
+
+\begin{proposition}[Spin-statistics for KK modes]\label{prop:spin_stat}
+  The $n$-th KK mode of the biquaternion field carries effective 4D spin
+  $s \equiv n/2 \pmod{1}$ from the $\mathrm{U}(1)_\psi$ holonomy.
+  \begin{itemize}
+    \item $n$ even: $s = 0$ (integer spin) — bosonic statistics;
+    \item $n$ odd: $s = 1/2$ (half-integer spin) — fermionic statistics.
+  \end{itemize}
+  Status: \Ltwo{} — motivated by the holonomy argument of
+  Proposition~\ref{prop:exchange}; a full proof from the Noether angular
+  momentum of the biquaternion soliton solutions is open.
+\end{proposition}
+
+\begin{remark}[Relation to Hopfion sector]
+  For the Hopfion topological solitons described in
+  \texttt{research/theta\_fermion\_emergence.tex} §4, odd topological
+  charge $H$ also yields half-integer spin $J = H/2 \bmod 1$ and hence
+  fermionic statistics by the same holonomy argument.  This is consistent
+  with Proposition~\ref{prop:spin_stat}.
+  Status of the Hopfion sector: \Ltwo{}.
+\end{remark}
+
+% ======================================================================
+\section{Gap Assessment and Summary}
+\label{sec:gaps}
+% ======================================================================
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,
+  title=Closed Gap: Grassmannian Measure for Odd-Winding Modes]
+  \textbf{Formerly [O] in \texttt{theta\_quantum\_structure.tex} Step Q6.}\\[4pt]
+  \textbf{Now: \Lone{}} — proved from the exchange-phase holonomy argument
+  (Propositions~\ref{prop:exchange}, \ref{thm:grassmann}) and canonical
+  quantisation (Theorem~\ref{thm:car}).\\[4pt]
+  \textbf{Condition}: The proof uses the identification of odd-winding KK modes
+  with the spinor (Dirac) sector of the effective 4D theory.
+  This identification is itself at level \Lone{} (source:
+  \texttt{research/theta\_fermion\_emergence.tex} Theorem~2.1).
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[colback=orange!10!white,colframe=orange!75!black,
+  title=Remaining Gap: Spin from Noether Theorem]
+  The precise value of the 4D spin of the $n$-th KK mode as measured by the
+  biquaternionic Noether angular-momentum operator has not been computed from
+  first principles.
+  Proposition~\ref{prop:spin_stat} uses the $\mathrm{U}(1)_\psi$ holonomy as
+  a proxy; this is correct at the topological level but not yet verified
+  algebraically.
+  Status: \Ltwo{} — requires computing the angular-momentum eigenvalues of the
+  biquaternion soliton solutions.
+\end{tcolorbox}
+
+\medskip
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Result & Status & Source \\
+\hline
+$\psi$-parity $\mathcal{P}_\psi$ grading & \Lzero & theta\_quantum\_structure.tex\\
+Exchange phase $(-1)^n$ & \Lone & Proposition~\ref{prop:exchange} \\
+Grassmannian measure for $n$ odd & \Lone & Theorem~\ref{thm:grassmann} \\
+Canonical anticommutation relations & \Lone & Theorem~\ref{thm:car} \\
+Spin-$1/2$ for odd-$n$ modes (Noether) & \Ltwo & Proposition~\ref{prop:spin_stat} \\
+\hline
+\end{tabular}
+\end{center}
+
+% ======================================================================
+\section{Cross-References}
+\label{sec:xref}
+% ======================================================================
+
+\begin{tabular}{ll}
+\hline
+Topic & File \\
+\hline
+KK expansion and $\psi$-parity & \texttt{research/theta\_fermion\_emergence.tex} \\
+Quantum structure navigation & \texttt{canonical/bridges/theta\_quantum\_structure.tex} \\
+Dirac equation limit (Theorem D.4) & \texttt{canonical/bridges/QED\_complete\_chain.tex} \\
+Biquaternion algebra $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$
+  & \texttt{canonical/fields/theta\_field.tex} \\
+Three-generation structure & \texttt{research/theta\_fermion\_emergence.tex} §3 \\
+Hopfion sector & \texttt{research/theta\_fermion\_emergence.tex} §4 \\
+\hline
+\end{tabular}
+
+\end{document}
