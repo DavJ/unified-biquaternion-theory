@@ -90,7 +90,7 @@ def main() -> None:
     # Step 6: lambda = g^2 from SU(2)_L at GUT scale (sin^2 theta_W = 3/8)
     # g^2 = e^2 / sin^2(theta_W) = (4*pi/137) / (3/8) = 32*pi/(3*137)
     import math as _math
-    lam_gut = 4.0 * _math.pi / 137.0 / (3.0 / 8.0)
+    lam_gut = 4.0 * _math.pi / 137.0 * (8.0 / 3.0)
     r_star_gut, ratio_gut = minimize_for_lambda(lam_gut, cfg)
     print()
     print("Step 6 — lambda = g^2 from SU(2)_L with sin^2(theta_W)=3/8 at GUT scale:")
