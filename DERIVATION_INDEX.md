@@ -346,7 +346,7 @@ only at φ=0 (vacuum limit, previously verified) but for any constant scalar bac
 
 > **Main chain (Θ→g→Γ→R→Einstein): Strong Partial** — Steps 1–5 proved [L1]; full off-shell closure on compact M⁴ is [Open L2].  
 > **Linearised GR, Schwarzschild, Regge-Wheeler: Strong Partial** — proved [L1].  
-> **Zerilli/even-parity perturbations are closed at [L1/STD] for vacuum Schwarzschild modes with \ell \ge 2, using canonical/gr_closure/zerilli_derivation.tex. The closure relies on standard Chandrasekhar/RWZ perturbation theory after the UBT metric-chain reduction.**
+> **Zerilli even-parity: Closed [L1/STD]** — vacuum Schwarzschild modes with \ell \ge 2 via `canonical/gr_closure/zerilli_derivation.tex`; closure relies on standard Chandrasekhar/RWZ perturbation theory after the UBT metric-chain reduction.
 
 > ⭐ **Canonical source**: `canonical/bridges/GR_chain_bridge.tex` + `canonical/gr_closure/` chain  
 > Topic index: `canonical/THEORY/topic_indexes/GR_index.md`
