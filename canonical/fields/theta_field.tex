@@ -17,12 +17,17 @@ The fundamental field of Unified Biquaternion Theory is a \textbf{biquaternion}:
 
 \noindent where:
 \begin{itemize}
-    \item $q \in \mathcal{B}$ is a biquaternion coordinate with 4 degrees of freedom
+    \item $q \in \mathcal{B}$ is a biquaternion coordinate (full coordinate model: 8 real parameters)
     \item $\tau = t + i\psi$ is the canonical complex time
     \item Biquaternion time $T_B = t + i\psi + j\chi + k\xi$ is a deprecated/historical extension (see \texttt{speculative\_extensions/})
     \item $\mathcal{B} = \mathbb{H} \otimes \mathbb{C}$ denotes the biquaternion algebra
     \item $\mathbb{H}$ = quaternions with units $\{1, i, j, k\}$
 \end{itemize}
+
+\noindent\textbf{Coordinate bookkeeping note.}
+In this repository, \(q\) can denote either (1) the full biquaternionic coordinate \(q=z^\mu e_\mu\in\mathbb{C}\otimes\mathbb{H}\), or (2) the real-projected GR coordinate \(q_{\mathrm{GR}}=x^\mu e_\mu\) used in the classical GR recovery chain.
+The canonical complex-time coordinate/fiber is \(\tau=z^0=t+i\psi\).
+The GR-sector recovery assumes classical complex holomorphy only in tau.
 
 \subsubsection{Explicit Biquaternion Form}
 
