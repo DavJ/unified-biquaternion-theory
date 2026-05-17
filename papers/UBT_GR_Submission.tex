@@ -75,7 +75,7 @@
 \title{\textbf{General Relativity as a Real-Projected Limit\\
        of Unified Biquaternion Theory}}
 \author{Ing.\ David Jaroš}
-\date{April 2026}
+\date{May 2026}
 % ==============================================================================
 
 \begin{document}
@@ -102,13 +102,11 @@ UBT action.
 The Schwarzschild metric in isotropic coordinates is reproduced analytically
 and numerically verified to relative error $< 10^{-15}$.
 Both graviton polarisation sectors are recovered: the odd-parity graviton
-satisfies the Regge-Wheeler equation, and the even-parity graviton satisfies
-the Zerilli equation (GAP-Z) is derived at [L1] in
+satisfies the Regge-Wheeler equation (Theorem~5.1), and the even-parity
+graviton satisfies the Zerilli equation, derived at level~[L1] in
 \texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
 The off-shell $\Theta$-only closure (GAP-10) remains open at level [L2]
 and does not affect the on-shell validity of the main result.
-The even-parity (Zerilli) equation is documented in the companion derivation
-\texttt{canonical/gr\_closure/zerilli\_derivation.tex} (2026-05-10).
 \end{abstract}
 
 \tableofcontents
@@ -338,9 +336,18 @@ For $\Theta \in \calA_{\mathrm{UBT}}$, define:
   \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
   g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN},
   \qquad
-  \calN := \re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
+  \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
 \end{align}
 \end{definition}
+
+\begin{remark}
+AXIOM-B (Definition~\ref{def:axiomb}) guarantees that
+$\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] < 0$
+for any admissible $\Theta \in \calA_{\mathrm{UBT}}$.
+Accordingly, $\calN$ is defined as
+$\calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$
+throughout this paper.
+\end{remark}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
 \label{thm:metric}
@@ -532,7 +539,7 @@ error $< 10^{-15}$ via \texttt{tools/verify\_schwarzschild\_theta.py}
 \end{theorem}
 
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!50!black,
-  title={Limitation --- temporal component (expected, not an error)}]
+  title={Complex-time structure and the temporal component}]
 The static real-quaternion ansatz has $\partial_t\Theta_0 = 0$, so the metric
 formula gives $g_{tt} = 0$ from the spatial construction alone.
 The Lorentzian $g_{tt} = -\Phi^2$ is recovered only when the full
@@ -649,31 +656,6 @@ The classical GR recovery result (all theorems in
 \S\S\ref{sec:step1}--\ref{sec:rw}) is unaffected.
 \end{tcolorbox}
 
-\subsection{GAP-Z: Zerilli Equation (Even-Parity Graviton)}
-\label{sec:gapz}
-
-\begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
-  title={GAP-Z: Zerilli Equation\ \PROVED\ [\Lone]}]
-\textbf{Proved}: Both polarisation sectors are now derived from linearised UBT.
-
-\smallskip
-\textbf{Odd-parity} (Regge-Wheeler): Theorem~\ref{thm:rw} (this paper).
-
-\smallskip
-\textbf{Even-parity} (Zerilli): The Zerilli equation
-\[
-  \left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2 - V_\mathrm{Z}(r)\right]
-  \Psi_\mathrm{Z} = 0
-\]
-is derived via the Chandrasekhar two-potential transformation applied to
-the even-parity ($P_\psi$-even) linearised UBT field equation.
-See \texttt{canonical/gr\_closure/zerilli\_derivation.tex} (2026-05-10).
-
-\textbf{Isospectrality}: The Chandrasekhar-Detweiler isospectrality theorem
-(same QNM spectrum for both polarisations) holds by the Darboux relation
-$\Psi_{\mathrm{RW}} = \mathcal{D}\,\Psi_Z$.
-\end{tcolorbox}
-
 \subsection{Lower-Priority Gaps}
 
 \begin{center}
@@ -690,7 +672,7 @@ GAP-Q & Path-integral quantisation of UBT & Very long term \\
 
 None of these blocks the on-shell classical result.
 
-\subsection*{6.2\ GAP-C (FRW/de~Sitter): Status Update}
+\subsubsection{GAP-C (FRW/de~Sitter): Status Update}
 
 A homogeneous isotropic ansatz
 $\Theta(x,t) = a(t)\,\exp(ix^k e_k)\,\Theta_0$
