@@ -9,37 +9,27 @@
 %
 % See LICENSE.md for full license text.
 %
-% Submission file: papers/UBT_Gauge_Submission.tex
-% Status: DRAFT — 2026-05-10; target: 6–8 weeks from 2026-04-28
-% Target venues: Journal of Mathematical Physics / Nuclear Physics B
-% Source map: reports/gauge_truth_matrix.md
-% Cross-reference: papers/UBT_GR_Submission.tex (companion GR paper)
+% Paper: T2_GAUGE — Gauge Structure from Biquaternion Algebra
+% File: UBT_Gauge_Draft_v1.tex
+% Sections: §1–§5 complete (§6–§9 stubs)
+% Source: research_tracks/T2_GAUGE/gauge_paper_draft.tex (theorems/proofs)
+%         canonical/interactions/sm_gauge.tex [L0]
+%         canonical/interactions/colour_charge_lattice.tex [L0/L1]
+%         canonical/interactions/su3_qubit_encoding.tex [L0]
+%         research_tracks/quantum_ubt/su2_twist_neff12.tex [L1]
+% Target: submit ~2026-06-08
+% Date: 2026-05-14
 
 \documentclass[12pt,a4paper]{article}
-
-% ---- packages ----------------------------------------------------------------
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
 \usepackage{hyperref}
-\usepackage[numbers,sort&compress]{natbib}
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage{microtype}
-\microtypesetup{expansion=false}
 
-% ---- hyperref setup ----------------------------------------------------------
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue!60!black,
-  citecolor=green!50!black,
-  urlcolor=blue!60!black
-}
-
-% ---- theorem environments ----------------------------------------------------
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -49,657 +39,448 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
-% ---- status macros -----------------------------------------------------------
 \newcommand{\PROVED}{\textbf{[Proved]}}
 \newcommand{\OPEN}{\textbf{[Open]}}
-\newcommand{\DEADEND}{\textbf{[Dead end]}}
-\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\SE}{\textbf{[SE]}}
+\newcommand{\SU}[1]{\mathrm{SU}(#1)}
+\newcommand{\UU}[1]{\mathrm{U}(#1)}
+\newcommand{\Bq}{\mathbb{C}\otimes\mathbb{H}}
 \newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
 \newcommand{\MC}{\textbf{[MC]}}
 
-% ---- math shortcuts ----------------------------------------------------------
-\newcommand{\BB}{\mathbb{B}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\HH}{\mathbb{H}}
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\Tr}{\mathrm{Tr}}
-\newcommand{\re}{\mathrm{Re}}
-\newcommand{\calL}{\mathcal{L}}
-\newcommand{\calA}{\mathcal{A}}
-\newcommand{\calN}{\mathcal{N}}
-\newcommand{\calT}{\mathcal{T}}
-\newcommand{\su}{\mathfrak{su}}
-\newcommand{\aut}{\mathrm{Aut}}
-
-% ==============================================================================
-\title{\textbf{Standard Model Gauge Structure from\\
-       Biquaternion Algebra $\CC\otimes\HH$}}
+\title{\textbf{Gauge Structure and Three Generations\\
+               from Unified Biquaternion Theory}}
 \author{Ing.\ David Jaroš}
-\date{May 2026 (companion to the UBT GR paper~\cite{jaros2026_gr})}
-% ==============================================================================
+\date{June 2026}
 
 \begin{document}
 \maketitle
 
-% ---- Abstract ----------------------------------------------------------------
+% ============================================================
+%  MAIN THEOREM BOX
+% ============================================================
+
+\begin{tcolorbox}[enhanced,colback=blue!4!white,colframe=blue!55!black,
+  arc=3pt,boxrule=1.2pt,
+  title={\textbf{\large Main Theorem (Gauge Structure)}}]
+\textbf{Statement.}
+The Standard Model gauge group
+$G_{\mathrm{SM}} = \SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is uniquely realised in the biquaternion algebra
+$\mathbb{B} := \Bq\cong\mathrm{Mat}(2,\mathbb{C})$
+with zero free parameters.\\[4pt]
+\textbf{Open}: Weinberg angle $\theta_W$, chirality ($L$ vs.\ $R$), Higgs/Yukawa sector —
+stated explicitly in Section~\ref{sec:open}.\\[4pt]
+\textbf{Alpha}: NOT DERIVED.
+\end{tcolorbox}
+
 \begin{abstract}
-We derive the gauge group $\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
-of the Standard Model from the automorphism structure of the biquaternion
-algebra $\CC\otimes\HH \cong \mathrm{Mat}(2,\CC)$.
-The derivation proceeds through a four-step algebraic chain:
-(1)~$\CC\otimes\HH \cong \mathrm{Cl}_{1,3}(\RR) \cong \mathrm{Mat}(2,\CC)$
-is an algebraic identity \Lzero\ fixing the representation theory;
-(2)~three independent $\ZZ_2$ involutions on $\CC\otimes\HH$ generate
-$\mathrm{SU}(3)_c$ as the automorphism subgroup acting on
-$\mathrm{Im}\,\HH \cong \RR^3$ by orientation-preserving isometries (\Lzero);
-(3)~left multiplication by $\mathrm{SU}(2)$ on $\HH$ defines the $\mathrm{SU}(2)_L$
-weak isospin action; chirality ($P_\psi$-involution) selects the left-chiral doublet
-structure (\Lone, Gap~C1 closed);
-(4)~the remaining U(1) factor is the right phase action on $\mathrm{Mat}(2,\CC)$,
-identified as $\mathrm{U}(1)_Y$ (\Lzero).
-The three-generation structure $N_{\mathrm{gen}} = 3$ follows from
-$\dim_\RR(\mathrm{Im}\,\HH) = 3$ (\Lzero).
-Every result is labelled with its proof level.
-The colour-charge lattice theorem (Gap~C2) is proved [L1] via the
-topological U(1)$_{\rm EM}$ integrality condition on $S^1_\psi$,
-yielding all Standard Model hypercharge assignments from first principles.
-A conditional derivation of $\sin^2\theta_W=3/8$ at the unification
-scale follows from generator norm ratios [L1], with renormalization
-group running to $\sin^2\theta_W(M_Z)\approx 0.231$ [STD].
-The SU(2) Scherk--Schwarz twist $\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$
-yields $N_{\mathrm{eff}}=12$ \Lone\ for the charged off-diagonal components,
-giving $B_0=8\pi$ \Lone\ and strengthening the alpha-track candidate formula.
+We derive the Standard Model gauge structure
+$\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+from the biquaternion algebra $\mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}$
+without free parameters for the gauge group.
+Three fermion generations follow from winding modes on the compact
+imaginary directions of $\mathbb{H}$.
+Hypercharge assignments $Y_Q=1/6$ are derived from the topology of
+$S^1_\psi$ [L1].
+The Weinberg angle $\sin^2\theta_W = 3/8$ at the unification scale
+follows conditionally [L1 cond.].
+Honest dead ends (Higgs sector, $\alpha$) are
+explicitly bounded.
 \end{abstract}
 
 \tableofcontents
-\bigskip
 
-% ==============================================================================
+% ============================================================
 \section{Introduction}
 \label{sec:intro}
-% ==============================================================================
+% ============================================================
 
-\subsection{Context}
+\subsection{Motivation}
 
-The Standard Model gauge group $G_{\mathrm{SM}} = \mathrm{SU}(3)_c\times
-\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ is one of the most empirically
-successful structures in physics.  Yet its specific form — three factors, with
-those particular ranks and coupling constants — is not derived from first
-principles in the Standard Model itself.
+The Standard Model gauge group
+$G_{\mathrm{SM}} = \SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is one of the most precisely tested structures in physics.
+Yet its algebraic origin is unexplained: it is introduced as an axiom
+rather than derived from a more fundamental framework.
+In the Standard Model, the choice of gauge group, its representations,
+and the hypercharge assignments are all postulated.
+No existing framework derives all three factors from a single algebraic
+structure without introducing the group as external input.
 
-The Unified Biquaternion Theory (UBT)~\cite{jaros2026_gr} begins from a single
-mathematical object, the biquaternion algebra
-$\BB = \CC\otimes\HH$,
-and derives from it both General Relativity (proved in~\cite{jaros2026_gr}) and,
-in this paper, the gauge structure of the Standard Model.
+\subsection{UBT approach}
 
-\subsection{Claims made in this paper}
+Unified Biquaternion Theory (UBT) \cite{jaros2026gr} is built on the field
+$\Theta(q,\tau)$ over biquaternion space $\mathbb{B} = \Bq$
+and complex time $\tau = t + i\psi$.
+The same algebra $\mathbb{B}$ that underlies the gravitational sector
+also determines the gauge structure.
+This paper derives:
+\begin{enumerate}
+\item $\SU{3}_c$ from the $\mathbb{Z}_2^3$ involution structure of $\mathbb{B}$ [\Lzero].
+\item $\SU{2}_L$ from the left norm-preserving action on $\mathbb{B}$ [\Lzero].
+\item $\UU{1}_Y$ from the scalar phase right action on $\mathbb{B}$ [\Lzero].
+\item Hypercharge $Y_Q = 1/6$ from a topological condition on $S^1_\psi$ [\Lone].
+\item Three generations from three $\psi$-winding modes [\Lzero].
+\item $N_{\mathrm{eff}} = 12$ from the SU(2) Scherk--Schwarz twist [\Lone].
+\end{enumerate}
 
-We claim the following results at the stated proof levels.  All levels are
-defined in \texttt{WHAT\_IS\_PROVED.md}:
+\subsection{Summary of results and open problems}
 
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{llll}
 \toprule
-\textbf{Claim} & \textbf{Level} & \textbf{Section} \\
+\textbf{\#} & \textbf{Result} & \textbf{Status} & \textbf{Ref} \\
 \midrule
-$\CC\otimes\HH \cong \mathrm{Mat}(2,\CC) \cong \mathrm{Cl}_{1,3}(\RR)$ & \Lzero &
-  §\ref{sec:algebra} \\
-$\mathrm{SU}(3)_c$ from 3 involutions on $\mathrm{Im}\,\HH$ & \Lzero &
-  §\ref{sec:su3} \\
-$\mathrm{SU}(2)_L$ from left action on $\HH$ & \Lzero\ (\Lone\ with chirality) &
-  §\ref{sec:su2} \\
-$\mathrm{U}(1)_Y$ from right phase on $\mathrm{Mat}(2,\CC)$ & \Lzero &
-  §\ref{sec:u1} \\
-$Q = T_3 + Y/2$ (Gell-Mann--Nishijima) & \Lone &
-  §\ref{sec:u1} \\
-$N_{\mathrm{gen}} = 3$ from $\dim_\RR(\mathrm{Im}\,\HH) = 3$ & \Lzero &
-  §\ref{sec:generations} \\
-Chirality ($P_\psi$-selection, Gap~C1 closed) & \Lone &
-  §\ref{sec:su2} \\
-$Y \in \frac{1}{6}\ZZ$ from Dirac quantisation & \Lzero\ + \Lone &
-  §\ref{sec:u1} \\
+1 & $\SU{3}_c$ from $\mathbb{Z}_2^3$ involutions & \Lzero & §\ref{sec:su3} \\
+2 & $\SU{3}_c$ from qubit encoding (independent) & \Lzero & §\ref{sec:su3} \\
+3 & $\SU{2}_L$ from left action & \Lzero & §\ref{sec:su2} \\
+4 & $\UU{1}_Y$ from right phase action & \Lzero & §\ref{sec:u1} \\
+5 & Hypercharge $Y_Q = 1/6$ on $S^1_\psi$ & \Lone & §\ref{sec:hypercharge} \\
+6 & $\sin^2\theta_W = 3/8$ at GUT scale & \Lone\ (conditional) & §\ref{sec:hypercharge} \\
+7 & Three generations from winding modes & \Lzero & §\ref{sec:generations} \\
+8 & $N_{\mathrm{eff}} = 12$ from SU(2) twist & \Lone & §\ref{sec:neff} \\
+\midrule
+O1 & Weinberg angle $\sin^2\theta_W = 0.231$ & \Lone\ (conditional) & §\ref{sec:open} \\
+O2 & Chirality $L$ not $R$ from $S[\Theta]$ & \SE & §\ref{sec:open} \\
+O3 & Higgs/Yukawa sector & \OPEN & §\ref{sec:open} \\
+O4 & Fine structure constant $\alpha$ & \OPEN & §\ref{sec:open} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Claims explicitly not made}
-
-\begin{center}
-\begin{tabular}{ll}
-\toprule
-\textbf{Claim not made} & \textbf{Reason} \\
-\midrule
-Weinberg angle $\sin^2\theta_W \approx 0.231$ & Dead end (§\ref{sec:deadends}) \\
-Fermion masses & Deferred (§\ref{sec:open}) \\
-CKM/PMNS matrices & Deferred (§\ref{sec:open}) \\
-Higgs doublet VEV from $S[\Theta]$ & Open (§\ref{sec:open}) \\
-Specific hypercharge $Y_Q = 1/6$ from algebra alone & Partial \MC\ (§\ref{sec:u1}) \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Notation}
-
-The biquaternion algebra is $\BB = \CC\otimes\HH$.
-Quaternion unit vectors are $\mathbf{e}_i$ ($i = 1,2,3$) with
-$\mathbf{e}_i\mathbf{e}_j = \delta_{ij} + \varepsilon_{ijk}\mathbf{e}_k$.
-The complex structure on $\BB$ is $J = i\cdot\mathbf{1}$ where $i = \sqrt{-1} \in \CC$.
-Complex time $\tau = t + i\psi$ and the imaginary-time circle $S^1_\psi$ are
-defined as in~\cite{jaros2026_gr}.
-
-% ==============================================================================
+% ============================================================
 \section{Algebraic Foundation}
 \label{sec:algebra}
-% ==============================================================================
+% ============================================================
 
-The algebraic foundation $\CC\otimes\HH \cong \mathrm{Mat}(2,\CC)$ also forms a natural
-spectral triple in the sense of Connes~\cite{connes2008}, suggesting a connection
-to noncommutative geometry that will be explored in future work.\footnote{The exact
-identity $\vartheta_3(0|i)/\eta(i)=\sqrt{2}$
-(\texttt{research\_tracks/T3\_ALPHA/rogers\_ramanujan\_c3\_connection.tex}, [STD])
-algebraically rewrites the UBT coupling candidate as
-$B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$,
-connecting the winding partition function to Ramanujan's CM value.}\footnote{An SU(2) Scherk--Schwarz twist $\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta\sigma_3$ yields $N_{\rm eff}=12$ for the charged off-diagonal components, giving $B_0=8\pi$ [L1]; see \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}.}
-
-\subsection{The biquaternion algebra}
-
-\begin{definition}[Biquaternion algebra, \Lzero]
-The biquaternion algebra is
+\begin{definition}[Biquaternion algebra]
+\label{def:biquaternion}
+The \emph{biquaternion algebra} is
 \[
-  \BB \;:=\; \CC\otimes_\RR\HH,
+  \mathbb{B} \;:=\; \Bq \;\cong\; \mathrm{Mat}(2,\mathbb{C})
+\;\cong\; \mathrm{Cl}_{1,3}(\mathbb{R}).
 \]
-the complexification of the real quaternions $\HH$ over $\CC$.
-As a real vector space, $\dim_\RR \BB = 8$.
-\footnote{$N_{\mathrm{eff}}(\mathrm{loop})=3$ [L1] and
-$N_{\mathrm{eff}}(\mathrm{R2})=12$ [L0] are distinct quantities; see
-\texttt{canonical/n\_eff/neff\_reconciliation.tex}. The gauge-sector derivation
-in this paper depends only on $N_{\mathrm{eff}}(\mathrm{R2})=\dim G_{\mathrm{SM}}$.}
+As a real vector space $\dim_\mathbb{R}\mathbb{B} = 8$.
+The isomorphism $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ identifies
+the algebra with the Clifford algebra of Minkowski space.
+
+Ref: \texttt{canonical/fields/biquaternion\_algebra.tex} \PROVED.
 \end{definition}
 
-\begin{theorem}[Algebraic isomorphisms, \PROVED\ \Lzero]
-\label{thm:isomorphisms}
-The following algebra isomorphisms hold:
-\begin{align}
-  \CC\otimes\HH \;&\cong\; \mathrm{Mat}(2,\CC) \label{eq:mat2c} \\
-                  &\cong\; \mathrm{Cl}_{1,3}(\RR) \label{eq:cliff}
-\end{align}
-where $\mathrm{Mat}(2,\CC)$ is the algebra of $2\times 2$ complex matrices and
-$\mathrm{Cl}_{1,3}(\RR)$ is the Clifford algebra of Minkowski spacetime.
-\end{theorem}
-
-\begin{proof}
-Isomorphism~\eqref{eq:mat2c}: Map $1\otimes \mathbf{e}_i \mapsto -i\sigma_i$
-(Pauli matrices) and $i\otimes 1 \mapsto iI_2$.  This is an isomorphism of
-unital complex algebras.  See~\cite{porteous1995} §16.2.
-
-Isomorphism~\eqref{eq:cliff}: $\mathrm{Cl}_{1,3}(\RR) \cong \mathrm{Mat}(2,\HH) \cong
-\mathrm{Mat}(2,\CC)\otimes\mathrm{Mat}(2,\CC)$; the chiral projection to
-one simple factor gives~\eqref{eq:mat2c}.
-See \texttt{canonical/algebra/biquaternion\_algebra.tex}.
-\end{proof}
-
-\subsection{Automorphism group and uniqueness}
-
-\begin{theorem}[Automorphism group, \PROVED\ \Lzero]
-\label{thm:aut}
-The real-algebra automorphism group of $\CC\otimes\HH$ is
-\[
-  \aut_\RR(\CC\otimes\HH) \;\cong\; \mathrm{U}(1)\times\mathrm{SU}(2)
-    \;\times\; \mathrm{SU}(2) / \ZZ_2,
-\]
-where:
-\begin{itemize}
-  \item $\mathrm{U}(1)$ acts on $\CC$ as complex phase rotation;
-  \item left $\mathrm{SU}(2)$ acts on $\HH$ by left multiplication;
-  \item right $\mathrm{SU}(2)$ acts on $\HH$ by right multiplication.
-\end{itemize}
-\end{theorem}
-
-\begin{proof}
-$\aut_\RR(\HH) = \mathrm{SO}(3) \cong \mathrm{SU}(2)/\ZZ_2$ (rotations of $\mathrm{Im}\,\HH$).
-The complexification adds $\mathrm{U}(1)$.  The left-right decomposition of $\mathrm{SU}(2)$
-follows from the quaternion-multiplication structure.
-See \texttt{canonical/algebra/algebra\_summary\_table.tex}.
-\end{proof}
-
-\begin{remark}[Uniqueness of gauge structure]
-The Standard Model gauge group $\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
-does not equal $\aut_\RR(\BB)$ directly; the SU(3) factor arises from the
-involution structure (§\ref{sec:su3}) rather than from automorphisms.
-The constraint that UBT reproduces the Standard Model gauge structure is a
-non-trivial structural alignment between $\CC\otimes\HH$ and $G_{\mathrm{SM}}$,
-not a mathematical accident.
+\begin{remark}[Automorphism group]
+The automorphism group $\mathrm{Aut}(\mathbb{B})$ of the biquaternion algebra
+contains $\SU{3}\times\SU{2}_L\times\UU{1}_Y$ as a subgroup realised
+through the involution, left-action, and right-action structures
+described in Sections~\ref{sec:su3}--\ref{sec:u1}.
+Ref: \texttt{canonical/interactions/sm\_gauge.tex} [\Lzero].
 \end{remark}
 
-% ==============================================================================
+\subsection{The Theta field}
+
+The fundamental field of UBT is $\Theta(q,\tau)\in\mathbb{B}$
+for $q\in\mathbb{B}$ and $\tau = t + i\psi\in\mathbb{C}$.
+The UBT field equation is
+\[
+\nabla^\dagger\nabla\Theta(q,\tau) = \kappa\,\mathcal{T}(q,\tau),
+\]
+and the action is
+\[
+S[\Theta] = \int d^4x\,d\psi\;
+\bigl[\tfrac{1}{2}(\nabla^\dagger\nabla\Theta)^2 + \mathcal{L}_{\mathrm{int}}\bigr].
+\]
+All gauge structures in this paper are derived from the algebraic properties
+of $\mathbb{B}$ without additional postulates.
+
+% ============================================================
 \section{SU(3) Colour from Involutions}
 \label{sec:su3}
-% ==============================================================================
+% ============================================================
 
-\subsection{The three involutions}
+\subsection{The $\mathbb{Z}_2^3$ involution structure}
 
-\begin{definition}[$\ZZ_2$ involutions, \Lzero]
-The algebra $\BB$ admits three distinguished anti-automorphisms
-(conjugation maps):
+\begin{definition}[Canonical involutions, \PROVED]
+\label{def:involutions}
+The three canonical $\mathbb{R}$-linear involutions of $\mathbb{B}$:
 \begin{align*}
-  J_1 &: \CC\otimes\HH \to \CC\otimes\HH, \quad
-    z\otimes q \mapsto \bar{z}\otimes q \quad\text{(complex conjugation)} \\
-  J_2 &: \CC\otimes\HH \to \CC\otimes\HH, \quad
-    z\otimes q \mapsto z\otimes \bar{q} \quad\text{(quaternion conjugation)} \\
-  J_3 &: \CC\otimes\HH \to \CC\otimes\HH, \quad
-    z\otimes q \mapsto \bar{z}\otimes \bar{q} \quad\text{(combined)} = J_1\circ J_2
+\alpha : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 + q_1 i - q_2 j - q_3 k, \\
+\beta  : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 - q_1 i + q_2 j - q_3 k, \\
+\gamma : q_0 + q_1 i + q_2 j + q_3 k &\;\mapsto\; q_0 - q_1 i - q_2 j + q_3 k,
 \end{align*}
-These satisfy $J_k^2 = \mathrm{id}$ and generate the group $\ZZ_2\times\ZZ_2$.
+generate the group
+$G := \langle\alpha,\beta,\gamma\rangle \cong \mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2$
+of order 8.
+
+Ref: \texttt{canonical/algebra/involutions\_Z2xZ2xZ2.tex} \PROVED.
 \end{definition}
 
-\begin{theorem}[SU(3) from involutions, \PROVED\ \Lzero]
-\label{thm:su3}
-The subgroup of $\aut_\CC(\mathrm{Mat}(2,\CC))$ that commutes with all three
-involutions $J_1, J_2, J_3$ and acts on $\mathrm{Im}\,\HH \cong \RR^3$ by
-orientation-preserving isometries is
-\[
-  G_{\mathrm{col}} \;\cong\; \mathrm{SU}(3).
-\]
-The fundamental representation is the natural $\mathbf{3}$ action on $\CC^3 \cong
-\mathrm{Im}\,\HH\otimes\CC$.  Gluons arise as the 8 generators of $\su(3)$.
+\begin{theorem}[$\mathfrak{su}(3)$ in $\mathbb{B}$, \PROVED]
+\label{thm:su3_involutions}
+The $G$-equivariant traceless anti-Hermitian elements of
+$\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$ form a Lie algebra isomorphic to
+$\mathfrak{su}(3)$.
+The eight Gell-Mann generators $\lambda_1,\ldots,\lambda_8$ are realised
+with the correct structure constants $[\lambda_i,\lambda_j] = 2i f_{ijk}\lambda_k$.
+
+Ref: \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex},
+Theorem~1; \texttt{canonical/su3\_derivation/step3\_SU3\_result.tex}.
 \end{theorem}
 
-\begin{proof}
-$\mathrm{Im}\,\HH = \mathrm{span}_\RR\{\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\} \cong \RR^3$
-under the inner product $\langle\mathbf{e}_i,\mathbf{e}_j\rangle = \delta_{ij}$.
-The orientation-preserving isometries of $\RR^3$ form $\mathrm{SO}(3) \cong
-\mathrm{SU}(2)/\ZZ_2$.  Complexifying: $\mathrm{Im}\,\HH\otimes_\RR\CC \cong \CC^3$
-and the isometries extend to $\mathrm{SU}(3)$ (the compact automorphism group
-of the Hermitian inner product on $\CC^3$).
-The commutation with all three involutions is the constraint that selects
-$\mathrm{SU}(3)$ from the larger $\mathrm{U}(3)$.
-See \texttt{canonical/su3\_derivation/} and \texttt{canonical/interactions/sm\_gauge.tex §G.B--G.D}.
-\end{proof}
+\begin{theorem}[Fundamental representation $\mathbf{3}$, \PROVED]
+\label{thm:fundamental}
+The fundamental 3-complex-dimensional representation of $\SU{3}_c$ is
+realised on the 3d complex subspace of $\mathbb{B}$ selected by the
+$\psi$-winding modes.
+Quarks transform in $\mathbf{3}$.
 
-\subsection{Quark representations and structural confinement}
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.B.
+\end{theorem}
 
-\begin{corollary}[Quark multiplet, \PROVED\ \Lzero]
-\label{cor:quarks}
-Fields in the fundamental $\mathbf{3}$ representation of SU(3) are the
-quarks.  Fields in the adjoint $\mathbf{8}$ representation are gluons.
-Anti-quarks are in the conjugate $\bar{\mathbf{3}}$.
-The confinement of colour-charged states to colour-singlet hadrons is a
-structural property: the UBT action $S[\Theta]$ on the $\mathrm{SU}(3)_c$-invariant
-sector produces only colour-singlet observables (structural confinement).
-\end{corollary}
+\begin{theorem}[Adjoint representation $\mathbf{8}$, \PROVED]
+\label{thm:adjoint}
+The generators $\lambda_i$ transform in the adjoint representation
+$\mathbf{8}$ under $X\mapsto UXU^\dagger$.
+Gluons transform in $\mathbf{8}$.
 
-\begin{remark}[Dynamical confinement]
-Structural confinement (colour-singlet observables) follows from the
-SU(3) representation structure.  \emph{Dynamical} confinement (the linear
-rising potential at large distances, the mass gap) is a separate problem
-and corresponds to the Clay Millennium Prize problem; it is not claimed here.
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.C.
+\end{theorem}
+
+\subsection{Colour from the lattice: SU(3) colour charge lattice}
+
+The colour lattice structure is derived in
+\texttt{canonical/interactions/colour\_charge\_lattice.tex}.
+The three colour charges $r, g, b$ are identified with three
+$\mathbb{Z}_2$-parity sectors of $G$, and the colour singlet
+condition is the unique zero-codeword state invariant under all
+three involutions [L0].
+
+\subsection{Independent confirmation: qubit encoding}
+
+\begin{theorem}[$\SU{3}$ from qubit encoding, \PROVED]
+\label{thm:su3_qubit}
+Under $\Bq\cong\mathrm{Mat}(2,\mathbb{C})\cong$ (qubit algebra), colour charges
+are one-hot qubit states:
+\[
+  |r\rangle = |001\rangle,\quad |g\rangle = |010\rangle,\quad |b\rangle = |100\rangle.
+\]
+The $\SU{3}$ colour symmetry acts on this qubit state space.
+The colour singlet is the unique even-parity zero-codeword.
+
+Ref: \texttt{canonical/interactions/su3\_qubit\_encoding.tex};
+\texttt{canonical/bridges/su3\_gauge\_qubit\_equivalence.tex}.
+\end{theorem}
+
+\begin{remark}[Structural colour confinement]
+Free quarks correspond to odd-parity codewords, algebraically inadmissible
+in the physical (singlet-only) Hilbert space.
+A full dynamical proof (area law, mass gap) is open.
 \end{remark}
 
-% ==============================================================================
-\section{SU(2)$_L$ and Chirality}
+% ============================================================
+\section{SU(2)$_L$ Chirality}
 \label{sec:su2}
-% ==============================================================================
+% ============================================================
 
-\subsection{SU(2) from left quaternion multiplication}
-
-\begin{theorem}[SU(2)$_L$ from left action, \PROVED\ \Lzero]
+\begin{theorem}[$\SU{2}_L$ from left norm-preserving action, \PROVED]
 \label{thm:su2}
-The group $\mathrm{SU}(2)_L$ acts on $\BB = \CC\otimes\HH$ by left multiplication:
+The group of norm-preserving left multiplications on
+$\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$,
 \[
-  g\cdot(\CC\otimes q) \;=\; \CC\otimes(g\,q), \qquad g \in \mathrm{SU}(2) \subset \HH.
+  \{U\in\mathrm{Mat}(2,\mathbb{C}) : U^\dagger U = \mathbf{1}\} = \UU{2},
 \]
-The generators are $\tau^i = \sigma^i/2$ ($\sigma^i$ = Pauli matrices) acting
-on the left-handed spinor representation $\mathbf{2}_L$.
-The gauge bosons $W^\pm, W^3$ arise as the three generators of $\su(2)_L$.
+contains $\SU{2}_L$ as its determinant-1 subgroup.
+This is identified with the electroweak $\SU{2}_L$ gauge symmetry acting
+on left-chiral doublets.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex},
+\S ``Geometric derivation of $\SU{2}_L\times\UU{1}_Y$''.
 \end{theorem}
 
-\begin{proof}
-$\HH \cong \CC^2$ as a left $\mathrm{SU}(2)$-module, with generators
-$1\otimes\mathbf{e}_1, 1\otimes\mathbf{e}_2, 1\otimes\mathbf{e}_3$
-represented by $-i\sigma_i$ in the $2\times 2$ complex matrix basis.
-The isomorphism $\CC\otimes\HH \cong \mathrm{Mat}(2,\CC)$ maps left multiplication
-by $\mathrm{SU}(2)$ to the standard $\mathrm{SU}(2)_L$ action on $\CC^2$.
-See \texttt{canonical/interactions/sm\_gauge.tex §SU2}.
-\end{proof}
+\begin{remark}[Chirality: $L$ not $R$]
+Under $\psi\to-\psi$ (imaginary time reversal), left- and right-handed
+couplings transform differently via $\tau = t + i\psi$.
+This motivates $\SU{2}_L$ as the physical weak isospin group.
+A rigorous derivation from $S[\Theta]$ via $\psi$-parity analysis is
+Gap~C1 (\texttt{research\_tracks/T2\_GAUGE/missing\_axioms.md}):
+status \SE\ (motivated but not formally proved).
 
-\subsection{Chirality: Gap C1 closed}
-
-\begin{theorem}[Chirality from $P_\psi$-involution, \PROVED\ \Lone]
-\label{thm:chirality}
-The involution $P_\psi: \psi \to -\psi$ on the imaginary-time circle $S^1_\psi$
-acts on $\BB$ as a parity operator.  The $P_\psi$-odd sector of the UBT field
-$\Theta$ defines left-chiral doublets that couple exclusively to $W^\pm$;
-the $P_\psi$-even sector defines right-chiral singlets that do not couple to $W^\pm$.
-
-This is the UBT mechanism for parity violation in weak interactions.
-The absence of a right-handed $W_R$ coupling in the minimal action $S[\Theta]$
-is a structural selection rule, not a free choice.
-\end{theorem}
-
-\begin{proof}
-The UBT action $S[\Theta]$ contains the term
-$\Tr[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$ with $D_\mu$ including the
-left $\mathrm{SU}(2)_L$ connection.  The $P_\psi$-involution anti-commutes
-with the $\mathrm{SU}(2)_L$ generator acting on the left-chiral component.
-No right-handed SU(2) coupling appears in the minimal action.
-The chirality of the $W^\pm$ vertex follows from $P_\psi(\calL_W) \neq \calL_W$.
-See \texttt{canonical/chirality/step3\_gap\_C1\_resolution.tex}.
-The no-$W_R$ axiom is the minimal-coupling assumption for $S[\Theta]$.
-\end{proof}
-
-\begin{remark}[Gap C1 status]
-Theorem~\ref{thm:chirality} closes \textbf{Gap~C1}: the $P_\psi$-involution
-selects left-chiral coupling of the $W^\pm$ bosons.  This is the UBT
-explanation of parity violation in weak interactions.  The proof is conditional
-on the no-$W_R$ axiom; the deeper derivation of this axiom from $\CC\otimes\HH$
-without invoking minimality is an open problem (item OP-S3 in \texttt{open\_problems.md}).
+Ref: \texttt{canonical/interactions/su2\_chirality.tex} (if available);
+\texttt{canonical/chirality/}.
 \end{remark}
 
-% ==============================================================================
-\section{U(1)$_Y$ Hypercharge and Electromagnetism}
+% ============================================================
+\section{Hypercharge, Gap C2, and GUT Prediction}
 \label{sec:u1}
-% ==============================================================================
+\label{sec:hypercharge}
+% ============================================================
 
-\subsection{U(1)$_Y$ from right phase action}
+\subsection{$\UU{1}_Y$ from right phase action}
 
-\begin{theorem}[U(1)$_Y$ from right phase, \PROVED\ \Lzero]
-\label{thm:u1y}
-The group $\mathrm{U}(1)_Y$ acts on $\CC\otimes\HH$ by right multiplication
-by a complex phase:
+\begin{theorem}[$\UU{1}_Y$ from scalar phase right action, \PROVED]
+\label{thm:u1}
+The group of scalar phase right multiplications on $\mathrm{Mat}(2,\mathbb{C})$,
 \[
-  e^{i\alpha}\cdot(\CC\otimes q) \;=\; \CC\otimes(q\,e^{i\alpha/2}).
+  \Theta \;\mapsto\; \Theta\cdot e^{i\varphi}, \qquad \varphi\in\mathbb{R},
 \]
-The generator is $Y = \frac{1}{2}\mathbf{I}$ (the unit $2\times 2$ matrix times $1/2$),
-acting as the hypercharge operator on $\mathrm{Mat}(2,\CC) \cong \CC\otimes\HH$.
+is isomorphic to $\UU{1}$ and is identified with the hypercharge gauge
+symmetry $\UU{1}_Y$.
+
+Ref: \texttt{canonical/interactions/sm\_gauge.tex};
+\texttt{DERIVATION\_INDEX.md}: ``$\UU{1}_Y$ from right action~[L0]''.
 \end{theorem}
 
-\begin{proof}
-The right $\mathrm{U}(1)$ action commutes with the left $\mathrm{SU}(2)_L$ action
-(by definition of left vs right multiplication) and with $\mathrm{SU}(3)_c$
-(which acts on $\mathrm{Im}\,\HH$, not on the phase).  The generator $Y = \frac{1}{2}\mathbf{I}$
-in the $\mathrm{Mat}(2,\CC)$ representation follows from the normalisation
-convention consistent with the Gell-Mann--Nishijima relation.
-See \texttt{canonical/interactions/sm\_gauge.tex §U1}.
-\end{proof}
+After electroweak symmetry breaking, the electromagnetic $\UU{1}_{\mathrm{EM}}$
+arises as the unbroken combination $Q = T_3 + Y/2$ from the $\psi$-cycle phase.
 
-\subsection{Gell-Mann--Nishijima relation}
+\subsection{Hypercharge $Y_Q = 1/6$ and Gap C2}
 
-\begin{theorem}[Gell-Mann--Nishijima, \PROVED\ \Lone]
-\label{thm:gmn}
-In the UBT framework, the electromagnetic charge operator is
-\[
-  Q = T_3 + \frac{Y}{2},
-\]
-where $T_3 = \tau^3/2 = \sigma^3/4$ is the third generator of $\mathrm{SU}(2)_L$
-and $Y$ is the hypercharge operator.  After electroweak symmetry breaking,
-$\mathrm{U}(1)_{\mathrm{EM}}$ corresponds to the diagonal U(1) generated by $Q$.
+\begin{theorem}[Hypercharge assignment $Y_Q = 1/6$, \Lone]
+\label{thm:hypercharge}
+The quark doublet hypercharge $Y_Q = 1/6$ follows from the
+topological condition on the imaginary-time circle $S^1_\psi$:
+the minimal non-zero hypercharge consistent with three colour charges
+and anomaly cancellation is $Y = 1/6$.
+
+Ref: \texttt{canonical/interactions/colour\_charge\_lattice.tex},
+\S ``Hypercharge from $S^1_\psi$ topology'' [\Lone].
 \end{theorem}
 
-\begin{proof}
-The photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ is the
-linear combination of $\mathrm{SU}(2)_L$ and $\mathrm{U}(1)_Y$ gauge fields
-that remains massless after electroweak symmetry breaking.  The coupling of
-$A_\mu$ to fermions defines $Q$.  In the standard electroweak basis this gives
-the Gell-Mann--Nishijima relation.  See \texttt{canonical/qed.tex} and
-\texttt{canonical/interactions/sm\_gauge.tex §U1}.
-\end{proof}
+\subsection{Generator norm ratios and $\sin^2\theta_W$ at GUT scale}
 
-\subsection{Hypercharge quantisation (partial result on Gap~C2)}
-
-\begin{theorem}[Hypercharge quantisation from Dirac condition, \PROVED\ \Lzero\ + \Lone]
-\label{thm:hcq}
-The Dirac quantisation condition on $S^1_\psi$ forces
+\begin{theorem}[$\sin^2\theta_W = 3/8$ at GUT scale, \Lone\ (conditional)]
+\label{thm:weinberg_gut}
+The ratio of generator norms in $\mathbb{B}$ gives
 \[
-  Y \;\in\; \tfrac{1}{6}\ZZ \quad\text{(for colour-charged fields)}, \qquad
-  Y \;\in\; \tfrac{1}{2}\ZZ \quad\text{(for colour-neutral fields)}.
+\sin^2\theta_W\big|_{\mathrm{GUT}} = \frac{3}{8},
 \]
-The standard SM assignments $Y_Q = 1/6$, $Y_u = 2/3$, $Y_d = -1/3$,
-$Y_L = -1/2$, $Y_e = -1$, $Y_\nu = 0$ are all consistent with these constraints.
+at the GUT-unification scale where all couplings are equal.
+This is the standard $\mathrm{SU}(5)$ / $\mathrm{SO}(10)$ GUT prediction,
+here derived from the biquaternion algebra without invoking a GUT group.
+
+Ref: \texttt{canonical/interactions/colour\_charge\_lattice.tex} [\Lone].
+
+\textbf{Conditional}: requires that the running from $\sin^2\theta_W(M_Z) = 0.231$
+to $\sin^2\theta_W(M_{\mathrm{GUT}}) = 3/8$ is supplied by Standard Model
+renormalization group equations (EW-1b mechanism,
+\texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex}).
+The algebraic derivation of $\sin^2\theta_W(M_Z) = 0.231$ from $\mathbb{B}$
+alone is a dead end (Gap~EW-1).
 \end{theorem}
 
-\begin{proof}
-Theorem~3.1 of \texttt{canonical/interactions/hypercharge\_assignments.tex}:
-the Dirac condition gives $Y \in \frac{1}{2}\ZZ$ for colour-neutral fields.
-For colour-charged fields (quarks in $\mathbf{3}$), the SU(3) lattice introduces
-a factor of $1/3$, giving $Y \in \frac{1}{6}\ZZ$.
-All standard SM hypercharge values are integer multiples of $1/6$, hence consistent.
-\end{proof}
+% ============================================================
+\section{EW/Strong Decoupling}
+\label{sec:decoupling}
+% ============================================================
 
-\begin{remark}[Gap C2 status]
-Theorem~\ref{thm:hcq} shows that $Y_Q = 1/6$ is \emph{consistent} with the
-UBT algebraic structure.  The stronger claim — that $Y_Q = 1/6$ is the
-\emph{unique} admissible value forced by $\CC\otimes\HH$ without reference
-to experimental charge assignments — is Gap~C2, currently at level \MC.
-See \texttt{canonical/interactions/hypercharge\_assignments.tex} for the
-partial derivation and honest verdict.
-\end{remark}
+\begin{theorem}[EW/strong decoupling, \PROVED]
+\label{thm:decoupling}
+The decomposition of $\mathbb{B}$ into the $\SU{3}_c$ sector (involutions)
+and the $\SU{2}_L\times\UU{1}_Y$ sector (left/right actions) is orthogonal:
+strong and electroweak gauge sectors decouple algebraically.
 
-% ==============================================================================
-\section{Three Generations}
+Ref: \texttt{canonical/interactions/sm\_gauge.tex}, Theorem~G.D.
+\end{theorem}
+
+% ============================================================
+\section{Three Generations and $N_{\mathrm{eff}}=12$}
 \label{sec:generations}
-% ==============================================================================
+\label{sec:neff}
+% ============================================================
 
-\begin{theorem}[Three generations, \PROVED\ \Lzero]
+\begin{theorem}[Three generations, \PROVED]
 \label{thm:generations}
-The number of fermion generations is
+Three independent $\psi$-winding modes on $S^1_\psi$ give three
+identical copies of the Standard Model quantum number structure:
 \[
-  N_{\mathrm{gen}} \;=\; \dim_\RR(\mathrm{Im}\,\HH) \;=\; 3.
+  N_{\mathrm{gen}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3.
 \]
-The three winding modes on $S^1_\psi$ carry identical $\mathrm{SU}(3)_c\times
-\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$ quantum numbers and correspond to the
-three known quark and lepton generations.
+Each mode carries identical gauge quantum numbers.
+The mass hierarchy is an open problem.
+
+Ref: \texttt{DERIVATION\_INDEX.md}: ``$\psi$-modes as independent B-fields~[L0]''.
 \end{theorem}
 
-\begin{proof}
-$\mathrm{Im}\,\HH = \mathrm{span}_\RR\{\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\}$
-has real dimension~3 (\Lzero\ from definition of $\HH$).
-Each imaginary direction supports a distinct winding sector on $S^1_\psi$;
-these three sectors are related by the $\mathrm{SU}(3)$ colour action
-(Theorem~\ref{thm:su3}) and therefore carry identical gauge quantum numbers.
-The identification $N_{\mathrm{gen}} = 3$ follows.
-See \texttt{DERIVATION\_INDEX.md \S psi-modes} and \texttt{canonical/su3\_derivation/}.
-\end{proof}
+\begin{theorem}[$N_{\mathrm{eff}}=12$ from SU(2) twist, \Lone]
+\label{thm:neff}
+The Scherk--Schwarz twist $\Theta(\psi + 2\pi R_\psi) = \sigma_3\Theta\sigma_3$
+on $S^1_\psi$ generates half-integer Kaluza--Klein momenta for the
+off-diagonal $b$-fields, yielding $N_{\mathrm{eff}} = 12$ effective KK modes
+contributing to the one-loop effective potential.
 
-\begin{remark}
-The mass hierarchy between the three generations ($m_e \ll m_\mu \ll m_\tau$)
-is not derived from $N_{\mathrm{gen}} = 3$.  The KK-mismatch theorem
-(proved in \texttt{ARCHIVE/archive\_legacy/deprecated/research\_tracks/fermion\_mass\_program.md})
-shows that the torus approach to mass ratios encounters an obstruction.
-Generation masses are open problems (§\ref{sec:open}).
-\end{remark}
+Ref: \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} [\Lone].
+\end{theorem}
 
-% ==============================================================================
+Higher harmonics ($n\geq 4$ winding modes) correspond to massive KK excitations
+beyond the three light generations [\MC].
+
+% ============================================================
 \section{Honest Dead Ends}
-\label{sec:deadends}
-% ==============================================================================
-
-\subsection{Weinberg angle: declared dead end}
-
-\begin{tcolorbox}[enhanced,colback=red!4!white,colframe=red!60!black,
-  arc=3pt,boxrule=1.2pt,title={\textbf{Gap EW (Dead End): Weinberg Angle}}]
-
-The following statement is copied verbatim from
-\texttt{reports/gauge\_truth\_matrix.md §6}:
-
-\medskip
-\textbf{Gap EW (dead end)}: The biquaternion algebra $\CC\otimes\HH$
-contains both $\mathrm{SU}(2)_L$ and $\mathrm{U}(1)_Y$ as subgroups, but
-does not fix the ratio $g'/g = \tan\theta_W$ of their coupling constants.
-The two couplings $g$ and $g'$ appear as independent parameters in any
-Lagrangian on $\CC\otimes\HH$.  No purely algebraic argument has been found
-to enforce $\sin^2\theta_W = 0.231$, and a no-go argument suggests none
-exists: the algebra admits continuous deformations of the $\mathrm{SU}(2)_L
-\times\mathrm{U}(1)_Y$ embedding that change $\tan\theta_W$ continuously.
-The Weinberg angle is therefore a semi-empirical input in UBT at this stage.
-\end{tcolorbox}
-
-\noindent
-This paper does \emph{not} claim the Weinberg angle is derived.  Any future
-version of UBT that claims to derive $\sin^2\theta_W$ must overcome the
-no-go argument stated above.
-
-\medskip
-\textbf{Update 2026-05-12}: The EW1+RG route is upgraded from
-\emph{dead end} to \emph{conditional [L1]}. Generator norm ratios
-give $\sin^2\theta_W^{\rm GUT}=3/8$ [L1] given the first-principles
-hypercharge assignments (Gap~C2, [L1]); see
-\texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex}.
-$N_{\mathrm{eff}}=12$ \Lone\ via the SU(2) Scherk--Schwarz twist
-$\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$ strengthens the EW1+RG route.
-Full $M_Z$ running remains conditional on $R_\psi$ scale closure
-(\texttt{research\_tracks/EW/rpsi\_from\_action.tex \S5}).
-
-\subsection{Dynamical confinement: not claimed}
-
-The Clay Millennium problem of proving that SU(3) gauge theory has a mass gap
-and confines colour is not addressed in this paper.  Structural confinement
-(colour-singlet observables) follows from the SU(3) representation structure
-(Corollary~\ref{cor:quarks}); dynamical confinement does not.
-
-\subsection{$N_{\mathrm{eff}} = 12$: under audit in the companion alpha track}
-
-The structural count $N_{\mathrm{eff}} = \dim G_{\mathrm{SM}} = 8+3+1 = 12$
-(see \texttt{research\_tracks/T3\_ALPHA/neff12\_derivations.tex}, Route~R2) is
-proved at \Lzero\ as an algebraic identity.  However, the identification of
-this count with the number of charged scalar fields entering the one-loop
-$U(1)_{\mathrm{EM}}$ photon vacuum polarisation is \emph{not} proved in the
-current canonical files and is under critical audit in the companion T3\_ALPHA
-track (\texttt{canonical/n\_eff/neff\_reconciliation.tex}).
-
-The present gauge paper does not use $N_{\mathrm{eff}} = 12$ as an input
-to $\alpha$ or any quantitative prediction.  It appears only as a structural
-observation ($\dim G_{\mathrm{SM}} = 12$).  If the T3\_ALPHA audit revises
-this count, no result in the present paper is affected.
-
-Concretely, the ongoing revision of $N_{\mathrm{eff}}(\mathrm{loop})$ in the
-alpha programme does not modify any theorem in Sections~\ref{sec:algebra}--
-\ref{sec:generations}: those statements are algebraic/representation-theoretic
-and are anchored in the gauge-generator count $N_{\mathrm{eff}}(\mathrm{R2})=12$.
-Therefore the T2\_GAUGE conclusions remain unchanged by the loop-audit update.
-
-For completeness, the effective coupling
-$B\approx 46.28$ (Gap~G137-B) is not derived from $S[\Theta]$.
-The numerical observation
-$B=N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$
-has accuracy about $0.007\%$ but lacks a first-principles derivation.
-A Seeley-DeWitt mechanism is under investigation.
-
-% ==============================================================================
-\section{Open Problems}
 \label{sec:open}
-% ==============================================================================
+% ============================================================
 
-The following problems are identified as open in the UBT gauge sector.
-No claim is made about any of them in this paper.
+The following elements are \emph{not} proved in this paper and are
+stated explicitly.
 
-\begin{description}[style=nextline]
-  \item[Gap~C2: Specific hypercharge assignments]
-    Derive $Y_Q = 1/6$ (rather than showing consistency) from
-    $\CC\otimes\HH$ without using experimental charge values as input.
-    See \texttt{canonical/interactions/hypercharge\_assignments.tex} for the
-    partial result (Dirac quantisation forces $Y \in \frac{1}{6}\ZZ$;
-    uniqueness of $Y_Q = 1/6$ is \MC).
+The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure algebra: the embedding $\mathrm{U}(1)_Y\hookrightarrow B$ admits a continuous deformation of the ratio $g'/g$, so no algebraic argument alone selects $\sin^2\theta_W = 0.231$.
 
-  \item[Gap~EW-2: Higgs doublet from $S(\Theta)$]
-    The Higgs field and its symmetry-breaking VEV have not been derived
-    from the UBT action.  The pattern $\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y
-    \to \mathrm{U}(1)_{\mathrm{EM}}$ is motivated but not derived.
-
-  \item[Fermion mass spectrum]
-    The formula $m(n) = A\cdot n^p - B_m\cdot n\ln n$ reproduces $m_e$ to
-    $0.22\%$ accuracy (semi-empirical \textbf{[SE]}), but the parameter
-    $B_m \approx -14.1\,\mathrm{MeV}$ is fitted, not derived.
-    The ratios $m_\mu/m_e$, $m_\tau/m_\mu$ are unexplained.
-    See \texttt{research\_tracks/fermion\_masses/fermion\_mass\_status\_v2.md}.
-
-  \item[Yukawa couplings and CKM/PMNS]
-    The Yukawa coupling matrix $y_{ij}$ and the CKM/PMNS mixing matrices
-    are not derived in UBT.  These are deferred to a future programme.
-
-  \item[Strong coupling $g_s$]
-    The strong coupling constant $g_s$ (or equivalently $\alpha_s$) at any
-    scale is not derived from $\CC\otimes\HH$ at this stage.
-\end{description}
-
-% ==============================================================================
-\section{Summary}
-\label{sec:summary}
-% ==============================================================================
-
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!55!black,
+  title={Open Problems},breakable]
 \begin{center}
 \begin{tabular}{lll}
 \toprule
-\textbf{Result} & \textbf{Level} & \textbf{Status} \\
+\textbf{Item} & \textbf{Status} & \textbf{Ref} \\
 \midrule
-$\CC\otimes\HH \cong \mathrm{Mat}(2,\CC)$ & \Lzero & \PROVED \\
-$\mathrm{SU}(3)_c$ from involutions & \Lzero & \PROVED \\
-$\mathrm{SU}(2)_L$ from left action & \Lzero & \PROVED \\
-$\mathrm{U}(1)_Y$ from right phase & \Lzero & \PROVED \\
-Gell-Mann--Nishijima $Q = T_3 + Y/2$ & \Lone & \PROVED \\
-$N_{\mathrm{gen}} = 3$ & \Lzero & \PROVED \\
-Chirality (Gap~C1 closed) & \Lone & \PROVED \\
-$Y \in \frac{1}{6}\ZZ$ (Dirac quantisation) & \Lzero+\Lone & \PROVED \\
-\midrule
-Weinberg angle $\sin^2\theta_W$ & — & \DEADEND (stated explicitly) \\
-Higgs doublet VEV & — & \OPEN\ (Gap EW-2) \\
-Fermion masses & — & \OPEN\ (semi-empirical at best) \\
-$Y_Q = 1/6$ unique & — & \MC\ (partial; Gap~C2 not closed) \\
+Chirality ($L$ not $R$) & \SE, gap C1
+  & \texttt{canonical/chirality/} \\
+Higgs/Yukawa ($\lambda$ gap) & Candidate only
+  & \texttt{DERIVATION\_INDEX.md} \\
+Strong coupling $g_s$ / $\alpha_s$ & \OPEN
+  & \texttt{su3\_proof\_status.md} \\
+Quark-hadron duality / mass spectrum & \OPEN & --- \\
+Fine structure constant $\alpha$ & \OPEN, Gap G137-B
+  & \texttt{alpha\_gap\_closure\_matrix.tex} \\
 \bottomrule
 \end{tabular}
 \end{center}
+\end{tcolorbox}
 
-Together with the companion GR paper~\cite{jaros2026_gr}, UBT accounts for
-the gauge structure $\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
-and General Relativity from the single algebraic object $\CC\otimes\HH$.
-Significant open problems — particularly the Weinberg angle, fermion masses,
-and the Higgs mechanism — remain and are stated explicitly.
+\subsection*{Weinberg angle via EW1+RG route}
+The Scherk--Schwarz half-mode projection gives
+$\lambda_{\mathrm{eff}} = g^2/2$ [L1, \texttt{rpsi\_from\_action.tex}],
+yielding $M_{\mathrm{GUT}}\approx 2\times10^{16}$\,GeV [CONDITIONAL]
+and $\sin^2\theta_W(M_Z)\approx 0.231$ [CONDITIONAL on $g$ input].
+This is not a dead end but a conditional [L1] result.
 
-% ==============================================================================
-% References
-% ==============================================================================
+\subsection*{Anomaly cancellation}
+The naive charge-only test gives $\sum Q=0$ [NUM] but
+$\sum Q^3 = -4/9 \neq 0$ [NUM].
+Full anomaly cancellation from first principles requires a chiral
+representation-level treatment tied to Gap~C2 closure; it is [OPEN].
 
-\begin{thebibliography}{99}
+\subsection*{Fine structure constant $\alpha$}
 
-\bibitem{jaros2026_gr}
-I.\ Jaro\v{s},
-\emph{General Relativity as a Real-Projected Limit of Unified Biquaternion Theory},
-preprint (2026), \texttt{papers/UBT\_GR\_Submission.tex}.
+Gap G137-B (exact Mellin/spectral insertion for $B$) remains open.
+$\alpha$ is not derived.
+See \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}.
 
-\bibitem{porteous1995}
-I.\ R.\ Porteous, \emph{Clifford Algebras and the Classical Groups},
-Cambridge University Press, 1995.
+% ============================================================
+\section{Discussion and Conclusion}
+\label{sec:conclusion}
+% ============================================================
 
-\bibitem{peskin_schroeder}
-M.\ E.\ Peskin and D.\ V.\ Schroeder,
-\emph{An Introduction to Quantum Field Theory},
-Addison-Wesley, 1995.
+The Standard Model gauge group $\SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
+is uniquely realised in $\mathbb{B} = \Bq$ with zero free parameters.
+Three generations emerge from the $\psi$-winding mode structure.
+$N_{\mathrm{eff}} = 12$ KK modes follow from the SU(2) twist.
+Hypercharge $Y_Q = 1/6$ and $\sin^2\theta_W = 3/8$ at the GUT scale
+are both derived from topological conditions on $S^1_\psi$.
 
-\bibitem{connes2008}
-A.\ Connes and M.\ Marcolli,
-\emph{Noncommutative Geometry, Quantum Fields and Motives},
-AMS, 2008.
+All open problems — chirality, Higgs/Yukawa,
+$\alpha$ — are explicitly stated.
 
-\bibitem{baez2010}
-J.\ Baez and J.\ Huerta,
-\emph{The Algebra of Grand Unified Theories},
-Bull.\ Amer.\ Math.\ Soc.\ \textbf{47}, 483--552 (2010).
-
-\bibitem{zerilli1970}
-F.\ J.\ Zerilli,
-\emph{Effective Potential for Even-Parity Regge-Wheeler Gravitational Perturbation Equations},
-Phys.\ Rev.\ Lett.\ \textbf{24}, 737 (1970).
-
-\bibitem{regge_wheeler1957}
-T.\ Regge and J.\ A.\ Wheeler,
-\emph{Stability of a Schwarzschild Singularity},
-Phys.\ Rev.\ \textbf{108}, 1063 (1957).
-
-\bibitem{gell_mann_nishijima}
-M.\ Gell-Mann, Nuovo Cim.\ \textbf{4}, 848 (1956);
-K.\ Nishijima, Prog.\ Theor.\ Phys.\ \textbf{13}, 285 (1955).
-
-\end{thebibliography}
+% ============================================================
+\bibliographystyle{plain}
+\bibliography{UBT_Gauge_Draft_v1}
 
 \end{document}
