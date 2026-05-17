@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algebraické přístupy k unifikaci fyziky — srovnání (2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F3EE;
+      --header: #1a1a18;
+      --border: #d4d0c8;
+      --ubt-row: #EDF5EC;
+      --ok-dark: #2A6B3C;
+      --ok: #DCEED9;
+      --partial: #F7D7A6;
+      --no: #F2C2BF;
+      --neutral: #DEDEE1;
+      --pending: #2E6FB3;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #1c1c1a;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 400;
+      line-height: 1.4;
+      padding: 32px 20px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+    .subtitle {
+      margin: 8px 0 20px;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1180px;
+    }
+    th, td {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 0.92rem;
+    }
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+    thead th {
+      background: var(--header);
+      color: #fff;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    tbody tr.ubt {
+      background: var(--ubt-row);
+    }
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .ok-dark { background: var(--ok-dark); color: #fff; }
+    .ok-light { background: var(--ok); color: #12351a; }
+    .partial { background: var(--partial); color: #5f3c08; }
+    .no { background: var(--no); color: #611b16; }
+    .neutral { background: var(--neutral); color: #34343a; }
+    .pending { background: var(--pending); color: #fff; }
+    .small-note {
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+    }
+    .sources {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+    code {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Algebraické přístupy k unifikaci fyziky — srovnání (2026)</h1>
+    <p class="subtitle">Unified Biquaternion Theory · srovnávací přehled</p>
+
+    <div class="table-wrap">
+      <table aria-label="Srovnávací tabulka teorií unifikace">
+        <thead>
+          <tr>
+            <th>Teorie</th>
+            <th>Algebra</th>
+            <th>Metrika odvozena</th>
+            <th>SU(3)×SU(2)×U(1)</th>
+            <th>3 generace</th>
+            <th>Volné parametry</th>
+            <th>GR limit</th>
+            <th>Stav</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ubt">
+            <td><strong>UBT — Jaroš 2026</strong></td>
+            <td>ℂ⊗ℍ, 8D</td>
+            <td><span class="badge ok-dark">✓ theorem [L1]</span></td>
+            <td><span class="badge ok-dark">✓ odvozeno [L0]</span></td>
+            <td><span class="badge ok-dark">✓ ψ-winding</span></td>
+            <td><span class="badge ok-dark">0 v GR sektoru</span></td>
+            <td><span class="badge ok-dark">Schwarzschild 10⁻¹⁵</span></td>
+            <td><span class="badge pending">arXiv pending</span></td>
+          </tr>
+          <tr>
+            <td>Connes–Lott NCG</td>
+            <td>ℍ⊕ℂ⊕M₃(ℂ), 21D</td>
+            <td><span class="badge partial">přes Diracův op.</span></td>
+            <td><span class="badge ok-light">✓ odvozeno</span></td>
+            <td><span class="badge partial">vstup</span></td>
+            <td><span class="badge partial">Higgs mass</span></td>
+            <td><span class="badge ok-light">✓ spektrální akce</span></td>
+            <td><span class="badge ok-light">publikováno</span></td>
+          </tr>
+          <tr>
+            <td>Furey / oktoniony</td>
+            <td>ℂ⊗ℍ⊗𝕆, 64D</td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge ok-light">✓ odvozeno</span></td>
+            <td><span class="badge ok-light">✓ triality</span></td>
+            <td><span class="badge partial">coupling ratios</span></td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge ok-light">publikováno</span></td>
+          </tr>
+          <tr>
+            <td>String theory</td>
+            <td>10D superstringy</td>
+            <td><span class="badge partial">postulována</span></td>
+            <td><span class="badge partial">vstup</span></td>
+            <td><span class="badge no">neodvozeno</span></td>
+            <td><span class="badge no">10⁵⁰⁰ vacua</span></td>
+            <td><span class="badge ok-light">✓ low energy</span></td>
+            <td><span class="badge neutral">dominantní</span></td>
+          </tr>
+          <tr>
+            <td>Loop QG (LQG)</td>
+            <td>spin sítě</td>
+            <td><span class="badge ok-light">✓ kvantovaná</span></td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge neutral">různé</span></td>
+            <td><span class="badge ok-light">klasický limit</span></td>
+            <td><span class="badge ok-light">publikováno</span></td>
+          </tr>
+          <tr>
+            <td>Dixon ℝ⊗ℂ⊗ℍ⊗𝕆</td>
+            <td>Dixon algebra, 64D</td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge partial">částečně</span></td>
+            <td><span class="badge partial">částečně</span></td>
+            <td><span class="badge neutral">mnohé</span></td>
+            <td><span class="badge no">ne</span></td>
+            <td><span class="badge neutral">okrajové</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="small-note">
+      <div class="legend" aria-label="Legenda">
+        <span class="badge ok-light">zelená = splněno</span>
+        <span class="badge partial">oranžová = částečně</span>
+        <span class="badge no">červená = nesplněno</span>
+      </div>
+      <p class="sources">Zdroje: <code>UBT WHAT_IS_PROVED.md (Jaroš 2026)</code> · Connes NCG, Phys.Lett.B 852 (2024) · Furey &amp; Hughes, Phys.Lett.B 865 (2025)</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -295,6 +295,14 @@ Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`
 
 ---
 
+## Repository Public Face
+
+| Document | Status |
+|----------|--------|
+| `docs/comparison_table.html` | ✅ Vytvořeno — srovnávací tabulka teorií |
+
+---
+
 ## Key Source Files
 
 | Purpose | File |
