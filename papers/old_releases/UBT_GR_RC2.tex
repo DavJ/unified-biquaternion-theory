@@ -268,7 +268,7 @@ Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic imaginary units
 are represented by $i\sigma_i$ with $(i\sigma_i)^2 = -I$.
 The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares but is
 not, by itself, a full Clifford basis because $iI$ commutes with each
-$\sigma_i$.
+$\sigma_i$, so mixed anti-commutators fail (e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
 \textbf{Warning:} correct squares alone are not sufficient; the Clifford
 anti-commutation relations must also hold.
 By Hurwitz's theorem~\cite{hurwitz1923}, $\HH$ is the unique normed division
@@ -378,9 +378,12 @@ Equivalently, the Lorentzian projected form can be written as
   g_{\mu\nu}
   = \frac{\re\!\Tr\!\bigl[(\partial_\mu\Theta)^\dagger \eta_B (\partial_\nu\Theta)\bigr]}{\calN},
 \]
-with an admissible indefinite bilinear form $\eta_B$.
+with an admissible indefinite bilinear form $\eta_B$ (the Lorentzian bilinear
+form in the chosen spinor representation, with signature $(-,+,+,+)$).
 The compact trace formula above is understood only after this Lorentzian
 real-sector projection is applied.
+\emph{RC2 safety note}: this sign convention for $\calN$ is written explicitly
+to keep $g_{00}<0$ and metric normalization internally consistent.
 \end{definition}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
@@ -917,7 +920,8 @@ For signature $(-,+,+,+)$ the Clifford generators satisfy
 Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic units are
 represented by $i\sigma_i$ with $(i\sigma_i)^2=-I$.
 The tuple $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ matches the square signs but is
-not itself a full Clifford basis because $iI$ commutes with each $\sigma_i$;
+not itself a full Clifford basis because $iI$ commutes with each $\sigma_i$
+(e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$);
 correct squares alone are insufficient without full anticommutation.
 
 \paragraph{Step A2: AXIOM-B constraint and projection choice.}
