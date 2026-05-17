@@ -32,6 +32,15 @@ and one blocked result (T3_ALPHA).
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
+## 2026-05-18 Update
+- GR paper: Cl⁺₁,₃ oprava provedena (BLOKER odstraněn)
+- ΔN_eff: napětí závisí na g*(T_dec); pro g*≥427 konzistentní
+- Casimir cesta k B: NO-GO (faktor 9003×)
+- FRW rafinovaný ansatz: [Prop.] — aktivní
+- Gauge Submission: zkompilován PDF
+- NCG B₀ paper: zkompilován PDF
+- comparison_table.html: přidána na web
+
 ## 2026-05-17
 
 | Item | Prev status | New status | Source |

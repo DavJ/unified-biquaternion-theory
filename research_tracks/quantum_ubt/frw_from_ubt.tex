@@ -161,6 +161,26 @@ pending detailed computation.
 \end{propbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\subsection{Global refined-ansatz check}
+
+For
+\[
+\Theta(x,t)=a(t)e^{ix^k e_k}\Theta_0,
+\]
+we have
+\[
+\partial_\mu\Theta=\big[(\dot a/a)\delta_{\mu 0}+i e_\mu\big]\Theta.
+\]
+For isotropic $\Theta_0$, mixed terms cancel and the metric bilinear gives
+\[
+g_{\mu\nu}
+=\frac{\mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]}{\mathcal N}
+=a^2(t)\,\mathrm{diag}(-1,+1,+1,+1)
+\]
+up to normalization and coordinate redefinition. This keeps the refined ansatz
+compatible with global FRW structure at proposition level.
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Friedmann Equations from UBT}
 \label{sec:friedmann}
 %──────────────────────────────────────────────────────────────────────────────
@@ -175,7 +195,7 @@ reduces, in the homogeneous isotropic sector, to the Friedmann equations
   \label{eq:friedmann1}
   H^2 &= \frac{8\pi G}{3}\,\rho, \\
   \label{eq:friedmann2}
-  \dot H &= -4\pi G\,(\rho + p),
+  \frac{\ddot a}{a} &= -\frac{4\pi G}{3}\,(\rho + 3p),
 \end{align}
 where $H = \dot a/a$ is the Hubble parameter.
 \end{proposition}

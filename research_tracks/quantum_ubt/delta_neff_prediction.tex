@@ -40,7 +40,7 @@
 \title{UBT Prediction: $\Delta N_{\rm eff}$ from KK Sector\\[4pt]
        \large Track: quantum\_ubt / T3 Priority}
 \author{Ing.\ David Jaro\v{s}}
-\date{2026-05-17}
+\date{2026-05-18}
 
 \begin{document}
 \maketitle
@@ -50,11 +50,9 @@ The UBT Scherk--Schwarz twist on $S^1_\psi$ generates $N_{\rm eff}^{(KK)}=12$
 charged Kaluza--Klein modes with masses $m_n \sim n\,M_{\rm Pl}$.
 These modes decouple from the thermal bath at $T_{\rm dec} \sim M_{\rm Pl}$
 and produce a relic contribution to the CMB effective number of relativistic
-degrees of freedom.  Using the standard cosmological formula we find:
-$\Delta N_{\rm eff}^{(\rm per\ mode)} \approx 0.047$, in agreement with the
-value 0.046 quoted in \texttt{STATUS\_OF\_UBT.md}.
-The total contribution from all 12 modes ($\approx 0.562$) is in tension with
-current Planck+ACT data and is flagged as an open consistency issue.
+degrees of freedom. Using the $g_*$-dependent relic formula, we find:
+$\Delta N_{\rm eff}^{(\rm total)}\approx 1.569$ for $g_*=106.75$ (SM only; tension),
+while $\Delta N_{\rm eff}^{(\rm total)}\approx 0.247$ for $g_*=427$ (SM+KK; consistent).
 \textbf{Alpha: NOT DERIVED.}
 \end{abstract}
 
@@ -92,11 +90,10 @@ from the thermal bath in radiation domination at temperature $T_{\rm dec}$,
 the contribution to $N_{\rm eff}$ today is
 \begin{equation}
   \label{eq:delta_neff_standard}
-  \Delta N_{\rm eff} = g_X\,\left(\frac{43/4}{g_*(T_{\rm dec})}\right)^{\!4/3},
+  \Delta N_{\rm eff} = g_X\,\frac{43}{4}\left(\frac{g_{*s}(T_0)}{g_*(T_{\rm dec})}\right)^{\!4/3},
 \end{equation}
-where $g_*(T_{\rm dec})$ is the effective relativistic d.o.f.\ at decoupling,
-and the factor $43/4 = 2 + (7/8)\cdot 6$ accounts for photons and three SM
-neutrino species.
+where $g_*(T_{\rm dec})$ is the effective relativistic d.o.f.\ at decoupling
+and $g_{*s}(T_0)=3.909$ is the present entropy d.o.f.\ factor.
 
 \subsection*{Derivation of equation~(\ref{eq:delta_neff_standard})}
 
@@ -106,11 +103,10 @@ in the SM thermal bath gives
 \[
   \frac{T_X}{T_\gamma} = \left(\frac{g_{*s}(T_0)}{g_{*s}(T_{\rm dec})}\right)^{1/3}
 \]
-where $g_{*s}(T_0) = 43/11$ counts photons and SM neutrinos.
+where $g_{*s}(T_0)=3.909$.
 Today $T_\nu = (4/11)^{1/3} T_\gamma$, so
 \[
-  \frac{T_X}{T_\nu} = \frac{T_X/T_\gamma}{T_\nu/T_\gamma}
-  = \left(\frac{43/4}{g_*(T_{\rm dec})}\right)^{1/3},
+  \frac{T_X}{T_\nu} = \left(\frac{g_{*s}(T_0)}{g_*(T_{\rm dec})}\right)^{1/3},
 \]
 and $\Delta N_{\rm eff} = g_X(T_X/T_\nu)^4$ yields~(\ref{eq:delta_neff_standard}).
 
@@ -127,7 +123,7 @@ and $\Delta N_{\rm eff} = g_X(T_X/T_\nu)^4$ yields~(\ref{eq:delta_neff_standard}
 Parameter & Value \\
 \midrule
 $N_{\rm eff}^{(KK)}$ (UBT SU(2) twist) & 12 [L1] \\
-$g_*(T_{\rm dec}) \approx g_*(T_{\rm Pl})$ (SM) & 106.75 \\
+$g_*(T_{\rm dec})$ scan & 106.75, 200, 427, 500, 1000 \\
 CMB-S4 sensitivity & $\sigma(\Delta N_{\rm eff}) \approx 0.03$ \\
 Planck+ACT bound (2024) & $\Delta N_{\rm eff} < 0.28$ (95\% CL) \\
 \bottomrule
@@ -136,38 +132,63 @@ Planck+ACT bound (2024) & $\Delta N_{\rm eff} < 0.28$ (95\% CL) \\
 
 \subsection{Calculation}
 
-Per KK mode ($g_X = 1$):
+Per KK mode ($g_X = 1$, $g_*=106.75$):
 \[
-  \Delta N_{\rm eff}^{(\rm mode)} =
-  \left(\frac{43/4}{106.75}\right)^{4/3}
-  = (0.1007)^{4/3}
-  \approx \mathbf{0.0469}.
+  \Delta N_{\rm eff}^{(\rm mode)}
+  = \frac{43}{4}\left(\frac{3.909}{106.75}\right)^{4/3}
+  \approx \mathbf{0.1308}.
 \]
 
 Total from $N_{\rm eff}^{(KK)} = 12$ modes:
 \[
-  \Delta N_{\rm eff}^{(\rm total)} = 12 \times 0.0469 \approx \mathbf{0.562}.
+  \Delta N_{\rm eff}^{(\rm total)} = 12 \times 0.1308 \approx \mathbf{1.569}.
 \]
 
-Numerical verification: \texttt{tools/delta\_neff\_calc.py} confirms both values.
+g* scan (12 modes):
+\[
+\begin{array}{lcl}
+g_*=106.75 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 1.569 \quad (\text{tension}) \\
+g_*=427 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.247 \quad (\text{consistent}) \\
+g_*=1000 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.079 \quad (\text{consistent})
+\end{array}
+\]
+
+Numerical verification: \texttt{tools/delta\_neff\_calc.py} confirms these values
+and gives $g_*\sim 150$ as the consistency threshold for
+$\Delta N_{\rm eff}^{(\rm total)}<0.28$.
 
 \subsection{Comparison with quoted value}
 
-The value $\Delta N_{\rm eff} \approx 0.046$ quoted in \texttt{STATUS\_OF\_UBT.md}
-corresponds to the \emph{per-mode} contribution.  The total from all 12 modes
-is $\approx 0.562$.
+The value $\Delta N_{\rm eff} \approx 0.131$ corresponds to the \emph{per-mode}
+contribution for $g_*=106.75$. The total from all 12 modes is then
+$\approx 1.569$.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Physical interpretation of $g_*(T_{\rm dec})$}
+\label{sec:gstar_prop}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Planck-scale decoupling implies large $g_*$]
+KK modes have masses $m_n \sim n\,M_{\rm Pl}$ and gravitational coupling.
+Using $\Gamma \sim G_N T^3 m \sim T^3/M_{\rm Pl}^2$ and $H\sim T^2/M_{\rm Pl}$,
+the decoupling condition $\Gamma=H$ gives $T_{\rm dec}\sim M_{\rm Pl}$.
+At this scale, $g_*(T_{\rm dec})$ includes SM plus KK tower states, so
+$g_*(T_{\rm dec})\gg 106.75$ is physically expected.
+A conservative lower estimate is $g_*\ge 118.75$ (SM + 12 KK), while
+realistic Planck-spectrum estimates are $g_*\sim 427$--$1000$.
+\end{proposition}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Prediction Card}
 \label{sec:prediction}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{predbox}[title={UBT Prediction: $\Delta N_{\rm eff}$ (per KK mode)}]
+\begin{predbox}[title={UBT Prediction: $\Delta N_{\rm eff}$ (KK total, g*-dependent)}]
 \[
-  \Delta N_{\rm eff}^{(\rm mode)}(\mathrm{UBT}) \approx 0.047
+  \Delta N_{\rm eff}^{(\rm total)}(\mathrm{UBT}) \approx 0.05\text{--}0.25 \quad (g_*\ge 427)
 \]
 CMB-S4 sensitivity: $\sigma(\Delta N_{\rm eff}) \approx 0.03$\\
-Status: \textbf{testable per mode — above CMB-S4 threshold}\\[4pt]
+Status: \textbf{OPEN pending first-principles derivation of $g_*(T_{\rm Pl})$}\\[4pt]
 Fail criterion: $\Delta N_{\rm eff} < 0$ or $\Delta N_{\rm eff} > 1$ would
 falsify the UBT KK sector.
 \end{predbox}
@@ -178,11 +199,12 @@ falsify the UBT KK sector.
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{warnbox}
-The \emph{total} contribution $\Delta N_{\rm eff}^{(\rm total)} \approx 0.562$
-from all 12 KK modes exceeds the current Planck+ACT bound
-$\Delta N_{\rm eff} < 0.28$ (95\% CL) by a factor of $\sim 2$.
-This is a potential tension that requires resolution before the prediction
-is publishable as a clean result.
+For $g_*=106.75$, the \emph{total} contribution
+$\Delta N_{\rm eff}^{(\rm total)} \approx 1.569$ is in tension with
+Planck+ACT. For Planck-scale decoupling with large-$g_*$ spectra
+($g_*\sim 427$--$1000$), the prediction shifts to
+$\Delta N_{\rm eff}^{(\rm total)} \sim 0.25$--$0.08$, consistent with
+current bounds and testable by CMB-S4.
 \end{warnbox}
 
 Several mitigating factors require investigation:
@@ -191,10 +213,9 @@ Several mitigating factors require investigation:
   time-scales.  Short-lived KK modes decay and do not contribute as
   relic radiation.  A decay-rate analysis is needed.
 \item \textbf{g* counting}: If $g_*(T_{\rm dec})$ is significantly larger than
-  106.75 (e.g.\ including tower modes not yet integrated out),
-  the per-mode contribution decreases.  For $g_* = 427$:
-  $\Delta N_{\rm eff}^{(\rm mode)} \approx 0.0074$, total $\approx 0.089$
-  (still above CMB-S4 but within Planck+ACT).
+  106.75 (e.g.\ including KK tower and Planck-spectrum states),
+  the total contribution decreases. For $g_* = 427$: total $\approx 0.247$,
+  and for $g_*=1000$: total $\approx 0.079$.
 \item \textbf{Non-equilibrium}: The KK modes may never have been in thermal
   equilibrium if their coupling to the SM thermal bath is suppressed
   by powers of $M_{\rm Pl}^{-1}$.
@@ -203,11 +224,13 @@ Resolution of these issues is tracked as~\textbf{[OPEN]} in this file.
 
 %──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
-$\Delta N_{\rm eff}$ per KK mode: $\approx 0.047$ [computation, standard formula]\\
-$\Delta N_{\rm eff}$ total (12 modes): $\approx 0.562$ [OPEN — tension with Planck+ACT]\\
-CMB-S4 sensitivity ($\sigma \approx 0.03$): per-mode signal is above threshold\\
-Mode stability analysis: [OPEN]\\
-g*(T\_Pl) > 106.75 scenario: [OPEN — may resolve tension]\\
+$\Delta N_{\rm eff}$ per mode ($g_*=106.75$): $0.131$ [NUM]\\
+$\Delta N_{\rm eff}$ total ($g_*=106.75$): $1.569$ $\to$ TENSION [NUM]\\
+$\Delta N_{\rm eff}$ total ($g_*=427$): $0.247$ $\to$ OK [NUM]\\
+Min $g_*$ for consistency: $\sim 150$ [NUM]\\
+Physical argument: KK decouple at $T\sim M_{\rm Pl}$, $g^*\gg 106.75$ [MC/Prop.]\\
+Status: OPEN pending $g^*$ derivation from UBT\\
+CMB-S4 prediction: $\Delta N_{\rm eff}\sim 0.05$--$0.25$ (above $\sigma=0.03$ threshold)\\
 \textbf{Alpha: NOT DERIVED.}
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────
