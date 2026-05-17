@@ -269,7 +269,8 @@ are represented by $i\sigma_i$ with $(i\sigma_i)^2 = -I$.
 Here $I$ denotes the $2\times2$ identity matrix and $i$ is the imaginary unit.
 The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares but is
 not, by itself, a full Clifford basis because $iI$ commutes with each
-$\sigma_i$, so mixed anti-commutators fail (e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
+$\sigma_i$, so mixed anti-commutators fail (for distinct orthogonal Clifford
+generators one expects $0$, but $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
 \textbf{Warning:} correct squares alone are not sufficient; the Clifford
 anticommutation relations must also hold.
 By Hurwitz's theorem~\cite{hurwitz1923}, $\HH$ is the unique normed division
@@ -377,6 +378,9 @@ For $\Theta \in \calA_{\mathrm{UBT}}$, define:
 \end{align}
 \emph{Normalization convention note}: this sign convention for $\calN$ is written
 explicitly to keep $g_{00}<0$ and metric normalization internally consistent.
+With this convention, the metric formula keeps the same numerator while the
+timelike normalization carries the minus sign, so the sign bookkeeping is
+consistent across all appearances of $\calN$ in this manuscript.
 Equivalently, the Lorentzian projected form can be written as
 \[
   g_{\mu\nu}
@@ -386,6 +390,8 @@ with an admissible indefinite bilinear form $\eta_B$.
 Here $\eta_B$ denotes the Lorentzian bilinear form used in the chosen spinor
 representation, with signature $(-,+,+,+)$, non-degenerate and Hermitian on
 the projected GR sector.
+The dot-product notation in $\calG_{\mu\nu}$ is the compact version of this
+same projected contraction.
 The compact trace formula above is understood only after this Lorentzian
 real-sector projection is applied.
 \end{definition}
