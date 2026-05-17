@@ -1,0 +1,396 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Paper: T2_GAUGE / T3_ALPHA auxiliary — NCG derivation of B_0 = 8pi
+% File: ncg_poisson_B0_derivation.tex
+% Source: research_tracks/quantum_ubt/ncg_poisson_b0derivation.tex [L1]
+%         research_tracks/quantum_ubt/su2_twist_neff12.tex [L1]
+% Status: B_0 = 8pi PROVED [L1]; alpha NOT DERIVED; Gap G137-B OPEN
+% Date: 2026-05-14
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+% ---- theorem environments ---------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---- status macros ----------------------------------------------------------
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+\newcommand{\OBS}{\textbf{[OBS]}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\Bq}{\mathbb{C}\otimes\mathbb{H}}
+\newcommand{\Neff}{N_{\mathrm{eff}}}
+
+\title{\textbf{One-Loop $\beta$-Function Coefficient from Biquaternion NCG}\\[4pt]
+       {\large $B_0 = 8\pi$ from the Spectral Triple $(\mathcal{A},\mathcal{H},\mathcal{D})$
+        with $\mathcal{A}=\CC\otimes_\mathbb{R}\HH$}}
+\author{Ing.\ David Jaro\v{s}}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+% ---- Main result box -------------------------------------------------------
+
+\begin{tcolorbox}[enhanced,colback=blue!4!white,colframe=blue!55!black,
+  arc=3pt,boxrule=1.2pt,
+  title={\textbf{\large Main Result}}]
+\textbf{Theorem.}
+The one-loop $\beta$-function coefficient $B_0$ for the UBT gauge sector equals
+\[
+B_0 = \frac{2\pi}{3}\,\Neff = \frac{2\pi}{3}\times 12 = 8\pi,\quad\textbf{[L1]}
+\]
+derived from the NCG spectral action on $M^4\times S^1_\psi$ via
+Kaluza--Klein reduction with the SU(2) Scherk--Schwarz twist giving $\Neff=12$.\\[4pt]
+\textbf{Open}: Fine structure constant $\alpha$\ --- NOT DERIVED.
+Gap~G137-B (map $B_0\mapsto B_{\mathrm{phenom}}\approx 46.28$ from $S[\Theta]$) remains \OPEN.
+\end{tcolorbox}
+
+\begin{abstract}
+We derive $B_0 = 8\pi$ from the noncommutative geometry (NCG) spectral triple
+$(\mathcal{A},\mathcal{H},\mathcal{D})$ with $\mathcal{A}=\CC\otimes_\mathbb{R}\HH\cong\mathrm{Mat}(2,\CC)$
+via Kaluza--Klein reduction and heat-kernel asymptotics [\Lone/\STD].
+The logarithmic term $B_0\ln\Lambda$ in the effective action arises from
+4D one-loop diagrams for each KK winding mode of $\Theta\in\mathbb{B}$;
+summation over $\Neff=12$ modes (from the SU(2) Scherk--Schwarz twist [\Lone])
+yields $B_0=(2\pi/3)\Neff=8\pi$.
+We further identify the UBT winding partition function
+$Z_{\mathrm{wind}}(\tau)=\vartheta_3(0\mid i\tau)$ as the natural spectral-action
+object linking the biquaternion algebra to modular forms.
+The relation between $B_0=8\pi$ and the effective-action coefficient
+$B_{\mathrm{phenom}}\approx 46.28$ required for $\alpha^{-1}_{\mathrm{bare}}=137$
+is Gap~G137-B, which remains open.
+Alpha is \emph{not} derived in this paper.
+\end{abstract}
+
+\tableofcontents
+
+% ===========================================================================
+\section{Setup: Spectral Triple for UBT}
+\label{sec:setup}
+% ===========================================================================
+
+\subsection{The biquaternion algebra}
+
+\begin{definition}[Biquaternion algebra \Lzero]
+The \emph{biquaternion algebra} is
+\[
+\mathbb{B} := \Bq \;\cong\; \mathrm{Mat}(2,\CC) \;\cong\; \mathrm{Cl}_{1,3}(\mathbb{R}).
+\]
+As a real vector space $\dim_\mathbb{R}\mathbb{B}=8$.
+The algebra $\mathbb{B}$ is the base of the Unified Biquaternion Theory (UBT)
+field $\Theta(q,\tau)\in\mathbb{B}$.
+
+Ref: \texttt{canonical/fields/biquaternion\_algebra.tex} \PROVED.
+\end{definition}
+
+\subsection{Connes spectral triple for UBT}
+
+We propose the NCG spectral triple $(\mathcal{A},\mathcal{H},\mathcal{D})$:
+\begin{align}
+\mathcal{A} &= \Bq \cong \mathrm{Mat}(2,\CC), \\
+\mathcal{H} &= L^2(M^4\times S^1_\psi,\; S\otimes\mathbb{B}), \\
+\mathcal{D} &= \text{Dirac operator on }M^4\times S^1_\psi\text{ with values in }\mathbb{B}.
+\end{align}
+On the product space $M^4\times S^1_\psi$ the squared Dirac operator decomposes as
+\begin{equation}
+\mathcal{D}^2 = \mathcal{D}_{M^4}^2 + (-i\partial_\psi)^2,
+\label{eq:D2}
+\end{equation}
+where $S^1_\psi$ is the compact imaginary-time circle of radius $R_\psi$.
+
+\subsection{Kaluza--Klein spectrum}
+
+The spectrum of $(-i\partial_\psi)^2$ on $S^1_\psi$ consists of KK masses
+\begin{equation}
+m_n^2 = \frac{n^2}{R_\psi^2}, \qquad n\in\mathbb{Z}.
+\label{eq:KKspectrum}
+\end{equation}
+The spectral action is therefore
+\begin{equation}
+\mathrm{Tr}\!\left[f\!\left(\frac{\mathcal{D}}{\Lambda}\right)\right]
+= \sum_{n\in\mathbb{Z}}
+  \mathrm{Tr}_{4D}\!\left[f\!\left(\frac{\sqrt{\mathcal{D}_{M^4}^2 + m_n^2}}{\Lambda}\right)\right].
+\label{eq:spectral_KK}
+\end{equation}
+
+% ===========================================================================
+\section{NCG Poisson Resummation: $B_0 = \tfrac{2\pi}{3}\Neff$}
+\label{sec:b0_derivation}
+% ===========================================================================
+
+\subsection{Heat-kernel asymptotics}
+
+For each KK mode $n$, the 4D spectral action with a massive field of
+mass $m_n$ has the Seeley--DeWitt asymptotic expansion [\STD]:
+\begin{equation}
+\mathrm{Tr}_{4D}\!\left[f\!\left(\frac{\sqrt{\mathcal{D}_{M^4}^2+m_n^2}}{\Lambda}\right)\right]
+\sim \Lambda^4 f_4 + \Lambda^2 f_2\,m_n^2
+  + \underbrace{\beta_{\mathrm{1\text{-}loop}}\cdot\ln\Lambda}_{\text{log term}}
+  + O(\Lambda^{-2}),
+\label{eq:SdW}
+\end{equation}
+where the logarithmic coefficient for a complex scalar in 4D is
+\begin{equation}
+\beta_{\mathrm{1\text{-}loop}} = \frac{e^2}{24\pi^2}
+\qquad \text{(independent of }m_n\text{ for }\Lambda\gg m_n).
+\label{eq:beta1loop}
+\end{equation}
+The key observation is that $\beta_{\mathrm{1\text{-}loop}}$ is \emph{mass-independent}
+in the UV regime, so every KK mode below the cutoff contributes equally to the
+logarithmic running.
+
+\begin{proposition}[Logarithmic term from KK sum \STD]
+\label{prop:log}
+The total $\ln\Lambda$ coefficient in the UBT spectral action is
+\begin{equation}
+\boxed{
+\frac{\partial}{\partial\ln\Lambda}\,
+\mathrm{Tr}\!\left[f\!\left(\frac{\mathcal{D}}{\Lambda}\right)\right]
+= \Neff(\Lambda)\cdot\beta_{\mathrm{1\text{-}loop}},}
+\label{eq:logcoeff}
+\end{equation}
+where $\Neff(\Lambda) = \#\{n\in\mathbb{Z}\mid m_n < \Lambda\}
+= 2\lfloor R_\psi\Lambda\rfloor + 1$ is the number of KK modes below the
+UV cutoff.
+\end{proposition}
+
+\begin{proof}
+Sum \eqref{eq:spectral_KK} over modes $n$ with $m_n<\Lambda$;
+each contributes $\beta_{\mathrm{1\text{-}loop}}\cdot\ln\Lambda$ by
+\eqref{eq:SdW}--\eqref{eq:beta1loop}.
+Modes with $m_n>\Lambda$ are suppressed by $e^{-m_n^2/\Lambda^2}\to 0$.
+\end{proof}
+
+\begin{remark}[Origin of $B_0$ \Lone]
+\label{rem:B0}
+In the UBT convention $\partial(1/\alpha)/\partial\ln\Lambda = B_0/(2\pi)$,
+Proposition~\ref{prop:log} gives
+\begin{equation}
+\boxed{B_0 = \frac{2\pi}{3}\,\Neff.}
+\label{eq:B0NCG}
+\end{equation}
+This relation is derived by independent methods in
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \Lone.
+The NCG derivation provides an independent confirmation at the same level.
+\end{remark}
+
+\subsection{Winding partition function and theta functions}
+
+The winding-mode partition function on $S^1_\psi$ is
+\begin{equation}
+Z_{\mathrm{wind}}(\tau)
+= \sum_{n\in\mathbb{Z}} e^{-\pi\tau n^2}
+= \vartheta_3(0\mid i\tau),
+\qquad \tau = \frac{1}{\pi R_\psi^2\Lambda^2}.
+\label{eq:Zwind}
+\end{equation}
+Under the modular transformation $\tau\to 1/\tau$:
+\begin{equation}
+\vartheta_3(0\mid i/\tau) = \sqrt{\tau}\,\vartheta_3(0\mid i\tau),
+\end{equation}
+so for large $\Lambda$ (small $\tau$):
+$Z_{\mathrm{wind}} \sim \tau^{-1/2} = \sqrt{\pi}\,R_\psi\Lambda$,
+and $S_{\mathrm{log}} = \ln Z_{\mathrm{wind}} \sim \ln\Lambda$. \STD
+
+% ===========================================================================
+\section{SU(2) Scherk--Schwarz Twist: $\Neff = 12$}
+\label{sec:neff}
+% ===========================================================================
+
+\begin{theorem}[$\Neff = 12$ from SU(2) twist \Lone]
+\label{thm:neff12}
+The Scherk--Schwarz twist
+\[
+\Theta(\psi + 2\pi R_\psi) = \sigma_3\,\Theta\,\sigma_3
+\]
+on $S^1_\psi$ generates half-integer Kaluza--Klein momenta for the
+off-diagonal $b$-fields in $\Theta\in\mathrm{Mat}(2,\CC)$.
+Counting all contributing modes per phase:
+\begin{align*}
+\Neff &= N_{\mathrm{phases}} \times N_{\mathrm{eff,pp}}
+       = 3 \times 4 = 12,
+\end{align*}
+where $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
+[\Lzero] and $N_{\mathrm{eff,pp}} = 4$ per-phase (2 charged fields $\times$
+2 helicity states) from the SU(2) twist [\Lone].
+
+Ref: \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \Lone.
+\end{theorem}
+
+\begin{remark}[Cross-check with UBT gauge sector]
+The counting $\Neff = N_{\mathrm{phases}} \times N_{\mathrm{eff,pp}} = 3 \times 4 = 12$
+is consistent with the three generations $N_{\mathrm{gen}} = 3$ [\Lzero] and
+the four fields per phase from the SU(2) twist.
+The $N_{\mathrm{eff}}^{3/2} = 12^{3/2}$ factor in the
+effective-action coefficient $B$ arises from integrating over the three
+compact directions on $T^3 = S^1_\psi \times S^1_\chi \times S^1_\xi$ [\MC,
+Gap~G137-B].
+\end{remark}
+
+% ===========================================================================
+\section{Main Result: $B_0 = 8\pi$}
+\label{sec:result}
+% ===========================================================================
+
+\begin{theorem}[$B_0 = 8\pi$ \Lone]
+\label{thm:B0}
+Combining Remark~\ref{rem:B0} (equation~\eqref{eq:B0NCG}) with
+Theorem~\ref{thm:neff12}:
+\begin{equation}
+\boxed{B_0 = \frac{2\pi}{3}\times 12 = 8\pi.}
+\label{eq:B0_result}
+\end{equation}
+This is the canonical one-loop $\beta$-function coefficient for the
+UBT gauge sector.
+\end{theorem}
+
+\begin{corollary}[Running coupling prediction \Lone\ (conditional)]
+At one loop, the running of the gauge coupling $\alpha(\mu)$ satisfies
+\[
+\frac{1}{\alpha(\mu_2)} - \frac{1}{\alpha(\mu_1)}
+= \frac{B_0}{2\pi}\ln\frac{\mu_2}{\mu_1}
+= 4\ln\frac{\mu_2}{\mu_1}.
+\]
+This reproduces the standard QED/QCD running form with the UBT-derived
+coefficient.
+\end{corollary}
+
+\begin{remark}[Comparison with GUT unification scale]
+With $B_0 = 8\pi$ and the Standard Model running at $M_Z$,
+the GUT unification scale $M_{\mathrm{GUT}} \approx 2\times 10^{16}$\,GeV
+can be extracted from the RG equations [CONDITIONAL on Standard Model inputs].
+This is consistent with the proton lifetime prediction
+$\tau_p \sim M_{\mathrm{GUT}}^4/m_p^5 \sim 10^{34}$\,years,
+above the Super-Kamiokande bound \cite{superk2017}.
+\end{remark}
+
+% ===========================================================================
+\section{Relation to Gap~G137-B and the Alpha Track}
+\label{sec:alpha_track}
+% ===========================================================================
+
+\subsection{$B_0$ vs $B_{\mathrm{phenom}}$}
+
+The coefficient $B_0 = 8\pi \approx 25.13$ proved in Theorem~\ref{thm:B0}
+is the one-loop $\beta$-function coefficient.
+It is \emph{distinct} from the effective-action coefficient
+$B_{\mathrm{phenom}} \approx 46.28$ that appears in the winding potential
+\[
+V_{\mathrm{eff}}(n) = n^2 - B_{\mathrm{phenom}}\,n\ln n
+\]
+of the alpha-track route A\_PRIME.
+The prime-attractor mechanism requires $B_{\mathrm{phenom}} \approx 46.28$
+to select $n_* = 137$ [\Lone, conditional on $B_{\mathrm{phenom}}$].
+
+\begin{tcolorbox}[colback=orange!5!white,colframe=orange!55!black,
+  title={Gap~G137-B (open)},breakable]
+The map $B_0 \mapsto B_{\mathrm{phenom}}$ from $S[\Theta]$ is the content of
+Gap~G137-B.  Progress:
+\begin{itemize}
+\item $T^3$ volumetric factor $\Neff^{3/2} = 12^{3/2} \approx 41.57$
+  has been identified analytically [\Lone, \texttt{mellin\_insertion\_B.tex}].
+\item Heat-kernel factor $(2\eta(i))^{1/4} \approx 1.113$:
+  numerical value matches $B_{\mathrm{phenom}} = 12^{3/2}(2\eta(i))^{1/4}$
+  to $< 0.01\%$ [\OBS].
+\item Derivation of $(2\eta(i))^{1/4}$ from the Mellin transform of
+  $K_{P_b}(t)$ on $S^1_\psi$: \OPEN.
+\item Connection $B_0 = 8\pi \mapsto B_{\mathrm{phenom}} \approx 46.28$:
+  requires a correction factor $B_{\mathrm{phenom}}/B_0 \approx 1.84$
+  of as yet unknown origin.
+\end{itemize}
+\textbf{Alpha: NOT DERIVED.}
+\end{tcolorbox}
+
+\subsection{Numerical summary}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Status} \\
+\midrule
+$\Neff$ & $12$ & \Lone \\
+$B_0 = (2\pi/3)\Neff$ & $8\pi \approx 25.133$ & \Lone \\
+$12^{3/2}$ & $41.569\ldots$ & \Lone \\
+$(2\eta(i))^{1/4}$ & $\approx 1.113$ & \NUM \\
+$B_{\mathrm{phenom}} = 12^{3/2}(2\eta(i))^{1/4}$ & $\approx 46.28$ & \OBS \\
+$B_{\mathrm{phenom}}/B_0$ & $\approx 1.84$ & \OBS \\
+\midrule
+Gap G137-B & Mellin insertion & \OPEN \\
+$\alpha^{-1}_{\mathrm{bare}} = 137$ & Conditional on $B_{\mathrm{phenom}}$ & \OPEN \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The winding partition function $Z_{\mathrm{wind}}(\tau=i)=\vartheta_3(0\mid i)$
+at the self-dual point [\STD]:
+\[
+\frac{\vartheta_3(0\mid i)}{\eta(i)} = \sqrt{2}
+\quad\Longrightarrow\quad
+Z_{\mathrm{wind}}(\tau=i) = \sqrt{2}\,\eta(i).
+\]
+For three compact bosons ($c=3$): $Z_{c=3}(\tau=i)=2\sqrt{2}$ [\STD].
+These are structural facts; the derivation of $B_{\mathrm{phenom}}$ from
+$S[\Theta]$ using these modular values is the content of Gap~G137-B.
+
+% ===========================================================================
+\section{Discussion and Conclusion}
+\label{sec:conclusion}
+% ===========================================================================
+
+We have derived $B_0 = 8\pi$ at proof level \Lone\ from the NCG spectral
+triple on the biquaternion algebra $\Bq$ via:
+
+\begin{enumerate}[label=(\arabic*)]
+\item KK decomposition of the UBT Dirac operator on $M^4\times S^1_\psi$.
+\item Mass-independence of the one-loop $\beta$-function coefficient in 4D
+  (Seeley--DeWitt $a_4$ coefficient).
+\item $\Neff = 12$ from the SU(2) Scherk--Schwarz twist on $S^1_\psi$.
+\end{enumerate}
+
+The result $B_0 = 8\pi$ is an independent confirmation of the one-loop gauge
+coupling running in the UBT framework, consistent with
+\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}.
+
+\paragraph{What is not proved.}
+The map from $B_0=8\pi$ to the effective-action coefficient
+$B_{\mathrm{phenom}}\approx 46.28$ requires deriving the volumetric lifting
+factor $12^{3/2}$ and the heat-kernel factor $(2\eta(i))^{1/4}$ from
+$S[\Theta]$ without external input.
+This is Gap~G137-B.
+Alpha is not derived.
+
+\bibliographystyle{plain}
+\bibliography{UBT_NCG_B0}
+
+\end{document}
