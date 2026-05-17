@@ -3,6 +3,7 @@
 # See LICENSE file in the repository root for full license text
 
 def delta_Neff_total(N_modes, g_dec, g_today=3.909):
+    """Return total ΔN_eff for N_modes using ΔN_eff=(43/4)*(g_today/g_dec)^(4/3) per mode."""
     per_mode = (43 / 4) * (g_today / g_dec) ** (4 / 3)
     return N_modes * per_mode
 
