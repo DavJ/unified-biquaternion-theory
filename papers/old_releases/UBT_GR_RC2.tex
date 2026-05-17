@@ -271,7 +271,7 @@ The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares but is
 not, by itself, a full Clifford basis because $iI$ commutes with each
 $\sigma_i$, so mixed anti-commutators fail (e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
 \textbf{Warning:} correct squares alone are not sufficient; the Clifford
-anti-commutation relations must also hold.
+anticommutation relations must also hold.
 By Hurwitz's theorem~\cite{hurwitz1923}, $\HH$ is the unique normed division
 algebra of dimension $4$ over $\RR$ that contains both a complex structure
 and a three-dimensional real anti-symmetric structure.
@@ -374,6 +374,8 @@ For $\Theta \in \calA_{\mathrm{UBT}}$, define:
   \qquad
   \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
 \end{align}
+\emph{Normalization convention note}: this sign convention for $\calN$ is written
+explicitly to keep $g_{00}<0$ and metric normalization internally consistent.
 Equivalently, the Lorentzian projected form can be written as
 \[
   g_{\mu\nu}
@@ -384,8 +386,6 @@ form in the chosen spinor representation, with signature $(-,+,+,+)$, taken to
 be non-degenerate and Hermitian on the projected GR sector).
 The compact trace formula above is understood only after this Lorentzian
 real-sector projection is applied.
-\emph{Normalization convention note}: this sign convention for $\calN$ is written explicitly
-to keep $g_{00}<0$ and metric normalization internally consistent.
 \end{definition}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
@@ -459,7 +459,8 @@ The normalisation $\calN$ determines the scale but not the sign.
 
 \begin{remark}
 The Lorentzian signature is a \emph{theorem}, not a postulate.
-It does not follow from complex time alone for arbitrary $\Theta$.
+It does not follow from complex time in isolation (without the admissible
+Lorentzian projection/representation structure).
 The novelty is that AXIOM-B fixes a timelike complex-time direction and,
 combined with the admissible Lorentzian projection/representation choice,
 yields the correct signature in the GR sector.
