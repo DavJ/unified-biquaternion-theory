@@ -1,0 +1,206 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: EW — Electroweak sector
+% File: research_tracks/EW/higgs_from_theta.tex
+% Purpose: First-step analysis of spontaneous symmetry breaking in UBT via S[Θ].
+%          Checks whether Coleman-Weinberg mechanism gives VEV ⟨Θ₀⟩ ≠ 0.
+% Status: OPEN — canonical action checked; CW computation needed.
+% Date: 2026-05-17
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+
+\newtcolorbox{statusbox}[1][]{%
+  colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Status Summary,#1}
+\newtcolorbox{openbox}[1][]{%
+  colback=yellow!5!white,colframe=orange!55!black,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Open Problem,#1}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{Higgs Mechanism from $S[\Theta]$:\\[4pt]
+       First Step — Coleman-Weinberg Analysis}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-17}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the UBT action $S[\Theta]$ admits spontaneous symmetry
+breaking (SSB) via the Coleman--Weinberg (CW) mechanism.  The first step is
+to determine whether $S[\Theta]$ contains an explicit scalar potential $V(\Theta)$.
+We find that the canonical action has no tree-level Higgs-type potential;
+SSB must therefore arise from radiative corrections.  The first-principles
+derivation of the CW effective potential for $\Theta$ is identified as
+\textbf{[OPEN]} (Gap EW-2), with the first non-trivial computation step described.
+$W/Z$ masses from SSB remain \textbf{[OPEN]}.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Tree-Level Action Check}
+\label{sec:tree_level}
+%──────────────────────────────────────────────────────────────────────────────
+
+The canonical UBT action is (from \texttt{canonical/UBT\_canonical\_main.tex}):
+\[
+  S[\Theta] = \int d^4x\,d\psi\;
+  \bigl[\tfrac{1}{2}\,(\nabla^\dagger\nabla\Theta)^2
+  + \mathcal{L}_{\rm int}\bigr],
+\]
+where $\mathcal{L}_{\rm int}$ describes gauge interactions.
+
+\begin{proposition}[Tree-level potential check]
+\label{prop:no_tree_potential}
+The canonical action $S[\Theta]$ does \emph{not} contain an explicit
+quartic or mass potential $V(\Theta)$ of the Higgs-type
+$V = -\mu^2|\Theta|^2 + \lambda|\Theta|^4$.
+\end{proposition}
+
+\begin{proof}
+Direct inspection of $S[\Theta]$: the kinetic term
+$(\nabla^\dagger\nabla\Theta)^2$ produces only derivative couplings.
+The interaction term $\mathcal{L}_{\rm int}$ describes minimal gauge coupling
+but no non-derivative self-interaction of $\Theta$.
+There is no free parameter for a mass $\mu^2$ or quartic coupling $\lambda$.
+\end{proof}
+
+\begin{openbox}
+If $S[\Theta]$ has no tree-level potential, SSB must arise from:
+(a) radiative corrections (Coleman--Weinberg mechanism), or
+(b) boundary conditions on $S^1_\psi$ (Hosotani mechanism), or
+(c) a non-perturbative condensate.
+All three routes are open; (a) is pursued in this note.
+\end{openbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Coleman-Weinberg Effective Potential}
+\label{sec:coleman_weinberg}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+
+The Coleman--Weinberg effective potential for a field $\phi$ with
+field-dependent mass $M(\phi)$ is
+\begin{equation}
+  \label{eq:CW_potential}
+  V_{\rm CW}(\Theta) = \frac{1}{64\pi^2}\,
+  \mathrm{Str}\bigl[M^4(\Theta)\bigl(\ln\tfrac{M^2(\Theta)}{\mu^2}
+  - \tfrac{3}{2}\bigr)\bigr],
+\end{equation}
+where $\mathrm{Str}$ denotes the supertrace over all modes.
+
+For UBT, the field-dependent mass of KK mode $n$ is
+\[
+  M_n(\Theta) = \frac{n}{R_\psi}\,f(\Theta),
+\]
+where $f(\Theta)$ encodes the coupling of $\Theta$ to the KK mass.
+
+\subsection{Condition for SSB}
+
+Spontaneous symmetry breaking occurs if
+\[
+  \frac{\partial V_{\rm CW}}{\partial |\Theta|}\bigg|_{\Theta=0} < 0,
+\]
+i.e.\ if the origin $\Theta = 0$ is a local maximum of $V_{\rm eff}$.
+
+Expanding around $\Theta = \Theta_0 + \delta\Theta$ with $\Theta_0$ a background:
+\begin{align}
+  V_{\rm CW}(\Theta_0) &\sim
+  \sum_n \frac{M_n^4(\Theta_0)}{64\pi^2}
+  \Bigl(\ln\frac{M_n^2(\Theta_0)}{\mu^2} - \frac{3}{2}\Bigr).
+\end{align}
+
+For a VEV to exist, the one-loop mass-squared matrix must have a tachyonic
+direction, i.e.\ the second derivative of $V_{\rm CW}$ with respect to
+fluctuations of $|\Theta|$ must be negative at $|\Theta|=0$.
+
+\subsection{First computation step}
+
+The leading contribution at order $R_\psi^{-4}$ is
+\[
+  V_{\rm CW}^{(1)}(\Theta_0) \sim
+  \frac{N_{\rm eff}}{64\pi^2}\,
+  \frac{f^4(\Theta_0)}{R_\psi^4}
+  \Bigl(\ln\frac{f^2(\Theta_0)}{R_\psi^2 \mu^2} - \frac{3}{2}\Bigr)
+  \sum_n n^4\,e^{-n/\Lambda R_\psi},
+\]
+where $\Lambda$ is a UV regulator.
+The sum $\sum_n n^4 e^{-n\epsilon}$ is regulated by the Epstein zeta function
+(as in \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}).
+
+\begin{openbox}
+\textbf{Open step}: Compute $\partial^2 V_{\rm CW}/\partial|\Theta|^2|_{\Theta=0}$
+from the UBT action.  The sign determines whether SSB occurs.
+Current status: $f(\Theta)$ not derived from $S[\Theta]$; coupling between
+$\Theta$ background and KK mass not computed.
+This is Gap EW-2.
+\end{openbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Hosotani Mechanism: Alternative Route}
+\label{sec:hosotani}
+%──────────────────────────────────────────────────────────────────────────────
+
+An alternative SSB route is the Hosotani (Wilson-line) mechanism:
+boundary conditions on $S^1_\psi$ for gauge fields $A_\psi$ generate
+an effective potential whose minimum breaks the gauge symmetry.
+
+From \texttt{research\_tracks/EW/rpsi\_from\_action.tex}~[L1 conditional],
+the Scherk--Schwarz projection gives $\lambda_{\rm eff} = g^2/2$.
+Whether the Hosotani potential minimum coincides with the electroweak
+VEV $v = 246\,\mathrm{GeV}$ is~\textbf{[OPEN]}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{W/Z Masses: Conditional Chain}
+\label{sec:wz_masses}
+%──────────────────────────────────────────────────────────────────────────────
+
+Assuming SSB with VEV $\langle\Theta_0\rangle = v\,\mathbf{1}_2$, the
+$W$ and $Z$ masses arise from the gauge kinetic term:
+\[
+  \mathcal{L}_{\rm gauge} \supset
+  g^2 v^2 W^+_\mu W^{-\mu} + \tfrac{1}{2}(g^2+g'^2)v^2 Z_\mu Z^\mu.
+\]
+This gives the standard Higgs mechanism results
+$M_W = gv/2$ and $M_Z = \sqrt{g^2+g'^2}\,v/2$.
+
+However, deriving $v$ from $S[\Theta]$ requires:
+\begin{enumerate}
+\item A first-principles CW potential computation (Gap EW-2);
+\item The coupling $f(\Theta)$ determined from $S[\Theta]$;
+\item The minimum of $V_{\rm CW}$ to lie at $|\Theta| = v \neq 0$.
+\end{enumerate}
+All three steps are~\textbf{[OPEN]}.
+
+%──────────────────────────────────────────────────────────────────────────────
+\begin{statusbox}
+$S[\Theta]$ explicit tree-level $V(\Theta)$: \textbf{NO} (Prop.~\ref{prop:no_tree_potential})\\
+Coleman-Weinberg SSB possible: \textbf{[OPEN]} — $f(\Theta)$ not derived\\
+VEV $\langle\Theta_0\rangle \neq 0$: \textbf{[OPEN]} — conditional on CW computation\\
+$W/Z$ masses from SSB: \textbf{[OPEN]} — conditional on VEV\\
+Hosotani mechanism: \textbf{[OPEN]} — Hosotani potential minimum not computed\\
+Higgs mass 125\,GeV: \textbf{[OPEN]} (not addressed here)\\
+Gap EW-2 status: \textbf{OPEN} — first step identified
+\end{statusbox}
+%──────────────────────────────────────────────────────────────────────────────
+
+\end{document}

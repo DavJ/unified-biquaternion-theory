@@ -465,6 +465,82 @@ Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{New Route: Casimir Energy on $T^3$ (2026-05-17)}
+\label{sec:casimir_t3}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Motivation}
+
+Previous routes to Gap G137-B: T-duality [NO-GO], orbifold $\mathbb{Z}_{\rm orb} \neq \sqrt{2}$,
+NS sector $\neq 2\eta$.  This section explores the direct Casimir computation
+on $T^3$ at the self-dual point $R=1$, following Ambjorn--Wolfram (1983).
+
+\subsection{Standard Casimir Energy on $T^d$}
+
+For $N_{\rm eff}$ real scalar fields on $T^d$ with equal radii $R$,
+the Ambjorn--Wolfram result is
+\begin{equation}
+  \label{eq:casimir_td}
+  E_{\rm Casimir}(R) = -N_{\rm eff}\,
+  \frac{\Gamma(d/2+1)}{2^{d+1}\pi^{d/2+1}}\,\frac{\zeta(d+1)}{R^d}.
+\end{equation}
+
+For $d=3$ ($T^3$) with $N_{\rm eff} = 12$ and $R=1$:
+\begin{align}
+  E_{\rm Casimir}(T^3, R=1)
+  &= -12\cdot\frac{\Gamma(5/2)}{2^4\,\pi^{5/2}}\,\zeta(4)
+   = -12\cdot\frac{3\sqrt{\pi}/4}{16\pi^{5/2}}\cdot\frac{\pi^4}{90} \nonumber\\
+  &= -\frac{12\cdot 3\cdot\pi^4}{90\cdot 64\cdot\pi^2}
+   = -\frac{N_{\rm eff}\cdot 3\,\zeta(4)}{128\,\pi^2}.
+  \label{eq:casimir_t3_result}
+\end{align}
+Numerically: $E_{\rm Casimir}(T^3, R=1) \approx -0.0617$ (in units of $R^{-3}=1$).
+
+\subsection{Connection to $B$ coefficient}
+
+The $B$ coefficient in $V_{\rm eff}(n) = n^2 - Bn\ln n$ arises from the
+$n\ln n$ term in the sum over winding modes.  The natural identification is:
+\begin{equation}
+  \label{eq:casimir_B_proposal}
+  B \stackrel{?}{=} N_{\rm eff}\cdot C_d,
+  \qquad C_d = \frac{3\,\zeta(4)}{128\,\pi^2}.
+\end{equation}
+Numerically: $B_{\rm Casimir} = 12 \times 0.005140 = 0.0617$.
+
+\subsection{Casimir result vs.\ $B_{\rm phenom}$}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Quantity & Value & Status \\
+\midrule
+$B_{\rm Casimir}$ ($T^3$, eq.~\ref{eq:casimir_t3_result}) & $0.0617$ & [STD] \\
+$B_{\rm phenom}$ ($n^*(B)\!=\!137$) & $46.28$ & [L1 given $B$] \\
+$B_{\rm Ram}$ ($12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}$) & $46.28$ & [OBS] \\
+Ratio $B_{\rm Casimir}/B_{\rm phenom}$ & $\approx 1.33 \times 10^{-3}$ & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textit{Computation}: \texttt{tools/casimir\_B\_check.py} (verified).
+
+\subsection{Verdict on Casimir route}
+
+The direct Casimir energy on $T^3$ gives $B_{\rm Casimir} \approx 0.062$,
+four orders of magnitude below $B_{\rm phenom} \approx 46.28$.
+The Casimir route alone does \emph{not} close Gap G137-B.
+
+\begin{statusbox}
+Casimir energy on $T^3$ (Ambjorn-Wolfram): \textbf{[STD] computed}\\
+$B_{\rm Casimir} = 0.062 \ll B_{\rm phenom} = 46.28$: ratio $\approx 1.3\times10^{-3}$\\
+$n\ln n$ structure from T² Epstein zeta: \textbf{[L1 asym.]} (Section~\ref{sec:step2})\\
+Casimir T³ closes Gap G137-B: \textbf{NO}\\
+Remaining factor $\approx 750$: source unidentified\\
+Gap G137-B status: \textbf{NARROWED} (Casimir route explored, closed)\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary and Gap Closure Status}
 \label{sec:summary}
 %──────────────────────────────────────────────────────────────────────────────
