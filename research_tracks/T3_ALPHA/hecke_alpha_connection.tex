@@ -291,6 +291,57 @@ Hecke path-integral mechanismus je na no-go statusu.
 [OPEN] pro celkové spojení Hecke $\to \alpha^{-1}$.
 \end{statusbox}
 
+%──────────────────────────────────────────────────────────────────────────────
+\section{T10 Verdict: Formalize or Freeze (2026-05-17)}
+\label{sec:hecke:t10}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Decision criterion (from T10 task definition)}
+
+\begin{itemize}
+  \item If $|a_{137}(k=2)| = 11$ corresponds to a generator of the Hecke
+    algebra at level $N=7$ or $N=76$ for a reason derivable from
+    $\mathbb{C}\otimes\mathbb{H}$ — prove analytically → [L1].
+  \item Otherwise: freeze as ``strong [MC], no first-principles derivation.''
+\end{itemize}
+
+\subsection{Analysis: Does $N=76$ arise from $\mathbb{C}\otimes\mathbb{H}$?}
+
+The biquaternion algebra $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{Mat}(2,\mathbb{C})$
+has dimension $4$ over $\mathbb{C}$ (or $8$ over $\mathbb{R}$).
+The levels $N \in \{76, 7, 208\}$ were found by numerical search
+(\texttt{tools/hecke\_alpha\_scan.py}).
+
+\begin{itemize}
+  \item $76 = 4 \times 19$: no obvious factorisation from $\mathbb{C}\otimes\mathbb{H}$
+    dimension counting.
+  \item $7$: matches the dimension of $\mathrm{Im}(\mathbb{H})$ over $\mathbb{R}$
+    (antisymmetric part) \emph{only} if one identifies $N=7$ with the
+    7-dimensional cross-product structure.  This is heuristic, not derived.
+  \item $208 = 16 \times 13$: no structural derivation available.
+\end{itemize}
+
+No algebraic derivation of the levels $\{76, 7, 208\}$ from
+$\mathbb{C}\otimes\mathbb{H}$ is known.  The coincidence
+$|a_{137}(N=76, k=2)| = g(X_0(137)) = 11$ is not explained by Atkin--Lehner
+theory (Section~\ref{sec:hecke:test}) and no Hecke algebra theorem
+of the proposed form is known in the literature.
+
+\subsection{Verdict: FROZEN as strong [MC]}
+
+\begin{statusbox}[title={T10 Verdict — 2026-05-17}]
+$|a_{137}(k=2)| = 11$: \textbf{[L0]} — numerically confirmed by direct point-count\\
+$N=7$ from $\mathbb{C}\otimes\mathbb{H}$ structure: \textbf{[NO DERIVATION — frozen MC]}\\
+$N=76$ from $\mathbb{C}\otimes\mathbb{H}$: \textbf{[NO DERIVATION — frozen MC]}\\
+Lepton mass ratios from Hecke: \textbf{[strong MC, frozen]} — 0.02\% accuracy,
+prime-specific, but levels found by search not derivation\\
+Hecke $\to \alpha^{-1}$ mechanism: \textbf{[NO-GO]} — path-integral connection
+at no-go status (see \texttt{reports/hecke\_path\_integral\_no\_go\_or\_success.md})\\
+\textbf{Decision}: FROZEN as \emph{strong numerical [MC]};
+do not publicise as proved; preserve for future algebraic investigation.\\
+\textbf{Alpha: NOT DERIVED.}
+\end{statusbox}
+
 \ifdefined\INCLUDEMODE
 \else
   \end{document}

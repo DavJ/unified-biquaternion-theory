@@ -207,6 +207,9 @@ be derived from $S[\Theta]$ separately.
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
 | M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
 | Q1 | Kanonická kvantizace gravitonů (Zerilli+RW módy) | [STD] | `research_tracks/quantum_ubt/graviton_quantisation.tex` |
+| NCG1 | B₀=8π from N_eff=12 via NCG Poisson | [L1] | `papers/ncg_poisson_B0_derivation.tex` |
+| PRED1 | Proton decay τ_p~10³⁴ yr (conditional) | [CONDITIONAL] | `reports/falsifiable_prediction_sheet.md` |
+| PRED2 | ΔN_eff prediction (CMB-S4) per mode ≈ 0.047 | [OPEN — computation done, consistency pending] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 
 ---
 

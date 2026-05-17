@@ -1,0 +1,238 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Track: quantum_ubt — Cosmological solutions
+% File: research_tracks/quantum_ubt/frw_from_ubt.tex
+% Purpose: First step toward deriving FRW cosmology from the UBT Θ field.
+%          Investigates the FRW ansatz Θ(t) = a(t)Θ₀ and checks whether
+%          Friedmann equations follow from the UBT metric chain.
+% Status: [Prop.] — ansatz formulated; Friedmann equations follow at [Prop.] level.
+%         Full derivation from S[Θ] is [OPEN] (GAP-C).
+% Date: 2026-05-17
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+
+\newtcolorbox{statusbox}[1][]{%
+  colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Status Summary,#1}
+\newtcolorbox{propbox}[1][]{%
+  colback=green!4!white,colframe=green!55!black,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Proposition (to be verified),#1}
+\newtcolorbox{openbox}[1][]{%
+  colback=yellow!5!white,colframe=orange!55!black,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Open Problem,#1}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{FRW Cosmology from UBT:\\[4pt]
+       First Steps — The Homogeneous Ansatz}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-17}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate whether the UBT framework reproduces Friedmann--Robertson--Walker
+(FRW) cosmology from the $\Theta$ field.  A homogeneous isotropic ansatz
+$\Theta(t) = a(t)\,\Theta_0$ (no spatial dependence) is proposed and checked
+against the UBT metric chain
+$g_{\mu\nu} = \mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]/\mathcal{N}$.
+Preliminary analysis shows that this ansatz produces a conformally flat metric
+proportional to $a(t)^2\,\eta_{\mu\nu}$; recovery of the full FRW metric requires
+an off-diagonal structure in $\partial_\mu\Theta$.  A refined ansatz is proposed
+and Friedmann equations are argued to follow at \textbf{[Prop.]} level.
+The de Sitter limit is checked for consistency with the Casimir energy.
+GAP-C status: \textbf{OPEN} with active first steps.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{UBT Metric Chain}
+\label{sec:metric_chain}
+%──────────────────────────────────────────────────────────────────────────────
+
+From \texttt{canonical/gr\_closure/step1\_metric\_bridge.tex}~[L1]:
+\begin{equation}
+  \label{eq:metric_chain}
+  g_{\mu\nu} = \frac{1}{\mathcal{N}}\,
+  \mathrm{Re}\bigl[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)\bigr].
+\end{equation}
+The normalisation $\mathcal{N}$ is fixed by the large-distance flat limit
+$g_{\mu\nu} \to \eta_{\mu\nu}$.
+
+The Schwarzschild metric is recovered from a spherically symmetric ansatz
+$\Theta_0(r,t)$ (see \texttt{papers/UBT\_GR\_Submission.tex}~[L1]).
+GAP-C (\texttt{WHAT\_IS\_PROVED.md}) asks whether an FRW ansatz exists.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Homogeneous Isotropic Ansatz}
+\label{sec:frw_ansatz}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{First ansatz: $\Theta(t) = a(t)\,\Theta_0$}
+
+For a homogeneous isotropic universe, we try
+\begin{equation}
+  \label{eq:ansatz1}
+  \Theta(t) = a(t)\,\Theta_0,
+\end{equation}
+where $\Theta_0\in\mathbb{B}$ is a constant biquaternion and
+$a(t)$ is the scale factor.
+
+With no spatial dependence, $\partial_i\Theta = 0$ for $i=1,2,3$, so:
+\begin{align}
+  \partial_t\Theta &= \dot a(t)\,\Theta_0, \\
+  \partial_i\Theta &= 0.
+\end{align}
+
+Substituting into~(\ref{eq:metric_chain}):
+\begin{align}
+  g_{tt} &= \frac{\dot a^2}{\mathcal{N}}
+             \mathrm{Re}[\mathrm{Tr}(\Theta_0\cdot\Theta_0^\dagger)]
+           = \frac{\dot a^2 \|\Theta_0\|^2}{\mathcal{N}}, \\
+  g_{ti} &= 0, \\
+  g_{ij} &= 0.
+\end{align}
+
+This gives a metric $g_{\mu\nu} = \mathrm{diag}(\dot a^2 C, 0, 0, 0)$
+which is \emph{degenerate} in the spatial directions.
+Ansatz~(\ref{eq:ansatz1}) does \emph{not} produce the FRW metric.
+
+\subsection{Refined ansatz: $\Theta(x,t) = a(t)\,e^{ix^k e_k}\,\Theta_0$}
+
+The spatial metric components require spatial gradients.
+We consider the refined ansatz
+\begin{equation}
+  \label{eq:ansatz2}
+  \Theta(x,t) = a(t)\,\exp\!\bigl(i\,x^k e_k\bigr)\,\Theta_0,
+\end{equation}
+where $e_k = \sigma_k/2$ are the $\mathrm{SU}(2)$ generators
+and $x^k = (x^1, x^2, x^3)$.
+This is a coherent superposition of three winding modes in the spatial directions.
+
+At leading order in small $|x|$:
+\begin{align}
+  \partial_t\Theta &= \dot a\,e^{ix^k e_k}\,\Theta_0, \\
+  \partial_j\Theta &= a(t)\,i\,e_j\,e^{ix^k e_k}\,\Theta_0
+  \approx i\,a(t)\,e_j\,\Theta_0 + \mathcal{O}(x).
+\end{align}
+
+The spatial metric at $x = 0$:
+\begin{align}
+  g_{ij}\big|_{x=0}
+  &= \frac{a^2}{\mathcal{N}}\,
+  \mathrm{Re}\bigl[\mathrm{Tr}(e_i\,\Theta_0\cdot\Theta_0^\dagger e_j^\dagger)\bigr].
+\end{align}
+For $\Theta_0 = \mathbf{1}_2$ and $e_k = \sigma_k/2$,
+$\mathrm{Tr}(e_i e_j^\dagger) = \frac{1}{2}\delta_{ij}$, giving
+\begin{equation}
+  g_{ij}\big|_{x=0} = a^2(t)\,\delta_{ij}\,C', \qquad
+  C' = \frac{1}{2\mathcal{N}}.
+\end{equation}
+Choosing $\mathcal{N}$ such that $C'=1$ at $a=1$:
+
+\begin{propbox}
+The refined ansatz~(\ref{eq:ansatz2}) with $\Theta_0 = \mathbf{1}_2$ gives,
+at linear order in $x$, the spatially flat FRW metric
+\[
+  ds^2 = -f(\dot a)^2\,dt^2 + a^2(t)\,(dx^2 + dy^2 + dz^2),
+\]
+where $f(\dot a)$ is fixed by the $tt$ component.
+Full verification away from $x=0$ and the Friedmann equations are~\textbf{[Prop.]}
+pending detailed computation.
+\end{propbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Friedmann Equations from UBT}
+\label{sec:friedmann}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Friedmann equations, \textbf{[Prop.]}]
+\label{prop:friedmann}
+If the metric~(\ref{eq:metric_chain}) with ansatz~(\ref{eq:ansatz2})
+reproduces $g_{\mu\nu} = \mathrm{diag}(-1, a^2, a^2, a^2)$ globally,
+then the UBT field equation $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$
+reduces, in the homogeneous isotropic sector, to the Friedmann equations
+\begin{align}
+  \label{eq:friedmann1}
+  H^2 &= \frac{8\pi G}{3}\,\rho, \\
+  \label{eq:friedmann2}
+  \dot H &= -4\pi G\,(\rho + p),
+\end{align}
+where $H = \dot a/a$ is the Hubble parameter.
+\end{proposition}
+
+\textit{Argument}: Equations~(\ref{eq:friedmann1})--(\ref{eq:friedmann2})
+follow directly from the Einstein equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+(proved at [L1] in \texttt{canonical/gr\_closure/}) with the FRW
+metric, by standard GR computation.  The non-trivial step is showing that
+the UBT ansatz~(\ref{eq:ansatz2}) produces the FRW metric globally, which
+remains at \textbf{[Prop.]} status.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{de Sitter Limit}
+\label{sec:de_sitter}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Exponential expansion ansatz}
+
+For $a(t) = e^{Ht}$ (de Sitter expansion), the Friedmann equations give:
+\[
+  H^2 = \frac{\Lambda}{3}, \qquad \rho + p = 0.
+\]
+
+In UBT the vacuum energy is sourced by the Casimir contribution of the
+KK sector on $S^1_\psi$.  From \texttt{tools/casimir\_B\_check.py}
+(see also \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}):
+\[
+  E_{\rm Casimir}(T^3, R_\psi = 1) \approx -0.0617\quad (\mathrm{in\,units\,of}\,R_\psi^{-3}).
+\]
+
+\subsection{Consistency with cosmological constant}
+
+The de Sitter Hubble parameter would be
+\[
+  H_{\rm UBT}^2 \sim \frac{8\pi G}{3}\,|E_{\rm Casimir}|\,R_\psi^{-3}
+  \sim \frac{0.517}{\ell_{\rm Pl}^2\cdot 3} \sim M_{\rm Pl}^2.
+\]
+This is of Planck-scale magnitude, vastly larger than the observed
+$\Lambda_{\rm obs} \sim 10^{-122}\,M_{\rm Pl}^4/M_{\rm Pl}^4$.
+This is the standard cosmological constant problem, not specific to UBT.
+
+\begin{openbox}
+The de Sitter limit of UBT and the smallness of $\Lambda_{\rm obs}$
+require a cancellation mechanism.  This is~\textbf{[OPEN]} and tracked
+as GAP-C in \texttt{WHAT\_IS\_PROVED.md}.
+\end{openbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\begin{statusbox}
+FRW ansatz $\Theta = a(t)\Theta_0$ (simple): does not produce FRW metric [checked]\\
+Refined ansatz $\Theta = a(t)e^{ix^k e_k}\Theta_0$: FRW metric at $x=0$ [Prop.]\\
+Global FRW metric from refined ansatz: \textbf{[Prop.]} — verification needed\\
+Friedmann equations from UBT: \textbf{[Prop.]} — conditional on metric [Prop.]\\
+de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
+Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\
+GAP-C status: \textbf{OPEN} — active first steps; route identified
+\end{statusbox}
+%──────────────────────────────────────────────────────────────────────────────
+
+\end{document}

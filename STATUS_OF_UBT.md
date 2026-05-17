@@ -3,7 +3,7 @@
 # STATUS_OF_UBT.md — Single Source of Truth
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-14 *(last updated — top-10 execution program linkage)*  
+**Date**: 2026-05-17 *(last updated — top-10 execution program 2026-05-17)*  
 **Purpose**: Authoritative one-file description of the real current state of every
 major UBT track.  All other status files are subordinate to this document.
 When in conflict, this file governs.
@@ -31,6 +31,19 @@ and one blocked result (T3_ALPHA).
 **Execution control**: Top-10 priority/gap implementation instructions and locked
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
+
+## 2026-05-17
+
+| Item | Prev status | New status | Source |
+|------|-------------|------------|--------|
+| NCG B₀ paper | draft pending | compiled PDF (6 pages, 0 fatal errors) | `papers/ncg_poisson_B0_derivation.pdf` |
+| Gauge Submission PDF | pending | compiled PDF (8 pages, 0 fatal errors) | `papers/UBT_Gauge_Submission.pdf` |
+| ΔN_eff prediction | OPEN (uncomputed) | computed: 0.047/mode, 0.562 total; tension with Planck+ACT noted | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| Gap G137-B Casimir T³ | unexplored | EXPLORED & CLOSED: B_Casimir ≪ B_phenom; ratio ~1.3×10⁻³ | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §8` |
+| FRW from UBT (GAP-C) | OPEN | First steps: refined ansatz formulated; Friedmann [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
+| Higgs from S[Θ] (EW-2) | OPEN | First steps: tree-level check (no V(Θ)); CW setup described | `research_tracks/EW/higgs_from_theta.tex` |
+| T-dualita | [NO-GO local ansätze] | [NO-GO local ansätze; OPEN globally] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex` |
+| C2 uniqueness | OPEN/MC frozen | OPEN/MC frozen — anomálie cesta neselektuje n=1 | unchanged |
 
 ## Status update 2026-05-14
 
