@@ -101,8 +101,9 @@ The derivation proceeds through a five-step chain:
 emerging as the real-valued bilinear
 $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$;
 (2)~non-degeneracy $\det(g) \neq 0$ follows from the admissibility condition;
-(3)~Lorentzian signature $(-,+,+,+)$ is an algebraic theorem from the
-complex-time axiom, not a postulate;
+(3)~Lorentzian signature $(-,+,+,+)$ follows from AXIOM-B together with the
+admissible Lorentzian real-sector projection and spinor/Clifford representation,
+rather than being postulated at the metric level;
 (4)~the Levi-Civita connection and curvature tensors follow by standard constructions in the real projection
 differential geometry applied to the derived metric;
 (5)~the Einstein field equations follow from Hilbert variation of the total
@@ -175,9 +176,10 @@ gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
         (Theorem~\ref{thm:metric}).
         Prior biquaternion gravity papers postulate or impose the metric.
 
-  \item \textbf{Lorentzian signature is proved.}
-        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from the complex-time
-        axiom (AXIOM-B) alone, without any independent assumption about signs.
+  \item \textbf{Lorentzian signature is proved in the projected GR sector.}
+        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from AXIOM-B together
+        with the admissible Lorentzian real-sector projection and chosen
+        spinor/Clifford representation.
         Prior approaches assume the signature.
 
   \item \textbf{Complete five-step chain.}
@@ -250,16 +252,27 @@ There is a canonical algebra isomorphism
 \[
   \BB \;\cong\; \mathrm{Mat}(2,\CC).
 \]
-As a real Clifford algebra,
-$\BB \cong \mathrm{Cl}_{1,3}(\RR)$,
-which is the key link between the algebraic structure and spacetime geometry.
-The generators of $\mathrm{Cl}_{1,3}(\RR)$ split into one timelike generator
-$\gamma^0$ and three spacelike generators $\gamma^i$ ($i = 1,2,3$) satisfying
+The algebra $\BB$ should \emph{not} be identified with the full real Clifford
+algebra $\mathrm{Cl}_{1,3}(\RR)$, whose real dimension is $16$.
+Instead, $\BB$ realizes the complex spinorial / even-Clifford sector naturally
+associated with Lorentzian geometry.
+For signature $(-,+,+,+)$, Clifford generators satisfy
 \[
   (\gamma^0)^2 = -1, \qquad
   (\gamma^i)^2 = +1, \qquad
   \{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}.
 \]
+These signs are convention-dependent and follow from the chosen Lorentzian
+signature.
+Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic imaginary units
+are represented by $i\sigma_i$ with $(i\sigma_i)^2 = -I$.
+Here $I$ denotes the $2\times2$ identity matrix and $i$ is the imaginary unit.
+The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares but is
+not, by itself, a full Clifford basis because $iI$ commutes with each
+$\sigma_i$, so mixed anti-commutators fail (for distinct orthogonal Clifford
+generators one expects $0$, but $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
+\textbf{Warning:} correct squares alone are not sufficient; the Clifford
+anticommutation relations must also hold.
 By Hurwitz's theorem~\cite{hurwitz1923}, $\HH$ is the unique normed division
 algebra of dimension $4$ over $\RR$ that contains both a complex structure
 and a three-dimensional real anti-symmetric structure.
@@ -287,7 +300,9 @@ In particular:
 (i)~standard GR assumes the Lorentzian signature directly;
 (ii)~string theory assumes a Lorentzian target-space metric;
 (iii)~LQG encodes the signature in spin-foam face amplitudes.
-In UBT, AXIOM-B is the only structural input, and the signature is a
+In UBT, AXIOM-B selects a timelike complex-time direction.
+Together with the admissible Lorentzian real-sector projection and chosen
+spinor/Clifford representation, the signature is then a
 \emph{theorem} (Theorem~\ref{thm:signature}).
 \end{remark}
 
@@ -330,7 +345,7 @@ Table~\ref{tab:axioms}.
 \toprule
 \textbf{ID} & \textbf{Name} & \textbf{Content} \\
 \midrule
-A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Cl}_{1,3}(\RR)$ \\
+A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$; spinorial/even-Clifford carrier \\
 A2 & Complex time (AXIOM-B) & $\tau = t+i\psi$; $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$ \\
 A3 & Field equation (AXIOM-F) & $\nabla^\dagger\nabla\Theta = \kappa\calT$ \\
 A4 & Admissibility & $\{\partial_\mu\Theta\}$ linearly independent over $\RR$ in $\BB$ \\
@@ -358,8 +373,27 @@ For $\Theta \in \calA_{\mathrm{UBT}}$, define:
   \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
   g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN},
   \qquad
-  \calN := \re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
+  \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0
+  \quad\text{(chosen to keep } g_{00}<0\text{ in Lorentzian convention).}
 \end{align}
+\emph{Normalization convention note}: this sign convention for $\calN$ is written
+explicitly to keep $g_{00}<0$ and metric normalization internally consistent.
+With this convention, the metric formula keeps the same numerator while the
+timelike normalization carries the minus sign, so the sign bookkeeping is
+consistent across all appearances of $\calN$ in this manuscript.
+Equivalently, the Lorentzian projected form can be written as
+\[
+  g_{\mu\nu}
+  = \frac{\re\!\Tr\!\bigl[(\partial_\mu\Theta)^\dagger \eta_B (\partial_\nu\Theta)\bigr]}{\calN},
+\]
+with an admissible indefinite bilinear form $\eta_B$.
+Here $\eta_B$ denotes the Lorentzian bilinear form used in the chosen spinor
+representation, with signature $(-,+,+,+)$, non-degenerate and Hermitian on
+the projected GR sector.
+The dot-product notation in $\calG_{\mu\nu}$ is the compact version of this
+same projected contraction.
+The compact trace formula above is understood only after this Lorentzian
+real-sector projection is applied.
 \end{definition}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
@@ -407,7 +441,7 @@ Hence $\det(g_{\mu\nu}) \neq 0$.
 \subsection{Step 3: Lorentzian Signature}
 \label{sec:step3}
 
-\begin{theorem}[Lorentzian signature from AXIOM-B, \PROVED\,\Lone]
+\begin{theorem}[Lorentzian signature from AXIOM-B with Lorentzian projection, \PROVED\,\Lone]
 \label{thm:signature}
 The derived metric $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$:
 $g_{00} < 0$ and the spatial sub-block $(g_{ij})_{i,j=1,2,3}$ is
@@ -415,26 +449,29 @@ positive-definite.
 \end{theorem}
 
 \begin{proof}[Proof sketch; see Appendix~\ref{app:signature} for the full argument]
-By AXIOM-B, $\partial_\tau$ lies in the timelike sector of
-$\mathrm{Cl}_{1,3}(\RR) \cong \BB$.
+By AXIOM-B, $\partial_\tau$ lies in a timelike complex-time sector.
+Using the admissible Lorentzian real-sector projection (equivalently, an
+indefinite bilinear form $\eta_B$ in the chosen spinor/Clifford
+representation), the temporal derivative carries negative norm.
 Under $\tau = t + i\psi$, the temporal derivative
 $\partial_t\Theta = \re\,\partial_\tau\Theta$
-inherits the Clifford-algebraic timelike property, so
+inherits this timelike property, so
 \[
   g_{00}
   = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN} < 0,
 \]
 where $\calN = -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$.
-Spatial generators of $\mathrm{Cl}_{1,3}(\RR)$ are spacelike, giving $g_{ii} > 0$.
+Spatial directions are projected to the positive sector, giving $g_{ii} > 0$.
 The normalisation $\calN$ determines the scale but not the sign.
 \end{proof}
 
 \begin{remark}
 The Lorentzian signature is a \emph{theorem}, not a postulate.
-It follows from AXIOM-B alone, independently of the specific form of $\Theta$.
-The novelty is not that UBT makes an assumption about time --- it is that a single
-axiom (AXIOM-B) implies the correct signature as a consequence, whereas standard
-GR requires this as an independent input.
+It does not follow from complex time in isolation (without choosing the
+Lorentzian bilinear form $\eta_B$ and its associated spinor representation).
+The novelty is that AXIOM-B fixes a timelike complex-time direction and,
+combined with the admissible Lorentzian projection/representation choice,
+yields the correct signature in the GR sector.
 \end{remark}
 
 \begin{remark}[Abstract Clifford bilinear vs.\ physical metric]
@@ -852,7 +889,7 @@ researchers familiar with biquaternion algebra and standard GR.
 \midrule
 1 & Metric $g_{\mu\nu}$ from $\Theta$ & Proved \Lone & step1\_metric\_bridge.tex \\
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
-3 & Signature $(-,+,+,+)$ from AXIOM-B & Proved \Lone & step3\_signature\_theorem.tex \\
+3 & Signature $(-,+,+,+)$ from AXIOM-B + projection & Proved \Lone & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
 5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & Proved \Lone & step3\_einstein\_with\_matter.tex \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
@@ -876,25 +913,37 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 This appendix gives the full algebraic argument for
-Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B).
+Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B with
+Lorentzian projection).
 
-\paragraph{Step A1: Clifford identification.}
+\paragraph{Step A1: Spinorial/Clifford representation data.}
 The biquaternion algebra satisfies
-$\BB = \CC\otimes_\RR\HH \cong \mathrm{Cl}_{1,3}(\RR)$
-as real algebras~\cite{porteous1995}.
-Under this isomorphism the generators split into one timelike generator
-$\gamma^0$ and three spacelike generators $\gamma^i$ satisfying
+$\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$.
+It should not be identified with the full real Clifford algebra
+$\mathrm{Cl}_{1,3}(\RR)$ (real dimension $16$).
+Rather, $\BB$ provides the complex spinorial/even-Clifford carrier.
+For signature $(-,+,+,+)$ the Clifford generators satisfy
 \[
   (\gamma^0)^2 = -1, \qquad
   (\gamma^i)^2 = +1, \qquad
   \{\gamma^\mu,\gamma^\nu\} = 2\eta^{\mu\nu}.
 \]
+Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic units are
+represented by $i\sigma_i$ with $(i\sigma_i)^2=-I$.
+Here $I$ denotes the $2\times2$ identity matrix and $i$ is the imaginary unit.
+The tuple $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ matches the square signs but is
+not itself a full Clifford basis because $iI$ commutes with each $\sigma_i$
+(e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$);
+correct squares alone are insufficient without full anticommutation.
 
-\paragraph{Step A2: AXIOM-B constraint.}
-AXIOM-B states that $\partial_\tau$ lies in the timelike sector of
-$\mathrm{Cl}_{1,3}(\RR)$.
+\paragraph{Step A2: AXIOM-B constraint and projection choice.}
+AXIOM-B states that $\partial_\tau$ lies in a timelike complex-time sector.
 Concretely: $\partial_\tau = \partial_t + i\partial_\psi$ satisfies
 $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
+To transfer this sign information to the spacetime metric, one must also use
+an admissible Lorentzian real-sector projection (equivalently an indefinite
+bilinear form $\eta_B$ in the chosen representation, non-degenerate and
+Hermitian in the projected GR sector).
 
 \paragraph{Step A3: Temporal metric component.}
 \[
@@ -923,7 +972,8 @@ with the Lorentzian block structure $(-;+,+,+)$.
 \paragraph{Conclusion.}
 The eigenvalue structure of $g_{\mu\nu}$ has exactly one negative eigenvalue
 and three positive eigenvalues, i.e.\ signature $(-,+,+,+)$.
-This follows entirely from AXIOM-B, independently of the specific form of $\Theta$.
+This follows in the GR sector from AXIOM-B together with the admissible
+Lorentzian projection/representation structure.
 
 % ==============================================================================
 \section{Numerical Verification of the Schwarzschild Metric}
