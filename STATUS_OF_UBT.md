@@ -44,6 +44,12 @@ sequencing are maintained in `ROADMAP.md` under
 | C2 uniqueness | OPEN | OPEN/MC frozen | colour_charge_lattice.tex |
 | Gap G137-B | NARROWED | NARROWED (τ=i [OBS]) | mellin_insertion_B.tex |
 
+## 2026-05-14 update
+- Anomaly cancellation (chiral): [NUM/L1 conditional on C2]
+- EW-1b: PROVED [L1 conditional]
+- T-duality: lemma formulated [OPEN/MC]
+- Gap G137-B: T³ volumetric factor identified as source of 3/2 exponent
+
 ---
 
 ## T1_GR — General Relativity Recovery

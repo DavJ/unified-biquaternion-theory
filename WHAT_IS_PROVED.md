@@ -21,6 +21,17 @@ If it is not on this list, it is not claimed as proved.
 
 ---
 
+## 2026-05-14 update (v28)
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| EW6 | Anomaly cancellation (chiral) | [L1 cond. C2] | `research_tracks/EW/anomaly_cancellation.tex` |
+| EW7 | EW-1b PROVED: $\lambda=g^2/2$ from SS projection | [L1 cond.] | `research_tracks/EW/rpsi_from_action.tex` |
+| Q2 | T-duality lemma target formulated | [OPEN/MC] | `canonical/THEORY/t_duality_ubt.tex` |
+| GR10 | Zerilli equation | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
+
+---
+
 ## Track T1_GR: General Relativity Recovery
 
 All proofs in `canonical/gr_closure/` and `canonical/geometry/`.  
