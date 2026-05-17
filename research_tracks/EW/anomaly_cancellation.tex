@@ -1,0 +1,65 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox,booktabs}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{Anomaly Cancellation Check from UBT Hypercharge Inputs}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-17}
+
+\begin{document}
+\maketitle
+
+\section{Scope}
+This note audits whether anomaly-cancellation constraints follow from the
+currently tracked UBT hypercharge assignments without importing extra SM-fit
+assumptions.
+
+\section{Numerical check used in Priority P8}
+Using the provided set
+\[
+(T_3,Y,\text{mult})\in
+\left\{
+\left(\tfrac12,\tfrac16,3\right),
+\left(-\tfrac12,\tfrac16,3\right),
+\left(0,\tfrac23,3\right),
+\left(0,-\tfrac13,3\right),
+\left(\tfrac12,-\tfrac12,1\right),
+\left(-\tfrac12,-\tfrac12,1\right),
+\left(0,-1,1\right)
+\right\},
+\]
+with \(Q=T_3+Y\), we obtain
+\[
+\sum Q = 0,\qquad \sum Q^3=-\frac49.
+\]
+
+\section{Interpretation}
+The naive charge-only cubic sum does not vanish for this input set, so
+``anomaly cancellation from first principles'' is not closed yet in this form.
+The remaining blocker is a full chiral-anomaly treatment (left-vs-right Weyl
+content, representation traces, and normalization conventions) tied to the
+final C2 hypercharge closure.
+
+\begin{statusbox}
+Anomaly cancellation from first principles: \textbf{[OPEN]}\\
+\(\sum Q=0\): \textbf{[NUM]}\\
+\(\sum Q^3=-4/9\) for the current charge-only test set: \textbf{[NUM, non-zero]}\\
+Blocker: chiral representation-level anomaly derivation from finalized UBT
+hypercharge theorem (Gap C2 chain)\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+\end{document}

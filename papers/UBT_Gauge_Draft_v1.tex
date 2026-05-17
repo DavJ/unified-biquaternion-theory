@@ -76,23 +76,18 @@ stated explicitly in Section~\ref{sec:open}.\\[4pt]
 \end{tcolorbox}
 
 \begin{abstract}
-We prove that the Standard Model gauge group
-$G_{\mathrm{SM}} = \SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
-is uniquely realised in the biquaternion algebra
-$\mathbb{B} := \Bq \cong \mathrm{Mat}(2,\mathbb{C})$,
-the same 8-real-dimensional algebra underlying Unified Biquaternion Theory
-(UBT).
-$\SU{3}_c$ arises from the $\mathbb{Z}_2^3$ involution structure of $\mathbb{B}$,
-independently confirmed by a qubit encoding.
-$\SU{2}_L$ is the group of norm-preserving left multiplications.
-$\UU{1}_Y$ is the scalar phase right action.
-The hypercharge assignment $Y_Q = 1/6$ follows from a topological condition
-on $S^1_\psi$.
-Three fermion generations arise from three independent $\psi$-winding modes.
-$N_{\mathrm{eff}} = 12$ Kaluza-Klein phases follow from an SU(2) Scherk--Schwarz
-twist.
-Open problems — Weinberg angle, chirality, Higgs sector — are stated
-explicitly.
+We derive the Standard Model gauge structure
+$\mathrm{SU}(3)_c\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+from the biquaternion algebra $\mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}$
+without free parameters for the gauge group.
+Three fermion generations follow from winding modes on the compact
+imaginary directions of $\mathbb{H}$.
+Hypercharge assignments $Y_Q=1/6$ are derived from the topology of
+$S^1_\psi$ [L1].
+The Weinberg angle $\sin^2\theta_W = 3/8$ at the unification scale
+follows conditionally [L1 cond.].
+Honest dead ends (full Weinberg angle, Higgs sector, $\alpha$) are
+explicitly bounded.
 \end{abstract}
 
 \tableofcontents
@@ -116,7 +111,7 @@ structure without introducing the group as external input.
 
 \subsection{UBT approach}
 
-Unified Biquaternion Theory (UBT) \cite{GRpaper2026} is built on the field
+Unified Biquaternion Theory (UBT) \cite{jaros2026gr} is built on the field
 $\Theta(q,\tau)$ over biquaternion space $\mathbb{B} = \Bq$
 and complex time $\tau = t + i\psi$.
 The same algebra $\mathbb{B}$ that underlies the gravitational sector
@@ -427,6 +422,8 @@ beyond the three light generations [\MC].
 The following elements are \emph{not} proved in this paper and are
 stated explicitly.
 
+The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure algebra: the embedding $\mathrm{U}(1)_Y\hookrightarrow B$ admits a continuous deformation of the ratio $g'/g$, so no algebraic argument alone selects $\sin^2\theta_W = 0.231$. The EW1+RG route (generator norm ratios + one-loop running) gives $\sin^2\theta_W = 3/8$ at the GUT scale conditionally on the derivation of $R_\psi$ from $S[\Theta]$ (item EW-1b, open).
+
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!55!black,
   title=Open Problems,breakable]
 \begin{center}
@@ -481,10 +478,10 @@ $\alpha$ — are explicitly stated.
 % ============================================================
 \begin{thebibliography}{99}
 
-\bibitem{GRpaper2026}
-Ing.~D.~Jaroš,
-``General Relativity as a Real-Projected Limit of Unified Biquaternion Theory,''
-preprint, 2026.
+\bibitem{jaros2026gr}
+D.~Jaro\v{s},
+``General Relativity as a Real-Projected Limit of UBT,''
+Zenodo preprint, 2026. doi:10.5281/zenodo.20148904.
 
 \bibitem{Connes1991}
 A.~Connes and J.~Lott,

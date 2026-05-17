@@ -142,11 +142,40 @@ Applying Step 3 yields \(3\widehat y\in\ZZ\), hence \(Y_{\mathrm{PDG}}\in\frac13
 No empirical hadron charge assignment is used.
 \end{proof}
 
+\section{Hypercharge-convention check}
+Across this file we use
+\[
+Q=T_3+\widehat Y,\qquad \widehat Y:=Y/2,
+\]
+which is equivalent to the canonical convention
+\[
+Q=T_3+Y/2.
+\]
+Therefore the statement \(Y_Q=1/6\) in this note is interpreted in the
+\(\widehat Y\)-normalization (\(Y_{\mathrm{PDG}}=1/6\)).
+
+\section{Uniqueness/minimality status (Gap C2)}
+\begin{proposition}[Minimality target for \(Y_Q=1/6\)]
+Given \(Y_{\mathrm{PDG}}\in\frac16\ZZ\), uniqueness of \(Y_Q=1/6\) requires an
+additional minimality condition tied to the full SM multiplet charge spectrum
+and anomaly constraints.
+\end{proposition}
+
+\begin{remark}
+Current file proves lattice quantisation classes (\(Y\in\frac13\ZZ\) here, and
+intersection with electroweak constraints to \(\frac16\ZZ\) in the wider C2
+chain), but does not yet prove uniqueness of the minimal positive assignment.
+Status is therefore frozen as \textbf{[OPEN/MC]} with blocker:
+full minimality theorem not closed.
+\end{remark}
+
 \begin{tcolorbox}[title={Singlet-integrality theorem — verdikt}]
 U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[L1]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\
 $Y\in1/3\ZZ$: \textbf{[L1 given $Q\in\ZZ$]}\\
-Gap C2 Krok 1: \textbf{[CLOSED L1]}.
+Hypercharge convention check ($Q=T_3+\widehat Y \Leftrightarrow Q=T_3+Y/2$): \textbf{[CONSISTENT]}\\
+Uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC, frozen with blocker note]}\\
+Gap C2 Krok 1 (lattice class only): \textbf{[CLOSED L1]}.
 \end{tcolorbox}
 
 \end{document}
