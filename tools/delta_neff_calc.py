@@ -3,7 +3,23 @@
 # See LICENSE file in the repository root for full license text
 
 def delta_Neff_total(N_modes, g_dec, g_today=3.909):
-    """Return total ΔN_eff for N_modes using ΔN_eff=(43/4)*(g_today/g_dec)^(4/3) per mode."""
+    """
+    Compute total ΔN_eff from KK modes.
+
+    Parameters
+    ----------
+    N_modes : int or float
+        Number of KK modes contributing to radiation density.
+    g_dec : float
+        Effective relativistic degrees of freedom at decoupling, g*(T_dec).
+    g_today : float, default=3.909
+        Present-day entropy degrees of freedom normalization factor.
+
+    Returns
+    -------
+    float
+        Total ΔN_eff = N_modes * (43/4) * (g_today / g_dec)^(4/3).
+    """
     per_mode = (43 / 4) * (g_today / g_dec) ** (4 / 3)
     return N_modes * per_mode
 
