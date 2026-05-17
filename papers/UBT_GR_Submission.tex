@@ -99,8 +99,11 @@ complex-time axiom, not a postulate;
 differential geometry applied to the derived metric;
 (5)~the Einstein field equations follow from Hilbert variation of the total
 UBT action.
-The Schwarzschild metric in isotropic coordinates is reproduced analytically
-and numerically verified to relative error $< 10^{-15}$.
+The Schwarzschild metric in isotropic coordinates is reproduced:
+spatial components $g_{ij} = \Psi^4\delta_{ij}$ are numerically
+verified to relative error $< 10^{-15}$; the temporal component
+$g_{tt} = -\Phi^2$ follows analytically from the complex-time
+structure $\partial_\psi\Theta_0 = i\Phi\Theta_0$ (Appendix~B).
 Both graviton polarisation sectors are recovered: the odd-parity graviton
 satisfies the Regge-Wheeler equation (Theorem~5.1), and the even-parity
 graviton satisfies the Zerilli equation, derived at level~[L1] in
@@ -138,8 +141,11 @@ In UBT, the metric $g_{\mu\nu}$ is derived, the Lorentzian signature is proved,
 and the Einstein equations emerge from a variational principle applied to
 the fundamental field.
 This paper establishes the classical GR sector.
-The gauge and quantum sectors are addressed in companion papers
-(T2\_GAUGE and T3\_ALPHA tracks).
+Two companion papers address the gauge and quantum sectors:
+(i) gauge structure $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+and three fermion generations (T2\_GAUGE track); and
+(ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
+(T3\_ALPHA track, preprint in preparation).
 
 \subsection{Key Claims and Novelty}
 
@@ -244,14 +250,18 @@ and a three-dimensional real anti-symmetric structure.
 \end{definition}
 
 \begin{remark}[Even subalgebra]
+\label{rem:even}
 The isomorphism $\BB \cong \mathrm{Cl}^+_{1,3}(\RR)$ holds for the
-\emph{even subalgebra} (grades~0 and~2) of $\mathrm{Cl}_{1,3}(\RR)$.
-The full Clifford algebra has $\dim_\RR = 16$; the odd elements
-(vectors, pseudovectors, pseudoscalar) lie outside $\BB$ as an algebra
-but are accessible via the spinor representation.
-For the classical GR sector, the even subalgebra suffices:
-Lorentz boosts and rotations are grade-2 elements (bivectors),
-and the metric bilinear is grade-0 valued.
+\emph{even subalgebra} (grades~0 and~2) of $\mathrm{Cl}_{1,3}(\RR)$,
+which has $\dim_\RR \mathrm{Cl}^+_{1,3}(\RR) = 1 + 6 = 8$,
+consistent with $\dim_\RR \BB = 8$.
+The full Clifford algebra $\mathrm{Cl}_{1,3}(\RR)$ has $\dim_\RR = 16$;
+the odd-grade elements (vectors, pseudovectors, pseudoscalar)
+lie outside $\BB$ as an algebra, but are accessible via the spinor
+representation of $\mathrm{Cl}_{1,3}(\RR)$ on the space where $\BB$ acts.
+For the classical GR sector this distinction is immaterial:
+Lorentz boosts and rotations are grade-2 bivectors (inside $\BB$),
+and the metric bilinear $g_{\mu\nu}$ is grade-0 valued.
 \end{remark}
 
 \subsection{Complex Time and AXIOM-B}
@@ -346,25 +356,26 @@ Assumptions A4--A5 are regularity conditions defining $\calA_{\mathrm{UBT}}$.
 For $\Theta \in \calA_{\mathrm{UBT}}$, define:
 \begin{align}
   \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
-  g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN},
-  \qquad
-  \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
+  \calN &:= -\langle \partial_0\Theta,\, \partial_0\Theta \rangle_\eta \,,
+  \quad \text{where } \langle A, B\rangle_\eta
+  := \mathrm{Re}[\mathrm{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)]\,, \\
+  g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN}.
 \end{align}
-Here the trace is evaluated with respect to the \emph{indefinite}
-Clifford inner product $\langle A, B\rangle_\eta :=
-\mathrm{Re}[\mathrm{Tr}(A \cdot \eta_B \cdot B^\dagger)]$,
-where $\eta_B = \mathrm{diag}(-1,+1,+1,+1)$ is the Minkowski
-metric embedded in $\BB$.
-Choosing $\calN := -\langle \partial_0\Theta, \partial_0\Theta\rangle_\eta > 0$
-(positive by AXIOM-B) gives $g_{00} < 0$ consistently.
+Here $\eta_{\mathcal{B}} = \mathrm{diag}(-1,+1,+1,+1)$ is the
+Minkowski metric operator embedded in $\mathcal{B}$, inducing
+an \emph{indefinite} inner product on the timelike sector.
+By AXIOM-B, $\partial_0\Theta$ lies in the timelike sector of
+$\mathrm{Cl}^+_{1,3}(\RR)$ where
+$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$,
+so $\calN > 0$ and $g_{00} = -1 < 0$ consistently.
 \end{definition}
 
 \begin{remark}
 AXIOM-B (Definition~\ref{def:axiomb}) guarantees that
-$\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] < 0$
+$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$
 for any admissible $\Theta \in \calA_{\mathrm{UBT}}$.
 Accordingly, $\calN$ is defined as
-$\calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$
+$\calN := -\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta > 0$
 throughout this paper.
 \end{remark}
 
@@ -644,35 +655,15 @@ Theorems~\ref{thm:metric}--\ref{thm:rw}.}
 \begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
   title={GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo]},breakable]
 
-\textbf{On-shell result (proved)}: For $\Theta \in \calA_{\mathrm{UBT}}$
-satisfying its own Euler--Lagrange equation under a gauge-reduced local rank
-condition,
-$\delta\hat{S}/\delta\Theta = 0$ is equivalent to the Einstein equations
-evaluated on $g = g[\Theta]$.
-
-\smallskip
-\textbf{Off-shell gap}: Global non-degeneracy of
-$J = \delta g^{\mu\nu}/\delta\Theta$ for \emph{all} field configurations
-(not only on-shell $\Theta \in \calA_{\mathrm{UBT}}$) is not proved.
-
-\smallskip
-\textbf{Missing lemma}: Show that $\ker J$ consists only of gauge directions
-(pure phase or diffeomorphism) for all $\Theta$ in the full off-shell field space.
-
-\smallskip
-\textbf{Known obstructions}:
-\begin{itemize}
-  \item \emph{Rank mismatch}: $\re(\nabla^\dagger\nabla\Theta)$ is rank-0;
-        $G_{\mu\nu}$ is rank-2.
-  \item \emph{Topology}: global injectivity of $\Theta \to g[\Theta]$ requires
-        $H^2(M^4,\mathbb{Z})$ analysis of the $\Theta$-bundle.
-  \item \emph{Non-perturbative}: a fixed-point theorem in Sobolev space is needed.
-\end{itemize}
-
-\textbf{Scope}: This is a question about off-shell path-integral completeness
-and quantum theory.
-The classical GR recovery result (all theorems in
-\S\S\ref{sec:step1}--\ref{sec:rw}) is unaffected.
+\paragraph{GAP-10: Off-shell $\Theta$-only closure.}
+The present paper derives Einstein's equations via
+the \emph{induced-metric} approach: $\Theta\to g_{\mu\nu}[\Theta]$,
+then standard Einstein--Hilbert variation over $g_{\mu\nu}$.
+The off-shell problem --- deriving $G_{\mu\nu}=8\pi GT_{\mu\nu}$
+by varying $S[\Theta]$ directly with respect to $\Theta$ alone,
+without passing through $g$ --- remains open at level [L2].
+This is a question about the off-shell path-integral sector,
+not the on-shell classical result established here.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}
@@ -780,12 +771,11 @@ Several prior approaches derive aspects of GR from algebraic structures:
 This paper establishes the \emph{classical GR sector} of UBT.
 It makes no claim about the quantum gravity sector (GAP-Q),
 cosmological solutions (GAP-C), or gauge unification (T2\_GAUGE track).
-Two companion papers are in preparation:
-(i) \emph{Gauge structure and three generations from UBT}
-(T2\_GAUGE track), deriving $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
-and fermion hypercharges; and
-(ii) \emph{One-loop $\beta$-function coefficient from biquaternion NCG}
-(T3\_ALPHA track), establishing $B_0 = 8\pi$ [L1].
+Two companion papers address the gauge and quantum sectors:
+(i) gauge structure $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+and three fermion generations (T2\_GAUGE track); and
+(ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
+(T3\_ALPHA track, preprint in preparation).
 The remaining [L2] open problem (GAP-10) is precisely bounded in
 \S\ref{sec:gaps} and does not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
 
@@ -873,14 +863,16 @@ $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
   = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN}.
 \]
 With $\partial_0 = \partial_t$ in the timelike $\gamma^0$-sector,
-$\partial_0\Theta$ lies in the timelike Clifford sector, so
-$\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] < 0$.
-Choosing $\calN = -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$
+and using the indefinite Clifford inner product
+$\langle\cdot,\cdot\rangle_\eta$ (Definition~\ref{def:metric}),
+$\langle\partial_0\Theta, \partial_0\Theta\rangle_\eta < 0$
+by AXIOM-B (timelike sector has negative Clifford norm).
+Choosing $\calN = -\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta > 0$
 gives $g_{00} = -1 < 0$.
 
 \paragraph{Step A4: Spatial metric components.}
 For $i = 1,2,3$, $\partial_i\Theta$ lies in the spacelike $\gamma^i$-sector,
-so $\re[\Tr(\partial_i\Theta \cdot \partial_i\Theta^\dagger)] > 0$,
+so $\langle\partial_i\Theta,\partial_i\Theta\rangle_\eta > 0$,
 giving $g_{ii} > 0$.
 
 \paragraph{Step A5: Off-diagonal components.}

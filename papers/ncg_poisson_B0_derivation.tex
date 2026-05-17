@@ -71,7 +71,8 @@ The one-loop $\beta$-function coefficient $B_0$ for the UBT gauge sector equals
 B_0 = \frac{2\pi}{3}\,\Neff = \frac{2\pi}{3}\times 12 = 8\pi,\quad\textbf{[L1]}
 \]
 derived from the NCG spectral action on $M^4\times S^1_\psi$ via
-Kaluza--Klein reduction with the SU(2) Scherk--Schwarz twist giving $\Neff=12$.\\[4pt]
+Kaluza--Klein reduction with the SU(2) Scherk--Schwarz twist route giving
+$\Neff=12$.\\[4pt]
 \textbf{Open}: Fine structure constant $\alpha$\ --- NOT DERIVED.
 Gap~G137-B (map $B_0\mapsto B_{\mathrm{phenom}}\approx 46.28$ from $S[\Theta]$) remains \OPEN.
 \end{tcolorbox}
@@ -82,8 +83,10 @@ $(\mathcal{A},\mathcal{H},\mathcal{D})$ with $\mathcal{A}=\CC\otimes_\mathbb{R}\
 via Kaluza--Klein reduction and heat-kernel asymptotics [\Lone/\STD].
 The logarithmic term $B_0\ln\Lambda$ in the effective action arises from
 4D one-loop diagrams for each KK winding mode of $\Theta\in\mathbb{B}$;
-summation over $\Neff=12$ modes (from the SU(2) Scherk--Schwarz twist [\Lone])
+summation over $\Neff=12$ modes (from the SU(2) Scherk--Schwarz twist route [\Lone])
 yields $B_0=(2\pi/3)\Neff=8\pi$.
+The value $\Neff=12$ here is the SU(2)-twist result, not the
+independent loop-counting route.
 We further identify the UBT winding partition function
 $Z_{\mathrm{wind}}(\tau)=\vartheta_3(0\mid i\tau)$ as the natural spectral-action
 object linking the biquaternion algebra to modular forms.
@@ -105,7 +108,7 @@ Alpha is \emph{not} derived in this paper.
 \begin{definition}[Biquaternion algebra \Lzero]
 The \emph{biquaternion algebra} is
 \[
-\mathbb{B} := \Bq \;\cong\; \mathrm{Mat}(2,\CC) \;\cong\; \mathrm{Cl}_{1,3}(\mathbb{R}).
+\mathbb{B} := \Bq \;\cong\; \mathrm{Mat}(2,\CC) \;\cong\; \mathrm{Cl}^{+}_{1,3}(\mathbb{R}).
 \]
 As a real vector space $\dim_\mathbb{R}\mathbb{B}=8$.
 The algebra $\mathbb{B}$ is the base of the Unified Biquaternion Theory (UBT)
@@ -201,8 +204,8 @@ Proposition~\ref{prop:log} gives
 \label{eq:B0NCG}
 \end{equation}
 This relation is derived by independent methods in
-\texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex} \Lone.
-The NCG derivation provides an independent confirmation at the same level.
+\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \Lone.
+The NCG derivation provides an independent confirmation of the same SU(2)-twist route.
 \end{remark}
 
 \subsection{Winding partition function and theta functions}
@@ -244,6 +247,8 @@ Counting all contributing modes per phase:
 where $N_{\mathrm{phases}} = \dim_\mathbb{R}(\mathrm{Im}\,\mathbb{H}) = 3$
 [\Lzero] and $N_{\mathrm{eff,pp}} = 4$ per-phase (2 charged fields $\times$
 2 helicity states) from the SU(2) twist [\Lone].
+This theorem does not identify $\Neff$ with the independent direct loop count,
+which remains a separate open issue.
 
 Ref: \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \Lone.
 \end{theorem}
@@ -339,7 +344,7 @@ Gap~G137-B.  Progress:
 \toprule
 \textbf{Quantity} & \textbf{Value} & \textbf{Status} \\
 \midrule
-$\Neff$ & $12$ & \Lone \\
+$\Neff$ (SU(2)-twist route) & $12$ & \Lone \\
 $B_0 = (2\pi/3)\Neff$ & $8\pi \approx 25.133$ & \Lone \\
 $12^{3/2}$ & $41.569\ldots$ & \Lone \\
 $(2\eta(i))^{1/4}$ & $\approx 1.113$ & \NUM \\

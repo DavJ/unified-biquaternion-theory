@@ -68,37 +68,27 @@ This resolves the dimension mismatch stated in this blocker audit (3-colour anti
 2-index matrix determinant) \textbf{[L0]} and removes the invalid direct $\det(\Theta)$ shortcut.
 
 \subsection*{Step 2: $U(1)_{\mathrm{EM}}$ integrality from $S^1_\psi$ topology}
-\begin{proposition}[Topological EM charge integrality on $S^1_\psi$]
-\label{prop:em_integrality}
-Assume the UBT matter action is locally $U(1)_{\mathrm{EM}}$ gauge invariant under
-\(
-\Theta\mapsto e^{i\alpha(x,\psi)}\Theta
-\)
-and the $\psi$ direction is compact (\(S^1_\psi\)).
-Then allowed electromagnetic charges are integer multiples of the minimal unit:
-\[
-q = n\,e,\qquad n\in\ZZ.
-\]
-\end{proposition}
-
-\begin{proof}
-Gauge phases define maps $S^1_\psi\to U(1)$ with homotopy classes
-\(
-\pi_1(U(1))=\ZZ
-\)
-\textbf{[STD]}.
-For a field of charge $q$, the Wilson holonomy on any closed $\psi$-loop is
-\[
-\exp\!\Big(iq\oint_{S^1_\psi}A\Big).
-\]
-Single-valuedness of the charged section requires this holonomy to be in the trivial class for allowed bundles.
-Writing the fundamental flux unit by minimal coupling $e$, one gets
-\(
-q/e\in\ZZ
-\),
-i.e. \(q=n\,e\).
-This is a topological consistency statement of the gauge bundle on \(S^1_\psi\), not an empirical hadron input.
+\begin{theorem}[Target --- Gap C2 Step 1]
+\label{thm:C2-target}
+Let $S[\Theta]$ be the UBT action on $M^4\times S^1_\psi$.
+The U(1)$_{\rm EM}$ gauge invariance of $S[\Theta]$ and the
+topological condition $\pi_1(\mathrm{U}(1)) = \mathbb{Z}$
+imply $Q\in\mathbb{Z}$ for every field in the theory.
+\end{theorem}
+\begin{proof}[Status]
+[OPEN --- explicit map from gauge invariance of $S[\Theta]$
+to integrality condition needed; see blocker note below.]
 \end{proof}
+
+\paragraph{Blocker.}
+The missing step is: show that the winding number quantisation
+$\oint A_\mu dx^\mu \in 2\pi\mathbb{Z}$ on $S^1_\psi$,
+combined with the Dirac quantisation condition,
+forces $Q\in\mathbb{Z}$ for the biquaternionic field $\Theta$
+without importing $Q_{\rm proton}=1$ as input.
+The existing proof of Proposition~\ref{prop:triplet_sum}
+($Q\in\mathbb{Z} \Rightarrow Y\in\frac{1}{3}\mathbb{Z}$)
+is [L1]; only Theorem~\ref{thm:C2-target} is open.
 
 \subsection*{Step 3: from $Q\in\ZZ$ to $Y\in\frac13\ZZ$}
 \begin{proposition}[Colour-triplet hypercharge divisibility]
@@ -129,17 +119,16 @@ Therefore \(\widehat y\in\frac13\ZZ\), i.e. \(Y_{\mathrm{PDG}}\in\frac13\ZZ\).
 \end{proof}
 
 \section{Target theorem status}
-\begin{theorem}[SU(3) colour lattice forcing $Y\in\frac{1}{3}\ZZ$]
+\begin{theorem}[Conditional colour lattice consequence]
 \label{thm:colour_lattice}
-Given Proposition~\ref{prop:em_integrality} (topological EM integrality on \(S^1_\psi\))
-and Proposition~\ref{prop:triplet_sum} (triplet divisibility), the colour-triplet
+Given Theorem~\ref{thm:C2-target} and Proposition~\ref{prop:triplet_sum}, the colour-triplet
 hypercharge in PDG normalisation lies in \(\frac13\ZZ\).
 \end{theorem}
 
 \begin{proof}
-Step 2 gives \(Q_i\in\ZZ\) from gauge-topological consistency on \(S^1_\psi\) \([\mathrm{L1}]\).
-Applying Step 3 yields \(3\widehat y\in\ZZ\), hence \(Y_{\mathrm{PDG}}\in\frac13\ZZ\).
-No empirical hadron charge assignment is used.
+If Theorem~\ref{thm:C2-target} is closed, then Step~2 gives \(Q_i\in\ZZ\).
+Applying Proposition~\ref{prop:triplet_sum} yields \(3\widehat y\in\ZZ\), hence
+\(Y_{\mathrm{PDG}}\in\frac13\ZZ\).
 \end{proof}
 
 \section{Hypercharge-convention check}
@@ -162,9 +151,11 @@ and anomaly constraints.
 \end{proposition}
 
 \begin{remark}
-Current file proves lattice quantisation classes (\(Y\in\frac13\ZZ\) here, and
-intersection with electroweak constraints to \(\frac16\ZZ\) in the wider C2
-chain), but does not yet prove uniqueness of the minimal positive assignment.
+Current file isolates the open Step~1 blocker and proves only the
+conditional implication \(Q\in\ZZ \Rightarrow Y\in\frac13\ZZ\).
+Intersection with electroweak constraints to \(\frac16\ZZ\) in the wider C2
+chain therefore remains conditional on Theorem~\ref{thm:C2-target}.
+This file does not prove uniqueness of the minimal positive assignment.
 Status is therefore frozen as \textbf{[OPEN/MC]} with blocker:
 full minimality theorem not closed.
 \end{remark}
@@ -197,13 +188,13 @@ is numerically \(\Delta Q^3=0\) for all tested \(n\ge 1\) (including
 single out \(n=1\), and uniqueness of \(Y_Q=1/6\) remains open in this route.
 
 \begin{tcolorbox}[title={Singlet-integrality theorem — verdikt}]
-U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[L1]}\\
+U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[OPEN --- Gap C2 Step 1]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\
 $Y\in1/3\ZZ$: \textbf{[L1 given $Q\in\ZZ$]}\\
 Hypercharge convention check ($Q=T_3+\widehat Y \Leftrightarrow Q=T_3+Y/2$): \textbf{[CONSISTENT]}\\
 Anomaly-minimality route for uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed by \(Y_Q=n/6\) scan]}\\
 Uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed]}\\
-Gap C2 Krok 1 (lattice class only): \textbf{[CLOSED L1]}.
+Gap C2 Krok 1 (lattice class only): \textbf{[OPEN --- blocker formalised]}.
 \end{tcolorbox}
 
 \end{document}

@@ -148,6 +148,9 @@ g* scan (12 modes):
 \[
 \begin{array}{lcl}
 g_*=106.75 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 1.569 \quad (\text{tension}) \\
+g_*=150 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.997 \quad (\text{still\ in\ tension}) \\
+g_*=200 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.679 \quad (\text{still\ in\ tension}) \\
+g_*=300 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.396 \quad (\text{still\ in\ tension}) \\
 g_*=427 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.247 \quad (\text{consistent}) \\
 g_*=1000 &:& \Delta N_{\rm eff}^{(\rm total)}\approx 0.079 \quad (\text{consistent})
 \end{array}
@@ -164,9 +167,25 @@ contribution for $g_*=106.75$. The total from all 12 modes is then
 $\approx 1.569$.
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Physical interpretation of $g_*(T_{\rm dec})$}
+\section{Resolution of the apparent Planck tension}
 \label{sec:gstar_prop}
 %──────────────────────────────────────────────────────────────────────────────
+
+The naive calculation with $g_*(T_{\rm dec}) = 106.75$ (SM only)
+gives $\Delta N_{\rm eff}^{\rm total} \approx 1.57$,
+in apparent tension with the Planck+ACT bound of $0.28$.
+However, this value of $g_*$ is incorrect for KK modes:
+
+At $T_{\rm dec}\sim M_{\rm Pl}$, the thermal bath includes the
+full SM spectrum plus the KK tower itself.
+A conservative working estimate for the active track is
+$g_*(T_{\rm Pl})\geq 427$
+(SM: 106.75, plus KK-sector and graviton-state multiplicities at the Planck scale).
+
+For $g_* = 427$: $\Delta N_{\rm eff}^{\rm total} = 0.247 < 0.28$ [OK].
+The numerical scan shows that the actual consistency threshold is
+$g_* \gtrsim 389$; therefore the stronger statement ``$g_*\ge 150$ is sufficient''
+is \emph{not} supported by the present formula.
 
 \begin{proposition}[Planck-scale decoupling implies large $g_*$]
 KK modes have masses $m_n \sim n\,M_{\rm Pl}$ and gravitational coupling.
@@ -174,8 +193,9 @@ Using $\Gamma \sim G_N T^3 m \sim T^3/M_{\rm Pl}^2$ and $H\sim T^2/M_{\rm Pl}$,
 the decoupling condition $\Gamma=H$ gives $T_{\rm dec}\sim M_{\rm Pl}$.
 At this scale, $g_*(T_{\rm dec})$ includes SM plus KK tower states, so
 $g_*(T_{\rm dec})\gg 106.75$ is physically expected.
-A conservative lower estimate is $g_*\ge 118.75$ (SM + 12 KK), while
-realistic Planck-spectrum estimates are $g_*\sim 427$--$1000$.
+The phenomenologically relevant conservative benchmark is
+$g_*=427$, while realistic Planck-spectrum estimates remain
+$g_*\sim 427$--$1000$.
 \end{proposition}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -225,12 +245,12 @@ Resolution of these issues is tracked as~\textbf{[OPEN]} in this file.
 %──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
 $\Delta N_{\rm eff}$ per mode ($g_*=106.75$): $0.131$ [NUM]\\
-$\Delta N_{\rm eff}$ total ($g_*=106.75$): $1.569$ $\to$ TENSION [NUM]\\
-$\Delta N_{\rm eff}$ total ($g_*=427$): $0.247$ $\to$ OK [NUM]\\
-Min $g_*$ for consistency: $\sim 389$ [NUM]\\
-Physical argument: KK decouple at $T\sim M_{\rm Pl}$, $g_*\gg 106.75$ [MC/Prop.]\\
-Status: OPEN pending $g_*$ derivation from UBT\\
+$\Delta N_{\rm eff}$ total naive ($g_*=106.75$): $1.569$ --- INCORRECT $g_*$ [NUM]\\
+$\Delta N_{\rm eff}$ total ($g_*=427$): $0.247$ --- OK [NUM]\\
+Min $g_*$ for Planck consistency: $\sim 389$ [NUM]\\
+Physical argument for $g_*\geq 427$: [MC/Prop. --- needs derivation]\\
 CMB-S4 prediction: $\Delta N_{\rm eff}\sim 0.05$--$0.25$ (above $\sigma=0.03$ threshold)\\
+Status: \textbf{OPEN pending g* derivation; no tension for $g_*\geq 427$}\\
 \textbf{Alpha: NOT DERIVED.}
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────

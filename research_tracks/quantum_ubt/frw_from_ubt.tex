@@ -177,8 +177,10 @@ g_{\mu\nu}
 =\frac{\mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]}{\mathcal N}
 =a^2(t)\,\mathrm{diag}(-1,+1,+1,+1)
 \]
-up to normalization and coordinate redefinition. This keeps the refined ansatz
-compatible with global FRW structure at proposition level.
+up to normalization and coordinate redefinition.
+This keeps the refined ansatz compatible with global FRW structure at
+proposition level, but the cancellation of the mixed $g_{0i}$ terms
+still needs a fully global proof away from the isotropic ansatz simplification.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Friedmann Equations from UBT}
@@ -247,13 +249,12 @@ as GAP-C in \texttt{WHAT\_IS\_PROVED.md}.
 
 %──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
-FRW ansatz $\Theta = a(t)\Theta_0$ (simple): does not produce FRW metric [checked]\\
-Refined ansatz $\Theta = a(t)e^{ix^k e_k}\Theta_0$: FRW metric at $x=0$ [Prop.]\\
-Global FRW metric from refined ansatz: \textbf{[Prop.]} — verification needed\\
-Friedmann equations from UBT: \textbf{[Prop.]} — conditional on metric [Prop.]\\
+Off-diagonal $g_{0i}=0$ globally: \textbf{[Prop. pending]}\\
+FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]}\\
+Friedmann equations from UBT: \textbf{[Prop.]} — conditional on global FRW metric\\
 de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
 Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\
-GAP-C status: \textbf{OPEN} — active first steps; route identified
+GAP-C status: \textbf{OPEN} — first global step still pending
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────
 

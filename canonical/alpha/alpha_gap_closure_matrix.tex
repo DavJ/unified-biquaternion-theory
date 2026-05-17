@@ -253,43 +253,28 @@ $\alpha$28 & Mellin insertion note (2026-05-14, extended v28 factorisation):
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{tcolorbox}[colback=red!4!white, colframe=red!60!black,
-  title={Gap G137-B — Exact Statement (2026-05-14, NS/SU(2)-twist + orbifold update)}]
-\textbf{Theorem to be proved}: From the UBT action $S[\Theta]$ alone,
-derive the effective coupling coefficient $B$ in
-$V_{\mathrm{eff}}(n) = n^2 - B\,n\ln n$ as:
-\begin{equation}
-  B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4},
-  \label{eq:G137B}
-\end{equation}
-where:
-\begin{itemize}
-  \item $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is the current normalization
-    candidate (not yet first-principles derived) at the self-dual point;
-  \item $N_{\mathrm{eff}}=12$ from the SU(2)-twist theorem [L1];
-  \item No input from $\alpha_{\mathrm{exp}}$, $B_{\mathrm{phenom}}$, or any
-    fitted parameter is used.
-\end{itemize}
-\textbf{Alternative equivalent form} (via $\vartheta_3(0|i)=\sqrt{2}\,\eta(i)$ [STD, $\alpha$20]):
+  title={Minimal Missing Theorem --- Gap G137-B (v2)}]
+\textbf{What must be proved}: There exists a derivation from
+$S[\Theta]$, without using $\alpha_{\rm exp}$, $137$, or
+$B_{\rm phenom}$ as inputs, that establishes
 \[
-  B = N_{\mathrm{eff}}^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}
-  = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0|i)^{1/4}.
+  B = N_{\rm eff}^{3/2}\cdot (2\eta(i))^{1/4}
+  \approx 46.28
 \]
-\textbf{Current status of factors}:
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-\textbf{Factor} & \textbf{Status} & \textbf{Source} \\
-\midrule
-$N_{\mathrm{eff}}^{3/2}$ & \Lone\ (SU(2) twist) &
-  \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} \\
-$Z_{1\mathrm{real}}=2\eta(i)$ & \MC\ \OBS\ (normalization candidate; NS sector gives
-  $\vartheta_2/\eta\approx1.189\ne\sqrt{2}$; $\vartheta_3/\eta=\sqrt{2}$ [STD]) &
-  \texttt{chowla\_selberg\_B\_derivation.tex \S5} \\
-Factorization $W_{\mathrm{eff}}=N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$ &
-  \OPEN\ (core open problem) & volumetric Mellin insertion not proved \\
-\bottomrule
-\end{tabular}
-\end{center}
+as the coefficient of $n\ln n$ in the winding-mode effective
+potential $V_{\rm eff}(n) = n^2 - Bn\ln n$ derived from $S[\Theta]$.
+
+\textbf{Specifically}: the Mellin transform of the heat kernel
+$K_{P_b}(t) = \vartheta_3(0|it/\pi R^2)$ on $S^1_\psi$ at the
+self-dual point $R\Lambda=1$ must be shown to yield
+$(2\eta(i))^{1/4}$ as the coefficient of $n\ln n$ via the
+zeta-regularised determinant $\zeta'_{P_b}(0)$.
+
+\textbf{Current status}: [OPEN]. The $T^3$ volumetric factor
+$N_{\rm eff}^{3/2}$ is identified [MC]; the Mellin
+insertion $(2\eta(i))^{1/4}$ is numerical [OBS].
+
+\textbf{Alpha: NOT DERIVED.}
 \end{tcolorbox}
 
 \subsection{Why the gap is hard}

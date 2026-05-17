@@ -3,7 +3,7 @@
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-13  
+**Date**: 2026-05-18  
 **Purpose**: Authoritative list of what UBT has proved, at what level,
 and where the proof lives.  Every claim here is backed by a source file.
 If it is not on this list, it is not claimed as proved.
@@ -18,6 +18,8 @@ If it is not on this list, it is not claimed as proved.
 | **[L1]** | Formal theorem — requires axioms A1–A3 and standard mathematics |
 | **[NUM]** | Numerically verified (reproducible script) |
 | **[STD]** | Standard mathematics or physics result; not novel |
+| **[MC]** | Motivated conjectural bridge; not yet derived |
+| **[OBS]** | Numerical or structural observation; not a derivation |
 
 ---
 
@@ -51,9 +53,9 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
-| G1 | The metric $g_{\mu\nu} = \mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\mathcal{N}$ is a symmetric covariant (0,2) tensor | [L1] | `step1_metric_bridge.tex` |
+| G1 | The metric $g_{\mu\nu} = \mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\mathcal{N}$ is a symmetric covariant (0,2) tensor, with $\mathcal{N}$ defined by the indefinite Clifford inner product | [L1] | `papers/UBT_GR_Submission.tex` Def. 3.1, Thm. 3.2 |
 | G2 | $\det(g_{\mu\nu}) \neq 0$ for admissible Θ (Theorem 3.2) | [L1] | `step2_nondegeneracy.tex` |
-| G3 | Lorentzian signature $(-,+,+,+)$ is a theorem from AXIOM-B alone | [L1] | `step3_signature_theorem.tex` |
+| G3 | Lorentzian signature $(-,+,+,+)$ is a theorem from AXIOM-B, conditional on the indefinite Clifford inner product definition for $\mathcal{N}$ | [L1] | `papers/UBT_GR_Submission.tex` Thm. 3.4, App. A |
 | G4 | Levi-Civita connection, curvature tensors — standard GR | [STD] | Wald 1984 |
 | G5 | Einstein field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ from Hilbert variation | [L1] | `step3_einstein_with_matter.tex` |
 | G6 | Stress-energy tensor $T_{\mu\nu}$ is symmetric | [L1] | `canonical/geometry/stress_energy.tex` |
@@ -96,7 +98,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
 | A1 | ℂ⊗ℍ ≅ Mat(2,ℂ) | [L0] | `biquaternion_algebra.tex` |
-| A2 | ℂ⊗ℍ ≅ Cl₁,₃(ℝ) | [L0] | `biquaternion_algebra.tex` |
+| A2 | ℂ⊗ℍ ≅ Cl⁺₁,₃(ℝ) (even subalgebra) | [L0] | `papers/UBT_GR_Submission.tex §2.1` |
 | A3 | dim_ℝ(ℂ⊗ℍ) = 8 | [L0] | Definition |
 
 ### SU(3) Colour
@@ -122,7 +124,8 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E3 | W±, W³ as gauge connections of SU(2)_L | [L1] | Gauge principle |
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
-| E5b | SU(3) colour-lattice Step 1 ($\mathbf{3}\to Y\in\frac{1}{3}\mathbb{Z}$) isolated as formal target theorem | OPEN / [MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
+| E5b | SU(3) colour-lattice Step 1: target theorem $Q\in\mathbb{Z}$ from $S[\Theta]$ on $S^1_\psi$ | [OPEN/MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
+| SM5 | Hypercharge assignment $Y_Q=1/6$ | [L1 conditional on C2 Step 1 — OPEN] | `canonical/interactions/colour_charge_lattice.tex`, `papers/UBT_Gauge_Submission.tex` |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
 | E8 | Photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ | [L1] | Standard EW |
@@ -162,10 +165,11 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
 | α1 | N_phases = 3 from Im(ℍ) | [L0] | `canonical/n_eff/step2_AUDIT.tex` |
-| α1b | N_eff = 12 = 3×2×2 | OPEN / [MC] (under critical audit) | `canonical/n_eff/step2_AUDIT.tex` |
-| α1c | N_eff(loop) = 3 from S_kin[Θ] (charged complex scalars) | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
-| α1d | B₀(loop) = 2π from S_kin[Θ] (one-loop scalar QED, N_eff=3) | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
-| α1e | N_eff(R2)=12 and N_eff(loop)=3 are different quantities; identification is unproved | [MC] OPEN | `canonical/n_eff/neff_reconciliation.tex` |
+| α1a | $N_{\mathrm{eff}}^{\mathrm{twist}} = 12 = 3\times2\times2$ via SU(2) twist | [L1] | `canonical/n_eff/step2_AUDIT.tex`, `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
+| α1b | $N_{\mathrm{eff}}^{\mathrm{loop}} = 3$ from direct $S_{\mathrm{kin}}[\Theta]$ loop counting | [L1] | `canonical/n_eff/step2_AUDIT.tex`, `canonical/n_eff/neff_reconciliation.tex` |
+| α1c | Identification $N_{\mathrm{eff}}^{\mathrm{loop}} = N_{\mathrm{eff}}^{\mathrm{twist}}$ | [MC/OPEN frozen] | `canonical/n_eff/step2_AUDIT.tex` |
+| α1d | $B_0^{\mathrm{loop}} = 2\pi$ from $S_{\mathrm{kin}}[\Theta]$ (one-loop scalar QED, $N_{\mathrm{eff}}^{\mathrm{loop}}=3$) | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
+| α1e | $B_0 = 8\pi$ from the SU(2)-twist route with $N_{\mathrm{eff}}^{\mathrm{twist}}=12$ | [L1] | `papers/ncg_poisson_B0_derivation.tex`, `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
 | α2 | Charge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
 | α3 | V_eff winding-mode potential: $V_\mathrm{eff}(n) = n^2 - Bn\ln n$ | [L1] | `canonical/alpha/alpha_best_route.tex` |
 | α4 | $n^*(B_\mathrm{phenom}) = 137$ | [L1] (given B) | `canonical/alpha/alpha_best_route.tex` |
@@ -211,15 +215,14 @@ be derived from $S[\Theta]$ separately.
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
-| M1 | N_eff = 12 from ℂ⊗ℍ (full 3×2×2 factorization) | OPEN / [MC] (critical audit pending) | `canonical/n_eff/step2_AUDIT.tex` |
-| M2 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
-| M2a | B₀=8π from N_eff=12 [L1] | [L1] | `research_tracks/quantum_ubt/su2_twist_neff12.tex` + NCG derivation |
+| M2 | $B_0^{\mathrm{loop}} = 2\pi$ from the direct scalar loop of $S_{\mathrm{kin}}[\Theta]$ | [L1] | `canonical/n_eff/neff_reconciliation.tex` |
+| M2a | $B_0=8\pi$ from the SU(2)-twist route with $N_{\mathrm{eff}}^{\mathrm{twist}}=12$ | [L1] | `papers/ncg_poisson_B0_derivation.tex`, `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
-| M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
+| M4 | ΔN_eff prediction: 0.05–0.25 for benchmark $g_*\ge 427$ | [OPEN pending g* derivation] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 | Q1 | Kanonická kvantizace gravitonů (Zerilli+RW módy) | [STD] | `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 | NCG1 | B₀=8π from N_eff=12 via NCG Poisson | [L1] | `papers/ncg_poisson_B0_derivation.tex` |
 | PRED1 | Proton decay τ_p~10³⁴ yr (conditional) | [CONDITIONAL] | `reports/falsifiable_prediction_sheet.md` |
-| PRED2 | ΔN_eff prediction (CMB-S4) per mode ≈ 0.047 | [OPEN — computation done, consistency pending] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| PRED2 | ΔN_eff prediction (CMB-S4): total 0.05–0.25 depending on $g_*(T_{\rm Pl})$ | [OPEN — computation done, g* derivation pending] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 
 ---
 

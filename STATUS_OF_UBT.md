@@ -3,7 +3,7 @@
 # STATUS_OF_UBT.md — Single Source of Truth
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-17 *(last updated — top-10 execution program 2026-05-17)*  
+**Date**: 2026-05-18 *(last updated — rigour pass 2026-05-18)*  
 **Purpose**: Authoritative one-file description of the real current state of every
 major UBT track.  All other status files are subordinate to this document.
 When in conflict, this file governs.
@@ -32,14 +32,20 @@ and one blocked result (T3_ALPHA).
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
-## 2026-05-18 Update
-- GR paper: Cl⁺₁,₃ oprava provedena (BLOKER odstraněn)
-- ΔN_eff: napětí závisí na g*(T_dec); pro g*≥427 konzistentní
-- Casimir cesta k B: NO-GO (faktor 9003×)
-- FRW rafinovaný ansatz: [Prop.] — aktivní
-- Gauge Submission: zkompilován PDF
-- NCG B₀ paper: zkompilován PDF
-- comparison_table.html: přidána na web
+## 2026-05-18 Rigour pass
+
+### Opravy
+- GR paper: Cl⁺₁,₃ (even subalgebra) opraveno [P1]
+- GR paper: indefinitní vnitřní součin pro $\mathcal N$ zaveden [P1]
+- N_eff: dvě různé routes jasně odděleny [P3]
+- ΔN_eff: napětí závisí na g*(T_dec); pro benchmark g*≥427 OK, numerický práh je ~389 [P5]
+- Gap C2 Step 1: blokér formalizován [P4]
+
+### Aktuální stav
+- arXiv: GR ZIP ready po P1/P9/P10/P14/P15
+- Gap G137-B: NARROWED, minimální teorém formulován [P7]
+- Weinberg: [CONDITIONAL on C2 Step 1]
+- Alpha: NOT DERIVED
 
 ## 2026-05-17
 
@@ -47,7 +53,7 @@ sequencing are maintained in `ROADMAP.md` under
 |------|-------------|------------|--------|
 | NCG B₀ paper | draft pending | compiled PDF (6 pages, 0 fatal errors) | `papers/ncg_poisson_B0_derivation.pdf` |
 | Gauge Submission PDF | pending | compiled PDF (8 pages, 0 fatal errors) | `papers/UBT_Gauge_Submission.pdf` |
-| ΔN_eff prediction | OPEN (uncomputed) | computed: 0.047/mode, 0.562 total; tension with Planck+ACT noted | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| ΔN_eff prediction | OPEN (uncomputed) | computed: 0.131/mode, 1.569 naive total; benchmark 0.247 for g*=427 | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 | Gap G137-B Casimir T³ | unexplored | EXPLORED & CLOSED: B_Casimir ≪ B_phenom; ratio ~1.3×10⁻³ | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §8` |
 | FRW from UBT (GAP-C) | OPEN | First steps: refined ansatz formulated; Friedmann [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
 | Higgs from S[Θ] (EW-2) | OPEN | First steps: tree-level check (no V(Θ)); CW setup described | `research_tracks/EW/higgs_from_theta.tex` |
@@ -109,8 +115,7 @@ None that prevent submission.
 ### Pre-Submission Fix
 
 ✅ Pre-submission fixes are integrated in the canonical manuscript (`papers/UBT_GR_Submission.tex`).
-⚠️ Compile attempt (2026-05-12): local sandbox has no `pdflatex`; clean build
-must be confirmed in a LaTeX-enabled runner/CI.
+✅ Local LaTeX build completed in the current rigour pass; arXiv zip prepared.
 
 ### Next Action
 
@@ -121,9 +126,9 @@ to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ## T2_GAUGE — Standard Model Gauge Structure
 
-**Status**: NEAR READY — algebraic results proved; paper not yet written  
+**Status**: NEAR READY — algebraic results proved; draft paper compiled  
 **Confidence**: HIGH for algebraic sector; MEDIUM for chirality claim  
-**Paper**: Draft needed (6–8 week write-up)
+**Paper**: `papers/UBT_Gauge_Submission.tex` (compiled PDF)
 
 ### Solved Algebra Pieces (Zero New Work Needed)
 
@@ -184,8 +189,9 @@ Full derivation (137.036) requires solving Gap G137-B first.
 | **A_PRIME: V_eff Prime Attractor** | **PRIMARY** | HIGH (conditional) | Gap G137-B | YES — 4-week time-box |
 
 **What is proved in A_PRIME**:
-- N_eff = 12 — OPEN/[MC]: critical audit revealed that multiplicity factors in
-  the scalar-action loop remain unproved (see `canonical/n_eff/step2_AUDIT.tex`)
+- N_eff^twist = 12 — [L1]: closed on the SU(2)-twist route; the independent
+  scalar-loop count remains N_eff^loop = 3 [L1], and the identification
+  twist = loop is still OPEN/[MC] (see `canonical/n_eff/step2_AUDIT.tex`)
 - V_eff structure has a motivated prime/winding/entropy route, but the full
   derivation from S[Θ] remains conditional.
 - n*(B_phenom) = 137 for B_phenom ≈ 46.298 [L1] (conditional on B)

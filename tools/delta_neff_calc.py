@@ -2,7 +2,7 @@
 # Licensed under the MIT License
 # See LICENSE file in the repository root for full license text
 
-def delta_Neff_total(N_modes, g_dec, g_today=3.909):
+def delta_Neff(N_modes, g_dec, g_today=3.909):
     """
     Compute total ΔN_eff from KK modes.
 
@@ -24,20 +24,19 @@ def delta_Neff_total(N_modes, g_dec, g_today=3.909):
     return N_modes * per_mode
 
 
-def main():
-    print("g* scan:")
-    for g in [106.75, 200, 427, 500, 1000]:
-        total = delta_Neff_total(12, g)
-        tension = total > 0.28
-        print(
-            f"  g*={g:6.1f}: ΔN_eff={total:.4f}, "
-            f"Planck tension={'YES' if tension else 'NO'}, "
-            f"CMB-S4 detectable={total > 0.03}"
-        )
+def delta_Neff_total(N_modes, g_dec, g_today=3.909):
+    return delta_Neff(N_modes, g_dec, g_today)
 
-    for g in range(107, 500):
-        if delta_Neff_total(12, g) < 0.28:
-            print(f"\nMinimum g* for consistency: {g}")
+
+def main():
+    print("g* scan (N_modes=12):")
+    for g in [106.75, 150, 200, 300, 427, 500, 1000]:
+        total = delta_Neff(12, g)
+        print(f"  g*={g:7.2f}: dN={total:.4f} {'OK' if total < 0.28 else 'TENSION'}")
+
+    for g in range(107, 1000):
+        if delta_Neff(12, g) < 0.28:
+            print(f"\nMin g* for Planck consistency: {g}")
             break
 
 
