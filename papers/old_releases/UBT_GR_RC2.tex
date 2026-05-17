@@ -266,6 +266,7 @@ These signs are convention-dependent and follow from the chosen Lorentzian
 signature.
 Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic imaginary units
 are represented by $i\sigma_i$ with $(i\sigma_i)^2 = -I$.
+Here $I$ denotes the $2\times2$ identity matrix and $i$ is the imaginary unit.
 The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares but is
 not, by itself, a full Clifford basis because $iI$ commutes with each
 $\sigma_i$, so mixed anti-commutators fail (e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$).
@@ -379,10 +380,11 @@ Equivalently, the Lorentzian projected form can be written as
   = \frac{\re\!\Tr\!\bigl[(\partial_\mu\Theta)^\dagger \eta_B (\partial_\nu\Theta)\bigr]}{\calN},
 \]
 with an admissible indefinite bilinear form $\eta_B$ (the Lorentzian bilinear
-form in the chosen spinor representation, with signature $(-,+,+,+)$).
+form in the chosen spinor representation, with signature $(-,+,+,+)$, taken to
+be non-degenerate and Hermitian on the projected GR sector).
 The compact trace formula above is understood only after this Lorentzian
 real-sector projection is applied.
-\emph{RC2 safety note}: this sign convention for $\calN$ is written explicitly
+\emph{Normalization convention note}: this sign convention for $\calN$ is written explicitly
 to keep $g_{00}<0$ and metric normalization internally consistent.
 \end{definition}
 
@@ -919,6 +921,7 @@ For signature $(-,+,+,+)$ the Clifford generators satisfy
 \]
 Pauli matrices satisfy $\sigma_i^2 = I$, while quaternionic units are
 represented by $i\sigma_i$ with $(i\sigma_i)^2=-I$.
+Here $I$ denotes the $2\times2$ identity matrix and $i$ is the imaginary unit.
 The tuple $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ matches the square signs but is
 not itself a full Clifford basis because $iI$ commutes with each $\sigma_i$
 (e.g.\ $\{iI,\sigma_1\}=2i\sigma_1\neq0$);
@@ -930,7 +933,8 @@ Concretely: $\partial_\tau = \partial_t + i\partial_\psi$ satisfies
 $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
 To transfer this sign information to the spacetime metric, one must also use
 an admissible Lorentzian real-sector projection (equivalently an indefinite
-bilinear form $\eta_B$ in the chosen representation).
+bilinear form $\eta_B$ in the chosen representation, non-degenerate and
+Hermitian in the projected GR sector).
 
 \paragraph{Step A3: Temporal metric component.}
 \[
