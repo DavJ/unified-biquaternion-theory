@@ -37,7 +37,7 @@ def main():
 
     for g in range(107, 500):
         if delta_Neff_total(12, g) < 0.28:
-            print(f"\nMin g* pro konzistenci: {g}")
+            print(f"\nMinimum g* for consistency: {g}")
             break
 
 
