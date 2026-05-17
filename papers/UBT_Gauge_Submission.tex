@@ -82,8 +82,8 @@ from the biquaternion algebra $\mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}$
 without free parameters for the gauge group.
 Three fermion generations follow from winding modes on the compact
 imaginary directions of $\mathbb{H}$.
-Hypercharge assignments $Y_Q=1/6$ are derived from the topology of
-$S^1_\psi$ [L1].
+Hypercharge assignments $Y_Q=1/6$ remain conditional on
+Gap~C2 Step~1, which is currently open.
 The Weinberg angle $\sin^2\theta_W = 3/8$ at the unification scale
 follows conditionally [L1 cond.].
 Honest dead ends (Higgs sector, $\alpha$) are
@@ -121,9 +121,10 @@ This paper derives:
 \item $\SU{3}_c$ from the $\mathbb{Z}_2^3$ involution structure of $\mathbb{B}$ [\Lzero].
 \item $\SU{2}_L$ from the left norm-preserving action on $\mathbb{B}$ [\Lzero].
 \item $\UU{1}_Y$ from the scalar phase right action on $\mathbb{B}$ [\Lzero].
-\item Hypercharge $Y_Q = 1/6$ from a topological condition on $S^1_\psi$ [\Lone].
+\item Hypercharge $Y_Q = 1/6$ is conditional on Gap~C2 Step~1
+      (\OPEN\ pending first-principles closure).
 \item Three generations from three $\psi$-winding modes [\Lzero].
-\item $N_{\mathrm{eff}} = 12$ from the SU(2) Scherk--Schwarz twist [\Lone].
+\item $N_{\mathrm{eff}} = 12$ from the SU(2) Scherk--Schwarz twist route [\Lone].
 \end{enumerate}
 
 \subsection{Summary of results and open problems}
@@ -137,7 +138,7 @@ This paper derives:
 2 & $\SU{3}_c$ from qubit encoding (independent) & \Lzero & §\ref{sec:su3} \\
 3 & $\SU{2}_L$ from left action & \Lzero & §\ref{sec:su2} \\
 4 & $\UU{1}_Y$ from right phase action & \Lzero & §\ref{sec:u1} \\
-5 & Hypercharge $Y_Q = 1/6$ on $S^1_\psi$ & \Lone & §\ref{sec:hypercharge} \\
+5 & Hypercharge $Y_Q = 1/6$ on $S^1_\psi$ & \OPEN\ (conditional on Gap~C2 Step~1) & §\ref{sec:hypercharge} \\
 6 & $\sin^2\theta_W = 3/8$ at GUT scale & \Lone\ (conditional) & §\ref{sec:hypercharge} \\
 7 & Three generations from winding modes & \Lzero & §\ref{sec:generations} \\
 8 & $N_{\mathrm{eff}} = 12$ from SU(2) twist & \Lone & §\ref{sec:neff} \\
@@ -160,11 +161,11 @@ O4 & Fine structure constant $\alpha$ & \OPEN & §\ref{sec:open} \\
 The \emph{biquaternion algebra} is
 \[
   \mathbb{B} \;:=\; \Bq \;\cong\; \mathrm{Mat}(2,\mathbb{C})
-\;\cong\; \mathrm{Cl}_{1,3}(\mathbb{R}).
+ \;\cong\; \mathrm{Cl}^{+}_{1,3}(\mathbb{R}).
 \]
 As a real vector space $\dim_\mathbb{R}\mathbb{B} = 8$.
-The isomorphism $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ identifies
-the algebra with the Clifford algebra of Minkowski space.
+The isomorphism $\mathbb{B}\cong\mathrm{Cl}^{+}_{1,3}(\mathbb{R})$ identifies
+the algebra with the even Clifford subalgebra of Minkowski space.
 
 Ref: \texttt{canonical/fields/biquaternion\_algebra.tex} \PROVED.
 \end{definition}
@@ -335,15 +336,17 @@ arises as the unbroken combination $Q = T_3 + Y/2$ from the $\psi$-cycle phase.
 
 \subsection{Hypercharge $Y_Q = 1/6$ and Gap C2}
 
-\begin{theorem}[Hypercharge assignment $Y_Q = 1/6$, \Lone]
+\begin{theorem}[Hypercharge assignment $Y_Q = 1/6$ (conditional on Gap~C2 Step~1)]
 \label{thm:hypercharge}
-The quark doublet hypercharge $Y_Q = 1/6$ follows from the
+Conditional on a first-principles closure of Gap~C2 Step~1 in
+\texttt{canonical/interactions/colour\_charge\_lattice.tex},
+the quark doublet hypercharge $Y_Q = 1/6$ follows from the
 topological condition on the imaginary-time circle $S^1_\psi$:
 the minimal non-zero hypercharge consistent with three colour charges
 and anomaly cancellation is $Y = 1/6$.
 
 Ref: \texttt{canonical/interactions/colour\_charge\_lattice.tex},
-\S ``Hypercharge from $S^1_\psi$ topology'' [\Lone].
+\S ``Hypercharge from $S^1_\psi$ topology'' [conditional/open].
 \end{theorem}
 
 \subsection{Generator norm ratios and $\sin^2\theta_W$ at GUT scale}
@@ -358,7 +361,7 @@ at the GUT-unification scale where all couplings are equal.
 This is the standard $\mathrm{SU}(5)$ / $\mathrm{SO}(10)$ GUT prediction,
 here derived from the biquaternion algebra without invoking a GUT group.
 
-Ref: \texttt{canonical/interactions/colour\_charge\_lattice.tex} [\Lone].
+Ref: \texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex} [conditional].
 
 \textbf{Conditional}: requires that the running from $\sin^2\theta_W(M_Z) = 0.231$
 to $\sin^2\theta_W(M_{\mathrm{GUT}}) = 3/8$ is supplied by Standard Model
@@ -407,6 +410,8 @@ The Scherk--Schwarz twist $\Theta(\psi + 2\pi R_\psi) = \sigma_3\Theta\sigma_3$
 on $S^1_\psi$ generates half-integer Kaluza--Klein momenta for the
 off-diagonal $b$-fields, yielding $N_{\mathrm{eff}} = 12$ effective KK modes
 contributing to the one-loop effective potential.
+This SU(2)-twist counting is distinct from the independent loop-counting route,
+which remains frozen at [MC/OPEN].
 
 Ref: \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex} [\Lone].
 \end{theorem}
@@ -433,7 +438,9 @@ The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure al
 \midrule
 Chirality ($L$ not $R$) & \SE, gap C1
   & \texttt{canonical/chirality/} \\
-Higgs/Yukawa ($\lambda$ gap) & Candidate only
+Weinberg angle $\sin^2\theta_W(M_Z)\approx 0.231$ & CONDITIONAL (EW1+RG)
+  & \texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex} \\
+Higgs/Yukawa ($\lambda$ gap) & \OPEN
   & \texttt{DERIVATION\_INDEX.md} \\
 Strong coupling $g_s$ / $\alpha_s$ & \OPEN
   & \texttt{su3\_proof\_status.md} \\
@@ -458,8 +465,10 @@ The chiral cubic anomaly condition
 \sum_{\mathrm{left}} Q^3-\sum_{\mathrm{right}} Q^3=0
 \]
 is numerically satisfied for the UBT hypercharge assignments [NUM].
-Given the first-principles derivation of hypercharges (Gap~C2, [L1]),
+Given a future first-principles derivation of hypercharges (Gap~C2 Step~1),
 anomaly cancellation follows at [L1 conditional on C2].
+At present Gap~C2 Step~1 remains open, so the anomaly statement is not stronger
+than \textbf{[L1 conditional on C2]}.
 See \texttt{research\_tracks/EW/anomaly\_cancellation.tex}.
 
 \subsection*{Fine structure constant $\alpha$}
@@ -477,8 +486,9 @@ The Standard Model gauge group $\SU{3}_c\times\SU{2}_L\times\UU{1}_Y$
 is uniquely realised in $\mathbb{B} = \Bq$ with zero free parameters.
 Three generations emerge from the $\psi$-winding mode structure.
 $N_{\mathrm{eff}} = 12$ KK modes follow from the SU(2) twist.
-Hypercharge $Y_Q = 1/6$ and $\sin^2\theta_W = 3/8$ at the GUT scale
-are both derived from topological conditions on $S^1_\psi$.
+Hypercharge assignments remain conditional on Gap~C2 Step~1, while
+$\sin^2\theta_W = 3/8$ at the GUT scale is retained only in the
+conditional EW1+RG route.
 
 All open problems — chirality, Higgs/Yukawa,
 $\alpha$ — are explicitly stated.

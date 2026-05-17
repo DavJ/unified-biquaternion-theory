@@ -39,11 +39,42 @@ Verdict is explicitly split into two routes:
 SU(2)-twist route (A) gives
 $N_{\mathrm{helicity}}=2$, $N_{\mathrm{charge}}=2$,
 $N_{\mathrm{eff}}=12$, $B_0=8\pi$ at [L1];
-independent loop-counting route (B) remains [OPEN/MC] because
-the independent $N_{\mathrm{charge}}$ multiplier is unresolved.
+the independent loop-counting route (B) gives
+$N_{\mathrm{eff}}^{\mathrm{loop}}=3$, $B_0^{\mathrm{loop}}=2\pi$ at [L1],
+while the identification with Route A remains [OPEN/MC].
 \end{abstract}
 
 \tableofcontents
+
+\section{Two distinct $N_{\mathrm{eff}}$ quantities}
+
+\subsection{Route A: SU(2) twist [L1]}
+\[
+N_{\rm eff}^{\rm twist} = N_{\rm phases}\times N_{\rm charge}
+\times N_{\rm helicity} = 3\times 2\times 2 = 12 \quad [\mathrm{L1}].
+\]
+Source: \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}.
+
+\subsection{Route B: loop-counting [MC/OPEN]}
+\[
+N_{\rm eff}^{\rm loop}
+\]
+is defined by the direct one-loop $\beta$-function count of $S[\Theta]$.
+For the minimal scalar action audited here, the charged complex-scalar loop gives
+\[
+N_{\rm eff}^{\rm loop} = 3 \quad [\mathrm{L1}].
+\]
+The identification
+\[
+N_{\rm eff}^{\rm loop} = N_{\rm eff}^{\rm twist}
+\]
+is \textbf{not proved}. Status: \textbf{[MC/OPEN, frozen]}.
+
+\begin{statusbox}
+Route A (SU(2) twist): \textbf{[L1]}\\
+Route B (loop): \textbf{[L1 for $N_{\rm eff}^{\rm loop}=3$]}\\
+Identification A=B: \textbf{[NO PROOF --- open problem]}
+\end{statusbox}
 
 \section{Scope and hard rule}
 The audited target is the one-loop coefficient entering
@@ -154,16 +185,16 @@ Route-A verdict: \textbf{[L1]}.
 
 \section{Route B (loop-counting, independent): frozen [OPEN/MC]}
 The independent loop-counting closure is kept separate from Route A.
-In this branch, the open blocker is whether an explicit
-$N_{\mathrm{charge}}=2$ factor is independent of (or double-counts) the
-complex-field baseline in the audited loop normalization.
-Until this blocker is closed, independent loop-counting remains:
+In this branch, the directly audited scalar loop gives
 \[
-N_{\mathrm{helicity}}=\ ?,\qquad N_{\mathrm{eff}}=\ ?,\qquad
+N_{\mathrm{eff}}^{\mathrm{loop}} = 3
+\]
+at [L1].  The open blocker is the identification of this direct loop count
+with the SU(2)-twist multiplicity $N_{\mathrm{eff}}^{\mathrm{twist}} = 12$.
+That identification is explicitly frozen at
+\[
 \text{status}=\textbf{[OPEN/MC]}.
 \]
-If unresolved within the current timebox, this branch is explicitly frozen with
-blocker note (double-counting test unresolved).
 
 \section{Consistency check for Task 3 (Mat$(2,\mathbb{C})$, SU(2) left action, chirality)}
 The algebraic isomorphism $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$
@@ -187,8 +218,11 @@ Factor & Value (audit) & Justification & Status \\
 $N_{\mathrm{phases}}$ & 3 & $\dim_{\mathbb{R}}\mathrm{Im}(\mathbb{H})=3$ & [L0] $\checkmark$ \\
 $N_{\mathrm{helicity}}$ & 2 (SU(2) twist) & Anti-periodic off-diagonal KK sector in Scherk--Schwarz route & [L1] \\
 $N_{\mathrm{charge}}$ & 2 (claimed) & Extra factor double-counts complex-field baseline unless redefined & OPEN / rejected as independent factor \\
-$N_{\mathrm{eff}}$ & 12 & $3\times2\times2$ via SU(2)-twisted charged sector & [L1] \\
-$B_0$ & $8\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}$ with $N_{\mathrm{eff}}=12$ & [L1] \\
+$N_{\mathrm{eff}}^{\mathrm{twist}}$ & 12 & $3\times2\times2$ via SU(2)-twisted charged sector & [L1] \\
+$N_{\mathrm{eff}}^{\mathrm{loop}}$ & 3 & Direct scalar-loop count from $S_{\mathrm{kin}}[\Theta]$ & [L1] \\
+$B_0^{\mathrm{twist}}$ & $8\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}^{\mathrm{twist}}$ & [L1] \\
+$B_0^{\mathrm{loop}}$ & $2\pi$ & $B_0=(2\pi/3)N_{\mathrm{eff}}^{\mathrm{loop}}$ & [L1] \\
+$N_{\mathrm{eff}}^{\mathrm{loop}}=N_{\mathrm{eff}}^{\mathrm{twist}}$ & not proved & Identification between distinct routes & [MC/OPEN frozen] \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -201,9 +235,10 @@ status in the currently audited loop derivation.
 
 
 \begin{statusbox}
-N\_helicity = 2 z SU(2) twist: \textbf{[L1]}\\
-N\_eff = 12 a B\_0 = 8\pi v SU(2)-twisted větvi: \textbf{[L1]}\\
-Loop-counting branch (independent): \textbf{[OPEN/MC, frozen with blocker note]}\\
+$N_{\mathrm{helicity}} = 2$ z SU(2) twist: \textbf{[L1]}\\
+$N_{\mathrm{eff}}^{\rm twist} = 12$ a $B_0^{\rm twist}=8\pi$ v SU(2)-twisted větvi: \textbf{[L1]}\\
+$N_{\mathrm{eff}}^{\rm loop} = 3$ a $B_0^{\rm loop}=2\pi$ v přímém scalar-loop auditu: \textbf{[L1]}\\
+Identifikace twist = loop: \textbf{[OPEN/MC, frozen with blocker note]}\\
 Alpha je odvozena: \textbf{NE}
 \end{statusbox}
 

@@ -37,7 +37,7 @@ for the channel \(p\to e^+\pi^0\), using the standard scaling
 ## Prediction 2: ΔN_eff (CMB-S4)
 
 Value: 0.05–0.25 (g*-dependent)  
-Condition: g*(T_Pl) ≥ 427 (KK tower included)  
+Condition: benchmark g*(T_Pl) ≥ 427 (KK tower included); numerical consistency threshold ≈ 389  
 CMB-S4 sensitivity: σ ~ 0.03  
 Status: OPEN (g* derivation needed)  
 Fail criterion: ΔN_eff < 0 OR ΔN_eff > 1
