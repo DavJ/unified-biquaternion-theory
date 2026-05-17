@@ -37,14 +37,48 @@ If this is established in the canonical UBT action, then \(R=1\) (Planck units)
 is the self-dual point and corresponds to \(\tau=i\) in the modular parameter
 normalization used in the alpha track.
 
+\section{Explicit map test: \(\Theta\to\widetilde\Theta\)}
+For
+\[
+S[\Theta,R]=\int\!\left[\frac{(\partial_\mu\Theta)^2}{R}+R(\partial_\psi\Theta)^2\right]\mathrm{d}^4x\,\mathrm{d}\psi,
+\]
+the \(R\to 1/R\) exchange requires (at least at quadratic level) an effective swap
+\[
+\partial_\mu\widetilde\Theta \leftrightarrow \partial_\psi\Theta,\qquad
+\partial_\psi\widetilde\Theta \leftrightarrow \partial_\mu\Theta.
+\]
+
+\subsection*{Tested candidates}
+\textbf{(i) Hermitian conjugation:} \(\widetilde\Theta=\Theta^\dagger\). Then
+\(\partial_\mu\widetilde\Theta=(\partial_\mu\Theta)^\dagger\), which does not
+implement \(\partial_\mu\leftrightarrow\partial_\psi\) in general.
+
+\textbf{(ii) Constant similarity transform:}
+\[
+\widetilde\Theta=e^{i\pi/2}J\Theta J^{-1},\qquad J\in\mathrm{Mat}(2,\mathbb C),\ \partial J=0.
+\]
+Then
+\[
+\partial_\mu\widetilde\Theta=e^{i\pi/2}J(\partial_\mu\Theta)J^{-1},\qquad
+\partial_\psi\widetilde\Theta=e^{i\pi/2}J(\partial_\psi\Theta)J^{-1}.
+\]
+So this class preserves derivative type (\(\mu\)-derivatives stay \(\mu\)-derivatives;
+\(\psi\)-derivatives stay \(\psi\)-derivatives) and cannot by itself realize the
+required exchange.
+
+\textbf{Verdict for tested local ans\"atze}: \textbf{[NO-GO]}.
+An explicit \(\Theta\to\widetilde\Theta\) map that proves full
+\(S[\Theta,R]=S[\widetilde\Theta,1/R]\) remains open outside this restricted class.
+
 \section{Impact on Gap G137-B}
 If T-duality symmetry is proved at [L1], then \(\tau=i\) is canonically selected
 as the self-dual point for the modular \(B\)-candidate chain. This would tighten
 the interpretation of \(B(\tau=i)\), but does not by itself derive \(\alpha\).
 
 \begin{statusbox}
-T-dualita \(R\to1/R\) symetrie \(S[\Theta]\): \textbf{[OPEN/MC]}\\
-\(\tau=i\) T-duálně selektován: \textbf{[MC, conditional on symmetry proof]}\\
+Explicitní map \(\Theta\to\widetilde\Theta\): \textbf{[NO-GO for local conjugation/similarity ans\"atze; OPEN globally]}\\
+\(S[\Theta,R]=S[\widetilde\Theta,1/R]\): \textbf{[NO-GO in tested class; OPEN globally]}\\
+\(\tau=i\) T-duálně selektován: \textbf{[OBS only; [L1] only if explicit map is proved]}\\
 Gap G137-B dopad: \textbf{selection argument strengthened; Mellin insertion still OPEN}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}

@@ -181,13 +181,28 @@ The anomaly-minimality program asks whether the chiral cubic condition
 Current status in this file: this route is formulated, but uniqueness from
 anomaly constraints alone is not yet closed here as an independent theorem.
 
+\subsection*{Numerical check of the \(Y_Q=n/6\) family}
+Using one-generation SM charge assignments with
+\[
+Q_{uL}=Q_{uR}=\frac12+\frac{n}{6},\quad
+Q_{dL}=Q_{dR}=-\frac12+\frac{n}{6},\quad
+Q_{\nu L}=0,\quad Q_{eL}=Q_{eR}=-1,
+\]
+the cubic chiral anomaly quantity
+\[
+\Delta Q^3:=\sum_{\mathrm L}Q^3-\sum_{\mathrm R}Q^3
+\]
+is numerically \(\Delta Q^3=0\) for all tested \(n\ge 1\) (including
+\(n=1,\dots,10\)). Therefore this constraint alone does \emph{not}
+single out \(n=1\), and uniqueness of \(Y_Q=1/6\) remains open in this route.
+
 \begin{tcolorbox}[title={Singlet-integrality theorem — verdikt}]
 U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[L1]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\
 $Y\in1/3\ZZ$: \textbf{[L1 given $Q\in\ZZ$]}\\
 Hypercharge convention check ($Q=T_3+\widehat Y \Leftrightarrow Q=T_3+Y/2$): \textbf{[CONSISTENT]}\\
-Anomaly-minimality route for uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC]}\\
-Uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC, frozen with blocker note]}\\
+Anomaly-minimality route for uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed by \(Y_Q=n/6\) scan]}\\
+Uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed]}\\
 Gap C2 Krok 1 (lattice class only): \textbf{[CLOSED L1]}.
 \end{tcolorbox}
 

@@ -210,6 +210,32 @@ under the self-dual identification; specifically, $N_{\mathrm{eff}}^{1/2}$ from
 the $T^3$ volume prefactor at self-duality and $N_{\mathrm{eff}}$ from summing
 over all modes.
 
+\subsection*{T\(^3\) factorization in terms of phase and per-phase multiplicity}
+Write
+\[
+N_{\mathrm{eff}} = N_{\mathrm{phases}}\cdot N_{\mathrm{eff,pp}},
+\qquad
+N_{\mathrm{phases}}=3,\quad N_{\mathrm{eff,pp}}=4,
+\]
+where \(N_{\mathrm{phases}}\) comes from \(\dim_{\mathbb R}\mathrm{Im}(\mathbb H)=3\)
+[\(L0\)] and \(N_{\mathrm{eff,pp}}=4\) from the SU(2) twist per phase [\(L1\)].
+Then
+\[
+N_{\mathrm{eff}}^{3/2}
+=\left(N_{\mathrm{phases}}N_{\mathrm{eff,pp}}\right)^{3/2}
+=N_{\mathrm{phases}}^{3/2}N_{\mathrm{eff,pp}}^{3/2}
+=3^{3/2}\cdot4^{3/2}=12^{3/2}.
+\]
+In this decomposition, the candidate coefficient is
+\[
+B
+=N_{\mathrm{phases}}^{3/2}N_{\mathrm{eff,pp}}^{3/2}\,(2\eta(i))^{1/4}
+=12^{3/2}(2\eta(i))^{1/4}.
+\]
+So the volumetric \(3/2\)-exponent is carried by the full effective multiplicity
+\(N_{\mathrm{eff}}=12\), while the unresolved part remains the Mellin/heat-kernel
+origin of \((2\eta(i))^{1/4}\) from \(S[\Theta]\).
+
 The candidate formula is:
 \begin{equation}
 B = N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}(\tau=i)^{1/4},
@@ -242,6 +268,7 @@ is essential [L1, \texttt{su2\_twist\_neff12.tex}].
 
 \begin{statusbox}
 Step 3: $N_{\mathrm{eff}} = 12$ [L1], $N_{\mathrm{eff}}^{3/2} = 41.57$: \textbf{[L1]}\\
+$N_{\mathrm{eff}}^{3/2}=N_{\mathrm{phases}}^{3/2}N_{\mathrm{eff,pp}}^{3/2}$ with $N_{\mathrm{phases}}=3$, $N_{\mathrm{eff,pp}}=4$: \textbf{[L1/L0 decomposition]}\\
 $Z_{1\mathrm{real}} = 2\eta(i)$: \textbf{[OPEN/MC]} (set by hand; not derived from NS sector)\\
 $B = 12^{3/2}(2\eta(i))^{1/4} \approx 46.28$: \textbf{[NUM]} (numerical match only)\\
 Identification $B=N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4}$ from UBT action: \textbf{[OPEN/MC]}

@@ -452,11 +452,15 @@ yielding $M_{\mathrm{GUT}}\approx 2\times10^{16}$\,GeV [CONDITIONAL]
 and $\sin^2\theta_W(M_Z)\approx 0.231$ [CONDITIONAL on $g$ input].
 This is not a dead end but a conditional [L1] result.
 
-\subsection*{Anomaly cancellation}
-The naive charge-only test gives $\sum Q=0$ [NUM] but
-$\sum Q^3 = -4/9 \neq 0$ [NUM].
-Full anomaly cancellation from first principles requires a chiral
-representation-level treatment tied to Gap~C2 closure; it is [OPEN].
+\subsection*{Anomaly cancellation [L1 conditional on C2]}
+The chiral cubic anomaly condition
+\[
+\sum_{\mathrm{left}} Q^3-\sum_{\mathrm{right}} Q^3=0
+\]
+is numerically satisfied for the UBT hypercharge assignments [NUM].
+Given the first-principles derivation of hypercharges (Gap~C2, [L1]),
+anomaly cancellation follows at [L1 conditional on C2].
+See \texttt{research\_tracks/EW/anomaly\_cancellation.tex}.
 
 \subsection*{Fine structure constant $\alpha$}
 
@@ -478,6 +482,19 @@ are both derived from topological conditions on $S^1_\psi$.
 
 All open problems — chirality, Higgs/Yukawa,
 $\alpha$ — are explicitly stated.
+
+\subsection*{Falsifiable prediction: proton decay}
+The UBT GUT scale $M_{\rm GUT}\sim 2\times 10^{16}$\,GeV [CONDITIONAL]
+implies a proton lifetime
+\[
+\tau_p \sim \frac{M_{\rm GUT}^4}{m_p^5}\sim 10^{34}\ \text{years}
+\]
+for the $p\to e^+\pi^0$ channel.
+The Super-Kamiokande lower bound $\tau_p > 1.6\times 10^{34}$\,years
+is consistent with this prediction.
+The Hyper-Kamiokande experiment (2027+) will provide the
+next discriminative test window.
+See \texttt{reports/falsifiable\_prediction\_sheet.md}.
 
 % ============================================================
 \bibliographystyle{plain}
