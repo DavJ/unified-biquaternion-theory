@@ -91,10 +91,9 @@ over complex time $\tau = t + i\psi$.
 The derivation proceeds through a five-step chain:
 (1)~the spacetime metric $g_{\mu\nu}$ is a derived quantity, not postulated,
 emerging as the real-valued bilinear
-$g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$;
+$g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$;
 (2)~non-degeneracy $\det(g) \neq 0$ follows from the admissibility condition;
-(3)~Lorentzian signature $(-,+,+,+)$ is an algebraic theorem from the
-complex-time axiom, not a postulate;
+(3)~Lorentzian signature $(-,+,+,+)$ follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form, not as an independent postulate;
 (4)~the Levi-Civita connection and curvature tensors follow by standard constructions in the real projection
 differential geometry applied to the derived metric;
 (5)~the Einstein field equations follow from Hilbert variation of the total
@@ -137,7 +136,7 @@ variation with respect to $g^{\mu\nu}$~\cite{einstein1915,hilbert1915}.
 The Unified Biquaternion Theory (UBT) is built on the biquaternion algebra
 $\BB := \CC\otimes_\RR\HH$ with a fundamental field
 $\Theta(q,\tau)$ over complex time $\tau = t + i\psi$.
-In UBT, the metric $g_{\mu\nu}$ is derived, the Lorentzian signature is proved,
+In UBT, the metric $g_{\mu\nu}$ is derived, and Lorentzian signature follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form,
 and the Einstein equations emerge from a variational principle applied to
 the fundamental field.
 This paper establishes the classical GR sector.
@@ -155,13 +154,13 @@ gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
 \begin{enumerate}
   \item \textbf{Metric is derived, not postulated.}
         The metric $g_{\mu\nu}$ emerges as the real-valued bilinear
-        $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$
+        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
         (Theorem~\ref{thm:metric}).
         Prior biquaternion gravity papers postulate or impose the metric.
 
   \item \textbf{Lorentzian signature is proved.}
-        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from the complex-time
-        axiom (AXIOM-B) alone, without any independent assumption about signs.
+        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from AXIOM-B together with the
+        admissible Lorentzian real-sector projection / indefinite bilinear form.
         Prior approaches assume the signature.
 
   \item \textbf{Complete five-step chain.}
@@ -234,9 +233,9 @@ There is a canonical algebra isomorphism
 \[
   \BB \;\cong\; \mathrm{Mat}(2,\CC).
 \]
-As a real Clifford algebra,
-$\BB \cong \mathrm{Cl}^+_{1,3}(\RR)$,
-which is the key link between the algebraic structure and spacetime geometry.
+As a real algebra, $\BB$ is canonically identified with $\mathrm{Mat}(2,\CC)$ with $\dim_\RR\BB=8$.
+$\BB$ may be identified with the spinorial / even-Clifford carrier associated with $\mathrm{Cl}_{1,3}(\RR)$,
+not with the full Clifford algebra $\mathrm{Cl}_{1,3}(\RR)$ (which has real dimension $16$).
 The generators of $\mathrm{Cl}_{1,3}(\RR)$ split into one timelike generator
 $\gamma^0$ and three spacelike generators $\gamma^i$ ($i = 1,2,3$) satisfying
 \[
@@ -329,8 +328,8 @@ Table~\ref{tab:axioms}.
 \toprule
 \textbf{ID} & \textbf{Name} & \textbf{Content} \\
 \midrule
-A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Cl}^+_{1,3}(\RR)$ \\
-   & & (even subalgebra, $\dim_\RR = 8$) \\
+A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$ \\
+   & & (real dimension $\dim_\RR\BB=8$; spinorial/even-Clifford carrier associated with $\mathrm{Cl}_{1,3}(\RR)$) \\
 A2 & Complex time (AXIOM-B) & $\tau = t+i\psi$; $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$ \\
 A3 & Field equation (AXIOM-F) & $\nabla^\dagger\nabla\Theta = \kappa\calT$ \\
 A4 & Admissibility & $\{\partial_\mu\Theta\}$ linearly independent over $\RR$ in $\BB$ \\
@@ -355,15 +354,14 @@ Assumptions A4--A5 are regularity conditions defining $\calA_{\mathrm{UBT}}$.
 \label{def:metric}
 For $\Theta \in \calA_{\mathrm{UBT}}$, define:
 \begin{align}
-  \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
   \calN &:= -\langle \partial_0\Theta,\, \partial_0\Theta \rangle_\eta \,,
   \quad \text{where } \langle A, B\rangle_\eta
   := \mathrm{Re}[\mathrm{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)]\,, \\
-  g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN}.
+  g_{\mu\nu} &:= \frac{\langle \partial_\mu\Theta, \partial_\nu\Theta \rangle_\eta}{\calN}.
 \end{align}
-Here $\eta_{\mathcal{B}} = \mathrm{diag}(-1,+1,+1,+1)$ is the
-Minkowski metric operator embedded in $\mathcal{B}$, inducing
-an \emph{indefinite} inner product on the timelike sector.
+Here $\langle\cdot,\cdot\rangle_\eta$ is the admissible Lorentzian bilinear form on the selected
+four-dimensional real projection subspace of $\BB$ (equivalently a representation-level
+metric operator in an associated Clifford module), with timelike-negative convention.
 By AXIOM-B, $\partial_0\Theta$ lies in the timelike sector of
 $\mathrm{Cl}^+_{1,3}(\RR)$ where
 $\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$,
@@ -388,8 +386,8 @@ rank-$(0,2)$ tensor under coordinate changes on $M^4$.
 \begin{proof}
 \textbf{Symmetry.}
 For $A,B \in \mathrm{Mat}(2,\CC)$:
-$\re[\Tr(AB^\dagger)] = \re[\Tr(BA^\dagger)]$
-by the cyclic property of the trace and Hermitian conjugation.
+$\langle A,B\rangle_\eta = \langle B,A\rangle_\eta$ by construction of the admissible
+Lorentzian bilinear form on the selected real projection subspace.
 Hence $g_{\mu\nu} = g_{\nu\mu}$.
 
 \textbf{Tensor transformation.}
@@ -424,7 +422,7 @@ Hence $\det(g_{\mu\nu}) \neq 0$.
 \subsection{Step 3: Lorentzian Signature}
 \label{sec:step3}
 
-\begin{theorem}[Lorentzian signature from AXIOM-B, \PROVED\,\Lone]
+\begin{theorem}[Lorentzian signature from AXIOM-B with admissible Lorentzian projection, \PROVED\,\Lone]
 \label{thm:signature}
 The derived metric $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$:
 $g_{00} < 0$ and the spatial sub-block $(g_{ij})_{i,j=1,2,3}$ is
@@ -439,18 +437,17 @@ $\partial_t\Theta = \re\,\partial_\tau\Theta$
 inherits the Clifford-algebraic timelike property, so
 \[
   g_{00}
-  = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN} < 0,
+  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN} < 0,
 \]
-where $\calN = -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$.
+where $\calN = -\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta > 0$.
 Spatial generators of $\mathrm{Cl}_{1,3}(\RR)$ are spacelike, giving $g_{ii} > 0$.
 The normalisation $\calN$ determines the scale but not the sign.
 \end{proof}
 
 \begin{remark}
 The Lorentzian signature is a \emph{theorem}, not a postulate.
-It follows from AXIOM-B alone, independently of the specific form of $\Theta$.
-The novelty is not that UBT makes an assumption about time --- it is that a single
-axiom (AXIOM-B) implies the correct signature as a consequence, whereas standard
+It follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form.
+The novelty is not that UBT makes an assumption about time --- it is that the AXIOM-B condition, together with the admissible Lorentzian real-sector projection / indefinite bilinear form, implies the correct signature as a consequence, whereas standard
 GR requires this as an independent input.
 \end{remark}
 
@@ -582,7 +579,7 @@ complex-time structure $\tau = t + i\psi$ is used:
 \]
 This is an expected feature of the static real-quaternion construction.
 The Lorentzian signature $g_{00} < 0$ is guaranteed by
-Theorem~\ref{thm:signature} (AXIOM-B), which operates at the algebraic level.
+Theorem~\ref{thm:signature} (AXIOM-B together with admissible Lorentzian projection), which operates at the algebraic level.
 \end{tcolorbox}
 
 \subsection{ASD Condition and Twistor Space}
@@ -716,7 +713,7 @@ requirements of standard Einstein--Hilbert GR and the UBT derivation.
 \midrule
 Spacetime metric $g_{\mu\nu}$ & \emph{Postulated} & \textbf{Derived} (Thm~\ref{thm:metric}) \\
 $\det(g) \neq 0$ & \emph{Assumed} & \textbf{Proved} (Thm~\ref{thm:nondeg}) \\
-Lorentzian signature $(-,+,+,+)$ & \emph{Assumed} & \textbf{Proved} (Thm~\ref{thm:signature}) \\
+Lorentzian signature $(-,+,+,+)$ & \emph{Assumed} & \textbf{Derived from AXIOM-B + admissible Lorentzian projection} (Thm~\ref{thm:signature}) \\
 $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ & \emph{Postulated (EH action)} & \textbf{Derived} (Thm~\ref{thm:einstein}) \\
 $T_{\mu\nu}$ symmetric & \emph{Assumed} & \textbf{Proved} \\
 $\nabla^\mu T_{\mu\nu} = 0$ & Bianchi + diff.\ inv. & \textbf{Proved} (same) \\
@@ -762,7 +759,7 @@ Several prior approaches derive aspects of GR from algebraic structures:
         these papers work in $\HH$ or $\BB$ but postulate or impose the
         metric.
         The novel step in UBT is the bilinear metric formula
-        $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$,
+        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$,
         which has no analogue in this literature.
 \end{itemize}
 
@@ -813,7 +810,7 @@ researchers familiar with biquaternion algebra and standard GR.
 \midrule
 1 & Metric $g_{\mu\nu}$ from $\Theta$ & Proved \Lone & step1\_metric\_bridge.tex \\
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
-3 & Signature $(-,+,+,+)$ from AXIOM-B & Proved \Lone & step3\_signature\_theorem.tex \\
+3 & Signature $(-,+,+,+)$ from AXIOM-B + admissible Lorentzian projection & Proved \Lone & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
 5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & Proved \Lone & step3\_einstein\_with\_matter.tex \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
@@ -837,7 +834,7 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 This appendix gives the full algebraic argument for
-Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B).
+Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B with admissible Lorentzian projection).
 
 \paragraph{Step A1: Clifford identification.}
 The biquaternion algebra satisfies
@@ -860,7 +857,7 @@ $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
 \paragraph{Step A3: Temporal metric component.}
 \[
   g_{00}
-  = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN}.
+  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN}.
 \]
 With $\partial_0 = \partial_t$ in the timelike $\gamma^0$-sector,
 and using the indefinite Clifford inner product
@@ -886,7 +883,7 @@ with the Lorentzian block structure $(-;+,+,+)$.
 \paragraph{Conclusion.}
 The eigenvalue structure of $g_{\mu\nu}$ has exactly one negative eigenvalue
 and three positive eigenvalues, i.e.\ signature $(-,+,+,+)$.
-This follows entirely from AXIOM-B, independently of the specific form of $\Theta$.
+This follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form.
 
 % ==============================================================================
 \section{Numerical Verification of the Schwarzschild Metric}

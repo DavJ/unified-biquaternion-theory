@@ -53,7 +53,7 @@ The current proof status is tracked explicitly below using proof levels.
 | Result | Level |
 |--------|-------|
 | Metric $g_{\mu\nu}$ derived from Θ (not postulated) | [L1] |
-| Lorentzian signature (−,+,+,+) proved from AXIOM-B | [L1] |
+| Lorentzian signature (−,+,+,+) derived from AXIOM-B + admissible Lorentzian real-sector projection / indefinite bilinear form | [L1] |
 | Non-degeneracy det(g) ≠ 0 | [L1] |
 | Einstein equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ from Hilbert variation | [L1] |
 | Schwarzschild metric recovered, spatial components verified < 10⁻¹⁵ | [L1]+[NUM] |
