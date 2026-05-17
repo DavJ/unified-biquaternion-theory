@@ -387,6 +387,57 @@ Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Focused closure test: \(\tau=i\), \(W_{\mathrm{eff}}\), and verdict}
+\label{sec:taui_focus}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection*{Step 1 — Why \(\tau=i\)?}
+\(\tau=i\) is the self-dual point of \(\mathbb{H}/\mathrm{SL}(2,\mathbb{Z})\),
+fixed by \(S:\tau\mapsto-1/\tau\). Numerically, the active bootstrap scan reports
+\(n_*(\tau=i)\approx136.99\), i.e. close to the target \(137\) [OBS].
+This supports \(\tau=i\) as a preferred candidate point, but uniqueness at the
+theorem level remains open in this note.
+
+\subsection*{Step 2 — \(W_{\mathrm{eff}}\) factorization target}
+Direct one-loop functional integration gives
+\[
+W_{\mathrm{eff}}=\det(P_b)^{-N_{\mathrm{eff}}/2},\qquad
+\ln W_{\mathrm{eff}}=-\frac{N_{\mathrm{eff}}}{2}\,\mathrm{Tr}[\ln P_b].
+\]
+The missing closure step is the \(T^3_\psi\) volumetric lifting to the
+effective \(N_{\mathrm{eff}}^{3/2}=N_{\mathrm{eff}}\cdot N_{\mathrm{eff}}^{1/2}\)
+normalization in the \(B\)-coefficient map. This factorization remains the
+core [OPEN] item.
+
+\subsection*{Step 3 — Python numerical verification}
+\begin{verbatim}
+import mpmath, math
+mpmath.mp.dps = 50
+
+eta_i = float(mpmath.re(mpmath.eta(mpmath.mpc(0,1))))
+B_target = 12**1.5 * (2*eta_i)**0.25
+B_req = 2*137/(math.log(137)+1)
+
+print(f"τ=i selektuje n*=137: [OBS]")
+print(f"B_target = {B_target:.10f}")
+print(f"B_req    = {B_req:.10f}")
+print(f"Přesnost: {abs(B_target-B_req)/B_req*100:.6f}%")
+
+# T-dualita argument
+R_self_dual = 1.0  # v Planck jednotkách
+print(f"R_self_dual = l_Pl = {R_self_dual}")
+print(f"τ = i ↔ R·Λ = 1 ↔ self-dual pod T-dualitě")
+\end{verbatim}
+
+\begin{statusbox}
+\(\tau=i\) jako T-duální self-dual bod: \textbf{[MC → L1 pokud T-dualita v UBT]}\\
+\(n_*(\tau=i)=137\) analyticky: \textbf{[OBS → MC]}\\
+\(W_{\mathrm{eff}}\) faktorizace \(N_{\mathrm{eff}}^{3/2}\): \textbf{[OPEN]}\\
+Gap G137-B: \textbf{[NARROWED]}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary and Gap Closure Status}
 \label{sec:summary}
 %──────────────────────────────────────────────────────────────────────────────

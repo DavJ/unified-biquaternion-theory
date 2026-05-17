@@ -192,6 +192,7 @@ be derived from $S[\Theta]$ separately.
 |---|-------|-------|--------|
 | M1 | N_eff = 12 from ℂ⊗ℍ (full 3×2×2 factorization) | OPEN / [MC] (critical audit pending) | `canonical/n_eff/step2_AUDIT.tex` |
 | M2 | B₀ = 8π from S_kin[Θ] (one-loop) | [L1] | `canonical/t_munu/` |
+| M2a | B₀=8π from N_eff=12 [L1] | [L1] | `research_tracks/quantum_ubt/su2_twist_neff12.tex` + NCG derivation |
 | M3 | FPE equivalent formulation (scalar sector) | [L1] | `research_tracks/` |
 | M4 | ΔN_eff ≈ 0.046 (above CMB-S4 threshold) | [L1] | `consolidation_project/N_eff_derivation/` |
 | Q1 | Kanonická kvantizace gravitonů (Zerilli+RW módy) | [STD] | `research_tracks/quantum_ubt/graviton_quantisation.tex` |

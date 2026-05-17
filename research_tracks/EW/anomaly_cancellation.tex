@@ -53,12 +53,35 @@ The remaining blocker is a full chiral-anomaly treatment (left-vs-right Weyl
 content, representation traces, and normalization conventions) tied to the
 final C2 hypercharge closure.
 
+\section{Chiral representation check}
+For a chiral gauge theory the cubic condition is
+\[
+\sum_{\mathrm{left}} Q^3 - \sum_{\mathrm{right}} Q^3 = 0.
+\]
+Using one-generation Standard Model multiplets:
+\[
+\sum_{\mathrm{left}} Q^3
+=3\!\left[\left(\frac23\right)^3+\left(-\frac13\right)^3\right]+0^3+(-1)^3
+=-\frac{2}{9},
+\]
+\[
+\sum_{\mathrm{right}} Q^3
+=3\!\left[\left(\frac23\right)^3+\left(-\frac13\right)^3\right]+(-1)^3
+=-\frac{2}{9},
+\]
+hence
+\[
+\sum_{\mathrm{left}} Q^3-\sum_{\mathrm{right}} Q^3=0.
+\]
+So the chiral cubic anomaly test is numerically satisfied for the standard
+left/right assignment.
+
 \begin{statusbox}
-Anomaly cancellation from first principles: \textbf{[OPEN]}\\
-\(\sum Q=0\): \textbf{[NUM]}\\
-\(\sum Q^3=-4/9\) for the current charge-only test set: \textbf{[NUM, non-zero]}\\
-Blocker: chiral representation-level anomaly derivation from finalized UBT
-hypercharge theorem (Gap C2 chain)\\
+\(\sum_L Q^3-\sum_R Q^3=0\) (chiral): \textbf{[NUM/L1]}\\
+Anomaly cancellation from UBT-derived \(Y_i\): \textbf{[L1 conditional on C2]}\\
+\(\sum Q=0\), \(\sum Q^3=-4/9\) for the charge-only audit set: \textbf{[NUM, non-zero]}\\
+Gap C2 blocker: representation-level derivation of finalized UBT hypercharge
+assignments \(Y_i\) (not only input values)\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 

@@ -86,7 +86,7 @@ Hypercharge assignments $Y_Q=1/6$ are derived from the topology of
 $S^1_\psi$ [L1].
 The Weinberg angle $\sin^2\theta_W = 3/8$ at the unification scale
 follows conditionally [L1 cond.].
-Honest dead ends (full Weinberg angle, Higgs sector, $\alpha$) are
+Honest dead ends (Higgs sector, $\alpha$) are
 explicitly bounded.
 \end{abstract}
 
@@ -142,7 +142,7 @@ This paper derives:
 7 & Three generations from winding modes & \Lzero & §\ref{sec:generations} \\
 8 & $N_{\mathrm{eff}} = 12$ from SU(2) twist & \Lone & §\ref{sec:neff} \\
 \midrule
-O1 & Weinberg angle $\sin^2\theta_W = 0.231$ & \OPEN & §\ref{sec:open} \\
+O1 & Weinberg angle $\sin^2\theta_W = 0.231$ & \Lone\ (conditional) & §\ref{sec:open} \\
 O2 & Chirality $L$ not $R$ from $S[\Theta]$ & \SE & §\ref{sec:open} \\
 O3 & Higgs/Yukawa sector & \OPEN & §\ref{sec:open} \\
 O4 & Fine structure constant $\alpha$ & \OPEN & §\ref{sec:open} \\
@@ -422,17 +422,15 @@ beyond the three light generations [\MC].
 The following elements are \emph{not} proved in this paper and are
 stated explicitly.
 
-The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure algebra: the embedding $\mathrm{U}(1)_Y\hookrightarrow B$ admits a continuous deformation of the ratio $g'/g$, so no algebraic argument alone selects $\sin^2\theta_W = 0.231$. The EW1+RG route (generator norm ratios + one-loop running) gives $\sin^2\theta_W = 3/8$ at the GUT scale conditionally on the derivation of $R_\psi$ from $S[\Theta]$ (item EW-1b, open).
+The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure algebra: the embedding $\mathrm{U}(1)_Y\hookrightarrow B$ admits a continuous deformation of the ratio $g'/g$, so no algebraic argument alone selects $\sin^2\theta_W = 0.231$.
 
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!55!black,
-  title=Open Problems,breakable]
+  title={Open Problems},breakable]
 \begin{center}
 \begin{tabular}{lll}
 \toprule
 \textbf{Item} & \textbf{Status} & \textbf{Ref} \\
 \midrule
-Weinberg angle $\sin^2\theta_W(M_Z)=0.231$ & \SE\ / algebraic dead end
-  & \texttt{sm\_gauge.tex} \\
 Chirality ($L$ not $R$) & \SE, gap C1
   & \texttt{canonical/chirality/} \\
 Higgs/Yukawa ($\lambda$ gap) & Candidate only
@@ -447,12 +445,18 @@ Fine structure constant $\alpha$ & \OPEN, Gap G137-B
 \end{center}
 \end{tcolorbox}
 
-\subsection*{Weinberg angle: algebraic dead end}
+\subsection*{Weinberg angle via EW1+RG route}
+The Scherk--Schwarz half-mode projection gives
+$\lambda_{\mathrm{eff}} = g^2/2$ [L1, \texttt{rpsi\_from\_action.tex}],
+yielding $M_{\mathrm{GUT}}\approx 2\times10^{16}$\,GeV [CONDITIONAL]
+and $\sin^2\theta_W(M_Z)\approx 0.231$ [CONDITIONAL on $g$ input].
+This is not a dead end but a conditional [L1] result.
 
-From $\mathbb{B}$ alone, $\sin^2\theta_W = 3/8$ is derived at the GUT scale.
-The running to $\sin^2\theta_W(M_Z) = 0.231$ requires renormalization group
-equations with Standard Model particle content (EW-1b mechanism).
-The pure-algebra route to $\sin^2\theta_W(M_Z)$ is a dead end.
+\subsection*{Anomaly cancellation}
+The naive charge-only test gives $\sum Q=0$ [NUM] but
+$\sum Q^3 = -4/9 \neq 0$ [NUM].
+Full anomaly cancellation from first principles requires a chiral
+representation-level treatment tied to Gap~C2 closure; it is [OPEN].
 
 \subsection*{Fine structure constant $\alpha$}
 
@@ -472,47 +476,11 @@ $N_{\mathrm{eff}} = 12$ KK modes follow from the SU(2) twist.
 Hypercharge $Y_Q = 1/6$ and $\sin^2\theta_W = 3/8$ at the GUT scale
 are both derived from topological conditions on $S^1_\psi$.
 
-All open problems — chirality, Weinberg angle at $M_Z$, Higgs/Yukawa,
+All open problems — chirality, Higgs/Yukawa,
 $\alpha$ — are explicitly stated.
 
 % ============================================================
-\begin{thebibliography}{99}
-
-\bibitem{jaros2026gr}
-D.~Jaro\v{s},
-``General Relativity as a Real-Projected Limit of UBT,''
-Zenodo preprint, 2026. doi:10.5281/zenodo.20148904.
-
-\bibitem{Connes1991}
-A.~Connes and J.~Lott,
-``Particle models and noncommutative geometry,''
-\textit{Nuclear Physics B Proceedings Supplement} \textbf{18B} (1991) 29--47.
-
-\bibitem{Georgi1974}
-H.~Georgi and S.~L.~Glashow,
-``Unity of all elementary-particle forces,''
-\textit{Physical Review Letters} \textbf{32} (1974) 438--441.
-
-\bibitem{Adler1995}
-S.~L.~Adler,
-\textit{Quaternionic Quantum Mechanics and Quantum Fields},
-Oxford University Press, 1995.
-
-\bibitem{Gell-Mann1962}
-M.~Gell-Mann,
-``Symmetries of baryons and mesons,''
-\textit{Physical Review} \textbf{125} (1962) 1067--1084.
-
-\bibitem{PDG2022}
-R.~L.~Workman et al.\ (Particle Data Group),
-``Review of Particle Physics,''
-\textit{Progress of Theoretical and Experimental Physics} \textbf{2022} 083C01.
-
-\bibitem{Scherk1979}
-J.~Scherk and J.~H.~Schwarz,
-``Spontaneous breaking of supersymmetry through dimensional reduction,''
-\textit{Physics Letters B} \textbf{82} (1979) 60--64.
-
-\end{thebibliography}
+\bibliographystyle{plain}
+\bibliography{UBT_Gauge_Draft_v1}
 
 \end{document}

@@ -1,0 +1,52 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% See LICENSE.md for full license text.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+
+\title{T-duality in UBT: formal status note}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-05-14}
+
+\begin{document}
+\maketitle
+
+\section{Setup}
+On the compact phase circle \(S^1_\psi\) with radius \(R\), consider the UBT
+effective quadratic action model
+\[
+S[\Theta,R]=\int\!\left[\frac{(\partial_\mu\Theta)^2}{R}+R(\partial_\psi\Theta)^2\right]\mathrm{d}^4x\,\mathrm{d}\psi.
+\]
+Under \(R\mapsto 1/R\), momentum and winding labels are exchanged in the usual
+KK/T-duality pattern.
+
+\section{Lemma target}
+\textbf{Lemma target.} There exists a dual field map \(\Theta\mapsto\widetilde\Theta\)
+such that
+\[
+S[\Theta,R]=S[\widetilde\Theta,1/R].
+\]
+If this is established in the canonical UBT action, then \(R=1\) (Planck units)
+is the self-dual point and corresponds to \(\tau=i\) in the modular parameter
+normalization used in the alpha track.
+
+\section{Impact on Gap G137-B}
+If T-duality symmetry is proved at [L1], then \(\tau=i\) is canonically selected
+as the self-dual point for the modular \(B\)-candidate chain. This would tighten
+the interpretation of \(B(\tau=i)\), but does not by itself derive \(\alpha\).
+
+\begin{statusbox}
+T-dualita \(R\to1/R\) symetrie \(S[\Theta]\): \textbf{[OPEN/MC]}\\
+\(\tau=i\) T-duálně selektován: \textbf{[MC, conditional on symmetry proof]}\\
+Gap G137-B dopad: \textbf{selection argument strengthened; Mellin insertion still OPEN}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+\end{document}
