@@ -23,6 +23,8 @@
 - Awaiting endorsement for gr-qc submission.
 
 ## FINÁLNÍ (2026-05-14)
-Soubory: main.tex + UBT_GR_Flagship.bib  
-ZIP: /tmp/ubt_gr_arxiv.zip  
-Čeká: gr-qc endorsement kód MK3KKU (odeslan Singhovi 2026-05-12)
+- main.tex: UBT_GR_Submission.tex (Zerilli [L1] included)
+- UBT_GR_Flagship.bib
+- ZIP: /tmp/ubt_gr_arxiv.zip — upload ready
+- Endorsement: kód MK3KKU odeslan Singhovi 2026-05-12
+- Zenodo DOI: 10.5281/zenodo.20148904 (timestamp exists)

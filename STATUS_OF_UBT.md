@@ -32,6 +32,18 @@ and one blocked result (T3_ALPHA).
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
+## Status update 2026-05-14
+
+| Item | Prev status | New status | Source |
+|------|-------------|------------|--------|
+| EW-1b (R_psi from S[Θ]) | CONDITIONAL | PROVED [L1 conditional] | rpsi_from_action.tex |
+| N_eff=12 SU(2) twist | [L1] | [L1] confirmed | step2_AUDIT.tex |
+| N_eff loop-counting | [OPEN/MC] | [OPEN/MC frozen] | step2_AUDIT.tex |
+| Proton decay prediction | — | defined τ_p~10³⁴ yr | falsifiable_prediction_sheet.md |
+| Anomaly cancellation | OPEN | OPEN (Σ Q³≠0 charge-only) | anomaly_cancellation.tex |
+| C2 uniqueness | OPEN | OPEN/MC frozen | colour_charge_lattice.tex |
+| Gap G137-B | NARROWED | NARROWED (τ=i [OBS]) | mellin_insertion_B.tex |
+
 ---
 
 ## T1_GR — General Relativity Recovery
