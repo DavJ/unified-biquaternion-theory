@@ -44,15 +44,16 @@ Alternatively, from the $\Theta$ field directly:
 
 \begin{equation}
 \label{eq:canonical:metric_from_theta}
-g_{\mu\nu}(\Theta) = \text{Re}\,\text{Tr}\left(\partial_\mu\Theta \, \partial_\nu\Theta^\dagger\right)
+g_{\mu\nu}(\Theta) = \frac{\left\langle \partial_\mu\Theta,\partial_\nu\Theta \right\rangle_\eta}{\mathcal{N}}
 \end{equation}
 
 \noindent where:
 \begin{itemize}
     \item $\partial_\mu = \frac{\partial}{\partial x^\mu}$ is the partial derivative with respect to spacetime coordinate $x^\mu$
     \item $\Theta^\dagger$ is the Hermitian conjugate of $\Theta$ (see Eq.~\ref{eq:canonical:theta_hermitian})
-    \item $\text{Tr}$ denotes the matrix trace
-    \item $\text{Re}$ denotes the real part
+    \item $\langle A,B\rangle_\eta := \text{Re}\,\text{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)$ is the admissible Lorentzian bilinear form
+    \item $\eta_{\mathcal{B}}$ is an external Lorentzian bilinear-form operator on the selected 4D real projection subspace (equivalently representation-level metric operator), not an element of $\mathbb{B}$
+    \item $\mathcal{N} := -\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta > 0$
 \end{itemize}
 
 \subsection{Index Convention}
@@ -299,7 +300,7 @@ This canonical definition supersedes:
     \item ❌ \textbf{Experimental holographic version}: Non-standard signature
 \end{enumerate}
 
-\textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:metric} with signature $(+,-,-,-)$ and index convention $\mu,\nu = 0,1,2,3$ consistently throughout.
+\textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:metric_from_theta} with signature $(+,-,-,-)$ and index convention $\mu,\nu = 0,1,2,3$ consistently throughout.
 
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,title=Signature convention note]
 The canonical signature here is $(+,-,-,-)$ (mostly minus, spacelike negative).

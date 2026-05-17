@@ -39,13 +39,14 @@
   The GR Recovery Audit identified that the Lorentzian signature $(-,+,+,+)$ of the
   UBT emergent metric was being \emph{enforced by normalization choice}, not derived
   from the algebraic structure of biquaternions.  We close this gap with two complementary
-  proofs.  First, via AXIOM~B (complex time $\tau = t + i\psi$): the time-like derivative
-  $\partial_\tau\Theta$ lies in the time-like sector of $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$,
-  where the Clifford generator satisfies $e_0^2 = -1$, giving a negative metric component.
-  Second, via the Clifford algebra: $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$
-  carries a natural Lorentzian inner product.  In both approaches, the normalization
+  proofs.  First, via AXIOM~B (complex time $\tau = t + i\psi$) together with the admissible
+  Lorentzian real-sector projection / indefinite bilinear form: the time-like derivative
+  $\partial_\tau\Theta$ is selected as timelike, giving a negative metric component.
+  Second, via the Clifford-module viewpoint: $\mathbb{B}=\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$
+  with $\dim_{\mathbb{R}}\mathbb{B}=8$ acts as the spinorial / even-Clifford carrier associated with
+  $\mathrm{Cl}_{1,3}(\mathbb{R})$ (the full real Clifford algebra has dimension $16$).  In both approaches, the normalization
   $\mathcal{N}$ is a \emph{scale-fixing} positive scalar, \emph{not} a signature fixer.
-  Signature $(-,+,+,+)$ is a \emph{theorem} from the algebraic axioms of UBT, not
+  Signature $(-,+,+,+)$ is a \emph{derived consequence} of AXIOM~B with admissible Lorentzian projection, not
   a choice.
   \end{abstract}
 \fi
@@ -194,8 +195,8 @@ That argument is \textbf{incorrect}: a positive scalar rescaling cannot change t
 signature of a bilinear form.
 
 \medskip
-The correct derivation of Lorentzian signature is via the Clifford algebra
-isomorphism $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ given in the next
+The correct derivation of Lorentzian signature is via the associated Clifford-module
+representation built on $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$ given in the next
 subsection (Theorem~\ref{thm:signature}).  The present Lemma holds conditionally
 on identifying the correct quadratic form via the Clifford embedding; the
 $\mathrm{Sc}(v^2)$ route alone does not suffice.
@@ -209,14 +210,14 @@ We now give the correct algebraic derivation.  Consider the Clifford algebra app
 \subsection{Clifford Algebra Derivation of Signature}
 
 The following gives the authoritative algebraic derivation of the Lorentzian signature.
-The result is conditional on the Clifford embedding $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$
+The result is conditional on the Clifford-module embedding associated with $\mathrm{Cl}_{1,3}(\mathbb{R})$
 (Theorem~\ref{thm:signature} below); the $\mathrm{Sc}(v^2)$ route of the preceding
 lemma does not independently establish the signature.
 
 \begin{theorem}[Lorentzian signature from the Clifford embedding]
 \label{thm:signature}
-The biquaternion algebra $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ (the Clifford
-algebra of Minkowski space) under the identification
+The biquaternion algebra $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$ (spinorial/even-Clifford
+carrier associated with Minkowski-space Clifford structure) under the identification
 \begin{align}
   \gamma^0 &:= \mathbf{1}\otimes\sigma_1, &
   \gamma^i &:= i\,\mathbf{e}_i\otimes\sigma_2 \quad (i=1,2,3),
@@ -326,7 +327,7 @@ general framework.
 \begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=AXIOM B Proof of Signature]
 \textbf{Key insight}: Complex time $\tau = t + i\psi$ (AXIOM~B) places the
 time-like derivative $\partial_\tau\Theta$ in the \emph{time-like sector} of
-$\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$, where the Clifford generator
+$\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$, where the Clifford generator
 satisfies $e_0^2 = -1$.  This algebraic identity is the source of the negative
 sign in $g_{00}$.
 \end{tcolorbox}
@@ -334,7 +335,7 @@ sign in $g_{00}$.
 We now provide a direct proof of Lorentzian signature using the specific structure
 of complex time $\tau = t + i\psi$ from AXIOM~B.
 
-\begin{theorem}[Lorentzian signature from AXIOM~B]
+\begin{theorem}[Lorentzian signature from AXIOM~B with admissible Lorentzian projection]
 \label{thm:axiomB_signature}
 Assume AXIOM~B: the fundamental biquaternionic field $\Theta(q,\tau)$ is defined over
 complex time $\tau = t + i\psi$ and is analytic in $\tau$.
@@ -358,7 +359,7 @@ biquaternionic polarization $Q$:
 \begin{proof}
 \textbf{Setup.}
 In UBT, $\Theta : \mathcal{M}\to\mathbb{B}$ takes values in the biquaternion algebra
-$\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$.  The biquaternionic polarization
+$\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$.  The biquaternionic polarization
 $Q\in\mathbb{B}$ encodes the internal (spinorial) structure of the field.  We consider
 the plane-wave ansatz:
 \[
@@ -377,7 +378,7 @@ Since $\Theta$ is analytic in $\tau$ (AXIOM~B), $\partial_\tau\Theta = \partial_
 \end{equation}
 
 \textbf{Step 2: Clifford algebra structure of the polarization.}
-The biquaternion algebra $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$ has Clifford
+The associated Clifford-module representation built on $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$ has
 generators $\{e_0, e_1, e_2, e_3\}$ satisfying the anticommutation relations
 $\{e_\mu, e_\nu\} = 2\eta_{\mu\nu}$ with $\eta = \mathrm{diag}(-1,+1,+1,+1)$:
 \begin{equation}
@@ -436,7 +437,7 @@ This establishes \eqref{eq:axiomB_space}.
 space-space components are positive, giving signature $(-,+,+,+)$.
 \end{proof}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Key Insight: AXIOM B is the Source of Lorentzian Signature]
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Key Insight: AXIOM B + admissible Lorentzian projection]
 The negative sign in $g_{00}$ arises from $e_0^2 = -1$ in $\mathrm{Cl}_{1,3}(\mathbb{R})$.
 This Clifford relation is the algebraic realization of complex time (AXIOM~B):
 the imaginary unit $i$ in $\tau = t + i\psi$ corresponds to $e_0$, and
@@ -444,8 +445,8 @@ $i^2 = -1$ becomes $e_0^2 = -1$.
 
 \medskip
 \textbf{Conclusion:} Signature $(-,+,+,+)$ is NOT a choice.
-It is a \emph{theorem} from AXIOM~B (complex time) via the Clifford algebra isomorphism
-$\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$.
+It follows from AXIOM~B together with the admissible Lorentzian real-sector projection /
+indefinite bilinear form in the associated Clifford-module representation.
 
 \medskip
 \textbf{Role of $\mathcal{N}$:} The normalization $\mathcal{N} > 0$ is a positive
@@ -461,7 +462,7 @@ The result extends to any $\Theta\in\mathcal{A}_{\mathrm{UBT}}$ (the admissible 
 defined in step2\_nondegeneracy.tex) by the following argument: any $\Theta$ analytic in
 $\tau$ (AXIOM~B) can locally be expanded in plane waves.  At each spacetime point,
 the local tangent-space metric inherits the signature from the Clifford algebra
-structure $\mathbb{B}\cong\mathrm{Cl}_{1,3}(\mathbb{R})$, which is a global algebraic
+structure $\mathbb{B}\cong\mathrm{Mat}(2,\mathbb{C})$, which is a global algebraic
 property independent of the specific field configuration.  Hence the signature
 is $(-,+,+,+)$ at every point.
 \end{remark}
@@ -473,15 +474,15 @@ is $(-,+,+,+)$ at every point.
   \item \textbf{Two proofs of Lorentzian signature.}
         \begin{itemize}
           \item \emph{AXIOM~B proof} (Theorem~\ref{thm:axiomB_signature}): Complex time
-                $\tau = t + i\psi$ induces the Clifford algebra $\mathrm{Cl}_{1,3}(\mathbb{R})$
-                with $e_0^2 = -1$, directly giving $g_{00} < 0$.
+                $\tau = t + i\psi$ together with admissible Lorentzian projection selects
+                the timelike-negative sector (represented by $e_0^2 = -1$), giving $g_{00} < 0$.
           \item \emph{Clifford embedding proof} (Theorem~\ref{thm:signature}): The canonical
                 inner product on the Clifford representation gives Minkowski metric
                 $\eta_{\mu\nu}$ with signature $(-,+,+,+)$.
         \end{itemize}
   \item \textbf{Signature is a theorem, not a choice.}
-        In both proofs, signature $(-,+,+,+)$ is a consequence of the algebraic axioms
-        of UBT (specifically AXIOM~B and the structure of $\mathbb{B}$).
+        In both proofs, signature $(-,+,+,+)$ follows from AXIOM~B together with the
+        admissible Lorentzian real-sector projection / indefinite bilinear form.
         It is \emph{not} imposed by the normalization $\mathcal{N}$.
   \item \textbf{Role of $\mathcal{N}$.}
         The normalization $\mathcal{N} > 0$ is a \emph{scale factor} that fixes the
@@ -496,7 +497,7 @@ is $(-,+,+,+)$ at every point.
         $\mathrm{signature}(g_{\mu\nu}) = (-,+,+,+)$'' is incorrect: rescaling by
         $\mathcal{N}$ cannot change signature.  The correct statement is:
         \emph{$\mathcal{N}>0$ normalizes scale; signature $(-,+,+,+)$ follows from
-        Theorem~\ref{thm:axiomB_signature} (complex time, AXIOM~B).}
+        Theorem~\ref{thm:axiomB_signature} (AXIOM~B with admissible Lorentzian projection).}
 \end{enumerate}
 
 \ifdefined\INCLUDEMODE

@@ -372,7 +372,7 @@ and an emergent-metric construction strongly connected to Θ.
 | G_μν = 8πG T_μν from δS_total[g,Θ]/δg^μν = 0 | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | Hilbert variation; standard variational GR sector |
 | T_μν from Hilbert prescription | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | δS_matter/δg^μν = -(√-g/2)T_μν |
 | ∇^μ T_μν = 0 from Bianchi identity | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | Contracted Bianchi; no free parameters |
-| Lorentzian signature (-,+,+,+) from AXIOM B | **Proven** [L0] | `canonical/gr_closure/step3_signature_theorem.tex §Lorentzian Signature from AXIOM B` | Complex time τ=t+iψ → Cl_{1,3}(ℝ) → e₀²=-1 → g₀₀<0; signature is theorem not choice |
+| Lorentzian signature (-,+,+,+) from AXIOM B + admissible Lorentzian real-sector projection / indefinite bilinear form | **Proven** [L0] | `canonical/gr_closure/step3_signature_theorem.tex §Lorentzian Signature from AXIOM B` | Complex time τ=t+iψ together with the admissible Lorentzian projection/bilinear form selects the timelike-negative sector; signature is derived, not freely chosen |
 | Metric non-degeneracy for A_UBT class | **Proven** [L0] | `canonical/gr_closure/step2_nondegeneracy.tex` | Linear independence of ∂_μΘ ↔ det(g)≠0; degenerate configs explicitly identified |
 | Derivative-based ≡ tetrad-based metric formula | **Proven** [L0] | `canonical/gr_closure/step1_metric_bridge.tex` | Under E_μ = ∂_μΘ; single canonical metric definition |
 | GR chain summary (Θ→g→Γ→R→Einstein) | **Proved [L1]** | `canonical/gr_closure/GR_chain_summary.tex` | Steps 1-5 proved; Step 6 off-shell open [L2]; see summary doc |
