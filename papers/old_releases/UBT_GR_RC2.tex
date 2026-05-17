@@ -372,7 +372,8 @@ For $\Theta \in \calA_{\mathrm{UBT}}$, define:
   \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
   g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN},
   \qquad
-  \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
+  \calN := -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0
+  \quad\text{(chosen to keep } g_{00}<0\text{ in Lorentzian convention).}
 \end{align}
 \emph{Normalization convention note}: this sign convention for $\calN$ is written
 explicitly to keep $g_{00}<0$ and metric normalization internally consistent.
@@ -381,9 +382,10 @@ Equivalently, the Lorentzian projected form can be written as
   g_{\mu\nu}
   = \frac{\re\!\Tr\!\bigl[(\partial_\mu\Theta)^\dagger \eta_B (\partial_\nu\Theta)\bigr]}{\calN},
 \]
-with an admissible indefinite bilinear form $\eta_B$ (the Lorentzian bilinear
-form in the chosen spinor representation, with signature $(-,+,+,+)$, taken to
-be non-degenerate and Hermitian on the projected GR sector).
+with an admissible indefinite bilinear form $\eta_B$.
+Here $\eta_B$ denotes the Lorentzian bilinear form used in the chosen spinor
+representation, with signature $(-,+,+,+)$, non-degenerate and Hermitian on
+the projected GR sector.
 The compact trace formula above is understood only after this Lorentzian
 real-sector projection is applied.
 \end{definition}
@@ -459,8 +461,8 @@ The normalisation $\calN$ determines the scale but not the sign.
 
 \begin{remark}
 The Lorentzian signature is a \emph{theorem}, not a postulate.
-It does not follow from complex time in isolation (without the admissible
-Lorentzian projection/representation structure).
+It does not follow from complex time in isolation (without choosing the
+Lorentzian bilinear form $\eta_B$ and its associated spinor representation).
 The novelty is that AXIOM-B fixes a timelike complex-time direction and,
 combined with the admissible Lorentzian projection/representation choice,
 yields the correct signature in the GR sector.
