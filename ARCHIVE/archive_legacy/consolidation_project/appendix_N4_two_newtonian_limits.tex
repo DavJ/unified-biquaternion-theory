@@ -1,0 +1,49 @@
+\subsubsection{Two Newtonian Limits from UBT: GR Route vs Entropic Route}
+
+\paragraph{Route A: UBT $\Rightarrow$ GR $\Rightarrow$ Newton.}
+In the weak-field limit of GR,
+\[
+  g_{tt} \approx -(1+2\Phi/c^2).
+\]
+If UBT admits an entropic conformal mapping of the form
+\[
+  g_{tt} = -\exp(2\lambda S),\qquad S(x)=2k_B\log|\det\Theta(x)|,
+\]
+then for small $S$ one has
+\[
+  g_{tt}\approx -(1+2\lambda S),
+\]
+implying the identification
+\[
+  \Phi(x) = \lambda c^2\, S(x).
+\]
+Together with the standard Newtonian limit of Einstein's equations,
+this yields the Poisson equation $\nabla^2\Phi=4\pi G\rho$.
+
+\paragraph{Route B: UBT $\Rightarrow$ Entropic Force $\Rightarrow$ Newton.}
+The entropic-force postulate is
+\[
+  F\,\Delta x = T\,\Delta S.
+\]
+To avoid test-mass dependence of temperature, we split:
+(i) a background entropic profile sourced by $\Theta$,
+$S_\Theta(x)=2k_B\log|\det\Theta(x)|$,
+and (ii) a test-body entropy change law
+\[
+  \Delta S_{\text{test}} = \eta\, m\,\Delta x.
+\]
+With a geometric temperature (e.g. Unruh),
+\[
+  T = \frac{\hbar a}{2\pi k_B c},
+\]
+one recovers $F=ma$. The gravitational acceleration $a(r)$ is then determined by the background entropic profile $S_\Theta(r)$ via the matching in the next paragraph.
+
+\paragraph{Consistency Matching Condition.}
+Since Route A identifies $\Phi(x)=\lambda c^2 S_\Theta(x)$, Route B must reproduce the same potential:
+\[
+  \Phi_{\text{GR}}(x) \equiv \Phi_{\text{ent}}(x) = \lambda c^2 S_\Theta(x).
+\]
+This provides a normalization/matching constraint that can be used to fix $(\lambda,\eta)$ and relate any background temperature scale (e.g. $T_{dS}$) to the UBT chronofactor/Hubble mode.
+
+\paragraph{Scope.}
+This section records a program for internal consistency checks. A full derivation of $G$ and precise sourcing of $S_\Theta$ by $\rho$ requires specifying the UBT-to-matter coupling and is deferred.
