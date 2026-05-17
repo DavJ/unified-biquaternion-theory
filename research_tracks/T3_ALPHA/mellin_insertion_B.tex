@@ -275,6 +275,38 @@ Identification $B=N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4}$ from UBT
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Direct one-loop functional route}
+\label{sec:direct_1loop}
+%──────────────────────────────────────────────────────────────────────────────
+
+As an alternative to the Casimir path, define for winding mode
+$\Theta_n=e^{in\psi/R}\Theta_0$:
+\[
+S_{\mathrm{eff}}[n] = -\ln\!\int D\delta\Theta\,\exp(-S[\Theta_n+\delta\Theta])
+= S[\Theta_n] + \frac12 \mathrm{Tr}\!\left[\ln\!\left(\left.\frac{\delta^2S}{\delta\Theta^2}\right|_{\Theta_n}\right)\right].
+\]
+Thus the one-loop term is
+\[
+V_{1\mathrm{loop}}(n)=\frac12\mathrm{Tr}[\ln P_n],\qquad
+P_n=\left.\frac{\delta^2S}{\delta\Theta^2}\right|_{\Theta_n}.
+\]
+For the quadratic action
+\[
+S[\Theta]=\int \mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]\,d^4x\,d\psi,
+\]
+the fluctuation operator near $\Theta_n$ takes the form
+\[
+P_n\simeq -\Box + \frac{n^2}{R^2}.
+\]
+With zeta regularization:
+\[
+V_{1\mathrm{loop}}(n)=-\zeta'_{P_n}(0).
+\]
+At the self-dual point, the Mellin kernel links to $\vartheta_3(0|i)$ and
+the target identification is
+$g(\vartheta_3(0|i))=B/N_{\mathrm{eff}}^{3/2}$ for the $n\ln n$ term.
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Step 4: The Mellin Insertion — Exact Gap Statement}
 \label{sec:mellin}
 %──────────────────────────────────────────────────────────────────────────────

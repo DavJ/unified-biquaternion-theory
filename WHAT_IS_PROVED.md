@@ -32,6 +32,16 @@ If it is not on this list, it is not claimed as proved.
 
 ---
 
+## 2026-05-18 update
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| COSMO1 | ΔN_eff prediction: 0.05-0.25 (g*≥427, above CMB-S4) | [OPEN pending g* derivation] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| COSMO2 | FRW metric from refined Θ ansatz | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
+| GR11 | Cl⁺₁,₃ izomorfismus (even subalgebra) | [L0] | `papers/UBT_GR_Submission.tex §2.1` |
+
+---
+
 ## Track T1_GR: General Relativity Recovery
 
 All proofs in `canonical/gr_closure/` and `canonical/geometry/`.  
