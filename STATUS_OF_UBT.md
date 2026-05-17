@@ -257,7 +257,10 @@ Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`
 | "Four active α routes" | `canonical/alpha/alpha_derivation_routes.md` (dated 2026-04-27) | Routes A3 and A4 are definitively killed (exhaustive scan + proved impossibility) | One primary route (A_PRIME), two parked, two killed |
 | Chirality Gap C1 as merely MOTIVATED [SE] | `reports/gauge_status_matrix.md` (line 70), `reports/chirality_gap.md` | Formal proof exists: `canonical/chirality/step3_gap_C1_resolution.tex` | C1 is [L1] PROVED — SU(2)_L acts on left-chiral doublets |
 | α⁻¹ = 137.036 claimed derivable via B_base/k=1 Kac-Moody route | Multiple early α documents | 27+ approaches exhausted; k=1 has not been proved; this specific number is not the claim | Claim is α⁻¹_bare = 137 (integer), conditional on Gap G137-B |
-| N_eff = 12 stated as [L0] PROVED; V_eff structure "forced [L1]" | `STATUS_OF_UBT.md` (prior version), `ALPHA_PROGRESS_REPORT.md`, `ALPHA_BREAKTHROUGH_REPORT.md`, `ALPHA_STRUCTURAL_ORIGINS.md`, and related alpha files | Critical audit (`canonical/n_eff/step2_AUDIT.tex`) moved N_eff multiplicity factors to OPEN/[MC]; winding-mode derivation of V_eff structure remains conditional | N_eff=12 is OPEN/[MC]; V_eff structure is a motivated conditional route. **Earlier N_eff=12 and B-route statements are superseded by `canonical/alpha/ALPHA_MASTER_STATUS.md`.** |
+| N_eff=12 (SU(2) twist route) | [L1] | step2_AUDIT.tex §Final verdict: N_helicity=2 [L1], N_eff=12 [L1], B₀=8π [L1] |
+| N_eff=12 (loop counting, independent) | [OPEN/MC] | step2_AUDIT.tex: N_charge double-counting unresolved |
+
+**Note 2026-05-14**: The SU(2)-twist route gives N_eff=12 [L1] (step2_AUDIT.tex). The earlier loop-counting route remains [OPEN/MC]. These are two separate claims; both are tracked.
 
 ---
 

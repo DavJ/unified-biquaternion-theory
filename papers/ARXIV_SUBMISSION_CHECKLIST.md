@@ -21,3 +21,8 @@
 - arXiv ZIP prepared: `/tmp/ubt_gr_final.zip` (main.tex + UBT_GR_Flagship.bib)
 - **PDF compiled**: 12 pages, 305 KB, 0 fatal errors (pre-existing tcolorbox pgfkeys warning is non-fatal).
 - Awaiting endorsement for gr-qc submission.
+
+## FINÁLNÍ (2026-05-14)
+Soubory: main.tex + UBT_GR_Flagship.bib  
+ZIP: /tmp/ubt_gr_arxiv.zip  
+Čeká: gr-qc endorsement kód MK3KKU (odeslan Singhovi 2026-05-12)

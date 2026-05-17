@@ -209,3 +209,14 @@ This is honest and does not block submission.
 | HIGH | Derive fermion Y assignments from ψ-winding representation theory | Would upgrade AN-3–AN-6 from [MC] to [L1] |
 | MEDIUM | Show Witten anomaly cancellation directly from N_gen = 3 and doublet structure | Would upgrade AN-7 to [L1] |
 | LOW | Investigate Green-Schwarz mechanism in UBT (if anomalies don't cancel) | Insurance |
+
+---
+
+## Update 2026-05-17 (P8 checkpoint)
+
+- Added `research_tracks/EW/anomaly_cancellation.tex` as focused first-principles audit note.
+- Direct numerical check on the currently used charge list gives:
+  - \(\Sigma Q = 0\)
+  - \(\Sigma Q^3 = -4/9\) (non-zero for this naive charge-only set)
+- Therefore the first-principles anomaly closure remains **OPEN** pending full
+  chiral representation-level derivation tied to the finalized C2 hypercharge theorem.

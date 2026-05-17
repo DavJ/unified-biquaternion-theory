@@ -35,10 +35,12 @@
 \begin{abstract}
 This audit resolves the convention conflict in
 \texttt{canonical/n\_eff/step2\_vacuum\_polarization.tex}.
-Verdict: only $N_{\mathrm{phases}}=3$ is currently proved from the minimal scalar
-UBT kinetic action; $N_{\mathrm{helicity}}=2$ and an extra explicit
-$N_{\mathrm{charge}}=2$ are not currently justified as independent multipliers in
-that same one-loop scalar-QED normalization.
+Verdict is explicitly split into two routes:
+SU(2)-twist route (A) gives
+$N_{\mathrm{helicity}}=2$, $N_{\mathrm{charge}}=2$,
+$N_{\mathrm{eff}}=12$, $B_0=8\pi$ at [L1];
+independent loop-counting route (B) remains [OPEN/MC] because
+the independent $N_{\mathrm{charge}}$ multiplier is unresolved.
 \end{abstract}
 
 \tableofcontents
@@ -134,6 +136,35 @@ n_*(B_0=2\pi)\approx 10.54,
 \end{equation}
 which is not 137.
 
+\section{Route A (SU(2)-twist): closed at [L1]}
+The Scherk--Schwarz SU(2)-twisted charged sector is tracked as a distinct route
+from the scalar-loop baseline. In this route:
+\[
+N_{\mathrm{phases}}=3,\quad
+N_{\mathrm{charge}}=2\ (\text{charged complex fields } b,c),\quad
+N_{\mathrm{helicity}}=2.
+\]
+Therefore
+\[
+N_{\mathrm{eff}}=N_{\mathrm{phases}}N_{\mathrm{charge}}N_{\mathrm{helicity}}
+=3\times2\times2=12,\qquad
+B_0=\frac{2\pi}{3}N_{\mathrm{eff}}=8\pi.
+\]
+Route-A verdict: \textbf{[L1]}.
+
+\section{Route B (loop-counting, independent): frozen [OPEN/MC]}
+The independent loop-counting closure is kept separate from Route A.
+In this branch, the open blocker is whether an explicit
+$N_{\mathrm{charge}}=2$ factor is independent of (or double-counts) the
+complex-field baseline in the audited loop normalization.
+Until this blocker is closed, independent loop-counting remains:
+\[
+N_{\mathrm{helicity}}=\ ?,\qquad N_{\mathrm{eff}}=\ ?,\qquad
+\text{status}=\textbf{[OPEN/MC]}.
+\]
+If unresolved within the current timebox, this branch is explicitly frozen with
+blocker note (double-counting test unresolved).
+
 \section{Consistency check for Task 3 (Mat$(2,\mathbb{C})$, SU(2) left action, chirality)}
 The algebraic isomorphism $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{Mat}(2,\mathbb{C})$
 and left SU(2) matrix action are internally consistent with the gauge-sector
@@ -172,6 +203,7 @@ status in the currently audited loop derivation.
 \begin{statusbox}
 N\_helicity = 2 z SU(2) twist: \textbf{[L1]}\\
 N\_eff = 12 a B\_0 = 8\pi v SU(2)-twisted větvi: \textbf{[L1]}\\
+Loop-counting branch (independent): \textbf{[OPEN/MC, frozen with blocker note]}\\
 Alpha je odvozena: \textbf{NE}
 \end{statusbox}
 

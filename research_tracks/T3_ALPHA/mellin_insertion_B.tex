@@ -334,6 +334,59 @@ Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Focused modular-bootstrap route (2-week timebox)}
+\label{sec:modular_bootstrap}
+%──────────────────────────────────────────────────────────────────────────────
+
+To enforce a single strict route for Priority 3, we now run only the modular-bootstrap path:
+\[
+Z_{\mathrm{wind}}(\tau)=\vartheta_3(0|i\tau),
+\]
+with no input from $\alpha_{\mathrm{exp}}$ or fitted $B_{\mathrm{phenom}}$.
+
+\subsection*{Step 1: modular differential structure}
+
+We track the Ramanujan-type differential relation
+\[
+\vartheta_3'' = \left(\frac{\vartheta_3'}{\vartheta_3}\right)\vartheta_3'
++ \frac14\,E_2\,\vartheta_3,
+\]
+and evaluate at $\tau=i$, where $E_2(i)=3/\pi$ [STD].  This anchors the
+self-dual point as the canonical bootstrap point for $Z_{\mathrm{wind}}$.
+
+\subsection*{Step 2: bootstrap condition for $B$}
+
+For
+\[
+V_{\mathrm{eff}}(n)=n^2-B\,n\ln n,\qquad
+n_*=e^{B/2-1},
+\]
+the target fixed point $n_*=137$ implies
+\[
+B=2(\ln 137+1)\approx 46.28.
+\]
+Independently, the UBT modular candidate remains
+\[
+B_{\mathrm{mod}}(\tau)=12^{3/2}\,\bigl(2\eta(i\tau)\bigr)^{1/4}.
+\]
+The active test is whether modular constraints uniquely select a $\tau$ (in
+particular $\tau=i$) that simultaneously gives the UBT $B$-value and the
+stationary-point target under the same route assumptions.
+
+\subsection*{Step 3: numerical scan protocol}
+
+Numerical scan script: \texttt{tools/modular\_bootstrap\_scan.py}.  It computes
+$B_{\mathrm{mod}}(\tau)$ and the fixed-point iteration estimate for $n_*(B)$ over
+$\tau\in[0.5,2.0]$ to check uniqueness of the self-dual point.
+
+\begin{statusbox}
+Modular bootstrap route: \textbf{[aktivní — 2-week timebox]}\\
+$B$ z modulárních podmínek: \textbf{[OPEN]}\\
+Gap G137-B: \textbf{[NARROWED; go/no-go pending]}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary and Gap Closure Status}
 \label{sec:summary}
 %──────────────────────────────────────────────────────────────────────────────

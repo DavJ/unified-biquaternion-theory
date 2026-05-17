@@ -176,7 +176,7 @@ CONDITIONAL and must be stated as conditional in T2_GAUGE paper §6.
 |-------|--------|--------|
 | U(1)_Y³ anomaly cancelled | [MC] CONDITIONAL (if SM reps assumed) | Verify or state open |
 | [SU(2)_L]² U(1)_Y anomaly cancelled | [MC] CONDITIONAL | Verify or state open |
-| Anomaly cancellation from UBT first principles | OPEN | State open — requires fermion hypercharges |
+| Anomaly cancellation from UBT first principles | OPEN (checkpoint updated 2026-05-17) | `research_tracks/EW/anomaly_cancellation.tex`: \(\Sigma Q=0\), naive \(\Sigma Q^3\neq0\); full chiral derivation still required |
 
 ---
 
@@ -205,7 +205,7 @@ CONDITIONAL and must be stated as conditional in T2_GAUGE paper §6.
 | Fermion masses | Defer; note KK-mismatch theorem |
 | Dynamical confinement | Clay Millennium Problem |
 | Strong coupling g_s | Open problem |
-| Anomaly cancellation from first principles | Open |
+| Anomaly cancellation from first principles | Open (updated by `research_tracks/EW/anomaly_cancellation.tex`) |
 
 **Overall readiness**: 85% submit-ready; 90% after anomaly check.
 
