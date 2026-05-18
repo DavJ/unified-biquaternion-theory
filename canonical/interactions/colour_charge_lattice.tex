@@ -21,6 +21,9 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{%
+  colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
+  fonttitle=\bfseries,title=Status Summary,#1}
 
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\HH}{\mathbb{H}}
@@ -187,14 +190,37 @@ is numerically \(\Delta Q^3=0\) for all tested \(n\ge 1\) (including
 \(n=1,\dots,10\)). Therefore this constraint alone does \emph{not}
 single out \(n=1\), and uniqueness of \(Y_Q=1/6\) remains open in this route.
 
-\begin{tcolorbox}[title={Singlet-integrality theorem — verdikt}]
+\subsection*{Mixed gravitational-gauge anomaly test}
+
+The mixed gravitational-gauge anomaly for one generation is
+\[
+\mathcal A_{\rm grav}=\sum_f Y_f,
+\]
+where the sum runs over left-handed fermion multiplets.  For the family
+\[
+Y_Q=\frac{n}{6},\qquad Y_L=-\frac12,
+\]
+the explicit one-generation contribution is
+\[
+\mathcal A_{\rm grav}(n)=6Y_Q+2Y_L=n-1.
+\]
+Hence
+\[
+\mathcal A_{\rm grav}(1)=0,\qquad
+\mathcal A_{\rm grav}(n)\neq 0 \ \text{for}\ n\ge 2.
+\]
+So this mixed-anomaly check selects \(n=1\) uniquely within the tested
+family \(Y_Q=n/6\).
+
+\begin{statusbox}[title={Singlet-integrality theorem --- verdict}]
 U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[OPEN --- Gap C2 Step 1]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\
 $Y\in1/3\ZZ$: \textbf{[L1 given $Q\in\ZZ$]}\\
 Hypercharge convention check ($Q=T_3+\widehat Y \Leftrightarrow Q=T_3+Y/2$): \textbf{[CONSISTENT]}\\
 Anomaly-minimality route for uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed by \(Y_Q=n/6\) scan]}\\
-Uniqueness of $Y_Q=1/6$: \textbf{[OPEN/MC confirmed]}\\
+Mixed gravitational anomaly $\mathcal A_{\rm grav}(n)=n-1$: \textbf{[CHECKED --- selects $n=1$ in the tested family]}\\
+Uniqueness of $Y_Q=1/6$ from the mixed-anomaly family check: \textbf{[L1 family check]}\\
 Gap C2 Krok 1 (lattice class only): \textbf{[OPEN --- blocker formalised]}.
-\end{tcolorbox}
+\end{statusbox}
 
 \end{document}

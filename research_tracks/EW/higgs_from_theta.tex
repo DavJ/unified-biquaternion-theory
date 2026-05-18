@@ -13,8 +13,8 @@
 % File: research_tracks/EW/higgs_from_theta.tex
 % Purpose: First-step analysis of spontaneous symmetry breaking in UBT via S[Θ].
 %          Checks whether Coleman-Weinberg mechanism gives VEV ⟨Θ₀⟩ ≠ 0.
-% Status: OPEN — canonical action checked; CW computation needed.
-% Date: 2026-05-17
+% Status: OPEN — canonical action checked; tree-level KK scan gives negative m_eff^2 as numerical evidence only.
+% Date: 2026-05-18
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
@@ -26,7 +26,7 @@
 \newtcolorbox{statusbox}[1][]{%
   colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
   fonttitle=\bfseries,title=Status Summary,#1}
-\newtcolorbox{openbox}[1][]{%
+\newtcolorbox{openproblembox}[1][]{%
   colback=yellow!5!white,colframe=orange!55!black,arc=3pt,boxrule=1pt,
   fonttitle=\bfseries,title=Open Problem,#1}
 
@@ -37,7 +37,7 @@
 \title{Higgs Mechanism from $S[\Theta]$:\\[4pt]
        First Step — Coleman-Weinberg Analysis}
 \author{Ing.\ David Jaro\v{s}}
-\date{2026-05-17}
+\date{2026-05-18}
 
 \begin{document}
 \maketitle
@@ -50,6 +50,8 @@ We find that the canonical action has no tree-level Higgs-type potential;
 SSB must therefore arise from radiative corrections.  The first-principles
 derivation of the CW effective potential for $\Theta$ is identified as
 \textbf{[OPEN]} (Gap EW-2), with the first non-trivial computation step described.
+A simple KK scan gives $m_{\rm eff}^2<0$ numerically, but only at
+\textbf{[MC/NUM]} level because the coupling is not yet derived from $S[\Theta]$.
 $W/Z$ masses from SSB remain \textbf{[OPEN]}.
 \end{abstract}
 
@@ -83,13 +85,13 @@ but no non-derivative self-interaction of $\Theta$.
 There is no free parameter for a mass $\mu^2$ or quartic coupling $\lambda$.
 \end{proof}
 
-\begin{openbox}
+\begin{openproblembox}
 If $S[\Theta]$ has no tree-level potential, SSB must arise from:
 (a) radiative corrections (Coleman--Weinberg mechanism), or
 (b) boundary conditions on $S^1_\psi$ (Hosotani mechanism), or
 (c) a non-perturbative condensate.
 All three routes are open; (a) is pursued in this note.
-\end{openbox}
+\end{openproblembox}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Coleman-Weinberg Effective Potential}
@@ -164,13 +166,38 @@ where $\Lambda$ is a UV regulator.
 The sum $\sum_n n^4 e^{-n\epsilon}$ is regulated by the Epstein zeta function
 (as in \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}).
 
-\begin{openbox}
+\begin{openproblembox}
 \textbf{Open step}: Compute $\partial^2 V_{\rm CW}/\partial|\Theta|^2|_{\Theta=0}$
 from the UBT action.  The sign determines whether SSB occurs.
 Current status: $f(\Theta)$ not derived from $S[\Theta]$; coupling between
 $\Theta$ background and KK mass not computed.
 This is Gap EW-2.
-\end{openbox}
+\end{openproblembox}
+
+\subsection{Numerical tree-level KK scan}
+
+As a first diagnostic, truncate the KK tower at \(N_{\rm KK}=12\) and use
+the phenomenological gauge coupling \(g\approx0.6\).  The induced quadratic
+term is approximated by
+\[
+\delta m_{\rm eff}^2
+=-\sum_{n=1}^{N_{\rm KK}}
+\frac{g^2\,m_n^2}{16\pi^2}\ln m_n^2,
+\qquad m_n=\frac{n}{R_\psi}.
+\]
+For \(R_\psi=1\), \(g=0.6\), \(N_{\rm KK}=12\),
+\[
+m_{\rm eff}^2 \approx -6.494.
+\]
+So this truncated scan gives a tachyonic sign and is compatible with
+spontaneous symmetry breaking at the level of numerical evidence.
+
+\begin{openproblembox}
+\textbf{Interpretation.}
+The negative sign of the scan is only \textbf{[MC/NUM]}.
+It does \emph{not} derive the Higgs potential from \(S[\Theta]\), because
+the KK coupling ansatz and truncation are still put in by hand.
+\end{openproblembox}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Hosotani Mechanism: Alternative Route}
@@ -212,11 +239,12 @@ All three steps are~\textbf{[OPEN]}.
 \begin{statusbox}
 $S[\Theta]$ explicit tree-level $V(\Theta)$: \textbf{NO} (Prop.~\ref{prop:no_tree_potential})\\
 Coleman-Weinberg SSB possible: \textbf{[OPEN]} — $f(\Theta)$ not derived\\
+KK scan with $R_\psi=1$, $g=0.6$, $N_{\rm KK}=12$: $m_{\rm eff}^2\approx -6.494$ \textbf{[MC/NUM]}\\
 VEV $\langle\Theta_0\rangle \neq 0$: \textbf{[OPEN]} — conditional on CW computation\\
 $W/Z$ masses from SSB: \textbf{[OPEN]} — conditional on VEV\\
 Hosotani mechanism: \textbf{[OPEN]} — Hosotani potential minimum not computed\\
 Higgs mass 125\,GeV: \textbf{[OPEN]} (not addressed here)\\
-Gap EW-2 status: \textbf{OPEN} — first step identified
+Gap EW-2 status: \textbf{OPEN} — negative KK scan alone is not a derivation
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────
 

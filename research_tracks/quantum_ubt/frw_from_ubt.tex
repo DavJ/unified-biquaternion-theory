@@ -31,7 +31,7 @@
 \newtcolorbox{propbox}[1][]{%
   colback=green!4!white,colframe=green!55!black,arc=3pt,boxrule=1pt,
   fonttitle=\bfseries,title=Proposition (to be verified),#1}
-\newtcolorbox{openbox}[1][]{%
+\newtcolorbox{openproblembox}[1][]{%
   colback=yellow!5!white,colframe=orange!55!black,arc=3pt,boxrule=1pt,
   fonttitle=\bfseries,title=Open Problem,#1}
 
@@ -150,14 +150,10 @@ $\mathrm{Tr}(e_i e_j^\dagger) = \frac{1}{2}\delta_{ij}$, giving
 Choosing $\mathcal{N}$ such that $C'=1$ at $a=1$:
 
 \begin{propbox}
-The refined ansatz~(\ref{eq:ansatz2}) with $\Theta_0 = \mathbf{1}_2$ gives,
-at linear order in $x$, the spatially flat FRW metric
-\[
-  ds^2 = -f(\dot a)^2\,dt^2 + a^2(t)\,(dx^2 + dy^2 + dz^2),
-\]
-where $f(\dot a)$ is fixed by the $tt$ component.
-Full verification away from $x=0$ and the Friedmann equations are~\textbf{[Prop.]}
-pending detailed computation.
+The refined ansatz~(\ref{eq:ansatz2}) is promoted below to the formal
+Proposition~\ref{prop:frw}.  Its status remains \textbf{[Prop.]}:
+the flat FRW metric follows within the admissible real projection, while
+full closure from $S[\Theta]$ remains GAP-C.
 \end{propbox}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -200,13 +196,58 @@ g_{0i}=0
 \]
 globally.
 
-\begin{proposition}[Global vanishing of mixed term for $\Theta_0=\mathbf{1}_2$, \textbf{[Prop.]}]
-For the refined ansatz
+\begin{proposition}[FRW metric from UBT ansatz]
+\label{prop:frw}
+Let
 \[
-\Theta(x,t)=a(t)e^{ix^k e_k}\mathbf{1}_2,
+\Theta(x,t)=a(t)\,e^{ix^k e_k}\,\Theta_0
 \]
-the off-diagonal metric components satisfy $g_{0i}=0$ globally.
+with $\Theta_0=\mathbf{1}_2$ and $a(t)>0$. Then:
+\begin{enumerate}
+\item The off-diagonal components $g_{0i}[\Theta]=0$ globally.
+\item The spatial components $g_{ij}[\Theta]=a(t)^2\delta_{ij}$.
+\item The temporal component $g_{00}[\Theta]=-1$
+      (from AXIOM-B and the admissible real projection).
+\end{enumerate}
+Hence $g_{\mu\nu}[\Theta]$ is the flat FRW metric with scale factor $a(t)$.
+The Friedmann equations follow from the UBT GR chain (Theorem~3.8).
 \end{proposition}
+
+\begin{proof}
+Step 1:
+\[
+\partial_0\Theta=\frac{\dot a}{a}\Theta,\qquad
+\partial_i\Theta=i\,e_i\,\Theta.
+\]
+Therefore
+\[
+g_{0i}
+=\frac{1}{\mathcal N}\operatorname{Re}\!\left[
+\operatorname{Tr}\!\left(\partial_0\Theta\cdot\partial_i\Theta^\dagger\right)\right]
+=\frac{\dot a}{a\mathcal N}\operatorname{Re}\!\left[
+i\,e_i\,\operatorname{Tr}(\Theta\Theta^\dagger)\right].
+\]
+Since \(\Theta\Theta^\dagger=a(t)^2\mathbf{1}_2\),
+\(\operatorname{Tr}(\Theta\Theta^\dagger)=2a(t)^2\in\mathbb{R}\),
+and \(i\,e_i\) contributes a purely imaginary factor, we get \(g_{0i}=0\).
+
+Step 2:
+\[
+g_{ij}
+=\frac{1}{\mathcal N}\operatorname{Re}\!\left[
+\operatorname{Tr}\!\left(i e_i\Theta\cdot(-i)\Theta^\dagger e_j^\dagger\right)\right]
+=\frac{a(t)^2}{\mathcal N}\operatorname{Re}\!\left[
+\operatorname{Tr}(e_i e_j^\dagger)\right].
+\]
+For \(\Theta_0=\mathbf{1}_2\) and the standard Pauli-generator normalization,
+\(\operatorname{Re}[\operatorname{Tr}(e_i e_j^\dagger)]\propto\delta_{ij}\), and
+\(\mathcal N\) is fixed by the flat limit so that the proportionality constant is \(1\).
+Hence \(g_{ij}=a(t)^2\delta_{ij}\).
+
+Step 3: by the admissible real projection used throughout the UBT GR chain,
+AXIOM-B fixes the temporal component to \(g_{00}=-1\) in the FRW sector.
+Combining the three components gives the flat FRW metric.
+\end{proof}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Friedmann Equations from UBT}
@@ -267,17 +308,17 @@ This is of Planck-scale magnitude, vastly larger than the observed
 $\Lambda_{\rm obs} \sim 10^{-122}\,M_{\rm Pl}^4/M_{\rm Pl}^4$.
 This is the standard cosmological constant problem, not specific to UBT.
 
-\begin{openbox}
+\begin{openproblembox}
 The de Sitter limit of UBT and the smallness of $\Lambda_{\rm obs}$
 require a cancellation mechanism.  This is~\textbf{[OPEN]} and tracked
 as GAP-C in \texttt{WHAT\_IS\_PROVED.md}.
-\end{openbox}
+\end{openproblembox}
 
 %──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
 Off-diagonal $g_{0i}=0$ globally for $\Theta_0=\mathbf{1}_2$: \textbf{[Prop.]}\\
-FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]}\\
-Friedmann equations from UBT: \textbf{[Prop.]} — conditional on global FRW metric\\
+FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]} (Prop.~\ref{prop:frw})\\
+Friedmann equations from UBT: \textbf{[Prop.]} — via Prop.~\ref{prop:frw} and the GR chain\\
 de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
 Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\
 GAP-C status: \textbf{OPEN} — global FRW closure beyond $\Theta_0=\mathbf{1}_2$ remains pending
