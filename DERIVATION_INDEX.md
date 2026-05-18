@@ -51,6 +51,33 @@ Sources: `canonical/alpha/`, `canonical/n_eff/`, `reports/`
 
 ---
 
+## Open Derivation Gaps (Mandatory status discipline)
+
+The following items are explicitly tracked as unresolved unless a full derivation
+is added to canonical sources:
+
+- Full UBT quantum field theory closure (Hilbert structure, Born rule,
+  measurement map, path-integral closure): **OPEN_GAP**
+- Born rule from UBT: **OPEN_GAP**
+- Path-integral measure in biquaternionic coordinates: **OPEN_GAP**
+- Renormalization group from UBT action: **OPEN_GAP**
+- Weak interaction chirality/parity-violation derivation from geometry:
+  **CONJECTURE / OPEN_GAP** until SU(2)\_L coupling and closure conditions are derived
+- Anomalous magnetic moment prediction from UBT first principles: **OPEN_GAP**
+
+Active scaffolds documenting these gaps:
+
+- `src/ubt/quantum/quantum_scaffold.py`
+- `src/ubt/solitons/regularization.py`
+- `src/ubt/algebra/chirality.py`
+- `src/ubt/observables/physics_observable_bridge.py`
+- `docs/quantum_sector_status.md`
+- `docs/observable_bridge.md`
+- `research_tracks/renormalization/finite_energy_soliton_regularization.md`
+- `research_tracks/weak_sector/chirality_and_parity_status.md`
+
+---
+
 ## Research-Track (Non-canonical) Scientific Work
 
 The following are scientific but not canonical closure claims:

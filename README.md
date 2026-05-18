@@ -79,6 +79,28 @@ For formal claim levels and repository scope policy, see
 
 ---
 
+## Scaffolded Open-Gap Interfaces (No premature closure claims)
+
+The repository now includes explicit scaffold interfaces for unresolved sectors:
+
+- Quantum-sector scaffold: `src/ubt/quantum/quantum_scaffold.py`
+- Soliton regularization scaffold: `src/ubt/solitons/regularization.py`
+- Chirality/parity algebra scaffold: `src/ubt/algebra/chirality.py`
+- Observable bridge scaffold: `src/ubt/observables/physics_observable_bridge.py`
+
+These interfaces are designed to keep numerical experimentation reproducible
+while explicitly preserving open derivation gaps. They must not be interpreted
+as completed proofs of quantum closure, renormalization closure, weak-sector
+closure, or precision-observable derivation.
+
+See:
+- [`docs/quantum_sector_status.md`](docs/quantum_sector_status.md)
+- [`docs/observable_bridge.md`](docs/observable_bridge.md)
+- [`research_tracks/renormalization/finite_energy_soliton_regularization.md`](research_tracks/renormalization/finite_energy_soliton_regularization.md)
+- [`research_tracks/weak_sector/chirality_and_parity_status.md`](research_tracks/weak_sector/chirality_and_parity_status.md)
+
+---
+
 ## Quick Navigation
 
 - Canonical derivation chain: [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md)
