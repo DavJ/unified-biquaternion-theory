@@ -48,6 +48,9 @@ So the basic idea is simple even though the details are technical: one algebra, 
 
 The current proof status is tracked explicitly below using proof levels.
 
+Note: suffix ``-C'' in a level label (e.g., [L1-C]) means ``proved within the
+stated projection convention''.
+
 ### General Relativity (Track T1_GR)
 
 | Result | Level |

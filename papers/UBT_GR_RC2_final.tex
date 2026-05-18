@@ -336,6 +336,12 @@ All physically relevant configurations (non-trivial vacuum, matter fields,
 Schwarzschild exterior) are in $\calA_{\mathrm{UBT}}$.
 \end{definition}
 
+\begin{remark}
+The determinant condition is stated explicitly because for indefinite Lorentzian
+bilinear forms, linear independence alone does not guarantee a non-degenerate
+Gram matrix in the presence of null directions.
+\end{remark}
+
 \subsection{Summary of Axioms and Assumptions}
 
 The complete UBT axiom list and regularity conditions are given in
@@ -856,7 +862,7 @@ researchers familiar with biquaternion algebra and standard GR.
 \midrule
 1 & Metric $g_{\mu\nu}$ from $\Theta$ & Proved \Lone & step1\_metric\_bridge.tex \\
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
-3 & Lorentzian signature in the admissible projected GR sector & Proved \Lone{} (projection convention, [L1-C]) & step3\_signature\_theorem.tex \\
+3 & Lorentzian signature in the admissible projected GR sector & Proved [L1-C] (projection convention) & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
 5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & Proved \Lone & step3\_einstein\_with\_matter.tex \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\

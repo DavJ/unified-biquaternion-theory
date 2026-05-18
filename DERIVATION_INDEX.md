@@ -373,7 +373,7 @@ and an emergent-metric construction strongly connected to Θ.
 | T_μν from Hilbert prescription | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | δS_matter/δg^μν = -(√-g/2)T_μν |
 | ∇^μ T_μν = 0 from Bianchi identity | **Proven** [L1] | `canonical/t_munu/step3_einstein_with_matter.tex` | Contracted Bianchi; no free parameters |
 | Lorentzian signature in the admissible projected GR sector | **Proven** [L1-C] | `canonical/gr_closure/step3_signature_theorem.tex` | Signature follows from AXIOM-B together with Lorentzian projection/admissibility within the projection convention |
-| Metric non-degeneracy for A_UBT class | **Proven** [L0] | `canonical/gr_closure/step2_nondegeneracy.tex` | Lorentzian admissibility uses projected derivative independence plus non-vanishing Lorentzian Gram determinant |
+| Metric non-degeneracy for A_UBT class | **Proven** [L1-C] | `canonical/gr_closure/step2_nondegeneracy.tex` | Lorentzian admissibility uses projected derivative independence plus non-vanishing Lorentzian Gram determinant |
 | Derivative-based ≡ tetrad-based metric formula | **Proven** [L0] | `canonical/gr_closure/step1_metric_bridge.tex` | Under E_μ = ∂_μΘ; single canonical metric definition |
 | GR chain summary (Θ→g→Γ→R→Einstein) | **Proved [L1]** | `canonical/gr_closure/GR_chain_summary.tex` | Steps 1-5 proved; Step 6 off-shell open [L2]; see summary doc |
 | N is scale-fixing, not signature-fixing | **Proved [L0]** | `canonical/gr_closure/step3_signature_theorem.tex` | Explicitly documented in step1_metric_bridge.tex remark |

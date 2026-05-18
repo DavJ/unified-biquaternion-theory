@@ -65,7 +65,7 @@ by the cited source file.
 | # | Claim | Level | Exact? | Canonical source | Paper | Status |
 |---|-------|-------|--------|-----------------|-------|--------|
 | A1 | ℂ⊗ℍ ≅ Mat(2,ℂ) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
-| A2 | ℂ⊗ℍ ≅ Mat(2,ℂ), with spinorial/even-Clifford relation to Cl₁,₃(ℝ) (not full Cl₁,₃) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
+| A2 | ℂ⊗ℍ ≅ Mat(2,ℂ), with even-Clifford relation ℂ⊗ℍ ≅ Cl⁺₁,₃(ℝ) (not full Cl₁,₃) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
 | A3 | Aut(ℂ⊗ℍ) ≅ [GL(2,ℂ)×GL(2,ℂ)]/ℤ₂ | [L0] | Yes | `canonical/interactions/sm_gauge.tex` | §3 | PROVED |
 
 ### SU(3) Colour
