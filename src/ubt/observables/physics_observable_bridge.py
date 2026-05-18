@@ -22,6 +22,31 @@ class ObservableResult:
     comparison_target: str | None = None
 
 
+class AnomalousMagneticMoment:
+    """
+    UBT prediction for the anomalous magnetic moment of the electron.
+
+    STATUS: OPEN_GAP
+    The standard QED result a_e = (α/2π) + ... is reproduced by QED.
+    UBT does not yet derive α from first principles (Gap G137-B).
+    Therefore no independent UBT prediction for a_e exists at this stage.
+    """
+
+    QED_VALUE = 0.001159652181643  # CODATA 2018
+
+    def ubt_prediction(self) -> dict[str, Any]:
+        return {
+            "value": None,
+            "status": "OPEN_GAP",
+            "reason": (
+                "Requires α from first principles (Gap G137-B). "
+                "Until Gap G137-B is closed, UBT prediction = QED prediction "
+                "with α as input, not a new result."
+            ),
+            "qed_reference": self.QED_VALUE,
+        }
+
+
 class PhysicsObservableBridge:
     """Open-gap bridge from UBT structures to particle/coupling observables."""
 

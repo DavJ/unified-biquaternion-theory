@@ -167,20 +167,46 @@ For
 \[
 \Theta(x,t)=a(t)e^{ix^k e_k}\Theta_0,
 \]
-we have
+for $\Theta_0=\mathbf{1}_2$ we have
 \[
-\partial_\mu\Theta=\big[(\dot a/a)\delta_{\mu 0}+i e_\mu\big]\Theta.
+\partial_0\Theta=\frac{\dot a}{a}\Theta,\qquad
+\partial_i\Theta=i\,(e_k)_i\,\Theta.
 \]
-For isotropic $\Theta_0$, mixed terms cancel and the metric bilinear gives
+The mixed metric component is
 \[
-g_{\mu\nu}
-=\frac{\mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]}{\mathcal N}
-=a^2(t)\,\mathrm{diag}(-1,+1,+1,+1)
+g_{0i}
+=\frac{1}{\mathcal N}
+\mathrm{Re}\!\left[\mathrm{Tr}\!\left(\partial_0\Theta\cdot\partial_i\Theta^\dagger\right)\right]
+=\frac{1}{\mathcal N}
+\mathrm{Re}\!\left[\mathrm{Tr}\!\left(
+\frac{\dot a}{a}\Theta\cdot\left(-i\,(e_k)_i\Theta^\dagger\right)\right)\right].
 \]
-up to normalization and coordinate redefinition.
-This keeps the refined ansatz compatible with global FRW structure at
-proposition level, but the cancellation of the mixed $g_{0i}$ terms
-still needs a fully global proof away from the isotropic ansatz simplification.
+Hence
+\[
+g_{0i}
+=\frac{\dot a}{a}\frac{(-i)(e_k)_i}{\mathcal N}
+\mathrm{Re}\!\left[\mathrm{Tr}(\Theta\Theta^\dagger)\right].
+\]
+For $\Theta_0=\mathbf{1}_2$:
+\[
+\Theta\Theta^\dagger=a^2(t)\mathbf{1}_2,\qquad
+\mathrm{Tr}(\Theta\Theta^\dagger)=2a^2(t)\in\mathbb R.
+\]
+So the prefactor of $(-i)$ is real, and therefore
+\[
+\mathrm{Re}\!\left[(-i)\times\text{real}\right]=0
+\quad\Longrightarrow\quad
+g_{0i}=0
+\]
+globally.
+
+\begin{proposition}[Global vanishing of mixed term for $\Theta_0=\mathbf{1}_2$, \textbf{[Prop.]}]
+For the refined ansatz
+\[
+\Theta(x,t)=a(t)e^{ix^k e_k}\mathbf{1}_2,
+\]
+the off-diagonal metric components satisfy $g_{0i}=0$ globally.
+\end{proposition}
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Friedmann Equations from UBT}
@@ -249,12 +275,12 @@ as GAP-C in \texttt{WHAT\_IS\_PROVED.md}.
 
 %──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
-Off-diagonal $g_{0i}=0$ globally: \textbf{[Prop. pending]}\\
+Off-diagonal $g_{0i}=0$ globally for $\Theta_0=\mathbf{1}_2$: \textbf{[Prop.]}\\
 FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]}\\
 Friedmann equations from UBT: \textbf{[Prop.]} — conditional on global FRW metric\\
 de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
 Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\
-GAP-C status: \textbf{OPEN} — first global step still pending
+GAP-C status: \textbf{OPEN} — global FRW closure beyond $\Theta_0=\mathbf{1}_2$ remains pending
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────
 

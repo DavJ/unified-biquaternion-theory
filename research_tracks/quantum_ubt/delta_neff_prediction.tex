@@ -178,24 +178,52 @@ However, this value of $g_*$ is incorrect for KK modes:
 
 At $T_{\rm dec}\sim M_{\rm Pl}$, the thermal bath includes the
 full SM spectrum plus the KK tower itself.
-A conservative working estimate for the active track is
+
+\subsection*{Minimal UBT field-content lower bound}
+
+A strict lower bound from explicit field counting is:
+\[
+g_*^{\rm SM}=106.75,\qquad
+g_*^{\rm KK}=12,\qquad
+g_*^{\rm grav}=2,
+\]
+\[
+g_*^{\rm min}(T_{\rm Pl})=106.75+12+2=120.75.
+\]
+Inserted into Eq.~\eqref{eq:delta_neff_standard}:
+\[
+\Delta N_{\rm eff}^{\rm total}(g_*=120.75)
+=12\cdot\frac{43}{4}\left(\frac{3.909}{120.75}\right)^{4/3},
+\qquad 3.909 \equiv g_{*s}(T_0),
+\approx 1.331.
+\]
+So the minimal bound $g_*\ge120.75$ is a rigorous UBT lower bound,
+but is not by itself sufficient for the observational target
+$\Delta N_{\rm eff}<0.28$.
+
+A conservative working estimate for the active track remains
 $g_*(T_{\rm Pl})\geq 427$
-(SM: 106.75, plus KK-sector and graviton-state multiplicities at the Planck scale).
+(SM plus KK-sector and additional Planck-scale multiplicities).
 
 For $g_* = 427$: $\Delta N_{\rm eff}^{\rm total} = 0.247 < 0.28$ [OK].
 The numerical scan shows that the actual consistency threshold is
 $g_* \gtrsim 389$; therefore the stronger statement ``$g_*\ge 150$ is sufficient''
 is \emph{not} supported by the present formula.
 
-\begin{proposition}[Planck-scale decoupling implies large $g_*$]
+\begin{proposition}[UBT field content implies $g_*(T_{\rm Pl})\ge 120.75$]
 KK modes have masses $m_n \sim n\,M_{\rm Pl}$ and gravitational coupling.
 Using $\Gamma \sim G_N T^3 m \sim T^3/M_{\rm Pl}^2$ and $H\sim T^2/M_{\rm Pl}$,
 the decoupling condition $\Gamma=H$ gives $T_{\rm dec}\sim M_{\rm Pl}$.
-At this scale, $g_*(T_{\rm dec})$ includes SM plus KK tower states, so
-$g_*(T_{\rm dec})\gg 106.75$ is physically expected.
-The phenomenologically relevant conservative benchmark is
-$g_*=427$, while realistic Planck-spectrum estimates remain
-$g_*\sim 427$--$1000$.
+At this scale, explicit UBT field content gives
+$g_*(T_{\rm Pl})\ge 120.75$ (SM + 12 KK scalar modes + graviton).
+\end{proposition}
+
+\begin{proposition}[Consistency target for Planck+ACT bound]
+To satisfy $\Delta N_{\rm eff}^{\rm total}<0.28$ in
+Eq.~\eqref{eq:delta_neff_standard}, one needs
+$g_*(T_{\rm dec})\gtrsim 389$.
+Thus the benchmark $g_*=427$ is consistent, while the minimal lower bound
+$g_*=120.75$ is not sufficient.
 \end{proposition}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -246,9 +274,11 @@ Resolution of these issues is tracked as~\textbf{[OPEN]} in this file.
 \begin{statusbox}
 $\Delta N_{\rm eff}$ per mode ($g_*=106.75$): $0.131$ [NUM]\\
 $\Delta N_{\rm eff}$ total naive ($g_*=106.75$): $1.569$ --- INCORRECT $g_*$ [NUM]\\
+$g_*(T_{\rm Pl})\ge 120.75$ from explicit UBT field content: \textbf{[Prop.]}\\
+$\Delta N_{\rm eff}^{\rm total}(g_*=120.75)\approx1.331$: \textbf{[NUM]}\\
 $\Delta N_{\rm eff}$ total ($g_*=427$): $0.247$ --- OK [NUM]\\
 Min $g_*$ for Planck consistency: $\sim 389$ [NUM]\\
-Physical argument for $g_*\geq 427$: [MC/Prop. --- needs derivation]\\
+Physical argument for $g_*\geq 427$: [MC/Prop. --- needs deeper derivation]\\
 CMB-S4 prediction: $\Delta N_{\rm eff}\sim 0.05$--$0.25$ (above $\sigma=0.03$ threshold)\\
 Status: \textbf{OPEN pending g* derivation; no tension for $g_*\geq 427$}\\
 \textbf{Alpha: NOT DERIVED.}
