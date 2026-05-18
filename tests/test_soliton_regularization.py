@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from ubt.solitons.regularization import (  # noqa: E402
     SolitonRegularizationConfig,
+    UBTSoliton,
     calculate_soliton_energy,
     energy_density,
 )
@@ -40,3 +41,12 @@ def test_large_radius_behavior_matches_unregularized_limit() -> None:
     rho_unregularized = 1.0 / (r_large**2)
 
     assert abs(rho_regularized - rho_unregularized) / rho_unregularized < 1e-9
+
+
+def test_soliton_energy() -> None:
+    soliton = UBTSoliton()
+    energy_1 = soliton.total_energy(n=1)
+    energy_2 = soliton.total_energy(n=2)
+
+    assert energy_1 > 0.0
+    assert energy_2 > energy_1
