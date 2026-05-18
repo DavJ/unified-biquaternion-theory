@@ -1,344 +1,136 @@
 % Classical Metric Tensor as Derived Quantity
-% Version: 2.0
-% Date: 2026-01-07
+% Version: 2.1
+% Date: 2026-05-18
 % Status: Canonical - DERIVED FROM BIQUATERNIONIC METRIC
 
 \section{The Classical Metric Tensor $g_{\mu\nu}$ (Derived Quantity)}
 \label{sec:canonical:metric}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!60!black,title=Signature Convention Note]
-\textbf{Canonical signature for UBT}: $(-,+,+,+)$ (timelike negative).
-This file historically uses $(+,-,-,-)$. For consistency with the rest of canonical theory
-and wiki, all new derivations should use $(-,+,+,+)$.
-The two conventions are physically equivalent under overall sign flip.
-\textbf{Note}: The existing formulas in this file are written in $(+,-,-,-)$; when comparing
-with other canonical files using $(-,+,+,+)$, apply an overall sign flip to the metric.
-Full signature unification is a separate task.
-\end{tcolorbox}
-
 \begin{tcolorbox}[colback=yellow!10!white,colframe=orange!75!black,title=Important: This is a Derived Quantity]
-\textbf{The metric $g_{\mu\nu}$ is NOT fundamental in UBT.}
-
-It is the real projection of the fundamental biquaternionic metric $\mathcal{G}_{\mu\nu} \in \mathbb{B}$ (see Section~\ref{sec:canonical:biquaternion_metric}).
-
-For the fundamental geometric description, see:
-\begin{itemize}
-    \item Section~\ref{sec:canonical:biquaternion_metric}: Biquaternionic metric $\mathcal{G}_{\mu\nu}$
-    \item Section~\ref{sec:canonical:biquaternion_tetrad}: Biquaternionic tetrad $E_\mu$
-    \item Section~\ref{sec:canonical:biquaternion_connection}: Biquaternionic connection $\Omega_\mu$
-\end{itemize}
+\textbf{The metric $g_{\mu\nu}$ is not fundamental in UBT.}
+It is the real projected GR-sector metric induced by the fundamental field $\Theta$.
 \end{tcolorbox}
 
-\subsection{Canonical Definition (as Projection)}
+\subsection{Canonical definition in the projected GR sector}
 
-The spacetime metric tensor used in General Relativity is derived from the fundamental biquaternionic metric via projection:
-
-\begin{equation}
-\label{eq:canonical:metric_projection}
-\boxed{g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})}
-\end{equation}
-
-\noindent where $\mathcal{G}_{\mu\nu}$ is the biquaternionic metric (Section~\ref{sec:canonical:biquaternion_metric}).
-
-Alternatively, from the $\Theta$ field directly:
-
+The working GR-sector metric is
 \begin{equation}
 \label{eq:canonical:metric_from_theta}
-g_{\mu\nu}(\Theta) = \frac{\left\langle \partial_\mu\Theta,\partial_\nu\Theta \right\rangle_\eta}{\mathcal{N}}
+g_{\mu\nu}
+=
+\frac{\langle \partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta}{\mathcal N},
+\qquad
+\mathcal N
+=
+\left|\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta\right|>0.
 \end{equation}
 
-\noindent where:
-\begin{itemize}
-    \item $\partial_\mu = \frac{\partial}{\partial x^\mu}$ is the partial derivative with respect to spacetime coordinate $x^\mu$
-    \item $\Theta^\dagger$ is the Hermitian conjugate of $\Theta$ (see Eq.~\ref{eq:canonical:theta_hermitian})
-    \item $\langle A,B\rangle_\eta := \text{Re}\,\text{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)$ is the admissible Lorentzian bilinear form
-    \item $\eta_{\mathcal{B}}$ is an external Lorentzian bilinear-form operator on the selected 4D real projection subspace (equivalently representation-level metric operator), not an element of $\mathbb{B}$
-    \item $\mathcal{N} := -\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta > 0$
-\end{itemize}
-
-\subsection{Index Convention}
-
-Throughout this work, we use:
-
-\begin{itemize}
-    \item \textbf{Greek indices} $\mu, \nu, \rho, \sigma = 0, 1, 2, 3$ for spacetime coordinates
-    \item \textbf{Signature}: $(+, -, -, -)$ (mostly minus, spacelike negative)
-    \item \textbf{Coordinates}: $x^\mu = (x^0, x^1, x^2, x^3) = (t, x, y, z)$ or $(ct, x, y, z)$
-\end{itemize}
-
-Alternative signature $(-, +, +, +)$ (mostly plus) may be used in some contexts; the choice will be clearly stated.
-
-\subsection{Explicit Form}
-
-Expanding the matrix product:
-
+with
 \begin{equation}
-\label{eq:canonical:metric_explicit}
-g_{\mu\nu} = \text{Re}\sum_{i,j=0}^{3} (\partial_\mu\Theta)_{ij} \overline{(\partial_\nu\Theta)_{ij}}
+\label{eq:canonical:eta_bilinear}
+\langle A,B\rangle_\eta
+:=
+\operatorname{Re}\operatorname{Tr}\left(A^\dagger\eta_{\mathcal B}B\right).
 \end{equation}
 
-This is manifestly:
-\begin{itemize}
-    \item \textbf{Real-valued}: by construction via $\text{Re}$
-    \item \textbf{Symmetric}: $g_{\mu\nu} = g_{\nu\mu}$
-    \item \textbf{Dynamic}: depends on $\Theta$ field configuration
-\end{itemize}
+Here $\eta_{\mathcal B}$ is an external Lorentzian bilinear form on the selected
+real four-dimensional projection subspace (equivalently a representation-level
+metric operator), not a literal element of $\mathbb B\cong\mathrm{Mat}(2,\mathbb C)$.
 
-\subsection{Properties}
+\subsection{Pre-projection Hermitian bilinear (auxiliary)}
 
-\subsubsection{Symmetry}
+The expression
+\begin{equation}
+\label{eq:canonical:preprojection_hermitian}
+\operatorname{Re}\operatorname{Tr}\left(\partial_\mu\Theta\,\partial_\nu\Theta^\dagger\right)
+\end{equation}
+is a pre-projection Hermitian bilinear used as an auxiliary object. It is not,
+by itself, the final Lorentzian metric definition in Eq.~\ref{eq:canonical:metric_from_theta}.
 
+\subsection{Signature convention}
+
+Throughout this canonical file, the signature convention is
+\begin{equation}
+\eta_{\mu\nu}=\operatorname{diag}(-1,+1,+1,+1).
+\end{equation}
+
+\subsection{Symmetry and non-degeneracy}
+
+Symmetry:
 \begin{equation}
 \label{eq:canonical:metric_symmetry}
-g_{\mu\nu} = g_{\nu\mu}
+g_{\mu\nu}=g_{\nu\mu}.
 \end{equation}
 
-Proof: Since $\text{Tr}(AB) = \text{Tr}(BA)$ and both $\partial_\mu\Theta$ and $\partial_\nu\Theta^\dagger$ are matrices.
+Lorentzian admissibility requires both:
+\begin{enumerate}
+    \item real linear independence of projected derivatives $\{\partial_\mu\Theta\}_{\mu=0}^3$,
+    \item non-vanishing Lorentzian Gram determinant
+    \begin{equation}
+    \label{eq:canonical:lorentz_gram_nonzero}
+    \det\left(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\right)\neq 0.
+    \end{equation}
+\end{enumerate}
 
-\subsubsection{Positive Definiteness}
-
-For spacelike separations, $g_{ij}$ ($i,j=1,2,3$) is negative definite in signature $(+,-,-,-)$:
-
-\begin{equation}
-\label{eq:canonical:metric_spacelike}
-g_{ij} v^i v^j < 0 \quad \text{for } v^i \neq 0
-\end{equation}
-
-\subsubsection{Determinant}
-
+Non-degeneracy of the induced metric then follows directly:
 \begin{equation}
 \label{eq:canonical:metric_determinant}
-g = \det(g_{\mu\nu}) < 0
+\det(g_{\mu\nu})\neq 0.
 \end{equation}
 
-for Lorentzian signature. The quantity $\sqrt{-g}$ appears in the volume element.
+\subsection{Projection relation to biquaternionic geometry}
 
-\subsection{Inverse Metric}
+The real projected metric can be written as
+\begin{equation}
+\label{eq:canonical:metric_projection}
+g_{\mu\nu}=\operatorname{Re}(\mathcal G_{\mu\nu}),
+\end{equation}
+where $\mathcal G_{\mu\nu}$ is the biquaternionic metric object in the full theory.
 
-The inverse metric $g^{\mu\nu}$ satisfies:
+\subsection{Inverse metric and line element}
 
 \begin{equation}
 \label{eq:canonical:inverse_metric}
-g^{\mu\rho} g_{\rho\nu} = \delta^\mu_\nu
+g^{\mu\rho}g_{\rho\nu}=\delta^\mu_{\nu}.
 \end{equation}
-
-Raising and lowering indices:
-\begin{align}
-V_\mu &= g_{\mu\nu} V^\nu \label{eq:canonical:lower_index} \\
-V^\mu &= g^{\mu\nu} V_\nu \label{eq:canonical:raise_index}
-\end{align}
-
-\subsection{Connection to Curvature}
-
-The metric determines the Christoffel symbols (affine connection), which are themselves derived from the biquaternionic connection (see Section~\ref{sec:canonical:biquaternion_connection}):
-
-\begin{equation}
-\label{eq:canonical:christoffel_from_metric}
-\Gamma^\lambda_{\mu\nu} = \text{Re}(\Omega^\lambda_{\mu\nu}) = \frac{1}{2} g^{\lambda\rho} \left(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu}\right)
-\end{equation}
-
-\textbf{Note:} The Christoffel symbols are NOT fundamental. They are the real projection of the biquaternionic connection $\Omega_\mu$.
-
-From which the Riemann curvature tensor follows:
-
-\begin{equation}
-\label{eq:canonical:riemann}
-R^\rho_{\sigma\mu\nu} = \partial_\mu\Gamma^\rho_{\nu\sigma} - \partial_\nu\Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}
-\end{equation}
-
-See Section~\ref{sec:canonical:curvature} for details.
-
-\subsection{Special Cases}
-
-\subsubsection{Minkowski Limit}
-
-When $\Theta = \Theta_0$ (constant vacuum configuration):
-
-\begin{equation}
-\label{eq:canonical:minkowski_limit}
-g_{\mu\nu} \to \eta_{\mu\nu} = \text{diag}(+1, -1, -1, -1)
-\end{equation}
-
-This is the flat spacetime limit.
-
-\subsubsection{Weak Field Approximation}
-
-For small perturbations $\Theta = \Theta_0 + h$:
-
-\begin{equation}
-\label{eq:canonical:weak_field}
-g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu} + O(h^2)
-\end{equation}
-
-where $h_{\mu\nu}$ is the gravitational wave perturbation.
-
-\subsection{Physical Interpretation}
-
-The metric $g_{\mu\nu}$ encodes:
-
-\begin{enumerate}
-    \item \textbf{Spacetime geometry}: distances, angles, volumes
-    \item \textbf{Gravitational field}: curvature of spacetime
-    \item \textbf{Causal structure}: light cones, timelike/spacelike separation
-    \item \textbf{Matter coupling}: via minimal coupling prescription
-\end{enumerate}
-
-\subsection{Line Element}
-
-The infinitesimal proper distance is:
 
 \begin{equation}
 \label{eq:canonical:line_element}
-ds^2 = g_{\mu\nu} dx^\mu dx^\nu
+ds^2=g_{\mu\nu}dx^\mu dx^\nu.
 \end{equation}
 
-For timelike paths ($ds^2 > 0$), this gives proper time:
+\subsection{Minkowski and weak-field limits}
+
 \begin{equation}
-d\tau_{\text{proper}}^2 = \frac{1}{c^2} ds^2
+\label{eq:canonical:minkowski_limit}
+g_{\mu\nu}\to\eta_{\mu\nu}=\operatorname{diag}(-1,+1,+1,+1)
+\end{equation}
+in the flat limit.
+
+\begin{equation}
+\label{eq:canonical:weak_field}
+g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}+O(h^2).
 \end{equation}
 
-Note: $\tau_{\text{proper}}$ here is proper time, distinct from complex time $\tau = t + i\psi$.
-
-\subsection{Volume Element}
-
-The invariant volume element is:
+\subsection{Volume element and Einstein sector}
 
 \begin{equation}
 \label{eq:canonical:volume_element}
-d^4x \sqrt{-g} = dt\, dx\, dy\, dz\, \sqrt{-\det(g_{\mu\nu})}
+d^4x\,\sqrt{-g}
 \end{equation}
+with $g=\det(g_{\mu\nu})<0$ for Lorentzian signature.
 
-This is used in the action:
-
-\begin{equation}
-S = \int d^4x \sqrt{-g}\, \mathcal{L}
-\end{equation}
-
-\subsection{Compatibility with General Relativity}
-
-In the limit where imaginary components of the biquaternionic metric vanish ($\text{Im}(\mathcal{G}_{\mu\nu}) \to 0$), the metric derived from $\Theta$ \textbf{exactly reproduces} the Einstein metric satisfying:
-
+In the real projected sector, Einstein dynamics are recovered:
 \begin{equation}
 \label{eq:canonical:einstein_equation_from_real}
-R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}
+R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R=8\pi G\,T_{\mu\nu}.
 \end{equation}
 
-where $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ is the real projection of the biquaternionic stress-energy tensor (see Section~\ref{sec:canonical:biquaternion_stress_energy}).
+\subsection{Induced-metric status and GAP-10}
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity as Real Projection]
-\textbf{General Relativity arises as the real, commutative projection of the fundamental biquaternionic geometry of spacetime.}
-
-The classical metric is:
-\begin{equation}
-g_{\mu\nu}^{\text{GR}} = \text{Re}(\mathcal{G}_{\mu\nu})
-\end{equation}
-
-\textbf{Apparent violations} such as antigravity or causal drift correspond to non-real sectors of the metric and curvature ($\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$), not to exotic matter.
-
-\textbf{UBT generalizes GR rather than contradicting it. This ensures UBT is compatible with all experimental confirmations of General Relativity.}
-\end{tcolorbox}
-
-\subsection{Complex Extension}
-
-For full complex time $\tau = t + i\psi$, we can define extended metric:
-
-\begin{equation}
-\label{eq:canonical:complex_metric}
-\tilde{g}_{\mu\nu}(\tau) = \text{Re}\,\text{Tr}\left(\frac{\partial\Theta}{\partial x^\mu} \frac{\partial\Theta^\dagger}{\partial x^\nu}\right)
-\end{equation}
-
-where derivatives may include $\partial/\partial\psi$ components.
-
-The imaginary part:
-
-\begin{equation}
-\label{eq:canonical:metric_imaginary}
-\tilde{h}_{\mu\nu} = \text{Im}\,\text{Tr}\left(\partial_\mu\Theta \, \partial_\nu\Theta^\dagger\right)
-\end{equation}
-
-encodes phase curvature and couples to internal auxiliary sector (dark energy; speculative extensions in \texttt{speculative\_extensions/}).
-
-\subsection{Gauge Invariance}
-
-Under gauge transformations (Eq.~\ref{eq:canonical:theta_gauge}):
-
-\begin{equation}
-\Theta \to U\Theta V^\dagger
-\end{equation}
-
-The metric transforms as:
-
-\begin{equation}
-\label{eq:canonical:metric_gauge}
-g_{\mu\nu} \to \text{Re}\,\text{Tr}\left(\partial_\mu(U\Theta V^\dagger) \partial_\nu(U\Theta V^\dagger)^\dagger\right)
-\end{equation}
-
-For $U(1)$ gauge transformations, the metric is invariant:
-
-\begin{equation}
-g_{\mu\nu}[U\Theta V^\dagger] = g_{\mu\nu}[\Theta]
-\end{equation}
-
-\subsection{Coordinate Transformations}
-
-Under diffeomorphisms $x^\mu \to x'^\mu$:
-
-\begin{equation}
-\label{eq:canonical:metric_diffeomorphism}
-g'_{\alpha\beta}(x') = \frac{\partial x^\mu}{\partial x'^\alpha} \frac{\partial x^\nu}{\partial x'^\beta} g_{\mu\nu}(x)
-\end{equation}
-
-This is the standard tensor transformation law.
-
-\subsection{Conflict Resolution}
-
-This canonical definition supersedes:
-
-\begin{enumerate}
-    \item ❌ \textbf{Old derivation (Appendix B)}: Different index conventions
-    \item ❌ \textbf{New derivation (consolidation K2/K5)}: Alternative normalization
-    \item ❌ \textbf{Experimental holographic version}: Non-standard signature
-\end{enumerate}
-
-\textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:metric_from_theta} with signature $(+,-,-,-)$ and index convention $\mu,\nu = 0,1,2,3$ consistently throughout.
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!40!black,title=Signature convention note]
-The canonical signature here is $(+,-,-,-)$ (mostly minus, spacelike negative).
-Some older files in the repository use the equivalent ``mostly plus'' convention
-$(-,+,+,+)$ (e.g.\ parts of \texttt{unified\_biquaternion\_theory/} and
-\texttt{STATUS\_THEORY\_ASSESSMENT.md} entries predating v60).
-
-The two conventions are physically equivalent up to an overall sign of the metric
-and a corresponding sign flip in any Lagrangian density.  No physics claim
-is affected.  When comparing equations across files, verify which convention is in use.
-\end{tcolorbox}
-
-\subsection{Computational Formula}
-
-For practical calculations with $\Theta \in \mathbb{C}^{4 \times 4}$:
-
-\begin{equation}
-\label{eq:canonical:metric_computational}
-g_{\mu\nu} = \sum_{i=0}^{3}\sum_{j=0}^{3} \text{Re}\left[(\partial_\mu\Theta_{ij}) \overline{(\partial_\nu\Theta_{ij})}\right]
-\end{equation}
-
-In component form:
-\begin{equation}
-g_{\mu\nu} = \sum_{i,j} \left[\frac{\partial(\text{Re}\,\Theta_{ij})}{\partial x^\mu}\frac{\partial(\text{Re}\,\Theta_{ij})}{\partial x^\nu} + \frac{\partial(\text{Im}\,\Theta_{ij})}{\partial x^\mu}\frac{\partial(\text{Im}\,\Theta_{ij})}{\partial x^\nu}\right]
-\end{equation}
-
-\subsection{Units}
-
-In natural units ($\hbar = c = 1$):
-
-\begin{equation}
-[g_{\mu\nu}] = \text{dimensionless}
-\end{equation}
-
-as expected for a metric tensor.
-
-\subsection{Historical Note}
-
-This definition provides a unique, unambiguous metric derivation from the $\Theta$ field, resolving all previous inconsistencies in signature, normalization, and index conventions.
+This is an induced-metric / on-shell GR-sector result: UBT induces a Lorentzian
+metric sector in which the Einstein--Hilbert variational principle reproduces
+classical GR. A full off-shell $\Theta$-only derivation remains open (GAP-10),
+requiring non-degeneracy of $\delta g/\delta\Theta$ modulo gauge directions.
 
 % End of canonical metric definition

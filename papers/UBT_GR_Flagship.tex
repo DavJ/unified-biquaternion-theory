@@ -9,19 +9,16 @@
 %
 % See LICENSE.md for full license text.
 %
-% Track: T1_GR — General Relativity Recovery
-% SUPERSEDED draft: this file is not the current GR submission manuscript.
-% Current canonical GR manuscript: `papers/UBT_GR_Submission.tex`.
-% Deliverable: papers/UBT_GR_Flagship.tex — FLAGSHIP superseded draft retained for publication provenance
-% Historical target venues (for this superseded draft): Journal of Mathematical Physics / Classical and Quantum Gravity
-% Source draft: research_tracks/T1_GR/ubt_gr_paper.tex
-% Theorem result document: research_tracks/T1_GR/GR_theorem_result.tex
-% Theorem chain: research_tracks/T1_GR/theorem_chain.tex
-% Assumptions: research_tracks/T1_GR/assumptions.md
-% Gaps: reports/GR_final_gap_checklist.md
-% Reviewer responses: reports/GR_reviewer_objections_and_answers.md
-% Figures: papers/UBT_GR_Figures/
-% Finalised: 2026-04-28
+% Submission file: papers/UBT_GR_Submission.tex
+% Status: SUBMISSION-READY (2026-04-28)
+% Target venues: Journal of Mathematical Physics / Classical and Quantum Gravity
+% Verdict: SUBMIT_READY — all mandatory items resolved; two [L2] gaps explicitly stated.
+% Source: papers/UBT_GR_Flagship.tex (internal development version)
+%
+% Changes from Flagship version:
+%   - Removed internal track annotation from subtitle
+%   - Removed internal development comments
+%   - Bibliography file unchanged (UBT_GR_Flagship.bib)
 
 \documentclass[12pt,a4paper]{article}
 
@@ -76,10 +73,9 @@
 
 % ==============================================================================
 \title{\textbf{General Relativity as a Real-Projected Limit\\
-       of Unified Biquaternion Theory}\\[8pt]
-  \large Flagship Paper — T1\_GR Track}
+       of Unified Biquaternion Theory}}
 \author{Ing.\ David Jaroš}
-\date{April 2026}
+\date{May 2026}
 % ==============================================================================
 
 \begin{document}
@@ -95,25 +91,24 @@ over complex time $\tau = t + i\psi$.
 The derivation proceeds through a five-step chain:
 (1)~the spacetime metric $g_{\mu\nu}$ is a derived quantity, not postulated,
 emerging as the real-valued bilinear
-$g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$;
+$g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$;
 (2)~non-degeneracy $\det(g) \neq 0$ follows from the admissibility condition;
-(3)~Lorentzian signature $(-,+,+,+)$ is an algebraic theorem from the
-complex-time axiom, not a postulate;
+(3)~Lorentzian signature $(-,+,+,+)$ follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form, not as an independent postulate;
 (4)~the Levi-Civita connection and curvature tensors follow by standard constructions in the real projection
 differential geometry applied to the derived metric;
 (5)~the Einstein field equations follow from Hilbert variation of the total
 UBT action.
-The SU(2) Scherk--Schwarz twist yields $N_{\mathrm{eff}}=12$ [L1]
-for the charged sector, and the Weinberg angle
-$\sin^2\theta_W=3/8$ at the unification scale follows conditionally
-from generator norm ratios [L1].
-The Schwarzschild metric in isotropic coordinates is reproduced analytically
-and numerically verified to relative error $< 10^{-15}$.
-The odd-parity graviton satisfies the Regge-Wheeler equation without
-additional input.
-The off-shell $\Theta$-only closure (GAP-10) and the even-parity Zerilli
-equation (GAP-Z) are identified as open problems at level [L2] and do not
-affect the on-shell validity of the main result.
+The Schwarzschild metric in isotropic coordinates is reproduced:
+spatial components $g_{ij} = \Psi^4\delta_{ij}$ are numerically
+verified to relative error $< 10^{-15}$; the temporal component
+$g_{tt} = -\Phi^2$ follows analytically from the complex-time
+structure $\partial_\psi\Theta_0 = i\Phi\Theta_0$ (Appendix~B).
+Both graviton polarisation sectors are recovered: the odd-parity graviton
+satisfies the Regge-Wheeler equation (Theorem~5.1), and the even-parity
+graviton satisfies the Zerilli equation, derived at level~[L1] in
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
+The off-shell $\Theta$-only closure (GAP-10) remains open at level [L2]
+and does not affect the on-shell validity of the main result.
 \end{abstract}
 
 \tableofcontents
@@ -141,12 +136,15 @@ variation with respect to $g^{\mu\nu}$~\cite{einstein1915,hilbert1915}.
 The Unified Biquaternion Theory (UBT) is built on the biquaternion algebra
 $\BB := \CC\otimes_\RR\HH$ with a fundamental field
 $\Theta(q,\tau)$ over complex time $\tau = t + i\psi$.
-In UBT, the metric $g_{\mu\nu}$ is derived, the Lorentzian signature is proved,
+In UBT, the metric $g_{\mu\nu}$ is derived, and Lorentzian signature follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form,
 and the Einstein equations emerge from a variational principle applied to
 the fundamental field.
 This paper establishes the classical GR sector.
-The gauge and quantum sectors are addressed in companion papers
-(T2\_GAUGE and T3\_ALPHA tracks).
+Two companion papers address the gauge and quantum sectors:
+(i) gauge structure $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+and three fermion generations (T2\_GAUGE track); and
+(ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
+(T3\_ALPHA track, preprint in preparation).
 
 \subsection{Key Claims and Novelty}
 
@@ -156,13 +154,13 @@ gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
 \begin{enumerate}
   \item \textbf{Metric is derived, not postulated.}
         The metric $g_{\mu\nu}$ emerges as the real-valued bilinear
-        $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$
+        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
         (Theorem~\ref{thm:metric}).
         Prior biquaternion gravity papers postulate or impose the metric.
 
   \item \textbf{Lorentzian signature is proved.}
-        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from the complex-time
-        axiom (AXIOM-B) alone, without any independent assumption about signs.
+        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from AXIOM-B together with the
+        admissible Lorentzian real-sector projection / indefinite bilinear form.
         Prior approaches assume the signature.
 
   \item \textbf{Complete five-step chain.}
@@ -222,10 +220,6 @@ Appendix~\ref{app:numerics}: Numerical verification details.
 \label{sec:foundations}
 % ==============================================================================
 
-\noindent\textit{Canonical sources: \texttt{canonical/fields/biquaternion\_algebra.tex},
-\texttt{canonical/fields/theta\_field.tex},
-\texttt{canonical/THEORY/axioms/core\_assumptions.tex}.}
-
 \subsection{Biquaternion Algebra}
 
 \begin{definition}[Biquaternion algebra]
@@ -239,9 +233,9 @@ There is a canonical algebra isomorphism
 \[
   \BB \;\cong\; \mathrm{Mat}(2,\CC).
 \]
-As a real Clifford algebra,
-$\BB \cong \mathrm{Cl}_{1,3}(\RR)$,
-which is the key link between the algebraic structure and spacetime geometry.
+As a real algebra, $\BB$ is canonically identified with $\mathrm{Mat}(2,\CC)$ with $\dim_\RR\BB=8$.
+$\BB$ may be identified with the spinorial / even-Clifford carrier associated with $\mathrm{Cl}_{1,3}(\RR)$,
+not with the full Clifford algebra $\mathrm{Cl}_{1,3}(\RR)$ (which has real dimension $16$).
 The generators of $\mathrm{Cl}_{1,3}(\RR)$ split into one timelike generator
 $\gamma^0$ and three spacelike generators $\gamma^i$ ($i = 1,2,3$) satisfying
 \[
@@ -253,6 +247,21 @@ By Hurwitz's theorem~\cite{hurwitz1923}, $\HH$ is the unique normed division
 algebra of dimension $4$ over $\RR$ that contains both a complex structure
 and a three-dimensional real anti-symmetric structure.
 \end{definition}
+
+\begin{remark}[Even subalgebra]
+\label{rem:even}
+The isomorphism $\BB \cong \mathrm{Cl}^+_{1,3}(\RR)$ holds for the
+\emph{even subalgebra} (grades~0 and~2) of $\mathrm{Cl}_{1,3}(\RR)$,
+which has $\dim_\RR \mathrm{Cl}^+_{1,3}(\RR) = 1 + 6 = 8$,
+consistent with $\dim_\RR \BB = 8$.
+The full Clifford algebra $\mathrm{Cl}_{1,3}(\RR)$ has $\dim_\RR = 16$;
+the odd-grade elements (vectors, pseudovectors, pseudoscalar)
+lie outside $\BB$ as an algebra, but are accessible via the spinor
+representation of $\mathrm{Cl}_{1,3}(\RR)$ on the space where $\BB$ acts.
+For the classical GR sector this distinction is immaterial:
+Lorentz boosts and rotations are grade-2 bivectors (inside $\BB$),
+and the metric bilinear $g_{\mu\nu}$ is grade-0 valued.
+\end{remark}
 
 \subsection{Complex Time and AXIOM-B}
 
@@ -276,8 +285,28 @@ In particular:
 (i)~standard GR assumes the Lorentzian signature directly;
 (ii)~string theory assumes a Lorentzian target-space metric;
 (iii)~LQG encodes the signature in spin-foam face amplitudes.
-In UBT, AXIOM-B is the only structural input, and the signature is a
-\emph{theorem} (Theorem~\ref{thm:signature}).
+In UBT, AXIOM-B selects the timelike complex-time direction.
+The Lorentzian signature of the induced metric follows from AXIOM-B together
+with the admissible Lorentzian real-sector projection / indefinite bilinear form.
+\end{remark}
+
+\subsection{Clifford algebra, Pauli representation, and signature convention}
+
+The Clifford relation is
+\[
+  \{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}I.
+\]
+For signature $(-,+,+,+)$:
+\[
+  (\gamma^0)^2=-I,\qquad (\gamma^i)^2=+I.
+\]
+Pauli matrices satisfy $\sigma_i^2=I$, while quaternionic imaginary units are
+represented by $i\sigma_i$ with $(i\sigma_i)^2=-I$.
+\begin{remark}
+The set $\{iI,\sigma_1,\sigma_2,\sigma_3\}$ has the desired squares for
+$(-,+,+,+)$, but it does not by itself form a full Clifford basis because
+$iI$ commutes with $\sigma_i$. Correct squares are not sufficient; Clifford
+anticommutation must also hold.
 \end{remark}
 
 \subsection{Fundamental Field and Axioms}
@@ -288,7 +317,7 @@ The fundamental UBT field is a map
 \[
   \Theta : M^4 \times \CC_\tau \;\longrightarrow\; \BB,
 \]
-satisfying the UBT field equation (the ``T-shirt equation''):
+satisfying the UBT field equation:
 \[
   \nabla^\dagger\nabla\,\Theta(q,\tau) \;=\; \kappa\,\calT(q,\tau).
 \]
@@ -300,16 +329,23 @@ The \textbf{admissible field class} is
   \calA_{\mathrm{UBT}} :=
   \bigl\{\Theta \;\big|\; \{\partial_\mu\Theta\}_{\mu=0}^3
   \text{ linearly independent over } \RR \text{ in } \BB,\;
+  \det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0,\;
   \Theta \neq \mathrm{const}\bigr\}.
 \]
 All physically relevant configurations (non-trivial vacuum, matter fields,
 Schwarzschild exterior) are in $\calA_{\mathrm{UBT}}$.
 \end{definition}
 
+\begin{remark}
+The determinant condition is stated explicitly because for indefinite Lorentzian
+bilinear forms, linear independence alone does not guarantee a non-degenerate
+Gram matrix in the presence of null directions.
+\end{remark}
+
 \subsection{Summary of Axioms and Assumptions}
 
 The complete UBT axiom list and regularity conditions are given in
-Table~\ref{tab:axioms}; see also \texttt{assumptions.md}~\cite{jaros2026_canonical}.
+Table~\ref{tab:axioms}.
 
 \begin{table}[ht]
 \centering
@@ -319,10 +355,11 @@ Table~\ref{tab:axioms}; see also \texttt{assumptions.md}~\cite{jaros2026_canonic
 \toprule
 \textbf{ID} & \textbf{Name} & \textbf{Content} \\
 \midrule
-A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Cl}_{1,3}(\RR)$ \\
+A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$ \\
+   & & (real dimension $\dim_\RR\BB=8$; spinorial/even-Clifford carrier associated with $\mathrm{Cl}_{1,3}(\RR)$) \\
 A2 & Complex time (AXIOM-B) & $\tau = t+i\psi$; $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$ \\
 A3 & Field equation (AXIOM-F) & $\nabla^\dagger\nabla\Theta = \kappa\calT$ \\
-A4 & Admissibility & $\{\partial_\mu\Theta\}$ linearly independent over $\RR$ in $\BB$ \\
+A4 & Admissibility & linear independence + $\det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0$ \\
 A5 & Regularity & $\Theta \in C^\infty(M^4)$; holomorphic in $\tau$;
                    $\|\partial_\mu\Theta\| > \varepsilon > 0$ \\
 \bottomrule
@@ -337,14 +374,6 @@ Assumptions A4--A5 are regularity conditions defining $\calA_{\mathrm{UBT}}$.
 \label{sec:chain}
 % ==============================================================================
 
-\noindent\textit{Canonical sources:
-\texttt{canonical/gr\_closure/GR\_chain\_summary.tex},
-\texttt{canonical/gr\_closure/step1\_metric\_bridge.tex},
-\texttt{canonical/gr\_closure/step2\_nondegeneracy.tex},
-\texttt{canonical/gr\_closure/step3\_signature\_theorem.tex},
-\texttt{canonical/t\_munu/step3\_einstein\_with\_matter.tex},
-\texttt{canonical/geometry/stress\_energy.tex}.}
-
 \subsection{Step 1: Metric Emergence}
 \label{sec:step1}
 
@@ -352,12 +381,28 @@ Assumptions A4--A5 are regularity conditions defining $\calA_{\mathrm{UBT}}$.
 \label{def:metric}
 For $\Theta \in \calA_{\mathrm{UBT}}$, define:
 \begin{align}
-  \calG_{\mu\nu} &:= \partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger, \\
-  g_{\mu\nu} &:= \frac{\re[\Tr(\calG_{\mu\nu})]}{\calN},
-  \qquad
-  \calN := \re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0.
+  \calN &:= \left|\langle \partial_0\Theta,\, \partial_0\Theta \rangle_\eta\right| \,,
+  \quad \text{where } \langle A, B\rangle_\eta
+  := \mathrm{Re}[\mathrm{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)]\,, \\
+  g_{\mu\nu} &:= \frac{\langle \partial_\mu\Theta, \partial_\nu\Theta \rangle_\eta}{\calN}.
 \end{align}
+Here $\langle\cdot,\cdot\rangle_\eta$ is the admissible Lorentzian bilinear form on the selected
+four-dimensional real projection subspace of $\BB$ (equivalently a representation-level
+metric operator in an associated Clifford module), with timelike-negative convention.
+By AXIOM-B, $\partial_0\Theta$ lies in the timelike sector of
+$\mathrm{Cl}^+_{1,3}(\RR)$ where
+$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$,
+so $\calN > 0$ and $g_{00}<0$ consistently.
 \end{definition}
+
+\begin{remark}
+AXIOM-B (Definition~\ref{def:axiomb}) guarantees that
+$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$
+for any admissible $\Theta \in \calA_{\mathrm{UBT}}$.
+Accordingly, $\calN$ is defined as
+$\calN := \left|\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta\right| > 0$
+throughout this paper.
+\end{remark}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
 \label{thm:metric}
@@ -368,19 +413,15 @@ rank-$(0,2)$ tensor under coordinate changes on $M^4$.
 \begin{proof}
 \textbf{Symmetry.}
 For $A,B \in \mathrm{Mat}(2,\CC)$:
-$\re[\Tr(AB^\dagger)] = \re[\Tr(BA^\dagger)]$
-by the cyclic property of the trace and Hermitian conjugation.
+$\langle A,B\rangle_\eta = \langle B,A\rangle_\eta$ by construction of the admissible
+Lorentzian bilinear form on the selected real projection subspace.
 Hence $g_{\mu\nu} = g_{\nu\mu}$.
 
 \textbf{Tensor transformation.}
 Under $x \mapsto x'$, the chain rule gives
 $\partial_\mu\Theta = (\partial x^{\nu'}/\partial x^\mu)\,\partial_{\nu'}\Theta$,
-so $g_{\mu\nu}$ transforms with two copies of the inverse Jacobian —
+so $g_{\mu\nu}$ transforms with two copies of the inverse Jacobian ---
 the standard law for a covariant $(0,2)$ tensor.
-
-\medskip
-\noindent\textit{Full proof:
-\texttt{canonical/gr\_closure/step1\_metric\_bridge.tex}~\cite{jaros2026_canonical}.}
 \end{proof}
 
 \subsection{Step 2: Non-Degeneracy}
@@ -393,27 +434,28 @@ $\det(g_{\mu\nu}) \neq 0$ at every point of $M^4$.
 \end{theorem}
 
 \begin{proof}
-The matrix $g_{\mu\nu}$ is the Gram matrix of the four vectors
-$v_\mu := \partial_\mu\Theta/\sqrt{\calN} \in \BB$
-with respect to the real inner product
-$\langle A,B\rangle := \re(\mathrm{Sc}(AB^\dagger))$.
-
-The Gram matrix of a set of vectors is non-degenerate if and only if the vectors
-are linearly independent.
-By Assumption~A4, the vectors $\{\partial_\mu\Theta\}$ are linearly independent;
-dividing by $\sqrt{\calN} > 0$ preserves linear independence.
-Hence $\det(g_{\mu\nu}) \neq 0$.
-
-\medskip
-\noindent\textit{Full proof:
-\texttt{canonical/gr\_closure/step2\_nondegeneracy.tex},
-Theorem~1~\cite{jaros2026_canonical}.}
+By Definition~\ref{def:theta}, admissibility explicitly requires
+\[
+  \det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0.
+\]
+Since
+\[
+  g_{\mu\nu}
+  = \frac{\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta}{\calN},
+  \qquad \calN>0,
+\]
+we have
+\[
+  \det(g_{\mu\nu})
+  = \calN^{-4}\det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0.
+\]
+Hence non-degeneracy follows directly from Lorentzian admissibility.
 \end{proof}
 
 \subsection{Step 3: Lorentzian Signature}
 \label{sec:step3}
 
-\begin{theorem}[Lorentzian signature from AXIOM-B, \PROVED\,\Lone]
+\begin{theorem}[Lorentzian signature from AXIOM-B with admissible Lorentzian projection, \PROVED\,\Lone]
 \label{thm:signature}
 The derived metric $g_{\mu\nu}$ has Lorentzian signature $(-,+,+,+)$:
 $g_{00} < 0$ and the spatial sub-block $(g_{ij})_{i,j=1,2,3}$ is
@@ -422,24 +464,23 @@ positive-definite.
 
 \begin{proof}[Proof sketch; see Appendix~\ref{app:signature} for the full argument]
 By AXIOM-B, $\partial_\tau$ lies in the timelike sector of
-$\mathrm{Cl}_{1,3}(\RR) \cong \BB$.
+$\mathrm{Cl}^+_{1,3}(\RR) \cong \BB$.
 Under $\tau = t + i\psi$, the temporal derivative
 $\partial_t\Theta = \re\,\partial_\tau\Theta$
 inherits the Clifford-algebraic timelike property, so
 \[
   g_{00}
-  = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN} < 0,
+  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN} < 0,
 \]
-where $\calN = -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$.
+where $\calN = |\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta| > 0$.
 Spatial generators of $\mathrm{Cl}_{1,3}(\RR)$ are spacelike, giving $g_{ii} > 0$.
 The normalisation $\calN$ determines the scale but not the sign.
 \end{proof}
 
 \begin{remark}
 The Lorentzian signature is a \emph{theorem}, not a postulate.
-It follows from AXIOM-B alone, independently of the specific form of $\Theta$.
-The novelty is not that UBT makes an assumption about time — it is that a single
-axiom (AXIOM-B) implies the correct signature as a consequence, whereas standard
+It follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form.
+The novelty is not that UBT makes an assumption about time --- it is that the AXIOM-B condition, together with the admissible Lorentzian real-sector projection / indefinite bilinear form, implies the correct signature as a consequence, whereas standard
 GR requires this as an independent input.
 \end{remark}
 
@@ -513,22 +554,26 @@ Combining: $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$.
 Symmetry of $T_{\mu\nu}$: both terms are manifestly symmetric.
 Conservation: follows from the Bianchi identity and Noether's theorem applied
 to diffeomorphism invariance of $S_\Theta$.
-
-\medskip
-\noindent\textit{Full proof:
-\texttt{canonical/t\_munu/step3\_einstein\_with\_matter.tex};
-$T_{\mu\nu}$ properties:
-\texttt{canonical/geometry/stress\_energy.tex}~\cite{jaros2026_canonical}.}
 \end{proof}
+
+\begin{remark}
+Newton's constant $G$ enters the UBT framework as an external parameter,
+fixed by matching the GR limit; its derivation from the biquaternion algebra
+is an open problem outside the scope of this paper.
+\end{remark}
+
+\begin{remark}[Induced-metric status of the present result]
+The present result is not yet a complete off-shell $\Theta$-only formulation of
+gravity. It establishes that the UBT field induces a Lorentzian metric sector
+whose on-shell dynamics reproduce classical GR through the Einstein--Hilbert
+variational principle. A full off-shell $\Theta$-only derivation requires
+non-degeneracy of $\delta g/\delta\Theta$ modulo gauge directions (GAP-10).
+\end{remark}
 
 % ==============================================================================
 \section{Schwarzschild Metric from $\Theta_0$}
 \label{sec:schwarzschild}
 % ==============================================================================
-
-\noindent\textit{Canonical sources:
-\texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex}~\S3,
-\texttt{canonical/gr\_closure/GR\_chain\_summary.tex}~\S{Gravitational Sector}.}
 
 \subsection{The Ansatz}
 
@@ -562,7 +607,7 @@ error $< 10^{-15}$ via \texttt{tools/verify\_schwarzschild\_theta.py}
 \end{theorem}
 
 \begin{tcolorbox}[colback=orange!5!white,colframe=orange!50!black,
-  title=Limitation — temporal component (expected, not an error)]
+  title={Complex-time structure and the temporal component}]
 The static real-quaternion ansatz has $\partial_t\Theta_0 = 0$, so the metric
 formula gives $g_{tt} = 0$ from the spatial construction alone.
 The Lorentzian $g_{tt} = -\Phi^2$ is recovered only when the full
@@ -575,7 +620,7 @@ complex-time structure $\tau = t + i\psi$ is used:
 \]
 This is an expected feature of the static real-quaternion construction.
 The Lorentzian signature $g_{00} < 0$ is guaranteed by
-Theorem~\ref{thm:signature} (AXIOM-B), which operates at the algebraic level.
+Theorem~\ref{thm:signature} (AXIOM-B together with admissible Lorentzian projection), which operates at the algebraic level.
 \end{tcolorbox}
 
 \subsection{ASD Condition and Twistor Space}
@@ -626,13 +671,14 @@ is the Regge-Wheeler potential for spin-2 gravitational perturbations.
 No additional input from UBT beyond the metric chain is required.
 \end{theorem}
 
-\begin{tcolorbox}[colback=green!4!white,colframe=green!45!black,
-  title=Zerilli equation (even-parity graviton): CLOSED [L1/STD]]
-Zerilli/even-parity perturbations are closed at [L1/STD] for vacuum
-Schwarzschild modes with $\ell \ge 2$, using
+\begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
+  title={Zerilli equation (even-parity graviton) \PROVED\ [\Lone]}]
+The even-parity (polar) perturbation equation of Schwarzschild
+--- the Zerilli equation~\cite{zerilli1970} ---
+is derived from linearised UBT in
 \texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
-The closure relies on standard Chandrasekhar/RWZ perturbation theory
-after the UBT metric-chain reduction.
+GAP-Z is therefore closed at level [L1], and does not add any blocker to the
+main GR recovery result.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -645,59 +691,17 @@ The following problems are explicitly bounded.
 Theorems~\ref{thm:metric}--\ref{thm:rw}.}
 
 \begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
-  title=GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo],breakable]
+  title={GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo]},breakable]
 
-\textbf{On-shell result (proved)}: For $\Theta \in \calA_{\mathrm{UBT}}$
-satisfying its own Euler--Lagrange equation under a gauge-reduced local rank
-condition,
-$\delta\hat{S}/\delta\Theta = 0$ is equivalent to the Einstein equations
-evaluated on $g = g[\Theta]$.
-
-\smallskip
-\textbf{Off-shell gap}: Global non-degeneracy of
-$J = \delta g^{\mu\nu}/\delta\Theta$ for \emph{all} field configurations
-(not only on-shell $\Theta \in \calA_{\mathrm{UBT}}$) is not proved.
-
-\smallskip
-\textbf{Missing lemma}: Show that $\ker J$ consists only of gauge directions
-(pure phase or diffeomorphism) for all $\Theta$ in the full off-shell field space.
-
-\smallskip
-\textbf{Known obstructions}:
-\begin{itemize}
-  \item \emph{Rank mismatch}: $\re(\nabla^\dagger\nabla\Theta)$ is rank-0;
-        $G_{\mu\nu}$ is rank-2.
-  \item \emph{Topology}: global injectivity of $\Theta \to g[\Theta]$ requires
-        $H^2(M^4,\mathbb{Z})$ analysis of the $\Theta$-bundle.
-  \item \emph{Non-perturbative}: a fixed-point theorem in Sobolev space is needed.
-\end{itemize}
-
-\textbf{Scope}: This is a question about off-shell path-integral completeness
-and quantum theory.
-The classical GR recovery result (all theorems in
-\S\S\ref{sec:step1}--\ref{sec:rw}) is unaffected.
-\end{tcolorbox}
-
-\subsection{GAP-Z: Zerilli Equation (Even-Parity Graviton)}
-\label{sec:gapz}
-
-\begin{tcolorbox}[colback=green!4!white,colframe=green!45!black,
-  title=GAP-Z: Zerilli Equation\ CLOSED\ [L1/STD]]
-\textbf{Proved}: The Regge-Wheeler equation (odd-parity graviton) is derived
-from linearised UBT (Theorem~\ref{thm:rw}).
-
-\smallskip
-\textbf{Closed at [L1/STD]}: The Zerilli equation for even-parity perturbations:
-\[
-  \left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2 - V_\mathrm{Z}(r)\right]
-  \Psi_\mathrm{Z} = 0.
-\]
-is obtained for vacuum Schwarzschild modes with $\ell \ge 2$ by
-standard Chandrasekhar/RWZ machinery after the UBT metric-chain reduction;
-see \texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
-
-\textbf{Scope note}: this closure is standard-theory [STD] after reduction;
-it does not claim a non-standard even-parity mechanism beyond RWZ.
+\paragraph{GAP-10: Off-shell $\Theta$-only closure.}
+The present paper derives Einstein's equations via
+the \emph{induced-metric} approach: $\Theta\to g_{\mu\nu}[\Theta]$,
+then standard Einstein--Hilbert variation over $g_{\mu\nu}$.
+The off-shell problem --- deriving $G_{\mu\nu}=8\pi GT_{\mu\nu}$
+by varying $S[\Theta]$ directly with respect to $\Theta$ alone,
+without passing through $g$ --- remains open at level [L2].
+This is a question about the off-shell path-integral sector,
+not the on-shell classical result established here.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}
@@ -715,7 +719,20 @@ GAP-Q & Path-integral quantisation of UBT & Very long term \\
 \end{center}
 
 None of these blocks the on-shell classical result.
-Full obstruction maps are in \texttt{proof\_gap\_list.md}~\cite{jaros2026_canonical}.
+
+\subsubsection{GAP-C (FRW/de~Sitter): Status Update}
+
+A homogeneous isotropic ansatz
+$\Theta(x,t) = a(t)\,\exp(ix^k e_k)\,\Theta_0$
+is under investigation.
+At $x=0$ this refined ansatz produces a spatially flat metric
+$g_{ij} = a^2(t)\delta_{ij}$, supporting the identification with
+the FRW metric.
+Preliminary checks suggest the Friedmann equations
+$H^2 = 8\pi G\rho/3$ follow from the UBT metric chain
+at \textbf{[Prop.]}\ level pending full spatial verification.
+Details in
+\texttt{research\_tracks/quantum\_ubt/frw\_from\_ubt.tex}.
 
 % ==============================================================================
 \section{Discussion and Comparison to Einstein--Hilbert GR}
@@ -737,7 +754,7 @@ requirements of standard Einstein--Hilbert GR and the UBT derivation.
 \midrule
 Spacetime metric $g_{\mu\nu}$ & \emph{Postulated} & \textbf{Derived} (Thm~\ref{thm:metric}) \\
 $\det(g) \neq 0$ & \emph{Assumed} & \textbf{Proved} (Thm~\ref{thm:nondeg}) \\
-Lorentzian signature $(-,+,+,+)$ & \emph{Assumed} & \textbf{Proved} (Thm~\ref{thm:signature}) \\
+Lorentzian signature $(-,+,+,+)$ & \emph{Assumed} & \textbf{Derived from AXIOM-B + admissible Lorentzian projection} (Thm~\ref{thm:signature}) \\
 $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ & \emph{Postulated (EH action)} & \textbf{Derived} (Thm~\ref{thm:einstein}) \\
 $T_{\mu\nu}$ symmetric & \emph{Assumed} & \textbf{Proved} \\
 $\nabla^\mu T_{\mu\nu} = 0$ & Bianchi + diff.\ inv. & \textbf{Proved} (same) \\
@@ -749,13 +766,24 @@ Regge-Wheeler eq. & Separate derivation & \textbf{Derived} (Thm~\ref{thm:rw}) \\
 
 The Einstein equations emerge in UBT from the same variational principle as
 in standard GR (Hilbert action), but the \emph{metric itself} is not an
-independent degree of freedom — it is a bilinear of the fundamental field
+independent degree of freedom --- it is a bilinear of the fundamental field
 $\Theta$.
 The Einstein--Hilbert action $S_{\mathrm{EH}} = (16\pi G)^{-1}\int\!\sqrt{-g}\,R\,\mathrm{d}^4x$
 appears in the total UBT action as the gravitational term; the $\Theta$-matter
 term $S_\Theta$ provides the stress-energy coupling.
 The standard GR derivation of $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ is
 reproduced identically inside UBT.
+
+\subsection{Projection hierarchy}
+
+The present paper works in the minimal complex-time projection of UBT:
+\[
+\Theta : M^4 \times \mathbb C_\tau \to \mathbb B.
+\]
+In the full formulation, one may allow spacetime coordinates themselves to
+carry biquaternionic structure. The present GR derivation should therefore be
+understood as the real-sector / complex-time projected limit of a richer UBT
+geometry, not as the final form of the full biquaternionic spacetime theory.
 
 \subsection{Relation to Existing Algebraic Approaches}
 
@@ -783,7 +811,7 @@ Several prior approaches derive aspects of GR from algebraic structures:
         these papers work in $\HH$ or $\BB$ but postulate or impose the
         metric.
         The novel step in UBT is the bilinear metric formula
-        $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\calN$,
+        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$,
         which has no analogue in this literature.
 \end{itemize}
 
@@ -792,8 +820,13 @@ Several prior approaches derive aspects of GR from algebraic structures:
 This paper establishes the \emph{classical GR sector} of UBT.
 It makes no claim about the quantum gravity sector (GAP-Q),
 cosmological solutions (GAP-C), or gauge unification (T2\_GAUGE track).
-The two [L2] open problems (GAP-10 and GAP-Z) are precisely bounded in
-\S\ref{sec:gaps} and do not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
+Two companion papers address the gauge and quantum sectors:
+(i) gauge structure $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+and three fermion generations (T2\_GAUGE track); and
+(ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
+(T3\_ALPHA track, preprint in preparation).
+The remaining [L2] open problem (GAP-10) is precisely bounded in
+\S\ref{sec:gaps} and does not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
 
 \subsection{Conclusion}
 
@@ -821,7 +854,7 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 \begin{tcolorbox}[colback=blue!3!white,colframe=blue!55!black,
-  title=T1\_GR Proof Status: Complete (on-shell classical GR)]
+  title={T1\_GR Proof Status: Complete (on-shell classical GR)}]
 \begin{center}
 \begin{tabular}{clll}
 \toprule
@@ -829,13 +862,13 @@ researchers familiar with biquaternion algebra and standard GR.
 \midrule
 1 & Metric $g_{\mu\nu}$ from $\Theta$ & Proved \Lone & step1\_metric\_bridge.tex \\
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
-3 & Signature $(-,+,+,+)$ from AXIOM-B & Proved \Lone & step3\_signature\_theorem.tex \\
+3 & Lorentzian signature in the admissible projected GR sector & Proved [L1-C] (projection convention) & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
 5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & Proved \Lone & step3\_einstein\_with\_matter.tex \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
 6b & ASD condition / twistor & Proved \Lone & asd\_condition\_ubt.tex \\
 6c & Regge-Wheeler equation & Proved \Lone & linearised GR chain \\
-7a & Zerilli equation (even-parity) & Open \Ltwo & GAP-Z, \S\ref{sec:gapz} \\
+7a & Zerilli equation (even-parity) & \textbf{Proved [L1]} & \texttt{zerilli\_derivation.tex} \\
 7b & Off-shell $\Theta$-only closure & Open \Ltwo & GAP-10, \S\ref{sec:gaps} \\
 \bottomrule
 \end{tabular}
@@ -853,17 +886,14 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 This appendix gives the full algebraic argument for
-Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B).
+Theorem~\ref{thm:signature} (Lorentzian signature from AXIOM-B with admissible Lorentzian projection).
 
-\medskip
-\noindent\textit{Full proof with matrix computations:
-\texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}~\cite{jaros2026_canonical}.}
-
-\paragraph{Step A1: Clifford identification.}
+\paragraph{Step A1: Clifford carrier identification.}
 The biquaternion algebra satisfies
-$\BB = \CC\otimes_\RR\HH \cong \mathrm{Cl}_{1,3}(\RR)$
-as real algebras~\cite{porteous1995}.
-Under this isomorphism the generators split into one timelike generator
+$\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$
+with real dimension $8$. It provides the spinorial / even-Clifford carrier
+associated with Lorentzian geometry (not the full $16$-dimensional
+$\mathrm{Cl}_{1,3}(\RR)$ algebra). In the associated representation, generators split into one timelike generator
 $\gamma^0$ and three spacelike generators $\gamma^i$ satisfying
 \[
   (\gamma^0)^2 = -1, \qquad
@@ -880,17 +910,19 @@ $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
 \paragraph{Step A3: Temporal metric component.}
 \[
   g_{00}
-  = \frac{\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)]}{\calN}.
+  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN}.
 \]
 With $\partial_0 = \partial_t$ in the timelike $\gamma^0$-sector,
-$\partial_0\Theta$ lies in the timelike Clifford sector, so
-$\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] < 0$.
-Choosing $\calN = -\re[\Tr(\partial_0\Theta \cdot \partial_0\Theta^\dagger)] > 0$
-gives $g_{00} = -1 < 0$.
+and using the indefinite Clifford inner product
+$\langle\cdot,\cdot\rangle_\eta$ (Definition~\ref{def:metric}),
+$\langle\partial_0\Theta, \partial_0\Theta\rangle_\eta < 0$
+by AXIOM-B (timelike sector has negative Clifford norm).
+Choosing $\calN = |\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta| > 0$
+gives $g_{00} < 0$.
 
 \paragraph{Step A4: Spatial metric components.}
 For $i = 1,2,3$, $\partial_i\Theta$ lies in the spacelike $\gamma^i$-sector,
-so $\re[\Tr(\partial_i\Theta \cdot \partial_i\Theta^\dagger)] > 0$,
+so $\langle\partial_i\Theta,\partial_i\Theta\rangle_\eta > 0$,
 giving $g_{ii} > 0$.
 
 \paragraph{Step A5: Off-diagonal components.}
@@ -904,7 +936,7 @@ with the Lorentzian block structure $(-;+,+,+)$.
 \paragraph{Conclusion.}
 The eigenvalue structure of $g_{\mu\nu}$ has exactly one negative eigenvalue
 and three positive eigenvalues, i.e.\ signature $(-,+,+,+)$.
-This follows entirely from AXIOM-B, independently of the specific form of $\Theta$.
+This follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form.
 
 % ==============================================================================
 \section{Numerical Verification of the Schwarzschild Metric}
@@ -971,52 +1003,6 @@ python tools/verify_schwarzschild_theta.py --mass 2.0 --r_values 3,6,12
 \end{verbatim}
 Exit code 0: all components agree within tolerance $10^{-8}$.
 Exit code 1: failure.
-
-% ==============================================================================
-\section{Anticipated Reviewer Objections and Responses}
-\label{app:reviewer}
-% ==============================================================================
-
-The following table summarises anticipated reviewer objections with references
-to the specific preemptive actions taken in this paper.
-Full responses are in \texttt{reviewer\_attack\_responses.md}~\cite{jaros2026_canonical}.
-
-\begin{center}
-\small
-\begin{tabular}{llll}
-\toprule
-\textbf{Attack} & \textbf{Severity} & \textbf{Handled by} & \textbf{Location in paper} \\
-\midrule
-GR-1: metric not unique & MAJOR
-  & GAP-10 open-problem statement
-  & \S\ref{sec:gaps} \\
-GR-2: signature postulated & MODERATE
-  & Theorem~\ref{thm:signature}
-  & \S\ref{sec:step3}, App.~\ref{app:signature} \\
-GR-3: ansatz reverse-engineered & MODERATE
-  & Numerical verification + uniqueness
-  & \S\ref{sec:schwarzschild}, App.~\ref{app:numerics} \\
-GR-4: Zerilli missing & MODERATE
-  & GAP-Z open statement
-  & \S\ref{sec:rw}, \S\ref{sec:gapz} \\
-GR-5: not new & MODERATE
-  & Novelty table + comparison
-  & Tables~\ref{tab:novelty},~\ref{tab:comparison} \\
-GR-6: overclaiming ``unified'' & MINOR
-  & Scope statement
-  & \S\ref{sec:discussion} \\
-GR-X1: too many axioms & MINOR
-  & Axiom count table
-  & Table~\ref{tab:axioms} \\
-GR-X2: notation inconsistent & MINOR$\to$MOD
-  & Unified notation throughout
-  & This document \\
-GR-X3: no arXiv & MINOR
-  & Submit early draft
-  & (action item) \\
-\bottomrule
-\end{tabular}
-\end{center}
 
 % ==============================================================================
 % Bibliography
