@@ -12,8 +12,8 @@
 % Track: T3_ALPHA — Fine Structure Constant
 % Purpose: Gap G137-B — Mellin insertion B (Priority 1)
 % Predecessor: chowla_selberg_B_derivation.tex (Steps 1–7)
-% Status: Gap G137-B NARROWED — Mellin insertion step pending [OPEN/MC]
-% Date: 2026-05-14
+% Status: Gap G137-B OPEN — five tested routes logged; Eisenstein E4 is NO-GO
+% Date: 2026-05-18
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
@@ -30,20 +30,20 @@
 \title{Gap G137-B: Mellin Insertion for Coefficient $B$\\
        on $\mathbb{Z}^2$ at the Self-Dual Point}
 \author{Ing.\ David Jaroš}
-\date{2026-05-14}
+\date{2026-05-18}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-This note addresses the open step in Gap G137-B: deriving the coefficient
+This note audits the open step in Gap G137-B: deriving the coefficient
 $B \approx 46.28$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ from the UBT
-action via Epstein zeta functions on $T^2$, Chowla--Selberg asymptotics,
-and the Mellin/spectral insertion linking the determinant to the $n\ln n$
-coefficient. Steps 1--3 are carried out to level [L1 asym.] or [STD].
-The Mellin insertion (Step 4) is identified as the precise remaining gap
-and remains [OPEN/MC]. Gap G137-B status: \textbf{NARROWED}.
-Alpha: \textbf{NOT DERIVED}.
+action. Five explicit routes are now on record:
+T-duality [NO-GO], orbifold [NO-GO], direct $M^4$ functional determinant
+[NO-GO, residual factor $\sim 1.14\times 10^4$], Casimir $T^3$ [NO-GO,
+residual factor $\sim 9.0\times 10^3$], and Eisenstein $E_4(i)$ [NO-GO,
+short by $\sim 8.0\%$]. The coefficient source remains open.
+Gap G137-B status: \textbf{OPEN}. Alpha: \textbf{NOT DERIVED}.
 \end{abstract}
 
 \tableofcontents
@@ -512,7 +512,7 @@ eta_i = float(mpmath.re(mpmath.eta(mpmath.mpc(0,1))))
 B_target = 12**1.5 * (2*eta_i)**0.25
 B_req = 2*137/(math.log(137)+1)
 
-print(f"τ=i selektuje n*=137: [OBS]")
+print("tau=i selektuje n*=137: [OBS]")
 print(f"B_target = {B_target:.10f}")
 print(f"B_req    = {B_req:.10f}")
 print(f"Přesnost: {abs(B_target-B_req)/B_req*100:.6f}%")
@@ -520,7 +520,7 @@ print(f"Přesnost: {abs(B_target-B_req)/B_req*100:.6f}%")
 # T-dualita argument
 R_self_dual = 1.0  # v Planck jednotkách
 print(f"R_self_dual = l_Pl = {R_self_dual}")
-print(f"τ = i ↔ R·Λ = 1 ↔ self-dual pod T-dualitě")
+print("tau = i <-> R*Lambda = 1 <-> self-dual pod T-dualitou")
 \end{verbatim}
 
 \begin{statusbox}
@@ -608,6 +608,87 @@ Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{New Route: Eisenstein-Series and Discriminant Test (2026-05-18)}
+\label{sec:eisenstein}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Motivation}
+
+The phenomenological coefficient
+\[
+B_{\rm target}=12^{3/2}(2\eta(i))^{1/4}
+\]
+contains the CM value \(\eta(i)\). Since \(\eta\) is a modular form of
+weight \(1/2\), a natural question is whether the missing factor can be
+re-expressed through standard Eisenstein or discriminant modular forms at
+the self-dual point \(\tau=i\).
+
+\subsection{Standard CM identities}
+
+At \(\tau=i\) the standard identities are
+\[
+E_2(i)=\frac{3}{\pi},\qquad
+E_4(i)=\frac{\Gamma(1/4)^8}{128\,\pi^6}\approx 1.4557628923,\qquad
+E_6(i)=0.
+\]
+The numerical value of \(E_4(i)\) was independently verified from the
+\(q\)-series
+\[
+E_4(\tau)=1+240\sum_{n\ge1}\sigma_3(n)q^n,\qquad q=e^{2\pi i\tau},
+\]
+using \texttt{tools/eisenstein\_B\_check.py}.
+
+\subsection{Eisenstein \(E_4\) test}
+
+The active hypothesis is
+\[
+B_{E_4}=N_{\rm eff}^{3/2}\,E_4(i)^{1/16},\qquad N_{\rm eff}=12.
+\]
+Numerically,
+\begin{align}
+E_4(i)^{1/16} &\approx 1.0237482333,\\
+B_{E_4} &= 12^{3/2}E_4(i)^{1/16}\approx 42.5564.
+\end{align}
+Comparing with \(B_{\rm target}\approx 46.2809\),
+\[
+\frac{B_{E_4}}{B_{\rm target}}\approx 0.9195.
+\]
+So the pure \(E_4(i)\) route misses the target by about \(8.05\%\).
+
+\subsection{Discriminant \(\Delta(i)\) scan}
+
+As a fallback, test
+\[
+B_{\Delta,k}=12^{3/2}\,|\Delta(i)|^{1/(12k)},\qquad
+\Delta(i)=\eta(i)^{24},\qquad k\in\mathbb{Z}_{>0}.
+\]
+The numerical scan for \(k=1,\dots,12\) gives
+\[
+24.53,\ 31.93,\ 34.87,\ 36.43,\ 37.41,\ 38.07,\ 38.55,\ 38.92,\ 39.20,\ 39.43,\ 39.62,\ 39.78,
+\]
+all below \(B_{\rm target}\approx 46.28\). No tested integer \(k\) closes the gap.
+
+\begin{statusbox}
+Standard CM values $E_2(i)=3/\pi$, $E_4(i)\approx1.4557628923$, $E_6(i)=0$: \textbf{[STD/NUM]}\\
+Eisenstein hypothesis $B=12^{3/2}E_4(i)^{1/16}$: \textbf{[NO-GO]} --- gives $42.5564$\\
+Relative deficit of pure $E_4(i)$ route: $\approx 8.05\%$\\
+Discriminant scan $B=12^{3/2}|\Delta(i)|^{1/(12k)}$, $k=1,\dots,12$: \textbf{[NO-GO]}\\
+Gap G137-B after Eisenstein/discriminant audit: \textbf{OPEN}\\
+Alpha: \textbf{NOT DERIVED}
+\end{statusbox}
+
+\begin{tcolorbox}[title={Gap G137-B --- Formal Downgrade Notice}]
+All tested routes to derive $B=12^{3/2}(2\eta(i))^{1/4}$ from $S[\Theta]$:
+T-duality [NO-GO], orbifold [NO-GO], $M^4$ $\zeta$-regularization
+[NO-GO $11386\times$], Casimir $T^3$ [NO-GO $9003\times$],
+Eisenstein $E_4$ [NO-GO, $B_{E_4}/B_{\rm target}\approx 0.9195$].
+
+Status: Gap G137-B is \textbf{OPEN}. The numerical coincidence
+$B_{\rm phenom}\approx 46.28$ at $0.0066\%$ remains [OBS].
+\textbf{Alpha is NOT DERIVED.}
+\end{tcolorbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary and Gap Closure Status}
 \label{sec:summary}
 %──────────────────────────────────────────────────────────────────────────────
@@ -638,6 +719,7 @@ B \;\text{from } S[\Theta].
 2 & $n\ln n$ from Dirichlet divisor sum & [L1 asym.] \\
 3 & $N_{\mathrm{eff}} = 12$ from SU(2)-twist & [L1] \\
 3 & $B \approx 46.28$ numerically & [NUM] \\
+4 & Eisenstein $E_4(i)$ route & [NO-GO] \\
 4 & Factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}\cdot\mathrm{Tr}[\ln P_b]\times N_{\mathrm{eff}}^{1/2}$ & [OPEN] \\
 4 & Mellin: $\mathrm{Tr}[\ln P_b] \mapsto Z_{1\mathrm{real}}^{1/4}$ with $Z_{1\mathrm{real}} = 2\eta(i)$ & [OPEN/MC] \\
 \bottomrule

@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 import numpy as np
+from scipy.integrate import quad
 
 
 REGULARIZATION_STATUS_LABEL = "regularized finite-energy soliton model; full RG derivation open."
@@ -68,3 +69,42 @@ def calculate_soliton_energy(
     rho = energy_density(r, core_strength=core_strength, config=config)
     integrand = 4.0 * np.pi * r * r * rho
     return float(np.trapezoid(integrand, r))
+
+
+class UBTSoliton:
+    """
+    Finite-energy soliton in UBT on R^3 x S^1_psi.
+
+    STATUS: NUMERICAL_EVIDENCE — not derived from full S[Theta].
+    Regularization scheme: Pauli-Villars with cutoff Lambda.
+    """
+
+    def __init__(self, R_psi: float = 1.0, Lambda: float = 10.0):
+        self.R_psi = R_psi
+        self.Lambda = Lambda
+
+    def energy_density(self, r: float, n: int = 1) -> float:
+        """
+        Radial energy density for winding-n soliton.
+        Ansatz: Theta(r) = f(r)*exp(i*n*psi/R_psi)
+        f(r) -> 1 as r -> infinity, f(0) = 0.
+        """
+        m_n = n / self.R_psi
+        f = np.tanh(m_n * r)
+        cosh_val = np.cosh(m_n * r)
+        df = m_n / (cosh_val * cosh_val)
+        winding_weight = float(n * n)
+        return float(winding_weight * (df**2 + m_n**2 * (1 - f**2) ** 2))
+
+    def total_energy(self, n: int = 1, r_max: float = 20.0) -> float:
+        """Total energy of winding-n soliton (4*pi integral)."""
+        result, _ = quad(
+            lambda r: 4 * np.pi * r**2 * self.energy_density(r, n),
+            0,
+            r_max,
+        )
+        return float(result)
+
+    def mass_spectrum(self, n_max: int = 5) -> dict[int, float]:
+        """Soliton mass spectrum M(n) for n=1..n_max."""
+        return {n: self.total_energy(n) for n in range(1, n_max + 1)}

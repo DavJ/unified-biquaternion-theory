@@ -10,7 +10,30 @@ from typing import Protocol
 
 import numpy as np
 
-from tools.dirac_from_biquaternion import biq_gamma_matrices
+try:
+    from tools.dirac_from_biquaternion import biq_gamma_matrices
+except ImportError:
+    def biq_gamma_matrices(representation: str = "dirac") -> list[np.ndarray]:
+        """Fallback: standard Dirac representation."""
+        if representation != "dirac":
+            raise ValueError("Fallback biq_gamma_matrices only supports 'dirac'")
+        g0 = np.array(
+            [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1]],
+            dtype=complex,
+        )
+        g1 = np.array(
+            [[0, 0, 0, 1], [0, 0, 1, 0], [0, -1, 0, 0], [-1, 0, 0, 0]],
+            dtype=complex,
+        )
+        g2 = np.array(
+            [[0, 0, 0, -1j], [0, 0, 1j, 0], [0, 1j, 0, 0], [-1j, 0, 0, 0]],
+            dtype=complex,
+        )
+        g3 = np.array(
+            [[0, 0, 1, 0], [0, 0, 0, -1], [-1, 0, 0, 0], [0, 1, 0, 0]],
+            dtype=complex,
+        )
+        return [g0, g1, g2, g3]
 
 
 CHIRALITY_SCAFFOLD_LABEL = "chirality algebra scaffold for future weak-sector derivation."

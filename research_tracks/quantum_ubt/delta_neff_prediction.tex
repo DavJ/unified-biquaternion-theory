@@ -12,7 +12,7 @@
 % Track: quantum_ubt — CMB prediction
 % File: research_tracks/quantum_ubt/delta_neff_prediction.tex
 % Purpose: Precise computation of ΔN_eff CMB-S4 prediction from UBT KK sector.
-% Status: OPEN — calculation completed; observational consistency discussion pending.
+% Status: OPEN — explicit UBT field content gives g*=120.75...216.75; Planck-safe g*>=389 remains open.
 % Computation: tools/delta_neff_calc.py
 % Date: 2026-05-17
 
@@ -50,9 +50,12 @@ The UBT Scherk--Schwarz twist on $S^1_\psi$ generates $N_{\rm eff}^{(KK)}=12$
 charged Kaluza--Klein modes with masses $m_n \sim n\,M_{\rm Pl}$.
 These modes decouple from the thermal bath at $T_{\rm dec} \sim M_{\rm Pl}$
 and produce a relic contribution to the CMB effective number of relativistic
-degrees of freedom. Using the $g_*$-dependent relic formula, we find:
-$\Delta N_{\rm eff}^{(\rm total)}\approx 1.569$ for $g_*=106.75$ (SM only; tension),
-while $\Delta N_{\rm eff}^{(\rm total)}\approx 0.247$ for $g_*=427$ (SM+KK; consistent).
+degrees of freedom. Using the $g_*$-dependent relic formula, we find the
+explicit UBT lower bound $g_*(T_{\rm Pl})\ge 120.75$ and the extended explicit
+KK/gauge/graviton-tower count $g_*(T_{\rm Pl})\le 216.75$ in the present model.
+Planck consistency requires $g_*(T_{\rm dec})\gtrsim 389$, so the benchmark
+$g_*=427$ remains a conditional large-multiplicity scenario rather than a
+closed first-principles derivation.
 \textbf{Alpha: NOT DERIVED.}
 \end{abstract}
 
@@ -226,6 +229,28 @@ Thus the benchmark $g_*=427$ is consistent, while the minimal lower bound
 $g_*=120.75$ is not sufficient.
 \end{proposition}
 
+\begin{proposition}[Extended explicit KK field-content count]
+If one adds to the minimal count the same 12-mode tower of KK scalars,
+12 KK gauge bosons with three polarizations each, and a 12-mode KK graviton
+tower with five polarizations each, then
+\[
+g_*^{\rm ext}(T_{\rm Pl})=106.75+2+12+12\cdot 3+12\cdot 5=216.75.
+\]
+This explicit count is still below the Planck-consistency threshold
+$g_*(T_{\rm dec})\gtrsim 389$.
+\end{proposition}
+
+\begin{warnbox}
+Current verdict: the explicit UBT field content derived in this note gives
+\[
+120.75 \le g_*(T_{\rm Pl}) \le 216.75,
+\]
+which is insufficient by itself to guarantee
+$\Delta N_{\rm eff}^{\rm total}<0.28$.
+Therefore the ``no tension'' statement requires additional Planck-scale
+multiplicities not yet derived from the present UBT field-content analysis.
+\end{warnbox}
+
 %──────────────────────────────────────────────────────────────────────────────
 \section{Prediction Card}
 \label{sec:prediction}
@@ -275,12 +300,14 @@ Resolution of these issues is tracked as~\textbf{[OPEN]} in this file.
 $\Delta N_{\rm eff}$ per mode ($g_*=106.75$): $0.131$ [NUM]\\
 $\Delta N_{\rm eff}$ total naive ($g_*=106.75$): $1.569$ --- INCORRECT $g_*$ [NUM]\\
 $g_*(T_{\rm Pl})\ge 120.75$ from explicit UBT field content: \textbf{[Prop.]}\\
+$g_*(T_{\rm Pl})=216.75$ for the explicit KK+gauge+graviton-tower count in this note: \textbf{[Prop.]}\\
 $\Delta N_{\rm eff}^{\rm total}(g_*=120.75)\approx1.331$: \textbf{[NUM]}\\
+$\Delta N_{\rm eff}^{\rm total}(g_*=216.75)\approx0.610$: \textbf{[NUM]}\\
 $\Delta N_{\rm eff}$ total ($g_*=427$): $0.247$ --- OK [NUM]\\
 Min $g_*$ for Planck consistency: $\sim 389$ [NUM]\\
-Physical argument for $g_*\geq 427$: [MC/Prop. --- needs deeper derivation]\\
+Physical argument for $g_*\geq 389$: \textbf{[OPEN/TENSION]} --- explicit count here does not yet reach it\\
 CMB-S4 prediction: $\Delta N_{\rm eff}\sim 0.05$--$0.25$ (above $\sigma=0.03$ threshold)\\
-Status: \textbf{OPEN pending g* derivation; no tension for $g_*\geq 427$}\\
+Status: \textbf{OPEN; explicit field content still below Planck-safe threshold, benchmark $g_*=427$ remains conditional}\\
 \textbf{Alpha: NOT DERIVED.}
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────

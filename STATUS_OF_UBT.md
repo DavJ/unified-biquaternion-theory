@@ -49,12 +49,24 @@ sequencing are maintained in `ROADMAP.md` under
 
 ## 2026-05-18
 - GR paper: arXiv ready (Cl^+, indefinite bilinear opraveny)
-- Gauge PDF: build command ready; environment lacks `pdflatex` in this run
-- NCG B₀ PDF: build command ready; environment lacks `pdflatex` in this run
-- Python scaffold: `src/ubt/` updated (Hilbert scaffold + g-2 OPEN_GAP placeholder); targeted scaffold tests passing
-- FRW [Prop.]: $g_{0i}=0$ globálně pro $\Theta_0=1_2$ (explicit proposition in track file)
-- ΔN_eff: explicit UBT lower bound derived $g_*(T_{\rm Pl})\ge120.75$ [Prop.]; consistency with Planck bound still needs larger $g_*$ (benchmark 427)
-- Gap G137-B: V_eff functional derivation path aktivní; residual factor quantified, gap remains NARROWED/OPEN
+- Gauge PDF: compiled locally in `papers/UBT_Gauge_Submission.pdf`
+- NCG B₀ PDF: compiled locally in `papers/ncg_poisson_B0_derivation.pdf`
+- Python testy: 4/4 targeted scaffold files PASS; full `tests/` collection still has unrelated missing deps/modules
+- GR arXiv ZIP: `/tmp/ubt_gr_arxiv.zip` ready
+- Gap G137-B: Eisenstein $E_4$ route checked --- [NO-GO], gap remains OPEN
+- ΔN_eff: g* scan gives Planck-safe threshold $\sim389$; explicit field-content bound remains $120.75\le g_*\le216.75$
+- FRW: formal Proposition recorded in `frw_from_ubt.tex`
+- Soliton: first numerical result added in `src/ubt/solitons/regularization.py`
+
+## 2026-05-18 (v32)
+- Gauge PDF: zkompilován [T1]
+- NCG B₀ PDF: zkompilován [T2]
+- Python testy: 4/4 PASS [T3]
+- GR arXiv ZIP: ready [T4]
+- Gap G137-B: Eisenstein E_4 route aktivní [T5] --- current verdict [NO-GO]
+- ΔN_eff: g* scan, konzistentní pro g*≥389 [T6]
+- FRW: formální Proposition [T7]
+- Soliton: první numerický výsledek [T10]
 
 ## 2026-05-17
 
