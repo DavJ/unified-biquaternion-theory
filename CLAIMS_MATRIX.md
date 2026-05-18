@@ -39,7 +39,7 @@ by the cited source file.
 |---|-------|-------|--------|-----------------|-------|--------|
 | G1 | g_μν = Re[Tr(∂_μΘ·∂_νΘ†)]/𝒩 is a symmetric covariant (0,2) tensor | [L1] | Yes | `canonical/gr_closure/step1_metric_bridge.tex` | §3 | PROVED |
 | G2 | det(g_μν) ≠ 0 for admissible Θ | [L1] | Yes | `canonical/gr_closure/step2_nondegeneracy.tex` | §3.2 | PROVED |
-| G3 | Lorentzian signature (−,+,+,+) follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form | [L1] | Yes | `canonical/gr_closure/step3_signature_theorem.tex` | §3.3 | PROVED |
+| G3 | Lorentzian signature in the admissible projected GR sector follows from AXIOM-B + Lorentzian projection/admissibility | [L1-C] | Yes | `canonical/gr_closure/step3_signature_theorem.tex` | §3.3 | PROVED |
 | G4 | Levi-Civita connection and Riemann curvature from derived metric | [STD] | Yes | Wald 1984 | §3.4 | PROVED |
 | G5 | G_μν = 8πGT_μν from Hilbert variation of UBT action | [L1] | Yes | `canonical/gr_closure/` + Paper §3.5 | §3.5 | PROVED |
 | G6 | T_μν symmetric | [L1] | Yes | `canonical/geometry/stress_energy.tex` | §3.5 | PROVED |
@@ -65,7 +65,7 @@ by the cited source file.
 | # | Claim | Level | Exact? | Canonical source | Paper | Status |
 |---|-------|-------|--------|-----------------|-------|--------|
 | A1 | ℂ⊗ℍ ≅ Mat(2,ℂ) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
-| A2 | ℂ⊗ℍ ≅ Cl₁,₃(ℝ) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
+| A2 | ℂ⊗ℍ ≅ Mat(2,ℂ), with spinorial/even-Clifford relation to Cl₁,₃(ℝ) (not full Cl₁,₃) | [L0] | Yes | `canonical/algebra/biquaternion_algebra.tex` | §2 | PROVED |
 | A3 | Aut(ℂ⊗ℍ) ≅ [GL(2,ℂ)×GL(2,ℂ)]/ℤ₂ | [L0] | Yes | `canonical/interactions/sm_gauge.tex` | §3 | PROVED |
 
 ### SU(3) Colour
@@ -130,7 +130,7 @@ by the cited source file.
 |---|-------|-------|--------|--------|
 | X1 | UBT field equation ∇†∇Θ(q,τ) = κ𝒯(q,τ) | [AX] | All | AXIOM-F |
 | X2 | Complex time τ = t + iψ with ∂_τ timelike | [AX] | All | AXIOM-B |
-| X3 | Admissibility condition: {∂_μΘ} linearly independent | [AX] | T1_GR | Paper §2.3 |
+| X3 | Admissibility condition: projected derivative linear independence + non-vanishing Lorentzian Gram determinant | [AX] | T1_GR | Paper §2.3 |
 | X4 | Real-projected limit recovers classical GR | [L1] | T1_GR | Five-step chain |
 
 ---

@@ -53,14 +53,18 @@ The current proof status is tracked explicitly below using proof levels.
 | Result | Level |
 |--------|-------|
 | Metric $g_{\mu\nu}$ derived from Θ (not postulated) | [L1] |
-| Lorentzian signature (−,+,+,+) derived from AXIOM-B + admissible Lorentzian real-sector projection / indefinite bilinear form | [L1] |
+| Lorentzian signature in the admissible projected GR sector (AXIOM-B + Lorentzian projection/admissibility) | [L1-C] |
 | Non-degeneracy det(g) ≠ 0 | [L1] |
 | Einstein equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ from Hilbert variation | [L1] |
-| Schwarzschild metric recovered, spatial components verified < 10⁻¹⁵ | [L1]+[NUM] |
+| Schwarzschild recovery: spatial components verified < 10⁻¹⁵; temporal component recovered analytically via complex-time phase sector | [L1]+[NUM/AN] |
 | Regge-Wheeler equation (odd-parity graviton) derived | [L1] |
 | Zerilli equation (even-parity graviton) derived | [L1] |
 
 → **Paper**: `papers/UBT_GR_Submission.tex` (**current canonical GR manuscript**, submit-ready)
+
+The GR result is an induced-metric / on-shell sector result: UBT in its minimal
+complex-time projection induces a Lorentzian metric sector whose real projection
+reproduces the classical GR chain. A full off-shell $\\Theta$-only closure remains GAP-10.
 
 ### Standard Model Gauge Structure (Track T2_GAUGE)
 
