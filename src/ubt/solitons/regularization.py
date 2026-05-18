@@ -91,7 +91,8 @@ class UBTSoliton:
         """
         m_n = n / self.R_psi
         f = np.tanh(m_n * r)
-        df = m_n / np.cosh(m_n * r) ** 2
+        cosh_val = np.cosh(m_n * r)
+        df = m_n / (cosh_val * cosh_val)
         winding_weight = float(n * n)
         return float(winding_weight * (df**2 + m_n**2 * (1 - f**2) ** 2))
 
