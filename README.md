@@ -94,6 +94,7 @@ as completed proofs of quantum closure, renormalization closure, weak-sector
 closure, or precision-observable derivation.
 
 See:
+- [`docs/QUANTUM_ROADMAP.md`](docs/QUANTUM_ROADMAP.md) — phase-by-phase quantum development plan with explicit gap labels
 - [`docs/quantum_sector_status.md`](docs/quantum_sector_status.md)
 - [`docs/observable_bridge.md`](docs/observable_bridge.md)
 - [`research_tracks/renormalization/finite_energy_soliton_regularization.md`](research_tracks/renormalization/finite_energy_soliton_regularization.md)
@@ -106,6 +107,7 @@ See:
 - Canonical derivation chain: [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md)
 - Claim-status matrix: [`CLAIMS_MATRIX.md`](CLAIMS_MATRIX.md)
 - Scope and claim levels: [`docs/UBT_SCOPE_AND_CLAIM_LEVELS.md`](docs/UBT_SCOPE_AND_CLAIM_LEVELS.md)
+- Quantum development roadmap: [`docs/QUANTUM_ROADMAP.md`](docs/QUANTUM_ROADMAP.md)
 - Canonical theory tree: [`canonical/`](canonical/)
 - Research tracks: [`research_tracks/`](research_tracks/)
 - Speculative extensions: [`speculative_extensions/`](speculative_extensions/)
