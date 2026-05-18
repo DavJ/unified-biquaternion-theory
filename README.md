@@ -5,141 +5,89 @@
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 **Author**: Ing. David Jaroš  
-**Status**: First external release preparation (2026-05-13)
+**Status**: Canonical core + separated research and speculative layers
+
+---
+
+The canonical UBT core is a mathematical physics research program based on
+biquaternionic fields, projected metric structures, and GR/gauge/alpha
+recovery tracks.
+
+Speculative interpretations concerning consciousness, psychons, survival
+after death, ThetaComm, or metaphysical ontology are not part of the
+canonical physical claims. They are maintained separately under
+speculative_extensions/ and should be read as exploratory hypotheses, not
+established physics.
 
 ---
 
 ## What Is UBT?
 
-UBT is a biquaternionic field framework that aims to recover
-general-relativistic geometry and explore possible links to gauge structure
-and particle-generation structure from the algebra **ℂ⊗ℍ**, extended by
-complex time **τ = t + iψ**.
+UBT is a biquaternionic field framework over complex time **τ = t + iψ** that aims to recover:
 
-The present release focuses on the GR-sector claim: emergent Lorentzian metric
-geometry and real-sector recovery of the classical general-relativistic chain
-from the field **Θ(q,τ)**. Gauge, alpha, consciousness, CTC, and other
-speculative extensions are not part of the core claim of this release.
+- emergent Lorentzian metric geometry and the GR chain,
+- gauge-sector structure consistent with Standard Model symmetries,
+- α-related derivation tracks with explicit proof-status discipline.
+
+UBT **embeds and extends GR**; it does not replace or contradict GR.
 
 ---
 
-## UBT in Plain Language
+## Repository Layers (Authority Discipline)
 
-UBT starts from one mathematical object: the biquaternion.
-A biquaternion is like a quaternion used for 3D rotations, but with complex coefficients; equivalently, it can be represented as a 2×2 complex matrix.
-UBT says that spacetime, matter, and forces are all encoded in one field, called **Θ**.
-That field depends on position and carries the full physical content of the theory.
-Instead of postulating gravity, particles, and gauge forces separately, UBT treats them as different aspects of the same underlying structure.
-Its main equation is **∇†∇Θ = κ𝒯**.
-The left-hand side says how the Θ field propagates and bends.
-The right-hand side says what sources it through matter and energy.
-From this single equation, UBT claims to recover Einstein’s equations of general relativity.
-It also claims to recover the gauge symmetries behind the strong, weak, and electromagnetic interactions.
-It further claims a derivation of the existence of three fermion generations.
-The Weinberg angle is only conditional at present, not fully closed.
-The fine-structure constant **α** remains an open problem rather than a finished derivation.
-So the basic idea is simple even though the details are technical: one algebra, one field, one master equation, many physical sectors.
+### `canonical/`
+Authoritative mathematical and physical core only:
+- biquaternion algebra
+- Θ-field definitions
+- complex/projected-time formulation
+- metric emergence and GR chain
+- gauge/QED/QCD/SM recovery tracks where mathematically formulated
+- alpha derivation only with explicit proof status and open gaps
 
-*For the technical details, see the sections below.*
+No claims of afterlife, soul, immortality, ThetaComm, or metaphysical ontology belong here.
 
----
+### `research_tracks/`
+Active scientific work not yet fully closed:
+- alpha derivation attempts
+- CMB/Planck diagnostics
+- theta transforms and prime-stability studies
+- lepton-spectrum work
+- numerical experiments and reproducibility reports
+- explicit conjectures and open gaps
 
-## What Has Been Proved (as of 2026-05-13)
+### `speculative_extensions/`
+Non-canonical exploratory hypotheses only:
+- consciousness / psychons
+- afterlife / survival-of-consciousness narratives
+- ThetaComm and related proposals
+- soul/immortality language
+- Matrix/simulation and other metaphysical interpretations
 
-The current proof status is tracked explicitly below using proof levels.
-
-Note: suffix ``-C'' in a level label (e.g., [L1-C]) means ``proved within the
-stated projection convention''.
-
-### General Relativity (Track T1_GR)
-
-| Result | Level |
-|--------|-------|
-| Metric $g_{\mu\nu}$ derived from Θ (not postulated) | [L1] |
-| Lorentzian signature in the admissible projected GR sector (AXIOM-B + Lorentzian projection/admissibility) | [L1-C] |
-| Non-degeneracy det(g) ≠ 0 | [L1] |
-| Einstein equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ from Hilbert variation | [L1] |
-| Schwarzschild recovery: spatial components verified < 10⁻¹⁵; temporal component recovered analytically via complex-time phase sector | [L1]+[NUM/AN] |
-| Regge-Wheeler equation (odd-parity graviton) derived | [L1] |
-| Zerilli equation (even-parity graviton) derived | [L1] |
-
-→ **Paper**: `papers/UBT_GR_Submission.tex` (**current canonical GR manuscript**, submit-ready)
-
-The GR result is an induced-metric / on-shell sector result: UBT in its minimal
-complex-time projection induces a Lorentzian metric sector whose real projection
-reproduces the classical GR chain. A full off-shell $\\Theta$-only closure remains GAP-10.
-
-### Standard Model Gauge Structure (Track T2_GAUGE)
-
-| Result | Level |
-|--------|-------|
-| SU(3)_c from ℤ₂×ℤ₂×ℤ₂ involutions in ℂ⊗ℍ | [L0] |
-| Quarks in **3**, gluons in **8**, EW/strong decoupling | [L0] |
-| SU(2)_L × U(1)_Y × U(1)_EM from ℂ⊗ℍ | [L0] |
-| Left-chirality of SU(2)_L (W couples to left-chiral doublets) | [L1] |
-| Three generations from ψ-winding modes | [L0] |
-| Hypercharge quantisation from Dirac condition on ψ-circle | [L0] |
-
-→ **Status**: Paper draft in progress; target submission ~6 weeks.
-
-### Fine Structure Constant (Track T3_ALPHA)
-
-| Result | Level |
-|--------|-------|
-| N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC] under critical audit; see canonical/n_eff/step2_AUDIT.tex. | OPEN/[MC] |
-| α⁻¹_bare = 137 (integer) conditional on Gap G137-B | [L1] (conditional) |
-
-→ **Status**: Conditional result. One gap open (Gap G137-B: derive effective
-coupling B from UBT action). See `canonical/alpha/PRIMARY_ROUTE.md`, `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`, and `reports/gamma_entropy_alpha_interpolation_audit.md`.
-
-→ **Audit note**: `B_Ram` is **OBS only, not derived from the UBT action functional S[Theta]**. `lambda_exact`
-and `lambda_frac` are **OBS only, no derivation currently known**.
+### `ARCHIVE/`
+Historical snapshots, deprecated or conflicting versions, superseded routes.
 
 ---
 
-## What Is NOT Proved
+## Claim-Status Rule
 
-UBT is honest about its limits.
+No speculative or metaphysical claim may appear in `canonical/` or in the
+abstract/introduction/conclusion of physics papers unless it is explicitly
+marked as speculative and separated from the mathematical derivation.
 
-| Topic | Status |
-|-------|--------|
-| Weinberg angle sin²θ_W | **Conditional open** — pure-algebra route is dead end; EW-1b (EW1+RG) is tracked conditionally |
-| W/Z boson masses | Open (Higgs mechanism deferred) |
-| Fermion mass spectrum | Open-hard |
-| Dynamical colour confinement | Clay Millennium Problem |
-| Full α = 1/137.036 (not just integer 137) | Open — Gap G137-B |
-
-Full list: [`WHAT_IS_PROVED.md` ("What Is NOT Claimed as Proved")](WHAT_IS_PROVED.md#what-is-not-claimed-as-proved)
+For formal claim levels and repository scope policy, see
+[`docs/UBT_SCOPE_AND_CLAIM_LEVELS.md`](docs/UBT_SCOPE_AND_CLAIM_LEVELS.md).
 
 ---
 
-## 5-Minute Navigation
+## Quick Navigation
 
-| Want to know | Go here |
-|-------------|---------|
-| Is the GR paper ready to submit? | [`STATUS.md`](STATUS.md) |
-| What is actually proved? | [`WHAT_IS_PROVED.md`](WHAT_IS_PROVED.md) |
-| What happens next? | [`ROADMAP.md`](ROADMAP.md) |
-| Read the GR paper | [`papers/UBT_GR_Submission.tex`](papers/UBT_GR_Submission.tex) |
-| Gauge sector status | [`reports/gauge_truth_matrix.md`](reports/gauge_truth_matrix.md) |
-| Alpha route decision | [`canonical/alpha/PRIMARY_ROUTE.md`](canonical/alpha/PRIMARY_ROUTE.md) |
-| All canonical proofs | [`canonical/`](canonical/) |
-| Open problems | [`reports/`](reports/) |
-| Full derivation index | [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md) |
-
----
-
-## Repository Structure
-
-```
-canonical/          Core theory — algebra, fields, geometry, interactions
-papers/             Submission-ready papers
-reports/            Honest status reports and gap analyses
-research_tracks/    Active open-problem research
-speculative_extensions/  Speculative ideas (clearly labelled)
-tools/              Numerical verification scripts
-ARCHIVE/            Historical material (not deleted, not primary)
-```
+- Canonical derivation chain: [`DERIVATION_INDEX.md`](DERIVATION_INDEX.md)
+- Claim-status matrix: [`CLAIMS_MATRIX.md`](CLAIMS_MATRIX.md)
+- Scope and claim levels: [`docs/UBT_SCOPE_AND_CLAIM_LEVELS.md`](docs/UBT_SCOPE_AND_CLAIM_LEVELS.md)
+- Canonical theory tree: [`canonical/`](canonical/)
+- Research tracks: [`research_tracks/`](research_tracks/)
+- Speculative extensions: [`speculative_extensions/`](speculative_extensions/)
+- Historical archive: [`ARCHIVE/`](ARCHIVE/)
 
 ---
 

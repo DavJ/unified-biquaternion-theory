@@ -429,11 +429,11 @@ See DERIVATION_INDEX.md (Three Fermion Generations / Lepton Sector) for full det
 
 ---
 
-## 11. Psychons and Θ-Resonance
+## 11. Speculative Boundary Note (Non-canonical)
 
 > **Note**: Psychon content has been moved out of `canonical/` into
 > `speculative_extensions/consciousness/psychons.tex`.
-> Consciousness is **not** a canonical claim of core UBT.
+> Consciousness/psychon content is explicitly **non-canonical** and tracked only in `speculative_extensions/`.
 >
 > The imaginary time component ψ is a genuine mathematical degree of freedom
 > of complex time τ = t + iψ.  Its possible physical interpretation as a "consciousness

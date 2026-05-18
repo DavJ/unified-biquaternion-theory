@@ -5,6 +5,11 @@ Unified Biquaternion Theory framework.
 
 **Status**: Speculative — not part of canonical UBT.
 
+> This document is a speculative extension of UBT.
+> It is not part of the canonical physics core.
+> It is not experimentally established.
+> It should not be cited as proof of afterlife, soul survival, or spiritual ontology.
+
 The imaginary time components (ψ, χ, ξ) in biquaternion time T_B are genuine mathematical
 degrees of freedom. Their interpretation as a "consciousness substrate" (psychons) is a
 speculative extension that has **not** been proved or empirically reproduced.
@@ -21,5 +26,5 @@ speculative extension that has **not** been proved or empirically reproduced.
 It was moved here when `canonical/` was tightened to current-best, mostly-proved content only.
 Full git history is preserved.
 
-For canonical UBT content see `core/`.
+For canonical UBT content see `canonical/`.
 For other speculative extensions see `speculative_extensions/`.
