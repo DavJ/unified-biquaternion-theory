@@ -1,2 +1,0 @@
-ubt
-ubt_theta_lab
