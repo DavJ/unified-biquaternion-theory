@@ -41,6 +41,11 @@ If it is not on this list, it is not claimed as proved.
 | COSMO1 | ΔN_eff prediction: 0.05-0.25 (g*≥427, above CMB-S4) | [OPEN pending g* derivation] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 | COSMO2 | FRW metric from refined Θ ansatz | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
 | GR11 | Cl⁺₁,₃ izomorfismus (even subalgebra) | [L0] | `papers/UBT_GR_Submission.tex §2.1` |
+| PY1 | Python scaffold: UBT Hilbert space [OPEN_GAP placeholder] | [scaffold] | `src/ubt/quantum/quantum_scaffold.py` |
+| PY2 | Chirality algebra scaffold | [scaffold] | `src/ubt/algebra/chirality.py` |
+| PY3 | Observable bridge: g-2 OPEN_GAP | [OPEN_GAP] | `src/ubt/observables/physics_observable_bridge.py` |
+| COSMO3 | FRW from UBT: g_{0i}=0 globally for Θ₀=1₂ | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
+| COSMO4 | ΔN_eff benchmark consistency for g*≥427; minimal UBT bound g*(T_Pl)≥120.75 | [Prop. + OPEN] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
 
 ---
 

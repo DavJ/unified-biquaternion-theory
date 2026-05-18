@@ -16,6 +16,45 @@ PHENOMENOLOGICAL_NOISE_LABEL = (
 )
 
 
+class UBTHilbertSpace:
+    """
+    Scaffold for the UBT Hilbert space on M^4 x S^1_psi.
+
+    STATUS: OPEN_GAP — inner product not derived from S[Theta].
+    This is a numerical scaffold for future derivation.
+    """
+
+    def __init__(self, n_modes: int = 10, R_psi: float = 1.0):
+        self.n_modes = n_modes
+        self.R_psi = R_psi
+        self.status = "OPEN_GAP: inner product pending derivation"
+
+    def winding_basis(self) -> list[dict[str, float | int | str]]:
+        """
+        Winding mode basis {Theta_n} for n = 1, ..., n_modes.
+        KK masses: m_n = n / R_psi.
+        STATUS: scaffold only — not derived from variational principle.
+        """
+        return [
+            {
+                "n": n,
+                "mass": n / self.R_psi,
+                "status": "NUMERICAL_EVIDENCE",
+            }
+            for n in range(1, self.n_modes + 1)
+        ]
+
+    def inner_product_placeholder(self, psi1, psi2) -> complex:
+        """
+        OPEN_GAP: Derive from S[Theta].
+        Currently returns L^2 norm as placeholder.
+        """
+        raise NotImplementedError(
+            "Inner product not derived from UBT. "
+            "See docs/quantum_sector_status.md"
+        )
+
+
 # TODO(ubt-quantum-gap): Derive canonical commutation relations from the UBT action.
 # TODO(ubt-quantum-gap): Derive the Born rule directly from UBT variables.
 # TODO(ubt-quantum-gap): Derive a Hilbert-space inner product from UBT structure.

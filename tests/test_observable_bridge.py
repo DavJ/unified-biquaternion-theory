@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from ubt.observables.physics_observable_bridge import (  # noqa: E402
+    AnomalousMagneticMoment,
     ObservableResult,
     PhysicsObservableBridge,
 )
@@ -56,3 +57,10 @@ def test_predictor_does_not_return_codata_as_ubt_prediction() -> None:
 
     assert alpha_result.value is None
     assert alpha_result.status == "OPEN_GAP"
+
+
+def test_anomalous_magnetic_moment_placeholder_is_open_gap() -> None:
+    g2 = AnomalousMagneticMoment().ubt_prediction()
+    assert g2["value"] is None
+    assert g2["status"] == "OPEN_GAP"
+    assert "Gap G137-B" in g2["reason"]

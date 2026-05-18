@@ -282,8 +282,11 @@ Identification $B=N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4}$ from UBT
 As an alternative to the Casimir path, define for winding mode
 $\Theta_n=e^{in\psi/R}\Theta_0$:
 \[
-S_{\mathrm{eff}}[n] = -\ln\!\int D\delta\Theta\,\exp(-S[\Theta_n+\delta\Theta])
-= S[\Theta_n] + \frac12 \mathrm{Tr}\!\left[\ln\!\left(\left.\frac{\delta^2S}{\delta\Theta^2}\right|_{\Theta_n}\right)\right].
+S_{\mathrm{eff}}[n]
+= S[\Theta_n]
++ \frac12 \mathrm{Tr}\!\left[\ln\!\left(
+\left.\frac{\delta^2S}{\delta\Theta^2}\right|_{\Theta_n}
+\right)\right].
 \]
 Thus the one-loop term is
 \[
@@ -296,15 +299,44 @@ S[\Theta]=\int \mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]\,d^4
 \]
 the fluctuation operator near $\Theta_n$ takes the form
 \[
-P_n\simeq -\Box + \frac{n^2}{R^2}.
+P_n\simeq -\Box + \frac{n^2}{R^2}
+\qquad\text{on }M^4.
 \]
 With zeta regularization:
 \[
-V_{1\mathrm{loop}}(n)=-\zeta'_{P_n}(0).
+V_{1\mathrm{loop}}(n)= -\frac12\,\zeta'_{P_n}(0).
 \]
-At the self-dual point, the Mellin kernel links to $\vartheta_3(0|i)$ and
-the target identification is
-$g(\vartheta_3(0|i))=B/N_{\mathrm{eff}}^{3/2}$ for the $n\ln n$ term.
+Using the standard $M^4$ one-loop scalar determinant result:
+\[
+\zeta'_{P_n}(0)
+=\frac{(n/R)^4}{16\pi^2}
+\left[2\ln\!\left(\frac{n}{R\mu}\right)-\frac32\right]
+\quad\text{[STD]}.
+\]
+Hence
+\[
+V_{1\mathrm{loop}}(n)
+=\frac{(n/R)^4}{32\pi^2}
+\left[2\ln\!\left(\frac{n}{R\mu}\right)-\frac32\right].
+\]
+
+For the divisor-sum lifting used in the T$^2$ winding channel:
+\[
+V_{\mathrm{eff}}(n)=\sum_{d\mid n}V_{1\mathrm{loop}}(d)
+=\sum_{d\mid n}\frac{(d/R)^4}{32\pi^2}
+\left[2\ln\!\left(\frac{d}{R\mu}\right)-\frac32\right].
+\]
+
+Numerical verification (\texttt{tools/veff\_functional\_deriv.py}) gives:
+\[
+B_{\mathrm{computed}}\approx 5.27\times 10^5,\qquad
+B_{\mathrm{target}}=12^{3/2}(2\eta(i))^{1/4}\approx 46.28,
+\]
+\[
+\frac{B_{\mathrm{computed}}}{B_{\mathrm{target}}}\approx 1.14\times 10^4.
+\]
+So this direct $M^4$ functional route does \emph{not} close Gap G137-B in its
+current normalization; it provides a precise residual-factor diagnostic.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{Step 4: The Mellin Insertion — Exact Gap Statement}
@@ -385,8 +417,11 @@ print(f"B candidate = {B_candidate:.8f}")
 \begin{statusbox}
 $Z'_{\mathbb{Z}^2}(0) = -4\ln|\Gamma(\tfrac14)| + C_0$: \textbf{[STD] — ověřit}\\
 $B$ z průměru $V_{\mathrm{eff}}$ přes Dirichletovu asymptotiku: \textbf{[L1 asym.]}\\
+$V_{1\mathrm{loop}}(n)$ z $\zeta$-regularizace na $M^4$: \textbf{[STD]}\\
+Koeficient $n\ln n$ z dělitelové sumy v přímé funkcionální cestě: \textbf{[OPEN]}\\
+Zbývající faktor (numericky) $\sim 1.14\times 10^4$: \textbf{[NUM]}\\
 $Z_{1\mathrm{real}} = 2\eta(i)$ z NS sektoru: \textbf{[OPEN/MC]} (not yet derived)\\
-$B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4} \approx 46.28$ analyticky: \textbf{[OPEN/MC]}\\
+$B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4} \approx 46.28$ analyticky: \textbf{[OPEN]}\\
 Volumetric prefactor $N_{\mathrm{eff}}^{1/2}$ from $T^3_\psi$ measure: \textbf{[OPEN]}\\
 Gap G137-B: \textbf{[NARROWED — zbývá: exact Mellin/spectral insertion]}\\
 Alpha: \textbf{NOT DERIVED}

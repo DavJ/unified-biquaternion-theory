@@ -47,6 +47,15 @@ sequencing are maintained in `ROADMAP.md` under
 - Weinberg: [CONDITIONAL on C2 Step 1]
 - Alpha: NOT DERIVED
 
+## 2026-05-18
+- GR paper: arXiv ready (Cl^+, indefinite bilinear opraveny)
+- Gauge PDF: build command ready; environment lacks `pdflatex` in this run
+- NCG B₀ PDF: build command ready; environment lacks `pdflatex` in this run
+- Python scaffold: `src/ubt/` updated (Hilbert scaffold + g-2 OPEN_GAP placeholder); targeted scaffold tests passing
+- FRW [Prop.]: $g_{0i}=0$ globálně pro $\Theta_0=1_2$ (explicit proposition in track file)
+- ΔN_eff: explicit UBT lower bound derived $g_*(T_{\rm Pl})\ge120.75$ [Prop.]; consistency with Planck bound still needs larger $g_*$ (benchmark 427)
+- Gap G137-B: V_eff functional derivation path aktivní; residual factor quantified, gap remains NARROWED/OPEN
+
 ## 2026-05-17
 
 | Item | Prev status | New status | Source |

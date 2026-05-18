@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from ubt.quantum.quantum_scaffold import (  # noqa: E402
     PHENOMENOLOGICAL_NOISE_LABEL,
     ThetaState,
+    UBTHilbertSpace,
     evolve_theta,
 )
 
@@ -47,3 +48,12 @@ def test_stochastic_mode_reproducible_for_fixed_seed() -> None:
 def test_noise_label_is_explicitly_phenomenological() -> None:
     assert "phenomenological quantum-noise proxy" in PHENOMENOLOGICAL_NOISE_LABEL
     assert "pending derivation from UBT action" in PHENOMENOLOGICAL_NOISE_LABEL
+
+
+def test_hilbert_space_scaffold() -> None:
+    hs = UBTHilbertSpace(n_modes=3)
+    basis = hs.winding_basis()
+    assert len(basis) == 3
+    assert basis[0]["n"] == 1
+    assert basis[0]["status"] == "NUMERICAL_EVIDENCE"
+    assert "OPEN_GAP" in hs.status
