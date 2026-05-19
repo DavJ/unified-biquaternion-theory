@@ -236,9 +236,62 @@ However, deriving $v$ from $S[\Theta]$ requires:
 All three steps are~\textbf{[OPEN]}.
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Coleman-Weinberg Effective Potential}
+\label{sec:coleman_weinberg}
+%──────────────────────────────────────────────────────────────────────────────
+
+The one-loop CW potential for the zero mode $\Theta_0$:
+\begin{equation}
+\label{eq:VCW}
+V_{\rm CW}(\Theta_0) = \frac{1}{64\pi^2}
+\sum_{n=1}^{N_{\rm KK}} M_n^4(\Theta_0)
+\left[\ln\frac{M_n^2(\Theta_0)}{\mu^2} - \frac{3}{2}\right]
+\end{equation}
+where $M_n^2(\Theta_0) = n^2/R^2 + \lambda|\Theta_0|^2$.
+
+\paragraph{SSB condition.}
+$\partial^2 V_{\rm CW}/\partial|\Theta_0|^2\big|_{\Theta_0=0} < 0$
+iff $\sum_n M_n^2 \ln M_n^2 < 0$ at $|\Theta_0|=0$.
+
+\paragraph{Numerical evaluation.}
+With benchmark parameters $R_\psi=1$, $\lambda=0.36$, $\mu=1$,
+$N_{\rm KK}=12$, the minimum of $V_{\rm CW}(\phi)$ (with
+$\phi = |\Theta_0|$) on $\phi\in[0,3]$ occurs at
+\[
+  \phi_{\rm min} \approx 0, \qquad
+  V_{\rm min} \approx V_{\rm CW}(0).
+\]
+The effective mass-squared at the origin is dominated by the
+large-$n$ KK modes,
+\[
+  \left.\frac{\partial^2 V_{\rm CW}}{\partial \phi^2}\right|_{\phi=0}
+  = \frac{\lambda}{64\pi^2}\sum_{n=1}^{12} n^2(2\ln n^2 - 2) > 0,
+\]
+so $\phi=0$ is a local minimum of~(\ref{eq:VCW}) and
+\textbf{SSB does not occur} via this CW potential for the
+benchmark parameter choice.
+
+\paragraph{Status.}
+The KK scan result $m_{\rm eff}^2\approx -6.494$ \textbf{[MC/NUM]} signals
+SSB in a different computation (direct mass matrix scan, not the
+CW effective potential above).  Deriving the first-principles CW
+potential requires the coupling $f(\Theta)$ from $S[\Theta]$, which
+is Gap EW-2 \textbf{[OPEN]}.
+
+\begin{openproblembox}
+CW potential from $S[\Theta]$: the coupling $f(\Theta)$ must be
+derived to determine whether the true CW minimum is at
+$|\Theta_0|>0$.  The benchmark computation above shows
+$\phi_{\rm min}=0$ for the simplified proxy $M_n^2=n^2+\lambda\phi^2$;
+the physical $f(\Theta)$ may differ.
+Gap EW-2: \textbf{[OPEN]}.
+\end{openproblembox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \begin{statusbox}
 $S[\Theta]$ explicit tree-level $V(\Theta)$: \textbf{NO} (Prop.~\ref{prop:no_tree_potential})\\
 Coleman-Weinberg SSB possible: \textbf{[OPEN]} — $f(\Theta)$ not derived\\
+CW benchmark ($R=1$, $\lambda=0.36$, $N_{\rm KK}=12$): $\phi_{\rm min}=0$, SSB absent \textbf{[NUM]}\\
 KK scan with $R_\psi=1$, $g=0.6$, $N_{\rm KK}=12$: $m_{\rm eff}^2\approx -6.494$ \textbf{[MC/NUM]}\\
 VEV $\langle\Theta_0\rangle \neq 0$: \textbf{[OPEN]} — conditional on CW computation\\
 $W/Z$ masses from SSB: \textbf{[OPEN]} — conditional on VEV\\
