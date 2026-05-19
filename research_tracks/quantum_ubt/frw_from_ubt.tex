@@ -297,6 +297,17 @@ KK sector on $S^1_\psi$.  From \texttt{tools/casimir\_B\_check.py}
   E_{\rm Casimir}(T^3, R_\psi = 1) \approx -0.0617\quad (\mathrm{in\,units\,of}\,R_\psi^{-3}).
 \]
 
+\subsection{de Sitter limit}
+\label{sec:desitter}
+
+\begin{corollary}[de Sitter limit]
+\label{cor:desitter}
+For $\Theta(t) = e^{Ht}\Theta_0$, the UBT metric gives
+$g_{\mu\nu} = \mathrm{diag}(-1, e^{2Ht}, e^{2Ht}, e^{2Ht})$
+and the cosmological constant $\Lambda = 3H^2$.
+The Friedmann equation gives $H^2 = \Lambda/3 = 8\pi G\rho_\Lambda/3$.
+\end{corollary}
+
 \subsection{Consistency with cosmological constant}
 
 The de Sitter Hubble parameter would be
@@ -319,6 +330,7 @@ as GAP-C in \texttt{WHAT\_IS\_PROVED.md}.
 Off-diagonal $g_{0i}=0$ globally for $\Theta_0=\mathbf{1}_2$: \textbf{[Prop.]}\\
 FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]} (Prop.~\ref{prop:frw})\\
 Friedmann equations from UBT: \textbf{[Prop.]} — via Prop.~\ref{prop:frw} and the GR chain\\
+de Sitter limit $\Lambda=3H^2$ from $\Theta=e^{Ht}\Theta_0$: \textbf{[Prop.]} (Cor.~\ref{cor:desitter})\\
 de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
 Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\
 GAP-C status: \textbf{OPEN} — global FRW closure beyond $\Theta_0=\mathbf{1}_2$ remains pending

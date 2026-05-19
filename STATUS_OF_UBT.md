@@ -32,6 +32,15 @@ and one blocked result (T3_ALPHA).
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
+## 2026-05-19 (v33)
+- C2 uniqueness: [L1 family check] — gravitational anomaly selects n=1
+- Gap G137-B: 5 NO-GO, formal downgrade memo added
+- Gauge abstract: updated with [L1 family check]
+- Higgs: m²_eff < 0 [MC/NUM], CW potential benchmark phi_min=0 [NUM]
+- FRW+dS: de Sitter Λ=3H² [Prop.] formalized (Cor.)
+- ΔN_eff: g*_total=198 < 389 → [TENSION] recorded
+- Zenodo v2 checklist: updated, awaiting author instruction
+
 ## 2026-05-18 Rigour pass
 
 ### Opravy

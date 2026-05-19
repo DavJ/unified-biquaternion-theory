@@ -34,6 +34,17 @@ If it is not on this list, it is not claimed as proved.
 
 ---
 
+## 2026-05-19 update (v33)
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| SM10 | Y_Q=1/6 unique via grav. anomaly A_grav(n)=n-1=0 | [L1 family check] | `canonical/interactions/colour_charge_lattice.tex` Thm. C2-uniqueness |
+| NO-GO5 | Eisenstein E_4(i) route for B: ratio 0.920 | [NO-GO] | `tools/eisenstein_B_check.py` |
+| EW3 | Higgs: m²_eff=-6.494 from KK scan | [MC/NUM] | `research_tracks/EW/higgs_from_theta.tex` |
+| COSMO5 | de Sitter Λ=3H² from Θ=e^{Ht}Θ₀ | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` Cor. |
+
+---
+
 ## 2026-05-18 update
 
 | # | Claim | Level | Source |
@@ -135,6 +146,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
 | E5b | SU(3) colour-lattice Step 1: target theorem $Q\in\mathbb{Z}$ from $S[\Theta]$ on $S^1_\psi$ | [OPEN/MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
 | SM5 | Hypercharge assignment $Y_Q=1/6$ | [L1 conditional on C2 Step 1 — OPEN] | `canonical/interactions/colour_charge_lattice.tex`, `papers/UBT_Gauge_Submission.tex` |
+| SM10 | Y_Q=1/6 unique via grav. anomaly A_grav(n)=n-1=0 | [L1 family check] | `canonical/interactions/colour_charge_lattice.tex` Thm. C2-uniqueness |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
 | E8 | Photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ | [L1] | Standard EW |

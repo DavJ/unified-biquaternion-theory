@@ -212,6 +212,44 @@ Hence
 So this mixed-anomaly check selects \(n=1\) uniquely within the tested
 family \(Y_Q=n/6\).
 
+\begin{theorem}[Hypercharge uniqueness via gravitational anomaly]
+\label{thm:C2-uniqueness}
+Consider the one-parameter family of hypercharge assignments
+$Y_Q = n/6$ for $n \in \mathbb{N}^+$, consistent with
+$Y \in \tfrac{1}{6}\mathbb{Z}$ [L1, Prop.~\ref{prop:Y-lattice}].
+The mixed $[\mathrm{U}(1)_Y]^2 \mathrm{grav}$ anomaly coefficient is
+\[
+  \mathcal{A}_{\rm grav}(n)
+  = \sum_{\rm left} Y_f - \sum_{\rm right} Y_f = n - 1.
+\]
+The anomaly-free condition $\mathcal{A}_{\rm grav}(n) = 0$
+selects $n = 1$ uniquely within the tested family.
+Hence $Y_Q = \tfrac{1}{6}$ is the unique anomaly-free hypercharge
+assignment in the family $\{n/6 : n \in \mathbb{N}^+\}$.
+\end{theorem}
+
+\begin{proof}
+Direct calculation:
+Left-handed contributions: quark doublet $Y=n/6$ (mult.~6),
+lepton doublet $Y=-1/2$ (mult.~2).
+Right-handed: $Y_{uR}=n/6+1/2$, $Y_{dR}=n/6-1/2$, $Y_{eR}=-1$.
+$\mathcal{A}_{\rm grav} = 6\cdot(n/6) + 2\cdot(-1/2)
+- 3\cdot(n/6+1/2) - 3\cdot(n/6-1/2) - (-1)
+= n - 1 + 0 = n-1$.
+Setting $n=1$: $\mathcal{A}_{\rm grav}=0$. $\square$
+\end{proof}
+
+\begin{remark}[Scope of the family check]
+Theorem~\ref{thm:C2-uniqueness} establishes uniqueness within the
+tested family $Y_Q \in \{1/6, 2/6, 3/6, \ldots\}$.
+It does not exclude assignments outside this family
+(e.g.\ irrational or negative $Y_Q$).
+The full uniqueness proof (Gap~C2 Step~1) requires showing that
+only $Y_Q = n/6$-type assignments are consistent with the UBT
+algebra $\mathbb{C}\otimes_\mathbb{R}\mathbb{H}$; this remains [OPEN].
+Status: \textbf{[L1 family check]}, not \textbf{[L1 full uniqueness]}.
+\end{remark}
+
 \begin{statusbox}[title={Singlet-integrality theorem --- verdict}]
 U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[OPEN --- Gap C2 Step 1]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\

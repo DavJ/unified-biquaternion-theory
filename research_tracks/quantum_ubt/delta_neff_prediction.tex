@@ -312,4 +312,60 @@ Status: \textbf{OPEN; explicit field content still below Planck-safe threshold, 
 \end{statusbox}
 %──────────────────────────────────────────────────────────────────────────────
 
+%──────────────────────────────────────────────────────────────────────────────
+\section{Final Verdict: Explicit Spin d.o.f.\ Count (v33)}
+\label{sec:final_verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+The following explicit spin degree-of-freedom count was computed to determine
+whether the minimal UBT field content can reach $g_*\ge 389$.
+
+\subsection{Explicit count}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Sector & Formula & $g_*$ contribution \\
+\midrule
+SM bosons (spin-1 and spin-2) & $\gamma(2)+W^{\pm}(6)+Z(3)+g(16)+H(1)+\mathrm{grav}(2)$ & 30 \\
+SM fermions (Weyl, $\times7/8$) & $(36_q+12_\ell)\times2\times\tfrac{7}{8}$ & 84.00 \\
+UBT KK scalars ($N_{\rm KK}=12$, $g=2$ each) & $12\times 2$ & 24 \\
+UBT KK gravitons (spin-2, $g=5$ each) & $12\times 5$ & 60 \\
+\midrule
+\textbf{Total} & & \textbf{198.00} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Result}
+
+\[
+  g_*^{\rm total} = 198.00 < 389 \quad \Rightarrow \quad
+  \Delta N_{\rm eff}(g_*=198) \approx 0.690 > 0.28.
+\]
+
+\begin{equation}
+  \Delta N_{\rm eff}(g_*=198) = 12\cdot\frac{43}{4}
+  \left(\frac{3.909}{198}\right)^{4/3} \approx 0.690.
+\end{equation}
+
+\subsection*{Final verdict}
+
+\begin{tcolorbox}[colback=orange!5!white, colframe=orange!60!black,
+  title={ΔN\_eff Final Verdict (2026-05-19) — \textbf{[TENSION]}}]
+The explicit UBT spin d.o.f.\ count gives $g_*^{\rm total}=198.00$,
+which falls below the Planck-consistency threshold $g_*\ge 389$.
+Therefore:
+\[
+  \Delta N_{\rm eff}^{\rm total}(g_*=198) \approx 0.690 > 0.28.
+\]
+This constitutes a \textbf{[TENSION]} with the Planck+ACT bound.
+Resolution requires either:
+\begin{itemize}
+\item additional Planck-scale d.o.f.\ beyond the current UBT field content, or
+\item a non-equilibrium argument suppressing KK relic production.
+\end{itemize}
+Status: \textbf{[TENSION]}. Alpha: NOT DERIVED.
+\end{tcolorbox}
+
 \end{document}
