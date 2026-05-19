@@ -108,7 +108,7 @@ def heat_kernel_exact(t: float, R: float = 1.0) -> float:
 
     mpmath.mp.dps = 30
     tau = mpmath.mpc(0, t / (math.pi * R**2))
-    q = mpmath.exp(2j * math.pi * tau)
+    q = mpmath.exp(1j * math.pi * tau)
     th3 = float(mpmath.re(mpmath.jtheta(3, 0, q)))
     return th3**3
 
