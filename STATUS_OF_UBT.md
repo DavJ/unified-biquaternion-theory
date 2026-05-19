@@ -41,6 +41,16 @@ sequencing are maintained in `ROADMAP.md` under
 - ΔN_eff: g*_total=198 < 389 → [TENSION] recorded
 - Zenodo v2 checklist: updated, awaiting author instruction
 
+## 2026-05-19 (v35)
+- ΔN_eff: reformulated as CONDITIONAL TENSION (g* open problem)
+- Python: ImportError fixed (ubt.spectral stub added)
+- Gauge PDF: compiled [T3]
+- NCG B₀ PDF: compiled [T4]
+- GR arXiv ZIP: ready [T5]
+- Zenodo v2 checklist: finalized [T6]
+- Hosotani mechanism: new route for Higgs SSB [T8]
+- C2: Dirac quantisation argument [T9]
+
 ## 2026-05-18 Rigour pass
 
 ### Opravy

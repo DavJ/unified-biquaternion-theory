@@ -7,8 +7,15 @@ Laplacian Spectrum on Torus
 Computes eigenvalues and eigenmodes of the Laplacian operator on a d-dimensional torus.
 """
 
+import math
 import numpy as np
-from typing import List, Tuple, Optional
+from scipy.integrate import quad
+from typing import Tuple
+
+try:
+    import mpmath
+except ImportError:  # pragma: no cover - optional runtime dependency
+    mpmath = None
 
 
 def torus_eigenvalues(d: int, k_max: int, L: float = 1.0) -> Tuple[np.ndarray, np.ndarray]:
@@ -118,3 +125,77 @@ def get_lowest_nonzero_eigenvalue(d: int, L: float = 1.0) -> float:
         Lowest non-zero eigenvalue
     """
     return (2 * np.pi / L)**2
+
+
+def torus_laplacian_spectrum(R: float = 1.0, n_max: int = 10) -> np.ndarray:
+    """
+    Eigenvalues of -nabla^2 on T^3 = S^1 x S^1 x S^1.
+    lambda_{n1,n2,n3} = (n1^2 + n2^2 + n3^2) / R^2
+    """
+    if R <= 0:
+        raise ValueError("R must be positive")
+    if n_max < 0:
+        raise ValueError("n_max must be >= 0")
+    eigs = []
+    for n1 in range(-n_max, n_max + 1):
+        for n2 in range(-n_max, n_max + 1):
+            for n3 in range(-n_max, n_max + 1):
+                eigs.append((n1**2 + n2**2 + n3**2) / R**2)
+    return np.array(sorted(set(eigs)), dtype=float)
+
+
+def heat_kernel_torus(t: float, R: float = 1.0, n_max: int = 20) -> float:
+    """
+    K_{T^3}(t) = [theta3(0|it/piR^2)]^3
+    Numerical approximation via truncated sum.
+    """
+    if t <= 0:
+        raise ValueError("t must be positive")
+    if R <= 0:
+        raise ValueError("R must be positive")
+    if n_max < 0:
+        raise ValueError("n_max must be >= 0")
+
+    total = 0.0
+    for n in range(-n_max, n_max + 1):
+        total += math.exp(-t * n**2 / R**2)
+    return float(total**3)
+
+
+def heat_kernel_exact(t: float, R: float = 1.0) -> float:
+    """
+    K_{T^3}(t) = [theta3(0|it/piR^2)]^3 — exact via Jacobi theta.
+    Falls back to high-cutoff numerical approximation when mpmath is unavailable.
+    """
+    if t <= 0:
+        raise ValueError("t must be positive")
+    if R <= 0:
+        raise ValueError("R must be positive")
+
+    if mpmath is None:
+        n_max = max(100, int(30 + 20 / math.sqrt(t)))
+        return heat_kernel_torus(t=t, R=R, n_max=n_max)
+
+    mpmath.mp.dps = 30
+    tau = mpmath.mpc(0, t / (math.pi * R**2))
+    th3 = float(mpmath.re(mpmath.jtheta(3, 0, mpmath.exp(mpmath.mpc(0, 1) * math.pi * tau))))
+    return th3**3
+
+
+def zeta_prime_0_torus(R: float = 1.0, n_max: int = 50) -> float:
+    """
+    Approximate zeta'_{-nabla^2}(0) on T^3 via Mellin transform of K_{T^3}(t).
+    """
+    if R <= 0:
+        raise ValueError("R must be positive")
+    if n_max < 0:
+        raise ValueError("n_max must be >= 0")
+
+    def integrand(t: float, s: float) -> float:
+        k_t = heat_kernel_exact(t=t, R=R) if mpmath is not None else heat_kernel_torus(t=t, R=R, n_max=n_max)
+        return float(t ** (s - 1) * k_t)
+
+    s0 = 0.001
+    result_low, _ = quad(lambda t: integrand(t, s0), 0.01, 1.0, limit=200)
+    result_high, _ = quad(lambda t: integrand(t, s0), 1.0, 100.0, limit=200)
+    return float(-(result_low + result_high))
