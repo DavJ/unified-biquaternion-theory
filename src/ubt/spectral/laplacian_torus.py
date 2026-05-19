@@ -108,15 +108,14 @@ def heat_kernel_exact(t: float, R: float = 1.0) -> float:
 
     mpmath.mp.dps = 30
     tau = mpmath.mpc(0, t / (math.pi * R**2))
-    q = mpmath.exp(1j * math.pi * tau)
+    q = mpmath.exp(mpmath.mpc(0, 1) * math.pi * tau)
     th3 = float(mpmath.re(mpmath.jtheta(3, 0, q)))
     return th3**3
 
 
 def zeta_prime_0_torus(R: float = 1.0, n_max: int = 50) -> float:
     """
-    zeta'_{-nabla^2}(0) na T^3 přes Mellin transformaci K_{T^3}(t).
-    Numerická aproximace.
+    Approximate zeta'_{-nabla^2}(0) on T^3 via Mellin transform of K_{T^3}(t).
     """
     _validate_positive(R, "R")
     if n_max < 0:
