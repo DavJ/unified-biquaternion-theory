@@ -3,9 +3,9 @@
 # Zenodo Release Checklist — v2 (připraveno, neodesláno)
 
 ## Soubory k nahrání (v2 release)
-- [ ] papers/UBT_GR_Submission.pdf
-- [ ] papers/UBT_Gauge_Submission.pdf
-- [ ] papers/ncg_poisson_B0_derivation.pdf
+- [ ] papers/UBT_GR_Submission.pdf — GR paper (Cl^+ opraveno)
+- [ ] papers/UBT_Gauge_Submission.pdf — Gauge paper
+- [ ] papers/ncg_poisson_B0_derivation.pdf — NCG B₀ paper
 - [ ] WHAT_IS_PROVED.md
 - [ ] CLAIMS_MATRIX.md
 
@@ -17,13 +17,12 @@
   fine structure constant, unified field theory
 - Related identifier: GitHub https://github.com/UBT-Institute/unified-biquaternion-theory
 
-## Co je nové od v1 (Zenodo 10.5281/zenodo.20148904)
-- GR paper: Cl^+_{1,3} opraveno, indefinitní bilinear
-- Gauge paper: Y_Q=1/6 [L1 family check] přes gravitační anomálii
-- NCG B₀ paper: B₀=8π [L1]
-- FRW [Prop.] a de Sitter limit
-- Gap G137-B: 5 NO-GO cest formálně zdokumentovány
-- CLAIMS_MATRIX: kompletní rigorózní klasifikace
+## Klíčové výsledky od v1
+- GR: Cl^+_{1,3} opraveno, indefinitní bilineár
+- SM: Y_Q=1/6 [L1 family check] via grav. anomálie
+- NCG: B₀=8π [L1]
+- Cosmo: FRW [Prop.], ΔN_eff [CONDITIONAL TENSION — g* open]
+- Gap G137-B: 5 NO-GO, [OBS 0.0066%]
+- Alpha: NOT DERIVED
 
-## Status
-PŘIPRAVENO — čeká na pokyn autora
+## Status: PŘIPRAVENO — čeká na pokyn autora

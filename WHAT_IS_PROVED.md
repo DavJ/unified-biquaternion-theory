@@ -42,6 +42,10 @@ If it is not on this list, it is not claimed as proved.
 | NO-GO5 | Eisenstein E_4(i) route for B: ratio 0.920 | [NO-GO] | `tools/eisenstein_B_check.py` |
 | EW3 | Higgs: m²_eff=-6.494 from KK scan | [MC/NUM] | `research_tracks/EW/higgs_from_theta.tex` |
 | COSMO5 | de Sitter Λ=3H² from Θ=e^{Ht}Θ₀ | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` Cor. |
+| COSMO6 | ΔN_eff: CONDITIONAL TENSION for g*=198 explicit UBT | [CONDITIONAL TENSION] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| COSMO7 | ΔN_eff: OK for g*≥389 (extended scenarios) | [CONDITIONAL OK] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |
+| EW4 | Hosotani mechanism on S¹_ψ: SSB from Wilson line | [OPEN] | `research_tracks/EW/higgs_from_theta.tex` |
+| SM11 | C2 from Dirac quantisation on T²: Y_min=1/6 | [MC/candidate] | `canonical/interactions/colour_charge_lattice.tex` |
 
 ---
 

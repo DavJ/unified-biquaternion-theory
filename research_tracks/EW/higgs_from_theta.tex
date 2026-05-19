@@ -200,18 +200,23 @@ the KK coupling ansatz and truncation are still put in by hand.
 \end{openproblembox}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Hosotani Mechanism: Alternative Route}
+\section{Hosotani mechanism on $S^1_\psi$}
 \label{sec:hosotani}
 %──────────────────────────────────────────────────────────────────────────────
 
-An alternative SSB route is the Hosotani (Wilson-line) mechanism:
-boundary conditions on $S^1_\psi$ for gauge fields $A_\psi$ generate
-an effective potential whose minimum breaks the gauge symmetry.
+The Hosotani mechanism [Hosotani 1983] generates SSB via the
+VEV of the Wilson line $\langle A_\psi\rangle\neq 0$ on $S^1_\psi$.
 
-From \texttt{research\_tracks/EW/rpsi\_from\_action.tex}~[L1 conditional],
-the Scherk--Schwarz projection gives $\lambda_{\rm eff} = g^2/2$.
-Whether the Hosotani potential minimum coincides with the electroweak
-VEV $v = 246\,\mathrm{GeV}$ is~\textbf{[OPEN]}.
+For UBT with SU(2)$_L$ gauge field $A_\psi$ on $S^1_\psi$ (radius $R$):
+\begin{equation}
+V_{\rm Hosotani}(\alpha) = -\frac{1}{2\pi R}\sum_{n\geq 1}
+\frac{\cos(n\alpha)}{n^2}
+\end{equation}
+where $\alpha = g\oint A_\psi\,d\psi$ is the Wilson line phase.
+
+This establishes a concrete SSB candidate route in the EW track.
+Whether the non-trivial minimum matches $v=246\,\mathrm{GeV}$ in
+the full UBT action remains \textbf{[OPEN]}.
 
 %──────────────────────────────────────────────────────────────────────────────
 \section{W/Z Masses: Conditional Chain}
@@ -295,7 +300,7 @@ CW benchmark ($R=1$, $\lambda=0.36$, $N_{\rm KK}=12$): $\phi_{\rm min}=0$, SSB a
 KK scan with $R_\psi=1$, $g=0.6$, $N_{\rm KK}=12$: $m_{\rm eff}^2\approx -6.494$ \textbf{[MC/NUM]}\\
 VEV $\langle\Theta_0\rangle \neq 0$: \textbf{[OPEN]} — conditional on CW computation\\
 $W/Z$ masses from SSB: \textbf{[OPEN]} — conditional on VEV\\
-Hosotani mechanism: \textbf{[OPEN]} — Hosotani potential minimum not computed\\
+Hosotani mechanism on $S^1_\psi$: \textbf{[OPEN]} — Wilson-line SSB route formulated\\
 Higgs mass 125\,GeV: \textbf{[OPEN]} (not addressed here)\\
 Gap EW-2 status: \textbf{OPEN} — negative KK scan alone is not a derivation
 \end{statusbox}
