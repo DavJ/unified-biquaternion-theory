@@ -1,3 +1,8 @@
+| GR12 | FRW N=2\dot a^2 z Cliffordovy projekce $\eta_B\to-1_2$ | [L0] | frw_from_ubt.tex §N-open |
+| GR13 | FRW $g_{00}=-1$ z N derivace | [L0] | frw_from_ubt.tex |
+| SM15 | $Q\in\mathbb{Z}$ z U(1)$_{\rm EM}$ holonomy na $S^1_\psi$ [L1 cond.] | [L1 cond. self-dual] | colour_charge_lattice.tex |
+| \alpha33 | $Z_{\rm 1loop}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$ z SU(2) twist sektory | [L0] | mellin_insertion_B.tex §mechanism |
+| \alpha34 | $B = 12^{3/2}\cdot(2\eta)^{1/4}$ z SU(2) twist + MC heat kernel | [L0+MC] | mellin_insertion_B.tex §mechanism |
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results

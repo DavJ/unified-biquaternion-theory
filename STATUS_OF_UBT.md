@@ -1,3 +1,18 @@
+## 2026-05-20 (v42 — analytické výsledky)
+
+### Nové [L0] výsledky
+- FRW N=2\dot a^2 z Cliffordovy projekce [L0]
+- Z_1loop(\tau=i) = 2 z SU(2) twist sektorů [L0]
+- B = 12^{3/2}\cdot(2\eta)^{1/4} z SU(2) twist [L0+MC]
+
+### Nové [L1 conditional]
+- Q\in\mathbb{Z} z U(1)_{\rm EM} holonomy na S^1_\psi při R\cdot\Lambda=1 [L1 cond.]
+
+### Gap G137-B stav
+- NARROWED: zbývá 1 MC krok (Mellin normalizace η)
+- Fyzikální mechanismus: η⁻²·θ₃·θ₄² z SU(2) twist sektoru [L0]
+
+### Zenodo v2 release: PŘIPRAVENO na víkend
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # STATUS_OF_UBT.md — Single Source of Truth
