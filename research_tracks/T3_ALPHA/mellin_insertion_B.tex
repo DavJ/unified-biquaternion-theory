@@ -689,6 +689,43 @@ $B_{\rm phenom}\approx 46.28$ at $0.0066\%$ remains [OBS].
 \end{tcolorbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Mock modular forms route (Zwegers/Ramanujan) --- audit}
+\label{sec:mock_modular}
+%──────────────────────────────────────────────────────────────────────────────
+
+As an additional follow-up route, test Ramanujan's mock-theta inspired
+insertion using
+\[
+f(q)=\sum_{n\ge0}\frac{q^{n^2}}{((-q;q)_n)^2},
+\qquad q=e^{-\pi}.
+\]
+Numerical evaluation with truncation \(N=50\) gives
+\[
+f(e^{-\pi})\approx 1.0397110908.
+\]
+Using the same normalization map as previous candidate routes:
+\[
+B_{\rm mock}=12^{3/2}\,f(e^{-\pi})^{1/4}\approx 41.9759.
+\]
+Compared to
+\[
+B_{\rm target}=12^{3/2}(2\eta(i))^{1/4}\approx 46.2809,
+\]
+the ratio is
+\[
+\frac{B_{\rm mock}}{B_{\rm target}}\approx 0.9070
+\]
+(\(\sim 9.30\%\) low).
+
+\begin{statusbox}
+Mock-theta value $f(e^{-\pi})$: \textbf{[NUM]}\\
+$B_{\rm mock}=12^{3/2}f(e^{-\pi})^{1/4}\approx 41.98$: \textbf{[NUM]}\\
+Comparison to $B_{\rm target}\approx46.28$: ratio $\approx 0.907$ (\(-9.30\%\))\\
+Mock modular route closes Gap G137-B: \textbf{[NO-GO \#6]}\\
+Gap G137-B status after mock-theta audit: \textbf{OPEN}
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{Summary and Gap Closure Status}
 \label{sec:summary}
 %──────────────────────────────────────────────────────────────────────────────

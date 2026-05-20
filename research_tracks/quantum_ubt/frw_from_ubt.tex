@@ -279,6 +279,54 @@ the UBT ansatz~(\ref{eq:ansatz2}) produces the FRW metric globally, which
 remains at \textbf{[Prop.]} status.
 
 %──────────────────────────────────────────────────────────────────────────────
+\section{Explicit $T_{\mu\nu}$ from UBT ansatz}
+\label{sec:explicit_tmunu}
+%──────────────────────────────────────────────────────────────────────────────
+
+For the homogeneous ansatz
+\[
+\Theta=a(t)\Theta_0,\qquad \Theta_0=\mathbf{1}_2,
+\]
+we have
+\[
+\partial_0\Theta=\dot a\,\mathbf{1}_2,\qquad
+\partial_i\Theta=0.
+\]
+Hence
+\begin{align}
+T_{00} &= \mathrm{Re}\!\left[\mathrm{Tr}\!\left(\partial_0\Theta\,
+\partial_0\Theta^\dagger\right)\right]
+= \mathrm{Re}\!\left[\mathrm{Tr}\!\left(\dot a^2\mathbf{1}_2\right)\right]
+=2\dot a^2,\\
+T_{ij} &= \mathrm{Re}\!\left[\mathrm{Tr}\!\left(\partial_i\Theta\,
+\partial_j\Theta^\dagger\right)\right]=0
+\quad\text{(no spatial gradients)}.
+\end{align}
+Define
+\[
+\rho=\frac{T_{00}}{N}=\frac{2\dot a^2}{N}.
+\]
+Inserting into the first Friedmann equation:
+\[
+\left(\frac{\dot a}{a}\right)^2=\frac{8\pi G}{3}\rho
+=\frac{16\pi G}{3N}\dot a^2.
+\]
+The ansatz-level consistency condition is therefore
+\[
+N=\frac{16\pi G}{3}.
+\]
+
+\begin{openproblembox}
+Normalization check against the GR paper:
+\texttt{papers/UBT\_GR\_Submission.tex} defines
+\(\mathcal N=|\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta|\)
+(Definition/Section 3.1 chain), i.e.\ a field-dependent metric normalization.
+The cosmology ansatz above yields an effective constant \(N\) relation.
+Matching these two normalizations beyond this reduced ansatz remains
+\textbf{[Prop. pending]}.
+\end{openproblembox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{de Sitter Limit}
 \label{sec:de_sitter}
 %──────────────────────────────────────────────────────────────────────────────
@@ -349,6 +397,7 @@ uses this background with $T_{\rm dec}\sim M_{\rm Pl}$.
 Off-diagonal $g_{0i}=0$ globally for $\Theta_0=\mathbf{1}_2$: \textbf{[Prop.]}\\
 FRW metric globally from $\Theta = a(t)e^{ix^k e_k}\Theta_0$: \textbf{[Prop.]} (Prop.~\ref{prop:frw})\\
 Friedmann equations from UBT: \textbf{[Prop.]} — via Prop.~\ref{prop:frw} and the GR chain\\
+Explicit homogeneous $T_{\mu\nu}$ for $\Theta=a(t)\Theta_0$: \textbf{[Prop. pending]} (Sec.~\ref{sec:explicit_tmunu})\\
 de Sitter limit $\Lambda=3H^2$ from $\Theta=e^{Ht}\Theta_0$: \textbf{[Prop.]} (Cor.~\ref{cor:desitter})\\
 de Sitter limit: $H^2 \sim M_{\rm Pl}^2$ (Planck-scale, as expected) [checked]\\
 Cosmological constant problem: \textbf{[OPEN]} (standard issue)\\

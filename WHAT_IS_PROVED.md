@@ -49,6 +49,17 @@ If it is not on this list, it is not claimed as proved.
 
 ---
 
+## 2026-05-20 update (v38)
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| COSMO8 | FRW explicit T_μν from UBT | [Prop. pending] | `research_tracks/quantum_ubt/frw_from_ubt.tex` |
+| EW5 | Hosotani SSB: Wilson line minimum | [OPEN/NUM] | `research_tracks/EW/higgs_from_theta.tex` |
+| SM12 | C2: Dirac quantisation Y_min=1/6 from T² periods | [MC/candidate] | `canonical/interactions/colour_charge_lattice.tex` |
+| α28 | Mock theta route for B | [OPEN — new] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex` |
+
+---
+
 ## 2026-05-18 update
 
 | # | Claim | Level | Source |

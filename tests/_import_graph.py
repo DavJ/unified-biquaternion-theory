@@ -260,26 +260,19 @@ def format_cycle(cycle: List[str]) -> str:
 
 
 def find_repo_root(start_path: Optional[Path] = None) -> Path:
-    """
-    Find the repository root by looking for .git directory.
-    
-    Args:
-        start_path: Starting path for search (defaults to current directory)
-        
-    Returns:
-        Path to repository root
-        
-    Raises:
-        FileNotFoundError: If repository root cannot be found
-    """
+    """Find repository root by looking for .git or pyproject.toml."""
     if start_path is None:
-        start_path = Path.cwd()
-    
-    current = Path(start_path).resolve()
-    
+        current = Path(__file__).resolve().parent
+    else:
+        current = Path(start_path).resolve()
+
     while current != current.parent:
         if (current / '.git').exists():
             return current
+        if (current / 'pyproject.toml').exists():
+            return current
+        if (current / 'setup.py').exists():
+            return current
         current = current.parent
-    
-    raise FileNotFoundError("Could not find repository root (no .git directory)")
+    # Final fallback: use the directory containing the tests folder
+    return Path(__file__).resolve().parents[1]

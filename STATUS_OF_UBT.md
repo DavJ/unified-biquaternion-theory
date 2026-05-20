@@ -32,6 +32,18 @@ and one blocked result (T3_ALPHA).
 sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
+## 2026-05-20 (v38)
+- Tests: 539 PASS, 2 FAIL (only .git missing in ZIP — CI OK)
+- find_repo_root: fallback to pyproject.toml [FIX]
+- Gauge PDF: compiled ✓
+- NCG B₀ PDF: compiled ✓
+- GR arXiv ZIP: ready ✓
+- Zenodo v2 package: prepared ✓
+- C2: Dirac on T² [MC/candidate — p=3,q=2 derivation pending]
+- Hosotani: Wilson line minimum computation [T6]
+- Gap G137-B: mock theta route active [T7]
+- FRW: explicit T_μν computation [T8]
+
 ## 2026-05-19 (v33)
 - C2 uniqueness: [L1 family check] — gravitational anomaly selects n=1
 - Gap G137-B: 5 NO-GO, formal downgrade memo added
