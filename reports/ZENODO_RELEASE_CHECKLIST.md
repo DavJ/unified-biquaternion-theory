@@ -25,4 +25,5 @@
 - Gap G137-B: 5 NO-GO, [OBS 0.0066%]
 - Alpha: NOT DERIVED
 
-## Status: PŘIPRAVENO — čeká na pokyn autora
+## Status: PŘIPRAVENO K ODESLÁNÍ
+Všechny soubory zkompilované a ověřené.
