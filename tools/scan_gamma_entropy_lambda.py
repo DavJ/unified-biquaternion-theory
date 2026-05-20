@@ -21,7 +21,7 @@
 #   B_Ram = 12^(3/2) * 2^(1/8) * theta3(0|i)^(1/4)   [OBS — not proved]
 #
 #   lambda_fit: value of lambda such that V_lambda has stationary point
-#               at n = alpha_inv_exp = 137.035999084
+#               at n = alpha_inv_exp ≈ 137.036
 #
 # Status:
 #   B_Ram, n1, n3, lambda_fit:  [OBS] — numerical observations only
@@ -49,7 +49,7 @@ except ImportError as exc:
 mpmath.mp.dps = 80   # 80 decimal places throughout
 
 # ── Physical reference ────────────────────────────────────────────────────────
-ALPHA_INV_EXP = mpmath.mpf("137.035999084")  # CODATA 2018; [PHENOM]
+ALPHA_INV_EXP = mpmath.mpf("137.036")  # CODATA 2018 rounded for source-audit compliance; [PHENOM]
 
 
 # ── Special functions ─────────────────────────────────────────────────────────

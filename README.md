@@ -33,6 +33,26 @@ UBT **embeds and extends GR**; it does not replace or contradict GR.
 
 ---
 
+## Multi-Channel Stability
+
+The winding-mode effective potential $V_{\rm eff}(n) = n^2 - Bn\ln n$
+has a stationary point at $n^* = e^{B/2 - 1}$.
+For $B \approx 46.28$ (numerical observation [OBS]):
+$n^* \approx 137$.
+
+This is a **channel family** observation, not a derivation:
+the potential selects a family of stable winding numbers
+depending on the value of $B$. The identification $n^*=137$
+with the fine-structure constant inverse $\alpha^{-1}$ is
+[OBS] — a motivated conjecture, not a proved result.
+
+In this sense, the effective $\alpha$ is channel-dependent.
+
+**Alpha is NOT DERIVED from first principles.**
+See `research_tracks/T3_ALPHA/` for the open Gap G137-B.
+
+---
+
 ## Repository Layers (Authority Discipline)
 
 ### `canonical/`

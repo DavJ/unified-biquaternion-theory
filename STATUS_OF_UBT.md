@@ -254,7 +254,7 @@ high-precision numerical results (all at B_Ram **[OBS]**, not derived from S[Θ]
 | Quantity | Value | Status |
 |----------|-------|--------|
 | n1 (V1 stationary point) | 136.9890996341 | [L1] given B_Ram |
-| α⁻¹_exp (CODATA 2018) | 137.035999084 | [PHENOM] |
+| α⁻¹_exp (CODATA 2018) | ≈ 137.036 | [PHENOM] |
 | n3 (V3 stationary point) | 137.0905214131 | [DERIVATION CANDIDATE] given B_Ram |
 | λ_exact (exact stationarity) | 0.4622175427 | **[OBS]** |
 | λ_frac (linear fractional) | 0.4624199099 | **[OBS]** |

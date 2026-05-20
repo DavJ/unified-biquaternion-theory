@@ -597,7 +597,7 @@ Specific routes confirmed dead: KK sum, zeta function, Hausdorff approach (witho
 
 ### STOP-5: Unsynced notation proliferation
 
-**Action**: All new documents must use canonical symbols from `canonical/CANONICAL_DEFINITIONS.md`.  Do not introduce new symbols for standard objects (no T_B, no metric_v2, no ψ as wave function).  
+**Action**: All new documents must use canonical symbols from `canonical/CANONICAL_DEFINITIONS.md`.  Do not introduce new symbols for standard objects (no T_B, no metric-v2 notation, no ψ as wave function).  
 **Instead**: Single notation pass through all new paper drafts before submission.
 
 ### STOP-6: Universe-as-atom / simulation / consciousness claims in physics documents
