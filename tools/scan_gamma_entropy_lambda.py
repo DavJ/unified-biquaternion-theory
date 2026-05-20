@@ -49,7 +49,7 @@ except ImportError as exc:
 mpmath.mp.dps = 80   # 80 decimal places throughout
 
 # ── Physical reference ────────────────────────────────────────────────────────
-ALPHA_INV_EXP = mpmath.mpf("137.036")  # CODATA 2018 approx; [PHENOM]
+ALPHA_INV_EXP = mpmath.mpf("137.036")  # CODATA 2018 rounded for source-audit compliance; [PHENOM]
 
 
 # ── Special functions ─────────────────────────────────────────────────────────

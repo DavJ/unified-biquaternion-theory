@@ -46,7 +46,7 @@ depending on the value of $B$. The identification $n^*=137$
 with the fine-structure constant inverse $\alpha^{-1}$ is
 [OBS] — a motivated conjecture, not a proved result.
 
-In this sense, $\alpha_{\mathrm{eff}}$ is channel-dependent.
+In this sense, the effective $\alpha$ is channel-dependent.
 
 **Alpha is NOT DERIVED from first principles.**
 See `research_tracks/T3_ALPHA/` for the open Gap G137-B.
