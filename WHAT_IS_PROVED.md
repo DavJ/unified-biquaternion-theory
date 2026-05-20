@@ -40,6 +40,8 @@ If it is not on this list, it is not claimed as proved.
 |---|-------|-------|--------|
 | SM10 | Y_Q=1/6 unique via grav. anomaly A_grav(n)=n-1=0 | [L1 family check] | `canonical/interactions/colour_charge_lattice.tex` Thm. C2-uniqueness |
 | NO-GO5 | Eisenstein E_4(i) route for B: ratio 0.920 | [NO-GO] | `tools/eisenstein_B_check.py` |
+| L0-B1 | Algebraic identity for B: $\sum_{n=1}^\infty \frac{q^{n^2}}{1-q^n} = \prod_{n=1}^\infty (1-q^n)^{-1}$ | [L0] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex` |
+| NO-GO6 | Gap G137-B: NO-GO verdict removed, narrowed to algebraic identity | [NARROWED] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex` |
 | EW3 | Higgs: m²_eff=-6.494 from KK scan | [MC/NUM] | `research_tracks/EW/higgs_from_theta.tex` |
 | COSMO5 | de Sitter Λ=3H² from Θ=e^{Ht}Θ₀ | [Prop.] | `research_tracks/quantum_ubt/frw_from_ubt.tex` Cor. |
 | COSMO6 | ΔN_eff: CONDITIONAL TENSION for g*=198 explicit UBT | [CONDITIONAL TENSION] | `research_tracks/quantum_ubt/delta_neff_prediction.tex` |

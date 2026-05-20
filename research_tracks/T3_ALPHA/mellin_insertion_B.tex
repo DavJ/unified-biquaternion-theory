@@ -402,21 +402,78 @@ import math
 
 %──────────────────────────────────────────────────────────────────────────────
 \subsection*{Systematický scan kombinací $\eta$, $\vartheta_2$, $\vartheta_3$, $\vartheta_4$}
+#──────────────────────────────────────────────────────────────────────────────
+
+\subsection*{Systematický scan modulárních kombinací — nový výsledek}
 %──────────────────────────────────────────────────────────────────────────────
 
-Byl proveden numerický scan všech kombinací tvaru
-$$
-B = 12^{3/2} [\eta(i)^a \vartheta_3(i)^b \vartheta_2(i)^c \vartheta_4(i)^d]^{1/4}
-$$
-pro $a+b+c+d=1$ a $a,b,c,d$ racionální v rozsahu $[-2,2]$.
+Byl proveden přesný numerický scan všech kombinací tvaru
+\[
+B = 12^{3/2} \bigl[\eta(i)^a\,\vartheta_2(i)^b\,\vartheta_3(i)^c\,
+\vartheta_4(i)^d\bigr]^{1/4}
+\]
+pro $a,b,c,d\in\{-2,-\tfrac{3}{2},-1,-\tfrac{1}{2},0,\tfrac{1}{2},1,
+\tfrac{3}{2},2\}$ (celkem $9^4 = 6561$ kombinací).
 
-\textbf{Výsledek:} Nejlepší dosažený poměr (ratio) je $0.907$ (mock theta), žádná kombinace nedává $\mathrm{ratio} < 0.001$.
+\textbf{Výsledek}: Pro $(a,b,c,d)=(-2,\,0,\,1,\,2)$ dostaneme
+$B = B_{\rm target}$ s chybou $< 10^{-13}$ (strojová přesnost):
+\[
+\boxed{B = 12^{3/2}\,\bigl[\eta(i)^{-2}\cdot\vartheta_3(0|i)
+\cdot\vartheta_4(0|i)^2\bigr]^{1/4}.}
+\]
+
+\subsection*{Algebraický důkaz identity $\eta^{-2}\vartheta_3\vartheta_4^2 = 2\eta$ při $\tau=i$}
+\label{sec:algebraic-identity}
+
+Kombinace $\eta(i)^{-2}\cdot\vartheta_3(0|i)\cdot\vartheta_4(0|i)^2$
+redukuje na $2\eta(i)$ pomocí tří standardních výsledků:
+
+\begin{enumerate}
+\item \textbf{Ramanujanovo CM:}
+$\vartheta_3(0|i) = \sqrt{2}\,\eta(i)$. \quad [\textbf{STD}]
+
+\item \textbf{Symetrie při $\tau=i$:}
+$\vartheta_4(0|i) = \vartheta_2(0|i)$. \quad [\textbf{STD}]\\
+(Plyne z definic: $\vartheta_4(0|\tau) = \sum_n(-1)^n q^{n^2}$,
+$\vartheta_2(0|\tau) = \sum_n q^{(n+1/2)^2}$; při $\tau=i$,
+$q=e^{-\pi}$ mají stejnou hodnotu.)
+
+\item \textbf{Jacobiho identita při $\tau=i$:}
+$\vartheta_2(0|i)^2 = \sqrt{2}\,\eta(i)^2$. \quad [\textbf{STD}]\\
+(Plyne z $\vartheta_2^4 + \vartheta_4^4 = \vartheta_3^4$
+a $\vartheta_3=\sqrt{2}\eta$, $\vartheta_4=\vartheta_2$ při $\tau=i$.)
+\end{enumerate}
+
+Kombinací:
+\begin{align}
+\eta(i)^{-2}\cdot\vartheta_3(0|i)\cdot\vartheta_4(0|i)^2
+&= \eta^{-2}\cdot\sqrt{2}\,\eta\cdot\sqrt{2}\,\eta^2
+\notag\\
+&= \eta^{-2}\cdot 2\eta^3 = 2\eta(i). \quad \textbf{[L0]}
+\end{align}
+
+Tedy:
+\[
+\boxed{B = 12^{3/2}\,(2\eta(i))^{1/4}. \quad \textbf{[L0 — algebraická identita]}}
+\]
+
+\begin{remark}
+Tato identita nezavírá Gap~G137-B, neboť pouze říká,
+že $B_{\rm target}$ lze vyjádřit jako $12^{3/2}(2\eta(i))^{1/4}$
+pomocí tří standardních modulárních identit.
+Zbývající otevřený problém je: \emph{proč} se právě tato kombinace
+$\eta^{-2}\vartheta_3\vartheta_4^2$ přirozeně vynoří z efektivní
+akce $S[\Theta]$ na $T^3$ při $\tau=i$.
+\end{remark}
 
 \begin{statusbox}
-Systematický scan kombinací $(\eta,\vartheta_2,\vartheta_3,\vartheta_4)$: \textbf{NO-GO}\\
-Nejlepší dosažený poměr: $0.907$ (mock theta)\\
-Žádná kombinace nedává $\mathrm{ratio} < 0.001$\\
-Gap G137-B: \textbf{[NO-GO]}
+Scan $(9^4$ kombinací$)$: nejlepší ratio $= 0$ pro
+$(\eta^{-2}\vartheta_3\vartheta_4^2)^{1/4}$\\
+Algebraická identita $\eta^{-2}\vartheta_3\vartheta_4^2 = 2\eta$ při $\tau=i$:
+\textbf{[L0]}\\
+$B = 12^{3/2}(2\eta(i))^{1/4}$: \textbf{[L0 — modulární identita]}\\
+Fyzikální původ z $S[\Theta]$: \textbf{[OPEN — Gap G137-B NARROWED]}\\
+\textbf{Alpha is NOT DERIVED.}
 \end{statusbox}
 # eta(i) = Gamma(1/4) / (2 * pi^(3/4))
 Gamma14 = 3.6256099082219083  # Gamma(1/4)
@@ -819,18 +876,22 @@ Related files:
 \item Casimir energy on $T^3$:
       \textbf{[NO-GO]} (residual factor $9.0\times10^3$)
 \item Eisenstein $E_4(i)$ modular route:
-      \textbf{[NO-GO]} (ratio $0.920$)
+  \textbf{[NO-GO]} (ratio $0.920$)
+\item Mock theta $f(e^{-\pi})$:
+  \textbf{[NO-GO]} (ratio $0.907$)
 \end{enumerate}
 
-\textbf{Current status}: Gap G137-B is \textbf{OPEN}.
-The numerical observation $B_{\rm phenom}\approx 46.28$ at
-$0.0066\%$ accuracy remains \textbf{[OBS]}.
+\textbf{New result}: The combination
+$\eta(i)^{-2}\vartheta_3(0|i)\vartheta_4(0|i)^2 = 2\eta(i)$
+is an algebraic identity [\textbf{L0}], so
+$B = 12^{3/2}(2\eta(i))^{1/4}$ [\textbf{L0}].
+The open problem is now precisely:
+\emph{derive why the combination $\eta^{-2}\vartheta_3\vartheta_4^2$
+arises from $S[\Theta]$ on $T^3$ at $\tau=i$}.
 
-\textbf{Alpha is NOT DERIVED.}
-
-\textbf{Next candidate} (if any): string-inspired modular bootstrap
-via mock modular forms or Rademacher expansion of the partition
-function. No timebox active; this is explicitly a long-term open problem.
+\textbf{Current status}: Gap G137-B is \textbf{NARROWED}
+(not NO-GO). \textbf{Alpha is NOT DERIVED.}
+\end{tcolorbox}
 \end{tcolorbox}
 
 \end{document}
