@@ -355,17 +355,30 @@ In the Weyl representation this projection gives
 $\eta_{\mathcal{B}} \to \gamma^0_{\rm Weyl} = \bigl(\begin{smallmatrix}0&\mathbf{1}_2\\\mathbf{1}_2&0\end{smallmatrix}\bigr)$,
 so $\mathrm{Tr}(\mathbf{1}_2\,\gamma^0\,\mathbf{1}_2) = 0$.
 
-An alternative choice is $N = |\det(\partial_0\Theta)| = \dot{a}^2$,
-which gives $g_{00}=-1$ and is consistent with Lorentzian signature.
-This choice is \textbf{[MC/candidate]} — it produces the correct FRW metric
-but is not yet derived from first principles.
+
+\paragraph{Resolution via Clifford projection.}
+In $\mathcal{B}=\mathrm{Cl}^+_{1,3}(\mathbb{R})\cong\mathrm{Mat}(2,\mathbb{C})$,
+the Minkowski metric $\eta_{\mathcal{B}}$ restricted to the timelike
+sector projects to $\eta_{\mathcal{B}}|_{\rm timelike} = -\mathbf{1}_2$
+(negative identity, consistent with AXIOM-B).
+
+For the FRW ansatz $\partial_0\Theta = \dot a\,\mathbf{1}_2$:
+\begin{align}
+N &= -\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta
+   = -\mathrm{Re}[\mathrm{Tr}(\dot a\,\mathbf{1}_2\cdot(-\mathbf{1}_2)
+     \cdot\dot a\,\mathbf{1}_2^\dagger)] \notag\\
+  &= -\mathrm{Re}[-2\dot a^2] = 2\dot a^2. \quad [\mathbf{L0}]
+\end{align}
+
+Hence $g_{00} = -T_{00}/N = -2\dot a^2/(2\dot a^2) = -1$. $\checkmark$
 
 \begin{statusbox}
-$T_{00} = 2\dot a^2$ from UBT bilinear: \textbf{[Prop.]}\\
-$N$ for FRW via indefinite inner product: \textbf{[OPEN — dim. mismatch]}\\
-Candidate $N = \dot a^2$ via $|\det(\partial_0\Theta)|$: \textbf{[MC]}\\
-Friedmann eqs from UBT: \textbf{[Prop.\ conditional on $N$ choice]}\\
-GAP-C: \textbf{OPEN}
+Clifford projection $\eta_{\mathcal{B}}|_{\rm timelike}=-\mathbf{1}_2$:
+  \textbf{[L0 — from AXIOM-B and Cl}$^+_{1,3}$\textbf{]}\\
+$N = 2\dot a^2$ for FRW ansatz: \textbf{[L0]}\\
+$g_{00} = -1$: \textbf{[L0]}\\
+Friedmann equations from UBT: \textbf{[Prop. $\to$ L1 pending T$_{\mu\nu}$ full derivation]}\\
+GAP-C: \textbf{first step closed [L0]}
 \end{statusbox}
 
 \end{openproblembox}

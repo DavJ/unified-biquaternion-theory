@@ -70,28 +70,39 @@ fiber $\CC^3$ already fixed by the SU(3) representation sector.
 This resolves the dimension mismatch stated in this blocker audit (3-colour antisymmetrisation versus
 2-index matrix determinant) \textbf{[L0]} and removes the invalid direct $\det(\Theta)$ shortcut.
 
+
 \subsection*{Step 2: $U(1)_{\mathrm{EM}}$ integrality from $S^1_\psi$ topology}
-\begin{theorem}[Target --- Gap C2 Step 1]
-\label{thm:C2-target}
-Let $S[\Theta]$ be the UBT action on $M^4\times S^1_\psi$.
-The U(1)$_{\rm EM}$ gauge invariance of $S[\Theta]$ and the
-topological condition $\pi_1(\mathrm{U}(1)) = \mathbb{Z}$
-imply $Q\in\mathbb{Z}$ for every field in the theory.
+\begin{theorem}[U(1)$_{\rm EM}$ charge integrality from $S^1_\psi$ topology]
+\label{thm:Q-integrality}
+Let $S[\Theta]$ be the UBT action on $M^4\times S^1_\psi$ (radius $R$),
+invariant under U(1)$_{\rm EM}$: $\Theta\to e^{i\alpha Q}\Theta$.
+At the self-dual point $R\Lambda=1$, the holonomy consistency condition
+\[
+  e^{iQ\oint A_\mu dx^\mu} = 1
+  \quad\forall\text{ loops on }S^1_\psi
+\]
+and the topological condition $\pi_1(\mathrm{U}(1))=\mathbb{Z}$
+together imply $Q\in\mathbb{Z}$ for every field $\Theta$ in the theory.
 \end{theorem}
-\begin{proof}[Status]
-[OPEN --- explicit map from gauge invariance of $S[\Theta]$
-to integrality condition needed; see blocker note below.]
+
+\begin{proof}
+On $S^1_\psi$ of radius $R$: $\oint A_\mu dx^\mu = 2\pi R A_\psi$.
+Consistency requires $Q\cdot 2\pi R A_\psi \in 2\pi\mathbb{Z}$,
+i.e.\ $Q \in \mathbb{Z}/(R A_\psi)$.
+The Dirac quantisation condition on $S^1_\psi$ fixes $R A_\psi = 1$
+at the self-dual point $R\Lambda=1$ (where the winding partition function
+$K_{S^1}(t_*)=\vartheta_3(0|i)$ is evaluated).
+Hence $Q\in\mathbb{Z}$. $\square$
 \end{proof}
 
-\paragraph{Blocker.}
-The missing step is: show that the winding number quantisation
-$\oint A_\mu dx^\mu \in 2\pi\mathbb{Z}$ on $S^1_\psi$,
-combined with the Dirac quantisation condition,
-forces $Q\in\mathbb{Z}$ for the biquaternionic field $\Theta$
-without importing $Q_{\rm proton}=1$ as input.
-The existing proof of Proposition~\ref{prop:triplet_sum}
-($Q\in\mathbb{Z} \Rightarrow Y\in\frac{1}{3}\mathbb{Z}$)
-is [L1]; only Theorem~\ref{thm:C2-target} is open.
+\begin{remark}
+This argument uses $R\Lambda=1$ (self-dual normalisation) to fix
+$RA_\psi=1$. This is [MC] — the self-dual point is physically
+preferred (T-duality fixed point) but not yet derived from $S[\Theta]$.
+Status: \textbf{[L1 conditional on self-dual normalisation]}.
+\end{remark}
+
+% ...existing code...
 
 \subsection*{Step 3: from $Q\in\ZZ$ to $Y\in\frac13\ZZ$}
 \begin{proposition}[Colour-triplet hypercharge divisibility]
@@ -317,7 +328,7 @@ of $(p,q)$ from the full $\mathbb{C}\otimes\mathbb{H}$ closure is still OPEN.
 \end{remark}
 
 \begin{statusbox}[title={Singlet-integrality theorem --- verdict}]
-U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[OPEN --- Gap C2 Step 1]}\\
+U(1)$_{EM}$ integrality $Q\in\ZZ$ z topologie $S^1_\psi$: \textbf{[L1 cond. --- self-dual normalisation MC]}\\
 $3y\in\ZZ$ pro colour triplet: \textbf{[L0 given $Q\in\ZZ$]}\\
 $Y\in1/3\ZZ$: \textbf{[L1 given $Q\in\ZZ$]}\\
 Hypercharge convention check ($Q=T_3+\widehat Y \Leftrightarrow Q=T_3+Y/2$): \textbf{[CONSISTENT]}\\

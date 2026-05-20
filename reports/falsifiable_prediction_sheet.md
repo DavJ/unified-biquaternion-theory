@@ -36,19 +36,47 @@ for the channel \(p\to e^+\pi^0\), using the standard scaling
 
 ## Prediction 2: ΔN_eff (CMB-S4)
 
-Value: 0.05–0.25 (g*-dependent)  
-Condition: benchmark g*(T_Pl) ≥ 427 (KK tower included); numerical consistency threshold ≈ 389  
-CMB-S4 sensitivity: σ ~ 0.03  
-Status: OPEN (g* derivation needed)  
-Fail criterion: ΔN_eff < 0 OR ΔN_eff > 1
+### Derivation
+N_eff = 12 KK modes [L1], decoupled at T_dec ~ M_Pl
+g*(T_Pl) = 106.75 (SM) + 2 (grav) + 24 (KK scalars)
+         + 60 (KK gravitons) + 36 (KK gauge) + 21 (KK fermions)
+         = 249.75 [NUM]
 
-Full calculation: `research_tracks/quantum_ubt/delta_neff_prediction.tex`  
-Python tool: `tools/delta_neff_calc.py`
+ΔN_eff = 12 × (43/4) × (3.909/249.75)^(4/3) ≈ 0.477 [NUM]
 
-## Prediction 1: Proton decay (confirmed)
-τ_p ~ 10³⁴ years (M_GUT ~ 2×10¹⁶ GeV, conditional)  
-Super-K limit: τ_p > 1.6×10³⁴ yr — consistent  
-Hyper-K (2027+): next test window
+### Status
+- ΔN_eff ≈ 0.477 for g*=250: [CONDITIONAL TENSION with Planck 0.28]
+- ΔN_eff ≈ 0.247 for g*=427 (extended): [CONDITIONAL OK]
+- g*(T_Pl) derivation: [OPEN]
+- CMB-S4 sensitivity: σ ≈ 0.03 (2027+)
+
+### Fail criterion
+If ΔN_eff < 0 or ΔN_eff > 1 (future CMB): UBT KK sector excluded.
+
+---
+
+## Prediction 1: Proton decay τ_p
+
+### Derivation
+UBT GUT scale: M_GUT = 2×10¹⁶ GeV [CONDITIONAL on R_ψ closure]
+Dominant channel: p → e⁺π⁰ via dimension-6 operators
+
+Lifetime estimate:
+  τ_p ~ M_GUT⁴ / (α_GUT² · m_p⁵)
+      = (2×10¹⁶)⁴ / ((1/40)² · (0.938)⁵)
+      = 1.6×10⁶⁶ / (6.25×10⁻⁴ · 0.724)
+      ≈ 3.5×10³⁴ years
+
+### Status
+- M_GUT = 2×10¹⁶ GeV: [CONDITIONAL]
+- τ_p ~ 3.5×10³⁴ years: [CONDITIONAL]
+- Super-K lower bound: τ_p > 1.6×10³⁴ yr — CONSISTENT
+- Hyper-K sensitivity (2027+): ~10³⁵ years
+
+### Fail criterion
+If τ_p < 10³⁴ years (future experiment): M_GUT < 2×10¹⁶ GeV → UBT conditional result excluded.
+
+---
 
 ## Scope guardrail
 

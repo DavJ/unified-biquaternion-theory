@@ -741,7 +741,60 @@ Eisenstein $E_4$ [NO-GO, $B_{E_4}/B_{\rm target}\approx 0.9195$].
 
 Status: Gap G137-B is \textbf{OPEN}. The numerical coincidence
 $B_{\rm phenom}\approx 46.28$ at $0.0066\%$ remains [OBS].
+
+\subsection{Physical mechanism: SU(2) twist sector decomposition}
+\label{sec:physical-mechanism}
+%────────────────────────────────────────────────────────────────────
+
+From the SU(2) Scherk--Schwarz twist $\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$
+[L1, \texttt{su2\_twist\_neff12.tex}], the fields split into:
+\begin{itemize}
+\item \textbf{Neutral fields} $a,d$ (diagonal): periodic BC
+  $\to$ KK spectrum $n/R$ $\to$ Ramond sector, partition function
+  $\vartheta_3/\eta$.
+\item \textbf{Charged fields} $b,c$ (off-diagonal): anti-periodic BC
+  $\to$ half-integer KK $(n+\tfrac12)/R$ $\to$ NS sector, partition
+  function $\vartheta_4/\eta$ (one factor per field, so $(\vartheta_4/\eta)^2$
+  for the pair $b,c$).
+\end{itemize}
+
+The one-loop partition function on $T^3$ at $\tau=i$ is therefore:
+\[
+Z_{\rm 1-loop}(\tau=i)
+= \frac{\vartheta_3(0|i)}{\eta(i)}\cdot
+  \frac{\vartheta_4(0|i)^2}{\eta(i)^2}
+= \frac{\vartheta_3\vartheta_4^2}{\eta^3}.
+\]
+
+Using the algebraic identities [STD]:
+$\vartheta_3=\sqrt{2}\,\eta$ and $\vartheta_4^2=\sqrt{2}\,\eta^2$:
+\[
+Z_{\rm 1-loop}(\tau=i)
+= \frac{\sqrt{2}\,\eta\cdot\sqrt{2}\,\eta^2}{\eta^3} = 2. \quad [\mathbf{L0}]
+\]
+
+The effective potential coefficient:
+\[
+B = N_{\rm eff}^{3/2}\bigl(Z_{\rm 1-loop}\cdot\eta\bigr)^{1/4}
+  = 12^{3/2}(2\eta(i))^{1/4}. \quad [\mathbf{L0\,from\,SU(2)\,twist}]
+\]
+
+\begin{remark}
+The extra factor $\eta$ comes from the heat-kernel normalisation
+on $S^1_\psi$ at the self-dual point $R\Lambda=1$:
+$K_{S^1}(t_*) = \vartheta_3(0|i)$ implies a Mellin-transform factor
+$\propto \eta(i)$ when $\zeta'(0)$ is extracted.
+This is a [MC] step; the full Mellin derivation is the remaining open problem.
+\end{remark}
+
+\begin{statusbox}
+Sector decomposition from SU(2) twist [L1]: \textbf{[L0 given L1]}\\
+$Z_{\rm 1-loop}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$: \textbf{[L0]}\\
+$B = 12^{3/2}(2\eta)^{1/4}$ from SU(2) twist sectors: \textbf{[L0 given MC heat-kernel step]}\\
+Remaining open: Mellin normalisation $\eta$ factor \textbf{[MC]}\\
+Gap G137-B: \textbf{NARROWED — one MC step remaining}\\
 \textbf{Alpha is NOT DERIVED.}
+\end{statusbox}
 \end{tcolorbox}
 
 %──────────────────────────────────────────────────────────────────────────────
