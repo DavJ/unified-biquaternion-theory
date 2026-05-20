@@ -255,9 +255,40 @@ Status: \textbf{[L1 family check]}, not \textbf{[L1 full uniqueness]}.
 \subsection*{Algebraická motivace: p=3, q=2 z involucí a komplexní struktury}
 %──────────────────────────────────────────────────────────────────────────────
 
+
 \begin{lemma}[p=3 from SU(3) involutions]
 The three $\mathbb{Z}_2$ involutions $\tau_1, \tau_2, \tau_3$ on $\mathcal{B}=\mathbb{C}\otimes\mathbb{H}$ generating the colour sector satisfy $\tau_1\circ\tau_2\circ\tau_3 = \mathrm{id}$, giving a $\mathbb{Z}_3$ cyclic structure with period $p=3$ [L0 from algebra].
 \end{lemma}
+
+\begin{proof}[Ověření $\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$]
+V bází $\mathcal{B}=\mathrm{Mat}(2,\mathbb{C})$ jsou tři involuce
+definovány jako
+\[
+\tau_k(\Theta) = \sigma_k\,\Theta\,\sigma_k,
+\quad k=1,2,3,
+\]
+kde $\sigma_k$ jsou Pauliho matice.
+Pak pro libovolné $\Theta\in\mathcal{B}$:
+\[
+(\tau_1\circ\tau_2\circ\tau_3)(\Theta)
+= \sigma_1\sigma_2\sigma_3\,\Theta\,\sigma_3\sigma_2\sigma_1.
+\]
+Používáme $\sigma_1\sigma_2\sigma_3 = i\mathbf{1}_2$ (standardní identita
+Pauliho matic):
+\[
+= (i\mathbf{1}_2)\,\Theta\,(i\mathbf{1}_2)^\dagger
+= i\Theta\,(-i) = \Theta. \quad \checkmark
+\]
+Tedy $\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$ \textbf{[L0]}.
+\end{proof}
+
+\begin{remark}
+Identita $\sigma_1\sigma_2\sigma_3=i\mathbf{1}_2$ plyne z
+$\sigma_1\sigma_2=i\sigma_3$ a $\sigma_3^2=\mathbf{1}_2$.
+Proto $\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$ je přesná
+algebraická identita nad $\mathrm{Mat}(2,\mathbb{C})$.
+Tím je Z₃ cyklická struktura s periodou $p=3$ etablována \textbf{[L0]}.
+\end{remark}
 
 \begin{lemma}[q=2 from complex structure]
 The complex conjugation $z\mapsto\bar z$ on $\mathbb{C}\subset\mathcal{B}$ generates a $\mathbb{Z}_2$ symmetry with period $q=2$ [L0 from algebra].

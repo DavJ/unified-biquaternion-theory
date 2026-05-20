@@ -33,6 +33,24 @@ sequencing are maintained in `ROADMAP.md` under
 `Implemented Top-10 Priority/Gaps Program (Execution-Control Layer)`.
 
 
+## 2026-05-21 (v41 — opravy a nové výsledky)
+
+### Opraveno
+- Gap G137-B: chybný NO-GO odstraněn, starý blok smazán
+- Status: NARROWED (ne NO-GO)
+- Algebraická identita η⁻²·θ₃·θ₄² = 2η(i) [L0] zapsána
+
+### Nové výsledky
+- Weinberg RG: 1-loop výsledek 0.185, 2-loop [STD] 0.231
+- FRW N konzistence: dimenzionální problém formalizován [OPEN]
+- Gap G137-B minimální teorém: přesná formulace zbývajícího kroku
+- τ₁∘τ₂∘τ₃=id ověřeno z Pauliho matic [L0]
+
+### Zbývá
+- Gap G137-B: odvodit proč η⁻²·θ₃·θ₄² z S[Θ] na T³ při τ=i
+- FRW N: fixovat dimenzionální projekci η_B → spinorový prostor
+- C2 Step 1: plný důkaz p=3,q=2 z ℂ⊗ℍ
+
 ## 2026-05-20 (v39)
 - Tests: 539 PASS, 2 FAIL (only .git missing in ZIP — CI OK)
 - find_repo_root: fallback to pyproject.toml [FIX]

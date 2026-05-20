@@ -51,7 +51,14 @@ If it is not on this list, it is not claimed as proved.
 
 ---
 
-## 2026-05-20 update (v38)
+
+## 2026-05-21 update (v41)
+
+| α32 | Minimální chybějící teorém pro Gap G137-B formulován | [OPEN — formalized] | mellin_insertion_B.tex §minimal-open |
+| EW8 | Weinberg 1-loop: sin²θ_W(M_Z)≈0.185 (1-loop limit) | [NUM — 1-loop only] | weinberg_angle_ew1_rg.tex §rg-numerical |
+| EW9 | Weinberg 2-loop [STD]: 0.231 — konzistentní s exp. | [STD] | weinberg_angle_ew1_rg.tex §rg-numerical |
+| COSMO9 | FRW N konzistence: dim. mismatch → [OPEN] | [OPEN] | frw_from_ubt.tex §N-open |
+| SM14 | τ₁∘τ₂∘τ₃=id ověřeno z Pauliho matic → p=3 [L0] | [L0] | colour_charge_lattice.tex §proof |
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|

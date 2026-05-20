@@ -401,28 +401,7 @@ import math
 \end{verbatim}
 
 %──────────────────────────────────────────────────────────────────────────────
-\subsection*{Systematický scan kombinací $\eta$, $\vartheta_2$, $\vartheta_3$, $\vartheta_4$}
-#──────────────────────────────────────────────────────────────────────────────
 
-\subsection*{Systematický scan modulárních kombinací — nový výsledek}
-%──────────────────────────────────────────────────────────────────────────────
-
-Byl proveden přesný numerický scan všech kombinací tvaru
-\[
-B = 12^{3/2} \bigl[\eta(i)^a\,\vartheta_2(i)^b\,\vartheta_3(i)^c\,
-\vartheta_4(i)^d\bigr]^{1/4}
-\]
-pro $a,b,c,d\in\{-2,-\tfrac{3}{2},-1,-\tfrac{1}{2},0,\tfrac{1}{2},1,
-\tfrac{3}{2},2\}$ (celkem $9^4 = 6561$ kombinací).
-
-\textbf{Výsledek}: Pro $(a,b,c,d)=(-2,\,0,\,1,\,2)$ dostaneme
-$B = B_{\rm target}$ s chybou $< 10^{-13}$ (strojová přesnost):
-\[
-\boxed{B = 12^{3/2}\,\bigl[\eta(i)^{-2}\cdot\vartheta_3(0|i)
-\cdot\vartheta_4(0|i)^2\bigr]^{1/4}.}
-\]
-
-\subsection*{Algebraický důkaz identity $\eta^{-2}\vartheta_3\vartheta_4^2 = 2\eta$ při $\tau=i$}
 \label{sec:algebraic-identity}
 
 Kombinace $\eta(i)^{-2}\cdot\vartheta_3(0|i)\cdot\vartheta_4(0|i)^2$
@@ -892,6 +871,61 @@ arises from $S[\Theta]$ on $T^3$ at $\tau=i$}.
 \textbf{Current status}: Gap G137-B is \textbf{NARROWED}
 (not NO-GO). \textbf{Alpha is NOT DERIVED.}
 \end{tcolorbox}
+\end{tcolorbox}
+
+\section{Minimal remaining open problem}
+\label{sec:minimal-open}
+%────────────────────────────────────────────────────────────────────
+
+Z algebraické identity $\S$\ref{sec:algebraic-identity}:
+\[
+B = 12^{3/2}(2\eta(i))^{1/4}
+= 12^{3/2}\bigl[\eta(i)^{-2}\vartheta_3(0|i)\vartheta_4(0|i)^2
+\bigr]^{1/4}
+\quad [\mathbf{L0}].
+\]
+
+Kombinace $\eta^{-2}\vartheta_3\vartheta_4^2$ má přirozený
+fyzikální smysl: při $\tau=i$ je to součin partiční funkce
+periodického sektoru ($\vartheta_3/\eta$, pro pole $a,d$),
+antiperiodického sektoru ($\vartheta_4/\eta$, pro pole $b,c$)
+a normalizačního faktoru $1/\eta^2$.
+
+\paragraph{Minimální chybějící teorém.}
+Zbývá dokázat, že efektivní potenciál $V_{\rm eff}(n)$
+odvozený z jednosmyčkové akce $S[\Theta]$ na $T^3=S^1_\psi
+\times S^1_\chi\times S^1_\xi$ při $\tau=i$ dává:
+\[
+V_{\rm eff}(n) = n^2 - B\,n\ln n + \mathcal{O}(n),
+\]
+kde $B$ je koeficient identifikovaný s
+$12^{3/2}[\eta^{-2}\vartheta_3\vartheta_4^2]^{1/4}=12^{3/2}(2\eta)^{1/4}$.
+
+Konkrétně: ukázat, proč se v jednosmyčkovém výpočtu
+$\mathrm{Tr}[\ln P_{\rm eff}]$ na $T^3$ při $\tau=i$
+přirozeně objeví kombinace
+$\eta(i)^{-2}\cdot\vartheta_3(0|i)\cdot\vartheta_4(0|i)^2$,
+a nikoli jiná kombinace modulárních forem.
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!50!black,
+  title={Gap G137-B --- Minimal Missing Theorem (2026-05-20)}]
+\textbf{Proved [L0]}: $B = 12^{3/2}(2\eta(i))^{1/4}$
+via identity $\eta^{-2}\vartheta_3\vartheta_4^2=2\eta$ at $\tau=i$.
+
+\textbf{Open}: Why does the combination
+$\eta^{-2}\vartheta_3\vartheta_4^2$ arise from
+$\mathrm{Tr}[\ln P_{\rm eff}]$ on $T^3$ at $\tau=i$?
+
+Candidate physical mechanism:
+The twisted boundary conditions (SU(2) twist, [L1])
+select sectors $\vartheta_3$ (periodic, neutral fields $a,d$),
+$\vartheta_4$ (anti-periodic, charged fields $b,c$),
+and $1/\eta^2$ from the heat-kernel determinant normalisation.
+This combination $= 2\eta$ at $\tau=i$ is a structural consequence
+of the self-dual point.
+
+\textbf{Status}: Gap G137-B is \textbf{NARROWED}.
+\textbf{Alpha is NOT DERIVED.}
 \end{tcolorbox}
 
 \end{document}

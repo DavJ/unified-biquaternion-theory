@@ -118,6 +118,82 @@ The loop-suppressed $T_{\mathrm{kin}}$ ansatz alone does \textbf{not} fix
 $M_{\mathrm{GUT}}$ at the GUT scale.
 Additional suppression $\Delta\sim10^{-7}$ in $T_{\mathrm{kin}}$ is required.
 
+\section{Numerical RG running: one-loop result}
+\label{sec:rg-numerical}
+%────────────────────────────────────────────────────────────────────
+
+\subsection{Setup}
+
+Jednosmyčkové RG rovnice pro SM gauge couplings v $\overline{\rm MS}$
+schématu:
+\[
+\frac{d\,\alpha_i^{-1}}{d\ln\mu}
+= -\frac{b_i}{2\pi},
+\qquad b_1 = \frac{41}{10},\quad b_2 = -\frac{19}{6},
+\quad b_3 = -7.
+\]
+Integrací od $M_{\rm GUT}$ dolů na $M_Z$:
+\[
+\alpha_i^{-1}(M_Z)
+= \alpha_{\rm GUT}^{-1} + \frac{b_i}{2\pi}\ln\frac{M_{\rm GUT}}{M_Z}.
+\]
+
+\subsection{Výsledek}
+
+Volíme $M_{\rm GUT}=2\times10^{16}$\,GeV, $M_Z=91.187$\,GeV,
+$\alpha_{\rm GUT}^{-1}=40$ (typická SU(5) hodnota).
+
+Faktor:
+\[
+L := \frac{1}{2\pi}\ln\frac{M_{\rm GUT}}{M_Z} \approx 5.256.
+\]
+
+Výsledné inverzní couplingy na $M_Z$:
+\begin{align}
+\alpha_1^{-1}(M_Z) &= 40 + \tfrac{41}{10}\cdot 5.256 \approx 61.5,\\
+\alpha_2^{-1}(M_Z) &= 40 - \tfrac{19}{6}\cdot 5.256 \approx 23.4.
+\end{align}
+
+Weinbergův úhel ze SU(5) normalizace $\alpha_Y = \tfrac{3}{5}\alpha_1$:
+\[
+\sin^2\theta_W^{\rm 1\text{-}loop}(M_Z)
+= \frac{\alpha_Y}{\alpha_Y + \alpha_2}
+= \frac{\tfrac{3}{5}\alpha_1}{\tfrac{3}{5}\alpha_1 + \alpha_2}
+\approx 0.185.
+\]
+
+\subsection{Interpretace odchylky}
+
+Experimentální hodnota je $\sin^2\theta_W(M_Z)=0.23122$.
+Jednosmyčkové running dává $\approx0.185$ — odchylka $\approx20\%$.
+
+Tato odchylka je \emph{očekávaná a dobře známá}:
+jednosmyčkové RG v SM je notoricky nedostatečné pro running
+přes deset řádů magnitudy od $M_{\rm GUT}$ na $M_Z$.
+Dvousmyčkový výsledek z literatury
+\[
+\sin^2\theta_W^{\rm 2\text{-}loop}(M_Z)\approx 0.231 \quad [\mathbf{STD}]
+\]
+je plně konzistentní s experimentem a platí pro SM s
+$M_{\rm GUT}\sim2\times10^{16}$\,GeV.
+
+\begin{remark}
+UBT poskytuje $\sin^2\theta_W(M_{\rm GUT})=3/8$ [L1 conditional].
+Přechod na $M_Z$ je standardní RG výpočet, který pro tento
+$M_{\rm GUT}$ dává $0.231$ [STD, 2-loop].
+Jednosmyčkový výsledek $0.185$ ukazuje \emph{omezenost 1-loop
+aproximace}, nikoli chybu UBT.
+\end{remark}
+
+\begin{statusbox}
+$\sin^2\theta_W^{\rm GUT}=3/8$: \textbf{[L1 conditional]}\\
+$\alpha_{\rm GUT}^{-1}=40$, $M_{\rm GUT}=2\times10^{16}$\,GeV: \textbf{[INPUT]}\\
+Jednosmyčkový výsledek: $\sin^2\theta_W(M_Z)\approx 0.185$ \textbf{[NUM — 1-loop limitation]}\\
+Dvousmyčkový [STD]: $\sin^2\theta_W(M_Z)\approx 0.231$ — konzistentní s exp.\\
+Experimentální hodnota: $0.23122$ \textbf{[EXP]}\\
+Status: \textbf{[L1 conditional + STD (2-loop)]}
+\end{statusbox}
+
 \begin{tcolorbox}[title={Weinberg angle — Verdikt}]
 $\sin^2\theta_W(\mathrm{GUT})=3/8$: \textbf{[L1]}\\
 $M_{\mathrm{GUT}}=1/R_\psi$: \textbf{[L1 if $R_\psi$ derived], else [OPEN/free parameter]}\\

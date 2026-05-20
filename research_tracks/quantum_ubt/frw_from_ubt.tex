@@ -324,6 +324,50 @@ Normalization check against the GR paper:
 The cosmology ansatz above yields an effective constant \(N\) relation.
 Matching these two normalizations beyond this reduced ansatz remains
 \textbf{[Prop. pending]}.
+
+\subsection{Open problem: normalisation $N$ for FRW ansatz}
+\label{sec:N-open}
+%────────────────────────────────────────────────────────────────────
+
+Normalisation $N$ is defined in the GR paper (Definition~3.1) as
+\[
+N := -\langle \partial_0\Theta,\,\partial_0\Theta\rangle_\eta,
+\qquad
+\langle A,B\rangle_\eta
+:= \mathrm{Re}[\mathrm{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)],
+\]
+where $\eta_{\mathcal{B}}=\mathrm{diag}(-1,+1,+1,+1)$ is the
+Minkowski metric embedded in $\mathcal{B}=\mathrm{Mat}(2,\mathbb{C})$.
+
+For the FRW ansatz $\Theta = a(t)\mathbf{1}_2$:
+\[
+\partial_0\Theta = \dot{a}\,\mathbf{1}_2 \in \mathrm{Mat}(2,\mathbb{C}).
+\]
+
+\paragraph{Dimensional mismatch.}
+$\mathbf{1}_2$ is a $2\times2$ matrix, while $\eta_{\mathcal{B}}$
+acts as a $4\times4$ operator on the Dirac spinor space.
+The trace $\mathrm{Tr}(\mathbf{1}_2\,\eta_{\mathcal{B}}\,\mathbf{1}_2^\dagger)$
+requires a projection of $\eta_{\mathcal{B}}$ onto the
+spinor representation of $\mathcal{B}$.
+
+In the Weyl representation this projection gives
+$\eta_{\mathcal{B}} \to \gamma^0_{\rm Weyl} = \bigl(\begin{smallmatrix}0&\mathbf{1}_2\\\mathbf{1}_2&0\end{smallmatrix}\bigr)$,
+so $\mathrm{Tr}(\mathbf{1}_2\,\gamma^0\,\mathbf{1}_2) = 0$.
+
+An alternative choice is $N = |\det(\partial_0\Theta)| = \dot{a}^2$,
+which gives $g_{00}=-1$ and is consistent with Lorentzian signature.
+This choice is \textbf{[MC/candidate]} — it produces the correct FRW metric
+but is not yet derived from first principles.
+
+\begin{statusbox}
+$T_{00} = 2\dot a^2$ from UBT bilinear: \textbf{[Prop.]}\\
+$N$ for FRW via indefinite inner product: \textbf{[OPEN — dim. mismatch]}\\
+Candidate $N = \dot a^2$ via $|\det(\partial_0\Theta)|$: \textbf{[MC]}\\
+Friedmann eqs from UBT: \textbf{[Prop.\ conditional on $N$ choice]}\\
+GAP-C: \textbf{OPEN}
+\end{statusbox}
+
 \end{openproblembox}
 
 %──────────────────────────────────────────────────────────────────────────────
