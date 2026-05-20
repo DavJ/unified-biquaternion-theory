@@ -7,6 +7,10 @@ import pytest
 
 from ubt.spectral.laplacian_torus import heat_kernel_exact, zeta_prime_0_torus
 
+# Conservative sanity bound for this scaffold check: we only require
+# finite negative zeta'(0) and reject numerically unstable blow-ups.
+MAX_EXPECTED_ZETA_PRIME_MAGNITUDE = 1e6
+
 
 def test_heat_kernel_self_dual():
     """K_{T^3}(t=pi) at R=1 should equal theta3(0|i)^3."""
@@ -14,6 +18,7 @@ def test_heat_kernel_self_dual():
     k_val = heat_kernel_exact(math.pi, R=1.0)  # t=pi -> tau=i
     th3_i = float(mpmath.re(mpmath.jtheta(3, 0, mpmath.exp(-mpmath.pi))))
     expected = th3_i**3
+    assert expected > 0
     assert abs(k_val - expected) / expected < 1e-6
 
 
@@ -21,4 +26,4 @@ def test_zeta_prime_0_finite():
     """zeta'(0) should be finite and negative."""
     zp = zeta_prime_0_torus(R=1.0)
     assert zp < 0
-    assert abs(zp) < 1e6
+    assert abs(zp) < MAX_EXPECTED_ZETA_PRIME_MAGNITUDE

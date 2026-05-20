@@ -274,5 +274,11 @@ def find_repo_root(start_path: Optional[Path] = None) -> Path:
         if (current / 'setup.py').exists():
             return current
         current = current.parent
-    # Final fallback: use the directory containing the tests folder
-    return Path(__file__).resolve().parents[1]
+    # Final fallback for ZIP-style extracts without VCS metadata:
+    # assumes this file lives under <repo_root>/tests/_import_graph.py.
+    # If this file is moved, this fallback must be updated accordingly.
+    candidate = Path(__file__).resolve().parents[1]
+    if (candidate / '.git').exists() or (candidate / 'pyproject.toml').exists() or (candidate / 'setup.py').exists():
+        return candidate
+    # Best-effort fallback for stripped archives where marker files are absent.
+    return candidate
