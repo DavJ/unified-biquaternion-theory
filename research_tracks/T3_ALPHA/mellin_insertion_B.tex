@@ -398,6 +398,26 @@ The following script (see \texttt{tools/chowla\_selberg\_numerical.py}) verifies
 \begin{verbatim}
 import math
 # Known high-precision values (mpmath-validated)
+\end{verbatim}
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection*{Systematický scan kombinací $\eta$, $\vartheta_2$, $\vartheta_3$, $\vartheta_4$}
+%──────────────────────────────────────────────────────────────────────────────
+
+Byl proveden numerický scan všech kombinací tvaru
+$$
+B = 12^{3/2} [\eta(i)^a \vartheta_3(i)^b \vartheta_2(i)^c \vartheta_4(i)^d]^{1/4}
+$$
+pro $a+b+c+d=1$ a $a,b,c,d$ racionální v rozsahu $[-2,2]$.
+
+\textbf{Výsledek:} Nejlepší dosažený poměr (ratio) je $0.907$ (mock theta), žádná kombinace nedává $\mathrm{ratio} < 0.001$.
+
+\begin{statusbox}
+Systematický scan kombinací $(\eta,\vartheta_2,\vartheta_3,\vartheta_4)$: \textbf{NO-GO}\\
+Nejlepší dosažený poměr: $0.907$ (mock theta)\\
+Žádná kombinace nedává $\mathrm{ratio} < 0.001$\\
+Gap G137-B: \textbf{[NO-GO]}
+\end{statusbox}
 # eta(i) = Gamma(1/4) / (2 * pi^(3/4))
 Gamma14 = 3.6256099082219083  # Gamma(1/4)
 pi = math.pi

@@ -1,0 +1,9 @@
+{
+  "alpha": 0.0072973525643,
+  "electron_g_minus_2": 0.00231930436256,
+  "electron_mass": 9.1093837015e-31,
+  "muon_mass": 1.883531627e-28,
+  "proton_mass": 1.67262192369e-27,
+  "source": "CODATA recommended values",
+  "version_date": "2022-06"
+}
