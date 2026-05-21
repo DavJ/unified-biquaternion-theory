@@ -55,26 +55,39 @@ If ΔN_eff < 0 or ΔN_eff > 1 (future CMB): UBT KK sector excluded.
 
 ---
 
-## Prediction 1: Proton decay τ_p
+## Prediction 1: Proton decay τ_p (channel p → e⁺π⁰)
 
-### Derivation
-UBT GUT scale: M_GUT = 2×10¹⁶ GeV [CONDITIONAL on R_ψ closure]
-Dominant channel: p → e⁺π⁰ via dimension-6 operators
+### Derivation (exact)
+Parameters:
+- M_GUT = 2×10¹⁶ GeV [CONDITIONAL on UBT EW-1b]
+- α_GUT = 1/40 (SU(5) unification coupling)
+- m_p = 0.938 GeV
 
-Lifetime estimate:
-  τ_p ~ M_GUT⁴ / (α_GUT² · m_p⁵)
-      = (2×10¹⁶)⁴ / ((1/40)² · (0.938)⁵)
-      = 1.6×10⁶⁶ / (6.25×10⁻⁴ · 0.724)
-      ≈ 3.5×10³⁴ years
+Proton lifetime from dimension-6 operators:
+```
+τ_p [GeV⁻¹] = M_GUT⁴ / (α_GUT² × m_p⁵)
+             = (2×10¹⁶)⁴ / ((1/40)² × (0.938)⁵)
+             = 3.526×10⁶⁸ GeV⁻¹
+
+τ_p [s] = 3.526×10⁶⁸ × ħ = 3.526×10⁶⁸ × 6.582×10⁻²⁵ s·GeV
+        = 2.32×10⁴⁴ s
+
+τ_p [years] = 2.32×10⁴⁴ / (3.156×10⁷) ≈ 7.4×10³⁶ years
+```
 
 ### Status
-- M_GUT = 2×10¹⁶ GeV: [CONDITIONAL]
-- τ_p ~ 3.5×10³⁴ years: [CONDITIONAL]
-- Super-K lower bound: τ_p > 1.6×10³⁴ yr — CONSISTENT
-- Hyper-K sensitivity (2027+): ~10³⁵ years
+- τ_p ~ 7.4×10³⁶ years [CONDITIONAL on M_GUT]
+- Super-Kamiokande lower bound: τ_p > 1.6×10³⁴ years [EXP]
+- **CONSISTENT** (UBT prediction above experimental limit)
+- Hyper-Kamiokande sensitivity (2027+): ~10³⁵ years
 
 ### Fail criterion
-If τ_p < 10³⁴ years (future experiment): M_GUT < 2×10¹⁶ GeV → UBT conditional result excluded.
+τ_p < 10³⁴ years (future experiment) → M_GUT < 2×10¹⁶ GeV
+→ UBT EW-1b conditional result excluded.
+
+### Note
+The standard SU(5) prediction gives τ_p ~ 10³¹ years (excluded by
+Super-K). UBT predicts longer lifetime due to higher M_GUT.
 
 ---
 

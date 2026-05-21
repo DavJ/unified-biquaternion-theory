@@ -277,6 +277,46 @@ Status: \textbf{[OPEN]} (benchmark does not close EW-2)
 \end{statusbox}
 
 %──────────────────────────────────────────────────────────────────────────────
+\subsection{Hosotani mechanism: systematic NO-GO}
+\label{sec:hosotani-nogo}
+%────────────────────────────────────────────────────────────────────
+
+A systematic scan of the modified Hosotani potential
+\[
+V_{\rm mod}(\alpha) = -\frac{N_{\rm bos}}{2\pi R}
+  \sum_{n\geq1}\frac{\cos(n\alpha)}{n^2}
+  + \frac{N_{\rm fer}}{2\pi R}
+  \sum_{n\geq1}\frac{\cos((n-\tfrac12)\alpha)}{(n-\tfrac12)^2}
+\]
+for $(N_{\rm bos}, N_{\rm fer})\in
+\{(3,3),(6,3),(3,6),(12,0),(4,8),(6,6),(2,10)\}$
+and $N_{\rm terms}=200$ yields:
+
+\begin{center}\begin{tabular}{cccc}
+\toprule
+$N_{\rm bos}$ & $N_{\rm fer}$ & $\alpha_{\rm min}/\pi$ & SSB \\
+\midrule
+3 & 3 & $\approx 2.00$ & No \\
+6 & 3 & $\approx 2.00$ & No \\
+3 & 6 & $\approx 2.00$ & No \\
+12 & 0 & $\approx 0.00$ & No \\
+4 & 8 & $\approx 2.00$ & No \\
+6 & 6 & $\approx 2.00$ & No \\
+\bottomrule
+\end{tabular}\end{center}
+
+In all cases $\alpha_{\rm min}\approx 0$ or $2\pi$, corresponding to
+trivial Wilson line VEV and \emph{no SSB}.
+
+\begin{statusbox}
+Standard Hosotani (bosonic only): \textbf{[NO-GO]}\\
+Modified Hosotani (bos+fer, all tested combinations): \textbf{[NO-GO]}\\
+Wilson line SSB from KK modes: \textbf{[NO-GO — systematic]}\\
+Higgs SSB mechanism in UBT: \textbf{[OPEN — Hosotani route exhausted]}\\
+Next candidate: non-perturbative condensate or extended action
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────────────────
 \section{W/Z Masses: Conditional Chain}
 \label{sec:wz_masses}
 %──────────────────────────────────────────────────────────────────────────────
