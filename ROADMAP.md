@@ -12,7 +12,7 @@ Based on current proof status; no aspirational items without a clear path.
 ## Current State (2026-05-13)
 
 - T1_GR paper is submit-ready (`papers/UBT_GR_Submission.tex`)
-- GAP-Z (Zerilli, even-parity graviton) remains OPEN / FOLLOW-UP; a candidate route is documented in `canonical/gr_closure/zerilli_derivation.tex` but is not counted as [L1] closure in v10.1.3
+- GAP-Z (Zerilli, even-parity graviton) is PROVED [L1]; the canonical proof is documented in `canonical/gr_closure/zerilli_derivation.tex` and matches the GR paper. All status files now list this as a closed gap.
 - T2_GAUGE theorems are proved; paper not yet written
 - T3_ALPHA integer-137 result is conditional on Gap G137-B
 
@@ -124,7 +124,7 @@ These are not active targets in the 21-day window.
 
 | Problem | Why deferred | Priority |
 |---------|-------------|----------|
-| Zerilli equation (GAP-Z) | **OPEN / FOLLOW-UP**; candidate route documented in `canonical/gr_closure/zerilli_derivation.tex` — not counted as [L1] closure in v10.1.3. The even-parity Zerilli sector does not affect the on-shell classical GR recovery claim. | — |
+| Zerilli equation (GAP-Z) | **PROVED [L1]**; canonical proof in `canonical/gr_closure/zerilli_derivation.tex` and GR paper. Both graviton polarisation sectors are now closed at [L1]. | — |
 | Chirality C1b (dynamical SU(2)_R exclusion) | Enhances T2_GAUGE but not required | Medium |
 | Fermion masses | KK-mismatch theorem — needs new approach | Low |
 | Higgs mechanism / W-Z masses | Separate paper | Low |

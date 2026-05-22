@@ -94,7 +94,7 @@ Dead end                 → [DEAD]                → state as dead end explici
 | N_eff = 12 is a motivated mode-counting candidate, currently OPEN/[MC]. | OPEN/[MC] | `canonical/n_eff/step2_AUDIT.tex` |
 | Weinberg angle sin²θ_W from UBT | [DEAD for pure algebra; OPEN/COND for EW-1b] | No-go for pure algebra: algebra cannot fix g'/g; EW-1b branch remains conditional |
 | Fermion mass hierarchy | [OPEN] | Hard; known obstruction (KK mismatch) |
-| Zerilli equation (GAP-Z) | OPEN / FOLLOW-UP | GAP-Z remains OPEN / FOLLOW-UP in this release. The even-parity Zerilli sector is tracked as bounded follow-up and does not affect the on-shell classical GR recovery claim. |
+| Zerilli equation (GAP-Z) | PROVED [L1] | Canonical proof in `canonical/gr_closure/zerilli_derivation.tex` and GR paper. Both graviton polarisation sectors are now closed at [L1]. |
 | Dark sector p-adic extension | [L3] | Route identified; not attempted |
 | Consciousness / psychons | [L4] | Speculative; frozen in speculative_extensions/ |
 
