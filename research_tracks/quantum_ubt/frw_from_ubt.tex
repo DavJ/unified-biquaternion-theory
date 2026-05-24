@@ -318,6 +318,42 @@ N=\frac{16\pi G}{3}.
 
 \begin{openproblembox}
 Normalization check against the GR paper:
+\subsection{De Sitter as exact UBT solution}
+\label{sec:desitter-exact}
+%────────────────────────────────────────────────────────────────────
+
+From the Clifford projection $N = 2\dot a^2$ [L0] and
+$T_{00} = 2\dot a^2$:
+\[
+\rho = \frac{T_{00}}{N} = \frac{2\dot a^2}{2\dot a^2} = 1
+\quad [\mathbf{L0, Planck units}].
+\]
+
+Inserting into the Friedmann equation
+$H^2 = \tfrac{8\pi G}{3}\rho$ gives:
+\[
+H^2 = \frac{8\pi G}{3} \quad\Rightarrow\quad
+\Lambda = 3H^2 = 8\pi G \quad [\mathbf{Prop.}]
+\]
+
+This is the \emph{de Sitter solution} with cosmological constant
+$\Lambda = 8\pi G$ (in Planck units).
+
+\begin{remark}
+The ansatz $\Theta = a(t)\mathbf{1}_2$ gives $\rho = 1 = \mathrm{const}$,
+which corresponds to a cosmological constant, not matter or radiation.
+For a realistic FRW cosmology with $\rho\propto a^{-n}$, a
+spatially-dependent ansatz (e.g.\ $\Theta = a(t)\,e^{ix^k e_k}\Theta_0$
+with time-varying $\Theta_0$) is required.
+This remains \textbf{[OPEN]}.
+\end{remark}
+
+\begin{statusbox}
+$\rho = T_{00}/N = 1$ (Planck units): \textbf{[L0]}\\
+De Sitter $\Lambda = 8\pi G$ from $\Theta = a(t)\mathbf{1}_2$: \textbf{[Prop.]}\\
+Radiation/matter FRW: \textbf{[OPEN — spatially-dep. ansatz needed]}\\
+GAP-C first step: \textbf{[L0 — N and g$_{00}$ proved]}
+\end{statusbox}
 \textit{UBT\_GR\_Submission} (Section 3.1 metric chain) defines
 \(\mathcal N=|\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta|\)
 (Definition/Section 3.1 chain), i.e.\ a field-dependent metric normalization.
