@@ -63,17 +63,13 @@ analysis problem when the on-shell classical claim is self-contained.
 
 ### GAP-Z: Zerilli Equation (Even-Parity Graviton)
 
-**Classification**: [L2] — open problem, does not block submission  
-**Status**: The odd-parity Regge-Wheeler equation (Theorem 5.1) is proved.
-The even-parity Zerilli equation has not been derived from UBT.
+**Classification**: **PROVED [L1]** — gap closed 2026-05-13
+**Canonical proof**: `canonical/gr_closure/zerilli_derivation.tex`
+**Status**: Both graviton polarisation sectors are now proved at [L1]:
+- Odd-parity (Regge-Wheeler): `papers/UBT_GR_Submission.tex` Theorem 5.1
+- Even-parity (Zerilli): `canonical/gr_closure/zerilli_derivation.tex`
 
-**Precise missing step**: Mode decomposition of the even-parity $\Theta$ sector;
-Chandrasekhar's transformation between Regge-Wheeler and Zerilli potentials.
-
-**Paper action**: Stated in §5/§6 with a two-step closing strategy.
-The odd-parity result is the GW astronomy-relevant sector (LIGO/Virgo).
-
-**Probability of causing rejection**: Very low if stated as above.
+This gap is no longer open.  See `WHAT_IS_PROVED.md §G15` for the canonical record.
 
 ---
 
@@ -125,7 +121,7 @@ floating-point precision ($< 10^{-15}$ relative error).
 | Item | Risk of rejection if handled as above |
 |------|---------------------------------------|
 | GAP-10 (off-shell) | **Very low** — honest open statement with obstruction map |
-| GAP-Z (Zerilli) | **Very low** — odd-parity proved; even-parity future work |
+| GAP-Z (Zerilli) | **Zero** — **PROVED [L1]**; both graviton sectors closed |
 | ED-1 (notation) | **Zero** — resolved |
 | ED-2 (Regge-Wheeler source) | **Zero** — resolved |
 | ED-3 (numerical table) | **Zero** — resolved |
@@ -141,7 +137,7 @@ floating-point precision ($< 10^{-15}$ relative error).
 - [x] Notation unified (ED-1 resolved)
 - [x] Numerical table in Appendix B
 - [x] GAP-10 stated with full obstruction map in §6
-- [x] GAP-Z stated with closing strategy in §5/§6
+- [x] GAP-Z **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex`; both polarisation sectors closed
 - [x] Reviewer objections pre-empted in Appendix C
 - [x] Comparison to prior biquaternion gravity in §1 (Table 1) and §7.2
 - [x] Scope limitation stated in §7.3 (no claims about gauge or quantum sector)
