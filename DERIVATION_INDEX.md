@@ -33,6 +33,14 @@ Sources: `canonical/fields/`, `canonical/THEORY/math/fields/`
 
 Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex`
 
+**GR closure files:**
+- `canonical/gr_closure/step1_metric_bridge.tex` — Step 1 — [L1] — Metric from Θ
+- `canonical/gr_closure/step2_nondegeneracy.tex` — Step 2 — [L1] — Non-degeneracy
+- `canonical/gr_closure/step3_signature_theorem.tex` — Step 3 — [L1] — Lorentzian signature
+- `canonical/gr_closure/step3_einstein_with_matter.tex` — Step 5 — [L1] — Einstein equations
+- `canonical/gr_closure/zerilli_derivation.tex` — GAP-Z — [L1] — Zerilli even-parity graviton
+- `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[MC] — FRW in solution space [L1]; Θ-ansatz [MC]; g_0i sub-gap [L1 conditional on comoving-frame averaging]
+
 ### 4) Gauge and interaction recovery
 
 - SU(3) × SU(2) × U(1) structural recovery tracks
@@ -40,6 +48,10 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - Explicit open gaps retained (e.g., unresolved Higgs/Yukawa closures)
 
 Sources: `canonical/interactions/`, `canonical/su3_derivation/`, `canonical/chirality/`, `papers/UBT_Gauge_Submission.tex`
+
+**Chirality derivation files:**
+- `canonical/chirality/step3_gap_C1_resolution.tex` — Gap C1 Step 3 — [L1] — SU(2)_L acts on left-chiral doublets
+- `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC] — SU(2)_R decouples from n>0 matter via ψ-parity; Loopholes 1 [L1 cond.] and 3 [STD] closed; OP-S4 (Loophole 2) open
 
 ### 5) α (fine-structure) track with explicit gap discipline
 

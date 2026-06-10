@@ -19,7 +19,7 @@ obstruction, and what a proof would require.
 | GAP-Z  | Zerilli equation (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | N/A — closed |
 | GAP-M  | Compact M⁴ off-shell | OPEN [L2] | No |
 | GAP-Q  | Quantum GR (path integral) | OPEN [L3] | No — classical paper only |
-| GAP-C  | Cosmological solutions (de Sitter, FRW) | OPEN [L2] | No — but desirable |
+| GAP-C  | Cosmological solutions (de Sitter, FRW) | PARTIALLY CLOSED [L1]+[MC]+[L1 cond.] | No — gaps stated |
 
 **Assessment**: The GR paper can be submitted with all remaining gaps explicitly stated.
 Steps 1–5, Schwarzschild, ASD/twistor, Regge-Wheeler, and Zerilli are all proved [L1].
@@ -135,7 +135,7 @@ completeness only.
 
 ## GAP-C: Cosmological Solutions
 
-**Status**: PARTIALLY CLOSED [MC] — see `canonical/gr_closure/frw_cosmological_solutions.tex`
+**Status**: PARTIALLY CLOSED [L1]+[MC]+[L1 conditional] — see `canonical/gr_closure/frw_cosmological_solutions.tex`
 
 ### Description
 
@@ -145,7 +145,7 @@ time-dependent scale factor would need:
 1. An ansatz compatible with spatial homogeneity and isotropy.
 2. Derivation of the Friedmann equations from the UBT action.
 
-### Progress (June 2026)
+### Progress (June 2026, v49)
 
 **Result 1 [L1]**: The flat FRW metric and Friedmann equations are in the UBT
 solution space as a direct consequence of Steps 1–5 (UBT ⊃ GR).
@@ -155,9 +155,13 @@ No new proof is needed beyond the established chain.
 `Θ_FRW = e^{iψ/R_ψ}[f(t)·1 + (a(t)/r₀)(x·e₁+y·e₂+z·e₃)]`
 is exhibited, with `g_ij = a(t)²δ_ij` and `g_00 = −1` recovered.
 
-**Remaining sub-gap**: `g_0i = 0` in the comoving frame requires a
-spatial-averaging or coordinate-adapted proof.
-See `frw_cosmological_solutions.tex`, §4 for the precise gap statement.
+**Sub-gap CLOSED [L1 conditional]**: `g_0i = 0` in the comoving frame is proved
+via spatial averaging (Lemma 4.1, `frw_cosmological_solutions.tex §4`).
+The off-diagonal term `g_0i ∝ x_i` is odd and averages to zero over any
+centred symmetric comoving volume.
+This is [L1 conditional on the standard comoving-frame averaging prescription].
+
+**Gap status**: GAP-C from PARTIALLY CLOSED [MC] → PARTIALLY CLOSED [L1]+[MC]+[L1 conditional] (v49, 2026-06-10).
 
 ---
 
@@ -165,10 +169,10 @@ See `frw_cosmological_solutions.tex`, §4 for the precise gap statement.
 
 | Priority | Gap | Reason |
 |----------|-----|--------|
-| 1 | GAP-C sub-gap: comoving frame `g_0i=0` | Closes the FRW Θ-ansatz construction |
+| 1 | GAP-C: FRW Θ-ansatz [MC] → promote to [L1] | Still needs a coordinate-adapted or gauge-fixed Θ from comoving frame; the current ansatz is [MC] |
 | 2 | GAP-M (compact) | Needed for mathematical completeness |
 | 3 | GAP-10 (off-shell) | Fundamental but hard; topology-dependent |
 | 4 | GAP-Q (quantum) | Very long-term |
 
 *GAP-Z (Zerilli) was Priority 1 and is now **PROVED [L1]** — removed from this list.*
-*GAP-C (cosmological) is now **PARTIALLY CLOSED [MC]** as of June 2026.*
+*GAP-C sub-gap ($g_{0i}=0$) is now **[L1 conditional]** as of June 2026 (v49).*
