@@ -287,7 +287,7 @@ def print_status_summary() -> None:
     print("─" * 60)
     print("T3_ALPHA status: STRUCTURAL EVIDENCE (downgraded 2026-06-11)")
     print("Gap G137-B: OPEN — 6 routes NO-GO")
-    print("Sub-gaps: G137-B-i (volumetric), G137-B-ii (Z_1real), G137-B-iii (N_eff^1/2)")
+    print("Sub-gaps: G137-B-i (volumetric factor), G137-B-ii (Z_1real derivation), G137-B-iii (N_eff^1/2 prefactor)")
     print("Alpha: NOT DERIVED")
     print("─" * 60)
 
