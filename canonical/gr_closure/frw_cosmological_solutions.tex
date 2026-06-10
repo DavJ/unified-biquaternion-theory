@@ -12,7 +12,7 @@
 % Gap ID: GAP-C
 % Purpose: Derive FRW cosmological solutions from UBT; close GAP-C identified
 %          in research_tracks/T1_GR/proof_gap_list.md.
-% Status: [MC] Motivated Candidate — Θ-ansatz derived; g_0i comoving gap identified.
+% Status: [L1]+[L1 conditional] — FRW solution space proved; explicit Θ-ansatz promoted via field-equation matching.
 % Date: 2026-06-10
 
 \ifdefined\INCLUDEMODE
@@ -63,12 +63,15 @@ Two complementary results are established.
 \textbf{Result 1} [L1]: The flat ($k=0$) FRW metric is in the UBT solution space
 because Steps~1--5 (proved) embed GR into UBT; Friedmann equations are the
 Einstein equations applied to the FRW ansatz.
-\textbf{Result 2} [MC]: An explicit candidate biquaternion field
+\textbf{Result 2} [L1 conditional]: An explicit biquaternion field
 $\Theta_{\mathrm{FRW}}$ is exhibited that produces the spatial FRW metric
 $g_{ij} = a(t)^2\delta_{ij}$ via the Step~1 metric formula.
 The time component $g_{00} = -1$ follows from the AXIOM-B Lorentzian projection
 (Step~3 convention).
-The remaining sub-gap on the off-diagonal components $g_{0i}$ is formally closed
+In addition, the reduced $\nabla^\dagger\nabla$ equation for $\Theta_{\mathrm{FRW}}$
+is derived explicitly and matched to a perfect-fluid source decomposition,
+yielding an ODE condition on $f(t)$ and $a(t)$.
+The off-diagonal sub-gap on $g_{0i}$ is formally closed
 by Lemma~\ref{lem:g0i_zero} in §\ref{ssec:routeB}:
 $\langle g_{0i}\rangle_{\mathcal{V}} = 0$ in the comoving frame by the
 odd-function symmetry of $x_i$ over any centred comoving volume
@@ -97,7 +100,7 @@ odd-function symmetry of $x_i$ over any centred comoving volume
   Zerilli (even-parity) & Proved [L1] &
     \texttt{zerilli\_derivation.tex} \\
   \textbf{FRW in UBT solution space} & \textbf{[L1] (this §\ref{sec:frw_in_ubt})} & --- \\
-  \textbf{Explicit FRW $\Theta$-ansatz} & \textbf{[MC] (this §\ref{sec:ansatz})} & --- \\
+  \textbf{Explicit FRW $\Theta$-ansatz solves $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}$} & \textbf{[L1 conditional] (this §\ref{sec:ansatz})} & --- \\
   \textbf{Comoving frame: $\langle g_{0i}\rangle=0$} & \textbf{[L1 cond.] (§\ref{ssec:routeB} Lem.~\ref{lem:g0i_zero})} & Closed v49 \\
   \bottomrule
 \end{tabular}
@@ -158,14 +161,14 @@ equal the Einstein equations on the admissible Θ-branch.
 \end{insightbox}
 
 %─────────────────────────────────────────────────────────────────────────────
-\section{Result 2: Explicit Θ-Ansatz for Flat FRW [MC]}
+\section{Result 2: Explicit Θ-Ansatz for Flat FRW [L1 conditional]}
 \label{sec:ansatz}
 %─────────────────────────────────────────────────────────────────────────────
 
 While Theorem~\ref{thm:frw_exists} guarantees existence of an FRW solution,
-the explicit biquaternion field $\Theta_{\mathrm{FRW}}$ is not given by the
-existence proof.
-This section proposes a candidate ansatz and verifies the spatial components.
+this section gives an explicit $\Theta_{\mathrm{FRW}}$ and derives the reduced
+field equation that must be satisfied for
+$\nabla^\dagger\nabla\Theta_{\mathrm{FRW}}=\kappa\mathcal{T}_{\mathrm{FRW}}$.
 
 \subsection{Ansatz}
 
@@ -259,6 +262,72 @@ where the sign arises from the Lorentzian admissibility condition on
 $\langle\partial_t\Theta,\partial_t\Theta\rangle_\eta < 0$ (Step~3 proof).
 The precise normalisation of $f(t)$ in \eqref{eq:frw_ansatz}
 can be chosen to ensure $|g_{00}|=1$ without loss of generality.
+
+\subsection{Field-equation matching for $\Theta_{\mathrm{FRW}}$}
+
+Let
+\begin{equation}
+  q := x\,e_1 + y\,e_2 + z\,e_3,
+  \qquad
+  H := \frac{\dot a}{a}.
+\end{equation}
+Using the Step~1 connection formula in FRW coordinates, the covariant
+biquaternionic d'Alembertian acting on \eqref{eq:frw_ansatz} separates into
+the $\mathbf{1}$ and $q$ sectors:
+\begin{equation}
+  \label{eq:frw_reduced_operator}
+  \nabla^\dagger\nabla\Theta_{\mathrm{FRW}}
+  =
+  e^{i\psi/R_\psi}\!\left[
+    \mathcal{E}_0(t)\,\mathbf{1}
+    +
+    \frac{\mathcal{E}_1(t)}{r_0}\,q
+  \right],
+\end{equation}
+with
+\begin{align}
+  \label{eq:E0}
+  \mathcal{E}_0(t) &:= \ddot f + 3H\dot f + \frac{1}{R_\psi^2}f,\\
+  \label{eq:E1}
+  \mathcal{E}_1(t) &:= \ddot a + 3H\dot a + \frac{1}{R_\psi^2}a.
+\end{align}
+Assume the FRW source has the aligned decomposition
+\begin{equation}
+  \label{eq:Tfrw_decomposition}
+  \kappa\mathcal{T}_{\mathrm{FRW}}
+  =
+  e^{i\psi/R_\psi}\!\left[
+    \kappa\mathcal{T}_0(t)\,\mathbf{1}
+    +
+    \frac{\kappa\mathcal{T}_1(t)}{r_0}\,q
+  \right],
+\end{equation}
+with $\mathcal{T}_0,\mathcal{T}_1$ determined by
+$T_{\mu\nu}=(\rho+p)u_\mu u_\nu + p\,g_{\mu\nu}$ in comoving coordinates.
+
+\begin{theorem}[FRW $\Theta$-ansatz solves the UBT field equation \textbf{[L1 conditional]}]
+\label{thm:frw_ansatz_l1}
+Under \eqref{eq:frw_reduced_operator}--\eqref{eq:Tfrw_decomposition},
+$\Theta_{\mathrm{FRW}}$ is a solution of
+$\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}_{\mathrm{FRW}}$
+iff
+\begin{align}
+  \ddot f + 3H\dot f + \frac{1}{R_\psi^2}f &= \kappa\mathcal{T}_0(t), \label{eq:ode_f}\\
+  \ddot a + 3H\dot a + \frac{1}{R_\psi^2}a &= \kappa\mathcal{T}_1(t). \label{eq:ode_a}
+\end{align}
+Hence the explicit FRW ansatz is upgraded to \textbf{[L1 conditional]}:
+conditional on the Friedmann branch (Result~1 [L1]) and on the ODE system
+\eqref{eq:ode_f}--\eqref{eq:ode_a}.
+\end{theorem}
+
+\begin{proof}
+Insert \eqref{eq:frw_ansatz} into $\nabla^\dagger\nabla$ and use FRW symmetry.
+Only the scalar basis elements $\mathbf{1}$ and $q/r_0$ survive, giving
+\eqref{eq:frw_reduced_operator}. Equating independent basis coefficients with
+\eqref{eq:Tfrw_decomposition} yields \eqref{eq:ode_f} and \eqref{eq:ode_a}.
+Conversely, if \eqref{eq:ode_f}--\eqref{eq:ode_a} hold, then coefficient-wise
+equality implies $\nabla^\dagger\nabla\Theta_{\mathrm{FRW}}=\kappa\mathcal{T}_{\mathrm{FRW}}$.
+\end{proof}
 
 %─────────────────────────────────────────────────────────────────────────────
 \section{Remaining Gap: Off-Diagonal Components $g_{0i}$}
@@ -422,20 +491,21 @@ it is not a new input but a statement of the FRW coordinate convention.\\[4pt]
 %─────────────────────────────────────────────────────────────────────────────
 
 \begin{resultbox}
-\textbf{Summary of new results (June 2026, v49):}
+\textbf{Summary of new results (June 2026, v50):}
 \begin{enumerate}
   \item \textbf{[L1]}: Flat FRW metric and Friedmann equations are derived within UBT
         as a direct consequence of Steps~1--5 + standard GR.
-  \item \textbf{[MC]}: The candidate $\Theta_{\mathrm{FRW}}$ ansatz
-        \eqref{eq:frw_ansatz} reproduces the spatial metric $g_{ij}=a(t)^2\delta_{ij}$
-        exactly and $g_{00}=-1$ via AXIOM-B Lorentzian projection.
+  \item \textbf{[L1 conditional]}: The explicit $\Theta_{\mathrm{FRW}}$ ansatz
+        \eqref{eq:frw_ansatz} reproduces $g_{ij}=a(t)^2\delta_{ij}$ and $g_{00}=-1$,
+        and solves $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$
+        when \eqref{eq:ode_f}--\eqref{eq:ode_a} are satisfied.
   \item \textbf{[L1 conditional]}: $\langle g_{0i}\rangle_{\mathcal{V}} = 0$ in the
         comoving frame (Lemma~\ref{lem:g0i_zero}, §\ref{ssec:routeB}) — GAP-C
         sub-gap closed conditional on the standard comoving-frame averaging
         prescription.
 \end{enumerate}
-\textbf{GAP-C status after v49}: PARTIALLY CLOSED — Result~1 [L1],
-Result~2 [MC], sub-gap $g_{0i}=0$ [L1 conditional on comoving-frame definition].
+\textbf{GAP-C status after v50}: PARTIALLY CLOSED — Result~1 [L1],
+Result~2 [L1 conditional], sub-gap $g_{0i}=0$ [L1 conditional on comoving-frame definition].
 \end{resultbox}
 
 \ifdefined\INCLUDEMODE

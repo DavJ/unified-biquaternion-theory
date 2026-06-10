@@ -122,9 +122,99 @@ jobs:
             ${{ steps.detect.outputs.dir }}/*.aux
             ${{ steps.detect.outputs.dir }}/*.out
 
+  compile_standalone_roots:
+    name: Build standalone canonical roots
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        root:
+          - canonical/chirality/step4_no_wr_derivation.tex
+          - canonical/gr_closure/frw_cosmological_solutions.tex
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect engine
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${{ matrix.root }}"
+          dir="$(dirname "$root")"
+          pdf="${root%.tex}.pdf"
+
+          engine="pdflatex"
+          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
+            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
+          fi
+          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
+          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
+
+          {
+            echo "dir=$dir"
+            echo "pdf=$pdf"
+            echo "engine=$engine"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Build standalone root
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: ${{ matrix.root }}
+          work_in_root_file_dir: true
+          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
+          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
+          args: -interaction=nonstopmode -halt-on-error
+          extra_system_packages: "py-pygments"
+          pre_compile: "tlmgr install mdframed booktabs mathtools hyperref xcolor physics braket || true"
+
+      - name: Check produced files
+        id: produced
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdf="${{ steps.detect.outputs.pdf }}"
+          dir="${{ steps.detect.outputs.dir }}"
+          if [[ -f "$pdf" ]]; then
+            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          shopt -s nullglob
+          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
+          if (( ${#logs[@]} )); then
+            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check for LaTeX errors in logs
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          dir="${{ steps.detect.outputs.dir }}"
+          if grep -q "Undefined control sequence" "$dir"/*.log 2>/dev/null; then
+            grep -n "Undefined control sequence" "$dir"/*.log || true
+            exit 1
+          fi
+
+      - name: Upload logs (only if any)
+        if: always() && steps.produced.outputs.logs_exist == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: standalone-logs-${{ replace(matrix.root, '/', '__') }}
+          path: |
+            ${{ steps.detect.outputs.dir }}/*.log
+            ${{ steps.detect.outputs.dir }}/*.blg
+            ${{ steps.detect.outputs.dir }}/*.fls
+            ${{ steps.detect.outputs.dir }}/*.aux
+            ${{ steps.detect.outputs.dir }}/*.out
+
   publish_pdfs:
-    needs: compile
-    if: needs.compile.result == 'success' && github.ref == 'refs/heads/master' && github.event_name == 'push'
+    needs: [compile, compile_standalone_roots]
+    if: needs.compile.result == 'success' && needs.compile_standalone_roots.result == 'success' && github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -151,4 +241,3 @@ jobs:
           git add docs/pdfs/UBT_canonical_main.pdf
           git commit -m "chore: update canonical PDF [skip ci]" || echo "No changes to commit"
           git push
-

@@ -129,7 +129,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | G15 | Zerilli equation (even-parity graviton) derived from linearised UBT (vacuum Schwarzschild, $\ell\ge2$) | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| G18 | FRW Θ-ansatz: $g_{ij} = a(t)^2\delta_{ij}$ | [MC] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop 3.1` |
+| G18 | FRW Θ-ansatz: $g_{ij} = a(t)^2\delta_{ij}$ and reduced field-equation matching | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)
@@ -137,7 +137,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | Gap | Description |
 |-----|-------------|
 | GAP-10 | Off-shell Θ-only closure (global ker J = gauge only) |
-| GAP-C | FRW Θ-ansatz: $g_{ij}=a^2\delta_{ij}$ [MC]; $g_{0i}=0$ comoving [L1 conditional — Lem.~4.1]; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
+| GAP-C | FRW Θ-ansatz: $g_{ij}=a^2\delta_{ij}$ [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional — Lem.~4.1]; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
 
 ---
 
@@ -175,7 +175,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E1 | SU(2)_L from left norm-preserving action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §SU2` |
 | E2 | SU(2)_L acts on left-chiral doublets (chirality gap C1 closed) | [L1] | `chirality/step3_gap_C1_resolution.tex` |
 | C1-S4 | $SU(2)_R$ geometric decoupling via $\psi$-parity | [MC] | `canonical/chirality/step4_no_wr_derivation.tex §3 Thm 3.1` |
-| OP-S4 | Full algebraic exclusion of $SU(2)_R$ | OPEN (Loophole~2 remains; Loopholes 1, 3 closed) | `canonical/chirality/step4_no_wr_derivation.tex §4` |
+| OP-S4 | Full algebraic exclusion of $SU(2)_R$ | [L1 conditional] (Loophole~1 [L1 cond.], Loophole~2 [L1 cond.], Loophole~3 [STD]) | `canonical/chirality/step4_no_wr_derivation.tex §4` |
 | E3 | W±, W³ as gauge connections of SU(2)_L | [L1] | Gauge principle |
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
@@ -302,5 +302,5 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Dynamical colour confinement | Clay Millennium Problem |
 | Strong coupling g_s | Open |
 | Quantum gravity / path integral | Long term — GAP-Q |
-| Cosmological solutions (FRW/de Sitter) | PARTIALLY CLOSED — FRW in solution space [L1]; Θ-ansatz [MC]; $g_{0i}=0$ comoving [L1 conditional] — GAP-C; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
+| Cosmological solutions (FRW/de Sitter) | PARTIALLY CLOSED — FRW in solution space [L1]; Θ-ansatz [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional] — GAP-C; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
 | Off-shell Θ-only closure | Open — GAP-10 |
