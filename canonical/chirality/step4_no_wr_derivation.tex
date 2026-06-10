@@ -227,55 +227,61 @@ In the third line we used $[\tilde{T}^a,\gamma^5]=0$ to move $\gamma^5$ past $\t
 \label{thm:wr_decoupling}
 Let the UBT action $S[\Theta]$ be invariant under $P_\psi$ (Step~1, Lemma~2).
 Let matter be assigned to the $n>0$ sector (Step~1, Lemma~4).
-Then any $SU(2)_R$ gauge interaction $W_{R,\mu}^a J^{\mu,a}_R$ added to
-$S[\Theta]$ would break $P_\psi$-invariance unless the $W_R$ field itself
-transforms as $P_\psi(W_{R,\mu}^a) = -W_{R,\mu}^a$.
-Since an $SU(2)_R$ gauge field is conventionally assigned $P_\psi$-even status
-(it transforms as a vector under $P_\psi: \psi\to-\psi$, not as a pseudo-vector),
-this creates a $P_\psi$-parity mismatch:
+The $P_\psi$-invariance of $S[\Theta]$ determines the parity of gauge fields
+from their coupling to matter currents: the $W_\mu^a$ field must be $P_\psi$-odd
+because it couples to the $P_\psi$-odd current $J^{\mu,a}_L$ (Lemma~\ref{lem:JL_odd}).
+Under this constraint, any $SU(2)_R$ gauge field $W_{R,\mu}^a$ introduced with
+the \emph{same} $P_\psi$-parity as $W_\mu^a$ (i.e., $P_\psi$-odd) cannot couple
+consistently to $n>0$ sector matter without breaking $P_\psi$-invariance:
 \begin{equation}
   P_\psi\!\left(W_{R,\mu}^a J^{\mu,a}_R\right)
   \;=\;
-  W_{R,\mu}^a\cdot (+J^{\mu,a}_R)
-  \;\neq\;
+  \underbrace{(-W_{R,\mu}^a)}_{P_\psi\text{-odd}}
+  \cdot\underbrace{(+J^{\mu,a}_R)}_{P_\psi\text{-even}}
+  \;=\;
   -W_{R,\mu}^a J^{\mu,a}_R
   \;\neq\;
   W_{R,\mu}^a J^{\mu,a}_R.
 \end{equation}
 Therefore $W_{R,\mu}^a J^{\mu,a}_R$ cannot appear in a $P_\psi$-invariant action
-with a $P_\psi$-even $W_{R,\mu}^a$.
-By contrast, the left-handed term $W_\mu^a J^{\mu,a}_L$ is $P_\psi$-invariant
-when $W_\mu^a$ is $P_\psi$-odd, consistent with the observed transformation
-properties of the $W^\pm$ field.
+when $W_{R,\mu}^a$ is constrained to be $P_\psi$-odd.
 \end{theorem}
 
 \begin{proof}
-Lemma~\ref{lem:JR_even} gives $P_\psi(J^{\mu,a}_R) = +J^{\mu,a}_R$.
-For the coupling term $\mathcal{L}_{W_R} = W_{R,\mu}^a J^{\mu,a}_R$ to be
-$P_\psi$-invariant (required by Step~1, Lemma~2), we need:
+\textbf{Step 1: determine the parity of $W_\mu^a$ from the $SU(2)_L$ coupling.}
+The left-handed coupling $W_\mu^a J^{\mu,a}_L$ is required to be $P_\psi$-invariant
+(Step~1, Lemma~2).  Lemma~\ref{lem:JL_odd} gives $P_\psi(J^{\mu,a}_L) = -J^{\mu,a}_L$.
+For $P_\psi(W_\mu^a J^{\mu,a}_L) = W_\mu^a J^{\mu,a}_L$:
 \begin{equation}
-  P_\psi\!\left(\mathcal{L}_{W_R}\right)
-  \;=\;
+  P_\psi(W_\mu^a)\cdot(-J^{\mu,a}_L) \;=\; W_\mu^a J^{\mu,a}_L,
+\end{equation}
+which requires $P_\psi(W_\mu^a) = -W_\mu^a$, i.e., $W_\mu^a$ is $P_\psi$-\emph{odd}.
+
+\textbf{Step 2: test whether $SU(2)_R$ can couple via the same $P_\psi$-odd field.}
+If $W_{R,\mu}^a$ is introduced with $P_\psi(W_{R,\mu}^a) = -W_{R,\mu}^a$
+(the same parity as $W_\mu^a$), then for the coupling to be $P_\psi$-invariant
+we need:
+\begin{equation}
   P_\psi(W_{R,\mu}^a)\cdot P_\psi(J^{\mu,a}_R)
   \;=\;
-  P_\psi(W_{R,\mu}^a)\cdot J^{\mu,a}_R
-  \;\stackrel{!}{=}\;
-  \mathcal{L}_{W_R}.
+  (-W_{R,\mu}^a)(+J^{\mu,a}_R)
+  \;=\;
+  -W_{R,\mu}^a J^{\mu,a}_R
+  \;\neq\;
+  W_{R,\mu}^a J^{\mu,a}_R,
 \end{equation}
-This requires $P_\psi(W_{R,\mu}^a) = +W_{R,\mu}^a$, i.e., $W_{R,\mu}^a$ must be
-$P_\psi$-even.
-However, gauge fields transform as spatial vectors: under $\psi\to-\psi$ they are
-unchanged ($P_\psi$-even), which appears compatible.
-The key constraint comes from comparing with the $SU(2)_L$ sector:
-The left-handed coupling $W_\mu^a J^{\mu,a}_L$ is $P_\psi$-invariant precisely
-because $J^{\mu,a}_L$ is $P_\psi$-\emph{odd} (Lemma~\ref{lem:JL_odd}) and
-$W_\mu^a$ must be $P_\psi$-\emph{odd} as well (from the coupling).
-If $W_\mu^a$ is $P_\psi$-odd, then a right-handed partner $W_{R,\mu}^a$
-transforming in the \emph{same} way as $W_\mu^a$ would also be $P_\psi$-odd;
-but then $P_\psi(W_{R,\mu}^a J^{\mu,a}_R) = (-W_{R,\mu}^a)(+J^{\mu,a}_R) = -\mathcal{L}_{W_R}$,
-which breaks $P_\psi$-invariance.
-Thus $SU(2)_R$ with the same $\psi$-parity as $SU(2)_L$ cannot be added to
-$S[\Theta]$ without breaking $P_\psi$ invariance.
+using Lemma~\ref{lem:JR_even}.
+The coupling violates $P_\psi$-invariance.
+
+\textbf{Step 3: alternative parity assignment.}
+If instead $W_{R,\mu}^a$ is assigned $P_\psi$-even parity,
+then $W_{R,\mu}^a J^{\mu,a}_R$ is $P_\psi$-even and would be
+$P_\psi$-invariant in isolation.
+However, this $P_\psi$-even $W_{R,\mu}^a$ would be a \emph{different} gauge field
+from the $P_\psi$-odd $W_\mu^a$ — it cannot be identified with the Standard Model
+$W^\pm$ field.  Such a field would couple exclusively to $P_\psi$-even (right-chiral)
+currents, which belong to the $n<0$ sector (absent from observed matter by Lemma~4).
+Hence it is observationally decoupled from all $n>0$ matter.
 \end{proof}
 
 \begin{insightbox}
