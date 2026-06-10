@@ -1,3 +1,22 @@
+## 2026-06-10 (v49 — GAP-C and OP-S4 partial closures)
+
+### New results registered
+- GAP-C sub-gap: $g_{0i}=0$ in comoving frame — [L1 conditional] via Lem.~4.1
+  (spatial-averaging argument formalised); source: `canonical/gr_closure/frw_cosmological_solutions.tex`
+- FRW in UBT solution space [L1], Friedmann equations [L1] — new entries G16/G17
+- FRW Θ-ansatz $g_{ij}=a^2\delta_{ij}$ [MC] — new entry G18
+- Gap C1 Step 4: $SU(2)_R$ geometric decoupling [MC] — new entry C1-S4
+- OP-S4 Loophole 1 closed [L1 conditional], Loophole 3 closed [STD]
+- OP-S4 Loophole 2 (spontaneous breaking) remains OPEN
+
+### Status changes
+- GAP-C: OPEN → PARTIALLY CLOSED ([L1]+[MC]+[L1 conditional])
+- OP-S4: OPEN → PARTIAL (Loopholes 1, 3 closed; Loophole 2 open)
+
+### New canonical files
+- `canonical/gr_closure/frw_cosmological_solutions.tex` — added to `latex_roots.txt`
+- `canonical/chirality/step4_no_wr_derivation.tex` — added to `latex_roots.txt`
+
 ## 2026-05-20 (v42 — analytické výsledky)
 
 ### Nové [L0] výsledky
@@ -186,6 +205,10 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | [L1]+[NUM] | `tools/verify_schwarzschild_theta.py` |
 | Regge-Wheeler equation (odd-parity graviton) | [L1] | Paper §5 |
 | Zerilli equation (even-parity) and canonical graviton quantisation notes | PROVED [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
+| Flat FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
+| Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
+| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ | [MC] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop 3.1` |
+| $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
 Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
@@ -197,6 +220,7 @@ None that prevent submission.
 | Gap | Level | Impact |
 |-----|-------|--------|
 | GAP-10 — Off-shell Θ-only closure | [L2] Open | Does not block; stated in paper |
+| GAP-C — FRW Θ-ansatz [MC]; $g_{0i}$ comoving [L1 conditional] | [MC]+[L1 cond.] | Does not block T1_GR submission; GAP-C status updated v49 |
 
 ### Pre-Submission Fix
 
@@ -227,6 +251,10 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Quarks in **3**, gluons in **8**, EW/strong decoupling | [L0] | `canonical/interactions/sm_gauge.tex` |
 | SU(2)_L from left norm-preserving action | [L0] | `canonical/interactions/sm_gauge.tex §SU2` |
 | SU(2)_L acts on left-chiral doublets (Gap C1 closed) | [L1] | `canonical/chirality/step3_gap_C1_resolution.tex` |
+| SU(2)_R geometric decoupling via ψ-parity (Gap C1 Step 4) | [MC] | `canonical/chirality/step4_no_wr_derivation.tex §3 Thm 3.1` |
+| Loophole 1 (n<0 coupling) observationally decoupled | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex Cor 3.2` |
+| Loophole 3 (KK decoupling, R_ψ→0) | [STD] | `canonical/chirality/step4_no_wr_derivation.tex Prop 4.3` |
+| Loophole 2 (spontaneous breaking) — full no-W_R (OP-S4) | OPEN | `canonical/chirality/step4_no_wr_derivation.tex §4 Rem 4.2` |
 | U(1)_Y from right scalar phase | [L0] | `canonical/interactions/sm_gauge.tex §U1` |
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
@@ -377,7 +405,7 @@ Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`
 | Complex Consciousness Theory / Psychons | `speculative_extensions/complex_consciousness/` | No mathematical closure; frozen indefinitely |
 | Closed Timelike Curves | `speculative_extensions/appendices/` | Speculative; no experimental anchor |
 | p-adic dark sector | `research_tracks/p_universes/` | Interesting; deferred beyond 21-day window |
-| Cosmological solutions (GAP-C) | `research_tracks/` | Open; no active effort |
+| Cosmological solutions (GAP-C) | `canonical/gr_closure/frw_cosmological_solutions.tex` | PARTIALLY CLOSED — FRW [L1]; Θ-ansatz [MC]; $g_{0i}$ comoving [L1 conditional] — v49 |
 
 ---
 

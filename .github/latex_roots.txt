@@ -7,3 +7,5 @@
 canonical/UBT_canonical_main.tex
 canonical/alpha/veff_corrected_statement.tex
 canonical/alpha/veff_corrected.tex
+canonical/chirality/step4_no_wr_derivation.tex
+canonical/gr_closure/frw_cosmological_solutions.tex
