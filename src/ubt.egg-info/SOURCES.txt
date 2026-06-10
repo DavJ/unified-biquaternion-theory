@@ -15,6 +15,9 @@ src/ubt/quantum/__init__.py
 src/ubt/quantum/quantum_scaffold.py
 src/ubt/solitons/__init__.py
 src/ubt/solitons/regularization.py
+src/ubt/spectral/__init__.py
+src/ubt/spectral/laplacian_torus.py
+src/ubt_spectral/selberg_zeta.py
 src/ubt_theta_lab/complex_phase_scan.py
 tests/test_alpha_export_runs.py
 tests/test_alpha_provenance.py
@@ -61,6 +64,7 @@ tests/test_runner_integration.py
 tests/test_scheme_independence.py
 tests/test_soliton_regularization.py
 tests/test_spectral_duality.py
+tests/test_spectral_heat_kernel.py
 tests/test_symbol_consistency.py
 tests/test_texture_predictions.py
 tests/test_theta_fit_tau.py

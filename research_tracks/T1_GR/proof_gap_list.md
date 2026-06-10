@@ -16,13 +16,13 @@ obstruction, and what a proof would require.
 | Gap ID | Short name | Status | Blocks paper? |
 |--------|------------|--------|---------------|
 | GAP-10 | Off-shell Θ-only closure | OPEN [L2] | **No** — on-shell result sufficient |
-| GAP-Z  | Zerilli equation (even-parity) | OPEN [L2] | No — Regge-Wheeler proved |
+| GAP-Z  | Zerilli equation (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | N/A — closed |
 | GAP-M  | Compact M⁴ off-shell | OPEN [L2] | No |
 | GAP-Q  | Quantum GR (path integral) | OPEN [L3] | No — classical paper only |
 | GAP-C  | Cosmological solutions (de Sitter, FRW) | OPEN [L2] | No — but desirable |
 
-**Assessment**: The GR paper can be submitted with all five gaps explicitly stated.
-Steps 1–5, Schwarzschild, ASD/twistor, and Regge-Wheeler are all proved [L1].
+**Assessment**: The GR paper can be submitted with all remaining gaps explicitly stated.
+Steps 1–5, Schwarzschild, ASD/twistor, Regge-Wheeler, and Zerilli are all proved [L1].
 
 ---
 
@@ -85,34 +85,15 @@ quantum theory — it does not affect the classical GR recovery.
 
 ## GAP-Z: Zerilli Equation (Even-Parity Graviton)
 
-**Status**: OPEN [L2]  
-**Impact**: The odd-parity (Regge-Wheeler) graviton is derived.  Even-parity
-(Zerilli) is missing.
+**Status**: **PROVED [L1]** (closed 2026-05-13)
+**Canonical proof**: `canonical/gr_closure/zerilli_derivation.tex`
 
-### What has been proved
+Both graviton polarisation sectors are now closed at [L1]:
+- Odd-parity (Regge-Wheeler): proved in `papers/UBT_GR_Submission.tex` §5
+- Even-parity (Zerilli): proved in `canonical/gr_closure/zerilli_derivation.tex`
 
-The Regge-Wheeler equation for odd-parity perturbations of Schwarzschild is
-derived from linearised UBT (Theorem 6c in `theorem_chain.tex`).
-
-### What is missing
-
-The Zerilli equation for even-parity (polar) perturbations:
-```
-[d²/dr*² + ω² - V_Zerilli(r)] ψ_Zerilli = 0
-```
-where `V_Zerilli` involves the background metric differently from
-`V_Regge-Wheeler`.
-
-### Why it is hard
-
-Even-parity perturbations couple scalar and tensor modes in a way that requires
-a more careful treatment of the UBT even-parity Θ sector.  The two-potential
-structure (Chandrasekhar's transformation) has not been implemented in UBT.
-
-### What would close it
-
-Derive the even-parity linearised UBT field equation and show it reduces to
-Zerilli via Chandrasekhar's transformation.
+This gap is no longer open.  See `WHAT_IS_PROVED.md §G15` and `STATUS.md §T1_GR` for the
+canonical record.
 
 ---
 
@@ -173,8 +154,9 @@ FRW metric, but the explicit biquaternionic construction is missing.
 
 | Priority | Gap | Reason |
 |----------|-----|--------|
-| 1 | GAP-Z (Zerilli) | Completes the graviton sector; clear path |
-| 2 | GAP-C (cosmological) | High scientific interest; FRW is standard |
-| 3 | GAP-M (compact) | Needed for mathematical completeness |
-| 4 | GAP-10 (off-shell) | Fundamental but hard; topology-dependent |
-| 5 | GAP-Q (quantum) | Very long-term |
+| 1 | GAP-C (cosmological) | High scientific interest; FRW is standard |
+| 2 | GAP-M (compact) | Needed for mathematical completeness |
+| 3 | GAP-10 (off-shell) | Fundamental but hard; topology-dependent |
+| 4 | GAP-Q (quantum) | Very long-term |
+
+*GAP-Z (Zerilli) was Priority 1 and is now **PROVED [L1]** — removed from this list.*

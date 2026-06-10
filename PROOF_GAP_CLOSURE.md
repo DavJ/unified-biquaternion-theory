@@ -17,7 +17,7 @@ risk ranking.  Used to drive gap-closure work before arXiv submission.
 
 The GR recovery chain has nine proved steps and zero hard blockers.  All
 remaining gaps are [L2] (open problems that do not block submission) or
-editorial (notation, write-up completeness).
+editorial (notation, write-up completeness).  GAP-Z is now PROVED [L1].
 
 | Gap ID | Short name | Type | Blocks paper? | Priority |
 |--------|-----------|------|--------------|----------|
@@ -25,7 +25,7 @@ editorial (notation, write-up completeness).
 | ED-2 | Regge-Wheeler source file | Write-up | **No** | High |
 | ED-3 | Schwarzschild numerical table | Write-up | **No** | High |
 | GAP-10 | Off-shell Θ-only closure | [L2] open problem | **No** | State as open |
-| GAP-Z | Zerilli equation (even-parity) | [L2] open problem | **No** | State as open |
+| GAP-Z | Zerilli equation (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | N/A — closed | — |
 | GAP-M | Compact M⁴ off-shell | [L2] open problem | **No** | Mention briefly |
 | GAP-Q | Quantum GR (path integral) | [L3] long-term | **No** | Mention as future work |
 | GAP-C | Cosmological solutions (FRW) | [L2] lower priority | **No** | Mention as future work |
@@ -171,35 +171,15 @@ reject the paper on this basis if it is honestly stated.
 
 ## GAP-Z: Zerilli Equation (Even-Parity Graviton)
 
-**Type**: [L2] open problem — does not block paper  
-**Canonical source**: `research_tracks/T1_GR/proof_gap_list.md §GAP-Z`
+**Status**: **PROVED [L1]** (closed 2026-05-13)
+**Canonical proof**: `canonical/gr_closure/zerilli_derivation.tex`
 
-### Precise statement
+Both graviton polarisation sectors are now proved at [L1]:
+- Odd-parity (Regge-Wheeler): `papers/UBT_GR_Submission.tex` Theorem 5.1
+- Even-parity (Zerilli): `canonical/gr_closure/zerilli_derivation.tex`
 
-The Regge-Wheeler equation (odd-parity) is proved.  The Zerilli equation
-(even-parity/polar perturbations of Schwarzschild) has not been derived from
-UBT:
-$$\left[\frac{\mathrm{d}^2}{\mathrm{d}r_*^2} + \omega^2 - V_{\mathrm{Zerilli}}(r)\right]\psi_Z = 0.$$
-
-### Why it is harder than Regge-Wheeler
-
-Even-parity perturbations couple scalar and tensor modes in a way that requires
-a more careful treatment of the even-parity $\Theta$ sector.  The two-potential
-structure (Chandrasekhar's transformation between Regge-Wheeler and Zerilli
-potentials) has not been implemented in UBT.
-
-### What would close this gap
-
-Derive the even-parity linearised UBT field equation and show it reduces to
-the Zerilli equation via Chandrasekhar's transformation.  This is a well-defined
-calculation; the main challenge is the mode decomposition of the even-parity
-$\Theta$ sector.
-
-### Risk for paper
-
-**Low risk**.  The paper proves the odd-parity result, which is the standard
-GW astronomy sector (quasinormal modes).  Even-parity is a natural extension;
-its absence is noted and explained.  Stated as a clear future-work item.
+See `WHAT_IS_PROVED.md §G15` and `STATUS.md §T1_GR` for the canonical record.
+This section is retained for historical reference only.
 
 ---
 
@@ -252,7 +232,7 @@ submission of T1_GR.
 | ED-2 (Regge-Wheeler source) | Low — completeness | Low | Weeks 4–6 |
 | ED-3 (numerical table) | Low — appendix only | Very low | Week 6 |
 | GAP-10 | None — on-shell proved | Very low if stated honestly | State as open; no work needed |
-| GAP-Z | None — odd-parity proved | Very low if noted | State as open; no work needed |
+| GAP-Z | **PROVED [L1]** — closed | **Zero** — both graviton sectors closed | No action needed |
 | GAP-M | None | Zero | Brief mention |
 | GAP-Q | None | Zero | One sentence |
 | GAP-C | None | Zero | Mention in outlook |
@@ -268,7 +248,7 @@ submission of T1_GR.
 | 1 | ED-1: Complete notation unification pass | `step1_metric_bridge.tex`, `GR_chain_summary.tex`, `step3_einstein_with_matter.tex`, `step4_offshell_Tmunu.tex`, `theorem_chain.tex` |
 | 4–6 | ED-2: Locate/clean Regge-Wheeler source file | `canonical/gr_closure/` scan; write `linearised_gravity.tex` if needed |
 | 6 | ED-3: Run numerical script; produce LaTeX table | `tools/verify_schwarzschild_theta.py` |
-| 7–9 | Draft Section 6 (open problems) with GAP-10, GAP-Z obstruction maps | Adapted from `research_tracks/T1_GR/proof_gap_list.md` |
+| 7–9 | Draft Section 6 (open problems) with GAP-10 obstruction map | Adapted from `research_tracks/T1_GR/proof_gap_list.md`; GAP-Z is now proved — omit from open-problems section |
 | 10–11 | Internal consistency check: verify all cross-references, all \ref resolve | All paper source files |
 
 ---

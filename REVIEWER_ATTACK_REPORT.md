@@ -113,27 +113,22 @@ comparison uses the closed-form Schwarzschild formula as a check, not as input.
 
 ## Attack GR-4 — "Where is the Zerilli equation? The derivation of GW physics is incomplete"
 
-**Severity**: MODERATE  
-**Nature**: Even-parity gravitational perturbations (Zerilli equation) have not
-been derived from UBT.
+**Severity**: ~~MODERATE~~ **RESOLVED**
+**Status**: GAP-Z is **PROVED [L1]** — canonical proof in `canonical/gr_closure/zerilli_derivation.tex`.
 
-**Rebuttal**:
+Both graviton polarisation sectors are now closed at [L1]:
+- Odd-parity (Regge-Wheeler): `papers/UBT_GR_Submission.tex` Theorem 5.1
+- Even-parity (Zerilli): `canonical/gr_closure/zerilli_derivation.tex`
 
-The paper derives the **odd-parity** Regge-Wheeler equation (Theorem 5.1), which
-governs gravitational wave polarisations relevant to current GW astronomy (LIGO/Virgo
-data analysis uses Regge-Wheeler modes).  This is a non-trivial independent result
-with experimental relevance.
+**Rebuttal** (updated):
 
-The Zerilli equation (even-parity) is GAP-Z (PROOF_GAP_CLOSURE.md §GAP-Z), an [L2]
-open problem.  It is **explicitly stated as open** with a precise mathematical
-description of what is missing (mode decomposition of the even-parity Θ sector,
-Chandrasekhar's transformation between Regge-Wheeler and Zerilli potentials).
+The paper derives both the **odd-parity** Regge-Wheeler equation (Theorem 5.1)
+and the **even-parity** Zerilli equation (GAP-Z closed, [L1]).  The complete
+linearised gravitational perturbation spectrum in the Schwarzschild background
+is recovered from UBT.
 
-No reviewer can reasonably reject a paper for not proving an open problem, provided
-the problem is stated honestly with a precise obstruction map.
-
-**Preemptive action**: Section 5 states the Regge-Wheeler derivation; Section 6
-or the Conclusion states GAP-Z as future work with the two-step closing strategy.
+This attack is no longer applicable.  The reviewer can be referred to
+`canonical/gr_closure/zerilli_derivation.tex` for the even-parity proof.
 
 ---
 
@@ -410,7 +405,7 @@ are in final form, establishing priority dates before journal review completes.
 | GR-1 | T1_GR | MAJOR | Handled by GAP-10 open-problem statement | Include full obstruction map in §6 |
 | GR-2 | T1_GR | MODERATE | Handled by Theorem 3.3 | Explicit AXIOM B discussion in §2 |
 | GR-3 | T1_GR | MODERATE | Handled by numerical table | Include `verify_schwarzschild_theta.py` output in App. C |
-| GR-4 | T1_GR | MODERATE | Handled by GAP-Z open statement | State in §5/§6 with closing strategy |
+| GR-4 | T1_GR | ~~MODERATE~~ **RESOLVED** | GAP-Z **PROVED [L1]** — both graviton sectors closed | `canonical/gr_closure/zerilli_derivation.tex` |
 | GR-5 | T1_GR | MODERATE | Handled by novelty list | Comparison paragraph in §1 |
 | GR-6 | T1_GR | MINOR | Handled by scope limitation | Explicit scope statement in §1 |
 | G-1 | T2_GAUGE | MAJOR | Close Gap C1 before submission OR use Option B | Formal theorem or explicit open statement |
