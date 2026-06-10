@@ -135,7 +135,7 @@ completeness only.
 
 ## GAP-C: Cosmological Solutions
 
-**Status**: OPEN [L2], lower priority
+**Status**: PARTIALLY CLOSED [MC] — see `canonical/gr_closure/frw_cosmological_solutions.tex`
 
 ### Description
 
@@ -145,8 +145,19 @@ time-dependent scale factor would need:
 1. An ansatz compatible with spatial homogeneity and isotropy.
 2. Derivation of the Friedmann equations from the UBT action.
 
-The Friedmann equations should follow from Steps 1–5 by applying them to an
-FRW metric, but the explicit biquaternionic construction is missing.
+### Progress (June 2026)
+
+**Result 1 [L1]**: The flat FRW metric and Friedmann equations are in the UBT
+solution space as a direct consequence of Steps 1–5 (UBT ⊃ GR).
+No new proof is needed beyond the established chain.
+
+**Result 2 [MC]**: An explicit candidate biquaternion field
+`Θ_FRW = e^{iψ/R_ψ}[f(t)·1 + (a(t)/r₀)(x·e₁+y·e₂+z·e₃)]`
+is exhibited, with `g_ij = a(t)²δ_ij` and `g_00 = −1` recovered.
+
+**Remaining sub-gap**: `g_0i = 0` in the comoving frame requires a
+spatial-averaging or coordinate-adapted proof.
+See `frw_cosmological_solutions.tex`, §4 for the precise gap statement.
 
 ---
 
@@ -154,9 +165,10 @@ FRW metric, but the explicit biquaternionic construction is missing.
 
 | Priority | Gap | Reason |
 |----------|-----|--------|
-| 1 | GAP-C (cosmological) | High scientific interest; FRW is standard |
+| 1 | GAP-C sub-gap: comoving frame `g_0i=0` | Closes the FRW Θ-ansatz construction |
 | 2 | GAP-M (compact) | Needed for mathematical completeness |
 | 3 | GAP-10 (off-shell) | Fundamental but hard; topology-dependent |
 | 4 | GAP-Q (quantum) | Very long-term |
 
 *GAP-Z (Zerilli) was Priority 1 and is now **PROVED [L1]** — removed from this list.*
+*GAP-C (cosmological) is now **PARTIALLY CLOSED [MC]** as of June 2026.*

@@ -29,8 +29,9 @@ Lorentzian signature $(-,+,+,+)$ is an algebraic theorem from the complex-time
 axiom, and the full Einstein equations follow from Hilbert variation.  The
 Schwarzschild metric in isotropic coordinates is reproduced analytically and
 numerically verified to relative error $< 10^{-8}$.  The odd-parity graviton
-(Regge-Wheeler equation) is derived from linearised UBT without additional input.
-The off-shell $\Theta$-only closure is identified as an open problem at level [L2]
+(Regge-Wheeler equation) and the even-parity graviton (Zerilli equation) are
+both derived from linearised UBT without additional input.  The off-shell
+$\Theta$-only closure is identified as an open problem at level [L2]
 and does not affect the on-shell validity of the main result.
 
 ---
@@ -165,7 +166,7 @@ Code and output from `tools/verify_schwarzschild_theta.py`.
 | ASD / twistor | Proved [L1] | Include as theorem |
 | Linearised GR | Proved [L1] | Write up |
 | Regge-Wheeler | Proved [L1] | Write up |
-| Zerilli (even-parity) | OPEN [L2] | State as open |
+| Zerilli (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | Include as theorem |
 | Off-shell closure | OPEN [L2] | State as open |
 
 **Overall readiness**: Paper can be submitted with Steps 1–5 + Schwarzschild + Regge-Wheeler.  

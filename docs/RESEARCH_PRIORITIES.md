@@ -224,8 +224,51 @@ Clear criteria for advancing content between layers:
 
 ---
 
-**Last Updated:** February 9, 2026  
-**Next Review:** Q1 2026  
+## Derivation Continuation (June 2026)
+
+This continuation defines the next derivation targets for the current top 5 priorities,
+with explicit closure criteria and source anchors.
+
+### Priority 1 — Peer Review Preparation (Derivation Closure Targets)
+- Lock theorem-ready derivation chains for:
+  - core field equation to GR limit: \(\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}\Rightarrow R_{\mu\nu}-\tfrac12 g_{\mu\nu}R=8\pi G T_{\mu\nu}\)
+  - gauge emergence chain: \(\mathbb{C}\otimes\mathbb{H}\Rightarrow SU(3)\times SU(2)\times U(1)\)
+- Add one citation-complete derivation map per submitted paper.
+- Closure criterion: each paper has a line-by-line claim→equation→source-file trace.
+- Anchors: `canonical/gr_closure/`, `canonical/interactions/`, `DERIVATION_INDEX.md`.
+
+### Priority 2 — CMB Analysis Protocol (Derivation Targets)
+- Derive \(H(z)\) correction form for the overhead hypothesis with explicit parameter priors.
+- Derive likelihood function and nuisance-parameter treatment before MCMC runs.
+- Derive model-comparison statistics versus \(\Lambda\)CDM (AIC/BIC/Bayes factor).
+- Closure criterion: reproducible parameter-to-observable derivation chain from model to posterior.
+- Anchors: `research_tracks/` CMB analysis files and linked protocol documents.
+
+### Priority 3 — Complete Parameter Derivations (Derivation Targets)
+- Derive the remaining B-constant gap using one non-circular route with assumptions explicitly marked.
+- Derive Hopfion \((A,p,B)\) coefficients from geometric invariants rather than calibration.
+- Derive Yukawa matrix structure from symmetry + representation constraints before numerical fitting.
+- Closure criterion: each parameter transitions from fitted/semi-empirical to first-principles or is formally labeled open.
+- Anchors: `canonical/alpha/`, mass and Yukawa derivation files in `research_tracks/`.
+
+### Priority 4 — Mathematical Rigor Completion (Derivation Targets)
+- Complete inner-product and Hilbert-space formal closure with explicit domain and completeness conditions.
+- Complete \(B^4\) integration measure and normalization consistency checks.
+- Complete causality/unitarity proof obligations (or publish bounded limitations).
+- Closure criterion: all remaining Layer A foundations are either proved or explicitly delimited as open.
+- Anchors: canonical algebra/fields/geometry foundations and formal appendix files.
+
+### Priority 5 — Layer C Research Hypotheses (Derivation Targets)
+- Hubble overhead: derive falsifiable redshift-window predictions with uncertainty bands.
+- Dark matter from p-adics: derive candidate mass/coupling ranges before experimental comparison.
+- Modified gravity: derive leading-order correction terms and observational null-test bounds.
+- Closure criterion: each Layer C hypothesis outputs either a testable prediction set or a documented falsification path.
+- Anchors: relevant `research_tracks/` hypothesis derivation files and test protocol notes.
+
+---
+
+**Last Updated:** June 10, 2026  
+**Next Review:** Q3 2026  
 **See also:** 
 - [UBT_LAYERED_STRUCTURE.md](UBT_LAYERED_STRUCTURE.md) - Detailed layer definitions
 - [ROADMAP.md](ROADMAP.md) - Detailed timeline
