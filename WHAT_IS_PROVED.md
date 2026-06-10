@@ -129,7 +129,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | G15 | Zerilli equation (even-parity graviton) derived from linearised UBT (vacuum Schwarzschild, $\ell\ge2$) | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| G18 | FRW Θ-ansatz: $g_{ij} = a(t)^2\delta_{ij}$ and reduced field-equation matching | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Thm \`frw_ansatz_l1\`` |
+| G18 | FRW Θ-ansatz: $g_{ij} = a(t)^2\delta_{ij}$ and reduced field-equation matching | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)
