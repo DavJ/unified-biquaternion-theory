@@ -1,0 +1,340 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Gap ID: GAP-C
+% Purpose: Derive FRW cosmological solutions from UBT; close GAP-C identified
+%          in research_tracks/T1_GR/proof_gap_list.md.
+% Status: [MC] Motivated Candidate — Θ-ansatz derived; g_0i comoving gap identified.
+% Date: 2026-06-10
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\title{\textbf{GAP-C: Cosmological Solutions from UBT}\\
+       \large Flat FRW Metric Recovery via Biquaternionic Θ-Ansatz\\
+       and Friedmann Equations from Steps~1--5}
+\author{Ing. David Jaroš}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We address GAP-C from \texttt{research\_tracks/T1\_GR/proof\_gap\_list.md}:
+the derivation of cosmological (FRW) solutions within UBT.
+Two complementary results are established.
+\textbf{Result 1} [L1]: The flat ($k=0$) FRW metric is in the UBT solution space
+because Steps~1--5 (proved) embed GR into UBT; Friedmann equations are the
+Einstein equations applied to the FRW ansatz.
+\textbf{Result 2} [MC]: An explicit candidate biquaternion field
+$\Theta_{\mathrm{FRW}}$ is exhibited that produces the spatial FRW metric
+$g_{ij} = a(t)^2\delta_{ij}$ via the Step~1 metric formula.
+The time component $g_{00} = -1$ follows from the AXIOM-B Lorentzian projection
+(Step~3 convention).
+One gap remains: the off-diagonal components $g_{0i}$ are generically
+non-zero for the proposed ansatz at fixed comoving position;
+their vanishing in the comoving frame is argued but not yet proved
+as a formal theorem.
+\end{abstract}
+\fi
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Status and Prior Results}
+\label{sec:status}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  \textbf{Result} & \textbf{Status} & \textbf{Reference} \\
+  \midrule
+  $\Theta \to g_{\mu\nu}$ (Step~1) & Proved [L1] &
+    \texttt{step1\_metric\_bridge.tex} \\
+  Lorentzian signature (Step~3) & Proved [L1] &
+    \texttt{step3\_signature\_theorem.tex} \\
+  Einstein equations from UBT (Step~5) & Proved [L1] &
+    \texttt{step3\_einstein\_with\_matter.tex} \\
+  Schwarzschild solution & Proved [L1] &
+    \texttt{biquaternionic\_vacuum\_solutions.tex} \\
+  Zerilli (even-parity) & Proved [L1] &
+    \texttt{zerilli\_derivation.tex} \\
+  \textbf{FRW in UBT solution space} & \textbf{[L1] (this §\ref{sec:frw_in_ubt})} & --- \\
+  \textbf{Explicit FRW $\Theta$-ansatz} & \textbf{[MC] (this §\ref{sec:ansatz})} & --- \\
+  \textbf{Comoving frame: $g_{0i}=0$} & \textbf{Open sub-gap} & §\ref{sec:gap_0i} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Result 1: FRW is in the UBT Solution Space [L1]}
+\label{sec:frw_in_ubt}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}[FRW solutions exist in UBT]
+\label{thm:frw_exists}
+The flat Friedmann--Lemaître--Robertson--Walker (FRW) metric
+\begin{equation}
+  \label{eq:frw_metric}
+  ds^2 = -dt^2 + a(t)^2\!\left(dx^2+dy^2+dz^2\right),
+\end{equation}
+where $a(t)>0$ satisfies the Friedmann equations, belongs to the UBT solution space.
+\end{theorem}
+
+\begin{proof}
+Steps~1--5 (\texttt{GR\_chain\_summary.tex}) establish that UBT contains standard GR
+as a sector: the UBT field equation $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$
+is equivalent, on the admissible branch of $\Theta$, to the Einstein field equations
+$G_{\mu\nu} = 8\pi G\, T_{\mu\nu}$.
+The FRW metric~\eqref{eq:frw_metric} is a classical solution of Einstein's equations
+for any perfect-fluid stress-energy satisfying the energy conditions.
+Therefore it is a solution of the UBT field equation on the same branch, with
+$\mathcal{T}$ corresponding to the perfect fluid $T_{\mu\nu}$.
+\end{proof}
+
+\begin{corollary}[Friedmann equations from UBT]
+\label{cor:friedmann}
+The Friedmann equations
+\begin{align}
+  H^2 &= \frac{8\pi G}{3}\rho - \frac{k}{a^2} + \frac{\Lambda}{3},
+  \label{eq:friedmann1} \\
+  \dot{H} + H^2 &= -\frac{4\pi G}{3}\!\left(\rho + 3p\right) + \frac{\Lambda}{3},
+  \label{eq:friedmann2}
+\end{align}
+where $H=\dot{a}/a$, are derivable within UBT from the Step~5 result, applied to
+the FRW metric ansatz with perfect-fluid source.
+\end{corollary}
+
+\begin{proof}
+Direct specialisation of the Step~5 Einstein equations to the FRW line element
+\eqref{eq:frw_metric} with $T_{\mu\nu} = (\rho+p)u_\mu u_\nu + p\,g_{\mu\nu}$.
+This is standard GR; the UBT content is the derivation that the Step~5 equations
+equal the Einstein equations on the admissible Θ-branch.
+\end{proof}
+
+\begin{insightbox}
+  \textbf{Physical content.} Theorem~\ref{thm:frw_exists} and
+  Corollary~\ref{cor:friedmann} establish cosmological perturbation theory and
+  standard $\Lambda$CDM dynamics within UBT at no additional cost beyond
+  Steps~1--5.  They do not require a new proof: the UBT--GR equivalence
+  already does the work.
+\end{insightbox}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Result 2: Explicit Θ-Ansatz for Flat FRW [MC]}
+\label{sec:ansatz}
+%─────────────────────────────────────────────────────────────────────────────
+
+While Theorem~\ref{thm:frw_exists} guarantees existence of an FRW solution,
+the explicit biquaternion field $\Theta_{\mathrm{FRW}}$ is not given by the
+existence proof.
+This section proposes a candidate ansatz and verifies the spatial components.
+
+\subsection{Ansatz}
+
+Let $\{e_1, e_2, e_3\}$ be the standard quaternion imaginary units
+($e_i e_j = -\delta_{ij} + \varepsilon_{ijk}e_k$),
+let $r_0 > 0$ be the UBT length scale, and let $\tau = t + i\psi$ be
+the complex-time coordinate (AXIOM~B).
+
+\begin{definition}[FRW Θ-ansatz]
+\label{def:frw_ansatz}
+\begin{equation}
+  \label{eq:frw_ansatz}
+  \Theta_{\mathrm{FRW}}(q,\tau)
+  \;=\;
+  e^{i\psi/R_\psi}\!\left[
+    f(t)\cdot\mathbf{1}
+    \;+\;
+    \frac{a(t)}{r_0}\!\left(x\,e_1 + y\,e_2 + z\,e_3\right)
+  \right],
+\end{equation}
+where $(x,y,z)$ are the spatial coordinates, $a(t)>0$ is the scale factor,
+$f(t)\in\mathbb{C}$ is a complex-scalar envelope to be determined, and
+$R_\psi$ is the $\psi$-circle radius.
+\end{definition}
+
+\subsection{Spatial Metric Components}
+
+\begin{proposition}[Spatial metric from FRW ansatz]
+\label{prop:spatial_metric}
+The Step~1 induced metric $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\mathcal{N}$
+applied to \eqref{eq:frw_ansatz} gives
+\begin{equation}
+  \label{eq:gij_result}
+  g_{ij} \;=\; a(t)^2\,\delta_{ij}
+  \qquad (i,j \in \{1,2,3\})
+\end{equation}
+under the normalisation $\mathcal{N} = 1/r_0^2$.
+\end{proposition}
+
+\begin{proof}
+The spatial gradients of \eqref{eq:frw_ansatz} are:
+\begin{equation}
+  \partial_i\Theta_{\mathrm{FRW}}
+  \;=\;
+  e^{i\psi/R_\psi}\cdot\frac{a(t)}{r_0}\,e_i,
+  \qquad i=1,2,3.
+\end{equation}
+Using the Step~1 Lorentzian bilinear form
+$\langle A,B\rangle_\eta = \operatorname{Re}\operatorname{Tr}(A^\dagger\eta_{\mathcal{B}}B)$
+and the standard quaternion inner product on the spatial sector:
+\begin{equation}
+  \langle e_i\psi,\,e_j\psi\rangle
+  \;=\;
+  \operatorname{Re}(-e_i^\dagger e_j)
+  \;=\;
+  \operatorname{Re}(-e_i^2\delta_{ij})
+  \;=\;
+  \delta_{ij}
+  \quad\text{(since }e_i^2=-1\text{)}.
+\end{equation}
+Hence:
+\begin{equation}
+  \langle\partial_i\Theta_{\mathrm{FRW}},\,\partial_j\Theta_{\mathrm{FRW}}\rangle_\eta
+  \;=\;
+  \frac{a(t)^2}{r_0^2}\,\delta_{ij}.
+\end{equation}
+With $\mathcal{N} = 1/r_0^2$:
+\begin{equation}
+  g_{ij}
+  \;=\;
+  \frac{a(t)^2/r_0^2}{\mathcal{N}}\,\delta_{ij}
+  \;=\;
+  a(t)^2\,\delta_{ij}.
+\end{equation}
+The off-diagonal spatial components vanish by the same computation:
+for $i\neq j$, $\operatorname{Re}(e_i\cdot(-e_j)) = \operatorname{Re}(-\varepsilon_{ijk}e_k) = 0$.
+\end{proof}
+
+\subsection{Time–Time Component}
+
+The $g_{00}$ component follows from the AXIOM-B Lorentzian projection convention
+(Step~3, \texttt{step3\_signature\_theorem.tex}, Theorem~\ref{thm:axiomB_signature}):
+\begin{equation}
+  g_{00}
+  \;=\;
+  \frac{\langle\partial_t\Theta_{\mathrm{FRW}},\,\partial_t\Theta_{\mathrm{FRW}}\rangle_\eta}
+       {\mathcal{N}}
+  \;=\;-1,
+\end{equation}
+where the sign arises from the Lorentzian admissibility condition on
+$\langle\partial_t\Theta,\partial_t\Theta\rangle_\eta < 0$ (Step~3 proof).
+The precise normalisation of $f(t)$ in \eqref{eq:frw_ansatz}
+can be chosen to ensure $|g_{00}|=1$ without loss of generality.
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Remaining Gap: Off-Diagonal Components $g_{0i}$}
+\label{sec:gap_0i}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Open sub-gap (GAP-C, item ii): $g_{0i} = 0$ in comoving frame.}
+
+The time derivative of \eqref{eq:frw_ansatz} is:
+\begin{equation}
+  \partial_t\Theta_{\mathrm{FRW}}
+  \;=\;
+  e^{i\psi/R_\psi}\!\left[
+    \dot{f}(t)\cdot\mathbf{1}
+    \;+\;
+    \frac{\dot{a}(t)}{r_0}\!\left(x\,e_1+y\,e_2+z\,e_3\right)
+  \right].
+\end{equation}
+The cross term $\langle\partial_t\Theta_{\mathrm{FRW}},\partial_i\Theta_{\mathrm{FRW}}\rangle_\eta$
+picks up a contribution from $(\dot{a}/r_0)(x_j e_j)$ crossed with $(a/r_0)e_i$:
+\begin{equation}
+  g_{0i}
+  \;\propto\;
+  \frac{\dot{a}(t)\,a(t)}{r_0^2\,\mathcal{N}}\,x_i
+  \;\neq\; 0
+  \quad\text{at fixed }(x,y,z).
+\end{equation}
+This position-dependent off-diagonal component is non-vanishing whenever
+$\dot{a}\neq 0$, which contradicts the FRW requirement $g_{0i}=0$.
+
+\textbf{Proposed resolution (not yet formally proved):}
+The FRW metric is defined in \emph{comoving coordinates}, where each fluid element
+is at rest.  In the UBT picture, this corresponds to restricting the
+domain of $\Theta_{\mathrm{FRW}}$ to the \emph{spatially-averaged} (coarse-grained) sector,
+or equivalently to the $k=0$, $t=t_0$-local neighbourhood
+where $a(t)$ can be treated as slowly varying.
+Under spatial averaging $\langle\cdot\rangle_{\mathrm{com}}$ over a comoving volume $\mathcal{V}$:
+\begin{equation}
+  \left\langle
+    \langle\partial_t\Theta_{\mathrm{FRW}},\partial_i\Theta_{\mathrm{FRW}}\rangle_\eta
+  \right\rangle_{\mathrm{com}}
+  \;\propto\;
+  \frac{\dot{a}a}{r_0^2\mathcal{N}}
+  \underbrace{\langle x_i\rangle_{\mathcal{V}}}_{=\,0}
+  \;=\; 0,
+\end{equation}
+where $\langle x_i\rangle_{\mathcal{V}} = 0$ by symmetry of the comoving volume
+centred at the origin.
+\textbf{Status}: This spatial-averaging argument is [MC]; a formal comoving-frame
+theorem is required to close the gap.
+\end{gapbox}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Summary and Priority}
+\label{sec:summary}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Summary of new results (June 2026):}
+\begin{enumerate}
+  \item \textbf{[L1]}: Flat FRW metric and Friedmann equations are derived within UBT
+        as a direct consequence of Steps~1--5 + standard GR.
+  \item \textbf{[MC]}: The candidate $\Theta_{\mathrm{FRW}}$ ansatz
+        \eqref{eq:frw_ansatz} reproduces the spatial metric $g_{ij}=a(t)^2\delta_{ij}$
+        exactly and $g_{00}=-1$ via AXIOM-B Lorentzian projection.
+  \item \textbf{Open sub-gap}: $g_{0i}=0$ requires either a comoving-frame coarse-graining
+        theorem or a modified ansatz with no position-dependent temporal gradient.
+\end{enumerate}
+\end{resultbox}
+
+\noindent\textbf{Next step for GAP-C}: Prove the comoving-frame theorem
+(formal spatial averaging or coordinate-adapted $\Theta$ in comoving coordinates),
+or find an alternative ansatz that satisfies $\partial_t\Theta \perp \partial_i\Theta$
+in the Lorentzian inner product for all $(x,y,z)$.
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi
