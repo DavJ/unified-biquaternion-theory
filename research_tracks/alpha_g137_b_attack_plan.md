@@ -73,5 +73,5 @@ derive the effective coupling `B ≈ 46.284–46.298` directly from UBT primitiv
 
 ## Strict success criterion
 
-Gap G137-B is closed only if B is computed from UBT primitives without using
+Gap G137-B is formally resolved only if B is computed from UBT primitives without using
 alpha_exp, 137, or B_required as input.

@@ -42,7 +42,7 @@ Checked files:
 - `reports/alpha_current_verdict.md`
 
 Verification outcome:
-- No affirmative claim that **alpha is derived** in these authoritative status files.
+- No affirmative claim that **alpha has been derived** in these authoritative status files.
 - No claim that **eta(i) closes B-gap**.
 - No claim that **Hecke path-integral derives B**.
 - No claim that **tau=i fully fixes alpha**.

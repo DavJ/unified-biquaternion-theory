@@ -65,7 +65,7 @@ small correction from the elliptic elements of $\Gamma_0(137)$.
 | $n^*(B_\mathrm{phenom}) = 137$ for $B = B_\mathrm{phenom}$ | **[L1] Proved** (given B) |
 | $B_0 = 8\pi$ (one-loop UBT) | **[L1] Proved** |
 | $B_\mathrm{phenom} = 46.298$ | **Numerical** (inverse: V_eff minimum at 137 requires this B) |
-| **B_phenom derived from S[Θ] or from modular geometry of Γ₀(137)** | **[L2] OPEN — this is the gap** |
+| **Derivation of B_phenom from S[Θ] or from modular geometry of Γ₀(137)** | **[L2] OPEN — this is the gap** |
 | $\mu(\Gamma_0(137)) = 138$ (numerical, exact) | **[STD]** (modular curve formula) |
 | $\mu(\Gamma_0(137))/3 \approx B_\mathrm{phenom}$ (error 0.64%) | **Observation** — not yet derived |
 

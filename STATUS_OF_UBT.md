@@ -1,3 +1,14 @@
+## 2026-06-11 (T3_ALPHA downgrade — STRUCTURAL EVIDENCE)
+
+### Status changes
+- T3_ALPHA: CONDITIONAL → STRUCTURAL EVIDENCE (time-box expired, 6 NO-GOs)
+- G137-B: NARROWED → OPEN/NO-GO-RECORD (formal gap statement added)
+
+### No new results
+- No proof-level changes to any other track.
+- T1_GR: still SUBMIT READY (unchanged).
+- T2_GAUGE: still NEAR READY (unchanged).
+
 ## 2026-06-10 (v51 — copilot-instructions update and OP-S4 table fix)
 
 ### New results registered
@@ -64,7 +75,7 @@ and one blocked result (T3_ALPHA).
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | `papers/UBT_Gauge_Submission.tex` | Target submission: 2026-06-08 |
-| **T3_ALPHA** — Fine Structure Constant | 🔴 CONDITIONAL | No paper yet | Blocked on Gap G137-B |
+| **T3_ALPHA** — Fine Structure Constant | 🔴 STRUCTURAL EVIDENCE | No paper yet | Downgraded 2026-06-11. α NOT DERIVED. B-gap open after 6 NO-GOs. Write conditional integer-137 companion note. |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
 **No speculative tracks are active.**  Consciousness/CTC content is frozen in
@@ -303,13 +314,13 @@ Master status file: `canonical/gauge/GAUGE_MASTER_STATUS.md`
 **Global Objective**: Derive α⁻¹_bare = 137 (integer) without fitting.
 Full derivation (137.036) requires solving Gap G137-B first.
 
-**Status**: CONDITIONAL — integer-137 result proved given B = B_phenom; gap remains
+**Status**: STRUCTURAL EVIDENCE — downgraded 2026-06-11 after six NO-GOs; α remains NOT DERIVED
 
 ### Active Routes
 
 | Route | Status | Confidence | Blocker | Continue? |
 |-------|--------|------------|---------|-----------|
-| **A_PRIME: V_eff Prime Attractor** | **PRIMARY** | HIGH (conditional) | Gap G137-B | YES — 4-week time-box |
+| **A_PRIME: V_eff Prime Attractor** | **TIME-BOX EXPIRED** | HIGH (conditional) | Gap G137-B | NO — 6 NO-GOs on record |
 
 **What is proved in A_PRIME**:
 - N_eff^twist = 12 — [L1]: closed on the SU(2)-twist route; the independent
@@ -375,19 +386,13 @@ Cross-references:
 
 Archive: `reports/failed_routes_graveyard.md`
 
-### Strongest Next Move (30-Day Attack Plan)
+### Decision Gate Outcome (2026-06-11)
 
-**Week 1–4**: Modular bootstrap on Gap G137-B.
-- Target: derive B = μ(Γ₀(n*))/3 from S[Θ] evaluated at n*.
-- Evidence: μ(Γ₀(137))/3 ≈ 46.00 (0.64% from B_phenom); non-trivial structural signal.
-- Success = route becomes [L1]; publish integer-137 paper.
-
-**Week 4 decision gate** (go/no-go):
-- If G137-B solved → write T3_ALPHA paper; submit as companion to T1_GR.
-- If G137-B not solved (70–80% probability) → publish conditional integer-137 note,
-  downgrade T3_ALPHA to STRUCTURAL EVIDENCE status, redirect effort to T2_GAUGE.
-
-**Do not pursue** A1, A2, A3, A4.  Dead routes receive zero active priority.
+- The 4-week modular bootstrap time-box expired without closing Gap G137-B.
+- Six routes are now on record as NO-GO; see `research_tracks/T3_ALPHA/mellin_insertion_B.tex`.
+- Next alpha action: write the conditional integer-137 companion note with the gap stated explicitly.
+- Primary effort is redirected to T1_GR submission and T2_GAUGE completion.
+- **Do not pursue** A1, A2, A3, A4, or any new alpha route without explicit instruction.
 
 Master portfolio file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`  
 Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`  

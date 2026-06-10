@@ -168,7 +168,7 @@ No active canonical file presents `eta(i)` as a derived B-modifier.
 
 ---
 
-## 4. "Alpha is Derived" Claims
+## 4. "Alpha-derived" Claims
 
 No active canonical file claims alpha is fully derived. All relevant files
 (alpha_best_route.tex, best_candidate_derivation.tex, alpha_equation_matrix.tex,

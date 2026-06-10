@@ -39,12 +39,13 @@ to 137.036 is not yet derived from first principles.
 
 | Item | Verdict |
 |------|---------|
-| α derivation: overall | **NOT DERIVED** — B-gap open |
-| α⁻¹_bare = 137 (integer) | **CONDITIONAL ONLY** — no first-principles closure |
-| α⁻¹ = 137.036 (full precision) | **NOT ACHIEVED** — requires Gap G137-B resolution |
-| Active routes | 1 (A_PRIME) |
+| α derivation: overall | **NOT DERIVED** — B-gap open after 6 NO-GOs |
+| α⁻¹_bare = 137 (integer) | **CONDITIONAL [L1 cond.]** — structural evidence only |
+| α⁻¹ = 137.036 (full precision) | **NOT ACHIEVED** |
+| T3_ALPHA track status | **STRUCTURAL EVIDENCE** (downgraded 2026-06-11) |
+| Active routes | 0 — time-box expired; no new routes without instruction |
 | Parked routes | 2 (A1, A2 — conditional on EW-1 pure-algebra dead end; EW-1b remains conditional) |
-| Killed routes | 2 (A3, A4 — definitively failed) |
+| Killed routes | 2 (A3, A4) + 6 G137-B sub-routes (all NO-GO) |
 
 ### Status sync (2026-05-10 — winding NO-GO update)
 
@@ -124,6 +125,18 @@ to 137.036 is not yet derived from first principles.
 - Consequence in that route: `B0 = 8π [L1]`
 - Gap G137-B: **still OPEN**
 - Alpha: **NOT DERIVED**
+
+### T3_ALPHA downgrade sync (2026-06-11)
+
+- Time-box expired: 4-week modular bootstrap produced no closure of G137-B.
+- Six routes on record, all NO-GO (see `mellin_insertion_B.tex §formal-gap`).
+- Track status: **STRUCTURAL EVIDENCE** (downgraded from CONDITIONAL).
+- Publishable conditional result: α⁻¹_bare = 137 conditional on B [L1 cond.].
+- B_phenom from S[Θ]: **NOT DERIVED**.
+- Alpha: **NOT DERIVED**.
+- Next action: write short companion note (conditional integer-137, gap stated).
+  Redirect primary effort to T1_GR submission and T2_GAUGE paper completion.
+- No new alpha routes to be opened without explicit user instruction.
 
 ### N_eff audit sync (2026-05-10)
 

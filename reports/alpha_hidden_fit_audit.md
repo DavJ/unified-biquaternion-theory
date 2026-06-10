@@ -98,9 +98,9 @@ Anything that violates F1–F4 is a **hidden fit** and must be downgraded.
 | B_phenom ≈ 46.298 used in n*(B) = 137 | 46.298 | **Taken from experiment (α⁻¹ = 137)** | ⚠️ CIRCULAR if promoted without closing Gap G137-B |
 | n*(B₀) ≈ 65 (proved, no fitting) | 65 | Computed from B₀ = 8π | ✅ No hidden fit |
 
-**Explanation of the hidden fit**: The claim "n*(B_phenom) = 137 where B_phenom = 46.298" currently uses B_phenom derived by inverting the V_eff equation: B_phenom = solution of n*(B) = 137. This is circular at the level of a complete derivation. The claim is honestly labeled CONDITIONAL on Gap G137-B in all current documents. **This is not a hidden fit in the claim — it is an explicit condition stated in the document.** The risk arises only if B_phenom is claimed as "derived" without closing Gap G137-B.
+**Explanation of the hidden fit**: The claim "n*(B_phenom) = 137 where B_phenom = 46.298" currently uses B_phenom obtained by inverting the V_eff equation: B_phenom = solution of n*(B) = 137. This is circular at the level of a complete derivation. The claim is honestly labeled CONDITIONAL on Gap G137-B in all current documents. **This is not a hidden fit in the claim — it is an explicit condition stated in the document.** The risk arises only if B_phenom is claimed as "derived" without formally resolving Gap G137-B.
 
-**Verdict**: Route B's primary claim is **not a hidden fit** because the condition (B = B_phenom assumed) is explicitly stated. However, it must remain labeled CONDITIONAL until Gap G137-B is closed.
+**Verdict**: Route B's primary claim is **not a hidden fit** because the condition (B = B_phenom assumed) is explicitly stated. However, it must remain labeled CONDITIONAL until Gap G137-B is formally resolved.
 
 **Action**: Do not promote n*(B_phenom) = 137 to PROVED until B_phenom is independently derived.
 

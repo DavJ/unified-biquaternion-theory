@@ -269,7 +269,7 @@ Neither reaches 137 without an additional factor R ≈ 1.113 (Gap G137-B).
 
 - Keep the alpha route (V1 is mathematically correct)
 - Classify B as phenomenological and mark as target for derivation (Gap G137-B)
-- Do **not** promote n\*(B_phenom) = 137 to PROVED until Gap G137-B is closed
+- Do **not** promote n\*(B_phenom) = 137 to PROVED until Gap G137-B is formally resolved
 
 ---
 

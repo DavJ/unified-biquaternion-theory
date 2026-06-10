@@ -59,7 +59,7 @@ Updated every cycle. Determines route priority and kill decisions.
 
 **Status**: PRIMARY — maximum priority; 4-week modular bootstrap attack  
 **Kill condition**: If N_eff = 12 candidate fails critical audit (OPEN/[MC])  
-**Promotion condition**: Gap G137-B closed ⟹ write T3_ALPHA paper; claim α⁻¹_bare = 137 at [L1]
+**Promotion condition**: G137-B formally resolved ⟹ write T3_ALPHA paper; claim α⁻¹_bare = 137 at [L1]
 
 ---
 

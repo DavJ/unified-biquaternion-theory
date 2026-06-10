@@ -1,4 +1,4 @@
-# UBT Alpha Derivation Findings Report
+# LEGACY / SUPERSEDED — UBT Alpha Findings Report
 
 **Date:** 2025-11-09  
 **Audit Version:** 1.0  
@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-### Verdict: **YES - Alpha is derived without fitting parameters**
+### Verdict: **Legacy draft overclaimed alpha closure without fitting parameters**
 
 The Unified Biquaternion Theory (UBT) provides a rigorous, fit-free derivation of the fine-structure constant α at the two-loop baseline level, subject to three explicitly stated and verifiable assumptions (A1-A3).
 

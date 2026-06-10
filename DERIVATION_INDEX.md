@@ -61,6 +61,10 @@ Sources: `canonical/interactions/`, `canonical/su3_derivation/`, `canonical/chir
 
 Sources: `canonical/alpha/`, `canonical/n_eff/`, `reports/`
 
+research_tracks/T3_ALPHA/mellin_insertion_B.tex | Gap G137-B no-go record |
+  [L0]+[L1]+[OBS] | Six routes NO-GO; 3 sub-gaps G137-B-i/ii/iii named [OPEN/MC];
+  T3_ALPHA downgraded to STRUCTURAL EVIDENCE 2026-06-11; Alpha NOT DERIVED
+
 ---
 
 ## Open Derivation Gaps (Mandatory status discipline)
