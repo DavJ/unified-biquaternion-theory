@@ -21,9 +21,9 @@ editorial (notation, write-up completeness).  GAP-Z is now PROVED [L1].
 
 | Gap ID | Short name | Type | Blocks paper? | Priority |
 |--------|-----------|------|--------------|----------|
-| ED-1 | Notation unification | Editorial | **No** (affects readability) | Critical for draft |
+| ED-1 | Notation unification | Editorial | **No** (affects readability) | **DONE 2026-06-11** |
 | ED-2 | Regge-Wheeler source file | Write-up | **No** | High |
-| ED-3 | Schwarzschild numerical table | Write-up | **No** | High |
+| ED-3 | Schwarzschild numerical table | Write-up | **No** | **DONE 2026-06-11** |
 | GAP-10 | Off-shell Θ-only closure | [L2] open problem | **No** | State as open |
 | GAP-Z | Zerilli equation (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | N/A — closed | — |
 | GAP-M | Compact M⁴ off-shell | [L2] open problem | **No** | Mention briefly |

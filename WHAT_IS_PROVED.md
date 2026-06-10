@@ -240,6 +240,7 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | α_B_L0 | $B = 12^{3/2}(2\eta(i))^{1/4}$ algebraic identity | [L0] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §alg-identity` |
 | α_nstar | $n^*(B_{\mathrm{phenom}}) = 137$ for $B_{\mathrm{phenom}} \approx 46.298$ | [L1 cond.] | `canonical/alpha/` |
 | α_Neff | $N_{\mathrm{eff}} = 12$ from SU(2)-twist | [L1] | `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
+| N_eff_use | Integer-137 claim uses $N_{\rm eff}^{\rm twist}=12$ [L1], not $N_{\rm eff}^{\rm loop}=3$; identification twist=loop is \textbf{[OPEN/MC frozen]} | [L1] | `canonical/n_eff/step2_AUDIT.tex §rem:neff_alpha_dependency` |
 | α_Z1loop | $Z_{1\mathrm{loop}}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$ | [L0] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §mechanism` |
 | G137-B-i | Volumetric factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$ | [OPEN/MC] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §formal-gap` |
 | G137-B-ii | $Z_{1\mathrm{real}} = 2\eta(i)$ from NS sector heat kernel | [OPEN/MC] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §formal-gap` |
