@@ -236,6 +236,14 @@ Source: `canonical/alpha/`, `reports/alpha_routes_ranked.md`.
 | α9 | $B = 12^{3/2}\cdot 2^{1/8}\cdot\vartheta_3(0\|i)^{1/4} = 46.281$, err $0.0066\%$ | [OBS] | `research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex` |
 | α10 | $a_2(D_{\mathrm{UBT}})$ reprodukuje Einstein-Hilbertovu akci | [Prop.] | `research_tracks/T3_ALPHA/seeley_dewitt_coefficients.tex` |
 | α11 | $a_4 \propto \vartheta_3(0\|i)$ conjecture | [MC/OPEN] | `research_tracks/T3_ALPHA/seeley_dewitt_b_bridge.tex` |
+| α_B_obs | $B = 12^{3/2}(2\eta(i))^{1/4} \approx 46.28$ numerical match | [OBS] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §3` |
+| α_B_L0 | $B = 12^{3/2}(2\eta(i))^{1/4}$ algebraic identity | [L0] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §alg-identity` |
+| α_nstar | $n^*(B_{\mathrm{phenom}}) = 137$ for $B_{\mathrm{phenom}} \approx 46.298$ | [L1 cond.] | `canonical/alpha/` |
+| α_Neff | $N_{\mathrm{eff}} = 12$ from SU(2)-twist | [L1] | `research_tracks/quantum_ubt/su2_twist_neff12.tex` |
+| α_Z1loop | $Z_{1\mathrm{loop}}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$ | [L0] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §mechanism` |
+| G137-B-i | Volumetric factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$ | [OPEN/MC] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §formal-gap` |
+| G137-B-ii | $Z_{1\mathrm{real}} = 2\eta(i)$ from NS sector heat kernel | [OPEN/MC] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §formal-gap` |
+| G137-B-iii | $N_{\mathrm{eff}}^{1/2}$ from $T^3$ volume element at self-dual point | [OPEN/MC] | `research_tracks/T3_ALPHA/mellin_insertion_B.tex §formal-gap` |
 
 ### Rogers-Ramanujan Algebraic Identities (2026-05-11)
 
@@ -289,7 +297,7 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 
 | Topic | Status |
 |-------|--------|
-| α⁻¹ = 137.036 (exact, including one-loop correction) | Open — Gap G137-B |
+| Cosmological/α — Gap G137-B | STRUCTURAL EVIDENCE — 6 routes NO-GO; 3 sub-gaps named; α NOT DERIVED; see mellin_insertion_B.tex §formal-gap |
 | Weinberg angle sin²θ_W | Conditional open — pure-algebra route is dead end; EW-1b (EW1+RG) remains conditional |
 | W/Z boson masses | Open — Gap EW-2 |
 | Higgs mass 125 GeV | Open |

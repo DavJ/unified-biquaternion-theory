@@ -12,7 +12,10 @@
 % Track: T3_ALPHA — Fine Structure Constant
 % Purpose: Gap G137-B — Mellin insertion B (Priority 1)
 % Predecessor: chowla_selberg_B_derivation.tex (Steps 1–7)
-% Status: Gap G137-B OPEN — five tested routes logged; Eisenstein E4 is NO-GO
+% Status: Gap G137-B FORMAL NO-GO RECORD — six routes exhausted; one MC step
+%         (Mellin/heat-kernel insertion) remains structurally open but unproved.
+%         T3_ALPHA downgraded to STRUCTURAL EVIDENCE as of 2026-06-11.
+%         Alpha: NOT DERIVED.
 % Date: 2026-05-18
 
 \documentclass[12pt,a4paper]{article}
@@ -22,6 +25,15 @@
 \newtcolorbox{statusbox}[1][]{%
   colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,
   title=Status Summary,#1}
+\newtcolorbox{gapbox}[1][]{%
+  colback=blue!4!white,colframe=blue!55!black,arc=3pt,boxrule=1.2pt,
+  fonttitle=\bfseries,title=Gap Statement,#1}
+\newtcolorbox{deadendbox}[1][]{%
+  colback=red!3!white,colframe=red!55!black,arc=3pt,boxrule=1.2pt,
+  fonttitle=\bfseries,title=No-Go Record,#1}
+\newtcolorbox{resultbox}[1][]{%
+  colback=green!5!white,colframe=green!45!black,arc=3pt,boxrule=1.2pt,
+  fonttitle=\bfseries,title=Result,#1}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -36,14 +48,31 @@
 \maketitle
 
 \begin{abstract}
-This note audits the open step in Gap G137-B: deriving the coefficient
-$B \approx 46.28$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ from the UBT
-action. Five explicit routes are now on record:
-T-duality [NO-GO], orbifold [NO-GO], direct $M^4$ functional determinant
-[NO-GO, residual factor $\sim 1.14\times 10^4$], Casimir $T^3$ [NO-GO,
-residual factor $\sim 9.0\times 10^3$], and Eisenstein $E_4(i)$ [NO-GO,
-short by $\sim 8.0\%$]. The coefficient source remains open.
-Gap G137-B status: \textbf{OPEN}. Alpha: \textbf{NOT DERIVED}.
+This note is the formal no-go record for Gap G137-B: deriving the coefficient
+$B \approx 46.28$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ from the UBT action
+$S[\Theta]$ without using $\alpha$ as input.
+
+\textbf{Six routes tested, all NO-GO:}
+(1)~T-duality~[NO-GO];
+(2)~orbifold $Z_{\mathrm{orb}}(i) \approx 1.302 \neq \sqrt{2}$~[NO-GO];
+(3)~direct $M^4$ functional determinant, residual $\sim 1.14\times10^4$~[NO-GO];
+(4)~Casimir $T^3$, residual $\sim 9.0\times10^3$~[NO-GO];
+(5)~Eisenstein $E_4(i)$, ratio $\approx 0.920$~[NO-GO];
+(6)~mock theta $f(e^{-\pi})$, ratio $\approx 0.907$~[NO-GO].
+
+\textbf{What is proved:}
+$B = 12^{3/2}(2\eta(i))^{1/4}$ is an algebraic identity~[L0].
+$N_{\mathrm{eff}} = 12$ from SU(2) twist~[L1].
+$Z_{1\mathrm{loop}}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$~[L0].
+$n\ln n$ coefficient from Dirichlet divisor asymptotics~[L1 asym.].
+
+\textbf{What remains open (the minimal missing theorem):}
+Derive why $\eta^{-2}\vartheta_3\vartheta_4^2$ arises from
+$\mathrm{Tr}[\ln P_{\mathrm{eff}}]$ on $T^3$ at $\tau=i$~[MC --- unproved after
+exhaustive search].
+
+\textbf{T3\_ALPHA track status}: STRUCTURAL EVIDENCE (downgraded from
+CONDITIONAL as of 2026-06-11). \textbf{Alpha: NOT DERIVED.}
 \end{abstract}
 
 \tableofcontents
@@ -451,7 +480,7 @@ $(\eta^{-2}\vartheta_3\vartheta_4^2)^{1/4}$\\
 Algebraická identita $\eta^{-2}\vartheta_3\vartheta_4^2 = 2\eta$ při $\tau=i$:
 \textbf{[L0]}\\
 $B = 12^{3/2}(2\eta(i))^{1/4}$: \textbf{[L0 — modulární identita]}\\
-Fyzikální původ z $S[\Theta]$: \textbf{[OPEN — Gap G137-B NARROWED]}\\
+Fyzikální původ z $S[\Theta]$: \textbf{[OPEN — six routes NO-GO; MC step unproved]}\\
 \textbf{Alpha is NOT DERIVED.}
 \end{statusbox}
 # eta(i) = Gamma(1/4) / (2 * pi^(3/4))
@@ -479,7 +508,7 @@ Zbývající faktor (numericky) $\sim 1.14\times 10^4$: \textbf{[NUM]}\\
 $Z_{1\mathrm{real}} = 2\eta(i)$ z NS sektoru: \textbf{[OPEN/MC]} (not yet derived)\\
 $B = N_{\mathrm{eff}}^{3/2}(2\eta(i))^{1/4} \approx 46.28$ analyticky: \textbf{[OPEN]}\\
 Volumetric prefactor $N_{\mathrm{eff}}^{1/2}$ from $T^3_\psi$ measure: \textbf{[OPEN]}\\
-Gap G137-B: \textbf{[NARROWED — zbývá: exact Mellin/spectral insertion]}\\
+Gap G137-B: \textbf{[OPEN — six NO-GOs; exact Mellin/spectral insertion unproved]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
@@ -541,7 +570,7 @@ $B_{\mathrm{mod}}(\tau)$ scan: \\
 \ \ $\tau=1.5$: $B=44.81$, $n^*=131.77$\\
 \ \ $\tau=2.0$: $B=43.37$, $n^*=126.67$\\
 Self-dual point $\tau=i$ gives $B=46.28$ (target)\\
-Gap G137-B: \textbf{[NARROWED; go/no-go pending]}\\
+Gap G137-B: \textbf{[OPEN — time-box expired; route remains unproved]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
@@ -592,7 +621,7 @@ print("tau = i <-> R*Lambda = 1 <-> self-dual pod T-dualitou")
 \(\tau=i\) jako T-duální self-dual bod: \textbf{[MC → L1 pokud T-dualita v UBT]}\\
 \(n_*(\tau=i)=137\) analyticky: \textbf{[OBS → MC]}\\
 \(W_{\mathrm{eff}}\) faktorizace \(N_{\mathrm{eff}}^{3/2}\): \textbf{[OPEN]}\\
-Gap G137-B: \textbf{[NARROWED]}\\
+Gap G137-B: \textbf{[OPEN — determinant/volume map unproved]}\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
@@ -668,7 +697,7 @@ $B_{\rm Casimir} = 0.062 \ll B_{\rm phenom} = 46.28$: ratio $\approx 1.3\times10
 $n\ln n$ structure from T² Epstein zeta: \textbf{[L1 asym.]} (Section~\ref{sec:step2})\\
 Casimir T³ closes Gap G137-B: \textbf{NO}\\
 Remaining factor $\approx 750$: source unidentified\\
-Gap G137-B status: \textbf{NARROWED} (Casimir route explored, closed)\\
+Gap G137-B status: \textbf{OPEN} (Casimir route explored, NO-GO)\\
 Alpha: \textbf{NOT DERIVED}
 \end{statusbox}
 
@@ -746,9 +775,11 @@ Alpha: \textbf{NOT DERIVED}
 All tested routes to derive $B=12^{3/2}(2\eta(i))^{1/4}$ from $S[\Theta]$:
 T-duality [NO-GO], orbifold [NO-GO], $M^4$ $\zeta$-regularization
 [NO-GO $11386\times$], Casimir $T^3$ [NO-GO $9003\times$],
-Eisenstein $E_4$ [NO-GO, $B_{E_4}/B_{\rm target}\approx 0.9195$].
+Eisenstein $E_4$ [NO-GO, $B_{E_4}/B_{\rm target}\approx 0.9195$],
+mock theta [NO-GO, ratio $\approx 0.907$].
 
-Status: Gap G137-B is \textbf{OPEN}. The numerical coincidence
+Status: Gap G137-B is \textbf{OPEN}. T3\_ALPHA is
+\textbf{STRUCTURAL EVIDENCE}. The numerical coincidence
 $B_{\rm phenom}\approx 46.28$ at $0.0066\%$ remains [OBS].
 
 \subsection{Physical mechanism: SU(2) twist sector decomposition}
@@ -801,7 +832,7 @@ Sector decomposition from SU(2) twist [L1]: \textbf{[L0 given L1]}\\
 $Z_{\rm 1-loop}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$: \textbf{[L0]}\\
 $B = 12^{3/2}(2\eta)^{1/4}$ from SU(2) twist sectors: \textbf{[L0 given MC heat-kernel step]}\\
 Remaining open: Mellin normalisation $\eta$ factor \textbf{[MC]}\\
-Gap G137-B: \textbf{NARROWED — one MC step remaining}\\
+Gap G137-B: \textbf{OPEN — one MC step remains after six NO-GOs}\\
 \textbf{Alpha is NOT DERIVED.}
 \end{statusbox}
 \end{tcolorbox}
@@ -839,7 +870,7 @@ the ratio is
 Mock-theta value $f(e^{-\pi})$: \textbf{[NUM]}\\
 $B_{\rm mock}=12^{3/2}f(e^{-\pi})^{1/4}\approx 41.98$: \textbf{[NUM]}\\
 Comparison to $B_{\rm target}\approx46.28$: ratio $\approx 0.907$ (\(-9.30\%\))\\
-Mock modular route closes Gap G137-B: \textbf{[NO-GO \#6]}\\
+Mock modular route verdict: \textbf{[NO-GO \#6]}\\
 Gap G137-B status after mock-theta audit: \textbf{OPEN}
 \end{statusbox}
 
@@ -858,8 +889,8 @@ Z'_{T^2}(0) \;\text{[STD]}
 n\ln n \;\text{[L1 asym.]}
 \;\xrightarrow{\text{Step 3}}\;
 N_{\mathrm{eff}}^{3/2}\cdot Z_{1\mathrm{real}}^{1/4} \;\text{[NUM/MC]}
-\;\xrightarrow{\text{Step 4 — OPEN}}\;
-B \;\text{from } S[\Theta].
+\;\xrightarrow{\text{Step 4 --- OPEN after 6 NO-GOs}}\;
+B \;\text{from } S[\Theta] \;\text{[NOT DERIVED]}.
 \]
 
 \subsection*{What is needed for full closure}
@@ -875,8 +906,11 @@ B \;\text{from } S[\Theta].
 3 & $N_{\mathrm{eff}} = 12$ from SU(2)-twist & [L1] \\
 3 & $B \approx 46.28$ numerically & [NUM] \\
 4 & Eisenstein $E_4(i)$ route & [NO-GO] \\
-4 & Factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}\cdot\mathrm{Tr}[\ln P_b]\times N_{\mathrm{eff}}^{1/2}$ & [OPEN] \\
+4 & Factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}\cdot\mathrm{Tr}[\ln P_b]\times N_{\mathrm{eff}}^{1/2}$ & [OPEN/MC] \\
 4 & Mellin: $\mathrm{Tr}[\ln P_b] \mapsto Z_{1\mathrm{real}}^{1/4}$ with $Z_{1\mathrm{real}} = 2\eta(i)$ & [OPEN/MC] \\
+G137-B-i & Volumetric factorization $W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\!\cdot f(Z_b)$ & [OPEN/MC] \\
+G137-B-ii & $Z_{1\mathrm{real}} = 2\eta(i)$ from NS sector heat kernel & [OPEN/MC] \\
+G137-B-iii & $N_{\mathrm{eff}}^{1/2}$ from $T^3$ volume at self-dual point & [OPEN/MC] \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -902,92 +936,82 @@ Related files:
 \end{itemize}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section*{Gap G137-B --- Formal Downgrade Notice (2026-05-19)}
+\section{Formal Gap Statement and Downgrade Record}
+\label{sec:formal-gap}
 %──────────────────────────────────────────────────────────────────────────────
 
-\begin{tcolorbox}[colback=red!3!white, colframe=red!50!black,
-  title={Gap G137-B --- Formal Downgrade Notice (2026-05-19)}]
-\textbf{Five routes tested, all NO-GO:}
-\begin{enumerate}
-\item T-duality map $\Theta\to\tilde\Theta$: \textbf{[NO-GO]}
-\item Orbifold $Z_{\rm orb} = (\vartheta_3+\vartheta_4)/(2\eta)$:
-      \textbf{[NO-GO]} ($Z_{\rm orb}=1.302\neq\sqrt{2}$)
-\item Direct M$^4$ $\zeta$-regularisation:
-      \textbf{[NO-GO]} (residual factor $1.14\times10^4$)
-\item Casimir energy on $T^3$:
-      \textbf{[NO-GO]} (residual factor $9.0\times10^3$)
-\item Eisenstein $E_4(i)$ modular route:
-  \textbf{[NO-GO]} (ratio $0.920$)
-\item Mock theta $f(e^{-\pi})$:
-  \textbf{[NO-GO]} (ratio $0.907$)
-\end{enumerate}
-
-\textbf{New result}: The combination
-$\eta(i)^{-2}\vartheta_3(0|i)\vartheta_4(0|i)^2 = 2\eta(i)$
-is an algebraic identity [\textbf{L0}], so
-$B = 12^{3/2}(2\eta(i))^{1/4}$ [\textbf{L0}].
-The open problem is now precisely:
-\emph{derive why the combination $\eta^{-2}\vartheta_3\vartheta_4^2$
-arises from $S[\Theta]$ on $T^3$ at $\tau=i$}.
-
-\textbf{Current status}: Gap G137-B is \textbf{NARROWED}
-(not NO-GO). \textbf{Alpha is NOT DERIVED.}
-\end{tcolorbox}
-\end{tcolorbox}
-
-\section{Minimal remaining open problem}
-\label{sec:minimal-open}
-%────────────────────────────────────────────────────────────────────
-
-Z algebraické identity $\S$\ref{sec:algebraic-identity}:
+\begin{gapbox}[title={Gap G137-B --- Minimal Missing Theorem}]
+\textbf{Sub-gap G137-B-i (determinant-to-coefficient map).}
+The factorization
 \[
-B = 12^{3/2}(2\eta(i))^{1/4}
-= 12^{3/2}\bigl[\eta(i)^{-2}\vartheta_3(0|i)\vartheta_4(0|i)^2
-\bigr]^{1/4}
-\quad [\mathbf{L0}].
+W_{\mathrm{eff}} = N_{\mathrm{eff}} \cdot \mathrm{Tr}[\ln P_b] \times
+N_{\mathrm{eff}}^{1/2}
 \]
+has not been derived from $S[\Theta]$. Specifically: prove that the volumetric
+prefactor $N_{\mathrm{eff}}^{1/2}$ arises from the $T^3$ volume element at the
+self-dual point, and not from a different normalisation convention.
 
-Kombinace $\eta^{-2}\vartheta_3\vartheta_4^2$ má přirozený
-fyzikální smysl: při $\tau=i$ je to součin partiční funkce
-periodického sektoru ($\vartheta_3/\eta$, pro pole $a,d$),
-antiperiodického sektoru ($\vartheta_4/\eta$, pro pole $b,c$)
-a normalizačního faktoru $1/\eta^2$.
+\medskip
+\textbf{Sub-gap G137-B-ii ($Z_{1\mathrm{real}} = 2\eta(i)$ derivation).}
+The identification $Z_{1\mathrm{real}}(\tau=i) = 2\eta(i)$ is set by the
+numerical match $B \approx 46.28$ and the algebraic identity [L0]. It has not
+been derived from the NS sector heat kernel. Specifically: derive why the
+combination $\eta^{-2}\vartheta_3\vartheta_4^2$ (and not, e.g.,
+$E_4(i)^{1/16}$ or $Z_{\mathrm{orb}}$) arises from
+$\mathrm{Tr}[\ln P_{\mathrm{eff}}]$ at $\tau = i$.
 
-\paragraph{Minimální chybějící teorém.}
-Zbývá dokázat, že efektivní potenciál $V_{\rm eff}(n)$
-odvozený z jednosmyčkové akce $S[\Theta]$ na $T^3=S^1_\psi
-\times S^1_\chi\times S^1_\xi$ při $\tau=i$ dává:
-\[
-V_{\rm eff}(n) = n^2 - B\,n\ln n + \mathcal{O}(n),
-\]
-kde $B$ je koeficient identifikovaný s
-$12^{3/2}[\eta^{-2}\vartheta_3\vartheta_4^2]^{1/4}=12^{3/2}(2\eta)^{1/4}$.
+\medskip
+\textbf{Sub-gap G137-B-iii ($N_{\mathrm{eff}}^{1/2}$ volumetric factor).}
+The exponent $3/2$ in $N_{\mathrm{eff}}^{3/2}$ decomposes as
+$N_{\mathrm{eff}} \times N_{\mathrm{eff}}^{1/2}$. The $N_{\mathrm{eff}}$
+factor (summing over modes) is [L1]. The extra $N_{\mathrm{eff}}^{1/2}$
+(from the $T^3$ volume prefactor at self-duality) is [MC] --- structurally
+motivated but not derived from $S[\Theta]$ via a formal calculation.
+\end{gapbox}
 
-Konkrétně: ukázat, proč se v jednosmyčkovém výpočtu
-$\mathrm{Tr}[\ln P_{\rm eff}]$ na $T^3$ při $\tau=i$
-přirozeně objeví kombinace
-$\eta(i)^{-2}\cdot\vartheta_3(0|i)\cdot\vartheta_4(0|i)^2$,
-a nikoli jiná kombinace modulárních forem.
+\begin{deadendbox}[title={No-Go Record}]
+Route 1 --- T-duality: structural mismatch [NO-GO]
 
-\begin{tcolorbox}[colback=blue!3!white, colframe=blue!50!black,
-  title={Gap G137-B --- Minimal Missing Theorem (2026-05-20)}]
-\textbf{Proved [L0]}: $B = 12^{3/2}(2\eta(i))^{1/4}$
-via identity $\eta^{-2}\vartheta_3\vartheta_4^2=2\eta$ at $\tau=i$.
+Route 2 --- Z$_2$ orbifold: $Z_{\mathrm{orb}}(i) \approx 1.302$,
+$B_{\mathrm{orb}} \approx 44.40$ ($-4.07\%$) [NO-GO]
 
-\textbf{Open}: Why does the combination
-$\eta^{-2}\vartheta_3\vartheta_4^2$ arise from
-$\mathrm{Tr}[\ln P_{\rm eff}]$ on $T^3$ at $\tau=i$?
+Route 3 --- Direct $M^4$ $\zeta$-regularisation: residual factor $1.14\times10^4$ [NO-GO]
 
-Candidate physical mechanism:
-The twisted boundary conditions (SU(2) twist, [L1])
-select sectors $\vartheta_3$ (periodic, neutral fields $a,d$),
-$\vartheta_4$ (anti-periodic, charged fields $b,c$),
-and $1/\eta^2$ from the heat-kernel determinant normalisation.
-This combination $= 2\eta$ at $\tau=i$ is a structural consequence
-of the self-dual point.
+Route 4 --- Casimir $T^3$: residual factor $9.0\times10^3$ [NO-GO]
 
-\textbf{Status}: Gap G137-B is \textbf{NARROWED}.
-\textbf{Alpha is NOT DERIVED.}
-\end{tcolorbox}
+Route 5 --- Eisenstein $E_4(i)$: $B_{E4} \approx 42.56$ ($-8.05\%$) [NO-GO]
+
+Route 6 --- Mock theta $f(e^{-\pi})$: $B_{\mathrm{mock}} \approx 41.98$ ($-9.30\%$) [NO-GO]
+\end{deadendbox}
+
+\begin{resultbox}[title={T3_ALPHA Downgrade --- STRUCTURAL EVIDENCE}]
+As of 2026-06-11, T3\_ALPHA is downgraded from CONDITIONAL to STRUCTURAL EVIDENCE.
+
+What this means:
+\begin{itemize}
+\item The integer-137 result is a structural observation [L1 conditional on B],
+  not a derivation.
+\item $B = 12^{3/2}(2\eta(i))^{1/4}$ is numerically consistent with
+  $B_{\mathrm{phenom}}$ [OBS].
+\item The combination $\eta^{-2}\cdot\theta_3\cdot\theta_4^2 = 2\eta$ arising
+  from the SU(2) twist sector is a physical candidate mechanism [MC], not a theorem.
+\end{itemize}
+
+What remains publishable:
+\begin{itemize}
+\item The prime attractor mechanism: $n^*(B_{\mathrm{phenom}}) = 137$ [L1 conditional on B].
+\item The SU(2) twist sector decomposition giving $N_{\mathrm{eff}} = 12$ [L1].
+\item The no-go record for six routes (this document).
+\end{itemize}
+
+What is NOT claimed:
+\begin{itemize}
+\item $\alpha$ is derived from first principles.
+\item $B_{\mathrm{phenom}}$ is derived from $S[\Theta]$.
+\item The integer 137 is derived without fitting $B$.
+\end{itemize}
+
+Status: Gap G137-B OPEN. Alpha: NOT DERIVED.
+\end{resultbox}
 
 \end{document}

@@ -31,7 +31,7 @@ the Alpha Critical Fix audit.
 > potential V_eff(n) = n² − B·n·ln n is correctly derived, n\* = 137 is the
 > prime minimiser for the required B ≈ 46.284, but B itself is currently
 > phenomenological and cannot be promoted to a first-principles result until
-> Gap G137-B is closed.**
+> Gap G137-B is formally resolved.**
 
 ---
 
@@ -156,7 +156,7 @@ been exhausted without finding R from first principles (see
 
 **Does consistent V_eff yield n\* ~ 137?** → **YES, conditionally** (for B ≈ 46.28–46.30).
 
-**Is B independently derived?** → **NO** (phenomenological; circular unless Gap G137-B closed).
+**Is B independently derived?** → **NO** (phenomenological; circular unless Gap G137-B is formally resolved).
 
 **Action**:
 

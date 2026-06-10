@@ -327,7 +327,7 @@ The fractional difference `(n3 - n1)/n1 = 0.074%` reflects this sub-percent shif
    mathematically exact [STD/L0] and provides structural motivation for the `n*log(n)`
    form. This is a genuine improvement in explanatory status.
 
-4. **Forbidden move check**: No claim is made that alpha is derived, that B_Ram is
+4. **Forbidden move check**: No claim is made that alpha has been derived, that B_Ram is
    proved, or that lambda_fit is anything other than a numerical observation.
 
 ---

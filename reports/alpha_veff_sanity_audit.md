@@ -267,7 +267,7 @@ is itself conjectural (Gap G3-k) and gives n\* = 127, not 137.
 ### Is the missing factor R ≈ 1.113 a hidden normalization?
 
 **Yes.** R = B_phenom / B_base ≈ 1.113 has no non-circular derivation.
-It must be classified as **OPEN/PHENOMENOLOGICAL** until Gap G137-B is closed.
+It must be classified as **OPEN/PHENOMENOLOGICAL** until Gap G137-B is formally resolved.
 
 ### Next step
 
@@ -281,7 +281,7 @@ It must be classified as **OPEN/PHENOMENOLOGICAL** until Gap G137-B is closed.
    - Secondary path: explicit two-loop heat-kernel determinant on T²×S¹_ψ
    - Corroborative path: prove μ(Γ₀(n\*))/3 = B from Hecke eigenform structure
 
-3. **Do not promote** n\*(B_phenom) = 137 to PROVED until Gap G137-B is closed.
+3. **Do not promote** n\*(B_phenom) = 137 to PROVED until Gap G137-B is formally resolved.
    Current honest status: **CONDITIONAL [L1]**.
 
 ---

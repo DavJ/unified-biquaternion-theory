@@ -32,6 +32,15 @@ TARGET_PHRASES = [
     "breakthrough",
     "zero fitted parameters",
     "claim: \u03b1\u207b\u00b9 = 137.036 is derived",  # Claim: α⁻¹ = 137.036 is derived
+    "b is derived",
+    "b_phenom is derived",
+    "gap g137-b is closed",
+    "gap g137-b closed",
+    "g137-b: closed",
+    "mellin insertion proved",
+    "z_1real derived",
+    "z_{1real} derived",
+    "volumetric factor proved",
 ]
 
 # Safe-context phrases: if one of these appears in the same paragraph, no warning.
@@ -77,6 +86,33 @@ SAFE_PHRASES = [
     "attack plan",          # failed_routes_graveyard.md: references to "ALPHA_BREAKTHROUGH_REPORT.md attack plan"
     "structurally specified",  # precision legend table that also lists 'zero fitted params' as a category level
     "action principle",     # COSMOLOGICAL_ATTRACTOR_SCENARIO.md: "V(ψ) fully derived from action"
+    "structural evidence",
+    "6 no-go",
+    "six routes",
+    "time-box expired",
+    "g137-b-i",
+    "g137-b-ii",
+    "g137-b-iii",
+    "not derived after",
+    "formal no-go",
+    "no-go record",
+]
+
+SPECIFIC_GAP_OVERCLAIMS = [
+    "gap g137-b is closed",
+    "gap g137-b closed",
+    "g137-b: closed",
+    "b_phenom derived",
+    "b is derived from s[",
+    "b is derived from the ubt",
+    "mellin insertion: proved",
+    "mellin insertion proved",
+    "z_1real = 2eta derived",
+    "z_1real=2eta derived",
+    "volumetric factor: proved",
+    "n_eff^{1/2} proved",
+    "n_eff^(1/2) proved",
+    "alpha is derived",   # the nuclear option — this should never appear without safe context
 ]
 
 # Phrases indicating the paragraph concerns alpha/fine-structure.
@@ -226,9 +262,34 @@ def scan_file(path: Path, repo_root: Path) -> List[Tuple[int, str]]:
     return warnings
 
 
+def scan_file_specific_gaps(path: Path, repo_root: Path) -> List[Tuple[int, str]]:
+    text = path.read_text(encoding="utf-8", errors="ignore")
+
+    if file_has_legacy_banner(text):
+        return []
+
+    warnings: List[Tuple[int, str]] = []
+    for line_no, para in paragraphs_with_offsets(text):
+        norm = _normalise(para.lower())
+        for phrase in SPECIFIC_GAP_OVERCLAIMS:
+            if phrase not in norm:
+                continue
+            snippet = " ".join(para.strip().split())[:220]
+            warnings.append((line_no, f"[{phrase}] {snippet}"))
+    return warnings
+
+
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
+
+def print_status_summary() -> None:
+    print("─" * 60)
+    print("T3_ALPHA status: STRUCTURAL EVIDENCE (downgraded 2026-06-11)")
+    print("Gap G137-B: OPEN — 6 routes NO-GO")
+    print("Sub-gaps: G137-B-i (volumetric), G137-B-ii (Z_1real), G137-B-iii (N_eff^1/2)")
+    print("Alpha: NOT DERIVED")
+    print("─" * 60)
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check alpha over-claim language")
@@ -242,6 +303,9 @@ def main() -> int:
         file_warnings = scan_file(file_path, repo_root)
         for line_no, snippet in file_warnings:
             all_warnings.append((file_path.relative_to(repo_root).as_posix(), line_no, snippet))
+        specific_warnings = scan_file_specific_gaps(file_path, repo_root)
+        for line_no, snippet in specific_warnings:
+            all_warnings.append((file_path.relative_to(repo_root).as_posix(), line_no, snippet))
 
     all_warnings.sort()
 
@@ -249,6 +313,7 @@ def main() -> int:
         print("check_alpha_claims: no active alpha overclaim warnings found")
         print("Gap G137-B remains open.")
         print("No first-principles derivation of alpha was achieved.")
+        print_status_summary()
         return 0
 
     print("check_alpha_claims: ACTIVE ALPHA OVERCLAIM WARNINGS FOUND")
@@ -259,6 +324,7 @@ def main() -> int:
     print("Required safe context: 'not derived' / 'conditional' / 'open gap' / 'Gap G137-B' /")
     print("  'superseded' / 'legacy' / 'obsolete' / 'historical'")
     print("OR add a LEGACY / SUPERSEDED banner to the file to mark it as entirely historical.")
+    print_status_summary()
     return 1
 
 
