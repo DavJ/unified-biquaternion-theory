@@ -51,7 +51,7 @@ Sources: `canonical/interactions/`, `canonical/su3_derivation/`, `canonical/chir
 
 **Chirality derivation files:**
 - `canonical/chirality/step3_gap_C1_resolution.tex` — Gap C1 Step 3 — [L1] — SU(2)_L acts on left-chiral doublets
-- `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC] — SU(2)_R decouples from n&gt;0 matter via ψ-parity; Loopholes 1 [L1 cond.] and 3 [STD] closed; OP-S4 (Loophole 2) open
+- `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC] — SU(2)_R decouples from n>0 matter via ψ-parity; Loopholes 1 [L1 cond.] and 3 [STD] closed; OP-S4 (Loophole 2) open
 
 ### 5) α (fine-structure) track with explicit gap discipline
 
