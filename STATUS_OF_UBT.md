@@ -1,3 +1,12 @@
+## 2026-06-10 (v51 — copilot-instructions update and OP-S4 table fix)
+
+### New results registered
+- OP-S4 summary row added to T2_GAUGE table: full algebraic exclusion of $SU(2)_R$ [L1 conditional]
+- `copilot-instructions.md` updated to v51 with precise task descriptions D1–D5
+
+### Status changes
+- T2_GAUGE: OP-S4 now has explicit summary row in claims table (was only in changelog/WHAT_IS_PROVED)
+
 ## 2026-06-10 (v50 — GAP-C and OP-S4 conditional closures)
 
 ### New results registered
@@ -254,6 +263,7 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Loophole 1 (n<0 coupling) observationally decoupled | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex Cor 3.2` |
 | Loophole 3 (KK decoupling, R_ψ→0) | [STD] | `canonical/chirality/step4_no_wr_derivation.tex Prop 4.3` |
 | Loophole 2 (spontaneous breaking) — no light $SU(2)_R$ doublet in minimal $S[\Theta]$ | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex §4 (Lemma no_doublet)` |
+| Full algebraic exclusion of $SU(2)_R$ (OP-S4) | **[L1 conditional]** — all three loopholes closed; conditional on Step 1 Lem 4 + minimality of $S[\Theta]$ | `canonical/chirality/step4_no_wr_derivation.tex §4` |
 | U(1)_Y from right scalar phase | [L0] | `canonical/interactions/sm_gauge.tex §U1` |
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
