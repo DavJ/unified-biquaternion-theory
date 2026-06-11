@@ -1,3 +1,37 @@
+## 2026-06-11 (v59 — C2-iv formal NO-GO; λ consistency remark)
+
+### New results registered
+- D1 (C2-iv formal NO-GO): `research_tracks/EW/hypercharge_from_ubt.tex §3`
+  Remark `rem:c2iii_attempts` extended with Approach~(b) NO-GO (v59):
+  The $\mathbb{Z}_3$ cycle $\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$ from SU(3)
+  involutions acts as a fiber automorphism on field values $\Theta(q,\tau)$.
+  It has no action on the base-space $\psi$-coordinate; $\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$
+  on $\Theta$ cannot shift the argument $\psi$.
+  Formal `deadendbox` added for C2-iv: all three routes (p=3 Lemma, homeomorphism,
+  approach~(b)) are NO-GO.  Root cause is algebraic fiber decoupling in $S[\Theta]$.
+  Recommendation: deriving $n_q=1/3$ from first principles requires extending
+  $S[\Theta]$ with explicit $\psi$-colour coupling — deferred, outside scope of T2\_GAUGE.
+
+- D2 (λ consistency check): `research_tracks/EW/rpsi_from_action.tex`
+  Remark `rem:lambda_ubt_comparison` added (Step~7).
+  Explicit table of UBT coupling expressions vs.\ $\lambda_{\mathrm{target}}\approx0.119$:
+  only $\lambda=g^2/2$ (SS half-mode projection) is consistent, matching to $2.7\%$.
+  No other natural combination of $g$, $g'$ at GUT scale comes within $20\%$.
+  Verdict: $\lambda=g^2/2$ [L1 conditional on SS] is consistent with Candidate~3;
+  SS boundary conditions not uniquely selected by $S[\Theta]$, so scale closure remains open.
+
+- D3 (proof inventory): `WHAT_IS_PROVED.md` updated:
+  C2-iv entry upgraded from [OPEN/MC] to [FORMAL NO-GO within current $S[\Theta]$];
+  v59 update section added (C2-iv-NO-GO and λ-consistency entries).
+
+### Status changes
+- No proof-level upgrades.
+- C2-iv: **[FORMAL NO-GO within current $S[\Theta]$]** — all three derivation routes fail;
+  does not block any paper; derivation requires $S[\Theta]$ extension (deferred).
+- C2-iii, C2-ii: remain [OPEN/MC].
+- EW-1b: remains [L1 cond. on OP-S4 + SU(3) colour structure + scale closure].
+- $\lambda=g^2/2$ (SS): [L1 conditional on SS] — consistent with Candidate~3.
+
 ## 2026-06-11 (v58 — C2-iii attempts; C2-iv named; EW-1b scale audit formalized)
 
 ### New results registered
@@ -418,8 +452,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
 | C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v56 |
 | C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — Lem `lem:c2ii_candidate` [MC] v57; C2-iii sub-obstacle [OPEN/MC]; does not block any current paper |
-| C2-iii | Geometric coupling $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle | [OPEN/MC] — blocks C2-ii closure; does not block papers; Steps 1+2 attempted v58 (see Rem. rem:c2iii_attempts) |
-| C2-iv | Fiber Decoupling: $S^1_\psi$ (imaginary-time) and colour fiber $\mathbb{C}^3$ are algebraically decoupled in $S[\Theta]$ | [OPEN/MC] — named v58; root cause of C2-iii; does not block papers |
+| C2-iii | Geometric coupling $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle | [OPEN/MC] — blocks C2-ii closure; does not block papers; Steps 1+2 attempted v58, Approach (b) v59 (see Rem. rem:c2iii_attempts) |
+| C2-iv | Fiber Decoupling: $S^1_\psi$ (imaginary-time) and colour fiber $\mathbb{C}^3$ are algebraically decoupled in $S[\Theta]$ | **[FORMAL NO-GO within current $S[\Theta]$]** — v59; all 3 routes NO-GO; root cause of C2-iii; does not block papers; derivation deferred (requires $S[\Theta]$ extension) |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
 

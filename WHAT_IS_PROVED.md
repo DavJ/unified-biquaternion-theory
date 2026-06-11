@@ -57,6 +57,16 @@ If it is not on this list, it is not claimed as proved.
 ---
 
 
+## 2026-06-11 update (v59)
+
+| # | Claim | Level | Source |
+|---|-------|-------|--------|
+| C2-iv-NO-GO | C2-iv formal NO-GO: all 3 routes (p=3, homeomorphism, approach-b) fail; fiber decoupling is algebraic root cause | [FORMAL NO-GO within current $S[\Theta]$] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2iii_attempts` (v59) |
+| λ-consistency | $\lambda=g^2/2$ from SS projection matches $\lambda_{\mathrm{target}}\approx0.119$ to within $2.7\%$; no other UBT combination within $20\%$ | [MC/L1 conditional on SS] | `research_tracks/EW/rpsi_from_action.tex §7 Rem rem:lambda_ubt_comparison` (v59) |
+
+---
+
+
 ## 2026-05-21 update (v41)
 
 | α32 | Minimální chybějící teorém pro Gap G137-B formulován | [OPEN — formalized] | mellin_insertion_B.tex §minimal-open |
@@ -189,7 +199,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v56) |
 | C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC]; Lem `lem:c2ii_candidate` [MC] added v57 | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding, Lem lem:c2ii_candidate` |
 | C2-iii | Geometric coupling $S^1_\psi\leftrightarrow\mathbb{Z}_3$ colour cycle | [OPEN/MC] (blocks C2-ii); Steps 1+2 attempted v58 | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2iii_attempts` (v58) |
-| C2-iv | Fiber Decoupling in $S[\Theta]$: $S^1_\psi$ and colour fiber $\mathbb{C}^3$ algebraically decoupled | [OPEN/MC] (root cause of C2-iii; named v58) | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2iii_attempts` (v58) |
+| C2-iv | Fiber Decoupling in $S[\Theta]$: $S^1_\psi$ and colour fiber $\mathbb{C}^3$ algebraically decoupled | [FORMAL NO-GO within current $S[\Theta]$] (v59, deadendbox) — root cause of C2-iii; does not block papers | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2iii_attempts` (v59) |
 | EW-1b | $\sin^2\theta_W(M_Z)\approx0.231$ (Corollary) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] | `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` (v56) |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
