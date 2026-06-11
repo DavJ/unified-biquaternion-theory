@@ -563,8 +563,13 @@ u_p &= -\cos(\omega t)\int\frac{\sin(\omega s)\cdot\mathcal{A}/s}{\omega}\,ds
     &= \frac{\mathcal{A}}{\omega}\bigl[-\cos(\omega t)\,\mathrm{Si}(\omega t)
        + \sin(\omega t)\,\mathrm{Ci}(\omega t)\bigr],
 \end{align*}
-using $\int_0^x \sin(\omega s)/s\,ds = \mathrm{Si}(\omega x)$ and
-$\int_x^\infty \cos(\omega s)/s\,ds = -\mathrm{Ci}(\omega x)$.
+using the antiderivative identities
+$\tfrac{d}{ds}\mathrm{Si}(\omega s)=\sin(\omega s)/s$ and
+$\tfrac{d}{ds}\mathrm{Ci}(\omega s)=\cos(\omega s)/s$
+(so variation of parameters uses $\int\sin(\omega s)/s\,ds = \mathrm{Si}(\omega s)$
+and $\int\cos(\omega s)/s\,ds = \mathrm{Ci}(\omega s)$ as antiderivatives,
+consistent with $\mathrm{Si}(x)=\int_0^x\tfrac{\sin t}{t}\,dt$ and
+$\mathrm{Ci}(x)=-\int_x^\infty\tfrac{\cos t}{t}\,dt$).
 Dividing by $t$ gives the particular term in \eqref{eq:f_exact_dust}.
 
 \textbf{Case 2 (Radiation).}
