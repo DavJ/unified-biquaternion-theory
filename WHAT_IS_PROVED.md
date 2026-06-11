@@ -187,7 +187,8 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | SM10 | Y_Q=1/6 unique via grav. anomaly A_grav(n)=n-1=0 | [L1 family check] | `canonical/interactions/colour_charge_lattice.tex` Thm. C2-uniqueness |
 | C2-S1 | Gap C2 Step 1: $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour | [L1 cond. on OP-S4 + SU(3)] | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v55) |
 | C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v56) |
-| C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding` |
+| C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC]; Lem `lem:c2ii_candidate` [MC] added v57 | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding, Lem lem:c2ii_candidate` |
+| C2-iii | Geometric coupling $S^1_\psi\leftrightarrow\mathbb{Z}_3$ colour cycle | [OPEN/MC] (blocks C2-ii) | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding` (v57) |
 | EW-1b | $\sin^2\theta_W(M_Z)\approx0.231$ (Corollary) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] | `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` (v56) |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |

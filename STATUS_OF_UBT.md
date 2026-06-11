@@ -1,3 +1,23 @@
+## 2026-06-11 (v57 — C2-ii involution attempt; C2-iii named; D2 label added)
+
+### New results registered
+- D1 (Sub-gap C2-ii v57 attempt): `research_tracks/EW/hypercharge_from_ubt.tex §3`
+  Remark `rem:c2ii_psi_winding` extended with Lemma `lem:c2ii_candidate` [MC]:
+  the $\mathbb{Z}_3$ cyclic involution structure ($\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$)
+  formally gives $n_q=1/3$ under three assumptions (i)-(iii).
+  New sub-obstacle C2-iii [OPEN/MC] named: assumption (iii) (geometric coupling
+  $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle) is not derived from $S[\Theta]$.
+- D2 (rpsi scale closure): `research_tracks/EW/rpsi_from_action.tex`
+  Scale-closure remark now carries label `rem:rpsi_scale_closure`.
+- D3 (proof inventory): `WHAT_IS_PROVED.md` v56 entries confirmed present;
+  no changes needed.
+
+### Status changes
+- No proof-level upgrades.
+- C2-ii remains [OPEN/MC]; Lemma `lem:c2ii_candidate` is [MC].
+- C2-iii [OPEN/MC] named as the sub-obstacle blocking C2-ii closure.
+- EW-1b remains [L1 cond. on OP-S4 + SU(3) colour structure + scale closure].
+
 ## 2026-06-11 (v56 — C2-ii/scale-closure status sync)
 
 ### New results registered
@@ -355,7 +375,7 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Hypercharge quantisation from Dirac condition | [L0] | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
 | $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour (Gap C2 Step 1) | **[L1 cond. on OP-S4 + SU(3) colour structure from UBT]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v56) |
 | Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v56) |
-| Sub-gap C2-ii: $U(1)_B$ from $\psi$-winding | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding` (does not block papers) |
+| Sub-gap C2-ii: $U(1)_B$ from $\psi$-winding | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding`; Lem `lem:c2ii_candidate` [MC] added v57; C2-iii obstacle named (does not block papers) |
 
 ### Open Physical Gaps
 
@@ -365,7 +385,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] — C2-i conditionality removed (v56); tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
 | C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v56 |
-| C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — does not block any current paper |
+| C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — Lem `lem:c2ii_candidate` [MC] v57; C2-iii sub-obstacle [OPEN/MC]; does not block any current paper |
+| C2-iii | Geometric coupling $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle | [OPEN/MC] — blocks C2-ii closure; does not block papers |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
 
