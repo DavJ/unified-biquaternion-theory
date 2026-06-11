@@ -1,3 +1,35 @@
+## 2026-06-11 (v58 — C2-iii attempts; C2-iv named; EW-1b scale audit formalized)
+
+### New results registered
+- D1 (C2-iii resolution attempts): `research_tracks/EW/hypercharge_from_ubt.tex §3`
+  Remark `rem:c2iii_attempts` added.  Two routes to derive assumption (iii) of
+  Lemma `lem:c2ii_candidate` from $S[\Theta]$ were attempted:
+  Step 1 (Lemma p=3 route): $\mathbb{Z}_3$ colour involution does not generate
+  $\psi$-winding coupling — acts on orthogonal colour fiber.
+  Step 2 (topological homeomorphism): $S^1_\psi/\mathbb{Z}_3$ requires
+  $\mathbb{Z}_3$ action on ψ-circle, which is circular (requires the missing coupling).
+  New sub-obstacle named: **C2-iv [OPEN/MC]** — Fiber Decoupling in $S[\Theta]$:
+  $S^1_\psi$ (complex-time fiber) and colour fiber $\mathbb{C}^3$ are algebraically
+  decoupled; no axiom or term in $S[\Theta]$ identifies $\psi$-winding eigenvalues
+  with colour-representation eigenvalues.
+  Lemma `lem:c2ii_candidate` remains [MC]; C2-iii remains [OPEN/MC].
+
+- D2 (EW-1b scale closure): `research_tracks/EW/rpsi_from_action.tex`
+  Proposition `prop:rpsi_scale_status` added: formal audit of what is/isn't
+  derived from first principles for EW-1b.  From $S[\Theta]$: GUT norm ratio,
+  stationarity equation, SS half-mode projection.  Not derived: $T_{\mathrm{kin}}$
+  normalization, unique identification of $M_{\mathrm{GUT}}=1/R_\psi^*$, RG running.
+  EW-1b verdict unchanged: [L1 cond. on OP-S4 + SU(3) colour + scale closure].
+
+- D3 (proof inventory): `WHAT_IS_PROVED.md` v56 entries verified present
+  (C2-i, C2-ii, EW-1b, G18-f); no changes needed.
+
+### Status changes
+- No proof-level upgrades.
+- C2-iv [OPEN/MC] named: root cause of C2-iii; fiber decoupling in $S[\Theta]$.
+- C2-iii remains [OPEN/MC]; Lemma `lem:c2ii_candidate` remains [MC].
+- EW-1b remains [L1 cond. on OP-S4 + SU(3) colour structure + scale closure].
+
 ## 2026-06-11 (v57 — C2-ii involution attempt; C2-iii named; D2 label added)
 
 ### New results registered
@@ -386,7 +418,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
 | C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v56 |
 | C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — Lem `lem:c2ii_candidate` [MC] v57; C2-iii sub-obstacle [OPEN/MC]; does not block any current paper |
-| C2-iii | Geometric coupling $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle | [OPEN/MC] — blocks C2-ii closure; does not block papers |
+| C2-iii | Geometric coupling $S^1_\psi \leftrightarrow \mathbb{Z}_3$ colour cycle | [OPEN/MC] — blocks C2-ii closure; does not block papers; Steps 1+2 attempted v58 (see Rem. rem:c2iii_attempts) |
+| C2-iv | Fiber Decoupling: $S^1_\psi$ (imaginary-time) and colour fiber $\mathbb{C}^3$ are algebraically decoupled in $S[\Theta]$ | [OPEN/MC] — named v58; root cause of C2-iii; does not block papers |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
 
