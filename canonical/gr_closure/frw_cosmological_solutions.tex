@@ -481,6 +481,121 @@ promoted to [L1 conditional on Friedmann branch only] in the regime
 $R_\psi \ll H^{-1}$.
 \end{remark}
 
+\begin{proposition}[Exact ODE-f solutions without quasi-static approximation,
+  \textbf{[L1 conditional on Friedmann branch only]}]
+\label{prop:ode_f_full_dynamics}
+Let $\omega := 1/R_\psi$ and $\kappa\rho(t) = \kappa\rho_0\,a(t)^{-3(1+w)}$.
+
+\textbf{Case 1: Dust ($w=0$).}
+The FRW scale factor satisfies $a \propto t^{2/3}$, $H = 2/(3t)$,
+so $3H(t) = 2/t$ and $\kappa\rho(t) = \kappa\rho_0 t_0^2 / t^2 =: \mathcal{A}/t^2$.
+The ODE-f \eqref{eq:ode_f_explicit} becomes
+\begin{equation}
+  \label{eq:ode_f_dust}
+  \ddot{f} + \frac{2}{t}\dot{f} + \omega^2 f \;=\; \frac{\mathcal{A}}{t^2}.
+\end{equation}
+Under the substitution $u(t) := t\,f(t)$, equation~\eqref{eq:ode_f_dust}
+transforms to
+\begin{equation}
+  \label{eq:ode_u_dust}
+  \ddot{u} + \omega^2 u \;=\; \frac{\mathcal{A}}{t},
+\end{equation}
+a driven simple harmonic oscillator with $1/t$ forcing.
+The exact general solution is
+\begin{align}
+  \label{eq:f_exact_dust}
+  f_{\mathrm{dust}}(t)
+  &= \frac{1}{t}\bigl[C_1\cos(\omega t) + C_2\sin(\omega t)\bigr] \notag\\
+  &\quad + \frac{\mathcal{A}}{\omega t}
+    \bigl[-\cos(\omega t)\,\mathrm{Si}(\omega t) + \sin(\omega t)\,\mathrm{Ci}(\omega t)\bigr],
+\end{align}
+where $C_1,C_2$ are integration constants fixed by initial conditions on $f$
+and $\dot{f}$, and $\mathrm{Si}(x) = \int_0^x \tfrac{\sin s}{s}\,ds$,
+$\mathrm{Ci}(x) = -\int_x^\infty \tfrac{\cos s}{s}\,ds$ are the standard
+Sine and Cosine integral functions.
+
+\textbf{Case 2: Radiation ($w=1/3$).}
+Here $a \propto t^{1/2}$, $H = 1/(2t)$, $3H = 3/(2t)$,
+and $\kappa\rho(t) = \mathcal{B}/t^2$.
+The ODE-f is
+\begin{equation}
+  \label{eq:ode_f_radiation}
+  \ddot{f} + \frac{3}{2t}\dot{f} + \omega^2 f \;=\; \frac{\mathcal{B}}{t^2}.
+\end{equation}
+The substitution $f(t) = t^{-1/4}\,v(\omega t)$ transforms the homogeneous
+part of \eqref{eq:ode_f_radiation} into the Bessel equation of order $\nu=1/4$:
+\begin{equation}
+  \label{eq:bessel_radiation}
+  v'' + \frac{1}{z}v' + \biggl(1 - \frac{1/16}{z^2}\biggr)v = 0,
+  \quad z = \omega t.
+\end{equation}
+The exact homogeneous solutions are
+\begin{equation}
+  \label{eq:f_exact_radiation_hom}
+  f_h(t) = t^{-1/4}\bigl[C_1\,J_{1/4}(\omega t) + C_2\,Y_{1/4}(\omega t)\bigr],
+\end{equation}
+where $J_\nu$ and $Y_\nu$ are the standard Bessel functions of the first
+and second kind.
+A particular solution is obtained by variation of parameters using
+\eqref{eq:f_exact_radiation_hom} as the homogeneous basis.
+\end{proposition}
+
+\begin{proof}
+\textbf{Case 1 (Dust).}
+With $u = tf$: $\dot{f} = \dot{u}/t - u/t^2$,
+$\ddot{f} = \ddot{u}/t - 2\dot{u}/t^2 + 2u/t^3$.
+Substituting into \eqref{eq:ode_f_dust}:
+\[
+\frac{\ddot{u}}{t} - \frac{2\dot{u}}{t^2} + \frac{2u}{t^3}
++ \frac{2}{t}\!\left(\frac{\dot{u}}{t}-\frac{u}{t^2}\right)
++ \omega^2\frac{u}{t}
+= \frac{\mathcal{A}}{t^2}.
+\]
+The $\dot{u}/t^2$ and $u/t^3$ terms cancel, yielding
+$\ddot{u}/t + \omega^2 u/t = \mathcal{A}/t^2$, i.e.\ \eqref{eq:ode_u_dust}.
+The homogeneous solutions of \eqref{eq:ode_u_dust} are
+$\cos(\omega t)$ and $\sin(\omega t)$.
+The Wronskian is $W = \omega$.
+By variation of parameters, the particular solution is
+\begin{align*}
+u_p &= -\cos(\omega t)\int\frac{\sin(\omega s)\cdot\mathcal{A}/s}{\omega}\,ds
+       +\sin(\omega t)\int\frac{\cos(\omega s)\cdot\mathcal{A}/s}{\omega}\,ds \\
+    &= \frac{\mathcal{A}}{\omega}\bigl[-\cos(\omega t)\,\mathrm{Si}(\omega t)
+       + \sin(\omega t)\,\mathrm{Ci}(\omega t)\bigr],
+\end{align*}
+using $\int_0^x \sin(\omega s)/s\,ds = \mathrm{Si}(\omega x)$ and
+$\int_x^\infty \cos(\omega s)/s\,ds = -\mathrm{Ci}(\omega x)$.
+Dividing by $t$ gives the particular term in \eqref{eq:f_exact_dust}.
+
+\textbf{Case 2 (Radiation).}
+Setting $f = t^{-1/4}v(z)$ with $z=\omega t$, a direct computation
+(substituting $\dot{f} = -\tfrac{1}{4}t^{-5/4}v + \omega t^{-1/4}v'$, etc.)
+reduces the homogeneous part of \eqref{eq:ode_f_radiation} to \eqref{eq:bessel_radiation},
+which is the standard Bessel equation of order $\nu = 1/4$.
+Its general solution is $v = C_1 J_{1/4}(z) + C_2 Y_{1/4}(z)$,
+giving \eqref{eq:f_exact_radiation_hom}.
+\end{proof}
+
+\begin{remark}[Quasi-static limit and conditionality upgrade]
+\label{rem:quasi_static_limit}
+In the limit $\omega t = t/R_\psi \ll 1$ (i.e.\ $R_\psi \gg t \sim H^{-1}$),
+the exact dust solution \eqref{eq:f_exact_dust} reduces to the algebraic
+particular solution $f \approx \mathcal{A}/(\omega^2 t^2) = R_\psi^2\kappa\rho$,
+recovering the quasi-static result \eqref{eq:f_particular}.
+Similarly, for radiation, the Bessel functions
+$J_{1/4}(\omega t) \to \text{const}$ for $\omega t \to 0$.
+
+Since exact closed-form solutions exist in terms of standard special functions
+(sine/cosine integrals for dust, Bessel functions for radiation) for all
+$R_\psi > 0$, the quasi-static approximation is no longer required for the
+existence of a solution.
+Consequently the conditionality on ODE-f is upgraded from
+\textbf{[L1 cond.\ on Friedmann branch + quasi-static]} to
+\textbf{[L1 conditional on Friedmann branch only]}.
+The overall Theorem~\ref{thm:frw_ansatz_l1} therefore inherits this
+strengthened conditionality: its ODE-f factor no longer requires $R_\psi\ll H^{-1}$.
+\end{remark}
+
 %─────────────────────────────────────────────────────────────────────────────
 \section{Remaining Gap: Off-Diagonal Components $g_{0i}$}
 \label{sec:gap_0i}

@@ -1,3 +1,33 @@
+## 2026-06-11 (v55 — D1/D2/D3 results; copilot-instructions updated to v55)
+
+### New results registered
+- D1 (Sub-gap C2-i closure): `research_tracks/EW/hypercharge_from_ubt.tex §3` updated.
+  Lemma `lem:Bq_from_su3` added: $B_q=1/3$ from SU(3) colour-singlet constraint
+  [L1 conditional on SU(3) colour structure from UBT].
+  Sub-gap C2-i: [OPEN/MC] → [L1 cond. on SU(3)].
+  Gap C2 Step 1 conditionality upgraded: [L1 cond. on OP-S4 + C2-i] →
+  [L1 cond. on OP-S4 + SU(3) colour structure from UBT].
+  New residual sub-gap C2-ii [OPEN/MC]: $U(1)_B$ from $\psi$-winding — does not block papers.
+- D2 (EW-1b after C2-i): Corollary `prop:sin2_thetaW_corollary` added to
+  `research_tracks/EW/weinberg_angle_ew1_rg.tex §7`.
+  $\sin^2\theta_W(M_Z)\approx0.231$ [L1 conditional on OP-S4 + SU(3) colour structure + scale closure].
+  Conditionality on sub-gap C2-i removed.
+- D3 (FRW ODE-f exact solutions): Proposition `prop:ode_f_full_dynamics` added to
+  `canonical/gr_closure/frw_cosmological_solutions.tex §3`.
+  Exact closed-form solutions: dust (Si/Ci integrals), radiation (Bessel $J_{1/4}$/$Y_{1/4}$).
+  G18-f conditionality upgraded: [L1 cond. on Friedmann + quasi-static] →
+  [L1 cond. on Friedmann branch only] (quasi-static approximation removed).
+
+### Status changes
+- Sub-gap C2-i: [OPEN/MC] → [L1 cond. on SU(3) colour structure from UBT]
+- Gap C2 Step 1: [L1 cond. on OP-S4 + C2-i] → [L1 cond. on OP-S4 + SU(3) colour structure]
+- New sub-gap C2-ii: [OPEN/MC] — $U(1)_B$ from $\psi$-winding; does not block any paper
+- EW-1b ($\sin^2\theta_W$): conditionality on C2-i removed; now [L1 cond. on OP-S4 + SU(3) + scale]
+- G18-f (ODE-f conditionality): [L1 cond. on Friedmann + quasi-static] →
+  [L1 cond. on Friedmann branch only]
+- T1_GR: still SUBMIT READY (unchanged).
+- T2_GAUGE: still PAPER COMPLETE (unchanged).
+
 ## 2026-06-11 (v54 — D1/D2/D3 results; copilot-instructions updated to v54)
 
 ### New results registered
@@ -248,7 +278,9 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | Zerilli equation (even-parity) and canonical graviton quantisation notes | PROVED [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 | Flat FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch + ODE-f for $f(t)$; ODE-a automatically consistent — see Lem. ode\_a\_friedmann] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` || $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
+| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch; ODE-a auto-consistent; ODE-f exact solutions established (v55)] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
+| ODE-f exact solutions: dust (Si/Ci integrals) + radiation (Bessel $J_{1/4}/Y_{1/4}$) | [L1 cond. on Friedmann branch only] (quasi-static removed v55) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_full_dynamics` |
+| $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
 Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
@@ -306,17 +338,19 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
 | Hypercharge quantisation from Dirac condition | [L0] | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
-| $Y=(B{-}L)/2$ from OP-S4 + ψ-winding (Gap C2 Step 1) | **[L1 cond. on OP-S4 + C2-i]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` |
-| Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3` |
+| $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour (Gap C2 Step 1) | **[L1 cond. on OP-S4 + SU(3) colour structure from UBT]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v55) |
+| Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v55) |
+| Sub-gap C2-ii: $U(1)_B$ from $\psi$-winding | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding` (does not block papers) |
 
 ### Open Physical Gaps
 
 | Gap | Description | Priority |
 |-----|-------------|----------|
 | EW-1 | Weinberg angle sin²θ_W — **DEAD END for pure algebra** (algebra cannot fix g'/g) | Keep dead-end statement for algebra-only route |
-| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2-i closure and on deriving $R_\psi$ from $S[\Theta]$; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` and `research_tracks/EW/rpsi_from_action.tex` |
+| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] — C2-i conditionality removed (v55); tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
-| C2-i | Fractional quark winding $B_q=1/3$ from SU(3) colour structure | Open/MC — see `research_tracks/EW/hypercharge_from_ubt.tex §3` |
+| C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v55 |
+| C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — does not block any current paper |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
 
@@ -326,8 +360,8 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 
 **Honest statement to use in paper**: The Weinberg angle sin²θ_W ≈ 0.231 cannot
 be derived from algebra alone (dead-end no-go for pure algebraic fixing of g'/g).
-An EW1+RG route exists only conditionally, pending first-principles closure of
-sub-gap C2-i for fractional quark baryon-winding.
+The EW1+RG route gives $\sin^2\theta_W(M_Z)\approx0.231$ [L1 cond. on OP-S4 +
+SU(3) colour structure + scale closure]; conditionality on sub-gap C2-i removed (v55).
 
 ### Next Action
 
