@@ -11,3 +11,4 @@ canonical/chirality/step4_no_wr_derivation.tex
 canonical/gr_closure/frw_cosmological_solutions.tex
 canonical/gr_closure/linearised_gravity.tex
 research_tracks/T3_ALPHA/integer_137_note.tex
+research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex

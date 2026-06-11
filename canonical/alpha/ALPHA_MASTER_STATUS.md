@@ -138,6 +138,16 @@ to 137.036 is not yet derived from first principles.
   Redirect primary effort to T1_GR submission and T2_GAUGE paper completion.
 - No new alpha routes to be opened without explicit user instruction.
 
+### Besselova trasa sync (2026-06-11)
+
+- Route 7 (K_{3/2} heat kernel T³): **NO-GO**
+- B_Bessel = 0.0566, ratio = 0.00122, odchylka = 99.88%
+- Příčina: K_{3/2} příspěvek je exponenciálně potlačen (~e^{-π}); B_phenom ~ 12^{3/2} je algebraického původu.
+- Active routes: 0
+- T3_ALPHA: STRUCTURAL EVIDENCE (beze změny)
+- Alpha: **NOT DERIVED**.
+- Zdroj: `research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex §7`
+
 ### N_eff audit sync (2026-05-10)
 
 - New critical audit: `canonical/n_eff/step2_AUDIT.tex`
