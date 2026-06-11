@@ -131,7 +131,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
 | G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann); ODE-f exact solutions established (v56) | [L1 cond. on Friedmann branch only] (v56: quasi-static removed) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
 | G18-f | ODE-f exact solutions without quasi-static approximation: dust ($\mathrm{Si}/\mathrm{Ci}$ integrals), radiation (Bessel $J_{1/4}/Y_{1/4}$) | [L1 cond. on Friedmann branch only] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_full_dynamics` (v56) |
-| G18-fqs | ODE-f quasi-static solutions $f_{\mathrm{qs}}\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` |
+| G18-fqs | ODE-f quasi-static solutions $f_{\mathrm{qs}}\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` (v56) |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)
