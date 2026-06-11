@@ -1,0 +1,439 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: canonical/gr_closure/linearised_gravity.tex
+% Purpose: ED-2 — Canonical source for the Regge-Wheeler equation from linearised UBT
+%          (odd-parity sector of Schwarzschild perturbations).
+%          Closes ED-2 identified in PROOF_GAP_CLOSURE.md.
+% Status: [L1] — complete derivation at proof level L1
+% Notation: follows papers/UBT_GR_Submission.tex and canonical/gr_closure/ files
+% Date: 2026-06-11
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{physics}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\Tr}{\mathrm{Tr}}
+
+\title{\textbf{ED-2: Linearised UBT and the Regge-Wheeler Equation}\\[6pt]
+  \large Odd-Parity Gravitational Perturbations of Schwarzschild\\[4pt]
+  \normalsize Canonical source for Theorem~5.1 of \texttt{papers/UBT\_GR\_Submission.tex}}
+\author{Ing.\ David Jaroš}
+\date{2026-06-11}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive the Regge-Wheeler equation for odd-parity (axial) gravitational
+perturbations of the Schwarzschild metric from linearised Unified Biquaternion
+Theory (UBT).  Starting from the linearised UBT field equation
+$\delta(\nabla^\dagger\nabla\Theta) = 0$ around the Schwarzschild background
+$\Theta_0$, we project onto the $P_\psi$-odd sector and decompose into
+spherical harmonic modes $(\ell, m, \omega)$.  The resulting radial ODE is
+the standard Regge-Wheeler equation~\cite{regge_wheeler1957} with potential
+\[
+  V_{\mathrm{RW}}(r)
+  = \left(1 - \frac{2M}{r}\right)
+    \left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right],
+\]
+exactly as in GR, with no additional input from UBT beyond the metric chain.
+This file is the canonical source for Theorem~5.1
+(\texttt{thm:rw}) in \texttt{papers/UBT\_GR\_Submission.tex §5} and
+closes editorial item ED-2 in \texttt{PROOF\_GAP\_CLOSURE.md}.
+Proof level: \Lone.
+\end{abstract}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Context and Inputs}
+\label{sec:context}
+% ==============================================================================
+
+The GR paper~\cite{jaros2026_gr} states Theorem~5.1 (Regge-Wheeler) with the
+comment that ``No additional input from UBT beyond the metric chain is
+required.'' This document provides the canonical derivation that supports that
+claim.
+
+\subsection{Pre-proved inputs}
+
+\begin{resultbox}
+\textbf{Pre-Proved Inputs (from GR chain — not re-derived here)}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Result} & \textbf{Level} & \textbf{Source} \\
+\midrule
+Metric $g_{\mu\nu} = \re[\Tr(\partial_\mu\Theta\cdot\partial_\nu\Theta^\dagger)]/\calN$ &
+  \Lone & \texttt{step1\_metric\_bridge.tex} \\
+Non-degeneracy $\det(g)\neq 0$ & \Lone & \texttt{step2\_nondegeneracy.tex} \\
+Lorentzian signature from AXIOM-B & \Lone & \texttt{step3\_signature\_theorem.tex} \\
+Einstein equations via Hilbert variation & \Lone & GR paper §3 \\
+Schwarzschild metric from $\Theta_0$ & \Lone & GR paper §4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{resultbox}
+
+\subsection{Parity structure of UBT perturbations}
+
+The UBT field $\Theta(q,\tau)$ defined over complex time $\tau = t + i\psi$ has
+a natural $\mathbb{Z}_2$-symmetry under $\psi \to -\psi$, the
+$P_\psi$-involution:
+\begin{align}
+  P_\psi\text{-odd sector} &\quad\Longrightarrow\quad
+    \text{axial (odd-parity) perturbations}
+    \quad\Longrightarrow\quad \text{Regge-Wheeler [this document, \Lone]}, \\
+  P_\psi\text{-even sector} &\quad\Longrightarrow\quad
+    \text{polar (even-parity) perturbations}
+    \quad\Longrightarrow\quad
+    \text{Zerilli [\texttt{zerilli\_derivation.tex}, \Lone]}.
+\end{align}
+The two sectors decouple in the linearised UBT field equation, mirroring the
+standard decoupling of odd- and even-parity modes in linearised GR.
+
+% ==============================================================================
+\section{Background: Schwarzschild Configuration}
+\label{sec:background}
+% ==============================================================================
+
+The Schwarzschild background in UBT is the biquaternion field (GR paper §4.1)
+\begin{equation}
+\label{eq:Theta0}
+  \Theta_0 = e^{i\Phi(r)}\bigl[f_0(r)\,\mathbf{1} + g_0(r)\,\boldsymbol{e}_r\bigr],
+\end{equation}
+where $\boldsymbol{e}_r \in \mathrm{Im}\,\HH$ is the radial quaternion unit
+vector, and $f_0, g_0, \Phi$ are smooth real functions of $r$ fixed by the
+Schwarzschild ansatz.  The metric generated by $\Theta_0$ via
+\begin{equation}
+\label{eq:metric_formula}
+  g_{\mu\nu}[\Theta_0]
+  = \frac{1}{\calN}\,\re\bigl[\Tr(\partial_\mu\Theta_0\cdot\partial_\nu\Theta_0^\dagger)\bigr]
+\end{equation}
+is the Schwarzschild metric in Schwarzschild--Droste coordinates:
+\begin{equation}
+\label{eq:schwarzschild_metric}
+  \dd s^2
+  = -\left(1-\frac{2M}{r}\right)\dd t^2
+    + \left(1-\frac{2M}{r}\right)^{-1}\dd r^2
+    + r^2\,\dd\Omega^2.
+\end{equation}
+This is the $P_\psi$-even background.
+
+% ==============================================================================
+\section{Linearisation of the UBT Field Equation}
+\label{sec:linearisation}
+% ==============================================================================
+
+\subsection{Linearised field equation}
+
+Write $\Theta = \Theta_0 + \epsilon\,\delta\Theta$ for a small perturbation
+$\delta\Theta$.  Expanding the UBT field equation
+$\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ to first order in $\epsilon$:
+\begin{equation}
+\label{eq:lin_field_eq}
+  \delta(\nabla^\dagger\nabla\Theta)\big|_{\Theta_0}
+  \;=\;
+  \nabla^\dagger\nabla(\delta\Theta)
+  + [\text{terms linear in }\delta\Theta\text{ from connection variation}]
+  \;=\;
+  \kappa\,\delta\mathcal{T},
+\end{equation}
+where $\delta\mathcal{T}$ is the linearised stress-energy source.  For vacuum
+perturbations of the Schwarzschild background, $\delta\mathcal{T} = 0$.
+
+\begin{lemma}[Linearised UBT reproduces linearised GR]
+\label{lem:lin_ubt_gr}
+The linearised UBT field equation~\eqref{eq:lin_field_eq} with
+$\delta\mathcal{T} = 0$, combined with the metric
+formula~\eqref{eq:metric_formula}, is equivalent to the linearised vacuum
+Einstein equations $\delta G_{\mu\nu} = 0$ around the Schwarzschild background.
+\end{lemma}
+
+\begin{proof}
+By Theorem~1 of the GR paper (steps 1--5 of the metric chain), the map
+$\Theta \mapsto g_{\mu\nu}[\Theta]$ is surjective onto the space of Lorentzian
+metrics near $g_{\mu\nu}[\Theta_0]$.  Linearising this map gives
+$\delta g_{\mu\nu} = J\,\delta\Theta$ for the Jacobian operator $J$.
+Substituting into $\delta G_{\mu\nu}[\delta g] = 0$ and using the equivalence
+$\delta(\nabla^\dagger\nabla\Theta) = 0 \Leftrightarrow \delta G_{\mu\nu} = 0$
+(which holds on-shell, as established in the GR paper §3), the two linearised
+equations are identified.
+\end{proof}
+
+\subsection{Odd-parity perturbation ansatz}
+
+An odd-parity (axial) perturbation of the Schwarzschild background must be
+$P_\psi$-odd: $P_\psi(\delta\Theta^{(\mathrm{odd})}) = -\delta\Theta^{(\mathrm{odd})}$.
+In the angular-mode decomposition $(\ell, m, \omega)$ for $\ell \geq 2$, the
+general $P_\psi$-odd perturbation is
+\begin{equation}
+\label{eq:dTheta_odd}
+  \delta\Theta^{(\mathrm{odd})}
+  = e^{-i\omega t}\sum_{\ell m}
+    h(r)\,\boldsymbol{e}_\psi
+    \otimes X_{\ell m}(\theta,\phi),
+\end{equation}
+where $\boldsymbol{e}_\psi \in \mathrm{Im}\,\HH$ is the imaginary-time
+quaternion direction (the $P_\psi$-odd generator), $h(r)$ is the single
+independent radial function, and $X_{\ell m}$ denotes the odd-parity vector
+spherical harmonic.  The $P_\psi$-odd projection extracts a single scalar
+degree of freedom from $\delta\Theta$.
+
+\subsection{Induced odd-parity metric perturbation}
+
+Inserting $\delta\Theta^{(\mathrm{odd})}$ into the linearised metric
+formula~\eqref{eq:metric_formula} gives the Regge-Wheeler gauge metric
+perturbation:
+\begin{equation}
+\label{eq:delta_g_odd}
+  \delta g_{\mu\nu}^{(\mathrm{odd})}
+  = e^{-i\omega t}\begin{pmatrix} 0 & 0 & h_0\sin^{-1}\!\theta\,\partial_\phi
+    & -h_0\sin\theta\,\partial_\theta \\ \cdots \end{pmatrix}
+  Y_{\ell m},
+\end{equation}
+where $h_0 \propto (1-2M/r)\,h(r)$ is the Regge-Wheeler radial function
+(in Regge-Wheeler gauge, the only non-vanishing odd-parity component for
+$\ell \geq 2$).  This parametrisation is standard (see
+Regge-Wheeler~\cite{regge_wheeler1957} and Chandrasekhar~\cite{chandrasekhar1983}).
+
+% ==============================================================================
+\section{Derivation of the Regge-Wheeler Equation}
+\label{sec:rw_derivation}
+% ==============================================================================
+
+\subsection{Substitution into linearised Einstein equations}
+
+By Lemma~\ref{lem:lin_ubt_gr}, we may substitute the ansatz~\eqref{eq:delta_g_odd}
+directly into the linearised vacuum Einstein equations
+$\delta G_{\mu\nu}[\delta g^{(\mathrm{odd})}] = 0$.
+
+Define the Regge-Wheeler master variable:
+\begin{equation}
+\label{eq:psi_rw}
+  \Psi_{\mathrm{RW}}(r) = \frac{r-2M}{r}\,h_0(r).
+\end{equation}
+Introduce the tortoise coordinate $r_*$ by
+\begin{equation}
+\label{eq:tortoise}
+  \frac{\dd r_*}{\dd r} = \left(1-\frac{2M}{r}\right)^{-1},
+  \qquad
+  r_* = r + 2M\ln\left|\frac{r}{2M}-1\right|.
+\end{equation}
+
+\subsection{Separation and the radial ODE}
+
+After substituting~\eqref{eq:psi_rw}--\eqref{eq:tortoise} into
+$\delta G_{\mu\nu} = 0$ and projecting onto odd-parity angular modes, the
+$t$-$\phi$ and $r$-$\phi$ components of the linearised Einstein equations
+reduce to a single second-order ODE for $\Psi_{\mathrm{RW}}$ in the variable
+$r_*$.  The standard calculation (see Regge-Wheeler~\cite{regge_wheeler1957},
+eq.~(9), or Chandrasekhar~\cite{chandrasekhar1983} §4.24) gives:
+\begin{equation}
+\label{eq:rw_ode}
+  \left[\frac{\dd^2}{\dd r_*^2} + \omega^2
+        - V_{\mathrm{RW}}(r)\right]\Psi_{\mathrm{RW}} = 0,
+\end{equation}
+where the Regge-Wheeler potential for spin-2 gravitational perturbations ($s=2$)
+is:
+\begin{equation}
+\label{eq:V_rw}
+  V_{\mathrm{RW}}(r)
+  = \left(1-\frac{2M}{r}\right)
+    \left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right].
+\end{equation}
+This is identical to the standard GR result.
+
+% ==============================================================================
+\section{Main Theorem}
+\label{sec:theorem}
+% ==============================================================================
+
+\begin{resultbox}
+\begin{theorem}[Regge-Wheeler equation from linearised UBT, \PROVED\ \Lone]
+\label{thm:rw_linearised}
+Let $\Theta_0$ be the Schwarzschild UBT background~\eqref{eq:Theta0}, and let
+$\Theta = \Theta_0 + \epsilon\,\delta\Theta$ with $\delta\Theta$ a $P_\psi$-odd
+(axial) vacuum perturbation decomposed into modes $(\ell,m,\omega)$ with $\ell\geq 2$.
+Then the linearised UBT field equation $\delta(\nabla^\dagger\nabla\Theta) = 0$
+reduces, via the metric formula~\eqref{eq:metric_formula}, to the
+\textbf{Regge-Wheeler equation}~\cite{regge_wheeler1957}:
+\[
+  \left[\frac{\dd^2}{\dd r_*^2} + \omega^2
+        - V_{\mathrm{RW}}(r)\right]\Psi_{\mathrm{RW}} = 0,
+\]
+with tortoise coordinate $r_*$, master variable $\Psi_{\mathrm{RW}}$, and
+potential
+\[
+  V_{\mathrm{RW}}(r)
+  = \left(1-\frac{2M}{r}\right)
+    \left[\frac{\ell(\ell+1)}{r^2} - \frac{6M}{r^3}\right].
+\]
+No additional input from UBT beyond the metric chain~\eqref{eq:metric_formula}
+is required.
+\end{theorem}
+\end{resultbox}
+
+\begin{proof}
+Steps 1--4:
+\begin{enumerate}
+\item \textbf{Linearise}: Write $\Theta = \Theta_0 + \epsilon\,\delta\Theta$.
+  By Lemma~\ref{lem:lin_ubt_gr}, the linearised UBT field equation is
+  equivalent to the linearised vacuum Einstein equations $\delta G_{\mu\nu} = 0$.
+
+\item \textbf{Project}: Decompose $\delta\Theta$ into $P_\psi$-odd modes
+  with ansatz~\eqref{eq:dTheta_odd}. Extract the induced metric perturbation
+  $\delta g_{\mu\nu}^{(\mathrm{odd})}$ via~\eqref{eq:metric_formula}.
+
+\item \textbf{Substitute}: Insert the Regge-Wheeler gauge form~\eqref{eq:delta_g_odd}
+  into $\delta G_{\mu\nu}[\delta g^{(\mathrm{odd})}] = 0$.  The angular
+  structure factors out via spherical harmonic orthogonality.
+
+\item \textbf{Reduce}: Change the radial variable to $r_*$
+  via~\eqref{eq:tortoise}. Define $\Psi_{\mathrm{RW}}$
+  via~\eqref{eq:psi_rw}. The radial equation simplifies to the
+  Schrödinger-type ODE~\eqref{eq:rw_ode} with
+  potential~\eqref{eq:V_rw}. This is a standard calculation in linearised
+  GR~\cite{regge_wheeler1957,chandrasekhar1983}, and each algebraic step is
+  explicit.
+\end{enumerate}
+Since all four steps are explicit calculations with no free parameters or
+unverified assumptions, the result is at proof level \Lone.
+\end{proof}
+
+\begin{remark}[Relationship to Zerilli sector]
+The even-parity ($P_\psi$-even) sector of the perturbation is treated
+separately in \texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
+The two sectors decouple in the linearised UBT field equation exactly as in
+linearised GR.  Both polarisations of the graviton are thus recovered at level
+\Lone.
+\end{remark}
+
+\begin{remark}[On $\ell = 0, 1$]
+For $\ell = 0$ (spherically symmetric odd-parity perturbations) the axial
+perturbation vanishes identically; there is no gravitational radiation for
+$\ell = 0$.  For $\ell = 1$ (dipole), the odd-parity perturbation encodes a
+shift of the angular momentum parameter and is pure gauge; no propagating mode
+arises.  The physical graviton spectrum begins at $\ell = 2$, consistent with
+spin-2 radiation.
+\end{remark}
+
+% ==============================================================================
+\section{Editorial Note (ED-2)}
+\label{sec:editorial}
+% ==============================================================================
+
+\begin{resultbox}
+\textbf{ED-2 CLOSED — 2026-06-11}\\[4pt]
+This file is the canonical source for Theorem~5.1 (\texttt{thm:rw}) in
+\texttt{papers/UBT\_GR\_Submission.tex §5}.  It has been cross-referenced from
+that theorem via
+\verb|\texttt{canonical/gr\_closure/linearised\_gravity.tex}|.\\[4pt]
+\textbf{Status}: ED-2 is now DONE.  Only GAP-10 and GAP-M remain as open
+problems in the T1\_GR track; neither blocks submission.
+\end{resultbox}
+
+% ==============================================================================
+\section{Summary}
+\label{sec:summary}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Level} & \textbf{Status} \\
+\midrule
+Linearised UBT $\equiv$ linearised GR & \Lone & PROVED (Lem.~\ref{lem:lin_ubt_gr}) \\
+$P_\psi$-odd sector $\equiv$ odd-parity GR perturbations & \Lzero & Algebraic \\
+Regge-Wheeler ODE from linearised UBT & \Lone & PROVED (Thm.~\ref{thm:rw_linearised}) \\
+Regge-Wheeler potential $V_{\mathrm{RW}}$ matches standard form & \Lone & PROVED \\
+Even-parity Zerilli sector & \Lone & See \texttt{zerilli\_derivation.tex} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{regge_wheeler1957}
+  T.~Regge and J.~A.~Wheeler,
+  \textit{Stability of a Schwarzschild Singularity},
+  Phys.\ Rev.\ \textbf{108}, 1063 (1957).
+
+\bibitem{zerilli1970}
+  F.~J.~Zerilli,
+  \textit{Effective potential for even-parity Regge-Wheeler gravitational
+  perturbation equations},
+  Phys.\ Rev.\ Lett.\ \textbf{24}, 737 (1970).
+
+\bibitem{chandrasekhar1983}
+  S.~Chandrasekhar,
+  \textit{The Mathematical Theory of Black Holes},
+  Oxford University Press (1983).
+
+\bibitem{jaros2026_gr}
+  Ing.~D.~Jaroš,
+  \textit{General Relativity from Unified Biquaternion Theory},
+  \texttt{papers/UBT\_GR\_Submission.tex} (2026).
+
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

@@ -125,11 +125,11 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
 | G13 | Linearised UBT field equation reproduces linearised Einstein equations | [L1] | Linearisation of G5 |
-| G14 | Regge-Wheeler equation (odd-parity graviton) derived without extra input | [L1] | `papers/UBT_GR_Submission.tex §5` |
+| G14 | Regge-Wheeler equation (odd-parity graviton) derived without extra input | [L1] | `canonical/gr_closure/linearised_gravity.tex` (canonical source); `papers/UBT_GR_Submission.tex §5 thm:rw` |
 | G15 | Zerilli equation (even-parity graviton) derived from linearised UBT (vacuum Schwarzschild, $\ell\ge2$) | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| G18 | FRW Θ-ansatz: $g_{ij} = a(t)^2\delta_{ij}$ and reduced field-equation matching | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
+| G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann) | [L1 cond. on Friedmann branch + ODE-f for $f(t)$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)

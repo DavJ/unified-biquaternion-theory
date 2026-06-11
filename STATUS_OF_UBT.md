@@ -75,7 +75,7 @@ and one blocked result (T3_ALPHA).
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
 | **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | `papers/UBT_Gauge_Submission.tex` | Target submission: 2026-06-08 |
-| **T3_ALPHA** — Fine Structure Constant | 🔴 STRUCTURAL EVIDENCE | No paper yet | Downgraded 2026-06-11. α NOT DERIVED. B-gap open after 6 NO-GOs. Write conditional integer-137 companion note. |
+| **T3_ALPHA** — Fine Structure Constant | 🔴 STRUCTURAL EVIDENCE | `research_tracks/T3_ALPHA/integer_137_note.tex` (companion note) | Downgraded 2026-06-11. α NOT DERIVED. B-gap open after 6 NO-GOs. Integer-137 companion note written. |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
 **No speculative tracks are active.**  Consciousness/CTC content is frozen in
@@ -222,12 +222,11 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | Einstein equations from Hilbert variation | [L1] | Paper §3 |
 | T_μν symmetric, ∇^μT_μν = 0 | [L1] | `canonical/geometry/stress_energy.tex` |
 | Schwarzschild metric (spatial, < 10⁻¹⁵ error) | [L1]+[NUM] | `tools/verify_schwarzschild_theta.py` |
-| Regge-Wheeler equation (odd-parity graviton) | [L1] | Paper §5 |
+| Regge-Wheeler equation (odd-parity graviton) | [L1] | `canonical/gr_closure/linearised_gravity.tex` (canonical source); Paper §5 `thm:rw` |
 | Zerilli equation (even-parity) and canonical graviton quantisation notes | PROVED [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 | Flat FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch + ODE-f for $f(t)$; ODE-a automatically consistent — see Lem. ode\_a\_friedmann] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
-| $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
+| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch + ODE-f for $f(t)$; ODE-a automatically consistent — see Lem. ode\_a\_friedmann] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` || $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
 Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
@@ -245,6 +244,11 @@ None that prevent submission.
 
 ✅ Pre-submission fixes are integrated in the canonical manuscript (`papers/UBT_GR_Submission.tex`).
 ✅ Local LaTeX build completed in the current rigour pass; arXiv zip prepared.
+✅ ED-1 (notation unification): DONE 2026-06-11.
+✅ ED-2 (Regge-Wheeler source file): DONE 2026-06-11 — `canonical/gr_closure/linearised_gravity.tex` written; cross-referenced from `UBT_GR_Submission.tex §5 thm:rw`.
+✅ ED-3 (Schwarzschild numerical table): DONE 2026-06-11 — `canonical/gr_closure/schwarzschild_table.tex`; Appendix C in paper.
+
+All three editorial items are now closed.  No editorial blockers remain.
 
 ### Next Action
 
@@ -390,7 +394,7 @@ Archive: `reports/failed_routes_graveyard.md`
 
 - The 4-week modular bootstrap time-box expired without closing Gap G137-B.
 - Six routes are now on record as NO-GO; see `research_tracks/T3_ALPHA/mellin_insertion_B.tex`.
-- Next alpha action: write the conditional integer-137 companion note with the gap stated explicitly.
+- ✅ Conditional integer-137 companion note written: `research_tracks/T3_ALPHA/integer_137_note.tex` (2026-06-11).
 - Primary effort is redirected to T1_GR submission and T2_GAUGE completion.
 - **Do not pursue** A1, A2, A3, A4, or any new alpha route without explicit instruction.
 

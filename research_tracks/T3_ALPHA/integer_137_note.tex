@@ -1,0 +1,378 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/integer_137_note.tex
+% Purpose: Companion note — conditional integer-137 result, Gap G137-B formal
+%          statement, and N_eff clarification.
+% Status: Companion note only — NO new derivation steps.
+%         Main result: [L1 conditional on B = B_phenom].
+%         B_phenom NOT DERIVED. α NOT DERIVED.
+% Date: 2026-06-11
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\newcommand{\PROVED}{\textbf{[Proved]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+\newcommand{\OBS}{\textbf{[OBS]}}
+\newcommand{\COND}{\textbf{[L1 conditional]}}
+\newcommand{\NODERIVED}{\textbf{NOT DERIVED}}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\RR}{\mathbb{R}}
+
+\title{\textbf{Conditional Integer-137 Result in UBT}\\[6pt]
+  \large Structural evidence, open gap G137-B, and N\textsubscript{eff}
+  clarification}
+\author{Ing.\ David Jaroš}
+\date{2026-06-11}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We record the conditional result that the UBT winding-mode effective potential
+$V_{\mathrm{eff}}(n) = n^2 - B\cdot n\ln n$ has its unique integer minimum at
+$n^* = 137$ when $B = B_{\mathrm{phenom}} \approx 46.298$.  This result is
+proved at level \COND\ conditional on $B$.  The coefficient $B_{\mathrm{phenom}}$
+is \textbf{not derived} from the UBT action $S[\Theta]$; deriving it is Gap G137-B,
+which remains open after six NO-GO routes.  The T3\_ALPHA track has been downgraded
+from CONDITIONAL to STRUCTURAL EVIDENCE.  We state the three sub-gaps (G137-B-i,
+ii, iii) precisely, record the six NO-GO route residuals, and clarify which
+$N_{\mathrm{eff}}$ enters the integer-137 claim.
+\textbf{Alpha is not derived.}
+\end{abstract}
+
+\tableofcontents
+
+% ==============================================================================
+\section{Main Result (Conditional)}
+\label{sec:main}
+% ==============================================================================
+
+\begin{resultbox}
+\begin{theorem}[Integer-137 from UBT effective potential, \COND]
+\label{thm:integer_137}
+Define the UBT winding-mode effective potential
+\begin{equation}
+\label{eq:Veff}
+  V_{\mathrm{eff}}(n) = n^2 - B\cdot n\ln n, \qquad n \in \mathbb{Z}_{>0}.
+\end{equation}
+For $B = B_{\mathrm{phenom}} \approx 46.298$, the function $V_{\mathrm{eff}}$
+has a unique integer minimum at
+\begin{equation}
+  n^* = \arg\min_{n \in \mathbb{Z}_{>0}} V_{\mathrm{eff}}(n) = 137.
+\end{equation}
+This is a prime number.  The result is at level \Lone\ conditional on
+$B = B_{\mathrm{phenom}}$.
+\end{theorem}
+\end{resultbox}
+
+\begin{proof}[Proof sketch]
+The continuous minimum of $V_{\mathrm{eff}}(x) = x^2 - Bx\ln x$ is obtained by
+setting $\dd V_{\mathrm{eff}}/\dd x = 0$:
+\[
+  2x - B(\ln x + 1) = 0,
+\]
+giving $x^* \approx e^{B/2 - 1/2}$ for large $B$.  For $B = 46.298$, this
+gives $x^* \approx 136.8$, whose nearest integer is $n^* = 137$.  Checking
+$V_{\mathrm{eff}}(136) < V_{\mathrm{eff}}(137)$ vs $V_{\mathrm{eff}}(138)$
+confirms 137 is the unique integer attractor.  The primality of 137 provides
+additional stability (prime attractor argument).  Full derivation chain:
+\texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md} and
+\texttt{canonical/alpha/alpha\_best\_route.tex}.
+\end{proof}
+
+\begin{gapbox}
+\textbf{Conditionality}: The coefficient $B = B_{\mathrm{phenom}} \approx 46.298$
+is \textbf{not derived} from $S[\Theta]$.  It is an observed numerical value
+that gives the correct attractor.  Deriving $B_{\mathrm{phenom}}$ from first
+principles is Gap G137-B (Section~\ref{sec:gap}).  Until G137-B is closed,
+Theorem~\ref{thm:integer_137} is \textbf{conditional evidence only}, not a
+derivation of the fine structure constant.
+\end{gapbox}
+
+% ==============================================================================
+\section{The B Coefficient: What Is and Is Not Proved}
+\label{sec:B}
+% ==============================================================================
+
+The coefficient $B$ in~\eqref{eq:Veff} enters through three distinct routes.
+Their status is:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Level} & \textbf{Source} \\
+\midrule
+$B = 12^{3/2}\cdot(2\eta(i))^{1/4}$ (algebraic identity) &
+  \Lzero & \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md} \\
+Numerical match $B_{\mathrm{Ram}} \approx 46.28 \approx B_{\mathrm{phenom}}$ &
+  \OBS & \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md} \\
+Algebraic identity $\eta^{-2}\theta_3\theta_4^2 = 2\eta(i)$ &
+  \Lzero & v42 result \\
+$N_{\mathrm{eff}}^{\mathrm{twist}} = 12$ (SU(2)-twist route) &
+  \Lone & \texttt{canonical/n\_eff/step2\_AUDIT.tex} \\
+$B_{\mathrm{phenom}}$ from $S[\Theta]$ without $\alpha$ input &
+  \textbf{NOT DERIVED} & Gap G137-B open \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+\textbf{Status of $B$}: The Ramanujan form $B_{\mathrm{Ram}} = 12^{3/2}(2\eta(i))^{1/4}$
+is an \OBS\ algebraic coincidence: $B_{\mathrm{Ram}} \approx 46.281$ vs
+$B_{\mathrm{phenom}} \approx 46.298$, a 0.037\% discrepancy.  Whether this
+coincidence has a structural explanation from $S[\Theta]$ is precisely
+what Gap G137-B asks.  No claim is made that $B$ is derived.
+\end{insightbox}
+
+% ==============================================================================
+\section{Gap G137-B: Formal Statement}
+\label{sec:gap}
+% ==============================================================================
+
+Gap G137-B is the central open problem of the T3\_ALPHA track.  The following
+three sub-gaps are copied directly from
+\texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex} §formal-gap.
+
+\begin{gapbox}
+\textbf{Gap G137-B: Derive $B_{\mathrm{phenom}} \approx 46.298$ from $S[\Theta]$
+without using $\alpha$ as input.}\\[6pt]
+Three sub-gaps obstruct a complete derivation:
+\begin{itemize}
+\item \textbf{G137-B-i} [OPEN/MC]: Volumetric factorization
+  $W_{\mathrm{eff}} = N_{\mathrm{eff}}^{3/2}\cdot f(Z_b)$ — the Mellin
+  insertion structure requires a factorization of the partition function
+  that has not been proved.
+\item \textbf{G137-B-ii} [OPEN/MC]: $Z_{1\mathrm{real}} = 2\eta(i)$ from the
+  NS-sector heat kernel — identifying the single-real-boson partition function
+  with the Dedekind $\eta$ at the self-dual point has not been derived from the
+  UBT action.
+\item \textbf{G137-B-iii} [OPEN/MC]: $N_{\mathrm{eff}}^{1/2}$ from $T^3$ volume
+  at the self-dual point — the volume factor that converts the zero-mode
+  normalisation to $B_{\mathrm{phenom}}$ has not been determined from $S[\Theta]$.
+\end{itemize}
+All three sub-gaps must be closed simultaneously to derive $B_{\mathrm{phenom}}$
+from first principles.
+\end{gapbox}
+
+\subsection{Six NO-GO routes}
+
+The table below records the six routes exhausted in the time-box for Gap G137-B,
+with their numerical residuals.  These are taken from
+\texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}.
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{\#} & \textbf{Route} & \textbf{Verdict} & \textbf{Residual / ratio} \\
+\midrule
+1 & T-duality & [NO-GO] & Algebraic obstruction; $B \neq B_{\mathrm{phenom}}$ \\
+2 & Orbifold $\mathbb{Z}_{\mathrm{orb}}(i)$ & [NO-GO] & $\approx 1.302 \neq \sqrt{2}$ \\
+3 & Direct $M^4$ functional determinant ($\zeta$-reg.) & [NO-GO] & Residual $\sim 1.14\times10^4$ \\
+4 & Casimir $T^3$ & [NO-GO] & Residual $\sim 9.0\times10^3$ \\
+5 & Eisenstein $E_4(i)$ & [NO-GO] & Ratio $B_{E_4}/B_{\mathrm{phenom}} \approx 0.920$ \\
+6 & Mock theta $f(e^{-\pi})$ & [NO-GO] & Ratio $\approx 0.907$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{deadendbox}
+\textbf{Time-box expired.}  All six routes are NO-GO.  No further routes for
+Gap G137-B will be attempted without explicit instruction.  The A\_PRIME modular
+bootstrap route (A\_PRIME) has been exhausted.  T3\_ALPHA has been formally
+downgraded to STRUCTURAL EVIDENCE.  See
+\texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex} for full details.
+\end{deadendbox}
+
+% ==============================================================================
+\section{N\textsubscript{eff} Clarification}
+\label{sec:neff}
+% ==============================================================================
+
+Two independent routes to $N_{\mathrm{eff}}$ are tracked in
+\texttt{canonical/n\_eff/step2\_AUDIT.tex}:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Route} & \textbf{Value} & \textbf{Level} & \textbf{Source} \\
+\midrule
+SU(2)-twist & $N_{\mathrm{eff}}^{\mathrm{twist}} = 12$ & \Lone &
+  \texttt{step2\_AUDIT.tex} \\
+Scalar loop & $N_{\mathrm{eff}}^{\mathrm{loop}} = 3$ & \Lone &
+  \texttt{step2\_AUDIT.tex} \\
+Identification twist = loop & \textbf{[OPEN/MC frozen]} &
+  — & \texttt{step2\_AUDIT.tex §rem:neff\_alpha\_dependency} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultbox}
+\textbf{Which $N_{\mathrm{eff}}$ enters the integer-137 result?}
+
+The conditional result of Theorem~\ref{thm:integer_137} uses
+$N_{\mathrm{eff}}^{\mathrm{twist}} = 12$ [L1] via the A\_PRIME route.
+
+The scalar-loop route $N_{\mathrm{eff}}^{\mathrm{loop}} = 3$ [L1] gives
+$B_0^{\mathrm{loop}} = 2\pi$, yielding $n^* \approx 10.5 \neq 137$.
+
+Therefore:
+\begin{enumerate}
+\item The integer-137 companion note is conditional on the
+  \textbf{SU(2)-twist route specifically}.
+\item The identification $N_{\mathrm{eff}}^{\mathrm{twist}} = N_{\mathrm{eff}}^{\mathrm{loop}}$
+  is \textbf{NOT} required for the integer-137 conditional result.
+\item The identification would only be required for a first-principles derivation
+  of $B_0$ from the scalar effective action — which remains part of Gap G137-B.
+\end{enumerate}
+Status of identification: \textbf{[OPEN/MC frozen]}.  See
+\texttt{canonical/n\_eff/step2\_AUDIT.tex §rem:neff\_alpha\_dependency}.
+\end{resultbox}
+
+% ==============================================================================
+\section{Structural Significance}
+\label{sec:structure}
+% ==============================================================================
+
+\begin{insightbox}
+\textbf{Why the integer-137 result is structurally significant, even as
+structural evidence only.}
+
+\begin{enumerate}
+\item \textbf{Prime attractor}: $n^* = 137$ is prime.  The effective potential
+  $V_{\mathrm{eff}}(n)$ has enhanced stability at prime $n^*$, because
+  the winding-mode spectrum has no sub-harmonic resonance at a prime.
+
+\item \textbf{Modular corroboration}: The modular group index
+  $\mu(\Gamma_0(137))/3 \approx 46.00$ is within 0.64\% of $B_{\mathrm{phenom}}$,
+  suggesting a structural connection between the prime attractor and the
+  congruence subgroup $\Gamma_0(137)$.  This is an \OBS\ observation, not a
+  derivation.
+
+\item \textbf{No fine-tuning}: The potential $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$
+  has no free parameters once $B$ is fixed.  Its minimum at $n^* = 137$ is a
+  \emph{discrete} attractor — nearby values $n = 136, 138$ give strictly larger
+  $V_{\mathrm{eff}}$.
+
+\item \textbf{$\alpha$ is not derived}: The fine structure constant
+  $\alpha \approx 1/137.036$ is \textbf{not} reproduced by this result.  Only
+  the integer part $\alpha^{-1}_{\mathrm{bare}} = 137$ is structurally motivated.
+  The renormalisation-group running correction $0.036$ is not addressed.
+\end{enumerate}
+
+\textbf{T3\_ALPHA track status}: STRUCTURAL EVIDENCE (downgraded from
+CONDITIONAL on 2026-06-11 after six NO-GOs on Gap G137-B).  Publication target:
+short companion note recording the conditional result and gap structure.
+\end{insightbox}
+
+% ==============================================================================
+\section{Summary of T3\_ALPHA Status}
+\label{sec:summary}
+% ==============================================================================
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Claim} & \textbf{Level} & \textbf{Status} \\
+\midrule
+$B = 12^{3/2}(2\eta(i))^{1/4}$ identity & \Lzero & PROVED \\
+$n^*(B_{\mathrm{phenom}}) = 137$ & \COND & PROVED conditional on $B$ \\
+$N_{\mathrm{eff}}^{\mathrm{twist}} = 12$ & \Lone & PROVED \\
+$N_{\mathrm{eff}}^{\mathrm{loop}} = 3$ (independent) & \Lone & PROVED \\
+Integer-137 uses $N_{\mathrm{eff}}^{\mathrm{twist}} = 12$,
+  not $N_{\mathrm{eff}}^{\mathrm{loop}} = 3$ & \Lone & PROVED \\
+$N_{\mathrm{eff}}^{\mathrm{twist}} = N_{\mathrm{eff}}^{\mathrm{loop}}$ & \textbf{[OPEN/MC frozen]} & NOT PROVED \\
+G137-B-i, ii, iii (three sub-gaps) & \textbf{[OPEN/MC]} & NOT PROVED \\
+$B_{\mathrm{phenom}}$ from $S[\Theta]$ & \textbf{NOT DERIVED} & — \\
+$\alpha \approx 1/137.036$ from UBT & \textbf{NOT DERIVED} & — \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{deadendbox}
+\textbf{T3\_ALPHA: STRUCTURAL EVIDENCE}\\[4pt]
+$\alpha$ is NOT derived in UBT as of 2026-06-11.  The integer-137 result is
+conditional evidence only.  No new derivation routes for $\alpha$ will be
+opened without explicit instruction.
+\end{deadendbox}
+
+% ==============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{jaros2026_gr}
+  Ing.~D.~Jaroš,
+  \textit{General Relativity from Unified Biquaternion Theory},
+  \texttt{papers/UBT\_GR\_Submission.tex} (2026).
+
+\bibitem{jaros2026_gauge}
+  Ing.~D.~Jaroš,
+  \textit{Standard Model Gauge Structure from Unified Biquaternion Theory},
+  \texttt{papers/UBT\_Gauge\_Submission.tex} (2026).
+
+\bibitem{alpha_master}
+  Ing.~D.~Jaroš,
+  \textit{Alpha Master Status},
+  \texttt{canonical/alpha/ALPHA\_MASTER\_STATUS.md} (2026).
+
+\bibitem{mellin_nogo}
+  Ing.~D.~Jaroš,
+  \textit{Gap G137-B: Mellin Insertion — Formal No-Go Record},
+  \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex} (2026).
+
+\bibitem{neff_audit}
+  Ing.~D.~Jaroš,
+  \textit{N\_eff Audit (Step 2)},
+  \texttt{canonical/n\_eff/step2\_AUDIT.tex} (2026).
+
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi
