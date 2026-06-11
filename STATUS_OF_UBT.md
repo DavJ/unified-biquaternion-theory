@@ -1,3 +1,25 @@
+## 2026-06-11 (v54 — D1/D2/D3 results; copilot-instructions updated to v54)
+
+### New results registered
+- D1 (Gap C2 Step 1): `research_tracks/EW/hypercharge_from_ubt.tex` created.
+  $Y=(B{-}L)/2$ established [L1 conditional on OP-S4 + sub-gap C2-i].
+  Sub-gap C2-i (fractional quark winding $B_q=1/3$ from SU(3)) remains [OPEN/MC].
+- D2 (OP-S4 minimality): Remark `rem:minimality_anomaly` added to
+  `canonical/chirality/step4_no_wr_derivation.tex §4`.
+  Anomaly-safe (conditional on C2-i); unitarity deferred to EW-2 (open item, not inconsistency).
+- D3 (FRW ODE-f): Proposition `prop:ode_f_solutions` added to
+  `canonical/gr_closure/frw_cosmological_solutions.tex §3`.
+  $\kappa\mathcal{T}_0 = \kappa\rho$; quasi-static solutions $f \propto a^{-3(1+w)}$
+  established [L1 conditional on Friedmann + quasi-static $R_\psi \ll H^{-1}$].
+- `copilot-instructions.md` updated to v54.
+
+### Status changes
+- Gap C2 Step 1: OPEN → PARTIALLY CLOSED ([L1 cond.] on OP-S4 + C2-i); sub-gap C2-i [OPEN/MC]
+- OP-S4 minimality: documented in Remark (anomaly-safe conditional on C2-i; EW-2 deferred)
+- FRW ODE-f: Proposition added; conditionality narrowed to [L1 cond. on Friedmann + quasi-static]
+- T2_GAUGE: NEAR READY → PAPER COMPLETE (all sections done; chirality OP-S4 [L1 cond.])
+- T1_GR: still SUBMIT READY (unchanged).
+
 ## 2026-06-11 (T3_ALPHA downgrade — STRUCTURAL EVIDENCE)
 
 ### Status changes
@@ -68,13 +90,13 @@ When in conflict, this file governs.
 
 ## Executive Summary
 
-UBT has one submission-ready result (T1_GR), one near-ready result (T2_GAUGE),
+UBT has one submission-ready result (T1_GR), one paper-complete result (T2_GAUGE),
 and one blocked result (T3_ALPHA).
 
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
-| **T2_GAUGE** — Gauge Sector | 🔶 NEAR READY | `papers/UBT_Gauge_Submission.tex` | Target submission: 2026-06-08 |
+| **T2_GAUGE** — Gauge Sector | ✅ PAPER COMPLETE | `papers/UBT_Gauge_Submission.tex` | Submit after T1_GR clears initial review |
 | **T3_ALPHA** — Fine Structure Constant | 🔴 STRUCTURAL EVIDENCE | `research_tracks/T3_ALPHA/integer_137_note.tex` (companion note) | Downgraded 2026-06-11. α NOT DERIVED. B-gap open after 6 NO-GOs. Integer-137 companion note written. |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
@@ -259,8 +281,8 @@ to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ## T2_GAUGE — Standard Model Gauge Structure
 
-**Status**: NEAR READY — algebraic results proved; draft paper compiled  
-**Confidence**: HIGH for algebraic sector; MEDIUM for chirality claim  
+**Status**: PAPER COMPLETE — all sections §1–§9 complete; chirality OP-S4 [L1 conditional]; α at STRUCTURAL EVIDENCE
+**Confidence**: HIGH for algebraic sector; MEDIUM for chirality claim
 **Paper**: `papers/UBT_Gauge_Submission.tex` (compiled PDF)
 
 ### Solved Algebra Pieces (Zero New Work Needed)
@@ -278,36 +300,38 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Loophole 1 (n<0 coupling) observationally decoupled | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex Cor 3.2` |
 | Loophole 3 (KK decoupling, R_ψ→0) | [STD] | `canonical/chirality/step4_no_wr_derivation.tex Prop 4.3` |
 | Loophole 2 (spontaneous breaking) — no light $SU(2)_R$ doublet in minimal $S[\Theta]$ | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex §4 (Lemma no_doublet)` |
+| Minimality: anomaly-safe (cond. on C2-i); unitarity deferred to EW-2 | Remark | `canonical/chirality/step4_no_wr_derivation.tex §4 Rem rem:minimality_anomaly` |
 | Full algebraic exclusion of $SU(2)_R$ (OP-S4) | **[L1 conditional]** — all three loopholes closed; conditional on Step 1 Lem 4 + minimality of $S[\Theta]$ | `canonical/chirality/step4_no_wr_derivation.tex §4` |
 | U(1)_Y from right scalar phase | [L0] | `canonical/interactions/sm_gauge.tex §U1` |
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
 | Hypercharge quantisation from Dirac condition | [L0] | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
+| $Y=(B{-}L)/2$ from OP-S4 + ψ-winding (Gap C2 Step 1) | **[L1 cond. on OP-S4 + C2-i]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` |
+| Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3` |
 
 ### Open Physical Gaps
 
 | Gap | Description | Priority |
 |-----|-------------|----------|
 | EW-1 | Weinberg angle sin²θ_W — **DEAD END for pure algebra** (algebra cannot fix g'/g) | Keep dead-end statement for algebra-only route |
-| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2 Step 1 closure and on deriving $R_\psi$ from $S[\Theta]$; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` and `research_tracks/EW/rpsi_from_action.tex` |
+| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | CONDITIONAL on Gap C2-i closure and on deriving $R_\psi$ from $S[\Theta]$; tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex` and `research_tracks/EW/rpsi_from_action.tex` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
-| C2 | Specific fermion hypercharge assignments | Open |
+| C2-i | Fractional quark winding $B_q=1/3$ from SU(3) colour structure | Open/MC — see `research_tracks/EW/hypercharge_from_ubt.tex §3` |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
 
 ### Confidence
 
-**Overall**: 85% submit-ready now; 90% after verifying anomaly cancellation.
+**Overall**: PAPER COMPLETE — submit after T1_GR clears initial review.
 
 **Honest statement to use in paper**: The Weinberg angle sin²θ_W ≈ 0.231 cannot
 be derived from algebra alone (dead-end no-go for pure algebraic fixing of g'/g).
 An EW1+RG route exists only conditionally, pending first-principles closure of
-Gap C2 Step 1 for fermion hypercharge assignments.
+sub-gap C2-i for fractional quark baryon-winding.
 
 ### Next Action
 
-Begin T2_GAUGE paper draft immediately after T1_GR submission. Target sections 1–3
-(algebra, SU(3), SU(2)_L) in weeks 2–3. Target arXiv at week 8–10.
+Submit T2\_GAUGE paper after T1\_GR submission clears initial review.
 
 Master status file: `canonical/gauge/GAUGE_MASTER_STATUS.md`
 

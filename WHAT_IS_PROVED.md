@@ -130,6 +130,7 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
 | G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann) | [L1 cond. on Friedmann branch + ODE-f for $f(t)$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
+| G18-f | ODE-f source $\kappa\mathcal{T}_0=\kappa\rho$; quasi-static solutions $f\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)
@@ -176,6 +177,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E2 | SU(2)_L acts on left-chiral doublets (chirality gap C1 closed) | [L1] | `chirality/step3_gap_C1_resolution.tex` |
 | C1-S4 | $SU(2)_R$ geometric decoupling via $\psi$-parity | [MC] | `canonical/chirality/step4_no_wr_derivation.tex §3 Thm 3.1` |
 | OP-S4 | Full algebraic exclusion of $SU(2)_R$ | [L1 conditional] (Loophole~1 [L1 cond.], Loophole~2 [L1 cond.], Loophole~3 [STD]) | `canonical/chirality/step4_no_wr_derivation.tex §4` |
+| OP-S4-min | Minimality anomaly-safe (cond. on C2-i); unitarity (EW-2) deferred | Remark | `canonical/chirality/step4_no_wr_derivation.tex §4 Rem rem:minimality_anomaly` |
 | E3 | W±, W³ as gauge connections of SU(2)_L | [L1] | Gauge principle |
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
@@ -209,7 +211,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | EW-1 | Weinberg angle from pure algebra (dead end — stated explicitly) |
 | EW-1b | EW1+RG conditional branch ($3/8 \to 0.231$) pending full first-principles $Y_i$ closure from Gap C2 Step 1 |
 | EW-2 | Higgs doublet VEV from S[Θ] |
-| C2 | Specific fermion hypercharge assignments — conditional: Step 1 (SU(3) colour lattice) OPEN; Step 2 [L1], Step 3 [L0]; uniqueness remains [MC] | `canonical/interactions/hypercharge_assignments.tex`, `canonical/interactions/colour_charge_lattice.tex` |
+| C2 | Specific fermion hypercharge assignments — Gap C2 Step 1 PARTIALLY CLOSED: $Y=(B{-}L)/2$ [L1 cond. on OP-S4 + C2-i]; sub-gap C2-i (fractional quark winding) [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex` |
 | Y2 | Yukawa couplings |
 
 ---

@@ -41,7 +41,7 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - `canonical/gr_closure/linearised_gravity.tex` — ED-2 — [L1] — Regge-Wheeler (odd-parity graviton, canonical source)
 - `canonical/gr_closure/zerilli_derivation.tex` — GAP-Z — [L1] — Zerilli even-parity graviton
 - `canonical/gr_closure/schwarzschild_table.tex` — ED-3 — [L1]+[NUM] — Schwarzschild numerical table (Appendix C)
-- `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[L1 cond.] — FRW in solution space [L1]; Θ-ansatz [L1 cond. on Friedmann + ODE-f]; ODE-a auto-consistent [L1]; g_0i sub-gap [L1 conditional on comoving-frame averaging]
+- `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[L1 cond.] — FRW in solution space [L1]; Θ-ansatz [L1 cond. on Friedmann + ODE-f]; ODE-a auto-consistent [L1]; ODE-f source $\kappa\mathcal{T}_0=\kappa\rho$; quasi-static solutions $f\propto a^{-3(1+w)}$ [L1 cond. on Friedmann + quasi-static]; g_0i sub-gap [L1 conditional on comoving-frame averaging]
 
 ### 4) Gauge and interaction recovery
 
@@ -53,7 +53,7 @@ Sources: `canonical/interactions/`, `canonical/su3_derivation/`, `canonical/chir
 
 **Chirality derivation files:**
 - `canonical/chirality/step3_gap_C1_resolution.tex` — Gap C1 Step 3 — [L1] — SU(2)_L acts on left-chiral doublets
-- `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC] — SU(2)_R decouples from n>0 matter via ψ-parity; Loopholes 1 [L1 cond.] and 3 [STD] closed; OP-S4 (Loophole 2) open
+- `canonical/chirality/step4_no_wr_derivation.tex` — Gap C1 upgrade — [MC]+[L1 cond.] — SU(2)_R decouples via ψ-parity; all Loopholes 1 [L1 cond.], 2 [L1 cond.], 3 [STD] closed; OP-S4 [L1 conditional]; Rem rem:minimality_anomaly: anomaly-safe (cond. C2-i), unitarity deferred EW-2
 
 ### 5) α (fine-structure) track with explicit gap discipline
 
@@ -70,6 +70,11 @@ research_tracks/T3_ALPHA/mellin_insertion_B.tex | Gap G137-B no-go record |
 research_tracks/T3_ALPHA/integer_137_note.tex | Integer-137 companion note |
   [L1 conditional on B] | Records Thm: n*(B_phenom)=137; Gap G137-B sub-gaps
   stated; N_eff clarification (twist=12 used, not loop=3); alpha NOT DERIVED
+
+research_tracks/EW/hypercharge_from_ubt.tex | Gap C2 Step 1 — fermion hypercharge from ψ-winding |
+  [L1 cond. on OP-S4 + C2-i] | $Y=(B-L)/2$ from OP-S4 + ψ-winding topology;
+  sub-gap C2-i (fractional quark winding $B_q=1/3$ from SU(3)) [OPEN/MC];
+  all 6 SM hypercharge values reproduced algebraically given Lem 2.1; 2026-06-11
 
 ---
 

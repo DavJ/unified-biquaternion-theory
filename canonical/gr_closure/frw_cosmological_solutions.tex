@@ -407,6 +407,80 @@ conditionality of Theorem~\ref{thm:frw_ansatz_l1} therefore reduces to:
 \textbf{[L1 conditional on Friedmann branch (Result~1) and on ODE-f for $f(t)$]}.
 \end{remark}
 
+\begin{proposition}[ODE-f source and quasi-static solutions
+                   \textbf{[L1 conditional on Friedmann branch + quasi-static approximation]}]
+\label{prop:ode_f_solutions}
+Let the UBT stress-energy tensor $T_{\mu\nu}$ correspond to a perfect fluid
+with equation of state $p = w\rho$ in comoving coordinates,
+$T_{\mu\nu} = (\rho+p)u_\mu u_\nu + p\,g_{\mu\nu}$.
+The $\psi$-circle projection of $T_{\mu\nu}$ onto the scalar ($\mathbf{1}$) sector
+of $\Theta_{\mathrm{FRW}}$ gives
+\begin{equation}
+  \kappa\mathcal{T}_0(t) \;=\; \kappa\rho(t),
+  \label{eq:T0_identification}
+\end{equation}
+where $\rho(t)$ is the energy density.
+ODE-f \eqref{eq:ode_f} therefore reads
+\begin{equation}
+  \label{eq:ode_f_explicit}
+  \ddot{f} + 3H\dot{f} + \frac{1}{R_\psi^2}\,f \;=\; \kappa\rho(t).
+\end{equation}
+In the quasi-static (adiabatic) regime $R_\psi^{-1} \gg H$, the time derivatives
+of $f$ are negligible compared to the $R_\psi^{-2}$ term, and
+equation~\eqref{eq:ode_f_explicit} has the particular solution
+\begin{equation}
+  \label{eq:f_particular}
+  f_{\mathrm{qs}}(t) \;=\; R_\psi^2\,\kappa\rho(t).
+\end{equation}
+Using $\rho(t) = \rho_0\,a(t)^{-3(1+w)}$ from the Friedmann continuity equation,
+this gives
+\begin{equation}
+  \label{eq:f_power_law}
+  f_{\mathrm{qs}}(t) \;=\; R_\psi^2\,\kappa\rho_0\,a(t)^{-3(1+w)}.
+\end{equation}
+In particular:
+\begin{enumerate}
+  \item \textbf{Dust} ($w=0$, $\rho \propto a^{-3}$):
+        $f_{\mathrm{qs}} \propto a(t)^{-3}$.
+  \item \textbf{Radiation} ($w=1/3$, $\rho \propto a^{-4}$):
+        $f_{\mathrm{qs}} \propto a(t)^{-4}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The scalar sector identification \eqref{eq:T0_identification} follows from the
+FRW ansatz decomposition \eqref{eq:Tfrw_decomposition}: the $\mathbf{1}$-component
+of the right-hand side of the UBT field equation $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}$
+receives contribution from $T_{00} = \rho$ in comoving coordinates
+(no spatial components project onto the scalar $\mathbf{1}$ basis element).
+
+In the quasi-static regime $R_\psi^{-2} \gg |\ddot{f}/f|, H^2$,
+equation~\eqref{eq:ode_f_explicit} reduces to
+$f/R_\psi^2 \approx \kappa\rho$, giving \eqref{eq:f_particular}.
+The power-law form \eqref{eq:f_power_law} follows from the standard
+Friedmann continuity equation $\dot\rho + 3H(1+w)\rho = 0$,
+which integrates to $\rho \propto a^{-3(1+w)}$.
+\end{proof}
+
+\begin{remark}[Physical interpretation and residual conditionality]
+\label{rem:ode_f_physical}
+The quasi-static solution $f_{\mathrm{qs}} \propto a^{-3(1+w)}$ is determined
+by the Friedmann equations alone, given a fixed $R_\psi$.
+The conditionality on ODE-f therefore becomes:
+\textbf{[L1 conditional on Friedmann branch + quasi-static approximation
+$R_\psi^{-1} \gg H$]}.
+The quasi-static condition holds when the $\psi$-circle radius $R_\psi$ is
+sub-Hubble, i.e.\ $R_\psi \ll H^{-1}$.
+If $R_\psi$ is comparable to or larger than the Hubble radius, $f(t)$ undergoes
+oscillations around $f_{\mathrm{qs}}$ and requires specification of initial
+conditions; in this case, $f(t)$ plays the role of a genuine ``scalar envelope''
+with independent dynamics.
+The overall conditionality of Theorem~\ref{thm:frw_ansatz_l1} remains
+[L1 conditional]; the Proposition above shows that the conditionality can be
+promoted to [L1 conditional on Friedmann branch only] in the regime
+$R_\psi \ll H^{-1}$.
+\end{remark}
+
 %─────────────────────────────────────────────────────────────────────────────
 \section{Remaining Gap: Off-Diagonal Components $g_{0i}$}
 \label{sec:gap_0i}
