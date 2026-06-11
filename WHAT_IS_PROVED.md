@@ -129,8 +129,9 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 | G15 | Zerilli equation (even-parity graviton) derived from linearised UBT (vacuum Schwarzschild, $\ell\ge2$) | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann) | [L1 cond. on Friedmann branch + ODE-f for $f(t)$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
-| G18-f | ODE-f source $\kappa\mathcal{T}_0=\kappa\rho$; quasi-static solutions $f\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` |
+| G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann); ODE-f exact solutions established (v55) | [L1 cond. on Friedmann branch only] (v55: quasi-static removed) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
+| G18-f | ODE-f quasi-static solutions $f_{\mathrm{qs}}\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` |
+| G18-fd | ODE-f exact solutions without quasi-static approximation: dust ($\mathrm{Si}/\mathrm{Ci}$ integrals), radiation (Bessel $J_{1/4}/Y_{1/4}$) | [L1 cond. on Friedmann branch only] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_full_dynamics` (NEW v55) |
 | G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 ### Explicitly Open (not claimed as proved)
@@ -182,8 +183,11 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | E4 | U(1)_Y from right scalar phase action on Mat(2,ℂ) | [L0] | `sm_gauge.tex §U1` |
 | E5 | Hypercharge quantisation from Dirac condition on ψ-circle | [L0] | `appendix_alpha_geometry.tex §1` |
 | E5b | SU(3) colour-lattice Step 1: target theorem $Q\in\mathbb{Z}$ from $S[\Theta]$ on $S^1_\psi$ | [OPEN/MC] (blocker explicit) | `canonical/interactions/colour_charge_lattice.tex` |
-| SM5 | Hypercharge assignment $Y_Q=1/6$ | [L1 conditional on C2 Step 1 — OPEN] | `canonical/interactions/colour_charge_lattice.tex`, `papers/UBT_Gauge_Submission.tex` |
+| SM5 | Hypercharge assignment $Y_Q=1/6$ | [L1 conditional on C2 Step 1] (C2-i now closed v55) | `canonical/interactions/colour_charge_lattice.tex`, `papers/UBT_Gauge_Submission.tex` |
 | SM10 | Y_Q=1/6 unique via grav. anomaly A_grav(n)=n-1=0 | [L1 family check] | `canonical/interactions/colour_charge_lattice.tex` Thm. C2-uniqueness |
+| C2-S1 | Gap C2 Step 1: $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour | [L1 cond. on OP-S4 + SU(3)] | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v55) |
+| C2-S1i | Sub-gap C2-i: $B_q=1/3$ from SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v55) |
+| EW-sw | $\sin^2\theta_W(M_Z)\approx0.231$ via EW1+RG after C2-i closure | [L1 cond. on OP-S4 + SU(3) + scale closure] | `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` (v55) |
 | E6 | U(1)_EM from ψ-cycle phase after SSB | [L0] | `qed.tex` |
 | E7 | Q = T₃ + Y/2 (Gell-Mann–Nishijima relation) | [L1] | Standard EW algebra |
 | E8 | Photon field $A_\mu = \sin\theta_W W^3_\mu + \cos\theta_W B_\mu$ | [L1] | Standard EW |
@@ -209,9 +213,10 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | Gap | Description |
 |-----|-------------|
 | EW-1 | Weinberg angle from pure algebra (dead end — stated explicitly) |
-| EW-1b | EW1+RG conditional branch ($3/8 \to 0.231$) pending full first-principles $Y_i$ closure from Gap C2 Step 1 |
+| EW-1b | EW1+RG conditional branch: $\sin^2\theta_W(M_Z)\approx0.231$ [L1 cond. on OP-S4 + SU(3) colour + scale closure]; C2-i conditionality removed (v55) — see `research_tracks/EW/weinberg_angle_ew1_rg.tex §7` |
 | EW-2 | Higgs doublet VEV from S[Θ] |
-| C2 | Specific fermion hypercharge assignments — Gap C2 Step 1 PARTIALLY CLOSED: $Y=(B{-}L)/2$ [L1 cond. on OP-S4 + C2-i]; sub-gap C2-i (fractional quark winding) [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex` |
+| C2 | Gap C2 Step 1: $Y=(B{-}L)/2$ [L1 cond. on OP-S4 + SU(3) colour structure from UBT] (v55); sub-gap C2-i CLOSED [L1 cond.]; sub-gap C2-ii [OPEN/MC] — does not block | `research_tracks/EW/hypercharge_from_ubt.tex` |
+| C2-ii | $U(1)_B$ from $\psi$-winding topology | does not block any paper |
 | Y2 | Yukawa couplings |
 
 ---

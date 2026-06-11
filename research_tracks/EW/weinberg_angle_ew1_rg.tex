@@ -32,11 +32,17 @@ This note follows the hard dependency:
 \text{Gap C2 Step 1 closed} \Longrightarrow \text{full }Y_i\text{ set [L1]}.
 \]
 Current status from
-\texttt{canonical/interactions/colour\_charge\_lattice.tex} is:
+\texttt{research\_tracks/EW/hypercharge\_from\_ubt.tex} is:
 \[
-\text{Step 1 is CLOSED [L1]}.
+\text{Sub-gap C2-i is CLOSED [L1 cond. on SU(3) colour structure from UBT]\ (v55, 2026-06-11)}.
 \]
-Therefore the generator-norm step below is \textbf{[L1]}.
+Specifically, $B_q=1/3$ follows from the SU(3) colour-singlet constraint
+(Lemma~\texttt{lem:Bq\_from\_su3} in \texttt{hypercharge\_from\_ubt.tex §3}):
+physical baryons are 3-quark colour-singlets ($\varepsilon^{abc}q_aq_bq_c$),
+so each quark carries $B_q=1/3$ given $B_{\mathrm{baryon}}=1$.
+The hypercharge formula $Y=(B{-}L)/2$ is therefore
+[L1 conditional on OP-S4 + SU(3) colour structure from UBT].
+Therefore the generator-norm step below is \textbf{[L1 conditional on OP-S4 + SU(3)]}.
 
 \section{Generator-norm computation (formal algebra)}
 For one generation with the standard assignment set
@@ -202,5 +208,43 @@ $V_{\mathrm{gauge}}\sim-\lambda e^{-\pi/R}$ (kandidát 3): \textbf{[MC]} (numeri
 $\sin^2\theta_W(M_Z)\approx0.231$: \textbf{[CONDITIONAL — závisí na scale closure, např. kandidát 3]}\\
 Weinbergův úhel není slepá ulička pro EW1+RG větev: \textbf{[L1 at GUT norm step; RG-to-$M_Z$ remains conditional]}.
 \end{tcolorbox}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Corollary: $\sin^2\theta_W(M_Z)\approx 0.231$ conditional on C2-i closure}
+\label{sec:corollary_sw}
+%─────────────────────────────────────────────────────────────────────────────
+
+Following the closure of sub-gap C2-i at [L1 conditional on SU(3) colour structure
+from UBT] (see \texttt{research\_tracks/EW/hypercharge\_from\_ubt.tex §3},
+Lemma~\texttt{lem:Bq\_from\_su3}, v55, 2026-06-11), the EW-1b result
+can be stated more precisely:
+
+\begin{proposition}[Weinberg angle at $M_Z$,
+  \textbf{[L1 conditional on OP-S4 + SU(3) colour structure + scale closure]}]
+\label{prop:sin2_thetaW_corollary}
+Given:
+\begin{enumerate}
+  \item The SM hypercharge assignments $Y_i$ are [L1 conditional on OP-S4 + SU(3)
+        colour structure from UBT] (Lemma \texttt{lem:hypercharge\_formula}, updated v55).
+  \item The generator-norm ratio gives
+        $\sin^2\theta_W^{\mathrm{GUT}} = 3/8$ at the GUT scale [L1 conditional on (1)].
+  \item Standard one-loop RG running from $M_{\mathrm{GUT}}\sim 2\times10^{16}$\,GeV
+        to $M_Z$ yields $\sin^2\theta_W(M_Z)\approx 0.231$ [STD, 2-loop].
+\end{enumerate}
+Then:
+\[
+  \boxed{\sin^2\theta_W(M_Z) \;\approx\; 0.231}
+  \quad
+  \textbf{[L1 conditional on OP-S4 + SU(3) colour structure + scale closure]}
+\]
+\end{proposition}
+
+\begin{remark}[Change from previous conditionality]
+Prior to v55, this result was stated as [L1 conditional on Gap C2 closure (C2-i open)].
+Following the v55 closure of sub-gap C2-i, the residual conditionality is now:
+(a) OP-S4 [L1 conditional — all loopholes closed]; (b) SU(3) colour structure
+from UBT [L1, established]; (c) scale closure ($R_\psi$ from $S[\Theta]$, [OPEN/MC]).
+The conditionality on sub-gap C2-i is \emph{removed}.
+\end{remark}
 
 \end{document}
