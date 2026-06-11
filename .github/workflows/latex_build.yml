@@ -135,6 +135,7 @@ jobs:
           - canonical/gr_closure/linearised_gravity.tex
           - research_tracks/T3_ALPHA/integer_137_note.tex
           - research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex
+          - research_tracks/T3_ALPHA/modular_symmetry_rpsi.tex
     steps:
       - uses: actions/checkout@v4
 

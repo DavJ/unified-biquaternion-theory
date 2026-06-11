@@ -508,3 +508,37 @@ Mezi prvočísly s $g(X_0(p))=11$ (tj. $\{131,137,139\}$) jsou aktuálně:
 - Hecke prime-specificity: **[MC/confirmed]** — kill condition nesplněna ($a_{139}=-3 \neq \pm11$).
 - Kronecker filtr: arithmeticky [L0]; fyzikální most [NO-GO pro přímou cestu], [OPEN] pro modularní.
 - Selekce $p=137$ celkově: **[MC] — strengthened po Hecke ověření**, fyzikální základ [OPEN].
+
+
+---
+
+## Modulární symetrie sync (2026-06-11)
+
+Sonda: modulární S-symetrie $S_{\mathrm{eff}}[R_\psi]$ jako mechanismus fixace
+$R_\psi = 1$.  Soubor: `research_tracks/T3_ALPHA/modular_symmetry_rpsi.tex`.
+
+**Výsledek C — Podmíněná S-invariance [MC]**
+
+- Pokud S-invariance $S_\mathrm{eff}[R] = S_\mathrm{eff}[1/R]$ fixuje
+  $T_\mathrm{kin}$, pak stacionarita dává polynom $R^6+R^4+R^2=3$,
+  jehož jediné kladné řešení je $R=1$.
+- $N_\mathrm{eff}$ se vyruší — výsledek platí pro libovolné $N_\mathrm{eff}$.
+- $R_\psi=1$ je minimum $S_\mathrm{eff}$ ($d^2S/dR^2|_{R=1} = 20C > 0$).
+- Numericky ověřeno v `tools/modular_rpsi_check.py`.
+- Podmínky (a) S-invariance $S[\Theta]$ z prvních principů, (b) Casimirova
+  forma $V=C/R^3$ odvozená, (c) $T_\mathrm{kin}$ ze S-podmínky: všechny [OPEN].
+
+**Aktivní stav**: [MC] kandidát na uzavření scale closure (EW-1b).
+
+**Implikace pro G137-B**: samoduální bod $\tau=i$ je algebraicky motivován
+strukturou S-symetrie — $B_\mathrm{phenom}$ algebraicky motivován, ale
+**NOT DERIVED**.  Alpha: **NOT DERIVED**.
+
+| Claim | Status |
+|-------|--------|
+| Polynom $R^6+R^4+R^2=3$, řešení $R=1$ | [L0] (za předpokladu S-inv. formy) |
+| $N_\mathrm{eff}$ se vyruší | [L0] |
+| S-invariance $S[\Theta]$ z prvních principů | [OPEN] |
+| $R_\psi=1$ je minimum (podmíněně) | [MC] |
+| Scale closure (EW-1b) | [MC] kandidát, ne uzavřeno |
+| Alpha | **NOT DERIVED** |

@@ -559,6 +559,18 @@ Archive: `reports/failed_routes_graveyard.md`
 - Primary effort is redirected to T1_GR submission and T2_GAUGE completion.
 - **Do not pursue** A1, A2, A3, A4, or any new alpha route without explicit instruction.
 
+### Modulární symetrie sync (2026-06-11)
+
+| Claim | Status | Source |
+|-------|--------|--------|
+| $R_\psi=1$ from modular S-invariance of $S_{\mathrm{eff}}$ | [MC] conditional | `modular_symmetry_rpsi.tex` |
+| Polynomial $R^6+R^4+R^2=3$, solution $R=1$ | [L0] (algebraic identity) | `modular_symmetry_rpsi.tex §4` |
+| $N_{\mathrm{eff}}$ cancels — fixation independent of $N_{\mathrm{eff}}$ | [L0] | `modular_symmetry_rpsi.tex §4` |
+| $T_{\mathrm{kin}}$ derived from S-invariance | conditional on (a)-(c) | `modular_symmetry_rpsi.tex §6` |
+| S-invariance of $S[\Theta]$ from first principles | [OPEN] | not derived |
+| Implications for $\alpha$: $\tau=i$ algebraically motivated | [MC] | `modular_symmetry_rpsi.tex §7` |
+| Alpha | **NOT DERIVED** | — |
+
 Master portfolio file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`  
 Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`  
 Gamma entropy audit: `canonical/alpha/gamma_entropy_alpha_refinement_status.tex`,
