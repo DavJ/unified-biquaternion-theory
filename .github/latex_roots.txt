@@ -9,3 +9,5 @@ canonical/alpha/veff_corrected_statement.tex
 canonical/alpha/veff_corrected.tex
 canonical/chirality/step4_no_wr_derivation.tex
 canonical/gr_closure/frw_cosmological_solutions.tex
+canonical/gr_closure/linearised_gravity.tex
+research_tracks/T3_ALPHA/integer_137_note.tex

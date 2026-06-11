@@ -38,8 +38,10 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - `canonical/gr_closure/step2_nondegeneracy.tex` — Step 2 — [L1] — Non-degeneracy
 - `canonical/gr_closure/step3_signature_theorem.tex` — Step 3 — [L1] — Lorentzian signature
 - `canonical/gr_closure/step3_einstein_with_matter.tex` — Step 5 — [L1] — Einstein equations
+- `canonical/gr_closure/linearised_gravity.tex` — ED-2 — [L1] — Regge-Wheeler (odd-parity graviton, canonical source)
 - `canonical/gr_closure/zerilli_derivation.tex` — GAP-Z — [L1] — Zerilli even-parity graviton
-- `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[MC] — FRW in solution space [L1]; Θ-ansatz [MC]; g_0i sub-gap [L1 conditional on comoving-frame averaging]
+- `canonical/gr_closure/schwarzschild_table.tex` — ED-3 — [L1]+[NUM] — Schwarzschild numerical table (Appendix C)
+- `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[L1 cond.] — FRW in solution space [L1]; Θ-ansatz [L1 cond. on Friedmann + ODE-f]; ODE-a auto-consistent [L1]; g_0i sub-gap [L1 conditional on comoving-frame averaging]
 
 ### 4) Gauge and interaction recovery
 
@@ -64,6 +66,10 @@ Sources: `canonical/alpha/`, `canonical/n_eff/`, `reports/`
 research_tracks/T3_ALPHA/mellin_insertion_B.tex | Gap G137-B no-go record |
   [L0]+[L1]+[OBS] | Six routes NO-GO; 3 sub-gaps G137-B-i/ii/iii named [OPEN/MC];
   T3_ALPHA downgraded to STRUCTURAL EVIDENCE 2026-06-11; Alpha NOT DERIVED
+
+research_tracks/T3_ALPHA/integer_137_note.tex | Integer-137 companion note |
+  [L1 conditional on B] | Records Thm: n*(B_phenom)=137; Gap G137-B sub-gaps
+  stated; N_eff clarification (twist=12 used, not loop=3); alpha NOT DERIVED
 
 ---
 

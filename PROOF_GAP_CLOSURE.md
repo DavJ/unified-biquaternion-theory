@@ -22,7 +22,7 @@ editorial (notation, write-up completeness).  GAP-Z is now PROVED [L1].
 | Gap ID | Short name | Type | Blocks paper? | Priority |
 |--------|-----------|------|--------------|----------|
 | ED-1 | Notation unification | Editorial | **No** (affects readability) | **DONE 2026-06-11** |
-| ED-2 | Regge-Wheeler source file | Write-up | **No** | High |
+| ED-2 | Regge-Wheeler source file | Write-up | **No** | **DONE 2026-06-11** |
 | ED-3 | Schwarzschild numerical table | Write-up | **No** | **DONE 2026-06-11** |
 | GAP-10 | Off-shell Θ-only closure | [L2] open problem | **No** | State as open |
 | GAP-Z | Zerilli equation (even-parity) | **PROVED [L1]** — `canonical/gr_closure/zerilli_derivation.tex` | N/A — closed | — |
@@ -67,31 +67,26 @@ notation conventions in different files:
 
 **Type**: Write-up gap  
 **Blocks paper**: No  
-**Risk**: Low — the result is proved; the canonical source file needs to be identified
-and verified clean
+**Status**: **DONE 2026-06-11**
 
-### What needs to be done
+### Resolution
 
-Theorem 5.1 (Regge-Wheeler, `theorem_chain.tex` §6c) references the linearised
-GR analysis in `canonical/gr_closure/` but the exact source file for this derivation
-is not specified.  Before writing Section 5 of the paper:
+`canonical/gr_closure/linearised_gravity.tex` was written from scratch as the
+canonical source for Theorem~5.1 (`thm:rw`) in
+`papers/UBT_GR_Submission.tex §5`.  It contains:
 
-1. Locate the canonical source file for the odd-parity linearised UBT analysis.
-   Candidate: `canonical/gr_closure/` — scan for linearised perturbation files.
-2. Verify that the Regge-Wheeler potential $V_{\mathrm{RW}}(r)$ matches the
-   standard form (Regge-Wheeler 1957, eq. 9).
-3. If the source file is in `research_tracks/` rather than `canonical/`, move or
-   copy the clean version to `canonical/gr_closure/linearised_gravity.tex`.
+- Linearisation of the UBT field equation $\delta(\nabla^\dagger\nabla\Theta)=0$
+  around the Schwarzschild background $\Theta_0$.
+- Lemma: linearised UBT $\equiv$ linearised vacuum GR.
+- $P_\psi$-odd perturbation ansatz and induced metric.
+- Derivation of Regge-Wheeler master variable $\Psi_{\mathrm{RW}}$, tortoise
+  coordinate $r_*$, and potential
+  $V_{\mathrm{RW}}(r) = (1-2M/r)[\ell(\ell+1)/r^2 - 6M/r^3]$.
+- Main Theorem \textbf{[L1]}: Regge-Wheeler from linearised UBT.
+- Cross-reference from `UBT_GR_Submission.tex §5 thm:rw`.
 
-### Exact files to check
-
-- `canonical/gr_closure/` — scan for perturbation/linearised files
-- `research_tracks/T1_GR/` — check for linearised GR analysis
-- If absent: write `canonical/gr_closure/linearised_gravity.tex` from scratch
-  (the derivation is standard; the biquaternionic specialisation is the new content)
-
-**Estimated effort**: 3–5 days  
-**Action**: Locate source during Sections 4–5 drafting phase (Week 4–6).
+File added to `.github/latex_roots.txt` and `compile_standalone_roots` matrix
+in `latex_build.yml`.
 
 ---
 
