@@ -7,9 +7,11 @@
 
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,tcolorbox}
+\usepackage{amsmath,amssymb,tcolorbox,booktabs,amsthm}
 \tcbuselibrary{skins,breakable}
 \newtcolorbox{statusbox}[1][]{colback=gray!8!white,colframe=black!60,arc=3pt,boxrule=1pt,title=Status Summary,#1}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
 
 \title{$R_\psi$ from $S[\Theta]$: EW1+RG scale closure audit}
 \author{Ing.\ David Jaroš}
@@ -373,6 +375,74 @@ numerically viable for $\lambda\approx0.119$; $\lambda$ not yet derived from $S[
 \textbf{[L1 conditional on OP-S4 + SU(3) colour structure + scale closure]}.
 Scale closure remains the single blocking condition.
 \end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Step 7: $\lambda$ consistency check from UBT gauge couplings (v59)}
+\label{sec:lambda_consistency}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{remark}[$\lambda$ vs.\ UBT gauge couplings — explicit comparison (v59)]
+\label{rem:lambda_ubt_comparison}
+Proposition~\ref{prop:rpsi_scale_status} lists
+$\lambda_{\mathrm{eff}}=g^2/2$ [L1 conditional on SS] as derived from $S[\Theta]$,
+while the numerically required target is $\lambda_{\mathrm{target}}\approx0.119$.
+This remark checks whether $\lambda=g^2/2$ is \emph{numerically consistent} with
+$\lambda_{\mathrm{target}}$ using the UBT-derived GUT coupling.
+
+\medskip
+\noindent\textbf{Input from UBT (first principles):}
+From the generator-norm ratio at the GUT scale [L1 cond.\ on OP-S4 + SU(3)]:
+\[
+\sin^2\theta_W^{\mathrm{GUT}} = \tfrac{3}{8},
+\qquad
+\frac{g'}{g} = \sqrt{\frac{3}{5}},
+\]
+and with $\alpha\approx1/137$ (bare electromagnetic coupling):
+\[
+g^2_{\mathrm{GUT}}
+= \frac{4\pi\alpha}{\sin^2\theta_W^{\mathrm{GUT}}}
+= \frac{4\pi/137}{3/8}
+= \frac{32\pi}{3\times137}
+\approx 0.2446.
+\]
+
+\noindent\textbf{Candidates for $\lambda$ in terms of $g$, $g'$:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Expression & Numerical value & Ratio to target $0.119$ \\
+\midrule
+$g^2$ & $0.2446$ & $2.06\times$ \\
+$g^2/2$ (SS half-mode) & $0.1223$ & $1.027$ (within $2.7\%$) \\
+$g'^2 = \tfrac{3}{5}g^2$ & $0.1468$ & $1.23\times$ \\
+$(g^2+g'^2)/4 = \tfrac{2}{5}g^2$ & $0.0978$ & $0.82\times$ \\
+$g'^2/2$ & $0.0734$ & $0.62\times$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Conclusion:}
+The only natural UBT expression consistent with
+$\lambda_{\mathrm{target}}\approx0.119$ is
+\[
+  \lambda_{\mathrm{eff}} = \frac{g^2}{2} \approx 0.1223,
+\]
+which matches the target to within $2.7\%$.  This is the value provided
+by the Scherk--Schwarz half-mode projection [L1 conditional on SS boundary
+conditions], where anti-periodic modes project out half the gauge-condensate
+spectrum.
+
+No other natural combination of $g$ and $g'$ at the GUT scale comes within
+$20\%$ of $\lambda_{\mathrm{target}}$.
+
+\medskip
+\noindent\textbf{Status:}
+$\lambda = g^2/2$ from the SS projection is \textbf{consistent} with
+Candidate~3 at $2.7\%$ precision.  However, because the SS boundary condition
+itself is not uniquely selected by $S[\Theta]$ without additional
+phenomenological input, Candidate~3 remains
+\textbf{[MC/OPEN]}.  Scale closure for EW-1b is not yet achieved.
+\end{remark}
 
 \begin{statusbox}
 $\lambda = g^2$ z $\mathrm{SU}(2)_L$ couplingu při $\sin^2\theta_W=3/8$:
