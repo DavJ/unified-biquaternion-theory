@@ -1,3 +1,18 @@
+## 2026-06-11 (v56 — C2-ii/scale-closure status sync)
+
+### New results registered
+- D1 (Sub-gap C2-ii): `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding`
+  now explicitly states the current algebraic obstacle; C2-ii remains [OPEN/MC].
+- D2 (EW-1b scale closure): `research_tracks/EW/rpsi_from_action.tex` updated with
+  formal status remark; EW-1b remains [L1 conditional on OP-S4 + SU(3) colour structure + scale closure].
+- D3 (proof inventory sync): `WHAT_IS_PROVED.md` synchronized for C2-i, C2-ii,
+  EW-1b and G18-f exact ODE-f entry.
+
+### Status changes
+- No proof-level upgrades.
+- C2-ii remains [OPEN/MC].
+- EW-1b remains conditional on scale closure.
+
 ## 2026-06-11 (v55 — D1/D2/D3 results; copilot-instructions updated to v55)
 
 ### New results registered
@@ -332,14 +347,14 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Loophole 1 (n<0 coupling) observationally decoupled | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex Cor 3.2` |
 | Loophole 3 (KK decoupling, R_ψ→0) | [STD] | `canonical/chirality/step4_no_wr_derivation.tex Prop 4.3` |
 | Loophole 2 (spontaneous breaking) — no light $SU(2)_R$ doublet in minimal $S[\Theta]$ | [L1 conditional] | `canonical/chirality/step4_no_wr_derivation.tex §4 (Lemma no_doublet)` |
-| Minimality: anomaly-safe (cond. on C2-i); unitarity deferred to EW-2 | Remark | `canonical/chirality/step4_no_wr_derivation.tex §4 Rem rem:minimality_anomaly` |
+| Minimality: anomaly-safe (cond. on SU(3) colour); unitarity deferred to EW-2 | Remark | `canonical/chirality/step4_no_wr_derivation.tex §4 Rem rem:minimality_anomaly` |
 | Full algebraic exclusion of $SU(2)_R$ (OP-S4) | **[L1 conditional]** — all three loopholes closed; conditional on Step 1 Lem 4 + minimality of $S[\Theta]$ | `canonical/chirality/step4_no_wr_derivation.tex §4` |
 | U(1)_Y from right scalar phase | [L0] | `canonical/interactions/sm_gauge.tex §U1` |
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
 | Hypercharge quantisation from Dirac condition | [L0] | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
-| $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour (Gap C2 Step 1) | **[L1 cond. on OP-S4 + SU(3) colour structure from UBT]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v55) |
-| Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v55) |
+| $Y=(B{-}L)/2$ from OP-S4 + SU(3) colour (Gap C2 Step 1) | **[L1 cond. on OP-S4 + SU(3) colour structure from UBT]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` (v56) |
+| Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) colour-singlet constraint | [L1 cond. on SU(3) colour structure from UBT] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Lem lem:Bq_from_su3` (CLOSED v56) |
 | Sub-gap C2-ii: $U(1)_B$ from $\psi$-winding | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3 Rem rem:c2ii_psi_winding` (does not block papers) |
 
 ### Open Physical Gaps
@@ -347,9 +362,9 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | Gap | Description | Priority |
 |-----|-------------|----------|
 | EW-1 | Weinberg angle sin²θ_W — **DEAD END for pure algebra** (algebra cannot fix g'/g) | Keep dead-end statement for algebra-only route |
-| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] — C2-i conditionality removed (v55); tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` |
+| EW-1b | EW1+RG branch ($\sin^2\theta_W^{\mathrm{GUT}}=3/8 \rightarrow \sin^2\theta_W(M_Z)\approx0.231$) | [L1 cond. on OP-S4 + SU(3) colour structure + scale closure] — C2-i conditionality removed (v56); tracked in `research_tracks/EW/weinberg_angle_ew1_rg.tex §7 Prop prop:sin2_thetaW_corollary` |
 | EW-2 | Higgs doublet VEV from S[Θ] | Deferred to separate Higgs paper |
-| C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v55 |
+| C2-i | $B_q=1/3$ from SU(3) colour-singlet constraint | **CLOSED [L1 cond. on SU(3) colour structure from UBT]** — v56 |
 | C2-ii | $U(1)_B$ from $\psi$-winding topology | [OPEN/MC] — does not block any current paper |
 | Y2 | Yukawa couplings | Open |
 | Dynamical confinement | Wilson loop area law | Clay Millennium Problem |
@@ -361,7 +376,7 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 **Honest statement to use in paper**: The Weinberg angle sin²θ_W ≈ 0.231 cannot
 be derived from algebra alone (dead-end no-go for pure algebraic fixing of g'/g).
 The EW1+RG route gives $\sin^2\theta_W(M_Z)\approx0.231$ [L1 cond. on OP-S4 +
-SU(3) colour structure + scale closure]; conditionality on sub-gap C2-i removed (v55).
+SU(3) colour structure + scale closure]; conditionality on sub-gap C2-i removed (v56).
 
 ### Next Action
 
