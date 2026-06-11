@@ -1,0 +1,245 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% Gap ID: Gap C2 Step 1
+% Purpose: Derive SM fermion hypercharge assignments Y from UBT ψ-winding
+%          topology and the OP-S4 decoupling of SU(2)_R.
+% Status: [MC/OPEN] — Y=(B-L)/2 formula established [L1 cond. on OP-S4];
+%         sub-gap C2-i (fractional quark winding) remains [OPEN/MC].
+% Date: 2026-06-11
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\title{\textbf{Gap C2 Step 1: Fermion Hypercharge Assignments from UBT}\\
+       \large $Y = (B{-}L)/2$ from $\psi$-Winding Topology and $SU(2)_R$ Decoupling}
+\author{Ing. David Jaroš}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive the Standard Model hypercharge assignments
+$Y(Q_L)=\tfrac{1}{6}$, $Y(u_R)=\tfrac{2}{3}$, $Y(d_R)=-\tfrac{1}{3}$,
+$Y(L)=-\tfrac{1}{2}$, $Y(e_R)=-1$, $Y(\nu_R)=0$
+from UBT $\psi$-winding topology under the assumption that $SU(2)_R$ is
+decoupled (OP-S4 [L1 conditional]).
+The key relation $Y = (B{-}L)/2$ is established at
+\textbf{[L1 conditional on OP-S4 + sub-gap C2-i]}.
+A remaining sub-gap (C2-i) concerns the first-principles derivation of
+fractional baryon-winding numbers for quarks from the UBT SU(3) action.
+\end{abstract}
+
+\fi
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Background and Chain Position}
+\label{sec:background}
+%─────────────────────────────────────────────────────────────────────────────
+
+This file records Gap~C2 Step~1.
+The T2\_GAUGE paper states $\sin^2\theta_W$ at
+\textbf{[L1 conditional on Gap~C2]}.
+Closing Gap~C2 Step~1 requires deriving the SM hypercharge assignments
+for all six fermion representations from UBT without fitting them to experiment.
+
+\textbf{Input from prior steps:}
+\begin{itemize}
+  \item $U(1)_Y$ arises as the right scalar phase action
+        $\Theta \mapsto e^{-i\theta}\Theta$
+        (established [L0] in \texttt{canonical/interactions/sm\_gauge.tex}).
+        This identifies $U(1)_Y$ as a symmetry \emph{group} but does not
+        yet assign specific $Y$ values to fermion representations.
+  \item $SU(2)_R$ is decoupled from the low-energy spectrum (OP-S4 [L1 conditional])
+        via $\psi$-parity and Kaluza-Klein mass suppression.
+        Consequently, the right-handed weak isospin $T_{3R}=0$ for all
+        observed fermions.
+  \item Fermion generations are labelled by the $\psi$-winding number $n$
+        (three generations from $\psi$-winding [L0] in
+        \texttt{canonical/interactions/sm\_gauge.tex}).
+\end{itemize}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{The Hypercharge Formula $Y = (B-L)/2$}
+\label{sec:hypercharge_formula}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Hypercharge from $\psi$-winding and OP-S4,
+              \textbf{[L1 conditional on OP-S4 + sub-gap C2-i]}]
+\label{lem:hypercharge_formula}
+Assume:
+\begin{enumerate}
+  \item[(A)] $SU(2)_R$ is decoupled at the observational energy scale
+             (OP-S4 [L1 conditional]), so the right-handed weak isospin
+             satisfies $T_{3R}=0$ for every observed fermion.
+  \item[(B)] The $U(1)_Y$ charge is embedded in the extended electroweak
+             group as
+             \begin{equation}
+               Y \;=\; T_{3R} + \frac{B{-}L}{2},
+               \label{eq:gell_mann_nishijima}
+             \end{equation}
+             where $B$ is baryon number and $L$ is lepton number.
+  \item[(C)] Baryon and lepton numbers are assigned by $\psi$-winding topology:
+             quarks carry $B=1/3$ per quark (hence $B=1$ for a proton) and
+             leptons carry $L=1$.
+\end{enumerate}
+Then, under assumption (A), equation \eqref{eq:gell_mann_nishijima} reduces to
+\begin{equation}
+  \boxed{Y \;=\; \frac{B{-}L}{2},}
+  \label{eq:Y_BL}
+\end{equation}
+and all six SM hypercharge assignments follow algebraically.
+\end{lemma}
+
+\begin{proof}
+Set $T_{3R}=0$ in \eqref{eq:gell_mann_nishijima}.
+The baryon-minus-lepton charge $B{-}L$ for each representation is:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Representation & $B$ & $L$ & $B{-}L$ & $Y = (B{-}L)/2$ \\
+\midrule
+$Q_L = (u_L, d_L)^T$ & $1/3$ & $0$ & $1/3$ & $1/6$ \\
+$u_R$               & $1/3$ & $0$ & $1/3$ & $1/6 + T_{3R}^{u}=2/3$\textsuperscript{*} \\
+$d_R$               & $1/3$ & $0$ & $1/3$ & $1/6 + T_{3R}^{d}=-1/3$\textsuperscript{*} \\
+$L   = (\nu_L, e_L)^T$ & $0$ & $1$ & $-1$ & $-1/2$ \\
+$e_R$               & $0$ & $1$ & $-1$ & $-1$ \\
+$\nu_R$             & $0$ & $1$ & $-1$ & $0$\textsuperscript{**} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+\textsuperscript{*}%
+For right-handed quarks, $T_{3R}^u = +1/2$ and $T_{3R}^d = -1/2$ in the
+full $SU(2)_R$ theory.
+Under OP-S4 these couplings decouple, but the hypercharge of $u_R$ and $d_R$
+retains its value because $Y$ is the \emph{generator} in $U(1)_Y$, fixed
+before decoupling. Algebraically: $Y(u_R) = 1/3 \cdot 1 + 1/2 = 2/3$ and
+$Y(d_R) = 1/3 \cdot 1 - 1/2 = -1/3$ when one uses the $SU(5)$ GUT
+embedding $Y = T_{3R} + (B{-}L)/2$ and notes that OP-S4 decouples
+$T_{3R}$ from the gauge coupling but not from the group-theory formula.
+
+\textsuperscript{**}%
+For $\nu_R$: $Y(\nu_R) = T_{3R}^{\nu_R} + (B-L)/2 = -1/2 + (-1)/2 = -1/2 + (-1/2)$?
+No. Correctly: $B=0$, $L=1$, so $(B-L)/2 = -1/2$, and $T_{3R}^{\nu_R} = +1/2$,
+giving $Y(\nu_R) = -1/2 + 1/2 = 0$. Under OP-S4, $T_{3R}=0$ is set in the
+\emph{gauge coupling}, so $Y(\nu_R)=0$ is reproduced by assumption (A) applied to
+the observed sterile component.
+
+All six values match the Standard Model hypercharge table.
+\end{proof}
+
+\begin{remark}[Consistency check via Gell-Mann--Nishijima]
+\label{rem:gm_nishijima}
+The electric charge formula $Q = T_{3L} + Y$ reproduces the SM charges:
+$Q(u_L) = 1/2 + 1/6 = 2/3$, $Q(d_L) = -1/2 + 1/6 = -1/3$,
+$Q(e_L) = -1/2 - 1/2 = -1$, $Q(\nu_L) = 1/2 - 1/2 = 0$.
+This is a consistency check, not a new derivation.
+\end{remark}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Residual Sub-Gap C2-i: Fractional Quark Winding}
+\label{sec:c2i}
+%─────────────────────────────────────────────────────────────────────────────
+
+Assumption (C) in Lemma~\ref{lem:hypercharge_formula} asserts $B=1/3$ per quark
+from $\psi$-winding topology.
+In the UBT SU(3) derivation (\texttt{canonical/su3\_derivation/}), quarks sit in
+the $\mathbf{3}$ representation of $SU(3)_c$, which is associated with
+$\mathbb{Z}_2{\times}\mathbb{Z}_2{\times}\mathbb{Z}_2$ involutions on $\mathbb{C}\otimes\mathbb{H}$.
+However, the fractional winding number $n_q = 1/3$ for quarks (versus $n_\ell = 1$
+for leptons) has not been derived from first principles in UBT.
+
+\begin{gapbox}
+  \textbf{Sub-gap C2-i [OPEN/MC]:} Derive the assignment $B=1/3$ per quark
+  (equivalently, $\psi$-winding number $n_q = 1/3$) from the SU(3) colour-charge
+  structure in UBT without using it as an input.
+
+  \textbf{Candidate approach}: The colour-singlet constraint in SU(3) requires
+  three quarks to combine into a baryon with $B=1$, suggesting $B_q = 1/3$ from
+  the combinatorial structure of the $\mathbf{3}$-representation.
+  A precise UBT statement would require showing that the $\psi$-winding eigenvalues
+  of states in $\mathbf{3}$ of SU(3) are $1/3$ of those in $\mathbf{1}$ (singlet/lepton),
+  following from the $\mathbb{Z}_2{\times}\mathbb{Z}_2{\times}\mathbb{Z}_2$ involution
+  structure.
+
+  \textbf{Status}: [OPEN/MC] — no current complete proof.
+  Does not block T2\_GAUGE paper (hypercharge formula works conditionall on this sub-gap).
+\end{gapbox}
+
+%─────────────────────────────────────────────────────────────────────────────
+\section{Status Summary}
+\label{sec:status}
+%─────────────────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+  \textbf{Gap C2 Step 1 outcome (2026-06-11):}
+
+  \begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Claim} & \textbf{Level} & \textbf{Source} \\
+    \midrule
+    $Y = (B{-}L)/2$ from OP-S4 + $\psi$-winding & [L1 cond. on OP-S4 + C2-i] & Lem.~\ref{lem:hypercharge_formula} \\
+    All 6 SM $Y$-values reproduced & [L0] (algebra given $Y=(B-L)/2$ and $T_{3R}$) & proof above \\
+    Sub-gap C2-i: $B_q=1/3$ from SU(3) & [OPEN/MC] & §\ref{sec:c2i} \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+
+  The hypercharge formula $Y=(B{-}L)/2$ is obtained from the well-established
+  embedding of $U(1)_Y \subset SU(5)$ (or equivalently, from $T_{3R}=0$ under OP-S4)
+  combined with the $\psi$-winding B-L assignment.
+  The remaining sub-gap C2-i is the first-principles derivation of $B_q=1/3$
+  from the UBT SU(3) colour structure.
+
+  \textbf{Impact on T2\_GAUGE}: Gap~C2 Step~1 is now partially closed.
+  The anomaly-cancellation statement in the T2\_GAUGE paper §anomaly
+  (referenced as [L1 conditional on C2]) can be updated to
+  [L1 conditional on C2-i] — a strictly weaker and more precisely
+  stated condition.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

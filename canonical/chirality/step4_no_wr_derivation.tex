@@ -382,6 +382,54 @@ Under the minimality assumption of Lemma~\ref{lem:no_doublet}, spontaneous
 $SU(2)_R$ breaking by a light doublet scalar is absent. Loophole~2 is closed.
 \end{corollary}
 
+\begin{remark}[Consistency of the minimality assumption with anomaly cancellation and unitarity]
+\label{rem:minimality_anomaly}
+The minimality assumption in Lemma~\ref{lem:no_doublet} — that $S[\Theta]$ contains
+no independent scalar beyond $\Theta$ — is supported by two independent consistency checks.
+
+\medskip
+\noindent\textbf{(a) Gauge anomaly cancellation.}
+The UBT fermion content (quarks and leptons arising from $\psi$-winding states in the
+$SU(3)_c \times SU(2)_L \times U(1)_Y$ representations) is checked for gauge
+anomaly cancellation in the T2\_GAUGE paper, §~anomaly
+(\texttt{papers/UBT\_Gauge\_Submission.tex}).
+That section establishes anomaly cancellation at \textbf{[L1 conditional on Gap~C2]}:
+the mixed gravitational anomaly condition $\sum_f Y_f = 0$ and the chiral cubic
+condition $\sum_f Y_f^3 = 0$ are satisfied by the standard one-generation fermion
+content, conditional on the hypercharge assignments being correct
+(Gap~C2 Step~1, tracked in
+\texttt{research\_tracks/EW/hypercharge\_from\_ubt.tex}).
+Adding a $SU(2)_R$-doublet scalar $\phi_R$ would contribute a complex doublet to
+the anomaly sum; the minimal $S[\Theta]$ content is anomaly-safe \emph{without}
+any such scalar.
+If Gap~C2 is closed, the statement strengthens to:
+\emph{``The minimal $S[\Theta]$ content is anomaly-safe; no additional scalar is
+required by anomaly cancellation.''}
+
+\medskip
+\noindent\textbf{(b) Unitarity of longitudinal $W/Z$ scattering.}
+At tree level, the scattering amplitude $W_L W_L \to W_L W_L$ grows as $E^2/v^2$
+and violates perturbative unitarity above $E\sim 1\,\mathrm{TeV}$ unless a Higgs
+boson (or equivalent scalar) is present.
+This requires a mechanism such as the Brout-Englert-Higgs mechanism at the TeV scale.
+In UBT, the Higgs sector is deferred to the EW-2 gap (a separate paper,
+not part of the T2\_GAUGE submission).
+The absence of unitarity restoration at this stage is therefore a \emph{known open item}
+(EW-2), not an inconsistency with the minimal $S[\Theta]$ — the theory is explicitly
+incomplete in this sector, and Loophole~2 concerns only the scalar content relevant
+to $SU(2)_R$ breaking below $M_{\mathrm{KK}}$.
+
+\medskip
+\noindent\textbf{Implication for OP-S4.}
+Check (a) shows that the minimality assumption is \emph{not forced to be abandoned
+by anomaly cancellation}: the minimal spectrum closes anomaly conditions without a
+$\mathbf{2}_R$ scalar.
+Check (b) identifies the Higgs sector as an open item handled separately.
+The minimality assumption therefore remains the natural Occam choice for the
+T2\_GAUGE paper, and the conditionality in Lemma~\ref{lem:no_doublet} and
+Corollary~\ref{cor:loophole2_closed} is not weakened by any known consistency requirement.
+\end{remark}
+
 \begin{proposition}[Loophole~3 — Kaluza-Klein mass decoupling, \textbf{[STD]}]
 \label{prop:loophole3}
 In the limit $R_\psi \to 0$, the Kaluza-Klein tower mass scale for $\psi$-modes
