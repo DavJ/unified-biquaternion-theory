@@ -1,0 +1,34 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+%
+% Schwarzschild spatial metric numerical verification table.
+% Generated from tools/verify_schwarzschild_theta.py
+% Normalisation convention: 2GM = 1, geometric units (M = 1).
+
+\begin{table}[htbp]
+\centering
+\caption{Schwarzschild spatial metric component $g_{ij}^{\rm UBT} = \Psi(r)^4\,\delta_{ij}$
+  from the UBT $\Theta_0$ ansatz versus exact isotropic-coordinate Schwarzschild formula
+  $g_{ij}^{\rm exact} = \Psi(r)^4\,\delta_{ij}$, where $\Psi(r) = 1 + M/(2r)$.
+  Relative error $< 10^{-15}$ across all tested radii.
+  Computed by \texttt{tools/verify\_schwarzschild\_theta.py}; mass $M=1$, geometric units.
+  The temporal component $g_{tt} = -\Phi(r)^2$ is derived analytically from the
+  complex-time structure $\partial_\psi\Theta_0 = i\Phi\Theta_0$
+  (see Appendix~\ref{app:signature}); numerical verification requires the
+  complex-time UBT solver.}
+\label{tab:schwarzschild}
+\begin{tabular}{cccc}
+\toprule
+$r/M$ & $g_{\rm spatial}^{\rm UBT}$ & $g_{\rm spatial}^{\rm exact}$ & relative error \\
+\midrule
+2.1  & 2.349721 & 2.349721 & $< 2\times10^{-16}$ \\
+2.5  & 2.073600 & 2.073600 & $0$                 \\
+3.0  & 1.852623 & 1.852623 & $< 2\times10^{-16}$ \\
+4.0  & 1.601807 & 1.601807 & $0$                 \\
+5.0  & 1.464100 & 1.464100 & $< 2\times10^{-16}$ \\
+7.0  & 1.317810 & 1.317810 & $< 4\times10^{-16}$ \\
+10.0 & 1.215506 & 1.215506 & $< 2\times10^{-16}$ \\
+20.0 & 1.103813 & 1.103813 & $< 5\times10^{-16}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

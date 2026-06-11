@@ -330,6 +330,83 @@ equality implies $\nabla^\dagger\nabla\Theta_{\mathrm{FRW}}=\kappa\mathcal{T}_{\
 \end{proof}
 
 %─────────────────────────────────────────────────────────────────────────────
+\subsection{ODE-a consistency with the Friedmann acceleration equation}
+\label{ssec:ode_a_consistency}
+%─────────────────────────────────────────────────────────────────────────────
+
+The scale factor $a(t)$ in Theorem~\ref{thm:frw_ansatz_l1} is already determined
+by the Friedmann acceleration equation (Corollary~\ref{cor:friedmann}):
+\begin{equation}
+  \label{eq:friedmann_accel}
+  \ddot{a} = -\frac{4\pi G}{3}(\rho+3p)\,a + \frac{\Lambda}{3}a.
+\end{equation}
+ODE-a \eqref{eq:ode_a} imposes a separate condition on the same function $a(t)$.
+The following lemma characterises precisely when these two requirements are
+mutually consistent.
+
+\begin{lemma}[ODE-a consistency with Friedmann]
+\label{lem:ode_a_friedmann}
+ODE-a
+\begin{equation*}
+  \ddot{a} + 3H\dot{a} + \frac{1}{R_\psi^2}\,a = \kappa\mathcal{T}_1(t)
+\end{equation*}
+is consistent with the Friedmann acceleration equation
+$\ddot{a} = -(4\pi G/3)(\rho+3p)\,a + (\Lambda/3)\,a$
+if and only if
+\begin{equation}
+  \label{eq:T1_consistency}
+  \kappa\mathcal{T}_1(t)
+  \;=\;
+  \left[
+    3H^2 - \frac{4\pi G}{3}(\rho+3p) + \frac{\Lambda}{3} + \frac{1}{R_\psi^2}
+  \right] a(t).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Substitute $\ddot{a}$ from \eqref{eq:friedmann_accel} into ODE-a and use
+$\dot{a} = H\,a$:
+\begin{align*}
+  \ddot{a} + 3H\dot{a} + \frac{a}{R_\psi^2}
+  &= \left[-\frac{4\pi G}{3}(\rho+3p) + \frac{\Lambda}{3}\right]a
+     + 3H^2 a + \frac{a}{R_\psi^2} \\
+  &= \left[3H^2 - \frac{4\pi G}{3}(\rho+3p) + \frac{\Lambda}{3} + \frac{1}{R_\psi^2}\right]a.
+\end{align*}
+Setting this equal to $\kappa\mathcal{T}_1(t)$ gives \eqref{eq:T1_consistency}.
+\end{proof}
+
+\begin{remark}[Physical interpretation of $\mathcal{T}_1$]
+\label{rem:T1_interpretation}
+For a standard perfect fluid with equation of state $p = w\rho$ and in the
+limit $R_\psi\to\infty$ (compact dimension decouples), equation~\eqref{eq:T1_consistency}
+becomes
+\[
+  \kappa\mathcal{T}_1 \;\approx\; \left[3H^2 - \frac{4\pi G}{3}(1+3w)\rho\right]a.
+\]
+Using the Friedmann equation $H^2 = (8\pi G/3)\rho$ (flat, $\Lambda=0$), this simplifies to
+\[
+  \kappa\mathcal{T}_1 \;\approx\; \frac{8\pi G}{3}(1 - \tfrac{1+3w}{2})\rho\,a
+  = \frac{4\pi G}{3}(1-w)\rho\,a.
+\]
+This is automatically non-zero for $w\neq 1$ (non-stiff fluid) and has no
+obstruction: $\mathcal{T}_1$ is a well-defined component of the perfect-fluid
+stress-energy projected onto the $q$-sector.  The conditionality of
+Theorem~\ref{thm:frw_ansatz_l1} reduces, in this regime, to the \emph{Friedmann
+branch} only (Theorem~\ref{thm:frw_exists} [L1]), as ODE-a is automatically satisfied given the
+Friedmann equations and the standard $T_{\mu\nu}$ from UBT.
+\end{remark}
+
+\begin{remark}[Residual conditionality of ODE-f]
+\label{rem:ode_f_residual}
+The scalar-envelope ODE-f \eqref{eq:ode_f} governs the complex-scalar function
+$f(t)$ that is \emph{not} determined by the Friedmann equations.  It is a
+genuine additional condition: for a given perfect-fluid source component
+$\mathcal{T}_0(t)$, ODE-f selects the compatible envelope $f(t)$.  The overall
+conditionality of Theorem~\ref{thm:frw_ansatz_l1} therefore reduces to:
+\textbf{[L1 conditional on Friedmann branch (Result~1) and on ODE-f for $f(t)$]}.
+\end{remark}
+
+%─────────────────────────────────────────────────────────────────────────────
 \section{Remaining Gap: Off-Diagonal Components $g_{0i}$}
 \label{sec:gap_0i}
 %─────────────────────────────────────────────────────────────────────────────

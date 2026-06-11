@@ -226,7 +226,7 @@ The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at
 | Zerilli equation (even-parity) and canonical graviton quantisation notes | PROVED [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
 | Flat FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
+| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch + ODE-f for $f(t)$; ODE-a automatically consistent — see Lem. ode\_a\_friedmann] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1)` |
 | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
 
 Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  

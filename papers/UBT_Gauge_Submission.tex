@@ -304,16 +304,32 @@ Ref: \texttt{canonical/interactions/sm\_gauge.tex},
 \S ``Geometric derivation of $\SU{2}_L\times\UU{1}_Y$''.
 \end{theorem}
 
-\begin{remark}[Chirality: $L$ not $R$]
-Under $\psi\to-\psi$ (imaginary time reversal), left- and right-handed
-couplings transform differently via $\tau = t + i\psi$.
-This motivates $\SU{2}_L$ as the physical weak isospin group.
-A rigorous derivation from $S[\Theta]$ via $\psi$-parity analysis is
-Gap~C1 (\texttt{research\_tracks/T2\_GAUGE/missing\_axioms.md}):
-status \SE\ (motivated but not formally proved).
-
-Ref: \texttt{canonical/interactions/su2\_chirality.tex} (if available);
-\texttt{canonical/chirality/}.
+\begin{remark}[Chirality: $L$ not $R$ — Gap~C1 status as of v51]
+\label{rem:chirality_status}
+The derivation of left-handed dominance from $S[\Theta]$ via $\psi$-parity analysis
+(Gap~C1) has the following status:
+\begin{itemize}
+  \item \textbf{Gap~C1 Step~3}: $\SU{2}_L$ acts on left-chiral doublets
+        \textbf{[L1]} — proved.
+        Ref: \texttt{canonical/chirality/step3\_gap\_C1\_resolution.tex}.
+  \item \textbf{Gap~C1 Step~4}: $\SU{2}_R$ geometric decoupling via
+        $\psi$-parity ($P_\psi:\psi\to-\psi$) \textbf{[MC]} — argument given,
+        not a complete proof.
+        Ref: \texttt{canonical/chirality/step4\_no\_wr\_derivation.tex} §3, Thm.~3.1.
+  \item \textbf{Loophole~1} (n\textless0 sector observationally decoupled):
+        \textbf{[L1 conditional on Step~1 Lem.~4]}.
+        Ref: \texttt{step4\_no\_wr\_derivation.tex} Cor.~3.2.
+  \item \textbf{Loophole~2} (no light $\SU{2}_R$-doublet scalar in minimal $S[\Theta]$):
+        \textbf{[L1 conditional on minimality of $S[\Theta]$]}.
+        Ref: \texttt{step4\_no\_wr\_derivation.tex} Lem.~\texttt{no\_doublet}.
+  \item \textbf{Loophole~3} ($\SU{2}_R$ in KK tower acquires mass $\geq M_{\rm KK}$):
+        \textbf{[STD]}.
+        Ref: \texttt{step4\_no\_wr\_derivation.tex} Prop.~4.3.
+  \item \textbf{OP-S4 conclusion}: Full $\SU{2}_R$ exclusion, all three loopholes closed:
+        \textbf{[L1 conditional]} — conditional on Step~1 Lem.~4 and minimality of
+        $S[\Theta]$.
+        Ref: \texttt{canonical/chirality/step4\_no\_wr\_derivation.tex} §4.
+\end{itemize}
 \end{remark}
 
 % ============================================================
@@ -442,8 +458,8 @@ The Weinberg angle $\sin^2\theta_W = g'^2/(g^2+g'^2)$ cannot be fixed by pure al
 \toprule
 \textbf{Item} & \textbf{Status} & \textbf{Ref} \\
 \midrule
-Chirality ($L$ not $R$) & \SE, gap C1
-  & \texttt{canonical/chirality/} \\
+Chirality ($L$ not $R$) & [L1 cond.] --- OP-S4
+  & \texttt{canonical/chirality/step4\_no\_wr\_derivation.tex} \\
 Weinberg angle $\sin^2\theta_W(M_Z)\approx 0.231$ & CONDITIONAL (EW1+RG)
   & \texttt{research\_tracks/EW/weinberg\_angle\_ew1\_rg.tex} \\
 Higgs/Yukawa ($\lambda$ gap) & \OPEN
@@ -451,8 +467,8 @@ Higgs/Yukawa ($\lambda$ gap) & \OPEN
 Strong coupling $g_s$ / $\alpha_s$ & \OPEN
   & \texttt{su3\_proof\_status.md} \\
 Quark-hadron duality / mass spectrum & \OPEN & --- \\
-Fine structure constant $\alpha$ & \OPEN, Gap G137-B
-  & \texttt{alpha\_gap\_closure\_matrix.tex} \\
+Fine structure constant $\alpha$ & STRUCTURAL EVIDENCE --- 6 NO-GOs
+  & \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex \S formal-gap} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -520,6 +536,48 @@ $g_*(T_{\rm Pl})$. For $g_* \geq 427$: consistent with Planck+ACT bound.
 CMB-S4 ($\sigma \approx 0.03$) will test this prediction.
 See
 \texttt{research\_tracks/quantum\_ubt/delta\_neff\_prediction.tex}.
+
+% ============================================================
+\subsection*{Relation to prior algebraic unification}
+% ============================================================
+
+Several programmes derive Standard Model structure from algebraic geometry;
+UBT can be precisely positioned relative to each:
+
+\begin{itemize}
+  \item \textbf{Noncommutative Geometry (Connes--Lott / Chamseddine--Connes)}
+    \cite{connes2024}: derives $G_{\rm SM}$ from a 21-dimensional spectral triple;
+    requires all three generations as external input; chirality is enforced via
+    the order-1 condition (imposed by hand); one free parameter remains (Higgs mass).
+
+  \item \textbf{Furey--Hughes octonions} \cite{furey2025}: derives SU(3) and
+    partial $\SU{2}\times\UU{1}$ from $\mathbb{C}\otimes\mathbb{H}\otimes\mathbb{O}$
+    (64-dimensional algebra); three generations emerge from triality of $\mathbb{O}$;
+    GR is not addressed.
+
+  \item \textbf{UBT (this paper)}: derives full $G_{\rm SM}$ and GR recovery from
+    $\mathbb{C}\otimes\mathbb{H}$ (8-dimensional); three generations emerge from
+    $\psi$-winding modes; the metric $g_{\mu\nu}$ is a theorem, not an input;
+    zero free parameters in GR+gauge structure.
+    Weinberg angle and fermion masses are open problems in all three programmes.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+& \textbf{NCG (Connes--Lott)} & \textbf{Furey--Hughes} & \textbf{UBT} \\
+\midrule
+Algebra dim. & 21D spectral triple & 64D ($\mathbb{C}\otimes\mathbb{H}\otimes\mathbb{O}$) & 8D ($\mathbb{C}\otimes\mathbb{H}$) \\
+GR included & No & No & Yes [L1] \\
+Gauge group & $G_{\rm SM}$ (full) & Partial $\SU{3}\times\SU{2}\times\UU{1}$ & $G_{\rm SM}$ (full) \\
+3 generations & Input & From triality & From $\psi$-winding [\Lzero] \\
+Chirality & Order-1 condition & Partial & [L1 cond.] (OP-S4) \\
+Free params & 1 (Higgs mass) & Several & 0 in GR+gauge \\
+$\theta_W$ & Predicted & Not derived & CONDITIONAL \\
+$\alpha$ & Not derived & Not derived & NOT DERIVED \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 % ============================================================
 \bibliographystyle{plain}
