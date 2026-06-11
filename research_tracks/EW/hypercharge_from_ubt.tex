@@ -131,40 +131,32 @@ and all six SM hypercharge assignments follow algebraically.
 
 \begin{proof}
 Set $T_{3R}=0$ in \eqref{eq:gell_mann_nishijima}.
-The baryon-minus-lepton charge $B{-}L$ for each representation is:
+The baryon-minus-lepton charge $B{-}L$ and resulting hypercharge
+$Y = T_{3R} + (B{-}L)/2$ for each representation are:
 \begin{center}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Representation & $B$ & $L$ & $B{-}L$ & $Y = (B{-}L)/2$ \\
+Representation & $B$ & $L$ & $B{-}L$ & $T_{3R}$ (pre-OP-S4) & $Y$ \\
 \midrule
-$Q_L = (u_L, d_L)^T$ & $1/3$ & $0$ & $1/3$ & $1/6$ \\
-$u_R$               & $1/3$ & $0$ & $1/3$ & $1/6 + T_{3R}^{u}=2/3$\textsuperscript{*} \\
-$d_R$               & $1/3$ & $0$ & $1/3$ & $1/6 + T_{3R}^{d}=-1/3$\textsuperscript{*} \\
-$L   = (\nu_L, e_L)^T$ & $0$ & $1$ & $-1$ & $-1/2$ \\
-$e_R$               & $0$ & $1$ & $-1$ & $-1$ \\
-$\nu_R$             & $0$ & $1$ & $-1$ & $0$\textsuperscript{**} \\
+$Q_L = (u_L, d_L)^T$ & $1/3$ & $0$ & $1/3$ & $0$ & $1/6$ \\
+$u_R$               & $1/3$ & $0$ & $1/3$ & $+1/2$ & $2/3$ \\
+$d_R$               & $1/3$ & $0$ & $1/3$ & $-1/2$ & $-1/3$ \\
+$L   = (\nu_L, e_L)^T$ & $0$ & $1$ & $-1$ & $0$ & $-1/2$ \\
+$e_R$               & $0$ & $1$ & $-1$ & $-1/2$ & $-1$ \\
+$\nu_R$             & $0$ & $1$ & $-1$ & $+1/2$ & $0$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \noindent
-\textsuperscript{*}%
-For right-handed quarks, $T_{3R}^u = +1/2$ and $T_{3R}^d = -1/2$ in the
-full $SU(2)_R$ theory.
-Under OP-S4 these couplings decouple, but the hypercharge of $u_R$ and $d_R$
-retains its value because $Y$ is the \emph{generator} in $U(1)_Y$, fixed
-before decoupling. Algebraically: $Y(u_R) = 1/3 \cdot 1 + 1/2 = 2/3$ and
-$Y(d_R) = 1/3 \cdot 1 - 1/2 = -1/3$ when one uses the $SU(5)$ GUT
-embedding $Y = T_{3R} + (B{-}L)/2$ and notes that OP-S4 decouples
-$T_{3R}$ from the gauge coupling but not from the group-theory formula.
-
-\textsuperscript{**}%
-For $\nu_R$: $Y(\nu_R) = T_{3R}^{\nu_R} + (B-L)/2 = -1/2 + (-1)/2 = -1/2 + (-1/2)$?
-No. Correctly: $B=0$, $L=1$, so $(B-L)/2 = -1/2$, and $T_{3R}^{\nu_R} = +1/2$,
-giving $Y(\nu_R) = -1/2 + 1/2 = 0$. Under OP-S4, $T_{3R}=0$ is set in the
-\emph{gauge coupling}, so $Y(\nu_R)=0$ is reproduced by assumption (A) applied to
-the observed sterile component.
-
+The $T_{3R}$ column gives the right-handed weak isospin values in the full
+$SU(2)_R$ theory; these are used to compute the $Y$ values via
+$Y = T_{3R} + (B{-}L)/2$.
+The hypercharge values so obtained are group-theoretic properties of the
+representations, fixed before the OP-S4 decoupling.
+Applying OP-S4 (assumption~(A)) decouples the \emph{gauge coupling} to $SU(2)_R$
+but does not change the $Y$ eigenvalues, since $Y$ is a generator of the
+commuting $U(1)_Y$ factor.
 All six values match the Standard Model hypercharge table.
 \end{proof}
 
@@ -203,7 +195,7 @@ for leptons) has not been derived from first principles in UBT.
   structure.
 
   \textbf{Status}: [OPEN/MC] — no current complete proof.
-  Does not block T2\_GAUGE paper (hypercharge formula works conditionall on this sub-gap).
+  Does not block T2\_GAUGE paper (hypercharge formula works conditionally on this sub-gap).
 \end{gapbox}
 
 %─────────────────────────────────────────────────────────────────────────────

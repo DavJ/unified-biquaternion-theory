@@ -306,7 +306,7 @@ All claims below are [L0] algebraic identities or [L1] proved theorems.
 | U(1)_EM from ψ-cycle phase | [L0] | `canonical/interactions/qed.tex` |
 | Three generations from ψ-winding | [L0] | `canonical/n_eff/` |
 | Hypercharge quantisation from Dirac condition | [L0] | `canonical/qed_phi_const/appendix_alpha_geometry.tex §1` |
-| $Y=(B{-}L)/2$ from OP-S4 + ψ-winding (Gap C2 Step 1) | **[L1 cond. on OP-S4 + C2-i]** | `research_tracks/EW/hypercharge_from_ubt.tex Lem 2.1` |
+| $Y=(B{-}L)/2$ from OP-S4 + ψ-winding (Gap C2 Step 1) | **[L1 cond. on OP-S4 + C2-i]** | `research_tracks/EW/hypercharge_from_ubt.tex §2 Lem lem:hypercharge_formula` |
 | Sub-gap C2-i: $B_q=1/3$ from UBT SU(3) | [OPEN/MC] | `research_tracks/EW/hypercharge_from_ubt.tex §3` |
 
 ### Open Physical Gaps

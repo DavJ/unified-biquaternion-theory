@@ -75,7 +75,7 @@ research_tracks/T3_ALPHA/
   mellin_insertion_B.tex   ← formal no-go record (6 routes, 3 sub-gaps)
   integer_137_note.tex     ← companion note
 research_tracks/EW/
-  hypercharge_from_ubt.tex ← Gap C2 Step 1 derivation attempt [MC/OPEN]
+  hypercharge_from_ubt.tex ← Gap C2 Step 1 — Y=(B-L)/2 [L1 cond. on OP-S4 + C2-i]; sub-gap C2-i [OPEN/MC]
 STATUS_OF_UBT.md           ← SINGLE SOURCE OF TRUTH
 WHAT_IS_PROVED.md          ← Complete proved-results inventory
 DERIVATION_INDEX.md        ← Index of derivation files + levels
@@ -121,7 +121,7 @@ All sections §1–§9 complete. Chirality at OP-S4 [L1 conditional]. α at STRU
 | Full SM gauge group SU(3)×SU(2)_L×U(1)_Y | [L0] — 0 free params |
 | OP-S4: full SU(2)_R exclusion | [L1 conditional] |
 | Minimality: anomaly-safe + unitarity deferred | Remark in step4_no_wr_derivation.tex §4 |
-| Gap C2 Step 1: hypercharge from ψ-winding + OP-S4 | [MC/OPEN] — hypercharge_from_ubt.tex |
+| Gap C2 Step 1: hypercharge from ψ-winding + OP-S4 | [L1 cond. on OP-S4 + C2-i] — hypercharge_from_ubt.tex Lem lem:hypercharge_formula; sub-gap C2-i [OPEN/MC] |
 | Three generations from ψ-winding | [L0] |
 | sin²θ_W (EW-1b via RG) | [L1 cond. on Gap C2] |
 | Weinberg angle pure algebra | **DEAD END** — stated in paper |
