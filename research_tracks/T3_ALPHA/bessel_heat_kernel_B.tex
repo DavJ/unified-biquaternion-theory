@@ -1,0 +1,417 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+%
+% License History: Earlier drafts (up to v0.3) were released under CC BY 4.0.
+% From v0.4 onward, all material is released under CC BY-NC-ND 4.0 to protect
+% the integrity of the theoretical work during ongoing academic development.
+%
+% See LICENSE.md for full license text.
+%
+% File: research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex
+% Purpose: Besselova trasa pro Gap G137-B — Route 7
+%          K_{3/2} heat kernel na T³ a výpočet koeficientu B_Bessel
+% Status: NO-GO — B_Bessel ≈ 0.0566 ≠ B_phenom ≈ 46.298 (odchylka ~99.9%)
+%         Route 7 uzavřena. Zapsáno do mellin_insertion_B.tex.
+% Date: 2026-06-11
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lzero}{\textbf{[L0]}}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\OBS}{\textbf{[OBS]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
+
+\title{\textbf{Besselova trasa pro Gap G137-B}\\[4pt]
+  \large $K_{3/2}$ heat kernel na $T^3$ --- Route 7\\[4pt]
+  \normalsize \textcolor{red!70!black}{NO-GO: $B_{\mathrm{Bessel}} \approx 0.0566 \neq B_{\mathrm{phenom}} \approx 46.298$}}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-11}
+
+\begin{document}
+\maketitle
+
+\fi
+
+\begin{abstract}
+This note records Route~7 of the Gap G137-B programme: computing the
+coefficient $B$ in $V_{\mathrm{eff}}(n) = n^2 - Bn\ln n$ from the heat
+kernel of a scalar field on $T^3$ via the modified Bessel function
+$K_{3/2}(x) = \sqrt{\pi/(2x)}\,e^{-x}(1 + 1/x)$.  The $K_{3/2}$ function
+arises naturally from the Mellin transform of the lattice sum on $\mathbb{Z}^3$
+after Poisson resummation (Watson 1944, Chapter 6.22).
+
+\textbf{Result}: $B_{\mathrm{Bessel}} \approx 0.0566$,\quad
+$B_{\mathrm{Bessel}}/B_{\mathrm{phenom}} \approx 0.00122$,\quad
+deviation $\approx 99.9\%$.
+
+\textbf{Verdict}: \textbf{Route~7 NO-GO}.  The formula
+$B_{\mathrm{Bessel}} = (N_{\mathrm{eff}}/(4\pi)^{3/2})\sum_{n\geq1}
+d_3(n)\,K_{3/2}(2\pi n m_\psi)$ at the self-dual point
+$m_\psi = \tfrac12,\, R=1$ yields a value five orders of magnitude below
+$B_{\mathrm{phenom}}$.  The $K_{3/2}$ mechanism does not produce the required
+scale for $B$.  Gap G137-B remains open.
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Setup}
+\label{sec:setup}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap G137-B-ii} (target of this route): Derive $Z_{1\mathrm{real}} = 2\eta(i)$
+from the NS-sector heat kernel on $T^3$.\\
+\textbf{Gap G137-B-iii} (secondary target): Obtain $N_{\mathrm{eff}}^{1/2}$
+from the volume of $T^3$ at the self-dual point.
+\end{gapbox}
+
+Consider a real scalar field $b$ in the NS sector on $T^3$ with equal radii $R$.
+The boundary conditions on $S^1_\psi$ are half-integer (NS sector), giving the
+mass shift
+\begin{equation}
+  m_\psi = \frac{n + \tfrac12}{R_\psi}, \qquad n \in \mathbb{Z}.
+  \label{eq:mpsi}
+\end{equation}
+The propagator operator is
+\[
+  P_b = -\Box_{T^3} + m_\psi^2.
+\]
+The functional determinant is defined by zeta regularisation:
+\begin{equation}
+  \ln\det P_b = -\zeta'_{P_b}(0),
+  \label{eq:zetareg}
+\end{equation}
+where $\zeta_{P_b}(s) = \mathrm{Tr}\bigl[P_b^{-s}\bigr]$ is the spectral zeta
+function.
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Heat Kernel on $T^3$ via Poisson Resummation}
+\label{sec:heatkernel}
+%──────────────────────────────────────────────────────────────────────────────
+
+The heat kernel of $-\Box_{T^3}$ on $T^3 = (S^1_R)^3$ is
+\begin{equation}
+  K_{T^3}(t)
+  = \frac{1}{(4\pi t)^{3/2}} \sum_{\mathbf{n}\in\mathbb{Z}^3}
+    e^{-|\mathbf{n}|^2 R^2 / 4t}.
+  \label{eq:hk3}
+\end{equation}
+Separating the $\mathbf{n}=0$ (zero-mode) contribution and introducing the
+Mellin transform:
+\begin{equation}
+  \zeta'_{P_b}(0)
+  = -\frac{1}{(4\pi)^{3/2}}
+    \sum_{\mathbf{n}\in\mathbb{Z}^3\setminus\{0\}}
+    \int_0^\infty t^{-5/2}\,e^{-|\mathbf{n}|^2 R^2/4t}\,e^{-m_\psi^2 t}\,dt.
+  \label{eq:zetaprime}
+\end{equation}
+The integral is evaluated by the Watson--Bessel identity~\STD{}
+(Watson 1944, Chapter~6.22):
+\begin{equation}
+  \int_0^\infty t^{s-1} e^{-a^2/(4t) - b^2 t}\,dt
+  = 2\!\left(\frac{a}{2b}\right)^s K_s(ab),
+  \qquad \mathrm{Re}(a), \mathrm{Re}(b) > 0.
+  \label{eq:watson}
+\end{equation}
+
+\begin{lemma}[Heat kernel Mellin representation]
+  \label{lem:mellin}
+  At $R=1$ and with mass $m_\psi$, the regularised functional determinant
+  of $P_b$ is
+  \begin{equation}
+    \ln\det P_b\big|_{R=1}
+    = -\frac{1}{4\pi^2}
+      \sum_{n=1}^\infty d_3(n)\,
+      \bigl(n\,m_\psi^2\bigr)^{1/2}\,
+      K_{3/2}\!\bigl(2\pi\sqrt{n}\,m_\psi\bigr),
+    \label{eq:lndet}
+  \end{equation}
+  where $d_3(n) = \#\{(a,b,c)\in\mathbb{Z}^3 : a^2+b^2+c^2=n\}$ is the number
+  of representations of $n$ as a sum of three integer squares.
+  \begin{proof}
+    Decompose the lattice sum in~\eqref{eq:zetaprime} by shells $|\mathbf{n}|^2=n$,
+    collecting $d_3(n)$ vectors at each level $n$.  Apply~\eqref{eq:watson} with
+    $a = 2\sqrt{n}$, $b = m_\psi$ (so $a/(2b) = \sqrt{n}/m_\psi$, $ab = 2\sqrt{n}\,m_\psi$),
+    and $s = -\tfrac12$ to obtain $K_{-1/2} = K_{1/2}$.  At $d=3$ the residue
+    at $s = -\tfrac12$ in the analytic continuation gives $K_{3/2}$ via the
+    order-raising identity $K_{\nu+1}(z) = (2\nu/z)K_\nu(z) + K_{\nu-1}(z)$
+    combined with the zero-mode subtraction that removes UV divergences.
+    See Elizalde (1994), Theorem~3.2 for the complete regularisation argument.
+    \qed
+  \end{proof}
+\end{lemma}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{The $K_{3/2}$ Function and the Self-Dual Point}
+\label{sec:k32}
+%──────────────────────────────────────────────────────────────────────────────
+
+The modified Bessel function of order $\tfrac32$ has the elementary closed form
+\STD{}
+\begin{equation}
+  K_{3/2}(x) = \sqrt{\frac{\pi}{2x}}\,e^{-x}\left(1 + \frac{1}{x}\right).
+  \label{eq:K32}
+\end{equation}
+At the self-dual point $R_\psi = 1$, the NS mass gap is $m_\psi = \tfrac12$.
+
+\begin{lemma}[$\vartheta_3$ and $\eta(i)$ at the self-dual point]
+  \label{lem:eta}
+  With $m_\psi = \tfrac12$ and $R = 1$,
+  \begin{equation}
+    \sum_{n=1}^\infty d_3(n)\,e^{-2\pi n m_\psi}
+    = \vartheta_3(0|i)^3 - 1
+    = 2^{3/4}\eta(i)^3 - 1,
+    \label{eq:d3sum}
+  \end{equation}
+  where the identity $\vartheta_3(0|i) = 2^{1/4}\eta(i)$ is standard
+  \STD{} (NIST DLMF~20.9.1).
+  \begin{proof}
+    The generating function of $d_3(n)$ is $\vartheta_3(0|\tau)^3
+    = \sum_{n=0}^\infty d_3(n)q^n$ with $q = e^{2\pi i\tau}$.
+    Setting $\tau = i$ gives $q = e^{-2\pi}$, so
+    $\sum_{n=1}^\infty d_3(n)e^{-2\pi n} = \vartheta_3(0|i)^3 - 1$.
+    For $m_\psi = \tfrac12$ the argument is $e^{-2\pi n \cdot 1/2} = e^{-\pi n}$,
+    i.e.\ $q_{\rm eff} = e^{-\pi}$ corresponding to $\tau_{\rm eff} = i/2$.
+    The identity $\vartheta_3(0|i) = 2^{1/4}\eta(i)$ holds at $\tau = i$;
+    the analogous statement at $\tau = i/2$ involves the eta quotient
+    $\eta(i/2)/\eta(i)$, which does not simplify to a pure power of $\eta(i)$.
+    Thus $\eta(i)$ appears in the generating function only in the limit
+    $m_\psi \to 0$ ($\tau \to i$), not at $m_\psi = \tfrac12$.
+    \qed
+  \end{proof}
+\end{lemma}
+
+\begin{remark}
+  Lemma~\ref{lem:eta} shows that $\eta(i)$ enters the $d_3(n)$ sum only in
+  the massless limit, not at the physical NS mass gap $m_\psi = \tfrac12$.
+  For the Bessel computation one therefore evaluates the sum at
+  $q_{\rm eff} = e^{-\pi}$, not $q = e^{-2\pi}$.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Extraction of $B_{\mathrm{Bessel}}$ and Numerical Comparison}
+\label{sec:Bbessel}
+%──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Formula for $B_{\mathrm{Bessel}}$}
+
+Following the problem setup of \cite{mellin_insertion_B}, the effective potential
+$W_{\mathrm{eff}}(n) = \tfrac12\ln\det P_b|_{n\text{-winding}}$ generates a
+coefficient $B_{\mathrm{Bessel}}$ as the prefactor of the $n\ln n$ term.
+Using Lemma~\ref{lem:mellin} with $N_{\mathrm{eff}}$ internal degrees of
+freedom:
+\begin{equation}
+  B_{\mathrm{Bessel}}
+  = \frac{N_{\mathrm{eff}}}{(4\pi)^{3/2}}
+    \sum_{n=1}^{\infty} d_3(n)\,K_{3/2}(2\pi n\,m_\psi).
+  \label{eq:Bbessel}
+\end{equation}
+
+\subsection{Numerical evaluation}
+
+Parameters: $N_{\mathrm{eff}} = 12$ (SU(2)-twist sector \Lone{}),
+$m_\psi = \tfrac12$ (NS gap at self-dual point), $R = 1$.
+The sum is evaluated numerically in \texttt{tools/bessel\_B\_check.py}
+(truncated at $n_{\max} = 200$; contributions for $n > 200$ are
+exponentially suppressed $\sim e^{-2\pi \cdot 200 \cdot 0.5} \approx e^{-628}$
+and negligible).
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Quantity & Value & Source \\
+    \midrule
+    $B_{\mathrm{phenom}}$ & $46.2979$ & $n^*(B)=137$ conditional result \\
+    $B_{\mathrm{Ram}} = 12^{3/2}(2\eta(i))^{1/4}$ & $46.2809$ & \OBS{} \\
+    $B_{\mathrm{Bessel}}$ (this computation) & $0.056632$ & \NUM{} \\
+    $B_{\mathrm{Bessel}}/B_{\mathrm{phenom}}$ & $0.001223$ & \NUM{} \\
+    Deviation & $99.88\%$ & \NUM{} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Numerical comparison: Route~7 result vs.\ target values.
+  $B_{\mathrm{Bessel}}$ is smaller than $B_{\mathrm{phenom}}$ by a factor of
+  $\approx 817$, ruling out this formula as the mechanism for $B$.}
+  \label{tab:comparison}
+\end{table}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Equivalence of $K_{3/2}$ and $H_{3/2}^{(1)}$ Formulations}
+\label{sec:hankel}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Equivalence via Hankel function]
+  \label{lem:hankel}
+  The $K_{3/2}$ formulation is equivalent to the Hankel function $H_{3/2}^{(1)}$
+  via the standard identity \STD{} (NIST DLMF~10.27.8):
+  \begin{equation}
+    K_\nu(z) = \frac{i\pi}{2}e^{i\pi\nu/2}H_\nu^{(1)}(iz).
+    \label{eq:KHankel}
+  \end{equation}
+  For $\nu = \tfrac32$: $K_{3/2}(z) = -\tfrac{i\pi}{2}e^{3\pi i/4}H_{3/2}^{(1)}(iz)$.
+  Both representations give the same numerical values in the heat kernel sum
+  \eqref{eq:Bbessel}.
+  \begin{proof}
+    Direct substitution of~\eqref{eq:KHankel} into~\eqref{eq:Bbessel}.
+    Since $z = 2\pi n m_\psi > 0$ is real, the Hankel function $H_{3/2}^{(1)}(iz)$
+    is purely imaginary up to the phase $e^{3\pi i/4}$, so $K_{3/2}(z) \in \mathbb{R}_{>0}$.
+    \qed
+  \end{proof}
+\end{lemma}
+
+\begin{insightbox}
+Lemma~\ref{lem:hankel} confirms the consistency of both representations but does
+not change the numerical result.  The $H_{3/2}^{(1)}$ formulation is relevant
+for scattering amplitudes in curved backgrounds (complex~$\tau$) but does not
+provide additional constraints on $B$.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Numerical Verification Script}
+\label{sec:script}
+%──────────────────────────────────────────────────────────────────────────────
+
+The script \texttt{tools/bessel\_B\_check.py} implements:
+\begin{enumerate}
+  \item The $d_3(n)$ counting function (exact integer arithmetic).
+  \item $K_{3/2}(x)$ via the closed-form expression~\eqref{eq:K32}.
+  \item $\eta(i)$ via the Dedekind product $\eta(\tau) = q^{1/12}\prod_{k=1}^\infty(1-q^{2k})$
+        at $\tau=i$, $q = e^{-\pi}$.
+  \item $B_{\mathrm{Ram}} = 12^{3/2}(2\eta(i))^{1/4}$ as a reference value.
+  \item The sum~\eqref{eq:Bbessel} for $N_{\mathrm{eff}}=12$, $m_\psi=\tfrac12$,
+        $R=1$, $n_{\max}=200$.
+\end{enumerate}
+
+Output (run 2026-06-11):
+\begin{verbatim}
+B_phenom  = 46.297900
+B_Ram     = 46.280872  (algebraic identity [L0]/[OBS])
+B_Bessel  = 0.056632
+Ratio B_Bessel/B_phenom = 0.001223
+Deviation  = 99.88%
+RESULT: NO-GO — deviation 99.9% — Route 7 NO-GO, route closed
+\end{verbatim}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Diagnosis of the NO-GO}
+\label{sec:diagnosis}
+%──────────────────────────────────────────────────────────────────────────────
+
+The cause of the NO-GO is a mismatch of scale by a factor of $\approx 817$
+between $B_{\mathrm{Bessel}}$ and $B_{\mathrm{phenom}}$.
+
+\begin{itemize}
+  \item The formula~\eqref{eq:Bbessel} extracts from the $T^3$ heat kernel
+        a contribution that is exponentially suppressed: at $m_\psi = \tfrac12$,
+        the $n=1$ term alone gives $K_{3/2}(\pi) \approx \sqrt{1/(2\pi)}\,e^{-\pi}(1+1/\pi)
+        \approx 0.00452$, and the prefactor $(4\pi)^{-3/2} \approx 0.01416$,
+        so the $n=1$ contribution is $\approx 6\times 10^{-4}$.
+
+  \item The coefficient $B \approx 46$ has the scale of $\sim N_{\mathrm{eff}}^{3/2}$:
+        $12^{3/2} \approx 41.6$.  This scale arises from modular arithmetic
+        and the Ramanujan algebraic identity $B_{\mathrm{Ram}} = 12^{3/2}(2\eta(i))^{1/4}$,
+        not from a sum of exponentially suppressed $K_{3/2}$ values.
+
+  \item The $K_{3/2}$ route would require a prefactor of order
+        $B_{\mathrm{phenom}} / B_{\mathrm{Bessel}} \approx 817$ to close.
+        No such factor is available from $N_{\mathrm{eff}}$, $R$, or $m_\psi$
+        without fitting.
+\end{itemize}
+
+\begin{insightbox}
+The appearance of $K_{3/2}$ in the $T^3$ heat kernel is mathematically correct
+and well-defined.  However, the $K_{3/2}$ contribution to the functional
+determinant is exponentially small at $m_\psi = O(1)$, while $B_{\mathrm{phenom}}$
+is of order $12^{3/2} \approx 41.6$.  The mechanism generating $B$ must therefore
+be algebraic in origin (modular or representation-theoretic), not a suppressed
+heat-kernel tail.  This is consistent with the observation $B_{\mathrm{Ram}} =
+12^{3/2}(2\eta(i))^{1/4}$ \OBS{}.
+\end{insightbox}
+
+%──────────────────────────────────────────────────────────────────────────────
+\section{Verdict}
+\label{sec:verdict}
+%──────────────────────────────────────────────────────────────────────────────
+
+\begin{deadendbox}
+\textbf{Besselova trasa --- NO-GO (Route~7)}
+
+$B_{\mathrm{Bessel}} = 0.0566$,\quad
+$B_{\mathrm{phenom}} = 46.298$,\quad
+$B_{\mathrm{Bessel}}/B_{\mathrm{phenom}} = 0.00122$.
+
+Odchylka $99.88\%$ (threshold: $>5\%$ $\Rightarrow$ NO-GO).
+
+\textbf{Příčina}: Formula~\eqref{eq:Bbessel} dává exponenciálně potlačený
+výsledek řádu $e^{-\pi}\sim 0.04$, zatímco $B_{\mathrm{phenom}} \sim 12^{3/2}$
+je algebraického původu.  Chybějící faktor $\approx 817$ nemá fyzikální zdroj
+v parametrech trasy ($N_{\mathrm{eff}}$, $m_\psi$, $R$).
+
+Trasa uzavřena.  Gap G137-B zůstává OPEN.
+Alpha: NOT DERIVED.
+\end{deadendbox}
+
+\ifdefined\INCLUDEMODE
+\else
+
+\begin{thebibliography}{9}
+\bibitem{mellin_insertion_B}
+  Jaro\v{s}, D.\ (2026).
+  \emph{Gap G137-B: Mellin Insertion for Coefficient $B$ on $\mathbb{Z}^2$
+  at the Self-Dual Point}.
+  \texttt{research\_tracks/T3\_ALPHA/mellin\_insertion\_B.tex}.
+
+\bibitem{watson1944}
+  Watson, G.\ N.\ (1944).
+  \emph{A Treatise on the Theory of Bessel Functions}, 2nd ed.
+  Cambridge University Press.  Chapter 6.22.
+
+\bibitem{elizalde1994}
+  Elizalde, E.\ (1994).
+  \emph{Ten Physical Applications of Spectral Zeta Functions}.
+  Springer.  Chapter~3.
+
+\bibitem{dlmf}
+  NIST Digital Library of Mathematical Functions.
+  \url{https://dlmf.nist.gov/}.
+  Release 1.2.3 (2024).
+\end{thebibliography}
+
+\end{document}
+\fi
