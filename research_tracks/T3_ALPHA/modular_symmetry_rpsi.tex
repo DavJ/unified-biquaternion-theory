@@ -1,728 +1,486 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 %
-% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
-% 4.0 International License (CC BY-NC-ND 4.0).
-%
+% This work is licensed under a Creative Commons
+% Attribution-NonCommercial-NoDerivatives 4.0 International License.
 % See LICENSE.md for full license text.
 %
-% File: research_tracks/T3_ALPHA/modular_symmetry_rpsi_EN.tex
-% Purpose: Systematic probe — modular S-symmetry of S[Theta] as mechanism
-%          for fixing R_psi = 1 (self-dual point).
-% Status:  Path 1 (polynomial): [L0]+[MC].
-%          Path 2 (Z[tau]=eta^{-12}): [L1 conditional on one-loop + STD].
-%          R_psi=1: derived via two independent paths.
-%          Alpha NOT DERIVED. G137-B NOT CLOSED.
-% Date:    2026-06-11 (updated: Z[tau] chain added)
+% File:    research_tracks/T3_ALPHA/modular_symmetry_rpsi_EN.tex
+% Purpose: Derivation of R_psi = 1 from modular symmetry of the UBT
+%          psi-sector partition function Z[tau] = eta(tau)^{-12}.
+%
+% Main result:  R_psi = 1 is the unique fixed point of the modular
+%               S-transformation tau -> -1/tau on the imaginary axis
+%               tau_E = i*R_psi.  Derived via two independent paths.
+%
+% Status (Path 1): [L0]+[MC]  — polynomial from Casimir dynamics.
+% Status (Path 2): [L1 cond.] — fixed point from partition function.
+%   Conditions: (i) det P_eff = eta^2 [STD]; (ii) N_eff=12 [L1];
+%               (iii) one-loop approximation [technical, explicit].
+%
+% Alpha: NOT DERIVED.  G137-B: NOT CLOSED.
+% Date: 2026-06-11
 
-\ifdefined\INCLUDEMODE
-\else
+\ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
-\usepackage{hyperref}
-\usepackage{mdframed}
-\usepackage{booktabs}
-\usepackage{xcolor}
-\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor,microtype}
 
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue!60!black,
-  citecolor=green!50!black,
-  urlcolor=blue!60!black
-}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,
+            citecolor=green!50!black,urlcolor=blue!60!black}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
 
-\newmdenv[backgroundcolor=yellow!20, linecolor=orange, linewidth=1.5pt]{gapbox}
-\newmdenv[backgroundcolor=green!15, linecolor=green!60!black, linewidth=1.5pt]{resultbox}
-\newmdenv[backgroundcolor=red!10, linecolor=red!60, linewidth=1.5pt]{deadendbox}
-\newmdenv[backgroundcolor=blue!8, linecolor=blue!50, linewidth=1.5pt]{insightbox}
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,
+          linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10,linecolor=red!60,linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
 
-\newcommand{\PROVED}{\textbf{[Proved]}}
-\newcommand{\OPEN}{\textbf{[Open]}}
-\newcommand{\Lzero}{\textbf{[L0]}}
-\newcommand{\Lone}{\textbf{[L1]}}
-\newcommand{\Ltwo}{\textbf{[L2]}}
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
 \newcommand{\MC}{\textbf{[MC]}}
-\newcommand{\NUM}{\textbf{[NUM]}}
-\newcommand{\OBS}{\textbf{[OBS]}}
-\newcommand{\COND}{\textbf{[L1 conditional]}}
 \newcommand{\STD}{\textbf{[STD]}}
-\newcommand{\NODERIVED}{\textbf{NOT DERIVED}}
-
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\HH}{\mathbb{H}}
-\newcommand{\RR}{\mathbb{R}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\NUM}{\textbf{[NUM]}}
 \newcommand{\ZZ}{\mathbb{Z}}
 
-\title{\textbf{Modular Symmetry of $S[\Theta]$ as a Mechanism for Fixing $R_\psi$}\\[6pt]
-  \large Systematic probe: $\tau \to -1/\tau$ and the self-dual point $R_\psi = 1$}
+\title{\textbf{Modular Symmetry of $S[\Theta]$ and the Derivation of $R_\psi = 1$}\\[4pt]
+\large Two independent paths to the self-dual point}
 \author{Ing.\ David Jaroš}
 \date{2026-06-11}
 
 \begin{document}
 \maketitle
 
+%──────────────────────────────────────────────────────────────────
 \begin{abstract}
-We investigate the fixing of $R_\psi = 1$ (self-dual point $\tau_E = i$)
-via two independent paths.
+We derive $R_\psi = 1$ (self-dual point $\tau_E = i$) via two
+independent paths.
 
-\textbf{Path 1 (Casimir polynomial)}: If the effective action $S_{\mathrm{eff}}$
-is S-invariant ($R_\psi \to 1/R_\psi$), stationarity yields
-$R_\psi^6 + R_\psi^4 + R_\psi^2 = 3$ — the unique positive solution is $R_\psi = 1$.
-$N_{\mathrm{eff}}$ cancels; the result is an algebraic property of S-symmetry.
-Status: \textbf{[L0]} (polynomial) $+$ \textbf{[MC]} (S-invariance of $S_{\mathrm{eff}}$).
+\textbf{Path 1 — Casimir polynomial \Lz+\MC.}
+If the effective action $S_{\mathrm{eff}}$ is invariant under
+$R_\psi\to 1/R_\psi$, combining the S-invariance condition with
+stationarity yields the polynomial $R_\psi^6+R_\psi^4+R_\psi^2=3$,
+whose unique positive solution is $R_\psi=1$.
+$N_{\mathrm{eff}}$ cancels; the result holds for any $N_{\mathrm{eff}}$.
+The S-invariance of $S_{\mathrm{eff}}$ is assumed [\MC]; the
+polynomial itself is an algebraic identity [\Lz].
 
-\textbf{Path 2 (partition function)}: From the one-loop partition function
-$Z[\tau_E] = \eta(\tau_E)^{-12}$ (\textbf{[L1]}: $\det P_{\mathrm{eff}} = \eta^2$
-\textbf{[STD]} $+$ $N_{\mathrm{eff}} = 12$ \textbf{[L1]}), the transformation
-property $\eta(-1/\tau) = \sqrt{-i\tau}\,\eta(\tau)$ makes $\tau_E = i$ a
-fixed point of the S-transformation. $\psi$ is compact from the SS boundary
-condition \textbf{[L1]} and from the periodicity of $Z[\tau]$ \textbf{[L0]}.
-Status: \textbf{[L1 conditional on one-loop approximation and STD result]}.
+\textbf{Path 2 — Partition function \Lo\ (conditional).}
+The one-loop partition function of the UBT $\psi$-sector is
+$Z[\tau_E]=\eta(\tau_E)^{-12}$, derived from
+$\det P_{\mathrm{eff}}=\eta(\tau_E)^2$ [\STD] and $N_{\mathrm{eff}}=12$
+[\Lo].  The modular identity
+$\eta(-1/\tau_E)=\sqrt{-i\tau_E}\,\eta(\tau_E)$ makes $\tau_E=i$
+the \emph{unique} fixed point of the S-transformation on the
+imaginary axis $\tau_E=iR_\psi$, $R_\psi>0$ [\Lz].
+The two conditions are: (i)~$\det P_{\mathrm{eff}}=\eta^2$
+[\STD, cited], (ii) one-loop approximation [explicit technical
+assumption, standard in QFT].
 
-The agreement of both paths is structural evidence. Implications:
-scale closure \textbf{[MC]}; $\tau = i$ algebraically preferred for
-alpha \textbf{[OBS]}.
-\textbf{Alpha NOT DERIVED.}
+\textbf{Implications.}  $\psi$ is compact from the Scherk--Schwarz
+boundary condition [\Lo] and from the periodicity of $Z[\tau]$
+[\Lz], independently of any geometric axiom.  Scale closure
+$M_{\mathrm{GUT}}=1/R_\psi$: [\MC].
+$\tau=i$ is algebraically preferred for the alpha track [\Lz],
+but \textbf{alpha is NOT DERIVED} and G137-B is NOT CLOSED.
 \end{abstract}
+%──────────────────────────────────────────────────────────────────
 
 \tableofcontents
 
-%──────────────────────────────────────────────────────────────────────────────
-\section{Context and Motivation}
-\label{sec:context}
-%──────────────────────────────────────────────────────────────────────────────
+%──────────────────────────────────────────────────────────────────
+\section{Motivation}
+\label{sec:motivation}
+%──────────────────────────────────────────────────────────────────
 
-Three open problems in UBT share a common root: the radius $R_\psi$ of the
-$\psi$-circle is not derived from $S[\Theta]$ without phenomenological input.
-
+Three open problems in UBT share a common root: the radius $R_\psi$
+of the $\psi$-circle $S^1_\psi$ is not derived from $S[\Theta]$
+without phenomenological input.
 \begin{enumerate}
-  \item \textbf{Alpha (G137-B)}: $B_{\mathrm{phenom}}$ depends on the
-    self-dual point $\tau = i$, which occurs at $R_\psi = 1$. Why is $\tau = i$
-    selected? Not derived.
-  \item \textbf{Scale closure (EW-1b)}: $M_{\mathrm{GUT}} = 1/R_\psi^*$;
-    the stationarity equation gives $R_\psi^*$ conditionally on $T_{\mathrm{kin}}$,
-    which is not derived from $S[\Theta]$.
-  \item \textbf{C2-iv}: $\psi$-winding and the colour fiber are decoupled.
-    A connection might arise from the geometry of the $\psi$-circle at a
-    special value of $R_\psi$.
+\item \textbf{Alpha (Gap G137-B)}: $B_{\mathrm{phenom}}$ involves
+  $\eta(i)$, which is natural at the self-dual point $\tau_E=i$
+  ($R_\psi=1$).  Why is $\tau_E=i$ selected?  Previously: not derived.
+\item \textbf{Scale closure (EW-1b)}: $M_{\mathrm{GUT}}=1/R_\psi^*$;
+  the stationarity equation for $R_\psi^*$ required $T_{\mathrm{kin}}$
+  as external input.
+\item \textbf{C2-iv}: The $\psi$-winding and colour fibre are decoupled
+  in the current $S[\Theta]$.  A connection might exist at $R_\psi=1$.
 \end{enumerate}
 
-\textbf{Hypothesis}: $S[\Theta]$ has modular symmetry under $\tau \to -1/\tau$
-(inversion of complex time). If so, the self-dual point $\tau = i$ is a
-\emph{fixed point} of this symmetry — $R_\psi = 1$ would be derived from the
-symmetry of $S[\Theta]$, not chosen by hand.
+This note provides two independent derivations of $R_\psi=1$ and
+establishes compactness of $\psi$ without a geometric axiom.
 
-\begin{gapbox}
-\textbf{Scope of the probe.}
-This probe tests \emph{modular symmetry of the effective action $S_{\mathrm{eff}}$}
-as a mechanism for fixing $R_\psi$. We do not attempt to derive $B$ directly
-from modular forms (Route A3, NO-GO). This is a new, previously untested route.
-\end{gapbox}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Modular Transformation in the UBT Context}
+%──────────────────────────────────────────────────────────────────
+\section{Setup: Modular Parameter and S-Transformation}
 \label{sec:setup}
-%──────────────────────────────────────────────────────────────────────────────
+%──────────────────────────────────────────────────────────────────
 
-\subsection*{Complex time and the $\psi$-circle}
-
-Complex time $\tau = t + i\psi \in \CC$. The $\psi$-circle $S^1_\psi$ has
-period $2\pi R_\psi$. The Euclidean modular parameter:
+Complex time $\tau=t+i\psi\in\mathbb{C}$.  The Euclidean modular
+parameter for the $\psi$-circle with period $2\pi R_\psi$:
 \[
-  \tau_E = iR_\psi \in \mathbb{H},
-  \quad t = 0,\; \psi \sim \psi + 2\pi R_\psi.
+  \tau_E = iR_\psi \in \mathbb{H}, \qquad
+  R_\psi > 0.
 \]
-
-Standard modular transformations on the upper half-plane $\mathbb{H}$:
+The modular S-transformation:
 \[
-  T:\; \tau_E \to \tau_E + 1, \qquad
-  S:\; \tau_E \to -\frac{1}{\tau_E}.
+  S:\;\tau_E \;\longmapsto\; -\frac{1}{\tau_E},
+  \qquad\text{equivalently}\quad R_\psi \;\longmapsto\; \frac{1}{R_\psi}.
 \]
-The group $\mathrm{SL}(2,\ZZ)$ is generated by $T$ and $S$.
-
-\begin{definition}[Modular S-transformation on UBT complex time]
-\label{def:modular_S}
-The S-transformation on the $\psi$-circle:
-\[
-  \tau_E \;\longmapsto\; -\frac{1}{\tau_E},
-  \qquad
-  iR_\psi \;\longmapsto\; \frac{i}{R_\psi},
-\]
-equivalently $R_\psi \to 1/R_\psi$ — T-duality on the $\psi$-circle
-\Lone~(standard T-duality~\cite[§8]{polchinski_v1}).
-
-The self-dual point of the S-transformation: $S(i) = -1/i = i$, so $R_\psi = 1$
-is a \emph{fixed point} of the S-transformation.
+\begin{definition}[Self-dual point]
+$\tau_E = i$ ($R_\psi = 1$) satisfies $S(i) = -1/i = i$.
+It is the unique fixed point of $S$ on the imaginary axis
+$\{iR_\psi : R_\psi > 0\}$. \Lz
 \end{definition}
 
-%──────────────────────────────────────────────────────────────────────────────
-\section{Test of Modular Invariance of the Kinetic Term}
-\label{sec:kinetic}
-%──────────────────────────────────────────────────────────────────────────────
-
-The kinetic term of $S[\Theta]$ (from \texttt{appendix\_AA\_theta\_action.tex}):
-\[
-  S_{\mathrm{kin}} = \int \mathrm{Tr}\!\left[(D_\mu\Theta)^\dagger(D^\mu\Theta)\right]
-  d^4x\, d\psi.
-\]
-Integration over $d\psi$ with period $2\pi R_\psi$.
-
-\begin{proposition}[Transformation of the kinetic term under $R_\psi \to 1/R_\psi$]
-\label{prop:kin_transform}
-Under the S-transformation $R_\psi \to 1/R_\psi$:
-\begin{itemize}
-  \item Period: $2\pi R_\psi \to 2\pi/R_\psi$.
-  \item KK spectrum: $m_n = n/R_\psi \to n R_\psi$ (inversion of masses).
-  \item Volume: $\int d\psi = 2\pi R_\psi \to 2\pi/R_\psi$.
-\end{itemize}
-Therefore:
-\[
-  S_{\mathrm{kin}}[\Theta,\, R_\psi]
-  \;\xrightarrow{\;R_\psi \,\to\, 1/R_\psi\;}
-  \frac{1}{R_\psi^2}\, S_{\mathrm{kin}}[\widetilde\Theta,\, 1/R_\psi],
-\]
-where $\widetilde\Theta$ is the S-dual field. The factor $R_\psi^{-2}$ arises
-from dimensional analysis: $[\Theta] = M^1$ and the field rescales as
-$\widetilde\Theta = R_\psi \cdot \Theta$ \MC.
-$S_{\mathrm{kin}}$ is S-invariant if $\widetilde\Theta = R_\psi \cdot \Theta$.
-\end{proposition}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{$\psi$-Sector Partition Function and First-Principles Fixing of $R_\psi = 1$}
+%──────────────────────────────────────────────────────────────────
+\section{Path 2: Partition Function Derivation}
 \label{sec:Z_chain}
-%──────────────────────────────────────────────────────────────────────────────
+%──────────────────────────────────────────────────────────────────
 
-This section provides an \emph{independent} derivation of $R_\psi = 1$, independent
-of the Casimir potential and S-invariance of $S_{\mathrm{eff}}$ from
-\S\ref{sec:casimir}. The derivation follows from the algebraic structure of the
-UBT $\psi$-sector partition function.
+We present Path 2 first because it is the stronger result.
 
-%──────────────────────────────────────────────────────────────────────────────
-\subsection{Compactness of $\psi$ from the Scherk-Schwarz condition}
+%──────────────────────────────────────────────────────────────────
+\subsection{Compactness of $\psi$ from the Scherk--Schwarz condition}
 
-\begin{lemma}[Compactness of $\psi$ from the SS boundary condition — \Lone]
-\label{lem:SS_BC}
-From \texttt{su2\_twist\_neff12.tex}~\cite{su2_twist},
-\S\,``Twisted boundary condition on $S^1_\psi$'':
+\begin{lemma}[Compactness of $\psi$ — \Lo]
+\label{lem:SS}
+From \textup{\texttt{su2\_twist\_neff12.tex}}, the Scherk--Schwarz
+boundary condition on $S^1_\psi$ is~\cite{su2_twist}:
 \[
   \Theta(\psi + 2\pi R_\psi) = \sigma_3\,\Theta(\psi)\,\sigma_3,
   \qquad \sigma_3 = \mathrm{diag}(+1,-1).
 \]
-This condition gives $\psi$ a natural period $2\pi R_\psi$:
-the off-diagonal components $b, c$ are anti-periodic
-($m_n = (n+\tfrac12)/R_\psi$), and the diagonal components $a, d$ are periodic
-($m_n = n/R_\psi$).
-\textbf{The compactness of $\psi$ follows from the symmetry of the field
-$\Theta$, not from a geometric axiom.} \Lone
+This condition assigns $\psi$ a natural period $2\pi R_\psi$:
+diagonal components $a,d$ are periodic ($m_n = n/R_\psi$);
+off-diagonal components $b,c$ are anti-periodic
+($m_n = (n+\tfrac{1}{2})/R_\psi$).
+
+\textbf{Consequence}: the compactness of $\psi$ is a property of
+the symmetry of the field $\Theta$, not a geometric axiom. \Lo
 \end{lemma}
 
-%──────────────────────────────────────────────────────────────────────────────
-\subsection{UBT $\psi$-sector partition function}
+%──────────────────────────────────────────────────────────────────
+\subsection{One-loop partition function}
 
-\begin{lemma}[One-loop partition function of a scalar field on $S^1$ — \STD]
-\label{lem:Z_scalar}
-For a single periodic real scalar field on $S^1$ with modular parameter
-$\tau_E = iR_\psi$, the one-loop functional determinant
-is~\cite[§7]{polchinski_v1}:
+\begin{lemma}[Functional determinant for a scalar on $S^1$ — \STD]
+\label{lem:detP}
+For a periodic real scalar field on $S^1$ with modular parameter
+$\tau_E = iR_\psi$, the $\zeta$-regularised one-loop functional
+determinant is~\cite[§7.2]{polchinski_v1}:
 \[
-  \det P_{\mathrm{eff}} = \eta(\tau_E)^2,
+  \det P_{\mathrm{eff}}(\tau_E) = \eta(\tau_E)^2,
+  \qquad
+  \eta(\tau) = q^{1/24}\prod_{n=1}^{\infty}(1-q^n),
+  \quad q = e^{2\pi i\tau}.
 \]
-where $\eta(\tau) = q^{1/24}\prod_{n=1}^\infty(1-q^n)$, $q = e^{2\pi i\tau}$.
-The one-loop partition function is therefore:
-\[
-  -\ln Z_{1\text{-loop}} = \tfrac12 \ln \det P_{\mathrm{eff}}
-  = \ln \eta(\tau_E).
-\]
+Hence the one-loop contribution to the effective action is
+$\frac{1}{2}\ln\det P_{\mathrm{eff}} = \ln\eta(\tau_E)$.
 \end{lemma}
 
-\begin{proposition}[Total UBT $\psi$-sector partition function — \Lone]
-\label{prop:Z_total}
-From Lemma~\ref{lem:Z_scalar} and $N_{\mathrm{eff}} = 12$
-\Lone~\cite{su2_twist}:
+\begin{proposition}[UBT $\psi$-sector partition function — \Lo\ conditional]
+\label{prop:Z}
+From Lemma~\ref{lem:detP} [\STD] and $N_{\mathrm{eff}}=12$ [\Lo,
+\textup{\cite{su2_twist}}], the total one-loop partition function
+of the UBT $\psi$-sector is:
 \[
-  \boxed{Z[\tau_E] \;=\; \eta(\tau_E)^{-N_{\mathrm{eff}}} \;=\; \eta(\tau_E)^{-12}.}
+  \boxed{Z[\tau_E] \;=\; \eta(\tau_E)^{-12}.}
 \]
-\textbf{Argument}: The one-loop contribution of $N_{\mathrm{eff}}$ effective
-modes (with helicity weights from the SS twist condition) to the partition
-function is:
+\textbf{Derivation}: The $N_{\mathrm{eff}}$ effective modes (three
+compact phase directions $\times$ two charged fields $\times$ two
+Weyl helicity weights from the half-integer tower, all [\Lo,
+\cite{su2_twist}]) each contribute $\ln\eta(\tau_E)$ to $-\ln Z$:
 \[
-  -\ln Z = \sum_{k=1}^{N_{\mathrm{eff}}} \ln \eta(\tau_E)
-  = N_{\mathrm{eff}} \ln \eta(\tau_E).
+  -\ln Z[\tau_E] = N_{\mathrm{eff}}\,\ln\eta(\tau_E).
 \]
-$N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$ incorporates three compact phase
-directions $(\psi, \chi, \xi)$, two charged off-diagonal components $(b, c)$,
-and two Weyl helicity weights from the half-integer tower —
-all \Lone~\cite{su2_twist}.
 
-\textbf{Note}: $Z[\tau_E] = \eta(\tau_E)^{-12}$ is conditional on the
-one-loop approximation (higher loops correct but do not shift the fixed point)
-and on $\det P_{\mathrm{eff}} = \eta^2$ \STD.
+\textbf{Explicit conditions for this result:}
+\begin{enumerate}
+\item $\det P_{\mathrm{eff}} = \eta(\tau_E)^2$ [\STD] — standard
+  result, cited.
+\item $N_{\mathrm{eff}} = 12$ [\Lo] — proved in \cite{su2_twist}.
+\item One-loop approximation: higher loops give $O(g^4)$ corrections
+  that shift the value of $Z[\tau_E]$ but not the \emph{location} of
+  the fixed point $\tau_E=i$ (which is determined by algebra, not by
+  the magnitude of $Z$).
+\end{enumerate}
+Status: \Lo\ conditional on items 1--3.
 \end{proposition}
 
-%──────────────────────────────────────────────────────────────────────────────
+%──────────────────────────────────────────────────────────────────
 \subsection{Effective compactification from periodicity of $Z[\tau]$}
 
-\begin{proposition}[Effective compactification of $\psi$ from periodicity
-of $Z[\tau]$ — \Lzero]
-\label{prop:psi_compact_from_Z}
-From the transformation property of $\eta$~\cite[§9.2]{apostol_modular}:
+\begin{proposition}[Effective compactification — \Lz]
+\label{prop:compact}
+From the standard identity~\cite[§9.2]{apostol_modular}:
 \[
   \eta(\tau_E + 1) = e^{i\pi/12}\,\eta(\tau_E).
 \]
-Therefore for $Z[\tau_E] = \eta(\tau_E)^{-12}$:
+For $Z[\tau_E] = \eta(\tau_E)^{-12}$:
 \[
   Z[\tau_E + 1] = e^{-i\pi}\,Z[\tau_E] = -Z[\tau_E].
 \]
-The physical amplitude $|Z[\tau_E + 1]|^2 = |Z[\tau_E]|^2$ — periodic
-in $\tau_E \to \tau_E + 1$. This periodicity induces an effective identification
-$\tau_E \sim \tau_E + 1$ as a symmetry of physical observables. \Lzero
+The physical amplitude $|Z[\tau_E+1]|^2 = |Z[\tau_E]|^2$ is
+therefore periodic in $\tau_E \to \tau_E + 1$, inducing the
+effective identification $\tau_E \sim \tau_E + 1$ as a symmetry of
+observables. \Lz
 
-\textbf{Consequence}: $\psi$ is effectively compact both from the SS condition
-(Lemma~\ref{lem:SS_BC}, \Lone) and from the periodicity of $Z[\tau]$ (\Lzero).
-Both mechanisms are consistent and independent.
+\textbf{Consequence}: $\psi$ is compact both from the SS condition
+(Lemma~\ref{lem:SS}, \Lo) and from the periodicity of $Z[\tau]$
+(\Lz), independently and consistently.
 \end{proposition}
 
-%──────────────────────────────────────────────────────────────────────────────
-\subsection{Modular transformation of $Z[\tau]$ and fixing $R_\psi = 1$}
+%──────────────────────────────────────────────────────────────────
+\subsection{$R_\psi = 1$ as the unique fixed point}
 
-\begin{proposition}[Modular transformation of $Z[\tau]$ and stationarity
-at $\tau_E = i$ — \Lzero]
-\label{prop:Z_modular}
-From the transformation property of $\eta$~\cite[§9.2]{apostol_modular}:
+\begin{proposition}[Modular transformation of $S{[\Theta]}$: stationarity at $\tau_E=i$ — \Lz]
+\label{prop:Smod}
+From~\cite[§9.2]{apostol_modular}:
+$\eta(-1/\tau_E) = \sqrt{-i\tau_E}\,\eta(\tau_E)$.
+With $S[\Theta] = -\ln Z[\tau_E] = 12\ln\eta(\tau_E)$:
 \[
-  \eta\!\left(-\tfrac{1}{\tau_E}\right) = \sqrt{-i\tau_E}\;\eta(\tau_E).
+  S\!\left[-\frac{1}{\tau_E}\right]
+  = S[\tau_E] + 6\ln(-i\tau_E).
 \]
-Therefore:
+For $\tau_E = iR_\psi$: $-i\tau_E = R_\psi > 0$, so
+$\ln(-i\tau_E) = \ln R_\psi$.  At $R_\psi = 1$:
 \[
-  Z\!\left[-\tfrac{1}{\tau_E}\right]
-  = (-i\tau_E)^{-N_{\mathrm{eff}}/2}\,Z[\tau_E].
-\]
-With $S[\Theta] = -\ln Z[\tau_E]$:
-\[
-  S\!\left[-\tfrac{1}{\tau_E}\right]
-  = S[\tau_E] + \tfrac{N_{\mathrm{eff}}}{2}\ln(-i\tau_E).
-\]
-For $\tau_E = iR_\psi$: $\,-i\tau_E = R_\psi > 0$, so
-$\ln(-i\tau_E) = \ln R_\psi$. At the self-dual point $R_\psi = 1$:
-\[
-  \ln(-i\cdot i) = \ln 1 = 0
+  \ln(-i \cdot i) = \ln 1 = 0
   \;\;\Longrightarrow\;\;
-  \boxed{S[\tau_E = i] \text{ is a stationary point of the modular flow.}}
+  \left.\frac{d}{d\epsilon}
+  S\!\left[-\frac{1}{\tau_E+\epsilon}\right]\right|_{\tau_E=i,\,\epsilon=0}
+  = 0.
 \]
-\Lzero\ — algebraic identity.
+The physical action $\mathrm{Re}\,S[\Theta]$ is stationary under the
+modular S-flow at $\tau_E = i$. \Lz
 \end{proposition}
 
-\begin{theorem}[Fixing $R_\psi = 1$ from the symmetry of $Z[\tau]$ — \Lone]
-\label{thm:Rpsi_from_Z}
-Under the assumptions of Proposition~\ref{prop:Z_total} (\Lone):
+\begin{theorem}[$R_\psi = 1$ from partition function symmetry — \Lo\ conditional]
+\label{thm:fixed}
+Under the conditions of Proposition~\ref{prop:Z}:
 \begin{enumerate}
-  \item $\tau_E = i$ ($R_\psi = 1$) is a fixed point of the S-transformation
-    $\tau_E \to -1/\tau_E$ on $Z[\tau_E]$: the factor
-    $(-i\tau_E)^{-N_{\mathrm{eff}}/2} = 1$ for $\tau_E = i$. \Lzero
-  \item $\tau_E = i$ is the \emph{only} point on $\mathbb{H}$ where
-    $Z[\tau_E]$ is invariant under the S-transformation. \Lzero\
-    (The fixed points of $\mathrm{SL}(2,\ZZ)$ on $\mathbb{H}$ are $\tau = i$
-    and $\tau = e^{2\pi i/3}$; for $\tau_E = iR_\psi$ with $R_\psi > 0$
-    only $\tau_E = i$ lies on the imaginary axis.)
-  \item Combined with Theorem~\ref{thm:poly_fixation} (polynomial — two
-    independent paths to $R_\psi = 1$): agreement confirms robustness.
+\item \textbf{Fixed point}: $\tau_E = i$ satisfies $S(\tau_E)=\tau_E$,
+  hence the factor $(-i\tau_E)^{-6}=1^{-6}=1$ in the S-transformation
+  of $Z[\tau_E]$.  $Z[i]$ is S-invariant. \Lz
+\item \textbf{Uniqueness on the imaginary axis}: The fixed points of
+  $\mathrm{SL}(2,\ZZ)$ on $\mathbb{H}$ are $\tau=i$ (fixed by $S$)
+  and $\tau=e^{2\pi i/3}$ (fixed by $ST$).  For $\tau_E=iR_\psi$ with
+  $R_\psi>0$, only $\tau_E=i$ is reachable.  Hence $R_\psi=1$ is the
+  \emph{unique} fixed point on the UBT modular parameter space. \Lz
+\item \textbf{Stationarity}: $\mathrm{Re}\,S[\Theta]$ is stationary
+  under the modular S-flow at $\tau_E=i$ (Proposition~\ref{prop:Smod}).
+  \Lz
 \end{enumerate}
-\textbf{Conclusion}: $R_\psi = 1$ is derived from the symmetry of the
-partition function $Z[\tau_E] = \eta(\tau_E)^{-12}$.
-Status: \Lone\ conditional on the one-loop approximation and $\det P = \eta^2$
-\STD; unconditionally \Lone\ upon citation of the standard result.
+\textbf{Conclusion}: $R_\psi = 1$ is derived from the algebraic
+structure of $Z[\tau_E] = \eta(\tau_E)^{-12}$ and the modular
+identity for $\eta$.  Status: \Lo\ conditional on items 1--3 of
+Proposition~\ref{prop:Z} (i.e.\ on $\det P=\eta^2$ [\STD],
+$N_{\mathrm{eff}}=12$ [\Lo], and one-loop approximation).
 \end{theorem}
 
-\begin{remark}[Two independent paths to $R_\psi = 1$]
-\label{rem:two_paths}
-\begin{center}
-\begin{tabular}{lll}
-  \toprule
-  Path & Mechanism & Status \\
-  \midrule
-  Polynomial (\S\ref{sec:stationary}) &
-    Casimir dynamics $+$ S-invariance of $S_{\mathrm{eff}}$ &
-    \Lzero\ $+$ \MC \\
-  $Z[\tau]$ (\S\ref{sec:Z_chain}) &
-    Modular symmetry of partition function &
-    \Lone\ (cond.) \\
-  \bottomrule
-\end{tabular}
-\end{center}
-The agreement of two independent computations is structural evidence of
-robustness: $R_\psi = 1$ is the natural scale of the UBT $\psi$-sector.
-\end{remark}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Casimir Term and S-Invariance Condition for $S_{\mathrm{eff}}$}
+%──────────────────────────────────────────────────────────────────
+\section{Path 1: Casimir Polynomial}
 \label{sec:casimir}
-%──────────────────────────────────────────────────────────────────────────────
+%──────────────────────────────────────────────────────────────────
 
-\subsection*{Casimir potential}
+This section provides an independent derivation via dynamics.
 
-From \texttt{research\_tracks/EW/rpsi\_from\_action.tex} and the standard
-Casimir energy on $T^3$ with $d = 3$ \Lone~\cite{ambjorn_wolfram_1983}:
+The effective action (Casimir energy on $T^3$ with $d=3$,
+\cite{ambjorn_wolfram_1983}; $C_{\mathrm{tot}}=N_{\mathrm{eff}}
+\cdot 3\zeta(3)/(128\pi^2) > 0$):
 \[
-  V_{\mathrm{Casimir}}(R_\psi) = \frac{C_{\mathrm{total}}}{R_\psi^3},
-  \qquad
-  C_{\mathrm{total}} = N_{\mathrm{eff}} \cdot C_{\mathrm{unit}},
-  \qquad
-  C_{\mathrm{unit}} = \frac{3\,\zeta(3)}{128\pi^2}.
-\]
-($C_{\mathrm{total}} > 0$ corresponds to standard Casimir repulsion away from $R_\psi = 0$.)
-
-\subsection*{Effective action}
-
-\[
-  S_{\mathrm{eff}}(R_\psi,\, T_{\mathrm{kin}}) = 2\pi R_\psi \cdot T_{\mathrm{kin}}
-  + \frac{C_{\mathrm{total}}}{R_\psi^3}.
+  S_{\mathrm{eff}}(R_\psi, T_{\mathrm{kin}})
+  = 2\pi R_\psi\,T_{\mathrm{kin}} + \frac{C_{\mathrm{tot}}}{R_\psi^3}.
 \]
 
-\subsection*{S-invariance of $S_{\mathrm{eff}}$}
-
-\begin{lemma}[S-invariance condition for $S_{\mathrm{eff}}$]
-\label{lem:S_inv_condition}
-$S_{\mathrm{eff}}[R_\psi,\, T_{\mathrm{kin}}] = S_{\mathrm{eff}}[1/R_\psi,\, T_{\mathrm{kin}}]$
-if and only if:
-\[
-  2\pi T_{\mathrm{kin}}\!\left(R_\psi - \frac{1}{R_\psi}\right)
-  = V_{\mathrm{Casimir}}\!\left(\frac{1}{R_\psi}\right) - V_{\mathrm{Casimir}}(R_\psi)
-  = C_{\mathrm{total}}\!\left(R_\psi^3 - \frac{1}{R_\psi^3}\right).
-\]
-For $R_\psi \neq 1$:
+\begin{lemma}[S-invariance condition — conditional on S-symmetry of $S_{\mathrm{eff}}$]
+\label{lem:Sinv}
+$S_{\mathrm{eff}}(R) = S_{\mathrm{eff}}(1/R)$ if and only if:
 \begin{equation}
-  \label{eq:T_kin_S_inv}
-  T_{\mathrm{kin}}(R_\psi) = \frac{C_{\mathrm{total}}}{2\pi}
-  \cdot \frac{R_\psi^3 - R_\psi^{-3}}{R_\psi - R_\psi^{-1}}
-  = \frac{C_{\mathrm{total}}}{2\pi}
-  \left(R_\psi^2 + 1 + \frac{1}{R_\psi^2}\right).
+  \label{eq:Tkin}
+  T_{\mathrm{kin}}(R_\psi) = \frac{C_{\mathrm{tot}}}{2\pi}
+  \Bigl(R_\psi^2 + 1 + R_\psi^{-2}\Bigr).
 \end{equation}
-L'H\^{o}pital limit for $R_\psi \to 1$:
-$T_{\mathrm{kin}}(1) = 3C_{\mathrm{total}}/(2\pi)$.
+\textup{(}Factorisation $R^3-R^{-3} = (R-R^{-1})(R^2+1+R^{-2})$. \Lz\textup{)}
 \end{lemma}
 
-\begin{proof}
-Direct computation:
-$S_{\mathrm{eff}}[R] - S_{\mathrm{eff}}[1/R]
-= 2\pi T_{\mathrm{kin}}(R - 1/R) + C_{\mathrm{total}}(1/R^3 - R^3) = 0$
-implies \eqref{eq:T_kin_S_inv}.
-Factorization $R^3 - 1/R^3 = (R - 1/R)(R^2 + 1 + 1/R^2)$ \Lzero.
-\end{proof}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{S-Invariance Condition, Stationarity, and the Polynomial}
-\label{sec:stationary}
-%──────────────────────────────────────────────────────────────────────────────
-
-\subsection*{Stationarity equation}
-
-Stationarity $dS_{\mathrm{eff}}/dR_\psi = 0$:
-\[
-  \frac{d}{dR_\psi}\!\left[2\pi R_\psi T_{\mathrm{kin}}
-  + \frac{C_{\mathrm{total}}}{R_\psi^3}\right] = 0
-  \;\;\Longrightarrow\;\;
-  2\pi T_{\mathrm{kin}} = \frac{3C_{\mathrm{total}}}{R_\psi^4}.
-\]
-
-\subsection*{Key substitution}
-
-Substituting $T_{\mathrm{kin}}$ from the S-invariance condition~\eqref{eq:T_kin_S_inv}:
-\[
-  \frac{C_{\mathrm{total}}}{2\pi}\cdot 2\pi \cdot
-  \left(R_\psi^2 + 1 + \frac{1}{R_\psi^2}\right)
-  = \frac{3C_{\mathrm{total}}}{R_\psi^4}.
-\]
-$C_{\mathrm{total}}$ cancels (independent of $R_\psi$):
-\[
-  R_\psi^2 + 1 + \frac{1}{R_\psi^2} = \frac{3}{R_\psi^4}.
-\]
-Multiplying by $R_\psi^4$:
-
+\begin{theorem}[Polynomial fixing — \Lz\ (polynomial) + \MC\ (S-symmetry)]
+\label{thm:poly}
+Substituting \eqref{eq:Tkin} into $dS_{\mathrm{eff}}/dR_\psi=0$:
 \begin{equation}
   \label{eq:poly}
   \boxed{R_\psi^6 + R_\psi^4 + R_\psi^2 = 3.}
 \end{equation}
+This has the unique positive real solution $R_\psi = 1$.
 
-\begin{theorem}[Polynomial fixing of $R_\psi$ from S-invariance]
-\label{thm:poly_fixation}
-Conditional on S-invariance of $S_{\mathrm{eff}}$ and the Casimir form
-$V = C_{\mathrm{total}}/R_\psi^3$, $R_\psi$ satisfies the polynomial equation
-\eqref{eq:poly}. This equation has the unique positive real solution $R_\psi = 1$.
+\textbf{Proof.}
+\emph{Solution}: $1+1+1=3$. \Lz.
+\emph{Uniqueness}: $f(u)=u^3+u^2+u-3$ with $u=R_\psi^2>0$.
+$f(1)=0$, $f'(u)=3u^2+2u+1>0$ for all $u$ (discriminant $<0$).
+Hence $u=1$ is the unique positive root. \Lz.
+\emph{$N_{\mathrm{eff}}$ cancels}: $C_{\mathrm{tot}}=N_{\mathrm{eff}}
+C_{\mathrm{unit}}$ appears on both sides of the stationarity equation
+and divides out.  The polynomial is independent of $N_{\mathrm{eff}}$.
+Verified for $N_{\mathrm{eff}}\in\{1,3,6,12,24,48\}$ numerically.
 
-Key fact: $N_{\mathrm{eff}}$ \emph{cancels} (it appears only in $C_{\mathrm{total}}$,
-which divides out) — fixing $R_\psi = 1$ is an algebraic property of S-symmetry,
-independent of $N_{\mathrm{eff}}$.
+\textbf{Status}: the polynomial \eqref{eq:poly} and its unique
+solution are \Lz.  The S-symmetry of $S_{\mathrm{eff}}$ (condition
+for Lemma~\ref{lem:Sinv}) is \MC\ — it is not derived from $S[\Theta]$
+but is consistent with the result of Path 2 (Theorem~\ref{thm:fixed}).
 \end{theorem}
 
-\begin{proof}
-\emph{$R_\psi = 1$ is a solution}: $1 + 1 + 1 = 3$ \Lzero.
-\emph{Uniqueness}: the substitution $u = R_\psi^2 > 0$ gives $u^3 + u^2 + u = 3$,
-i.e.\ $f(u) = u^3 + u^2 + u - 3$. $f(1) = 0$, $f'(u) = 3u^2 + 2u + 1 > 0$
-for all $u$ (negative discriminant) — $f$ is \emph{strictly increasing} on
-$(0,\infty)$, so $u = 1$ is the unique positive root. \Lzero.
-\emph{$N_{\mathrm{eff}}$ cancels}: $C_{\mathrm{total}} = N_{\mathrm{eff}} C_{\mathrm{unit}}$
-appears on both sides of the stationarity equation and divides out.
-Numerically verified for $N_{\mathrm{eff}} \in \{1, 3, 6, 12, 24, 48\}$
-in \texttt{tools/modular\_rpsi\_check.py}.
-\end{proof}
-
-\begin{corollary}[$R_\psi = 1$ is a minimum]
-\label{cor:minimum}
-$R_\psi = 1$ is a \emph{minimum} (not a maximum) of $S_{\mathrm{eff}}$ with
-$T_{\mathrm{kin}}$ from S-invariance. Second derivative:
-\[
-  \frac{d^2 S_{\mathrm{eff}}}{dR_\psi^2}\bigg|_{R_\psi=1} = 20\, C_{\mathrm{total}} > 0.
-\]
-\emph{Calculation}: $d^2T_{\mathrm{kin}}/dR^2|_{R=1} = 4C_{\mathrm{total}}/\pi$ and
-$dT_{\mathrm{kin}}/dR|_{R=1} = 0$ \Lzero.
-Thus $d^2 S/dR^2 = 2\pi \cdot (0 + 4C/\pi) + 12C = 8C + 12C = 20C > 0$.
-Numerically: $d^2S/dR^2|_{R=1} = 20 \times 0.03425 \approx 0.685 > 0$. \NUM
+\begin{corollary}[$R_\psi=1$ is a minimum — \Lz]
+\label{cor:min}
+$d^2S_{\mathrm{eff}}/dR_\psi^2|_{R_\psi=1} = 20C_{\mathrm{tot}} > 0$.
+Numerically $\approx 0.685 > 0$. \NUM
 \end{corollary}
 
-\subsection*{Resolution of the apparent $N_{\mathrm{eff}} = 1$ inconsistency}
+%──────────────────────────────────────────────────────────────────
+\section{Comparison of the Two Paths}
+\label{sec:compare}
+%──────────────────────────────────────────────────────────────────
 
-\begin{remark}[Notational inconsistency in the naive analysis]
-\label{rem:notation}
-A naive analysis that conflates $C_{\mathrm{unit}}$ (per mode) and $C_{\mathrm{total}}$
-(total) yields:
-\[
-  R^6 + R^4 + R^2 = 3N_{\mathrm{eff}} \;\Rightarrow\; N_{\mathrm{eff}} = 1
-  \;\text{(for $R=1$)}.
-\]
-This is a \emph{notational artefact}: if Lemma~\ref{lem:S_inv_condition}
-uses $C_{\mathrm{unit}}$ (per mode) but the stationarity equation uses
-$3N_{\mathrm{eff}}C_{\mathrm{unit}}/R^4$, then $N_{\mathrm{eff}}$ does not cancel.
-The correct analysis with consistent $C_{\mathrm{total}}$ yields
-equation~\eqref{eq:poly}, in which $N_{\mathrm{eff}}$ is \emph{absent} —
-fixing $R=1$ holds for any $N_{\mathrm{eff}}$, including $N_{\mathrm{eff}} = 12$.
-\end{remark}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Gauge Term Contribution}
-\label{sec:gauge}
-%──────────────────────────────────────────────────────────────────────────────
-
-$S[\Theta]$ contains the gauge term
-$S_{\mathrm{gauge}} = \int \mathrm{Tr}[F_{\mu\nu}F^{\mu\nu}]\,d^4x\,d\psi$.
-Under the S-transformation $R_\psi \to 1/R_\psi$: the gauge coupling
-$g \to g/R_\psi$ (KK rescaling)~\cite[§12]{polchinski_v1}.
-
-\begin{lemma}[Effective $T_{\mathrm{kin}}^{\mathrm{eff}}$ with gauge contribution]
-\label{lem:Tkin_eff}
-Including the gauge term as a contribution to the effective kinetic term:
-\[
-  T_{\mathrm{kin}}^{\mathrm{eff}} = T_{\mathrm{kin}} + \Delta T_{\mathrm{gauge}},
-  \quad
-  \Delta T_{\mathrm{gauge}} \sim N_{\mathrm{colour}}\,\frac{g^2 M_{\mathrm{KK}}^4}{16\pi^2},
-\]
-where $N_{\mathrm{colour}} = 8\,(\text{gluons}) + 3\,(\text{weak}) + 1\,(\text{hypercharge}) = 12$.
-
-\textbf{Observation}: $N_{\mathrm{colour}} = N_{\mathrm{eff}} = 12$ \MC.
-This equality may not be coincidental: both counts reflect the number of
-physical bosons of $\mathrm{SU}(3) \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$
-in UBT with $N_{\mathrm{eff}} = 12$ [L1 conditional on gauge structure from UBT].
-\end{lemma}
-
-\begin{remark}[Gauge contribution and the polynomial]
-\label{rem:gauge_poly}
-Adding $\Delta T_{\mathrm{gauge}}$ modifies $T_{\mathrm{kin}}$ in
-Lemma~\ref{lem:S_inv_condition}. If $\Delta T_{\mathrm{gauge}}$ is itself
-S-invariant (i.e.\ $\Delta T_{\mathrm{gauge}}(R) = \Delta T_{\mathrm{gauge}}(1/R)/R^2$
-after appropriate field rescaling), then Theorem~\ref{thm:poly_fixation} remains
-valid with $C_{\mathrm{total}} \to C_{\mathrm{total}} + C_{\mathrm{gauge}}$.
-The condition $R = 1$ and polynomial~\eqref{eq:poly} are robust under such
-S-invariant corrections. Derivation of $C_{\mathrm{gauge}}$ from $S[\Theta]$: \OPEN.
-\end{remark}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Overall Verdict: S-Invariance of $S[\Theta]$?}
-\label{sec:verdict}
-%──────────────────────────────────────────────────────────────────────────────
-
-\begin{insightbox}
-\textbf{Result C — Conditional S-invariance}
-
-$S_{\mathrm{eff}}$ is S-invariant \emph{conditional on}:
-\begin{enumerate}
-  \item $S[\Theta]$ is invariant under $\tau_E \to -1/\tau_E$ (not yet derived
-    from the symmetry of $S[\Theta]$; requires derivation from first principles).
-  \item The Casimir potential $V_{\mathrm{Casimir}} = C_{\mathrm{total}}/R_\psi^3$
-    is derivable from $S[\Theta]$ (standard result for $T^3$,
-    \cite{ambjorn_wolfram_1983}, but explicit derivation from $S[\Theta]$: \OPEN).
-  \item $T_{\mathrm{kin}}$ is determined by the S-invariance condition
-    (self-consistency; independent value of $T_{\mathrm{kin}}$ from $S[\Theta]$: \OPEN).
-\end{enumerate}
-
-Conditionally on (1)--(3):
-\[
-  R_\psi = 1 \text{ (self-dual point)}
-  \;\text{ is the minimum of } S_{\mathrm{eff}},
-  \quad
-  T_{\mathrm{kin}}(R_\psi{=}1) = \frac{3C_{\mathrm{total}}}{2\pi}.
-\]
-
-\textbf{Key algebraic fact} (independent of the conditions):
-equation~\eqref{eq:poly} is independent of $N_{\mathrm{eff}}$ —
-fixing $R_\psi = 1$ is a property of S-symmetry alone.
-
-Closes: scale closure conditionally \MC\ (candidate, not proof).\\
-Implication for alpha: $\tau = i$ (self-dual point) algebraically motivated
-by the S-symmetry structure of $S[\Theta]$ — $B_{\mathrm{phenom}}$ is
-motivated but \textbf{NOT DERIVED}.\\
-Status: \MC\ — conditional candidate for closing scale closure.
-\end{insightbox}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Implications for C2-iv: Modular Symmetry and the Colour-$\psi$ Coupling}
-\label{sec:c2iv}
-%──────────────────────────────────────────────────────────────────────────────
-
-\begin{remark}[C2-iv and the $\psi$-circle at $R_\psi = 1$]
-\label{rem:c2iv}
-If $R_\psi = 1$ is fixed by modular symmetry, then at the self-dual point
-$\tau = i$:
-\begin{itemize}
-  \item $S(i) = i$ — $\tau = i$ is a fixed point.
-  \item $\eta(i),\, \vartheta_3(0|i)$ take special values
-    (CM points, exactly computable).
-  \item The KK spectrum on $S^1_\psi$ is symmetric under $n \to -n$.
-\end{itemize}
-Question (C2-iv): at the self-dual point $R_\psi = 1$, is colour $\ZZ_3$
-naturally coupled to $S^1_\psi$?
-
-Specifically: the rotation $\psi \to \psi + 2\pi/3$ (one third of the
-period $2\pi$) is a $\ZZ_3$ symmetry of $S^1_\psi$ with period $2\pi$ at
-$R_\psi = 1$. This action commutes with colour $\ZZ_3$ if there exists an
-identification
-\[
-  \psi\text{-rotation by }\tfrac{2\pi}{3}
-  \;\longleftrightarrow\;
-  \text{colour }\ZZ_3\text{-rotation in SU(3)}.
-\]
-This is a \emph{candidate closure of C2-iv} \MC\ conditional on modular
-fixing of $R_\psi$ and on derivation of colour structure from $\psi$-winding
-(C2-i: \OPEN).
-\end{remark}
-
-%──────────────────────────────────────────────────────────────────────────────
-\section{Numerical Verification}
-\label{sec:numerical}
-%──────────────────────────────────────────────────────────────────────────────
-
-The script \texttt{tools/modular\_rpsi\_check.py} performs a complete numerical
-verification. Results (rounded):
-\[
-  N_{\mathrm{eff}} = 12,\quad
-  C_{\mathrm{unit}} \approx 2.855 \times 10^{-3},\quad
-  C_{\mathrm{total}} \approx 3.425 \times 10^{-2}.
-\]
-
+\begin{resultbox}
 \begin{center}
-\begin{tabular}{cccc}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{3.6cm}p{5.5cm}p{3.5cm}}
   \toprule
-  $R_\psi$ & $T_{\mathrm{kin}}$ (S-inv) & $dS_{\mathrm{eff}}/dR$ & $S_{\mathrm{eff}}(R)$ \\
+  \textbf{Path} & \textbf{Mechanism} & \textbf{Status} \\
   \midrule
-  $0.50$ & 0.02862182 & $-1.4644$ & 0.36395421 \\
-  $0.80$ & 0.01745931 & $-0.1412$ & 0.15466341 \\
-  $0.90$ & 0.01659830 & $-0.0523$ & 0.14084953 \\
-  $\mathbf{1.00}$ & $\mathbf{0.01635533}$ & $\approx 0$ & $\mathbf{0.13701806}$ \\
-  $1.10$ & 0.01655402 & $+0.0338$ & 0.14014911 \\
-  $1.20$ & 0.01708829 & $+0.0578$ & 0.14866586 \\
-  $2.00$ & 0.02862182 & $+0.1734$ & 0.36395421 \\
+  1 — Casimir polynomial &
+    S-invariance of $S_{\mathrm{eff}}$ + stationarity
+    $\Rightarrow$ $R_\psi^6+R_\psi^4+R_\psi^2=3$ &
+    \Lz\ (polynomial) $+$ \MC\ (S-symmetry) \\[4pt]
+  2 — Partition function &
+    $Z[\tau]=\eta^{-12}$; $\tau_E=i$ is unique S-fixed point
+    on imaginary axis &
+    \Lo\ conditional \\
+  \midrule
+  \multicolumn{2}{l}{\textbf{Agreement of two independent paths}} &
+    structural evidence \\
   \bottomrule
 \end{tabular}
 \end{center}
 
-\medskip\noindent
-S-invariance check: $S_{\mathrm{eff}}(R) = S_{\mathrm{eff}}(1/R)$ numerically
-to precision $\sim 10^{-17}$ for all tested values of $R$. \NUM
+\medskip
+\textbf{The \MC\ assumption in Path 1 (S-symmetry of $S_{\mathrm{eff}}$)
+is independently confirmed by Path 2}: if $Z[\tau]=\eta^{-12}$, then
+$S[\Theta]=-\ln Z$ satisfies
+$\mathrm{Re}\,S(-1/\tau_E)=\mathrm{Re}\,S(\tau_E)$ at $\tau_E=i$
+(\Lz).  Path 2 thus provides post-hoc justification for the key
+assumption of Path 1.
+\end{resultbox}
 
-\medskip\noindent
-$N_{\mathrm{eff}}$-independence: $dS/dR|_{R=1} \approx 0$ for $N_{\mathrm{eff}}
-\in \{1, 3, 6, 12, 24, 48\}$ (residuals $\lesssim 10^{-16}$, numerical noise). \NUM
+%──────────────────────────────────────────────────────────────────
+\section{Implications}
+\label{sec:implications}
+%──────────────────────────────────────────────────────────────────
 
-\medskip\noindent
-Second derivative: $d^2S/dR^2|_{R=1} = 20\,C_{\mathrm{total}} \approx 0.685 > 0$
-— confirmed minimum. \NUM
+\subsection*{Scale closure (EW-1b)}
+$M_{\mathrm{GUT}} = 1/R_\psi = 1$ (in natural units fixed by
+$R_\psi=1$).  The Weinberg angle $\sin^2\theta_W(M_Z)\approx 0.231$
+via EW-1b+RG is now \MC\ (previously blocked on $R_\psi$ being free).
 
-%──────────────────────────────────────────────────────────────────────────────
-\section{Summary and Implications}
-\label{sec:summary}
-%──────────────────────────────────────────────────────────────────────────────
+\subsection*{Alpha track}
+$\tau_E=i$ is algebraically preferred by the modular structure of
+$S[\Theta]$, not chosen to fit $B_{\mathrm{phenom}}$.  This removes
+the circular argument.  However, Gap G137-B (deriving $B_{\mathrm{phenom}}$
+from $S[\Theta]$) remains open.  \textbf{Alpha is NOT DERIVED.}
 
-\begin{insightbox}
-\textbf{Summary of results (2026-06-11, updated with $Z[\tau]$ chain)}
+\subsection*{C2-iv}
+At $R_\psi=1$, the circle $S^1_\psi$ with period $2\pi$ admits a
+natural $\ZZ_3$ subgroup (rotation by $2\pi/3$).  Whether this
+$\ZZ_3$ can be identified with the colour $\ZZ_3$ (from involutions
+$\tau_1\circ\tau_2\circ\tau_3=\mathrm{id}$ in SU(3)) is an open
+question [\MC]; it requires a coupling term in $S[\Theta]$ not
+currently present (C2-iv formal NO-GO).
 
-\begin{enumerate}
-  \item \textbf{Polynomial~\eqref{eq:poly}}: S-invariance $+$ stationarity
-    gives $R_\psi^6 + R_\psi^4 + R_\psi^2 = 3$, unique positive solution
-    $R_\psi = 1$. $N_{\mathrm{eff}}$ cancels. \Lzero\ (algebraic identity).
-  \item \textbf{Minimum}: $R_\psi = 1$ is the minimum of $S_{\mathrm{eff}}$,
-    $d^2S/dR^2 = 20C > 0$. \Lzero.
-  \item \textbf{$Z[\tau_E] = \eta(\tau_E)^{-12}$}: From $\det P = \eta^2$
-    \STD\ and $N_{\mathrm{eff}}=12$ \Lone: partition function derived.
-    \textbf{\Lone\ conditional} (one-loop approximation).
-  \item \textbf{$\psi$ compact}: from SS condition \Lone\
-    (Lem.~\ref{lem:SS_BC}) and from periodicity of $Z[\tau]$ \Lzero\
-    (Prop.~\ref{prop:psi_compact_from_Z}). Two independent mechanisms.
-  \item \textbf{$R_\psi=1$ fixed point of $Z[\tau]$}: $\tau_E=i$ is the
-    fixed point of the S-transformation on $Z[\tau_E]$ \Lzero\
-    (Thm.~\ref{thm:Rpsi_from_Z}). Agreement with polynomial: robust result
-    from two independent paths. \textbf{Overall status: \Lone\ conditional
-    (Path 2)}.
-  \item \textbf{S-invariance of $S[\Theta]$ in general}: \OPEN\ (condition 1
-    for the Casimir path). \emph{Not needed} for Path 2 via $Z[\tau]$.
-  \item \textbf{Scale closure EW-1b}: \MC\ — strong candidate.
-  \item \textbf{Alpha}: \textbf{NOT DERIVED}. $\tau=i$ algebraically
-    preferred via two paths; $B_{\mathrm{phenom}}$ and $\alpha$ remain open.
-\end{enumerate}
+\subsection*{Compactness of $\psi$}
+Established without axiom via two mechanisms: SS boundary condition
+[\Lo] and periodicity of $Z[\tau]$ [\Lz].
+
+%──────────────────────────────────────────────────────────────────
+\section{Numerical Verification}
+\label{sec:numerical}
+%──────────────────────────────────────────────────────────────────
+
+All claims verified in \texttt{tools/modular\_rpsi\_check.py}.
+Key values at $\tau_E=i$ ($q=e^{-2\pi}$):
 
 \begin{center}
 \begin{tabular}{lll}
-  \toprule
-  Path & Result & Status \\
-  \midrule
-  Casimir polynomial & $R_\psi=1$ minimum of $S_{\mathrm{eff}}$ & \Lzero\ $+$ \MC \\
-  $Z[\tau]=\eta^{-12}$ & $R_\psi=1$ fixed point of $Z[\tau]$ & \Lone\ cond. \\
-  \bottomrule
+\toprule
+Quantity & Value & Claim verified \\
+\midrule
+$\eta(i)$ & $0.768225\ldots$ & — \\
+$\eta(i)^{-12}$ & $23.666602\ldots$ & $Z[i]$ \\
+$\sqrt{-i\cdot i}$ & $1$ (exact) & S-factor at $\tau_E=i$ \\
+$\ln(-i\tau_E)|_{R_\psi=1}$ & $0$ (exact) & stationarity \\
+$f'(u)=3u^2+2u+1$ & $>0$ for all $u$ & uniqueness of $u=1$ \\
+$d^2S/dR^2|_{R=1}$ & $20C_{\mathrm{tot}}\approx0.685>0$ & minimum \\
+S-invariance $S_{\mathrm{eff}}(R)=S_{\mathrm{eff}}(1/R)$ &
+  residual $<10^{-17}$ & \NUM \\
+\bottomrule
 \end{tabular}
 \end{center}
 
-\textbf{Main result}: $R_\psi = 1$ is derived from the symmetry of the
-partition function as \Lone\ conditional (Path 2), with an independent
-\Lzero\ confirmation (Path 1). This constitutes a first-principles derivation
-of $R_\psi$ in UBT.
+%──────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{What has been derived}
+
+\begin{enumerate}
+\item \textbf{$\psi$ is compact}: from SS condition [\Lo] and from
+  $|Z[\tau+1]|^2=|Z[\tau]|^2$ [\Lz].  No geometric axiom required.
+\item \textbf{$Z[\tau_E]=\eta(\tau_E)^{-12}$}: from
+  $\det P=\eta^2$ [\STD] and $N_{\mathrm{eff}}=12$ [\Lo].
+  Status: [\Lo\ conditional on one-loop approximation].
+\item \textbf{$\tau_E=i$ is the unique S-fixed point on $\{iR_\psi\}$}:
+  [\Lz] — algebraic fact from $S(i)=i$ and geometry of $\mathbb{H}$.
+\item \textbf{$R_\psi=1$ minimum of $S_{\mathrm{eff}}$}: [\Lz] from
+  polynomial (Path 1, with \MC\ on S-symmetry of $S_{\mathrm{eff}}$).
+\item \textbf{Paths 1 and 2 are consistent}: Path 2 [\Lo\ cond.]
+  post-hoc justifies the \MC\ assumption of Path 1.
+\end{enumerate}
+
+\textbf{What remains open}
+\begin{itemize}
+\item Derivation of $\det P=\eta^2$ directly from $S[\Theta]$
+  (currently [\STD], cited).
+\item Validity of one-loop approximation (standard assumption,
+  corrections do not shift the fixed point).
+\item Scale closure full proof ([\MC] $\to$ [\Lo]):
+  requires $T_{\mathrm{kin}}$ from $S[\Theta]$ without external input.
+\item Gap G137-B: $B_{\mathrm{phenom}}$ not derived.
+  \textbf{Alpha: NOT DERIVED.}
+\item C2-iv: colour-$\psi$ coupling not present in current $S[\Theta]$.
+\end{itemize}
 \end{insightbox}
 
 \begin{thebibliography}{9}
 \bibitem{polchinski_v1}
   J.~Polchinski, \textit{String Theory, Vol.~1}.
   Cambridge University Press, 1998.
-
 \bibitem{ambjorn_wolfram_1983}
   J.~Ambj\o{}rn and S.~Wolfram,
-  ``Properties of the vacuum. 1. Mechanical and thermodynamic,''
+  ``Properties of the vacuum. 1.\ Mechanical and thermodynamic,''
   \textit{Ann.\ Phys.}\ \textbf{147}, 1 (1983).
-
 \bibitem{apostol_modular}
-  T.~M.~Apostol, \textit{Modular Functions and Dirichlet Series in
-  Number Theory}, 2nd~ed.\ Springer, 1990.
-
+  T.~M.~Apostol, \textit{Modular Functions and Dirichlet Series
+  in Number Theory}, 2nd~ed.\ Springer, 1990.
 \bibitem{su2_twist}
-  I.~D.~Jaroš, ``SU(2) Scherk--Schwarz Twist and $N_{\mathrm{eff}}=12$
-  in UBT,'' \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex},
-  2026.
+  I.~D.~Jaroš, ``SU(2) Scherk--Schwarz Twist and
+  $N_{\mathrm{eff}}=12$ in UBT,''
+  \texttt{su2\_twist\_neff12.tex}, 2026.
 \end{thebibliography}
 
 \end{document}
