@@ -294,6 +294,21 @@ be derived from $S[\Theta]$ separately.
 |---|-------|-------|--------|
 | alpha_matrix | Gap closure matrix for T3_ALPHA | [canonical] | `canonical/alpha/alpha_gap_closure_matrix.tex` |
 
+### Modular Symmetry and R_ψ Fixation (v62, 2026-06-11)
+
+| ID | Claim | Level | Source |
+|----|-------|-------|--------|
+| psi-compact-SS | ψ compact from SS BC: Θ(ψ+2πR_ψ)=σ₃Θσ₃ | [L1] | `su2_twist_neff12.tex` |
+| psi-compact-Z | ψ compact from periodicity \|Z[τ+1]\|²=\|Z[τ]\|² | [L0] | `modular_symmetry_rpsi.tex Prop prop:compact` |
+| Z-total | Z[τ_E]=η(τ_E)^{-12} from det P=η² [STD] + N_eff=12 [L1] | [L1 conditional] | `modular_symmetry_rpsi.tex Prop prop:Z` |
+| Rpsi-sdp | τ_E=i unique S-fixed point on {iR_ψ : R_ψ>0} | [L0] | `modular_symmetry_rpsi.tex Def def:sdp` |
+| Rpsi-stat | Re S[Θ] stationary under modular flow at τ_E=i | [L0] | `modular_symmetry_rpsi.tex Prop prop:Smod` |
+| Rpsi-Z | R_ψ=1 fixed point of Z[τ] symmetry | [L1 conditional] | `modular_symmetry_rpsi.tex Thm thm:fixed` |
+| Rpsi-poly | Polynomial R⁶+R⁴+R²=3 unique solution R_ψ=1; N_eff cancels | [L0] | `modular_symmetry_rpsi.tex Thm thm:poly` |
+| Rpsi-min | R_ψ=1 is minimum of S_eff, d²S/dR²=20C>0 | [L0]+[NUM] | `modular_symmetry_rpsi.tex Cor cor:min` |
+
+**Conditions for [L1 conditional]**: (i) det P_eff=η² [STD, Polchinski §7.2]; (ii) N_eff=12 [L1]; (iii) one-loop approximation (higher loops do not shift the fixed point). All conditions are explicit.
+
 ---
 
 ## Miscellaneous Proved Results

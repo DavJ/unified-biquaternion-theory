@@ -1,3 +1,16 @@
+## 2026-06-11 (v62 — modular_symmetry_rpsi.tex: FINAL EN version)
+
+### New results
+- ψ compact: SS [L1] + periodicity Z[τ] [L0] — no geometric axiom needed
+- Z[τ_E]=η(τ_E)^{-12}: [L1 conditional] from det P=η² [STD] + N_eff=12 [L1]
+- R_ψ=1: unique S-fixed point on {iR_ψ} [L0]; stationarity of Re S[Θ] [L0]
+- R_ψ=1 from partition function symmetry: [L1 conditional]
+- Polynomial R⁶+R⁴+R²=3, N_eff cancels [L0] — two independent paths agree
+- Path 1 [MC] post-hoc justified by Path 2 [L1 cond.]
+- T1_GR / T2_GAUGE / T3_ALPHA: no change
+
+---
+
 ## 2026-06-11 (v59 — C2-iv formal NO-GO; λ consistency remark)
 
 ### New results registered
@@ -559,17 +572,23 @@ Archive: `reports/failed_routes_graveyard.md`
 - Primary effort is redirected to T1_GR submission and T2_GAUGE completion.
 - **Do not pursue** A1, A2, A3, A4, or any new alpha route without explicit instruction.
 
-### Modulární symetrie sync (2026-06-11)
+### Modular symmetry sync (2026-06-11, updated to FINAL)
 
 | Claim | Status | Source |
 |-------|--------|--------|
-| $R_\psi=1$ from modular S-invariance of $S_{\mathrm{eff}}$ | [MC] conditional | `modular_symmetry_rpsi.tex` |
-| Polynomial $R^6+R^4+R^2=3$, solution $R=1$ | [L0] (algebraic identity) | `modular_symmetry_rpsi.tex §4` |
-| $N_{\mathrm{eff}}$ cancels — fixation independent of $N_{\mathrm{eff}}$ | [L0] | `modular_symmetry_rpsi.tex §4` |
-| $T_{\mathrm{kin}}$ derived from S-invariance | conditional on (a)-(c) | `modular_symmetry_rpsi.tex §6` |
-| S-invariance of $S[\Theta]$ from first principles | [OPEN] | not derived |
-| Implications for $\alpha$: $\tau=i$ algebraically motivated | [MC] | `modular_symmetry_rpsi.tex §7` |
+| $\psi$ compact from SS boundary condition | [L1] | `su2_twist_neff12.tex` |
+| $\psi$ compact from periodicity $|Z[\tau+1]|^2=|Z[\tau]|^2$ | [L0] | `modular_symmetry_rpsi.tex Prop~\ref{prop:compact}` |
+| $Z[\tau_E]=\eta(\tau_E)^{-12}$ from $\det P=\eta^2$ [STD] + $N_{\mathrm{eff}}=12$ [L1] | [L1 conditional] | `modular_symmetry_rpsi.tex Prop~\ref{prop:Z}` |
+| $\tau_E=i$ unique S-fixed point on $\{iR_\psi : R_\psi>0\}$ | [L0] | `modular_symmetry_rpsi.tex Def~\ref{def:sdp}` |
+| $\mathrm{Re}\,S[\Theta]$ stationary at $\tau_E=i$ (modular flow) | [L0] | `modular_symmetry_rpsi.tex Prop~\ref{prop:Smod}` |
+| $R_\psi=1$ fixed point from $Z[\tau]$ symmetry | [L1 conditional] | `modular_symmetry_rpsi.tex Thm~\ref{thm:fixed}` |
+| Polynomial $R^6+R^4+R^2=3$, unique solution $R=1$ | [L0] | `modular_symmetry_rpsi.tex Thm~\ref{thm:poly}` |
+| $N_{\mathrm{eff}}$ cancels — result holds for any $N_{\mathrm{eff}}$ | [L0] | `modular_symmetry_rpsi.tex Thm~\ref{thm:poly}` |
+| S-invariance of $S_{\mathrm{eff}}$ (Path 1 condition) | [MC] post-hoc justified by Path 2 | `modular_symmetry_rpsi.tex §7` |
+| S-invariance of $S[\Theta]$ from first principles | [OPEN] | not yet derived |
+| Implications for $\alpha$: $\tau=i$ algebraically preferred | [L0] (consequence) | `modular_symmetry_rpsi.tex §8` |
 | Alpha | **NOT DERIVED** | — |
+| Conditions for [L1 cond.]: $\det P=\eta^2$ [STD]; $N_{\mathrm{eff}}=12$ [L1]; one-loop approx. [technical] | explicit | `modular_symmetry_rpsi.tex Prop~\ref{prop:Z}` |
 
 Master portfolio file: `canonical/alpha/ALPHA_PORTFOLIO_MASTER.md`  
 Detailed route audit: `canonical/alpha/ALPHA_MASTER_STATUS.md`  
