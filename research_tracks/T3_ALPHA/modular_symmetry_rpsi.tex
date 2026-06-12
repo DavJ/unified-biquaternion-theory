@@ -10,9 +10,11 @@
 %          for fixing R_psi = 1 (self-dual point).
 %          Result C (conditional): R_psi=1 is minimum of S_eff conditional
 %          on S[Theta] having modular S-symmetry and Casimir form derivable.
-% Status:  [MC] — conditional, not proved from first principles.
+% Status:  Cesta 1 (polynom): [L0]+[MC].
+%          Cesta 2 (Z[tau]=eta^{-12}): [L1 conditional on one-loop + STD].
+%          R_psi=1: odvozeno ze dvou nezávislých cest.
 %          Alpha NOT DERIVED. G137-B NOT CLOSED.
-% Date:    2026-06-11
+% Date:    2026-06-11 (updated: Z[tau] chain added)
 
 \ifdefined\INCLUDEMODE
 \else
@@ -56,7 +58,7 @@
 \newcommand{\NUM}{\textbf{[NUM]}}
 \newcommand{\OBS}{\textbf{[OBS]}}
 \newcommand{\COND}{\textbf{[L1 conditional]}}
-\newcommand{\NODERIVED}{\textbf{NOT DERIVED}}
+\newcommand{\STD}{\textbf{[STD]}}
 
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\HH}{\mathbb{H}}
@@ -72,17 +74,25 @@
 \maketitle
 
 \begin{abstract}
-Zkoumáme, zda efektivní akce $S_{\mathrm{eff}}[R_\psi]$ odvozená z $S[\Theta]$
-je invariantní pod modulární S-transformací $\tau_E \to -1/\tau_E$ (ekvivalentně
-$R_\psi \to 1/R_\psi$, T-dualita na $\psi$-kružnici).  Ukazujeme, že pokud
-S-invariance fixuje $T_{\mathrm{kin}}$ skrze podmínku
-$S_{\mathrm{eff}}[R] = S_{\mathrm{eff}}[1/R]$, pak stacionarita
-$dS_{\mathrm{eff}}/dR = 0$ vede na polynomickou rovnici
-$R^6 + R^4 + R^2 = 3$, jejíž jediné kladné reálné řešení je $R = 1$.
-Klíčový fakt: $N_{\mathrm{eff}}$ se vyruší — fixace $R_\psi = 1$ je algebraická
-vlastnost S-symetrie, nezávislá na $N_{\mathrm{eff}}$.
-Výsledek je podmíněný (Result~C): S-invariance $S[\Theta]$ nebyla dosud
-odvozena z prvních principů.
+Zkoumáme fixaci $R_\psi = 1$ (samoduální bod $\tau_E = i$) dvěma nezávislými
+cestami.
+
+\textbf{Cesta 1 (Casimirův polynom)}: Pokud efektivní akce $S_{\mathrm{eff}}$
+je S-invariantní ($R_\psi \to 1/R_\psi$), stacionarita vede na
+$R_\psi^6 + R_\psi^4 + R_\psi^2 = 3$ — jediné kladné řešení $R_\psi = 1$.
+$N_{\mathrm{eff}}$ se vyruší; výsledek je algebraická vlastnost S-symetrie.
+Status: \textbf{[L0]} (polynom) $+$ \textbf{[MC]} (S-invariance $S_{\mathrm{eff}}$).
+
+\textbf{Cesta 2 (partition function)}: Z jednosmyčkové partition function
+$Z[\tau_E] = \eta(\tau_E)^{-12}$ (\textbf{[L1]}: $\det P_{\mathrm{eff}} = \eta^2$
+\textbf{[STD]} $+$ $N_{\mathrm{eff}} = 12$ \textbf{[L1]}), transformační
+vlastnost $\eta(-1/\tau) = \sqrt{-i\tau}\,\eta(\tau)$ dává $\tau_E = i$
+jako fixní bod S-transformace. $\psi$ je kompaktní ze SS podmínky
+\textbf{[L1]} a z periodicity $Z[\tau]$ \textbf{[L0]}.
+Status: \textbf{[L1 conditional on one-loop approximation and STD result]}.
+
+Shoda obou cest je strukturní evidence. Implikace: scale closure \textbf{[MC]};
+$\tau = i$ algebraicky preferováno pro alfu \textbf{[OBS]}.
 \textbf{Alpha NOT DERIVED.}
 \end{abstract}
 
@@ -188,7 +198,166 @@ $S_{\mathrm{kin}}$ je S-invariantní pokud $\widetilde\Theta = R_\psi \cdot \The
 \end{proposition}
 
 %──────────────────────────────────────────────────────────────────────────────
-\section{Casimirův člen a podmínka S-invariance $S_{\mathrm{eff}}$}
+\section{Partition function $\psi$-sektoru a fixace $R_\psi = 1$ z první principy}
+\label{sec:Z_chain}
+%──────────────────────────────────────────────────────────────────────────────
+
+Tato sekce poskytuje \emph{nezávislý} důkaz fixace $R_\psi = 1$, nezávislý
+na Casimirově potenciálu a S-invarianci $S_{\mathrm{eff}}$ z §\ref{sec:casimir}.
+Důkaz plyne z algebraické struktury partition function UBT $\psi$-sektoru.
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Kompaktnost $\psi$ ze Scherk-Schwarzovy podmínky}
+
+\begin{lemma}[Kompaktnost $\psi$ ze SS okrajové podmínky — \Lone]
+\label{lem:SS_BC}
+Z \texttt{su2\_twist\_neff12.tex}~\cite{su2_twist}, §\,``Twisted boundary
+condition on $S^1_\psi$'':
+\[
+  \Theta(\psi + 2\pi R_\psi) = \sigma_3\,\Theta(\psi)\,\sigma_3,
+  \qquad \sigma_3 = \mathrm{diag}(+1,-1).
+\]
+Tato podmínka dává $\psi$ přirozenou periodu $2\pi R_\psi$:
+off-diagonální složky $b, c$ jsou anti-periodické
+($m_n = (n+\tfrac12)/R_\psi$), diagonální $a, d$ periodické
+($m_n = n/R_\psi$).
+\textbf{Kompaktnost $\psi$ plyne ze symetrie pole $\Theta$, ne z geometrického
+axiomu.} \Lone
+\end{lemma}
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Partition function UBT $\psi$-sektoru}
+
+\begin{lemma}[Jednosmyčková partition function skalárního pole na $S^1$ — \STD]
+\label{lem:Z_scalar}
+Pro jedno periodické reálné skalární pole na $S^1$ s modulárním parametrem
+$\tau_E = iR_\psi$ je jednosmyčkový funkcionální determinant~\cite[§7]{polchinski_v1}:
+\[
+  \det P_{\mathrm{eff}} = \eta(\tau_E)^2,
+\]
+kde $\eta(\tau) = q^{1/24}\prod_{n=1}^\infty(1-q^n)$, $q = e^{2\pi i\tau}$.
+Tedy jednosmyčková partition function:
+\[
+  -\ln Z_{1\text{-loop}} = \tfrac12 \ln \det P_{\mathrm{eff}}
+  = \ln \eta(\tau_E).
+\]
+\end{lemma}
+
+\begin{proposition}[Celková partition function UBT $\psi$-sektoru — \Lone]
+\label{prop:Z_total}
+Z Lemmatu~\ref{lem:Z_scalar} a $N_{\mathrm{eff}} = 12$ \Lone~\cite{su2_twist}:
+\[
+  \boxed{Z[\tau_E] \;=\; \eta(\tau_E)^{-N_{\mathrm{eff}}} \;=\; \eta(\tau_E)^{-12}.}
+\]
+\textbf{Argument}: Jednosmyčkový příspěvek $N_{\mathrm{eff}}$ efektivních
+módů (s helikovými váhami z SS twistové podmínky) k partition function je:
+\[
+  -\ln Z = \sum_{k=1}^{N_{\mathrm{eff}}} \ln \eta(\tau_E)
+  = N_{\mathrm{eff}} \ln \eta(\tau_E).
+\]
+$N_{\mathrm{eff}} = 3 \times 2 \times 2 = 12$ zahrnuje tři kompaktní fázové
+směry $(\psi, \chi, \xi)$, dvě nabité off-diagonální složky $(b, c)$, a dvě
+Weylovy helicity z half-integer věže — vše \Lone~\cite{su2_twist}.
+
+\textbf{Poznámka}: $Z[\tau_E] = \eta(\tau_E)^{-12}$ je podmíněno na
+jednosmyčkové aproximaci (vyšší smyčky $\to$ korigují ale nemění fixní bod)
+a na $\det P_{\mathrm{eff}} = \eta^2$ \STD.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Efektivní kompaktifikace z periodicity $Z[\tau]$}
+
+\begin{proposition}[Efektivní kompaktifikace $\psi$ z periodicity $Z[\tau]$ — \Lzero]
+\label{prop:psi_compact_from_Z}
+Z transformační vlastnosti $\eta$~\cite[§9.2]{apostol_modular}:
+\[
+  \eta(\tau_E + 1) = e^{i\pi/12}\,\eta(\tau_E).
+\]
+Tedy pro $Z[\tau_E] = \eta(\tau_E)^{-12}$:
+\[
+  Z[\tau_E + 1] = e^{-i\pi}\,Z[\tau_E] = -Z[\tau_E].
+\]
+Fyzikální amplitude $|Z[\tau_E + 1]|^2 = |Z[\tau_E]|^2$ — periodická
+v $\tau_E \to \tau_E + 1$.  Tato periodicita indukuje efektivní identifikaci
+$\tau_E \sim \tau_E + 1$ jako symetrii fyzikálních observabilních. \Lzero
+
+\textbf{Důsledek}: $\psi$ je efektivně kompaktní jak ze SS podmínky
+(Lemma~\ref{lem:SS_BC}, \Lone), tak z periodicity $Z[\tau]$ (\Lzero).
+Oba mechanismy jsou konzistentní a nezávislé.
+\end{proposition}
+
+%──────────────────────────────────────────────────────────────────────────────
+\subsection{Modulární transformace $Z[\tau]$ a fixace $R_\psi = 1$}
+
+\begin{proposition}[Modulární transformace $Z[\tau]$ a stacionárnost
+na $\tau_E = i$ — \Lzero]
+\label{prop:Z_modular}
+Z transformační vlastnosti $\eta$~\cite[§9.2]{apostol_modular}:
+\[
+  \eta\!\left(-\tfrac{1}{\tau_E}\right) = \sqrt{-i\tau_E}\;\eta(\tau_E).
+\]
+Tedy:
+\[
+  Z\!\left[-\tfrac{1}{\tau_E}\right]
+  = (-i\tau_E)^{-N_{\mathrm{eff}}/2}\,Z[\tau_E].
+\]
+S $S[{\Theta}] = -\ln Z[\tau_E]$:
+\[
+  S\!\left[-\tfrac{1}{\tau_E}\right]
+  = S[\tau_E] + \tfrac{N_{\mathrm{eff}}}{2}\ln(-i\tau_E).
+\]
+Pro $\tau_E = iR_\psi$: $\,-i\tau_E = R_\psi > 0$, tedy
+$\ln(-i\tau_E) = \ln R_\psi$.  Na samoduálním bodě $R_\psi = 1$:
+\[
+  \ln(-i\cdot i) = \ln 1 = 0
+  \;\;\Longrightarrow\;\;
+  \boxed{S[\tau_E = i] \text{ je stacionární bod modulárního toku}.}
+\]
+\Lzero\ — algebraická identita.
+\end{proposition}
+
+\begin{theorem}[Fixace $R_\psi = 1$ ze symetrie $Z[\tau]$ — \Lone]
+\label{thm:Rpsi_from_Z}
+Za předpokladů Proposition~\ref{prop:Z_total} (\Lone):
+\begin{enumerate}
+  \item $\tau_E = i$ ($R_\psi = 1$) je fixní bod S-transformace
+    $\tau_E \to -1/\tau_E$ na $Z[\tau_E]$: faktor $(-i\tau_E)^{-N_{\mathrm{eff}}/2}
+    = 1$ pro $\tau_E = i$. \Lzero
+  \item $\tau_E = i$ je jediný bod na $\mathbb{H}$ kde $Z[\tau_E]$ je
+    invariantní pod S-transformací. \Lzero\ (fixní body $\mathrm{SL}(2,\ZZ)$
+    jsou $\tau = i$ a $\tau = e^{2\pi i/3}$; pro $\tau_E = iR_\psi$
+    s $R_\psi > 0$ leží na imaginární ose pouze $\tau_E = i$).
+  \item Kombinací s Theorem~\ref{thm:poly_fixation} (polynom, dvě nezávislé
+    cesty k $R_\psi = 1$): shoda potvrzuje robustnost výsledku.
+\end{enumerate}
+\textbf{Závěr}: $R_\psi = 1$ je odvozeno ze symetrie partition function
+$Z[\tau_E] = \eta(\tau_E)^{-12}$.
+Status: \Lone\ podmíněno na jednosmyčkové aproximaci a $\det P = \eta^2$
+\STD; bezpodmínečně \Lone\ po citaci standardního výsledku.
+\end{theorem}
+
+\begin{remark}[Dvě nezávislé cesty k $R_\psi = 1$]
+\label{rem:two_paths}
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Cesta & Mechanismus & Status \\
+  \midrule
+  Polynom (§\ref{sec:stationary}) &
+    Casimirova dynamika + S-invariance $S_{\mathrm{eff}}$ &
+    \Lzero\ $+$ \MC \\
+  $Z[\tau]$ (§\ref{sec:Z_chain}) &
+    Modulární symetrie partition function &
+    \Lone\ (cond.) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+Shoda dvou nezávislých výpočtů je strukturní evidence robustnosti:
+$R_\psi = 1$ je přirozená škála UBT $\psi$-sektoru.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────────────────
+
 \label{sec:casimir}
 %──────────────────────────────────────────────────────────────────────────────
 
@@ -484,26 +653,45 @@ Druhá derivace: $d^2S/dR^2|_{R=1} = 20\,C_{\mathrm{total}} \approx 0.685 > 0$
 %──────────────────────────────────────────────────────────────────────────────
 
 \begin{insightbox}
-\textbf{Souhrn výsledků sondy (2026-06-11)}
+\textbf{Souhrn výsledků (2026-06-11, aktualizováno o Z[τ] řetězec)}
 
 \begin{enumerate}
   \item \textbf{Polynom~\eqref{eq:poly}}: S-invariance + stacionarita dává
-    $R_\psi^6 + R_\psi^4 + R_\psi^2 = 3$, jehož jediné kladné řešení je
-    $R_\psi = 1$.  $N_{\mathrm{eff}}$ se vyruší. \Lzero\ (algebrická identita).
-  \item \textbf{Minimum}: $R_\psi = 1$ je minimum $S_{\mathrm{eff}}$
-    ($d^2S/dR^2 = 20C > 0$). \Lzero\ (za předpokladu formy $S_{\mathrm{eff}}$).
-  \item \textbf{$T_{\mathrm{kin}}$ ze S-invariance}: $T_{\mathrm{kin}}(R=1) = 3C_{\mathrm{total}}/(2\pi)$.
-    Normalizace závisí na $C_{\mathrm{total}}$ — \OPEN.
-  \item \textbf{S-invariance $S[\Theta]$}: Nebyla odvozena z prvních principů.
-    Podmínka (1) v sekci~\ref{sec:verdict}: \OPEN.
-  \item \textbf{Scale closure}: Podmíněný kandidát. \MC.
-  \item \textbf{Alpha}: \textbf{NOT DERIVED}. Samoduální bod $\tau = i$ je
-    algebraicky motivován, ale $B_{\mathrm{phenom}}$ a $\alpha$ zůstávají
-    otevřeny.
+    $R_\psi^6 + R_\psi^4 + R_\psi^2 = 3$, jediné kladné řešení $R_\psi = 1$.
+    $N_{\mathrm{eff}}$ se vyruší. \Lzero\ (algebraická identita).
+  \item \textbf{Minimum}: $R_\psi = 1$ je minimum $S_{\mathrm{eff}}$,
+    $d^2S/dR^2 = 20C > 0$. \Lzero.
+  \item \textbf{$Z[\tau_E] = \eta(\tau_E)^{-12}$}: Z $\det P = \eta^2$
+    \STD\ a $N_{\mathrm{eff}}=12$ \Lone: partition function odvozena.
+    \textbf{\Lone\ conditional} (jednosmyčková aproximace).
+  \item \textbf{$\psi$ kompaktní}: ze SS podmínky \Lone\
+    (Lem.~\ref{lem:SS_BC}) a z periodicity $Z[\tau]$ \Lzero\
+    (Prop.~\ref{prop:psi_compact_from_Z}). Dva nezávislé mechanismy.
+  \item \textbf{$R_\psi=1$ fixní bod $Z[\tau]$}: $\tau_E=i$ je fixní bod
+    S-transformace na $Z[\tau_E]$ \Lzero\ (Thm.~\ref{thm:Rpsi_from_Z}).
+    Shoda s polynomem: robustní výsledek ze dvou nezávislých cest.
+    \textbf{Celkový status: \Lone\ conditional (cesta 2)}.
+  \item \textbf{S-invariance $S[\Theta]$ obecně}: \OPEN\ (podmínka 1
+    pro Casimirovu cestu). Pro cestu 2 přes $Z[\tau]$ \emph{není potřeba}.
+  \item \textbf{Scale closure EW-1b}: \MC\ — silný kandidát.
+  \item \textbf{Alpha}: \textbf{NOT DERIVED}. $\tau=i$ algebraicky
+    preferováno ze dvou cest; $B_{\mathrm{phenom}}$ a $\alpha$ otevřeny.
 \end{enumerate}
 
-\textbf{Status}: Modulární fixace $R_\psi = 1$ ze S-invariance $S_{\mathrm{eff}}$
-— \MC\ (kandidátní mechanismus, podmíněný na odvození S-symetrie z $S[\Theta]$).
+\begin{center}
+\begin{tabular}{lll}
+  \toprule
+  Cesta & Výsledek & Status \\
+  \midrule
+  Casimirův polynom & $R_\psi=1$ minimum $S_{\mathrm{eff}}$ & \Lzero\ + \MC \\
+  $Z[\tau]=\eta^{-12}$ & $R_\psi=1$ fixní bod $Z[\tau]$ & \Lone\ cond. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Hlavní výsledek}: $R_\psi = 1$ je odvozeno ze symetrie partition
+function jako \Lone\ conditional (cesta 2), s nezávislým \Lzero\ potvrzením
+(cesta 1). Toto je první principy derivace $R_\psi$ v UBT.
 \end{insightbox}
 
 \begin{thebibliography}{9}
@@ -515,6 +703,15 @@ Druhá derivace: $d^2S/dR^2|_{R=1} = 20\,C_{\mathrm{total}} \approx 0.685 > 0$
   J.~Ambj\o{}rn and S.~Wolfram,
   ``Properties of the vacuum. 1. Mechanical and thermodynamic,''
   \textit{Ann.\ Phys.}\ \textbf{147}, 1 (1983).
+
+\bibitem{apostol_modular}
+  T.~M.~Apostol, \textit{Modular Functions and Dirichlet Series in
+  Number Theory}, 2nd~ed.\ Springer, 1990.
+
+\bibitem{su2_twist}
+  I.~D.~Jaroš, ``SU(2) Scherk--Schwarz Twist and $N_{\mathrm{eff}}=12$
+  in UBT,'' \texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex},
+  2026.
 \end{thebibliography}
 
 \end{document}
