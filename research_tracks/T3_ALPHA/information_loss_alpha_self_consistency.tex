@@ -1,11 +1,9 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 %
-% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
-% 4.0 International License (CC BY-NC-ND 4.0).
-%
 % File: research_tracks/T3_ALPHA/information_loss_alpha_self_consistency.tex
 % Status: RESEARCH TRACK / HYPOTHESIS. Not canonical. Not a proof of alpha.
-% Purpose: Quantified information-loss correction to the eta-winding alpha route.
+% Purpose: Spectral information-loss correction to the eta-winding alpha route,
+%          with Layer2 observable-sector projection interpretation.
 % Date: 2026-06-12
 
 \documentclass[12pt,a4paper]{article}
@@ -38,7 +36,7 @@
   #1
 }
 
-\title{A Self-Consistent Information-Loss Correction to the UBT Alpha Route}
+\title{A Layer2 Projection Correction to the UBT Alpha Information-Loss Route}
 \author{Ing.\ David Jaro\v{s}}
 \date{2026-06-12}
 
@@ -46,302 +44,385 @@
 \maketitle
 
 \begin{abstract}
-This research note formulates a quantified, non-canonical correction mechanism
-for the UBT fine-structure constant route.  The starting point is the
-eta-winding coefficient
+This research note refines the UBT fine-structure constant route by combining
+the Layer1 eta/theta spectrum with the Layer2 observable-sector
+coding/projection layer.  The eta-winding coefficient is
 \[
   B(\rho)=12^{3/2}\bigl(2\eta(i\rho)\bigr)^{1/4},
 \]
-where $\rho$ is interpreted as the effective scale ratio of a quasi-periodic
-complex-time/theta monodromy cycle relative to the compact internal phase
-cycle.  The uncorrected self-dual sector has $\rho=1$ and yields a stationary
-mode near $n=136.9891$.  We introduce an information-loss correction
+where $\rho$ is the effective quasi-periodic theta-modulus ratio.  The
+stationary winding index $n$ is defined by
 \[
-  \rho = e^{-\Delta I_Q},
+  \frac{2n}{\ln n+1}=B(\rho).
 \]
-where $\Delta I_Q$ is the average information loss per quasi-periodic theta
-cycle.  With the one-loop biquaternionic projection ansatz
+The uncorrected self-dual value $\rho=1$ gives
+$n=136.989099634\ldots$.  A minimal four-channel information-loss ansatz gives
+$n=137.0368227057\ldots$.  The present note introduces a systematic
+eta-spectral Layer2 projection correction
 \[
-  \Delta I_Q(n)=\frac{C_Q}{2\pi n},
+  C_Q(n)
+  =
+  4-\frac{\pi-3}{2}\frac{n-3}{n}.
 \]
-and the minimal four-channel estimate $C_Q=4$, the resulting closed
-self-consistency equation predicts
+Here
 \[
-  n=\alpha^{-1}_{\rm UBT,1loop}=137.0368227057.
+  \frac{\pi-3}{2}
+  =
+  12\pi
+  \sum_{m=1}^{\infty}\frac{m}{e^{2\pi m}-1}
 \]
-This is close to the Thomson-limit value $\alpha^{-1}\approx137.035999084$,
-but is not identical.  The exact Thomson-limit value would require
-$C_Q\approx3.9307485957$, a $1.73\%$ correction to the minimal four-channel
-estimate.  Therefore this note upgrades the alpha route from a numerical
-coincidence to a falsifiable research-track mechanism, but it does not close
-the alpha derivation gap.
+is the self-dual eta-mode occupation subtraction, while $(n-3)/n$ is
+interpreted as the finite-rank complement of a protected three-dimensional
+Layer2 SU(3)/color-code subspace.  The resulting closed equation gives
+\[
+  n_{\rm UBT}=137.035999142931\ldots .
+\]
+Relative to CODATA/NIST 2022,
+$\alpha^{-1}=137.035999177(21)$, this is lower by approximately $1.62\sigma$.
+The result remains research-track: the remaining theorem is to derive the
+Layer2 projection-rank factor from the UBT projection kernel $\Pi_{\rm L2}$.
 \end{abstract}
 
 \begin{statusbox}
-\begin{tabular}{@{}ll@{}}
-Track & T3\_ALPHA research track \\
-Canonical status & Not canonical \\
-Claim status & Self-consistent one-loop prediction, not derivation \\
-Circularity status & $\alpha$ is not inserted as an input when $C_Q=4$ \\
-Open gap & Derive $C_Q$ from the UBT action/projection algebra \\
-Main output & $\alpha^{-1}_{\rm UBT,1loop}=137.0368227057$ for $C_Q=4$
-\end{tabular}
+\textbf{Status.} Research-track only.  This note does not claim a canonical
+derivation of the fine-structure constant.  It replaces a loose entropy tuning
+by a Layer1/Layer2 mechanism: eta spectral subtraction from Layer1 and
+finite-rank observable-sector projection from Layer2.  The explicit remaining
+gap is the derivation of the projection-rank factor $(n-3)/n$ from the UBT
+Layer2 projector.
 \end{statusbox}
 
-\section{Motivation}
+\section{Separation of indices}
 
-The current conservative UBT alpha status is that the fine-structure constant
-is not derived.  Several routes select an integer or near-integer structure
-close to $137$, but the observed Thomson-limit value is
+We distinguish three quantities:
 \[
-  \alpha^{-1}_{\rm exp}\simeq 137.035999084.
+  m \in \mathbb{N}
 \]
-The purpose of this note is not to declare a proof, but to formulate a
-quantified correction layer that naturally lives in the exponent of the theta
-function and does not insert the observed value of $\alpha$ as input.
+for eta/theta product modes,
+\[
+  n=\alpha^{-1}
+\]
+for the effective stationary winding index, and
+\[
+  \rho=\frac{R_\tau}{R_\psi}
+\]
+for the effective quasi-periodic theta-modulus ratio.
 
-The key idea is that the integer or near-integer winding sector should be
-understood as an uncorrected topological core.  The observed low-energy value
-may require an additional correction associated with quasi-periodic theta
-monodromy, projection from the full biquaternionic state to the observable
-sector, and one-loop information loss.
+The eta/theta product index $m$ is not identified with the physical value
+$n\approx137$.  Instead, the full eta spectrum contributes to the coefficient
+$B(\rho)$, and the stationary equation then determines the effective physical
+index $n$.
 
-\section{Theta modulus and eta-winding coefficient}
+\section{Layer1 eta spectrum}
 
-Let
+For $\tau=i\rho$ the Dedekind eta function is
 \[
-  \rho = \frac{R_\tau}{R_\psi}
+  \eta(i\rho)
+  =
+  e^{-\pi\rho/12}
+  \prod_{m=1}^{\infty}
+  \left(1-e^{-2\pi m\rho}\right).
 \]
-denote the ratio between the effective quasi-periodic theta-monodromy scale
-and the compact internal phase scale.  The compact phase coordinate $\psi$ is
-periodic, while the complex-time/theta direction is quasi-periodic rather than
-an ordinary compactification of physical time.  The physical time coordinate
-is not assumed to satisfy $t\sim t+T$.
+The logarithm is
+\[
+  L(\rho)=\log\eta(i\rho)
+  =
+  -\frac{\pi\rho}{12}
+  +
+  \sum_{m=1}^{\infty}
+  \log\left(1-e^{-2\pi m\rho}\right).
+\]
+Differentiation gives
+\[
+  \frac{dL}{d\rho}
+  =
+  -\frac{\pi}{12}
+  +
+  2\pi
+  \sum_{m=1}^{\infty}
+  \frac{m}{e^{2\pi m\rho}-1}.
+\]
+The denominator is $e^{2\pi m\rho}-1$.
 
-The Dedekind eta function is defined by
+At the self-dual point $\rho=1$ the Eisenstein identity
 \[
-  \eta(\tau)=q^{1/24}\prod_{m=1}^{\infty}(1-q^m),
-  \qquad q=e^{2\pi i\tau}.
+  E_2(i)=\frac{3}{\pi}
 \]
-For purely imaginary modulus $\tau=i\rho$,
+implies
 \[
-  q=e^{-2\pi\rho}.
+  \frac{d}{d\rho}\log\eta(i\rho)\bigg|_{\rho=1}
+  =
+  -\frac14.
 \]
-The eta-winding coefficient considered here is
-\begin{equation}
-  B(\rho)=12^{3/2}\bigl(2\eta(i\rho)\bigr)^{1/4}.
-  \label{eq:B-rho}
-\end{equation}
-At the self-dual uncorrected point $\rho=1$,
+Equivalently,
 \[
-  B(1)=46.2808723831807\ldots
+  \sum_{m=1}^{\infty}
+  \frac{m}{e^{2\pi m}-1}
+  =
+  \frac{1}{24}-\frac{1}{8\pi}.
 \]
-The stationary winding equation is
-\begin{equation}
-  \frac{2n}{\ln n+1}=B(\rho).
-  \label{eq:stationary-winding}
-\end{equation}
-For $\rho=1$, Eq.~\eqref{eq:stationary-winding} gives
+Therefore
 \[
-  n=136.9890996341\ldots
+  12\pi
+  \sum_{m=1}^{\infty}
+  \frac{m}{e^{2\pi m}-1}
+  =
+  \frac{\pi-3}{2}.
 \]
-Thus the uncorrected eta route lands close to, but not exactly at, the
-integer/topological value $137$.
-
-\section{Information loss as a quasi-periodic correction}
-
-The theta function contains its modular parameter directly in the exponent.
-For a schematic theta expansion,
-\[
-  \Theta(z,\tau)=\sum_{n\in\mathbb Z}
-  \exp\bigl(\pi i n^2\tau+2\pi i n z\bigr),
-\]
-and for $\tau=i\rho$ the modal weight becomes
-\[
-  \exp(-\pi n^2\rho).
-\]
-Therefore a small change in $\rho$ is not a cosmetic geometric deformation; it
-changes the information weight of the winding modes in the theta exponent.
-
-\begin{definition}[Cycle information loss]
-Let $A_k\in\mathbb B$ be a biquaternionic transport, holonomy, or interaction
-operator acting on a state $\Theta_k$, and let $\Pi$ be the projection from the
-full biquaternionic state sector to the observable sector.  Define the average
-information loss per quasi-periodic theta cycle by
-\begin{equation}
-  \Delta I_Q =
-  \left\langle
-  -\log
-  \frac{\|\Pi(A_k\Theta_k)\|^2}{\|A_k\Theta_k\|^2}
-  \right\rangle_{\rm cycle}.
-  \label{eq:delta-IQ-projection}
-\end{equation}
-\end{definition}
-
-The effective quasi-periodic modulus is modeled as
-\begin{equation}
-  \rho = e^{-\Delta I_Q}.
-  \label{eq:rho-info-loss}
-\end{equation}
-For small information loss,
-\[
-  \rho\simeq 1-\Delta I_Q,
-\]
-so that the geometric-looking shift $\rho=1-\delta$ is equivalently an
-information-loss shift with $\delta\simeq\Delta I_Q$.
 
 \begin{remark}
-Equation~\eqref{eq:delta-IQ-projection} is the microscopic interpretation of
-the correction.  It says that the shift of the quasi-periodic theta modulus is
-caused by information transferred from the observable projection into hidden
-bicomplex/quaternionic components over one theta cycle.
+The factor $(\pi-3)/2$ is not a fitted decimal.  It is the self-dual eta-mode
+occupation subtraction derived from the Layer1 eta spectrum.
 \end{remark}
 
-\section{One-loop biquaternionic projection ansatz}
+\section{Eta-winding stationary equation}
 
-The natural dimensionless one-loop factor is $1/(2\pi n)$ when
-$n=\alpha^{-1}$.  We therefore write
-\begin{equation}
+The eta-corrected winding coefficient is
+\[
+  B(\rho)
+  =
+  12^{3/2}
+  \left(2\eta(i\rho)\right)^{1/4}.
+\]
+The effective winding potential is modeled so that its stationary condition is
+\[
+  \frac{2n}{\ln n+1}=B(\rho).
+\]
+At the uncorrected self-dual point $\rho=1$, this gives
+\[
+  n_0=136.989099634108\ldots .
+\]
+
+\section{Information loss and the four-channel baseline}
+
+The effective quasi-periodic modulus is written as
+\[
+  \rho=\exp(-\Delta I_Q),
+\]
+where $\Delta I_Q$ is the average information loss per quasi-periodic theta
+cycle.
+
+The coarse one-loop ansatz is
+\[
   \Delta I_Q(n)=\frac{C_Q}{2\pi n}.
-  \label{eq:IQ-one-loop}
-\end{equation}
+\]
 The minimal Dirac-biquaternionic channel count suggests
-\begin{equation}
+\[
   C_Q=4.
-  \label{eq:CQ-four}
-\end{equation}
-The factor $4$ is not fitted to the observed value of $\alpha$; it is the
-minimal four-channel estimate associated with the four effective spinorial or
-bicomplex projection channels of the biquaternionic field.
-
-Combining Eqs.~\eqref{eq:B-rho}, \eqref{eq:stationary-winding},
-\eqref{eq:rho-info-loss}, and \eqref{eq:IQ-one-loop} gives the closed equation
-\begin{equation}
+\]
+The resulting closed equation is
+\[
   \frac{2n}{\ln n+1}
   =
   12^{3/2}
   \left[
-    2\eta\left(
-      i\exp\left[-\frac{C_Q}{2\pi n}\right]
+    2\eta\!\left(
+      i\exp\!\left[-\frac{4}{2\pi n}\right]
     \right)
   \right]^{1/4}.
-  \label{eq:closed-alpha-self-consistency}
-\end{equation}
-This is the main equation of the note.
+\]
+Numerically,
+\[
+  n=137.036822705722871\ldots .
+\]
+This value is close but too high.
 
-\begin{proposition}[Minimal one-loop prediction]
-For $C_Q=4$, Eq.~\eqref{eq:closed-alpha-self-consistency} has the solution
-\[
-  n = 137.0368227057\ldots
-\]
-near the physical fine-structure constant.
-\end{proposition}
+\section{Layer2 observable-sector projection}
 
-\begin{proof}[Numerical proof]
-Using the product definition of $\eta(i\rho)$ and solving
-Eq.~\eqref{eq:closed-alpha-self-consistency} near $n=137$ gives
-\[
-  n=137.0368227057228716846\ldots
-\]
-The corresponding information loss and modulus are
-\[
-  \Delta I_Q=\frac{4}{2\pi n}=0.00464561101022\ldots,
-\]
-\[
-  \rho=e^{-\Delta I_Q}=0.99536516314996\ldots.
-\]
-\end{proof}
+Layer2 is the UBT observable-sector coding/projection layer.  It should not be
+introduced as an external ``simulation assumption'' in the derivation.
+Mathematically it is a finite-rank projection layer selecting physical
+representation subspaces from the larger theta-biquaternionic field.
 
-\section{Comparison to the Thomson-limit value}
-
-The CODATA-level Thomson-limit value is approximately
+In the QCD/SU(3) sector the Layer2 construction uses a three-dimensional
+protected color-code subspace.  Abstractly we write
 \[
-  \alpha^{-1}_{\rm exp}\simeq 137.035999084.
+  \mathcal H_{\rm color}
+  =
+  \mathrm{span}\{|100\rangle,\ |010\rangle,\ |001\rangle\},
 \]
-The minimal one-loop estimate differs by
+with projector
 \[
-  \Delta n
-  =137.0368227057-137.035999084
-  \simeq 8.236\times10^{-4},
+  \Pi_{\rm color},
+  \qquad
+  \mathrm{rank}\,\Pi_{\rm color}=3.
 \]
-with relative size
+In a finite effective winding sector of dimension $n$, the eta-spectral
+information-loss operator acts on the complement of this protected subspace:
 \[
-  \frac{\Delta n}{137.036}\simeq 6.0\times10^{-6}.
+  I_n-\Pi_{\rm color}.
+\]
+The normalized rank of this complement is
+\[
+  \frac{\mathrm{Tr}(I_n-\Pi_{\rm color})}{\mathrm{Tr}(I_n)}
+  =
+  \frac{n-3}{n}.
 \]
 
-If the observed value is used only as a post-check, the required effective
-channel coefficient is
-\begin{equation}
-  C_Q^{\rm target}=3.9307485957\ldots
-  \label{eq:CQ-target}
-\end{equation}
-Thus the exact Thomson-limit value would require
+\begin{conjecture}[Layer2 projection-rank correction]
+The eta-spectral information-loss subtraction acts only on the complement of
+the protected Layer2 color-code subspace.  Therefore the effective subtraction
+of the four-channel coefficient is
 \[
-  C_Q = 4 - 0.0692514043\ldots,
+  4-C_Q(n)
+  =
+  \varepsilon_\eta\frac{n-3}{n},
 \]
-a $1.73\%$ correction to the minimal four-channel estimate.
+where
+\[
+  \varepsilon_\eta
+  =
+  12\pi
+  \sum_{m=1}^{\infty}
+  \frac{m}{e^{2\pi m}-1}
+  =
+  \frac{\pi-3}{2}.
+\]
+Thus
+\[
+  C_Q(n)
+  =
+  4-\frac{\pi-3}{2}\frac{n-3}{n}.
+\]
+\end{conjecture}
 
-\begin{statusbox}[title=Interpretation of the residual]
-The $1.73\%$ residual correction in $C_Q$ is not explained in this note.  It
-may represent a modular normalization correction, a projection-norm correction,
-a non-commutative ordering correction, a two-loop term, or simply evidence that
-$C_Q=4$ is only an approximate channel-counting ansatz.
-\end{statusbox}
+\begin{remark}
+The factor $(n-3)/n$ is not claimed as a theorem in this note.  Its proposed
+origin is the Layer2 projection rank: three protected SU(3)/color-code states
+are removed from the eta-loss sector.  The remaining proof gap is to derive
+this projector from the canonical UBT Layer2 construction.
+\end{remark}
 
-\section{Status and open gap}
+\section{Closed Layer1/Layer2 self-consistency equation}
 
-This note provides a closed and non-circular research-track equation for
-$\alpha$ once the minimal value $C_Q=4$ is assumed.  It upgrades the eta-winding
-route from a loose numerical observation to a concrete one-loop self-consistency
-mechanism.  However, the alpha derivation gap remains open because the exact
-projection coefficient has not yet been derived from the UBT action.
-
-\begin{equation}
-  \boxed{
-  \text{Open gap G137-IQ: derive } C_Q \text{ from } S[\Theta]
-  \text{ and the observable projection } \Pi.
-  }
-\end{equation}
-
-The strongest conservative statement is therefore
+Combining the eta-winding equation with the Layer2 projection correction gives
 \[
   \boxed{
-  \alpha^{-1}_{\rm UBT,1loop}=137.0368227057
-  \quad\text{for the minimal } C_Q=4 \text{ information-loss ansatz.}
+  \frac{2n}{\ln n+1}
+  =
+  12^{3/2}
+  \left[
+    2\eta\!\left(
+      i\exp\!\left[
+        -\frac{1}{2\pi n}
+        \left(
+          4-\frac{\pi-3}{2}\frac{n-3}{n}
+        \right)
+      \right]
+    \right)
+  \right]^{1/4}.
   }
 \]
-This is a self-consistent prediction at research-track level, not a canonical
-first-principles derivation of the fine-structure constant.
-
-\appendix
-\section{Reproducibility recipe}
-
-The numerical values in this note can be reproduced by evaluating
+Solving gives
 \[
-  \eta(i\rho)=e^{-2\pi\rho/24}\prod_{m=1}^{\infty}(1-e^{-2\pi\rho m})
-\]
-and solving Eq.~\eqref{eq:closed-alpha-self-consistency}.
-
-A companion script is provided at
-\[
-  \texttt{experiments/alpha\_information\_loss/reproduce\_info\_loss\_alpha.py}.
+  \boxed{
+  n_{\rm UBT}=137.035999142931005\ldots .
+  }
 \]
 
-\section{Claim table}
-
-\begin{center}
-\begin{tabular}{@{}lll@{}}
+For comparison:
+\[
+\begin{array}{lll}
 \toprule
-Claim & Status & Comment \\
+\text{Model} & \text{Input} & n \\
 \midrule
-$B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}$ & hypothesis & eta-winding route \\
-$\rho=e^{-\Delta I_Q}$ & hypothesis & information-loss model \\
-$\Delta I_Q=C_Q/(2\pi n)$ & hypothesis & one-loop form \\
-$C_Q=4$ & motivated & channel-counting ansatz \\
-$n=137.0368227057$ & computed & follows from $C_Q=4$ \\
-$\alpha^{-1}_{\rm exp}$ exactly & not derived & requires $C_Q=3.9307485957$ \\
+\text{Self-dual eta-winding} & \rho=1 & 136.989099634108\ldots \\
+\text{Four-channel information loss} & C_Q=4 & 137.036822705723\ldots \\
+\text{Layer2 eta-spectral projection} &
+C_Q(n)=4-\frac{\pi-3}{2}\frac{n-3}{n}
+& 137.035999142931\ldots \\
 \bottomrule
-\end{tabular}
-\end{center}
+\end{array}
+\]
+
+Using CODATA/NIST 2022
+\[
+  \alpha^{-1}_{\rm CODATA}=137.035999177(21),
+\]
+the Layer2 eta-spectral projection value differs by
+\[
+  -3.4069\times10^{-8},
+\]
+or approximately
+\[
+  -1.62\sigma.
+\]
+
+\section{Interpretation}
+
+The result can be summarized as a Layer1/Layer2 fixed point:
+\[
+  \text{Layer1 eta/theta spectrum}
+  \quad+\quad
+  \text{Layer2 observable-sector projection}
+  \quad\Rightarrow\quad
+  n=\alpha^{-1}.
+\]
+The modular eta spectrum supplies the universal subtraction
+\[
+  \varepsilon_\eta=\frac{\pi-3}{2},
+\]
+and the Layer2 color-code projection supplies the finite-rank factor
+\[
+  \frac{n-3}{n}.
+\]
+Thus the fine-structure constant is not identified with a single theta mode.
+Rather, it appears as the stationary effective winding index generated by the
+full eta spectrum after Layer2 observable-sector projection.
+
+\section{Remaining proof gap}
+
+The remaining open step is structural:
+\[
+  \boxed{
+  G137\text{-L2}:
+  \quad
+  \text{derive }
+  \frac{\mathrm{Tr}(I_n-\Pi_{\rm color})}{\mathrm{Tr}I_n}
+  =
+  \frac{n-3}{n}
+  \text{ from canonical Layer2 UBT.}
+  }
+\]
+This requires explicitly constructing the Layer2 projector
+\[
+  \Pi_{\rm L2}:
+  \mathbb B\otimes\mathcal H_\Theta
+  \longrightarrow
+  \mathcal H_{\rm obs}
+\]
+and showing that the three-dimensional SU(3)/color-code subspace is protected
+from eta-spectral information loss.
+
+Until this is done, the result is a systematic research-track derivation with
+one explicit Layer2 projection theorem remaining, not a canonical derivation
+of $\alpha$.
+
+\section{Conclusion}
+
+This note replaces the earlier heuristic entropy refinement by a more
+structured Layer1/Layer2 mechanism.  The final research-track equation is
+\[
+  \frac{2n}{\ln n+1}
+  =
+  12^{3/2}
+  \left[
+    2\eta\!\left(
+      i\exp\!\left[
+        -\frac{1}{2\pi n}
+        \left(
+          4-\frac{\pi-3}{2}\frac{n-3}{n}
+        \right)
+      \right]
+    \right)
+  \right]^{1/4}.
+\]
+It predicts
+\[
+  \alpha^{-1}_{\rm UBT}=137.035999142931\ldots ,
+\]
+approximately $1.62\sigma$ below the CODATA/NIST 2022 value.  The result is
+strong enough to justify further work, but the Layer2 projection-rank theorem
+must be proved before promoting the alpha route to the canonical layer.
 
 \end{document}

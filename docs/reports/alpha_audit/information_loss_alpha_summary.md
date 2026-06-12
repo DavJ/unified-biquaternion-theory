@@ -1,67 +1,105 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# Information-loss alpha self-consistency: summary
+# Layer2 projection correction to alpha information-loss route
 
 **Status:** research-track hypothesis, not canonical.
 
-This patch adds a new T3_ALPHA paper:
-
-- `research_tracks/T3_ALPHA/information_loss_alpha_self_consistency.tex`
-
-and a reproduction script:
-
-- `experiments/alpha_information_loss/reproduce_info_loss_alpha.py`
+This patch updates the alpha information-loss route by tying the finite
+correction to the Layer2 observable-sector coding/projection layer.
 
 ## Core equation
 
-The effective quasi-periodic theta modulus is modeled as
+The effective quasi-periodic theta modulus is
 
 \[
-\rho = e^{-\Delta I_Q},
+\rho = \exp(-\Delta I_Q),
 \qquad
-\Delta I_Q(n)=\frac{C_Q}{2\pi n}.
+\Delta I_Q(n)=\frac{C_Q(n)}{2\pi n}.
 \]
 
 The eta-winding coefficient is
 
 \[
-B(\rho)=12^{3/2}\left(2\eta(i\rho)\right)^{1/4}.
+B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
 \]
 
-Together with the stationary winding condition
+The stationary winding equation is
 
 \[
-\frac{2n}{\ln n+1}=B(\rho),
+\frac{2n}{\ln n+1}=B(\rho).
 \]
 
-this gives the closed self-consistency equation
+## Layer1 eta-spectral subtraction
+
+\[
+\varepsilon_\eta
+=
+12\pi
+\sum_{m=1}^{\infty}
+\frac{m}{e^{2\pi m}-1}
+=
+\frac{\pi-3}{2}.
+\]
+
+## Layer2 projection-rank factor
+
+Layer2 supplies a protected three-dimensional SU(3)/color-code subspace.
+In a finite winding sector of effective dimension \(n\), the eta-loss acts on
+the complement, giving
+
+\[
+\frac{n-3}{n}.
+\]
+
+Thus
+
+\[
+C_Q(n)
+=
+4-\frac{\pi-3}{2}\frac{n-3}{n}.
+\]
+
+## Result
 
 \[
 \frac{2n}{\ln n+1}
 =
 12^{3/2}
 \left[
-2\eta\left(i\exp\left[-\frac{C_Q}{2\pi n}\right]\right)
+2\eta\left(
+i\exp\left[
+-\frac{1}{2\pi n}
+\left(
+4-\frac{\pi-3}{2}\frac{n-3}{n}
+\right)
+\right]
+\right)
 \right]^{1/4}.
 \]
 
-For the minimal four-channel ansatz \(C_Q=4\), this yields
+Numerically:
 
 \[
-\alpha^{-1}_{\rm UBT,1loop}=137.0368227057.
+n_{\rm UBT}=137.035999142931\ldots .
 \]
 
-The observed Thomson-limit value \(\alpha^{-1}\approx137.035999084\) would
-correspond to
+Compared with CODATA/NIST 2022,
 
 \[
-C_Q\approx3.9307485957,
+\alpha^{-1}=137.035999177(21),
 \]
 
-a \(1.73\%\) correction to the minimal four-channel estimate.
+this is approximately \(-1.62\sigma\).
 
 ## Open gap
 
-Derive \(C_Q\) from the UBT action, the biquaternionic transport operator, and
-the observable projection map \(\Pi\). Until this is done, the result remains a
-research-track self-consistency mechanism rather than a canonical derivation.
+\[
+G137\text{-L2}:
+\quad
+\text{derive the projection-rank factor }
+\frac{n-3}{n}
+\text{ from canonical Layer2 UBT.}
+\]
+
+Until this is done, the result remains a systematic research-track derivation
+with one Layer2 projection theorem remaining.
