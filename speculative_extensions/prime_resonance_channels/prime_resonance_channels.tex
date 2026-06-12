@@ -1,0 +1,81 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Status: SPECULATIVE EXTENSION. Not canonical UBT.
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref,tcolorbox}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\title{Speculative Prime-Resonance Channels around the 137--139 Alpha Window}
+\author{Ing. David Jaro\v{s}}
+\date{2026-06-12}
+\begin{document}
+\textbf{Strict status.} This entire note is speculative. The prime $139$, $N_0=137\cdot139$, and all cycle interpretations belong only under \texttt{speculative\_extensions}.
+
+\maketitle
+
+\begin{abstract}
+This note records a deliberately speculative extension of the UBT alpha research track.  It explores the integer window
+\[
+N_0=137\cdot139=19043
+\]
+as a possible harmonic carrier between the observed alpha-scale integer $137$ and its neighboring prime $139$.  The construction generates a complete harmonic table of periods
+\[
+T_k=\frac{N_0}{k},\qquad k=1,2,\ldots,N_0,
+\]
+with divisor counts, prime factorizations, factor-pair channels and an eta-like soft resonance weight.  This is not a physical prediction; it is a pattern-discovery layer intended to guide later tests.
+\end{abstract}
+
+\begin{tcolorbox}[title=Status]
+Speculative extension only.  Do not present this as evidence for UBT.  Present it as a harmonic search table motivated by the alpha route and the prime pair $137,139$.
+\end{tcolorbox}
+
+\section{Motivation}
+The alpha route selects an effective stationary winding index close to
+\[
+n=\alpha^{-1}\approx137.0359991775.
+\]
+The nearby prime pair $137$ and $139$ suggests the composite window
+\[
+N_0=137\cdot139=19043.
+\]
+The speculative question is whether long-period harmonic resonances of this window form useful channels for historical, cognitive, cultural or cosmological pattern searches.
+
+\section{Harmonic periods}
+For each integer channel $k$ define
+\[
+T_k=\frac{N_0}{k}.
+\]
+The generated full table contains all $k=1,\ldots,19043$.
+
+\section{Divisor and eta-like weights}
+The number of factor channels is
+\[
+\tau(k)=\sum_{d\mid k}1.
+\]
+The factor-pair set is
+\[
+\mathcal F(k)=\{(a,b):ab=k,\;a\le b\}.
+\]
+A soft eta-inspired weight is introduced as
+\[
+W_\eta(k;\lambda)=\sum_{(a,b)\in\mathcal F(k)}e^{-\lambda(a+b)},
+\qquad \lambda=0.015.
+\]
+The exploratory resonance score used for ranking is
+\[
+S(k)=\tau(k)\log(1+k)(1+W_\eta(k;0.015)).
+\]
+This score is intentionally simple and should be replaced by a derived UBT readout if the idea proves useful.
+
+\section{Generated artifacts}
+The accompanying script generates:
+\begin{itemize}
+\item \texttt{prime\_resonance\_harmonic\_table\_full.csv}: complete table for $k=1,\ldots,19043$;
+\item \texttt{prime\_resonance\_top250\_by\_score.csv}: strongest channels by the exploratory score;
+\item \texttt{prime\_resonance\_landmark\_channels.csv}: selected channels including $137$, $139$ and $N_0$;
+\item \texttt{prime\_resonance\_table\_summary.md}: human-readable summary.
+\end{itemize}
+
+\section{Interpretation}
+This construction should be treated as a beautiful but speculative pattern map.  Its value is not that it proves anything, but that it creates a complete reproducible table from a small number of explicit assumptions.  The next scientific step would be to define independent datasets and a preregistered scoring rule before looking for correlations.
+
+\end{document}
