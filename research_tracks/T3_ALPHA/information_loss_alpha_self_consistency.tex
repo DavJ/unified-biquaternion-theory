@@ -3,7 +3,7 @@
 % File: research_tracks/T3_ALPHA/information_loss_alpha_self_consistency.tex
 % Status: RESEARCH TRACK / HYPOTHESIS. Not canonical. Not a proof of alpha.
 % Purpose: Spectral information-loss correction to the eta-winding alpha route,
-%          with Layer2 observable-sector projection interpretation.
+%          with Layer2 observable-sector projection and first eta-kernel refinement.
 % Date: 2026-06-12
 
 \documentclass[12pt,a4paper]{article}
@@ -36,7 +36,7 @@
   #1
 }
 
-\title{A Layer2 Projection Correction to the UBT Alpha Information-Loss Route}
+\title{A Layer2 Kernel Refinement of the UBT Alpha Information-Loss Route}
 \author{Ing.\ David Jaro\v{s}}
 \date{2026-06-12}
 
@@ -55,14 +55,14 @@ stationary winding index $n$ is defined by
 \[
   \frac{2n}{\ln n+1}=B(\rho).
 \]
-The uncorrected self-dual value $\rho=1$ gives
-$n=136.989099634\ldots$.  A minimal four-channel information-loss ansatz gives
-$n=137.0368227057\ldots$.  The present note introduces a systematic
-eta-spectral Layer2 projection correction
+The self-dual value $\rho=1$ gives $n=136.989099634\ldots$.  A minimal
+four-channel information-loss ansatz gives $n=137.0368227057\ldots$.
+
+The present note introduces a Layer1/Layer2 correction
 \[
   C_Q(n)
   =
-  4-\frac{\pi-3}{2}\frac{n-3}{n}.
+  4-\frac{\pi-3}{2}\frac{n-r_{\rm L2}}{n}.
 \]
 Here
 \[
@@ -71,25 +71,34 @@ Here
   12\pi
   \sum_{m=1}^{\infty}\frac{m}{e^{2\pi m}-1}
 \]
-is the self-dual eta-mode occupation subtraction, while $(n-3)/n$ is
-interpreted as the finite-rank complement of a protected three-dimensional
-Layer2 SU(3)/color-code subspace.  The resulting closed equation gives
+is the self-dual eta-mode occupation subtraction.  The simplest sharp-rank
+Layer2 approximation is $r_{\rm L2}=3$, giving
+$n=137.035999142931\ldots$.  A first eta-kernel refinement replaces the sharp
+rank by
 \[
-  n_{\rm UBT}=137.035999142931\ldots .
+  r_{\rm L2}^{(1)}=3\bigl(1+\Omega_\eta(1)\bigr),
+  \qquad
+  \Omega_\eta(1)=
+  \sum_{m=1}^{\infty}\frac{m}{e^{2\pi m}-1}
+  =
+  \frac{1}{24}-\frac{1}{8\pi}.
+\]
+This yields
+\[
+  n_{\rm UBT}=137.035999177549\ldots .
 \]
 Relative to CODATA/NIST 2022,
-$\alpha^{-1}=137.035999177(21)$, this is lower by approximately $1.62\sigma$.
+$\alpha^{-1}=137.035999177(21)$, this is approximately $+0.026\sigma$.
 The result remains research-track: the remaining theorem is to derive the
-Layer2 projection-rank factor from the UBT projection kernel $\Pi_{\rm L2}$.
+Layer2 readout kernel and hence $r_{\rm L2}$ from canonical UBT.
 \end{abstract}
 
 \begin{statusbox}
 \textbf{Status.} Research-track only.  This note does not claim a canonical
-derivation of the fine-structure constant.  It replaces a loose entropy tuning
-by a Layer1/Layer2 mechanism: eta spectral subtraction from Layer1 and
-finite-rank observable-sector projection from Layer2.  The explicit remaining
-gap is the derivation of the projection-rank factor $(n-3)/n$ from the UBT
-Layer2 projector.
+derivation of the fine-structure constant.  It records a hierarchy of models:
+self-dual eta winding, four-channel information loss, sharp Layer2 projection,
+and first eta-kernel Layer2 refinement.  The explicit remaining gap is the
+derivation of the Layer2 readout kernel from the UBT coding/projection layer.
 \end{statusbox}
 
 \section{Separation of indices}
@@ -106,12 +115,10 @@ for the effective stationary winding index, and
 \[
   \rho=\frac{R_\tau}{R_\psi}
 \]
-for the effective quasi-periodic theta-modulus ratio.
-
-The eta/theta product index $m$ is not identified with the physical value
-$n\approx137$.  Instead, the full eta spectrum contributes to the coefficient
-$B(\rho)$, and the stationary equation then determines the effective physical
-index $n$.
+for the effective quasi-periodic theta-modulus ratio.  The eta/theta product
+index $m$ is not identified with $n\approx137$.  Instead, the full eta
+spectrum contributes to $B(\rho)$, and the stationary equation determines the
+effective physical index $n$.
 
 \section{Layer1 eta spectrum}
 
@@ -156,6 +163,7 @@ implies
 \]
 Equivalently,
 \[
+  \Omega_\eta(1):=
   \sum_{m=1}^{\infty}
   \frac{m}{e^{2\pi m}-1}
   =
@@ -163,16 +171,14 @@ Equivalently,
 \]
 Therefore
 \[
-  12\pi
-  \sum_{m=1}^{\infty}
-  \frac{m}{e^{2\pi m}-1}
+  12\pi\,\Omega_\eta(1)
   =
   \frac{\pi-3}{2}.
 \]
 
 \begin{remark}
-The factor $(\pi-3)/2$ is not a fitted decimal.  It is the self-dual eta-mode
-occupation subtraction derived from the Layer1 eta spectrum.
+The factor $(\pi-3)/2$ is not fitted.  It is the self-dual eta-mode occupation
+subtraction derived from the Layer1 eta spectrum.
 \end{remark}
 
 \section{Eta-winding stationary equation}
@@ -188,54 +194,34 @@ The effective winding potential is modeled so that its stationary condition is
 \[
   \frac{2n}{\ln n+1}=B(\rho).
 \]
-At the uncorrected self-dual point $\rho=1$, this gives
+At the self-dual point $\rho=1$, this gives
 \[
   n_0=136.989099634108\ldots .
 \]
 
-\section{Information loss and the four-channel baseline}
+\section{Information loss and four-channel baseline}
 
 The effective quasi-periodic modulus is written as
 \[
   \rho=\exp(-\Delta I_Q),
 \]
 where $\Delta I_Q$ is the average information loss per quasi-periodic theta
-cycle.
-
-The coarse one-loop ansatz is
+cycle.  The coarse one-loop form is
 \[
-  \Delta I_Q(n)=\frac{C_Q}{2\pi n}.
+  \Delta I_Q(n)=\frac{C_Q(n)}{2\pi n}.
 \]
-The minimal Dirac-biquaternionic channel count suggests
-\[
-  C_Q=4.
-\]
-The resulting closed equation is
-\[
-  \frac{2n}{\ln n+1}
-  =
-  12^{3/2}
-  \left[
-    2\eta\!\left(
-      i\exp\!\left[-\frac{4}{2\pi n}\right]
-    \right)
-  \right]^{1/4}.
-\]
-Numerically,
+The minimal Dirac-biquaternionic channel count suggests $C_Q=4$, giving
 \[
   n=137.036822705722871\ldots .
 \]
 This value is close but too high.
 
-\section{Layer2 observable-sector projection}
+\section{Layer2 projection model}
 
-Layer2 is the UBT observable-sector coding/projection layer.  It should not be
-introduced as an external ``simulation assumption'' in the derivation.
-Mathematically it is a finite-rank projection layer selecting physical
-representation subspaces from the larger theta-biquaternionic field.
-
-In the QCD/SU(3) sector the Layer2 construction uses a three-dimensional
-protected color-code subspace.  Abstractly we write
+Layer2 is the UBT observable-sector coding/projection layer.  It selects
+physical representation subspaces from the larger theta-biquaternionic field.
+In the QCD/SU(3) sector the Layer2 construction contains a protected
+three-dimensional color-code subspace.  Abstractly,
 \[
   \mathcal H_{\rm color}
   =
@@ -247,55 +233,90 @@ with projector
   \qquad
   \mathrm{rank}\,\Pi_{\rm color}=3.
 \]
-In a finite effective winding sector of dimension $n$, the eta-spectral
-information-loss operator acts on the complement of this protected subspace:
+In a finite effective winding sector of dimension $n$, the sharp-projector
+approximation says that eta-spectral information loss acts on
 \[
   I_n-\Pi_{\rm color}.
 \]
-The normalized rank of this complement is
+The normalized complement rank is
 \[
-  \frac{\mathrm{Tr}(I_n-\Pi_{\rm color})}{\mathrm{Tr}(I_n)}
+  \frac{\mathrm{Tr}(I_n-\Pi_{\rm color})}{\mathrm{Tr}I_n}
   =
   \frac{n-3}{n}.
 \]
 
-\begin{conjecture}[Layer2 projection-rank correction]
-The eta-spectral information-loss subtraction acts only on the complement of
-the protected Layer2 color-code subspace.  Therefore the effective subtraction
-of the four-channel coefficient is
+The corresponding coefficient is
 \[
-  4-C_Q(n)
-  =
-  \varepsilon_\eta\frac{n-3}{n},
-\]
-where
-\[
-  \varepsilon_\eta
-  =
-  12\pi
-  \sum_{m=1}^{\infty}
-  \frac{m}{e^{2\pi m}-1}
-  =
-  \frac{\pi-3}{2}.
-\]
-Thus
-\[
-  C_Q(n)
+  C_Q^{(0)}(n)
   =
   4-\frac{\pi-3}{2}\frac{n-3}{n}.
 \]
+It gives
+\[
+  n=137.035999142931005\ldots ,
+\]
+or about $-1.62\sigma$ relative to CODATA/NIST 2022.
+
+\section{First Layer2 eta-kernel refinement}
+
+The sharp-rank model is a flat-spectrum approximation.  A more realistic
+Layer2 description should use a readout or decoding kernel rather than a pure
+integer rank.  Thus we promote the protected rank to an effective rank,
+\[
+  3\quad\longrightarrow\quad r_{\rm L2}.
+\]
+The general form is
+\[
+  C_Q(n)
+  =
+  4-\frac{\pi-3}{2}\frac{n-r_{\rm L2}}{n}.
+\]
+
+The first non-fitted eta-kernel refinement reuses the same self-dual eta
+occupation number already present in the Layer1 subtraction:
+\[
+  \Omega_\eta(1)
+  =
+  \sum_{m=1}^{\infty}
+  \frac{m}{e^{2\pi m}-1}.
+\]
+We model the Layer2 color readout as three protected color states, each
+receiving a small eta-kernel participation contribution $\Omega_\eta(1)$:
+\[
+  r_{\rm L2}^{(1)}
+  =
+  3\left(1+\Omega_\eta(1)\right).
+\]
+Therefore
+\[
+  r_{\rm L2}^{(1)}
+  =
+  3\left(1+\frac{1}{24}-\frac{1}{8\pi}\right).
+\]
+
+\begin{conjecture}[First Layer2 eta-kernel rank]
+The first effective Layer2 protected rank is
+\[
+  r_{\rm L2}^{(1)}
+  =
+  3\left(1+\Omega_\eta(1)\right),
+\]
+where $\Omega_\eta(1)$ is the self-dual eta-mode occupation number.  This
+represents the first spectral readout correction to the sharp Layer2
+rank-three color-code projector.
 \end{conjecture}
 
 \begin{remark}
-The factor $(n-3)/n$ is not claimed as a theorem in this note.  Its proposed
-origin is the Layer2 projection rank: three protected SU(3)/color-code states
-are removed from the eta-loss sector.  The remaining proof gap is to derive
-this projector from the canonical UBT Layer2 construction.
+This is still not a canonical theorem.  It is stronger than an arbitrary
+decimal fit because it introduces no new independent constant; it reuses the
+same eta-mode occupation number already appearing in the Layer1 spectral
+subtraction.  The remaining proof gap is to derive this readout factor from
+the Layer2 decoding kernel.
 \end{remark}
 
-\section{Closed Layer1/Layer2 self-consistency equation}
+\section{Closed refined self-consistency equation}
 
-Combining the eta-winding equation with the Layer2 projection correction gives
+With the first Layer2 eta-kernel rank, the equation becomes
 \[
   \boxed{
   \frac{2n}{\ln n+1}
@@ -306,17 +327,23 @@ Combining the eta-winding equation with the Layer2 projection correction gives
       i\exp\!\left[
         -\frac{1}{2\pi n}
         \left(
-          4-\frac{\pi-3}{2}\frac{n-3}{n}
+          4-\frac{\pi-3}{2}\frac{n-r_{\rm L2}^{(1)}}{n}
         \right)
       \right]
     \right)
-  \right]^{1/4}.
+  \right]^{1/4},
   }
+\]
+where
+\[
+  r_{\rm L2}^{(1)}
+  =
+  3\left(1+\frac{1}{24}-\frac{1}{8\pi}\right).
 \]
 Solving gives
 \[
   \boxed{
-  n_{\rm UBT}=137.035999142931005\ldots .
+  n_{\rm UBT}=137.035999177549\ldots .
   }
 \]
 
@@ -328,9 +355,10 @@ For comparison:
 \midrule
 \text{Self-dual eta-winding} & \rho=1 & 136.989099634108\ldots \\
 \text{Four-channel information loss} & C_Q=4 & 137.036822705723\ldots \\
-\text{Layer2 eta-spectral projection} &
-C_Q(n)=4-\frac{\pi-3}{2}\frac{n-3}{n}
-& 137.035999142931\ldots \\
+\text{Sharp Layer2 projection} & r_{\rm L2}=3 & 137.035999142931\ldots \\
+\text{First Layer2 eta-kernel refinement} &
+r_{\rm L2}=3(1+\Omega_\eta(1))
+& 137.035999177549\ldots \\
 \bottomrule
 \end{array}
 \]
@@ -339,13 +367,13 @@ Using CODATA/NIST 2022
 \[
   \alpha^{-1}_{\rm CODATA}=137.035999177(21),
 \]
-the Layer2 eta-spectral projection value differs by
+the refined value differs by approximately
 \[
-  -3.4069\times10^{-8},
+  +5.49\times10^{-10},
 \]
-or approximately
+or
 \[
-  -1.62\sigma.
+  +0.026\sigma.
 \]
 
 \section{Interpretation}
@@ -354,75 +382,72 @@ The result can be summarized as a Layer1/Layer2 fixed point:
 \[
   \text{Layer1 eta/theta spectrum}
   \quad+\quad
-  \text{Layer2 observable-sector projection}
+  \text{Layer2 observable-sector readout}
   \quad\Rightarrow\quad
   n=\alpha^{-1}.
 \]
-The modular eta spectrum supplies the universal subtraction
+The modular eta spectrum supplies
 \[
   \varepsilon_\eta=\frac{\pi-3}{2},
 \]
-and the Layer2 color-code projection supplies the finite-rank factor
+while the Layer2 readout supplies an effective protected rank
 \[
-  \frac{n-3}{n}.
+  r_{\rm L2}=3(1+\Omega_\eta(1)).
 \]
 Thus the fine-structure constant is not identified with a single theta mode.
-Rather, it appears as the stationary effective winding index generated by the
-full eta spectrum after Layer2 observable-sector projection.
+It appears as a stationary effective winding index generated by the full eta
+spectrum after Layer2 observable-sector readout.
 
 \section{Remaining proof gap}
 
 The remaining open step is structural:
 \[
   \boxed{
-  G137\text{-L2}:
+  G137\text{-L2K}:
   \quad
   \text{derive }
-  \frac{\mathrm{Tr}(I_n-\Pi_{\rm color})}{\mathrm{Tr}I_n}
-  =
-  \frac{n-3}{n}
-  \text{ from canonical Layer2 UBT.}
+  r_{\rm L2}=3(1+\Omega_\eta(1))
+  \text{ from the canonical Layer2 readout kernel.}
   }
 \]
-This requires explicitly constructing the Layer2 projector
+A canonical proof requires an explicit Layer2 map
 \[
-  \Pi_{\rm L2}:
+  \mathcal E_{\rm L2}:
   \mathbb B\otimes\mathcal H_\Theta
   \longrightarrow
   \mathcal H_{\rm obs}
 \]
-and showing that the three-dimensional SU(3)/color-code subspace is protected
-from eta-spectral information loss.
+and a spectral readout formula such as
+\[
+  r_{\rm L2}
+  =
+  \frac{
+    \sum_m w_m\,\mathrm{Tr}
+    \left(\Pi_{\rm color}K_m^\dagger K_m\right)
+  }{
+    \sum_m w_m
+  },
+  \qquad
+  w_m=\frac{m}{e^{2\pi m}-1},
+\]
+whose first self-dual approximation yields $3(1+\Omega_\eta(1))$.
 
-Until this is done, the result is a systematic research-track derivation with
-one explicit Layer2 projection theorem remaining, not a canonical derivation
-of $\alpha$.
+Until this is done, the result is a very strong research-track prediction, not
+a canonical derivation of $\alpha$.
 
 \section{Conclusion}
 
-This note replaces the earlier heuristic entropy refinement by a more
-structured Layer1/Layer2 mechanism.  The final research-track equation is
+This note upgrades the alpha information-loss route from a sharp-rank Layer2
+projection to a first eta-kernel Layer2 readout refinement.  The refined
+equation predicts
 \[
-  \frac{2n}{\ln n+1}
-  =
-  12^{3/2}
-  \left[
-    2\eta\!\left(
-      i\exp\!\left[
-        -\frac{1}{2\pi n}
-        \left(
-          4-\frac{\pi-3}{2}\frac{n-3}{n}
-        \right)
-      \right]
-    \right)
-  \right]^{1/4}.
+  \alpha^{-1}_{\rm UBT}=137.035999177549\ldots ,
 \]
-It predicts
-\[
-  \alpha^{-1}_{\rm UBT}=137.035999142931\ldots ,
-\]
-approximately $1.62\sigma$ below the CODATA/NIST 2022 value.  The result is
-strong enough to justify further work, but the Layer2 projection-rank theorem
-must be proved before promoting the alpha route to the canonical layer.
+approximately $+0.026\sigma$ above the CODATA/NIST 2022 value.  No fitted
+decimal is introduced; the correction reuses the same self-dual eta occupation
+number $\Omega_\eta(1)$ already present in the Layer1 spectral subtraction.
+Nevertheless, the Layer2 readout kernel must be derived explicitly before the
+result can be promoted from research-track status to a canonical alpha
+derivation.
 
 \end{document}

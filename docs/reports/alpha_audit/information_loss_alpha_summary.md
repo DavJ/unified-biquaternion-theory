@@ -1,15 +1,13 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# Layer2 projection correction to alpha information-loss route
+# Layer2 kernel refinement to alpha information-loss route
 
 **Status:** research-track hypothesis, not canonical.
 
-This patch updates the alpha information-loss route by tying the finite
-correction to the Layer2 observable-sector coding/projection layer.
+This patch upgrades the alpha information-loss route from a sharp Layer2 rank
+projection to a first eta-kernel readout refinement.
 
 ## Core equation
-
-The effective quasi-periodic theta modulus is
 
 \[
 \rho = \exp(-\Delta I_Q),
@@ -17,46 +15,52 @@ The effective quasi-periodic theta modulus is
 \Delta I_Q(n)=\frac{C_Q(n)}{2\pi n}.
 \]
 
-The eta-winding coefficient is
-
 \[
-B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
-\]
-
-The stationary winding equation is
-
-\[
+B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4},
+\qquad
 \frac{2n}{\ln n+1}=B(\rho).
 \]
 
-## Layer1 eta-spectral subtraction
+## Eta spectral subtraction
+
+\[
+\Omega_\eta(1)
+=
+\sum_{m=1}^{\infty}\frac{m}{e^{2\pi m}-1}
+=
+\frac{1}{24}-\frac{1}{8\pi}.
+\]
 
 \[
 \varepsilon_\eta
 =
-12\pi
-\sum_{m=1}^{\infty}
-\frac{m}{e^{2\pi m}-1}
+12\pi\Omega_\eta(1)
 =
 \frac{\pi-3}{2}.
 \]
 
-## Layer2 projection-rank factor
+## Layer2 effective rank
 
-Layer2 supplies a protected three-dimensional SU(3)/color-code subspace.
-In a finite winding sector of effective dimension \(n\), the eta-loss acts on
-the complement, giving
-
-\[
-\frac{n-3}{n}.
-\]
-
-Thus
+General model:
 
 \[
 C_Q(n)
 =
-4-\frac{\pi-3}{2}\frac{n-3}{n}.
+4-\varepsilon_\eta\frac{n-r_{\rm L2}}{n}.
+\]
+
+Sharp Layer2 projection:
+
+\[
+r_{\rm L2}^{(0)}=3.
+\]
+
+First eta-kernel refinement:
+
+\[
+r_{\rm L2}^{(1)}
+=
+3(1+\Omega_\eta(1)).
 \]
 
 ## Result
@@ -70,7 +74,7 @@ C_Q(n)
 i\exp\left[
 -\frac{1}{2\pi n}
 \left(
-4-\frac{\pi-3}{2}\frac{n-3}{n}
+4-\frac{\pi-3}{2}\frac{n-r_{\rm L2}^{(1)}}{n}
 \right)
 \right]
 \right)
@@ -80,7 +84,7 @@ i\exp\left[
 Numerically:
 
 \[
-n_{\rm UBT}=137.035999142931\ldots .
+n_{\rm UBT}=137.035999177549\ldots .
 \]
 
 Compared with CODATA/NIST 2022,
@@ -89,17 +93,17 @@ Compared with CODATA/NIST 2022,
 \alpha^{-1}=137.035999177(21),
 \]
 
-this is approximately \(-1.62\sigma\).
+this is approximately \(+0.026\sigma\).
 
 ## Open gap
 
 \[
-G137\text{-L2}:
+G137\text{-L2K}:
 \quad
-\text{derive the projection-rank factor }
-\frac{n-3}{n}
-\text{ from canonical Layer2 UBT.}
+\text{derive }
+r_{\rm L2}=3(1+\Omega_\eta(1))
+\text{ from the canonical Layer2 readout kernel.}
 \]
 
-Until this is done, the result remains a systematic research-track derivation
-with one Layer2 projection theorem remaining.
+Until this is done, the result remains a very strong research-track prediction,
+not a canonical derivation of alpha.

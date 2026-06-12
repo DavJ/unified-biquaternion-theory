@@ -1,6 +1,6 @@
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# Alpha Layer2 projection reproduction
+# Alpha Layer2 kernel refinement reproduction
 
 This folder reproduces the numerical values from:
 
@@ -12,20 +12,23 @@ Run from the repository root:
 python experiments/alpha_information_loss/reproduce_info_loss_alpha.py
 ```
 
-The script evaluates three models:
+The script evaluates four models:
 
 1. self-dual eta-winding, `rho = 1`;
 2. minimal four-channel information loss, `C_Q = 4`;
-3. Layer2 eta-spectral projection correction,
+3. sharp Layer2 eta-spectral projection, `r_eff = 3`;
+4. first Layer2 eta-kernel refinement,
 
 ```text
-C_Q(n) = 4 - ((pi - 3)/2) * ((n - 3)/n)
+r_eff = 3 * (1 + Omega_eta(1))
+Omega_eta(1) = sum_{m>=1} m/(exp(2*pi*m)-1)
+             = 1/24 - 1/(8*pi)
 ```
 
 Expected headline result:
 
 ```text
-n = alpha^-1 = 137.035999142931...
+n = alpha^-1 = 137.035999177549...
 ```
 
 Compared with CODATA/NIST 2022,
@@ -34,8 +37,7 @@ Compared with CODATA/NIST 2022,
 alpha^-1 = 137.035999177(21)
 ```
 
-this is about `-1.62 sigma`.
+this is about `+0.026 sigma`.
 
 Status: research-track only. The remaining proof gap is the derivation of the
-Layer2 projection-rank factor `(n - 3)/n` from the canonical UBT projection
-kernel.
+Layer2 readout kernel from canonical UBT.
