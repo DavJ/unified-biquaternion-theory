@@ -117,7 +117,7 @@ Hecke eigenvalue computations for the Jacobi theta constant using the r₂-proxy
 |---------|-------------|---------|
 | 3, 5, 7, 11 | ≈ p^{-1/2} | Consistent with k=1/2 middle term |
 | 137 | ≈ 1/√137 ≈ α^{1/2} | Intriguing; no causal claim made |
-| 139 | ≈ 1/√139 ≈ α'^{1/2} | Mirror sector analogue |
+| 139 | ≈ 1/√139 ≈ α'^{1/2} | Non-canonical Set B comparison; interpretation moved to speculative extension |
 
 **Lepton mass Hecke triples (Set A, p=137):**
 
@@ -180,28 +180,20 @@ parameter. The B_base derivation remains the central open problem.
 
 ---
 
-## 7. Mirror Sector Hecke Results
+## 7. p=139 / mirror-sector material moved to speculative extension
 
-**Status:** [NO] — numerical observations only
+**Status:** [NO/SPECULATIVE] — moved out of non-speculative audit scope.
 
-Set B Hecke forms at p = 139:
+The detailed Set B / p=139 mirror-sector material has been moved to:
 
-| Form | Level N | Weight k | a_{139} | Ratio | Target | Error |
-|------|---------|----------|---------|-------|--------|-------|
-| k=2 (mirror e) | 195 | 2 | +15 | 1 | 1 | — |
-| k=4 (mirror μ) | 50 | 4 | +3100 | 206.667 | 206.768 | 0.05% |
-| k=6 (mirror τ) | 54 | 6 | +53009 | 3533.9 | 3477.23 | 1.63% |
+```text
+speculative_extensions/alpha_139_mirror_sector/
+```
 
-Twin prime exclusivity: Set A hits p=137 with 0.0% μ-error; Set B hits p=139
-with 0.05% μ-error. Neither set hits the other's prime (error > 50%). This
-mutual exclusivity holds over a global scan of p = 50–300.
-
-| File | Content | Status |
-|------|---------|--------|
-| `reports/hecke_lepton/mirror_world_139.md` | Set B analysis | [NO] |
-| `consolidation_project/mirror_sector/README.md` | Mirror sector overview | [MC] |
-| `consolidation_project/mirror_sector/vacuum_stability.tex` | V_eff at n=139 | [MC] |
-| `research/mirror_sector_modular_status.md` | Conservative summary (new) | [NO/MC] |
+The canonical and audit layers may still use `139` as a comparison/control prime,
+for example in kill conditions or specificity checks.  Claims that `139` defines
+a physical mirror sector, twin-prime duality, or a second mass spectrum are not
+canonical unless a UBT mechanism is derived.
 
 ---
 
@@ -215,7 +207,7 @@ Listed from most to least tractable:
 | 2 | Derive the exponent 3/2 in B_base = N_eff^{3/2} | 22 approaches tested; all fail | HIGH |
 | 3 | Fix τ = iR_ψ/R_t from first principles (not self-dual τ=i assumption) | R_ψ is free parameter | MEDIUM |
 | 4 | Derive which modular invariant selects n=137 over other primes | V_eff minimum proved; B_base open | MEDIUM |
-| 5 | Connect Set B (p=139) to a physical mirror sector mechanism | No UBT mechanism identified | LOW |
+| 5 | Decide whether p=139 has only control-prime status or a speculative mirror-sector role | No UBT mechanism identified | LOW |
 
 ---
 
@@ -233,7 +225,7 @@ Torus T²(τ) = ℂ/(ℤ + τℤ)  [L1, from compactification]
 Hecke operators T(p²) act on ϑ₃ spectrum  [L1, algebraic]
     ↓
 At p=137: Set A Hecke eigenvalues reproduce lepton ratios  [NO — no mechanism]
-At p=139: Set B Hecke eigenvalues reproduce mirror ratios  [NO — no mechanism]
+At p=139: moved to speculative extension; no canonical mechanism
     ↓
 Alpha candidate: modular V_eff minimum near n=137  [SE — B_base open]
 ```
@@ -250,11 +242,11 @@ is a numerical observation without a proved algebraic mechanism.
 - `report/hecke_modular_structure.md` — Hecke structure of UBT Θ functions
 - `report/theta_spectrum_analysis.md` — KK spectrum and Poisson duality
 - `reports/hecke_lepton/sage_results_2026_03_07.md` — SageMath Hecke results
-- `reports/hecke_lepton/mirror_world_139.md` — Mirror sector Set B
+- `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` — non-canonical Set B / mirror-sector interpretation
 - `consolidation_project/appendix_ALPHA_torus_theta.tex` — Torus/eta alpha mechanism
 - `research/theta_modular_geometry.tex` — Torus formalization (this session)
 - `research/theta_alpha_connection.md` — Alpha candidate mechanisms (this session)
-- `research/mirror_sector_modular_status.md` — Mirror sector status (this session)
+- `research/mirror_sector_modular_status.md` — historical p=139 status note (this session)
 
 ---
 

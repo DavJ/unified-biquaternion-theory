@@ -105,7 +105,7 @@ Set A (N=76/7/208) over all 50 primes tested in the range p=50–300.
 ### 3c. Set B — global scan (p=50–300, 50 primes)
 
 Forms: N=195/50/54, k=2/4/6, a_{139} = +15/+3100/+53009.  
-See `reports/hecke_lepton/mirror_world_139.md` for full analysis.
+See `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` for full analysis.
 
 | p | err_μ | err_τ | Note |
 |---|-------|-------|------|
@@ -113,9 +113,9 @@ See `reports/hecke_lepton/mirror_world_139.md` for full analysis.
 | 197 | 3.09% | 349% | partial (τ far off) |
 | 48 others | — | — | far outside tolerance |
 
-### 3d. Twin Prime Symmetry
+### 3d. Twin-prime numerical pattern (interpretation moved to speculative extension)
 
-The two independent Sets respond exclusively to the twin prime pair (137, 139):
+The two independent numerical sets respond to the twin prime pair (137, 139). This remains a numerical observation; physical mirror-sector interpretation is kept only in the speculative extension:
 
 ```
 Set A (N=76/7/208):   unique global hit -> p=137  [Set A blind to p=139]
@@ -124,8 +124,8 @@ Set B (N=195/50/54):  unique global hit -> p=139  [Set B blind to p=137]
 ```
 
 **Status: [SUGGESTIVE PATTERN — requires theoretical motivation]**  
-See `reports/hecke_lepton/mirror_world_139.md` for the Set B analysis and
-open questions about the mirror sector.
+See `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` for the Set B analysis and
+open questions about the non-canonical mirror-sector interpretation.
 
 **Expected statistical baseline**: The Sato–Tate distribution gives
 |a_p| ≤ 2p^{(k−1)/2}.  For k=4 at p=137, the Ramanujan bound is ≈ 3207.
@@ -269,7 +269,7 @@ reproduction of both mass ratios at a single prime.
 | Task 3: k=2,4,6 weights | **Motivated conjecture** | Formalise step7 argument; prove for n>1 |
 | LMFDB labels | See `lmfdb_labels.md` | All 6 forms (Set A + Set B) catalogued |
 | Statistical significance | See `statistical_significance.md` | Quantitative probability estimates |
-| Mirror sector (Set B) | See `mirror_world_139.md` | Set B analysis, open questions |
+| Set B p=139 (interpretation moved to speculative extension) | See `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` | Set B analysis, open questions |
 | Non-newform check | Pending | Verify N=7, k=4 form is a genuine newform (not oldform from N=1) |
 
 ---
@@ -282,7 +282,7 @@ reproduction of both mass ratios at a single prime.
 | `scripts/hecke/global_scan_set_b.sage` | Global scan script for Set B |
 | `reports/hecke_lepton/sage_results_2026_03_07.md` | This document |
 | `reports/hecke_lepton/prime_specificity_results.txt` | Raw results, Results 1–4 |
-| `reports/hecke_lepton/mirror_world_139.md` | Set B mirror sector analysis |
+| `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` | Set B non-canonical mirror-sector interpretation analysis |
 | `reports/hecke_lepton/statistical_significance.md` | Quantitative significance estimates |
 | `reports/hecke_lepton/lmfdb_labels.md` | LMFDB label identification for all 6 forms |
 | `research_tracks/three_generations/hecke_sage_results.txt` | 2026-03-06 raw results |
@@ -301,7 +301,7 @@ After running `test_prime_specificity.sage`:
 **SIGNAL confirmed (ratios close only at p=137)**:
 1. ✅ Identify LMFDB labels for (76.2.?.?, 7.4.?.?, 208.6.?.?) — see `lmfdb_labels.md`
 2. ✅ Global scan confirms uniqueness over p=50–300
-3. ✅ Twin prime symmetry with Set B documented — see `mirror_world_139.md`
+3. ✅ Set B p=139 numerical pattern documented; physical interpretation moved to `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md`
 4. Verify genuine newform status for N=7 k=4 form — PENDING
 5. Investigate N=7 → Γ₀(7) → Klein quartic / arithmetic geometry connection — PENDING
 6. Formalise step7_weight_motivation argument — PENDING
@@ -310,7 +310,7 @@ After running `test_prime_specificity.sage`:
 **Next open questions**:
 - Theoretical motivation for why N=195/50/54 (Set B) selects p=139
 - Geometric explanation of the level difference (76 vs 195; 208 vs 54)
-- Physical interpretation of the mirror sector mass ratios
+- Physical interpretation of Set B p=139 ratios, if any, moved to speculative extension
 
 ---
 

@@ -94,11 +94,12 @@ R_τ  = 38286/11 = 3480.55  (exp: 3477.23, error: 0.10%)
 ```
 
 This is a **prime-specific** result: p = 137 is the unique prime in
-p ∈ [50, 300] achieving both errors < 0.1%.  The twin prime p = 139
-hits a *different* set of forms (mirror sector).
+p ∈ [50, 300] achieving both errors < 0.1%.  The neighboring prime p = 139
+is retained only as a comparison/control prime here; the Set B / mirror-sector
+interpretation has been moved to `speculative_extensions/alpha_139_mirror_sector/`.
 
 **Open problem G137-Hk**: Derive why levels 76, 7, 208 and weights 2, 4, 6
-are selected by UBT.  Explain the twin-prime Set A / Set B symmetry.
+are selected by UBT.  Explain whether the p=139 comparison has any canonical meaning beyond a control-prime test.
 
 **Status**: [MC] — strong numerical signal; theoretical motivation incomplete.
 
@@ -133,7 +134,7 @@ UBT-specific content for p = 137.
 | 137 is prime | — | V_eff minimum is stable (prime attractor theorem) |
 | 137 ≡ 1 (mod 4) | Kronecker (−1\|137) = +1 | ν₂(Γ₀(137)) = 2; ν₃ = 0 |
 | 137 ≡ 2 (mod 3) | Kronecker (−3\|137) = −1 | Complementary to p=139 ≡ 1 (mod 3) |
-| (137, 139) twin prime | Diff = 2, both prime | Set A hits 137, Set B hits 139 (mutual exclusivity) |
+| 139 comparison prime | neighbor of 137 | Set B / mirror interpretation moved to speculative extension |
 
 These are all invariant number-theoretic facts, not numerological assignments.
 
@@ -169,7 +170,7 @@ main open problem.  Until this is solved, the spectral role is [CONDITIONAL].
 | G137-B | Derive B = (p+1)/3 + ε from S[Θ] | `gamma0_137_invariants.md` §4, `prime_137_structural_audit.md` §3.2 |
 | G137-R | Explain R ≈ 1.114 between B_base and B_phenom | `prime_137_structural_audit.md` §3.1 |
 | G137-Hk | Derive levels 76/7/208 and weights 2/4/6 from UBT | `gamma0_137_invariants.md` §3 |
-| G137-twin | Derive Set A/B symmetry between 137 and 139 | `gamma0_137_invariants.md` §6 |
+| G137-twin | Test Set A/B numerical relation between 137 and 139 without assuming physical mirror-sector status | `gamma0_137_invariants.md` §6 |
 | G137-Fq | Determine if P¹(𝔽_p) structure appears in UBT field equations | `f137_projective_geometry_check.md` §7 |
 
 ---

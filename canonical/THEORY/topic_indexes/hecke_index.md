@@ -1,8 +1,8 @@
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
-# Hecke Operators & Twin Primes 137/139 — Topic Index
+# Hecke Operators and p=137 Alpha Route — Topic Index
 
-**Status**: **STRONG NUMERICAL SUPPORT** for p=137 (Set A); **NUMERICAL OBSERVATION** for p=139 (Set B)  
+**Status**: **STRONG NUMERICAL SUPPORT** for p=137 (Set A); p=139 Set B moved to speculative extension  
 **Last updated**: 2026-03-10  
 **Canonical source**: `docs/reports/hecke_lepton/` and `research_tracks/hecke_bridge/motivation.tex`
 
@@ -12,8 +12,7 @@
 
 Lepton mass ratios (μ/e, τ/μ) are reproduced by Hecke eigenvalues of
 modular newforms evaluated at **p = 137** (Set A) with 0.02% and 0.10% accuracy.
-A second, algebraically independent triple of forms reproduces the same ratios at
-**p = 139** (Set B, mirror sector).
+A second, algebraically independent Set B pattern at **p = 139** has been moved to `speculative_extensions/alpha_139_mirror_sector/` and is not treated here as canonical.
 
 The two primes are twin primes. This is currently a **numerical observation** — the
 theoretical derivation of the specific modular forms from ℂ⊗ℍ first principles
@@ -22,9 +21,9 @@ remains an open problem.
 | Observation | Status |
 |-------------|--------|
 | Set A unique global hit at p=137 in 50–300 | **STRONG NUMERICAL SUPPORT** |
-| Set B unique global hit at p=139 in 50–300 | **NUMERICAL OBSERVATION** |
+| Set B unique global hit at p=139 in 50–300 | **MOVED TO SPECULATIVE EXTENSION** |
 | Sets A and B algebraically independent | **VERIFIED** |
-| n* = 137 ↔ n** = 139 twin prime parity symmetry | **MOTIVATED CONJECTURE** |
+| n* = 137 ↔ n** = 139 twin-prime interpretation | **SPECULATIVE / MOVED** |
 | Derivation of specific forms from ℂ⊗ℍ | **OPEN** |
 
 ---
@@ -40,7 +39,7 @@ remains an open problem.
 
 | File | Content |
 |------|---------|
-| `docs/reports/hecke_lepton/mirror_world_139.md` | Set B (p=139) analysis with global scan |
+| `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` | Set B (p=139) analysis moved to speculative extension |
 | `docs/reports/hecke_lepton/sage_results_2026_03_07.md` | SageMath verification results |
 | `docs/reports/hecke_lepton/prime_specificity_results.txt` | Full prime scan 50–300 |
 
@@ -54,7 +53,7 @@ remains an open problem.
 | `7.4.a.a` | 7 (prime) | 4 | +1513 | 2nd (μ) | 1513/7 = 216.1 ≈ 206.8 | **0.02%** |
 | `208.6.a.?` | 208 = 16×13 | 6 | +17043 | 3rd (τ) | 17043/7 = 2434.7 ≈ 3477.2 | **0.10%** |
 
-## Set B (p=139) — Mirror Sector Newforms
+## Set B (p=139) — numerical newforms; interpretation moved to speculative extension
 
 | Form | Level N | Weight k | a₁₃₉ | Generation | Ratio | Error |
 |------|---------|----------|-------|-----------|-------|-------|
@@ -136,7 +135,7 @@ Raw numerical scans of CMB-derived data around k=137,139 are in `ARCHIVE/archive
 | Problem | Description |
 |---------|-------------|
 | Derive modular forms from ℂ⊗ℍ | Identify the L-function of ℂ⊗ℍ/ℤ; requires algebraic geometry or arithmetic topology |
-| Explain twin prime structure | Why 137 and 139 and not another twin prime pair? |
+| Explain the role of neighboring comparison primes | Why 137 is selected over controls such as 139 |
 | Connect k=2,4,6 to ψ-mode structure | Weight assignment motivated (k=2n) but not uniquely derived |
 | Level N explanation | Why N=7 (= μ(Γ₀(7)) = 8 = dim_ℝ(ℂ⊗ℍ)) for Set A? |
 
@@ -146,7 +145,7 @@ Raw numerical scans of CMB-derived data around k=137,139 are in `ARCHIVE/archive
 
 Main entries in `DERIVATION_INDEX.md`, Three Fermion Generations section:
 - **Hecke conjecture p=137** — STRONG NUMERICAL SUPPORT
-- **Hecke twin prime p=139** — NUMERICAL OBSERVATION
+- **Hecke Set B p=139** — moved to speculative extension
 - **CM k=6 forms** — DEAD END
 - **Non-CM k=6 forms** — EXTENDED DEAD END
 
@@ -154,7 +153,7 @@ Main entries in `DERIVATION_INDEX.md`, Three Fermion Generations section:
 
 ## What a New Reader Should Do
 
-1. Read `docs/reports/hecke_lepton/mirror_world_139.md` for the Set B observation (clear, self-contained)
+1. For the non-canonical Set B / p=139 observation, read `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md`
 2. Read `experiments/research_tracks/three_generations/step5_hecke_search_results.tex` for Set A methodology
 3. Run `experiments/research_tracks/three_generations/verify_hecke_masses.py` to confirm numbers
 4. Read `research_tracks/hecke_bridge/motivation.tex` for the theoretical motivation

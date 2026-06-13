@@ -102,8 +102,8 @@ b_geom = 1/(8π)  (curvature coefficient)
 
 **Magnitude**: Δ_grav ~ 0.01-0.02
 
-#### 4. Mirror Sector Asymmetry
-**Source**: CxH naturally contains (q,τ) and (q̄,τ̄) pair
+#### 4. Comparison-channel asymmetry (mirror-sector interpretation moved)
+**Source**: CxH naturally contains (q,τ) and (q̄,τ̄) pair. Mirror-sector interpretation involving p=139 is speculative and has been moved to `speculative_extensions/alpha_139_mirror_sector/`.
 ```
 Perfect symmetry: α⁻¹ = (1/2)(α⁻¹_+ + α⁻¹_-)
 Actual: Θ action breaks symmetry slightly

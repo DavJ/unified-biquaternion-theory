@@ -85,15 +85,15 @@ file-role classification, and derivation status as recorded in
 
 ---
 
-## Topic 4 — Hecke Operators & Twin Primes 137/139
+## Topic 4 — Hecke Operators and p=137
 
-**Status**: Strong numerical support (p=137); numerical observation (p=139); theory derivation OPEN  
+**Status**: Strong numerical support (p=137); p=139 mirror material moved to speculative extension; theory derivation OPEN  
 **Topic index**: [`canonical/THEORY/topic_indexes/hecke_index.md`](../canonical/THEORY/topic_indexes/hecke_index.md)
 
 | Result | Status | Canonical file |
 |--------|--------|----------------|
 | Hecke conjecture p=137 (Set A) | Strong Numerical Support | `reports/hecke_lepton/` |
-| Hecke twin prime p=139 (Set B) | Numerical Observation | `reports/hecke_lepton/mirror_world_139.md` |
+| Hecke Set B p=139 | Moved to speculative extension | `speculative_extensions/alpha_139_mirror_sector/mirror_world_139.md` |
 | Sets A and B algebraically independent | Verified | `reports/hecke_lepton/` |
 | Weights k=2,4,6 from ψ-modes | Motivated Conjecture | `consolidation_project/hecke_bridge/motivation.tex §2` |
 | Derivation of specific forms from ℂ⊗ℍ | OPEN | — |
@@ -102,20 +102,19 @@ file-role classification, and derivation status as recorded in
 
 ---
 
-## Topic 5 — Mirror Sector
+## Topic 5 — p=139 / Set B material moved to speculative extension
 
-**Status**: Numerical observation; vacuum stability motivated conjecture  
-**Topic index**: [`canonical/THEORY/topic_indexes/mirror_sector_index.md`](../canonical/THEORY/topic_indexes/mirror_sector_index.md)
+**Status**: speculative / moved.
 
-| Result | Status | Canonical file |
-|--------|--------|----------------|
-| V_eff(137) < V_eff(139) | Numerical Observation | `consolidation_project/mirror_sector/vacuum_stability.tex` |
-| n*=139 not local min of V_{B_137} | Proved Numerically | `consolidation_project/mirror_sector/vacuum_stability.tex` |
-| n**=139 global min of B_{139} | Motivated Conjecture | `consolidation_project/mirror_sector/vacuum_stability.tex` |
-| Mirror sector α'⁻¹ = 139 | Numerical Observation | `reports/hecke_lepton/mirror_world_139.md` |
-| Mirror matter as dark matter | Conjecture | `consolidation_project/mirror_sector/README.md` |
+Mirror-sector claims involving `p=139`, mirror matter, and Set B mass ratios are
+kept under:
 
-**⭐ Canonical sources**: `consolidation_project/mirror_sector/README.md` + `reports/hecke_lepton/mirror_world_139.md`
+```text
+speculative_extensions/alpha_139_mirror_sector/
+```
+
+`139` may remain in canonical alpha files as a comparison/control prime.
+
 
 ---
 

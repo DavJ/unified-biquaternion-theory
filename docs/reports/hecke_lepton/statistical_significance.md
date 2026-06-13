@@ -168,7 +168,7 @@ without reference to each other, each have a unique global hit in p=50–300:
 
 ```
 Set A → p=137 (exclusive)
-Set B → p=139 (exclusive)
+Set B → p=139 (exclusive; interpretation moved to speculative extension)
 ```
 
 The primes 137 and 139 are a twin prime pair.
@@ -189,7 +189,7 @@ of p₁ (if p₁ is part of a twin pair). The probability that Set B's
 independent hit lands on that specific prime is:
 
 ```
-P(Set B hits the twin of p₁ | Set B has a unique hit) ≈ 1/50 = 2%
+P(Set B hits the twin of p₁ | Set B has a unique hit) [non-canonical interpretation] ≈ 1/50 = 2%
 ```
 
 Additionally, p₁ must itself be part of a twin prime pair. Among 50 primes

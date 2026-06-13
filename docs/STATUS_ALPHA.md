@@ -488,8 +488,7 @@ WZW action (k/4π) ∫ (−Tr_fund[J²_ψ]) dψ gives the exact formula k = 2π 
 
 The CS term S_CS = (k_CS/4π) ∫ Tr(A∧dA + ⅔ A∧A∧A) would shift the Kac-Moody level.
 Three arguments show it is absent from UBT:
-1. CS is P-odd; UBT has parity symmetry (the mirror sectors n*=137 and n**=139 are
-   P-conjugates of each other) → no P-odd term in the action.
+1. CS is P-odd; the absence of a CS term remains a separate structural claim. Earlier mirror-sector parity language involving n**=139 has been moved to the speculative extension and is not used here as canonical support.
 2. The ψ-circle holonomy is trivial (proved via Hosotani mechanism) → topological CS term
    vanishes on the circle.
 3. S[Θ] = S_kin + S_pot with S_kin quadratic in Θ (free field) → no CS-type coupling.

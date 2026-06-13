@@ -227,13 +227,11 @@ An exhaustive search over all primes in $[50, 300]$ shows $p = 137$ is the
 \textbf{unique} prime achieving both errors $< 0.1\%$
 (\texttt{docs/reports/hecke\_lepton/prime\_specificity\_results.txt}).
 
-The twin prime $p = 139$ hits a \emph{mirror sector}
-(``Set~B''; see \texttt{prime\_137\_status.md}, Section~5): it achieves
-a Hecke lepton-ratio match in a different triple of modular forms, but
-the exact eigenvalues and errors for this mirror match are not yet
-documented in the canonical record.
-No Hecke lepton-ratio signal has been found for $p \in \{127, 151, 157\}$
-in the same exhaustive search.
+The neighboring prime $p = 139$ is retained here only as a comparison/control
+prime in the stable-prime ranking.  Earlier Set~B / mirror-sector language has
+been moved to \texttt{speculative\_extensions/alpha\_139\_mirror\_sector/}
+until a canonical UBT mechanism is derived.  No Hecke lepton-ratio signal has
+been found for $p \in \{127, 151, 157\}$ in the same exhaustive search.
 
 \textbf{Status of C2}: \MC\ for all primes.
 Open problem G137-Hk: derive why levels $76$, $7$, $208$ and weights
@@ -243,7 +241,7 @@ $2$, $4$, $6$ are selected by the UBT field $\Theta(q, \tau)$.
 \centering
 \caption{Hecke lepton-ratio scores.
   $3 =$ unique high-precision match (both $R_\mu$, $R_\tau$ at $< 0.1\%$);
-  $1 =$ partial (mirror/set-B match documented but eigenvalues not published);
+  $1 =$ comparison-prime / non-canonical side observation;
   $0 =$ no documented match.}
 \label{tab:spr:c2}
 \begin{tabular}{rp{7.8cm}c}
@@ -253,7 +251,7 @@ $p$ & Evidence & \textbf{C2} \\
   2 & Trivial & — \\
 127 & No Hecke lepton signal found & \textbf{0} \\
 137 & $\hat{R}_\mu$ err.\ $0.02\%$, $\hat{R}_\tau$ err.\ $0.10\%$; unique in $[50,300]$ & \textbf{3} \\
-139 & Mirror ``Set~B'' hit documented; exact errors not yet canonical & \textbf{1} \\
+139 & Comparison prime; Set~B / mirror-sector interpretation moved to speculative extension & \textbf{1} \\
 151 & No Hecke lepton signal found & \textbf{0} \\
 157 & No Hecke lepton signal found & \textbf{0} \\
 \bottomrule
@@ -433,12 +431,10 @@ $p$ & $p\bmod 4$ & $(-1/p)$ & $p\bmod 3$ & $(-3/p)$ & $\nu_2,\nu_3$ & \textbf{C5
 \end{table}
 
 \begin{infobox}
-\textbf{Twin-prime complementarity}: The pair $(137, 139)$ exhibits a
-``gauge duality'': $p = 137$ has $\nu_2 = 2,\,\nu_3 = 0$ (pure EW) while
-$p = 139$ has $\nu_2 = 0,\,\nu_3 = 2$ (pure QCD).  This mirrors the
-Set~A / Set~B Hecke structure documented in \texttt{prime\_137\_status.md},
-Section~5.  The complementarity follows from $137 \equiv 2\pmod{3}$ and
-$139 \equiv 1\pmod{3}$, i.e.\ consecutive values modulo~3.
+\textbf{Role of $p=139$}: In this canonical ranking, $139$ is used only as a
+comparison/control prime adjacent to $137$.  The stronger twin-prime or
+mirror-sector interpretation has been moved to
+\texttt{speculative\_extensions/alpha\_139\_mirror\_sector/}.
 \end{infobox}
 
 %──────────────────────────────────────────────────────────────────────────────
@@ -626,12 +622,10 @@ No other prime in $\mathcal{S}$ satisfies more than three of these criteria.
 \subsection{The role of the other stable primes}
 
 \begin{description}
-  \item[$p = 139$ (rank 2)] The twin-prime partner of $137$.  Its partial
-        Hecke score (Set~B mirror sector) and its closeness to $\alpha^{-1}$
-        ($\delta = 1.964$) suggest it is a ``shadow'' of the attractor in
-        the twin-prime structure.  Its gauge sector ($\nu_2 = 0$, $\nu_3 = 2$)
-        is complementary to $137$ (pure QCD), consistent with a
-        colour-singlet / colour-charged duality.
+  \item[$p = 139$ (rank 2)] The neighboring prime of $137$ is retained
+        as a comparison/control prime in the finite stable-prime set.  Earlier
+        Set~B / mirror-sector interpretations have been moved to the
+        speculative extension and are not part of the canonical ranking claim.
   \item[$p = 127$ (rank 3)] The most robustly stable prime ($\sigma = 1.194$).
         Its Mersenne structure ($2^7 - 1$) gives extreme 2-adic isolation.
         However, $127 \equiv 7 \pmod{8}$ places it outside both the
@@ -685,10 +679,10 @@ comparison (C6) confirms the structural selection.  The ranking is:
   \item \textbf{Gap G137-Hk} [\OPEN]: Derive why levels $76, 7, 208$ and
         weights $2, 4, 6$ are selected by $\Theta(q,\tau)$
         (C2 \MC).
-  \item \textbf{Gap G-twin} [\OPEN]: Derive the Set~A / Set~B twin-prime
-        duality between $p = 137$ (electroweak) and $p = 139$ (QCD) from the
-        gauge-algebra structure of UBT
-        (C5 suggests it; not yet derived).
+  \item \textbf{Gap G-139-control} [\OPEN]: Clarify whether the comparison-prime
+        role of $p=139$ has any canonical meaning beyond being a neighboring
+        stable-prime control.  Mirror-sector interpretations are tracked only
+        in the speculative extension.
   \item \textbf{Gap G-157} [\OPEN]: Clarify why $p = 157$ has a nearly
         identical theta and partial gauge profile to $p = 137$ but is
         essentially unstable ($\sigma = 0.007$).

@@ -35,7 +35,7 @@ VERDICT (range 127–151): SIGNAL — p=137 is the only hit.
 RESULT 2: Set B — Prime Specificity (range 127–151)
 ================================================================================
 
-Forms (mirror sector):
+Forms (Set B numerical observation; physical interpretation moved to speculative extension):
   k=2, N=195, a_{139} = +15
   k=4, N=50,  a_{139} = +3100
   k=6, N=54,  a_{139} = +53009
@@ -58,7 +58,7 @@ relative to our experimental values (m_μ/m_e = 206.768, m_τ/m_e = 3477.23).
 Set B reproduces the μ-ratio to 0.05% but the τ-ratio only to 1.63%.
 This discrepancy does NOT invalidate the observation — it means Set B
 matches our μ-ratio almost exactly but its τ-ratio differs from ours by 1.63%.
-If Set B describes a different sector, that sector may have different effective
+If Set B were interpreted as a different sector (speculative only), that sector may have different effective
 mass ratios. The 1.63% τ-deviation is documented as an open question, not as
 a failure.
 
@@ -112,7 +112,7 @@ CLASSIFICATION
 ================================================================================
 
   Set A hit p=137, globally unique  ->  STRONG NUMERICAL SUPPORT
-  Set B hit p=139, globally unique  ->  NUMERICAL OBSERVATION
+  Set B hit p=139, globally unique  ->  NUMERICAL OBSERVATION; physical interpretation moved to speculative extension
   Twin prime mutual exclusivity     ->  SUGGESTIVE PATTERN
   k=2,4,6 -> generations            ->  MOTIVATED CONJECTURE
   Fermion masses derived            ->  NOT CLAIMED

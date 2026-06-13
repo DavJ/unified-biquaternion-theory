@@ -4,7 +4,7 @@
 
 **Date**: 2026-03-08 (updated from 2026-03-07)  
 **Author**: Ing. David Jaroš  
-**Status**: **[PARTIALLY CONFIRMED — 7.4.a.a and 76.2.a.a confirmed from LMFDB PDF; 208.6.a subspace confirmed; Set B labels under verification — see Section 9]**  
+**Status**: **[PARTIALLY CONFIRMED — 7.4.a.a and 76.2.a.a confirmed from LMFDB PDF; 208.6.a subspace confirmed; Set B labels under verification; mirror-sector interpretation moved to speculative extension — see Section 9]**  
 **Related**: `reports/hecke_lepton/sage_results_2026_03_07.md`
 
 ---
@@ -125,7 +125,7 @@ The CM status requires LMFDB verification.
 
 ---
 
-## 2. Set B — Forms at p=139 (NUMERICAL OBSERVATION, mirror sector)
+## 2. Set B — Forms at p=139 (NUMERICAL OBSERVATION; physical interpretation moved to speculative extension)
 
 ### 2.1 Form k=2, N=195, a₁₃₉ = +15
 
