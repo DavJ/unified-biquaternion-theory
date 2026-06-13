@@ -307,6 +307,25 @@ be derived from $S[\Theta]$ separately.
 | Rpsi-poly | Polynomial R⁶+R⁴+R²=3 unique solution R_ψ=1; N_eff cancels | [L0] | `modular_symmetry_rpsi.tex Thm thm:poly` |
 | Rpsi-min | R_ψ=1 is minimum of S_eff, d²S/dR²=20C>0 | [L0]+[NUM] | `modular_symmetry_rpsi.tex Cor cor:min` |
 
+### Information-Loss Alpha Derivation Chain (v70–v72, 2026-06-13)
+
+| ID | Claim | Level | Source |
+|----|-------|-------|--------|
+| il-Omega | Ω_η(1) = 1/24 − 1/(8π) from Eisenstein G₂(i) | [L0] | `layer2_kernel_derivation.tex Lem lem:omega_eta` |
+| il-12pi | 12π·Ω_η(1) = (π−3)/2 | [L0] | `layer2_kernel_derivation.tex Cor cor:12pi_omega` |
+| il-CQ | C_Q = 4 from Dirac spinor dimension in UBT | [L1 cond.] | `layer2_kernel_derivation.tex Prop prop:CQ4` |
+| il-Hcolour | H_colour = Ω_η·Π_colour (one-loop colour Hamiltonian) | [L1 cond.] | `layer2_kernel_derivation.tex Def def:H_colour` |
+| il-Zcolour | Z_colour = Tr_{ℂ³}[I+H_colour] = 3(1+Ω_η) | [L0] | `layer2_kernel_derivation.tex Lem lem:Z_colour` |
+| il-KL2 | K_L2 = √(1+Ω_η)·Π_colour (Layer2 Kraus operator) | [L1 cond.] | `layer2_kernel_derivation.tex Prop prop:kraus` |
+| il-rL2 | r_L2 = Tr(Π_colour K†K) = 3(1+Ω_η) | [L1 cond.] | `layer2_kernel_derivation.tex Thm thm:rL2` |
+| il-mwind | m²_wind = n²π (winding zero-mode mass) | [L1 cond.] | `gap_A_proof.tex Lem lem:wind_action` |
+| il-meff | m²_eff = n²π/C_Q (equipartition across C_Q channels) | [L1 cond.] | `gap_A_proof.tex Lem lem:c0var` |
+| il-rho | ρ = exp(−C_Q/(2πn)) from Gaussian zero-mode fidelity | [L1 cond.] | `gap_A_proof.tex Thm thm:gapA` |
+| il-alpha | α⁻¹_UBT = 137.035999177549 (+0.026σ CODATA 2022) | [L1 cond.] | `information_loss_alpha_self_consistency.tex` |
+
+**All steps are [L1 conditional]. Conditions**: det P=η² [STD]; N_eff=12 [L1]; one-loop approximation; Dirac eq. [L1]; SS BC [L1].
+**Alpha: NOT DERIVED unconditionally.**
+
 **Conditions for [L1 conditional]**: (i) det P_eff=η² [STD, Polchinski §7.2]; (ii) N_eff=12 [L1]; (iii) one-loop approximation (higher loops do not shift the fixed point). All conditions are explicit.
 
 ---

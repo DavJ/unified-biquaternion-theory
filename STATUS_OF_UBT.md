@@ -1,3 +1,27 @@
+## 2026-06-13 (v72 — Layer2 Kraus operator derived [L1 cond.]; full alpha chain [L1 cond.])
+
+### New results
+- H_colour = Ω_η·Π_colour (one-loop colour Hamiltonian) [L1 cond.]
+- Z_colour = 3(1+Ω_η) from Tr[I+H_colour] [L0]
+- K_L2 = √(1+Ω_η)·Π_colour derived from colour partition function [L1 cond.]
+- r_L2 = 3(1+Ω_η) [L1 cond.] — Gap G137-L2K CLOSED
+- Full alpha chain now [L1 conditional]: no [MC+] steps remain
+- α⁻¹_UBT = 137.035999177549 (+0.026σ CODATA 2022) [L1 cond.]
+
+### T3_ALPHA status update
+Previous: STRUCTURAL EVIDENCE (6 NO-GOs on A_PRIME/G137-B route)
+Current:  STRUCTURAL EVIDENCE + [L1 cond.] via information-loss route
+
+The information-loss route (separate from A_PRIME/G137-B) now gives
+α⁻¹ = 137.035999177549 as [L1 conditional] — all steps derived.
+The A_PRIME route remains TIME-BOX EXPIRED with G137-B OPEN.
+
+### Alpha: NOT DERIVED unconditionally
+Conditions for [L1 cond.]: det P=η² [STD]; N_eff=12 [L1]; one-loop approx.;
+Dirac eq. [L1]; SS BC [L1]; one-loop colour Hamiltonian [L1 cond.].
+
+---
+
 ## 2026-06-11 (v62 — modular_symmetry_rpsi.tex: FINAL EN version)
 
 ### New results
@@ -241,7 +265,7 @@ and one blocked result (T3_ALPHA).
 |-------|--------|-------|---------|
 | **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
 | **T2_GAUGE** — Gauge Sector | ✅ PAPER COMPLETE | `papers/UBT_Gauge_Submission.tex` | Submit after T1_GR clears initial review |
-| **T3_ALPHA** — Fine Structure Constant | 🔴 STRUCTURAL EVIDENCE | `research_tracks/T3_ALPHA/integer_137_note.tex` (companion note) | Downgraded 2026-06-11. α NOT DERIVED. B-gap open after 6 NO-GOs. Integer-137 companion note written. |
+| **T3_ALPHA** — Fine Structure Constant | 🟡 STRUCTURAL EVIDENCE + [L1 cond.] | `information_loss_alpha_self_consistency.tex` + `layer2_kernel_derivation.tex` + `gap_A_proof.tex` | α⁻¹_UBT=137.035999177549 (+0.026σ) [L1 cond.] via info-loss route. A_PRIME/G137-B: TIME-BOX EXPIRED. α NOT DERIVED unconditionally. |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
 
 **No speculative tracks are active.**  Consciousness/CTC content is frozen in
