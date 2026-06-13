@@ -1,0 +1,198 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/theta0_electroweak_vacuum_orbit_theorem.tex
+% Purpose: Close the remaining alpha proof condition by showing that any
+%          non-zero UBT electroweak vacuum in the minimal Theta doublet sector
+%          is gauge-equivalent to the standard (SU(2)_L,Y=1) doublet vacuum.
+% Status: [L1 conditional] — closes the representation/orbit part of EW-2.
+%         Remaining assumption: the symmetry-breaking potential V(Theta) has a
+%         non-zero minimum in the minimal electroweak Theta doublet sector.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+
+\title{The $\Theta_0$ Electroweak Vacuum Orbit Theorem\\
+       \large Closing the Representation Gap in the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The alpha proof requires that the UBT electromagnetic projection be the compact
+unit-charge \(U(1)_{\rm EM}\) line bundle.  The previous EM projection theorem
+reduced this to the condition that the low-energy UBT vacuum transform as an
+\((SU(2)_L,Y=1)\) electroweak doublet.  This note proves the representation and
+orbit part of that condition.  Since
+\(\mathbb C\otimes\mathbb H\cong {\rm Mat}(2,\mathbb C)\), the minimal
+left-action electroweak component of \(\Theta\) is a complex \(SU(2)_L\)
+doublet.  The right scalar phase gives primitive hypercharge weight \(Y=1\).
+For any non-zero minimum in this sector, \(SU(2)_L\) acts transitively on the
+norm sphere, so the vacuum is gauge-equivalent to
+\[
+  \Phi_0=\begin{pmatrix}0\\ v/\sqrt2\end{pmatrix},
+  \qquad Y\Phi_0=\Phi_0.
+\]
+Thus the standard electroweak doublet vacuum is not an extra shape assumption;
+it is the canonical gauge representative of any non-zero minimal UBT doublet
+vacuum.  The only remaining physical input is the existence of a non-zero
+symmetry-breaking minimum of \(V(\Theta)\) in this sector.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This closes the representation/orbit part of the
+previous EW-2 condition.  It does not derive the scale \(v\) or prove from first
+principles that \(V(\Theta)\) must have a non-zero electroweak minimum.  It shows
+that if such a minimum exists in the minimal UBT electroweak sector, its doublet
+form and hypercharge are forced by the algebra and gauge orbit.
+\end{statusbox}
+
+\section{Minimal electroweak sector of $\Theta$}
+
+The biquaternion algebra has the standard matrix representation
+\[
+  \mathbb C\otimes\mathbb H \cong {\rm Mat}(2,\mathbb C).
+\]
+The left unitary action gives \(SU(2)_L\).  A minimal electroweak component of
+\(\Theta\) may therefore be represented by a complex column
+\[
+  \Phi=\begin{pmatrix}\phi_1\\ \phi_2\end{pmatrix}\in\mathbb C^2,
+\]
+with transformation law
+\[
+  \Phi\mapsto U_L\Phi,
+  \qquad U_L\in SU(2)_L.
+\]
+The right scalar phase acts as
+\[
+  \Phi\mapsto e^{i\beta}\Phi.
+\]
+With the standard electroweak convention
+\[
+  \Phi\mapsto e^{i\beta Y/2}\Phi,
+\]
+this is the primitive weight \(Y=1\) doublet.
+
+\section{Orbit theorem}
+
+\begin{lemma}[Transitivity of $SU(2)$ on the non-zero doublet sphere]
+For every non-zero \(\Phi\in\mathbb C^2\) there exists \(U\in SU(2)\) such that
+\[
+  U\Phi=\begin{pmatrix}0\\ \|\Phi\|\end{pmatrix}.
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(\Phi=(a,b)^T\) and \(r=\sqrt{|a|^2+|b|^2}\).  For \(r>0\), the matrix
+\[
+  U=\frac1r
+  \begin{pmatrix}
+    b & -a\\
+    \bar a & \bar b
+  \end{pmatrix}
+\]
+is unitary and has determinant one, hence \(U\in SU(2)\).  Direct
+multiplication gives \(U\Phi=(0,r)^T\).  Therefore all non-zero doublets of the
+same norm lie in one \(SU(2)\) orbit.
+\end{proof}
+
+\begin{theorem}[$\Theta_0$ electroweak vacuum orbit \Lone]
+Assume the UBT symmetry-breaking potential \(V(\Theta)\) has a non-zero minimum
+in the minimal electroweak doublet sector.  Then a gauge representative of the
+vacuum is
+\[
+  \Phi_0=\begin{pmatrix}0\\ v/\sqrt2\end{pmatrix},
+  \qquad Y\Phi_0=1\cdot\Phi_0.
+\]
+Thus the UBT low-energy vacuum has the standard \((SU(2)_L,Y=1)\) electroweak
+doublet form required by the EM projection theorem.
+\end{theorem}
+
+\begin{proof}
+Let \(\Phi_*\ne0\) be a vacuum minimiser in the minimal electroweak sector.
+Gauge invariance of \(V\) implies that all elements of the \(SU(2)_L\) orbit of
+\(\Phi_*\) have the same vacuum energy.  By the transitivity lemma, there exists
+\(U\in SU(2)_L\) such that
+\[
+  U\Phi_*=\begin{pmatrix}0\\ \|\Phi_*\|\end{pmatrix}.
+\]
+Writing \(\|\Phi_*\|=v/\sqrt2\) gives the standard representative
+\[
+  \Phi_0=\begin{pmatrix}0\\v/\sqrt2\end{pmatrix}.
+\]
+The right scalar phase action fixes the primitive hypercharge weight \(Y=1\),
+so \(Y\Phi_0=\Phi_0\).
+\end{proof}
+
+\section{Consequence for the alpha proof}
+
+The previous EM projection theorem showed that for
+\[
+  \Phi_0=\begin{pmatrix}0\\v/\sqrt2\end{pmatrix},
+  \qquad Y=1,
+\]
+the unique unbroken generator is
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2}.
+\]
+This note proves that this vacuum shape is the canonical gauge representative of
+any non-zero UBT doublet vacuum.  Therefore the alpha proof no longer needs to
+postulate the shape of \(\Theta_0\).  It only needs the standard symmetry-breaking
+condition:
+\[
+  \boxed{V(\Theta)\text{ has a non-zero minimum in the minimal electroweak doublet sector.}}
+\]
+
+\begin{resultbox}
+\textbf{Updated alpha status.} The final chain is now:
+\[
+  V(\Theta)\text{ non-zero EW doublet minimum}
+  \Longrightarrow
+  \Theta_0\sim(0,v/\sqrt2),\;Y=1
+  \Longrightarrow
+  Q_{\rm EM}=T_3+Y/2
+  \Longrightarrow
+  U(1)_{\rm EM}\text{ compact unit charge}
+  \Longrightarrow
+  n=\alpha^{-1}.
+\]
+The remaining gap is not the EM projection or charge normalisation; it is the
+existence of the non-zero electroweak minimum from \(V(\Theta)\).
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

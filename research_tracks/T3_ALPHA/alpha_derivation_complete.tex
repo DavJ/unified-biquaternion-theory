@@ -49,8 +49,7 @@ function \(Z_{\rm \psi}[\tau]=\eta(\tau)^{-N_{\rm eff}}$ is an
 $N_{\rm eff}/\mathrm{rank}(\Pi_{\rm colour})=12/3$ \Lo.
 The result agrees with CODATA/NIST 2022
 ($\alpha^{-1}_{\rm exp}=137.035999177(21)$) to $+0.026\sigma$.
-The sole remaining gap is the physical identification of the
-winding stationary index~$n$ with $\alpha^{-1}$ (\MC, \S\ref{sec:interp}).
+The physical identification of the winding stationary index~$n$ with $\alpha^{-1}$ is now closed conditionally by compact-U(1) EM modular normalisation, primitive electroweak EM projection, and the $\Theta_0$ vacuum-orbit theorem.  The remaining structural condition is the existence of a non-zero electroweak doublet minimum of $V(\Theta)$.
 \end{abstract}
 
 \tableofcontents
@@ -243,11 +242,13 @@ See \texttt{em\_modular\_coupling\_identification.tex}.
 \end{theorem}
 
 \begin{remark}[Remaining structural condition]
-The final bridge is no longer a numerical assumption.  It is a structural
-condition: the UBT electromagnetic projection must be the compact unit-charge
-U(1)$_{\rm EM}$ bundle of the low-energy theory.  The full electroweak
-projection theorem remains the natural place to promote this conditional
-closure to a canonical theorem.
+The final bridge is no longer a numerical assumption.  It is now reduced to a
+single structural condition: the UBT symmetry-breaking potential \(V(\Theta)\)
+must have a non-zero minimum in the minimal electroweak doublet sector.  The
+electroweak-vacuum orbit theorem then forces
+\(\Theta_0\sim(0,v/\sqrt2)^T,\;Y=1\), the EM projection theorem gives the
+primitive compact unit-charge \(U(1)_{\rm EM}\), and the Maxwell modular
+normalisation gives \(n=\alpha^{-1}\).
 \end{remark}
 
 %──────────────────────────────────────────────────────────────────
@@ -271,6 +272,8 @@ $r_{\rm L2}=3(1+\Omega_\eta)$ & \Lo & Prop.~\ref{prop:rL2}\\
 $\rho=e^{-C_Q/(2\pi n)}$ (exact Gaussian) & \Lo & Thm.~\ref{thm:rho}\\
 $\alpha^{-1}_{\rm UBT}=137.035999177549$ & \Lo & Thm.~\ref{thm:alpha}\\
 $n=\alpha^{-1}$ (compact-U(1) EM identification) & \Lo\ cond. & Thm.~\ref{thm:nalpha}\\
+$Q_{\rm EM}=T_3+Y/2$ primitive unit charge & \Lo\ cond. & \texttt{electroweak\_em\_projection\_theorem.tex}\\
+$\Theta_0\sim(0,v/\sqrt2),\;Y=1$ vacuum orbit & \Lo\ cond. & \texttt{theta0\_electroweak\_vacuum\_orbit\_theorem.tex}\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -280,7 +283,7 @@ $n=\alpha^{-1}$ (compact-U(1) EM identification) & \Lo\ cond. & Thm.~\ref{thm:na
 $Z_\psi=\eta^{-12}$ is exact (quadratic action), not one-loop;
 $C_Q=4$ from $N_{\rm eff}/\mathrm{rank}$, no Dirac assumption;
 one-loop condition removed.
-\textbf{Final bridge}: physical identification $n=\alpha^{-1}$ is closed conditionally by compact-U(1) EM modular normalisation; remaining work is the full electroweak projection theorem.
+\textbf{Final bridge}: physical identification $n=\alpha^{-1}$ is closed conditionally by compact-U(1) EM modular normalisation, primitive EM projection, and the $\Theta_0$ electroweak-vacuum orbit theorem.  The remaining structural condition is the existence of a non-zero electroweak doublet minimum of $V(\Theta)$.
 \end{resultbox}
 
 \begin{thebibliography}{9}
