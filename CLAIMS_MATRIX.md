@@ -49,6 +49,6 @@ Unless a reproducible empirical protocol upgrades them, the following remain **S
 | afterlife | SPECULATIVE | `speculative_extensions/` |
 | survival of consciousness | SPECULATIVE | `speculative_extensions/` |
 | communication with deceased consciousness | SPECULATIVE | `speculative_extensions/` |
-| ThetaComm | SPECULATIVE | `speculative_extensions/thetacomm/` (or equivalent speculative path) |
+| ThetaComm | SPECULATIVE | `speculative_extensions/thetacomm/` |
 | soul / immortality | SPECULATIVE | `speculative_extensions/` |
 | Matrix / simulation ontology | SPECULATIVE | `speculative_extensions/metaphysics/` (or equivalent speculative path) |

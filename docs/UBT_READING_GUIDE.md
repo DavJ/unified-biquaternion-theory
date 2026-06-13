@@ -101,6 +101,7 @@
 - `speculative_extensions/complex_consciousness/ctc_2.0_main.tex` (has disclaimer)
 - `speculative_extensions/appendices/ubt_appendix_12_psychons.tex` (has disclaimer)
 - `speculative_extensions/appendices/appendix_F2_psychons_theta.tex` (has disclaimer)
+- `speculative_extensions/thetacomm/README.md` (ThetaComm boundary statement)
 - [Consciousness Ethics Guidelines](CONSCIOUSNESS_CLAIMS_ETHICS.md)
 - [Speculative Extensions README](speculative_extensions/README.md)
 

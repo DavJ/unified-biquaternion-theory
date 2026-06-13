@@ -67,6 +67,7 @@ This document establishes governance rules for the Unified Biquaternion Theory (
 
 **Examples:**
 - `speculative_extensions/complex_consciousness/` - Consciousness modeling (psychons, CTCs)
+- `speculative_extensions/thetacomm/` - ThetaComm / non-local consciousness-communication hypotheses (speculative only)
 - `speculative_extensions/appendices/appendix_P2_multiverse_projection.tex` - Multiverse interpretation
 - `speculative_extensions/appendices/appendix_J_rotating_spacetime_ctc.tex` - Closed timelike curves
 
