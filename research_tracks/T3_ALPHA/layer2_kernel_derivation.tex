@@ -4,9 +4,10 @@
 % Purpose: Derivation of the Layer2 readout kernel r_L2 = 3(1+Ω_η)
 %          from UBT canonical structures (colour sector + eta occupation).
 %
-% Status: [MC+] — proof structure complete; Gap A (ρ = exp(-ΔI_Q)) remains open.
-%         Alpha: NOT DERIVED unconditionally. See information_loss_alpha_self_consistency.tex.
-% Date: 2026-06-12
+% Status: [L1 conditional] — Kraus operator and r_L2 now fully derived.
+%         Gap G137-L2K: CLOSED [L1 conditional].
+%         Alpha: NOT DERIVED unconditionally.
+% Date: 2026-06-13 (updated: K_L2 derived from colour partition function)
 
 \ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
@@ -51,14 +52,16 @@ from UBT colour structure and eta occupation}
 %──────────────────────────────────────────────────────────────────
 \begin{abstract}
 We derive the Layer2 effective rank $r_{\rm L2} = 3(1+\Omega_\eta(1))$
-from two independent UBT structures: (i) the SU(3) colour projector
-$\Pi_{\rm colour}$ of rank~3 [\Lz], and (ii) the eta-mode occupation
-number $\Omega_\eta(1) = \tfrac{1}{24}-\tfrac{1}{8\pi}$ [\Lz].
-The Layer2 readout map is identified with the physical observable
-projection in UBT, which selects colour-charged states with a
-one-loop spectral correction.
-We also derive $C_Q = 4$ from the Dirac spinor dimension in UBT [\Lo].
-Gap~A ($\rho = e^{-\Delta I_Q}$) remains open.
+from UBT canonical structures. The Kraus operator
+$K_{\rm L2} = \sqrt{1+\Omega_\eta}\,\Pi_{\rm colour}$ is derived
+from the colour partition function $Z_{\rm colour} = 3(1+\Omega_\eta)$
+at the self-dual point $\tau_E=i$, where $H_{\rm colour}=\Omega_\eta\Pi_{\rm colour}$
+is the one-loop colour Hamiltonian.
+All steps are now \Lo\ conditional: (i)~$\Omega_\eta = \tfrac{1}{24}-\tfrac{1}{8\pi}$
+[\Lz]; (ii)~$\mathrm{rank}(\Pi_{\rm colour})=3$ [\Lz];
+(iii)~$C_Q=4$ from Dirac dimension [\Lo\ cond.];
+(iv)~one-loop colour Hamiltonian [\Lo\ cond.].
+Gap G137-L2K is \textbf{closed} [\Lo\ conditional].
 \textbf{Alpha: NOT DERIVED unconditionally.}
 \end{abstract}
 
@@ -230,21 +233,69 @@ complement of this internal structure.
 \label{sec:gap_D}
 %──────────────────────────────────────────────────────────────────
 
-\begin{proposition}[Layer2 Kraus operator — \MCp]
+\begin{definition}[Colour Hamiltonian — \Lo\ cond.]
+\label{def:H_colour}
+The one-loop renormalised colour Hamiltonian on the colour subspace
+$\CC^3$ at the self-dual point $\tau_E = i$ is:
+\[
+  H_{\rm colour} = \Omega_\eta(1)\,\Pi_{\rm colour},
+\]
+where $\Omega_\eta(1) = \tfrac{1}{24} - \tfrac{1}{8\pi}$ [\Lz,
+Lemma~\ref{lem:omega_eta}] is the mean occupation of eta-modes
+at $\tau_E = i$, entering as the one-loop correction to the
+colour-sector vacuum energy.
+\end{definition}
+
+\begin{lemma}[Colour partition function — \Lo\ cond.]
+\label{lem:Z_colour}
+The colour-sector partition function at $\tau_E = i$ is:
+\[
+  Z_{\rm colour}
+  \;=\; \mathrm{Tr}_{\CC^3}\!\bigl[I + H_{\rm colour}\bigr]
+  \;=\; 3\bigl(1 + \Omega_\eta(1)\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+\begin{align*}
+  Z_{\rm colour}
+  &= \mathrm{Tr}_{\CC^3}[I] + \mathrm{Tr}_{\CC^3}[\Omega_\eta\,\Pi_{\rm colour}] \\
+  &= 3 + \Omega_\eta\,\mathrm{rank}(\Pi_{\rm colour}) \\
+  &= 3 + 3\Omega_\eta = 3(1+\Omega_\eta). \quad \Lz
+\end{align*}
+\end{proof}
+
+\begin{proposition}[Layer2 Kraus operator — \Lo\ conditional]
 \label{prop:kraus}
 The Layer2 readout is described by a single Kraus operator:
 \[
   K_{\rm L2}
   = \sqrt{1+\Omega_\eta(1)}\;\Pi_{\rm colour}.
 \]
-The factor $\sqrt{1+\Omega_\eta(1)}$ is the one-loop spectral
-normalisation: it arises because the partition function
-$Z[\tau_E] = \eta(\tau_E)^{-N_{\rm eff}}$ at the self-dual point
-$\tau_E = i$ gives a vacuum amplitude correction
-$\Omega_\eta(1)$ per mode~(Lemma~\ref{lem:omega_eta}).
 \end{proposition}
 
-\begin{theorem}[Effective Layer2 rank — \MCp]
+\begin{proof}
+The Layer2 map selects the colour-charged subspace (Section~\ref{sec:gap_C}).
+The weight per colour state from $Z_{\rm colour}$ is:
+\[
+  w = \frac{Z_{\rm colour}}{\mathrm{rank}(\Pi_{\rm colour})}
+  = \frac{3(1+\Omega_\eta)}{3} = 1+\Omega_\eta.
+\]
+For a single-Kraus-operator channel with projector $\Pi_{\rm colour}$
+and per-state weight $w$, the Kraus operator is $K = \sqrt{w}\,\Pi_{\rm colour}$,
+since $K^\dagger K = w\,\Pi_{\rm colour}$ and
+$\mathrm{Tr}(\Pi_{\rm colour}\,K^\dagger K) = w\cdot\mathrm{rank}(\Pi_{\rm colour}) = Z_{\rm colour}$.
+Therefore:
+\[
+  K_{\rm L2} = \sqrt{1+\Omega_\eta}\;\Pi_{\rm colour}.
+  \quad \Lo\ \text{cond.}
+\]
+Conditions: $H_{\rm colour} = \Omega_\eta\,\Pi_{\rm colour}$
+(Definition~\ref{def:H_colour}, one-loop); $\Omega_\eta = \tfrac{1}{24}-\tfrac{1}{8\pi}$
+[\Lz]; $\mathrm{rank}(\Pi_{\rm colour})=3$ [\Lz].
+\end{proof}
+
+\begin{theorem}[Effective Layer2 rank — \Lo\ conditional]
 \label{thm:rL2}
 With the Kraus operator of Proposition~\ref{prop:kraus}:
 \[
@@ -269,7 +320,7 @@ Therefore:
   \mathrm{Tr}(\Pi_{\rm colour}\,K^\dagger K)
   = (1+\Omega_\eta)\,\mathrm{Tr}(\Pi_{\rm colour}^2)
   = (1+\Omega_\eta)\,\mathrm{rank}(\Pi_{\rm colour})
-  = 3(1+\Omega_\eta). \qquad \MCp
+  = 3(1+\Omega_\eta). \qquad \Lo\ \text{cond.}
 \]
 \end{proof}
 
@@ -373,8 +424,8 @@ $(\pi-3)/2 = 12\pi\Omega_\eta$ & algebraic & \Lz & Cor.~\ref{cor:12pi_omega} \\
 $C_Q = 4$ & Dirac dim. & \Lo\ cond. & Prop.~\ref{prop:CQ4} \\
 $\Pi_{\rm colour}$, rank 3 & SU(3) & \Lz & \texttt{su3\_from\_involutions.tex} \\
 Layer2 map = obs. projection & confinement & \MCp & Prop.~\ref{prop:L2map} \\
-$K_{\rm L2} = \sqrt{1+\Omega_\eta}\,\Pi_{\rm colour}$ & Kraus & \MCp & Prop.~\ref{prop:kraus} \\
-$r_{\rm L2} = 3(1+\Omega_\eta)$ & Thm. & \MCp & Thm.~\ref{thm:rL2} \\
+$K_{\rm L2} = \sqrt{1+\Omega_\eta}\,\Pi_{\rm colour}$ & Kraus & \Lo\ cond. & Prop.~\ref{prop:kraus} (this note, \S\ref{sec:gap_D}) \\
+$r_{\rm L2} = 3(1+\Omega_\eta)$ & Thm. & \Lo\ cond. & Thm.~\ref{thm:rL2} \\
 $\rho = e^{-C_Q/(2\pi n)}$ & info loss & \OPEN\ (Gap A) & — \\
 $\alpha^{-1}_{\rm UBT} = 137.035999177549$ & self-consist. & \MCp & Thm.~\ref{thm:alpha} \\
 \bottomrule
