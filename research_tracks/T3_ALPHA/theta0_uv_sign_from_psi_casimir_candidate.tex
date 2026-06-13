@@ -1,0 +1,220 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/theta0_uv_sign_from_psi_casimir_candidate.tex
+% Purpose: Candidate UV closure of the last alpha-proof condition: derive the
+%          electroweak symmetry-breaking sign from the compact psi-sector.
+% Status: [L2 candidate / conditional].  This is the strongest honest closure
+%         without a fully specified canonical V(Theta).  It identifies the
+%         exact extra UV hypotheses needed to promote the result to canonical.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Ltwo}{\textbf{[L2 cand.]}}
+
+\title{Candidate UV Origin of the Electroweak Symmetry-Breaking Sign\\
+       \large Compact $\psi$-Sector Casimir Closure for the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The previous alpha-closure notes reduced the remaining condition to the sign of
+the electroweak quadratic term: the projected low-energy potential must contain
+\[
+  V_{\rm EW}(\Phi)
+  =V_0-\mu_{\rm EW}^2\Phi^\dagger\Phi
+  +\lambda_{\rm EW}(\Phi^\dagger\Phi)^2,
+  \qquad
+  \mu_{\rm EW}^2>0,
+  \lambda_{\rm EW}>0.
+\]
+This note gives the sharpest possible UV closure compatible with the current
+repository: if the compact $\psi$-sector induces a negative quadratic Casimir
+correction in the minimal electroweak doublet channel, and if the hard bare
+quadratic term is absent by modular criticality, then $\mu_{\rm EW}^2>0$ follows.
+The proof is algebraic once these two UV hypotheses are accepted.  The note is
+therefore a conditional closure theorem, not a claim that the sign has already
+been derived unconditionally from the unspecified canonical potential
+$V(\Theta)$.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This is a candidate UV sign theorem.  It closes the
+last alpha-proof step under two explicit hypotheses: (H1) modular criticality
+forbids a hard positive electroweak mass term at the self-dual point, and (H2)
+the compact $\psi$-sector contributes a positive spectral stiffness
+$\Gamma_{\psi}>0$ to the symmetry-breaking coefficient.  To promote the alpha
+track to fully canonical status, H1 and H2 must be derived from the full
+$S[\Theta]$.
+\end{statusbox}
+
+\section{Effective quadratic term}
+
+Let $\Phi$ denote the minimal electroweak doublet component of $\Theta$.  The
+low-energy radial potential is written as
+\[
+  V_{\rm EW}(\Phi)
+  =V_0+m_{\rm eff}^2\Phi^\dagger\Phi
+  +\lambda_{\rm EW}(\Phi^\dagger\Phi)^2+
+  O((\Phi^\dagger\Phi)^3).
+\]
+The symmetry-breaking convention used in the alpha chain is
+\[
+  m_{\rm eff}^2=-\mu_{\rm EW}^2,
+  \qquad
+  \mu_{\rm EW}^2>0.
+\]
+Thus electroweak symmetry breaking is equivalent to
+\[
+  m_{\rm eff}^2<0.
+\]
+
+\section{Compact $\psi$-sector correction}
+
+At the self-dual compact $\psi$ point, write the renormalised quadratic
+coefficient in the minimal electroweak doublet channel as
+\[
+  m_{\rm eff}^2
+  =m_{0,\rm EW}^2-\Gamma_{\psi}M_{\psi}^2,
+\]
+where
+\[
+  M_{\psi}=R_{\psi}^{-1}
+\]
+is the compact-fibre scale and $\Gamma_{\psi}$ is the dimensionless spectral
+stiffness induced by the $\psi$ modes after Layer2 readout.
+
+The sign convention is chosen so that $\Gamma_{\psi}>0$ means the compact
+$\psi$ sector contributes a negative quadratic term to the effective potential,
+as in Coleman-Weinberg/Casimir symmetry-breaking mechanisms.
+
+\begin{definition}[Modular criticality hypothesis]
+At the self-dual point, no hard electroweak quadratic scale is inserted by hand:
+\[
+  m_{0,\rm EW}^2=0.
+\]
+Any non-zero electroweak quadratic term must arise from compact-sector dynamics.
+\end{definition}
+
+\begin{definition}[$\psi$-spectral stiffness hypothesis]
+The compact $\psi$ sector has positive electroweak-channel stiffness:
+\[
+  \Gamma_{\psi}>0.
+\]
+Equivalently, the compact-sector quadratic correction is negative:
+\[
+  \delta m_{\psi}^2=-\Gamma_{\psi}M_{\psi}^2<0.
+\]
+\end{definition}
+
+\section{UV sign theorem}
+
+\begin{theorem}[Compact-$\psi$ UV sign closure \Ltwo]
+Assume modular criticality,
+\[
+  m_{0,\rm EW}^2=0,
+\]
+and positive compact-sector stiffness,
+\[
+  \Gamma_{\psi}>0.
+\]
+Then the projected electroweak quadratic coefficient is negative:
+\[
+  m_{\rm eff}^2<0.
+\]
+Equivalently, in the convention
+\[
+  V_{\rm EW}=V_0-\mu_{\rm EW}^2\Phi^\dagger\Phi
+  +\lambda_{\rm EW}(\Phi^\dagger\Phi)^2,
+\]
+one has
+\[
+  \mu_{\rm EW}^2=\Gamma_{\psi}M_{\psi}^2>0.
+\]
+\end{theorem}
+
+\begin{proof}
+By the effective quadratic decomposition,
+\[
+  m_{\rm eff}^2
+  =m_{0,\rm EW}^2-\Gamma_{\psi}M_{\psi}^2.
+\]
+Modular criticality gives $m_{0,\rm EW}^2=0$, hence
+\[
+  m_{\rm eff}^2=-\Gamma_{\psi}M_{\psi}^2.
+\]
+Since $M_{\psi}^2>0$ and $\Gamma_{\psi}>0$, it follows that
+\[
+  m_{\rm eff}^2<0.
+\]
+Therefore
+\[
+  \mu_{\rm EW}^2=-m_{\rm eff}^2=\Gamma_{\psi}M_{\psi}^2>0.
+\]
+\end{proof}
+
+\section{Connection to the alpha proof}
+
+Combining this candidate UV sign theorem with the previous low-energy minimum
+and vacuum-orbit theorems gives
+\[
+  \Gamma_{\psi}>0,
+  \quad
+  m_{0,\rm EW}^2=0
+  \Longrightarrow
+  \mu_{\rm EW}^2>0
+  \Longrightarrow
+  \Phi_0\ne0
+  \Longrightarrow
+  \Theta_0\sim(0,v/\sqrt2),\;Y=1
+\]
+and hence
+\[
+  Q_{\rm EM}=T_3+Y/2,
+  \qquad
+  n=\alpha^{-1}.
+\]
+
+\begin{resultbox}
+\textbf{Updated alpha status.} With this file, the alpha derivation is complete
+as a conditional chain down to two explicit UV hypotheses: modular criticality
+and positive $\psi$-sector electroweak stiffness.  The remaining task is no
+longer an unspecified ``Higgs gap''; it is the precise derivation of
+$\Gamma_{\psi}>0$ and $m_{0,\rm EW}^2=0$ from canonical $S[\Theta]$.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
