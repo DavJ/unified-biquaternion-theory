@@ -1,0 +1,241 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/electroweak_em_projection_theorem.tex
+% Purpose: Reduce the final alpha proof condition by deriving the primitive
+%          compact U(1)_EM projection and charge normalisation from the UBT
+%          electroweak sector.
+% Status: [L1 conditional] — proves the EM generator and unit-charge
+%         normalisation conditional on the standard UBT/SM electroweak vacuum
+%         representation. Does not derive the Weinberg angle.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+\newcommand{\Std}{\textbf{[STD]}}
+
+\title{Electroweak Projection to Primitive Compact $U(1)_{\rm EM}$\\
+       \large and Charge Normalisation for the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The alpha derivation requires the UBT winding modulus to be the compact
+unit-charge electromagnetic coupling modulus.  This note isolates and proves
+the corresponding electroweak projection statement at conditional level.  The
+UBT electroweak sector contains \(SU(2)_L\) from the left quaternionic action
+and \(U(1)_Y\) from the right scalar phase.  If the low-energy vacuum transforms
+as the standard electroweak doublet with hypercharge \(Y=1\), its stabiliser is
+the primitive compact generator
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2}.
+\]
+The primitive Wilson-line normalisation fixes the unit charge and forbids an
+extra continuous rescaling of \(Q_{\rm EM}\).  This proves the projection needed
+by the alpha EM modular identification.  It does not derive the Weinberg angle;
+the angle controls the decomposition of the photon field into \(W^3\) and \(B\),
+not the primitive electromagnetic charge generator.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} Conditional theorem.  Inputs already present in the
+UBT gauge sector are used: \(SU(2)_L\) from left action and \(U(1)_Y\) from
+right phase.  The remaining physical condition is the vacuum representation:
+\(\Theta_0\) must be the electroweak doublet with \(Y=1\).  The theorem proves
+that, under that condition, the residual unbroken gauge group is the primitive
+compact \(U(1)_{\rm EM}\) with no free charge-normalisation factor.
+\end{statusbox}
+
+\section{Electroweak action on the UBT doublet}
+
+Let \(\Theta\) contain the low-energy electroweak doublet component
+\[
+  \Phi=\begin{pmatrix}\phi^+\\ \phi^0\end{pmatrix},
+\]
+with \(SU(2)_L\) generators
+\[
+  T_a=\frac{\sigma_a}{2},
+  \qquad
+  T_3=\frac12\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\]
+and hypercharge generator \(Y\) acting by the right scalar phase.  In the
+standard electroweak convention the Higgs-like vacuum has
+\[
+  \Theta_0\supset \Phi_0=\begin{pmatrix}0\\v/\sqrt2\end{pmatrix},
+  \qquad
+  Y\Phi_0=1\cdot\Phi_0 .
+\]
+Thus
+\[
+  T_3\Phi_0=-\frac12\Phi_0,
+  \qquad
+  \frac{Y}{2}\Phi_0=+\frac12\Phi_0.
+\]
+
+\section{Stabiliser theorem}
+
+\begin{theorem}[Residual electromagnetic generator \Lone]
+If the UBT low-energy vacuum contains the electroweak doublet component
+\(\Phi_0=(0,v/\sqrt2)^T\) with hypercharge \(Y=1\), then the unique unbroken
+one-dimensional generator in \(\mathfrak{su}(2)_L\oplus\mathfrak{u}(1)_Y\) is
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let a general neutral generator be
+\[
+  X=aT_3+b\frac{Y}{2}.
+\]
+The vacuum is invariant iff \(X\Phi_0=0\).  Since
+\[
+  T_3\Phi_0=-\frac12\Phi_0,
+  \qquad
+  \frac{Y}{2}\Phi_0=+\frac12\Phi_0,
+\]
+we get
+\[
+  X\Phi_0=\frac{-a+b}{2}\Phi_0.
+\]
+Therefore \(X\Phi_0=0\) iff \(a=b\).  Up to an overall normalisation, the
+unique unbroken generator is
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2}.
+\]
+The two orthogonal generators \(T_1,T_2\) and the neutral orthogonal combination
+\(T_3-Y/2\) are broken by the vacuum.
+\end{proof}
+
+\section{Primitive compact normalisation}
+
+\begin{definition}[Primitive electromagnetic generator]
+A compact \(U(1)\) generator \(Q\) is primitive if the Wilson loop
+\[
+  \exp(2\pi i Q)
+\]
+acts trivially on all allowed physical fields, and no smaller non-zero
+rescaling of \(Q\) has this property while preserving the observed unit charge.
+\end{definition}
+
+\begin{theorem}[No continuous charge rescaling \Lone]
+The generator
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2}
+\]
+with the electron assigned charge \(-1\) is primitive.  Therefore the
+low-energy electromagnetic line bundle is a compact unit-charge
+\(U(1)_{\rm EM}\) bundle.  There is no continuous free factor
+\(Q_{\rm EM}\mapsto\lambda Q_{\rm EM}\).
+\end{theorem}
+
+\begin{proof}
+The charged lepton doublet has charges
+\[
+  Q(\nu_L)=0,
+  \qquad
+  Q(e_L)=-1,
+\]
+and the right electron has \(Q(e_R)=-1\).  Thus the smallest observed lepton
+charge magnitude is one in this normalisation.  A rescaling
+\(Q\mapsto\lambda Q\) changes the Wilson-line phases
+\(\exp(2\pi i Q)\) and changes the electron charge unless \(\lambda=1\) within
+the chosen unit-charge convention.  Fractional quark charges are compatible
+with the usual colour/electroweak quotient structure, but they do not change
+the primitive electromagnetic unit fixed by the electron Wilson line.
+Therefore the residual \(U(1)\) is compact and unit-charge normalised.
+\end{proof}
+
+\section{Relation to the Weinberg angle}
+
+The physical photon connection may be written
+\[
+  A_\mu=\sin\theta_W\,W^3_\mu+\cos\theta_W\,B_\mu,
+\]
+with
+\[
+  e=g\sin\theta_W=g'\cos\theta_W.
+\]
+This angle determines how the unbroken \(U(1)_{\rm EM}\) connection is embedded
+inside the original \(SU(2)_L\times U(1)_Y\) gauge potentials.  It does not
+change the primitive generator
+\[
+  Q_{\rm EM}=T_3+\frac{Y}{2},
+\]
+and it does not introduce a free rescaling of the compact electromagnetic
+Wilson-line unit.  Therefore the alpha track may compute the final low-energy
+\(U(1)_{\rm EM}\) coupling modulus directly; it need not derive
+\(\sin^2\theta_W\) as a separate route to \(\alpha\).
+
+\begin{remark}
+This is compatible with the existing UBT gauge-status statement that the pure
+algebra of \(\mathbb C\otimes\mathbb H\) does not fix \(g'/g\).  The present
+result does not claim to derive the Weinberg angle.  It only proves the
+unbroken compact electromagnetic generator and its primitive charge
+normalisation, which is the part needed by the alpha EM modular-coupling
+identification.
+\end{remark}
+
+\section{Connection to the alpha theorem}
+
+Combining this projection theorem with the EM modular identification gives
+\[
+  \tau^{\rm UBT}_{\rm EM}=\chi+i n
+  \quad\text{and}\quad
+  \tau_{\rm EM}=\frac{\theta_{\rm EM}}{2\pi}+i\frac{4\pi}{e^2}.
+\]
+At the CP-even vacuum \(\chi=\theta_{\rm EM}/(2\pi)=0\),
+\[
+  n=\frac{4\pi}{e^2}=\alpha^{-1}.
+\]
+Thus the remaining alpha proof condition is reduced to the vacuum theorem:
+\[
+  \boxed{
+    \Theta_0\text{ contains the standard }(SU(2)_L,Y=1)\text{ doublet vacuum.}
+  }
+\]
+
+\begin{resultbox}
+\textbf{Result.} The EM projection needed by the alpha track is no longer an
+arbitrary identification.  Under the standard electroweak-vacuum condition, the
+residual group is the primitive compact unit-charge \(U(1)_{\rm EM}\).  This
+removes the possible free normalisation factor in \(n=\alpha^{-1}\).
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
