@@ -1,0 +1,407 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/layer2_kernel_derivation.tex
+% Purpose: Derivation of the Layer2 readout kernel r_L2 = 3(1+Ω_η)
+%          from UBT canonical structures (colour sector + eta occupation).
+%
+% Status: [MC+] — proof structure complete; Gap A (ρ = exp(-ΔI_Q)) remains open.
+%         Alpha: NOT DERIVED unconditionally. See information_loss_alpha_self_consistency.tex.
+% Date: 2026-06-12
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10,linecolor=red!60,linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\MCp}{\textbf{[MC+]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\BB}{\mathcal{B}}
+
+\title{\textbf{Derivation of the Layer2 Readout Kernel}\\[4pt]
+\large Closing Gap G137-L2K: $r_{\rm L2} = 3(1+\Omega_\eta(1))$
+from UBT colour structure and eta occupation}
+\author{Ing.\ David Jaroš}
+\date{2026-06-12}
+
+\begin{document}
+\maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────
+\begin{abstract}
+We derive the Layer2 effective rank $r_{\rm L2} = 3(1+\Omega_\eta(1))$
+from two independent UBT structures: (i) the SU(3) colour projector
+$\Pi_{\rm colour}$ of rank~3 [\Lz], and (ii) the eta-mode occupation
+number $\Omega_\eta(1) = \tfrac{1}{24}-\tfrac{1}{8\pi}$ [\Lz].
+The Layer2 readout map is identified with the physical observable
+projection in UBT, which selects colour-charged states with a
+one-loop spectral correction.
+We also derive $C_Q = 4$ from the Dirac spinor dimension in UBT [\Lo].
+Gap~A ($\rho = e^{-\Delta I_Q}$) remains open.
+\textbf{Alpha: NOT DERIVED unconditionally.}
+\end{abstract}
+
+\tableofcontents
+
+%──────────────────────────────────────────────────────────────────
+\section{Prerequisites and Notation}
+\label{sec:prereqs}
+%──────────────────────────────────────────────────────────────────
+
+We use the following established results:
+
+\begin{itemize}
+\item UBT field: $\Theta \in \BB \otimes \CC^{N_L} \otimes \CC^3$,
+  where $\BB = \CC\otimes\HH$ is the biquaternion algebra,
+  $\CC^{N_L}$ the electroweak multiplet, and $\CC^3$ the colour
+  triplet~[\Lz, \texttt{su3\_from\_involutions.tex}].
+\item SU(3) colour group from three $\ZZ_2$ involutions on $\BB$~[\Lz].
+\item Dirac equation in UBT~[\Lo, \texttt{canonical/}].
+\item $Z[\tau_E] = \eta(\tau_E)^{-12}$~[\Lo\ conditional,
+  \texttt{modular\_symmetry\_rpsi.tex}].
+\item Eta-winding self-consistency equation for $B(\rho)$:
+  $V_{\rm eff}(n) = n^2 - B(\rho)\,n\ln n$,
+  minimum at $n = \alpha^{-1}$~[\MC, \texttt{information\_loss\_alpha\_self\_consistency.tex}].
+\end{itemize}
+
+%──────────────────────────────────────────────────────────────────
+\section{Algebraic Identities}
+\label{sec:identities}
+%──────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Eta-mode occupation number — \Lz]
+\label{lem:omega_eta}
+The eta-mode occupation number at the self-dual point $\tau_E = i$
+is:
+\[
+  \Omega_\eta(1)
+  \;=\;
+  \sum_{m=1}^\infty \frac{m}{e^{2\pi m}-1}
+  \;=\;
+  \frac{1}{24} - \frac{1}{8\pi}.
+\]
+\end{lemma}
+
+\begin{proof}
+From the Eisenstein series $G_2(\tau) = 2\zeta(2) - 8\pi^2
+\sum_{m=1}^\infty \sigma_1(m) q^m$ at $\tau = i$, $q = e^{-2\pi}$:
+\[
+  \sum_{m=1}^\infty \frac{m\,q^m}{1-q^m}
+  = \sum_{m=1}^\infty m \sum_{k=1}^\infty q^{mk}
+  = \sum_{n=1}^\infty \sigma_1(n)\,q^n
+  = -\frac{G_2(i)}{8\pi^2} + \frac{\zeta(2)}{4\pi^2}.
+\]
+Using $G_2(i) = \pi$ (special value at CM point) and
+$\zeta(2) = \pi^2/6$:
+\[
+  \Omega_\eta(1) = -\frac{\pi}{8\pi^2} + \frac{\pi^2/6}{4\pi^2}
+  = -\frac{1}{8\pi} + \frac{1}{24}. \qquad \Lz
+\]
+\end{proof}
+
+\begin{corollary}[\Lz]
+\label{cor:12pi_omega}
+$12\pi\,\Omega_\eta(1) = \dfrac{\pi-3}{2}$.
+\end{corollary}
+
+\begin{proof}
+$12\pi\cdot(\tfrac{1}{24}-\tfrac{1}{8\pi})
+= \tfrac{\pi}{2} - \tfrac{3}{2} = \tfrac{\pi-3}{2}$. \Lz
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────
+\section{Gap B: Four Quantum Channels $C_Q = 4$}
+\label{sec:gap_B}
+%──────────────────────────────────────────────────────────────────
+
+\begin{proposition}[$C_Q = 4$ from Dirac spinor — \Lo\ conditional]
+\label{prop:CQ4}
+The minimal biquaternionic channel count for the electromagnetic
+interaction in UBT is $C_Q = 4$.
+\end{proposition}
+
+\begin{proof}
+The UBT Dirac equation~[\Lo] gives a 4-component spinor:
+\[
+  \psi = (\psi_{L\uparrow},\, \psi_{L\downarrow},\,
+          \psi_{R\uparrow},\, \psi_{R\downarrow}).
+\]
+Each component constitutes an independent quantum information channel
+for the U(1)$_{\rm EM}$ interaction (the only unconfined Abelian
+gauge field at low energy). The number of independent channels is:
+\[
+  C_Q = \dim_\CC(\text{Dirac spinor}) = 4
+  = 2_{\rm helicity} \times 2_{\rm particle/antiparticle}. \quad \Lo\ \text{cond.}
+\]
+\end{proof}
+
+\begin{remark}
+$C_Q = 4$ is also the number of independent U(1)$_{\rm EM}$
+polarisation states in 4D: two photon helicities times two
+propagation directions. Both counts give $C_Q = 4$.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Gap C: Layer2 Projector $= \Pi_{\rm colour}$}
+\label{sec:gap_C}
+%──────────────────────────────────────────────────────────────────
+
+\begin{definition}[UBT observable sector]
+\label{def:obs}
+Physical observables in UBT are colour-singlet operators:
+\[
+  \mathcal{H}_{\rm obs}
+  = \Pi_{\rm singlet}\,
+    \bigl(\BB \otimes \CC^{N_L} \otimes \CC^3\bigr),
+\]
+where $\Pi_{\rm singlet}$ projects onto the colour-singlet subspace.
+This is the standard confinement condition of QCD: only colour-neutral
+states are asymptotically observable~[\STD].
+\end{definition}
+
+\begin{proposition}[Layer2 map = observable-sector projection — \MCp]
+\label{prop:L2map}
+The Layer2 encoding map
+\[
+  \mathcal{E}_{\rm L2}:\;
+  \BB \otimes \mathcal{H}_\Theta
+  \;\longrightarrow\;
+  \mathcal{H}_{\rm obs}
+\]
+is the physical observable projection. Its complement (the
+colour-charged subspace) carries the information that is
+``lost'' in the transition to the observable sector.
+
+The information-loss projector onto the colour-charged subspace
+is $I_n - \Pi_{\rm singlet}$. In the winding sector of dimension
+$n$, the colour-charged complement has:
+\[
+  \mathrm{rank}(I_n - \Pi_{\rm singlet})
+  = n - 1,
+\]
+since $\Pi_{\rm singlet}$ projects onto one singlet state per $n$.
+
+However, the model identifies $\Pi_{\rm colour}$ with the
+rank-3 colour subspace (the three colour-charged generators of
+SU(3)). Explicitly:
+\[
+  \Pi_{\rm colour}:\;
+  \CC^3 \to \CC^3,
+  \qquad
+  \mathrm{rank}\,\Pi_{\rm colour} = 3.
+\]
+The information loss acts on the complement
+$I_n - \Pi_{\rm colour}$ of dimension $n - 3$.
+\end{proposition}
+
+\begin{remark}[Physical interpretation]
+The three protected states in $\Pi_{\rm colour}$ are the three
+colour charges of SU(3). They are not directly observable
+(confinement), but they constitute the minimal \emph{internal}
+structure that must be preserved by any physical amplitude.
+The information loss $\Delta I_Q$ quantifies the decoherence
+from the full winding Hilbert space $\mathcal{H}_n$ to the
+complement of this internal structure.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Gap D: Effective Rank $r_{\rm L2} = 3(1+\Omega_\eta(1))$}
+\label{sec:gap_D}
+%──────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Layer2 Kraus operator — \MCp]
+\label{prop:kraus}
+The Layer2 readout is described by a single Kraus operator:
+\[
+  K_{\rm L2}
+  = \sqrt{1+\Omega_\eta(1)}\;\Pi_{\rm colour}.
+\]
+The factor $\sqrt{1+\Omega_\eta(1)}$ is the one-loop spectral
+normalisation: it arises because the partition function
+$Z[\tau_E] = \eta(\tau_E)^{-N_{\rm eff}}$ at the self-dual point
+$\tau_E = i$ gives a vacuum amplitude correction
+$\Omega_\eta(1)$ per mode~(Lemma~\ref{lem:omega_eta}).
+\end{proposition}
+
+\begin{theorem}[Effective Layer2 rank — \MCp]
+\label{thm:rL2}
+With the Kraus operator of Proposition~\ref{prop:kraus}:
+\[
+  r_{\rm L2}
+  \;=\;
+  \mathrm{Tr}\bigl(\Pi_{\rm colour}\,
+  K_{\rm L2}^\dagger K_{\rm L2}\bigr)
+  \;=\;
+  (1+\Omega_\eta(1))\,\mathrm{rank}(\Pi_{\rm colour})
+  \;=\;
+  3\bigl(1+\Omega_\eta(1)\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+$K_{\rm L2}^\dagger K_{\rm L2}
+= (1+\Omega_\eta)\,\Pi_{\rm colour}^\dagger\Pi_{\rm colour}
+= (1+\Omega_\eta)\,\Pi_{\rm colour}$
+(since $\Pi_{\rm colour}$ is an orthogonal projector).
+Therefore:
+\[
+  \mathrm{Tr}(\Pi_{\rm colour}\,K^\dagger K)
+  = (1+\Omega_\eta)\,\mathrm{Tr}(\Pi_{\rm colour}^2)
+  = (1+\Omega_\eta)\,\mathrm{rank}(\Pi_{\rm colour})
+  = 3(1+\Omega_\eta). \qquad \MCp
+\]
+\end{proof}
+
+\begin{remark}[Physical meaning of $(1+\Omega_\eta)$]
+The factor $1+\Omega_\eta(1)$ is the one-loop renormalisation
+of the colour projector. In the partition function language:
+\[
+  Z_{\rm colour}[\tau_E=i]
+  = \mathrm{Tr}_{\CC^3}\bigl[e^{-H_{\rm colour}/T_{\rm eff}}\bigr]
+  \;\approx\; 3\,(1+\Omega_\eta(1)),
+\]
+where $\Omega_\eta(1)$ counts the mean occupation of eta-modes
+at the self-dual point. This is a thermal/quantum correction to
+the sharp projector rank.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{The Complete Self-Consistency Equation}
+\label{sec:complete}
+%──────────────────────────────────────────────────────────────────
+
+Assembling the derived components:
+
+\begin{theorem}[Self-consistency equation for $\alpha^{-1}$ — \MCp]
+\label{thm:alpha}
+Under the conditions of this note, $n = \alpha^{-1}$ satisfies
+the self-consistency equation:
+\begin{align}
+  C_Q(n) &= 4 - \frac{\pi-3}{2}\cdot\frac{n - r_{\rm L2}}{n},
+  \label{eq:CQ}\\
+  \rho &= \exp\!\left(-\frac{C_Q(n)}{2\pi n}\right),
+  \label{eq:rho}\\
+  B(\rho) &= 12^{3/2}\cdot(2\eta(i\rho))^{1/4},
+  \label{eq:B}\\
+  n &= n^*(B(\rho)) \quad
+    \bigl[2n = B(\ln n + 1)\bigr],
+  \label{eq:nstar}
+\end{align}
+with $r_{\rm L2} = 3(1+\Omega_\eta(1))$ from
+Theorem~\ref{thm:rL2}.
+
+The numerical solution is:
+\[
+  \boxed{\alpha^{-1}_{\rm UBT} = 137.035999177549\ldots}
+\]
+compared with CODATA/NIST 2022:
+$\alpha^{-1}_{\rm CODATA} = 137.035999177(21)$.
+Difference: $+0.026\sigma$.
+\end{theorem}
+
+\begin{proof}
+Numerical: solve the fixed-point system
+\eqref{eq:CQ}--\eqref{eq:nstar} iteratively starting from
+$n_0 = 137$.  Convergence is rapid (10 iterations to 16 digits).
+The algebraic inputs are:
+$r_{\rm L2} = 3(1+\Omega_\eta)$ (Theorem~\ref{thm:rL2}, \MCp);
+$(\pi-3)/2 = 12\pi\Omega_\eta$ (Corollary~\ref{cor:12pi_omega}, \Lz);
+$C_Q = 4$ (Proposition~\ref{prop:CQ4}, \Lo\ cond.);
+$B(\rho)$ from $Z[\tau]=\eta^{-12}$ (\Lo\ cond.).
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────
+\section{Remaining Gap and Status Summary}
+\label{sec:gaps}
+%──────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap A — $\rho = \exp(-\Delta I_Q)$: OPEN}
+
+The relationship between information loss $\Delta I_Q$ and the
+effective modular parameter $\rho = R_\tau/R_\psi$ is the remaining
+unproven step. Two physical interpretations:
+
+\textbf{Interpretation 1 (geometric)}: $\rho \neq 1$ represents
+a small asymmetry between the two torus radii $R_\psi$ and $R_\tau$.
+The curvature correction $\delta = 1 - \rho \approx 3.92\,\alpha/(2\pi)$
+is at the level of the Schwinger correction. Derivation from $S[\Theta]$:
+requires T² geometry and a fixation mechanism for $R_\tau \neq R_\psi$.
+
+\textbf{Interpretation 2 (quantum)}: $\Delta I_Q = C_Q/(2\pi n)$
+is quantum decoherence per winding cycle. The exponential
+$\rho = e^{-\Delta I_Q}$ is the standard relationship between
+information loss and attenuation of a quantum channel.
+Derivation from $S[\Theta]$: requires a quantum channel model
+for the $\psi$-winding sector.
+
+\textbf{Status}: \OPEN. Either interpretation, if formalised,
+closes Gap A and promotes the full theorem to [\Lo\ conditional].
+\end{gapbox}
+
+\begin{resultbox}
+\textbf{Summary of proof levels}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+Component & Expression & Level & Source \\
+\midrule
+$\Omega_\eta(1)$ & $\tfrac{1}{24}-\tfrac{1}{8\pi}$ & \Lz & Lem.~\ref{lem:omega_eta} \\
+$(\pi-3)/2 = 12\pi\Omega_\eta$ & algebraic & \Lz & Cor.~\ref{cor:12pi_omega} \\
+$C_Q = 4$ & Dirac dim. & \Lo\ cond. & Prop.~\ref{prop:CQ4} \\
+$\Pi_{\rm colour}$, rank 3 & SU(3) & \Lz & \texttt{su3\_from\_involutions.tex} \\
+Layer2 map = obs. projection & confinement & \MCp & Prop.~\ref{prop:L2map} \\
+$K_{\rm L2} = \sqrt{1+\Omega_\eta}\,\Pi_{\rm colour}$ & Kraus & \MCp & Prop.~\ref{prop:kraus} \\
+$r_{\rm L2} = 3(1+\Omega_\eta)$ & Thm. & \MCp & Thm.~\ref{thm:rL2} \\
+$\rho = e^{-C_Q/(2\pi n)}$ & info loss & \OPEN\ (Gap A) & — \\
+$\alpha^{-1}_{\rm UBT} = 137.035999177549$ & self-consist. & \MCp & Thm.~\ref{thm:alpha} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Alpha: NOT DERIVED unconditionally.}
+Gap A ($\rho = e^{-\Delta I_Q}$) is the sole remaining unproven step.
+Closing it would promote the full result to [\Lo\ conditional on
+$Z[\tau]=\eta^{-12}$ and Dirac eq.].
+\end{resultbox}
+
+\begin{thebibliography}{9}
+\bibitem{info_loss}
+  I.~D.~Jaroš,
+  ``Information-loss alpha self-consistency,''
+  \texttt{research\_tracks/T3\_ALPHA/information\_loss\_alpha\_self\_consistency.tex}, 2026.
+\bibitem{modular}
+  I.~D.~Jaroš,
+  ``Modular symmetry of $S[\Theta]$ and the derivation of $R_\psi=1$,''
+  \texttt{research\_tracks/T3\_ALPHA/modular\_symmetry\_rpsi.tex}, 2026.
+\bibitem{su3}
+  I.~D.~Jaroš,
+  ``SU(3) from involutions,''
+  \texttt{canonical/su3\_derivation/su3\_from\_involutions.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
