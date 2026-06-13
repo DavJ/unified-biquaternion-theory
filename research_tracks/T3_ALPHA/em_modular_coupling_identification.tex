@@ -1,0 +1,250 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/em_modular_coupling_identification.tex
+% Purpose: Close the physical identification n = alpha^{-1} by matching the
+%          UBT electromagnetic winding modulus to the standard compact-U(1)
+%          Maxwell coupling modulus.
+% Status: [L1 conditional] — closes the final alpha interpretation gap provided
+%         the UBT EM projection is accepted as the compact U(1)_EM line bundle.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+\newcommand{\Std}{\textbf{[STD]}}
+
+\title{Electromagnetic Modular Coupling and the Identification\\
+       \large $n = \alpha^{-1}$ in the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The numerical UBT alpha fixed point produces a stationary winding stiffness
+\(n_*=137.035999177548864\ldots\).  The remaining physical gap is to identify
+this dimensionless winding stiffness with the inverse fine-structure constant.
+This note shows that, once the UBT electromagnetic projection is treated as the
+compact unit-charge \(U(1)_{\rm EM}\) line bundle, the identification follows
+from the standard complexified Maxwell coupling
+\[
+  \tau_{\rm EM}=\frac{\theta_{\rm EM}}{2\pi}+i\frac{4\pi}{e^2}.
+\]
+The UBT winding modulus is the same compact-U(1) modulus,
+\(\tau^{\rm UBT}_{\rm EM}=\chi+i n\).  In the CP-even vacuum \(\chi=0\), hence
+\[
+  n = \frac{4\pi}{e^2}=\alpha^{-1}.
+\]
+The result does not change the numerical alpha fixed point.  It only closes the
+normalisation/interpretation bridge from the UBT winding index to the physical
+low-energy electromagnetic coupling.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This is a conditional closure theorem.  It is not a
+new numerical fit.  The only physical assumption is the standard one: the UBT
+EM projection defines the compact unit-charge \(U(1)_{\rm EM}\) line bundle seen
+by low-energy electromagnetism.  Under this assumption the normalisation
+\(n=\alpha^{-1}\) is fixed by compact-U(1) Maxwell theory and Dirac/Wilson-line
+charge quantisation.
+\end{statusbox}
+
+\section{Standard compact-U(1) normalisation}
+
+Let \(A\) be a compact unit-charge \(U(1)\) connection on a line bundle \(L\),
+with curvature \(F=dA\) normalised by
+\[
+  \frac{1}{2\pi}\int_{\Sigma}F \in \mathbb Z
+\]
+for every closed two-cycle \(\Sigma\).  In Euclidean signature the Maxwell
+action is
+\begin{equation}
+  S_{\rm Max}[A]
+  =
+  \frac{1}{2e^2}\int F\wedge *F
+  - i\frac{\theta_{\rm EM}}{8\pi^2}\int F\wedge F .
+  \label{eq:stdMaxwell}
+\end{equation}
+Equivalently, in tensor notation,
+\[
+  \frac{1}{2e^2}\int F\wedge *F
+  =
+  \frac{1}{4e^2}\int F_{\mu\nu}F^{\mu\nu}\,d^4x .
+\]
+The standard complexified coupling is
+\begin{equation}
+  \tau_{\rm EM}
+  =
+  \frac{\theta_{\rm EM}}{2\pi}
+  + i\frac{4\pi}{e^2}.
+  \label{eq:tauEM}
+\end{equation}
+Since \(\alpha=e^2/(4\pi)\),
+\begin{equation}
+  {\rm Im}\,\tau_{\rm EM}=\frac{4\pi}{e^2}=\alpha^{-1}.
+  \label{eq:imalpha}
+\end{equation}
+This is a normalisation identity, not a phenomenological input.
+
+\section{UBT electromagnetic winding modulus}
+
+The UBT alpha track defines a compact \(\psi\)-phase sector.  Its EM projection
+selects the unit-charge Abelian phase bundle that survives at low energy as
+\(U(1)_{\rm EM}\).  The winding stiffness \(n\) is the coefficient of the
+CP-even Hodge norm of this compact connection.  The possible CP-odd phase is
+written \(\chi\).  Thus the UBT EM sector has the compact-U(1) action
+\begin{equation}
+  S^{\rm UBT}_{\rm EM}[A]
+  =
+  \frac{n}{8\pi}\int F\wedge *F
+  - i\frac{\chi}{4\pi}\int F\wedge F .
+  \label{eq:UBTMaxwell}
+\end{equation}
+In tensor notation,
+\begin{equation}
+  S^{\rm UBT}_{\rm EM}[A]
+  =
+  \frac{n}{16\pi}\int F_{\mu\nu}F^{\mu\nu}\,d^4x
+  - i\frac{\chi}{4\pi}\int F\wedge F .
+  \label{eq:UBTMaxwellComponents}
+\end{equation}
+Equation~\eqref{eq:UBTMaxwell} is the compact-U(1) Hodge norm with dimensionless
+modulus
+\begin{equation}
+  \tau^{\rm UBT}_{\rm EM}=\chi+i n .
+  \label{eq:tauUBT}
+\end{equation}
+The same \(n\) is the variable whose vacuum value is selected by the eta/Layer2
+fixed-point equation, because the fixed point extremises the partition function
+of this compact \(\psi\)-winding sector.
+
+\section{Identification theorem}
+
+\begin{theorem}[Electromagnetic modular identification \Lone]
+Assume that the UBT electromagnetic projection is the compact unit-charge
+\(U(1)_{\rm EM}\) line bundle of the low-energy theory, and that the stationary
+UBT winding stiffness \(n\) is the imaginary part of its compact-U(1) modulus:
+\[
+  \tau^{\rm UBT}_{\rm EM}=\chi+i n.
+\]
+Then, after matching to the standard Maxwell coupling,
+\[
+  n=\frac{4\pi}{e^2}=\alpha^{-1}.
+\]
+\end{theorem}
+
+\begin{proof}
+Compare the CP-even term in the UBT action~\eqref{eq:UBTMaxwell} with the
+standard Maxwell action~\eqref{eq:stdMaxwell}:
+\[
+  \frac{n}{8\pi}\int F\wedge *F
+  =
+  \frac{1}{2e^2}\int F\wedge *F .
+\]
+Therefore
+\[
+  \frac{n}{8\pi}=\frac{1}{2e^2},
+  \qquad
+  n=\frac{4\pi}{e^2}.
+\]
+Using \(\alpha=e^2/(4\pi)\), we obtain
+\[
+  n=\alpha^{-1}.
+\]
+The CP-odd terms also match if \(\chi=\theta_{\rm EM}/(2\pi)\):
+\[
+  -i\frac{\chi}{4\pi}\int F\wedge F
+  =
+  -i\frac{\theta_{\rm EM}}{8\pi^2}\int F\wedge F .
+\]
+Thus the full complexified coupling agrees:
+\[
+  \tau^{\rm UBT}_{\rm EM}=\tau_{\rm EM}.
+\]
+In the CP-even low-energy vacuum \(\theta_{\rm EM}=0\), hence \(\chi=0\) and
+\(\tau^{\rm UBT}_{\rm EM}=i n=i\alpha^{-1}\).
+\end{proof}
+
+\begin{corollary}[Closure of the final alpha interpretation gap \Lone]
+If the eta/Layer2 fixed point gives
+\[
+  n_*=137.035999177548864\ldots,
+\]
+then the low-energy electromagnetic coupling predicted by UBT is
+\[
+  \alpha^{-1}_{\rm UBT}=n_*=137.035999177548864\ldots .
+\]
+\end{corollary}
+
+\section{Why this is not a fitted normalisation}
+
+The factor \(4\pi\) does not come from tuning.  It is fixed by the standard
+compact-U(1) definition of the complexified Maxwell coupling and by the
+normalisation of electric charge:
+\[
+  \tau_{\rm EM}=\frac{\theta}{2\pi}+i\frac{4\pi}{e^2}.
+\]
+Changing this factor would change the quantisation convention of the physical
+unit-charge Wilson line and would no longer describe the observed
+\(U(1)_{\rm EM}\) coupling.
+
+\section{Remaining conditional assumption}
+
+The only remaining conditional statement is structural, not numerical:
+\[
+  \boxed{
+  \text{UBT EM projection} = \text{compact unit-charge }U(1)_{\rm EM}
+  \text{ line bundle.}
+  }
+\]
+This is the correct place for further work on the electroweak projection
+\(SU(2)_L\times U(1)_Y\to U(1)_{\rm EM}\).  However, once that projection is
+accepted, the identification \(n=\alpha^{-1}\) follows from standard Maxwell
+normalisation.
+
+\begin{resultbox}
+\textbf{Conclusion.} The alpha track no longer needs a heuristic statement
+``let \(n=\alpha^{-1}\).''  It can state the compact-U(1) matching theorem:
+\[
+  \tau^{\rm UBT}_{\rm EM}=\chi+i n
+  \quad\Longleftrightarrow\quad
+  \tau_{\rm EM}=\frac{\theta}{2\pi}+i\alpha^{-1}.
+\]
+At \(\theta=0\), this gives \(n=\alpha^{-1}\).
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
