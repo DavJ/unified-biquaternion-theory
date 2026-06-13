@@ -1,0 +1,216 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/theta0_nonzero_minimum_theorem.tex
+% Purpose: Close the last electroweak-vacuum step needed by the alpha track at
+%          the level of an explicit minimal symmetry-breaking potential.
+% Status: [L1 conditional] theorem.  The minimisation is rigorous once the
+%         projected EW potential has the stated stable quadratic-quartic form.
+%         Remaining UV question: derive the sign mu_EW^2>0 from canonical UBT.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+
+\title{The $\Theta_0$ Non-Zero Electroweak Minimum Theorem\\
+       \large Minimal Symmetry Breaking Closure for the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The previous $\Theta_0$ orbit theorem reduced the last alpha-proof condition to
+one statement: the UBT symmetry-breaking potential must have a non-zero minimum
+in the minimal electroweak doublet sector.  This note makes that condition
+explicit.  If the electroweak projection of the canonical potential has the
+stable quadratic-quartic form
+\[
+  V_{\rm EW}(\Phi)
+  =
+  V_0-
+  \mu_{\rm EW}^2\,\Phi^\dagger\Phi
+  +
+  \lambda_{\rm EW}\,(\Phi^\dagger\Phi)^2,
+  \qquad
+  \lambda_{\rm EW}>0,
+  \quad
+  \mu_{\rm EW}^2>0,
+\]
+then its global minimum is non-zero and satisfies
+\[
+  \Phi^\dagger\Phi=\frac{\mu_{\rm EW}^2}{2\lambda_{\rm EW}}
+  =\frac{v^2}{2}.
+\]
+Together with the vacuum-orbit theorem, this gives the standard representative
+\[
+  \Phi_0=\begin{pmatrix}0\\v/\sqrt2\end{pmatrix},
+  \qquad Y=1.
+\]
+Therefore the remaining gap is no longer the existence of an electroweak doublet
+minimum as such; it is the deeper UV/sign problem of deriving
+$\mu_{\rm EW}^2>0$ from canonical UBT rather than taking the symmetry-breaking
+coefficient as an effective low-energy input.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This is a mathematical closure theorem for the
+projected low-energy electroweak potential.  It should not be misread as a full
+UV derivation of electroweak symmetry breaking.  The theorem proves that the
+stated UBT-compatible potential has the required non-zero minimum.  The open
+canonical task is to derive the sign and scale of $\mu_{\rm EW}^2$ from the full
+$S[\Theta]$ dynamics.
+\end{statusbox}
+
+\section{Gauge-invariant potential on the minimal doublet}
+
+Let the minimal electroweak component of $\Theta$ be
+\[
+  \Phi\in\mathbb C^2,
+  \qquad
+  \Phi\mapsto U_L e^{i\beta/2}\Phi,
+  \qquad
+  U_L\in SU(2)_L.
+\]
+The basic gauge-invariant radial variable is
+\[
+  x=\Phi^\dagger\Phi\ge 0.
+\]
+At the renormalisable effective level, the minimal stable radial potential is
+\[
+  V_{\rm EW}(x)=V_0-\mu_{\rm EW}^2 x+\lambda_{\rm EW}x^2,
+  \qquad
+  \lambda_{\rm EW}>0.
+\]
+The sign convention is chosen so that $\mu_{\rm EW}^2>0$ corresponds to a
+negative quadratic mass term and hence to spontaneous symmetry breaking.
+
+\section{Non-zero minimum theorem}
+
+\begin{theorem}[Non-zero electroweak minimum \Lone]
+Assume the projected UBT electroweak potential is
+\[
+  V_{\rm EW}(\Phi)
+  =
+  V_0-\mu_{\rm EW}^2\Phi^\dagger\Phi
+  +\lambda_{\rm EW}(\Phi^\dagger\Phi)^2,
+  \qquad
+  \lambda_{\rm EW}>0,
+  \quad
+  \mu_{\rm EW}^2>0.
+\]
+Then $V_{\rm EW}$ has a global minimum at non-zero field norm
+\[
+  \Phi^\dagger\Phi=\frac{\mu_{\rm EW}^2}{2\lambda_{\rm EW}}.
+\]
+Equivalently, writing
+\[
+  v^2=\frac{\mu_{\rm EW}^2}{\lambda_{\rm EW}},
+\]
+the vacuum norm is
+\[
+  \|\Phi\|=\frac{v}{\sqrt2}.
+\]
+\end{theorem}
+
+\begin{proof}
+Set $x=\Phi^\dagger\Phi\ge0$.  The potential becomes the one-variable function
+\[
+  V_{\rm EW}(x)=V_0-\mu_{\rm EW}^2x+\lambda_{\rm EW}x^2.
+\]
+Since $\lambda_{\rm EW}>0$, this quadratic is bounded below.  Its derivative is
+\[
+  \frac{dV_{\rm EW}}{dx}=-\mu_{\rm EW}^2+2\lambda_{\rm EW}x.
+\]
+The unique stationary point is
+\[
+  x_*=\frac{\mu_{\rm EW}^2}{2\lambda_{\rm EW}}.
+\]
+Because $\mu_{\rm EW}^2>0$ and $\lambda_{\rm EW}>0$, one has $x_*>0$, so the
+minimum lies away from the origin.  The second derivative is
+\[
+  \frac{d^2V_{\rm EW}}{dx^2}=2\lambda_{\rm EW}>0,
+\]
+so this stationary point is the global minimum on $x\ge0$.  Therefore
+\[
+  \Phi^\dagger\Phi=x_*=\frac{\mu_{\rm EW}^2}{2\lambda_{\rm EW}}=\frac{v^2}{2}.
+\]
+\end{proof}
+
+\begin{corollary}[Standard $\Theta_0$ representative]
+Combining the non-zero minimum theorem with the $\Theta_0$ vacuum-orbit theorem,
+there exists a gauge representative of the UBT electroweak vacuum of the form
+\[
+  \Phi_0=\begin{pmatrix}0\\v/\sqrt2\end{pmatrix},
+  \qquad
+  Y\Phi_0=\Phi_0.
+\]
+\end{corollary}
+
+\section{Consequence for the alpha derivation}
+
+The alpha derivation now has the chain
+\[
+  \mu_{\rm EW}^2>0,\\;\lambda_{\rm EW}>0
+  \Longrightarrow
+  \Phi_0\neq0
+  \Longrightarrow
+  \Theta_0\sim(0,v/\sqrt2),\;Y=1
+  \Longrightarrow
+  Q_{\rm EM}=T_3+Y/2
+  \Longrightarrow
+  U(1)_{\rm EM}\text{ compact unit charge}
+  \Longrightarrow
+  n=\alpha^{-1}.
+\]
+Thus the remaining physical condition can be stated sharply as
+\[
+  \boxed{
+    \text{derive }\mu_{\rm EW}^2>0\text{ and }\lambda_{\rm EW}>0
+    \text{ from the full canonical }S[\Theta].
+  }
+\]
+The quartic positivity is a stability condition.  The genuinely non-trivial
+physics is the sign and scale of $\mu_{\rm EW}^2$.
+
+\begin{resultbox}
+\textbf{Updated alpha status.} The electroweak-vacuum part of the alpha proof is
+closed at the level of the standard low-energy symmetry-breaking potential.
+What remains is the UV origin of the symmetry-breaking sign, not the algebraic
+shape of the vacuum, the EM generator, the charge normalisation, or the
+identification $n=\alpha^{-1}$.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
