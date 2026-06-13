@@ -1,0 +1,238 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/odd_winding_fermionic_ew_sign_theorem.tex
+% Purpose: Path-B primary route. Use the canonical odd-winding Grassmannian
+%          measure theorem to obtain the required fermionic determinant sign for
+%          the electroweak doublet channel.
+% Status: [L1 conditional].  The determinant sign follows from existing
+%         odd-winding fermionic-statistics bridge once the EW Layer2 readout is
+%         supported on the odd-winding spinor sector.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+
+\title{Odd-Winding Fermionic Sign Theorem for the Electroweak Doublet\\
+       \large Path-B Primary Route Toward PROVEN Alpha}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The determinant sign audit showed that the explicit bosonic compact sector
+$Z_\psi=\eta^{-12}$ alone gives the wrong sign for electroweak symmetry
+breaking.  However, the canonical UBT quantum-structure bridge already contains
+a crucial theorem: odd winding modes carry a Grassmann/Berezin path-integral
+measure.  This note applies that result to the electroweak Layer2 readout.  If
+the minimal electroweak doublet is supported on the odd-winding spinor sector,
+then its compact determinant is fermionic and contributes
+\[
+  \Delta V_{\rm odd}^{(2)}
+  =
+  -\operatorname{Tr}(D_{\rm odd}^{-1}K_{\rm EW})\Phi^\dagger\Phi.
+\]
+For positive spectral coupling this gives the required negative mass term,
+\[
+  m_{\rm eff}^2<0,
+  \qquad
+  \mu_{\rm EW}^2>0.
+\]
+Thus Path B can reach PROVEN status if the EW Layer2 readout into the odd-winding
+spinor sector is accepted or derived as canonical.  If this readout condition is
+rejected, the fallback is the explicit EW symmetry-breaking postulate.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} The Grassmannian sign of odd winding modes is already
+supported by \texttt{canonical/bridges/fermionic\_statistics\_bridge.tex}.  The
+remaining condition in this file is the placement of the minimal EW doublet in
+the odd-winding spinor/Layer2 readout sector.  This is much sharper than the
+previous generic ``fermionic dominance'' condition.
+\end{statusbox}
+
+\section{Canonical input: odd winding means Grassmann measure}
+
+The repository contains the canonical bridge result:
+\[
+  n\text{ odd}
+  \Longrightarrow
+  D\hat\Theta_n\text{ is a Berezin/Grassmann measure.}
+\]
+Equivalently, odd winding modes are fermionic in the path integral.  This is the
+result recorded in
+\[
+  \texttt{canonical/bridges/fermionic\_statistics\_bridge.tex}.
+\]
+Therefore an odd-winding compact channel contributes a fermionic determinant,
+not a bosonic inverse-square-root determinant.
+
+\section{Odd-sector electroweak readout}
+
+Let the minimal EW doublet be
+\[
+  \Phi\in\mathbb C^2,
+  \qquad
+  Y=1.
+\]
+The Path-B readout condition is:
+\[
+  \Pi_{\rm EW}\Theta
+  \subset
+  \mathcal H_{\rm odd,spinor}.
+\]
+That is, the electroweak doublet component is read from the odd-winding spinor
+sector of \(\Theta\).  This condition is natural because the EW doublet is a
+spinorial left-action object, while the canonical fermionic-statistics bridge
+assigns Grassmann measure precisely to odd winding modes.
+
+\section{Fermionic determinant sign}
+
+For the odd-winding EW channel, write
+\[
+  Z_{\rm odd}(\Phi)
+  =
+  \det(D_{\rm odd}+K_{\rm EW}\Phi^\dagger\Phi).
+\]
+The effective potential contribution is
+\[
+  \Delta V_{\rm odd}(\Phi)
+  =
+  -\log Z_{\rm odd}(\Phi)
+  =
+  -\operatorname{Tr}\log(D_{\rm odd}+K_{\rm EW}\Phi^\dagger\Phi).
+\]
+
+\begin{theorem}[Odd-winding fermionic EW sign \Lone]
+Assume:
+\begin{enumerate}
+  \item the EW Layer2 readout is supported on the odd-winding spinor sector;
+  \item $D_{\rm odd}^{-1}K_{\rm EW}$ has positive trace.
+\end{enumerate}
+Then the odd-winding determinant induces a negative electroweak quadratic term:
+\[
+  \left.\frac{d\Delta V_{\rm odd}}{d(\Phi^\dagger\Phi)}\right|_{\Phi=0}
+  =
+  -\operatorname{Tr}(D_{\rm odd}^{-1}K_{\rm EW})
+  <0.
+\]
+Therefore
+\[
+  m_{\rm eff}^2<0,
+  \qquad
+  \mu_{\rm EW}^2=-m_{\rm eff}^2>0.
+\]
+\end{theorem}
+
+\begin{proof}
+Set $x=\Phi^\dagger\Phi$.  Differentiating the fermionic determinant gives
+\[
+  \frac{d}{dx}\Delta V_{\rm odd}(x)
+  =
+  -\operatorname{Tr}\!\left[(D_{\rm odd}+K_{\rm EW}x)^{-1}K_{\rm EW}\right].
+\]
+At $x=0$,
+\[
+  \left.\frac{d}{dx}\Delta V_{\rm odd}(x)\right|_{0}
+  =
+  -\operatorname{Tr}(D_{\rm odd}^{-1}K_{\rm EW}).
+\]
+By assumption the trace is positive, hence the coefficient is negative.  This is
+exactly the sign convention
+\[
+  V_{\rm EW}=V_0-\mu_{\rm EW}^2\Phi^\dagger\Phi+
+  \lambda(\Phi^\dagger\Phi)^2.
+\]
+\end{proof}
+
+\section{Relation to the bosonic obstruction}
+
+The bosonic determinant sign theorem remains correct:
+\[
+  Z_B=\det(P_B+K_Bx)^{-1/2}
+  \Longrightarrow
+  \Delta V_B^{(2)}=+
+  \frac12\operatorname{Tr}(P_B^{-1}K_B)x.
+\]
+The resolution proposed here is not to deny that result, but to assign different
+roles to the two determinants:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Sector & Role & Sign in EW mass channel \\
+\midrule
+Bosonic $\eta^{-12}$ compact sector & modular/winding background & positive if directly coupled \\
+Odd-winding spinor Layer2 sector & EW doublet readout & negative fermionic sign \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Thus the bosonic determinant supports the alpha fixed-point machinery, while the
+odd-winding spinor determinant supplies the electroweak symmetry-breaking sign.
+
+\section{Consequence for alpha}
+
+Combining the odd-sector sign theorem with the previous results gives
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd,spinor}
+  \Longrightarrow
+  \mu_{\rm EW}^2>0
+  \Longrightarrow
+  \Phi_0\ne0
+  \Longrightarrow
+  \Theta_0\sim(0,v/\sqrt2),Y=1
+\]
+and therefore
+\[
+  Q_{\rm EM}=T_3+Y/2,
+  \qquad
+  n=\alpha^{-1}.
+\]
+
+\begin{resultbox}
+\textbf{Path-B result.} The route to PROVEN alpha is now reduced to one sharply
+formulated readout theorem:
+\[
+  \boxed{\Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd,spinor}.}
+\]
+If this is proved from the canonical Layer2 projection rules, the determinant
+sign is fermionic and the alpha chain can be promoted to PROVEN within canonical
+UBT assumptions.  If it cannot be proved, use the explicit EW-breaking postulate
+fallback.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
