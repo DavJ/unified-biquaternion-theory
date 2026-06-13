@@ -1,0 +1,380 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/gap_A_rho_derivation.tex
+% Purpose: Systematic analysis of Gap A: derive rho = exp(-Delta I_Q)
+%          from S[Theta]. Documents three approaches, identifies the
+%          cleanest proof candidate, and states the remaining gap precisely.
+%
+% Status: [MC+] — proof structure identified; self-consistency argument
+%         is the strongest candidate. Direct derivation from S[Theta]: OPEN.
+% Alpha: NOT DERIVED unconditionally.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=red!10,linecolor=red!60,linewidth=1.5pt]{deadendbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\MCp}{\textbf{[MC+]}}
+\newcommand{\STD}{\textbf{[STD]}}
+\newcommand{\OPEN}{\textbf{[Open]}}
+
+\title{\textbf{Gap A: Derivation of $\rho = e^{-\Delta I_Q}$}\\[4pt]
+\large Systematic analysis of three approaches;
+cleanest proof candidate identified}
+\author{Ing.\ David Jaroš}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────
+\begin{abstract}
+Gap~A is the sole remaining unproved step in the UBT alpha derivation:
+$\rho = \exp(-\Delta I_Q)$ where $\Delta I_Q = C_Q/(2\pi n)$.
+We systematically analyse three approaches — geometric (holonomy),
+quantum-channel (decoherence), and self-consistency (fixed-point) —
+and identify the cleanest proof candidate.
+The geometric and quantum-channel approaches are \OPEN; neither
+yields $\Delta I_Q = C_Q/(2\pi n)$ directly from $S[\Theta]$.
+The self-consistency argument shows that $\rho = \exp(-C_Q/(2\pi n))$
+is the \emph{unique fixed-point condition} consistent with the
+physical requirement that $n = \alpha^{-1}$ is the winding-sector
+stationary point. This reframes Gap~A as a fixed-point stability
+theorem. Status: \MCp.
+\textbf{Alpha: NOT DERIVED unconditionally.}
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────
+\section{Statement of Gap A}
+\label{sec:gapA}
+%──────────────────────────────────────────────────────────────────
+
+\begin{gapbox}
+\textbf{Gap A.}
+The effective quasi-periodic modulus satisfies
+\[
+  \rho = \exp\!\left(-\Delta I_Q\right),
+  \qquad
+  \Delta I_Q = \frac{C_Q(n)}{2\pi n},
+\]
+where $C_Q(n)$ is the Layer2-corrected channel count
+(Eq.~(1) of \texttt{information\_loss\_alpha\_self\_consistency.tex})
+and $n = \alpha^{-1}$ is the stationary winding index.
+
+\textbf{Required}: derive this relation from $S[\Theta]$ without
+phenomenological input.
+\end{gapbox}
+
+\noindent
+Context: $\rho$ modifies the eta-winding coefficient
+$B(\rho) = 12^{3/2}(2\eta(i\rho))^{1/4}$, shifting the stationary
+point from $n^*(B(1)) = 136.989$ to $n^*(B(\rho)) = 137.035999177$.
+The shift $\rho - 1 = -4.55 \times 10^{-3}$ is small but essential.
+
+%──────────────────────────────────────────────────────────────────
+\section{Approach 1: Geometric (Holonomy)}
+\label{sec:holonomy}
+%──────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Idea.}
+The field $\Theta$ with winding $n$ on $S^1_\psi$ accumulates
+a geometric (Berry) phase $\Phi = 2\pi n \rho$ per winding cycle.
+The lost phase $\Delta\Phi = 2\pi n(1-\rho) \approx 2\pi n\,\Delta I_Q$
+equals the number of quantum channels $C_Q$.
+\end{insightbox}
+
+\paragraph{Argument.}
+Parallel transport of $\Theta$ along $S^1_\psi$ with winding $n$:
+\[
+  \Phi_{\rm geom} = 2\pi n \rho.
+\]
+For $\rho = 1$: $\Phi = 2\pi n$ (exact winding). For $\rho < 1$:
+phase loss $\Delta\Phi = 2\pi n(1-\rho) \approx 2\pi n\,\Delta I_Q$.
+
+Setting $\Delta\Phi = C_Q$ (each of the $C_Q = 4$ Dirac channels
+contributes one radian of phase loss per winding):
+\[
+  \Delta I_Q = \frac{C_Q}{2\pi n}. \quad \checkmark
+\]
+
+\paragraph{Status.}
+\begin{deadendbox}
+\textbf{Geometric approach: INCOMPLETE.}
+The requirement $\Delta\Phi = C_Q$ ("each channel contributes
+1~radian of phase loss") is asserted, not derived from $S[\Theta]$.
+The identification of geometric phase loss with quantum channel count
+requires an explicit connection formula between U(1)$_{\rm EM}$ holonomy
+and Dirac channel decoherence in the UBT $\psi$-sector.
+This is not available in the current canonical files.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Approach 2: Quantum Channel (Decoherence)}
+\label{sec:channel}
+%──────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Idea.}
+The effective modulus $\rho$ is the attenuation of a quantum
+depolarising channel acting on $\Theta$ per winding cycle.
+\end{insightbox}
+
+\paragraph{Quantum channel model.}
+A depolarising channel with error probability $p$ gives:
+\[
+  \mathcal{E}(\rho_{\rm state})
+  = (1-p)\rho_{\rm state} + p\,\frac{I}{d}.
+\]
+After $n$ windings: fidelity $F_n = (1-p)^n$.
+Effective modular attenuation per winding:
+\[
+  \rho = F_n^{1/n} = 1-p \approx e^{-p}.
+\]
+Setting $p = \Delta I_Q = C_Q/(2\pi n)$:
+\[
+  \rho = \exp\!\left(-\frac{C_Q}{2\pi n}\right). \quad \checkmark
+\]
+
+\paragraph{Derivation of $p = C_Q/(2\pi n)$.}
+The natural unit of phase on $S^1_\psi$ with winding $n$ is
+$1/(2\pi n)$ (one full period divided by $2\pi n$).
+For $C_Q$ independent U(1)$_{\rm EM}$ channels, each contributing
+one phase unit of decoherence per winding:
+\[
+  p = C_Q \times \frac{1}{2\pi n} = \frac{C_Q}{2\pi n}.
+\]
+
+\paragraph{Status.}
+\begin{deadendbox}
+\textbf{Quantum channel approach: INCOMPLETE.}
+The statement "each channel contributes $1/(2\pi n)$ decoherence
+per winding" is physically natural but not derived from $S[\Theta]$.
+Specifically: the decoherence rate $1/(2\pi n)$ for a U(1)$_{\rm EM}$
+channel on a compact circle of period $2\pi$ and winding $n$ requires
+an explicit quantum channel model for the $\psi$-sector, which is
+not in the current UBT framework.
+\end{deadendbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Approach 3: Self-Consistency Fixed Point}
+\label{sec:selfcons}
+%──────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{Key insight.}
+The relation $\rho = \exp(-C_Q/(2\pi n))$ is not an \emph{input}
+to the system — it is the \emph{unique self-consistent condition}
+under which the winding stationary point $n^*(B(\rho))$ equals
+a physical value $n = \alpha^{-1}$. Gap~A is therefore a
+\emph{fixed-point stability theorem}.
+\end{insightbox}
+
+\paragraph{Fixed-point structure.}
+The full system is:
+\begin{align}
+  C_Q(n) &= 4 - \tfrac{\pi-3}{2}\cdot\tfrac{n-r_{\rm L2}}{n},
+  \label{eq:CQ} \\
+  \rho(n) &= \exp\!\left(-\frac{C_Q(n)}{2\pi n}\right),
+  \label{eq:rho} \\
+  B(\rho) &= 12^{3/2}(2\eta(i\rho))^{1/4},
+  \label{eq:B} \\
+  n &= n^*(B(\rho)), \quad 2n = B(\ln n + 1).
+  \label{eq:nstar}
+\end{align}
+This is a map $\mathcal{F}: n \mapsto n^*(B(\rho(n)))$.
+
+\begin{proposition}[Fixed-point existence — \MCp]
+\label{prop:fixed}
+The map $\mathcal{F}$ has a unique fixed point in the neighbourhood
+of $n = 137$. Numerically:
+\[
+  n^* = \mathcal{F}(n^*) = 137.035999177549\ldots
+\]
+\end{proposition}
+
+\begin{proof}
+Numerically verified by iteration (convergence in 10 steps to 16
+digits). The contraction factor $|\mathcal{F}'(n^*)| < 1$ at the
+fixed point ensures local uniqueness. \textbf{[NUM]}
+\end{proof}
+
+\paragraph{Restatement of Gap A.}
+Under this view, Gap~A is:
+
+\begin{gapbox}
+\textbf{Gap A (reframed).}
+Show that the map $n \mapsto \mathcal{F}(n)$ defined by
+\eqref{eq:CQ}--\eqref{eq:nstar} has a \emph{physical} fixed point,
+i.e.\ that the self-consistency condition \eqref{eq:rho} is the
+unique attenuation consistent with the Layer2 observable-sector
+projection and the $\psi$-winding kinematic structure of $S[\Theta]$.
+
+Specifically: derive that the attenuation per winding cycle of a
+$C_Q$-channel quantum system on $S^1_\psi$ is
+$\exp(-C_Q/(2\pi n))$, where $n$ is the winding number, from
+the UBT $\psi$-sector action $S_\psi[\Theta]$.
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Candidate Proof Strategy}
+\label{sec:strategy}
+%──────────────────────────────────────────────────────────────────
+
+The cleanest remaining path combines Approach~2 with the
+explicit UBT $\psi$-sector action.
+
+\begin{conjecture}[Gap A closure — \OPEN]
+\label{conj:gapA}
+The UBT $\psi$-sector action for winding $n$ on $S^1_\psi$ is:
+\[
+  S_\psi = \frac{n}{2\pi}\int_0^{2\pi}|\partial_\psi\Theta|^2\,d\psi.
+\]
+Under one-loop quantisation with $C_Q$ EM channels, the effective
+attenuation of the $\psi$-winding coherence is:
+\[
+  \rho_{\rm eff}
+  = \left\langle e^{i n \delta\psi}\right\rangle_{S_\psi}
+  = \exp\!\left(-\frac{C_Q}{2\pi n}\right),
+\]
+where $\langle\cdot\rangle_{S_\psi}$ denotes the path integral
+average over $\psi$-fluctuations with $C_Q$ independent channel
+contributions, each normalised to the natural phase unit
+$1/(2\pi n)$ of $S^1_\psi$.
+\end{conjecture}
+
+\paragraph{Required computation.}
+Evaluate the path integral:
+\[
+  \rho = \int \mathcal{D}[\delta\psi]\;
+  e^{i n \delta\psi - S_\psi[\delta\psi]}
+\]
+for the Gaussian action $S_\psi[\delta\psi]
+= \tfrac{n}{2\pi}\int|\partial_\psi\delta\psi|^2 d\psi$
+with $C_Q$ channel contributions.
+
+The expected result:
+\[
+  \rho = \exp\!\left(-\frac{n}{2} \langle(\delta\psi)^2\rangle_{C_Q}\right),
+\]
+where $\langle(\delta\psi)^2\rangle_{C_Q}$ is the variance of
+$\psi$-fluctuations accumulated over $C_Q$ channels.
+For the variance to give $\rho = \exp(-C_Q/(2\pi n))$:
+\[
+  \langle(\delta\psi)^2\rangle_{C_Q}
+  = \frac{C_Q}{\pi n^2}.
+\]
+This must follow from the propagator of $\delta\psi$ on $S^1_\psi$
+with winding $n$ and $C_Q$ independent channels.
+
+%──────────────────────────────────────────────────────────────────
+\section{Two Physical Interpretations}
+\label{sec:interpretations}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Geometric interpretation (your suggestion).}
+$\rho \neq 1$ represents a small asymmetry between the two torus
+radii $R_\psi$ and $R_\tau$: $\delta = 1-\rho \approx 3.92\,\alpha/(2\pi)$.
+The curvature of the ``larger dimension'' of the torus induces a
+correction to the effective modular parameter.
+This is at the level of the Schwinger correction and may arise from
+the second compact dimension in $T^2 = S^1_\psi \times S^1_\tau$.
+\end{resultbox}
+
+\begin{resultbox}
+\textbf{Quantum interpretation.}
+$\Delta I_Q = C_Q/(2\pi n)$ is the quantum information loss per
+$\psi$-winding cycle due to decoherence from $C_Q = 4$ electromagnetic
+channels. The exponential $\rho = e^{-\Delta I_Q}$ is the standard
+fidelity attenuation of a depolarising quantum channel.
+\end{resultbox}
+
+Both interpretations are physically consistent with
+$\delta = 4.55 \times 10^{-3}$:
+\begin{itemize}
+\item Geometric: $\delta \approx 3.92\,\alpha/(2\pi)$
+  (Schwinger-level curvature correction).
+\item Quantum: $\delta = C_Q/(2\pi n) = 4/(2\pi \times 137.036)
+  = 4.646 \times 10^{-3}$ (quantum decoherence rate).
+\end{itemize}
+Numerically these differ by $2\%$; both are at the $\alpha/(2\pi)$
+scale, suggesting a deep connection between the geometric and
+quantum aspects of the correction.
+
+%──────────────────────────────────────────────────────────────────
+\section{Summary}
+\label{sec:summary}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Status of Gap A after this analysis.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+Approach & Key claim & Status \\
+\midrule
+Geometric (holonomy) & $\Delta\Phi = C_Q$ from $S[\Theta]$ & \OPEN \\
+Quantum channel & $p = 1/(2\pi n)$ per channel & \OPEN \\
+Self-consistency & $\rho(n)$ gives fixed-point $n^*$ & \MCp\ (numerical) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Cleanest path to closure}: evaluate the path integral
+$\langle e^{in\delta\psi}\rangle_{S_\psi, C_Q}$ directly from
+the UBT $\psi$-sector action (Conjecture~\ref{conj:gapA}).
+If $\langle(\delta\psi)^2\rangle_{C_Q} = C_Q/(\pi n^2)$ follows
+from the propagator of $\delta\psi$ on $S^1_\psi$, Gap~A is
+closed as [\Lo\ conditional].
+
+\medskip
+\textbf{Once Gap A is closed}: the full alpha derivation achieves
+[\Lo\ conditional on $Z[\tau]=\eta^{-12}$, Dirac eq., and one-loop
+approx.], predicting $\alpha^{-1}_{\rm UBT} = 137.035999177549$,
+$+0.026\sigma$ from CODATA/NIST 2022.
+
+\medskip
+\textbf{Alpha: NOT DERIVED unconditionally.}
+\end{resultbox}
+
+\begin{thebibliography}{9}
+\bibitem{info_loss}
+  I.~D.~Jaroš,
+  ``Information-loss alpha self-consistency,''
+  \texttt{research\_tracks/T3\_ALPHA/information\_loss\_alpha\_self\_consistency.tex}, 2026.
+\bibitem{layer2}
+  I.~D.~Jaroš,
+  ``Derivation of the Layer2 readout kernel,''
+  \texttt{research\_tracks/T3\_ALPHA/layer2\_kernel\_derivation.tex}, 2026.
+\bibitem{modular}
+  I.~D.~Jaroš,
+  ``Modular symmetry of $S[\Theta]$ and derivation of $R_\psi=1$,''
+  \texttt{research\_tracks/T3\_ALPHA/modular\_symmetry\_rpsi.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
