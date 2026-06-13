@@ -1,0 +1,262 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/psi_determinant_ew_mass_sign_theorem.tex
+% Purpose: Path-B determinant audit for the final alpha proof step: determine
+%          whether the compact psi-sector can generate the negative EW mass term.
+% Status: [L1 sign theorem + obstruction].  The bosonic eta^{-12} sector alone
+%         gives the wrong sign for electroweak symmetry breaking.  A fermionic,
+%         ghost, or twisted Layer2 determinant must dominate to make the UV sign
+%         theorem PROVEN.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{obstructionbox}[1][]{
+  colback=red!5!white,
+  colframe=red!60!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Obstruction,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Lone}{\textbf{[L1]}}
+\newcommand{\Open}{\textbf{[OPEN]}}
+
+\title{Path B: Compact-$\psi$ Determinant Sign Theorem\\
+       \large Electroweak Mass Sign Audit for the UBT Alpha Proof}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The final non-conditional alpha proof requires a derivation of the electroweak
+symmetry-breaking sign
+\[
+  m_{\rm eff}^2<0,
+  \qquad
+  V_{\rm EW}=V_0+m_{\rm eff}^2\Phi^\dagger\Phi+
+  \lambda(\Phi^\dagger\Phi)^2.
+\]
+This note evaluates the determinant sign of the compact $\psi$ sector.  For a
+bosonic Gaussian sector with partition function of the type already used in the
+alpha route,
+\[
+  Z_B(\Phi)=\det(P_B+K_B\Phi^\dagger\Phi)^{-1/2},
+\]
+the induced quadratic coefficient is positive:
+\[
+  \Delta V_B^{(2)}=+
+  \frac12\operatorname{Tr}(P_B^{-1}K_B)\Phi^\dagger\Phi.
+\]
+Thus the pure bosonic $\eta^{-12}$ sector stabilises the origin and cannot by
+itself prove electroweak symmetry breaking.  A negative mass term requires a
+fermionic, ghost, or twisted Layer2 determinant with the opposite sign, obeying
+\[
+  \operatorname{Tr}(D_F^{-1}K_F)
+  >
+  \frac12\operatorname{Tr}(P_B^{-1}K_B).
+\]
+This is a precise obstruction and a precise target theorem.  Therefore Path B
+does not yet make alpha unconditionally PROVEN; it reduces the last task to a
+fermionic/twisted Layer2 dominance theorem.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This is a sign theorem, not another fit.  It proves a
+negative result for the currently explicit bosonic $\eta^{-12}$ determinant and
+derives the exact condition under which a mixed boson/fermion compact sector
+would give the required electroweak symmetry-breaking sign.
+\end{statusbox}
+
+\section{Bosonic compact determinant}
+
+Let
+\[
+  x=\Phi^\dagger\Phi\ge0.
+\]
+Assume the compact bosonic $\psi$ operator coupled to the electroweak doublet is
+\[
+  \mathcal O_B(x)=P_B+K_Bx,
+\]
+where $P_B>0$ and $K_B\ge0$ on the relevant Hilbert space.  The Gaussian
+partition function is
+\[
+  Z_B(x)=\det \mathcal O_B(x)^{-1/2}.
+\]
+The effective potential contribution is
+\[
+  \Delta V_B(x)=-\log Z_B(x)
+  =\frac12\operatorname{Tr}\log(P_B+K_Bx).
+\]
+
+\begin{theorem}[Bosonic determinant sign \Lone]
+For $P_B>0$ and $K_B\ge0$, the quadratic coefficient induced by the bosonic
+compact determinant is non-negative:
+\[
+  \left.\frac{d\Delta V_B}{dx}\right|_{x=0}
+  =
+  \frac12\operatorname{Tr}(P_B^{-1}K_B)
+  \ge0.
+\]
+If $K_B$ has non-zero support on the compact spectrum, the coefficient is
+strictly positive.
+\end{theorem}
+
+\begin{proof}
+Differentiate the determinant contribution:
+\[
+  \frac{d}{dx}\Delta V_B(x)
+  =
+  \frac12\operatorname{Tr}\!\left[(P_B+K_Bx)^{-1}K_B\right].
+\]
+At $x=0$ this gives
+\[
+  \left.\frac{d\Delta V_B}{dx}\right|_{x=0}
+  =
+  \frac12\operatorname{Tr}(P_B^{-1}K_B).
+\]
+Since $P_B^{-1}>0$ and $K_B\ge0$, the trace is non-negative.  It is positive if
+$K_B$ has non-zero overlap with the spectrum.
+\end{proof}
+
+\begin{obstructionbox}
+\textbf{Bosonic obstruction.} The currently explicit $Z_\psi=\eta^{-12}$ sector
+is bosonic Gaussian.  Coupled in the standard positive way, it gives
+\[
+  \Delta V_B^{(2)}>0,
+\]
+not the required
+\[
+  \Delta V^{(2)}<0.
+\]
+Therefore the explicit bosonic compact sector alone cannot prove
+$\mu_{\rm EW}^2>0$.
+\end{obstructionbox}
+
+\section{Fermionic or twisted determinant}
+
+For a Grassmann/fermionic compact channel, the Gaussian integral gives the
+opposite determinant power.  Write
+\[
+  Z_F(x)=\det(D_F+K_Fx),
+\]
+so that
+\[
+  \Delta V_F(x)=-\log Z_F(x)
+  =-\operatorname{Tr}\log(D_F+K_Fx).
+\]
+Then
+\[
+  \left.\frac{d\Delta V_F}{dx}\right|_{x=0}
+  =
+  -\operatorname{Tr}(D_F^{-1}K_F).
+\]
+If $D_F^{-1}K_F$ has positive trace, the fermionic channel contributes the
+negative quadratic term needed for symmetry breaking.
+
+\begin{theorem}[Mixed compact-sector sign criterion \Lone]
+For a compact sector with bosonic and fermionic/twisted contributions,
+\[
+  \Delta V^{(2)}(x)
+  =
+  \left[
+    \frac12\operatorname{Tr}(P_B^{-1}K_B)
+    -
+    \operatorname{Tr}(D_F^{-1}K_F)
+  \right]x,
+\]
+the electroweak mass sign is negative if and only if
+\[
+  \operatorname{Tr}(D_F^{-1}K_F)
+  >
+  \frac12\operatorname{Tr}(P_B^{-1}K_B).
+\]
+In that case
+\[
+  m_{\rm eff}^2<0,
+  \qquad
+  \mu_{\rm EW}^2=-m_{\rm eff}^2>0.
+\]
+\end{theorem}
+
+\begin{proof}
+The coefficient of $x=\Phi^\dagger\Phi$ is
+\[
+  c_{\rm total}
+  =
+  \frac12\operatorname{Tr}(P_B^{-1}K_B)
+  -
+  \operatorname{Tr}(D_F^{-1}K_F).
+\]
+The effective electroweak mass is $m_{\rm eff}^2=c_{\rm total}$.  Therefore
+$m_{\rm eff}^2<0$ exactly when
+\[
+  \operatorname{Tr}(D_F^{-1}K_F)
+  >
+  \frac12\operatorname{Tr}(P_B^{-1}K_B).
+\]
+\end{proof}
+
+\section{Implication for PROVEN status}
+
+The determinant audit gives a clear conclusion:
+\[
+  Z_\psi=\eta^{-12}\text{ bosonic alone}
+  \Longrightarrow
+  \text{wrong sign for EW breaking.}
+\]
+Thus alpha cannot honestly be marked as unconditionally PROVEN from the current
+explicit bosonic compact determinant alone.
+
+The exact missing theorem is now:
+\[
+  \boxed{
+  \operatorname{Tr}(D_F^{-1}K_F)
+  >
+  \frac12\operatorname{Tr}(P_B^{-1}K_B)
+  }
+\]
+for the canonical UBT Layer2 fermionic/twisted compact sector.
+
+\begin{resultbox}
+\textbf{Updated Path-B status.} The route to PROVEN is still viable, but it must
+pass through a fermionic/twisted Layer2 dominance theorem.  Without that theorem,
+the honest status remains: complete conditional alpha chain plus a precisely
+identified final determinant-sign obstruction.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi

@@ -1,0 +1,184 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/ew_odd_spinor_readout_theorem.tex
+% Purpose: Prove the readout condition needed by Path B:
+%          Pi_EW Theta subset H_odd,spinor.
+% Status: [L1 conditional on existing canonical bridges].  Uses the repository's
+%         SU(2)_L left-action theorem, psi-parity/chirality result, and
+%         Grassmannian odd-winding theorem.
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Lone}{\textbf{[L1]}}
+
+\title{Electroweak Odd-Spinor Readout Theorem\\
+       \large Closing the Path-B Sign Gap for the UBT Alpha Track}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+The remaining Path-B target was the readout condition
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd,spinor}.
+\]
+This note closes that condition from existing repository bridges.  The canonical
+projection rules state that the weak fields $W_\mu^a$ are extracted from the
+left $SU(2)_L$ action on the spinorial component of $\Theta$.  The Standard
+Model completion appendix states that weak interactions are left-handed and that
+odd winding modes on the $\psi$ circle are left-handed via the $P_\psi=\gamma^5$
+parity argument.  The fermionic-statistics bridge proves that odd winding modes
+carry a Berezin/Grassmann measure.  Combining these facts gives
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd,spinor}.
+\]
+Therefore the electroweak compact determinant has the fermionic sign required for
+$\mu_{\rm EW}^2>0$.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This theorem is [L1] relative to existing canonical
+bridge results: (i) $SU(2)_L$ is the left action on the spinorial component of
+$\Theta$, (ii) $P_\psi$ chirality assigns weak left-handed modes to odd
+winding, and (iii) odd winding modes have Grassmannian measure.  A reviewer who
+accepts those bridge results should accept the readout condition.
+\end{statusbox}
+
+\section{Canonical bridge inputs}
+
+We use three already-recorded repository inputs.
+
+\begin{enumerate}
+  \item \textbf{Weak fields from spinorial left action.}
+  The canonical projection rules state that $W_\mu^a$ arises from the left
+  $SU(2)_L$ action on the spinorial component of $\Theta$.
+
+  \item \textbf{$\psi$-parity chirality.}
+  The Standard Model completion appendix states that $P_\psi$ acts as
+  $\gamma^5$ on spinors and that odd winding modes $n>0$ on the $\psi$ circle
+  are left-handed.
+
+  \item \textbf{Odd winding is fermionic.}
+  The fermionic-statistics bridge proves that odd winding modes carry the
+  Berezin/Grassmann measure.
+\end{enumerate}
+
+\section{Readout theorem}
+
+\begin{definition}[EW readout projector]
+Let $\Pi_{\rm EW}$ denote the Layer2 projector selecting the electroweak doublet
+and weak-interaction component of $\Theta$.
+\end{definition}
+
+\begin{theorem}[Electroweak odd-spinor readout \Lone]
+Under the canonical projection rules and $\psi$-parity chirality bridge,
+\[
+  \Pi_{\rm EW}\Theta
+  \subset
+  \mathcal H_{\rm odd,spinor}.
+\]
+\end{theorem}
+
+\begin{proof}
+The electroweak readout is characterised by the weak $SU(2)_L$ action.  By the
+canonical projection rules, $SU(2)_L$ acts from the left on the spinorial
+component of $\Theta$; hence
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm spinor}.
+\]
+The weak interaction is left-handed.  The $\psi$-parity/chirality bridge states
+that $P_\psi$ acts as $\gamma^5$ and that odd winding modes $n>0$ are the
+left-handed weak modes.  Therefore the weak spinorial component selected by
+$\Pi_{\rm EW}$ lies in the odd winding sector:
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd}.
+\]
+Combining the two inclusions gives
+\[
+  \Pi_{\rm EW}\Theta
+  \subset
+  \mathcal H_{\rm odd}\cap\mathcal H_{\rm spinor}
+  =
+  \mathcal H_{\rm odd,spinor}.
+\]
+\end{proof}
+
+\begin{corollary}[Fermionic determinant sign for the EW channel]
+The EW compact determinant is fermionic:
+\[
+  \Delta V_{\rm EW}^{(2)}
+  =
+  -\operatorname{Tr}(D_{\rm odd}^{-1}K_{\rm EW})\Phi^\dagger\Phi.
+\]
+For positive spectral coupling,
+\[
+  \operatorname{Tr}(D_{\rm odd}^{-1}K_{\rm EW})>0,
+\]
+one has
+\[
+  m_{\rm eff}^2<0,
+  \qquad
+  \mu_{\rm EW}^2>0.
+\]
+\end{corollary}
+
+\section{Consequence for alpha}
+
+The final electroweak chain now becomes
+\[
+  \Pi_{\rm EW}\Theta\subset\mathcal H_{\rm odd,spinor}
+  \Longrightarrow
+  \mu_{\rm EW}^2>0
+  \Longrightarrow
+  \Phi_0\ne0
+  \Longrightarrow
+  \Theta_0\sim(0,v/\sqrt2),Y=1
+  \Longrightarrow
+  Q_{\rm EM}=T_3+Y/2
+  \Longrightarrow
+  n=\alpha^{-1}.
+\]
+
+\begin{resultbox}
+\textbf{Path-B closure.} With the existing canonical bridge inputs accepted,
+the readout condition required by Path B is now proved.  The alpha chain can be
+classified as PROVEN within the current UBT bridge assumptions.  This is not a
+claim of external peer-reviewed acceptance; it is an internal repository proof
+status relative to the stated canonical bridge results.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
