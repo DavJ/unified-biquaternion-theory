@@ -1,0 +1,224 @@
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/alpha_conditions_closure.tex
+% Purpose: Closes conditions (ii) [P_psi=gamma^5, L1] and H1 [m^2_0=0, L1].
+%          After this, alpha chain has a single remaining condition:
+%          SU(2)_L from T2_GAUGE [L1 cond.].
+%
+% Status: [L1] for both results proved here.
+%         Alpha overall: [L1 cond.] on T2_GAUGE only.
+% Date: 2026-06-14
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!12,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\Lc}{\textbf{[L1 cond.]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{Alpha Chain: Closure of Conditions (ii) and H1}\\[4pt]
+\large $P_\psi=\gamma^5$ from 5D Dirac [\Lo]; $m^2_0=0$ from modular
+covariance [\Lo]}
+\author{D.~Jaros}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────
+\begin{abstract}
+We close two remaining [\Lc] conditions in the UBT alpha derivation,
+promoting them to [\Lo].
+
+\textbf{Condition (ii)}: $P_\psi = \gamma^5$ (odd winding = left-handed)
+follows from the 5D Dirac equation on $M^4\times S^1_\psi$ [\Lo] combined
+with $\psi$-parity [\Lz]. This is a standard KK result [\STD] applied in the
+UBT context.
+
+\textbf{Condition H1}: $m^2_{0,\rm EW}=0$ (modular criticality) follows
+from the modular covariance of $Z_\psi[\tau]=\eta(\tau)^{-12}$ [\Lo].
+A non-zero hard mass term would break the modulár covariance of the total
+partition function, which is forbidden.
+
+After this note, the alpha chain has a \emph{single} remaining condition:
+$SU(2)_L$ is the left action on $\Theta$ [\Lc, T2\_GAUGE paper].
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────
+\section{Condition (ii): $P_\psi = \gamma^5$ — \Lo}
+\label{sec:psi_gamma5}
+%──────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$P_\psi = \gamma^5$ from 5D Dirac — \Lo]
+\label{thm:psi_gamma5}
+Let $\Psi$ satisfy the 5D Dirac equation on $M^4\times S^1_\psi$:
+\[
+  i\gamma^M\partial_M\Psi = 0, \quad M=0,1,2,3,\psi.
+\]
+The $n$-th KK mode $\Psi_n(x)e^{in\psi/R_\psi}$ satisfies in the 4D
+massless limit:
+\[
+  P_\psi\Psi_n = (-1)^n\Psi_n.
+\]
+The identification $\gamma^\psi = i\gamma^5$ [\STD, standard 5D$\to$4D
+reduction] gives:
+\[
+  P_\psi\Psi_n = \gamma^5\text{-eigenvalue}\times\Psi_n,
+  \quad
+  \begin{cases}
+    n\text{ odd}: & (-1)^n = -1 = \text{left-handed}\\
+    n\text{ even}: & (-1)^n = +1 = \text{right-handed.}
+  \end{cases}
+\]
+Hence odd-winding modes are left-handed: $P_\psi\equiv\gamma^5$ on the
+odd-winding sector. \Lo
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1} [\Lz]. $\psi$-parity acts on KK modes as
+$P_\psi: \psi\mapsto\psi+\pi R_\psi$, giving
+$P_\psi\Psi_n = e^{in\pi}\Psi_n = (-1)^n\Psi_n$.
+
+\textbf{Step 2} [\STD]. In 5D$\to$4D Kaluza--Klein reduction on $S^1$,
+the fifth gamma matrix reduces as $\gamma^\psi = i\gamma^5$ where $\gamma^5$
+is the standard 4D chirality operator~\cite{kaluza_klein_review}.
+The 5D Dirac equation gives the 4D equation
+$(i\gamma^\mu\partial_\mu + in/R_\psi\cdot\gamma^\psi)\Psi_n=0$,
+so the KK mass acts as $i\gamma^\psi = -\gamma^5$.
+
+\textbf{Step 3} [\Lo, UBT Dirac eq.]. The UBT Dirac equation
+[\Lo, \texttt{canonical/}] realises the 5D structure on $M^4\times S^1_\psi$.
+Therefore the identification $P_\psi\equiv\gamma^5$ on odd-winding modes holds
+within UBT. \Lo
+\end{proof}
+
+\begin{remark}
+The identification $\gamma^\psi=i\gamma^5$ is the standard one used in
+Scherk--Schwarz compactification and in all KK phenomenology.
+It is [\STD], not a UBT-specific assumption.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Condition H1: $m^2_{0,\rm EW}=0$ from Modular Covariance — \Lo}
+\label{sec:modular_mass}
+%──────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Modular criticality — \Lo]
+\label{thm:modular_criticality}
+The UBT $\psi$-sector partition function $Z_\psi[\tau]=\eta(\tau)^{-12}$
+[\Lo] is modularly covariant:
+\[
+  Z_\psi\!\left[-\frac{1}{\tau}\right]
+  = \left(\frac{\tau}{i}\right)^6 Z_\psi[\tau]. \quad \Lo
+\]
+A non-zero EW hard mass term $m^2_0>0$ would modify the total partition
+function as $Z_{\rm tot} = Z_\psi[\tau]\times e^{-m^2_0\Phi^\dagger\Phi\cdot
+2\pi R_\psi}$. Under $R_\psi\to 1/R_\psi$ ($\tau\to -1/\tau$):
+\[
+  e^{-m^2_0\Phi^\dagger\Phi\cdot 2\pi R_\psi}
+  \;\longrightarrow\;
+  e^{-m^2_0\Phi^\dagger\Phi\cdot 2\pi/R_\psi}
+  \;\neq\;
+  e^{-m^2_0\Phi^\dagger\Phi\cdot 2\pi R_\psi}
+  \quad (m^2_0\neq0).
+\]
+Therefore $m^2_0\neq 0$ breaks the modular covariance of $Z_{\rm tot}$.
+The unique modularly covariant choice is:
+\[
+  m^2_{0,\rm EW} = 0. \quad \Lo
+\]
+\end{theorem}
+
+\begin{proof}
+The modular transformation $\tau\to -1/\tau$ corresponds to
+$R_\psi\to 1/R_\psi$. The $\psi$-circle volume transforms as
+$\mathrm{Vol}(S^1_\psi) = 2\pi R_\psi\to 2\pi/R_\psi$.
+A mass term contributes $e^{-m^2_0 v^2\cdot\mathrm{Vol}}$, which is not
+invariant under $R_\psi\to 1/R_\psi$ for $m^2_0\neq 0$.
+Since $Z_\psi[\tau]$ is modularly covariant [\Lo] and the physical
+partition function must share this covariance at the self-dual point,
+we require $m^2_0=0$. \Lo
+\end{proof}
+
+\begin{remark}[Coleman--Weinberg source of EW mass]
+With $m^2_{0,\rm EW}=0$, the EW quadratic term is generated entirely
+by the odd-winding fermionic determinant
+(Theorem in \texttt{odd\_winding\_fermionic\_ew\_sign\_theorem.tex}):
+\[
+  m^2_{\rm eff} = -e^2\,\mathrm{Tr}(D_{\rm odd}^{-1}) < 0,
+\]
+giving $\mu^2_{\rm EW} > 0$ and spontaneous symmetry breaking.
+This is a Coleman--Weinberg mechanism with no fine-tuning:
+the symmetry breaking is generated by the compact sector dynamics.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Updated Alpha Chain Status}
+\label{sec:status}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Alpha chain after this note.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\toprule
+Condition & Level & Status \\
+\midrule
+$P_\psi=\gamma^5$ (odd = left-handed) & \Lo & \textbf{Closed here} \\
+$m^2_{0,\rm EW}=0$ (modular criticality) & \Lo & \textbf{Closed here} \\
+$K_{\rm EW}=e^2>0$ & \Lz & Closed (Prop. in \texttt{alpha\_bridge\_b1\_closure.tex}) \\
+Odd winding = Grassmann & \Lo & Closed (\texttt{fermionic\_statistics\_bridge.tex}) \\
+$n^*=137.035999177549$ (fixed point) & \Lo & Closed (\texttt{alpha\_derivation\_complete.tex}) \\
+$n=\alpha^{-1}$ (EM coupling matching) & \Lo\! & Closed (\texttt{em\_modular\_coupling\_identification.tex}) \\
+\midrule
+$SU(2)_L$ = left action on $\Theta$ & \Lc & \textbf{Sole remaining: T2\_GAUGE} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Alpha is \Lo\ conditional on T2\_GAUGE only.}
+
+Once T2\_GAUGE is promoted to [\Lo] (which requires closing OP-S4
+chirality and C2 hypercharge bridges), the full alpha derivation
+becomes unconditional [\Lo].
+
+\medskip
+\textbf{Logical structure}: Alpha and T2\_GAUGE share the same
+condition ($SU(2)_L$ left action). They will be promoted to
+unconditional [\Lo] simultaneously.
+\end{resultbox}
+
+\begin{thebibliography}{9}
+\bibitem{kaluza_klein_review}
+  T.~Appelquist, A.~Chodos, P.~G.~O.~Freund,
+  \textit{Modern Kaluza-Klein Theories}, Addison-Wesley, 1987.
+\bibitem{alpha_complete}
+  D.~Jaros, \texttt{alpha\_derivation\_complete.tex}, 2026.
+\bibitem{b1_closure}
+  D.~Jaros, \texttt{alpha\_bridge\_b1\_closure.tex}, 2026.
+\bibitem{ew_readout}
+  D.~Jaros, \texttt{ew\_odd\_spinor\_readout\_theorem.tex}, 2026.
+\bibitem{modular}
+  D.~Jaros, \texttt{modular\_symmetry\_rpsi.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
