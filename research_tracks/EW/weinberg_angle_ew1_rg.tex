@@ -16,6 +16,16 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+
+
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{remark}[proposition]{Remark}
 
@@ -25,6 +35,15 @@
 
 \begin{document}
 \maketitle
+
+\begin{tcolorbox}[title={2026-06-13 update — GUT boundary theorem}]
+The generator-normalisation step is now isolated in
+\texttt{weinberg\_angle\_gut\_norm\_theorem.tex}: if the UBT hypercharge
+bridge supplies the SM one-generation $Y_i$ set, then $k_Y=5/3$ and
+$\sin^2\theta_W(M_{\rm GUT})=3/8$ follow algebraically.  The remaining
+conditionality of the low-energy value is RG/scale closure, not the GUT boundary
+normalisation.
+\end{tcolorbox}
 
 \section{Status precondition from Gap C2}
 This note follows the hard dependency:

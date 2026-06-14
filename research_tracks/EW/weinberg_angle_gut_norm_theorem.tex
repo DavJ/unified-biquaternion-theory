@@ -1,0 +1,223 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/EW/weinberg_angle_gut_norm_theorem.tex
+% Purpose: Prove the GUT-normalised Weinberg-angle boundary value
+%          sin^2(theta_W)=3/8 from the UBT hypercharge table.
+% Status: [L1 conditional on hypercharge_from_ubt.tex bridge assumptions]
+% Date: 2026-06-13
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+\newtcolorbox{resultbox}[1][]{
+  colback=green!8!white,
+  colframe=green!50!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Result,
+  #1
+}
+\newcommand{\Lone}{\textbf{[L1 cond.]}}
+
+\title{Weinberg Angle GUT-Normalisation Theorem in UBT\\
+       \large The $\sin^2\theta_W=3/8$ Boundary from Hypercharge Norms}
+\author{Ing.\ David Jaro\v{s}}
+\date{2026-06-13}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+This note proves the GUT-normalised electroweak mixing boundary
+\[
+  \sin^2\theta_W(M_{\rm GUT})=\frac38
+\]
+from the Standard Model hypercharge assignments as derived in
+\texttt{research\_tracks/EW/hypercharge\_from\_ubt.tex}.  For one generation,
+the hypercharge norm is
+\[
+  \sum_i Y_i^2\dim(r_i)=\frac{10}{3},
+\]
+while the weak-isospin norm is
+\[
+  \sum_i T_{3,i}^2\dim(r_i)=2.
+\]
+Thus the canonical hypercharge normalisation factor is
+\[
+  k_Y=\frac{\sum Y_i^2}{\sum T_3^2}=\frac{5}{3}.
+\]
+At a unified boundary with $g_1=g_2$ and $g_1^2=k_Y g_Y^2$, this gives
+\[
+  \frac{g_Y^2}{g_2^2}=\frac{1}{k_Y}=\frac35,
+  \qquad
+  \sin^2\theta_W=\frac{g_Y^2}{g_2^2+g_Y^2}=\frac38.
+\]
+The low-energy value at $M_Z$ still requires RG running and scale closure.  This
+file proves the boundary condition, not the full RG descent.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Classification.} This is [L1 conditional] on the hypercharge bridge:
+$Y_i$ from UBT via $Y=(B-L)/2$, OP-S4, and the SU(3) colour-singlet derivation of
+$B_q=1/3$.  The pure $\mathbb C\otimes\mathbb H$ equal-norm route remains a
+dead end; the successful route uses the full fermion representation content.
+\end{statusbox}
+
+\section{One-generation representation table}
+
+Use the UBT hypercharge assignments:
+\[
+Y_Q=\frac16,
+\quad
+Y_u=\frac23,
+\quad
+Y_d=-\frac13,
+\quad
+Y_L=-\frac12,
+\quad
+Y_e=-1,
+\quad
+Y_\nu=0.
+\]
+The multiplicities are colour and weak-isospin dimensions:
+\[
+Q_L:3\times2,
+\quad
+u_R:1,
+\quad
+u_R:1.
+\]
+More explicitly:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Representation & Multiplicity & $Y$ & Contribution to $\sum Y^2$ \\
+\midrule
+$Q_L$ & $3\times2$ & $1/6$ & $6(1/6)^2=1/6$ \\
+$u_R$ & $3$ & $2/3$ & $3(2/3)^2=4/3$ \\
+$d_R$ & $3$ & $-1/3$ & $3(1/3)^2=1/3$ \\
+$L_L$ & $2$ & $-1/2$ & $2(1/2)^2=1/2$ \\
+$e_R$ & $1$ & $-1$ & $1$ \\
+$\nu_R$ & $1$ & $0$ & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Therefore
+\[
+  \sum_i Y_i^2\dim(r_i)
+  =\frac16+\frac43+\frac13+\frac12+1
+  =\frac{10}{3}.
+\]
+
+For weak isospin, only left doublets contribute.  Each doublet has two members
+with $T_3=\pm1/2$, so the squared contribution per doublet is
+\[
+  \left(\frac12\right)^2+\left(-\frac12\right)^2=\frac12.
+\]
+There are three coloured quark doublets and one lepton doublet, so
+\[
+  \sum_i T_{3,i}^2\dim(r_i)
+  =3\cdot\frac12+1\cdot\frac12=2.
+\]
+
+\section{Hypercharge normalisation}
+
+\begin{theorem}[GUT hypercharge normalisation from UBT fermion content \Lone]
+Assume the UBT hypercharge bridge yields the one-generation SM hypercharge set.
+Then the relative normalisation of $U(1)_Y$ to $SU(2)_L$ is
+\[
+  k_Y
+  =
+  \frac{\sum_i Y_i^2\dim(r_i)}{\sum_i T_{3,i}^2\dim(r_i)}
+  =
+  \frac{10/3}{2}
+  =
+  \frac53.
+\]
+\end{theorem}
+
+\begin{proof}
+The two trace sums were computed above:
+\[
+  S_Y=\frac{10}{3},
+  \qquad
+  S_2=2.
+\]
+The generator-normalisation factor is $k_Y=S_Y/S_2$, hence
+\[
+  k_Y=\frac{10/3}{2}=\frac53.
+\]
+\end{proof}
+
+\section{Weinberg boundary value}
+
+\begin{corollary}[Weinberg angle at the unified boundary \Lone]
+At a unified boundary where the canonically normalised gauge couplings satisfy
+\[
+  g_1=g_2,
+  \qquad
+  g_1^2=k_Y g_Y^2,
+\]
+one obtains
+\[
+  \sin^2\theta_W(M_{\rm GUT})=\frac38.
+\]
+\end{corollary}
+
+\begin{proof}
+Since $g_1^2=k_Yg_Y^2$ and $g_1=g_2$ at the unified boundary,
+\[
+  \frac{g_Y^2}{g_2^2}=\frac{1}{k_Y}=\frac35.
+\]
+The electroweak definition is
+\[
+  \sin^2\theta_W=\frac{g_Y^2}{g_2^2+g_Y^2}.
+\]
+Substitute $g_Y^2/g_2^2=3/5$:
+\[
+  \sin^2\theta_W
+  =
+  \frac{3/5}{1+3/5}
+  =
+  \frac{3/5}{8/5}
+  =
+  \frac38.
+\]
+\end{proof}
+
+\begin{resultbox}
+\textbf{Result.} UBT now has a clean electroweak boundary theorem:
+\[
+  Y_i\text{ from UBT}
+  \Longrightarrow
+  k_Y=5/3
+  \Longrightarrow
+  \sin^2\theta_W(M_{\rm GUT})=3/8.
+\]
+The remaining task is not the group-theoretic Weinberg boundary, but the RG and
+scale-closure step from $M_{\rm GUT}$ down to the measured low-energy scheme.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
