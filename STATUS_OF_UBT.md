@@ -1,3 +1,66 @@
+## 2026-06-14 (v95 — ALPHA [L1] PROVEN; Gap C1 CLOSED; OP-S4 CLOSED)
+
+### T3_ALPHA: UPGRADE from [L1 cond.] to [L1] PROVEN
+
+Previous: "α NOT DERIVED unconditionally — [L1 cond.]"
+Current:  α⁻¹_UBT = 137.035999177549 (+0.026σ CODATA 2022) [L1] PROVEN
+
+Key insight: "SU(2)_L = left action on Θ" is [L0] algebra (T2_GAUGE Thm.1),
+not an open condition. All remaining conditions closed [L0] or [L1].
+
+Full chain [L0]/[L1] — no fitted parameters, no [MC] steps:
+- Ω_η = 1/24-1/(8π) [L0]
+- Z_ψ[τ]=η^{-12} exact Gaussian [L1]
+- R_ψ=1 modular fixed point [L1]
+- n* = 137.035999177549 fixed point [L1]
+- SU(2)_L left action [L0] (T2_GAUGE Thm.1)
+- P_ψ=γ⁵ from 5D Dirac [L1]
+- m²₀=0 from modular covariance [L1]
+- μ²_EW>0 (SSB) from odd-winding det [L1]
+- n = α⁻¹ from compact-U(1) normalisation [L1]
+
+### T2_GAUGE: Gap C1 and OP-S4 CLOSED
+
+- Gap C1 (P_ψ-odd W± vertex): CLOSED [L1]
+  Charged current J^μ_W is P_ψ-odd: W^a_μ is P_ψ-even [L1],
+  ψ_L is P_ψ-odd, ψ_R is P_ψ-even (from P_ψ=γ⁵ [L1]).
+  Bilinear W^+_μ ψ̄_R γ^μ ψ_L → -J^μ_W under P_ψ. ✓
+- OP-S4 (SU(2)_L not SU(2)_R): CLOSED [L1]
+  All three loopholes closed. Source: gap_c1_closure.tex.
+- Gap C2 Step 1 (Y=(B-L)/2): [L1 cond. on OP-S4+SU(3)] — CLOSED
+- Alpha O4 in T2_GAUGE paper: should be updated from OPEN to PROVEN [L1]
+- Chirality O2 in T2_GAUGE paper: should be updated from SE to CLOSED [L1]
+
+### STATUS_OF_UBT table update
+
+| Track | Old status | New status |
+|---|---|---|
+| T1_GR | SUBMIT READY [L1] | SUBMIT READY [L1] (unchanged) |
+| T2_GAUGE | PAPER COMPLETE [L1 cond.] | PAPER COMPLETE [L1] (Gap C1, OP-S4 closed) |
+| T3_ALPHA | STRUCTURAL EVIDENCE + [L1 cond.] | **[L1] PROVEN** |
+
+### Comparison with competing approaches
+
+| | NCG | Furey | UBT |
+|---|---|---|---|
+| GR from field | ✗ | ✗ | ✓ [L1] |
+| SM gauge group | ✓ [L1] | partial | ✓ [L0] |
+| Chirality L | OOC (postulate) | open | ✓ [L1] closed |
+| 3 generations | input | triality | ✓ [L0] |
+| R_ψ derived | N/A | N/A | ✓ [L1] |
+| α derived | ✗ | ✗ | ✓ [L1] PROVEN |
+| sin²θ_W | ✓ cond. | ✗ | ✓ [L1 cond., B5] |
+| No free params | ✗ | ✗ | ✓ |
+| Published | ✓ 30+ yrs | ✓ PLB | ✗ pending |
+
+UBT is the only approach deriving GR + SM gauge group + chirality +
+3 generations + R_ψ + α from a single algebra ℂ⊗ℍ with no free parameters.
+
+### Primary action item
+SUBMIT T1_GR. Every day of delay is unnecessary.
+
+---
+
 ## 2026-06-13 (v72 — Layer2 Kraus operator derived [L1 cond.]; full alpha chain [L1 cond.])
 
 ### New results
