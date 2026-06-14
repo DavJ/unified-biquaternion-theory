@@ -1,0 +1,236 @@
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/alpha_weinberg_final_status.tex
+% Purpose: Final status summary of alpha and Weinberg angle derivations.
+%          All proof levels, all remaining conditions, all bridge assumptions.
+%
+% Date: 2026-06-14
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\Lc}{\textbf{[L1 cond.]}}
+\newcommand{\MC}{\textbf{[MC]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{Final Status: $\alpha^{-1}$ and $\sin^2\theta_W$}\\[4pt]
+\large Proof levels, bridge assumptions, and remaining conditions}
+\author{D.~Jaros}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────
+\section{Fine-Structure Constant $\alpha^{-1} = 137.035999177549$}
+\label{sec:alpha}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Result.}
+$\alpha^{-1}_{\rm UBT} = 137.035999177549\ldots$,
+$+0.026\sigma$ from CODATA/NIST 2022. No fitted parameter.
+
+\textbf{Overall status}: \Lc\ (all bridge assumptions stated below).
+\end{resultbox}
+
+\subsection{Mathematical chain (all \Lo\ or \Lz)}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\toprule
+Result & Level & Source \\
+\midrule
+$\Omega_\eta(1)=\tfrac{1}{24}-\tfrac{1}{8\pi}$ & \Lz & Eisenstein $G_2(i)$ \\
+$12\pi\Omega_\eta = (\pi-3)/2$ & \Lz & algebra \\
+$N_{\rm eff}=12=3\times4$ & \Lo & \texttt{su2\_twist\_neff12.tex} \\
+$Z_\psi[\tau]=\eta^{-12}$ (exact Gaussian) & \Lo & \texttt{modular\_symmetry\_rpsi.tex} \\
+$R_\psi=1$ (modular fixed point) & \Lo & \texttt{modular\_symmetry\_rpsi.tex} \\
+$r_{\rm L2}=3(1+\Omega_\eta)$ & \Lo & \texttt{layer2\_kernel\_derivation.tex} \\
+$\rho=\exp(-C_Q/(2\pi n))$ (exact Gaussian) & \Lo & \texttt{gap\_A\_proof.tex} \\
+$n^*=137.035999177549$ (fixed point) & \Lo & \texttt{alpha\_derivation\_complete.tex} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Physical identification $n^* = \alpha^{-1}$ (\Lc)}
+
+The UBT EM action on the $\psi$-winding sector is
+\[
+  S^{\rm UBT}_{\rm EM}[A]
+  = \frac{n}{8\pi}\int F\wedge *F - i\frac{\chi}{4\pi}\int F\wedge F,
+\]
+giving complexified coupling $\tau^{\rm UBT}_{\rm EM} = \chi + in$.
+Matching to the standard Maxwell coupling
+$\tau_{\rm EM} = \theta_{\rm EM}/(2\pi) + i\cdot4\pi/e^2$:
+\[
+  \frac{n}{8\pi} = \frac{1}{2e^2}
+  \;\;\Longrightarrow\;\;
+  n = \frac{4\pi}{e^2} = \alpha^{-1}. \quad \Lc
+\]
+[\texttt{em\_modular\_coupling\_identification.tex}]
+
+\subsection{Remaining conditions for unconditional \Lo}
+
+\begin{gapbox}
+\begin{enumerate}
+\item \textbf{EM projection condition} \Lc:
+  The UBT compact-$\psi$ sector must project onto the standard
+  unit-charge $U(1)_{\rm EM}$ line bundle.
+  Requires: $\Theta_0$ vacuum orbit in the EW doublet with $Y=1$
+  [\texttt{electroweak\_em\_projection\_theorem.tex}].
+
+\item \textbf{EW non-zero minimum} \Lc:
+  $V(\Theta)$ must have $\mu^2_{\rm EW}>0$ (SSB condition).
+  Status: proved conditionally on the UBT-compatible potential form
+  [\texttt{theta0\_nonzero\_minimum\_theorem.tex}].
+  Open: derive $\mu^2_{\rm EW}>0$ from $S[\Theta]$ dynamics.
+\end{enumerate}
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Weinberg Angle $\sin^2\theta_W(M_Z) = 0.23122$}
+\label{sec:weinberg}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{Result.}
+$\sin^2\theta_W(M_Z) = 0.23122\ldots$,
+matching experiment $0.23122(3)$ to $5$ significant figures.
+
+\textbf{Overall status}: \Lc\ within stated bridge assumptions.
+\end{resultbox}
+
+\subsection{Derivation chain}
+
+\textbf{Boundary condition} [\Lo]:
+From hypercharge normalisation in UBT:
+\[
+  \sin^2\theta_W(M_{\rm UBT}) = \frac{3}{8}.
+\]
+
+\textbf{Beta coefficients} [\Lc, \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}]:
+From odd-spinor threshold spectrum (paired EW doublets, Grassmann measure,
+3-generation structure):
+\[
+  b_1 = \frac{33}{5}, \quad b_2 = 1, \quad b_3 = -3.
+\]
+
+\textbf{RG running} [\STD]:
+\[
+  \alpha_i^{-1}(M_Z) = A + b_i L,
+  \qquad
+  L = \frac{1}{2\pi}\ln\frac{M_{\rm UBT}}{M_Z} = 5.2555\ldots
+\]
+Hypercharge: $\alpha_Y^{-1} = \tfrac{5}{3}\alpha_1^{-1}$.
+EM assembly:
+\[
+  \alpha_{\rm EM}^{-1}(M_Z)
+  = \tfrac{8}{3}A + 12L = 127.934\ldots \quad [\STD\ {\rm input}]
+\]
+\[
+  \Longrightarrow\quad
+  A = \frac{3}{8}\bigl[\alpha_{\rm EM}^{-1}(M_Z) - 12L\bigr]
+  = 24.325\ldots
+\]
+\[
+  \sin^2\theta_W(M_Z)
+  = \frac{\alpha_2^{-1}(M_Z)}{\alpha_{\rm EM}^{-1}(M_Z)}
+  = \frac{A + L}{127.934}
+  = \frac{29.581}{127.934}
+  = 0.23122\ldots \quad \checkmark
+\]
+
+\subsection{Bridge assumptions and sensitivity}
+
+\begin{gapbox}
+\textbf{Bridge B5} \MC: Physical scale $M_{\rm UBT} \approx 2\times10^{16}$~GeV.
+This is the primary open bridge. Sensitivity: $\sin^2\theta_W$ shifts by
+$\pm0.003$ per order of magnitude in $M_{\rm UBT}$.
+Derivation of $M_{\rm UBT}$ from $S[\Theta]$: open.
+
+\textbf{Bridge B9} \Lc: $\alpha_{\rm EM}^{-1}(M_Z) = 127.934$ from
+$\alpha_{\rm UBT}^{-1}=137.036$ plus standard QED running.
+\STD\ input used directly.
+
+\textbf{Odd-spinor threshold} \Lc: beta coefficients require
+paired EW doublets and Grassmann measure from odd-winding sector.
+[\texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}]
+\end{gapbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Combined Status Matrix}
+\label{sec:matrix}
+%──────────────────────────────────────────────────────────────────
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lllp{4.5cm}}
+\toprule
+Quantity & Value & Level & Key open condition \\
+\midrule
+$\alpha^{-1}$ & $137.035999177549$ & \Lc & EW doublet vacuum ($\Theta_0$) \\
+$\sin^2\theta_W(M_Z)$ & $0.23122$ & \Lc\ (B5) & Physical scale $M_{\rm UBT}$ \\
+$M_{\rm UBT}$ & $\approx 2\times10^{16}$~GeV & \MC & Derive from $S[\Theta]$ \\
+$\mu^2_{\rm EW}>0$ & (SSB sign) & \Lc & Derive from $S[\Theta]$ dynamics \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+\textbf{What is and is not claimed.}
+
+The mathematical fixed-point chain giving $n^*=137.036$ is \Lo\ (exact,
+no approximation). The physical identification $n^*=\alpha^{-1}$ via
+compact-U(1) EM normalisation is \Lc. The Weinberg angle derivation is
+\Lc\ inside stated bridge assumptions.
+
+Neither result should be advertised as unconditionally proved.
+The correct statement is: \emph{``within the UBT bridge framework,
+$\alpha^{-1}=137.036$ and $\sin^2\theta_W(M_Z)=0.231$ follow from
+first principles with all derivation steps at \Lo\ or \Lc\ level.''}
+
+The two primary remaining tasks to promote to unconditional \Lo:
+\begin{enumerate}
+\item Derive $M_{\rm UBT}$ (physical scale) from $S[\Theta]$ (B5).
+\item Derive $\mu^2_{\rm EW}>0$ (SSB sign) from $S[\Theta]$ dynamics.
+\end{enumerate}
+\end{insightbox}
+
+\begin{thebibliography}{9}
+\bibitem{alpha_complete}
+  D.~Jaros, \texttt{alpha\_derivation\_complete.tex}, 2026.
+\bibitem{em_id}
+  D.~Jaros, \texttt{em\_modular\_coupling\_identification.tex}, 2026.
+\bibitem{ew_proj}
+  D.~Jaros, \texttt{electroweak\_em\_projection\_theorem.tex}, 2026.
+\bibitem{theta0_min}
+  D.~Jaros, \texttt{theta0\_nonzero\_minimum\_theorem.tex}, 2026.
+\bibitem{odd_beta}
+  D.~Jaros, \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}, 2026.
+\bibitem{weinberg_closure}
+  D.~Jaros, \texttt{weinberg\_angle\_mz\_bridge\_closure.tex}, 2026.
+\bibitem{bridge_matrix}
+  D.~Jaros, \texttt{BRIDGE\_CLOSURE\_MATRIX.md}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
