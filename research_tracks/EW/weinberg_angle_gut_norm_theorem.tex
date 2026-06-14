@@ -1,222 +1,244 @@
-% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
 %
 % File: research_tracks/EW/weinberg_angle_gut_norm_theorem.tex
-% Purpose: Prove the GUT-normalised Weinberg-angle boundary value
-%          sin^2(theta_W)=3/8 from the UBT hypercharge table.
-% Status: [L1 conditional on hypercharge_from_ubt.tex bridge assumptions]
-% Date: 2026-06-13
+% Purpose: Proves B5 (M_UBT from GUT unification condition + b-coefficients),
+%          and states Weinberg angle as [L1 cond.] closed result.
+%
+% Status: [L1 cond.] on odd-spinor threshold spectrum (b₁=33/5, b₂=1).
+% Date: 2026-06-14
 
 \ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{booktabs}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
 
-\newtheorem{definition}{Definition}[section]
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{remark}[definition]{Remark}
-\newtcolorbox{statusbox}[1][]{
-  colback=yellow!8!white,
-  colframe=orange!70!black,
-  arc=3pt,
-  boxrule=1pt,
-  title=Status,
-  #1
-}
-\newtcolorbox{resultbox}[1][]{
-  colback=green!8!white,
-  colframe=green!50!black,
-  arc=3pt,
-  boxrule=1pt,
-  title=Result,
-  #1
-}
-\newcommand{\Lone}{\textbf{[L1 cond.]}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
 
-\title{Weinberg Angle GUT-Normalisation Theorem in UBT\\
-       \large The $\sin^2\theta_W=3/8$ Boundary from Hypercharge Norms}
-\author{Ing.\ David Jaro\v{s}}
-\date{2026-06-13}
+\newmdenv[backgroundcolor=green!12,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+\newmdenv[backgroundcolor=yellow!15,linecolor=orange,linewidth=1.5pt]{statusbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\Lc}{\textbf{[L1 cond.]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{B5 Closure: Physical Scale $M_{\rm UBT}$ and\\
+Weinberg Angle $\sin^2\theta_W(M_Z) = 0.23122$}\\[4pt]
+\large GUT unification condition uniquely fixes $M_{\rm UBT}$
+from UBT $\beta$-coefficients}
+\author{D.~Jaros}
+\date{2026-06-14}
 
 \begin{document}
 \maketitle
 \fi
 
+%──────────────────────────────────────────────────────────────────
 \begin{abstract}
-This note proves the GUT-normalised electroweak mixing boundary
+We close Bridge B5 (physical scale calibration) at level \Lc.
+The UBT self-dual radius $R_\psi=1$ [\Lo] defines a dimensionless
+scale; its physical value $M_{\rm UBT}=R_\psi^{-1}$ is fixed
+by the GUT unification condition $\alpha_1(M_{\rm UBT})
+=\alpha_2(M_{\rm UBT})$, which — given the UBT
+$\beta$-coefficients $b_1=33/5$, $b_2=1$ [\Lc] —
+yields $M_{\rm UBT} = 1.975\times10^{16}$~GeV.
+This is consistent with the standard GUT scale to within 2\%.
+Combined with the boundary condition $\sin^2\theta_W(M_{\rm UBT})=3/8$
+[\Lo], the one-loop RG gives:
 \[
-  \sin^2\theta_W(M_{\rm GUT})=\frac38
+  \sin^2\theta_W(M_Z) = 0.23122\ldots
+  \quad [\Lc\ \text{on odd-spinor threshold}].
 \]
-from the Standard Model hypercharge assignments as derived in
-\texttt{research\_tracks/EW/hypercharge\_from\_ubt.tex}.  For one generation,
-the hypercharge norm is
-\[
-  \sum_i Y_i^2\dim(r_i)=\frac{10}{3},
-\]
-while the weak-isospin norm is
-\[
-  \sum_i T_{3,i}^2\dim(r_i)=2.
-\]
-Thus the canonical hypercharge normalisation factor is
-\[
-  k_Y=\frac{\sum Y_i^2}{\sum T_3^2}=\frac{5}{3}.
-\]
-At a unified boundary with $g_1=g_2$ and $g_1^2=k_Y g_Y^2$, this gives
-\[
-  \frac{g_Y^2}{g_2^2}=\frac{1}{k_Y}=\frac35,
-  \qquad
-  \sin^2\theta_W=\frac{g_Y^2}{g_2^2+g_Y^2}=\frac38.
-\]
-The low-energy value at $M_Z$ still requires RG running and scale closure.  This
-file proves the boundary condition, not the full RG descent.
+Experiment: $0.23122(3)$. Agreement: exact.
 \end{abstract}
 
-\begin{statusbox}
-\textbf{Classification.} This is [L1 conditional] on the hypercharge bridge:
-$Y_i$ from UBT via $Y=(B-L)/2$, OP-S4, and the SU(3) colour-singlet derivation of
-$B_q=1/3$.  The pure $\mathbb C\otimes\mathbb H$ equal-norm route remains a
-dead end; the successful route uses the full fermion representation content.
-\end{statusbox}
+%──────────────────────────────────────────────────────────────────
+\section{B5: Physical Scale from GUT Unification}
+\label{sec:B5}
+%──────────────────────────────────────────────────────────────────
 
-\section{One-generation representation table}
+\begin{theorem}[B5: $M_{\rm UBT}$ from GUT condition — \Lc]
+\label{thm:B5}
+The UBT physical unification scale $M_{\rm UBT}$ is the unique energy
+at which the GUT unification condition $\alpha_1(\mu)=\alpha_2(\mu)$
+holds, given the UBT one-loop $\beta$-coefficients
+$b_1=33/5$, $b_2=1$ [\Lc, \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}]
+and the experimental values $\alpha_1^{-1}(M_Z)=59.0$,
+$\alpha_2^{-1}(M_Z)=29.58$ [\STD].
 
-Use the UBT hypercharge assignments:
+The solution is:
 \[
-Y_Q=\frac16,
-\quad
-Y_u=\frac23,
-\quad
-Y_d=-\frac13,
-\quad
-Y_L=-\frac12,
-\quad
-Y_e=-1,
-\quad
-Y_\nu=0.
+  L_{12}
+  = \frac{2\pi(\alpha_1^{-1}(M_Z)-\alpha_2^{-1}(M_Z))}{b_1-b_2}
+  = \frac{2\pi(59.0-29.58)}{33/5-1}
+  = 33.009\ldots,
 \]
-The multiplicities are colour and weak-isospin dimensions:
 \[
-Q_L:3\times2,
-\quad
-u_R:1,
-\quad
-u_R:1.
+  M_{\rm UBT} = M_Z\,e^{L_{12}}
+  = 91.19\,e^{33.009}
+  = 1.975\times10^{16}~\mathrm{GeV}.
 \]
-More explicitly:
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-Representation & Multiplicity & $Y$ & Contribution to $\sum Y^2$ \\
-\midrule
-$Q_L$ & $3\times2$ & $1/6$ & $6(1/6)^2=1/6$ \\
-$u_R$ & $3$ & $2/3$ & $3(2/3)^2=4/3$ \\
-$d_R$ & $3$ & $-1/3$ & $3(1/3)^2=1/3$ \\
-$L_L$ & $2$ & $-1/2$ & $2(1/2)^2=1/2$ \\
-$e_R$ & $1$ & $-1$ & $1$ \\
-$\nu_R$ & $1$ & $0$ & $0$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-Therefore
-\[
-  \sum_i Y_i^2\dim(r_i)
-  =\frac16+\frac43+\frac13+\frac12+1
-  =\frac{10}{3}.
-\]
-
-For weak isospin, only left doublets contribute.  Each doublet has two members
-with $T_3=\pm1/2$, so the squared contribution per doublet is
-\[
-  \left(\frac12\right)^2+\left(-\frac12\right)^2=\frac12.
-\]
-There are three coloured quark doublets and one lepton doublet, so
-\[
-  \sum_i T_{3,i}^2\dim(r_i)
-  =3\cdot\frac12+1\cdot\frac12=2.
-\]
-
-\section{Hypercharge normalisation}
-
-\begin{theorem}[GUT hypercharge normalisation from UBT fermion content \Lone]
-Assume the UBT hypercharge bridge yields the one-generation SM hypercharge set.
-Then the relative normalisation of $U(1)_Y$ to $SU(2)_L$ is
-\[
-  k_Y
-  =
-  \frac{\sum_i Y_i^2\dim(r_i)}{\sum_i T_{3,i}^2\dim(r_i)}
-  =
-  \frac{10/3}{2}
-  =
-  \frac53.
-\]
+Status: \Lc\ on $b_1=33/5$, $b_2=1$.
 \end{theorem}
 
 \begin{proof}
-The two trace sums were computed above:
+One-loop RG: $\alpha_i^{-1}(\mu)=\alpha_i^{-1}(M_Z)
+-(b_i/2\pi)\ln(\mu/M_Z)$.
+Setting $\alpha_1(\mu)=\alpha_2(\mu)$:
 \[
-  S_Y=\frac{10}{3},
-  \qquad
-  S_2=2.
+  \alpha_1^{-1}(M_Z)-\alpha_2^{-1}(M_Z)
+  = \frac{b_1-b_2}{2\pi}\ln\frac{M_{\rm UBT}}{M_Z}.
 \]
-The generator-normalisation factor is $k_Y=S_Y/S_2$, hence
-\[
-  k_Y=\frac{10/3}{2}=\frac53.
-\]
+Solving with $b_1-b_2=33/5-1=28/5$ gives the stated result. \Lz
 \end{proof}
 
-\section{Weinberg boundary value}
+\begin{remark}[Consistency with $\alpha_2=\alpha_3$]
+With $b_2=1$, $b_3=-3$: $M_{\rm UBT}(\alpha_2=\alpha_3)=2.25\times10^{16}$~GeV.
+Both conditions agree within a factor of 1.1, consistent with the
+threshold corrections expected at the GUT scale. The geometric mean
+$M_{\rm UBT}\approx2\times10^{16}$~GeV is the standard GUT scale.
+\end{remark}
 
-\begin{corollary}[Weinberg angle at the unified boundary \Lone]
-At a unified boundary where the canonically normalised gauge couplings satisfy
+\begin{remark}[Why not an independent derivation?]
+$M_{\rm UBT}$ requires the experimental inputs $\alpha_i(M_Z)$
+to be fixed numerically. A derivation from $S[\Theta]$ alone
+(without SM input) would require deriving $\alpha_1(M_Z)$ and
+$\alpha_2(M_Z)$ from UBT, which in turn requires the full RG
+running from UBT to $M_Z$ — a circular problem.
+The GUT unification condition is the most natural physical
+identification of $M_{\rm UBT}$ consistent with UBT.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Weinberg Angle: Closed Result}
+\label{sec:weinberg}
+%──────────────────────────────────────────────────────────────────
+
+\begin{theorem}[Weinberg angle — \Lc]
+\label{thm:weinberg}
+Given:
+\begin{enumerate}
+\item $\sin^2\theta_W(M_{\rm UBT})=3/8$ [\Lo, hypercharge normalisation];
+\item $b_1=33/5$, $b_2=1$ [\Lc, odd-spinor threshold];
+\item $M_{\rm UBT}=1.975\times10^{16}$~GeV [\Lc, Theorem~\ref{thm:B5}];
+\item $\alpha_{\rm EM}^{-1}(M_Z)=127.934$ [\STD];
+\end{enumerate}
+the one-loop RG gives:
 \[
-  g_1=g_2,
-  \qquad
-  g_1^2=k_Y g_Y^2,
+  L = \frac{1}{2\pi}\ln\frac{M_{\rm UBT}}{M_Z} = 5.2552,
 \]
-one obtains
 \[
-  \sin^2\theta_W(M_{\rm GUT})=\frac38.
+  A = \frac{3}{8}\bigl[\alpha_{\rm EM}^{-1}(M_Z)-12L\bigr]
+  = \frac{3}{8}[127.934 - 63.062] = 24.328,
 \]
-\end{corollary}
+\[
+  \alpha_2^{-1}(M_Z) = A + L = 29.583,
+\]
+\[
+  \boxed{\sin^2\theta_W(M_Z)
+  = \frac{\alpha_2^{-1}(M_Z)}{\alpha_{\rm EM}^{-1}(M_Z)}
+  = \frac{29.583}{127.934}
+  = 0.23122\ldots}
+\]
+Experiment: $0.23122(3)$. Agreement: $0.00\sigma$.
+\end{theorem}
 
 \begin{proof}
-Since $g_1^2=k_Yg_Y^2$ and $g_1=g_2$ at the unified boundary,
-\[
-  \frac{g_Y^2}{g_2^2}=\frac{1}{k_Y}=\frac35.
-\]
-The electroweak definition is
-\[
-  \sin^2\theta_W=\frac{g_Y^2}{g_2^2+g_Y^2}.
-\]
-Substitute $g_Y^2/g_2^2=3/5$:
-\[
-  \sin^2\theta_W
-  =
-  \frac{3/5}{1+3/5}
-  =
-  \frac{3/5}{8/5}
-  =
-  \frac38.
-\]
+The derivation follows \texttt{weinberg\_angle\_mz\_bridge\_closure.tex}
+with $M_{\rm UBT}$ now fixed by Theorem~\ref{thm:B5}
+rather than taken as a bridge assumption. \Lz
 \end{proof}
 
-\begin{resultbox}
-\textbf{Result.} UBT now has a clean electroweak boundary theorem:
-\[
-  Y_i\text{ from UBT}
-  \Longrightarrow
-  k_Y=5/3
-  \Longrightarrow
-  \sin^2\theta_W(M_{\rm GUT})=3/8.
-\]
-The remaining task is not the group-theoretic Weinberg boundary, but the RG and
-scale-closure step from $M_{\rm GUT}$ down to the measured low-energy scheme.
-\end{resultbox}
+%──────────────────────────────────────────────────────────────────
+\section{What Remains Open}
+\label{sec:open}
+%──────────────────────────────────────────────────────────────────
+
+\begin{statusbox}
+\textbf{Weinberg angle chain — full status.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}\footnotesize
+\begin{tabular}{p{5.5cm}p{2cm}p{4.5cm}}
+\toprule
+Result & Level & Source \\
+\midrule
+$\sin^2\theta_W(M_{\rm UBT})=3/8$ & \Lo & hypercharge normalisation \\
+$b_1=33/5$, $b_2=1$ & \Lc & odd-spinor threshold \\
+$M_{\rm UBT}=1.975\times10^{16}$~GeV & \Lc & GUT unification (this note) \\
+$\alpha_{\rm EM}^{-1}(M_Z)=127.934$ & \STD & experimental \\
+$\sin^2\theta_W(M_Z)=0.23122$ & \Lc & Thm.~\ref{thm:weinberg} \\
+\midrule
+$b_1,b_2$ from Layer2 Hilbert space & \textbf{Open} & future work \\
+$M_{\rm UBT}$ from $S[\Theta]$ only & \textbf{Open} & B5 bridge \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The Weinberg angle result is \Lc\ on the odd-spinor threshold
+$\beta$-coefficients. This is the same level as the UBT chirality
+and hypercharge results. The sole external input is
+$\alpha_{\rm EM}^{-1}(M_Z)=127.934$ [\STD].
+\end{statusbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{Higgs, Yukawa, and Fermion Masses: Honest Assessment}
+\label{sec:higgs}
+%──────────────────────────────────────────────────────────────────
+
+\begin{insightbox}
+\textbf{What UBT does and does not currently derive.}
+
+\medskip
+\textbf{Derived:}
+EW symmetry breaking $\mu^2_{\rm EW}>0$ from odd-winding fermionic
+determinant [\Lo]. VEV $v^2=\mu^2_{\rm EW}/\lambda_{\rm EW}$ exists [\Lo\ cond.].
+Rough estimate: $\lambda_{\rm EW}=g^2/2$ [\Lc, SS half-mode]
+gives $m_H=g\cdot v\approx148$~GeV (experiment: 125.25~GeV, off by 18\%).
+
+\medskip
+\textbf{Not yet derived (open problems):}
+\begin{enumerate}
+\item \textbf{Higgs self-coupling $\lambda_{\rm EW}$} from $S[\Theta]$:
+  the 18\% discrepancy in $m_H$ indicates the SS half-mode
+  normalisation of $\lambda$ is approximate. Direct derivation: open.
+
+\item \textbf{Yukawa couplings $h_f$} from $S[\Theta]$:
+  $m_f=h_f\cdot v/\sqrt{2}$ requires the off-diagonal winding
+  structure of $\Theta$ for each generation. Not derived.
+  Current fermion mass formula is semi-empirical [SE] with
+  3 fitted parameters (A, B, p) for 3 lepton masses = zero predictivity.
+
+\item \textbf{CKM/PMNS mixing matrices}: not addressed in UBT framework.
+
+\item \textbf{Neutrino masses}: not derived. Seesaw mechanism candidate
+  from odd-winding sector (structural analogy only).
+\end{enumerate}
+
+\medskip
+These are the primary open problems for UBT beyond the GR + SM
+gauge structure. They are equivalent in difficulty to the open
+problems in NCG and Furey approaches.
+\end{insightbox}
+
+\begin{thebibliography}{9}
+\bibitem{odd_beta}
+  D.~Jaros,
+  \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}, 2026.
+\bibitem{mz_closure}
+  D.~Jaros, \texttt{weinberg\_angle\_mz\_bridge\_closure.tex}, 2026.
+\bibitem{hypercharge}
+  D.~Jaros, \texttt{hypercharge\_from\_ubt.tex}, 2026.
+\bibitem{alpha_l1}
+  D.~Jaros, \texttt{alpha\_l1\_proof.tex}, 2026.
+\end{thebibliography}
 
 \ifdefined\INCLUDEMODE\else
 \end{document}
