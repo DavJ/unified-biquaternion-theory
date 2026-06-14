@@ -1,0 +1,237 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/EW/weinberg_angle_rg_twisted_scale_closure.tex
+% Status: RESEARCH TRACK / L1 CONDITIONAL.
+% Purpose: RG descent from the UBT Weinberg boundary sin^2(theta_W)=3/8 to M_Z.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+
+\title{RG Descent of the UBT Weinberg Boundary}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The companion theorem \texttt{weinberg\_angle\_gut\_norm\_theorem.tex}
+proves the UBT boundary condition
+\[
+  \sin^2\theta_W(M_{\rm UBT})=\frac38
+\]
+from hypercharge and weak-isospin generator norms.  This note attacks the
+second step: RG descent to the $Z$ pole.  Minimal non-supersymmetric one-loop
+SM running does not reproduce the observed value from the $3/8$ boundary by
+itself.  However, the odd-winding spinor sector already used in the alpha proof
+naturally points to a twisted Layer2 threshold with MSSM-like one-loop beta
+coefficients
+\[
+  b_1=\frac{33}{5},\qquad b_2=1.
+\]
+With $M_{\rm UBT}\simeq2\times10^{16}\,{\rm GeV}$ and
+$\alpha_{\rm UBT}^{-1}\simeq24.3$, this gives
+\[
+  \sin^2\theta_W(M_Z)=0.23114\ldots,
+\]
+within $8\times10^{-5}$ of the reference $0.23122$ value.  The remaining
+non-canonical step is to derive the twisted-threshold beta coefficients and
+$\alpha_{\rm UBT}^{-1}\simeq24.3$ directly from the UBT compact odd-spinor
+spectrum.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Boundary theorem:} $\sin^2\theta_W(M_{\rm UBT})=3/8$ [L1].\\
+\textbf{Minimal SM one-loop descent:} obstruction; gives the wrong low-energy
+value from the boundary.\\
+\textbf{Twisted odd-spinor branch:} viable; one-loop RG gives
+$\sin^2\theta_W(M_Z)=0.23114\ldots$ for $M_{\rm UBT}=2\times10^{16}$ GeV and
+$\alpha_{\rm UBT}^{-1}=24.3$.\\
+\textbf{Remaining gap:} derive the twisted Layer2 threshold spectrum and
+unified coupling from $S[\Theta]$ rather than importing MSSM-like beta
+coefficients.
+\end{statusbox}
+
+\section{Boundary condition}
+
+The UBT hypercharge normalisation theorem gives
+\[
+  \sum_i Y_i^2\dim(r_i)=\frac{10}{3},
+  \qquad
+  \sum_i T_{3,i}^2\dim(r_i)=2.
+\]
+Thus
+\[
+  k_Y=\frac{5}{3},
+  \qquad
+  \frac{g_Y^2}{g_2^2}=\frac{3}{5},
+\]
+and therefore
+\[
+  \sin^2\theta_W(M_{\rm UBT})
+  =
+  \frac{g_Y^2}{g_2^2+g_Y^2}
+  =
+  \frac{3/5}{1+3/5}
+  =
+  \frac38.
+\]
+
+\section{One-loop RG equations}
+
+For GUT-normalised couplings $\alpha_1$ and $\alpha_2$ we use
+\[
+  \frac{d\alpha_i^{-1}}{d\ln\mu}
+  =-\frac{b_i}{2\pi},
+\]
+so that running from $M_{\rm UBT}$ down to $M_Z$ gives
+\[
+  \alpha_i^{-1}(M_Z)
+  =
+  \alpha_{\rm UBT}^{-1}
+  +
+  \frac{b_i}{2\pi}
+  \ln\frac{M_{\rm UBT}}{M_Z}.
+\]
+The physical hypercharge coupling is
+\[
+  \alpha_Y=\frac35\alpha_1,
+\]
+and therefore
+\[
+  \sin^2\theta_W(M_Z)
+  =
+  \frac{\alpha_Y(M_Z)}{\alpha_Y(M_Z)+\alpha_2(M_Z)}.
+\]
+
+\section{Minimal SM branch: obstruction}
+
+With minimal non-supersymmetric SM one-loop beta coefficients,
+\[
+  b_1=\frac{41}{10},
+  \qquad
+  b_2=-\frac{19}{6},
+\]
+and with representative values
+\[
+  M_{\rm UBT}=2\times10^{16}\,{\rm GeV},
+  \qquad
+  \alpha_{\rm UBT}^{-1}=40,
+\]
+one obtains
+\[
+  \sin^2\theta_W(M_Z)=0.18547\ldots.
+\]
+Thus the minimal SM one-loop branch is not sufficient to connect the UBT
+$3/8$ boundary to the observed $Z$-pole value.
+
+\begin{statusbox}
+This is an obstruction result, not a failure of the boundary theorem.  It says
+that the low-energy Weinberg angle requires threshold structure beyond minimal
+non-supersymmetric one-loop running if the boundary is placed near
+$2\times10^{16}$ GeV.
+\end{statusbox}
+
+\section{Twisted odd-spinor branch}
+
+The alpha proof uses the canonical bridge that odd winding spinor modes carry
+Berezin/Grassmann measure.  The same sector naturally suggests a twisted
+Layer2 threshold in which the active electroweak compact spectrum has
+MSSM-like one-loop coefficients
+\[
+  b_1=\frac{33}{5},
+  \qquad
+  b_2=1.
+\]
+This should not be read as importing a full MSSM model.  It is a compact way of
+recording the effective one-loop beta coefficients expected from an odd-spinor
+paired threshold spectrum.  The theorem still required is to derive this
+spectrum directly from the UBT Layer2 Hilbert space.
+
+Using
+\[
+  M_{\rm UBT}=2\times10^{16}\,{\rm GeV},
+  \qquad
+  M_Z=91.1876\,{\rm GeV},
+\]
+we have
+\[
+  L:=\frac{1}{2\pi}\ln\frac{M_{\rm UBT}}{M_Z}=5.2555492367\ldots.
+\]
+For $\alpha_{\rm UBT}^{-1}=24.3$,
+\begin{align}
+  \alpha_1^{-1}(M_Z)&=24.3+\frac{33}{5}L=58.98662496\ldots,\\
+  \alpha_2^{-1}(M_Z)&=24.3+L=29.55554924\ldots.
+\end{align}
+Hence
+\[
+  \alpha_Y^{-1}(M_Z)=\frac53\alpha_1^{-1}(M_Z)=98.31104160\ldots,
+\]
+and
+\[
+  \boxed{
+  \sin^2\theta_W(M_Z)=0.2311436399\ldots
+  }.
+\]
+This differs from the reference value $0.23122$ by about
+$-7.6\times10^{-5}$.
+
+Solving the same one-loop twisted branch for the reference central value gives
+\[
+  \alpha_{\rm UBT}^{-1}=24.3254657224\ldots.
+\]
+At that point
+\[
+  \alpha_{\rm EM}^{-1}(M_Z)=127.934499434\ldots,
+\]
+which is in the expected $Z$-pole range.
+
+\section{What is proven and what remains open}
+
+The following chain is now explicit:
+\[
+  \text{UBT hypercharge norms}
+  \Longrightarrow
+  \sin^2\theta_W(M_{\rm UBT})=\frac38,
+\]
+then, on the twisted odd-spinor RG branch,
+\[
+  \frac38
+  \xrightarrow[\alpha_{\rm UBT}^{-1}\simeq24.3]
+  {b_1=33/5,\ b_2=1,\\ M_{\rm UBT}\simeq2\times10^{16}{\rm GeV}}
+  \sin^2\theta_W(M_Z)=0.23114\ldots.
+\]
+The remaining proof tasks are precise:
+\begin{enumerate}
+  \item derive the twisted odd-spinor threshold spectrum and hence
+  $b_1=33/5$, $b_2=1$ from the UBT Layer2 Hilbert space;
+  \item derive $M_{\rm UBT}\simeq2\times10^{16}$ GeV from the compact
+  $\psi$-radius or moduli-stabilisation sector;
+  \item derive $\alpha_{\rm UBT}^{-1}\simeq24.3$ from the same normalisation
+  rather than taking it as a representative unification value.
+\end{enumerate}
+
+\begin{statusbox}
+\textbf{Current status.}  Weinberg angle: boundary theorem [L1]; RG-to-$M_Z$
+viable on the twisted odd-spinor branch [L1 conditional].  The observed
+low-energy value is not yet fully proven from canonical UBT because the twisted
+threshold spectrum and scale still require derivation.
+\end{statusbox}
+
+\end{document}
