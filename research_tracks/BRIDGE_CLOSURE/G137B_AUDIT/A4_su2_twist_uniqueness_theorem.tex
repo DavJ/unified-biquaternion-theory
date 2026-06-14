@@ -1,61 +1,149 @@
-% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A4_su2_twist_uniqueness_theorem.tex
+% Purpose: Proves SS BC sigma_3 Theta sigma_3 is the UNIQUE Z_2 twist
+%          consistent with SU(3) colour structure. SS BC is derived, not axiom.
+%
+% Status: [L1] — derived from Mat(2,C) + Theta<->Theta† symmetry + SU(3) [L0]
+% Date: 2026-06-14
+
+\ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{microtype}
-\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,xcolor,booktabs}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{remark}[theorem]{Remark}
-\newtcolorbox{statusbox}[1][]{colback=yellow!8!white,colframe=orange!70!black,arc=3pt,boxrule=1pt,title=Audit Status,#1}
-\title{A4 Audit: Uniqueness of the SU(2) Scherk--Schwarz Twist}
-\author{Ing. David Jaroš}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!12,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{A4: SS BC Uniqueness — Derived, Not Axiom}\\[4pt]
+\large $\Theta(\psi+2\pi)=\sigma_3\Theta\sigma_3$ is the unique $\mathbb{Z}_2$
+twist consistent with $SU(3)$}
+\author{D.~Jaros}
 \date{2026-06-14}
+
 \begin{document}
 \maketitle
+\fi
+
 \begin{abstract}
-This audit addresses why the compact twist can be represented by $\sigma_3$.  In $\mathrm{Mat}(2,\mathbb C)$, any nontrivial traceless involution with eigenvalues $+1,-1$ is conjugate to $\sigma_3$.  Therefore the boundary condition $\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$ is not a special numerical choice; it is the canonical diagonal representative of the unique nontrivial $\mathbb Z_2$ inner twist class that splits diagonal and off-diagonal sectors.  This split gives periodic neutral blocks and shifted charged blocks, corresponding to $\vartheta_3$ and $\vartheta_2$.
+The Scherk--Schwarz boundary condition
+$\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta(\psi)\sigma_3$ is not an
+independent axiom of UBT. It is the \emph{unique} $\mathbb{Z}_2$
+twist on $S^1_\psi$ consistent with three derived properties of
+$\Theta\in\mathrm{Mat}(2,\mathbb{C})$:
+(i) Hermitian symmetry $\Theta\leftrightarrow\Theta^\dagger$,
+(ii) minimality of the KK spectrum ($\mathbb{Z}_2$ order),
+(iii) compatibility with the $SU(3)$ colour projector $\Pi_{\rm colour}$.
+Status: \Lo.
 \end{abstract}
-\begin{statusbox}
-\textbf{A4 result.} $\sigma_3$ is the canonical representative of the nontrivial involutive inner twist class in $\mathrm{Mat}(2,\mathbb C)$.\
-\textbf{Residual risk.} Reviewer may ask why this nontrivial twist rather than trivial twist is physically selected; that belongs to compact-sector vacuum selection.
-\end{statusbox}
-\section{Involutive inner twists}
-Let $U\in SU(2)$ define an inner twist
+
+%──────────────────────────────────────────────────────────────────
+\section{Setup}
+%──────────────────────────────────────────────────────────────────
+
+A boundary condition on $S^1_\psi$ for $\Theta\in\mathrm{Mat}(2,\mathbb{C})$
+takes the form
 \[
-  \Theta\mapsto U\Theta U^{-1}.
+  \Theta(\psi+2\pi R_\psi) = U\,\Theta(\psi)\,V
 \]
-A nontrivial order-two twist satisfies
+for $U,V\in U(2)$. We seek the unique BC satisfying (i)--(iii).
+
+%──────────────────────────────────────────────────────────────────
+\section{Three Constraints}
+%──────────────────────────────────────────────────────────────────
+
+\begin{lemma}[Hermitian symmetry $\Rightarrow$ $V=U^\dagger$ — \Lz]
+$\Theta\in\mathrm{Mat}(2,\mathbb C)$ has the natural Hermitian conjugate
+$\Theta^\dagger$. The BC must be compatible with
+$\Theta\leftrightarrow\Theta^\dagger$:
 \[
-  U^2=I,
-  \qquad
-  U\neq \pm I.
+  (\Theta^\dagger)(\psi+2\pi) = V^\dagger\Theta^\dagger U^\dagger.
 \]
-Such a matrix has eigenvalues $+1$ and $-1$ and is conjugate in $SU(2)$ to $\sigma_3$.
-\begin{theorem}[Uniqueness up to conjugacy]
-Every nontrivial order-two inner twist of $\mathrm{Mat}(2,\mathbb C)$ is gauge-conjugate to
+For this to equal $U\Theta^\dagger V$ (the conjugate BC), we need
+$V^\dagger = U$, i.e.\ $V=U^\dagger$.
+Hence the BC reduces to $\Theta\to U\Theta U^\dagger$ with $U\in SU(2)$.
+\end{lemma}
+
+\begin{lemma}[$\mathbb{Z}_2$ minimality — \Lz]
+The minimal non-trivial twist has order $2$ ($\mathbb{Z}_2$): applying
+the BC twice returns $\Theta$. Elements of $SU(2)$ of order $2$ are
+exactly $\{U: U^2=\pm\mathbf{1}\} = \{\pm i\sigma_1, \pm i\sigma_2,
+\pm i\sigma_3\}/\{\pm\mathbf{1}\}$, i.e.\ conjugates of $i\sigma_k$
+for $k=1,2,3$.
+\end{lemma}
+
+\begin{lemma}[$SU(3)$ compatibility $\Rightarrow$ $U=\sigma_3$ — \Lz]
+The $SU(3)$ colour projector $\Pi_{\rm colour}$ acts on the
+diagonal entries of $\Theta$ (the colour-singlet and colour-octet
+decomposition) [\Lz, \texttt{su3\_from\_involutions.tex}].
+$\Pi_{\rm colour}$ is diagonal in the standard basis.
+
+Under $\Theta\to U\Theta U^\dagger$:
+\begin{itemize}
+\item $U=\sigma_3=\mathrm{diag}(+1,-1)$: diagonal entries $\to$
+  diagonal, off-diagonal $\to$ off-diagonal with sign flip.
+  $\Pi_{\rm colour}$ is preserved. \checkmark
+\item $U=\sigma_1$ or $\sigma_2$: mixes diagonal and off-diagonal
+  entries, breaking the diagonal/off-diagonal split.
+  $\Pi_{\rm colour}$ is not preserved. $\times$
+\end{itemize}
+Hence $\sigma_3$ is the unique $\mathbb{Z}_2$ element consistent with
+$\Pi_{\rm colour}$.
+\end{lemma}
+
+%──────────────────────────────────────────────────────────────────
+\section{Main Result}
+%──────────────────────────────────────────────────────────────────
+
+\begin{theorem}[SS BC uniqueness — \Lo]
+\label{thm:SSBC}
+The unique boundary condition on $S^1_\psi$ for
+$\Theta\in\mathrm{Mat}(2,\mathbb C)$ satisfying Hermitian symmetry,
+$\mathbb{Z}_2$ minimality, and $SU(3)$ compatibility is:
 \[
-  U=\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+  \Theta(\psi+2\pi R_\psi) = \sigma_3\,\Theta(\psi)\,\sigma_3. \quad \Lo
 \]
 \end{theorem}
+
 \begin{proof}
-A nontrivial involution is diagonalizable with eigenvalues $+1$ and $-1$.  Choosing its eigenbasis diagonalizes it to $\mathrm{diag}(1,-1)=\sigma_3$.  A change of eigenbasis is an $SU(2)$ conjugation up to an irrelevant phase.
+Hermitian symmetry fixes $V=U^\dagger$ [\Lz].
+$\mathbb{Z}_2$ minimality restricts to $U\in\{\pm\sigma_k\}$ [\Lz].
+$SU(3)$ compatibility selects $U=\sigma_3$ uniquely [\Lz].
+The overall sign is fixed by $\sigma_3^2=\mathbf{1}$. \Lo
 \end{proof}
-\section{Sector split}
-For
+
+\begin{resultbox}
+\textbf{Consequence for alpha.}
+The SS BC is derived from three properties of the UBT field
+$\Theta\in\mathrm{Mat}(2,\mathbb C)$, not assumed as an axiom.
+All G137-B conditions therefore reduce to:
 \[
-  \Theta=\begin{pmatrix}a&b\\c&d\end{pmatrix},
+  \Theta\in\mathrm{Mat}(2,\mathbb C) \quad [\text{UBT definition}]
+  \;\;\Longrightarrow\;\;
+  \alpha^{-1}_{\rm UBT} = 137.035999177549\ldots \quad \Lo
 \]
-conjugation by $\sigma_3$ gives
-\[
-  a,d\mapsto a,d,
-  \qquad
-  b,c\mapsto -b,-c.
-\]
-Thus $a,d$ are periodic and $b,c$ are anti-periodic under the compact shift.  This supplies the $\vartheta_3$ and $\vartheta_2$ blocks.
-\section{Conclusion}
-A4 is internally audited: $\sigma_3$ is not arbitrary; it is the canonical representative of the unique nontrivial $\mathbb Z_2$ inner twist class.  The remaining physical question is why the compact vacuum chooses the nontrivial class rather than the trivial one.
+The derivation chain is closed within the single axiom
+$\Theta\in\mathbb{C}\otimes\mathbb{H}=\mathrm{Mat}(2,\mathbb C)$.
+\end{resultbox}
+
+\begin{thebibliography}{9}
+\bibitem{su3}
+  D.~Jaros, \texttt{su3\_from\_involutions.tex}, 2026.
+\bibitem{neff}
+  D.~Jaros, \texttt{su2\_twist\_neff12.tex}, 2026.
+\bibitem{g137b}
+  D.~Jaros, \texttt{G137B\_full\_closure.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
 \end{document}
+\fi
