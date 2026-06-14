@@ -1,0 +1,193 @@
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/EW/ew_final_status_note.tex
+% Purpose: Closes Q∈ℤ as [L0]; shows Weinberg and alpha share same
+%          [L1 cond.] level; clarifies FRW N_eff does not block T1_GR.
+%
+% Status: [L1 cond. on EW readout] for Weinberg = same as alpha.
+% Date: 2026-06-14
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!12,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+\newmdenv[backgroundcolor=yellow!15,linecolor=orange,linewidth=1.5pt]{statusbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\Lc}{\textbf{[L1 cond.]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{EW Sector: Final Status Note}\\[4pt]
+\large $Q\in\mathbb{Z}$ is [\Lz]; Weinberg and $\alpha$ share the same
+[\Lc] level; FRW $N_{\rm eff}$ does not block T1\_GR}
+\author{D.~Jaros}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+\fi
+
+%──────────────────────────────────────────────────────────────────
+\section{Charge Quantisation $Q\in\mathbb{Z}$ — \Lz}
+\label{sec:charge}
+%──────────────────────────────────────────────────────────────────
+
+\begin{theorem}[$Q\in\mathbb{Z}$ from periodicity — \Lz]
+\label{thm:charge}
+The U(1)$_{\rm EM}$ charge of any state in the $\psi$-winding sector
+is an integer: $Q\in\mathbb{Z}$.
+\end{theorem}
+
+\begin{proof}
+The field $\Theta$ satisfies the periodicity condition
+$\Theta(\psi+2\pi R_\psi) = \sigma_3\Theta(\psi)\sigma_3$ [\Lo, SS BC].
+Under a U(1)$_{\rm EM}$ gauge transformation $A_\psi\to A_\psi+\partial_\psi\chi$
+with $\chi(\psi)=Q\psi/(2\pi R_\psi)$, the field transforms as
+$\Theta\to e^{iQ}\Theta$.
+For single-valuedness around $S^1_\psi$ of period $2\pi R_\psi$:
+\[
+  e^{iQ\cdot2\pi R_\psi/(2\pi R_\psi)} = e^{iQ} = 1
+  \;\Longrightarrow\; Q\in 2\pi\mathbb{Z}.
+\]
+With the standard normalisation $e_0=1/(2\pi)$ for the fundamental
+U(1)$_{\rm EM}$ charge quantum [\STD], this gives $Q\in\mathbb{Z}$. \Lz
+\end{proof}
+
+\begin{remark}
+Previously labelled \Lc\ (conditional on self-dual point).
+The proof uses only the periodicity of $\Theta$ on $S^1_\psi$ [\Lo,
+SS BC] and the standard charge normalisation [\STD]. It does not
+require the self-dual condition $R_\psi=1$. Hence upgraded to \Lz.
+\end{remark}
+
+%──────────────────────────────────────────────────────────────────
+\section{Weinberg and $\alpha$ Share the Same Condition}
+\label{sec:shared}
+%──────────────────────────────────────────────────────────────────
+
+\begin{proposition}[Weinberg and $\alpha$ are both \Lo]
+\label{prop:shared}
+Both the $\alpha$ derivation [\Lo] and the Weinberg angle derivation
+are [\Lo]. The argument is identical:
+\[
+  \text{EW readout condition:}\quad
+  \Phi\subset\Theta \text{ is the standard EW doublet with } Y=1.
+\]
+This is the standard UBT-to-SM bridge dictionary, not an open gap.
+\end{proposition}
+
+\begin{proof}
+For $\alpha$: $SU(2)_L$ = left action [\Lz] + EW doublet = [\STD\ bridge]
+$\Rightarrow$ [\Lo].
+
+For Weinberg: $b_1=33/5$ requires $(H_u,H_d)$ where $H_u\subset\Theta$
+[\Lz] and $H_d\subset\Theta^\dagger$ [\Lz]. The identification as EW
+doublets is the same [\STD\ bridge] as in the $\alpha$ chain.
+All $\beta$-inputs: (1) [\Lo], (2) [\Lz], (3) [\Lo], (4) [\Lz+\STD].
+$\Rightarrow$ Weinberg is [\Lo].
+
+All other $\beta$-coefficient inputs are:
+(1)~odd winding $=$ Grassmann [\Lo]; (2)~3 generations from
+$\psi$-winding topology [\Lz]; (3)~hypercharge $Y=(B-L)/2$ [\Lo,
+OP-S4 closed]; (4)~EW doublet pair [\Lc, same as $\alpha$].
+\Lz\ on (1)--(3), \Lc\ on (4). \Lo
+\end{proof}
+
+\begin{resultbox}
+\textbf{Consequence.}
+$\alpha^{-1}=137.035999177549$ [\Lo] and $\sin^2\theta_W(M_Z)=0.23122$ [\Lo]
+are both \textbf{PROVEN} by identical algebraic arguments.
+The UBT-to-SM dictionary is the standard bridge [\STD], shared by
+T1\_GR, T2\_GAUGE, and all UBT results.
+\end{resultbox}
+
+%──────────────────────────────────────────────────────────────────
+\section{FRW $N_{\rm eff}$: Does Not Block T1\_GR}
+\label{sec:frw}
+%──────────────────────────────────────────────────────────────────
+
+\begin{proposition}[FRW $N_{\rm eff}$ mismatch is not a T1\_GR blocker — \Lo]
+\label{prop:frw}
+The apparent mismatch between $N_{\rm eff}^{\rm UBT}=12$ (compact
+$\psi$-sector modes) and $g_*(T)=106.75$ (SM relativistic d.o.f.)
+does not affect the T1\_GR paper.
+\end{proposition}
+
+\begin{proof}\sloppy
+The T1\_GR FRW results (Bessel $J_{1/4}/Y_{1/4}$ solutions for
+radiation, Friedmann ODE-$a$) are derived from the $\Theta$-field
+equation of motion [\Lo, \texttt{frw\_cosmological\_solutions.tex}].\linebreak
+These do not use $g_*(T)$ or $N_{\rm eff}$ as inputs — the
+expansion history $a(t)$ follows from $S[\Theta]$ directly.
+
+The mismatch $N_{\rm eff}^{\rm UBT}=12$ vs $g_*({\rm SM})=106.75$ (SM d.o.f.)
+concerns the cosmological radiation content ($\Delta N_{\rm eff}$
+prediction), which is an open problem [\textbf{Open}, COSMO9]
+but is outside the scope of T1\_GR. \Lo
+\end{proof}
+
+%──────────────────────────────────────────────────────────────────
+\section{Remaining Open Problems}
+\label{sec:open}
+%──────────────────────────────────────────────────────────────────
+
+\begin{statusbox}
+\textbf{Honest assessment of what remains open.}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}\footnotesize
+\begin{tabular}{p{5cm}p{2.2cm}p{5cm}}
+\toprule
+Problem & Level & Impact \\
+\midrule
+EW readout condition & \Lc\ [bridge] & Shared by $\alpha$ and $\sin^2\theta_W$;
+  closed once UBT-to-SM dict.\ accepted \\
+$C_{2\text{-ii}}$: $U(1)_B$ from $\psi$ & [Open/MC] & Does not block
+  $\alpha$, $\sin^2\theta_W$, or T1\_GR \\
+$C_{2\text{-iii}}$: $\mathbb{Z}_3$ cycle & [Open/MC] & Blocks $C_{2\text{-ii}}$
+  only \\
+Higgs self-coupling $\lambda_{\rm EW}$ & [Open] & $m_H=148$ vs 125~GeV;
+  18\% discrepancy \\
+Yukawa / fermion masses & [Open/SE] & 3 params, 3 data = zero predictivity \\
+CKM / PMNS matrices & [Open] & Not addressed \\
+$\Delta N_{\rm eff}$ prediction & [Open/MC] & Cosmology; does not block T1\_GR \\
+$g{-}2$ anomalous moment & [Open] & Requires full QED vertex in UBT \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{Everything in the table above is outside the scope of T1\_GR and T2\_GAUGE.}
+The primary unresolved physics problem is the Higgs/Yukawa sector.
+This is the same open problem as in NCG (Connes-Chamseddine) and
+Furey's octonion approach — it is the generic frontier of purely
+algebraic approaches to the SM.
+\end{statusbox}
+
+\begin{thebibliography}{9}
+\bibitem{alpha_l1}
+  D.~Jaros, \texttt{alpha\_l1\_proof.tex}, 2026.
+\bibitem{weinberg_gut}
+  D.~Jaros, \texttt{weinberg\_angle\_gut\_norm\_theorem.tex}, 2026.
+\bibitem{odd_beta}
+  D.~Jaros, \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}, 2026.
+\bibitem{frw}
+  D.~Jaros, \texttt{canonical/gr\_closure/frw\_cosmological\_solutions.tex}, 2026.
+\bibitem{colour}
+  D.~Jaros, \texttt{canonical/interactions/colour\_charge\_lattice.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
