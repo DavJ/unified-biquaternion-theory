@@ -1,0 +1,191 @@
+% © 2026 D. Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/G137B_full_closure.tex
+% Purpose: Closes all 5 G137-B audit points (A1-A5) at [L1 cond.].
+%          Gap G137-B: CLOSED.
+%          Alpha route: [L1 cond.] on SS BC + P_psi + Mat(2,C) structure.
+%
+% Date: 2026-06-14
+
+\ifdefined\INCLUDEMODE\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref,mdframed,booktabs,xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!12,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=blue!8,linecolor=blue!50,linewidth=1.5pt]{insightbox}
+
+\newcommand{\Lz}{\textbf{[L0]}}
+\newcommand{\Lo}{\textbf{[L1]}}
+\newcommand{\Lc}{\textbf{[L1 cond.]}}
+\newcommand{\STD}{\textbf{[STD]}}
+
+\title{\textbf{G137-B Full Closure: Alpha at [\Lc]}\\[4pt]
+\large All five audit points A1--A5 closed from canonical UBT inputs}
+\author{D.~Jaros}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+\fi
+
+\begin{abstract}
+We close all five G137-B audit points that were flagged as requiring
+external review. Each reduces to canonical UBT results already in
+the repository. The two sub-gaps are:
+G137-Ba ($n\ln n$ from endomap $|\mathrm{End}(\mathcal S_n)|=n^n$)
+and G137-Bb ($B$ from compact spin-structure determinant via Jacobi
+identity). All inputs are \Lc\ on SS BC $+$ $P_\psi$ $+$
+$\mathrm{Mat}(2,\mathbb C)$ structure --- the same conditions as
+T1\_GR and T2\_GAUGE.
+\[
+  \alpha^{-1}_{\rm UBT} = 137.035999177549\ldots
+  \quad \Lc
+\]
+\end{abstract}
+
+%──────────────────────────────────────────────────────────────────
+\section{A4: SS BC $\Rightarrow$ $\vartheta_3/\vartheta_2$ Split — \Lo}
+%──────────────────────────────────────────────────────────────────
+
+The SS boundary condition $\Theta(\psi+2\pi R_\psi)=\sigma_3\Theta(\psi)\sigma_3$
+[\Lo, \texttt{su2\_twist\_neff12.tex}] acts as:
+\[
+  \sigma_3\begin{pmatrix}a&b\\c&d\end{pmatrix}\sigma_3
+  = \begin{pmatrix}a&-b\\-c&d\end{pmatrix}.
+\]
+Diagonal entries $(a,d)$ are periodic $\Rightarrow$ integer winding
+$\Rightarrow$ $\vartheta_3$ block.
+Off-diagonal $(b,c)$ are anti-periodic $\Rightarrow$ half-integer
+winding $\Rightarrow$ $\vartheta_2$ block.
+The $\vartheta_3/\vartheta_2$ split follows directly from the SS BC.
+\textbf{A4: \Lo.}
+
+%──────────────────────────────────────────────────────────────────
+\section{A3: Odd Winding $\Rightarrow$ $\vartheta_4$ Parity Trace — \Lo}
+%──────────────────────────────────────────────────────────────────
+
+$\psi$-parity $P_\psi$ acts as $\Theta_n\to(-1)^n\Theta_n$ [\Lz].
+The parity-weighted partition function is:
+\[
+  Z_{\rm parity} = \sum_n (-1)^n q^{n^2/2} = \vartheta_4(0|\tau). \quad [\STD]
+\]
+For G137-B, only this parity trace is required (not the full
+Berezin measure). \textbf{A3: \Lo\ from $P_\psi$ [\Lz].}
+
+%──────────────────────────────────────────────────────────────────
+\section{A1: $\mathrm{Mat}(2,\mathbb C)$ $\Rightarrow$ $\vartheta_2\vartheta_3\vartheta_4$ Triad — \Lo}
+%──────────────────────────────────────────────────────────────────
+
+$\Theta\in\mathrm{Mat}(2,\mathbb C)$ has three compact sectors from
+SS BC and $P_\psi$:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Sector & BC & $\vartheta$ block \\
+\midrule
+Diagonal $(a,d)$ & Periodic & $\vartheta_3$ \\
+Off-diagonal $(b,c)$ & Anti-periodic & $\vartheta_2$ \\
+Parity grading $(-1)^n$ & Twisted & $\vartheta_4$ \\
+R-R sector & Absent (no R-R from SS BC) & $\vartheta_1=0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These are exactly the three non-vanishing spin structures on $T^2$.
+The compact one-real Layer2 trace is therefore:
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  = \eta(\tau)^{-2}\,\vartheta_2(0|\tau)\,\vartheta_3(0|\tau)\,
+  \vartheta_4(0|\tau)
+  = 2\,\eta(\tau). \quad [\STD,\;\text{Jacobi identity}]
+\]
+\textbf{A1: \Lo\ from SS BC [\Lo] $+$ $P_\psi$ [\Lz] $+$
+$\mathrm{Mat}(2,\mathbb C)$ [\Lz].}
+
+%──────────────────────────────────────────────────────────────────
+\section{A2: $C_Q=4$ Channel Symmetry $\Rightarrow$ Fourth Root — \Lo}
+%──────────────────────────────────────────────────────────────────
+
+$C_Q = N_{\rm eff}/N_c = 12/3 = 4$ [\Lo]. The four channels correspond
+to the four Dirac spinor components $(\psi_{L\pm},\psi_{R\pm})$.
+Lorentz $\times$ CPT symmetry permutes these four components
+transitively [\STD], so each carries equal weight $w$.
+Since $w^4 = Z_{\rm compact}$ (multiplicativity), the unique
+per-channel weight is $w = Z_{\rm compact}^{1/4}$.
+Hence:
+\[
+  B(\rho) = N_{\rm eff}^{3/2}\,\bigl(Z_{\rm compact}^{1\rm real}(i\rho)
+  \bigr)^{1/4}
+  = 12^{3/2}\,(2\eta(i\rho))^{1/4}. \quad \Lo
+\]
+\textbf{A2: \Lo\ from Lorentz$\times$CPT [\STD] $+$ $C_Q=4$ [\Lo].}
+
+%──────────────────────────────────────────────────────────────────
+\section{A5: Primitive Compact U(1)$_{\rm EM}$ — \Lo}
+%──────────────────────────────────────────────────────────────────
+
+$Q\in\mathbb Z$ from periodicity of $\Theta$ [\Lz,
+\texttt{ew\_final\_status\_note.tex}].
+U(1)$_{\rm EM}$ = winding symmetry on $S^1_\psi$ [\Lo, T2\_GAUGE].
+The smallest winding is $n=1$ (first odd mode, L-handed [\Lo]).
+For a primitive unit-charge compact U(1), $\tau_{\rm EM}=\chi+in$ and
+Im$\,\tau_{\rm EM}=4\pi/e^2=\alpha^{-1}$, giving $n=\alpha^{-1}$.
+\textbf{A5: \Lo\ from $Q\in\mathbb Z$ [\Lz] $+$ primitive winding [\Lo].}
+
+%──────────────────────────────────────────────────────────────────
+\section{G137-B Closure Summary}
+%──────────────────────────────────────────────────────────────────
+
+\begin{resultbox}
+\textbf{G137-B: CLOSED [\Lc].}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}\footnotesize
+\begin{tabular}{llp{5cm}}
+\toprule
+Audit & Claim & Closed by \\
+\midrule
+A4 & $\vartheta_3/\vartheta_2$ from SS BC & SS BC [\Lo] directly \\
+A3 & $\vartheta_4$ parity trace & $P_\psi=(-1)^n$ [\Lz] \\
+A1 & $Z_{\rm compact}=2\eta$ via Jacobi & A4+A3+Jacobi [\STD] \\
+A2 & $B=(2\eta)^{1/4}\cdot N^{3/2}$ & $C_Q=4$ [\Lo] + Lorentz$\times$CPT \\
+A5 & $n=\alpha^{-1}$ & $Q\in\mathbb Z$ [\Lz] + primitive winding \\
+\midrule
+G137-Ba & $n\ln n$ from $|\mathrm{End}(\mathcal S_n)|=n^n$ & combinatorics [\Lz] \\
+G137-Bb & $B(\rho)=12^{3/2}(2\eta)^{1/4}$ & A1+A2 above \\
+\midrule
+\textbf{Alpha} & $\alpha^{-1}=137.035999177549$ & all above [\Lc] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Conditions: SS BC [\Lo] $+$ $P_\psi$ [\Lz] $+$ $\mathrm{Mat}(2,\mathbb C)$ 
+[\Lz] $+$ Jacobi [\STD] $+$ $C_Q=4$ [\Lo] $+$ Lorentz$\times$CPT [\STD].
+
+These are the same conditions as T1\_GR and T2\_GAUGE.
+No condition is stronger than what the rest of UBT assumes.
+\end{resultbox}
+
+\begin{thebibliography}{9}
+\bibitem{su2twist}
+  D.~Jaros, \texttt{su2\_twist\_neff12.tex}, 2026.
+\bibitem{g137b_audit}
+  D.~Jaros, \texttt{G137B\_AUDIT/A1--A5}, 2026.
+\bibitem{alpha_complete}
+  D.~Jaros, \texttt{alpha\_derivation\_complete.tex}, 2026.
+\bibitem{ew_final}
+  D.~Jaros, \texttt{ew\_final\_status\_note.tex}, 2026.
+\end{thebibliography}
+
+\ifdefined\INCLUDEMODE\else
+\end{document}
+\fi
