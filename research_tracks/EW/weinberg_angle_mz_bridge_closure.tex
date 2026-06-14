@@ -1,0 +1,165 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/EW/weinberg_angle_mz_bridge_closure.tex
+% Status: RESEARCH TRACK / BRIDGE-PROVEN.
+% Purpose: Combine UBT Weinberg boundary, odd-spinor beta coefficients, scale and alpha/QED bridge.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!6!white,
+  colframe=green!45!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Bridge-Proof Status,
+  #1
+}
+
+\title{Z-Pole Weinberg Angle Closure on the UBT Odd-Spinor Branch}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note combines the UBT hypercharge boundary
+$\sin^2\theta_W(M_{\rm UBT})=3/8$, the odd-spinor threshold beta coefficients
+$(b_1,b_2)=(33/5,1)$, the compact unification scale
+$M_{\rm UBT}=2\times10^{16}$ GeV, and the alpha/QED bridge value
+$\alpha_{\rm EM}^{-1}(M_Z)=127.934499434\ldots$.  The resulting one-loop
+closure gives
+\[
+  \sin^2\theta_W(M_Z)=0.23122\ldots.
+\]
+The status is bridge-proven: the numerical descent is proven relative to the
+current UBT bridges for the odd-spinor threshold spectrum, compact scale, and
+QED running of the electromagnetic coupling.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Claim.}  Within the current UBT bridge assumptions,
+\[
+  \boxed{\sin^2\theta_W(M_Z)=0.23122\ldots}
+\]
+follows from the $3/8$ boundary.  This is an internal UBT bridge-proof status,
+not a claim of external peer-reviewed acceptance.
+\end{statusbox}
+
+\section{Inputs from previous UBT results}
+
+The proof uses:
+\begin{align}
+  \sin^2\theta_W(M_{\rm UBT})&=\frac38,\\
+  b_1&=\frac{33}{5},\\
+  b_2&=1,\\
+  M_{\rm UBT}&=2\times10^{16}\,\mathrm{GeV},\\
+  M_Z&=91.1876\,\mathrm{GeV},\\
+  \alpha_{\rm EM}^{-1}(M_Z)&=127.934499434\ldots.
+\end{align}
+The first input is the UBT hypercharge norm theorem.  The beta coefficients are
+proved in \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}.
+The electromagnetic coupling is the $Z$-pole value obtained by the alpha/QED
+running bridge.  The compact scale is the UBT/GUT-scale bridge used in the
+EW1+RG branch.
+
+\section{Algebraic closure}
+
+Let
+\[
+  L=\frac{1}{2\pi}\ln\frac{M_{\rm UBT}}{M_Z}.
+\]
+For the numerical values above,
+\[
+  L=5.255549236755\ldots.
+\]
+The GUT-normalised one-loop running is
+\[
+  \alpha_i^{-1}(M_Z)=A+b_iL,
+\]
+where
+\[
+  A:=\alpha_{\rm UBT}^{-1}.
+\]
+The physical hypercharge coupling satisfies
+\[
+  \alpha_Y^{-1}=\frac53\alpha_1^{-1}.
+\]
+Therefore
+\[
+  \alpha_{\rm EM}^{-1}(M_Z)
+  =
+  \alpha_Y^{-1}(M_Z)+\alpha_2^{-1}(M_Z)
+  =
+  \frac53(A+b_1L)+(A+b_2L).
+\]
+Using $b_1=33/5$, $b_2=1$, this becomes
+\[
+  \alpha_{\rm EM}^{-1}(M_Z)
+  =
+  \frac83A+12L.
+\]
+Thus
+\[
+  A
+  =
+  \frac38\left[\alpha_{\rm EM}^{-1}(M_Z)-12L\right].
+\]
+Substitution gives
+\[
+  A=24.3254657224\ldots.
+\]
+Then
+\[
+  \alpha_2^{-1}(M_Z)=A+L=29.5810149592\ldots.
+\]
+Since
+\[
+  \sin^2\theta_W(M_Z)=\frac{\alpha_{\rm EM}(M_Z)}{\alpha_2(M_Z)}
+  =
+  \frac{\alpha_2^{-1}(M_Z)}{\alpha_{\rm EM}^{-1}(M_Z)},
+\]
+we obtain
+\[
+  \sin^2\theta_W(M_Z)
+  =
+  \frac{29.5810149592\ldots}{127.934499434\ldots}
+  =
+  0.23122\ldots.
+\]
+
+\section{Interpretation}
+
+The descent can be summarised as
+\[
+  \frac38
+  \xrightarrow[\alpha_{\rm EM}^{-1}(M_Z),\ M_{\rm UBT}]
+  {b_1=33/5,\ b_2=1}
+  0.23122\ldots.
+\]
+Unlike the previous provisional RG branch, the beta coefficients are now
+computed from the odd-spinor threshold spectrum rather than inserted as a loose
+MSSM analogy.
+
+\section{Remaining external-facing caveat}
+
+This is a bridge proof, not an experimental publication claim.  A reviewer may
+still challenge the bridge assumptions:
+\begin{enumerate}
+  \item the derivation of the compact scale $M_{\rm UBT}$;
+  \item the alpha/QED running bridge to $\alpha_{\rm EM}^{-1}(M_Z)$;
+  \item the identification of the odd-spinor threshold spectrum with the active
+  one-loop states between $M_Z$ and $M_{\rm UBT}$.
+\end{enumerate}
+Within those stated UBT bridges, however, the Weinberg angle is closed at the
+same internal proof level as the alpha chain.
+
+\end{document}
