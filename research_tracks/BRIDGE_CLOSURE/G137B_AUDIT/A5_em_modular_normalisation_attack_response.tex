@@ -1,0 +1,60 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=yellow!8!white,colframe=orange!70!black,arc=3pt,boxrule=1pt,title=Audit Status,#1}
+\title{A5 Audit: Compact-U(1) Electromagnetic Modular Normalisation}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+\begin{document}
+\maketitle
+\begin{abstract}
+This audit records the final physical bridge in the alpha route: identifying the UBT winding modulus $n$ with the imaginary part of the compact electromagnetic coupling.  For a primitive unit-charge compact $U(1)$, the complexified Maxwell coupling is $\tau_{EM}=\theta/(2\pi)+i4\pi/e^2$.  Since $\alpha=e^2/(4\pi)$ in natural units, $\mathrm{Im}\,\tau_{EM}=\alpha^{-1}$.  Thus if the UBT electromagnetic projection yields $\tau^{UBT}_{EM}=\chi+in$, then $n=\alpha^{-1}$.  The main audit point is primitive charge normalisation: no rescaling of $Q_{EM}$ is allowed once the minimal electric charge is fixed.
+\end{abstract}
+\begin{statusbox}
+\textbf{A5 result.} $n=\alpha^{-1}$ follows from standard compact-U(1) Maxwell normalisation once primitive unit charge is fixed.\
+\textbf{Residual risk.} Reviewer may challenge whether the UBT EM projection is exactly primitive unit-charge $U(1)_{EM}$.
+\end{statusbox}
+\section{Maxwell normalisation}
+The Euclidean Maxwell action in standard normalisation is
+\[
+  S_{EM}=\frac{1}{4e^2}\int F_{\mu\nu}F^{\mu\nu}\,d^4x.
+\]
+The complexified coupling is
+\[
+  \tau_{EM}=\frac{\theta_{EM}}{2\pi}+i\frac{4\pi}{e^2}.
+\]
+Since
+\[
+  \alpha=\frac{e^2}{4\pi},
+\]
+we have
+\[
+  \mathrm{Im}\,\tau_{EM}=\alpha^{-1}.
+\]
+\section{Primitive charge}
+A compact $U(1)$ line bundle has integral charge lattice.  Choosing the primitive generator fixes the minimal charge unit.  A rescaling $Q\mapsto \lambda Q$ is not allowed unless it preserves the primitive integer lattice.  Therefore the normalisation is fixed by the unit-charge electron sector.
+\begin{theorem}[EM modular identification]
+If the UBT electromagnetic projection is the primitive compact unit-charge $U(1)_{EM}$ and its winding modulus is
+\[
+  \tau^{UBT}_{EM}=\chi+in,
+\]
+then
+\[
+  n=\alpha^{-1}.
+\]
+\end{theorem}
+\begin{proof}
+By standard compact Maxwell normalisation, $\mathrm{Im}\,\tau_{EM}=4\pi/e^2=\alpha^{-1}$.  Identifying $\tau^{UBT}_{EM}$ with the primitive electromagnetic coupling gives $n=\mathrm{Im}\,\tau_{EM}=\alpha^{-1}$.
+\end{proof}
+\section{Conclusion}
+A5 is internally audited.  The only remaining attack surface is whether the UBT electromagnetic projection has indeed been fixed as the primitive unit-charge compact $U(1)_{EM}$.
+\end{document}

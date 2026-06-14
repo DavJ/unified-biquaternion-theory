@@ -1,0 +1,210 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A1_complete_spin_structure_trace_theorem.tex
+% Status: A1 bridge audit — complete spin-structure trace theorem.
+% Purpose: Defend why the compact Layer2 measure uses eta^{-2} theta2 theta3 theta4.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Audit Status,
+  #1
+}
+
+\title{A1 Audit: Complete Spin-Structure Trace Theorem for G137-B}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note audits the most sensitive bridge in the final G137-B closure: why the
+compact one-real Layer2 determinant should contain the complete product
+\[
+  \eta^{-2}\vartheta_2\vartheta_3\vartheta_4
+\]
+rather than a single spin sector, a sum of sectors, or a hand-picked modular
+factor.  The theorem proved here is conditional on the current UBT compact-sector
+bridges: SU(2) Scherk--Schwarz splitting, odd-winding parity measure, and
+quaternionic triad completeness of $\mathrm{Im}\,\mathbb H$.  Under these
+conditions, the minimal multiplicative readout trace closed under the three
+nontrivial torus spin/readout structures is uniquely
+$\vartheta_2\vartheta_3\vartheta_4$, with two real oscillator denominators
+$\eta^{-2}$.  Therefore
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta^{-2}\vartheta_2\vartheta_3\vartheta_4=2\eta(\tau)
+\]
+by Jacobi's identity.  This upgrades the trace from an ad hoc insertion to a
+minimal complete compact-sector measure.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{A1 result.} Complete spin-structure trace is defended as the minimal
+multiplicative trace compatible with SU(2) twist + odd parity + quaternionic
+triad completeness.\
+\textbf{Remaining attack surface.} A reviewer can still challenge whether
+triad completeness necessarily maps to the three torus theta structures.  That
+is now the precise bridge to audit.
+\end{statusbox}
+
+\section{Bridge under audit}
+
+The final G137-B closure uses
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau).
+\]
+The audit question is:
+\begin{quote}
+Why must the compact Layer2 trace contain all three theta blocks
+$\vartheta_2$, $\vartheta_3$, and $\vartheta_4$ multiplicatively?
+\end{quote}
+
+\section{Three sources of the three theta blocks}
+
+The current UBT compact-sector bridges provide three distinct sectors:
+
+\begin{longtable}{llll}
+\toprule
+UBT source & Compact/readout meaning & Theta block & Status \\
+\midrule
+\endhead
+Neutral diagonal fields $a,d$ & periodic integer winding & $\vartheta_3$ & SU(2) twist bridge \\
+Charged off-diagonal fields $b,c$ & shifted / anti-periodic tower & $\vartheta_2$ & SU(2) Scherk--Schwarz bridge \\
+Odd-winding parity trace & $(-1)^n$ weighted integer tower & $\vartheta_4$ & odd-winding parity bridge \\
+\bottomrule
+\end{longtable}
+
+Thus each theta block has an independent structural origin.  None is introduced
+only to repair the coefficient.
+
+\section{Why product, not sum}
+
+For Gaussian compact sectors, independent determinant factors multiply.  If the
+compact readout block decomposes into independent periodic, shifted, and parity
+subsectors, then the one-real determinant is of the form
+\[
+  Z_{\rm compact}=Z_{\rm osc}^{-1}Z_{\vartheta_2}Z_{\vartheta_3}Z_{\vartheta_4}.
+\]
+A sum would correspond to an incoherent statistical mixture of mutually
+exclusive sectors.  The UBT Layer2 readout instead uses simultaneous compact
+constraints from the full $\mathrm{Im}\,\mathbb H$ triad.  Therefore the trace is
+multiplicative.
+
+\begin{lemma}[Multiplicativity of independent Gaussian blocks]
+If the compact quadratic operator factorises as
+\[
+  P=P_2\oplus P_3\oplus P_4,
+\]
+then its determinant factorises as
+\[
+  \det P=(\det P_2)(\det P_3)(\det P_4),
+\]
+and the partition function is multiplicative.
+\end{lemma}
+
+\begin{proof}
+For block-diagonal operators, the spectrum is the union of the spectra of the
+blocks.  The zeta-regularised determinant is exponential in the spectral zeta
+sum, hence additive in logarithms and multiplicative in determinants.
+\end{proof}
+
+\section{Why complete trace, not one sector}
+
+The imaginary-quaternion sector is a triad:
+\[
+  \mathrm{Im}\,\mathbb H=\mathrm{span}\{I,J,K\}.
+\]
+A compact Layer2 trace that keeps one of the three torus spin/readout structures
+but discards the others would select a preferred element of this triad.  That
+breaks the internal quaternionic symmetry of the compact phase sector.
+
+\begin{definition}[Triad-complete compact trace]
+A compact Layer2 trace is triad-complete if it includes one representative of
+each of the three nontrivial readout sectors associated with the
+$\mathrm{Im}\,\mathbb H$ phase triad.
+\end{definition}
+
+\begin{theorem}[Minimal complete spin-structure trace]
+Assume:
+\begin{enumerate}
+\item SU(2) Scherk--Schwarz splitting gives periodic and shifted compact towers;
+\item odd-winding parity supplies the $(-1)^n$ weighted trace;
+\item Layer2 compact readout is triad-complete under $\mathrm{Im}\,\mathbb H$;
+\item independent Gaussian compact blocks multiply.
+\end{enumerate}
+Then the minimal compact one-real Layer2 trace is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau).
+\]
+\end{theorem}
+
+\begin{proof}
+The SU(2) twist supplies $\vartheta_3$ and $\vartheta_2$.  Odd-winding parity
+supplies $\vartheta_4$.  Triad completeness requires all three sectors; minimality
+requires each once.  Gaussian independence makes the determinant multiplicative.
+The two compact real oscillator directions contribute $\eta^{-2}$.  Therefore
+the stated product is the minimal complete trace.
+\end{proof}
+
+\section{Immediate coefficient consequence}
+
+Using Jacobi's identity,
+\[
+  \vartheta_2\vartheta_3\vartheta_4=2\eta^3,
+\]
+we obtain
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta^{-2}\vartheta_2\vartheta_3\vartheta_4
+  =2\eta(\tau).
+\]
+Thus the coefficient factor in G137-Bb follows:
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+
+\section{Reviewer attack table}
+
+\begin{longtable}{p{0.28\textwidth}p{0.32\textwidth}p{0.30\textwidth}}
+\toprule
+Attack & Response & Residual risk \\
+\midrule
+\endhead
+Why not only $\vartheta_2/\eta$? & That keeps only the shifted charged sector and drops periodic and parity traces. & Would be valid only if Layer2 trace were not triad-complete. \\
+Why not orbifold sum? & A sum is a mixture of alternatives; independent Gaussian constraints multiply. & Requires accepting determinant factorisation. \\
+Why include $\vartheta_4$? & Odd-winding parity bridge supplies the $(-1)^n$ trace. & Depends on odd-winding bridge audit. \\
+Why include all three once? & Minimal triad-complete trace under $\mathrm{Im}\,\mathbb H$. & Triad-to-spin-structure map is the key external audit point. \\
+\bottomrule
+\end{longtable}
+
+\section{Conclusion}
+
+A1 is not a new numerical fit.  It is an audit theorem: the complete product
+$\vartheta_2\vartheta_3\vartheta_4$ is the minimal multiplicative compact trace
+compatible with the current UBT compact-sector bridges.  The next bridge audits
+should attack the two dependencies that remain most exposed: the four-channel
+geometric mean and the SU(2) twist uniqueness.
+
+\end{document}

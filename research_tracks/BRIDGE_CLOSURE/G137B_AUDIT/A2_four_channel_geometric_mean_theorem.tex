@@ -1,0 +1,63 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=yellow!8!white,colframe=orange!70!black,arc=3pt,boxrule=1pt,title=Audit Status,#1}
+\title{A2 Audit: Four-Channel Geometric-Mean Measure}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+\begin{document}
+\maketitle
+\begin{abstract}
+This audit proves the fourth-root insertion used in the G137-B coefficient.  The compact determinant $Z_{\rm compact}$ is common to four equivalent U(1)/Dirac readout channels, $C_Q=4$.  If the channel symmetry is preserved, each channel must receive the same multiplicative weight $w$.  Since the product over four channels must reconstruct the full determinant, $w^4=Z_{\rm compact}$ and hence $w=Z_{\rm compact}^{1/4}$.  Thus the quarter root is not an arbitrary exponent but the unique symmetric per-channel determinant normalisation.
+\end{abstract}
+\begin{statusbox}
+\textbf{A2 result.} Fourth-root measure $Z^{1/4}$ is audited as the unique symmetric per-channel determinant weight for $C_Q=4$.\
+\textbf{Residual risk.} Reviewer may challenge exact equivalence of the four channels; that is now the precise audit point.
+\end{statusbox}
+\section{Claim under audit}
+The alpha coefficient uses
+\[
+  B(\rho)=12^{3/2}Z_{\rm compact}(i\rho)^{1/4}.
+\]
+The question is why the compact determinant enters with exponent $1/4$.
+\section{Channel symmetry}
+The information-loss route isolates four equivalent readout channels,
+\[
+  C_Q=4,
+\]
+corresponding to the minimal U(1)/Dirac channel package.  The compact determinant is a common factor of the readout sector, not a property of one preferred channel.
+\begin{theorem}[Unique symmetric channel weight]
+Let $Z$ be a common compact determinant distributed over $C_Q=4$ equivalent readout channels.  If channel permutation symmetry is preserved and the total determinant factor is multiplicative, the unique per-channel weight is
+\[
+  w=Z^{1/4}.
+\]
+\end{theorem}
+\begin{proof}
+By equivalence, all four channels have the same weight $w$.  Multiplicativity of independent readout channels gives
+\[
+  Z=w\cdot w\cdot w\cdot w=w^4.
+\]
+For positive determinant weight $Z>0$, the physical branch is $w=Z^{1/4}$.
+\end{proof}
+\section{Reviewer attack table}
+\begin{longtable}{p{0.30\textwidth}p{0.36\textwidth}p{0.24\textwidth}}
+\toprule
+Attack & Response & Residual risk\\
+\midrule\endhead
+Why not $Z$ instead of $Z^{1/4}$? & That assigns the whole determinant to one channel and breaks $C_Q=4$ symmetry. & Only if channels are not equivalent.\\
+Why not $Z^{1/2}$? & That would imply two equivalent channels, not four. & Requires re-auditing $C_Q$.\\
+Why geometric mean? & Determinants multiply; equal multiplicative weights imply geometric mean. & None if multiplicativity accepted.\\
+\bottomrule
+\end{longtable}
+\section{Conclusion}
+The exponent $1/4$ follows from channel symmetry and determinant multiplicativity.  A2 is therefore audited internally, conditional on $C_Q=4$ equivalence.
+\end{document}

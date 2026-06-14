@@ -1,0 +1,61 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=yellow!8!white,colframe=orange!70!black,arc=3pt,boxrule=1pt,title=Audit Status,#1}
+\title{A4 Audit: Uniqueness of the SU(2) Scherk--Schwarz Twist}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+\begin{document}
+\maketitle
+\begin{abstract}
+This audit addresses why the compact twist can be represented by $\sigma_3$.  In $\mathrm{Mat}(2,\mathbb C)$, any nontrivial traceless involution with eigenvalues $+1,-1$ is conjugate to $\sigma_3$.  Therefore the boundary condition $\Theta(\psi+2\pi R)=\sigma_3\Theta\sigma_3$ is not a special numerical choice; it is the canonical diagonal representative of the unique nontrivial $\mathbb Z_2$ inner twist class that splits diagonal and off-diagonal sectors.  This split gives periodic neutral blocks and shifted charged blocks, corresponding to $\vartheta_3$ and $\vartheta_2$.
+\end{abstract}
+\begin{statusbox}
+\textbf{A4 result.} $\sigma_3$ is the canonical representative of the nontrivial involutive inner twist class in $\mathrm{Mat}(2,\mathbb C)$.\
+\textbf{Residual risk.} Reviewer may ask why this nontrivial twist rather than trivial twist is physically selected; that belongs to compact-sector vacuum selection.
+\end{statusbox}
+\section{Involutive inner twists}
+Let $U\in SU(2)$ define an inner twist
+\[
+  \Theta\mapsto U\Theta U^{-1}.
+\]
+A nontrivial order-two twist satisfies
+\[
+  U^2=I,
+  \qquad
+  U\neq \pm I.
+\]
+Such a matrix has eigenvalues $+1$ and $-1$ and is conjugate in $SU(2)$ to $\sigma_3$.
+\begin{theorem}[Uniqueness up to conjugacy]
+Every nontrivial order-two inner twist of $\mathrm{Mat}(2,\mathbb C)$ is gauge-conjugate to
+\[
+  U=\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+\end{theorem}
+\begin{proof}
+A nontrivial involution is diagonalizable with eigenvalues $+1$ and $-1$.  Choosing its eigenbasis diagonalizes it to $\mathrm{diag}(1,-1)=\sigma_3$.  A change of eigenbasis is an $SU(2)$ conjugation up to an irrelevant phase.
+\end{proof}
+\section{Sector split}
+For
+\[
+  \Theta=\begin{pmatrix}a&b\\c&d\end{pmatrix},
+\]
+conjugation by $\sigma_3$ gives
+\[
+  a,d\mapsto a,d,
+  \qquad
+  b,c\mapsto -b,-c.
+\]
+Thus $a,d$ are periodic and $b,c$ are anti-periodic under the compact shift.  This supplies the $\vartheta_3$ and $\vartheta_2$ blocks.
+\section{Conclusion}
+A4 is internally audited: $\sigma_3$ is not arbitrary; it is the canonical representative of the unique nontrivial $\mathbb Z_2$ inner twist class.  The remaining physical question is why the compact vacuum chooses the nontrivial class rather than the trivial one.
+\end{document}

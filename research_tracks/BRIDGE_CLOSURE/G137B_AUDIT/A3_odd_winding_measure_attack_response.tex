@@ -1,0 +1,50 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=yellow!8!white,colframe=orange!70!black,arc=3pt,boxrule=1pt,title=Audit Status,#1}
+\title{A3 Audit: Odd-Winding Parity and Fermionic Measure}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+\begin{document}
+\maketitle
+\begin{abstract}
+This audit records the role of odd winding in the G137-B compact trace.  The parity-weighted trace over winding modes gives the theta block $\vartheta_4$.  The existing UBT fermionic-statistics bridge argues that odd winding carries exchange phase $(-1)^n$, and therefore odd modes have Grassmann/Berezin measure.  For the G137-B coefficient, the essential requirement is weaker: the compact trace must include the $(-1)^n$ parity insertion.  This is exactly the $\vartheta_4$ block.  Thus the use of $\vartheta_4$ is audited even if one separates the stronger fermionic-measure claim for external review.
+\end{abstract}
+\begin{statusbox}
+\textbf{A3 result.} Odd-winding parity trace supplies $\vartheta_4$; this is the required ingredient for G137-B.\
+\textbf{Residual risk.} Full exchange-phase $\Rightarrow$ Berezin measure remains an external audit target, but G137-B only needs the parity trace.
+\end{statusbox}
+\section{Parity trace}
+A compact integer winding trace without parity insertion gives
+\[
+  \vartheta_3(0|\tau)=\sum_{n\in\mathbb Z}q^{n^2}.
+\]
+A trace weighted by $(-1)^n$ gives
+\[
+  \vartheta_4(0|\tau)=\sum_{n\in\mathbb Z}(-1)^n q^{n^2}.
+\]
+Thus the odd/even winding parity bridge has a direct theta representative.
+\begin{theorem}[Odd-winding parity block]
+If the compact Layer2 trace keeps the $\psi$-parity grading $(-1)^n$, then its parity-weighted integer winding block is $\vartheta_4(0|\tau)$.
+\end{theorem}
+\begin{proof}
+This is the definition of the Jacobi theta constant $\vartheta_4$ as the parity-weighted integer lattice sum.
+\end{proof}
+\section{Relation to fermionic measure}
+The stronger UBT bridge says that odd winding has exchange phase $(-1)^n$ and hence Grassmann/Berezin path-integral measure.  For G137-B, the compact coefficient only requires that this parity grading appears in the compact trace.  Therefore A3 can be audited in two layers:
+\begin{enumerate}
+\item parity trace $(-1)^n\Rightarrow\vartheta_4$ — direct and robust;
+\item exchange phase $\Rightarrow$ Berezin measure — stronger bridge for fermionic physics.
+\end{enumerate}
+\section{Conclusion}
+A3 is internally sufficient for G137-B: the $\vartheta_4$ factor is not ad hoc, but the theta representation of the odd-winding parity trace.
+\end{document}
