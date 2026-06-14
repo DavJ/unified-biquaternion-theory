@@ -66,13 +66,16 @@ $P_\psi(W^a_\mu) = +W^a_\mu$.
 \end{proposition}
 
 \begin{proof}
-The covariant derivative $D_\mu\Theta = \partial_\mu\Theta
-- iW^a_\mu[\sigma^a/2,\Theta]$ must transform consistently under $P_\psi$.
+The covariant derivative
+\[
+  D_\mu\Theta = \partial_\mu\Theta - iW^a_\mu[\sigma^a/2,\Theta]
+\]
+must transform consistently under $P_\psi$.
 Since $P_\psi\Theta_n = (-1)^n\Theta_n$ [\Lz] and $S[\Theta]$ is
 $P_\psi$-invariant [\Lo, \texttt{step1\_psi\_parity.tex}]:
 \[
   P_\psi(D_\mu\Theta_n)
-  = \partial_\mu((-1)^n\Theta_n) - iW^a_\mu[\sigma^a/2, (-1)^n\Theta_n]
+  = \partial_\mu((-1)^n\Theta_n) - iW^a_\mu\bigl[\tfrac{\sigma^a}{2},(-1)^n\Theta_n\bigr]
   = (-1)^n D_\mu\Theta_n.
 \]
 This is consistent with $P_\psi(W^a_\mu)=+W^a_\mu$. \Lo
@@ -151,8 +154,8 @@ Status of OP-S4: \Lc\ on T2\_GAUGE. \qquad Gap C1: \textbf{CLOSED}.
 \textbf{T2\_GAUGE open conditions — updated.}
 
 \begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{lll}
+\renewcommand{\arraystretch}{1.25}\footnotesize
+\begin{tabular}{p{6cm}p{2.8cm}p{3.5cm}}
 \toprule
 Condition & Level & Status \\
 \midrule
