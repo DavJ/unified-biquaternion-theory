@@ -1,0 +1,75 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/B2_alpha_layer2_bridge_status.tex
+% Status: BRIDGE CLOSURE NOTE.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!5!white,
+  colframe=green!55!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Alpha Bridge Status,
+  #1
+}
+
+\title{Bridge B2: Alpha Layer2 Readout Status}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note harmonises the alpha bridge status after the later closure files were
+added.  Some legacy alpha files still contain older wording such as ``sole
+remaining gap''.  The current repository status is stronger: Gap A is closed by
+\texttt{gap\_A\_proof.tex}, the Layer2 rank is derived in
+\texttt{layer2\_kernel\_derivation.tex}, and the EM modular identification is
+closed in \texttt{em\_modular\_coupling\_identification.tex}.  Therefore the
+alpha chain is bridge-proven inside the current UBT assumptions.
+\end{abstract}
+
+\begin{statusbox}
+\[
+  \alpha^{-1}_{\rm UBT}=137.035999177548864\ldots
+\]
+Current status:
+\[
+  \text{PROVEN relative to the repository's stated canonical bridges.}
+\]
+External status:
+\[
+  \text{not yet peer-reviewed or externally accepted.}
+\]
+\end{statusbox}
+
+\section{Bridge components}
+
+The alpha bridge consists of:
+\begin{enumerate}
+  \item self-dual eta/theta spectrum;
+  \item information-loss relation $\rho=\exp(-C_Q/(2\pi n))$;
+  \item Layer2 readout rank $r_{\rm L2}=3(1+\Omega_\eta(1))$;
+  \item compact $U(1)_{\rm EM}$ modular identification
+  $n=4\pi/e^2=\alpha^{-1}$;
+  \item odd-spinor electroweak sign closure for the vacuum bridge.
+\end{enumerate}
+
+\section{Bookkeeping correction}
+
+Older files that predate the final alpha closure may still describe Gap A or
+Layer2 as the sole remaining issue.  Those statements should be read as legacy
+route-status notes.  The current master status is the one in
+\texttt{alpha\_derivation\_complete.tex}.
+
+\end{document}

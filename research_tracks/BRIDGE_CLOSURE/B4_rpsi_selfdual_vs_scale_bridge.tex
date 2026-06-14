@@ -1,0 +1,121 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/B4_rpsi_selfdual_vs_scale_bridge.tex
+% Status: BRIDGE CLOSURE NOTE.
+% Purpose: Correctly separate the proven self-dual R_psi=1 statement from the open physical scale calibration.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=blue!5!white,
+  colframe=blue!60!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Bridge Status,
+  #1
+}
+
+\title{Bridge B4: Self-Dual $R_\psi$ versus Physical Scale Calibration}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note records a status correction.  The dimensionless self-dual radius
+$R_\psi=1$ is not an open bridge: the repository already derives
+$R_\psi=R_t$ from the self-dual/T-duality fixed point, hence $R_\psi=1$ in
+natural units.  The remaining scale bridge is different: one must derive why
+that self-dual unit corresponds to the physical unification scale
+$M_{\rm UBT}\simeq2\times10^{16}$ GeV.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Closed:}
+\[
+  R_\psi=R_t,
+  \qquad R_t=1\Rightarrow R_\psi=1.
+\]
+\textbf{Open/MC:}
+\[
+  R_\psi=1
+  \quad\Longrightarrow\quad
+  M_{\rm UBT}\simeq2\times10^{16}\,\mathrm{GeV}.
+\]
+The open bridge is physical unit calibration, not self-dual radius fixation.
+\end{statusbox}
+
+\section{Closed part: self-dual radius}
+
+The canonical geometry file
+\texttt{canonical/geometry/Rpsi\_dynamical\_fix.tex} establishes the self-dual
+condition
+\[
+  R_\psi = R_t.
+\]
+Choosing natural units for the real-time circle,
+\[
+  R_t=1,
+\]
+gives
+\[
+  \boxed{R_\psi=1}.
+\]
+This is the correct input for the alpha winding analysis and for the modular
+self-dual point $\tau=i$.
+
+\section{Open part: physical scale calibration}
+
+The Weinberg RG branch needs a physical scale,
+\[
+  M_{\rm UBT}\simeq2\times10^{16}\,\mathrm{GeV}.
+\]
+This is not the same statement as $R_\psi=1$.  Rather, it requires a physical
+unit map
+\[
+  M_{\rm UBT}=\Lambda_\psi/R_\psi.
+\]
+Since $R_\psi=1$, the actual bridge is
+\[
+  \Lambda_\psi\simeq2\times10^{16}\,\mathrm{GeV}.
+\]
+Thus the scale-closure task is to derive $\Lambda_\psi$, not to rederive
+$R_\psi=1$.
+
+\section{Current best candidate}
+
+The file \texttt{research\_tracks/EW/rpsi\_from\_action.tex} records a viable
+candidate based on Scherk--Schwarz half-mode projection and gauge-condensate
+normalisation:
+\[
+  \lambda_{\rm eff}=\frac{g^2}{2}\approx0.122,
+\]
+while the numerical target is
+\[
+  \lambda_{\rm target}\approx0.119.
+\]
+The mismatch is about $2.7\%$, which is small enough to treat the route as a
+serious candidate, but not yet an exact theorem.
+
+\section{Corrected bridge wording}
+
+The bridge-closure programme should no longer say:
+\[
+  \text{derive } R_\psi=1.
+\]
+It should say:
+\[
+  \text{derive the physical scale calibration }\Lambda_\psi
+  \text{ at the self-dual point }R_\psi=1.
+\]
+
+\end{document}

@@ -1,0 +1,65 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/BRIDGE_CLOSURE/B3_weinberg_odd_spinor_bridge_status.tex
+% Status: BRIDGE CLOSURE NOTE.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!5!white,
+  colframe=green!55!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Weinberg Bridge Status,
+  #1
+}
+
+\title{Bridge B3: Weinberg Odd-Spinor Threshold Status}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note records the current Weinberg-angle bridge status.  The GUT boundary
+$\sin^2\theta_W=3/8$ is derived from hypercharge norms.  The odd-spinor
+threshold spectrum gives $b_1=33/5$, $b_2=1$, $b_3=-3$.  Combining these with
+the compact scale bridge and the alpha/QED running bridge gives the $Z$-pole
+closure $\sin^2\theta_W(M_Z)=0.23122\ldots$.
+\end{abstract}
+
+\begin{statusbox}
+Current status:
+\[
+  \sin^2\theta_W(M_Z)=0.23122\ldots
+\]
+\[
+  \text{PROVEN relative to current UBT bridge assumptions.}
+\]
+\end{statusbox}
+
+\section{Key files}
+
+\begin{itemize}
+  \item \texttt{weinberg\_angle\_gut\_norm\_theorem.tex}
+  \item \texttt{weinberg\_angle\_odd\_spinor\_threshold\_beta\_theorem.tex}
+  \item \texttt{weinberg\_angle\_mz\_bridge\_closure.tex}
+\end{itemize}
+
+\section{Remaining external-facing caveat}
+
+The bridge proof depends on the current UBT interpretation of the odd-spinor
+threshold as the active RG spectrum and on the compact-scale calibration.  This
+is acceptable inside the repository, but a standalone paper must defend these
+bridges explicitly.
+
+\end{document}
