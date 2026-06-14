@@ -1,0 +1,219 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/g137b_canonical_bridge_package.tex
+% Status: Canonicalisation attempt for the G137-B bridge package.
+% Purpose: Show that the bridge assumptions used in G137-B closure are minimal consequences of UBT compact-sector symmetries.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=yellow!8!white,
+  colframe=orange!70!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+
+\title{Canonical Bridge Package for Gap G137-B}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The final G137-B bridge closure uses four structural bridges: the SU(2)
+Scherk--Schwarz twist, odd-winding parity/fermionic measure, complete Layer2
+spin-structure trace, and four-channel geometric-mean measure.  This note
+canonicalises that package as far as possible inside the current UBT axioms.  The
+SU(2) twist and odd-winding measure are already existing bridge theorems.  The
+complete spin-structure trace is shown to be the minimal multiplicative compact
+measure compatible with the quaternionic triad $\mathrm{Im}\,\mathbb H$ and
+closure under the three torus readout sectors $\vartheta_2,\vartheta_3,\vartheta_4$.
+The four-channel quarter-root is shown to be the unique symmetric per-channel
+normalisation when the same compact determinant is distributed over the four
+Dirac/U(1) readout channels.  Therefore the G137-B bridge package is not an
+arbitrary list of assumptions; it is the minimal compact-sector measure package
+compatible with UBT's current canonical bridges.  The remaining limitation is
+external: each bridge still needs independent peer-level audit.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Internal result.} The G137-B bridge package is canonicalised relative to
+current UBT axioms and bridges.\
+\textbf{Not claimed.} External proof or community acceptance.\
+\textbf{Remaining risk.} A reviewer may challenge the complete-spin-structure
+trace as a measure principle; that is now the precise attack surface.
+\end{statusbox}
+
+\section{The bridge package}
+
+The final G137-B closure uses:
+\begin{enumerate}
+\item SU(2) Scherk--Schwarz twist of the compact matrix field;
+\item odd-winding parity/fermionic measure;
+\item complete Layer2 spin-structure trace;
+\item four-channel geometric-mean measure.
+\end{enumerate}
+We now show why these are not free numerical choices.
+
+\section{SU(2) twist and sector splitting}
+
+The UBT compact field satisfies
+\[
+  \Theta(\psi+2\pi R_\psi)=\sigma_3\Theta(\psi)\sigma_3.
+\]
+Writing
+\[
+  \Theta=\begin{pmatrix}a&b\\c&d\end{pmatrix},
+\]
+one obtains:
+\[
+  a,d:\text{ periodic},
+  \qquad
+  b,c:\text{ anti-periodic}.
+\]
+Thus the compact sector contains both periodic and shifted towers.  In theta
+language these are represented by $\vartheta_3$ and $\vartheta_2$ respectively.
+This is an existing UBT bridge theorem, not a new insertion.
+
+\section{Odd-winding parity trace}
+
+The odd-winding bridge gives the exchange/parity phase
+\[
+  (-1)^n.
+\]
+A trace weighted by this parity over integer winding modes gives the third theta
+block
+\[
+  \vartheta_4.
+\]
+Therefore the compact readout cannot be complete with only $\vartheta_2$ and
+$\vartheta_3$; the odd-parity trace supplies $\vartheta_4$.
+
+\section{Minimal complete spin-structure trace}
+
+The imaginary-quaternion sector has a canonical triad
+\[
+  \mathrm{Im}\,\mathbb H=\mathrm{span}\{I,J,K\}.
+\]
+A compact Layer2 readout measure that preserves this triad symmetry cannot
+single out only one theta block.  The minimal multiplicative trace closed under
+the three nontrivial compact readout sectors is
+\[
+  \vartheta_2\vartheta_3\vartheta_4.
+\]
+With two real oscillator denominators, the compact one-real measure is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau).
+\]
+By Jacobi's identity, this is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)=2\eta(\tau).
+\]
+
+\begin{theorem}[Minimal complete compact trace]
+Assume the SU(2) compact twist, odd-winding parity trace, and invariance of the
+Layer2 compact readout under the full $\mathrm{Im}\,\mathbb H$ triad.  Then the
+minimal multiplicative compact one-real determinant is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta^{-2}\vartheta_2\vartheta_3\vartheta_4=2\eta(\tau).
+\]
+\end{theorem}
+
+\begin{proof}
+The twist theorem gives the periodic and shifted sectors, hence $\vartheta_3$
+and $\vartheta_2$.  The odd-winding parity bridge gives the parity trace,
+hence $\vartheta_4$.  Triad-invariant completeness requires including all three
+nontrivial readout sectors once.  The two compact real oscillator denominators
+supply $\eta^{-2}$.  The Jacobi product identity gives
+$\eta^{-2}\vartheta_2\vartheta_3\vartheta_4=2\eta$.
+\end{proof}
+
+\section{Four-channel geometric mean}
+
+The information-loss route isolates four equivalent U(1)/Dirac readout channels:
+\[
+  C_Q=4.
+\]
+Let $Z$ be the compact determinant common to the channel-symmetric readout.  If
+the total compact determinant is distributed symmetrically over four equivalent
+channels, the per-channel multiplicative weight $w$ is fixed by
+\[
+  w^4=Z.
+\]
+Thus
+\[
+  w=Z^{1/4}.
+\]
+There is no alternative symmetric per-channel multiplicative normalisation.
+
+\begin{theorem}[Four-channel geometric-mean measure]
+Given $C_Q=4$ equivalent readout channels and a common compact determinant
+$Z_{\rm compact}$, the unique symmetric per-channel determinant insertion is
+\[
+  Z_{\rm compact}^{1/4}.
+\]
+\end{theorem}
+
+\section{Coefficient}
+
+Combining the base heat-kernel factor with the compact measure gives
+\[
+  B(\rho)=12^{3/2}\left(Z_{\rm compact}^{1\rm real}(i\rho)\right)^{1/4}
+  =12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+Together with the endomap readout entropy
+\[
+  \log|\mathrm{End}(\mathcal S_n)|=n\log n,
+\]
+this gives
+\[
+  V_{\rm eff}(n,\rho)=n^2-B(\rho)n\log n+\cdots.
+\]
+
+\section{Final internal status}
+
+Within the current UBT bridge package, G137-B is closed:
+\[
+  S[\Theta]\xRightarrow[\rm bridge]{\rm compact\ measure}
+  V_{\rm eff}(n,ho)=n^2-B(\rho)n\log n,
+\]
+with
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+The status should therefore be:
+\[
+  \boxed{\text{Alpha: bridge-derived within current UBT canonical bridges.}}
+\]
+It should not be labelled as externally proven until the bridge package has been
+independently audited.
+
+\section{Conclusion}
+
+The G137-B bridge assumptions are now reduced to a minimal compact-sector
+measure principle.  The strongest possible honest claim is not merely MC+ and
+not external proof, but bridge-level derivation from the current UBT canonical
+package.  The remaining scientific work is adversarial audit of the compact
+measure theorem, especially the necessity of the complete
+$\vartheta_2\vartheta_3\vartheta_4$ spin-structure trace.
+
+\end{document}

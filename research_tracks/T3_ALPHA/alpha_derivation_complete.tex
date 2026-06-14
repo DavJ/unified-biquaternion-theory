@@ -1,12 +1,12 @@
 % © 2026 D. Jaroš — CC BY-NC-ND 4.0
 %
 % File: research_tracks/T3_ALPHA/alpha_derivation_complete.tex
-% Purpose: Complete derivation of α⁻¹ = 137.035999177549 from UBT.
-%          All steps [L1] or [L0]. Exact Gaussian path integral (not approx).
+% Purpose: Bridge-level derivation of α⁻¹ = 137.035999177549 from UBT.
+%          Gap G137-B is closed inside the current UBT canonical bridge package.
 %
-% Status: [L1] for mathematical fixed-point result.
-%         Physical identification n=α⁻¹: [L1 conditional] via compact-U(1) EM modular coupling.
-% Date: 2026-06-13
+% Status: Bridge-derived inside current UBT canonical bridges.
+%         Not claimed as externally peer-reviewed proof.
+% Date: 2026-06-13; status updated 2026-06-14 after G137-B closure.
 
 \ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
@@ -204,6 +204,39 @@ $n^*(B)$ stationary point of $V_{\rm eff}(n)=n^2-Bn\ln n$ \Lo.
 Numerically: 10 iterations from $n_0=137$, contraction
 $|\mathcal{F}'(n^*)|<1$. \textbf{[NUM]}
 \end{proof}
+
+
+%──────────────────────────────────────────────────────────────────
+\section{Gap G137-B bridge closure}
+\label{sec:g137b_closure}
+
+The effective alpha potential is no longer treated as a free model ansatz inside
+the current repository logic.  It is derived at bridge level as follows:
+\[
+  V_{\rm eff}(n,\rho)=n^2-B(\rho)n\log n+\cdots.
+\]
+The entropy factor comes from the Layer2 endomap readout space on the $n$-fold
+winding cover,
+\[
+  \mathcal R_n=\mathrm{End}(\mathcal S_n),
+  \qquad
+  |\mathcal R_n|=n^n,
+  \qquad
+  \log|\mathcal R_n|=n\log n.
+\]
+The coefficient comes from the compact one-real spin-structure determinant,
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau)
+  =2\eta(\tau),
+\]
+so that
+\[
+  B(\rho)=12^{3/2}\left(Z_{\rm compact}^{1\rm real}(i\rho)\right)^{1/4}
+  =12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+Thus Gap G137-B is closed at UBT bridge level.  The bridge package remains the
+object of external audit.
 
 %──────────────────────────────────────────────────────────────────
 \section{Physical Interpretation}

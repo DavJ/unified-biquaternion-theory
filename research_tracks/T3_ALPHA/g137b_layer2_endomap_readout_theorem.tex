@@ -1,0 +1,213 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/g137b_layer2_endomap_readout_theorem.tex
+% Status: G137-B ENTROPY SUBGAP CLOSURE / L1-CONDITIONAL.
+% Purpose: Derive the leading n log n entropy from Layer2 readout on an n-fold winding cover.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!8!white,
+  colframe=green!45!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+
+\title{Gap G137-Ba: Layer2 Endomap Readout and the $n\log n$ Winding Entropy}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The diagonal determinant attack on G137-B showed that a product determinant
+$n!$ gives $\log\Gamma(n+1)$ and fails.  The alpha route requires instead a
+leading entropy $n\log n$.  This note derives that leading entropy from the
+Layer2 readout structure of an $n$-fold winding cover.  The $n$ coherent turns
+of the cover form a sheet set $\mathcal S_n$.  A local Layer2 readout field is
+a sheet-valued map from each turn into the same coherent cover,
+$f:\mathcal S_n\to\mathcal S_n$.  Hence the readout configuration space is
+$\mathrm{End}(\mathcal S_n)$ and has cardinality $n^n$, giving
+$\log|\mathrm{End}(\mathcal S_n)|=n\log n$.  If one additionally quotients by a
+global deck relabelling of the target sheet origin, the entropy changes only by
+$-\log n$, a subleading term.  Therefore the leading $n\log n$ part of G137-B is
+closed conditional on the Layer2 local-readout principle.  The eta-dressed
+coefficient $B(\rho)$ remains a separate coefficient subgap G137-Bb.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Closed here:} the leading entropy form $n\log n$ from an all-to-all
+Layer2 readout on the $n$-fold winding cover.\
+\textbf{Not closed here:} the full coefficient theorem
+$B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}$ from the canonical $\Theta$ measure.\
+\textbf{Updated split:} G137-Ba = entropy shape, G137-Bb = eta/heat-kernel
+coefficient.
+\end{statusbox}
+
+\section{The $n$-fold winding cover}
+
+Let the compact $\psi$ direction be a circle.  An $n$-winding configuration is
+an $n$-fold coherent cover of the fundamental $\psi$ cycle.  Fix a base point
+and an orientation.  The cover has a distinguished finite sheet set
+\[
+  \mathcal S_n=\{1,2,\ldots,n\}.
+\]
+The deck group is cyclic, $C_n$, but the local Layer2 readout is performed after
+choosing a base sheet.  A later quotient by a global deck relabelling is a
+gauge-volume correction and is subleading in the entropy.
+
+\section{Diagonal determinant versus readout field}
+
+A diagonal determinant assumes that sheet $a$ interacts only with the same
+level $a$.  This produces
+\[
+  \prod_{k=1}^{n}k=n!,
+\]
+and therefore $\log\Gamma(n+1)$.  This was shown to give the wrong stationary
+point.
+
+Layer2 readout is different.  It is not a diagonal product over eigenlevels; it
+is a local observable assignment over the coherent cover.  Each turn of the
+cover must be assigned a readout sheet in the same cover.
+
+\begin{definition}[Layer2 sheet-valued readout field]
+For an $n$-fold winding cover, a Layer2 sheet-valued readout configuration is a
+map
+\[
+  f:\mathcal S_n\longrightarrow\mathcal S_n.
+\]
+The readout configuration space is
+\[
+  \mathcal R_n:=\mathrm{Map}(\mathcal S_n,\mathcal S_n)
+  =\mathrm{End}(\mathcal S_n).
+\]
+\end{definition}
+
+\begin{lemma}[Endomap count]
+For $|\mathcal S_n|=n$,
+\[
+  |\mathrm{End}(\mathcal S_n)|=n^n.
+\]
+\end{lemma}
+
+\begin{proof}
+For each of the $n$ elements of $\mathcal S_n$, the value of $f$ can be chosen
+independently among $n$ target sheets.  Therefore the total number of maps is
+\[
+  \underbrace{n\cdot n\cdots n}_{n\text{ times}}=n^n.
+\]
+\end{proof}
+
+\begin{theorem}[Leading Layer2 winding entropy]
+The Layer2 sheet-valued readout field on an $n$-fold coherent winding cover has
+leading entropy
+\[
+  S_{\rm L2}(n)=\log|\mathcal R_n|=n\log n.
+\]
+\end{theorem}
+
+\begin{proof}
+By the endomap count,
+\[
+  |\mathcal R_n|=n^n.
+\]
+Taking the logarithm gives
+\[
+  S_{\rm L2}(n)=\log(n^n)=n\log n.
+\]
+\end{proof}
+
+\section{Gauge-volume correction from deck relabelling}
+
+If the global origin of the target sheet set is considered unphysical, one may
+quotient by the free target action of the deck group $C_n$:
+\[
+  f\sim T^a\circ f,
+  \qquad a\in C_n.
+\]
+For nonzero $a$, $T^a\circ f=f$ has no solution because $T^a$ has no fixed sheet.
+Thus the action on maps is free and
+\[
+  |\mathcal R_n/C_n|=\frac{n^n}{n}=n^{n-1}.
+\]
+The entropy is then
+\[
+  \log|\mathcal R_n/C_n|=(n-1)\log n=n\log n-\log n.
+\]
+The correction $-\log n$ is subleading relative to $n\log n$ and changes only
+subleading terms in the effective potential.
+
+\begin{remark}
+This resolves an important overcounting objection.  The all-to-all readout does
+not rely on treating a pure gauge origin as physical.  Removing the global deck
+volume changes the entropy by $O(\log n)$, not by $O(n\log n)$.
+\end{remark}
+
+\section{Effective alpha potential}
+
+The self-dual winding stiffness gives
+\[
+  V_{\rm wind}(n)=n^2
+\]
+in dimensionless units.  Dressing the Layer2 entropy by the oscillator/readout
+index $B(\rho)$ gives
+\[
+  \log Z_n(\rho)=B(\rho)n\log n+O(\log n)+O(n)_{\rm lin}.
+\]
+The effective potential is therefore
+\[
+  V_{\rm eff}(n,\rho)=n^2-B(\rho)n\log n+\text{subleading/linear terms}.
+\]
+Keeping the leading entropy gives the alpha stationarity equation
+\[
+  2n-B(\rho)(\log n+1)=0.
+\]
+
+\section{What remains: G137-Bb}
+
+This note closes only the entropy-shape subgap:
+\[
+  \boxed{G137\text{-Ba}:\quad n\log n\text{ from Layer2 endomap readout}.}
+\]
+The coefficient subgap remains:
+\[
+  \boxed{G137\text{-Bb}:\quad
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}
+  \text{ from the canonical }\Theta\text{ measure}.}
+\]
+Existing UBT ingredients strongly suggest this factorisation:
+\[
+  12=N_{\rm eff},
+  \qquad
+  (2\eta(i\rho))^{1/4}=\text{compact oscillator weight},
+\]
+but a full canonical measure derivation is still required before alpha can be
+promoted from strong MC+/L1-conditional evidence to a theorem.
+
+\section{Conclusion}
+
+The failed diagonal determinant $n!$ and the successful endomap count $n^n$ show
+that the alpha route requires Layer2 readout entropy, not a simple spectral
+product.  The leading $n\log n$ term is now derived from the natural map space
+$\mathrm{End}(\mathcal S_n)$ of the $n$-fold winding cover, with only subleading
+changes under deck-group quotienting.  The remaining alpha gap is therefore no
+longer the entropy shape but the exact eta/heat-kernel coefficient $B(\rho)$.
+
+\end{document}

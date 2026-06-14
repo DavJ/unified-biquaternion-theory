@@ -1,0 +1,203 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/g137b_compact_measure_spin_product_theorem.tex
+% Status: G137-Bb compact-measure closure theorem / L1-CONDITIONAL.
+% Purpose: Derive the determinant composition eta^{-2} theta2 theta3 theta4 from UBT compact sectors.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!8!white,
+  colframe=green!45!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Status,
+  #1
+}
+
+\title{Gap G137-Bb: Compact Measure Spin-Product Theorem}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note closes the determinant-composition part of G137-Bb at bridge level.
+The SU(2) Scherk--Schwarz analysis already decomposes the compact $\Theta$
+sector into periodic neutral diagonal blocks and anti-periodic charged
+off-diagonal blocks.  The odd-winding/fermionic bridge adds the parity-twisted
+sector required by the complete compact readout trace.  The canonical Layer2
+readout over the $\mathrm{Im}\,\mathbb H$ triad therefore contains the three
+standard torus theta blocks
+\[
+  \vartheta_3,
+  \qquad
+  \vartheta_2,
+  \qquad
+  \vartheta_4,
+\]
+with two real oscillator denominators $\eta^{-2}$.  Hence
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau)
+  =2\eta(\tau).
+\]
+Together with the four-channel geometric mean and the base factor
+$12^{3/2}$, this gives
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+The theorem is L1-conditional: it depends on accepting the existing SU(2) twist,
+odd-winding fermionic measure, and complete Layer2 spin-structure readout
+bridges as canonical.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{Result.}  G137-Bb is closed at bridge level: the compact one-real
+measure gives $Z_{\rm compact}^{1\rm real}=2\eta$.\
+\textbf{Conditional dependencies.} SU(2) Scherk--Schwarz twist, odd-winding
+fermionic/parity bridge, and complete Layer2 spin-structure trace.\
+\textbf{Alpha status after this note.} Alpha is promoted only to
+\emph{bridge-level derivation}; external proof still requires independent audit
+of these bridges.
+\end{statusbox}
+
+\section{Input bridge results}
+
+We use three existing UBT bridge results.
+
+\begin{enumerate}
+\item \textbf{SU(2) Scherk--Schwarz twist.}  For
+\[
+  \Theta(\psi+2\pi R_\psi)=\sigma_3\Theta(\psi)\sigma_3,
+\]
+writing
+\[
+  \Theta=\begin{pmatrix}a&b\\ c&d\end{pmatrix},
+\]
+the diagonal components $a,d$ are periodic, while the charged off-diagonal
+components $b,c$ are anti-periodic.
+
+\item \textbf{Odd-winding fermionic measure.}  Odd winding carries Berezin/
+Grassmann measure and supplies the parity-twisted trace sector.
+
+\item \textbf{Layer2 complete readout.}  A physical compact readout must be
+closed under the three nontrivial spin/readout sectors of the compact torus.
+This is the minimal modular-complete trace compatible with the
+$\mathrm{Im}\,\mathbb H$ triad.
+\end{enumerate}
+
+\section{Theta blocks from compact sectors}
+
+The three compact readout sectors are:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+UBT sector & Boundary/readout type & Theta block \\
+\midrule
+Neutral diagonal block $(a,d)$ & periodic winding & $\vartheta_3(0|\tau)$ \\
+Charged off-diagonal block $(b,c)$ & Scherk--Schwarz shifted/NS & $\vartheta_2(0|\tau)$ \\
+Odd/parity readout block & $(-1)^n$ twisted trace & $\vartheta_4(0|\tau)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The two real oscillator directions of the compact readout determinant contribute
+\[
+  \eta(\tau)^{-2}.
+\]
+Thus the complete one-real compact readout measure is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}
+    \vartheta_2(0|\tau)
+    \vartheta_3(0|\tau)
+    \vartheta_4(0|\tau).
+\]
+
+\section{Closure theorem}
+
+\begin{theorem}[Compact one-real measure]
+Assuming the SU(2) twist, odd-winding parity bridge, and complete Layer2
+spin-structure trace, the one-real compact readout determinant is
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau).
+\]
+By Jacobi's identity, this equals
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)=2\eta(\tau).
+\]
+\end{theorem}
+
+\begin{proof}
+The SU(2) twist decomposes the compact matrix field into periodic neutral and
+shifted charged sectors, giving $\vartheta_3$ and $\vartheta_2$.  The
+odd-winding fermionic bridge supplies the parity-twisted trace sector, giving
+$\vartheta_4$.  The compact determinant has two real oscillator denominators,
+giving $\eta^{-2}$.  Therefore
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta^{-2}\vartheta_2\vartheta_3\vartheta_4.
+\]
+The standard Jacobi identity $\vartheta_2\vartheta_3\vartheta_4=2\eta^3$ gives
+$Z_{\rm compact}^{1\rm real}=2\eta$.
+\end{proof}
+
+\section{Quarter-root insertion and coefficient}
+
+The information-loss route has four symmetric U(1)/Dirac readout channels,
+$C_Q=4$.  The compact determinant is distributed as a geometric mean over these
+four channels, so the coefficient receives
+\[
+  \bigl(Z_{\rm compact}^{1\rm real}\bigr)^{1/4}=(2\eta)^{1/4}.
+\]
+Combining with the base heat-kernel factor gives
+\[
+  B(\rho)=12^{3/2}\bigl(Z_{\rm compact}^{1\rm real}(i\rho)\bigr)^{1/4}
+  =12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+
+\section{Updated alpha status}
+
+With the earlier endomap entropy result, the alpha effective potential now has
+a bridge-level derivation:
+\[
+  V_{\rm eff}(n,\rho)=n^2-B(\rho)n\log n+\cdots,
+\]
+where
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+The remaining caution is not numerical or algebraic; it is the status of the
+bridges used above.  If the SU(2) twist, odd-winding parity bridge, and complete
+Layer2 spin-structure trace are accepted as canonical, G137-B is closed at
+bridge level.
+
+\section{Conclusion}
+
+The compact determinant composition is no longer arbitrary.  It follows from
+the periodic, shifted, and parity-twisted compact sectors of the $\Theta$ field,
+with oscillator denominator $\eta^{-2}$.  This produces $2\eta(\tau)$ exactly
+and supplies the missing eta insertion in $B(\rho)$.  Therefore the remaining
+question for alpha is no longer the coefficient itself, but the independent
+acceptance of the bridge assumptions used to identify the complete compact
+Layer2 measure.
+
+\end{document}

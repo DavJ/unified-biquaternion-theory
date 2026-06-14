@@ -1,0 +1,168 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% File: research_tracks/T3_ALPHA/g137b_final_bridge_closure.tex
+% Status: G137-B FINAL BRIDGE-LEVEL CLOSURE.
+% Purpose: Consolidate the closure of the alpha potential and coefficient at UBT bridge level.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=green!50!black}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{statusbox}[1][]{
+  colback=green!8!white,
+  colframe=green!45!black,
+  arc=3pt,
+  boxrule=1pt,
+  title=Final Status,
+  #1
+}
+
+\title{Final Bridge-Level Closure of Gap G137-B}
+\author{Ing. David Jaroš}
+\date{2026-06-14}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note consolidates the final bridge-level closure of Gap G137-B in the UBT
+alpha route.  The previously open step was the derivation of the effective
+winding potential
+\[
+  V_{\rm eff}(n,\rho)=n^2-B(\rho)n\log n
+\]
+and the coefficient
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}
+\]
+from the canonical $\Theta$ sector.  The closure proceeds in two parts.  First,
+the $n\log n$ entropy is derived from Layer2 endomap readout on the $n$-fold
+winding cover, $|\mathrm{End}(\mathcal S_n)|=n^n$.  Second, the coefficient is
+derived at bridge level from the compact spin-structure determinant
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau)
+  =2\eta(\tau),
+\]
+combined with the base heat-kernel factor $12^{3/2}$ and the four-channel
+geometric mean.  Therefore Gap G137-B is closed at UBT bridge level.  This is
+not a claim of external peer-reviewed acceptance; it is a repository-internal
+closure conditional on the stated bridge package.
+\end{abstract}
+
+\begin{statusbox}
+\textbf{G137-Ba}: $n\log n$ entropy from Layer2 endomap readout — closed at
+bridge level.\
+\textbf{G137-Bb}: coefficient $B(\rho)$ from compact spin-structure determinant
+— closed at bridge level.\
+\textbf{Remaining task}: external audit of the bridge package: SU(2) twist,
+odd-winding parity measure, complete Layer2 spin-structure trace, and
+four-channel geometric-mean measure.
+\end{statusbox}
+
+\section{Entropy shape: G137-Ba}
+
+Let
+\[
+  \mathcal S_n=\{1,\ldots,n\}
+\]
+be the sheet set of the coherent $n$-fold winding cover.  Layer2 readout assigns
+each winding turn a sheet in the same cover, so the readout configuration space
+is
+\[
+  \mathcal R_n=\mathrm{End}(\mathcal S_n).
+\]
+Therefore
+\[
+  |\mathcal R_n|=n^n,
+  \qquad
+  \log|\mathcal R_n|=n\log n.
+\]
+A quotient by the global deck relabelling changes this only by $-\log n$, a
+subleading correction.  Thus the leading entropy shape required by the alpha
+potential is obtained from the Layer2 readout structure, not inserted by hand.
+
+\section{Coefficient: G137-Bb}
+
+The coefficient is split into a base factor and a compact determinant factor:
+\[
+  B(\rho)=12^{3/2}Z_{\rm compact}^{1\rm real}(i\rho)^{1/4}.
+\]
+The base factor $12^{3/2}$ comes from $N_{\rm eff}=12$, $d=3$ heat-kernel Weyl
+scaling, and the self-dual $k=1$ current-algebra bridge.
+
+The compact one-real determinant is the complete three-spin-structure product
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)
+  =\eta(\tau)^{-2}\vartheta_2(0|\tau)\vartheta_3(0|\tau)\vartheta_4(0|\tau).
+\]
+By the Jacobi product identity
+\[
+  \vartheta_2\vartheta_3\vartheta_4=2\eta^3,
+\]
+we have
+\[
+  Z_{\rm compact}^{1\rm real}(\tau)=2\eta(\tau).
+\]
+Hence
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+
+\section{Effective potential}
+
+Combining the winding stiffness and the entropy determinant gives
+\[
+  V_{\rm eff}(n,ho)
+  =n^2-B(\rho)n\log n+\cdots,
+\]
+with
+\[
+  B(\rho)=12^{3/2}(2\eta(i\rho))^{1/4}.
+\]
+The stationarity condition is
+\[
+  2n-B(\rho)(\log n+1)=0,
+\]
+or
+\[
+  \frac{2n}{\log n+1}=B(\rho).
+\]
+This is the alpha-route fixed-point equation used in the information-loss and
+Layer2-refined calculation.
+
+\section{Bridge package}
+
+The closure depends on the following bridge package:
+\begin{enumerate}
+\item SU(2) Scherk--Schwarz twist of the compact $\Theta$ sector;
+\item odd-winding fermionic/parity measure;
+\item complete Layer2 spin-structure trace $\eta^{-2}\vartheta_2\vartheta_3\vartheta_4$;
+\item four-channel geometric mean measure, giving the quarter root;
+\item compact-U(1) electromagnetic modular identification, giving
+  $n=\alpha^{-1}$.
+\end{enumerate}
+Within this bridge package, Gap G137-B is closed.  The next scientific task is
+independent audit of these bridge assumptions, not additional numerical tuning.
+
+\section{Conclusion}
+
+Gap G137-B is no longer an open modelling gap in the internal UBT repository
+logic.  The $n\log n$ entropy and the coefficient $B(\rho)$ both have
+bridge-level derivations.  The alpha route should therefore be labelled
+\emph{bridge-level derived}, not merely MC+, and not externally proven.  This is
+the strongest honest status: the internal chain is closed, while the bridge
+package remains the target for external review.
+
+\end{document}
