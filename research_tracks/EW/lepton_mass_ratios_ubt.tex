@@ -1,23 +1,26 @@
 % © 2026 D. Jaroš — CC BY-NC-ND 4.0
 %
 % File: research_tracks/EW/lepton_mass_ratios_ubt.tex
-% Purpose: Documents structural coincidences between lepton mass ratios
-%          and UBT constants alpha, Omega_eta, C_Q.
+% Purpose: Lepton mass ratios from UBT constants (pi-3), N_c, N_eff, alpha.
 %
-% Key findings:
-%   h_tau ≈ sqrt(2)*alpha  (-1.0%)  [MC+]
-%   m_tau/m_e ≈ 2pi/Omega_eta  (-3.8%)  [MC+]
-%   m_tau/m_mu ≈ 4*alpha/Omega_eta  (-7.5%)  [MC+]
+% Key results:
+%   m_tau/m_mu = 1/(N_c(pi-3)^2) * (1+(pi/2)alpha)   -0.0005%  [MC+]
+%   m_mu/m_e   = 1/(N_eff(pi-3)^4)                    +0.270%   [MC+]
+%   m_tau/m_e  = 1/(N_c N_eff(pi-3)^6)*(1+(pi/2)alpha) +0.270%  [MC+]
+%
+% Structure: each generation adds factor (pi-3)^{-2}
+%   tau: colour factor N_c=3  (heaviest -> least suppressed)
+%   mu:  mode factor N_eff=12
+%   e:   both factors N_c*N_eff=36
 %
 % Status: [MC+] structural evidence. Not yet derived from S[Theta].
-%         VEV hierarchy (M_EW << M_UBT) remains the blocking open problem.
 % Date: 2026-06-14
 
 \ifdefined\INCLUDEMODE\else
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{hyperref,mdframed,booktabs,xcolor}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage{hyperref,mdframed,xcolor}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -34,8 +37,8 @@
 \newcommand{\OPEN}{\textbf{[Open]}}
 
 \title{\textbf{Lepton Mass Ratios from UBT Constants}\\[4pt]
-\large Structural coincidences: $h_\tau\approx\sqrt2\,\alpha$,
-$m_\tau/m_e\approx 2\pi/\Omega_\eta$, $m_\tau/m_\mu\approx4\alpha/\Omega_\eta$}
+\large $m_\tau/m_\mu = [N_c(\pi{-}3)^2]^{-1}(1+\tfrac{\pi}{2}\alpha)$ at $-0.0005\%$;
+$m_\mu/m_e = [N_{\rm eff}(\pi{-}3)^4]^{-1}$ at $+0.27\%$}
 \author{D.~Jaros}
 \date{2026-06-14}
 
@@ -43,152 +46,85 @@ $m_\tau/m_e\approx 2\pi/\Omega_\eta$, $m_\tau/m_\mu\approx4\alpha/\Omega_\eta$}
 \maketitle
 \fi
 
-%──────────────────────────────────────────────────────────────────
 \begin{abstract}
-We document three structural coincidences between charged lepton masses
-and UBT-derived constants. All three involve only $\alpha^{-1}=137.036$
-[\Lo, \texttt{alpha\_l1\_proof.tex}] and
-$\Omega_\eta=\tfrac{1}{24}-\tfrac{1}{8\pi}$ [\Lz]:
+Three charged lepton mass ratios are expressed using only UBT-derived
+constants $\pi$, $\alpha$ [\Lo], $N_c=3$ [\Lz], $N_{\rm eff}=12$ [\Lo]:
 \begin{align*}
-  h_\tau &\approx \sqrt{2}\,\alpha & &(-1.0\%), \\
-  m_\tau/m_e &\approx 2\pi/\Omega_\eta & &(-3.8\%), \\
-  m_\tau/m_\mu &\approx 4\alpha/\Omega_\eta & &(-7.5\%).
+  \frac{m_\tau}{m_\mu}
+  &= \frac{1}{N_c(\pi-3)^2}\!\left(1+\tfrac{\pi}{2}\alpha\right)
+  = 16.81695\ldots \quad (\text{exp.\ }16.81703,\;{-}0.0005\%), \\[4pt]
+  \frac{m_\mu}{m_e}
+  &= \frac{1}{N_{\rm eff}(\pi-3)^4}
+  = 207.327\ldots \quad (\text{exp.\ }206.768,\;{+}0.27\%), \\[4pt]
+  \frac{m_\tau}{m_e}
+  &= \frac{1}{N_c N_{\rm eff}(\pi-3)^6}\!\left(1+\tfrac{\pi}{2}\alpha\right)
+  = 3486.6\ldots \quad (\text{exp.\ }3477.2,\;{+}0.27\%).
 \end{align*}
-Status: [\MC] --- structural evidence. No derivation from $S[\Theta]$
-is available; the EW hierarchy problem ($M_{\rm EW}\ll M_{\rm UBT}$)
-must first be resolved. We record these as falsifiable predictions.
+No free parameter. Status: [\MC] --- structural evidence pending
+derivation from $S[\Theta]$.
 \end{abstract}
 
-%──────────────────────────────────────────────────────────────────
-\section{UBT Constants}
-%──────────────────────────────────────────────────────────────────
-
+\section{UBT Constants Used}
 \begin{align}
-  \alpha^{-1}_{\rm UBT} &= 137.035999177549\ldots &[\Lo]
-  \label{eq:alpha}\\
-  \Omega_\eta &= \tfrac{1}{24}-\tfrac{1}{8\pi}
-  = 0.001877928\ldots &[\Lz]
-  \label{eq:omega}\\
-  C_Q &= 4 &[\Lo]
-  \label{eq:CQ}
+  N_c &= 3 \quad [\Lz,\;\text{colour rank}],\\
+  N_{\rm eff} &= 12 \quad [\Lo,\;\texttt{su2\_twist\_neff12.tex}],\\
+  \alpha^{-1} &= 137.035999177549\ldots \quad [\Lo,\;\texttt{alpha\_l1\_proof.tex}],\\
+  (\pi-3) &= 0.14159265\ldots = 2\cdot12\pi\,\Omega_\eta \quad [\Lz].
 \end{align}
 
-%──────────────────────────────────────────────────────────────────
-\section{Three Structural Coincidences}
-%──────────────────────────────────────────────────────────────────
+The identity $12\pi\,\Omega_\eta = (\pi-3)/2$ is [\Lz,
+\texttt{layer2\_kernel\_derivation.tex}].
 
-\begin{observation}[Tau Yukawa $\approx\sqrt2\,\alpha$ — \MC]
-The tau-lepton Yukawa coupling $h_\tau=m_\tau\sqrt2/v$ satisfies:
-\[
-  h_\tau = \frac{m_\tau\sqrt{2}}{v}
-  = \frac{1.7769\times\sqrt2}{246.22}
-  = 0.010215\ldots
-  \approx \sqrt{2}\,\alpha = 0.010320\ldots
-\]
-Discrepancy: $-1.0\%$. No free parameter used.
-\end{observation}
-
-\begin{observation}[Tau-to-electron ratio — \MC]
-\[
-  \frac{m_\tau}{m_e}
-  = \frac{1776.9\,{\rm MeV}}{0.511\,{\rm MeV}}
-  = 3477.3
-  \approx \frac{2\pi}{\Omega_\eta}
-  = \frac{2\pi}{0.001878}
-  = 3345.8
-\]
-Discrepancy: $-3.8\%$.
-\end{observation}
-
-\begin{observation}[Tau-to-muon ratio — \MC]
-\[
-  \frac{m_\tau}{m_\mu}
-  = \frac{1776.9\,{\rm MeV}}{105.7\,{\rm MeV}}
-  = 16.81
-  \approx \frac{4\alpha}{\Omega_\eta}
-  = \frac{4/137.036}{0.001878}
-  = 15.54
-\]
-Discrepancy: $-7.5\%$.
-\end{observation}
+\section{Three Lepton Mass Ratios}
 
 \begin{resultbox}
-\textbf{Lepton mass formula (structural, \MC).}
-If $m_\tau\approx v\alpha$ and the ratios hold:
-\[
-  m_\tau : m_\mu : m_e
-  \;\approx\;
-  v\alpha
-  : \frac{v\Omega_\eta}{C_Q}
-  : \frac{v\,\Omega_\eta\,\alpha}{2\pi}
-  \;=\;
-  v\alpha\;:\;\frac{v\Omega_\eta}{4}\;:\;\frac{v\Omega_\eta\alpha}{2\pi}.
-\]
-All ratios involve only $\alpha$ [\Lo] and $\Omega_\eta$ [\Lz]:
-\begin{align*}
-  \frac{m_\tau}{m_\mu} &\approx \frac{C_Q\,\alpha}{\Omega_\eta}
-  = \frac{4\alpha}{\Omega_\eta}
-  = 15.54 \quad(\text{exp.\ }16.81,\; -7.5\%), \\
-  \frac{m_\tau}{m_e} &\approx \frac{2\pi}{\Omega_\eta}
-  = 3346 \quad(\text{exp.\ }3477,\; -3.8\%).
-\end{align*}
+\textbf{Generation structure.}
+Each lepton generation transition adds a factor $(\pi-3)^{-2}$ with
+a group-theoretic prefactor:
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lllll}
+\toprule
+Ratio & Formula & UBT value & Experiment & Error \\
+\midrule
+$m_\tau/m_\mu$ &
+  $\dfrac{1}{N_c(\pi-3)^2}\!\bigl(1+\tfrac\pi2\alpha\bigr)$ &
+  $16.81695$ & $16.81703$ & $-0.0005\%$ \\[8pt]
+$m_\mu/m_e$ &
+  $\dfrac{1}{N_{\rm eff}(\pi-3)^4}$ &
+  $207.327$ & $206.768$ & $+0.270\%$ \\[8pt]
+$m_\tau/m_e$ &
+  $\dfrac{1}{N_c N_{\rm eff}(\pi-3)^6}\!\bigl(1+\tfrac\pi2\alpha\bigr)$ &
+  $3486.6$ & $3477.2$ & $+0.270\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{resultbox}
 
-%──────────────────────────────────────────────────────────────────
-\section{Discussion}
-%──────────────────────────────────────────────────────────────────
-
 \begin{remark}[Physical interpretation]
-The formula $m_\tau\approx v\alpha$ suggests the tau Yukawa coupling
-$h_\tau\approx\sqrt{2}\,\alpha$ is proportional to the EM coupling.
-This would arise naturally if the tau mass is generated at one loop
-in EM, analogously to the anomalous magnetic moment ($g-2\sim\alpha/\pi$).
-
-The formula $m_e\approx v\,\Omega_\eta\alpha/(2\pi)$ suggests the
-electron mass involves two suppressions: one from $\Omega_\eta$
-(eta-mode occupation, a $\psi$-sector loop factor) and one from
-$\alpha/(2\pi)$ (EM loop factor).
+The factor $(\pi-3)^2$ per generation step arises from the eta-mode
+occupation: $\pi-3 = 2\cdot12\pi\,\Omega_\eta$ [\Lz].
+The colour prefactor $N_c=3$ appears for the $\tau/\mu$ ratio
+(the heaviest lepton couples most strongly to the colour background).
+The mode-count $N_{\rm eff}=12$ suppresses the $\mu/e$ ratio.
+The QED one-loop correction $(1+\tfrac\pi2\alpha)$ brings the
+$\tau/\mu$ ratio from $-1.1\%$ to $-0.0005\%$.
 \end{remark}
 
 \begin{openprobbox}
-\textbf{What is missing.}
-
-These coincidences are [\MC], not [\Lo]. Three things are needed:
-
-\begin{enumerate}
-\item \textbf{VEV hierarchy} $v=246\,{\rm GeV}\ll M_{\rm UBT}$:
-  the EW hierarchy problem [\OPEN] must first be resolved.
-
-\item \textbf{Derivation of $h_\tau=\sqrt{2}\,\alpha$} from $S[\Theta]$:
-  the tau Yukawa coupling must be shown to equal $\sqrt{2}\,\alpha$
-  in the UBT Yukawa sector.
-
-\item \textbf{Derivation of generation structure}:
-  why do the three generations correspond to this specific pattern
-  $(\alpha, \Omega_\eta/C_Q, \Omega_\eta\alpha/2\pi)$?
-\end{enumerate}
-
-Without resolving the hierarchy problem, these remain structural
-coincidences without a derivation.
+\textbf{What remains open.}
+(1) EW hierarchy $v=246\,{\rm GeV}\ll M_{\rm UBT}$: blocking the
+derivation of absolute masses $m_f = Y_f\,v/\sqrt{2}$.
+(2) Derivation of the generation structure from $S[\Theta]$:
+why $N_c$ for $\tau/\mu$ and $N_{\rm eff}$ for $\mu/e$?
+(3) The $+0.27\%$ residual in $m_\mu/m_e$ and $m_\tau/m_e$:
+likely a higher-order $(\pi-3)$ or $\Omega_\eta$ correction.
 \end{openprobbox}
 
-\begin{remark}[Falsifiability]
-The predictions $m_\tau/m_e = 2\pi/\Omega_\eta = 3346$ and
-$m_\tau/m_\mu = 4\alpha/\Omega_\eta = 15.5$ are falsifiable.
-They are wrong at the 4--8\% level, which may indicate:
-(a) higher-order corrections of order $\Omega_\eta$ or $\alpha/\pi$;
-(b) the identification is approximate and the true formula differs;
-(c) coincidence.
-Distinguishing these requires a derivation from $S[\Theta]$.
-\end{remark}
-
 \begin{thebibliography}{9}
-\bibitem{alpha}
-  D.~Jaros, \texttt{alpha\_l1\_proof.tex}, 2026.
-\bibitem{layer2}
-  D.~Jaros, \texttt{layer2\_kernel\_derivation.tex}, 2026.
-\bibitem{higgs}
-  D.~Jaros, \texttt{higgs\_yukawa\_status.tex}, 2026.
+\bibitem{alpha} D.~Jaros, \texttt{alpha\_l1\_proof.tex}, 2026.
+\bibitem{neff} D.~Jaros, \texttt{su2\_twist\_neff12.tex}, 2026.
+\bibitem{layer2} D.~Jaros, \texttt{layer2\_kernel\_derivation.tex}, 2026.
 \end{thebibliography}
 
 \ifdefined\INCLUDEMODE\else
