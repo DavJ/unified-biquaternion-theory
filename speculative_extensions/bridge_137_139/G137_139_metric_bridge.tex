@@ -1,0 +1,150 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% =====================================================================
+% RESEARCH TRACK — G137-139-METRIC-BRIDGE
+% Target: research_tracks/sector_coupling/G137_139_metric_bridge.tex
+% Status: §3 [DERIVED — reduced model], §4 [DERIVED — reduced model],
+%         §5 [OPEN], §6 [OPEN]
+% Layer: [L1 cond.] — biquaternionic geometry, 2D scalar reduction;
+%        conditional on lifts listed in §6.
+% =====================================================================
+
+\section{Metric-Induced Coupling Between Winding Sectors 137 and 139}
+\label{sec:g137_139_bridge}
+
+\noindent\textbf{Status summary:}
+\begin{itemize}
+  \item Direct overlap $\langle 139|137\rangle = 0$: \textbf{NO-GO} (Fourier orthogonality on $S^1_\psi$).
+  \item Common-multiple mode $137\cdot139$: \textbf{NO-GO} (divisibility of the index is not overlap).
+  \item Explicit canonical $\Theta^3/\Theta^4$ vertex: \textbf{not present} in canon
+        (EOM $\nabla^\dagger\nabla\Theta = \kappa\mathcal{T}$ is linear in $\Theta$ at fixed metric).
+  \item Metric-induced $\Delta n = \pm 1$ coupling: \textbf{DERIVED} in the reduced model of §2–§4,
+        and shown \emph{diffeomorphism-invariant} (§4).
+  \item Direct $\Delta n = \pm 2$ element: vanishes at $O(\varepsilon)$ (§4) — the $137\to139$
+        transition is second order, via the virtual (non-stable) intermediate $n=138$.
+  \item No-communication: \textbf{unaffected}. The coupling is a causal, local interaction
+        (mode conversion), not nonlocal signalling. Nothing here revives entanglement-based
+        communication; correlations remain non-signalling.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\subsection{Input from canon}
+\label{sec:bridge_input}
+
+Two canonical ingredients only:
+\begin{enumerate}
+  \item The two-mode winding vacuum of
+        \texttt{canonical/geometry/biquaternionic\_vacuum\_solutions.tex}:
+        \begin{equation}
+          \Theta_0(\psi) = A_1\,e^{i\psi/R_\psi} + A_2\,e^{2i\psi/R_\psi},
+          \qquad A_1, A_2 \in \mathbb{B},
+          \label{eq:bridge_vacuum}
+        \end{equation}
+        with $h_{\psi\psi} \neq 0$ [L1] and required for the physicality of the
+        $\varphi$-universe parameter.
+  \item The complex-time signature relation
+        (\texttt{canonical/gr\_closure/step3\_signature\_theorem.tex}):
+        $g_{tt} = -|\partial_\psi\Theta_0|^2$, so the \emph{same} profile
+        $f(\psi) := |\partial_\psi\Theta_0|^2$ enters both $g_{\psi\psi}$ and $g_{tt}$.
+\end{enumerate}
+
+\noindent\textbf{Reduced model} [declared reductions, lifted in §6]:
+complex scalar $\theta(t,\psi)$ instead of full biquaternion; 2D $(t,\psi)$;
+source-free; $R_\psi = 1$; $\varepsilon := |A_2|/|A_1|$ perturbative.
+
+% ---------------------------------------------------------------
+\subsection{Naive mixing (coordinate-dependent)}
+\label{sec:bridge_naive}
+
+With $f(\psi) = A_1^2 + 4A_1\varepsilon\,(a_{2r}\cos\psi - a_{2i}\sin\psi) + O(\varepsilon^2)$,
+the Laplace--Beltrami operator on the circle gives
+\begin{equation}
+  (L)_{n+1,\,n} = \frac{\varepsilon\,n\,(2n+1)\,(a_{2r} + i\,a_{2i})}{A_1^3} \neq 0.
+  \quad\textbf{[DERIVED — reduced model; coordinate-dependent]}
+\end{equation}
+\textbf{Warning:} in pure 1D this is removable by $\psi$-reparametrization
+(flattening $g_{\psi\psi}$), hence by itself it is \emph{not} evidence of physical mixing.
+
+% ---------------------------------------------------------------
+\subsection{Diffeomorphism test: the lapse profile survives}
+\label{sec:bridge_diffeo}
+
+Flatten $g_{\psi\psi}$ by $d\psi' = \sqrt{f}\,d\psi / c$, $c = \langle\sqrt{f}\rangle = A_1$.
+The residual metric is
+\begin{equation}
+  ds^2 = -f\bigl(\psi(\psi')\bigr)\,dt^2 + c^2\,d\psi'^2 ,
+\end{equation}
+and the lapse profile $f(\psi(\psi'))$ retains its first harmonic: one reparametrization
+function cannot flatten both $g_{\psi\psi}$ and $g_{tt}$. For modes
+$e^{-i\omega t + in\psi'}$ the wave operator gives
+\begin{equation}
+  \boxed{\;
+  (L)_{n,\,n} = \frac{\omega^2 - n^2}{A_1^2},\qquad
+  (L)_{n+1,\,n} = -\,i\,\varepsilon\,\frac{(a_{2i} - i\,a_{2r})\,(n + 2\omega^2)}{A_1^3},\qquad
+  (L)_{n+2,\,n} = 0 \;}
+  \label{eq:bridge_invariant}
+\end{equation}
+\textbf{[DERIVED — reduced model; diffeo-invariant gauge]}
+
+\noindent Consequences:
+\begin{itemize}
+  \item The $\Delta n = \pm1$ coupling is \emph{physical} (survives metric flattening;
+        carried by the $g_{tt}$ lapse harmonic mandated by the signature theorem).
+  \item Coupling strength grows as $\omega^2$: high-frequency driving couples
+        sectors more strongly.
+  \item $\Delta n = \pm2$ vanishes at first order: no direct $137\to139$.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\subsection{Second-order $137 \to 139$ amplitude}
+\label{sec:bridge_second_order}
+
+Via the virtual intermediate $n = 138$ (which need \emph{not} be a stable sector:
+the Fourier tower contains all $n \in \mathbb{Z}$; the stable set
+$S = \{2,127,137,139,151,157\}$ labels minima of $V_{\mathrm{eff}}$, not the spectrum):
+\begin{equation}
+  \mathcal{A}^{(2)}(137\to139)
+  = \frac{(L)_{139,138}\,(L)_{138,137}}{\Delta E_{138}}
+  \;\xrightarrow{\;\omega^2 = 137^2\;}\;
+  \frac{5\,161\,612\;\varepsilon^2\,|A_2|^2}{A_1^4}.
+  \quad\textbf{[DERIVED — reduced model]}
+\end{equation}
+Nonzero for any $A_2 \neq 0$. Physical meaning: a \emph{causal pumping channel}
+$137 \to 139$ exists in the two-mode vacuum; sector 139 is dynamically addressable
+by driving the 137 sector. This is mode conversion, not signalling.
+
+% ---------------------------------------------------------------
+\subsection{Charge consistency lemma [OPEN — blocking]}
+\label{sec:bridge_charge}
+
+In canon the winding $n$ on $S^1_\psi$ encodes electric charge. Then:
+(i) $\Delta n = \pm1$ conversion must be absorbed by the background condensate;
+(ii) a vacuum with coherent charged modes $n=1,2$ is a charged condensate,
+i.e., spontaneously broken U(1) --- a superconducting vacuum that would Higgs
+the photon. Required resolution (one of):
+\begin{itemize}
+  \item $n_\psi \neq Q_{\mathrm{EM}}$ directly (pre-projection topological index only), or
+  \item the physical vacuum carries no net charged condensate (constrains $A_1, A_2$).
+\end{itemize}
+\textbf{Until resolved, the bridge is [L1 cond.] at best.} Note this issue predates
+the bridge: it already threatens the physicality argument for $\varphi$.
+
+% ---------------------------------------------------------------
+\subsection{Open lifts and one canon conflict}
+\label{sec:bridge_open}
+
+\begin{enumerate}
+  \item Lift scalar $\to$ full biquaternion (Sc$(\cdot)$ algebra; check no cancellation).
+  \item Lift 2D $\to$ 4D+$\psi$ (mixed components $g_{\mu\psi}$ add channels, cannot remove them).
+  \item Charge consistency lemma (§5).
+  \item \textbf{Canon conflict to resolve:} \texttt{Rpsi\_dynamical\_fix.tex} derives
+        $R_\psi = R_t$ at the self-dual point; \texttt{biquaternionic\_vacuum\_solutions.tex}
+        \S{}Candidate~1 marks self-duality \textbf{DEAD END} ($\alpha = 1$ unphysical) and
+        records $R_\psi = \hbar/(m_e c)$ as [KALIBROVÁNO]. Either two different meanings
+        of $R_t$ (spatial torus vs.\ time circle) --- then both files must say so explicitly ---
+        or a genuine contradiction.
+\end{enumerate}
+
+\noindent\textbf{Scope note.} This track establishes (conditionally) a causal inter-sector
+coupling. It does not establish, and cannot establish, nonlocal communication,
+readout of source-free configurations, or any claim quarantined under
+\texttt{speculative\_extensions/}. See \texttt{docs/CONSCIOUSNESS\_CLAIMS\_ETHICS.md}.
