@@ -2,6 +2,7 @@
 
 # Unified Biquaternion Theory (UBT)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21347352.svg)](https://doi.org/10.5281/zenodo.21347352)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 **Author**: Ing. David Jaroš  
@@ -132,6 +133,14 @@ See:
 - Research tracks: [`research_tracks/`](research_tracks/)
 - Speculative extensions: [`speculative_extensions/`](speculative_extensions/)
 - Historical archive: [`ARCHIVE/`](ARCHIVE/)
+
+---
+
+## How to cite
+
+Jaroš, D. (2026). *Unified Biquaternion Theory: Emergent Lorentzian Geometry
+and GR Recovery* (v10.1.3) [Software]. Zenodo.
+https://doi.org/10.5281/zenodo.21347352
 
 ---
 
