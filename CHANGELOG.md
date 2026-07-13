@@ -34,6 +34,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Testable prediction: smooth H(z) interpolation at intermediate redshifts
   - Test document: `test_hubble_tension_appendix.tex`
 
+## [v10.1.3] - 2026-07-14 - Zenodo Archival Release
+
+### Added
+
+- **Zenodo archival**: Repository archived at DOI [10.5281/zenodo.21347352](https://doi.org/10.5281/zenodo.21347352) (version v10.1.3).
+- **Related-work section in T1_GR paper** (`papers/UBT_GR_Submission.tex`): added discussion of Einstein (1945), Einstein–Straus (1946), Chamseddine (2001, 2006), DDM (1992), Moffat (1995), Witten (1988).
+- **Expository automorphism note** (`docs/notes/symmetry_from_automorphisms.tex`): explains why UBT derives gauge symmetries from automorphisms of ℂ⊗ℍ rather than postulating them; includes SU(2)-restricted metric invariance proof.
+- **Submission TeX made self-contained**: `papers/schwarzschild_table.tex` copied from `canonical/gr_closure/` (byte-identical); `\input{schwarzschild_table}` resolves locally in `papers/`.
+
 ## [0.3.0] - 2025-11-08 - Publication & Review Readiness
 
 ### Added
