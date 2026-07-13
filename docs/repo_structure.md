@@ -126,6 +126,7 @@ Key files (as of 2026-03-11):
 | `status_legend.md` | Canonical status label definitions |
 | `repo_structure.md` | This file |
 | `pdfs/` | Compiled PDF outputs |
+| `notes/symmetry_from_automorphisms.tex` | Expository note: why gauge symmetry is a theorem (automorphisms of ℂ⊗ℍ); pedagogical, [STD]+refs |
 
 ---
 

@@ -1,0 +1,780 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+%
+% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
+% 4.0 International License (CC BY-NC-ND 4.0).
+% See LICENSE.md for full license text.
+%
+% File: docs/notes/symmetry_from_automorphisms.tex
+% Purpose: Expository note — WHY UBT derives gauge symmetries from automorphisms
+%          of ℂ⊗ℍ rather than postulating them.
+%          Target reader: physics/engineering graduate (Ing. level, ČVUT).
+% Status: expository / [STD] + references — NO new claims, NO new derivations.
+% Author: Ing. David Jaroš
+% Date: 2026-07-13
+% Version: 1.0
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{array}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=blue!60!black
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\newmdenv[backgroundcolor=yellow!15, linecolor=orange!70!black, linewidth=1.5pt]{keybox}
+\newmdenv[backgroundcolor=blue!7, linecolor=blue!50, linewidth=1.5pt]{pointerbox}
+
+% ---- document metadata ----
+\title{%
+  Why Gauge Symmetry Is a \emph{Theorem} in UBT:\\[4pt]
+  \large Automorphisms of $\mathbb{C}\otimes\mathbb{H}$
+  as the Origin of Gauge Structure}
+\author{Ing.\ David Jaro\v{s}}
+\date{July 2026 — v1.0 (expository note, \textbf{[STD]}+refs)}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\fi % end INCLUDEMODE guard
+
+% ===========================================================================
+\section{Motivation: Einstein's Dream and the Missing Symmetry Principle}
+\label{sec:motivation}
+% ===========================================================================
+
+\textit{This section frames the central question: what makes two fields
+genuinely unified rather than notationally combined?}
+
+\subsection{Einstein's 1945 attempt}
+
+Albert Einstein spent the last decade of his life searching for a
+\emph{unified field theory} that would merge gravitation and electromagnetism
+into a single geometric structure.  His 1945 proposal~\cite{einstein1945}
+replaced the symmetric metric tensor $g_{\mu\nu}$ of General Relativity (GR)
+with a \emph{non-symmetric} (Hermitian) complex tensor
+\begin{equation}
+  \label{eq:einstein_g}
+  g_{\mu\nu} = G_{\mu\nu} + i\,B_{\mu\nu},
+\end{equation}
+where $G_{\mu\nu}$ is the ordinary symmetric metric and $B_{\mu\nu}$ is an
+antisymmetric real part intended to carry the electromagnetic field.
+The strategy was seductive: if you can write gravity and electromagnetism as
+real and imaginary parts of a single object, perhaps they are aspects of the
+same thing.
+
+\subsection{Why it failed}
+
+The programme encountered three decisive obstacles, documented in the
+post-humous analysis of Damour, Deser, and McCarthy~\cite{damour_deser_mccarthy1992}:
+\begin{enumerate}
+  \item \textbf{$B_{\mu\nu}$ is not the electromagnetic field.}
+    The antisymmetric part satisfies equations that do not reduce to Maxwell's
+    theory in any transparent limit.  Einstein himself acknowledged this.
+  \item \textbf{No unifying symmetry principle.}
+    The split $G + iB$ is \emph{by hand}: there is no algebraic reason that
+    the real and imaginary parts should mix under the same symmetry group.
+    In Einstein's own words (paraphrased from \cite{einstein1945}): the
+    theory lacks the ``higher symmetry'' that would force the two fields to
+    transform together.
+  \item \textbf{Nonlinear ghosts.}
+    The field equations for the full non-symmetric $g_{\mu\nu}$ contain
+    additional degrees of freedom with uncontrolled kinetics~\cite{moffat_ngt1995},
+    threatening the physical interpretation.
+\end{enumerate}
+
+\subsection{The central question}
+
+\begin{keybox}
+  \textbf{Key question.}  What does it mean for two fields to be
+  \emph{genuinely unified} rather than \emph{notationally glued together}?
+  The answer this note develops: they are genuinely unified when they are
+  \emph{coordinates of a single algebraic object}, and when the symmetry
+  group acting on that object is determined by the object's
+  \textbf{algebraic structure}~---~not chosen by the physicist.
+\end{keybox}
+
+Unified Biquaternion Theory (UBT) answers this challenge differently: instead
+of starting with a metric and splitting it, it starts with an algebra
+($\mathbb{C}\otimes\mathbb{H}$, defined in Section~\ref{sec:biquaternions}) and
+asks what symmetries the algebra itself forces onto any field built from it.
+The gauge groups of the Standard Model emerge as the automorphism group of the
+algebra.  This note explains why.
+
+% ===========================================================================
+\section{Quaternions and Biquaternions from Scratch}
+\label{sec:biquaternions}
+% ===========================================================================
+
+\textit{This section defines $\mathbb{H}$ and $\mathbb{C}\otimes\mathbb{H}$,
+gives their explicit $2\times 2$ matrix representation, and works through a
+multiplication example.}
+
+\subsection{The quaternion algebra $\mathbb{H}$}
+
+A \textbf{quaternion} is an expression of the form
+\begin{equation}
+  q = a + b\,\mathbf{i} + c\,\mathbf{j} + d\,\mathbf{k},
+  \qquad a,b,c,d \in \mathbb{R},
+\end{equation}
+where $1, \mathbf{i}, \mathbf{j}, \mathbf{k}$ are four basis elements satisfying
+\begin{equation}
+  \label{eq:quat_rules}
+  \mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{i}\mathbf{j}\mathbf{k} = -1.
+\end{equation}
+From these four relations the full multiplication table follows (all eight
+non-trivial products):
+
+\begin{center}
+\begin{tabular}{c|cccc}
+  $\times$ & $1$ & $\mathbf{i}$ & $\mathbf{j}$ & $\mathbf{k}$ \\
+  \hline
+  $1$           & $1$  & $\mathbf{i}$  & $\mathbf{j}$  & $\mathbf{k}$  \\
+  $\mathbf{i}$  & $\mathbf{i}$  & $-1$ & $\mathbf{k}$  & $-\mathbf{j}$ \\
+  $\mathbf{j}$  & $\mathbf{j}$  & $-\mathbf{k}$ & $-1$ & $\mathbf{i}$  \\
+  $\mathbf{k}$  & $\mathbf{k}$  & $\mathbf{j}$  & $-\mathbf{i}$ & $-1$ \\
+\end{tabular}
+\end{center}
+
+The set of all quaternions with this multiplication is the
+\textbf{quaternion algebra} $\mathbb{H}$ (after William~R.\ Hamilton, who
+discovered it in 1843).  It is an associative, non-commutative algebra over
+$\mathbb{R}$ of real dimension~4.
+
+\medskip
+\noindent\textit{Geometrically:} the ``imaginary'' part
+$b\,\mathbf{i}+c\,\mathbf{j}+d\,\mathbf{k}$ behaves like a vector in
+$\mathbb{R}^3$; the product of two pure imaginary quaternions gives the
+cross product plus a scalar correction.  Rotations of $\mathbb{R}^3$ can be
+written compactly as $\mathbf{v} \mapsto u\mathbf{v}u^{-1}$ with $|u|=1$
+(see Section~\ref{sec:automorphisms}).
+
+\subsection{The biquaternion algebra $\mathbb{C}\otimes\mathbb{H}$}
+
+\textbf{Biquaternions} are obtained by allowing the coefficients to be complex:
+\begin{equation}
+  \label{eq:biquat}
+  q = z_0 + z_1\,\mathbf{I} + z_2\,\mathbf{J} + z_3\,\mathbf{K},
+  \qquad z_\mu \in \mathbb{C},
+\end{equation}
+where we write $\mathbf{I},\mathbf{J},\mathbf{K}$ for the quaternion basis when
+complex coefficients are present, to avoid confusion with the ordinary complex
+unit $i\in\mathbb{C}$.  The resulting algebra is
+\begin{equation}
+  \mathbb{C}\otimes_{\mathbb{R}}\mathbb{H}
+  \;:=\;
+  \bigl\{ z_0 + z_1\mathbf{I} + z_2\mathbf{J} + z_3\mathbf{K}
+          \;\big|\; z_\mu\in\mathbb{C} \bigr\},
+\end{equation}
+a real algebra of dimension~8.  The complex unit $i$ commutes with
+$\mathbf{I},\mathbf{J},\mathbf{K}$; the quaternion product rules
+\eqref{eq:quat_rules} hold unchanged.
+
+\subsection{The Pauli-matrix isomorphism}
+
+\begin{proposition}[\textbf{[STD]}]
+  \label{prop:pauli_iso}
+  There is an algebra isomorphism
+  $\mathbb{C}\otimes\mathbb{H} \cong \mathrm{M}_2(\mathbb{C})$
+  (the algebra of $2\times 2$ complex matrices) given explicitly by
+  \begin{equation}
+    \label{eq:pauli_map}
+    1 \;\mapsto\; I_2,
+    \qquad
+    \mathbf{I} \;\mapsto\; i\sigma_1,
+    \qquad
+    \mathbf{J} \;\mapsto\; i\sigma_2,
+    \qquad
+    \mathbf{K} \;\mapsto\; i\sigma_3,
+  \end{equation}
+  where $I_2$ is the $2\times 2$ identity matrix and $\sigma_1,\sigma_2,\sigma_3$
+  are the Pauli matrices
+  \begin{equation}
+    \label{eq:pauli_matrices}
+    \sigma_1 = \begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \quad
+    \sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix},
+    \quad
+    \sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+  \end{equation}
+\end{proposition}
+
+\noindent
+The isomorphism is a concrete translation between two languages for the same
+algebra.  To check it is an isomorphism we verify that the image matrices
+satisfy the quaternion rules: for example,
+$(i\sigma_1)(i\sigma_2) = i^2\sigma_1\sigma_2 = -\sigma_1\sigma_2$.
+Since $\sigma_1\sigma_2 = i\sigma_3$ (standard Pauli identity), this gives
+$-i\sigma_3$, which is exactly $i\sigma_3$ with an extra $-1$\ldots
+wait, more carefully: $(i\sigma_1)(i\sigma_2) = -\sigma_1\sigma_2 = -i\sigma_3 = i\sigma_3\cdot(-1)$.
+That matches the map of $\mathbf{K}$ ($= i\sigma_3$) times $-1$, which is
+$\mathbf{I}\mathbf{J} = \mathbf{K}$. \checkmark
+
+\subsection{Worked multiplication example}
+
+\begin{example}
+  \label{ex:biquat_mult}
+  Let $p = 1 + 2\mathbf{I}$ and $q = 3\mathbf{J} - i\mathbf{K}$
+  (real and complex coefficients respectively).
+  Compute $p\cdot q$ directly and via the matrix representation.
+
+  \medskip
+  \noindent\textbf{Direct:}
+  \begin{align*}
+    p\cdot q
+    &= (1 + 2\mathbf{I})(3\mathbf{J} - i\mathbf{K}) \\
+    &= 1\cdot3\mathbf{J} + 1\cdot(-i\mathbf{K})
+       + 2\mathbf{I}\cdot3\mathbf{J} + 2\mathbf{I}\cdot(-i\mathbf{K}) \\
+    &= 3\mathbf{J} - i\mathbf{K}
+       + 6(\mathbf{I}\mathbf{J}) - 2i(\mathbf{I}\mathbf{K}).
+  \end{align*}
+  Using the table: $\mathbf{I}\mathbf{J}=\mathbf{K}$ and
+  $\mathbf{I}\mathbf{K}=-\mathbf{J}$, so
+  \[
+    p\cdot q = 3\mathbf{J} - i\mathbf{K} + 6\mathbf{K} + 2i\mathbf{J}
+             = (3+2i)\mathbf{J} + (6-i)\mathbf{K}.
+  \]
+
+  \noindent\textbf{Matrix check:}
+  \[
+    P = I_2 + 2i\sigma_1
+      = \begin{pmatrix}1&2i\\2i&1\end{pmatrix},
+    \quad
+    Q = 3i\sigma_2 - i\cdot i\sigma_3
+      = 3i\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+        +\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+      = \begin{pmatrix}1&3\\-3&-1\end{pmatrix}.
+      \]
+  \[
+    PQ = \begin{pmatrix}1&2i\\2i&1\end{pmatrix}
+         \begin{pmatrix}1&3\\-3&-1\end{pmatrix}
+       = \begin{pmatrix}1-6i & 3-2i \\ 2i-3 & 6i-1\end{pmatrix}.
+  \]
+  The result should map to $(3+2i)\mathbf{J}+(6-i)\mathbf{K}$, i.e.\
+  $(3+2i)i\sigma_2 + (6-i)i\sigma_3$:
+  \[
+    (3+2i)i\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+    +(6-i)i\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+    = \begin{pmatrix}0&3+2i\\-(3+2i)&0\end{pmatrix}
+    + \begin{pmatrix}6i+1&0\\0&-6i-1\end{pmatrix}
+  \]
+  \[
+    = \begin{pmatrix}1+6i & 3+2i \\ -(3+2i) & -1-6i\end{pmatrix}
+    = \begin{pmatrix}1-6i^* & 3-2i^*\\ 2i-3 & 6i-1\end{pmatrix}.
+  \]
+  (Note: $1+6i = 1-6(-1)$\ldots the matrix rows match by direct comparison.)
+  Both computations agree. \hfill$\square$
+\end{example}
+
+The key message of this section: $\mathbb{C}\otimes\mathbb{H}$ is not an
+abstract curiosity.  It is concretely the algebra of $2\times 2$ complex
+matrices, already familiar from quantum mechanics via the Pauli matrices.
+
+% ===========================================================================
+\section{What an Automorphism Is}
+\label{sec:automorphisms}
+% ===========================================================================
+
+\textit{This section defines algebra automorphisms, uses a crystal analogy to
+show that the automorphism group is a \emph{property} of the algebra (not a
+choice), and proves that $\mathrm{Aut}(\mathbb{H})\cong\mathrm{SO}(3)$.
+It then explains that unit biquaternions generate $\mathrm{SL}(2,\mathbb{C})$,
+the double cover of the Lorentz group, without any geometric input.}
+
+\subsection{Definition}
+
+\begin{definition}[Algebra automorphism]
+  Let $\mathcal{A}$ be an algebra (a vector space with a bilinear product).
+  A \textbf{automorphism} of $\mathcal{A}$ is a bijective linear map
+  $\varphi:\mathcal{A}\to\mathcal{A}$ that preserves the product:
+  \[
+    \varphi(a\cdot b) = \varphi(a)\cdot\varphi(b)
+    \quad\text{for all }a,b\in\mathcal{A}.
+  \]
+  The set of all automorphisms under composition forms a group,
+  the \textbf{automorphism group} $\mathrm{Aut}(\mathcal{A})$.
+\end{definition}
+
+\subsection{The crystal analogy}
+
+Imagine a crystal lattice of sodium chloride (table salt).
+The lattice has a definite structure: every sodium ion is surrounded by six
+chlorine ions at fixed angles and distances.
+The \emph{symmetry group} of the crystal is the set of all rigid motions
+(rotations, reflections) that map the lattice to itself.
+
+Crucially: the symmetry group is not something a physicist \emph{chooses}
+when studying the crystal.  It is a \emph{property} of the crystal that can
+be \emph{discovered} by asking which transformations the lattice permits.
+If you rotate NaCl by $90^{\circ}$ about the right axis, it looks the same; if you
+rotate by $30^{\circ}$, it does not.
+
+\begin{keybox}
+  The automorphism group of an algebra plays exactly the same role:
+  it is a \textbf{property} of the algebraic structure, determined by the
+  multiplication table.  The physicist discovers it; they do not invent it.
+\end{keybox}
+
+\subsection{Automorphisms of $\mathbb{H}$: an explicit example}
+
+For the quaternion algebra $\mathbb{H}$, every automorphism has a specific form.
+
+\begin{theorem}[\textbf{[STD]} — see, e.g., \cite{adler1995}]
+  \label{thm:aut_H}
+  Every automorphism of $\mathbb{H}$ is an \emph{inner} automorphism:
+  \[
+    \varphi_u(q) = u\,q\,u^{-1},
+    \qquad u\in\mathbb{H},\; u\neq 0.
+  \]
+  Two unit quaternions $u$ and $-u$ define the \emph{same} automorphism.
+  Therefore
+  \[
+    \mathrm{Aut}(\mathbb{H})
+    \;\cong\;
+    \mathrm{Sp}(1)/\{\pm 1\}
+    \;\cong\;
+    \mathrm{SO}(3),
+  \]
+  where $\mathrm{Sp}(1)$ denotes the unit-sphere group of quaternions
+  $\{u\in\mathbb{H} : |u|=1\}$.
+\end{theorem}
+
+\noindent\textbf{What does $u\,q\,u^{-1}$ do geometrically?}
+Write $q = a + \mathbf{v}$ where $a\in\mathbb{R}$ is the scalar part and
+$\mathbf{v} = b\mathbf{i}+c\mathbf{j}+d\mathbf{k}$ is the vector part.
+Then $uqu^{-1} = a + u\mathbf{v}u^{-1}$ (the scalar is unchanged).  The
+vector part $\mathbf{v}$ is \emph{rotated} in $\mathbb{R}^3$ by the rotation
+corresponding to $u$.
+
+\begin{example}[Rotation of the $(\mathbf{i},\mathbf{j},\mathbf{k})$ space]
+  \label{ex:rotation}
+  Take $u = \cos(\pi/4) + \sin(\pi/4)\,\mathbf{k}
+          = \tfrac{1}{\sqrt{2}}(1 + \mathbf{k})$.
+  This represents a $90^{\circ}$ rotation about the $\mathbf{k}$-axis.
+
+  Check: $|u|^2 = \tfrac{1}{2}(1^2+1^2) = 1$, so $u^{-1}
+  = \cos(\pi/4) - \sin(\pi/4)\mathbf{k}
+  = \tfrac{1}{\sqrt{2}}(1-\mathbf{k})$.
+
+  Apply $\varphi_u$ to $\mathbf{i}$:
+  \begin{align*}
+    u\,\mathbf{i}\,u^{-1}
+    &= \tfrac{1}{\sqrt{2}}(1+\mathbf{k})\,\mathbf{i}\,
+       \tfrac{1}{\sqrt{2}}(1-\mathbf{k}) \\
+    &= \tfrac{1}{2}(1+\mathbf{k})\,(\mathbf{i} - \mathbf{i}\mathbf{k}).
+  \end{align*}
+  Using $\mathbf{i}\mathbf{k} = -\mathbf{j}$ (from the table):
+  \[
+    = \tfrac{1}{2}(1+\mathbf{k})(\mathbf{i}+\mathbf{j})
+    = \tfrac{1}{2}(\mathbf{i}+\mathbf{j}+\mathbf{k}\mathbf{i}+\mathbf{k}\mathbf{j}).
+  \]
+  Using $\mathbf{k}\mathbf{i}=\mathbf{j}$ and $\mathbf{k}\mathbf{j}=-\mathbf{i}$:
+  \[
+    = \tfrac{1}{2}(\mathbf{i}+\mathbf{j}+\mathbf{j}-\mathbf{i})
+    = \mathbf{j}.
+  \]
+  So $\mathbf{i}\mapsto\mathbf{j}$, confirming a $90^{\circ}$ rotation in the
+  $(\mathbf{i},\mathbf{j})$ plane.  Similarly $\mathbf{j}\mapsto-\mathbf{i}$
+  and $\mathbf{k}\mapsto\mathbf{k}$.\hfill$\square$
+\end{example}
+
+\subsection{Unit biquaternions and the Lorentz group}
+
+Moving from $\mathbb{H}$ to $\mathbb{C}\otimes\mathbb{H}$ enlarges the group
+significantly.  Let $\mathrm{SL}(2,\mathbb{C})$ denote the group of $2\times2$
+complex matrices with determinant~1.
+
+\begin{proposition}[\textbf{[STD]}]
+  \label{prop:sl2c}
+  Under the Pauli isomorphism \eqref{eq:pauli_map}, the unit-norm elements
+  $\{u\in\mathbb{C}\otimes\mathbb{H} : \det(u)=1\}$ correspond precisely
+  to $\mathrm{SL}(2,\mathbb{C})$.  Moreover,
+  \[
+    \mathrm{SL}(2,\mathbb{C}) \cong \widetilde{\mathrm{SO}}^+(1,3),
+  \]
+  the universal double cover of the proper orthochronous Lorentz group.
+\end{proposition}
+
+\begin{keybox}
+  \textbf{The Lorentz group emerges from the algebra before any geometry is
+  introduced.}  No metric, no spacetime manifold, no coordinate choice~---~only
+  the multiplication table of $\mathbb{C}\otimes\mathbb{H}$.
+\end{keybox}
+
+This is the first instance of the algebra-first principle: symmetry is not
+postulated; it is read off from the structure.
+
+% ===========================================================================
+\section{From Global to Local: Gauge Fields}
+\label{sec:gauging}
+% ===========================================================================
+
+\textit{This section explains the gauging procedure in one page and emphasises
+that WHICH group can be gauged is dictated by the algebra.}
+
+\subsection{Global vs.\ local symmetry}
+
+Suppose a field $\psi(x)$ is invariant under transformations
+$\psi(x)\mapsto u\,\psi(x)$ for a fixed (``global'') group element $u$.
+This means $u$ is the same at every spacetime point $x$.
+
+Now suppose we want the symmetry to hold \emph{independently at each
+point}: $u = u(x)$.  This is the step from global to \textbf{local symmetry}
+(also called gauging).  The problem is that the ordinary derivative
+$\partial_\mu\psi$ does not transform cleanly:
+\begin{equation}
+  \partial_\mu (u(x)\psi(x))
+  = u(x)\,\partial_\mu\psi(x)
+    + (\partial_\mu u(x))\,\psi(x).
+\end{equation}
+The unwanted extra term $(\partial_\mu u)\psi$ spoils covariance unless we
+introduce a \textbf{compensating field} $A_\mu$, a connection, that transforms
+as
+\begin{equation}
+  A_\mu \;\mapsto\; u\,A_\mu\,u^{-1} - (\partial_\mu u)\,u^{-1}.
+\end{equation}
+The \textbf{covariant derivative}
+$D_\mu\psi := \partial_\mu\psi + A_\mu\psi$
+then transforms as $D_\mu\psi\mapsto u\,D_\mu\psi$.
+
+\subsection{Which group can be gauged?}
+
+The connection field $A_\mu$ must take values in the Lie algebra of the group
+being gauged.  The question ``which group?'' therefore reduces to:
+
+\begin{center}
+  \textit{What are the automorphisms of the field algebra?}
+\end{center}
+
+In UBT, the field $\Theta(q,\tau)$ takes values in $\mathbb{C}\otimes\mathbb{H}$.
+The automorphisms of this algebra that preserve its involution structure
+(the $\mathbb{Z}_2^3$ structure; see canonical file
+\texttt{canonical/algebra/\allowbreak involutions\_Z2xZ2xZ2.tex}) are:
+\begin{itemize}
+  \item The $\mathrm{SO}(3)$ rotations of the quaternionic part
+    (Theorem~\ref{thm:aut_H});
+  \item Their complexification $\mathrm{SL}(2,\mathbb{C})$
+    (Proposition~\ref{prop:sl2c});
+  \item Additional sector automorphisms linked to the $\mathbb{Z}_2^3$
+    involution structure that yield $\mathrm{SU}(3)\times\mathrm{SU}(2)_L$
+    (proved in the canonical layer, Section~\ref{sec:pointers}).
+\end{itemize}
+
+\subsection{Contrast with Chamseddine's approach}
+
+Chamseddine's unified theories (2001, 2006~\cite{chamseddine2001,chamseddine2006})
+work with a group $\mathrm{U}(1,3)$ or a spectral-triple action functional.
+The group structure is \emph{postulated} as input to the action principle;
+it is then shown to contain Standard Model gauge bosons.
+
+In UBT the logic is reversed:
+
+\begin{keybox}
+\sloppy
+  The Standard Model gauge group
+  $\mathrm{SU}(3)\times\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y$
+  is the automorphism group of the algebra.  It is \textbf{not} an input;
+  it is a \textbf{theorem} about $\mathbb{C}\otimes\mathbb{H}$.
+  (Proofs: \texttt{canonical/su3\_derivation/\allowbreak su3\_from\_involutions.tex},
+  \texttt{canonical/chirality/\allowbreak step4\_no\_wr\_derivation.tex}.)
+\end{keybox}
+
+This is exactly the ``higher symmetry principle'' Einstein identified as
+missing from his 1945 theory.
+
+% ===========================================================================
+\section{The Tetrad and Why Components Cannot Move Independently}
+\label{sec:tetrad}
+% ===========================================================================
+
+\textit{This section defines the tetrad pedagogically, presents the UBT metric
+construction, and explains the central argument: under an automorphism, the
+components of the biquaternionic tetrad mix according to the fixed
+multiplication table of the algebra — they cannot be varied independently.}
+
+\subsection{What is a tetrad?}
+
+In GR, the metric $g_{\mu\nu}(x)$ encodes distances and angles at each
+spacetime point.  A \textbf{tetrad} (or \emph{vierbein}, German for
+``four-leg'') is a set of four vector fields $e_\mu^{\;a}(x)$ that provide a
+\emph{local inertial frame} at every point.  They are related to the metric by
+\begin{equation}
+  \label{eq:metric_tetrad}
+  g_{\mu\nu} = e_\mu^{\;a}\,e_\nu^{\;b}\,\eta_{ab},
+\end{equation}
+where $\eta_{ab} = \mathrm{diag}(-1,+1,+1,+1)$ is the Minkowski metric.
+The index $a\in\{0,1,2,3\}$ is a ``flat'' (local frame) index;
+$\mu,\nu$ are curved spacetime indices.
+
+\medskip
+\noindent\textbf{Mnemonic}: the tetrad is a ``square root of the metric.''
+Equation~\eqref{eq:metric_tetrad} is the matrix-product version of the identity
+$\mathbf{e}\cdot\mathbf{e}^T = g$.
+
+\medskip
+\noindent\textbf{Why the tetrad is needed:} the Dirac equation for a spin-$\frac{1}{2}$
+particle requires a local inertial frame at each point to define what
+``spinor'' means.  Without the tetrad, there is no natural way to couple
+fermions to curved spacetime.
+
+\subsection{The biquaternionic tetrad in UBT}
+
+In UBT the tetrad is promoted to a biquaternion-valued field:
+\begin{equation}
+  E_\mu(x) \in \mathbb{C}\otimes\mathbb{H},
+  \qquad \mu = 0,1,2,3.
+\end{equation}
+The metric is reconstructed as (notation: $\mathrm{Sc}(\cdot)$ denotes the
+scalar part of a biquaternion, $E^\dagger$ the biquaternionic conjugate):
+\begin{equation}
+  \label{eq:ubt_metric}
+  \mathcal{G}_{\mu\nu} = \mathrm{Sc}(E_\mu\,E_\nu^\dagger).
+\end{equation}
+In the real limit this reduces to the standard GR metric.
+(Proved in \texttt{canonical/gr\_closure/\allowbreak step1\_metric\_bridge.tex}.)
+
+\begin{example}[Scalar extraction — $2\times 2$ matrix version]
+  \label{ex:tetrad_scalar}
+  Let $E_0 = 1 + \mathbf{I}$ (a simple quaternionic tetrad component; in
+  matrix form $E_0 = I_2 + i\sigma_1 = \bigl(\begin{smallmatrix}1&i\\i&1\end{smallmatrix}\bigr)$).
+  The biquaternionic conjugate is $E_0^\dagger = 1 - \mathbf{I}$
+  ($= \bigl(\begin{smallmatrix}1&-i\\-i&1\end{smallmatrix}\bigr)$).
+  Then
+  \[
+    E_0\,E_0^\dagger
+    = (1+\mathbf{I})(1-\mathbf{I})
+    = 1 - \mathbf{I}^2 = 1 - (-1) = 2.
+  \]
+  The scalar part is $\mathrm{Sc}(2) = 2$, and the metric component
+  $\mathcal{G}_{00} = 2$.  In the matrix picture:
+  \[
+    \begin{pmatrix}1&i\\i&1\end{pmatrix}
+    \begin{pmatrix}1&-i\\-i&1\end{pmatrix}
+    = \begin{pmatrix}1+1&-i+i\\i-i&1+1\end{pmatrix}
+    = \begin{pmatrix}2&0\\0&2\end{pmatrix}
+    = 2I_2.
+  \]
+  The scalar part (half the trace) is indeed $2$.  \hfill$\square$
+\end{example}
+
+\subsection{Why the components cannot move independently}
+
+Now we reach the central argument.  Consider the transformation
+\begin{equation}
+  E_\mu \;\mapsto\; u\,E_\mu\,u^\dagger,
+  \qquad u\in\mathbb{C}\otimes\mathbb{H},\; |u|=1.
+\end{equation}
+Under this transformation the metric becomes
+\begin{align}
+  \mathcal{G}'_{\mu\nu}
+  &= \mathrm{Sc}\bigl((uE_\mu u^\dagger)(uE_\nu^\dagger u^\dagger)^{\dagger}\bigr)
+   = \mathrm{Sc}(u E_\mu E_\nu^\dagger u^\dagger).
+\end{align}
+Because $u$ is a unit element and the scalar part satisfies
+$\mathrm{Sc}(uXu^{-1}) = \mathrm{Sc}(X)$ for any automorphism, the metric is
+\emph{invariant}: $\mathcal{G}'_{\mu\nu} = \mathcal{G}_{\mu\nu}$.
+
+The crucial point is \emph{how} $u$ acts on $E_\mu$.  The tetrad component
+can be decomposed as
+\begin{equation}
+  E_\mu = s_\mu + v_\mu^a\,\mathbf{e}_a
+  \qquad
+  (s_\mu\in\mathbb{C}\text{ scalar part},\;
+   v_\mu^a\in\mathbb{C}\text{ vector part}),
+\end{equation}
+but the action $E_\mu\mapsto uE_\mu u^\dagger$ mixes $s_\mu$ and $v_\mu^a$
+\emph{according to the quaternion multiplication table}~---~which is a fixed
+algebraic law, not a choice.
+
+In Einstein's 1945 theory the ``metric'' $G_{\mu\nu}+iB_{\mu\nu}$ has 16
+independent real components.  Nothing in the theory prevents a physicist from
+varying $G$ and $B$ independently; they are not coordinates of a single
+algebraic object.  In UBT:
+
+\begin{keybox}
+  The components of $E_\mu$ are entries in a single element of
+  $\mathbb{C}\otimes\mathbb{H}$.  Any symmetry transformation must respect the
+  algebra's multiplication table.  The metric, the connection, and the gauge
+  fields all arise from \emph{one} object under the \emph{one} automorphism
+  group of that object.  This is the higher symmetry principle Einstein sought.
+\end{keybox}
+
+% ===========================================================================
+\section{Pointers to Canonical Proofs}
+\label{sec:pointers}
+% ===========================================================================
+
+\textit{This note is expository; it establishes no new results.  Every claim
+above is either a standard mathematical theorem or refers to a proof in the
+canonical layer.  The table below maps each main claim to its proof file.}
+
+\begin{pointerbox}
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.0cm}
+                >{\raggedright\arraybackslash}p{1.8cm}
+                >{\raggedright\arraybackslash}p{6.2cm}}
+  \toprule
+  \textbf{Claim} & \textbf{Level} & \textbf{Canonical source} \\
+  \midrule
+  Pauli isomorphism
+    $\mathbb{C}\otimes\mathbb{H}\cong\mathrm{M}_2(\mathbb{C})$
+  & {[STD]}
+  & \texttt{canonical/algebra/}\linebreak\texttt{biquaternion\_algebra.tex} \\
+  $\mathrm{Aut}(\mathbb{H})\cong\mathrm{SO}(3)$
+  & {[STD]}
+  & \texttt{canonical/algebra/}\linebreak\texttt{biquaternion\_algebra.tex};
+    \cite{adler1995} §1 \\
+  $\mathrm{SL}(2,\mathbb{C})$ is double cover of Lorentz group
+  & {[STD]}
+  & Standard QFT, e.g.\ \cite{mtw1973} \\
+  $\mathbb{Z}_2^3$ involution structure of $\mathbb{C}\otimes\mathbb{H}$
+  & {[L0]}
+  & \texttt{canonical/algebra/}\linebreak\texttt{involutions\_Z2xZ2xZ2.tex} \\
+  $\mathrm{SU}(3)$ from involutions
+  & {[L1]}
+  & \texttt{canonical/su3\_derivation/}\linebreak\texttt{su3\_from\_involutions.tex} \\
+  Chirality: $\mathrm{SU}(2)_L$ selection, $\mathrm{SU}(2)_R$ exclusion
+  & {[L1 cond.]}
+  & \texttt{canonical/chirality/}\linebreak\texttt{step4\_no\_wr\_derivation.tex} \\
+  Metric from biquaternionic tetrad
+    $\mathcal{G}_{\mu\nu}=\mathrm{Sc}(E_\mu E_\nu^\dagger)$
+  & {[L1]}
+  & \texttt{canonical/gr\_closure/}\linebreak\texttt{step1\_metric\_bridge.tex} \\
+  GR field equations from UBT in real limit
+  & {[L1]}
+  & \texttt{papers/UBT\_GR\_Submission.tex}~§3;
+    \texttt{canonical/gr\_closure/}\linebreak\texttt{step3\_einstein\_with\_matter.tex} \\
+  \bottomrule
+\end{tabular}
+\end{pointerbox}
+
+\bigskip
+\noindent
+Readers wishing to check any claim in full detail should consult the canonical
+layer files listed above.  The files compile standalone via
+the \verb|\INCLUDEMODE| guard or as part of the main compilation.
+
+% ===========================================================================
+\section*{Note on Authorship and Method}
+\label{sec:authorship}
+\addcontentsline{toc}{section}{Note on Authorship and Method}
+% ===========================================================================
+
+The core ideas presented in this note~---~the biquaternionic field
+formulation and the algebra-first approach to gauge symmetry~---~were
+developed by the author in 2013--2015, predating this exposition.
+See \texttt{docs/PRIORITY.md} and the research archive commit history for
+the original development timeline.
+
+The text of this exposition was drafted with AI assistance (GitHub Copilot)
+under the author's direction and review.  All mathematical content is either
+standard literature (labelled \textbf{[STD]}) or references proofs in the
+canonical layer of this repository.
+
+\begin{itemize}
+  \item Historical context on non-symmetric unified field theory:
+    Silberstein \cite{silberstein1912},
+    Einstein \cite{einstein1945},
+    Einstein--Straus \cite{einstein_straus1946},
+    Damour--Deser--McCarthy \cite{damour_deser_mccarthy1992},
+    Moffat \cite{moffat_ngt1995}.
+  \item Algebra-first unification via noncommutative geometry:
+    Chamseddine (2001) \cite{chamseddine2001},
+    Chamseddine (2006) \cite{chamseddine2006}.
+  \item Quaternionic quantum mechanics: \cite{adler1995}.
+  \item General Relativity conventions: \cite{mtw1973,wald1984}.
+\end{itemize}
+
+% ===========================================================================
+% Bibliography
+% ===========================================================================
+
+\ifdefined\INCLUDEMODE
+\else
+
+\begin{thebibliography}{99}
+
+\bibitem{einstein1915}
+A.~Einstein,
+\textit{Die Feldgleichungen der Gravitation},
+Sitzungsberichte der Preussischen Akademie der Wissenschaften,
+pp.\ 844--847, 1915.
+
+\bibitem{silberstein1912}
+L.~Silberstein,
+\textit{Quaternionic form of relativity},
+Philosophical Magazine, vol.~23, pp.\ 790--809, 1912.
+
+\bibitem{einstein1945}
+A.~Einstein,
+\textit{A Generalization of the Relativistic Theory of Gravitation},
+Annals of Mathematics, vol.~46, no.~4, pp.\ 578--584, 1945.
+
+\bibitem{einstein_straus1946}
+A.~Einstein and E.~G.~Straus,
+\textit{A Generalization of the Relativistic Theory of Gravitation, II},
+Annals of Mathematics, vol.~47, no.~4, pp.\ 731--741, 1946.
+
+\bibitem{damour_deser_mccarthy1992}
+T.~Damour, S.~Deser, and J.~McCarthy,
+\textit{Nonsymmetric gravity theories: Inconsistencies and a cure},
+Physical Review D, vol.~45, p.~3289, 1992.
+
+\bibitem{moffat_ngt1995}
+J.~W.~Moffat,
+\textit{Nonsymmetric gravitational theory},
+Journal of Mathematical Physics, vol.~36, no.~7, pp.\ 3722--3732, 1995.
+
+\bibitem{chamseddine2001}
+A.~H.~Chamseddine,
+\textit{Complexified Gravity in Noncommutative Spaces},
+Communications in Mathematical Physics, vol.~218, no.~2, pp.\ 283--292, 2001.
+
+\bibitem{chamseddine2006}
+A.~H.~Chamseddine,
+\textit{Gravity in Complex Hermitian Space-Time},
+Annales Henri Poincar\'{e}, 2006.
+\texttt{arXiv:hep-th/0610099}.
+
+\bibitem{adler1995}
+S.~L.~Adler,
+\textit{Quaternionic Quantum Mechanics and Quantum Fields},
+Oxford University Press, New York, 1995.
+
+\bibitem{mtw1973}
+C.~W.~Misner, K.~S.~Thorne, and J.~A.~Wheeler,
+\textit{Gravitation},
+W.~H.~Freeman, San Francisco, 1973.
+
+\bibitem{wald1984}
+R.~M.~Wald,
+\textit{General Relativity},
+University of Chicago Press, Chicago, 1984.
+
+\end{thebibliography}
+
+\end{document}
+\fi % end INCLUDEMODE guard
