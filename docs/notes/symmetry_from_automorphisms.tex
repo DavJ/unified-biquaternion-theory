@@ -574,20 +574,27 @@ In the real limit this reduces to the standard GR metric.
 
 \subsection{Why the components cannot move independently}
 
-Now we reach the central argument.  Consider the transformation
+Now we reach the central argument.  Restrict to unitary
+$u\in\mathrm{SU}(2)\subset\mathrm{SL}(2,\mathbb{C})$ (so $u^\dagger=u^{-1}$),
+and consider the transformation
 \begin{equation}
   E_\mu \;\mapsto\; u\,E_\mu\,u^\dagger,
-  \qquad u\in\mathbb{C}\otimes\mathbb{H},\; |u|=1.
+  \qquad u^\dagger=u^{-1}.
 \end{equation}
 Under this transformation the metric becomes
 \begin{align}
   \mathcal{G}'_{\mu\nu}
-  &= \mathrm{Sc}\bigl((uE_\mu u^\dagger)(uE_\nu^\dagger u^\dagger)^{\dagger}\bigr)
+  &= \mathrm{Sc}\bigl((uE_\mu u^\dagger)(uE_\nu u^\dagger)^{\dagger}\bigr)
    = \mathrm{Sc}(u E_\mu E_\nu^\dagger u^\dagger).
 \end{align}
-Because $u$ is a unit element and the scalar part satisfies
-$\mathrm{Sc}(uXu^{-1}) = \mathrm{Sc}(X)$ for any automorphism, the metric is
-\emph{invariant}: $\mathcal{G}'_{\mu\nu} = \mathcal{G}_{\mu\nu}$.
+Because $u$ is unitary and the scalar part satisfies
+$\mathrm{Sc}(uXu^\dagger) = \mathrm{Sc}(uXu^{-1}) = \mathrm{Sc}(X)$ in this
+unitary case, the metric is \emph{invariant}:
+$\mathcal{G}'_{\mu\nu} = \mathcal{G}_{\mu\nu}$.  For general
+$\mathrm{SL}(2,\mathbb{C})$ elements (boost sector), $\mathcal{G}_{\mu\nu}$
+is not invariant but transforms covariantly as a tensor; see
+\texttt{canonical/gr\_closure/step1\_metric\_bridge.tex} for the full
+Lorentz-covariant treatment.
 
 The crucial point is \emph{how} $u$ acts on $E_\mu$.  The tetrad component
 can be decomposed as
