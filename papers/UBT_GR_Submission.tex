@@ -148,8 +148,15 @@ and three fermion generations (T2\_GAUGE track); and
 
 \subsection{Key Claims and Novelty}
 
-The novel contributions of this paper, distinguishing it from prior biquaternion
-gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
+The quaternionic quantum-mechanics literature~\cite{adler1995,finkelstein1962,deleo1996}
+contains no gravitational sector.
+The rotor-based biquaternion gravity of de~Haas~\cite{dehaas2014,dehaas2025}
+generates the metric via the adjoint action of a $\mathrm{Spin}(1,3)$ rotor and
+reproduces Painlev\'e--Gullstrand forms of the Schwarzschild and Kerr geometries
+within an Einstein--Cartan framework.
+These constructions were developed independently of the present work; no priority
+claim is implied in either direction.
+The novel contributions of this paper are:
 
 \begin{enumerate}
   \item \textbf{Metric is derived, not postulated.}
@@ -157,6 +164,8 @@ gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
         $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
         (Theorem~\ref{thm:metric}).
         Prior biquaternion gravity papers postulate or impose the metric.
+        The metric here is a bilinear of the fundamental field $\partial_\mu\Theta$,
+        not the adjoint action of a rotor; no gravitational connection is presupposed.
 
   \item \textbf{Lorentzian signature is proved.}
         Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from AXIOM-B together with the
@@ -173,31 +182,31 @@ gravity literature~\cite{adler1995,finkelstein1962,deleo1996}, are:
 
   \item \textbf{Schwarzschild reproduced analytically and numerically.}
         The ansatz $\Theta_0$ is the unique spherically symmetric vacuum solution;
-        the Schwarzschild metric follows with spatial components verified to
-        $< 10^{-15}$ relative error.
+        the Schwarzschild metric follows analytically, with spatial components verified to
+        $< 10^{-15}$ relative error via independent numerical computation.
 
   \item \textbf{Regge-Wheeler equation derived.}
         The odd-parity linearised graviton equation follows from linearised
         UBT without additional input (Theorem~\ref{thm:rw}).
 \end{enumerate}
 
-Table~\ref{tab:novelty} summarises the comparison with prior biquaternion
+Table~\ref{tab:novelty} summarises the comparison with related biquaternion
 gravity approaches.
 
 \begin{table}[ht]
 \centering
-\caption{Comparison with prior biquaternion gravity literature.}
+\caption{Comparison with related biquaternion gravity literature.}
 \label{tab:novelty}
-\begin{tabular}{lcc}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Feature} & \textbf{UBT (this paper)} & \textbf{Prior biquaternion gravity} \\
+\textbf{Feature} & \textbf{UBT (this paper)} & \textbf{Quaternionic QM~\cite{adler1995,finkelstein1962,deleo1996}} & \textbf{Rotor gravity (de~Haas)~\cite{dehaas2014,dehaas2025}} \\
 \midrule
-Metric derivation & Derived from $\Theta$ & Postulated or imposed \\
-Lorentzian signature & Proved (Theorem~\ref{thm:signature}) & Assumed \\
-Einstein equations & Complete 5-step chain [\Lone] & Partial or assumed \\
-Free parameters in GR chain & None & Typically present \\
-Schwarzschild recovery & Analytical + numerical $<10^{-15}$ & Not demonstrated \\
-Regge-Wheeler equation & Proved [\Lone] & Not addressed \\
+Metric derivation & Bilinear of $\partial\Theta$ & No gravitational sector & Rotor adjoint action \\
+Lorentzian signature & Proved (Theorem~\ref{thm:signature}) & --- & Assumed \\
+Einstein equations & Variational, 5-step chain [\Lone] & --- & Einstein--Cartan, first-order \\
+Complexified time $\tau=t+i\psi$ & Yes (compact $\psi$) & No & No \\
+Schwarzschild recovery & Analytical + numerical $<10^{-15}$ & --- & PG form demonstrated \\
+Regge-Wheeler equation & Proved [\Lone] & --- & Not addressed \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -810,12 +819,19 @@ Several prior approaches derive aspects of GR from algebraic structures:
         UBT uses an 8-real-dimensional algebra $\BB$ and derives the
         metric from the bilinear of the fundamental field.
 
-  \item \textbf{Prior biquaternion gravity}~\cite{adler1995,finkelstein1962,deleo1996}:
-        these papers work in $\HH$ or $\BB$ but postulate or impose the
-        metric.
-        The novel step in UBT is the bilinear metric formula
-        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$,
-        which has no analogue in this literature.
+  \item \textbf{Quaternionic quantum mechanics}~\cite{adler1995,finkelstein1962,deleo1996}:
+        these papers work in $\HH$ or $\BB$ but contain no gravitational sector;
+        no metric is introduced.
+
+  \item \textbf{Rotor-based biquaternion gravity}~\cite{dehaas2014,dehaas2025}:
+        de~Haas generates the metric via the adjoint action of a $\mathrm{Spin}(1,3)$
+        rotor and reproduces Painlev\'e--Gullstrand forms of the Schwarzschild and Kerr
+        geometries within an Einstein--Cartan framework over real time.
+        UBT differs in that the metric is a bilinear of the fundamental field
+        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
+        (no rotor, no presupposed gravitational connection) and operates over
+        complexified time $\tau = t + i\psi$.
+        These constructions were developed independently; no priority claim is implied.
 \end{itemize}
 
 \subsection{Relation to Prior Work}
