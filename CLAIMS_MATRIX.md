@@ -19,9 +19,9 @@ Definitions are governed by [`docs/UBT_SCOPE_AND_CLAIM_LEVELS.md`](docs/UBT_SCOP
 
 | Claim | Status | Primary source | Notes |
 |---|---|---|---|
-| Derived metric chain and GR recovery in admissible real projection | PROVED | `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex` | Canonical core claim |
-| Regge–Wheeler odd-parity graviton equation recovery | PROVED | `papers/UBT_GR_Submission.tex`, `canonical/gr_closure/` | Canonical GR perturbation chain |
-| Zerilli even-parity graviton equation recovery | PROVED | `canonical/gr_closure/zerilli_derivation.tex` | Canonical closure item |
+| Derived metric chain and GR recovery in admissible real projection | DERIVED_WITH_ASSUMPTIONS | `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex` | Steps 1--4 proved; step 5 conditional on GAP-10; GAP-U2: OPEN — mechanism identified (covariantly harmonic U(1)_ψ potential); closure reduced to GAP-U1 normalization; see also GAP-B |
+| Regge–Wheeler odd-parity graviton equation recovery | DERIVED_WITH_ASSUMPTIONS | `papers/UBT_GR_Submission.tex`, `canonical/gr_closure/` | Conditional reduction [L1 cond.] given GAP-B (perturbation bridge) |
+| Zerilli even-parity graviton equation recovery | DERIVED_WITH_ASSUMPTIONS | `canonical/gr_closure/zerilli_derivation.tex` | Conditional reduction [L1 cond.] given GAP-B; GAP-B remains open |
 | Standard-model gauge-structure recovery track (SU(3)×SU(2)×U(1) structural chain) | DERIVED_WITH_ASSUMPTIONS | `canonical/interactions/`, `canonical/su3_derivation/`, `papers/UBT_Gauge_Submission.tex` | Formal chain present; remaining sector-specific closures explicit |
 | Hypercharge $Y_Q=1/6$ from topology | L1_FAMILY_CHECK | `canonical/interactions/colour_charge_lattice.tex` | Unique within $Y=n/6$ family via gravitational anomaly $\mathcal{A}_{\rm grav}(n)=n-1=0$ for $n=1$ only. Full uniqueness (outside family) remains OPEN. |
 | Three-generation structural route from ψ-winding framework | DERIVED_WITH_ASSUMPTIONS | `canonical/n_eff/`, `canonical/interactions/` | Mechanism documented with explicit assumptions |

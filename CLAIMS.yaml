@@ -1,10 +1,17 @@
 claims:
   gr_chain:
-    status: PROVED
+    status: DERIVED_WITH_ASSUMPTIONS
     evidence:
       - canonical/gr_closure/
       - papers/UBT_GR_Submission.tex
-    forbidden_wording: []
+    assumptions:
+      - GAP-10: variational equivalence of Theta-only and induced-metric variation
+      - GAP-U2: OPEN — mechanism identified (covariantly harmonic U(1)_ψ potential); closure reduced to GAP-U1 normalization
+      - GAP-B: perturbation bridge identification delta(nabla†nablaTheta)->deltaG_munu
+    forbidden_wording:
+      - GR is derived from UBT
+      - Einstein equations emerge from UBT
+      - complete five-step chain at L1
   gauge_group:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
