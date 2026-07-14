@@ -1,9 +1,36 @@
 # Copyright (c) 2025 Ing. David Jaroš
 # Licensed under the MIT License
-"""Root shim: forensic_fingerprint.layer2.predictors -> ubt_with_chronofactor."""
-import importlib as _importlib
-import sys as _sys
+"""Layer2 predictors."""
 
-_real = _importlib.import_module("ubt_with_chronofactor.forensic_fingerprint.layer2.predictors")
-_sys.modules[__name__] = _real
-globals().update({k: getattr(_real, k) for k in dir(_real) if not k.startswith("_")})
+from __future__ import annotations
+
+from .config_space import Layer2Config
+
+
+def _base_predictions(cfg: Layer2Config) -> dict[str, float]:
+    alpha_inv = (
+        100.0
+        + 0.05 * cfg.rs_n
+        + 0.02 * cfg.rs_k
+        + 0.1 * cfg.ofdm_channels
+        + 0.01 * cfg.winding_number
+        + 0.5 * cfg.prime_gate_pattern
+        + 0.001 * cfg.quantization_grid
+    )
+    electron_mass = 0.4 + 0.0007 * alpha_inv
+    return {"alpha_inv": float(alpha_inv), "electron_mass": float(electron_mass)}
+
+
+def predict_constants(
+    cfg: Layer2Config,
+    mapping: str = "placeholder",
+    targets: list[str] | None = None,
+) -> dict[str, float]:
+    mode = mapping.lower()
+    if mode not in {"placeholder", "ubt"}:
+        raise ValueError(f"Unknown mapping: {mapping}")
+
+    preds = _base_predictions(cfg)
+    if targets is None:
+        return preds
+    return {k: v for k, v in preds.items() if k in set(targets)}

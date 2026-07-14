@@ -1,63 +1,50 @@
 #!/usr/bin/env python3
-# validate_manifest.py (root shim)
 # SPDX-License-Identifier: MIT
-"""
-Root-level shim for validate_manifest module.
+"""Manifest validation helpers."""
 
-After repository restructuring, validate_manifest.py moved to:
-  ubt_with_chronofactor/tools/data_provenance/validate_manifest.py
-  (or ubt_with_chronofactor/TOOLS/data_provenance/validate_manifest.py)
-
-This shim preserves backward compatibility for existing tests and scripts
-that import validate_manifest from the repository root.
-
-The shim tries multiple candidate locations and re-exports the implementation.
-"""
 from __future__ import annotations
 
-import importlib
-import sys
+import hashlib
+import json
 from pathlib import Path
 
-_ROOT = Path(__file__).resolve().parent
-_CANDIDATES = [
-    "ubt_with_chronofactor.tools.data_provenance.validate_manifest",
-    "ubt_with_chronofactor.TOOLS.data_provenance.validate_manifest",
-]
 
-_mod = None
-_err = None
-for name in _CANDIDATES:
-    try:
-        _mod = importlib.import_module(name)
-        break
-    except Exception as e:
-        _err = e
+def compute_sha256(file_path: str | Path) -> str:
+    hasher = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            hasher.update(chunk)
+    return hasher.hexdigest()
 
-if _mod is None:
-    raise ModuleNotFoundError(
-        f"Could not import validate_manifest implementation from candidates: {_CANDIDATES}"
-    ) from _err
 
-# Re-export common names (best-effort)
-__all__ = getattr(_mod, "__all__", [])
-_exported = {k: getattr(_mod, k) for k in dir(_mod) if not k.startswith('_')}
-globals().update(_exported)
+def validate_manifest(manifest_path: str | Path, base_dir: str | Path | None = None) -> bool:
+    manifest_path = Path(manifest_path)
+    base = Path(base_dir).resolve() if base_dir else manifest_path.parent.resolve()
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for file_info in manifest.get("files", []):
+        raw_path = Path(file_info["path"])
+        resolved = raw_path if raw_path.is_absolute() else (base / raw_path)
+        if not resolved.exists():
+            return False
+        expected = file_info.get("sha256")
+        if expected and compute_sha256(resolved) != expected:
+            return False
+    return True
 
-# Explicitly export main symbols
-validate_manifest = _exported.get('validate_manifest')
-compute_sha256 = _exported.get('compute_sha256')
-main = _exported.get('main')
+
+def main() -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Validate a manifest JSON.")
+    parser.add_argument("manifest_path")
+    parser.add_argument("--base-dir", default=None)
+    args = parser.parse_args()
+    ok = validate_manifest(args.manifest_path, base_dir=args.base_dir)
+    return 0 if ok else 1
 
 
 def _main() -> int:
-    """Entry point for CLI execution."""
-    if hasattr(_mod, "main"):
-        return int(_mod.main())
-    # If module is CLI-only via argparse in __main__, emulate:
-    if hasattr(_mod, "__name__"):
-        return 0
-    return 0
+    return int(main())
 
 
 if __name__ == "__main__":

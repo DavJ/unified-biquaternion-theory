@@ -1,9 +1,17 @@
 # Copyright (c) 2025 Ing. David Jaroš
 # Licensed under the MIT License
-"""Root shim: forensic_fingerprint.layer2.metrics -> ubt_with_chronofactor."""
-import importlib as _importlib
-import sys as _sys
+"""Layer2 metrics."""
 
-_real = _importlib.import_module("ubt_with_chronofactor.forensic_fingerprint.layer2.metrics")
-_sys.modules[__name__] = _real
-globals().update({k: getattr(_real, k) for k in dir(_real) if not k.startswith("_")})
+from __future__ import annotations
+
+import math
+
+
+def compute_rarity_bits(hit_rate: float) -> float:
+    if not (0.0 <= hit_rate <= 1.0):
+        raise ValueError("hit_rate must be in [0, 1]")
+    if hit_rate == 0.0:
+        return float("inf")
+    if hit_rate == 1.0:
+        return 0.0
+    return -math.log2(hit_rate)
