@@ -6,7 +6,7 @@ claims:
       - papers/UBT_GR_Submission.tex
     assumptions:
       - GAP-10: variational equivalence of Theta-only and induced-metric variation
-      - GAP-U2: dynamical derivation of temporal Schwarzschild component
+      - GAP-U2: OPEN — mechanism identified (covariantly harmonic U(1)_ψ potential); closure reduced to GAP-U1 normalization
       - GAP-B: perturbation bridge identification delta(nabla†nablaTheta)->deltaG_munu
     forbidden_wording:
       - GR is derived from UBT

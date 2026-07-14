@@ -746,11 +746,21 @@ to any quantum considerations.
 
 \paragraph{GAP-U2: Temporal Schwarzschild closure.}
 The relation $\partial_\psi\Theta_0 = i\Phi(r)\Theta_0$ produces
-$g_{tt} = -\Phi(r)^2$ but has not been derived from the UBT field
-equation $\nabla^\dagger\nabla\Theta = 0$ and appropriate boundary
-conditions; the verification script \texttt{tools/verify\_schwarzschild\_theta.py}
-reports this sector \textbf{OPEN}.
-The spatial Schwarzschild metric $g_{ij} = \Psi^4\delta_{ij}$ is unaffected.
+$g_{tt} = -\Phi(r)^2$. A phase-based realization is excluded: it is
+inconsistent with the flat-background field equation and, on compact
+$\psi$, with single-valuedness (see
+\texttt{research\_tracks/gap\_u2/gap\_u2\_lapse\_mechanism.md}). A
+connection-based mechanism has been identified and verified exactly:
+with $D_\psi\Theta = \partial_\psi\Theta + iqA_\psi\Theta$, the vacuum
+field equation for the $\mathrm{U}(1)_\psi$ connection on the induced
+spatial metric $g_{ij} = \Psi^4\delta_{ij}$ is
+$\partial_r(r^2\Psi^2 A_\psi') = 0$, whose solution with
+$A_\psi(\infty) = 1$ and charge $M$ is exactly
+$A_\psi = 1 - M/(r+M/2) \equiv \Phi(r)$ (verified symbolically,
+\texttt{tools/verify\_gap\_u2\_lapse.py}). Closure of the remaining
+normalization condition $q^2|\Theta_0|^2/\calN = 1$ reduces to the
+bilinear specification of GAP-U1; the gap therefore remains OPEN
+pending GAP-U1.
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
@@ -775,7 +785,7 @@ Deriving it from the first principles of the field equation is an open problem.
 GAP-C & FRW/de~Sitter $\Theta$ ansatz not derived & Medium \\
 GAP-M & Compact $M^4$ off-shell closure & Low \\
 GAP-Q & Path-integral quantisation of UBT & Very long term \\
-GAP-U1 & Uniqueness of metric bilinear (alt.\ forms of $\langle\cdot,\cdot\rangle_\eta$); see \texttt{reviews/external\_review\_2026-07\_gpt.md} & Medium \\
+GAP-U1 & Uniqueness of metric bilinear (alt.\ forms of $\langle\cdot,\cdot\rangle_\eta$); now also gates GAP-U2 closure; see \texttt{reviews/external\_review\_2026-07\_gpt.md} & High \\
 \bottomrule
 \end{tabular}
 \end{center}
