@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v10.1.4] - 2026-07-14 - Honest-Status Reframe of T1_GR
+
+### Changed
+
+- **Honest-status reframe of T1_GR per July 2026 external audit**
+  (`papers/UBT_GR_Submission.tex`):
+  - Abstract replaced with accurate description of what is proved vs.\ open.
+  - Title updated to reflect actual theorem content.
+  - Key Claims items 1--6 reworded to reflect conditional and partial results.
+  - Novelty table updated: Lorentzian signature → "Conditional theorem";
+    Einstein equations → "Variational, with identified obstruction (GAP-10)";
+    Schwarzschild → "Spatial verified $<10^{-15}$; temporal conditional (GAP-U2)";
+    Regge-Wheeler → "Conditional reduction (GAP-B)".
+  - Open Problems section rewritten: removed "None of them affect the validity"
+    language; GAP-U2 (temporal Schwarzschild) and GAP-B (perturbation bridge)
+    named and boxed; GAP-U1 (metric bilinear uniqueness) added to lower-priority
+    table; GAP-10 wording clarified as classical variational-equivalence question.
+  - Proof Status Summary tcolorbox updated to reflect conditional items.
+  - Global sweep: "unique spherically symmetric" → uniqueness claim removed;
+    Zerilli and RW labels updated to [L1 cond.\ given GAP-B].
+
+- **CLAIMS.yaml**: `gr_chain.status` changed from `PROVED` to
+  `DERIVED_WITH_ASSUMPTIONS`; assumptions GAP-10, GAP-U2, GAP-B documented;
+  `forbidden_wording` entries added: "GR is derived from UBT",
+  "Einstein equations emerge from UBT", "complete five-step chain at L1".
+
+- **CLAIMS_MATRIX.md**: GR chain row, Regge--Wheeler row, and Zerilli row updated
+  to `DERIVED_WITH_ASSUMPTIONS` with pointers to GAP-10, GAP-U2, GAP-B.
+
+### Added
+
+- `reviews/external_review_2026-07_gpt.md`: stub documenting the July 2026
+  external audit findings that motivated the honest-status reframe.
+
 ### Added
 
 - **B_base non-perturbative approaches (v60 baseline)**: New document

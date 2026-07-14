@@ -73,8 +73,9 @@
 \newcommand{\calT}{\mathcal{T}}
 
 % ==============================================================================
-\title{\textbf{General Relativity as a Real-Projected Limit\\
-       of Unified Biquaternion Theory}}
+\title{\textbf{Induced Lorentzian Metrics from Biquaternion-Valued Fields:\\
+       GR Structure, Schwarzschild Reconstruction,\\
+       and the Variational Obstruction}}
 \author{Ing.\ David Jaroš}
 \date{May 2026}
 % ==============================================================================
@@ -84,32 +85,36 @@
 
 % ---- Abstract ----------------------------------------------------------------
 \begin{abstract}
-We prove that Einstein's field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
-emerge as the real-sector projection of the Unified Biquaternion Theory (UBT)
-field equation
-$\nabla^\dagger\nabla\Theta(q,\tau) = \kappa\,\mathcal{T}(q,\tau)$
-over complex time $\tau = t + i\psi$.
-The derivation proceeds through a five-step chain:
-(1)~the spacetime metric $g_{\mu\nu}$ is a derived quantity, not postulated,
-emerging as the real-valued bilinear
-$g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$;
-(2)~non-degeneracy $\det(g) \neq 0$ follows from the admissibility condition;
-(3)~Lorentzian signature $(-,+,+,+)$ follows from AXIOM-B together with the admissible Lorentzian real-sector projection / indefinite bilinear form, not as an independent postulate;
-(4)~the Levi-Civita connection and curvature tensors follow by standard constructions in the real projection
-differential geometry applied to the derived metric;
-(5)~the Einstein field equations follow from Hilbert variation of the total
-UBT action.
-The Schwarzschild metric in isotropic coordinates is reproduced:
-spatial components $g_{ij} = \Psi^4\delta_{ij}$ are numerically
-verified to relative error $< 10^{-15}$; the temporal component
-$g_{tt} = -\Phi^2$ follows analytically from the complex-time
-structure $\partial_\psi\Theta_0 = i\Phi\Theta_0$ (Appendix~B).
-Both graviton polarisation sectors are recovered: the odd-parity graviton
-satisfies the Regge-Wheeler equation (Theorem~5.1), and the even-parity
-graviton satisfies the Zerilli equation, derived at level~[L1] in
-\texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
-The off-shell $\Theta$-only closure (GAP-10) remains open at level [L2]
-and does not affect the on-shell validity of the main result.
+We construct a candidate spacetime metric as the real-valued bilinear
+$g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
+of a biquaternion-valued field $\Theta(q,\tau)$ over complexified time
+$\tau = t + i\psi$, and analyse the extent to which the dynamics of the
+Unified Biquaternion Theory (UBT) field equation
+$\nabla^\dagger\nabla\Theta = \kappa\,\mathcal{T}$ reproduces general
+relativity. We prove: (i) $g_{\mu\nu}[\Theta]$ is a symmetric covariant
+tensor (transformation law derived, not assumed); (ii) for admissible
+fields --- those satisfying a non-degeneracy condition and a Lorentzian
+real-sector projection --- the induced metric has signature $(-,+,+,+)$
+(conditional signature theorem); (iii) the Levi-Civita connection,
+curvature, and, upon adjoining the Einstein--Hilbert term for the induced
+metric, the Einstein field equations follow by standard variational
+arguments. We identify precisely the variational obstruction (GAP-10) to
+deriving the Einstein equations from the $\Theta$-dynamics alone: since
+$g = g[\Theta]$, stationarity under the induced variations
+$\delta g[\delta\Theta]$ has not been shown to imply the full Einstein
+equations, and this equivalence remains the central open problem of the
+programme. A spherically symmetric ansatz $\Theta_0$ reproduces the
+spatial Schwarzschild metric in isotropic coordinates,
+$g_{ij} = \Psi^4\delta_{ij}$, verified numerically to relative error
+$< 10^{-15}$; the temporal component $g_{tt} = -\Phi^2$ follows from the
+complex-time relation $\partial_\psi\Theta_0 = i\Phi\Theta_0$, whose
+dynamical derivation from the field equation remains open (GAP-U2).
+Linearised odd- and even-parity perturbations reduce to the
+Regge--Wheeler and Zerilli equations conditional on the identification
+$\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$, which is
+stated as an explicit bridge assumption. We situate the construction
+within the Hermitian-gravity and biquaternion literature and state all
+assumptions, conventions, and open gaps explicitly.
 \end{abstract}
 
 \tableofcontents
@@ -160,35 +165,49 @@ claim is implied in either direction.
 The novel contributions of this paper are:
 
 \begin{enumerate}
-  \item \textbf{Metric is derived, not postulated.}
-        The metric $g_{\mu\nu}$ emerges as the real-valued bilinear
-        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
-        (Theorem~\ref{thm:metric}).
-        Prior biquaternion gravity papers postulate or impose the metric.
-        The metric here is a bilinear of the fundamental field $\partial_\mu\Theta$,
-        not the adjoint action of a rotor; no gravitational connection is presupposed.
+  \item \textbf{Induced-metric construction.}
+        The candidate metric $g_{\mu\nu}$ is defined as a real-valued bilinear of
+        $\partial_\mu\Theta$; its tensor transformation law is \emph{proved}, not
+        assumed (Theorem~\ref{thm:metric}).
+        Whether the UBT dynamics selects Einstein dynamics for this metric is the
+        identified open problem (GAP-10).
 
-  \item \textbf{Lorentzian signature is proved.}
-        Theorem~\ref{thm:signature} derives $(-,+,+,+)$ from AXIOM-B together with the
-        admissible Lorentzian real-sector projection / indefinite bilinear form.
-        Prior approaches assume the signature.
+  \item \textbf{Conditional signature theorem.}
+        For admissible fields --- i.e.\ given the Lorentzian real-sector
+        projection and the indefinite bilinear form of AXIOM-B --- the induced
+        metric has signature $(-,+,+,+)$ (Theorem~\ref{thm:signature}).
+        The Lorentzian structure of the projection is an input; the theorem shows
+        it is consistently inherited by $g_{\mu\nu}[\Theta]$.
 
-  \item \textbf{Complete five-step chain.}
-        The derivation $\Theta \to g \to \Gamma \to R \to G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
-        is complete at level [L1] with explicit canonical source files.
+  \item \textbf{Five-step chain with an identified obstruction.}
+        The chain
+        $\Theta \to g \to \Gamma \to R \to G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
+        is constructed explicitly; steps~1--4 are proved, and step~5 holds upon
+        adjoining the Einstein--Hilbert action for the induced metric.
+        The equivalence of this variation with variation over $\Theta$ alone is
+        open (GAP-10) and is stated as such.
 
-  \item \textbf{No free parameters in the GR chain.}
-        The normalisation $\calN$ is fixed by the admissibility condition;
-        no free coupling constants appear.
+  \item \textbf{No additional fit parameters.}
+        After fixing Newton's constant $G$, the Lorentzian projection, the
+        bilinear form, and the normalisation convention $\calN$, the
+        Schwarzschild reconstruction introduces no further adjustable parameters.
 
-  \item \textbf{Schwarzschild reproduced analytically and numerically.}
-        The ansatz $\Theta_0$ is the unique spherically symmetric vacuum solution;
-        the Schwarzschild metric follows analytically, with spatial components verified to
-        $< 10^{-15}$ relative error via independent numerical computation.
+  \item \textbf{Spatial Schwarzschild reconstruction.}
+        A spherically symmetric ansatz $\Theta_0$ reproduces the spatial
+        isotropic Schwarzschild metric $g_{ij} = \Psi^4\delta_{ij}$, verified
+        numerically to relative error $< 10^{-15}$
+        (\texttt{tools/verify\_schwarzschild\_theta.py}).
+        The temporal component $g_{tt} = -\Phi^2$ follows from
+        $\partial_\psi\Theta_0 = i\Phi\Theta_0$; the dynamical derivation of
+        this relation from the field equation is open (GAP-U2).
+        No uniqueness claim is made for the ansatz.
 
-  \item \textbf{Regge-Wheeler equation derived.}
-        The odd-parity linearised graviton equation follows from linearised
-        UBT without additional input (Theorem~\ref{thm:rw}).
+  \item \textbf{Regge--Wheeler and Zerilli reductions (conditional).}
+        Linearised odd- and even-parity perturbations reduce to the
+        Regge--Wheeler and Zerilli equations, conditional on the bridge
+        identification $\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$,
+        which is stated as an explicit assumption (GAP-B) rather than a derived
+        step.
 \end{enumerate}
 
 Table~\ref{tab:novelty} summarises the comparison with related biquaternion
@@ -203,11 +222,11 @@ gravity approaches.
 \textbf{Feature} & \textbf{UBT (this paper)} & \textbf{Quaternionic QM~\cite{adler1995,finkelstein1962,deleo1996}} & \textbf{Rotor gravity (de~Haas)~\cite{dehaas2014,dehaas2025}} \\
 \midrule
 Metric derivation & Bilinear of $\partial\Theta$ & No gravitational sector & Rotor adjoint action \\
-Lorentzian signature & Proved (Theorem~\ref{thm:signature}) & --- & Assumed \\
-Einstein equations & Variational, 5-step chain [\Lone] & --- & Einstein--Cartan, first-order \\
+Lorentzian signature & Conditional theorem (Theorem~\ref{thm:signature}) & --- & Assumed \\
+Einstein equations & Variational, with identified obstruction (GAP-10) [\Lone\ cond.] & --- & Einstein--Cartan, first-order \\
 Complexified time $\tau=t+i\psi$ & Yes (compact $\psi$) & No & No \\
-Schwarzschild recovery & Analytical + numerical $<10^{-15}$ & --- & PG form demonstrated \\
-Regge-Wheeler equation & Proved [\Lone] & --- & Not addressed \\
+Schwarzschild recovery & Spatial verified $<10^{-15}$; temporal conditional (GAP-U2) & --- & PG form demonstrated \\
+Regge-Wheeler equation & Conditional reduction (GAP-B) [\Lone\ cond.] & --- & Not addressed \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -593,7 +612,7 @@ $\Theta \to \mathbf{1}$ as $r \to \infty$ is:
 \[
   \Theta_0 = e^{i\Phi(r)}\bigl[f(r)\,\mathbf{1} + g(r)\,\boldsymbol{e}_r\bigr].
 \]
-This is the unique (up to gauge) spherically symmetric vacuum solution
+This is a (up to gauge) spherically symmetric vacuum solution
 of the UBT Euler--Lagrange equation.
 The ansatz is not reverse-engineered from Schwarzschild;
 the Schwarzschild metric emerges from substituting into the metric formula
@@ -685,13 +704,13 @@ The complete derivation is given in
 \end{theorem}
 
 \begin{tcolorbox}[colback=green!4!white,colframe=green!55!black,
-  title={Zerilli equation (even-parity graviton) \PROVED\ [\Lone]}]
+  title={Zerilli equation (even-parity graviton) [\Lone\ cond.\ given GAP-B]}]
 The even-parity (polar) perturbation equation of Schwarzschild
 --- the Zerilli equation~\cite{zerilli1970} ---
 is derived from linearised UBT in
-\texttt{canonical/gr\_closure/zerilli\_derivation.tex}.
-GAP-Z is therefore closed at level [L1], and does not add any blocker to the
-main GR recovery result.
+\texttt{canonical/gr\_closure/zerilli\_derivation.tex},
+conditional on the perturbation bridge assumption GAP-B.
+GAP-Z is therefore at level [L1 cond.\ given GAP-B]; GAP-B remains open.
 \end{tcolorbox}
 
 % ==============================================================================
@@ -700,8 +719,13 @@ main GR recovery result.
 % ==============================================================================
 
 The following problems are explicitly bounded.
-\textbf{None of them affect the validity of the Main Theorem or
-Theorems~\ref{thm:metric}--\ref{thm:rw}.}
+Theorems~\ref{thm:metric}--\ref{thm:rw} hold as stated with
+their explicit hypotheses. GAP-10 directly conditions the \emph{interpretation}
+of the main result: without control of the image of the variational map
+$\delta\Theta \mapsto \delta g_{\mu\nu}[\delta\Theta]$, stationarity of the
+total action under available variations has not been shown to imply the
+full Einstein equations. GAP-U2 conditions the temporal Schwarzschild
+sector; GAP-B conditions the perturbation reductions.
 
 \begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
   title={GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo]},breakable]
@@ -713,8 +737,32 @@ then standard Einstein--Hilbert variation over $g_{\mu\nu}$.
 The off-shell problem --- deriving $G_{\mu\nu}=8\pi GT_{\mu\nu}$
 by varying $S[\Theta]$ directly with respect to $\Theta$ alone,
 without passing through $g$ --- remains open at level [L2].
-This is a question about the off-shell path-integral sector,
-not the on-shell classical result established here.
+This is a classical variational-equivalence question, prior
+to any quantum considerations.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
+  title={GAP-U2: Temporal Schwarzschild Closure\ \OPEN},breakable]
+
+\paragraph{GAP-U2: Temporal Schwarzschild closure.}
+The relation $\partial_\psi\Theta_0 = i\Phi(r)\Theta_0$ produces
+$g_{tt} = -\Phi(r)^2$ but has not been derived from the UBT field
+equation $\nabla^\dagger\nabla\Theta = 0$ and appropriate boundary
+conditions; the verification script \texttt{tools/verify\_schwarzschild\_theta.py}
+reports this sector \textbf{OPEN}.
+The spatial Schwarzschild metric $g_{ij} = \Psi^4\delta_{ij}$ is unaffected.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
+  title={GAP-B: Perturbation Bridge\ \OPEN},breakable]
+
+\paragraph{GAP-B: Perturbation bridge.}
+The reduction of linearised UBT perturbations to the Regge--Wheeler
+and Zerilli equations uses the identification
+$\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$.
+This bridge has not been derived from the linearised UBT dynamics;
+it is stated as an explicit assumption.
+Deriving it from the first principles of the field equation is an open problem.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}
@@ -727,6 +775,7 @@ not the on-shell classical result established here.
 GAP-C & FRW/de~Sitter $\Theta$ ansatz not derived & Medium \\
 GAP-M & Compact $M^4$ off-shell closure & Low \\
 GAP-Q & Path-integral quantisation of UBT & Very long term \\
+GAP-U1 & Uniqueness of metric bilinear (alt.\ forms of $\langle\cdot,\cdot\rangle_\eta$); see \texttt{reviews/external\_review\_2026-07\_gpt.md} & Low \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -899,13 +948,14 @@ and three fermion generations (T2\_GAUGE track); and
 (ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
 (T3\_ALPHA track, preprint in preparation).
 The remaining [L2] open problem (GAP-10) is precisely bounded in
-\S\ref{sec:gaps} and does not affect the validity of Theorems~\ref{thm:metric}--\ref{thm:rw}.
+\S\ref{sec:gaps}; GAP-U2 and GAP-B additionally condition the temporal
+Schwarzschild and perturbation sectors respectively (see \S\ref{sec:gaps}).
 
 \paragraph{Subsequent results (since first submission).}
 The following results have been established in companion work
 and do not affect the GR derivation presented here:
 \begin{itemize}
-\item Even-parity (Zerilli) graviton equation derived [L1]
+\item Even-parity (Zerilli) graviton equation derived [L1 cond.\ given GAP-B]
   (\texttt{canonical/gr\_closure/zerilli\_derivation.tex}).
 \item $N_{\rm eff}=12$ from SU(2) Scherk--Schwarz twist [L1]
   (\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}).
@@ -930,11 +980,13 @@ The chain
   R^\rho{}_{\sigma\mu\nu} \;\longrightarrow\;
   G_{\mu\nu} = 8\pi G\,T_{\mu\nu}
 \]
-is complete at the [L1] level.
-UBT contains standard GR as an exact sector: the metric and Lorentzian
-signature are derived, not postulated; the Schwarzschild metric is reproduced
-to floating-point precision; and the Regge-Wheeler equation follows without
-extra input.
+is complete with an identified obstruction: steps~1--4 are proved at the [L1]
+level; step~5 holds upon adjoining the Einstein--Hilbert action for the induced
+metric (\Lone\ conditional on GAP-10 for the $\Theta$-only formulation).
+UBT contains standard GR as a derivable sector: the metric and Lorentzian
+signature are derived, not postulated; the spatial Schwarzschild metric is
+reproduced to floating-point precision; and the Regge-Wheeler equation follows
+from the perturbation chain, conditional on the bridge assumption GAP-B.
 
 The proof makes a specific, falsifiable, and self-contained claim about the
 real-sector projection of UBT, suitable for independent verification by
@@ -946,7 +998,7 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 \begin{tcolorbox}[colback=blue!3!white,colframe=blue!55!black,
-  title={T1\_GR Proof Status: Complete (on-shell classical GR)}]
+  title={T1\_GR Proof Status: Steps 1--4 Proved; Steps 5, 6c, 7a Conditional}]
 \begin{center}
 \begin{tabular}{c >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{3.5cm} l}
 \toprule
@@ -956,11 +1008,11 @@ researchers familiar with biquaternion algebra and standard GR.
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
 3 & Lorentzian signature in the admissible projected GR sector & Proved [L1-C] (projection convention) & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
-5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & Proved \Lone & step3\_einstein\_with\_matter.tex \\
+5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & \Lone\ cond.\ (GAP-10 for $\Theta$-only) & step3\_einstein\_with\_matter.tex \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
 6b & ASD condition / twistor & Proved \Lone & asd\_condition\_ubt.tex \\
-6c & Regge-Wheeler equation & Proved \Lone & linearised GR chain \\
-7a & Zerilli equation (even-parity) & \textbf{Proved [L1]} & \texttt{zerilli\_derivation.tex} \\
+6c & Regge-Wheeler equation & \Lone\ cond.\ (GAP-B) & linearised GR chain \\
+7a & Zerilli equation (even-parity) & \Lone\ cond.\ (GAP-B) & \texttt{zerilli\_derivation.tex} \\
 7b & Off-shell $\Theta$-only closure & Open \Ltwo & GAP-10, \S\ref{sec:gaps} \\
 \bottomrule
 \end{tabular}
