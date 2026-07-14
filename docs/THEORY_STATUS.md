@@ -3,6 +3,8 @@
 
 # UBT Theory Status Map
 
+> **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
+
 *Auto-generated from [`DERIVATION_INDEX.md`](../DERIVATION_INDEX.md). Do not edit manually — run `python tools/generate_theory_map.py` to regenerate.*
 
 ## Status Legend

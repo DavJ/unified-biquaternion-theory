@@ -1,23 +1,23 @@
-## 2026-06-14 (v95 — ALPHA [L1] PROVEN; Gap C1 CLOSED; OP-S4 CLOSED)
+## 2026-06-14 (v95 — ALPHA STATUS FROZEN; Gap C1 CLOSED; OP-S4 CLOSED)
 
-### T3_ALPHA: UPGRADE from [L1 cond.] to [L1] PROVEN
+### T3_ALPHA: STATUS FREEZE (structural + numerical evidence; full derivation open)
 
 Previous: "α NOT DERIVED unconditionally — [L1 cond.]"
-Current:  α⁻¹_UBT = 137.035999177549 (+0.026σ CODATA 2022) [L1] PROVEN
+Current:  α: structural and numerical evidence; full first-principles derivation OPEN (see canonical/alpha/ALPHA_MASTER_STATUS.md). UBT provides a conditional mechanism selecting the vicinity of n = 137; the normalization of the effective coefficient and the physical corrections toward 137.035999... are not yet independently derived from the canonical action S[Θ].
 
 Key insight: "SU(2)_L = left action on Θ" is [L0] algebra (T2_GAUGE Thm.1),
 not an open condition. All remaining conditions closed [L0] or [L1].
 
-Full chain [L0]/[L1] — no fitted parameters, no [MC] steps:
+Underlying chain (retained) [L0]/[L1 cond.] — status remains conditional, not full α derivation:
 - Ω_η = 1/24-1/(8π) [L0]
 - Z_ψ[τ]=η^{-12} exact Gaussian [L1]
 - R_ψ=1 modular fixed point [L1]
-- n* = 137.035999177549 fixed point [L1]
+- n* = 137.035999177549 fixed point [L1 cond.]
 - SU(2)_L left action [L0] (T2_GAUGE Thm.1)
 - P_ψ=γ⁵ from 5D Dirac [L1]
 - m²₀=0 from modular covariance [L1]
 - μ²_EW>0 (SSB) from odd-winding det [L1]
-- n = α⁻¹ from compact-U(1) normalisation [L1]
+- n = α⁻¹ from compact-U(1) normalisation [L1 cond.]
 
 ### T2_GAUGE: Gap C1 and OP-S4 CLOSED
 
@@ -28,7 +28,7 @@ Full chain [L0]/[L1] — no fitted parameters, no [MC] steps:
 - OP-S4 (SU(2)_L not SU(2)_R): CLOSED [L1]
   All three loopholes closed. Source: gap_c1_closure.tex.
 - Gap C2 Step 1 (Y=(B-L)/2): [L1 cond. on OP-S4+SU(3)] — CLOSED
-- Alpha O4 in T2_GAUGE paper: should be updated from OPEN to PROVEN [L1]
+- Alpha O4 in T2_GAUGE paper: keep as OPEN_GAP / conditional-only (not PROVEN)
 - Chirality O2 in T2_GAUGE paper: should be updated from SE to CLOSED [L1]
 
 ### STATUS_OF_UBT table update
@@ -37,7 +37,7 @@ Full chain [L0]/[L1] — no fitted parameters, no [MC] steps:
 |---|---|---|
 | T1_GR | SUBMIT READY [L1] | SUBMIT READY [L1] (unchanged) |
 | T2_GAUGE | PAPER COMPLETE [L1 cond.] | PAPER COMPLETE [L1] (Gap C1, OP-S4 closed) |
-| T3_ALPHA | STRUCTURAL EVIDENCE + [L1 cond.] | **[L1] PROVEN** |
+| T3_ALPHA | STRUCTURAL EVIDENCE + [L1 cond.] | STRUCTURAL + NUMERICAL EVIDENCE; full derivation OPEN (see `canonical/alpha/ALPHA_MASTER_STATUS.md`) |
 
 ### Comparison with competing approaches
 
@@ -48,13 +48,13 @@ Full chain [L0]/[L1] — no fitted parameters, no [MC] steps:
 | Chirality L | OOC (postulate) | open | ✓ [L1] closed |
 | 3 generations | input | triality | ✓ [L0] |
 | R_ψ derived | N/A | N/A | ✓ [L1] |
-| α derived | ✗ | ✗ | ✓ [L1] PROVEN |
+| α fully derived from first principles | ✗ | ✗ | ✗ (OPEN_GAP; conditional mechanism only) |
 | sin²θ_W | ✓ cond. | ✗ | ✓ [L1 cond., B5] |
 | No free params | ✗ | ✗ | ✓ |
 | Published | ✓ 30+ yrs | ✓ PLB | ✗ pending |
 
-UBT is the only approach deriving GR + SM gauge group + chirality +
-3 generations + R_ψ + α from a single algebra ℂ⊗ℍ with no free parameters.
+UBT is the only approach in this comparison deriving GR + SM gauge structure +
+chirality + 3 generations + R_ψ from a single algebra ℂ⊗ℍ; α remains an open first-principles gap with structural/conditional support only.
 
 ### Primary action item
 SUBMIT T1_GR. Every day of delay is unnecessary.

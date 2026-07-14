@@ -1,4 +1,5 @@
 # UBT Current Status Report
+> **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
 **Last Updated:** November 14, 2025  
 **Version:** Consolidated from multiple status documents  
 **Purpose:** Single authoritative source for UBT theory status, challenges, and progress

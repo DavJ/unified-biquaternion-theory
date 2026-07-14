@@ -1,9 +1,18 @@
 # Copyright (c) 2025 Ing. David Jaroš
 # Licensed under the MIT License
-"""Root shim: forensic_fingerprint.layer2.config_space -> ubt_with_chronofactor."""
-import importlib as _importlib
-import sys as _sys
+"""Layer2 configuration objects."""
 
-_real = _importlib.import_module("ubt_with_chronofactor.forensic_fingerprint.layer2.config_space")
-_sys.modules[__name__] = _real
-globals().update({k: getattr(_real, k) for k in dir(_real) if not k.startswith("_")})
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Layer2Config:
+    rs_n: int
+    rs_k: int
+    ofdm_channels: int
+    winding_number: int
+    prime_gate_pattern: int
+    quantization_grid: int
+
+
+ConfigurationSpace = Layer2Config

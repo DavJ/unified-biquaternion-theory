@@ -2,6 +2,8 @@
 
 # STATUS.md — Current Theory Status Dashboard
 
+> **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
+
 **Author**: Ing. David Jaroš  
 **Date**: 2026-05-13  
 **Update frequency**: Per milestone  

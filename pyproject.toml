@@ -7,5 +7,8 @@ name = "ubt"
 version = "0.1.0"
 dependencies = ["numpy", "scipy"]
 
+[project.optional-dependencies]
+dev = ["pytest", "hypothesis"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
