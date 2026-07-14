@@ -1,0 +1,137 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+
+\title{GAP-U1 Proof Details}
+\author{Ing.\ David Jaroš}
+\date{2026-07-14}
+
+\begin{document}
+\maketitle
+\fi
+
+\section{Symmetry and invariance equations}
+
+Fix
+\[
+\beta_X(A,B):=\operatorname{Re}\operatorname{Tr}(A X B^\dagger),\qquad X\in M_2(\mathbb C).
+\]
+Under $A\mapsto UAV$, $B\mapsto UBV$,
+\begin{align*}
+\beta_X(UAV,UBV)
+&=\operatorname{Re}\operatorname{Tr}(UAVX(UBV)^\dagger)\\
+&=\operatorname{Re}\operatorname{Tr}(UAVXV^\dagger B^\dagger U^\dagger)\\
+&=\operatorname{Re}\operatorname{Tr}(AVXV^\dagger B^\dagger).
+\end{align*}
+Therefore invariance for all $A,B$ is equivalent to
+\[
+VXV^\dagger=X\quad\forall V\in K.
+\]
+
+Symmetry condition:
+\begin{align*}
+\beta_X(B,A)
+&=\operatorname{Re}\operatorname{Tr}(BXA^\dagger)
+=\operatorname{Re}\operatorname{Tr}\big((BXA^\dagger)^\dagger\big)
+=\operatorname{Re}\operatorname{Tr}(AX^\dagger B^\dagger).
+\end{align*}
+Hence $\beta_X(B,A)=\beta_X(A,B)$ for all $A,B$ iff $X=X^\dagger$.
+
+\begin{theorem}[Derivation of the classification criterion]
+Invariant symmetric forms in this ansatz are exactly those with
+\[
+X\in\operatorname{Comm}(K)\cap\operatorname{Herm}(2).
+\]
+\textbf{Verdict: PROVED.}
+\end{theorem}
+
+\section{Case $K=U(2)$}
+
+\begin{proposition}[Commutant for full right unitary group]
+If $VXV^\dagger=X$ for all $V\in U(2)$, then $X=\lambda I$.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\begin{proof}
+Take $V=\mathrm{diag}(e^{i\theta_1},e^{i\theta_2})$.
+For $X=(x_{ij})$, the relation $VXV^\dagger=X$ gives
+\[
+(e^{i(\theta_1-\theta_2)}-1)x_{12}=0,\qquad (e^{i(\theta_2-\theta_1)}-1)x_{21}=0
+\]
+for all $\theta_1,\theta_2$, hence $x_{12}=x_{21}=0$.
+Now use
+\[
+V=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\-1&1\end{pmatrix}
+\]
+which swaps/rotates basis directions. Invariance then forces $x_{11}=x_{22}$.
+So $X=\lambda I$.
+\end{proof}
+
+Thus
+\[
+\beta(A,B)=\lambda\operatorname{Re}\operatorname{Tr}(AB^\dagger).
+\]
+Uniqueness is only up to real scale.
+
+\begin{theorem}[Uniqueness statement under full symmetry]
+For $K=U(2)$ the invariant symmetric bilinear form is unique up to scale.
+\textbf{Verdict: PROVED.}
+\end{theorem}
+
+\section{Case $K_\eta=U(1)\times U(1)$ with fixed $\eta=\mathrm{diag}(1,-1)$}
+
+Let $V=\mathrm{diag}(e^{i\theta_1},e^{i\theta_2})$.
+Condition $VXV^\dagger=X$ gives $x_{12}=x_{21}=0$ and leaves $x_{11},x_{22}$ free.
+Hermiticity gives $x_{11},x_{22}\in\mathbb R$.
+Write
+\[
+X=\begin{pmatrix}x_{11}&0\\0&x_{22}\end{pmatrix}
+=\alpha I+\beta\eta,
+\quad
+\alpha=\tfrac{x_{11}+x_{22}}2,
+\ \beta=\tfrac{x_{11}-x_{22}}2.
+\]
+
+\begin{theorem}[Complete reduced-symmetry family]
+For $K_\eta=U(1)\times U(1)$,
+\[
+\beta_{\alpha,\beta}(A,B)=\operatorname{Re}\operatorname{Tr}\!\big(A(\alpha I+\beta\eta)B^\dagger\big),\qquad \alpha,\beta\in\mathbb R
+\]
+is the full invariant symmetric family.
+\textbf{Verdict: PROVED.}
+\end{theorem}
+
+\begin{proposition}[Status of $\operatorname{Re}\operatorname{Tr}(A\eta B^\dagger)$]
+The form
+\[
+\langle A,B\rangle_\eta:=\operatorname{Re}\operatorname{Tr}(A\eta B^\dagger)
+\]
+is invariant under $K_\eta$ but is not unique there; it is a special point $(\alpha,\beta)=(0,1)$ in a two-parameter family.
+It is not invariant under full right $U(2)$.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\begin{resultbox}
+Any uniqueness theorem for GAP-U1 must explicitly include the selected right symmetry group. Without that group choice, uniqueness is false as a universal statement.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

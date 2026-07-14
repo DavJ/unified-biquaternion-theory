@@ -1,0 +1,94 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[proposition]{Remark}
+
+\title{GAP-U1 Worked Examples}
+\author{Ing.\ David Jaroš}
+\date{2026-07-14}
+
+\begin{document}
+\maketitle
+\fi
+
+\section{Reference matrices}
+Let
+\[
+I=\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
+\eta=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
+A=\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
+B=\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+\]
+
+\section{Two distinct $K_\eta$-invariant forms}
+Define
+\[
+\beta^{(1)}(X,Y)=\operatorname{Re}\operatorname{Tr}(XIY^\dagger),
+\qquad
+\beta^{(\eta)}(X,Y)=\operatorname{Re}\operatorname{Tr}(X\eta Y^\dagger).
+\]
+Then
+\[
+\beta^{(1)}(A,A)=1,\qquad
+\beta^{(\eta)}(A,A)=1,
+\]
+but
+\[
+\beta^{(1)}(B,B)=1,\qquad
+\beta^{(\eta)}(B,B)=-1.
+\]
+Hence these are linearly independent invariant symmetric forms in the reduced symmetry class.
+
+\begin{proposition}[Non-uniqueness in reduced symmetry]
+Under $K_\eta=U(1)\times U(1)$, invariant symmetric bilinear forms are not unique.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\section{Failure of full-$U(2)$ invariance for $\eta$ form}
+Take
+\[
+V=\frac1{\sqrt2}\begin{pmatrix}1&1\\-1&1\end{pmatrix}\in U(2).
+\]
+Compute
+\[
+V\eta V^\dagger
+=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}
+\neq \eta.
+\]
+Therefore
+\[
+\operatorname{Re}\operatorname{Tr}(A\eta B^\dagger)
+\]
+is not invariant under full right $U(2)$.
+
+\begin{proposition}[Group-dependent status of $\langle\cdot,\cdot\rangle_\eta$]
+$\operatorname{Re}\operatorname{Tr}(A\eta B^\dagger)$ is invariant for $K_\eta$, but not for full right $U(2)$.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\section{Metric implication for $g_{\mu\nu}$}
+With
+\[
+g_{\mu\nu}=\frac{\beta(\partial_\mu\Theta,\partial_\nu\Theta)}{\mathcal N},
+\]
+different admissible choices in the family $\beta_{\alpha,\beta}$ can change normalization and relative weights of matrix components.
+Therefore the bilinear specification must be fixed explicitly before claiming uniqueness-dependent conclusions.
+
+\begin{remark}
+A universal uniqueness claim without explicit group data is not valid.
+\textbf{Verdict: PROVED.}
+\end{remark}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

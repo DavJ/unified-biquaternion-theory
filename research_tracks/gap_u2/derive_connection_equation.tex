@@ -1,0 +1,123 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+
+\title{GAP-U2a: Derivation of the $A_\psi$ Field Equation}
+\author{Ing.\ David Jaroš}
+\date{2026-07-14}
+
+\begin{document}
+\maketitle
+\fi
+
+\section{Inputs from existing repository definitions}
+
+We use:
+\begin{itemize}
+\item $S_{\mathrm{total}}=\frac1{16\pi G}\int\sqrt{-g}R+S_\Theta$ from
+\texttt{papers/UBT\_GR\_Submission.tex},
+\item kinetic term $\operatorname{Re}\operatorname{Tr}[(D_\mu\Theta)^\dagger D^\mu\Theta]$,
+\item gauge-field kinetic term $-\frac14 F_{\mu\nu}F^{\mu\nu}$ in canonical gauge Lagrangian
+\texttt{canonical/interactions/sm\_gauge.tex}.
+\end{itemize}
+
+Restrict to one Abelian component $A_\mu$ along the $\psi$-sector with
+\[
+D_\mu\Theta=\partial_\mu\Theta+i q A_\mu\Theta,
+\qquad
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu.
+\]
+
+\section{Euler--Lagrange variation with respect to $A_\mu$}
+
+Consider
+\[
+\mathcal L = \sqrt{-g}\left[\operatorname{Re}\operatorname{Tr}\big((D_\mu\Theta)^\dagger D^\mu\Theta\big)-\frac14F_{\mu\nu}F^{\mu\nu}\right].
+\]
+Varying $A_\mu\mapsto A_\mu+\delta A_\mu$ gives
+\[
+\delta D_\mu\Theta=i q\,\delta A_\mu\Theta,
+\qquad
+\delta F_{\mu\nu}=\nabla_\mu\delta A_\nu-\nabla_\nu\delta A_\mu.
+\]
+Hence
+\[
+\delta S=\int d^4x\sqrt{-g}\left(J^\mu\delta A_\mu-(\nabla_\nu F^{\nu\mu})\delta A_\mu\right)
+\]
+with
+\[
+J^\mu = i q\,\operatorname{Re}\operatorname{Tr}\!\left(\Theta^\dagger D^\mu\Theta-(D^\mu\Theta)^\dagger\Theta\right).
+\]
+Arbitrariness of $\delta A_\mu$ implies
+\[
+\boxed{\nabla_\nu F^{\nu\mu}=J^\mu.}
+\]
+
+\begin{theorem}[Derived connection equation]
+From the stated action terms, the $A_\mu$ Euler--Lagrange equation is Maxwell-type:
+\[
+\nabla_\nu F^{\nu\mu}=J^\mu.
+\]
+This is outcome \textbf{B} in the GAP-U2a problem statement:
+\[
+\Delta_g A_\psi + F(A_\psi,\Theta)=0
+\]
+with source/nonlinear term encoded by $J^\mu$.
+\textbf{Verdict: PROVED.}
+\end{theorem}
+
+\section{Radial $A_\psi$ reduction}
+
+Assume static spherically symmetric sector,
+\[
+A_\mu dx^\mu=A_\psi(r)\,d\psi,
+\qquad g_{ij}=\Psi^4\delta_{ij},
+\]
+and source-free channel $J^\psi=0$.
+Then
+\[
+\nabla_i\nabla^i A_\psi=0
+\quad\Longleftrightarrow\quad
+\partial_r\big(r^2\Psi^2 A_\psi'(r)\big)=0.
+\]
+
+\begin{proposition}[When harmonic equation follows]
+The equation $\Delta_g A_\psi=0$ follows only after imposing $J^\psi=0$ in addition to the derived Euler--Lagrange equation.
+\textbf{Verdict: CONDITIONAL.}
+\end{proposition}
+
+\section{Insufficient-action branch}
+
+If one keeps only $\operatorname{Re}\operatorname{Tr}[(D\Theta)^\dagger D\Theta]$ and omits gauge kinetic
+$F^2$, variation in $A_\mu$ yields an algebraic current constraint ($J^\mu=0$) and no second-order PDE for $A_\mu$.
+
+\begin{proposition}[No-Laplace consequence without $F^2$ term]
+Without a gauge kinetic term, deriving $\Delta_g A_\psi=0$ is impossible.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\begin{gapbox}
+This file derives the equation itself. Closure of constants and physical matching (e.g., $C=M$) is handled separately.
+\end{gapbox}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi

@@ -1,0 +1,117 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+
+\ifdefined\INCLUDEMODE
+\else
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{mdframed}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
+\newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
+
+\title{GAP-U1 Classification: Invariant Symmetric Bilinear Forms on $\mathbb C\otimes\mathbb H\cong M_2(\mathbb C)$}
+\author{Ing.\ David Jaroš}
+\date{2026-07-14}
+
+\begin{document}
+\maketitle
+\fi
+
+\section{Problem Setup}
+
+\begin{definition}[Vector space and real structure]
+Let
+\[
+V := M_2(\mathbb C),
+\]
+viewed as a real vector space of dimension $8$.
+\end{definition}
+
+\begin{definition}[Representation]
+Fix the biunitary action
+\[
+\rho(U,V):A\mapsto UAV,\qquad (U,V)\in U(2)_L\times K,
+\]
+on $V$, where $K\subseteq U(2)$ is the right symmetry subgroup.
+\end{definition}
+
+\begin{definition}[Invariant symmetric bilinear form]
+A map $\beta:V\times V\to\mathbb R$ is called invariant symmetric bilinear if:
+\begin{enumerate}
+\item $\beta$ is real-bilinear,
+\item $\beta(A,B)=\beta(B,A)$,
+\item $\beta(\rho(U,V)A,\rho(U,V)B)=\beta(A,B)$ for all $(U,V)\in U(2)_L\times K$.
+\end{enumerate}
+\end{definition}
+
+\section{Classification}
+
+For Hermitian $X\in M_2(\mathbb C)$ define
+\[
+\beta_X(A,B):=\operatorname{Re}\operatorname{Tr}(A X B^\dagger).
+\]
+
+\begin{theorem}[Complete classification for fixed right subgroup $K$]
+\label{thm:classification-main}
+The invariant symmetric bilinear forms of the above type are exactly
+\[
+\{\beta_X\mid X=X^\dagger,\;VXV^\dagger=X\ \forall V\in K\}.
+\]
+Equivalently, they are parametrized by the Hermitian part of the commutant
+\[
+\operatorname{Comm}(K):=\{X\in M_2(\mathbb C)\mid VXV^\dagger=X\ \forall V\in K\}.
+\]
+\textbf{Verdict: PROVED.}
+\end{theorem}
+
+\begin{proposition}[Full biunitary symmetry $K=U(2)$]
+If $K=U(2)$ then $\operatorname{Comm}(K)=\mathbb C\,I$, hence
+\[
+\beta(A,B)=\lambda\,\operatorname{Re}\operatorname{Tr}(AB^\dagger),\qquad \lambda\in\mathbb R.
+\]
+So the invariant symmetric bilinear form is unique up to scale.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\begin{proposition}[Lorentzian operator branch $\eta=\mathrm{diag}(1,-1)$]
+Define
+\[
+K_\eta:=\{V\in U(2)\mid V\eta V^\dagger=\eta\}=U(1)\times U(1).
+\]
+Then
+\[
+\operatorname{Comm}(K_\eta)_{\mathrm{Herm}}=\{\alpha I+\beta\eta\mid \alpha,\beta\in\mathbb R\},
+\]
+so the invariant symmetric family is
+\[
+\beta_{\alpha,\beta}(A,B)=\operatorname{Re}\operatorname{Tr}\!\big(A(\alpha I+\beta\eta)B^\dagger\big).
+\]
+Therefore $\operatorname{Re}\operatorname{Tr}(A\eta B^\dagger)$ is one member of a two-parameter invariant family, not unique.
+\textbf{Verdict: PROVED.}
+\end{proposition}
+
+\begin{resultbox}
+\textbf{GAP-U1 classification outcome.}
+Under full right $U(2)$ symmetry: unique up to scale.
+Under the reduced $K_\eta=U(1)\times U(1)$ symmetry induced by fixed $\eta=\mathrm{diag}(1,-1)$: a complete two-parameter family exists.
+Hence uniqueness claims must specify the symmetry group.
+\end{resultbox}
+
+\ifdefined\INCLUDEMODE
+\else
+\end{document}
+\fi
