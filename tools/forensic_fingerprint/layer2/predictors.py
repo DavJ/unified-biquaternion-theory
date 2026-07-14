@@ -6,18 +6,28 @@ from __future__ import annotations
 
 from .config_space import Layer2Config
 
+BASE_OFFSET = 100.0
+RS_N_COEFF = 0.05
+RS_K_COEFF = 0.02
+OFDM_COEFF = 0.1
+WINDING_COEFF = 0.01
+PRIME_GATE_COEFF = 0.5
+GRID_COEFF = 0.001
+ELECTRON_BASE = 0.4
+ELECTRON_ALPHA_COEFF = 0.0007
+
 
 def _base_predictions(cfg: Layer2Config) -> dict[str, float]:
     alpha_inv = (
-        100.0
-        + 0.05 * cfg.rs_n
-        + 0.02 * cfg.rs_k
-        + 0.1 * cfg.ofdm_channels
-        + 0.01 * cfg.winding_number
-        + 0.5 * cfg.prime_gate_pattern
-        + 0.001 * cfg.quantization_grid
+        BASE_OFFSET
+        + RS_N_COEFF * cfg.rs_n
+        + RS_K_COEFF * cfg.rs_k
+        + OFDM_COEFF * cfg.ofdm_channels
+        + WINDING_COEFF * cfg.winding_number
+        + PRIME_GATE_COEFF * cfg.prime_gate_pattern
+        + GRID_COEFF * cfg.quantization_grid
     )
-    electron_mass = 0.4 + 0.0007 * alpha_inv
+    electron_mass = ELECTRON_BASE + ELECTRON_ALPHA_COEFF * alpha_inv
     return {"alpha_inv": float(alpha_inv), "electron_mass": float(electron_mass)}
 
 

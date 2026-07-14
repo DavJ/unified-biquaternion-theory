@@ -23,6 +23,9 @@ claims:
     evidence:
       - canonical/alpha/ALPHA_MASTER_STATUS.md
       - research_tracks/T3_ALPHA/mellin_insertion_B.tex
+    context_tokens:
+      - alpha
+      - α
     forbidden_wording:
       - alpha proven
       - alpha derived

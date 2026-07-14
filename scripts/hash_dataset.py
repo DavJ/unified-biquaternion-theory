@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# hash_dataset.py (root shim)
+# hash_dataset.py
 # SPDX-License-Identifier: MIT
 """Root-level hash_dataset implementation without ARCHIVE dependency."""
 from __future__ import annotations

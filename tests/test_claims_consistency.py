@@ -24,6 +24,7 @@ def _parse_claims_yaml(path: Path) -> dict[str, dict[str, object]]:
     claims: dict[str, dict[str, object]] = {}
     current_claim: str | None = None
     in_forbidden = False
+    in_context = False
 
     for raw in path.read_text(encoding="utf-8").splitlines():
         line = raw.rstrip()
@@ -35,8 +36,9 @@ def _parse_claims_yaml(path: Path) -> dict[str, dict[str, object]]:
 
         if line.startswith("  ") and line.endswith(":") and not line.startswith("    "):
             current_claim = line.strip()[:-1]
-            claims[current_claim] = {"forbidden_wording": []}
+            claims[current_claim] = {"forbidden_wording": [], "context_tokens": []}
             in_forbidden = False
+            in_context = False
             continue
 
         if current_claim is None:
@@ -45,15 +47,27 @@ def _parse_claims_yaml(path: Path) -> dict[str, dict[str, object]]:
         stripped = line.strip()
         if stripped.startswith("forbidden_wording:"):
             in_forbidden = True
+            in_context = False
+            continue
+
+        if stripped.startswith("context_tokens:"):
+            in_context = True
+            in_forbidden = False
             continue
 
         if stripped.startswith(("status:", "evidence:")):
             in_forbidden = False
+            in_context = False
             continue
 
         if in_forbidden and stripped.startswith("- "):
             phrase = stripped[2:].strip().strip('"').strip("'")
             claims[current_claim]["forbidden_wording"].append(phrase)
+            continue
+
+        if in_context and stripped.startswith("- "):
+            token = stripped[2:].strip().strip('"').strip("'")
+            claims[current_claim]["context_tokens"].append(token.casefold())
 
     return claims
 
@@ -63,6 +77,7 @@ def test_forbidden_wording_not_present_in_status_docs() -> None:
     violations: list[str] = []
 
     for claim_name, claim_data in claims.items():
+        context_tokens = claim_data.get("context_tokens", [])
         for phrase in claim_data.get("forbidden_wording", []):
             needle = phrase.casefold()
             for file_path in TARGET_FILES:
@@ -70,9 +85,8 @@ def test_forbidden_wording_not_present_in_status_docs() -> None:
                     line_cf = text.casefold()
                     if needle not in line_cf:
                         continue
-                    if phrase == "[L1] PROVEN":
-                        if "alpha" not in line_cf and "α" not in line_cf:
-                            continue
+                    if context_tokens and not any(token in line_cf for token in context_tokens):
+                        continue
                     violations.append(
                         f"{file_path.relative_to(REPO_ROOT)}:{lineno}: {claim_name} forbidden wording '{phrase}' -> {text.strip()}"
                     )

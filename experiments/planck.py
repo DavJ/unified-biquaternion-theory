@@ -21,7 +21,7 @@ def _load_planck_text(
 ):
     path = Path(filepath)
     text = path.read_text(encoding="utf-8", errors="replace")
-    if "-log(Like)" in text or "-log(like)" in text.lower():
+    if "-log(like)" in text.lower():
         raise ValueError("Input appears to be a likelihood table, not a CMB spectrum.")
 
     rows = []
