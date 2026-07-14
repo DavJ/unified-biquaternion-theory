@@ -5,13 +5,18 @@ claims:
       - canonical/gr_closure/
       - papers/UBT_GR_Submission.tex
     assumptions:
-      - GAP-10: variational equivalence of Theta-only and induced-metric variation
-      - GAP-U2: OPEN — mechanism identified (covariantly harmonic U(1)_ψ potential); closure reduced to GAP-U1 normalization
+      - GAP-10K: CLOSED locally on the regular fiber-free compact-psi sector; fixed-psi section is a rank no-go
+      - GAP-10S: OPEN — derive internal and metric equations as separate consequences of one total stationarity equation
+      - GAP-10J: OPEN — prove the dynamically selected Jacobi-theta sector is fiber-free
+      - GAP-10R: OPEN — local integrable/on-shell representation of arbitrary GR metric fields
+      - GAP-10G: OPEN — global existence and preservation of fiber-free closure
+      - GAP-U2Theta: OPEN — derive the Schwarzschild lapse from canonical Theta dynamics; static-vacuum GR lapse is fixed once the spatial branch and boundary data are assumed
       - GAP-B: perturbation bridge identification delta(nabla†nablaTheta)->deltaG_munu
     forbidden_wording:
-      - GR is derived from UBT
-      - Einstein equations emerge from UBT
-      - complete five-step chain at L1
+      - GR is derived unconditionally from UBT
+      - Einstein equations emerge for every Theta configuration
+      - complete global five-step chain at L1
+      - Maxwell field generates vacuum Schwarzschild
   gauge_group:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:

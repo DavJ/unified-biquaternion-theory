@@ -10,9 +10,9 @@
 % See LICENSE.md for full license text.
 %
 % Submission file: papers/UBT_GR_Submission.tex
-% Status: SUBMISSION-READY (2026-04-28)
+% Status: RESEARCH DRAFT — pure-Theta closure revision (2026-07-14)
 % Target venues: Journal of Mathematical Physics / Classical and Quantum Gravity
-% Verdict: SUBMIT_READY — all mandatory items resolved; two [L2] gaps explicitly stated.
+% Verdict: NOT YET SUBMISSION-READY — local closure theorem proved; residual GAP-10S/J/R/G and GAP-U2Theta remain.
 % Source: papers/UBT_GR_Flagship.tex (internal development version)
 %
 % Changes from Flagship version:
@@ -26,6 +26,7 @@
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
+\usepackage{mathrsfs}
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{tcolorbox}
@@ -75,7 +76,7 @@
 % ==============================================================================
 \title{\textbf{Induced Lorentzian Metrics from Biquaternion-Valued Fields:\\
        GR Structure, Schwarzschild Reconstruction,\\
-       and the Variational Obstruction}}
+       and Pure-$\Theta$ Fiber Closure}}
 \author{Ing.\ David Jaroš}
 \date{May 2026}
 % ==============================================================================
@@ -85,36 +86,42 @@
 
 % ---- Abstract ----------------------------------------------------------------
 \begin{abstract}
-We construct a candidate spacetime metric as the real-valued bilinear
-$g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
-of a biquaternion-valued field $\Theta(q,\tau)$ over complexified time
-$\tau = t + i\psi$, and analyse the extent to which the dynamics of the
-Unified Biquaternion Theory (UBT) field equation
-$\nabla^\dagger\nabla\Theta = \kappa\,\mathcal{T}$ reproduces general
-relativity. We prove: (i) $g_{\mu\nu}[\Theta]$ is a symmetric covariant
-tensor (transformation law derived, not assumed); (ii) for admissible
-fields --- those satisfying a non-degeneracy condition and a Lorentzian
-real-sector projection --- the induced metric has signature $(-,+,+,+)$
-(conditional signature theorem); (iii) the Levi-Civita connection,
-curvature, and, upon adjoining the Einstein--Hilbert term for the induced
-metric, the Einstein field equations follow by standard variational
-arguments. We identify precisely the variational obstruction (GAP-10) to
-deriving the Einstein equations from the $\Theta$-dynamics alone: since
-$g = g[\Theta]$, stationarity under the induced variations
-$\delta g[\delta\Theta]$ has not been shown to imply the full Einstein
-equations, and this equivalence remains the central open problem of the
-programme. A spherically symmetric ansatz $\Theta_0$ reproduces the
-spatial Schwarzschild metric in isotropic coordinates,
-$g_{ij} = \Psi^4\delta_{ij}$, verified numerically to relative error
-$< 10^{-15}$; the temporal component $g_{tt} = -\Phi^2$ follows from the
-complex-time relation $\partial_\psi\Theta_0 = i\Phi\Theta_0$, whose
-dynamical derivation from the field equation remains open (GAP-U2).
-Linearised odd- and even-parity perturbations reduce to the
-Regge--Wheeler and Zerilli equations conditional on the identification
-$\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$, which is
-stated as an explicit bridge assumption. We situate the construction
-within the Hermitian-gravity and biquaternion literature and state all
-assumptions, conventions, and open gaps explicitly.
+We construct the observable spacetime metric as the constant-normalized
+compact-$\psi$-fiber bilinear
+\[
+ g_{\mu\nu}(x)=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}
+ \langle\partial_\mu\Theta(x,\psi),\partial_\nu\Theta(x,\psi)\rangle_\eta
+ \,d\psi
+\]
+of the existing biquaternion-valued field $\Theta(q,\tau)$ over complex time
+$\tau=t+i\psi$.  No independent metric and no additional chronofactor field
+are introduced.  We prove the tensor law, non-degeneracy under the stated
+admissibility hypothesis, and Lorentzian signature on the selected real
+metric channel.  We then vary the composite UBT action directly with respect
+to $\Theta$.  The exact equation is
+\[
+ \mathscr F_\Theta+
+ \frac{1}{\kappa\mathcal N_0}\nabla_\nu
+ \bigl[(G^{\mu\nu}-\kappa T^{\mu\nu})\partial_\mu\Theta\bigr]=0,
+\]
+where $\mathscr F_\Theta$ is the direct fixed-metric internal
+Euler--Lagrange profile.  A single fixed-$\psi$ section has a rigorous rank
+obstruction: because $\mathbb C\otimes\mathbb H\cong\mathbb R^8$, its normal
+closure rank is at most four.  Retaining the already postulated compact
+$\psi$ profile removes this dimensional obstruction.  On regular
+\emph{fiber-free} configurations, for which the ten normal second-derivative
+profiles are linearly independent, the vacuum pure-$\Theta$ equation implies
+$G_{\mu\nu}=0$; with matter it implies
+$G_{\mu\nu}=\kappa T_{\mu\nu}$ conditional on
+$\mathscr F_\Theta=0$.  Holomorphic periodic fiber-free local two-jets are
+shown to exist and to form an open dense subset of every sufficiently rich finite-mode holomorphic jet truncation.  The remaining pure-UBT issues are sharply separated: derive the internal and metric equations as independent projections of one stationarity equation, verify fiber-freeness for the dynamically selected Jacobi-theta sector, prove integrable on-shell representation of the required GR metric class, and establish global closure.  A spherically symmetric ansatz
+reproduces the spatial Schwarzschild metric numerically to relative error
+$<10^{-15}$.  The Schwarzschild lapse follows uniquely from the static vacuum
+GR equations once the spatial metric and standard boundary data are given;
+its generation by the canonical $\Theta$ dynamics remains open.  The
+Regge--Wheeler and Zerilli reductions remain conditional on the explicit
+perturbation bridge GAP-B.
 \end{abstract}
 
 \tableofcontents
@@ -165,12 +172,13 @@ claim is implied in either direction.
 The novel contributions of this paper are:
 
 \begin{enumerate}
-  \item \textbf{Induced-metric construction.}
-        The candidate metric $g_{\mu\nu}$ is defined as a real-valued bilinear of
-        $\partial_\mu\Theta$; its tensor transformation law is \emph{proved}, not
-        assumed (Theorem~\ref{thm:metric}).
-        Whether the UBT dynamics selects Einstein dynamics for this metric is the
-        identified open problem (GAP-10).
+  \item \textbf{Fiber-completed induced metric.}
+        The candidate metric $g_{\mu\nu}$ is the constant-normalized real
+        bilinear of the complete compact-$\psi$ profile of
+        $\partial_\mu\Theta$.  Its tensor transformation law is \emph{proved},
+        not assumed (Theorem~\ref{thm:metric}).  A fixed-$\psi$ section is shown
+        to be rank-insufficient, while the full existing fiber admits local
+        fiber-free configurations with complete gravitational closure.
 
   \item \textbf{Conditional signature theorem.}
         For admissible fields --- i.e.\ given the Lorentzian real-sector
@@ -179,18 +187,20 @@ The novel contributions of this paper are:
         The Lorentzian structure of the projection is an input; the theorem shows
         it is consistently inherited by $g_{\mu\nu}[\Theta]$.
 
-  \item \textbf{Five-step chain with an identified obstruction.}
-        The chain
-        $\Theta \to g \to \Gamma \to R \to G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$
-        is constructed explicitly; steps~1--4 are proved, and step~5 holds upon
-        adjoining the Einstein--Hilbert action for the induced metric.
-        The equivalence of this variation with variation over $\Theta$ alone is
-        open (GAP-10) and is stated as such.
+  \item \textbf{Direct pure-$\Theta$ variation and closure theorem.}
+        For the canonical composite action, the variation is performed directly
+        through $g[\Theta]$.  On the regular fiber-free vacuum sector the
+        resulting $\Theta$ equation implies the full vacuum Einstein equation.
+        With matter/gauge fields the result is conditional on the direct internal
+        equation $\mathscr F_\Theta=0$.  The remaining single-action separation,
+        selected-Jacobi, and global questions are recorded as GAP-10S,
+        GAP-10J, and GAP-10G.
 
-  \item \textbf{No additional fit parameters.}
-        After fixing Newton's constant $G$, the Lorentzian projection, the
-        bilinear form, and the normalisation convention $\calN$, the
-        Schwarzschild reconstruction introduces no further adjustable parameters.
+  \item \textbf{No local lapse-fixing normalization.}
+        The normalization is a fixed constant $\mathcal N_0$ determined once by
+        asymptotic Minkowski normalization.  A local choice
+        $\mathcal N(x)=|\langle\partial_0\Theta,\partial_0\Theta\rangle|$
+        is ruled out because it forces $g_{00}=-1$ identically.
 
   \item \textbf{Spatial Schwarzschild reconstruction.}
         A spherically symmetric ansatz $\Theta_0$ reproduces the spatial
@@ -223,9 +233,9 @@ gravity approaches.
 \midrule
 Metric derivation & Bilinear of $\partial\Theta$ & No gravitational sector & Rotor adjoint action \\
 Lorentzian signature & Conditional theorem (Theorem~\ref{thm:signature}) & --- & Assumed \\
-Einstein equations & Variational, with identified obstruction (GAP-10) [\Lone\ cond.] & --- & Einstein--Cartan, first-order \\
+Einstein equations & Pure-$\Theta$ closure on fiber-free vacuum sector; matter conditional (GAP-10S/J/R/G) & --- & Einstein--Cartan, first-order \\
 Complexified time $\tau=t+i\psi$ & Yes (compact $\psi$) & No & No \\
-Schwarzschild recovery & Spatial verified $<10^{-15}$; temporal conditional (GAP-U2) & --- & PG form demonstrated \\
+Schwarzschild recovery & Spatial verified $<10^{-15}$; lapse fixed in static-GR branch, $\Theta$ dynamics open & --- & PG form demonstrated \\
 Regge-Wheeler equation & Conditional reduction (GAP-B) [\Lone\ cond.] & --- & Not addressed \\
 \bottomrule
 \end{tabular}
@@ -353,16 +363,25 @@ satisfying the UBT field equation:
 Here $\nabla^\dagger\nabla$ is the biquaternionic wave operator and
 $\calT$ is the source (matter/energy) biquaternionic field.
 
+Define the fiber Gram tensor
+\[
+ \overline H_{\mu\nu}(x)
+ :=\frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}
+ \langle\partial_\mu\Theta(x,\psi),
+        \partial_\nu\Theta(x,\psi)\rangle_\eta\,d\psi.
+\]
 The \textbf{admissible field class} is
 \[
   \calA_{\mathrm{UBT}} :=
-  \bigl\{\Theta \;\big|\; \{\partial_\mu\Theta\}_{\mu=0}^3
-  \text{ linearly independent over } \RR \text{ in } \BB,\;
-  \det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0,\;
-  \Theta \neq \mathrm{const}\bigr\}.
+  \bigl\{\Theta \;\big|\;
+  \operatorname{span}_{\mathbb R}\{\partial_\mu\Theta\}_{\mu=0}^3
+  \text{ is a non-degenerate four-dimensional tangent subspace in the
+  fiber-profile pairing},\;
+  \det(\overline H_{\mu\nu})\neq0,\;
+  \Theta\neq\mathrm{const}\bigr\}.
 \]
-All physically relevant configurations (non-trivial vacuum, matter fields,
-Schwarzschild exterior) are in $\calA_{\mathrm{UBT}}$.
+The Schwarzschild and other proposed sectors must be checked against these
+conditions; membership is not assumed merely from physical intent.
 \end{definition}
 
 \begin{remark}
@@ -388,7 +407,7 @@ A1 & Algebra (AXIOM-A) & $\BB = \CC\otimes_\RR\HH \cong \mathrm{Mat}(2,\CC)$ \\
    & & (real dimension $\dim_\RR\BB=8$; spinorial/even-Clifford carrier associated with $\mathrm{Cl}_{1,3}(\RR)$) \\
 A2 & Complex time (AXIOM-B) & $\tau = t+i\psi$; $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$ \\
 A3 & Field equation (AXIOM-F) & $\nabla^\dagger\nabla\Theta = \kappa\calT$ \\
-A4 & Admissibility & linear independence + $\det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0$ \\
+A4 & Admissibility & non-degenerate fiber tangent span + $\det(\overline H_{\mu\nu})\neq0$ \\
 A5 & Regularity & $\Theta \in C^\infty(M^4)$; holomorphic in $\tau$;
                    $\|\partial_\mu\Theta\| > \varepsilon > 0$ \\
 \bottomrule
@@ -406,31 +425,41 @@ Assumptions A4--A5 are regularity conditions defining $\calA_{\mathrm{UBT}}$.
 \subsection{Step 1: Metric Emergence}
 \label{sec:step1}
 
-\begin{definition}[Biquaternionic metric and derived real metric]
+\begin{definition}[Raw quadratic tensor and fiber-completed real metric]
 \label{def:metric}
-For $\Theta \in \calA_{\mathrm{UBT}}$, define:
+For $\Theta\in\calA_{\mathrm{UBT}}$, define the raw biquaternionic quadratic
+tensor and the observable metric by
 \begin{align}
-  \calN &:= \left|\langle \partial_0\Theta,\, \partial_0\Theta \rangle_\eta\right| \,,
-  \quad \text{where } \langle A, B\rangle_\eta
-  := \mathrm{Re}[\mathrm{Tr}(A\,\eta_{\mathcal{B}}\,B^\dagger)]\,, \\
-  g_{\mu\nu} &:= \frac{\langle \partial_\mu\Theta, \partial_\nu\Theta \rangle_\eta}{\calN}.
+ \mathcal Q_{\mu\nu}(x,\psi)
+ &:= (\partial_\mu\Theta)(\partial_\nu\Theta)^\ddagger\in\BB,\\
+ g_{\mu\nu}(x)
+ &:=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}
+ \langle\partial_\mu\Theta(x,\psi),
+        \partial_\nu\Theta(x,\psi)\rangle_\eta\,d\psi,
+ \label{eq:fiber_metric}
 \end{align}
-Here $\langle\cdot,\cdot\rangle_\eta$ is the admissible Lorentzian bilinear form on the selected
-four-dimensional real projection subspace of $\BB$ (equivalently a representation-level
-metric operator in an associated Clifford module), with timelike-negative convention.
-By AXIOM-B, $\partial_0\Theta$ lies in the timelike sector of
-$\mathrm{Cl}^+_{1,3}(\RR)$ where
-$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$,
-so $\calN > 0$ and $g_{00}<0$ consistently.
+where
+\begin{equation}
+ \langle A,B\rangle_\eta
+ :=\operatorname{Re}\operatorname{Tr}
+   (A^\ddagger\eta_{\mathcal B}B)
+\end{equation}
+is the fixed real symmetric non-degenerate bilinear on the selected metric
+channel and $\mathcal N_0>0$ is a constant fixed once by asymptotic Minkowski
+normalization.  The compact $\psi=\operatorname{Im}\tau$ integration uses the
+fiber already present in $\Theta(q,t+i\psi)$; it introduces no new field.
+The scalar part or ordinary matrix trace of $\mathcal Q_{\mu\nu}$ is a complex
+scalar, whereas the unprojected $\mathcal Q_{\mu\nu}$ carries the full
+biquaternionic information.
 \end{definition}
 
-\begin{remark}
-AXIOM-B (Definition~\ref{def:axiomb}) guarantees that
-$\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta < 0$
-for any admissible $\Theta \in \calA_{\mathrm{UBT}}$.
-Accordingly, $\calN$ is defined as
-$\calN := \left|\langle \partial_0\Theta,\partial_0\Theta\rangle_\eta\right| > 0$
-throughout this paper.
+\begin{remark}[Normalization obstruction]
+The earlier local prescription
+$\mathcal N(x)=|\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta|$
+would give $g_{00}=-1$ identically on a timelike branch and therefore cannot
+represent a variable Schwarzschild lapse.  It is superseded by the constant
+$\mathcal N_0$ in Eq.~\eqref{eq:fiber_metric}.
 \end{remark}
 
 \begin{theorem}[Metric emergence, \PROVED\,\Lone]
@@ -463,22 +492,14 @@ $\det(g_{\mu\nu}) \neq 0$ at every point of $M^4$.
 \end{theorem}
 
 \begin{proof}
-By Definition~\ref{def:theta}, admissibility explicitly requires
+By Definition~\ref{def:theta}, admissibility requires
+$\det(\overline H_{\mu\nu})\neq0$.  Equation~\eqref{eq:fiber_metric} gives
+$g_{\mu\nu}=\overline H_{\mu\nu}/\mathcal N_0$ with
+$\mathcal N_0>0$ constant.  Therefore
 \[
-  \det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0.
+ \det(g_{\mu\nu})=\mathcal N_0^{-4}
+ \det(\overline H_{\mu\nu})\neq0.
 \]
-Since
-\[
-  g_{\mu\nu}
-  = \frac{\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta}{\calN},
-  \qquad \calN>0,
-\]
-we have
-\[
-  \det(g_{\mu\nu})
-  = \calN^{-4}\det\!\big(\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta\big)\neq 0.
-\]
-Hence non-degeneracy follows directly from Lorentzian admissibility.
 \end{proof}
 
 \subsection{Step 3: Lorentzian Signature}
@@ -492,18 +513,13 @@ positive-definite.
 \end{theorem}
 
 \begin{proof}[Proof sketch; see Appendix~\ref{app:signature} for the full argument]
-By AXIOM-B, $\partial_\tau$ lies in the timelike sector of
-$\mathrm{Cl}^+_{1,3}(\RR) \cong \BB$.
-Under $\tau = t + i\psi$, the temporal derivative
-$\partial_t\Theta = \re\,\partial_\tau\Theta$
-inherits the Clifford-algebraic timelike property, so
-\[
-  g_{00}
-  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN} < 0,
-\]
-where $\calN = |\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta| > 0$.
-Spatial generators of $\mathrm{Cl}_{1,3}(\RR)$ are spacelike, giving $g_{ii} > 0$.
-The normalisation $\calN$ determines the scale but not the sign.
+The admissible Lorentzian sector requires the fiber tangent Gram form
+$\overline H_{\mu\nu}$ to have one negative and three positive eigenvalues.
+Equivalently, one may impose the stronger fiberwise condition that the temporal
+profile is timelike and the spatial tangent subspace is positive at every
+$\psi$.  Fiber integration preserves these signs, and multiplication by the
+positive constant $\mathcal N_0^{-1}$ does not change inertia.  Hence
+$g_{\mu\nu}=\overline H_{\mu\nu}/\mathcal N_0$ has signature $(-,+,+,+)$.
 \end{proof}
 
 \begin{remark}
@@ -591,12 +607,14 @@ fixed by matching the GR limit; its derivation from the biquaternion algebra
 is an open problem outside the scope of this paper.
 \end{remark}
 
-\begin{remark}[Induced-metric status of the present result]
-The present result is not yet a complete off-shell $\Theta$-only formulation of
-gravity. It establishes that the UBT field induces a Lorentzian metric sector
-whose on-shell dynamics reproduce classical GR through the Einstein--Hilbert
-variational principle. A full off-shell $\Theta$-only derivation requires
-non-degeneracy of $\delta g/\delta\Theta$ modulo gauge directions (GAP-10).
+\begin{remark}[Pure-$\Theta$ status]
+The metric is not varied independently.  Direct variation of the composite
+action through Eq.~\eqref{eq:fiber_metric} gives the exact equation derived in
+\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.  It proves
+vacuum Einstein closure on the regular fiber-free sector and matter closure
+conditional on the direct internal equation.  GAP-10S, GAP-10J and GAP-10G
+record, respectively, the remaining single-action separation, selected
+Jacobi-sector, and global questions.
 \end{remark}
 
 % ==============================================================================
@@ -719,60 +737,80 @@ GAP-Z is therefore at level [L1 cond.\ given GAP-B]; GAP-B remains open.
 % ==============================================================================
 
 The following problems are explicitly bounded.
-Theorems~\ref{thm:metric}--\ref{thm:rw} hold as stated with
-their explicit hypotheses. GAP-10 directly conditions the \emph{interpretation}
-of the main result: without control of the image of the variational map
-$\delta\Theta \mapsto \delta g_{\mu\nu}[\delta\Theta]$, stationarity of the
-total action under available variations has not been shown to imply the
-full Einstein equations. GAP-U2 conditions the temporal Schwarzschild
-sector; GAP-B conditions the perturbation reductions.
+Theorems~\ref{thm:metric}--\ref{thm:rw} hold with their stated hypotheses.
+The kinematic/rank part of the former GAP-10 is now resolved: a single
+$\psi$ section is proved insufficient, while the complete existing compact
+fiber yields local closure on the fiber-free sector.  The residual gaps concern
+single-action separation, the dynamically selected Jacobi sector, local metric representability/integrability, and global existence.  GAP-U2 now refers only to dynamical generation of the temporal
+Schwarzschild sector by the canonical $\Theta$ equation; GAP-B conditions the
+perturbation reductions.
 
-\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
-  title={GAP-10: Off-Shell $\Theta$-Only Closure\ \OPEN\ [\Ltwo]},breakable]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!70!black,
+  title={GAP-10 split: local fiber closure proved; residual gaps open},breakable]
 
-\paragraph{GAP-10: Off-shell $\Theta$-only closure.}
-The present paper derives Einstein's equations via
-the \emph{induced-metric} approach: $\Theta\to g_{\mu\nu}[\Theta]$,
-then standard Einstein--Hilbert variation over $g_{\mu\nu}$.
-The off-shell problem --- deriving $G_{\mu\nu}=8\pi GT_{\mu\nu}$
-by varying $S[\Theta]$ directly with respect to $\Theta$ alone,
-without passing through $g$ --- remains open at level [L2].
-This is a classical variational-equivalence question, prior
-to any quantum considerations.
+\paragraph{GAP-10K: Kinematic/rank closure --- CLOSED locally.}
+Direct variation of the fiber-averaged metric gives
+\[
+ \mathscr F_\Theta+
+ \frac{1}{\kappa\mathcal N_0}\nabla_\nu
+ \bigl[(G^{\mu\nu}-\kappa T^{\mu\nu})\partial_\mu\Theta\bigr]=0.
+\]
+For a fixed-$\psi$ section, the closure rank is at most four, so generic
+closure is impossible.  For the complete compact-$\psi$ profile, define the
+normal vectors $B_{\mu\nu}=P_\perp(\nabla_\mu\partial_\nu\Theta)$.  At a
+fiber-free point the ten $B_{\mu\nu}$ are independent; then the vacuum equation
+implies $G_{\mu\nu}=0$, and with matter it implies
+$G_{\mu\nu}=\kappa T_{\mu\nu}$ provided $\mathscr F_\Theta=0$.
+Holomorphic periodic fiber-free local two-jets exist and are open dense in every sufficiently rich finite-mode holomorphic jet truncation.  Full proofs are in
+\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
+
+\paragraph{GAP-10S: Single-action separation --- OPEN.}
+One must derive $\mathscr F_\Theta=0$ and the metric closure equation as
+independent projections or consequences of the single total stationarity
+equation, rather than imposing the direct internal shell separately.
+
+\paragraph{GAP-10J: Selected Jacobi sector --- OPEN.}
+The generic local theorem does not prove that the dynamically selected
+Jacobi-theta solution family is fiber-free.
+
+\paragraph{GAP-10R: Metric representability/integrability --- OPEN.}
+Pointwise Lorentzian Gram representation is elementary, but it remains to prove
+that every required local GR metric admits an integrable, holomorphic and
+on-shell representation by the selected UBT field family.
+
+\paragraph{GAP-10G: Global closure --- OPEN.}
+The local rank theorem does not by itself establish global existence,
+topological compatibility, or preservation of fiber-freeness under evolution.
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
-  title={GAP-U2: Temporal Schwarzschild Closure\ \OPEN},breakable]
 
-\paragraph{GAP-U2: Temporal Schwarzschild closure.}
-The relation $\partial_\psi\Theta_0 = i\Phi(r)\Theta_0$ produces
-$g_{tt} = -\Phi(r)^2$. A phase-based realization is excluded: it is
-inconsistent with the flat-background field equation and, on compact
-$\psi$, with single-valuedness (see
-\texttt{research\_tracks/gap\_u2/gap\_u2\_lapse\_mechanism.md}). A
-connection-based mechanism has been identified and verified exactly:
-with $D_\psi\Theta = \partial_\psi\Theta + iqA_\psi\Theta$, the vacuum
-field equation for the $\mathrm{U}(1)_\psi$ connection on the induced
-spatial metric $g_{ij} = \Psi^4\delta_{ij}$ is
-$\partial_r(r^2\Psi^2 A_\psi') = 0$, whose solution with
-$A_\psi(\infty) = 1$ and charge $M$ is exactly
-$A_\psi = 1 - M/(r+M/2) \equiv \Phi(r)$ (verified symbolically,
-\texttt{tools/verify\_gap\_u2\_lapse.py}). Closure of the remaining
-normalization condition $q^2|\Theta_0|^2/\calN = 1$ reduces to the
-bilinear specification of GAP-U1; the gap therefore remains OPEN
-pending GAP-U1.
-\end{tcolorbox}
 
-\begin{tcolorbox}[colback=red!4!white,colframe=red!55!black,
-  title={GAP-B: Perturbation Bridge\ \OPEN},breakable]
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!70!black,
+  title={GAP-U2 split: static-vacuum lapse fixed; $\Theta$ dynamics open},breakable]
 
-\paragraph{GAP-B: Perturbation bridge.}
-The reduction of linearised UBT perturbations to the Regge--Wheeler
-and Zerilli equations uses the identification
-$\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$.
-This bridge has not been derived from the linearised UBT dynamics;
-it is stated as an explicit assumption.
-Deriving it from the first principles of the field equation is an open problem.
+\paragraph{GAP-U2S: Static-vacuum lapse --- CLOSED conditionally on the GR branch.}
+For a static metric $ds^2=-N^2dt^2+h_{ij}dx^idx^j$, the vacuum Einstein
+equations imply $\Delta_hN=0$.  With
+$h_{ij}=\Psi^4\delta_{ij}$ and $\Psi=1+M/(2r)$ this is
+\[
+ \partial_r\!\left(r^2\Psi^2N'\right)=0.
+\]
+Hence $N=D-C/(r+M/2)$.  Asymptotic flatness fixes $D=1$, while either the
+horizon condition $N(M/2)=0$ or the ADM asymptotic coefficient fixes $C=M$,
+so
+\[
+ N(r)=\frac{1-M/(2r)}{1+M/(2r)}=\Phi(r).
+\]
+This proves uniqueness of the lapse after the spatial Schwarzschild metric,
+the static vacuum Einstein branch, and the boundary data are assumed.
+
+\paragraph{GAP-U2$\Theta$: Dynamical generation --- OPEN.}
+It remains to prove that the canonical $\Theta$ Euler--Lagrange equation selects
+a fiber-resolved configuration whose induced temporal component is
+$g_{tt}=-\Phi^2$.  An ordinary nonzero Maxwell field does not generate vacuum
+Schwarzschild: its stress tensor backreacts and belongs to the
+Einstein--Maxwell sector.  The former Maxwell-like $A_\psi$ argument is therefore
+retained only as a possible effective-model analogy, not as closure of GAP-U2.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}
@@ -888,7 +926,8 @@ Several prior approaches derive aspects of GR from algebraic structures:
         rotor and reproduces Painlev\'e--Gullstrand forms of the Schwarzschild and Kerr
         geometries within an Einstein--Cartan framework over real time.
         UBT differs in that the metric is a bilinear of the fundamental field
-        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$
+        $g_{\mu\nu}=\mathcal N_0^{-1}\langle
+        \partial_\mu\Theta,\partial_\nu\Theta\rangle_{\eta,\psi}$
         (no rotor, no presupposed gravitational connection) and operates over
         complexified time $\tau = t + i\psi$.
         These constructions were developed independently; no priority claim is implied.
@@ -898,7 +937,8 @@ Several prior approaches derive aspects of GR from algebraic structures:
         of electrodynamics.
         In UBT, by contrast, $\Theta$ is ontologically prior to spacetime:
         the metric itself is a bilinear of its derivatives,
-        $g_{\mu\nu} = \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\eta/\calN$,
+        $g_{\mu\nu}=\mathcal N_0^{-1}\langle
+        \partial_\mu\Theta,\partial_\nu\Theta\rangle_{\eta,\psi}$,
         so that spacetime geometry \emph{emerges from} the field rather than being
         a pre-existing arena for it.
 \end{itemize}
@@ -957,9 +997,11 @@ Two companion papers address the gauge and quantum sectors:
 and three fermion generations (T2\_GAUGE track); and
 (ii) one-loop $\beta$-function coefficient $B_0=8\pi$ from NCG
 (T3\_ALPHA track, preprint in preparation).
-The remaining [L2] open problem (GAP-10) is precisely bounded in
-\S\ref{sec:gaps}; GAP-U2 and GAP-B additionally condition the temporal
-Schwarzschild and perturbation sectors respectively (see \S\ref{sec:gaps}).
+The local rank part of GAP-10 is resolved by the existing compact-$\psi$
+fiber.  GAP-10S, GAP-10J and GAP-10G precisely bound the remaining
+single-action, selected-solution and global questions.  GAP-U2$\Theta$ and
+GAP-B additionally condition the dynamical temporal-Schwarzschild and
+perturbation sectors (see \S\ref{sec:gaps}).
 
 \paragraph{Subsequent results (since first submission).}
 The following results have been established in companion work
@@ -984,19 +1026,23 @@ is in preparation.
 
 The chain
 \[
-  \Theta \;\longrightarrow\;
-  g_{\mu\nu} \;\longrightarrow\;
+  \Theta(q,t+i\psi) \;\longrightarrow\;
+  g_{\mu\nu}[\Theta] \;\longrightarrow\;
   \Gamma^\lambda_{\mu\nu} \;\longrightarrow\;
   R^\rho{}_{\sigma\mu\nu} \;\longrightarrow\;
   G_{\mu\nu} = 8\pi G\,T_{\mu\nu}
 \]
-is complete with an identified obstruction: steps~1--4 are proved at the [L1]
-level; step~5 holds upon adjoining the Einstein--Hilbert action for the induced
-metric (\Lone\ conditional on GAP-10 for the $\Theta$-only formulation).
-UBT contains standard GR as a derivable sector: the metric and Lorentzian
-signature are derived, not postulated; the spatial Schwarzschild metric is
-reproduced to floating-point precision; and the Regge-Wheeler equation follows
-from the perturbation chain, conditional on the bridge assumption GAP-B.
+now has a direct pure-$\Theta$ closure theorem.  The exact variation is proved;
+a fixed-$\psi$ section is rigorously too small, while the full already existing
+compact fiber gives the complete vacuum Einstein equation on the regular
+fiber-free sector.  Matter closure is conditional on the direct internal
+$\Theta$ equation.  Thus UBT contains a locally closed GR sector without an
+independent metric, but the single-action separation, selected Jacobi family,
+and global propagation of the rank condition remain open.  The spatial
+Schwarzschild metric is reproduced to floating-point precision; the static-GR
+lapse is fixed uniquely by the spatial metric and boundary data, while its
+selection by the canonical $\Theta$ dynamics remains open.  The perturbation
+chain remains conditional on GAP-B.
 
 The proof makes a specific, falsifiable, and self-contained claim about the
 real-sector projection of UBT, suitable for independent verification by
@@ -1008,7 +1054,7 @@ researchers familiar with biquaternion algebra and standard GR.
 % ==============================================================================
 
 \begin{tcolorbox}[colback=blue!3!white,colframe=blue!55!black,
-  title={T1\_GR Proof Status: Steps 1--4 Proved; Steps 5, 6c, 7a Conditional}]
+  title={T1\_GR Proof Status: local pure-$\Theta$ closure theorem and bounded residual gaps}]
 \begin{center}
 \begin{tabular}{c >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{3.5cm} l}
 \toprule
@@ -1018,12 +1064,12 @@ researchers familiar with biquaternion algebra and standard GR.
 2 & Non-degeneracy $\det(g)\neq 0$ & Proved \Lone & step2\_nondegeneracy.tex \\
 3 & Lorentzian signature in the admissible projected GR sector & Proved [L1-C] (projection convention) & step3\_signature\_theorem.tex \\
 4 & $g \to \Gamma \to R$ geometric chain & Standard GR & \cite{wald1984,mtw1973} \\
-5 & Einstein eqs $G_{\mu\nu}=8\pi GT_{\mu\nu}$ & \Lone\ cond.\ (GAP-10 for $\Theta$-only) & step3\_einstein\_with\_matter.tex \\
+5 & Einstein equations from direct $\Theta$ variation & Vacuum: proved on fiber-free sector; matter: conditional on $\mathscr F_\Theta=0$ & \texttt{pure\_ubt\_fiber\_closure.tex} \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
 6b & ASD condition / twistor & Proved \Lone & asd\_condition\_ubt.tex \\
 6c & Regge-Wheeler equation & \Lone\ cond.\ (GAP-B) & linearised GR chain \\
 7a & Zerilli equation (even-parity) & \Lone\ cond.\ (GAP-B) & \texttt{zerilli\_derivation.tex} \\
-7b & Off-shell $\Theta$-only closure & Open \Ltwo & GAP-10, \S\ref{sec:gaps} \\
+7b & Pure-$\Theta$ closure ledger & GAP-10K closed locally; GAP-10S/J/R/G open & \S\ref{sec:gaps} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1062,22 +1108,27 @@ Concretely: $\partial_\tau = \partial_t + i\partial_\psi$ satisfies
 $\langle\partial_\tau,\partial_\tau\rangle_\eta < 0$.
 
 \paragraph{Step A3: Temporal metric component.}
+In the admissible fiberwise Lorentzian sector,
+$\langle\partial_0\Theta(\psi),\partial_0\Theta(\psi)\rangle_\eta<0$
+for all $\psi$ (or, more generally, the averaged tangent Gram form has one
+negative direction).  Therefore
 \[
-  g_{00}
-  = \frac{\langle \partial_0\Theta,\partial_0\Theta \rangle_\eta}{\calN}.
+ g_{00}=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}
+ \langle\partial_0\Theta,\partial_0\Theta\rangle_\eta\,d\psi<0.
 \]
-With $\partial_0 = \partial_t$ in the timelike $\gamma^0$-sector,
-and using the indefinite Clifford inner product
-$\langle\cdot,\cdot\rangle_\eta$ (Definition~\ref{def:metric}),
-$\langle\partial_0\Theta, \partial_0\Theta\rangle_\eta < 0$
-by AXIOM-B (timelike sector has negative Clifford norm).
-Choosing $\calN = |\langle\partial_0\Theta,\partial_0\Theta\rangle_\eta| > 0$
-gives $g_{00} < 0$.
+The positive constant $\mathcal N_0$ is fixed by asymptotic normalization and
+does not force $g_{00}$ to be constant.
 
 \paragraph{Step A4: Spatial metric components.}
-For $i = 1,2,3$, $\partial_i\Theta$ lies in the spacelike $\gamma^i$-sector,
-so $\langle\partial_i\Theta,\partial_i\Theta\rangle_\eta > 0$,
-giving $g_{ii} > 0$.
+The admissible spatial tangent span is positive definite in the averaged
+pairing.  Hence for every nonzero spatial vector $v^i$,
+\[
+ v^iv^jg_{ij}=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}
+ \left\langle v^i\partial_i\Theta,
+ v^j\partial_j\Theta\right\rangle_\eta d\psi>0.
+\]
 
 \paragraph{Step A5: Off-diagonal components.}
 Off-diagonal components $g_{0i}$ and $g_{ij}$ for $i \neq j$ arise from

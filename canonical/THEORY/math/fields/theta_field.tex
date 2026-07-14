@@ -37,68 +37,53 @@ where $\Theta_a(q,\tau) \in \mathbb{C}$ ($a = 0,1,2,3$) are \textbf{complex-valu
 
 \textbf{Important}: Θ is a biquaternion (NOT a matrix). Matrix representations are computational tools only.
 
-\subsection{Matrix Structure}
+\subsection{Faithful Matrix Representation and Degree Count}
 
-The field $\Theta$ has the explicit form:
-
+A biquaternion has four complex coefficients and therefore eight real
+components:
+\begin{equation}
+  \Theta=\Theta_0+\Theta_1\mathbf i+\Theta_2\mathbf j+\Theta_3\mathbf k,
+  \qquad \Theta_a\in\mathbb C.
+\end{equation}
+A faithful computational representation is a constrained $2\times2$ complex
+matrix,
 \begin{equation}
 \label{eq:canonical:theta_matrix}
-\Theta = \begin{pmatrix}
-\theta_{00} & \theta_{01} & \theta_{02} & \theta_{03} \\
-\theta_{10} & \theta_{11} & \theta_{12} & \theta_{13} \\
-\theta_{20} & \theta_{21} & \theta_{22} & \theta_{23} \\
-\theta_{30} & \theta_{31} & \theta_{32} & \theta_{33}
-\end{pmatrix}, \quad \theta_{ij} \in \mathbb{C}
+  \rho(\Theta)=
+  \begin{pmatrix}
+    \Theta_0+i\Theta_1 & \Theta_2+i\Theta_3\\
+    -\Theta_2+i\Theta_3 & \Theta_0-i\Theta_1
+  \end{pmatrix}.
 \end{equation}
-
-This provides:
-\begin{itemize}
-    \item 16 complex components
-    \item 32 real degrees of freedom
-    \item Sufficient structure to encode spacetime geometry and Standard Model fields
-\end{itemize}
-
-\subsection{Extended Structure for Full Standard Model}
-
-For complete Standard Model embedding, the field can be extended to:
-
+Thus
 \begin{equation}
-\label{eq:canonical:theta_extended}
-\Theta_{\text{SM}}(q,\tau) \in \mathbb{C}^{8 \times 8}
+  \dim_{\mathbb C}\mathbb B=4,
+  \qquad
+  \dim_{\mathbb R}\mathbb B=8.
 \end{equation}
+A generic $4\times4$ or $8\times8$ complex matrix is not a biquaternion.
+Matrix-valued flavour or Standard-Model extensions, when used, must be denoted
+separately (for example $\Theta_{\rm ext}\in\operatorname{Mat}_n(\mathbb B)$)
+and must not be silently substituted for the canonical core field.
 
-\noindent which provides:
-\begin{itemize}
-    \item 64 complex components
-    \item 128 real degrees of freedom
-    \item Full accommodation of three fermion generations
-    \item Complete gauge structure for $SU(3)_c \times SU(2)_L \times U(1)_Y$
-\end{itemize}
+\subsection{Hermitian Involution}
 
-\textbf{Convention}: Unless explicitly stated, $\Theta \in \mathbb{C}^{4 \times 4}$ is assumed.
-
-\subsection{Hermitian Conjugate}
-
-The Hermitian conjugate of $\Theta$ is:
-
+For variational and metric formulas we use the full Hermitian involution
+$\ddagger$, which combines complex conjugation with quaternion conjugation and
+corresponds to matrix Hermitian conjugation in the representation
+\eqref{eq:canonical:theta_matrix}:
 \begin{equation}
-\label{eq:canonical:theta_hermitian}
-\Theta^\dagger = (\bar{\Theta})^T
+  \rho(\Theta^\ddagger)=\rho(\Theta)^\dagger.
 \end{equation}
-
-\noindent where $\bar{\Theta}$ denotes complex conjugation and $T$ denotes matrix transpose.
-
-Explicitly:
-\begin{equation}
-(\Theta^\dagger)_{ij} = \overline{\theta_{ji}}
-\end{equation}
+The notation must distinguish this operation from quaternion conjugation without
+complex conjugation.
 
 \subsection{Physical Interpretation}
 
 The field $\Theta(q,\tau)$ encodes:
 
 \begin{enumerate}
-    \item \textbf{Geometric structure}: Biquaternionic tetrads $E_\mu$ emerge from $\Theta$ configurations, giving biquaternionic metric $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)$; observable metric $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ is the GR projection
+    \item \textbf{Geometric structure}: Biquaternionic tetrads $E_\mu$ emerge from $\Theta$ configurations, giving the raw quadratic tensor $\mathcal Q_{\mu\nu}=E_\mu E_\nu^\ddagger$; the observable metric is the normalized $\psi$-averaged real scalar Gram projection
     
     \item \textbf{Matter content}: Fermion fields and masses arise from internal structure
     

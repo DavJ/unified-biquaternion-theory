@@ -1,164 +1,142 @@
-% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
-%
-% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
-% 4.0 International License (CC BY-NC-ND 4.0).
-
+% © 2025--2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 \documentclass[11pt,a4paper]{article}
-\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[most]{tcolorbox}
 \usepackage{hyperref}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
+\usepackage[margin=2.5cm]{geometry}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
 \newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
 \newtheorem{remark}{Remark}
 
-\title{Canonical Action Principle\\
-\large Unified Biquaternion Theory — Canonical Theory Series}
-\author{Ing.\ David Jaroš}
-\date{2025}
+\title{Canonical Pure-$\Theta$ Action Principle\\
+\large Unified Biquaternion Theory}
+\author{Ing. David Jaroš}
+\date{14 July 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-This document presents the canonical form of the UBT action principle.
-It does not contain new derivations; it collects and cross-references
-the action-principle statements already present in the repository.
-The UBT action generalizes the Einstein--Hilbert action with Standard Model
-matter content by embedding all fields in a single biquaternionic field $\Theta$.
+This document states the current canonical UBT action without introducing an
+independent spacetime metric.  The metric is the normalized compact-$\psi$-fiber
+Gram observable of the existing field $\Theta(q,\tau)$.  The exact total
+variation is recorded, together with the conditions under which it yields the
+Einstein equation.  Older statements that independent metric variation is
+``equivalent'' to unrestricted $\Theta$ variation are superseded.
 \end{abstract}
 
-\section{The UBT Action}
+\section{Derived metric}
 
-The action of Unified Biquaternion Theory is:
-\begin{equation}\label{eq:S}
-  S[\Theta]
-  \;=\;
-  \int_{\mathcal{M}} \mathrm{d}^4x\,\sqrt{-g}\,\mathcal{L}_{\mathrm{UBT}}[\Theta,\partial\Theta],
-\end{equation}
-where $\mathcal{M}$ is the real spacetime manifold, $g = \det(g_{\mu\nu})$,
-and the Lagrangian density $\mathcal{L}_{\mathrm{UBT}}$ decomposes as:
-\begin{equation}\label{eq:Ltotal}
-  \mathcal{L}_{\mathrm{UBT}}
-  \;=\;
-  \underbrace{\frac{1}{2\kappa}\,R}_{\mathcal{L}_{\mathrm{grav}}}
-  \;+\;
-  \underbrace{\mathrm{Tr}\bigl[(D_\mu\Theta)^\dagger(D^\mu\Theta)\bigr]}_{\mathcal{L}_{\mathrm{kin}}}
-  \;-\;
-  \underbrace{\frac{1}{4}\,F_{\mu\nu}^a F^{a\,\mu\nu}}_{\mathcal{L}_{\mathrm{gauge}}}
-  \;-\;
-  \underbrace{V(\Theta)}_{\mathcal{L}_{\mathrm{pot}}},
-\end{equation}
-with:
-\begin{itemize}
-  \item $R = R[g]$ — Ricci scalar derived from the projected metric
-        $g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta])$
-  \item $\kappa = 8\pi G/c^4$ — gravitational coupling constant
-  \item $D_\mu = \partial_\mu + \Gamma_\mu + igA_\mu^a T_a$ — full covariant derivative
-        (Levi-Civita $\Gamma$ plus gauge connection $A$)
-  \item $F_{\mu\nu}^a$ — field-strength tensor for each gauge group generator $T_a$
-  \item $V(\Theta)$ — potential encoding mass terms and symmetry breaking
-\end{itemize}
-
-\noindent\textbf{Primary source}:
-\texttt{unified\_biquaternion\_theory/ubt\_appendix\_1\_biquaternion\_gravity.tex}, \S1;
-\texttt{canonical/interactions/qed.tex}, eq.\ (1);
-\texttt{canonical/geometry/gr\_as\_limit.tex}, \S3.
-
-\section{Variational Principle and Field Equations}
-
-The equations of motion follow from requiring stationarity:
+For
 \begin{equation}
-  \delta S[\Theta] = 0
-  \quad \text{for all compactly supported variations } \delta\Theta.
+ \Theta(x,\psi)=\Theta(q_{\rm GR}(x),x^0+i\psi)\in\mathbb B
 \end{equation}
-
-\subsection{Gravitational Sector}
-
-Varying \eqref{eq:S} with respect to the metric $g^{\mu\nu}$ (equivalently,
-with respect to the real part of $\Theta$ entering $\mathcal{G}_{\mu\nu}$)
-yields the Einstein field equations:
+define
 \begin{equation}
-  G_{\mu\nu} \;=\; R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R \;=\; \kappa\,T_{\mu\nu},
+ g_{\mu\nu}[\Theta]
+ =\frac1{\mathcal N_0}\frac1{2\pi R_\psi}
+ \int_0^{2\pi R_\psi}
+ H(\partial_\mu\Theta,\partial_\nu\Theta)\,d\psi,
+ \qquad \mathcal N_0>0\text{ constant}.
+ \label{eq:metric}
 \end{equation}
-where $T_{\mu\nu}$ is the stress-energy tensor derived from the matter
-and gauge sectors. \textbf{Status: PROVED [L1].}
+Here $H$ is the fixed real symmetric non-degenerate bilinear on the selected
+metric-generating sector of $\mathbb B$.
 
-\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_as\_limit.tex}, \S3--\S4;
-\texttt{canonical/geometry/stress\_energy.tex};
-\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex}, Step 5.
+\section{Composite UBT action}
 
-\subsection{Matter/Gauge Sector}
-
-Varying with respect to $\Theta^\dagger$ yields the matter field equations:
+\begin{definition}[Pure-$\Theta$ action]
 \begin{equation}
-  D_\mu D^\mu\,\Theta \;=\; \frac{\partial V}{\partial \Theta^\dagger},
+ \boxed{
+ \widehat S[\Theta]
+ =S_{\rm EH}[g[\Theta]]+S_{\rm int}[g[\Theta],\Theta],}
+ \label{eq:action}
 \end{equation}
-which reduces to the Dirac equation in the appropriate limit.
-
-Varying with respect to $A_\mu^a$ yields the Yang--Mills equations:
+where
 \begin{equation}
-  D_\mu F^{a\,\mu\nu} \;=\; j^{a\,\nu},
+ S_{\rm EH}[g]
+ =\frac1{2\kappa}\int_M\sqrt{-g}\,R[g]d^4x
 \end{equation}
-with gauge current $j^{a\,\nu}$.
-In the U(1) abelian limit this becomes $\partial_\mu F^{\mu\nu} = j^\nu$ —
-the inhomogeneous Maxwell equations.
-\textbf{Status: Maxwell sector PROVED [L1]. Full Yang--Mills sector PARTIAL [L2].}
+and $S_{\rm int}$ contains the UBT kinetic, gauge, source and potential sectors,
+including the compact-$\psi$ integration required by their definitions.
+\end{definition}
 
-\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S3;
-\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex};
-\texttt{consolidation\_project/appendix\_C\_electromagnetism\_gauge\_consolidated.tex}.
-
-\section{Biquaternionic Form of the Action}
-
-Before projection to real fields, the action can be written in fully
-biquaternionic form:
+The raw biquaternionic product
 \begin{equation}
-  S[\Theta]
-  \;=\;
-  \int \mathrm{d}^4x\,\mathrm{d}\psi\;\mathrm{Re}\,\mathrm{Tr}\Bigl[
-    \bigl(\nabla^\dagger\Theta\bigr)^*\bigl(\nabla^\dagger\Theta\bigr)
-    \;-\;
-    V(\Theta)
-  \Bigr],
+ \mathcal Q_{\mu\nu}
+ =(\partial_\mu\Theta)(\partial_\nu\Theta)^\ddagger\in\mathbb B
 \end{equation}
-where integration over $\psi$ (imaginary time) is over the compact fiber
-$[0, 2\pi R_\psi]$ and $\nabla^\dagger$ is the biquaternionic conjugate gradient.
-This form makes the master equation
-$\nabla^\dagger\nabla\,\Theta = \kappa\,\mathcal{T}$ manifest.
+may enter internal UBT invariants.  The present Einstein--Hilbert term depends
+only on the real scalar metric in Eq.~\eqref{eq:metric}; no undefined
+noncommutative determinant of $\mathcal Q$ is assumed.
 
-\noindent\textbf{Source}: \texttt{canonical/fields/theta\_field.tex}, \S3.
+\section{Exact variation}
 
-\section{Reduction to Known Theories}
+Define the direct fixed-metric internal Euler--Lagrange profile by
+\begin{equation}
+ \delta_\Theta S_{\rm int}\big|_g
+ =\int_M\sqrt{-g}\,
+ \langle\mathscr F_\Theta,\delta\Theta\rangle_\psi\,d^4x,
+\end{equation}
+and define the Einstein residual
+\begin{equation}
+ \mathscr E^{\mu\nu}=G^{\mu\nu}-\kappa T^{\mu\nu}.
+\end{equation}
+The metric variation is
+\begin{equation}
+ \delta g_{\mu\nu}
+ =\frac2{\mathcal N_0}
+ \langle\partial_{(\mu}\Theta,
+ \partial_{\nu)}\delta\Theta\rangle_\psi.
+\end{equation}
+After covariant integration by parts, stationarity of
+Eq.~\eqref{eq:action} gives
+\begin{equation}
+ \boxed{
+ \mathscr F_\Theta
+ +\frac1{\kappa\mathcal N_0}
+ \nabla_\nu\left(\mathscr E^{\mu\nu}\partial_\mu\Theta\right)=0.}
+ \label{eq:exactEL}
+\end{equation}
+This is the canonical pure-$\Theta$ variational equation.  Its two terms must
+not be set to zero separately without an additional projection or theorem.
 
+\section{Closure theorem and status}
+
+Let $B_{\mu\nu}$ be the normal part of
+$\nabla_\mu\partial_\nu\Theta$ in the fiber-profile space.  If the canonical
+direct internal equation
+\begin{equation}
+ \mathscr F_\Theta=0
+\end{equation}
+holds, diffeomorphism invariance gives $\nabla_\mu T^{\mu\nu}=0$, and
+Eq.~\eqref{eq:exactEL} reduces to
+\begin{equation}
+ \mathscr E^{\mu\nu}B_{\mu\nu}=0.
+\end{equation}
+If the ten vectors $B_{\mu\nu}$ ($\mu\le\nu$) are linearly independent in the
+complete $\psi$-profile normal space, then
+\begin{equation}
+ G_{\mu\nu}=\kappa T_{\mu\nu}.
+\end{equation}
+The existence and finite-mode genericity of this fiber-free condition are proved in
 \begin{center}
-\begin{tabular}{lll}
-\hline
-\textbf{Limit} & \textbf{Result} & \textbf{Status} \\
-\hline
-$\psi \to 0$, real projection & Einstein--Hilbert action + SM & PROVED [L1] \\
-U(1) gauge sector, flat spacetime & QED Lagrangian & PROVED [L1] \\
-U(1) + constant phase, flat & Maxwell Lagrangian & PROVED [L1] \\
-SU(3)$\times$SU(2)$_L\times$U(1)$_Y$ & Standard Model action & PROVED [L1] \\
-\hline
-\end{tabular}
+\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
 \end{center}
 
-\noindent For detailed derivation chains see:
-\texttt{canonical/bridges/GR\_chain\_bridge.tex},
-\texttt{canonical/bridges/QED\_limit\_bridge.tex},
-\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex},
-\texttt{canonical/bridges/gauge\_emergence\_bridge.tex}.
-
-\section{Cross-References}
-
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!75!black,title=Current exact status]
 \begin{itemize}
-  \item Axioms: \texttt{THEORY/canonical/canonical\_axioms.tex}
-  \item Metric: \texttt{THEORY/canonical/canonical\_metric\_definition.tex}
-  \item Field equations: \texttt{THEORY/canonical/canonical\_field\_equations.tex}
-  \item Projection rules: \texttt{THEORY/canonical/canonical\_projection\_rules.tex}
+ \item Pure gravitational vacuum closure on the regular fiber-free sector:
+       \textbf{PROVED}.
+ \item Matter/gauge closure on the direct internal $\Theta$ shell:
+       \textbf{PROVED CONDITIONALLY}.
+ \item Derivation of both the direct internal equation and Einstein closure as
+       independent projections of the single equation~\eqref{eq:exactEL}:
+       \textbf{OPEN}.
+ \item Single-$\psi$-section generic closure for a genuinely
+       $\mathbb B\cong\mathbb R^8$ field: \textbf{DISPROVED} by rank.
 \end{itemize}
+\end{tcolorbox}
 
 \end{document}

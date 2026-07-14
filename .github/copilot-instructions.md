@@ -1,13 +1,13 @@
 # GitHub Copilot Instructions for Unified Biquaternion Theory
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
-<!-- Last updated: 2026-06-11 (v54) -->
+<!-- Last updated: 2026-07-14 — pure-Theta closure revision -->
 
 ## 1. Repository Overview
 
 **Author**: Ing. David Jaroš | **License**: CC BY-NC-ND 4.0 (theory) · MIT (code)
 **Status source of truth**: `STATUS_OF_UBT.md`
 
-Core field equation: `∇†∇Θ(q,τ) = κ𝒯(q,τ)` reduces to Einstein's equations in the real limit. UBT **generalizes and embeds** GR — never say "alternative to" or "replacement for" GR.
+Core field equation: `∇†∇Θ(q,τ) = κ𝒯(q,τ)`. The exact direct metric variation is proved, but unconditional global GR recovery is not. Use the GAP-10K/S/J/R/G ledger and never overstate the result.
 
 ---
 
@@ -68,7 +68,7 @@ canonical/
   n_eff/step2_AUDIT.tex             ← N_eff audit; twist=12 clarification
   interactions/                     ← SM gauge structure
 papers/
-  UBT_GR_Submission.tex    ← T1_GR SUBMIT READY — all editorial items closed
+  UBT_GR_Submission.tex    ← T1_GR research draft; residual GAP-10S/J/R/G and GAP-U2Theta open
   UBT_Gauge_Submission.tex ← T2_GAUGE paper COMPLETE
   UBT_Gauge_Draft_v1.bib   ← bibliography
 research_tracks/T3_ALPHA/
@@ -87,27 +87,29 @@ PROOF_GAP_CLOSURE.md       ← ED-1, ED-2, ED-3 ALL DONE
 
 ## 5. Theory Track Status (as of v54, 2026-06-11)
 
-### T1_GR — GR Recovery: SUBMIT READY — NO BLOCKERS
+### T1_GR — GR Recovery: LOCAL CLOSURE PROVED; RESIDUAL GAPS OPEN
 
-All five theorem-chain steps proved [L1]. Both graviton polarisations [L1]. FRW cosmology [L1]+[L1 cond.]. All three editorial items closed. **The paper is ready to submit today.**
+The exact direct pure-Theta variation and local vacuum closure on regular fiber-free compact-psi profiles are proved. A fixed-psi section is a rank no-go. Matter closure is conditional; GAP-10S/J/R/G, GAP-U2Theta and GAP-B remain open. **Do not mark the paper submit-ready.**
 
 | Claim | Level | Source |
 |---|---|---|
 | Metric g_μν from Θ | [L1] | `step1_metric_bridge.tex` |
 | Non-degeneracy det(g)≠0 | [L1] | `step2_nondegeneracy.tex` |
 | Lorentzian signature from AXIOM-B | [L1] | `step3_signature_theorem.tex` |
-| Einstein equations | [L1] | `UBT_GR_Submission.tex §3` |
+| Einstein equations | vacuum local [L1] on fiber-free sector; matter conditional | `pure_ubt_fiber_closure.tex` |
 | T_μν conservation | [L1] | `stress_energy.tex` |
 | Schwarzschild (<10⁻¹⁵) | [L1]+[NUM] | `schwarzschild_table.tex` |
-| Regge-Wheeler (odd-parity) | [L1] | `linearised_gravity.tex` + paper §5 |
-| Zerilli (even-parity) | [L1] | `zerilli_derivation.tex` |
+| Regge-Wheeler (odd-parity) | conditional on GAP-B | `linearised_gravity.tex` + paper |
+| Zerilli (even-parity) | conditional on GAP-B | `zerilli_derivation.tex` |
 | Flat FRW in solution space | [L1] | `frw_cosmological_solutions.tex §2` |
 | Friedmann equations from Steps 1–5 | [L1] | `frw_cosmological_solutions.tex §2` |
 | ODE-a consistency with Friedmann | [L1] | `frw_cosmological_solutions.tex §4 Lem ode_a_friedmann` |
 | FRW Θ-ansatz solves ∇†∇Θ=κ𝒯 | [L1 cond. on Friedmann + ODE-f] | `frw_cosmological_solutions.tex §3` |
 | g_0i=0 in comoving frame | [L1 cond. on comoving averaging] | `frw_cosmological_solutions.tex §4` |
 | ODE-f: κ𝒯₀=κρ; explicit solutions f∝a^{-3(1+w)} | [L1 cond. on quasi-static approx.] | `frw_cosmological_solutions.tex §3 Prop ode_f_solutions` |
-| GAP-10: off-shell Θ-only closure | [L2] open | State in paper; does not block |
+| GAP-10K | local rank closure proved; fixed-psi no-go | `pure_ubt_fiber_closure.tex` |
+| GAP-10S/J/R/G | OPEN | block unconditional/global claim |
+| GAP-U2Theta | OPEN | lapse from canonical Theta dynamics |
 | ED-1 notation unification | ✅ DONE | `GR_chain_summary.tex`, `step1_metric_bridge.tex` |
 | ED-2 Regge-Wheeler source | ✅ DONE | `linearised_gravity.tex` |
 | ED-3 Schwarzschild table | ✅ DONE | `schwarzschild_table.tex` |
@@ -146,11 +148,11 @@ Companion note `integer_137_note.tex` written.
 
 ## 6. Active Open Gaps — Priority Order
 
-**T1_GR has no remaining blockers. The only action is submission.**
+**T1_GR is not submit-ready. Complete the residual closure audit before publication.**
 
 | # | Task | Description | File |
 |---|---|---|---|
-| 1 | **Submit T1_GR** | arXiv + journal — no scientific or editorial blockers | `papers/UBT_GR_Submission.tex` |
+| 1 | **GAP-10S/J/R/G audit** | single-action separation, selected Jacobi fiber rank, and global preservation | `canonical/gr_closure/pure_ubt_fiber_closure.tex` |
 | 2 | **Submit T2_GAUGE** | Paper complete; submit after T1_GR clears initial review | `papers/UBT_Gauge_Submission.tex` |
 | 3 | **Gap C2 Step 1** | Fermion hypercharge assignments from UBT — see `hypercharge_from_ubt.tex` | `research_tracks/EW/` |
 | 4 | **EW-1b** | First-principles EW+RG closure for sin²θ_W≈0.231 | `research_tracks/EW/weinberg_angle_ew1_rg.tex` |

@@ -134,9 +134,9 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 
 | # | Claim | Level | Source |
 |---|-------|-------|--------|
-| G13 | Linearised UBT field equation reproduces linearised Einstein equations | [L1] | Linearisation of G5 |
-| G14 | Regge-Wheeler equation (odd-parity graviton) derived without extra input | [L1] | `canonical/gr_closure/linearised_gravity.tex` (canonical source); `papers/UBT_GR_Submission.tex §5 thm:rw` |
-| G15 | Zerilli equation (even-parity graviton) derived from linearised UBT (vacuum Schwarzschild, $\ell\ge2$) | [L1] | `canonical/gr_closure/zerilli_derivation.tex` |
+| G13 | Linearised UBT-to-Einstein bridge | [OPEN / conditional on GAP-B] | `canonical/gr_closure/linearised_gravity.tex`; bridge not yet derived from the canonical Theta equation |
+| G14 | Regge-Wheeler equation (odd parity) recovered after the perturbation bridge | [L1 conditional on GAP-B] | `canonical/gr_closure/linearised_gravity.tex`; `papers/UBT_GR_Submission.tex` |
+| G15 | Zerilli equation (even parity) recovered after the perturbation bridge | [L1 conditional on GAP-B] | `canonical/gr_closure/zerilli_derivation.tex` |
 | G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
 | G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
 | G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann); ODE-f exact solutions established (v56) | [L1 cond. on Friedmann branch only] (v56: quasi-static removed) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
@@ -148,7 +148,11 @@ Comprehensive paper: `papers/UBT_GR_Submission.tex`.
 
 | Gap | Description |
 |-----|-------------|
-| GAP-10 | Off-shell Θ-only closure (global ker J = gauge only) |
+| GAP-10K | Local kinematic/rank closure: fixed-ψ rank NO-GO; full compact-ψ fiber-free closure proved |
+| GAP-10S | Single-action separation of the direct internal and metric equations |
+| GAP-10J | Fiber-freeness of the dynamically selected Jacobi-theta sector |
+| GAP-10R | Local integrable/on-shell representation of arbitrary required GR metric fields |
+| GAP-10G | Global existence/topology and preservation of fiber-freeness |
 | GAP-C | FRW Θ-ansatz: $g_{ij}=a^2\delta_{ij}$ [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional — Lem.~4.1]; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
 
 ---
@@ -366,4 +370,4 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Strong coupling g_s | Open |
 | Quantum gravity / path integral | Long term — GAP-Q |
 | Cosmological solutions (FRW/de Sitter) | PARTIALLY CLOSED — FRW in solution space [L1]; Θ-ansatz [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional] — GAP-C; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
-| Off-shell Θ-only closure | Open — GAP-10 |
+| Pure-Θ local closure | GAP-10K closed on regular fiber-free profiles; GAP-10S/J/R/G remain open |

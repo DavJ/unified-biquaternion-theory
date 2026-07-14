@@ -33,6 +33,12 @@ Sources: `canonical/fields/`, `canonical/THEORY/math/fields/`
 
 Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex`
 
+**Pure-Theta closure revision (2026-07-14):**
+- `canonical/gr_closure/pure_ubt_fiber_closure.tex` — exact direct variation; fixed-psi rank no-go; local vacuum GR closure on regular fiber-free compact-psi profiles; matter conditional; GAP-10S/J/R/G explicit.
+- `canonical/gr_closure/PURE_UBT_CLOSURE_STATUS.md` — authoritative closure ledger.
+- `tools/verify_pure_ubt_fiber_closure.py` — rank, metric-signature, normalization and adjugate checks.
+- `tools/verify_static_vacuum_lapse.py` — exact static-vacuum Schwarzschild lapse identity; does not test Theta dynamics.
+
 **GR closure files:**
 - `canonical/gr_closure/step1_metric_bridge.tex` — Step 1 — [L1] — Metric from Θ
 - `canonical/gr_closure/step2_nondegeneracy.tex` — Step 2 — [L1] — Non-degeneracy

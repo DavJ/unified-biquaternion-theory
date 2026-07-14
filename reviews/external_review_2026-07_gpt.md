@@ -83,3 +83,14 @@ After implementing the honest-status reframe (v10.1.4), the paper accurately
 represents the state of the derivation: steps 1–4 proved, step 5 conditional on
 GAP-10, spatial Schwarzschild proved, temporal and perturbation sectors open.
 No scientific content (equations, proofs, theorem statements) was changed.
+
+
+## Implemented resolutions — pure-Theta closure revision (2026-07-14)
+
+- Replaced the local metric denominator, which forced `g_00=-1`, by a constant asymptotic normalization.
+- Distinguished the raw biquaternionic quadratic tensor from its scalar/real metric projection.
+- Derived the exact total pure-Theta Euler-Lagrange equation.
+- Proved a fixed-psi rank no-go and a local compact-psi fiber-free closure theorem.
+- Split GAP-10 into the closed local kinematic result and open single-action, selected-Jacobi, and global sub-gaps.
+- Corrected the Abelian current and withdrew the claim that an ordinary Maxwell equation generates vacuum Schwarzschild.
+- Replaced GAP-U2 language by the static-vacuum lapse theorem plus the open canonical-Theta dynamical bridge.
