@@ -1,5 +1,7 @@
 # Final Status Report - Requirements Completion
 
+> **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
+
 **Date:** February 11, 2026  
 **Branch:** copilot/check-relevant-lepton-quark-issues  
 **Status:** ✅ ALL REQUIREMENTS COMPLETED

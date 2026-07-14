@@ -10,8 +10,8 @@ Copyright (c) 2025 Ing. David Jaroš
 """
 
 import pytest
-from forensic_fingerprint.layer2.config_space import Layer2Config
-from forensic_fingerprint.layer2.predictors import predict_constants
+from tools.forensic_fingerprint.layer2.config_space import Layer2Config
+from tools.forensic_fingerprint.layer2.predictors import predict_constants
 
 
 def test_placeholder_returns_values():

@@ -1,0 +1,40 @@
+claims:
+  gr_chain:
+    status: PROVED
+    evidence:
+      - canonical/gr_closure/
+      - papers/UBT_GR_Submission.tex
+    forbidden_wording: []
+  gauge_group:
+    status: DERIVED_WITH_ASSUMPTIONS
+    evidence:
+      - canonical/interactions/
+      - canonical/su3_derivation/
+      - papers/UBT_Gauge_Submission.tex
+    forbidden_wording: []
+  three_generations:
+    status: DERIVED_WITH_ASSUMPTIONS
+    evidence:
+      - canonical/n_eff/
+      - canonical/interactions/
+    forbidden_wording: []
+  alpha_full:
+    status: OPEN_GAP
+    evidence:
+      - canonical/alpha/ALPHA_MASTER_STATUS.md
+      - research_tracks/T3_ALPHA/mellin_insertion_B.tex
+    forbidden_wording:
+      - alpha proven
+      - alpha derived
+      - "[L1] PROVEN"
+  born_rule:
+    status: OPEN_GAP
+    evidence:
+      - src/ubt/quantum/quantum_scaffold.py
+      - docs/quantum_sector_status.md
+    forbidden_wording: []
+  psychon_sector:
+    status: SPECULATIVE
+    evidence:
+      - speculative_extensions/consciousness/
+    forbidden_wording: []
