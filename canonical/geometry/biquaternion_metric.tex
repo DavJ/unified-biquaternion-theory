@@ -1,387 +1,96 @@
-% Fundamental Biquaternionic Metric Definition
-% Version: 1.0
-% Date: 2026-01-07
-% Status: Canonical - FUNDAMENTAL GEOMETRY
+% Fundamental quadratic geometry derived from Theta
+% Version: 3.0
+% Date: 2026-07-14
+% Status: Canonical correction — raw B-valued tensor separated from scalar metric channel
 
-\section{The Fundamental Biquaternionic Metric $\mathcal{G}_{\mu\nu}$}
+\section{Biquaternionic Quadratic Geometry from $\Theta$}
 \label{sec:canonical:biquaternion_metric}
 
-\subsection{Fundamental Postulate}
-
-\textbf{The spacetime metric is fundamentally a biquaternionic object, not a real tensor.}
-
-The fundamental geometric object in UBT is the \textbf{biquaternionic metric}:
-
-\begin{equation}
-\label{eq:canonical:biq_metric_fundamental}
-\boxed{\mathcal{G}_{\mu\nu}(x) \in \mathbb{B} = \mathbb{H} \otimes \mathbb{C}}
-\end{equation}
-
-\noindent where $\mathbb{B}$ denotes the algebra of biquaternions (complex quaternions).
-
-\subsection{Biquaternionic Decomposition}
-
-The biquaternionic metric decomposes as:
-
-\begin{equation}
-\mathcal{G}_{\mu\nu} = g_{\mu\nu} + \mathbf{I} h_{\mu\nu} + \mathbf{J} \cdot \mathbf{k}_{\mu\nu}
-\end{equation}
-
-\noindent where:
-\begin{itemize}
-    \item $g_{\mu\nu} \in \mathbb{R}$ is the \textbf{real projection} (classical GR sector)
-    \item $h_{\mu\nu} \in \mathbb{R}$ represents \textbf{phase curvature} (imaginary scalar component)
-    \item $\mathbf{k}_{\mu\nu} = (k^1_{\mu\nu}, k^2_{\mu\nu}, k^3_{\mu\nu}) \in \mathbb{R}^3$ represents \textbf{inertial and causal geometry} (quaternionic vector components)
-    \item $\mathbf{I}$ is the imaginary unit ($\mathbf{I}^2 = -1$)
-    \item $\mathbf{J} = (j_1, j_2, j_3)$ are the quaternionic basis elements ($j_i j_j = -\delta_{ij} + \epsilon_{ijk} j_k$)
-\end{itemize}
-
-\textbf{Non-commutativity}: The biquaternionic components do NOT commute. The ordering of products matters:
-\begin{equation}
-\mathcal{G}_{\mu\nu} \mathcal{G}_{\rho\sigma} \neq \mathcal{G}_{\rho\sigma} \mathcal{G}_{\mu\nu} \quad \text{(in general)}
-\end{equation}
-
-\subsection{Mandatory Projection Rule}
-
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Mandatory Rule]
-The classical metric $g_{\mu\nu}$ used in General Relativity is \textbf{NOT fundamental}. It is defined exclusively as the real projection of the biquaternionic metric:
-
-\begin{equation}
-\label{eq:canonical:metric_projection_rule}
-\boxed{g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})}
-\end{equation}
-
-\textbf{It is FORBIDDEN to introduce $g_{\mu\nu}$ without explicit reference to $\mathcal{G}_{\mu\nu}$.}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Canonical distinction]
+The unprojected product of two biquaternionic derivatives is
+$\mathbb B$-valued.  Its scalar part and its ordinary matrix trace are
+complex-valued.  These objects must not be conflated.
 \end{tcolorbox}
 
-\subsection{Derivation from Tetrad}
+\subsection{Raw biquaternionic quadratic tensor}
 
-The biquaternionic metric is \textbf{not postulated directly}. Instead, it is derived from the more fundamental biquaternionic tetrad field $E_\mu(x)$ (see Section~\ref{sec:canonical:biquaternion_tetrad}):
-
+Let $\Theta(x,\psi)=\Theta(q_{\rm GR}(x),x^0+i\psi)\in\mathbb B$ and let
+$\ddagger$ denote the full Hermitian involution.  The raw quadratic tensor is
 \begin{equation}
-\label{eq:canonical:biq_metric_from_tetrad}
-\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)
+\label{eq:canonical:raw_biq_quadratic}
+\boxed{
+\mathcal Q_{\mu\nu}(x,\psi)
+:=\bigl(\partial_\mu\Theta\bigr)
+  \bigl(\partial_\nu\Theta\bigr)^\ddagger
+\in\mathbb B.}
 \end{equation}
-
-\noindent where:
-\begin{itemize}
-    \item $E_\mu(x) \in \mathbb{B}$ is the biquaternionic tetrad
-    \item $E_\nu^\dagger$ is the Hermitian conjugate
-    \item $\text{Sc}(\cdot)$ denotes the scalar part of the biquaternion
-\end{itemize}
-
-This construction ensures:
-\begin{enumerate}
-    \item \textbf{Hermiticity}: $\mathcal{G}_{\mu\nu}^\dagger = \mathcal{G}_{\nu\mu}$ (generalized symmetry)
-    \item \textbf{Positive signature}: Appropriate for Lorentzian geometry
-    \item \textbf{Gauge covariance}: Tetrad transformations preserve metric structure
-\end{enumerate}
-
-\subsection{Properties of the Biquaternionic Metric}
-
-\subsubsection{Hermiticity}
-
+It satisfies
 \begin{equation}
-\label{eq:canonical:biq_metric_hermiticity}
-\mathcal{G}_{\mu\nu}^\dagger = \mathcal{G}_{\nu\mu}
+\mathcal Q_{\nu\mu}=\mathcal Q_{\mu\nu}^\ddagger.
 \end{equation}
+The quaternion-vector components, phase components and noncommutative ordering
+information live in $\mathcal Q_{\mu\nu}$.
 
-This replaces the classical symmetry $g_{\mu\nu} = g_{\nu\mu}$ with a more general Hermitian condition.
+\subsection{Scalar Gram channel}
 
-\subsubsection{Inverse Metric}
-
-The biquaternionic inverse metric $\mathcal{G}^{\mu\nu}$ satisfies:
-
+For a fixed real symmetric non-degenerate representation-level bilinear form
+$H$ on the metric-generating real sector of $\mathbb B$, define
 \begin{equation}
-\label{eq:canonical:biq_inverse_metric}
-\mathcal{G}^{\mu\rho} \star \mathcal{G}_{\rho\nu} = \delta^\mu_\nu
+H(A,B)
+=\operatorname{Re}\operatorname{Tr}
+\left(A^\ddagger\eta_{\mathbb B}B\right).
 \end{equation}
-
-where $\star$ denotes the biquaternionic product (non-commutative).
-
-\subsubsection{Signature}
-
-In the real limit ($h_{\mu\nu} \to 0$, $\mathbf{k}_{\mu\nu} \to 0$):
-
+The scalar Gram channel at fixed $\psi$ is
 \begin{equation}
-\text{signature}(\mathcal{G}_{\mu\nu}) \to \text{signature}(g_{\mu\nu}) = (+, -, -, -)
+\gamma_{\mu\nu}(x,\psi)
+:=H(\partial_\mu\Theta,\partial_\nu\Theta)\in\mathbb R.
 \end{equation}
+Equivalently, before the final real projection one may retain the complex scalar
+$\operatorname{Sc}(\mathcal Q_{\mu\nu})\in\mathbb C$.  Neither
+$\operatorname{Sc}$ nor the ordinary matrix trace returns a general
+biquaternion.
 
-The Lorentzian signature emerges from the real projection.
+\subsection{Complex-time-fiber projection}
 
-\subsection{Physical Interpretation of Components}
-
-\subsubsection{Real Component: $g_{\mu\nu}$}
-
-\begin{itemize}
-    \item \textbf{Classical spacetime geometry}
-    \item Couples to ordinary matter and energy
-    \item Satisfies Einstein's equations in the real limit
-    \item \textbf{Observable} via standard GR experiments
-\end{itemize}
-
-\subsubsection{Phase Curvature: $h_{\mu\nu}$}
-
-\begin{itemize}
-    \item \textbf{Imaginary time curvature}
-    \item Couples to phase structure of the $\Theta$ field
-    \item Represents non-local energy configurations
-    \item \textbf{Invisible to classical observations} (ordinary matter couples only to $g_{\mu\nu}$)
-    \item Responsible for:
-    \begin{itemize}
-        \item Dark energy effects
-        \item Internal auxiliary sector (speculative; see \texttt{speculative\_extensions/})
-        \item Phase-locked coherent states
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Inertial Geometry: $\mathbf{k}_{\mu\nu}$}
-
-\begin{itemize}
-    \item \textbf{Quaternionic directional components}
-    \item Encodes torsion and non-metricity
-    \item Couples to spin and angular momentum in strong gravity
-    \item Responsible for:
-    \begin{itemize}
-        \item Dark matter halos (via p-adic extensions)
-        \item Frame-dragging modifications
-        \item Directional asymmetries in gravitational effects
-    \end{itemize}
-\end{itemize}
-
-\subsection{Line Element}
-
-The fundamental line element in biquaternionic spacetime is:
-
+The fiber-completed classical metric is
 \begin{equation}
-\label{eq:canonical:biq_line_element}
-d\mathcal{S}^2 = \mathcal{G}_{\mu\nu} dx^\mu \otimes dx^\nu
+\label{eq:canonical:fiber_metric_from_Q}
+\boxed{
+g_{\mu\nu}(x)
+=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
+\int_0^{2\pi R_\psi}
+H(\partial_\mu\Theta(x,\psi),\partial_\nu\Theta(x,\psi))\,d\psi,}
 \end{equation}
+where $\mathcal N_0>0$ is a constant fixed by asymptotic normalization.
+This uses the existing $\psi=\operatorname{Im}\tau$ dependence of the same
+field $\Theta$; it introduces no additional field.
 
-where $\otimes$ denotes the biquaternionic tensor product.
-
-In the real limit:
+A section metric
 \begin{equation}
-\text{Re}(d\mathcal{S}^2) = ds^2 = g_{\mu\nu} dx^\mu dx^\nu
+g^{(\psi_0)}_{\mu\nu}
+=\mathcal N_0^{-1}
+H(\partial_\mu\Theta(x,\psi_0),\partial_\nu\Theta(x,\psi_0))
 \end{equation}
+remains a valid restricted observable, but a genuinely $\mathbb B$-valued
+single section has an eight-real-dimensional value space and does not provide
+generic off-shell $\Theta$-only GR closure.  The full rank theorem is in
+\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
 
-This recovers the classical proper distance.
+\subsection{No local lapse normalization}
 
-\subsection{Relation to Einstein Metric}
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=General Relativity as Real Projection]
-\textbf{General Relativity arises as the real, commutative projection of the fundamental biquaternionic geometry of spacetime.}
-
-Einstein's metric tensor is:
+The older choice
 \begin{equation}
-g_{\mu\nu}^{\text{GR}} = \text{Re}(\mathcal{G}_{\mu\nu})
+\mathcal N(x)=
+\left|H(\partial_0\Theta,\partial_0\Theta)\right|
 \end{equation}
+forces $g_{00}=\pm1$ and is therefore incompatible with a variable lapse.
+It is superseded by the constant $\mathcal N_0$ in
+Eq.~\eqref{eq:canonical:fiber_metric_from_Q}.
 
-\textbf{Apparent violations} such as antigravity or causal drift correspond to non-real sectors of the metric and curvature, not to exotic matter.
+\subsection{Status boundary}
 
-In the limit where imaginary components vanish:
-\begin{equation}
-h_{\mu\nu} \to 0, \quad \mathbf{k}_{\mu\nu} \to 0 \quad \Rightarrow \quad \mathcal{G}_{\mu\nu} \to g_{\mu\nu}
-\end{equation}
-
-UBT \textbf{exactly reproduces} General Relativity. This includes:
-\begin{itemize}
-    \item Schwarzschild solution (black holes)
-    \item Kerr solution (rotating black holes)
-    \item FLRW cosmology
-    \item Gravitational waves
-    \item Perihelion precession
-    \item Light bending
-\end{itemize}
-
-\textbf{UBT does not contradict GR. It generalizes and embeds it.}
-\end{tcolorbox}
-
-\subsection{Exotic Regimes}
-
-Solutions with non-vanishing imaginary components:
-
-\begin{equation}
-\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0
-\end{equation}
-
-are \textbf{physically consistent within UBT} but remain \textbf{invisible to classical GR observations}.
-
-These exotic regimes are responsible for:
-\begin{enumerate}
-    \item \textbf{Pseudo-antigravitational behavior}: Apparent repulsion due to phase curvature
-    \item \textbf{Phase invisibility}: Dark matter and dark energy effects
-    \item \textbf{Local temporal drift}: Imaginary time flow variations
-    \item \textbf{Phase-sector coupling}: Auxiliary interaction terms (speculative extensions moved to \texttt{speculative\_extensions/})
-    \item \textbf{Quantum coherence preservation}: Phase-locked states in biological systems
-\end{enumerate}
-
-See Section~\ref{sec:canonical:exotic_regimes} for detailed analysis.
-
-\subsection{Coordinate Transformations}
-
-Under diffeomorphisms $x^\mu \to x'^\mu$:
-
-\begin{equation}
-\label{eq:canonical:biq_metric_diffeomorphism}
-\mathcal{G}'_{\alpha\beta}(x') = \frac{\partial x^\mu}{\partial x'^\alpha} \frac{\partial x^\nu}{\partial x'^\beta} \mathcal{G}_{\mu\nu}(x)
-\end{equation}
-
-This is the standard tensor transformation law, extended to biquaternionic objects.
-
-\subsection{Gauge Transformations}
-
-Under local biquaternionic gauge transformations:
-
-\begin{equation}
-\mathcal{G}_{\mu\nu} \to U \mathcal{G}_{\mu\nu} U^\dagger
-\end{equation}
-
-where $U \in \text{SU(2)} \times \text{U(1)}$ acts on the internal biquaternionic structure.
-
-The real projection is gauge-invariant:
-\begin{equation}
-\text{Re}(U \mathcal{G}_{\mu\nu} U^\dagger) = \text{Re}(\mathcal{G}_{\mu\nu}) = g_{\mu\nu}
-\end{equation}
-
-\subsection{Curvature Coupling}
-
-The biquaternionic metric determines the biquaternionic connection $\Omega_\mu$ (see Section~\ref{sec:canonical:biquaternion_connection}) and hence the biquaternionic curvature $\mathcal{R}_{\mu\nu\rho\sigma}$ (see Section~\ref{sec:canonical:biquaternion_curvature}).
-
-\subsection{Field Equation}
-
-The fundamental field equation of UBT is defined at the biquaternionic level:
-
-\begin{equation}
-\label{eq:canonical:biq_field_equation}
-\boxed{\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
-\end{equation}
-
-where:
-\begin{itemize}
-    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor ($\mathcal{G}_{\mu\nu}$ in this expression is the metric)
-    \item $\mathcal{T}_{\mu\nu}$ is the biquaternionic stress-energy tensor (Section~\ref{sec:canonical:biquaternion_stress_energy})
-    \item $\kappa = 8\pi G/c^4$ (in SI units) or $\kappa = 8\pi G$ (in natural units)
-\end{itemize}
-
-\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=Prohibition: Classical Einstein Equations Not Fundamental]
-\textbf{The equation $G_{\mu\nu} = 8\pi G T_{\mu\nu}$ is NOT the fundamental field equation.}
-
-Einstein's field equations arise ONLY after taking the real part of the fundamental biquaternionic equation:
-
-\begin{equation}
-\text{Re}(\mathcal{E}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu}) \quad \Rightarrow \quad G_{\mu\nu} = 8\pi G T_{\mu\nu}
-\end{equation}
-
-\textbf{This is labeled as ``GR limit'' or ``real projection'', never as a fundamental axiom.}
-\end{tcolorbox}
-
-\subsection{Conflict Resolution}
-
-This canonical definition supersedes all previous formulations that treat $g_{\mu\nu}$ as fundamental.
-
-\textbf{Deprecated approaches:}
-\begin{enumerate}
-    \item ❌ Direct postulation of real metric $g_{\mu\nu}$ as fundamental
-    \item ❌ Deriving $g_{\mu\nu}$ from $\Theta$ without biquaternionic structure
-    \item ❌ Treating GR as an independent axiom rather than a limiting case
-\end{enumerate}
-
-\textbf{Canonical resolution}: Use Eq.~\ref{eq:canonical:biq_metric_fundamental} with decomposition Eq.~\ref{eq:canonical:biq_metric_decomposition} and projection rule Eq.~\ref{eq:canonical:metric_projection_rule}.
-
-\subsection{$\Theta$ Field to Geometry Coupling}
-
-\textbf{Critical principle:} The $\Theta$ field configuration directly determines the geometry.
-
-The biquaternionic metric is a functional of the $\Theta$ field:
-
-\begin{equation}
-\label{eq:canonical:metric_theta_functional}
-\mathcal{G}_{\mu\nu} = \mathcal{G}_{\mu\nu}[\Theta]
-\end{equation}
-
-Explicitly, via the tetrad (Section~\ref{sec:canonical:biquaternion_tetrad}):
-
-\begin{equation}
-E_\mu = \partial_\mu \Theta \cdot \mathcal{N} \quad \Rightarrow \quad \mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)
-\end{equation}
-
-where $\mathcal{N}$ is a normalization operator.
-
-\textbf{Variation of metric under $\Theta$ perturbations:}
-
-\begin{equation}
-\delta \mathcal{G}_{\mu\nu} \sim \langle D_\mu \Theta, \delta \Theta \rangle + \langle \delta \Theta, D_\mu \Theta \rangle
-\end{equation}
-
-This shows that:
-\begin{itemize}
-    \item Geometry is NOT background-independent of $\Theta$
-    \item $\Theta$ configurations contribute dynamically to $\mathcal{G}_{\mu\nu}$
-    \item Stress-energy $\mathcal{T}_{\mu\nu}$ arises from $\Theta$ gradients: $\mathcal{T}_{\mu\nu} \sim \langle D_\mu\Theta, D_\nu\Theta \rangle$
-    \item There is NO external matter source—energy-momentum is geometric
-\end{itemize}
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Stress-Energy is Geometric]
-In UBT, stress-energy is NOT an external matter source added to field equations.
-
-Instead, $\mathcal{T}_{\mu\nu}$ is the \textbf{geometric phase response} of the $\Theta$ field:
-
-\begin{equation}
-\mathcal{T}_{\mu\nu} = \langle D_\mu\Theta, D_\nu\Theta \rangle_\mathbb{B} - \frac{1}{2}\mathcal{G}_{\mu\nu}\langle D\Theta, D\Theta \rangle
-\end{equation}
-
-The field equation $\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}$ is a self-consistency condition on geometry, not a source equation.
-\end{tcolorbox}
-
-\subsection{Computational Formula}
-
-For numerical calculations, expand the biquaternionic metric. The full expansion includes cross-terms from products of complex and quaternionic units:
-
-\begin{equation}
-\label{eq:canonical:biq_metric_computational}
-\mathcal{G}_{\mu\nu} = g_{\mu\nu} + i h_{\mu\nu} + j_1 k^1_{\mu\nu} + j_2 k^2_{\mu\nu} + j_3 k^3_{\mu\nu} + i j_1 m^1_{\mu\nu} + i j_2 m^2_{\mu\nu} + i j_3 m^3_{\mu\nu}
-\end{equation}
-
-where $m^a_{\mu\nu}$ (with $a=1,2,3$) are mixed complex-quaternionic components arising from products like $\mathbf{I} \times j_a$.
-
-In practice, these mixed terms often vanish or are subdominant for most physical configurations.
-
-\subsection{Historical Note}
-
-This definition establishes the biquaternionic metric as the fundamental geometric object in UBT, from which all classical GR results emerge as real projections. This represents a paradigm shift from treating GR as foundational to recognizing it as a limiting case of a richer biquaternionic geometry.
-
-\subsection{Self-Consistency of the $\Theta \to \mathcal{G} \to \Omega \to \Theta$ Loop}
-\label{subsec:theta_self_consistency}
-
-The UBT construction involves a potential fixed-point loop:
-\begin{equation}
-\Theta \;\xrightarrow{\mathrm{(i)}}\; \mathcal{G}_{\mu\nu} = \mathrm{Sc}(E_\mu E_\nu^\dagger)
-  \;\xrightarrow{\mathrm{(ii)}}\; \Omega_\mu \;\xrightarrow{\mathrm{(iii)}}\; \text{dynamics of } \Theta.
-\end{equation}
-Existence of solutions to this loop is a necessary condition for UBT consistency.
-
-\paragraph{Trivial flat solution.}
-For constant $\Theta = \Theta_0 \in \mathbb{B}$ (uniform field), we have
-$E_\mu = \partial_\mu\Theta_0 = 0$ (vanishing derivatives), so $\mathcal{G}_{\mu\nu} = \eta_{\mu\nu}$ (Minkowski) in the linearized limit.
-The connection $\Omega_\mu = 0$, and the field equation reduces to $\Box\Theta = 0$, satisfied by $\Theta = \Theta_0$.
-This confirms a trivial flat solution exists.
-
-\paragraph{Linearized perturbation analysis.}
-Let $\Theta = \Theta_0 + \varepsilon\,\theta(x)$ with $|\varepsilon| \ll 1$.
-At linear order:
-\begin{align}
-\delta\mathcal{G}_{\mu\nu} &= \mathrm{Sc}((\partial_\mu\theta)(\partial_\nu\Theta_0^\dagger) + (\partial_\mu\Theta_0)(\partial_\nu\theta^\dagger)), \\
-\delta\Omega_\mu &\sim \partial_\mu(\delta E_\nu)\circ\tilde{E}^\nu_0 \quad\text{(from tetrad postulate)}, \\
-\delta(\Box\Theta) &= \delta\Omega_\mu\circ\partial^\mu\Theta_0 + \Omega^\mu_0\circ\partial_\mu\theta + \cdots
-\end{align}
-These are wave-like equations for $\theta(x)$ on the Minkowski background,
-which admit plane-wave solutions $\theta \propto e^{ik\cdot x}$.
-This demonstrates existence of linearized (graviton-like) excitations.
-
-\paragraph{Open problem.}
-Non-perturbative existence (beyond linear order), uniqueness, and regularity
-of solutions to the full $\Theta\to\mathcal{G}\to\Omega\to\Theta$ loop are open problems.
-A rigorous fixed-point theorem in an appropriate function space is required.
-
-% End of fundamental biquaternionic metric definition
+The current Einstein--Hilbert sector depends on the real metric
+$g_{\mu\nu}$, not on a noncommutative determinant or inverse of
+$\mathcal Q_{\mu\nu}$.  A future action for the non-real components must define
+its ordering, inverse, contraction and reality operation explicitly.  Such an
+action is not assumed in the present GR closure proof.

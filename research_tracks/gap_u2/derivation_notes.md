@@ -1,101 +1,63 @@
-<!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
-
-# GAP-U2/GAP-B/GAP-10a derivation notes (restricted scope)
+# GAP-U2 / GAP-B / pure-Theta closure notes
 
 Date: 2026-07-14
 
-## U2a — Equation for `A_psi`
+## Correct Abelian current
 
-From the existing action ingredients in repository files,
-
-- `papers/UBT_GR_Submission.tex` (matter kinetic term in `S_Theta`),
-- `canonical/interactions/sm_gauge.tex` (gauge kinetic term),
-
-Euler–Lagrange variation with respect to `A_mu` gives
+For `D_mu Theta = nabla_mu Theta - i q A_mu Theta`, the real current is
 
 \[
-\nabla_\nu F^{\nu\mu}=J^\mu.
+J^\mu=q\,\operatorname{ReTr}\left[i\left(\Theta^\dagger D^\mu\Theta-(D^\mu\Theta)^\dagger\Theta\right)\right]
+=-2q\,\operatorname{ImTr}(\Theta^\dagger D^\mu\Theta),
 \]
 
-- This is **Outcome B** in the problem statement.
-- The harmonic equation `Delta_g A_psi = 0` is recovered only after imposing the extra physical condition `J^psi=0`.
+up to the overall sign convention for `D_mu`. The old formula with the factor `i` outside `ReTr` vanishes identically and is withdrawn.
 
-**Status:** PROVED (for Maxwell-type equation), CONDITIONAL (for harmonic reduction).
+## Schwarzschild lapse
 
-## U2b — Is `C=M` necessary?
-
-From
+The exact lapse is closed only in the static-vacuum GR branch:
 
 \[
-\partial_r\big(r^2\Psi^2 A_\psi'\big)=0,
-\quad
-A_\psi(r)=1-\frac{C}{r+M/2},
+\Delta_hN=0,
+\quad h_{ij}=\Psi^4\delta_{ij},
+\quad N(\infty)=1,
+\quad N(M/2)=0
 \]
 
-`C` is an integration constant. Field equations alone do not force `C=M`.
-
-`C=M` follows only if one imposes asymptotic physical matching to Schwarzschild lapse/ADM mass:
+imply
 
 \[
-A_\psi(r)=1-\frac{C}{r}+O(r^{-2}),\qquad
-\Phi(r)=1-\frac{M}{r}+O(r^{-2}).
+N=(1-M/(2r))/(1+M/(2r)).
 \]
 
-Matching the `1/r` coefficient gives `C=M`.
+This does not derive the lapse from a Maxwell field or from the canonical Theta equation.
 
-**Status:** CONDITIONAL.
+- `GAP-U2S`: closed conditionally on static vacuum GR + spatial branch + boundary data.
+- `GAP-U2Theta`: open.
 
-Missing physical condition if not imposed: asymptotic mass normalization (or equivalent boundary/charge condition fixing the integration constant).
+## GAP-B
 
-## GAP-B (restricted odd-parity request)
-
-Using
+The first metric variation is now based on the constant-normalized compact-psi metric:
 
 \[
-g_{\mu\nu}[\Theta]=\frac{\langle\partial_\mu\Theta,\partial_\nu\Theta\rangle}{\mathcal N},
-\quad
-\Theta=\Theta_0+\varepsilon\,\delta\Theta,
+\delta g_{\mu\nu}=\frac{2}{\mathcal N_0}\left\langle
+\partial_{(\mu}\Theta,\partial_{\nu)}\delta\Theta
+\right\rangle_\psi.
 \]
 
-first variation is
+The perturbation bridge
 
 \[
-\delta g_{\mu\nu}=
-\frac{\langle\partial_\mu\delta\Theta,\partial_\nu\Theta_0\rangle+\langle\partial_\mu\Theta_0,\partial_\nu\delta\Theta\rangle}{\mathcal N_0}
--\frac{g^{(0)}_{\mu\nu}}{\mathcal N_0}\,\delta\mathcal N,
+\delta(\nabla^\dagger\nabla\Theta)\longrightarrow\delta G_{\mu\nu}
 \]
 
-with
+remains open. Regge–Wheeler and Zerilli results remain conditional on GAP-B.
 
-\[
-\delta\mathcal N=\operatorname{sgn}\!\big(\langle\partial_0\Theta_0,\partial_0\Theta_0\rangle\big)
-\left(\langle\partial_0\delta\Theta,\partial_0\Theta_0\rangle+\langle\partial_0\Theta_0,\partial_0\delta\Theta\rangle\right).
-\]
+## GAP-10 split
 
-For odd parity, this gives explicit metric perturbation components once a concrete odd-parity basis for `delta Theta` is fixed. The Regge–Wheeler equation still requires the unresolved map
+See `canonical/gr_closure/pure_ubt_fiber_closure.tex`:
 
-\[
-\delta(\nabla^\dagger\nabla\Theta)\to\delta G_{\mu\nu},
-\]
-
-so the bridge remains missing at that step.
-
-**Status:** CONDITIONAL (explicit `delta g` formula derived; RW reduction still open at bridge map).
-
-## GAP-10a (restricted Jacobian request)
-
-Linearized Jacobian operator:
-
-\[
-(J_\Theta\cdot\delta\Theta)_{\mu\nu}=\delta g_{\mu\nu}
-\]
-
-with `delta g_{mu nu}` as above.
-
-- **Kernel contains** at least:
-  - constant shifts `delta Theta = const` (all derivatives vanish),
-  - gauge-orbit tangents that leave all bilinear derivative pairings invariant at first order.
-- **Gauge directions:** local right-phase variations and isotropy directions acting trivially on the bilinear pairings.
-- **Rank/surjectivity:** no complete global rank proof provided here.
-
-**Status:** OPEN (full rank/kernel classification not closed); PROVED (explicit operator formula).
+- fixed-psi generic closure: rank no-go;
+- full compact-psi fiber-free local vacuum closure: proved;
+- matter closure: conditional on the direct internal equation;
+- single-action separation, selected Jacobi sector, and global closure: open.

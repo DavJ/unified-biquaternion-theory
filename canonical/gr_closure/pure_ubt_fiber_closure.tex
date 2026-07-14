@@ -1,0 +1,611 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Pure UBT derivation: no independent metric, no imported embedding equations.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\newcommand{\B}{\mathbb B}
+\newcommand{\Sc}{\operatorname{Sc}}
+\newcommand{\ReTr}{\operatorname{ReTr}}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle_{\psi}}
+\newcommand{\E}{\mathscr E}
+\newcommand{\F}{\mathscr F}
+\newcommand{\Nzero}{\mathcal N_0}
+\newcommand{\dd}{\mathrm d}
+
+\title{Pure-UBT GR Closure from the Complex-Time Fiber\\
+\large Exact first variation, rank theorem, and the remaining single-action gap}
+\author{Ing. David Jaroš}
+\date{14 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We derive the gravitational variational equation directly from the existing UBT
+objects $\Theta(q,\tau)$, $\tau=t+i\psi$, and the metric induced by derivatives
+of $\Theta$.  No independent metric is introduced and no external embedding-
+gravity field equation is assumed.  The derivation has three main conclusions.
+First, the scalar part or matrix trace of a biquaternion product is complex-scalar,
+not biquaternion-valued; the full raw quadratic tensor and its scalar projection
+must therefore be distinguished.  Second, a metric obtained from a single
+$\psi$-section of a genuinely biquaternion-valued field has a rigorous local rank
+obstruction: its eight-real-dimensional value space supplies at most four normal
+closure equations.  Third, UBT already contains an intrinsic resolution of this
+kinematic obstruction: treating the existing compact complex-time fiber as part
+of the same field, and taking the classical metric as its normalized fiber
+average, makes the metric-generating space infinite-dimensional.  On the
+\emph{fiber-free} sector, where ten normal second-derivative vectors are linearly
+independent, the pure-$\Theta$ gravitational variation implies the complete
+Einstein equation.  The fiber-free condition is nonempty and open dense in every sufficiently rich finite-mode holomorphic two-jet truncation.  For the full unified action, exact GR recovery also
+requires separation of the direct internal $\Theta$ Euler--Lagrange equation from
+the metric-induced equation; this final single-action separation is stated
+precisely and is not silently assumed.
+\end{abstract}
+
+\begin{tcolorbox}[colback=blue!4,colframe=blue!65!black,title=Epistemic status]
+All algebraic and variational statements below are proved from the stated UBT
+definitions.  The local vacuum closure theorem is unconditional on its explicitly
+defined fiber-free sector.  The matter/gauge closure theorem is conditional on
+the canonical internal $\Theta$ equation (equivalently, vanishing of the direct
+fixed-metric Euler--Lagrange term).  No claim is made that a single standard
+Jacobi theta constant automatically satisfies the fiber-free condition; that is
+a separate model-selection problem.
+\end{tcolorbox}
+
+\section{Foundational objects and notation}
+
+Let $M$ be a smooth four-dimensional manifold with local coordinates
+$x^\mu$, $\mu=0,1,2,3$.  The canonical complex time is
+\begin{equation}
+  \tau=x^0+i\psi,
+  \qquad \psi\in S^1_{R_\psi},
+  \qquad L_\psi=2\pi R_\psi.
+\end{equation}
+The fundamental field is the existing UBT field
+\begin{equation}
+  \Theta=\Theta(q_{\rm GR}(x),x^0+i\psi)\in\B
+  =\mathbb C\otimes_{\mathbb R}\mathbb H,
+  \qquad \dim_{\mathbb R}\B=8.
+\end{equation}
+There is no additional chronofactor field: $\psi$ is the imaginary part of the
+same $\tau$ that already appears in $\Theta(q,\tau)$.
+
+Fix a real, symmetric, non-degenerate bilinear form $H$ on the selected real
+metric-generating representation of $\B$.  In a matrix representation it may be
+written
+\begin{equation}
+  H(A,B)=\operatorname{Re}\operatorname{Tr}
+  \bigl(A^\ddagger\eta_{\B}B\bigr),
+  \label{eq:H}
+\end{equation}
+where $\ddagger$ is the full Hermitian involution and $\eta_{\B}$ is the chosen
+representation-level Lorentzian form.  The closure proof requires only that
+$H$ is real, symmetric and non-degenerate; it does not assume a particular
+matrix realization.
+
+\begin{definition}[Fiber pairing]
+For two $\B$-valued profiles $U(\psi),V(\psi)$ define
+\begin{equation}
+  \langle U,V\rangle_\psi
+  :=\frac1{L_\psi}\int_0^{L_\psi}H(U(\psi),V(\psi))\,\dd\psi.
+  \label{eq:fiberpair}
+\end{equation}
+The completion of the smooth periodic profiles with this pairing is denoted
+$\mathscr V_\psi$.  It is an infinite-dimensional real Krein space whenever
+$H$ is indefinite.
+\end{definition}
+
+\section{The raw biquaternionic quadratic tensor and the physical metric}
+
+\begin{definition}[Raw quadratic tensor]
+Set
+\begin{equation}
+  \mathcal Q_{\mu\nu}(x,\psi)
+  :=(\partial_\mu\Theta)(\partial_\nu\Theta)^\ddagger\in\B.
+  \label{eq:rawQ}
+\end{equation}
+It obeys $\mathcal Q_{\nu\mu}=\mathcal Q_{\mu\nu}^\ddagger$.
+\end{definition}
+
+\begin{proposition}[Scalar-part correction]
+For $A,B\in\B$, both $\Sc(AB^\ddagger)$ and the matrix trace of a faithful
+$2\times2$ complex representation are complex scalars.  Consequently,
+\begin{equation}
+  \Sc(AB^\ddagger)\in\mathbb C,
+  \qquad
+  \operatorname{Tr}(AB^\ddagger)\in\mathbb C,
+\end{equation}
+not general elements of $\B$.
+\end{proposition}
+
+\begin{proof}
+By definition, $\Sc:\B\to\mathbb C$ extracts the coefficient of the quaternion
+identity.  The ordinary matrix trace maps $\operatorname{Mat}(2,\mathbb C)$ to
+$\mathbb C$.  Neither operation can retain the three quaternion-vector
+components.  The full biquaternionic information is carried by
+$\mathcal Q_{\mu\nu}$ before scalar projection.
+\end{proof}
+
+\begin{remark}
+This distinction repairs an ambiguity in older UBT texts that called
+$\Sc(E_\mu E_\nu^\ddagger)$ itself a ``biquaternionic metric.''  It is more
+precise to call $\mathcal Q_{\mu\nu}$ the raw biquaternionic quadratic tensor and
+its scalar/real projection the metric channel.
+\end{remark}
+
+\begin{definition}[Fiber-completed physical metric]
+The classical UBT metric used in this derivation is
+\begin{equation}
+  \boxed{
+  g_{\mu\nu}[\Theta](x)
+  :=\frac1{\Nzero}\,
+  \langle\partial_\mu\Theta,\partial_\nu\Theta\rangle_\psi,}
+  \qquad \Nzero>0\ \text{constant}.
+  \label{eq:metric}
+\end{equation}
+The constant $\Nzero$ is fixed once by asymptotic Minkowski normalization.
+It is not a local functional of $\partial_0\Theta$.
+\end{definition}
+
+\begin{theorem}[Uniqueness of the compact-fiber zero-mode projection]
+Let $F_{\mu\nu}(\psi):=H(\partial_\mu\Theta(\psi),
+\partial_\nu\Theta(\psi))$ be the real quadratic metric channel on the compact
+circle.  Suppose the classical readout $\Pi(F)$ is real-linear, continuous on
+trigonometric polynomials (and hence on its chosen completion), normalized by
+$\Pi(1)=1$, and invariant under every fiber translation
+$T_aF(\psi)=F(\psi+a)$.  Then
+\begin{equation}
+ \Pi(F)=\frac1{L_\psi}\int_0^{L_\psi}F(\psi)\,d\psi.
+ \label{eq:haarprojection}
+\end{equation}
+Thus Eq.~\eqref{eq:metric} is the unique normalized linear quadratic readout
+that does not select a preferred point of the canonical compact
+$S^1_\psi$ fiber.
+\end{theorem}
+
+\begin{proof}
+Write a trigonometric polynomial as
+$F(\psi)=\sum_{n=-N}^{N}F_n e^{in\psi/R_\psi}$.  Translation invariance gives
+\begin{equation}
+ \Pi(e^{in(\psi+a)/R_\psi})=\Pi(e^{in\psi/R_\psi})
+\end{equation}
+for every $a$.  For $n\ne0$, choose $a$ with
+$e^{ina/R_\psi}\ne1$; linearity then forces
+$\Pi(e^{in\psi/R_\psi})=0$.  Normalization gives $\Pi(1)=1$, so
+$\Pi(F)=F_0$, which is precisely the normalized circle average.  Continuity
+extends the result to the selected profile completion.
+\end{proof}
+
+\begin{remark}[Scope of the uniqueness theorem]
+The theorem derives the fiber average from compact-fiber translation symmetry,
+linearity and the already chosen quadratic metric channel.  If UBT instead
+postulates that a physical observer selects a distinguished value of $\psi$,
+then the theorem does not apply; that point-section theory is the rank-deficient
+branch analysed below.
+\end{remark}
+
+\begin{proposition}[Local-normalization obstruction]
+If instead one sets
+\begin{equation}
+  \mathcal N(x)=\left|H(\partial_0\Theta,\partial_0\Theta)\right|,
+  \qquad
+  g_{\mu\nu}=H(\partial_\mu\Theta,\partial_\nu\Theta)/\mathcal N(x),
+\end{equation}
+then on a timelike branch $g_{00}=-1$ identically.  Such a definition cannot
+represent a spatially varying lapse such as Schwarzschild $g_{00}=-N(r)^2$.
+\end{proposition}
+
+\begin{proof}
+On the timelike branch $H(\partial_0\Theta,\partial_0\Theta)<0$, hence
+\begin{equation}
+ g_{00}=\frac{H(\partial_0\Theta,\partial_0\Theta)}
+ {|H(\partial_0\Theta,\partial_0\Theta)|}=-1.
+\end{equation}
+\end{proof}
+
+\section{Exact first variation of the induced metric}
+
+Write
+\begin{equation}
+  E_\mu:=\partial_\mu\Theta\in\mathscr V_\psi.
+\end{equation}
+For a compactly supported variation $\delta\Theta$ commuting with the fiber
+integral,
+\begin{equation}
+  \boxed{
+  \delta g_{\mu\nu}
+  =\frac1{\Nzero}
+  \bigl(
+   \langle\partial_\mu\delta\Theta,E_\nu\rangle_\psi
+  +\langle E_\mu,\partial_\nu\delta\Theta\rangle_\psi
+  \bigr)
+  =\frac2{\Nzero}
+  \langle E_{(\mu},\partial_{\nu)}\delta\Theta\rangle_\psi.}
+  \label{eq:deltag}
+\end{equation}
+This formula contains no independent variation of $g$.
+
+\section{Pure-$\Theta$ action and its exact Euler--Lagrange equation}
+
+Consider the canonical composite action
+\begin{equation}
+  \widehat S[\Theta]
+  =S_{\rm EH}[g[\Theta]]+S_{\rm int}[g[\Theta],\Theta],
+  \label{eq:action}
+\end{equation}
+where $S_{\rm int}$ denotes all direct matter, gauge and potential terms.
+Define the fixed-metric direct Euler--Lagrange profile $\F_\Theta\in\mathscr
+V_\psi^*$ by
+\begin{equation}
+ \delta_\Theta S_{\rm int}\big|_g
+ =\int_M\sqrt{-g}\,\langle\F_\Theta,\delta\Theta\rangle_\psi\,\dd^4x,
+ \label{eq:Ftheta}
+\end{equation}
+and define
+\begin{equation}
+  \E^{\mu\nu}:=G^{\mu\nu}-\kappa T^{\mu\nu}.
+  \label{eq:Einres}
+\end{equation}
+With the convention
+\begin{equation}
+  \delta_g(S_{\rm EH}+S_{\rm int})
+  =-\frac1{2\kappa}\int_M\sqrt{-g}\,
+  \E^{\mu\nu}\delta g_{\mu\nu}\,\dd^4x,
+\end{equation}
+substitution of Eq.~\eqref{eq:deltag} gives
+\begin{equation}
+  \delta\widehat S
+  =\int_M\sqrt{-g}\,\langle\F_\Theta,\delta\Theta\rangle_\psi\,\dd^4x
+  -\frac1{\kappa\Nzero}\int_M\sqrt{-g}\,
+   \E^{\mu\nu}\langle E_\mu,\partial_\nu\delta\Theta\rangle_\psi\,\dd^4x.
+\end{equation}
+After covariant integration by parts,
+\begin{equation}
+ \boxed{
+ \F_\Theta
+ +\frac1{\kappa\Nzero}
+ \nabla_\nu\bigl(\E^{\mu\nu}E_\mu\bigr)=0.}
+ \label{eq:fullEL}
+\end{equation}
+Equation~\eqref{eq:fullEL} is the exact pure-$\Theta$ variational equation for
+the action~\eqref{eq:action}, under the stated fixed target pairing and constant
+normalization.  It is not obtained by importing an external gravitational
+formalism.
+
+\begin{proposition}[Noether identity for the internal sector]
+If $S_{\rm int}$ is diffeomorphism invariant and all gauge-field equations in
+that sector hold, then
+\begin{equation}
+  \nabla_\mu T^{\mu}{}_{\nu}
+  =-\langle\F_\Theta,E_\nu\rangle_\psi.
+  \label{eq:noether}
+\end{equation}
+In particular, $\F_\Theta=0$ implies $\nabla_\mu T^{\mu\nu}=0$.
+\end{proposition}
+
+\begin{proof}
+Use the infinitesimal diffeomorphism variation
+$\delta_\xi\Theta=\xi^\nu\partial_\nu\Theta$ and
+$\delta_\xi g_{\mu\nu}=2\nabla_{(\mu}\xi_{\nu)}$ in
+$\delta S_{\rm int}=0$, integrate the stress-tensor term by parts, and use the
+arbitrariness of $\xi^\nu$.
+\end{proof}
+
+\section{Normal closure operator derived from UBT}
+
+At a regular point, let
+\begin{equation}
+  \mathscr T_x:=\operatorname{span}_{\mathbb R}\{E_0,E_1,E_2,E_3\}
+  \subset\mathscr V_\psi
+\end{equation}
+be non-degenerate with respect to $\langle\cdot,\cdot\rangle_\psi$, and let
+$P_\perp$ be the orthogonal projection onto
+$\mathscr N_x:=\mathscr T_x^\perp$.  Define the UBT second-derivative vectors
+\begin{equation}
+  B_{\mu\nu}
+  :=P_\perp\bigl(\nabla_\mu E_\nu\bigr)
+  =B_{\nu\mu}\in\mathscr N_x.
+  \label{eq:Bmunu}
+\end{equation}
+The symmetry follows locally from $E_\nu=\partial_\nu\Theta$ and the
+torsion-free spacetime connection.
+
+If $\F_\Theta=0$, Eq.~\eqref{eq:noether} and the contracted Bianchi identity
+imply $\nabla_\nu\E^{\mu\nu}=0$.  Equation~\eqref{eq:fullEL} therefore reduces
+to
+\begin{equation}
+  \boxed{\E^{\mu\nu}B_{\mu\nu}=0\quad\text{in }\mathscr N_x.}
+  \label{eq:normalclosure}
+\end{equation}
+The tangential part vanishes identically; the physical content is the normal
+closure equation~\eqref{eq:normalclosure}.
+
+\begin{definition}[Closure map and fiber-free point]
+Define
+\begin{equation}
+  \mathcal K_x:\operatorname{Sym}^2(T_xM)\longrightarrow\mathscr N_x,
+  \qquad
+  \mathcal K_x(X):=X^{\mu\nu}B_{\mu\nu}.
+  \label{eq:Kmap}
+\end{equation}
+A regular point is called \emph{fiber-free} when $\mathcal K_x$ is injective,
+equivalently when the ten vectors
+\begin{equation}
+  \{B_{00},B_{01},B_{02},B_{03},B_{11},B_{12},B_{13},B_{22},B_{23},B_{33}\}
+  \label{eq:tenB}
+\end{equation}
+are linearly independent in $\mathscr N_x$.
+\end{definition}
+
+\begin{theorem}[Local pure-UBT vacuum GR closure]
+For the pure gravitational action $S_{\rm EH}[g[\Theta]]$, let $\Theta$ be a
+regular fiber-free stationary configuration.  Then
+\begin{equation}
+  G_{\mu\nu}=0
+\end{equation}
+pointwise.
+\end{theorem}
+
+\begin{proof}
+For the pure gravitational action, $\F_\Theta=0$ and $T_{\mu\nu}=0$.
+Equation~\eqref{eq:normalclosure} gives
+$\mathcal K_x(G)=0$.  Injectivity of $\mathcal K_x$ at a fiber-free point
+implies $G^{\mu\nu}=0$.
+\end{proof}
+
+\begin{theorem}[Local matter/gauge GR closure on the canonical internal shell]
+Let $\Theta$ be regular and fiber-free and suppose the fixed-metric internal
+Euler--Lagrange equation holds,
+\begin{equation}
+  \F_\Theta=0,
+  \label{eq:internalEL}
+\end{equation}
+including the relevant gauge equations.  Then stationarity of
+$\widehat S[\Theta]$ implies
+\begin{equation}
+  G_{\mu\nu}=\kappa T_{\mu\nu}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:internalEL} and the Noether identity imply
+$\nabla_\nu T^{\mu\nu}=0$.  The Bianchi identity gives
+$\nabla_\nu\E^{\mu\nu}=0$, so the exact pure-$\Theta$ equation reduces to
+$\mathcal K_x(\E)=0$.  Fiber-freeness makes $\mathcal K_x$ injective, hence
+$\E^{\mu\nu}=0$.
+\end{proof}
+
+\section{Why one $\psi$-section cannot close general GR}
+
+Suppose instead that the metric is built from a single value
+$\Theta(x,\psi_0)\in\B\cong\mathbb R^8$.  At a regular point the tangent span has
+real dimension four, so its orthogonal complement has dimension four.
+Consequently all ten $B_{\mu\nu}$ lie in a four-dimensional normal space.
+
+\begin{theorem}[Single-section rank no-go]
+For a genuinely biquaternion-valued field with an eight-real-dimensional value
+space, the single-section closure map satisfies
+\begin{equation}
+  \operatorname{rank}\mathcal K_x\le4,
+  \qquad
+  \dim\ker\mathcal K_x\ge 10-4=6.
+\end{equation}
+Therefore Eq.~\eqref{eq:normalclosure} cannot imply an arbitrary ten-component
+Einstein residual vanishes pointwise.  Even after using four differential
+Bianchi identities, the single-section construction does not provide a generic
+algebraic proof of the six independent gravitational equations.
+\end{theorem}
+
+\begin{proof}
+The image of $\mathcal K_x$ is contained in the four-dimensional normal space.
+Rank--nullity gives the stated bound.  Bianchi identities are differential
+identities and do not convert a rank-four pointwise map into an injective map on
+the ten-dimensional symmetric-tensor fiber.
+\end{proof}
+
+\begin{corollary}[Holomorphy cannot repair the single-section rank]
+Imposing holomorphy in $\tau$, a Jacobi heat equation, or any other constraint
+on the same eight-real-valued field cannot increase the image of the
+single-section metric-variation map.  Such constraints restrict admissible
+variations and can only preserve or reduce its rank.
+\end{corollary}
+
+\section{The existing $\psi$-fiber removes the kinematic obstruction}
+
+The fiber-completed field at fixed $x$ is the profile
+$\psi\mapsto\Theta(x,\psi)$, an element of the infinite-dimensional space
+$\mathscr V_\psi$.  Thus the normal space is no longer limited to four
+real directions.
+
+\begin{theorem}[Existence of holomorphic periodic fiber-free UBT jets]
+There exist local configurations, analytic in the spatial coordinates and
+holomorphic in $\tau=x^0+i\psi$, for which the metric is Lorentzian at a
+chosen point and the ten vectors in Eq.~\eqref{eq:tenB} are linearly
+independent.
+\end{theorem}
+
+\begin{proof}
+Put
+\begin{equation}
+  \phi_m(\tau):=\exp(m\tau/R_\psi),\qquad m\in\mathbb Z.
+\end{equation}
+Each $\phi_m$ is holomorphic in $\tau$ and periodic under
+$\psi\mapsto\psi+2\pi R_\psi$.  For the Hermitian real pairing in
+Eq.~\eqref{eq:H}, profiles with distinct Fourier numbers are orthogonal after
+fiber averaging.  Choose four mutually $H$-orthogonal algebraic directions
+$u_0,u_1,u_2,u_3\in\B$ with $H(u_0,u_0)<0$ and
+$H(u_i,u_i)>0$ for $i=1,2,3$.
+
+Choose pairwise disjoint pairs of nonzero integers
+$(a_0,b_0),(a_1,b_1),(a_2,b_2),(a_3,b_3)$, with $a_\mu\ne b_\mu$, and define
+holomorphic profiles
+\begin{align}
+ f(\tau)&:=u_0\bigl(c_{a_0}\phi_{a_0}(\tau)
+                   +c_{b_0}\phi_{b_0}(\tau)\bigr),\\
+ g_i(\tau)&:=u_i\bigl(c_{a_i}\phi_{a_i}(\tau)
+                   +c_{b_i}\phi_{b_i}(\tau)\bigr),\qquad i=1,2,3,
+\end{align}
+with both coefficients in every pair nonzero.  Use six additional Fourier
+numbers, disjoint from all the preceding ones, to choose six mutually
+orthogonal nonzero profiles $h_{ij}=h_{ji}$, $1\le i\le j\le3$.
+Now set, near a point whose spatial coordinates are zero,
+\begin{equation}
+ \Theta(x,\psi)
+ =f(\tau)+\sum_{i=1}^3x^i g_i(\tau)
+  +\frac12\sum_{i,j=1}^3x^ix^j h_{ij}(\tau).
+ \label{eq:holomorphicjet}
+\end{equation}
+This expression is holomorphic in $\tau$; no independent polynomial in
+$x^0=\operatorname{Re}\tau$ has been introduced.
+
+At the chosen point,
+\begin{equation}
+ E_0=f'(\tau),\qquad E_i=g_i(\tau),
+\end{equation}
+and the four tangent profiles are mutually orthogonal.  Rescaling the
+coefficients fixes their norms to $(-,+,+,+)$, so the induced metric is
+Lorentzian.  The normal second-derivative profiles are
+\begin{equation}
+ B_{00}=P_\perp f'',\qquad
+ B_{0i}=P_\perp g_i',\qquad
+ B_{ij}=h_{ij}.
+\end{equation}
+For a two-frequency profile $w=c_a\phi_a+c_b\phi_b$ with $a\ne b$ and
+$c_ac_b\ne0$, its derivative is not proportional to $w$.  Therefore the
+orthogonal component of $w'$ relative to $w$ is nonzero.  Applied to $f'$ and
+$f''$, and to each pair $g_i,g_i'$, this proves that $B_{00}$ and all three
+$B_{0i}$ are nonzero.  Their Fourier supports are pairwise disjoint, and the
+six $h_{ij}$ have six further disjoint supports.  Hence all ten profiles
+$B_{\mu\nu}$ are linearly independent.
+\end{proof}
+
+\begin{theorem}[Finite-mode genericity of fiber-freeness]
+Fix a finite-dimensional holomorphic Fourier--Galerkin two-jet space that
+contains at least the mutually disjoint mode pairs and six additional modes used
+in Eq.~\eqref{eq:holomorphicjet}.  On its regular Lorentzian locus, the
+fiber-free subset is nonempty and open dense (indeed the complement is contained
+in the zero set of a nonzero polynomial minor).
+\end{theorem}
+
+\begin{proof}
+Choose ten fixed continuous normal test functionals and form the corresponding
+$10\times10$ closure minor.  In a finite Fourier--Galerkin jet space its entries
+are polynomial functions of the jet coefficients.  The explicit construction
+above makes this determinant nonzero, so the polynomial is not identically
+zero.  Its nonzero set is open and dense in the ordinary finite-dimensional
+topology.  Intersecting with the open regular-Lorentzian first-jet locus gives
+the claim.
+\end{proof}
+
+\begin{remark}[What this genericity theorem does and does not prove]
+It proves nonemptiness and genericity in every sufficiently rich finite-mode
+holomorphic truncation.  It does not establish density in a specified
+infinite-dimensional Fr\'echet topology, nor that a particular fixed Jacobi
+theta ansatz or every global solution of the master equation is fiber-free.
+Those are separate functional-analytic and dynamical questions.
+\end{remark}
+
+\section{Metric representability: what is and is not established}
+
+\begin{proposition}[Pointwise Lorentzian Gram representability]
+At any point $x$ and for any nondegenerate Lorentzian bilinear form
+$g_{\mu\nu}(x)$, there exist four smooth finite-Fourier profiles
+$E_\mu(\psi)\in\mathscr V_\psi$ whose fiber Gram matrix is
+$\Nzero g_{\mu\nu}(x)$.
+\end{proposition}
+
+\begin{proof}
+Choose four mutually orthogonal profile directions with one negative and three
+positive norms.  By Sylvester's law of inertia, there is an invertible real
+matrix $L$ taking their diagonal Gram form to $\Nzero g$.  Replacing the four
+profiles by the corresponding linear combinations gives the required Gram
+matrix.  Constant Fourier profiles already suffice for this pointwise claim.
+\end{proof}
+
+\begin{remark}[Local integrability gap]
+Pointwise Gram representability does not prove that an arbitrary prescribed
+metric field on a neighbourhood can be written with
+$E_\mu=\partial_\mu\Theta$ while simultaneously satisfying mixed-derivative
+integrability, holomorphy in $\tau$, boundary conditions and the UBT field
+equation.  This is recorded as GAP-10R and remains open.  Consequently the
+closure theorem proves that fiber-free stationary UBT configurations obey the
+Einstein equation; it does not yet prove that every local or global Einstein
+geometry occurs in the dynamically selected UBT solution space.
+\end{remark}
+
+\section{Adjugates and rank-deficient physical branches}
+
+At a fiber-free point choose ten normal covectors and form a square closure
+matrix $A$ for $\mathcal K_x$.  Then
+\begin{equation}
+  A\,\operatorname{adj}(A)=\det(A)I.
+\end{equation}
+For $\operatorname{rank}A=9$, $\operatorname{adj}(A)$ has rank one and its
+columns span the unique newly opened residual direction.  Thus the adjugate is
+a rigorous diagnostic of a corank-one branch.  It is not postulated here as a
+new fundamental equation.  For rank at most eight, the ordinary adjugate
+vanishes and higher compound matrices are required.
+
+\section{Status of the full biquaternionic channel}
+
+The non-real components of the raw tensor $\mathcal Q_{\mu\nu}$ are genuine UBT
+objects, but the current Einstein--Hilbert term depends only on the real metric
+in Eq.~\eqref{eq:metric}.  Therefore varying the non-real components cannot add
+independent equations for $\E_{\mu\nu}$ unless the action contains an explicit,
+well-defined non-real geometric invariant.  A phrase such as ``vary the full
+biquaternionic curvature'' is not yet a derivation: one must first define its
+noncommutative inverse, contraction, ordering, reality operation and boundary
+term.  No such additional action is assumed in this proof.
+
+\section{Precise closure ledger}
+
+\begin{center}
+\begin{tabular}{p{0.32\linewidth}p{0.18\linewidth}p{0.40\linewidth}}
+\hline
+Claim & Status & Exact scope \\
+\hline
+Raw tensor/scalar projection distinction & PROVED & $\mathcal Q\in\B$; $\Sc\mathcal Q$ and trace are complex scalars. \\
+Constant-normalization requirement & PROVED & Local time-gradient normalization forces $g_{00}=\pm1$. \\
+Exact pure-$\Theta$ first variation & PROVED & Eq.~\eqref{eq:fullEL}, for fixed $H$, constant $\Nzero$, stated boundary conditions. \\
+Single-$\psi$-section generic closure & DISPROVED & Rank at most four for a genuinely $\B$-valued field. \\
+Fiber-completed local vacuum closure & PROVED & At regular fiber-free points. \\
+Fiber-free nonempty and finite-mode generic & PROVED & Open dense in every sufficiently rich finite Fourier--Galerkin two-jet space. \\
+Matter/gauge GR closure & PROVED CONDITIONALLY & Requires the canonical fixed-metric internal equation $\F_\Theta=0$. \\
+Single unified-action term separation & OPEN & Must derive $\F_\Theta=0$ and metric closure from one stationarity equation without imposing separate on-shell conditions. \\
+Specific Jacobi ansatz is fiber-free & OPEN & Must be checked for the canonical selected theta kernel/solution family. \\
+Local representation of arbitrary GR metric fields & OPEN & Pointwise Gram representation is proved; integrable on-shell neighbourhood/global representation is GAP-10R. \\
+Global closure and topology & OPEN & Local theorem does not establish a global free immersion or global existence. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Conclusion}
+
+The clean UBT resolution of the kinematic part of GAP-10 is not to add a new
+field or to reinterpret $\tau$ as an extra copy of itself.  It is to use the
+full field already postulated by UBT:
+\begin{equation}
+  \Theta(x,\psi)=\Theta(q_{\rm GR}(x),x^0+i\psi),
+\end{equation}
+and to define the classical metric by the same compact-fiber averaging already
+allowed in the UBT classical limit.  A single section is too small; the full
+$\psi$ profile has enough independent normal modes.  The exact variation then
+gives the closure operator $\mathcal K_x$, and its injectivity yields the
+Einstein equations without an independent metric.
+
+What remains is sharply bounded: prove local integrable representation of the desired GR metric class (GAP-10R), prove that the dynamically selected Jacobi sector is fiber-free, and derive the internal/matrix equation and metric equation as separate projections of one canonical UBT action.  Those are the remaining
+pure-UBT bridges; no external gravitational formalism is required to state or
+test them.
+
+\end{document}

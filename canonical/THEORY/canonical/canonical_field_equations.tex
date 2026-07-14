@@ -4,7 +4,7 @@
 % 4.0 International License (CC BY-NC-ND 4.0).
 
 \documentclass[11pt,a4paper]{article}
-\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsmath, amssymb, amsthm, mathrsfs}
 \usepackage{hyperref}
 \usepackage{geometry}
 \geometry{margin=2.5cm}
@@ -62,33 +62,27 @@ macroscopic time.
 
 \section{Einstein Field Equations (Real Sector)}
 
-\begin{theorem}[Einstein Equations from UBT]
-In the real sector (constant phase $\varphi$, $\psi \to 0$ limit), the master
-equation \eqref{eq:master} projected to the real metric
-$g_{\mu\nu} = \mathrm{Re}(\mathcal{G}_{\mu\nu}[\Theta])$ becomes:
-\begin{equation}\label{eq:Einstein}
-  G_{\mu\nu}
-  \;=\;
-  R_{\mu\nu} - \tfrac{1}{2}g_{\mu\nu}R
-  \;=\;
-  \kappa\,T_{\mu\nu},
+Let the metric be the constant-normalized compact-$\psi$ pairing of the
+existing field $\Theta(q,t+i\psi)$.  Direct variation of the canonical
+composite action gives
+\begin{equation}
+ \mathscr F_\Theta+
+ \frac{1}{\kappa\mathcal N_0}\nabla_\nu
+ \left[(G^{\mu\nu}-\kappa T^{\mu\nu})\partial_\mu\Theta\right]=0.
+ \label{eq:pure_theta_el}
 \end{equation}
-where $G_{\mu\nu}$ is the Einstein tensor and $T_{\mu\nu}$ is the
-stress-energy tensor derived (not postulated) from the matter sector of
-$\mathcal{T}$.
-\end{theorem}
+For a single fixed-$\psi$ section, generic closure is impossible by a rank
+bound.  On a regular fiber-free compact-$\psi$ profile, the vacuum equation
+implies $G_{\mu\nu}=0$.  With matter/gauge fields it implies
+\begin{equation}\label{eq:Einstein}
+ G_{\mu\nu}=\kappa T_{\mu\nu}
+\end{equation}
+conditional on the direct internal equation $\mathscr F_\Theta=0$.
 
-\noindent\textbf{Status}: PROVED [L1] via Hilbert variation.\\
-\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_as\_limit.tex}, \S3--\S4;
-\texttt{consolidation\_project/GR\_closure/GR\_chain\_summary.tex}, Steps 1--5;
-\texttt{canonical/bridges/GR\_chain\_bridge.tex}.
-
-\begin{remark}[GR Embedding]
-Equation \eqref{eq:Einstein} is identical to Einstein's field equations.
-UBT \emph{embeds} GR as the real limit of a richer biquaternionic geometry;
-it does not replace GR. All experimental confirmations of GR validate UBT's
-real sector.
-\end{remark}
+\noindent\textbf{Status}: exact first variation and local vacuum fiber-free
+closure PROVED; matter closure CONDITIONAL; GAP-10S/J/R/G OPEN.\\
+\noindent\textbf{Source}:
+\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
 
 \section{Stress-Energy Tensor}
 
@@ -154,17 +148,18 @@ of UBT Lagrangian. SU(3) fully embedded [L0]; full dynamical content
 \noindent\textbf{Source}: \texttt{canonical/interactions/sm\_gauge.tex};
 \texttt{consolidation\_project/appendix\_E\_SM\_QCD\_embedding.tex}.
 
-\section{Off-Shell Closure (Open Problem)}
+\section{Pure-$\Theta$ Closure Ledger}
 
-\begin{remark}[Open Problem: Off-Shell Θ-Only Closure]
-Step 6 of the GR chain — deriving the Einstein equations purely from $\Theta$
-without any explicit matter source $\mathcal{T}$ — has a structural obstruction
-and remains an open problem (Layer 2). This does \emph{not} invalidate Steps 1--5.
-
-\noindent\textbf{Source}: \texttt{canonical/geometry/gr\_completion\_attempt.tex};
-\texttt{canonical/bridges/GR\_chain\_bridge.tex}, \S6;
-\texttt{AUDITS/copilot\_repo\_verification\_and\_gap\_report.md}.
-\end{remark}
+\begin{itemize}
+ \item GAP-10K: local kinematic/rank closure is proved on regular fiber-free
+ compact-$\psi$ profiles; a fixed-$\psi$ section is a rank no-go.
+ \item GAP-10S: separating the direct internal and metric equations from one
+ total stationarity equation remains open.
+ \item GAP-10J: fiber-freeness of the dynamically selected Jacobi-theta family
+ remains open.
+ \item GAP-10G: global existence, topology, and preservation of the rank
+ condition remain open.
+\end{itemize}
 
 \section{Summary Table}
 
@@ -174,12 +169,12 @@ and remains an open problem (Layer 2). This does \emph{not} invalidate Steps 1--
 \textbf{Equation} & \textbf{Sector} & \textbf{Source File} & \textbf{Status} \\
 \hline
 Master eq.\ \eqref{eq:master} & All & \texttt{theta\_field.tex} \S3 & Axiom \\
-Einstein eq.\ \eqref{eq:Einstein} & Gravity & \texttt{gr\_as\_limit.tex} & PROVED [L1] \\
+Einstein eq.\ \eqref{eq:Einstein} & Gravity & \texttt{pure\_ubt\_fiber\_closure.tex} & local vacuum PROVED; matter CONDITIONAL \\
 $T_{\mu\nu}$ derivation & Gravity & \texttt{stress\_energy.tex} & PROVED [L1] \\
 Maxwell eqs.\ \eqref{eq:Maxwell1}--\eqref{eq:Maxwell2} & EM & \texttt{qed.tex} \S3 & PROVED [L1] \\
 Dirac eq.\ \eqref{eq:Dirac} & Matter & \texttt{qed.tex} \S4 & PRESENT [P] \\
 Yang--Mills eq.\ \eqref{eq:YM} & Gauge & \texttt{sm\_gauge.tex} & PRESENT [P] \\
-Off-shell Θ-closure & Gravity & \texttt{gr\_completion\_attempt.tex} & OPEN [L2] \\
+Pure-$\Theta$ closure ledger & Gravity & \texttt{pure\_ubt\_fiber\_closure.tex} & GAP-10K closed locally; S/J/G open \\
 \hline
 \end{tabular}
 \end{center}

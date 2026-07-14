@@ -58,13 +58,18 @@ where:
 
 **Statement**: UBT is a **generalization of General Relativity**. Its fundamental geometric object is the generalized (biquaternionic) metric tensor:
 
-$$\mathcal{G}_{\mu\nu}(x,\tau) := (D_\mu \Theta(x,\tau))^\dagger D_\nu \Theta(x,\tau)$$
+$$\mathcal{Q}_{\mu\nu}(x,\psi) := (D_\mu \Theta(x,t+i\psi))(D_\nu \Theta(x,t+i\psi))^\ddagger \in \mathbb B$$
 
-This generalized metric takes values in a complex/biquaternionic algebra and encodes the full geometric and phase structure of UBT.
+The unprojected $\mathcal Q_{\mu\nu}$ is the full biquaternionic quadratic tensor. The scalar part or ordinary matrix trace is complex-scalar, not a general biquaternion.
 
-The observable spacetime metric of General Relativity is obtained as the real projection (classical limit) of this generalized metric:
+Under the canonical compact-fiber symmetry completion, the observable spacetime metric is the constant-normalized real zero-mode projection:
 
-$$g_{\mu\nu}(x) := \text{Re}\left[\mathcal{G}_{\mu\nu}(x,\tau)\right]$$
+$$g_{\mu\nu}(x) := \frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}\text{Re}\left[\text{Tr}\left((D_\mu\Theta)^\ddagger\eta_{\mathbb B}D_\nu\Theta\right)\right]d\psi,$$
+
+where $\mathcal N_0>0$ is fixed once by asymptotic Minkowski normalization. A local denominator $|\langle D_0\Theta,D_0\Theta\rangle|$ is forbidden because it forces $g_{00}=-1$ on a timelike branch.
+
+
+**Projection theorem and scope**: Among normalized real-linear quadratic readouts that are invariant under translations of the compact $S^1_\psi$ fiber, the normalized fiber average is unique (Fourier zero-mode theorem; see `canonical/gr_closure/pure_ubt_fiber_closure.tex`). This is a symmetry completion of the older point-section rule. If a preferred physical value of $\psi$ is postulated instead, the point-section branch remains possible but has a proven generic rank obstruction for GR closure. Universal integrable representation of arbitrary GR metric fields remains open as GAP-10R.
 
 where:
 - $D_\mu$ is the gauge-covariant derivative acting on $\Theta$
@@ -73,22 +78,22 @@ where:
 - The metric is normalized to have signature $(-,+,+,+)$ in the classical limit
 
 **Interpretation**:
-- $\mathcal{G}_{\mu\nu}$ is the **UBT generalized metric tensor** (fundamental geometric object in UBT)
-- $g_{\mu\nu}$ is the **unique GR spacetime metric** seen by classical measurements
+- $\mathcal{Q}_{\mu\nu}$ is the **raw UBT biquaternionic quadratic tensor**
+- $g_{\mu\nu}$ is the **single GR spacetime metric channel** seen by classical measurements and is obtained from the complete compact-$\psi$ profile
 - There is **no second GR metric** beyond $g_{\mu\nu}$
 
 **Equivalent Forms** (allowed):
-- Combined form: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]$ (direct definition)
-- With explicit normalization: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]/\mathcal{N}$
-- With inner product notation: $g_{\mu\nu} = \langle D_\mu \Theta | D_\nu \Theta \rangle_{\text{Re}}$
-- Component form: $g_{\mu\nu} = \text{Re}[\partial_\mu \Theta^\dagger \cdot \partial_\nu \Theta + \ldots]$
+- Fiber-pairing form: $g_{\mu\nu}=\mathcal N_0^{-1}\langle D_\mu\Theta,D_\nu\Theta\rangle_{\mathrm{Re},\psi}$
+- Explicit compact-fiber integral as displayed above
+- A fixed-$\psi$ section may be used only as a restricted diagnostic, not as the canonical generic closure metric
 
 **CRITICAL LOCK RULES**:
 1. **NO background metric**: There is no fundamental metric $g^{(0)}_{\mu\nu}$ that $\Theta$ propagates on
 2. **NO alternative GR metrics**: Do not introduce alternative definitions of the GR metric $g_{\mu\nu}$
 3. **NO metric redefinition**: The formulas above are canonical and unique
 4. **Emergent only**: The GR metric $g_{\mu\nu}$ is a derived quantity, not a fundamental field
-5. **$\mathcal{G}_{\mu\nu}$ is not a GR metric**: The generalized metric $\mathcal{G}_{\mu\nu}$ must not be treated as an independent GR spacetime metric
+5. **$\mathcal{Q}_{\mu\nu}$ is not a second GR metric**: it is a raw biquaternionic tensor and must not be treated as an independent spacetime metric
+6. **Constant normalization**: do not reintroduce a local time-gradient denominator
 
 **Note — Generalized Phase Projection**: The formula $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the **$\varphi = 0$ special case** of the general operator $P_\varphi[\mathcal{G}_{\mu\nu}] := \text{Re}(e^{-i\varphi}\mathcal{G}_{\mu\nu})$ defined in `core/geometry/phase_projection.tex`. The choice $\varphi = 0$ is the standard observer gauge convention. GR is recovered for *any* spatiotemporally constant $\varphi$ (see `core/geometry/gr_as_limit.tex`). **Axiom C is unchanged**; this note records the broader framework.
 **Cross-References**:

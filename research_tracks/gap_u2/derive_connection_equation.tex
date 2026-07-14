@@ -1,123 +1,104 @@
 % © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 % Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
-
 \ifdefined\INCLUDEMODE
 \else
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathtools}
-\usepackage{xcolor}
-\usepackage{mdframed}
-
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor,mdframed}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
 \newmdenv[backgroundcolor=green!15,linecolor=green!60!black,linewidth=1.5pt]{resultbox}
 \newmdenv[backgroundcolor=yellow!20,linecolor=orange,linewidth=1.5pt]{gapbox}
-
-\title{GAP-U2a: Derivation of the $A_\psi$ Field Equation}
+\title{Abelian Connection Variation and the Limits of the GAP-U2 Maxwell Analogy}
 \author{Ing.\ David Jaroš}
 \date{2026-07-14}
-
-\begin{document}
-\maketitle
+\begin{document}\maketitle
 \fi
 
-\section{Inputs from existing repository definitions}
-
-We use:
-\begin{itemize}
-\item $S_{\mathrm{total}}=\frac1{16\pi G}\int\sqrt{-g}R+S_\Theta$ from
-\texttt{papers/UBT\_GR\_Submission.tex},
-\item kinetic term $\operatorname{Re}\operatorname{Tr}[(D_\mu\Theta)^\dagger D^\mu\Theta]$,
-\item gauge-field kinetic term $-\frac14 F_{\mu\nu}F^{\mu\nu}$ in canonical gauge Lagrangian
-\texttt{canonical/interactions/sm\_gauge.tex}.
-\end{itemize}
-
-Restrict to one Abelian component $A_\mu$ along the $\psi$-sector with
+\section{Covariant Abelian variation}
+Use the convention
 \[
-D_\mu\Theta=\partial_\mu\Theta+i q A_\mu\Theta,
-\qquad
-F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu.
+ D_\mu\Theta=\nabla_\mu\Theta-iqA_\mu\Theta,
+ \qquad F_{\mu\nu}=2\nabla_{[\mu}A_{\nu]},
 \]
-
-\section{Euler--Lagrange variation with respect to $A_\mu$}
-
-Consider
+and the real Lagrangian
 \[
-\mathcal L = \sqrt{-g}\left[\operatorname{Re}\operatorname{Tr}\big((D_\mu\Theta)^\dagger D^\mu\Theta\big)-\frac14F_{\mu\nu}F^{\mu\nu}\right].
+ \mathcal L=\sqrt{-g}\left[
+ \operatorname{ReTr}\bigl((D_\mu\Theta)^\dagger D^\mu\Theta\bigr)
+ -\frac14F_{\mu\nu}F^{\mu\nu}\right].
 \]
-Varying $A_\mu\mapsto A_\mu+\delta A_\mu$ gives
-\[
-\delta D_\mu\Theta=i q\,\delta A_\mu\Theta,
-\qquad
-\delta F_{\mu\nu}=\nabla_\mu\delta A_\nu-\nabla_\nu\delta A_\mu.
-\]
-Hence
-\[
-\delta S=\int d^4x\sqrt{-g}\left(J^\mu\delta A_\mu-(\nabla_\nu F^{\nu\mu})\delta A_\mu\right)
-\]
-with
-\[
-J^\mu = i q\,\operatorname{Re}\operatorname{Tr}\!\left(\Theta^\dagger D^\mu\Theta-(D^\mu\Theta)^\dagger\Theta\right).
-\]
-Arbitrariness of $\delta A_\mu$ implies
-\[
-\boxed{\nabla_\nu F^{\nu\mu}=J^\mu.}
-\]
-
-\begin{theorem}[Derived connection equation]
-From the stated action terms, the $A_\mu$ Euler--Lagrange equation is Maxwell-type:
-\[
-\nabla_\nu F^{\nu\mu}=J^\mu.
-\]
-This is outcome \textbf{B} in the GAP-U2a problem statement:
-\[
-\Delta_g A_\psi + F(A_\psi,\Theta)=0
-\]
-with source/nonlinear term encoded by $J^\mu$.
-\textbf{Verdict: PROVED.}
-\end{theorem}
-
-\section{Radial $A_\psi$ reduction}
-
-Assume static spherically symmetric sector,
-\[
-A_\mu dx^\mu=A_\psi(r)\,d\psi,
-\qquad g_{ij}=\Psi^4\delta_{ij},
-\]
-and source-free channel $J^\psi=0$.
 Then
 \[
-\nabla_i\nabla^i A_\psi=0
-\quad\Longleftrightarrow\quad
-\partial_r\big(r^2\Psi^2 A_\psi'(r)\big)=0.
+ \delta(D_\mu\Theta)=-iq\,\delta A_\mu\Theta,
+ \qquad
+ \delta(D_\mu\Theta)^\dagger=iq\,\delta A_\mu\Theta^\dagger.
 \]
+The matter variation is therefore
+\begin{align}
+ \delta_A S_{\Theta}
+ &=\int d^4x\sqrt{-g}\,\delta A_\mu\,
+ q\operatorname{ReTr}\!\left[
+ i\left(\Theta^\dagger D^\mu\Theta
+ -(D^\mu\Theta)^\dagger\Theta\right)\right]\\
+ &=\int d^4x\sqrt{-g}\,J^\mu\delta A_\mu,
+\end{align}
+where, with the present sign convention,
+\begin{equation}
+ \boxed{J^\mu
+ =q\operatorname{ReTr}\!\left[
+ i\left(\Theta^\dagger D^\mu\Theta
+ -(D^\mu\Theta)^\dagger\Theta\right)\right]
+ =-2q\operatorname{ImTr}(\Theta^\dagger D^\mu\Theta).}
+ \label{eq:current}
+\end{equation}
+Changing the sign convention in $D_\mu$ reverses the overall sign of $J^\mu$.
+The previously used expression with $i$ outside
+$\operatorname{ReTr}(\cdots)$ is identically zero, because the trace of the
+anti-Hermitian difference is purely imaginary before the real projection.
 
-\begin{proposition}[When harmonic equation follows]
-The equation $\Delta_g A_\psi=0$ follows only after imposing $J^\psi=0$ in addition to the derived Euler--Lagrange equation.
-\textbf{Verdict: CONDITIONAL.}
-\end{proposition}
+Variation of the Maxwell term and integration by parts give
+\[
+ \delta_A S_F=\int d^4x\sqrt{-g}\,
+ (\nabla_\nu F^{\nu\mu})\delta A_\mu
+\]
+up to the boundary term.  Hence the Euler--Lagrange equation is
+\begin{equation}
+ \boxed{\nabla_\nu F^{\nu\mu}+J^\mu=0}
+ \label{eq:maxwell}
+\end{equation}
+for the sign conventions above.  Equivalently one may define
+$j^\mu=-J^\mu$ and write $\nabla_\nu F^{\nu\mu}=j^\mu$.
 
-\section{Insufficient-action branch}
+\section{Why this does not derive the Schwarzschild lapse}
+For an electrostatic component $A_t(r)$ in
+\[
+ ds^2=-N(r)^2dt^2+\Psi(r)^4\bigl(dr^2+r^2d\Omega^2\bigr),
+\]
+the source-free equation is
+\[
+ \partial_r\!\left(\frac{r^2\Psi^2}{N}A_t'\right)=0,
+\]
+not $\partial_r(r^2\Psi^2A_t')=0$.  A component along a compact internal
+coordinate generically carries additional lapse, radion, and inverse-fiber
+metric factors.  Thus the spatial harmonic equation previously used for
+$A_\psi$ follows only from a separately stated three-dimensional effective
+action or special decoupling assumptions; it is not the generic consequence
+of Eq.~\eqref{eq:maxwell}.
 
-If one keeps only $\operatorname{Re}\operatorname{Tr}[(D\Theta)^\dagger D\Theta]$ and omits gauge kinetic
-$F^2$, variation in $A_\mu$ yields an algebraic current constraint ($J^\mu=0$) and no second-order PDE for $A_\mu$.
+Moreover, a nonzero ordinary Maxwell field has nonzero stress-energy and
+therefore belongs to the Einstein--Maxwell sector.  It does not generate a
+vacuum Schwarzschild geometry.  The exact Schwarzschild lapse is instead a
+standard consequence of the static vacuum Einstein equations once the spatial
+Schwarzschild branch and boundary data are given.
 
-\begin{proposition}[No-Laplace consequence without $F^2$ term]
-Without a gauge kinetic term, deriving $\Delta_g A_\psi=0$ is impossible.
-\textbf{Verdict: PROVED.}
-\end{proposition}
-
+\begin{resultbox}
+\textbf{Proved:} the corrected real Abelian current and Maxwell-type equation.
+\end{resultbox}
 \begin{gapbox}
-This file derives the equation itself. Closure of constants and physical matching (e.g., $C=M$) is handled separately.
+\textbf{Not proved:} generation of the Schwarzschild lapse by the canonical
+UBT connection or by the canonical $\Theta$ Euler--Lagrange equation.
 \end{gapbox}
 
-\ifdefined\INCLUDEMODE
-\else
-\end{document}
-\fi
+\ifdefined\INCLUDEMODE\else\end{document}\fi

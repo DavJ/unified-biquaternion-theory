@@ -488,11 +488,13 @@ Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
 
 ### Remaining Blockers
 
-None that prevent submission.
+The current GR manuscript requires revision before submission because the local theorem has explicit residual GAP-10S/J/R/G and GAP-U2Theta scope conditions.
 
 | Gap | Level | Impact |
 |-----|-------|--------|
-| GAP-10 — Off-shell Θ-only closure | [L2] Open | Does not block; stated in paper |
+| GAP-10K — local rank/kinematic closure | PROVED on regular fiber-free compact-ψ profiles; fixed-ψ section NO-GO | Main new result |
+| GAP-10S/J/R/G — single-action, selected Jacobi, global closure | OPEN | Block submission-level unconditional GR claim |
+| GAP-U2Theta — lapse from canonical Theta dynamics | OPEN | Static-vacuum GR lapse theorem does not close the Theta-dynamic bridge |
 | GAP-C — FRW Θ-ansatz [L1 conditional]; $g_{0i}$ comoving [L1 conditional] | [L1 cond.]+[L1 cond.] | Does not block T1_GR submission; GAP-C status updated v50 |
 
 ### Pre-Submission Fix
@@ -507,7 +509,7 @@ All three editorial items are now closed.  No editorial blockers remain.
 
 ### Next Action
 
-Submit `papers/UBT_GR_Submission.tex` to arXiv (gr-qc or math-ph) and simultaneously
+Complete GAP-10S/J/R/G checks and an external proof audit before submitting `papers/UBT_GR_Submission.tex`; then
 to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
 
 ---

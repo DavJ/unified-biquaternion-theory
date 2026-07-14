@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — Pure-Theta compact-fiber GR closure
+
+- Exact direct variation of the canonical composite action through the derived metric.
+- Rigorous fixed-psi rank no-go and compact-psi fiber-free local closure theorem.
+- Explicit holomorphic periodic fiber-free two-jet construction and finite-mode open/dense genericity theorem.
+- Corrected raw biquaternion tensor versus scalar metric projection.
+- Static-vacuum Schwarzschild lapse verifier and corrected Abelian current derivation.
+
+### Changed
+
+- Canonical metric now uses the complete existing compact-psi profile and a constant asymptotic normalization. The former local time-gradient normalization is withdrawn because it forces `g_00=-1`.
+- GAP-10 is split into GAP-10K (closed locally on the fiber-free sector), GAP-10S, GAP-10J, GAP-10R and GAP-10G (open).
+- GAP-U2 is split into the static-GR lapse theorem and the still-open canonical-Theta dynamical bridge.
+- Maxwell-like lapse language is withdrawn as a first-principles Schwarzschild derivation.
+- T1_GR submission status is paused pending residual-gap audit.
+
 ## [v10.1.4] - 2026-07-14 - Honest-Status Reframe of T1_GR
 
 ### Changed
