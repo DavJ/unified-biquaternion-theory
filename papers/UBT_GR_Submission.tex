@@ -120,8 +120,11 @@ reproduces the spatial Schwarzschild metric numerically to relative error
 $<10^{-15}$.  The Schwarzschild lapse follows uniquely from the static vacuum
 GR equations once the spatial metric and standard boundary data are given;
 its generation by the canonical $\Theta$ dynamics remains open.  The
-Regge--Wheeler and Zerilli reductions remain conditional on the explicit
-perturbation bridge GAP-B.
+Regge--Wheeler and Zerilli reductions no longer rest on an assumed bridge:
+linearising the fiber-closure equation around a fiber-free vacuum background
+yields $\delta G_{\mu\nu}=0$ for the induced perturbation, so the reductions
+are conditional only on the fiber-free Schwarzschild representer
+(GAP-B subsumed by GAP-10R).
 \end{abstract}
 
 \tableofcontents
@@ -214,10 +217,11 @@ The novel contributions of this paper are:
 
   \item \textbf{Regge--Wheeler and Zerilli reductions (conditional).}
         Linearised odd- and even-parity perturbations reduce to the
-        Regge--Wheeler and Zerilli equations, conditional on the bridge
-        identification $\delta(\nabla^\dagger\nabla\Theta) \to \delta G_{\mu\nu}$,
-        which is stated as an explicit assumption (GAP-B) rather than a derived
-        step.
+        Regge--Wheeler and Zerilli equations, conditional only on the existence of a fiber-free stationary
+        representation of the background: the former bridge identification is
+        now \emph{derived} by linearising the fiber-closure equation
+        (\texttt{canonical/gr\_closure/linearised\_fiber\_closure.tex});
+        GAP-B is thereby subsumed by GAP-10R.
 \end{enumerate}
 
 Table~\ref{tab:novelty} summarises the comparison with related biquaternion
@@ -727,8 +731,9 @@ The even-parity (polar) perturbation equation of Schwarzschild
 --- the Zerilli equation~\cite{zerilli1970} ---
 is derived from linearised UBT in
 \texttt{canonical/gr\_closure/zerilli\_derivation.tex},
-conditional on the perturbation bridge assumption GAP-B.
-GAP-Z is therefore at level [L1 cond.\ given GAP-B]; GAP-B remains open.
+conditional on GAP-B, now derived from the linearised fiber closure
+(conditional on the fiber-free Schwarzschild representer, GAP-10R).
+GAP-Z is therefore at level [L1 cond.\ given GAP-B$\to$GAP-10R].
 \end{tcolorbox}
 
 % ==============================================================================
@@ -742,8 +747,9 @@ The kinematic/rank part of the former GAP-10 is now resolved: a single
 $\psi$ section is proved insufficient, while the complete existing compact
 fiber yields local closure on the fiber-free sector.  The residual gaps concern
 single-action separation, the dynamically selected Jacobi sector, local metric representability/integrability, and global existence.  GAP-U2$\Theta$ now refers only to dynamical generation of the temporal
-Schwarzschild sector by the canonical $\Theta$ equation; GAP-B conditions the
-perturbation reductions.
+Schwarzschild sector by the canonical $\Theta$ equation; GAP-B is conditionally resolved: the bridge is derived from the linearised
+fiber closure, conditional on the fiber-free Schwarzschild representer
+(see the paragraph below).
 
 \begin{tcolorbox}[colback=yellow!5!white,colframe=orange!70!black,
   title={GAP-10 split: local fiber closure proved; residual gaps open},breakable]
@@ -811,6 +817,19 @@ $g_{tt}=-\Phi^2$.  An ordinary nonzero Maxwell field does not generate vacuum
 Schwarzschild: its stress tensor backreacts and belongs to the
 Einstein--Maxwell sector.  The former Maxwell-like $A_\psi$ argument is therefore
 retained only as a possible effective-model analogy, not as closure of GAP-U2$\Theta$.
+
+\paragraph{GAP-B: Perturbation bridge --- CLOSED CONDITIONALLY.}
+Linearising the exact pure-$\Theta$ vacuum equation
+$\nabla_\nu(G^{\mu\nu}E_\mu)=0$ around a regular, fiber-free, stationary
+vacuum background gives, using $\bar G_{\mu\nu}=0$, the linearised Bianchi
+identity, and the Gauss step, the normal equation
+$\delta G^{\mu\nu}\bar B_{\mu\nu}=0$; injectivity of the closure map at a
+fiber-free point yields $\delta G_{\mu\nu}=0$ for the induced perturbation
+(\texttt{canonical/gr\_closure/linearised\_fiber\_closure.tex}).  The
+Regge--Wheeler and Zerilli equations follow by the standard harmonic
+decomposition.  The single remaining condition is the fiber-free
+Schwarzschild representer (the GAP-10R/GAP-U2$\Theta$ instance); GAP-B
+carries no independent logical weight.
 \end{tcolorbox}
 
 \subsection{Lower-Priority Gaps}
@@ -1007,7 +1026,7 @@ perturbation sectors (see \S\ref{sec:gaps}).
 The following results have been established in companion work
 and do not affect the GR derivation presented here:
 \begin{itemize}
-\item Even-parity (Zerilli) graviton equation derived [L1 cond.\ given GAP-B]
+\item Even-parity (Zerilli) graviton equation derived [L1 cond.\ given GAP-B$\to$GAP-10R]
   (\texttt{canonical/gr\_closure/zerilli\_derivation.tex}).
 \item $N_{\rm eff}=12$ from SU(2) Scherk--Schwarz twist [L1]
   (\texttt{research\_tracks/quantum\_ubt/su2\_twist\_neff12.tex}).
@@ -1042,7 +1061,7 @@ and global propagation of the rank condition remain open.  The spatial
 Schwarzschild metric is reproduced to floating-point precision; the static-GR
 lapse is fixed uniquely by the spatial metric and boundary data, while its
 selection by the canonical $\Theta$ dynamics remains open.  The perturbation
-chain remains conditional on GAP-B.
+chain remains conditional on GAP-B, now subsumed by GAP-10R.
 
 The proof makes a specific, falsifiable, and self-contained claim about the
 real-sector projection of UBT, suitable for independent verification by
@@ -1067,8 +1086,8 @@ researchers familiar with biquaternion algebra and standard GR.
 5 & Einstein equations from direct $\Theta$ variation & Vacuum: proved on fiber-free sector; matter: conditional on $\mathscr F_\Theta=0$ & \texttt{pure\_ubt\_fiber\_closure.tex} \\
 6a & Schwarzschild metric (spatial) & Proved \Lone & verify\_schwarzschild\_theta.py \\
 6b & ASD condition / twistor & Proved \Lone & asd\_condition\_ubt.tex \\
-6c & Regge-Wheeler equation & \Lone\ cond.\ (GAP-B) & linearised GR chain \\
-7a & Zerilli equation (even-parity) & \Lone\ cond.\ (GAP-B) & \texttt{zerilli\_derivation.tex} \\
+6c & Regge-Wheeler equation & \Lone\ cond.\ (GAP-B$\to$GAP-10R) & linearised GR chain \\
+7a & Zerilli equation (even-parity) & \Lone\ cond.\ (GAP-B$\to$GAP-10R) & \texttt{zerilli\_derivation.tex} \\
 7b & Pure-$\Theta$ closure ledger & GAP-10K closed locally; GAP-10S/J/R/G open & \S\ref{sec:gaps} \\
 \bottomrule
 \end{tabular}

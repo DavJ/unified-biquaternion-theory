@@ -1,0 +1,144 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% GAP-B resolution: the perturbation bridge derived from linearized fiber closure.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[most]{tcolorbox}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\E}{\mathscr E}
+\newcommand{\F}{\mathscr F}
+\newcommand{\Nzero}{\mathcal N_0}
+\newcommand{\avg}[1]{\langle #1\rangle_\psi}
+
+\title{Linearised Fiber Closure and the Derivation of the Perturbation Bridge\\
+\large GAP-B: from assumption to conditional theorem}
+\author{Ing.\ David Jaroš}
+\date{15 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The Regge--Wheeler and Zerilli reductions previously relied on the assumed
+bridge identification $\delta(\nabla^\dagger\nabla\Theta)\to\delta G_{\mu\nu}$
+(GAP-B). We show that no such identification need be assumed: linearising the
+exact pure-$\Theta$ variational equation of the fiber-closure framework around
+a regular, fiber-free, stationary vacuum background yields the linearised
+Einstein equations $\delta G_{\mu\nu}=0$ for the induced metric perturbation
+$\delta g_{\mu\nu}[\delta\Theta]$. The Regge--Wheeler and Zerilli equations then
+follow by the standard harmonic decomposition of $\delta G_{\mu\nu}=0$ on the
+Schwarzschild background. The result is conditional on the existence of a
+fiber-free stationary pure-$\Theta$ representation of the background geometry
+(the GAP-10R/GAP-U2$\Theta$ instance); it removes the bridge as an independent
+assumption.
+\end{abstract}
+
+\section{Setting}
+We work in the framework of \texttt{pure\_ubt\_fiber\_closure.tex}: metric
+$g_{\mu\nu}[\Theta]=\avg{\partial_\mu\Theta,\partial_\nu\Theta}/\Nzero$ with
+constant $\Nzero$, fiber pairing $\avg{\cdot,\cdot}$ real, symmetric,
+non-degenerate; $E_\mu:=\partial_\mu\Theta$;
+$B_{\mu\nu}:=P_\perp(\nabla_\mu E_\nu)$ purely normal (Gauss step); exact
+pure-$\Theta$ vacuum equation
+\begin{equation}
+  \nabla_\nu\bigl(G^{\mu\nu}[g[\Theta]]\,E_\mu\bigr)=0.
+  \label{eq:exactvac}
+\end{equation}
+
+\begin{lemma}[Background]
+Let $\bar\Theta$ be regular and fiber-free on a neighbourhood $U$ and
+stationary for $S_{\rm EH}[g[\Theta]]$. Then $\bar G_{\mu\nu}=0$ on $U$, and
+consequently all covariant derivatives of $\bar G_{\mu\nu}$ vanish on $U$.
+\end{lemma}
+\begin{proof}
+Fiber-freeness is an open condition (non-vanishing of a closure minor), so the
+local vacuum closure theorem applies at every point of $U$, giving
+$\bar G_{\mu\nu}=0$ pointwise on the open set $U$; derivatives of the zero
+field vanish.
+\end{proof}
+
+\section{Main theorem}
+
+\begin{theorem}[Linearised fiber closure; conditional resolution of GAP-B]
+Let $\bar\Theta$ be as in the Lemma, and let $\delta\Theta$ be an admissible
+perturbation satisfying the linearisation of Eq.~\eqref{eq:exactvac} around
+$\bar\Theta$. Let
+\begin{equation}
+ \delta g_{\mu\nu}
+ =\frac{2}{\Nzero}\avg{\bar E_{(\mu},\partial_{\nu)}\delta\Theta}
+\end{equation}
+be the induced metric perturbation. Then
+\begin{equation}
+  \boxed{\;\delta G_{\mu\nu}[\delta g]=0\;}
+\end{equation}
+on $U$: the induced perturbation satisfies the linearised vacuum Einstein
+equations.
+\end{theorem}
+
+\begin{proof}
+Linearise Eq.~\eqref{eq:exactvac}. Writing $\delta$ for the first variation
+along $\delta\Theta$,
+\begin{equation}
+ \delta\Bigl[\nabla_\nu\bigl(G^{\mu\nu}E_\mu\bigr)\Bigr]
+ =(\delta\Gamma)\!\cdot\!\bigl(G^{\mu\nu}E_\mu\bigr)
+ +\nabla_\nu\bigl(\delta G^{\mu\nu}\,\bar E_\mu\bigr)
+ +\nabla_\nu\bigl(\bar G^{\mu\nu}\,\delta E_\mu\bigr).
+\end{equation}
+On the background, $\bar G^{\mu\nu}=0$ and $\nabla\bar G=0$ (Lemma), so the
+first and third terms vanish identically: each carries an undifferentiated or
+differentiated factor of $\bar G$. The middle term expands as
+\begin{equation}
+ \nabla_\nu\bigl(\delta G^{\mu\nu}\bar E_\mu\bigr)
+ =(\nabla_\nu\delta G^{\mu\nu})\,\bar E_\mu
+ +\delta G^{\mu\nu}\,\nabla_\nu\bar E_\mu
+ =(\nabla_\nu\delta G^{\mu\nu})\,\bar E_\mu
+ +\delta G^{\mu\nu}\,\bar B_{\mu\nu},
+\end{equation}
+using the Gauss step $\nabla_\nu\bar E_\mu=\bar B_{\mu\nu}$ (purely normal).
+The contracted Bianchi identity $\nabla_\nu G^{\mu\nu}[g]\equiv0$ holds for
+\emph{every} metric; its linearisation around $\bar g$ reads
+$\bar\nabla_\nu\,\delta G^{\mu\nu}+(\delta\Gamma)\!\cdot\!\bar G=0$, and with
+$\bar G=0$ this gives $\bar\nabla_\nu\,\delta G^{\mu\nu}=0$. The tangential
+part of the linearised equation therefore vanishes, and the normal part is
+\begin{equation}
+ \delta G^{\mu\nu}\,\bar B_{\mu\nu}=0
+ \qquad\text{in }\mathscr N_x .
+\end{equation}
+Fiber-freeness of the background makes the closure map
+$\mathcal K_x(X)=X^{\mu\nu}\bar B_{\mu\nu}$ injective, hence
+$\delta G^{\mu\nu}=0$.
+\end{proof}
+
+\begin{theorem}[Regge--Wheeler and Zerilli without the bridge assumption]
+Assume in addition that $\bar\Theta$ induces the Schwarzschild exterior metric
+on $U$. Then every admissible linearised UBT perturbation induces
+$\delta g_{\mu\nu}$ obeying $\delta G_{\mu\nu}=0$ on Schwarzschild, whose
+odd-parity sector satisfies the Regge--Wheeler equation and whose even-parity
+sector satisfies the Zerilli equation, by the standard harmonic decomposition.
+No identification $\delta(\nabla^\dagger\nabla\Theta)\to\delta G_{\mu\nu}$ is
+assumed at any step.
+\end{theorem}
+
+\section{Exact scope}
+\begin{tcolorbox}[colback=yellow!6,colframe=orange!70!black,title=Status]
+\textbf{GAP-B: CLOSED CONDITIONALLY.} The perturbation bridge is derived, not
+assumed, from the linearised fiber closure. The single remaining condition is
+the existence of a regular, fiber-free, stationary pure-$\Theta$ representation
+of the Schwarzschild exterior --- precisely the open instance of
+GAP-10R/GAP-U2$\Theta$. GAP-B therefore no longer carries independent logical
+weight: it is subsumed by the representer question.
+\end{tcolorbox}
+
+\begin{remark}[What is not claimed]
+(i) It is not claimed that every solution $\delta g$ of the linearised Einstein
+equations is induced by some $\delta\Theta$; pointwise surjectivity of
+$\delta\Theta\mapsto\delta g$ holds at regular points, but field-level
+surjectivity is the linear analogue of GAP-10R and is not needed for the
+reductions above. (ii) Nothing is claimed for non-fiber-free backgrounds.
+(iii) The matter/gauge case additionally requires $\F_\Theta=0$ as in the
+conditional closure theorem.
+\end{remark}
+
+\end{document}

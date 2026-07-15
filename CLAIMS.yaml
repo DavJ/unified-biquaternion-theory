@@ -11,7 +11,7 @@ claims:
       - GAP-10R: OPEN — local integrable/on-shell representation of arbitrary GR metric fields
       - GAP-10G: OPEN — global existence and preservation of fiber-free closure
       - GAP-U2Theta: OPEN — derive the Schwarzschild lapse from canonical Theta dynamics; static-vacuum GR lapse is fixed once the spatial branch and boundary data are assumed
-      - GAP-B: perturbation bridge identification delta(nabla†nablaTheta)->deltaG_munu
+      - GAP-B: CLOSED CONDITIONALLY — bridge derived from linearised fiber closure (canonical/gr_closure/linearised_fiber_closure.tex); remaining condition is the fiber-free Schwarzschild representer (GAP-10R/GAP-U2Theta instance)
     forbidden_wording:
       - GR is derived unconditionally from UBT
       - Einstein equations emerge for every Theta configuration
