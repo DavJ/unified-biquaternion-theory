@@ -1,0 +1,242 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Canonical covariant-tetrad reframe, July 2026.
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\title{Covariant Biquaternionic Tetrads in UBT:\\Central Anticommutator Metric and the Local Rank Theorem}
+\author{Ing. David Jaroš}
+\date{15 July 2026}
+\begin{document}\maketitle
+\begin{abstract}
+We formulate the local classical geometry of Unified Biquaternion Theory without
+an embedding map, a compact-fiber average, or an externally chosen projection.
+The covariant first jet $E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta$ is restricted in
+the classical sector to a real Lorentz slice of the biquaternions.  On this
+slice the symmetrised product with quaternion conjugation is automatically
+central and equals a Lorentzian scalar times the algebra unit.  This defines
+the metric intrinsically.  We prove that the tetrad-to-metric differential has
+rank ten at every nondegenerate tetrad, with a six-dimensional kernel equal to
+local Lorentz frame rotations.  The old comparison ``eight real components of
+$\Theta$ versus ten metric components'' therefore is not a valid local
+kinematic obstruction: the relevant object is the first covariant jet.  The
+remaining problem is dynamical and integrability-based: derive the connection,
+preserve the Lorentz slice, and solve $D_\mu\Theta=E_\mu$ on shell.
+\end{abstract}
+
+\section{Algebraic setting}
+Let
+\[
+ \mathbb B=\mathbb C\otimes\mathbb H
+\]
+with commuting complex unit $i$ and quaternion units
+$\mathbf e_j\mathbf e_k=-\delta_{jk}\mathbf1+\epsilon_{jk\ell}\mathbf e_\ell$.
+Denote quaternion conjugation, which reverses the three quaternion units but
+does not conjugate the commuting complex coefficient, by $\sharp$:
+\[
+ (z^0\mathbf1+z^k\mathbf e_k)^\sharp
+ =z^0\mathbf1-z^k\mathbf e_k.
+\]
+
+\begin{definition}[Lorentz slice]
+The classical Lorentz module is the real four-dimensional subspace
+\[
+ W_L:=\{\,i x^0\mathbf1+x^k\mathbf e_k\mid x^a\in\mathbb R\,\}
+ \subset\mathbb B.
+\]
+For $X=i x^0\mathbf1+x^k\mathbf e_k$ and
+$Y=i y^0\mathbf1+y^k\mathbf e_k$, define
+\[
+ \eta(X,Y):=-x^0y^0+\sum_{k=1}^3x^ky^k.
+\]
+\end{definition}
+
+\begin{theorem}[Central Jordan identity]
+For all $X,Y\in W_L$,
+\begin{equation}
+ \boxed{\frac12\left(X^\sharp Y+Y^\sharp X\right)
+       =\eta(X,Y)\mathbf1.}
+ \label{eq:central-jordan}
+\end{equation}
+Thus the symmetrised product is already a real central biquaternion; no trace,
+real-part map, or fiber projection is required.
+\end{theorem}
+
+\begin{proof}
+Write $X=(ix^0,\mathbf x)$ and $Y=(iy^0,\mathbf y)$ in scalar--vector
+quaternion notation, for which
+$(a,\mathbf u)(b,\mathbf v)=(ab-\mathbf u\cdot\mathbf v,
+ a\mathbf v+b\mathbf u+\mathbf u\times\mathbf v)$.
+Then $X^\sharp=(ix^0,-\mathbf x)$.  The scalar part of $X^\sharp Y$ is
+$-x^0y^0+\mathbf x\cdot\mathbf y$.  Its vector part is
+$i x^0\mathbf y-i y^0\mathbf x-\mathbf x\times\mathbf y$.
+The vector part of $Y^\sharp X$ is its negative, while the scalar part is the
+same.  Their half-sum is therefore exactly \eqref{eq:central-jordan}.
+\end{proof}
+
+\section{Covariant first jet and metric}
+The fundamental UBT field remains $\Theta(q,\tau)\in\mathbb B$.  On physical
+spacetime it is a smooth field.  Let $D_\mu$ be the covariant derivative in the
+representation carried by $\Theta$ and let $\mathcal N_0>0$ be a fixed global
+unit-setting constant.
+
+\begin{definition}[UBT tetrad sector]
+Define
+\begin{equation}
+ E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta.
+ \label{eq:E-def}
+\end{equation}
+The classical tetrad sector consists of configurations for which
+$E_\mu\in W_L$ and the four $E_\mu$ are linearly independent over $\mathbb R$.
+The metric is the unique real coefficient in the central identity
+\begin{equation}
+ \boxed{\frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+       =g_{\mu\nu}\mathbf1.}
+ \label{eq:metric-central}
+\end{equation}
+\end{definition}
+
+Writing $E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k$ gives immediately
+\begin{equation}
+ g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},
+ \qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1).
+ \label{eq:tetrad-metric}
+\end{equation}
+No local normalization is permitted; such a denominator would alter the
+field equations and can freeze a metric component.  $\mathcal N_0$ is constant
+and may be absorbed into units.
+
+\begin{definition}[Algebraic bivector companion]
+The antisymmetric companion of the metric is
+\begin{equation}
+ \Sigma_{\mu\nu}:=\frac12\left(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu\right),
+ \qquad \Sigma_{\nu\mu}=-\Sigma_{\mu\nu}.
+ \label{eq:bivector}
+\end{equation}
+It contains oriented-plane/spin information.  It must not be confused with
+the curvature $[D_\mu,D_\nu]$.
+\end{definition}
+
+\section{Local rank theorem}
+Let $e=(e_\mu{}^a)$ be a nondegenerate tetrad and define
+$\Phi(e)=e\eta e^{\mathsf T}$.
+
+\begin{theorem}[Surjectivity of the tetrad-to-metric differential]
+At every invertible real tetrad, the differential
+\[
+ d\Phi_e:\mathbb R^{4\times4}\longrightarrow\operatorname{Sym}_4(\mathbb R)
+\]
+has rank ten.  Its kernel has dimension six and consists precisely of
+infinitesimal local Lorentz rotations of the tetrad.
+\end{theorem}
+
+\begin{proof}
+The first variation is
+\begin{equation}
+ \delta g_{\mu\nu}=\eta_{ab}
+ \left(\delta e_\mu{}^a e_\nu{}^b+e_\mu{}^a\delta e_\nu{}^b\right).
+ \label{eq:metric-variation}
+\end{equation}
+Given an arbitrary symmetric tensor $h_{\mu\nu}$, choose
+\begin{equation}
+ \delta e_\mu{}^a=\frac12 h_{\mu\rho}e^{\rho a},
+ \label{eq:surjective-choice}
+\end{equation}
+where $e^{\rho a}$ is the inverse tetrad with its Lorentz index raised.  Direct
+substitution into \eqref{eq:metric-variation} gives
+$\delta g_{\mu\nu}=h_{\mu\nu}$.  Hence $d\Phi_e$ is surjective and has rank ten.
+The domain has dimension sixteen, so the kernel has dimension six.  Variations
+$\delta e=e\lambda$ with $\lambda^{\mathsf T}\eta+\eta\lambda=0$ lie in the
+kernel and form the six-dimensional Lorentz Lie algebra; therefore they exhaust
+it.
+\end{proof}
+
+\begin{corollary}[Resolution of the naive component-count obstruction]
+The local algebraic map $E_\mu\mapsto g_{\mu\nu}$ has full metric rank.  The
+comparison $\dim_\mathbb R\mathbb B=8<10$ is irrelevant to this map because the
+metric is determined by four covariant first derivatives, not by the value of
+$\Theta$ alone.  This closes only the \emph{kinematic tetrad rank} question.
+\end{corollary}
+
+\section{Connection, Christoffel symbols, and flat limit}
+A connection is the rule needed to compare internal frames at neighboring
+points.  In representation-independent notation,
+\begin{equation}
+ D_\mu\Theta=\partial_\mu\Theta+\rho_*(\Omega_\mu)\Theta,
+ \label{eq:D-general}
+\end{equation}
+where $\Omega_\mu$ is a biquaternionic/Lorentz-frame connection and $\rho_*$
+specifies how it acts on $\Theta$.  This notation deliberately does not choose
+left, right, or adjoint action before the representation is fixed.
+
+The Christoffel symbols $\Gamma^\rho{}_{\mu\nu}$ and $\Omega_\mu$ are related
+but are not the same object.  $\Gamma$ transports coordinate indices; $\Omega$
+transports the local biquaternionic/Lorentz frame.  Their compatibility is the
+tetrad postulate
+\begin{equation}
+ \boxed{\partial_\mu E_\nu-\Gamma^\rho{}_{\mu\nu}E_\rho
+       +\rho_{\mathrm{vec}*}(\Omega_\mu)E_\nu=0.}
+ \label{eq:tetrad-postulate}
+\end{equation}
+For a chosen torsion condition and a nondegenerate tetrad, this equation makes
+$\Gamma$ and $\Omega$ two descriptions of the same local geometry.
+
+The connection curvature is
+\begin{equation}
+ \mathcal R_{\mu\nu}(\Omega)
+ :=[D_\mu,D_\nu]
+ =\partial_\mu\Omega_\nu-\partial_\nu\Omega_\mu
+  +[\Omega_\mu,\Omega_\nu]
+ \label{eq:connection-curvature}
+\end{equation}
+with the last expression understood in the selected representation.
+In a flat simply connected region, $\mathcal R_{\mu\nu}=0$ permits a local
+frame in which $\Omega_\mu=0$.  In inertial Cartesian coordinates one also has
+$\Gamma^\rho{}_{\mu\nu}=0$, and $D_\mu=\partial_\mu$: this is the special
+relativistic sector.  In curvilinear coordinates $\Gamma$ and $\Omega$ may be
+nonzero even when the curvature vanishes.
+
+\section{The remaining nontrivial bridge}
+The tetrad is not postulated independently; UBT requires
+$E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$.  Therefore full closure needs more
+than the rank theorem.  One must prove:
+\begin{enumerate}
+ \item existence of a connection and field solving $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$;
+ \item preservation of the Lorentz slice $E_\mu\in W_L$ and centrality of
+       \eqref{eq:metric-central};
+ \item derivation or unique elimination of $\Omega_\mu$ from the UBT action,
+       so it is not an arbitrary extra field;
+ \item compatibility/integrability.  In a torsion-free coordinate sector,
+       antisymmetrisation gives schematically
+       \[
+       D_\mu E_\nu-D_\nu E_\mu=[D_\mu,D_\nu]\Theta
+       =\mathcal R_{\mu\nu}(\Omega)\Theta;
+       \]
+ \item derivation of Einstein dynamics (or a definite UBT modification) from
+       the same action.
+\end{enumerate}
+These are dynamical questions, not a shortage of local metric components.
+
+\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!70!black,
+ title=Proof status]
+\textbf{Proved:} central Lorentzian anticommutator identity; local tetrad
+representation of every Lorentz metric; rank ten of the tetrad-to-metric map;
+flat inertial limit $\Omega=\Gamma=0$ when curvature is zero.
+
+\textbf{Open:} derivation of the admissible Lorentz slice and the connection
+from the single fundamental field/action; global integrability; on-shell
+representation of all required GR solutions; Einstein dynamics from the
+canonical UBT action.
+
+\textbf{Noncanonical alternative:} compact-$\psi$ fiber averaging remains a
+mathematically valid candidate completion but is not used in this theorem and
+is not part of the minimal covariant-tetrad core.
+\end{tcolorbox}
+
+\end{document}

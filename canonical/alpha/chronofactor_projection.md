@@ -1,3 +1,5 @@
+> **Geometry status (2026-07-15):** References to `phase_projection.tex` are historical/exploratory and do not define the canonical local metric.
+
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # chronofactor_projection.md — Mathematical Definition of the Chronofactor and Projection Map

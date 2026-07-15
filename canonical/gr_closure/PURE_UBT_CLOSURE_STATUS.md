@@ -1,55 +1,59 @@
-# Pure-UBT GR closure status — 2026-07-14
+# UBT GR Closure Status — Covariant-Tetrad Route
 
-This track uses only the existing UBT field `Theta(q,tau)`, the compact imaginary-time coordinate `psi = Im(tau)`, the induced metric, and the UBT action. It does **not** introduce an independent metric or an external embedding equation.
+**Date:** 2026-07-16  
+**Canonical route:** local covariant tetrad, unique connection reconstruction,
+and two-sided integrability; not compact-fiber averaging.
 
-## Main result
+## Canonical chain
 
-The classical metric is taken in the fiber-completed form
+\[
+\Theta(q,\tau)
+\to E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta
+\to \tfrac12\{E_\mu,E_\nu\}_\sharp=g_{\mu\nu}\mathbf1
+\to \omega(e,T)
+\to [D_\mu,D_\nu].
+\]
 
-```tex
-g_{\mu\nu}(x)=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
-\int_0^{2\pi R_\psi}
-H(\partial_\mu\Theta(x,\psi),\partial_\nu\Theta(x,\psi))\,d\psi,
-```
+## Closed results
 
-with constant `N_0`. The exact pure-Theta variation produces
+- **GAP-10K — CLOSED locally.** The nondegenerate tetrad-to-metric map has
+  rank ten and a six-dimensional local-Lorentz kernel.
+- **GAP-10Ω-KIN — CLOSED [L1].** For specified tetrad and torsion,
+  \(\omega=\mathring\omega(e)+K(T)\) is the unique metric-compatible frame
+  connection, up to local Lorentz gauge.
+- **GAP-10Ω-GR — CLOSED [L1].** The torsion-free classical branch has
+  \(K=0\) and the unique Levi-Civita spin connection.
+- **GAP-10L-CONN — CLOSED [L1].** Metric-compatible Lorentz transport
+  preserves \(\eta\) and the real Lorentz slice.
+- **GAP-10I-SR — CLOSED [L1].** Every constant Lorentz tetrad has the affine
+  representer
+  \(\Theta=\Theta_0+\sqrt{\mathcal N_0}E_\mu x^\mu\).
+- **GAP-10I-1S — CLOSED AS NO-GO [L1].** A naive one-sided regular connection
+  with invertible \(\Theta\) forces zero curvature under torsion-free
+  compatibility.
+- **Two-sided curvature identity — PROVED [L1].** For
+  \(D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu\),
+  \[
+  [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
+  \]
 
-```tex
-\mathscr F_\Theta
-+\frac{1}{\kappa\mathcal N_0}
-\nabla_\nu\left[(G^{\mu\nu}-\kappa T^{\mu\nu})\partial_\mu\Theta\right]=0.
-```
+## Narrowed or open results
 
-On the fixed-metric internal Theta shell `F_Theta = 0`, this reduces to the normal closure equation
+- **GAP-10I-2S — NARROWED:** two-sided action avoids the flatness obstruction,
+  but the canonical action must fix the paired left/right connections and
+  involution.
+- **GAP-10T-DYN — OPEN:** derive vacuum or spin-sourced torsion.
+- **GAP-10L-DYN — OPEN:** preservation by the complete \(\Theta\) dynamics and
+  sources.
+- **GAP-10I-CURVED — OPEN:** local/global existence and on-shell generation of
+  curved tetrads from the implicit nonlinear system.
+- **GAP-10D — OPEN:** Einstein dynamics from the canonical UBT action/master
+  equation.
+- **GAP-10ψ, GAP-U2Θ, GAP-B-MASTER — OPEN.**
 
-```tex
-(G^{\mu\nu}-\kappa T^{\mu\nu})B_{\mu\nu}=0.
-```
+## Fiber branch
 
-If the ten normal vectors `B_{mu nu}` are linearly independent in the space of `psi` profiles, the complete Einstein equation follows.
-
-## Rigorous status split
-
-| Item | Status |
-|---|---|
-| Exact first variation | **PROVED** |
-| Local normalization `N(x)=|<d0Theta,d0Theta>|` | **DISPROVED** for variable lapse |
-| Single-`psi` section closure with `Theta in B ~= R^8` | **NO-GO**: closure rank <= 4 |
-| Full `psi`-fiber removes the finite-dimensional rank obstruction | **PROVED kinematically** |
-| Fiber-free configurations exist | **PROVED** |
-| Fiber-free condition is open dense in sufficiently rich finite-mode holomorphic two-jet truncations | **PROVED** |
-| Vacuum Einstein equation on fiber-free stationary sector | **PROVED** |
-| Einstein equation with matter/gauge | **PROVED CONDITIONAL** on the canonical direct internal Theta equation |
-| One-action separation of internal and metric equations | **OPEN** |
-| Selected Jacobi-theta solution family is fiber-free | **OPEN** |
-| Arbitrary local GR metric has an integrable on-shell Theta representation (GAP-10R) | **OPEN** |
-| Global/topological closure | **OPEN** |
-
-## Canonical corrections
-
-1. `Sc(A B^dagger)` and a matrix trace are complex scalars, not full biquaternions. The full biquaternionic object is the unprojected product `Q_{mu nu}=E_mu E_nu^ddagger`.
-2. A genuinely biquaternion-valued core field has four complex = eight real components. A generic `4x4` complex matrix is not a biquaternion and must be treated as a separate extension.
-3. The `psi`-average is not a new field or new coordinate map. It uses the already postulated dependence `Theta(q,t+i psi)`.
-4. Holomorphy or the Jacobi heat equation cannot increase the rank of a single-section metric map. The extra closure capacity comes from retaining the complete `psi` profile before classical projection.
-
-See `canonical/gr_closure/pure_ubt_fiber_closure.tex` for proofs.
+`pure_ubt_fiber_closure.tex`, `linearised_fiber_closure.tex`, and the associated
+rank checker are retained for historical and comparative research. Their
+mathematics is not deleted, but compact-fiber averaging is not the canonical
+metric or the primary GR-closure mechanism.

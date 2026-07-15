@@ -58,18 +58,19 @@ class AxiomEnforcer:
             # Complex time definition
             (r"tau\s*=\s*t\s*\+\s*i.*psi", "Complex time definition τ = t + iψ"),
             
-            # Metric definition with key components
+            # Covariant-tetrad metric definition
             (r"g_\{.*mu.*nu", "Metric tensor g_μν"),
-            (r"\\text\{Re\}|Re\\\[|Re\[", "Real part Re[·] in metric"),
-            (r"D_.*mu.*Theta", "Covariant derivative D_μΘ in metric"),
-            (r"dagger", "Adjoint operation † in metric"),
+            (r"D_.*mu.*Theta", "Covariant tetrad E_μ = D_μΘ"),
+            (r"sharp", "Quaternion conjugation sharp"),
+            (r"anticommutator|E_.*mu.*\\^\\sharp", "Central anticommutator metric"),
+            (r"mathbf\\s*1|\\mathbf1", "Algebra unit in central identity"),
             
             # Fundamental field
             (r"Theta.*fundamental", "Θ as fundamental field"),
             
             # Lock statements
             (r"LOCK|Lock.*Rule", "Lock rules present"),
-            (r"NO.*alternative.*metric|unique.*metric", "No alternative metric rule"),
+            (r"No projection rule|canonical local metric|NO.*alternative.*metric|unique.*metric", "Canonical metric lock rule"),
         ]
         
         missing = []

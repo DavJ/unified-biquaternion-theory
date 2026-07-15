@@ -1,3 +1,5 @@
+> **GR geometry update (16 July 2026):** The canonical metric is the central anticommutator of the covariant tetrad $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$.  The local rank-ten map, connection reconstruction from tetrad plus specified torsion, the torsion-free Levi--Civita branch, and an explicit affine Minkowski representer are closed. The one-sided invertible curved route is a conditional no-go; the two-sided integrability, torsion dynamics, and Einstein dynamics remain open.
+
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # Unified Biquaternion Theory (UBT)
@@ -11,8 +13,8 @@
 ---
 
 The canonical UBT core is a mathematical physics research program based on
-biquaternionic fields, projected metric structures, and GR/gauge/alpha
-recovery tracks.
+biquaternionic fields, a projection-free covariant-tetrad metric, and
+GR/gauge/alpha recovery tracks.
 
 Speculative interpretations concerning consciousness, psychons, survival
 after death, ThetaComm, or metaphysical ontology are not part of the
@@ -30,7 +32,7 @@ UBT is a biquaternionic field framework over complex time **τ = t + iψ** that 
 - gauge-sector structure consistent with Standard Model symmetries,
 - α-related derivation tracks with explicit proof-status discipline.
 
-UBT **embeds and extends GR**; it does not replace or contradict GR.
+UBT **aims to recover GR as its classical geometric sector and may extend it**; it does not claim to replace or contradict GR.
 
 ---
 
@@ -60,8 +62,8 @@ See `research_tracks/T3_ALPHA/` for the open Gap G137-B.
 Authoritative mathematical and physical core only:
 - biquaternion algebra
 - Θ-field definitions
-- complex/projected-time formulation
-- metric emergence and GR chain
+- complex-time formulation
+- covariant-tetrad metric emergence and GR chain
 - gauge/QED/QCD/SM recovery tracks where mathematically formulated
 - alpha derivation only with explicit proof status and open gaps
 

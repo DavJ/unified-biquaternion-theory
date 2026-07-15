@@ -1,3 +1,5 @@
+> **HISTORICAL SUMMARY:** This document records a superseded projection-based refactor.  It is not the current canonical geometry.
+
 # Biquaternion Geometry Refactor - Implementation Summary
 
 ## Overview

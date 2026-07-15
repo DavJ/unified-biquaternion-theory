@@ -1,0 +1,387 @@
+\chapter{Covariant Derivatives, Connections, and the Clean UBT Geometry}
+\label{ch:covariant-tetrad}
+
+This chapter explains the geometric core of UBT in the form closest to the
+original intuition of the theory:
+\[
+ \Theta\quad\longrightarrow\quad E_\mu:=D_\mu\Theta
+ \quad\longrightarrow\quad
+ \{E_\mu,E_\nu\}\ \hbox{and}\ [D_\mu,D_\nu].
+\]
+The anticommutator carries the metric, while the commutator of covariant
+derivatives carries curvature.  No embedding map, compact-fiber average, or
+observer projection is needed in the minimal local construction.
+
+\section{Ordinary, partial, and covariant derivatives}
+For an ordinary scalar function $f(x)$, the derivative $df/dx$ measures how the
+number $f$ changes when $x$ changes.  For a field on spacetime we use partial
+derivatives,
+\[
+ \partial_\mu\Theta:=\frac{\partial\Theta}{\partial x^\mu},
+ \qquad \mu=0,1,2,3.
+\]
+A partial derivative compares components written in a fixed basis.  This is
+sufficient if the same basis can be used everywhere.  Geometry becomes subtler
+when the local frame itself rotates or boosts from point to point.
+
+A simple analogy is a vector written in a rotating coordinate frame.  Even a
+physically constant vector acquires changing components because the basis is
+changing.  The covariant derivative corrects for this basis change:
+\[
+ D_\mu\Theta=\partial_\mu\Theta+\rho_*(\Omega_\mu)\Theta.
+\]
+Here $\Omega_\mu$ is the connection and $\rho_*$ tells us how the connection
+acts in the representation of $\Theta$.  For biquaternions, a left action, a
+right action, and a two-sided action are genuinely different and must not be
+silently interchanged.
+
+\section{What is a connection?}
+A connection is not a force by itself.  It is a rule for comparing local frames
+at neighboring points.  The symbol $\Omega_\mu$ is the UBT internal or
+biquaternionic-frame connection.
+
+Christoffel symbols,
+\[
+ \Gamma^\rho{}_{\mu\nu},
+\]
+are closely related, but they act on coordinate indices.  For example,
+\[
+ \nabla_\mu V^\rho=\partial_\mu V^\rho
+ +\Gamma^\rho{}_{\mu\sigma}V^\sigma.
+\]
+Thus:
+\begin{itemize}
+ \item $\Gamma^\rho{}_{\mu\nu}$ tells us how the coordinate basis changes;
+ \item $\omega_\mu{}^a{}_b$, and its spin/biquaternionic lift $\Omega_\mu$,
+       tell us how the local Lorentz frame changes.
+\end{itemize}
+They are related by the tetrad compatibility identity
+\[
+ \partial_\mu e_\nu{}^a-\Gamma^\rho{}_{\mu\nu}e_\rho{}^a
+ +\omega_\mu{}^a{}_b e_\nu{}^b=0.
+\]
+They are therefore two descriptions of the same geometric transport, not the
+same coefficients.  In particular, $\Gamma=\operatorname{Re}\Omega$ is not a
+valid identification.
+
+\section{Why the classical connection is not an extra free field}
+For a nondegenerate tetrad, metric compatibility and zero torsion determine a
+unique Lorentz connection:
+\[
+ \boxed{
+ \mathring\omega_\mu{}^a{}_b
+ =e_b{}^\nu\left(\mathring\Gamma^\rho{}_{\mu\nu}(g)e_\rho{}^a
+ -\partial_\mu e_\nu{}^a\right).}
+\]
+The circle marks the torsion-free Levi--Civita connection.  Thus, in the
+ordinary torsion-free GR branch, the frame connection is computed from the
+tetrad just as the Christoffel symbols are computed from the metric.  A local
+Lorentz rotation changes the numerical coefficients of the tetrad and the
+connection but does not change the geometry.
+
+\subsection{Torsion and contorsion}
+The torsion two-form is
+\[
+ T^a=de^a+\omega^a{}_b\wedge e^b.
+\]
+A general metric-compatible connection can be written
+\[
+ \boxed{\omega=\mathring\omega(e)+K(T),}
+\]
+where $K$ is the contorsion.  With
+$T^a=\tfrac12T^a{}_{bc}e^b\wedge e^c$ and the convention above,
+\[
+ \boxed{
+ K_{abc}=\frac12\left(T_{cab}-T_{abc}-T_{bca}\right).}
+\]
+This formula has an important conceptual consequence: once the tetrad and the
+torsion are specified, the metric-compatible connection is unique.  The open
+full-UBT question is therefore not an arbitrary leftover $\Omega_\mu$; it is
+the dynamical law selecting $T$.
+
+If the UBT vacuum equations imply $T=0$, the connection reduces to the
+Levi--Civita spin connection.  If spin or another biquaternionic source creates
+torsion, the same theorem reconstructs the connection from that torsion.
+
+\section{Flat space and an explicit UBT representer}
+In flat Minkowski spacetime, using inertial Cartesian coordinates and a constant
+local frame, one can choose
+\[
+ \Gamma^\rho{}_{\mu\nu}=0,
+ \qquad \Omega_\mu=0,
+ \qquad D_\mu=\partial_\mu.
+\]
+This statement can be strengthened from a choice of gauge to an explicit
+single-field representer.  Let
+\[
+ \boxed{
+ \Theta_{\mathrm{SR}}(x)=\Theta_0+\sqrt{\mathcal N_0}
+ \left(i x^0\mathbf1+x^k\mathbf e_k\right).}
+\]
+Then
+\[
+ \mathcal N_0^{-1/2}\partial_0\Theta_{\mathrm{SR}}=i\mathbf1,
+ \qquad
+ \mathcal N_0^{-1/2}\partial_k\Theta_{\mathrm{SR}}=\mathbf e_k.
+\]
+The central anticommutator of these four constant directions is the Minkowski
+metric.  Every second spacetime derivative of $\Theta_{\mathrm{SR}}$ vanishes,
+so it also solves the standard source-free constant-coefficient second-order
+master operator in this flat branch.
+
+More generally, for any constant Lorentz tetrad $\bar E_\mu$,
+\[
+ \Theta_{\mathrm{aff}}(x)=\Theta_0+
+ \sqrt{\mathcal N_0}\,\bar E_\mu x^\mu
+\]
+generates that tetrad exactly.  This closes the special-relativistic
+representer problem, although it does not prove uniqueness or curved-space
+existence.
+
+In polar coordinates, or in an accelerating frame, $\Gamma$ and $\Omega$ may
+be nonzero even though spacetime is flat.  The invariant statement of flatness
+is vanishing curvature, not vanishing connection coefficients in every frame.
+
+\section{The four covariant gradients as a tetrad}
+Define
+\[
+ E_\mu:=\frac{1}{\sqrt{\mathcal N_0}}D_\mu\Theta.
+\]
+The four objects $E_0,E_1,E_2,E_3$ are the local UBT rulers and clock direction.
+They are not four extra matter fields; they are the first covariant derivatives
+of the single fundamental field $\Theta$.
+
+Let $i$ be the ordinary commuting complex unit and
+$\mathbf e_1,\mathbf e_2,\mathbf e_3$ the quaternion units.  In the classical
+Lorentz sector write
+\[
+ E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+ \qquad e_\mu{}^a\in\mathbb R.
+\]
+Quaternion conjugation changes the signs of the three quaternion units but
+leaves the complex scalar coefficient untouched:
+\[
+ E_\mu^\sharp=i e_\mu{}^0\mathbf1-e_\mu{}^k\mathbf e_k.
+\]
+
+\section{Why the anticommutator is the metric}
+Quaternion multiplication contains a scalar product and a cross product.  In
+the symmetrised product the cross products cancel:
+\[
+ \boxed{
+ \frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)
+ =g_{\mu\nu}\mathbf1.}
+\]
+The right-hand side contains $\mathbf1$, the unit biquaternion.  The entire
+left-hand side is already central: an ordinary real number multiplied by the
+algebra unit.  No trace, real-part map, phase projection, or fiber average is
+required.
+
+Expanding the coefficients gives
+\[
+ g_{\mu\nu}
+ =-e_\mu{}^0e_\nu{}^0+
+  e_\mu{}^1e_\nu{}^1+
+  e_\mu{}^2e_\nu{}^2+
+  e_\mu{}^3e_\nu{}^3,
+\]
+which is exactly
+\[
+ g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},
+ \qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1).
+\]
+The minus sign of time comes from $i^2=-1$.
+
+\section{What does the other half of the product do?}
+The antisymmetric algebraic part is
+\[
+ \Sigma_{\mu\nu}
+ =\frac12\left(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu\right).
+\]
+It describes an oriented plane or bivector and is a natural carrier for local
+rotation, boost, and spin information.  It is not itself the curvature.
+
+Three expressions must be kept separate:
+\begin{align*}
+ \{E_\mu,E_\nu\}_\sharp
+ &\longrightarrow \text{metric},\\
+ [E_\mu,E_\nu]_\sharp
+ &\longrightarrow \text{algebraic bivector/spin structure},\\
+ [D_\mu,D_\nu]
+ &\longrightarrow \text{connection curvature or gauge field strength}.
+\end{align*}
+
+\section{Curvature from noncommuting derivatives}
+For a one-sided connection, the curvature has the familiar form
+\[
+ \mathcal R_{\mu\nu}
+ =\partial_\mu\Omega_\nu-\partial_\nu\Omega_\mu
+  +[\Omega_\mu,\Omega_\nu].
+\]
+The final commutator is essential because biquaternion multiplication is
+noncommutative.  Geometrically, curvature measures how a frame changes after
+transport around a small closed loop.
+
+The equation $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ creates an additional
+integrability condition.  This is the point at which the representation of the
+connection becomes decisive.
+
+\section{Why the old rank problem disappears locally}
+A symmetric $4\times4$ metric has ten independent components.  Looking only at
+one value of $\Theta\in\mathbb B\simeq\mathbb R^8$ suggests the misleading
+comparison $8<10$.
+
+The metric is not built from the value of $\Theta$ alone.  It is built from four
+covariant derivatives $E_\mu$.  In the Lorentz sector these form a real
+$4\times4$ tetrad $e_\mu{}^a$ with sixteen components.  Six changes are local
+rotations and boosts that leave the metric unchanged.  Therefore
+\[
+ 16-6=10.
+\]
+More rigorously, every small symmetric metric variation $h_{\mu\nu}$ is
+produced by
+\[
+ \delta e_\mu{}^a=\frac12 h_{\mu\rho}e^{\rho a}.
+\]
+The tetrad-to-metric map therefore has rank ten at every nondegenerate tetrad.
+This resolves the local kinematic rank question.  It does not yet prove that
+every curved tetrad is generated by an on-shell UBT field.
+
+\section{The integrability problem}
+Once the classical connection is reconstructed from the tetrad and torsion,
+the defining equation becomes schematically
+\[
+ E_\mu=\mathcal N_0^{-1/2}
+ \left(\partial_\mu\Theta+\rho_*(\Omega_\mu[E,T])\Theta\right).
+\]
+The unknown $E$ occurs on both sides.  This is an implicit nonlinear first-order
+PDE or fixed-point system.  Eliminating $\Omega$ kinematically does not by
+itself prove existence or uniqueness of a pair $(\Theta,E)$.
+
+\subsection{A one-sided flatness obstruction}
+Suppose the connection acts only from the left,
+\[
+ D^L_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta,
+\]
+so that
+\[
+ [D^L_\mu,D^L_\nu]\Theta=F^L_{\mu\nu}\Theta.
+\]
+In a torsion-free compatible tetrad branch, antisymmetrising the covariant
+Hessian gives
+\[
+ F^L_{\mu\nu}\Theta=0.
+\]
+If $\Theta$ is invertible as a biquaternion, then
+\[
+ F^L_{\mu\nu}=0.
+\]
+Thus the naive one-sided regular representation cannot generically support
+curved GR while retaining an invertible $\Theta$ and torsion-free tetrad
+compatibility.  Noninvertible stabilizer configurations may evade this result,
+but they cannot be assumed to represent arbitrary geometries.
+
+\subsection{The natural two-sided biquaternionic derivative}
+Biquaternions naturally admit both left and right multiplication.  Consider
+\[
+ \boxed{
+ D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu.}
+\]
+A direct expansion gives
+\[
+ \boxed{
+ [D_\mu,D_\nu]\Theta
+ =F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.}
+\]
+Torsion-free compatibility therefore requires
+\[
+ F^A_{\mu\nu}\Theta=\Theta F^B_{\mu\nu}.
+\]
+For invertible $\Theta$,
+\[
+ \boxed{
+ F^A_{\mu\nu}=\Theta F^B_{\mu\nu}\Theta^{-1}.}
+\]
+Unlike the one-sided case, neither curvature must vanish.  The field $\Theta$
+intertwines the left and right curvature representations.  This is a genuine
+structural narrowing of GAP-10I: the two-sided/bimodule derivative is the
+minimal algebra-native route that avoids the generic flatness obstruction.
+
+It is not yet a complete curved-space solution.  The action must still fix the
+relation between $A_\mu$ and $B_\mu$, their involution properties, torsion, and
+boundary conditions.
+
+\section{Implicit versus transcendental equations}
+The words \emph{implicit} and \emph{transcendental} describe different
+properties.
+
+An equation is implicit when the unknown occurs inside the map that is supposed
+to determine it:
+\[
+ E=\mathcal F(E,\Theta).
+\]
+An equation is transcendental when it contains nonalgebraic functions such as
+an exponential, logarithm, trigonometric function, or Jacobi theta function:
+\[
+ E=e^{-E}.
+\]
+The UBT tetrad equation is already implicit and differential.  If the allowed
+field $\Theta(q,\tau)$ is restricted to a Jacobi-theta or another transcendental
+function class, then the complete system may be both implicit and
+transcendental.  In a formal paper these properties should be stated
+separately, even though intuitively both make the unknown ``entangled with
+itself.''
+
+\section{Derivatives versus variations}
+A derivative such as $D_\mu\Theta$ describes how one field configuration changes
+through spacetime.  A variation compares nearby possible configurations:
+\[
+ \Theta_\varepsilon=\Theta+\varepsilon\,\delta\Theta.
+\]
+The variation is
+\[
+ \delta\Theta=
+ \left.\frac{d\Theta_\varepsilon}{d\varepsilon}\right|_{0}.
+\]
+Variations are needed when deriving field equations from an action.  They are
+not replacements for spacetime derivatives.  When the connection depends on
+the field,
+\[
+ \delta(D_\mu\Theta)
+ =D_\mu(\delta\Theta)+\rho_*(\delta\Omega_\mu)\Theta
+\]
+and the induced connection variation must be included.
+
+\section{What is closed and what remains open}
+The following results are closed:
+\begin{enumerate}
+ \item the central anticommutator metric;
+ \item tetrad-to-metric rank ten with six Lorentz gauge directions;
+ \item GAP-10$\Omega$-KIN: unique metric-compatible connection for specified
+       tetrad and torsion;
+ \item GAP-10$\Omega$-GR: the Levi--Civita spin connection in the torsion-free
+       classical branch;
+ \item GAP-10L-CONN: preservation of the Lorentz metric and Lorentz slice by a
+       metric-compatible connection;
+ \item GAP-10I-SR: an explicit affine $\Theta$ representer for Minkowski and
+       every constant Lorentz tetrad;
+ \item GAP-10I-1S: the naive one-sided invertible curved route is closed as a
+       no-go under torsion-free compatibility.
+\end{enumerate}
+The two-sided derivative narrows but does not completely close the curved
+integrability problem.  The following remain open:
+\begin{enumerate}
+ \item GAP-10T-DYN: derive vacuum torsion or spin-sourced torsion from the UBT
+       action;
+ \item fix the exact paired left/right representation and involution on
+       $\Theta$;
+ \item GAP-10I-CURVED: prove local existence, uniqueness, regularity, and global
+       continuation for required curved tetrads;
+ \item GAP-10L-DYN: prove that the full $\Theta$ dynamics and sources preserve
+       the Lorentz slice;
+ \item GAP-10D: derive Einstein dynamics rather than only tetrad kinematics;
+ \item show that Schwarzschild, Kerr, FRW, and wave sectors are selected by the
+       canonical UBT equations.
+\end{enumerate}
+The earlier compact-$\psi$ fiber closure remains a mathematically interesting
+candidate completion, but it is not part of the minimal canonical route.

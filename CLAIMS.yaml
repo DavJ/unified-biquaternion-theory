@@ -1,55 +1,70 @@
 claims:
   gr_chain:
+    # The assumptions list below is also the authoritative gap ledger;
+    # forbidden_wording entries are statements that MUST NOT be asserted.
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
-      - canonical/gr_closure/
-      - papers/UBT_GR_Submission.tex
+    - canonical/gr_closure/covariant_tetrad_rank_theorem.tex
+    - canonical/geometry/biquaternion_tetrad.tex
+    - canonical/geometry/biquaternion_connection.tex
+    - canonical/gr_closure/gap_10omega_connection_elimination.tex
+    - canonical/gr_closure/gap_10i_integrability_selection.tex
+    - papers/UBT_GR_Submission.tex
     assumptions:
-      - GAP-10K: CLOSED locally on the regular fiber-free compact-psi sector; fixed-psi section is a rank no-go
-      - GAP-10S: OPEN — derive internal and metric equations as separate consequences of one total stationarity equation
-      - GAP-10J: OPEN — prove the dynamically selected Jacobi-theta sector is fiber-free
-      - GAP-10R: OPEN — local integrable/on-shell representation of arbitrary GR metric fields
-      - GAP-10G: OPEN — global existence and preservation of fiber-free closure
-      - GAP-U2Theta: OPEN — derive the Schwarzschild lapse from canonical Theta dynamics; static-vacuum GR lapse is fixed once the spatial branch and boundary data are assumed
-      - GAP-B: CLOSED CONDITIONALLY — bridge derived from linearised fiber closure (canonical/gr_closure/linearised_fiber_closure.tex); remaining condition is the fiber-free Schwarzschild representer (GAP-10R/GAP-U2Theta instance)
+    - 'GAP-10K: CLOSED locally — the nondegenerate tetrad-to-metric map has rank ten; six kernel directions are local Lorentz freedom'
+    - 'GAP-10Omega-KIN: CLOSED — specified nondegenerate tetrad and torsion uniquely determine the metric-compatible frame connection, up to Lorentz gauge'
+    - 'GAP-10Omega-GR: CLOSED — the torsion-free branch is the unique Levi-Civita spin connection of the tetrad'
+    - 'GAP-10T-DYN: OPEN — derive vacuum or spin-sourced torsion from the canonical UBT action'
+    - 'GAP-10L-CONN: CLOSED — every metric-compatible Lorentz connection preserves eta_ab and the Lorentz slice'
+    - 'GAP-10L-DYN: OPEN — prove preservation by the complete Theta dynamics and sources'
+    - 'GAP-10I-SR: CLOSED — every constant Lorentz tetrad has an explicit affine single-Theta representer in the flat inertial branch'
+    - 'GAP-10I-1S: CLOSED AS NO-GO — a naive one-sided regular connection with invertible Theta forces zero curvature under torsion-free tetrad compatibility'
+    - 'GAP-10I-2S: NARROWED — the two-sided bimodule derivative avoids the flatness obstruction and yields a left/right curvature-intertwiner condition'
+    - 'GAP-10I-CURVED: OPEN — prove local/global existence, uniqueness, regularity, and on-shell generation of required curved tetrads'
+    - 'GAP-10D: OPEN — derive Einstein dynamics from the canonical UBT action/master equation'
+    - 'GAP-10psi: OPEN — derive classical stability or psi-independence of the local metric'
+    - 'GAP-U2Theta: OPEN — derive the full Schwarzschild tetrad/lapse from canonical Theta dynamics'
+    - 'GAP-B-MASTER: OPEN — derive the perturbation bridge from the original master dynamics'
+    - Compact-psi fiber averaging is exploratory and noncanonical
     forbidden_wording:
-      - GR is derived unconditionally from UBT
-      - Einstein equations emerge for every Theta configuration
-      - complete global five-step chain at L1
-      - Maxwell field generates vacuum Schwarzschild
+    - GR is derived unconditionally from UBT
+    - Einstein equations emerge for every Theta configuration
+    - compact-psi fiber average is the canonical UBT metric
+    - metric is obtained by an arbitrary projection
+    - Maxwell field generates vacuum Schwarzschild
   gauge_group:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
-      - canonical/interactions/
-      - canonical/su3_derivation/
-      - papers/UBT_Gauge_Submission.tex
+    - canonical/interactions/
+    - canonical/su3_derivation/
+    - papers/UBT_Gauge_Submission.tex
     forbidden_wording: []
   three_generations:
     status: DERIVED_WITH_ASSUMPTIONS
     evidence:
-      - canonical/n_eff/
-      - canonical/interactions/
+    - canonical/n_eff/
+    - canonical/interactions/
     forbidden_wording: []
   alpha_full:
     status: OPEN_GAP
     evidence:
-      - canonical/alpha/ALPHA_MASTER_STATUS.md
-      - research_tracks/T3_ALPHA/mellin_insertion_B.tex
+    - canonical/alpha/ALPHA_MASTER_STATUS.md
+    - research_tracks/T3_ALPHA/mellin_insertion_B.tex
     context_tokens:
-      - alpha
-      - α
+    - alpha
+    - α
     forbidden_wording:
-      - alpha proven
-      - alpha derived
-      - "[L1] PROVEN"
+    - alpha proven
+    - alpha derived
+    - '[L1] PROVEN'
   born_rule:
     status: OPEN_GAP
     evidence:
-      - src/ubt/quantum/quantum_scaffold.py
-      - docs/quantum_sector_status.md
+    - src/ubt/quantum/quantum_scaffold.py
+    - docs/quantum_sector_status.md
     forbidden_wording: []
   psychon_sector:
     status: SPECULATIVE
     evidence:
-      - speculative_extensions/consciousness/
+    - speculative_extensions/consciousness/
     forbidden_wording: []

@@ -28,7 +28,7 @@ residual open problem at Step 6.
 | Document | Role | Status |
 |----------|------|--------|
 | `canonical/bridges/GR_chain_bridge.tex` | **CANONICAL NAVIGATION** — lists all six steps with cross-references | Navigation |
-| `canonical/geometry/metric.tex` | Step 1: metric g_μν = Re Tr(∂_μΘ · ∂_νΘ†) | PROVED [L1] |
+| `canonical/geometry/metric.tex` | Step 1: central metric from the covariant tetrad anticommutator | PROVED locally [L1]; dynamics open |
 | `canonical/gr_closure/step1_metric_bridge.tex` | Step 1b: equivalence of derivative and tetrad definitions | PROVED [L0] |
 | `canonical/gr_closure/step2_nondegeneracy.tex` | Step 2: non-degeneracy det(g) ≠ 0 | PROVED [L0] |
 | `canonical/gr_closure/step3_signature_theorem.tex` | Step 3: Lorentzian signature (−,+,+,+) | PROVED [L0] |

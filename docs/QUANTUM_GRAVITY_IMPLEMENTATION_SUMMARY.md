@@ -1,3 +1,5 @@
+> **GEOMETRY STATUS (2026-07-15):** Projection-based metric statements in this historical planning/audit document are superseded by the central covariant-tetrad metric.
+
 # UBT Quantum Gravity Implementation Summary
 
 **Date:** November 3, 2025  

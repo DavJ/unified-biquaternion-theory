@@ -1,3 +1,5 @@
+> **STATUS UPDATE (2026-07-15):** `Γ = Re(Ω)` is withdrawn.  Coordinate and frame connections are related by the tetrad postulate.
+
 # GR Recovery Status
 
 © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0

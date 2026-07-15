@@ -55,9 +55,8 @@ When the imaginary component vanishes:
 ### Relation to Standard Physics
 
 In the limit τ → t:
-- ✅ Einstein equations recovered exactly
-- ✅ Standard Model preserved
-- ✅ All experimental tests of GR/QFT satisfied
+- The special-relativistic flat sector is recovered when the connection curvature vanishes and an inertial frame is chosen.
+- Recovery of the complete Einstein dynamics and the full Standard Model remains a derivation target, not an unconditional proved statement.
 
 ### Resolution of Conflicts
 The theory previously had 3+ conflicting versions:
@@ -118,15 +117,20 @@ For computational purposes, Θ can be represented as a matrix:
 
 ### Biquaternion Operations
 
-**Conjugation** (quaternion conjugate):
-```
-Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k    (with complex conjugation of components)
-```
+Two involutions must be distinguished.
 
-**Norm**:
+**Quaternion conjugation** (used in the Lorentzian metric identity):
 ```
-|Θ|² = Θ†Θ = |Θ₀|² + |Θ₁|² + |Θ₂|² + |Θ₃|²
+(z⁰·1 + zᵏe_k)^sharp = z⁰·1 - zᵏe_k
 ```
+It reverses the quaternion units but does not complex-conjugate the commuting complex coefficients.
+
+**Hermitian conjugation** (used where a positive inner product is required):
+```
+Θ^ddagger = complex-conjugate coefficients followed by quaternion conjugation
+```
+These operations are not interchangeable.  In particular, the Lorentzian time sign in the classical tetrad sector comes from quaternion conjugation on
+`i e⁰·1 + eᵏe_k`, not from a positive Hermitian norm.
 
 ### Resolution of Conflicts
 Previous conflicting versions:
@@ -141,81 +145,155 @@ Previous conflicting versions:
 
 ---
 
-## 3. Metric Tensor g_μν
+## 3. Covariant Tetrad and Metric Tensor g_μν
 
 ### Canonical Definition
-```
-g_μν(Θ) = Re[(∂_μΘ)(∂_νΘ†)]
-```
 
-where:
-- `∂_μ` = biquaternionic partial derivative with respect to spacetime coordinate x^μ
-- `Θ†` = biquaternion conjugate: Θ† = Θ₀ - Θ₁i - Θ₂j - Θ₃k (with complex conjugation)
-- `Re` = real part of the biquaternion product
-- Product is biquaternion multiplication
+The classical local geometric carrier is the covariant first jet of the single field:
 
-**Note on notation**: When using matrix representation, this becomes Re Tr(∂_μΘ ∂_νΘ†) where Tr is the matrix trace. But the canonical definition is in terms of biquaternion operations.
-
-### Biquaternion Form
-For Θ = Θ₀ + Θ₁i + Θ₂j + Θ₃k:
 ```
-g_μν = Re[∂_μΘ₀ ∂_νΘ̄₀ + ∂_μΘ₁ ∂_νΘ̄₁ + ∂_μΘ₂ ∂_νΘ̄₂ + ∂_μΘ₃ ∂_νΘ̄₃]
+E_μ := N₀^(-1/2) D_μΘ
 ```
 
-### Properties
-- **Signature**: (+,−,−,−) [mostly minus, timelike positive] - standard convention
-- **Symmetric**: g_μν = g_νμ
-- **Real-valued**: Emerges from taking Re
-- **Dynamic**: Depends on Θ field configuration
+where `N₀ > 0` is a fixed global unit-setting constant and `D_μ` is the UBT covariant derivative.  On the classical Lorentz slice,
 
-### Resolution of Conflicts
-Previous versions:
-1. ❌ Old derivation (Appendix B) - matrix-centric
-2. ❌ New derivation (consolidation K2/K5) - inconsistent normalization
-3. ❌ Experimental holographic version - non-standard signature
+```
+E_μ = i e_μ^0 · 1 + e_μ^k e_k,     e_μ^a ∈ ℝ,
+```
 
-**Canonical Version**: Use formula above with:
-- Standard index convention: μ,ν = 0,1,2,3
-- Signature convention: (+,−,−,−) [mostly minus]
-- Consistent across all derivations
+and quaternion conjugation `sharp` reverses the three quaternion units while leaving the commuting complex unit `i` untouched.
+
+The metric is defined by the central anticommutator identity
+
+```
+1/2 (E_μ^sharp E_ν + E_ν^sharp E_μ) = g_μν · 1.
+```
+
+Equivalently,
+
+```
+g_μν = e_μ^a e_ν^b η_ab,     η_ab = diag(-1,+1,+1,+1).
+```
+
+The left-hand side is already a real central element of the biquaternion algebra.  No trace, `Re(...)`, phase projector, preferred ψ-section, or compact-ψ average is part of the canonical metric definition.
+
+### Rank and status
+
+At every nondegenerate tetrad the differential `e_μ^a -> g_μν` has rank ten.  Its six-dimensional kernel is the infinitesimal local Lorentz freedom.  Thus the old comparison “Θ has eight real components but g has ten” is not a local kinematic obstruction: the metric is built from four covariant first derivatives, not from the value of Θ alone.
+
+The local rank theorem does **not** by itself prove that every required curved
+tetrad is generated on shell by one $\Theta$.  The connection and integrability
+results refine this statement substantially.
+
+### Connection and Christoffel symbols
+
+`Ω_μ` transports the internal Lorentz/biquaternionic frame;
+`Γ^ρ_{μν}` transports coordinate indices.  They are related by tetrad
+compatibility, not by `Γ = Re Ω`:
+
+```text
+∂_μe_ν^a - Γ^ρ_{μν}e_ρ^a + ω_μ^a_b e_ν^b = 0.
+```
+
+For every nondegenerate tetrad and specified torsion
+
+```text
+T^a = de^a + ω^a_b ∧ e^b,
+```
+
+the metric-compatible frame connection is uniquely
+
+```text
+ω = ω_LC(e) + K(T),
+K_abc = 1/2 (T_cab - T_abc - T_bca).
+```
+
+This closes `GAP-10Ω-KIN`.  In the torsion-free classical GR branch,
+`T=K=0` and `ω=ω_LC(e)`, closing `GAP-10Ω-GR`.  The remaining question is
+`GAP-10T-DYN`: derive torsion or its absence from the canonical UBT action.
+Every metric-compatible Lorentz connection preserves `η_ab` and the Lorentz
+slice, closing `GAP-10L-CONN`; preservation by the complete $\Theta$ dynamics
+remains `GAP-10L-DYN`.
+
+### Flat representer and partial integrability closure
+
+Every constant Lorentz tetrad has the explicit inertial-gauge representer
+
+```text
+Theta_aff(x) = Theta_0 + sqrt(N0) E_mu x^mu.
+```
+
+For `E_0=i 1` and `E_k=e_k`, this gives Minkowski spacetime and has zero
+second spacetime derivatives.  This closes `GAP-10I-SR`.
+
+A naive one-sided regular derivative
+
+```text
+D_mu^L Theta = partial_mu Theta + A_mu Theta
+```
+
+obeys `[D_mu^L,D_nu^L]Theta = F^L_mu_nu Theta`.  Under torsion-free tetrad
+compatibility, invertible `Theta` then forces `F^L_mu_nu=0`.  This closes the
+one-sided generic curved route as `GAP-10I-1S: NO-GO`.
+
+The viable algebra-native curved form is two-sided:
+
+```text
+D_mu Theta = partial_mu Theta + A_mu Theta - Theta B_mu,
+[D_mu,D_nu]Theta = F^A_mu_nu Theta - Theta F^B_mu_nu.
+```
+
+For invertible `Theta`, integrability permits nonzero curvatures related by
+
+```text
+F^A_mu_nu = Theta F^B_mu_nu Theta^(-1).
+```
+
+This narrows `GAP-10I-2S`, but the action must still determine the paired
+connections, involution, torsion, and boundary conditions.  Curved-space local
+and global existence remains `GAP-10I-CURVED: OPEN`.
+
+### Implicit versus transcendental
+
+After connection reconstruction, the curved tetrad equation is an implicit
+nonlinear first-order PDE/fixed-point system because `E` appears on both sides
+through the connection.  If the allowed $\Theta(q,\tau)$ is a Jacobi-theta or
+other transcendental function, the concrete system may additionally be
+transcendental.  These are distinct mathematical properties.
+
+In a flat inertial branch one may choose `Ω_μ=0`, `Γ^ρ_{μν}=0`, and
+`D_μ=∂_μ`.
+
+### Superseded definitions
+
+Earlier formulas such as `g_μν = Re[(∂_μΘ)(∂_νΘ†)]`, matrix traces, local denominators, phase projections, and compact-fiber averages are not the canonical local metric.  They remain only in historical or explicitly exploratory documents.
 
 ---
 
 ## 4. Stress-Energy Tensor T_μν
 
-### Canonical Definition
+### Current canonical status
+
+The stress-energy source must be derived by varying the same UBT action that
+defines the covariant derivative and the central tetrad metric.  Schematically,
+
 ```
-T_μν = (∂_μΘ)(∂_νΘ†) - (1/2) g_μν g^αβ (∂_αΘ)(∂_βΘ†)
+T_μν := -(2/√(-g)) δS_matter/δg^{μν},
 ```
 
-where all products are biquaternion multiplication.
+with `g_μν` constrained by
 
-This is the **energy-momentum tensor** derived from the biquaternionic field Lagrangian via Noether's theorem.
-
-### Biquaternion Lagrangian
 ```
-L = (∂_μΘ)(∂^μΘ†) - V(Θ)
+1/2 (E_μ^sharp E_ν + E_ν^sharp E_μ) = g_μν · 1,
+E_μ = N₀^(-1/2) D_μΘ.
 ```
 
-where ∂^μ = g^{μν}∂_ν and V(Θ) is a potential term.
-
-### Matrix Representation
-In matrix representation, the equivalent form is:
-```
-T_μν = Tr[∂_μΘ ∂_νΘ†] - (1/2) g_μν Tr[∂^αΘ ∂_αΘ†]
-```
-
-### Resolution of Conflicts
-Previous conflicting definitions:
-1. ❌ T_μν = ΘΘ† - incorrect (no derivatives)
-2. ❌ T_μν = dΘ/dT_B × dΘ†/dT_B - incorrect (wrong derivative)
-3. ❌ T_μν from Lagrangian variation (different form) - inconsistent normalization
-
-**Canonical Version**: Use the standard field-theoretic form shown above, derived from:
-```
-L = Tr[(∂_μΘ)† (∂^μΘ)]
-```
-via Noether's theorem.
+Earlier component formulas built only from `∂_μΘ` are useful scalar-field
+analogies but are not a complete canonical result once the frame connection is
+active.  A full derivation must include the dependence of `D_μ`, the connection
+equation, and any gauge sectors.  The exact unified stress-energy formula is
+therefore **OPEN / representation-dependent**, not locked by the former
+projection-based expression.
 
 ---
 
@@ -276,7 +354,7 @@ where:
 - `κ` = coupling constant (related to 8πG)
 - `𝒯` = biquaternionic stress-energy
 
-**Important**: In the real-valued limit (ψ → 0), this **exactly recovers** Einstein's equations.
+**Important**: The real-valued limit `ψ → 0` recovers the ordinary real-time domain and the flat special-relativistic branch when the connection curvature vanishes.  Complete Einstein dynamics from the T-shirt/master equation remains `GAP-10D: OPEN`; it must not be described as already derived.
 
 ### The T-shirt Formula and Covariant Derivative Structure
 
@@ -289,7 +367,7 @@ The equation ∇†∇Θ(q,τ) = κ𝒯(q,τ) is called the **T-shirt formula** 
 ```
 
 where:
-- **Γ_μ^grav** = gravitational connection (Levi-Civita or spin connection) encoding spacetime curvature
+- **Γ_μ^grav** = shorthand for the gravitational covariant structure; coordinate `Γ^ρ_{μν}` and frame/spin `Ω_μ` must be distinguished.  In the torsion-free classical branch `Ω_μ` is the unique spin lift of the Levi--Civita tetrad connection.
 - **A_μ^SM** = Standard Model gauge connection = ig₁B_μY + ig₂W_μᵃTᵃ + ig₃G_μᴬΛᴬ
 
 Thus:

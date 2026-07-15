@@ -1,3 +1,5 @@
+> **GEOMETRY STATUS (2026-07-15):** Projection-based metric statements in this historical planning/audit document are superseded by the central covariant-tetrad metric.
+
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # UBT Global Derivation Index

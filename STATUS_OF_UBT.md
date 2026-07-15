@@ -1,3 +1,85 @@
+# 2026-07-16 — Covariant-tetrad connection and integrability closure
+
+## Canonical geometry
+
+The canonical local metric remains projection-free and pointwise:
+
+\[
+E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,\qquad
+\frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1.
+\]
+
+The Lorentz slice is
+$E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k$.  The tetrad-to-metric map
+has rank ten at every nondegenerate tetrad and a six-dimensional Lorentz-gauge
+kernel.
+
+## Newly closed or narrowed subgaps
+
+- **GAP-10K — CLOSED locally:** rank ten, kernel six.
+- **GAP-10Ω-KIN — CLOSED [L1]:** for specified tetrad and torsion, the unique
+  metric-compatible connection is
+  \(\omega=\mathring\omega(e)+K(T)\), with
+  \(K_{abc}=\tfrac12(T_{cab}-T_{abc}-T_{bca})\).
+- **GAP-10Ω-GR — CLOSED [L1]:** the torsion-free branch has
+  \(K=0\) and the unique Levi-Civita spin connection.
+- **GAP-10L-CONN — CLOSED [L1]:** every metric-compatible Lorentz connection
+  preserves \(\eta_{ab}\) and the Lorentz slice.
+- **GAP-10I-SR — CLOSED [L1]:** every constant Lorentz tetrad has the explicit
+  affine representer
+  \[
+  \Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,E_\mu x^\mu.
+  \]
+  In particular,
+  \(\Theta_{\rm SR}=\Theta_0+\sqrt{\mathcal N_0}(ix^0\mathbf1+x^k\mathbf e_k)\)
+  generates Minkowski spacetime and has zero second spacetime derivatives.
+- **GAP-10I-1S — CLOSED AS NO-GO [L1]:** a naive one-sided regular connection
+  with invertible \(\Theta\) forces zero curvature under torsion-free tetrad
+  compatibility.
+- **GAP-10I-2S — NARROWED [L1]:** the natural two-sided derivative
+  \[
+  D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu
+  \]
+  obeys
+  \[
+  [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}
+  \]
+  and avoids the one-sided flatness obstruction by requiring left/right
+  curvature intertwining rather than zero curvature.
+
+The tensor $K(T)$ is the contorsion determined by the specified torsion.
+
+## Remaining GR bridge
+
+- **GAP-10T-DYN — OPEN:** derive vacuum or spin-sourced torsion from the UBT
+  action.
+- **GAP-10I-CURVED — OPEN:** prove local/global existence, uniqueness,
+  regularity, and on-shell generation of curved tetrads from the implicit
+  two-sided system.
+- **GAP-10L-DYN — OPEN:** prove Lorentz-slice preservation by the complete
+  \(\Theta\) dynamics and sources.
+- **GAP-10D — OPEN:** derive Einstein dynamics from the canonical UBT
+  action/master equation.
+- **GAP-10ψ, GAP-B-MASTER, GAP-U2Θ — OPEN.**
+- Compact-\(\psi\) fiber closure remains an **exploratory noncanonical branch**.
+- T1_GR remains **NOT SUBMISSION-READY** pending the curved dynamical bridge.
+
+## Interpretation of the implicit equation
+
+After connection reconstruction, the curved system is schematically
+
+\[
+E_\mu=\mathcal N_0^{-1/2}
+\left[\partial_\mu\Theta+A_\mu[E,T]\Theta-\Theta B_\mu[E,T]\right].
+\]
+
+This is an implicit nonlinear first-order PDE/fixed-point system.  If the
+allowed \(\Theta(q,\tau)\) is a Jacobi-theta or another transcendental function,
+the concrete system may additionally be transcendental.  Implicitness and
+transcendental functional dependence are distinct properties.
+
+---
+
 ## 2026-06-14 (v95 — ALPHA STATUS FROZEN; Gap C1 CLOSED; OP-S4 CLOSED)
 
 ### T3_ALPHA: STATUS FREEZE (structural + numerical evidence; full derivation open)
@@ -35,7 +117,7 @@ Underlying chain (retained) [L0]/[L1 cond.] — status remains conditional, not 
 
 | Track | Old status | New status |
 |---|---|---|
-| T1_GR | SUBMIT READY [L1] | SUBMIT READY [L1] (unchanged) |
+| T1_GR | HISTORICAL STATUS — SUPERSEDED 2026-07-15 | HISTORICAL STATUS — SUPERSEDED 2026-07-15 (unchanged) |
 | T2_GAUGE | PAPER COMPLETE [L1 cond.] | PAPER COMPLETE [L1] (Gap C1, OP-S4 closed) |
 | T3_ALPHA | STRUCTURAL EVIDENCE + [L1 cond.] | STRUCTURAL + NUMERICAL EVIDENCE; full derivation OPEN (see `canonical/alpha/ALPHA_MASTER_STATUS.md`) |
 
@@ -43,7 +125,7 @@ Underlying chain (retained) [L0]/[L1 cond.] — status remains conditional, not 
 
 | | NCG | Furey | UBT |
 |---|---|---|---|
-| GR from field | ✗ | ✗ | ✓ [L1] |
+| GR local metric kinematics | ✗ | ✗ | ✓ [L1]; full dynamics OPEN |
 | SM gauge group | ✓ [L1] | partial | ✓ [L0] |
 | Chirality L | OOC (postulate) | open | ✓ [L1] closed |
 | 3 generations | input | triality | ✓ [L0] |
@@ -226,7 +308,7 @@ Dirac eq. [L1]; SS BC [L1]; one-loop colour Hamiltonian [L1 cond.].
 - EW-1b ($\sin^2\theta_W$): conditionality on C2-i removed; now [L1 cond. on OP-S4 + SU(3) + scale]
 - G18-f (ODE-f conditionality): [L1 cond. on Friedmann + quasi-static] →
   [L1 cond. on Friedmann branch only]
-- T1_GR: still SUBMIT READY (unchanged).
+- T1_GR: historical status superseded by the 2026-07-15 covariant-tetrad audit.
 - T2_GAUGE: still PAPER COMPLETE (unchanged).
 
 ## 2026-06-11 (v54 — D1/D2/D3 results; copilot-instructions updated to v54)
@@ -249,7 +331,7 @@ Dirac eq. [L1]; SS BC [L1]; one-loop colour Hamiltonian [L1 cond.].
 - OP-S4 minimality: documented in Remark (anomaly-safe conditional on C2-i; EW-2 deferred)
 - FRW ODE-f: Proposition added; conditionality narrowed to [L1 cond. on Friedmann + quasi-static]
 - T2_GAUGE: NEAR READY → PAPER COMPLETE (all sections done; chirality OP-S4 [L1 cond.])
-- T1_GR: still SUBMIT READY (unchanged).
+- T1_GR: historical status superseded by the 2026-07-15 covariant-tetrad audit.
 
 ## 2026-06-11 (T3_ALPHA downgrade — STRUCTURAL EVIDENCE)
 
@@ -259,7 +341,7 @@ Dirac eq. [L1]; SS BC [L1]; one-loop colour Hamiltonian [L1 cond.].
 
 ### No new results
 - No proof-level changes to any other track.
-- T1_GR: still SUBMIT READY (unchanged).
+- T1_GR: historical status superseded by the 2026-07-15 covariant-tetrad audit.
 - T2_GAUGE: still NEAR READY (unchanged).
 
 ## 2026-06-10 (v51 — copilot-instructions update and OP-S4 table fix)
@@ -326,7 +408,7 @@ and one blocked result (T3_ALPHA).
 
 | Track | Status | Paper | Verdict |
 |-------|--------|-------|---------|
-| **T1_GR** — GR Recovery | ✅ SUBMIT READY | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
+| **T1_GR** — GR Recovery | 🔶 NOT SUBMISSION-READY — DYNAMICAL BRIDGE OPEN | `papers/UBT_GR_Submission.tex` | Submit to arXiv within 2 weeks |
 | **T2_GAUGE** — Gauge Sector | ✅ PAPER COMPLETE | `papers/UBT_Gauge_Submission.tex` | Submit after T1_GR clears initial review |
 | **T3_ALPHA** — Fine Structure Constant | 🟡 STRUCTURAL EVIDENCE + [L1 cond.] | `information_loss_alpha_self_consistency.tex` + `layer2_kernel_derivation.tex` + `gap_A_proof.tex` | α⁻¹_UBT=137.035999177549 (+0.026σ) [L1 cond.] via info-loss route. A_PRIME/G137-B: TIME-BOX EXPIRED. α NOT DERIVED unconditionally. |
 | **quantum_ubt** — Quantum UBT Scope | 🔶 SCOPED | Research notes | graviton kvantizace [STD], NCG [MC] |
@@ -457,60 +539,49 @@ sequencing are maintained in `ROADMAP.md` under
 
 ---
 
-## T1_GR — General Relativity Recovery
+## T1_GR — General Relativity Recovery (current covariant-tetrad status)
 
-**Status**: SUBMIT READY  
-**Confidence**: HIGH — all core chain steps proved at [L1]  
-**Canonical manuscript**: `papers/UBT_GR_Submission.tex` *(release snapshots are archived in `papers/old_releases/` for provenance and external deposit traceability)*
+**Status**: RESEARCH DRAFT — not submission-ready  
+**Canonical manuscript**: `papers/UBT_GR_Submission.tex`
 
-### Exact Achievements
+### Proved local kinematics and connection structure
 
-The five-step chain Θ → g → Γ → R → G_μν = 8πGT_μν is complete at proof level [L1].
+| Claim | Status | Source |
+|---|---|---|
+| Central Lorentz metric from the anticommutator of `E_mu=N0^(-1/2)D_mu Theta` | PROVED locally | `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` |
+| Tetrad-to-metric differential has rank 10; kernel has dimension 6 | PROVED locally | same; `tools/verify_covariant_tetrad_rank.py` |
+| Specified tetrad and torsion uniquely determine the metric-compatible frame connection | PROVED [L1] | `canonical/gr_closure/gap_10omega_connection_elimination.tex` |
+| Torsion-free classical branch gives the unique Levi-Civita spin connection | PROVED [L1] | same; `tools/verify_gap_10omega_connection.py` |
+| Metric-compatible connection preserves the Lorentz slice | PROVED [L1] | same |
+| Every constant Lorentz tetrad has an explicit affine single-Theta representer | PROVED [L1] | `canonical/gr_closure/gap_10i_integrability_selection.tex` |
+| Minkowski representer has zero second derivatives | PROVED [L1] | same; `tools/verify_gap_10i_integrability.py` |
+| Naive one-sided invertible curved route forces zero curvature | PROVED NO-GO [L1] | same |
+| Two-sided derivative satisfies exact left/right curvature identity | PROVED [L1]; curved existence still open | same |
 
-| Claim | Level | Source |
-|-------|-------|--------|
-| Metric g_μν derived from Θ | [L1] | `canonical/gr_closure/step1_metric_bridge.tex` |
-| Non-degeneracy det(g) ≠ 0 | [L1] | `canonical/gr_closure/step2_nondegeneracy.tex` |
-| Lorentzian signature (−,+,+,+) from AXIOM-B | [L1] | `canonical/gr_closure/step3_signature_theorem.tex` |
-| Einstein equations from Hilbert variation | [L1] | Paper §3 |
-| T_μν symmetric, ∇^μT_μν = 0 | [L1] | `canonical/geometry/stress_energy.tex` |
-| Schwarzschild metric (spatial, < 10⁻¹⁵ error) | [L1]+[NUM] | `tools/verify_schwarzschild_theta.py` |
-| Regge-Wheeler equation (odd-parity graviton) | [L1] | `canonical/gr_closure/linearised_gravity.tex` (canonical source); Paper §5 `thm:rw` |
-| Zerilli equation (even-parity) and canonical graviton quantisation notes | PROVED [L1]+[STD] | `canonical/gr_closure/zerilli_derivation.tex`, `research_tracks/quantum_ubt/graviton_quantisation.tex` |
-| Flat FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
-| Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$ and $\nabla^\dagger\nabla\Theta=\kappa\mathcal{T}_{\mathrm{FRW}}$ on the reduced ODE branch | [L1 conditional on Friedmann branch; ODE-a auto-consistent; ODE-f exact solutions established (v55)] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
-| ODE-f exact solutions: dust (Si/Ci integrals) + radiation (Bessel $J_{1/4}/Y_{1/4}$) | [L1 cond. on Friedmann branch only] (quasi-static removed v55) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_full_dynamics` |
-| $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
+### Open dynamical bridge
 
-Comprehensive proof audit: `reports/GR_claim_to_proof_matrix.md`  
-Reviewer FAQ: `reports/GR_reviewer_FAQ.md`
+| Gap | Status |
+|---|---|
+| GAP-10T-DYN — torsion selected by the UBT action | OPEN |
+| GAP-10I-2S — exact paired left/right connection and involution | NARROWED, not closed dynamically |
+| GAP-10I-CURVED — implicit curved-space existence/on-shell generation | OPEN |
+| GAP-10L-DYN — slice preservation by full dynamics | OPEN |
+| GAP-10D — Einstein dynamics from the canonical UBT action/master equation | OPEN |
+| GAP-10ψ — classical stability along imaginary time | OPEN |
+| GAP-B-MASTER — perturbation bridge from original master dynamics | OPEN |
+| GAP-U2Θ — canonical generation of the full Schwarzschild tetrad/lapse | OPEN |
 
-### Remaining Blockers
+The former compact-ψ fiber-average closure, phase-projection metric, and
+`Gamma=Re(Omega)` formula are historical or exploratory only.  The canonical
+GR route is the covariant tetrad, unique connection reconstruction, and
+left/right integrability program.
 
-The current GR manuscript requires revision before submission because the local theorem has explicit residual GAP-10S/J/R/G and GAP-U2Theta scope conditions.
+### Next action
 
-| Gap | Level | Impact |
-|-----|-------|--------|
-| GAP-10K — local rank/kinematic closure | PROVED on regular fiber-free compact-ψ profiles; fixed-ψ section NO-GO | Main new result |
-| GAP-10S/J/R/G — single-action, selected Jacobi, global closure | OPEN | Block submission-level unconditional GR claim |
-| GAP-U2Theta — lapse from canonical Theta dynamics | OPEN | Static-vacuum GR lapse theorem does not close the Theta-dynamic bridge |
-| GAP-C — FRW Θ-ansatz [L1 conditional]; $g_{0i}$ comoving [L1 conditional] | [L1 cond.]+[L1 cond.] | Does not block T1_GR submission; GAP-C status updated v50 |
-
-### Pre-Submission Fix
-
-✅ Pre-submission fixes are integrated in the canonical manuscript (`papers/UBT_GR_Submission.tex`).
-✅ Local LaTeX build completed in the current rigour pass; arXiv zip prepared.
-✅ ED-1 (notation unification): DONE 2026-06-11.
-✅ ED-2 (Regge-Wheeler source file): DONE 2026-06-11 — `canonical/gr_closure/linearised_gravity.tex` written; cross-referenced from `UBT_GR_Submission.tex §5 thm:rw`.
-✅ ED-3 (Schwarzschild numerical table): DONE 2026-06-11 — `canonical/gr_closure/schwarzschild_table.tex`; Appendix C in paper.
-
-All three editorial items are now closed.  No editorial blockers remain.
-
-### Next Action
-
-Complete GAP-10S/J/R/G checks and an external proof audit before submitting `papers/UBT_GR_Submission.tex`; then
-to *Classical and Quantum Gravity* or *Journal of Mathematical Physics*.
+Derive the torsion equation and paired left/right connection from the canonical
+UBT action, then prove local existence of the implicit system near the explicit
+Minkowski solution.  Only after that should the repository attempt on-shell
+Schwarzschild/Kerr/FRW construction or an Einstein dynamical bridge.
 
 ---
 

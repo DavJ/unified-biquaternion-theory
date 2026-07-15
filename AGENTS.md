@@ -1,282 +1,210 @@
 # AGENTS.md — Unified Biquaternion Theory Development Protocol
 
-This document defines operational rules for AI agents and contributors working
-inside the Unified Biquaternion Theory (UBT) repository.
+This repository is a scientific research environment. AI agents and human
+contributors must preserve mathematical consistency, proof status, and the
+separation between canonical, research, speculative, and historical material.
 
-The repository is treated as a **scientific research environment**, not a
-generic software project.
+## 1. Authority and repository layers
 
-Agents must preserve both:
+Read these before changing theory content:
 
-• theoretical consistency  
-• repository structural stability  
+1. `canonical/AXIOMS.md`
+2. `canonical/CANONICAL_DEFINITIONS.md`
+3. `STATUS_OF_UBT.md`
+4. `CLAIMS.yaml`
+5. `.github/copilot-instructions.md`
 
----
+Repository layers:
 
-# 1. Repository Structure
+- `canonical/` — current internally consistent reference formulation;
+- `research_tracks/` — active but incomplete derivations;
+- `speculative_extensions/` — explicitly speculative ideas;
+- `ARCHIVE/` — historical/superseded material; do not silently reactivate it.
 
-The repository follows a strict separation of concerns.
+Do not create new top-level theory roots or duplicate the canonical tree.
+Scientific material is not deleted merely because it is superseded; mark it
+historical/noncanonical or move it to the existing archive workflow.
 
-canonical/
-Current best internally consistent formulation of UBT.
+## 2. Locked canonical GR route
 
-research_tracks/
-Active research directions that are not yet canonical.
+All active canonical GR work starts from the single UBT field
 
-speculative_extensions/
-Conceptual or exploratory ideas not yet mathematically closed.
+```text
+Theta(q,tau) in C tensor H,       tau = t + i psi,
+```
 
-ARCHIVE/
-Historical or superseded material.
+the covariant tetrad
 
-Agents must respect this separation.
+\[
+E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta,
+\]
 
-No additional top-level theory roots may be created.
+```text
+E_mu := N0^(-1/2) D_mu Theta,
+```
 
----
+and the central anticommutator identity
 
-# 2. Root Directory Discipline
+```text
+1/2 (E_mu^sharp E_nu + E_nu^sharp E_mu) = g_munu * 1.
+```
 
-Agents MUST NOT:
+On the Lorentz real slice
 
-• create new directories in repository root  
-• duplicate theory trees  
-• reorganize repository structure without instruction  
+```text
+E_mu = i e_mu^0 * 1 + e_mu^k e_k,
+```
 
-Allowed root directories:
+this is exactly
 
-canonical/
-research_tracks/
-speculative_extensions/
-ARCHIVE/
-docs/
-tests/
-tools/
-scripts/
-reports/
+```text
+g_munu = e_mu^a e_nu^b eta_ab,   eta = diag(-1,1,1,1).
+```
 
-If new material is created, it must go into an existing category.
+The metric is already the central coefficient of an algebraic identity. It is
+not obtained by throwing away components.
 
----
+### Forbidden projection/fiber routes for the canonical GR metric
 
-# 3. Canonical Theory Rules
+Do not use any of the following to repair rank or define the physical metric:
 
-canonical/ contains the **current reference formulation of UBT**.
+- `ReTr(...)`, componentwise `Re(...)`, or a trace/phase projector;
+- compact-`psi` fiber averaging or a preferred `psi` section;
+- an auxiliary embedding/ambient map introduced to obtain ten components;
+- a local denominator that fixes `g_00` by normalization;
+- `Gamma = Re(Omega)` or any identification of coordinate and spin connection.
 
-Canonical means:
+These routes may remain explicitly historical or exploratory, but must not be
+presented as the active UBT derivation of GR.
 
-• internally consistent  
-• mathematically defined  
-• used for audits and publications  
+## 3. Connections, torsion, and representation
 
-Canonical does NOT mean final or infallible.
+Keep three objects distinct:
 
----
+- `Gamma^rho_{mu nu}` — affine/coordinate connection;
+- `omega_mu^a_b` — Lorentz-frame connection;
+- `Omega_mu = rho_*(omega_mu)` — spin/biquaternionic representation acting on
+  the field space.
 
-Material allowed in canonical:
+For a nondegenerate tetrad and specified torsion, the metric-compatible frame
+connection is kinematically unique:
 
-• definitions of theory objects  
-• core algebraic structures  
-• main derivations  
-• appendices supporting canonical derivations  
-• bridges between theory sectors  
+```text
+omega(e,T) = omega_LC(e) + K(T),
+K_abc = 1/2 (T_cab - T_abc - T_bca)
+```
 
----
+for the convention `T^a = de^a + omega^a_b wedge e^b`.
 
-Material forbidden in canonical:
+Consequences:
 
-• conceptual designs  
-• philosophical interpretations  
-• experimental probes  
-• incomplete derivations  
-• speculative ontologies  
-
-Such work belongs in:
-
-research_tracks/
-speculative_extensions/
-
----
-
-# 4. Core Mathematical Structure of UBT
-
-UBT is built around the following structural components.
-
-Agents must preserve compatibility with these elements.
-
-## Algebra
-
-Biquaternion algebra
-
-ℂ ⊗ ℍ
-
-This algebra forms the base mathematical structure of the theory.
-
-Located in:
-
-canonical/algebra/
-
----
-
-## Fundamental Field
-
-The fundamental field of the theory is:
-
-Θ(q, τ)
-
-where:
-
-q = biquaternion coordinate  
-τ = complex time parameter
-
-Θ is treated as a generating structure for fields and geometry.
-
-Located in:
-
-canonical/fields/
-
----
-
-## Emergent Geometry
-
-Spacetime geometry is derived from the Θ field structure.
-
-Located in:
-
-canonical/geometry/
-
-Agents must preserve compatibility with the GR limit.
-
----
-
-## Interaction Sector
-
-Gauge structures and interaction sectors are located in:
-
-canonical/interactions/
-
-Agents should maintain compatibility with:
-
-SU(3) × SU(2) × U(1)
-
-as the Standard Model limit.
-
----
-
-# 5. Development Priorities
-
-Agents should prioritize improvements in:
-
-1. algebraic consistency of the biquaternion framework
-2. derivations involving Θ(q, τ)
-3. emergence of metric structure
-4. interaction sector derivations
-5. compatibility with GR and Standard Model limits
-
-Work that strengthens derivations is preferred over new speculation.
-
----
-
-# 6. Open Problems
-
-Agents should be aware that some aspects of the theory remain open.
-
-Examples include:
-
-• derivation of the fine structure constant α  
-• derivation of particle mass spectrum  
-• deeper structure of Θ spectral modes
-
-Work on these problems belongs in research_tracks unless fully derived.
-
----
-
-# 7. What Agents Must Avoid
-
-Agents must avoid:
-
-• introducing new entities without equations  
-• adding ontology without mathematical definition  
-• duplicating theory structures  
-• increasing repository structural entropy  
-
-Agents should prefer **clarification over expansion**.
-
----
-
-# 8. Change Strategy
-
-When modifying theory content:
-
-1. propose minimal change
-2. modify existing file
-3. verify consistency with canonical structure
-4. avoid structural side effects
-
-Agents should prefer editing existing documents rather than creating new ones.
-
----
-
-# 9. Promotion Workflow
-
-New theory elements must follow this progression:
-
-research_tracks → canonical
-
-Promotion requires:
-
-• internal consistency  
-• mathematical closure  
-• compatibility with canonical structure
-
----
-
-# 10. Archival Policy
-
-Scientific content must never be deleted.
-
-Historical material should be moved to:
-
-ARCHIVE/
-
-This preserves reproducibility of theory evolution.
-
----
-
-# 11. Minimal Change Principle
-
-Agents must prefer:
-
-• extending existing documents
-• refining definitions
-• clarifying derivations
-
-over:
-
-• creating new files
-• duplicating derivations
-• fragmenting the theory
-
----
-
-# 12. Repository Philosophy
-
-The repository should evolve toward:
-
-• one canonical theory tree
-• clear research tracks
-• minimal structural entropy
-• maximal theoretical clarity
-
-Agents must treat repository organization as part of the scientific method.
-
----
-
-# 13. Final Rule
-
-When uncertain:
-
-**do less, not more.**
-
-Minimal precise improvements are preferred over speculative expansion.
-
+- torsion-free classical GR has `T=K=0` and the Levi-Civita spin connection;
+- the remaining full-UBT problem is the dynamical law selecting torsion and the
+  exact representation on `Theta`, not arbitrary kinematic freedom in `omega`;
+- in Cartesian inertial Minkowski gauge, `Gamma=omega=Omega=0`;
+- a nonzero connection in curvilinear coordinates does not by itself imply
+  curvature.
+
+Never write `D_mu` without specifying multiplication side and representation.
+The generic curved algebra-native candidate is two-sided:
+
+```text
+D_mu Theta = partial_mu Theta + A_mu Theta - Theta B_mu,
+[D_mu,D_nu]Theta = F^A_mu_nu Theta - Theta F^B_mu_nu.
+```
+
+A naive one-sided regular connection with invertible `Theta`, torsion-free
+antisymmetric tetrad compatibility, and the same induced connection forces
+zero curvature. Do not use that route for generic curved GR.
+
+## 4. Exact GR gap ledger
+
+Use these statuses unless a new proof explicitly changes them:
+
+- `GAP-10K: CLOSED locally` — tetrad-to-metric differential has rank 10 and
+  six local-Lorentz kernel directions.
+- `GAP-10Omega-KIN: CLOSED [L1]` — specified `(e,T)` uniquely reconstructs the
+  metric-compatible frame connection, up to local Lorentz gauge.
+- `GAP-10Omega-GR: CLOSED [L1]` — the torsion-free branch is the Levi-Civita
+  spin connection.
+- `GAP-10T-DYN: OPEN` — derive zero or spin-sourced torsion from the canonical
+  UBT action.
+- `GAP-10L-CONN: CLOSED [L1]` — metric-compatible Lorentz transport preserves
+  `eta_ab` and the Lorentz slice.
+- `GAP-10L-DYN: OPEN` — preservation by the complete `Theta` dynamics/sources.
+- `GAP-10I-SR: CLOSED [L1]` — every constant Lorentz tetrad has an explicit
+  affine single-`Theta` representer; Minkowski is included.
+- `GAP-10I-1S: CLOSED AS NO-GO [L1]` — the stated one-sided invertible curved
+  route forces zero curvature.
+- `GAP-10I-2S: NARROWED [L1]` — the two-sided derivative removes that flatness
+  obstruction and yields a left/right curvature-intertwiner condition.
+- `GAP-10I-CURVED: OPEN` — curved local/global existence, uniqueness,
+  regularity, and on-shell generation.
+- `GAP-10D`, `GAP-10psi`, `GAP-B-MASTER`, `GAP-U2Theta`: OPEN.
+
+Do not merge a conditional branch result into an unconditional theory claim.
+
+## 5. Implicit/self-consistent equations
+
+After eliminating the classical frame connection, the tetrad equation is
+schematically
+
+```text
+E_mu = N0^(-1/2) [partial_mu Theta
+                  + A_mu[E,T] Theta - Theta B_mu[E,T]].
+```
+
+This is an implicit nonlinear first-order PDE/fixed-point system. If `Theta` is
+restricted to Jacobi-theta or another transcendental function class, the full
+system may additionally be transcendental. Keep these mathematical properties
+separate in formal statements.
+
+Do not call connection reconstruction a proof that this system has a solution.
+Existence, uniqueness, regularity, boundary data, global continuation, and
+action-level selection remain separate tasks.
+
+## 6. Variation and dynamics guardrails
+
+- If `Omega`, `A`, `B`, or torsion is varied, include the induced variation of
+  `E_mu=N0^(-1/2)D_mu Theta`.
+- Do not import Palatini or Einstein-Cartan conclusions without checking which
+  fields are independent in UBT.
+- Do not infer Einstein dynamics solely from a rank theorem or standard tetrad
+  identity.
+- Do not claim Schwarzschild is generated on shell until the complete tetrad,
+  including lapse, is selected by canonical `Theta` dynamics.
+- Do not use `partial_psi Theta=i Phi Theta` or a Maxwell/U(1) field as a
+  canonical vacuum-Schwarzschild derivation.
+
+## 7. Proof and claim discipline
+
+Every theorem must state:
+
+- domain and regularity;
+- algebra/involution conventions;
+- independent variables and gauge freedom;
+- exact assumptions;
+- proof level;
+- what is not proved.
+
+A symbolic checker verifies only the identity encoded in it. Its output must
+state what it does not test. Numerical agreement is not an action-level or
+first-principles derivation.
+
+Alpha is not derived from first principles. Consciousness, psychons, afterlife,
+or ThetaComm claims remain outside canonical physics.
+
+## 8. Change workflow
+
+For theory changes:
+
+1. edit the smallest authoritative set of files;
+2. update all status surfaces (`CLAIMS.yaml`, `STATUS_OF_UBT.md`,
+   `WHAT_IS_PROVED.md`, `CLAIMS_MATRIX.md`, `DERIVATION_INDEX.md`);
+3. update student material when the conceptual structure changes;
+4. update AI instructions and regression tests;
+5. run exact verifiers and relevant tests;
+6. compile affected standalone LaTeX papers;
+7. record assumptions and remaining gaps in patch notes.
+
+Prefer clarification and closure over adding new ontology.

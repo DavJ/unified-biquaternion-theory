@@ -1,35 +1,46 @@
 ## Role
-<!-- Which role is driving this PR? Librarian / Scientist / Engineer / Experimentalist / Auditor -->
+<!-- Librarian / Scientist / Engineer / Experimentalist / Auditor -->
 
 ## Summary
-- What this PR changes (one sentence):
+- What this PR changes:
 
 ## Repo Grounding
-<!-- REQUIRED: at least 2 path:line citations. PRs without this section will be blocked by CI. -->
-- `path/to/file.tex:LINE` — description of cited content
-- `path/to/script.py:LINE` — description of cited content
+<!-- REQUIRED: at least 2 path:line citations. -->
+- `path/to/file:LINE` — relevant definition/status
+- `path/to/checker:LINE` — verification or theorem
+
+## Canonical GR Guardrail
+<!-- Required when gravity, metric, connection, curvature, or Theta dynamics is touched. -->
+- [ ] Starts from `E_mu=N0^(-1/2)D_mu Theta` and the central anticommutator.
+- [ ] Does not introduce a canonical trace/real projection, fiber average, or embedding map.
+- [ ] Distinguishes `Gamma`, `omega`, and `Omega`.
+- [ ] States the representation and multiplication side of `D_mu`.
+- [ ] States whether torsion is specified, assumed zero, or derived.
+- [ ] Does not use the one-sided invertible torsion-free route for generic curvature.
+- [ ] Preserves the exact `GAP-10Omega-*` and `GAP-10I-*` statuses.
+- [ ] Does not claim Einstein dynamics or Schwarzschild on-shell selection unless proved.
 
 ## Reproducibility
-<!-- For experiment PRs: paste execution command and confirm artifact is committed. -->
-<!-- For theory/code PRs: describe how to verify the change. -->
+- Commands and expected output:
 
-## Risks
-<!-- Does this PR touch protected paths? If so, is `allow-core-change` label set? -->
-<!-- Any backward-compatibility concerns? -->
+## Risks and assumptions
+- Independent variables / gauge freedom:
+- Assumptions:
+- What remains unproved:
 
 ## Scope
 - [ ] Text only
 - [ ] Code only
-- [ ] Text + Code
-- [ ] Experiment script + artifact
+- [ ] Text + code
+- [ ] Experiment + committed artifact
 
 ## Verification
-- [ ] Built LaTeX (`ubt_2_main.tex`) successfully (if applicable)
-- [ ] Ran relevant tests / scripts (paste output or link to CI run)
+- [ ] Relevant symbolic verifier(s) passed.
+- [ ] Relevant pytest regression suite passed.
+- [ ] Changed standalone LaTeX documents compile.
+- [ ] `CLAIMS.yaml`, `STATUS_OF_UBT.md`, `WHAT_IS_PROVED.md`,
+      `CLAIMS_MATRIX.md`, and `DERIVATION_INDEX.md` are synchronized.
+- [ ] Student and AI-agent instructions were updated when concepts changed.
 
-## Requires Auditor Approval
-- [ ] This PR touches protected paths (`original_release_of_ubt/`, `core/`, `unified_biquaternion_theory/`)
-- [ ] Auditor has been added as a reviewer
-
-## Notes
-- Any assumptions / open TODOs:
+## Protected paths / audit
+- [ ] Protected paths are touched and the required reviewer/label is present.

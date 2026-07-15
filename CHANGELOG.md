@@ -7,21 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added — Pure-Theta compact-fiber GR closure
+### Changed — Connection reconstruction and integrability selection (2026-07-16)
 
-- Exact direct variation of the canonical composite action through the derived metric.
-- Rigorous fixed-psi rank no-go and compact-psi fiber-free local closure theorem.
-- Explicit holomorphic periodic fiber-free two-jet construction and finite-mode open/dense genericity theorem.
-- Corrected raw biquaternion tensor versus scalar metric projection.
-- Static-vacuum Schwarzschild lapse verifier and corrected Abelian current derivation.
+- Closed `GAP-10Omega-KIN`: a nondegenerate tetrad plus specified torsion
+  uniquely determines the metric-compatible frame connection
+  `omega=omega_LC(e)+K(T)`.
+- Closed `GAP-10Omega-GR`: the torsion-free classical branch is the unique
+  Levi-Civita spin connection.
+- Closed `GAP-10L-CONN`: compatible Lorentz transport preserves the Lorentz
+  metric and real Lorentz slice.
+- Closed `GAP-10I-SR`: every constant Lorentz tetrad has an explicit affine
+  single-Theta representer, including Minkowski spacetime.
+- Closed `GAP-10I-1S` as a conditional no-go: a naive one-sided invertible
+  torsion-free curved route forces zero curvature.
+- Narrowed `GAP-10I-2S`: the two-sided bimodule derivative yields an exact
+  left/right curvature-intertwiner condition and avoids the one-sided flatness
+  obstruction.
+- Reframed the remaining connection problem as `GAP-10T-DYN` (torsion dynamics)
+  plus exact left/right representation selection, rather than arbitrary
+  kinematic freedom in `Omega`.
+- Rewrote canonical Theta-field documentation to use the two-sided curved
+  candidate and removed stale projection-metric and temporal-Schwarzschild
+  proof claims from `WHAT_IS_PROVED.md`.
+- Expanded student material with Christoffel/frame/spin connections, torsion,
+  contorsion, the flat limit, one-sided no-go, two-sided integrability, and the
+  implicit-versus-transcendental distinction.
+- Hardened `AGENTS.md`, Copilot instructions, review rules, tests, and PR
+  templates against drift back to projection/fiber GR derivations.
 
-### Changed
+### Added
 
-- Canonical metric now uses the complete existing compact-psi profile and a constant asymptotic normalization. The former local time-gradient normalization is withdrawn because it forces `g_00=-1`.
-- GAP-10 is split into GAP-10K (closed locally on the fiber-free sector), GAP-10S, GAP-10J, GAP-10R and GAP-10G (open).
-- GAP-U2 is split into the static-GR lapse theorem and the still-open canonical-Theta dynamical bridge.
-- Maxwell-like lapse language is withdrawn as a first-principles Schwarzschild derivation.
-- T1_GR submission status is paused pending residual-gap audit.
+- `canonical/gr_closure/gap_10omega_connection_elimination.tex`.
+- `canonical/gr_closure/gap_10i_integrability_selection.tex`.
+- `tools/verify_gap_10omega_connection.py`.
+- `tools/verify_gap_10i_integrability.py`.
+- `tests/test_gap_10omega_connection.py`.
+- `tests/test_gap_10i_integrability.py`.
+- `PATCH_NOTES_COVARIANT_TETRAD_OMEGA_INTEGRABILITY_2026-07-16.md`.
+
+### Still open
+
+- `GAP-10T-DYN`, `GAP-10I-CURVED`, `GAP-10L-DYN`, `GAP-10D`,
+  `GAP-10psi`, `GAP-B-MASTER`, and `GAP-U2Theta`.
 
 ## [v10.1.4] - 2026-07-14 - Honest-Status Reframe of T1_GR
 

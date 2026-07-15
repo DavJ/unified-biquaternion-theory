@@ -1,4 +1,4 @@
-"""Regression guards for the July 2026 pure-Theta GR closure revision."""
+"""Regression guards for the July 2026 covariant-tetrad GR reframe."""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -8,39 +8,52 @@ def read(rel: str) -> str:
     return (ROOT / rel).read_text(encoding="utf-8")
 
 
-def test_canonical_metric_uses_compact_fiber_and_constant_normalization() -> None:
+def test_canonical_metric_is_central_anticommutator() -> None:
     text = read("canonical/THEORY/canonical/canonical_metric_definition.tex")
-    assert "\\int_0^{2\\pi R_\\psi}" in text
-    assert "\\mathcal N_0" in text
-    assert "Local normalization no-go" in text
+    assert "E_\\mu^\\sharp E_\\nu+E_\\nu^\\sharp E_\\mu" in text
+    assert "g_{\\mu\\nu}\\mathbf1" in text
+    assert "no trace" in text.lower()
+    assert "rank ten" in text
 
 
-def test_main_paper_does_not_use_local_denominator_as_definition() -> None:
+def test_axiom_rejects_projection_and_fiber_average() -> None:
+    text = read("canonical/AXIOMS.md")
+    assert "No projection rule" in text
+    assert "compact-$\\psi$ average" in text
+    assert "central anticommutator" in text
+    assert "GAP-10I" in text
+
+
+def test_main_paper_uses_covariant_tetrad() -> None:
     text = read("papers/UBT_GR_Submission.tex")
-    assert "\\label{eq:fiber_metric}" in text
-    assert "would give $g_{00}=-1$ identically" in text
-    # The obsolete denominator may be mentioned only as a rejected prescription.
-    assert r"\calN &:= \left|\langle \partial_0\Theta" not in text
+    assert "E_\\mu:=\\mathcal N_0^{-1/2}D_\\mu\\Theta" in text
+    assert "Projection-Free Metric" in text
+    assert "rank ten" in text
+    assert "fiber-average constructions are" in text
+    assert "not used as a canonical derivation" in text
+    assert r"generic Maxwell or $U(1)_\psi$ field does not generate" in text
 
 
-def test_corrected_abelian_current_places_i_inside_real_trace() -> None:
-    text = read("research_tracks/gap_u2/derive_connection_equation.tex")
-    assert "q\\operatorname{ReTr}\\!\\left[" in text
-    assert "i\\left(\\Theta^\\dagger D^\\mu\\Theta" in text
-    assert "i q\\,\\operatorname{Re}" not in text
-
-
-def test_claim_ledger_contains_residual_gaps() -> None:
+def test_claim_ledger_contains_covariant_tetrad_gaps() -> None:
     claims = read("CLAIMS.yaml")
-    for gap in ("GAP-10K", "GAP-10S", "GAP-10J", "GAP-10R", "GAP-10G", "GAP-U2Theta"):
+    for gap in (
+        "GAP-10K",
+        "GAP-10Omega",
+        "GAP-10L",
+        "GAP-10I",
+        "GAP-10D",
+        "GAP-10psi",
+        "GAP-U2Theta",
+        "GAP-B-MASTER",
+    ):
         assert gap in claims
-    assert "Maxwell field generates vacuum Schwarzschild" in claims
+    assert "compact-psi fiber average is the canonical UBT metric" in claims
 
 
-def test_pure_theta_theorem_contains_holomorphic_construction() -> None:
-    text = read("canonical/gr_closure/pure_ubt_fiber_closure.tex")
-    assert "Existence of holomorphic periodic fiber-free UBT jets" in text
-    assert "no independent polynomial in" in text
-    assert "Uniqueness of the compact-fiber zero-mode projection" in text
-    assert "Finite-mode genericity of fiber-freeness" in text
-    assert "GAP-10R" in text
+def test_fiber_files_are_explicitly_exploratory() -> None:
+    for rel in (
+        "canonical/gr_closure/pure_ubt_fiber_closure.tex",
+        "canonical/gr_closure/linearised_fiber_closure.tex",
+    ):
+        text = read(rel)
+        assert text.startswith("% STATUS NOTICE (2026-07-15): EXPLORATORY")

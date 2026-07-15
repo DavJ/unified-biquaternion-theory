@@ -1,104 +1,72 @@
-# UBT Copilot Instructions
+# UBT Copilot Reference — Canonical Covariant-Tetrad Geometry
 
-Tento dokument shrnuje matematické a fyzikální prvky Unified Biquaternion Theory (UBT), aby byly při práci na projektu snadno dostupné. Obsahuje strukturu pole Θ, základní akci, důležité konstanty a již odvozené hodnoty.
-Slouží jako kontextový referenční přehled.
+This reference supersedes older AI notes that treated projection/fiber metrics
+or fitted constants as established results.
 
-## 1. Struktura pole Θ
+## Canonical geometry
 
-Pole Θ v UBT je modelováno jako biquaternionová struktura:
+\[
+\Theta(q,\tau)\in\mathbb C\otimes\mathbb H,
+\qquad \tau=t+i\psi,
+\]
+\[
+E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+\qquad
+\frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+=g_{\mu\nu}\mathbf1.
+\]
 
-$$\Theta \in C \otimes H.$$
+On the Lorentz slice
+\[
+E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k,
+\]
+this gives \(g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}\). No trace,
+real-part projector, compact-fiber average, preferred section, or embedding map
+belongs to the canonical metric definition.
 
-Má 16 komplexních komponent, což odpovídá efektivní reálné dimenzi:
+## Coordinate and frame connections
 
-$$N_{\text{eff}} = 32.$$
+`Gamma` acts on coordinate indices, `omega` on Lorentz-frame indices, and
+`Omega=rho_*(omega)` in the chosen spin/biquaternionic representation. They
+are related by tetrad compatibility, not by `Gamma=Re(Omega)`.
 
-## 2. Základní akce Θ
+For specified tetrad and torsion,
+\[
+\omega=\mathring\omega(e)+K(T),
+\qquad
+K_{abc}=\tfrac12(T_{cab}-T_{abc}-T_{bca}).
+\]
+The torsion-free GR branch therefore has the unique Levi-Civita spin
+connection. The full UBT action must still select torsion and the exact action
+on \(\Theta\).
 
-Akce pole obsahuje dva příspěvky, které zachycují komutační i antikomutační strukturu:
+## Integrability selection
 
-$$S_\Theta = a\,[D_\mu, \Theta]^\dagger [D_\mu, \Theta] + b\,\{D_\mu, \Theta\}^\dagger \{D_\mu, \Theta\}.$$
+Every constant Lorentz tetrad has the affine representer
+\[
+\Theta_{\rm aff}=\Theta_0+\sqrt{\mathcal N_0}\,\bar E_\mu x^\mu.
+\]
+For \(\bar E_0=i\mathbf1\), \(\bar E_k=\mathbf e_k\), this explicitly gives
+Minkowski spacetime with \(\Omega=0\) in inertial gauge.
 
-- **Komutátor** odpovídá rotační/spinorové části
-- **Antikomutátor** odpovídá plné C×H struktuře
+A naive one-sided regular connection is a conditional no-go for generic
+invertible torsion-free curved geometry. The active candidate is
+\[
+D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,
+\]
+\[
+[D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
+\]
+This narrows, but does not close, curved-space integrability.
 
-## 3. Základní elektromagnetická hodnota
+## Status guardrails
 
-Z čisté geometrie Θ v prostoru $C \otimes H$ vychází charakteristická veličina:
+Closed/narrowed: `GAP-10K`, `GAP-10Omega-KIN`, `GAP-10Omega-GR`,
+`GAP-10L-CONN`, `GAP-10I-SR`, `GAP-10I-1S` (no-go), `GAP-10I-2S`
+(narrowed).
 
-$$\alpha_{\text{bare}}^{-1} = 136.973.$$
+Open: `GAP-10T-DYN`, `GAP-10L-DYN`, `GAP-10I-CURVED`, `GAP-10D`,
+`GAP-10psi`, `GAP-B-MASTER`, `GAP-U2Theta`.
 
-Tato hodnota je používána jako výchozí „bare" hodnota před renormalizačními korekcemi.
-
-## 4. Renormalizační schéma
-
-Výsledná jemnostrukturální konstanta se získává přidáním čtyř strukturálních příspěvků k bare hodnotě:
-
-$$\alpha^{-1} = \alpha_{\text{bare}}^{-1} + \Delta_{\text{anti}} + \Delta_{\text{RG}} + \Delta_{\text{grav}} + \Delta_{\text{asym}}.$$
-
-Níže je uveden přehled odhadovaných velikostí použitých v UBT (přesné hodnoty závisí na detailech výpočetního schématu):
-
-### Antikomutátorová korekce
-
-Z poměru stop antikomutátoru a komutátoru (frakční příspěvek $\delta N_{\text{anti}}/N_{\text{comm}} \approx 4.6 \times 10^{-4}$):
-
-$$\Delta_{\text{anti}} \approx 0.008.$$
-
-### Geometric RG (torus)
-
-Používají se toroidální koeficienty:
-
-$$\beta_1 = \frac{1}{2\pi}, \quad \beta_2 = \frac{1}{8\pi^2},$$
-
-a logaritmický faktor:
-
-$$\ln(\Lambda/\mu) = \frac{\pi}{\sqrt{2}}.$$
-
-Celkový příspěvek:
-
-$$\Delta_{\text{RG}} \approx 0.034.$$
-
-### Gravitational dressing
-
-Z poměru 6D–4D gravitačních termů:
-
-$$\Delta_{\text{grav}} \approx 0.013.$$
-
-### Mirror (Z₂) asymmetry
-
-Z topologie toru:
-
-$$\Delta_{\text{asym}} \approx 0.008.$$
-
-## 5. Výsledná hodnota jemnostrukturální konstanty
-
-Součet všech příspěvků vede k predikci UBT:
-
-$$\alpha_{\text{UBT}}^{-1} \approx 137.036.$$
-
-Experimentální hodnota:
-
-$$\alpha_{\text{exp}}^{-1} = 137.035999084.$$
-
-Shoda je na úrovni $< 10^{-4}\%$.
-
-## 6. Hmotnost elektronu
-
-Stejná renormalizační struktura se používá i pro výpočet hmotnosti elektronu:
-
-$$m_e \approx 0.511\,\text{MeV}.$$
-
-## 7. Souhrn klíčových čísel
-
-- $N_{\text{eff}} = 32$
-- $\alpha_{\text{bare}}^{-1} = 136.973$
-- $\Delta_{\text{anti}} \approx 0.008$
-- $\Delta_{\text{RG}} \approx 0.034$
-- $\Delta_{\text{grav}} \approx 0.013$
-- $\Delta_{\text{asym}} \approx 0.008$
-- $\alpha_{\text{UBT}}^{-1} \approx 137.036$
-- $m_e \approx 0.511\,\text{MeV}$
-
-## 8. Stručný kontext
-
-Tyto hodnoty a rovnice reprezentují výsledky odvození v rámci struktury Unified Biquaternion Theory a lze je použít jako konzistentní referenci při generování kódu, dokumentace či matematických poznámek souvisejících s teorií.
+Alpha is not derived. Schwarzschild is not yet selected on shell by canonical
+Theta dynamics. Fiber/projection GR routes are historical or exploratory.

@@ -1,3 +1,5 @@
+> **GEOMETRY STATUS (2026-07-15):** Projection-based metric statements in this historical planning/audit document are superseded by the central covariant-tetrad metric.
+
 # Copilot Repository Verification and Gap Report
 ## Unified Biquaternion Theory (UBT) — Physics Claims Audit
 

@@ -20,31 +20,37 @@ For claim-level definitions, see [`docs/UBT_SCOPE_AND_CLAIM_LEVELS.md`](docs/UBT
 
 - **Θ(q,τ)** as the fundamental field structure
 - **Complex time** formulation `τ = t + iψ`
-- Projected/real-sector admissibility assumptions explicitly stated
+- Lorentz-slice admissibility and involution assumptions explicitly stated
 
 Sources: `canonical/fields/`, `canonical/THEORY/math/fields/`
 
 ### 3) Emergent geometry and GR recovery
 
-- Derived metric construction from Θ
-- Non-degeneracy and Lorentzian-signature chain
-- Einstein-equation recovery in admissible real projection
-- Schwarzschild-sector recovery and perturbation-sector closure tracking
+- Projection-free covariant tetrad from Θ and central anticommutator metric
+- Rank-ten/non-degeneracy and Lorentz-signature chain
+- Connection reconstruction from tetrad and specified torsion
+- Flat affine representers and curved integrability selection
+- Open Einstein/action bridge and Schwarzschild on-shell selection
 
 Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submission.tex`
 
-**Pure-Theta closure revision (2026-07-14):**
-- `canonical/gr_closure/pure_ubt_fiber_closure.tex` — exact direct variation; fixed-psi rank no-go; local vacuum GR closure on regular fiber-free compact-psi profiles; matter conditional; GAP-10S/J/R/G explicit.
-- `canonical/gr_closure/PURE_UBT_CLOSURE_STATUS.md` — authoritative closure ledger.
-- `tools/verify_pure_ubt_fiber_closure.py` — rank, metric-signature, normalization and adjugate checks.
-- `tools/verify_static_vacuum_lapse.py` — exact static-vacuum Schwarzschild lapse identity; does not test Theta dynamics.
+**Covariant-tetrad GR revision (2026-07-16):**
+- `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` — central anticommutator metric and exact rank-ten theorem.
+- `canonical/gr_closure/gap_10omega_connection_elimination.tex` — unique reconstruction of every metric-compatible connection from tetrad and specified torsion; Levi-Civita torsion-free corollary.
+- `canonical/gr_closure/gap_10i_integrability_selection.tex` — explicit affine Minkowski/constant-tetrad representers; one-sided invertible curved no-go; exact two-sided curvature identity.
+- `tools/verify_covariant_tetrad_rank.py` — exact algebra and rank verification.
+- `tools/verify_gap_10omega_connection.py` — Levi-Civita, polar-frame, uniqueness, and contorsion reconstruction checks.
+- `tools/verify_gap_10i_integrability.py` — Minkowski representer, one-sided injectivity, and two-sided curvature checks.
+- Closed/narrowed: GAP-10K, GAP-10Ω-KIN, GAP-10Ω-GR, GAP-10L-CONN, GAP-10I-SR, GAP-10I-1S (no-go), GAP-10I-2S (narrowed).
+- Open: GAP-10T-DYN, GAP-10L-DYN, GAP-10I-CURVED, GAP-10D, GAP-10ψ, GAP-B-MASTER, GAP-U2Θ.
+- The earlier compact-ψ fiber-average closure is retained as a noncanonical exploratory branch.
 
 **GR closure files:**
-- `canonical/gr_closure/step1_metric_bridge.tex` — Step 1 — [L1] — Metric from Θ
+- `canonical/gr_closure/step1_metric_bridge.tex` — Step 1 — [L1] — Central metric from the covariant Θ tetrad
 - `canonical/gr_closure/step2_nondegeneracy.tex` — Step 2 — [L1] — Non-degeneracy
 - `canonical/gr_closure/step3_signature_theorem.tex` — Step 3 — [L1] — Lorentzian signature
 - `canonical/gr_closure/step3_einstein_with_matter.tex` — Step 5 — [L1] — Einstein equations
-- `canonical/gr_closure/linearised_gravity.tex` — ED-2 — [L1] — Regge-Wheeler (odd-parity graviton, canonical source)
+- `canonical/gr_closure/linearised_gravity.tex` — ED-2 — [L1 conditional] — Regge-Wheeler after the open covariant-tetrad master bridge
 - `canonical/gr_closure/zerilli_derivation.tex` — GAP-Z — [L1] — Zerilli even-parity graviton
 - `canonical/gr_closure/schwarzschild_table.tex` — ED-3 — [L1]+[NUM] — Schwarzschild numerical table (Appendix C)
 - `canonical/gr_closure/frw_cosmological_solutions.tex` — GAP-C — [L1]+[L1 cond.] — FRW in solution space [L1]; Θ-ansatz [L1 cond. on Friedmann branch only (v55)]; ODE-a auto-consistent [L1]; ODE-f quasi-static $f\propto a^{-3(1+w)}$ [L1 cond. on Friedmann + quasi-static]; ODE-f exact solutions without quasi-static: dust (Si/Ci), radiation (Bessel $J_{1/4}/Y_{1/4}$) [L1 cond. on Friedmann branch only] (NEW v55, Prop prop:ode_f_full_dynamics); g_0i sub-gap [L1 conditional on comoving-frame averaging]

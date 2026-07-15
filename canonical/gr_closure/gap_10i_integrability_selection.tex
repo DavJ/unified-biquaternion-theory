@@ -1,0 +1,270 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\title{GAP-10I: Flat Representers and the Connection-Representation Obstruction}
+\author{Ing. David Jaro\v{s}}
+\date{16 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The UBT tetrad is constrained by
+$E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$, so the local rank theorem alone does
+not establish that a single $\Theta$ generates the required tetrads.  This
+note closes two sharply defined subproblems.  First, every constant Lorentz
+tetrad, and in particular Minkowski spacetime, has an explicit affine
+$\Theta$ representer in the flat inertial sector; it also solves the standard
+source-free second-order master operator because all second derivatives
+vanish.  Second, a generic invertible $\Theta$ with a naive one-sided
+connection cannot support nonzero curvature under torsion-free tetrad
+compatibility.  The natural biquaternionic two-sided/bimodule derivative avoids
+this flatness obstruction: its left and right curvatures need only be conjugate
+through $\Theta$.  This does not solve curved-space integrability, but it
+rigorously narrows the admissible canonical connection structure.
+\end{abstract}
+
+\section{Setup}
+Let $\B=\mathbb C\otimes\mathbb H$ and let the Lorentz slice be
+\begin{equation}
+ W_L=\{i x^0\mathbf1+x^k\mathbf e_k\mid x^a\in\mathbb R\}.
+\end{equation}
+For a UBT field $\Theta$ define
+\begin{equation}
+ E_\mu:=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1.
+ \label{eq:tetrad-metric}
+\end{equation}
+The issue addressed here is existence and compatibility of $\Theta$, not the
+already proved rank of $e_\mu{}^a\mapsto g_{\mu\nu}$.
+
+\section{Exact flat representer}
+\begin{theorem}[Affine $\Theta$ representer for a constant tetrad]
+\label{thm:flat-representer}
+Let $\bar E_\mu\in W_L$ be four constant, linearly independent
+biquaternions.  In a flat inertial gauge with $\Omega_\mu=0$, define
+\begin{equation}
+ \boxed{
+ \Theta_{\mathrm{aff}}(x)
+ =\Theta_0+\sqrt{\mathcal N_0}\,\bar E_\mu x^\mu,}
+ \label{eq:affine-theta}
+\end{equation}
+where $\Theta_0\in\B$ is constant.  Then
+\begin{equation}
+ \mathcal N_0^{-1/2}\partial_\mu\Theta_{\mathrm{aff}}
+ =\bar E_\mu,
+\end{equation}
+and Eq.~\eqref{eq:tetrad-metric} yields the constant Lorentz metric
+\begin{equation}
+ \bar g_{\mu\nu}\mathbf1
+ =\frac12(\bar E_\mu^\sharp\bar E_\nu
+         +\bar E_\nu^\sharp\bar E_\mu).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiating Eq.~\eqref{eq:affine-theta} gives
+$\partial_\mu\Theta_{\mathrm{aff}}
+=\sqrt{\mathcal N_0}\bar E_\mu$.  The metric statement is the central
+anticommutator identity on $W_L$.
+\end{proof}
+
+\begin{corollary}[Minkowski UBT vacuum representer]
+Choose
+\begin{equation}
+ \bar E_0=i\mathbf1,
+ \qquad \bar E_k=\mathbf e_k.
+\end{equation}
+Then
+\begin{equation}
+ \boxed{
+ \Theta_{\mathrm{SR}}(x)
+ =\Theta_0+\sqrt{\mathcal N_0}
+  \left(i x^0\mathbf1+x^k\mathbf e_k\right)}
+ \label{eq:theta-sr}
+\end{equation}
+induces $g_{\mu\nu}=\operatorname{diag}(-1,1,1,1)$.  All second spacetime
+derivatives vanish.  Therefore any flat source-free master operator whose
+principal part is the constant-coefficient covariant Laplacian or d'Alembertian
+annihilates $\Theta_{\mathrm{SR}}$.
+\end{corollary}
+
+\begin{remark}
+This is stronger than merely saying that one may set $\Omega_\mu=0$ in special
+relativity: it gives an explicit single-field UBT configuration whose first
+derivatives are the Minkowski tetrad.  It does not by itself fix boundary
+conditions in compact imaginary time or prove uniqueness of the vacuum.
+\end{remark}
+
+\section{Why a naive one-sided connection is too restrictive}
+Consider a one-sided connection on $\Theta$,
+\begin{equation}
+ D^L_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta,
+ \qquad
+ F^L_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu+[A_\mu,A_\nu].
+ \label{eq:left-connection}
+\end{equation}
+Then
+\begin{equation}
+ [D^L_\mu,D^L_\nu]\Theta=F^L_{\mu\nu}\Theta.
+ \label{eq:left-curvature}
+\end{equation}
+
+\begin{theorem}[One-sided invertible-field flatness obstruction]
+\label{thm:one-sided-no-go}
+Assume on an open set that
+\begin{enumerate}
+ \item $E_\nu=\mathcal N_0^{-1/2}D^L_\nu\Theta$;
+ \item the generated tetrad obeys torsion-free antisymmetric compatibility,
+       $\mathscr D_{[\mu}E_{\nu]}=0$;
+ \item the same one-sided connection is used in the induced differentiation
+       of $D_\nu\Theta$;
+ \item $\Theta$ is invertible as an element of
+       $\B\simeq\operatorname{Mat}(2,\mathbb C)$.
+\end{enumerate}
+Then $F^L_{\mu\nu}=0$ on that open set.
+\end{theorem}
+
+\begin{proof}
+Because the affine connection is torsion free, antisymmetrising the covariant
+Hessian of the spacetime-scalar/internal field $\Theta$ gives
+\begin{equation}
+ \sqrt{\mathcal N_0}\,\mathscr D_{[\mu}E_{\nu]}
+ =[D^L_\mu,D^L_\nu]\Theta
+ =F^L_{\mu\nu}\Theta.
+\end{equation}
+The left-hand side vanishes by assumption, hence
+$F^L_{\mu\nu}\Theta=0$.  Right multiplication by $\Theta^{-1}$ gives
+$F^L_{\mu\nu}=0$.
+\end{proof}
+
+\begin{corollary}
+A generic curved classical UBT branch cannot use the naive one-sided regular
+representation together with invertible $\Theta$ and torsion-free tetrad
+compatibility.  Noninvertible stabilizer solutions may evade the theorem but
+are nongeneric and cannot be assumed to represent arbitrary GR geometries.
+\end{corollary}
+
+This theorem closes a route rather than the whole gap: the one-sided derivative
+is not an acceptable generic curved-GR mechanism under the stated assumptions.
+
+\section{The natural two-sided biquaternionic derivative}
+Biquaternions form a bimodule over themselves, so left and right multiplication
+are equally intrinsic.  Consider
+\begin{equation}
+ \boxed{
+ D_\mu\Theta
+ =\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,}
+ \label{eq:two-sided}
+\end{equation}
+with
+\begin{align}
+ F^A_{\mu\nu}
+ &=\partial_\mu A_\nu-\partial_\nu A_\mu+[A_\mu,A_\nu],\\
+ F^B_{\mu\nu}
+ &=\partial_\mu B_\nu-\partial_\nu B_\mu+[B_\mu,B_\nu].
+\end{align}
+The relative minus sign is conventional and makes the right connection
+transform in the standard bimodule form.
+
+\begin{theorem}[Two-sided curvature identity]
+\label{thm:two-sided-curvature}
+For Eq.~\eqref{eq:two-sided},
+\begin{equation}
+ \boxed{
+ [D_\mu,D_\nu]\Theta
+ =F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.}
+ \label{eq:two-sided-curvature}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expand $D_\mu D_\nu\Theta-D_\nu D_\mu\Theta$.  Mixed terms containing one
+ordinary derivative and one connection cancel pairwise, as do the terms
+$A_\mu\Theta B_\nu$ after antisymmetrisation.  The remaining left products form
+$F^A_{\mu\nu}\Theta$ and the remaining right products form
+$-\Theta F^B_{\mu\nu}$.
+\end{proof}
+
+\begin{corollary}[Nonzero curvature is compatible with invertible $\Theta$]
+Under torsion-free antisymmetric tetrad compatibility, the integrability
+condition is
+\begin{equation}
+ F^A_{\mu\nu}\Theta=\Theta F^B_{\mu\nu}.
+ \label{eq:curvature-intertwiner}
+\end{equation}
+If $\Theta$ is invertible, this becomes
+\begin{equation}
+ \boxed{F^A_{\mu\nu}=\Theta F^B_{\mu\nu}\Theta^{-1}.}
+ \label{eq:curvature-conjugacy}
+\end{equation}
+Unlike the one-sided case, neither curvature must vanish.  The field $\Theta$
+acts as an intertwiner between the left and right curvature representations.
+\end{corollary}
+
+\begin{remark}[What has and has not been selected]
+The theorem does not yet derive $A_\mu$, $B_\mu$, their relation under the UBT
+involutions, or their action from the canonical action.  It proves a structural
+selection rule: among algebra-native regular actions, a two-sided/bimodule
+connection is the minimal generic way to retain invertible $\Theta$, torsion-free
+compatibility, and nonzero curvature simultaneously.  A paired Lorentz spin
+connection is a natural candidate, but its precise involution and normalization
+must be fixed in the canonical action.
+\end{remark}
+
+\section{Implicit and possibly transcendental self-consistency}
+Once the classical connection is reconstructed from the tetrad and torsion,
+Eq.~\eqref{eq:two-sided} becomes schematically
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}
+ \left[
+ \partial_\mu\Theta
+ +A_\mu[E,T]\Theta
+ -\Theta B_\mu[E,T]
+ \right].
+ \label{eq:fixed-point}
+\end{equation}
+This is an implicit nonlinear first-order PDE or fixed-point system because
+$E$ appears on both sides through the connection.  It is not automatically a
+transcendental equation in the strict mathematical sense.  However, when
+$\Theta(q,\tau)$ is restricted to a Jacobi-theta or other transcendental
+function class, the complete UBT system may be both implicit and
+transcendental.  These are distinct properties and should be stated
+separately in formal proofs.
+
+\section{Revised partial closure of GAP-10I}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
+\textbf{GAP-10I-SR: CLOSED [L1].}  Every constant Lorentz tetrad has the
+explicit affine representer Eq.~\eqref{eq:affine-theta}; Minkowski spacetime is
+therefore generated by a single $\Theta$ in the flat inertial branch.
+
+\medskip
+\textbf{GAP-10I-1S: CLOSED AS NO-GO [L1].}  A naive one-sided regular
+connection with invertible $\Theta$ cannot support generic nonzero curvature
+under torsion-free tetrad compatibility.
+
+\medskip
+\textbf{GAP-10I-2S: NARROWED [L1].}  The two-sided bimodule derivative avoids
+the flatness obstruction and reduces integrability to the curvature-intertwiner
+condition Eq.~\eqref{eq:curvature-intertwiner}.  This is a necessary structural
+advance, not a proof of existence for arbitrary curved tetrads.
+
+\medskip
+\textbf{GAP-10I-CURVED: OPEN.}  Local existence, uniqueness, regularity, and
+global continuation of Eq.~\eqref{eq:fixed-point} for Schwarzschild, Kerr, FRW,
+and generic Einstein geometries remain to be proved from the canonical UBT
+action.
+\end{tcolorbox}
+
+\end{document}

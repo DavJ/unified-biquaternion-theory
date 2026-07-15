@@ -1,96 +1,35 @@
-% Fundamental quadratic geometry derived from Theta
-% Version: 3.0
-% Date: 2026-07-14
-% Status: Canonical correction — raw B-valued tensor separated from scalar metric channel
-
-\section{Biquaternionic Quadratic Geometry from $\Theta$}
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\section{The central anticommutator metric}
 \label{sec:canonical:biquaternion_metric}
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Canonical distinction]
-The unprojected product of two biquaternionic derivatives is
-$\mathbb B$-valued.  Its scalar part and its ordinary matrix trace are
-complex-valued.  These objects must not be conflated.
-\end{tcolorbox}
-
-\subsection{Raw biquaternionic quadratic tensor}
-
-Let $\Theta(x,\psi)=\Theta(q_{\rm GR}(x),x^0+i\psi)\in\mathbb B$ and let
-$\ddagger$ denote the full Hermitian involution.  The raw quadratic tensor is
+Let $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ be the covariant UBT tetrad.  On the
+classical Lorentz slice $W_L$, the fundamental quadratic identity is
 \begin{equation}
-\label{eq:canonical:raw_biq_quadratic}
-\boxed{
-\mathcal Q_{\mu\nu}(x,\psi)
-:=\bigl(\partial_\mu\Theta\bigr)
-  \bigl(\partial_\nu\Theta\bigr)^\ddagger
-\in\mathbb B.}
+ \boxed{E_\mu^\sharp E_\nu
+       =g_{\mu\nu}\mathbf1+\Sigma_{\mu\nu},}
+ \label{eq:canonical:full-product}
 \end{equation}
-It satisfies
+where
+\begin{align}
+ g_{\mu\nu}\mathbf1
+ &=\frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu),\\
+ \Sigma_{\mu\nu}
+ &=\frac12(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu).
+\end{align}
+The first term is symmetric and central; the second is antisymmetric and
+biquaternionic.  The classical metric is therefore defined intrinsically, not
+by applying a trace, real-part operator, phase projector, or fiber average to a
+noncentral object.
+
+In components,
 \begin{equation}
-\mathcal Q_{\nu\mu}=\mathcal Q_{\mu\nu}^\ddagger.
+ g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},
+ \qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1).
 \end{equation}
-The quaternion-vector components, phase components and noncommutative ordering
-information live in $\mathcal Q_{\mu\nu}$.
+Nondegeneracy is equivalent to invertibility of $e_\mu{}^a$.  The local
+Lorentzian signature follows immediately.
 
-\subsection{Scalar Gram channel}
-
-For a fixed real symmetric non-degenerate representation-level bilinear form
-$H$ on the metric-generating real sector of $\mathbb B$, define
-\begin{equation}
-H(A,B)
-=\operatorname{Re}\operatorname{Tr}
-\left(A^\ddagger\eta_{\mathbb B}B\right).
-\end{equation}
-The scalar Gram channel at fixed $\psi$ is
-\begin{equation}
-\gamma_{\mu\nu}(x,\psi)
-:=H(\partial_\mu\Theta,\partial_\nu\Theta)\in\mathbb R.
-\end{equation}
-Equivalently, before the final real projection one may retain the complex scalar
-$\operatorname{Sc}(\mathcal Q_{\mu\nu})\in\mathbb C$.  Neither
-$\operatorname{Sc}$ nor the ordinary matrix trace returns a general
-biquaternion.
-
-\subsection{Complex-time-fiber projection}
-
-The fiber-completed classical metric is
-\begin{equation}
-\label{eq:canonical:fiber_metric_from_Q}
-\boxed{
-g_{\mu\nu}(x)
-=\frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}
-\int_0^{2\pi R_\psi}
-H(\partial_\mu\Theta(x,\psi),\partial_\nu\Theta(x,\psi))\,d\psi,}
-\end{equation}
-where $\mathcal N_0>0$ is a constant fixed by asymptotic normalization.
-This uses the existing $\psi=\operatorname{Im}\tau$ dependence of the same
-field $\Theta$; it introduces no additional field.
-
-A section metric
-\begin{equation}
-g^{(\psi_0)}_{\mu\nu}
-=\mathcal N_0^{-1}
-H(\partial_\mu\Theta(x,\psi_0),\partial_\nu\Theta(x,\psi_0))
-\end{equation}
-remains a valid restricted observable, but a genuinely $\mathbb B$-valued
-single section has an eight-real-dimensional value space and does not provide
-generic off-shell $\Theta$-only GR closure.  The full rank theorem is in
-\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
-
-\subsection{No local lapse normalization}
-
-The older choice
-\begin{equation}
-\mathcal N(x)=
-\left|H(\partial_0\Theta,\partial_0\Theta)\right|
-\end{equation}
-forces $g_{00}=\pm1$ and is therefore incompatible with a variable lapse.
-It is superseded by the constant $\mathcal N_0$ in
-Eq.~\eqref{eq:canonical:fiber_metric_from_Q}.
-
-\subsection{Status boundary}
-
-The current Einstein--Hilbert sector depends on the real metric
-$g_{\mu\nu}$, not on a noncommutative determinant or inverse of
-$\mathcal Q_{\mu\nu}$.  A future action for the non-real components must define
-its ordering, inverse, contraction and reality operation explicitly.  Such an
-action is not assumed in the present GR closure proof.
+The full product in Eq.~\eqref{eq:canonical:full-product} remains relevant: its
+antisymmetric part may carry spin/bivector information.  No part is discarded,
+but no identification with a gauge field is claimed without a transformation
+and dynamical derivation.

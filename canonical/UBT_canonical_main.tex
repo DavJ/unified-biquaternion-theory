@@ -30,6 +30,11 @@
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 \usepackage{booktabs}
+\newcommand{\C}{\mathbb C}
+\renewcommand{\H}{\mathbb H}
+\renewcommand{\O}{\mathbb O}
+\newcommand{\B}{\mathbb B}
+\newcommand{\R}{\mathbb R}
 
 % Title and Author
 \title{Unified Biquaternion Theory:\\
@@ -51,14 +56,14 @@ and the Standard Model}
 \vspace{1em}
 
 \begin{abstract}
-The Unified Biquaternion Theory (UBT) presents a novel framework unifying General Relativity, Quantum Field Theory, and the Standard Model of particle physics within a single mathematical structure. The theory is based on a fundamental biquaternion field $\Theta(q,\tau) \in \mathbb{H} \otimes \mathbb{C}$ defined over complex time $\tau = t + i\psi$, where $\psi$ is a dynamical imaginary time component. In the classical limit $\psi \to 0$ this reduces to standard time $t$. Biquaternionic time extensions are not part of the canonical minimal theory. From this field emerges spacetime geometry, matter content, and gauge interactions. The biquaternionic metric tensor $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger)$ arises from biquaternionic tetrads $E_\mu(x) \in \mathbb{B}$ which encode the fundamental geometric structure; the observable metric $g_{\mu\nu} := \text{Re}(\mathcal{G}_{\mu\nu})$ reproduces Einstein's equations in the real projection (GR limit), while the extended biquaternionic structure provides a framework for predicting fundamental constants. Gradients of $\Theta$ contribute to the biquaternionic stress-energy $\mathcal{T}_{\mu\nu}$, establishing geometry and matter as unified aspects of a single field. This article presents the canonical formulation of UBT, resolving previous inconsistencies and establishing a single, authoritative version of the theory.
+The Unified Biquaternion Theory (UBT) is a research framework based on a single biquaternionic field $\Theta(q,\tau)$ over complex time $\tau=t+i\psi$.  In the revised local geometric sector the four covariant gradients $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ form a biquaternionic tetrad.  On the real Lorentz slice their central anticommutator defines the metric directly, without a trace, real-part projection, preferred $\psi$ section, or compact-fiber average.  This paper records the canonical kinematics and the still-open dynamical bridge: the metric-compatible frame connection is reconstructed from the tetrad and specified torsion, while the UBT action must select the torsion, the exact left/right representation on $\Theta$, Lorentz-slice preservation, curved integrability, and Einstein dynamics.  Claims of complete GR or Standard-Model closure are therefore conditional research goals, not axioms.
 \end{abstract}
 
-\noindent\textbf{Lock-in statement:} Throughout this work, all geometric and dynamical structures are defined at the level of biquaternionic fields. Any real-valued spacetime metric, curvature, or stress--energy tensor represents a Hermitian projection corresponding to an observer-restricted sector. No physical conclusion should be interpreted at the level of the real projection alone.
+\noindent\textbf{Lock-in statement:} The canonical classical metric is the coefficient of the central identity $\{E_\mu,E_\nu\}_\sharp/2=g_{\mu\nu}\mathbf1$.  No projection operation defines the metric.  The antisymmetric algebraic product and the commutator of covariant derivatives remain distinct carriers of bivector/spin and curvature information, respectively.
 
 \vspace{0.5em}
 
-\noindent\textbf{Future-proofing rule:} Any future extension of UBT must (i) define new dynamics at the biquaternionic level, (ii) state explicitly how the GR sector is obtained as $\Re(\,\cdot\,)$, and (iii) avoid introducing classical GR objects (metrics, Levi--Civita symbols, or stress--energy tensors) as axioms without such a projection. This applies to all new appendices, phenomenological discussions, and experimental proposals.
+\noindent\textbf{Future-proofing rule:} Any future extension of UBT must preserve the central covariant-tetrad identity, distinguish the frame connection from the coordinate connection, and state which results are kinematic, dynamical, conditional, or speculative.  No trace, real-part map, phase projection, or compact-fiber average may be reintroduced as the canonical local metric.
 
 \vspace{1em}
 
@@ -143,36 +148,52 @@ This article is organized into 12 sections following the canonical structure:
 
 \subsection{Overview}
 
-\textbf{The geometry of spacetime is fundamentally biquaternionic, not real.}
+The local classical geometry is carried by
+\[
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta
+\]
+and the exact central identity
+\[
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1.
+\]
+The symmetric product defines the metric, the antisymmetric algebraic product
+is a bivector candidate, and the commutator $[D_\mu,D_\nu]$ is the curvature of
+the frame connection.  These three structures must not be conflated.
 
-General Relativity emerges as the real, commutative projection of this richer structure. This section presents the fundamental geometric objects from which classical GR is derived.
-
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Hierarchy of Geometric Objects]
-\textbf{Fundamental (biquaternionic):}
+\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Canonical geometric hierarchy]
 \begin{enumerate}
-    \item Tetrad field: $E_\mu(x) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_tetrad})
-    \item Metric: $\mathcal{G}_{\mu\nu} = \text{Sc}(E_\mu E_\nu^\dagger) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_metric})
-    \item Connection: $\Omega_\mu(x) \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_connection})
-    \item Curvature: $\mathcal{R}_{\mu\nu\rho\sigma} \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_curvature})
-    \item Stress-energy: $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ (Section~\ref{sec:canonical:biquaternion_stress_energy})
+ \item Fundamental field: $\Theta(q,\tau)\in\mathbb B$.
+ \item Covariant first jet: $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$.
+ \item Metric: $\{E_\mu,E_\nu\}_\sharp/2=g_{\mu\nu}\mathbf1$ on the Lorentz slice.
+ \item Classical frame connection: for specified torsion,
+       $\omega=\mathring\omega(e)+K(T)$ is uniquely determined by the tetrad;
+       the UBT action must select the torsion and its lift to $(A_\mu,B_\mu)$.
+ \item Coordinate connection: $\Gamma^\rho{}_{\mu\nu}$, related to $\Omega_\mu$ by tetrad compatibility.
+ \item Curvature: $[D_\mu,D_\nu]$ in the relevant representation.
 \end{enumerate}
-
-\textbf{Derived (classical GR):}
-\begin{enumerate}
-    \item Real metric: $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ (Section~\ref{sec:canonical:metric})
-    \item Christoffel symbols: $\Gamma^\lambda_{\mu\nu} = \text{Re}(\Omega^\lambda_{\mu\nu})$ (Section~\ref{sec:canonical:curvature})
-    \item Riemann tensor: $R_{\mu\nu\rho\sigma} = \text{Re}(\mathcal{R}_{\mu\nu\rho\sigma})$ (Section~\ref{sec:canonical:curvature})
-    \item Classical stress-energy: $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ (Section~\ref{sec:canonical:stress_energy})
-\end{enumerate}
+\textbf{Status:} local metric rank, connection reconstruction from specified
+$(e,T)$, the torsion-free Levi--Civita branch, and flat affine representers are
+proved.  Torsion dynamics, curved integrability, and Einstein dynamics remain open.
 \end{tcolorbox}
 
-% Include fundamental biquaternionic geometry definitions
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!65!black,title=Matter-sector caution]
+The tetrad, metric, connection, and curvature files below implement the current
+geometric core.  The stress-energy and exotic-regime files retain older
+candidate projection language and are not part of the proved metric theorem.
+\end{tcolorbox}
+
+% Include active fundamental geometry definitions
 \input{geometry/biquaternion_tetrad.tex}
 \input{geometry/biquaternion_metric.tex}
 \input{geometry/biquaternion_connection.tex}
 \input{geometry/biquaternion_curvature.tex}
-\input{geometry/biquaternion_stress_energy.tex}
-\input{geometry/exotic_regimes.tex}
+
+\paragraph{Legacy candidate sectors.}
+The files \texttt{geometry/biquaternion\_stress\_energy.tex} and
+\texttt{geometry/exotic\_regimes.tex} retain historical candidate
+projection language.  They are excluded from the active compendium until a
+matter/torsion action consistent with the covariant-tetrad geometry is derived.
 
 % ========================================
 % SECTION 6: CLASSICAL GEOMETRY (DERIVED)
@@ -181,7 +202,7 @@ General Relativity emerges as the real, commutative projection of this richer st
 \section{Classical Geometry (Derived from Biquaternionic Structure)}
 \label{sec:classical_geometry}
 
-The following sections present the classical geometric objects of General Relativity as real projections of the fundamental biquaternionic geometry.
+The following sections present the classical geometric objects through the central covariant-tetrad identity and its compatible connections.
 
 \subsection{Classical Metric Tensor}
 
@@ -195,8 +216,11 @@ The following sections present the classical geometric objects of General Relati
 
 \subsection{Classical Stress-Energy Tensor}
 
-% Include canonical stress-energy definition (now marked as derived)
-\input{geometry/stress_energy.tex}
+For a specified matter action, the physical stress-energy tensor is defined by
+Hilbert variation.  The older projection-based candidate in
+\texttt{geometry/stress\_energy.tex} is not included as a proved canonical
+result.  Conservation and positivity must be established from the complete
+common action and its equations.
 
 % ========================================
 % SECTION 7: FIELD EQUATIONS
@@ -205,73 +229,50 @@ The following sections present the classical geometric objects of General Relati
 \section{Field Equations}
 \label{sec:field_equations}
 
-\subsection{Fundamental Biquaternionic Field Equation}
+\subsection{Canonical master equation and status}
 
-The fundamental field equation of UBT is:
-
+A commonly used compact form of the UBT matter/master dynamics is
 \begin{equation}
-\label{eq:canonical:fundamental_field_equation}
-\boxed{\mathcal{E}_{\mu\nu} = \kappa \mathcal{T}_{\mu\nu}}
+ \label{eq:canonical:theta_master}
+ D^\dagger D\Theta=\kappa\mathcal T.
 \end{equation}
+Its precise source functional, connection representation, and common-action
+origin must be specified before it can be used as a complete gravitational
+field equation.
 
-\noindent where:
-\begin{itemize}
-    \item $\mathcal{E}_{\mu\nu} = \mathcal{R}_{\mu\nu} - \frac{1}{2}\mathcal{G}_{\mu\nu}\mathcal{R}$ is the biquaternionic Einstein tensor ($\mathcal{G}_{\mu\nu}$: metric)
-    \item $\mathcal{T}_{\mu\nu} \in \mathbb{B}$ is the biquaternionic stress-energy tensor
-    \item $\kappa = 8\pi G$ (in natural units, $c = \hbar = 1$)
-\end{itemize}
+The classical metric is already defined kinematically by the central tetrad
+identity.  The remaining dynamical bridge is
+\[
+ \text{canonical UBT equations}
+ \quad\Longrightarrow\quad
+ G_{\mu\nu}[g]=\kappa T_{\mu\nu}.
+\]
+This implication is open in the unrestricted canonical theory.  In particular,
+it is not obtained by taking a componentwise real part of a biquaternionic
+Einstein equation.
 
-This single equation unifies:
-\begin{itemize}
-    \item Gravitational dynamics (real sector)
-    \item Dark energy effects (imaginary scalar sector)
-    \item Dark matter structure (quaternionic sector)
-    \item Internal auxiliary sector (phase coupling; speculative interpretations in \texttt{speculative\_extensions/})
-\end{itemize}
+\begin{tcolorbox}[colback=yellow!7!white,colframe=orange!70!black,title=Current GR status]
+\textbf{Proved locally:} the central Lorentz metric and rank-ten
+ tetrad-to-metric map; unique reconstruction of every metric-compatible frame
+ connection from tetrad and specified torsion; the Levi--Civita spin connection
+ in the torsion-free branch; Lorentz-slice preservation by metric-compatible
+ transport; an explicit affine single-$\Theta$ representer for every constant
+ Lorentz tetrad, including Minkowski spacetime; the one-sided invertible curved
+ branch is a no-go, while the two-sided derivative has the exact left/right
+ curvature identity.
 
-\subsection{Einstein's Equations as Real Projection}
-
-Taking the real part of the fundamental equation:
-
-\begin{equation}
-\text{Re}(\mathcal{G}_{\mu\nu}) = \kappa \text{Re}(\mathcal{T}_{\mu\nu})
-\end{equation}
-
-we obtain Einstein's field equations:
-
-\begin{equation}
-\label{eq:canonical:einstein_equations_derived}
-\boxed{R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8\pi G T_{\mu\nu}}
-\end{equation}
-
-where:
-\begin{itemize}
-    \item $R_{\mu\nu} = \text{Re}(\mathcal{R}_{\mu\nu})$ is the classical Ricci tensor
-    \item $R = \text{Re}(\mathcal{R})$ is the classical Ricci scalar
-    \item $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the classical metric
-    \item $T_{\mu\nu} = \text{Re}(\mathcal{T}_{\mu\nu})$ is the classical stress-energy
-\end{itemize}
-
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Key Statement: GR as Real Projection]
-\textbf{General Relativity arises as the real, commutative projection of the fundamental biquaternionic geometry of spacetime.}
-
-\textbf{Apparent violations} such as antigravity or causal drift correspond to non-real sectors of the metric and curvature ($\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$), not to exotic matter.
-
-\textbf{In the limit where all imaginary components vanish}, UBT exactly reproduces General Relativity:
-\begin{itemize}
-    \item Schwarzschild solution (black holes)
-    \item Kerr solution (rotating black holes)
-    \item FLRW cosmology (expanding universe)
-    \item Gravitational waves (LIGO/Virgo observations)
-    \item Perihelion precession of Mercury
-    \item Gravitational lensing
-    \item Frame dragging (Gravity Probe B)
-\end{itemize}
-
-\textbf{UBT generalizes GR. It does not contradict it.}
-
-This ensures UBT is compatible with all experimental confirmations of General Relativity, while predicting additional phenomena in regimes where $\text{Im}(\mathcal{G}_{\mu\nu}) \neq 0$.
+\textbf{Open:} torsion dynamics from the canonical action; the exact paired
+ left/right connection and involution; local/global existence of the implicit
+ curved system; slice preservation by complete $\Theta$ dynamics; and Einstein
+ dynamics from the same action/master equation.  Schwarzschild, Kerr, FRW, and
+ gravitational-wave sectors require on-shell canonical construction.
 \end{tcolorbox}
+
+Formal proofs and exact checks are in
+\texttt{gr\_closure/gap\_10omega\_connection\_elimination.tex},
+\texttt{gr\_closure/gap\_10i\_integrability\_selection.tex},
+\texttt{tools/verify\_gap\_10omega\_connection.py}, and
+\texttt{tools/verify\_gap\_10i\_integrability.py}.
 
 \subsection{Alternative Form with Complex Time}
 
@@ -284,9 +285,13 @@ The fundamental equation can also be expressed in terms of the $\Theta$ field:
 where:
 
 \begin{itemize}
-    \item $\nabla = \partial + \Omega^{\text{grav}} + A^{\text{SM}}$ is the full biquaternionic covariant derivative
-    \item $\Omega^{\text{grav}}$ is the biquaternionic gravitational connection
-    \item $A^{\text{SM}}$ includes Standard Model gauge connections (see \texttt{canonical/interactions/sm\_gauge.tex})
+    \item the generic curved biquaternionic derivative is two-sided,
+    $D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu$;
+    \item the Lorentz frame connection is reconstructed as
+    $\omega=\mathring\omega(e)+K(T)$, while the canonical action must determine
+    torsion and the paired spin/gauge lifts contained in $(A_\mu,B_\mu)$;
+    \item Standard Model gauge connections must be embedded consistently in
+    the same left/right action (see \texttt{canonical/interactions/sm\_gauge.tex});
     \item $\tau = t + i\psi$ is complex time (canonical; biquaternion time $T_B = t + i\psi + j\chi + k\xi$ is a deprecated extension)
     \item $\mathcal{T}(q,\tau)$ is the biquaternionic source term
 \end{itemize}
@@ -308,13 +313,13 @@ In the real limit:
 R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}
 \end{equation}
 
-However, UBT predicts that dark energy arises from the imaginary scalar component $\text{Im}_{\text{scalar}}(\mathcal{T}_{\mu\nu})$ rather than requiring an explicit cosmological constant. See Section~\ref{sec:canonical:exotic_regimes} for details.
+An imaginary-scalar explanation of dark energy is a speculative UBT hypothesis, not a closed consequence of the covariant-tetrad geometry. See Section~\ref{sec:canonical:exotic_regimes} for details.
 
 % Full derivation to be added
 
 \subsection{Classical GR Solutions}
 
-UBT reproduces all classical GR solutions:
+The canonical program must reproduce the following classical GR sectors on shell; complete derivations are not yet available:
 
 \begin{itemize}
     \item Schwarzschild metric (spherically symmetric black holes)

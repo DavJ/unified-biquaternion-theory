@@ -49,6 +49,10 @@ Complete reference guide for mathematical notation and symbols used throughout t
 | A_μ^a | Non-abelian gauge field | Vector | Index a for gauge group |
 | g_μν | Metric tensor (real-valued) | (0,2) tensor | Standard GR metric |
 | G_μν | Complexified/biquaternionic metric | (0,2) tensor | UBT extension of g_μν |
+| $E_\mu$ | Covariant UBT tetrad $D_\mu\Theta/\sqrt{\mathcal N_0}$ | Biquaternion | Local clock/frame direction |
+| $\Omega_\mu$ | Biquaternionic/Lorentz-frame connection | Connection | Transports the local internal frame; related to $\Gamma$ by the tetrad postulate |
+| $\sharp$ | Quaternion conjugation only | Involution | Reverses quaternion units; used in the central Lorentz anticommutator |
+| $\Sigma_{\mu\nu}$ | Algebraic tetrad bivector | Antisymmetric biquaternion | Half-difference $E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu$ |
 | Γ^ρ_μν | Christoffel symbols | Connection | Affine connection |
 | Ω_μ | Spin connection | Connection | For spinor fields |
 | 𝒟_μ | Covariant derivative (full) | Operator | Includes affine + spin + gauge |

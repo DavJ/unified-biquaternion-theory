@@ -41,7 +41,7 @@ g_{μν}(x) = Re[ (D_μ Θ)† D_ν Θ ]
 ```
 
 The underlying biquaternionic metric `𝒢_{μν} = (D_μ Θ)† D_ν Θ ∈ ℂ ⊗ ℍ` is the true fundamental object;
-the classical GR metric `g_{μν}` is its real projection.  
+the classical GR metric is the central coefficient of the covariant-tetrad anticommutator.  
 There is **no background metric**; all curvature is emergent.
 
 **References**:  

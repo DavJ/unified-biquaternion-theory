@@ -1,3 +1,5 @@
+> **SUPERSEDED GEOMETRY NOTE (2026-07-15):** The former `Re Tr` metric formula is no longer canonical.  See `canonical/AXIOMS.md` and `docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md`.
+
 # Phase 1 Implementation - Complete Summary
 
 **Project**: Unified Biquaternion Theory Consolidation  
@@ -122,7 +124,7 @@ Ready for Phase 5 content filling.
 - New (consolidation K2/K5)
 - Experimental holographic
 
-**Solution**: Canonical g_μν = Re Tr(∂_μΘ ∂_νΘ†)
+**Solution**: Superseded: canonical g_μν is the central anticommutator of E_μ=N₀^{-1/2}D_μΘ
 - Standard signature (+,−,−,−)
 - Consistent index convention
 - Single normalization

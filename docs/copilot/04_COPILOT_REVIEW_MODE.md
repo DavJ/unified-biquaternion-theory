@@ -1,13 +1,23 @@
-# Copilot Instructions 04 — Review & Skeptic Mode
+# Copilot Instructions 04 — Skeptical Review Mode
 
-## Purpose
-Copilot must simulate a skeptical peer reviewer.
+For every proposed GR derivation, ask:
 
-## Responsibilities
-- Question unclear derivations
-- Flag overclaims
-- Demand falsifiability
-- Suggest clarifications, not rewrites
+1. Does it begin with `E_mu=N0^(-1/2)D_mu Theta` and the central
+   anticommutator?
+2. Was a projection, fiber average, preferred section, or embedding map
+   introduced to repair rank?
+3. Are `Gamma`, `omega`, and `Omega` correctly distinguished?
+4. Is torsion specified, derived, or merely assumed zero in a GR branch?
+5. Is the connection reconstructed as `omega_LC+K`, with conventions stated?
+6. Is a forbidden one-sided invertible curved route being used?
+7. For a two-sided derivative, are both curvatures and their intertwiner shown?
+8. Does the argument solve the implicit `Theta` system, or only standard tetrad
+   kinematics?
+9. Are local Lorentz gauge directions separated from physical metric rank?
+10. Are Einstein dynamics and Schwarzschild on-shell selection still labelled
+    open where appropriate?
+11. Are all status surfaces, student texts, tests, and agent instructions
+    synchronized?
 
-## Tone
-Professional, neutral, precise.
+Flag overclaims. Do not repair them by inventing a new projector, fiber, or
+axiom without explicit author approval.

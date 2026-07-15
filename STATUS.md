@@ -1,3 +1,5 @@
+> **GR geometry update (16 July 2026):** Projection-free covariant-tetrad kinematics now closes rank ten, reconstruction of the compatible connection from tetrad and specified torsion, the torsion-free Levi--Civita branch, and the affine Minkowski representer.  Curved two-sided integrability, torsion dynamics, and Einstein dynamics remain open.
+
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # STATUS.md — Current Theory Status Dashboard
@@ -5,7 +7,7 @@
 > **DEPRECATED as status source — see `CLAIMS_MATRIX.md` and `CLAIMS.yaml` (authoritative).**
 
 **Author**: Ing. David Jaroš  
-**Date**: 2026-07-14  
+**Date**: 2026-07-16  
 **Update frequency**: Per milestone  
 **Purpose**: Single-glance status of every major track.
 
@@ -24,31 +26,40 @@
 
 ## T1_GR — General Relativity Recovery
 
-**Status**: LOCAL PURE-Θ CLOSURE PROVED; RESIDUAL GAPS OPEN
+**Status**: COVARIANT-TETRAD KINEMATICS PARTLY CLOSED; DYNAMICAL BRIDGE OPEN
 
-The exact direct pure-Theta variation is proved. A fixed-psi section has a rank no-go; the complete compact-psi profile yields local vacuum Einstein closure on regular fiber-free configurations. Matter closure remains conditional on the direct internal equation, and selected-Jacobi, metric-representability and global closure remain open.
+The active metric is
+\[
+E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+\qquad
+\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1.
+\]
+Compact-\(\psi\) fiber averaging is noncanonical. The connection is not an
+arbitrary extra field: for specified tetrad and torsion it is uniquely
+\(\omega=\mathring\omega(e)+K(T)\); the torsion-free branch is Levi--Civita.
+Every constant Lorentz tetrad, including Minkowski spacetime, has an explicit
+affine single-\(\Theta\) representer. A naive one-sided invertible torsion-free
+curved route is a proved conditional no-go. The two-sided bimodule derivative
+removes that obstruction but does not yet prove curved-space existence or
+Einstein dynamics.
 
 | Item | Status |
 |------|--------|
-| Metric derived from Θ | ✅ Proved [L1] |
-| Non-degeneracy det(g) ≠ 0 | ✅ Proved [L1] |
-| Lorentzian signature (−,+,+,+) from AXIOM-B | ✅ Proved [L1] |
-| Exact direct pure-Θ variation | ✅ Proved |
-| Vacuum Einstein closure on fiber-free compact-ψ sector | ✅ Proved locally |
-| Matter closure | 🟠 Conditional on direct internal Θ equation |
-| T_μν symmetric, ∇^μT_μν = 0 | ✅ Proved [L1] |
-| Schwarzschild metric (spatial, < 10⁻¹⁵ error) | ✅ Proved + verified |
-| Regge-Wheeler equation (odd-parity graviton) | 🟠 Conditional on GAP-B |
-| Zerilli equation (even-parity graviton) | 🟠 Conditional on GAP-B |
-| Fixed-ψ generic closure | 🔴 NO-GO by rank |
-| Fiber-free local closure (GAP-10K) | ✅ Proved |
-| Single-action/Jacobi/representability/global closure (GAP-10S/J/R/G) | ⚪ Open |
-| Schwarzschild lapse from Θ dynamics (GAP-U2Theta) | ⚪ Open |
+| Central anticommutator metric | ✅ Proved [L0] |
+| Nondegenerate tetrad-to-metric rank | ✅ Rank 10, kernel 6 [L1] |
+| Connection from specified tetrad + torsion | ✅ Unique [L1] |
+| Torsion-free classical GR connection | ✅ Levi--Civita [L1] |
+| Lorentz-slice preservation by compatible transport | ✅ [L1] |
+| Constant-tetrad / Minkowski representer | ✅ Explicit [L1] |
+| One-sided invertible torsion-free curved route | ⛔ NO-GO [L1, conditional] |
+| Two-sided curvature identity/intertwiner | ✅ Identity; route narrowed [L1] |
+| Torsion selected by canonical UBT action | ⚪ `GAP-10T-DYN` OPEN |
+| Curved single-Θ existence/uniqueness | ⚪ `GAP-10I-CURVED` OPEN |
+| Einstein equations from canonical master/action | ⚪ `GAP-10D` OPEN |
+| Schwarzschild tetrad/lapse selected on shell | ⚪ `GAP-U2Theta` OPEN |
 
-**Submission file (canonical current)**: `papers/UBT_GR_Submission.tex`  
-**Pre-submission fix**: ✅ Done — Newton's G clarification added as Remark in §3.5 (2026-05-10)  
-**arXiv upload**: Paused pending residual-gap audit  
-**arXiv ID**: Pending assignment
+**Submission file**: `papers/UBT_GR_Submission.tex`  
+**Verdict**: not submission-ready until the curved dynamical bridge is closed.
 
 ---
 
@@ -115,7 +126,7 @@ If fails: publish conditional integer-137 result as companion note.
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Hard open problems | GAP-10S, GAP-10J, GAP-10R, GAP-10G, GAP-U2Theta, GAP-B |
+| Hard open problems | GAP-10T-DYN, GAP-10I-CURVED, GAP-10L-DYN, GAP-10D, GAP-10ψ, GAP-U2Theta, GAP-B-MASTER |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 0 pending GR closure audit |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |

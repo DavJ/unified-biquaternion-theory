@@ -1,195 +1,101 @@
-% © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0
-%
-% This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives
-% 4.0 International License (CC BY-NC-ND 4.0).
-
+% © 2025--2026 Ing. David Jaroš — CC BY-NC-ND 4.0
 \documentclass[11pt,a4paper]{article}
-\usepackage{amsmath, amssymb, amsthm, mathrsfs}
-\usepackage{hyperref}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
-
-\newtheorem{theorem}{Theorem}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.5cm]{geometry}
 \newtheorem{proposition}{Proposition}
-\newtheorem{definition}{Definition}
 \newtheorem{remark}{Remark}
-
-\title{Canonical Field Equations\\
-\large Unified Biquaternion Theory — Canonical Theory Series}
+\title{Canonical Field Equations and Open Bridges\\\large Unified Biquaternion Theory}
 \author{Ing.\ David Jaroš}
-\date{2025}
-
+\date{16 July 2026}
 \begin{document}
 \maketitle
 
 \begin{abstract}
-This document collects the canonical field equations of UBT. There are three
-levels: (1) the master biquaternionic equation encoding all sectors,
-(2) the Einstein field equations recovered as the real-sector limit,
-and (3) the matter/gauge field equations. Each equation is cross-referenced
-to the primary source file and labelled with its proof status.
+This document separates the compact UBT master-equation notation from the
+proved covariant-tetrad kinematics and from the still-open Einstein/action
+bridge.  It does not describe GR as a real projection of a biquaternionic
+Einstein equation.
 \end{abstract}
 
-\section{Master Field Equation}
+\section{Master-equation notation}
 
-The master equation of UBT is the biquaternionic wave equation
-(``T-shirt formula''):
+A compact form used in UBT is
 \begin{equation}\label{eq:master}
-  \boxed{
-    \nabla^\dagger\nabla\,\Theta(q,\tau)
-    \;=\;
-    \kappa\,\mathcal{T}(q,\tau)
-  }
+ D^\dagger D\Theta=\kappa\mathcal T.
 \end{equation}
-where:
-\begin{itemize}
-  \item $\Theta(q,\tau) \in \mathcal{B} = \mathbb{H}\otimes_\mathbb{R}\mathbb{C}$
-        is the fundamental biquaternionic field
-  \item $\nabla^\dagger\nabla$ is the biquaternionic Laplacian
-        (conjugate gradient squared)
-  \item $\kappa = 8\pi G/c^4$ is the gravitational coupling constant
-  \item $\mathcal{T}(q,\tau)$ is the biquaternionic source tensor
-  \item $q \in \mathbb{R}^{1,3}$ is the spacetime point,
-        $\tau = t + i\psi$ is complex time
-\end{itemize}
+Its exact source functional, regularity domain, left/right connection
+representation, and common-action origin must be specified in each derivation.
+Equation~\eqref{eq:master} is therefore not, by notation alone, a completed
+derivation of the gravitational field equations.
 
-\noindent\textbf{Status}: Axiom (Layer 0/1); source of all UBT field equations.\\
-\noindent\textbf{Source}: \texttt{canonical/fields/theta\_field.tex}, \S3.
-Interpretation of \(\tau=t+i\psi\) in the active canonical theory is fixed in
-\texttt{canonical/THEORY/complex\_time\_canonical\_choice.tex}: \(\psi\) is
-treated as the compact internal fiber \(S^1_\psi\), not as a second
-macroscopic time.
+\section{Projection-free metric kinematics}
 
-\section{Einstein Field Equations (Real Sector)}
+\[
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta,
+ \qquad
+ \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)
+ =g_{\mu\nu}\mathbf1.
+\]
+The nondegenerate tetrad-to-metric differential has rank ten.  For specified
+torsion, the compatible frame connection is uniquely
+\[
+ \omega=\mathring\omega(e)+K(T),
+ \qquad K_{abc}=\tfrac12(T_{cab}-T_{abc}-T_{bca}).
+\]
+The torsion-free branch is the standard Levi--Civita spin connection.
 
-Let the metric be the constant-normalized compact-$\psi$ pairing of the
-existing field $\Theta(q,t+i\psi)$.  Direct variation of the canonical
-composite action gives
-\begin{equation}
- \mathscr F_\Theta+
- \frac{1}{\kappa\mathcal N_0}\nabla_\nu
- \left[(G^{\mu\nu}-\kappa T^{\mu\nu})\partial_\mu\Theta\right]=0.
- \label{eq:pure_theta_el}
+Every constant Lorentz tetrad has an affine single-$\Theta$ representer.  For
+curved geometry the active candidate is
+\[
+ D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,
+\]
+with
+\[
+ [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
+\]
+
+\section{Einstein bridge}
+
+The target equation
+\begin{equation}\label{eq:einstein}
+ G_{\mu\nu}[g]=\kappa T_{\mu\nu}
 \end{equation}
-For a single fixed-$\psi$ section, generic closure is impossible by a rank
-bound.  On a regular fiber-free compact-$\psi$ profile, the vacuum equation
-implies $G_{\mu\nu}=0$.  With matter/gauge fields it implies
-\begin{equation}\label{eq:Einstein}
- G_{\mu\nu}=\kappa T_{\mu\nu}
-\end{equation}
-conditional on the direct internal equation $\mathscr F_\Theta=0$.
+has not yet been derived unconditionally from the same canonical UBT action
+that determines $\Theta$, the paired connections, and torsion.  A composed
+Einstein--Hilbert branch can reproduce standard tetrad GR under its assumptions,
+but it does not close GAP-10D or GAP-B-MASTER.
 
-\noindent\textbf{Status}: exact first variation and local vacuum fiber-free
-closure PROVED; matter closure CONDITIONAL; GAP-10S/J/R/G OPEN.\\
-\noindent\textbf{Source}:
-\texttt{canonical/gr\_closure/pure\_ubt\_fiber\_closure.tex}.
+When a matter action is specified,
+\[
+ T_{\mu\nu}=-\frac{2}{\sqrt{-g}}
+ \frac{\delta(\sqrt{-g}\,\mathcal L_{\rm matter})}{\delta g^{\mu\nu}}.
+\]
+Claims about conservation or positivity must be tied to that complete action
+and its equations.
 
-\section{Stress-Energy Tensor}
-
-\begin{proposition}[Derived Stress-Energy]
-The stress-energy tensor $T_{\mu\nu}$ in \eqref{eq:Einstein} is derived from
-the matter Lagrangian by the Hilbert formula:
-\begin{equation}
-  T_{\mu\nu}
-  \;=\;
-  -\frac{2}{\sqrt{-g}}\,\frac{\delta(\sqrt{-g}\,\mathcal{L}_{\mathrm{matter}})}{\delta g^{\mu\nu}}.
-\end{equation}
-It is not postulated — it follows from the variational principle applied
-to the matter and gauge sectors of $\mathcal{L}_{\mathrm{UBT}}$.
-\end{proposition}
-
-\noindent\textbf{Status}: PROVED [L1].\\
-\noindent\textbf{Source}: \texttt{canonical/geometry/stress\_energy.tex};
-\texttt{consolidation\_project/GR\_closure/step4\_offshell\_Tmunu.tex}.
-
-\section{Electromagnetic Field Equations (Maxwell)}
-
-In the U(1) gauge sector, varying the action with respect to $A_\nu$ yields:
-\begin{align}
-  \partial_{[\lambda}F_{\mu\nu]} &= 0 \label{eq:Maxwell1} \\
-  \partial_\mu F^{\mu\nu} &= j^\nu \label{eq:Maxwell2}
-\end{align}
-Equations \eqref{eq:Maxwell1}--\eqref{eq:Maxwell2} are Maxwell's equations.
-
-\noindent\textbf{Status}: PROVED [L1].\\
-\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S3;
-\texttt{canonical/bridges/Maxwell\_limit\_bridge.tex}.
-
-\section{QED Field Equations}
-
-The Dirac equation for the matter field in the U(1) background:
-\begin{equation}\label{eq:Dirac}
-  (i\gamma^\mu D_\mu - m)\,\psi \;=\; 0,
-  \qquad
-  D_\mu = \partial_\mu - ieA_\mu,
-\end{equation}
-emerges from the matter sector of the UBT Lagrangian
-$\mathrm{Tr}[(D_\mu\Theta)^\dagger(D^\mu\Theta)]$
-in the fermionic limit.
-
-\noindent\textbf{Status}: PRESENT [P] — Dirac equation follows from standard
-QFT applied to the U(1) sector; full biquaternionic derivation of the
-Dirac spinor structure is partial.\\
-\noindent\textbf{Source}: \texttt{canonical/interactions/qed.tex}, \S4.
-
-\section{Yang--Mills Field Equations}
-
-For the non-abelian gauge sectors (SU(3) and SU(2)):
-\begin{equation}\label{eq:YM}
-  D_\mu F^{a\,\mu\nu} \;=\; j^{a\,\nu},
-\end{equation}
-where $F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu
-+ g_s f^{abc} A^b_\mu A^c_\nu$ and $f^{abc}$ are the structure constants
-of SU(3) or SU(2).
-
-\noindent\textbf{Status}: Yang--Mills equations derived from gauge sector
-of UBT Lagrangian. SU(3) fully embedded [L0]; full dynamical content
-(confinement, asymptotic freedom) is partial [P].\\
-\noindent\textbf{Source}: \texttt{canonical/interactions/sm\_gauge.tex};
-\texttt{consolidation\_project/appendix\_E\_SM\_QCD\_embedding.tex}.
-
-\section{Pure-$\Theta$ Closure Ledger}
+\section{Current closure ledger}
 
 \begin{itemize}
- \item GAP-10K: local kinematic/rank closure is proved on regular fiber-free
- compact-$\psi$ profiles; a fixed-$\psi$ section is a rank no-go.
- \item GAP-10S: separating the direct internal and metric equations from one
- total stationarity equation remains open.
- \item GAP-10J: fiber-freeness of the dynamically selected Jacobi-theta family
- remains open.
- \item GAP-10G: global existence, topology, and preservation of the rank
- condition remain open.
+ \item GAP-10K: CLOSED locally.
+ \item GAP-10$\Omega$-KIN: CLOSED [L1].
+ \item GAP-10$\Omega$-GR: CLOSED [L1].
+ \item GAP-10T-DYN: OPEN.
+ \item GAP-10L-CONN: CLOSED [L1].
+ \item GAP-10L-DYN: OPEN.
+ \item GAP-10I-SR: CLOSED [L1].
+ \item GAP-10I-1S: CLOSED AS NO-GO [L1].
+ \item GAP-10I-2S: NARROWED [L1].
+ \item GAP-10I-CURVED: OPEN.
+ \item GAP-10D, GAP-10$\psi$, GAP-B-MASTER, GAP-U2$\Theta$: OPEN.
 \end{itemize}
 
-\section{Summary Table}
+\section{Gauge and matter equations}
 
-\begin{center}
-\begin{tabular}{llll}
-\hline
-\textbf{Equation} & \textbf{Sector} & \textbf{Source File} & \textbf{Status} \\
-\hline
-Master eq.\ \eqref{eq:master} & All & \texttt{theta\_field.tex} \S3 & Axiom \\
-Einstein eq.\ \eqref{eq:Einstein} & Gravity & \texttt{pure\_ubt\_fiber\_closure.tex} & local vacuum PROVED; matter CONDITIONAL \\
-$T_{\mu\nu}$ derivation & Gravity & \texttt{stress\_energy.tex} & PROVED [L1] \\
-Maxwell eqs.\ \eqref{eq:Maxwell1}--\eqref{eq:Maxwell2} & EM & \texttt{qed.tex} \S3 & PROVED [L1] \\
-Dirac eq.\ \eqref{eq:Dirac} & Matter & \texttt{qed.tex} \S4 & PRESENT [P] \\
-Yang--Mills eq.\ \eqref{eq:YM} & Gauge & \texttt{sm\_gauge.tex} & PRESENT [P] \\
-Pure-$\Theta$ closure ledger & Gravity & \texttt{pure\_ubt\_fiber\_closure.tex} & GAP-10K closed locally; S/J/G open \\
-\hline
-\end{tabular}
-\end{center}
-
-\section{Cross-References}
-
-\begin{itemize}
-  \item Axioms: \texttt{THEORY/canonical/canonical\_axioms.tex}
-  \item Action: \texttt{THEORY/canonical/canonical\_action.tex}
-  \item Complex-time choice: \texttt{THEORY/complex\_time\_canonical\_choice.tex}
-  \item Metric: \texttt{THEORY/canonical/canonical\_metric\_definition.tex}
-  \item Projection rules: \texttt{THEORY/canonical/canonical\_projection\_rules.tex}
-  \item GR chain: \texttt{canonical/bridges/GR\_chain\_bridge.tex}
-  \item QED/Maxwell: \texttt{canonical/bridges/Maxwell\_limit\_bridge.tex}
-  \item Gauge sector: \texttt{canonical/bridges/gauge\_emergence\_bridge.tex}
-\end{itemize}
+Maxwell, Dirac, and Yang--Mills equations may appear in appropriate
+representation/limit sectors of a specified UBT action.  Standard equations
+must not be relabelled as UBT derivations unless the embedding, normalization,
+field content, and variational reduction are shown.  Their current detailed
+statuses are maintained in `CLAIMS.yaml` and the relevant canonical bridge
+files.
 
 \end{document}

@@ -1,14 +1,32 @@
-| GR12 | FRW N=2\dot a^2 z Cliffordovy projekce $\eta_B\to-1_2$ | [L0] | frw_from_ubt.tex §N-open |
-| GR13 | FRW $g_{00}=-1$ z N derivace | [L0] | frw_from_ubt.tex |
-| SM15 | $Q\in\mathbb{Z}$ z U(1)$_{\rm EM}$ holonomy na $S^1_\psi$ [L1 cond.] | [L1 cond. self-dual] | colour_charge_lattice.tex |
-| \alpha33 | $Z_{\rm 1loop}(\tau=i) = \vartheta_3\vartheta_4^2/\eta^3 = 2$ z SU(2) twist sektory | [L0] | mellin_insertion_B.tex §mechanism |
-| \alpha34 | $B = 12^{3/2}\cdot(2\eta)^{1/4}$ z SU(2) twist + MC heat kernel | [L0+MC] | mellin_insertion_B.tex §mechanism |
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # WHAT_IS_PROVED.md — Definitive Map of Proved Results
 
+## 2026-07-16 update — covariant-tetrad connection and integrability
+
+| # | Claim | Level | Source |
+|---|---|---|---|
+| GR-T1 | Central identity $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1$ on the Lorentz slice | [L0] | `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` |
+| GR-T2 | Every local Lorentz metric has a nondegenerate tetrad representation of the central identity | [STD]+[L1] | same |
+| GR-T3 | Tetrad-to-metric differential has rank 10; kernel dimension 6 equals local Lorentz freedom | [L1] | same; `tools/verify_covariant_tetrad_rank.py` |
+| GR-T4 | For specified tetrad and torsion, the metric-compatible frame connection is uniquely $\omega=\mathring\omega(e)+K(T)$ | [L1] | `canonical/gr_closure/gap_10omega_connection_elimination.tex`; `tools/verify_gap_10omega_connection.py` |
+| GR-T5 | The torsion-free GR branch has the unique Levi--Civita spin connection | [L1] | same |
+| GR-T6 | Metric-compatible Lorentz transport preserves $\eta_{ab}$ and the Lorentz slice | [L1] | same |
+| GR-T7 | Every constant Lorentz tetrad has an explicit affine single-$\Theta$ representer | [L1] | `canonical/gr_closure/gap_10i_integrability_selection.tex` |
+| GR-T8 | $\Theta_{\rm SR}=\Theta_0+\sqrt{\mathcal N_0}(ix^0\mathbf1+x^k\mathbf e_k)$ generates Minkowski spacetime and has zero second derivatives | [L1] | same; `tools/verify_gap_10i_integrability.py` |
+| GR-T9 | Naive one-sided regular connection + invertible $\Theta$ + torsion-free compatibility forces zero curvature | [L1 NO-GO] | same |
+| GR-T10 | Two-sided derivative obeys $[D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}$ and permits nonzero intertwined curvatures | [L1] | same |
+| GR-T11 | Einstein dynamics from the original UBT master equation | [OPEN] | GAP-10D |
+| GR-T12 | Integrable on-shell generation of required curved tetrads by one $\Theta$ | [OPEN] | GAP-10I-CURVED |
+
+The former compact-$\psi$ fiber-average rank closure is noncanonical and must
+not be listed as the proved UBT metric mechanism.
+
+---
+
+
 **Author**: Ing. David Jaroš  
-**Date**: 2026-05-18  
+**Date**: 2026-07-16  
 **Purpose**: Authoritative list of what UBT has proved, at what level,
 and where the proof lives.  Every claim here is backed by a source file.
 If it is not on this list, it is not claimed as proved.
@@ -105,55 +123,56 @@ If it is not on this list, it is not claimed as proved.
 
 ## Track T1_GR: General Relativity Recovery
 
-All proofs in `canonical/gr_closure/` and `canonical/geometry/`.  
-Comprehensive paper: `papers/UBT_GR_Submission.tex`.
+The authoritative local route is the projection-free covariant tetrad
+\(E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta\).  Historical metric, fiber, FRW,
+and Schwarzschild ansätze are not promoted to current canonical proofs until
+they are rederived in this route.
 
-### Core Chain (ψ → g → Γ → R → G = 8πGT)
-
-| # | Claim | Level | Source |
-|---|-------|-------|--------|
-| G1 | The metric $g_{\mu\nu} = \mathrm{Re}[\mathrm{Tr}(\partial_\mu\Theta \cdot \partial_\nu\Theta^\dagger)]/\mathcal{N}$ is a symmetric covariant (0,2) tensor, with $\mathcal{N}$ defined by the indefinite Clifford inner product | [L1] | `papers/UBT_GR_Submission.tex` Def. 3.1, Thm. 3.2 |
-| G2 | $\det(g_{\mu\nu}) \neq 0$ for admissible Θ (Theorem 3.2) | [L1] | `step2_nondegeneracy.tex` |
-| G3 | Lorentzian signature $(-,+,+,+)$ is a theorem from AXIOM-B, conditional on the indefinite Clifford inner product definition for $\mathcal{N}$ | [L1] | `papers/UBT_GR_Submission.tex` Thm. 3.4, App. A |
-| G4 | Levi-Civita connection, curvature tensors — standard GR | [STD] | Wald 1984 |
-| G5 | Einstein field equations $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}$ from Hilbert variation | [L1] | `step3_einstein_with_matter.tex` |
-| G6 | Stress-energy tensor $T_{\mu\nu}$ is symmetric | [L1] | `canonical/geometry/stress_energy.tex` |
-| G7 | Conservation $\nabla^\mu T_{\mu\nu} = 0$ | [L1] | `canonical/geometry/stress_energy.tex` |
-
-### Schwarzschild Sector
+### Current proved/narrowed chain
 
 | # | Claim | Level | Source |
-|---|-------|-------|--------|
-| G8 | Schwarzschild metric in isotropic coords from spherically symmetric $\Theta_0$ ansatz | [L1] | `biquaternionic_vacuum_solutions.tex §3` |
-| G9 | Spatial components $g_{ij} = \Psi^4 \delta_{ij}$ verified to $< 10^{-15}$ relative error | [NUM] | `tools/verify_schwarzschild_theta.py` |
-| G10 | Temporal component $g_{tt} = -\Phi^2$ from complex-time ψ-structure | [L1] | Paper §4, tcolorbox |
-| G11 | ASD Weyl condition $C^+ = 0$ for $\mathrm{SU}(2)_-$ sector | [L1] | `asd_condition_ubt.tex §5` |
-| G12 | Curved twistor space exists for ASD sector (Penrose nonlinear graviton) | [L1]+[STD] | Penrose 1976 |
+|---|---|---|---|
+| G1 | Central anticommutator metric on the Lorentz slice | [L0] | `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` |
+| G2 | Nondegenerate tetrad-to-metric differential has rank 10 and Lorentz kernel 6 | [L1] | same; `tools/verify_covariant_tetrad_rank.py` |
+| G3 | For specified tetrad and torsion, \(\omega=\mathring\omega(e)+K(T)\) is the unique metric-compatible frame connection | [L1] | `canonical/gr_closure/gap_10omega_connection_elimination.tex` |
+| G4 | Torsion-free branch is the Levi--Civita spin connection | [L1] | same |
+| G5 | Metric-compatible Lorentz transport preserves \(\eta_{ab}\) and the Lorentz slice | [L1] | same |
+| G6 | Every constant Lorentz tetrad has an affine single-\(\Theta\) representer; Minkowski is explicit | [L1] | `canonical/gr_closure/gap_10i_integrability_selection.tex` |
+| G7 | Naive one-sided, invertible, torsion-free curved representation forces zero curvature | [L1 NO-GO, under stated assumptions] | same |
+| G8 | Two-sided derivative gives exact left/right curvature identity and allows nonzero intertwined curvatures | [L1 identity; route narrowed] | same |
+| G9 | Einstein equations from the canonical UBT action/master equation | [OPEN] | `GAP-10D` |
+| G10 | Integrable on-shell generation of general curved tetrads by one \(\Theta\) | [OPEN] | `GAP-10I-CURVED` |
+| G11 | Torsion selected or eliminated by the canonical UBT action | [OPEN] | `GAP-10T-DYN` |
+| G12 | Schwarzschild full tetrad/lapse selected by canonical \(\Theta\) dynamics | [OPEN] | `GAP-U2Theta` |
 
-### Linearised Gravity
+### Perturbations and named metrics
 
-| # | Claim | Level | Source |
-|---|-------|-------|--------|
-| G13 | Linearised UBT-to-Einstein bridge | [OPEN / conditional on GAP-B] | `canonical/gr_closure/linearised_gravity.tex`; bridge not yet derived from the canonical Theta equation |
-| G14 | Regge-Wheeler equation (odd parity) recovered after the perturbation bridge | [L1 conditional on GAP-B] | `canonical/gr_closure/linearised_gravity.tex`; `papers/UBT_GR_Submission.tex` |
-| G15 | Zerilli equation (even parity) recovered after the perturbation bridge | [L1 conditional on GAP-B] | `canonical/gr_closure/zerilli_derivation.tex` |
-| G16 | FRW metric in UBT solution space | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Thm 1` |
-| G17 | Friedmann equations from Steps 1–5 | [L1] | `canonical/gr_closure/frw_cosmological_solutions.tex §2 Cor 1` |
-| G18 | FRW Θ-ansatz: $g_{ij}=a(t)^2\delta_{ij}$; ODE-a auto-consistent with Friedmann (Lem. ode\_a\_friedmann); ODE-f exact solutions established (v56) | [L1 cond. on Friedmann branch only] (v56: quasi-static removed) | `canonical/gr_closure/frw_cosmological_solutions.tex §3 (Theorem frw_ansatz_l1; Prop prop:ode_f_full_dynamics)` |
-| G18-f | ODE-f exact solutions without quasi-static approximation: dust ($\mathrm{Si}/\mathrm{Ci}$ integrals), radiation (Bessel $J_{1/4}/Y_{1/4}$) | [L1 cond. on Friedmann branch only] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_full_dynamics` (v56) |
-| G18-fqs | ODE-f quasi-static solutions $f_{\mathrm{qs}}\propto a^{-3(1+w)}$ for dust/radiation | [L1 cond. on Friedmann branch + quasi-static $R_\psi\ll H^{-1}$] | `canonical/gr_closure/frw_cosmological_solutions.tex §3 Prop prop:ode_f_solutions` (v56) |
-| G-C-sub | $g_{0i}=0$ in comoving frame | [L1 conditional] | `canonical/gr_closure/frw_cosmological_solutions.tex §4 Lem 4.1` |
+| Claim | Current status |
+|---|---|
+| Regge--Wheeler and Zerilli reductions | Standard GR reductions, conditional on `GAP-B-MASTER` and an on-shell covariant-tetrad Schwarzschild background |
+| Schwarzschild spatial numerical ansatz | Historical/numerical evidence only until rederived with the central anticommutator tetrad |
+| Temporal Schwarzschild lapse | `GAP-U2Theta` OPEN; the former phase/Maxwell wording is withdrawn |
+| FRW, Kerr, and wave branches | Candidate/historical branches requiring covariant-tetrad on-shell rederivation |
+| Fiber-closure perturbation theorem | Exploratory result inside the noncanonical fiber branch; not closure of `GAP-B-MASTER` |
 
-### Explicitly Open (not claimed as proved)
+### Covariant-tetrad closure ledger
 
 | Gap | Description |
-|-----|-------------|
-| GAP-10K | Local kinematic/rank closure: fixed-ψ rank NO-GO; full compact-ψ fiber-free closure proved |
-| GAP-10S | Single-action separation of the direct internal and metric equations |
-| GAP-10J | Fiber-freeness of the dynamically selected Jacobi-theta sector |
-| GAP-10R | Local integrable/on-shell representation of arbitrary required GR metric fields |
-| GAP-10G | Global existence/topology and preservation of fiber-freeness |
-| GAP-C | FRW Θ-ansatz: $g_{ij}=a^2\delta_{ij}$ [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional — Lem.~4.1]; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
+|---|---|
+| GAP-10K | **CLOSED locally:** tetrad-to-metric rank 10; Lorentz kernel 6 |
+| GAP-10Ω-KIN | **CLOSED [L1]:** specified tetrad and torsion reconstruct the metric-compatible connection |
+| GAP-10Ω-GR | **CLOSED [L1]:** torsion-free branch is Levi--Civita |
+| GAP-10T-DYN | **OPEN:** derive zero or spin-sourced torsion from the canonical action |
+| GAP-10L-CONN | **CLOSED [L1]:** compatible Lorentz transport preserves the Lorentz slice |
+| GAP-10L-DYN | **OPEN:** preserve the slice under complete \(\Theta\) dynamics and sources |
+| GAP-10I-SR | **CLOSED [L1]:** affine representer for constant Lorentz tetrads |
+| GAP-10I-1S | **CLOSED AS NO-GO [L1]:** stated one-sided invertible curved route forces flatness |
+| GAP-10I-2S | **NARROWED [L1]:** two-sided curvature intertwinement removes that no-go |
+| GAP-10I-CURVED | **OPEN:** curved local/global existence, uniqueness, regularity, and on-shell generation |
+| GAP-10D | **OPEN:** Einstein dynamics from the canonical action/master equation |
+| GAP-10ψ | **OPEN:** classical stability/independence along imaginary time |
+| GAP-B-MASTER | **OPEN:** perturbation bridge from original canonical dynamics |
+| GAP-U2Theta | **OPEN:** on-shell full Schwarzschild tetrad/lapse |
 
 ---
 
@@ -225,7 +244,7 @@ All proofs in `canonical/interactions/`, `canonical/su3_derivation/`,
 | Q2 | Electron g-factor = 2 at tree level | [L1] | `canonical/interactions/qed.tex` |
 | Q3 | QED running coupling α(μ) reproduced | [L1] | `canonical/interactions/qed.tex` |
 
-### Explicitly Open (not claimed as proved)
+### Covariant-tetrad closure ledger
 
 | Gap | Description |
 |-----|-------------|
@@ -370,4 +389,4 @@ They are **not** in the above list and **not** claimed by UBT at this stage:
 | Strong coupling g_s | Open |
 | Quantum gravity / path integral | Long term — GAP-Q |
 | Cosmological solutions (FRW/de Sitter) | PARTIALLY CLOSED — FRW in solution space [L1]; Θ-ansatz [L1 conditional]; $g_{0i}=0$ comoving [L1 conditional] — GAP-C; see `canonical/gr_closure/frw_cosmological_solutions.tex` |
-| Pure-Θ local closure | GAP-10K closed on regular fiber-free profiles; GAP-10S/J/R/G remain open |
+| Covariant-tetrad local closure | GAP-10K, GAP-10Ω-KIN/GR, GAP-10L-CONN, and GAP-10I-SR closed; one-sided curved route closed as no-go; torsion dynamics, curved integrability, Einstein dynamics, and ψ-stability remain open |

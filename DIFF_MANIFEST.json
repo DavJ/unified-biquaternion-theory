@@ -1,46 +1,917 @@
 {
-  "base": "unified-biquaternion-theory-master.zip (author snapshot, post v10.1.4-prep)",
-  "date": "2026-07-15",
-  "changed_files": [
+  "patch_name": "UBT Covariant Tetrad + Omega/Integrability cumulative root overlay",
+  "date": "2026-07-16",
+  "baseline_archive": "unified-biquaternion-theory-master(4).zip",
+  "baseline_root": "unified-biquaternion-theory-master",
+  "apply_mode": "extract directly into repository root; overwrite matching files",
+  "deletions": [],
+  "file_count": 113,
+  "new_files": 15,
+  "modified_files": 98,
+  "files": [
     {
-      "path": "canonical/gr_closure/linearised_fiber_closure.tex",
-      "sha256": "a52beab1c8c7ac7dbc841d6238a3542308f2fe811b41ccdb107335f85a71d4ae",
-      "size": 6406
+      "path": ".github/copilot-instructions.md",
+      "status": "modified",
+      "base_sha256": "daac6137661a8ca19eb811aaaebb751971ee0bb22ab0c01b05bbe86f0c277a54",
+      "new_sha256": "0067d8e6264f5ec70f309675e44c93ef95341d90a3204e82bd677e4cb52a7be0",
+      "size_bytes": 4690,
+      "mode": "0o644"
     },
     {
-      "path": "tools/fiber_free_check.py",
-      "sha256": "fb9740d8d426faee8e9744de04cf0c455a53f1400f4c0c2b603aaf69599e6e40",
-      "size": 5125
+      "path": ".github/pull_request_template.md",
+      "status": "modified",
+      "base_sha256": "bba12278b03c4ee9f7ae118bf35b480bc7688e53c2d79c50ba7df1c72351724a",
+      "new_sha256": "8e9f976292c2ef2aa4b591b7166eb7ddd0fcf17e59f0e21f8b5688394eebd515",
+      "size_bytes": 1740,
+      "mode": "0o644"
     },
     {
-      "path": "research_tracks/gap_10j/gap_10j_status.md",
-      "sha256": "9abf8020021f1ff4286cdb8e07a9eb6a1a755b43c576f64359212dab96709486",
-      "size": 1634
+      "path": "AGENTS.md",
+      "status": "modified",
+      "base_sha256": "a1218424dac28e50166abed576e104c6d6b0f4a8edf86bd4a8943f2eaf6d311b",
+      "new_sha256": "f585e8a7e512bf4a805e9c738523f361231fcb8f8811ca1155d80d477687e415",
+      "size_bytes": 7514,
+      "mode": "0o644"
     },
     {
-      "path": "papers/UBT_GR_Submission.tex",
-      "sha256": "a2ac7b9877dd1628c1809b71e4d9ff47a07099bb587df2539f6c872cecf553d5",
-      "size": 56168
+      "path": "CHANGELOG.md",
+      "status": "modified",
+      "base_sha256": "f23e80c23e32436ccad83edb9f0b7111a1b56dd95fe544f0d54483b49b46094b",
+      "new_sha256": "86256a55f77035af1e65361a6b0c36ae0f842fd2b05c66b1062348bd3e43dc78",
+      "size_bytes": 16420,
+      "mode": "0o644"
     },
     {
       "path": "CLAIMS.yaml",
-      "sha256": "d2391e5fbd4ba9f4734c1bd05a514b067950b01dba9163f76eccdfb4598dfb48",
-      "size": 2226
+      "status": "modified",
+      "base_sha256": "d2391e5fbd4ba9f4734c1bd05a514b067950b01dba9163f76eccdfb4598dfb48",
+      "new_sha256": "08663a11236b9a66b4ac881bdba26043f8c2b18127bb08863e273d865ebeed0e",
+      "size_bytes": 3508,
+      "mode": "0o644"
     },
     {
       "path": "CLAIMS_MATRIX.md",
-      "sha256": "8a3ba0d35582e65e33acf34357a3c6904b075a0448106178703c9638012ed242",
-      "size": 4956
+      "status": "modified",
+      "base_sha256": "8a3ba0d35582e65e33acf34357a3c6904b075a0448106178703c9638012ed242",
+      "new_sha256": "3af9072e7ba7b881e346e387c9e3fb4fd2d7fadfd4848bc0541f0c559393f6ca",
+      "size_bytes": 5325,
+      "mode": "0o644"
     },
     {
-      "path": "PATCH_NOTES_GAPB_GAP10J_2026-07-15.md",
-      "sha256": "1818251e4b95ae81c27d750ca2642a425f0d63542145453f1f6a9ce692bfeadb",
-      "size": 2072
+      "path": "CONTRIBUTING.md",
+      "status": "modified",
+      "base_sha256": "8f24e5583c6dca9af2fdb712e5a3fcf78d8bad654581444a419b60b0b86778fb",
+      "new_sha256": "2c1bc93960306ae6a4ec7b15f6951abed2843cf38c63a07e0dbc3614fd590f62",
+      "size_bytes": 11114,
+      "mode": "0o644"
     },
     {
-      "path": "README_APPLY.txt",
-      "sha256": "58a9fbdf5b0d5a135b487b6ec0c4198e9b8521b23f5a724273b1d2b50d1b2c03",
-      "size": 113
+      "path": "DERIVATION_INDEX.md",
+      "status": "modified",
+      "base_sha256": "bb415a821c7b63dc4a2dddabccf4b5f1ede06b2dcb5e36be02d5c1a3ebe4ec4f",
+      "new_sha256": "2e3bf78a364b77513621b2748885c44f21bcc1440d1dd06c95ce5a8b4688099a",
+      "size_bytes": 7868,
+      "mode": "0o644"
+    },
+    {
+      "path": "PATCH_NOTES_COVARIANT_TETRAD_OMEGA_INTEGRABILITY_2026-07-16.md",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "cb1a2c05afe8ce40c32ed01d40be1e41122532fbc1c72c5ae74e5d3d5b15d3eb",
+      "size_bytes": 5134,
+      "mode": "0o644"
+    },
+    {
+      "path": "PATCH_NOTES_COVARIANT_TETRAD_REFRAME_2026-07-15.md",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "b316937891243e0c0a9e526ff574a9e9c3d2c0a85a7e4ff1ee3b6c893eb6484e",
+      "size_bytes": 1740,
+      "mode": "0o644"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "base_sha256": "e8187d65b98de63422dab21ab73974f5094c02db91d8769e65a335e860d7a204",
+      "new_sha256": "f85fea74d69c9e95bddcedff446054c3e410db7722f6dc3c416166980b555b6c",
+      "size_bytes": 6241,
+      "mode": "0o644"
+    },
+    {
+      "path": "STATUS.md",
+      "status": "modified",
+      "base_sha256": "633cc3a17ea14022962ac7b586d07fbfc5a494a7169969c6fcdd719f281fa55c",
+      "new_sha256": "d9f1cd97dbc6bd4f66ffb70ea6df2cf07468da696c5d9c6f53f6b1c1a6742fdf",
+      "size_bytes": 5968,
+      "mode": "0o644"
+    },
+    {
+      "path": "STATUS_OF_UBT.md",
+      "status": "modified",
+      "base_sha256": "59908caa9b83118024a01d264f9e4c91e3ed27456d7653f79133e77d99e8e2b5",
+      "new_sha256": "46cc4ef8bb22edc990c9d0363b170f6b95723b721fdee0f8c258afdc693f4d59",
+      "size_bytes": 44611,
+      "mode": "0o644"
+    },
+    {
+      "path": "WHAT_IS_PROVED.md",
+      "status": "modified",
+      "base_sha256": "60722b048b4a52021b6e9033a4a7927618b3b801cf4bcd9ebe4044564bd20500",
+      "new_sha256": "c291212e57f27e5c6b6ef9c16d2121c145f50c6ddb8673bafe2512f0c22b5b53",
+      "size_bytes": 30019,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/AXIOMS.md",
+      "status": "modified",
+      "base_sha256": "28159b267db89df9ea0f089486afebb585d1b11f8af13d36333642b89d3f06be",
+      "new_sha256": "6c921ce5aa9f27aabe564166c219c4b5cfee8c72fc5eb9b64681e550016ed2c8",
+      "size_bytes": 20367,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/CANONICAL_DEFINITIONS.md",
+      "status": "modified",
+      "base_sha256": "f13f8b38b17813009991c3bb3adaa5750989c43b9984a98b112e55f15aff7644",
+      "new_sha256": "5fb2e17a85b0a407e796756d87e926e2433ba51e4aaeb5bc1b071cc18d98909f",
+      "size_bytes": 20428,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/biquaternion_connection.tex",
+      "status": "modified",
+      "base_sha256": "bc17a73f24c19c5f746d038f0ce30a3d9179d3e3af0dd865247a00a4f72b11e7",
+      "new_sha256": "3a6e22d6d413ac3a1b22a856d274a3e1f928fc86e13e9187464cd1d4fb5f18a7",
+      "size_bytes": 5097,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/biquaternion_curvature.tex",
+      "status": "modified",
+      "base_sha256": "0edbda60832e7b911dbb476311ea1359c9f15428ebc3bab6e02df56c74c5f55d",
+      "new_sha256": "8fd9e8928c9893939b8d997a0e527d3c8f66d832f025da49736288383f4237f0",
+      "size_bytes": 1617,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/biquaternion_metric.tex",
+      "status": "modified",
+      "base_sha256": "9228c67ac32e82d02a5875df7047e6604be471035e5c17919575ed63443dbbbb",
+      "new_sha256": "71b6cd9d2839bf93f651e777ad464ba900ccdb26a8c81b688b1dcb1aba4bbe70",
+      "size_bytes": 1362,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/biquaternion_stress_energy.tex",
+      "status": "modified",
+      "base_sha256": "2b9fea9a655c4b061b4d7a7991f31a84588d7e02cca9db1786f6cef8bf9aeb62",
+      "new_sha256": "e784e99bb7f1e0e7c7a3da88a0e414fe057029786266771b8c97e30368645825",
+      "size_bytes": 14146,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/biquaternion_tetrad.tex",
+      "status": "modified",
+      "base_sha256": "3d80fd11d92e2d160a72e6a7109e3a1dc4f84551aaf63be83889b3275e01a0e2",
+      "new_sha256": "029cb7796e8f3a17857a6ce8ce83ad99f5cfc6f7a99352d0a12c5faf9697babe",
+      "size_bytes": 3410,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/connection.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "e01fcb6a03338f8d7ffcb4cf168f7d562efe5febc56ffa073813766dc64a082f",
+      "size_bytes": 1734,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/curvature.tex",
+      "status": "modified",
+      "base_sha256": "049c265e3cc71ba262558ae58b07a4027db7f76c6757b68f5aa6175d2bed872f",
+      "new_sha256": "6fe0ba05a7e34e6c32037ea12e7d6a9eba3d948fc3e078f58baff8eb4b21756d",
+      "size_bytes": 1201,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/exotic_regimes.tex",
+      "status": "modified",
+      "base_sha256": "93714a243d883b01639902c54a14b30cabbfc9e950fad2c16e28e9f39559afb7",
+      "new_sha256": "49cce49ab20bd3ad23f352a04fc5a326a3d3138824f7c8d9e622fff3546da1f8",
+      "size_bytes": 12828,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/metric.tex",
+      "status": "modified",
+      "base_sha256": "c9744baac41e182c81bbdfe40bb288b1564119ef5df891a85747bcf7ecac2045",
+      "new_sha256": "840062acba0cf3be35c65c410764036efe16d53e8a957a3f6d03d2c25e7fc03a",
+      "size_bytes": 93,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/architecture/geometry/stress_energy.tex",
+      "status": "modified",
+      "base_sha256": "ecb6aea2e094b3262337fc367b17b5501270cded0c78a527e48e864dc11cc281",
+      "new_sha256": "ff0b956e8ecabc46a7c7da2b9e711f2dadb7d1adfcfb1da1db67fef92d277503",
+      "size_bytes": 11949,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/canonical/canonical_action.tex",
+      "status": "modified",
+      "base_sha256": "3e5b2bf02dd2a77c338f5bafa80445d5713c05192d2224312d9eae11708cca6f",
+      "new_sha256": "94b8cac8e770090fbe0b4f2e1eb1733fd627bdf74538d6d8c2be9308d2ad0e3d",
+      "size_bytes": 2504,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/canonical/canonical_axioms.tex",
+      "status": "modified",
+      "base_sha256": "1e8348b3e92f24a7b50d854b5c4c26c15f131cb3b8e5b17fda9097983c1f2062",
+      "new_sha256": "622ee7727fc2cd855709c77bef8f066cb11a1f0fea48d908527609286396d77d",
+      "size_bytes": 4764,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/canonical/canonical_field_equations.tex",
+      "status": "modified",
+      "base_sha256": "c468e7864bf84e9962815372c51963017c1dcc461f61fbd0dd1db64f8c47d433",
+      "new_sha256": "6ed4ff6adc058dd410e2bb78a50287b2e5337b8dc9c219159a9f38917d997ab1",
+      "size_bytes": 3362,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/canonical/canonical_metric_definition.tex",
+      "status": "modified",
+      "base_sha256": "92590b3d8f7b153f6e0c1efea8d7d0a86af85e1b09524132636a10b6b9b25c16",
+      "new_sha256": "fafc7fad7032b3c46a9ec7fc14c1dc97419c526c66d2475e3ef5364653938e6c",
+      "size_bytes": 2788,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/canonical/canonical_projection_rules.tex",
+      "status": "modified",
+      "base_sha256": "2d3808b9e38616bb7990ae94c4616f8d18b02b7a9359507fc495bdb595a377cb",
+      "new_sha256": "b8d56ca3bccd1866661eb3d417a6742a1f7b2d202563bb07d4b66ba9dd8ece2a",
+      "size_bytes": 2890,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/math/fields/biquaternion_time.tex",
+      "status": "modified",
+      "base_sha256": "eafc276d60aad2429afe2291dfd5008c3af084e43d359e6fa4a6e0d3707363e9",
+      "new_sha256": "2f5ed1901f68772f4c0564499509b0227895907008f20a4cf8ed0c2453399521",
+      "size_bytes": 13226,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/math/fields/theta_field.tex",
+      "status": "modified",
+      "base_sha256": "54c49c6b513ad0320791838154958e079fffc41f37e0b0d182fc92ba484c7035",
+      "new_sha256": "30d1e7a2958abba58e5b7aaf1513739cb31af5ad0dbe76950d6bf2d09b0c8b38",
+      "size_bytes": 8684,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/THEORY/topic_indexes/GR_index.md",
+      "status": "modified",
+      "base_sha256": "57c8ea8a1ab3c5a36d6d84c73992c9c4c55bb0a8a49c7ac95d0fb194fb121491",
+      "new_sha256": "0361e042a920b510cd14ccbee4613e40ca7f7e65210d8a529df471fa2e0c6489",
+      "size_bytes": 5643,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/UBT_canonical_main.tex",
+      "status": "modified",
+      "base_sha256": "5fd488c9eab41a9ef9960d1bfbfaf6fd4b962a2fba36c6835f9912455b345e79",
+      "new_sha256": "1b84bb29360c49ad747f1165bf13a2c8cc5913b52ffe922a903fbe7658dc8e34",
+      "size_bytes": 18920,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/alpha/chronofactor_projection.md",
+      "status": "modified",
+      "base_sha256": "7c79fec818f6213854af3b23477da42eab06c72a636064f26925e5675b683de3",
+      "new_sha256": "c082361d8f6f82beb56e568dffd2c6066f4963b567e5e6ba8c580ecd106fe6f2",
+      "size_bytes": 12885,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/appendices/appendix_metric_review.tex",
+      "status": "modified",
+      "base_sha256": "ad64f662f4c04b629dd7a881518f7d1ca11bbde1fa47c17ef6ca4efa2d8a87e9",
+      "new_sha256": "eff944607595b76c9726c4af0b47f7f614609bad43a1fd772cce31d624c61633",
+      "size_bytes": 4173,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/appendices/symbol_dictionary.tex",
+      "status": "modified",
+      "base_sha256": "168f3cd5db76e14e049186f9013dc53c86f53bfa2c7b94d0fd17b6a7d70f4441",
+      "new_sha256": "158798a3804b32d670cd5e2067014a20e6f89ce291e24c95195b026ba206f140",
+      "size_bytes": 11706,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/bridges/GR_chain_bridge.tex",
+      "status": "modified",
+      "base_sha256": "c86352d02ed33e28367b6cd037647a3f125ea3039087867ccfe044d1803d9134",
+      "new_sha256": "f0a763b7d23ca18343de7c06ed44b9b3e6974724718c030b45850dd89a091464",
+      "size_bytes": 1726,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/explanation_of_nabla.tex",
+      "status": "modified",
+      "base_sha256": "0a518b542033055b1191ab791ecfe8fbcd1505632f017b3fd52c9b65c38bcfb9",
+      "new_sha256": "da930418ed350532523af1eedca922694c3b3d13824181f741b90ea6da3cde3e",
+      "size_bytes": 2958,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/fields/biquaternion_time.tex",
+      "status": "modified",
+      "base_sha256": "7b041d0f879b94f0f5b1fa7b4cdb7d4e414537d5afcace34d1b3662110cc7688",
+      "new_sha256": "ca3c5e28efed942d79aeef4c56f70ede43cc2298b9fdd9164e5c70865121f873",
+      "size_bytes": 13381,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/fields/theta_field.tex",
+      "status": "modified",
+      "base_sha256": "643a1ae30cdb7900bee4dd57e3af21165a39b4dfa1e1fe1b76ae91d5a1dd4f7c",
+      "new_sha256": "0f34553bb69ee441f9b539fd87a73b57b6b365f3069352377304471be5c24188",
+      "size_bytes": 9136,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/biquaternion_connection.tex",
+      "status": "modified",
+      "base_sha256": "bc17a73f24c19c5f746d038f0ce30a3d9179d3e3af0dd865247a00a4f72b11e7",
+      "new_sha256": "3a6e22d6d413ac3a1b22a856d274a3e1f928fc86e13e9187464cd1d4fb5f18a7",
+      "size_bytes": 5097,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/biquaternion_curvature.tex",
+      "status": "modified",
+      "base_sha256": "0edbda60832e7b911dbb476311ea1359c9f15428ebc3bab6e02df56c74c5f55d",
+      "new_sha256": "8fd9e8928c9893939b8d997a0e527d3c8f66d832f025da49736288383f4237f0",
+      "size_bytes": 1617,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/biquaternion_metric.tex",
+      "status": "modified",
+      "base_sha256": "9228c67ac32e82d02a5875df7047e6604be471035e5c17919575ed63443dbbbb",
+      "new_sha256": "71b6cd9d2839bf93f651e777ad464ba900ccdb26a8c81b688b1dcb1aba4bbe70",
+      "size_bytes": 1362,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/biquaternion_stress_energy.tex",
+      "status": "modified",
+      "base_sha256": "15c682bcb220150fbdbc82ddf38cbeb01eef7f978ad7d9d226291fdd81175baa",
+      "new_sha256": "2af4fb266417fee9af4e52393938cdad54a5932f4168bbf4a06fe7772ce13f98",
+      "size_bytes": 14146,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/biquaternion_tetrad.tex",
+      "status": "modified",
+      "base_sha256": "3d80fd11d92e2d160a72e6a7109e3a1dc4f84551aaf63be83889b3275e01a0e2",
+      "new_sha256": "029cb7796e8f3a17857a6ce8ce83ad99f5cfc6f7a99352d0a12c5faf9697babe",
+      "size_bytes": 3410,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/connection.tex",
+      "status": "modified",
+      "base_sha256": "ac7d293e356f186380ce360c067aa7ad3f9d224c4d31367907e6c2f285c5cde9",
+      "new_sha256": "e01fcb6a03338f8d7ffcb4cf168f7d562efe5febc56ffa073813766dc64a082f",
+      "size_bytes": 1734,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/curvature.tex",
+      "status": "modified",
+      "base_sha256": "d5a496664de13d71a68c4b53c35666245471097f84289be1d22ae3caaeccaec2",
+      "new_sha256": "6fe0ba05a7e34e6c32037ea12e7d6a9eba3d948fc3e078f58baff8eb4b21756d",
+      "size_bytes": 1201,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/exotic_regimes.tex",
+      "status": "modified",
+      "base_sha256": "d9ff083777a996cc5b55bf262d6d48f7c2596cf2a99994f0a8900c55ccf64e68",
+      "new_sha256": "bd6d642171966561edb4c808e1cff4e127dbf8302e4c60c060e8ec351f63cd57",
+      "size_bytes": 12929,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/gr_completion_attempt.tex",
+      "status": "modified",
+      "base_sha256": "83dfbc0a2bc5ad5858aab8ab952f7c28f4bcabb91f37cd569de02f10309cf135",
+      "new_sha256": "645acc46c660ff92e4c8c6a9b788bbabe6e92445b6170b7bb96ca567d5104fcb",
+      "size_bytes": 10205,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/metric.tex",
+      "status": "modified",
+      "base_sha256": "c9744baac41e182c81bbdfe40bb288b1564119ef5df891a85747bcf7ecac2045",
+      "new_sha256": "cba4bef2d50bfce99b402038248979c09f69f34499d18e11ec534f27938a3faf",
+      "size_bytes": 102,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/phase_projection.tex",
+      "status": "modified",
+      "base_sha256": "0e38d26aaed000c6a5b5333c45f1b7a1cc1769ad12276f69286fe2e168850fe3",
+      "new_sha256": "1547767f71203f9c0d35081ed91fef4e6c9a9206300c0e6ed3855ecbf2b28e18",
+      "size_bytes": 7592,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/geometry/stress_energy.tex",
+      "status": "modified",
+      "base_sha256": "49c3af6ef67ac511b6311b246f3c5db80eb906aca75bd9837a12ff7c64ed381a",
+      "new_sha256": "44def47b290de0218693d2eec66b01e432a84663fab6432c7ada964dbfb56ca7",
+      "size_bytes": 11949,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/GR_chain_summary.tex",
+      "status": "modified",
+      "base_sha256": "c6c51b38c9a343fe8c65a2772a9dcdacd59b6609484e344f2e86ef4cb63bb5d9",
+      "new_sha256": "c3840b4ee5a92c9f700ffb3b0f70350d3a56e7cfe9894e384cc05ae9f5ea2806",
+      "size_bytes": 9041,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/PURE_UBT_CLOSURE_STATUS.md",
+      "status": "modified",
+      "base_sha256": "c8fb1f62da7f0eccf7979eb92fe2a06dc3ed4b0f42746b63850bf2cf47c8ded0",
+      "new_sha256": "9c199b7e1b849bb3657557ab588fd906611908a7c9005d96b685fd44461b7082",
+      "size_bytes": 2400,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/README.md",
+      "status": "modified",
+      "base_sha256": "8a27b33c81d9b2e0a47b7adbb08ee07bdb374b2aa67a5c51b893aaeef1423ef9",
+      "new_sha256": "eac37841ccb0e700b8426443049e438462409148e77e5119b42b65e334c8622a",
+      "size_bytes": 2205,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/covariant_tetrad_rank_theorem.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "66ce058c9f5acf25c8853c05b34e8c5ffdee4d8e0cf9c58170d65d75ee457b2d",
+      "size_bytes": 10205,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/gap_10i_integrability_selection.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "fa0b0cd4723ac12fdb903e4f1c9d0358631711b6838b472bb777671c31713867",
+      "size_bytes": 10321,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/gap_10omega_connection_elimination.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "1dbe0ec60444f39851e87d678b182eb15c31651efd775f4f7003651c4fbadf63",
+      "size_bytes": 10174,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/linearised_fiber_closure.tex",
+      "status": "modified",
+      "base_sha256": "a52beab1c8c7ac7dbc841d6238a3542308f2fe811b41ccdb107335f85a71d4ae",
+      "new_sha256": "c5226e1de54f8e771fe012e74d7ec33792fdd836b66eaa7efee1068b892e0e05",
+      "size_bytes": 6766,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/pure_ubt_fiber_closure.tex",
+      "status": "modified",
+      "base_sha256": "b9be4a61337c0b187288e15dac37e8b15c0950eeb909f4404f0f750b217aa022",
+      "new_sha256": "f984289755f3068ed00244632500f90dfb5f59cda932e503c0a2536b722d6dd8",
+      "size_bytes": 26110,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/schwarzschild_table.tex",
+      "status": "modified",
+      "base_sha256": "1ada89df5ca5cb8e9fac1bb3781fee826f3fba7faa7badef6a256830d49161e2",
+      "new_sha256": "fd85e3af2d8d3f4d802420c256ccc7bf4b6e73cb0ae6e47d62b261b57cb4ebc2",
+      "size_bytes": 1585,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/step1_metric_bridge.tex",
+      "status": "modified",
+      "base_sha256": "e87475195f052b74a8f01bdde13ff32dafc7ee319455a8c88a7bda3bb7cfa756",
+      "new_sha256": "38e02fcdaa20e4df2c41e80079fcf6c6f5231b3826c2e1fbf05badd4118b5404",
+      "size_bytes": 557,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/step2_nondegeneracy.tex",
+      "status": "modified",
+      "base_sha256": "492a1a1a9c1cd313e1a0554c843a2577e80f69d551f6fdec8fa6cafcf44b5728",
+      "new_sha256": "2f6d044a0ae93332c8ab28b14d82fc420c23a89fe761727c03e5a8aa73ab4a94",
+      "size_bytes": 13252,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/gr_closure/step2_theta_only_closure.tex",
+      "status": "modified",
+      "base_sha256": "271a16f05981e0d1dd98e80025ee6149cf0de8af125acec5f9d4fa86f4d46e43",
+      "new_sha256": "03cc01ff289c2447bcad55a5682b5c9e17ee6c7f5003ea6a8130ce8d2d61ea95",
+      "size_bytes": 3316,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/interactions/qcd.tex",
+      "status": "modified",
+      "base_sha256": "0f0b68fc6eafde9e84f0354fc855e5359b5502c55ce1d779216f7f3b6b1b51b4",
+      "new_sha256": "25bc3f7250db0016f006b69e18c6188143e1409b33ae0698fe55001d9f2bbca2",
+      "size_bytes": 12409,
+      "mode": "0o644"
+    },
+    {
+      "path": "canonical/interactions/qed.tex",
+      "status": "modified",
+      "base_sha256": "546e0f3e59ac25c3174db48fb053088ed031374f8e2e4f8e0d873a930f8631b9",
+      "new_sha256": "a81efa1a675ac1f14efbc895b5e617e81a3b30a3425020666e3c8a661184d011",
+      "size_bytes": 10952,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/AUDITS/claim_evidence_matrix.md",
+      "status": "modified",
+      "base_sha256": "69a11fefd2b59094b92ad7f7308c8b585302abf331c634c24bbc7b5945d86d38",
+      "new_sha256": "8f6b122f407ac002967ca87e0c8a8588bd17d54cb9bc010ec03bb8e60ea60b41",
+      "size_bytes": 12302,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/AUDITS/copilot_repo_verification_and_gap_report.md",
+      "status": "modified",
+      "base_sha256": "c73150bebc78fd37a1dc40d30c386e6570149a7a303005926f40c1fc03ad7569",
+      "new_sha256": "6541fe3c13af2b32762498cc91e3fa5fdf191b3598bd7212dd3732ab29243bcc",
+      "size_bytes": 19901,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/AXIOMS_METRIC_LOCK_SUMMARY.md",
+      "status": "modified",
+      "base_sha256": "4521b51b2be6e60ee694d84d04b79331fe6a0ad7f1007990fa2cfd3f93c88eb3",
+      "new_sha256": "4c759c5242a6b78fdd1019b452bb63fd33e66015383b1bfa0392203edefa171f",
+      "size_bytes": 950,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/BIQUATERNION_GEOMETRY_LOCK_IN.md",
+      "status": "modified",
+      "base_sha256": "cce905bde4db1b67a71d68770f8159a5df718fa4a5a72e90f6ccafde99e95ecc",
+      "new_sha256": "0dd59c93a58dfcfaaba307a77cfe99a9dc3b38a9b10d4808b0c292297db978ee",
+      "size_bytes": 4403,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/BIQUATERNION_GEOMETRY_REFACTOR_SUMMARY.md",
+      "status": "modified",
+      "base_sha256": "3a747686f87f25444e627dd0a30704d94b7750bfc1a9829d4d4eb40ac9fc4eda",
+      "new_sha256": "b3e86b147518e56d1c1252d39d7b958b1ca85238336064f10ffba5076dfa2ad5",
+      "size_bytes": 10928,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/CANONICAL_CHAIN_CHECK.md",
+      "status": "modified",
+      "base_sha256": "c6501e4aa08d41bf9ef28240a706262e7b2727ea8faac7bb243c451644190457",
+      "new_sha256": "2f97c2d0fffaccdff11f14fedb85eff6f487b6b2086a84fd55ab5b44e08bc0a4",
+      "size_bytes": 6167,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/CONSOLIDATION_ROADMAP.md",
+      "status": "modified",
+      "base_sha256": "224821e69dcafbf6d9d295106fc5f638f6ed7a904f529a1e37208100d7f93ed1",
+      "new_sha256": "eb63314cc2d61fe7d1872f5b3b622d4c6c5ef9f85d6a6700550287dd34c8380a",
+      "size_bytes": 12807,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/CURRENT_STATUS.md",
+      "status": "modified",
+      "base_sha256": "a3bf11eb697191219051e5bbf7a80af2daab2bf35303823dc52ffb5b161a01c2",
+      "new_sha256": "c1505455c5e4e3ed8e8a90cb2af46447e2988936bcf09bb41711479ac3de5861",
+      "size_bytes": 21820,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/DERIVATION_INDEX.md",
+      "status": "modified",
+      "base_sha256": "988551cd1f1c7d84a7b845a565dbf69fa23db2705f7c9f46b1b54d969809a7c2",
+      "new_sha256": "1519826f5ec09f9f8c8515eedda929273877c1b2e326ca02eecb4f97e1551c92",
+      "size_bytes": 11917,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/DERIVATION_MAP.md",
+      "status": "modified",
+      "base_sha256": "2206e9b2a7234f0ce75b125ccc574dfe4b8387c20865d550f4f5af37692e1bba",
+      "new_sha256": "3cbac937bbab44f62a73baa9cf769dbf0cdfcd12d8a23949a786bef82eec209c",
+      "size_bytes": 14464,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/GLOSSARY_OF_SYMBOLS.md",
+      "status": "modified",
+      "base_sha256": "f0debc1eae8dd9199abb2e484e81bff545da76f784bd471336aa8a63295782b6",
+      "new_sha256": "018eee631299065a9d77f8c05d01114a3c7826fdd42d5ac323ac85db01d298a2",
+      "size_bytes": 13151,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_CHECKLIST.md",
+      "status": "modified",
+      "base_sha256": "5f52a3f98a0eb5e7465c80eebc7d92bfb34a78b97b842b44ca2fd9c213e0faec",
+      "new_sha256": "64e590574f2b1b4cbbf3d08308a47aaf90c99c79c9c7e8b97dda254e2ea3a9f8",
+      "size_bytes": 7769,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/PHASE_1_COMPLETE_SUMMARY.md",
+      "status": "modified",
+      "base_sha256": "7c8b868b24fefc9282b4f9b535c4a2bff9e7f4c099c5ba98d96ecdfeab61a4b6",
+      "new_sha256": "6e45354c54826d1fc688436a5da7490be7a3eddd966e79711130781b4a06ad62",
+      "size_bytes": 13960,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/QUANTUM_GRAVITY_IMPLEMENTATION_SUMMARY.md",
+      "status": "modified",
+      "base_sha256": "94a2375b00d2c98e567a6a1e2c1bb2d55bf2ee51e8090948e1a250495fed8b53",
+      "new_sha256": "c89a114874f04c9f9132b81f7cc02301b2070a57ec76797d8508beca4c740260",
+      "size_bytes": 10275,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/QUANTUM_ROADMAP.md",
+      "status": "modified",
+      "base_sha256": "0de275d6f534c199d43e0363f526e341d48d7011a446df465aa208d92ac0ea46",
+      "new_sha256": "678f84bea0d721065eee3e06a6a9d961a9ff114dce304baf585a0de01d5f4cd9",
+      "size_bytes": 15675,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/UBT_COPILOT_INSTRUCTIONS.md",
+      "status": "modified",
+      "base_sha256": "7defeeb73954dc723abc81a512493fed3465cdbed21a114bbb021f806804a10b",
+      "new_sha256": "f4e1a9f1b23cc468ff8858ffecb66b6f99dedbcacd9dc76e9a47eb1565143ea9",
+      "size_bytes": 2251,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/UBT_MAP.md",
+      "status": "modified",
+      "base_sha256": "da1a98fa8b145304aee4896d3d4081ce86c70bb87d357274a61af3dc1163e762",
+      "new_sha256": "e55e0de5a02d5443ad63c392b04991f0267b54c33b10f1ac9edf4deeb52384b0",
+      "size_bytes": 6739,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/UBT_MAP.svg",
+      "status": "modified",
+      "base_sha256": "1dfa21c73222538ff017e43b65599a9b9fb55f9ef35fa16f4bd8fd249aa697b3",
+      "new_sha256": "fdc3efddad0d0fa5007223a17e41a9385ad7b614f00912461a24f2bfa8fd641d",
+      "size_bytes": 11228,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/copilot/01_COPILOT_INSTRUCTIONS.md",
+      "status": "modified",
+      "base_sha256": "5f6be7b2561b2ddc4707946c067d8ee770897c07830608d9ceb6a27a2bc46b4b",
+      "new_sha256": "9fcdf7f503e8ed46fd505d0ecf5cc7e49503a6ac53287ce8dd5512c435195515",
+      "size_bytes": 1011,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/copilot/02_COPILOT_CANONICAL_STRUCTURE.md",
+      "status": "modified",
+      "base_sha256": "a1646ab46e150ee77e72f67de1ebf7965239bf461655bbd98bed7c8bc0f12c60",
+      "new_sha256": "77eca1fd680fb51edbb8e2bf10fe5ba2a41b69ea49b61a86816b492c4bfca8a9",
+      "size_bytes": 985,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/copilot/03_COPILOT_MATH_DISCIPLINE.md",
+      "status": "modified",
+      "base_sha256": "c7efc61f2044e137b3202d3c40a24395c82533a5efbdb33286970f5e045625aa",
+      "new_sha256": "b0fdef75992a936bd1fb3ae0bc6a29b7c24ba2861b8292cf55fee4aff70a1ecd",
+      "size_bytes": 1136,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/copilot/04_COPILOT_REVIEW_MODE.md",
+      "status": "modified",
+      "base_sha256": "bad213d4e600c28e9f9eb94c37e707b929641195a39fc0d99a0a86b3e0f8c229",
+      "new_sha256": "6bfffd6d4880c1afe65016488ca560bf693699455a2733fcd4787503823c6fc2",
+      "size_bytes": 1120,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "d570a1544e653edcf19ae489ae4478aa197a80d5bbe594123da146b944ca04e2",
+      "size_bytes": 11496,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/phase/ubt_phase_projection.tex",
+      "status": "modified",
+      "base_sha256": "7d11c8ff519c0390b2e89d1874b02e0548b0725198698069fb0956828ba1c2e4",
+      "new_sha256": "d5f322c5748ac19c92f795927521623173fc21c416616fb0e6494b663a4a7343",
+      "size_bytes": 21967,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/reports/theta_dof_vs_gr.md",
+      "status": "modified",
+      "base_sha256": "4555c8def7853f069b26e2085dcbe89ef2d9a426ba6e5c15dff5d89464f4b308",
+      "new_sha256": "52e62a799a82b27147d9f62cde87b36eba39b25620d37aa42d6d0aca690360a8",
+      "size_bytes": 7766,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/textbook/chapters/04_covariant_tetrad_geometry.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "2e556fc90c8a7c4a6efb391727f4b8987356093860225bdd7ea242acbbf71354",
+      "size_bytes": 14530,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/textbook/covariant_tetrad_student_paper.tex",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "3c35f7c3256dbfdf9d59c2a268ba5578232d68653c8511972a8380234014d4b6",
+      "size_bytes": 769,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/textbook/main.tex",
+      "status": "modified",
+      "base_sha256": "1059968b7b04c554af80b4147e9dfc2ff56d538683f627d3b0cbe9cfcc3e8f4e",
+      "new_sha256": "72d6ae0f8146c1493f47746e69a877b94f8b192bc123e4290b1b2083f0247b02",
+      "size_bytes": 1259,
+      "mode": "0o644"
+    },
+    {
+      "path": "docs/ubt_gr_recovery/gr_recovery_status.md",
+      "status": "modified",
+      "base_sha256": "2b133d7d4c490db03bfbb24f52cbbc804cc0faaa97cc5937156b98db355762a4",
+      "new_sha256": "890eda0fff8fd0c5ff068262f1897751bc424533b8d615e460998616397f8b61",
+      "size_bytes": 5586,
+      "mode": "0o644"
+    },
+    {
+      "path": "papers/UBT_GR_Abstract.md",
+      "status": "modified",
+      "base_sha256": "2e111ba04d6129dc13b3b3baf34322a139a6ee536ca1e58d24bbbb5bee03e707",
+      "new_sha256": "0f488d92e16cebc745a15cfadf1b7dae1797ccd9ad895a792e399dac0b0df574",
+      "size_bytes": 1007,
+      "mode": "0o644"
+    },
+    {
+      "path": "papers/UBT_GR_Flagship.tex",
+      "status": "modified",
+      "base_sha256": "9d38883e4631359647d31051665a6a36d6572383b6c1f4fee780195e028b98ba",
+      "new_sha256": "cf28d0d4025766de9253b063bfa49040db8a7e7fbdf8c6a297631285d632a2f8",
+      "size_bytes": 42822,
+      "mode": "0o644"
+    },
+    {
+      "path": "papers/UBT_GR_RC2_final.tex",
+      "status": "modified",
+      "base_sha256": "9d38883e4631359647d31051665a6a36d6572383b6c1f4fee780195e028b98ba",
+      "new_sha256": "cf28d0d4025766de9253b063bfa49040db8a7e7fbdf8c6a297631285d632a2f8",
+      "size_bytes": 42822,
+      "mode": "0o644"
+    },
+    {
+      "path": "papers/UBT_GR_Submission.tex",
+      "status": "modified",
+      "base_sha256": "a2ac7b9877dd1628c1809b71e4d9ff47a07099bb587df2539f6c872cecf553d5",
+      "new_sha256": "bf035d2ee8c91e7ffddc721dbea4b3f89cc7518afdf7553455c131208c710239",
+      "size_bytes": 21785,
+      "mode": "0o644"
+    },
+    {
+      "path": "papers/schwarzschild_table.tex",
+      "status": "modified",
+      "base_sha256": "1ada89df5ca5cb8e9fac1bb3781fee826f3fba7faa7badef6a256830d49161e2",
+      "new_sha256": "fd85e3af2d8d3f4d802420c256ccc7bf4b6e73cb0ae6e47d62b261b57cb4ebc2",
+      "size_bytes": 1585,
+      "mode": "0o644"
+    },
+    {
+      "path": "research_tracks/T1_GR/GR_paper_v1.tex",
+      "status": "modified",
+      "base_sha256": "feecbde1b4475fec38e5577dc9f61bdeed512a8b64af5582bb6eeead50c0c55c",
+      "new_sha256": "5fdd54f828261bb3c9916dd198069c29b59a89d0fccb11b2c9cd52f89ace7455",
+      "size_bytes": 41270,
+      "mode": "0o644"
+    },
+    {
+      "path": "research_tracks/T1_GR/ubt_gr_flagship.tex",
+      "status": "modified",
+      "base_sha256": "bb967ce2bd0042a8d4f028ceed80ac7c38ebabeecc705324d97627600829208c",
+      "new_sha256": "206beb951ad29c6fd7ffbb6b76a7620f3f40787a515206c1ff279a63f3d030a4",
+      "size_bytes": 50000,
+      "mode": "0o644"
+    },
+    {
+      "path": "research_tracks/T1_GR/ubt_gr_paper.tex",
+      "status": "modified",
+      "base_sha256": "b986474def90c59a332eb0105a7877deea7df18112fe29600e33c9b7e5895f56",
+      "new_sha256": "85b80771b1942138be92de8f95c4b7500091a52686dfd3700a37dc766efb5f53",
+      "size_bytes": 41269,
+      "mode": "0o644"
+    },
+    {
+      "path": "tests/test_covariant_tetrad_geometry.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "c57f45b08fdadad8eab948728beb40359e5ac6c7d2659bd73986b1b874b30aa7",
+      "size_bytes": 1170,
+      "mode": "0o644"
+    },
+    {
+      "path": "tests/test_gap_10i_integrability.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "40ed1daa984cd0e92062b54a9360510d263ef64438dd397b5fef286a0e5d7574",
+      "size_bytes": 2639,
+      "mode": "0o644"
+    },
+    {
+      "path": "tests/test_gap_10omega_connection.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "8ebb9f1bc37824ce4cd84596783fff1da0ef9971d08dadd5c086c77000ee2424",
+      "size_bytes": 1876,
+      "mode": "0o644"
+    },
+    {
+      "path": "tests/test_gr_closure_regressions.py",
+      "status": "modified",
+      "base_sha256": "9cd0a42270e2e7aba3fcb018a4ba8f8ea8b58f440da677bfa3e1b80a9ec931a5",
+      "new_sha256": "c64b310bb64d3282f9303097375491287ccbbaf8bd7a5de4b8d4d04c6d842da0",
+      "size_bytes": 1933,
+      "mode": "0o644"
+    },
+    {
+      "path": "tests/test_metric_lock.py",
+      "status": "modified",
+      "base_sha256": "6c470c6de97f1c2d215b07b4d93411dbcd2ccd6480b04ac7aa2bf88f50b506a5",
+      "new_sha256": "240a46c35e94f65f44618cd219e0e99b020b09965e62b26437cc3ec3c3196bef",
+      "size_bytes": 10409,
+      "mode": "0o644"
+    },
+    {
+      "path": "tools/verify_covariant_tetrad_rank.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "f5ef3d9c55fd7d7a987e58fadb4c1bc7c9956846a21062f4c28f2dcb9bcfeb13",
+      "size_bytes": 2588,
+      "mode": "0o755"
+    },
+    {
+      "path": "tools/verify_gap_10i_integrability.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "b41780f45f53a5144371c6adbee009b6d6475cac4b05e3d09d0e5cbaea00200a",
+      "size_bytes": 3969,
+      "mode": "0o755"
+    },
+    {
+      "path": "tools/verify_gap_10omega_connection.py",
+      "status": "new",
+      "base_sha256": null,
+      "new_sha256": "3952c594a98f2093cf60e3be80900f4d99c623ef108fdfa1f8b99dda8dbf7cfe",
+      "size_bytes": 6515,
+      "mode": "0o755"
     }
   ]
 }

@@ -50,7 +50,7 @@
   <text x="200" y="254" text-anchor="middle" font-family="monospace" font-size="13"
         font-weight="bold" fill="#3fb950">Geometry Sector</text>
   <text x="200" y="272" text-anchor="middle" font-family="monospace" font-size="11"
-        fill="#c9d1d9">g_μν = Re[(D_μΘ)† D_νΘ]</text>
+        fill="#c9d1d9">½{E_μ,E_ν}_♯ = g_μν 1</text>
   <text x="200" y="289" text-anchor="middle" font-family="monospace" font-size="9"
         fill="#8b949e">FORMAL_INVARIANT_EXTRACTION_LAYER0.tex</text>
 
@@ -78,7 +78,7 @@
   <text x="200" y="397" text-anchor="middle" font-family="monospace" font-size="12"
         font-weight="bold" fill="#3fb950">Emergent Metric</text>
   <text x="200" y="414" text-anchor="middle" font-family="monospace" font-size="10"
-        fill="#c9d1d9">g_μν = Re[(D_μΘ)† D_νΘ]</text>
+        fill="#c9d1d9">½{E_μ,E_ν}_♯ = g_μν 1</text>
   <text x="200" y="429" text-anchor="middle" font-family="monospace" font-size="9"
         fill="#8b949e">Appendix_F_Hermitian_Limit.tex</text>
 

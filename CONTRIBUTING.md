@@ -112,6 +112,28 @@ See SPECULATIVE_VS_EMPIRICAL.md for detailed guidelines.
 ❌ **Personal attacks** or disrespectful behavior  
 ❌ **Promotional content** unrelated to physics  
 
+
+
+## Canonical GR Contribution Protocol
+
+Any contribution touching gravity must preserve the covariant-tetrad route:
+
+```text
+E_mu=N0^(-1/2)D_mu Theta,
+1/2(E_mu^sharp E_nu+E_nu^sharp E_mu)=g_munu*1.
+```
+
+A GR pull request must state the representation of `D_mu`, distinguish
+`Gamma`, `omega`, and `Omega`, identify whether torsion is assumed or derived,
+and use the current gap ledger in `AGENTS.md`. Projection, compact-fiber, and
+embedding-map metrics are not accepted as canonical repairs. A proposed curved
+solution must address the two-sided integrability condition and must not use
+the conditional one-sided no-go branch.
+
+Required verification includes the relevant symbolic verifier, regression
+tests, compilation of changed standalone LaTeX documents, and synchronized
+updates to all status surfaces.
+
 ## Pull Request Process
 
 ### Before Submitting

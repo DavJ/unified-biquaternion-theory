@@ -1,115 +1,83 @@
-\section{The Structure of the Covariant Derivative $\nabla$ in UBT}
+\section{The covariant derivative in the active UBT geometry}
 
-The fundamental equation of the Unified Biquaternion Theory (UBT) is the
-\textbf{T-shirt formula}
-\begin{equation}
-    \nabla^{\dagger}\nabla\,\Theta(q,\tau) = \kappa\,\mathcal{T}(q,\tau),
-    \label{eq:tshirt}
-\end{equation}
-where $\Theta(q,\tau)$ is the biquaternionic field, $\mathcal{T}$ is the
-energy–momentum source term, and $\kappa$ is a gravitational–gauge coupling
-constant proportional to $8\pi G$.
+The compact master-equation notation
+\[
+ D^\dagger D\Theta=\kappa\mathcal T
+\]
+is meaningful only after the representation and multiplication sides of $D$
+are specified.  A covariant derivative compares field values expressed in
+local bases that may rotate or boost from point to point.  An ordinary partial
+derivative sees both the physical change of the field and the change of the
+basis; the connection term compensates the latter.
 
-This equation is intentionally compact. All fundamental interactions
-(gravity + Standard Model gauge forces) are encoded inside the single
-covariant derivative operator $\nabla$.  
-This appendix provides a precise and explicit definition of $\nabla$
-as used in Eq.~\eqref{eq:tshirt}.
+\subsection{Three distinct connections}
 
-\subsection{Geometric and gauge structure of the derivative}
-
-The covariant derivative acting on the biquaternionic field is defined as
-\begin{equation}
-    \nabla_\mu \Theta
-    =
-    \partial_\mu \Theta
-    + \Gamma_\mu^{\mathrm{grav}} \Theta
-    + A_\mu^{\mathrm{SM}} \Theta.
-    \label{eq:nabla_master}
-\end{equation}
-
-Thus, the full UBT connection is the sum of two conceptually distinct pieces:
-
-\begin{enumerate}
-    \item \textbf{Gravitational connection}
-    \[
-        \Gamma_\mu^{\mathrm{grav}} =
-        \omega_\mu^{ab}\,\Sigma_{ab}
-        \quad\text{(spin connection)}
-        \qquad\text{and/or}\qquad
-        \Gamma_\mu^{\lambda}{}_{\nu}
-        \quad\text{(Levi--Civita connection),}
-    \]
-    depending on the representation in which $\Theta$ is expressed.
-
-    This term encodes spacetime curvature and ensures that
-    $\nabla_\mu$ transforms covariantly under diffeomorphisms and local Lorentz
-    transformations.
-
-    \item \textbf{Standard Model gauge connection}
-    \[
-        A_\mu^{\mathrm{SM}}
-        =
-        i g_1 B_\mu\,Y
-        + i g_2 W_\mu^a\,T^a
-        + i g_3 G_\mu^A\,\Lambda^A,
-    \]
-    where:
-    \begin{itemize}
-        \item $B_\mu$ is the $U(1)_Y$ hypercharge field with generator $Y$,
-        \item $W_\mu^a$ are the $SU(2)_L$ gauge fields with generators $T^a$,
-        \item $G_\mu^A$ are the $SU(3)_c$ gluon fields with generators $\Lambda^A$,
-        \item $g_1, g_2, g_3$ are the Standard Model gauge couplings.
-    \end{itemize}
-
-    The field $\Theta$ may carry representations of these groups through its
-    internal biquaternionic indices.
-\end{enumerate}
-
-\subsection{The gauge--gravity unified operator $\nabla^\dagger\nabla$}
-
-Using Eq.~\eqref{eq:nabla_master}, the operator in the T-shirt formula becomes
-\begin{equation}
-    \nabla^{\dagger}\nabla \Theta
-    =
-    g^{\mu\nu}
-    \left(
-        \partial_\mu + \Gamma_\mu^{\mathrm{grav}} + A_\mu^{\mathrm{SM}}
-    \right)
-    \left(
-        \partial_\nu + \Gamma_\nu^{\mathrm{grav}} + A_\nu^{\mathrm{SM}}
-    \right)\Theta,
-\end{equation}
-which includes:
+The symbols must not be conflated:
 \begin{itemize}
-    \item pure gravitational terms (Riemann curvature),
-    \item pure gauge terms (Yang–Mills field strengths),
-    \item mixed gauge–gravity couplings,
-    \item covariant derivative squared of $\Theta$.
+ \item $\Gamma^\rho{}_{\mu\nu}$ transports coordinate/spacetime indices;
+ \item $\omega_\mu{}^a{}_b$ transports local Lorentz-frame indices;
+ \item $\Omega_\mu=\rho_*(\omega_\mu)$ is the spin/biquaternionic
+       representation acting on the chosen field space.
 \end{itemize}
-
-Thus Eq.~\eqref{eq:tshirt} compactly unifies:
+They are linked by the tetrad-compatibility equation
 \[
-\text{gravity} \;\;+\;\; U(1)_Y \;\;+\;\; SU(2)_L \;\;+\;\; SU(3)_c
-\quad\text{acting on the biquaternionic field }\Theta.
+ \partial_\mu e_\nu{}^a
+ -\Gamma^\rho{}_{\mu\nu}e_\rho{}^a
+ +\omega_\mu{}^a{}_b e_\nu{}^b=0,
 \]
+not by taking a componentwise real part.
 
-\subsection{Interpretation}
-
-The T-shirt equation does not introduce gravity or gauge fields
-independently.  
-Instead:
+For specified tetrad and torsion,
 \[
-\text{``All interactions live inside the single differential operator $\nabla$.''}
+ \omega=\mathring\omega(e)+K(T),
+ \qquad K_{abc}=\tfrac12(T_{cab}-T_{abc}-T_{bca}).
 \]
+Thus the torsion-free classical branch has the Levi--Civita spin connection.
+The canonical action must still determine whether torsion vanishes or is
+sourced by spin/internal structure.
 
-The right-hand side $\kappa\mathcal{T}$ acts as a universal source,
-analogous to the Einstein equation
-\(
-G_{\mu\nu} = 8\pi G\,T_{\mu\nu},
-\)
-but generalized to the dynamics of $\Theta$ in biquaternionic field space.
+\subsection{Why the generic curved derivative is two-sided}
 
-This appendix therefore provides the explicit structure required to interpret
-Eq.~\eqref{eq:tshirt} as a unified gauge–gravity field equation.
+Biquaternions act naturally from both sides.  The active curved candidate is
+\[
+ \boxed{D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu.}
+\]
+Its curvature identity is
+\[
+ \boxed{[D_\mu,D_\nu]\Theta
+ =F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.}
+\]
+A one-sided derivative $D^L_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta$ is
+allowed in flat or special sectors, but under invertibility and torsion-free
+antisymmetric tetrad compatibility it forces its curvature to vanish.  It
+therefore cannot be assumed as the generic curved-GR representation.
 
+The precise decomposition of $(A_\mu,B_\mu)$ into Lorentz-spin and Standard
+Model gauge actions remains an action-level problem.  It must be derived, not
+inserted as the assertion that all interactions automatically live in one
+operator.
+
+\subsection{Special relativity and the implicit curved system}
+
+In Cartesian inertial Minkowski gauge,
+\[
+ \Gamma=\omega=\Omega=0,
+ \qquad D_\mu=\partial_\mu,
+\]
+and
+\[
+ \Theta_{\rm SR}=\Theta_0+\sqrt{\mathcal N_0}
+ (ix^0\mathbf1+x^k\mathbf e_k)
+\]
+generates the Minkowski tetrad explicitly.
+
+In curved geometry the reconstructed connections depend on the tetrad that is
+itself generated by $D\Theta$.  Hence
+\[
+ E_\mu=\mathcal N_0^{-1/2}
+ [\partial_\mu\Theta+A_\mu[E,T]\Theta-\Theta B_\mu[E,T]]
+\]
+is an implicit nonlinear first-order PDE/fixed-point system.  A Jacobi-theta
+restriction may make the complete system transcendental as well; that does not
+remove the separate existence, uniqueness, regularity, and integrability
+questions.

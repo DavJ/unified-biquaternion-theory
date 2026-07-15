@@ -88,7 +88,7 @@ complex conjugation.
 The field $\Theta(q,\tau)$ encodes:
 
 \begin{enumerate}
-    \item \textbf{Geometric structure}: Biquaternionic tetrads $E_\mu$ emerge from $\Theta$ configurations, giving the raw quadratic tensor $\mathcal Q_{\mu\nu}=E_\mu E_\nu^\ddagger$; the observable metric is the normalized $\psi$-averaged real scalar Gram projection
+    \item \textbf{Geometric structure}: The covariant tetrad $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ emerges from $\Theta$.  On the classical Lorentz slice its central anticommutator satisfies $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1$, so no trace, real-part, or fiber projection defines the metric
     
     \item \textbf{Matter content}: Fermion fields and masses arise from internal structure
     
@@ -97,56 +97,66 @@ The field $\Theta(q,\tau)$ encodes:
     \item \textbf{Internal auxiliary sector}: Imaginary time component $\psi$ provides dynamics for an internal auxiliary field (speculative interpretations in \texttt{speculative\_extensions/})
 \end{enumerate}
 
-\subsection{Field Equations}
+\subsection{Field Equations and Covariant Derivative Status}
 
-The field $\Theta$ satisfies the fundamental field equation (the \textbf{T-shirt formula}):
+A compact candidate master equation used in UBT is
 
 \begin{equation}
 \label{eq:canonical:theta_equation}
-\nabla^\dagger \nabla \Theta(q,\tau) = \kappa \mathcal{T}(q,\tau)
+D^\dagger D\Theta(q,\tau)=\kappa\mathcal T(q,\tau).
 \end{equation}
 
-\noindent where:
-\begin{itemize}
-    \item $\nabla$ is the \textbf{full covariant derivative} including both biquaternionic gravitational connection $\Omega_\mu$ (fundamental) and Standard Model gauge connections (see detailed structure below)
-    \item $\nabla^\dagger \nabla$ is the gauge-gravity unified d'Alembertian operator in curved spacetime
-    \item $\kappa$ is a coupling constant proportional to $8\pi G$ (Newton's constant)
-    \item $\mathcal{T}(q,\tau)$ is the biquaternionic stress-energy source
-\end{itemize}
+Its precise source functional, independent variables, boundary data, and
+common-action origin remain part of the dynamical closure programme.  The
+geometric first jet entering the metric is
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta.
+\end{equation}
 
-\subsubsection{Structure of the Covariant Derivative}
+\subsubsection{Classical connection versus its action on $\Theta$}
 
-The covariant derivative $\nabla_\mu$ acting on $\Theta$ is \textbf{not} an ordinary partial derivative. It is defined as:
+Write $E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k$.  For every
+nondegenerate tetrad and specified torsion, the metric-compatible Lorentz-frame
+connection is kinematically unique,
+\begin{equation}
+ \omega=\mathring\omega(e)+K(T).
+\end{equation}
+For $T=0$ this is the Levi--Civita spin connection.  The affine connection
+$\Gamma^\rho{}_{\mu\nu}$ and frame connection $\omega_\mu{}^a{}_b$ are related
+by tetrad compatibility; neither is a real-part projection of the other.
 
+This reconstruction does not by itself fix how the connection and internal
+gauge structure act on the biquaternionic field.  A naive one-sided regular
+action is excluded for generic invertible torsion-free curved configurations.
+The active algebra-native candidate is the two-sided derivative
 \begin{equation}
 \label{eq:canonical:nabla_structure}
-\nabla_\mu \Theta = \partial_\mu \Theta + \Omega_\mu^{\mathrm{grav}} \Theta + A_\mu^{\mathrm{SM}} \Theta
+ \boxed{D_\mu\Theta=\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu,}
 \end{equation}
+with
+\begin{equation}
+ [D_\mu,D_\nu]\Theta
+ =F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
+\end{equation}
+The exact decomposition of $A_\mu,B_\mu$ into Lorentz and Standard-Model
+connections must be derived from the same UBT action.  In the invertible
+ torsion-free branch, integrability requires the curvature-intertwiner relation
+$F^A_{\mu\nu}=\Theta F^B_{\mu\nu}\Theta^{-1}$; this permits nonzero curvature
+but does not prove existence of a curved solution.
 
-where:
+In Cartesian inertial Minkowski gauge one may choose
+$\Gamma=\omega=\Omega=0$, hence $D_\mu=\partial_\mu$.  The affine field
+\begin{equation}
+ \Theta_{\rm SR}=\Theta_0+\sqrt{\mathcal N_0}
+ (ix^0\mathbf1+x^k\mathbf e_k)
+\end{equation}
+generates the constant Minkowski tetrad and has vanishing second spacetime
+derivatives.
 
-\begin{enumerate}
-    \item \textbf{Biquaternionic gravitational connection} $\Omega_\mu^{\mathrm{grav}} \in \mathbb{B}$ encodes fundamental spacetime curvature (Christoffel symbols/Levi-Civita connection arise as $\Gamma^\lambda_{\mu\nu} := \text{Re}(\Omega^\lambda_{\mu\nu})$ in the GR limit)
-    
-    \item \textbf{Standard Model gauge connection}:
-    \begin{equation}
-    A_\mu^{\mathrm{SM}} = i g_1 B_\mu Y + i g_2 W_\mu^a T^a + i g_3 G_\mu^A \Lambda^A
-    \end{equation}
-    
-    containing $U(1)_Y$ hypercharge, $SU(2)_L$ weak, and $SU(3)_c$ strong interactions.
-\end{enumerate}
-
-Thus, the T-shirt equation \eqref{eq:canonical:theta_equation} is a \textbf{unified gauge-gravity field equation} where all fundamental interactions (gravity + electroweak + strong) are encoded within the single operator $\nabla$.
-
-The operator $\nabla^\dagger\nabla$ in curved spacetime is precisely the Laplace-Beltrami/d'Alembertian operator that depends on both the metric (curvature) and the gauge field strengths. It includes:
-\begin{itemize}
-    \item Pure gravitational terms (Riemann curvature)
-    \item Pure gauge terms (Yang-Mills field strengths for $U(1)$, $SU(2)$, $SU(3)$)
-    \item Mixed gauge-gravity couplings
-    \item Covariant derivatives of $\Theta$
-\end{itemize}
-
-For the complete explicit derivation of $\nabla$ structure, see Appendix on the structure of the covariant derivative.
+The remaining dynamical gaps are torsion selection, the exact paired
+left/right lift, curved-space existence and uniqueness of
+$E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$, Lorentz-slice preservation by the full
+dynamics, and derivation of Einstein equations from the canonical action.
 
 \subsection{Normalization}
 

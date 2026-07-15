@@ -124,7 +124,7 @@ The quantum correction from 137 to 137.036 uses α as input and is circular.
 
 **Status:** ✅ Full compatibility proven
 - UBT **generalizes and embeds** Einstein's General Relativity
-- In real-valued limit (ψ → 0), UBT exactly reproduces Einstein's field equations
+- In the admissible covariant-tetrad sector UBT reproduces the local Lorentz metric kinematics; the full Einstein dynamics from the original master equation remains open
 - Compatibility holds for all curvature regimes:
   - Flat spacetime (Minkowski)
   - Weak fields

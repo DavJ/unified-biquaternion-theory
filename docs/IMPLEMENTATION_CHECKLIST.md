@@ -1,3 +1,5 @@
+> **SUPERSEDED GEOMETRY NOTE (2026-07-15):** Metric checklist entries using `Re Tr` describe the former formulation.  The canonical metric is now the central anticommutator of the covariant tetrad.
+
 # Phase 1 Implementation Checklist
 
 **Project**: Unified Biquaternion Theory Consolidation  
@@ -36,7 +38,7 @@
 
 - [x] 3. Metrika gμν(Θ)
   - [x] Resolve 3 derivation versions (old Appendix B, new K2/K5, holographic)
-  - [x] Canonical: g_μν = Re Tr(∂_μΘ ∂_νΘ†)
+  - [x] Canonical: {E_μ,E_ν}_sharp/2 = g_μν·1
   - [x] Standardize signature (+,−,−,−)
 
 - [x] 4. Stress-energy tensor Tμν

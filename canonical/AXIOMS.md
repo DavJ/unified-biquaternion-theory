@@ -2,7 +2,7 @@
 
 **Status**: LOCKED  
 **Purpose**: Canonical definitions that MUST NOT be redefined  
-**Date**: February 2026  
+**Date**: February 2026; covariant-tetrad/connection revision authorised 16 July 2026  
 **Author**: David Jaroš
 
 ---
@@ -54,95 +54,102 @@ where:
 
 ---
 
-## AXIOM C: Generalized Metric and GR Limit (LOCKED)
+## AXIOM C: Covariant Tetrad and Central Metric (REVISED 2026-07-16)
 
-**Statement**: UBT is a **generalization of General Relativity**. Its fundamental geometric object is the generalized (biquaternionic) metric tensor:
+**Author-approved statement**: The local geometric carrier is the covariant first jet of the single fundamental field,
 
-$$\mathcal{Q}_{\mu\nu}(x,\psi) := (D_\mu \Theta(x,t+i\psi))(D_\nu \Theta(x,t+i\psi))^\ddagger \in \mathbb B$$
+$$E_\mu := \mathcal N_0^{-1/2}D_\mu\Theta,$$
 
-The unprojected $\mathcal Q_{\mu\nu}$ is the full biquaternionic quadratic tensor. The scalar part or ordinary matrix trace is complex-scalar, not a general biquaternion.
+where $\mathcal N_0>0$ is a fixed global unit-setting constant.  $D_\mu$ is the covariant derivative in the representation carried by $\Theta$.  The connection used in $D_\mu$ is not an arbitrary additional matter field.  For every nondegenerate tetrad and specified torsion, the metric-compatible frame connection is uniquely reconstructed as
 
-Under the canonical compact-fiber symmetry completion, the observable spacetime metric is the constant-normalized real zero-mode projection:
+$$\omega=\mathring\omega(e)+K(T),\qquad K_{abc}=\frac12(T_{cab}-T_{abc}-T_{bca}).$$
 
-$$g_{\mu\nu}(x) := \frac{1}{\mathcal N_0}\frac{1}{2\pi R_\psi}\int_0^{2\pi R_\psi}\text{Re}\left[\text{Tr}\left((D_\mu\Theta)^\ddagger\eta_{\mathbb B}D_\nu\Theta\right)\right]d\psi,$$
+The torsion-free classical GR branch has $T=K=0$ and the unique Levi--Civita spin connection.  The remaining full-UBT problem is to derive torsion and the exact paired left/right action on $\Theta$ from the canonical action.
 
-where $\mathcal N_0>0$ is fixed once by asymptotic Minkowski normalization. A local denominator $|\langle D_0\Theta,D_0\Theta\rangle|$ is forbidden because it forces $g_{00}=-1$ on a timelike branch.
+Let $i$ denote the commuting complex unit and $\mathbf e_k$ the quaternion units.  The classical Lorentz sector is the real four-dimensional slice
 
+$$W_L=\{i x^0\mathbf 1+x^k\mathbf e_k\mid x^a\in\mathbb R\}\subset\mathbb B.$$
 
-**Projection theorem and scope**: Among normalized real-linear quadratic readouts that are invariant under translations of the compact $S^1_\psi$ fiber, the normalized fiber average is unique (Fourier zero-mode theorem; see `canonical/gr_closure/pure_ubt_fiber_closure.tex`). This is a symmetry completion of the older point-section rule. If a preferred physical value of $\psi$ is postulated instead, the point-section branch remains possible but has a proven generic rank obstruction for GR closure. Universal integrable representation of arbitrary GR metric fields remains open as GAP-10R.
+Quaternion conjugation, denoted by $\sharp$, reverses the three quaternion units but does not conjugate the commuting complex coefficient.  For admissible classical configurations $E_\mu\in W_L$, the metric is defined by the full central anticommutator identity
 
-where:
-- $D_\mu$ is the gauge-covariant derivative acting on $\Theta$
-- $(\cdot)^\dagger$ denotes the biquaternionic adjoint (conjugate transpose)
-- $\text{Re}[\cdot]$ denotes taking the real part (projection to real spacetime)
-- The metric is normalized to have signature $(-,+,+,+)$ in the classical limit
+$$\boxed{\frac12\left(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu\right)=g_{\mu\nu}\mathbf1.}$$
 
-**Interpretation**:
-- $\mathcal{Q}_{\mu\nu}$ is the **raw UBT biquaternionic quadratic tensor**
-- $g_{\mu\nu}$ is the **single GR spacetime metric channel** seen by classical measurements and is obtained from the complete compact-$\psi$ profile
-- There is **no second GR metric** beyond $g_{\mu\nu}$
+This identity is equivalent to
 
-**Equivalent Forms** (allowed):
-- Fiber-pairing form: $g_{\mu\nu}=\mathcal N_0^{-1}\langle D_\mu\Theta,D_\nu\Theta\rangle_{\mathrm{Re},\psi}$
-- Explicit compact-fiber integral as displayed above
-- A fixed-$\psi$ section may be used only as a restricted diagnostic, not as the canonical generic closure metric
+$$g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},\qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1),$$
+
+when $E_\mu=i e_\mu{}^0\mathbf1+e_\mu{}^k\mathbf e_k$.
+
+**No projection rule**: The symmetrized product is already a real central element.  The metric is therefore not defined by an ordinary trace, `Re(...)`, a phase projector, a preferred $\psi$ section, or a compact-$\psi$ average.
+
+**Companion bivector**:
+
+$$\Sigma_{\mu\nu}:=\frac12\left(E_\mu^\sharp E_\nu-E_\nu^\sharp E_\mu\right)$$
+
+is the antisymmetric algebraic part of the same product.  It may carry oriented-plane/spin information, but it is not automatically a gauge field or curvature.
+
+**Rank theorem**: At every nondegenerate tetrad, the map $e_\mu{}^a\mapsto g_{\mu\nu}$ has rank ten and a six-dimensional kernel consisting of local Lorentz rotations/boosts.  The former comparison $\dim_\mathbb R\mathbb B=8<10$ is not a local metric-rank obstruction because the metric is built from four covariant derivatives, not from the value of $\Theta$ alone.  See `canonical/gr_closure/covariant_tetrad_rank_theorem.tex`.
+
+**Complex-time dependence**: $\Theta$ may depend on $\tau=t+i\psi$.  The local metric formula is pointwise and does not average over $\psi$.  The classical GR sector must have a real, nondegenerate metric and, when required for ordinary four-dimensional observations, a dynamically stable $\psi$-independent metric.  Deriving that stability is open.
 
 **CRITICAL LOCK RULES**:
-1. **NO background metric**: There is no fundamental metric $g^{(0)}_{\mu\nu}$ that $\Theta$ propagates on
-2. **NO alternative GR metrics**: Do not introduce alternative definitions of the GR metric $g_{\mu\nu}$
-3. **NO metric redefinition**: The formulas above are canonical and unique
-4. **Emergent only**: The GR metric $g_{\mu\nu}$ is a derived quantity, not a fundamental field
-5. **$\mathcal{Q}_{\mu\nu}$ is not a second GR metric**: it is a raw biquaternionic tensor and must not be treated as an independent spacetime metric
-6. **Constant normalization**: do not reintroduce a local time-gradient denominator
 
-**Note — Generalized Phase Projection**: The formula $g_{\mu\nu} = \text{Re}(\mathcal{G}_{\mu\nu})$ is the **$\varphi = 0$ special case** of the general operator $P_\varphi[\mathcal{G}_{\mu\nu}] := \text{Re}(e^{-i\varphi}\mathcal{G}_{\mu\nu})$ defined in `core/geometry/phase_projection.tex`. The choice $\varphi = 0$ is the standard observer gauge convention. GR is recovered for *any* spatiotemporally constant $\varphi$ (see `core/geometry/gr_as_limit.tex`). **Axiom C is unchanged**; this note records the broader framework.
-**Cross-References**:
-- `consolidation_project/appendix_A_biquaternion_gravity_consolidated.tex` (line 56)
-- `consolidation_project/appendix_R_GR_equivalence.tex` (equation 68)
-- `consolidation_project/appendix_FORMAL_emergent_metric.tex` (Definition 3.1)
-- `THETA_FIELD_DEFINITION.md` (Section 7.1)
-- `core/geometry/phase_projection.tex` (generalized $P_\varphi$ operator)
-- `core/geometry/gr_as_limit.tex` (GR for any constant $\varphi$)
-
-**Lock Rule**: This is the **ONLY** metric definition in UBT. GR is a real/classical limit of UBT, not an independent framework. No alternative GR metrics, no background metric.
+1. There is no independent background metric.
+2. The canonical local metric is the central anticommutator of $D_\mu\Theta$.
+3. Do not reintroduce trace/real-part/phase/fiber readouts as the canonical definition.
+4. Do not use a local normalization denominator; $\mathcal N_0$ is fixed globally.
+5. The connection must not be treated as an arbitrary extra physical field; it is reconstructed from tetrad and torsion.
+6. Do not use a naive one-sided regular connection as the generic invertible curved-GR route.
+7. The canonical curved research route is the two-sided biquaternionic derivative plus a torsion equation derived from the action.
+8. The compact-fiber construction is retained only as a noncanonical candidate-completion branch.
 
 ---
 
-## AXIOM D: General Relativity as Classical Limit
+## AXIOM D: Classical GR Correspondence (STATUS-DISCIPLINED)
 
-**Statement**: General Relativity (Einstein's field equations) emerges as the **real-projected, classical regime** of UBT.
+**Statement**: UBT is required to contain a classical Lorentzian sector in which the central metric defined in Axiom C obeys Einstein dynamics or a sharply specified observationally equivalent limit.
 
-$$G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \kappa T^{(\Theta)}_{\mu\nu}$$
+The kinematic metric relation, connection reconstruction, and flat affine
+representer are proved locally.  The complete dynamical implication
 
-where:
-- $G_{\mu\nu}$ is the Einstein tensor computed from the emergent metric $g_{\mu\nu}$ (Axiom C)
-- $R_{\mu\nu}$, $R$ are the Ricci tensor and scalar computed using standard differential geometry
-- $T^{(\Theta)}_{\mu\nu} = \text{Re}[\mathcal{T}_{\mu\nu}]$ is the effective stress-energy derived from $\Theta$ dynamics
-- $\kappa = 8\pi G/c^4$ is Einstein's gravitational constant
+$$\text{canonical UBT equations}\quad\Longrightarrow\quad G_{\mu\nu}=\kappa T_{\mu\nu}$$
 
-**Key Principles**:
-- GR is **derived**, not postulated
-- Einstein equations are an **effective description** in appropriate limits:
-  - Real time projection: $\psi \to 0$ or $\psi$-averaged
-  - Classical regime: Large-scale, slowly varying fields
-  - Weak coupling: Small quantum corrections
-- UBT **generalizes** GR; it does not contradict it
-- All GR solutions (Schwarzschild, Kerr, FRW, etc.) emerge from appropriate $\Theta$ configurations
+is **not yet unconditional**.  The current open tasks are:
 
-**GR as Real/Classical Limit** (explicit clarification):
+- derive vacuum or spin-sourced torsion from the canonical UBT action;
+- fix the precise paired left/right connection and involution acting on $\Theta$;
+- prove that the complete $\Theta$ dynamics, not only Lorentz parallel transport, preserves the Lorentz slice and central anticommutator condition;
+- prove local and global existence of the implicit curved system $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$;
+- derive the Einstein equations and perturbation bridge from the canonical UBT dynamics rather than from an inserted Einstein--Hilbert branch;
+- establish Schwarzschild, Kerr, FRW, and gravitational-wave sectors on shell.
 
-General Relativity is recovered from UBT when two conditions are met:
+**Proved classical facts**:
 
-1. **Real projection**: The observable metric $g_{\mu\nu}$ is obtained by taking the real part of $\mathcal{G}_{\mu\nu}$ (Axiom C). Imaginary components of the biquaternionic metric structure remain invisible to classical gravitational measurements.
+- every local Lorentz metric admits a tetrad representation of the Axiom-C form;
+- the tetrad-to-metric differential has rank ten at every nondegenerate tetrad;
+- specified tetrad and torsion uniquely determine the metric-compatible frame connection;
+- the torsion-free classical branch has the unique Levi--Civita spin connection;
+- every metric-compatible Lorentz connection preserves $\eta_{ab}$ and the Lorentz slice;
+- every constant Lorentz tetrad has an explicit affine single-$\Theta$ representer;
+- the naive one-sided invertible torsion-free curved branch is a proved no-go;
+- the two-sided derivative has the exact left/right curvature identity and avoids the flatness obstruction.
 
-2. **Classical/slow variation regime**: The $\psi$-dynamics (imaginary time evolution) is either:
-   - Not directly observable (ordinary matter couples only to real metric $g_{\mu\nu}$)
-   - Varies slowly compared to physical processes
-   - Averaged over in the classical limit
+**Canonical GR gap ledger**:
 
-In this limit, UBT exactly reproduces Einstein's field equations with the emergent metric $g_{\mu\nu}$ serving as the GR spacetime metric. The additional biquaternionic degrees of freedom represent phase curvature and nonlocal energy configurations that extend beyond classical GR but reduce to it when these effects are negligible or unobservable.
+- **GAP-10K — CLOSED locally:** tetrad-to-metric rank ten.
+- **GAP-10Ω-KIN — CLOSED [L1]:** specified $(e,T)$ uniquely determine $\omega$.
+- **GAP-10Ω-GR — CLOSED [L1]:** $T=0$ gives the Levi--Civita spin connection.
+- **GAP-10T-DYN — OPEN:** derive torsion from the canonical action and sources.
+- **GAP-10L-CONN — CLOSED [L1]:** metric-compatible Lorentz transport preserves the Lorentz slice.
+- **GAP-10L-DYN — OPEN:** prove preservation by complete $\Theta$ dynamics and sources.
+- **GAP-10I-SR — CLOSED [L1]:** affine representer of constant Lorentz tetrads.
+- **GAP-10I-1S — CLOSED AS NO-GO [L1]:** one-sided invertible torsion-free curved route forces zero curvature.
+- **GAP-10I-2S — NARROWED [L1]:** two-sided curvature intertwining avoids flatness; action-level pairing remains open.
+- **GAP-10I-CURVED — OPEN:** curved-space existence, uniqueness, regularity, and on-shell generation.
+- **GAP-10D — OPEN:** Einstein dynamics from the canonical UBT action/master equation.
+- **GAP-10ψ — OPEN:** classical stability along imaginary time.
 
-**Lock Rule**: GR is a limit/projection of UBT, not an independent framework. Do not introduce GR as a separate theory requiring separate metric.
+**Forbidden wording**: Do not state that all GR solutions or the complete Einstein dynamics have already been derived from the original UBT master equation.
 
 ---
 
@@ -315,10 +322,10 @@ For quick reference, the core equations are:
 
 1. **Fundamental field**: $\Theta(q, \tau) \in \mathbb{C} \otimes \mathbb{H}$
 2. **Complex time**: $\tau = t + i\psi \in \mathbb{C}$
-3. **Emergent metric**: $g_{\mu\nu} = \text{Re}[(D_\mu \Theta)^\dagger D_\nu \Theta]$
-4. **Einstein equations**: $G_{\mu\nu}[g] = \kappa T^{(\Theta)}_{\mu\nu}$
+3. **Covariant tetrad and central metric**: $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ and $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1$
+4. **Classical correspondence target**: derive $G_{\mu\nu}[g] = \kappa T^{(\Theta)}_{\mu\nu}$ from the canonical UBT action; GAP-10D remains open
 
-Everything else in UBT (quantum mechanics, gauge fields, constants, etc.) is derived from these four canonical axioms.
+All further UBT sectors must be compatible with these canonical structures.  The complete Einstein and Standard-Model dynamics are derivation targets, not consequences to be assumed.
 
 ---
 
@@ -334,7 +341,8 @@ Everything else in UBT (quantum mechanics, gauge fields, constants, etc.) is der
 **History**:
 - v1.0 (Feb 2026): Initial canonical axioms document
 - Pre-v0.4: Exploratory phase (quaternionic time considered, not adopted)
-- v0.4+: Complex time finalized, emergent metric formalized
+- v0.4+: Complex time finalized
+- 2026-07-16: Projection-free covariant tetrad, connection reconstruction, and partial integrability formalized
 
 ---
 
@@ -354,4 +362,4 @@ This axiom document is referenced by:
 **License**: CC BY-NC-ND 4.0  
 **Author**: Ing. David Jaroš  
 **Repository**: unified-biquaternion-theory  
-**Last Updated**: February 10, 2026
+**Last Updated**: July 16, 2026

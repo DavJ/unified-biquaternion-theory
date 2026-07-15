@@ -50,7 +50,7 @@ The complex time structure is defined in `canonical/fields/biquaternion_time.tex
 
 The biquaternionic metric 𝒢_{μν} is constructed from Θ:
 - 𝒢_{μν} = D_μΘ†·D_νΘ (schematically)
-- g_{μν} := Re(𝒢_{μν}) — classical metric as real projection
+- {E_μ,E_ν}_sharp/2 = g_{μν}·1 — central covariant-tetrad metric
 
 This defines the **unique emergent metric** (Axiom C in `canonical/AXIOMS.md`).
 No background metric is assumed.

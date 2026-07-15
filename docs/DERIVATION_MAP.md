@@ -1,3 +1,5 @@
+> **GEOMETRY REVISION (2026-07-15):** Any occurrence of `Γ = Re(Ω)` or a projected metric in the historical map is superseded by tetrad compatibility and the central anticommutator metric.
+
 <!-- © 2025 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
 # DERIVATION_MAP.md — UBT Mathematical Derivation Map
@@ -101,7 +103,7 @@ S[Θ] = ∫ d⁴x √(-g) L_UBT
 │   └── canonical/geometry/biquaternion_tetrad.tex
 │
 ├── Levi-Civita connection (from g_{μν}):            [L0]
-│   Γ^λ_{μν} = Re(Ω^λ_{μν})
+│   tetrad compatibility relates Γ^λ_{μν} and Ω_μ
 │   └── canonical/geometry/connection.tex
 │       canonical/geometry/biquaternion_connection.tex
 │

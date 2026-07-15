@@ -1,3 +1,5 @@
+> **GEOMETRY STATUS (2026-07-15):** Projection-based metric statements in this historical planning/audit document are superseded by the central covariant-tetrad metric.
+
 # Claim Evidence Matrix
 ## Unified Biquaternion Theory — Physics Claims Audit
 **Date:** 2026-03-10 | **Mode:** verify_first_then_fill_gaps

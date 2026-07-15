@@ -1,0 +1,255 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+% Licensed under CC BY-NC-ND 4.0. See LICENSE.md.
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\title{GAP-10$\Omega$: Reconstruction of the Classical Frame Connection}
+\author{Ing. David Jaro\v{s}}
+\date{16 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The covariant-tetrad formulation of UBT uses
+$E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ and the central anticommutator metric.
+This note proves two reconstruction results.  First, in the nondegenerate
+metric-compatible torsion-free classical GR branch, the Lorentz frame
+connection is uniquely the Levi--Civita spin connection of the tetrad.  Second,
+for arbitrary specified torsion, the complete metric-compatible connection is
+still uniquely reconstructed from the tetrad and torsion through the
+contorsion tensor.  Hence the connection itself carries no residual kinematic
+ambiguity once $(e,T)$ are fixed.  What remains open in full UBT is the
+*dynamical law selecting the torsion* and the exact representation by which the
+connection acts on $\Theta$.  The flat special-relativistic limit is verified,
+and the implicit self-consistency equation created by
+$E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ is isolated from the already closed
+connection-reconstruction problem.
+\end{abstract}
+
+\section{Geometric data}
+Let $M$ be a four-dimensional manifold and let
+\begin{equation}
+ e^a=e_\mu{}^a\,dx^\mu,
+ \qquad \det(e_\mu{}^a)\ne0,
+ \label{eq:coframe}
+\end{equation}
+be the real coefficients of the UBT Lorentz-slice tetrad
+\begin{equation}
+ E_\mu=i e_\mu{}^0\mathbf 1+e_\mu{}^k\mathbf e_k.
+\end{equation}
+The induced metric is
+\begin{equation}
+ g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab},
+ \qquad \eta_{ab}=\operatorname{diag}(-1,1,1,1).
+ \label{eq:metric}
+\end{equation}
+Let $e_a{}^\mu$ denote the inverse tetrad.
+
+A Lorentz frame connection is a one-form
+\begin{equation}
+ \omega^a{}_b=\omega_\mu{}^a{}_b\,dx^\mu,
+ \qquad \omega_{\mu ab}=-\omega_{\mu ba}.
+\end{equation}
+Its torsion two-form is
+\begin{equation}
+ T^a:=de^a+\omega^a{}_b\wedge e^b
+      =\frac12T^a{}_{bc}\,e^b\wedge e^c.
+ \label{eq:torsion}
+\end{equation}
+The corresponding biquaternionic/spin connection is the lift
+\begin{equation}
+ \Omega_\mu=\rho_{\mathrm{spin}*}(\omega_\mu)
+ =\frac14\omega_{\mu ab}\,\Sigma^{ab}
+ \label{eq:spinlift}
+\end{equation}
+for the chosen UBT representation.  The normalization of the generators
+$\Sigma^{ab}$ is representation-conventional; the Lorentz connection
+$\omega_\mu{}^{ab}$ itself is not.
+
+\section{Unique torsion-free compatible connection}
+\begin{theorem}[Levi--Civita frame-connection theorem]
+\label{thm:unique-omega}
+For every $C^2$ nondegenerate tetrad $e_\mu{}^a$, there exists exactly one
+Lorentz connection $\mathring\omega_\mu{}^{ab}$ satisfying
+\begin{enumerate}
+ \item frame-metric compatibility,
+       $\mathring\omega_{\mu ab}=-\mathring\omega_{\mu ba}$;
+ \item vanishing torsion, $\mathring T^a=0$.
+\end{enumerate}
+It is given by
+\begin{equation}
+ \boxed{
+ \mathring\omega_\mu{}^a{}_b
+ =e_b{}^\nu\left(
+ \mathring\Gamma^\rho{}_{\mu\nu}(g)e_\rho{}^a
+ -\partial_\mu e_\nu{}^a
+ \right),}
+ \label{eq:omega-explicit}
+\end{equation}
+where $\mathring\Gamma^\rho{}_{\mu\nu}(g)$ is the Levi--Civita connection of
+Eq.~\eqref{eq:metric}.
+\end{theorem}
+
+\begin{proof}
+The Levi--Civita connection is the unique affine connection satisfying
+$\mathring\nabla_\mu g_{\nu\rho}=0$ and
+$\mathring\Gamma^\rho{}_{[\mu\nu]}=0$.  Define $\mathring\omega$ by
+Eq.~\eqref{eq:omega-explicit}.  Multiplication by $e_\nu{}^b$ gives the tetrad
+compatibility identity
+\begin{equation}
+ \partial_\mu e_\nu{}^a
+ -\mathring\Gamma^\rho{}_{\mu\nu}e_\rho{}^a
+ +\mathring\omega_\mu{}^a{}_b e_\nu{}^b=0.
+ \label{eq:tetrad-postulate-proof}
+\end{equation}
+Antisymmetrising in $\mu,\nu$ and using
+$\mathring\Gamma^\rho{}_{[\mu\nu]}=0$ gives $\mathring T^a=0$.
+Differentiating $g_{\mu\nu}=e_\mu{}^a e_\nu{}^b\eta_{ab}$, using
+$\mathring\nabla g=0$ and Eq.~\eqref{eq:tetrad-postulate-proof}, gives
+$\mathring\omega_{\mu ab}+\mathring\omega_{\mu ba}=0$.
+
+For uniqueness, let $\omega$ and $\omega'$ satisfy both conditions and define
+$K^a{}_b:=\omega^a{}_b-\omega'^a{}_b$.  Metric compatibility gives
+$K_{abc}=-K_{bac}$.  Equality of the torsions gives
+$K^a{}_b\wedge e^b=0$, hence in the tetrad basis
+$K_{abc}=K_{acb}$.  Combining the two symmetries,
+\[
+ K_{abc}=K_{acb}=-K_{cab}=-K_{cba}=K_{bca}=K_{bac}=-K_{abc},
+\]
+so $K_{abc}=0$ and therefore $\omega=\omega'$.
+\end{proof}
+
+\section{General metric-compatible connection with torsion}
+The torsion-free theorem is the special case of a stronger kinematic
+reconstruction statement.
+
+\begin{theorem}[Tetrad--torsion reconstruction theorem]
+\label{thm:tetrad-torsion}
+Fix a $C^2$ nondegenerate tetrad $e_\mu{}^a$ and a torsion tensor
+$T^a{}_{bc}=-T^a{}_{cb}$.  There exists exactly one metric-compatible Lorentz
+connection with that tetrad and torsion.  It is
+\begin{equation}
+ \boxed{\omega^a{}_b=\mathring\omega^a{}_b(e)+K^a{}_b(T),}
+ \label{eq:omega-decomp}
+\end{equation}
+where $\mathring\omega(e)$ is Eq.~\eqref{eq:omega-explicit} and, with all frame
+indices lowered by $\eta_{ab}$,
+\begin{equation}
+ \boxed{
+ K_{abc}=\frac12\left(T_{cab}-T_{abc}-T_{bca}\right).}
+ \label{eq:contorsion-formula}
+\end{equation}
+The convention is $T^a=de^a+\omega^a{}_b\wedge e^b$ as in
+Eq.~\eqref{eq:torsion}.
+\end{theorem}
+
+\begin{proof}
+Write $\omega=\mathring\omega+K$.  Since $\mathring\omega$ is torsion free,
+\begin{equation}
+ T^a=K^a{}_b\wedge e^b.
+\end{equation}
+Metric compatibility of both $\omega$ and $\mathring\omega$ implies
+$K_{abc}=-K_{bac}$.  In frame components the torsion relation is equivalently
+\begin{equation}
+ T_{abc}=K_{acb}-K_{abc}=-(K_{cab}+K_{abc}).
+ \label{eq:T-K-cycle}
+\end{equation}
+Writing the two cyclic permutations of Eq.~\eqref{eq:T-K-cycle} and taking
+$T_{cab}-T_{abc}-T_{bca}$ gives $2K_{abc}$, proving
+Eq.~\eqref{eq:contorsion-formula}.  Thus existence is explicit.  If two
+metric-compatible connections have the same tetrad and torsion, their
+contorsions have zero difference by the same formula, proving uniqueness.
+\end{proof}
+
+\begin{corollary}[No residual kinematic connection ambiguity]
+\label{cor:no-independent-omega}
+For a nondegenerate tetrad, a metric-compatible connection is completely fixed
+once the torsion is specified.  In particular, in the classical GR branch
+$T=0$ implies $K=0$ and $\omega=\mathring\omega(e)$.
+\end{corollary}
+
+This result does \emph{not} say that UBT has already derived $T=0$.  It says
+that the remaining full-UBT question is the dynamical law for torsion, not an
+unconstrained freedom in $\Omega_\mu$ itself.
+
+\section{Gauge covariance and Lorentz-slice preservation}
+Under a local Lorentz transformation $e\mapsto\Lambda e$,
+\begin{equation}
+ \omega\mapsto\Lambda\omega\Lambda^{-1}-d\Lambda\,\Lambda^{-1}.
+\end{equation}
+This is gauge covariance, not a new physical ambiguity.  Since
+$\omega_\mu\in\mathfrak{so}(1,3)$, parallel transport preserves
+$\eta_{ab}$.  Therefore the induced vector action preserves the real Lorentz
+slice and the central anticommutator metric.  This closes the connection part
+of GAP-10L for every metric-compatible branch, including branches with
+contorsion.  It does not prove that the full $\Theta$ equations and their
+sources dynamically keep $D_\mu\Theta$ in that slice.
+
+\section{Flat limit}
+\begin{corollary}[Special relativity]
+For the inertial tetrad $e_\mu{}^a=\delta_\mu{}^a$ in Cartesian Minkowski
+coordinates,
+\begin{equation}
+ \mathring\Gamma^\rho{}_{\mu\nu}=0,
+ \qquad \mathring\omega_\mu{}^{ab}=0,
+ \qquad \Omega_\mu=0,
+ \qquad D_\mu=\partial_\mu,
+\end{equation}
+provided the selected UBT vacuum torsion is zero.  More generally, flat
+spacetime may have nonzero connection coefficients in a curvilinear frame,
+while its curvature remains zero.
+\end{corollary}
+
+\section{Implicit $\Theta$--connection self-consistency}
+The reconstruction theorems treat $(e,T)$ as known geometric data.  In UBT,
+however,
+\begin{equation}
+ E_\mu=\mathcal N_0^{-1/2}
+ \left(\partial_\mu\Theta+\rho_*(\Omega_\mu[E,T])\Theta\right)
+ \label{eq:implicit-self-consistency}
+\end{equation}
+is an implicit nonlinear first-order system.  Unique reconstruction of
+$\Omega_\mu$ does not by itself prove that
+Eq.~\eqref{eq:implicit-self-consistency} has a local or global solution for
+every required tetrad.
+
+Moreover, the representation $\rho_*$ matters.  A naive one-sided action on an
+invertible $\Theta$ creates a flatness obstruction in a torsion-free compatible
+branch, whereas a natural two-sided biquaternionic bimodule action can support
+nonzero conjugate left/right curvatures.  This is proved separately in
+\texttt{canonical/gr\_closure/gap\_10i\_integrability\_selection.tex}.
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
+\textbf{GAP-10$\Omega$-KIN: CLOSED [L1].}  For every nondegenerate tetrad and
+specified torsion, the metric-compatible frame connection is uniquely
+$\omega=\mathring\omega(e)+K(T)$, up to local Lorentz gauge.
+
+\medskip
+\textbf{GAP-10$\Omega$-GR: CLOSED [L1].}  In the torsion-free classical GR
+branch, $K=0$ and the frame connection is uniquely the Levi--Civita spin
+connection of the tetrad.
+
+\medskip
+\textbf{GAP-10T-DYN: OPEN.}  The canonical UBT action must determine whether
+vacuum torsion vanishes and whether matter/spin sources produce a nonzero
+contorsion.
+
+\medskip
+\textbf{GAP-10L-CONN: CLOSED [L1].}  Any metric-compatible Lorentz connection
+preserves $\eta_{ab}$ and the Lorentz slice.  Full dynamical slice preservation
+remains GAP-10L-DYN.
+
+\medskip
+\textbf{GAP-10I-CURVED: OPEN.}  Existence and on-shell integrability of the
+implicit system $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ for curved geometries
+remain to be proved.
+\end{tcolorbox}
+
+\end{document}
