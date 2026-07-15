@@ -52,7 +52,7 @@ It remains to derive a fiber-resolved `Theta(q,t+i psi)` configuration from the 
 
 The former claim that a generic source-free `U(1)_psi` Maxwell equation directly gives the Schwarzschild lapse is withdrawn.
 
-- The corrected Abelian current is derived in `derive_connection_equation.tex`.
+- The corrected Abelian current derivation is summarized below; a dedicated `derive_connection_equation.tex` has not yet been written (open task).
 - A standard electrostatic Maxwell equation in the static metric contains a factor `1/N`.
 - An internal component generically contains additional lapse/radion factors.
 - A nonzero ordinary electromagnetic field has stress-energy and produces an Einstein–Maxwell geometry, not vacuum Schwarzschild.

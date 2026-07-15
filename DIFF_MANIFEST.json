@@ -1,0 +1,31 @@
+{
+  "base": "unified-biquaternion-theory-master__4_.zip (author snapshot 2026-07-15)",
+  "date": "2026-07-15",
+  "changed_files": [
+    {
+      "path": "reviews/audit_pure_ubt_fiber_closure_2026-07-15.md",
+      "sha256": "944a90bb5de20e79b54cee0b46ae94f132bf4b6b8eda87ebae2bd545a0da625d",
+      "size": 4968
+    },
+    {
+      "path": "research_tracks/gap_u2/gap_u2_lapse_mechanism.md",
+      "sha256": "230aa809944db288bb373420624bee88d155698564a1af99db07df17df13c5c9",
+      "size": 1774
+    },
+    {
+      "path": "papers/UBT_GR_Submission.tex",
+      "sha256": "a8e0ca66547b6c09f397ee32c4ecc66500d0629a9a8e9e36c6d5317e51222eb2",
+      "size": 54783
+    },
+    {
+      "path": "PATCH_NOTES_AUDIT_CONSISTENCY_2026-07-15.md",
+      "sha256": "1fdfcb5134b28281c3ce3c61d4d04121e5c82d91f848c46493a3b16d95bad2ab",
+      "size": 1415
+    },
+    {
+      "path": "README_APPLY.txt",
+      "sha256": "94ff09bc6119f7158881f8db477d18f87643583d602178118caaae27e39852c0",
+      "size": 229
+    }
+  ]
+}
