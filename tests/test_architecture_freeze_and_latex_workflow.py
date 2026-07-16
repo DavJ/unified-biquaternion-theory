@@ -28,6 +28,10 @@ def test_latex_workflow_uses_non_fail_fast_batch_report() -> None:
     assert "tools/latex_audit.py" in workflow
     assert "reports/latex_build" in workflow
     assert "Commit report and curated PDFs" in workflow
+    assert 'remote_head="$(git rev-parse origin/master)"' in workflow
+    assert '"$remote_head" != "$GITHUB_SHA"' in workflow
+    assert "refusing to commit stale PDFs/report" in workflow
+    assert "git pull --rebase" not in workflow
     assert "shutil.rmtree(report_dir" in tool
     assert "as_completed" in tool
     assert "--strict" in tool

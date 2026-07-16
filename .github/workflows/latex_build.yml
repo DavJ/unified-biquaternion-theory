@@ -106,6 +106,18 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Never attach PDFs built from an older source tree to a newer human
+          # commit.  Artifacts and logs have already been uploaded above; when
+          # master advanced during this long build, the newer push will trigger
+          # its own fresh audit.
+          git fetch origin master
+          remote_head="$(git rev-parse origin/master)"
+          if [[ "$remote_head" != "$GITHUB_SHA" ]]; then
+            echo "Master advanced from $GITHUB_SHA to $remote_head; refusing to commit stale PDFs/report."
+            exit 0
+          fi
+
           git add -f reports/latex_build
           git add docs/pdfs
           if git diff --cached --quiet; then
@@ -113,6 +125,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore: refresh LaTeX audit and PDFs [skip ci]"
-          # Avoid overwriting a human push that landed during a long build.
-          git pull --rebase origin master
           git push origin HEAD:master

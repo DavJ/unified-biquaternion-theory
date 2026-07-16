@@ -1,11 +1,18 @@
 # Changelog
 
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Fixed — LaTeX output provenance hardening (2026-07-16)
+
+- Prevented the PDF workflow from rebasing outputs built from an older source commit onto a newer `master` head.
+- Generated artifacts remain available from the Actions run, while tracked PDFs/reports are committed only when `origin/master == GITHUB_SHA`.
+- Added a regression test forbidding the old `git pull --rebase` behavior.
 
 ### Changed — v10.2.1 audit, architecture freeze, and PDF automation (2026-07-16)
 
