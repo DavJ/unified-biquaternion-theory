@@ -44,7 +44,8 @@ kinematically arbitrary $\Omega_\mu$.  We give an explicit affine field
 $\Theta_{\rm SR}$ generating the Minkowski tetrad and solving the standard flat
 source-free second-order master operator.  Finally, we prove that a naive
 one-sided connection with invertible $\Theta$ has a flatness obstruction under
-torsion-free tetrad compatibility, while the intrinsic two-sided
+the stated torsion-free compatibility assumptions, while a natural
+two-sided
 biquaternionic derivative obeys
 $[D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}$ and permits
 nonzero conjugate left/right curvatures.  Curved-space existence, torsion
@@ -92,6 +93,19 @@ of the Einstein equations.
        sectors.
 \end{itemize}
 \end{tcolorbox}
+
+\section{Relation to standard tetrad geometry and earlier biquaternionic work}
+The tetrad postulate, Levi--Civita spin connection, torsion, and contorsion
+used below are standard Cartan/tetrad geometry
+\cite{wald1984,hehl1976}; they are not claimed as new theorems of UBT.
+The UBT-specific content is the identification
+$E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$, the central
+biquaternionic anticommutator metric on the Lorentz slice, its rank
+interpretation, the affine single-field Minkowski representer, and the
+conditional one-sided obstruction/two-sided intertwiner analysis.  Related
+complex and biquaternionic gravity programmes include
+Refs.~\cite{chamseddine2001,dehaas2014}; the present paper makes no claim
+that standard frame geometry originates here.
 
 \section{Biquaternionic algebra and the Lorentz slice}
 Let $\B=\mathbb C\otimes\mathbb H$, with commuting complex unit $i$ and
@@ -410,8 +424,9 @@ For invertible $\Theta$,
 \end{equation}
 The left and right curvatures may be nonzero.  The field $\Theta$ acts as an
 intertwiner between them.  This does not prove existence for an arbitrary
-curved tetrad, but it removes the one-sided flatness obstruction using only the
-intrinsic left/right structure of the biquaternion algebra.
+curved tetrad, nor does it prove that the two-sided route is unique; it
+exhibits a minimal algebra-native escape from the stated one-sided flatness
+obstruction.
 
 The resulting equation is schematically
 \begin{equation}
@@ -450,7 +465,10 @@ imaginary-time coordinate and used the resulting function space to repair a
 rank count.  Those constructions remain mathematically auditable, but they are
 not required by the central anticommutator theorem and are no longer the
 canonical local metric definition.  They are retained in the repository as an
-exploratory candidate-completion branch.  In particular, the earlier
+exploratory candidate-completion branch and are documented in
+\texttt{canonical/gr\_closure/HISTORICAL\_FIBER\_ROUTE\_STATUS.md}.
+The branch is rejected as canonical because of weak selection and large
+representer redundancy, not because its mathematics was disproved.  In particular, the earlier
 fiber-average constructions are not used as a canonical derivation of the
 metric, rank closure, connection, or Einstein dynamics.
 
@@ -523,5 +541,16 @@ two-sided biquaternionic derivative supplies a nonflat integrability condition.
 The decisive remaining work is dynamical: derive torsion and the paired
 left/right connection from the single UBT action, solve the implicit curved
 system, and obtain Einstein dynamics and observed geometries on shell.
+
+\begin{thebibliography}{9}
+\bibitem{wald1984} R.~M.~Wald, \emph{General Relativity}, University of Chicago Press (1984).
+\bibitem{hehl1976} F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, and J.~M.~Nester,
+``General Relativity with Spin and Torsion: Foundations and Prospects,''
+\emph{Rev. Mod. Phys.} \textbf{48}, 393--416 (1976).
+\bibitem{chamseddine2001} A.~H.~Chamseddine, ``Complexified Gravity in
+Noncommutative Spaces,'' \emph{Commun. Math. Phys.} \textbf{218}, 283--292 (2001).
+\bibitem{dehaas2014} E.~P.~J.~de Haas, ``Biquaternion Formulation of
+Relativistic Tensor Dynamics,'' arXiv:1401.4470 (2014).
+\end{thebibliography}
 
 \end{document}

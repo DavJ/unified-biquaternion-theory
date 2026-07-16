@@ -272,6 +272,32 @@ Pro libovolnou malou symetrickou změnu metriky \(h_{\mu\nu}\) lze zvolit
 což dává \(\delta g_{\mu\nu}=h_{\mu\nu}\). Lokální tetrádová mapa má tedy plný
 rank deset.
 
+### 8.1 Metodologické poučení z rankové odbočky
+
+Dřívější rankový no-go nebyl početně chybný. Platí pro jinou formulaci, v níž
+se metrika chápe jako indukovaná embeddingová bilineární forma a Einsteinovy
+rovnice se mají získat pouze z normálových variací jedné sekce. V takovém rámci
+je normálový prostor příliš malý.
+
+Chyba vznikla až při přenosu tohoto výsledku na tetrádovou architekturu. Z
+pravdivé věty
+
+> jednosekční embeddingová variace nemá dost normálových směrů
+
+neplyne
+
+> čtyři kovariantní derivace \(D_\mu\Theta\) nemohou tvořit tetrádu.
+
+Fiberové módy tedy opravovaly překážku vytvořenou zvolenou formulací, nikoli
+vlastnost původní UBT intuice. Fiberová cesta zůstává matematicky konzistentní,
+ale má slabou selektivitu: velký prostor reprezentantů umí zapsat mnoho metrik,
+aniž vysvětlí, proč dynamika vybere právě jednu.
+
+Obecné pravidlo pro další práci proto zní:
+
+> Než překážku opravíme přidáním polí, módů, projekcí nebo rozměrů, musíme
+> nejprve ověřit, zda překážka není artefaktem formulace.
+
 ## 9. Integrabilita: proč nestačí libovolně přidat konexi
 
 Tetráda není v UBT nezávislá:
@@ -427,5 +453,6 @@ náhrada za prostorovou nebo časovou derivaci.
 5. `GAP-10ψ`: odvodit klasickou stabilitu podél imaginárního času.
 6. Dynamicky vybrat Schwarzschildovu, Kerrovu, FRW a vlnovou větev.
 
-Dřívější fiberová konstrukce zůstává matematickou alternativou, ale není
-součástí minimální kanonické struktury UBT.
+Dřívější fiberová konstrukce zůstává matematicky konzistentní historickou
+alternativou, ale není součástí minimální kanonické struktury UBT kvůli slabé
+selektivitě a velké redundanci reprezentantů.

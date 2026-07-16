@@ -1,7 +1,7 @@
 {
-  "title": "Unified Biquaternion Theory: Emergent Lorentzian Geometry and GR Recovery",
-  "version": "v10.1.3",
-  "description": "Unified Biquaternion Theory (UBT) release focused on emergent Lorentzian geometry, GR recovery status synchronization, and reproducible core derivation assets.",
+  "title": "Unified Biquaternion Theory v10.2.1: Covariant Tetrad Audit and Reproducible PDF Build",
+  "version": "v10.2.1",
+  "description": "Patch release preserving the v10.2.0 covariant-tetrad mathematics while adding an architecture freeze, standard-versus-UBT claim audit, historical fiber-route status, and a non-fail-fast repository-wide LaTeX build report.",
   "creators": [
     {
       "name": "Jaroš, David",

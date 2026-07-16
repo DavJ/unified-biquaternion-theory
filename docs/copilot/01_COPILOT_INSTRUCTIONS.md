@@ -15,3 +15,9 @@
 8. State assumptions, proof level, gauge freedom, and remaining gaps.
 9. Update all status surfaces, students' explanations, tests, and patch notes
    in the same change.
+
+10. **Architecture before repair:** before adding structure to solve an
+    obstruction, test whether the obstruction is an artefact of the chosen
+    formulation.
+11. **Framework freeze:** no v10.x architecture pivot is allowed without an
+    explicit human decision and comparative audit. Work on the current gaps.

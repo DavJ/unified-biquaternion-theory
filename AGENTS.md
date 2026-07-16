@@ -27,6 +27,32 @@ historical/noncanonical or move it to the existing archive workflow.
 
 ## 2. Locked canonical GR route
 
+### Architecture-before-repair rule
+
+Before resolving an obstruction by adding fields, modes, dimensions, fibers,
+projections, averaging operations, embeddings, or auxiliary structures, first
+determine whether the obstruction is an artefact of the chosen formulation
+rather than a property of canonical UBT. Architectural diagnosis takes
+precedence over technical repair. A locally correct rank or variation argument
+must not be extrapolated beyond the framework in which it was proved.
+
+### Framework freeze for the v10.x line
+
+The covariant-tetrad architecture is frozen for the v10.x development line.
+No agent may replace the metric readout, the tetrad
+`E_mu=N0^(-1/2)D_mu Theta`, or the two-sided curved connection framework
+without all of the following:
+
+1. an explicit human decision by the repository author;
+2. a written comparative audit of the current and proposed architectures;
+3. proof that the obstruction is not merely a formulation artefact;
+4. synchronized updates of canonical definitions, status ledgers, student
+   material, tests, and agent instructions.
+
+Difficulties in `GAP-10T-DYN`, `GAP-10I-CURVED`, or `GAP-10D` must first be
+treated as gaps inside the frozen architecture, not as permission to invent a
+new framework.
+
 All active canonical GR work starts from the single UBT field
 
 ```text

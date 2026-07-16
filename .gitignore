@@ -76,3 +76,10 @@ research_front/cmb_2d_fft/out/
 # UBT Experimental Channel Selection - ignore test results
 EXPERIMENTS/channel_selection/test_results/
 EXPERIMENTS/channel_selection/results/
+
+# Repository-wide LaTeX audit: generated from scratch and committed by CI.
+# The report contains text/JSON only; successful PDFs stay in workflow artifacts
+# except for the curated docs/pdfs publication map.
+!reports/latex_build/
+!reports/latex_build/**
+/build/latex-audit/

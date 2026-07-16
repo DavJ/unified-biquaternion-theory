@@ -3,6 +3,21 @@
 This reference supersedes older AI notes that treated projection/fiber metrics
 or fitted constants as established results.
 
+
+## Architecture-before-repair and v10.x freeze
+
+Before adding fields, modes, dimensions, fibers, projections, averaging,
+embeddings, or new axioms to resolve an obstruction, first test whether the
+obstruction is an artefact of the formulation in which it was derived. A
+correct rank theorem for an embedding variation is not automatically a no-go
+for the covariant tetrad.
+
+The covariant-tetrad architecture is frozen for v10.x. Copilot and other agents
+must not replace the anticommutator metric, the tetrad
+`E_mu=N0^(-1/2)D_mu Theta`, or the two-sided curved candidate without explicit
+human approval and a written comparative audit. Open gaps must be attacked
+inside the current framework first.
+
 ## Canonical geometry
 
 \[

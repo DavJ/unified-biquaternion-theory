@@ -1,0 +1,155 @@
+ROOT: research_tracks/research/B_base_spectral_determinant.tex
+ENGINE: pdflatex
+STATUS: failed
+RETURN_CODE: 12
+SECONDS: 2.50
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7 B_base_spectral_determinant.tex
+
+--- LATEXMK OUTPUT ---
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7"  "B_base_spectral_determinant.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./B_base_spectral_determinant.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_ba
+se_spectral_determinant.tex__b79e579fe7/B_base_spectral_determinant.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+No file B_base_spectral_determinant.toc.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 97.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 97.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 97.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 113.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 113.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 113.
+
+
+LaTeX Warning: Reference `prop:s1_det' on page 2 undefined on input line 149.
+
+
+Overfull \hbox (14.34122pt too wide) in paragraph at lines 149--152
+[]\OT1/cmr/bx/n/10.95 Remark 1 \OT1/cmr/m/n/10.95 (Scal-ing check)\OT1/cmr/bx/n
+/10.95 . \OT1/cmr/m/it/10.95 From Propo-si-tion [], $[]\OT1/cmr/m/n/10.95 (\OMS
+/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 ^^A[]) = 2\OML/cmm/m/it/10.95 ^^YR[]$\OT1
+/cmr/m/it/10.95 . For a 3-torus, $[]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 ^^@
+\OT1/cmr/m/n/10.95 ^^A[]) =
+
+LaTeX Warning: Reference `eq:neff_def' on page 2 undefined on input line 167.
+
+
+./B_base_spectral_determinant.tex:180: LaTeX Error: Unicode character Θ (U+039
+8)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 The one-loop effective potential for the Θ
+                                                 -field on $T^3$ contains the
+./B_base_spectral_determinant.tex:180:  ==> Fatal error occurred, no output PDF
+ file produced!
+Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
+racks__research__B_base_spectral_determinant.tex__b79e579fe7/B_base_spectral_de
+terminant.log.
+Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7/B_base_spectral_determinant.log'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7/B_base_spectral_determinant.fls'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7/B_base_spectral_determinant.log'
+Latexmk: Missing input file 'B_base_spectral_determinant.toc' (or dependence on it) from following:
+  No file B_base_spectral_determinant.toc.
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 2 reference(s)
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Reference `prop:s1_det' on page 2 undefined on input line 149
+  Reference `eq:neff_def' on page 2 undefined on input line 167
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7/B_base_spectral_determinant.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.

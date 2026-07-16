@@ -47,6 +47,8 @@ The current canonical route is:
 ## Noncanonical exploratory branch
 
 The former compact-ψ fiber-average closure files remain in this directory for
-comparison and audit history. They must be labelled `EXPLORATORY CANDIDATE
+comparison and audit history. See `HISTORICAL_FIBER_ROUTE_STATUS.md`. The
+branch was not disproved; it was demoted because its large representer space
+has weak canonical selection. They must be labelled `EXPLORATORY CANDIDATE
 COMPLETION` and must not override the central anticommutator metric or the
 covariant-tetrad connection route.

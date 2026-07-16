@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — v10.2.1 audit, architecture freeze, and PDF automation (2026-07-16)
+
+- Froze the covariant-tetrad architecture for the v10.x line and added the
+  architecture-before-repair rule to human and AI contribution protocols.
+- Added a full claim audit distinguishing standard Cartan/tetrad geometry from
+  UBT-specific results and tightened the scope of the one-sided no-go and
+  two-sided curvature-intertwiner statements.
+- Archived the compact-fiber route as mathematically consistent but
+  noncanonical because of weak selection and representer redundancy.
+- Replaced fail-fast PDF builds with a repository-wide LaTeX audit that tries
+  every active standalone root, records failures, uploads all successful PDFs,
+  and commits a fresh single report directory plus curated canonical PDFs.
+- Prepared `.zenodo.json` and `CITATION.cff` for v10.2.1.
+
+### Added
+
+- `tools/latex_audit.py` and `tools/publish_latex_pdfs.py`.
+- `.github/latex_publish_map.tsv`.
+- `docs/LATEX_BUILD_WORKFLOW.md`.
+- `reviews/tetrad_architecture_audit_2026-07-16.md`.
+- `canonical/gr_closure/HISTORICAL_FIBER_ROUTE_STATUS.md`.
+- `tests/test_latex_audit.py`.
+- `PATCH_NOTES_V10_2_1_TETRAD_AUDIT_AND_LATEX_WORKFLOW.md`.
+
 ### Changed — Connection reconstruction and integrability selection (2026-07-16)
 
 - Closed `GAP-10Omega-KIN`: a nondegenerate tetrad plus specified torsion

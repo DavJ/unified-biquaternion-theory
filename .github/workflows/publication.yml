@@ -1,74 +1,50 @@
-name: Build Publication PDFs
+name: Build publication PDFs (non-fail-fast)
 
 on:
   push:
-    branches: [ master, copilot/** ]
+    branches: [master]
     paths:
+      - 'publication/**'
       - 'docs/publication/**'
-      - 'archive/consolidation_project/alpha_two_loop/tex/**'
       - '.github/workflows/publication.yml'
+      - 'tools/latex_audit.py'
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths:
+      - 'publication/**'
       - 'docs/publication/**'
-      - 'archive/consolidation_project/alpha_two_loop/tex/**'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build-publication:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Install TeX Live
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended \
-          texlive-latex-recommended texlive-science latexmk texlive-bibtex-extra
-        
-    - name: Build arXiv manuscript
-      run: |
-        cd publication/arxiv
-        # Try building with latexmk
-        latexmk -pdf -interaction=nonstopmode main.tex || true
-        # Check if PDF was created
-        if [ -f main.pdf ]; then
-          echo "arXiv PDF build succeeded"
-        else
-          echo "arXiv PDF build failed"
-          exit 1
-        fi
-        
-    - name: Copy artifacts
-      run: |
-        mkdir -p publication/artifacts
-        cp publication/arxiv/main.pdf publication/artifacts/ubt_alpha_baseline_arxiv.pdf
-        
-    - name: Generate checksums
-      run: |
-        cd publication/artifacts
-        sha256sum ubt_alpha_baseline_arxiv.pdf > checksums.txt
-        cat checksums.txt
-        
-    - name: Upload PDF artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: publication-pdfs
-        path: publication/artifacts/*.pdf
-        
-    - name: Upload checksums
-      uses: actions/upload-artifact@v4
-      with:
-        name: publication-checksums
-        path: publication/artifacts/checksums.txt
-        
-    - name: Commit artifacts (on master branch)
-      if: github.ref == 'refs/heads/master'
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add publication/artifacts/*.pdf publication/artifacts/checksums.txt
-        git diff --staged --quiet || git commit -m "Update publication artifacts [skip ci]"
-        git push
+      - uses: actions/checkout@v4
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            latexmk biber python3-pygments \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-science \
+            texlive-xetex texlive-luatex texlive-bibtex-extra
+      - name: Compile all publication roots
+        run: |
+          python3 tools/latex_audit.py \
+            --include 'publication/**/*.tex' \
+            --include 'docs/publication/**/*.tex' \
+            --jobs 2 --timeout 240
+      - name: Upload publication PDFs and complete report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-latex-${{ github.run_id }}
+          path: |
+            build/latex-audit/pdfs/publication/**/*.pdf
+            build/latex-audit/pdfs/docs/publication/**/*.pdf
+            reports/latex_build/**
+          if-no-files-found: warn
+          retention-days: 90

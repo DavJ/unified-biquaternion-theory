@@ -11,6 +11,23 @@ canonical/research/speculative/historical separation.
 
 ## Locked canonical GR route
 
+### Architecture diagnosis before repair
+
+Before adding fields, modes, fibers, projections, embeddings, averages, or new
+axioms to overcome an obstruction, verify that the obstruction is not caused by
+the formulation used to state it. A correct calculation in an embedding or
+projected variation framework is not automatically a no-go theorem for the
+canonical tetrad framework. Diagnose the architecture before repairing the
+technical symptom.
+
+### v10.x framework freeze
+
+The covariant-tetrad architecture is frozen for v10.x. Do not replace the
+antocommutator metric, `E_mu=N0^(-1/2)D_mu Theta`, or the two-sided curved
+derivative without explicit human approval and a written comparative audit.
+Work on open gaps within this architecture. Never perform an autonomous
+framework pivot.
+
 All active GR work starts from
 
 \[

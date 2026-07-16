@@ -1,0 +1,7 @@
+# Successful build path (relative to build/latex-audit/pdfs) <TAB> tracked destination
+canonical/UBT_canonical_main.pdf	docs/pdfs/UBT_canonical_main.pdf
+papers/UBT_GR_Submission.pdf	docs/pdfs/UBT_GR_Submission.pdf
+canonical/gr_closure/covariant_tetrad_rank_theorem.pdf	docs/pdfs/covariant_tetrad_rank_theorem.pdf
+canonical/gr_closure/gap_10omega_connection_elimination.pdf	docs/pdfs/gap_10omega_connection_elimination.pdf
+canonical/gr_closure/gap_10i_integrability_selection.pdf	docs/pdfs/gap_10i_integrability_selection.pdf
+docs/textbook/covariant_tetrad_student_paper.pdf	docs/pdfs/covariant_tetrad_student_paper.pdf

@@ -1,0 +1,3286 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-07-16T18:15:28+00:00",
+  "commit": "unknown",
+  "ref": "unknown",
+  "scope": "active standalone roots",
+  "totals": {
+    "discovered": 327,
+    "success": 219,
+    "failed": 108,
+    "timeout": 0,
+    "aggregate_build_seconds": 2411.303
+  },
+  "results": [
+    {
+      "root": "ALPHA_BEST_ROUTE.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.525365459999875,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/ALPHA_BEST_ROUTE.tex__589d4d0ee6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/8pi_common_origin.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.418544082999915,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/8pi_common_origin.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/algebra/e8_no_go_proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.258334120999962,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/algebra/e8_no_go_proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/alpha_best_route.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.712462659999801,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/alpha_best_route.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/alpha_equation_matrix.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.4339087180001115,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__alpha_equation_matrix.tex__d87dd6c173.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/alpha_gap_closure_matrix.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.65757319499994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/alpha_gap_closure_matrix.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/B_identification_proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.927124104999848,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/B_identification_proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/best_candidate_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.997946260999925,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__best_candidate_derivation.tex__960f2b529e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/gamma_entropy_alpha_refinement_status.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.048815895999951,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/gamma_entropy_alpha_refinement_status.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/gap_g3k_closure_report.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.615877223000098,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/gap_g3k_closure_report.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/gauge_normalization_attempt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.211674739000046,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/gauge_normalization_attempt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/modular_prime_attractor_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.99097580900002,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/modular_prime_attractor_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/neff_32_alpha_route.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.66621490700004,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/neff_32_alpha_route.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/nlogn_origin_analysis.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.603316238999923,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__nlogn_origin_analysis.tex__95cd85ef37.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/prime_factorization_entropy_potential.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.898789339000132,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/prime_factorization_entropy_potential.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/prime_selection_principle.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.203856350000024,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/prime_selection_principle.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/prime_stability_set.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.6410263909999685,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__prime_stability_set.tex__f93542811d.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/stable_prime_ranking.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.82773669900007,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/stable_prime_ranking.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/alpha/symmetry_breaking_alpha_attempt.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.725071496000055,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__symmetry_breaking_alpha_attempt.tex__c0853dc650.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/veff_corrected.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.402427965000015,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__alpha__veff_corrected.tex__984f012719.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/alpha/veff_corrected_statement.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.796209454999826,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/alpha/veff_corrected_statement.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/appendices/appendix_ACTION_review.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.669500235999976,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__appendices__appendix_ACTION_review.tex__ebb0de13e5.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/appendices/appendix_alpha_geometry.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.007910906000006,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__appendices__appendix_alpha_geometry.tex__189a47cb2e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/appendices/appendix_fermions_completion.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.0004383699999835,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__appendices__appendix_fermions_completion.tex__e8a6ec7116.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/appendices/appendix_GR_completion.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.343119172000115,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/appendices/appendix_GR_completion.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/appendices/appendix_metric_review.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.9028306269999575,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/appendices/appendix_metric_review.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/appendices/appendix_predictions.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.677915181000117,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/appendices/appendix_predictions.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/appendices/appendix_SM_completion.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.165966446000084,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/appendices/appendix_SM_completion.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/appendices/appendix_theta_spectrum.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.040057346999902,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/appendices/appendix_theta_spectrum.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/fermionic_statistics_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.785907366999936,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/fermionic_statistics_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/GR_chain_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.41611214500017,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/GR_chain_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/Maxwell_complete_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.878011961000084,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/Maxwell_complete_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/Maxwell_limit_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.72514438799999,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/Maxwell_limit_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/QED_complete_chain.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.278936522999857,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/QED_complete_chain.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/QED_limit_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.604339611000114,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/QED_limit_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/bridges/su3_gauge_qubit_equivalence.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.6153518860000986,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__bridges__su3_gauge_qubit_equivalence.tex__1e14a0d8a2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/bridges/theta_complex_time_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.398928422999916,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/bridges/theta_complex_time_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/chirality/gap_c1_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.100246980000065,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/chirality/gap_c1_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/chirality/step1_psi_parity.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.923607205000053,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/chirality/step1_psi_parity.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/chirality/step2_chirality_result.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.699884099999963,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__chirality__step2_chirality_result.tex__4a0e39e37d.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/chirality/step3_gap_C1_resolution.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.505098970999825,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/chirality/step3_gap_C1_resolution.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/chirality/step4_no_wr_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.462522884000009,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__chirality__step4_no_wr_derivation.tex__57a2667714.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/complex_phase_extension.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.865698412000029,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__complex_phase_extension.tex__5f1b6ee724.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/extensions/theta_fft_diagonalization.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 3.5208776710001075,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/extensions/theta_fft_diagonalization.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/fields/chronofactor_operator.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.01707151200003,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/fields/chronofactor_operator.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/geometry/Rpsi_dynamical_fix.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.991804430000002,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__geometry__Rpsi_dynamical_fix.tex__bbaddff4eb.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/gr_closure/covariant_tetrad_rank_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.905073839000124,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/covariant_tetrad_rank_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/frw_cosmological_solutions.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.1154649950001385,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__gr_closure__frw_cosmological_solutions.tex__a2130dbf85.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/gr_closure/gap_10i_integrability_selection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.261816566000107,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/gap_10i_integrability_selection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/gap_10omega_connection_elimination.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.379162188999999,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/gap_10omega_connection_elimination.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/GR_chain_summary.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.620270240000082,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/GR_chain_summary.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/linearised_fiber_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.5052785590000894,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/linearised_fiber_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/linearised_gravity.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.68100169499985,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__gr_closure__linearised_gravity.tex__b165fac769.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/gr_closure/pure_ubt_fiber_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.404988323999987,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/pure_ubt_fiber_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/step2_nondegeneracy.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.819804009999871,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/step2_nondegeneracy.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/step2_theta_only_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.611552320999863,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/step2_theta_only_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/step3_signature_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.839068839999982,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/step3_signature_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/step4_offshell_Tmunu.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.810712327999909,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/step4_offshell_Tmunu.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/theta_vs_metric_variation_note.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.276588992000143,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/theta_vs_metric_variation_note.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_closure/zerilli_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 15.399924722999913,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_closure/zerilli_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/gr_limit/GR_limit_of_UBT.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.343833155000084,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/gr_limit/GR_limit_of_UBT.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/interactions/B_base_derivation_complete.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.975911816000007,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__interactions__B_base_derivation_complete.tex__5a86e9c281.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/interactions/colour_charge_lattice.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.55834020500015,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__interactions__colour_charge_lattice.tex__b5e28d8b5e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/interactions/hypercharge_assignments.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 15.192248169999857,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/interactions/hypercharge_assignments.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/interactions/su3_qubit_encoding.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.604523484999845,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__interactions__su3_qubit_encoding.tex__88ad7acfd1.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/n_eff/neff_reconciliation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.398484058999884,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__n_eff__neff_reconciliation.tex__c370756446.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/n_eff/nhelicity_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.131640735000019,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__n_eff__nhelicity_derivation.tex__7be98f5b41.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/n_eff/step1_mode_decomposition.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.276418806000038,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__n_eff__step1_mode_decomposition.tex__be7bf7f62d.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/n_eff/step2_AUDIT.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.515220336999846,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/n_eff/step2_AUDIT.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/n_eff/step2_vacuum_polarization.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.3176133079998635,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__n_eff__step2_vacuum_polarization.tex__f6eda8948e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/n_eff/step3_N_eff_result.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.58534190599994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/n_eff/step3_N_eff_result.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qed_phi_const/step1_u1_protection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.237974207999969,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qed_phi_const/step1_u1_protection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qed_phi_const/step2_electron_mass.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.30278413200017,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qed_phi_const/step2_electron_mass.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qed_phi_const/step3_beta_function.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.803692700000056,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__qed_phi_const__step3_beta_function.tex__d9d2dd1366.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/qed_phi_const/step4_schwinger_term.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.9119033419999596,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__qed_phi_const__step4_schwinger_term.tex__2618c9000a.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/qed_phi_const/step5_lamb_shift.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.790387045999978,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qed_phi_const/step5_lamb_shift.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qed_phi_const/step6_qed_summary.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.752794617000063,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qed_phi_const/step6_qed_summary.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qm_emergence/step1_fpe_check.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.09945302899996,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qm_emergence/step1_fpe_check.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qm_emergence/step2_schrodinger_emergence.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.126964375999933,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qm_emergence/step2_schrodinger_emergence.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qm_emergence/step3_dirac_emergence.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.8778117839999595,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qm_emergence/step3_dirac_emergence.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qm_emergence/step4_fpe_equivalence.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.2101269590000356,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__qm_emergence__step4_fpe_equivalence.tex__36c306095b.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/qm_emergence/step6_spinorial_subspace.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.389114632999963,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/qm_emergence/step6_spinorial_subspace.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/qm_emergence/step7_born_rule.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.106989960999954,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__qm_emergence__step7_born_rule.tex__7a7d816492.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/su3_derivation/step1_involution_summary.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.514892953000071,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/su3_derivation/step1_involution_summary.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/su3_derivation/step1_superposition_approach.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.804951777000042,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/su3_derivation/step1_superposition_approach.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/su3_derivation/step3_SU3_result.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.702922095999838,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/su3_derivation/step3_SU3_result.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/chirality_and_parity_breaking.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.43880240999988,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__symmetry__chirality_and_parity_breaking.tex__281a13f713.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/symmetry/cp_phase_sector.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.2246279859998594,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__symmetry__cp_phase_sector.tex__2513011486.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/symmetry/discrete_symmetries.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.490512350000017,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/discrete_symmetries.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/effective_vs_fundamental_breaking.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.679204897000091,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/effective_vs_fundamental_breaking.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/examples_matrix_representation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.471392048000098,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/examples_matrix_representation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/step1_CPT_definitions.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.4840038709999135,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/step1_CPT_definitions.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/step2_action_analysis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.176731094999923,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/step2_action_analysis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/symmetry/step3_breaking_catalogue.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.341218607999963,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/symmetry/step3_breaking_catalogue.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/t_munu/step1_metric_variation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.418066422000038,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/t_munu/step1_metric_variation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/t_munu/step2_biquat_stress_energy.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.597385735999978,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/t_munu/step2_biquat_stress_energy.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/t_munu/step3_einstein_with_matter.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.085452649999979,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/t_munu/step3_einstein_with_matter.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/t_munu/step4_T_properties.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.3980165830000715,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/t_munu/step4_T_properties.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/canonical/canonical_action.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.176096358999985,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/canonical/canonical_action.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/canonical/canonical_axioms.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.618298152000079,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/canonical/canonical_axioms.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/canonical/canonical_field_equations.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 3.600282246000006,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/canonical/canonical_field_equations.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/canonical/canonical_metric_definition.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.832634388000088,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/canonical/canonical_metric_definition.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/canonical/canonical_projection_rules.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.4021382529999755,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/canonical__THEORY__canonical__canonical_projection_rules.tex__fd5e8e13be.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "canonical/THEORY/complex_time_canonical_choice.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.024722355999984,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/complex_time_canonical_choice.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/THEORY/t_duality_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.59298593199992,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/THEORY/t_duality_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "canonical/UBT_canonical_main.tex",
+      "engine": "lualatex",
+      "status": "success",
+      "seconds": 35.4315368529999,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/canonical/UBT_canonical_main.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/notes/symmetry_from_automorphisms.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.715062865999926,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/notes/symmetry_from_automorphisms.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/papers/appendix_GR_embedding.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.117162447000055,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/papers/appendix_GR_embedding.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/papers/complex-theta-transform-paper/main.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.966341044000046,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__complex-theta-transform-paper__main.tex__19c97d8bee.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/generated/neff_biquaternion.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.261457334999932,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__generated__neff_biquaternion.tex__638216d52a.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/generated/ubt_action_and_alpha.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.8761989829999948,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__generated__ubt_action_and_alpha.tex__9e6e532aae.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/generated/ubt_cosmo_hecke_neff.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.917973030999974,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__generated__ubt_cosmo_hecke_neff.tex__e8acfffd8a.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/su3_triplet/arxiv_version.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.8935692630000176,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__su3_triplet__arxiv_version.tex__e38d2172d4.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/su3_triplet/main.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.4051637330001086,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__su3_triplet__main.tex__3d050075d4.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/su3_triplet/noether_current_paper.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.224258073000101,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__su3_triplet__noether_current_paper.tex__c70cff2cc4.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/papers/papers/unified_biquaternion_theory_full.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.48048253900015,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__papers__papers__unified_biquaternion_theory_full.tex__81d57ba259.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/phase/ubt_phase_projection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.696849125999961,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/phase/ubt_phase_projection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/phase/ubt_planck_constant_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.1573024140000143,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__phase__ubt_planck_constant_derivation.tex__18c65eca65.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/phase/ubt_planck_constant_next_steps.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.971904459000143,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__phase__ubt_planck_constant_next_steps.tex__25e67da656.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/prime_gated_harmonic_fisher.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.477286190999848,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/prime_gated_harmonic_fisher.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/publication/alpha_prime_attractor_arxiv.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.324840824000148,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/publication/alpha_prime_attractor_arxiv.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/publication/alpha_prime_attractor_paper.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.9319326710001405,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/publication/alpha_prime_attractor_paper.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/publication/arxiv/main.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.721097699999973,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__publication__arxiv__main.tex__71916730bd.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/publication/ubt_gravity_paper.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.1909148320000895,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/publication/ubt_gravity_paper.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/textbook/covariant_tetrad_student_paper.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.09712167900011,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/docs/textbook/covariant_tetrad_student_paper.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "docs/textbook/main.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.793761522000068,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__textbook__main.tex__db3fc64b5d.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "docs/UBT_VERIFICATION_REPORT.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.7627628400000503,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/docs__UBT_VERIFICATION_REPORT.tex__a095ac677d.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/fingerprints/UBT_coding_fingerprint.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 3.8143725819998053,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/fingerprints/UBT_coding_fingerprint.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "experiments/research_tracks/fingerprints/UBT_spectral_parity_test.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 3.5991361460000917,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/fingerprints/UBT_spectral_parity_test.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/st2_obstruction.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.1689162779998696,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__st2_obstruction.tex__2b502b6b7f.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/st3_complex_time_generations.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.030819875000134,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__st3_complex_time_generations.tex__2dac9870d0.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step1_fourier_vs_taylor.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.0312510230000953,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__step1_fourier_vs_taylor.tex__0dbb253395.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step2_modular_symmetry.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.1109377230000064,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__step2_modular_symmetry.tex__b257b9c4bd.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step3_mass_from_psi_energy.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.2100138359999164,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__step3_mass_from_psi_energy.tex__2f2dcdacd5.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step4_modular_forms.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.307759851000128,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__step4_modular_forms.tex__d3ce80263a.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step5_hecke_search_results.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.4884769529999176,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/experiments__research_tracks__three_generations__step5_hecke_search_results.tex__91771329a6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step6_hecke_matches.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.545194115999948,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/three_generations/step6_hecke_matches.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step6_nonCM_search.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.095636240999966,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/three_generations/step6_nonCM_search.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step7_theoretical_motivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.430435373999899,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/three_generations/step7_theoretical_motivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "experiments/research_tracks/three_generations/step7_weight_motivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.986477500000092,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/experiments/research_tracks/three_generations/step7_weight_motivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "papers/ncg_poisson_B0_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 6.099642046000099,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__ncg_poisson_B0_derivation.tex__0ddca76241.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/old_releases/UBT_GR_RC1_v2.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 17.209570976000123,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/papers/old_releases/UBT_GR_RC1_v2.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "papers/old_releases/UBT_GR_RC2.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.883167768000021,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__old_releases__UBT_GR_RC2.tex__e77ce2acd8.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/old_releases/UBT_GR_Submission_v2.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 17.104943345000038,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/papers/old_releases/UBT_GR_Submission_v2.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "papers/UBT_Gauge_Draft_v1.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.787759763000167,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__UBT_Gauge_Draft_v1.tex__2dfa359b23.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/UBT_Gauge_Submission.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.498771586999965,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__UBT_Gauge_Submission.tex__2b84c4eaa9.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/UBT_GR_Flagship.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 6.486942107999994,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__UBT_GR_Flagship.tex__c7c8fb1191.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/UBT_GR_RC2_final.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 6.310168659000055,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/papers__UBT_GR_RC2_final.tex__b7dc386335.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "papers/UBT_GR_Submission.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 16.067270272000087,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/papers/UBT_GR_Submission.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/alpha_spectral/b_coefficient_gap_resolution.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.707441877000065,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__alpha_spectral__b_coefficient_gap_resolution.tex__5c40d893fd.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/alpha_spectral/hecke_equivariant_path_integral.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.893274468999834,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__alpha_spectral__hecke_equivariant_path_integral.tex__a5b2ba4ac1.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/alpha_spectral/hecke_trace_B_derivation_attempt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.413531549000027,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/alpha_spectral/hecke_trace_B_derivation_attempt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/alpha_spectral/modular_covariance_of_STheta.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 16.619346534999977,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/alpha_spectral/modular_covariance_of_STheta.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/alpha_spectral/self_dual_torus_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.8182690080000157,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__alpha_spectral__self_dual_torus_derivation.tex__a6cef2356a.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/B2_alpha_layer2_bridge_status.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.735395283000116,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/B2_alpha_layer2_bridge_status.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/B3_weinberg_odd_spinor_bridge_status.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.600983577000079,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/B3_weinberg_odd_spinor_bridge_status.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/B4_rpsi_selfdual_vs_scale_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.420345909999924,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/B4_rpsi_selfdual_vs_scale_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A1_complete_spin_structure_trace_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.488955340000075,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A1_complete_spin_structure_trace_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A2_four_channel_geometric_mean_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.033777096999984,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A2_four_channel_geometric_mean_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A3_odd_winding_measure_attack_response.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.387199855000063,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A3_odd_winding_measure_attack_response.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A4_su2_twist_uniqueness_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.72662602299988,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A4_su2_twist_uniqueness_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A5_em_modular_normalisation_attack_response.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.289800984000067,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/A5_em_modular_normalisation_attack_response.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/G137B_full_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.568856799000059,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/BRIDGE_CLOSURE/G137B_AUDIT/G137B_full_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/coupling_spectrum/multi_coupling_projection_hypothesis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.228309887000023,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/coupling_spectrum/multi_coupling_projection_hypothesis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/coupling_spectrum/rg_prime_checkpoints.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.4110971869999958,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__coupling_spectrum__rg_prime_checkpoints.tex__b92ca34bd2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/EW/anomaly_cancellation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.696054274999824,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/anomaly_cancellation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/ew_final_status_note.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.595468826000115,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/ew_final_status_note.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/higgs_from_theta.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 16.024610875000008,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/higgs_from_theta.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/higgs_mass_from_a4.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.453073857999925,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/higgs_mass_from_a4.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/higher_harmonics_analysis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.605235013000083,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/higher_harmonics_analysis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/hypercharge_from_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.27842598899997,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/hypercharge_from_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/killing_form_theta_w.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.595976960000144,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/killing_form_theta_w.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/lepton_mass_ratios_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.939730082000096,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/lepton_mass_ratios_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/rpsi_from_action.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.503817705000074,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__EW__rpsi_from_action.tex__78fea6f21c.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/EW/su5_embedding_test.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.721718007999925,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/su5_embedding_test.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/theta0_vev_doublet.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.580925490999789,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/theta0_vev_doublet.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/weinberg_angle_ew1_rg.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.711566294000022,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/weinberg_angle_ew1_rg.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/weinberg_angle_gut_norm_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.397613522000029,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/weinberg_angle_gut_norm_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/weinberg_angle_mz_bridge_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.43507804900014,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/weinberg_angle_mz_bridge_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/weinberg_angle_odd_spinor_threshold_beta_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.687827961000039,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/weinberg_angle_odd_spinor_threshold_beta_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/EW/weinberg_angle_rg_twisted_scale_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.492525900999908,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/EW/weinberg_angle_rg_twisted_scale_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/gap_u1/classification.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.893642148999788,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/gap_u1/classification.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/gap_u1/examples.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.217549114000121,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/gap_u1/examples.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/gap_u1/proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.083353062000015,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/gap_u1/proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/gap_u2/derive_connection_equation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.67436552900017,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/gap_u2/derive_connection_equation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/gray_transport_layer/gray_path_fingerprint.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.780137341999989,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/hecke_bridge/motivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.422354028999962,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__hecke_bridge__motivation.tex__43280cdcf2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/mirror_sector/vacuum_stability.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.799559602000045,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/mirror_sector/vacuum_stability.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/polariton_supersolid/ubt_bridge/effective_gp_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.011836455999855,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/polariton_supersolid/ubt_bridge/effective_gp_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/polariton_supersolid/ubt_bridge/low_energy_reduction.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.895735216000048,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/polariton_supersolid/ubt_bridge/low_energy_reduction.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/polariton_supersolid/ubt_bridge/scaling_limits.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.852586820999932,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/polariton_supersolid/ubt_bridge/scaling_limits.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/polariton_supersolid/ubt_bridge/symmetry_analysis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.674479261999977,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/polariton_supersolid/ubt_bridge/symmetry_analysis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/polariton_supersolid/ubt_bridge/ubt_effective_action.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.613770473000159,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/polariton_supersolid/ubt_bridge/ubt_effective_action.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/prime_stability/gap_dependence.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.880412451999973,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/prime_stability/gap_dependence.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/prime_stability/rigorous_bounds.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.731032622999919,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__prime_stability__rigorous_bounds.tex__1ab5c9484b.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/alpha_reconstruction_chain.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.566021797000076,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/alpha_reconstruction_chain.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/charge_quantization_topology.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.404643540000052,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/charge_quantization_topology.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/e5_parent_coupling_audit.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.358737620000056,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/e5_parent_coupling_audit.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/gauge_kinetic_normalization.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.306770940999968,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__qed_alpha_derivation__gauge_kinetic_normalization.tex__ac1f407fcf.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/qed_sector_from_Theta.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.977013879999959,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/qed_sector_from_Theta.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/Rpsi_scale_fixing.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.110186949000081,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/Rpsi_scale_fixing.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/qed_alpha_derivation/U1_generator_normalization.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.326482822000116,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/qed_alpha_derivation/U1_generator_normalization.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/cosmological_constant_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 3.1922260670000924,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/cosmological_constant_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/delta_neff_prediction.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.027884027000027,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/delta_neff_prediction.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/fermionic_action_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.895409248000078,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__quantum_ubt__fermionic_action_derivation.tex__4bc94dfec4.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/fermionic_sector_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.9009660469998835,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__quantum_ubt__fermionic_sector_derivation.tex__1dcd10ba40.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/frw_from_ubt.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.516475436999826,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__quantum_ubt__frw_from_ubt.tex__0a417648ba.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/graviton_quantisation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.619220197999994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/graviton_quantisation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/ncg_poisson_b0derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.316508212999906,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/ncg_poisson_b0derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/ncg_spectral_triple.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.895987759000036,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__quantum_ubt__ncg_spectral_triple.tex__146a712ade.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/scherk_schwarz_fermions.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.597761764999859,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/scherk_schwarz_fermions.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/quantum_ubt/su2_twist_neff12.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.989437755999916,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/quantum_ubt/su2_twist_neff12.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/asd_condition_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.509435641999971,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/asd_condition_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/B_base_heat_kernel.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.610695961999909,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/B_base_heat_kernel.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/B_base_spectral_determinant.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.504599741999982,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__B_base_spectral_determinant.tex__b79e579fe7.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/fermion_mass_generation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.9180224669999,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/fermion_mass_generation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/generation_structure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.27872659400009,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/generation_structure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/gr_offshell_rank_proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.801047816999926,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/gr_offshell_rank_proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/graviton_from_perturbation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.579847087999951,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/graviton_from_perturbation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/graviton_schwarzschild.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.2040460549999352,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__graviton_schwarzschild.tex__0f5d5303f0.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/hecke_generation_structure.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.324482115999899,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__hecke_generation_structure.tex__dd450108e4.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/hosotani_higgs.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.0850413629998457,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/mirror_sector_dynamics.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.280358564999915,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__mirror_sector_dynamics.tex__c6d70b3fe6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/modular_dynamics.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.3001966970000467,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__modular_dynamics.tex__ef47fd9f13.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/moduli_space_ads_vs_physical_ds.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.1182592090001435,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__moduli_space_ads_vs_physical_ds.tex__1b3a33f971.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/psi_sector_zeta_connection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.109694621000017,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/psi_sector_zeta_connection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/r_factor_two_loop.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.7975026159999743,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__r_factor_two_loop.tex__1546864abd.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/schwarzschild_from_theta.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.052574014999891,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/research/schwarzschild_from_theta.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/research/theta_dynamics_equations.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.226643648999925,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__theta_dynamics_equations.tex__ea265bb7a2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/theta_fermion_emergence.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.905739003000008,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__theta_fermion_emergence.tex__5d21f51f63.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/theta_modular_geometry.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.387995192999824,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__theta_modular_geometry.tex__e656368a18.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/research/theta_quantum_field.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.9085435829999824,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__research__theta_quantum_field.tex__b06e81579e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/rg_B46/higher_loop_thresholds.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.276506089999884,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rg_B46/higher_loop_thresholds.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/rg_B46/one_loop_rg_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.995017960999803,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__rg_B46__one_loop_rg_derivation.tex__bd1d8af477.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/rg_B46/t_dual_winding_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.897203192000006,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rg_B46/t_dual_winding_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/rg_nlogn/full_rg_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.9995502820002,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rg_nlogn/full_rg_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/rg_nlogn/loop_integrals_appendix.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.690489307000007,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rg_nlogn/loop_integrals_appendix.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/rh_operator/operator_definition.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.13616381299994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rh_operator/operator_definition.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/rh_operator/selfadjointness_attempt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.50428741199994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/rh_operator/selfadjointness_attempt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T1_GR/GR_paper_v1.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.684586825000224,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T1_GR__GR_paper_v1.tex__5042e7d545.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T1_GR/GR_theorem_result.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.194993996999983,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T1_GR/GR_theorem_result.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T1_GR/theorem_chain.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.230886680999902,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T1_GR/theorem_chain.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T1_GR/theorem_chain_clean.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.99451118900015,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T1_GR/theorem_chain_clean.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T1_GR/theorem_statement.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.707692993000137,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T1_GR/theorem_statement.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T1_GR/ubt_gr_flagship.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.888965933999998,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T1_GR__ubt_gr_flagship.tex__30191ff889.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T1_GR/ubt_gr_paper.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.325293682999927,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T1_GR__ubt_gr_paper.tex__185f71aa01.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T2_GAUGE/gauge_paper_draft.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.685842060999903,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T2_GAUGE__gauge_paper_draft.tex__c4329718e6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/a4_explicit_computation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.4623904879999827,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__a4_explicit_computation.tex__7b14117839.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_bridge_b1_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.0843325570001525,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_bridge_b1_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_conditions_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.709716239000045,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_conditions_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_derivation_complete.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.68804031600007,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_derivation_complete.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_final_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.502290005999839,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_final_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_l1_proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.103173581999954,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_l1_proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_residuum_analysis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.039711198999839,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_residuum_analysis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/alpha_weinberg_final_status.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.468293781000057,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/alpha_weinberg_final_status.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.518156017000138,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/bessel_heat_kernel_B.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bmod_from_action.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.413439760000074,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/bmod_from_action.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bootstrap_step_m1_conformal.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.08959642800005,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__bootstrap_step_m1_conformal.tex__5ae58d3853.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bootstrap_step_m2_4point.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.465544449999925,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__bootstrap_step_m2_4point.tex__7c7dde2094.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bootstrap_step_m3_crossing.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.271217979000085,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/bootstrap_step_m3_crossing.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/bootstrap_step_m4_ubt_content.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.70186368099985,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/bootstrap_step_m4_ubt_content.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/central_charge_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.011010244999852,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/central_charge_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.431890806000183,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/charge_conjugation_wp_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/chowla_selberg_B_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.0370816239999385,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__chowla_selberg_B_derivation.tex__39e1ce0612.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/conditional_alpha_note_draft.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.223387998000135,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__conditional_alpha_note_draft.tex__0c38280260.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/cw_determinant_full_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 17.003650232999917,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/cw_determinant_full_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/electroweak_em_projection_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.401585645000068,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/electroweak_em_projection_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/em_modular_coupling_identification.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.299182157999894,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/em_modular_coupling_identification.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/eta_i_alpha_coefficient_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 15.798637916999951,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/eta_i_alpha_coefficient_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/ew_odd_spinor_readout_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.655694327999981,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/ew_odd_spinor_readout_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/exponent_3_over_2_candidates.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 15.158294853000143,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/exponent_3_over_2_candidates.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/g137b_canonical_bridge_package.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.993633079999881,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/g137b_canonical_bridge_package.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/g137b_compact_measure_spin_product_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.908090454000103,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/g137b_compact_measure_spin_product_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/g137b_final_bridge_closure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.323726793000105,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/g137b_final_bridge_closure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/g137b_layer2_endomap_readout_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 13.402275007999833,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/g137b_layer2_endomap_readout_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/gap_A_proof.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.604520123999919,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/gap_A_proof.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/gap_A_rho_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.910551916000031,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/gap_A_rho_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/hecke_alpha_connection.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 6.3191180540000005,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__hecke_alpha_connection.tex__92be42bc1e.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/hecke_higher_weight_verification.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 4.293918633999965,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/hecke_higher_weight_verification.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/hecke_lepton_mass_verification.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.4059555399999226,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__hecke_lepton_mass_verification.tex__8c9d08f913.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/hecke_prime_specificity.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.9750581590001275,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/hecke_prime_specificity.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/information_loss_alpha_self_consistency.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.296013343999903,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/information_loss_alpha_self_consistency.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/integer_137_note.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.004041199000085,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__integer_137_note.tex__bd8b9177b6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/layer2_kernel_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.608976016000042,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/layer2_kernel_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/mellin_insertion_B.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.784086768999941,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/mellin_insertion_B.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/modular_bootstrap_attempt.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.086123848999932,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__modular_bootstrap_attempt.tex__e2f2273ca7.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/modular_bootstrap_k1_attempt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.862083668999958,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/modular_bootstrap_k1_attempt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/modular_symmetry_rpsi.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.515814928000054,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/modular_symmetry_rpsi.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/neff12_derivations.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 14.674622493000015,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/neff12_derivations.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/neff_kk_counting.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.311797871999943,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/neff_kk_counting.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/neff_protocol_derivation.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.988101089000111,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__neff_protocol_derivation.tex__8b32fd54a2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/nlogn_mechanism.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.807369982999944,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/nlogn_mechanism.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/nu2_correction_derivation.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.0208623420001,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/nu2_correction_derivation.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/odd_winding_fermionic_ew_sign_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.289810549999856,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/odd_winding_fermionic_ew_sign_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/p137_selection_synthesis.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.499662040999965,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/p137_selection_synthesis.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/prime_selection_criterion.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 6.578053689000171,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/prime_selection_criterion.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/psi_determinant_ew_mass_sign_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.906793222000033,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/psi_determinant_ew_mass_sign_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 7.094399567999972,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/rogers_ramanujan_c3_connection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/seeley_dewitt_b_bridge.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.991903297999897,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/seeley_dewitt_b_bridge.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/seeley_dewitt_coefficients.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.502200519000098,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/seeley_dewitt_coefficients.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/self_consistency_fixed_point.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 11.264956281999957,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/self_consistency_fixed_point.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/theta0_electroweak_vacuum_orbit_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.612970740000037,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/theta0_electroweak_vacuum_orbit_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/theta0_nonzero_minimum_theorem.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.986853346000089,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/theta0_nonzero_minimum_theorem.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/theta0_uv_sign_from_psi_casimir_candidate.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 12.484685420999995,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/T3_ALPHA/theta0_uv_sign_from_psi_casimir_candidate.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/vcw_exact_minimum.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.716926177999994,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__vcw_exact_minimum.tex__67ed15f7f9.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/T3_ALPHA/zeta_regularisation_B.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 6.307926984000005,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/research_tracks__T3_ALPHA__zeta_regularisation_B.tex__88ae2672b0.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "research_tracks/theta_spectral/theta_kernel_foundations.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.823496392000152,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/theta_spectral/theta_kernel_foundations.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/theta_spectral/trace_formula_connections.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.79607156200018,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/theta_spectral/trace_formula_connections.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "research_tracks/ubt-channel-lab/paper/draft_channel_selection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.394733037999913,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/research_tracks/ubt-channel-lab/paper/draft_channel_selection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/causality/chronology_protection_ubt.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.273138587000176,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/causality/chronology_protection_ubt.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/causality/complex_time_causal_structure.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.09410974399998,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/causality/complex_time_causal_structure.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/causality/ctc_conditions.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 5.024961597000129,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__causality__ctc_conditions.tex__13bcb8fd6c.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/causality/ctc_methodology.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.08649003100004,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/causality/ctc_methodology.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/causality/rotation_complex_time.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 10.020244213000069,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/causality/rotation_complex_time.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/emergent_alpha_executive_summary.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 3.9743987649999326,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__emergent_alpha_executive_summary.tex__9d8226c955.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/invisibility/st1_imaginary_object_definition.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 8.817797256000176,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/invisibility/st1_imaginary_object_definition.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/invisibility/st2_sector_interaction.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.335724113999959,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/invisibility/st2_sector_interaction.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/invisibility/st3_stability.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 4.891253438999911,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__invisibility__st3_stability.tex__2c52af72f2.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/invisibility/st4_ctc_invisibility_connection.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 9.006163818999994,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/invisibility/st4_ctc_invisibility_connection.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/P3_consciousness_model/P3_toy_model_decision.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 2.7296841449999647,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/P3_consciousness_model/P3_toy_model_decision.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/prime_resonance_channels/prime_resonance_channels.tex",
+      "engine": "pdflatex",
+      "status": "success",
+      "seconds": 5.871536184999968,
+      "returncode": 0,
+      "pdf": "build/latex-audit/pdfs/speculative_extensions/prime_resonance_channels/prime_resonance_channels.pdf",
+      "log": null,
+      "message": "PDF produced"
+    },
+    {
+      "root": "speculative_extensions/priority_P3_consciousness_model/P3_toy_model_decision.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.286155889000156,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__priority_P3_consciousness_model__P3_toy_model_decision.tex__3d08641ca1.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/solution_consciousness_model_P3/consciousness_model_solution.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 2.53633360799995,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__solution_consciousness_model_P3__consciousness_model_solution.tex__13a85885e6.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/solution_consciousness_model_P3/fp_stationary_analysis.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 0.9094554609998795,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__solution_consciousness_model_P3__fp_stationary_analysis.tex__322d9b0142.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/solution_consciousness_model_P3/fp_time_dynamics.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 0.9738316220000343,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__solution_consciousness_model_P3__fp_time_dynamics.tex__a4237efa4b.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/solution_consciousness_model_P3/toy_model_decision.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.064390266999908,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__solution_consciousness_model_P3__toy_model_decision.tex__248ae3ed9c.txt",
+      "message": "latexmk exit code 12"
+    },
+    {
+      "root": "speculative_extensions/UBT_HeckeWorlds_theta_zeta_primes_appendix.tex",
+      "engine": "pdflatex",
+      "status": "failed",
+      "seconds": 1.751806950999935,
+      "returncode": 12,
+      "pdf": null,
+      "log": "reports/latex_build/logs/speculative_extensions__UBT_HeckeWorlds_theta_zeta_primes_appendix.tex__a4220eea4a.txt",
+      "message": "latexmk exit code 12"
+    }
+  ]
+}

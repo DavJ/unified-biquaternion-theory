@@ -70,7 +70,11 @@ Thank you for your interest in contributing to UBT! This document provides guide
 - **Reproducibility**: Ensure others can run your code
 
 ### LaTeX Quality
-- **Compilation**: Ensure documents compile without errors
+- **Compilation**: Use the repository-wide audit (`tools/latex_audit.py`) or
+  inspect the corresponding CI report. One failed document must not prevent the
+  remaining roots from being attempted.
+- **Build reports**: `reports/latex_build/` is regenerated from scratch by CI;
+  do not manually edit it.
 - **Notation**: Follow existing notation conventions
 - **References**: Use proper BibTeX citations
 - **Clarity**: Write clear, well-structured content
@@ -115,6 +119,15 @@ See SPECULATIVE_VS_EMPIRICAL.md for detailed guidelines.
 
 
 ## Canonical GR Contribution Protocol
+
+### Architecture freeze and diagnosis
+
+For the v10.x line, the covariant-tetrad architecture is frozen. Before adding
+new ontology or auxiliary structure to solve a mathematical obstruction, a
+contributor must first show that the obstruction is not an artefact of the
+chosen formulation. Any proposed architecture pivot requires an issue, explicit
+approval by the author, and a written comparison against the current tetrad
+route. AI agents must not initiate such a pivot.
 
 Any contribution touching gravity must preserve the covariant-tetrad route:
 

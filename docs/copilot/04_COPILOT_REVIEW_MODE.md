@@ -2,6 +2,10 @@
 
 For every proposed GR derivation, ask:
 
+0. Is the alleged obstruction a property of canonical UBT, or only of the
+   formulation used to derive it? Has an architecture diagnosis been done
+   before adding new structure?
+
 1. Does it begin with `E_mu=N0^(-1/2)D_mu Theta` and the central
    anticommutator?
 2. Was a projection, fiber average, preferred section, or embedding map
@@ -21,3 +25,11 @@ For every proposed GR derivation, ask:
 
 Flag overclaims. Do not repair them by inventing a new projector, fiber, or
 axiom without explicit author approval.
+
+
+## Architecture freeze verdict
+
+If a proposal changes the metric readout, tetrad definition, or two-sided
+connection architecture, stop review and request explicit human authorization
+plus a comparative audit. Agents may not approve or implement such a pivot on
+their own.

@@ -1,0 +1,384 @@
+ROOT: research_tracks/research/hosotani_higgs.tex
+ENGINE: pdflatex
+STATUS: failed
+RETURN_CODE: 12
+SECONDS: 3.09
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0 hosotani_higgs.tex
+
+--- LATEXMK OUTPUT ---
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0"  "hosotani_higgs.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./hosotani_higgs.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hoso
+tani_higgs.tex__9e6ab5c1c0/hosotani_higgs.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+No file hosotani_higgs.toc.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/en
+c/dvips/cm-super/cm-super-ts1.enc}]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 104.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 104.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\psi' on input line 104.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 104.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd)
+[2]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 185.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\psi' on input line 185.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 185.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Overfull \hbox (13.59349pt too wide) in paragraph at lines 209--212
+\OT1/cmr/m/n/12 The canon-i-cal bridge doc-u-ment (\OT1/cmtt/m/n/12 canonical/b
+ridges/fermionic[]statistics[]bridge.tex\OT1/cmr/m/n/12 )
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 225.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Theta' on input line 225.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\in' on input line 225.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\otimes' on input line 225.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 225.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 238.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 238.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 238.
+
+
+[3]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 257.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\theta' on input line 257.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 257.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\pi' on input line 257.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 257.
+
+
+LaTeX Warning: Reference `eq:a2_hosotani' on page 4 undefined on input line 260
+.
+
+
+LaTeX Warning: Reference `eq:ssb_condition' on page 4 undefined on input line 2
+66.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 277.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\theta' on input line 277.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 277.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 277.
+
+
+[4]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 341.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 341.
+
+
+LaTeX Warning: Reference `eq:hosotani_veff' on page 5 undefined on input line 3
+52.
+
+
+Overfull \hbox (80.3444pt too wide) in paragraph at lines 378--380
+\OT1/cmr/m/n/12 From the fine-structure con-stant deriva-tion (\OT1/cmtt/m/n/12
+ research[]tracks/research/theta[]alpha[]connection.md\OT1/cmr/m/n/12 ): 
+
+LaTeX Warning: Reference `eq:higgs_vev' on page 5 undefined on input line 389.
+
+
+[5]
+
+LaTeX Warning: Reference `sec:neff_count' on page 6 undefined on input line 441
+.
+
+
+LaTeX Warning: Reference `sec:lambda_numerical' on page 6 undefined on input li
+ne 444.
+
+
+LaTeX Warning: Reference `sec:neff_count' on page 6 undefined on input line 452
+.
+
+
+LaTeX Warning: Reference `eq:lambda_formula' on page 6 undefined on input line 
+457.
+
+
+LaTeX Warning: Reference `sec:lambda_numerical' on page 6 undefined on input li
+ne 458.
+
+
+LaTeX Warning: Reference `sec:neff_count' on page 6 undefined on input line 466
+.
+
+
+[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 469.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 469.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 469.
+
+
+LaTeX Warning: Reference `eq:lambda_formula' on page 7 undefined on input line 
+476.
+
+
+LaTeX Warning: Reference `eq:lambda_formula' on page 7 undefined on input line 
+512.
+
+
+LaTeX Warning: Reference `eq:lambda_formula' on page 7 undefined on input line 
+536.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 545.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 545.
+
+
+[7]
+Overfull \hbox (4.68933pt too wide) in paragraph at lines 554--556
+[]\OT1/cmr/bx/n/12 Step 1 \OT1/cmr/m/n/12 | $\OML/cmm/m/it/12  $\OT1/cmr/m/n/12
+ -circle in-te-gra-tion: The 5D ac-tion re-duces as $\OML/cmm/m/it/12 S[] \OT1/
+cmr/m/n/12 = 2\OML/cmm/m/it/12 ^^YR[] [] d[]x V[]\OT1/cmr/m/n/12 (\OML/cmm/m/it
+/12 ^^R[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ))$. 
+
+Overfull \hbox (1.69812pt too wide) in paragraph at lines 618--620
+\OT1/cmr/m/n/12 A re-pro-ducible nu-mer-i-cal ver-i-fi-ca-tion is pro-vided in 
+\OT1/cmtt/m/n/12 tools/compute[]hosotani[]lambda.py\OT1/cmr/m/n/12 . 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 632.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 632.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\psi' on input line 632.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 632.
+
+
+[8]
+
+LaTeX Warning: Reference `sec:lambda_numerical' on page 9 undefined on input li
+ne 645.
+
+
+LaTeX Warning: Reference `eq:Rpsi_natural' on page 9 undefined on input line 64
+6.
+
+
+./hosotani_higgs.tex:724: LaTeX Error: Environment conjecture undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.724 \begin{conjecture}
+                        [Two Physical Scales for $R_\psi$]
+./hosotani_higgs.tex:724:  ==> Fatal error occurred, no output PDF file produce
+d!
+Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
+racks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.log.
+Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.log'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.fls'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.log'
+Latexmk: Missing input file 'hosotani_higgs.toc' (or dependence on it) from following:
+  No file hosotani_higgs.toc.
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 15 reference(s)
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Reference `eq:a2_hosotani' on page 4 undefined on input line 260
+  Reference `eq:ssb_condition' on page 4 undefined on input line 266
+  Reference `eq:hosotani_veff' on page 5 undefined on input line 352
+  Reference `eq:higgs_vev' on page 5 undefined on input line 389
+  Reference `sec:neff_count' on page 6 undefined on input line 441
+  Reference `sec:lambda_numerical' on page 6 undefined on input line 444
+  Reference `sec:neff_count' on page 6 undefined on input line 452
+ And 8 more --- see log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.log'
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__research__hosotani_higgs.tex__9e6ab5c1c0/hosotani_higgs.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.

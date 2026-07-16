@@ -1,247 +1,118 @@
-name: Build Canonical PDF
+name: Build all LaTeX PDFs
+
 permissions:
   contents: write
 
 on:
   push:
+    branches: [master]
+    paths-ignore:
+      - 'reports/latex_build/**'
+      - 'docs/pdfs/**'
   pull_request:
+  workflow_dispatch:
+    inputs:
+      include_archive:
+        description: 'Also compile archived and legacy standalone TeX roots'
+        required: false
+        default: false
+        type: boolean
+      jobs:
+        description: 'Parallel LaTeX workers'
+        required: false
+        default: '4'
+        type: string
+      timeout:
+        description: 'Timeout in seconds per document'
+        required: false
+        default: '180'
+        type: string
+
+concurrency:
+  group: latex-audit-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint complex time usage
+  compile-all:
     runs-on: ubuntu-latest
+    timeout-minutes: 330
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      
-      - name: Run complex time linter
-        run: |
-          python3 scripts/lint_complex_time_usage.py
-        continue-on-error: true  # Don't fail build, just warn
-      
-      - name: Run symbolic alpha tests
-        run: |
-          python3 scripts/test_symbolic_alpha.py
-
-  compile:
-    name: Build canonical/UBT_canonical_main.tex
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Detect engine
-        id: detect
-        shell: bash
-        run: |
-          set -euo pipefail
-          root="canonical/UBT_canonical_main.tex"
-          dir="$(dirname "$root")"
-          pdf="${root%.tex}.pdf"
-
-          engine="pdflatex"
-          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
-            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
-          fi
-          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
-          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
-
-          {
-            echo "dir=$dir"
-            echo "pdf=$pdf"
-            echo "engine=$engine"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Build canonical PDF
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: canonical/UBT_canonical_main.tex
-          work_in_root_file_dir: true
-          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
-          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
-          args: -interaction=nonstopmode -halt-on-error
-          extra_system_packages: "py-pygments"
-          pre_compile: "tlmgr install physics braket || true"
-
-      - name: Check produced files
-        id: produced
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          pdf="${{ steps.detect.outputs.pdf }}"
-          dir="${{ steps.detect.outputs.dir }}"
-          if [[ -f "$pdf" ]]; then
-            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
-          fi
-          shopt -s nullglob
-          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
-          if (( ${#logs[@]} )); then
-            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Check for LaTeX errors in logs
-        if: always() && steps.produced.outputs.logs_exist == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          dir="${{ steps.detect.outputs.dir }}"
-          echo "Checking for undefined control sequences..."
-          if grep -q "Undefined control sequence" "$dir"/*.log 2>/dev/null; then
-            echo "❌ Found undefined control sequences in LaTeX log:"
-            grep -n "Undefined control sequence" "$dir"/*.log || true
-            echo "This usually means missing macro definitions or missing \\input statements."
-            exit 1
-          fi
-          echo "✓ No undefined control sequences found"
-
-      - name: Upload PDF
-        if: steps.produced.outputs.pdf_exists == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: canonical-pdf
-          path: ${{ steps.detect.outputs.pdf }}
-
-      - name: Upload logs (only if any)
-        if: always() && steps.produced.outputs.logs_exist == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: canonical-logs
-          path: |
-            ${{ steps.detect.outputs.dir }}/*.log
-            ${{ steps.detect.outputs.dir }}/*.blg
-            ${{ steps.detect.outputs.dir }}/*.fls
-            ${{ steps.detect.outputs.dir }}/*.aux
-            ${{ steps.detect.outputs.dir }}/*.out
-
-  compile_standalone_roots:
-    name: Build standalone canonical roots
-    needs: lint
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        root:
-          - canonical/chirality/step4_no_wr_derivation.tex
-          - canonical/gr_closure/frw_cosmological_solutions.tex
-          - canonical/gr_closure/linearised_gravity.tex
-          - research_tracks/T3_ALPHA/integer_137_note.tex
-          - research_tracks/T3_ALPHA/bessel_heat_kernel_B.tex
-          - research_tracks/T3_ALPHA/modular_symmetry_rpsi.tex
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Detect engine
-        id: detect
-        shell: bash
-        run: |
-          set -euo pipefail
-          root="${{ matrix.root }}"
-          dir="$(dirname "$root")"
-          pdf="${root%.tex}.pdf"
-
-          engine="pdflatex"
-          if grep -Eq '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root"; then
-            engine="$(grep -Eo '^[[:space:]]*%!?TEX.*(xelatex|lualatex)' "$root" | grep -Eo '(xelatex|lualatex)' | head -n1)"
-          fi
-          grep -Eq '\\usepackage\{(fontspec|polyglossia|unicode-math)\}' "$root" && engine="xelatex"
-          grep -Eq '\\usepackage\{(luacode|luaotfload)\}' "$root" && engine="lualatex"
-
-          {
-            echo "dir=$dir"
-            echo "pdf=$pdf"
-            echo "engine=$engine"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Build standalone root
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: ${{ matrix.root }}
-          work_in_root_file_dir: true
-          latexmk_use_xelatex: ${{ steps.detect.outputs.engine == 'xelatex' }}
-          latexmk_use_lualatex: ${{ steps.detect.outputs.engine == 'lualatex' }}
-          args: -interaction=nonstopmode -halt-on-error
-          extra_system_packages: "py-pygments"
-          pre_compile: "tlmgr install mdframed booktabs mathtools hyperref xcolor physics braket || true"
-
-      - name: Check produced files
-        id: produced
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          pdf="${{ steps.detect.outputs.pdf }}"
-          dir="${{ steps.detect.outputs.dir }}"
-          if [[ -f "$pdf" ]]; then
-            echo "pdf_exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "pdf_exists=false" >> "$GITHUB_OUTPUT"
-          fi
-          shopt -s nullglob
-          logs=( "$dir"/*.log "$dir"/*.blg "$dir"/*.fls "$dir"/*.aux "$dir"/*.out )
-          if (( ${#logs[@]} )); then
-            echo "logs_exist=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "logs_exist=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Check for LaTeX errors in logs
-        if: always() && steps.produced.outputs.logs_exist == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          dir="${{ steps.detect.outputs.dir }}"
-          if grep -q "Undefined control sequence" "$dir"/*.log 2>/dev/null; then
-            grep -n "Undefined control sequence" "$dir"/*.log || true
-            exit 1
-          fi
-
-      - name: Upload logs (only if any)
-        if: always() && steps.produced.outputs.logs_exist == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: standalone-logs-${{ replace(matrix.root, '/', '__') }}
-          path: |
-            ${{ steps.detect.outputs.dir }}/*.log
-            ${{ steps.detect.outputs.dir }}/*.blg
-            ${{ steps.detect.outputs.dir }}/*.fls
-            ${{ steps.detect.outputs.dir }}/*.aux
-            ${{ steps.detect.outputs.dir }}/*.out
-
-  publish_pdfs:
-    needs: [compile, compile_standalone_roots]
-    if: needs.compile.result == 'success' && needs.compile_standalone_roots.result == 'success' && github.ref == 'refs/heads/master' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Download canonical PDF artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: canonical-pdf
-          path: build_pdfs
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            latexmk biber python3-pygments \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-science \
+            texlive-xetex texlive-luatex texlive-bibtex-extra
 
-      - name: Copy PDF to docs/pdfs
+      - name: Compile every standalone TeX root
+        shell: bash
+        env:
+          DISPATCH_INCLUDE_ARCHIVE: ${{ inputs.include_archive || false }}
+          DISPATCH_JOBS: ${{ inputs.jobs || '4' }}
+          DISPATCH_TIMEOUT: ${{ inputs.timeout || '180' }}
+        run: |
+          set -uo pipefail
+          args=(
+            --repo .
+            --report-dir reports/latex_build
+            --build-dir build/latex-audit
+            --jobs "$DISPATCH_JOBS"
+            --timeout "$DISPATCH_TIMEOUT"
+          )
+          if [[ "$DISPATCH_INCLUDE_ARCHIVE" == "true" ]]; then
+            args+=(--include-archive)
+          fi
+          # Document-level failures are recorded by the tool and never stop the
+          # remaining compilation queue. Infrastructure errors still fail here.
+          python3 tools/latex_audit.py "${args[@]}"
+
+      - name: Publish curated canonical PDFs
+        if: always()
+        run: |
+          python3 tools/publish_latex_pdfs.py \
+            --repo . \
+            --build-dir build/latex-audit/pdfs \
+            --map .github/latex_publish_map.tsv
+
+      - name: Upload all successful PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-pdfs-${{ github.run_id }}
+          path: build/latex-audit/pdfs/**/*.pdf
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload complete LaTeX audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-audit-${{ github.run_id }}
+          path: reports/latex_build/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit report and curated PDFs
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/master'
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p docs/pdfs
-          cp -f build_pdfs/UBT_canonical_main.pdf docs/pdfs/UBT_canonical_main.pdf
-
-      - name: Commit & push PDF
-        run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/pdfs/UBT_canonical_main.pdf
-          git commit -m "chore: update canonical PDF [skip ci]" || echo "No changes to commit"
-          git push
+          git add -f reports/latex_build
+          git add docs/pdfs
+          if git diff --cached --quiet; then
+            echo "No report or PDF changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: refresh LaTeX audit and PDFs [skip ci]"
+          # Avoid overwriting a human push that landed during a long build.
+          git pull --rebase origin master
+          git push origin HEAD:master

@@ -1,0 +1,141 @@
+ROOT: research_tracks/gray_transport_layer/gray_path_fingerprint.tex
+ENGINE: pdflatex
+STATUS: failed
+RETURN_CODE: 12
+SECONDS: 2.78
+COMMAND: latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder -outdir=/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7 gray_path_fingerprint.tex
+
+--- LATEXMK OUTPUT ---
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 11 Dec. 2024. Version 4.86.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -file-line-error -recorder -output-directory="/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7"  "gray_path_fingerprint.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./gray_path_fingerprint.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport
+_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fingerprint.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+No file gray_path_fingerprint.toc.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 71.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 71.
+
+
+[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Overfull \hbox (6.32991pt too wide) in paragraph at lines 136--138
+[]\OT1/cmr/bx/n/10.95 Definition 6 \OT1/cmr/m/n/10.95 (Gray ad-ja-cency score $
+\OML/cmm/m/it/10.95 A[]$\OT1/cmr/m/n/10.95 )\OT1/cmr/bx/n/10.95 . \OT1/cmr/m/it
+/10.95 Given a se-quence of dis-crete phase sym-bols $\OML/cmm/m/it/10.95 s[]; 
+s[]; [] ; s[]$\OT1/cmr/m/it/10.95 ,
+
+Overfull \hbox (19.24858pt too wide) in paragraph at lines 171--173
+[]\OT1/cmr/m/n/10.95 A $1 \OMS/cmsy/m/n/10.95 ! \OT1/cmr/m/n/10.95 0$ flip at p
+o-si-tion $\OML/cmm/m/it/10.95 j$\OT1/cmr/m/n/10.95 : pro-duces the zero vec-to
+r $\OT1/cmr/bx/n/10.95 0$ \OT1/cmr/m/n/10.95 (weight 0, vac-uum state) $[] []$.
+ 
+
+[3]
+[4]
+Overfull \hbox (37.48813pt too wide) in paragraph at lines 264--266
+[]\OT1/cmr/bx/n/10.95 Phase-randomized null\OT1/cmr/m/n/10.95 : re-place each $
+[](\OML/cmm/m/it/10.95 a[]\OT1/cmr/m/n/10.95 )$ with an in-de-pen-dent draw fro
+m $[][0\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ^^Y\OT1/cm
+r/m/n/10.95 )$,
+
+./gray_path_fingerprint.tex:306: LaTeX Error: Unicode character ⭐ (U+2B50)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.306 \item \textbf{L2S status}: ⭐
+                                     \textsc{canonical}.
+./gray_path_fingerprint.tex:306:  ==> Fatal error occurred, no output PDF file 
+produced!
+Transcript written on /mnt/data/ubt_next_work/build/latex-audit/work/research_t
+racks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fi
+ngerprint.log.
+Latexmk: Getting log file '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fingerprint.log'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fingerprint.fls'
+Latexmk: Examining '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fingerprint.log'
+Latexmk: Missing input file 'gray_path_fingerprint.toc' (or dependence on it) from following:
+  No file gray_path_fingerprint.toc.
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/mnt/data/ubt_next_work/build/latex-audit/work/research_tracks__gray_transport_layer__gray_path_fingerprint.tex__332a6d3ba7/gray_path_fingerprint.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.
