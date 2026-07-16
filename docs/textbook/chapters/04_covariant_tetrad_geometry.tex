@@ -332,6 +332,63 @@ It is not yet a complete curved-space solution.  The action must still fix the
 relation between $A_\mu$ and $B_\mu$, their involution properties, torsion, and
 boundary conditions.
 
+\section{Conditional dynamical subclosures}
+\subsection{The algebraic Cartan torsion equation}
+In the minimal first-order Hilbert--Palatini branch, independent variation of
+the Lorentz connection gives
+\[
+ \epsilon_{abcd}T^a\wedge e^b=\kappa\tau_{cd}.
+\]
+For a nondegenerate tetrad this is a $24\times24$ pointwise linear map of rank
+24. Thus zero spin current gives $T=0$, while a specified spin current gives a
+unique torsion and contorsion. This closes the torsion algebra inside the
+minimal branch, not the derivation of that branch from fundamental UBT.
+
+\subsection{Fixed-set propagation of the Lorentz slice}
+The anti-linear involution
+\[
+ \mathcal JX=-\overline{X^\sharp}
+\]
+has the physical Lorentz module as its fixed set. If a well-posed unique
+Cauchy evolution is $\mathcal J$-equivariant and its data and sources are fixed
+by $\mathcal J$, uniqueness implies that the solution remains in the Lorentz
+slice. The final UBT action must still be checked against these hypotheses.
+
+\subsection{Imaginary-time metric stability}
+A vertical flow
+\[
+ \partial_\psi e_\mu{}^a=\Lambda_\psi{}^a{}_b e_\mu{}^b,
+ \qquad \Lambda_{\psi ab}=-\Lambda_{\psi ba},
+\]
+is tangent to a local Lorentz gauge orbit and satisfies
+$\partial_\psi g_{\mu\nu}=0$ identically. A second sufficient mechanism is a
+unique $\psi$-translation-invariant evolution with $\psi$-independent initial
+data. Selecting the physical mechanism and excluding unstable non-gauge modes
+remains a dynamical task.
+
+\subsection{Augmented holonomy for prescribed curved coefficients}
+For prescribed $E_\mu,A_\mu,B_\mu$, the inhomogeneous system
+\[
+ \partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu
+ =\sqrt{\mathcal N_0}E_\mu
+\]
+becomes homogeneous parallel transport for $Y=(\Theta,1)^T$ in an augmented
+bundle. A single-valued solution with initial value $Y_0$ exists exactly when
+the augmented holonomy fixes $Y_0$; flat augmented curvature is sufficient on
+a simply connected domain. This closes prescribed-coefficient integrability,
+not self-consistent UBT selection of the coefficients.
+
+\subsection{The conditional Einstein--Lambda endpoint}
+The minimal Palatini branch with zero spin current yields
+\[
+ G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.
+\]
+Under the ordinary four-dimensional Lovelock assumptions, every local natural
+divergence-free second-order metric equation without extra light geometric
+fields has gravitational part $aG_{\mu\nu}+bg_{\mu\nu}$. Therefore the
+conditional low-energy endpoint is unique. UBT must still derive those
+assumptions, coefficients and matter terms from its canonical action.
+
 \section{Implicit versus transcendental equations}
 The words \emph{implicit} and \emph{transcendental} describe different
 properties.
@@ -374,36 +431,39 @@ the field,
 and the induced connection variation must be included.
 
 \section{What is closed and what remains open}
-The following results are closed:
+The following results are closed at their stated levels:
 \begin{enumerate}
- \item the central anticommutator metric;
- \item tetrad-to-metric rank ten with six Lorentz gauge directions;
- \item GAP-10$\Omega$-KIN: unique metric-compatible connection for specified
-       tetrad and torsion;
- \item GAP-10$\Omega$-GR: the Levi--Civita spin connection in the torsion-free
-       classical branch;
- \item GAP-10L-CONN: preservation of the Lorentz metric and Lorentz slice by a
-       metric-compatible connection;
- \item GAP-10I-SR: an explicit affine $\Theta$ representer for Minkowski and
-       every constant Lorentz tetrad;
- \item GAP-10I-1S: the naive one-sided invertible curved route is closed as a
-       no-go under torsion-free compatibility.
+ \item the central anticommutator metric and rank-ten tetrad map;
+ \item GAP-10$\Omega$-KIN/GR: reconstruction of the compatible connection and
+       its Levi--Civita torsion-free branch;
+ \item GAP-10T-PALATINI (conditional): the minimal Cartan torsion equation is
+       algebraic and invertible;
+ \item GAP-10L-CONN and GAP-10L-SYM (conditional): compatible transport and
+       unique equivariant evolution preserve the Lorentz slice;
+ \item GAP-10I-SR and GAP-10I-PRESCRIBED: the affine flat representer and the
+       exact augmented-holonomy criterion for prescribed curved coefficients;
+ \item GAP-10I-1S: the naive one-sided invertible curved route is a conditional
+       no-go;
+ \item GAP-10D-PALATINI/UNIQUENESS (conditional): the minimal first-order
+       branch and Lovelock hypotheses select Einstein--$\Lambda$;
+ \item GAP-10$\psi$-KIN/SYM: Lorentz-gauge flow or translation symmetry
+       protects the classical metric under the stated hypotheses.
 \end{enumerate}
-The two-sided derivative narrows but does not completely close the curved
-integrability problem.  The following remain open:
+
+The undivided full-theory gaps are narrowed rather than fully closed:
 \begin{enumerate}
- \item GAP-10T-DYN: derive vacuum torsion or spin-sourced torsion from the UBT
-       action;
- \item fix the exact paired left/right representation and involution on
-       $\Theta$;
- \item GAP-10I-CURVED: prove local existence, uniqueness, regularity, and global
-       continuation for required curved tetrads;
- \item GAP-10L-DYN: prove that the full $\Theta$ dynamics and sources preserve
-       the Lorentz slice;
- \item GAP-10D: derive Einstein dynamics rather than only tetrad kinematics;
- \item show that Schwarzschild, Kerr, FRW, and wave sectors are selected by the
-       canonical UBT equations.
+ \item GAP-10T-DYN: derive the selected first-order branch, spin current,
+       normalization and possible extra torsion invariants from canonical UBT;
+ \item GAP-10I-CURVED: establish self-consistent on-shell selection, regularity
+       and global continuation of $(\Theta,E,A,B,T)$;
+ \item GAP-10L-DYN: prove equivariance and well-posed uniqueness for the final
+       complete dynamics;
+ \item GAP-10D: derive the low-energy Palatini/Lovelock assumptions, couplings
+       and matter action from the fundamental theory;
+ \item GAP-10$\psi$: select the stability mechanism and exclude physical
+       unstable non-gauge modes.
 \end{enumerate}
-The earlier compact-$\psi$ fiber closure remains a mathematically consistent
-historical candidate completion, but its weak selection and representer
-redundancy keep it outside the minimal canonical route.
+GAP-B-MASTER and GAP-U2$\Theta$ remain open. The earlier compact-$\psi$ fiber
+closure remains a mathematically consistent historical candidate completion,
+but its weak selection and representer redundancy keep it outside the minimal
+canonical route.

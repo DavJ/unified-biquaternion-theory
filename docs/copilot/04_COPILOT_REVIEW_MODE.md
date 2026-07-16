@@ -33,3 +33,6 @@ If a proposal changes the metric readout, tetrad definition, or two-sided
 connection architecture, stop review and request explicit human authorization
 plus a comparative audit. Agents may not approve or implement such a pivot on
 their own.
+
+5. Ask whether coefficients are prescribed or dynamically selected. Augmented holonomy closes only the prescribed system.
+6. Reject wording that turns conditional Palatini/Lovelock or symmetry-propagation results into a derivation from the fundamental UBT action.

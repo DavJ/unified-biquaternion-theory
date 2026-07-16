@@ -13,7 +13,7 @@ fundamental gap closure.
 - [x] Two-sided derivative described as a minimal demonstrated route, not a
       uniqueness theorem.
 - [x] Fiber route archived as mathematically consistent but weakly selective.
-- [x] `GAP-10T-DYN`, `GAP-10I-CURVED`, and `GAP-10D` remain OPEN.
+- [x] v10.2.1 preserves the pre-v10.3 ledger; the new conditional subclosures belong to the subsequent mathematical release.
 
 ## PDF build
 
@@ -60,3 +60,12 @@ this patch, not by retroactively repairing every research track.
 - [ ] Create GitHub tag/release `v10.2.1` only after merging this patch.
 - [ ] Verify Zenodo imports the exact GitHub release archive.
 - [ ] Do not modify the historical `v10.2.0` tag or release.
+
+
+## Subsequent v10.3.0 development note
+
+After the v10.2.1 technical gate, the frozen architecture acquired four new
+mathematical subclosure notes: minimal Palatini torsion elimination,
+Lorentz/psi symmetry propagation, prescribed-coefficient augmented holonomy,
+and the conditional Palatini/Lovelock Einstein--Lambda endpoint. These belong
+to v10.3.0 and do not alter the historical scope of v10.2.1.

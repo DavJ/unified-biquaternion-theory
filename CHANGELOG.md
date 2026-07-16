@@ -8,6 +8,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — frozen-architecture GR subclosures (v10.3.0 candidate, 2026-07-16)
+
+- Added `gap_10t_paladini_torsion_dynamics.tex`: the minimal first-order
+  Cartan torsion map is pointwise invertible (rank 24/24), so zero spin current
+  gives zero torsion and specified spin current gives unique contorsion.
+- Added `gap_10l_psi_symmetry_propagation.tex`: the Lorentz slice is the fixed
+  set of `J(X)=-conj(X^sharp)` and is preserved by unique equivariant dynamics;
+  Lorentz-gauge or translation-symmetric psi evolution preserves the metric.
+- Added `gap_10i_augmented_holonomy.tex`: prescribed `(E,A,B)` admit an exact
+  augmented-holonomy existence/path-independence criterion.
+- Added `gap_10d_low_energy_uniqueness.tex`: the minimal Palatini branch yields
+  Einstein--Lambda and the four-dimensional Lovelock assumptions make that
+  conditional infrared endpoint unique.
+- Added `tools/verify_remaining_gr_subclosures.py` and regression tests for the
+  Cartan rank, Lorentz involution, psi-gauge metric stability, augmented
+  curvature identity, claim ledgers, agent guardrails, and PDF publication map.
+
+### Changed
+
+- Reclassified the full-theory labels `GAP-10T-DYN`, `GAP-10L-DYN`,
+  `GAP-10I-CURVED`, `GAP-10D`, and `GAP-10psi` from undivided OPEN to
+  **NARROWED**, while retaining explicit action-origin, self-consistency,
+  regularity, coefficient, and physical-stability blockers.
+- Extended the GR paper, canonical action/status surfaces, Czech and English
+  student texts, and Copilot/agent instructions with the new conditional
+  subclosures and strict anti-overclaim wording.
+- Added the four new papers to the curated LaTeX publication map and regenerated
+  the main canonical, GR, student, and subclosure PDFs from their current TeX.
+
+### Still open at full theory level
+
+- Derive the selected Palatini/Lovelock low-energy assumptions, paired
+  representations, spin current, normalization, and couplings from canonical
+  UBT.
+- Solve the self-consistent curved `(Theta,E,A,B,T)` system with regularity and
+  global continuation.
+- Close `GAP-B-MASTER` and dynamically select the Schwarzschild tetrad/lapse
+  (`GAP-U2Theta`).
+
 ### Fixed — LaTeX output provenance hardening (2026-07-16)
 
 - Prevented the PDF workflow from rebasing outputs built from an older source commit onto a newer `master` head.

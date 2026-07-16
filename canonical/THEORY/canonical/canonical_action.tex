@@ -3,8 +3,8 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[most]{tcolorbox}
 \usepackage[margin=2.5cm]{geometry}
-\title{Canonical UBT Action: Current Status After the Covariant-Tetrad Reframe}
-\author{Ing. David Jaroš}
+\title{Canonical UBT Action: Conditional Infrared Closures After the Covariant-Tetrad Reframe}
+\author{Ing. David Jaro\v{s}}
 \date{16 July 2026}
 \begin{document}\maketitle
 
@@ -18,9 +18,9 @@ and the classical metric is the central anticommutator
  \frac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1.
 \]
 For a nondegenerate tetrad and specified torsion, the metric-compatible frame
-connection is kinematically reconstructed as
-$\omega=\mathring\omega(e)+K(T)$.  The action-level open problem is therefore
-not an arbitrary connection: it is the selection of torsion, the exact
+connection is reconstructed kinematically as
+$\omega=\mathring\omega(e)+K(T)$.  Therefore the action-level unknown is not
+an arbitrary extra connection: it is the selection of torsion, the exact
 left/right lift acting on $\Theta$, and the self-consistent curved solution.
 
 \section{Internal action and master equation}
@@ -34,28 +34,90 @@ is variationally integrable.  This establishes compatibility of the internal
 master equation with an action, not the origin of the complete gravitational
 action.
 
-\section{Gravitational dynamics: open origin problem}
-The previously studied composite branch
+\section{Minimal first-order conditional branch}
+Consider the standard Hilbert--Palatini/Einstein--Cartan effective branch
 \[
- S_{\rm EH}[g[\Theta]]+S_{\rm int}[g[\Theta],\Theta]
+ S_{\rm HP}[e,\omega]
+ =\frac1{4\kappa}\int\epsilon_{abcd}e^a\wedge e^b\wedge R^{cd}(\omega)
+ -\frac{\Lambda}{24\kappa}\int\epsilon_{abcd}e^a\wedge e^b\wedge e^c\wedge e^d
+ +S_{\rm m}[e,\omega,\Theta].
 \]
-remains a mathematically valid candidate branch, but the Einstein--Hilbert term
-has not been derived from a deeper UBT invariant.  Its former compact-fiber
-metric is superseded by the central anticommutator metric.  A fresh variation
-must include
+Independent variation of the Lorentz connection gives the algebraic Cartan
+equation
 \[
- \delta E_\mu
- =\mathcal N_0^{-1/2}
- \left(D_\mu\delta\Theta+\rho_*(\delta\Omega_\mu)\Theta\right)
+ \epsilon_{abcd}T^a\wedge e^b=\kappa\tau_{cd}.
 \]
-when the connection is varied.
+For a nondegenerate tetrad its $24\times24$ torsion map is pointwise
+invertible.  Hence zero spin current implies $T=0$ and a specified spin current
+implies a unique contorsion.  This closes the algebraic torsion-selection
+subproblem inside the minimal branch, but it does not derive that branch or its
+$\Theta$ spin current from fundamental UBT.
 
-\begin{tcolorbox}[colback=yellow!8!white,colframe=orange!75!black,title=Status]
-The action-level derivation of torsion, the paired left/right connection acting
-on $\Theta$, Lorentz-slice preservation by the complete dynamics, Einstein
-dynamics, and the separation of internal and geometric equations is
-\textbf{OPEN}.  Kinematic reconstruction of $\omega$ from specified $(e,T)$ is
-closed and must not be confused with these dynamical questions.  No fiber-average closure result is canonical after the
-covariant-tetrad revision.
+With zero spin current the tetrad equation becomes
+\[
+ G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.
+\]
+Moreover, if the macroscopic metric equation satisfies the ordinary
+four-dimensional Lovelock hypotheses (locality, diffeomorphism covariance,
+divergence freedom, second-order metric dynamics, and no additional light
+geometric fields), its gravitational tensor is necessarily
+$aG_{\mu\nu}+bg_{\mu\nu}$.  Thus Einstein--$\Lambda$ is the unique conditional
+infrared endpoint under these assumptions.
+
+\section{Curved integrability and symmetry conditions}
+For prescribed $E_\mu,A_\mu,B_\mu$, the two-sided defining equation
+\[
+ \partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu
+ =\sqrt{\mathcal N_0}E_\mu
+\]
+can be written as parallel transport of the augmented vector
+$Y=(\Theta,1)^T$.  A single-valued solution with initial value $Y_0$ exists
+exactly when the augmented holonomy fixes $Y_0$; flat augmented curvature is a
+sufficient condition on a simply connected domain.  The remaining curved gap
+is the self-consistent action-level selection of $(E,A,B,T)$, regularity and
+global continuation.
+
+The Lorentz slice is the fixed set of the anti-linear involution
+$\mathcal JX=-\overline{X^\sharp}$.  A unique $\mathcal J$-equivariant Cauchy
+evolution with fixed sources and data preserves this slice.  Likewise, a
+$\psi$-flow tangent to a local Lorentz gauge orbit leaves $g_{\mu\nu}$ exactly
+unchanged, while unique $\psi$-translation-invariant evolution preserves
+strictly $\psi$-independent data.  These are sufficient symmetry-propagation
+criteria, not yet a proof that the final canonical action satisfies them.
+
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Current action-level ledger]
+\textbf{Conditionally closed subgaps:}
+GAP-10T-PALATINI, GAP-10L-SYM, GAP-10I-PRESCRIBED,
+GAP-10D-PALATINI, GAP-10D-UNIQUENESS, and GAP-10$\psi$-SYM.
+GAP-10$\psi$-KIN is closed kinematically.
+
+\medskip
+\textbf{Narrowed but not fully closed:}
+GAP-10T-DYN, GAP-10L-DYN, GAP-10I-CURVED, GAP-10D, and GAP-10$\psi$.
+The remaining tasks are to derive the selected low-energy action, paired
+connection representation, spin current, coefficients and stability
+hypotheses from canonical UBT, and to prove self-consistent curved on-shell
+existence and global regularity.
+
+\medskip
+No compact-fiber average or projection is part of the canonical metric route.
 \end{tcolorbox}
+
+\section{Variation warning}
+A fresh variation of any composed or effective branch must include
+\[
+ \delta E_\mu=\mathcal N_0^{-1/2}
+ \left(D_\mu\delta\Theta+\delta A_\mu\Theta-\Theta\delta B_\mu\right),
+\]
+together with variations induced by $e$, torsion and the connection.  A
+conditional Palatini/Lovelock endpoint must never be relabelled as a derivation
+of the full canonical UBT action.
+
+\begin{thebibliography}{9}
+\bibitem{lovelock1971} D.~Lovelock, ``The Einstein Tensor and Its
+Generalizations,'' \emph{J. Math. Phys.} \textbf{12}, 498--501 (1971).
+\bibitem{hehl1976} F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, and J.~M.~Nester,
+``General Relativity with Spin and Torsion: Foundations and Prospects,''
+\emph{Rev. Mod. Phys.} \textbf{48}, 393--416 (1976).
+\end{thebibliography}
 \end{document}

@@ -37,19 +37,40 @@ and two-sided integrability; not compact-fiber averaging.
   [D_\mu,D_\nu]\Theta=F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}.
   \]
 
+## Newly closed conditional subgaps
+
+- **GAP-10T-PALATINI — CLOSED CONDITIONALLY [L1]:** the minimal first-order
+  Cartan equation has an invertible 24-component torsion map; zero spin current
+  gives zero torsion and a specified spin current gives unique contorsion.
+- **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** the Lorentz slice is the fixed
+  set of \(\mathcal JX=-\overline{X^\sharp}\) and is propagated by every
+  unique equivariant evolution with fixed data.
+- **GAP-10I-PRESCRIBED — CLOSED [L1]:** for specified \((E,A,B)\), existence
+  and path independence are exactly controlled by augmented holonomy.
+- **GAP-10D-PALATINI / GAP-10D-UNIQUENESS — CLOSED CONDITIONALLY [L1]:** the
+  minimal first-order action yields Einstein--\(\Lambda\), and Lovelock
+  assumptions make that infrared metric equation unique.
+- **GAP-10ψ-KIN — CLOSED [L1]:** a psi-flow tangent to a local Lorentz orbit
+  leaves the metric invariant.
+- **GAP-10ψ-SYM — CLOSED CONDITIONALLY [L1]:** unique psi-translation-invariant
+  dynamics preserves psi-independent data.
+
 ## Narrowed or open results
 
 - **GAP-10I-2S — NARROWED:** two-sided action avoids the flatness obstruction,
   but the canonical action must fix the paired left/right connections and
   involution.
-- **GAP-10T-DYN — OPEN:** derive vacuum or spin-sourced torsion.
-- **GAP-10L-DYN — OPEN:** preservation by the complete \(\Theta\) dynamics and
-  sources.
-- **GAP-10I-CURVED — OPEN:** local/global existence and on-shell generation of
-  curved tetrads from the implicit nonlinear system.
-- **GAP-10D — OPEN:** Einstein dynamics from the canonical UBT action/master
-  equation.
-- **GAP-10ψ, GAP-U2Θ, GAP-B-MASTER — OPEN.**
+- **GAP-10T-DYN — NARROWED:** derive the minimal first-order branch, exact spin
+  current, normalization, and possible torsion dynamics from canonical UBT.
+- **GAP-10L-DYN — NARROWED:** verify equivariance and well-posed uniqueness for
+  the complete UBT equations and sources.
+- **GAP-10I-CURVED — NARROWED:** self-consistent on-shell generation,
+  regularity, and global continuation remain open.
+- **GAP-10D — NARROWED:** derive the Palatini/Lovelock infrared assumptions,
+  coefficients, and matter coupling from the canonical action.
+- **GAP-10ψ — NARROWED:** show that canonical dynamics realizes a sufficient
+  stability mechanism and excludes unstable physical psi modes.
+- **GAP-U2Θ and GAP-B-MASTER — OPEN.**
 
 ## Fiber branch
 

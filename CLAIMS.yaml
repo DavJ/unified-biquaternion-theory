@@ -9,20 +9,31 @@ claims:
     - canonical/geometry/biquaternion_connection.tex
     - canonical/gr_closure/gap_10omega_connection_elimination.tex
     - canonical/gr_closure/gap_10i_integrability_selection.tex
+    - canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex
+    - canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex
+    - canonical/gr_closure/gap_10i_augmented_holonomy.tex
+    - canonical/gr_closure/gap_10d_low_energy_uniqueness.tex
     - papers/UBT_GR_Submission.tex
     assumptions:
     - 'GAP-10K: CLOSED locally — the nondegenerate tetrad-to-metric map has rank ten; six kernel directions are local Lorentz freedom'
     - 'GAP-10Omega-KIN: CLOSED — specified nondegenerate tetrad and torsion uniquely determine the metric-compatible frame connection, up to Lorentz gauge'
     - 'GAP-10Omega-GR: CLOSED — the torsion-free branch is the unique Levi-Civita spin connection of the tetrad'
-    - 'GAP-10T-DYN: OPEN — derive vacuum or spin-sourced torsion from the canonical UBT action'
+    - 'GAP-10T-PALATINI: CLOSED CONDITIONALLY — minimal Hilbert-Palatini variation gives an invertible algebraic Cartan torsion equation'
+    - 'GAP-10T-DYN: NARROWED — derive the minimal branch, exact UBT spin current, normalization, and any extra torsion terms from the canonical action'
     - 'GAP-10L-CONN: CLOSED — every metric-compatible Lorentz connection preserves eta_ab and the Lorentz slice'
-    - 'GAP-10L-DYN: OPEN — prove preservation by the complete Theta dynamics and sources'
+    - 'GAP-10L-SYM: CLOSED CONDITIONALLY — the Lorentz slice is preserved by unique J-equivariant dynamics with J-real data and sources'
+    - 'GAP-10L-DYN: NARROWED — verify equivariance and well-posed uniqueness for the finalized UBT equations'
     - 'GAP-10I-SR: CLOSED — every constant Lorentz tetrad has an explicit affine single-Theta representer in the flat inertial branch'
     - 'GAP-10I-1S: CLOSED AS NO-GO — a naive one-sided regular connection with invertible Theta forces zero curvature under torsion-free tetrad compatibility'
     - 'GAP-10I-2S: NARROWED — the two-sided bimodule derivative avoids the flatness obstruction and yields a left/right curvature-intertwiner condition'
-    - 'GAP-10I-CURVED: OPEN — prove local/global existence, uniqueness, regularity, and on-shell generation of required curved tetrads'
-    - 'GAP-10D: OPEN — derive Einstein dynamics from the canonical UBT action/master equation'
-    - 'GAP-10psi: OPEN — derive classical stability or psi-independence of the local metric'
+    - 'GAP-10I-PRESCRIBED: CLOSED — prescribed E,A,B have an exact augmented-holonomy existence and path-independence criterion'
+    - 'GAP-10I-CURVED: NARROWED — self-consistent on-shell selection, regularity, and global continuation remain open'
+    - 'GAP-10D-PALATINI: CLOSED CONDITIONALLY — the minimal first-order action yields Einstein-Lambda dynamics'
+    - 'GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY — Lovelock assumptions make Einstein-Lambda the unique four-dimensional second-order metric endpoint'
+    - 'GAP-10D: NARROWED — derive the low-energy assumptions, coefficients, and matter sector from canonical UBT'
+    - 'GAP-10psi-KIN: CLOSED — a psi-flow tangent to a Lorentz gauge orbit leaves the metric invariant'
+    - 'GAP-10psi-SYM: CLOSED CONDITIONALLY — unique psi-translation-invariant dynamics preserves psi-independent data'
+    - 'GAP-10psi: NARROWED — derive which stability mechanism is selected and exclude physical unstable psi modes'
     - 'GAP-U2Theta: OPEN — derive the full Schwarzschild tetrad/lapse from canonical Theta dynamics'
     - 'GAP-B-MASTER: OPEN — derive the perturbation bridge from the original master dynamics'
     - Compact-psi fiber averaging is exploratory and noncanonical

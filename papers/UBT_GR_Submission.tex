@@ -444,6 +444,105 @@ The full proof and verifier are in
 \texttt{canonical/gr\_closure/gap\_10i\_integrability\_selection.tex} and
 \texttt{tools/verify\_gap\_10i\_integrability.py}.
 
+\subsection{Exact prescribed-connection integrability criterion}
+For specified smooth $(E_\mu,A_\mu,B_\mu)$, the inhomogeneous system can be
+converted into a homogeneous parallel-section problem.  Let
+$\mathcal C_\mu X=A_\mu X-XB_\mu$, $s=\sqrt{\mathcal N_0}$, and
+\begin{equation}
+ Y=\binom{\Theta}{1},\qquad
+ \widehat{\mathcal C}_\mu=
+ \begin{pmatrix}\mathcal C_\mu&-sE_\mu\\0&0\end{pmatrix}.
+ \label{eq:augmented-paper}
+\end{equation}
+Then $D_\mu\Theta=sE_\mu$ is exactly
+$(\partial_\mu+\widehat{\mathcal C}_\mu)Y=0$.  Its curvature is
+\begin{equation}
+ \widehat{\mathcal F}_{\mu\nu}=
+ \begin{pmatrix}
+ \mathcal F_{\mu\nu}&
+ -s(\mathcal D_\mu E_\nu-\mathcal D_\nu E_\mu)\\0&0
+ \end{pmatrix},
+ \label{eq:augmented-curvature-paper}
+\end{equation}
+where $\mathcal F_{\mu\nu}X=F^A_{\mu\nu}X-XF^B_{\mu\nu}$.
+For an initial value $Y_0=(\Theta_0,1)^T$, a single-valued solution exists on
+a connected domain exactly when the augmented holonomy fixes $Y_0$; on a
+simply connected domain, flat augmented curvature is a sufficient condition
+for every initial value.  Thus the prescribed-coefficient integrability
+problem is closed.  What remains in GAP-10I-CURVED is the UBT-specific
+self-consistent selection of $(E,A,B,T)$, regularity and global continuation.
+The detailed proof is in
+\texttt{canonical/gr\_closure/gap\_10i\_augmented\_holonomy.tex}.
+
+\section{Torsion dynamics in the minimal first-order branch}
+Consider the standard Hilbert--Palatini action with independent tetrad and
+Lorentz connection,
+\begin{equation}
+ S_{\rm HP}=\frac1{4\kappa}\int\epsilon_{abcd}
+ e^a\wedge e^b\wedge R^{cd}(\omega)+S_{\rm m}[e,\omega,\Theta],
+ \label{eq:HP-paper}
+\end{equation}
+and define
+$\delta_\omega S_{\rm m}=\tfrac12\int\tau_{ab}\wedge\delta\omega^{ab}$.
+Connection variation gives the algebraic Cartan equation
+\begin{equation}
+ \boxed{\epsilon_{abcd}T^a\wedge e^b=\kappa\tau_{cd}.}
+ \label{eq:Cartan-paper}
+\end{equation}
+For a nondegenerate tetrad the 24-component map
+$T^a\mapsto\epsilon_{abcd}T^a\wedge e^b$ has rank 24.  Hence zero spin current
+forces $T=0$, while a specified spin current determines a unique contorsion.
+This closes GAP-10T-PALATINI conditionally.  It does not derive the
+Hilbert--Palatini term, the exact paired $\Theta$ spin current, its
+normalization, or the absence of extra torsion invariants from canonical UBT;
+therefore the overall GAP-10T-DYN is narrowed rather than fully closed.
+The proof and exact rank verifier are in
+\texttt{canonical/gr\_closure/gap\_10t\_paladini\_torsion\_dynamics.tex} and
+\texttt{tools/verify\_remaining\_gr\_subclosures.py}.
+
+\section{Lorentz-slice and imaginary-time stability}
+The real Lorentz slice has an intrinsic fixed-set characterization.  Define
+\begin{equation}
+ \mathcal JX=-\overline{X^\sharp}.
+\end{equation}
+Then $\mathcal J$ is an anti-linear involution and
+$\operatorname{Fix}(\mathcal J)=W_L$.  Consequently, every unique Cauchy
+evolution equivariant under $\mathcal J$, with $\mathcal J$-real sources and
+initial data, preserves the Lorentz slice by uniqueness.  This closes
+GAP-10L-SYM conditionally; the canonical equations must still be shown to
+satisfy the equivariance and well-posedness hypotheses.
+
+For imaginary time, a tetrad flow
+\begin{equation}
+ \partial_\psi e_\mu{}^a=\Lambda_\psi{}^a{}_b e_\mu{}^b,
+ \qquad \Lambda_{\psi ab}=-\Lambda_{\psi ba},
+ \label{eq:psi-gauge-paper}
+\end{equation}
+is pure local Lorentz gauge and obeys
+$\partial_\psi g_{\mu\nu}=0$ exactly.  Strictly $\psi$-independent data are
+also preserved by every unique $\psi$-translation-invariant evolution.  These
+results close GAP-10$\psi$-KIN and GAP-10$\psi$-SYM conditionally, while the
+overall physical stability problem remains narrowed.  Details are in
+\texttt{canonical/gr\_closure/gap\_10l\_psi\_symmetry\_propagation.tex}.
+
+\section{Conditional infrared endpoint of the metric dynamics}
+Variation of the minimal tetrad--Palatini action gives the Cartan equation and,
+in the zero-spin-current branch, Einstein's equation
+\begin{equation}
+ G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.
+ \label{eq:Einstein-IR-paper}
+\end{equation}
+Moreover, Lovelock uniqueness implies that a four-dimensional local natural
+symmetric divergence-free second-order metric equation with no additional
+light geometric fields must have the form
+$aG_{\mu\nu}+bg_{\mu\nu}=\kappa T_{\mu\nu}$.  Thus the conditional low-energy
+endpoint is no longer ambiguous: under those assumptions it is
+Einstein--$\Lambda$.  GAP-10D-PALATINI and GAP-10D-UNIQUENESS are therefore
+closed conditionally.  GAP-10D itself remains narrowed because canonical UBT
+must still derive the low-energy assumptions, coefficients and matter action.
+The precise scope is stated in
+\texttt{canonical/gr\_closure/gap\_10d\_low\_energy\_uniqueness.tex}.
+
 \section{Complex time and regularity}
 The field may depend on $\tau=t+i\psi$.  The metric definition
 Eq.~\eqref{eq:metric} is pointwise; it does not integrate over $\psi$.  A
@@ -503,15 +602,20 @@ conditional results of the exploratory branch.
 GAP-10K & \textbf{CLOSED locally}: tetrad-to-metric differential has rank ten.\\
 GAP-10$\Omega$-KIN & \textbf{CLOSED}: specified tetrad and torsion uniquely determine the metric-compatible frame connection.\\
 GAP-10$\Omega$-GR & \textbf{CLOSED}: the torsion-free branch is the unique Levi--Civita spin connection, up to Lorentz gauge.\\
-GAP-10T-DYN & \textbf{OPEN}: derive vacuum or spin-sourced torsion from the canonical UBT action.\\
+GAP-10T-PALATINI & \textbf{CLOSED CONDITIONALLY}: minimal first-order variation gives an invertible algebraic Cartan torsion equation.\\
+GAP-10T-DYN & \textbf{NARROWED}: derive the minimal branch, exact UBT spin current, normalization, and any extra torsion terms.\\
 GAP-10L-CONN & \textbf{CLOSED}: metric-compatible Lorentz transport preserves $\eta$ and the Lorentz slice.\\
-GAP-10L-DYN & \textbf{OPEN}: prove preservation by the full $\Theta$ dynamics and sources.\\
+GAP-10L-SYM & \textbf{CLOSED CONDITIONALLY}: unique $\mathcal J$-equivariant evolution preserves the Lorentz fixed set.\\
+GAP-10L-DYN & \textbf{NARROWED}: verify equivariance and well-posed uniqueness for the complete UBT dynamics.\\
 GAP-10I-SR & \textbf{CLOSED}: explicit affine $\Theta$ representer for every constant Lorentz tetrad.\\
 GAP-10I-1S & \textbf{CLOSED AS NO-GO}: naive one-sided invertible torsion-free branch forces zero curvature.\\
 GAP-10I-2S & \textbf{NARROWED}: two-sided derivative avoids the flatness obstruction and yields the curvature-intertwiner condition.\\
-GAP-10I-CURVED & \textbf{OPEN}: curved-space existence, uniqueness, regularity, and global continuation.\\
-GAP-10D & \textbf{OPEN}: derive Einstein dynamics from the canonical UBT action/master equation.\\
-GAP-10$\psi$ & \textbf{OPEN}: classical stability/independence along imaginary time.\\
+GAP-10I-PRESCRIBED & \textbf{CLOSED}: exact augmented-holonomy criterion for specified $(E,A,B)$.\\
+GAP-10I-CURVED & \textbf{NARROWED}: self-consistent on-shell selection, regularity, and global continuation remain.\\
+GAP-10D-PALATINI / UNIQUENESS & \textbf{CLOSED CONDITIONALLY}: minimal first-order dynamics and Lovelock infrared uniqueness.\\
+GAP-10D & \textbf{NARROWED}: derive those low-energy assumptions, couplings, and matter sector from canonical UBT.\\
+GAP-10$\psi$-KIN / SYM & \textbf{CLOSED / CLOSED CONDITIONALLY}: Lorentz-gauge flow or translation symmetry protects the metric.\\
+GAP-10$\psi$ & \textbf{NARROWED}: show which mechanism is selected and exclude unstable physical $\psi$ modes.\\
 GAP-B-MASTER & \textbf{OPEN}: perturbation bridge from the original master dynamics.\\
 GAP-U2$\Theta$ & \textbf{OPEN}: canonical dynamical generation of the full Schwarzschild tetrad/lapse.\\
 \bottomrule
@@ -538,15 +642,19 @@ reconstructed, and the torsion-free GR branch is Levi--Civita.  Special
 relativity has an explicit affine single-$\Theta$ representer.  The naive
 one-sided curved route is ruled out for generic invertible $\Theta$, while the
 two-sided biquaternionic derivative supplies a nonflat integrability condition.
-The decisive remaining work is dynamical: derive torsion and the paired
-left/right connection from the single UBT action, solve the implicit curved
-system, and obtain Einstein dynamics and observed geometries on shell.
+The decisive remaining work is now more sharply localized: derive the minimal
+first-order/low-energy assumptions and paired spin current from the single UBT
+action, solve the self-consistent augmented-holonomy problem for curved
+tetrads, establish well-posed symmetry propagation, and generate observed
+geometries on shell.
 
 \begin{thebibliography}{9}
 \bibitem{wald1984} R.~M.~Wald, \emph{General Relativity}, University of Chicago Press (1984).
 \bibitem{hehl1976} F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, and J.~M.~Nester,
 ``General Relativity with Spin and Torsion: Foundations and Prospects,''
 \emph{Rev. Mod. Phys.} \textbf{48}, 393--416 (1976).
+\bibitem{lovelock1971} D.~Lovelock, ``The Einstein Tensor and Its Generalizations,''
+\emph{J. Math. Phys.} \textbf{12}, 498--501 (1971).
 \bibitem{chamseddine2001} A.~H.~Chamseddine, ``Complexified Gravity in
 Noncommutative Spaces,'' \emph{Commun. Math. Phys.} \textbf{218}, 283--292 (2001).
 \bibitem{dehaas2014} E.~P.~J.~de Haas, ``Biquaternion Formulation of

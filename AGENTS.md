@@ -153,20 +153,36 @@ Use these statuses unless a new proof explicitly changes them:
   metric-compatible frame connection, up to local Lorentz gauge.
 - `GAP-10Omega-GR: CLOSED [L1]` — the torsion-free branch is the Levi-Civita
   spin connection.
-- `GAP-10T-DYN: OPEN` — derive zero or spin-sourced torsion from the canonical
-  UBT action.
+- `GAP-10T-PALATINI: CLOSED CONDITIONALLY [L1]` — in the minimal
+  Hilbert--Palatini branch the Cartan equation is algebraic and invertible:
+  zero spin current gives zero torsion; specified spin current gives unique
+  contorsion.
+- `GAP-10T-DYN: NARROWED` — derive that minimal branch, its exact spin current,
+  normalization, and any additional torsion invariants from canonical UBT.
 - `GAP-10L-CONN: CLOSED [L1]` — metric-compatible Lorentz transport preserves
   `eta_ab` and the Lorentz slice.
-- `GAP-10L-DYN: OPEN` — preservation by the complete `Theta` dynamics/sources.
+- `GAP-10L-SYM: CLOSED CONDITIONALLY [L1]` — the Lorentz slice is the fixed
+  set of `J(X)=-conj(X^sharp)` and is preserved by every unique J-equivariant
+  evolution with J-real data and sources.
+- `GAP-10L-DYN: NARROWED` — verify equivariance and well-posed uniqueness for
+  the finalized canonical UBT equations.
 - `GAP-10I-SR: CLOSED [L1]` — every constant Lorentz tetrad has an explicit
   affine single-`Theta` representer; Minkowski is included.
 - `GAP-10I-1S: CLOSED AS NO-GO [L1]` — the stated one-sided invertible curved
   route forces zero curvature.
 - `GAP-10I-2S: NARROWED [L1]` — the two-sided derivative removes that flatness
   obstruction and yields a left/right curvature-intertwiner condition.
-- `GAP-10I-CURVED: OPEN` — curved local/global existence, uniqueness,
-  regularity, and on-shell generation.
-- `GAP-10D`, `GAP-10psi`, `GAP-B-MASTER`, `GAP-U2Theta`: OPEN.
+- `GAP-10I-PRESCRIBED: CLOSED [L1]` — for specified `(E,A,B)` the exact
+  existence and path-independence criterion is stabilization of `(Theta0,1)`
+  by the augmented holonomy.
+- `GAP-10I-CURVED: NARROWED` — self-consistent action-level selection,
+  regularity, and global continuation remain open.
+- `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY [L1].
+- `GAP-10D: NARROWED` — derive the low-energy Palatini/Lovelock assumptions,
+  couplings, and matter sector from canonical UBT.
+- `GAP-10psi-KIN: CLOSED [L1]`; `GAP-10psi-SYM: CLOSED CONDITIONALLY [L1]`;
+  overall `GAP-10psi: NARROWED`.
+- `GAP-B-MASTER`, `GAP-U2Theta`: OPEN.
 
 Do not merge a conditional branch result into an unconditional theory claim.
 
@@ -193,8 +209,9 @@ action-level selection remain separate tasks.
 
 - If `Omega`, `A`, `B`, or torsion is varied, include the induced variation of
   `E_mu=N0^(-1/2)D_mu Theta`.
-- Do not import Palatini or Einstein-Cartan conclusions without checking which
-  fields are independent in UBT.
+- Palatini/Einstein--Cartan results may be used only with their explicit
+  assumptions. The minimal branch now has a proved algebraic torsion theorem,
+  but its origin from canonical UBT remains open.
 - Do not infer Einstein dynamics solely from a rank theorem or standard tetrad
   identity.
 - Do not claim Schwarzschild is generated on shell until the complete tetrad,

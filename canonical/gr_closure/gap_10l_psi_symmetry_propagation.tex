@@ -1,0 +1,159 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\title{GAP-10L and GAP-10$\psi$: Symmetry Propagation and Metric Stability}
+\author{Ing. David Jaro\v{s}}
+\date{16 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note identifies exact sufficient conditions for preservation of the UBT
+Lorentz slice and for independence of the classical metric from imaginary
+time.  The Lorentz slice is the fixed set of a natural anti-linear involution
+$\mathcal JX=-\overline{X^\sharp}$.  Any well-posed evolution whose equations,
+sources and data are $\mathcal J$-equivariant preserves that fixed set by
+uniqueness.  Independently, a $\psi$-flow of the tetrad tangent to a local
+Lorentz gauge orbit leaves the anticommutator metric exactly unchanged.  A
+$\psi$-translation-invariant well-posed evolution also preserves strictly
+$\psi$-independent data.  These theorems close symmetry-propagation subgaps;
+verification that the final canonical UBT action satisfies their hypotheses
+remains open.
+\end{abstract}
+
+\section{The real Lorentz slice as a fixed set}
+Write a biquaternion as $X=a_0\mathbf1+a_k\mathbf e_k$ with $a_\alpha\in\mathbb C$
+and quaternionic conjugation
+$X^\sharp=a_0\mathbf1-a_k\mathbf e_k$.  Define
+\begin{equation}
+ \boxed{\mathcal JX:=-\overline{X^\sharp}.}
+ \label{eq:J}
+\end{equation}
+
+\begin{theorem}[Intrinsic characterization of the Lorentz slice]
+$\mathcal J$ is an anti-linear involution and
+\begin{equation}
+ \operatorname{Fix}(\mathcal J)
+ =\{i x^0\mathbf1+x^k\mathbf e_k\mid x^a\in\mathbb R\}
+ =W_L.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $X=a_0\mathbf1+a_k\mathbf e_k$,
+$\mathcal JX=-\bar a_0\mathbf1+\bar a_k\mathbf e_k$; applying $\mathcal J$
+twice returns $X$.  The fixed-point equations are
+$a_0=-\bar a_0$ and $a_k=\bar a_k$, hence $a_0$ is purely imaginary and the
+three vector coefficients are real.
+\end{proof}
+
+\section{Equivariance implies dynamical slice preservation}
+Let $U$ collect the fields needed for a Cauchy formulation, including $\Theta$
+and, when necessary, its canonical momentum or first time derivative.
+
+\begin{theorem}[Fixed-set propagation by uniqueness]
+Assume a Cauchy problem
+\begin{equation}
+ \partial_t U=\mathcal F(U;S)
+ \label{eq:evolution}
+\end{equation}
+is locally well posed and unique in a function class invariant under
+$\mathcal J$.  Suppose
+\begin{equation}
+ \mathcal F(\mathcal JU;\mathcal JS)
+ =\mathcal J\mathcal F(U;S),
+ \label{eq:equivariance}
+\end{equation}
+and the source and initial data are fixed by $\mathcal J$.  Then the unique
+solution remains fixed by $\mathcal J$ throughout its interval of existence.
+\end{theorem}
+
+\begin{proof}
+If $U$ solves Eq.~\eqref{eq:evolution}, equivariance implies that
+$\mathcal JU$ is another solution.  The two solutions have identical initial
+data and sources.  Uniqueness therefore gives $\mathcal JU=U$.
+\end{proof}
+
+\begin{corollary}[Lorentz-slice preservation]
+If the complete UBT equations induce a $\mathcal J$-equivariant unique
+evolution for the tetrad variables $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$,
+then initial data $E_\mu\in W_L$ and $\mathcal J$-real sources imply
+$E_\mu(t)\in W_L$ for all times for which the solution exists.
+\end{corollary}
+
+\section{Imaginary-time metric stability}
+Let $e_\mu{}^a(x,\psi)$ be the real tetrad coefficients and
+$g_{\mu\nu}=e_\mu{}^ae_\nu{}^b\eta_{ab}$.
+
+\begin{theorem}[$\psi$-vertical Lorentz flow leaves the metric invariant]
+If
+\begin{equation}
+ \partial_\psi e_\mu{}^a
+ =\Lambda_\psi{}^a{}_b e_\mu{}^b,
+ \qquad \Lambda_{\psi ab}=-\Lambda_{\psi ba},
+ \label{eq:vertical-flow}
+\end{equation}
+then
+\begin{equation}
+ \boxed{\partial_\psi g_{\mu\nu}=0.}
+\end{equation}
+Thus strict $\psi$-independence of the tetrad is sufficient but not necessary:
+its $\psi$ dependence may be pure local Lorentz gauge.
+\end{theorem}
+
+\begin{proof}
+Differentiate $g_{\mu\nu}$.  The two terms are
+$\Lambda_{\psi ab}e_\mu{}^be_\nu{}^a$ and
+$\Lambda_{\psi ba}e_\mu{}^be_\nu{}^a$, which cancel by antisymmetry.
+\end{proof}
+
+\begin{theorem}[$\psi$-translation symmetry propagation]
+Suppose the complete Cauchy/boundary problem is invariant under
+$\psi\mapsto\psi+s$ and has a unique solution.  If all initial and boundary
+data and sources are $\psi$ independent, then the solution is $\psi$
+independent.
+\end{theorem}
+
+\begin{proof}
+For every $s$, the translated field $U_s(x,\psi)=U(x,\psi+s)$ is a solution
+with the same data.  Uniqueness gives $U_s=U$ for all $s$, hence
+$\partial_\psi U=0$.
+\end{proof}
+
+\section{Status}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
+\textbf{GAP-10L-SYM: CLOSED CONDITIONALLY [L1].}
+The Lorentz slice is the fixed set of the intrinsic involution
+$\mathcal J=-\overline{(\cdot)^\sharp}$, and every unique
+$\mathcal J$-equivariant evolution with fixed data preserves it.
+
+\medskip
+\textbf{GAP-10L-DYN: NARROWED.}
+It remains to prove that the finalized UBT action, its paired connections,
+sources and chosen well-posed formulation satisfy the equivariance and
+uniqueness hypotheses.
+
+\medskip
+\textbf{GAP-10$\psi$-KIN: CLOSED [L1].}
+A $\psi$-flow tangent to the local Lorentz gauge orbit leaves the metric
+exactly invariant.
+
+\medskip
+\textbf{GAP-10$\psi$-SYM: CLOSED CONDITIONALLY [L1].}
+A unique $\psi$-translation-invariant evolution preserves $\psi$-independent
+data.
+
+\medskip
+\textbf{GAP-10$\psi$: NARROWED.}
+The canonical action must still show that the physical classical branch obeys
+one of these sufficient mechanisms and that no unstable non-gauge
+$\psi$ excitations contaminate the observed metric.
+\end{tcolorbox}
+\end{document}

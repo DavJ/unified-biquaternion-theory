@@ -139,15 +139,20 @@ is **not yet unconditional**.  The current open tasks are:
 - **GAP-10K — CLOSED locally:** tetrad-to-metric rank ten.
 - **GAP-10Ω-KIN — CLOSED [L1]:** specified $(e,T)$ uniquely determine $\omega$.
 - **GAP-10Ω-GR — CLOSED [L1]:** $T=0$ gives the Levi--Civita spin connection.
-- **GAP-10T-DYN — OPEN:** derive torsion from the canonical action and sources.
+- **GAP-10T-PALATINI — CLOSED CONDITIONALLY [L1]:** the minimal first-order Cartan equation algebraically determines torsion.
+- **GAP-10T-DYN — NARROWED:** derive the minimal branch, exact UBT spin current, normalization, and possible extra torsion invariants.
 - **GAP-10L-CONN — CLOSED [L1]:** metric-compatible Lorentz transport preserves the Lorentz slice.
-- **GAP-10L-DYN — OPEN:** prove preservation by complete $\Theta$ dynamics and sources.
+- **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** unique $\mathcal J$-equivariant dynamics preserves the Lorentz fixed set.
+- **GAP-10L-DYN — NARROWED:** verify canonical equivariance and well-posed uniqueness.
 - **GAP-10I-SR — CLOSED [L1]:** affine representer of constant Lorentz tetrads.
 - **GAP-10I-1S — CLOSED AS NO-GO [L1]:** one-sided invertible torsion-free curved route forces zero curvature.
 - **GAP-10I-2S — NARROWED [L1]:** two-sided curvature intertwining avoids flatness; action-level pairing remains open.
-- **GAP-10I-CURVED — OPEN:** curved-space existence, uniqueness, regularity, and on-shell generation.
-- **GAP-10D — OPEN:** Einstein dynamics from the canonical UBT action/master equation.
-- **GAP-10ψ — OPEN:** classical stability along imaginary time.
+- **GAP-10I-PRESCRIBED — CLOSED [L1]:** specified coefficients admit an exact augmented-holonomy criterion.
+- **GAP-10I-CURVED — NARROWED:** self-consistent generation, regularity, and global continuation remain.
+- **GAP-10D-PALATINI / UNIQUENESS — CLOSED CONDITIONALLY [L1]:** the conditional infrared endpoint is Einstein--$\Lambda$.
+- **GAP-10D — NARROWED:** derive the infrared assumptions, coefficients, and matter action from canonical UBT.
+- **GAP-10ψ-KIN / SYM — CLOSED / CLOSED CONDITIONALLY [L1]:** gauge or translation symmetry protects the metric.
+- **GAP-10ψ — NARROWED:** derive canonical selection and physical stability.
 
 **Forbidden wording**: Do not state that all GR solutions or the complete Einstein dynamics have already been derived from the original UBT master equation.
 
@@ -323,7 +328,7 @@ For quick reference, the core equations are:
 1. **Fundamental field**: $\Theta(q, \tau) \in \mathbb{C} \otimes \mathbb{H}$
 2. **Complex time**: $\tau = t + i\psi \in \mathbb{C}$
 3. **Covariant tetrad and central metric**: $E_\mu=\mathcal N_0^{-1/2}D_\mu\Theta$ and $\tfrac12(E_\mu^\sharp E_\nu+E_\nu^\sharp E_\mu)=g_{\mu\nu}\mathbf1$
-4. **Classical correspondence target**: derive $G_{\mu\nu}[g] = \kappa T^{(\Theta)}_{\mu\nu}$ from the canonical UBT action; GAP-10D remains open
+4. **Classical correspondence target**: derive the conditionally identified Einstein--$\Lambda$ infrared endpoint, its coefficients and matter terms from the canonical UBT action; GAP-10D is narrowed but not fully closed
 
 All further UBT sectors must be compatible with these canonical structures.  The complete Einstein and Standard-Model dynamics are derivation targets, not consequences to be assumed.
 

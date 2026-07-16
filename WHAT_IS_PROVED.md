@@ -140,9 +140,10 @@ they are rederived in this route.
 | G6 | Every constant Lorentz tetrad has an affine single-\(\Theta\) representer; Minkowski is explicit | [L1] | `canonical/gr_closure/gap_10i_integrability_selection.tex` |
 | G7 | Naive one-sided, invertible, torsion-free curved representation forces zero curvature | [L1 NO-GO, under stated assumptions] | same |
 | G8 | Two-sided derivative gives exact left/right curvature identity and allows nonzero intertwined curvatures | [L1 identity; route narrowed] | same |
-| G9 | Einstein equations from the canonical UBT action/master equation | [OPEN] | `GAP-10D` |
-| G10 | Integrable on-shell generation of general curved tetrads by one \(\Theta\) | [OPEN] | `GAP-10I-CURVED` |
-| G11 | Torsion selected or eliminated by the canonical UBT action | [OPEN] | `GAP-10T-DYN` |
+| G9 | Minimal Palatini action yields Einstein--Λ and Lovelock assumptions make the four-dimensional infrared endpoint unique | [L1 conditional] | `gap_10d_low_energy_uniqueness.tex` |
+| G10 | Prescribed paired-connection system has an exact augmented-holonomy existence criterion | [L1] | `gap_10i_augmented_holonomy.tex` |
+| G11 | Minimal Palatini branch has an invertible algebraic torsion equation | [L1 conditional] | `gap_10t_paladini_torsion_dynamics.tex` |
+| G11b | Full canonical UBT selects its torsion/current and self-consistent curved tetrad | [NARROWED/OPEN] | `GAP-10T-DYN`, `GAP-10I-CURVED` |
 | G12 | Schwarzschild full tetrad/lapse selected by canonical \(\Theta\) dynamics | [OPEN] | `GAP-U2Theta` |
 
 ### Perturbations and named metrics
@@ -162,15 +163,20 @@ they are rederived in this route.
 | GAP-10K | **CLOSED locally:** tetrad-to-metric rank 10; Lorentz kernel 6 |
 | GAP-10Ω-KIN | **CLOSED [L1]:** specified tetrad and torsion reconstruct the metric-compatible connection |
 | GAP-10Ω-GR | **CLOSED [L1]:** torsion-free branch is Levi--Civita |
-| GAP-10T-DYN | **OPEN:** derive zero or spin-sourced torsion from the canonical action |
+| GAP-10T-PALATINI | **CLOSED CONDITIONALLY [L1]:** minimal Cartan torsion map is algebraic and invertible |
+| GAP-10T-DYN | **NARROWED:** derive the minimal branch, exact UBT current, normalization, and extra torsion terms |
 | GAP-10L-CONN | **CLOSED [L1]:** compatible Lorentz transport preserves the Lorentz slice |
-| GAP-10L-DYN | **OPEN:** preserve the slice under complete \(\Theta\) dynamics and sources |
+| GAP-10L-SYM | **CLOSED CONDITIONALLY [L1]:** unique equivariant dynamics preserves the fixed set |
+| GAP-10L-DYN | **NARROWED:** verify canonical equivariance and well-posed uniqueness |
 | GAP-10I-SR | **CLOSED [L1]:** affine representer for constant Lorentz tetrads |
 | GAP-10I-1S | **CLOSED AS NO-GO [L1]:** stated one-sided invertible curved route forces flatness |
 | GAP-10I-2S | **NARROWED [L1]:** two-sided curvature intertwinement removes that no-go |
-| GAP-10I-CURVED | **OPEN:** curved local/global existence, uniqueness, regularity, and on-shell generation |
-| GAP-10D | **OPEN:** Einstein dynamics from the canonical action/master equation |
-| GAP-10ψ | **OPEN:** classical stability/independence along imaginary time |
+| GAP-10I-PRESCRIBED | **CLOSED [L1]:** exact augmented-holonomy criterion for specified coefficients |
+| GAP-10I-CURVED | **NARROWED:** self-consistent generation, regularity, and global continuation remain |
+| GAP-10D-PALATINI / UNIQUENESS | **CLOSED CONDITIONALLY [L1]:** conditional Einstein--Λ infrared endpoint |
+| GAP-10D | **NARROWED:** derive the low-energy assumptions, coefficients, and matter action from UBT |
+| GAP-10ψ-KIN / SYM | **CLOSED / CLOSED CONDITIONALLY [L1]:** gauge or translation symmetry protects the metric |
+| GAP-10ψ | **NARROWED:** prove canonical selection and exclude unstable physical modes |
 | GAP-B-MASTER | **OPEN:** perturbation bridge from original canonical dynamics |
 | GAP-U2Theta | **OPEN:** on-shell full Schwarzschild tetrad/lapse |
 

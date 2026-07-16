@@ -250,9 +250,16 @@ branch, $K=0$ and the frame connection is uniquely the Levi--Civita spin
 connection of the tetrad.
 
 \medskip
-\textbf{GAP-10T-DYN: OPEN.}  The canonical UBT action must determine whether
-vacuum torsion vanishes and whether matter/spin sources produce a nonzero
-contorsion.
+\textbf{GAP-10T-PALATINI: CLOSED CONDITIONALLY [L1].}  In the minimal
+Hilbert--Palatini branch the connection equation is an invertible algebraic
+Cartan equation.  Zero spin current gives zero torsion; specified spin current
+gives unique contorsion.  See
+\texttt{gap\_10t\_paladini\_torsion\_dynamics.tex}.
+
+\medskip
+\textbf{GAP-10T-DYN: NARROWED.}  The canonical UBT action must derive that
+minimal branch, its exact paired spin current and normalization, and decide
+whether extra torsion invariants are present.
 
 \medskip
 \textbf{GAP-10L-CONN: CLOSED [L1].}  Any metric-compatible Lorentz connection
@@ -260,9 +267,14 @@ preserves $\eta_{ab}$ and the Lorentz slice.  Full dynamical slice preservation
 remains GAP-10L-DYN.
 
 \medskip
-\textbf{GAP-10I-CURVED: OPEN.}  Existence and on-shell integrability of the
-implicit system $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$ for curved geometries
-remain to be proved.
+\textbf{GAP-10I-PRESCRIBED: CLOSED [L1].}  For specified
+$(E_\mu,A_\mu,B_\mu)$, existence and path independence are exactly controlled
+by augmented holonomy; see \texttt{gap\_10i\_augmented\_holonomy.tex}.
+
+\medskip
+\textbf{GAP-10I-CURVED: NARROWED.}  Self-consistent on-shell generation,
+regularity, and global continuation of the implicit system remain to be
+proved.
 \end{tcolorbox}
 
 \begin{thebibliography}{9}

@@ -6,7 +6,7 @@
 - State the torsion convention before using a contorsion formula.
 - Use `K_abc=1/2(T_cab-T_abc-T_bca)` only with
   `T^a=de^a+omega^a_b wedge e^b` and matching index conventions.
-- Do not infer `T=0` from connection uniqueness; torsion dynamics is open.
+- Do not infer `T=0` from connection uniqueness. In the minimal Palatini branch, `T=0` follows conditionally from the independently varied algebraic Cartan equation with zero spin current; fundamental UBT selection of that branch remains narrowed.
 - Treat `omega(e,T)` reconstruction as kinematics, not a solution of
   `E_mu=D_mu Theta/sqrt(N0)`.
 - A one-sided no-go theorem is valid only under its listed assumptions,
@@ -18,3 +18,6 @@
   class warrants that term.
 - Every `CLOSED` status needs a complete proof with hypotheses. Symbolic tests
   must print what they do not test.
+
+- For prescribed integrability, distinguish the exact augmented-holonomy criterion from the self-consistent nonlinear UBT problem.
+- Cite Palatini/Einstein--Cartan and Lovelock results as standard conditional infrastructure, not new unconditional UBT theorems.

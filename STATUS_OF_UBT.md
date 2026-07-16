@@ -49,18 +49,37 @@ kernel.
 
 The tensor $K(T)$ is the contorsion determined by the specified torsion.
 
-## Remaining GR bridge
+## Further closed conditional subgaps
 
-- **GAP-10T-DYN — OPEN:** derive vacuum or spin-sourced torsion from the UBT
-  action.
-- **GAP-10I-CURVED — OPEN:** prove local/global existence, uniqueness,
-  regularity, and on-shell generation of curved tetrads from the implicit
-  two-sided system.
-- **GAP-10L-DYN — OPEN:** prove Lorentz-slice preservation by the complete
-  \(\Theta\) dynamics and sources.
-- **GAP-10D — OPEN:** derive Einstein dynamics from the canonical UBT
-  action/master equation.
-- **GAP-10ψ, GAP-B-MASTER, GAP-U2Θ — OPEN.**
+- **GAP-10T-PALATINI — CLOSED CONDITIONALLY [L1]:** in the minimal
+  Hilbert--Palatini branch the Cartan torsion map has rank 24/24.  Zero spin
+  current gives zero torsion; specified spin current gives unique contorsion.
+- **GAP-10L-SYM — CLOSED CONDITIONALLY [L1]:** the Lorentz slice is the fixed
+  set of \(\mathcal JX=-\overline{X^\sharp}\) and is preserved by every unique
+  equivariant evolution with fixed data and sources.
+- **GAP-10I-PRESCRIBED — CLOSED [L1]:** for specified \((E,A,B)\), exact
+  existence and path independence are controlled by augmented holonomy.
+- **GAP-10D-PALATINI / GAP-10D-UNIQUENESS — CLOSED CONDITIONALLY [L1]:** the
+  minimal first-order action yields Einstein--\(\Lambda\), and Lovelock
+  assumptions make that four-dimensional infrared endpoint unique.
+- **GAP-10ψ-KIN — CLOSED [L1]:** a \(\psi\)-flow tangent to a local Lorentz
+  orbit leaves the metric invariant.
+- **GAP-10ψ-SYM — CLOSED CONDITIONALLY [L1]:** unique
+  \(\psi\)-translation-invariant dynamics preserves \(\psi\)-independent data.
+
+## Remaining narrowed/open GR bridge
+
+- **GAP-10T-DYN — NARROWED:** derive the minimal branch, exact UBT spin
+  current, normalization, and possible additional torsion invariants.
+- **GAP-10I-CURVED — NARROWED:** self-consistent action-level generation,
+  regularity, and global continuation remain open.
+- **GAP-10L-DYN — NARROWED:** verify equivariance and well-posed uniqueness for
+  the complete \(\Theta\) dynamics and sources.
+- **GAP-10D — NARROWED:** derive the Palatini/Lovelock infrared assumptions,
+  coefficients, and matter action from canonical UBT.
+- **GAP-10ψ — NARROWED:** identify the selected stability mechanism and exclude
+  unstable non-gauge imaginary-time modes.
+- **GAP-B-MASTER and GAP-U2Θ — OPEN.**
 - Compact-\(\psi\) fiber closure remains an **exploratory noncanonical branch**.
 - T1_GR remains **NOT SUBMISSION-READY** pending the curved dynamical bridge.
 
@@ -562,12 +581,17 @@ sequencing are maintained in `ROADMAP.md` under
 
 | Gap | Status |
 |---|---|
-| GAP-10T-DYN — torsion selected by the UBT action | OPEN |
+| GAP-10T-PALATINI — minimal algebraic torsion equation | CLOSED CONDITIONALLY [L1] |
+| GAP-10T-DYN — canonical action and exact spin current | NARROWED |
 | GAP-10I-2S — exact paired left/right connection and involution | NARROWED, not closed dynamically |
-| GAP-10I-CURVED — implicit curved-space existence/on-shell generation | OPEN |
-| GAP-10L-DYN — slice preservation by full dynamics | OPEN |
-| GAP-10D — Einstein dynamics from the canonical UBT action/master equation | OPEN |
-| GAP-10ψ — classical stability along imaginary time | OPEN |
+| GAP-10I-PRESCRIBED — augmented-holonomy criterion for specified coefficients | CLOSED [L1] |
+| GAP-10I-CURVED — self-consistent curved-space generation | NARROWED |
+| GAP-10L-SYM — preservation by unique equivariant dynamics | CLOSED CONDITIONALLY [L1] |
+| GAP-10L-DYN — verify canonical equivariance/well-posedness | NARROWED |
+| GAP-10D-PALATINI / UNIQUENESS — conditional infrared endpoint | CLOSED CONDITIONALLY [L1] |
+| GAP-10D — derive infrared assumptions and coefficients from UBT | NARROWED |
+| GAP-10ψ-KIN / SYM — gauge and symmetry protection mechanisms | CLOSED / CLOSED CONDITIONALLY [L1] |
+| GAP-10ψ — canonical selection and physical stability | NARROWED |
 | GAP-B-MASTER — perturbation bridge from original master dynamics | OPEN |
 | GAP-U2Θ — canonical generation of the full Schwarzschild tetrad/lapse | OPEN |
 

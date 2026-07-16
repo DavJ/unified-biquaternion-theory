@@ -1,4 +1,4 @@
-> **GR geometry update (16 July 2026):** Projection-free covariant-tetrad kinematics now closes rank ten, reconstruction of the compatible connection from tetrad and specified torsion, the torsion-free Levi--Civita branch, and the affine Minkowski representer.  Curved two-sided integrability, torsion dynamics, and Einstein dynamics remain open.
+> **GR geometry update (16 July 2026):** Projection-free covariant-tetrad kinematics closes rank ten, connection reconstruction and the affine Minkowski representer.  New conditional subclosures establish algebraic torsion elimination in the minimal Palatini branch, exact augmented-holonomy integrability for prescribed coefficients, symmetry propagation of the Lorentz/psi-stable sectors, and the Palatini/Lovelock Einstein--Lambda infrared endpoint.  Their derivation from the fundamental canonical UBT action and self-consistent curved global solutions remain unresolved.
 
 <!-- © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0 -->
 
@@ -26,7 +26,7 @@
 
 ## T1_GR — General Relativity Recovery
 
-**Status**: COVARIANT-TETRAD KINEMATICS PARTLY CLOSED; DYNAMICAL BRIDGE OPEN
+**Status**: COVARIANT-TETRAD KINEMATICS CLOSED LOCALLY; DYNAMICAL BRIDGE SUBGAPS CONDITIONALLY CLOSED/NARROWED
 
 The active metric is
 \[
@@ -39,9 +39,12 @@ arbitrary extra field: for specified tetrad and torsion it is uniquely
 \(\omega=\mathring\omega(e)+K(T)\); the torsion-free branch is Levi--Civita.
 Every constant Lorentz tetrad, including Minkowski spacetime, has an explicit
 affine single-\(\Theta\) representer. A naive one-sided invertible torsion-free
-curved route is a proved conditional no-go. The two-sided bimodule derivative
-removes that obstruction but does not yet prove curved-space existence or
-Einstein dynamics.
+curved route is a proved conditional no-go. The two-sided bimodule derivative removes that obstruction.  For prescribed
+coefficients, curved local existence/path independence now has an exact
+augmented-holonomy criterion.  In the minimal Palatini branch torsion is
+algebraically selected, and under Lovelock low-energy assumptions the
+conditional metric endpoint is Einstein--Lambda.  Fundamental UBT must still
+select that branch and solve the self-consistent curved system.
 
 | Item | Status |
 |------|--------|
@@ -53,9 +56,13 @@ Einstein dynamics.
 | Constant-tetrad / Minkowski representer | ✅ Explicit [L1] |
 | One-sided invertible torsion-free curved route | ⛔ NO-GO [L1, conditional] |
 | Two-sided curvature identity/intertwiner | ✅ Identity; route narrowed [L1] |
-| Torsion selected by canonical UBT action | ⚪ `GAP-10T-DYN` OPEN |
-| Curved single-Θ existence/uniqueness | ⚪ `GAP-10I-CURVED` OPEN |
-| Einstein equations from canonical master/action | ⚪ `GAP-10D` OPEN |
+| Minimal Palatini torsion equation | ✅ Conditional algebraic closure; Cartan map rank 24/24 [L1] |
+| Torsion selected by fundamental UBT action | 🟠 `GAP-10T-DYN` NARROWED |
+| Prescribed curved coefficients | ✅ Exact augmented-holonomy criterion [L1] |
+| Self-consistent curved single-Theta existence/global regularity | 🟠 `GAP-10I-CURVED` NARROWED |
+| Lorentz/psi symmetry propagation | ✅ Conditional fixed-set/metric-stability theorems [L1] |
+| Einstein--Lambda infrared endpoint | ✅ Conditional Palatini/Lovelock closure [L1] |
+| Einstein dynamics derived from fundamental canonical UBT | 🟠 `GAP-10D` NARROWED |
 | Schwarzschild tetrad/lapse selected on shell | ⚪ `GAP-U2Theta` OPEN |
 
 **Submission file**: `papers/UBT_GR_Submission.tex`  
@@ -126,7 +133,7 @@ If fails: publish conditional integer-137 result as companion note.
 |--------|-------|
 | Core proved theorems (T1_GR) | 8 [L1] theorems + 5 [L0] identities |
 | Core proved theorems (T2_GAUGE) | 10 [L0] + 1 [L1] |
-| Hard open problems | GAP-10T-DYN, GAP-10I-CURVED, GAP-10L-DYN, GAP-10D, GAP-10ψ, GAP-U2Theta, GAP-B-MASTER |
+| Remaining full-theory problems | GAP-10T-DYN, GAP-10I-CURVED, GAP-10L-DYN, GAP-10D, GAP-10psi (all narrowed), GAP-U2Theta and GAP-B-MASTER (open) |
 | Dead-end routes | 3 (A3, A4 alpha; Weinberg pure-algebra route EW-1) |
 | Tracks ready for submission | 0 pending GR closure audit |
 | Tracks 6–8 weeks from submission | 1 (T2_GAUGE) |

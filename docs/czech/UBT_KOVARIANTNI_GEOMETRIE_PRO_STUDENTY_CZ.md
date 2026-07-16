@@ -384,7 +384,105 @@ propojovací neboli intertwining objekt. Oboustranná derivace tedy odstraňuje
 plochostní no-go, ale ještě sama nedokazuje existenci řešení pro každou
 zakřivenou metriku.
 
-## 10. Implicitní versus transcendentní rovnice
+## 10. Co se podařilo uzavřít na dynamické úrovni
+
+### 10.1 Minimální Palatiniho větev a torze
+
+Jestliže v nízkoenergetické klasické větvi vezmeme tetrádu a Lorentzovu
+konexi jako nezávislé proměnné, minimální první řád obsahuje Hilbertův--
+Palatiniho člen. Variace podle konexe dává Cartanovu rovnici
+
+\[
+\epsilon_{abcd}\,T^a\wedge e^b=\kappa\tau_{cd}.
+\]
+
+Má 24 rovnic pro 24 komponent torze. Pro nedegenerovanou tetrádu má tato
+lineární mapa přesně rank 24. Proto:
+
+- nulový spinový proud \(\tau_{cd}=0\) jednoznačně dává \(T=0\);
+- zadaný spinový proud jednoznačně určí torzi a kontorzi;
+- torze v této minimální větvi není propagující pole, ale pomocná algebraická
+  veličina.
+
+To neznamená, že už jsme z fundamentální UBT odvodili právě tuto akci. Uzavřeli
+jsme však otázku, co se s torzí stane, **pokud** UBT v klasickém limitu vybere
+minimální Palatiniho větev.
+
+### 10.2 Zachování Lorentzova řezu
+
+Lorentzův reálný řez lze popsat bez ruční projekce jako množinu pevných bodů
+antilineární involuce
+
+\[
+\mathcal JX=-\overline{X^\sharp}.
+\]
+
+Pokud jsou rovnice, zdroje a počáteční data invariantní vůči \(\mathcal J\) a
+Cauchyho úloha má jediné řešení, pak se řešení z Lorentzova řezu nemůže dostat:
+\(\mathcal J U\) by totiž bylo druhé řešení se stejnými daty. Jednoznačnost je
+proto vynutí ztotožnit.
+
+Toto je přesný podmíněný teorém. Zbývá ověřit, že finální kanonická UBT rovnice
+má požadovanou ekvivarianci a dobře položenou evoluci.
+
+### 10.3 Stabilita metriky podél imaginárního času
+
+Jestliže změna tetrády podél \(\psi\) je pouze lokální Lorentzova rotace nebo
+boost,
+
+\[
+\partial_\psi e_\mu{}^a=\Lambda_\psi{}^a{}_b e_\mu{}^b,
+\qquad \Lambda_{\psi ab}=-\Lambda_{\psi ba},
+\]
+
+pak
+
+\[
+\partial_\psi g_{\mu\nu}=0.
+\]
+
+Metrika se tedy může jevit jako nezávislá na \(\psi\), i když samotná tetráda
+po \(\psi\) běží po Lorentzově gauge orbitě. Druhá dostatečná možnost je
+\(\psi\)-translačně invariantní jednoznačná dynamika s počátečními daty
+nezávislými na \(\psi\). Otevřené zůstává, který mechanismus skutečně vybere
+kanonická UBT a zda existují fyzikální nestabilní negaugeové módy.
+
+### 10.4 Zakřivená integrabilita jako holonomie
+
+Pro **zadané** \(E_\mu,A_\mu,B_\mu\) je rovnice
+
+\[
+\partial_\mu\Theta+A_\mu\Theta-\Theta B_\mu
+=\sqrt{\mathcal N_0}\,E_\mu
+\]
+
+lineární nehomogenní systém pro \(\Theta\). Přidáním konstantní komponenty lze
+zapsat \(Y=(\Theta,1)^T\) a celou rovnici chápat jako paralelní transport v
+rozšířeném prostoru. Jednohodnotné řešení se zadanou počáteční hodnotou existuje
+právě tehdy, když rozšířená holonomie tuto počáteční hodnotu zachovává.
+
+To uzavírá lokální/globální kriterium pro předepsané koeficienty. Neuzavírá to
+samokonzistentní UBT problém, protože v něm \(E,A,B\) samy závisejí na
+\(\Theta\), torzi a akci.
+
+### 10.5 Proč je Einsteinova dynamika nyní zúžená
+
+Minimální Palatiniho akce s nulovým spinovým proudem dává Einsteinovy rovnice s
+kosmologickou konstantou. Navíc Lovelockova věta říká, že ve čtyřech rozměrech
+je za standardních podmínek -- lokálnost, obecná kovariance, identická
+bezdivergentnost, nejvýše druhé derivace metriky a žádná další lehká geometrická
+pole -- jediným možným metrickým tenzorem
+
+\[
+aG_{\mu\nu}+b g_{\mu\nu}.
+\]
+
+Einstein--\(\Lambda\) je tedy jednoznačný **podmíněný nízkoenergetický cíl**.
+Hlavní otevřený krok už není „která rovnice by mohla vyjít“, ale proč
+fundamentální UBT splňuje právě tyto nízkoenergetické předpoklady a jak určí
+\(\kappa\), \(\Lambda\) a hmotový sektor.
+
+## 11. Implicitní versus transcendentní rovnice
 
 Tyto dva pojmy nejsou úplně stejné, i když z praktického pohledu oba znamenají,
 že se neznámá nedá snadno izolovat.
@@ -412,7 +510,7 @@ Nejpřesnější popis je tedy:
 > UBT tetráda, pole a konexe tvoří implicitní nelineární PDE/fixed-point systém;
 > při Jacobi-theta realizaci může být tento systém navíc transcendentní.
 
-## 11. Derivace versus variace
+## 12. Derivace versus variace
 
 Derivace \(D_\mu\Theta\) popisuje změnu jedné konfigurace v časoprostoru.
 Variace porovnává sousední možné konfigurace:
@@ -424,35 +522,49 @@ Variace porovnává sousední možné konfigurace:
 Variace je nutná k odvození Eulerových–Lagrangeových rovnic z akce. Není to
 náhrada za prostorovou nebo časovou derivaci.
 
-## 12. Co je nyní dokázané a co zůstává otevřené
+## 13. Co je nyní dokázané a co zůstává otevřené
 
-### Uzavřené
+### Uzavřené nebo podmíněně uzavřené
 
 1. Centrální antikomutátor dává Lorentzovu metriku bez projekce.
 2. Lokální tetrádová mapa má rank deset a šest Lorentzových gauge směrů.
-3. `GAP-10Ω-KIN`: po zadání tetrády a torze je metrická konexe jednoznačná.
-4. `GAP-10Ω-GR`: pro nulovou torzi je \(\Omega\) Levi-Civitova spinová konexe.
-5. `GAP-10L-CONN`: metrická Lorentzova konexe zachovává Lorentzův řez.
-6. `GAP-10I-SR`: Minkowského tetráda má explicitní reprezentující
-   \(\Theta_{\mathrm{SR}}\).
+3. `GAP-10Omega-KIN/GR`: zadaná tetráda a torze určují konexi; bez torze jde o
+   Levi-Civitovu spinovou konexi.
+4. `GAP-10T-PALATINI` **podmíněně**: minimální Cartanova rovnice má rank 24/24;
+   nulový nebo zadaný spinový proud jednoznačně určí torzi.
+5. `GAP-10L-CONN` a `GAP-10L-SYM` **podmíněně**: kompatibilní transport a
+   jedinečná ekvivariantní evoluce zachovávají Lorentzův řez.
+6. `GAP-10I-SR`: Minkowského/konstantní tetráda má explicitní afinní
+   \(\Theta\)-representer.
 7. `GAP-10I-1S`: jednoduchá jednostranná invertibilní větev je pro obecnou
-   křivost uzavřena jako no-go.
+   torsion-free křivost uzavřena jako no-go.
+8. `GAP-10I-PRESCRIBED`: pro zadané \((E,A,B)\) platí přesné holonomické
+   kritérium existence a jednohodnotnosti.
+9. `GAP-10D-PALATINI/UNIQUENESS` **podmíněně**: minimální první řád a
+   Lovelockovy předpoklady vedou jednoznačně k Einstein--\(\Lambda\).
+10. `GAP-10psi-KIN/SYM`: Lorentzova gauge evoluce nebo translační symetrie
+    chrání klasickou metriku za přesně uvedených podmínek.
 
 ### Zúžené, ale ne úplně uzavřené
 
-1. `GAP-10I-2S`: oboustranná derivace odstraňuje plochostní no-go a převádí
-   integrabilitu na vztah mezi levou a pravou křivostí.
+1. `GAP-10T-DYN`: odvodit minimální větev, přesný spinový proud, normalizaci a
+   případné další torzní invarianty z fundamentální UBT.
+2. `GAP-10I-CURVED`: vyřešit samokonzistentní výběr \((E,A,B,T,\Theta)\),
+   regularitu a globální pokračování.
+3. `GAP-10L-DYN`: ověřit ekvivarianci a dobře položenou jednoznačnost finálních
+   UBT rovnic.
+4. `GAP-10D`: odvodit nízkoenergetické Palatiniho/Lovelockovy předpoklady,
+   \(\kappa\), \(\Lambda\) a hmotový sektor z kanonické akce.
+5. `GAP-10psi`: určit, který stabilizační mechanismus vybere UBT, a vyloučit
+   fyzikální nestabilní negaugeové módy.
 
-### Otevřené
+### Stále otevřené mosty
 
-1. `GAP-10T-DYN`: odvodit torzi nebo její nulovost z UBT akce.
-2. `GAP-10I-CURVED`: dokázat existenci a jednoznačnost implicitního systému pro
-   obecné zakřivené tetrády.
-3. `GAP-10L-DYN`: dokázat zachování Lorentzova řezu úplnou dynamikou \(\Theta\).
-4. `GAP-10D`: odvodit Einsteinovu dynamiku ze stejné UBT akce.
-5. `GAP-10ψ`: odvodit klasickou stabilitu podél imaginárního času.
-6. Dynamicky vybrat Schwarzschildovu, Kerrovu, FRW a vlnovou větev.
+1. `GAP-B-MASTER`: perturbativní most z původní UBT master rovnice.
+2. `GAP-U2Theta`: dynamický výběr plné Schwarzschildovy tetrády a lapse.
+3. Následné on-shell větve Kerr, FRW a gravitační vlny v téže kanonické
+   dynamice.
 
 Dřívější fiberová konstrukce zůstává matematicky konzistentní historickou
 alternativou, ale není součástí minimální kanonické struktury UBT kvůli slabé
-selektivitě a velké redundanci reprezentantů.
+selektivitě a velké redundanci representerů.

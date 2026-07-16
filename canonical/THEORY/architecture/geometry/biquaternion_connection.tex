@@ -71,9 +71,12 @@ Under $e\mapsto\Lambda e$,
 This is a local Lorentz gauge change, not a new physical degree of freedom.
 Since every metric-compatible $\omega_\mu$ lies in $\mathfrak{so}(1,3)$, its
 parallel transport preserves $\eta_{ab}$ and the real Lorentz slice, including
-branches with contorsion.  Hence GAP-10L-CONN is closed.  GAP-10L-DYN remains
-open because the complete $\Theta$ equations and sources must also preserve the
-slice.
+branches with contorsion. Hence GAP-10L-CONN is closed. The Lorentz slice is
+also the fixed set of $\mathcal JX=-\overline{X^\sharp}$, so every unique
+$\mathcal J$-equivariant evolution with fixed data and sources preserves it
+(GAP-10L-SYM, closed conditionally). GAP-10L-DYN is narrowed to verifying
+these equivariance and well-posedness hypotheses for the complete $\Theta$
+equations.
 
 \subsection{Representation selection on $\Theta$}
 A naive one-sided action
@@ -118,17 +121,24 @@ The explicit field
 generates the Minkowski tetrad and has vanishing second spacetime derivatives.
 
 \subsection{Full UBT status}
-The kinematic connection-reconstruction problem is closed:
+The kinematic and sharply scoped conditional subproblems are:
 \begin{itemize}
- \item GAP-10$\Omega$-KIN: specified $(e,T)$ uniquely determine $\omega$;
- \item GAP-10$\Omega$-GR: $T=0$ gives the Levi--Civita spin connection;
- \item GAP-10L-CONN: metric-compatible transport preserves the Lorentz slice.
+ \item GAP-10$\Omega$-KIN/GR: specified $(e,T)$ uniquely determine $\omega$,
+       with the Levi--Civita torsion-free branch;
+ \item GAP-10T-PALATINI (conditional): in the minimal first-order branch the
+       24-component Cartan torsion equation is algebraic and invertible;
+ \item GAP-10L-CONN and GAP-10L-SYM (conditional): compatible transport and
+       unique equivariant evolution preserve the Lorentz slice;
+ \item GAP-10I-PRESCRIBED: prescribed $(E,A,B)$ obey the exact
+       augmented-holonomy existence criterion.
 \end{itemize}
-Open dynamical questions are:
+The full-theory questions are narrowed rather than closed:
 \begin{itemize}
- \item GAP-10T-DYN: derive $T$ from the UBT action and sources;
+ \item GAP-10T-DYN: derive the selected first-order branch, spin current,
+       normalization and possible extra torsion invariants from UBT;
  \item fix the exact paired left/right connection and involution on $\Theta$;
- \item GAP-10I-CURVED: solve the implicit curved system
-       $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$;
- \item GAP-10L-DYN: prove slice preservation by the full dynamics.
+ \item GAP-10I-CURVED: solve the self-consistent implicit curved system,
+       regularity and global continuation;
+ \item GAP-10L-DYN: verify equivariance and well-posed uniqueness for the full
+       dynamics.
 \end{itemize}

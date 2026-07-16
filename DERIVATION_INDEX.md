@@ -38,11 +38,16 @@ Sources: `canonical/geometry/`, `canonical/gr_closure/`, `papers/UBT_GR_Submissi
 - `canonical/gr_closure/covariant_tetrad_rank_theorem.tex` — central anticommutator metric and exact rank-ten theorem.
 - `canonical/gr_closure/gap_10omega_connection_elimination.tex` — unique reconstruction of every metric-compatible connection from tetrad and specified torsion; Levi-Civita torsion-free corollary.
 - `canonical/gr_closure/gap_10i_integrability_selection.tex` — explicit affine Minkowski/constant-tetrad representers; one-sided invertible curved no-go; exact two-sided curvature identity.
+- `canonical/gr_closure/gap_10t_paladini_torsion_dynamics.tex` — invertible 24-component Cartan torsion map and algebraic torsion elimination in the minimal first-order branch.
+- `canonical/gr_closure/gap_10l_psi_symmetry_propagation.tex` — intrinsic Lorentz-slice involution, equivariant fixed-set propagation, and metric invariance under vertical Lorentz/translation-symmetric psi evolution.
+- `canonical/gr_closure/gap_10i_augmented_holonomy.tex` — exact augmented-connection/holonomy existence criterion for prescribed `(E,A,B)`.
+- `canonical/gr_closure/gap_10d_low_energy_uniqueness.tex` — conditional Palatini field equations and four-dimensional Lovelock uniqueness of the Einstein--Lambda infrared endpoint.
 - `tools/verify_covariant_tetrad_rank.py` — exact algebra and rank verification.
 - `tools/verify_gap_10omega_connection.py` — Levi-Civita, polar-frame, uniqueness, and contorsion reconstruction checks.
 - `tools/verify_gap_10i_integrability.py` — Minkowski representer, one-sided injectivity, and two-sided curvature checks.
-- Closed/narrowed: GAP-10K, GAP-10Ω-KIN, GAP-10Ω-GR, GAP-10L-CONN, GAP-10I-SR, GAP-10I-1S (no-go), GAP-10I-2S (narrowed).
-- Open: GAP-10T-DYN, GAP-10L-DYN, GAP-10I-CURVED, GAP-10D, GAP-10ψ, GAP-B-MASTER, GAP-U2Θ.
+- `tools/verify_remaining_gr_subclosures.py` — exact Cartan rank, Lorentz involution, psi-gauge metric stability, and augmented-curvature checks.
+- Closed/conditional/narrowed: GAP-10K; GAP-10Ω-KIN/GR; GAP-10T-PALATINI (conditional) with GAP-10T-DYN narrowed; GAP-10L-CONN and GAP-10L-SYM (conditional) with GAP-10L-DYN narrowed; GAP-10I-SR and GAP-10I-PRESCRIBED, GAP-10I-1S (no-go), GAP-10I-2S and GAP-10I-CURVED narrowed; GAP-10D-PALATINI/UNIQUENESS (conditional) with GAP-10D narrowed; GAP-10psi-KIN/SYM with GAP-10psi narrowed.
+- Still open at full theory level: derivation of the canonical low-energy action and spin current, self-consistent curved on-shell selection and global regularity, selection/exclusion of physical psi modes, GAP-B-MASTER, and GAP-U2Theta.
 - The earlier compact-ψ fiber-average closure is retained as a noncanonical exploratory branch.
 
 **GR closure files:**

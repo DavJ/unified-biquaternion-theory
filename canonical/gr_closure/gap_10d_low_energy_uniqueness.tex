@@ -1,0 +1,132 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\title{GAP-10D: Conditional Low-Energy Uniqueness of Einstein Dynamics}
+\author{Ing. David Jaro\v{s}}
+\date{16 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The covariant-tetrad architecture does not by itself derive the Einstein
+equations.  This note closes two conditional subproblems.  First, variation of
+the minimal Hilbert--Palatini action with respect to the tetrad and independent
+connection gives the Einstein equation and the Cartan torsion equation.
+Second, Lovelock uniqueness implies that in four dimensions any local natural
+symmetric divergence-free metric equation of second differential order has
+the form $aG_{\mu\nu}+bg_{\mu\nu}$.  Thus, once UBT derives the standard
+low-energy assumptions, the classical metric equation is fixed to Einstein
+with a cosmological constant.  The remaining fundamental gap is the derivation
+of those assumptions, coefficients and matter coupling from the canonical
+single-$\Theta$ action, not ambiguity among many second-order metric equations.
+\end{abstract}
+
+\section{Minimal first-order action}
+Use the action
+\begin{equation}
+ S[e,\omega,\Theta]
+ =\frac{1}{4\kappa}\int\epsilon_{abcd}
+ e^a\wedge e^b\wedge R^{cd}(\omega)
+ -\frac{\Lambda}{24\kappa}\int\epsilon_{abcd}
+ e^a\wedge e^b\wedge e^c\wedge e^d
+ +S_{\rm m}[e,\omega,\Theta].
+ \label{eq:palatini-action}
+\end{equation}
+Define the energy-momentum three-form by
+$\delta_eS_{\rm m}=\int\Sigma_a\wedge\delta e^a$ and spin current as in the
+companion torsion note.
+
+\begin{theorem}[First-order field equations]
+Independent variation of Eq.~\eqref{eq:palatini-action} gives
+\begin{align}
+ \epsilon_{abcd}\,e^b\wedge R^{cd}
+ -\frac{\Lambda}{3}\epsilon_{abcd}\,e^b\wedge e^c\wedge e^d
+ &= -2\kappa\,\Sigma_a,
+ \label{eq:tetrad-eom}\\
+ \epsilon_{abcd}\,T^a\wedge e^b&=\kappa\tau_{cd}.
+ \label{eq:connection-eom}
+\end{align}
+When $\tau_{ab}=0$, the second equation gives the Levi--Civita connection and
+the first is equivalent to
+\begin{equation}
+ \boxed{G_{\mu\nu}+\Lambda g_{\mu\nu}=\kappa T_{\mu\nu}.}
+ \label{eq:einstein}
+\end{equation}
+\end{theorem}
+
+\begin{remark}
+This is standard tetrad/Palatini gravity.  It proves what follows from the
+minimal action; it does not prove that Eq.~\eqref{eq:palatini-action} has
+already been derived from the deeper UBT invariant.
+\end{remark}
+
+\section{Four-dimensional uniqueness}
+\begin{theorem}[Lovelock consequence in four dimensions]
+Assume the classical metric equation is a local natural symmetric rank-two
+tensor $\mathcal E_{\mu\nu}[g]$ which
+\begin{enumerate}
+ \item depends on the metric and at most its first two derivatives;
+ \item is divergence free identically;
+ \item contains no additional propagating geometric fields in the branch;
+ \item is of the standard second-order/Lovelock class.
+\end{enumerate}
+Then in four dimensions
+\begin{equation}
+ \boxed{\mathcal E_{\mu\nu}=aG_{\mu\nu}+bg_{\mu\nu}.}
+ \label{eq:lovelock-form}
+\end{equation}
+After fixing normalization and writing $\Lambda=b/a$, the sourced equation is
+Einstein's equation with cosmological constant.
+\end{theorem}
+
+\begin{corollary}[UBT low-energy selection]
+If the on-shell UBT tetrad branch is local, diffeomorphism and local-Lorentz
+invariant, torsion free at macroscopic scales, second order, and contains no
+additional light geometric fields, then its metric dynamics cannot be an
+arbitrary alternative tensor equation: it is Einstein--$\Lambda$ up to the
+overall coupling.
+\end{corollary}
+
+\section{What this does not derive}
+The theorem does not determine from UBT:
+\begin{itemize}
+ \item why the effective action is local and in the Lovelock class;
+ \item why higher-curvature or nonlocal terms are absent or suppressed;
+ \item the values and signs of $\kappa$ and $\Lambda$;
+ \item the exact matter stress tensor and paired spin current;
+ \item the on-shell solution of $E_\mu=D_\mu\Theta/\sqrt{\mathcal N_0}$.
+\end{itemize}
+
+\section{Status}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
+\textbf{GAP-10D-PALATINI: CLOSED CONDITIONALLY [L1].}
+The minimal first-order tetrad action yields the Cartan equation and
+Einstein--$\Lambda$ dynamics.
+
+\medskip
+\textbf{GAP-10D-UNIQUENESS: CLOSED CONDITIONALLY [L1].}
+Under the four-dimensional Lovelock/low-energy assumptions, the only metric
+equation is $aG_{\mu\nu}+bg_{\mu\nu}=\kappa T_{\mu\nu}$.
+
+\medskip
+\textbf{GAP-10D: NARROWED, NOT FULLY CLOSED.}
+The remaining UBT task is to derive the minimal low-energy action or the
+Lovelock hypotheses, its coefficients and matter terms from the canonical
+single-field theory.  The conditional infrared endpoint is no longer
+ambiguous.
+\end{tcolorbox}
+
+\begin{thebibliography}{9}
+\bibitem{lovelock1971} D.~Lovelock, ``The Einstein Tensor and Its
+Generalizations,'' \emph{J. Math. Phys.} \textbf{12}, 498--501 (1971).
+\bibitem{hehl1976} F.~W.~Hehl, P.~von der Heyde, G.~D.~Kerlick, and J.~M.~Nester,
+``General Relativity with Spin and Torsion: Foundations and Prospects,''
+\emph{Rev. Mod. Phys.} \textbf{48}, 393--416 (1976).
+\end{thebibliography}
+\end{document}

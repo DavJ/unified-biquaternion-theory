@@ -21,3 +21,5 @@
     formulation.
 11. **Framework freeze:** no v10.x architecture pivot is allowed without an
     explicit human decision and comparative audit. Work on the current gaps.
+
+12. Treat the minimal Palatini torsion equation, symmetry propagation, augmented holonomy for prescribed coefficients, and Lovelock infrared uniqueness as conditional subclosures. They narrow but do not replace `GAP-10T-DYN`, `GAP-10L-DYN`, `GAP-10I-CURVED`, or `GAP-10D`.

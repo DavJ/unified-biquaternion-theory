@@ -209,11 +209,20 @@ K_abc = 1/2 (T_cab - T_abc - T_bca).
 ```
 
 This closes `GAP-10Ω-KIN`.  In the torsion-free classical GR branch,
-`T=K=0` and `ω=ω_LC(e)`, closing `GAP-10Ω-GR`.  The remaining question is
-`GAP-10T-DYN`: derive torsion or its absence from the canonical UBT action.
+`T=K=0` and `ω=ω_LC(e)`, closing `GAP-10Ω-GR`.  In the minimal
+Hilbert--Palatini branch, variation of the independent Lorentz connection gives
+an algebraic Cartan equation whose 24-component torsion map is invertible:
+zero spin current gives zero torsion and specified spin current gives unique
+contorsion.  This closes `GAP-10T-PALATINI` conditionally and narrows
+`GAP-10T-DYN` to deriving that branch, the exact UBT spin current,
+normalization, and any additional torsion terms from the canonical action.
+
 Every metric-compatible Lorentz connection preserves `η_ab` and the Lorentz
-slice, closing `GAP-10L-CONN`; preservation by the complete $\Theta$ dynamics
-remains `GAP-10L-DYN`.
+slice, closing `GAP-10L-CONN`.  The slice is also the fixed set of the intrinsic
+anti-linear involution `J(X)=-conj(X^sharp)`.  A unique J-equivariant evolution
+with J-real data and sources preserves it, closing `GAP-10L-SYM`
+conditionally; verifying those hypotheses for the complete $\Theta$ dynamics
+remains the narrowed `GAP-10L-DYN`.
 
 ### Flat representer and partial integrability closure
 
@@ -250,8 +259,12 @@ F^A_mu_nu = Theta F^B_mu_nu Theta^(-1).
 ```
 
 This narrows `GAP-10I-2S`, but the action must still determine the paired
-connections, involution, torsion, and boundary conditions.  Curved-space local
-and global existence remains `GAP-10I-CURVED: OPEN`.
+connections, involution, torsion, and boundary conditions.  For specified
+smooth `(E,A,B)` the inhomogeneous system is exactly a homogeneous parallel
+section problem for an augmented connection; existence and path independence
+are equivalent to the augmented holonomy fixing `(Theta_0,1)`.  This closes
+`GAP-10I-PRESCRIBED`.  Self-consistent on-shell selection, regularity, and
+global continuation remain the narrowed `GAP-10I-CURVED`.
 
 ### Implicit versus transcendental
 
@@ -354,7 +367,7 @@ where:
 - `κ` = coupling constant (related to 8πG)
 - `𝒯` = biquaternionic stress-energy
 
-**Important**: The real-valued limit `ψ → 0` recovers the ordinary real-time domain and the flat special-relativistic branch when the connection curvature vanishes.  Complete Einstein dynamics from the T-shirt/master equation remains `GAP-10D: OPEN`; it must not be described as already derived.
+**Important**: The real-valued limit `ψ → 0` recovers the ordinary real-time domain and the flat special-relativistic branch when the connection curvature vanishes.  A $\psi$-flow tangent to a local Lorentz orbit leaves the metric invariant, and a unique $\psi$-translation-invariant evolution preserves $\psi$-independent data; these close `GAP-10psi-KIN` and conditionally `GAP-10psi-SYM`.  The overall physical stability problem remains narrowed.  The minimal Palatini action and Lovelock assumptions have Einstein--$\Lambda$ as their conditional infrared endpoint, closing `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS` conditionally.  Deriving those assumptions, coefficients, and matter action from the T-shirt/master equation remains the narrowed `GAP-10D`; complete Einstein dynamics must not be described as already derived.
 
 ### The T-shirt Formula and Covariant Derivative Structure
 

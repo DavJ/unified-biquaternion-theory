@@ -23,7 +23,7 @@ technical symptom.
 ### v10.x framework freeze
 
 The covariant-tetrad architecture is frozen for v10.x. Do not replace the
-antocommutator metric, `E_mu=N0^(-1/2)D_mu Theta`, or the two-sided curved
+anticommutator metric, `E_mu=N0^(-1/2)D_mu Theta`, or the two-sided curved
 derivative without explicit human approval and a written comparative audit.
 Work on open gaps within this architecture. Never perform an autonomous
 framework pivot.
@@ -107,14 +107,14 @@ Use these labels exactly:
 - `GAP-10K: CLOSED locally`.
 - `GAP-10Omega-KIN: CLOSED [L1]`.
 - `GAP-10Omega-GR: CLOSED [L1]`.
-- `GAP-10T-DYN: OPEN`.
+- `GAP-10T-PALATINI: CLOSED CONDITIONALLY`; `GAP-10T-DYN: NARROWED`.
 - `GAP-10L-CONN: CLOSED [L1]`.
-- `GAP-10L-DYN: OPEN`.
+- `GAP-10L-SYM: CLOSED CONDITIONALLY`; `GAP-10L-DYN: NARROWED`.
 - `GAP-10I-SR: CLOSED [L1]`.
 - `GAP-10I-1S: CLOSED AS NO-GO [L1]`.
 - `GAP-10I-2S: NARROWED [L1]`.
-- `GAP-10I-CURVED: OPEN`.
-- `GAP-10D`, `GAP-10psi`, `GAP-B-MASTER`, `GAP-U2Theta`: OPEN.
+- `GAP-10I-PRESCRIBED: CLOSED`; `GAP-10I-CURVED: NARROWED`.
+- `GAP-10D-PALATINI/UNIQUENESS`: CLOSED CONDITIONALLY; `GAP-10D` and `GAP-10psi`: NARROWED; `GAP-B-MASTER` and `GAP-U2Theta`: OPEN.
 
 Do not restore the obsolete `GAP-10Omega-FULL` or undivided `GAP-10I` labels
 as current status.
@@ -158,3 +158,13 @@ docs/czech/UBT_KOVARIANTNI_GEOMETRIE_PRO_STUDENTY_CZ.md
 papers/UBT_GR_Submission.tex
 STATUS_OF_UBT.md
 ```
+
+
+## Conditional-subclosure guardrail
+
+Never promote a Palatini or Lovelock branch to an unconditional UBT derivation.
+`GAP-10T-PALATINI`, `GAP-10L-SYM`, `GAP-10D-PALATINI`,
+`GAP-10D-UNIQUENESS`, and `GAP-10psi-SYM` are conditional theorems.
+`GAP-10I-PRESCRIBED` closes only the system with prescribed coefficients through the exact augmented-holonomy criterion.
+The full-theory gaps remain narrowed until the canonical UBT action selects the
+required hypotheses and self-consistent fields.

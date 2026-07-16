@@ -10,7 +10,8 @@ The active GR chain is:
 5. `omega(e,T)=omega_LC(e)+K(T)` — unique compatible frame connection once
    tetrad and torsion are specified.
 6. `[D_mu,D_nu]Theta=F^A Theta-Theta F^B` — curvature identity.
-7. Implicit curved integrability and torsion dynamics — open.
+7. Prescribed curved integrability has an exact augmented-holonomy criterion; self-consistent curved integrability and fundamental torsion dynamics remain narrowed at full-theory level.
+8. Minimal Palatini torsion elimination and the Einstein--Lambda/Lovelock endpoint are conditional branches, not an unconditional action derivation.
 8. Einstein dynamics from the same canonical action — open.
 
 The constant-tetrad/Minkowski branch has an explicit affine `Theta`

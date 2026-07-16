@@ -1,0 +1,157 @@
+% © 2026 Ing. David Jaroš — CC BY-NC-ND 4.0
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[most]{tcolorbox}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[definition]{Remark}
+\newcommand{\B}{\mathbb B}
+\title{GAP-10I: Exact Augmented-Holonomy Criterion for a Prescribed Curved Branch}
+\author{Ing. David Jaro\v{s}}
+\date{16 July 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For prescribed smooth tetrad $E_\mu$ and paired connections $(A_\mu,B_\mu)$,
+the equation $D_\mu\Theta=\sqrt{\mathcal N_0}E_\mu$ is an inhomogeneous
+linear parallel-section problem.  By adjoining one constant component it
+becomes a homogeneous problem for an augmented connection.  This yields an
+exact local/global criterion: a solution through initial value $\Theta_0$
+exists and is path independent precisely when the augmented holonomy fixes
+$(\Theta_0,1)$; flat augmented curvature is a simple sufficient condition for
+all initial values.  The curvature equation reproduces the two-sided
+intertwiner condition in the torsion-free case.  This closes the prescribed-
+coefficient integrability problem, while the genuinely UBT-specific
+self-consistent selection of $E,A,B$ remains open.
+\end{abstract}
+
+\section{Inhomogeneous paired system}
+Let $\mathcal V=\B\simeq\operatorname{Mat}(2,\mathbb C)$ and define the
+connection operator
+\begin{equation}
+ \mathcal C_\mu X:=A_\mu X-XB_\mu.
+\end{equation}
+The tetrad-generation equation is
+\begin{equation}
+ \partial_\mu\Theta+\mathcal C_\mu\Theta
+ =sE_\mu,\qquad s:=\sqrt{\mathcal N_0}.
+ \label{eq:inhomogeneous}
+\end{equation}
+
+Introduce the augmented vector $Y=(\Theta,1)^T\in\mathcal V\oplus\mathbb C$
+and connection
+\begin{equation}
+ \widehat{\mathcal C}_\mu=
+ \begin{pmatrix}
+  \mathcal C_\mu & -sE_\mu\\
+  0&0
+ \end{pmatrix},
+ \label{eq:augmented-connection}
+\end{equation}
+where the upper-right entry maps a scalar $z$ to $-szE_\mu$.  Then
+Eq.~\eqref{eq:inhomogeneous} is exactly
+\begin{equation}
+ \widehat D_\mu Y:=
+ (\partial_\mu+\widehat{\mathcal C}_\mu)Y=0.
+ \label{eq:parallel-Y}
+\end{equation}
+
+\section{Curvature and compatibility}
+Define
+\begin{align}
+ \mathcal F_{\mu\nu}X
+ &:=F^A_{\mu\nu}X-XF^B_{\mu\nu},\\
+ \mathcal D_\mu E_\nu
+ &:=\partial_\mu E_\nu+A_\mu E_\nu-E_\nu B_\mu.
+\end{align}
+
+\begin{theorem}[Augmented-curvature identity]
+The curvature of Eq.~\eqref{eq:augmented-connection} is
+\begin{equation}
+ \boxed{
+ \widehat{\mathcal F}_{\mu\nu}=
+ \begin{pmatrix}
+  \mathcal F_{\mu\nu} &
+  -s(\mathcal D_\mu E_\nu-\mathcal D_\nu E_\mu)\\
+  0&0
+ \end{pmatrix}.}
+ \label{eq:augmented-curvature}
+\end{equation}
+Consequently every solution obeys
+\begin{equation}
+ \boxed{
+ F^A_{\mu\nu}\Theta-\Theta F^B_{\mu\nu}
+ =s(\mathcal D_\mu E_\nu-\mathcal D_\nu E_\mu).}
+ \label{eq:exact-compatibility}
+\end{equation}
+For torsion-free antisymmetric tetrad compatibility, the right-hand side
+vanishes and Eq.~\eqref{eq:exact-compatibility} reduces to the curvature
+intertwiner condition.
+\end{theorem}
+
+\begin{proof}
+Multiply the block matrices in
+$\partial_\mu\widehat{\mathcal C}_\nu-
+\partial_\nu\widehat{\mathcal C}_\mu+
+[\widehat{\mathcal C}_\mu,\widehat{\mathcal C}_\nu]$.  The upper-left block is
+$\mathcal F_{\mu\nu}$; the upper-right block is the stated covariant curl.
+Applying $\widehat{\mathcal F}_{\mu\nu}$ to the parallel vector
+$(\Theta,1)^T$ gives Eq.~\eqref{eq:exact-compatibility}.
+\end{proof}
+
+\section{Exact holonomy criterion}
+\begin{theorem}[Prescribed-coefficient existence and path independence]
+Let $U$ be connected, choose $x_0\in U$ and $Y_0=(\Theta_0,1)^T$.  Parallel
+transport of Eq.~\eqref{eq:parallel-Y} along every piecewise smooth path from
+$x_0$ exists uniquely.  It defines a single-valued solution on $U$ if and only
+if the holonomy group of $\widehat{\mathcal C}$ at $x_0$ fixes $Y_0$:
+\begin{equation}
+ \operatorname{Hol}_{x_0}(\widehat{\mathcal C})Y_0=Y_0.
+ \label{eq:holonomy-criterion}
+\end{equation}
+When this holds, the solution is unique for the initial value $\Theta_0$.
+\end{theorem}
+
+\begin{proof}
+Along a path $\gamma$, Eq.~\eqref{eq:parallel-Y} is a linear ordinary
+differential equation and has unique path-ordered-exponential transport.
+Two paths with the same endpoints give the same value exactly when transport
+around their closed concatenation fixes $Y_0$.  This is
+Eq.~\eqref{eq:holonomy-criterion}.  Uniqueness along paths then gives
+uniqueness of the resulting section.
+\end{proof}
+
+\begin{corollary}[Flat augmented connection]
+If $U$ is simply connected and
+$\widehat{\mathcal F}_{\mu\nu}=0$, then for every initial $\Theta_0$ there is a
+unique global solution on $U$.  More generally, nonzero curvature is allowed
+provided its holonomy stabilizes the selected augmented initial vector.
+\end{corollary}
+
+\begin{remark}
+The criterion is stronger and more precise than saying merely that mixed
+partial derivatives must agree.  It also separates local/pathwise solvability,
+which is automatic, from multidimensional path independence and global
+single-valuedness, which are controlled by augmented holonomy.
+\end{remark}
+
+\section{Status}
+\begin{tcolorbox}[colback=green!6!white,colframe=green!55!black,title=Defensible status]
+\textbf{GAP-10I-PRESCRIBED: CLOSED [L1].}
+For specified smooth $(E_\mu,A_\mu,B_\mu)$ and an initial value, the exact
+existence, uniqueness and global path-independence criterion is the augmented
+holonomy condition Eq.~\eqref{eq:holonomy-criterion};
+Eq.~\eqref{eq:exact-compatibility} is its curvature-level necessary condition.
+
+\medskip
+\textbf{GAP-10I-CURVED: NARROWED, NOT FULLY CLOSED.}
+The remaining problem is self-consistent and dynamical: derive $(A,B,T)$ from
+the same UBT action, find a tetrad $E$ that satisfies its equations, verify the
+holonomy condition, and establish regularity/global continuation.  The
+prescribed-coefficient PDE itself is no longer an unspecified integrability
+mystery.
+\end{tcolorbox}
+\end{document}

@@ -22,6 +22,14 @@ The current canonical route is:
   tetrad and torsion; Levi-Civita corollary.
 - `gap_10i_integrability_selection.tex` — affine Minkowski/constant-tetrad
   representers, one-sided no-go, and two-sided curvature identity.
+- `gap_10t_paladini_torsion_dynamics.tex` — algebraic Cartan torsion equation
+  and minimal-branch torsion elimination.
+- `gap_10l_psi_symmetry_propagation.tex` — Lorentz-slice and imaginary-time
+  symmetry propagation theorems.
+- `gap_10i_augmented_holonomy.tex` — exact prescribed-connection integrability
+  and augmented-holonomy criterion.
+- `gap_10d_low_energy_uniqueness.tex` — conditional Palatini and Lovelock
+  endpoint of Einstein dynamics.
 - `step1_metric_bridge.tex` — canonical Step 1 wrapper.
 - `step2_theta_only_closure.tex` — revised GAP-10 ledger.
 - `../geometry/biquaternion_tetrad.tex` — tetrad definition.
@@ -32,17 +40,23 @@ The current canonical route is:
   checks.
 - `../../tools/verify_gap_10i_integrability.py` — affine representer and
   left/right integrability checks.
+- `../../tools/verify_remaining_gr_subclosures.py` — Cartan rank, Lorentz
+  involution, psi-gauge metric invariance, and augmented-curvature checks.
 
 ## Locked status language
 
 - `GAP-10Omega-KIN`: CLOSED.
 - `GAP-10Omega-GR`: CLOSED.
-- `GAP-10T-DYN`: OPEN.
+- `GAP-10T-PALATINI`: CLOSED CONDITIONALLY; `GAP-10T-DYN`: NARROWED.
 - `GAP-10I-SR`: CLOSED.
 - `GAP-10I-1S`: CLOSED AS NO-GO.
 - `GAP-10I-2S`: NARROWED.
-- `GAP-10I-CURVED`: OPEN.
-- `GAP-10D`: OPEN.
+- `GAP-10L-SYM`: CLOSED CONDITIONALLY; `GAP-10L-DYN`: NARROWED.
+- `GAP-10I-PRESCRIBED`: CLOSED; `GAP-10I-CURVED`: NARROWED.
+- `GAP-10D-PALATINI` and `GAP-10D-UNIQUENESS`: CLOSED CONDITIONALLY;
+  `GAP-10D`: NARROWED.
+- `GAP-10psi-KIN`: CLOSED; `GAP-10psi-SYM`: CLOSED CONDITIONALLY;
+  `GAP-10psi`: NARROWED.
 
 ## Noncanonical exploratory branch
 
